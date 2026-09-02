@@ -47,8 +47,8 @@ export function HomePage() {
           <div className="mt-3 text-center">
             <Tex display>{String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n^{3/2}\rfloor,&n\text{ odd.}\end{cases}`}</Tex>
             <p className="mt-2 text-sm text-muted">
-              Left: the orbit of 3 goes up through three odd doors, then down
-              through three even doors, to 1. The brackets ⌊ ⌋ mean floor:
+              Left: the orbit of 3 takes three odd branches O, then three even
+              branches E, to 1. The brackets ⌊ ⌋ mean floor:
               remove the decimals, keep the integer part. Example: ⌊3√3⌋ =
               ⌊5.196…⌋ = 5.
             </p>

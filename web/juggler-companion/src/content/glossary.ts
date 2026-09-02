@@ -24,7 +24,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     number: 1,
     term: "The Juggler map",
     blurb:
-      "Even numbers shrink. Odd numbers grow. Floor means: throw away the decimals and keep the integer part. That happens after every step.",
+      "Even numbers shrink. Odd numbers grow. Discard decimals. Do it forever?",
     body:
       "Floor is the integer part: remove everything after the decimal point. So floor(5.196) = 5 and floor(6) = 6. Start with a positive integer n. If n is even, take the square root and then floor. If n is odd, raise n to the three-halves and then floor: floor(n^{3/2}) = floor(n√n) = floor(√(n³)). That is not the cube root. The floor is applied after every letter, not once at the end. Those two rules are the whole map. Paper A writes them as J(n). The leftover crumbs after each floor are what later inequalities budget.",
     paper: "Abstract and §1: the map J, the even branch E, and the odd branch O.",

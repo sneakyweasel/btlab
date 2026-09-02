@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   CellsWidget,
@@ -18,6 +19,18 @@ import {
   type TourSlug,
 } from "../content/glossary";
 
+const SHORT_TERM: Record<TourSlug, string> = {
+  "the-map": "Map",
+  "orbit-word": "Orbit",
+  "cycle-word": "Cycle",
+  expanding: "Expand",
+  envelope: "Envelope",
+  cells: "Cells",
+  "descent-floor": "Floor",
+  finance: "Finance",
+  "walk-charge": "Walk",
+};
+
 const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "the-map": MapWidget,
   "orbit-word": OrbitWidget,
@@ -36,6 +49,7 @@ export function TourIndexPage() {
 
 export function TourPage() {
   const { slug } = useParams();
+  const [menuOpen, setMenuOpen] = useState(false);
   const chapter = chapterBySlug(slug);
   if (!chapter) {
     return <Navigate to="/tour/the-map" replace />;
@@ -43,24 +57,60 @@ export function TourPage() {
   const { prev, next } = neighborChapters(chapter.slug);
   const Widget = WIDGETS[chapter.slug];
   return (
-    <div className="grid gap-8 lg:grid-cols-[16rem_1fr]">
-      <aside>
-        <p className="text-xs uppercase tracking-[0.18em] text-muted">Tour</p>
-        <ol className="mt-3 space-y-1">
-          {TOUR_CHAPTERS.map((item) => (
-            <li key={item.slug}>
-              <Link
-                to={`/tour/${item.slug}`}
-                className={`block rounded-md px-2 py-1 text-sm no-underline ${
-                  item.slug === chapter.slug
-                    ? "bg-deep text-card"
-                    : "text-muted hover:bg-card"
-                }`}
-              >
-                {item.number}. {item.term}
-              </Link>
-            </li>
-          ))}
+    <div
+      className={`grid gap-6 ${
+        menuOpen ? "lg:grid-cols-[10.5rem_1fr]" : "lg:grid-cols-[2.75rem_1fr]"
+      }`}
+    >
+      <aside className="lg:sticky lg:top-4 lg:self-start">
+        <div className="mb-2 flex items-center gap-2">
+          {menuOpen ? (
+            <p className="hidden text-xs uppercase tracking-[0.18em] text-muted lg:block">
+              Tour
+            </p>
+          ) : null}
+          <button
+            type="button"
+            className="hidden h-8 w-8 items-center justify-center rounded-full border border-line bg-card text-sm text-muted lg:inline-flex"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Collapse chapter list" : "Expand chapter list"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? "‹" : "›"}
+          </button>
+        </div>
+        <ol
+          className={`flex flex-wrap gap-1 ${menuOpen ? "lg:flex-col" : "lg:flex-col lg:items-stretch"}`}
+        >
+          {TOUR_CHAPTERS.map((item) => {
+            const current = item.slug === chapter.slug;
+            return (
+              <li key={item.slug}>
+                <Link
+                  to={`/tour/${item.slug}`}
+                  title={`${item.number}. ${item.term}`}
+                  className={`flex items-center no-underline ${
+                    menuOpen
+                      ? "rounded-md px-2 py-1 text-sm"
+                      : "h-8 w-8 justify-center rounded-full text-xs"
+                  } ${
+                    current
+                      ? "bg-deep text-card"
+                      : "bg-card text-muted hover:bg-paper lg:bg-transparent"
+                  }`}
+                >
+                  {menuOpen ? (
+                    <>
+                      <span className="w-4 font-mono text-xs">{item.number}</span>
+                      <span className="ml-1">{SHORT_TERM[item.slug]}</span>
+                    </>
+                  ) : (
+                    item.number
+                  )}
+                </Link>
+              </li>
+            );
+          })}
         </ol>
       </aside>
       <article className="space-y-6">

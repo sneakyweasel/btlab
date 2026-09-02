@@ -1,4 +1,10 @@
+import { bitLength } from "./map";
+
 export function formatInt(value: bigint | number): string {
+  if (typeof value === "bigint" && bitLength(value) > 80) {
+    const exp = Math.round((bitLength(value) - 1) * Math.LOG10E * Math.LN2);
+    return `~10^${exp}`;
+  }
   const text = value.toString();
   if (text.length <= 18) return text;
   return `${text.slice(0, 6)}…${text.slice(-4)} (${text.length} digits)`;

@@ -28,7 +28,7 @@ export type OrbitView = {
   rows: OrbitRow[];
 };
 
-function rowOf(step: number, state: bigint, letter: "" | "O" | "E"): OrbitRow {
+export function rowOf(step: number, state: bigint, letter: "" | "O" | "E"): OrbitRow {
   return {
     step,
     state,
@@ -87,6 +87,26 @@ export function walkOrbit(n: bigint, steps: number): OrbitView {
     word: letters.join(""),
     reachedOne: path[path.length - 1] === 1n,
     bitCapped,
+    tooLarge: false,
+    rows,
+  };
+}
+
+export function orbitFromStates(
+  n: bigint,
+  states: bigint[],
+  word: string,
+): OrbitView {
+  const rows = states.map((state, index) =>
+    rowOf(index, state, (word[index] as "O" | "E") ?? ""),
+  );
+  return {
+    n,
+    stepsAsked: Math.max(states.length - 1, 0),
+    states,
+    word,
+    reachedOne: states[states.length - 1] === 1n,
+    bitCapped: false,
     tooLarge: false,
     rows,
   };

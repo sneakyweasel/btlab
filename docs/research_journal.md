@@ -21795,4 +21795,46 @@ Best next question
   surviving failure mode, not a demonstrated orbit
 ```
 
+## Odd-inverse parity: cube-block lanes versus Type 2 (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** Is the parity of the unique inverse candidate \(k=\lceil y^{2/3}\rceil\) a law of the cube-block residue \(r=y-m^3\), and do nested cube-lane hits reformulate an infinite flight? Reviewer item 5 of the inverse/fan-follower series. Not a width reopen, not a forward residue census, not a leftover-killer, and not a Paper A edit.
+- **Hypotheses:** cube-block lanes give a modular/Diophantine description of admissibility invisible from \(\lfloor x^{3/2}\rfloor\bmod 2\); falsifier: Type-2 \(y\) in block \(m\) are exactly \(\{T(x):x\text{ odd in }[m^2,(m+1)^2)\}\), offsets have no residue/AP law, backward nesting is finite, forward nesting is landing parity.
+- **Major results:**
+  - Cube-block identity holds on every \(m\le 40\) and on \(\{50,80,100\}\): occupant list equals the odd annulus. Density \(\sim 1/(3m)\) (one hundred Type-2 hits in a block of length \(30301\) at \(m=100\)).
+  - Offset hunt: no AP at \(n_{\mathrm{type2}}\ge 3\); no deciding residue modulo \(2,3,4,8,16,m,2m+1\). Gaps at large \(m\) lie in \(\{3m,\ldots,3m+3\}\) (binomial / MVT). The \(m=1\) pair \(\{1,5\}\) is \(r\equiv 0\pmod 4\) in a seven-point block and is not a law.
+  - Named hits \(\{3,37,365,761\}\) are Type 2 self-preimages. Images mix parity (\(5,225\) odd; \(6973,20993\) even).
+  - Backward spines descend: max depth \(3\) on Type-2 \(y\le 200\); named images have depth \(1\) and die at a Type 0 occupant. Forward continuation is landing parity (odd-landing / odd-tower CLOSE; \(\mathcal P_r\) not rerun).
+  - Classification `ODD_INVERSE_PARITY_REPARAMETERIZATION`. Slogan **REFUTED** (`juggler_odd_inverse_parity`). No ledger theorem row, no Lean, no Paper A.
+- **Refuted ideas:** that cube-block position of \(y\) supplies a \(T\)-free admissibility law; that an infinite flight is an infinite nested cubic-boundary sequence.
+- **Literature:** `odd_cell_unique`; `J-odd-pred-empty-cube`; `juggler_odd_inverse_width` REFUTED; odd-landing sets CLOSE; odd-tower CLOSE; backward geometry CLOSE.
+- **Open:** none from inverse-candidate parity.
+- **Decision:** CLOSE. Dossier `docs/problems/juggler_odd_inverse_parity.md`.
+
+```text
+What was learned
+- the inverse candidate is the Type-2 occupant
+- Type-2 y in cube block m are T of the odd square annulus
+- offsets have no AP or deciding residue
+- backward nesting is a finite descent
+- forward nesting is landing parity
+Strongest theorem
+- none new (cube-block identity is a corollary of
+  J-odd-pred-empty-cube)
+Strongest refutation
+- cube-block parity of the inverse candidate is a
+  new Diophantine invariant (juggler_odd_inverse_parity)
+Reusable machinery
+- odd_inverse_parity identity check and offset hunt
+Branch status
+- CLOSE
+Why
+- every Phase-0 statement is KNOWN or
+  REPARAMETERIZATION; nested cubic conditions are a
+  direction error
+Best next question
+- none from this door; do not start another
+  inverse-cell census
+```
+
 

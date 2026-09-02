@@ -30,13 +30,58 @@ export const N_PRESETS = [
   { label: "1999 — four-block", value: 1999n },
 ] as const;
 
-/** Short starts for the map tour: 37 plus the note-orbit odds and 1999. */
-export const MAP_STARTS = [
-  { label: "37 peak", value: 37n },
-  { label: "3", value: 3n },
-  { label: "5", value: 5n },
-  { label: "11", value: 11n },
-  { label: "1999", value: 1999n },
+/** Live map starts: the browser walks these under the 256-bit cap. */
+export const LIVE_STARTS = [
+  {
+    label: "3",
+    value: 3n,
+    note: "The printed orbit of 3: OOOEEE to 1. Hitting 1 here is one orbit, not a halt proof.",
+  },
+  {
+    label: "9",
+    value: 9n,
+    note: "A short live walk under the 256-bit cap, easy to step through.",
+  },
+  {
+    label: "16",
+    value: 16n,
+    note: "Even tower: nested square roots 16 → 4 → 2 → 1. The even branch only.",
+  },
+  {
+    label: "37 peak",
+    value: 37n,
+    note: "Paper A’s note peak: a small start that climbs high, then falls. One walk, not a theorem.",
+  },
+  {
+    label: "113",
+    value: 113n,
+    note: "A longer live walk that still fits in the browser walker.",
+  },
+  {
+    label: "256",
+    value: 256n,
+    note: "Even tower: 256 → 16 → 4 → 2 → 1. Four even letters, then 1.",
+  },
+  {
+    label: "365 leftover",
+    value: 365n,
+    note: "A finance leftover: the inequality did not kill this shape. That is not a cycle.",
+  },
+  {
+    label: "1999",
+    value: 1999n,
+    note: "A four-block start from the playground list. Still live, under 256 bits.",
+  },
+  {
+    label: "65536",
+    value: 65536n,
+    note: "Even tower: 65536 → 256 → 16 → 4 → 2 → 1. A taller square-root stack.",
+  },
+  {
+    label: "2^32",
+    value: 4294967296n,
+    note: "Even tower 2^32. Still live: nested square roots the browser can walk.",
+  },
 ] as const;
 
 export const WORD_PRESETS = ["OOE", "OOOEE", "OOOEOE", "OOOOEE"] as const;

@@ -7,7 +7,10 @@
 export function bitLength(n: bigint): number {
   const value = n < 0n ? -n : n;
   if (value === 0n) return 0;
-  return value.toString(2).length;
+  const hex = value.toString(16);
+  const lead = Number.parseInt(hex[0], 16);
+  const leadBits = lead >= 8 ? 4 : lead >= 4 ? 3 : lead >= 2 ? 2 : 1;
+  return (hex.length - 1) * 4 + leadBits;
 }
 
 export function isqrt(n: bigint): bigint {

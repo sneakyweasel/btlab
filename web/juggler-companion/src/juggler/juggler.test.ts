@@ -8,6 +8,7 @@ import {
 } from "./constants";
 import { financeSnapshot, financeView } from "./finance";
 import { floorPower } from "./map";
+import { monsterOrbit, resolveOrbit } from "./monsters";
 import { walkOrbit } from "./orbit";
 import {
   envelopeSlack,
@@ -37,6 +38,13 @@ describe("walkOrbit", () => {
     expect(view.tooLarge).toBe(false);
   });
 
+  it("collapses the even tower 256", () => {
+    const view = walkOrbit(256n, 20);
+    expect(view.states).toEqual([256n, 16n, 4n, 2n, 1n]);
+    expect(view.word).toBe("EEEE");
+    expect(view.reachedOne).toBe(true);
+  });
+
   it("records the note peak of 37", () => {
     const view = walkOrbit(37n, 80);
     expect(view.states).toContain(NOTE_PEAK_37);
@@ -49,6 +57,28 @@ describe("walkOrbit", () => {
     expect(view.bitCapped).toBe(true);
     expect(view.tooLarge).toBe(true);
     expect(view.states).toHaveLength(1);
+  });
+});
+
+describe("monster orbits", () => {
+  it("loads the shipped 193 delay record", () => {
+    const view = monsterOrbit(193n);
+    expect(view).not.toBeNull();
+    expect(view?.source).toBe("monster");
+    expect(view?.reachedOne).toBe(true);
+    expect(view?.peakBits).toBe(900);
+    expect(view?.states[0]).toBe(193n);
+    expect(view?.states.at(-1)).toBe(1n);
+  });
+
+  it("resolves 37 live and 173 from JSON", () => {
+    const live = resolveOrbit(37n, 80);
+    expect(live.source).toBe("live");
+    expect(live.states).toContain(NOTE_PEAK_37);
+    const shipped = resolveOrbit(173n, 80);
+    expect(shipped.source).toBe("monster");
+    expect(shipped.reachedOne).toBe(true);
+    expect((shipped.peakBits ?? 0) > 256).toBe(true);
   });
 });
 

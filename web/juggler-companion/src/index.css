@@ -54,7 +54,8 @@ h3 {
 }
 
 a.bg-deep,
-button.bg-deep {
+button.bg-deep,
+button.bg-odd {
   color: var(--color-paper);
 }
 
@@ -64,4 +65,54 @@ button.bg-deep {
 
 .katex {
   font-size: 1.05em;
+}
+
+.start-input {
+  appearance: textfield;
+}
+
+.start-input::-webkit-inner-spin-button,
+.start-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.orbit-scrubber {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.orbit-scrubber::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+}
+
+.orbit-scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 999px;
+  background: var(--color-deep);
+  box-shadow: 0 0 0 3px var(--color-card);
+}
+
+.orbit-scrubber::-moz-range-track {
+  height: 4px;
+  background: transparent;
+  border: none;
+}
+
+.orbit-scrubber::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-deep);
+  box-shadow: 0 0 0 3px var(--color-card);
 }
