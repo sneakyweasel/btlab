@@ -5,6 +5,8 @@ import {
   assembleFillCounts,
   cycleMinShape,
   formatNecklaceFill,
+  formatOddEvenRuns,
+  oddEvenRuns,
   parseItinerary,
   rotateItinerary,
   tryAssembleFill,
@@ -12,6 +14,7 @@ import {
 import { CycleAnatomy } from "../visuals/CycleAnatomy";
 import { CycleLollipop } from "../visuals/CycleLollipop";
 import { CycleNecklace } from "../visuals/CycleNecklace";
+import { OddEvenRunStrip } from "../visuals/OddEvenRunStrip";
 import {
   IdealDecisionCard,
   IdealDecisionList,
@@ -99,6 +102,8 @@ export function CycleTourWidget() {
   const currentFill = current ? tryAssembleFill(current) : null;
   const balloonFill = balloonWord ? tryAssembleFill(balloonWord) : null;
   const balloonFillCounts = balloonFill ? assembleFillCounts(balloonFill) : null;
+  const currentRuns = current ? oddEvenRuns(current) : null;
+  const balloonRuns = balloonWord ? oddEvenRuns(balloonWord) : null;
   const aligned =
     stored.length > 0 &&
     ((shift % stored.length) + stored.length) % stored.length === minIndex;
@@ -125,20 +130,20 @@ export function CycleTourWidget() {
       }}
     >
       <p className="text-sm text-muted">
-        If a cycle existed it would need a CycleMin rotation: launch OO,
-        wrap EO, four evens, seven odds, period at least 11. The full
-        e-run O^a1 E ... O^ae E is Lean. The figure is a projection of
-        that run list onto six sure letters, not an assembleFill
-        reconstruction. Lemma 3.21b’s leftover use for e ≤ 3 stays the
-        paper argument. The stem OO???E is an optional first visit.
-        Click a bead or a row to see the Lean name. Click empty space
-        to show the whole figure again. Pictures of necessity, not a
-        realized loop beyond 1. The unique known cycle is 1.
+        If a cycle existed it would need a CycleMin rotation. The
+        latest Lean sits on the cycle half of this figure — click
+        Cycle or the run-list card under the ring. The stem OO???E is
+        an optional first visit and has no new Lean. The leftover
+        necklace below only supplies a sample word for that cycle
+        card. Pictures of necessity, not a realized loop beyond 1. The
+        unique known cycle is 1.
       </p>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
           focus={decision?.focus}
           joinIndex={joinIndex}
+          word={balloonWord}
+          fill={balloonFill}
           onJoinIndex={(index) => {
             setJoinIndex(index);
             setDecisionId("join-seam");
@@ -187,10 +192,10 @@ export function CycleTourWidget() {
                   : "border-line bg-paper/70 text-muted"
             }`}
           >
-            {balloonShape.cycleMinShaped && balloonFill
-              ? `CycleMin-shaped leftover and an assembleFill ${formatNecklaceFill(balloonFill)}. Lean fill counts are exact here. Still not a realized cycle.`
-              : balloonShape.cycleMinShaped
-                ? "CycleMin-shaped leftover, not an assembleFill. Extra runs are not bunched into the four-slot candidate. Still not a realized cycle (CycleMinShape_not_of_CycleMin)."
+            {balloonShape.cycleMinShaped && balloonFill && balloonRuns
+              ? `CycleMin-shaped leftover. Runs ${formatOddEvenRuns(balloonRuns)} equal toRuns of assembleFill ${formatNecklaceFill(balloonFill)}. Still not a realized cycle.`
+              : balloonShape.cycleMinShaped && balloonRuns
+                ? `CycleMin-shaped leftover. Runs ${formatOddEvenRuns(balloonRuns)} are not a four-slot fill. Still not a realized cycle (CycleMinShape_not_of_CycleMin).`
                 : aligned
                   ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, has four evens and seven odds."
                   : "Rotate until the min bead sits at the leftover knot."}
@@ -232,7 +237,15 @@ export function CycleTourWidget() {
               </div>
             </div>
             <div className="space-y-3">
-              <LetterRow word={current} aligned={aligned} />
+              {currentRuns ? (
+                <OddEvenRunStrip
+                  word={current}
+                  fill={currentFill}
+                  onSelect={() => setDecisionId("balloon-run")}
+                />
+              ) : (
+                <LetterRow word={current} aligned={aligned} />
+              )}
               <p className="text-xs uppercase tracking-wide text-muted">
                 Cycle checklist
               </p>
@@ -240,8 +253,10 @@ export function CycleTourWidget() {
                 <Check ok={shape.startsOO}>
                   Launch OO — cycleMin_launch_is_OO
                 </Check>
-                <Check ok={shape.startsOddEvenBlock && shape.lastOddRunAtMost1 && shape.endsE}>
-                  Full run O^a1 E ... O^ae E — cycleMin_has_full_odd_even_run_form
+                <Check ok={Boolean(currentRuns) && shape.startsOO && shape.lastOddRunAtMost1}>
+                  {currentRuns
+                    ? `Full run ${formatOddEvenRuns(currentRuns)} — cycleMin_has_full_odd_even_run_form`
+                    : "Full run O^a1 E ... O^ae E — needs terminal E"}
                 </Check>
                 <Check ok={shape.endsE}>
                   Wrap EO — cycleMin_wrap_is_EO, last-even cell
@@ -279,6 +294,11 @@ export function CycleTourWidget() {
                       ? `unplaced odds ${shape.unplacedOdds}, extra evens ${shape.extraEvens}`
                       : "four evens first hold at length 11"
                   }
+                />
+                <Metric
+                  label="odd-even runs"
+                  value={balloonRuns ? formatOddEvenRuns(balloonRuns) : "needs terminal E"}
+                  hint="unique split of a word ending E; CycleMin adds a1 >= 2 and ae <= 1"
                 />
                 <Metric
                   label="Lean fill"

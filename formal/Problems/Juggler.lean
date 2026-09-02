@@ -70,6 +70,9 @@ import Problems.Juggler.WalkChargeMax
 import Problems.Juggler.DefectFinance
 import Problems.Juggler.AboveAnchorWalk
 import Problems.Juggler.IdealCycleMin
+import Problems.Juggler.FunctionalGraph
+import Problems.Juggler.InverseBranches
+import Problems.Juggler.Seam
 
 /-!
 # Juggler laboratory barrel

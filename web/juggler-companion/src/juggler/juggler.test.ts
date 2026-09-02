@@ -34,8 +34,11 @@ import {
   assembleFillCounts,
   assembleOddEvenRuns,
   cycleMinShape,
+  formatOddEvenRuns,
+  formatRunWord,
   necklaceFillToRuns,
   oddEvenRuns,
+  runsEqual,
   envelopeSlack,
   expanding,
   followsItinerary,
@@ -198,6 +201,11 @@ describe("assembleFill identities", () => {
     expect(tryAssembleFill("OOOEOOEOOEE")).toBeNull();
     expect(oddEvenRuns("OOOEOOEOOEE")).toEqual([3, 2, 2, 0]);
     expect(assembleOddEvenRuns([3, 2, 2, 0])).toBe("OOOEOOEOOEE");
+    expect(formatOddEvenRuns([3, 2, 2, 0])).toBe("[3, 2, 2, 0]");
+    expect(formatRunWord([3, 2, 2, 0])).toBe("O^3 E O^2 E O^2 E E");
+    expect(formatRunWord([7, 0, 0, 0])).toBe("O^7 E E E E");
+    expect(runsEqual([3, 2, 2, 0], [3, 2, 2, 0])).toBe(true);
+    expect(runsEqual([3, 2, 2, 0], [7, 0, 0, 0])).toBe(false);
   });
 
   it("projects a fill onto a bunched run list", () => {

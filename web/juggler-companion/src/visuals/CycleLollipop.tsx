@@ -11,6 +11,15 @@ import {
   type BalloonInterval,
   type IdealBead,
 } from "../juggler/constants";
+import {
+  formatNecklaceFill,
+  formatOddEvenRuns,
+  formatRunWord,
+  necklaceFillToRuns,
+  oddEvenRuns,
+  runsEqual,
+  type NecklaceFill,
+} from "../juggler/itinerary";
 
 const CX = 548;
 const CY = 160;
@@ -395,15 +404,60 @@ function intervalAngle(afterBead: number, n: number): number {
   return (a0 + a1) / 2;
 }
 
+function CycleLeanPanel({
+  word,
+  fill,
+  lit,
+  onPick,
+}: {
+  word?: string;
+  fill?: NecklaceFill | null;
+  lit: boolean;
+  onPick: (id: string) => void;
+}) {
+  const runs = word ? oddEvenRuns(word) : null;
+  const projected = fill ? necklaceFillToRuns(fill) : null;
+  const matchesFill = Boolean(runs && projected && runsEqual(runs, projected));
+  return (
+    <button
+      type="button"
+      data-keep-focus
+      className="mt-2 block w-full rounded-lg border border-line bg-card px-3 py-2 text-left"
+      style={{ opacity: lit ? 1 : 0.45 }}
+      onClick={() => onPick("balloon-run")}
+    >
+      <p className="text-xs uppercase tracking-wide text-muted">
+        On the cycle, not the stem — cycleMin_has_full_odd_even_run_form
+      </p>
+      <p className="mt-1 font-mono text-sm text-ink">
+        {runs
+          ? `w = ${formatRunWord(runs)}   ${formatOddEvenRuns(runs)}`
+          : "w = O^a1 E ... O^ae E   with a1 >= 2, ae <= 1, e = #E"}
+      </p>
+      <p className="mt-1 text-xs text-muted">
+        {runs && projected && matchesFill
+          ? `This leftover equals toRuns of assembleFill ${formatNecklaceFill(fill!)}. The ring above is that bunched projection (OO+EEEE), not a reconstruction.`
+          : runs
+            ? "This leftover has interior runs the four-slot ring forgets. The bead schema is a projection of the Lean list, not assembleFill."
+            : "The ring and the OOEEEE strip are a projection of this Lean list onto six sure letters. Sure links are only launch OO and wrap EO."}
+      </p>
+    </button>
+  );
+}
+
 export function CycleLollipop({
   focus,
   joinIndex = 0,
+  word,
+  fill = null,
   onJoinIndex,
   onSelectDecision,
   onClearFocus,
 }: {
   focus?: DecisionFocus;
   joinIndex?: number;
+  word?: string;
+  fill?: NecklaceFill | null;
   onJoinIndex?: (index: number) => void;
   onSelectDecision?: (id: string) => void;
   onClearFocus?: () => void;
@@ -504,8 +558,9 @@ export function CycleLollipop({
       >
         <title>
           Optional stem joining a CycleMin cycle at a sure letter.
-          Candidate schema: six sure letters; interval marks are bounds.
-          Not an assembleFill reconstruction
+          The cycle is a projection of the Lean run list
+          O^a1 E ... O^ae E onto six sure letters. Not an assembleFill
+          reconstruction.
         </title>
         <text
           x={(stem[0].x + stem[Math.max(stem.length - 2, 0)].x) / 2}
@@ -698,26 +753,91 @@ export function CycleLollipop({
         })}
         <text
           x={CX}
-          y={CY - 2}
+          y={CY - 8}
           textAnchor="middle"
           fill="#1d1914"
           fontFamily="Fraunces, ui-serif, Georgia, serif"
           fontSize="20"
+          style={onSelectDecision ? { cursor: "pointer" } : undefined}
+          role="button"
+          onClick={(event) => pick("balloon-run", event)}
         >
           Cycle
         </text>
         <text
           x={CX}
-          y={CY + 16}
+          y={CY + 10}
           textAnchor="middle"
           fill="#5e574c"
           fontFamily="Source Sans 3, sans-serif"
           fontSize="11"
+          style={onSelectDecision ? { cursor: "pointer" } : undefined}
+          role="button"
+          onClick={(event) => pick("balloon-run", event)}
         >
-          L≥11
+          Lean run projection
+        </text>
+        <text
+          x={CX}
+          y={CY + 24}
+          textAnchor="middle"
+          fill="#5e574c"
+          fontFamily="Source Sans 3, sans-serif"
+          fontSize="10"
+          style={onSelectDecision ? { cursor: "pointer" } : undefined}
+          role="button"
+          onClick={(event) => pick("balloon-run", event)}
+        >
+          O^a1 E ... O^ae E
+        </text>
+        <text
+          x={alongRay((beadAngle(0, n) + beadAngle(1, n)) / 2, R - 34).x}
+          y={alongRay((beadAngle(0, n) + beadAngle(1, n)) / 2, R - 34).y}
+          textAnchor="middle"
+          fill={ODD}
+          fontFamily="Source Sans 3, sans-serif"
+          fontSize="10"
+          opacity={
+            regionLit(focus, "balloon-oo") ||
+            regionLit(focus, "balloon-seam") ||
+            regionLit(focus, "balloon")
+              ? 1
+              : 0.2
+          }
+          style={onSelectDecision ? { cursor: "pointer" } : undefined}
+          role="button"
+          onClick={(event) => pick("balloon-links", event)}
+        >
+          sure OO
+        </text>
+        <text
+          x={alongRay(intervalAngle(n - 1, n), R + 28).x}
+          y={alongRay(intervalAngle(n - 1, n), R + 28).y}
+          textAnchor="middle"
+          fill={EVEN}
+          fontFamily="Source Sans 3, sans-serif"
+          fontSize="10"
+          opacity={
+            regionLit(focus, "balloon-oo") ||
+            regionLit(focus, "balloon-seam") ||
+            regionLit(focus, "balloon")
+              ? 1
+              : 0.2
+          }
+          style={onSelectDecision ? { cursor: "pointer" } : undefined}
+          role="button"
+          onClick={(event) => pick("balloon-links", event)}
+        >
+          sure EO
         </text>
         <defs />
       </svg>
+      <CycleLeanPanel
+        word={word}
+        fill={fill}
+        lit={!focus || focus === "figure" || focus.startsWith("balloon")}
+        onPick={(id) => pick(id)}
+      />
       <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
         <button
           type="button"
@@ -754,11 +874,29 @@ export function CycleLollipop({
       <p className="mt-1 text-center text-sm text-muted" aria-live="polite">
         Join at {joinName}
         {atCycleMin ? " — the CycleMin placement" : " — not the CycleMin cut"}
-        . Six sure letters; interval slots are not stops.
+        . Sure letters OO+EEEE
+        {" "}
+        <button
+          type="button"
+          className="underline decoration-dotted underline-offset-2"
+          onClick={(event) => pick("balloon-links", event)}
+        >
+          (cycleMin_sure_letter_inventory)
+        </button>
+        . Sure links launch OO and wrap EO
+        {" "}
+        <button
+          type="button"
+          className="underline decoration-dotted underline-offset-2"
+          onClick={(event) => pick("balloon-links", event)}
+        >
+          (cycleMin_only_forced_adjacencies)
+        </button>
+        . Interval slots are not stops.
       </p>
       <div
         className="mt-1 flex flex-wrap items-end justify-center gap-1.5"
-        aria-label="Candidate CycleMin schema with six sure letters and interval bounds"
+        aria-label="Bead schema: projection of the Lean run list onto six sure letters"
       >
         {RUNS.map((run, index) => {
           const lit = regionLit(focus, run.focus);
@@ -795,9 +933,9 @@ export function CycleLollipop({
         <span className="mx-2 text-muted">+</span>
         intervals
         <span className="mx-2 text-muted">→</span>
-        candidate schema
+        bead projection of the Lean run list
         <span className="ml-2 font-sans text-muted">
-          · a₁≥2 · e≥4 · o≥7 · aₑ∈{"{0,1}"} · full e-run Lean · schema is a projection · not a cycle
+          · a₁≥2 · e≥4 · o≥7 · aₑ∈{"{0,1}"} · not a cycle
         </span>
       </p>
       <p className="mt-2 text-sm text-muted">

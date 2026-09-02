@@ -234,6 +234,19 @@ export function oddEvenRuns(word: string): number[] | null {
   return runs;
 }
 
+export function formatOddEvenRuns(runs: readonly number[]): string {
+  return `[${runs.join(", ")}]`;
+}
+
+/** Display form `O^3 E O^2 E E` of a Lean run list. */
+export function formatRunWord(runs: readonly number[]): string {
+  return runs.map((odds) => (odds === 0 ? "E" : `O^${odds} E`)).join(" ");
+}
+
+export function runsEqual(left: readonly number[], right: readonly number[]): boolean {
+  return left.length === right.length && left.every((value, index) => value === right[index]);
+}
+
 /** Lean `NecklaceFill.toRuns`: bunched middle odds and empty extra evens. */
 export function necklaceFillToRuns(fill: NecklaceFill): number[] {
   return [

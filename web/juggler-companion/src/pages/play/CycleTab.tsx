@@ -1,6 +1,7 @@
 import { Metric } from "../../components/Metric";
 import { StartControl } from "../../components/StartControl";
 import { CycleNecklace } from "../../visuals/CycleNecklace";
+import { OddEvenRunStrip } from "../../visuals/OddEvenRunStrip";
 import { usePlayState } from "../../context/PlayState";
 import { CYCLE_PRESETS } from "../../juggler/constants";
 import { formatInt, parsePositiveInt } from "../../juggler/format";
@@ -10,6 +11,7 @@ import {
   cycleMinShape,
   expanding,
   formatNecklaceFill,
+  formatOddEvenRuns,
   necklaceFillToRuns,
   oddEvenRuns,
   parseCycleItinerary,
@@ -95,6 +97,11 @@ export function CycleTab() {
               onSelectIndex={setCycleShift}
             />
             <div className="grid gap-3 sm:grid-cols-2">
+              {current ? (
+                <div className="sm:col-span-2">
+                  <OddEvenRunStrip word={current} fill={fill} />
+                </div>
+              ) : null}
               <Metric label="This spelling" value={current || "—"} />
               <Metric
                 label="Odds / evens"
@@ -117,10 +124,10 @@ export function CycleTab() {
               />
               <Metric
                 label="odd-even runs"
-                value={runs ? `[${runs.join(", ")}]` : "needs terminal E"}
+                value={runs ? formatOddEvenRuns(runs) : "needs terminal E"}
                 hint={
                   fill
-                    ? `bead projection ${JSON.stringify(necklaceFillToRuns(fill))}`
+                    ? `bead projection ${formatOddEvenRuns(necklaceFillToRuns(fill))}`
                     : runs
                       ? "full run list; not a four-slot fill"
                       : undefined

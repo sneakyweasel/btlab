@@ -22045,4 +22045,36 @@ Best next question
 - none from this door; freeze the bead file
 ```
 
+## Functional-graph seam interface (not a numbered milestone)
+
+- **Date:** 2026-09-02
+- **Objective:** Give Lean an integer-edge seam object `stemParent → n ← cycleParent` at a CycleMin valley, without rewriting beads or reopening the closed local-attack record.
+- **Hypotheses:** none new. Falsifier: every compiled statement is Collision Factorization or the existing parent cells.
+- **Major results:** `FunctionalGraph.lean` (`JEdge`, `JPath`, `Ancestor`). `InverseBranches.lean` (`parent_cases`, `odd_parents_eq`, `odd_parent_lt`). `Seam.lean` (`SeamData`, `collision_factorization`, `cycle_in_edge_unique`, `seam_parent_cases`, `odd_parent_of_cycleMin_off_cycle`, `seam_cycle_not_ancestor_of_stem`). Sink instance `sink_seam_two_to_one`. No `sorry` / `admit`. `lake build Problems.Juggler.Seam` succeeded. Bead file does not import the seam layer.
+- **Refuted ideas:** none new. A non-cycle stem attaching to CycleMin is not contradictory from the local fork alone.
+- **Literature:** closed first-collision / seam-ancestry record; Collision Factorization moves from HUMAN PROOF to Lean packaging.
+- **Open:** none from this door.
+- **Decision:** CLOSE — REPARAMETERIZATION. Keep the Lean interface. Do not reopen seam, ancestry, or first collision.
+
+```text
+What was learned
+- the bead join stays a picture; SeamData is the integer fork
+- first meeting iff the last parent is off-cycle is now Lean
+- the cyclic in-edge at the valley is unique
+- an odd valley parent is below n and automatically off-cycle
+- the cycle cannot reach an external stem; the converse path is true of every parent of n
+Strongest theorem
+- cycle_in_edge_unique / collision_factorization / odd_parent_of_cycleMin_off_cycle
+Strongest refutation
+- none new; local leftover-killer remains REFUTED
+Reusable machinery
+- JEdge / parent_cases / SeamData
+Branch status
+- CLOSE — REPARAMETERIZATION
+Why
+- every statement is the existing cell package or Collision Factorization
+Best next question
+- none from this door; do not treat SeamData as a leftover-killer
+```
+
 

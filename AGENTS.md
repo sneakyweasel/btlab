@@ -162,8 +162,10 @@ for external review.
   local configuration around a hypothetical cycle is contradictory. Seam,
   ancestry, provenance, collision-pair, word-order, error-transport, and
   cycle-lift drops all reduce to Collision Factorization (first meeting iff
-  the parent is off-cycle) or the lift identity \(T^L(t)=c\ge n\). Do not
-  reopen them; the ledger, `conjectures/refuted/`, and
+  the parent is off-cycle) or the lift identity \(T^L(t)=c\ge n\). The
+  integer-edge interface is `Seam.lean` (`SeamData`); it packages that
+  factorization and does not reopen the kill. Do not reopen them; the
+  ledger, `conjectures/refuted/`, and
   [docs/negative_knowledge.md](docs/negative_knowledge.md) list each kill.
 - **Anti-overclaim:** do not treat a finite check, a period floor, a
   density, a leftover census, or any weaker compiled lemma as a halt
@@ -185,7 +187,7 @@ for external review.
 | Probes / censuses | `src/research/juggler_sequence/<branch>.py` |
 | Tests (fast suite) | `tests/research/juggler_sequence/test_<branch>.py` |
 | Data artifacts | `data/research/juggler/.../summary.json` |
-| Lean (itineraries, cells, CycleMin, finance, lattice) | `formal/Problems/Juggler/` (`WalkChargeItineraries.lean`) |
+| Lean (itineraries, cells, CycleMin, finance, lattice, seam) | `formal/Problems/Juggler/` (`WalkChargeItineraries.lean`, `Seam.lean`) |
 | Branch dossier | `docs/problems/juggler_<id>.md` (all TEMPLATE headings; enforced by `tests/integration/test_problem_dossiers.py`) |
 | Negative knowledge | [docs/negative_knowledge.md](docs/negative_knowledge.md) (completeness: `tests/integration/test_negative_knowledge.py`) |
 | Conjecture record | `conjectures/{active,refuted,proved,archived}/<id>.json` |

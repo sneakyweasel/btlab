@@ -779,7 +779,8 @@ theorem no_forced_station_outside_sure (s : BalloonStation)
 /-! ## Optional stem (not a CycleMin theorem) -/
 
 /-- Optional first-visit stem: sure `OO`, unknown middle `0+`, sure `t = E`.
-    Join-at-CycleMin is a picture, not a CycleMin lemma. -/
+    This bead join is still a picture. Actual integer edges and
+    Collision Factorization live in `Seam.lean` (`SeamData`). -/
 def stemSureParities : List BeadParity := [.odd, .odd, .even]
 
 def stemEdges : List BeadEdge :=
