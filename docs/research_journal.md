@@ -21983,4 +21983,35 @@ Best next question
 - none from this door; search the index before opening a branch
 ```
 
+## CycleMin bead accounting (not a numbered milestone)
+
+- **Date:** 2026-09-02
+- **Objective:** Package exact `assembleFill` identities and theorem-level bead roles in `formal/Problems/Juggler/IdealCycleMin.lean`, with an honest split between the candidate schema and CycleMin. Not a reconstruction, not Lemma 3.21b, not a Paper A edit, and not a halt theorem.
+- **Hypotheses:** none new. Falsifier: a Lean equality `assembleFill f = w` for every `CycleMin` word.
+- **Major results:** Combinatorial identities `assembleFill_oddCount` / `evenCount` / `length` and the unplaced-odd / extra-even budgets on fills. `sureLink_iff` names the two table adjacencies. Named wrappers for launch `OO`, wrap `EO`, first-even overshoot, last-even cell, prefix hug budget, and known letter parity. `CycleMinShape_not_of_CycleMin` via `itineraryO7EEEE`. Comments no longer claim that every CycleMin word fills the schema. No `sorry` / `admit`. `lake build Problems.Juggler.IdealCycleMin` succeeded.
+- **Refuted ideas:** none new. The statement `∃ f, f.admits ∧ assembleFill f = w` for general `CycleMin n w` remains false (extra evens are bunched; a 4-even word such as `O⁵EOEOEE` is shaped and is not an `assembleFill`).
+- **Literature:** existing CycleMin facts in `EvenCountThree`, `CycleCore`, `WalkChargeItineraries`; Lemma 3.21b stays `EXACT — HUMAN PROOF`.
+- **Open:** the full e-run form `w = O^{a₁}E ⋯ O^{aₑ}E` is still human proof.
+- **Decision:** PROMOTE the accounting lemmas into the existing formal bead file. PARK the `CycleMin → NecklaceFill` reconstruction behind Lemma 3.21b. Do not open a rescue branch.
+
+```text
+What was learned
+- assembleFill counts are exact on fills, not CycleMin fields
+- balloonSchema is a candidate schema; projection is not reconstruction
+- exactly two table links are sure (launch OO, wrap EO)
+- CycleMinShape is inhabited by a non-cycle leftover
+Strongest theorem
+- assembleFill odd/even/length identities; sureLink_iff
+Strongest refutation
+- assembleFill does not characterize CycleMin
+Reusable machinery
+- formal/Problems/Juggler/IdealCycleMin.lean identities and wrappers
+Branch status
+- PROMOTE (accounting); PARK (reconstruction behind 3.21b)
+Why
+- the identities are equalities; the reconstruction is not Lean
+Best next question
+- none from this door; 3.21b stays HUMAN PROOF
+```
+
 

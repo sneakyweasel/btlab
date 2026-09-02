@@ -174,10 +174,10 @@ export const BALLOON_SCHEMA: readonly BalloonStation[] = [
   { kind: "sureEven", role: "first" },
   { kind: "intervalOdd", odd: "middle" },
   { kind: "sureEven", role: "middle" },
+  { kind: "intervalExtraEven" },
   { kind: "sureEven", role: "middle" },
   { kind: "intervalOdd", odd: "lastZeroOrOne" },
   { kind: "sureEven", role: "last" },
-  { kind: "intervalExtraEven" },
 ];
 
 /** Idealized first-visit stem: sure OO and t, unknown middle color. */
@@ -236,6 +236,14 @@ export function intervalBoundLabel(interval: BalloonInterval): string {
   return interval.max === null
     ? `${interval.min}+`
     : `${interval.min} or ${interval.max}`;
+}
+
+/** Known parity, unknown count. Not a sure letter. */
+export function intervalCountBead(interval: BalloonInterval): IdealBead {
+  return {
+    letter: interval.kind === "extraEven" ? "E" : "O",
+    tone: "count",
+  };
 }
 
 export const IDEAL_STRING_LETTERS = IDEAL_STRING_BEADS.map(

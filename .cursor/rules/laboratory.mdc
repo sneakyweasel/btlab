@@ -15,7 +15,15 @@ Balanced ternary is the **core**. Research problems are **applications**.
 
 ## Claims
 
-No Collatz-solution language. Finite checks are not proofs. Do not inflate tags.
+Do not inflate weaker evidence into a global theorem. Finite checks are
+not proofs. Do not write `PROVED` or `VERIFIED COMPUTATIONALLY`.
+
+A halt theorem, a "no cycle of any length" theorem, or a Collatz/Juggler
+solution is claimable only when the English is covered by a `sorry`-free
+Lean theorem (`EXACT — LEAN VERIFIED`) or a recorded human proof
+(`EXACT — HUMAN PROOF`). Then state the theorem; do not bury it under a
+disclaimer and do not replace it with a slogan. Until that gate, those
+phrases are overclaim. Weaker compiled lemmas do not unlock them.
 
 - `EXACT — HUMAN PROOF`
 - `EXACT — LEAN VERIFIED`

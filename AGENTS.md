@@ -165,8 +165,18 @@ for external review.
   the parent is off-cycle) or the lift identity \(T^L(t)=c\ge n\). Do not
   reopen them; the ledger, `conjectures/refuted/`, and
   [docs/negative_knowledge.md](docs/negative_knowledge.md) list each kill.
-- **Anti-overclaim:** never claim a halt theorem, "no cycle of any
-  length", or a Collatz/Juggler solution. Finite checks are not proofs.
+- **Anti-overclaim:** do not treat a finite check, a period floor, a
+  density, a leftover census, or any weaker compiled lemma as a halt
+  theorem, as "no cycle of any length", or as a Collatz/Juggler
+  solution. Finite checks are not proofs. Slogan language ("we solved
+  Juggler / Collatz") is forbidden even if a theorem exists: state the
+  theorem with its quantifiers, Lean name, and ledger tag. If Lean
+  compiles a `sorry`-free statement that matches the English (every
+  orbit reaches the trivial cycle, or there is no nontrivial cycle),
+  say that statement, tag it `EXACT — LEAN VERIFIED`, and record it.
+  Do not refuse to name a matching theorem, and do not hide it under
+  "this is not a halt theorem." Until that gate, those phrases are
+  overclaim. See [docs/README.md](docs/README.md).
 
 ## Juggler file map
 

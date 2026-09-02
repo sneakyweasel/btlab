@@ -14,4 +14,5 @@ The project contains no `sorry` or `admit`. If a proof is not short, leave the l
 - Prefer packaging lemmas that already compile (`newtonStratum_n2` wraps `depthDeficit_n2_visibility`) over rebuilding layer-by-layer.
 - Empty `lean` in the ledger is allowed only when the tag is **not** `EXACT — LEAN VERIFIED`.
 - Retag to Lean verified only when the Lean statement covers the English statement.
+- If that covering statement is a halt or no-nontrivial-cycle theorem, name it. Do not keep the anti-overclaim disclaimer on a matching theorem.
 - Build from `formal/` with `lake build` (add `$env:USERPROFILE\.elan\bin` on Windows if needed).

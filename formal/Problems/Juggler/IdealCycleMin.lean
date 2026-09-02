@@ -6,12 +6,12 @@ import Problems.Juggler.WalkChargeItineraries
 namespace Problems.Juggler
 
 /-!
-# CycleMin shape catalog and balloon stations
+# CycleMin beads, bounds, and sure links
 
 Laboratory wrapper. Existing CycleMin theorems already fix the forced
-letters and the interval bounds. This file names that shape and the
-only allowed UI alphabet. It does not reprove Paper A, does not raise
-a floor, and is not a halt theorem.
+letters, the interval bounds, and the two sure adjacencies. This file
+names that bead model. It does not reprove Paper A, does not raise a
+floor, and is not a halt theorem.
 
 Imported by `Problems.Juggler` only. Not a `JugglerPaper` review object.
 
@@ -20,6 +20,11 @@ Lemma 3.21b's full e-run form
 Lean wraps the first block (`oddEvenBlock`, `cycleMin_exists_oddEven_split`)
 and the last odd-run (`exists_cycleMin_last_odd_run`). Unused middle
 runs stay interval slots, not beads.
+
+`balloonSchema` is a candidate bead schema. `cycleMin_projects_balloonSchema`
+is projection onto forced stations, not an `assembleFill` reconstruction.
+Exact fill counts live on `NecklaceFill`. A general CycleMin word need
+not equal `assembleFill f`.
 -/
 
 /-! ## Shape -/
@@ -84,6 +89,185 @@ theorem cycle_has_cycleMin {n : ℕ} {w : List Branch}
     ∃ k < w.length, CycleMin (floorPower^[k] n) (rotateItinerary w k) :=
   exists_cycleMin hn h
 
+/-! ## Bead parity and count bounds -/
+
+/-- Parity of a bead. `unknown` is interval-only or the optional stem. -/
+inductive BeadParity
+  | odd
+  | even
+  | unknown
+  deriving DecidableEq, Repr
+
+def BeadParity.ofBranch : Branch → BeadParity
+  | .odd => .odd
+  | .even => .even
+
+/-- `unknown` matches either letter. Sure beads never use `unknown`. -/
+def BeadParity.matches : BeadParity → Branch → Prop
+  | .odd, .odd => True
+  | .even, .even => True
+  | .unknown, _ => True
+  | _, _ => False
+
+theorem beadParity_ofBranch_matches (b : Branch) :
+    (BeadParity.ofBranch b).matches b := by
+  cases b <;> simp [BeadParity.ofBranch, BeadParity.matches]
+
+theorem sure_parity_not_unknown (b : Branch) :
+    BeadParity.ofBranch b ≠ .unknown := by
+  cases b <;> simp [BeadParity.ofBranch]
+
+/-- How many letters a slot contributes. `max = none` means `min+`. -/
+structure CountBound where
+  min : ℕ
+  max : Option ℕ
+  deriving DecidableEq, Repr
+
+def CountBound.exactly (n : ℕ) : CountBound := ⟨n, some n⟩
+def CountBound.atLeast (n : ℕ) : CountBound := ⟨n, none⟩
+def CountBound.between (lo hi : ℕ) : CountBound := ⟨lo, some hi⟩
+def CountBound.zeroPlus : CountBound := .atLeast 0
+def CountBound.onePlus : CountBound := .atLeast 1
+def CountBound.zeroOrOne : CountBound := .between 0 1
+
+def CountBound.admitsProp (b : CountBound) (k : ℕ) : Prop :=
+  b.min ≤ k ∧ ∀ m, b.max = some m → k ≤ m
+
+@[simp] theorem CountBound.admitsProp_zeroPlus (k : ℕ) :
+    CountBound.admitsProp .zeroPlus k :=
+  ⟨Nat.zero_le k, fun _ hm => by
+    simp [CountBound.zeroPlus, CountBound.atLeast] at hm⟩
+
+@[simp] theorem CountBound.admitsProp_onePlus (k : ℕ) :
+    CountBound.admitsProp .onePlus k ↔ 1 ≤ k :=
+  ⟨fun h => h.1, fun hk =>
+    ⟨hk, fun _ hm => by simp [CountBound.onePlus, CountBound.atLeast] at hm⟩⟩
+
+theorem CountBound.admitsProp_zeroOrOne (k : ℕ) :
+    CountBound.admitsProp .zeroOrOne k ↔ k ≤ 1 := by
+  constructor
+  · intro h
+    exact h.2 1 rfl
+  · intro hk
+    refine ⟨Nat.zero_le k, ?_⟩
+    intro m hm
+    have : m = 1 := by
+      simp [CountBound.zeroOrOne, CountBound.between] at hm
+      exact hm.symm
+    omega
+
+theorem CountBound.admitsProp_exactly (n k : ℕ) :
+    CountBound.admitsProp (.exactly n) k ↔ k = n := by
+  constructor
+  · intro h
+    exact Nat.le_antisymm (h.2 n rfl) h.1
+  · rintro rfl
+    refine ⟨le_rfl, fun m hm => ?_⟩
+    simp [CountBound.exactly] at hm
+    exact le_of_eq hm
+
+/-! ## Slots and sure links -/
+
+/-- One figure slot: parity, how many letters, and whether they exist. -/
+structure BeadSlot where
+  parity : BeadParity
+  bound : CountBound
+  sure : Bool
+  deriving DecidableEq, Repr
+
+def BeadSlot.sureOdd : BeadSlot := ⟨.odd, .exactly 1, true⟩
+def BeadSlot.sureEven : BeadSlot := ⟨.even, .exactly 1, true⟩
+def BeadSlot.launchOO : BeadSlot := ⟨.odd, .exactly 2, true⟩
+def BeadSlot.intervalOdd (b : CountBound) : BeadSlot := ⟨.odd, b, false⟩
+def BeadSlot.intervalEven (b : CountBound) : BeadSlot := ⟨.even, b, false⟩
+def BeadSlot.intervalUnknown (b : CountBound) : BeadSlot := ⟨.unknown, b, false⟩
+
+/-- A necklace edge between consecutive sure beads. -/
+inductive BeadEdge
+  | sure
+  | interval (parity : BeadParity) (bound : CountBound)
+  deriving DecidableEq, Repr
+
+def BeadEdge.isSure : BeadEdge → Bool
+  | .sure => true
+  | .interval _ _ => false
+
+/-- Six sure beads in CycleMin reading order: launch `OO` then four `E`. -/
+def sureBeadParities : List BeadParity :=
+  [.odd, .odd, .even, .even, .even, .even]
+
+/-- Cyclic edges, one after each sure bead. Index `5` wraps to launch. -/
+def cycleEdges : List BeadEdge :=
+  [ .sure
+  , .interval .odd .zeroPlus
+  , .interval .odd .zeroPlus
+  , .interval .even .zeroPlus
+  , .interval .odd .zeroOrOne
+  , .sure
+  ]
+
+def sureLink (i j : ℕ) : Bool :=
+  decide (i < sureBeadParities.length) &&
+    decide (j = (i + 1) % sureBeadParities.length) &&
+      (cycleEdges[i]?.map BeadEdge.isSure == some true)
+
+theorem sureBeadParities_length : sureBeadParities.length = 6 := rfl
+
+theorem cycleEdges_length :
+    cycleEdges.length = sureBeadParities.length := rfl
+
+theorem cycleEdges_OO_sure : cycleEdges.head? = some .sure := rfl
+
+theorem cycleEdges_wrap_sure : cycleEdges.getLast? = some .sure := rfl
+
+theorem sure_link_count :
+    (cycleEdges.filter BeadEdge.isSure).length = 2 :=
+  rfl
+
+/-- Launch `OO` is the only linear sure link. -/
+theorem OO_sure_link : sureLink 0 1 = true := rfl
+
+/-- Last `E` is cyclically adjacent to the first launch `O`. -/
+theorem wrap_sure_link : sureLink 5 0 = true := rfl
+
+theorem launch_to_firstE_not_sure : sureLink 1 2 = false := rfl
+
+theorem firstE_to_secondE_not_sure : sureLink 2 3 = false := rfl
+
+theorem extraEven_edge_not_sure : sureLink 3 4 = false := rfl
+
+theorem lastOdd_edge_not_sure : sureLink 4 5 = false := rfl
+
+private theorem sureLink_index_lt_six {i j : ℕ} (h : sureLink i j = true) :
+    i < 6 := by
+  have h' : (i < 6 ∧ j = (i + 1) % 6) ∧
+      ∃ a, cycleEdges[i]? = some a ∧ a.isSure = true := by
+    simpa [sureLink, sureBeadParities] using h
+  exact h'.1.1
+
+/-- Exactly two table adjacencies are sure: launch `OO` and the `EO` wrap. -/
+theorem sureLink_iff (i j : ℕ) :
+    sureLink i j = true ↔ (i = 0 ∧ j = 1) ∨ (i = 5 ∧ j = 0) := by
+  constructor
+  · intro h
+    have : i < 6 := sureLink_index_lt_six h
+    interval_cases i
+    · refine Or.inl ⟨rfl, ?_⟩
+      simpa [sureLink, sureBeadParities, cycleEdges, BeadEdge.isSure] using h
+    · simp [sureLink, sureBeadParities, cycleEdges, BeadEdge.isSure] at h
+    · simp [sureLink, sureBeadParities, cycleEdges, BeadEdge.isSure] at h
+    · simp [sureLink, sureBeadParities, cycleEdges, BeadEdge.isSure] at h
+    · simp [sureLink, sureBeadParities, cycleEdges, BeadEdge.isSure] at h
+    · refine Or.inr ⟨rfl, ?_⟩
+      simpa [sureLink, sureBeadParities, cycleEdges, BeadEdge.isSure] using h
+  · rintro (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩)
+    · exact OO_sure_link
+    · exact wrap_sure_link
+
+theorem sure_beads_known_parity :
+    ∀ p ∈ sureBeadParities, p ≠ .unknown := by
+  decide
+
 /-! ## First-block and even roles -/
 
 /-- First-run wrap of Lemma 3.21b: `O^{a₁} E` plus a tail, `a₁ ≥ 2`. -/
@@ -112,6 +296,90 @@ theorem cycleMin_hug_prefix_odds {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) :
     ∀ k, k ≤ w.length → hugOdds k ≤ oddCount (w.take k) :=
   cycleMin_prefix_odds_ge_hug hn h
+
+/-- Prefix odd budget: global `#O` and the hug constraint are different. -/
+def PrefixOddBudget (w : List Branch) : Prop :=
+  ∀ k, k ≤ w.length → hugOdds k ≤ oddCount (w.take k)
+
+theorem cycleMin_bead_prefix_dominates_hug {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) : PrefixOddBudget w :=
+  cycleMin_hug_prefix_odds hn h
+
+/-- CycleMin letters are `O` or `E`. Unknown beads are stem-only. -/
+theorem cycleMin_letters_known_parity {n : ℕ} {w : List Branch}
+    (_hn : 2 ≤ n) (_h : CycleMin n w) :
+    ∀ b ∈ w, BeadParity.ofBranch b ≠ .unknown :=
+  fun b _ => sure_parity_not_unknown b
+
+/-- Sure link `OO`: the first two letters are odd. -/
+theorem cycleMin_sure_OO {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    w.head? = some Branch.odd ∧ w.tail.head? = some Branch.odd := by
+  obtain ⟨rest, hw⟩ := cycleMin_starts_two_odds hn h
+  subst hw
+  simp
+
+/-- Sure wrap `E—O`: last letter even, first letter odd. -/
+theorem cycleMin_sure_wrap {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    w.getLast? = some Branch.even ∧ w.head? = some Branch.odd := by
+  refine ⟨cycleMin_getLast_even hn h, ?_⟩
+  exact (cycleMin_sure_OO hn h).1
+
+/-- `a₁` extras are `0+` odds after the sure launch `OO`. -/
+theorem cycleMin_a1_interval {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ k v, CountBound.admitsProp .zeroPlus k ∧
+      w = List.replicate (k + 2) Branch.odd ++ [Branch.even] ++ v := by
+  obtain ⟨a, v, ha, hw⟩ := cycleMin_run_form_first_block hn h
+  refine ⟨a - 2, v, CountBound.admitsProp_zeroPlus (a - 2), ?_⟩
+  have hka : a - 2 + 2 = a := Nat.sub_add_cancel ha
+  have hblock : oddEvenBlock a 1 =
+      List.replicate a Branch.odd ++ [Branch.even] := by
+    simp [oddEvenBlock]
+  calc
+    w = oddEvenBlock a 1 ++ v := hw
+    _ = List.replicate a Branch.odd ++ [Branch.even] ++ v := by rw [hblock]
+    _ = List.replicate (a - 2 + 2) Branch.odd ++ [Branch.even] ++ v := by
+        rw [hka]
+
+/-- Last odd-run is the `0 or 1` interval before the last sure `E`. -/
+theorem cycleMin_last_interval {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ u k, CountBound.admitsProp .zeroOrOne k ∧
+      w = u ++ List.replicate k Branch.odd ++ [Branch.even] := by
+  obtain ⟨u, a, hw, ha, _⟩ := exists_cycleMin_last_odd_run hn h
+  refine ⟨u, a, (CountBound.admitsProp_zeroOrOne a).mpr ha, hw⟩
+
+theorem cycleMin_realizes_sure_links {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    w.head? = some Branch.odd ∧ w.tail.head? = some Branch.odd ∧
+      w.getLast? = some Branch.even :=
+  ⟨(cycleMin_sure_OO hn h).1, (cycleMin_sure_OO hn h).2,
+    (cycleMin_sure_wrap hn h).1⟩
+
+theorem cycleMin_launch_is_OO {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    w.head? = some Branch.odd ∧ w.tail.head? = some Branch.odd :=
+  cycleMin_sure_OO hn h
+
+theorem cycleMin_wrap_is_EO {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    w.getLast? = some Branch.even ∧ w.head? = some Branch.odd :=
+  cycleMin_sure_wrap hn h
+
+theorem cycleMin_firstEven_is_overshoot {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ a v, w = oddEvenBlock a 1 ++ v ∧
+      (n + 1) ^ 2 ≤ image n (List.replicate a Branch.odd) ∧
+        n < image n (oddEvenBlock a 1) :=
+  cycleMin_first_even_role hn h
+
+theorem cycleMin_lastEven_is_closure_cell {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ u, w = u ++ [Branch.even] ∧
+      n ^ 2 ≤ image n u ∧ image n u < (n + 1) ^ 2 :=
+  cycleMin_last_even_role hn h
 
 /-! ## Balloon stations: the only allowed UI alphabet -/
 
@@ -144,6 +412,19 @@ def BalloonStation.sureLetterCount : BalloonStation → ℕ
   | .sureEven _ => 1
   | .intervalOdd _ | .intervalExtraEven => 0
 
+def BalloonStation.bound : BalloonStation → CountBound
+  | .sureLaunchO => .exactly 2
+  | .sureEven _ => .exactly 1
+  | .intervalOdd .lastZeroOrOne => .zeroOrOne
+  | .intervalOdd _ | .intervalExtraEven => .zeroPlus
+
+def BalloonStation.parity : BalloonStation → BeadParity
+  | .sureLaunchO | .intervalOdd _ => .odd
+  | .sureEven _ | .intervalExtraEven => .even
+
+def BalloonStation.asSlot (s : BalloonStation) : BeadSlot :=
+  ⟨s.parity, s.bound, s.isForced⟩
+
 def BalloonStation.intervalMin : BalloonStation → Option ℕ
   | .intervalOdd _ | .intervalExtraEven => some 0
   | .sureLaunchO | .sureEven _ => none
@@ -153,18 +434,21 @@ def BalloonStation.intervalMax : BalloonStation → Option ℕ
   | .intervalOdd .a1Extras | .intervalOdd .middle
   | .intervalExtraEven | .sureLaunchO | .sureEven _ => none
 
-/-- Unique figure schema in CycleMin reading order.
-    Six sure letters (`OO` + four `E`); interval slots are bounds. -/
+/-- Candidate bead schema in CycleMin reading order.
+    Exact realization of a CycleMin word as this schema requires the
+    full e-run decomposition (Lemma 3.21b, `EXACT — HUMAN PROOF`).
+    Six sure letters (`OO` + four `E`); interval slots are bounds.
+    Extra evens sit between the two middle sure `E`, not after the last. -/
 def balloonSchema : List BalloonStation :=
   [ .sureLaunchO
   , .intervalOdd .a1Extras
   , .sureEven .first
   , .intervalOdd .middle
   , .sureEven .middle
+  , .intervalExtraEven
   , .sureEven .middle
   , .intervalOdd .lastZeroOrOne
   , .sureEven .last
-  , .intervalExtraEven
   ]
 
 def balloonSchemaForced : List BalloonStation :=
@@ -217,7 +501,27 @@ theorem interval_station_not_forced :
           ¬ BalloonStation.isForced .intervalExtraEven := by
   simp [BalloonStation.isForced]
 
-/-- Every CycleMin word fills the sure stations of `balloonSchema`.
+theorem balloonSchema_slots :
+    balloonSchema.map BalloonStation.asSlot =
+      [ BeadSlot.launchOO
+      , BeadSlot.intervalOdd .zeroPlus
+      , BeadSlot.sureEven
+      , BeadSlot.intervalOdd .zeroPlus
+      , BeadSlot.sureEven
+      , BeadSlot.intervalEven .zeroPlus
+      , BeadSlot.sureEven
+      , BeadSlot.intervalOdd .zeroOrOne
+      , BeadSlot.sureEven
+      ] :=
+  rfl
+
+theorem sureLaunch_two_odds :
+    (BalloonStation.asSlot .sureLaunchO).parity = .odd ∧
+      (BalloonStation.asSlot .sureLaunchO).bound = .exactly 2 ∧
+        (BalloonStation.asSlot .sureLaunchO).sure = true :=
+  ⟨rfl, rfl, rfl⟩
+
+/-- Projection onto forced stations, not an `assembleFill` reconstruction.
     Interval stations are not forced. -/
 theorem cycleMin_projects_balloonSchema {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) :
@@ -261,7 +565,144 @@ theorem no_forced_station_outside_sure (s : BalloonStation)
       cases k <;> rfl
   | intervalExtraEven => rfl
 
+/-! ## Optional stem (not a CycleMin theorem) -/
+
+/-- Optional first-visit stem: sure `OO`, unknown middle `0+`, sure `t = E`.
+    Join-at-CycleMin is a picture, not a CycleMin lemma. -/
+def stemSureParities : List BeadParity := [.odd, .odd, .even]
+
+def stemEdges : List BeadEdge :=
+  [ .sure
+  , .interval .unknown .zeroPlus
+  ]
+
+def stemSlots : List BeadSlot :=
+  [ BeadSlot.sureOdd
+  , BeadSlot.sureOdd
+  , BeadSlot.intervalUnknown .zeroPlus
+  , BeadSlot.sureEven
+  ]
+
+theorem stem_linear :
+    stemEdges.length + 1 = stemSureParities.length :=
+  rfl
+
+theorem stem_OO_sure : stemEdges.head? = some .sure := rfl
+
+theorem stem_middle_unknown :
+    (BeadSlot.intervalUnknown .zeroPlus).parity = .unknown ∧
+      (BeadSlot.intervalUnknown .zeroPlus).sure = false ∧
+        CountBound.admitsProp .zeroPlus 0 :=
+  ⟨rfl, rfl, CountBound.admitsProp_zeroPlus 0⟩
+
+theorem stem_slots_not_cycle_schema :
+    stemSlots ≠ balloonSchema.map BalloonStation.asSlot := by
+  decide
+
+/-! ## Necklace fills: interval lengths between sure beads -/
+
+/-- Lengths for the four open edges. Extra evens are letters past four `E`. -/
+structure NecklaceFill where
+  a1Extras : ℕ
+  middleOdds : ℕ
+  extraEvens : ℕ
+  lastOdds : ℕ
+  deriving DecidableEq, Repr
+
+def NecklaceFill.admits (f : NecklaceFill) : Prop :=
+  CountBound.admitsProp .zeroPlus f.a1Extras ∧
+    CountBound.admitsProp .zeroPlus f.middleOdds ∧
+      CountBound.admitsProp .zeroPlus f.extraEvens ∧
+        CountBound.admitsProp .zeroOrOne f.lastOdds
+
+def assembleFill (f : NecklaceFill) : List Branch :=
+  List.replicate 2 Branch.odd ++
+    List.replicate f.a1Extras Branch.odd ++
+    [Branch.even] ++
+    List.replicate f.middleOdds Branch.odd ++
+    [Branch.even] ++
+    List.replicate f.extraEvens Branch.even ++
+    [Branch.even] ++
+    List.replicate f.lastOdds Branch.odd ++
+    [Branch.even]
+
+theorem NecklaceFill.admits_of_last_le_one (f : NecklaceFill)
+    (hlast : f.lastOdds ≤ 1) : f.admits :=
+  ⟨CountBound.admitsProp_zeroPlus _,
+    CountBound.admitsProp_zeroPlus _,
+    CountBound.admitsProp_zeroPlus _,
+    (CountBound.admitsProp_zeroOrOne f.lastOdds).mpr hlast⟩
+
+theorem assemble_of_no_extra_evens (f : NecklaceFill)
+    (h0 : f.extraEvens = 0) :
+    assembleFill f =
+      fourEvenWord (2 + f.a1Extras) f.middleOdds 0 f.lastOdds := by
+  simp [assembleFill, fourEvenWord, h0]
+  have hrep :
+      List.replicate (2 + f.a1Extras) Branch.odd =
+        Branch.odd :: Branch.odd :: List.replicate f.a1Extras Branch.odd := by
+    rw [List.replicate_add]
+    rfl
+  rw [hrep]
+  simp [List.cons_append]
+
+theorem assembleFill_oddCount (f : NecklaceFill) :
+    oddCount (assembleFill f) = 2 + f.a1Extras + f.middleOdds + f.lastOdds := by
+  simp [assembleFill, oddCount_append, oddCount_replicate_odd, oddCount_replicate_even]
+  omega
+
+theorem assembleFill_evenCount (f : NecklaceFill) :
+    evenCount (assembleFill f) = 4 + f.extraEvens := by
+  simp [assembleFill, evenCount_append, evenCount_replicate_odd, evenCount_replicate_even]
+  omega
+
+theorem assembleFill_length (f : NecklaceFill) :
+    (assembleFill f).length =
+      6 + f.a1Extras + f.middleOdds + f.extraEvens + f.lastOdds := by
+  simp [assembleFill]
+  omega
+
+theorem assembleFill_unplaced_odds (f : NecklaceFill) :
+    oddCount (assembleFill f) - 2 =
+      f.a1Extras + f.middleOdds + f.lastOdds := by
+  rw [assembleFill_oddCount]
+  omega
+
+theorem assembleFill_extra_evens (f : NecklaceFill) :
+    evenCount (assembleFill f) - 4 = f.extraEvens := by
+  rw [assembleFill_evenCount]
+  omega
+
+/-- Unplaced odds on a fill are exactly the three open odd slots. -/
+theorem necklaceFill_unplaced_odd_budget (f : NecklaceFill) :
+    oddCount (assembleFill f) - 2 =
+      f.a1Extras + f.middleOdds + f.lastOdds :=
+  assembleFill_unplaced_odds f
+
+/-- Extra evens on a fill are exactly the extra-even slot. -/
+theorem necklaceFill_extra_even_budget (f : NecklaceFill) :
+    evenCount (assembleFill f) - 4 = f.extraEvens :=
+  assembleFill_extra_evens f
+
 /-! ## Leftovers inhabit the shape and are not cycles -/
+
+def leftoverO7EEEE_fill : NecklaceFill := ⟨5, 0, 0, 0⟩
+def leftoverO6EEEOE_fill : NecklaceFill := ⟨4, 0, 0, 1⟩
+
+theorem leftover_O7EEEE_fill_admits : leftoverO7EEEE_fill.admits :=
+  NecklaceFill.admits_of_last_le_one _ (by decide)
+
+theorem leftover_O7EEEE_fill_eq :
+    assembleFill leftoverO7EEEE_fill = itineraryO7EEEE := by
+  simp [assembleFill, leftoverO7EEEE_fill, itineraryO7EEEE, sevenOdds]
+
+theorem leftover_O6EEEOE_fill_admits : leftoverO6EEEOE_fill.admits :=
+  NecklaceFill.admits_of_last_le_one _ (by decide)
+
+theorem leftover_O6EEEOE_fill_eq :
+    assembleFill leftoverO6EEEOE_fill = fourEvenWord 6 0 0 1 := by
+  simpa [leftoverO6EEEOE_fill] using
+    assemble_of_no_extra_evens leftoverO6EEEOE_fill rfl
 
 theorem leftover_O7EEEE_split :
     itineraryO7EEEE =
@@ -290,6 +731,11 @@ theorem leftover_O7EEEE_inhabits_shape : CycleMinShape itineraryO7EEEE where
 theorem leftover_O7EEEE_not_cycle {n : ℕ} :
     ¬ CycleItinerary n itineraryO7EEEE :=
   no_cycle_itinerary_oooooooeeee
+
+/-- Shape is not a CycleMin characterization. -/
+theorem CycleMinShape_not_of_CycleMin :
+    ∃ w, CycleMinShape w ∧ ∀ n, ¬ CycleItinerary n w :=
+  ⟨itineraryO7EEEE, leftover_O7EEEE_inhabits_shape, fun _ => leftover_O7EEEE_not_cycle⟩
 
 theorem leftover_O6EEEOE_eq : fourEvenWord 6 0 0 1 =
     List.replicate 6 Branch.odd ++

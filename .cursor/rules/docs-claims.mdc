@@ -20,7 +20,7 @@ stratum (not a new-math frontier; not Collatz-first).
 5. `docs/theory/residual_vs_classical.md`
 6. `docs/theory/theorem_ledger.md`
 
-Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger tags; do not write `PROVED`.
+Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger tags; do not write `PROVED`. Do not write “we solved Collatz” or “we solved Juggler”: if a matching `EXACT` statement exists, state the theorem, not the slogan.
 
 `docs/theory/cubic_*.md` and `mismatched_cubic_quotient.md` are **stubs** that point at the Newton-stratum monograph. Put new cubic mathematics there, not in a new milestone note.
 
@@ -28,6 +28,6 @@ Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger 
 
 `docs/research_journal.md` records work; do not auto-open Milestone *N+1*.
 
-New problems copy `docs/problems/TEMPLATE.md`. Cite `literature/` ids. Do not write “we solved Collatz.”
+New problems copy `docs/problems/TEMPLATE.md`. Cite `literature/` ids.
 
 Every `docs/problems/*.md` keeps all template headings, including `## Branch budget`, `## Decision`, and `## Publication assessment`. `tests/integration/test_problem_dossiers.py` enforces this. Method: `docs/methodology.md`.

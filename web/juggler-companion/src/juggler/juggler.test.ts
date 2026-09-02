@@ -16,6 +16,7 @@ import {
   idealJoinLabel,
   idealJoinSpots,
   intervalBoundLabel,
+  intervalCountBead,
   packCountRuns,
   stepIdealJoin,
   IDEAL_STRING_BEADS,
@@ -173,10 +174,10 @@ describe("idealized cycle", () => {
       "sureEven",
       "intervalOdd",
       "sureEven",
+      "intervalExtraEven",
       "sureEven",
       "intervalOdd",
       "sureEven",
-      "intervalExtraEven",
     ]);
     expect(IDEAL_BALLOON_LETTERS.join("")).toBe("OOEEEE");
     expect(IDEAL_BALLOON_BEADS).toHaveLength(6);
@@ -200,6 +201,18 @@ describe("idealized cycle", () => {
     expect(intervalBoundLabel(IDEAL_BALLOON_INTERVALS[3])).toBe("0 or 1");
     expect(IDEAL_BALLOON_INTERVALS[3]?.max).toBe(1);
     expect(IDEAL_BALLOON_INTERVALS[2]?.max).toBeNull();
+    expect(intervalCountBead(IDEAL_BALLOON_INTERVALS[0]!)).toEqual({
+      letter: "O",
+      tone: "count",
+    });
+    expect(intervalCountBead(IDEAL_BALLOON_INTERVALS[2]!)).toEqual({
+      letter: "E",
+      tone: "count",
+    });
+    expect(intervalCountBead(IDEAL_BALLOON_INTERVALS[3]!)).toEqual({
+      letter: "O",
+      tone: "count",
+    });
   });
 
   it("rotates the join only among the six sure letters", () => {

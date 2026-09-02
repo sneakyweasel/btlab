@@ -8,7 +8,9 @@ alwaysApply: false
 
 `research.collatz` is a **STRUCTURAL** application of `bt`, not the laboratory frontier.
 
-- Do not claim a solution of the Collatz conjecture.
+- Do not claim a solution of the Collatz conjecture unless a matching
+  `EXACT` statement exists; then state the theorem (quantifiers, Lean
+  name, ledger tag), not the slogan.
 - Use the seven ledger tags from `docs/README.md`. Do not write `PROVED` or `VERIFIED COMPUTATIONALLY`.
 - New exact facts get a ledger row and a targeted note or test. Do not append a new numbered milestone by default.
 - `C-T-welldefined` is Lean-verified in `formal/Problems/Collatz/Accelerated.lean` (`acceleratedT`).
