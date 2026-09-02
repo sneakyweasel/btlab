@@ -8,17 +8,23 @@ import streamlit as st
 
 from visualization.juggler_finite_dynamics import (
     BEST_V,
+    BLOCKER_FAN,
     CENSUS_LEDGER_IDS,
     CLAIM_ROWS,
     CYCLE_WORD_MAX,
     CYCLE_WORD_PRESETS,
     DESCENT_WINDOW_MAX,
+    DK_BREAKEVEN_FLOOR,
     EEEE_N0,
     EEEE_THRESHOLD,
     EEEE_WORD,
+    INSTANCE_ROWS,
     INTERNAL_E_MARGIN,
     INTERNAL_E_WORD,
+    LAB_FLOOR,
     LAB_LEFTOVER_DECISIONS,
+    LAB_PARITY_PERIOD,
+    LAB_WALK_PERIOD,
     LEFTOVER_CUTOFF,
     LEFTOVER_FAMILY_LEDGER_IDS,
     N_PRESETS,
@@ -29,8 +35,14 @@ from visualization.juggler_finite_dynamics import (
     PAPER_FLOOR,
     PAPER_L_CAP,
     PAPER_PERIOD,
+    PRINTED_FLOOR,
+    PRINTED_KILL_COUNT,
+    PRINTED_PERIOD,
     RECORD_LENGTHS,
     SPOT_WITNESS,
+    WALK_CHARGE_LEDGER_IDS,
+    WALK_WINDOW_HI,
+    WALK_WINDOW_LO,
     WORD_MAX,
     WORD_PRESETS,
     census_inventory,
@@ -45,6 +57,7 @@ from visualization.juggler_finite_dynamics import (
     finance_view,
     format_int,
     four_block_replay,
+    lab_walk_survey,
     leftover_table,
     leftover_words,
     length11_inventory,
@@ -54,6 +67,7 @@ from visualization.juggler_finite_dynamics import (
     paper_exception_lengths,
     parse_cycle_word,
     parse_word,
+    printed_floor_kill_rows,
     try_cycle_word,
     walk_orbit,
 )
@@ -62,6 +76,7 @@ from visualization.theorem_ledger import badge_payload
 VIEWS = (
     "Claim map",
     "Finance",
+    "Walk charge",
     "Orbit",
     "Envelope",
     "Cells and census",
@@ -72,6 +87,7 @@ VIEWS = (
 VIEW_LABEL = {
     "Claim map": "Status",
     "Finance": "Finance",
+    "Walk charge": "Walk",
     "Orbit": "Orbit",
     "Envelope": "Envelope",
     "Cells and census": "Cells",
@@ -84,15 +100,21 @@ VIEWS_WITH_START = frozenset(
 )
 VIEW_BLURB = {
     "Claim map": (
-        "Paper A scoreboard. The main theorem is a period lower bound, "
+        "Paper A scoreboard. The printed theorem is a period lower bound, "
         "not a halt proof. Lean is the authority for the exact claims; "
-        "Theorem 4.6 is a verified computation."
+        "Theorem 4.6 and Corollary 5.10 are verified computations."
     ),
     "Finance": (
-        "The engine of the note: at a cycle minimum the surplus "
+        "The engine of Sections 2–4: at a cycle minimum the surplus "
         "$3^o-2^L$ must be paid by floor errors. Combined with the "
-        "verified descent floor $10^6$, every period at most $1053$ "
-        "is excluded."
+        "verified descent floor $10^6$, every period at most $25780$ "
+        "is excluded (Theorem 4.6)."
+    ),
+    "Walk charge": (
+        "Section 5 couples the floor losses through one exponent walk. "
+        "At the laboratory floor the envelope gives period "
+        f"$\\ge {LAB_WALK_PERIOD}$; the second certified floor prints "
+        f"period $\\ge {PRINTED_PERIOD}$ (Corollary 5.10)."
     ),
     "Orbit": (
         "Start at **n** and apply the Juggler map. **O** is an odd step "
@@ -117,8 +139,8 @@ VIEW_BLURB = {
     "Leftover families": (
         "Local leftover spellings the easy cells did not kill. Paper A "
         "already excludes every cycle word with fewer than four evens, "
-        "and finance excludes period 11. These thirty words are a lab "
-        "gate, not open cycles."
+        "and Theorem 4.6 excludes every period at most 25780. These "
+        "thirty words are a lab gate, not open cycles."
     ),
     "Descent": (
         "Even starts drop in one even step. Odd-then-even starts drop "
@@ -136,14 +158,17 @@ CLAIM_PLAIN = {
     "J-small-cycle-census": "No loop of length 6 or less.",
     "J-leftover-length-seven-orientations": "The two leftover length-7 loops cannot close.",
     "J-small-cycle-census-seven": "No loop of length 7 or less.",
-    "J-small-cycle-census-eight": "No loop of length 8 or less (implied by Paper A period ≥ 11).",
+    "J-small-cycle-census-eight": "No loop of length 8 or less (implied by period ≥ 11).",
     "J-two-even-leftover-ee": "The two-even leftover families cannot close.",
     "J-first-e-transport-ee": "Gapped three-even CycleMin loops cannot close.",
     "J-three-even-eee": "Bunched last-cluster leftovers cannot close.",
     "J-gapped-cycle-word-ee": "Gapped three-even CycleWord loops cannot close.",
     "J-even-count-le-three": "Every real loop has at least four even letters, so the period is at least 11.",
     "J-cycle-finance-inequality": "At a cycle minimum, n log n times the surplus cannot exceed L 3^o.",
-    "J-cycle-word-eliahou-leftover-instance": "With the verified descent floor 10^6, there is no period ≤ 1053.",
+    "J-cycle-word-eliahou-leftover-instance": "With the verified descent floor 10^6, there is no period ≤ 25780.",
+    "J-cycle-period-fifty-thousand": "At the laboratory floor 26254995 the same table gives period ≥ 50508.",
+    "J-cyclemin-walk-charge-instance": "Walk charge at that floor kills the parity leftovers below 176251.",
+    "J-cycle-period-four-hundred-seventy-eight-thousand": "At the second certified floor 162849448, period ≥ 478245.",
     "J-finite-progress-boundary": "Even starts drop in one step; odd-then-even starts drop in two.",
 }
 _BADGE_COLOR = {
@@ -203,17 +228,20 @@ def _glossary() -> None:
   real loop must be expanding.
 - **Leftover** — a word the easy filters did not kill. It needs a leftover
   cell or a finite table.
-- **N0** — the first start n ≥ 2 where that leftover inequality starts
-  holding. Lean often uses a larger algebraic cutoff.
+- **N0** — a verified descent floor: every start $2\\le n\\le N_0$
+  reaches 1. Paper A uses $10^6$, then $26254995$, then $162849448$.
 - **CycleMin** — the rotation that starts at the smallest value on the loop.
 - **Finance** — the cycle-minimum inequality
   $n\\log n\\cdot(3^o-2^L)\\le L\\cdot 3^o$.
-- **$n_{\\max}(L)$** — largest minimum the $6/5$ bound still allows.
-- **$\\mathcal E$** — the 397 lengths $\\le 10^5$ still admissible to
+- **$n_{\\max}(L)$** — largest minimum the parity $6/5$ bound still allows.
+- **$\\mathcal E$** — the 141 lengths $\\le 10^5$ still admissible to
   that bound at the verified descent floor $10^6$. Membership is not
   evidence for a cycle.
-- **Verified descent floor** — every start through $10^6$ reaches 1
-  (Weisstein, recomputed here). Not a new computational record.
+- **Walk charge** — the Section 5 refinement: floor losses are
+  transported to a reduced base and priced on the hug (rotation) word.
+- **Verified descent floor** — every start through the named $N_0$
+  reaches 1. The $10^6$ floor is Weisstein, recomputed here; the two
+  laboratory floors are first-passage certificates. Not a halt theorem.
 - **Reached 1** — this walk hit 1. That is not a proof that every start does.
             """
         )
@@ -367,28 +395,29 @@ def _claim_map() -> None:
     _blurb("Claim map")
     _proof_tags(
         "J-even-count-le-three",
-        "J-cycle-finance-inequality",
         "J-cycle-word-eliahou-leftover-instance",
+        "J-cyclemin-walk-charge-instance",
+        "J-cycle-period-four-hundred-seventy-eight-thousand",
     )
     cards = st.container(horizontal=True)
     with cards:
         st.metric(
             "Period",
-            f"≥ {PAPER_PERIOD}",
+            f"≥ {PRINTED_PERIOD:,}",
             border=True,
-            help="Theorem A / Theorem 4.6. Not evidence for a 1054-cycle.",
+            help="Corollary 5.10. Not evidence for a 478245-cycle.",
         )
         st.metric(
-            "Admissible lengths",
-            f"{PAPER_EXCEPTION_COUNT} in ℰ",
+            "Printed floor N0",
+            f"{PRINTED_FLOOR:,}",
             border=True,
-            help="Through 10^5, admissible to this bound only.",
+            help="Second certified descent floor. Every start through this n reaches 1.",
         )
         st.metric(
             "Even letters",
             "≥ 4",
             border=True,
-            help="Theorem C / Theorem 3.22. Implies period ≥ 11 with no floor.",
+            help="Theorem 3.22. Implies period ≥ 11 with no floor.",
         )
         st.metric("Arrival at 1", "not claimed", border=True)
     st.markdown(
@@ -398,10 +427,30 @@ flowchart LR
   envelope[Word envelope] --> min[Cycle minimum]
   min --> finance[Finance]
   finance --> nmax["n_max(L)"]
-  nmax --> floor["Verified descent floor 10^6"]
-  floor --> bound["L ≥ 1054"]
+  nmax --> base["N0 = 10^6"]
+  base --> thm46["L ≥ 25781"]
+  thm46 --> lab["N0 = 26254995"]
+  lab --> walk[Walk charge]
+  walk --> thm59["L ≥ 176251"]
+  thm59 --> printed["N0 = 162849448"]
+  printed --> cor510["L ≥ 478245"]
 ```
         """
+    )
+    st.dataframe(
+        pd.DataFrame(
+            [
+                {
+                    "theorem": row["theorem"],
+                    "floor N0": f"{row['floor']:,}",
+                    "period": f"≥ {row['period']:,}",
+                    "mechanism": row["mechanism"],
+                }
+                for row in INSTANCE_ROWS
+            ]
+        ),
+        hide_index=True,
+        width="stretch",
     )
     rows = [
         {
@@ -411,14 +460,15 @@ flowchart LR
         }
         for row in CLAIM_ROWS
     ]
-    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", height=320)
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", height=360)
     with st.expander("What this does not claim", icon=":material/info:"):
         st.caption(
             "This is not a termination proof and not progress toward the "
             "Juggler conjecture. Membership in ℰ means only that the "
-            "present bound does not exclude the length. The thirty "
+            "Theorem 4.6 bound does not exclude the length. The thirty "
             "length-11 short-gap words are a laboratory leftover gate, "
-            "not Paper A open cycles: period 11 is already excluded."
+            "not Paper A open cycles: period 11 is already excluded. "
+            "The walk program is terminal: killing 478245 is Diophantine."
         )
 
 
@@ -430,15 +480,15 @@ def _finance() -> None:
     )
     st.latex(r"n\log n\cdot(3^o-2^L)\le L\cdot 3^o")
     st.caption(
-        "Theorem 4.4, constant 1 in Lean. The table uses the weaker "
-        "uniform 6/5 form because it holds above the verified descent "
-        "floor and already produces 1054. No constant optimization is "
-        "attempted."
+        "Theorem 4.4, constant 1 in Lean. The printed table is the "
+        "weaker parity $6/5$ form of Theorem 4.6: replacing $6/5$ by "
+        "$1$ does not change the first survivor $25781$. This view is "
+        "the $N_0=10^6$ instance, not Corollary 5.10."
     )
     cards = st.container(horizontal=True)
     with cards:
         st.metric("Verified descent floor", f"{PAPER_FLOOR:,}", border=True)
-        st.metric("First unexcluded length", str(PAPER_PERIOD), border=True)
+        st.metric("First unexcluded length", f"{PAPER_PERIOD:,}", border=True)
         st.metric("|ℰ| through 10⁵", str(PAPER_EXCEPTION_COUNT), border=True)
         st.metric("Arrival at 1", "not claimed", border=True)
 
@@ -488,15 +538,16 @@ def _finance() -> None:
         st.metric("In ℰ?", "yes" if view.in_exception_set else "no", border=True)
     if view.admissible:
         st.info(
-            f"L = {length} is admissible to this bound at the verified "
-            "descent floor. That is not evidence for a cycle.",
+            f"L = {length} is admissible to the Theorem 4.6 table at "
+            f"the descent floor {PAPER_FLOOR:,}. That is not evidence "
+            "for a cycle.",
             icon=":material/info:",
         )
     elif view.excluded_by_floor:
         st.success(
             f"L = {length} is excluded: n_max is at most the verified "
             f"descent floor {PAPER_FLOOR:,}, or the length lies below "
-            f"{PAPER_PERIOD}.",
+            f"{PAPER_PERIOD:,}.",
             icon=":material/check:",
         )
     chart_df = pd.DataFrame(finance_chart_rows())
@@ -510,11 +561,17 @@ def _finance() -> None:
             tooltip=["L", "n_max", "record"],
         )
     )
-    st.altair_chart(chart, width="stretch")
+    floor_line = (
+        alt.Chart(pd.DataFrame({"n_max": [PAPER_FLOOR]}))
+        .mark_rule(strokeDash=[4, 4])
+        .encode(y="n_max:Q")
+    )
+    st.altair_chart(chart + floor_line, width="stretch")
     st.caption(
-        f"n_max(L) for L ≤ {chart_df['L'].max()}. Spikes are one-sided "
-        "best-approximation lengths. The printed floor line sits at 10^6; "
-        "the first record above it is 1054."
+        f"Parity $n_{{\\max}}(L)$ for $L\\le {chart_df['L'].max()}$. "
+        "Spikes are one-sided best-approximation lengths. The dashed "
+        f"line is the Theorem 4.6 floor {PAPER_FLOOR:,}; the first "
+        f"survivor {PAPER_PERIOD:,} is off this chart."
     )
 
     records = _lazy_expander(
@@ -560,9 +617,159 @@ def _finance() -> None:
             )
             st.caption(
                 f"{PAPER_EXCEPTION_COUNT} lengths through {PAPER_L_CAP:,}. "
-                "The remaining elements include multiples of 1054 and "
-                "combinations of the record lengths. Full list: "
-                "data/research/juggler/cycle_finance/exceptions.json."
+                "Run packing thins this set to 99 without raising the "
+                "cutoff. Full list: "
+                "data/research/juggler/cycle_finance/exceptions_parity.json."
+            )
+
+
+def _walk_charge() -> None:
+    _blurb("Walk charge")
+    _proof_tags(*WALK_CHARGE_LEDGER_IDS)
+    survey = lab_walk_survey()
+    kills = printed_floor_kill_rows()
+    below = [row for row in kills if row.length < PRINTED_PERIOD]
+    blocker = next(row for row in kills if row.length == PRINTED_PERIOD)
+    cards = st.container(horizontal=True)
+    with cards:
+        st.metric(
+            "Printed period",
+            f"≥ {PRINTED_PERIOD:,}",
+            border=True,
+            help="Corollary 5.10. Not evidence for a cycle of that length.",
+        )
+        st.metric(
+            "Second certified floor",
+            f"{PRINTED_FLOOR:,}",
+            border=True,
+        )
+        st.metric(
+            "Walk kills below the blocker",
+            f"{sum(1 for row in below if row.excluded)} / {PRINTED_KILL_COUNT}",
+            border=True,
+            help="Certified evaluations of the Theorem 5.9 comparison.",
+        )
+        st.metric("Arrival at 1", "not claimed", border=True)
+    st.markdown(
+        r"""
+```mermaid
+flowchart LR
+  transport[Transport] --> hug[Hug adversary]
+  hug --> identity[Word identity]
+  identity --> dk[Denjoy–Koksma]
+  dk --> window["Window 50508, 301994"]
+  window --> lab["L ≥ 176251"]
+  lab --> floor2["N0 = 162849448"]
+  floor2 --> printed["L ≥ 478245"]
+```
+        """
+    )
+    ladder = st.container(horizontal=True)
+    with ladder:
+        st.metric("Theorem 4.6 at 10^6", f"≥ {PAPER_PERIOD:,}", border=True)
+        st.metric(
+            f"Theorem 5.2 at {LAB_FLOOR:,}",
+            f"≥ {LAB_PARITY_PERIOD:,}",
+            border=True,
+        )
+        st.metric(
+            "Theorem 5.9 walk charge",
+            f"≥ {LAB_WALK_PERIOD:,}",
+            border=True,
+        )
+        st.metric(
+            "Corollary 5.10",
+            f"≥ {PRINTED_PERIOD:,}",
+            border=True,
+        )
+    st.caption(
+        f"Theorem 5.9 at N0 = {LAB_FLOOR:,} leaves the single walk "
+        f"survivor {int(survey['combined_first_survivor']):,}. "
+        f"The census-free window is [{WALK_WINDOW_LO}, {WALK_WINDOW_HI}). "
+        f"The blocker is the fan member "
+        f"{PRINTED_PERIOD:,} = {LAB_WALK_PERIOD:,} + {BLOCKER_FAN:,}."
+    )
+    with st.container(border=True, gap="small"):
+        st.markdown("**Blocker**")
+        block_row = st.container(horizontal=True)
+        with block_row:
+            st.metric("Length", f"{blocker.length:,}", border=True)
+            st.metric(
+                "Required over parity",
+                f"{blocker.required_improvement:.2f}",
+                border=True,
+            )
+            st.metric(
+                "Walk margin",
+                f"{blocker.kill_margin:.3f}" if blocker.kill_margin is not None else "—",
+                border=True,
+                help="Below 1 means the hug charge does not kill this length.",
+            )
+            st.metric("Status", blocker.status, border=True)
+        st.caption(
+            f"The obstruction is Diophantine: $|3^o-2^L|$ along the fan. "
+            f"The next useful floor is about ${DK_BREAKEVEN_FLOOR:,}$; "
+            "further $N_0$ campaigns are parked. This is not a halt theorem."
+        )
+    table = _lazy_expander(
+        "Kill table at the printed floor",
+        icon=":material/table:",
+        key="juggler_walk_kills",
+    )
+    if table.open:
+        with table:
+            shown = [row for row in kills if row.length <= PRINTED_PERIOD]
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {
+                            "L": row.length,
+                            "o": row.odd_count,
+                            "required": round(row.required_improvement, 3),
+                            "walk margin": (
+                                None
+                                if row.kill_margin is None
+                                else round(row.kill_margin, 3)
+                            ),
+                            "status": row.status,
+                        }
+                        for row in shown
+                    ]
+                ),
+                hide_index=True,
+                width="stretch",
+            )
+            st.caption(
+                f"{PRINTED_KILL_COUNT} lengths below {PRINTED_PERIOD:,} "
+                "are walk-killed. Lengths above the blocker are "
+                "finance-survivors, not candidate cycles."
+            )
+    later = _lazy_expander(
+        "Finance survivors above the printed cutoff",
+        icon=":material/more_horiz:",
+        key="juggler_walk_beyond",
+    )
+    if later.open:
+        with later:
+            rest = [row for row in kills if row.length > PRINTED_PERIOD]
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {
+                            "L": row.length,
+                            "o": row.odd_count,
+                            "required": round(row.required_improvement, 3),
+                            "status": row.status,
+                        }
+                        for row in rest
+                    ]
+                ),
+                hide_index=True,
+                width="stretch",
+            )
+            st.caption(
+                "These lengths lie beyond Corollary 5.10. They are not "
+                "open cycles."
             )
 
 
@@ -828,7 +1035,7 @@ def _cells() -> None:
             st.caption(
                 "Every even-ending expanding word of length at most 8, and why "
                 "it cannot be a loop. Theorem 3.22 gives four evens, hence "
-                "period ≥ 11; finance then excludes every period ≤ 1053."
+                "period ≥ 11; Theorem 4.6 then excludes every period ≤ 25780."
             )
             st.dataframe(
                 pd.DataFrame(census_inventory()),
@@ -1107,7 +1314,7 @@ def _leftover_families() -> None:
     cards = st.container(horizontal=True)
     with cards:
         st.metric("Even letters ≤ 3", "ruled out", border=True)
-        st.metric("Period 11", "excluded by finance", border=True)
+        st.metric("Period ≤ 25780", "excluded by Theorem 4.6", border=True)
         st.metric("Lab leftover spellings", "30", border=True)
         st.metric("Arrival at 1", "not claimed", border=True)
 
@@ -1116,7 +1323,7 @@ def _leftover_families() -> None:
         st.caption(
             "Each of these is a surviving CycleMin spelling for the local "
             "cells, so rotation cannot kill it. Period 11 is already "
-            "excluded by finance. Open one in Cycle words to spin it."
+            "excluded by Theorem 4.6. Open one in Cycle words to spin it."
         )
         inventory = length11_inventory()
         words = [row["word"] for row in inventory]
@@ -1195,9 +1402,11 @@ def juggler_finite_dynamics_page() -> None:
         st.session_state.juggler_view = "Cycle words"
     st.caption(
         "Companion to Paper A: local word obstructions plus finance give "
-        f"period ≥ {PAPER_PERIOD}. Lean is the authority through "
-        "Theorem 4.4; Theorem 4.6 is a verified computation. Arrival at "
-        "1 is not claimed."
+        f"period ≥ {PAPER_PERIOD:,} at $N_0=10^6$; the walk-charge "
+        f"envelope at the second certified floor $N_0={PRINTED_FLOOR:,}$ "
+        f"prints period ≥ {PRINTED_PERIOD:,} (Corollary 5.10). Lean is "
+        "the authority through Theorem 4.4; the numerical cutoffs are "
+        "verified computations. Arrival at 1 is not claimed."
     )
     _glossary()
     view = st.segmented_control(
@@ -1216,6 +1425,8 @@ def juggler_finite_dynamics_page() -> None:
         _claim_map()
     elif view == "Finance":
         _finance()
+    elif view == "Walk charge":
+        _walk_charge()
     elif view == "Orbit":
         _orbit()
     elif view == "Envelope":

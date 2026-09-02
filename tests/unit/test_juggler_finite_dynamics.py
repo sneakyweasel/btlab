@@ -3,12 +3,18 @@
 from visualization.juggler_finite_dynamics import (
     CYCLE_WORD_MAX,
     EEEE_WORD,
+    LAB_WALK_PERIOD,
     LEFTOVER_CUTOFF,
     NOTE_ORBIT_3,
     NOTE_PEAK_37,
     PAPER_EXCEPTION_COUNT,
     PAPER_PERIOD,
+    PRINTED_FLOOR,
+    PRINTED_KILL_COUNT,
+    PRINTED_PERIOD,
     WORD_MAX,
+    lab_walk_survey,
+    printed_floor_kill_rows,
     classify_word,
     compose_view,
     cycle_class_view,
@@ -104,7 +110,7 @@ def test_classify_leftovers_and_open_length_nine():
         assert "open" not in info.reason
     length11 = cycle_class_view(EEEE_WORD, 0)
     assert length11.verdict == "excluded"
-    assert "1053" in length11.verdict_reason or "4.6" in length11.verdict_reason
+    assert "25780" in length11.verdict_reason or "4.6" in length11.verdict_reason
 
 
 def test_length_eight_open_list_is_expanding_and_even_terminating():
@@ -253,11 +259,32 @@ def test_paper_finance_table_matches_theorem_4_6():
     assert lengths[0] == PAPER_PERIOD
     eleven = finance_view(11)
     assert eleven.excluded_by_floor
-    assert eleven.n_max == 52
+    assert eleven.n_max == 25
+    old_record = finance_view(1054)
+    assert old_record.excluded_by_floor
+    assert old_record.n_max == 788_014
     first = finance_view(PAPER_PERIOD)
     assert first.admissible
-    assert first.n_max == 1_997_197
+    assert first.n_max == 26_254_995
     assert not first.excluded_by_floor
+
+
+def test_printed_walk_charge_matches_corollary_5_10():
+    survey = lab_walk_survey()
+    assert survey["floor"] == 26_254_995
+    assert survey["combined_first_survivor"] == LAB_WALK_PERIOD
+    rows = printed_floor_kill_rows()
+    below = [row for row in rows if row.length < PRINTED_PERIOD]
+    assert len(below) == PRINTED_KILL_COUNT
+    assert all(row.excluded for row in below)
+    blocker = next(row for row in rows if row.length == PRINTED_PERIOD)
+    assert blocker.status == "blocker"
+    assert not blocker.excluded
+    assert rows[0].length == LAB_WALK_PERIOD
+    leftovers = [row for row in rows if row.length > PRINTED_PERIOD]
+    assert leftovers
+    assert all(not row.excluded for row in leftovers)
+    assert PRINTED_FLOOR == 162_849_448
 
 
 def test_length11_inventory_is_thirty_first_expanding_words():

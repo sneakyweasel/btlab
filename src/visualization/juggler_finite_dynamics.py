@@ -1,8 +1,8 @@
 """View-model for the finite-dynamics note companion.
 
 Instantiates existing Juggler maps. Does not prove anything: Lean remains
-the authority for exact claims; Theorem 4.6 is a verified computation.
-Bit caps keep Streamlit reruns bounded.
+the authority for exact claims; Theorem 4.6 and Corollary 5.10 are
+verified computations. Bit caps keep Streamlit reruns bounded.
 """
 
 from __future__ import annotations
@@ -14,7 +14,8 @@ from functools import lru_cache
 from itertools import product
 from typing import Any
 
-from research.juggler_sequence.cycle_finance import DATA_DIR, finance_rows
+from research.juggler_sequence.cycle_finance import DATA_DIR, parity_finance_rows
+from research.juggler_sequence.cycle_walk_charge import DATA_DIR as WALK_DATA_DIR
 from research.juggler_sequence.bunched_last_cluster import FAMILIES
 from research.juggler_sequence.cycle_length_seven import (
     THRESHOLD_BY_SUFFIX,
@@ -141,8 +142,8 @@ LEFTOVER_CUTOFF: dict[str, int] = {
 }
 
 # Note classifications for even-terminating expanding words of length ≤ 8.
-# Periods ≤ 1053 are excluded separately by finance at the verified descent
-# floor; these rows name the local obstruction when there is one.
+# Periods ≤ 25780 are excluded separately by Theorem 4.6 at the verified
+# descent floor 10^6; these rows name the local obstruction when there is one.
 _WORD_CLASS: dict[str, tuple[str, str]] = {
     "OOE": ("threshold", "Lemma 3.4(i): OO next-square vs last-even cell"),
     "OOOE": ("odd-run", "Lemma 3.4(v)"),
@@ -252,12 +253,27 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
         "ledger": "J-cycle-finance-inequality",
     },
     {
-        "text": "Theorem 4.6 verified computation: L ≥ 1054",
+        "text": "Theorem 4.6 verified computation: L ≥ 25781 at N0 = 10^6",
         "lean": "named computation; not Lean",
         "ledger": "J-cycle-word-eliahou-leftover-instance",
     },
     {
-        "text": "Section 5 uniform short certificates",
+        "text": "Theorem 5.2: L ≥ 50508 at the laboratory floor 26254995",
+        "lean": "named computation; not Lean",
+        "ledger": "J-cycle-period-fifty-thousand",
+    },
+    {
+        "text": "Theorem 5.9: walk charge raises the laboratory bound to L ≥ 176251",
+        "lean": "cycleMin_hug_kill_criterion; evaluation is computation",
+        "ledger": "J-cyclemin-walk-charge-instance",
+    },
+    {
+        "text": "Corollary 5.10: L ≥ 478245 at N0 = 162849448",
+        "lean": "named computation; not Lean",
+        "ledger": "J-cycle-period-four-hundred-seventy-eight-thousand",
+    },
+    {
+        "text": "Section 6 descent certificates (not a halt theorem)",
         "lean": "even_finiteProgress / odd_even_finiteProgress",
         "ledger": "J-finite-progress-boundary",
     },
@@ -325,48 +341,89 @@ LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
 )
 
 PAPER_FLOOR = 1_000_000
-PAPER_PERIOD = 1054
+PAPER_PERIOD = 25_781
 PAPER_L_CAP = 100_000
-PAPER_EXCEPTION_COUNT = 397
+PAPER_EXCEPTION_COUNT = 141
+LAB_FLOOR = 26_254_995
+LAB_PARITY_PERIOD = 50_508
+LAB_WALK_PERIOD = 176_251
+PRINTED_FLOOR = 162_849_448
+PRINTED_PERIOD = 478_245
+WALK_WINDOW_LO = 50_508
+WALK_WINDOW_HI = 301_994
+BLOCKER_FAN = 301_994
+DK_BREAKEVEN_FLOOR = 348_000_000
+PRINTED_KILL_COUNT = 15
 FINANCE_UI_L_MAX = 2_000
 FINANCE_CHART_L_MAX = 400
 RECORD_LENGTHS: tuple[int, ...] = (1, 3, 11, 19, 84, 569, 1054, 25781, 50508)
-RECORD_N_MAX: dict[int, int] = {
-    1: 3,
-    3: 13,
-    11: 52,
-    19: 297,
-    84: 5599,
-    569: 58398,
-    1054: 1_997_197,
-    25781: 67_410_774,
-    50508: 420_161_535,
-}
-RECORD_O_MIN: dict[int, int] = {
-    1: 1,
-    3: 2,
-    11: 7,
-    19: 12,
-    84: 53,
-    569: 359,
-    1054: 665,
-    25781: 16266,
-    50508: 31867,
-}
+
+WALK_CHARGE_LEDGER_IDS: tuple[str, ...] = (
+    "J-cyclemin-walk-charge-instance",
+    "J-residual-floor-one-hundred-sixty-two-million",
+    "J-cycle-period-four-hundred-seventy-eight-thousand",
+)
+
+INSTANCE_ROWS: tuple[dict[str, Any], ...] = (
+    {
+        "theorem": "Theorem 4.6",
+        "floor": PAPER_FLOOR,
+        "period": PAPER_PERIOD,
+        "mechanism": "parity 6/5 table",
+        "ledger": "J-cycle-word-eliahou-leftover-instance",
+    },
+    {
+        "theorem": "Theorem 5.2",
+        "floor": LAB_FLOOR,
+        "period": LAB_PARITY_PERIOD,
+        "mechanism": "same parity table",
+        "ledger": "J-cycle-period-fifty-thousand",
+    },
+    {
+        "theorem": "Theorem 5.9",
+        "floor": LAB_FLOOR,
+        "period": LAB_WALK_PERIOD,
+        "mechanism": "walk-charge envelope",
+        "ledger": "J-cyclemin-walk-charge-instance",
+    },
+    {
+        "theorem": "Corollary 5.10",
+        "floor": PRINTED_FLOOR,
+        "period": PRINTED_PERIOD,
+        "mechanism": "same kill criterion at the second floor",
+        "ledger": "J-cycle-period-four-hundred-seventy-eight-thousand",
+    },
+)
+
+
+@lru_cache(maxsize=1)
+def _parity_artifact() -> dict[str, Any]:
+    payload = json.loads(
+        (DATA_DIR / "exceptions_parity.json").read_text(encoding="utf-8")
+    )
+    if int(payload["floor"]) != PAPER_FLOOR:
+        raise ValueError("exceptions_parity.json is not the Theorem 4.6 floor 10^6")
+    if int(payload["first_exception"]) != PAPER_PERIOD:
+        raise ValueError("exceptions_parity.json first survivor is not 25781")
+    if int(payload["count"]) != PAPER_EXCEPTION_COUNT:
+        raise ValueError("exceptions_parity.json count is not 141")
+    return payload
+
+
+@lru_cache(maxsize=1)
+def _parity_records() -> dict[int, dict[str, Any]]:
+    return {int(row["L"]): dict(row) for row in _parity_artifact()["records"]}
 
 
 @lru_cache(maxsize=1)
 def paper_exception_lengths() -> tuple[int, ...]:
-    """Admissible lengths ℰ at the printed verified descent floor 10^6."""
+    """Admissible lengths ℰ at the Theorem 4.6 descent floor 10^6."""
 
-    payload = json.loads((DATA_DIR / "exceptions.json").read_text(encoding="utf-8"))
-    for item in payload:
-        if int(item["floor"]) == PAPER_FLOOR:
-            lengths = tuple(int(length) for length in item["lengths"])
-            if len(lengths) != int(item["count"]):
-                raise ValueError("exceptions.json floor 10^6 count does not match lengths")
-            return lengths
-    raise ValueError("exceptions.json has no floor-10^6 object")
+    payload = _parity_artifact()
+    lengths = tuple(int(length) for length in payload["lengths"])
+    if len(lengths) != int(payload["count"]):
+        raise ValueError("exceptions_parity.json count does not match lengths")
+    return lengths
 
 
 @lru_cache(maxsize=1)
@@ -376,23 +433,24 @@ def paper_exception_set() -> frozenset[int]:
 
 @lru_cache(maxsize=4)
 def _finance_table(l_max: int) -> tuple[dict[str, Any], ...]:
-    return tuple(finance_rows(l_max))
+    return tuple(parity_finance_rows(l_max))
 
 
 def finance_row_of(length: int) -> dict[str, Any] | None:
-    """One finance row, or None when n_max is not computed here."""
+    """One parity-finance row, or None when n_max is not computed here."""
 
     if length < 1:
         return None
     if length <= FINANCE_UI_L_MAX:
         return dict(_finance_table(FINANCE_UI_L_MAX)[length - 1])
-    if length in RECORD_N_MAX:
+    record = _parity_records().get(length)
+    if record is not None:
         return {
             "L": length,
-            "o": RECORD_O_MIN[length],
-            "theta": None,
-            "bound": None,
-            "n_max": RECORD_N_MAX[length],
+            "o": int(record["o"]),
+            "theta": record.get("theta"),
+            "bound": "parity_6/5",
+            "n_max": int(record["n_max"]),
             "record": True,
         }
     return None
@@ -412,7 +470,7 @@ class FinanceView:
 
 
 def finance_view(length: int) -> FinanceView:
-    """Paper A status of one period at the verified descent floor 10^6."""
+    """Paper A Theorem 4.6 status of one period at the descent floor 10^6."""
 
     if length < 1:
         raise ValueError("finance_view requires L ≥ 1")
@@ -448,7 +506,7 @@ def finance_view(length: int) -> FinanceView:
 
 
 def finance_chart_rows() -> tuple[dict[str, Any], ...]:
-    """Cached n_max(L) for the finance chart (L ≤ 400)."""
+    """Cached parity n_max(L) for the finance chart (L ≤ 400)."""
 
     return tuple(
         {
@@ -458,6 +516,85 @@ def finance_chart_rows() -> tuple[dict[str, Any], ...]:
         }
         for row in _finance_table(FINANCE_CHART_L_MAX)
     )
+
+
+@dataclass(frozen=True)
+class WalkKillRow:
+    length: int
+    odd_count: int
+    required_improvement: float
+    kill_margin: float | None
+    excluded: bool
+    status: str
+
+
+@lru_cache(maxsize=1)
+def lab_walk_survey() -> dict[str, Any]:
+    """Theorem 5.9 survey at the laboratory floor 26254995."""
+
+    return json.loads((WALK_DATA_DIR / "survey.json").read_text(encoding="utf-8"))
+
+
+@lru_cache(maxsize=1)
+def printed_floor_leftovers() -> tuple[dict[str, Any], ...]:
+    payload = json.loads(
+        (WALK_DATA_DIR / "new_floor_parity_leftovers.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    if int(payload["floor"]) != PRINTED_FLOOR:
+        raise ValueError("new_floor leftovers are not the Corollary 5.10 floor")
+    return tuple(dict(row) for row in payload["leftovers"])
+
+
+@lru_cache(maxsize=1)
+def printed_floor_kills() -> dict[int, dict[str, Any]]:
+    kills: dict[int, dict[str, Any]] = {}
+    for path in (WALK_DATA_DIR / "new_floor_kills").glob("L*.json"):
+        row = json.loads(path.read_text(encoding="utf-8"))
+        kills[int(row["length"])] = row
+    return kills
+
+
+def printed_floor_kill_rows() -> tuple[WalkKillRow, ...]:
+    """Corollary 5.10 leftovers joined to the certified kill records."""
+
+    kills = printed_floor_kills()
+    rows: list[WalkKillRow] = []
+    for leftover in printed_floor_leftovers():
+        length = int(leftover["L"])
+        kill = kills.get(length)
+        if kill is not None:
+            excluded = bool(kill["certified_excludes"])
+            margin = float(kill["kill_margin"])
+            if excluded:
+                status = "walk-killed"
+            elif length == PRINTED_PERIOD:
+                status = "blocker"
+            else:
+                status = "finance survivor"
+            rows.append(
+                WalkKillRow(
+                    length=length,
+                    odd_count=int(leftover["o"]),
+                    required_improvement=float(leftover["required_improvement"]),
+                    kill_margin=margin,
+                    excluded=excluded,
+                    status=status,
+                )
+            )
+            continue
+        rows.append(
+            WalkKillRow(
+                length=length,
+                odd_count=int(leftover["o"]),
+                required_improvement=float(leftover["required_improvement"]),
+                kill_margin=None,
+                excluded=False,
+                status="beyond printed cutoff",
+            )
+        )
+    return tuple(rows)
 
 
 def parse_word(raw: str) -> str | None:
@@ -1442,9 +1579,9 @@ def _class_verdict(
                 extra = " The local leftover cells miss this spelling, but "
             return (
                 "excluded",
-                f"{extra}Theorem 4.6: finance at the verified descent floor "
-                f"10^6 excludes every period at most {PAPER_PERIOD - 1} "
-                f"(this length is {len(word)}).",
+                f"{extra}Theorem 4.6: the parity table at the verified "
+                f"descent floor 10^6 excludes every period at most "
+                f"{PAPER_PERIOD - 1} (this length is {len(word)}).",
                 "J-cycle-word-eliahou-leftover-instance",
             )
         if leftover is not None and leftover[0] == "four-even short-gap":
@@ -1569,8 +1706,8 @@ def cycle_class_view(word: str, shift: int = 0) -> CycleClassView:
         ArgumentStep(
             title="Finance at the verified descent floor",
             body=(
-                f"Length {len(word)}. Theorem 4.6: finance plus the floor "
-                f"{PAPER_FLOOR:,} excludes every period at most "
+                f"Length {len(word)}. Theorem 4.6: the parity table plus "
+                f"the floor {PAPER_FLOOR:,} excludes every period at most "
                 f"{PAPER_PERIOD - 1}. The first length not excluded is "
                 f"{PAPER_PERIOD}."
             ),
