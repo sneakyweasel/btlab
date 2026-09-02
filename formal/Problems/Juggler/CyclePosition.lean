@@ -34,6 +34,9 @@ Not a leftover-killer and not a halt theorem.
 def cyclePrevIndex (L k : ℕ) : ℕ :=
   (k + L - 1) % L
 
+theorem cyclePrevIndex_lt {L k : ℕ} (hL : 0 < L) : cyclePrevIndex L k < L :=
+  Nat.mod_lt _ hL
+
 def cycleVertex (n k : ℕ) : ℕ :=
   floorPower^[k] n
 
@@ -42,7 +45,7 @@ def cycleParent (n : ℕ) (w : List Branch) (k : ℕ) : ℕ :=
   floorPower^[cyclePrevIndex w.length k] n
 
 def cyclePrevBranch (w : List Branch) (k : ℕ) (hk : k < w.length) : Branch :=
-  w[cyclePrevIndex w.length k]'(Nat.mod_lt _ (lt_of_le_of_lt (Nat.zero_le k) hk))
+  w[cyclePrevIndex w.length k]'(cyclePrevIndex_lt (Nat.zero_lt_of_lt hk))
 
 /-- Predecessor type at an actual cyclic index. Not a CycleMin cut. -/
 inductive CycleArrival
@@ -89,9 +92,6 @@ def CollisionFactorization.arrival (C : CollisionFactorization) : CycleArrival :
 
 /-! ## Predecessor arithmetic -/
 
-theorem cyclePrevIndex_lt {L k : ℕ} (hL : 0 < L) : cyclePrevIndex L k < L :=
-  Nat.mod_lt _ hL
-
 theorem cyclePrevIndex_zero {L : ℕ} (hL : 1 ≤ L) : cyclePrevIndex L 0 = L - 1 := by
   have hlt : L - 1 < L :=
     Nat.sub_lt (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) hL) (by decide)
@@ -101,7 +101,7 @@ theorem cyclePrevIndex_of_pos {L k : ℕ} (hL : 1 ≤ L) (hk : 0 < k) (hkL : k <
     cyclePrevIndex L k = k - 1 := by
   have hsum : k + L - 1 = L + (k - 1) := by omega
   have hlt : k - 1 < L := Nat.lt_of_le_of_lt (Nat.sub_le k 1) hkL
-  simp [cyclePrevIndex, hsum, Nat.add_mod, Nat.mod_self]
+  simp [cyclePrevIndex, hsum]
   exact Nat.mod_eq_of_lt hlt
 
 theorem cyclePrevIndex_succ_mod {L k : ℕ} (hL : 1 ≤ L) (hk : k < L) :
@@ -507,41 +507,42 @@ theorem even_letter_next_eArrival {w : List Branch} {k : ℕ}
     cycleArrival w (k + 1) hk1 = .eArrival :=
   (letter_determines_next_arrival hL hk1).2.1 he
 
-/-! ## Rotation transport -/
+/-! ## Rotation transport
+
+Work in `getElem?` so `rotateItinerary_eq_drop_append_take` rewrites
+without a dependent `getElem` motive.
+-/
+
+theorem rotateItinerary_getElem? {w : List Branch} {r i : ℕ}
+    (hr : r ≤ w.length) (hi : i < w.length) :
+    (rotateItinerary w r)[i]? = w[(i + r) % w.length]? := by
+  rw [rotateItinerary_eq_drop_append_take w r hr]
+  have hdrop_len : (w.drop r).length = w.length - r := List.length_drop
+  by_cases hlt : i < (w.drop r).length
+  · have hmod : (i + r) % w.length = i + r :=
+      Nat.mod_eq_of_lt (by simp [hdrop_len] at hlt; omega)
+    rw [List.getElem?_append_left hlt, List.getElem?_drop, Nat.add_comm r i, hmod]
+  · have hge : (w.drop r).length ≤ i := Nat.le_of_not_gt hlt
+    have hmod : (i + r) % w.length = i + r - w.length := by
+      have hlo : w.length ≤ i + r := by simp [hdrop_len] at hge; omega
+      have hhi : i + r - w.length < w.length := by omega
+      rw [Nat.mod_eq_sub_mod hlo]
+      exact Nat.mod_eq_of_lt hhi
+    have hidx : i - (w.drop r).length = i + r - w.length := by
+      simp [hdrop_len]; omega
+    have hlt_take : i + r - w.length < r := by
+      simp [hdrop_len] at hge; omega
+    rw [List.getElem?_append_right hge, hidx, List.getElem?_take, if_pos hlt_take, hmod]
 
 theorem rotateItinerary_get {w : List Branch} {r i : ℕ}
     (hr : r ≤ w.length) (hi : i < w.length) :
     (rotateItinerary w r)[i]'(by simpa [rotateItinerary_length] using hi) =
-      w[(i + r) % w.length]'(Nat.mod_lt _ (lt_of_le_of_lt (Nat.zero_le i) hi)) := by
-  rw [rotateItinerary_eq_drop_append_take w r hr]
-  have hdrop : (w.drop r).length = w.length - r := List.length_drop r w
-  have hlen : (w.drop r ++ w.take r).length = w.length := by
-    simp [List.length_append, hdrop, List.length_take, Nat.min_eq_left hr]
-  by_cases hlt : i < (w.drop r).length
-  · have hir : i + r < w.length := by omega
-    have hmod : (i + r) % w.length = i + r := Nat.mod_eq_of_lt hir
-    have hleft :
-        (w.drop r ++ w.take r)[i]'(by simpa [hlen] using hi) =
-          (w.drop r)[i]'hlt :=
-      List.getElem_append_left hlt
-    have hdi : (w.drop r)[i]'hlt = w[r + i]'(by omega) := List.getElem_drop
-    rw [hleft, hdi, hmod, Nat.add_comm r i]
-  · have hge : (w.drop r).length ≤ i := Nat.le_of_not_lt hlt
-    have hj : i - (w.length - r) < r := by omega
-    have hsum : i + r = i - (w.length - r) + w.length := by omega
-    have hmod : (i + r) % w.length = i - (w.length - r) := by
-      rw [hsum, Nat.add_mod, Nat.mod_self, Nat.add_zero, Nat.mod_mod]
-      exact Nat.mod_eq_of_lt (lt_of_lt_of_le hj hr)
-    have hright :
-        (w.drop r ++ w.take r)[i]'(by simpa [hlen] using hi) =
-          (w.take r)[i - (w.drop r).length]'(by omega) :=
-      List.getElem_append_right (by simpa [hlen] using hi) (Nat.not_lt.mpr hge)
-    have htake :
-        (w.take r)[i - (w.drop r).length]'(by omega) =
-          w[i - (w.length - r)]'(by omega) := by
-      simpa [hdrop] using
-        (List.getElem_take (l := w) (n := r) (i := i - (w.length - r)))
-    rw [hright, htake, hmod]
+      w[(i + r) % w.length]'(Nat.mod_lt _ (Nat.zero_lt_of_lt hi)) := by
+  have hopt := rotateItinerary_getElem? hr hi
+  have hl := List.getElem?_eq_getElem
+    (show i < (rotateItinerary w r).length from by simpa [rotateItinerary_length] using hi)
+  have hrgt := List.getElem?_eq_getElem (Nat.mod_lt (i + r) (Nat.zero_lt_of_lt hi))
+  exact Option.some.inj (hl.symm.trans (hopt.trans hrgt))
 
 theorem cyclePrevIndex_add_rotate {L r k : ℕ}
     (hL : 0 < L) (hr : r < L) (hk : k < L) :
@@ -567,30 +568,38 @@ theorem cyclePrevBranch_rotate {w : List Branch} {r k : ℕ}
     cyclePrevBranch (rotateItinerary w r) ((k + w.length - r) % w.length)
       (by
         have hlen := rotateItinerary_length w r
-        have hL : 0 < w.length := lt_of_le_of_lt (Nat.zero_le k) hk
+        have hL : 0 < w.length := Nat.zero_lt_of_lt hk
         simpa [hlen] using Nat.mod_lt (k + w.length - r) hL) =
       cyclePrevBranch w k hk := by
-  have hL : 0 < w.length := lt_of_le_of_lt (Nat.zero_le k) hk
+  have hL : 0 < w.length := Nat.zero_lt_of_lt hk
   have hr' : r ≤ w.length := Nat.le_of_lt hr
   set k' := (k + w.length - r) % w.length
+  have hlen := rotateItinerary_length w r
   have hpred : cyclePrevIndex w.length k' < w.length := cyclePrevIndex_lt hL
-  have hrot := rotateItinerary_length w r
-  have hget := rotateItinerary_get (w := w) (r := r) (i := cyclePrevIndex w.length k')
-    hr' hpred
+  have hopt := rotateItinerary_getElem? (w := w) (r := r)
+    (i := cyclePrevIndex w.length k') hr' hpred
   have hidx := cyclePrevIndex_add_rotate hL hr hk
-  simp [cyclePrevBranch, k']
-  have : (rotateItinerary w r)[cyclePrevIndex (rotateItinerary w r).length k']'
-      (by simpa [hrot] using hpred) =
-        w[cyclePrevIndex w.length k]'(cyclePrevIndex_lt hL) := by
-    simpa [hrot, hidx] using hget
-  simpa [hrot] using this
+  have hk' : k' < (rotateItinerary w r).length := by
+    simpa [hlen] using Nat.mod_lt (k + w.length - r) hL
+  have hl : some (cyclePrevBranch (rotateItinerary w r) k' hk') =
+      (rotateItinerary w r)[cyclePrevIndex (rotateItinerary w r).length k']? := by
+    simp only [cyclePrevBranch]
+    exact (List.getElem?_eq_getElem _).symm
+  have hrgt : some (cyclePrevBranch w k hk) = w[cyclePrevIndex w.length k]? := by
+    simp only [cyclePrevBranch]
+    exact (List.getElem?_eq_getElem _).symm
+  have hidxL :
+      cyclePrevIndex (rotateItinerary w r).length k' = cyclePrevIndex w.length k' := by
+    simp [cyclePrevIndex, hlen]
+  apply Option.some.inj
+  rw [hl, hrgt, hidxL, hopt, hidx]
 
 theorem cycleArrival_rotate {w : List Branch} {r k : ℕ}
     (hr : r < w.length) (hk : k < w.length) :
     cycleArrival (rotateItinerary w r) ((k + w.length - r) % w.length)
       (by
         have hlen := rotateItinerary_length w r
-        have hL : 0 < w.length := lt_of_le_of_lt (Nat.zero_le k) hk
+        have hL : 0 < w.length := Nat.zero_lt_of_lt hk
         simpa [hlen] using Nat.mod_lt (k + w.length - r) hL) =
       cycleArrival w k hk := by
   cases h : cyclePrevBranch w k hk with

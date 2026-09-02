@@ -22138,4 +22138,37 @@ Best next question
 - none from this door; freeze the bead file
 ```
 
+## Cycle arrival / collision classification (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Name predecessor type at an actual `CycleItinerary` vertex and prove Collision Factorization there, without a CycleMin cut, a bead station, or a new fibre law.
+- **Hypotheses:** none new. Falsifier: every compiled statement is `parent_cases`, `odd_preimage_unique`, `cycleMin_not_end_odd`, or Collision Factorization.
+- **Major results:** `CyclePosition.lean` (`cycleArrival`, `OnOrbit`, `CollisionFactorization`, `oArrival_stem_even`, `eArrival_stem_parent_cases`, `valley_is_eArrival`, `cycleArrival_rotate`, `onOrbit_rotate`). Imports `CycleCore` and `InverseBranches` only. Does not import `IdealCycleMin`. No `sorry` / `admit`. `lake build Problems.Juggler.CyclePosition` succeeded.
+- **Refuted ideas:** none new. Peak as a formal invariant remains terminology; O-arrival is the compiled name. A local leftover-killer remains REFUTED.
+- **Literature:** closed first-collision / seam record; valley package in `Seam.lean`.
+- **Open:** none from this door.
+- **Decision:** CLOSE — REPARAMETERIZATION. Keep the Lean layer. Do not treat arrival as a leftover-killer.
+
+```text
+What was learned
+- previous letter at an orbit vertex is O-arrival or E-arrival
+- the inverse-parent set of x is still parent_cases
+- O-arrival kills an odd stem only via odd_preimage_unique
+- E-arrival does not kill the odd stem
+- a CycleMin cut is E-arrival by cycleMin_not_end_odd
+- peak is terminology; O-arrival is the invariant
+Strongest theorem
+- cycle_in_edge_unique_onOrbit / oArrival_stem_even / parent_fibre_of_vertex
+Strongest refutation
+- none new; local leftover-killer remains REFUTED
+Reusable machinery
+- cycleArrival / OnOrbit / CollisionFactorization
+Branch status
+- CLOSE — REPARAMETERIZATION
+Why
+- every statement is the existing cell package or Collision Factorization
+Best next question
+- none from this door; do not treat CyclePosition as a leftover-killer
+```
+
 

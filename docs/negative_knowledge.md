@@ -274,9 +274,11 @@ Members: [juggler_first_collision](problems/juggler_first_collision.md),
 `juggler_mechanical_lift_obstruction`, `juggler_cycle_inverse_width`,
 `juggler_odd_inverse_width`, `juggler_odd_inverse_parity`,
 `juggler_cycle_itinerary_functional_closure`,
-[juggler_functional_graph_seam](problems/juggler_functional_graph_seam.md).
-Lean packaging of Collision Factorization (`Seam.lean`) is this kill
-under integer-edge names, not a new local attack.
+[juggler_functional_graph_seam](problems/juggler_functional_graph_seam.md),
+[juggler_cycle_arrival_collision](problems/juggler_cycle_arrival_collision.md).
+Lean packaging of Collision Factorization (`Seam.lean`,
+`CyclePosition.lean`) is this kill under integer-edge and
+predecessor-type names, not a new local attack.
 
 ---
 
