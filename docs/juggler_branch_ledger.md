@@ -164,6 +164,8 @@ branches remain reusable evidence or descriptive mathematics. The closed
 branches supply negative knowledge: specified reductions either fail on
 explicit witnesses, reproduce exact cell/itinerary semantics, collapse only
 on a bounded sample, or relabel first descent as a 4-letter certificate chain.
+The project-wide list, including BT-core and Paper B walls, lives in
+[negative_knowledge.md](negative_knowledge.md).
 
 The common conclusion is deliberately limited:
 

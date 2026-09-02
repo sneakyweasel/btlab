@@ -19,7 +19,7 @@ from typing import Any
 from research.juggler_sequence.cycle_almost_search import odd_preimage
 from research.juggler_sequence.cycle_entry_corridor import ee_entry_count
 from research.juggler_sequence.cycle_entry_excursion import (
-    entry_even_cell,
+    entry_even_preimage,
     run_layer,
 )
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
@@ -334,7 +334,7 @@ def probe_payload(*, n: int = START) -> dict[str, Any]:
             "ee_count": ee_entry_count(n),
             "odd_return": odd_preimage(n),
             "odd_return_ge_n": odd_return_ge_n(n),
-            "entry_cell": entry_even_cell(n),
+            "entry_cell": entry_even_preimage(n),
         },
         "launch_split": launch,
         "oee": oee,

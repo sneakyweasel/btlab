@@ -24,7 +24,7 @@ from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
 from research.juggler_sequence.cycle_gap_baker import exact_gap
 from research.juggler_sequence.cycle_ordered_excursion import (
     excursion_map,
-    ooe_cell_holds,
+    ooe_preimage_holds,
 )
 from research.juggler_sequence.power_itineraries import floor_power
 
@@ -271,7 +271,7 @@ def probe_payload() -> dict[str, Any]:
             "r1_witnesses": [{"v": v, "a": a} for v, a in r1_hits],
             "r1_agrees": r1_ok,
             "ooe_cell_holds_365": (
-                (lambda rec: rec is not None and ooe_cell_holds(365, rec["landing"]))(
+                (lambda rec: rec is not None and ooe_preimage_holds(365, rec["landing"]))(
                     realized_block(365, 2, 1)
                 )
             ),

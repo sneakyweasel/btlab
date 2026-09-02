@@ -72,7 +72,7 @@ def next_run(w: int) -> int | str:
     return a_of(w, cap=A_CAP)
 
 
-def ooe_cell_holds(v: int, w: int) -> bool:
+def ooe_preimage_holds(v: int, w: int) -> bool:
     """OOE exponent cell: w^8 <= v^9."""
 
     return w >= 1 and v >= 1 and w**8 <= v**9
@@ -135,7 +135,7 @@ def two_block_envelope_row(v: int) -> dict[str, Any] | None:
         "z": landing,
         "peak1": first[0],
         "peak2": second[0],
-        "ooe_cell": ooe_cell_holds(v, first[1]) and ooe_cell_holds(first[1], landing),
+        "ooe_cell": ooe_preimage_holds(v, first[1]) and ooe_preimage_holds(first[1], landing),
         "composed_cell": landing**64 <= v**81,
         "env": env,
         "deficit": env - landing,

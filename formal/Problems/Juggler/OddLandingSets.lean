@@ -13,7 +13,7 @@ start. The exact recursion is
 oddRun (r+1) y  ↔  y odd ∧ oddRun r (T(y))
 ```
 
-An odd floor cell has at most one integer, so the backward
+An odd one-step preimage has at most one integer, so the backward
 “cylinder” of a landing is empty or a singleton. This is the
 existing `odd_preimage_unique` law, not a shrinking-interval calculus.
 
@@ -39,7 +39,7 @@ theorem oddLanding_iff {y : ℕ} :
     oddLanding y ↔ y % 2 = 1 ∧ floorPower y % 2 = 1 :=
   Iff.rfl
 
-theorem oddLanding_cell {y : ℕ} (hodd : y % 2 = 1) :
+theorem oddLanding_preimage {y : ℕ} (hodd : y % 2 = 1) :
     oddLanding y ↔
       ∃ m, m % 2 = 1 ∧ m ^ 2 ≤ y ^ 3 ∧ y ^ 3 < (m + 1) ^ 2 := by
   constructor

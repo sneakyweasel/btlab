@@ -32,11 +32,11 @@ def PredEven (n m : ℕ) : Prop :=
 def PredOdd (n m : ℕ) : Prop :=
   n % 2 = 1 ∧ floorPower n = m
 
-theorem predEven_cell {n m : ℕ} (h : PredEven n m) :
+theorem predEven_preimage {n m : ℕ} (h : PredEven n m) :
     m ^ 2 ≤ n ∧ n < (m + 1) ^ 2 :=
   (floorPower_even_eq_iff_sq_interval h.1).mp h.2
 
-theorem predOdd_cell {n m : ℕ} (h : PredOdd n m) :
+theorem predOdd_preimage {n m : ℕ} (h : PredOdd n m) :
     m ^ 2 ≤ n ^ 3 ∧ n ^ 3 < (m + 1) ^ 2 :=
   (floorPower_odd_eq_iff_cube_interval h.1).mp h.2
 
@@ -96,14 +96,14 @@ theorem minimal_bad_uncovered_one_step {n : ℕ} (h : MinimalNonTerm n) :
   have hgt : n < floorPower n := floorPower_odd_gt hn3 hodd
   exact ⟨hn, lt_trans hn hgt⟩
 
-theorem minimal_bad_even_cell_exclusion {n m : ℕ}
+theorem minimal_bad_even_preimage_exclusion {n m : ℕ}
     (h : MinimalNonTerm n) (_hm : m < n) : ¬PredEven n m := by
   have hodd := minimal_nonterm_odd h
   intro hp
   have heven : n % 2 = 0 := hp.1
   omega
 
-theorem minimal_bad_odd_cell_exclusion {n m : ℕ}
+theorem minimal_bad_odd_preimage_exclusion {n m : ℕ}
     (h : MinimalNonTerm n) (hm : m < n) : ¬PredOdd n m := by
   have hn12 := minimal_nonterm_ge_twelve h
   have hodd := minimal_nonterm_odd h

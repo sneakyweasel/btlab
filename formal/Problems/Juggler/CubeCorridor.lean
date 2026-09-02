@@ -18,7 +18,7 @@ theorem even_cube_not_square {x n : ℕ} (hn : 2 ≤ n) (he : x % 2 = 0)
     (hge : n ^ 2 ≤ x) (hlt : x < n ^ 3) :
     n ≤ floorPower x ∧ floorPower x < n ^ 2 := by
   have hc : PowerCorridor n x 2 3 := ⟨hge, hlt⟩
-  refine ⟨?_, even_below_cube_cell hn he hc.upper⟩
+  refine ⟨?_, even_below_cube_preimage hn he hc.upper⟩
   have hnot : ¬floorPower x < n := by
     intro hdrop
     exact (not_le_of_gt ((even_below_square_iff he).mp hdrop)) hc.lower

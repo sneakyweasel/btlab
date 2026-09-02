@@ -1,6 +1,6 @@
-"""Landing-cell threshold coordinate. Not a termination theorem.
+"""Landing one-step-preimage threshold coordinate. Not a termination theorem.
 
-Packages the consecutive-square cell of a Juggler step and the
+Packages the consecutive-square one-step preimage of a Juggler step and the
 normalized gap ``θ = ρ / (2T+1)``. The census asks whether ``θ`` is
 restricted on odd-to-odd or persistent-continuation states, and
 whether it predicts the next landing better than a residue class.
@@ -27,12 +27,12 @@ BINS = 10
 LEAN_THEOREMS = (
     "landingIndex",
     "landingSource",
-    "landingCell",
+    "landingPreimage",
     "landingGap",
     "landingWidth",
     "normalizedLandingGap",
     "landingParity",
-    "landingCell_iff",
+    "landingPreimage_iff",
     "landingParity_odd_iff",
     "landingParity_even_iff",
     "landingGap_bound",

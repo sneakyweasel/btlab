@@ -65,7 +65,7 @@ def follows_block(x: int, word: str) -> int | None:
     return current
 
 
-def oe_cell_holds(x: int, z: int) -> bool:
+def oe_preimage_holds(x: int, z: int) -> bool:
     return z**4 <= x**3 < (z + 1) ** 4
 
 
@@ -79,7 +79,7 @@ def block_image_vs_exponent(word: str, x: int) -> dict[str, Any] | None:
         return None
     if word == "OE":
         naive = exponent_floor(x, 3, 4)
-        inside = oe_cell_holds(x, image)
+        inside = oe_preimage_holds(x, image)
     elif word == "OOE":
         naive = exponent_floor(x, 9, 8)
         inside = ooe_exponent_cell(x, image)
@@ -116,7 +116,7 @@ def block_scan(word: str, *, samples: int = OE_SAMPLE) -> dict[str, Any]:
     }
 
 
-def last_even_cell(n: int) -> Bound:
+def last_even_preimage(n: int) -> Bound:
     return Bound(n * n, (n + 1) * (n + 1) - 1)
 
 
@@ -160,7 +160,7 @@ def word_independent_hull(n_lo: int, n_hi: int, odd_count: int, length: int) -> 
     _, theta = o_min_and_theta(length)
     p_l = 1.0 / (1.0 - theta)
     hi_env = math.exp(p_l * math.log(n_hi))
-    last = last_even_cell(n_lo).intersect(Bound(n_lo * n_lo, (n_hi + 1) ** 2 - 1))
+    last = last_even_preimage(n_lo).intersect(Bound(n_lo * n_lo, (n_hi + 1) ** 2 - 1))
     first = first_odd_image_bound(n_lo, n_hi)
     start = Bound(n_lo, n_hi)
     # Different indices: last-even and first-odd are not the same slot.
@@ -268,7 +268,7 @@ def mechanical_endpoints(length: int, n_lo: int, n_hi: int) -> dict[str, Any]:
 
 
 def first_last_cells(n: int) -> dict[str, Any]:
-    last = last_even_cell(n)
+    last = last_even_preimage(n)
     first_even = first_even_after_oo(n)
     first_odd = isqrt(n * n * n)
     disjoint = first_even is None or first_even >= last.hi + 1

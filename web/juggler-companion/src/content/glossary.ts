@@ -43,10 +43,12 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     slug: "cycle-itinerary",
     number: 3,
     term: "Cycle itinerary and CycleMin",
-    blurb: "A loop of O and E letters. Rotating it is the same loop from a different start.",
+    blurb:
+      "Cut the loop at its smallest value. That spelling starts OO, ends E, and needs four evens.",
     body:
-      "If a nonempty itinerary sends n back to n, that itinerary is a cycle itinerary. The unique fixed point is 1; a cycle is nontrivial when it contains some n ≥ 2. Rotate the necklace and you still have the same loop. CycleMin is the rotation that starts at the smallest value on the loop. Paper A’s finance inequality is always written at that minimum.",
-    paper: "§1 conventions and Theorem 3.2: cycle itineraries, minimum-based rotations.",
+      "If a nonempty itinerary sends n back to n, that itinerary is a cycle itinerary. The unique fixed point is 1; a cycle is nontrivial when it contains some n ≥ 2. Rotate the necklace and you still have the same loop. CycleMin is the rotation that starts at the smallest value. That minimum is odd, so the spelling cannot start E or OE: the first two letters are OO. It cannot end on an odd letter: the last letter is E. Paper A’s finance inequality is always written at that minimum. At that cut n is return, minimum, and launch at once: last peak lands by E, then OO climbs the stem and enters the balloon at the first peak.\n\nThe first even overshoots (n+1)²; the last even lands in [n²+1, (n+1)²). Exactly two letters can touch the minimum from behind: OE|n|OO (isolated last E) or EE|n|OO (trailing even run). Fewer than four E letters is impossible, so a nontrivial period is at least 11. Shape is necessary, not a cycle. A leftover spelling can have this shape and still not close. The unique known loop is 1.",
+    paper:
+      "§1 conventions and Theorem 3.2: CycleMin geometry. Theorem 3.22: even-count ≥ 4. Last-odd-run and the two legal seams.",
   },
   {
     slug: "expanding",

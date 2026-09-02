@@ -87,7 +87,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
   simpa [image_odd_run, replicate_odd_two] using hth
 
 /-- The transported second residual sits at least one extra integer
-above the first-even cell. -/
+above the first-even one-step preimage. -/
 theorem cycleMin_transport_second_oo_ge {n a b : ℕ} {v : List Branch}
     (hn : 2 ≤ n) (_ha : 2 ≤ a) (hb : 2 ≤ b)
     (h : CycleMin n

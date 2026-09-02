@@ -53,6 +53,11 @@ data/research/juggler/word_atlas/**/*.overflow
 atlas/build/
 _atlas_gpu_check/
 
+# Local scratch (never commit)
+/tmp_*.py
+/*_ctx.txt
+/build_problems.log
+
 # OS
 Thumbs.db
 Desktop.ini

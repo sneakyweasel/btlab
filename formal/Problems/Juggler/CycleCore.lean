@@ -5,7 +5,7 @@ import Problems.Juggler.MinimumRelative
 namespace Problems.Juggler
 
 /-!
-# Cycle itineraries, cells, and CycleMin filters
+# Cycle itineraries, one-step preimages, and CycleMin filters
 
 Semantic cycle foundations: `CycleItinerary`, `CycleMin`, closure,
 extrema, and the `AboveAnchor` bridge. Named trajectory exclusions
@@ -16,7 +16,7 @@ live in `CycleObstructions`. Isolated-prefix algebra lives in
 return is not envelope equality: the defect stays positive. The
 lower-growth theorem still gives `n^{3^o - 2^k} ≤ lowerDenom w`.
 
-A last even letter is the square *cell* `n^2 ≤ z < (n+1)^2`, not an
+A last even letter is the square *one-step preimage* `n^2 ≤ z < (n+1)^2`, not an
 exact-square identity. If a suffix `v` sits at or above the next
 square, `vE` cannot be a cycle.
 
@@ -27,12 +27,12 @@ Existing next-square inventory, not a new engine:
 * inherited `O^a` for `a ≥ 3` at `N = 3` (odd-append)
 * eventual every superquadratic `v` at a huge `Q0(v)`
   (`eventually_no_first_even_contraction`)
-* cell-specific `EOO` uses `(√n+1)^2`, not `(n+1)^2`
+* one-step-preimage-specific `EOO` uses `(√n+1)^2`, not `(n+1)^2`
 
 Every length-5 E-terminating itinerary is either contracting or `OOOOE`.
 A cycle minimum forbids an `OE` start: the first even residual is
 below `n^2`. An internal `E` plus a next-square suffix then
-contradicts the last-even cell.
+contradicts the last-even one-step preimage.
 
 Extrema, peak blocks, and cycle remainders live in `CycleExtrema`.
 This is not a halt theorem and not a claim that every cycle itinerary
@@ -214,7 +214,7 @@ theorem cycle_last_even_interval {n : ℕ} {u : List Branch}
 
 /-- If a cycle itinerary ends with `r ≥ 1` even letters, the state before
 that even run satisfies `T_v(n) < (n+1)^{2^r}`. The case `r = 1` is
-the last-even cell; `r = 2` is the two-even bound used by Lemma 3.5
+the last-even one-step preimage; `r = 2` is the two-even bound used by Lemma 3.5
 on `OOOOEE`; `r = 3` is the three-even bound for `OOOOOOEEE`. -/
 theorem cycle_trailing_evens_lt {n : ℕ} {v : List Branch} :
     ∀ {r : ℕ}, 1 ≤ r →
@@ -360,7 +360,7 @@ theorem no_cycle_itinerary_ooe {n : ℕ} (hn : 2 ≤ n) : ¬CycleItinerary n iti
         omega
       subst hn3
       have himg : floorPower^[2] 3 = 11 := by
-        simpa [eooCellOutput_eq_iterate hOO] using eoo_cell_output_three
+        simpa [eooPreimageOutput_eq_iterate hOO] using eoo_preimage_output_three
       have he : floorPower^[2] 3 % 2 = 0 := by
         have := (follows_of_append_right (u := [.odd, .odd]) hcell.1).1
         simpa [hb] using this
@@ -383,12 +383,12 @@ theorem no_cycle_itinerary_oeo {n : ℕ} (hn : 2 ≤ n) : ¬CycleItinerary n iti
     simpa [itineraryEOO] using cycleItinerary_rotate_cons hcons
   exact no_cycle_itinerary_eoo ha hrot
 
-theorem cycle_last_even_cell {n : ℕ} {v : List Branch}
+theorem cycle_last_even_preimage {n : ℕ} {v : List Branch}
     (h : CycleItinerary n (v ++ [.even])) :
     n ^ 2 ≤ image n v ∧ image n v < (n + 1) ^ 2 :=
   cycle_last_even_interval h
 
-theorem cycle_last_even_cell_odd {n : ℕ} {v : List Branch}
+theorem cycle_last_even_preimage_odd {n : ℕ} {v : List Branch}
     (hodd : n % 2 = 1) (h : CycleItinerary n (v ++ [.even])) :
     n ^ 2 < image n v ∧ image n v < (n + 1) ^ 2 :=
   ⟨lt_of_le_of_ne (cycle_last_even_interval h).1
@@ -802,7 +802,7 @@ theorem cycleItinerary_iterate_not_lt_twelve {n : ℕ} {w : List Branch} {i : �
     reachesOne_of_lt_twelve hpos hy
   exact cycleItinerary_not_reachesOne hn h (reachesOne_of_iterate rfl hR)
 
-/-- Internal `E` plus a next-square suffix contradicts the last-even cell
+/-- Internal `E` plus a next-square suffix contradicts the last-even one-step preimage
 on a cycle minimum. `y ≥ n` is enough; `y > n` is not required. -/
 theorem no_cycleMin_internal_even_threshold {u v : List Branch} {N : ℕ}
     (hth : ∀ m, N ≤ m → follows m v → (m + 1) ^ 2 ≤ image m v)
@@ -832,7 +832,7 @@ theorem no_cycleMin_internal_even_threshold {u v : List Branch} {N : ℕ}
     le_trans (Nat.pow_le_pow_left (Nat.succ_le_succ hy_ge) 2) hth'
   exact (not_le_of_gt hI.2) hy2
 
-/-- A cycle minimum cannot end in `O`: the last-odd cell is
+/-- A cycle minimum cannot end in `O`: the last-odd one-step preimage is
 `n^2 ≤ x^3 < (n+1)^2`, while `x ≥ n` forces `n^3 < (n+1)^2`. -/
 theorem cycleMin_not_end_odd {n : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n (u ++ [Branch.odd])) : False := by

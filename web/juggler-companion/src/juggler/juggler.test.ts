@@ -11,6 +11,7 @@ import { floorPower } from "./map";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
 import {
+  cycleMinShape,
   envelopeSlack,
   expanding,
   followsItinerary,
@@ -97,6 +98,37 @@ describe("itineraries", () => {
 
   it("computes one-letter envelope slack at n=3", () => {
     expect(envelopeSlack(3n, 5n, 1, 1)).toBe(2n);
+  });
+});
+
+describe("cycleMinShape", () => {
+  it("accepts O^7 EEEE as a CycleMin-shaped leftover", () => {
+    const shape = cycleMinShape("OOOOOOOEEEE");
+    expect(shape.cycleMinShaped).toBe(true);
+    expect(shape.seam).toBe("EE|OO");
+    expect(shape.lastOddRun).toBe(0);
+    expect(shape.evenCount).toBe(4);
+  });
+
+  it("accepts O^6 EEEOE as an OE-seam leftover", () => {
+    const shape = cycleMinShape("OOOOOOEEEOE");
+    expect(shape.cycleMinShaped).toBe(true);
+    expect(shape.seam).toBe("OE|OO");
+    expect(shape.lastOddRun).toBe(1);
+  });
+
+  it("rejects OOE and OEO", () => {
+    expect(cycleMinShape("OOE").cycleMinShaped).toBe(false);
+    expect(cycleMinShape("OOE").evenCountGe4).toBe(false);
+    expect(cycleMinShape("OOE").lastOddRunAtMost1).toBe(false);
+    expect(cycleMinShape("OOE").seam).toBe("other");
+    expect(cycleMinShape("OEO").startsOO).toBe(false);
+    expect(cycleMinShape("OEO").endsE).toBe(false);
+  });
+
+  it("rejects a wrong cut of the leftover", () => {
+    expect(cycleMinShape("EEOOOOOOOEE").cycleMinShaped).toBe(false);
+    expect(cycleMinShape("EEOOOOOOOEE").startsOO).toBe(false);
   });
 });
 

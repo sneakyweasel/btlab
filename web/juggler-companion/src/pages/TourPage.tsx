@@ -128,7 +128,11 @@ export function TourPage() {
         <div className="rounded-2xl border border-line bg-card p-4 sm:p-6">
           <Widget />
         </div>
-        <p className="prose-measure">{chapter.body}</p>
+        {chapter.body.split("\n\n").map((paragraph) => (
+          <p key={paragraph.slice(0, 32)} className="prose-measure">
+            {paragraph}
+          </p>
+        ))}
         <p className="text-sm text-muted">
           <span className="font-medium text-ink">In the paper. </span>
           {chapter.paper}

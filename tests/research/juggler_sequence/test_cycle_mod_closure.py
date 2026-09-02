@@ -6,13 +6,13 @@ import json
 from pathlib import Path
 
 from research.conjectures import get_conjecture
-from research.juggler_sequence.cycle_closure import follows_block, oe_cell_holds
+from research.juggler_sequence.cycle_closure import follows_block, oe_preimage_holds
 from research.juggler_sequence.cycle_mod_closure import (
     MODULI,
     SPOTLIGHT,
     START,
     defect_width_collapses,
-    even_cell_realizable,
+    even_preimage_realizable,
     first_last_mod,
     pair_meta,
     r_nec_pair_count,
@@ -40,7 +40,7 @@ def test_oe_cell_is_the_exponent_cell():
     while hits < 40:
         image = follows_block(x, "OE")
         if image is not None:
-            assert oe_cell_holds(x, image)
+            assert oe_preimage_holds(x, image)
             hits += 1
         x += 2
 
@@ -65,7 +65,7 @@ def test_even_cell_full_at_finance_scale():
             continue
         for dst in range(8):
             lift = y + ((dst - y) % 8)
-            assert even_cell_realizable(src, dst, 8, lift)
+            assert even_preimage_realizable(src, dst, 8, lift)
 
 
 def test_odd_wit_hits_every_target_mod_8():

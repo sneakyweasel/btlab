@@ -4,9 +4,9 @@ import Problems.Juggler.ExpandingGrammar
 namespace Problems.Juggler
 
 /-!
-# Landing cells and threshold position
+# Landing one-step preimages and threshold position
 
-A Juggler step lands in a consecutive-square cell:
+A Juggler step lands in a consecutive-square one-step preimage:
 
 ```
 T(x) = m  ↔  m^2 ≤ F(x) < (m+1)^2
@@ -14,10 +14,10 @@ T(x) = m  ↔  m^2 ≤ F(x) < (m+1)^2
 
 with `F(x) = x` on the even branch and `F(x) = x^3` on the odd
 branch. The normalized gap `θ = ρ / (2T+1)` is the position inside
-that cell. Persistence at an odd landing is exactly
+that one-step preimage. Persistence at an odd landing is exactly
 `landingParity y = 1`.
 
-These identities package the existing inverse-floor cells. They do
+These identities package the existing one-step preimages. They do
 not claim that `θ` occupies a proper subinterval of `[0,1]` on
 odd-to-odd states, and they do not claim that every start reaches `1`.
 -/
@@ -28,7 +28,7 @@ def landingIndex (x : ℕ) : ℕ :=
 def landingSource (x : ℕ) : ℕ :=
   if x % 2 = 0 then x else x ^ 3
 
-def landingCell (x m : ℕ) : Prop :=
+def landingPreimage (x m : ℕ) : Prop :=
   m ^ 2 ≤ landingSource x ∧ landingSource x < (m + 1) ^ 2
 
 def landingGap (x : ℕ) : ℕ :=
@@ -44,15 +44,15 @@ def normalizedLandingGap (x : ℕ) : ℕ × ℕ :=
 def landingParity (x : ℕ) : ℕ :=
   floorPower x % 2
 
-theorem landingCell_iff {x m : ℕ} :
-    landingIndex x = m ↔ landingCell x m := by
+theorem landingPreimage_iff {x m : ℕ} :
+    landingIndex x = m ↔ landingPreimage x m := by
   cases Nat.mod_two_eq_zero_or_one x with
   | inl h =>
-      simp [landingIndex, landingCell, landingSource, h]
+      simp [landingIndex, landingPreimage, landingSource, h]
       exact floorPower_even_eq_iff_sq_interval h
   | inr h =>
       have hne : x % 2 ≠ 0 := by omega
-      simp [landingIndex, landingCell, landingSource, hne]
+      simp [landingIndex, landingPreimage, landingSource, hne]
       exact floorPower_odd_eq_iff_cube_interval h
 
 theorem landingParity_odd_iff {x : ℕ} (hodd : x % 2 = 1) :

@@ -117,7 +117,7 @@ then drops: \(T(4)=2<3\).
 
 ## Formalization
 
-`Corridor.lean` already has `even_below_cube_cell`.
+`Corridor.lean` already has `even_below_cube_preimage`.
 `CubeCorridor.lean` adds `even_cube_not_square` and
 `odd_ge_sq_floor_ge_cube`. `Progress.lean` adds
 `finiteProgress_of_cube_even_even`. `Minimal.lean` adds

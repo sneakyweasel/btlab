@@ -49,7 +49,7 @@ from research.juggler_sequence.cycle_ordered_excursion import (
     excursion_map,
     integer_root,
     ooe_blocks_oe,
-    ooe_cell_holds,
+    ooe_preimage_holds,
     two_ooe_still_blocks_oe,
 )
 from research.juggler_sequence.floor_preimages import even_preimage_width, odd_preimage_integers
@@ -193,7 +193,7 @@ def circuit_row(v: int, a: int, *, cycle_min: int) -> dict[str, Any]:
         "deficit": deficit,
         "rel_deficit": rel,
         "finance_deficit": finance,
-        "ooe_cell": ooe_cell_holds(v, landing) if ooe else None,
+        "ooe_cell": ooe_preimage_holds(v, landing) if ooe else None,
         "f2_expanding": landing > v if ooe else None,
         "cheap_ooe": ooe_blocks_oe(v, cycle_min) if ooe else None,
         "two_block_243": two_ooe_still_blocks_oe(v, cycle_min) if ooe else None,

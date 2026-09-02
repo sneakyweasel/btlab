@@ -22,7 +22,7 @@ cube-not-square splits by parity: even resets into [n, n^2) and EE is FiniteProg
 
 ## Lean
 
-- `even_below_cube_cell`: `True`
+- `even_below_cube_preimage`: `True`
 - `even_cube_not_square`: `True`
 - `odd_ge_sq_floor_ge_cube`: `True`
 - `finiteProgress_of_cube_even_even`: `True`

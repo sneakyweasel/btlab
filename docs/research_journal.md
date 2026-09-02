@@ -21916,4 +21916,71 @@ Best next question
   cycle census
 ```
 
+## Cycle itinerary structure laboratory extract (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-02
+- **Objective:** Consolidation entry (no new branch, no new milestone): gather every tagged word-level fact about Juggler itineraries across Lemma 1.1's three fates — termination to \(1\), nontrivial cycles, and unbounded escape — into one laboratory extract. Not a Paper A/B edit, not a leftover-killer, and not a halt theorem.
+- **Hypotheses:** none (inventory). Falsifier: a printed claim that is not already tagged in a dossier or Paper A/B.
+- **Major results:** Note [docs/theory/juggler_cycle_itinerary_structure_note.md](theory/juggler_cycle_itinerary_structure_note.md) expanded to the three-fate atlas. Shared layer: envelope, cells, hug word. Termination: `FiniteProgress` boundary, classes \(E/OE/OOEE\) (\(13/16\)) and \(+OOOEE/OOEOE\) (\(7/8\)), leftover eighth \(OOEOO\cup OOOEO\cup OOOO*\), capture/even-tower, equidistribution implication. Cycles: CycleMin geometry, two \(2{+}2\) seams, even-count \(\ge 4\), last-cluster split, named four-even leftovers. Escape: hug domination on `AboveAnchor`, walk-divergence (hug-hugging cycle-exclusive), dichotomy, shared \(\log_2 3\) lattice (shortest \(19\)). Closed attacks in extract §8. No new ledger row, no Lean, no Paper A/B edit.
+- **Refuted ideas:** none new (consolidation; equal-valleys / forced isolated-`OE` / necklace slack remain **REFUTED** in place). Densities \(57/64\) and \(29/32\) stay **CONJECTURE** and do not print.
+- **Literature:** Paper A Lemma 1.1 / §3; Paper B Corollaries 4.9 and 6.4; flight extract; dossiers named in the note header.
+- **Open:** unchanged — leftover *lengths* are finance / walk-charge / Diophantine; density-one descent needs equidistribution beyond depth 4; divergent-orbit exclusion is not claimed.
+- **Decision:** consolidation recorded; no branch opened.
+
+```text
+What was learned
+- one extract now holds the word laws for all three fates
+- termination certificates are E, OE, OOEE, OOOEE, OOEOE;
+  leftover eighth is OOEOO u OOOEO u OOOO*
+- cycles: two legal seams, e>=4, bunched-short last cluster
+- escape: hug-admissible prefixes; hug-hugging is cycle-only;
+  shortest near-return 19
+Strongest theorem
+- none new (the extract reprints existing ledger rows)
+Strongest refutation
+- none new
+Reusable machinery
+- docs/theory/juggler_cycle_itinerary_structure_note.md
+Branch status
+- consolidation (no branch)
+Why
+- inventory after the theorems survived; not a new wall
+Best next question
+- leftover lengths remain finance / walk-charge / Diophantine
+```
+
+## Negative-knowledge harvest (consolidation; not a numbered milestone)
+
+- **Date:** 2026-09-02
+- **Objective:** Consolidation entry (no new branch, no new milestone): harvest every recorded laboratory failure — `REFUTED` conjectures, `REFUTED` ledger rows, CLOSE dossiers, named method walls, and PARK stops that record a wall — into one searchable index clustered by killing invariant. Not a Paper A/B edit, not a leftover-killer, and not a halt theorem.
+- **Hypotheses:** none (inventory). Falsifier: a `REFUTED` conjecture or `REFUTED` ledger row missing from the index; or the index upgrading a finite census to `RESOLVED`.
+- **Major results:** Index [docs/negative_knowledge.md](negative_knowledge.md). Completeness gate [tests/integration/test_negative_knowledge.py](../tests/integration/test_negative_knowledge.py) cites 86 unique `conjectures/refuted` ids, 126 ledger `REFUTED` rows, and 185 Decision sections that contain `CLOSE`. Clusters: BT operators/rewrite; Collatz/dual code; Newton/`Q`/lifting; signed-digit/Ostrowski; Juggler language/residual/geometry; Collision Factorization; corridor/PE/cube/escape slogans; finance leftover-killers as identities; Diophantine walls; walk/DK; Paper B/`K_3`/harvest counting; flights; engine literature gates; PARK_STOP separately. Journal **Refuted ideas** lines are pointers, not a third unique source. No new ledger row, no Lean, no Paper A/B edit.
+- **Refuted ideas:** none new (harvest; the listed kills remain **REFUTED** in place). Densities \(57/64\) and \(29/32\) stay **CONJECTURE**.
+- **Literature:** [docs/methodology.md](methodology.md) Negative knowledge homes; branch ledger; itinerary extract §8.
+- **Open:** unchanged — leftover lengths are finance / walk-charge / Diophantine; density-one descent needs equidistribution beyond depth 4; divergent-orbit exclusion is not claimed; rated \(K_3\) stays behind BB/GG/JJ.
+- **Decision:** CLOSE. The inventory exists. Do not open a successor harvest or rescue a listed kill.
+
+```text
+What was learned
+- one index now holds every recorded laboratory failure
+- leftover-killer swarm collapses to Collision Factorization,
+  finance identities, and Diophantine/DK walls
+- ~106 REFUTED ledger rows had no conjecture file (Newton/Q,
+  signed-digit, corridor slogans)
+- PARK is not REFUTED; rated K3 and further floors stay parked
+Strongest theorem
+- none new (inventory)
+Strongest refutation
+- none new
+Reusable machinery
+- docs/negative_knowledge.md
+- tests/integration/test_negative_knowledge.py
+Branch status
+- CLOSE
+Why
+- the four homes already stored the kills; the lookup was missing
+Best next question
+- none from this door; search the index before opening a branch
+```
+
 

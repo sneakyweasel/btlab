@@ -76,7 +76,7 @@ Falsifier               The composition is only the known slack
                         x^3 − p^{2^{r+1}} = 2εp^{2^r}+ε^2+δ, and every
                         residue law is odd/odd or a known cell.
 Existing machinery      localDefectOdd, cycle_top_window_strict,
-                        cycle_top_nested_cell, cycle_peak_odd_remainder_pos,
+                        cycle_top_nested_preimage, cycle_peak_odd_remainder_pos,
                         cycle_remainder_balance, reachesOne_of_lt_twelve
 Maximum Phase-0 scope   Named δ/ε wrappers; composition identity;
                         cheap residue census on transients; at most one

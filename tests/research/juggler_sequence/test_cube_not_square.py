@@ -95,5 +95,5 @@ def test_dossier_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
-    assert "even_below_cube_cell" not in paper
+    assert "even_below_cube_preimage" not in paper
     assert "theorem no_juggler_escape" not in dossier

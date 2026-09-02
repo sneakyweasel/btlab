@@ -30,7 +30,7 @@ import json
 from typing import Any
 
 from research.juggler_sequence.cycle_almost_search import odd_preimage
-from research.juggler_sequence.cycle_arith import last_even_cell
+from research.juggler_sequence.cycle_arith import last_even_preimage
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
 from research.juggler_sequence.floor_preimages import even_preimage
 from research.juggler_sequence.power_itineraries import floor_power
@@ -186,7 +186,7 @@ def sink_calibration() -> dict[str, Any]:
 
 
 def valley_last_even_scale(n: int) -> dict[str, Any]:
-    lo, hi = last_even_cell(n)
+    lo, hi = last_even_preimage(n)
     start, last = even_parent_range(n)
     odd = odd_preimage(n)
     samples = even_parent_samples(n, cap=6)
@@ -210,7 +210,7 @@ def valley_last_even_scale(n: int) -> dict[str, Any]:
 def type2_odd_feeder() -> dict[str, Any]:
     t = TYPE2_T
     x = TYPE2_X
-    lo, hi = last_even_cell(x)
+    lo, hi = last_even_preimage(x)
     start, last = even_parent_range(x)
     one = floor_power(t)
     return {

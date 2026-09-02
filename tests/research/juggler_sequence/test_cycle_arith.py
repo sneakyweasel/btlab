@@ -12,7 +12,7 @@ from research.juggler_sequence.cycle_arith import (
     floor_power,
     follows_itinerary,
     image_after,
-    last_even_cell,
+    last_even_preimage,
     last_even_is_exact_square,
     lean_api_present,
     render_markdown,
@@ -23,7 +23,7 @@ from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_last_even_is_a_cell_not_a_square():
-    lo, hi = last_even_cell(5)
+    lo, hi = last_even_preimage(5)
     assert lo == 25
     assert hi == 36
     assert last_even_is_exact_square(3, "OOE") is None

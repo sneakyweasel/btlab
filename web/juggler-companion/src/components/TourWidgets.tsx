@@ -13,10 +13,9 @@ import {
   oddCount,
   parseItinerary,
   regimeOf,
-  rotateItinerary,
 } from "../juggler/itinerary";
 import { PreimageNumberLine } from "../visuals/PreimageNumberLine";
-import { CycleNecklace } from "../visuals/CycleNecklace";
+import { CycleTourWidget } from "./CycleTourWidget";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
 import { FloorLadder } from "../visuals/FloorLadder";
 import { AppearingItinerary } from "../visuals/AppearingItinerary";
@@ -428,42 +427,7 @@ export function TrajectoryWidget() {
 }
 
 export function CycleWidget() {
-  const [itinerary, setWord] = useState("OEO");
-  const [shift, setShift] = useState(0);
-  const parsed = parseItinerary(itinerary, 16) ?? "";
-  const current = parsed ? rotateItinerary(parsed, shift) : "";
-  return (
-    <div className="space-y-3">
-      <CycleNecklace word={parsed} shift={shift} minIndex={0} />
-      <div className="flex flex-wrap gap-2">
-        {(["OEO", "OOE"] as const).map((preset) => (
-          <button
-            key={preset}
-            type="button"
-            className="rounded-full border border-line px-3 py-1 font-mono text-sm"
-            onClick={() => {
-              setWord(preset);
-              setShift(0);
-            }}
-          >
-            {preset}
-          </button>
-        ))}
-        <button
-          type="button"
-          className="rounded-full bg-deep px-3 py-1 text-sm text-card"
-          onClick={() => parsed && setShift((value) => (value + 1) % parsed.length)}
-        >
-          Rotate
-        </button>
-      </div>
-      <Metric
-        label="This spelling"
-        value={current || "—"}
-        hint={current.startsWith("O") ? "legal CycleMin spelling starts odd" : "rotate toward the minimum"}
-      />
-    </div>
-  );
+  return <CycleTourWidget />;
 }
 
 export function ExpandingWidget() {

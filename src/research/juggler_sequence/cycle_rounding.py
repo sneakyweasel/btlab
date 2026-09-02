@@ -61,7 +61,7 @@ CERTIFICATE_UNCHANGED = (
     "localDefectEven",
     "localDefectOdd",
     "power_bound_word",
-    "cycle_top_predecessor_cell",
+    "cycle_top_predecessor_preimage",
     "cycle_distinguished_order",
     "cycle_peak_descent",
 )

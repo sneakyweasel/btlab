@@ -73,9 +73,9 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - `follows(n,EOO)` iff \(n\) even, \(q\) odd, \(\lfloor q^{3/2}\rfloor\)
   odd — **EXACT — LEAN VERIFIED**
-- `EOO` output equals `eooCellOutput q` and is constant on the cell —
+- `EOO` output equals `eooPreimageOutput q` and is constant on the cell —
   **EXACT — LEAN VERIFIED**
-- Contraction iff \(n>\mathrm{eooCellOutput}\,q\) —
+- Contraction iff \(n>\mathrm{eooPreimageOutput}\,q\) —
   **EXACT — LEAN VERIFIED**
 - \(q=1\Rightarrow c=1\); \(q=3\Rightarrow c=11\);
   \(q\ge5\Rightarrow c\ge(q+1)^2\) —
@@ -111,13 +111,13 @@ None opened.
 
 `formal/Problems/Engine/FloorPower.lean`. Added:
 
-- `sqrt_cell_iff`
-- `eooCellOutput`
+- `sqrt_preimage_iff`
+- `eooPreimageOutput`
 - `follows_eoo_sqrt_iff`
-- `eoo_output_eq_cell` / `eoo_output_constant_on_sqrt_cell`
-- `eoo_contracts_on_cell`
-- `eoo_cell_output_one` / `eoo_cell_output_three` /
-  `eoo_cell_output_ge_succ_sq`
+- `eoo_output_eq_preimage` / `eoo_output_constant_on_sqrt_preimage`
+- `eoo_contracts_on_preimage`
+- `eoo_preimage_output_one` / `eoo_preimage_output_three` /
+  `eoo_preimage_output_ge_succ_sq`
 
 Unchanged: `power_bound_compensated_contracts`,
 `floorPower_eoo_contracts_iff`. The certificate stays generic. The new
@@ -129,11 +129,11 @@ No `PowerHeight`. No `sorry`. No `mixed_word_power_lt`. No ledger row.
 
 Classification **EOO_CELL_MECHANISM_GREEN**.
 
-On a realized `EOO` start, \(T^3(n)=\mathrm{eooCellOutput}\,q\) with
+On a realized `EOO` start, \(T^3(n)=\mathrm{eooPreimageOutput}\,q\) with
 \(q=\lfloor\sqrt n\rfloor\), and
 
 \[
-T^3(n)<n\iff n>\mathrm{eooCellOutput}\,q.
+T^3(n)<n\iff n>\mathrm{eooPreimageOutput}\,q.
 \]
 
 The only cells with \(c<(q+1)^2\) are \(q=1\) (\(c=1\), start \(2\))

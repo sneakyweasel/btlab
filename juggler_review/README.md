@@ -8,6 +8,12 @@ certified density \(7/8\)).
 This folder is a snapshot of the files to send for external review. It
 is not the laboratory. No termination theorem is claimed.
 
+**Source of truth is `docs/theory/`.** Edit
+[juggler_finite_dynamics_note.md](../docs/theory/juggler_finite_dynamics_note.md)
+and
+[juggler_parity_discrepancy_note.md](../docs/theory/juggler_parity_discrepancy_note.md)
+there, then rebuild this bundle. Do not hand-edit both copies.
+
 Interactive glossary and playground (Paper A vocabulary only):
 https://sneakyweasel.github.io/balanced_ternary/
 

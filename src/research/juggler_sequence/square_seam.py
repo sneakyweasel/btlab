@@ -249,7 +249,7 @@ def cyclemin_square_algebra(*, max_s: int = PARENT_MAX) -> dict[str, Any]:
                     "T2": t2,
                     "next_square": next_sq,
                     "oo_suffix": oo_ok,
-                    "last_even_cell": [last_lo, last_hi],
+                    "last_even_preimage": [last_lo, last_hi],
                 }
             )
     return {

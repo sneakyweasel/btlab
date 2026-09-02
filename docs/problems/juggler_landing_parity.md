@@ -87,8 +87,8 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- `landingIndex` / `landingCell` / `landingCell_iff` —
-  **REPARAMETERIZATION** of the inverse-floor cells
+- `landingIndex` / `landingPreimage` / `landingPreimage_iff` —
+  **REPARAMETERIZATION** of the inverse-floor one-step preimages
 - `landingGap` / `landingGap_bound` / `normalizedLandingGap` —
   **REPARAMETERIZATION** of `localDefect` and \(\rho<2T+1\)
 - `landingParity_odd_iff` / `landingParity_even_iff` —

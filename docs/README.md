@@ -24,11 +24,21 @@ both axes. See [methodology.md](methodology.md).
 
 ## Start here
 
-The live publication task is the rewrite-calculus note. Send the
-[reviewer packet](theory/rewrite_calculus_reviewer_packet.md) with the
-[draft](theory/rewrite_calculus_note.md).
+The live publication task is the Juggler programme.
 
-Last promoted mathematical theory (STRUCTURAL; no new monomial strata):
+1. [Paper A — cycle-length lower bounds](theory/juggler_finite_dynamics_note.md)
+2. [Paper B — parity discrepancy](theory/juggler_parity_discrepancy_note.md)
+3. [Branch ledger](juggler_branch_ledger.md)
+4. [Negative knowledge](negative_knowledge.md) — every recorded
+   `REFUTED` / CLOSE / method wall, clustered by killing invariant
+5. Reviewer snapshot: [juggler_review/](../juggler_review/)
+   (export only; edit the `docs/theory/` sources, then rebuild)
+
+The rewrite-calculus note remains ready to send
+([draft](theory/rewrite_calculus_note.md),
+[reviewer packet](theory/rewrite_calculus_reviewer_packet.md)).
+
+Last promoted BT-core theory (STRUCTURAL; parked; no new monomial strata):
 
 1. [Balanced-ternary calculus](theory/balanced_ternary_calculus.md)
 2. [Cubic Newton stratum](theory/cubic_newton_stratum.md)
@@ -37,7 +47,7 @@ Last promoted mathematical theory (STRUCTURAL; no new monomial strata):
 
 Foundation, then operators: [mathematics.md](mathematics.md),
 [balanced_ternary_operators.md](balanced_ternary_operators.md).
-Collatz is one application: [collatz_mathematics.md](collatz_mathematics.md).
+Collatz is a parked application: [collatz_mathematics.md](collatz_mathematics.md).
 Method: [methodology.md](methodology.md).
 
 ## Foundations
@@ -96,6 +106,23 @@ Historical layer notes (stubs that point at the monograph):
 [N0 reduction](theory/cubic_n0_reduction.md),
 [mismatched quotient](theory/mismatched_cubic_quotient.md).
 
+## Juggler application
+
+The active research application. No halt theorem is claimed.
+
+- [Paper A](theory/juggler_finite_dynamics_note.md): itinerary
+  obstructions, finance, walk-charge envelope, certified floors
+- [Paper B](theory/juggler_parity_discrepancy_note.md): parity
+  discrepancy of nested floor powers; certified descent density \(7/8\)
+- [Flight extract](theory/juggler_flight_note.md) (descriptively terminal)
+- [Cycle finance note](theory/juggler_cycle_finance_note.md)
+- [Walk-charge note](theory/juggler_walk_charge_note.md)
+- [Itinerary-structure note](theory/juggler_cycle_itinerary_structure_note.md)
+- [Branch ledger](juggler_branch_ledger.md)
+- [Negative knowledge](negative_knowledge.md)
+- Problem dossier: [juggler_sequence.md](problems/juggler_sequence.md)
+- Lean spine: [architecture/juggler_lean_spine.md](architecture/juggler_lean_spine.md)
+
 ## Collatz application
 
 - [Collatz mathematics](collatz_mathematics.md): consolidated exact record
@@ -118,6 +145,7 @@ Historical layer notes (stubs that point at the monograph):
 
 Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 
+- [Juggler sequence](problems/juggler_sequence.md)
 - [Rewrite calculus](problems/rewrite_calculus.md)
 - [D/Add residual completion](problems/d_add_residual.md)
 - [Signed-digit residual phase transitions](problems/signed_digit_residual.md)
@@ -155,6 +183,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 
 Journal: [research_journal.md](research_journal.md).
 Ledger: [theory/theorem_ledger.md](theory/theorem_ledger.md).
+Negative knowledge: [negative_knowledge.md](negative_knowledge.md).
 Monna spectra theory: [theory/monna_endpoint_spectra.md](theory/monna_endpoint_spectra.md).
 Regular-output preimages: [theory/regular_output_preimages.md](theory/regular_output_preimages.md).
 

@@ -37,7 +37,7 @@ LEAN_THEOREMS = (
     "oo_suffix_threshold",
     "ooo_suffix_threshold",
     "floorPower_odd_ge",
-    "eoo_cell_output_ge_succ_sq",
+    "eoo_preimage_output_ge_succ_sq",
     "floorPower_eoo_contracts_iff",
     "power_bound_compensated_contracts",
 )
@@ -224,7 +224,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     For α_v > 2, is Q_v finite?",
         "Novelty hypothesis      OO and OOO have eventual thresholds",
         "Falsifier               Large Q_v for OO/OOO, or a mono break",
-        "Existing machinery      first_even_freeze, eoo_cell_output_ge_succ_sq",
+        "Existing machinery      first_even_freeze, eoo_preimage_output_ge_succ_sq",
         "Maximum Phase-0 scope   Cell-interval API; Q_v for short suffixes",
         "```",
         "",

@@ -12,7 +12,7 @@ not a termination theorem. Q_v is the set of realized q with
 Mathematical target     For α_v > 2, is Q_v finite?
 Novelty hypothesis      OO and OOO have eventual thresholds
 Falsifier               Large Q_v for OO/OOO, or a mono break
-Existing machinery      first_even_freeze, eoo_cell_output_ge_succ_sq
+Existing machinery      first_even_freeze, eoo_preimage_output_ge_succ_sq
 Maximum Phase-0 scope   Cell-interval API; Q_v for short suffixes
 ```
 
@@ -48,7 +48,7 @@ Exact any-contraction: `any contraction on [q^2,(q+1)^2) is c+1 < (q+1)^2, not m
 - `oo_suffix_threshold`: `True`
 - `ooo_suffix_threshold`: `True`
 - `floorPower_odd_ge`: `True`
-- `eoo_cell_output_ge_succ_sq`: `True`
+- `eoo_preimage_output_ge_succ_sq`: `True`
 - `floorPower_eoo_contracts_iff`: `True`
 - `power_bound_compensated_contracts`: `True`
 - certificate unchanged: `True`

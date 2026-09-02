@@ -86,7 +86,7 @@ def image_after(n: int, word: str) -> int:
     return current
 
 
-def last_even_cell(n: int) -> tuple[int, int]:
+def last_even_preimage(n: int) -> tuple[int, int]:
     return n * n, (n + 1) * (n + 1)
 
 

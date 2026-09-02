@@ -5,7 +5,8 @@ problem-independent balanced-ternary core (`bt`) plus independent research
 applications (`research.*`).
 
 Balanced ternary mathematics is **core**. Research problems are
-**applications**. Core modules must never import research modules.
+**applications**. The live application is `research.juggler_sequence`.
+Core modules must never import research modules.
 
 This page is the architectural contract. It does not change any
 mathematical definition.

@@ -141,7 +141,7 @@ None to the extrema package. The stronger claims that fail:
 `formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `CycleMax` / `exists_cycle_max_even` / `cycleMax_start_even`
-- `cycleMin_max_gt_sq` / `cycleMax_return_cell`
+- `cycleMin_max_gt_sq` / `cycleMax_return_preimage`
 - later, in `EvenCountThree.lean`: `cycleMin_max_ge_succ_sq` /
   `cycleMax_min_succ_sq_le` / `cycleMax_landing_gt_min` /
   `cycleMax_exists_min_succ_sq` / `cycle_distinguished_order_succ_sq`

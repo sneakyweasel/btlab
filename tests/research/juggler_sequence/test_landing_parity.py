@@ -1,4 +1,4 @@
-"""Landing-cell threshold coordinate. Not a termination test."""
+"""Landing one-step-preimage threshold coordinate. Not a termination test."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 
-def test_landing_cell_matches_floor_and_gap_window():
+def test_landing_preimage_matches_floor_and_gap_window():
     for x in (4, 9, 16, 365, 763, 4447):
         row = landing_row(x)
         t = row["T"]

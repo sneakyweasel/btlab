@@ -1,8 +1,10 @@
 # Balanced Ternary Mathematical Laboratory
 
 An exact-arithmetic **research platform**. Balanced ternary mathematics is
-the core. Research problems — Collatz, sparse powers, additive
-combinatorics, operator dynamics — are independent applications.
+the core. Research problems are independent applications. The active
+application is the **Juggler map**
+\(T(n)=\lfloor\sqrt n\rfloor\) (\(n\) even),
+\(\lfloor n\sqrt n\rfloor\) (\(n\) odd).
 
 This repository does **not** claim a solution of the Collatz conjecture or
 of any other open problem. Finite checks are never presented as proofs.
@@ -61,15 +63,26 @@ assert decode(word) == 42
 
 ## Research applications (`research`)
 
-The live publication task is the rewrite-calculus note
+The live publication task is the Juggler programme: Paper A
+([cycle-length lower bounds](docs/theory/juggler_finite_dynamics_note.md))
+and Paper B
+([parity discrepancy](docs/theory/juggler_parity_discrepancy_note.md)).
+Reviewer snapshot: [juggler_review/](juggler_review/). Companion:
+[web/juggler-companion/](web/juggler-companion/). Reading path:
+[AGENTS.md](AGENTS.md). This is not a halt theorem and not a
+Collatz-style solution claim.
+
+The rewrite-calculus note remains ready to send
 ([draft](docs/theory/rewrite_calculus_note.md),
 [reviewer packet](docs/theory/rewrite_calculus_reviewer_packet.md)).
-The cubic Newton stratum is the last promoted mathematical theory.
-Full table: [docs/architecture/research_modules.md](docs/architecture/research_modules.md).
+The cubic Newton stratum is the last promoted BT-core theory; it is
+parked. Full table:
+[docs/architecture/research_modules.md](docs/architecture/research_modules.md).
 
 
 | Module                                         | Status          |
 | ---------------------------------------------- | --------------- |
+| `research.juggler_sequence`                    | PAPER_CANDIDATE |
 | `research.rewrite_calculus`                    | PAPER_CANDIDATE |
 | `research.residuals`                           | STRUCTURAL      |
 | `research.collatz`                             | STRUCTURAL      |
@@ -96,7 +109,9 @@ Full table: [docs/architecture/research_modules.md](docs/architecture/research_m
 
 
 ```python
-from research.collatz import AffineCenterState, CompatibilityState, collatz_step
+from research.juggler_sequence.power_itineraries import floor_power
+
+assert floor_power(3) == 5
 ```
 
 
@@ -117,10 +132,13 @@ See [formal/README.md](formal/README.md) and
 
 ## Current open problems and conjectures
 
-Active / computationally supported registry entries include `N_k=2^k+1`,
-low-K_m/m lift conjectures, and non-contraction compatibility.
-Refuted hypotheses (including `W(3)=1` and `n_*=165` at step 17) are
-kept under `conjectures/refuted/`.
+The Juggler cycle programme is terminal on the laboratory side:
+no nontrivial cycle of period \(<478245\) at the certified floor
+\(N_0=162849448\). Further period progress is Diophantine (partial
+quotients of \(\log 2/\log 3\)), not a new floor campaign. Closed
+and refuted Juggler hypotheses stay under `conjectures/refuted/`
+and [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md).
+Parked BT-core registry entries remain in `conjectures/`.
 
 ```powershell
 btlab conjectures list

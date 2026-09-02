@@ -144,7 +144,7 @@ theorem cycleMin_max_gt_sq {n : ℕ} {w : List Branch}
   have hodd := cycleMin_start_odd hn h
   exact lt_of_le_of_ne hsq (even_ne_odd_square heven hodd).symm
 
-theorem cycleMax_return_cell {n : ℕ} {w : List Branch}
+theorem cycleMax_return_preimage {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     n % 2 = 0 ∧ n.sqrt ^ 2 ≤ n ∧ n < (n.sqrt + 1) ^ 2 := by
   have he := cycleMax_start_even hn h
@@ -482,8 +482,8 @@ theorem cycleMax_predecessor_lt {n : ℕ} {w : List Branch}
   have hgt := floorPower_odd_gt hn3 ho
   simpa [hTx] using hgt
 
-/-- Inverse odd cell at the predecessor of the maximum. -/
-theorem cycle_top_predecessor_cell {n : ℕ} {w : List Branch}
+/-- Inverse odd one-step preimage at the predecessor of the maximum. -/
+theorem cycle_top_predecessor_preimage {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     n ^ 2 ≤ (floorPower^[w.length - 1] n) ^ 3 ∧
       (floorPower^[w.length - 1] n) ^ 3 < (n + 1) ^ 2 := by
@@ -616,7 +616,7 @@ theorem cycle_top_three_level {n : ℕ} {w : List Branch}
 
 /-- Nested exact top cells at the maximum, its odd predecessor, and
 the even-run landing. -/
-theorem cycle_top_nested_cell {n : ℕ} {w : List Branch}
+theorem cycle_top_nested_preimage {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     ∃ r p x, 1 ≤ r ∧
       p = floorPower^[r] n ∧
@@ -626,7 +626,7 @@ theorem cycle_top_nested_cell {n : ℕ} {w : List Branch}
               n ^ 2 ≤ x ^ 3 ∧ x ^ 3 < (n + 1) ^ 2 := by
   have ⟨r, u, p, x, hr1, hw, hpdef, hxdef, _, _, _, _, hpx, hxn, _, _, _⟩ :=
     cycle_top_three_level hn h
-  have hcell := cycle_top_predecessor_cell hn h
+  have hcell := cycle_top_predecessor_preimage hn h
   have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
     have hf : follows n (List.replicate r Branch.even ++ u) := by
       simpa [hw] using h.1.1
@@ -650,7 +650,7 @@ theorem cycle_top_scale_constraint {n : ℕ} {w : List Branch}
             n < x ^ 2 ∧
               p ^ (2 ^ (r - 1)) < x := by
   have ⟨r, p, x, hr1, hpdef, hxdef, _, _, hlo, _, hcell, _⟩ :=
-    cycle_top_nested_cell hn h
+    cycle_top_nested_preimage hn h
   have hx2 : 2 ≤ x := by
     have hi : w.length - 1 < w.length := by
       have : 2 ≤ w.length := cycleMax_length_ge_two hn h
@@ -806,7 +806,7 @@ theorem cycle_peak_finance {n : ℕ} {w : List Branch}
     simpa [hTx] using hfE
   have himgP : image x (oddEvenBlock 1 r) = p := by
     rw [hform, image, hTx, image_eq_iterate, List.length_replicate, hpdef]
-  have hcell := cycle_top_predecessor_cell hn h
+  have hcell := cycle_top_predecessor_preimage hn h
   have hlo : p ^ (2 ^ r) ≤ n := by
     simpa [hpdef] using even_iter_pow_le r heven
   have hcube : n ^ 2 ≤ x ^ 3 := by
@@ -942,7 +942,7 @@ theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
   have hhi : n < (p + 1) ^ (2 ^ r) := by
     simpa [hpdef] using even_iter_lt_succ_pow r heven
   have hwin := cycle_top_window_strict hpodd (cycleMax_start_even hn h) hlo
-  have hcell := cycle_top_predecessor_cell hn h
+  have hcell := cycle_top_predecessor_preimage hn h
   have hcell' : n ^ 2 ≤ x ^ 3 ∧ x ^ 3 < (n + 1) ^ 2 := by
     simpa [hxdef] using hcell
   have hrlt : r < w.length := by
@@ -1192,7 +1192,7 @@ theorem cycle_exists_pos_remainder {n : ℕ} {w : List Branch}
 theorem cycleMax_pred_cube_strict {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     n ^ 2 < (floorPower^[w.length - 1] n) ^ 3 := by
-  have hcell := cycle_top_predecessor_cell hn h
+  have hcell := cycle_top_predecessor_preimage hn h
   refine lt_of_le_of_ne hcell.1 ?_
   intro heq
   have hx := cycleMax_predecessor_odd hn h

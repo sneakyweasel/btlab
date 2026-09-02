@@ -45,7 +45,7 @@ LEAN_THEOREMS = (
     "exists_cycle_max_even",
     "cycleMax_start_even",
     "cycleMin_max_gt_sq",
-    "cycleMax_return_cell",
+    "cycleMax_return_preimage",
     "square_scale_superquadratic",
     "cycleMin_to_even_superquadratic",
     "cycleMin_to_max_superquadratic",
@@ -53,7 +53,7 @@ LEAN_THEOREMS = (
 
 SUCC_SQ_THEOREMS = (
     "cycleMin_max_ge_succ_sq",
-    "cycleMin_max_not_first_cell",
+    "cycleMin_max_not_first_preimage",
     "cycleMax_min_succ_sq_le",
     "cycleMax_landing_gt_min",
     "cycleMax_exists_min_succ_sq",

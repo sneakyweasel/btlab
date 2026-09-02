@@ -7,7 +7,7 @@ namespace Problems.Juggler
 # Named CycleMin / CycleItinerary exclusions
 
 Why particular trajectories cannot be cycles. Cycle foundations
-(`CycleItinerary`, `CycleMin`, extrema, last-even cell) stay in
+(`CycleItinerary`, `CycleMin`, extrema, last-even one-step preimage) stay in
 `CycleCore`. Isolated-prefix algebra stays in `FirstInternalOO`.
 This file is not a halt theorem.
 -/

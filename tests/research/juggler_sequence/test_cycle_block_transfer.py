@@ -18,7 +18,7 @@ from research.juggler_sequence.cycle_block_transfer import (
 )
 from research.juggler_sequence.cycle_entry_corridor import corridor_bounds
 from research.juggler_sequence.cycle_exponent_budget import rho
-from research.juggler_sequence.cycle_ordered_excursion import ooe_cell_holds
+from research.juggler_sequence.cycle_ordered_excursion import ooe_preimage_holds
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_block_transfer.md"
@@ -56,7 +56,7 @@ def test_oe_and_ooe_cells_are_archived_exponents():
     assert corr["n4"] == START**4
     rec = realized_block(365, 2, 1)
     assert rec is not None
-    assert ooe_cell_holds(365, rec["landing"])
+    assert ooe_preimage_holds(365, rec["landing"])
 
 
 def test_r1_point_map_agrees_with_excursion_map():

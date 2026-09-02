@@ -40,13 +40,13 @@ LEAN_THEOREMS = (
     "iterate_cons_odd",
     "first_even_freeze",
     "first_odd_freeze",
-    "suffix_same_output_on_cell",
+    "suffix_same_output_on_preimage",
     "first_even_contracts_iff",
     "eoo_from_first_even",
     "constant_cell_trichotomy",
     "odd_preimage_unique",
     "floorPower_eoo_contracts_iff",
-    "eoo_contracts_on_cell",
+    "eoo_contracts_on_preimage",
     "power_bound_compensated_contracts",
 )
 

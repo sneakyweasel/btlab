@@ -40,9 +40,9 @@ CLASS_INCOMPLETE = "CYCLE_TOP_PRED_INCOMPLETE"
 LEAN_THEOREMS = (
     "cycleMax_predecessor_odd",
     "cycleMax_predecessor_lt",
-    "cycle_top_predecessor_cell",
+    "cycle_top_predecessor_preimage",
     "cycle_top_three_level",
-    "cycle_top_nested_cell",
+    "cycle_top_nested_preimage",
     "cycle_top_scale_constraint",
     "cycle_top_pred_scale",
     "cycle_top_max_lt_pred_sq",

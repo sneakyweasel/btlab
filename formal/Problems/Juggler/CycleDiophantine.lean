@@ -10,7 +10,7 @@ The sequential peak identity
 `x^3 = (p^{2^r} + ε)^2 + δ`
 
 is the exact slack of the existing lower cell `x^3 ≥ p^{2^{r+1}}`.
-Parity of `δ` and `ε` is the existing odd/even cell arithmetic.
+Parity of `δ` and `ε` is the existing odd/even one-step-preimage arithmetic.
 A nontrivial cycle cannot visit `{1,…,11}`, so the top landing
 satisfies `p ≥ 13`.
 
@@ -123,7 +123,7 @@ theorem cycle_peak_diophantine {n : ℕ} {w : List Branch}
             (p ^ (2 ^ r) + topEvenDefect n p r) ^ 2 +
               peakOddDefect x n := by
   have ⟨r, p, x, hr1, hpdef, hxdef, _, _, hlo, _, _, _⟩ :=
-    cycle_top_nested_cell hn h
+    cycle_top_nested_preimage hn h
   have hxodd : x % 2 = 1 := by
     simpa [hxdef] using cycleMax_predecessor_odd hn h
   have hTx : floorPower x = n := by
@@ -140,7 +140,7 @@ theorem cycle_peak_diophantine_slack {n : ℕ} {w : List Branch}
             2 * topEvenDefect n p r * p ^ (2 ^ r) +
               topEvenDefect n p r ^ 2 + peakOddDefect x n := by
   have ⟨r, p, x, hr1, hpdef, hxdef, _, _, hlo, _, _, _⟩ :=
-    cycle_top_nested_cell hn h
+    cycle_top_nested_preimage hn h
   have hxodd : x % 2 = 1 := by
     simpa [hxdef] using cycleMax_predecessor_odd hn h
   have hTx : floorPower x = n := by

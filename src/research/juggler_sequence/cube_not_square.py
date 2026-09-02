@@ -36,7 +36,7 @@ WITNESS_ODD = (1517, "OOEOOEOOEOEOO", 43916043)
 WITNESS_EVEN_EE = (3, 16)
 
 LEAN_THEOREMS = (
-    "even_below_cube_cell",
+    "even_below_cube_preimage",
     "even_cube_not_square",
     "odd_ge_sq_floor_ge_cube",
     "finiteProgress_of_cube_even_even",
@@ -158,7 +158,7 @@ def lean_api_present() -> dict[str, bool]:
             REPO_ROOT / "formal" / "Problems" / "Juggler.lean"
         ).read_text(encoding="utf-8"),
         "not_in_paper_barrel": "cube_not_square" not in paper
-        and "even_below_cube_cell" not in paper,
+        and "even_below_cube_preimage" not in paper,
         "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 

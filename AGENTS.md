@@ -18,11 +18,12 @@ bt.*                        problem-independent BT mathematics
 
 ## Juggler reading path
 
-1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (itinerary obstructions + finance + the §5 walk-charge envelope; lab extract in [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md))
+1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (itinerary obstructions + finance + the §5 walk-charge envelope; lab extracts [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md) and [juggler_cycle_itinerary_structure_note.md](docs/theory/juggler_cycle_itinerary_structure_note.md) — word geometry for termination, cycles, and escape)
 2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers
 3. [docs/theory/juggler_flight_note.md](docs/theory/juggler_flight_note.md) — laboratory extract: descent-free flights (envelope, dichotomy, anchor-period, divergent structure, shared lattice). Not a paper; the flight program is descriptively terminal.
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
-5. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
+5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
+6. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).
@@ -162,7 +163,8 @@ for external review.
   ancestry, provenance, collision-pair, word-order, error-transport, and
   cycle-lift drops all reduce to Collision Factorization (first meeting iff
   the parent is off-cycle) or the lift identity \(T^L(t)=c\ge n\). Do not
-  reopen them; the ledger and `conjectures/refuted/` list each kill.
+  reopen them; the ledger, `conjectures/refuted/`, and
+  [docs/negative_knowledge.md](docs/negative_knowledge.md) list each kill.
 - **Anti-overclaim:** never claim a halt theorem, "no cycle of any
   length", or a Collatz/Juggler solution. Finite checks are not proofs.
 
@@ -175,6 +177,7 @@ for external review.
 | Data artifacts | `data/research/juggler/.../summary.json` |
 | Lean (itineraries, cells, CycleMin, finance, lattice) | `formal/Problems/Juggler/` (`WalkChargeItineraries.lean`) |
 | Branch dossier | `docs/problems/juggler_<id>.md` (all TEMPLATE headings; enforced by `tests/integration/test_problem_dossiers.py`) |
+| Negative knowledge | [docs/negative_knowledge.md](docs/negative_knowledge.md) (completeness: `tests/integration/test_negative_knowledge.py`) |
 | Conjecture record | `conjectures/{active,refuted,proved,archived}/<id>.json` |
 | Journal entry | `docs/research_journal.md` (consolidations allowed; no auto-milestones) |
 | Named theorem metadata | `docs/theory/theorem_ledger.json`, then render |
@@ -195,7 +198,7 @@ Promotion criterion     what would justify PROMOTE
 Stop criterion          what forces PARK or CLOSE
 ```
 
-Implement only that scope. Search `conjectures/refuted/`, the branch
+Implement only that scope. Search [docs/negative_knowledge.md](docs/negative_knowledge.md), `conjectures/refuted/`, the branch
 ledger, and the `REFUTED` ledger rows before re-testing a hypothesis.
 
 At the end of a phase, report:

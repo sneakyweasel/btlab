@@ -113,7 +113,7 @@ exclusion. The stronger claims that fail:
 
 `formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
-- `cycle_last_even_cell` / `cycle_last_even_cell_odd`
+- `cycle_last_even_preimage` / `cycle_last_even_preimage_odd`
 - `no_cycle_append_even_of_suffix_threshold`
 - `no_cycle_itinerary_oooe`
 - `no_cycle_itinerary_length_four_ends_even`

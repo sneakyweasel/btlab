@@ -748,7 +748,7 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
     simpa [image_odd_run] using hover.1
   exact hz.trans (hmax a ha)
 
-theorem cycleMin_max_not_first_cell {n : ℕ} {w : List Branch}
+theorem cycleMin_max_not_first_preimage {n : ℕ} {w : List Branch}
     {i : ℕ} (hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
     (hmax : ∀ j < w.length, floorPower^[j] n ≤ floorPower^[i] n) :
     (n + 1) ^ 2 ≤ floorPower^[i] n := by

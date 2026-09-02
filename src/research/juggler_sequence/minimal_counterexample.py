@@ -89,8 +89,8 @@ LEAN_THEOREMS = (
     "PredEven",
     "PredOdd",
     "minimal_bad_no_smaller_visit",
-    "minimal_bad_even_cell_exclusion",
-    "minimal_bad_odd_cell_exclusion",
+    "minimal_bad_even_preimage_exclusion",
+    "minimal_bad_odd_preimage_exclusion",
     "minimal_bad_barrier_constraint",
     "oe_barrier_pow",
     "ee_barrier_pow",
@@ -972,8 +972,8 @@ Label: **LEAN-CERTIFIED** (`good_of_good_successor`,
 `good_of_predecessor_certificate`).
 
 `n*` cannot lie in the even or odd inverse cell of any `m < n*`.
-Label: **LEAN-CERTIFIED** (`minimal_bad_even_cell_exclusion`,
-`minimal_bad_odd_cell_exclusion`). Both are corollaries of the
+Label: **LEAN-CERTIFIED** (`minimal_bad_even_preimage_exclusion`,
+`minimal_bad_odd_preimage_exclusion`). Both are corollaries of the
 already-proved odd start plus odd expansion.
 
 ## 3. Barrier-surviving trajectories
@@ -1180,8 +1180,8 @@ Formalized, sorry-free, in `formal/Problems/Juggler/MinimalClosure.lean`:
 
 - `good_of_good_successor`
 - `good_of_predecessor_certificate`
-- `minimal_bad_even_cell_exclusion`
-- `minimal_bad_odd_cell_exclusion`
+- `minimal_bad_even_preimage_exclusion`
+- `minimal_bad_odd_preimage_exclusion`
 - `minimal_bad_barrier_constraint`
 - `oe_barrier_pow` / `ee_barrier_pow` / `eo_barrier_pow`
 - `PredClosure` / `predClosure_iff_reachesOne`

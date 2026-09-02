@@ -66,14 +66,14 @@ the remaining word.
 
 ## Lean
 
-- `sqrt_cell_iff`: `True`
+- `sqrt_preimage_iff`: `True`
 - `follows_eoo_sqrt_iff`: `True`
-- `eoo_output_eq_cell`: `True`
-- `eoo_output_constant_on_sqrt_cell`: `True`
-- `eoo_contracts_on_cell`: `True`
-- `eoo_cell_output_one`: `True`
-- `eoo_cell_output_three`: `True`
-- `eoo_cell_output_ge_succ_sq`: `True`
+- `eoo_output_eq_preimage`: `True`
+- `eoo_output_constant_on_sqrt_preimage`: `True`
+- `eoo_contracts_on_preimage`: `True`
+- `eoo_preimage_output_one`: `True`
+- `eoo_preimage_output_three`: `True`
+- `eoo_preimage_output_ge_succ_sq`: `True`
 - `floorPower_eoo_contracts_iff`: `True`
 - `power_bound_compensated_contracts`: `True`
 - `eooCellOutput` present: `True`

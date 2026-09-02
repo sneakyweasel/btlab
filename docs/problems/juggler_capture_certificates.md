@@ -99,7 +99,7 @@ allows.
 - `capture_of_suffix` / `capture_append`
 - `even_tower_capture` / `even_tower_odd_tail_capture`
 - `odd_even_tower_seven_capture` / `nested_even_collapse_2500_capture`
-- `first_even_cell_capture`
+- `first_even_preimage_capture`
 - `descent_of_below` / `minimal_avoids_progress`
 
 Unchanged: `LowerPowerBound`, `power_bound_compensated_contracts`,

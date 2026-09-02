@@ -64,7 +64,7 @@ theorem even_tower_to_one {k : ℕ} (hk : 1 ≤ k) :
       · simpa [hrep, image_append, himg] using himg2
 
 /-- An even tower can collapse `2^{2^{k-1}}` onto `1`. Any odd tail then
-stays at `1`, so the first-even cell contracts. -/
+stays at `1`, so the first-even one-step preimage contracts. -/
 theorem even_tower_odd_tail_contracts {k o : ℕ} (hk : 1 ≤ k) :
     follows (2 ^ (2 ^ (k - 1)))
         (List.replicate k Branch.even ++ List.replicate o Branch.odd) ∧

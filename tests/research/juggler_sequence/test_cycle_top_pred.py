@@ -70,7 +70,7 @@ def test_lean_api_pred_without_obstruction():
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
     assert "theorem cycle_top_three_level" in src
-    assert "theorem cycle_top_nested_cell" in src
+    assert "theorem cycle_top_nested_preimage" in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
     assert "PowerHeight" not in src

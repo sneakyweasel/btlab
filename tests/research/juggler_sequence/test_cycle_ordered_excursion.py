@@ -20,7 +20,7 @@ from research.juggler_sequence.cycle_ordered_excursion import (
     local_next_runs,
     mu_product_expands,
     ooe_blocks_oe,
-    ooe_cell_holds,
+    ooe_preimage_holds,
     spotlight_row,
     two_block_envelope_row,
     two_ooe_still_blocks_oe,
@@ -57,7 +57,7 @@ def test_ooe_cell_and_scale_lemmas():
     assert seed == 1000057
     rec = excursion_map(seed, 2)
     assert rec is not None
-    assert ooe_cell_holds(seed, rec[1])
+    assert ooe_preimage_holds(seed, rec[1])
     assert ooe_blocks_oe(seed, START)
     assert two_ooe_still_blocks_oe(seed, START)
     assert rec[1] < oe_start_min(START)

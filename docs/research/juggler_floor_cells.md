@@ -63,13 +63,13 @@ T_Ev(n)=T_v(⌊√n⌋) on every square-root cell; odd cells are unique so an in
 - `iterate_cons_odd`: `True`
 - `first_even_freeze`: `True`
 - `first_odd_freeze`: `True`
-- `suffix_same_output_on_cell`: `True`
+- `suffix_same_output_on_preimage`: `True`
 - `first_even_contracts_iff`: `True`
 - `eoo_from_first_even`: `True`
 - `constant_cell_trichotomy`: `True`
 - `odd_preimage_unique`: `True`
 - `floorPower_eoo_contracts_iff`: `True`
-- `eoo_contracts_on_cell`: `True`
+- `eoo_contracts_on_preimage`: `True`
 - `power_bound_compensated_contracts`: `True`
 - certificate unchanged: `True`
 - `PowerHeight` absent: `True`

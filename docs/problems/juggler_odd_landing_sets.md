@@ -83,7 +83,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- `oddLanding` / `oddLanding_iff` / `oddLanding_cell` —
+- `oddLanding` / `oddLanding_iff` / `oddLanding_preimage` —
   **REPARAMETERIZATION** of `landingParity`
 - `oddRun` / `oddRun_recursive` —
   **EXACT — LEAN VERIFIED**, and a **REPARAMETERIZATION** of

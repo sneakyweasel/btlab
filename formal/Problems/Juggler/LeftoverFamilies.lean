@@ -2001,7 +2001,7 @@ theorem no_cycle_itinerary_three_even_eooeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 3 
 
 On a `CycleMin` the remainder after the first even letter of a
 gapped three-even leftover is a two-even leftover family, started
-at `y ≥ n`. The leftover cell is measured against the cycle start
+at `y ≥ n`. The leftover one-step preimage is measured against the cycle start
 `n`, so `y ≥ n` tightens it against the shared two-even tail at
 `y`. Large `y` is the uniform cutoff `y ≥ 256`. Below `256`, short
 gaps are tables and long gaps are seven-odd.
@@ -2120,7 +2120,7 @@ theorem firstEPrefix_image_ge_two {n a : ℕ}
     Nat.le_sqrt.mpr (by simpa [pow_two] using hz4)
   simpa [hy] using this
 
-theorem gapped_ee_cell {n a b : ℕ}
+theorem gapped_ee_preimage {n a b : ℕ}
     (hy : 1 ≤ image n (firstEPrefix a))
     (h : CycleItinerary n (gappedThreeEvenEE a b)) :
     image n (firstEPrefix a) ^ (3 ^ b) <
@@ -2151,7 +2151,7 @@ theorem gapped_ee_cell {n a b : ℕ}
     (Nat.mul_lt_mul_of_pos_left hzpow
       (pow_pos (by decide : (0 : ℕ) < 2) _))
 
-theorem gapped_eoe_cell {n a b : ℕ}
+theorem gapped_eoe_preimage {n a b : ℕ}
     (hn : 2 ≤ n) (hy : 1 ≤ image n (firstEPrefix a))
     (h : CycleItinerary n (gappedThreeEvenEOE a b)) :
     image n (firstEPrefix a) ^ (3 ^ (b + 1)) <
@@ -2246,7 +2246,7 @@ theorem no_cycleMin_gapped_three_even_ee_of_y {n a b : ℕ}
   have hC : CycleItinerary n (gappedThreeEvenEE a b) := cycleMin_cycleItinerary h
   have hyn : n ≤ y := cycleMin_gapped_ee_y_ge h
   have hy1 : 1 ≤ y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
-  have hcell := gapped_ee_cell (n := n) (a := a) (b := b) hy1 hC
+  have hcell := gapped_ee_preimage (n := n) (a := a) (b := b) hy1 hC
   have hk : 6 ≤ b + 2 := by omega
   have htail := shared_two_even_tail (n := y) hy hk
   have hle : (n + 1) ^ (2 ^ (b + 2)) ≤ (y + 1) ^ (2 ^ (b + 2)) :=
@@ -2266,7 +2266,7 @@ theorem no_cycleMin_gapped_three_even_eoe_of_y {n a b : ℕ}
   have hC : CycleItinerary n (gappedThreeEvenEOE a b) := cycleMin_cycleItinerary h
   have hyn : n ≤ y := cycleMin_gapped_eoe_y_ge h
   have hy1 : 1 ≤ y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
-  have hcell := gapped_eoe_cell hn hy1 hC
+  have hcell := gapped_eoe_preimage hn hy1 hC
   have hk : 6 ≤ b + 3 := by omega
   have htail := shared_two_even_tail (n := y) hy hk
   have hle : (n + 1) ^ (2 ^ (b + 3)) ≤ (y + 1) ^ (2 ^ (b + 3)) :=

@@ -23,7 +23,7 @@ LEAN_THEOREMS = (
     "oddRun",
     "oddRunLength",
     "oddLanding_iff",
-    "oddLanding_cell",
+    "oddLanding_preimage",
     "oddRun_zero",
     "oddRun_succ",
     "oddRun_start_odd",

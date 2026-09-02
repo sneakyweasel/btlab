@@ -17,9 +17,9 @@ whole-cycle log unroll gives, for any `CycleMin` start `n`,
 (`cycleMin_finance`, Theorem 4.4, constant 1), and the inv-sum
 form keeps each remainder as `1/x_i`
 (`cycleMin_finance_inv_sum`, Corollary 4.4c). This file is the
-dyadic-cell majorant core only: the envelope induction
+dyadic one-step-preimage majorant core only: the envelope induction
 (`cycleMin_log_envelope`, `cycleMin_log_envelope_inv`) spends
-one dyadic-cell logarithm bound (`log_le_two_log_add`,
+one dyadic one-step-preimage logarithm bound (`log_le_two_log_add`,
 `log(1+u) <= u`) and one prefix non-contraction fact
 (`cycleMin_prefix_pow_le`, `CycleCore.lean`) per step.
 
@@ -36,7 +36,7 @@ Paper A (`docs/theory/juggler_finite_dynamics_note.md`)
 Section 4. This is not a halt theorem.
 -/
 
-/-- The dyadic-cell logarithm bound: if `z < (y+1)^2` then
+/-- The dyadic one-step-preimage logarithm bound: if `z < (y+1)^2` then
 `log z ≤ 2 log y + 2/y`. The only analytic input of the finance
 inequality (`log(1+u) ≤ u`). -/
 theorem log_le_two_log_add {z y : ℕ} (hz : 1 ≤ z) (hy : 1 ≤ y)
@@ -92,7 +92,7 @@ theorem log_step_odd {x : ℕ} (hx : 2 ≤ x) (ho : x % 2 = 1) :
 
 /-- The unrolled financing envelope along a `CycleMin` prefix:
 `3^{o_k} log n ≤ 2^k log x_k + k 3^{o_k} / n`. Division-free
-induction; each step spends one dyadic-cell logarithm bound and one
+induction; each step spends one dyadic one-step-preimage logarithm bound and one
 prefix non-contraction fact. -/
 theorem cycleMin_log_envelope {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) :
@@ -238,7 +238,7 @@ theorem cycleMin_iterate_ge_two {n : ℕ} {w : List Branch} {k : ℕ}
   · rw [cycle_iterate_period h.1]
     exact hn
 
-/-- Inv-sum envelope: each dyadic-cell defect is kept as `1/x_{i+1}`
+/-- Inv-sum envelope: each dyadic one-step-preimage defect is kept as `1/x_{i+1}`
 instead of being replaced by `1/n`. At `k = L` this is
 `(3^o - 2^L) log n ≤ 3^o ∑ 1/x_i`. Paper A Corollary 4.4c. -/
 theorem cycleMin_log_envelope_inv {n : ℕ} {w : List Branch}
@@ -373,7 +373,7 @@ theorem cycleMin_log_envelope_inv {n : ℕ} {w : List Branch}
                   1 / (floorPower^[k + 1] n)) := by
             ring
 
-/-- **Inv-sum finance inequality.** Same cell-log defects as
+/-- **Inv-sum finance inequality.** Same one-step-preimage-log defects as
 `cycleMin_finance`, remainders kept as `1/x_{i+1}`.
 `(3^o - 2^L) log n ≤ 3^o ∑ 1/x_i`. -/
 theorem cycleMin_finance_inv_sum {n : ℕ} {w : List Branch}

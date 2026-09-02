@@ -130,7 +130,7 @@ def first_return_below_cube(n: int, x: int, cap: int = 32) -> dict[str, Any]:
     return {"j": None, "z": None}
 
 
-def odd_cell_occupants(y: int) -> list[int]:
+def odd_preimage_occupants(y: int) -> list[int]:
     """Integers x with T(x)=y, i.e. y^2 <= x^3 < (y+1)^2. At most one."""
 
     lo2 = y * y
@@ -166,7 +166,7 @@ def crossing_record(n: int, path: tuple[int, ...], i: int, nxt_odd: int | None) 
     y, delta = odd_step_defect(x)
     a = x - n * n
     cell_width = n**3 - n * n
-    occupants = odd_cell_occupants(y)
+    occupants = odd_preimage_occupants(y)
     cube_occupants = [u for u in occupants if n * n <= u < n**3]
     even_hit = first_even_after(x)
     ret = first_return_below_cube(n, x)

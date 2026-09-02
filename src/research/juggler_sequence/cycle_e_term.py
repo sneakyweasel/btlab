@@ -40,8 +40,8 @@ CLASS_PARK = "CYCLE_E_BRANCH_PARK"
 CLASS_INCOMPLETE = "CYCLE_E_TERM_INCOMPLETE"
 
 LEAN_THEOREMS = (
-    "cycle_last_even_cell",
-    "cycle_last_even_cell_odd",
+    "cycle_last_even_preimage",
+    "cycle_last_even_preimage_odd",
     "no_cycle_append_even_of_suffix_threshold",
     "no_cycle_itinerary_oooe",
     "no_cycle_itinerary_length_four_ends_even",

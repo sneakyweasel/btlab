@@ -8,7 +8,7 @@ from pathlib import Path
 from research.conjectures import get_conjecture
 from research.juggler_sequence.cycle_budget_opt import oe_start_min
 from research.juggler_sequence.cycle_entry_excursion import (
-    entry_even_cell,
+    entry_even_preimage,
     entry_row,
     finance_classes,
     packed_closing,
@@ -44,7 +44,7 @@ def test_dossier_has_triage_and_closed_gates():
 
 
 def test_entry_cell_skips_odd_square():
-    cell = entry_even_cell(N)
+    cell = entry_even_preimage(N)
     assert cell["lo"] == N * N
     assert cell["first_even"] == N * N + 1
     assert cell["first_even"] % 2 == 0

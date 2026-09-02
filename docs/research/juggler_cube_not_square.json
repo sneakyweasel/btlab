@@ -62,7 +62,7 @@
   },
   "lean": {
     "sorry_free": true,
-    "even_below_cube_cell": true,
+    "even_below_cube_preimage": true,
     "even_cube_not_square": true,
     "odd_ge_sq_floor_ge_cube": true,
     "finiteProgress_of_cube_even_even": true,

@@ -24,7 +24,7 @@ from research.juggler_sequence.cycle_almost_search import (
 )
 from research.juggler_sequence.cycle_budget_opt import oe_start_min
 from research.juggler_sequence.cycle_entry_excursion import (
-    entry_even_cell,
+    entry_even_preimage,
     run_layer,
 )
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
@@ -389,7 +389,7 @@ def probe_payload(*, n: int = START) -> dict[str, Any]:
         },
         "survivors": survivors,
         "collisions": collisions,
-        "entry_cell": entry_even_cell(n),
+        "entry_cell": entry_even_preimage(n),
     }
     payload["decision"] = classify(payload)
     return payload

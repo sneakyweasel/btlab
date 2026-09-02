@@ -20,7 +20,7 @@ const PlayContext = createContext<PlayState | null>(null);
 export function PlayStateProvider({ children }: { children: ReactNode }) {
   const [nText, setNText] = useState("3");
   const [itinerary, setItinerary] = useState("OOE");
-  const [cycleItinerary, setCycleItinerary] = useState("OEO");
+  const [cycleItinerary, setCycleItinerary] = useState("OOOOOOOEEEE");
   const [cycleShift, setCycleShift] = useState(0);
   const [steps, setSteps] = useState(20);
   const [financeL, setFinanceL] = useState(25781);

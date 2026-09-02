@@ -1672,7 +1672,7 @@
     "oo_suffix_threshold": true,
     "ooo_suffix_threshold": true,
     "floorPower_odd_ge": true,
-    "eoo_cell_output_ge_succ_sq": true,
+    "eoo_preimage_output_ge_succ_sq": true,
     "floorPower_eoo_contracts_iff": true,
     "power_bound_compensated_contracts": true,
     "certificate_present": true,

@@ -246,7 +246,7 @@ theorem succ_pow6038_lt_of_ge_256 {n : ℕ} (hn : 256 ≤ n) :
     rw [← Nat.pow_add, one_three_nine_add_6038]
   exact hcancel.trans_le (hle.trans_eq h6177)
 
-theorem o7_start_cell {n : ℕ} (hodd : n % 2 = 1) :
+theorem o7_start_preimage {n : ℕ} (hodd : n % 2 = 1) :
     n ^ 2187 < (floorPower n + 1) ^ 1458 := by
   have hcube := odd_cube_lt_succ_sq hodd
   have hpow := Nat.pow_lt_pow_left hcube (by decide : (729 : ℕ) ≠ 0)
@@ -296,7 +296,7 @@ theorem o7_plus_one_chain {n : ℕ} (hn : 1 ≤ n)
   have hge6 : n ≤ z6 :=
     odd_run_ge hn 6 (follows_odd_take (by decide : (6 : ℕ) ≤ 7) hw7)
   have h0 : n ^ 2187 < (n + 1) ^ 0 * (z1 + 1) ^ 1458 := by
-    have hstart := o7_start_cell hodd0
+    have hstart := o7_start_preimage hodd0
     simpa [pow_zero, one_mul, hz1] using hstart
   have h1 : n ^ 3645 < (n + 1) ^ 1458 * (z2 + 1) ^ 972 := by
     have h :=

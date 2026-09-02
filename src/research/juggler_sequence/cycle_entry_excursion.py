@@ -70,11 +70,11 @@ def envelope_valley_scale(n: int, a: int) -> float:
     return float(n) ** ((2 ** (a + 1)) / (3**a))
 
 
-def entry_even_cell(n: int) -> dict[str, Any]:
+def entry_even_preimage(n: int) -> dict[str, Any]:
     """Last-even predecessors of odd n: n^2 < x < (n+1)^2, x even."""
 
     if n < 1 or n % 2 == 0:
-        raise ValueError("entry_even_cell requires a positive odd n")
+        raise ValueError("entry_even_preimage requires a positive odd n")
     lo, hi = even_preimage(n)
     start = lo if lo % 2 == 0 else lo + 1
     count = 0
@@ -415,7 +415,7 @@ def _compact_row(row: dict[str, Any]) -> dict[str, Any]:
 
 
 def probe_payload(*, n: int = START) -> dict[str, Any]:
-    cell = entry_even_cell(n)
+    cell = entry_even_preimage(n)
     layers = [run_layer(n, a) for a in range(1, A_MAX + 1)]
     ge_n_rows = [row for layer in layers for row in layer["rows"]]
     finance = finance_summary(n, ge_n_rows)

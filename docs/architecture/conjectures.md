@@ -33,3 +33,4 @@ Claim labels in the mathematical record are the seven ledger tags in
 `add_proof`, `add_lean_proof`, `list_conjectures`.
 
 Rejected hypotheses from prior milestones are preserved under `refuted/`.
+The project-wide lookup is [docs/negative_knowledge.md](../negative_knowledge.md).

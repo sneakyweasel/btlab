@@ -116,12 +116,12 @@ None opened.
 - `iterate_cons_even` / `iterate_cons_odd`
 - `first_even_freeze` / `first_odd_freeze`
 - `first_even_contracts_iff` / `eoo_from_first_even`
-- `suffix_same_output_on_cell`
+- `suffix_same_output_on_preimage`
 - `constant_cell_trichotomy`
 - `odd_preimage_unique`
 
 Unchanged: `power_bound_compensated_contracts`,
-`floorPower_eoo_contracts_iff`, `eoo_contracts_on_cell`. No cell tree.
+`floorPower_eoo_contracts_iff`, `eoo_contracts_on_preimage`. No cell tree.
 No `PowerHeight`. No `sorry`. No ledger row.
 
 ## Results

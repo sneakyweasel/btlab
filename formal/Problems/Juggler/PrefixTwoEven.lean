@@ -48,7 +48,7 @@ theorem returnsIntoB_of_cycleMin_suffix {n : ℕ} {u v : List Branch}
   · simpa [himg] using hn
   · simpa [himg] using hy
 
-theorem prefix_two_even_ee_cell {n k : ℕ} {u : List Branch}
+theorem prefix_two_even_ee_preimage {n k : ℕ} {u : List Branch}
     (hk : 6 ≤ k) (hy : 1 ≤ image n u)
     (h : CycleItinerary n (u ++ twoEvenEE k)) :
     image n u ^ (3 ^ (k - 2)) <
@@ -91,7 +91,7 @@ theorem no_cycleMin_prefix_two_even_ee_of_y {n k : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hy1 : 1 ≤ y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
-  have hcell := prefix_two_even_ee_cell hk hy1 hC
+  have hcell := prefix_two_even_ee_preimage hk hy1 hC
   have htail := shared_two_even_tail (n := y) hy hk
   have hle : (n + 1) ^ (2 ^ k) ≤ (y + 1) ^ (2 ^ k) :=
     Nat.pow_le_pow_left (Nat.succ_le_succ hyn) _
@@ -173,7 +173,7 @@ theorem no_cycleMin_prefix_two_even_ee {n k : ℕ} {u : List Branch}
   | inl hlt => exact no_cycleMin_prefix_two_even_ee_of_lt hn hk h hlt
   | inr hge => exact no_cycleMin_prefix_two_even_ee_of_y hk h hge
 
-theorem prefix_two_even_eoe_cell {n k : ℕ} {u : List Branch}
+theorem prefix_two_even_eoe_preimage {n k : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hk : 6 ≤ k) (hy : 1 ≤ image n u)
     (h : CycleItinerary n (u ++ twoEvenEOE k)) :
     image n u ^ (3 ^ (k - 2)) <
@@ -276,7 +276,7 @@ theorem no_cycleMin_prefix_two_even_eoe_of_y {n k : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hy1 : 1 ≤ y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
-  have hcell := prefix_two_even_eoe_cell hn hk hy1 hC
+  have hcell := prefix_two_even_eoe_preimage hn hk hy1 hC
   have htail := shared_two_even_tail (n := y) hy hk
   have hle : (n + 1) ^ (2 ^ k) ≤ (y + 1) ^ (2 ^ k) :=
     Nat.pow_le_pow_left (Nat.succ_le_succ hyn) _

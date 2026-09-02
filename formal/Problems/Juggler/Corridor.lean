@@ -86,7 +86,7 @@ theorem even_below_cube {x n : ℕ} (he : x % 2 = 0) :
 
 /-- Cube cell plus even is a square cell for the next state:
 `x < n^3 < n^4` and `even_below_fourth`. -/
-theorem even_below_cube_cell {x n : ℕ} (hn : 2 ≤ n) (he : x % 2 = 0)
+theorem even_below_cube_preimage {x n : ℕ} (hn : 2 ≤ n) (he : x % 2 = 0)
     (hlt : x < n ^ 3) : floorPower x < n ^ 2 :=
   (even_below_fourth he).mpr
     (lt_trans hlt (pow_lt_of_two_le hn (by decide : (3 : ℕ) < 4)))

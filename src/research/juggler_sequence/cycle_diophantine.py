@@ -67,7 +67,7 @@ LEAN_THEOREMS = (
 CERTIFICATE_UNCHANGED = (
     "localDefectOdd",
     "cycle_top_window_strict",
-    "cycle_top_nested_cell",
+    "cycle_top_nested_preimage",
     "cycle_top_pred_scale",
     "cycle_remainder_balance",
     "reachesOne_of_lt_twelve",
@@ -369,7 +369,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        R={1..11} may force p≥13 on a nontrivial cycle",
         "Falsifier               composition is the known slack; residues are odd/odd",
         "Existing machinery      localDefectOdd, cycle_top_window_strict,",
-        "                        cycle_top_nested_cell, reachesOne_of_lt_twelve",
+        "                        cycle_top_nested_preimage, reachesOne_of_lt_twelve",
         "Maximum Phase-0 scope   named defects; composition; residue census; R-avoidance",
         "```",
         "",

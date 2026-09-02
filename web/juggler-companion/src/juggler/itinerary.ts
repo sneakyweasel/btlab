@@ -116,3 +116,66 @@ export function oMinForLength(length: number): number | null {
   if (length < 1) return null;
   return Math.floor((length * Math.LN2) / Math.log(3)) + 1;
 }
+
+export type CycleSeamKind = "OE|OO" | "EE|OO" | "other";
+
+export type CycleMinShape = {
+  startsOO: boolean;
+  endsE: boolean;
+  evenCount: number;
+  oddCount: number;
+  evenCountGe4: boolean;
+  expanding: boolean;
+  lastOddRun: number | null;
+  lastOddRunAtMost1: boolean;
+  seam: CycleSeamKind;
+  cycleMinShaped: boolean;
+};
+
+/** Odds immediately before the final E. Null if the spelling does not end E. */
+export function lastOddRun(word: string): number | null {
+  if (!word.endsWith("E")) return null;
+  let index = word.length - 2;
+  let run = 0;
+  while (index >= 0 && word[index] === "O") {
+    run += 1;
+    index -= 1;
+  }
+  return run;
+}
+
+export function cycleSeam(word: string): CycleSeamKind {
+  if (word.length < 2 || !word.startsWith("OO") || !word.endsWith("E")) {
+    return "other";
+  }
+  const closing = lastOddRun(word);
+  const window = `${word.slice(-2)}|${word.slice(0, 2)}`;
+  if (window === "OE|OO" && closing === 1) return "OE|OO";
+  if (window === "EE|OO" && closing === 0) return "EE|OO";
+  return "other";
+}
+
+/** Forced CycleMin spelling tests. Necessary, not a cycle. */
+export function cycleMinShape(word: string): CycleMinShape {
+  const odds = oddCount(word);
+  const evens = evenCount(word);
+  const startsOO = word.startsWith("OO");
+  const endsE = word.endsWith("E");
+  const closing = lastOddRun(word);
+  const lastOddRunAtMost1 = closing !== null && closing <= 1;
+  const isExpanding = expanding(word);
+  const evenCountGe4 = evens >= 4;
+  return {
+    startsOO,
+    endsE,
+    evenCount: evens,
+    oddCount: odds,
+    evenCountGe4,
+    expanding: isExpanding,
+    lastOddRun: closing,
+    lastOddRunAtMost1,
+    seam: cycleSeam(word),
+    cycleMinShaped:
+      startsOO && endsE && evenCountGe4 && isExpanding && lastOddRunAtMost1,
+  };
+}

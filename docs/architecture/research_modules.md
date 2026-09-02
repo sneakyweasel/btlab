@@ -16,15 +16,17 @@ utilities.
 
 Do not mark a module `PAPER_CANDIDATE` merely because a census is large.
 
-The live publication task is `research.rewrite_calculus`. Send the
-reviewer packet with the draft. The cubic Newton stratum is the last
-promoted mathematical theory; it is not a new-math frontier.
+The live publication task is `research.juggler_sequence` (Papers A and
+B). The rewrite-calculus note remains a parked `PAPER_CANDIDATE`,
+ready to send. The cubic Newton stratum is the last promoted BT-core
+theory; it is not a new-math frontier.
 
 ## Seeded modules
 
 | Module | Status | Contents |
 |--------|--------|----------|
-| `research.rewrite_calculus` | `PAPER_CANDIDATE` | unary `{D,I_a,S,N}`; `add_not_DLocal`; ready for review |
+| `research.juggler_sequence` | `PAPER_CANDIDATE` | Juggler map \(T\); Papers A/B; cycle floor \(N_0=162849448\), period \(\ge 478245\); not a halt theorem |
+| `research.rewrite_calculus` | `PAPER_CANDIDATE` | unary `{D,I_a,S,N}`; `add_not_DLocal`; parked, ready to send |
 | `research.residuals` | `STRUCTURAL` | cubic Newton-stratum fibres; \(x^4\) visibility `CLOSE` |
 | `research.collatz` | `STRUCTURAL` | accelerated `T`, cylinders, dual codes, affine geometry, cycles, warp |
 | `research.collatz_finite_descent` | `ARCHIVED` | shortcut `C`; uniform 2-adic `L`-descent `CLOSE` |

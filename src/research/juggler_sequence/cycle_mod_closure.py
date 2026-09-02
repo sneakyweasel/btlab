@@ -22,7 +22,7 @@ from math import gcd
 from typing import Any
 
 from research.juggler_sequence.cycle_budget_opt import run_type_counts
-from research.juggler_sequence.cycle_closure import follows_block, oe_cell_holds
+from research.juggler_sequence.cycle_closure import follows_block, oe_preimage_holds
 from research.juggler_sequence.cycle_finance import (
     DATA_DIR,
     PUBLISHED_FLOOR,
@@ -103,8 +103,8 @@ def stride_for(modulus: int, want_odd: bool | None) -> int:
     return 2 * modulus
 
 
-def even_cell_realizable(src: int, dst: int, modulus: int, y: int) -> bool:
-    """Even cell at scale: Y ≡ dst, X = Y^2 + η ≡ src, 0 ≤ η < 2Y+1.
+def even_preimage_realizable(src: int, dst: int, modulus: int, y: int) -> bool:
+    """Even one-step preimage at scale: Y ≡ dst, X = Y^2 + η ≡ src, 0 ≤ η < 2Y+1.
 
     For Y ≥ m the interval length exceeds m, so every even-compatible
     source is realized. This is the existence half of even_preimage_iff.
@@ -510,7 +510,7 @@ def mod_closure_scan(*, start: int = START) -> dict[str, Any]:
     while hits < 40:
         image = follows_block(x, "OE")
         if image is not None:
-            oe_ok = oe_ok and oe_cell_holds(x, image)
+            oe_ok = oe_ok and oe_preimage_holds(x, image)
             hits += 1
         x += 2
     emptied = [

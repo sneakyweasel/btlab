@@ -99,7 +99,7 @@ theorem nested_even_collapse_2500_capture :
     follows 2500 itineraryEE_OEEE12 ∧ image 2500 itineraryEE_OEEE12 = 1 :=
   ⟨nested_even_collapse_2500.1, nested_even_collapse_2500.2.1⟩
 
-theorem first_even_cell_capture {n : ℕ} {v : List Branch}
+theorem first_even_preimage_capture {n : ℕ} {v : List Branch}
     (hw : follows n (.even :: v)) (hcap : image n.sqrt v = 1) :
     follows n (.even :: v) ∧ image n (.even :: v) = 1 :=
   ⟨hw, by

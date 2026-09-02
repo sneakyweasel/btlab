@@ -49,7 +49,7 @@ theorem prefix_odd_run_seven_odds {n a : ℕ} {u v : List Branch}
 
 /-! ## EEE -/
 
-theorem prefix_eee_cell {n a : ℕ} {u : List Branch}
+theorem prefix_eee_preimage {n a : ℕ} {u : List Branch}
     (_ha : 6 ≤ a) (hy : 1 ≤ image n u)
     (h : CycleItinerary n (u ++ threeEvenEEE a)) :
     image n u ^ (3 ^ a) <
@@ -90,7 +90,7 @@ theorem no_cycleMin_prefix_eee_of_y {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hy1 : 1 ≤ y := le_trans (by decide : (1 : ℕ) ≤ 128) hy
-  have hcell := prefix_eee_cell ha hy1 hC
+  have hcell := prefix_eee_preimage ha hy1 hC
   have htail := three_even_eee_tail (n := y) hy ha
   have hle : (n + 1) ^ (2 ^ (a + 3)) ≤ (y + 1) ^ (2 ^ (a + 3)) :=
     Nat.pow_le_pow_left (Nat.succ_le_succ hyn) _
@@ -194,7 +194,7 @@ theorem prefix_eoee_z_lt {n a : ℕ} {u : List Branch}
   have hexp : ((Y + 1) ^ 3) ^ 2 = (Y + 1) ^ 6 := by rw [← Nat.pow_mul]
   exact lt_of_lt_of_le hzlt (hexp ▸ this)
 
-theorem prefix_eoee_cell {n a : ℕ} {u : List Branch}
+theorem prefix_eoee_preimage {n a : ℕ} {u : List Branch}
     (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
     (h : CycleItinerary n (u ++ threeEvenEOEE a)) :
     image n u ^ (3 ^ a) <
@@ -229,7 +229,7 @@ theorem no_cycleMin_prefix_eoee_of_y_five {n : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY4 : 4 ≤ y := le_trans (by decide : (4 : ℕ) ≤ 314) hy
-  have hcell := prefix_eoee_cell hY4 hyn hC
+  have hcell := prefix_eoee_preimage hY4 hyn hC
   have htail := three_even_eoee_tail_of_five (n := y) hy (by decide : (5 : ℕ) ≤ 5)
   exact (not_lt_of_gt htail) hcell
 
@@ -243,7 +243,7 @@ theorem no_cycleMin_prefix_eoee_of_y_six {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY4 : 4 ≤ y := le_trans (by decide : (4 : ℕ) ≤ 16) hy
-  have hcell := prefix_eoee_cell hY4 hyn hC
+  have hcell := prefix_eoee_preimage hY4 hyn hC
   have htail := three_even_eoee_tail_of_six (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
@@ -345,7 +345,7 @@ theorem prefix_eeoe_z_lt {n a : ℕ} {u : List Branch}
   exact lt_of_lt_of_le hz4
     (le_of_lt (two_mul_succ_cube_lt_succ_pow6 hY hysuccY))
 
-theorem prefix_eeoe_cell {n a : ℕ} {u : List Branch}
+theorem prefix_eeoe_preimage {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
     (h : CycleItinerary n (u ++ threeEvenEEOE a)) :
     image n u ^ (3 ^ a) <
@@ -380,7 +380,7 @@ theorem no_cycleMin_prefix_eeoe_of_y_five {n : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY4 : 4 ≤ y := le_trans (by decide : (4 : ℕ) ≤ 314) hy
-  have hcell := prefix_eeoe_cell hn hY4 hyn hC
+  have hcell := prefix_eeoe_preimage hn hY4 hyn hC
   have htail := three_even_eoee_tail_of_five (n := y) hy (by decide : (5 : ℕ) ≤ 5)
   exact (not_lt_of_gt htail) hcell
 
@@ -394,7 +394,7 @@ theorem no_cycleMin_prefix_eeoe_of_y_six {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY4 : 4 ≤ y := le_trans (by decide : (4 : ℕ) ≤ 16) hy
-  have hcell := prefix_eeoe_cell hn hY4 hyn hC
+  have hcell := prefix_eeoe_preimage hn hY4 hyn hC
   have htail := three_even_eoee_tail_of_six (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
@@ -509,7 +509,7 @@ theorem prefix_eooee_z_lt {n a : ℕ} {u : List Branch}
   have hexp : ((Y + 1) ^ 2) ^ 2 = (Y + 1) ^ 4 := by rw [← Nat.pow_mul]
   exact lt_of_lt_of_le hzlt (hexp ▸ this)
 
-theorem prefix_eooee_cell {n a : ℕ} {u : List Branch}
+theorem prefix_eooee_preimage {n a : ℕ} {u : List Branch}
     (hY : 32 ≤ image n u) (hyn : n ≤ image n u)
     (h : CycleItinerary n (u ++ threeEvenEOOEE a)) :
     image n u ^ (3 ^ a) <
@@ -544,7 +544,7 @@ theorem no_cycleMin_prefix_eooee_of_y {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY32 : 32 ≤ y := le_trans (by decide : (32 : ℕ) ≤ 256) hy
-  have hcell := prefix_eooee_cell hY32 hyn hC
+  have hcell := prefix_eooee_preimage hY32 hyn hC
   have htail := three_even_eooee_tail (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
@@ -675,7 +675,7 @@ theorem prefix_eoeoe_z_lt {n a : ℕ} {u : List Branch}
   have hexp : ((Y + 1) ^ 2) ^ 2 = (Y + 1) ^ 4 := by rw [← Nat.pow_mul]
   exact lt_of_lt_of_le hzlt (hexp ▸ this)
 
-theorem prefix_eoeoe_cell {n a : ℕ} {u : List Branch}
+theorem prefix_eoeoe_preimage {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 32 ≤ image n u) (hyn : n ≤ image n u)
     (h : CycleItinerary n (u ++ threeEvenEOEOE a)) :
     image n u ^ (3 ^ a) <
@@ -710,7 +710,7 @@ theorem no_cycleMin_prefix_eoeoe_of_y {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY32 : 32 ≤ y := le_trans (by decide : (32 : ℕ) ≤ 256) hy
-  have hcell := prefix_eoeoe_cell hn hY32 hyn hC
+  have hcell := prefix_eoeoe_preimage hn hY32 hyn hC
   have htail := three_even_eooee_tail (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
@@ -809,7 +809,7 @@ theorem prefix_eoooee_z_lt {n a : ℕ} {u : List Branch}
   have hy27 : y ^ 27 < 2 ^ 38 * (Y + 1) ^ 32 := lt_of_le_of_lt hle' hplt
   exact z_lt_succ_pow4_of_y hzlt (y_lt_succ_sq_of_odd27 hY hy27)
 
-theorem prefix_eoooee_cell {n a : ℕ} {u : List Branch}
+theorem prefix_eoooee_preimage {n a : ℕ} {u : List Branch}
     (hY : 3 ≤ image n u) (hyn : n ≤ image n u)
     (h : CycleItinerary n (u ++ threeEvenEOOOEE a)) :
     image n u ^ (3 ^ a) <
@@ -845,7 +845,7 @@ theorem no_cycleMin_prefix_eoooee_of_y_four {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY3 : 3 ≤ y := le_trans (by decide : (3 : ℕ) ≤ 256) hy
-  have hcell := prefix_eoooee_cell hY3 hyn hC
+  have hcell := prefix_eoooee_preimage hY3 hyn hC
   have htail := three_even_eooee_tail (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
@@ -1038,7 +1038,7 @@ theorem prefix_eooeoe_z_lt {n a : ℕ} {u : List Branch}
       (Nat.mul_le_mul_left _ (Nat.pow_le_pow_left (Nat.succ_le_succ hyn) _))
   exact z_lt_succ_pow4_of_y hzlt (eooeoe_u_lt_succ_sq hY hu9 hysuccY)
 
-theorem prefix_eooeoe_cell {n a : ℕ} {u : List Branch}
+theorem prefix_eooeoe_preimage {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
     (h : CycleItinerary n (u ++ threeEvenEOOEOE a)) :
     image n u ^ (3 ^ a) <
@@ -1074,7 +1074,7 @@ theorem no_cycleMin_prefix_eooeoe_of_y_four {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hY4 : 4 ≤ y := le_trans (by decide : (4 : ℕ) ≤ 256) hy
-  have hcell := prefix_eooeoe_cell hn hY4 hyn hC
+  have hcell := prefix_eooeoe_preimage hn hY4 hyn hC
   have htail := three_even_eooee_tail (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 

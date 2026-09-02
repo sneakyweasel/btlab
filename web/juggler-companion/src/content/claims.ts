@@ -74,6 +74,11 @@ export const DEFINITIONS = [
     meaning: "A finite string of O/E parities of a prefix. Not the trajectory.",
   },
   {
+    term: "CycleMin",
+    meaning:
+      "The rotation of a cycle itinerary that starts at the smallest value. That spelling starts OO, ends E, and needs four evens.",
+  },
+  {
     term: "Realized itinerary",
     meaning: "The trajectory of n actually follows those letters.",
   },

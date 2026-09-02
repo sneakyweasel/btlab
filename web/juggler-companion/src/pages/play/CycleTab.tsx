@@ -6,9 +6,8 @@ import { CYCLE_PRESETS } from "../../juggler/constants";
 import { formatInt, parsePositiveInt } from "../../juggler/format";
 import { tryCycleItinerary } from "../../juggler/trajectory";
 import {
-  evenCount,
+  cycleMinShape,
   expanding,
-  oddCount,
   parseCycleItinerary,
   rotateItinerary,
 } from "../../juggler/itinerary";
@@ -19,6 +18,7 @@ export function CycleTab() {
   const parsed = parseCycleItinerary(cycleItinerary);
   const n = parsePositiveInt(nText);
   const current = parsed ? rotateItinerary(parsed, cycleShift) : "";
+  const shape = current ? cycleMinShape(current) : null;
   const trial = n !== null && current ? tryCycleItinerary(n, current) : null;
   return (
     <div className="space-y-5">
@@ -80,18 +80,27 @@ export function CycleTab() {
       ) : (
         <>
           <div className="grid gap-6 lg:grid-cols-[16rem_1fr] lg:items-center">
-            <CycleNecklace word={parsed} shift={cycleShift} />
+            <CycleNecklace
+              word={parsed}
+              shift={cycleShift}
+              minIndex={cycleMinShape(parsed).cycleMinShaped ? 0 : undefined}
+              onSelectIndex={setCycleShift}
+            />
             <div className="grid gap-3 sm:grid-cols-2">
               <Metric label="This spelling" value={current || "—"} />
               <Metric
                 label="Odds / evens"
-                value={`${oddCount(parsed)} / ${evenCount(parsed)}`}
+                value={`${shape?.oddCount ?? 0} / ${shape?.evenCount ?? 0}`}
               />
               <Metric label="Expanding?" value={expanding(parsed) ? "yes" : "no"} />
               <Metric
-                label="Legal CycleMin shape?"
-                value={current.startsWith("O") && current.endsWith("E") ? "maybe" : "no"}
-                hint="a minimum is odd, so a CycleMin spelling starts O and ends E"
+                label="CycleMin shape?"
+                value={shape?.cycleMinShaped ? "yes" : "no"}
+                hint={
+                  shape?.cycleMinShaped
+                    ? `${shape.seam.replace("|", " | n | ")} seam. Necessary, not a cycle.`
+                    : "needs OO…E, four evens, expanding, last odd-run a ≤ 1"
+                }
               />
             </div>
           </div>

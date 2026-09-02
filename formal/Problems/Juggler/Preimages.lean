@@ -550,19 +550,19 @@ theorem floorPower_eoo_contracts_iff {n : ℕ} (hw : follows n itineraryEOO) :
     · exact floorPower_eoo_fourteen_contracts
 
 /-!
-## EOO square-root cells
+## EOO square-root one-step preimages
 
 The first even step freezes the remaining `OO` computation on the
-square-root cell `[q^2, (q+1)^2)`. Contraction is the threshold
-`n > eooCellOutput q`. This explains the enumerated set `{2, 12, 14}`
+square-root one-step preimage `[q^2, (q+1)^2)`. Contraction is the threshold
+`n > eooPreimageOutput q`. This explains the enumerated set `{2, 12, 14}`
 and is not a halt theorem.
 -/
 
-theorem sqrt_cell_iff {n q : ℕ} :
+theorem sqrt_preimage_iff {n q : ℕ} :
     n.sqrt = q ↔ q ^ 2 ≤ n ∧ n < (q + 1) ^ 2 :=
   floor_sqrt_eq_iff_sq_interval
 
-def eooCellOutput (q : ℕ) : ℕ := (((q ^ 3).sqrt) ^ 3).sqrt
+def eooPreimageOutput (q : ℕ) : ℕ := (((q ^ 3).sqrt) ^ 3).sqrt
 
 theorem follows_eoo_sqrt_iff {n : ℕ} :
     follows n itineraryEOO ↔
@@ -583,34 +583,34 @@ theorem follows_eoo_sqrt_iff {n : ℕ} :
         rw [h1, floorPower_odd_eq (by simpa [h1] using hoddq)]
       simpa [h2] using hoddb
 
-theorem eoo_output_eq_cell {n : ℕ} (hw : follows n itineraryEOO) :
-    floorPower^[3] n = eooCellOutput n.sqrt :=
+theorem eoo_output_eq_preimage {n : ℕ} (hw : follows n itineraryEOO) :
+    floorPower^[3] n = eooPreimageOutput n.sqrt :=
   floorPower_eoo_of_follows hw
 
-theorem eoo_output_constant_on_sqrt_cell {n m : ℕ}
+theorem eoo_output_constant_on_sqrt_preimage {n m : ℕ}
     (hn : follows n itineraryEOO) (hm : follows m itineraryEOO)
     (hq : n.sqrt = m.sqrt) :
     floorPower^[3] n = floorPower^[3] m := by
-  rw [eoo_output_eq_cell hn, eoo_output_eq_cell hm, hq]
+  rw [eoo_output_eq_preimage hn, eoo_output_eq_preimage hm, hq]
 
-/-- On a realized `EOO` start, contraction is the cell threshold
-`n > eooCellOutput ⌊√n⌋`. -/
-theorem eoo_contracts_on_cell {n : ℕ} (hw : follows n itineraryEOO) :
-    floorPower^[3] n < n ↔ eooCellOutput n.sqrt < n := by
-  simp [eoo_output_eq_cell hw]
+/-- On a realized `EOO` start, contraction is the one-step-preimage threshold
+`n > eooPreimageOutput ⌊√n⌋`. -/
+theorem eoo_contracts_on_preimage {n : ℕ} (hw : follows n itineraryEOO) :
+    floorPower^[3] n < n ↔ eooPreimageOutput n.sqrt < n := by
+  simp [eoo_output_eq_preimage hw]
 
-theorem eoo_cell_output_one : eooCellOutput 1 = 1 := by
+theorem eoo_preimage_output_one : eooPreimageOutput 1 = 1 := by
   native_decide
 
-theorem eoo_cell_output_three : eooCellOutput 3 = 11 := by
+theorem eoo_preimage_output_three : eooPreimageOutput 3 = 11 := by
   native_decide
 
-theorem eoo_cell_output_ge_succ_sq {q : ℕ} (hq : 5 ≤ q) :
-    (q + 1) ^ 2 ≤ eooCellOutput q := by
+theorem eoo_preimage_output_ge_succ_sq {q : ℕ} (hq : 5 ≤ q) :
+    (q + 1) ^ 2 ≤ eooPreimageOutput q := by
   have hpow := eoo_sqrt_cube_pow_ge hq
   refine Nat.le_sqrt.mpr ?_
   have hexp : (q + 1) ^ 2 * (q + 1) ^ 2 = (q + 1) ^ 4 := by ring
-  simpa [eooCellOutput, hexp] using hpow
+  simpa [eooPreimageOutput, hexp] using hpow
 
 theorem eoo_residue {n : ℕ} (hw : follows n itineraryEOO) :
     localDefectEven n = n - n.sqrt ^ 2 :=
@@ -658,13 +658,13 @@ theorem first_odd_freeze {n : ℕ} {v : List Branch}
     floorPower^[v.length + 1] n = floorPower^[v.length] (n ^ 3).sqrt :=
   iterate_cons_odd hw.1
 
-theorem suffix_same_output_on_cell {n₁ n₂ : ℕ} {v : List Branch}
+theorem suffix_same_output_on_preimage {n₁ n₂ : ℕ} {v : List Branch}
     (h1 : follows n₁ (.even :: v)) (h2 : follows n₂ (.even :: v))
     (hq : n₁.sqrt = n₂.sqrt) :
     floorPower^[v.length + 1] n₁ = floorPower^[v.length + 1] n₂ := by
   rw [first_even_freeze h1, first_even_freeze h2, hq]
 
-/-- First-even contraction is the cell threshold `T_v(⌊√n⌋) < n`. -/
+/-- First-even contraction is the one-step-preimage threshold `T_v(⌊√n⌋) < n`. -/
 theorem first_even_contracts_iff {n : ℕ} {v : List Branch}
     (hw : follows n (.even :: v)) :
     floorPower^[v.length + 1] n < n ↔
@@ -741,11 +741,11 @@ theorem odd_preimage_unique {m a b : ℕ}
       exact (lt_irrefl _) (lt_of_lt_of_le habs hge)
 
 /-!
-## First-even cell thresholds
+## First-even one-step-preimage thresholds
 
-On a square-root cell the contracting inputs are the integers
+On a square-root one-step preimage the contracting inputs are the integers
 `n ∈ [q^2, (q+1)^2) ∩ (c, ∞)`. Any contraction requires
-`c + 1 < (q+1)^2`; the whole cell contracts iff `c < q^2`.
+`c + 1 < (q+1)^2`; the whole one-step preimage contracts iff `c < q^2`.
 The one-sided power envelope does not prove these lower bounds.
 This is not a halt theorem.
 -/
@@ -800,22 +800,22 @@ theorem floorPower_odd_ge {n : ℕ} (hodd : n % 2 = 1) :
     Nat.le_mul_of_pos_right (n * n) hn
   simpa [pow_two, pow_three, mul_assoc] using this
 
-theorem eooCellOutput_eq_iterate {q : ℕ}
+theorem eooPreimageOutput_eq_iterate {q : ℕ}
     (hw : follows q [.odd, .odd]) :
-    eooCellOutput q = floorPower^[2] q := by
+    eooPreimageOutput q = floorPower^[2] q := by
   have hodd : q % 2 = 1 := hw.1
   have h1 : floorPower q = (q ^ 3).sqrt := floorPower_odd_eq hodd
   have hodd2 : floorPower q % 2 = 1 := hw.2.1
   have h2 : floorPower (floorPower q) = ((q ^ 3).sqrt ^ 3).sqrt := by
     rw [h1, floorPower_odd_eq (by simpa [h1] using hodd2)]
-  simpa [eooCellOutput, Function.iterate_succ_apply, h1] using h2.symm
+  simpa [eooPreimageOutput, Function.iterate_succ_apply, h1] using h2.symm
 
 /-- For the suffix `OO`, every `q ≥ 5` that realizes the itinerary sits at or
 above the next square. So `Q_{OO}` is finite. -/
 theorem oo_suffix_threshold {q : ℕ} (hq : 5 ≤ q)
     (hw : follows q [.odd, .odd]) :
     (q + 1) ^ 2 ≤ floorPower^[2] q := by
-  simpa [eooCellOutput_eq_iterate hw] using eoo_cell_output_ge_succ_sq hq
+  simpa [eooPreimageOutput_eq_iterate hw] using eoo_preimage_output_ge_succ_sq hq
 
 theorem follows_oo_of_ooo {q : ℕ}
     (hw : follows q [.odd, .odd, .odd]) :

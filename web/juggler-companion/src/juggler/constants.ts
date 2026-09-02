@@ -85,5 +85,43 @@ export const LIVE_STARTS = [
 ] as const;
 
 export const ITINERARY_PRESETS = ["OOE", "OOOEE", "OOOEOE", "OOOOEE"] as const;
-export const CYCLE_PRESETS = ["OEO", "OOE", "OOOEOE", "OOOOEE"] as const;
+export const CYCLE_PRESETS = ["OOOOOOOEEEE", "OOOOOOEEEOE", "OOE", "OEO"] as const;
+
+export const CYCLE_TOUR_PRESETS = [
+  {
+    id: "o7eeee",
+    word: "OOOOOOOEEEE",
+    minIndex: 0,
+    label: "O⁷EEEE",
+    hint: "CycleMin shape, four trailing evens. Named leftover: not a cycle.",
+  },
+  {
+    id: "o6eeeoe",
+    word: "OOOOOOEEEOE",
+    minIndex: 0,
+    label: "O⁶EEEOE",
+    hint: "OE seam: isolated last E. Named leftover: not a cycle.",
+  },
+  {
+    id: "offcut",
+    word: "EEOOOOOOOEE",
+    minIndex: 2,
+    label: "Wrong cut",
+    hint: "The same leftover, rotated off the minimum. Click the min bead.",
+  },
+  {
+    id: "ooe",
+    word: "OOE",
+    minIndex: 0,
+    label: "OOE",
+    hint: "Too few evens. Expanding, not superquadratic. Not a cycle.",
+  },
+  {
+    id: "oeo",
+    word: "OEO",
+    minIndex: 0,
+    label: "OEO",
+    hint: "Starts OE, not OO. Too few evens. Not a cycle.",
+  },
+] as const;
 export const RECORD_LENGTHS = [1, 3, 11, 19, 84, 569, 1054, 25781, 50508] as const;

@@ -39,14 +39,14 @@ LENGTH3_ODD_N_MAX = 20_000
 LENGTH4_MIXED = ("OOOE", "OOEO", "OEOO", "EOOO")
 
 LEAN_THEOREMS = (
-    "sqrt_cell_iff",
+    "sqrt_preimage_iff",
     "follows_eoo_sqrt_iff",
-    "eoo_output_eq_cell",
-    "eoo_output_constant_on_sqrt_cell",
-    "eoo_contracts_on_cell",
-    "eoo_cell_output_one",
-    "eoo_cell_output_three",
-    "eoo_cell_output_ge_succ_sq",
+    "eoo_output_eq_preimage",
+    "eoo_output_constant_on_sqrt_preimage",
+    "eoo_contracts_on_preimage",
+    "eoo_preimage_output_one",
+    "eoo_preimage_output_three",
+    "eoo_preimage_output_ge_succ_sq",
     "floorPower_eoo_contracts_iff",
     "power_bound_compensated_contracts",
 )
@@ -272,7 +272,7 @@ def lean_api_present() -> dict[str, bool]:
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         **{name: f"theorem {name}" in text for name in LEAN_THEOREMS},
-        "eooCellOutput_present": "def eooCellOutput" in text,
+        "eooCellOutput_present": "def eooPreimageOutput" in text,
         "certificate_present": all(
             f"theorem {name}" in text for name in CERTIFICATE_UNCHANGED
         ),
@@ -342,7 +342,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         "classification": CLASS_GREEN,
         "reason": (
             "EOO contracts exactly when a realized start in the square-root "
-            "cell of q satisfies n > eooCellOutput q"
+            "cell of q satisfies n > eooPreimageOutput q"
         ),
     }
 
@@ -491,7 +491,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         lines.append(f"- `{name}`: `{lean.get(name)}`")
     lines.extend(
         [
-            f"- `eooCellOutput` present: `{lean.get('eooCellOutput_present')}`",
+            f"- `eooPreimageOutput` present: `{lean.get('eooCellOutput_present')}`",
             f"- certificate unchanged: `{lean.get('certificate_present')}`",
             f"- `PowerHeight` absent: `{lean.get('PowerHeight_absent')}`",
             f"- `mixed_word_power_lt` absent: `{lean.get('mixed_word_power_lt_absent')}`",

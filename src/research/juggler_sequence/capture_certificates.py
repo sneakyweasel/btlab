@@ -37,7 +37,7 @@ LEAN_THEOREMS = (
     "even_tower_odd_tail_capture",
     "odd_even_tower_seven_capture",
     "nested_even_collapse_2500_capture",
-    "first_even_cell_capture",
+    "first_even_preimage_capture",
     "capture_reachesOne",
     "descent_of_below",
     "minimal_avoids_progress",

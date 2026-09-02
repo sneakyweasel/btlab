@@ -35,8 +35,8 @@ This is a local arithmetic question. It is not a termination theorem.
   is not claimed.
 - Previous phases: first-even freeze and EOO cell classification —
   **EXACT — LEAN VERIFIED**.
-- `eoo_cell_output_ge_succ_sq`: \(q\ge5\Rightarrow
-  \mathrm{eooCellOutput}\,q\ge(q+1)^2\) —
+- `eoo_preimage_output_ge_succ_sq`: \(q\ge5\Rightarrow
+  \mathrm{eooPreimageOutput}\,q\ge(q+1)^2\) —
   **EXACT — LEAN VERIFIED**.
 
 Project relationship: **extended**. The EOO bound is reused as the
@@ -50,7 +50,7 @@ Novelty hypothesis      OO and OOO have eventual thresholds
                         q ≥ Q0 ⇒ T_v(q) ≥ (q+1)^2
 Falsifier               A large or infinite Q_v for OO/OOO; or
                         monotonicity forced as a theorem after a break
-Existing machinery      first_even_freeze, eoo_cell_output_ge_succ_sq
+Existing machinery      first_even_freeze, eoo_preimage_output_ge_succ_sq
 Maximum Phase-0 scope   Exact cell-interval lemmas; Q_v for short
                         suffixes; Lean finiteness for OO and OOO
 Promotion criterion     FIRST_E_FINITE_GREEN with an explicit bound,

@@ -21,7 +21,7 @@ from research.juggler_sequence.cycle_extremizer_discrepancy import (
     word_sum_terms,
 )
 from research.juggler_sequence.cycle_finance import MIN_STATE, PUBLISHED_FLOOR, o_min_and_theta
-from research.juggler_sequence.cycle_ordered_excursion import excursion_map, ooe_cell_holds
+from research.juggler_sequence.cycle_ordered_excursion import excursion_map, ooe_preimage_holds
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_extremizer_discrepancy.md"
@@ -118,7 +118,7 @@ def test_walk_records_envelope_and_cell_geometry():
         assert row["F"] == rec[1]
         assert row["env"] >= rec[1]
         assert row["deficit"] == row["env"] - rec[1]
-        assert ooe_cell_holds(START, rec[1])
+        assert ooe_preimage_holds(START, rec[1])
         assert row["defects"]
         assert row["even_preimage_width"] == 2 * rec[1] + 1
 

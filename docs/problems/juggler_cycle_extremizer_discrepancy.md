@@ -119,7 +119,7 @@ Falsifier               Every recorded X is F2, 243<256, shared
                         OOE prefix, or a rewrite of power_bound_word
 Existing machinery      distinguished_words / follow_word
                         (cycle_almost_search.py); excursion_map,
-                        ooe_cell_holds (cycle_ordered_excursion.py);
+                        ooe_preimage_holds (cycle_ordered_excursion.py);
                         budget_rhs / run_type_counts
                         (cycle_budget_opt.py); cell_bridge CLOSE
 Maximum Phase-0 scope   One table on the canonical word plus a

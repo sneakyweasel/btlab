@@ -177,7 +177,9 @@ mathematics.
 
 ## Negative knowledge
 
-Failures are kept, not discarded. Their homes:
+Failures are kept, not discarded. The lookup is
+[negative_knowledge.md](negative_knowledge.md). Search that page
+before opening a branch. The underlying homes remain:
 
 - `conjectures/refuted/*.json` — refuted registry entries;
 - `REFUTED` rows in [theory/theorem_ledger.md](theory/theorem_ledger.md);

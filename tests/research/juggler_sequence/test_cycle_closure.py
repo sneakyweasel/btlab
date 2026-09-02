@@ -8,7 +8,7 @@ from pathlib import Path
 from research.conjectures import get_conjecture
 from research.juggler_sequence.cycle_closure import (
     SPOTLIGHT,
-    oe_cell_holds,
+    oe_preimage_holds,
     follows_block,
     first_last_cells,
     next_oo_start,
@@ -37,7 +37,7 @@ def test_oe_cell_is_the_exponent_cell():
     while hits < 40:
         image = follows_block(x, "OE")
         if image is not None:
-            assert oe_cell_holds(x, image)
+            assert oe_preimage_holds(x, image)
             hits += 1
         x += 2
 
