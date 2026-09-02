@@ -24,7 +24,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     number: 1,
     term: "The Juggler map",
     blurb:
-      "Even numbers shrink. Odd numbers grow. Discard decimals. Do it forever?",
+      "Even numbers shrink. Odd numbers grow. Decimals vanish. Do it forever?",
     body:
       "J is the one-step map. The Juggler sequence starting at n is the orbit of iterates n, J(n), J²(n), … . Floor means the integer part: remove everything after the decimal point. So floor(5.196) = 5 and floor(6) = 6. Start with a positive integer n. If n is even, take the square root and then floor. If n is odd, raise n to the three-halves and then floor: floor(n^{3/2}) = floor(n√n) = floor(√(n³)). That is not the cube root. The floor is applied after every step, not once at the end. Those two rules are the whole map. Paper A writes the even branch as E and the odd branch as O. The leftover crumbs after each floor are what later inequalities budget. The paper does not prove that every start reaches 1.",
     paper: "Abstract and §1: the map J, floor, the even branch E, and the odd branch O. Lemma 1.1 lists the three possible fates.",
