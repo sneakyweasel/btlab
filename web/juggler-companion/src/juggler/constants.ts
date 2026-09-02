@@ -157,8 +157,25 @@ export const IDEAL_STRING_BEADS: readonly IdealBead[] = [
 ];
 
 /**
- * Idealized CycleMin balloon. Solid beads are sure. Faded O / E are
- * known parity with unknown count (odd-run mass, extra evens).
+ * Collapse a known-parity unknown-count run to one bead. The figure
+ * draws that bead as overlapping circles.
+ */
+export function packCountRuns(beads: readonly IdealBead[]): IdealBead[] {
+  const packed: IdealBead[] = [];
+  for (const bead of beads) {
+    const last = packed.at(-1);
+    if (bead.tone === "count" && last?.tone === "count" && last.letter === bead.letter) {
+      continue;
+    }
+    packed.push(bead);
+  }
+  return packed;
+}
+
+/**
+ * Idealized CycleMin balloon. Solid beads are sure. Count O is known
+ * parity with unknown repeats (odd-run mass). Extra evens past the four
+ * forced E are empty at L=11, so they are not a fifth bead.
  */
 export const IDEAL_BALLOON_BEADS: readonly IdealBead[] = [
   { letter: "O", tone: "sure" },
@@ -167,8 +184,6 @@ export const IDEAL_BALLOON_BEADS: readonly IdealBead[] = [
   { letter: "O", tone: "count" },
   { letter: "O", tone: "count" },
   { letter: "E", tone: "sure" },
-  { letter: "E", tone: "count" },
-  { letter: "E", tone: "count" },
   { letter: "O", tone: "count" },
   { letter: "O", tone: "count" },
   { letter: "E", tone: "sure" },

@@ -1,4 +1,8 @@
 import { describe, expect, it } from "vitest";
+import {
+  HARVESTED_LEMMA_NEEDLES,
+  IDEAL_DECISIONS,
+} from "../content/idealDecisions";
 import { evenPreimage, oddPreimageIntegers } from "./preimages";
 import {
   NOTE_TRAJECTORY_3,
@@ -7,6 +11,7 @@ import {
   PAPER_PERIOD,
   IDEAL_BALLOON_BEADS,
   IDEAL_BALLOON_LETTERS,
+  packCountRuns,
   IDEAL_STRING_BEADS,
   IDEAL_STRING_LETTERS,
   STRING_TOUR_PRESETS,
@@ -156,14 +161,33 @@ describe("idealized string stem", () => {
 
 describe("idealized balloon", () => {
   it("marks sure letters solid and known-parity extras as count", () => {
-    expect(IDEAL_BALLOON_LETTERS.join("")).toBe("OOOOOEEEOOEOOEOE");
+    expect(IDEAL_BALLOON_LETTERS.join("")).toBe("OOOOOEOOEOOEOE");
     expect(IDEAL_BALLOON_BEADS.length).toBeGreaterThanOrEqual(11);
     expect(IDEAL_BALLOON_BEADS.slice(0, 2).every((bead) => bead.letter === "O" && bead.tone === "sure")).toBe(true);
     expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "E" && bead.tone === "sure")).toHaveLength(4);
+    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "E" && bead.tone === "count")).toHaveLength(0);
     expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "O" && bead.tone === "count").length).toBeGreaterThanOrEqual(7);
-    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "E" && bead.tone === "count").length).toBeGreaterThanOrEqual(2);
     expect(IDEAL_BALLOON_BEADS.at(-1)).toEqual({ letter: "E", tone: "sure" });
     expect(IDEAL_BALLOON_BEADS.at(-2)).toEqual({ letter: "O", tone: "count" });
+    const packed = packCountRuns(IDEAL_BALLOON_BEADS);
+    expect(packed.filter((bead) => bead.letter === "E")).toEqual([
+      { letter: "E", tone: "sure" },
+      { letter: "E", tone: "sure" },
+      { letter: "E", tone: "sure" },
+      { letter: "E", tone: "sure" },
+    ]);
+    expect(packed.map((bead) => `${bead.letter}:${bead.tone}`)).toEqual([
+      "O:sure",
+      "O:sure",
+      "O:count",
+      "E:sure",
+      "O:count",
+      "E:sure",
+      "O:count",
+      "E:sure",
+      "O:count",
+      "E:sure",
+    ]);
   });
 });
 
@@ -214,6 +238,31 @@ describe("preimages", () => {
 
   it("gives the unique parent 5 of odd image 11", () => {
     expect(oddPreimageIntegers(11)).toEqual([5]);
+  });
+});
+
+describe("idealized figure decisions", () => {
+  it("covers every harvested lemma from the itinerary extract", () => {
+    const catalog = IDEAL_DECISIONS.map((decision) => decision.lemma).join("\n");
+    for (const needle of HARVESTED_LEMMA_NEEDLES) {
+      expect(catalog).toContain(needle);
+    }
+  });
+
+  it("keeps cartoons off the balloon theorems", () => {
+    const cartoons = IDEAL_DECISIONS.filter((decision) => decision.kind === "cartoon");
+    expect(cartoons.map((decision) => decision.id)).toEqual([
+      "string-oo",
+      "string-e",
+      "join-seam",
+    ]);
+    expect(IDEAL_DECISIONS.filter((decision) => decision.part === "balloon").every((decision) => decision.kind !== "cartoon")).toBe(true);
+  });
+
+  it("does not paint equidistribution or automatic descent as beads", () => {
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "equidistribution")?.kind).toBe("off-figure");
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "automatic")?.kind).toBe("off-figure");
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "empty-string")?.why).toMatch(/minimum length 0/);
   });
 });
 

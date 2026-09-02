@@ -9,6 +9,11 @@ import {
 import { CycleAnatomy } from "../visuals/CycleAnatomy";
 import { CycleLollipop } from "../visuals/CycleLollipop";
 import { CycleNecklace } from "../visuals/CycleNecklace";
+import {
+  IdealDecisionCard,
+  IdealDecisionList,
+  findDecision,
+} from "./IdealDecisionList";
 import { Metric } from "./Metric";
 
 const DEFAULT_SHAPE = CYCLE_TOUR_PRESETS[0];
@@ -67,6 +72,20 @@ export function CycleTourWidget() {
   const [text, setText] = useState<string>(DEFAULT_SHAPE.word);
   const [shift, setShift] = useState(0);
   const [minIndex, setMinIndex] = useState(DEFAULT_SHAPE.minIndex);
+  const [decisionId, setDecisionId] = useState<string | null>(null);
+  const decision = findDecision(decisionId);
+
+  function chooseDecision(id: string | null) {
+    setDecisionId(id);
+  }
+
+  function toggleDecision(id: string) {
+    setDecisionId((current) => (current === id ? null : id));
+  }
+
+  function clearDecision() {
+    setDecisionId(null);
+  }
   const parsed = parseItinerary(text, TOUR_WORD_MAX);
   const stored = parsed ?? "";
   const current = stored ? rotateItinerary(stored, shift) : "";
@@ -89,80 +108,74 @@ export function CycleTourWidget() {
   }
 
   return (
-    <div className="space-y-5">
+    <div
+      className="space-y-5"
+      onClick={(event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest("button, a, input, [role='button'], [data-keep-focus]")) return;
+        clearDecision();
+      }}
+    >
       <p className="text-sm text-muted">
-        If a cycle existed it would need this string and the CycleMin run
-        form: odd-run, even, odd-run, even, through four evens. Forced
-        letters are solid; faded O and E have known parity and unknown
-        count; grey ??? are unknown color. Period at least 11.
-        Pictures of necessity, not a cycle. The unique known balloon is 1.
+        If a cycle existed it would need a CycleMin balloon in run form, with
+        period at least 11. The stem OO???E is a cartoon of one first visit,
+        not a forced preperiod. Click a bead or a row to see the lemma.
+        Click empty space to show the whole figure again. Pictures of
+        necessity, not a cycle. The unique known balloon is 1.
       </p>
-      <div>
-        <p className="mb-1.5 text-xs uppercase tracking-wide text-muted">
-          Balloon leftovers — not cycles
-        </p>
-        <div className="flex flex-wrap items-center gap-1.5">
-          {CYCLE_TOUR_PRESETS.map((preset) => (
-            <button
-              key={preset.id}
-              type="button"
-              title={preset.hint}
-              className={`rounded-full px-2.5 py-0.5 font-mono text-sm ${
-                text === preset.word && shift === 0
-                  ? "bg-deep text-card"
-                  : "border border-line bg-card text-ink"
-              }`}
-              onClick={() => chooseShape(preset.word, preset.minIndex)}
-            >
-              {preset.label}
-            </button>
-          ))}
-        </div>
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
+        <CycleLollipop
+          focus={decision?.focus}
+          onSelectDecision={toggleDecision}
+          onClearFocus={clearDecision}
+        />
+        <IdealDecisionCard decision={decision} />
       </div>
-      {parsed !== null ? (
-        <div
-          className={`rounded-xl border px-3 py-2 text-sm ${
-            balloonShape.cycleMinShaped
-              ? "border-ok/40 bg-ok/10 text-ink"
-              : aligned
-                ? "border-warn/40 bg-warn/10 text-ink"
-                : "border-line bg-paper/70 text-muted"
-          }`}
-        >
-          {balloonShape.cycleMinShaped
-            ? "The circle above is the necessary balloon. This leftover is one filling of the grey letters. Still not a cycle."
-            : aligned
-              ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, and has four evens."
-              : "Rotate until the min bead sits at the knot. The string joins there."}
-        </div>
-      ) : null}
+      <IdealDecisionList selectedId={decision?.id ?? null} onSelect={chooseDecision} />
       {parsed === null ? (
         <p className="text-sm text-warn">Use only O and E, length at most 24.</p>
       ) : (
         <>
-          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
-            <CycleLollipop />
-            <div className="rounded-xl border border-line bg-paper/70 px-3 py-3">
-              <p className="text-xs uppercase tracking-wide text-muted">
-                Necessary letters
-              </p>
-              <ul className="mt-2 grid gap-1.5">
-                <Check ok>String starts OO — a launch, then the walk</Check>
-                <Check ok>String greys — no nontrivial cycle to fill them</Check>
-                <Check ok>String ends E — off-cycle parent t of the minimum</Check>
-                <Check ok>Join at the seam — first meeting at CycleMin n</Check>
-                <Check ok>Balloon is run form — odd-run, E, odd-run, E, …</Check>
-                <Check ok>First odd-run at least 2 — launch OO, not E or OE</Check>
-                <Check ok>At least four E — period at least 11</Check>
-                <Check ok>Last odd-run at most 1 — ends EE or OE</Check>
-              </ul>
-              <p className="mt-3 text-sm text-muted">
-                A start already on the balloon has an empty string. A
-                contracting prefix is descent, not a balloon. An unbounded walk
-                has neither. This figure places the first meeting at CycleMin;
-                a join can sit elsewhere on the loop.
-              </p>
+          <div>
+            <p className="mb-1.5 text-xs uppercase tracking-wide text-muted">
+              Balloon leftovers — not cycles
+            </p>
+            <div className="flex flex-wrap items-center gap-1.5">
+              {CYCLE_TOUR_PRESETS.map((preset) => (
+                <button
+                  key={preset.id}
+                  type="button"
+                  title={preset.hint}
+                  className={`rounded-full px-2.5 py-0.5 font-mono text-sm ${
+                    text === preset.word && shift === 0
+                      ? "bg-deep text-card"
+                      : "border border-line bg-card text-ink"
+                  }`}
+                  onClick={() => {
+                    chooseShape(preset.word, preset.minIndex);
+                    setDecisionId("leftovers");
+                  }}
+                >
+                  {preset.label}
+                </button>
+              ))}
             </div>
+          </div>
+          <div
+            className={`rounded-xl border px-3 py-2 text-sm ${
+              balloonShape.cycleMinShaped
+                ? "border-ok/40 bg-ok/10 text-ink"
+                : aligned
+                  ? "border-warn/40 bg-warn/10 text-ink"
+                  : "border-line bg-paper/70 text-muted"
+            }`}
+          >
+            {balloonShape.cycleMinShaped
+              ? "This leftover fills the overlapping balloon letters. Still not a cycle."
+              : aligned
+                ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, and has four evens."
+                : "Rotate until the min bead sits at the leftover knot."}
           </div>
           <div className="grid gap-6 md:grid-cols-[minmax(16rem,22rem)_1fr] md:items-start">
             <div>
@@ -260,8 +273,9 @@ export function CycleTourWidget() {
         />
       </label>
       <p className="text-sm text-muted">
-        O⁷EEEE, O⁶EEEOE, and the three-valley word fill the balloon greys and
-        still do not close. The grey letters are not a realized walk.{" "}
+        O⁷EEEE, O⁶EEEOE, and the three-valley word fill the overlapping
+        balloon letters and still do not close. Those spellings are leftovers, not
+        walks.{" "}
         <Link to="/play/cycle">Try the same necklace in the playground</Link>.
       </p>
     </div>
