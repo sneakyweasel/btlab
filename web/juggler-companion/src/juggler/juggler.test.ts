@@ -5,6 +5,7 @@ import {
   NOTE_PEAK_37,
   PAPER_EXCEPTION_COUNT,
   PAPER_PERIOD,
+  STRING_TOUR_PRESETS,
 } from "./constants";
 import { financeSnapshot, financeView } from "./finance";
 import { floorPower } from "./map";
@@ -129,6 +130,31 @@ describe("cycleMinShape", () => {
   it("rejects a wrong cut of the leftover", () => {
     expect(cycleMinShape("EEOOOOOOOEE").cycleMinShaped).toBe(false);
     expect(cycleMinShape("EEOOOOOOOEE").startsOO).toBe(false);
+  });
+
+  it("accepts a three-valley CycleMin-shaped leftover", () => {
+    const shape = cycleMinShape("OOOEOOEOOEE");
+    expect(shape.cycleMinShaped).toBe(true);
+    expect(shape.seam).toBe("EE|OO");
+    expect(shape.evenCount).toBe(4);
+    expect(shape.oddCount).toBe(7);
+  });
+});
+
+describe("string tour presets", () => {
+  it("ends every shipped string on the balloon 1", () => {
+    for (const preset of STRING_TOUR_PRESETS) {
+      expect(preset.states.at(-1)).toBe(1n);
+      expect(preset.states.at(-2)).toBe(2n);
+    }
+  });
+
+  it("replays the repeated-block walk of 69", () => {
+    const preset = STRING_TOUR_PRESETS.find((item) => item.id === "69");
+    expect(preset?.states).toEqual([
+      69n, 573n, 13716n, 117n, 1265n, 44992n, 212n, 14n, 3n, 5n, 11n, 36n, 6n,
+      2n, 1n,
+    ]);
   });
 });
 

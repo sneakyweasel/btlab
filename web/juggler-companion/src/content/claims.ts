@@ -79,6 +79,11 @@ export const DEFINITIONS = [
       "The rotation of a cycle itinerary that starts at the smallest value. That spelling starts OO, ends E, and needs four evens.",
   },
   {
+    term: "String",
+    meaning:
+      "The realized itinerary before the first visit to a cycle. Empty if the start is already on the cycle. The walk of 3 is OOOEEE onto 1.",
+  },
+  {
     term: "Realized itinerary",
     meaning: "The trajectory of n actually follows those letters.",
   },

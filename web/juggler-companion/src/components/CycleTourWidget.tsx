@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CYCLE_TOUR_PRESETS } from "../juggler/constants";
+import { CYCLE_TOUR_PRESETS, STRING_TOUR_PRESETS } from "../juggler/constants";
 import {
   cycleMinShape,
   parseItinerary,
@@ -8,6 +8,7 @@ import {
 } from "../juggler/itinerary";
 import { CycleAnatomy } from "../visuals/CycleAnatomy";
 import { CycleLollipop } from "../visuals/CycleLollipop";
+import { CycleNecklace } from "../visuals/CycleNecklace";
 import { Metric } from "./Metric";
 
 const DEFAULT = CYCLE_TOUR_PRESETS[0];
@@ -66,6 +67,13 @@ export function CycleTourWidget() {
   const [text, setText] = useState<string>(DEFAULT.word);
   const [shift, setShift] = useState(0);
   const [minIndex, setMinIndex] = useState<number>(DEFAULT.minIndex);
+  const [stringId, setStringId] = useState<string>("69");
+  const stringExample =
+    STRING_TOUR_PRESETS.find((item) => item.id === stringId) ?? STRING_TOUR_PRESETS[0];
+  const stringWord = stringExample.states
+    .slice(0, -1)
+    .map((state) => (state % 2n === 1n ? "O" : "E"))
+    .join("");
   const parsed = parseItinerary(text, 16);
   const stored = parsed ?? "";
   const current = stored ? rotateItinerary(stored, shift) : "";
@@ -86,10 +94,10 @@ export function CycleTourWidget() {
   return (
     <div className="space-y-5">
       <p className="text-sm text-muted">
-        A lollipop: the stem is the launch ascent from the minimum, then the
-        word enters the balloon at the first peak. Three points meet at the
-        knot — last peak, n, first odd. Pictures of the forced shape, not
-        cycles. The unique known loop is 1.
+        The balloon is the cycle. CycleMin cuts that balloon at its smallest
+        value: last peak, n, and launch OO meet there. The string is the
+        itinerary before the first visit to the balloon. Pictures of forced
+        shape, not cycles. The unique known balloon is 1.
       </p>
       <div className="flex flex-wrap items-center gap-1.5">
         {CYCLE_TOUR_PRESETS.map((preset) => (
@@ -131,7 +139,7 @@ export function CycleTourWidget() {
         <>
           <div className="grid gap-6 md:grid-cols-[minmax(16rem,22rem)_1fr] md:items-start">
             <div>
-              <CycleLollipop
+              <CycleNecklace
                 word={stored}
                 shift={shift}
                 minIndex={minIndex}
@@ -167,6 +175,9 @@ export function CycleTourWidget() {
             <div className="space-y-3">
               <LetterRow word={current} aligned={aligned} />
               <ul className="grid gap-1.5">
+                <Check ok={shape.startsOO}>
+                  Starts OO — not E, not OE
+                </Check>
                 <Check ok={shape.startsOO}>
                   Launch is OO — T(n) odd, T²(n) overshoots (n+1)²
                 </Check>
@@ -207,6 +218,43 @@ export function CycleTourWidget() {
             shaped={shape.cycleMinShaped}
             seam={shape.seam}
           />
+          <div className="flex flex-wrap items-center gap-1.5">
+            {STRING_TOUR_PRESETS.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                title={preset.hint}
+                className={`rounded-full px-2.5 py-0.5 text-sm ${
+                  stringId === preset.id
+                    ? "bg-odd text-card"
+                    : "border border-line bg-card text-ink"
+                }`}
+                onClick={() => setStringId(preset.id)}
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+          <div className="grid gap-3 lg:grid-cols-[1fr_minmax(16rem,20rem)] lg:items-start">
+            <CycleLollipop example={stringExample} />
+            <div className="rounded-xl border border-line bg-paper/70 px-3 py-3">
+              <p className="text-xs uppercase tracking-wide text-muted">
+                String restrictions
+              </p>
+              <ul className="mt-2 grid gap-1.5">
+                <Check ok>{`Realized — this walk follows ${stringWord}`}</Check>
+                <Check ok>Envelope still applies — floors only shrink</Check>
+                <Check ok>No prefix return — a return before the join is a shorter cycle</Check>
+                <Check ok>Contracting prefixes are descent, not a balloon</Check>
+                <Check ok>Capture — this balloon is 1, not a nontrivial cycle</Check>
+                <Check ok>Join is first meeting — last even maps to 1; 1 maps to 1</Check>
+              </ul>
+              <p className="mt-3 text-sm text-muted">
+                An unbounded walk has no balloon, hence no string. The join is
+                not the CycleMin cut unless they happen to coincide.
+              </p>
+            </div>
+          </div>
         </>
       )}
       <label className="block text-sm text-muted">

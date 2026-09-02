@@ -85,7 +85,13 @@ export const LIVE_STARTS = [
 ] as const;
 
 export const ITINERARY_PRESETS = ["OOE", "OOOEE", "OOOEOE", "OOOOEE"] as const;
-export const CYCLE_PRESETS = ["OOOOOOOEEEE", "OOOOOOEEEOE", "OOE", "OEO"] as const;
+export const CYCLE_PRESETS = [
+  "OOOOOOOEEEE",
+  "OOOOOOEEEOE",
+  "OOOEOOEOOEE",
+  "OOE",
+  "OEO",
+] as const;
 
 export const CYCLE_TOUR_PRESETS = [
   {
@@ -122,6 +128,63 @@ export const CYCLE_TOUR_PRESETS = [
     minIndex: 0,
     label: "OEO",
     hint: "Starts OE, not OO. Too few evens. Not a cycle.",
+  },
+  {
+    id: "three-valleys",
+    word: "OOOEOOEOOEE",
+    minIndex: 0,
+    label: "3 valleys",
+    hint: "CycleMin shape with three odd-runs. Not a cycle.",
+  },
+] as const;
+
+/** Capture strings onto the only known balloon {1}. Not cycles. */
+export const STRING_TOUR_PRESETS = [
+  {
+    id: "3",
+    label: "3",
+    hint: "The printed walk: one climb, then EEE into 1.",
+    states: [3n, 5n, 11n, 36n, 6n, 2n, 1n],
+  },
+  {
+    id: "7",
+    label: "7 · OEEE",
+    hint: "Named capture block OEEE. Still a string onto 1.",
+    states: [7n, 18n, 4n, 2n, 1n],
+  },
+  {
+    id: "9",
+    label: "9 · two climbs",
+    hint: "OOEOEEE: a second peak, then it joins the walk of 3 at 11.",
+    states: [9n, 27n, 140n, 11n, 36n, 6n, 2n, 1n],
+  },
+  {
+    id: "16",
+    label: "16 · even tower",
+    hint: "All-E string. Nested square roots, no odd climb.",
+    states: [16n, 4n, 2n, 1n],
+  },
+  {
+    id: "25",
+    label: "25 · three climbs",
+    hint: "OOOEEOEOEEE. Passes through the OEEE capture of 7.",
+    states: [25n, 125n, 1397n, 52214n, 228n, 15n, 58n, 7n, 18n, 4n, 2n, 1n],
+  },
+  {
+    id: "69",
+    label: "69 · repeated block",
+    hint: "OOEOOEEE then the walk of 3. Expanding transient, then capture.",
+    states: [69n, 573n, 13716n, 117n, 1265n, 44992n, 212n, 14n, 3n, 5n, 11n, 36n, 6n, 2n, 1n],
+  },
+  {
+    id: "365",
+    label: "365 leftover",
+    hint: "Finance leftover shape that still captures. Six odd-runs, not a cycle.",
+    states: [
+      365n, 6973n, 582276n, 763n, 21075n, 3059506n, 1749n, 73145n, 19782308n,
+      4447n, 296551n, 161491284n, 12707n, 1432400n, 1196n, 34n, 5n, 11n, 36n, 6n,
+      2n, 1n,
+    ],
   },
 ] as const;
 export const RECORD_LENGTHS = [1, 3, 11, 19, 84, 569, 1054, 25781, 50508] as const;
