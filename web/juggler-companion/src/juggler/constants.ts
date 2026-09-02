@@ -185,12 +185,12 @@ export const BALLOON_SCHEMA: readonly BalloonStation[] = [
   { kind: "sureEven", role: "last" },
 ];
 
-/** Idealized first-visit stem: sure OO and t, one unknown-color 0+ slot. */
+/**
+ * Default painted stem is not sure `OOE`. Lean `defaultStemSlots` is one
+ * unknown-color `0+` slot. Optional launching `OO` lives in `lollipop.ts`.
+ */
 export const IDEAL_STRING_BEADS: readonly IdealBead[] = [
-  { letter: "O", tone: "sure" },
-  { letter: "O", tone: "sure" },
   { letter: "?", tone: "unknown" },
-  { letter: "E", tone: "sure" },
 ];
 
 /**

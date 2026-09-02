@@ -88,17 +88,17 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     kind: "theorem",
     focus: "string-grey",
     title: "The string may be empty",
-    why: "If the start is already on the cycle there is no preperiod. The stem ? is a 0+ slot: unknown color and count, not a lower bound of three letters.",
-    lemma: "J-itinerary-semantics",
+    why: "Empty stem is legal: the start may already be OnOrbit (empty_stem_on_sink). Lean defaultStemSlots is one unknown-color 0+ slot, or empty. That is not a lower bound of three letters and not sure OOE.",
+    lemma: "empty_stem_on_sink, defaultStemSlots, schematicLollipop_empty_stem, IdealLollipop",
   },
   {
     id: "string-oo",
     part: "string",
     kind: "optional",
     focus: "string-oo",
-    title: "Solid OO on the stem is optional",
-    why: "Launch OO is forced on the cycle, not on a preperiod. The even tower EEE is a legal stem onto 1. The stem OO is a launching first visit, not Theorem 3.2(ii).",
-    lemma: "J-cycle-finite-structure — cycle only",
+    title: "Stem OO is optional, not Theorem 3.2",
+    why: "Launch OO is forced on the cycle (cycleMin_launch_is_OO), not on a preperiod. optionalLaunchStemSlots paints dashed OO labeled optional. The even tower EEE is a legal capture onto {1}.",
+    lemma: "optionalLaunchStemSlots, even_tower_to_one, stem_slots_not_cycle_schema, IdealLollipop",
   },
   {
     id: "string-grey",
@@ -114,9 +114,9 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     part: "string",
     kind: "optional",
     focus: "string-e",
-    title: "Solid t = E is optional",
-    why: "When the cycle arrives O, Lean forces an even stem (join_arrives_odd_external_even). At the valley or an E-arrival, t may be E or O. The figure’s solid E is the even-arrival default, not a theorem that every stem ends E.",
-    lemma: "J-inverse-preimage-asymmetry",
+    title: "t = E is forced only on O-arrival",
+    why: "stemTerminalOf oArrival is even (oArrival_stem_even). Valley and eArrival stay unknown (eArrival_stem_parent_cases / valley_stem_terminal_unknown). Do not paint a sure E at the valley.",
+    lemma: "oArrival_stem_even, stemTerminalOf, valley_stem_terminal_unknown, eArrival_stem_parent_cases",
   },
   {
     id: "join-seam",
@@ -125,7 +125,7 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     focus: "join",
     title: "Join can sit at any sure letter",
     why: "The join is the first meeting, not the CycleMin cut. Every orbit index is a legal join (every_orbit_index_is_join_site). Left and right step the six sure letters; interval slots may be empty, so they are not stops. Valley: cycle arrives E, stem E or O. Launch O and first E: cycle arrives O, stem even-only. Middle/last E: arrival depends on the slot. Necklace rotate is a different motion: cuts that start E or OE are not CycleMin.",
-    lemma: "every_orbit_index_is_join_site, cycle_in_edge_unique_at, join_arrives_odd_external_even, join_valley_arrival_even, rotate_even_not_cycleMin, rotate_OE_not_cycleMin, Collision Factorization",
+    lemma: "JoinFigure, sureLetterJoinTable, every_orbit_index_is_join_site, cycle_in_edge_unique_at, oArrival_stem_even, valley_is_eArrival, rotate_even_not_cycleMin, rotate_OE_not_cycleMin, CollisionFactorization",
   },
   {
     id: "string-descent",
@@ -260,7 +260,7 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     focus: "balloon",
     title: "Cycle letters are O or E",
     why: "Every letter of a CycleMin word has known parity. Unknown beads are stem-only. The cycle schema never uses intervalUnknown.",
-    lemma: "cycleMin_letters_known_parity, stem_slots_not_cycle_schema",
+    lemma: "cycleMin_letters_known_parity, balloonSchema_no_unknown, stem_slots_not_cycle_schema",
   },
   {
     id: "leftovers",
@@ -321,6 +321,12 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
 export const HARVESTED_LEMMA_NEEDLES = [
   "Lemma 1.1",
   "J-itinerary-semantics",
+  "IdealLollipop",
+  "empty_stem_on_sink",
+  "oArrival_stem_even",
+  "stemTerminalOf",
+  "balloonSchema_no_unknown",
+  "JoinFigure",
   "J-power-envelope-contraction",
   "J-inverse-preimage-asymmetry",
   "J-finite-progress-boundary",
@@ -372,3 +378,19 @@ export const HARVESTED_LEMMA_NEEDLES = [
   "J-flight-return-quantization",
   "Lemma 3.21b",
 ] as const;
+
+const DECISION_BY_ID = new Map(
+  IDEAL_DECISIONS.map((decision) => [decision.id, decision]),
+);
+
+export const DECISIONS_BY_PART = {
+  shared: IDEAL_DECISIONS.filter((decision) => decision.part === "shared"),
+  string: IDEAL_DECISIONS.filter((decision) => decision.part === "string"),
+  cycle: IDEAL_DECISIONS.filter((decision) => decision.part === "cycle"),
+  escape: IDEAL_DECISIONS.filter((decision) => decision.part === "escape"),
+} as const;
+
+export function lookupDecision(id: string | null): IdealDecision | null {
+  if (!id) return null;
+  return DECISION_BY_ID.get(id) ?? null;
+}

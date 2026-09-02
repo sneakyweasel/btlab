@@ -1,8 +1,10 @@
+import { memo } from "react";
 import {
   DECISION_KIND_LABEL,
   DECISION_PART_LABEL,
   DECISION_PARTS,
-  IDEAL_DECISIONS,
+  DECISIONS_BY_PART,
+  lookupDecision,
   type DecisionKind,
   type IdealDecision,
 } from "../content/idealDecisions";
@@ -24,7 +26,7 @@ function KindChip({ kind }: { kind: DecisionKind }) {
   );
 }
 
-export function IdealDecisionCard({
+export const IdealDecisionCard = memo(function IdealDecisionCard({
   decision,
 }: {
   decision: IdealDecision | null;
@@ -64,9 +66,9 @@ export function IdealDecisionCard({
       <p className="mt-2 font-mono text-xs text-muted">{decision.lemma}</p>
     </div>
   );
-}
+});
 
-export function IdealDecisionList({
+export const IdealDecisionList = memo(function IdealDecisionList({
   selectedId,
   onSelect,
 }: {
@@ -88,8 +90,7 @@ export function IdealDecisionList({
           <section key={part}>
             <h3 className="font-serif text-lg">{DECISION_PART_LABEL[part]}</h3>
             <ul className="mt-2 grid gap-1.5">
-              {IDEAL_DECISIONS.filter((decision) => decision.part === part).map(
-                (decision) => {
+              {DECISIONS_BY_PART[part].map((decision) => {
                   const open = decision.id === selectedId;
                   return (
                     <li key={decision.id}>
@@ -121,17 +122,15 @@ export function IdealDecisionList({
                       </button>
                     </li>
                   );
-                },
-              )}
+                })}
             </ul>
           </section>
         ))}
       </div>
     </div>
   );
-}
+});
 
 export function findDecision(id: string | null): IdealDecision | null {
-  if (!id) return null;
-  return IDEAL_DECISIONS.find((decision) => decision.id === id) ?? null;
+  return lookupDecision(id);
 }

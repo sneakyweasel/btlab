@@ -27,6 +27,15 @@ import {
 } from "./constants";
 import { financeSnapshot, financeView } from "./finance";
 import { idealJoinConfig, stemBeadsForJoin, stemTerminalLetter } from "./joinConfig";
+import {
+  DEFAULT_STEM_BEADS,
+  PIN_MISS_WORDS,
+  SCHEMATIC_LOLLIPOP,
+  defaultStemIsNotSureOOE,
+  joinFigure,
+  paintStem,
+  siteRigidity,
+} from "./lollipop";
 import { floorPower } from "./map";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
@@ -243,11 +252,28 @@ describe("assembleFill identities", () => {
   });
 });
 
-describe("idealized string stem", () => {
-  it("starts OO, leaves the middle undefined, and ends E", () => {
-    expect(IDEAL_STRING_LETTERS.join("")).toBe("OO?E");
-    expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "sure").map((bead) => bead.letter).join("")).toBe("OOE");
-    expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "unknown")).toHaveLength(1);
+describe("honest default stem", () => {
+  it("is not sure OOE", () => {
+    expect(IDEAL_STRING_LETTERS.join("")).not.toBe("OO?E");
+    expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "sure")).toHaveLength(0);
+    expect(defaultStemIsNotSureOOE(DEFAULT_STEM_BEADS)).toBe(true);
+    expect(SCHEMATIC_LOLLIPOP.stem).toBe("empty");
+    expect(SCHEMATIC_LOLLIPOP.witness).toBeNull();
+  });
+
+  it("forces an even terminal only on O-arrival", () => {
+    expect(joinFigure("launchO").terminal).toBe("even");
+    expect(joinFigure("firstE").terminal).toBe("even");
+    expect(joinFigure("valley").terminal).toBe("unknown");
+    expect(joinFigure("thirdE").terminal).toBe("unknown");
+    expect(paintStem("optionalLaunch", joinFigure("launchO")).at(-1)).toMatchObject({
+      letter: "E",
+      mark: "forced",
+    });
+    expect(paintStem("optionalLaunch", joinFigure("valley")).at(-1)).toMatchObject({
+      letter: "?",
+      mark: "unknown",
+    });
   });
 });
 
@@ -301,16 +327,25 @@ describe("idealized cycle", () => {
   });
 
   it("classifies the six sure-letter join forks", () => {
+    expect(siteRigidity("valley")).toEqual({ kind: "rigid", arr: "eArrival" });
+    expect(siteRigidity("launchO")).toEqual({ kind: "rigid", arr: "oArrival" });
+    expect(siteRigidity("firstE")).toEqual({ kind: "rigid", arr: "oArrival" });
+    expect(siteRigidity("middleE")).toEqual({ kind: "dependsOnFill" });
+    expect(siteRigidity("thirdE")).toEqual({ kind: "rigid", arr: "eArrival" });
+    expect(siteRigidity("lastE")).toEqual({ kind: "dependsOnFill" });
     expect(idealJoinConfig(0).arrival).toBe("E");
     expect(idealJoinConfig(0).stemTerminal).toBe("E_or_O");
+    expect(idealJoinConfig(0).fillDependent).toBe(false);
     expect(idealJoinConfig(1).arrival).toBe("O");
     expect(stemTerminalLetter(1)).toBe("E");
-    expect(stemBeadsForJoin(1).at(-1)).toEqual({ letter: "E", tone: "sure" });
+    expect(stemBeadsForJoin(1).at(-1)).toMatchObject({ letter: "E", mark: "forced" });
     expect(idealJoinConfig(2).forbidden.some((item) => /rotate_even_not_cycleMin/.test(item))).toBe(true);
     expect(idealJoinConfig(3).arrival).toBe("O_or_E");
+    expect(idealJoinConfig(3).fillDependent).toBe(true);
     expect(idealJoinConfig(4).arrival).toBe("E");
     expect(idealJoinConfig(5).arrival).toBe("O_or_E");
-    expect(stemBeadsForJoin(0).at(-1)).toEqual({ letter: "?", tone: "unknown" });
+    expect(stemBeadsForJoin(0).at(-1)).toMatchObject({ letter: "?", mark: "unknown" });
+    expect(PIN_MISS_WORDS).toEqual(["OOEEEOOOOOE", "OOOEEEOOOOE"]);
   });
 
   it("rotates the join only among the six sure letters", () => {

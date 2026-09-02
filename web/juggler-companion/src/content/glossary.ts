@@ -42,7 +42,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   {
     slug: "cycle-itinerary",
     number: 3,
-    term: "Cycle itinerary and CycleMin",
+    term: "At the Cycle’s Abyss",
     blurb:
       "Cut the loop at its smallest value. That spelling starts OO, ends E, and needs four evens.",
     body:

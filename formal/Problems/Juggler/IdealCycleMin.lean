@@ -29,8 +29,10 @@ live on `NecklaceFill`. A general CycleMin run list need not equal
 The 2+2 cut is exactly `OE|n|OO` or `EE|n|OO`
 (`cycleMin_has_two_seams`). Forced isolated-`OE` is not a shape law:
 both windows inhabit `CycleMinShape`. Occupation of both as realized
-CycleMin entries is `COMPUTATIONALLY VERIFIED`, not Lean. The
-functional-graph fork lives in `Seam.lean` and is a different object.
+CycleMin entries is `COMPUTATIONALLY VERIFIED`, not Lean. Collision
+Factorization at an arbitrary vertex lives in `CyclePosition.lean`.
+The valley fork is `Seam.SeamData`. The optional stem is
+`IdealLollipop.StemKind`, not a cartoon `OO?E`.
 
 There is no `no_cycleMin_four_even` and no `no_cycleMin_necklace`.
 Necklace slack on the 56 length-11 start-`OO` four-even words is
@@ -493,7 +495,8 @@ theorem cycleMin_bead_prefix_dominates_hug {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) : PrefixOddBudget w :=
   cycleMin_hug_prefix_odds hn h
 
-/-- CycleMin letters are `O` or `E`. Unknown beads are stem-only. -/
+/-- CycleMin letters are `O` or `E`. Unknown beads are stem-only
+    (`IdealLollipop.defaultStemSlots`). -/
 theorem cycleMin_letters_known_parity {n : ℕ} {w : List Branch}
     (_hn : 2 ≤ n) (_h : CycleMin n w) :
     ∀ b ∈ w, BeadParity.ofBranch b ≠ .unknown :=
@@ -852,41 +855,6 @@ theorem no_forced_station_outside_sure (s : BalloonStation)
   | intervalOdd k =>
       cases k <;> rfl
   | intervalExtraEven => rfl
-
-/-! ## Optional stem (not a CycleMin theorem) -/
-
-/-- Optional first-visit stem: sure `OO`, unknown middle `0+`, sure `t = E`.
-    This bead join is still a picture. Actual integer edges and
-    Collision Factorization live in `Seam.lean` (`SeamData`). -/
-def stemSureParities : List BeadParity := [.odd, .odd, .even]
-
-def stemEdges : List BeadEdge :=
-  [ .sure
-  , .interval .unknown .zeroPlus
-  ]
-
-def stemSlots : List BeadSlot :=
-  [ BeadSlot.sureOdd
-  , BeadSlot.sureOdd
-  , BeadSlot.intervalUnknown .zeroPlus
-  , BeadSlot.sureEven
-  ]
-
-theorem stem_linear :
-    stemEdges.length + 1 = stemSureParities.length :=
-  rfl
-
-theorem stem_OO_sure : stemEdges.head? = some .sure := rfl
-
-theorem stem_middle_unknown :
-    (BeadSlot.intervalUnknown .zeroPlus).parity = .unknown ∧
-      (BeadSlot.intervalUnknown .zeroPlus).sure = false ∧
-        CountBound.admitsProp .zeroPlus 0 :=
-  ⟨rfl, rfl, CountBound.admitsProp_zeroPlus 0⟩
-
-theorem stem_slots_not_cycle_schema :
-    stemSlots ≠ balloonSchema.map BalloonStation.asSlot := by
-  decide
 
 /-! ## Necklace fills: interval lengths between sure beads -/
 

@@ -6,3 +6,4 @@ export * from "./map";
 export * from "./monsters";
 export * from "./trajectory";
 export * from "./itinerary";
+export * from "./lollipop";

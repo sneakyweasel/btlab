@@ -67,6 +67,69 @@ button.bg-odd {
   font-size: 1.05em;
 }
 
+.stem-cycle {
+  contain: layout style;
+}
+
+.stem-cycle-svg {
+  display: block;
+  contain: layout style;
+}
+
+.stem-cycle-svg text {
+  pointer-events: auto;
+}
+
+.stem-cycle-title {
+  fill: var(--color-ink);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  text-anchor: middle;
+}
+
+.stem-cycle-title-sm {
+  font-size: 16px;
+}
+
+.stem-cycle-note {
+  fill: var(--color-muted);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--color-card);
+  stroke-width: 3px;
+}
+
+.stem-cycle-ink {
+  fill: var(--color-ink);
+}
+
+.stem-cycle-mono {
+  font-family: var(--font-mono);
+}
+
+.stem-cycle-link {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.stem-cycle-dim {
+  opacity: 0.62;
+}
+
+.stem-cycle-card {
+  margin-top: 0.5rem;
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-card);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
 .start-input {
   appearance: textfield;
 }
