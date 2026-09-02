@@ -56,10 +56,46 @@ export const CLAIM_ROWS = [
   },
 ] as const;
 
+export const DEFINITIONS = [
+  {
+    term: "Map J",
+    meaning: "The one-step rule. The sequence is the orbit of iterates.",
+  },
+  {
+    term: "Floor",
+    meaning: "⌊x⌋ throws away the decimals, after every step.",
+  },
+  {
+    term: "Orbit",
+    meaning: "The list of values n, J(n), J²(n), … .",
+  },
+  {
+    term: "Word",
+    meaning: "A finite string of O/E parities of a prefix. Not the orbit.",
+  },
+  {
+    term: "Realized word",
+    meaning: "The orbit of n actually follows those letters.",
+  },
+  {
+    term: "Ideal exponent",
+    meaning: "3^o / 2^k for a word of length k with o odd letters, before floors.",
+  },
+  {
+    term: "Cell",
+    meaning: "The preimage set J⁻¹(m) = {k : J(k) = m}. J is not invertible.",
+  },
+  {
+    term: "N₀",
+    meaning: "A verified descent floor: a computational input, not the theorem.",
+  },
+] as const;
+
 export const NOT_CLAIMED = [
   "This is not a termination proof and not progress toward the Juggler conjecture.",
   "Hitting 1 on a playground walk is one orbit, not a theorem that every start reaches 1.",
   "A finance-survivor length is a length the inequality did not kill. It is not a candidate cycle.",
   "The census-free window of Theorem 5.8 stops at 301,994. Corollary 5.10 is not an extension of that window.",
+  "No independence-from-Peano-arithmetic claim is made. Goodstein is a different theorem.",
   "Paper B (parity discrepancy and descent densities) is a different manuscript.",
 ] as const;

@@ -26,8 +26,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     blurb:
       "Even numbers shrink. Odd numbers grow. Discard decimals. Do it forever?",
     body:
-      "Floor is the integer part: remove everything after the decimal point. So floor(5.196) = 5 and floor(6) = 6. Start with a positive integer n. If n is even, take the square root and then floor. If n is odd, raise n to the three-halves and then floor: floor(n^{3/2}) = floor(n√n) = floor(√(n³)). That is not the cube root. The floor is applied after every letter, not once at the end. Those two rules are the whole map. Paper A writes them as J(n). The leftover crumbs after each floor are what later inequalities budget.",
-    paper: "Abstract and §1: the map J, the even branch E, and the odd branch O.",
+      "J is the one-step map. The Juggler sequence starting at n is the orbit of iterates n, J(n), J²(n), … . Floor means the integer part: remove everything after the decimal point. So floor(5.196) = 5 and floor(6) = 6. Start with a positive integer n. If n is even, take the square root and then floor. If n is odd, raise n to the three-halves and then floor: floor(n^{3/2}) = floor(n√n) = floor(√(n³)). That is not the cube root. The floor is applied after every step, not once at the end. Those two rules are the whole map. Paper A writes the even branch as E and the odd branch as O. The leftover crumbs after each floor are what later inequalities budget. The paper does not prove that every start reaches 1.",
+    paper: "Abstract and §1: the map J, floor, the even branch E, and the odd branch O. Lemma 1.1 lists the three possible fates.",
   },
   {
     slug: "orbit-word",
@@ -35,8 +35,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "Orbit and word",
     blurb: "The orbit is the list of values. The word is the list of odd/even letters.",
     body:
-      "Apply J again and again. The sequence of values is the orbit. Write O for an odd step and E for an even step. That string is the word, or itinerary, of the walk. The famous walk of 3 is 3, 5, 11, 36, 6, 2, 1, with word OOOEEE. Hitting 1 here is one orbit, not a proof that every start does.",
-    paper: "§1: the orbit of 3; words over the alphabet {E, O}.",
+      "Apply J again and again. The sequence of values is the orbit. The word of the first k steps is the length-k string over {O, E} that records the parity of each value: O if that value is odd, E if it is even. The word is not the orbit. The integer k is any finite prefix; the definition does not assume that the walk reaches 1. A word is realized at n only when the orbit of n actually follows those parities — a formal string that no start follows is not an itinerary. Ignoring floors, o odd letters in length k would multiply by 3^o / 2^k; that ratio is the ideal exponent of the word. The famous walk of 3 is 3, 5, 11, 36, 6, 2, 1, with realized word OOOEEE. Hitting 1 here is one orbit, not a proof that every start does.",
+    paper: "§1: orbit, word, realized word, and ideal exponent 3^o/2^k.",
   },
   {
     slug: "cycle-word",
@@ -69,10 +69,10 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     slug: "cells",
     number: 6,
     term: "Inverse cells",
-    blurb: "Work backwards. Even parents fill a square interval. An odd image has at most one odd parent.",
+    blurb: "J is not invertible. The preimage of m is a set. Even parents fill a square interval. An odd image has at most one odd parent.",
     body:
-      "The even numbers that map to q are exactly the even integers in [q², (q+1)²). The odd numbers that map to m sit in a much thinner cell: there is at most one integer n with m² ≤ n³ < (m+1)². That asymmetry is how Paper A classifies short loop-shapes. Local leftover spellings are words the easy cells did not kill — they are not open cycles.",
-    paper: "Lemma 3.1: odd cells are unique. Even cells are square intervals.",
+      "Work backwards. J is not invertible, so the preimage of an image m is a set: the cell J^{-1}(m) = {k : J(k) = m}. That is an exact integer interval in N, not a cellular-automaton cell and not an approximation. The even numbers that map to q are exactly the even integers in [q², (q+1)²). The odd numbers that map to m sit in a much thinner cell: there is at most one integer n with m² ≤ n³ < (m+1)². That asymmetry is how Paper A classifies short loop-shapes. Local leftover spellings are words the easy cells did not kill — they are not open cycles.",
+    paper: "§1 cell / preimage; Lemma 3.1: odd cells are unique. Even cells are square intervals.",
   },
   {
     slug: "descent-floor",

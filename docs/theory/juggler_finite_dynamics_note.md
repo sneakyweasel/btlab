@@ -25,6 +25,9 @@ J(n)=
 \end{cases}
 \]
 It is conjectured that every positive integer eventually reaches \(1\).
+This paper does not prove that conjecture. It proves period lower
+bounds for a hypothetical nontrivial cycle, once a verified descent
+floor is given.
 
 We develop a cycle-financing inequality for this floor-power map.
 Exact integer cells give a one-step logarithmic defect; cycle
@@ -65,21 +68,102 @@ claim to be formally verified as a whole.
 
 ## 1. Introduction
 
-The Juggler sequence was introduced by Pickover [1,2]. The one-step
-map is OEIS A094683 [3]; the stopping-time table is A007320 [4]. The
-orbit of \(3\) is \(3,5,11,36,6,2,1\). The orbit of \(37\) already
-peaks at \(24906114455136\). Universal arrival at \(1\) remains the
-open conjecture of the subject.
+The Juggler sequence was introduced by Pickover [1,2] as an
+interesting variation of the Collatz problem. Pickover's later
+exposition is Chapter 45 of [2], pp. 102--106. The object of study
+is the one-step map \(J:\mathbb N\to\mathbb N\) displayed in the
+abstract. The *Juggler sequence* starting at \(n\) is the orbit of
+iterates \(n,\,J(n),\,J^2(n),\ldots\). The On-Line Encyclopedia of
+Integer Sequences records the one-step values of \(J\) as A094683
+[3] and the number of steps to reach \(1\) (when that occurs) as
+A007320 [4]; those catalogue entries are not theorems of this
+paper.
+
+The orbit of \(3\) is \(3,5,11,36,6,2,1\). The orbit of \(37\)
+already peaks at \(24906114455136\). Universal arrival at \(1\)
+remains an open conjecture. This paper does not prove that
+conjecture. It proves period lower bounds for a *hypothetical*
+nontrivial cycle, once a verified descent floor is given.
+
+Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
+\(k\)-fold iterate, and write \(\lfloor x\rfloor\) for the integer
+part of a real \(x\ge 0\): discard the fractional part. Thus
+\(\lfloor 5.196\ldots\rfloor=5\) and \(\lfloor 6\rfloor=6\). The
+floor is applied after every branch of \(J\), not once at the end
+of a walk.
 
 The map combines a contracting even branch with an expanding odd
 branch,
 \[
 E(n)=\lfloor n^{1/2}\rfloor,\qquad
-O(n)=\lfloor n^{3/2}\rfloor.
+O(n)=\lfloor n^{3/2}\rfloor,
 \]
-A word of length \(k\) with \(o\) odd letters has ideal exponent
-\(3^o/2^k\). Floors are applied after every letter, and a word is
-available only when the orbit realizes those parities.
+so \(J(n)=E(n)\) when \(n\) is even and \(J(n)=O(n)\) when \(n\) is
+odd.
+
+**Orbit.** The *orbit* of \(n\in\mathbb N\) is the sequence of
+values \(n_0=n\), \(n_{i+1}=J(n_i)\).
+
+**Word.** The *word* of the first \(k\) steps is the length-\(k\)
+string \(w\in\{O,E\}^k\) with \(w_i=O\) if \(n_i\) is odd and
+\(w_i=E\) if \(n_i\) is even. The word is the list of branch
+labels, not the list of values. The integer \(k\) is any finite
+prefix length; the definition does not assume that the orbit
+reaches \(1\).
+
+**Ideal exponent.** A word of length \(k\) with \(o\) odd letters
+has ideal exponent \(3^o/2^k\). Ignoring floors, those letters
+would multiply the start by that ratio. Floors make the actual
+image smaller.
+
+**Realized word.** A word \(w\) is *realized* at \(n\) when the
+first \(\lvert w\rvert\) parities of the orbit of \(n\) are exactly
+the letters of \(w\). Equivalently: a formal string over
+\(\{O,E\}\) is an itinerary only when some start actually follows
+those branches. That is what is meant by: a word is available only
+when the orbit realizes those parities. Floors are applied after
+every letter of a realized word.
+
+**Cell.** The map \(J\) is not invertible. For \(m\in\mathbb N\),
+the *cell* (or one-step preimage) of \(m\) is the set
+\[
+J^{-1}(m)=\{k\in\mathbb N:J(k)=m\}.
+\]
+An even image has a whole interval of even parents; an odd image
+has at most one odd parent (Lemma 3.1). A cell is not a
+cellular-automaton cell and not an approximation.
+
+**Lemma 1.1 (three fates).**
+Let \(n\in\mathbb N\). The orbit of \(n\) does exactly one of the
+following: (i) some iterate equals \(1\); (ii) some iterate
+\(m\ge 2\) returns, and the orbit is eventually periodic through a
+cycle containing \(m\); (iii) the orbit is unbounded. In
+particular, a bounded infinite orbit is eventually periodic.
+
+*Proof.* The map \(J\) is a well-defined function
+\(\mathbb N\to\mathbb N\), so the forward orbit is an infinite
+sequence in \(\mathbb N\). If some term equals \(1\), we are in
+(i); note \(J(1)=1\). If the orbit is unbounded, we are in (iii).
+If the orbit is infinite and bounded, the pigeonhole principle
+supplies a repeated value \(m\); uniqueness of the successor
+\(J(m)\) then forces a cycle, which is (ii) unless \(m=1\), already
+covered by (i). \(\square\)
+
+The lemma lists the only logical possibilities. It does not assert
+which fate occurs for a given start, and it is not a termination
+theorem.
+
+| Object | Meaning |
+| --- | --- |
+| \(J\) | the one-step map |
+| \(E\), \(O\) | even and odd branches |
+| orbit | the sequence of values |
+| word | a finite string in \(\{O,E\}\) of parities |
+| realized word | the orbit actually follows those letters |
+| \(3^o/2^k\) | ideal exponent of a word of length \(k\) with \(o\) odd letters |
+| \(J^{-1}(m)\) | cell: the set of one-step preimages of \(m\) |
+| \(N_0\) | a verified descent floor (a computational input) |
+| CycleMin | a minimum-based rotation of a cycle word |
 
 The mechanism is the interaction of three elementary facts:
 exact integer cells, a logarithmic defect, and cycle
@@ -169,8 +253,7 @@ evaluation of the same kill criterion at a second certified
 floor raises it to \(478245\) (Corollary 5.10). Section 6
 records limitations.
 
-Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
-\(k\)-fold iterate. A nonempty realized word \(w\) with
+A nonempty realized word \(w\) with
 \(J^{|w|}(n)=n\) is a *cycle word*. The unique fixed point is \(1\);
 a cycle is *nontrivial* when it contains some \(n\ge 2\). A cycle
 word at \(n\) is *minimum-based* when \(n\) is a cycle minimum:
@@ -242,7 +325,8 @@ main theorem.
 
 ### 1.1 Related work
 
-Pickover's later exposition is Chapter 45 of [2]. Weisstein [5]
+Pickover's later exposition is Chapter 45 of [2], already cited
+above. Weisstein [5]
 records the map, the stopping-time sequences A094670, A094679,
 A095908, and a verification of arrival at \(1\) through \(10^6\).
 That verified descent floor is the computational input to
@@ -264,6 +348,12 @@ the standard Collatz cycle-bound sources [8--13] found no
 published explicit lower bound on the period of a nontrivial
 cycle for this exact floor-power Juggler map. Informal near-miss
 notes and later unverified webpage floors are not used.
+
+Goodstein's theorem is a superficially similar statement about
+natural numbers --- every Goodstein sequence terminates at \(0\)
+--- which cannot be proved in Peano arithmetic [14]. No such
+independence claim is made for the Juggler conjecture, and this
+paper does not study Goodstein sequences.
 
 The layers of the argument are as follows.
 
@@ -2791,3 +2881,7 @@ statements and code are the responsibility of the author.
     nontrivial cycle lengths,” *Discrete Math.* 118 (1993),
     45--56.
     [doi:10.1016/0012-365X(93)90052-U](https://doi.org/10.1016/0012-365X(93)90052-U).
+14. L. Kirby and J. Paris, “Accessible independence results for
+    Peano arithmetic,” *Bull. London Math. Soc.* 14 (1982),
+    285--293.
+    [doi:10.1112/blms/14.4.285](https://doi.org/10.1112/blms/14.4.285).

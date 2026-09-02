@@ -13,7 +13,8 @@ export function CellsTab() {
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
         <h2 className="font-serif text-2xl">Even cell</h2>
         <p className="text-sm text-muted">
-          Even parents of an image sit in one square interval.
+          J is not invertible. The preimage of q is a set: the even integers
+          in one square interval that map to q.
         </p>
         <label className="text-sm text-muted">
           Image q
@@ -46,7 +47,8 @@ export function CellsTab() {
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
         <h2 className="font-serif text-2xl">Odd cell</h2>
         <p className="text-sm text-muted">
-          An odd image has at most one integer parent.
+          The odd preimage of m has at most one integer. That set may be
+          empty.
         </p>
         <label className="text-sm text-muted">
           Image m

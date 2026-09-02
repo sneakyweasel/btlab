@@ -21837,4 +21837,43 @@ Best next question
   inverse-cell census
 ```
 
+## Exact-floor impact: tagged no-op floors (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** On first-descent walks, do isolated exact-floor steps (already-integer powers, i.e. perfect squares that are not a continuing equality tower) bias first-descent class or PE continuation beyond the known local package (exact iff square; crumb 0; next letter = current letter; tower iff the image is a square)? Not a word-atlas recensus, not a floor-boundary reopen, and not a Paper A edit.
+- **Hypotheses:** isolated exact landings concentrate on first-descent E or PE odd-squares at a rate invisible from square density and the monochrome letter law; falsifier: exact-event rate matches square density, first-descent class is the parity word, PE exact hits are the odd squares that appear.
+- **Major results:**
+  - Identity on \(n\le 10^5\): 374 exact events (356 isolated, 18 tower), 0 mismatches, 0 letter-force failures, 0 even-square walk-increment failures. Fixtures \(9\to 27\), \(36\to 6\) on the orbit of 3, \(16\to 4\).
+  - Density versus per-state \(1/\sqrt x\) baseline matches in every magnitude bin. E-certificates: \(158/50000\) exact descending evens, ratio \(1\) against even-square density.
+  - Mid-isolated rates follow occupancy: E \(0\) (length 1), OE \(3.20\cdot 10^{-4}\) (length 2), OOEE \(2.59\cdot 10^{-3}\) (length 4), leftover \(1.59\cdot 10^{-3}\) (mean length \(10.4\)). Leftover is slightly below OOEE because the states are larger.
+  - PE subsample odd-odd \(n\le 4000\): 275 PE starts, 8 exact hits, all squares, image equals the cube or root.
+  - Classification `EXACT_FLOOR_IMPACT_KNOWN`. No ledger theorem row, no Lean, no Paper A, no atlas recensus.
+- **Refuted ideas:** that isolated exact-floor steps form a new first-descent or PE invariant.
+- **Literature:** `localDefect*_eq_zero_iff`; `power_bound_eq_implies_monochrome`; floor-boundary CLOSE.
+- **Open:** none from exact-floor impact.
+- **Decision:** CLOSE. Dossier `docs/problems/juggler_exact_floor_impact.md`.
+
+```text
+What was learned
+- floor is a no-op exactly on perfect squares
+- isolated exact steps have crumb 0 and force the next letter
+- first-descent class is the parity word; longer words hit more squares
+- PE exact hits continue as the integer cube or root
+- no new impact beyond the known local package
+Strongest theorem
+- none new (the square / monochrome package is existing Lean)
+Strongest refutation
+- isolated exact-floor steps bias first-descent class or PE
+  continuation (Phase-0 census)
+Reusable machinery
+- exact_floor_impact first-descent tagger and impact aggregates
+Branch status
+- CLOSE
+Why
+- every Phase-0 statement is KNOWN or REPARAMETERIZATION
+  of local_tight / monochrome towers / occupancy
+Best next question
+- none from this door; do not start another exact-step census
+```
+
 

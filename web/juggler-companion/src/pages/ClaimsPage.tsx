@@ -1,4 +1,4 @@
-import { CLAIM_ROWS, NOT_CLAIMED } from "../content/claims";
+import { CLAIM_ROWS, DEFINITIONS, NOT_CLAIMED } from "../content/claims";
 import { financeSnapshot } from "../juggler/finance";
 
 export function ClaimsPage() {
@@ -11,6 +11,30 @@ export function ClaimsPage() {
           the manuscript. Arrival at 1 is not claimed.
         </p>
       </header>
+      <section>
+        <h2 className="text-2xl">Definitions</h2>
+        <p className="prose-measure mt-2 text-sm text-muted">
+          The same sentences as Paper A §1. These are not theorems.
+        </p>
+        <div className="mt-3 overflow-x-auto rounded-xl border border-line bg-card">
+          <table className="w-full min-w-[28rem] text-left text-sm">
+            <thead className="border-b border-line text-muted">
+              <tr>
+                <th className="px-3 py-2 font-medium">Term</th>
+                <th className="px-3 py-2 font-medium">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              {DEFINITIONS.map((row) => (
+                <tr key={row.term} className="border-b border-line/70">
+                  <td className="px-3 py-2 font-medium">{row.term}</td>
+                  <td className="px-3 py-2 text-muted">{row.meaning}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
       <section className="grid gap-3 sm:grid-cols-2">
         <Score
           label="Even letters on a real loop"

@@ -19,10 +19,11 @@ export function PlaygroundPage() {
       <header>
         <h1 className="text-4xl">Playground</h1>
         <p className="prose-measure mt-3 text-muted">
-          Basic tests only: walk a start, follow a short word, look at inverse
-          cells, rotate a necklace, or look up a length in the shipped Theorem
-          4.6 table. Caps: 80 steps, 256 bits, words of length at most 8
-          (cycles 16).
+          Basic tests only: walk a start, follow a short word, look at a
+          preimage cell, rotate a necklace, or look up a length in the shipped
+          Theorem 4.6 table. Caps: 80 steps, 256 bits, words of length at most
+          8 (cycles 16). The orbit is the values; the word is the O/E
+          parities of a prefix. A cell is the set of one-step preimages.
         </p>
       </header>
       <nav className="flex flex-wrap gap-2">

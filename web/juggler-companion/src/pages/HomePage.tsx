@@ -19,13 +19,13 @@ export function HomePage() {
             A picture dictionary for the Juggler cycle paper
           </h1>
           <p className="prose-measure mt-4 text-lg text-muted">
-            The Juggler map sends even n to the square root and odd n to n
-            to the three-halves — that is n√n, not the cube root — then
-            floors the result: throw away the decimals and keep the integer
-            part. That floor is applied after every step. Paper A does not
-            prove that every start reaches 1. It proves period lower bounds
-            for a hypothetical cycle, once a verified descent floor N₀ is
-            given.
+            Pickover introduced the map in 1991 as a Collatz variation.
+            Even n goes to the square root and odd n to n to the
+            three-halves — that is n√n, not the cube root — then floor:
+            throw away the decimals and keep the integer part. That floor
+            is applied after every step. Paper A does not prove that every
+            start reaches 1. It proves period lower bounds for a
+            hypothetical cycle, once a verified descent floor N₀ is given.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
@@ -47,12 +47,32 @@ export function HomePage() {
           <div className="mt-3 text-center">
             <Tex display>{String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n^{3/2}\rfloor,&n\text{ odd.}\end{cases}`}</Tex>
             <p className="mt-2 text-sm text-muted">
-              Left: the orbit of 3 takes three odd branches O, then three even
-              branches E, to 1. The brackets ⌊ ⌋ mean floor:
-              remove the decimals, keep the integer part. Example: ⌊3√3⌋ =
-              ⌊5.196…⌋ = 5.
+              Orbit of 3: the values 3, 5, 11, 36, 6, 2, 1. Word: OOOEEE —
+              the parities, not the values. Floor: the brackets ⌊ ⌋ throw
+              away the decimals. Example: ⌊3√3⌋ = ⌊5.196…⌋ = 5. Hitting 1
+              here is one orbit, not a theorem.
             </p>
           </div>
+        </div>
+      </section>
+      <section className="space-y-3">
+        <p className="text-sm text-muted">
+          Lemma 1.1: these are the only three possibilities. The paper does
+          not pick one.
+        </p>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <FateCard
+            title="Reach 1"
+            body="Some iterate equals 1. The unique fixed point is J(1) = 1."
+          />
+          <FateCard
+            title="Cycle"
+            body="Some m ≥ 2 returns. A bounded infinite orbit must do this."
+          />
+          <FateCard
+            title="Unbounded"
+            body="The values grow without bound."
+          />
         </div>
       </section>
       <section className="grid gap-3 sm:grid-cols-3">
@@ -63,7 +83,7 @@ export function HomePage() {
       <section className="prose-measure space-y-3 text-muted">
         <p>
           Use the tour if the words are new. Use the playground to try the
-          orbit of 3, a short O/E word, an inverse cell, a necklace rotation,
+          orbit of 3, a short O/E word, a preimage cell, a necklace rotation,
           or a finance length from the shipped table.
         </p>
         <p>
@@ -74,6 +94,15 @@ export function HomePage() {
           . This site is a glossary, not the laboratory Streamlit app.
         </p>
       </section>
+    </div>
+  );
+}
+
+function FateCard({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="rounded-xl border border-line bg-card p-4">
+      <div className="text-xs uppercase tracking-wide text-muted">{title}</div>
+      <p className="mt-2 text-sm text-muted">{body}</p>
     </div>
   );
 }

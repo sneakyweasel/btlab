@@ -39,6 +39,10 @@ export function OrbitTab() {
     })) ?? [];
   return (
     <div className="space-y-5">
+      <p className="text-sm text-muted">
+        Orbit = the list of values. Word = the O/E parities of the prefix so
+        far. Hitting 1 is one orbit, not a theorem.
+      </p>
       <StartControl />
       <label className="block text-sm text-muted">
         Step cap

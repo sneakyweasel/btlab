@@ -21,6 +21,11 @@ export function WordTab() {
   const parsed = parseWord(word);
   return (
     <div className="space-y-5">
+      <p className="text-sm text-muted">
+        A word is a finite string of O and E. It is realized at the start
+        only when the orbit actually follows those parities. The ideal
+        exponent 3<sup>o</sup>/2<sup>k</sup> ignores floors.
+      </p>
       <StartControl />
       <div className="flex flex-wrap items-end gap-3">
         <label className="text-sm text-muted">
@@ -64,9 +69,14 @@ function WordResult({ n, word }: { n: bigint; word: string }) {
     image === null ? null : envelopeSlack(n, image, word.length, odds);
   return (
     <>
-      <div className="grid gap-3 sm:grid-cols-4">
-        <Metric label="Odd letters" value={String(odds)} />
-        <Metric label="Regime" value={regimeOf(word.length, odds)} />
+          <div className="grid gap-3 sm:grid-cols-4">
+            <Metric label="Odd letters" value={String(odds)} />
+            <Metric
+              label="Ideal exponent"
+              value={`3^${odds}/2^${word.length}`}
+              hint="before floors"
+            />
+            <Metric label="Regime" value={regimeOf(word.length, odds)} />
         <Metric label="Follows this word?" value={follows ? "yes" : "no"} />
         <Metric
           label="Image vs n"
