@@ -1,0 +1,154 @@
+{
+  "experiment": "juggler_flight_post19_tail",
+  "anti_overclaim": {
+    "halt_theorem": false,
+    "divergence_excluded": false,
+    "divergent_orbit_exists": false,
+    "overshoot_forced": false,
+    "glue_reopened": false,
+    "n_window_raised": false,
+    "paper_a_modified": false
+  },
+  "theta_19": 0.019550009,
+  "hug19": "OOEOOEOOEOEOOEOOEOE",
+  "lemma": "AboveAnchor length 19 implies o >= 12; o = 12 implies delta <= theta_19 < 0.05. A long post-19 miss is therefore o >= 13 and delta > 0.05 (overshoot), not a descent before length 19.",
+  "window": {
+    "n_max": 2000,
+    "tally": {
+      "n19": 44,
+      "kinds": {
+        "dies_before_19": 16,
+        "dies_immediately": 27,
+        "overshoot": 1
+      },
+      "long": 1,
+      "o19_on_long": [
+        14
+      ],
+      "first_hug_split_on_long": [
+        3
+      ],
+      "n_ge3": 10,
+      "first_hug_split_ge3": {
+        "None": 5,
+        "3": 5
+      },
+      "hug_minimal_19": 0,
+      "lemma_holds_on_long": true,
+      "long_witnesses": [
+        {
+          "n": 761,
+          "next_len": 41,
+          "kind": "overshoot",
+          "o19": 14,
+          "delta19": 3.189474985,
+          "first_hug_split": 3,
+          "next_word19": "OOOEOOOOEOOOEOEOOOE",
+          "at_r05": [
+            {
+              "t": 19,
+              "o": 14,
+              "hug_o": 12,
+              "theta": 3.18947501,
+              "delta": 3.189474985,
+              "overshoot": true,
+              "near_return": false
+            },
+            {
+              "t": 38,
+              "o": 25,
+              "hug_o": 24,
+              "theta": 1.624062518,
+              "delta": 1.624062493,
+              "overshoot": true,
+              "near_return": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "flyers": {
+    "starts": [
+      48443,
+      275485,
+      412027,
+      463157,
+      1122603,
+      1245741,
+      1267909
+    ],
+    "tally": {
+      "n19": 8,
+      "kinds": {
+        "dies_before_19": 6,
+        "overshoot": 1,
+        "dies_immediately": 1
+      },
+      "long": 1,
+      "o19_on_long": [
+        15
+      ],
+      "first_hug_split_on_long": [
+        3
+      ],
+      "n_ge3": 4,
+      "first_hug_split_ge3": {
+        "3": 2,
+        "None": 2
+      },
+      "hug_minimal_19": 0,
+      "lemma_holds_on_long": true,
+      "long_witnesses": [
+        {
+          "n": 1245741,
+          "next_len": 118,
+          "kind": "overshoot",
+          "o19": 15,
+          "delta19": 4.774437511,
+          "first_hug_split": 3,
+          "next_word19": "OOOOOOOOEEOOOOOOEOE",
+          "at_r05": [
+            {
+              "t": 19,
+              "o": 15,
+              "hug_o": 12,
+              "theta": 4.774437511,
+              "delta": 4.774437511,
+              "overshoot": true,
+              "near_return": false
+            },
+            {
+              "t": 38,
+              "o": 29,
+              "hug_o": 24,
+              "theta": 7.963912521,
+              "delta": 7.963912521,
+              "overshoot": true,
+              "near_return": false
+            },
+            {
+              "t": 84,
+              "o": 60,
+              "hug_o": 53,
+              "theta": 11.097750043,
+              "delta": 11.097750043,
+              "overshoot": true,
+              "near_return": false
+            },
+            {
+              "t": 103,
+              "o": 67,
+              "hug_o": 65,
+              "theta": 3.192487548,
+              "delta": 3.192487548,
+              "overshoot": true,
+              "near_return": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "classification": "POST19_TAIL_SPLIT_CONFIRMED"
+}

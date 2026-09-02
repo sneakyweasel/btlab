@@ -1,0 +1,340 @@
+{
+  "experiment": "juggler_flight_fan_landing",
+  "anti_overclaim": {
+    "halt_theorem": false,
+    "divergence_excluded": false,
+    "landing_law_proved": false,
+    "xi_cocycle_reopened": false,
+    "mechanical_lift_reopened": false,
+    "n_window_raised": false,
+    "paper_a_modified": false
+  },
+  "two_way_slogan": "realizable (19,12) landing cell implies forced extra O within bounded depth, or another R_eps block begins",
+  "window": {
+    "n_max": 2000,
+    "tally": {
+      "n19": 44,
+      "launches": {
+        "hug_follow_die": 12,
+        "even_descent": 27,
+        "extra_O": 5
+      },
+      "hug_follow_die": 12,
+      "r05_block": 0,
+      "two_way_holdouts": 12,
+      "two_way_false": true,
+      "odd_cell_mixed": 1,
+      "odd_cells": 7,
+      "cross_ooe": {
+        "hug_follow_die": {
+          "False": 7,
+          "True": 5
+        },
+        "extra_O": {
+          "True": 5
+        }
+      },
+      "cross_oe": {
+        "hug_follow_die": {
+          "True": 7,
+          "False": 5
+        },
+        "extra_O": {
+          "False": 5
+        }
+      },
+      "cross_mod8": {
+        "hug_follow_die": {
+          "5": 2,
+          "3": 7,
+          "7": 1,
+          "1": 2
+        },
+        "extra_O": {
+          "3": 2,
+          "5": 1,
+          "1": 2
+        }
+      },
+      "cross_suffix3": {
+        "hug_follow_die": {
+          "EOE": 4,
+          "OEE": 5,
+          "EEE": 3
+        },
+        "extra_O": {
+          "OEE": 4,
+          "EOE": 1
+        }
+      },
+      "pos_ranges": {
+        "hug_follow_die": {
+          "min": 0.034877,
+          "max": 0.96596,
+          "n": 12
+        },
+        "extra_O": {
+          "min": 0.0,
+          "max": 0.967608,
+          "n": 5
+        }
+      },
+      "holdout_witnesses": [
+        {
+          "n": 163,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 5,
+          "pos": 0.195241
+        },
+        {
+          "n": 193,
+          "next_len": 6,
+          "tail_prefix3": "OOE",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 3,
+          "pos": 0.698537
+        },
+        {
+          "n": 539,
+          "next_len": 3,
+          "tail_prefix3": "OOE",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 3,
+          "pos": 0.884646
+        },
+        {
+          "n": 799,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 7,
+          "pos": 0.96596
+        },
+        {
+          "n": 891,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 5,
+          "pos": 0.195241
+        },
+        {
+          "n": 1119,
+          "next_len": 6,
+          "tail_prefix3": "OOE",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 3,
+          "pos": 0.698537
+        },
+        {
+          "n": 1121,
+          "next_len": 6,
+          "tail_prefix3": "OOE",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 3,
+          "pos": 0.698537
+        },
+        {
+          "n": 1459,
+          "next_len": 3,
+          "tail_prefix3": "OOE",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 3,
+          "pos": 0.133078
+        },
+        {
+          "n": 1673,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 3,
+          "pos": 0.034877
+        },
+        {
+          "n": 1773,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 1,
+          "pos": 0.440876
+        },
+        {
+          "n": 1857,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 3,
+          "pos": 0.443455
+        },
+        {
+          "n": 1877,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 1,
+          "pos": 0.351856
+        }
+      ],
+      "overshoot_cells": [
+        {
+          "n": 761,
+          "next_len": 41,
+          "tail_prefix3": "OOO",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 5,
+          "pos": 0.967608
+        }
+      ]
+    }
+  },
+  "flyers": {
+    "starts": [
+      48443,
+      275485,
+      412027,
+      463157,
+      1122603,
+      1245741,
+      1267909
+    ],
+    "tally": {
+      "n19": 8,
+      "launches": {
+        "extra_O": 2,
+        "hug_follow_die": 5,
+        "even_descent": 1
+      },
+      "hug_follow_die": 5,
+      "r05_block": 0,
+      "two_way_holdouts": 5,
+      "two_way_false": true,
+      "odd_cell_mixed": 2,
+      "odd_cells": 5,
+      "cross_ooe": {
+        "extra_O": {
+          "True": 2
+        },
+        "hug_follow_die": {
+          "False": 3,
+          "True": 2
+        }
+      },
+      "cross_oe": {
+        "extra_O": {
+          "False": 2
+        },
+        "hug_follow_die": {
+          "True": 3,
+          "False": 2
+        }
+      },
+      "cross_mod8": {
+        "extra_O": {
+          "5": 1,
+          "7": 1
+        },
+        "hug_follow_die": {
+          "3": 1,
+          "7": 2,
+          "5": 2
+        }
+      },
+      "cross_suffix3": {
+        "extra_O": {
+          "EEE": 1,
+          "EOE": 1
+        },
+        "hug_follow_die": {
+          "EEE": 3,
+          "EOE": 2
+        }
+      },
+      "pos_ranges": {
+        "hug_follow_die": {
+          "min": 0.463085,
+          "max": 0.463085,
+          "n": 1
+        },
+        "extra_O": {
+          "min": 0.094438,
+          "max": 0.094438,
+          "n": 1
+        }
+      },
+      "holdout_witnesses": [
+        {
+          "n": 275485,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 3,
+          "pos": null
+        },
+        {
+          "n": 412027,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 7,
+          "pos": null
+        },
+        {
+          "n": 1122603,
+          "next_len": 3,
+          "tail_prefix3": "OOE",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 7,
+          "pos": 0.463085
+        },
+        {
+          "n": 1122603,
+          "next_len": 1,
+          "tail_prefix3": "O",
+          "ooe_legal": false,
+          "oe_legal": true,
+          "end_mod8": 5,
+          "pos": null
+        },
+        {
+          "n": 1267909,
+          "next_len": 3,
+          "tail_prefix3": "OOE",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 5,
+          "pos": null
+        }
+      ],
+      "overshoot_cells": [
+        {
+          "n": 1245741,
+          "next_len": 118,
+          "tail_prefix3": "OOO",
+          "ooe_legal": true,
+          "oe_legal": false,
+          "end_mod8": 7,
+          "pos": 0.094438
+        }
+      ]
+    }
+  },
+  "classification": "LANDING_CELL_NO_LAW"
+}

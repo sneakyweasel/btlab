@@ -194,7 +194,10 @@ Classification **FAN_CONCAT_NO_GLUE**.
 
 - Does a long post-19 AboveAnchor tail have a walk-height reason
   to miss a second \(R_\varepsilon\) near-return, or is the
-  \(1245741\) miss only a finite-orbit effect? Not opened.
+  \(1245741\) miss only a finite-orbit effect? Answered by
+  [juggler_flight_post19_tail.md](juggler_flight_post19_tail.md)
+  (PARK): long miss \(=\) overshoot, not descent; overshoot is
+  not forced.
 - Infinite dynamically concatenable positive fan blocks with
   divergent total \(\theta\) remain unconstructed and unobstructed.
   That is the surviving failure mode this branch named; it is not

@@ -21590,5 +21590,84 @@ Best next question
   orbits later descend?
 ```
 
+## Post-19 tails: overshoot versus descent (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** The fan-concat PARK's best next question: is a long post-19 miss a walk-height overshoot, or only later descent?
+- **Hypotheses:** \(o=12\) on an AboveAnchor 19-prefix forces a near-return, so a long miss is \(o\ge 13\) and \(\delta>0.05\); the two named tails decide the live side; overshoot may or may not be forced.
+- **Major results:**
+  - **Dichotomy (EXACT — HUMAN PROOF, existing Lean):** `AboveAnchor` length 19 \(\Rightarrow o\ge 12\); \(o=12\Rightarrow\delta\le\theta_{19}<0.05\). A tail of length \(\ge 19\) misses \(R_{0.05}\) at \(t=19\) iff \(o\ge 13\) and \(\delta>0.05\).
+  - Window 44: 27 die immediately, 16 die before 19, one overshoots (\(n=761\), \(o_{19}=14\), \(\delta_{19}\approx 3.19\), split at letter 3). Flyers 8: 1+6 descent, one overshoots (\(n=1245741\), \(o_{19}=15\), \(\delta_{19}\approx 4.77\), still overshooting at 38/84/103).
+  - Letter-3 extra O is not forced: 5+2 tails of length \(\ge 3\) stay on hug until they die. Zero hug-minimal 19-continuations.
+  - Classification `POST19_TAIL_SPLIT_CONFIRMED`. No ledger row. No \(n_{\max}\) raise.
+- **Refuted ideas:** that the \(1245741\) miss is only later descent; that every post-19 tail of length \(\ge 3\) leaves hug at letter 3.
+- **Literature:** parent fan-concat PARK; hug/envelope Lean.
+- **Open:** landing-cell force that a hug-following post-19 tail cannot reach length 19 — not opened (mechanical lift is CLOSE). Fan-follower still unconstructed.
+- **Decision:** PARK. Dossier `docs/problems/juggler_flight_post19_tail.md`.
+
+```text
+What was learned
+- a long post-19 miss is overshoot, not descent
+- most misses are short descents; both sides occur
+- 761 and 1245741 jump delta ~ 3.19 and 4.77 at t=19
+- letter-3 extra O is not forced
+- hug-follow after (19,12) is realized and dies before 19
+Strongest theorem
+- post-19 dichotomy (corollary of hug + envelope)
+Strongest refutation
+- the 1245741 miss is only later descent
+Reusable machinery
+- flight_post19_tail profile of existing post-19 tails
+Branch status
+- PARK
+Why
+- the named alternative is decided; overshoot is not
+  a launch invariant; do not raise n_max
+Best next question
+- none from this door without a landing-cell law
+  or a new window; the fan-follower stays a surviving
+  failure mode, not a demonstrated orbit
+```
+
+## (19,12) landing-cell two-way slogan (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** Does a realizable (19,12) landing cell force an extra O within bounded depth, or else start another \(R_\varepsilon\) block?
+- **Hypotheses:** the letter-3 extra O on the two long tails is a landing-cell constraint; falsifier: an odd landing that hug-follows and neither overshoots nor starts \(R_\varepsilon\), or every label is \(T\)-parity.
+- **Major results:**
+  - Two-way slogan **REFUTED** (`juggler_fan_landing_two_way`): 12 window + 5 flyer `hug_follow_die` holdouts. Five window holdouts are OOE-legal with next prefix \(\mathtt{OOE}\) (\(n=193,539,1119,1121,1459\)).
+  - `extra_O` implies OOE-legal (all 5 window extras, both long overshoots); converse fails (5 OOE-legal hug-followers).
+  - Odd-cell key \((\mathrm{OOE},\mathrm{OE},M\bmod 8)\) is mixed; \(\xi\) ranges of both classes cover almost \((0,1)\). Even descent is `even_cell_iff`. Letter 3 is \(T^2(M)\bmod 2\).
+  - Classification `LANDING_CELL_NO_LAW`. No ledger row. No \(\xi\)-cocycle reopen.
+- **Refuted ideas:** the boxed two-way landing law; that \(\xi\) or \(M\bmod 8\) separates hug-follow from extra O.
+- **Literature:** post-19 PARK; `even_cell_iff` / `odd_cell_unique`; mechanical-lift CLOSE.
+- **Open:** none from landing cells.
+- **Decision:** CLOSE. Dossier `docs/problems/juggler_flight_fan_landing.md`.
+
+```text
+What was learned
+- the two-way landing slogan is false
+- hug-follow-die is the holdout, including OOE-legal OOE prefixes
+- extra_O implies OOE-legal; the converse fails
+- xi and mod 8 overlap; mixed cell keys
+- remaining labels are T-parity
+Strongest theorem
+- none (slogan refuted)
+Strongest refutation
+- realizable (19,12) landing forces extra O or R_eps
+  (juggler_fan_landing_two_way)
+Reusable machinery
+- flight_fan_landing cell/launch cross-tab on existing
+  endpoints
+Branch status
+- CLOSE
+Why
+- the slogan is false and every tested cell label is
+  an archived one-step cell or a failed bin
+Best next question
+- none from this door; the fan-follower stays a
+  surviving failure mode, not a demonstrated orbit
+```
+
 
 

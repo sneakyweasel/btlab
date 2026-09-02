@@ -1,0 +1,22 @@
+{
+  "id": "juggler_fan_landing_two_way",
+  "title": "A realizable (19,12) landing cell forces an extra O or another R_ε block",
+  "statement": "After a realized length-19 near-return with odd count 12, the landing cell of the endpoint forces either an extra odd letter within bounded depth (leaving hug at or before the first hug-E) or the start of another R_0.05 fan block.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "window n<=2000: 12 odd (19,12) landings are hug_follow_die (no extra O, no R_0.05 block); 5 of those are OOE-legal, the same cell type as all 5 extra_O landings",
+    "high-flyers: 5 further hug_follow_die holdouts",
+    "n=193,539,1119,1121,1459: OOE-legal landings whose next prefix is OOE (hug-compatible through letter 3) then die before length 19",
+    "odd-cell key (ooe,oe,mod 8) is mixed on both windows; xi ranges of hug_follow_die and extra_O both cover nearly (0,1)"
+  ],
+  "first_seen": "2026-09-02",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Juggler descent-free flights / fan-block landing cells",
+  "notes": "Phase 0 on existing fan-concat endpoints only. extra_O implies OOE-legal (image odd) but the converse fails. Next letters are T; even descent is even_cell. Not a xi-cocycle reopen, not a mechanical-lift reopen, not a halt theorem, no n_max raise, no Paper A, no ledger row.",
+  "origin": "docs/problems/juggler_flight_fan_landing.md",
+  "proof_reference": "docs/problems/juggler_flight_fan_landing.md",
+  "tested_range": "44 length-19 near-returns on n<=2000 and 8 on the seven high-flyers",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}
