@@ -89,10 +89,12 @@ for external review.
   from \(n\ge 3.5\cdot 10^8\) have eventual period \(\ge 780239\)
   (conditional, no new floor); divergent flights diverge pointwise with
   recurrent hug domination and record jumps quantized to the
-  \(\log_2 3\)-lattice (shortest near-return \(19\)). Do not reopen
+  \(\log_2 3\)-lattice (shortest near-return \(19\)).   Do not reopen
   composition (`REPARAMETERIZATION`), odd-tower placement, DK-as-kill,
-  or valley-composition exclusion (`CLOSE`: occupancy is the existing
-  pigeonhole). The terminating-side height-law PARK is not an exclusion
+  valley-composition exclusion (`CLOSE`: occupancy is the existing
+  pigeonhole), or a bounded walk coboundary
+  (`juggler_walk_phase_correction`: even-square tower kills every
+  bounded \(\psi\); the fan margin is smaller than the collapse). The terminating-side height-law PARK is not an exclusion
   mechanism. Hug-cylinder construction stays PARK
   (`juggler_hug_flow_window`): depth \(1\) is
   `J-hug-flow-window-depth-one`. Interval-ET depth \(2\) is CLOSE

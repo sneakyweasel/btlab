@@ -1,0 +1,23 @@
+{
+  "id": "juggler_walk_phase_correction",
+  "title": "A bounded phase correction makes the walk cocycle uniformly nonnegative",
+  "statement": "There exist a bounded-complexity phase ψ (a sawtooth a{α x^β}, a small Fourier mode of {x^{1/4}}, {√x}, {x^{3/2}}, or {α log2 x}, or a finite combination of those) and a finite exceptional set such that Φ(x) = log2(ln x) + ψ(ξ(x)) has Φ(J(x)) − Φ(x) ≥ 0 on every sufficiently large integer, or the same inequality on every sufficiently large AboveAnchor one-step or length-19 / first-OE block, with the increment strictly positive infinitely often.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "on every even square x = k^2 ≥ 16 the leading increment is exactly −1; along k^{2^N} → ⋯ → k a bounded ψ would need ψ(k) − ψ(k^{2^N}) ≥ N",
+    "16 → 4: {√x} and {x^{3/2}} increments vanish, so those phases cannot move the −1",
+    "universe one-step on [16, 4000]: best min drift ≈ −1.20 at 24 → 4, attained at ψ = 0",
+    "sliding length-19 AboveAnchor blocks: baseline min ≈ −3.76; no tested ψ lifts the family",
+    "n = 1999: fan leading 0.0195 and collapse −1.565 on the same prefix; n = 761: 11 fan windows (min 0.0125) and 11 collapse windows (min −3.58); ψ = 0 is optimal on the 221 near-neutral windows"
+  ],
+  "first_seen": "2026-09-02",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Juggler walk / Lyapunov coboundary / termination-side phase correction",
+  "notes": "Phase 0 only. Not a reopen of the state-only log/loglog Lyapunov (juggler_cycle_block_potential). Not a DK tightening. Not a halt theorem. No Paper A edit, no ledger row, no new Lean. Do not raise N0.",
+  "origin": "docs/problems/juggler_walk_coboundary.md",
+  "proof_reference": "docs/problems/juggler_walk_coboundary.md",
+  "tested_range": "one-steps and first OE-blocks on [16, 4000]; AboveAnchor prefixes to 256 bits; adversary prefixes 761, 1089, 1999 to 900 bits; seven high-flyer starts",
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false
+}

@@ -27,6 +27,10 @@ htmlcov/
 .agents/
 *.swp
 
+# Node (Paper A reviewer companion)
+node_modules/
+web/juggler-companion/dist/
+
 # Experiment outputs (keep directory structure)
 experiments/**/*.json
 experiments/**/*.jsonl

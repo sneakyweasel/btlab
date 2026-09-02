@@ -1,0 +1,95 @@
+import { Link } from "react-router-dom";
+import { Tex } from "../components/Tex";
+import {
+  LAB_WALK_PERIOD,
+  PAPER_PERIOD,
+  PRINTED_PERIOD,
+} from "../juggler/constants";
+import { MapDoors } from "../visuals/MapDoors";
+
+export function HomePage() {
+  return (
+    <div className="space-y-10">
+      <section className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+        <div>
+          <p className="text-sm uppercase tracking-[0.2em] text-muted">
+            Paper A companion
+          </p>
+          <h1 className="mt-2 max-w-xl text-4xl sm:text-5xl">
+            A picture dictionary for the Juggler cycle paper
+          </h1>
+          <p className="prose-measure mt-4 text-lg text-muted">
+            The Juggler map sends even n to the square root and odd n to n
+            to the three-halves — that is n√n, not the cube root — then
+            floors the result: throw away the decimals and keep the integer
+            part. That floor is applied after every step. Paper A does not
+            prove that every start reaches 1. It proves period lower bounds
+            for a hypothetical cycle, once a verified descent floor N₀ is
+            given.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              to="/tour/the-map"
+              className="rounded-full bg-deep px-4 py-2 text-card no-underline"
+            >
+              Start the tour
+            </Link>
+            <Link
+              to="/play/orbit"
+              className="rounded-full border border-line px-4 py-2 text-ink no-underline"
+            >
+              Open the playground
+            </Link>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-line bg-card p-4">
+          <MapDoors />
+          <div className="mt-3 text-center">
+            <Tex display>{String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n^{3/2}\rfloor,&n\text{ odd.}\end{cases}`}</Tex>
+            <p className="mt-2 text-sm text-muted">
+              The brackets ⌊ ⌋ mean floor: remove the decimals, keep the
+              integer part. Example: ⌊3√3⌋ = ⌊5.196…⌋ = 5.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="grid gap-3 sm:grid-cols-3">
+        <BoundCard title="Theorem 4.6" bound={PAPER_PERIOD} floor="1,000,000" />
+        <BoundCard title="Theorem 5.9" bound={LAB_WALK_PERIOD} floor="26,254,995" />
+        <BoundCard title="Corollary 5.10" bound={PRINTED_PERIOD} floor="162,849,448" />
+      </section>
+      <section className="prose-measure space-y-3 text-muted">
+        <p>
+          Use the tour if the words are new. Use the playground to try the
+          orbit of 3, a short O/E word, an inverse cell, a necklace rotation,
+          or a finance length from the shipped table.
+        </p>
+        <p>
+          Manuscript:{" "}
+          <a href="https://github.com/sneakyweasel/balanced_ternary/blob/main/juggler_review/juggler_finite_dynamics_note.pdf">
+            Paper A PDF
+          </a>
+          . This site is a glossary, not the laboratory Streamlit app.
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function BoundCard({
+  title,
+  bound,
+  floor,
+}: {
+  title: string;
+  bound: number;
+  floor: string;
+}) {
+  return (
+    <div className="rounded-xl border border-line bg-card p-4">
+      <div className="text-xs uppercase tracking-wide text-muted">{title}</div>
+      <div className="mt-2 font-serif text-3xl">L ≥ {bound.toLocaleString("en-US")}</div>
+      <div className="mt-1 text-sm text-muted">at N₀ = {floor}</div>
+    </div>
+  );
+}

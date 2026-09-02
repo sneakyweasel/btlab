@@ -1,0 +1,589 @@
+{
+  "experiment": "juggler_walk_coboundary",
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "halt_theorem": false,
+    "eventual_descent_theorem": false,
+    "paper_a_modified": false,
+    "n0_raised": false,
+    "dk_tightened": false,
+    "block_potential_reopened": false
+  },
+  "n_max": 4000,
+  "min_x": 16,
+  "fan_len": 19,
+  "obstruction": {
+    "k": 4,
+    "depth": 4,
+    "states": [
+      4294967296,
+      65536,
+      256,
+      16,
+      4
+    ],
+    "leadings": [
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ],
+    "leading_sum": -4.0,
+    "named_dphase": {
+      "sqrt": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "three_halves": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fourth": [
+        0.0,
+        0.0,
+        0.0,
+        0.41421356237309515
+      ]
+    },
+    "identity": "leading on even squares is exactly -1",
+    "bounded_psi_impossible": true
+  },
+  "adversaries": [
+    {
+      "n": 761,
+      "prefix_len": 61,
+      "peak_bits": 851,
+      "n_slide19": 43,
+      "n_fan": 11,
+      "n_collapse": 11,
+      "fan_min_leading": 0.012516856730218073,
+      "collapse_min_leading": -3.5813488968661473,
+      "both_signs": true
+    },
+    {
+      "n": 1089,
+      "prefix_len": 7,
+      "peak_bits": 39,
+      "n_slide19": 0,
+      "n_fan": 0,
+      "n_collapse": 0,
+      "fan_min_leading": null,
+      "collapse_min_leading": null,
+      "both_signs": false
+    },
+    {
+      "n": 1999,
+      "prefix_len": 25,
+      "peak_bits": 63,
+      "n_slide19": 7,
+      "n_fan": 5,
+      "n_collapse": 1,
+      "fan_min_leading": 0.019515097416420435,
+      "collapse_min_leading": -1.5654504437192984,
+      "both_signs": true
+    }
+  ],
+  "even_dphase_wings": {
+    "sqrt": {
+      "min": -0.9864840178138586,
+      "max": 0.9293179251003151,
+      "n": 1993,
+      "n_pos": 893,
+      "n_neg": 908,
+      "n_tiny": 76,
+      "both_wings": true
+    },
+    "three_halves": {
+      "min": -0.9970456579258098,
+      "max": 0.9871792237623325,
+      "n": 1993,
+      "n_pos": 839,
+      "n_neg": 959,
+      "n_tiny": 68,
+      "both_wings": true
+    },
+    "fourth": {
+      "min": -0.7846349594781237,
+      "max": 0.7228341091343133,
+      "n": 1993,
+      "n_pos": 971,
+      "n_neg": 785,
+      "n_tiny": 100,
+      "both_wings": true
+    },
+    "pi_log2": {
+      "min": -0.8195655991553163,
+      "max": 0.9939266329769296,
+      "n": 1993,
+      "n_pos": 971,
+      "n_neg": 870,
+      "n_tiny": 64,
+      "both_wings": true
+    }
+  },
+  "families": {
+    "universe_one": {
+      "n_pairs": 3985,
+      "baseline": {
+        "min_drift": -1.19690993,
+        "n_used": 3985,
+        "n_positive": 1992,
+        "worst_src": 24,
+        "worst_dst": 4,
+        "amp": 0.0
+      },
+      "sawtooth": {
+        "n_tried": 210,
+        "best": {
+          "min_drift": -1.36543971,
+          "n_used": 3985,
+          "n_positive": 1992,
+          "worst_src": 82,
+          "worst_dst": 9,
+          "amp": -0.5,
+          "alpha": 1.0,
+          "beta": 0.25,
+          "kind": "sawtooth"
+        }
+      },
+      "named": {
+        "best": {
+          "min_drift": -1.26756885,
+          "n_used": 3985,
+          "n_positive": 1992,
+          "worst_src": 32,
+          "worst_dst": 5,
+          "amp": -0.5,
+          "phase": "log2",
+          "kind": "named"
+        }
+      },
+      "basis": {
+        "n_tried": 343,
+        "best": {
+          "min_drift": -1.19690993,
+          "n_used": 3985,
+          "n_positive": 1992,
+          "worst_src": 24,
+          "worst_dst": 4,
+          "amps": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "basis",
+          "phases": [
+            "fourth",
+            "sqrt",
+            "three_halves"
+          ]
+        }
+      },
+      "fourier": {
+        "n_tried": 144,
+        "best": {
+          "min_drift": -2.37034066,
+          "n_used": 3985,
+          "n_positive": 1791,
+          "worst_src": 400,
+          "worst_dst": 20,
+          "amps": [
+            0.5,
+            0.5
+          ],
+          "kind": "fourier",
+          "phase": "pi_log2"
+        }
+      },
+      "best": {
+        "min_drift": -1.19690993,
+        "n_used": 3985,
+        "n_positive": 1992,
+        "worst_src": 24,
+        "worst_dst": 4,
+        "amps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kind": "basis",
+        "phases": [
+          "fourth",
+          "sqrt",
+          "three_halves"
+        ]
+      }
+    },
+    "prefix_one": {
+      "n_pairs": 8821,
+      "baseline": {
+        "min_drift": -1.98498252,
+        "n_used": 8821,
+        "n_positive": 6396,
+        "worst_src": 9651878175230436,
+        "worst_dst": 98243972,
+        "amp": 0.0
+      },
+      "sawtooth": {
+        "n_tried": 210,
+        "best": {
+          "min_drift": -1.44913519,
+          "n_used": 6798,
+          "n_positive": 5116,
+          "worst_src": 2074113244632,
+          "worst_dst": 1440178,
+          "amp": 0.5,
+          "alpha": 1.0,
+          "beta": 0.75,
+          "kind": "sawtooth"
+        }
+      },
+      "named": {
+        "best": {
+          "min_drift": -2.20136207,
+          "n_used": 8821,
+          "n_positive": 6396,
+          "worst_src": 15955377242515480,
+          "worst_dst": 126314596,
+          "amp": -0.5,
+          "phase": "pi_log2",
+          "kind": "named"
+        }
+      },
+      "basis": {
+        "n_tried": 343,
+        "best": {
+          "min_drift": -1.98498252,
+          "n_used": 8821,
+          "n_positive": 6396,
+          "worst_src": 9651878175230436,
+          "worst_dst": 98243972,
+          "amps": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "basis",
+          "phases": [
+            "fourth",
+            "sqrt",
+            "three_halves"
+          ]
+        }
+      },
+      "fourier": {
+        "n_tried": 144,
+        "best": {
+          "min_drift": -2.54912715,
+          "n_used": 8821,
+          "n_positive": 5490,
+          "worst_src": 1415216448622787028,
+          "worst_dst": 1189628702,
+          "amps": [
+            -0.5,
+            -0.5
+          ],
+          "kind": "fourier",
+          "phase": "three_halves"
+        }
+      },
+      "best": {
+        "min_drift": -1.44913519,
+        "n_used": 6798,
+        "n_positive": 5116,
+        "worst_src": 2074113244632,
+        "worst_dst": 1440178,
+        "amp": 0.5,
+        "alpha": 1.0,
+        "beta": 0.75,
+        "kind": "sawtooth"
+      }
+    },
+    "slide19": {
+      "n_pairs": 489,
+      "baseline": {
+        "min_drift": -3.75736743,
+        "n_used": 489,
+        "n_positive": 389,
+        "worst_src": 849477259899383431760814783271,
+        "worst_dst": 2348,
+        "amp": 0.0
+      },
+      "sawtooth": {
+        "n_tried": 210,
+        "best": {
+          "min_drift": -1.06553479,
+          "n_used": 91,
+          "n_positive": 62,
+          "worst_src": 29249071,
+          "worst_dst": 333,
+          "amp": -1.0,
+          "alpha": 1.0,
+          "beta": 2.0,
+          "kind": "sawtooth"
+        }
+      },
+      "named": {
+        "best": {
+          "min_drift": -3.60296625,
+          "n_used": 489,
+          "n_positive": 300,
+          "worst_src": 849477259899383431760814783271,
+          "worst_dst": 2348,
+          "amp": 2.0,
+          "phase": "three_halves",
+          "kind": "named"
+        }
+      },
+      "basis": {
+        "n_tried": 343,
+        "best": {
+          "min_drift": -3.30721713,
+          "n_used": 489,
+          "n_positive": 279,
+          "worst_src": 86801577345234840904352463637739349494690548330640,
+          "worst_dst": 421140,
+          "amps": [
+            0.0,
+            -1.0,
+            1.5
+          ],
+          "kind": "basis",
+          "phases": [
+            "fourth",
+            "sqrt",
+            "three_halves"
+          ]
+        }
+      },
+      "fourier": {
+        "n_tried": 144,
+        "best": {
+          "min_drift": -3.82602513,
+          "n_used": 489,
+          "n_positive": 301,
+          "worst_src": 499544663969452179239665523031856,
+          "worst_dst": 4816,
+          "amps": [
+            -1.0,
+            0.5
+          ],
+          "kind": "fourier",
+          "phase": "three_halves"
+        }
+      },
+      "best": {
+        "min_drift": -3.30721713,
+        "n_used": 489,
+        "n_positive": 279,
+        "worst_src": 86801577345234840904352463637739349494690548330640,
+        "worst_dst": 421140,
+        "amps": [
+          0.0,
+          -1.0,
+          1.5
+        ],
+        "kind": "basis",
+        "phases": [
+          "fourth",
+          "sqrt",
+          "three_halves"
+        ]
+      }
+    },
+    "slide19_fan": {
+      "n_pairs": 221,
+      "baseline": {
+        "min_drift": 0.00993152,
+        "n_used": 221,
+        "n_positive": 221,
+        "worst_src": 11320819313552109,
+        "worst_dst": 18745850647581263,
+        "amp": 0.0
+      },
+      "sawtooth": {
+        "n_tried": 210,
+        "best": {
+          "min_drift": -0.23079293,
+          "n_used": 93,
+          "n_positive": 80,
+          "worst_src": 1089,
+          "worst_dst": 1196,
+          "amp": -0.5,
+          "alpha": 0.5,
+          "beta": 2.0,
+          "kind": "sawtooth"
+        }
+      },
+      "named": {
+        "best": {
+          "min_drift": -0.40239939,
+          "n_used": 221,
+          "n_positive": 122,
+          "worst_src": 30948477706083100,
+          "worst_dst": 51742819421966368,
+          "amp": 0.5,
+          "phase": "theta_log2",
+          "kind": "named"
+        }
+      },
+      "basis": {
+        "n_tried": 343,
+        "best": {
+          "min_drift": 0.00993152,
+          "n_used": 221,
+          "n_positive": 221,
+          "worst_src": 11320819313552109,
+          "worst_dst": 18745850647581263,
+          "amps": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "basis",
+          "phases": [
+            "fourth",
+            "sqrt",
+            "three_halves"
+          ]
+        }
+      },
+      "fourier": {
+        "n_tried": 144,
+        "best": {
+          "min_drift": -1.29992506,
+          "n_used": 221,
+          "n_positive": 137,
+          "worst_src": 8856013129,
+          "worst_dst": 12104591259,
+          "amps": [
+            0.5,
+            0.5
+          ],
+          "kind": "fourier",
+          "phase": "three_halves"
+        }
+      },
+      "best": {
+        "min_drift": 0.00993152,
+        "n_used": 221,
+        "n_positive": 221,
+        "worst_src": 11320819313552109,
+        "worst_dst": 18745850647581263,
+        "amps": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "kind": "basis",
+        "phases": [
+          "fourth",
+          "sqrt",
+          "three_halves"
+        ]
+      }
+    },
+    "first_oe": {
+      "n_pairs": 1727,
+      "baseline": {
+        "min_drift": -2.91265337,
+        "n_used": 1727,
+        "n_positive": 570,
+        "worst_src": 3915,
+        "worst_dst": 3,
+        "amp": 0.0
+      },
+      "sawtooth": {
+        "n_tried": 210,
+        "best": {
+          "min_drift": -2.79597648,
+          "n_used": 1695,
+          "n_positive": 477,
+          "worst_src": 3617,
+          "worst_dst": 3,
+          "amp": -0.5,
+          "alpha": 1.584962500721156,
+          "beta": 0.25,
+          "kind": "sawtooth"
+        }
+      },
+      "named": {
+        "best": {
+          "min_drift": -2.71325449,
+          "n_used": 1727,
+          "n_positive": 511,
+          "worst_src": 2647,
+          "worst_dst": 3,
+          "amp": 0.5,
+          "phase": "pi_log2",
+          "kind": "named"
+        }
+      },
+      "basis": {
+        "n_tried": 343,
+        "best": {
+          "min_drift": -2.9086803,
+          "n_used": 1727,
+          "n_positive": 533,
+          "worst_src": 3005,
+          "worst_dst": 3,
+          "amps": [
+            0.0,
+            0.5,
+            0.0
+          ],
+          "kind": "basis",
+          "phases": [
+            "fourth",
+            "sqrt",
+            "three_halves"
+          ]
+        }
+      },
+      "fourier": {
+        "n_tried": 144,
+        "best": {
+          "min_drift": -2.98764823,
+          "n_used": 1727,
+          "n_positive": 634,
+          "worst_src": 2899,
+          "worst_dst": 9,
+          "amps": [
+            -0.5,
+            0.5
+          ],
+          "kind": "fourier",
+          "phase": "fourth"
+        }
+      },
+      "best": {
+        "min_drift": -2.71325449,
+        "n_used": 1727,
+        "n_positive": 511,
+        "worst_src": 2647,
+        "worst_dst": 3,
+        "amp": 0.5,
+        "phase": "pi_log2",
+        "kind": "named"
+      }
+    }
+  },
+  "notes": {
+    "phi": "\u03a6 = log2(ln x) + \u03c8(\u03be(x)); drift = \u03a6(J(x)) \u2212 \u03a6(x) or a block analogue",
+    "one_step": "any bounded \u03c8 fails on the even-square tower: leading is exactly \u22121 and the telescoping correction is bounded",
+    "fan": "length-19 sliding blocks on AboveAnchor prefixes: the fan scale where the leading cocycle is nearly neutral",
+    "discovery": "a candidate is a bounded-complexity \u03c8 with min drift >= 0 on a family; the even-square identity already kills one-step"
+  },
+  "classification": "WALK_COBOUNDARY_DEFEATED",
+  "decision": "CLOSE"
+}

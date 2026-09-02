@@ -21669,5 +21669,46 @@ Best next question
   surviving failure mode, not a demonstrated orbit
 ```
 
+## Walk coboundary: Lyapunov phase correction (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** Does \(\Phi=\log_2\ln x+\psi(\xi(x))\) for a bounded-complexity phase produce uniformly nonnegative one-step or block-step drift on large AboveAnchor transitions? Not a DK tighten and not a reopen of the closed state-only log/loglog Lyapunov.
+- **Hypotheses:** the fan is invisible to log log but not to a fractional phase; floor errors \(\{x^{1/2}\}\), \(\{x^{3/2}\}\), \(\{x^{1/4}\}\) may cobound.
+- **Major results:**
+  - **One-step (EXACT — HUMAN PROOF):** on every even square \(x=k^2\), \(\Delta u=-1\). A bounded \(\psi\) cannot telescope along \(k^{2^N}\to\cdots\to k\). Witness \(2^{32}\to\cdots\to 4\). \(\{\sqrt{x}\}\) and \(\{x^{3/2}\}\) vanish on \(16\to 4\).
+  - Grid on \([16,4000]\) plus high-flyers: universe min \(\approx-1.20\) at \(24\to 4\) (best is \(\psi=0\)); prefix one-step and first OE stay negative; sliding \(19\)-blocks baseline \(-3.76\), best still \(<-3\).
+  - Fan windows (\(221\)) are already positive at \(\psi=0\) (min \(0.0099\approx\theta_{19}\)). Adversaries \(1999\) and \(761\) carry both a fan climb and a collapse \(\le-1.56\) on the same prefix.
+  - Classification `WALK_COBOUNDARY_DEFEATED`. No ledger row. No Paper A. No \(N_0\) raise.
+- **Refuted ideas:** a bounded phase correction makes the walk cocycle uniformly nonnegative (`juggler_walk_phase_correction`).
+- **Literature:** closed block-potential Lyapunov; flight envelope; return-quantization \(\theta_{19}\).
+- **Open:** none from a bounded state-phase coboundary. An unbounded \(\psi\) is a different object; not opened.
+- **Decision:** CLOSE. Dossier `docs/problems/juggler_walk_coboundary.md`.
+
+```text
+What was learned
+- even-square leading is exactly -1; bounded ψ cannot telescope
+- {√x} and {x^{3/2}} vanish on even fourth powers
+- the grid never lifts one-step, prefix, slide-19, or first OE
+- fan windows are already optimal at ψ=0
+- the same prefixes collapse by more than the fan margin
+Strongest theorem
+- no bounded coboundary makes one-step drift ≥ 0
+  off a finite set
+Strongest refutation
+- a bounded-complexity phase correction is uniformly
+  nonnegative (juggler_walk_phase_correction)
+Reusable machinery
+- walk_coboundary leading/phase increment and the
+  even-square tower identity
+Branch status
+- CLOSE
+Why
+- the discovery criterion is negative: the fan is
+  invisible to log log and the natural phases cannot
+  see it either without spoiling the collapses
+Best next question
+- none from this door; do not start an unbounded-ψ
+  rescue
+```
 
 

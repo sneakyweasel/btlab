@@ -8,6 +8,9 @@ certified density \(7/8\)).
 This folder is a snapshot of the files to send for external review. It
 is not the laboratory. No termination theorem is claimed.
 
+Interactive glossary and playground (Paper A vocabulary only):
+https://sneakyweasel.github.io/balanced_ternary/
+
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
