@@ -21876,4 +21876,44 @@ Best next question
 - none from this door; do not start another exact-step census
 ```
 
+## Square-seam cycle lemma (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** If a nontrivial cycle contains an isolated square, what exact two-sided constraints do the odd seam \(s^2\to s^3\) and the isolated even seam \(k^2\to k\) impose? Not exact-floor impact, not a cyclic-seam word-cut, not a leftover-killer, and not a Paper A edit.
+- **Hypotheses:** the zero-defect junction couples \(W_-\) and \(W_+\) through one integer and yields a new word factor, a strictly stronger finance identity, or a Diophantine restriction on \(s\); falsifier: both seams are cells plus \(d_i=0\), local words are `*OO`/`*EE` by image parity, one crumb does not move leftovers, short closure is a short cycle.
+- **Major results:**
+  - Identities split the map: \(9\to 27\) odd isolated `*OO`; \(36\to 6\) and \(100\to 10\) even isolated `*EE`. Roots \(s,k\le 200\): all exact, all odd `*OO`, all even `*EE`.
+  - Entrance is the existing cells: odd parents unique (5 of 93 isolated odd roots occupied); even width \(2q+1\).
+  - CycleMin \(=s^2\) adds only \(d_0=0\). OO suffix and last-even cell \([n^2,(n+1)^2)\) are the standard identities.
+  - Finance is not a leftover-mover: odd save \(5.77\cdot 10^{-13}\) at \(s_0=12763\); even save \(\le 7.37\cdot 10^{-9}\) under `cycleMin_even_ge_sq`.
+  - Short \(|W_\pm|\le 3\) on roots \(\le 30\): 0 closing pairs. Classification `SQUARE_SEAM_REPARAMETERIZATION`. No ledger theorem row, no Lean, no Paper A.
+- **Refuted ideas:** that \(J(s^2)=s^3\) for every square; that a square CycleMin tightens the last-even cell; that one vanishing crumb moves leftovers; that a short two-sided word around the seam is a new Diophantine.
+- **Literature:** `even_cell_iff`, `odd_cell_unique`, `localDefect*_eq_zero_iff`, `cycleMin_even_ge_sq`, `even_tower_to_one`; exact-floor impact CLOSE; cyclic seam CLOSE.
+- **Open:** none from the square-seam junction.
+- **Decision:** CLOSE. Dossier `docs/problems/juggler_square_seam.md`.
+
+```text
+What was learned
+- odd isolated seam is s^2 -> s^3; even isolated seam is k^2 -> k
+- incoming parents are the ordinary even/odd cells
+- local words *OO and *EE are launch / parity, not new factors
+- one vanishing crumb does not move leftovers
+- short two-sided closure is a short cycle
+Strongest theorem
+- none new (cells, defect, CycleMin, even_tower_to_one)
+Strongest refutation
+- a square state is a new algebraic cycle junction
+  (word / finance / Diophantine on s)
+Reusable machinery
+- square_seam identities and parent-cell / finance checks
+Branch status
+- CLOSE
+Why
+- every Phase-0 statement is KNOWN or REPARAMETERIZATION
+  of cells, CycleMin square-scale, and d_i=0
+Best next question
+- none from this door; do not start another square-state
+  cycle census
+```
+
 
