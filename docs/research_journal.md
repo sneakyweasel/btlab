@@ -21549,5 +21549,46 @@ Best next question
   frontier stays the fan-minimum CF reduction
 ```
 
+## Fan-block concatenability: local glue of (19, 12) (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** After a realized record segment of shortest fan type \((p,o)=(19,12)\), can the terminal state launch another \(R_\varepsilon\) fan block, or is there a local launch obstruction? Not a CF census and not a reopen of record composition, mechanical lift, or expanding-residual concat.
+- **Hypotheses:** word/state glue is a different object from \(\delta\)-lattice composition; finite \(19\to 19\) or \(38=19\mid 19\) would make the mechanism live at finite scale; a new launch law would promote.
+- **Major results:**
+  - Window \(n\le 2000\) reconciles the return-quantization census: 44 length-19 and 7 length-38 near-returns, all \((19,12)\) or \((38,24)\), none the hug word (Hamming \(\ge 2\)).
+  - Formal launch (odd endpoint) occurs on 17/44; every 19-endpoint is a remaining-tail record. Realized glue is zero: no \(19\to 19\), \(19\to 38\), \(19\to R_{0.05}\), or \(38=19\mid 19\).
+  - Typical next-segment length is 0 (27/44). Two long tails still miss: \(n=761\) (41 steps), high-flyer \(n=1245741\) (118 steps). Seven high-flyers add 8+6 near-returns and no glue.
+  - Classification `FAN_CONCAT_NO_GLUE`. No launch invariant, no infinite A–F sequence, no ledger row, no Paper A, no flight-note rewrite.
+- **Refuted ideas:** that the 7 length-38 hits are \(19\mid 19\); that realized 19-near-returns are hug(19); that the A–F list is itself a new theorem (it packages existing rows; only A/E were open).
+- **Literature:** `J-flight-divergent-structure`, `J-flight-return-quantization`; closed doors named in the dossier.
+- **Open:** infinite concatenable positive fan blocks with divergent total \(\theta\) stay unconstructed and unobstructed. The long-tail miss is not opened.
+- **Decision:** PARK. Dossier `docs/problems/juggler_flight_fan_concat.md`. Do not raise \(n_{\max}\).
+
+```text
+What was learned
+- existing 19/38 near-returns are quantized (p,o), not hug words
+- formal odd-end launch occurs; realized glue does not
+- 38 is a single window, not 19|19
+- most 19s sit at the end of a dying climb
+- two long tails (41, 118) still miss a second R_0.05 hit
+Strongest theorem
+- none (Phase-0 census)
+Strongest refutation
+- 38 = 19|19 on the existing windows
+Reusable machinery
+- flight_fan_concat glue classifier on existing
+  near-return windows
+Branch status
+- PARK
+Why
+- glue is absent but no launch invariant appeared;
+  terminating-orbit data cannot kill an infinite
+  fan-follower; do not auto-continue
+Best next question
+- does a long post-19 tail miss the next R_eps time
+  for a walk-height reason, or only because these
+  orbits later descend?
+```
+
 
 
