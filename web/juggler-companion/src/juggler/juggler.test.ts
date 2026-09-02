@@ -407,7 +407,7 @@ describe("idealized figure decisions", () => {
   it("does not paint equidistribution or automatic descent as beads", () => {
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "equidistribution")?.kind).toBe("off-figure");
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "automatic")?.kind).toBe("off-figure");
-    expect(IDEAL_DECISIONS.find((decision) => decision.id === "empty-string")?.why).toMatch(/minimum length 0/);
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "empty-string")?.why).toMatch(/0\+ slot/);
   });
 
   it("records the Lean honesty split on the cycle figure", () => {
