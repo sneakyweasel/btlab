@@ -73,6 +73,7 @@ export function CycleTourWidget() {
   const [shift, setShift] = useState(0);
   const [minIndex, setMinIndex] = useState(DEFAULT_SHAPE.minIndex);
   const [decisionId, setDecisionId] = useState<string | null>(null);
+  const [joinIndex, setJoinIndex] = useState(0);
   const decision = findDecision(decisionId);
 
   function chooseDecision(id: string | null) {
@@ -118,15 +119,22 @@ export function CycleTourWidget() {
       }}
     >
       <p className="text-sm text-muted">
-        If a cycle existed it would need a CycleMin balloon in run form, with
-        period at least 11. The stem OO???E is a cartoon of one first visit,
-        not a forced preperiod. Click a bead or a row to see the lemma.
-        Click empty space to show the whole figure again. Pictures of
-        necessity, not a cycle. The unique known balloon is 1.
+        If a cycle existed it would need a CycleMin cycle: six sure
+        letters plus interval slots, period at least 11. The stem OO???E
+        is an optional first visit, not a forced preperiod. Rotate
+        the join among the six sure letters; CycleMin is one placement.
+        Click a bead or a row to see the lemma. Click empty space to
+        show the whole figure again. Pictures of necessity, not a
+        realized loop beyond 1. The unique known cycle is 1.
       </p>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
           focus={decision?.focus}
+          joinIndex={joinIndex}
+          onJoinIndex={(index) => {
+            setJoinIndex(index);
+            setDecisionId("join-seam");
+          }}
           onSelectDecision={toggleDecision}
           onClearFocus={clearDecision}
         />
@@ -139,7 +147,7 @@ export function CycleTourWidget() {
         <>
           <div>
             <p className="mb-1.5 text-xs uppercase tracking-wide text-muted">
-              Balloon leftovers — not cycles
+              Cycle leftovers — not realized loops
             </p>
             <div className="flex flex-wrap items-center gap-1.5">
               {CYCLE_TOUR_PRESETS.map((preset) => (
@@ -172,7 +180,7 @@ export function CycleTourWidget() {
             }`}
           >
             {balloonShape.cycleMinShaped
-              ? "This leftover fills the overlapping balloon letters. Still not a cycle."
+              ? "This leftover fills the interval slots. Still not a realized cycle."
               : aligned
                 ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, and has four evens."
                 : "Rotate until the min bead sits at the leftover knot."}
@@ -216,7 +224,7 @@ export function CycleTourWidget() {
             <div className="space-y-3">
               <LetterRow word={current} aligned={aligned} />
               <p className="text-xs uppercase tracking-wide text-muted">
-                Balloon checklist
+                Cycle checklist
               </p>
               <ul className="grid gap-1.5">
                 <Check ok={shape.startsOO}>
@@ -273,8 +281,8 @@ export function CycleTourWidget() {
         />
       </label>
       <p className="text-sm text-muted">
-        O⁷EEEE, O⁶EEEOE, and the three-valley word fill the overlapping
-        balloon letters and still do not close. Those spellings are leftovers, not
+        O⁷EEEE, O⁶EEEOE, and the three-valley word inhabit the CycleMin
+        shape and still do not close. Those spellings are leftovers, not
         walks.{" "}
         <Link to="/play/cycle">Try the same necklace in the playground</Link>.
       </p>

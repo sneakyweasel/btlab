@@ -1,8 +1,13 @@
 import type { DecisionFocus } from "../content/idealDecisions";
 import {
   IDEAL_BALLOON_BEADS,
+  IDEAL_BALLOON_INTERVALS,
   IDEAL_STRING_BEADS,
-  packCountRuns,
+  idealJoinLabel,
+  idealJoinSpots,
+  intervalBoundLabel,
+  stepIdealJoin,
+  type BalloonInterval,
   type IdealBead,
 } from "../juggler/constants";
 
@@ -38,7 +43,6 @@ function beadPaint(bead: IdealBead): {
 }
 
 function balloonCaption(index: number, beads: readonly IdealBead[]): string {
-  const bead = beads[index];
   const sureEvens = beads
     .map((item, itemIndex) =>
       item.letter === "E" && item.tone === "sure" ? itemIndex : -1,
@@ -46,32 +50,10 @@ function balloonCaption(index: number, beads: readonly IdealBead[]): string {
     .filter((itemIndex) => itemIndex >= 0);
   if (index === 0) return "min";
   if (index === 1) return "a₁≥2";
-  if (bead.letter === "O" && bead.tone === "count" && index === 2) return "a₁";
-  if (index === sureEvens[0]) return "E";
-  if (index === beads.length - 2) return "aₑ≤1";
-  if (index === beads.length - 1) return "last E";
+  if (index === sureEvens[0]) return "first E";
+  if (index === sureEvens[sureEvens.length - 1]) return "last E";
+  if (sureEvens.includes(index)) return "E";
   return "";
-}
-
-const STACK_COPIES = 3;
-
-function stackXY(
-  copy: number,
-  copies: number,
-  x: number,
-  y: number,
-  step: number,
-  orbit?: { cx: number; cy: number; r: number; angle: number },
-): { x: number; y: number } {
-  const k = copy - (copies - 1);
-  if (orbit) {
-    const angle = orbit.angle + (k * step) / orbit.r;
-    return {
-      x: orbit.cx + orbit.r * Math.cos(angle),
-      y: orbit.cy + orbit.r * Math.sin(angle),
-    };
-  }
-  return { x: x + k * step, y };
 }
 
 function regionLit(focus: DecisionFocus | undefined, region: DecisionFocus): boolean {
@@ -80,7 +62,7 @@ function regionLit(focus: DecisionFocus | undefined, region: DecisionFocus): boo
   if (focus === region) return true;
   if (focus === "string" && region.startsWith("string")) return true;
   if (focus === "balloon" && region.startsWith("balloon")) return true;
-  if (focus === "join" && (region === "join" || region === "string-e" || region === "balloon-oo")) {
+  if (focus === "join" && (region === "join" || region === "string-e")) {
     return true;
   }
   if (focus === "balloon-e" && region === "balloon-first-e") return true;
@@ -103,11 +85,22 @@ function balloonRegion(
     (item) => item.letter === "E" && item.tone === "sure",
   );
   if (index <= 1) return "balloon-oo";
-  if (index >= last - 1) return "balloon-seam";
+  if (index === last) return "balloon-seam";
   if (index === firstSureEven) return "balloon-first-e";
   if (bead.letter === "E" && bead.tone === "sure") return "balloon-e";
-  if (bead.tone === "count") return "balloon-fade";
   return "balloon";
+}
+
+function intervalRegion(interval: BalloonInterval): DecisionFocus {
+  if (interval.kind === "lastZeroOrOne") return "balloon-seam";
+  if (interval.kind === "extraEven") return "balloon-e";
+  return "balloon-fade";
+}
+
+function intervalDecision(interval: BalloonInterval): string {
+  if (interval.kind === "lastZeroOrOne") return "balloon-seam";
+  if (interval.kind === "extraEven") return "balloon-evens";
+  return "balloon-fade";
 }
 
 function balloonDecision(region: DecisionFocus): string {
@@ -127,7 +120,7 @@ function stemDecision(region: DecisionFocus): string {
 
 function stemCaption(index: number, bead: IdealBead): string {
   if (index === 0) return "start";
-  if (index === 1) return "cartoon";
+  if (index === 1) return "optional";
   if (bead.tone === "unknown" && index === 2) return "min 0";
   if (bead.letter === "E") return "t";
   return "";
@@ -139,28 +132,26 @@ function Bead({
   bead,
   radius,
   marked,
+  joined,
   caption,
   captionX,
   captionY,
   lit,
   onPick,
-  orbit,
 }: {
   x: number;
   y: number;
   bead: IdealBead;
   radius: number;
   marked?: boolean;
+  joined?: boolean;
   caption?: string;
   captionX?: number;
   captionY?: number;
   lit?: boolean;
   onPick?: () => void;
-  orbit?: { cx: number; cy: number; r: number; angle: number };
 }) {
   const paint = beadPaint(bead);
-  const copies = bead.tone === "count" ? STACK_COPIES : 1;
-  const step = radius * 0.72;
   return (
     <g
       opacity={lit === false ? 0.18 : 1}
@@ -186,23 +177,15 @@ function Bead({
           : undefined
       }
     >
-      {Array.from({ length: copies }, (_, copy) => {
-        const at = stackXY(copy, copies, x, y, step, orbit);
-        const stacked = copies > 1;
-        return (
-          <circle
-            key={`stack-${copy}`}
-            cx={at.x}
-            cy={at.y}
-            r={radius}
-            fill={paint.fill}
-            stroke={marked ? "#1d1914" : stacked ? "#fffdf7" : paint.stroke}
-            strokeWidth={marked ? 3 : stacked ? 1.4 : paint.dash ? 1.6 : 0}
-            strokeDasharray={paint.dash}
-            opacity={stacked ? 0.28 + copy * 0.14 : 1}
-          />
-        );
-      })}
+      <circle
+        cx={x}
+        cy={y}
+        r={radius}
+        fill={paint.fill}
+        stroke={joined || marked ? "#1d1914" : paint.stroke}
+        strokeWidth={joined ? 3.4 : marked ? 3 : paint.dash ? 1.6 : 0}
+        strokeDasharray={paint.dash}
+      />
       <text
         x={x}
         y={y + 4}
@@ -210,7 +193,6 @@ function Bead({
         fill={paint.text}
         fontFamily="IBM Plex Mono, monospace"
         fontSize={radius >= 15 ? "13" : "11"}
-        opacity={copies > 1 ? 0.7 : 1}
       >
         {bead.letter === "O" && marked ? "n" : bead.letter}
       </text>
@@ -230,42 +212,101 @@ function Bead({
   );
 }
 
-function RunTile({ bead }: { bead: IdealBead }) {
+function RunTile({
+  bead,
+  glyph,
+  ring,
+  size = 28,
+}: {
+  bead: IdealBead;
+  glyph?: string;
+  ring?: boolean;
+  size?: number;
+}) {
   const paint = beadPaint(bead);
-  if (bead.tone !== "count") {
-    return (
-      <span
-        className="inline-flex h-7 min-w-7 items-center justify-center rounded-full font-mono text-xs"
-        style={{
-          background: paint.fill,
-          color: paint.text,
-          border: paint.dash ? "1px dashed #8a8378" : "none",
-        }}
-      >
-        {bead.letter}
-      </span>
-    );
-  }
   return (
-    <span className="relative inline-flex h-7 w-10 items-center justify-center">
-      {[0, 1, 2].map((copy) => (
-        <span
-          key={copy}
-          className="absolute top-0 h-7 w-7 rounded-full"
-          style={{
-            left: copy * 7,
-            background: paint.fill,
-            opacity: 0.28 + copy * 0.14,
-            boxShadow: "0 0 0 1px #fffdf7",
-          }}
-        />
-      ))}
-      <span className="relative font-mono text-xs text-card">{bead.letter}</span>
+    <span
+      className="inline-flex items-center justify-center rounded-full font-mono text-xs"
+      style={{
+        height: size,
+        minWidth: size,
+        background: paint.fill,
+        color: paint.text,
+        border: ring
+          ? "2px solid #1d1914"
+          : paint.dash
+            ? "1px dashed #8a8378"
+            : "none",
+        boxSizing: "border-box",
+      }}
+    >
+      {glyph ?? bead.letter}
     </span>
   );
 }
 
-const RUNS: { label: string; decision: string; focus: DecisionFocus; beads: IdealBead[] }[] = [
+const LEGEND: {
+  decision: string;
+  focus: DecisionFocus;
+  label: string;
+  kind?: "optional" | "name" | "interval";
+  beads: { bead: IdealBead; glyph?: string; ring?: boolean }[];
+}[] = [
+  {
+    decision: "balloon-oo",
+    focus: "balloon-oo",
+    label: "exist · 6 sure letters",
+    beads: [
+      { bead: { letter: "O", tone: "sure" } },
+      { bead: { letter: "E", tone: "sure" } },
+    ],
+  },
+  {
+    decision: "balloon-fade",
+    focus: "balloon-fade",
+    label: "interval · bound, not a letter",
+    kind: "interval",
+    beads: [],
+  },
+  {
+    decision: "string-oo",
+    focus: "string-oo",
+    label: "stem",
+    kind: "optional",
+    beads: [
+      { bead: { letter: "O", tone: "sure" } },
+      { bead: { letter: "O", tone: "sure" } },
+    ],
+  },
+  {
+    decision: "string-e",
+    focus: "string-e",
+    label: "join t",
+    kind: "optional",
+    beads: [{ bead: { letter: "E", tone: "sure" } }],
+  },
+  {
+    decision: "join-seam",
+    focus: "join",
+    label: "sure join · 1 of 6",
+    beads: [{ bead: { letter: "O", tone: "sure" }, glyph: "n", ring: true }],
+  },
+  {
+    decision: "string-capture",
+    focus: "string",
+    label: "only known cycle",
+    kind: "name",
+    beads: [],
+  },
+];
+
+const RUNS: {
+  label: string;
+  decision: string;
+  focus: DecisionFocus;
+  beads?: IdealBead[];
+  interval?: boolean;
+}[] = [
   {
     label: "a₁≥2",
     decision: "balloon-oo",
@@ -273,50 +314,64 @@ const RUNS: { label: string; decision: string; focus: DecisionFocus; beads: Idea
     beads: [
       { letter: "O", tone: "sure" },
       { letter: "O", tone: "sure" },
-      { letter: "O", tone: "count" },
-      { letter: "O", tone: "count" },
-      { letter: "O", tone: "count" },
     ],
   },
-  { label: "E", decision: "balloon-overshoot", focus: "balloon-first-e", beads: [{ letter: "E", tone: "sure" }] },
-  {
-    label: "a₂",
-    decision: "balloon-fade",
-    focus: "balloon-fade",
-    beads: [
-      { letter: "O", tone: "count" },
-      { letter: "O", tone: "count" },
-    ],
-  },
+  { label: "0+", decision: "balloon-fade", focus: "balloon-fade", interval: true },
+  { label: "first E", decision: "balloon-overshoot", focus: "balloon-first-e", beads: [{ letter: "E", tone: "sure" }] },
+  { label: "0+", decision: "balloon-fade", focus: "balloon-fade", interval: true },
   { label: "E", decision: "balloon-evens", focus: "balloon-e", beads: [{ letter: "E", tone: "sure" }] },
-  {
-    label: "a₃",
-    decision: "balloon-fade",
-    focus: "balloon-fade",
-    beads: [
-      { letter: "O", tone: "count" },
-      { letter: "O", tone: "count" },
-    ],
-  },
+  { label: "0+", decision: "balloon-evens", focus: "balloon-e", interval: true },
   { label: "E", decision: "balloon-evens", focus: "balloon-e", beads: [{ letter: "E", tone: "sure" }] },
-  { label: "aₑ≤1", decision: "balloon-seam", focus: "balloon-seam", beads: [{ letter: "O", tone: "count" }] },
-  { label: "E", decision: "balloon-seam", focus: "balloon-seam", beads: [{ letter: "E", tone: "sure" }] },
+  { label: "0 or 1", decision: "balloon-seam", focus: "balloon-seam", interval: true },
+  { label: "last E", decision: "balloon-seam", focus: "balloon-seam", beads: [{ letter: "E", tone: "sure" }] },
 ];
+
+function displayOf(trueIndex: number, joinIndex: number, n: number): number {
+  return (trueIndex - joinIndex + n) % n;
+}
+
+function displayXY(
+  trueIndex: number,
+  joinIndex: number,
+  n: number,
+): { x: number; y: number } {
+  return balloonXY(displayOf(trueIndex, joinIndex, n), n);
+}
+
+function intervalAngle(
+  afterBead: number,
+  joinIndex: number,
+  n: number,
+): number {
+  const d0 = displayOf(afterBead, joinIndex, n);
+  const d1 = displayOf((afterBead + 1) % n, joinIndex, n);
+  const a0 = (d0 / n) * 2 * Math.PI + Math.PI;
+  let a1 = (d1 / n) * 2 * Math.PI + Math.PI;
+  if (a1 <= a0) a1 += 2 * Math.PI;
+  return (a0 + a1) / 2;
+}
 
 export function CycleLollipop({
   focus,
+  joinIndex = 0,
+  onJoinIndex,
   onSelectDecision,
   onClearFocus,
 }: {
   focus?: DecisionFocus;
+  joinIndex?: number;
+  onJoinIndex?: (index: number) => void;
   onSelectDecision?: (id: string) => void;
   onClearFocus?: () => void;
 }) {
-  const balloon = packCountRuns(IDEAL_BALLOON_BEADS);
+  const balloon = IDEAL_BALLOON_BEADS;
   const n = balloon.length;
-  const lastPeak = balloonXY(n - 1, n);
-  const knot = balloonXY(0, n);
-  const launch = balloonXY(1, n);
+  const spots = idealJoinSpots(balloon);
+  const joinAt = spots.includes(joinIndex) ? joinIndex : 0;
+  const lastPeak = displayXY(n - 1, joinAt, n);
+  const cycleMin = displayXY(0, joinAt, n);
+  const launch = displayXY(1, joinAt, n);
+  const joinPoint = balloonXY(0, n);
   const stem = IDEAL_STRING_BEADS.map((bead, index) => ({
     x: 36 + index * 44,
     bead,
@@ -326,6 +381,8 @@ export function CycleLollipop({
   const joinX = 300;
   const beadR = Math.min(14, Math.max(9, (Math.PI * R) / n - 1.2));
   const joinLit = regionLit(focus, "join");
+  const joinName = idealJoinLabel(joinAt, balloon);
+  const atCycleMin = joinAt === 0;
 
   function pick(id: string, event?: { stopPropagation: () => void }) {
     event?.stopPropagation();
@@ -340,13 +397,62 @@ export function CycleLollipop({
       }}
     >
       <p className="text-xs uppercase tracking-wide text-muted">
-        Idealized string and balloon
+        Optional stem and cycle
       </p>
-      <p className="mt-1 text-sm text-muted">
-        Solid beads exist. Overlapping circles are known parity with unknown
-        count. Grey ??? are unknown color, minimum length 0. Stem OO and join
-        E are cartoons. The unique known balloon is 1.
-      </p>
+      <ul
+        className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2"
+        aria-label="Figure legend"
+      >
+        {LEGEND.map((item) => {
+          const lit =
+            item.focus === "balloon-fade"
+              ? regionLit(focus, "balloon-fade") || regionLit(focus, "string-grey")
+              : item.focus === "balloon-oo"
+                ? regionLit(focus, "balloon-oo") ||
+                  regionLit(focus, "balloon-e") ||
+                  regionLit(focus, "balloon-first-e")
+                : regionLit(focus, item.focus);
+          return (
+            <li key={item.decision}>
+              <button
+                type="button"
+                className="flex items-center gap-1.5 text-left"
+                style={{ opacity: lit ? 1 : 0.28 }}
+                onClick={(event) => pick(item.decision, event)}
+              >
+                <span className="flex items-center gap-0.5">
+                  {item.kind === "name" ? (
+                    <span className="inline-flex h-[22px] min-w-[22px] items-center justify-center rounded-full border border-ink bg-card font-serif text-sm leading-none">
+                      1
+                    </span>
+                  ) : item.kind === "interval" ? (
+                    <span
+                      aria-hidden
+                      className="inline-block h-[18px] w-[18px] border-l-2 border-dashed border-[#8a8378]"
+                    />
+                  ) : (
+                    item.beads.map((entry, index) => (
+                      <RunTile
+                        key={`${item.decision}-${index}`}
+                        bead={entry.bead}
+                        glyph={entry.glyph}
+                        ring={entry.ring}
+                        size={22}
+                      />
+                    ))
+                  )}
+                </span>
+                {item.kind === "optional" ? (
+                  <span className="rounded-full bg-warn/15 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-warn">
+                    optional
+                  </span>
+                ) : null}
+                <span className="text-xs text-muted">{item.label}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
       <svg
         viewBox="0 0 720 340"
         role="img"
@@ -357,8 +463,8 @@ export function CycleLollipop({
         }}
       >
         <title>
-          Idealized string joining a CycleMin run-form balloon. Solid letters
-          exist; overlapping circles have known color and unknown count
+          Optional stem joining a CycleMin cycle at a sure letter.
+          Six sure letters; interval marks are bounds, not letter beads
         </title>
         <text
           x="36"
@@ -367,7 +473,7 @@ export function CycleLollipop({
           fontFamily="Source Sans 3, sans-serif"
           fontSize="12"
         >
-          string
+          stem
         </text>
         <text
           x={CX}
@@ -377,7 +483,7 @@ export function CycleLollipop({
           fontFamily="Source Sans 3, sans-serif"
           fontSize="12"
         >
-          balloon
+          cycle
         </text>
         <line
           x1={stem[0].x}
@@ -388,7 +494,7 @@ export function CycleLollipop({
           strokeWidth="2"
         />
         <path
-          d={`M ${joinX} ${CY} L ${knot.x} ${knot.y}`}
+          d={`M ${joinX} ${CY} L ${joinPoint.x} ${joinPoint.y}`}
           fill="none"
           stroke="#1d1914"
           strokeWidth="2.2"
@@ -415,7 +521,7 @@ export function CycleLollipop({
           />
         ))}
         <text
-          x={(joinX + knot.x) / 2}
+          x={(joinX + joinPoint.x) / 2}
           y={CY - 14}
           textAnchor="middle"
           fill="#1d1914"
@@ -423,22 +529,27 @@ export function CycleLollipop({
           fontSize="11"
           opacity={joinLit ? 1 : 0.18}
         >
-          join · cartoon
+          {atCycleMin ? "join · CycleMin" : `join · ${joinName}`}
         </text>
         <circle cx={CX} cy={CY} r={R} fill="none" stroke="#d4cbb8" strokeWidth="2" />
-        {balloon.map((bead, index) => {
-          const next = (index + 1) % n;
-          const a0 = (index / n) * 2 * Math.PI + Math.PI;
-          const a1 = (next / n) * 2 * Math.PI + Math.PI;
-          const launchArc = index === 0;
-          const paint = beadPaint(bead);
+        {balloon.map((bead, trueIndex) => {
+          const display = displayOf(trueIndex, joinAt, n);
+          const a0 = (display / n) * 2 * Math.PI + Math.PI;
+          const a1 = ((display + 1) / n) * 2 * Math.PI + Math.PI;
+          const launchArc = trueIndex === 0;
+          const interval = IDEAL_BALLOON_INTERVALS.find(
+            (item) => item.afterBead === trueIndex,
+          );
+          const region = interval
+            ? intervalRegion(interval)
+            : balloonRegion(trueIndex, bead, balloon);
           return (
             <path
-              key={`arc-${index}`}
+              key={`arc-${trueIndex}`}
               d={arcPath(CX, CY, R, a0, a1)}
               fill="none"
               stroke={
-                bead.tone === "unknown"
+                interval
                   ? "#8a8378"
                   : bead.letter === "O"
                     ? ODD
@@ -446,46 +557,97 @@ export function CycleLollipop({
               }
               strokeWidth={launchArc ? 5 : 3}
               strokeLinecap="round"
-              strokeDasharray={bead.tone === "unknown" ? "4 3" : undefined}
+              strokeDasharray={interval ? "4 3" : undefined}
               opacity={
-                regionLit(focus, balloonRegion(index, bead, balloon))
+                regionLit(focus, region)
                   ? launchArc
                     ? 0.85
-                    : paint.opacity * 0.9
+                    : 0.9
                   : 0.12
               }
             />
           );
         })}
+        {IDEAL_BALLOON_INTERVALS.map((interval) => {
+          const angle = intervalAngle(interval.afterBead, joinAt, n);
+          const x = CX + R * Math.cos(angle);
+          const y = CY + R * Math.sin(angle);
+          const nx = Math.cos(angle);
+          const ny = Math.sin(angle);
+          const region = intervalRegion(interval);
+          return (
+            <g
+              key={`interval-${interval.kind}-${interval.afterBead}`}
+              opacity={regionLit(focus, region) ? 1 : 0.18}
+              role="button"
+              tabIndex={0}
+              style={onSelectDecision ? { cursor: "pointer" } : undefined}
+              onClick={(event) => pick(intervalDecision(interval), event)}
+              onKeyDown={
+                onSelectDecision
+                  ? (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        pick(intervalDecision(interval));
+                      }
+                    }
+                  : undefined
+              }
+            >
+              <line
+                x1={x - 9 * nx}
+                y1={y - 9 * ny}
+                x2={x + 11 * nx}
+                y2={y + 11 * ny}
+                stroke="#8a8378"
+                strokeWidth="2.2"
+                strokeDasharray="2 2"
+              />
+              <text
+                x={CX + (R + 28) * nx}
+                y={CY + (R + 28) * ny + 4}
+                textAnchor="middle"
+                fill="#5e574c"
+                fontFamily="Source Sans 3, sans-serif"
+                fontSize="11"
+              >
+                {intervalBoundLabel(interval)}
+              </text>
+            </g>
+          );
+        })}
         <path
-          d={`M ${lastPeak.x} ${lastPeak.y} L ${knot.x} ${knot.y} L ${launch.x} ${launch.y}`}
+          d={`M ${lastPeak.x} ${lastPeak.y} L ${cycleMin.x} ${cycleMin.y} L ${launch.x} ${launch.y}`}
           fill="none"
           stroke="#1d1914"
           strokeWidth="2.2"
           strokeLinejoin="round"
           opacity={
-            regionLit(focus, "balloon-seam") || regionLit(focus, "join") ? 1 : 0.18
+            regionLit(focus, "balloon-seam") || (joinLit && atCycleMin) ? 1 : 0.18
           }
         />
-        {balloon.map((bead, index) => {
-          const { x, y } = balloonXY(index, n);
-          const caption = balloonCaption(index, balloon);
+        {balloon.map((bead, trueIndex) => {
+          const display = displayOf(trueIndex, joinAt, n);
+          const { x, y } = balloonXY(display, n);
+          const caption = balloonCaption(trueIndex, balloon);
           const labelR = R + 26;
-          const angle = (index / n) * 2 * Math.PI + Math.PI;
-          const region = balloonRegion(index, bead, balloon);
+          const angle = (display / n) * 2 * Math.PI + Math.PI;
+          const region = balloonRegion(trueIndex, bead, balloon);
+          const isJoin = trueIndex === joinAt;
+          const joinFocus = focus === "join";
           return (
             <Bead
-              key={`balloon-${index}`}
+              key={`balloon-${trueIndex}`}
               x={x}
               y={y}
               bead={bead}
-              radius={index === 0 ? beadR + 3 : beadR}
-              marked={index === 0}
+              radius={trueIndex === 0 ? beadR + 3 : beadR}
+              marked={trueIndex === 0}
+              joined={isJoin}
               caption={caption}
               captionX={CX + labelR * Math.cos(angle)}
               captionY={CY + labelR * Math.sin(angle) + 4}
-              orbit={{ cx: CX, cy: CY, r: R, angle }}
-              lit={regionLit(focus, region)}
+              lit={joinFocus ? isJoin : regionLit(focus, region)}
               onPick={
                 onSelectDecision
                   ? () => pick(balloonDecision(region))
@@ -527,9 +689,47 @@ export function CycleLollipop({
           </marker>
         </defs>
       </svg>
+      <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
+        <button
+          type="button"
+          className="rounded-full border border-line px-3 py-1 text-sm"
+          onClick={(event) => {
+            event.stopPropagation();
+            onJoinIndex?.(stepIdealJoin(joinAt, -1, spots));
+          }}
+        >
+          Join left
+        </button>
+        <button
+          type="button"
+          className="rounded-full bg-deep px-3 py-1 text-sm text-card disabled:opacity-40"
+          disabled={atCycleMin}
+          onClick={(event) => {
+            event.stopPropagation();
+            onJoinIndex?.(0);
+          }}
+        >
+          Snap join to CycleMin
+        </button>
+        <button
+          type="button"
+          className="rounded-full border border-line px-3 py-1 text-sm"
+          onClick={(event) => {
+            event.stopPropagation();
+            onJoinIndex?.(stepIdealJoin(joinAt, 1, spots));
+          }}
+        >
+          Join right
+        </button>
+      </div>
+      <p className="mt-1 text-center text-sm text-muted" aria-live="polite">
+        Join at {joinName}
+        {atCycleMin ? " — the CycleMin placement" : " — not the CycleMin cut"}
+        . Six sure letters; interval slots are not stops.
+      </p>
       <div
         className="mt-1 flex flex-wrap items-end justify-center gap-1.5"
-        aria-label="CycleMin run form with sure beads and overlapping count stacks"
+        aria-label="CycleMin run form with six sure letters and interval bounds"
       >
         {RUNS.map((run, index) => {
           const lit = regionLit(focus, run.focus);
@@ -542,31 +742,42 @@ export function CycleLollipop({
               onClick={(event) => pick(run.decision, event)}
             >
               <span className="flex items-center gap-0.5">
-                {packCountRuns(run.beads).map((bead, letterIndex) => (
-                  <RunTile key={`${bead.letter}-${bead.tone}-${letterIndex}`} bead={bead} />
-                ))}
+                {run.interval ? (
+                  <span className="inline-flex h-7 min-w-7 items-center justify-center border-l-2 border-dashed border-[#8a8378] font-mono text-[11px] text-muted">
+                    {run.label}
+                  </span>
+                ) : (
+                  run.beads?.map((bead, letterIndex) => (
+                    <RunTile key={`${bead.letter}-${bead.tone}-${letterIndex}`} bead={bead} />
+                  ))
+                )}
               </span>
-              <span className="text-[10px] uppercase tracking-wide text-muted">
-                {run.label}
-              </span>
+              {run.interval ? null : (
+                <span className="text-[10px] uppercase tracking-wide text-muted">
+                  {run.label}
+                </span>
+              )}
             </button>
           );
         })}
       </div>
       <p className="mt-2 font-mono text-sm text-ink">
-        OO???E
+        OOEEEE
+        <span className="mx-2 text-muted">+</span>
+        intervals
         <span className="mx-2 text-muted">→</span>
         O<sup>a₁</sup>E⋯O<sup>aₑ</sup>E
         <span className="ml-2 font-sans text-muted">
-          · a₁≥2 · e≥4 · aₑ≤1 · period at least 11 · not a cycle
+          · a₁≥2 · e≥4 · aₑ∈{"{0,1}"} · period at least 11 · not a cycle
         </span>
       </p>
       <p className="mt-2 text-sm text-muted">
-        On the balloon, solid OO and the four E letters are forced.
-        Overlapping O is more odd-run mass. Extra evens past those four are
-        empty at length 11, so they are not a fifth E. Unused odd-runs may
-        be empty. The last overlapping O is 0 or 1: EE or OE at the seam.
-        Stem OO???E is a first-visit cartoon.
+        The cycle is the Lean station list: six sure letters and
+        interval slots between them. Extra odds past launch OO have
+        minimum 5 and stay unplaced. Extra E past the four forced evens
+        have minimum 0. Last odd-run is 0 or 1, not a grey letter.
+        Stem OO???E is an optional first visit. Left and right rotate a
+        sure letter onto that join.
       </p>
     </div>
   );

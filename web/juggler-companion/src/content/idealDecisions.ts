@@ -1,4 +1,4 @@
-export type DecisionKind = "theorem" | "cartoon" | "leftover" | "off-figure";
+export type DecisionKind = "theorem" | "optional" | "leftover" | "off-figure";
 
 export type DecisionFocus =
   | "figure"
@@ -17,7 +17,7 @@ export type DecisionFocus =
 
 export type IdealDecision = {
   id: string;
-  part: "shared" | "string" | "balloon" | "escape";
+  part: "shared" | "string" | "cycle" | "escape";
   kind: DecisionKind;
   focus: DecisionFocus;
   title: string;
@@ -25,25 +25,25 @@ export type IdealDecision = {
   lemma: string;
 };
 
-export const DECISION_PARTS = ["shared", "string", "balloon", "escape"] as const;
+export const DECISION_PARTS = ["shared", "string", "cycle", "escape"] as const;
 
 export const DECISION_PART_LABEL: Record<(typeof DECISION_PARTS)[number], string> = {
   shared: "Shared layer",
-  string: "String",
-  balloon: "Balloon",
+  string: "Stem",
+  cycle: "Cycle",
   escape: "Not this figure",
 };
 
 export const DECISION_KIND_LABEL: Record<DecisionKind, string> = {
   theorem: "theorem",
-  cartoon: "cartoon",
+  optional: "optional stem",
   leftover: "leftover",
   "off-figure": "off-figure",
 };
 
 /**
  * One row per figure decision, keyed to the itinerary-structure extract.
- * Cartoons stay visible; they are not CycleMin theorems.
+ * Optional stem marks stay visible; they are not CycleMin theorems.
  */
 export const IDEAL_DECISIONS: readonly IdealDecision[] = [
   {
@@ -69,8 +69,8 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     part: "shared",
     kind: "theorem",
     focus: "figure",
-    title: "The envelope binds string and balloon",
-    why: "Every realized finite word obeys the power envelope. A contracting prefix of the string is descent, not a balloon. A contracting balloon cannot close.",
+    title: "The envelope binds stem and cycle",
+    why: "Every realized finite word obeys the power envelope. A contracting prefix of the stem is descent, not a cycle. A contracting cycle cannot close.",
     lemma: "J-power-envelope-contraction",
   },
   {
@@ -88,17 +88,17 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     kind: "theorem",
     focus: "string-grey",
     title: "The string may be empty",
-    why: "If the start is already on the balloon there is no preperiod. Grey ??? have minimum length 0. Three greys are a picture of unknown color, not a lower bound.",
+    why: "If the start is already on the cycle there is no preperiod. Grey ??? have minimum length 0. Three greys are a picture of unknown color, not a lower bound.",
     lemma: "J-itinerary-semantics",
   },
   {
     id: "string-oo",
     part: "string",
-    kind: "cartoon",
+    kind: "optional",
     focus: "string-oo",
-    title: "Solid OO on the stem is a cartoon",
-    why: "Launch OO is forced on the balloon, not on a preperiod. The even tower EEE is a legal string onto 1. The stem OO is a launching first visit, not Theorem 3.2(ii).",
-    lemma: "J-cycle-finite-structure — balloon only",
+    title: "Solid OO on the stem is optional",
+    why: "Launch OO is forced on the cycle, not on a preperiod. The even tower EEE is a legal stem onto 1. The stem OO is a launching first visit, not Theorem 3.2(ii).",
+    lemma: "J-cycle-finite-structure — cycle only",
   },
   {
     id: "string-grey",
@@ -112,19 +112,19 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
   {
     id: "string-e",
     part: "string",
-    kind: "cartoon",
+    kind: "optional",
     focus: "string-e",
-    title: "Solid t = E is the even-parent cartoon",
-    why: "If the first meeting is odd CycleMin n, the generic parent sits in the even cell of n. At most one odd parent exists. The figure draws that even t, not a theorem that every string ends E.",
+    title: "Solid t = E is optional",
+    why: "The generic parent of any first visit sits in the even cell of that image. At most one odd parent exists. The figure draws that even t at every allowed join, not a theorem that every stem ends E.",
     lemma: "J-inverse-preimage-asymmetry",
   },
   {
     id: "join-seam",
     part: "string",
-    kind: "cartoon",
+    kind: "optional",
     focus: "join",
-    title: "Join at CycleMin is one placement",
-    why: "The join is the first meeting. It equals the CycleMin cut only if they coincide. The stem aims at n so the seam is visible. A join can sit elsewhere on the loop.",
+    title: "Join can sit at any sure letter",
+    why: "The join is the first meeting, not the CycleMin cut. On this figure the forced letters are two launch O and four E. Left and right step those six. Interval slots may be empty, so they are not stops. A real join can also sit in a realized extra odd.",
     lemma: "Collision Factorization",
   },
   {
@@ -133,7 +133,7 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     kind: "theorem",
     focus: "string",
     title: "A contracting prefix is descent",
-    why: "E, OE, OOEE, OOOEE, and OOEOE are certified descents. They may appear on a string. They are not extra balloon odd-run mass.",
+    why: "E, OE, OOEE, OOOEE, and OOEOE are certified descents. They may appear on a stem. They are not extra cycle odd-run mass.",
     lemma: "J-finite-progress-boundary, J-four-step-descent-density, J-five-step-descent-density",
   },
   {
@@ -141,8 +141,8 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     part: "string",
     kind: "theorem",
     focus: "string",
-    title: "If the balloon is 1, the string is a capture",
-    why: "Named even-towers and OEEE reach 1. That is the only known balloon. Hitting 1 is one trajectory, not a halt theorem.",
+    title: "If the cycle is 1, the stem is a capture",
+    why: "Named even-towers and OEEE reach 1. That is the only known cycle. Hitting 1 is one trajectory, not a halt theorem.",
     lemma: "Capture / even_tower_to_one",
   },
   {
@@ -151,21 +151,21 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     kind: "theorem",
     focus: "string",
     title: "Hug does not bind a falling string",
-    why: "Prefix-odd domination is proved on CycleMin and on AboveAnchor. A string that descends toward a smaller balloon is not AboveAnchor, so it need not be hug-admissible.",
+    why: "Prefix-odd domination is proved on CycleMin and on AboveAnchor. A stem that descends toward a smaller cycle is not AboveAnchor, so it need not be hug-admissible.",
     lemma: "aboveAnchor_prefix_odds_ge_hug",
   },
   {
     id: "balloon-cut",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon",
     title: "The circle is a CycleMin rotation",
-    why: "Every cycle has a rotation that starts at the smallest value. That minimum is odd. The knot is n, not 1 unless the balloon is {1}.",
+    why: "Every cycle has a rotation that starts at the smallest value. That minimum is odd. The knot is n, not 1 unless the cycle is {1}.",
     lemma: "J-cycle-finite-structure / exists_cycleMin",
   },
   {
     id: "balloon-oo",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon-oo",
     title: "Solid OO is a₁ ≥ 2",
@@ -174,16 +174,16 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
   },
   {
     id: "balloon-expand",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon-fade",
-    title: "The balloon is expanding",
-    why: "A mixed cycle must beat 2^L by 3^o. At length 11 that forces o ≥ 7, so the five leftover letters at the bound are odds: O⁷EEEE.",
+    title: "The cycle is expanding",
+    why: "A mixed cycle must beat 2^L by 3^o. Four evens then force at least seven odds, so extras past the two launch O have minimum 5 and stay unplaced. They are not five grey letter beads.",
     lemma: "cycle_itinerary_formally_expanding",
   },
   {
     id: "balloon-evens",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon-e",
     title: "Four solid E, period at least 11",
@@ -192,7 +192,7 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
   },
   {
     id: "balloon-overshoot",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon-first-e",
     title: "First E overshoots; last E lands",
@@ -201,7 +201,7 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
   },
   {
     id: "balloon-run",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon",
     title: "Run form O^{a₁}E ⋯ O^{aₑ}E",
@@ -210,7 +210,7 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
   },
   {
     id: "balloon-seam",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon-seam",
     title: "Last odd-run aₑ ≤ 1",
@@ -219,34 +219,34 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
   },
   {
     id: "balloon-hug",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon",
     title: "Every CycleMin prefix is hug-admissible",
-    why: "On the balloon, each prefix has at least hugOdds(k) odds. That is why extra odds sit as overlapping O in the odd-runs, not as a free grey color.",
+    why: "On the cycle, each prefix has at least hugOdds(k) odds. Extra odd-run mass may occupy the interval slots. Those slots are bounds, not letter beads: unused runs may be empty and the extra letters are not placed.",
     lemma: "cycleMin_prefix_odds_ge_hug, J-cyclemin-walk-word-identity",
   },
   {
     id: "balloon-fade",
-    part: "balloon",
+    part: "cycle",
     kind: "theorem",
     focus: "balloon-fade",
-    title: "Overlapping O is known parity, unknown count",
-    why: "A stack is one letter that may repeat. Overlapping O is more a_i (minimum extra at L=11 is five odds). Extra E past the four forced evens are empty at that bound, so they do not get a fifth bead. Grey is reserved for unknown color on the stem.",
+    title: "Interval slots are bounds, not letter beads",
+    why: "The Lean schema has a₁ extras 0+, middle odd-runs 0+, aₑ ∈ {0,1}, and extra E 0+. Those marks sit between the six sure letters. They are not grey ? beads and they are not forced stations.",
     lemma: "Lemma 3.21b + J-even-count-le-three",
   },
   {
     id: "leftovers",
-    part: "balloon",
+    part: "cycle",
     kind: "leftover",
-    title: "Leftover chips fill the overlapping letters",
+    title: "Leftover chips fill the interval slots",
     focus: "balloon-fade",
-    why: "O⁷EEEE, O⁶EEEOE, and the (1,3) EEE family have CycleMin shape and still do not close. Fudge leftovers and slack 3^o−2^{o+4} live on those spellings, not on the ideal circle. They fill the overlapping stacks. Shape is necessary, not a cycle.",
+    why: "O⁷EEEE, O⁶EEEOE, and the (1,3) EEE family inhabit the CycleMin shape and still do not close. Fudge leftovers and slack 3^o−2^{o+4} live on those spellings, not on the ideal circle. They fill interval bounds. Shape is necessary, not a cycle.",
     lemma: "J-o7eeee-gap, J-o6eeeoe-gap, J-one-three-eee-gap, J-cyclemin-fudge, J-cyclemin-slack, J-cyclemin-last-cluster, J-cyclemin-prefix-*",
   },
   {
     id: "even-count-leftovers",
-    part: "balloon",
+    part: "cycle",
     kind: "leftover",
     focus: "balloon-e",
     title: "Fewer than four evens is already dead",
@@ -258,8 +258,8 @@ export const IDEAL_DECISIONS: readonly IdealDecision[] = [
     part: "escape",
     kind: "theorem",
     focus: "none",
-    title: "An unbounded walk has no balloon and no string",
-    why: "A descent-free flight is hug-admissible and has unbounded walk. It either enters a cycle above the floor or diverges with quantized near-returns. No string is drawn for that fate.",
+    title: "An unbounded walk has no cycle and no stem",
+    why: "A descent-free flight is hug-admissible and has unbounded walk. It either enters a cycle above the floor or diverges with quantized near-returns. No stem is drawn for that fate.",
     lemma: "J-flight-walk-divergence, J-flight-envelope-transport, J-flight-height-law",
   },
   {

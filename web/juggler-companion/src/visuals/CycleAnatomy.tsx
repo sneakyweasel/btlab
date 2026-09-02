@@ -54,7 +54,7 @@ export function CycleSeamStrip({
   return (
     <div className={`rounded-xl border border-line bg-paper/70 px-3 py-3 ${dim ? "opacity-70" : ""}`}>
       <p className="text-xs uppercase tracking-wide text-muted">
-        Seam at CycleMin — join is drawn here
+        Seam at CycleMin — the 2+2 cut
       </p>
       <div className="mt-3 flex flex-wrap items-end justify-center gap-1.5">
         <Tile letter="O" />
@@ -99,10 +99,10 @@ export function CycleSeamStrip({
       </div>
       <p className="mt-3 text-center text-sm text-muted">
         {seam === "OE|OO"
-          ? "Balloon: return cannot be O. Launch is OO. Incoming OE — isolated last E. The stem OO???E is a cartoon of one first visit."
+          ? "Cycle: return cannot be O. Launch is OO. Incoming OE — isolated last E. The stem OO???E is an optional first visit."
           : seam === "EE|OO"
-            ? "Balloon: return cannot be O. Launch is OO. Incoming EE — trailing even run. The stem OO???E is a cartoon of one first visit."
-            : "Not a CycleMin seam. Legal cuts are last-peak E, then n, then OO. The stem is still a cartoon."}
+            ? "Cycle: return cannot be O. Launch is OO. Incoming EE — trailing even run. The stem OO???E is an optional first visit."
+            : "Not a CycleMin seam. Legal cuts are last-peak E, then n, then OO. The stem is still optional."}
       </p>
     </div>
   );

@@ -9,9 +9,15 @@ import {
   NOTE_PEAK_37,
   PAPER_EXCEPTION_COUNT,
   PAPER_PERIOD,
+  BALLOON_SCHEMA,
   IDEAL_BALLOON_BEADS,
+  IDEAL_BALLOON_INTERVALS,
   IDEAL_BALLOON_LETTERS,
+  idealJoinLabel,
+  idealJoinSpots,
+  intervalBoundLabel,
   packCountRuns,
+  stepIdealJoin,
   IDEAL_STRING_BEADS,
   IDEAL_STRING_LETTERS,
   STRING_TOUR_PRESETS,
@@ -159,40 +165,64 @@ describe("idealized string stem", () => {
   });
 });
 
-describe("idealized balloon", () => {
-  it("marks sure letters solid and known-parity extras as count", () => {
-    expect(IDEAL_BALLOON_LETTERS.join("")).toBe("OOOOOEOOEOOEOE");
-    expect(IDEAL_BALLOON_BEADS.length).toBeGreaterThanOrEqual(11);
-    expect(IDEAL_BALLOON_BEADS.slice(0, 2).every((bead) => bead.letter === "O" && bead.tone === "sure")).toBe(true);
+describe("idealized cycle", () => {
+  it("draws the Lean schema: two sure O, four sure E, no invented ? letters", () => {
+    expect(BALLOON_SCHEMA.map((station) => station.kind)).toEqual([
+      "sureLaunchO",
+      "intervalOdd",
+      "sureEven",
+      "intervalOdd",
+      "sureEven",
+      "sureEven",
+      "intervalOdd",
+      "sureEven",
+      "intervalExtraEven",
+    ]);
+    expect(IDEAL_BALLOON_LETTERS.join("")).toBe("OOEEEE");
+    expect(IDEAL_BALLOON_BEADS).toHaveLength(6);
+    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "O" && bead.tone === "sure")).toHaveLength(2);
     expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "E" && bead.tone === "sure")).toHaveLength(4);
-    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "E" && bead.tone === "count")).toHaveLength(0);
-    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "O" && bead.tone === "count").length).toBeGreaterThanOrEqual(7);
+    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "?")).toHaveLength(0);
+    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.tone === "unknown")).toHaveLength(0);
     expect(IDEAL_BALLOON_BEADS.at(-1)).toEqual({ letter: "E", tone: "sure" });
-    expect(IDEAL_BALLOON_BEADS.at(-2)).toEqual({ letter: "O", tone: "count" });
-    const packed = packCountRuns(IDEAL_BALLOON_BEADS);
-    expect(packed.filter((bead) => bead.letter === "E")).toEqual([
-      { letter: "E", tone: "sure" },
-      { letter: "E", tone: "sure" },
-      { letter: "E", tone: "sure" },
-      { letter: "E", tone: "sure" },
+    expect(packCountRuns(IDEAL_BALLOON_BEADS)).toHaveLength(6);
+  });
+
+  it("describes leftover mass as interval bounds, not letter beads", () => {
+    expect(IDEAL_BALLOON_INTERVALS.map((interval) => interval.kind)).toEqual([
+      "a1Extras",
+      "middle",
+      "extraEven",
+      "lastZeroOrOne",
     ]);
-    expect(packed.map((bead) => `${bead.letter}:${bead.tone}`)).toEqual([
-      "O:sure",
-      "O:sure",
-      "O:count",
-      "E:sure",
-      "O:count",
-      "E:sure",
-      "O:count",
-      "E:sure",
-      "O:count",
-      "E:sure",
-    ]);
+    expect(IDEAL_BALLOON_INTERVALS.every((interval) => interval.min === 0)).toBe(true);
+    expect(intervalBoundLabel(IDEAL_BALLOON_INTERVALS[0])).toBe("0+");
+    expect(intervalBoundLabel(IDEAL_BALLOON_INTERVALS[3])).toBe("0 or 1");
+    expect(IDEAL_BALLOON_INTERVALS[3]?.max).toBe(1);
+    expect(IDEAL_BALLOON_INTERVALS[2]?.max).toBeNull();
+  });
+
+  it("rotates the join only among the six sure letters", () => {
+    const spots = idealJoinSpots();
+    expect(spots).toEqual([0, 1, 2, 3, 4, 5]);
+    expect(spots.every((index) => IDEAL_BALLOON_BEADS[index]?.tone === "sure")).toBe(true);
+    expect(spots.filter((index) => IDEAL_BALLOON_BEADS[index]?.letter === "O")).toHaveLength(2);
+    expect(spots.filter((index) => IDEAL_BALLOON_BEADS[index]?.letter === "E")).toHaveLength(4);
+    expect(idealJoinLabel(0)).toBe("CycleMin n");
+    expect(idealJoinLabel(1)).toBe("launch O");
+    expect(idealJoinLabel(2)).toBe("first E");
+    expect(idealJoinLabel(3)).toBe("E 2");
+    expect(idealJoinLabel(5)).toBe("last E");
+    expect(stepIdealJoin(0, 1)).toBe(1);
+    expect(stepIdealJoin(1, 1)).toBe(2);
+    expect(stepIdealJoin(5, 1)).toBe(0);
+    expect(stepIdealJoin(0, -1)).toBe(5);
+    expect(stepIdealJoin(2, 1)).toBe(3);
   });
 });
 
 describe("string tour presets", () => {
-  it("ends every shipped string on the balloon 1", () => {
+  it("ends every shipped string on the cycle 1", () => {
     for (const preset of STRING_TOUR_PRESETS) {
       expect(preset.states.at(-1)).toBe(1n);
       expect(preset.states.at(-2)).toBe(2n);
@@ -249,14 +279,14 @@ describe("idealized figure decisions", () => {
     }
   });
 
-  it("keeps cartoons off the balloon theorems", () => {
-    const cartoons = IDEAL_DECISIONS.filter((decision) => decision.kind === "cartoon");
-    expect(cartoons.map((decision) => decision.id)).toEqual([
+  it("keeps the optional stem off the cycle theorems", () => {
+    const optional = IDEAL_DECISIONS.filter((decision) => decision.kind === "optional");
+    expect(optional.map((decision) => decision.id)).toEqual([
       "string-oo",
       "string-e",
       "join-seam",
     ]);
-    expect(IDEAL_DECISIONS.filter((decision) => decision.part === "balloon").every((decision) => decision.kind !== "cartoon")).toBe(true);
+    expect(IDEAL_DECISIONS.filter((decision) => decision.part === "cycle").every((decision) => decision.kind !== "optional")).toBe(true);
   });
 
   it("does not paint equidistribution or automatic descent as beads", () => {

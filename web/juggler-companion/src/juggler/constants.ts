@@ -146,6 +146,40 @@ export type IdealBead = {
   tone: IdealTone;
 };
 
+/** Mirrors `BalloonStation` in `formal/Problems/Juggler/IdealCycleMin.lean`. */
+export type EvenRole = "first" | "middle" | "last";
+export type IntervalOddKind = "a1Extras" | "middle" | "lastZeroOrOne";
+export type BalloonStation =
+  | { kind: "sureLaunchO" }
+  | { kind: "sureEven"; role: EvenRole }
+  | { kind: "intervalOdd"; odd: IntervalOddKind }
+  | { kind: "intervalExtraEven" };
+
+export type BalloonIntervalKind =
+  | IntervalOddKind
+  | "extraEven";
+
+export type BalloonInterval = {
+  afterBead: number;
+  kind: BalloonIntervalKind;
+  min: number;
+  max: number | null;
+  label: string;
+};
+
+/** Unique figure schema. Same order as Lean `balloonSchema`. */
+export const BALLOON_SCHEMA: readonly BalloonStation[] = [
+  { kind: "sureLaunchO" },
+  { kind: "intervalOdd", odd: "a1Extras" },
+  { kind: "sureEven", role: "first" },
+  { kind: "intervalOdd", odd: "middle" },
+  { kind: "sureEven", role: "middle" },
+  { kind: "sureEven", role: "middle" },
+  { kind: "intervalOdd", odd: "lastZeroOrOne" },
+  { kind: "sureEven", role: "last" },
+  { kind: "intervalExtraEven" },
+];
+
 /** Idealized first-visit stem: sure OO and t, unknown middle color. */
 export const IDEAL_STRING_BEADS: readonly IdealBead[] = [
   { letter: "O", tone: "sure" },
@@ -157,8 +191,8 @@ export const IDEAL_STRING_BEADS: readonly IdealBead[] = [
 ];
 
 /**
- * Collapse a known-parity unknown-count run to one bead. The figure
- * draws that bead as overlapping circles.
+ * Collapse a known-parity unknown-count run to one bead.
+ * Unknown-color beads stay distinct, like the stem ???.
  */
 export function packCountRuns(beads: readonly IdealBead[]): IdealBead[] {
   const packed: IdealBead[] = [];
@@ -172,27 +206,37 @@ export function packCountRuns(beads: readonly IdealBead[]): IdealBead[] {
   return packed;
 }
 
+function sureBeadsFromSchema(schema: readonly BalloonStation[]): IdealBead[] {
+  const beads: IdealBead[] = [];
+  for (const station of schema) {
+    if (station.kind === "sureLaunchO") {
+      beads.push({ letter: "O", tone: "sure" }, { letter: "O", tone: "sure" });
+    } else if (station.kind === "sureEven") {
+      beads.push({ letter: "E", tone: "sure" });
+    }
+  }
+  return beads;
+}
+
 /**
- * Idealized CycleMin balloon. Solid beads are sure. Count O is known
- * parity with unknown repeats (odd-run mass). Extra evens past the four
- * forced E are empty at L=11, so they are not a fifth bead.
+ * Six sure letters from the Lean schema: launch OO and four E.
+ * Interval slots are bounds, not letter beads.
  */
-export const IDEAL_BALLOON_BEADS: readonly IdealBead[] = [
-  { letter: "O", tone: "sure" },
-  { letter: "O", tone: "sure" },
-  { letter: "O", tone: "count" },
-  { letter: "O", tone: "count" },
-  { letter: "O", tone: "count" },
-  { letter: "E", tone: "sure" },
-  { letter: "O", tone: "count" },
-  { letter: "O", tone: "count" },
-  { letter: "E", tone: "sure" },
-  { letter: "O", tone: "count" },
-  { letter: "O", tone: "count" },
-  { letter: "E", tone: "sure" },
-  { letter: "O", tone: "count" },
-  { letter: "E", tone: "sure" },
+export const IDEAL_BALLOON_BEADS: readonly IdealBead[] =
+  sureBeadsFromSchema(BALLOON_SCHEMA);
+
+export const IDEAL_BALLOON_INTERVALS: readonly BalloonInterval[] = [
+  { afterBead: 1, kind: "a1Extras", min: 0, max: null, label: "a₁ extras 0+" },
+  { afterBead: 2, kind: "middle", min: 0, max: null, label: "middle 0+" },
+  { afterBead: 3, kind: "extraEven", min: 0, max: null, label: "extra E 0+" },
+  { afterBead: 4, kind: "lastZeroOrOne", min: 0, max: 1, label: "aₑ ∈ {0,1}" },
 ];
+
+export function intervalBoundLabel(interval: BalloonInterval): string {
+  return interval.max === null
+    ? `${interval.min}+`
+    : `${interval.min} or ${interval.max}`;
+}
 
 export const IDEAL_STRING_LETTERS = IDEAL_STRING_BEADS.map(
   (bead) => bead.letter,
@@ -201,7 +245,45 @@ export const IDEAL_BALLOON_LETTERS = IDEAL_BALLOON_BEADS.map(
   (bead) => bead.letter,
 );
 
-/** Capture strings onto the only known balloon {1}. Not cycles. */
+/**
+ * First-visit stops that are forced to exist: two launch O and four E.
+ * Interval slots may be empty, so they are not stops.
+ */
+export function idealJoinSpots(
+  beads: readonly IdealBead[] = IDEAL_BALLOON_BEADS,
+): number[] {
+  return beads.flatMap((bead, index) => (bead.tone === "sure" ? [index] : []));
+}
+
+export function stepIdealJoin(
+  joinIndex: number,
+  delta: number,
+  spots: readonly number[] = idealJoinSpots(),
+): number {
+  if (spots.length === 0) return 0;
+  const at = spots.indexOf(joinIndex);
+  const from = at === -1 ? 0 : at;
+  const span = spots.length;
+  return spots[(((from + delta) % span) + span) % span];
+}
+
+export function idealJoinLabel(
+  index: number,
+  beads: readonly IdealBead[] = IDEAL_BALLOON_BEADS,
+): string {
+  if (index === 0) return "CycleMin n";
+  if (index === 1 && beads[1]?.letter === "O") return "launch O";
+  const sureEvens = beads.flatMap((bead, beadIndex) =>
+    bead.letter === "E" && bead.tone === "sure" ? [beadIndex] : [],
+  );
+  const evenAt = sureEvens.indexOf(index);
+  if (evenAt === 0) return "first E";
+  if (evenAt === sureEvens.length - 1) return "last E";
+  if (evenAt > 0) return `E ${evenAt + 1}`;
+  return beads[index]?.letter ?? "?";
+}
+
+/** Capture stems onto the only known cycle {1}. Not nontrivial cycles. */
 export const STRING_TOUR_PRESETS = [
   {
     id: "3",

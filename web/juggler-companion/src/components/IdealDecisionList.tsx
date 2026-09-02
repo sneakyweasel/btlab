@@ -9,7 +9,7 @@ import {
 
 const KIND_CLASS: Record<DecisionKind, string> = {
   theorem: "bg-ok/15 text-ok",
-  cartoon: "bg-warn/15 text-warn",
+  optional: "bg-warn/15 text-warn",
   leftover: "bg-even/15 text-even",
   "off-figure": "bg-line text-muted",
 };
@@ -42,7 +42,7 @@ export function IdealDecisionCard({
           Click a bead or a row
         </p>
         <p className="mt-2 text-sm text-ink">
-          Solid, overlapping, and grey keep their meaning. The wash is only a
+          Solid and grey keep their meaning. The wash is only a
           pointer. Click empty space to show the whole figure again.
         </p>
       </div>
@@ -79,9 +79,9 @@ export function IdealDecisionList({
         Each decision, with its lemma
       </p>
       <p className="mt-1 text-sm text-muted">
-        Theorem is forced. Cartoon is one legal picture. Leftover is a named
-        shape that still does not close. Off-figure was harvested and does not
-        paint a bead.
+        Theorem is forced. Optional stem is one legal first visit. Leftover
+        is a named shape that still does not close. Off-figure was harvested
+        and does not paint a bead.
       </p>
       <div className="mt-3 grid gap-4 lg:grid-cols-2">
         {DECISION_PARTS.map((part) => (
