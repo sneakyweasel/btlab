@@ -8,10 +8,10 @@ type CycleAnatomyProps = {
 };
 
 function Tile({ letter, dim }: { letter?: string; dim?: boolean }) {
-  if (!letter) {
+  if (!letter || letter === "?") {
     return (
       <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-dashed border-line font-mono text-muted">
-        ·
+        {letter === "?" ? "?" : "·"}
       </span>
     );
   }
@@ -54,14 +54,32 @@ export function CycleSeamStrip({
   return (
     <div className={`rounded-xl border border-line bg-paper/70 px-3 py-3 ${dim ? "opacity-70" : ""}`}>
       <p className="text-xs uppercase tracking-wide text-muted">
-        Seam — three points at the knot
+        Seam — the string joins at the knot
       </p>
-      <div className="mt-3 flex flex-wrap items-end justify-center gap-2">
+      <div className="mt-3 flex flex-wrap items-end justify-center gap-1.5">
+        <Tile letter="O" />
+        <Tile letter="O" />
+        <Tile letter="?" />
+        <Tile letter="?" />
+        <Tile letter="?" />
+        <div className="grid justify-items-center gap-1">
+          <Tile letter="E" />
+          <span className="text-xs text-muted">t</span>
+        </div>
+        <Arrow letter="E" />
+        <div className="grid justify-items-center gap-1">
+          <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border-2 border-ink bg-card px-2 font-serif text-sm">
+            n
+          </span>
+          <span className="text-xs text-muted">join</span>
+        </div>
+        <span className="mb-3 text-muted">←</span>
         <div className="grid justify-items-center gap-1">
           <Tile letter={lastPeak} dim={dim} />
           <span className="text-xs text-muted">last peak</span>
         </div>
-        <Arrow letter={lastPeak} dim={dim} />
+      </div>
+      <div className="mt-3 flex flex-wrap items-end justify-center gap-2">
         <div className="grid justify-items-center gap-1">
           <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border-2 border-ink bg-card px-2 font-serif text-sm">
             n

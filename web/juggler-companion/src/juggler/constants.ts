@@ -7,6 +7,8 @@ export const TRAJECTORY_STEPS_MAX = 80;
 export const DISPLAY_BITS_MAX = 256;
 export const WORD_MAX = 8;
 export const CYCLE_WORD_MAX = 16;
+/** Tour strings may be longer than a leftover necklace (365 is 21 letters). */
+export const TOUR_WORD_MAX = 24;
 export const SLACK_BITS = 80;
 
 export const PAPER_FLOOR = 1_000_000;
@@ -137,6 +139,52 @@ export const CYCLE_TOUR_PRESETS = [
     hint: "CycleMin shape with three odd-runs. Not a cycle.",
   },
 ] as const;
+
+export type IdealTone = "sure" | "count" | "unknown";
+export type IdealBead = {
+  letter: "O" | "E" | "?";
+  tone: IdealTone;
+};
+
+/** Idealized first-visit stem: sure OO and t, unknown middle color. */
+export const IDEAL_STRING_BEADS: readonly IdealBead[] = [
+  { letter: "O", tone: "sure" },
+  { letter: "O", tone: "sure" },
+  { letter: "?", tone: "unknown" },
+  { letter: "?", tone: "unknown" },
+  { letter: "?", tone: "unknown" },
+  { letter: "E", tone: "sure" },
+];
+
+/**
+ * Idealized CycleMin balloon. Solid beads are sure. Faded O / E are
+ * known parity with unknown count (odd-run mass, extra evens).
+ */
+export const IDEAL_BALLOON_BEADS: readonly IdealBead[] = [
+  { letter: "O", tone: "sure" },
+  { letter: "O", tone: "sure" },
+  { letter: "O", tone: "count" },
+  { letter: "O", tone: "count" },
+  { letter: "O", tone: "count" },
+  { letter: "E", tone: "sure" },
+  { letter: "E", tone: "count" },
+  { letter: "E", tone: "count" },
+  { letter: "O", tone: "count" },
+  { letter: "O", tone: "count" },
+  { letter: "E", tone: "sure" },
+  { letter: "O", tone: "count" },
+  { letter: "O", tone: "count" },
+  { letter: "E", tone: "sure" },
+  { letter: "O", tone: "count" },
+  { letter: "E", tone: "sure" },
+];
+
+export const IDEAL_STRING_LETTERS = IDEAL_STRING_BEADS.map(
+  (bead) => bead.letter,
+);
+export const IDEAL_BALLOON_LETTERS = IDEAL_BALLOON_BEADS.map(
+  (bead) => bead.letter,
+);
 
 /** Capture strings onto the only known balloon {1}. Not cycles. */
 export const STRING_TOUR_PRESETS = [

@@ -5,7 +5,12 @@ import {
   NOTE_PEAK_37,
   PAPER_EXCEPTION_COUNT,
   PAPER_PERIOD,
+  IDEAL_BALLOON_BEADS,
+  IDEAL_BALLOON_LETTERS,
+  IDEAL_STRING_BEADS,
+  IDEAL_STRING_LETTERS,
   STRING_TOUR_PRESETS,
+  TOUR_WORD_MAX,
 } from "./constants";
 import { financeSnapshot, financeView } from "./finance";
 import { floorPower } from "./map";
@@ -141,11 +146,45 @@ describe("cycleMinShape", () => {
   });
 });
 
+describe("idealized string stem", () => {
+  it("starts OO, leaves the middle undefined, and ends E", () => {
+    expect(IDEAL_STRING_LETTERS.join("")).toBe("OO???E");
+    expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "sure").map((bead) => bead.letter).join("")).toBe("OOE");
+    expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "unknown")).toHaveLength(3);
+  });
+});
+
+describe("idealized balloon", () => {
+  it("marks sure letters solid and known-parity extras as count", () => {
+    expect(IDEAL_BALLOON_LETTERS.join("")).toBe("OOOOOEEEOOEOOEOE");
+    expect(IDEAL_BALLOON_BEADS.length).toBeGreaterThanOrEqual(11);
+    expect(IDEAL_BALLOON_BEADS.slice(0, 2).every((bead) => bead.letter === "O" && bead.tone === "sure")).toBe(true);
+    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "E" && bead.tone === "sure")).toHaveLength(4);
+    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "O" && bead.tone === "count").length).toBeGreaterThanOrEqual(7);
+    expect(IDEAL_BALLOON_BEADS.filter((bead) => bead.letter === "E" && bead.tone === "count").length).toBeGreaterThanOrEqual(2);
+    expect(IDEAL_BALLOON_BEADS.at(-1)).toEqual({ letter: "E", tone: "sure" });
+    expect(IDEAL_BALLOON_BEADS.at(-2)).toEqual({ letter: "O", tone: "count" });
+  });
+});
+
 describe("string tour presets", () => {
   it("ends every shipped string on the balloon 1", () => {
     for (const preset of STRING_TOUR_PRESETS) {
       expect(preset.states.at(-1)).toBe(1n);
       expect(preset.states.at(-2)).toBe(2n);
+    }
+  });
+
+  it("replays each string as a realized walk that fits the tour cap", () => {
+    for (const preset of STRING_TOUR_PRESETS) {
+      for (let index = 0; index < preset.states.length - 1; index += 1) {
+        expect(floorPower(preset.states[index])).toBe(preset.states[index + 1]);
+      }
+      const word = preset.states
+        .slice(0, -1)
+        .map((state) => (state % 2n === 1n ? "O" : "E"))
+        .join("");
+      expect(word.length).toBeLessThanOrEqual(TOUR_WORD_MAX);
     }
   });
 
@@ -155,6 +194,16 @@ describe("string tour presets", () => {
       69n, 573n, 13716n, 117n, 1265n, 44992n, 212n, 14n, 3n, 5n, 11n, 36n, 6n,
       2n, 1n,
     ]);
+  });
+
+  it("ships 365 as a 21-letter leftover that still captures", () => {
+    const preset = STRING_TOUR_PRESETS.find((item) => item.id === "365");
+    const word = preset?.states
+      .slice(0, -1)
+      .map((state) => (state % 2n === 1n ? "O" : "E"))
+      .join("");
+    expect(word).toBe("OOEOOEOOEOOEOEEEOOEEE");
+    expect(word?.length).toBe(21);
   });
 });
 

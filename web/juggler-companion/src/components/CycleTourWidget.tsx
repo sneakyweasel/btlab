@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CYCLE_TOUR_PRESETS, STRING_TOUR_PRESETS } from "../juggler/constants";
+import { CYCLE_TOUR_PRESETS, TOUR_WORD_MAX } from "../juggler/constants";
 import {
   cycleMinShape,
   parseItinerary,
@@ -11,7 +11,7 @@ import { CycleLollipop } from "../visuals/CycleLollipop";
 import { CycleNecklace } from "../visuals/CycleNecklace";
 import { Metric } from "./Metric";
 
-const DEFAULT = CYCLE_TOUR_PRESETS[0];
+const DEFAULT_SHAPE = CYCLE_TOUR_PRESETS[0];
 
 function Check({ ok, children }: { ok: boolean; children: string }) {
   return (
@@ -64,23 +64,20 @@ function LetterRow({
 }
 
 export function CycleTourWidget() {
-  const [text, setText] = useState<string>(DEFAULT.word);
+  const [text, setText] = useState<string>(DEFAULT_SHAPE.word);
   const [shift, setShift] = useState(0);
-  const [minIndex, setMinIndex] = useState<number>(DEFAULT.minIndex);
-  const [stringId, setStringId] = useState<string>("69");
-  const stringExample =
-    STRING_TOUR_PRESETS.find((item) => item.id === stringId) ?? STRING_TOUR_PRESETS[0];
-  const stringWord = stringExample.states
-    .slice(0, -1)
-    .map((state) => (state % 2n === 1n ? "O" : "E"))
-    .join("");
-  const parsed = parseItinerary(text, 16);
+  const [minIndex, setMinIndex] = useState(DEFAULT_SHAPE.minIndex);
+  const parsed = parseItinerary(text, TOUR_WORD_MAX);
   const stored = parsed ?? "";
   const current = stored ? rotateItinerary(stored, shift) : "";
+  const balloonWord = stored ? rotateItinerary(stored, minIndex) : "";
   const shape = cycleMinShape(current);
-  const aligned = stored.length > 0 && ((shift % stored.length) + stored.length) % stored.length === minIndex;
+  const balloonShape = cycleMinShape(balloonWord);
+  const aligned =
+    stored.length > 0 &&
+    ((shift % stored.length) + stored.length) % stored.length === minIndex;
 
-  function choose(word: string, min: number) {
+  function chooseShape(word: string, min: number) {
     setText(word);
     setMinIndex(min);
     setShift(0);
@@ -94,55 +91,86 @@ export function CycleTourWidget() {
   return (
     <div className="space-y-5">
       <p className="text-sm text-muted">
-        The balloon is the cycle. CycleMin cuts that balloon at its smallest
-        value: last peak, n, and launch OO meet there. The string is the
-        itinerary before the first visit to the balloon. Pictures of forced
-        shape, not cycles. The unique known balloon is 1.
+        If a cycle existed it would need this string and the CycleMin run
+        form: odd-run, even, odd-run, even, through four evens. Forced
+        letters are solid; faded O and E have known parity and unknown
+        count; grey ??? are unknown color. Period at least 11.
+        Pictures of necessity, not a cycle. The unique known balloon is 1.
       </p>
-      <div className="flex flex-wrap items-center gap-1.5">
-        {CYCLE_TOUR_PRESETS.map((preset) => (
-          <button
-            key={preset.id}
-            type="button"
-            title={preset.hint}
-            className={`rounded-full px-2.5 py-0.5 font-mono text-sm ${
-              text === preset.word && shift === 0
-                ? "bg-deep text-card"
-                : "border border-line bg-card text-ink"
-            }`}
-            onClick={() => choose(preset.word, preset.minIndex)}
-          >
-            {preset.label}
-          </button>
-        ))}
+      <div>
+        <p className="mb-1.5 text-xs uppercase tracking-wide text-muted">
+          Balloon leftovers — not cycles
+        </p>
+        <div className="flex flex-wrap items-center gap-1.5">
+          {CYCLE_TOUR_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              title={preset.hint}
+              className={`rounded-full px-2.5 py-0.5 font-mono text-sm ${
+                text === preset.word && shift === 0
+                  ? "bg-deep text-card"
+                  : "border border-line bg-card text-ink"
+              }`}
+              onClick={() => chooseShape(preset.word, preset.minIndex)}
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
       </div>
       {parsed !== null ? (
         <div
           className={`rounded-xl border px-3 py-2 text-sm ${
-            shape.cycleMinShaped
+            balloonShape.cycleMinShaped
               ? "border-ok/40 bg-ok/10 text-ink"
               : aligned
                 ? "border-warn/40 bg-warn/10 text-ink"
                 : "border-line bg-paper/70 text-muted"
           }`}
         >
-          {shape.cycleMinShaped
-            ? "CycleMin shape. Necessary, not a cycle."
+          {balloonShape.cycleMinShaped
+            ? "The circle above is the necessary balloon. This leftover is one filling of the grey letters. Still not a cycle."
             : aligned
               ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, and has four evens."
-              : "Rotate until the min bead sits at the knot."}
+              : "Rotate until the min bead sits at the knot. The string joins there."}
         </div>
       ) : null}
       {parsed === null ? (
-        <p className="text-sm text-warn">Use only O and E, length at most 16.</p>
+        <p className="text-sm text-warn">Use only O and E, length at most 24.</p>
       ) : (
         <>
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
+            <CycleLollipop />
+            <div className="rounded-xl border border-line bg-paper/70 px-3 py-3">
+              <p className="text-xs uppercase tracking-wide text-muted">
+                Necessary letters
+              </p>
+              <ul className="mt-2 grid gap-1.5">
+                <Check ok>String starts OO — a launch, then the walk</Check>
+                <Check ok>String greys — no nontrivial cycle to fill them</Check>
+                <Check ok>String ends E — off-cycle parent t of the minimum</Check>
+                <Check ok>Join at the seam — first meeting at CycleMin n</Check>
+                <Check ok>Balloon is run form — odd-run, E, odd-run, E, …</Check>
+                <Check ok>First odd-run at least 2 — launch OO, not E or OE</Check>
+                <Check ok>At least four E — period at least 11</Check>
+                <Check ok>Last odd-run at most 1 — ends EE or OE</Check>
+              </ul>
+              <p className="mt-3 text-sm text-muted">
+                A start already on the balloon has an empty string. A
+                contracting prefix is descent, not a balloon. An unbounded walk
+                has neither. This figure places the first meeting at CycleMin;
+                a join can sit elsewhere on the loop.
+              </p>
+            </div>
+          </div>
           <div className="grid gap-6 md:grid-cols-[minmax(16rem,22rem)_1fr] md:items-start">
             <div>
               <CycleNecklace
                 word={stored}
                 shift={shift}
                 minIndex={minIndex}
+                showCut
                 onSelectIndex={setShift}
               />
               <div className="mt-1 flex justify-center gap-2">
@@ -174,6 +202,9 @@ export function CycleTourWidget() {
             </div>
             <div className="space-y-3">
               <LetterRow word={current} aligned={aligned} />
+              <p className="text-xs uppercase tracking-wide text-muted">
+                Balloon checklist
+              </p>
               <ul className="grid gap-1.5">
                 <Check ok={shape.startsOO}>
                   Starts OO — not E, not OE
@@ -218,43 +249,6 @@ export function CycleTourWidget() {
             shaped={shape.cycleMinShaped}
             seam={shape.seam}
           />
-          <div className="flex flex-wrap items-center gap-1.5">
-            {STRING_TOUR_PRESETS.map((preset) => (
-              <button
-                key={preset.id}
-                type="button"
-                title={preset.hint}
-                className={`rounded-full px-2.5 py-0.5 text-sm ${
-                  stringId === preset.id
-                    ? "bg-odd text-card"
-                    : "border border-line bg-card text-ink"
-                }`}
-                onClick={() => setStringId(preset.id)}
-              >
-                {preset.label}
-              </button>
-            ))}
-          </div>
-          <div className="grid gap-3 lg:grid-cols-[1fr_minmax(16rem,20rem)] lg:items-start">
-            <CycleLollipop example={stringExample} />
-            <div className="rounded-xl border border-line bg-paper/70 px-3 py-3">
-              <p className="text-xs uppercase tracking-wide text-muted">
-                String restrictions
-              </p>
-              <ul className="mt-2 grid gap-1.5">
-                <Check ok>{`Realized — this walk follows ${stringWord}`}</Check>
-                <Check ok>Envelope still applies — floors only shrink</Check>
-                <Check ok>No prefix return — a return before the join is a shorter cycle</Check>
-                <Check ok>Contracting prefixes are descent, not a balloon</Check>
-                <Check ok>Capture — this balloon is 1, not a nontrivial cycle</Check>
-                <Check ok>Join is first meeting — last even maps to 1; 1 maps to 1</Check>
-              </ul>
-              <p className="mt-3 text-sm text-muted">
-                An unbounded walk has no balloon, hence no string. The join is
-                not the CycleMin cut unless they happen to coincide.
-              </p>
-            </div>
-          </div>
         </>
       )}
       <label className="block text-sm text-muted">
@@ -262,12 +256,12 @@ export function CycleTourWidget() {
         <input
           className="mt-1 block w-full max-w-md rounded border border-line bg-card px-2 py-1 font-mono uppercase"
           value={text}
-          onChange={(event) => choose(event.target.value.toUpperCase(), 0)}
+          onChange={(event) => chooseShape(event.target.value.toUpperCase(), 0)}
         />
       </label>
       <p className="text-sm text-muted">
-        O⁷EEEE and O⁶EEEOE are named leftovers: they have the shape and still
-        do not close.{" "}
+        O⁷EEEE, O⁶EEEOE, and the three-valley word fill the balloon greys and
+        still do not close. The grey letters are not a realized walk.{" "}
         <Link to="/play/cycle">Try the same necklace in the playground</Link>.
       </p>
     </div>

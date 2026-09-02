@@ -3,6 +3,8 @@ type CycleNecklaceProps = {
   shift?: number;
   minIndex?: number;
   onSelectIndex?: (index: number) => void;
+  /** When false, draw letters only — a capture string is not a CycleMin cut. */
+  showCut?: boolean;
 };
 
 function originalIndex(minIndex: number, offset: number, length: number): number {
@@ -14,26 +16,30 @@ export function CycleNecklace({
   shift = 0,
   minIndex,
   onSelectIndex,
+  showCut = true,
 }: CycleNecklaceProps) {
   const n = Math.max(word.length, 1);
   const cx = 180;
   const cy = 158;
-  const r = 92;
+  const r = n > 16 ? 108 : 92;
+  const beadR = Math.min(16, Math.max(8, (Math.PI * r) / n - 1.5));
+  const minBeadR = beadR + 3;
+  const cut = showCut ? minIndex : undefined;
   const atMin =
-    minIndex !== undefined && (((shift % n) + n) % n === minIndex);
+    cut !== undefined && (((shift % n) + n) % n === cut);
   const firstEvenOffset =
-    minIndex === undefined ? -1 : rotateFrom(word, minIndex).indexOf("E");
+    cut === undefined ? -1 : rotateFrom(word, cut).indexOf("E");
   const firstPeak =
-    minIndex !== undefined && firstEvenOffset >= 0
-      ? originalIndex(minIndex, firstEvenOffset, word.length)
+    cut !== undefined && firstEvenOffset >= 0
+      ? originalIndex(cut, firstEvenOffset, word.length)
       : -1;
   const lastPeak =
-    minIndex !== undefined && word.length > 0
-      ? originalIndex(minIndex, word.length - 1, word.length)
+    cut !== undefined && word.length > 0
+      ? originalIndex(cut, word.length - 1, word.length)
       : -1;
   const firstLaunch =
-    minIndex !== undefined && word.length > 1
-      ? originalIndex(minIndex, 1, word.length)
+    cut !== undefined && word.length > 1
+      ? originalIndex(cut, 1, word.length)
       : -1;
 
   function xy(index: number): { x: number; y: number } {
@@ -43,14 +49,18 @@ export function CycleNecklace({
 
   return (
     <svg viewBox="0 0 360 300" role="img" className="mx-auto h-auto w-full max-w-sm">
-      <title>Cycle itinerary as a rotatable necklace</title>
+      <title>
+        {showCut
+          ? "Cycle itinerary as a rotatable necklace"
+          : "Capture string shown as letters, not a cycle"}
+      </title>
       <circle cx={cx} cy={cy} r={r} fill="none" stroke="#d4cbb8" strokeWidth="2" />
       {word.length > 1
         ? Array.from(word).map((letter, index) => {
             const next = (index + 1) % word.length;
             const a0 = beadAngle(index, shift, n);
             const a1 = beadAngle(next, shift, n);
-            const launchArc = minIndex !== undefined && index === minIndex;
+            const launchArc = cut !== undefined && index === cut;
             return (
               <path
                 key={`arc-${index}`}
@@ -64,9 +74,9 @@ export function CycleNecklace({
             );
           })
         : null}
-      {minIndex !== undefined && lastPeak >= 0 && firstLaunch >= 0 ? (
+      {cut !== undefined && lastPeak >= 0 && firstLaunch >= 0 ? (
         <path
-          d={`M ${xy(lastPeak).x} ${xy(lastPeak).y} L ${xy(minIndex).x} ${xy(minIndex).y} L ${xy(firstLaunch).x} ${xy(firstLaunch).y}`}
+          d={`M ${xy(lastPeak).x} ${xy(lastPeak).y} L ${xy(cut).x} ${xy(cut).y} L ${xy(firstLaunch).x} ${xy(firstLaunch).y}`}
           fill="none"
           stroke="#1d1914"
           strokeWidth="2.2"
@@ -86,16 +96,16 @@ export function CycleNecklace({
         fontFamily="Source Sans 3, sans-serif"
         fontSize="12"
       >
-        {atMin ? "CycleMin cut" : "this spelling"}
+        {atMin ? "CycleMin cut" : showCut ? "this spelling" : "capture string"}
       </text>
       {Array.from(word).map((letter, index) => {
         const angle = beadAngle(index, shift, n);
         const x = cx + r * Math.cos(angle);
         const y = cy + r * Math.sin(angle);
-        const isMin = minIndex === index;
+        const isMin = cut === index;
         const odd = letter === "O";
         const label = beadCaption(index, {
-          minIndex,
+          minIndex: cut,
           firstPeak,
           lastPeak,
           firstLaunch,
@@ -109,7 +119,7 @@ export function CycleNecklace({
             <circle
               cx={x}
               cy={y}
-              r={isMin ? 20 : 16}
+              r={isMin ? minBeadR : beadR}
               fill={odd ? "#c45c26" : "#1f6f6a"}
               stroke={isMin ? "#1d1914" : "none"}
               strokeWidth={isMin ? 3 : 0}
@@ -122,7 +132,7 @@ export function CycleNecklace({
               textAnchor="middle"
               fill="#fffdf7"
               fontFamily="IBM Plex Mono, monospace"
-              fontSize="14"
+              fontSize={beadR < 12 ? "10" : "14"}
               className={onSelectIndex ? "cursor-pointer" : undefined}
               onClick={onSelectIndex ? () => onSelectIndex(index) : undefined}
             >
@@ -154,7 +164,9 @@ export function CycleNecklace({
         {word
           ? atMin
             ? "minimum at the top"
-            : "click a bead to start there"
+            : showCut
+              ? "click a bead to start there"
+              : "letters of the string"
           : "type O and E"}
       </text>
     </svg>
