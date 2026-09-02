@@ -20,7 +20,7 @@ def HasFiniteStop (n : ℕ) : Prop :=
   ∃ k > 0, floorPower^[k] n < n
 
 def HasFiniteCoeffStop (n : ℕ) : Prop :=
-  ∃ k > 0, orbitExponentGap n k
+  ∃ k > 0, trajectoryExponentGap n k
 
 /-- Isolated research target. Not a theorem. -/
 def FiniteCoeffStopConjecture : Prop :=
@@ -32,7 +32,7 @@ theorem hasFiniteStop_of_contracts {n k : ℕ}
   ⟨k, hk, hlt⟩
 
 theorem hasFiniteCoeffStop_of_gap {n k : ℕ}
-    (hk : 0 < k) (hgap : orbitExponentGap n k) :
+    (hk : 0 < k) (hgap : trajectoryExponentGap n k) :
     HasFiniteCoeffStop n :=
   ⟨k, hk, hgap⟩
 
@@ -63,7 +63,7 @@ theorem coeffStop_implies_stop {n : ℕ} (hn : 2 ≤ n)
   have hw : follows n (word n k) := follows_word_self n k
   have hlt : floorPower^[k] n < n := by
     have hgap' : 3 ^ oddCount (word n k) < 2 ^ (word n k).length := by
-      simpa [word_length] using orbitExponentGap_iff.mp hgap
+      simpa [word_length] using trajectoryExponentGap_iff.mp hgap
     have := power_bound_contracts hn hw hgap'
     simpa [word_length] using this
   exact ⟨k, hk, hlt⟩

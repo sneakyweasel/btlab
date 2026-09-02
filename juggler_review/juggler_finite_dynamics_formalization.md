@@ -23,7 +23,7 @@ satellites remain in `formal/Problems/Juggler.lean` and are not the
 review object.
 
 The package formalizes finite trajectories and conditional cycle structure.
-It does not prove that every positive integer reaches \(1\), that every orbit
+It does not prove that every positive integer reaches \(1\), that every trajectory
 has a contracting prefix, or that nontrivial cycles are impossible.
 
 The paper-central one-way import graph is drawn in
@@ -580,7 +580,7 @@ with valleys \(v_i\), peaks \(p_i=J^{a_{i+1}}(v_i)\), and
 | Last peak / entry cell | `cycle_last_even_interval`, `cycle_last_even_ne_odd_sq`, `cycle_trailing_evens_lt`, `cycleMin_not_end_odd` | `cycle_entry_excursion.entry_even_cell` | Cell **EXACT — LEAN VERIFIED**. Enumerated fibres are archived laboratory negative knowledge |
 | Circular closure / necklace | `rotateWord`, `cycleWord_rotateWord`, `cycle_iterate_period` | `cycle_cyclic_valley.py` (archived) | rotation **EXACT — LEAN VERIFIED**. No Lean `Necklace` |
 | \(L_*=25781\) in Lean | `Lstar`, `Ostar`, `runSurvivors_length` (`RunSurvivorLattice.lean`) | `budget_opt.json` leftover \(99\) | Lattice generator, **not** the period bound. The bound is Theorem 4.6 |
-| Later leftover-killers | not in the paper barrel | `cycle_entry_excursion`, `cycle_inverse_width`, `cycle_orbit_budget`, `cycle_cyclic_valley`, `cycle_realizable_finance`, `cycle_extremizer_discrepancy`, … | all **CLOSE** / **REFUTED**. Recovered Theorem 4.7 or closed. Not paper claims |
+| Later leftover-killers | not in the paper barrel | `cycle_entry_excursion`, `cycle_inverse_width`, `cycle_trajectory_budget`, `cycle_cyclic_valley`, `cycle_realizable_finance`, `cycle_extremizer_discrepancy`, … | all **CLOSE** / **REFUTED**. Recovered Theorem 4.7 or closed. Not paper claims |
 
 The first peak and the last peak are different even states. On a
 `CycleMin` the first even residual satisfies \(p_0\ge(n+1)^2\).

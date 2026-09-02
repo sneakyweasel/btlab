@@ -21,11 +21,11 @@ from research.juggler_sequence.odd_chain_minimality import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 
 
 def test_37_odd_runs_are_not_the_crossing_map():
-    runs = extract_odd_runs(orbit_until_drop(37), 37)
+    runs = extract_odd_runs(trajectory_until_drop(37), 37)
     starts = [row["x0"] for row in runs]
     lengths = [row["length"] for row in runs]
     assert starts == [37, 9317, 2233]
@@ -36,7 +36,7 @@ def test_37_odd_runs_are_not_the_crossing_map():
 
 def test_leftover_first_step_pred_is_the_start():
     for n in CONTROLS:
-        runs = extract_odd_runs(orbit_until_drop(n), n)
+        runs = extract_odd_runs(trajectory_until_drop(n), n)
         assert runs
         assert runs[0]["x0"] == n
         assert runs[0]["step_rows"][0]["unique_pred_of_next"] is True

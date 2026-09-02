@@ -207,15 +207,15 @@ It is not required.
   **COMPUTATIONALLY VERIFIED**; equals packed
 - Partial \(C<\theta\) —
   **REPARAMETERIZATION** of follow depth
-- Orbit-budget leftover-killer —
-  **REFUTED** (`juggler_cycle_orbit_budget`)
+- Trajectory-budget leftover-killer —
+  **REFUTED** (`juggler_cycle_trajectory_budget`)
 - No cycle of any length — not claimed
 
 ## Experiments
 
-- Probe: `research.juggler_sequence.cycle_orbit_budget`
+- Probe: `research.juggler_sequence.cycle_trajectory_budget`
 - Dataset: `data/research/juggler/cycle_finance/orbit_budget/summary.json`
-- Tests: `tests/research/juggler_sequence/test_cycle_orbit_budget.py`
+- Tests: `tests/research/juggler_sequence/test_cycle_trajectory_budget.py`
 - Window: small-e oracle \(e\le 4\) on odds \(11\ldots 79\);
   calibration \(\{365,1000057\}\); bounded B&B at
   \((L,n)=(25781,10^6+1)\), node cap \(20000\), fifteen
@@ -225,7 +225,7 @@ It is not required.
 
 ## Conjectures
 
-`juggler_cycle_orbit_budget` — **REFUTED**.
+`juggler_cycle_trajectory_budget` — **REFUTED**.
 
 ## Counterexamples
 

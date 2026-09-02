@@ -23,7 +23,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -218,7 +218,7 @@ def crossing_record(n: int, path: tuple[int, ...], i: int, nxt_odd: int | None) 
 
 
 def orbit_crossings(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     idxs = [i for i, x in enumerate(path) if cube_odd_landing(n, x)]
     xs = [path[i] for i in idxs]
     rows = []

@@ -41,7 +41,7 @@ Lyapunov function. Do not prove totality.
 ## Current literature
 
 - Maximal odd-run block map \(Q\) —
-  **PARK** (`J-block-map-q-orbits`); no compressed predictor
+  **PARK** (`J-block-map-q-trajectories`); no compressed predictor
 - \(Q(x)>x\) forces later contraction below \(x\) —
   **REFUTED** in the \(Q\) dossier
 - Episode-source descent on cube-interior states —

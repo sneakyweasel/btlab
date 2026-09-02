@@ -1,6 +1,6 @@
 export type TourSlug =
   | "the-map"
-  | "orbit-word"
+  | "trajectory-word"
   | "cycle-word"
   | "expanding"
   | "envelope"
@@ -26,17 +26,17 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     blurb:
       "Even numbers shrink. Odd numbers grow. Decimals vanish. Do it forever?",
     body:
-      "J is the one-step map. The Juggler sequence starting at n is the orbit of iterates n, J(n), J²(n), … . Floor means the integer part: remove everything after the decimal point. So floor(5.196) = 5 and floor(6) = 6. Start with a positive integer n. If n is even, take the square root and then floor. If n is odd, raise n to the three-halves and then floor: floor(n^{3/2}) = floor(n√n) = floor(√(n³)). That is not the cube root. The floor is applied after every step, not once at the end. Those two rules are the whole map. Paper A writes the even branch as E and the odd branch as O. The leftover crumbs after each floor are what later inequalities budget. The paper does not prove that every start reaches 1.",
+      "J is the one-step map. The Juggler sequence starting at n is the trajectory of iterates n, J(n), J²(n), … . Floor means the integer part: remove everything after the decimal point. So floor(5.196) = 5 and floor(6) = 6. Start with a positive integer n. If n is even, take the square root and then floor. If n is odd, raise n to the three-halves and then floor: floor(n^{3/2}) = floor(n√n) = floor(√(n³)). That is not the cube root. The floor is applied after every step, not once at the end. Those two rules are the whole map. Paper A writes the even branch as E and the odd branch as O. The leftover crumbs after each floor are what later inequalities budget. The paper does not prove that every start reaches 1.",
     paper: "Abstract and §1: the map J, floor, the even branch E, and the odd branch O. Lemma 1.1 lists the three possible fates.",
   },
   {
-    slug: "orbit-word",
+    slug: "trajectory-word",
     number: 2,
-    term: "Orbit and word",
-    blurb: "The orbit is the list of values. The word is the list of odd/even letters.",
+    term: "Trajectory and word",
+    blurb: "The trajectory is the list of values. The word is the list of odd/even letters.",
     body:
-      "Apply J again and again. The sequence of values is the orbit. The word of the first k steps is the length-k string over {O, E} that records the parity of each value: O if that value is odd, E if it is even. The word is not the orbit. The integer k is any finite prefix; the definition does not assume that the walk reaches 1. A word is realized at n only when the orbit of n actually follows those parities — a formal string that no start follows is not an itinerary. Ignoring floors, o odd letters in length k would multiply by 3^o / 2^k; that ratio is the ideal exponent of the word. The famous walk of 3 is 3, 5, 11, 36, 6, 2, 1, with realized word OOOEEE. Hitting 1 here is one orbit, not a proof that every start does.",
-    paper: "§1: orbit, word, realized word, and ideal exponent 3^o/2^k.",
+      "Apply J again and again. The sequence of values is the trajectory (also called an orbit in some dynamics texts). The word of the first k steps is the length-k string over {O, E} that records the parity of each value: O if that value is odd, E if it is even. The word is not the trajectory. The integer k is any finite prefix; the definition does not assume that the walk reaches 1. A word is realized at n only when the trajectory of n actually follows those parities — a formal string that no start follows is not an itinerary. Ignoring floors, o odd letters in length k would multiply by 3^o / 2^k; that ratio is the ideal exponent of the word. The famous walk of 3 is 3, 5, 11, 36, 6, 2, 1, with realized word OOOEEE. Hitting 1 here is one trajectory, not a proof that every start does.",
+    paper: "§1: trajectory, word, realized word, and ideal exponent 3^o/2^k.",
   },
   {
     slug: "cycle-word",

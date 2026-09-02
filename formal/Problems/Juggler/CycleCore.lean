@@ -574,7 +574,7 @@ theorem cycleMin_iterate_ge {n : ℕ} {w : List Branch} (h : CycleMin n w) :
 
 /-- Prefix non-contraction on an `AboveAnchor` prefix: a
 walk-negative prefix would contract strictly below the anchor
-(`power_bound_contracts`), so a never-descending orbit segment
+(`power_bound_contracts`), so a never-descending trajectory segment
 keeps `u_k ≥ 0` at every prefix length. The primitive form; a
 minimum-based cycle is the closed instance. -/
 theorem aboveAnchor_prefix_pow_le {n : ℕ} {w : List Branch}
@@ -732,7 +732,7 @@ theorem exists_cycleMin {n : ℕ} {w : List Branch}
   rw [himg, cycle_iterate_mod (k := i + j) h]
   exact hle _ (Nat.mod_lt _ (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2))
 
-/-- A `CycleMin` rotation starts at a global minimum of the orbit. -/
+/-- A `CycleMin` rotation starts at a global minimum of the trajectory. -/
 theorem cycleMin_le_cycle_state {n : ℕ} {w : List Branch} {k j : ℕ}
     (h : CycleWord n w) (hk : k < w.length) (hj : j < w.length)
     (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :

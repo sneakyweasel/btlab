@@ -18,12 +18,12 @@ from research.juggler_sequence.odd_even_reset import (
     write_artifacts,
 )
 from research.juggler_sequence.odd_chain_minimality import extract_odd_runs
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import floor_power
 
 
 def test_37_first_reset_quadruple():
-    runs = extract_odd_runs(orbit_until_drop(37), 37)
+    runs = extract_odd_runs(trajectory_until_drop(37), 37)
     rec = reset_from_run(37, runs[0])
     assert rec is not None
     assert rec["x"] == 37
@@ -45,7 +45,7 @@ def test_37_first_reset_quadruple():
 
 
 def test_37_sources_are_not_one_step_descent():
-    runs = extract_odd_runs(orbit_until_drop(37), 37)
+    runs = extract_odd_runs(trajectory_until_drop(37), 37)
     starts = [row["chain"][0] for row in runs]
     assert starts[:3] == [37, 9317, 2233]
     assert 2233 > 37
@@ -60,7 +60,7 @@ def test_37_sources_are_not_one_step_descent():
 def test_leftover_first_reset_is_ooe_not_source_descent():
     expected = {365: 763, 501: 1089, 1517: 3789, 6187: 18425}
     for n in CONTROLS:
-        runs = extract_odd_runs(orbit_until_drop(n), n)
+        runs = extract_odd_runs(trajectory_until_drop(n), n)
         rec = reset_from_run(n, runs[0])
         assert rec is not None
         assert rec["x"] == n

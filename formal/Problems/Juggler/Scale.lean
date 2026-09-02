@@ -4,7 +4,7 @@ import Problems.Juggler.Minimal
 namespace Problems.Juggler
 
 /-!
-# Scale barriers on a minimal non-1 orbit
+# Scale barriers on a minimal non-1 trajectory
 
 Exact power-envelope specializations of `OE` and `(OE)^r`, then the
 minimal-counterexample scale barrier. Not a frequency theorem, not a
@@ -34,7 +34,7 @@ theorem repeated_oe_scale_barrier {n x k r : ℕ} (h : MinimalNonTerm n)
       (by
         rw [← hexit]
         exact floorPower_iterate_pos h.pos (k + 2 * r))
-      (orbit_not_reachesOne h hexit)
+      (trajectory_not_reachesOne h hexit)
   exact le_trans (Nat.pow_le_pow_left hge (4 ^ r)) (repeated_oe_scale hw)
 
 theorem repeated_oe_scale_barrier_of_image {n : ℕ} {u : List Branch} {r : ℕ}
@@ -66,7 +66,7 @@ theorem minimal_nonterm_not_repeated_oe {n r : ℕ} (h : MinimalNonTerm n)
 /-!
 # Odd-run financing of the first legal even residual
 
-If a later state `x` realizes `O^a E^b` on a `MinimalNonTerm` orbit,
+If a later state `x` realizes `O^a E^b` on a `MinimalNonTerm` trajectory,
 then `n ^ (2 ^ (a + b)) ≤ x ^ (3 ^ a)`. The start itself cannot meet
 an even residual before `OOE`. Not a frequency theorem and not a halt
 theorem.
@@ -82,7 +82,7 @@ theorem odd_run_power_bound {x a : ℕ}
   have h := power_bound_word hw
   simpa [List.length_replicate, oddCount_replicate_odd] using h
 
-/-- Growth pays for collapse: `O^a E^b` on a minimal non-1 orbit
+/-- Growth pays for collapse: `O^a E^b` on a minimal non-1 trajectory
 requires `n ^ (2 ^ (a + b)) ≤ x ^ (3 ^ a)`. -/
 theorem odd_even_block_scale_barrier {n x k a b : ℕ}
     (h : MinimalNonTerm n) (hk : floorPower^[k] n = x)
@@ -200,7 +200,7 @@ theorem repeated_block_power_bound {x a b r : ℕ}
   rw [hlen, hodd, hmul] at h
   exact h
 
-/-- A later `(O^a E^b)^r` segment on a minimal non-1 orbit requires
+/-- A later `(O^a E^b)^r` segment on a minimal non-1 trajectory requires
 `n^{2^{r(a+b)}} ≤ x^{3^{a r}}`. -/
 theorem repeated_odd_even_scale_barrier {n x k a b r : ℕ}
     (h : MinimalNonTerm n) (hk : floorPower^[k] n = x)
@@ -214,7 +214,7 @@ theorem repeated_odd_even_scale_barrier {n x k a b r : ℕ}
       (by
         rw [← hexit]
         exact floorPower_iterate_pos h.pos (k + r * (a + b)))
-      (orbit_not_reachesOne h hexit)
+      (trajectory_not_reachesOne h hexit)
   exact le_trans (Nat.pow_le_pow_left hge _) (repeated_block_power_bound hw)
 
 theorem repeated_odd_even_scale_barrier_of_image {n : ℕ} {u : List Branch}

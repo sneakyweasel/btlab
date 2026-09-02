@@ -32,7 +32,7 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.minimal_anchor_closure import (
     corridor_rank,
-    orbit_until_drop,
+    trajectory_until_drop,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
@@ -54,7 +54,7 @@ EXISTING_LEAN = (
     "even_below_anchor_pow",
     "finiteProgress_of_aboveAnchor_returnBelow",
     "cycles_or_escapes",
-    "orbitExponentGap",
+    "trajectoryExponentGap",
     "collapse_on_pow_two",
 )
 
@@ -213,7 +213,7 @@ def global_record_mins(path: tuple[int, ...]) -> list[int]:
 
 
 def control_row(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     even_cuts = even_reset_cuts(path, n)
     rank_cuts = rank_return_cuts(path, n)
     below_cuts = first_below_anchor_cuts(path, n)
@@ -243,7 +243,7 @@ def machinery_reframe() -> dict[str, str]:
         "HasFiniteStop": "the same terminal drop; FirstPassage does not cut mid-corridor",
         "even_below_anchor_pow": "an even high state drops its own rank; the return stays rank 2",
         "FiniteProgress": "emitted only by the terminal drop on these laboratories",
-        "orbitExponentGap": "Drift is a word-exponent predicate, not an episode rank",
+        "trajectoryExponentGap": "Drift is a word-exponent predicate, not an episode rank",
         "collapse_on_pow_two": "Collapse is an even-tower identity, not a PE landing law",
         "cycles_or_escapes": "bounded recurrence is already a cycle; leftover prefixes are not recurrent",
     }

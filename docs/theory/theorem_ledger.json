@@ -4570,9 +4570,9 @@
   "related_conjectures": []
  },
  {
-  "id": "J-orbit-cycle-or-escape",
+  "id": "J-trajectory-cycle-or-escape",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Every n satisfies EventuallyCycles n or EscapesToInfinity n. A uniformly bounded orbit repeats: if T^k(n) ≤ M for every k, then some i < j have T^i(n) = T^j(n). ReachesOne n implies EventuallyCycles n because T(1) = 1. On MinimalNonTerm n a cycle value stays ≥ n. This is not a proof that escape is impossible, not a cycle-exclusion theorem, and not a halt theorem.",
+  "statement": "Every n satisfies EventuallyCycles n or EscapesToInfinity n. A uniformly bounded trajectory repeats: if T^k(n) ≤ M for every k, then some i < j have T^i(n) = T^j(n). ReachesOne n implies EventuallyCycles n because T(1) = 1. On MinimalNonTerm n a cycle value stays ≥ n. This is not a proof that escape is impossible, not a cycle-exclusion theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_non_escape.md",
   "lean": "Problems/Juggler/Escape.lean",
   "tests": [
@@ -5120,9 +5120,9 @@
   "related_conjectures": []
  },
  {
-  "id": "J-block-map-q-orbits",
+  "id": "J-block-map-q-trajectories",
   "tag": "COMPUTATIONALLY VERIFIED",
-  "statement": "On leftover AboveAnchor controls the maximal odd-run block map Q(x)=T^{a(x)+1}(x) has odd-start orbits 365: 365,763,1749,4447,12707; 1517: 1517,3789,10613,33811,2493; 501 joins 365 at 763 after an even landing; 6187 exits by OE from 11189. After three OOE blocks, Q^3(365)=4447 has a=2 and Q^3(1517)=33811 has a=1. No leftover orbit and no odd start n<2001 repeats an integer block endpoint. This is not a cycle theorem, not a residue automaton, and not a halt theorem.",
+  "statement": "On leftover AboveAnchor controls the maximal odd-run block map Q(x)=T^{a(x)+1}(x) has odd-start trajectories 365: 365,763,1749,4447,12707; 1517: 1517,3789,10613,33811,2493; 501 joins 365 at 763 after an even landing; 6187 exits by OE from 11189. After three OOE blocks, Q^3(365)=4447 has a=2 and Q^3(1517)=33811 has a=1. No leftover trajectory and no odd start n<2001 repeats an integer block endpoint. This is not a cycle theorem, not a residue automaton, and not a halt theorem.",
   "source": "docs/problems/juggler_block_map_q.md",
   "lean": "",
   "tests": [

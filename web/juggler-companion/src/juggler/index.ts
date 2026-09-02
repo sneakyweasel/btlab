@@ -4,5 +4,5 @@ export * from "./finance";
 export * from "./format";
 export * from "./map";
 export * from "./monsters";
-export * from "./orbit";
+export * from "./trajectory";
 export * from "./word";

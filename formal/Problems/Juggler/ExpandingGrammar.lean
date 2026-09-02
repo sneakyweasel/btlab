@@ -19,7 +19,7 @@ On the domain `n ≥ 2`, persistence already forces expansion:
 grammar is therefore not an independent obstruction to an infinite
 persistent chain.
 
-This file does not claim a finite run bound, an infinite orbit, or
+This file does not claim a finite run bound, an infinite trajectory, or
 that every start reaches `1`.
 -/
 
@@ -140,7 +140,7 @@ theorem persistent_expanding_iff_odd {x y : ℕ} (hx : 2 ≤ x) :
   ⟨fun h => h.1, persistent_odd_residual_expanding hx⟩
 
 /-- Type-level self-loop of the minimal expanding residual. This is
-not an infinite orbit: the realized chain at 365 leaves the
+not an infinite trajectory: the realized chain at 365 leaves the
 odd-to-odd frontier after three `OOE` blocks. -/
 theorem expanding_type_ooe_self_loop :
     PersistentExpandingResidual 365 763 ∧

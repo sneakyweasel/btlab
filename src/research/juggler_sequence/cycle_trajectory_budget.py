@@ -5,7 +5,7 @@ itineraries versus the independent run-type packing. Not a halt
 theorem, not a leftover-word census, not a prefix tax, not an
 inverse-width reopen, not CUDA, and not a Paper A edit.
 
-Dossier: docs/problems/juggler_cycle_orbit_budget.md.
+Dossier: docs/problems/juggler_cycle_trajectory_budget.md.
 """
 
 from __future__ import annotations

@@ -5,7 +5,7 @@ namespace Problems.Juggler
 /-!
 # Predecessor cylinders
 
-A finite word realises `y = T_w(x)` exactly when the orbit follows
+A finite word realises `y = T_w(x)` exactly when the trajectory follows
 `w` and the image is `y`. Each letter is the existing inverse-floor
 cell. The predecessor cylinder of `w` is the set of such `y`.
 

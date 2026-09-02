@@ -25,7 +25,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -208,7 +208,7 @@ def state_corridor(n: int, path: tuple[int, ...], i: int) -> dict[str, Any]:
 
 
 def corridor_table(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     rows = [state_corridor(n, path, i) for i in range(len(path))]
     above = [row for row in rows if row["above"]]
     first_hit = next((row for row in above if row["L_event"] > 1), None)

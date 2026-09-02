@@ -1,6 +1,6 @@
 {
-  "id": "juggler_cycle_orbit_budget",
-  "title": "One closed integer orbit forces C_max(25781, 10^6+1) below theta",
+  "id": "juggler_cycle_trajectory_budget",
+  "title": "One closed integer trajectory forces C_max(25781, 10^6+1) below theta.",
   "statement": "The 6/5 cheap/expensive valley multiset of the run-type extremizer at (L,o)=(25781,16266) is not jointly realizable on one closed integer CycleMin orbit at n=10^6+1, so the max finance C_max over globally joined valley itineraries is strictly less than theta.",
   "status": "REFUTED",
   "counterexamples": [
@@ -15,7 +15,7 @@
   ],
   "mathematical_domain": "Juggler cycle finance / global orbit-budget coupling",
   "notes": "Phase 0 only. Unparked the named Section 5 program for one bounded B&B. gap_kind=archived_cell. No K<=20 proof, no inverse-width reopen, no CUDA, no floor raise, no L=55293. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
-  "origin": "docs/problems/juggler_cycle_orbit_budget.md",
-  "proof_reference": "docs/problems/juggler_cycle_orbit_budget.md",
+  "origin": "docs/problems/juggler_cycle_trajectory_budget.md",
+  "proof_reference": "docs/problems/juggler_cycle_trajectory_budget.md",
   "tested_range": "Small-e oracle e<=4 on odds 11..79; calibration {365, 1000057}; bounded B&B at (25781, 10^6+1), node cap 20000"
 }

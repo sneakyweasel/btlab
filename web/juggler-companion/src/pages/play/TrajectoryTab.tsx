@@ -9,16 +9,16 @@ import {
 } from "recharts";
 import { Metric } from "../../components/Metric";
 import { StartControl } from "../../components/StartControl";
-import { OrbitBeads } from "../../visuals/OrbitBeads";
+import { TrajectoryBeads } from "../../visuals/TrajectoryBeads";
 import { usePlayState } from "../../context/PlayState";
 import {
-  NOTE_ORBIT_3,
+  NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
-  ORBIT_STEPS_MAX,
+  TRAJECTORY_STEPS_MAX,
 } from "../../juggler/constants";
 import { formatInt, parsePositiveInt } from "../../juggler/format";
 import { bitLength } from "../../juggler/map";
-import { walkOrbit } from "../../juggler/orbit";
+import { walkTrajectory } from "../../juggler/trajectory";
 
 function chartY(state: bigint): number {
   if (state <= 0n) return 1;
@@ -26,10 +26,10 @@ function chartY(state: bigint): number {
   return 2 ** (bitLength(state) - 1);
 }
 
-export function OrbitTab() {
+export function TrajectoryTab() {
   const { nText, steps, setSteps } = usePlayState();
   const n = parsePositiveInt(nText);
-  const view = n === null ? null : walkOrbit(n, steps);
+  const view = n === null ? null : walkTrajectory(n, steps);
   const data =
     view?.rows.map((row) => ({
       step: row.step,
@@ -40,8 +40,8 @@ export function OrbitTab() {
   return (
     <div className="space-y-5">
       <p className="text-sm text-muted">
-        Orbit = the list of values. Word = the O/E parities of the prefix so
-        far. Hitting 1 is one orbit, not a theorem.
+        Trajectory = the list of values. Word = the O/E parities of the prefix so
+        far. Hitting 1 is one trajectory, not a theorem.
       </p>
       <StartControl />
       <label className="block text-sm text-muted">
@@ -50,7 +50,7 @@ export function OrbitTab() {
           className="ml-2 align-middle"
           type="range"
           min={1}
-          max={ORBIT_STEPS_MAX}
+          max={TRAJECTORY_STEPS_MAX}
           value={steps}
           onChange={(event) => setSteps(Number(event.target.value))}
         />
@@ -64,7 +64,7 @@ export function OrbitTab() {
             <Metric
               label="Hit 1?"
               value={view.reachedOne ? "yes" : "no"}
-              hint="one orbit, not a theorem"
+              hint="one trajectory, not a theorem"
             />
             <Metric
               label="Last value"
@@ -77,15 +77,15 @@ export function OrbitTab() {
             </p>
           ) : null}
           {n === 3n &&
-          view.states.length >= NOTE_ORBIT_3.length &&
-          NOTE_ORBIT_3.every((state, index) => view.states[index] === state) ? (
-            <p className="text-sm text-ok">This is the note orbit of 3.</p>
+          view.states.length >= NOTE_TRAJECTORY_3.length &&
+          NOTE_TRAJECTORY_3.every((state, index) => view.states[index] === state) ? (
+            <p className="text-sm text-ok">This is the note trajectory of 3.</p>
           ) : null}
           {n === 37n && view.states.includes(NOTE_PEAK_37) ? (
             <p className="text-sm text-ok">The recorded peak of 37 is on this walk.</p>
           ) : null}
           <div className="overflow-x-auto rounded-xl border border-line bg-card p-3">
-            <OrbitBeads states={view.states.slice(0, 12)} />
+            <TrajectoryBeads states={view.states.slice(0, 12)} />
           </div>
           <div className="h-72 rounded-xl border border-line bg-card p-3">
             <ResponsiveContainer width="100%" height="100%">

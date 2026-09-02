@@ -72,14 +72,14 @@ The Juggler sequence was introduced by Pickover [1,2] as an
 interesting variation of the Collatz problem. Pickover's later
 exposition is Chapter 45 of [2], pp. 102--106. The object of study
 is the one-step map \(J:\mathbb N\to\mathbb N\) displayed in the
-abstract. The *Juggler sequence* starting at \(n\) is the orbit of
+abstract. The *Juggler sequence* starting at \(n\) is the trajectory of
 iterates \(n,\,J(n),\,J^2(n),\ldots\). The On-Line Encyclopedia of
 Integer Sequences records the one-step values of \(J\) as A094683
 [3] and the number of steps to reach \(1\) (when that occurs) as
 A007320 [4]; those catalogue entries are not theorems of this
 paper.
 
-The orbit of \(3\) is \(3,5,11,36,6,2,1\). The orbit of \(37\)
+The trajectory of \(3\) is \(3,5,11,36,6,2,1\). The trajectory of \(37\)
 already peaks at \(24906114455136\). Universal arrival at \(1\)
 remains an open conjecture. This paper does not prove that
 conjecture. It proves period lower bounds for a *hypothetical*
@@ -101,14 +101,15 @@ O(n)=\lfloor n^{3/2}\rfloor,
 so \(J(n)=E(n)\) when \(n\) is even and \(J(n)=O(n)\) when \(n\) is
 odd.
 
-**Orbit.** The *orbit* of \(n\in\mathbb N\) is the sequence of
-values \(n_0=n\), \(n_{i+1}=J(n_i)\).
+**Trajectory.** The *trajectory* of \(n\in\mathbb N\) is the sequence of
+values \(n_0=n\), \(n_{i+1}=J(n_i)\) (also called an orbit in some
+dynamics texts).
 
 **Word.** The *word* of the first \(k\) steps is the length-\(k\)
 string \(w\in\{O,E\}^k\) with \(w_i=O\) if \(n_i\) is odd and
 \(w_i=E\) if \(n_i\) is even. The word is the list of branch
 labels, not the list of values. The integer \(k\) is any finite
-prefix length; the definition does not assume that the orbit
+prefix length; the definition does not assume that the trajectory
 reaches \(1\).
 
 **Ideal exponent.** A word of length \(k\) with \(o\) odd letters
@@ -117,11 +118,11 @@ would multiply the start by that ratio. Floors make the actual
 image smaller.
 
 **Realized word.** A word \(w\) is *realized* at \(n\) when the
-first \(\lvert w\rvert\) parities of the orbit of \(n\) are exactly
+first \(\lvert w\rvert\) parities of the trajectory of \(n\) are exactly
 the letters of \(w\). Equivalently: a formal string over
 \(\{O,E\}\) is an itinerary only when some start actually follows
 those branches. That is what is meant by: a word is available only
-when the orbit realizes those parities. Floors are applied after
+when the trajectory realizes those parities. Floors are applied after
 every letter of a realized word.
 
 **Cell.** The map \(J\) is not invertible. For \(m\in\mathbb N\),
@@ -134,17 +135,17 @@ has at most one odd parent (Lemma 3.1). A cell is not a
 cellular-automaton cell and not an approximation.
 
 **Lemma 1.1 (three fates).**
-Let \(n\in\mathbb N\). The orbit of \(n\) does exactly one of the
+Let \(n\in\mathbb N\). The trajectory of \(n\) does exactly one of the
 following: (i) some iterate equals \(1\); (ii) some iterate
-\(m\ge 2\) returns, and the orbit is eventually periodic through a
-cycle containing \(m\); (iii) the orbit is unbounded. In
-particular, a bounded infinite orbit is eventually periodic.
+\(m\ge 2\) returns, and the trajectory is eventually periodic through a
+cycle containing \(m\); (iii) the trajectory is unbounded. In
+particular, a bounded infinite trajectory is eventually periodic.
 
 *Proof.* The map \(J\) is a well-defined function
-\(\mathbb N\to\mathbb N\), so the forward orbit is an infinite
+\(\mathbb N\to\mathbb N\), so the forward trajectory is an infinite
 sequence in \(\mathbb N\). If some term equals \(1\), we are in
-(i); note \(J(1)=1\). If the orbit is unbounded, we are in (iii).
-If the orbit is infinite and bounded, the pigeonhole principle
+(i); note \(J(1)=1\). If the trajectory is unbounded, we are in (iii).
+If the trajectory is infinite and bounded, the pigeonhole principle
 supplies a repeated value \(m\); uniqueness of the successor
 \(J(m)\) then forces a cycle, which is (ii) unless \(m=1\), already
 covered by (i). \(\square\)
@@ -157,9 +158,9 @@ theorem.
 | --- | --- |
 | \(J\) | the one-step map |
 | \(E\), \(O\) | even and odd branches |
-| orbit | the sequence of values |
+| trajectory | the sequence of values |
 | word | a finite string in \(\{O,E\}\) of parities |
-| realized word | the orbit actually follows those letters |
+| realized word | the trajectory actually follows those letters |
 | \(3^o/2^k\) | ideal exponent of a word of length \(k\) with \(o\) odd letters |
 | \(J^{-1}(m)\) | cell: the set of one-step preimages of \(m\) |
 | \(N_0\) | a verified descent floor (a computational input) |
@@ -481,7 +482,7 @@ those hashes.
 
 Let \(\mathcal B=\{E,O\}\). A finite word \(w\in\mathcal B^*\) is
 *realized* at \(n\in\mathbb N\) when the successive parities of the
-orbit of \(n\) are exactly the letters of \(w\). Write \(J^{|w|}(n)\)
+trajectory of \(n\) are exactly the letters of \(w\). Write \(J^{|w|}(n)\)
 for the endpoint after those letters, and \(\#O(w)\) for the number
 of odd letters. When \(w\) is realized, this endpoint is the
 \(|w|\)-fold iterate.
@@ -637,7 +638,7 @@ Alternatively: a mixed cycle word has \(\Delta_w(n)>0\) by
 Theorem 2.5 in Appendix C, so the envelope is strict; a monochrome
 tower cannot return for \(n\ge 2\).
 
-Every state on such a cycle is at least \(2\): once an orbit reaches
+Every state on such a cycle is at least \(2\): once a trajectory reaches
 \(1\), it remains there and cannot return to a start \(n\ge 2\). An
 even state \(x\ge 2\) satisfies \(J(x)<x\), so a cycle minimum cannot
 be even. An odd state \(x\ge 3\) satisfies \(J(x)>x\), so a cycle
@@ -736,7 +737,7 @@ the right side decreases, so the case \(q=7\) suffices:
 \]
 where \(\sqrt7>5/2\) follows from \(25/4<7\).
 
-For (ii), the orbit \(3\to 5\to 11\to 36\) gives \(J^3(3)=36\ge 16\).
+For (ii), the trajectory \(3\to 5\to 11\to 36\) gives \(J^3(3)=36\ge 16\).
 If \(q\ge 5\) realizes \(OOO\), then it realizes \(OO\), so (i) gives
 \(J^2(q)\ge(q+1)^2\). The third letter is odd, hence
 \(J^3(q)=J(J^2(q))\ge J^2(q)\).
@@ -984,7 +985,7 @@ In particular there is no cycle of length eight, nine, or ten.
 
 ## 4. Cycle finance
 
-A cycle word is formally expanding (Theorem 3.2), yet the orbit
+A cycle word is formally expanding (Theorem 3.2), yet the trajectory
 returns exactly. The multiplicative surplus \(3^o-2^L\) must be
 financed by the floor remainders, which are relatively \(O(1/x)\)
 in logarithms. The resulting bound on the cycle minimum excludes
@@ -1068,7 +1069,7 @@ pairs \((a_i,a_{i+1})\). Lemma 3.4(v) forbids \(O^aE\) as a
 *cycle word* for \(a\ge 3\); it does not forbid an internal
 block of that shape.
 
-The orbit is then the wave
+The trajectory is then the wave
 \[
 v_0\to p_0\to v_1\to p_1\to\cdots\to v_{e-1}\to p_{e-1}\to v_0.
 \]
@@ -1108,10 +1109,10 @@ n.
 The first peak overshoots the same cell; the last peak lands
 in it. Those are different even states.
 
-Once the orbit returns to \(n\), the prefix \(OO\) is forced
+Once the trajectory returns to \(n\), the prefix \(OO\) is forced
 again. A genuine cycle is a closed necklace of excursions
 whose first block starts \(OO\), whose last peak lies in the
-entry cell, and whose entire orbit stays at least \(n\). The
+entry cell, and whose entire trajectory stays at least \(n\). The
 global constraints already proved are
 \[
 \sum_i a_i=o,\qquad e=L-o,\qquad 2^L<3^o,
@@ -1870,7 +1871,7 @@ applied per block with the certified convergent quality
 \(|\theta-p_j/q_j|<1/q_j^2\), bounds
 the ergodic sum of each block of length \(q_j\) within
 \(\mathrm{Var}(F)\) of \(q_jC_*\). The decomposition
-\(L=\sum_jb_jq_j\) partitions the length-\(L\) orbit segment
+\(L=\sum_jb_jq_j\) partitions the length-\(L\) trajectory segment
 into consecutive blocks whose starting phases differ; since
 Denjoy--Koksma holds uniformly in the starting phase \(x\), it
 applies independently to each block, whatever phase that block
@@ -2391,13 +2392,13 @@ lower envelope produces again \(n^{81}<2^{130}(n+1)^{64}\). \(\square\)
 No word of length at most six is a cycle word at any \(n\ge 2\).
 
 *Proof.* Rotating a cycle word by one letter moves the base point one
-step along the orbit and yields another cycle word; every state of
-the cycle is at least \(2\), because an orbit that reaches \(1\) stays
+step along the trajectory and yields another cycle word; every state of
+the cycle is at least \(2\), because a trajectory that reaches \(1\) stays
 at \(1\) and cannot return to a start \(n\ge 2\).
 
 If every letter is odd, the start is odd, hence \(n\ge 3\), and the
 odd branch strictly increases there: \(J(x)>x\) for odd \(x\ge 3\),
-since \(x^3\ge(x+1)^2\). The orbit ascends strictly and never returns.
+since \(x^3\ge(x+1)^2\). The trajectory ascends strictly and never returns.
 Otherwise some letter is even, and a rotation ending just after that
 letter produces an even-terminating cycle word \(vE\) of the same
 length based at a cycle state \(m\ge 2\). It therefore suffices to

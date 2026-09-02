@@ -24,7 +24,7 @@ from research.juggler_sequence.escape_episode import (
 )
 from research.juggler_sequence.minimal_anchor_closure import (
     corridor_rank,
-    orbit_until_drop,
+    trajectory_until_drop,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
@@ -40,7 +40,7 @@ def test_global_record_min_is_frozen_until_the_drop():
 
 def test_rank_return_coincides_with_even_reset():
     for n in CONTROLS + (69, 89):
-        path = orbit_until_drop(n)
+        path = trajectory_until_drop(n)
         assert even_reset_cuts(path, n) == rank_return_cuts(path, n)
         assert first_below_anchor_cuts(path, n) == [len(path) - 1]
 

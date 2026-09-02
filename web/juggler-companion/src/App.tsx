@@ -8,7 +8,7 @@ import { TourIndexPage, TourPage } from "./pages/TourPage";
 import { CellsTab } from "./pages/play/CellsTab";
 import { CycleTab } from "./pages/play/CycleTab";
 import { FinanceTab } from "./pages/play/FinanceTab";
-import { OrbitTab } from "./pages/play/OrbitTab";
+import { TrajectoryTab } from "./pages/play/TrajectoryTab";
 import { WordTab } from "./pages/play/WordTab";
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -24,7 +24,8 @@ export default function App() {
             <Route path="tour/:slug" element={<TourPage />} />
             <Route path="play" element={<PlaygroundPage />}>
               <Route index element={<PlaygroundIndexPage />} />
-              <Route path="orbit" element={<OrbitTab />} />
+              <Route path="trajectory" element={<TrajectoryTab />} />
+              <Route path="orbit" element={<Navigate to="/play/trajectory" replace />} />
               <Route path="word" element={<WordTab />} />
               <Route path="cells" element={<CellsTab />} />
               <Route path="cycle" element={<CycleTab />} />

@@ -26,7 +26,7 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.minimal_anchor_closure import (
     corridor_rank,
-    orbit_until_drop,
+    trajectory_until_drop,
     word_of_path,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
@@ -179,7 +179,7 @@ def tags_at(
 
 
 def classify_orbit(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     word = word_of_path(path)
     drop = len(path) - 1
     iso = leading_isolated(word)

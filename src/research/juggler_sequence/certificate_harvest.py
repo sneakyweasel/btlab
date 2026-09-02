@@ -42,7 +42,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -243,7 +243,7 @@ def merge_unresolved(tables: dict[str, Any], starts: list[int], *, k_max: int) -
         hit = first_certificate(n, k_max=k_max, step_cap=CPU_FINISH_CAP)
         if hit["cls"] == "uncapped":
             try:
-                path = orbit_until_drop(n, cap=CPU_FINISH_CAP)
+                path = trajectory_until_drop(n, cap=CPU_FINISH_CAP)
             except ValueError:
                 tables["count_uncapped"] += 1
                 continue

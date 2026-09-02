@@ -44,7 +44,7 @@ Do not prove that a PE chain is finite. Do not prove
 - `power_bound_contracts` and `minimal_nonterm_no_descent` —
   **EXACT — LEAN VERIFIED**.
 - Cycle-or-escape and the CE `OOEOOE` trap —
-  **EXACT — LEAN VERIFIED** (`J-orbit-cycle-or-escape`,
+  **EXACT — LEAN VERIFIED** (`J-trajectory-cycle-or-escape`,
   `J-minimal-ooeooe-escape-trap`).
 
 Project relationship: **extended**. The non-escape leftover is

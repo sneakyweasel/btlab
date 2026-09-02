@@ -29,7 +29,7 @@ from research.juggler_sequence.odd_chain_minimality import (
     initial_odd_run,
     l_lab_chain,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -133,7 +133,7 @@ def next_odd_source(s: int, n: int, cap: int = 8) -> int | None:
 
 
 def orbit_resets(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     runs = extract_odd_runs(path, n)
     rows = []
     for run in runs:

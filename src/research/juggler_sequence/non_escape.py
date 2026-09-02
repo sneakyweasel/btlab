@@ -47,7 +47,7 @@ LEAN_THEOREMS = (
     "EscapesToInfinity",
     "EventuallyCycles",
     "not_escapes_iff_bounded",
-    "bounded_orbit_eventually_cycles",
+    "bounded_trajectory_eventually_cycles",
     "cycles_or_escapes",
     "reachesOne_implies_eventually_cycles",
     "minimal_nonterm_cycles_or_escapes",

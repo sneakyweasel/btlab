@@ -1,15 +1,15 @@
 /**
- * Bounded orbit walk. Display fork of
- * visualization.juggler_finite_dynamics.walk_orbit.
+ * Bounded trajectory walk. Display fork of
+ * visualization.juggler_finite_dynamics.walk_trajectory.
  */
 
 import {
   DISPLAY_BITS_MAX,
-  ORBIT_STEPS_MAX,
+  TRAJECTORY_STEPS_MAX,
 } from "./constants";
 import { bitLength, floorPower, letterOf } from "./map";
 
-export type OrbitRow = {
+export type TrajectoryRow = {
   step: number;
   state: bigint;
   letter: "" | "O" | "E";
@@ -17,7 +17,7 @@ export type OrbitRow = {
   bits: number;
 };
 
-export type OrbitView = {
+export type TrajectoryView = {
   n: bigint;
   stepsAsked: number;
   states: bigint[];
@@ -25,10 +25,10 @@ export type OrbitView = {
   reachedOne: boolean;
   bitCapped: boolean;
   tooLarge: boolean;
-  rows: OrbitRow[];
+  rows: TrajectoryRow[];
 };
 
-export function rowOf(step: number, state: bigint, letter: "" | "O" | "E"): OrbitRow {
+export function rowOf(step: number, state: bigint, letter: "" | "O" | "E"): TrajectoryRow {
   return {
     step,
     state,
@@ -38,11 +38,11 @@ export function rowOf(step: number, state: bigint, letter: "" | "O" | "E"): Orbi
   };
 }
 
-export function walkOrbit(n: bigint, steps: number): OrbitView {
+export function walkTrajectory(n: bigint, steps: number): TrajectoryView {
   if (n < 1n) {
-    throw new Error("walkOrbit requires n ≥ 1");
+    throw new Error("walkTrajectory requires n ≥ 1");
   }
-  const cap = Math.min(Math.max(steps, 0), ORBIT_STEPS_MAX);
+  const cap = Math.min(Math.max(steps, 0), TRAJECTORY_STEPS_MAX);
   if (bitLength(n) > DISPLAY_BITS_MAX) {
     return {
       n,
@@ -92,11 +92,11 @@ export function walkOrbit(n: bigint, steps: number): OrbitView {
   };
 }
 
-export function orbitFromStates(
+export function trajectoryFromStates(
   n: bigint,
   states: bigint[],
   word: string,
-): OrbitView {
+): TrajectoryView {
   const rows = states.map((state, index) =>
     rowOf(index, state, (word[index] as "O" | "E") ?? ""),
   );

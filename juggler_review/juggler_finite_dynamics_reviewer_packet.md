@@ -259,7 +259,7 @@ Proposition 7.4 says nothing about the deterministic shift).
   entry cell, excludes leftover lengths or proves there is no
   cycle.
 - The Juggler map is irreducible or has no finite-state model.
-- The \(N^{5/6}\) bound controls orbits or arbitrary image sets.
+- The \(N^{5/6}\) bound controls trajectories or arbitrary image sets.
 
 ## Suggested falsifiers
 

@@ -41,7 +41,7 @@ export function ClaimsPage() {
           value="≥ 4"
           hint="Theorem 3.22, no descent floor"
         />
-        <Score label="Arrival at 1" value="not claimed" hint="one orbit is not a theorem" />
+        <Score label="Arrival at 1" value="not claimed" hint="one trajectory is not a theorem" />
         {financeSnapshot.instances.map((row) => (
           <Score
             key={row.theorem}

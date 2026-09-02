@@ -1,7 +1,7 @@
 {
   "bitCapLive": 256,
-  "note": "Shipped orbits whose peak exceeds the live 256-bit walker. One orbit each, not a theorem.",
-  "orbits": [
+  "note": "Shipped trajectories whose peak exceeds the live 256-bit walker. One trajectory each, not a theorem.",
+  "trajectories": [
     {
       "n": "173",
       "word": "OOEOOOOOOOOEOOEOOEEOEEOEEEOEOEEE",

@@ -35,7 +35,7 @@ export function HomePage() {
               Start the tour
             </Link>
             <Link
-              to="/play/orbit"
+              to="/play/trajectory"
               className="rounded-full border border-line px-4 py-2 text-ink no-underline"
             >
               Open the playground
@@ -47,10 +47,10 @@ export function HomePage() {
           <div className="mt-3 text-center">
             <Tex display>{String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n^{3/2}\rfloor,&n\text{ odd.}\end{cases}`}</Tex>
             <p className="mt-2 text-sm text-muted">
-              Orbit of 3: the values 3, 5, 11, 36, 6, 2, 1. Word: OOOEEE —
+              Trajectory of 3: the values 3, 5, 11, 36, 6, 2, 1. Word: OOOEEE —
               the parities, not the values. Floor: the brackets ⌊ ⌋ throw
               away the decimals. Example: ⌊3√3⌋ = ⌊5.196…⌋ = 5. Hitting 1
-              here is one orbit, not a theorem.
+              here is one trajectory, not a theorem.
             </p>
           </div>
         </div>
@@ -67,7 +67,7 @@ export function HomePage() {
           />
           <FateCard
             title="Cycle"
-            body="Some m ≥ 2 returns. A bounded infinite orbit must do this."
+            body="Some m ≥ 2 returns. A bounded infinite trajectory must do this."
           />
           <FateCard
             title="Unbounded"
@@ -83,7 +83,7 @@ export function HomePage() {
       <section className="prose-measure space-y-3 text-muted">
         <p>
           Use the tour if the words are new. Use the playground to try the
-          orbit of 3, a short O/E word, a preimage cell, a necklace rotation,
+          trajectory of 3, a short O/E word, a preimage cell, a necklace rotation,
           or a finance length from the shipped table.
         </p>
         <p>

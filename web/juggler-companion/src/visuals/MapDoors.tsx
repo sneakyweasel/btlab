@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { NOTE_ORBIT_3 } from "../juggler/constants";
+import { NOTE_TRAJECTORY_3 } from "../juggler/constants";
 import { formatInt } from "../juggler/format";
 import { bitLength, letterOf } from "../juggler/map";
 
@@ -134,7 +134,7 @@ function BranchCard({
   );
 }
 
-function OrbitPlot({
+function TrajectoryPlot({
   states,
   active,
   sparseScale = false,
@@ -164,11 +164,11 @@ function OrbitPlot({
       letter: index < states.length - 1 ? letterOf(states[index]) : "",
     };
   });
-  const shortOrbit = states.length <= 10;
+  const shortTrajectory = states.length <= 10;
   const showEveryLetter = !sparseScale && states.length <= 22;
   return (
     <svg viewBox={`0 0 ${PLOT_WIDTH} 272`} role="img" className="h-auto w-full">
-      <title>Juggler orbit, logarithmic value scale</title>
+      <title>Juggler trajectory, logarithmic value scale</title>
       {ticks.map((tick) => {
         const y = plotYLog(tick.exp, min, max, top, height);
         return (
@@ -223,7 +223,7 @@ function OrbitPlot({
         const isActive = active === index;
         const showLabel =
           active === undefined
-            ? shortOrbit || index === 0 || index === points.length - 1
+            ? shortTrajectory || index === 0 || index === points.length - 1
             : isActive;
         const next = points[index + 1];
         const showLetter =
@@ -294,7 +294,7 @@ function OrbitPlot({
 
 export function MapDoors({
   highlight = null,
-  states = NOTE_ORBIT_3,
+  states = NOTE_TRAJECTORY_3,
   active,
   title,
   controls,
@@ -305,7 +305,7 @@ export function MapDoors({
   const evenActive = highlight !== "odd";
   const oddActive = highlight !== "even";
   const start = states[0];
-  const heading = title ?? (start === undefined ? "Orbit" : `Orbit of ${formatInt(start)}`);
+  const heading = title ?? (start === undefined ? "Trajectory" : `Trajectory of ${formatInt(start)}`);
   return (
     <div className="grid gap-3">
       {controls ? (
@@ -314,7 +314,7 @@ export function MapDoors({
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_9.5rem] lg:items-stretch">
         <div className="rounded-2xl border border-line bg-card px-3 py-3">
           <h3 className="px-1 text-center font-serif text-lg">{heading}</h3>
-          <OrbitPlot states={states} active={active} sparseScale={sparseScale} />
+          <TrajectoryPlot states={states} active={active} sparseScale={sparseScale} />
           {axis ? (
             <div
               className="-mt-1"

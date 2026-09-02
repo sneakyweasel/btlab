@@ -15,7 +15,7 @@ HasFiniteCoeffStop n  →  ¬MinimalNonTerm n
 ```
 
 The missing implication `MinimalNonTerm n → HasFiniteCoeffStop n`
-is packaged as a Prop and is not proved. Not an all-odd orbit claim.
+is packaged as a Prop and is not proved. Not an all-odd trajectory claim.
 -/
 
 def MinimalNonTerm (n : ℕ) : Prop :=
@@ -44,13 +44,13 @@ theorem minimal_nonterm_ge_of_not_reachesOne {n m : ℕ}
 theorem minimal_nonterm_ge_twelve {n : ℕ} (h : MinimalNonTerm n) : 12 ≤ n :=
   non_reachesOne_ge_twelve h.pos h.not_reachesOne
 
-theorem orbit_not_reachesOne {n m k : ℕ} (h : MinimalNonTerm n)
+theorem trajectory_not_reachesOne {n m k : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = m) : ¬ReachesOne m :=
   fun hm => h.not_reachesOne (reachesOne_of_iterate hk hm)
 
 theorem image_not_reachesOne {n : ℕ} {w : List Branch}
     (h : MinimalNonTerm n) : ¬ReachesOne (image n w) :=
-  orbit_not_reachesOne h (image_eq_iterate n w).symm
+  trajectory_not_reachesOne h (image_eq_iterate n w).symm
 
 theorem minimal_nonterm_no_capture {n : ℕ} {w : List Branch}
     (h : MinimalNonTerm n) : ¬(follows n w ∧ image n w = 1) :=
@@ -95,7 +95,7 @@ theorem even_run_exit_ge {n m k r : ℕ} (h : MinimalNonTerm n)
     rw [iterate_add_right, hk]
   exact minimal_nonterm_ge_of_not_reachesOne h
     (by rw [← hexit]; exact floorPower_iterate_pos h.pos (k + r))
-    (orbit_not_reachesOne h hexit)
+    (trajectory_not_reachesOne h hexit)
 
 theorem even_run_scale_barrier {n m k r : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = m)
@@ -134,13 +134,13 @@ theorem minimal_nonterm_avoid_even_lt_sq_twelve {n m k : ℕ}
     rw [← hk]
     exact floorPower_iterate_pos h.pos k
   by_contra hlt
-  exact orbit_not_reachesOne h hk
+  exact trajectory_not_reachesOne h hk
     (even_lt_sq_twelve_reachesOne heven hm0 (Nat.lt_of_not_ge hlt))
 
 theorem even_tower_not_on_minimal {n k j : ℕ} (h : MinimalNonTerm n)
     (hk : 1 ≤ k) : floorPower^[j] n ≠ 2 ^ (2 ^ (k - 1)) :=
   fun heq =>
-    orbit_not_reachesOne h heq
+    trajectory_not_reachesOne h heq
       (capture_reachesOne (even_tower_capture hk).1 (even_tower_capture hk).2)
 
 theorem minimal_nonterm_oe_descent {n : ℕ} (h : MinimalNonTerm n)
@@ -198,7 +198,7 @@ theorem no_minimal_of_all_coeffStop
   have hn : 2 ≤ n := le_trans (by decide : 2 ≤ 12) (minimal_nonterm_ge_twelve hm)
   exact coeffStop_contradicts_minimal hm (h n hn)
 
-/-- A minimal non-1 orbit stays `≥ n` at every iterate, so every
+/-- A minimal non-1 trajectory stays `≥ n` at every iterate, so every
 realized finite prefix is minimum-relative. Not a cycle hypothesis. -/
 theorem aboveAnchor_of_minimalNonTerm {n : ℕ} {w : List Branch}
     (h : MinimalNonTerm n) (hw : follows n w) : AboveAnchor n w :=

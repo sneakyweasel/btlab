@@ -94,7 +94,7 @@ Falsifier               an orbit family whose defect accumulation
                         at walk near-minima decays as fast as the
                         slack (zero-defect adversary realized); or
                         the porting lemma reparameterizes
-                        orbitExponentGap
+                        trajectoryExponentGap
 Existing machinery      AboveAnchor / ReturnBelow / FiniteProgress;
                         power_bound_contracts; hugOdds_least;
                         WalkTransport defect bounds; certified

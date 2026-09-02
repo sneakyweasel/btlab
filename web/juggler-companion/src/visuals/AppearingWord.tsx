@@ -12,7 +12,7 @@ export function AppearingWord({ word, revealed, note }: AppearingWordProps) {
     <div className="flex h-full flex-col rounded-2xl border border-line bg-paper/70 px-4 py-3">
       <p className="text-xs uppercase tracking-wide text-muted">Word</p>
       <p className="mt-1 text-sm text-muted">
-        The orbit is the list of values. The word is the parities: O or E.
+        The trajectory is the list of values. The word is the parities: O or E.
       </p>
       {word ? (
         <p className="mt-2 font-mono text-2xl leading-snug tracking-wide break-all">

@@ -32,7 +32,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -132,7 +132,7 @@ def landing_row(n: int, start: int, word: str, z: int, y: int) -> dict[str, Any]
 
 
 def control_rows(n: int) -> list[dict[str, Any]]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     out: list[dict[str, Any]] = []
     for item in pe_landings(path):
         if not item["landing_odd"] or item["landing"] < n:

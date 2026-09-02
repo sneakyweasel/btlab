@@ -123,7 +123,7 @@ It is not required.
   **REFUTED** (\(37\) second episode has \(s=2\) while still
   \(\ge 37\))
 - exact macro recurrence of \(X\) —
-  **REFUTED** on leftovers (already `J-block-map-q-orbits`)
+  **REFUTED** on leftovers (already `J-block-map-q-trajectories`)
 - global halt — not claimed
 
 ## Experiments

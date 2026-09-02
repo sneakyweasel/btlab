@@ -25,13 +25,13 @@ The transport envelope on the same hypothesis is
 `aboveAnchor_transport` / `aboveAnchor_flight_envelope`
 (`WalkTransport.lean`).
 
-This constrains *hypothetical* never-descending orbit segments only.
+This constrains *hypothetical* never-descending trajectory segments only.
 It is not a halt theorem, not a descent-certificate existence claim,
 and not a cycle obstruction; it does not modify Paper A.
 -/
 
 /-- **Open trajectories dominate the hug word.** Every prefix of a
-never-descending orbit segment carries at least as many odd letters
+never-descending trajectory segment carries at least as many odd letters
 as the exact hug word of the same length. The open-trajectory form
 of `cycleMin_prefix_odds_ge_hug`: the hug adversary prices not only
 hypothetical cycles but every hypothetical descent-free flight. -/

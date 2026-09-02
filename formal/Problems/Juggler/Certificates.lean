@@ -56,7 +56,7 @@ theorem descentCertificate_of_coeffStop {n : ℕ} (hn : 2 ≤ n)
   obtain ⟨k, hk, hgap⟩ := h
   refine DescentCertificate.exponent (word n k) (follows_word_self n k) ?_ hn
   unfold exponentGap
-  simpa [word_length] using orbitExponentGap_iff.mp hgap
+  simpa [word_length] using trajectoryExponentGap_iff.mp hgap
 
 theorem capture_reachesOne {n : ℕ} {w : List Branch}
     (_hw : follows n w) (himg : image n w = 1) : ReachesOne n :=

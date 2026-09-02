@@ -28,9 +28,9 @@ from visualization.juggler_finite_dynamics import (
     LEFTOVER_CUTOFF,
     LEFTOVER_FAMILY_LEDGER_IDS,
     N_PRESETS,
-    NOTE_ORBIT_3,
+    NOTE_TRAJECTORY_3,
     NOTE_PEAK_37,
-    ORBIT_STEPS_MAX,
+    TRAJECTORY_STEPS_MAX,
     PAPER_EXCEPTION_COUNT,
     PAPER_FLOOR,
     PAPER_L_CAP,
@@ -69,7 +69,7 @@ from visualization.juggler_finite_dynamics import (
     parse_word,
     printed_floor_kill_rows,
     try_cycle_word,
-    walk_orbit,
+    walk_trajectory,
 )
 from visualization.theorem_ledger import badge_payload
 
@@ -77,7 +77,7 @@ VIEWS = (
     "Claim map",
     "Finance",
     "Walk charge",
-    "Orbit",
+    "Trajectory",
     "Envelope",
     "Cells and census",
     "Cycle words",
@@ -88,7 +88,7 @@ VIEW_LABEL = {
     "Claim map": "Status",
     "Finance": "Finance",
     "Walk charge": "Walk",
-    "Orbit": "Orbit",
+    "Trajectory": "Trajectory",
     "Envelope": "Envelope",
     "Cells and census": "Cells",
     "Cycle words": "Cycle",
@@ -96,7 +96,7 @@ VIEW_LABEL = {
     "Descent": "Descent",
 }
 VIEWS_WITH_START = frozenset(
-    {"Orbit", "Envelope", "Cells and census", "Cycle words", "Descent"}
+    {"Trajectory", "Envelope", "Cells and census", "Cycle words", "Descent"}
 )
 VIEW_BLURB = {
     "Claim map": (
@@ -116,7 +116,7 @@ VIEW_BLURB = {
         f"$\\ge {LAB_WALK_PERIOD}$; the second certified floor prints "
         f"period $\\ge {PRINTED_PERIOD}$ (Corollary 5.10)."
     ),
-    "Orbit": (
+    "Trajectory": (
         "Start at **n** and apply the Juggler map. **O** is an odd step "
         "(the number grows); **E** is an even step (it shrinks). The "
         "word is just that sequence of steps."
@@ -773,20 +773,20 @@ flowchart LR
             )
 
 
-def _orbit() -> None:
-    _blurb("Orbit")
+def _trajectory() -> None:
+    _blurb("Trajectory")
     _proof_tags("J-itinerary-semantics")
     n = int(st.session_state.juggler_n)
     steps = int(
         st.slider(
             "Step cap",
             min_value=1,
-            max_value=ORBIT_STEPS_MAX,
+            max_value=TRAJECTORY_STEPS_MAX,
             key="juggler_steps",
             help="Stop after this many steps, or sooner at 1.",
         )
     )
-    view = walk_orbit(n, steps)
+    view = walk_trajectory(n, steps)
     metrics = st.container(horizontal=True)
     with metrics:
         st.metric("Word so far", view.word or "—", border=True)
@@ -798,8 +798,8 @@ def _orbit() -> None:
             "A value got too big to display. The walk stopped.",
             icon=":material/warning:",
         )
-    if n == 3 and view.states[: len(NOTE_ORBIT_3)] == NOTE_ORBIT_3:
-        st.success("This is the note orbit of 3: 3, 5, 11, 36, 6, 2, 1.", icon=":material/check:")
+    if n == 3 and view.states[: len(NOTE_TRAJECTORY_3)] == NOTE_TRAJECTORY_3:
+        st.success("This is the note trajectory of 3: 3, 5, 11, 36, 6, 2, 1.", icon=":material/check:")
     if n == 37 and NOTE_PEAK_37 in view.states:
         st.success("The recorded peak of 37 is on this walk.", icon=":material/check:")
     chart_df = pd.DataFrame(view.rows)
@@ -1418,7 +1418,7 @@ def juggler_finite_dynamics_page() -> None:
         persist_state="session",
     )
     if view is None:
-        view = "Orbit"
+        view = "Trajectory"
     if view in VIEWS_WITH_START:
         _n_controls()
     if view == "Claim map":
@@ -1427,8 +1427,8 @@ def juggler_finite_dynamics_page() -> None:
         _finance()
     elif view == "Walk charge":
         _walk_charge()
-    elif view == "Orbit":
-        _orbit()
+    elif view == "Trajectory":
+        _trajectory()
     elif view == "Envelope":
         _envelope()
     elif view == "Cells and census":

@@ -5,9 +5,9 @@ import Problems.Juggler.Residuals
 namespace Problems.Juggler
 
 /-!
-# Orbit split: cycle or escape
+# Trajectory split: cycle or escape
 
-A Juggler orbit in `ℕ` is eventually periodic or unbounded. On a
+A Juggler trajectory in `ℕ` is eventually periodic or unbounded. On a
 `MinimalNonTerm` start the periodic case stays `≥ n`, so it is not
 the `1`-cycle. The `OOEOOE` square-cell trap survives after dropping
 the `CycleMin` return hypothesis: an even landing, or an even next
@@ -43,9 +43,9 @@ theorem not_escapes_iff_bounded {n : ℕ} :
     obtain ⟨k, hk⟩ := hEsc M
     exact (not_lt_of_ge (hM k)) hk
 
-/-- A uniformly bounded orbit repeats. Finite pigeonhole on the
+/-- A uniformly bounded trajectory repeats. Finite pigeonhole on the
 prefix of length `M + 2`. -/
-theorem bounded_orbit_eventually_cycles {n M : ℕ}
+theorem bounded_trajectory_eventually_cycles {n M : ℕ}
     (hbound : ∀ k, floorPower^[k] n ≤ M) :
     EventuallyCycles n := by
   by_contra hnone
@@ -78,7 +78,7 @@ theorem cycles_or_escapes (n : ℕ) :
   by_cases h : EscapesToInfinity n
   · exact Or.inr h
   · obtain ⟨M, hM⟩ := not_escapes_iff_bounded.mp h
-    exact Or.inl (bounded_orbit_eventually_cycles hM)
+    exact Or.inl (bounded_trajectory_eventually_cycles hM)
 
 theorem reachesOne_implies_eventually_cycles {n : ℕ}
     (h : ReachesOne n) : EventuallyCycles n := by

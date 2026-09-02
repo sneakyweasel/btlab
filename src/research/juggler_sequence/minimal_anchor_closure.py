@@ -97,9 +97,9 @@ def word_of_path(path: tuple[int, ...]) -> str:
 
 
 @lru_cache(maxsize=None)
-def orbit_until_drop(n: int, cap: int = 4000) -> tuple[int, ...]:
+def trajectory_until_drop(n: int, cap: int = 4000) -> tuple[int, ...]:
     if n < 2:
-        raise ValueError("orbit_until_drop requires n >= 2")
+        raise ValueError("trajectory_until_drop requires n >= 2")
     path = [n]
     current = n
     for _ in range(cap):
@@ -150,7 +150,7 @@ def smaller_followers(n: int, word: str) -> list[int]:
 @lru_cache(maxsize=None)
 def high_merge(n: int) -> dict[str, Any] | None:
     """First AboveAnchor state of n that also lies on some m < n."""
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     free = set(obstruction_free_high(path, n))
     high = {
         state: idx
@@ -233,7 +233,7 @@ def rank_trace(path: tuple[int, ...], n: int) -> dict[str, Any]:
 
 
 def episode_row(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     word = word_of_path(path)
     overshoot = path[1]
     drop = path[-1]

@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { evenCell, oddCellIntegers } from "./cells";
 import {
-  NOTE_ORBIT_3,
+  NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
   PAPER_EXCEPTION_COUNT,
   PAPER_PERIOD,
 } from "./constants";
 import { financeSnapshot, financeView } from "./finance";
 import { floorPower } from "./map";
-import { monsterOrbit, resolveOrbit } from "./monsters";
-import { walkOrbit } from "./orbit";
+import { monsterTrajectory, resolveTrajectory } from "./monsters";
+import { walkTrajectory } from "./trajectory";
 import {
   envelopeSlack,
   expanding,
@@ -19,7 +19,7 @@ import {
 } from "./word";
 
 describe("floorPower", () => {
-  it("matches the note orbit of 3", () => {
+  it("matches the note trajectory of 3", () => {
     expect(floorPower(3n)).toBe(5n);
     expect(floorPower(5n)).toBe(11n);
     expect(floorPower(11n)).toBe(36n);
@@ -29,40 +29,40 @@ describe("floorPower", () => {
   });
 });
 
-describe("walkOrbit", () => {
-  it("replays the note orbit of 3", () => {
-    const view = walkOrbit(3n, 20);
-    expect(view.states).toEqual([...NOTE_ORBIT_3]);
+describe("walkTrajectory", () => {
+  it("replays the note trajectory of 3", () => {
+    const view = walkTrajectory(3n, 20);
+    expect(view.states).toEqual([...NOTE_TRAJECTORY_3]);
     expect(view.word).toBe("OOOEEE");
     expect(view.reachedOne).toBe(true);
     expect(view.tooLarge).toBe(false);
   });
 
   it("collapses the even tower 256", () => {
-    const view = walkOrbit(256n, 20);
+    const view = walkTrajectory(256n, 20);
     expect(view.states).toEqual([256n, 16n, 4n, 2n, 1n]);
     expect(view.word).toBe("EEEE");
     expect(view.reachedOne).toBe(true);
   });
 
   it("records the note peak of 37", () => {
-    const view = walkOrbit(37n, 80);
+    const view = walkTrajectory(37n, 80);
     expect(view.states).toContain(NOTE_PEAK_37);
     expect(view.reachedOne).toBe(true);
     expect(view.bitCapped).toBe(false);
   });
 
   it("stops a start larger than the 256-bit display cap", () => {
-    const view = walkOrbit(1n << 256n, 10);
+    const view = walkTrajectory(1n << 256n, 10);
     expect(view.bitCapped).toBe(true);
     expect(view.tooLarge).toBe(true);
     expect(view.states).toHaveLength(1);
   });
 });
 
-describe("monster orbits", () => {
+describe("monster trajectories", () => {
   it("loads the shipped 193 delay record", () => {
-    const view = monsterOrbit(193n);
+    const view = monsterTrajectory(193n);
     expect(view).not.toBeNull();
     expect(view?.source).toBe("monster");
     expect(view?.reachedOne).toBe(true);
@@ -72,10 +72,10 @@ describe("monster orbits", () => {
   });
 
   it("resolves 37 live and 173 from JSON", () => {
-    const live = resolveOrbit(37n, 80);
+    const live = resolveTrajectory(37n, 80);
     expect(live.source).toBe("live");
     expect(live.states).toContain(NOTE_PEAK_37);
-    const shipped = resolveOrbit(173n, 80);
+    const shipped = resolveTrajectory(173n, 80);
     expect(shipped.source).toBe("monster");
     expect(shipped.reachedOne).toBe(true);
     expect((shipped.peakBits ?? 0) > 256).toBe(true);

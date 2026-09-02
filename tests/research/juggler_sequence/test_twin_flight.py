@@ -28,7 +28,7 @@ from research.juggler_sequence.twin_flight import (
     lean_api_present,
     probe_payload,
     render_markdown,
-    walk_orbit,
+    walk_trajectory,
     window_starts,
     write_artifacts,
 )
@@ -67,8 +67,8 @@ def test_window_preserves_odd_parity():
 
 
 def test_365_and_501_share_763():
-    left = walk_orbit(365)
-    right = walk_orbit(501)
+    left = walk_trajectory(365)
+    right = walk_trajectory(501)
     assert CALIBRATION_STATE in left["states"]
     assert CALIBRATION_STATE in right["states"]
     row = compare_pair(left, right)
@@ -81,7 +81,7 @@ CONTACT_OR_SHIFT = {CLASS_EXACT, CLASS_SHIFT}
 
 
 def test_three_enters_five_as_shifted_flight():
-    row = compare_pair(walk_orbit(3), walk_orbit(5))
+    row = compare_pair(walk_trajectory(3), walk_trajectory(5))
     assert row["class"] == CLASS_SHIFT
     assert row["common"]["state"] == 5
     assert row["common"]["r"] != 0

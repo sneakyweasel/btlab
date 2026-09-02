@@ -56,7 +56,7 @@ This is **not** a halt theorem. It does **not** prove
 
 - Bounded residual prefix \(\Rightarrow\) repeat \(\Rightarrow\) cycle
   — **EXACT — LEAN VERIFIED** (`bounded_prefix_not_nodup`,
-  `orbit_repeat_cycle`).
+  `trajectory_repeat_cycle`).
 - `MinimalNonTerm` orbits stay \(\ge n\); first `O^a E` overshoots
   — **EXACT — LEAN VERIFIED**.
 - \(T_{\mathtt{OOEOOE}}(n)<n^{2}\); even landing drops —
@@ -86,7 +86,7 @@ Novelty hypothesis      CycleMin corridor lemmas survive after dropping
 Falsifier               the transfer needs image = n; or the only new
                         Lean is pigeonhole already in Residuals.lean
 Existing machinery      ReachesOne / FiniteProgress spine; MinimalNonTerm;
-                        bounded_prefix_not_nodup; orbit_repeat_cycle;
+                        bounded_prefix_not_nodup; trajectory_repeat_cycle;
                         minimal_first_even_overshoots; wordOOEOOE;
                         even_floorPower_lt_iff; human 81/64 and 243/256
 Maximum Phase-0 scope   Lean Escape module + one MinimalNonTerm OOEOOE
@@ -164,7 +164,7 @@ trap. The stronger claims that fail or stay closed:
 `Envelope`, and `CycleCore`. Added:
 
 - `EscapesToInfinity` / `EventuallyCycles`
-- `not_escapes_iff_bounded` / `bounded_orbit_eventually_cycles`
+- `not_escapes_iff_bounded` / `bounded_trajectory_eventually_cycles`
 - `cycles_or_escapes` / `reachesOne_implies_eventually_cycles`
 - `minimal_nonterm_cycles_or_escapes` /
   `minimal_nonterm_cycle_values_ge`

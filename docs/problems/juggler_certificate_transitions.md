@@ -64,7 +64,7 @@ Novelty hypothesis      Residual→next has missing edges or a bounded
 Falsifier               Every first descent is already FiniteProgress;
                         the first residual word is the Q-itinerary;
                         R→R is a decreasing landing quotient.
-Existing machinery      first_certificate; orbit_until_drop; q_blocks;
+Existing machinery      first_certificate; trajectory_until_drop; q_blocks;
                         even_finiteProgress; odd_even_finiteProgress;
                         finiteProgress_of_imageLt
 Maximum Phase-0 scope   CPU iterator on n≤2e4 plus labs; support
@@ -120,7 +120,7 @@ None opened.
   a first descent, hence `finiteProgress_of_imageLt`.
 - “the first residual certificate is a new object, not a \(Q\)-block
   itinerary” — on every start \(2\le n\le 2\cdot 10^4\), the first
-  certificate word equals `word_of_path(orbit_until_drop(n))`.
+  certificate word equals `word_of_path(trajectory_until_drop(n))`.
 - “some certificate transition is impossible” — all 16 edges
   \(C_i\to C_j\) occur in the window
   (`NOT OBSERVED WITHIN SEARCH BOUND` for a missing edge).

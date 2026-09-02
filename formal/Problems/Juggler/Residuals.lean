@@ -19,7 +19,7 @@ A strict overshoot produces a later state `y = T(z) > n`. That `y` may
 be even or odd. `ReturnBelow` is a finite-prefix certificate, distinct
 from an image descent at the residual state. A later return below the
 original start is `FiniteProgress` at `n`, and is impossible on a
-`MinimalNonTerm` orbit. An even post-even residual on a CE forces
+`MinimalNonTerm` trajectory. An even post-even residual on a CE forces
 `n^4 ≤ z`. This is not a theorem that every overshoot returns, and not
 a halt theorem.
 -/
@@ -246,7 +246,7 @@ theorem finiteProgress_of_oddEven_lt {n a b : ℕ}
     FiniteProgress n :=
   finiteProgress_of_imageLt hw hlt
 
-/-- A minimal non-1 orbit never returns below its start. -/
+/-- A minimal non-1 trajectory never returns below its start. -/
 theorem minimal_nonterm_no_returnBelow {n x k : ℕ}
     (h : MinimalNonTerm n) (hk : floorPower^[k] n = x) :
     ¬ReturnBelow n x := by
@@ -258,7 +258,7 @@ theorem minimal_nonterm_no_returnBelow {n x k : ℕ}
       (by
         rw [← hexit]
         exact floorPower_iterate_pos h.pos _)
-      (orbit_not_reachesOne h hexit)
+      (trajectory_not_reachesOne h hexit)
   exact Nat.not_lt.mpr hge hlt
 
 theorem image_oddEvenBlock_iterate (n a b : ℕ) :
@@ -506,7 +506,7 @@ theorem finiteProgress_of_residualChain_capture {x y : ℕ} {v : List Branch}
 # Residual path regimes: repeats, cycles, envelopes
 
 A residual step is already `ResidualStep`. This module records the
-finite bounded-path consequence (a repeated orbit state is a cycle)
+finite bounded-path consequence (a repeated trajectory state is a cycle)
 and the cycle-word envelope `2^r < 3^o`. A residual return
 `ResidualStep x x` therefore needs `a ≥ 2`. This is not a halt
 theorem, not a cycle-impossibility theorem, and not an infinite-path
@@ -523,7 +523,7 @@ def ResidualOvershoot (x y : ℕ) : Prop :=
   ResidualStep x y ∧ x < y
 
 /-- A repeated iterate is a finite Juggler cycle at that state. -/
-theorem orbit_repeat_cycle {n i j : ℕ} (hij : i ≤ j)
+theorem trajectory_repeat_cycle {n i j : ℕ} (hij : i ≤ j)
     (h : floorPower^[i] n = floorPower^[j] n) :
     floorPower^[j - i] (floorPower^[i] n) = floorPower^[i] n := by
   have hsum : i + (j - i) = j := Nat.add_sub_cancel' hij

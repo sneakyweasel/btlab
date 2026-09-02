@@ -70,7 +70,7 @@ not an unbounded orbit.
 - `EscapesToInfinity`: `True`
 - `EventuallyCycles`: `True`
 - `not_escapes_iff_bounded`: `True`
-- `bounded_orbit_eventually_cycles`: `True`
+- `bounded_trajectory_eventually_cycles`: `True`
 - `cycles_or_escapes`: `True`
 - `reachesOne_implies_eventually_cycles`: `True`
 - `minimal_nonterm_cycles_or_escapes`: `True`

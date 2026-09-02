@@ -176,7 +176,7 @@
     "EscapesToInfinity": true,
     "EventuallyCycles": true,
     "not_escapes_iff_bounded": true,
-    "bounded_orbit_eventually_cycles": true,
+    "bounded_trajectory_eventually_cycles": true,
     "cycles_or_escapes": true,
     "reachesOne_implies_eventually_cycles": true,
     "minimal_nonterm_cycles_or_escapes": true,

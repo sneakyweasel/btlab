@@ -109,7 +109,7 @@ Falsifier               Every dead word at the Phase-0 window later
                         T>=n.
 Existing machinery      Lean prefixNoncontracting; prefix_nc_words;
                         prefix_survives; above_anchor;
-                        orbit_until_drop; atlas packed word_id;
+                        trajectory_until_drop; atlas packed word_id;
                         leftovers 37,365,501,1517,6187
 Maximum Phase-0 scope   Enumerate L_formal through N=24; AA-scan
                         odd n plus leftovers; R_N, D_N, F_j;

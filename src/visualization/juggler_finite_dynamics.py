@@ -51,7 +51,7 @@ from research.juggler_sequence.length8_bootstrap import named_length8_filter
 from research.juggler_sequence.power_words import floor_power, odd_count, regime_of
 from research.juggler_sequence.progress_coverage import coverage_bucket, first_even_residual
 
-ORBIT_STEPS_MAX = 80
+TRAJECTORY_STEPS_MAX = 80
 DISPLAY_BITS_MAX = 256
 DEFECT_BITS = BIT_LIMIT
 WORD_MAX = 8
@@ -61,7 +61,7 @@ DESCENT_WINDOW_MAX = 500
 EVEN_CELL_LIST_MAX = 40
 
 N_PRESETS: dict[str, int] = {
-    "3 (note orbit)": 3,
+    "3 (note trajectory)": 3,
     "37 (note peak)": 37,
     "1999 (four-block)": 1999,
 }
@@ -132,7 +132,7 @@ INTERNAL_E_MARGIN = "243/256"
 INTERNAL_E_WORD = "OOEOOOOOEEE"
 
 NOTE_PEAK_37 = 24_906_114_455_136
-NOTE_ORBIT_3: tuple[int, ...] = (3, 5, 11, 36, 6, 2, 1)
+NOTE_TRAJECTORY_3: tuple[int, ...] = (3, 5, 11, 36, 6, 2, 1)
 
 LEFTOVER_CUTOFF: dict[str, int] = {
     "OOOEOE": 256,
@@ -792,7 +792,7 @@ def length_eight_open_words() -> tuple[str, ...]:
 
 
 @dataclass(frozen=True)
-class OrbitView:
+class TrajectoryView:
     n: int
     steps_asked: int
     states: tuple[int, ...]
@@ -803,12 +803,12 @@ class OrbitView:
     rows: tuple[dict[str, Any], ...]
 
 
-def walk_orbit(n: int, steps: int) -> OrbitView:
+def walk_trajectory(n: int, steps: int) -> TrajectoryView:
     if n < 1:
-        raise ValueError("walk_orbit requires n ≥ 1")
-    cap = min(max(steps, 0), ORBIT_STEPS_MAX)
+        raise ValueError("walk_trajectory requires n ≥ 1")
+    cap = min(max(steps, 0), TRAJECTORY_STEPS_MAX)
     if n.bit_length() > DISPLAY_BITS_MAX:
-        return OrbitView(
+        return TrajectoryView(
             n=n,
             steps_asked=cap,
             states=(n,),
@@ -850,7 +850,7 @@ def walk_orbit(n: int, steps: int) -> OrbitView:
                 "bits": state.bit_length(),
             }
         )
-    return OrbitView(
+    return TrajectoryView(
         n=n,
         steps_asked=cap,
         states=tuple(path),

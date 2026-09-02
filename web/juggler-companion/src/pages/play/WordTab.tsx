@@ -23,7 +23,7 @@ export function WordTab() {
     <div className="space-y-5">
       <p className="text-sm text-muted">
         A word is a finite string of O and E. It is realized at the start
-        only when the orbit actually follows those parities. The ideal
+        only when the trajectory actually follows those parities. The ideal
         exponent 3<sup>o</sup>/2<sup>k</sup> ignores floors.
       </p>
       <StartControl />

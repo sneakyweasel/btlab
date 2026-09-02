@@ -2,7 +2,7 @@ import { NavLink, Navigate, Outlet } from "react-router-dom";
 import { Disclaimer } from "../components/Disclaimer";
 
 const TABS = [
-  { to: "/play/orbit", label: "Orbit" },
+  { to: "/play/trajectory", label: "Trajectory" },
   { to: "/play/word", label: "Word" },
   { to: "/play/cells", label: "Cells" },
   { to: "/play/cycle", label: "Cycle" },
@@ -10,7 +10,7 @@ const TABS = [
 ];
 
 export function PlaygroundIndexPage() {
-  return <Navigate to="/play/orbit" replace />;
+  return <Navigate to="/play/trajectory" replace />;
 }
 
 export function PlaygroundPage() {
@@ -22,7 +22,7 @@ export function PlaygroundPage() {
           Basic tests only: walk a start, follow a short word, look at a
           preimage cell, rotate a necklace, or look up a length in the shipped
           Theorem 4.6 table. Caps: 80 steps, 256 bits, words of length at most
-          8 (cycles 16). The orbit is the values; the word is the O/E
+          8 (cycles 16). The trajectory is the values; the word is the O/E
           parities of a prefix. A cell is the set of one-step preimages.
         </p>
       </header>

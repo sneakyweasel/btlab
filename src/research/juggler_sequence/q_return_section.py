@@ -24,7 +24,7 @@ from research.juggler_sequence.block_map_q import (
     WINDOW_HI,
     q_blocks,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.lean_paths import (
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -213,7 +213,7 @@ def section_row(n: int, name: str, anum: int, bnum: int) -> dict[str, Any]:
     multi = sum(1 for row in defined if row["multiblock"])
     kinds = Counter(row["kind"] for row in returns)
     visits = [x for x in orbit if in_section(n, x, anum, bnum)]
-    if orbit_until_drop(n)[-1] < n:
+    if trajectory_until_drop(n)[-1] < n:
         for row in returns:
             if row["kind"] == "III":
                 row["kind"] = "exit_then_drop"

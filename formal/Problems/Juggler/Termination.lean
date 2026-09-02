@@ -6,7 +6,7 @@ namespace Problems.Juggler
 /-!
 # Hitting 1
 
-`ReachesOne` is the orbit predicate `∃ k, T^[k] n = 1`. This file does
+`ReachesOne` is the trajectory predicate `∃ k, T^[k] n = 1`. This file does
 not mention words or certificates. Finite seed identities live here as
 examples, not as a map theorem.
 -/

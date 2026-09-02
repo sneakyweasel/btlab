@@ -9,7 +9,7 @@ import {
   FinanceWidget,
   FloorWidget,
   MapWidget,
-  OrbitWidget,
+  TrajectoryWidget,
   WalkChargeWidget,
 } from "../components/TourWidgets";
 import {
@@ -21,7 +21,7 @@ import {
 
 const SHORT_TERM: Record<TourSlug, string> = {
   "the-map": "Map",
-  "orbit-word": "Orbit",
+  "trajectory-word": "Trajectory",
   "cycle-word": "Cycle",
   expanding: "Expand",
   envelope: "Envelope",
@@ -33,7 +33,7 @@ const SHORT_TERM: Record<TourSlug, string> = {
 
 const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "the-map": MapWidget,
-  "orbit-word": OrbitWidget,
+  "trajectory-word": TrajectoryWidget,
   "cycle-word": CycleWidget,
   expanding: ExpandingWidget,
   envelope: EnvelopeWidget,
@@ -50,6 +50,9 @@ export function TourIndexPage() {
 export function TourPage() {
   const { slug } = useParams();
   const [menuOpen, setMenuOpen] = useState(false);
+  if (slug === "orbit-word") {
+    return <Navigate to="/tour/trajectory-word" replace />;
+  }
   const chapter = chapterBySlug(slug);
   if (!chapter) {
     return <Navigate to="/tour/the-map" replace />;
@@ -140,7 +143,7 @@ export function TourPage() {
               {next.term} →
             </Link>
           ) : (
-            <Link to="/play/orbit" className="text-sm">
+            <Link to="/play/trajectory" className="text-sm">
               Open the playground →
             </Link>
           )}

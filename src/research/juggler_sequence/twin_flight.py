@@ -159,7 +159,7 @@ def _bit_would_exceed(current: int, bit_cap: int) -> bool:
 @lru_cache(maxsize=None)
 def _walk_cached(n: int, step_cap: int, bit_cap: int) -> tuple[tuple[int, ...], int, str, int | None, str]:
     if n < 1:
-        raise ValueError("walk_orbit requires a positive integer")
+        raise ValueError("walk_trajectory requires a positive integer")
     states = [n]
     seen = {n}
     current = n
@@ -182,7 +182,7 @@ def _walk_cached(n: int, step_cap: int, bit_cap: int) -> tuple[tuple[int, ...], 
     return tuple(states), peak, "STEP_CAP", None, "".join(letters)
 
 
-def walk_orbit(
+def walk_trajectory(
     n: int,
     *,
     step_cap: int = STEP_CAP,
@@ -390,7 +390,7 @@ def window_matrix(
 ) -> dict[str, Any]:
     members = starts if starts is not None else window_starts(n)
     orbits = {
-        start: walk_orbit(start, step_cap=step_cap, bit_cap=bit_cap) for start in members
+        start: walk_trajectory(start, step_cap=step_cap, bit_cap=bit_cap) for start in members
     }
     pairs: list[dict[str, Any]] = []
     adjacent: list[dict[str, Any]] = []
@@ -421,8 +421,8 @@ def control_pairs(
 ) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     for n in range(3, n_max + 1, 2):
-        left = walk_orbit(n, step_cap=step_cap, bit_cap=bit_cap)
-        right = walk_orbit(n + 2, step_cap=step_cap, bit_cap=bit_cap)
+        left = walk_trajectory(n, step_cap=step_cap, bit_cap=bit_cap)
+        right = walk_trajectory(n + 2, step_cap=step_cap, bit_cap=bit_cap)
         rows.append(compare_pair(left, right))
     counts = _class_counts(rows)
     total = len(rows)
@@ -448,7 +448,7 @@ def cross_lab(
     step_cap: int = STEP_CAP,
     bit_cap: int = BIT_CAP,
 ) -> dict[str, Any]:
-    orbits = {n: walk_orbit(n, step_cap=step_cap, bit_cap=bit_cap) for n in labs}
+    orbits = {n: walk_trajectory(n, step_cap=step_cap, bit_cap=bit_cap) for n in labs}
     rows: list[dict[str, Any]] = []
     for i, a in enumerate(labs):
         for b in labs[i + 1 :]:

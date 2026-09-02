@@ -33,7 +33,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.odd_run_itinerary import prefix_lambda
 from research.juggler_sequence.parity_persist import odd_run_len
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
@@ -117,7 +117,7 @@ def q_blocks(n: int) -> list[dict[str, Any]]:
     T^{a(x)}(x) is not a row. If Q(x) is even, the next odd landing
     (if still >= n) is a later row; prev keeps the last odd start.
     """
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     rows: list[dict[str, Any]] = []
     idx = 0
     prev: int | None = None

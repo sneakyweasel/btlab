@@ -53,7 +53,7 @@ even-reset and rank-return coincide and return to rank 2; PE landings climb or o
 - `HasFiniteStop`: the same terminal drop; FirstPassage does not cut mid-corridor
 - `even_below_anchor_pow`: an even high state drops its own rank; the return stays rank 2
 - `FiniteProgress`: emitted only by the terminal drop on these laboratories
-- `orbitExponentGap`: Drift is a word-exponent predicate, not an episode rank
+- `trajectoryExponentGap`: Drift is a word-exponent predicate, not an episode rank
 - `collapse_on_pow_two`: Collapse is an even-tower identity, not a PE landing law
 - `cycles_or_escapes`: bounded recurrence is already a cycle; leftover prefixes are not recurrent
 
@@ -66,7 +66,7 @@ even-reset and rank-return coincide and return to rank 2; PE landings climb or o
 - `even_below_anchor_pow`: `True`
 - `finiteProgress_of_aboveAnchor_returnBelow`: `True`
 - `cycles_or_escapes`: `True`
-- `orbitExponentGap`: `True`
+- `trajectoryExponentGap`: `True`
 - `collapse_on_pow_two`: `True`
 - new Lean file: `False`
 - Paper A has new API: `False`

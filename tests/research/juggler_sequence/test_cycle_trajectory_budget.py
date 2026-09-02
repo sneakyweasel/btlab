@@ -8,7 +8,7 @@ from pathlib import Path
 from research.conjectures import get_conjecture
 from research.juggler_sequence.cycle_budget_opt import budget_rhs
 from research.juggler_sequence.cycle_finance import MIN_STATE, PUBLISHED_FLOOR, o_min_and_theta
-from research.juggler_sequence.cycle_orbit_budget import (
+from research.juggler_sequence.cycle_trajectory_budget import (
     PHASE1_L,
     START,
     calibration_row,
@@ -17,7 +17,7 @@ from research.juggler_sequence.cycle_orbit_budget import (
 )
 
 REPO = Path(__file__).resolve().parents[3]
-DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_orbit_budget.md"
+DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_trajectory_budget.md"
 SUMMARY = (
     REPO
     / "data"
@@ -99,6 +99,6 @@ def test_science_artifact_closes_as_archived_cell():
 def test_dossier_and_conjecture_record_close():
     dossier = DOSSIER.read_text(encoding="utf-8")
     assert "**CLOSE**" in dossier
-    rec = get_conjecture("juggler_cycle_orbit_budget")
+    rec = get_conjecture("juggler_cycle_trajectory_budget")
     assert rec["status"] == "REFUTED"
     assert rec["counterexamples"]

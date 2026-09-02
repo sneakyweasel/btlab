@@ -1,15 +1,15 @@
 import { letterOf } from "../juggler/map";
 
-type OrbitBeadsProps = {
+type TrajectoryBeadsProps = {
   states: readonly bigint[];
   active?: number;
 };
 
-export function OrbitBeads({ states, active }: OrbitBeadsProps) {
+export function TrajectoryBeads({ states, active }: TrajectoryBeadsProps) {
   const width = Math.max(640, states.length * 88);
   return (
     <svg viewBox={`0 0 ${width} 120`} role="img" className="h-auto w-full">
-      <title>Orbit beads, odd and even letters</title>
+      <title>Trajectory beads, odd and even letters</title>
       {states.map((state, index) => {
         const x = 44 + index * 88;
         const letter = index < states.length - 1 ? letterOf(state) : "";

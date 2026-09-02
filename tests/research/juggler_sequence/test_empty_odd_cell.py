@@ -27,7 +27,7 @@ from research.juggler_sequence.empty_odd_cell import (
     write_artifacts,
 )
 from research.juggler_sequence.floor_cells import odd_cell_integers
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 
@@ -88,7 +88,7 @@ def test_1517_and_501_and_6187():
     assert row_1517["mixed_next_parity"] is True
     row_501 = control_row(501)
     assert 582916 in [item["landing"] for item in row_501["landings"]]
-    assert 763 in orbit_until_drop(501)
+    assert 763 in trajectory_until_drop(501)
     assert row_501["all_type0"] is True
     row_6187 = control_row(6187)
     assert row_6187["all_type0"] is True
@@ -100,7 +100,7 @@ def test_69_and_89_are_not_all_type0():
 
 
 def test_pe_landing_of_365_has_no_square_subinterval():
-    path = orbit_until_drop(365)
+    path = trajectory_until_drop(365)
     rows = pe_landings(path)
     ratios = [row["offset"] / row["width"] for row in rows]
     assert min(ratios) < 0.1

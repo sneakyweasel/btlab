@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { evenCell, oddCellIntegers } from "../juggler/cells";
-import { LIVE_STARTS, NOTE_ORBIT_3, ORBIT_STEPS_MAX } from "../juggler/constants";
+import { LIVE_STARTS, NOTE_TRAJECTORY_3, TRAJECTORY_STEPS_MAX } from "../juggler/constants";
 import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
 import { floorPower, letterOf } from "../juggler/map";
-import { monsterCatalog, resolveOrbit } from "../juggler/monsters";
+import { monsterCatalog, resolveTrajectory } from "../juggler/monsters";
 import {
   envelopeSlack,
   expanding,
@@ -22,7 +22,7 @@ import { FloorLadder } from "../visuals/FloorLadder";
 import { AppearingWord } from "../visuals/AppearingWord";
 import { FloorCut } from "../visuals/FloorCut";
 import { MapDoors } from "../visuals/MapDoors";
-import { OrbitBeads } from "../visuals/OrbitBeads";
+import { TrajectoryBeads } from "../visuals/TrajectoryBeads";
 import { SurplusScale } from "../visuals/SurplusScale";
 import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
 import { Metric } from "./Metric";
@@ -167,21 +167,21 @@ export function MapWidget() {
   const [playing, setPlaying] = useState(false);
   const start = parsePositiveInt(startText);
   const seed = start ?? MAP_DEFAULT;
-  const orbit = resolveOrbit(seed, ORBIT_STEPS_MAX);
+  const trajectory = resolveTrajectory(seed, TRAJECTORY_STEPS_MAX);
   const letter = letterOf(cursor);
-  const active = orbit.states.findIndex((state) => state === cursor);
+  const active = trajectory.states.findIndex((state) => state === cursor);
   const stepIndex = active >= 0 ? active : 0;
-  const stepLast = Math.max(orbit.states.length - 1, 0);
-  const prev = stepIndex > 0 ? orbit.states[stepIndex - 1] : null;
+  const stepLast = Math.max(trajectory.states.length - 1, 0);
+  const prev = stepIndex > 0 ? trajectory.states[stepIndex - 1] : null;
   const nextFromPath =
-    active >= 0 && active + 1 < orbit.states.length ? orbit.states[active + 1] : null;
+    active >= 0 && active + 1 < trajectory.states.length ? trajectory.states[active + 1] : null;
   const next =
     nextFromPath ??
-    (active < 0 && orbit.source === "live" && cursor >= 1n ? floorPower(cursor) : null);
+    (active < 0 && trajectory.source === "live" && cursor >= 1n ? floorPower(cursor) : null);
   const progressPct = stepLast === 0 ? 0 : (100 * stepIndex) / stepLast;
   useEffect(() => {
     if (!playing) return;
-    const path = resolveOrbit(seed, ORBIT_STEPS_MAX).states;
+    const path = resolveTrajectory(seed, TRAJECTORY_STEPS_MAX).states;
     const id = window.setInterval(() => {
       setCursor((current) => {
         const index = path.findIndex((state) => state === current);
@@ -207,7 +207,7 @@ export function MapWidget() {
       setPlaying(false);
       return;
     }
-    const path = resolveOrbit(seed, ORBIT_STEPS_MAX).states;
+    const path = resolveTrajectory(seed, TRAJECTORY_STEPS_MAX).states;
     const atEnd = next === null || cursor === path[path.length - 1];
     if (atEnd) setCursor(seed);
     setPlaying(true);
@@ -215,17 +215,17 @@ export function MapWidget() {
 
   function seekTo(index: number) {
     const clamped = Math.max(0, Math.min(stepLast, index));
-    const state = orbit.states[clamped];
+    const state = trajectory.states[clamped];
     if (state !== undefined) setCursor(state);
   }
 
   return (
     <div className="space-y-4">
       <MapDoors
-        states={orbit.states}
+        states={trajectory.states}
         highlight={letter === "O" ? "odd" : "even"}
         active={active >= 0 ? active : undefined}
-        sparseScale={orbit.source === "monster"}
+        sparseScale={trajectory.source === "monster"}
         controls={
           <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
             <label className="grid gap-1">
@@ -276,7 +276,7 @@ export function MapWidget() {
               <div className="flex flex-wrap items-center gap-1.5">
                 <span
                   className="w-6 text-center text-base leading-none"
-                  title="Shipped orbits whose peak exceeds the live 256-bit walker."
+                  title="Shipped trajectories whose peak exceeds the live 256-bit walker."
                   aria-label="Monsters"
                 >
                   👹
@@ -304,7 +304,7 @@ export function MapWidget() {
               style={{ width: `${progressPct}%` }}
             />
             <input
-              className="orbit-scrubber relative z-10"
+              className="trajectory-scrubber relative z-10"
               type="range"
               min={0}
               max={stepLast}
@@ -377,14 +377,14 @@ export function MapWidget() {
       <div className="grid gap-3 sm:grid-cols-2 sm:items-stretch">
         <FloorCut n={cursor} result={next} />
         <AppearingWord
-          word={orbit.word}
+          word={trajectory.word}
           revealed={stepIndex}
           note={
-            orbit.source === "monster"
-              ? `Shipped orbit${orbit.peakBits ? ` (peak ${orbit.peakBits} bits)` : ""}. The browser did not walk this start. ${orbit.blurb ?? ""} Hitting 1 is not a theorem.`
-              : orbit.bitCapped
+            trajectory.source === "monster"
+              ? `Shipped trajectory${trajectory.peakBits ? ` (peak ${trajectory.peakBits} bits)` : ""}. The browser did not walk this start. ${trajectory.blurb ?? ""} Hitting 1 is not a theorem.`
+              : trajectory.bitCapped
                 ? "A value exceeded the live 256-bit cap. Famous larger starts are under Monsters if we shipped them."
-                : orbit.reachedOne && stepIndex >= orbit.word.length
+                : trajectory.reachedOne && stepIndex >= trajectory.word.length
                   ? "This walk hit 1, which is not a theorem."
                   : null
           }
@@ -394,17 +394,17 @@ export function MapWidget() {
   );
 }
 
-export function OrbitWidget() {
-  const [shown, setShown] = useState<number>(NOTE_ORBIT_3.length);
-  const states = NOTE_ORBIT_3.slice(0, shown);
+export function TrajectoryWidget() {
+  const [shown, setShown] = useState<number>(NOTE_TRAJECTORY_3.length);
+  const states = NOTE_TRAJECTORY_3.slice(0, shown);
   return (
     <div className="space-y-3">
-      <OrbitBeads states={states} active={shown - 1} />
+      <TrajectoryBeads states={states} active={shown - 1} />
       <div className="flex gap-2">
         <button
           type="button"
           className="rounded-full bg-deep px-3 py-1 text-sm text-card"
-          onClick={() => setShown((value) => Math.min(NOTE_ORBIT_3.length, value + 1))}
+          onClick={() => setShown((value) => Math.min(NOTE_TRAJECTORY_3.length, value + 1))}
         >
           Replay next
         </button>
@@ -421,7 +421,7 @@ export function OrbitWidget() {
         <span className="font-mono">
           {states.slice(0, -1).map((state) => letterOf(state)).join("") || "—"}
         </span>
-        . Reaching 1 here is the orbit of 3, not a halt theorem.
+        . Reaching 1 here is the trajectory of 3, not a halt theorem.
       </p>
     </div>
   );

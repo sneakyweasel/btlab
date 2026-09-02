@@ -5,7 +5,7 @@ from visualization.juggler_finite_dynamics import (
     EEEE_WORD,
     LAB_WALK_PERIOD,
     LEFTOVER_CUTOFF,
-    NOTE_ORBIT_3,
+    NOTE_TRAJECTORY_3,
     NOTE_PEAK_37,
     PAPER_EXCEPTION_COUNT,
     PAPER_PERIOD,
@@ -36,20 +36,20 @@ from visualization.juggler_finite_dynamics import (
     parse_word,
     rotate_cycle_word,
     try_cycle_word,
-    walk_orbit,
+    walk_trajectory,
 )
 
 
 def test_orbit_of_three_matches_the_note():
-    view = walk_orbit(3, 20)
-    assert view.states == NOTE_ORBIT_3
+    view = walk_trajectory(3, 20)
+    assert view.states == NOTE_TRAJECTORY_3
     assert view.word == "OOOEEE"
     assert view.reached_one
     assert not view.too_large
 
 
 def test_orbit_of_thirty_seven_records_the_note_peak():
-    view = walk_orbit(37, 80)
+    view = walk_trajectory(37, 80)
     assert NOTE_PEAK_37 in view.states
     assert view.reached_one
     assert not view.bit_capped
@@ -333,7 +333,7 @@ def test_try_cycle_word_records_a_miss_and_a_nonreturn():
 
 def test_bit_cap_refuses_a_huge_start():
     huge = 1 << 300
-    view = walk_orbit(huge, 4)
+    view = walk_trajectory(huge, 4)
     assert view.too_large
     slack = envelope_view(10**12 + 1, "O")
     assert slack.follows

@@ -25,7 +25,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.odd_run_itinerary import run_itinerary
 from research.juggler_sequence.odd_source_return import source_chain
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
@@ -97,7 +97,7 @@ def even_run_after(path: tuple[int, ...], even_idx: int, n: int) -> int:
 def episodes(n: int) -> list[dict[str, Any]]:
     """Q-episodes: source X, odd-run r, reset even R, landing Q, extra evens s."""
 
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     rows = []
     idx = 0
     while idx < len(path) - 1:

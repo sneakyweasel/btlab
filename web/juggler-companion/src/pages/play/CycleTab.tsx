@@ -4,7 +4,7 @@ import { CycleNecklace } from "../../visuals/CycleNecklace";
 import { usePlayState } from "../../context/PlayState";
 import { CYCLE_PRESETS } from "../../juggler/constants";
 import { formatInt, parsePositiveInt } from "../../juggler/format";
-import { tryCycleWord } from "../../juggler/orbit";
+import { tryCycleWord } from "../../juggler/trajectory";
 import {
   evenCount,
   expanding,

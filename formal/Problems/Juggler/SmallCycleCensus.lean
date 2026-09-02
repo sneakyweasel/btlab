@@ -48,7 +48,7 @@ theorem replicate_odd_image_gt :
         _ < image (floorPower n) (List.replicate (a + 1) Branch.odd) := ih
 
 /-- All-odd words are never cycle words for `n ≥ 2`: the odd branch
-strictly ascends, so the orbit cannot return. -/
+strictly ascends, so the trajectory cannot return. -/
 theorem no_cycle_word_replicate_odd {a n : ℕ} (ha : 1 ≤ a) (hn : 2 ≤ n) :
     ¬CycleWord n (List.replicate a Branch.odd) := by
   intro h

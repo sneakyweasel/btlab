@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimal_anchor_closure import (
-    orbit_until_drop,
+    trajectory_until_drop,
     word_of_path,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
@@ -76,7 +76,7 @@ def block_multiplier(odds: int, evens: int = 1) -> Fraction:
 
 def pe_blocks(n: int) -> list[dict[str, Any]]:
     """Residual blocks O^a E (or a final E) from n until the first drop."""
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     blocks: list[dict[str, Any]] = []
     alpha = Fraction(1, 1)
     start = 0
@@ -137,7 +137,7 @@ def walk_row(n: int) -> dict[str, Any]:
     below_ent = [block["below_entrance"] for block in blocks]
     return {
         "n": n,
-        "orbit_word": word_of_path(orbit_until_drop(n)),
+        "orbit_word": word_of_path(trajectory_until_drop(n)),
         "blocks": blocks,
         "words": words,
         "landings": landings,

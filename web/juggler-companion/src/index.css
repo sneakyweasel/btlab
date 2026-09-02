@@ -77,7 +77,7 @@ button.bg-odd {
   margin: 0;
 }
 
-.orbit-scrubber {
+.trajectory-scrubber {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -87,12 +87,12 @@ button.bg-odd {
   cursor: pointer;
 }
 
-.orbit-scrubber::-webkit-slider-runnable-track {
+.trajectory-scrubber::-webkit-slider-runnable-track {
   height: 4px;
   background: transparent;
 }
 
-.orbit-scrubber::-webkit-slider-thumb {
+.trajectory-scrubber::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 14px;
   height: 14px;
@@ -102,13 +102,13 @@ button.bg-odd {
   box-shadow: 0 0 0 3px var(--color-card);
 }
 
-.orbit-scrubber::-moz-range-track {
+.trajectory-scrubber::-moz-range-track {
   height: 4px;
   background: transparent;
   border: none;
 }
 
-.orbit-scrubber::-moz-range-thumb {
+.trajectory-scrubber::-moz-range-thumb {
   width: 14px;
   height: 14px;
   border: none;

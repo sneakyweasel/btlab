@@ -24,7 +24,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimal_anchor_closure import (
-    orbit_until_drop,
+    trajectory_until_drop,
     word_of_path,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
@@ -183,7 +183,7 @@ def ambient_pe_kinds(n_max: int = AMBIENT_N) -> dict[str, Any]:
     counts = {0: 0, 1: 0, 2: 0}
     next_parity = {0: 0, 1: 0}
     for n in range(3, n_max, 2):
-        path = orbit_until_drop(n, cap=200)
+        path = trajectory_until_drop(n, cap=200)
         for row in pe_landings(path):
             counts[int(row["kind"])] += 1
             if row["landing_odd"]:
@@ -200,7 +200,7 @@ def ambient_pe_kinds(n_max: int = AMBIENT_N) -> dict[str, Any]:
 
 
 def control_row(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     rows = pe_landings(path)
     kinds = [int(row["kind"]) for row in rows]
     offsets = [row["offset"] / row["width"] for row in rows]

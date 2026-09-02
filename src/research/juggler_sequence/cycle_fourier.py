@@ -37,7 +37,7 @@ from research.juggler_sequence.cycle_finance import (
     sha256_int_list,
 )
 from research.juggler_sequence.cycle_run_extremum import survivor_lengths
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import floor_power
 
 CONTROLS = (365, 501, 1517, 6187)
@@ -334,7 +334,7 @@ def path_word(path: tuple[int, ...]) -> str:
 
 
 def control_row(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     word = path_word(path)
     logs = path_log_wave(path)
     cyclic = spectral_moment(logs, cyclic=True)

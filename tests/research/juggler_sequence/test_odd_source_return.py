@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.odd_source_return import (
     CLASS_CLOSED,
     FORBIDDEN_THEOREMS,
@@ -27,7 +27,7 @@ def test_37_sources_and_interior_3375():
     xs = source_chain(37)
     assert xs == list(WITNESS_37_SOURCES)
     assert 3375 not in xs
-    assert 3375 in orbit_until_drop(37)
+    assert 3375 in trajectory_until_drop(37)
     assert two_episode_fails(xs) == [WITNESS_37_SOURCES]
     assert WITNESS_37_SOURCES[2] > WITNESS_37_SOURCES[0]
 

@@ -53,7 +53,7 @@ theorem.
 - `OOEOOE` square cell without cycle return —
   **EXACT — LEAN VERIFIED** (`J-minimal-ooeooe-escape-trap`).
 - Cycle-or-escape split —
-  **EXACT — LEAN VERIFIED** (`J-orbit-cycle-or-escape`).
+  **EXACT — LEAN VERIFIED** (`J-trajectory-cycle-or-escape`).
 - `MinimalNonTerm` orbits stay \(\ge n\) —
   **EXACT — LEAN VERIFIED**.
 - Every start reaches 1 — not claimed.

@@ -25,7 +25,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -140,7 +140,7 @@ def word_and_counts(
 
 
 def prefix_table(n: int) -> dict[str, Any]:
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     word, rows, runs = word_and_counts(path)
     drop = rows[-1]
     last_above = next(row for row in reversed(rows) if row["above"])

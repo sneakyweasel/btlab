@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -78,7 +78,7 @@ def prefix_lambda(runs: list[int]) -> Fraction:
 
 def run_itinerary(n: int) -> dict[str, Any]:
     """Maximal odd-run lengths until the first drop below n."""
-    path = orbit_until_drop(n)
+    path = trajectory_until_drop(n)
     runs: list[int] = []
     landings: list[int] = []
     start = 0

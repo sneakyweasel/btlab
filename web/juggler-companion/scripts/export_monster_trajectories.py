@@ -1,8 +1,8 @@
-"""Export shipped monster orbits for the reviewer companion.
+"""Export shipped monster trajectories for the reviewer companion.
 
 Live exploration walks in the browser up to 256 bits. These records
 exceed that cap, so the site loads them from JSON and never recomputes
-n_max-scale arithmetic. Not a halt theorem: each row is one orbit.
+n_max-scale arithmetic. Not a halt theorem: each row is one trajectory.
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ sys.set_int_max_str_digits(20_000)
 from research.juggler_sequence.power_words import floor_power
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "src" / "data" / "monster_orbits.json"
+OUT = ROOT / "src" / "data" / "monster_trajectories.json"
 
 # Peaks exceed DISPLAY_BITS_MAX = 256. Skip million-bit flyers.
 MONSTERS = (
@@ -93,8 +93,8 @@ def main() -> None:
         )
     payload = {
         "bitCapLive": 256,
-        "note": "Shipped orbits whose peak exceeds the live 256-bit walker. One orbit each, not a theorem.",
-        "orbits": rows,
+        "note": "Shipped trajectories whose peak exceeds the live 256-bit walker. One trajectory each, not a theorem.",
+        "trajectories": rows,
     }
     OUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {OUT} ({OUT.stat().st_size} bytes)")

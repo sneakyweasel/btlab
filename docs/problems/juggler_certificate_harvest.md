@@ -58,7 +58,7 @@ Falsifier               Histogram is only OOOO* until an even letter,
                         with no new shape and no scale drift — then
                         the sieve is a verification bound.
 Existing machinery      Atlas Kernel A + Wide8 floor_power; packed
-                        O/E words; orbit_until_drop; Theorem 4.1
+                        O/E words; trajectory_until_drop; Theorem 4.1
                         (E / OE); Paper B OOEE class
 Maximum Phase-0 scope   Harvest kernel; leftover-word histogram;
                         coarse counts; overflow CPU merge; science

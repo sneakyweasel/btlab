@@ -18,7 +18,7 @@ from typing import Any
 
 from research.juggler_sequence.block_map_q import q_blocks
 from research.juggler_sequence.cube_odd_return import cube_odd_landing
-from research.juggler_sequence.minimal_anchor_closure import orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -82,7 +82,7 @@ def run_probe() -> dict[str, Any]:
         "lab_sources": labs,
         "lab_cube_sources": cube_labs,
         "witness_37_sources": xs37,
-        "interior_3375": 3375 not in xs37 and 3375 in orbit_until_drop(37),
+        "interior_3375": 3375 not in xs37 and 3375 in trajectory_until_drop(37),
         "two_episode_37_fails": fail37 == [WITNESS_37_SOURCES],
         "two_episode_365_fails": (365, 763, 1749) in fail365,
         "cube_321": cube321,

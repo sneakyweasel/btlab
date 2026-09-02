@@ -24,7 +24,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.minimal_anchor_closure import WORD_L, orbit_until_drop
+from research.juggler_sequence.minimal_anchor_closure import WORD_L, trajectory_until_drop
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -182,7 +182,7 @@ def l_lab_chain() -> dict[str, Any]:
 def orbit_tables() -> dict[int, dict[str, Any]]:
     out: dict[int, dict[str, Any]] = {}
     for n in STARTS:
-        path = orbit_until_drop(n)
+        path = trajectory_until_drop(n)
         runs = extract_odd_runs(path, n)
         out[n] = {
             "n": n,

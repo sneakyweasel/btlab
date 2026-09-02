@@ -56,7 +56,7 @@ LEAN_THEOREMS = (
     "cycle_envelope",
     "cycle_strict_envelope",
     "cycle_not_contracting",
-    "orbit_repeat_cycle",
+    "trajectory_repeat_cycle",
     "residual_return_cycle",
     "residual_return_envelope",
     "residual_return_a_ge_two",
@@ -184,7 +184,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["cycle_strict_envelope"]
-        and lean["orbit_repeat_cycle"]
+        and lean["trajectory_repeat_cycle"]
         and lean["residual_return_a_ge_two"]
         and lean["bounded_prefix_not_nodup"]
         and lean["no_global_termination_theorem"]

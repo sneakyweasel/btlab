@@ -132,7 +132,7 @@ stronger claims that fail:
 
 - `ResidualDescent` / `ResidualReturn` / `ResidualOvershoot`
 - `two_pow_ne_three_pow` / `cycle_envelope` / `cycle_strict_envelope`
-- `cycle_not_contracting` / `orbit_repeat_cycle`
+- `cycle_not_contracting` / `trajectory_repeat_cycle`
 - `residual_return_cycle` / `residual_return_envelope` /
   `residual_return_a_ge_two`
 - `minimal_residual_chain_ge` / `bounded_prefix_not_nodup`

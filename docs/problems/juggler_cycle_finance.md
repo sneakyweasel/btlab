@@ -710,7 +710,7 @@ and `data/research/juggler/cycle_finance/`.
   Cheap-cluster Amplify versus surplus is also **CLOSE**
   ([juggler_cycle_cluster_amplify.md](juggler_cycle_cluster_amplify.md)).
   Global orbit-budget coupling is also **CLOSE**
-  ([juggler_cycle_orbit_budget.md](juggler_cycle_orbit_budget.md)).
+  ([juggler_cycle_trajectory_budget.md](juggler_cycle_trajectory_budget.md)).
   The program stays **PARK**.
 
 ## Decision
@@ -833,7 +833,7 @@ Best next question: none from cheap-cluster Amplify. The
 state-distribution program of Paper A Section 5 stays **PARK**.
 Option B is closed as a finance input on cheap `OOE`
 clusters. Global orbit-budget coupling is **CLOSE**
-(`juggler_cycle_orbit_budget`): \(C_{\max}^{\mathrm{ub}}\)
+(`juggler_cycle_trajectory_budget`): \(C_{\max}^{\mathrm{ub}}\)
 at \(n=10^6+1\) equals `budget_rhs`; the tree dies at
 archived `OOE` / CycleMin tags after at most one circuit.
 The factor-\(23\) valley gap at \(L=25781\) is

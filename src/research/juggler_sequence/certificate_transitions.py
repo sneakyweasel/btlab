@@ -29,7 +29,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimal_anchor_closure import (
-    orbit_until_drop,
+    trajectory_until_drop,
     word_of_path,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
@@ -117,7 +117,7 @@ def one_certificate(n: int, *, step_cap: int = STEP_CAP) -> dict[str, Any]:
             "q_blocks": 0,
         }
     hit = first_certificate(n, k_max=20, step_cap=step_cap)
-    path = orbit_until_drop(n, cap=step_cap)
+    path = trajectory_until_drop(n, cap=step_cap)
     word = word_of_path(path)
     blocks = q_blocks(n)
     return {

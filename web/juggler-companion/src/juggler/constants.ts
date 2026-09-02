@@ -3,7 +3,7 @@
  * src/visualization/juggler_finite_dynamics.py — not a second theorem.
  */
 
-export const ORBIT_STEPS_MAX = 80;
+export const TRAJECTORY_STEPS_MAX = 80;
 export const DISPLAY_BITS_MAX = 256;
 export const WORD_MAX = 8;
 export const CYCLE_WORD_MAX = 16;
@@ -21,11 +21,11 @@ export const PRINTED_PERIOD = 478_245;
 export const WALK_WINDOW_LO = 50_508;
 export const WALK_WINDOW_HI = 301_994;
 
-export const NOTE_ORBIT_3 = [3n, 5n, 11n, 36n, 6n, 2n, 1n] as const;
+export const NOTE_TRAJECTORY_3 = [3n, 5n, 11n, 36n, 6n, 2n, 1n] as const;
 export const NOTE_PEAK_37 = 24_906_114_455_136n;
 
 export const N_PRESETS = [
-  { label: "3 — note orbit", value: 3n },
+  { label: "3 — note trajectory", value: 3n },
   { label: "37 — note peak", value: 37n },
   { label: "1999 — four-block", value: 1999n },
 ] as const;
@@ -35,7 +35,7 @@ export const LIVE_STARTS = [
   {
     label: "3",
     value: 3n,
-    note: "The printed orbit of 3: OOOEEE to 1. Hitting 1 here is one orbit, not a halt proof.",
+    note: "The printed trajectory of 3: OOOEEE to 1. Hitting 1 here is one trajectory, not a halt proof.",
   },
   {
     label: "9",

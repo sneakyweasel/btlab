@@ -41,7 +41,7 @@ Phase 0 tests \(\alpha\in\{3/2,2,9/4,8/3,3\}\) on
 ## Current literature
 
 - Maximal odd-run map \(Q\) has no compressed predictor —
-  **PARK** (`J-block-map-q-orbits`, `J-block-map-q-state`)
+  **PARK** (`J-block-map-q-trajectories`, `J-block-map-q-state`)
 - Two-episode source descent —
   **REFUTED** (`J-two-episode-source-descent`)
 - First-return-below \(T^{k}(n)<n\) —

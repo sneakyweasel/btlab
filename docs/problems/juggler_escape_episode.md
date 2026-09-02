@@ -49,7 +49,7 @@ separately. Do not demand that every high integer is good.
 - `AboveAnchor` shared by `CycleMin` and `MinimalNonTerm` —
   **EXACT — LEAN VERIFIED** (`J-above-anchor`).
 - Cycle or escape —
-  **EXACT — LEAN VERIFIED** (`J-orbit-cycle-or-escape`).
+  **EXACT — LEAN VERIFIED** (`J-trajectory-cycle-or-escape`).
 - `ReturnBelow` and `HasFiniteStop` name a later drop below the
   start — **EXACT — LEAN VERIFIED**.
 - Even \(x<n^{2k}\) gives \(T(x)<n^k\) —
@@ -76,7 +76,7 @@ Falsifier               landings climb or oscillate; L frozen
                         even-reset; 69/89 show the same pattern
 Existing machinery      AboveAnchor; ReturnBelow; HasFiniteStop;
                         even_below_anchor_pow; FiniteProgress;
-                        cycles_or_escapes; orbit_until_drop
+                        cycles_or_escapes; trajectory_until_drop
 Maximum Phase-0 scope   365, 501, 1517, 6187; 69/89 contrast;
                         three episode cuts; no new Lean
 Promotion criterion     a finite-progress episode theorem, or
@@ -162,7 +162,7 @@ Ordinary terminating leftovers, not `MinimalNonTerm` witnesses.
 No new Lean module. `AboveAnchor`, `ReturnBelow`,
 `even_below_anchor_pow`, and `finiteProgress_of_aboveAnchor_returnBelow`
 stay in `MinimumRelative.lean` / `Residuals.lean`. `HasFiniteStop`
-stays in `FirstPassage.lean`. `orbitExponentGap` stays in
+stays in `FirstPassage.lean`. `trajectoryExponentGap` stays in
 `Drift.lean`. `collapse_on_pow_two` stays in `Collapse.lean`.
 Not imported by `Problems.JugglerPaper`. No `sorry`. No
 `EscapeEpisode` API. No `juggler_reaches_one`.

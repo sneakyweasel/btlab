@@ -3,7 +3,7 @@ import Problems.Juggler.Termination
 namespace Problems.Juggler
 
 /-!
-# Orbit itinerary
+# Trajectory itinerary
 
 `bit` is the parity observation. `word n k` is the actual length-`k`
 itinerary of `n`. `follows` is the same fact as a predicate on a
@@ -26,7 +26,7 @@ def word : ℕ → ℕ → List Branch
   | _, 0 => []
   | n, k + 1 => bit n :: word (floorPower n) k
 
-/-- The orbit of `n` realizes the finite parity word `w`. -/
+/-- The trajectory of `n` realizes the finite parity word `w`. -/
 def follows : ℕ → List Branch → Prop
   | _, [] => True
   | n, .even :: w => n % 2 = 0 ∧ follows (floorPower n) w
