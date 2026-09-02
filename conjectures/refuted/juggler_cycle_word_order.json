@@ -1,10 +1,10 @@
 {
-  "id": "juggler_cycle_word_order",
+  "id": "juggler_cycle_itinerary_order",
   "title": "A cycle-usable exact-map quantity sees O/E order and is not already D_w, a named cell, or cheap-OOE adjacency",
-  "statement": "There is a quantity Q of the exact ordered map T_w, for CycleMin-legal words with the same exponent budget (o, L), that is not a function of (o, L) alone and is not already lowerDenom / S(w), a named cell (OE / OOE / EOO), cheap-OOE adjacency, peak-valley composition, cyclic rounding, prefix expansion, or the CycleWord endpoint identities Delta = n^{3^o}-n^{2^L} and T/n^P = n^{1-P}.",
+  "statement": "There is a quantity Q of the exact ordered map T_w, for CycleMin-legal words with the same exponent budget (o, L), that is not a function of (o, L) alone and is not already lowerDenom / S(w), a named cell (OE / OOE / EOO), cheap-OOE adjacency, peak-valley composition, cyclic rounding, prefix expansion, or the CycleItinerary endpoint identities Delta = n^{3^o}-n^{2^L} and T/n^P = n^{1-P}.",
   "status": "REFUTED",
   "counterexamples": [
-    "on a CycleWord, Delta = n^{3^o}-n^{2^L} and T/n^P = n^{1-P} are functions of (n, o, L) only (global_defect_identity plus image_eq_start_defectRatio)",
+    "on a CycleItinerary, Delta = n^{3^o}-n^{2^L} and T/n^P = n^{1-P} are functions of (n, o, L) only (global_defect_identity plus image_eq_start_defectRatio)",
     "each n follows exactly one word of each length, so distinct same-length words have disjoint domains and cannot be compared at the same start",
     "12 distinct expanding necklace pairs with the same (o, L) through length 8 all have different S and tag lowerDenom; unarchived=0",
     "OOE / OEO / EOO share budget 9/8 and are one necklace excluded by named cells / rotation",

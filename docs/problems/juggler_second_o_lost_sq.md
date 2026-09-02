@@ -84,7 +84,7 @@ It is not required.
 - the second `O` still lies below \(n^{2}\) —
   **REFUTED** (\(1517\to 43916043\))
 - no trajectory escapes — not claimed
-- length-11 cycle words are impossible — not claimed
+- length-11 cycle itineraries are impossible — not claimed
 - global halt — not claimed
 
 ## Experiments

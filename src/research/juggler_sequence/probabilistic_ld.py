@@ -28,7 +28,7 @@ from research.juggler_sequence.excursions import (
     STATUS_RETURNED,
 )
 from research.juggler_sequence.lean_paths import ENVELOPE, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.probabilistic import (
     LOG_1_2,
     LOG_3_2,
@@ -99,7 +99,7 @@ CLOSED_IMPORT_TOKENS = (
     "sum_rho",
     "realization_geometry",
     "landing_image",
-    "word_language",
+    "itinerary_language",
     "word_atlas",
     "nc_boundary",
     "adversarial_paths",
@@ -997,7 +997,7 @@ def decide(payload: dict[str, Any]) -> dict[str, Any]:
             "pre-peak odd frequency near p*=3/4. It does not give a stable "
             "ascent slope a*, the duration-tail rate is about 2.6 I0 on this "
             "window, and the exceptional set is the expanding odd prefix "
-            "already visible in the itinerary. Descriptive, not proof-producing."
+            "already visible in the word. Descriptive, not proof-producing."
         )
     else:
         classification = CLASS_ONLY
@@ -1661,7 +1661,7 @@ Exact hard paths begin with a long odd run (frequency 1), then a mix
 whose full-word frequency sits near the *zero-drift* value `p0`,
 while only the longest delay records have pre-peak `p_O` near `p*`.
 That is the expanding branch plus an ordinary suffix, already visible
-in the itinerary. No new finite-word constraint is proposed. No
+in the word. No new finite-word constraint is proposed. No
 **CANDIDATE CONJECTURE** is opened.
 
 ## 12. Limitations

@@ -45,7 +45,7 @@ from research.juggler_sequence.lean_paths import (
     LAYERS,
     has_named,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "flight_walk_divergence"
@@ -78,8 +78,8 @@ ANTI = {
 REQUIRED_LEAN = (
     ("Envelope", "power_bound_word"),
     ("Envelope", "cycle_strict_envelope"),
-    ("WalkChargeWords", "hugOdds_pow_ge"),
-    ("WalkChargeWords", "hugOdds_pow_lt"),
+    ("WalkChargeItineraries", "hugOdds_pow_ge"),
+    ("WalkChargeItineraries", "hugOdds_pow_lt"),
     ("WalkTransport", "follows_log_le_walkWeight"),
     ("WalkTransport", "aboveAnchor_height_of_walk"),
     ("CycleCore", "aboveAnchor_prefix_pow_le"),

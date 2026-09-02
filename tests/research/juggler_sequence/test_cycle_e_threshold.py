@@ -15,7 +15,7 @@ from research.juggler_sequence.cycle_e_threshold import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_inventory_separates_exact_eventual_and_cell():
@@ -54,7 +54,7 @@ def test_lean_api_inheritance_and_length5():
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
     assert "theorem threshold_inherits_odd_append" in src
-    assert "theorem no_cycle_word_length_five_ends_even" in src
+    assert "theorem no_cycle_itinerary_length_five_ends_even" in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
 
@@ -99,5 +99,5 @@ def test_committed_artifacts_schema():
     assert data["anti_overclaim"]["useful_uniform_Q0"] is False
     assert data["anti_overclaim"]["O_terminating_cycles_impossible"] is False
     assert data["lean"]["sorry_free"] is True
-    assert data["lean"]["no_cycle_word_length_five_ends_even"] is True
+    assert data["lean"]["no_cycle_itinerary_length_five_ends_even"] is True
     assert data["scan"]["length5_expanding"] == ["OOOOE"]

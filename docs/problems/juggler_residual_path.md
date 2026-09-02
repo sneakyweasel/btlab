@@ -26,10 +26,10 @@ T^{j-i}(T^i(n))=T^i(n).
 A finite residual prefix valued in \([L,M]\) and longer than \(M-L+1\)
 cannot be nodup. That is the finite form of “bounded ⇒ repeat”.
 
-If a realized word returns to `x ≥ 2`, the envelope gives
+If a realized itinerary returns to `x ≥ 2`, the envelope gives
 \(2^r\le 3^o\). Equality is impossible for \(r\ge 1\), because \(2^r\)
 is even and \(3^o\) is odd. Contracting words cannot return.
-Therefore every nonempty cycle word satisfies
+Therefore every nonempty cycle itinerary satisfies
 
 \[
 2^r<3^o.
@@ -48,7 +48,7 @@ unbounded branch is impossible. Do not prove totality.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed. No nontrivial cycle is recorded there.
-- Finite-word envelope \(T_w(x)^{2^k}\le x^{3^o}\) —
+- Finite-itinerary envelope \(T_w(x)^{2^k}\le x^{3^o}\) —
   **EXACT — LEAN VERIFIED**.
 - Contracting words give `Descent` —
   **EXACT — LEAN VERIFIED**.
@@ -64,7 +64,7 @@ unclaimed.
 ```text
 Mathematical target     bounded residual prefix ⇒ cycle; cycle envelope 2^r < 3^o
 Novelty hypothesis      residual return needs a ≥ 2; equality 2^r = 3^o is impossible
-Falsifier               a residual return with a ≤ 1; or a contracting cycle word
+Falsifier               a residual return with a ≤ 1; or a contracting cycle itinerary
 Existing machinery      ResidualStep, power_bound_word, power_bound_contracts
 Maximum Phase-0 scope   orbit repeat; cycle envelope; residual-return a≥2; small cycle scan
 Promotion criterion     exact bounded⇒cycle reduction, or a meaningful excluded cycle class
@@ -87,7 +87,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - cycle envelope \(2^r\le 3^o\), and \(2^r\neq 3^o\) for \(r\ge 1\) —
   **EXACT — LEAN VERIFIED**
-- contracting words cannot close a cycle —
+- contracting itineraries cannot close a cycle —
   **EXACT — LEAN VERIFIED**
 - residual return needs \(a\ge 2\) and \(2^{a+b}<3^a\) —
   **EXACT — LEAN VERIFIED**
@@ -144,7 +144,7 @@ No infinite-path type. No `PowerHeight`.
 ## Results
 
 Classification **BOUNDED_RESIDUAL_CYCLE_GREEN**, with secondary
-**CYCLE_OBSTRUCTION_GREEN** for contracting words, exponent equality,
+**CYCLE_OBSTRUCTION_GREEN** for contracting itineraries, exponent equality,
 and residual returns with \(a\le 1\).
 
 A bounded residual prefix reduces to a cycle candidate. Expanding

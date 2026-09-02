@@ -10,21 +10,21 @@ search, and not a claim that every positive integer reaches 1.
 
 Does the arithmetic geometry of the exact floor boundaries impose any
 restriction on difficult Juggler trajectories that is invisible in the
-existing finite-word envelope and cell lemmas?
+existing finite-itinerary envelope and cell lemmas?
 
 ## Exact statement
 
 Write `e` for the existing `local_defect` and `u = 2m+1-e` for the
 complementary gap in the cell of width `2m+1`. Phase 0 asks whether
 hard trajectories, small-`e` odd states, or consecutive near-boundary
-steps obey an exact implication that is not `even_cell_iff`,
-`odd_cell_unique`, `localDefect*_eq_zero_iff`, or monochrome equality.
+steps obey an exact implication that is not `even_preimage_iff`,
+`odd_preimage_unique`, `localDefect*_eq_zero_iff`, or monochrome equality.
 This says nothing about totality.
 
 ## Current literature
 
-- `even_cell_iff` / `odd_cell_unique` / inverse-floor intervals —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Cells`.
+- `even_preimage_iff` / `odd_preimage_unique` / inverse-floor intervals —
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Preimages`.
 - `localDefectEven` / `localDefectOdd` and `*_lt_succ` / `*_eq_zero_iff` —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.Defect`.
 - Envelope equality iff monochrome —
@@ -52,7 +52,7 @@ Falsifier               (e,u) is generic on hard vs ordinary paths;
                         even-cell position does not affect J;
                         odd small-delta is localDefectOdd; chains
                         reduce to equality / towers
-Existing machinery      local_defect, even_cell, odd_cell_unique,
+Existing machinery      local_defect, even_preimage, odd_preimage_unique,
                         localDefect*_eq_zero_iff, equality
                         monochrome, even_tower, first-return records
 Maximum Phase-0 scope   n<=4000 unique states; odd e<=16 on n<=1e5;
@@ -80,7 +80,7 @@ It is not required. The 2-adic / BT bridge is closed.
   **REFUTED**
 - `e_O<=2` forces a small next gap —
   **REFUTED**
-- A word has a characteristic boundary profile —
+- An itinerary has a characteristic boundary profile —
   **REFUTED** (`OOE`)
 - Hard starts hug a floor wall —
   **REFUTED**

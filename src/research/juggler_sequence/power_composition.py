@@ -1,6 +1,6 @@
 """Near-equality stress-test and realized-word composition helpers.
 
-Reuses `power_words`. Not a Research Engine control-layer experiment.
+Reuses `power_itineraries`. Not a Research Engine control-layer experiment.
 The one-sided law T_w(n)^{2^k} <= n^{3^o} is the object under attack.
 """
 
@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     WORD_OOOEE,
@@ -26,7 +26,7 @@ from research.juggler_sequence.power_words import (
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_composition.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_composition.md"
-PRIOR_JSON = REPO_ROOT / "docs" / "research" / "juggler_power_words.json"
+PRIOR_JSON = REPO_ROOT / "docs" / "research" / "juggler_power_itineraries.json"
 
 LEAN_EMPTY = "power_bound_empty"
 LEAN_EVEN = "power_bound_append_even"
@@ -219,7 +219,7 @@ def classify(near: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_GREEN,
             "reason": (
                 "The weak bound is an inductive floor-power composition on "
-                "realized finite words; strict contraction follows from the "
+                "realized finite itineraries; strict contraction follows from the "
                 "exponent gap at n>=2"
             ),
             "lean_gate_open": True,
@@ -274,9 +274,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Novelty hypothesis      OOOEE / OOOEEEOO are instances of one weak bound plus",
         "                        an exponent-gap contraction corollary.",
         "Falsifier               A realized (w,n) with T_w(n)^{2^k} > n^{3^o}.",
-        "Existing machinery      power_words cmp_pow; FloorPower even/odd square bounds;",
+        "Existing machinery      power_itineraries cmp_pow; FloorPower even/odd square bounds;",
         "                        pow_sq_le / pow_sq_le_cube.",
-        "Maximum Phase-0 scope   Near-equality scan reusing power_words; then a tiny",
+        "Maximum Phase-0 scope   Near-equality scan reusing power_itineraries; then a tiny",
         "                        Lean API if the weak bound survives. No engine edits.",
         "```",
         "",
@@ -323,7 +323,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         [
             "",
             "Equality observed in the focus scan is the square-tower / `n=1` family,",
-            "not mixed words. The weak theorem is therefore non-strict by design.",
+            "not mixed itineraries. The weak theorem is therefore non-strict by design.",
             "",
             "## Strict corollary",
             "",

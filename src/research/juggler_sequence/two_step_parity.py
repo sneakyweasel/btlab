@@ -1,8 +1,8 @@
-"""Multi-step itinerary-parity census on odd Juggler starts.
+"""Multi-step word-parity census on odd Juggler starts.
 
 Phase-0 falsifier for the two-step parity discrepancy branch. Exact
 integer counting only: does the joint parity word of the first four
-itinerary letters on odd starts converge to the product densities,
+word letters on odd starts converge to the product densities,
 and with what empirical discrepancy exponent?
 
 Not a Research Engine control-layer experiment. Not a frequency
@@ -361,7 +361,7 @@ def ooee_indicator_identity_check(n_max: int) -> dict[str, Any]:
 
 
 def deep_word_counts(n_max: int, depth: int) -> dict[str, int]:
-    """Exact census of length-`depth` itinerary words on odd starts."""
+    """Exact census of length-`depth` word words on odd starts."""
     counts: dict[str, int] = {}
     for n in range(3, n_max + 1, 2):
         w = itinerary_word(n, depth)
@@ -1319,7 +1319,7 @@ def _pow2root_scaled(x: int, num: int, den: int, scale: int = SCALE) -> int:
 def eighth_letter_chain_check(n: int, scale: int = SCALE) -> dict[str, Any]:
     """Exact scaled validation of the OOEOOEO* eighth-letter chain.
 
-    On the OOEOOEO pattern (x_t via word_orbit) the eighth-letter
+    On the OOEOOEO pattern (x_t via itinerary_orbit) the eighth-letter
     phase argument x8 = x7^{3/2} linearizes down all six levels:
 
       x8 = n^{243/128}
@@ -3412,7 +3412,7 @@ def itinerary_word(n: int, depth: int = DEPTH) -> str:
 
 
 def word_counts(n_max: int, depth: int = DEPTH) -> dict[str, int]:
-    """Exact counts of depth-letter itinerary words over odd n in [3, n_max]."""
+    """Exact counts of depth-letter word itineraries over odd n in [3, n_max]."""
     counts = {w: 0 for w in WORDS4} if depth == 4 else {}
     for n in range(3, n_max + 1, 2):
         w = itinerary_word(n, depth)
@@ -3534,7 +3534,7 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
     fit = row["fitted_exponent"]
     ooee = row["ooee"]
     lines = [
-        "# Juggler multi-step itinerary-parity census",
+        "# Juggler multi-step word-parity census",
         "",
         "Status: **COMPUTATIONALLY VERIFIED** counts; every depth-4 word",
         "class is **EXACT — HUMAN PROOF**",
@@ -3553,7 +3553,7 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "K3 attack, and X1-absorption of K3 are **REFUTED**;",
         "the K3 toolkit is **PARKED**.",
         "",
-        "Exact census of the joint parity word of the first four itinerary",
+        "Exact census of the joint parity word of the first four word",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
         "discrepancy bound (Theorem 5.1 in the finite-dynamics note) to",
         "depth two and beyond. Not a frequency theorem, not a predictive",

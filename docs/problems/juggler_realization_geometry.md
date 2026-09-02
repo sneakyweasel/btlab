@@ -14,7 +14,7 @@ prefix in the Juggler \(O/E\) trie to become unary?
 
 ## Exact statement
 
-For a finite word \(w\) and a bound \(N\),
+For a finite itinerary \(w\) and a bound \(N\),
 
 \[
 R_w(N)=\{n\le N:\operatorname{follows}(n,w)\}.
@@ -43,9 +43,9 @@ This says nothing about totality.
   `Dynamics`.
 - `even_tower_to_one` —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.Collapse`.
-- Inverse-floor cells `even_cell_iff` / `odd_cell_iff` /
-  `odd_cell_unique` —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Cells`.
+- Inverse-floor cells `even_preimage_iff` / `odd_preimage_iff` /
+  `odd_preimage_unique` —
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Preimages`.
 - Word atlas prefix trie —
   **PARK** as machinery; graph reading in
   [juggler_atlas_graph.md](../research/juggler_atlas_graph.md).
@@ -65,10 +65,10 @@ Mathematical target     What geometry of R_w makes a prefix unary?
 Novelty hypothesis      inverse-floor cells or scale of R_w force
                         d(w)=1 by an explicit arithmetic rule
 Falsifier               unary without monochrome landings; a square
-                        amplification law that survives mixed words;
+                        amplification law that survives mixed itineraries;
                         only tautological restatements of landing parity
-Existing machinery      follows_word, image_after, even_cell,
-                        odd_cell_integers, parked atlas continuations
+Existing machinery      follows_itinerary, image_after, even_preimage,
+                        odd_preimage_integers, parked atlas continuations
 Maximum Phase-0 scope   exact R_w on n<=4000 then n<=1e5; selected
                         roots n<=1e7; child split; prepend cells;
                         interior-state certificates for first holes
@@ -95,13 +95,13 @@ It is not required.
   **EXACT — HUMAN PROOF** (definitional)
 - Prepend-\(E\) cell union
   \(R_{Ew}(N)=\bigcup_{q\in R_w(N)}(\mathrm{even\_cell}(q)\cap 2\mathbb{Z}\cap[1,N])\) —
-  **EXACT — HUMAN PROOF**, Lean `even_cell_iff`;
+  **EXACT — HUMAN PROOF**, Lean `even_preimage_iff`;
   **COMPUTATIONALLY VERIFIED** on \(n\le 4000\), \(k\le 12\)
 - Prepend-\(O\) cell union closed on a finite window —
   **REFUTED**; odd landings escape \([1,N]\)
 - \(m(E^r)=2^{2^{r-1}}\) —
   **EXACT — HUMAN PROOF**, Lean `even_tower_to_one`
-- \(m(wE)\ge m(w)^2\) for mixed words —
+- \(m(wE)\ge m(w)^2\) for mixed itineraries —
   **REFUTED** on `OOOE` / `OEEE`
 - First rooted holes as forbidden factors —
   **REFUTED**; they are `SCALE_LIMITED` with interior witnesses
@@ -145,7 +145,7 @@ None opened in `conjectures/`.
 
 ## Formalization
 
-None added. Certification uses `Collapse.lean` and `Cells.lean`.
+None added. Certification uses `Collapse.lean` and `Preimages.lean`.
 No `sorry`. No automaton.
 
 ## Results
@@ -155,7 +155,7 @@ Phase 0 is recorded in
 Classification **REALIZATION_GEOMETRY_COMPLEX**.
 
 Appending a letter is the landing-parity filter of \(T_w(R_w)\).
-Prepending \(E\) is the even-cell union already in `even_cell_iff`,
+Prepending \(E\) is the even-cell union already in `even_preimage_iff`,
 and it is exact on every finite window. Prepending \(O\) leaks the
 window. The first holes are `SCALE_LIMITED`, not `CELL_EMPTY`:
 
@@ -172,12 +172,12 @@ hole. `EEEE` looks `UNARY_O` at \(n\le 4000\) only because
 ## Open questions
 
 None from this branch. The append rule is `follows`. The prepend-\(E\)
-rule is `even_cell_iff`. Do not reopen PE factors, residual quotients,
+rule is `even_preimage_iff`. Do not reopen PE factors, residual quotients,
 or sum-rho.
 
 ## Decision
 
-**CLOSE**. Every exact statement is `follows`, `even_cell_iff`, or
+**CLOSE**. Every exact statement is `follows`, `even_preimage_iff`, or
 `even_tower_to_one`. The square law does not lift past odd letters.
 Unary is not an interval predicate. The first holes are
 `SCALE_LIMITED` root absences with interior witnesses, not empty

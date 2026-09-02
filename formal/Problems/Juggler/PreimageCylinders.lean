@@ -5,7 +5,7 @@ namespace Problems.Juggler
 /-!
 # Predecessor cylinders
 
-A finite word realises `y = T_w(x)` exactly when the trajectory follows
+A finite itinerary realises `y = T_w(x)` exactly when the trajectory follows
 `w` and the image is `y`. Each letter is the existing inverse-floor
 cell. The predecessor cylinder of `w` is the set of such `y`.
 
@@ -26,7 +26,7 @@ def nextLanding (y : ℕ) : ℕ :=
 def nextSquareGap (y : ℕ) : ℕ :=
   if y % 2 = 0 then localDefectEven y else localDefectOdd y
 
-def wordCylinder (x : ℕ) (w : List Branch) (y : ℕ) : Prop :=
+def itineraryCylinder (x : ℕ) (w : List Branch) (y : ℕ) : Prop :=
   follows x w ∧ image x w = y
 
 theorem square_cylinder_even {x m : ℕ} (heven : x % 2 = 0) :
@@ -49,12 +49,12 @@ theorem square_gap_exact {y : ℕ} :
       simp [nextLanding, nextSquareGap, hne]
       exact localDefectOdd_add h
 
-theorem word_cylinder_exact {x y : ℕ} {w : List Branch} :
-    wordCylinder x w y ↔ follows x w ∧ image x w = y :=
+theorem itinerary_cylinder_exact {x y : ℕ} {w : List Branch} :
+    itineraryCylinder x w y ↔ follows x w ∧ image x w = y :=
   Iff.rfl
 
-theorem word_cylinder_nil {x y : ℕ} :
-    wordCylinder x [] y ↔ x = y := by
+theorem itinerary_cylinder_nil {x y : ℕ} :
+    itineraryCylinder x [] y ↔ x = y := by
   constructor
   · intro ⟨_, himg⟩
     simpa [image] using himg
@@ -62,18 +62,18 @@ theorem word_cylinder_nil {x y : ℕ} :
     subst h
     exact ⟨follows_nil x, image_nil x⟩
 
-theorem word_cylinder_even_cons {x y : ℕ} {w : List Branch} :
-    wordCylinder x (.even :: w) y ↔
-      x % 2 = 0 ∧ wordCylinder (floorPower x) w y := by
+theorem itinerary_cylinder_even_cons {x y : ℕ} {w : List Branch} :
+    itineraryCylinder x (.even :: w) y ↔
+      x % 2 = 0 ∧ itineraryCylinder (floorPower x) w y := by
   constructor
   · intro ⟨⟨he, hf⟩, himg⟩
     exact ⟨he, hf, himg⟩
   · intro ⟨he, hf, himg⟩
     exact ⟨⟨he, hf⟩, himg⟩
 
-theorem word_cylinder_odd_cons {x y : ℕ} {w : List Branch} :
-    wordCylinder x (.odd :: w) y ↔
-      x % 2 = 1 ∧ wordCylinder (floorPower x) w y := by
+theorem itinerary_cylinder_odd_cons {x y : ℕ} {w : List Branch} :
+    itineraryCylinder x (.odd :: w) y ↔
+      x % 2 = 1 ∧ itineraryCylinder (floorPower x) w y := by
   constructor
   · intro ⟨⟨ho, hf⟩, himg⟩
     exact ⟨ho, hf, himg⟩
@@ -83,12 +83,12 @@ theorem word_cylinder_odd_cons {x y : ℕ} {w : List Branch} :
 /-- The `OOE` overshoot cylinder realises both next landing parities,
 and both endpoints are `1 mod 8`. -/
 theorem ooe_cylinder_both_next_parities :
-    wordCylinder 3461 (oddEvenBlock 2 1) 9585 ∧
+    itineraryCylinder 3461 (oddEvenBlock 2 1) 9585 ∧
       nextLanding 9585 % 2 = 0 ∧
-    wordCylinder 3803 (oddEvenBlock 2 1) 10657 ∧
+    itineraryCylinder 3803 (oddEvenBlock 2 1) 10657 ∧
       nextLanding 10657 % 2 = 1 := by
-  have w3461 : word 3461 3 = [.odd, .odd, .even] := by native_decide
-  have w3803 : word 3803 3 = [.odd, .odd, .even] := by native_decide
+  have w3461 : itinerary 3461 3 = [.odd, .odd, .even] := by native_decide
+  have w3803 : itinerary 3803 3 = [.odd, .odd, .even] := by native_decide
   have i3461 : floorPower^[3] 3461 = 9585 := by native_decide
   have i3803 : floorPower^[3] 3803 = 10657 := by native_decide
   have h9585 : nextLanding 9585 % 2 = 0 := by native_decide
@@ -99,7 +99,7 @@ theorem ooe_cylinder_both_next_parities :
     ⟨follows_oddEvenBlock_two_one w3803, image_oddEvenBlock_two_one i3803⟩,
     h10657⟩
 
-/-- Same word and same endpoint residue, opposite next parity. -/
+/-- Same itinerary and same endpoint residue, opposite next parity. -/
 theorem ooe_cylinder_same_residue_splits :
     (9585 : ℕ) % 8 = 1 ∧ (10657 : ℕ) % 8 = 1 := by
   decide

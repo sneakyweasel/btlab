@@ -19,7 +19,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     CYCLE_OBSTRUCTIONS,
     ENVELOPE,
@@ -32,7 +32,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_internal_oo.json"
@@ -87,7 +87,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -432,7 +432,7 @@ def small_power_check() -> dict[str, Any]:
     for n in range(13, 51, 2):
         for a0 in (2, 3):
             word = "O" * a0 + "E"
-            if not follows_word(n, word):
+            if not follows_itinerary(n, word):
                 continue
             x1 = image_after(n, word)
             if x1 ** (1 << (a0 + 1)) > n ** (3**a0):
@@ -503,7 +503,7 @@ def lean_api_present() -> dict[str, bool]:
         and "MinimumRelative" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "first_oo_lean": "theorem isolated_oe_ge_implies_exponent" in first_oo
         and "theorem isolatedOddSurvival_bound" in first_oo
         and "theorem aboveAnchor_isolated_two" in shared
@@ -519,7 +519,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["oe_block_contracts"]
         and lean["repeated_oe_scale"]
         and lean["power_bound_word"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]

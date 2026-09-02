@@ -132,7 +132,7 @@ It is not required.
   **REFUTED**. Max consecutive post-\(M\) `OOE` is \(k=2\);
   landing \(12707\) starts `OE`.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 - \(k=5\) is contradictory — not claimed
 
@@ -176,7 +176,7 @@ the Phase-0 window \(12\le n<801\).
 
 None. Existing `Envelope.lean` `power_bound_word` and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -221,7 +221,7 @@ Lean-package \(3^{19}<3\cdot 2^{29}\) and the even
 the separate branch
 [juggler_odd_k5_leak.md](juggler_odd_k5_leak.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 build a \(p\)-adic system.
 
 ## Decision

@@ -1,10 +1,10 @@
 {
-  "id": "juggler_cycle_word_functional_closure",
+  "id": "juggler_cycle_itinerary_functional_closure",
   "title": "Halbeisen-style min_σ of the slack-weight functional yields a closure inequality beyond lowerDenom and (L,o)",
   "statement": "The unfolded weights α_i(w)=2^i 3^{#O(w[i+1:])} and S=sum α, or the cyclic-shift optimum M_{L,o}=max_w min_σ S(w), give a closure inequality that excludes a leftover-shaped necklace which (L,o), lowerDenom, and run-type finance do not already exclude.",
   "status": "REFUTED",
   "counterexamples": [
-    "lowerDenom(w)=4^{S(w)} on all 511 words of length ≤8, so the n-independent functional is the existing size bound cycle_pow_le_lowerDenom",
+    "lowerDenom(w)=4^{S(w)} on all 511 itineraries of length ≤8, so the n-independent functional is the existing size bound cycle_pow_le_lowerDenom",
     "OE and EO have S=3 and S=5 but are rotations; min_σ S is a necklace invariant, not a new pair-level obstruction",
     "Every OO-prefix with fixed (L,o) shares the leading weights (3^{o-1}, 2·3^{o-2}). Cyclic-shift optimization does not apply to the CycleMin start",
     "17 expanding (L,o) pairs through length 8: 9 have several S values and 3 have several min_σ S values; new_necklace_kills=0",

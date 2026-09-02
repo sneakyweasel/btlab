@@ -6,7 +6,7 @@ Refinement of
 [juggler_cycle_entry_corridor.md](juggler_cycle_entry_corridor.md),
 not a reopen of that branch and not a new paper. After the
 OE-privileged corridor closed, this phase asks a different
-question: classify the **local parity word on both sides** of a
+question: classify the **local parity itinerary on both sides** of a
 CycleMin \(n\), instead of asking for the last valley before \(n\).
 
 Not a halt theorem, not a finance leftover-killer, not an
@@ -16,7 +16,7 @@ the orbit must return through the isolated \(\mathtt{OE}\) cell.
 ## Problem
 
 A cycle can be written starting at any vertex. CycleMin
-normalization still cuts the word at the minimum state \(n\).
+normalization still cuts the itinerary at the minimum state \(n\).
 The first iterate \(T(n)\) is then fixed, but the incoming letter
 need not be the isolated-\(\mathtt{OE}\) seam. Which local words
 \[
@@ -33,14 +33,14 @@ it fails the \(\ge n\) tube. At \(n=10^6+1\), \(13\), and \(101\)
 there is no odd predecessor \(\ge n\).
 
 **Launch is \(\mathtt{OO}\) (KNOWN / EXACT — LEAN VERIFIED).**
-The minimum is odd, so the word cannot start \(E\) or \(\mathtt{OE}\)
+The minimum is odd, so the itinerary cannot start \(E\) or \(\mathtt{OE}\)
 (`cycleMin_starts_two_odds`). There is no freedom to “enter at a
 peak” as the first letter after the CycleMin cut: \(x_1=T(n)\) is
 odd and the next letter is again \(O\).
 
 **The \(2{+}2\) window has exactly two legal types
 (EXACT — LEAN VERIFIED / REPARAMETERIZATION).**
-`exists_cycleMin_last_odd_run` says the word ends \(O^aE\) with
+`exists_cycleMin_last_odd_run` says the itinerary ends \(O^aE\) with
 \(a\le 1\). Together with the forced prefix \(\mathtt{OO}\), the
 letters touching \(n\) are
 \[

@@ -41,7 +41,7 @@ The Phase-0 questions are:
 4. After composition, is the terminal \(1+Q\) a new obstruction
    or the leftover `EE` cell in defect coordinates?
 
-This is not a `CycleWord` theorem at a non-minimum start. It is
+This is not a `CycleItinerary` theorem at a non-minimum start. It is
 not a four-even cell and not a halt theorem.
 
 ## Current literature
@@ -109,7 +109,7 @@ It is not required.
   **REFUTED**. At \(n=13\) and \(n=15\) every admissible
   \((\varepsilon,\eta)\bmod 8\) pair occurs
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -149,14 +149,14 @@ The stronger claims that remain false or unproved:
   they collapse to \(c=0\) (`EE` fibre plus \(b\) odd defects)
   and \(c=1\) (last-odd layer).
 - “every last-cluster class is now excluded” — false.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 None. Existing `Defect.lean`, `SequentialMordell.lean`, and
 `cycle_last_even_ne_odd_sq` are cited, not rewritten. No
 `no_cycleMin_prefix_short`. No `no_cycleMin_four_even`. No
-`no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A
+`no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`. Paper A
 is unchanged.
 
 ## Results
@@ -198,7 +198,7 @@ Prefixes with \(a_0\ge 2\) that stay isolated-odd after the
 first even are parked
 ([juggler_isolated_odd_fibre.md](juggler_isolated_odd_fibre.md)).
 Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not reopen leftover-suffix
+`no_cycle_itinerary_length_eleven`. Do not reopen leftover-suffix
 tables, raise-above, or \(y\)-preimage enumeration.
 
 ## Decision
@@ -206,7 +206,7 @@ tables, raise-above, or \(y\)-preimage enumeration.
 **PARK**. Exact closure is a defect identity, and that identity
 is satisfiable with ordinary unrestricted defects. It is the
 leftover `EE` cell in other coordinates, not a new obstruction.
-Do not claim that every cycle word is impossible.
+Do not claim that every cycle itinerary is impossible.
 
 Best next question: answered in
 [juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)

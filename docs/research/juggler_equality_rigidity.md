@@ -12,8 +12,8 @@ remains. This page records whether mixed-word equality can occur.
 Mathematical target     Does every odd step make the composed bound
                         strict for n>=2, forbidding mixed-word equality?
 Novelty hypothesis      Mixed-word equality does not occur for n>=2.
-Falsifier               A realized mixed word with T_w(n)^{2^k} = n^{3^o}.
-Existing machinery      power_words cmp_pow; PowerBound composition.
+Falsifier               A realized mixed itinerary with T_w(n)^{2^k} = n^{3^o}.
+Existing machinery      power_itineraries cmp_pow; PowerBound composition.
 Maximum Phase-0 scope   Mixed-equality search; one-step odd analysis;
                         stop strictness API if a witness appears.
 ```
@@ -32,7 +32,7 @@ Maximum Phase-0 scope   Mixed-equality search; one-step odd analysis;
 - near-critical mixed equalities: `0`
 - alternating mixed equalities: `0`
 
-A realized mixed word attains the envelope: odd n that is a perfect square forces T(n)^2 = n^3, so n^{3/2} is an integer.
+A realized mixed itinerary attains the envelope: odd n that is a perfect square forces T(n)^2 = n^3, so n^{3/2} is an integer.
 
 ## Smallest mixed-equality witness
 
@@ -85,7 +85,7 @@ was found.
 
 **MIXED_EQUALITY_FOUND**
 
-A realized mixed word attains the envelope: odd n that is a perfect square forces T(n)^2 = n^3, so n^{3/2} is an integer.
+A realized mixed itinerary attains the envelope: odd n that is a perfect square forces T(n)^2 = n^3, so n^{3/2} is an integer.
 
 Stop the mixed-strictness generalization. Do not add `mixed_word_power_lt`.
 

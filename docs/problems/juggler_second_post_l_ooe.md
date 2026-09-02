@@ -85,7 +85,7 @@ It is not required.
   budget, not a halt bound.
 - `OE` after the second `OOE` is FiniteProgress —
   **REFUTED**. \(3^{12}>2^{19}\) (\(531441>524288\)).
-  The word still has a square cell (\(3^{12}<2^{20}\)).
+  The itinerary still has a square cell (\(3^{12}<2^{20}\)).
   If that landing is even, `M+OOEOEE` contracts.
 - Therefore
   \(\operatorname{CycleMin}(n,M\,\mathtt{OOE}\,v)\)
@@ -100,7 +100,7 @@ It is not required.
   **REFUTED**. `walk_language(1749)` exits by drop;
   `second_oo(1749)` is missing.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -144,7 +144,7 @@ never paying a first `OOO` from \(1749\).
 
 None. Existing `Envelope.lean` `power_bound_word` and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -181,7 +181,7 @@ The first \(k=5\) square failure is the separate branch
 The residual after a second `OO` landing (\(501\to 4447\))
 that dies at \(k=2\) is not that escape. Do not
 reopen bunched-short cells. Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`. Do not build a
+assemble `no_cycle_itinerary_length_eleven`. Do not build a
 \(p\)-adic system.
 
 ## Decision

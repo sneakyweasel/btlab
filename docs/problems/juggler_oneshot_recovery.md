@@ -107,7 +107,7 @@ It is not required.
   not claimed. \(501\) recovers by `OOEOOEOOEOEE`
   (\(2187\cdot 2187<2048\cdot 4096\)), one sample.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -157,7 +157,7 @@ No \(L^k(n)=n\) approach was found.
 
 None. Existing `Envelope.lean` `power_bound_word` and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -179,7 +179,7 @@ Those two cases are FiniteProgress and lie outside the
 `OOE` entrance of \(L\). The remaining case is an odd
 \(t\) that starts `OO`. The only inherited example below
 \(12001\) is \(501\to 763\), which does not re-enter \(L\)
-and recovers by a compose-contracting word.
+and recovers by a compose-contracting itinerary.
 
 The resource consumed by one \(L\) pass, on the non-`OO`
 branch, is the ability to start `OOE` without immediately
@@ -196,7 +196,7 @@ Lean-package \(2187<4096\) and \(6561<8192\) after
 now the separate branch
 [juggler_post_l_ooe.md](juggler_post_l_ooe.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 build a \(p\)-adic system.
 
 ## Decision

@@ -92,7 +92,7 @@ It is not required.
   (\(2187>2048\)).
 - `OOEOOOEOOEE` contracts versus \(n\) —
   **REFUTED**. \(3^7=2187>2048=2^{11}\). This is an
-  exponent comparison for one word, not a length-11
+  exponent comparison for one itinerary, not a length-11
   assembler.
 - \(T^2(q)\) always lies in \(C_2\cup C_3\) —
   **REFUTED**. Even \(u\) can land in \(C_2\)
@@ -114,7 +114,7 @@ It is not required.
   not claimed. \(501\) continues after the \(C_1\)
   return.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -161,10 +161,10 @@ inherited first-`OOOE` corridor and are excluded.
 
 ## Formalization
 
-None. Existing `Envelope.lean`, `Cells.lean`, and
+None. Existing `Envelope.lean`, `Preimages.lean`, and
 `CycleCore.lean` lemmas are cited, not rewritten. No
 `no_cycleMin_prefix_ooeoooee`. No `no_cycleMin_four_even`.
-No `no_cycle_word_length_eleven`. No `no_juggler_cycle`.
+No `no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`.
 Paper A is unchanged.
 
 ## Results
@@ -212,7 +212,7 @@ after the apparent \(C_2\to C_4\to C_2\to C_1\) return is
 the hidden-state refinement
 [juggler_scale_loop_hidden.md](juggler_scale_loop_hidden.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 treat the \(501\) scale return as a numerical cycle.
 
 ## Decision

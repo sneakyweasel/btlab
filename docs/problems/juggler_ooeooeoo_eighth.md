@@ -8,7 +8,7 @@ reopen, not a first-return \(Q\)-map, not a defect census, not
 Paper A, and not a claim that every positive integer reaches 1.
 
 The leftover first-lift theorem is already **REFUTED**. The gap
-word is \(\mathtt{OOEOOEOO}\). This phase asks whether that word
+word is \(\mathtt{OOEOOEOO}\). This phase asks whether that itinerary
 forces the complementary side \(x^{3}\ge n^{8}\).
 
 ## Problem
@@ -96,7 +96,7 @@ It is not required.
 - first cube-odd even lift of \(\mathtt{OOEOOEOO}\) sits next
   to \(n^{729/256}\) —
   **COMPUTATIONALLY VERIFIED** on \(n<200001\)
-- odd \(T(x)\) can sit below \(n^{8}\) on this word —
+- odd \(T(x)\) can sit below \(n^{8}\) on this itinerary —
   not observed in the window
 - global halt — not claimed
 
@@ -120,7 +120,7 @@ eighth-cell lower bound” is false. The denominator has \(3395\)
 bits; the comparison \(n^{139/3}\ge D\) begins near \(73\)-bit
 \(n\).
 
-No first cube-odd landing of the word with \(x^{3}<n^{8}\) was
+No first cube-odd landing of the itinerary with \(x^{3}<n^{8}\) was
 found for odd \(n<200001\). That is not a counterexample to a
 proved lower cell, because no such cell was obtained.
 

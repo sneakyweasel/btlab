@@ -21,7 +21,7 @@ from research.juggler_sequence.cycle_entry_corridor import (
 )
 from research.juggler_sequence.cycle_entry_excursion import run_layer
 from research.juggler_sequence.lean_paths import EVEN_COUNT_THREE, has_named
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_entry_corridor.md"

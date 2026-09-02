@@ -23,7 +23,7 @@ Mathematical target     What directed graph does the atlas census
 Novelty hypothesis      None. Distillation of an existing census.
 Falsifier               A stored adjacency of integers, or a new
                         forbidden-factor law read from pruning
-Existing machinery      Kernel A, continuations, WordLanguage.lean,
+Existing machinery      Kernel A, continuations, ItineraryLanguage.lean,
                         even-run scale barrier / even tower
 Maximum Phase-0 scope   Read the SQLite continuation and realizer
                         tables; write the observations; no new kernel
@@ -33,7 +33,7 @@ Stop criterion          Any linguistic rewrite of a>=2 or 3^{#O}>2^{|w|}
 
 ## The graph
 
-Vertices are observed finite words. Edges are one-letter extensions
+Vertices are observed finite itineraries. Edges are one-letter extensions
 that remain in the same language. For REALIZABLE this is a binary
 tree layered by length: in-degree is \(0\) or \(1\), out-degree is
 \(0\), \(1\), or \(2\), and every edge increases length by \(1\).
@@ -42,7 +42,7 @@ The integer map is only the generating dynamics. It is a functional
 graph (out-degree \(1\)) and is not stored.
 
 Lean already fixes the infinite-language geometry
-([`WordLanguage.lean`](../../formal/Problems/Juggler/WordLanguage.lean)):
+([`ItineraryLanguage.lean`](../../formal/Problems/Juggler/ItineraryLanguage.lean)):
 `jugglerLanguage` is prefix-, suffix-, and factor-closed, and
 \(T\) is total, so the true REALIZABLE trie is right-extendable.
 `expandingLanguage` is not factor-closed: `OOE` expands at \(5\),
@@ -64,7 +64,7 @@ three even-heavy prefixes:
 | `EEEEO` | \(256=2^{8}\) | `O` | `E` | `EEEEOE` |
 | `EEEOE` | \(6250000=2500^{2}\) | `E` | `O` | `EEEOEO` |
 
-There are \(32\) words of length \(5\) and \(61\) of length \(6\).
+There are \(32\) itineraries of length \(5\) and \(61\) of length \(6\).
 Three unary parents, each losing one child, account for all three
 missing length-6 words. Because the stored REALIZABLE graph is a
 tree, later holes are accumulated lost children, not a second
@@ -140,11 +140,11 @@ the dynamics: an even step is a floor square-root and destroys
 scale; an odd step is a floor \(3/2\)-power and creates room for
 both later parities.
 
-The \(37\) frozen `EE…` words of length \(12\) are listed in
+The \(37\) frozen `EE…` itineraries of length \(12\) are listed in
 [juggler_atlas_graph.json](juggler_atlas_graph.json). Almost all
 keep `O` and lose `E`. Several min-realizers are themselves
 squares (\(4,16,100,256,676,2500,10000,65536,131044,\ldots\)).
-The word-language pullback witness \(131044\) is one of these rays
+The itinerary-language pullback witness \(131044\) is one of these rays
 (`EEOEOOEOEEEO`), not a rooted `EEEEEE`.
 
 ## 4. Stable exponential growth, no internal sinks
@@ -178,7 +178,7 @@ There is no one-sided letter prohibition.
 
 ## 5. EXPANDING is a different subgraph, not a thinner copy
 
-Expanding words are a proper subset: the ratio
+Expanding itineraries are a proper subset: the ratio
 \(N_{\uparrow}(k)/N(k)\) oscillates between \(0.17\) and \(0.55\)
 and is not monotone (\(0.188\) at \(k=5\), \(0.553\) at \(k=19\),
 \(0.482\) at \(k=20\)).

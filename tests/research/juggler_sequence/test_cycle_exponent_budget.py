@@ -41,7 +41,7 @@ def test_dossier_has_triage_and_closed_gates():
     assert "**CLOSE**" in text
     assert "Do **not** raise" in text
     assert "cycleMin_finance" in text
-    assert "cycle_word_formally_expanding" in text
+    assert "cycle_itinerary_formally_expanding" in text
 
 
 def test_product_is_identically_the_word_ratio():
@@ -81,7 +81,7 @@ def test_dossier_and_conjecture_record_close():
     assert "**CLOSE**" in dossier
     rec = get_conjecture("juggler_cycle_exponent_budget")
     assert rec["status"] == "REFUTED"
-    assert rec["lean_reference"] == "cycle_word_formally_expanding"
+    assert rec["lean_reference"] == "cycle_itinerary_formally_expanding"
     assert rec["counterexamples"]
     data = json.loads(SUMMARY.read_text(encoding="utf-8"))
     assert data["decision"]["classification"] == "EXPONENT_BUDGET_CLOSED"

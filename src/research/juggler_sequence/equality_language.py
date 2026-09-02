@@ -1,4 +1,4 @@
-"""Equality-word language: monochrome families versus mixed words.
+"""Equality-word language: monochrome families versus mixed itineraries.
 
 Not a Research Engine control-layer experiment. Equality is decided by
 local integer-square exactness only. No cmp_pow on n^{3^o}. Not a
@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, itinerary
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, itinerary
 from research.juggler_sequence.saturation_budget import (
     has_pow_two_depth,
     saturation_prefix,
@@ -276,7 +276,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "```text",
         "Mathematical target     Must a realized equality word be E^k or O^k?",
         "Novelty hypothesis      Exact perfect-power states keep the base parity,",
-        "                        so the itinerary cannot switch letters.",
+        "                        so the word cannot switch letters.",
         "Falsifier               MIXED_EQUALITY_WORD_FOUND",
         "Existing machinery      HasPowTwoDepth, exact E/O transitions, rigidity,",
         "                        saturation budget, local-tightness probe",
@@ -291,7 +291,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- classification: **{decision['classification']}**",
         f"- domain saturations: `{mixed['domain']['saturation_count']}`",
         f"- mixed saturations: `{mixed['domain']['mixed_count']}`",
-        f"- prescribed mixed words realized: `{mixed['prescribed_mixed_realized']}`",
+        f"- prescribed mixed itineraries realized: `{mixed['prescribed_mixed_realized']}`",
         f"- tower mixed count: `{mixed['tower_mixed_count']}`",
         f"- family witnesses match: `{families['all_match']}`",
         f"- sorry-free: `{lean['sorry_free']}`",

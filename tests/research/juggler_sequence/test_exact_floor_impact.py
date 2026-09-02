@@ -21,7 +21,7 @@ from research.juggler_sequence.exact_floor_impact import (
     scan_first_descent,
 )
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 DOSSIER = Path("docs/problems/juggler_exact_floor_impact.md")
 

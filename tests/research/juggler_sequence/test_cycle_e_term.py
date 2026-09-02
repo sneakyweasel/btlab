@@ -14,7 +14,7 @@ from research.juggler_sequence.cycle_e_term import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_only_oooe_is_expanding_among_length4_e():
@@ -49,8 +49,8 @@ def test_lean_api_generic_threshold_and_length4():
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
     assert "theorem no_cycle_append_even_of_suffix_threshold" in src
-    assert "theorem no_cycle_word_oooe" in src
-    assert "theorem no_cycle_word_length_four_ends_even" in src
+    assert "theorem no_cycle_itinerary_oooe" in src
+    assert "theorem no_cycle_itinerary_length_four_ends_even" in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
 
@@ -94,5 +94,5 @@ def test_committed_artifacts_schema():
     assert data["anti_overclaim"]["O_terminating_cycles_impossible"] is False
     assert data["anti_overclaim"]["global_termination"] is False
     assert data["lean"]["sorry_free"] is True
-    assert data["lean"]["no_cycle_word_oooe"] is True
+    assert data["lean"]["no_cycle_itinerary_oooe"] is True
     assert data["scan"]["expanding"] == ["OOOE"]

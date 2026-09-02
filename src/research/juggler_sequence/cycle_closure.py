@@ -32,7 +32,7 @@ from research.juggler_sequence.cycle_finance import (
 )
 from research.juggler_sequence.cycle_fourier import run_type_word
 from research.juggler_sequence.cyclic_feasibility import Bound, forward_image
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 SPOTLIGHT = (25781, 55293)
 BLOCK_WORDS = ("OE", "OOE", "OOOE", "OOEOE", "OOEOOE")
@@ -154,7 +154,7 @@ def next_oo_start(n: int, *, up: bool = True, cap: int = 10_000) -> int | None:
 def word_independent_hull(n_lo: int, n_hi: int, odd_count: int, length: int) -> dict[str, Any]:
     """Envelope hull of T_w on [n_lo, n_hi] using only (L,o).
 
-    Upper: T ≤ n^{3^o/2^L} = n^{P_L}. Lower without a word is 1.
+    Upper: T ≤ n^{3^o/2^L} = n^{P_L}. Lower without an word is 1.
     """
 
     _, theta = o_min_and_theta(length)
@@ -301,7 +301,7 @@ def odd_inverse_chain(start: int, steps: int) -> dict[str, Any]:
         "steps": steps,
         "unique_when_present": unique,
         "hit_empty": missing > 0,
-        "reproduces_odd_cell_unique": True,
+        "reproduces_odd_preimage_unique": True,
     }
 
 
@@ -377,7 +377,7 @@ def closure_scan(*, floor: int = PUBLISHED_FLOOR) -> dict[str, Any]:
         "ooe_inside_exponent_cell": ooe["all_inside_exponent_cell"],
         "ooe_max_floor_lag": ooe["max_gap"],
         "odd_chains": chains,
-        "odd_chain_is_odd_cell_unique": all(row["reproduces_odd_cell_unique"] for row in chains),
+        "odd_chain_is_odd_preimage_unique": all(row["reproduces_odd_preimage_unique"] for row in chains),
         "emptied_lengths": emptied,
         "emptied_count": len(emptied),
         "word_independent_feasible": all(

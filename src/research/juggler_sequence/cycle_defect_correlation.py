@@ -32,11 +32,11 @@ from research.juggler_sequence.cycle_finance import (
 )
 from research.juggler_sequence.global_defect import (
     compose_formula,
-    follows_word,
+    follows_itinerary,
     global_defect,
     local_defect,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 SPOTLIGHT = (25781, 55293)
 START = PUBLISHED_FLOOR + 1
@@ -69,7 +69,7 @@ def step_record(x: int) -> dict[str, Any]:
 
 
 def walk_records(x: int, word: str) -> list[dict[str, Any]] | None:
-    if not follows_word(x, word):
+    if not follows_itinerary(x, word):
         return None
     rows = []
     current = x
@@ -187,7 +187,7 @@ def sample_block(word: str, start: int, odds: int) -> list[list[dict[str, Any]]]
 def first_following(word: str, start: int, cap: int = 20000) -> int | None:
     current = start if start % 2 == 1 else start + 1
     for _ in range(cap):
-        if follows_word(current, word):
+        if follows_itinerary(current, word):
             return current
         current += 2
     return None
@@ -203,7 +203,7 @@ def block_report(word: str, n: int) -> dict[str, Any]:
         identities["oe"] = oe_identity_holds(first)
     if word == "OO" and first is not None:
         identities["oo"] = oo_identity_holds(first)
-    if first is not None and follows_word(first, word):
+    if first is not None and follows_itinerary(first, word):
         identities["compose"] = global_defect(first, word) == compose_formula(
             first, word[:1], word[1:]
         )

@@ -28,7 +28,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_survival_set.json"
@@ -53,9 +53,9 @@ RHO_CUT = 0.95
 KEEP_CORE = 12
 
 EXISTING_LEAN = (
-    "even_word_contracts",
+    "even_itinerary_contracts",
     "floorPower_odd_even_two_step_lt",
-    "even_cell_iff",
+    "even_preimage_iff",
     "AboveAnchor",
 )
 
@@ -337,7 +337,7 @@ def run_probe(
         "late_R_near_one": late_near_one,
         "git": git_commit(),
         "letter_chain": False,
-        "word_language_reopen": False,
+        "itinerary_language_reopen": False,
         "phase_reopen": False,
         "terras_reopen": False,
         "halt_theorem": False,
@@ -365,7 +365,7 @@ def lean_api_present() -> dict[str, bool]:
             name not in paper for name in FORBIDDEN_NEW_API
         ),
         "no_atlas_lang": "LANG_SURVIVAL" not in combined,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -383,7 +383,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         return {"classification": CLASS_INCOMPLETE, "reason": f"lean_ok={lean_ok}"}
     if (
         scan["letter_chain"]
-        or scan["word_language_reopen"]
+        or scan["itinerary_language_reopen"]
         or scan["phase_reopen"]
         or scan["terras_reopen"]
         or scan["halt_theorem"]
@@ -448,7 +448,7 @@ def probe_payload(
             "invariant_measure_theorem": False,
             "terras_reopen": False,
             "phase_reopen": False,
-            "word_language_reopen": False,
+            "itinerary_language_reopen": False,
             "global_non_realizability": False,
         }
     )

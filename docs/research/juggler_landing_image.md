@@ -14,7 +14,7 @@ not a result.
 Mathematical target     Is Y_w a low-complexity exact image object?
 Novelty hypothesis      monotone / cell / Phi calculus stronger than parity
 Falsifier               inversions; Y_{wb} != Phi_b(Y_w); only tautologies
-Existing machinery      image_after, floor_power, collect_realizing, even_cell
+Existing machinery      image_after, floor_power, collect_realizing, even_preimage
 Maximum Phase-0 scope   N<=4000 all prefixes k<=12; selected confirm 1e5
 ```
 
@@ -143,7 +143,7 @@ Thaw examples (unary ancestor → binary child):
 - `floorPower`: `True`
 - `follows`: `True`
 - `image`: `True`
-- `even_cell_iff`: `True`
+- `even_preimage_iff`: `True`
 - `floorPower_even_mono`: `True`
 - `floorPower_odd_mono`: `True`
 - `image_monotone_of_follows`: `True`

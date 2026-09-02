@@ -12,7 +12,7 @@ sees letter order and is not already \(D_w\), a named cell, or
 cheap-\(\mathtt{OOE}\) adjacency.
 
 Not a halt theorem, not a leftover-killer, and not a claim that
-every cycle word is impossible.
+every cycle itinerary is impossible.
 
 ## Problem
 
@@ -35,9 +35,9 @@ one word of each length. Distinct same-length words have disjoint
 `follows` domains. There is no common start at which to compare
 \(T_w(n)\) and \(T_{w'}(n)\).
 
-**CycleWord endpoints forget the word
+**CycleItinerary endpoints forget the itinerary
 (KNOWN / EXACT — HUMAN PROOF).**
-On a `CycleWord`, \(T_w(n)=n\), so
+On a `CycleItinerary`, \(T_w(n)=n\), so
 \[
 \Delta_w(n)=n^{3^o}-n^{2^L},\qquad
 \frac{T_w(n)}{n^{3^o/2^L}}=n^{1-P_L}.
@@ -68,7 +68,7 @@ excluded by different cells / rotation, not by the budget.
 the archived cheap-\(\mathtt{OOE}\) then \(\mathtt{OE}\) factor.
 
 **No unarchived pair (COMPUTATIONALLY VERIFIED).**
-Expanding words of length \(\le 8\): \(105\) words, \(17\)
+Expanding itineraries of length \(\le 8\): \(105\) words, \(17\)
 budgets, \(12\) distinct-necklace pairs, \(0\) unarchived.
 CycleMin-oriented subset: \(18\) words, the same \(12\) pairs,
 all `lowerDenom`. Every pair has empty common domain on
@@ -128,9 +128,9 @@ Falsifier               every same-(o,L) distinction is a rotation,
                         D_w / S(w), a named cell (OE / OOE / EOO),
                         cheap-OOE→OE, or the cycle-endpoint collapse
                         Δ = n^{3^o}−n^{2^L}
-Existing machinery      cycle_word_functional (S, necklaces, D_w=4^S);
-                        lower_denom; follows_word; floor_power;
-                        no_cycle_word_ooe / oeo / eoo; ordered
+Existing machinery      cycle_itinerary_functional (S, necklaces, D_w=4^S);
+                        lower_denom; follows_itinerary; floor_power;
+                        no_cycle_itinerary_ooe / oeo / eoo; ordered
                         excursion; peak-valley composition; global
                         defect; cycle_rounding
 Maximum Phase-0 scope   human-proof endpoint collapse; (o,L)-grouped
@@ -151,7 +151,7 @@ adjacency as the find. Do not reopen the exponent budget, the
 word-functional leftover-killer, finance, or peak–valley
 composition.
 
-- **CLOSE** if CycleWord \(\Delta\) and \(T/n^P\) are \((o,L)\)-only.
+- **CLOSE** if CycleItinerary \(\Delta\) and \(T/n^P\) are \((o,L)\)-only.
 - **CLOSE** if a start follows at most one word of each length.
 - **CLOSE** if every same-budget necklace pair through length \(8\)
   is `rotation` / `lowerDenom` / `named_cell` / `adjacency`.
@@ -187,37 +187,37 @@ It is not required.
   **KNOWN**
 - Unique itinerary of each length —
   **EXACT — HUMAN PROOF**
-- CycleWord \(\Delta=n^{3^o}-n^{2^L}\) —
+- CycleItinerary \(\Delta=n^{3^o}-n^{2^L}\) —
   **REPARAMETERIZATION** of `global_defect_identity`
-- CycleWord \(T/n^P=n^{1-P}\) —
+- CycleItinerary \(T/n^P=n^{1-P}\) —
   **REPARAMETERIZATION** of `image_eq_start_defectRatio`
 - Same \((o,L)\), different \(S\) —
-  **KNOWN** (`cycle_word_functional`)
+  **KNOWN** (`cycle_itinerary_functional`)
 - \(\mathtt{OOE}/\mathtt{OEO}/\mathtt{EOO}\) —
   **KNOWN** (named cells / rotation)
 - \(\mathtt{OOOEE}\) versus \(\mathtt{OOEOE}\) —
   **KNOWN** (cheap-\(\mathtt{OOE}\) adjacency)
 - Word-order leftover-killer —
-  **REFUTED** (`juggler_cycle_word_order`)
+  **REFUTED** (`juggler_cycle_itinerary_order`)
 - No cycle of any length — not claimed
 
 ## Experiments
 
-- Probe: `research.juggler_sequence.cycle_word_order`
+- Probe: `research.juggler_sequence.cycle_itinerary_order`
 - Dataset: `data/research/juggler/cycle_finance/word_order/summary.json`
-- Tests: `tests/research/juggler_sequence/test_cycle_word_order.py`
-- Window: expanding words \(k\le 8\); common-follows scan on
+- Tests: `tests/research/juggler_sequence/test_cycle_itinerary_order.py`
+- Window: expanding itineraries \(k\le 8\); common-follows scan on
   \([2,2001)\); itinerary uniqueness on \(n<64\), \(k\le 6\).
   Fast suite only. No CLI. No new Lean. No \(N_0\) raise.
 
 ## Conjectures
 
-`juggler_cycle_word_order` — **REFUTED**.
+`juggler_cycle_itinerary_order` — **REFUTED**.
 
 ## Counterexamples
 
 - \(\Delta=n^{3^o}-n^{2^L}\) and \(T/n^P=n^{1-P}\) on a
-  `CycleWord`. Falsifier of an endpoint quantity that sees order.
+  `CycleItinerary`. Falsifier of an endpoint quantity that sees order.
 - A start follows exactly one word of each length. Falsifier of
   a same-\(n\) comparison of two same-length maps.
 - All \(12\) distinct expanding necklaces with the same
@@ -233,7 +233,7 @@ It is not required.
 
 None added. The endpoint identities are already
 `global_defect_identity` and `image_eq_start_defectRatio`.
-The short-word exclusions are already `no_cycle_word_ooe` /
+The short-word exclusions are already `no_cycle_itinerary_ooe` /
 `oeo` / `eoo`. Paper A is unchanged. Do not add
 `WordOrder.lean`.
 
@@ -250,7 +250,7 @@ The short-word exclusions are already `no_cycle_word_ooe` /
 
 ## Open questions
 
-None from a word-order exact-map invariant. Do not reopen
+None from an itinerary-order exact-map invariant. Do not reopen
 \(D_w\), named cells, or cheap-\(\mathtt{OOE}\) adjacency as
 the find. Do not start a same-\(n\) comparison of same-length
 words.
@@ -270,7 +270,7 @@ compression of that fact is already in the platform. No
 Paper A edit, no ledger row in the theorem ledger, no new Lean,
 no \(N_0\) raise, no leftover-killer census.
 
-Best next question: none from a word-order exact-map invariant.
+Best next question: none from an itinerary-order exact-map invariant.
 
 ## Publication assessment
 

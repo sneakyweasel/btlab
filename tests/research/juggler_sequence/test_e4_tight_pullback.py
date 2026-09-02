@@ -18,7 +18,7 @@ from research.juggler_sequence.e4_tight_pullback import (
     probe_payload,
     render_markdown,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 _PAYLOAD = None
 
@@ -84,7 +84,7 @@ def test_classify_render_and_artifacts():
     assert stored["decision"]["classification"] == CLASS_REFUTED
     assert stored["anti_overclaim"]["cycles_impossible"] is False
     assert stored["anti_overclaim"]["length_eleven_census"] is False
-    assert stored["lean"]["no_cycle_word_oooooooeeee"] is True
+    assert stored["lean"]["no_cycle_itinerary_oooooooeeee"] is True
     assert dict(ANTI_OVERCLAIM)["global_termination"] is False
 
 
@@ -102,8 +102,8 @@ def test_dossier_boundary():
     assert "## Decision" in dossier
     assert "CLOSE" in dossier
     assert "REFUTED" in dossier
-    assert "no_cycle_word_length_eight" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
-    assert "theorem no_cycle_word_oooooooeeee" not in note
-    assert "theorem no_cycle_word_length_eleven" not in note
-    assert "theorem no_cycle_word_length_eight" not in note
+    assert "no_cycle_itinerary_length_eight" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier
+    assert "theorem no_cycle_itinerary_oooooooeeee" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eight" not in note

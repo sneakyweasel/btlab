@@ -24,9 +24,9 @@ excluded by the same exact \(+1\)-chain that killed
 
 If \(n\ge 2\) follows \(O^{a}EO^{7-a}\) with \(a\in\{2,3,4,5,6\}\),
 write \(z=T_{O^{a}EO^{7-a}}(n)\). Then \(z\ge(n+1)^8\). In
-particular none of the five words is a cycle word. Lean
+particular none of the five words is a cycle itinerary. Lean
 excludes all five as `CycleMin` words and excludes the
-unique-rotation member `OOOOOOEOEEE` as a cycle word. The
+unique-rotation member `OOOOOOEOEEE` as a cycle itinerary. The
 other four have extra CycleMin-shaped rotations outside the
 thirty first-expanding leftovers. The EEE-cell inequalities
 remain human.
@@ -35,7 +35,7 @@ remain human.
 
 - \(O^7\mathrm{EEEE}\) +1-chain —
   **EXACT — LEAN VERIFIED**
-  (`o7_image_ge_succ_pow16`, `no_cycle_word_oooooooeeee`).
+  (`o7_image_ge_succ_pow16`, `no_cycle_itinerary_oooooooeeee`).
 - \(O^6\mathrm{EEEOE}\) +1-chain —
   **EXACT — HUMAN PROOF** (`J-o6eeeoe-gap`).
 - Four-even short-first-gap \(Z_4\) —
@@ -99,9 +99,9 @@ It is not required.
   **EXACT — HUMAN PROOF**
 - the five words are not `CycleMin` words —
   **EXACT — LEAN VERIFIED** (`no_cycleMin_one_three_eee`)
-- `OOOOOOEOEEE` is not a cycle word —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_ooooooeoeee`)
-- the other four `(1,3)` words are not cycle words —
+- `OOOOOOEOEEE` is not a cycle itinerary —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_ooooooeoeee`)
+- the other four `(1,3)` words are not cycle itineraries —
   **EXACT — HUMAN PROOF** (extra 4-even CycleMin-shaped
   rotations)
 - leftover cells fire at \(1.57\cdot 10^{9}\) through
@@ -121,7 +121,7 @@ It is not required.
   pin \(n<10^{4}\) has \(46+48+47+32+36\) starts, all above the
   cell, closest ratio \(5.73\) at \(n=37\) on `OOOOEOOOEEE`.
 - Lean: `CycleMin` exclusion of all five and
-  `no_cycle_word_ooooooeoeee`. The EEE-cell argument is not
+  `no_cycle_itinerary_ooooooeoeee`. The EEE-cell argument is not
   Lean. Paper A is unchanged.
 
 ## Conjectures
@@ -141,12 +141,12 @@ None to the gap. The stronger claims that fail:
 ## Formalization
 
 `Problems/Juggler/CycleMinFudge.lean` has `no_cycleMin_*` for
-all five `(1,3)` leftovers and `no_cycle_word_ooooooeoeee`.
+all five `(1,3)` leftovers and `no_cycle_itinerary_ooooooeoeee`.
 The mixed EEE-cell inequalities are not Lean. The other four
 `(1,3)` words have extra CycleMin-shaped rotations, so there
-is no `no_cycle_word_oooooeooeee` (or sibling).
+is no `no_cycle_itinerary_oooooeooeee` (or sibling).
 `SmallCycleCensus.lean` still assembles only through length
-seven. No `no_cycle_word_length_eleven`. No `sorry`. No halt
+seven. No `no_cycle_itinerary_length_eleven`. No `sorry`. No halt
 theorem. Paper A is unchanged.
 
 ## Results

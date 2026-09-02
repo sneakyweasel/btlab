@@ -68,7 +68,7 @@ eventually periodic. Then:
    \(x_k\to\infty\), and they strictly increase by distinctness. At
    every record the tail satisfies hug domination
    (Lean `aboveAnchor_prefix_odds_ge_hug`) and inherits 1–4 with
-   anchor \(x_i\). The word of a divergent flight is *recurrently
+   anchor \(x_i\). The itinerary of a divergent flight is *recurrently
    hug-dominated*: the density constraint
    \(a\ge\mathrm{hugOdds}\) restarts from infinitely many positions,
    not only from \(0\). \(\square\)
@@ -245,7 +245,7 @@ It is not required.
   `tests/research/juggler_sequence/test_flight_divergent_structure.py`
 
 No divergent flight is known (none exists below the certified
-floor), so the probe verifies the finite-word mirrors on realized
+floor), so the probe verifies the finite-itinerary mirrors on realized
 orbits, at *every* anchor rather than only at the start: for each
 index \(i\) of each orbit (\(n\le 2000\)), the segment until the
 first dip below \(x_i\) satisfies hug domination in every prefix and
@@ -316,7 +316,7 @@ Classification **DIVERGENT_STRUCTURE_MIRRORS_CONFIRMED**.
   knowledge.)*
 - Whether recurrent hug domination (point 5) has any Diophantine
   consequence for the *word* of a divergent flight. The named
-  candidate (DK/Ostrowski pricing of those words) is answered by
+  candidate (DK/Ostrowski pricing of those itineraries) is answered by
   [juggler_flight_dk_pricing.md](juggler_flight_dk_pricing.md):
   **CLOSE**. DK prices every `AboveAnchor` hug prefix without a
   Juggler return; the walk-charge kill still needs

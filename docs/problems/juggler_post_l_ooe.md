@@ -103,7 +103,7 @@ It is not required.
   anchor —
   not claimed. \(501\) later drops to \(34\).
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -149,7 +149,7 @@ follows a second `OOEOOOEOOEE`.
 
 None. Existing `Envelope.lean` `power_bound_word` and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -186,7 +186,7 @@ Lean-package \(19683<32768\) and \(59049<65536\) after
 `OOE` (\(501\to 1749\)), now the separate branch
 [juggler_second_post_l_ooe.md](juggler_second_post_l_ooe.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 build a \(p\)-adic system.
 
 ## Decision

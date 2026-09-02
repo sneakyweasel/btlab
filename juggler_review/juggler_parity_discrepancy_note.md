@@ -127,7 +127,7 @@ J(n)=
 introduced by Pickover [1] (OEIS A094683 [2]); universal arrival at
 \(1\) is open. The map is niche; the nested-floor sums must stand on
 their own, and the paper is organized so that they do. The exact
-finite-word calculus of \(J\) — the power envelope
+finite-itinerary calculus of \(J\) — the power envelope
 \(J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\), the defect identity, and a
 small-cycle census — is a companion manuscript [22]; here we use
 only the contraction criterion (Proposition 3.1), whose short
@@ -299,7 +299,7 @@ at \(w\). The exponent gap and \(n\ge2\) give
 \(n^{3^{\#O(w)}}<n^{2^k}\), hence \(m^{2^k}<n^{2^k}\). Since
 \(m\ge1\), one has \(m<n\). \(\square\)
 
-The companion [22] develops the same envelope as a finite-word
+The companion [22] develops the same envelope as a finite-itinerary
 identity with an exact defect; only the contraction criterion is
 used below. The induction is recorded here so that the criterion
 does not depend on an unpublished text.
@@ -2962,7 +2962,7 @@ The open question, stated once:
 > Conjecture 7.3, whose deterministic model instance is
 > Conjecture 7.5.
 
-![The theorem flow of the paper. The exact finite-word calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
+![The theorem flow of the paper. The exact finite-itinerary calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
 
 ## 8. Software note
 
@@ -2970,7 +2970,7 @@ A repository accompanies the paper:
 [https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
 It is not required to read or check any proof above. It contains Lean
 formalizations of the exact floor identities cited in Section 1.1 and
-of the companion manuscript's finite-word theorems, scaled-integer
+of the companion manuscript's finite-itinerary theorems, scaled-integer
 validations of the linearization identities of Lemmas 4.3, 4.6, 5.1,
 6.2, and 7.2, and exact-phase numerical probes of the sums \(K_c\),
 \(K_3\), and the differenced sums of Lemma 5.2 and Theorem 5.3, all
@@ -2991,7 +2991,7 @@ the text, organizing companion notes, and as an interactive assistant
 for Lean statements, tests, and literature records. The models are
 not authors. The theorems of this paper are human proofs from the
 cited classical inequalities; the Lean certificates cover only the
-exact floor identities and the companion's finite-word theorems. I
+exact floor identities and the companion's finite-itinerary theorems. I
 take full responsibility for the contents.
 
 ## References

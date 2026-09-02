@@ -16,7 +16,7 @@ from research.juggler_sequence.cycle_internal_e import (
     run_probe,
     suffix_after_internal_e,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_normalized_family_is_the_five_expanding_words():
@@ -67,8 +67,8 @@ def test_lean_api_bootstrap_without_census():
     assert "theorem juggler_reaches_one" not in src
     assert "def CycleMin" in src
     assert "theorem no_cycleMin_internal_even_threshold" in src
-    assert "theorem no_cycle_word_ooeooe" in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_ooeooe" in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
     assert "PowerHeight" not in src
@@ -121,7 +121,7 @@ def test_committed_artifacts_schema():
     assert data["anti_overclaim"]["y_gt_n_required"] is False
     assert data["anti_overclaim"]["ooooee_free_via_ooooe"] is False
     assert data["lean"]["sorry_free"] is True
-    assert data["lean"]["no_cycle_word_ooeooe"] is True
+    assert data["lean"]["no_cycle_itinerary_ooeooe"] is True
     assert data["lean"]["no_length_six_theorem"] is True
     assert data["scan"]["normalized_expanding"] == list(EXACT_WORDS)
     assert data["scan"]["n_search"] is False

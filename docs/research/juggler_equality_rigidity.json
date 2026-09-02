@@ -388,7 +388,7 @@
   },
   "decision": {
     "classification": "MIXED_EQUALITY_FOUND",
-    "reason": "A realized mixed word attains the envelope: odd n that is a perfect square forces T(n)^2 = n^3, so n^{3/2} is an integer",
+    "reason": "A realized mixed itinerary attains the envelope: odd n that is a perfect square forces T(n)^2 = n^3, so n^{3/2} is an integer",
     "smallest_witness": {
       "word": "O",
       "n": 9,

@@ -16,7 +16,7 @@ from math import log
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_e_transport import transport_contradiction
 from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
@@ -28,7 +28,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import (
     denom_bits,
     shared_tail_holds,
@@ -54,8 +54,8 @@ LEAN_THEOREMS = (
     "cycleMin_ge",
     "cycle_trailing_evens_lt",
     "shared_two_even_tail",
-    "no_cycle_word_two_even_ee",
-    "no_cycle_word_two_even_eoe",
+    "no_cycle_itinerary_two_even_ee",
+    "no_cycle_itinerary_two_even_eoe",
     "no_cycleMin_gapped_three_even_ee",
     "no_cycleMin_gapped_three_even_eoe",
     "returnsIntoB",
@@ -64,7 +64,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_juggler_cycle",
 )
@@ -75,7 +75,7 @@ def path_row(kind: str, k: int, word: str) -> dict[str, Any]:
     hits: list[dict[str, int | bool]] = []
     overshoots: list[dict[str, int]] = []
     for y in range(2, N_CUTOFF):
-        if not follows_word(y, word):
+        if not follows_itinerary(y, word):
             continue
         follows += 1
         n = image_after(y, word)
@@ -193,7 +193,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "PrefixTwoEven" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -204,7 +204,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycleMin_prefix_two_even_eoe"]
         and lean["returnsIntoB"]
         and lean["shared_two_even_tail"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]

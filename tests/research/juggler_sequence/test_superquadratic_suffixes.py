@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from research.juggler_sequence.lean_paths import juggler_text
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.superquadratic_suffixes import (
     CLASS_EVENTUAL,
     LEAN_THEOREMS,
@@ -16,7 +16,7 @@ from research.juggler_sequence.superquadratic_suffixes import (
     scan_suffix,
     superquadratic_words,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_superquadratic_predicate_and_short_q():
@@ -30,7 +30,7 @@ def test_superquadratic_predicate_and_short_q():
     ooo = scan_suffix("OOO", q_max=40)
     assert oo["Q"] == [1, 3]
     assert ooo["Q"] == [1]
-    assert follows_word(5, "OO")
+    assert follows_itinerary(5, "OO")
     assert image_after(5, "OO") >= 36
 
 

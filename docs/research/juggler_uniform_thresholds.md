@@ -109,5 +109,5 @@ the family E^k O^{3k} at q=2^{2^{k-1}} is superquadratic, maps onto 1, and contr
 
 the family E^k O^{3k} at q=2^{2^{k-1}} is superquadratic, maps onto 1, and contracts for arbitrarily large q; no Q(ε) exists.
 
-The fixed-word theorem remains. This is not a halt result.
+The fixed-itinerary theorem remains. This is not a halt result.
 

@@ -25,7 +25,7 @@ Weyl engine, and totality are out of scope.
   **PARK** / `ODD_IMAGE_DISCREPANCY_GREEN`. `|S_O(N)| << N^{5/6}`.
 - Image-parity census [juggler_parity_discrepancy.md](juggler_parity_discrepancy.md)
   **PARK**.
-- `odd_cell_unique` / `odd_cell_iff` —
+- `odd_preimage_unique` / `odd_preimage_iff` —
   **EXACT — LEAN VERIFIED**.
 - 2-adic bridge, landing-θ, PE / residual / LD / local floor-boundary —
   **CLOSE**. Do not reopen.
@@ -48,7 +48,7 @@ Falsifier               Monochromatic runs kill |I|-uniform laws;
                         Y is too fragmented for the interval theorem;
                         some J-generated sets concentrate; only
                         B^{5/6} differencing remains
-Existing machinery      S_O, odd_image_sign, odd_cell_unique,
+Existing machinery      S_O, odd_image_sign, odd_preimage_unique,
                         |S_O(N)| << N^{5/6}, floor_power
 Maximum Phase-0 scope   Exact CPU, N<=1e6, L<=1e5 records, gaps,
                         location grid, one-step Y, simple weights,

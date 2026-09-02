@@ -20,7 +20,7 @@ from research.juggler_sequence.bunched_last_cluster import (
     expanding_family,
     family_word,
 )
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.cyclemin_obstruction import (
     classify_runs,
     compositions_with_first_min,
@@ -35,7 +35,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short.json"
@@ -70,11 +70,11 @@ LEAN_THEOREMS = (
     "no_cycleMin_prefix_eee",
     "no_cycleMin_prefix_eoooee",
     "no_cycleMin_prefix_two_even_ee",
-    "no_cycle_word_even_count_le_three",
+    "no_cycle_itinerary_even_count_le_three",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -89,7 +89,7 @@ def path_row(spec: dict[str, Any], cutoff: int = N_CUTOFF) -> dict[str, Any]:
     overshoots: list[dict[str, int]] = []
     basin: list[dict[str, int]] = []
     for y in range(2, cutoff):
-        if not follows_word(y, word):
+        if not follows_itinerary(y, word):
             continue
         follows += 1
         n = image_after(y, word)
@@ -186,7 +186,7 @@ def lean_api_present() -> dict[str, bool]:
         and "PrefixBunchedShort" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -194,7 +194,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["no_cycleMin_prefix_eee"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_cycleMin_five_even"]
         and not lean["has_no_juggler_cycle"]

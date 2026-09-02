@@ -9,13 +9,13 @@ every positive integer reaches 1.
 ## Problem
 
 How much 2-adic perfect-power structure must a starting value possess
-to sustain exact equality in the finite-word floor-power envelope for
+to sustain exact equality in the finite-itinerary floor-power envelope for
 \(k\) consecutive steps?
 
 ## Exact statement
 
 Write \(HasPowTwoDepth(n,r)\) for \(\exists a,\ n=a^{2^r}\). If a
-realized word \(w\) of length \(k\) attains
+realized itinerary \(w\) of length \(k\) attains
 
 \[
 T_w(n)^{2^{k}}=n^{3^{\#O(w)}},
@@ -56,7 +56,7 @@ Maximum Phase-0 scope   Exact a^(2^r) transitions; HasPowTwoDepth drop
                         probe without cmp_pow or PowerHeight.
 Promotion criterion     Lean proves the depth-drop rules and either the
                         budget theorem or a minimized counterexample.
-Stop criterion          A PowerHeight hierarchy; an equality-word census;
+Stop criterion          A PowerHeight hierarchy; an equality-itinerary census;
                         a termination claim; engine control edits.
 ```
 
@@ -78,7 +78,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - Envelope equality of length \(k\) implies \(HasPowTwoDepth(n,k)\) —
   **EXACT — LEAN VERIFIED**
-- `PowerHeight` / equality-word census — not added
+- `PowerHeight` / equality-itinerary census — not added
 
 ## Experiments
 
@@ -124,10 +124,10 @@ Classification **SATURATION_BUDGET_GREEN**, depth status
 **POWER_TWO_DEPTH_GREEN**.
 
 Each exact branch consumes one unit of 2-adic perfect-power depth.
-A realized equality word of length \(k\) forces the start to be a
+A realized equality itinerary of length \(k\) forces the start to be a
 \(2^k\)-th power. For \(n\ge 2\) this implies \(2^{2^k}\le n\).
 All-even equality is formally contracting and meets that lower bound
-at the towers \(2^{2^k}\). Exact steps preserve parity, so mixed words
+at the towers \(2^{2^k}\). Exact steps preserve parity, so mixed itineraries
 cannot saturate.
 
 Computational search (\(n\le 10^4\), depth 8; prescribed words to

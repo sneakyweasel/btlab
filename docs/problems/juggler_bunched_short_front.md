@@ -35,7 +35,7 @@ Phase-0 questions are:
    \]
 3. Is \((3,1)\) absent as a leftover, or as a monotone corner?
 
-This is not a `CycleWord` theorem at a non-minimum start. It is
+This is not a `CycleItinerary` theorem at a non-minimum start. It is
 not a four-even cell and not a halt theorem.
 
 ## Current literature
@@ -117,7 +117,7 @@ It is not required.
 - trailing-even overflow \(z\ge(n+1)^4\) is a new cell —
   **REFUTED**. Equivalent to \(S\ge n+1\) on `EE` tails
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -156,13 +156,13 @@ The stronger claims that remain false or unproved:
 - “the eighteen leftover-suffix returns are CycleMin tails” —
   false.
 - “every last-cluster class is now excluded” — false.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 None. Existing prefix two-even and prefix bunched modules are
 not rewritten. No `no_cycleMin_prefix_short`. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`. No
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`. No
 `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -190,7 +190,7 @@ The exact-return attack \(S_{b,c}(y)=n\) is a separate parked
 branch
 ([juggler_bunched_short_return.md](juggler_bunched_short_return.md)).
 Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not reopen four-even cells.
+`no_cycle_itinerary_length_eleven`. Do not reopen four-even cells.
 
 ## Decision
 
@@ -198,7 +198,7 @@ Do not write \(Z_5\). Do not assemble
 and the scanned window has no short-cluster cycle. That is not
 yet a parameterized cell-intersection. The four interval leaks
 scatter, and the candidate trailing-even overflow is not a new
-cell. Do not claim that every cycle word is impossible.
+cell. Do not claim that every cycle itinerary is impossible.
 
 Best next question: answered in
 [juggler_front_overshoot.md](juggler_front_overshoot.md). The

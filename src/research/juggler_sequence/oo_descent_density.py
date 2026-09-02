@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import ENVELOPE, PROGRESS, has_named, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_oo_descent_density.json"
@@ -44,8 +44,8 @@ LEAN_THEOREMS = (
     "unresolved_is_odd_odd",
     "power_bound_contracts",
     "floorPower_oooee_of_follows",
-    "wordOOOEE",
-    "odd_cell_unique",
+    "itineraryOOOEE",
+    "odd_preimage_unique",
 )
 
 
@@ -262,7 +262,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one" not in combined,
         "no_all_finiteProgress_proved": "theorem all_finiteProgress" not in progress,
         "no_progress_tactic": "findProgress" not in combined,
-        "no_length_seven_cycle_theorem": "theorem no_cycle_word_length_seven"
+        "no_length_seven_cycle_theorem": "theorem no_cycle_itinerary_length_seven"
         not in combined,
         "Envelope_not_rewritten_as_density": "oo_descent_density" not in envelope,
     }
@@ -414,7 +414,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        or a positive leftover plateau",
         "Falsifier               leftover plateau for every fixed family,",
         "                        or a rewrite of Corollary 5.2 / Prop 4.5",
-        "Existing machinery      FiniteProgress; wordOOOEE; Prop 4.5",
+        "Existing machinery      FiniteProgress; itineraryOOOEE; Prop 4.5",
         "Maximum Phase-0 scope   OOOEE, OOEOE, K=5,10,20,40; N=10^4,10^5,10^6",
         "```",
         "",

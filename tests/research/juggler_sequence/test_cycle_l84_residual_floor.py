@@ -136,5 +136,5 @@ def test_dossier_park_and_no_lean_factory():
     assert "reachesOne_of_lt_1981" in dossier
     assert (JUGGLER_DIR / "CyclePositionFinance.lean").is_file() is False
     assert "CyclePositionFinance" not in paper
-    assert "theorem no_cycle_word_any_length" not in dossier
+    assert "theorem no_cycle_itinerary_any_length" not in dossier
     assert "juggler_cycle_finance_note.md" in dossier

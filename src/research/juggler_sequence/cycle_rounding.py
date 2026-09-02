@@ -1,7 +1,7 @@
 """Exact local floor remainders around a closed Juggler cycle.
 
 Not a Research Engine control-layer experiment. Not a halt theorem.
-Does not enumerate cycle words and does not search for periodic
+Does not enumerate cycle itineraries and does not search for periodic
 points. Calibrates finite-orbit remainders against the cyclic
 balance identity and checks that dropping them recovers the envelope.
 """
@@ -19,7 +19,7 @@ from research.juggler_sequence.cycle_top_pred import (
     orbit_until_one,
     pred_of_orbit,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     ENVELOPE,
@@ -178,15 +178,15 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in text
-        and "theorem no_cycle_word " not in text,
+        and "theorem no_cycle_itinerary " not in text,
         "no_cycle_engine": "def CycleSearch" not in text
         and "def CycleStates" not in text,
         "no_length_six_theorem": "length_six" not in text
         and "length_six" not in floor,
         "no_infinite_path_type": "coinductive" not in text.lower()
         and "def InfinitePath" not in text,
-        "FloorPower_no_cycle_word": "CycleWord" not in floor,
-        "Progress_unchanged": "CycleWord" not in progress,
+        "FloorPower_no_cycle_itinerary": "CycleItinerary" not in floor,
+        "Progress_unchanged": "CycleItinerary" not in progress,
         "orbit_min_not_used": "MinimalNonTerm" not in text,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
         "no_remainder_dynamics": "def RemainderDynamics" not in text
@@ -240,7 +240,7 @@ def run_probe() -> dict[str, Any]:
             for row in hard + [row for row in rows if row["start"] in (3, 7, 9, 21)]
         ],
         "n_search": False,
-        "cycle_word_census": False,
+        "cycle_itinerary_census": False,
         "remainder_dynamics": False,
         "new_energy": False,
         "rows": [_example(row) for row in rows],
@@ -253,7 +253,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and all(lean[name] for name in LEAN_THEOREMS)
         and lean["forbidden_engines_absent"]
         and lean["no_cycle_engine"]
-        and lean["FloorPower_no_cycle_word"]
+        and lean["FloorPower_no_cycle_itinerary"]
         and lean["orbit_min_not_used"]
         and lean["PowerBoundEq_not_used_as_cycle_attack"]
         and lean["no_all_cycles_impossible"]
@@ -267,7 +267,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         }
     if (
         scan["n_search"]
-        or scan["cycle_word_census"]
+        or scan["cycle_itinerary_census"]
         or scan["remainder_dynamics"]
         or scan["new_energy"]
     ):
@@ -339,7 +339,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     exact local remainders plus cyclic closure, not an exponent budget",
         "Novelty hypothesis      keeping ρ around a cycle sees something the envelope drops",
         "Falsifier               every remainder identity reduces to power_bound_word or a known cell",
-        "Existing machinery      localDefect, cube/square cells, CycleWord, equality rigidity",
+        "Existing machinery      localDefect, cube/square cells, CycleItinerary, equality rigidity",
         "Maximum Phase-0 scope   remainder API; cycle balance; all-zero rigidity; peak ρ_O>0; transients",
         "```",
         "",
@@ -382,7 +382,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         [
             "",
             f"- n-search: `{scan['n_search']}`",
-            f"- cycle-word census: `{scan['cycle_word_census']}`",
+            f"- cycle-word census: `{scan['cycle_itinerary_census']}`",
             f"- remainder dynamics: `{scan['remainder_dynamics']}`",
             f"- new energy: `{scan['new_energy']}`",
             "",
@@ -395,7 +395,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     lines.extend(
         [
             f"- certificate unchanged: `{lean.get('certificate_present')}`",
-            f"- FloorPower has no CycleWord: `{lean.get('FloorPower_no_cycle_word')}`",
+            f"- FloorPower has no CycleItinerary: `{lean.get('FloorPower_no_cycle_itinerary')}`",
             f"- orbit-min hypothesis unused: `{lean.get('orbit_min_not_used')}`",
             f"- PowerBoundEq not used as cycle attack: `{lean.get('PowerBoundEq_not_used_as_cycle_attack')}`",
             f"- no remainder dynamics: `{lean.get('no_remainder_dynamics')}`",

@@ -115,7 +115,7 @@ It is not required.
 
 Small exact census, not a new raw search.
 
-- Short realized words \(n\le 40\), length \(\le 4\): the \(1+q\)
+- Short realized itineraries \(n\le 40\), length \(\le 4\): the \(1+q\)
   identity, concatenation product, even/odd one-step law, and
   running-\(1+q\) monotonicity match exactly.
 - Whenever \(S>0\), \(R\le 1\) iff \(T\ge n\) on \(n\le 60\),

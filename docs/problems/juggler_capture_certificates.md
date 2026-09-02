@@ -13,7 +13,7 @@ capture into a finite already-controlled basin?
 
 ## Exact statement
 
-With certified basin \(S=\{1\}\), a realized word \(w\) at \(n\) is
+With certified basin \(S=\{1\}\), a realized itinerary \(w\) at \(n\) is
 
 - a **capture** if \(T_w(n)=1\);
 - a **descent** if \(T_w(n)<n\).

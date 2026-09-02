@@ -133,7 +133,7 @@
       }
     ],
     "n_search": false,
-    "cycle_word_census": false,
+    "cycle_itinerary_census": false,
     "rows": [
       {
         "start": 3,
@@ -812,5 +812,5 @@
     ],
     "reason": "every cycle maximum has a finite even run onto an odd landing p with p^{2^r} \u2264 M < (p+1)^{2^r}, and the ascent from p is scale-superquadratic. The integer window is nonempty; transients sit inside it without returning to p"
   },
-  "search_method": "finite-orbit maxima and their even runs; no cycle-state search; no cycle-word census; exact integer windows only"
+  "search_method": "finite-orbit maxima and their even runs; no cycle-state search; no cycle-itinerary census; exact integer windows only"
 }

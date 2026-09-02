@@ -39,7 +39,7 @@ from research.juggler_sequence.cycle_finance import (
     parity_excludes,
 )
 from research.juggler_sequence.cycle_ordered_excursion import excursion_map
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 ORBIT_DIR = DATA_DIR / "orbit_budget"
 PHASE1_L = 25781
@@ -520,7 +520,7 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         classification = CLASS_PARK
         decision = "PARK"
         reason = (
-            "a hull-closed integer itinerary reaches C >= theta; "
+            "a hull-closed integer word reaches C >= theta; "
             "record the extremizer and park the Section 5 program"
         )
     elif complete_rhs is not None and complete_rhs < theta:
@@ -528,7 +528,7 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         classification = CLASS_GREEN
         decision = "PROMOTE"
         leftover_killer = True
-        reason = "a closed integer itinerary has C < theta"
+        reason = "a closed integer word has C < theta"
     elif (
         ub < theta
         and not science["capped"]

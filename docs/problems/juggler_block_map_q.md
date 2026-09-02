@@ -87,7 +87,7 @@ Promotion criterion     H(x) => Q(x) in a smaller class, or
                         infinite Q-orbit => recurrence or
                         an endpoint < n
 Stop criterion          Q no better than the raw integer;
-                        word census; modulus split
+                        itinerary census; modulus split
 ```
 
 ## Balanced-ternary formulation

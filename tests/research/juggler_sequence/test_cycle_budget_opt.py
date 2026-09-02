@@ -96,5 +96,5 @@ def test_dossier_boundary():
     assert "## Decision" in dossier
     assert "## Publication assessment" in dossier
     assert "**PROMOTE**" in dossier
-    assert "theorem no_cycle_word_any_length" not in dossier
+    assert "theorem no_cycle_itinerary_any_length" not in dossier
     assert "budget_opt.json" in dossier

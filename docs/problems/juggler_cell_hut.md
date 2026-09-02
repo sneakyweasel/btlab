@@ -11,7 +11,7 @@ reaches 1.
 
 Closed PE-factor, Word Atlas factor, realization-set geometry,
 landing-image, residual-future quotient, arithmetic projections of
-\(y\), summed-rho, finite-word NC-boundary, first-return, adversarial
+\(y\), summed-rho, finite-itinerary NC-boundary, first-return, adversarial
 parity-path, information-complexity, ordinary backward predecessor
 geometry, accelerated odd-to-odd, and 2-adic bridge branches are not
 reopened. Word Atlas and landing-image are **PARK** in their dossiers
@@ -54,9 +54,9 @@ termination theorem.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Inverse-floor cells `even_cell_iff` / `odd_cell_iff` /
-  `odd_cell_unique` — **EXACT — LEAN VERIFIED** in
-  `Problems.Juggler.Cells`.
+- Inverse-floor cells `even_preimage_iff` / `odd_preimage_iff` /
+  `odd_preimage_unique` — **EXACT — LEAN VERIFIED** in
+  `Problems.Juggler.Preimages`.
 - \(\lvert\operatorname{Pred}_E(m)\rvert=m\) or \(m+1\) — **KNOWN**
   from the cell; recorded in the closed backward-geometry census.
 - Backward predecessor geometry —
@@ -84,8 +84,8 @@ Novelty hypothesis      the wide-even / singleton-odd asymmetry is a
 Falsifier               every candidate signature is bijective with m,
                         has unbounded out-degree, or same-class states
                         have incompatible successor families
-Existing machinery      even_cell, odd_cell_integers, pred_even / pred_odd,
-                        floor_power, even_cell_iff / odd_cell_unique,
+Existing machinery      even_preimage, odd_preimage_integers, pred_even / pred_odd,
+                        floor_power, even_preimage_iff / odd_preimage_unique,
                         hard/PE fixtures; no hut module exists
 Maximum Phase-0 scope   exact geometry + frozen signature ladder on
                         m<=4000; one-step H -> H(J); odd-spine;
@@ -165,7 +165,7 @@ None opened.
 
 ## Formalization
 
-None added. Existing `Cells.lean` lemmas are reused. No `sorry`.
+None added. Existing `Preimages.lean` lemmas are reused. No `sorry`.
 
 ## Results
 

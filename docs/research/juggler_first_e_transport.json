@@ -1443,10 +1443,10 @@
     "cycleMin_ge": true,
     "cycle_trailing_evens_lt": true,
     "shared_two_even_tail": true,
-    "no_cycle_word_two_even_ee": true,
-    "no_cycle_word_two_even_eoe": true,
+    "no_cycle_itinerary_two_even_ee": true,
+    "no_cycle_itinerary_two_even_eoe": true,
     "no_cycleMin_internal_even_threshold": true,
-    "no_cycle_word_length_le_seven": true,
+    "no_cycle_itinerary_length_le_seven": true,
     "no_cycleMin_gapped_three_even_ee": true,
     "no_cycleMin_gapped_three_even_eoe": true,
     "no_global_termination_theorem": true,
@@ -1461,7 +1461,7 @@
   },
   "decision": {
     "classification": "FIRST_E_TRANSPORT_GREEN",
-    "reason": "Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain"
+    "reason": "Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleItinerary tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain"
   },
-  "search_method": "CycleMin first-E transport of the uniform two-even tail; gapped leftovers only (b>=4 EE, b>=3 EOE); CycleWord tables for k=9..16 below 256; seven-odd seal for k>=17; no bunched-tail attack; no length-8/9 census; Lean CycleMin exclusion at y>=256"
+  "search_method": "CycleMin first-E transport of the uniform two-even tail; gapped leftovers only (b>=4 EE, b>=3 EOE); CycleItinerary tables for k=9..16 below 256; seven-odd seal for k>=17; no bunched-tail attack; no length-8/9 census; Lean CycleMin exclusion at y>=256"
 }

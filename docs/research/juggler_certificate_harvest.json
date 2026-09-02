@@ -36,7 +36,7 @@
           "replayed_overflow": 0,
           "replayed_uncapped": 0
         },
-        "leftover_words": [
+        "leftover_itineraries": [
           {
             "word": "OOOEE",
             "length": 5,
@@ -594,7 +594,7 @@
           "replayed_overflow": 0,
           "replayed_uncapped": 0
         },
-        "leftover_words": [
+        "leftover_itineraries": [
           {
             "word": "OOEOE",
             "length": 5,
@@ -1152,7 +1152,7 @@
           "replayed_overflow": 0,
           "replayed_uncapped": 0
         },
-        "leftover_words": [
+        "leftover_itineraries": [
           {
             "word": "OOOEE",
             "length": 5,
@@ -1800,7 +1800,7 @@
     "native_available": true,
     "git": "e31132bf7411dc7fda5ed07a768362446f06bd15",
     "letter_chain": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "halt_theorem": false,
     "atlas_language_tag": false,
     "certificate_harvest_lean": false,

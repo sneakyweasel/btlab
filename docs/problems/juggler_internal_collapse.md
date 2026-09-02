@@ -28,7 +28,7 @@ superquadratic \(v\) with \(\mathrm{maxEvenRun}(v)\le R\) satisfies
 thresholds, not a tower in \(R\) or a nest of even-preimages.
 
 Do not reopen the false \(\varepsilon\)-only theorem. Do not replace
-the fixed-word lower-growth theorem.
+the fixed-itinerary lower-growth theorem.
 
 ## Current literature
 
@@ -153,7 +153,7 @@ descent and capture.
 
 **PROMOTE** the internal-run residual identity and the nested
 `maxEvenRun=3` family as a refutation of useful bounded-run
-uniformity. `BOUNDED_RUN_COUNTEREXAMPLE`. Keep the fixed-word theorem.
+uniformity. `BOUNDED_RUN_COUNTEREXAMPLE`. Keep the fixed-itinerary theorem.
 Do not add a collapse tree or residual automaton. Do not claim
 termination.
 

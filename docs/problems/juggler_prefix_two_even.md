@@ -9,7 +9,7 @@ assembler, and not a claim that every positive integer reaches 1.
 
 ## Problem
 
-Once the two-even leftover families are excluded as cycle words,
+Once the two-even leftover families are excluded as cycle itineraries,
 and first-E transport excludes them after the prefix \(O^aE\), do
 they remain impossible as a `CycleMin` suffix after an *arbitrary*
 prefix \(u\)?
@@ -35,7 +35,7 @@ y^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}
 
 The shared two-even tail at \(y\) is the opposite inequality
 whenever \(y\ge 256\). If \(y=n\), the suffix itself is a two-even
-cycle word, already excluded.
+cycle itinerary, already excluded.
 
 Below \(256\), the loose \(n\)-cell algebra is **not** a seal:
 at \(k=6\) some pairs \(12\le n<y<256\) fail
@@ -45,15 +45,15 @@ leftover. The small-\(y\) seal is a path table: no
 For \(k\ge 9\) (EE) and \(k\ge 10\) (EOE) the remainder contains
 seven consecutive odds.
 
-This is not a `CycleWord` theorem at a non-minimum start
+This is not a `CycleItinerary` theorem at a non-minimum start
 (\(y<n\) loosens the cell). It is not a bunched-short exclusion
 and not a halt theorem.
 
 ## Current literature
 
 - Uniform two-even leftovers —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_two_even_ee`,
-  `no_cycle_word_two_even_eoe`).
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_two_even_ee`,
+  `no_cycle_itinerary_two_even_eoe`).
 - First-E transport after \(O^aE\) —
   **EXACT — LEAN VERIFIED** (`no_cycleMin_gapped_three_even_ee`,
   `no_cycleMin_gapped_three_even_eoe`).
@@ -110,7 +110,7 @@ It is not required.
 - the loose \(n\)-cell algebra seals \(12\le n<y<256\) —
   **REFUTED** at \(k=6\)
 - bunched-short last cluster is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -139,18 +139,18 @@ or remain unproved:
   not on \(u\).
 - “every last-cluster class is now Lean-excluded” — false.
   Bunched-short last cluster remains.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 `PrefixTwoEven.lean` proves `no_cycleMin_prefix_two_even_ee` and
 `no_cycleMin_prefix_two_even_eoe`. Large \(y\) is
-`leftover_prefix_cell` plus `shared_two_even_tail` at \(y\).
+`leftover_prefix_preimage` plus `shared_two_even_tail` at \(y\).
 Below \(256\), `PrefixTwoEvenEval.lean` has `returnsIntoB` tables
 for the short leftovers; longer leftovers are seven-odd on the
-remainder. \(y=n\) reduces to the existing cycle-word exclusions.
+remainder. \(y=n\) reduces to the existing cycle-itinerary exclusions.
 No `sorry`. No `no_juggler_cycle`. No
-`no_cycle_word_length_eleven`. Paper A is unchanged.
+`no_cycle_itinerary_length_eleven`. Paper A is unchanged.
 
 ## Results
 
@@ -170,14 +170,14 @@ is now a separate promoted branch
 ([juggler_prefix_bunched.md](juggler_prefix_bunched.md)). The
 remaining last-cluster class is bunched-short
 \((b,c)\in\{(0,0),(1,0),(2,0),(3,0),(0,1),(1,1),(2,1)\}\). Do
-not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
+not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 
 **PROMOTE**. The last two-even leftover is now a `CycleMin`
 theorem for every prefix, not only after \(O^aE\). The small-\(y\)
 seal is a path table, not the loose \(n\)-cell algebra. Do not
-claim that every cycle word is impossible.
+claim that every cycle itinerary is impossible.
 
 Best next question: the bunched-short last-cluster residual.
 The bunched-suffix prefix lemma is now a separate branch

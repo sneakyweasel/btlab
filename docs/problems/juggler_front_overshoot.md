@@ -125,7 +125,7 @@ It is not required.
   post-`OO` depths \(7782\), \(29166\), \(86346\)
 - bunched-short `CycleMin` with a later `OO` is impossible —
   not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -156,7 +156,7 @@ witnesses for the interval form:
 
 Each has a first-even overshoot and a later `OO` before the
 short last cluster, and the image lies in \([n,y_0]\). None is
-a `CycleMin` (image \(>n\)). The word
+a `CycleMin` (image \(>n\)). The itinerary
 \(\mathtt{OOOOEOEOOOEE}\) at \(103\) is the complementary
 inside-tail `OO`, not this phase.
 
@@ -171,14 +171,14 @@ The stronger claims that remain false or unproved:
 - “the useful contrast is a leftover cell already known” —
   false; the useful contrast is never-inside, split by \(a_0\).
 - “every last-cluster class is now excluded” — false.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 None. Existing prefix two-even, prefix bunched, and CycleMin
 transport modules are not rewritten. No
 `no_cycleMin_front_oo`. No `no_cycleMin_four_even`. No
-`no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A
+`no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`. Paper A
 is unchanged.
 
 ## Results
@@ -203,7 +203,7 @@ assembler, and not a halt theorem.
 The complementary residual: a bunched-short last cluster with
 no later `OO` after the first-even landing (isolated-odd
 middle). Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not reopen leftover-suffix
+`no_cycle_itinerary_length_eleven`. Do not reopen leftover-suffix
 tables or four-even cells.
 
 ## Decision
@@ -212,7 +212,7 @@ tables or four-even cells.
 front lower bound is compatible with all seven short tails.
 Never-inside the EEE cell and an empty exact-return scan are
 not a parameterized Lean theorem. Do not claim that every
-cycle word is impossible.
+cycle itinerary is impossible.
 
 Best next question: a bunched-short last cluster whose middle
 has no later \(OO\) after the first-even landing — treated as

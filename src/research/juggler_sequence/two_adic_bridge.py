@@ -22,7 +22,7 @@ from typing import Any
 from bt.calculus.derivative import D, lsd
 from bt.calculus.jets import integer_jet
 from bt.representation import encode
-from research.juggler_sequence.compensated_contraction import follows_word
+from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.information_complexity import DOCUMENTED_MOD16_PAIR
 from research.juggler_sequence.landing_valuation import landing_row, v2
 from research.juggler_sequence.lean_paths import (
@@ -33,7 +33,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 from research.juggler_sequence.realization_geometry import even_tower
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -104,8 +104,8 @@ LEAN_THEOREMS = (
     "even_tower_to_one",
     "odd_odd_remainder_mod_eight",
     "landing_valuation_classification",
-    "even_cell_iff",
-    "odd_cell_unique",
+    "even_preimage_iff",
+    "odd_preimage_unique",
 )
 
 FORBIDDEN_ENGINES = (
@@ -367,7 +367,7 @@ def cylinder_lift(
     n = start
     while n <= n_max:
         searched += 1
-        if follows_word(n, word):
+        if follows_itinerary(n, word):
             witness = n
             break
         n += modulus
@@ -555,7 +555,7 @@ def precision_versus_realizer(language: dict[str, Any]) -> dict[str, Any]:
         m = observed
         if m is None and known is not None:
             m = known["n"]
-        if m is None and scale is not None and follows_word(scale, word):
+        if m is None and scale is not None and follows_itinerary(scale, word):
             m = scale
         p_adm = 1 if len(word) == 1 else None
         bt_depth = None if m is None else len(encode(m))
@@ -584,7 +584,7 @@ def hard_case_rows(language: dict[str, Any]) -> list[dict[str, Any]]:
     for word in FIRST_HOLES + ("EEEEE", "EEEOE", "EEOEO", "EEOE", "OOE"):
         known = HOLE_WITNESSES.get(word)
         witness = min_r.get(word)
-        if witness is None and word in extra and follows_word(extra[word], word):
+        if witness is None and word in extra and follows_itinerary(extra[word], word):
             witness = extra[word]
         if witness is None and known is not None:
             witness = known["n"]
@@ -594,7 +594,7 @@ def hard_case_rows(language: dict[str, Any]) -> list[dict[str, Any]]:
                 "word": word,
                 "phase0_m": min_r.get(word),
                 "known_witness": witness,
-                "follows_known": False if witness is None else follows_word(witness, word),
+                "follows_known": False if witness is None else follows_itinerary(witness, word),
                 "word_status_P8": word_status(word, 8),
                 "cylinder_status_P8": status["status"],
                 "type": (
@@ -612,7 +612,7 @@ def landing_valuation_does_not_forbid_oo(*, n_max: int = 64) -> dict[str, Any]:
     both = 0
     law_ok = 0
     for n in range(1, n_max + 1, 2):
-        if not follows_word(n, "OO"):
+        if not follows_itinerary(n, "OO"):
             continue
         both += 1
         row = landing_row(n)
@@ -758,9 +758,9 @@ def scan(
                 "longer words are INCONCLUSIVE because every residue class "
                 "of precision P<=16 splits at the second Juggler letter. "
                 "The odd-odd law landingRemainder is a constraint on realized "
-                "OO landings, not a word filter."
+                "OO landings, not an word filter."
             ),
-            "IntReal": "follows_word / exists n>0 with follows(n,w)",
+            "IntReal": "follows_itinerary / exists n>0 with follows(n,w)",
             "m_w": "minimum observed positive realizer, plus even_tower_to_one for E^r",
         },
     }
@@ -922,10 +922,10 @@ Quantifiers stay separate:
 | Object | API | Semantics |
 | --- | --- | --- |
 | exact step | `floor_power` | \\(J\\) |
-| itinerary word | `follows_word` / Lean `follows` | IntReal witness check |
+| word word | `follows_itinerary` / Lean `follows` | IntReal witness check |
 | even tower | `even_tower` / Lean `even_tower_to_one` | \\(m(E^r)=2^{{2^{{r-1}}}}\\) |
 | odd-odd remainder | `landing_row` / `odd_odd_remainder_mod_eight` | \\(\\rho\\equiv y-1\\pmod 8\\) on realized OO |
-| 2-adic valuation | `landing_valuation.v2` | \\(v_2\\) of an integer, not a word automaton |
+| 2-adic valuation | `landing_valuation.v2` | \\(v_2\\) of an integer, not an word automaton |
 | BT coordinates | `encode`, `lsd`, `D`, `integer_jet` | \\(n=\\mathrm{{lsd}}(n)+3D(n)\\), \\(J_k(n)\\) |
 | first rooted holes | realization-geometry certificates | `SCALE_LIMITED`, not `CELL_EMPTY` |
 | documented \\(2^{{16}}\\) pair | `DOCUMENTED_MOD16_PAIR` | same residue, words `{documented["word_y"]}` vs `{documented["word_z"]}` |
@@ -952,7 +952,7 @@ law. That direction is expected and is not the bridge.
 
 `A \\\\ I` at \\(k=6\\): {missing6}.
 
-Do not call a word missing from \\(I(k)\\) unrealizable. The three first
+Do not call an word missing from \\(I(k)\\) unrealizable. The three first
 atlas holes remain `SCALE_LIMITED`. Length \\(\\le 4\\) fills completely
 inside \\(n\\le 4000\\).
 
@@ -991,7 +991,7 @@ does not exist in the Phase-0 range.
 {_md_table(["word", "P_adm", "m(w)", "log2 m", "BT depth", "kind"], pm_rows)}
 
 Length-one words are Type A: `P_adm=1` matches the parity of \\(m(w)\\).
-Longer realized words are Type B: a finite realizer exists while no
+Longer realized itineraries are Type B: a finite realizer exists while no
 finite precision forces the word. The first holes are Type C only as
 *scale delay*, not as 2-adically forced empty cylinders.
 
@@ -1047,9 +1047,9 @@ For the *first-letter* constraint \\(C_P(n):\\Leftrightarrow n\\equiv w_0\\pmod 
 
 For the *strong* constraint “the cylinder forces \\(w\\)”:
 
-- no \\(P\\le 16\\) has a cylinder forcing a word of length \\(\\ge 2\\);
+- no \\(P\\le 16\\) has a cylinder forcing an word of length \\(\\ge 2\\);
 - compactness of \\(\\mathbb Z_2\\) therefore does not produce a
-  2-adic Juggler itinerary. \\(J\\) is an Archimedean floor map, not a
+  2-adic Juggler word. \\(J\\) is an Archimedean floor map, not a
   2-adic dynamical system.
 
 For `EEEEEE`, \\(2^{{32}}\\) realises the word and lies in
@@ -1063,7 +1063,7 @@ For `EEEEEE`, \\(2^{{32}}\\) realises the word and lies in
 
 `EEEEEE`, `EEEEOE`, and `EEEOEO` remain `SCALE_LIMITED`. 2-adic
 admissibility does not confuse a scale-bound witness with a genuine
-integer incompatibility: those words are weakly admissible at every
+integer incompatibility: those itineraries are weakly admissible at every
 tested \\(P\\) and strongly unresolved at every tested \\(P\\).
 
 Landing valuation on OO starts \\(n\\le 64\\):
@@ -1179,7 +1179,7 @@ Falsifier               Only the first letter is 2-adically forced;
                         every A_P\\\\I gap is SCALE_LIMITED or bound-
                         limited; BT jets and 2-adic residues are
                         CRT-transverse
-Existing machinery      follows_word, floor_power, landing_valuation,
+Existing machinery      follows_itinerary, floor_power, landing_valuation,
                         even_tower_to_one, integer_jet / encode / lsd,
                         SCALE_LIMITED hole certificates
 Maximum Phase-0 scope   k<=12, P<=16, n<=4000; constructive cylinder

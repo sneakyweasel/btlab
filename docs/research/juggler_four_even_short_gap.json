@@ -545,20 +545,20 @@
   "lean": {
     "sorry_free": true,
     "CycleMin": true,
-    "no_cycle_word_two_even_ee": true,
+    "no_cycle_itinerary_two_even_ee": true,
     "no_cycleMin_gapped_three_even_ee": true,
-    "no_cycle_word_three_even_eee": true,
-    "no_cycle_word_three_even_eoooee": true,
-    "no_cycle_word_length_eight": true,
-    "no_cycle_word_length_le_eight": true,
-    "no_cycle_word_length_nine": true,
-    "no_cycle_word_four_even": true,
+    "no_cycle_itinerary_three_even_eee": true,
+    "no_cycle_itinerary_three_even_eoooee": true,
+    "no_cycle_itinerary_length_eight": true,
+    "no_cycle_itinerary_length_le_eight": true,
+    "no_cycle_itinerary_length_nine": true,
+    "no_cycle_itinerary_four_even": true,
     "no_cycleMin_four_even": true,
-    "no_cycle_word_first_e_e4": true,
+    "no_cycle_itinerary_first_e_e4": true,
     "no_cycleMin_first_e_e4": true,
-    "no_cycle_word_bunched": true,
-    "no_cycle_word_length_eleven": true,
-    "no_cycle_word_four_even_short_gap": true,
+    "no_cycle_itinerary_bunched": true,
+    "no_cycle_itinerary_length_eleven": true,
+    "no_cycle_itinerary_four_even_short_gap": true,
     "no_all_cycles_impossible": true,
     "length_eight_open_in_census": true,
     "FloorPower_not_rewritten": true,
@@ -566,7 +566,7 @@
   },
   "decision": {
     "classification": "FOUR_EVEN_SHORT_GAP_PARK",
-    "reason": "Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shapes at a0_exp+1 with N0<=180 and at a0_exp+2 with N0<=22; at the first expanding length (30 words of length 11) N0 is 10^8 to 10^15; not a thirty-family Lean list and not a length-11 census"
+    "reason": "Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shapes at a0_exp+1 with N0<=180 and at a0_exp+2 with N0<=22; at the first expanding length (30 itineraries of length 11) N0 is 10^8 to 10^15; not a thirty-family Lean list and not a length-11 census"
   },
   "search_method": "log prefix-cell Z4 = pullback of three-even Z through E O^{a1} on the 30 short-first-gap shapes; N0 window 800 and doubling search at first expanding a0; no tables"
 }

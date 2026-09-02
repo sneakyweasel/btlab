@@ -11920,7 +11920,7 @@
   "decision": {
     "classification": "DRIFT_FIRST_PASSAGE_COMPLEX",
     "secondary": [],
-    "reason": "nested A_w signatures do not compress below the words themselves; 10 extensions are tautological window subsets and 259 named-thinner hits are residue/modulus artefacts of longer prefixes, not a pruning rule; hunt max tau_+=253 is a larger record, not a structured unbounded family; 1 hunt bit-cap leftovers are not a bound L"
+    "reason": "nested A_w signatures do not compress below the itineraries themselves; 10 extensions are tautological window subsets and 259 named-thinner hits are residue/modulus artefacts of longer prefixes, not a pruning rule; hunt max tau_+=253 is a larger record, not a structured unbounded family; 1 hunt bit-cap leftovers are not a bound L"
   },
   "search_method": "actual prefix-NC realizing sets A_w \u2229 [2,N]; structural signatures (AP modulus, residues); NC-preserving extension tags; first-passage start classes C_{k,o}; short-word Ival pullback as signature only; tau_+ hunt n=2..100000; nested n=2..2000; horizon 10000 is not L"
 }

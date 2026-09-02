@@ -14,7 +14,7 @@ start, and when is \(y\) simply another odd-to-odd frontier state?
 
 ## Exact statement
 
-A residual step `ResidualStep x y` is a realized word `O^a E^b` with
+A residual step `ResidualStep x y` is a realized itinerary `O^a E^b` with
 \(b\ge 1\) and image \(y\). It is a finite relation, not an infinite
 transition system.
 
@@ -155,7 +155,7 @@ proper subclass of stay-odd.
 
 Answered in [juggler_residual_path.md](juggler_residual_path.md): a
 bounded residual prefix with a repeat is a cycle; every nonempty
-cycle word has \(2^r<3^o\); residual returns need \(a\ge 2\).
+cycle itinerary has \(2^r<3^o\); residual returns need \(a\ge 2\).
 
 ## Decision
 

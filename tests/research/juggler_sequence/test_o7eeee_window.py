@@ -19,7 +19,7 @@ from research.juggler_sequence.o7eeee_window import (
     render_markdown,
     scan_window,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_inverse_cell_and_two_hundred_eighty_nine():
@@ -51,8 +51,8 @@ def test_no_small_cycle_hits():
 def test_lean_has_no_o7eeee_theorem():
     lean = lean_api_present()
     assert lean["sorry_free"] is True
-    assert lean["leftover_prefix_cell"] is True
-    assert lean["odd_cell_unique"] is True
+    assert lean["leftover_prefix_preimage"] is True
+    assert lean["odd_preimage_unique"] is True
     for name in FORBIDDEN_THEOREMS:
         assert lean[name] is True, name
     assert lean["paper_a_has_no_o7eeee"] is True

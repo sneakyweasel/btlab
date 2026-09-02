@@ -163,8 +163,8 @@
   },
   "lean": {
     "sorry_free": true,
-    "wordOOEOOEOO": true,
-    "wordOOEOOEOOE": true,
+    "itineraryOOEOOEOO": true,
+    "itineraryOOEOOEOOE": true,
     "follows_ooeooeoo_image_lt_cube": true,
     "follows_ooeooeooe_image_lt_sq": true,
     "minimal_ooeooe_follows_ooeooeoo": true,

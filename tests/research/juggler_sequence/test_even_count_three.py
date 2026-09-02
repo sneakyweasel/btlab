@@ -1,4 +1,4 @@
-"""Even-count ≤ 3 cycle words. Not a halt or length-census test."""
+"""Even-count ≤ 3 cycle itineraries. Not a halt or length-census test."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_named_filters_cover_length_nine_inventory():
@@ -74,8 +74,8 @@ def test_lean_even_count_assembler_and_paper_a_boundary():
     even = EVEN_COUNT_THREE.read_text(encoding="utf-8")
     census7 = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_even_count_le_three" in even
-    assert "theorem cycle_word_length_ge_eleven" in even
+    assert "theorem no_cycle_itinerary_even_count_le_three" in even
+    assert "theorem cycle_itinerary_length_ge_eleven" in even
     assert "theorem minimal_first_even_overshoots" in even
     assert "theorem cycleMin_first_even_overshoots" in even
     assert "theorem cycleMin_max_ge_succ_sq" in even
@@ -87,11 +87,11 @@ def test_lean_even_count_assembler_and_paper_a_boundary():
     assert "import Problems.Juggler.CycleExtrema" in even
     assert "sorry" not in even
     assert "admit" not in even
-    assert "theorem no_cycle_word_even_count_le_three" not in census7
+    assert "theorem no_cycle_itinerary_even_count_le_three" not in census7
     assert "import Problems.Juggler.EvenCountThree" in paper
-    assert "no_cycle_word_even_count_le_three" in paper
+    assert "no_cycle_itinerary_even_count_le_three" in paper
     assert "Length eight is open" in census7
-    assert "theorem no_cycle_word_length_nine" not in even
+    assert "theorem no_cycle_itinerary_length_nine" not in even
     assert "theorem no_juggler_cycle" not in even
 
 
@@ -108,7 +108,7 @@ def test_classify_green_and_write_artifacts():
     assert data["anti_overclaim"]["length_nine_census"] is False
     text = render_markdown(data)
     assert CLASS_GREEN in text
-    assert "no_cycle_word_even_count_le_three" in text
+    assert "no_cycle_itinerary_even_count_le_three" in text
     from research.juggler_sequence.even_count_three import JSON_PATH
 
     assert JSON_PATH.is_file()
@@ -128,15 +128,15 @@ def test_dossier_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_even_count_le_three" in dossier
-    assert "cycle_word_length_ge_eleven" in dossier
+    assert "no_cycle_itinerary_even_count_le_three" in dossier
+    assert "cycle_itinerary_length_ge_eleven" in dossier
     assert "minimal_first_even_overshoots" in dossier
     assert "cycleMin_first_even_overshoots" in dossier
     assert "cycleMin_max_ge_succ_sq" in dossier
     assert "cycleMax_min_succ_sq_le" in dossier
     assert "cycle_distinguished_order_succ_sq" in dossier
-    assert "no_cycle_word_length_nine" in dossier
+    assert "no_cycle_itinerary_length_nine" in dossier
     assert "not a length-9" in dossier
     assert "Theorem 3.22" in note
     assert "period at least eleven" in note
-    assert "theorem no_cycle_word_length_nine" not in note
+    assert "theorem no_cycle_itinerary_length_nine" not in note

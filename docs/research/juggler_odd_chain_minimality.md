@@ -76,7 +76,7 @@ the unique odd inverse of a chain is the chain; pred0 is the start or empty; shi
 ## Existing Lean (unchanged)
 
 - `floorPower_odd_gt`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `odd_run_power_bound`: `True`
 - `EnvelopeState`: `True`
 - `AboveAnchor`: `True`

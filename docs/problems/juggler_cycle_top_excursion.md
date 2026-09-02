@@ -35,7 +35,7 @@ with \(T_u(p)=n\) and
 3^{\#O(u)}\ge 2^{|u|+r}.
 \]
 
-The last inequality is the general scale law: any realized word from
+The last inequality is the general scale law: any realized itinerary from
 a start \(q\ge 2\) to a state at least \(q^{2^s}\) satisfies
 \(3^{\#O}\ge 2^{k+s}\).
 
@@ -43,7 +43,7 @@ The integer window is nonempty. This does not force \(p\) to be the
 cycle minimum and does not force \(r=1\). It does not prove that the
 ascent cannot land in the window.
 
-This says nothing about totality. Do not prove that every cycle word
+This says nothing about totality. Do not prove that every cycle itinerary
 is impossible.
 
 ## Current literature
@@ -67,7 +67,7 @@ Falsifier               a cycle max with no odd landing; or M outside [p^{2^r}, 
 Existing machinery      CycleMax, square_scale_superquadratic, power_bound_word
 Maximum Phase-0 scope   even-run bounds; top normal form; scale-superquadratic; transient tops
 Promotion criterion     reusable top normal form, or a sharp two-sided window
-Stop criterion          cycle engine; word census; FloorPower rewrite; ascent-contradiction claim without proof
+Stop criterion          cycle engine; itinerary census; FloorPower rewrite; ascent-contradiction claim without proof
 ```
 
 ## Balanced-ternary formulation
@@ -91,7 +91,7 @@ It is not required.
 - the ascent cannot fit the window — not claimed
 - \(T(M)=m\) — not claimed
 - \(r=1\) always — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -120,7 +120,7 @@ None to the window or the normal form. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `even_iter_pow_le` / `even_iter_lt_succ_pow`
 - `power_scale_superquadratic` / `top_ascent_superquadratic`

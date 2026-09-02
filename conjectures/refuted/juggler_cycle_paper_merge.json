@@ -6,8 +6,8 @@
   "counterexamples": [
     "required-improvement profile over the 141 parity leftovers at n=10^6+1 (cycle_finance/prefix_weights.json): min 1.04 at L=99561, median 1.96, 32.5 at the first survivor L=25781, 223 at L=50508; the affine-family seeds are the hardest points",
     "exact/bounded suffix weights give at most an uncertified 9/8 (juggler_cycle_prefix_weight_leftover_killer)",
-    "spectral constraints are arrangement-independent: moment 1/16 for both the mechanical necklace and the bunched word (juggler_cycle_fourier_leftover_killer)",
-    "cycle candidates are not mechanical, so Sturmian/Denjoy-Koksma word bounds cannot kill a length (juggler_christoffel_one_parameter; L=19 median Hamming 6)",
+    "spectral constraints are arrangement-independent: moment 1/16 for both the mechanical necklace and the bunched itinerary (juggler_cycle_fourier_leftover_killer)",
+    "cycle candidates are not mechanical, so Sturmian/Denjoy-Koksma itinerary bounds cannot kill a length (juggler_christoffel_one_parameter; L=19 median Hamming 6)",
     "ambient-to-generated equidistribution transfer fails in the tested form (juggler_parity_discrepancy_transfer)",
     "linear-forms lower bounds are weaker than the exact finance gap on every tested length (juggler_cycle_gap_baker)",
     "a single hypothetical cycle is a specific point, blocked by the derandomization obstruction of Paper B's own kernel program (J-derandomization-obstruction; BB/GG/JJ)"
@@ -18,7 +18,7 @@
     "simons-de-weger-2005-collatz-m-cycles"
   ],
   "mathematical_domain": "Juggler cycle finance / analytic floor-defect program",
-  "notes": "Directed consolidation, zero new experiments; every merge flank maps onto an archived refutation. The surviving formulation is an n-power-saving lower bound on |3^o - 2^L| along the three affine families, using the cycle floor n as a parameter. Not a halt theorem, not a leftover-word census, no Paper A or Paper B edit, no new Lean, no floor raise.",
+  "notes": "Directed consolidation, zero new experiments; every merge flank maps onto an archived refutation. The surviving formulation is an n-power-saving lower bound on |3^o - 2^L| along the three affine families, using the cycle floor n as a parameter. Not a halt theorem, not a leftover-itinerary census, no Paper A or Paper B edit, no new Lean, no floor raise.",
   "origin": "docs/research_journal.md",
   "proof_reference": "docs/research_journal.md",
   "tested_range": "141 parity leftovers at n=10^6+1 via prefix_weights.json; archived kills cited by id; no new computation beyond the RHS/theta profile"

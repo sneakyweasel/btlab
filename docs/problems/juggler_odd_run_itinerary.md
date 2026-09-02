@@ -60,7 +60,7 @@ Existing machinery      isolated-OE r-bound; ooe_oe FP;
                         pe_blocks; leftover controls
 Maximum Phase-0 scope   leftovers + odd n<2001; no automaton
 Promotion criterion     a later forbidden pair or a run-balance law
-Stop criterion          unrestricted T; word census; modulus split
+Stop criterion          unrestricted T; itinerary census; modulus split
 ```
 
 ## Balanced-ternary formulation

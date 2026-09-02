@@ -4,14 +4,14 @@ type CycleNecklaceProps = {
   minIndex?: number;
 };
 
-export function CycleNecklace({ word, shift = 0, minIndex }: CycleNecklaceProps) {
+export function CycleNecklace({ itinerary, shift = 0, minIndex }: CycleNecklaceProps) {
   const n = Math.max(word.length, 1);
   const cx = 160;
   const cy = 140;
   const r = 88;
   return (
     <svg viewBox="0 0 320 280" role="img" className="mx-auto h-auto w-full max-w-sm">
-      <title>Cycle word as a rotatable necklace</title>
+      <title>Cycle itinerary as a rotatable necklace</title>
       <circle cx={cx} cy={cy} r={r} fill="none" stroke="#d4cbb8" strokeWidth="2" />
       {Array.from(word).map((letter, index) => {
         const angle = ((index - shift) / n) * 2 * Math.PI - Math.PI / 2;

@@ -49,7 +49,7 @@ A model tail is not `H<∞`. Agreement is not a theorem.
 - `power_bound_contracts`, `floorPower_odd_ge` —
   **EXACT — LEAN VERIFIED**.
 - PE / residual-future / summed-rho / realization-set /
-  landing-image / finite-word `N_w` / first-return laws /
+  landing-image / finite-itinerary `N_w` / first-return laws /
   adversarial paths / information-complexity / backward cells /
   acceleration / floor-boundary / 2-adic bridge / cell-hut —
   **CLOSE** or **PARK**. Do not reopen.

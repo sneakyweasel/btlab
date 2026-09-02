@@ -70,7 +70,7 @@ long-AA u_O / u_E histograms match scale-matched generic integers and ordinary s
 - floor_phase_lean: `False`
 - excursion_reopen: `False`
 - defect_cut_reopen: `False`
-- word_language_reopen: `False`
+- itinerary_language_reopen: `False`
 - global_non_realizability: `False`
 
 ## Decision

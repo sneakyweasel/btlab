@@ -13,7 +13,7 @@ from pathlib import Path
 
 sys.set_int_max_str_digits(20_000)
 
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "src" / "data" / "monster_trajectories.json"

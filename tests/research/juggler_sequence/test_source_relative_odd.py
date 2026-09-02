@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 
 from research.juggler_sequence.cube_odd_return import cube_odd_landing
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.source_relative_odd import (
     CLASS_CLOSED,
     FORBIDDEN_THEOREMS,

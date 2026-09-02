@@ -50,7 +50,7 @@ A window tail is not `H < ∞`. Negative drift is not termination.
 - `power_bound_contracts`, `floorPower_odd_ge` —
   **EXACT — LEAN VERIFIED**.
 - PE / residual-future / residual projections / summed-rho /
-  realization-set / landing-image / finite-word `N_w` / first-return
+  realization-set / landing-image / finite-itinerary `N_w` / first-return
   structural laws / adversarial paths / information-complexity /
   backward cells / acceleration / floor-boundary / 2-adic bridge —
   **CLOSE**. Do not reopen.

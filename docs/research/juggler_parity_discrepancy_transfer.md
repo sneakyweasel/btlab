@@ -37,7 +37,7 @@ D(I) = sum_{n in O(I)} (-1)^{J_O(n)}
      = sum_m (-1)^m c_I(m),
 ```
 
-with `c_I(m) in {0,1}` by `odd_cell_unique`. Differencing identity
+with `c_I(m) in {0,1}` by `odd_preimage_unique`. Differencing identity
 holds: `True`. Cell-sum identity
 holds: `True`. Label:
 **EXACT IDENTITY**; uniqueness **LEAN-CERTIFIED**.

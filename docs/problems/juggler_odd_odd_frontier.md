@@ -39,7 +39,7 @@ If `MinimalNonTerm n`, the even-state barrier plus parity give
 \]
 
 The first disjunct is a directed cycle. After
-`no_cycle_word_even_count_le_three` it is excluded:
+`no_cycle_itinerary_even_count_le_three` it is excluded:
 `minimal_first_even_overshoots` and `cycleMin_first_even_overshoots`
 in `EvenCountThree.lean`. The leftover is strict overshoot. See
 [juggler_even_count_three.md](juggler_even_count_three.md).

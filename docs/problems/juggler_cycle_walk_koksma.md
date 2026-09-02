@@ -12,7 +12,7 @@ claim, and not a reopen of the REFUTED Christoffel slogans.
 Exchange identified leftover charge-per-letter with the Laplace
 integral \(C_*(n)\) and recorded a \(O(1/L)\) excess. Does
 Denjoy–Koksma with \(\mathrm{Var}(f)<1\) give
-\(C_L\le C_*(n')+1/L\) on leftover hug words, making the 18
+\(C_L\le C_*(n')+1/L\) on leftover hug itineraries, making the 18
 walk-charge kills DP-free?
 
 ## Exact statement
@@ -47,7 +47,7 @@ No cycle of any length — not claimed.
 - Hug exchange and \(C_*\) —
   **EXACT — HUMAN PROOF**
   ([juggler_cycle_walk_exchange.md](juggler_cycle_walk_exchange.md))
-- Greedy hug-word maximizer —
+- Greedy hug-itinerary maximizer —
   **COMPUTATIONALLY VERIFIED**
   ([juggler_cycle_walk_greedy.md](juggler_cycle_walk_greedy.md))
 - Denjoy–Koksma / Koksma for BV functions —
@@ -101,7 +101,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- \(C_L\le C_*+1/L\) on leftover hug words —
+- \(C_L\le C_*+1/L\) on leftover hug itineraries —
   **REFUTED** (`juggler_walk_koksma_one_over_L`); six offsets
 - Leftover hug equals IET prefix —
   **COMPUTATIONALLY VERIFIED** (difference \(10^{-12}\))
@@ -170,7 +170,7 @@ The crude bound that would still kill 18 lengths is the
 it is a reparameterization, not a promotion.
 
 Best next question: can one prove
-\(C_L<1/(\ln 3\,\ln n')\) for leftover hug words without
+\(C_L<1/(\ln 3\,\ln n')\) for leftover hug itineraries without
 using Denjoy–Koksma at constant \(1\)?
 
 ## Publication assessment

@@ -5,18 +5,18 @@ import Problems.Juggler.Residuals
 namespace Problems.Juggler
 
 /-!
-# Laboratory assembler: no cycle word with even-count at most three
+# Laboratory assembler: no cycle itinerary with even-count at most three
 
-Every `CycleWord` has a `CycleMin` rotation. A cycle minimum starts
+Every `CycleItinerary` has a `CycleMin` rotation. A cycle minimum starts
 `OO`, ends `E`, and is formally expanding. The even-terminating
-expanding words with at most three evens are the odd-run family, the
+expanding itineraries with at most three evens are the odd-run family, the
 two-even leftovers (Theorem 3.12), the internal-E bootstrap, the
 seven bunched leftovers (Theorems 3.14--3.20), and the gapped
 leftovers (Theorems 3.13 and 3.21).
 
 This is Paper A Theorem 3.22 / Corollary 3.23, imported by
 `Problems.JugglerPaper`. It is an even-count theorem, not a
-length-9 or length-10 word census. Not a halt theorem and not
+length-9 or length-10 itinerary census. Not a halt theorem and not
 an exclusion of four-even leftovers. First-even overshoot
 sharpens the extrema package to `M ≥ (m+1)^2`.
 -/
@@ -86,15 +86,15 @@ theorem eq_replicate_odd_of_evenCount_zero {w : List Branch}
       | even =>
           simp at h
 
-theorem evenCount_rotateWord : ∀ (w : List Branch) (k : ℕ),
-    evenCount (rotateWord w k) = evenCount w
+theorem evenCount_rotateItinerary : ∀ (w : List Branch) (k : ℕ),
+    evenCount (rotateItinerary w k) = evenCount w
   | _w, 0 => rfl
   | [], _k + 1 => rfl
   | b :: rest, k + 1 => by
-      have ih := evenCount_rotateWord (rest ++ [b]) k
+      have ih := evenCount_rotateItinerary (rest ++ [b]) k
       have hswap : evenCount (rest ++ [b]) = evenCount (b :: rest) := by
         cases b <;> simp [evenCount_append]
-      simpa [rotateWord, hswap] using ih
+      simpa [rotateItinerary, hswap] using ih
 
 theorem exists_first_even {w : List Branch} (h : 1 ≤ evenCount w) :
     ∃ a v, w = List.replicate a Branch.odd ++ Branch.even :: v := by
@@ -148,7 +148,7 @@ theorem cycleMin_getLast_even {n : ℕ} {w : List Branch}
 
 theorem cycleMin_ge_twelve {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) : 12 ≤ n :=
-  cycleWord_iterate_not_lt_twelve (i := 0) hn h.1
+  cycleItinerary_iterate_not_lt_twelve (i := 0) hn h.1
 
 theorem expanding_two_even_ee {a : ℕ} (h : 2 ^ (a + 2) < 3 ^ a) : 4 ≤ a := by
   by_contra hlt
@@ -204,14 +204,14 @@ theorem replicate_odd_getLast? {k : ℕ} (hk : 1 ≤ k) :
 
 theorem no_cycleMin_odd_run {n a : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
     (h : CycleMin n (List.replicate a Branch.odd ++ [Branch.even])) : False := by
-  have hC : CycleWord n (List.replicate a Branch.odd ++ [Branch.even]) := h.1
+  have hC : CycleItinerary n (List.replicate a Branch.odd ++ [Branch.even]) := h.1
   cases lt_or_ge a 3 with
   | inr ha3 =>
       exact no_cycle_odd_run_append_even ha3 hn hC
   | inl ha2 =>
       have : a = 2 := by omega
       subst this
-      exact no_cycle_word_ooe hn (by simpa [wordOOE] using hC)
+      exact no_cycle_itinerary_ooe hn (by simpa [itineraryOOE] using hC)
 
 theorem no_cycleMin_bootstrap_last_gap {n : ℕ} {u : List Branch} {c : ℕ}
     (hn : 2 ≤ n) (hc : 2 ≤ c)
@@ -234,7 +234,7 @@ theorem no_cycleMin_bootstrap_last_gap {n : ℕ} {u : List Branch} {c : ℕ}
         (odd_run_suffix_threshold hc3)
         (le_trans (by decide : (3 : ℕ) ≤ 5) hn5) h
 
-/-- Trailing odd-run of any word: the prefix is empty or ends even. -/
+/-- Trailing odd-run of any itinerary: the prefix is empty or ends even. -/
 theorem exists_trailing_odds :
     ∀ w : List Branch,
       ∃ u a, w = u ++ List.replicate a Branch.odd ∧
@@ -261,7 +261,7 @@ theorem exists_trailing_odds :
             have hne : x :: xs ≠ [] := List.cons_ne_nil x xs
             simpa [List.getLast?_cons_of_ne_nil hne] using hx
 
-/-- A CycleMin word cannot end `O^a E` for `a ≥ 2`. This is
+/-- A CycleMin itinerary cannot end `O^a E` for `a ≥ 2`. This is
 `no_cycleMin_odd_run` when the prefix is empty and
 `no_cycleMin_bootstrap_last_gap` after an internal even. -/
 theorem cycleMin_not_last_odd_run_ge_two {n a : ℕ} {u : List Branch}
@@ -275,7 +275,7 @@ theorem cycleMin_not_last_odd_run_ge_two {n a : ℕ} {u : List Branch}
     exact no_cycleMin_bootstrap_last_gap hn ha (by
       simpa [List.append_assoc] using h)
 
-/-- On a CycleMin word ending `O^a E` with `a ≥ 1` and the preceding
+/-- On a CycleMin itinerary ending `O^a E` with `a ≥ 1` and the preceding
 letter not odd, the last odd-run has length exactly one. Paper A §3
 writes that last excursion as unconstrained `O^{a_e}E`; this is the
 `OOEOOE` sandwich of Theorem 3.6 at an arbitrary last valley. -/
@@ -287,7 +287,7 @@ theorem cycleMin_last_odd_run_eq_one {n a : ℕ} {u : List Branch}
   by_contra hne
   exact cycleMin_not_last_odd_run_ge_two hn (by omega) h hcut
 
-/-- Every CycleMin word ends `O^a E` with `a ≤ 1`. The case `a = 0`
+/-- Every CycleMin itinerary ends `O^a E` with `a ≤ 1`. The case `a = 0`
 is a trailing even run of length at least two. -/
 theorem exists_cycleMin_last_odd_run {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) :
@@ -367,10 +367,10 @@ theorem no_cycleMin_two_even {n a c : ℕ} (hn : 2 ≤ n) (_ha : 2 ≤ a)
     (h : CycleMin n
       (List.replicate a Branch.odd ++ [.even] ++
         List.replicate c Branch.odd ++ [.even])) : False := by
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (List.replicate a Branch.odd ++ [.even] ++
         List.replicate c Branch.odd ++ [.even]) := h.1
-  have hexp := cycle_word_formally_expanding hn hC
+  have hexp := cycle_itinerary_formally_expanding hn hC
   have hodd : oddCount
       (List.replicate a Branch.odd ++ [.even] ++
         List.replicate c Branch.odd ++ [.even]) = a + c := by
@@ -394,7 +394,7 @@ theorem no_cycleMin_two_even {n a c : ℕ} (hn : 2 ≤ n) (_ha : 2 ≤ a)
               List.replicate (a + 2 - 2) Branch.odd ++
                 List.replicate 2 Branch.even := by
           simp
-        exact no_cycle_word_two_even_ee hn hk (by simpa [hform] using hC)
+        exact no_cycle_itinerary_two_even_ee hn hk (by simpa [hform] using hC)
       · have ha3 : 3 ≤ a := expanding_two_even_eoe (by simpa using hexp)
         have hk : 6 ≤ a + 3 := by omega
         have hform :
@@ -403,18 +403,18 @@ theorem no_cycleMin_two_even {n a c : ℕ} (hn : 2 ≤ n) (_ha : 2 ≤ a)
               List.replicate (a + 3 - 3) Branch.odd ++
                 [Branch.even, Branch.odd, Branch.even] := by
           simp [List.replicate_succ]
-        exact no_cycle_word_two_even_eoe hn hk (by simpa [hform] using hC)
+        exact no_cycle_itinerary_two_even_eoe hn hk (by simpa [hform] using hC)
 
 theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
     (h : CycleMin n
       (List.replicate a Branch.odd ++ [.even] ++
         List.replicate b Branch.odd ++ [.even] ++
           List.replicate c Branch.odd ++ [.even])) : False := by
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (List.replicate a Branch.odd ++ [.even] ++
         List.replicate b Branch.odd ++ [.even] ++
           List.replicate c Branch.odd ++ [.even]) := h.1
-  have hexp := cycle_word_formally_expanding hn hC
+  have hexp := cycle_itinerary_formally_expanding hn hC
   have hodd : oddCount
       (List.replicate a Branch.odd ++ [.even] ++
         List.replicate b Branch.odd ++ [.even] ++
@@ -438,7 +438,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
       interval_cases c
       · cases lt_or_ge b 4 with
         | inr hb =>
-            exact no_cycle_word_gapped_three_even_ee hn ha hb
+            exact no_cycle_itinerary_gapped_three_even_ee hn ha hb
               (by
                 have hform :
                     List.replicate a Branch.odd ++ [Branch.even] ++
@@ -451,7 +451,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
         | inl hb =>
             interval_cases b
             · have ha6 : 6 ≤ a := expanding_eee (by simpa using hexp)
-              exact no_cycle_word_three_even_eee hn ha6
+              exact no_cycle_itinerary_three_even_eee hn ha6
                 (by
                   have hform :
                       List.replicate a Branch.odd ++ [.even] ++
@@ -461,7 +461,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
                     simp [threeEvenEEE, List.replicate_succ]
                   simpa [hform] using hC)
             · have ha5 : 5 ≤ a := expanding_eoee (by simpa using hexp)
-              exact no_cycle_word_three_even_eoee hn ha5
+              exact no_cycle_itinerary_three_even_eoee hn ha5
                 (by
                   have hform :
                       List.replicate a Branch.odd ++ [.even] ++
@@ -471,7 +471,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
                     simp [threeEvenEOEE, List.replicate_succ]
                   simpa [hform] using hC)
             · have ha4 : 4 ≤ a := expanding_eooee (by simpa using hexp)
-              exact no_cycle_word_three_even_eooee hn ha4
+              exact no_cycle_itinerary_three_even_eooee hn ha4
                 (by
                   have hform :
                       List.replicate a Branch.odd ++ [.even] ++
@@ -481,7 +481,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
                     simp [threeEvenEOOEE, List.replicate_succ]
                   simpa [hform] using hC)
             · have ha3 : 3 ≤ a := expanding_eoooee (by simpa using hexp)
-              exact no_cycle_word_three_even_eoooee hn ha3
+              exact no_cycle_itinerary_three_even_eoooee hn ha3
                 (by
                   have hform :
                       List.replicate a Branch.odd ++ [.even] ++
@@ -492,7 +492,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
                   simpa [hform] using hC)
       · cases lt_or_ge b 3 with
         | inr hb =>
-            exact no_cycle_word_gapped_three_even_eoe hn ha hb
+            exact no_cycle_itinerary_gapped_three_even_eoe hn ha hb
               (by
                 have hform :
                     List.replicate a Branch.odd ++ [Branch.even] ++
@@ -505,7 +505,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
         | inl hb =>
             interval_cases b
             · have ha5 : 5 ≤ a := expanding_eoee (by simpa using hexp)
-              exact no_cycle_word_three_even_eeoe hn ha5
+              exact no_cycle_itinerary_three_even_eeoe hn ha5
                 (by
                   have hform :
                       List.replicate a Branch.odd ++ [.even] ++
@@ -515,7 +515,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
                     simp [threeEvenEEOE, List.replicate_succ]
                   simpa [hform] using hC)
             · have ha4 : 4 ≤ a := expanding_eooee (by simpa using hexp)
-              exact no_cycle_word_three_even_eoeoe hn ha4
+              exact no_cycle_itinerary_three_even_eoeoe hn ha4
                 (by
                   have hform :
                       List.replicate a Branch.odd ++ [.even] ++
@@ -525,7 +525,7 @@ theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
                     simp [threeEvenEOEOE, List.replicate_succ]
                   simpa [hform] using hC)
             · have ha3 : 3 ≤ a := expanding_eoooee (by simpa using hexp)
-              exact no_cycle_word_three_even_eooeoe hn ha3
+              exact no_cycle_itinerary_three_even_eooeoe hn ha3
                 (by
                   have hform :
                       List.replicate a Branch.odd ++ [.even] ++
@@ -591,28 +591,28 @@ theorem no_cycleMin_even_count_le_three {n : ℕ} {w : List Branch}
   | _n + 4 =>
       omega
 
-/-- **Even-count assembler.** No `n ≥ 2` realizes a cycle word with
+/-- **Even-count assembler.** No `n ≥ 2` realizes a cycle itinerary with
 at most three even letters. This is not a length census and not a
 halt theorem. -/
-theorem no_cycle_word_even_count_le_three {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) (he : evenCount w ≤ 3) : False := by
+theorem no_cycle_itinerary_even_count_le_three {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) (he : evenCount w ≤ 3) : False := by
   obtain ⟨k, hk, hm⟩ := exists_cycleMin hn h
-  have hnk : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h hk
-  have he' : evenCount (rotateWord w k) ≤ 3 := by
-    simpa [evenCount_rotateWord] using he
+  have hnk : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn h hk
+  have he' : evenCount (rotateItinerary w k) ≤ 3 := by
+    simpa [evenCount_rotateItinerary] using he
   exact no_cycleMin_even_count_le_three hnk hm he'
 
-theorem cycle_word_even_count_ge_four {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) : 4 ≤ evenCount w := by
+theorem cycle_itinerary_even_count_ge_four {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) : 4 ≤ evenCount w := by
   by_contra hlt
-  exact no_cycle_word_even_count_le_three hn h (Nat.le_of_lt_succ (Nat.lt_of_not_ge hlt))
+  exact no_cycle_itinerary_even_count_le_three hn h (Nat.le_of_lt_succ (Nat.lt_of_not_ge hlt))
 
-/-- A nontrivial cycle word has length at least eleven: four evens
+/-- A nontrivial cycle itinerary has length at least eleven: four evens
 plus the expansion demand \(2^{|w|}<3^{\#O}\). -/
-theorem cycle_word_length_ge_eleven {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) : 11 ≤ w.length := by
-  have he : 4 ≤ evenCount w := cycle_word_even_count_ge_four hn h
-  have hexp := cycle_word_formally_expanding hn h
+theorem cycle_itinerary_length_ge_eleven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleItinerary n w) : 11 ≤ w.length := by
+  have he : 4 ≤ evenCount w := cycle_itinerary_even_count_ge_four hn h
+  have hexp := cycle_itinerary_formally_expanding hn h
   have hsum := evenCount_add_oddCount w
   have hodd : oddCount w = w.length - evenCount w := by omega
   have hk4 : 4 ≤ w.length := by
@@ -638,13 +638,13 @@ theorem oddEvenBlock_length (a b : ℕ) :
     (oddEvenBlock a b).length = a + b :=
   length_oddEvenBlock a b
 
-/-- Return on the first `O^a E` is an even-count-1 cycle word. -/
-theorem no_cycle_word_oddEvenBlock_one {n a : ℕ} (hn : 2 ≤ n)
-    (h : CycleWord n (oddEvenBlock a 1)) : False :=
-  no_cycle_word_even_count_le_three hn h (by simp [evenCount_oddEvenBlock])
+/-- Return on the first `O^a E` is an even-count-1 cycle itinerary. -/
+theorem no_cycle_itinerary_oddEvenBlock_one {n a : ℕ} (hn : 2 ≤ n)
+    (h : CycleItinerary n (oddEvenBlock a 1)) : False :=
+  no_cycle_itinerary_even_count_le_three hn h (by simp [evenCount_oddEvenBlock])
 
 /-- On a `MinimalNonTerm` start the first even residual always
-overshoots. The return cell is an even-count-1 cycle word. This is
+overshoots. The return cell is an even-count-1 cycle itinerary. This is
 not a halt theorem. -/
 theorem minimal_first_even_overshoots {n a : ℕ}
     (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1)) :
@@ -655,7 +655,7 @@ theorem minimal_first_even_overshoots {n a : ℕ}
       le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
     have hlen : 1 ≤ (oddEvenBlock a 1).length := by
       simp [oddEvenBlock_length]
-    exact (no_cycle_word_oddEvenBlock_one hn2 ⟨hw, hret.1, hlen⟩).elim
+    exact (no_cycle_itinerary_oddEvenBlock_one hn2 ⟨hw, hret.1, hlen⟩).elim
   · exact hover
 
 theorem cycleMin_oddEvenBlock_starts_two_odds {n a : ℕ} {v : List Branch}
@@ -668,7 +668,7 @@ theorem cycleMin_oddEvenBlock_starts_two_odds {n a : ℕ} {v : List Branch}
   exact this.trans hrest
 
 /-- On a `CycleMin` the first even residual overshoots. Return would
-be an even-count-1 cycle word. -/
+be an even-count-1 cycle itinerary. -/
 theorem cycleMin_first_even_overshoots {n a : ℕ} {v : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n (oddEvenBlock a 1 ++ v)) :
     (n + 1) ^ 2 ≤ image n (List.replicate a Branch.odd) ∧
@@ -692,7 +692,7 @@ theorem cycleMin_first_even_overshoots {n a : ℕ} {v : List Branch}
       rcases le_iff_eq_or_lt.mp hy with heq | hlt
       · have hlen : 1 ≤ (oddEvenBlock a 1).length := by
           simp [oddEvenBlock_length]
-        exact (no_cycle_word_oddEvenBlock_one hn ⟨hw, heq.symm, hlen⟩).elim
+        exact (no_cycle_itinerary_oddEvenBlock_one hn ⟨hw, heq.symm, hlen⟩).elim
       · refine ⟨?_, hlt⟩
         have : n < floorPower (image n (List.replicate a Branch.odd)) := by
           simpa [himg] using hlt
@@ -720,7 +720,7 @@ theorem cycleMin_evenCount_pos {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) : 1 ≤ evenCount w :=
   evenCount_pos_of_getLast_even (cycleMin_getLast_even hn h)
 
-/-- Every `CycleMin` word is a first-even block plus a nonempty tail. -/
+/-- Every `CycleMin` itinerary is a first-even block plus a nonempty tail. -/
 theorem cycleMin_exists_oddEven_split {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) :
     ∃ a v, w = oddEvenBlock a 1 ++ v := by
@@ -760,17 +760,17 @@ theorem cycleMin_max_not_first_cell {n : ℕ} {w : List Branch}
 /-- On a cycle maximum the rotated minimum satisfies `(m+1)^2 ≤ M`. -/
 theorem cycleMax_min_succ_sq_le {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (h : CycleMax n w) (hk : k < w.length)
-    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
+    (hmin : CycleMin (floorPower^[k] n) (rotateItinerary w k)) :
     (floorPower^[k] n + 1) ^ 2 ≤ n := by
   have hk0 : k ≠ 0 := by
     intro hk0
     have : CycleMin n w := by
-      simpa [hk0, rotateWord] using hmin
+      simpa [hk0, rotateItinerary] using hmin
     exact cycleMax_not_cycleMin hn h this
-  have hm2 : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h.1 hk
+  have hm2 : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn h.1 hk
   have ⟨i, hi, hmax, _, hge⟩ :=
     cycleMin_max_ge_succ_sq (n := floorPower^[k] n) hm2 hmin
-  have hlen : (rotateWord w k).length = w.length := rotateWord_length w k
+  have hlen : (rotateItinerary w k).length = w.length := rotateItinerary_length w k
   have hle : floorPower^[i] (floorPower^[k] n) ≤ n := by
     have himg : floorPower^[i] (floorPower^[k] n) = floorPower^[k + i] n := by
       simpa [Nat.add_comm] using
@@ -780,7 +780,7 @@ theorem cycleMax_min_succ_sq_le {n : ℕ} {w : List Branch} {k : ℕ}
     have hsum : w.length - k + k = w.length := Nat.sub_add_cancel (Nat.le_of_lt hk)
     have hiter := Function.iterate_add_apply floorPower (w.length - k) k n
     rw [← hiter, hsum, cycle_iterate_period h.1]
-  have hidx : w.length - k < (rotateWord w k).length := by
+  have hidx : w.length - k < (rotateItinerary w k).length := by
     rw [hlen]
     omega
   have hnle : n ≤ floorPower^[i] (floorPower^[k] n) := by
@@ -791,7 +791,7 @@ theorem cycleMax_min_succ_sq_le {n : ℕ} {w : List Branch} {k : ℕ}
 /-- The maximum cannot collapse to the minimum in one even step. -/
 theorem cycleMax_landing_gt_min {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (h : CycleMax n w) (hk : k < w.length)
-    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
+    (hmin : CycleMin (floorPower^[k] n) (rotateItinerary w k)) :
     floorPower^[k] n < floorPower n := by
   have he := cycleMax_start_even hn h
   exact (even_floorPower_gt_iff he).mpr (cycleMax_min_succ_sq_le hn h hk hmin)
@@ -799,7 +799,7 @@ theorem cycleMax_landing_gt_min {n : ℕ} {w : List Branch} {k : ℕ}
 theorem cycleMax_exists_min_succ_sq {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     ∃ k < w.length,
-      CycleMin (floorPower^[k] n) (rotateWord w k) ∧
+      CycleMin (floorPower^[k] n) (rotateItinerary w k) ∧
         (floorPower^[k] n + 1) ^ 2 ≤ n := by
   obtain ⟨k, hk, hmin⟩ := exists_cycleMin hn h.1
   exact ⟨k, hk, hmin, cycleMax_min_succ_sq_le hn h hk hmin⟩

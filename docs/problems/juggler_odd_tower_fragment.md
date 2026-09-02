@@ -103,7 +103,7 @@ It is not required.
   top of the certified floor)
 - Doubly-exponential pinning (below) — **EXACT — HUMAN PROOF**
   (instance of Lean `aboveAnchor_flight_envelope` /
-  `aboveAnchor_height_of_walk` at the all-odd word)
+  `aboveAnchor_height_of_walk` at the all-odd itinerary)
 - Incomparability placement (below) — **EXACT — HUMAN PROOF**
   (two trivial remarks, recorded to prevent re-attack)
 - Any residue / cylinder / \(\theta\) recognition — **REFUTED**
@@ -148,12 +148,12 @@ reaches \(1\); every start \(\le 162\,849\,448\) reaches \(1\)
 
 **Corollary 2 (doubly-exponential pinning; EXACT — HUMAN PROOF,
 components Lean).** An infinite odd tower from \(n\ge 400\) has
-walk weight exactly \(w_k=(3/2)^k\) (all-odd word), so by the flight
+walk weight exactly \(w_k=(3/2)^k\) (all-odd itinerary), so by the flight
 envelope \((3/2)^k(\log n-\Delta)\le\log x_k\le(3/2)^k\log n\) with
 \(\Delta=0.7\,k/(n\sqrt n)\): tower states are pinned to
 \(n^{(3/2)^k}\) up to a factor \(e^{-\Delta(3/2)^k}\), nonvacuous
 while \(k\ll n^{3/2}\log n\). Its exponent walk is exactly
-\(u_k=k(\log_2 3-1)\) — the fastest walk any word admits. \(\square\)
+\(u_k=k(\log_2 3-1)\) — the fastest walk any itinerary admits. \(\square\)
 
 **Placement (answers the standing question; EXACT — HUMAN
 PROOF).** (i) All-depth parity equidistribution is a density

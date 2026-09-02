@@ -14,7 +14,7 @@
     "simons-de-weger-2005-collatz-m-cycles"
   ],
   "mathematical_domain": "Juggler cycle finance / top even-run cell",
-  "notes": "The landing bound is a corollary of even_iter_lt_succ_pow plus monotone isqrt, not a new defect law. The leftover-killer reading is the only novel half and is false. Not a leftover-word census, not a floor raise, and not a halt theorem.",
+  "notes": "The landing bound is a corollary of even_iter_lt_succ_pow plus monotone isqrt, not a new defect law. The leftover-killer reading is the only novel half and is false. Not a leftover-itinerary census, not a floor raise, and not a halt theorem.",
   "origin": "docs/problems/juggler_cycle_ceiling_finance.md",
   "proof_reference": "docs/problems/juggler_cycle_ceiling_finance.md",
   "tested_range": "L=84, n=261, exact peak runs k=18..24, log2 lower bounds k=25..51, pigeonhole m=3..31; constants 1 and 6/5 and Lean inv-sum"

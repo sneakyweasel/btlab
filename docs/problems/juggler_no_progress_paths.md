@@ -38,7 +38,7 @@ terminates.
   is not claimed.
 - Descent/capture calculus and `minimal_avoids_progress` —
   **EXACT — LEAN VERIFIED**.
-- `even_word_contracts`, `reachesOne_of_iterate`, `floorPower_two` —
+- `even_itinerary_contracts`, `reachesOne_of_iterate`, `floorPower_two` —
   **EXACT — LEAN VERIFIED**.
 
 Project relationship: **extended**. The obstruction is stronger than
@@ -50,7 +50,7 @@ Project relationship: **extended**. The obstruction is stronger than
 Mathematical target     What necessary structure C must a long NO_CERTIFICATE prefix of a minimal non-1 n satisfy?
 Novelty hypothesis      Collapse-without-capture to m>1 is either already ReachesOne (e.g. 2) or forces a later descent; defect cannot reset
 Falsifier               A large even collapse to m>1 whose whole prefix from n is neither Descent nor Capture nor ReachesOne-implied
-Existing machinery      minimal_avoids_progress, Capture/Descent/ReachesOne, even_word_contracts, reachesOne_of_iterate, floorPower_two
+Existing machinery      minimal_avoids_progress, Capture/Descent/ReachesOne, even_itinerary_contracts, reachesOne_of_iterate, floorPower_two
 Maximum Phase-0 scope   ReachesOne closure of small even residuals; collapse-without-capture scan; defect-reset scan; one necessary C in Lean
 Promotion criterion     A proved necessary C beyond “no descent and no capture”, or a minimized COLLAPSE_WITHOUT_CAPTURE / DEFECT_RESET witness
 Stop criterion          Coinductive orbits; PowerHeight; residual automaton; enlarged capture basin; halt claim
@@ -134,7 +134,7 @@ state; even residuals \(2,4,6,8\) are forbidden even when the image is
 at least \(n\); a nonempty even prefix at \(n\ge 2\) is descent; a
 minimal non-1 \(n\ge 3\) starts odd.
 
-On annotated odd starts \(3,7,13,41\), the realized word is an odd
+On annotated odd starts \(3,7,13,41\), the realized itinerary is an odd
 expansion staying \(\ge n\), then an even residual that is either
 \(<n\) or cheap `ReachesOne`. This is finite-prefix annotation, not
 empirical totality.

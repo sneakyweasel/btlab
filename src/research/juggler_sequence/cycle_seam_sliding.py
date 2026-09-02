@@ -17,7 +17,7 @@ import json
 from typing import Any
 
 from research.juggler_sequence.cycle_finance import DATA_DIR
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 SLIDE_DIR = DATA_DIR / "seam_sliding"
 
@@ -26,13 +26,13 @@ CLASS_GREEN = "SEAM_SLIDING_GREEN"
 CLASS_PARK = "SEAM_SLIDING_PARK"
 
 ARCHIVED = (
-    "cycleWord_rotateWord",
-    "rotateWord_even_run",
+    "cycleItinerary_rotateItinerary",
+    "rotateItinerary_even_run",
     "cycle_trailing_evens_lt",
     "even_run_scale_barrier",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "oddLanding_preimage_unique",
-    "no_cycle_word_even_count_le_three",
+    "no_cycle_itinerary_even_count_le_three",
 )
 
 # Interior cuts of a homogeneous E^4 block, as in E|EEE, EE|EE, EEE|E.
@@ -40,8 +40,8 @@ INTERIOR_E_CUTS = ("E|EEE", "EE|EE", "EEE|E")
 CANONICAL_SEAMS = ("EO", "OE")
 
 
-def rotate_word(word: str, k: int) -> str:
-    """Cyclic shift; the Lean name is rotateWord."""
+def rotate_itinerary(word: str, k: int) -> str:
+    """Cyclic shift; the Lean name is rotateItinerary."""
 
     if not word:
         return word
@@ -69,7 +69,7 @@ def interior_e_cut_words(r: int = 4) -> dict[str, str]:
     for k in range(1, r):
         left = "E" * k
         right = "E" * (r - k)
-        out[f"{left}|{right}"] = rotate_word(base, 2 + k)
+        out[f"{left}|{right}"] = rotate_itinerary(base, 2 + k)
     return out
 
 
@@ -179,14 +179,14 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         decision = "PROMOTE"
         reason = (
             "a first-intersection constraint or a bound on r appears "
-            "that is not rotateWord / trailing-evens / even-scale / "
+            "that is not rotateItinerary / trailing-evens / even-scale / "
             "unique-odd-parent"
         )
     elif necklace_ok and back_fails and scale_ok:
         classification = CLASS_CLOSED
         decision = "CLOSE"
         reason = (
-            "interior E-cuts are rotateWord of the same necklace; a "
+            "interior E-cuts are rotateItinerary of the same necklace; a "
             "first intersection interior to E^r cannot be slid to the "
             "peak or treated as first at the valley; P < (V+1)^{2^r} "
             "is cycle_trailing_evens_lt; the EO/OE reduction is the "
@@ -231,7 +231,7 @@ def probe_payload() -> dict[str, Any]:
             "base": e_block_word(4),
             "cuts": cuts,
             "interior_cuts_same_class": necklace_collapses_interior_cuts(4),
-            "lean": "cycleWord_rotateWord / rotateWord_even_run",
+            "lean": "cycleItinerary_rotateItinerary / rotateItinerary_even_run",
         },
         "backward_slide": back,
         "backward_slide_r3": {
@@ -245,12 +245,12 @@ def probe_payload() -> dict[str, Any]:
         "scale": scale,
         "odd_interior": {
             "first_intersection": False,
-            "lean": "odd_cell_unique / oddLanding_preimage_unique",
+            "lean": "odd_preimage_unique / oddLanding_preimage_unique",
             "note": "O^r interiors are not first meetings, so O-sliding is vacuous",
         },
         "run_length": {
             "even_count_ge_four": True,
-            "lean": "no_cycle_word_even_count_le_three",
+            "lean": "no_cycle_itinerary_even_count_le_three",
             "cell": "cycle_trailing_evens_lt at each r",
             "note": "how long E^r can be is the archived even-count plus the cell",
         },

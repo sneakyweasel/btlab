@@ -3,7 +3,7 @@
 Status: **O7EEEE_WINDOW_EMPTY**
 
 Standalone application phase. Not a Research Engine experiment
-and not a termination theorem. A cycle word O^7 EEEE is the
+and not a termination theorem. A cycle itinerary O^7 EEEE is the
 seven-odd image landing in the EEEE inverse cell, then four
 even square-roots back to n.
 
@@ -15,10 +15,10 @@ Mathematical target     Is T_{O^7 EEEE}(n)=n empty on the
 Novelty hypothesis      the EEEE inverse cell is empty of
                         O^7 images below N0
 Falsifier               a hit, or T^7 enters the cell
-Existing machinery      leftover_prefix_cell; trailing evens
-                        r=4; odd_cell_unique; N0=828484409
+Existing machinery      leftover_prefix_preimage; trailing evens
+                        r=4; odd_preimage_unique; N0=828484409
 Maximum Phase-0 scope   exact window scan of one word; no Lean,
-                        no thirty-word census, no Z5
+                        no thirty-itinerary census, no Z5
 ```
 
 ## Metadata
@@ -48,14 +48,14 @@ no O^7 EEEE cycle on 3<=n<828484409; T^7 never entered the EEEE cell (below=0, i
 
 ## Lean
 
-- `leftover_prefix_cell`: `True`
+- `leftover_prefix_preimage`: `True`
 - `cycle_trailing_evens_lt`: `True`
-- `odd_cell_unique`: `True`
-- `even_cell_iff`: `True`
-- `cycle_word_length_ge_eleven`: `True`
-- no `no_cycle_word_oooooooeeee`: `True`
-- no `no_cycle_word_length_eleven`: `True`
-- no `no_cycle_word_four_even`: `True`
+- `odd_preimage_unique`: `True`
+- `even_preimage_iff`: `True`
+- `cycle_itinerary_length_ge_eleven`: `True`
+- no `no_cycle_itinerary_oooooooeeee`: `True`
+- no `no_cycle_itinerary_length_eleven`: `True`
+- no `no_cycle_itinerary_four_even`: `True`
 - no `juggler_reaches_one`: `True`
 - Paper A has no O^7 EEEE theorem: `True`
 - FloorPower not rewritten: `True`

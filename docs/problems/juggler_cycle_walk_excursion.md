@@ -40,7 +40,7 @@ in \(u\), so the optimizer hugs the floor.
 Christoffel word of slope \(o/L\) already computed in
 [juggler_cycle_christoffel.md](juggler_cycle_christoffel.md).
 This is a statement about the *charge relaxation*, not about
-realized cycle words. The one-parameter leftover-cell slogan stays
+realized cycle itineraries. The one-parameter leftover-cell slogan stays
 **REFUTED**.
 
 **Charge-per-letter is uniform (COMPUTATIONALLY VERIFIED).**
@@ -81,7 +81,7 @@ No cycle of any length — not claimed.
   CycleMin-illegal —
   **EXACT — HUMAN PROOF**
   ([juggler_cycle_cyclic_valley.md](juggler_cycle_cyclic_valley.md)).
-  The DP admits those words because it is a \(u\ge 0\) relaxation
+  The DP admits those itineraries because it is a \(u\ge 0\) relaxation
 - Christoffel leftover-cell reduction —
   **REFUTED** (`juggler_christoffel_one_parameter`)
 - Beatty identification of leftover \(L\) —

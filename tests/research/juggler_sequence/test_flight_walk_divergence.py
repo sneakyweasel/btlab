@@ -46,7 +46,7 @@ def test_hug_odds_matches_greedy_rule() -> None:
 
 
 def test_hug_odds_lean_anchors() -> None:
-    # native_decide anchors in WalkChargeWords.lean
+    # native_decide anchors in WalkChargeItineraries.lean
     assert hug_odds(84) == 53
     assert hug_odds(1054) == 665
     assert hug_odds(25781) == 16266

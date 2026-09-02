@@ -8,7 +8,7 @@ from research.juggler_sequence.global_defect import (
     census,
     compose_formula,
     envelope_slack,
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     itinerary_word,
@@ -27,9 +27,9 @@ def test_identity_matches_slack_on_short_words():
 
 
 def test_one_step_is_the_local_remainder():
-    assert follows_word(10, "E")
+    assert follows_itinerary(10, "E")
     assert global_defect(10, "E") == local_defect(10) == 1
-    assert follows_word(15, "O")
+    assert follows_itinerary(15, "O")
     assert global_defect(15, "O") == local_defect(15)
     assert global_defect(16, "E") == 0
     assert global_defect(9, "O") == 0

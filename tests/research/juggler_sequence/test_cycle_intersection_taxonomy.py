@@ -8,7 +8,7 @@ from research.conjectures import get_conjecture
 from research.juggler_sequence.cycle_almost_search import odd_preimage
 from research.juggler_sequence.cycle_cyclic_seam import LEGAL_22
 from research.juggler_sequence.cycle_entry_corridor import ee_entry_count
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_intersection_taxonomy.md"
@@ -24,7 +24,7 @@ def test_dossier_has_triage_and_closed_gates():
     assert "## Publication assessment" in text
     assert "**CLOSE**" in text
     assert "Do **not** raise" in text
-    assert "odd_cell_unique" in text
+    assert "odd_preimage_unique" in text
     assert "oddLanding_preimage_unique" in text
     assert "COMPOSITION_REPACKAGING" in text
 
@@ -49,5 +49,5 @@ def test_dossier_and_conjecture_record_close():
     assert "**CLOSE**" in dossier
     rec = get_conjecture("juggler_cycle_intersection_taxonomy")
     assert rec["status"] == "REFUTED"
-    assert rec["lean_reference"] == "odd_cell_unique"
+    assert rec["lean_reference"] == "odd_preimage_unique"
     assert rec["counterexamples"]

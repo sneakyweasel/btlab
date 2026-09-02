@@ -11,7 +11,7 @@ Classification **EXACT_FLOOR_IMPACT_KNOWN**.
 
 - First-descent starts n <= 100000, step cap 40.
 - PE subsample odd-odd n <= 4000.
-- No GPU. No word-atlas recensus. No new Lean. No Paper A edit.
+- No GPU. No itinerary-atlas recensus. No new Lean. No Paper A edit.
 
 ## Fixtures
 

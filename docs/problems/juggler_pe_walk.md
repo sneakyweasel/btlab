@@ -7,7 +7,7 @@ Standalone application phase on the Juggler floor-power map. It is
 `OE`-contracts reopen, not empty-cell dynamics, not episode-rank,
 not Paper A, and not a claim that every positive integer reaches 1.
 
-After empty-odd-cell PARK, the leftover residual is an odd-landing
+After empty-odd-preimage PARK, the leftover residual is an odd-landing
 PE walk. This phase asks whether repeated residual blocks
 \(O^a E\) move a forward predictive anchor-relative quantity.
 
@@ -120,7 +120,7 @@ Ordinary terminating leftovers, not `MinimalNonTerm` witnesses.
   both `365` and `1517` have \(\alpha=729/512\); `365` continues
   `OOE` to `12707`, `1517` takes `OE` to `2493`.
 - “`OE` recovery falls below \(n\)” — `2493>1517`.
-- `6187` ends by `OE` below \(n\); that is a word exit, not a
+- `6187` ends by `OE` below \(n\); that is an itinerary exit, not a
   closure law (`501` follows the same early \(L\) and continues).
 
 ## Formalization

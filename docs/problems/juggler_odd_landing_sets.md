@@ -39,7 +39,7 @@ This says nothing about totality.
 ## Current literature
 
 - Odd floor cells contain at most one integer —
-  **EXACT — LEAN VERIFIED** as `odd_cell_unique`.
+  **EXACT — LEAN VERIFIED** as `odd_preimage_unique`.
 - `landingParity_odd_iff` —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.LandingParity`.
 - Residual-state finite quotients need the integer itself —
@@ -63,7 +63,7 @@ Novelty hypothesis      A cylinder/interval/finite-state recursion
                         P_{r+1}=Φ(P_r) that is not just T
 Falsifier               Stay rate 1/2; singleton cells; no modular
                         or θ refinement
-Existing machinery      landingParity_odd_iff, odd_cell_unique,
+Existing machinery      landingParity_odd_iff, odd_preimage_unique,
                         odd-odd census
 Maximum Phase-0 scope   Name P_r and the exact recursion; census
                         geometry/modulus/θ; unique-preimage lemma.
@@ -89,7 +89,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**, and a **REPARAMETERIZATION** of
   iterated `T`
 - `oddLanding_preimage_unique` —
-  **EXACT — LEAN VERIFIED**, wrapping `odd_cell_unique`
+  **EXACT — LEAN VERIFIED**, wrapping `odd_preimage_unique`
 - \(\mathcal P_r\) occupies shrinking arithmetic cylinders —
   **REFUTED**
 - Iteration creates a finite \(2\)-adic automaton —
@@ -110,7 +110,7 @@ Dedicated \(\mathcal P_r\) census, not another PE-start scan.
   half singletons; \(\mathcal P_4\) is \(130/134\) singletons. There
   is no stable positive-length cylinder.
 - Every observed odd image has exactly one odd preimage in the
-  window, matching `odd_cell_unique`.
+  window, matching `odd_preimage_unique`.
 - All odd classes modulo \(8,16,32\) remain occupied through
   \(\mathcal P_4\). Every residue modulo \(64\) both stays and
   exits at each of the first four levels.
@@ -132,7 +132,7 @@ None opened in `conjectures/`.
 - “Iteration is recognized modulo \(2^m\).” False: modulo \(64\),
   every odd class both continues and exits.
 - “An odd landing \(m\) has a metric interval of odd preimages.”
-  False: `odd_cell_unique` and the census both give \(0\) or \(1\)
+  False: `odd_preimage_unique` and the census both give \(0\) or \(1\)
   preimage.
 - “Successive square-gap coordinates on a long odd run are
   constrained.” False: \(\theta_i,\theta_{i+1}\) occupy all

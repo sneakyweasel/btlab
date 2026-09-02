@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_ooo_escape import walk_language
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.scale_loop_hidden import (
     CLASS_GREEN,
     FORBIDDEN_THEOREMS,
@@ -33,9 +33,9 @@ from research.juggler_sequence.second_oo_cube import scale_band, second_oo
 def test_word_and_envelope():
     assert t_may_exceed_n() is True
     assert 2187 > 2048
-    assert follows_word(LOOP_501["n"], WORD)
+    assert follows_itinerary(LOOP_501["n"], WORD)
     assert image_after(LOOP_501["n"], WORD) == LOOP_501["t"]
-    assert follows_word(LOOP_6187["n"], WORD)
+    assert follows_itinerary(LOOP_6187["n"], WORD)
     assert image_after(LOOP_6187["n"], WORD) == LOOP_6187["t"]
     assert return_in_envelope(LOOP_501["n"], LOOP_501["t"])
     assert return_in_envelope(LOOP_6187["n"], LOOP_6187["t"])
@@ -148,5 +148,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "OOEOOOEOOEE" in dossier
     assert "juggler_scale_loop_hidden" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

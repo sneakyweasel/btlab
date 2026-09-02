@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.backward_geometry import pred_odd
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimum_relative import above_anchor
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_anchor_closure.json"
@@ -48,7 +48,7 @@ EXISTING_LEAN = (
     "AboveAnchor",
     "finiteProgress_of_aboveAnchor_returnBelow",
     "predClosure_iff_good",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "Good",
     "Bad",
 )
@@ -111,7 +111,7 @@ def trajectory_until_drop(n: int, cap: int = 4000) -> tuple[int, ...]:
 
 
 def follows_from(x: int, word: str) -> tuple[bool, int | None]:
-    if not follows_word(x, word):
+    if not follows_itinerary(x, word):
         return False, None
     return True, image_after(x, word)
 
@@ -142,7 +142,7 @@ def obstruction_free_high(path: tuple[int, ...], n: int) -> list[int]:
 def smaller_followers(n: int, word: str) -> list[int]:
     found: list[int] = []
     for m in range(3, n, 2):
-        if follows_word(m, word):
+        if follows_itinerary(m, word):
             found.append(m)
     return found
 
@@ -260,7 +260,7 @@ def episode_row(n: int) -> dict[str, Any]:
         "high_merge": high_merge(n),
         "smaller_full_word": smaller_followers(n, word),
         "smaller_prefix": smaller_followers(n, prefix),
-        "follows_L": follows_word(n, WORD_L),
+        "follows_L": follows_itinerary(n, WORD_L),
         "ranks": ranks,
         "even_below_square_before_last": any(
             path[idx] % 2 == 0 and path[idx] < n * n for idx in range(len(path) - 2)
@@ -272,7 +272,7 @@ def contrast_69() -> dict[str, Any]:
     """Shared OOEOOE even-below-square trap. Not a leftover corridor."""
     n = CONTRAST_TRAP
     word = "OOEOOE"
-    assert follows_word(n, word)
+    assert follows_itinerary(n, word)
     landing = image_after(n, word)
     return {
         "n": n,
@@ -355,7 +355,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "paper_a_has_new_api": any(paper_new.values()),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -488,7 +488,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        rank is not a potential",
         "Existing machinery      AboveAnchor; ReturnBelow; PredEven/PredOdd;",
         "                        PredClosure <-> ReachesOne (CLOSED);",
-        "                        odd_cell_unique; even_below_anchor_pow",
+        "                        odd_preimage_unique; even_below_anchor_pow",
         "Maximum Phase-0 scope   365, 501, 1517, 6187; 69/89 contrast; no new Lean",
         "```",
         "",

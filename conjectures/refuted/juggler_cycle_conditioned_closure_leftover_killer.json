@@ -6,7 +6,7 @@
   "counterexamples": [
     "At n=10^6+1 the packed-to-theta ratio is 23.12 at L=25781 and 1.012 at L=55293. Deepening every OE into OOOE still leaves packed > theta at both lengths. Losing a cheap valley costs ~8.62e-8, so 6532 of 6751 cheap OOE may rise at L=25781 and 177 of 14479 at L=55293",
     "The residual lose-class has log10 binom(14479,177)>200 at L=55293 and log10 binom(6751,6532)>300 at L=25781. Conditioning on finance is not a stronger structural statement than the existing OOE/OE packing",
-    "The run-type n-window is [10^6+1, 19010076] at L=25781 and [10^6+1, 1011446] at L=55293. The word-independent hull on both windows meets the start and reduces to T <= n^{P_L}"
+    "The run-type n-window is [10^6+1, 19010076] at L=25781 and [10^6+1, 1011446] at L=55293. The itinerary-independent hull on both windows meets the start and reduces to T <= n^{P_L}"
   ],
   "first_seen": "juggler finance-conditioned exact closure",
   "lean_reference": "cycleMin_finance",

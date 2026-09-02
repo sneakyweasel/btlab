@@ -13,7 +13,7 @@
   "literature": [
     "fernandez-ibanez-2026"
   ],
-  "notes": "The transport lemma is EXACT — HUMAN PROOF; the 50508 kill is COMPUTATIONALLY VERIFIED (exact lattice DP plus a guarded float comparison, the Theorem 4.6 trust boundary). Consequence: L = 50508 is not a Juggler cycle length at the certified floor; the combined parity + walk contiguous cutoff is fixed by the certified survey (data/research/juggler/cycle_walk_charge/survey.json, summary.json). Successors: the hug-word identification (juggler_walk_greedy_prefix), the DK/Ostrowski census-free envelope (juggler_walk_dk_envelope). Not a halt theorem.",
+  "notes": "The transport lemma is EXACT — HUMAN PROOF; the 50508 kill is COMPUTATIONALLY VERIFIED (exact lattice DP plus a guarded float comparison, the Theorem 4.6 trust boundary). Consequence: L = 50508 is not a Juggler cycle length at the certified floor; the combined parity + walk contiguous cutoff is fixed by the certified survey (data/research/juggler/cycle_walk_charge/survey.json, summary.json). Successors: the hug-itinerary identification (juggler_walk_greedy_prefix), the DK/Ostrowski census-free envelope (juggler_walk_dk_envelope). Not a halt theorem.",
   "not_a_halt_theorem": true,
   "no_cycle_all_lengths": false
 }

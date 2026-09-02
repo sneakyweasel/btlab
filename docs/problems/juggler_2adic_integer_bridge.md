@@ -14,7 +14,7 @@ realized by a positive integer under the exact Juggler map?
 
 ## Exact statement
 
-For a finite word \(w\) and precision \(P\ge 1\), `Admissible_P(w)` is
+For a finite itinerary \(w\) and precision \(P\ge 1\), `Admissible_P(w)` is
 the existing residue-class predicate: the first letter is \(n\bmod 2\),
 and later letters are `INCONCLUSIVE` once a cylinder splits.
 `IntReal(w)` is \(\exists n>0,\ \operatorname{follows}(n,w)\). Phase 0
@@ -58,7 +58,7 @@ Falsifier               Only the first letter is 2-adically forced;
                         every A_P\\I gap is SCALE_LIMITED or bound-
                         limited; BT jets and 2-adic residues are
                         CRT-transverse
-Existing machinery      follows_word, floor_power, landing_valuation,
+Existing machinery      follows_itinerary, floor_power, landing_valuation,
                         even_tower_to_one, integer_jet / encode / lsd,
                         SCALE_LIMITED hole certificates
 Maximum Phase-0 scope   k<=12, P<=16, n<=4000; constructive cylinder
@@ -132,7 +132,7 @@ None added. Existing lemmas in `Itinerary`, `Collapse`,
 
 Classification **BRIDGE_COMPLEX**.
 
-Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite word. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived.
+Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite itinerary. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived.
 
 ## Open questions
 
@@ -141,7 +141,7 @@ return to residual quotients or information-complexity.
 
 ## Decision
 
-**CLOSE**. Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite word. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived. Do not claim termination.
+**CLOSE**. Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite itinerary. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived. Do not claim termination.
 
 Best next question: none from this branch.
 

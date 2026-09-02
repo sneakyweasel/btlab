@@ -16,7 +16,7 @@ from typing import Any
 
 from research.juggler_sequence.cycle_rounding import remainder
 from research.juggler_sequence.odd_odd_frontier import post_even_kind, residual_cell
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import (
     HARD_PROBES,

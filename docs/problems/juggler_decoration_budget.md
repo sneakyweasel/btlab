@@ -77,7 +77,7 @@ Promotion criterion     Every load-bearing budget holds
                         as P0; 7:4 composite confirmed on the
                         decorated phase.
 Stop criterion          A Theorem-T-type witness, or machinery
-                        gravity (visualizer, extra P, extra words).
+                        gravity (visualizer, extra P, extra itineraries).
 ```
 
 ## Balanced-ternary formulation

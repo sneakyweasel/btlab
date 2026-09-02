@@ -20,7 +20,7 @@ from research.juggler_sequence.corridor import (
     run_probe,
 )
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
 
 def test_even_start_has_no_stay_above_corridor():

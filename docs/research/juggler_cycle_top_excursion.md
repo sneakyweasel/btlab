@@ -48,7 +48,7 @@ the calibrated transients.
 - start=`25` M=`52214` r=`2` p=`15` window=`True` lower_gap=`1589` upper_gap=`13321`
 
 - n-search: `False`
-- cycle-word census: `False`
+- cycle-itinerary census: `False`
 
 ## Lean
 

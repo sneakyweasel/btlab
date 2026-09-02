@@ -465,7 +465,7 @@
     "AboveAnchor": true,
     "finiteProgress_of_aboveAnchor_returnBelow": true,
     "predClosure_iff_good": true,
-    "odd_cell_unique": true,
+    "odd_preimage_unique": true,
     "Good": true,
     "Bad": true,
     "has_EscapeEpisode": false,

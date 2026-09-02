@@ -31,8 +31,8 @@ nothing about totality.
 
 ## Current literature
 
-- `even_cell_iff` / `odd_cell_iff` / `odd_cell_unique` —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Cells`.
+- `even_preimage_iff` / `odd_preimage_iff` / `odd_preimage_unique` —
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Preimages`.
 - `landingParity = J(n)\bmod 2` —
   **EXACT — LEAN VERIFIED** and tautological in \(T\); landing-θ
   **CLOSE** as `LANDING_THETA_UNRESTRICTED`.
@@ -65,8 +65,8 @@ Novelty hypothesis      A deterministic Archimedean discrepancy law
 Falsifier               Total discrepancy is only the even-cell
                         O(√N) rewrite; odd-start error is Ω(N^{1−ε})
                         or a linear bias; or the count is T itself.
-Existing machinery      floor_power; even_cell_iff / odd_cell_iff /
-                        odd_cell_unique; landingParity = T mod 2
+Existing machinery      floor_power; even_preimage_iff / odd_preimage_iff /
+                        odd_preimage_unique; landingParity = T mod 2
                         (tautological); 2-adic bridge CLOSE; θ-landing
                         CLOSE; probabilistic P(O) PARK/CLOSE.
 Maximum Phase-0 scope   Exact even/odd split; human even-cell bound;
@@ -74,7 +74,7 @@ Maximum Phase-0 scope   Exact even/odd split; human even-cell bound;
                         E_odd(N); no k-step iteration; no CLI; no Lean
                         unless an odd-start inequality is proved.
 Promotion criterion     An explicit E_odd(N)=o(N) with a proof, or a
-                        total E(N) that is not just even_cell_iff.
+                        total E(N) that is not just even_preimage_iff.
 Stop criterion          All KNOWN/REPARAMETERIZATION; machinery
                         gravity (plots, word iteration, Weyl engine);
                         halt claim; flipping parity_frequency_theorem

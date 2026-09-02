@@ -10,7 +10,7 @@ Standalone application phase on the Juggler floor-power map, on the
 Simons–de Weger m-cycle / circuit template — log-unroll of
 `CycleFinance` at each local minimum, not only at `CycleMin` — and
 asks whether \(m\) small minima can jointly pay a large formal
-surplus. It is not a halt theorem, not a leftover-word census, not a
+surplus. It is not a halt theorem, not a leftover-itinerary census, not a
 floor raise, not a reopen of peak finance or extremal composition,
 and not a claim that every positive integer reaches 1.
 
@@ -28,7 +28,7 @@ each local minimum separately.
 On Juggler, every odd step with \(n\ge 2\) strictly increases and
 every even step strictly decreases. A **local minimum** is a cyclic
 even-to-odd landing. A **local maximum** is a cyclic odd-to-even
-landing. An **\(m\)-cycle** is a cycle word with exactly \(m\)
+landing. An **\(m\)-cycle** is a cycle itinerary with exactly \(m\)
 blocks \(O^{k_i}E^{l_i}\).
 
 **Joint-minima finance (EXACT — HUMAN PROOF).**
@@ -215,7 +215,7 @@ Classification **M_CYCLE_FINANCE_GREEN**. Regenerate with
 ## Open questions
 
 The Lean leftover is
-`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`
+`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`
 (floor \(261\)). Evaluating the *same* joint-minima bound at
 floor \(257\) excludes every length-38 cycle; the odd-run height
 refinement

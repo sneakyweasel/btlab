@@ -67,7 +67,7 @@ class. Totality remains unclaimed.
 Mathematical target     isolate the FiniteProgress coverage gap after even and OE
 Novelty hypothesis      leftover class is odd-to-odd; first even residual stays >= n
 Falsifier               even or OE without FiniteProgress, or a halt theorem
-Existing machinery      even_word_contracts, floorPower_odd_even_two_step_lt, ReachesOne
+Existing machinery      even_itinerary_contracts, floorPower_odd_even_two_step_lt, ReachesOne
 Maximum Phase-0 scope   induction spine; even/OE coverage; odd-odd leftover census
 Promotion criterion     Spine compiles and Lean isolates odd-odd as the gap
 Stop criterion          Halt; FiniteProgress for all n; cycle engine; progress tactic

@@ -12,8 +12,8 @@ from itertools import product
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH
 from research.juggler_sequence.lean_paths import juggler_text
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -60,7 +60,7 @@ def formal_alpha(word: str) -> tuple[int, int]:
 
 
 def q_contracts(q: int, word: str) -> bool:
-    return follows_word(q, word) and image_after(q, word) + 1 < (q + 1) ** 2
+    return follows_itinerary(q, word) and image_after(q, word) + 1 < (q + 1) ** 2
 
 
 def q_max_of(word: str, *, q_cap: int) -> int | None:
@@ -109,7 +109,7 @@ def collapse_family(*, k_max: int = 5) -> list[dict[str, Any]]:
                 "alpha_num": num,
                 "alpha_den": den,
                 "q": q,
-                "follows": follows_word(q, word),
+                "follows": follows_itinerary(q, word),
                 "output": output,
                 "contracts": output + 1 < (q + 1) ** 2,
                 "superquadratic": is_superquadratic(word),

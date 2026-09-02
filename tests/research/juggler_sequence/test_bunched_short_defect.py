@@ -19,7 +19,7 @@ from research.juggler_sequence.bunched_short_defect import (
     tiny_gap_min,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_ee_identity_and_tiny_gap():
@@ -109,5 +109,5 @@ def test_dossier_boundary():
     assert "PARK" in dossier
     assert "defect" in dossier.lower()
     assert "juggler_bunched_short_defect" in ret
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

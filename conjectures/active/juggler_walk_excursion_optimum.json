@@ -13,6 +13,6 @@
   "literature": [
     "fernandez-ibanez-2026"
   ],
-  "notes": "Phase 0 is computationally verified: 123/123 small maximizers and the three leftover words split into types (2,1) and (1,1) only, and the leftover words equal the Christoffel words already in cycle_christoffel. This is a statement about the u >= 0 charge relaxation, not about realized cycle words. The one-parameter leftover-cell slogan stays refuted (juggler_christoffel_one_parameter). The dream uniform ratio B/theta < 1 at a fixed floor is false (survey row L=176251, margin 0.159) and is the same shape as juggler_baker_kills_near_convergents. Not a halt theorem.",
+  "notes": "Phase 0 is computationally verified: 123/123 small maximizers and the three leftover itineraries split into types (2,1) and (1,1) only, and the leftover itineraries equal the Christoffel words already in cycle_christoffel. This is a statement about the u >= 0 charge relaxation, not about realized cycle itineraries. The one-parameter leftover-cell slogan stays refuted (juggler_christoffel_one_parameter). The dream uniform ratio B/theta < 1 at a fixed floor is false (survey row L=176251, margin 0.159) and is the same shape as juggler_baker_kills_near_convergents. Not a halt theorem.",
   "not_a_halt_theorem": true
 }

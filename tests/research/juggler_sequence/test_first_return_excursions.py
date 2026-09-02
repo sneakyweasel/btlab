@@ -13,7 +13,7 @@ from research.juggler_sequence.first_return_excursions import (
     record,
     slack_profile,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_even_return_is_one_even_step():

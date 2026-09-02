@@ -56,9 +56,9 @@ T_Ev(n)=T_v(⌊√n⌋) on every square-root cell; odd cells are unique so an in
 
 ## Lean
 
-- `even_cell_iff`: `True`
-- `odd_cell_iff`: `True`
-- `cell_same_next_state`: `True`
+- `even_preimage_iff`: `True`
+- `odd_preimage_iff`: `True`
+- `preimage_same_next_state`: `True`
 - `iterate_cons_even`: `True`
 - `iterate_cons_odd`: `True`
 - `first_even_freeze`: `True`
@@ -67,7 +67,7 @@ T_Ev(n)=T_v(⌊√n⌋) on every square-root cell; odd cells are unique so an in
 - `first_even_contracts_iff`: `True`
 - `eoo_from_first_even`: `True`
 - `constant_cell_trichotomy`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `floorPower_eoo_contracts_iff`: `True`
 - `eoo_contracts_on_cell`: `True`
 - `power_bound_compensated_contracts`: `True`
@@ -91,5 +91,5 @@ T_Ev(n)=T_v(⌊√n⌋) on every square-root cell; odd cells are unique so an in
 
 T_Ev(n)=T_v(⌊√n⌋) on every square-root cell; odd cells are unique so an initial O does not freeze a range; EOO is the mixed-cell case and EEOOOO is an entire-cell case.
 
-This is a finite-word cell identity, not a global halt result.
+This is a finite-itinerary cell identity, not a global halt result.
 

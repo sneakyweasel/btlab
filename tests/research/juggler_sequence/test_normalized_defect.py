@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     itinerary_word,
@@ -48,7 +48,7 @@ def test_surplus_ratio_is_the_endpoint_comparison():
     assert report["fail"] == 0
     assert report["checked"] > 0
     assert defect_ratio(9, "O") is None or defect_ratio(9, "O")[0] == 0
-    assert follows_word(69, "OOE")
+    assert follows_itinerary(69, "OOE")
     pair = defect_ratio(69, "OOE")
     assert pair is not None
     assert pair[0] < pair[1]

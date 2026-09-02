@@ -14,7 +14,7 @@
     "invariant_measure_theorem": false,
     "terras_reopen": false,
     "phase_reopen": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "global_non_realizability": false
   },
   "scan": {
@@ -10942,7 +10942,7 @@
     "late_R_near_one": false,
     "git": "550ab99a229821977538d530dd4a724e9ef4729b",
     "letter_chain": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "phase_reopen": false,
     "terras_reopen": false,
     "halt_theorem": false,
@@ -10954,7 +10954,7 @@
     "sorry_free": true,
     "even_word_contracts": true,
     "floorPower_odd_even_two_step_lt": true,
-    "even_cell_iff": true,
+    "even_preimage_iff": true,
     "AboveAnchor": true,
     "has_juggler_reaches_one": false,
     "has_no_juggler_escape": false,

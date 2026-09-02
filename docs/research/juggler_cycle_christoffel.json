@@ -229,12 +229,12 @@
   "lean": {
     "sorry_free": true,
     "cycleMin_finance": true,
-    "no_cycle_word_length_le_nineteen": true,
-    "cycle_word_length_thirty_eight_or_ge_thirty_nine": true,
+    "no_cycle_itinerary_length_le_nineteen": true,
+    "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine": true,
     "power_bound_eq_implies_monochrome": true,
     "has_juggler_reaches_one": false,
-    "has_no_cycle_word_any_length": false,
-    "has_no_cycle_word_christoffel": false,
+    "has_no_cycle_itinerary_any_length": false,
+    "has_no_cycle_itinerary_christoffel": false,
     "has_cycle_near_christoffel": false,
     "has_christoffel_excludes_length": false,
     "has_api_CycleChristoffel": false,
@@ -246,7 +246,7 @@
   },
   "decision": {
     "classification": "CYCLE_CHRISTOFFEL_CLOSED",
-    "reason": "leftover-word / CycleMin candidates are not a one-parameter Christoffel necklace: the thirty L=11 leftovers include Christoffel and 4 Hamming, family 30 versus necklace 4; L=19 CycleMin weight-12 has 12376 words, median cyclic Hamming 6, radius 0 only 7; the isolated-even worst-m family has 462 words. Finance is word-order-independent. Lebel sieving was not used. Cycle-only near-Christoffel rigidity is not claimed refuted"
+    "reason": "leftover-itinerary / CycleMin candidates are not a one-parameter Christoffel necklace: the thirty L=11 leftovers include Christoffel and 4 Hamming, family 30 versus necklace 4; L=19 CycleMin weight-12 has 12376 words, median cyclic Hamming 6, radius 0 only 7; the isolated-even worst-m family has 462 words. Finance is word-order-independent. Lebel sieving was not used. Cycle-only near-Christoffel rigidity is not claimed refuted"
   },
   "search_method": "ceiling Christoffel O/E words at leftover L; Farey identification of o_min/L; cyclic Hamming of the thirty L=11 leftovers and all CycleMin weight-o_min words at L=11,19; isolated-even worst-m family at L=19; no Lebel walk"
 }

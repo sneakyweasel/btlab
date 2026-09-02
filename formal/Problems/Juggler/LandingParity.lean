@@ -1,4 +1,4 @@
-import Problems.Juggler.Cells
+import Problems.Juggler.Preimages
 import Problems.Juggler.ExpandingGrammar
 
 namespace Problems.Juggler

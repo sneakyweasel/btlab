@@ -1,7 +1,7 @@
 """Peak Diophantine defects on a Juggler cycle top.
 
 Not a Research Engine control-layer experiment. Not a halt theorem.
-Does not enumerate cycle words and does not search for periodic
+Does not enumerate cycle itineraries and does not search for periodic
 points. Calibrates finite-orbit peak cells against the sequential
 identity x^3 = (p^{2^r} + ε)^2 + δ and a cheap residue census.
 """
@@ -18,7 +18,7 @@ from research.juggler_sequence.cycle_top_pred import (
     STARTS,
     pred_of_orbit,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     CYCLE_DIOPHANTINE,
@@ -59,8 +59,8 @@ LEAN_THEOREMS = (
     "peak_diophantine_slack",
     "cycle_peak_diophantine",
     "cycle_peak_diophantine_slack",
-    "cycleWord_not_reachesOne",
-    "cycleWord_iterate_not_lt_twelve",
+    "cycleItinerary_not_reachesOne",
+    "cycleItinerary_iterate_not_lt_twelve",
     "cycle_top_landing_ge_thirteen",
 )
 
@@ -164,8 +164,8 @@ def lean_api_present() -> dict[str, bool]:
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
     combined = text + cycle + corpus + progress
     core_cycle_facts = {
-        "cycleWord_not_reachesOne",
-        "cycleWord_iterate_not_lt_twelve",
+        "cycleItinerary_not_reachesOne",
+        "cycleItinerary_iterate_not_lt_twelve",
     }
     named = {
         name: (
@@ -187,16 +187,16 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in text
-        and "theorem no_cycle_word " not in text,
+        and "theorem no_cycle_itinerary " not in text,
         "no_cycle_engine": "def CycleSearch" not in text
         and "def CycleStates" not in text,
         "no_infinite_path_type": "coinductive" not in text.lower()
         and "def InfinitePath" not in text,
-        "CycleWord_not_rewritten": "peakOddDefect" not in cycle
+        "CycleItinerary_not_rewritten": "peakOddDefect" not in cycle
         and "topEvenDefect" not in cycle,
-        "FloorPower_not_rewritten": "CycleWord" not in floor
+        "FloorPower_not_rewritten": "CycleItinerary" not in floor
         and "peakOddDefect" not in floor,
-        "Progress_unchanged": "CycleWord" not in progress,
+        "Progress_unchanged": "CycleItinerary" not in progress,
         "orbit_min_not_used": "MinimalNonTerm" not in text,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
         "no_remainder_dynamics": "def RemainderDynamics" not in text,
@@ -253,7 +253,7 @@ def run_probe() -> dict[str, Any]:
             for row in hard + [row for row in rows if row["start"] in (3, 7, 9, 21)]
         ],
         "n_search": False,
-        "cycle_word_census": False,
+        "cycle_itinerary_census": False,
         "remainder_dynamics": False,
         "new_energy": False,
         "mordell_solver": False,
@@ -267,7 +267,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and all(lean[name] for name in LEAN_THEOREMS)
         and lean["forbidden_engines_absent"]
         and lean["no_cycle_engine"]
-        and lean["CycleWord_not_rewritten"]
+        and lean["CycleItinerary_not_rewritten"]
         and lean["FloorPower_not_rewritten"]
         and lean["orbit_min_not_used"]
         and lean["PowerBoundEq_not_used_as_cycle_attack"]
@@ -283,7 +283,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         }
     if (
         scan["n_search"]
-        or scan["cycle_word_census"]
+        or scan["cycle_itinerary_census"]
         or scan["remainder_dynamics"]
         or scan["new_energy"]
         or scan["mordell_solver"]
@@ -423,7 +423,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         [
             "",
             f"- n-search: `{scan['n_search']}`",
-            f"- cycle-word census: `{scan['cycle_word_census']}`",
+            f"- cycle-word census: `{scan['cycle_itinerary_census']}`",
             f"- remainder dynamics: `{scan['remainder_dynamics']}`",
             f"- new energy: `{scan['new_energy']}`",
             f"- Mordell solver: `{scan['mordell_solver']}`",
@@ -437,7 +437,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     lines.extend(
         [
             f"- certificate unchanged: `{lean.get('certificate_present')}`",
-            f"- CycleWord not rewritten: `{lean.get('CycleWord_not_rewritten')}`",
+            f"- CycleItinerary not rewritten: `{lean.get('CycleItinerary_not_rewritten')}`",
             f"- FloorPower not rewritten: `{lean.get('FloorPower_not_rewritten')}`",
             f"- orbit-min hypothesis unused: `{lean.get('orbit_min_not_used')}`",
             f"- PowerBoundEq not used as cycle attack: `{lean.get('PowerBoundEq_not_used_as_cycle_attack')}`",

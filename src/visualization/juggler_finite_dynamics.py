@@ -19,12 +19,12 @@ from research.juggler_sequence.cycle_walk_charge import DATA_DIR as WALK_DATA_DI
 from research.juggler_sequence.bunched_last_cluster import FAMILIES
 from research.juggler_sequence.cycle_length_seven import (
     THRESHOLD_BY_SUFFIX,
-    cycle_word_hits,
+    cycle_itinerary_hits,
     orbit_until_fail,
     suffix_after_last_internal_e,
 )
 from research.juggler_sequence.cycle_ooo_scale import cyclemin_orientation
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.envelope_defect import BIT_LIMIT, tiny_deficit
 from research.juggler_sequence.expansion_slack import FOUR_BLOCK
 from research.juggler_sequence.first_e_e4 import (
@@ -35,7 +35,7 @@ from research.juggler_sequence.first_e_e4 import (
     remainder_shapes,
     word_e4,
 )
-from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
+from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
 from research.juggler_sequence.global_defect import (
     compose_formula,
     is_monochrome,
@@ -48,7 +48,7 @@ from research.juggler_sequence.length11_nonpullback import (
     SPOT_WITNESS,
 )
 from research.juggler_sequence.length8_bootstrap import named_length8_filter
-from research.juggler_sequence.power_words import floor_power, odd_count, regime_of
+from research.juggler_sequence.power_itineraries import floor_power, odd_count, regime_of
 from research.juggler_sequence.progress_coverage import coverage_bucket, first_even_residual
 
 TRAJECTORY_STEPS_MAX = 80
@@ -58,7 +58,7 @@ WORD_MAX = 8
 CYCLE_WORD_MAX = 16
 LEFTOVER_REPLAY_MAX = 256
 DESCENT_WINDOW_MAX = 500
-EVEN_CELL_LIST_MAX = 40
+EVEN_PREIMAGE_LIST_MAX = 40
 
 N_PRESETS: dict[str, int] = {
     "3 (note trajectory)": 3,
@@ -145,7 +145,7 @@ LEFTOVER_CUTOFF: dict[str, int] = {
 # Periods ≤ 25780 are excluded separately by Theorem 4.6 at the verified
 # descent floor 10^6; these rows name the local obstruction when there is one.
 _WORD_CLASS: dict[str, tuple[str, str]] = {
-    "OOE": ("threshold", "Lemma 3.4(i): OO next-square vs last-even cell"),
+    "OOE": ("threshold", "Lemma 3.4(i): OO next-square vs last-even one-step preimage"),
     "OOOE": ("odd-run", "Lemma 3.4(v)"),
     "OOOOE": ("odd-run", "Lemma 3.4(v)"),
     "OOOOOE": ("odd-run", "Lemma 3.4(v)"),
@@ -189,42 +189,42 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
     },
     {
         "text": "Lemma 3.1 odd cells unique",
-        "lean": "odd_cell_unique",
-        "ledger": "J-inverse-cell-asymmetry",
+        "lean": "odd_preimage_unique",
+        "ledger": "J-inverse-preimage-asymmetry",
     },
     {
         "text": "Theorem 3.2 cycle restrictions",
-        "lean": "cycle_word_formally_expanding",
+        "lean": "cycle_itinerary_formally_expanding",
         "ledger": "J-cycle-finite-structure",
     },
     {
         "text": "Lemma 3.5 leftovers OOOEOE, OOOOEE",
-        "lean": "no_cycle_word_oooeoe / no_cycle_word_ooooee",
+        "lean": "no_cycle_itinerary_oooeoe / no_cycle_itinerary_ooooee",
         "ledger": "J-leftover-length-six-orientations",
     },
     {
         "text": "Theorem 3.6 census length ≤ 6",
-        "lean": "no_cycle_word_length_le_six",
+        "lean": "no_cycle_itinerary_length_le_six",
         "ledger": "J-small-cycle-census",
     },
     {
         "text": "Lemma 3.7 leftovers OOOOEOE, OOOOOEE",
-        "lean": "no_cycle_word_ooooeoe / no_cycle_word_oooooee",
+        "lean": "no_cycle_itinerary_ooooeoe / no_cycle_itinerary_oooooee",
         "ledger": "J-leftover-length-seven-orientations",
     },
     {
         "text": "Theorem 3.8 census length ≤ 7",
-        "lean": "no_cycle_word_length_le_seven",
+        "lean": "no_cycle_itinerary_length_le_seven",
         "ledger": "J-small-cycle-census-seven",
     },
     {
         "text": "Laboratory census length ≤ 8",
-        "lean": "no_cycle_word_length_le_eight",
+        "lean": "no_cycle_itinerary_length_le_eight",
         "ledger": "J-small-cycle-census-eight",
     },
     {
         "text": "Theorem 3.12 two-even leftovers",
-        "lean": "no_cycle_word_two_even_ee / no_cycle_word_two_even_eoe",
+        "lean": "no_cycle_itinerary_two_even_ee / no_cycle_itinerary_two_even_eoe",
         "ledger": "J-two-even-leftover-ee",
     },
     {
@@ -234,17 +234,17 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
     },
     {
         "text": "Theorems 3.14–3.20 bunched last-cluster",
-        "lean": "no_cycle_word_three_even_*",
+        "lean": "no_cycle_itinerary_three_even_*",
         "ledger": "J-three-even-eee",
     },
     {
         "text": "Theorem 3.21 gapped three-even CycleWord",
-        "lean": "no_cycle_word_gapped_three_even_ee / _eoe",
+        "lean": "no_cycle_itinerary_gapped_three_even_ee / _eoe",
         "ledger": "J-gapped-cycle-word-ee",
     },
     {
         "text": "Theorem 3.22 even-count; Corollary 3.23 period ≥ 11",
-        "lean": "no_cycle_word_even_count_le_three / cycle_word_length_ge_eleven",
+        "lean": "no_cycle_itinerary_even_count_le_three / cycle_itinerary_length_ge_eleven",
         "ledger": "J-even-count-le-three",
     },
     {
@@ -324,7 +324,7 @@ LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
         "branch": "Lean leftover merge",
         "decision": "PROMOTE",
         "tag": "packaging",
-        "note": "leftover_prefix_cell; families in LeftoverFamilies; Paper A census ≤7",
+        "note": "leftover_prefix_preimage; families in LeftoverFamilies; Paper A census ≤7",
     },
     {
         "branch": "Length-8 two-even squares",
@@ -336,7 +336,7 @@ LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
         "branch": "Length-8 census",
         "decision": "PROMOTE",
         "tag": "EXACT — LEAN VERIFIED",
-        "note": "no_cycle_word_length_le_eight; implied by Paper A period ≥11; not a halt theorem",
+        "note": "no_cycle_itinerary_length_le_eight; implied by Paper A period ≥11; not a halt theorem",
     },
 )
 
@@ -940,7 +940,7 @@ def envelope_view(n: int, word: str) -> EnvelopeView:
         raise ValueError("envelope_view requires an O/E word of length ≤ 8")
     word = parsed
     odds = odd_count(word)
-    follows = follows_word(n, word) if word else True
+    follows = follows_itinerary(n, word) if word else True
     fail_index = None
     fail_state = None
     if word and not follows:
@@ -1024,7 +1024,7 @@ def compose_view(n: int, u: str, v: str) -> ComposeView:
     if len(left) + len(right) > WORD_MAX:
         raise ValueError("compose_view requires |uv| ≤ 8")
     word = left + right
-    follows = follows_word(n, word) if word else True
+    follows = follows_itinerary(n, word) if word else True
     if not follows:
         return ComposeView(n, left, right, False, None, None, None, None, None, None, False)
     mid = image_after(n, left) if left else n
@@ -1055,7 +1055,7 @@ def compose_view(n: int, u: str, v: str) -> ComposeView:
 
 
 @dataclass(frozen=True)
-class EvenCellView:
+class EvenPreimageView:
     q: int
     lo: int
     hi: int
@@ -1064,14 +1064,14 @@ class EvenCellView:
     truncated: bool
 
 
-def even_cell_view(q: int) -> EvenCellView:
+def even_preimage_view(q: int) -> EvenPreimageView:
     if q < 0:
-        raise ValueError("even_cell_view requires q ≥ 0")
-    lo, hi = even_cell(q)
+        raise ValueError("even_preimage_view requires q ≥ 0")
+    lo, hi = even_preimage(q)
     evens = tuple(range(lo + (lo % 2), hi, 2))
-    truncated = len(evens) > EVEN_CELL_LIST_MAX
-    shown = evens[:EVEN_CELL_LIST_MAX] if truncated else evens
-    return EvenCellView(
+    truncated = len(evens) > EVEN_PREIMAGE_LIST_MAX
+    shown = evens[:EVEN_PREIMAGE_LIST_MAX] if truncated else evens
+    return EvenPreimageView(
         q=q,
         lo=lo,
         hi=hi,
@@ -1082,15 +1082,15 @@ def even_cell_view(q: int) -> EvenCellView:
 
 
 @dataclass(frozen=True)
-class OddCellView:
+class OddPreimageView:
     m: int
     integers: tuple[int, ...]
 
 
-def odd_cell_view(m: int) -> OddCellView:
+def odd_preimage_view(m: int) -> OddPreimageView:
     if m < 0:
-        raise ValueError("odd_cell_view requires m ≥ 0")
-    return OddCellView(m=m, integers=tuple(odd_cell_integers(m)))
+        raise ValueError("odd_preimage_view requires m ≥ 0")
+    return OddPreimageView(m=m, integers=tuple(odd_preimage_integers(m)))
 
 
 @dataclass(frozen=True)
@@ -1180,10 +1180,10 @@ def leftover_table(word: str, n_hi: int | None = None) -> LeftoverTable:
         raise ValueError("leftover_table requires a note leftover word")
     cutoff = LEFTOVER_CUTOFF[parsed]
     hi = cutoff if n_hi is None else min(n_hi, cutoff, LEFTOVER_REPLAY_MAX)
-    summary = cycle_word_hits(parsed, 2, hi)
+    summary = cycle_itinerary_hits(parsed, 2, hi)
     rows: list[dict[str, Any]] = []
     for n in range(2, hi):
-        ok = follows_word(n, parsed)
+        ok = follows_itinerary(n, parsed)
         image = image_after(n, parsed) if ok else None
         rows.append(
             {
@@ -1221,7 +1221,7 @@ def next_square_view(n: int, prefix: str) -> NextSquareView:
     if parsed not in {"OO", "OOO"}:
         raise ValueError("next_square_view requires prefix OO or OOO")
     threshold = (n + 1) ** 2
-    ok = follows_word(n, parsed)
+    ok = follows_itinerary(n, parsed)
     image = image_after(n, parsed) if ok else None
     met = None if image is None else image >= threshold
     return NextSquareView(
@@ -1283,7 +1283,7 @@ def four_block_replay() -> tuple[ChainStep, ...]:
     for index, word in enumerate(words):
         start = int(starts[index])
         expected = int(starts[index + 1])
-        ok = follows_word(start, word)
+        ok = follows_itinerary(start, word)
         image = image_after(start, word) if ok else -1
         steps.append(
             ChainStep(
@@ -1424,7 +1424,7 @@ def _base_kind(word: str) -> tuple[str, str]:
         odds = len(word) - 1
         return "odd-run", f"no_cycle_odd_run_append_even for O^{odds}E, a ≥ 3"
     if word == THREE_EVEN_LEFTOVER:
-        return "three-even leftover", "OOOOOOEEE is excluded (no_cycle_word_ooooooeee)"
+        return "three-even leftover", "OOOOOOEEE is excluded (no_cycle_itinerary_ooooooeee)"
     named = _WORD_CLASS.get(word)
     if named is not None and named[0] != "rotation":
         return named
@@ -1439,13 +1439,13 @@ def _base_kind(word: str) -> tuple[str, str]:
         return (
             "two-even leftover",
             f"O^{len(word) - 2}EE is excluded for every k ≥ 6 "
-            "(no_cycle_word_two_even_ee)",
+            "(no_cycle_itinerary_two_even_ee)",
         )
     if family == "EOE":
         return (
             "two-even leftover",
             f"O^{len(word) - 3}EOE is excluded for every k ≥ 6 "
-            "(no_cycle_word_two_even_eoe)",
+            "(no_cycle_itinerary_two_even_eoe)",
         )
     if word.startswith("E"):
         return "rotation", "rotate the leading evens onto an even-terminating spelling"

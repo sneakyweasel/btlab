@@ -22,7 +22,7 @@ from research.juggler_sequence.o7eeee_gap import (
     step_exponents,
 )
 from research.juggler_sequence.o7eeee_window import PIN_MAX, eeee_cell, odd_run_image
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_exponents_and_elementary():

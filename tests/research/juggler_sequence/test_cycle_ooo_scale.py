@@ -19,10 +19,10 @@ from research.juggler_sequence.cycle_ooo_scale import (
     succ_sq_le_cube,
     y_eq_n_contradiction,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
-def test_leftover_words_and_rotations():
+def test_leftover_itineraries_and_rotations():
     assert LEFTOVER_WORDS == (WORD_OOOEOE, WORD_OOOOEE)
     assert rotations(WORD_OOOOEE) == [
         "OOOOEE",
@@ -73,9 +73,9 @@ def test_lean_api_without_census():
     assert "theorem juggler_reaches_one" not in src
     assert "theorem cycleMin_not_end_odd" in src
     assert "theorem cycleMin_prefix_ooo_even_sqrt_ne" in src
-    assert "theorem no_cycle_word_ooooeoe" not in src
-    assert "theorem no_cycle_word_ooooee" not in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_ooooeoe" not in src
+    assert "theorem no_cycle_itinerary_ooooee" not in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
     assert "PowerHeight" not in src
@@ -86,7 +86,7 @@ def test_classify_threshold_only():
     lean = lean_api_present()
     decision = classify(scan, lean)
     assert decision["classification"] == CLASS_THRESHOLD
-    assert scan["leftover_words"] == list(LEFTOVER_WORDS)
+    assert scan["leftover_itineraries"] == list(LEFTOVER_WORDS)
     assert scan["extra_scale_uniform_from_three"] is False
     assert scan["ooooee_only_self"] is True
     assert scan["n_search"] is False

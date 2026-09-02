@@ -30,7 +30,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimal_ooe_corridor import square_cell_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_ooo_escape.json"
@@ -67,13 +67,13 @@ LEAN_THEOREMS = (
     "no_cycleMin_ooeooe",
     "no_cycleMin_ooeoooe",
     "no_cycleMin_prefix_ooe_oe",
-    "no_cycle_word_ooe",
+    "no_cycle_itinerary_ooe",
     "ooo_suffix_threshold",
     "isolated_oe_r_max_two",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -420,7 +420,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "FirstOooEscape" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_lean": True,
     }
 
@@ -457,7 +457,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycleMin_ooeoooe"]
         and lean["no_cycleMin_prefix_ooe_oe"]
         and lean["ooo_suffix_threshold"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]

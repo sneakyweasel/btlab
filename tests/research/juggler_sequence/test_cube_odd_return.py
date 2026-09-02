@@ -19,7 +19,7 @@ from research.juggler_sequence.cube_odd_return import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_1517_even_reset_drops():

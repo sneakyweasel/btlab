@@ -49,7 +49,7 @@ common transient `OE` collapse before square scale.
 - m=`35` word=`OO` cell=`above_next_sq` superquadratic=`True`
 
 - n-search: `False`
-- cycle-word census: `False`
+- cycle-itinerary census: `False`
 
 ## Lean
 

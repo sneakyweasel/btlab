@@ -1745,8 +1745,8 @@
     "even_tower_to_one": true,
     "odd_odd_remainder_mod_eight": true,
     "landing_valuation_classification": true,
-    "even_cell_iff": true,
-    "odd_cell_unique": true,
+    "even_preimage_iff": true,
+    "odd_preimage_unique": true,
     "no_forbidden_engines": true,
     "no_global_termination_theorem": true
   },
@@ -1777,12 +1777,12 @@
     "cuda_census": false
   },
   "existing_api": {
-    "Admissible_P": "cylinder_status / word_status: first letter is n mod 2; longer words are INCONCLUSIVE because every residue class of precision P<=16 splits at the second Juggler letter. The odd-odd law landingRemainder is a constraint on realized OO landings, not a word filter.",
-    "IntReal": "follows_word / exists n>0 with follows(n,w)",
+    "Admissible_P": "cylinder_status / word_status: first letter is n mod 2; longer words are INCONCLUSIVE because every residue class of precision P<=16 splits at the second Juggler letter. The odd-odd law landingRemainder is a constraint on realized OO landings, not an itinerary filter.",
+    "IntReal": "follows_itinerary / exists n>0 with follows(n,w)",
     "m_w": "minimum observed positive realizer, plus even_tower_to_one for E^r"
   },
   "decision": {
     "classification": "BRIDGE_COMPLEX",
-    "reason": "Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite word. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived."
+    "reason": "Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite itinerary. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived."
   }
 }

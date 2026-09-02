@@ -10,7 +10,7 @@ from collections import defaultdict
 from typing import Any
 
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     itinerary_word,
@@ -19,7 +19,7 @@ from research.juggler_sequence.global_defect import (
     pow_gap,
 )
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 LEAN_THEOREMS = (
     "firstDefect",
@@ -169,7 +169,7 @@ def frontier_scan(*, n_max: int = 250) -> dict[str, Any]:
         loc_counts: dict[int, int] = defaultdict(int)
         min_r_expanding = None
         for n in range(3, n_max + 1, 2):
-            if not follows_word(n, word):
+            if not follows_itinerary(n, word):
                 continue
             end = image_after(n, word)
             delta = global_defect(n, word)
@@ -233,7 +233,7 @@ def amplification_census(*, n_max: int = 60, k_max: int = 5) -> dict[str, Any]:
     for n in range(1, n_max + 1):
         for k in range(1, k_max + 1):
             word = itinerary_word(n, k)
-            if not follows_word(n, word):
+            if not follows_itinerary(n, word):
                 continue
             delta = global_defect(n, word)
             amp = amplify_from_first(n, word)

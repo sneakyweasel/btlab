@@ -14,7 +14,7 @@ from typing import Any
 
 from research.juggler_sequence.global_defect import global_defect, local_defect
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 N_MAX = 2000

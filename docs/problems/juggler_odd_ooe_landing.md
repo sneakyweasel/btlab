@@ -36,7 +36,7 @@ and let \(z=\lfloor x^{3/2}\rfloor\). The Phase-0 questions are:
 ## Current literature
 
 - \(T_{\mathtt{OOEOOE}}(n)<n^2\), even landing drops —
-  **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-square-cell`).
+  **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-square-preimage`).
 - `CycleMin` cannot end in `O` —
   **EXACT — LEAN VERIFIED** (`cycleMin_not_end_odd`).
 - Isolated-`OE` comparison \(R(2)=0\) —
@@ -97,11 +97,11 @@ It is not required.
   **REFUTED**. \(565\) follows `OOEOOEO` by a long odd run
   and escapes \(n^2\).
 - a second completed `OOE` stays below \(n^2\) —
-  **EXACT — HUMAN PROOF** on the word `OOEOOEOOE`
+  **EXACT — HUMAN PROOF** on the itinerary `OOEOOEOOE`
   (\(1024>729\)), and **COMPUTATIONALLY VERIFIED** on the
   scanned followers.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -147,7 +147,7 @@ following `E` drops (\(70\) and \(86\)).
 
 None. Existing `Envelope.lean` and `CycleCore.lean` lemmas are
 cited, not rewritten. No `no_cycleMin_prefix_ooeooeo`. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`. No
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`. No
 `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -180,7 +180,7 @@ residual — first later `OOO` after the controlled `OOE`
 language — is the separate branch
 [juggler_first_ooo_escape.md](juggler_first_ooo_escape.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`.
+assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 

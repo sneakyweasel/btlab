@@ -1,7 +1,7 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Tactic
 import Problems.Juggler.WalkTransport
-import Problems.Juggler.WalkChargeWords
+import Problems.Juggler.WalkChargeItineraries
 
 namespace Problems.Juggler
 
@@ -15,8 +15,8 @@ The walk charge of a state at weight `W = 2^u` and reduced log-base
 
 the paper's `g(u)` written through the rational weight `W = 3^a/2^k`.
 Since `g` is antitone in the weight (`stateCharge_antitone`) and the
-hug word carries the pointwise-least admissible odd count
-(`hugOdds_le_of_admissible`), the exact hug word maximises the total
+hug itinerary carries the pointwise-least admissible odd count
+(`hugOdds_le_of_admissible`), the exact hug itinerary maximises the total
 walk charge over **all** admissible exponent walks
 (`hug_charge_maximal`) — the analytic half of Theorem 5.4, with no
 charge integral needed.
@@ -24,7 +24,7 @@ charge integral needed.
 Chaining with the transport inequality (`cycleMin_transport`) gives
 the §5.2 consequence in full: on a minimum-based cycle with `n ≥ 400`
 and positive reduced base, the cyclic defect sum is bounded by the
-walk charge of the realized word (`cycleMin_defect_le_charge`) and
+walk charge of the realized itinerary (`cycleMin_defect_le_charge`) and
 hence by the hug charge (`cycleMin_defect_le_hug_charge`):
 
 `Σ_k 1/(x_k log x_k) ≤ Σ_k g(w_k) ≤ Σ_k g(hugWeight k)`.
@@ -70,7 +70,7 @@ theorem stateCharge_antitone {ν W₁ W₂ : ℝ} (hν : 0 < ν)
 ## The hug weight profile
 -/
 
-/-- The weight profile of the exact hug word:
+/-- The weight profile of the exact hug itinerary:
 `hugWeight k = 3^{hugOdds k} / 2^k`, the pointwise-least admissible
 walk weight. -/
 noncomputable def hugWeight (k : ℕ) : ℝ :=
@@ -104,7 +104,7 @@ theorem hugWeight_le_walkWeight {n : ℕ} {w : List Branch} (hn : 2 ≤ n)
   · exact cycleMin_prefix_odds_ge_hug hn h k hk
 
 /-!
-## Theorem 5.4, analytic half: the hug word maximises the charge
+## Theorem 5.4, analytic half: the hug itinerary maximises the charge
 -/
 
 /-- **Hug charge maximality.** For any admissible odd-count profile

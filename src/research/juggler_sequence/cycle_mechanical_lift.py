@@ -26,8 +26,8 @@ from research.juggler_sequence.cycle_inverse_width import inverse_walk
 from research.juggler_sequence.cycle_remainder_finance import cell_record
 from research.juggler_sequence.cycle_walk_charge import MU, U_TOL
 from research.juggler_sequence.cycle_walk_greedy import hug_word
-from research.juggler_sequence.floor_cells import odd_cell_integers
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.floor_preimages import odd_preimage_integers
+from research.juggler_sequence.power_itineraries import floor_power
 
 DATA_DIR = (
     Path(__file__).resolve().parents[3]
@@ -378,7 +378,7 @@ def unique_odd_report(*, m_max: int = 200) -> dict[str, Any]:
     n_empty = 0
     n_one = 0
     for m in range(0, m_max + 1):
-        occ = odd_cell_integers(m)
+        occ = odd_preimage_integers(m)
         max_occ = max(max_occ, len(occ))
         if not occ:
             n_empty += 1

@@ -13,7 +13,7 @@ orbits. Not Paper B, not escape-margin M, not bunched-short.
 Mathematical target     MinimalNonTerm is a cycle or escape;
                         OOEOOE forces another OO on a CE
 Novelty hypothesis      the even trap does not need image = n
-Existing machinery      bounded_prefix_not_nodup; wordOOEOOE;
+Existing machinery      bounded_prefix_not_nodup; itineraryOOEOOE;
                         even_floorPower_lt_iff
 Maximum Phase-0 scope   Lean Escape module; OOEOOE window;
                         one finite escape prefix

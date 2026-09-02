@@ -18,7 +18,7 @@ into a theorem?
 
 ## Exact statement
 
-The hug word factors into `OE`/`OOE` blocks: O-runs are \(\le 2\)
+The hug itinerary factors into `OE`/`OOE` blocks: O-runs are \(\le 2\)
 because \(2\log_2(3/2)>1\), E-runs are exactly \(1\). The
 E-preimage of a single valid state \(y\) is the full interval
 \([y^2,(y+1)^2)\), so backward freedom regenerates every block.
@@ -45,8 +45,8 @@ Depth \(2\) is still open. The existence claim
 
 ## Current literature
 
-- Hug word block grammar `OE`/`OOE` — **EXACT — LEAN VERIFIED**
-  (`WalkChargeWords.lean` hug rule; the grammar is the
+- Hug itinerary block grammar `OE`/`OOE` — **EXACT — LEAN VERIFIED**
+  (`WalkChargeItineraries.lean` hug rule; the grammar is the
   \(2\log_2(3/2)>1\) window arithmetic).
 - Hug cylinder filled to depth \(28\) at the \(2^{-L}\) rate on
   \([3,2\cdot 10^8]\) — **COMPUTATIONALLY VERIFIED**
@@ -158,7 +158,7 @@ a monochromatic geometric `OE` cell (all even); that is the
 ## Formalization
 
 None new. The block grammar is already Lean
-(`WalkChargeWords.lean`). The depth-\(1\) window lemma is
+(`WalkChargeItineraries.lean`). The depth-\(1\) window lemma is
 **EXACT — HUMAN PROOF** (`J-hug-flow-window-depth-one`), not Lean.
 No `HugFlowWindow.lean`.
 

@@ -1,7 +1,7 @@
 {
   "id": "juggler_cycle_cyclic_seam",
   "title": "The 2-sided CycleMin seam classification produces a new local inequality",
-  "statement": "Classifying the local parity word on both sides of a CycleMin n produces a seam type, or a cell inequality for a legal type, that is not cycleMin_starts_two_odds / cycleMin_not_end_odd / cycleMin_not_odd_even / exists_cycleMin_last_odd_run / last-even / trailing-evens / oo_suffix_threshold, and that type empties or tightens a bound for a reason that is not an archived cell.",
+  "statement": "Classifying the local parity itinerary on both sides of a CycleMin n produces a seam type, or a cell inequality for a legal type, that is not cycleMin_starts_two_odds / cycleMin_not_end_odd / cycleMin_not_odd_even / exists_cycleMin_last_odd_run / last-even / trailing-evens / oo_suffix_threshold, and that type empties or tightens a bound for a reason that is not an archived cell.",
   "status": "REFUTED",
   "counterexamples": [
     "the 2+2 window is exactly {OE|OO, EE|OO}; return-O has no predecessor >= n",

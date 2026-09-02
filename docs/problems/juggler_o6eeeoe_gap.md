@@ -23,7 +23,7 @@ z<(v+1)^8,\qquad v^3<(n+1)^4.
 \]
 
 Then \(z\) lies outside that cell, so `OOOOOOEEEOE` is not a cycle
-word. Lean independently has `no_cycle_word_ooooooeeeoe` via
+word. Lean independently has `no_cycle_itinerary_ooooooeeeoe` via
 the CycleMin-fudge unique-rotation upgrade. The \(T^6\) versus
 EEEOE cell inequalities remain human.
 
@@ -31,7 +31,7 @@ EEEOE cell inequalities remain human.
 
 - \(O^7\mathrm{EEEE}\) +1-chain —
   **EXACT — LEAN VERIFIED**
-  (`o7_image_ge_succ_pow16`, `no_cycle_word_oooooooeeee`).
+  (`o7_image_ge_succ_pow16`, `no_cycle_itinerary_oooooooeeee`).
 - Four-even short-first-gap \(Z_4\) —
   **PARK**. This shape first fires at \(437\,599\,552\).
 - Amplify versus surplus —
@@ -84,8 +84,8 @@ It is not required.
   **EXACT — HUMAN PROOF**
 - \(T^6(n)\ge(v_{\max}+1)^8\) on every \(O^6\) start —
   **EXACT — HUMAN PROOF**
-- `OOOOOOEEEOE` is not a cycle word —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_ooooooeeeoe`);
+- `OOOOOOEEEOE` is not a cycle itinerary —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_ooooooeeeoe`);
   the \(T^6\) versus EEEOE cell argument is
   **EXACT — HUMAN PROOF**
 - leftover cell for this shape fires at \(437\,599\,552\) —
@@ -103,7 +103,7 @@ It is not required.
 - Finite checks: first \(O^6\) at \(163\); \(170\) starts with
   \(n<10^4\), all above the cell, closest ratio \(37.3\); leftover
   \(N_0=437\,599\,552\).
-- Lean cycle-word corollary: `no_cycle_word_ooooooeeeoe` in
+- Lean cycle-itinerary corollary: `no_cycle_itinerary_ooooooeeeoe` in
   `CycleMinFudge.lean`. The cell inequalities are not Lean.
   Paper A is unchanged.
 
@@ -122,11 +122,11 @@ None to the gap. The stronger claims that fail:
 
 ## Formalization
 
-`no_cycle_word_ooooooeeeoe` and `no_cycleMin_ooooooeeeoe` live
+`no_cycle_itinerary_ooooooeeeoe` and `no_cycleMin_ooooooeeeoe` live
 in `Problems/Juggler/CycleMinFudge.lean`. The specialised
 \(T^6\) versus EEEOE cell inequalities are not Lean.
 `SmallCycleCensus.lean` still assembles only through length
-seven. No `no_cycle_word_length_eleven`. No `sorry`. No halt
+seven. No `no_cycle_itinerary_length_eleven`. No `sorry`. No halt
 theorem. Paper A is unchanged.
 
 ## Results

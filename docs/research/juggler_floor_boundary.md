@@ -26,11 +26,11 @@ Even cells: every even `n` in `[m^2,(m+1)^2)` has the same image `m`.
 On `n<= 4000` there are `63` occupied
 even cells and `62` of them contain more than
 one integer. Even-cell position is inert for the next step.
-Label: **LEAN-CERTIFIED** (`even_cell_iff`).
+Label: **LEAN-CERTIFIED** (`even_preimage_iff`).
 
 Odd cells contain at most one integer. So for odd `n`, `(e,u)` is not
 a free coordinate inside a cell; it is a function of that unique `n`.
-Label: **LEAN-CERTIFIED** (`odd_cell_unique`).
+Label: **LEAN-CERTIFIED** (`odd_preimage_unique`).
 
 ## B. Boundary-distance distributions
 
@@ -130,7 +130,7 @@ has mean theta about one half. Label: **COMPUTATIONALLY OBSERVED**.
 
 `EEEEEE` at the even tower has `e=0` on every even square step.
 The interior state `4294972782` has first `e=5486` then joins
-the same image `65536` and the same suffix. That is `even_cell_iff`,
+the same image `65536` and the same suffix. That is `even_preimage_iff`,
 not a new root/interior Diophantine law.
 Same suffix from step 1: `True`.
 Label: **EXACT COMPUTATION** plus **LEAN-CERTIFIED** even cell.
@@ -138,11 +138,11 @@ Label: **EXACT COMPUTATION** plus **LEAN-CERTIFIED** even cell.
 ## I. Candidate exact laws
 
 - `(e,u)` is `local_defect` plus complementary width. **REPARAMETERIZATION**.
-- Even position does not affect `J`. **LEAN-CERTIFIED** (`even_cell_iff`).
+- Even position does not affect `J`. **LEAN-CERTIFIED** (`even_preimage_iff`).
 - `e=0` iff a perfect square. **LEAN-CERTIFIED**.
 - Small odd `e` on `n<=1e5` is squares plus `{3,5,15,17}`. **COMPUTATIONALLY VERIFIED**.
 - `e_O<=2` forces a small next gap. **COUNTEREXAMPLE**.
-- A finite word has a characteristic boundary profile. **COUNTEREXAMPLE** (`OOE`).
+- A finite itinerary has a characteristic boundary profile. **COUNTEREXAMPLE** (`OOE`).
 - Hard trajectories hug a floor wall. **COUNTEREXAMPLE**.
 - `FLOOR_BOUNDARY_GREEN` / `DIOPHANTINE_BOUNDARY_GREEN` /
   `BOUNDARY_CHAIN_GREEN` / `MIXED_BOUNDARY_GREEN` /

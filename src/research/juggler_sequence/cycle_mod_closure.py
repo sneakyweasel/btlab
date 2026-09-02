@@ -29,7 +29,7 @@ from research.juggler_sequence.cycle_finance import (
     o_min_and_theta,
     sha256_int_list,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 SPOTLIGHT = (25781, 55293)
 BLOCK_WORDS = ("OE", "OOE", "OOOE", "OEE", "OOEE")
@@ -107,7 +107,7 @@ def even_cell_realizable(src: int, dst: int, modulus: int, y: int) -> bool:
     """Even cell at scale: Y ≡ dst, X = Y^2 + η ≡ src, 0 ≤ η < 2Y+1.
 
     For Y ≥ m the interval length exceeds m, so every even-compatible
-    source is realized. This is the existence half of even_cell_iff.
+    source is realized. This is the existence half of even_preimage_iff.
     """
 
     if y < 1 or y % modulus != dst % modulus:

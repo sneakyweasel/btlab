@@ -7,7 +7,7 @@ import json
 from research.juggler_sequence.k5_post_l_ooe import WORD_W5
 from research.juggler_sequence.oneshot_recovery import L_DEN, L_NUM, WORD
 from research.juggler_sequence.parity_persist import LONG_RUN
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.l_odd_run_cap import (
     CLASS_PARK,
     FORBIDDEN_THEOREMS,
@@ -36,10 +36,10 @@ def test_envelope_never_drops():
 
 
 def test_33391_still_k5_not_w5():
-    from research.juggler_sequence.cycle_word import follows_word
+    from research.juggler_sequence.cycle_itinerary import follows_itinerary
 
-    assert follows_word(LONG_RUN["n"], WORD)
-    assert follows_word(LONG_RUN["n"], WORD_W5) is False
+    assert follows_itinerary(LONG_RUN["n"], WORD)
+    assert follows_itinerary(LONG_RUN["n"], WORD_W5) is False
     from research.juggler_sequence.parity_persist import l_row
 
     row = l_row(LONG_RUN["n"])
@@ -104,5 +104,5 @@ def test_dossier_boundary():
     assert "PARK" in dossier
     assert "2187" in dossier
     assert "juggler_l_odd_run_cap" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

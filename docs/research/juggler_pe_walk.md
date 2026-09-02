@@ -43,7 +43,7 @@ the residual is an O^a E walk; landing/n and square remainder are not Lyapunov; 
 
 ## Existing Lean (unchanged)
 
-- `wordOE`: `True`
+- `itineraryOE`: `True`
 - `oe_block_contracts`: `True`
 - `repeated_oe_scale`: `True`
 - `power_bound_word`: `True`

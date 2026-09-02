@@ -31,7 +31,7 @@ from typing import Any
 from research.juggler_sequence.cycle_finance import EPS_CONST, n_max_from_bound
 from research.juggler_sequence.cycle_gap_baker import exact_gap, o_min
 from research.juggler_sequence.expansion_slack import NEAR_TIGHT
-from research.juggler_sequence.global_defect import follows_word, image_after
+from research.juggler_sequence.global_defect import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -46,7 +46,7 @@ from research.juggler_sequence.normalized_defect import (
     slack_den,
     slack_num,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -76,10 +76,10 @@ EXISTING_LEAN = (
 )
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
-    "no_cycle_word_any_length",
+    "no_cycle_itinerary_any_length",
     "cycle_near_tight_excludes",
     "almost_monochrome_cycle",
-    "no_cycle_word_length_eighty_four",
+    "no_cycle_itinerary_length_eighty_four",
 )
 FORBIDDEN_NEW_API = (
     "CycleNearTight",
@@ -191,7 +191,7 @@ def record_row(length: int) -> dict[str, Any]:
 
 
 def ooe_open_row(n: int) -> dict[str, Any] | None:
-    if not follows_word(n, OOE_WORD):
+    if not follows_itinerary(n, OOE_WORD):
         return None
     if not bits_ok(n, 9) or not bits_ok(image_after(n, OOE_WORD), 8):
         return None

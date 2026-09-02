@@ -26,8 +26,8 @@ from research.juggler_sequence.cycle_length_seven import (
     run_probe,
     suffix_after_last_internal_e,
 )
-from research.juggler_sequence.cycle_word import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_expanding_family_is_the_seven_words():
@@ -72,8 +72,8 @@ def test_refined_tail_cutoff_is_fourteen():
     assert comparison_holds(256, REFINED_LEFT_EXP, REFINED_TWO_EXP, REFINED_SUCC_EXP) is True
     for word in LEFTOVER_WORDS:
         for n in range(2, 14):
-            assert not follows_word(n, word)
-            assert image_after(n, word) != n or not follows_word(n, word)
+            assert not follows_itinerary(n, word)
+            assert image_after(n, word) != n or not follows_itinerary(n, word)
 
 
 def test_lean_api_with_length_seven_census():
@@ -96,8 +96,8 @@ def test_lean_api_with_length_seven_census():
     assert "sorry" not in src
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
-    assert "theorem no_cycle_word_length_le_seven" in census
-    assert "theorem no_cycle_word_length_le_eight" not in census
+    assert "theorem no_cycle_itinerary_length_le_seven" in census
+    assert "theorem no_cycle_itinerary_length_le_eight" not in census
     assert "Length eight is open" in census
     assert "def CycleSearch" not in src
     assert "PowerBoundEq" not in src
@@ -112,7 +112,7 @@ def test_classify_leftover_tail_green():
     assert decision["classification"] == CLASS_GREEN
     assert "TWO_EVEN_TYPE_THROUGH_EIGHT" in decision["secondary"]
     assert scan["unique_family"] is True
-    assert set(scan["leftover_words"]) == set(LEFTOVER_WORDS)
+    assert set(scan["leftover_itineraries"]) == set(LEFTOVER_WORDS)
     assert set(scan["bootstrap_words"]) == set(BOOTSTRAP_WORDS)
     assert scan["tails"]["n0_OOOOOEE"] == 14
     assert scan["tails"]["n0_OOOOEOE"] == 14
@@ -180,13 +180,13 @@ def test_dossier_and_note_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_length_le_seven" in dossier
+    assert "no_cycle_itinerary_length_le_seven" in dossier
     assert "EXACT — LEAN VERIFIED" in dossier
     assert (
         "Theorems 3.12--3.21 assemble into an even-count exclusion: no "
-        "cycle word has fewer than four even letters, so a nontrivial "
+        "cycle itinerary has fewer than four even letters, so a nontrivial "
         "cycle has period at least eleven (Theorem 3.22). Section 4 "
         "excludes later periods by financing."
     ) in " ".join(note.split())
-    assert "no_cycle_word_length_le_seven" in note
-    assert "theorem no_cycle_word_length_nine" not in note
+    assert "no_cycle_itinerary_length_le_seven" in note
+    assert "theorem no_cycle_itinerary_length_nine" not in note

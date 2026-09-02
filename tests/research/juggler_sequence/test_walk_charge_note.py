@@ -35,6 +35,6 @@ def test_note_anti_overclaim():
     assert "not a second manuscript" in note
     assert "176251" in note
     assert "survives" in note
-    assert "theorem no_cycle_word_any_length" not in note
+    assert "theorem no_cycle_itinerary_any_length" not in note
     assert "no cycle of any length" in lower
     assert "REFUTED" in note

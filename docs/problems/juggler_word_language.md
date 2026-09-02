@@ -26,7 +26,7 @@ Keep the quantifiers existential.
 
 and two PE languages: single residual blocks that some \(n\) realises
 as `PersistentExpandingResidual`, and concatenations of such blocks
-(PE-run words). Syntactic `expandingWord` (\(2^{|w|}<3^{\#O(w)}\)) is
+(PE-run words). Syntactic `expandingItinerary` (\(2^{|w|}<3^{\#O(w)}\)) is
 a different predicate.
 
 After subtracting the known grammar
@@ -51,7 +51,7 @@ This says nothing about totality.
   `ExpansionBlocks`.
 - Expanding-word grammar is persistence —
   **CLOSE** as `EXPANDING_GRAMMAR_IS_PERSISTENCE`.
-- Every mixed prefix-NC word of length \(\le 8\) is realized —
+- Every mixed prefix-NC itinerary of length \(\le 8\) is realized —
   **CLOSE** as `PREFIX_NC_ARITHMETIC_COMPLEX`.
 - Residual-state finite quotients need the integer itself —
   **CLOSE** as `RESIDUAL_STATE_NEEDS_X`.
@@ -73,7 +73,7 @@ Novelty hypothesis      Arithmetic realization forbids some
 Falsifier               Fact_r(realized PE runs)=Fact_r(block grammar);
                         L_r={O,E}^r; every missing factor appears later;
                         any MN compression is the landing integer
-Existing machinery      follows/image, oddEvenBlock, expandingWord,
+Existing machinery      follows/image, oddEvenBlock, expandingItinerary,
                         PersistentExpandingResidual, PersistentExpansionChain,
                         walk_pe_run, expanding_grammar type graph,
                         prefix-NC realizability ≤8, residual-state CLOSE
@@ -99,7 +99,7 @@ It is not required.
 - `jugglerLanguage` / `jugglerLanguage_factor` —
   **EXACT — LEAN VERIFIED**, and a **REPARAMETERIZATION** of
   `follows` / `image`
-- `expandingLanguage` is existential, not `expandingWord` —
+- `expandingLanguage` is existential, not `expandingItinerary` —
   **EXACT — LEAN VERIFIED**
 - `expandingLanguage_not_factor_closed` (`OOE` at 5, not `OE`) —
   **EXACT — LEAN VERIFIED**, using
@@ -136,7 +136,7 @@ Cheap language census, not a new raw search.
 - Terminal PE suffixes occupy the same short block types
   (`OOE`, `OOOE`, …) for both `leave_odd_odd` and `descent`.
 
-Tests: `tests/research/juggler_sequence/test_word_language.py`.
+Tests: `tests/research/juggler_sequence/test_itinerary_language.py`.
 Do not default-test \(n\le 20000\).
 
 ## Conjectures
@@ -157,7 +157,7 @@ None opened in `conjectures/`.
 
 ## Formalization
 
-`formal/Problems/Juggler/WordLanguage.lean`, after `OddLandingSets`.
+`formal/Problems/Juggler/ItineraryLanguage.lean`, after `OddLandingSets`.
 No `sorry`. No automaton. No forbidden-factor theorem. No ledger
 row: the Lean lemmas package `follows` / `image` and the existing
 odd-to-even contraction.
@@ -183,7 +183,7 @@ automata, or extremal word arrangements.
 
 ## Decision
 
-**CLOSE** the word-language attack as
+**CLOSE** the itinerary-language attack as
 `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`. After the known \(O^a E^b\)
 grammar is subtracted, every candidate forbidden factor is a search
 window. \(\mathcal L\) fills at short length. Prefix futures do not

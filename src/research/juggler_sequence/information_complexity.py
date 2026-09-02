@@ -22,7 +22,7 @@ from typing import Any, Callable
 from bt.representation import encode
 from research.juggler_sequence.landing_valuation import v2
 from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 from research.juggler_sequence.residual_state import collect_landings
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -604,7 +604,7 @@ def classify(scan: dict[str, Any]) -> dict[str, Any]:
             "reason": (
                 "Q_H <= 2^H and I_H <= H on every fixed sample (word-alphabet counting). "
                 "k*_2 jumps at H=2 and then plateaus; the H=2 value grows with |Y| on nested "
-                "consecutive intervals. Apparent horizon complexity is the itinerary bound "
+                "consecutive intervals. Apparent horizon complexity is the word bound "
                 "plus a sample-diameter 2-adic pair."
             ),
         }
@@ -808,7 +808,7 @@ def probe_payload() -> dict[str, Any]:
     return {
         "experiment": "juggler_information_complexity",
         "engine_control_layer_modified": False,
-        "F_H": "O/E itinerary of the next H steps (parities of x, T(x), ..., T^{H-1}(x))",
+        "F_H": "O/E word of the next H steps (parities of x, T(x), ..., T^{H-1}(x))",
         "equivalence": "x ~_H y iff F_H(x)=F_H(y); experimental, not Myhill-Nerode",
         "anti_overclaim": anti,
         "lean": lean,
@@ -851,7 +851,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     Do D_H and k*(H) grow with H<=6 on fixed Y?",
         "Novelty hypothesis      longer word futures need more arithmetic bits",
         "Falsifier               Q_H is 2^H counting; k* plateaus at H=2",
-        "Existing machinery      floor_power, itinerary, word_of, collect_landings",
+        "Existing machinery      floor_power, word, word_of, collect_landings",
         "Maximum Phase-0 scope   H<=6; samples A/B/C/D; no GPU; no Lean pilot",
         "```",
         "",

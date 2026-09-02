@@ -9,7 +9,7 @@ every positive integer reaches 1.
 ## Problem
 
 Can the existing local mechanisms be composed around one complete
-cycle to obtain information that the ordinary finite-word envelope
+cycle to obtain information that the ordinary finite-itinerary envelope
 cannot see?
 
 ## Exact statement
@@ -57,7 +57,7 @@ minimum-to-maximum split at \(z\), closing path from \(p\) to \(m\),
 peak finance, defect on the ascent — reduces to
 `power_bound_word` or an existing extremal theorem.
 
-This says nothing about totality. Do not prove that every cycle word
+This says nothing about totality. Do not prove that every cycle itinerary
 is impossible. Do not introduce odd landings, a residual graph, or a
 new energy.
 
@@ -106,7 +106,7 @@ It is not required.
   \(M>m^2\) plus the cube cell
 - first-even versus top scale gap — not claimed
 - \(p=m\), \(z<p\), \(z>x\) — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -140,7 +140,7 @@ cycle-only theorem.
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `exists_first_even_iterate`
 - `cycle_top_window_strict`
@@ -183,7 +183,7 @@ an exponent-budget composition. Do not reopen scale composition.
 ## Decision
 
 **CLOSE** the compose-for-contradiction branch. Record the compatible
-normal form. Do not claim a word-independent cycle obstruction. Do
+normal form. Do not claim an itinerary-independent cycle obstruction. Do
 not claim termination.
 
 Best next question: answered in

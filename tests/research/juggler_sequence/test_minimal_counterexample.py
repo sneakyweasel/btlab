@@ -30,7 +30,7 @@ from research.juggler_sequence.minimal_counterexample import (
     u_set_formula_count,
     u_set_scan,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_odd_predecessor_is_unique_and_validated():

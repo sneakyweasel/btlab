@@ -214,7 +214,7 @@
       "failure_mechanism": "concatenation need not increase decimal length (e.g. 10->25)",
       "classification": "HOME_COMPOSITION_NEEDS_RICHER_STRUCTURE",
       "lean_status": "NOT_YET_FORMALIZATION_READY",
-      "relation_to_phase1": "Phase-1 V_C failed on 4->22 and 10->25. Two-step composition still sees concat as a word rewrite, not as a scalar descent on (length, Omega, omega).",
+      "relation_to_phase1": "Phase-1 V_C failed on 4->22 and 10->25. Two-step composition still sees concat as an itinerary rewrite, not as a scalar descent on (length, Omega, omega).",
       "checks": [
         {
           "name": "t2_decimal_length_ge",

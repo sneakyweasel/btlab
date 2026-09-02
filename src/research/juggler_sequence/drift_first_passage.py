@@ -18,7 +18,7 @@ from math import gcd
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word
+from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.drift_crossing import crossing_window
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.near_extremal_prefixes import (
@@ -26,7 +26,7 @@ from research.juggler_sequence.near_extremal_prefixes import (
     prefix_nc_words,
     prefix_noncontracting,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, odd_count
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, odd_count
 from research.juggler_sequence.prefix_nc_admissibility import Ival, pullback_word
 from research.juggler_sequence.lean_paths import (
     CYCLE_DIOPHANTINE,
@@ -838,7 +838,7 @@ def classify(
         "classification": CLASS_COMPLEX,
         "secondary": [],
         "reason": (
-            "nested A_w signatures do not compress below the words themselves; "
+            "nested A_w signatures do not compress below the itineraries themselves; "
             f"{taut} extensions are tautological window subsets and {named} "
             "named-thinner hits are residue/modulus artefacts of longer prefixes, "
             "not a pruning rule; hunt max "

@@ -44,9 +44,9 @@ bound on inverse rays.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Inverse-floor cells `even_cell_iff` / `odd_cell_iff` /
-  `odd_cell_unique` — **EXACT — LEAN VERIFIED** in
-  `Problems.Juggler.Cells`.
+- Inverse-floor cells `even_preimage_iff` / `odd_preimage_iff` /
+  `odd_preimage_unique` — **EXACT — LEAN VERIFIED** in
+  `Problems.Juggler.Preimages`.
 - `floorPower_one` — **EXACT — LEAN VERIFIED**.
 - Prefix-NC backward admissibility —
   **CLOSE** as `PREFIX_NC_ARITHMETIC_COMPLEX`.
@@ -55,7 +55,7 @@ bound on inverse rays.
 - Realization-set prepend —
   **CLOSE** as `REALIZATION_GEOMETRY_COMPLEX`.
 - Iterated odd-landing sets —
-  **CLOSE**; unique odd preimages are `odd_cell_unique`.
+  **CLOSE**; unique odd preimages are `odd_preimage_unique`.
 - First-return / adversarial paths / information-complexity / PE
   factors / residual quotients / sum-rho — **CLOSE**. Reused as
   fixtures only.
@@ -73,8 +73,8 @@ Novelty hypothesis      mixed-path scale, sparsity, rank, or
                         hard-path rigidity
 Falsifier               every candidate is a cell corollary or
                         reverse itinerary
-Existing machinery      even_cell, odd_cell_integers, floor_power,
-                        Cells.lean, known hard/PE walks
+Existing machinery      even_preimage, odd_preimage_integers, floor_power,
+                        Preimages.lean, known hard/PE walks
 Maximum Phase-0 scope   Pred census m<=4000; bounded BFS on
                         selected roots; nested cell composition;
                         reverse images of known walks; no GPU;
@@ -99,7 +99,7 @@ distinguishing predicate.
 - \(\lvert\operatorname{Pred}_E(m)\rvert=m\) or \(m+1\) —
   **KNOWN**; evens in an interval of length \(2m+1\)
 - \(\lvert\operatorname{Pred}_O(m)\rvert\in\{0,1\}\) —
-  **EXACT — LEAN VERIFIED** (`odd_cell_unique`)
+  **EXACT — LEAN VERIFIED** (`odd_preimage_unique`)
 - Even inverse edges ascend, odd inverse edges descend except \(1\to 1\) —
   **KNOWN** from the cell bounds
 - Composed inverse \(m_r=A_r m_0-B_r\) —
@@ -142,7 +142,7 @@ None opened.
 
 ## Formalization
 
-None added. Existing `Cells.lean` lemmas are reused. No `sorry`.
+None added. Existing `Preimages.lean` lemmas are reused. No `sorry`.
 
 ## Results
 

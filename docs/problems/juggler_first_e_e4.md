@@ -37,11 +37,11 @@ The partition is:
 - **short first-gap remainder:** last cluster bunched and
   \(a_1<a_{\min}\). Neither reduction hits.
 
-This is not a `CycleWord` or `CycleMin` theorem at \(e=4\). It is
+This is not a `CycleItinerary` or `CycleMin` theorem at \(e=4\). It is
 not a length-8 or length-9 census and not a halt theorem. There is
-no `no_cycle_word_length_eight` and no `no_cycle_word_length_nine`.
-There is no `no_cycle_word_four_even` and no
-`no_cycle_word_bunched`.
+no `no_cycle_itinerary_length_eight` and no `no_cycle_itinerary_length_nine`.
+There is no `no_cycle_itinerary_four_even` and no
+`no_cycle_itinerary_bunched`.
 
 ## Current literature
 
@@ -144,11 +144,11 @@ The stronger claims that remain false or unproved:
 
 ## Formalization
 
-None. Existing first-E, gapped CycleWord, and bunched modules
+None. Existing first-E, gapped CycleItinerary, and bunched modules
 are not rewritten. `SmallCycleCensus.lean` still assembles only
-through length seven. No `no_cycle_word_length_eight`. No
-`no_cycle_word_length_nine`. No `no_cycle_word_four_even`. No
-`no_cycle_word_bunched`. No `sorry`. No halt theorem. Paper A
+through length seven. No `no_cycle_itinerary_length_eight`. No
+`no_cycle_itinerary_length_nine`. No `no_cycle_itinerary_four_even`. No
+`no_cycle_itinerary_bunched`. No `sorry`. No halt theorem. Paper A
 is unchanged.
 
 ## Results
@@ -170,7 +170,7 @@ odd-count \(o=7\) and appears at \(o=8\)
 the leftover cell whenever the existing tail fires at \(y\).
 
 The short-first-gap remainder is thirty infinite families, not
-one leftover word. Opening them is a four-even bunched-tail
+one leftover itinerary. Opening them is a four-even bunched-tail
 programme. That is outside this scope.
 
 ## Open questions
@@ -182,8 +182,8 @@ A tighter last-cluster pullback is `CLOSE`
 Rotation and internal-E next-square are `CLOSE`
 ([length-11 non-pullback](juggler_length11_nonpullback.md)).
 Stop on the thirty length-11 leftovers as a leftover-path
-target. Do not assemble `no_cycle_word_length_eight` or
-`no_cycle_word_length_nine`. Do not claim halt.
+target. Do not assemble `no_cycle_itinerary_length_eight` or
+`no_cycle_itinerary_length_nine`. Do not claim halt.
 
 ## Decision
 

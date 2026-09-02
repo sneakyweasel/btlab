@@ -11,13 +11,13 @@ from juggler_figure_style import DEFAULT_BOX, draw_edge, draw_frame, draw_node, 
 OUT = Path(__file__).with_name("juggler_frontier.png")
 
 NODES = {
-    "Words": ("Realized", "parity words"),
+    "Words": ("Realized", "parity itineraries"),
     "Envelope": ("Power envelope", ""),
     "Contract": ("Exponent-gap", "contraction"),
     "Remainders": ("Local floor", "remainders"),
     "Defect": ("Exact global", "defect"),
     "Towers": ("Monochrome towers", "and composition"),
-    "Cells": ("Inverse cells", ""),
+    "Preimages": ("One-step preimages", ""),
     "Cycles": ("Cycle restrictions", ""),
     "Excluded": ("No cycles of", "length \u2264 6"),
     "Discrepancy": ("Parity discrepancy", "+ kernel theorem"),
@@ -28,7 +28,7 @@ NODES = {
 }
 
 FRAMES = [
-    ("Exact finite-word calculus", 0.10, 6.70, 3.28, 5.70),
+    ("Exact finite-itinerary calculus", 0.10, 6.70, 3.28, 5.70),
     ("Cycle consequences", 0.10, 9.35, 1.67, 3.17),
     ("Density corollaries and boundary", 0.10, 10.90, 0.08, 1.56),
 ]
@@ -40,7 +40,7 @@ POS = {
     "Remainders": (1.10, 3.90),
     "Defect": (3.35, 3.90),
     "Towers": (5.60, 3.90),
-    "Cells": (1.10, 2.42),
+    "Preimages": (1.10, 2.42),
     "Cycles": (5.60, 2.42),
     "Excluded": (8.20, 2.42),
     "Discrepancy": (1.10, 1.27),
@@ -67,7 +67,7 @@ EDGES = [
     ("Envelope", "Contract", "h", 0.0),
     ("Remainders", "Defect", "h", 0.0),
     ("Defect", "Towers", "h", 0.0),
-    ("Cells", "Cycles", "h", 0.0),
+    ("Preimages", "Cycles", "h", 0.0),
     ("Cycles", "Excluded", "h", 0.0),
     ("Discrepancy", "Density", "d", -0.05),
     ("Certificates", "Density", "d", 0.05),

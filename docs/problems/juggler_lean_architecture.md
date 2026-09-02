@@ -15,7 +15,7 @@ without new Juggler dynamics?
 
 ## Exact statement
 
-For integers \(n \ge 2\) and a realized finite word \(w\):
+For integers \(n \ge 2\) and a realized finite itinerary \(w\):
 
 - an `EnvelopeState` is a one-sided bound \(x^A \le n^B\);
 - `AboveAnchor n w` is `follows n w` and \(n \le T^i(n)\) for all
@@ -76,7 +76,7 @@ Juggler map is independent of trit encoding.
 
 ## Candidate operations / invariants
 
-- `EnvelopeState.map_word` — fold `.even` / `.odd` on a realized word.
+- `EnvelopeState.map_word` — fold `.even` / `.odd` on a realized itinerary.
   **REPARAMETERIZATION**
 - `PowerCorridor` / `envelope_corridor_contradiction` — two-sided
   collision. **REPARAMETERIZATION**
@@ -138,7 +138,7 @@ Paper A comments are not edited.
 Live Lean imports (not slogans):
 
 ```text
-Dynamics → Iteration → Termination → Itinerary → WordStats
+Dynamics → Iteration → Termination → Itinerary → ItineraryStats
                                               ↓
                                            Envelope
                                               ↓
@@ -167,7 +167,7 @@ Canonical primitives:
 
 | Kind | Object | Home |
 |------|--------|------|
-| Primitive | `floorPower` / `follows` / words | Dynamics, Itinerary, WordStats |
+| Primitive | `floorPower` / `follows` / words | Dynamics, Itinerary, ItineraryStats |
 | Primitive | `EnvelopeState` / `map_word` / `envelope_lt_pow` | Envelope |
 | Primitive | `PowerCorridor` | Corridor |
 | Primitive | cube-band geometry | CubeCorridor |
@@ -179,7 +179,7 @@ Canonical primitives:
 | Derived | `even_below_anchor_pow` / `two_even_below_fourth` | Corridor |
 | Consumer | `CycleMin` / `aboveAnchor_of_cycleMin` | CycleCore |
 | Consumer | `MinimalNonTerm` / `aboveAnchor_of_minimalNonTerm` | Minimal |
-| Consumer | named `no_cycle_word_*` / isolated CycleMin wrappers | CycleObstructions |
+| Consumer | named `no_cycle_itinerary_*` / isolated CycleMin wrappers | CycleObstructions |
 | Legacy aliases | `power_bound_word`, `power_bound_contracts`, `unresolved_is_odd_odd`, `finiteProgress_of_descent`, `isolated_oe_ge_implies_exponent`, `floorPower_odd_lt_sq` | keep; do not use in new proofs |
 
 Envelope / anchor / progress APIs:
@@ -212,7 +212,7 @@ Compatibility layer:
 - `power_bound_from` / `power_bound_append_even` /
   `power_bound_append_odd` stay for Defect; they are thin
   wrappers of `.even` / `.odd`, not a second floor arithmetic
-- Short CycleWord exclusions (`no_cycle_word_odd` / `oo` /
+- Short CycleItinerary exclusions (`no_cycle_itinerary_odd` / `oo` /
   `eoo` / `ooe` / `oeo` / `oooe`, length-4/5) stay in
   `CycleCore`. The named tail (`wordOOEOOE` and after) lives in
   `CycleObstructions`

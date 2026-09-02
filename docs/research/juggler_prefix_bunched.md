@@ -13,10 +13,10 @@ and not a length-11 assembler.
 Mathematical target     CycleMin n (u ++ threeEvenXXX a)
                         is impossible for every prefix u
 Novelty hypothesis      y>=n plus the path table at y replace
-                        CycleWord tables at the cycle start
+                        CycleItinerary tables at the cycle start
 Falsifier               a path y -> n in [2,y] below cutoff,
                         or the large-y tail failing when y>=n
-Existing machinery      seven bunched CycleWord exclusions;
+Existing machinery      seven bunched CycleItinerary exclusions;
                         CycleMin; family tails; seven-odd
 Maximum Phase-0 scope   path census; Lean wrapper; no Z5,
                         no length-11, no bunched-short
@@ -37,7 +37,7 @@ Lean excludes CycleMin n (u ++ bunched leftover) for every prefix u and all seve
 
 The coarse comparison `Y^{3^a} > 2^e (Y+1)^{K 2^a}` never
 fires at a=3 for EOOOEE or EOOEOE. Those two cells use the
-tight split already proved for CycleWord, measured at y.
+tight split already proved for CycleItinerary, measured at y.
 
 ## Path rows
 

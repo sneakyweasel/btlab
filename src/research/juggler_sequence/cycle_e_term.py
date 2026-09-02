@@ -13,7 +13,7 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     ENVELOPE,
@@ -43,17 +43,17 @@ LEAN_THEOREMS = (
     "cycle_last_even_cell",
     "cycle_last_even_cell_odd",
     "no_cycle_append_even_of_suffix_threshold",
-    "no_cycle_word_oooe",
-    "no_cycle_word_length_four_ends_even",
+    "no_cycle_itinerary_oooe",
+    "no_cycle_itinerary_length_four_ends_even",
 )
 
 CERTIFICATE_UNCHANGED = (
-    "CycleWord",
+    "CycleItinerary",
     "cycle_last_even_interval",
     "ooo_suffix_threshold",
     "oo_suffix_threshold",
-    "cycle_word_formally_expanding",
-    "no_cycle_word_ooe",
+    "cycle_itinerary_formally_expanding",
+    "no_cycle_itinerary_ooe",
 )
 
 
@@ -107,18 +107,18 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in text
-        and "theorem no_cycle_word " not in text,
+        and "theorem no_cycle_itinerary " not in text,
         "no_cycle_engine": "def CycleSearch" not in text
         and "def CycleStates" not in text,
         "no_infinite_path_type": "coinductive" not in text.lower()
         and "def InfinitePath" not in text,
-        "FloorPower_not_rewritten": "CycleWord" not in floor
-        and "no_cycle_word_oooe" not in floor,
-        "Progress_unchanged": "CycleWord" not in progress,
-        "MinimalNonTerm_not_rewritten": "CycleWord" not in minimal
-        and "no_cycle_word_oooe" not in minimal,
+        "FloorPower_not_rewritten": "CycleItinerary" not in floor
+        and "no_cycle_itinerary_oooe" not in floor,
+        "Progress_unchanged": "CycleItinerary" not in progress,
+        "MinimalNonTerm_not_rewritten": "CycleItinerary" not in minimal
+        and "no_cycle_itinerary_oooe" not in minimal,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
-        "O_terminating_not_claimed": "no_cycle_word_length_four_ends_odd"
+        "O_terminating_not_claimed": "no_cycle_itinerary_length_four_ends_odd"
         not in text,
     }
 
@@ -140,8 +140,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["no_cycle_append_even_of_suffix_threshold"]
-        and lean["no_cycle_word_oooe"]
-        and lean["no_cycle_word_length_four_ends_even"]
+        and lean["no_cycle_itinerary_oooe"]
+        and lean["no_cycle_itinerary_length_four_ends_even"]
         and lean["FloorPower_not_rewritten"]
         and lean["PowerBoundEq_not_used_as_cycle_attack"]
         and lean["no_all_cycles_impossible"]
@@ -151,7 +151,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     if not scan["unique_expanding_is_oooe"]:
         return {
             "classification": CLASS_COUNTER,
-            "reason": f"unexpected expanding words {scan['expanding']}",
+            "reason": f"unexpected expanding itineraries {scan['expanding']}",
         }
     return {
         "classification": CLASS_LAST,

@@ -10,13 +10,13 @@ length-9 Lean census and not induction on period or on n.
 
 ```text
 Mathematical target     What argument excludes the length-9
-                        three-even leftover CycleWords?
+                        three-even leftover CycleItineraries?
 Novelty hypothesis      Last-internal suffix is always O^c;
                         leftovers are nine words O^a E O^b E O^c E;
                         odd-prefix + mixed-tail cells replace the
                         two-even families
 Falsifier               A leftover whose prefix-cell tail never
-                        fires, or a CycleWord realization below N0
+                        fires, or a CycleItinerary realization below N0
 Existing machinery      expansion, CycleMin, last-internal
                         bootstrap, Lemma 3.5 cells, lowerDenom
 Maximum Phase-0 scope   inventory + prefix-cell N0 + finite table;
@@ -31,7 +31,7 @@ Maximum Phase-0 scope   inventory + prefix-cell N0 + finite table;
 - secondary: `['FIRST_E_TRANSPORT_FOR_A2', 'LAST_INTERNAL_SUFFIX_ALWAYS_O_RUN']`
 - sorry-free: `True`
 
-length 9 has 28 three-even even-terminating expanding words; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleWord tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE.
+length 9 has 28 three-even even-terminating expanding itineraries; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleItinerary tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE.
 
 ## Counts
 
@@ -75,7 +75,7 @@ length 9 has 28 three-even even-terminating expanding words; last-internal suffi
 
 ## Lean
 
-- `cycle_word_formally_expanding`: `True`
+- `cycle_itinerary_formally_expanding`: `True`
 - `no_cycle_odd_run_append_even`: `True`
 - `oo_suffix_threshold`: `True`
 - `ooo_suffix_threshold`: `True`
@@ -84,13 +84,13 @@ length 9 has 28 three-even even-terminating expanding words; last-internal suffi
 - `cycleMin_not_start_even`: `True`
 - `cycle_last_even_interval`: `True`
 - `cycle_trailing_evens_lt`: `True`
-- `no_cycle_word_length_le_six`: `True`
-- `no_cycle_word_oooeoe`: `True`
-- `no_cycle_word_ooooee`: `True`
-- `no_cycle_word_oooooee`: `True`
-- `no_cycle_word_ooooeoe`: `True`
-- `no_cycle_word_length_le_seven`: `True`
-- `no_cycle_word_ooooooeee`: `True`
+- `no_cycle_itinerary_length_le_six`: `True`
+- `no_cycle_itinerary_oooeoe`: `True`
+- `no_cycle_itinerary_ooooee`: `True`
+- `no_cycle_itinerary_oooooee`: `True`
+- `no_cycle_itinerary_ooooeoe`: `True`
+- `no_cycle_itinerary_length_le_seven`: `True`
+- `no_cycle_itinerary_ooooooeee`: `True`
 - length eight open in census: `True`
 - no length-nine theorem: `True`
 - no all-cycles-impossible theorem: `True`
@@ -118,10 +118,10 @@ length 9 has 28 three-even even-terminating expanding words; last-internal suffi
 
 **THREE_EVEN_PREFIX_CELL_GREEN**
 
-length 9 has 28 three-even even-terminating expanding words; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleWord tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE.
+length 9 has 28 three-even even-terminating expanding itineraries; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleItinerary tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE.
 
 This is not a halt result and not a length-9 census.
 Two-even length-9 leftovers were not opened. Length 10 and
 four-even words were not opened. Lean excludes `OOOOOOEEE`
-only (`cycle_trailing_evens_lt`, `no_cycle_word_ooooooeee`).
+only (`cycle_trailing_evens_lt`, `no_cycle_itinerary_ooooooeee`).
 

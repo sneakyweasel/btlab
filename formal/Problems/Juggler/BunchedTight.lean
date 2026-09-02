@@ -1,11 +1,11 @@
-import Problems.Juggler.LeftoverCell
+import Problems.Juggler.LeftoverPreimage
 import Problems.Juggler.LeftoverShort
 import Problems.Juggler.LeftoverEval
 
 namespace Problems.Juggler
 
 /-!
-Algebraic cells for the remaining bunched leftovers. CycleWord
+Algebraic cells for the remaining bunched leftovers. CycleItinerary
 extraction stays in the family files.
 -/
 

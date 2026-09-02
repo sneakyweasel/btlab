@@ -17,7 +17,7 @@ from research.juggler_sequence.isolated_odd_fibre import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_isolated_odd_shape():
@@ -93,5 +93,5 @@ def test_dossier_boundary():
     assert "PARK" in dossier
     assert "isolated-odd" in dossier.lower()
     assert "juggler_isolated_odd_fibre" in defect
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

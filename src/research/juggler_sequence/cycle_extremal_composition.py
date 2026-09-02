@@ -1,7 +1,7 @@
 """Compose existing cycle extrema; stop at envelope repackaging.
 
 Not a Research Engine control-layer experiment. Not a halt theorem.
-Does not enumerate cycle words, does not search for periodic points,
+Does not enumerate cycle itineraries, does not search for periodic points,
 and does not build a residual graph or energy. Calibrates finite-orbit
 distinguished points against the packaged cycle order
 m ≤ p < x < M and checks that split scale laws are ordinary envelopes.
@@ -20,7 +20,7 @@ from research.juggler_sequence.cycle_top_pred import (
     orbit_until_one,
     pred_of_orbit,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     ENVELOPE,
@@ -179,16 +179,16 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in text
-        and "theorem no_cycle_word " not in text,
+        and "theorem no_cycle_itinerary " not in text,
         "no_cycle_engine": "def CycleSearch" not in text
         and "def CycleStates" not in text,
         "no_length_six_theorem": "length_six" not in text
         and "length_six" not in floor,
         "no_infinite_path_type": "coinductive" not in text.lower()
         and "def InfinitePath" not in text,
-        "FloorPower_not_rewritten": "CycleWord" not in floor
+        "FloorPower_not_rewritten": "CycleItinerary" not in floor
         and "cycle_distinguished_order" not in floor,
-        "Progress_unchanged": "CycleWord" not in progress,
+        "Progress_unchanged": "CycleItinerary" not in progress,
         "orbit_min_not_used": "MinimalNonTerm" not in text,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
         "no_odd_landing_type": "def OddLanding" not in text,
@@ -260,7 +260,7 @@ def run_probe() -> dict[str, Any]:
             + [row for row in rows if row["start"] in (7, 9, 21, 25)]
         ],
         "n_search": False,
-        "cycle_word_census": False,
+        "cycle_itinerary_census": False,
         "odd_landing_engine": False,
         "residual_graph": False,
         "new_energy": False,
@@ -289,7 +289,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         }
     if (
         scan["n_search"]
-        or scan["cycle_word_census"]
+        or scan["cycle_itinerary_census"]
         or scan["odd_landing_engine"]
         or scan["residual_graph"]
         or scan["new_energy"]
@@ -417,7 +417,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         [
             "",
             f"- n-search: `{scan['n_search']}`",
-            f"- cycle-word census: `{scan['cycle_word_census']}`",
+            f"- cycle-word census: `{scan['cycle_itinerary_census']}`",
             f"- odd-landing engine: `{scan['odd_landing_engine']}`",
             f"- residual graph: `{scan['residual_graph']}`",
             f"- new energy: `{scan['new_energy']}`",

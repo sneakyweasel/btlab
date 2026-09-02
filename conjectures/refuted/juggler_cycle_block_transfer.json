@@ -1,11 +1,11 @@
 {
   "id": "juggler_cycle_block_transfer",
   "title": "Composing exact O^a E^r interval maps around a CycleMin necklace produces a cyclic obstruction that is not an archived cell",
-  "statement": "The interval transfer I_{i+1}=F_{a,r}(I_i) for blocks O^a E^r, composed around a CycleMin necklace with n <= V_i and P_i > V_i, yields global expansion, global contraction, or an empty run-type digraph that is not power_bound_word / cycle_trailing_evens_lt / excursion_map / corridor_bounds / 3^o/2^L / cycle_word_formally_expanding / cycleMin_finance / the 365 vs 1517 split, and that outcome empties or tightens a leftover for a reason that is not an archived cell.",
+  "statement": "The interval transfer I_{i+1}=F_{a,r}(I_i) for blocks O^a E^r, composed around a CycleMin necklace with n <= V_i and P_i > V_i, yields global expansion, global contraction, or an empty run-type digraph that is not power_bound_word / cycle_trailing_evens_lt / excursion_map / corridor_bounds / 3^o/2^L / cycle_itinerary_formally_expanding / cycleMin_finance / the 365 vs 1517 split, and that outcome empties or tightens a leftover for a reason that is not an archived cell.",
   "status": "REFUTED",
   "counterexamples": [
     "(1,1) is the archived OE cell z^4 <= x^3 < (z+1)^4; (2,1) is the OOE cell w^8 <= v^9; r=1 agrees with excursion_map",
-    "formal F_cycle is x^{3^o/2^L}; leftover L=19 and L=84 have outcome A, which is required expansion, not a contradiction; B is a contracting word",
+    "formal F_cycle is x^{3^o/2^L}; leftover L=19 and L=84 have outcome A, which is required expansion, not a contradiction; B is a contracting itinerary",
     "(2,1) composed with (2,1) is 81/64 and 243<256, the archived (2,2,1) comparison",
     "365 = (2,2,2,2) and 1517 = (2,2,2,1); the run-type digraph is not empty"
   ],

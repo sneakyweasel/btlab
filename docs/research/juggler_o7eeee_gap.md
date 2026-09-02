@@ -16,9 +16,9 @@ Falsifier               an O^7 image below (n+1)^16, or the
                         +1-chain still needs n ~ 10^8
 Existing machinery      (T+1)^2 > x^3; x_k >= n on odd runs;
                         no_follows_seven_odds_of_lt256;
-                        leftover_prefix_cell at N0=828484409
+                        leftover_prefix_preimage at N0=828484409
 Maximum Phase-0 scope   one-word +1-chain; no Lean, no Z5,
-                        no thirty-word census
+                        no thirty-itinerary census
 ```
 
 ## Metadata
@@ -73,10 +73,10 @@ comparison reduces to 256^{6177} > 257^{6038}:
 Thus 256^{139} > (257/256)^{6038}, hence 256^{6177} > 257^{6038},
 and the same holds for every larger n. Lean has
 no_follows_seven_odds_of_lt256, o7_image_ge_succ_pow16, and
-no_cycle_word_oooooooeeee. The EEEE inverse cell
-[n^{16}, (n+1)^{16}) is empty, and O^7 EEEE is not a cycle word.
+no_cycle_itinerary_oooooooeeee. The EEEE inverse cell
+[n^{16}, (n+1)^{16}) is empty, and O^7 EEEE is not a cycle itinerary.
 
-This is not leftover_prefix_cell: that comparison uses the
+This is not leftover_prefix_preimage: that comparison uses the
 factor 2^{4118} and first fires at n = 828484409. The +1-chain
 replaces the 4-fudge by the exact successor cell.
 
@@ -86,13 +86,13 @@ length-11 census.
 ## Lean
 
 - `no_follows_seven_odds_of_lt256`: `True`
-- `leftover_prefix_cell`: `True`
+- `leftover_prefix_preimage`: `True`
 - `cycle_trailing_evens_lt`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `o7_image_ge_succ_pow16`: `True`
-- `no_cycle_word_oooooooeeee`: `True`
-- no `no_cycle_word_length_eleven`: `True`
-- no `no_cycle_word_four_even`: `True`
+- `no_cycle_itinerary_oooooooeeee`: `True`
+- no `no_cycle_itinerary_length_eleven`: `True`
+- no `no_cycle_itinerary_four_even`: `True`
 - no `juggler_reaches_one`: `True`
 - Paper A has no O^7 EEEE theorem: `True`
 - FloorPower not rewritten: `True`

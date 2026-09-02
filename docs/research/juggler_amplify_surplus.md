@@ -34,7 +34,7 @@ Maximum Phase-0 scope   Exponent census plus log F vs log G;
 - all 30 share exponent 2184: `True`
 - realized followers that beat G: `False`
 
-first-defect Amplify has exponent 2184 (rho=1) or 2185.5 (max rho) against surplus n^{2187}; the n^3 gap is invariant under even letters. Optimistic max-rho Amplify already loses at the seven-odd cutoff 256, which is where these words can first be followed; leftover N0 is later still.
+first-defect Amplify has exponent 2184 (rho=1) or 2185.5 (max rho) against surplus n^{2187}; the n^3 gap is invariant under even letters. Optimistic max-rho Amplify already loses at the seven-odd cutoff 256, which is where these itineraries can first be followed; leftover N0 is later still.
 
 ## Lean
 
@@ -67,7 +67,7 @@ first-defect Amplify has exponent 2184 (rho=1) or 2185.5 (max rho) against surpl
 
 **AMPLIFY_SURPLUS_REFUTED**
 
-first-defect Amplify has exponent 2184 (rho=1) or 2185.5 (max rho) against surplus n^{2187}; the n^3 gap is invariant under even letters. Optimistic max-rho Amplify already loses at the seven-odd cutoff 256, which is where these words can first be followed; leftover N0 is later still.
+first-defect Amplify has exponent 2184 (rho=1) or 2185.5 (max rho) against surplus n^{2187}; the n^3 gap is invariant under even letters. Optimistic max-rho Amplify already loses at the seven-odd cutoff 256, which is where these itineraries can first be followed; leftover N0 is later still.
 
 This is not a halt result and not a length-11 census.
 

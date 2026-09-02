@@ -37,7 +37,7 @@ Let \(x_{\mathrm{pre3}}\) be the state immediately before that first
 ## Current literature
 
 - \(T_{\mathtt{OOEOOE}}(n)<n^2\), even landing drops —
-  **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-square-cell`).
+  **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-square-preimage`).
 - Forced next `O` after an odd `OOEOOE` landing stays below \(n^2\) —
   **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-next-o`).
 - Isolated-`OE` comparison \(R(2)=0\), so `OOE OE` cannot stay
@@ -106,7 +106,7 @@ It is not required.
 - a bounded `OOE`-count — not claimed. The exponent
   \(9/8>1\) gives no \(r\)-bound analogue.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -153,7 +153,7 @@ odd letter is the escape.
 None. Existing `Envelope.lean`, `CycleCore.lean`,
 `FirstInternalOO.lean`, and `Scale.lean` lemmas are cited, not
 rewritten. No `no_cycleMin_prefix_ooeooo`. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`. No
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`. No
 `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -193,7 +193,7 @@ second-odd escape. The residual after a first `OOO` from
 the separate branch
 [juggler_post_ooo_crossing.md](juggler_post_ooo_crossing.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\). Do
-not assemble `no_cycle_word_length_eleven`.
+not assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 

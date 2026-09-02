@@ -4,7 +4,7 @@ Not a Research Engine control-layer experiment. Not a leftover-cell
 census, not Z5, not a length-11 assembler, and not a halt theorem.
 
 On CycleMin the first odd run has length a0>=2 and the last gap is
-in {0,1}. This probe classifies CycleMin-shaped expanding words by
+in {0,1}. This probe classifies CycleMin-shaped expanding itineraries by
 the first existing suffix filter, upgrades the OOO residual from
 (n+1)^2 to (n+1)^3, and names the residual family: a bunched-short
 last cluster.
@@ -31,7 +31,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_obstruction.json"
@@ -86,18 +86,18 @@ LEAN_THEOREMS = (
     "cycleMin_transport_second_oo",
     "cycleMin_first_even_overshoots",
     "no_cycleMin_bootstrap_last_gap",
-    "no_cycle_word_even_count_le_three",
+    "no_cycle_itinerary_even_count_le_three",
     "no_cycleMin_gapped_three_even_ee",
     "no_cycleMin_gapped_three_even_eoe",
-    "no_cycle_word_two_even_ee",
-    "no_cycle_word_two_even_eoe",
+    "no_cycle_itinerary_two_even_ee",
+    "no_cycle_itinerary_two_even_eoe",
     "no_cycleMin_cyclemin_fudge",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_length_eleven",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_four_even",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -171,7 +171,7 @@ def last_cluster(runs: tuple[int, ...]) -> tuple[int, int] | None:
     return (runs[-2], runs[-1])
 
 
-def follows_word(n: int, word: str) -> bool:
+def follows_itinerary(n: int, word: str) -> bool:
     current = n
     for letter in word:
         if letter == "O":
@@ -211,7 +211,7 @@ def cube_scan(n_max: int = CUBE_N_MAX) -> dict[str, Any]:
     a2_counterexample = None
     cube_counterexample = None
     for n in iterate_odds(5, n_max):
-        if not follows_word(n, "OO"):
+        if not follows_itinerary(n, "OO"):
             continue
         z2 = image_after(n, "OO")
         if z2 < (n + 1) ** 2:
@@ -220,7 +220,7 @@ def cube_scan(n_max: int = CUBE_N_MAX) -> dict[str, Any]:
         oo_holds += 1
         if z2 % 2 == 0:
             continue
-        if not follows_word(n, "OOO"):
+        if not follows_itinerary(n, "OOO"):
             continue
         ooo_follows += 1
         z3 = image_after(n, "OOO")
@@ -263,7 +263,7 @@ def transport_scan(n_max: int = TRANSPORT_N_MAX) -> dict[str, Any]:
     for a, b in product((2, 3, 4), repeat=2):
         prefix = "O" * a + "E" + "O" * b
         for n in iterate_odds(12, n_max):
-            if not follows_word(n, prefix):
+            if not follows_itinerary(n, prefix):
                 continue
             hits += 1
             y = image_after(n, "O" * a + "E")
@@ -319,21 +319,21 @@ def invariant_scan(n_max: int = INVARIANT_N_MAX) -> dict[str, Any]:
     ee_even_lt_sq = 0
     ratio_not_monotone = False
     for n in iterate_odds(12, n_max):
-        if not follows_word(n, "OOE"):
+        if not follows_itinerary(n, "OOE"):
             continue
         y = image_after(n, "OOE")
         if y > n:
             first_landing_gt += 1
         elif y == n:
             first_landing_eq += 1
-        if follows_word(n, "OOEOE"):
+        if follows_itinerary(n, "OOEOE"):
             y2 = image_after(n, "OOEOE")
             if y2 < y:
                 oe_contract += 1
             elif y2 > y:
                 oe_expand += 1
                 ratio_not_monotone = True
-        if follows_word(n, "OOEE"):
+        if follows_itinerary(n, "OOEE"):
             y1 = image_after(n, "OOE")
             if y1 % 2 == 0:
                 if y1 >= n * n:
@@ -470,9 +470,9 @@ def lean_api_present() -> dict[str, bool]:
         "gapped_present": "theorem no_cycleMin_gapped_three_even_ee" in families,
         "fudge_present": CYCLEMIN_FUDGE.is_file()
         and "theorem no_cycleMin_cyclemin_fudge" in CYCLEMIN_FUDGE.read_text(encoding="utf-8"),
-        "paper_a_untouched": "theorem no_cycle_word_even_count_le_three"
+        "paper_a_untouched": "theorem no_cycle_itinerary_even_count_le_three"
         not in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "core_not_census": "not a halt theorem" in core,
     }
 

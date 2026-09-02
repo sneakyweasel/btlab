@@ -8,7 +8,7 @@ Refinement of
 not a new paper. It asks whether the exact ordered maps
 \(v\overset{O^aE}{\to}w\overset{O^bE}{\to}z\) forbid a transition
 that the aggregate \((L,o,e)\) packing cannot see.
-Not a halt theorem, not a leftover-word census, not a new finance
+Not a halt theorem, not a leftover-itinerary census, not a new finance
 identity, not Fourier, not a \(Q\)-return, and not a residue /
 \(p\)-adic system.
 
@@ -134,8 +134,8 @@ Existing machinery      CycleMin; AboveAnchor; run decomposition;
                         isolated-OE bound;
                         OOE/OE finite-progress exclusions;
                         exact odd/even cells;
-                        odd_cell_unique;
-                        even_cell_iff;
+                        odd_preimage_unique;
+                        even_preimage_iff;
                         EnvelopeState;
                         block_map Q;
                         exact floor composition

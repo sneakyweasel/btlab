@@ -21,7 +21,7 @@ from research.juggler_sequence.leftover_cell_lag import (
     render_markdown,
     tail_holds_log,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_a_star_and_known_cutoffs():
@@ -59,7 +59,7 @@ def test_probe_lag_stays_one():
 def test_lean_has_cell_and_no_five_even():
     lean = lean_api_present()
     assert lean["sorry_free"] is True
-    assert lean["leftover_prefix_cell"] is True
+    assert lean["leftover_prefix_preimage"] is True
     assert lean["denomBits"] is True
     for name in FORBIDDEN_THEOREMS:
         assert lean[name] is True, name

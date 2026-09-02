@@ -37,7 +37,7 @@ from research.juggler_sequence.normalized_defect import (
 )
 from research.juggler_sequence.minimal_anchor_closure import WORD_L
 from research.juggler_sequence.odd_chain_minimality import L_LAB, LONG_ODD_STARTS
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cumulative_floor_loss.json"
@@ -338,7 +338,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "FloorLoss" not in paper
         and "CumulativeLoss" not in paper
         and "LossBudget" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

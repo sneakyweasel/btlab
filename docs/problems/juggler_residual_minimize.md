@@ -223,7 +223,7 @@ word-language Myhill–Nerode automata.
 
 **CLOSE** the ResidualStep \(\sim_H\) census as `RESIDUAL_MN_REPACK`.
 \(Q_H\) plateaus below \(\lvert Y\rvert\) only because some landings
-share a complete observation word to HALT. That word is a certificate
+share a complete observation word to HALT. That itinerary is a certificate
 of those integers, not a new ResidualStep state. \(H=1\) merges
 refine away or collapse to the same halt word. No live multi-\(y\)
 prefix survives the cap. Do not add Lean. Do not claim a finite

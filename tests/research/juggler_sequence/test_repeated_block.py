@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.repeated_block import (
     CLASS_CONTRACT,
     CLASS_EXPAND,
@@ -33,7 +33,7 @@ def test_regimes_never_equal_and_ooe_is_closest_expanding():
 
 
 def test_start_oe_contracts():
-    assert follows_word(13, "OE")
+    assert follows_itinerary(13, "OE")
     assert image_after(13, "OE") == 6
     assert 6 < 13
     assert envelope_holds(13, 1, 1, 1, 6)
@@ -41,7 +41,7 @@ def test_start_oe_contracts():
 
 
 def test_expanding_ooe_repeats_above_start():
-    assert follows_word(69, "OOEOOE")
+    assert follows_itinerary(69, "OOEOOE")
     assert image_after(69, "OOE") == 117
     assert image_after(69, "OOEOOE") == 212
     assert 212 >= 69
@@ -57,7 +57,7 @@ def test_expanding_ooe_repeats_above_start():
 
 
 def test_later_contracting_oe_can_stay():
-    assert follows_word(17537, "OEOE")
+    assert follows_itinerary(17537, "OEOE")
     assert image_after(17537, "OEOE") == 243
     assert 243 >= 77
     assert envelope_holds(17537, 1, 1, 2, 243)

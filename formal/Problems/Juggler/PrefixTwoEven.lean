@@ -39,7 +39,7 @@ theorem returnsIntoB_iff {y : ℕ} {w : List Branch} :
 theorem returnsIntoB_of_cycleMin_suffix {n : ℕ} {u v : List Branch}
     (hn : 2 ≤ n) (hv : 1 ≤ v.length) (h : CycleMin n (u ++ v)) :
     returnsIntoB (image n u) v = true := by
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hy := cycleMin_prefix_y_ge hv h
   have hf : follows (image n u) v := follows_of_append_right hC.1
   have himg : image (image n u) v = n := by
@@ -50,7 +50,7 @@ theorem returnsIntoB_of_cycleMin_suffix {n : ℕ} {u v : List Branch}
 
 theorem prefix_two_even_ee_cell {n k : ℕ} {u : List Branch}
     (hk : 6 ≤ k) (hy : 1 ≤ image n u)
-    (h : CycleWord n (u ++ twoEvenEE k)) :
+    (h : CycleItinerary n (u ++ twoEvenEE k)) :
     image n u ^ (3 ^ (k - 2)) <
       2 ^ denomBits (k - 2) * (n + 1) ^ (2 ^ k) := by
   set y := image n u
@@ -58,7 +58,7 @@ theorem prefix_two_even_ee_cell {n k : ℕ} {u : List Branch}
   have hk2 : 2 ≤ k := le_trans (by decide : (2 : ℕ) ≤ 6) hk
   have hsplit : u ++ twoEvenEE k = v ++ List.replicate 2 Branch.even := by
     simp [twoEvenEE, v, List.append_assoc]
-  have hC : CycleWord n (v ++ List.replicate 2 Branch.even) := by
+  have hC : CycleItinerary n (v ++ List.replicate 2 Branch.even) := by
     simpa [hsplit] using h
   have hz := cycle_trailing_evens_lt (r := 2) (by decide) hC
   have hO : follows y (List.replicate (k - 2) Branch.odd) :=
@@ -84,7 +84,7 @@ theorem no_cycleMin_prefix_two_even_ee_of_y {n k : ℕ} {u : List Branch}
     (hk : 6 ≤ k) (h : CycleMin n (u ++ twoEvenEE k))
     (hy : 256 ≤ image n u) : False := by
   set y := image n u
-  have hC : CycleWord n (u ++ twoEvenEE k) := cycleMin_cycleWord h
+  have hC : CycleItinerary n (u ++ twoEvenEE k) := cycleMin_cycleItinerary h
   have hk2 : 2 ≤ k := le_trans (by decide : (2 : ℕ) ≤ 6) hk
   have hlen : 1 ≤ (twoEvenEE k).length := by
     have : (twoEvenEE k).length = k := twoEvenEE_length hk2
@@ -103,7 +103,7 @@ theorem no_cycleMin_prefix_two_even_ee_of_y {n k : ℕ} {u : List Branch}
 theorem no_cycleMin_prefix_two_even_ee_of_eq {n k : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hk : 6 ≤ k) (h : CycleMin n (u ++ twoEvenEE k))
     (hy : image n u = n) : False := by
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hf : follows n (twoEvenEE k) := by
     simpa [hy] using follows_of_append_right (u := u) hC.1
   have himg : image n (twoEvenEE k) = n := by
@@ -114,10 +114,10 @@ theorem no_cycleMin_prefix_two_even_ee_of_eq {n k : ℕ} {u : List Branch}
   have hlen : 1 ≤ (twoEvenEE k).length := by
     have : (twoEvenEE k).length = k := twoEvenEE_length hk2
     omega
-  exact no_cycle_word_two_even_ee hn hk ⟨hf, himg, hlen⟩
+  exact no_cycle_itinerary_two_even_ee hn hk ⟨hf, himg, hlen⟩
 
 theorem prefix_two_even_ee_follows_seven_odds {n k : ℕ} {u : List Branch}
-    (hk : 9 ≤ k) (h : CycleWord n (u ++ twoEvenEE k)) :
+    (hk : 9 ≤ k) (h : CycleItinerary n (u ++ twoEvenEE k)) :
     follows (image n u) sevenOdds := by
   have hO : follows (image n u) (List.replicate (k - 2) Branch.odd) :=
     follows_of_append_left (v := List.replicate 2 Branch.even)
@@ -139,26 +139,26 @@ theorem no_cycleMin_prefix_two_even_ee_of_lt {n k : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ y := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB y (twoEvenEE k) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : k = 6 ∨ k = 7 ∨ k = 8 ∨ 9 ≤ k := by omega
   rcases hcases with h6 | h7 | h8 | hge
   · subst h6
     have hfalse := returnsIntoB_ooooee_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordOOOOEE = true := by
+    have htrue' : returnsIntoB y itineraryOOOOEE = true := by
       simpa [twoEvenEE_of_six] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'
   · subst h7
     have hfalse := returnsIntoB_oooooee_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordOOOOOEE = true := by
+    have htrue' : returnsIntoB y itineraryOOOOOEE = true := by
       simpa [twoEvenEE_of_seven] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'
   · subst h8
     have hfalse := returnsIntoB_two_even_ee8_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordTwoEvenEE8 = true := by
+    have htrue' : returnsIntoB y itineraryTwoEvenEE8 = true := by
       simpa [twoEvenEE_of_eight] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'
@@ -175,7 +175,7 @@ theorem no_cycleMin_prefix_two_even_ee {n k : ℕ} {u : List Branch}
 
 theorem prefix_two_even_eoe_cell {n k : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hk : 6 ≤ k) (hy : 1 ≤ image n u)
-    (h : CycleWord n (u ++ twoEvenEOE k)) :
+    (h : CycleItinerary n (u ++ twoEvenEOE k)) :
     image n u ^ (3 ^ (k - 2)) <
       2 ^ denomBits (k - 2) * (n + 1) ^ (2 ^ k) := by
   set y := image n u
@@ -184,7 +184,7 @@ theorem prefix_two_even_eoe_cell {n k : ℕ} {u : List Branch}
   set w := image y (odds ++ [Branch.even])
   have hk3 : 3 ≤ k := le_trans (by decide : (3 : ℕ) ≤ 6) hk
   have hk2 : 2 ≤ k := le_trans (by decide : (2 : ℕ) ≤ 6) hk
-  have hC' : CycleWord n
+  have hC' : CycleItinerary n
       ((u ++ odds) ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [twoEvenEOE, List.append_assoc] using h
   have hO : follows y odds :=
@@ -269,7 +269,7 @@ theorem no_cycleMin_prefix_two_even_eoe_of_y {n k : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hk : 6 ≤ k) (h : CycleMin n (u ++ twoEvenEOE k))
     (hy : 256 ≤ image n u) : False := by
   set y := image n u
-  have hC : CycleWord n (u ++ twoEvenEOE k) := cycleMin_cycleWord h
+  have hC : CycleItinerary n (u ++ twoEvenEOE k) := cycleMin_cycleItinerary h
   have hk3 : 3 ≤ k := le_trans (by decide : (3 : ℕ) ≤ 6) hk
   have hlen : 1 ≤ (twoEvenEOE k).length := by
     have : (twoEvenEOE k).length = k := twoEvenEOE_length hk3
@@ -288,7 +288,7 @@ theorem no_cycleMin_prefix_two_even_eoe_of_y {n k : ℕ} {u : List Branch}
 theorem no_cycleMin_prefix_two_even_eoe_of_eq {n k : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hk : 6 ≤ k) (h : CycleMin n (u ++ twoEvenEOE k))
     (hy : image n u = n) : False := by
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hf : follows n (twoEvenEOE k) := by
     simpa [hy] using follows_of_append_right (u := u) hC.1
   have himg : image n (twoEvenEOE k) = n := by
@@ -299,10 +299,10 @@ theorem no_cycleMin_prefix_two_even_eoe_of_eq {n k : ℕ} {u : List Branch}
   have hlen : 1 ≤ (twoEvenEOE k).length := by
     have : (twoEvenEOE k).length = k := twoEvenEOE_length hk3
     omega
-  exact no_cycle_word_two_even_eoe hn hk ⟨hf, himg, hlen⟩
+  exact no_cycle_itinerary_two_even_eoe hn hk ⟨hf, himg, hlen⟩
 
 theorem prefix_two_even_eoe_follows_seven_odds {n k : ℕ} {u : List Branch}
-    (hk : 10 ≤ k) (h : CycleWord n (u ++ twoEvenEOE k)) :
+    (hk : 10 ≤ k) (h : CycleItinerary n (u ++ twoEvenEOE k)) :
     follows (image n u) sevenOdds := by
   have hO : follows (image n u) (List.replicate (k - 3) Branch.odd) :=
     follows_of_append_left (v := [Branch.even, Branch.odd, Branch.even])
@@ -324,32 +324,32 @@ theorem no_cycleMin_prefix_two_even_eoe_of_lt {n k : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ y := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB y (twoEvenEOE k) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : k = 6 ∨ k = 7 ∨ k = 8 ∨ k = 9 ∨ 10 ≤ k := by omega
   rcases hcases with h6 | h7 | h8 | h9 | hge
   · subst h6
     have hfalse := returnsIntoB_oooeoe_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordOOOEOE' = true := by
-      simpa [twoEvenEOE_of_six, wordOOOEOE_eq_eval] using htrue
+    have htrue' : returnsIntoB y itineraryOOOEOE' = true := by
+      simpa [twoEvenEOE_of_six, itineraryOOOEOE_eq_eval] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'
   · subst h7
     have hfalse := returnsIntoB_ooooeoe_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordOOOOEOE = true := by
+    have htrue' : returnsIntoB y itineraryOOOOEOE = true := by
       simpa [twoEvenEOE_of_seven] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'
   · subst h8
     have hfalse := returnsIntoB_two_even_eoe8_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordTwoEvenEOE8 = true := by
+    have htrue' : returnsIntoB y itineraryTwoEvenEOE8 = true := by
       simpa [twoEvenEOE_of_eight] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'
   · subst h9
     have hfalse := returnsIntoB_two_even_eoe9_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordTwoEvenEOE9 = true := by
+    have htrue' : returnsIntoB y itineraryTwoEvenEOE9 = true := by
       simpa [twoEvenEOE_of_nine] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'

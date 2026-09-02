@@ -60,7 +60,7 @@ from research.juggler_sequence.lean_paths import (
     LAYERS,
     has_named,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "k3_rate_free"

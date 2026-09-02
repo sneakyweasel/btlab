@@ -261,13 +261,13 @@
   },
   "lean": {
     "sorry_free": true,
-    "leftover_prefix_cell": true,
+    "leftover_prefix_preimage": true,
     "denomBits": true,
     "cycle_trailing_evens_lt": true,
-    "no_cycle_word_two_even_ee": true,
-    "no_cycle_word_three_even_eee": true,
-    "no_cycle_word_five_even": true,
-    "no_cycle_word_e5_cell": true,
+    "no_cycle_itinerary_two_even_ee": true,
+    "no_cycle_itinerary_three_even_eee": true,
+    "no_cycle_itinerary_five_even": true,
+    "no_cycle_itinerary_e5_cell": true,
     "leftover_cell_lag_inductive": true,
     "juggler_reaches_one": true,
     "paper_a_has_no_lag": true,
@@ -279,5 +279,5 @@
     "classification": "LEFTOVER_CELL_LAG_STAYS_ONE",
     "reason": "lag is 0 or 1 on e=2..16; max lag 1; a_*+1 always fires in the window. Leftover induction is a per-e census, not a unifying method"
   },
-  "search_method": "trailing-evens leftover_prefix_cell for O^a E^e; a_*(e) first expanding a; N0 by log doubling; lag = extra odds past a_* until N0<=800; e=2..16; no Z5"
+  "search_method": "trailing-evens leftover_prefix_preimage for O^a E^e; a_*(e) first expanding a; N0 by log doubling; lag = extra odds past a_* until N0<=800; e=2..16; no Z5"
 }

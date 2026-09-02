@@ -63,8 +63,8 @@ image   : Nat -> List Branch -> Nat
 The central semantic bridge is
 
 ```text
-follows_iff_word (n) :
-  follows n w ↔ word n w.length = w
+follows_iff_itinerary (n) :
+  follows n w ↔ itinerary n w.length = w
 ```
 
 The endpoint has the intended iterative semantics:
@@ -83,10 +83,10 @@ follows_of_append_left
 follows_of_append_right
 ```
 
-In particular, a realized word decomposes into a realized prefix and a
+In particular, a realized itinerary decomposes into a realized prefix and a
 realized suffix from the prefix endpoint.
 
-The fixed-word image is monotone on its realizing set:
+The fixed-itinerary image is monotone on its realizing set:
 
 ```text
 image_monotone_of_follows :
@@ -100,8 +100,8 @@ extension or that a realizing set is an interval.
 
 Sources:
 
-- `formal/Problems/Juggler/WordStats.lean`;
-- `formal/Problems/Juggler/WordLanguage.lean`;
+- `formal/Problems/Juggler/ItineraryStats.lean`;
+- `formal/Problems/Juggler/ItineraryLanguage.lean`;
 - `formal/Problems/Juggler/ExpandingGrammar.lean`.
 
 `oddCount w` counts odd letters. The exponent comparison is represented by
@@ -127,7 +127,7 @@ by the syntactic exponent comparison.
 
 Source: `formal/Problems/Juggler/Envelope.lean`.
 
-For every realized finite word,
+For every realized finite itinerary,
 \[
 J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}.
 \]
@@ -150,8 +150,8 @@ power_bound_contracts
   floorPower^[w.length] n < n
 ```
 
-Thus the exponent gap is sufficient for contraction along a realized word.
-No theorem states that every trajectory realizes such a word.
+Thus the exponent gap is sufficient for contraction along a realized itinerary.
+No theorem states that every trajectory realizes such an itinerary.
 
 ## 5. Exact defects
 
@@ -264,11 +264,11 @@ equidistribution, which is now proved at every depth \(\le4\)
 Theorems 5.3 and 6.1); the first open case is the \(OOOO*\) split
 (Paper B's Conjecture 7.3).
 
-## 7. Exact inverse cells
+## 7. Exact one-step preimages
 
 Sources:
 
-- `formal/Problems/Juggler/Cells.lean`;
+- `formal/Problems/Juggler/Preimages.lean`;
 - `formal/Problems/Juggler/PreimageCylinders.lean`.
 
 The one-step fibers are:
@@ -285,16 +285,16 @@ J(n)=m\iff m^2\le n^3<(m+1)^2
 Lean names:
 
 ```text
-even_cell_iff
-odd_cell_iff
-odd_cell_unique
+even_preimage_iff
+odd_preimage_iff
+odd_preimage_unique
 ```
 
-`odd_cell_unique` proves that an odd inverse cell contains at most one integer.
-Even cells can contain many even predecessors. This is the exact inverse-cell
+`odd_preimage_unique` proves that an odd one-step preimage contains at most one integer.
+Even one-step preimages can contain many even predecessors. This is the exact one-step-preimage
 asymmetry used in the paper.
 
-`squareCylinder` and `wordCylinder` iterate the cell semantics. The theorem
+`squareCylinder` and `wordCylinder` iterate the one-step-preimage semantics. The theorem
 
 ```text
 ooe_cylinder_both_next_parities
@@ -324,14 +324,14 @@ Sources:
 - `formal/Problems/Juggler/SmallCycleCensus.lean`.
 
 ```text
-CycleWord n w :=
+CycleItinerary n w :=
   follows n w ∧ image n w = n ∧ 1 <= w.length
 ```
 
-Every nontrivial cycle word based at \(n\ge2\) is formally expanding:
+Every nontrivial cycle itinerary based at \(n\ge2\) is formally expanding:
 
 ```text
-cycle_word_formally_expanding :
+cycle_itinerary_formally_expanding :
   2 ^ w.length < 3 ^ oddCount w
 ```
 
@@ -356,7 +356,7 @@ cycle_remainder_balance
 cycle_distinguished_order
 ```
 
-`cycle_distinguished_order` packages the nested order and cell relations among
+`cycle_distinguished_order` packages the nested order and one-step-preimage relations among
 the cycle minimum, maximum, peak predecessor, and return landing.
 
 Two recent boundary lemmas are:
@@ -379,46 +379,46 @@ no_cycle_odd_run_append_even
 The two surviving orientations are then excluded separately:
 
 ```text
-no_cycle_word_oooeoe
-no_cycle_word_ooooee
+no_cycle_itinerary_oooeoe
+no_cycle_itinerary_ooooee
 ```
 
 The finite range \(n<256\) is evaluated in `LeftoverEval.lean`.
 `native_decide` checks both `Fin 256` itinerary-and-return tables and the
 finite numerical inequality \(257^{64}<2\cdot256^{64}\). The tail
-\(n\ge256\) uses the last-even cell against the coarse lower envelope
+\(n\ge256\) uses the last-even one-step preimage against the coarse lower envelope
 `LowerPowerBound`, via \(n^{81}>2^{130}(n+1)^{64}\).
 
 `SmallCycleCensus.lean` assembles these exclusions into the census of
 the note's Theorem 3.6:
 
 ```text
-no_cycle_word_length_le_six :
-  2 <= n -> w.length <= 6 -> ¬CycleWord n w
+no_cycle_itinerary_length_le_six :
+  2 <= n -> w.length <= 6 -> ¬CycleItinerary n w
 ```
 
 Its components are:
 
 ```text
 replicate_odd_image_gt
-no_cycle_word_replicate_odd
-rotateWord_eq_drop_append_take
+no_cycle_itinerary_replicate_odd
+rotateItinerary_eq_drop_append_take
 exists_even_getElem_of_oddCount_lt
-cycleWord_exists_even_terminating
-no_cycle_word_len_six_ends_even
+cycleItinerary_exists_even_terminating
+no_cycle_itinerary_len_six_ends_even
 ```
 
-together with the existing `cycleWord_rotateWord`,
-`no_cycle_word_ooe`, `no_cycle_word_length_four_ends_even`,
-`no_cycle_word_length_five_ends_even`, `no_cycle_odd_run_append_even`,
-`no_cycle_word_ooeooe`, `no_cycle_word_oooeoe`, and
-`no_cycle_word_ooooee`.
+together with the existing `cycleItinerary_rotateItinerary`,
+`no_cycle_itinerary_ooe`, `no_cycle_itinerary_length_four_ends_even`,
+`no_cycle_itinerary_length_five_ends_even`, `no_cycle_odd_run_append_even`,
+`no_cycle_itinerary_ooeooe`, `no_cycle_itinerary_oooeoe`, and
+`no_cycle_itinerary_ooooee`.
 
 The same file then strengthens the census to the note's Theorem 3.8:
 
 ```text
-no_cycle_word_length_le_seven :
-  2 <= n -> w.length <= 7 -> ¬CycleWord n w
+no_cycle_itinerary_length_le_seven :
+  2 <= n -> w.length <= 7 -> ¬CycleItinerary n w
 ```
 
 The length-seven leftovers are evaluated in `LeftoverEval.lean`
@@ -426,20 +426,20 @@ The length-seven leftovers are evaluated in `LeftoverEval.lean`
 `LeftoverCycles.lean`:
 
 ```text
-no_cycle_word_oooooee
-no_cycle_word_ooooeoe
+no_cycle_itinerary_oooooee
+no_cycle_itinerary_ooooeoe
 ```
 
 The internal-E bootstrap pair is excluded in `Cycles.lean`:
 
 ```text
-no_cycle_word_ooeoooe
-no_cycle_word_oooeooe
+no_cycle_itinerary_ooeoooe
+no_cycle_itinerary_oooeooe
 ```
 
-The word census of Theorems 3.6 and 3.8 is the elementary layer
+The itinerary census of Theorems 3.6 and 3.8 is the elementary layer
 through length seven. Theorems 3.12--3.21 assemble as Paper A
-Theorem 3.22: no cycle word has even-count at most three, so a
+Theorem 3.22: no cycle itinerary has even-count at most three, so a
 nontrivial cycle has period at least eleven. Section 4 excludes
 later periods by financing. It is not an exclusion of all leftover
 lengths and not a halt theorem.
@@ -451,28 +451,28 @@ cycle_trailing_evens_lt          (Lemma 3.9)
 lowerDenom_replicate_odd
 odd_run_lower_growth             (Lemma 3.10)
 no_follows_seven_odds_of_lt256   (Lemma 3.11)
-no_cycle_word_two_even_ee
-no_cycle_word_two_even_eoe       (Theorem 3.12)
+no_cycle_itinerary_two_even_ee
+no_cycle_itinerary_two_even_eoe       (Theorem 3.12)
 no_cycleMin_gapped_three_even_ee
 no_cycleMin_gapped_three_even_eoe (Theorem 3.13; CycleMin only)
-no_cycle_word_three_even_eee     (Theorem 3.14)
-no_cycle_word_three_even_eoee    (Theorem 3.15)
-no_cycle_word_three_even_eooee   (Theorem 3.16)
-no_cycle_word_three_even_eoooee  (Theorem 3.17)
-no_cycle_word_three_even_eeoe    (Theorem 3.18)
-no_cycle_word_three_even_eoeoe   (Theorem 3.19)
-no_cycle_word_three_even_eooeoe  (Theorem 3.20)
-no_cycle_word_gapped_three_even_ee
-no_cycle_word_gapped_three_even_eoe (Theorem 3.21)
-no_cycle_word_even_count_le_three (Theorem 3.22)
-cycle_word_length_ge_eleven      (Corollary 3.23)
+no_cycle_itinerary_three_even_eee     (Theorem 3.14)
+no_cycle_itinerary_three_even_eoee    (Theorem 3.15)
+no_cycle_itinerary_three_even_eooee   (Theorem 3.16)
+no_cycle_itinerary_three_even_eoooee  (Theorem 3.17)
+no_cycle_itinerary_three_even_eeoe    (Theorem 3.18)
+no_cycle_itinerary_three_even_eoeoe   (Theorem 3.19)
+no_cycle_itinerary_three_even_eooeoe  (Theorem 3.20)
+no_cycle_itinerary_gapped_three_even_ee
+no_cycle_itinerary_gapped_three_even_eoe (Theorem 3.21)
+no_cycle_itinerary_even_count_le_three (Theorem 3.22)
+cycle_itinerary_length_ge_eleven      (Corollary 3.23)
 ```
 
-Theorem 3.13 is a minimum-based exclusion. It is not a `CycleWord`
+Theorem 3.13 is a minimum-based exclusion. It is not a `CycleItinerary`
 theorem at a non-minimum start. Theorem 3.21 upgrades those same
-words to `CycleWord`s by rotation. Theorem 3.22 assembles
+words to `CycleItinerary`s by rotation. Theorem 3.22 assembles
 Theorems 3.12--3.21 as an even-count exclusion. It is not a
-length-9 or length-10 word census.
+length-9 or length-10 itinerary census.
 
 The cycle-surplus identity of the note's Corollary 2.7 and the
 per-step scale bound are:
@@ -537,9 +537,9 @@ imported.
 ## 8.5 Excursion necklace
 
 Paper A Section 4 now opens with the excursion necklace of a
-minimum-based cycle word. That subsection is organizing prose:
+minimum-based cycle itinerary. That subsection is organizing prose:
 it names the circular itinerary already implied by Theorem 3.2,
-Lemma 3.4, Lemma 3.21b, and the last-even cell. It introduces
+Lemma 3.4, Lemma 3.21b, and the last-even one-step preimage. It introduces
 no new theorem and no new Lean object. The table below records
 how each stage is represented. Names marked *satellite* are
 not imported by `Problems.JugglerPaper` and are not in
@@ -564,31 +564,31 @@ with valleys \(v_i\), peaks \(p_i=J^{a_{i+1}}(v_i)\), and
 |---|---|---|---|
 | Cycle minimum \(n=\min C\) | `CycleMin`, `cycleMin_start_odd`, `cycleMin_ge`, `aboveAnchor_of_cycleMin`, `exists_cycleMin` (`CycleCore.lean`) | `cycle_extrema.stay_above_min_excursion`; finance tables at a CycleMin start | **EXACT — LEAN VERIFIED** (Theorem 3.2(ii)) |
 | Forced prefix `OO`; no `OE` start | `cycleMin_not_odd_even`; `cycleMin_oddEvenBlock_starts_two_odds` (`EvenCountThree.lean`) | leftover scanners rotate to a start-`OO` orientation | **EXACT — LEAN VERIFIED** |
-| First lift; \(J^2(n)\ge(n+1)^2\) | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`; `no_cycle_word_ooe` | `power_words.floor_power` | **EXACT — LEAN VERIFIED** (Lemma 3.4) |
-| First peak overshoots the entry cell | `cycleMin_first_even_overshoots`, `cycleMin_max_ge_succ_sq`, `cycleMin_to_even_superquadratic` | — | **EXACT — LEAN VERIFIED**. Opposite of the last-peak cell |
-| Block \(O^aE\) | `oddEvenBlock a 1` (`WordStats.lean`); `exponentExpanding_oddEvenBlock`. Satellite: `oe_block_contracts` (`Scale.lean`) | `cycle_ordered_excursion.excursion_map` (the laboratory \(F_a\); not a Lean name) | Block language **EXACT — LEAN VERIFIED**. \(\mu(a)=3^a/2^{a+1}\) is a **REPARAMETERIZATION** of the word envelope |
-| `OE` contracts, `OOE` expands | \(\mu(1)=3/4\), \(\mu(2)=9/8\); `no_cycle_odd_run_append_even` forbids \(O^aE\) as a *cycle word* for \(a\ge 3\), not as an internal block | `odd_run_itinerary.block_lambda` | same |
-| Square-cell gap \(243<256\) | Satellite: `follows_ooeooeo_image_lt_sq` (`Escape.lean`) | inherited corridor on `OOEOOEO` | not a CycleMin theorem; not Appendix A |
+| First lift; \(J^2(n)\ge(n+1)^2\) | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`; `no_cycle_itinerary_ooe` | `power_itineraries.floor_power` | **EXACT — LEAN VERIFIED** (Lemma 3.4) |
+| First peak overshoots the entry one-step preimage | `cycleMin_first_even_overshoots`, `cycleMin_max_ge_succ_sq`, `cycleMin_to_even_superquadratic` | — | **EXACT — LEAN VERIFIED**. Opposite of the last-peak one-step preimage |
+| Block \(O^aE\) | `oddEvenBlock a 1` (`ItineraryStats.lean`); `exponentExpanding_oddEvenBlock`. Satellite: `oe_block_contracts` (`Scale.lean`) | `cycle_ordered_excursion.excursion_map` (the laboratory \(F_a\); not a Lean name) | Block language **EXACT — LEAN VERIFIED**. \(\mu(a)=3^a/2^{a+1}\) is a **REPARAMETERIZATION** of the itinerary envelope |
+| `OE` contracts, `OOE` expands | \(\mu(1)=3/4\), \(\mu(2)=9/8\); `no_cycle_odd_run_append_even` forbids \(O^aE\) as a *cycle itinerary* for \(a\ge 3\), not as an internal block | `odd_run_itinerary.block_lambda` | same |
+| Square-preimage gap \(243<256\) | Satellite: `follows_ooeooeo_image_lt_sq` (`Escape.lean`) | inherited corridor on `OOEOOEO` | not a CycleMin theorem; not Appendix A |
 | Repeated expanding blocks | Satellite: `two_block_ooe_365`, `expanding_type_ooe_self_loop` (`Residuals.lean` / `ExpandingGrammar.lean`); barrel: `four_block_pe_1999` | `odd_run_itinerary.py` controls; Paper A §5 uses \(1999\) | **OBSERVATION** on residuals. \(1517\) is not in Lean |
 | Valley skeleton \(\sum a_i=o\), \(e=L-o\) | Lemma 3.21b in prose; `oddEvenBlock` concatenation. Satellite: `dropOddRun`, `cycleCircuitCount` (`CycleHeightFinance.lean`) | `cycle_almost_search.circuits`, `packed_block_word`; `cycle_budget_opt.run_type_counts` | **EXACT — HUMAN PROOF**. No Lean `F_a` or `Valley` |
 | Peaks \(p_i\); every even state \(\ge n^2\) | `cycleMin_max_gt_sq`, `cycleMin_to_even_superquadratic` (`CycleExtrema.lean`) | `cycle_peak_descent.py`; evens charged at \(n^2\) in `cycle_budget_opt` | **EXACT — LEAN VERIFIED**. Peak-count theorems stay out of the note |
 | Finance on the wave | `cycleMin_finance`, `cycleMin_finance_inv_sum` (`CycleFinance.lean`) | `cycle_finance.py`; `cycle_budget_opt.py` | Theorem 4.4 **EXACT — LEAN VERIFIED**; 4.7 human; 4.6/4.8 computational |
-| Last peak / entry cell | `cycle_last_even_interval`, `cycle_last_even_ne_odd_sq`, `cycle_trailing_evens_lt`, `cycleMin_not_end_odd` | `cycle_entry_excursion.entry_even_cell` | Cell **EXACT — LEAN VERIFIED**. Enumerated fibres are archived laboratory negative knowledge |
-| Isolated-E last run \(a_e=1\) | `cycleMin_last_odd_run_eq_one`, `exists_cycleMin_last_odd_run` (`EvenCountThree.lean`; laboratory, not `JugglerPaper`) | `cycle_entry_corridor` (archived CLOSE) | **EXACT — LEAN VERIFIED**. `oo_suffix_threshold` versus the last-even cell. Trailing `EE` is CycleMin-legal. Not a forced-`OE` incoming side |
-| First-intersection taxonomy | `odd_cell_unique`, `oddLanding_preimage_unique`; CycleMin \(2{+}2\) already above | — (archived CLOSE; no probe) | **REPARAMETERIZATION**. Odd+odd and climb-created peaks are not first intersections. Peak scale is `COMPOSITION_REPACKAGING`. Remaining channel is the EE count. Not a leftover-killer |
-| Homogeneous-run sliding | `cycleWord_rotateWord`, `rotateWord_even_run`, `cycle_trailing_evens_lt` | `cycle_seam_sliding` (archived CLOSE) | **REPARAMETERIZATION**. Interior \(E\)-cuts are one necklace. A first intersection does not slide to the peak. \(P<(V+1)^{2^r}\) is the trailing cell. Not a leftover-killer |
-| Peak–valley interval composition | `power_bound_word`, `power_bound_contracts`, `cycle_trailing_evens_lt`, `two_block_ooe_365` | `cycle_peak_valley_composition` (archived CLOSE) | **REPARAMETERIZATION**. Exact cells compose to \(T_w\). The real sign is \(3^o\lessgtr 2^L\), already the exponent budget. Not a leftover-killer |
-| Circular closure / necklace | `rotateWord`, `cycleWord_rotateWord`, `cycle_iterate_period` | `cycle_cyclic_valley.py` (archived) | rotation **EXACT — LEAN VERIFIED**. No Lean `Necklace` |
+| Last peak / entry one-step preimage | `cycle_last_even_interval`, `cycle_last_even_ne_odd_sq`, `cycle_trailing_evens_lt`, `cycleMin_not_end_odd` | `cycle_entry_excursion.entry_even_preimage` | Cell **EXACT — LEAN VERIFIED**. Enumerated fibres are archived laboratory negative knowledge |
+| Isolated-E last run \(a_e=1\) | `cycleMin_last_odd_run_eq_one`, `exists_cycleMin_last_odd_run` (`EvenCountThree.lean`; laboratory, not `JugglerPaper`) | `cycle_entry_corridor` (archived CLOSE) | **EXACT — LEAN VERIFIED**. `oo_suffix_threshold` versus the last-even one-step preimage. Trailing `EE` is CycleMin-legal. Not a forced-`OE` incoming side |
+| First-intersection taxonomy | `odd_preimage_unique`, `oddLanding_preimage_unique`; CycleMin \(2{+}2\) already above | — (archived CLOSE; no probe) | **REPARAMETERIZATION**. Odd+odd and climb-created peaks are not first intersections. Peak scale is `COMPOSITION_REPACKAGING`. Remaining channel is the EE count. Not a leftover-killer |
+| Homogeneous-run sliding | `cycleItinerary_rotateItinerary`, `rotateItinerary_even_run`, `cycle_trailing_evens_lt` | `cycle_seam_sliding` (archived CLOSE) | **REPARAMETERIZATION**. Interior \(E\)-cuts are one necklace. A first intersection does not slide to the peak. \(P<(V+1)^{2^r}\) is the trailing one-step preimage. Not a leftover-killer |
+| Peak–valley interval composition | `power_bound_word`, `power_bound_contracts`, `cycle_trailing_evens_lt`, `two_block_ooe_365` | `cycle_peak_valley_composition` (archived CLOSE) | **REPARAMETERIZATION**. Exact one-step preimages compose to \(T_w\). The real sign is \(3^o\lessgtr 2^L\), already the exponent budget. Not a leftover-killer |
+| Circular closure / necklace | `rotateItinerary`, `cycleItinerary_rotateItinerary`, `cycle_iterate_period` | `cycle_cyclic_valley.py` (archived) | rotation **EXACT — LEAN VERIFIED**. No Lean `Necklace` |
 | \(L_*=25781\) in Lean | `Lstar`, `Ostar`, `runSurvivors_length` (`RunSurvivorLattice.lean`) | `budget_opt.json` leftover \(99\) | Lattice generator, **not** the period bound. The bound is Theorem 4.6 |
 | Later leftover-killers | not in the paper barrel | `cycle_entry_excursion`, `cycle_inverse_width`, `cycle_trajectory_budget`, `cycle_cyclic_valley`, `cycle_realizable_finance`, `cycle_extremizer_discrepancy`, `cycle_cyclic_seam`, `cycle_seam_sliding`, `cycle_peak_valley_composition`, … | all **CLOSE** / **REFUTED**. Recovered Theorem 4.7 or closed. Not paper claims |
 
 The first peak and the last peak are different even states. On a
 `CycleMin` the first even residual satisfies \(p_0\ge(n+1)^2\).
 The last even residual occupies \(n^2\le p_{e-1}<(n+1)^2\).
-Do not write “the CycleMin peak lies in the first square cell.”
+Do not write “the CycleMin peak lies in the first square one-step preimage.”
 
 The remaining gap recorded in the note is the missing implication
-from the forced lift, the complete necklace, and the entry cell
+from the forced lift, the complete necklace, and the entry one-step preimage
 to a contradiction on leftover lengths. There is no such Lean
 theorem.
 

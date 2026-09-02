@@ -45,4 +45,4 @@ def test_refuted_conjecture_and_dossier():
     assert "juggler_l84_m_ge_three_floor_261" in dossier
     assert "juggler_cycle_finance_note.md" in dossier
     assert "CyclePositionFinance" not in paper
-    assert "theorem no_cycle_word_any_length" not in dossier
+    assert "theorem no_cycle_itinerary_any_length" not in dossier

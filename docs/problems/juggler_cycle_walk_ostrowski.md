@@ -44,8 +44,8 @@ length-\(L\) orbit into \(s(L)=\sum_j b_j\) consecutive blocks,
 each a DK block, so \(|C_L-C_*|\le 2\,s(L)/L\) for the exact
 IET/hug prefix.
 
-**Word identity (COMPUTATIONALLY VERIFIED, exact integers).**
-On all 19 leftovers the budgeted hug word equals the exact
+**Itinerary identity (COMPUTATIONALLY VERIFIED, exact integers).**
+On all 19 leftovers the budgeted hug itinerary equals the exact
 infinite-hug prefix letter for letter (E at step \(k\) iff
 \(3^a\ge 2^{k+1}\), decided by the certified rational sandwich),
 and the exact prefix uses exactly \(o_{\min}\) odds. So \(C_L\)
@@ -198,7 +198,7 @@ crude-envelope branch asked for: \(\mathrm{Var}\le 2\) and the
 Ostrowski split are one-line human proofs, DK per convergent
 block is classical, and the only computational content left is
 exact integer arithmetic (the \(q_j\) sandwich, greedy digits,
-letter-for-letter word identity) plus the guarded float
+letter-for-letter itinerary identity) plus the guarded float
 comparison shared with Theorem 4.6. It replaces both the walk
 DP and the 19-row occupancy census for the 18 kills, and it
 explains the refuted constant \(1\): the correct constant is

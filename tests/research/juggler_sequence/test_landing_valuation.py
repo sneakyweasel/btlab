@@ -16,7 +16,7 @@ from research.juggler_sequence.landing_valuation import (
     valuation_census,
 )
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 

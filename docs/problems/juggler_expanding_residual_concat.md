@@ -9,7 +9,7 @@ not a claim that every positive integer reaches 1.
 
 This is the leftover of [juggler_non_escape.md](juggler_non_escape.md):
 can a `MinimalNonTerm` itinerary concatenate infinitely many expanding
-residual blocks without a contracting word?
+residual blocks without a contracting itinerary?
 
 ## Problem
 
@@ -19,11 +19,11 @@ the same leftover?
 
 ## Exact statement
 
-A word is expanding when \(2^{|w|}<3^{\#O(w)}\) and contracting when
+An itinerary is expanding when \(2^{|w|}<3^{\#O(w)}\) and contracting when
 \(3^{\#O(w)}<2^{|w|}\). Phase 0 asks:
 
-1. whether expanding words are closed under concatenation;
-2. whether a `MinimalNonTerm` start can realize any contracting word;
+1. whether expanding itineraries are closed under concatenation;
+2. whether a `MinimalNonTerm` start can realize any contracting itinerary;
 3. whether those two facts identify the leftover with the unbounded
    `MinimalNonTerm` branch already named in
    [juggler_non_escape.md](juggler_non_escape.md).
@@ -54,12 +54,12 @@ identified, not solved.
 
 ```text
 Mathematical target     Is infinite PE concatenation without a
-                        contracting word a stricter class than
+                        contracting itinerary a stricter class than
                         MinimalNonTerm?
 Novelty hypothesis      either a CE realizes a contracting
                         concatenation, or the leftover is the
                         same unbounded CE branch
-Falsifier               a CE-shaped contracting word; or the
+Falsifier               a CE-shaped contracting itinerary; or the
                         identification is already written
 Existing machinery      exponentExpanding; power_bound_contracts;
                         minimal_nonterm_no_descent; residual_chain
@@ -82,7 +82,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- expanding words are closed under concatenation —
+- expanding itineraries are closed under concatenation —
   **EXACT — LEAN VERIFIED**
 - a CE never realizes an exponent-gap word —
   **EXACT — LEAN VERIFIED**
@@ -108,7 +108,7 @@ It is not required.
   [juggler_expanding_residual_concat.md](../research/juggler_expanding_residual_concat.md),
   [juggler_expanding_residual_concat.json](../research/juggler_expanding_residual_concat.json)
 - Tests: `tests/research/juggler_sequence/test_expanding_residual_concat.py`
-- Lean: `exponentExpanding_append` in `WordStats.lean`;
+- Lean: `exponentExpanding_append` in `ItineraryStats.lean`;
   `minimal_nonterm_not_exponentGap` and
   `minimal_nonterm_prefix_noncontracting` in `Escape.lean`.
   Laboratory barrel only. No `sorry`. No halt theorem.
@@ -125,14 +125,14 @@ claims that fail:
 - “two consecutive PE blocks are impossible” — already refuted by
   \(365\to 763\to 1749\).
 - “the leftover is a stricter combinatorial class” — a CE cannot
-  realize a contracting word, so PE concatenation without a
-  contracting word is the CE leftover rewritten.
+  realize a contracting itinerary, so PE concatenation without a
+  contracting itinerary is the CE leftover rewritten.
 - “formal contraction kills a PE concatenation” — concatenation of
-  expanding words stays expanding.
+  expanding itineraries stays expanding.
 
 ## Formalization
 
-`WordStats.lean` adds `exponentExpanding_append`. `Escape.lean` adds
+`ItineraryStats.lean` adds `exponentExpanding_append`. `Escape.lean` adds
 the CE prefix-NC pair. `FloorPower` and `MinimalNonTerm` are not
 rewritten. No `sorry`. No `no_juggler_escape`. No infinite-path
 type. Paper A is unchanged.
@@ -141,12 +141,12 @@ type. Paper A is unchanged.
 
 Classification **EXPANDING_CONCAT_CE_CLOSE**.
 
-Expanding words are closed under concatenation —
+Expanding itineraries are closed under concatenation —
 **EXACT — LEAN VERIFIED** (`J-exponent-expanding-append`). A
-`MinimalNonTerm` start never realizes an exponent-gap word, so
+`MinimalNonTerm` start never realizes an exponent-gap itinerary, so
 every realized prefix is prefix-noncontracting —
 **EXACT — LEAN VERIFIED** (`J-minimal-prefix-noncontracting`).
-Therefore an infinite PE concatenation without a contracting word
+Therefore an infinite PE concatenation without a contracting itinerary
 is not a smaller class: it is the unbounded CE branch already
 isolated by the non-escape spine —
 **REPARAMETERIZATION** (`J-expanding-concat-is-ce`). Window

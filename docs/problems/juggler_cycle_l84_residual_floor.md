@@ -50,7 +50,7 @@ leftover rename to \(168\). Not a halt theorem.
 
 - Lean leftover is period \(84\) with \(m\ge 3\) or \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Joint/height all-\(m\) for \(L=84\) at \(1981\), global at
   \(4756\) —
   **COMPUTATIONALLY VERIFIED** (`l84_floors.json`)

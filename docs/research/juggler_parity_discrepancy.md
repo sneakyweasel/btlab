@@ -26,7 +26,7 @@ odd starts.
 
 ## B. Even cells — EXACT — HUMAN PROOF
 
-For even `n`, `even_cell_iff` says `J(n) = q` iff `q^2 <= n < (q+1)^2`.
+For even `n`, `even_preimage_iff` says `J(n) = q` iff `q^2 <= n < (q+1)^2`.
 Let `Q = floor(sqrt(N))`.
 
 A complete cell of odd `q` is the interval `[q^2, (q+1)^2)` of length
@@ -52,12 +52,12 @@ and moves `D_E` by at most `(Q+1)/2`. Therefore
 
 The census records `even_bound_holds = True`
 on `n <= 1000000`. Label: **EXACT — HUMAN PROOF**, and
-**REPARAMETERIZATION** of `even_cell_iff`. This is not the promotion
+**REPARAMETERIZATION** of `even_preimage_iff`. This is not the promotion
 theorem.
 
 ## C. Odd cells — n^{3/2} census
 
-For odd `n`, `odd_cell_iff` plus `odd_cell_unique` say the cell
+For odd `n`, `odd_preimage_iff` plus `odd_preimage_unique` say the cell
 `m^2 <= n^3 < (m+1)^2` contains at most one integer. So `O_O(N)` is
 the number of occupied odd-`m` singletons with occupant `<= N`, not a
 length sum.
@@ -70,7 +70,7 @@ For odd `n >= 3`, `floorPower_odd_macro_direction` already splits the
 two-step on this bit: `J(n)` even implies `T^2(n) < n`, and `J(n)` odd
 implies `T^2(n) > n`. `D_O` is therefore also the discrepancy of
 expanding versus contracting two-step odd starts. The lemma is cited,
-not reproved. No two-step word census.
+not reproved. No two-step itinerary census.
 
 ## D. Prefix census
 

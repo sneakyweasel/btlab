@@ -19,7 +19,7 @@ from research.juggler_sequence.cycle_rounding import (
     run_probe,
 )
 from research.juggler_sequence.cycle_top_pred import floor_power, orbit_until_one
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_nine_remainders_and_no_amplification():
@@ -76,7 +76,7 @@ def test_lean_api_rounding_without_engine():
     assert lean["no_cycle_engine"] is True
     assert lean["no_remainder_dynamics"] is True
     assert lean["no_energy"] is True
-    assert lean["FloorPower_no_cycle_word"] is True
+    assert lean["FloorPower_no_cycle_itinerary"] is True
     assert lean["orbit_min_not_used"] is True
     assert lean["PowerBoundEq_not_used_as_cycle_attack"] is True
     from research.juggler_sequence.cycle_rounding import LEAN_PATH
@@ -92,7 +92,7 @@ def test_lean_api_rounding_without_engine():
     assert "PowerHeight" not in src
     for name in FORBIDDEN_ENGINES:
         assert name not in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
 
 
 def test_classify_rounding_green():
@@ -103,7 +103,7 @@ def test_classify_rounding_green():
     assert CLASS_NEW in decision["secondary"]
     assert CLASS_RIGID in decision["secondary"]
     assert scan["n_search"] is False
-    assert scan["cycle_word_census"] is False
+    assert scan["cycle_itinerary_census"] is False
     assert scan["remainder_dynamics"] is False
     assert scan["local_fails"] == 0
     assert scan["nine_later_grows"] is False

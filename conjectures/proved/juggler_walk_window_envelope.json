@@ -1,7 +1,7 @@
 {
   "id": "juggler_walk_window_envelope",
   "title": "Uniform census-free envelope on the window [50508, 301994)",
-  "statement": "Word identity: for every L, the budgeted hug word at (L, o_min) equals the exact IET L-prefix — the exact rule keeps u in [0, 1+alpha), so the prefix uses exactly o_min = ceil(L x) odds, and a first budget-forced divergence would make the exact prefix use more of one letter than its own total, a contradiction. Uniform envelope: greedy Ostrowski digits obey b_j <= a_{j+1}, so with the certified partial quotients of theta the digit sum on [50508, 301994) is at most 47 (exact scan max 37); the deficit keeps ln n' >= 17.07, so 2 s(L)/L <= 94/50508 = 1.87e-3 < 0.00514 <= J-gap, and by the DK/Ostrowski theorem C_L <= C_* + 2 s(L)/L < 1/(ln 3 ln n') for the hug word of every window length, census-free.",
+  "statement": "Itinerary identity: for every L, the budgeted hug itinerary at (L, o_min) equals the exact IET L-prefix — the exact rule keeps u in [0, 1+alpha), so the prefix uses exactly o_min = ceil(L x) odds, and a first budget-forced divergence would make the exact prefix use more of one letter than its own total, a contradiction. Uniform envelope: greedy Ostrowski digits obey b_j <= a_{j+1}, so with the certified partial quotients of theta the digit sum on [50508, 301994) is at most 47 (exact scan max 37); the deficit keeps ln n' >= 17.07, so 2 s(L)/L <= 94/50508 = 1.87e-3 < 0.00514 <= J-gap, and by the DK/Ostrowski theorem C_L <= C_* + 2 s(L)/L < 1/(ln 3 ln n') for the hug itinerary of every window length, census-free.",
   "mathematical_domain": "Juggler cycle finance / discrepancy of irrational rotations",
   "origin": "docs/problems/juggler_cycle_walk_window.md",
   "status": "EXACT — HUMAN PROOF",

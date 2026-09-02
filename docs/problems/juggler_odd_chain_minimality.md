@@ -34,7 +34,7 @@ x_i^3=x_{i+1}^2+\delta_i,\qquad 0\le\delta_i<2x_{i+1}+1
 
 produces a state \(m<x_0\) whose orbit shadows or rejoins the
 chain, or a controlled inverse interval inside \([1,n-1]\), beyond
-`odd_cell_unique` and `EnvelopeState` applied one step at a time.
+`odd_preimage_unique` and `EnvelopeState` applied one step at a time.
 
 The named orbits are \(37,69,89,365,501,1517,6187\). Long initial
 runs \(37,241,329\) and the \(L\)-landing \(33391\to 67709\) are
@@ -46,7 +46,7 @@ odd-run bound.
 - Odd growth \(T(x)>x\) for odd \(x\ge 3\) —
   **EXACT — LEAN VERIFIED** (`floorPower_odd_gt`)
 - Unique odd preimage —
-  **EXACT — LEAN VERIFIED** (`odd_cell_unique`)
+  **EXACT — LEAN VERIFIED** (`odd_preimage_unique`)
 - Isolated odd prefix envelope \(T^a(x)^{2^a}\le x^{3^a}\) —
   **EXACT — LEAN VERIFIED** (`odd_run_power_bound`)
 - Iterated odd-landing sets \(\mathcal P_r\) —
@@ -79,7 +79,7 @@ Falsifier C             compression yields only larger states
 Falsifier D             good-set closure depth does not grow
                         with r
 Falsifier E             a broad family of long finite chains
-Existing machinery      floorPower_odd_gt; odd_cell_unique;
+Existing machinery      floorPower_odd_gt; odd_preimage_unique;
                         odd_run_power_bound; EnvelopeState;
                         pred_odd; leftover / 37 / L laboratories
 Maximum Phase-0 scope   named odd runs; long starts 37/241/329;
@@ -105,7 +105,7 @@ It is not required.
 - \(x_{i+1}>x_i\) — **EXACT — LEAN VERIFIED**
   (`floorPower_odd_gt`)
 - unique odd preimage of \(x_{i+1}\) is \(x_i\) —
-  **EXACT — LEAN VERIFIED** (`odd_cell_unique`)
+  **EXACT — LEAN VERIFIED** (`odd_preimage_unique`)
 - \(\delta_i\equiv x_i-1\pmod 8\) —
   **REPARAMETERIZATION** of generic odd-odd
 - constant shift \(x_i\mapsto x_i-2\) couples the chain —
@@ -135,7 +135,7 @@ None opened.
 ## Counterexamples
 
 “A long odd chain compresses to \(m<x_0\) that rejoins the
-chain” is false. By `odd_cell_unique` the only odd preimage of
+chain” is false. By `odd_preimage_unique` the only odd preimage of
 \(x_{i+1}\) is \(x_i\). Walking backward recovers the chain and
 then an empty odd cell at the run start.
 

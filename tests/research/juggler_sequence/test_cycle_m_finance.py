@@ -145,7 +145,7 @@ def test_dossier_boundary():
     assert "cycleMin_finance" in dossier
     assert "juggler_cycle_finance_note.md" in dossier
     assert tuple(LEFTOVER_LENGTHS) == (19, 30, 84)
-    assert "theorem no_cycle_word_any_length" not in dossier
+    assert "theorem no_cycle_itinerary_any_length" not in dossier
     assert "CycleMFinance" not in paper
     assert "cycle_m_finance" not in paper
     assert "CircuitFinance" not in paper

@@ -18,7 +18,7 @@ set_option maxHeartbeats 4000000
 set_option maxRecDepth 2048
 set_option exponentiation.threshold 10000
 
-def wordO7EEEE : List Branch :=
+def itineraryO7EEEE : List Branch :=
   sevenOdds ++ List.replicate 4 Branch.even
 
 theorem iterate_floorPower_one : ∀ k, floorPower^[k] 1 = 1
@@ -356,7 +356,7 @@ theorem o7_image_ge_succ_pow16 {n : ℕ} (hn : 2 ≤ n)
       exact (Nat.pow_lt_pow_iff_left h128).mp this
     exact Nat.lt_succ_iff.mp hsucc
 
-theorem no_cycle_word_oooooooeeee {n : ℕ} : ¬CycleWord n wordO7EEEE := by
+theorem no_cycle_itinerary_oooooooeeee {n : ℕ} : ¬CycleItinerary n itineraryO7EEEE := by
   intro h
   have hO : follows n sevenOdds :=
     follows_of_append_left (u := sevenOdds) (v := List.replicate 4 Branch.even) h.1
@@ -368,7 +368,7 @@ theorem no_cycle_word_oooooooeeee {n : ℕ} : ¬CycleWord n wordO7EEEE := by
     have hE :
         follows (image 1 sevenOdds) (List.replicate 4 Branch.even) :=
       follows_of_append_right (u := sevenOdds) (v := List.replicate 4 Branch.even)
-        (by simpa [wordO7EEEE] using h.1)
+        (by simpa [itineraryO7EEEE] using h.1)
     have heven : image 1 sevenOdds % 2 = 0 := by
       simpa [List.replicate_succ] using hE.1
     rw [image_one_sevenOdds] at heven
@@ -379,7 +379,7 @@ theorem no_cycle_word_oooooooeeee {n : ℕ} : ¬CycleWord n wordO7EEEE := by
     have hge := o7_image_ge_succ_pow16 hn hO
     have hlt :=
       cycle_trailing_evens_lt (n := n) (v := sevenOdds) (r := 4)
-        (by decide : (1 : ℕ) ≤ 4) (by simpa [wordO7EEEE] using h)
+        (by decide : (1 : ℕ) ≤ 4) (by simpa [itineraryO7EEEE] using h)
     exact (not_lt_of_ge hge) hlt
 
 end Problems.Juggler

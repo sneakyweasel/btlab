@@ -22,7 +22,7 @@ from research.juggler_sequence.odd_ooe_landing import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_next_o_exponents():
@@ -133,5 +133,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "OOEOOEO" in dossier
     assert "juggler_odd_ooe_landing" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

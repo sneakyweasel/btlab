@@ -33,14 +33,14 @@ from research.juggler_sequence.defect_lower_bound import (
     formal_surplus,
 )
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     local_defect,
     odd_count,
     pow_gap,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 TRANSPORT_DIR = DATA_DIR / "error_transport"
 
@@ -70,7 +70,7 @@ ARCHIVED = (
     "amplifyDefect",
     "firstDefect",
     "cycleMin_finance",
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "power_bound_word",
     "power_bound_contracts",
 )
@@ -81,7 +81,7 @@ COMPACT_BITS = 200
 def first_realized(word: str, *, lo: int = 3, hi: int = 5001) -> int | None:
     start = lo if lo % 2 else lo + 1
     for n in range(start, hi, 2):
-        if follows_word(n, word):
+        if follows_itinerary(n, word):
             return n
     return None
 
@@ -105,7 +105,7 @@ def has_shared_later_odd(word: str) -> bool:
 def letter_transport(n: int, word: str, index: int) -> dict[str, Any]:
     """Insert rho_i at letter i and amplify through the suffix."""
 
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         raise ValueError(f"{n} does not follow {word}")
     current = n
     for _ in range(index):
@@ -167,7 +167,7 @@ def _compact_row(row: dict[str, Any]) -> dict[str, Any]:
 def transport_record(n: int, word: str) -> dict[str, Any]:
     """Ordered transport of every local remainder, split at the seam."""
 
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         raise ValueError(f"{n} does not follow {word}")
     rows = [letter_transport(n, word, index) for index in range(len(word))]
     halves = seam_halves(rows)
@@ -275,7 +275,7 @@ def classify(records: list[dict[str, Any]]) -> dict[str, Any]:
         reason = (
             "attributed chunks plus cubic cross terms are Delta; "
             "no seam-half or single position beats G except on "
-            "contracting words where T_w < n; first-order weights "
+            "contracting itineraries where T_w < n; first-order weights "
             "are suffix 3^{o'}; first-defect Amplify is e_j"
         )
     elif new_onesided:
@@ -320,7 +320,7 @@ def probe_payload() -> dict[str, Any]:
         "note": (
             "ordered transport unrolls accumulatedDefect; "
             "seam halves and single positions do not beat G on "
-            "expanding words; X is the accumulateOdd cubic cross"
+            "expanding itineraries; X is the accumulateOdd cubic cross"
         ),
     }
     payload["decision"] = classify(records)

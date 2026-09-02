@@ -25,7 +25,7 @@ from research.juggler_sequence.cycle_e_block import (
 )
 from research.juggler_sequence.cycle_exponent_budget import rho
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 POTENTIAL_DIR = DATA_DIR / "block_potential"
 START = PUBLISHED_FLOOR + 1
@@ -43,7 +43,7 @@ ARCHIVED = (
     "power_bound_word",
     "power_bound_word_strict",
     "power_bound_contracts",
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "cycleMin_finance",
     "global_defect_identity",
 )

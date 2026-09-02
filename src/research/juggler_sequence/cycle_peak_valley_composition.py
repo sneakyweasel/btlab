@@ -29,7 +29,7 @@ from typing import Any
 from research.juggler_sequence.cycle_almost_search import circuits
 from research.juggler_sequence.cycle_e_block import even_tower_bounds, isqrt_iter
 from research.juggler_sequence.cycle_finance import DATA_DIR
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 COMPOSE_DIR = DATA_DIR / "peak_valley_composition"
 
@@ -44,7 +44,7 @@ ARCHIVED = (
     "even_run_scale_barrier",
     "even_tower_bounds",
     "global_defect_identity",
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "two_block_ooe_365",
 )
 

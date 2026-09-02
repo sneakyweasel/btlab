@@ -140,7 +140,7 @@ representation claim.
   \(\delta_k=w_k\ln n-\ln x_k\ge 0\) (accumulated amplified floor
   defect) and \(\sigma_k=(w_k-1)\ln n\ge 0\) (walk slack); descent
   at \(k\) is exactly \(\delta_k>\sigma_k\). Gap descent:
-  \(w_D<1\) (the word itself contracts; Lean
+  \(w_D<1\) (the itinerary itself contracts; Lean
   `power_bound_contracts`). Defect descent: \(w_D\ge 1\) but floors
   push below the anchor.
 - Descent-time records \(D(n)\) versus \(c\log n\) and
@@ -193,7 +193,7 @@ laboratory barrel `Problems.Juggler`, not by `Problems.JugglerPaper`):
   and `cycleMin_prefix_pow_le` is its one-line cycle corollary.
 - `aboveAnchor_prefix_odds_ge_hug`, `aboveAnchor_odds_ge_hug` —
   composition with `hugOdds_least`: above-anchor prefixes dominate
-  the exact hug word in odd count.
+  the exact hug itinerary in odd count.
 
 No `sorry`; full `lake build` clean. Ledger row
 `J-above-anchor-hug-domination` (**EXACT — LEAN VERIFIED**).
@@ -208,7 +208,7 @@ No `sorry`; full `lake build` clean. Ledger row
 - **Gap descents dominate (COMPUTATIONALLY VERIFIED):** on
   \([2,2\cdot 10^6]\) every start descends below itself and every
   one of the \(1999999\) first descents is a gap descent — the
-  parity word itself goes exponent-negative (\(3^{a_D}<2^D\));
+  parity itinerary itself goes exponent-negative (\(3^{a_D}<2^D\));
   **zero** defect descents were observed. Floors never push an
   orbit below its anchor while the walk is still nonnegative, at
   these scales. Max \(D=257\) at \(n=1122603\); the six

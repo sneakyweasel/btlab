@@ -1284,7 +1284,7 @@
   "lean": {
     "sorry_free": true,
     "floorPower_odd_gt": true,
-    "odd_cell_unique": true,
+    "odd_preimage_unique": true,
     "odd_run_power_bound": true,
     "EnvelopeState": true,
     "AboveAnchor": true,

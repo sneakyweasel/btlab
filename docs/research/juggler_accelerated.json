@@ -36,7 +36,7 @@
     "image_monotone_of_follows": true,
     "global_defect_identity": true,
     "residualStep_global_defect": true,
-    "odd_cell_unique": true,
+    "odd_preimage_unique": true,
     "image_eq_iterate": true,
     "no_forbidden_engines": true,
     "no_global_termination_theorem": true
@@ -44,7 +44,7 @@
   "decision": {
     "classification": "ACCELERATION_COMPLEX",
     "secondary": "ACCELERATION_REPACKAGING",
-    "reason": "A is the odd subsequence of J: A(n)=J(n) when J(n) is odd, and A(n) is the a=1 ResidualStep landing when J(n) is even. Defect, monotonicity, contraction, beta, and inverse reduce to global_defect_identity, image_monotone_of_follows, power_bound_contracts / floorPower_odd_ge, the word exponent, and the floor cells. Acceleration removes only even tails."
+    "reason": "A is the odd subsequence of J: A(n)=J(n) when J(n) is odd, and A(n) is the a=1 ResidualStep landing when J(n) is even. Defect, monotonicity, contraction, beta, and inverse reduce to global_defect_identity, image_monotone_of_follows, power_bound_contracts / floorPower_odd_ge, the itinerary exponent, and the floor cells. Acceleration removes only even tails."
   },
   "results": [
     {
@@ -78,7 +78,7 @@
       "repackaging": true
     },
     {
-      "claim": "beta(a,b) is the finite-word exponent",
+      "claim": "beta(a,b) is the finite-itinerary exponent",
       "tag": "REPARAMETERIZATION",
       "novelty": "REPARAMETERIZATION",
       "repackaging": true
@@ -96,7 +96,7 @@
       "repackaging": false
     },
     {
-      "claim": "macro word (1,0),(1,b) is a shorter encoding of the same O/E word",
+      "claim": "macro itinerary (1,0),(1,b) is a shorter encoding of the same O/E word",
       "tag": "OBSERVATION",
       "novelty": "REPARAMETERIZATION",
       "repackaging": true
@@ -151,7 +151,7 @@
       "branches": 6,
       "splits": [],
       "novelty": "REPACKAGING",
-      "reason": "T_w is monotone on realizers of a fixed word (image_monotone_of_follows)"
+      "reason": "T_w is monotone on realizers of a fixed itinerary (image_monotone_of_follows)"
     },
     "contraction": {
       "A_lt_n": 990,
@@ -191,7 +191,7 @@
       "beta_eq_1": 0,
       "equals_word_exponent": true,
       "novelty": "REPACKAGING",
-      "reason": "beta(a,b)=3^a/2^{a+b} is the existing finite-word exponent"
+      "reason": "beta(a,b)=3^a/2^{a+b} is the existing finite-itinerary exponent"
     },
     "compression": {
       "distinct_branches": 6,

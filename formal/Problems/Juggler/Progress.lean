@@ -68,8 +68,8 @@ theorem reachesOne_of_all_finiteProgress
 theorem even_finiteProgress {n : ℕ} (hn : 2 ≤ n) (heven : n % 2 = 0) :
     FiniteProgress n :=
   finiteProgress_of_imageLt
-    (even_word_descent hn (by decide : (1 : ℕ) ≤ 1) ⟨heven, trivial⟩).1
-    (even_word_descent hn (by decide : (1 : ℕ) ≤ 1) ⟨heven, trivial⟩).2
+    (even_itinerary_descent hn (by decide : (1 : ℕ) ≤ 1) ⟨heven, trivial⟩).1
+    (even_itinerary_descent hn (by decide : (1 : ℕ) ≤ 1) ⟨heven, trivial⟩).2
 
 /-- Odd `n ≥ 2` whose first image is even has finite progress: `OE`. -/
 theorem odd_even_finiteProgress {n : ℕ} (hn : 2 ≤ n)

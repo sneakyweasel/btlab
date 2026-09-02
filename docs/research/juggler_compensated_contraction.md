@@ -9,7 +9,7 @@ complete predictor of block direction.
 ## Branch budget
 
 ```text
-Mathematical target     Can a mixed word with 3^o > 2^k still
+Mathematical target     Can a mixed itinerary with 3^o > 2^k still
                         contract because floor defect overcomes
                         the formal gap?
 Novelty hypothesis      A shortest mixed positive-drift family
@@ -81,5 +81,5 @@ n=10 also realizes `EOO` but expands: T^3=`11`.
 
 EOO contracts exactly at n ∈ {2, 12, 14}; the first-defect bound is never enough for (k,o)=(3,2), so compensation uses the full envelope deficit.
 
-This is a finite-word direction statement, not a global halt result.
+This is a finite-itinerary direction statement, not a global halt result.
 

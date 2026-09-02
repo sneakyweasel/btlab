@@ -34,9 +34,9 @@ Production builds use the GitHub project-pages base `/balanced_ternary/`.
 
 `src/juggler/` is a display fork of
 
-- `src/research/juggler_sequence/power_words.py`
-- `src/research/juggler_sequence/floor_cells.py`
-- `src/research/juggler_sequence/cycle_word.py`
+- `src/research/juggler_sequence/power_itineraries.py`
+- `src/research/juggler_sequence/floor_preimages.py`
+- `src/research/juggler_sequence/cycle_itinerary.py`
 
 `n_max` is looked up from the shipped Theorem 4.6 snapshot. It is never
 recomputed with floating logarithms.

@@ -58,7 +58,7 @@ Falsifier               every identity is T_w / ResidualStep / cells
 Existing machinery      floor_power, residual_excursion, globalDefect,
                         image_monotone_of_follows, floor cells
 Maximum Phase-0 scope   odd n<=4000; algebraic comparison; decide
-Promotion criterion     one exact statement that is not a word theorem
+Promotion criterion     one exact statement that is not an itinerary theorem
 Stop criterion          ACCELERATION_REPACKAGING or ACCELERATION_COMPLEX
 ```
 
@@ -83,7 +83,7 @@ It is not required.
   **REPARAMETERIZATION** of `image_monotone_of_follows`
 - \(A(n)<n\) iff \(J(n)\) is even —
   **EXACT — HUMAN PROOF**, novelty **REPARAMETERIZATION**
-- \(\beta(a,b)\) is the finite-word exponent —
+- \(\beta(a,b)\) is the finite-itinerary exponent —
   **REPARAMETERIZATION**
 - \(A_{1,b}^{-1}\) is nested floor cells —
   **REPARAMETERIZATION**
@@ -124,7 +124,7 @@ None opened.
 None added. Existing lemmas `floorPower_odd_ge`,
 `power_bound_contracts`, `image_monotone_of_follows`,
 `global_defect_identity`, `residualStep_global_defect`,
-`odd_cell_unique`, and `image_eq_iterate` already cover the identities.
+`odd_preimage_unique`, and `image_eq_iterate` already cover the identities.
 No `sorry`. No halt theorem.
 
 ## Results

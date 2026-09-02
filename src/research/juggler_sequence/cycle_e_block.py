@@ -27,7 +27,7 @@ from research.juggler_sequence.cycle_entry_corridor import (
     ee_entry_count,
 )
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 E_BLOCK_DIR = DATA_DIR / "e_block"
 START = PUBLISHED_FLOOR + 1
@@ -42,7 +42,7 @@ A0_MAX = 8
 R_MAX = 6
 
 ARCHIVED = (
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "oddLanding_preimage_unique",
     "cycle_trailing_evens_lt",
     "even_run_scale_barrier",
@@ -260,7 +260,7 @@ def push_rules() -> dict[str, str]:
     return {
         "odd_interior": (
             "OO interior is not first: unique odd parent "
-            "(odd_cell_unique / oddLanding_preimage_unique); push to peak"
+            "(odd_preimage_unique / oddLanding_preimage_unique); push to peak"
         ),
         "peak_r1_to_n": "O|E with next even to n is the archived OE corridor; do not reopen",
         "valley_oe_to_n": "E|O plus immediate OE return to n is the same corridor",

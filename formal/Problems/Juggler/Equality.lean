@@ -6,7 +6,7 @@ namespace Problems.Juggler
 # Envelope equality and saturation
 
 Local branch equality, composite equality, and square rigidity.
-Not a termination theorem, not an equality-word classifier, and not a
+Not a termination theorem, not an equality-itinerary classifier, and not a
 `PowerBound` certificate datatype. `PowerBound` remains the weak bound.
 -/
 
@@ -151,7 +151,7 @@ def localTight : ℕ → Branch → Prop
   | x, .even => floorPower x ^ 2 = x
   | x, .odd => floorPower x ^ 2 = x ^ 3
 
-/-- Every local branch inequality along a realized word is tight. -/
+/-- Every local branch inequality along a realized itinerary is tight. -/
 def localsTight (n : ℕ) : List Branch → Prop
   | [] => True
   | b :: w => localTight n b ∧ localsTight (floorPower n) w
@@ -549,7 +549,7 @@ theorem hasPowTwoDepth_two_le {n r : ℕ} (hn : 2 ≤ n) (h : HasPowTwoDepth n r
   have : 2 ^ (2 ^ r) ≤ a ^ (2 ^ r) := Nat.pow_le_pow_left ha2 _
   simpa [ha] using this
 
-/-- A contracting equality word of length `k` at `n ≥ 2` is at least `2^{2^k}`. -/
+/-- A contracting equality itinerary of length `k` at `n ≥ 2` is at least `2^{2^k}`. -/
 theorem power_bound_eq_contracts_pow_two_lb {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hw : follows n w)
     (heq : PowerBoundEq (floorPower^[w.length] n) n w.length (oddCount w)) :
@@ -560,7 +560,7 @@ theorem power_bound_eq_contracts_pow_two_lb {n : ℕ} {w : List Branch}
 ## Extremal equality language
 
 Parity rigidity of exact perfect-power states, and the monochrome
-equality-word language. Not an equality-word census and not a
+equality-itinerary language. Not an equality-itinerary census and not a
 termination theorem.
 -/
 
@@ -793,7 +793,7 @@ theorem power_bound_eq_replicate_odd {a k : ℕ} (ha : a % 2 = 1) :
   unfold PowerBoundEq
   rw [floorPower_iterate_odd_pow_two_eq ha, ← Nat.pow_mul, ← Nat.pow_mul, mul_comm]
 
-/-- Equality saturates iff the word is an exact even or odd tower. -/
+/-- Equality saturates iff the itinerary is an exact even or odd tower. -/
 theorem power_bound_eq_iff_extremal {n : ℕ} {w : List Branch} :
     (follows n w ∧
         PowerBoundEq (floorPower^[w.length] n) n w.length (oddCount w)) ↔

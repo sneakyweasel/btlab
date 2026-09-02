@@ -75,9 +75,9 @@ w_k\log n,
 \]
 
 The upper side needs no anchor (floors only lose) and holds on
-every realized word. At an ascent peak this is
+every realized itinerary. At an ascent peak this is
 \(\Phi(n)=\log H(n)/\log n=w_P\) up to the transport error: the
-parity word determines the peak. The seven high-flyers attain the
+parity itinerary determines the peak. The seven high-flyers attain the
 upper side to sub-bit precision (peaks \(0.7\)–\(6.5\) million
 bits). (`J-flight-envelope-transport`.)
 
@@ -95,7 +95,7 @@ descent-free flight realizes this rate along an unbounded walk.
 
 Every descent-free flight has unbounded exponent walk:
 \(\sup_k u_k=\infty\). In particular no flight stays within
-bounded excess of the hug word (Lean hug band
+bounded excess of the hug itinerary (Lean hug band
 \(0\le u^{\mathrm{hug}}_k<\log_2 3\)).
 
 *Proof.* A walk bounded by \(B\) forces \(x_k\le n^{2^B}\) (Lean

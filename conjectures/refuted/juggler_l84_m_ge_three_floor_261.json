@@ -10,7 +10,7 @@
     "Pigeonhole k≥18 does not starve evens: ~11 square-roots return to scale n, and 29 evens can sit on that circuit"
   ],
   "first_seen": "juggler cycle height leftover follow-up",
-  "lean_reference": "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five",
+  "lean_reference": "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

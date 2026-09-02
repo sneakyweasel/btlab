@@ -39,7 +39,7 @@ emptiness.
 
 **Near-convergent inverse death is the terminal \(OOE\) cell
 (COMPUTATIONALLY VERIFIED).**
-On complete end-\(E\) prefixes of the Beatty packed word, the
+On complete end-\(E\) prefixes of the Beatty packed itinerary, the
 bunched \((OOE)^6\), \(OE\)-front, interleaved, and extra-odd
 front words, every endpoint \(y\in\{101,1001,10^4+1,10^5+1,10^6+1\}\)
 has empty exact occupancy after the first inverted \(OOE\)
@@ -228,7 +228,7 @@ realizability” remains true and is already the archived
 prefix is the existing \(OOE\) predecessor cell, composed.
 A real hull thinner than one can still hold an integer, so
 width is a relaxation of the fibre already recorded as
-`odd_cell_unique` / `ooe_cell` / \(243<256\). Every tested
+`odd_preimage_unique` / `ooe_cell` / \(243<256\). Every tested
 finance-admissible ordering dies at that same archived tag;
 contracting controls do not empty; \(R_W\) is flat in scale.
 No Paper A edit, no ledger row, no Lean, no \(N_0\) raise.

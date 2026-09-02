@@ -25,7 +25,7 @@ T(z)>n.
 
 Write \(y=T(z)\). Then \(y>n\), and \(y\) may be even or odd.
 
-`ReturnBelow n x` means a realized finite word from a later state \(x\)
+`ReturnBelow n x` means a realized finite itinerary from a later state \(x\)
 lands strictly below the original start \(n\). It is distinct from
 `Descent` at \(x\) and from `Capture`. A prefix from \(n\) to \(x\)
 together with `ReturnBelow n x` is `FiniteProgress n`. On

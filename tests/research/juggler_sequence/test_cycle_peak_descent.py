@@ -14,7 +14,7 @@ from research.juggler_sequence.cycle_peak_descent import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_peak_block_on_nine_and_seventy_seven():
@@ -72,7 +72,7 @@ def test_lean_api_peak_without_engine():
     assert "MinimalNonTerm" not in src
     assert "PowerHeight" not in src
     assert "def OddMilestone" not in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
 
 
 def test_classify_peak_green_repackaging():
@@ -82,7 +82,7 @@ def test_classify_peak_green_repackaging():
     assert decision["classification"] == CLASS_DESCENT
     assert CLASS_REPACK in decision["secondary"]
     assert scan["n_search"] is False
-    assert scan["cycle_word_census"] is False
+    assert scan["cycle_itinerary_census"] is False
     assert scan["odd_milestone_engine"] is False
     assert scan["peak_fails"] == 0
     assert scan["closed_ascents"] == 0
@@ -121,5 +121,5 @@ def test_committed_artifacts_schema():
     assert data["lean"]["sorry_free"] is True
     assert data["lean"]["cycle_peak_descent"] is True
     assert data["scan"]["n_search"] is False
-    assert data["scan"]["cycle_word_census"] is False
+    assert data["scan"]["cycle_itinerary_census"] is False
     assert data["scan"]["odd_milestone_engine"] is False

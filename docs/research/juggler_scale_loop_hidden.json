@@ -38,7 +38,7 @@
       "t_gt_n": true,
       "t_eq_n": false,
       "in_envelope": true,
-      "follows_word": true,
+      "follows_itinerary": true,
       "image": 763,
       "hits": [
         8
@@ -89,7 +89,7 @@
       "t_gt_n": true,
       "t_eq_n": false,
       "in_envelope": true,
-      "follows_word": true,
+      "follows_itinerary": true,
       "image": 11189,
       "hits": [
         8
@@ -149,7 +149,7 @@
     "ooo_residual_ge_cube": true,
     "no_cycleMin_ooeoooe": true,
     "floorPower_oooee_five_step_lt": true,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "has_no_cycleMin_four_even": false,
     "has_no_cycleMin_five_even": false,
     "has_no_juggler_cycle": false,

@@ -7,7 +7,7 @@ from pathlib import Path
 
 from research.juggler_sequence.lean_paths import MINIMAL_CLOSURE, has_named
 from research.juggler_sequence.minimal_counterexample import stopping_times
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.stopping_prefix import (
     ANTI,
     CLASS_COMPLEX,

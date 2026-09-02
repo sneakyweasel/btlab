@@ -6,7 +6,7 @@ import json
 from fractions import Fraction
 from pathlib import Path
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.pe_walk import (
     CLASS_PARK,
     EXISTING_LEAN,
@@ -23,7 +23,7 @@ from research.juggler_sequence.pe_walk import (
     walk_row,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_block_multipliers():
@@ -58,7 +58,7 @@ def test_1517_splits_after_the_same_envelope():
 
 
 def test_oe_contracts_state_but_not_the_anchor():
-    assert follows_word(33811, "OE")
+    assert follows_itinerary(33811, "OE")
     assert image_after(33811, "OE") == 2493
     assert 2493 < 33811
     assert 2493 > 1517

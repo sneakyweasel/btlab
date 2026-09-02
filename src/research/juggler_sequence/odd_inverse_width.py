@@ -16,10 +16,10 @@ import math
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.empty_odd_cell import criterion_scan, odd_cell_kind
-from research.juggler_sequence.floor_cells import odd_cell_integers
+from research.juggler_sequence.empty_odd_preimage import criterion_scan, odd_preimage_kind
+from research.juggler_sequence.floor_preimages import odd_preimage_integers
 from research.juggler_sequence.lean_paths import JUGGLER_DIR, has_named, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_inverse_width"
@@ -30,7 +30,7 @@ HUG_FLOW_PATH = (
 FAN_CONCAT_PATH = (
     REPO_ROOT / "data" / "research" / "juggler" / "flight_fan_concat" / "summary.json"
 )
-CELLS = JUGGLER_DIR / "Cells.lean"
+CELLS = JUGGLER_DIR / "Preimages.lean"
 
 CLASS_REPARAM = "ODD_INVERSE_WIDTH_REPARAMETERIZATION"
 CLASS_NEW_LAW = "ODD_INVERSE_WIDTH_NEW_LAW"
@@ -41,7 +41,7 @@ DECADE_STARTS = (10**2, 10**3, 10**4, 10**5, 10**6)
 DECADE_WINDOW = 80
 ODD_HITS = (3, 37, 365, 761)
 
-EXISTING_LEAN = ("odd_cell_unique", "odd_cell_iff")
+EXISTING_LEAN = ("odd_preimage_unique", "odd_preimage_iff")
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
     "no_juggler_escape",
@@ -93,8 +93,8 @@ def width_lt_one_elementary() -> dict[str, Any]:
 def width_row(y: int) -> dict[str, Any]:
     width = real_width(y)
     predicted = mvt_width(y)
-    occupants = odd_cell_integers(y)
-    kind = odd_cell_kind(y)
+    occupants = odd_preimage_integers(y)
+    kind = odd_preimage_kind(y)
     return {
         "y": y,
         "width": width,
@@ -135,8 +135,8 @@ def decade_shares() -> list[dict[str, Any]]:
         counts = {0: 0, 1: 0, 2: 0}
         multi = 0
         for y in range(start, start + DECADE_WINDOW):
-            occupants = odd_cell_integers(y)
-            kind = odd_cell_kind(y)
+            occupants = odd_preimage_integers(y)
+            kind = odd_preimage_kind(y)
             counts[kind] += 1
             if len(occupants) > 1:
                 multi += 1
@@ -163,12 +163,12 @@ def odd_step_type2(odds: tuple[int, ...] = ODD_HITS) -> dict[str, Any]:
         if x % 2 == 0:
             raise ValueError("odd_step_type2 requires odd starts")
         image = floor_power(x)
-        occupants = odd_cell_integers(image)
+        occupants = odd_preimage_integers(image)
         rows.append(
             {
                 "x": x,
                 "T_x": image,
-                "kind": odd_cell_kind(image),
+                "kind": odd_preimage_kind(image),
                 "occupants": occupants,
             }
         )
@@ -211,8 +211,8 @@ def lean_api_present() -> dict[str, Any]:
     text = juggler_text()
     cells = CELLS.read_text(encoding="utf-8")
     return {
-        "odd_cell_unique": has_named(cells, "odd_cell_unique"),
-        "odd_cell_iff": has_named(cells, "odd_cell_iff"),
+        "odd_preimage_unique": has_named(cells, "odd_preimage_unique"),
+        "odd_preimage_iff": has_named(cells, "odd_preimage_iff"),
         "sorry_free": "sorry" not in text and "admit" not in text,
         "new_lean_file": any(path.exists() for path in NEW_LEAN_FILES),
         **{f"has_{name}": has_named(text, name) for name in FORBIDDEN_THEOREMS},
@@ -243,7 +243,7 @@ def classify(summary: dict[str, Any]) -> str:
         and hug["net_ooe_positive"]
         and fan["glue_19_to_19"] == 0
         and fan["end_odd_19"] == 17
-        and summary["lean"]["odd_cell_unique"]
+        and summary["lean"]["odd_preimage_unique"]
     )
     if known:
         return CLASS_REPARAM

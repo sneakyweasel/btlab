@@ -52,9 +52,9 @@ from research.juggler_sequence.cycle_ordered_excursion import (
     ooe_cell_holds,
     two_ooe_still_blocks_oe,
 )
-from research.juggler_sequence.floor_cells import even_cell_width, odd_cell_integers
+from research.juggler_sequence.floor_preimages import even_preimage_width, odd_preimage_integers
 from research.juggler_sequence.global_defect import local_defect
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 DISCREPANCY_DIR = DATA_DIR / "extremizer_discrepancy"
 START = PUBLISHED_FLOOR + 1
@@ -116,9 +116,9 @@ def step_geometry(x: int) -> dict[str, Any]:
             "defect": defect,
             "odd_cell_width": None,
             "even_cell_position": defect,
-            "even_cell_width": even_cell_width(y),
+            "even_preimage_width": even_preimage_width(y),
         }
-    occupants = odd_cell_integers(y)
+    occupants = odd_preimage_integers(y)
     return {
         "x": x,
         "T": y,
@@ -126,7 +126,7 @@ def step_geometry(x: int) -> dict[str, Any]:
         "defect": defect,
         "odd_cell_width": len(occupants),
         "even_cell_position": None,
-        "even_cell_width": None,
+        "even_preimage_width": None,
     }
 
 
@@ -199,7 +199,7 @@ def circuit_row(v: int, a: int, *, cycle_min: int) -> dict[str, Any]:
         "two_block_243": two_ooe_still_blocks_oe(v, cycle_min) if ooe else None,
         "odd_cell_width": steps[0]["odd_cell_width"] if steps else None,
         "even_cell_position": steps[-1]["even_cell_position"] if rec is not None else None,
-        "even_cell_width": steps[-1]["even_cell_width"] if rec is not None else None,
+        "even_preimage_width": steps[-1]["even_preimage_width"] if rec is not None else None,
         "defects": [row["defect"] for row in steps],
         "follow_depth": follow["depth"],
         "follow_complete": follow["complete"],
@@ -329,7 +329,7 @@ def block_table(
                     "finance_deficit": row["finance_deficit"],
                     "odd_cell_width": row["odd_cell_width"],
                     "even_cell_position": row["even_cell_position"],
-                    "even_cell_width": row["even_cell_width"],
+                    "even_preimage_width": row["even_preimage_width"],
                     "defects": row["defects"],
                     "ooe_cell": row["ooe_cell"],
                     "f2_expanding": row["f2_expanding"],

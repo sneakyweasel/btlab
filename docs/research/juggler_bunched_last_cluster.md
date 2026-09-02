@@ -35,7 +35,7 @@ Maximum Phase-1 scope   Lean all seven bunched families;
 - EOEE cubes from 314: `True`
 - EOOEE cubes from 205: `True`
 
-seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all seven as CycleWord families; a uniform coarse (n+1)^K cell for the last four is refuted and those four use a tight last-odd cell; not a length-8/9 census.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all seven as CycleItinerary families; a uniform coarse (n+1)^K cell for the last four is refuted and those four use a tight last-odd cell; not a length-8/9 census.
 
 ## Families
 
@@ -50,23 +50,23 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all
 ## Lean
 
 - `cycle_trailing_evens_lt`: `True`
-- `no_cycle_word_ooooooeee`: `True`
-- `no_cycle_word_two_even_ee`: `True`
-- `no_cycle_word_two_even_eoe`: `True`
+- `no_cycle_itinerary_ooooooeee`: `True`
+- `no_cycle_itinerary_two_even_ee`: `True`
+- `no_cycle_itinerary_two_even_eoe`: `True`
 - `no_cycleMin_gapped_three_even_ee`: `True`
 - `no_cycleMin_gapped_three_even_eoe`: `True`
-- `no_cycle_word_length_le_seven`: `True`
+- `no_cycle_itinerary_length_le_seven`: `True`
 - `CycleMin`: `True`
-- `no_cycle_word_three_even_eee`: `True`
+- `no_cycle_itinerary_three_even_eee`: `True`
 - `three_even_eee_tail`: `True`
-- `no_cycle_word_three_even_eoee`: `True`
+- `no_cycle_itinerary_three_even_eoee`: `True`
 - `three_even_eoee_tail_of_five`: `True`
-- `no_cycle_word_three_even_eooee`: `True`
+- `no_cycle_itinerary_three_even_eooee`: `True`
 - `three_even_eooee_tail`: `True`
-- `no_cycle_word_three_even_eoooee`: `True`
-- `no_cycle_word_three_even_eeoe`: `True`
-- `no_cycle_word_three_even_eoeoe`: `True`
-- `no_cycle_word_three_even_eooeoe`: `True`
+- `no_cycle_itinerary_three_even_eoooee`: `True`
+- `no_cycle_itinerary_three_even_eeoe`: `True`
+- `no_cycle_itinerary_three_even_eoeoe`: `True`
+- `no_cycle_itinerary_three_even_eooeoe`: `True`
 - no bunched-tail theorem: `True`
 - length eight open in census: `True`
 - no length-nine theorem: `True`
@@ -101,8 +101,8 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all
 
 **BUNCHED_LAST_CLUSTER_GREEN**
 
-seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all seven as CycleWord families; a uniform coarse (n+1)^K cell for the last four is refuted and those four use a tight last-odd cell; not a length-8/9 census.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all seven as CycleItinerary families; a uniform coarse (n+1)^K cell for the last four is refuted and those four use a tight last-odd cell; not a length-8/9 census.
 
 This is not a halt result, not a length-8/9 census, and
-not a Lean theorem no_cycle_word_bunched.
+not a Lean theorem no_cycle_itinerary_bunched.
 

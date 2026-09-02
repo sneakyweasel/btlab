@@ -1,7 +1,7 @@
 """Odd-inverse parity versus cube-block lanes.
 
 Not a halt theorem, not a divergence exclusion, not a reopen of
-odd-inverse width, empty-odd-cell forward laws, odd-landing sets,
+odd-inverse width, empty-odd-preimage forward laws, odd-landing sets,
 odd towers, hug-cylinders, or fan-concat. Not a Paper A edit and
 not a forward residue census of floor(x^{3/2}) mod 2.
 
@@ -16,15 +16,15 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.empty_odd_cell import ceil_cbrt, icbrt, odd_cell_kind
-from research.juggler_sequence.floor_cells import odd_cell_integers
+from research.juggler_sequence.empty_odd_preimage import ceil_cbrt, icbrt, odd_preimage_kind
+from research.juggler_sequence.floor_preimages import odd_preimage_integers
 from research.juggler_sequence.lean_paths import JUGGLER_DIR, has_named, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_inverse_parity"
 JSON_PATH = DATA_DIR / "summary.json"
-CELLS = JUGGLER_DIR / "Cells.lean"
+CELLS = JUGGLER_DIR / "Preimages.lean"
 
 CLASS_REPARAM = "ODD_INVERSE_PARITY_REPARAMETERIZATION"
 CLASS_NEW_LAW = "ODD_INVERSE_PARITY_NEW_LAW"
@@ -35,7 +35,7 @@ NEST_Y_MAX = 200
 ODD_HITS = (3, 37, 365, 761)
 RESIDUE_FIXED = (2, 3, 4, 8, 16)
 
-EXISTING_LEAN = ("odd_cell_unique", "odd_cell_iff")
+EXISTING_LEAN = ("odd_preimage_unique", "odd_preimage_iff")
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
     "no_juggler_escape",
@@ -68,7 +68,7 @@ def type2_in_block(m: int) -> list[int]:
         raise ValueError("type2_in_block requires m >= 1")
     lo = m * m * m
     hi = (m + 1) * (m + 1) * (m + 1)
-    return [y for y in range(lo, hi) if odd_cell_kind(y) == 2]
+    return [y for y in range(lo, hi) if odd_preimage_kind(y) == 2]
 
 
 def odd_images_in_annulus(m: int) -> list[int]:
@@ -134,7 +134,7 @@ def offset_hunt(m: int) -> dict[str, Any]:
                 for y in range(cube, cube + 3 * m * m + 3 * m + 1)
                 if (y - cube) % modulus == residue
             ]
-            if block_hits and all(odd_cell_kind(y) == 2 for y in block_hits):
+            if block_hits and all(odd_preimage_kind(y) == 2 for y in block_hits):
                 full_classes.append(residue)
         is_single = len(occupied) == 1
         # Two-point congruences on a tiny block (m=1, r=0,4) are not a law.
@@ -179,14 +179,14 @@ def named_hit_row(x: int) -> dict[str, Any]:
     image = floor_power(x)
     m = cube_block_index(image)
     k = inverse_candidate(image)
-    occupants = odd_cell_integers(image)
+    occupants = odd_preimage_integers(image)
     return {
         "x": x,
         "T_x": image,
         "m": m,
         "r": image - m * m * m,
         "k": k,
-        "kind": odd_cell_kind(image),
+        "kind": odd_preimage_kind(image),
         "occupants": occupants,
         "self_preimage": occupants == [x],
         "k_equals_x": k == x,
@@ -200,7 +200,7 @@ def backward_odd_spine(y: int, cap: int = 64) -> dict[str, Any]:
     chain = [y]
     cur = y
     for _ in range(cap):
-        if odd_cell_kind(cur) != 2:
+        if odd_preimage_kind(cur) != 2:
             break
         pred = inverse_candidate(cur)
         if pred == cur:
@@ -213,7 +213,7 @@ def backward_odd_spine(y: int, cap: int = 64) -> dict[str, Any]:
         "depth": len(chain) - 1,
         "chain": chain,
         "terminal": chain[-1],
-        "terminal_kind": odd_cell_kind(chain[-1]),
+        "terminal_kind": odd_preimage_kind(chain[-1]),
         "descends": descends,
         "hit_cap": len(chain) - 1 >= cap,
     }
@@ -223,7 +223,7 @@ def nest_sanity(n_max: int = NEST_Y_MAX) -> dict[str, Any]:
     depths = []
     first_ascent = None
     for y in range(1, n_max + 1):
-        if odd_cell_kind(y) != 2:
+        if odd_preimage_kind(y) != 2:
             continue
         row = backward_odd_spine(y)
         depths.append(row["depth"])
@@ -242,8 +242,8 @@ def lean_api_present() -> dict[str, Any]:
     text = juggler_text()
     cells = CELLS.read_text(encoding="utf-8")
     return {
-        "odd_cell_unique": has_named(cells, "odd_cell_unique"),
-        "odd_cell_iff": has_named(cells, "odd_cell_iff"),
+        "odd_preimage_unique": has_named(cells, "odd_preimage_unique"),
+        "odd_preimage_iff": has_named(cells, "odd_preimage_iff"),
         "sorry_free": "sorry" not in text and "admit" not in text,
         "new_lean_file": any(path.exists() for path in NEW_LEAN_FILES),
         **{f"has_{name}": has_named(text, name) for name in FORBIDDEN_THEOREMS},
@@ -266,7 +266,7 @@ def classify(summary: dict[str, Any]) -> str:
         and no_deciding
         and hits_ok
         and nest_ok
-        and summary["lean"]["odd_cell_unique"]
+        and summary["lean"]["odd_preimage_unique"]
     )
     if known:
         return CLASS_REPARAM

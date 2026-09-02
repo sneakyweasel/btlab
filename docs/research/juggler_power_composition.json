@@ -668,7 +668,7 @@
   },
   "decision": {
     "classification": "POWER_COMPOSITION_GREEN",
-    "reason": "The weak bound is an inductive floor-power composition on realized finite words; strict contraction follows from the exponent gap at n>=2",
+    "reason": "The weak bound is an inductive floor-power composition on realized finite itineraries; strict contraction follows from the exponent gap at n>=2",
     "lean_gate_open": true
   },
   "predicate": "PowerBound m n k o := m ^ (2 ^ k) <= n ^ (3 ^ o)",

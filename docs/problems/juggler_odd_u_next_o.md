@@ -126,7 +126,7 @@ It is not required.
   **REFUTED**.
 - same episode signature recurs — not claimed
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -167,7 +167,7 @@ the Phase-0 window \(12\le n<801\).
 
 None. Existing `Envelope.lean` `power_bound_word` and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -212,7 +212,7 @@ sixth-power reset. The parity-persistence question is the
 separate branch
 [juggler_parity_persist.md](juggler_parity_persist.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 build a \(p\)-adic system. Do not add another power-bound
 phase.
 

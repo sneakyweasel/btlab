@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     image_after,
     local_defect,
     odd_count,
@@ -23,7 +23,7 @@ from research.juggler_sequence.lean_paths import (
     engine_floor_text,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_chain import HARD_PROBES
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -256,7 +256,7 @@ def collect_rows(*, n_max: int = N_MAX, k_max: int = K_MAX) -> list[dict[str, An
             rows.append(prefix)
     for word in FIXED_WORDS:
         for n in range(1, min(n_max, 800) + 1):
-            if not follows_word(n, word):
+            if not follows_itinerary(n, word):
                 continue
             rec = walk(n, len(word))
             if rec["word"] != word:
@@ -483,7 +483,7 @@ def telescope_search(n: int = 37, k: int = 6) -> dict[str, Any]:
 def same_word_variation(word: str, *, n_max: int = 800) -> dict[str, Any]:
     rhos = []
     for n in range(1, n_max + 1):
-        if follows_word(n, word):
+        if follows_itinerary(n, word):
             rec = walk(n, len(word))
             if rec["word"] == word:
                 rhos.append((n, rec["rho_sum"]))
@@ -638,7 +638,7 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "itinerary prefixes n<=4000, k<=20, bit_limit=256; "
+            "word prefixes n<=4000, k<=20, bit_limit=256; "
             "HARD_PROBES + PE 365/1999; fixed words OOE/OEO/EOO; "
             "H1-H4 on existing local_defect / pathDefectSum; no new rho"
         ),

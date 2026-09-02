@@ -54,7 +54,7 @@ theorem.
   **CLOSE** as `EXCURSION_TRANSFER_CLOSED`
 - Nested start-set occupancy —
   **CLOSE** as `ANCHOR_CYLINDER_CLOSED`
-- Formal versus AA word gap —
+- Formal versus AAn itinerary gap —
   **CLOSE** as `FORMAL_REALIZED_GAP_CLOSED`
 - Cube cell without a square cell — a **separate** leftover
 - Every start reaches 1 — not claimed

@@ -36,7 +36,7 @@ An ancestry node is \((\pi,\varphi,\mathrm{tag})\). The run
 **First \(\mathtt{OO}\) is empty
 (KNOWN / EXACT — LEAN VERIFIED).**
 Two odd last letters at \(x\) share the unique odd parent
-(`odd_cell_unique`). Occupancy on \([13,2001)\) has
+(`odd_preimage_unique`). Occupancy on \([13,2001)\) has
 `n_first_oo=0`.
 
 **One-step \(EE\) and \(EO\) are archived
@@ -83,7 +83,7 @@ No cycle of any length — not claimed.
 
 - Unique odd cell —
   **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, `oddLanding_preimage_unique`)
+  (`odd_preimage_unique`, `oddLanding_preimage_unique`)
 - \(2{+}2\) window \(\{\mathtt{OE}\mid\mathtt{OO},\mathtt{EE}\mid\mathtt{OO}\}\) —
   **CLOSE** / **REPARAMETERIZATION**
   ([juggler_cycle_cyclic_seam.md](juggler_cycle_cyclic_seam.md))
@@ -126,10 +126,10 @@ Falsifier               forgetful projection recovers G_run and
                         decoration; every valley is archived
                         one-step EE/EO; the phase necklace is
                         the closed four-position table; OO
-                        first-collisions are odd_cell_unique
+                        first-collisions are odd_preimage_unique
 Existing machinery      walk_blocks / realized_transition_graph
                         (cycle_seam_propagate); floor_power
-                        (power_words); odd_preimage
+                        (power_itineraries); odd_preimage
                         (cycle_almost_search); even_preimage_count
                         (bunched_short_return); first_oe_block /
                         prefix_allows_first_run (cycle_e_block);
@@ -161,7 +161,7 @@ transfer, or the \(Q\)-state law.
 - **CLOSE** if every valley is `ARCHIVED_EE` or `ARCHIVED_EO`
   at phase \(V\).
 - **CLOSE** if the phase necklace is run form.
-- **CLOSE** if first \(\mathtt{OO}\) is `odd_cell_unique` and
+- **CLOSE** if first \(\mathtt{OO}\) is `odd_preimage_unique` and
   MULTI is empty.
 - **CLOSE** if \(365/1517\) keep the same ancestry on the
   shared prefix.
@@ -177,7 +177,7 @@ multiplicity as new provenance.
 
 ## Explicitly out of Phase-0
 
-A full \(T_u(n)=T_v(m)\) cell classification, a word-order
+A full \(T_u(n)=T_v(m)\) cell classification, an itinerary-order
 invariant, a \(K=11\) proof, defect amplification, Fourier /
 residues / \(Q\)-sections, a branch-and-bound engine, ledger
 theorem row, new Lean, CLI, visualization, Paper A edit, a
@@ -196,7 +196,7 @@ It is not required.
 - Ancestry node \((\pi,\varphi,\mathrm{tag})\) —
   **REPARAMETERIZATION** of one-step parents plus run form
 - First \(\mathtt{OO}\) —
-  **KNOWN** empty (`odd_cell_unique`)
+  **KNOWN** empty (`odd_preimage_unique`)
 - One-step \(EE\) / \(EO\) —
   **KNOWN** (`even_preimage_count`, `odd_preimage`,
   `ee_entry_count`)
@@ -251,7 +251,7 @@ It is not required.
 ## Formalization
 
 None added. The uniqueness lemma is already
-`odd_cell_unique` / `oddLanding_preimage_unique`. The type
+`odd_preimage_unique` / `oddLanding_preimage_unique`. The type
 graph is already `realized_transition_graph`. Paper A is
 unchanged. Do not add `SeamAncestry.lean`.
 
@@ -288,7 +288,7 @@ projection is \(G_{\mathrm{run}}\), which is cyclic. Every
 valley is an archived one-step \(EE\) or \(EO\) at phase
 \(V\), so provenance is idle decoration. The phase necklace
 is \(O^{a}E^{r}\) run form. First \(\mathtt{OO}\) is
-`odd_cell_unique`. MULTI is empty. \(365\) and \(1517\) keep
+`odd_preimage_unique`. MULTI is empty. \(365\) and \(1517\) keep
 the same ancestry on the shared prefix and still split.
 That is useful negative knowledge; it is not a new
 invariant. No Paper A edit, no ledger row, no new Lean, no

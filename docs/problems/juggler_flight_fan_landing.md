@@ -36,7 +36,7 @@ fan-concat windows:
   hug-follow and extra-\(O\) both cover almost \((0,1)\).
 
 **What remains (REPARAMETERIZATION).** Even landings (27/44) die
-immediately: that is `even_cell_iff`. Among odd landings,
+immediately: that is `even_preimage_iff`. Among odd landings,
 `image_odd` is the parity of \(T(M)\), i.e. letter 2 of the tail.
 `extra_O` implies OOE-legal, but OOE-legal does not imply
 `extra_O`. Letter 3 is \(T^2(M)\bmod 2\). No surviving arithmetic
@@ -51,8 +51,8 @@ divergent flights is not claimed.
   ([juggler_flight_post19_tail.md](juggler_flight_post19_tail.md)).
 - Hug-follow after a (19,12) landing exists and dies before 19 —
   **OBSERVATION** (same parent).
-- Floor cells — **EXACT — LEAN VERIFIED** (`even_cell_iff`,
-  `odd_cell_unique`, `cell_same_next_state`).
+- Floor cells — **EXACT — LEAN VERIFIED** (`even_preimage_iff`,
+  `odd_preimage_unique`, `preimage_same_next_state`).
 - Mechanical-lift \(\xi\)-cocycle — **CLOSE**
   ([juggler_cycle_mechanical_lift.md](juggler_cycle_mechanical_lift.md)).
   Not reopened: \(\xi\) is used only as a bin, and it does not
@@ -75,7 +75,7 @@ Falsifier               an odd (19,12) landing that hug-follows
                         and neither overshoots nor starts R_ε;
                         or every cell label is T-parity
 Existing machinery      post-19 kinds, cell_record, ooe/oe
-                        legality, even_cell_iff
+                        legality, even_preimage_iff
 Maximum Phase-0 scope   existing 44+8 endpoints only; no new
                         n-window, no xi-cocycle, no Lean, no
                         Paper A
@@ -101,7 +101,7 @@ It is not required.
   false.
 - \(\xi\) or \(M\bmod 8\) separates hug-follow from extra \(O\) —
   **false**.
-- A new cell beyond `even_cell_iff` / `odd_cell_unique` —
+- A new cell beyond `even_preimage_iff` / `odd_preimage_unique` —
   not obtained.
 
 ## Experiments

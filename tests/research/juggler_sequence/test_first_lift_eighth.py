@@ -26,7 +26,7 @@ from research.juggler_sequence.first_lift_eighth import (
     witness_5791,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_named_leftovers_are_safe_and_enveloped():

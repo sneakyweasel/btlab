@@ -1,7 +1,7 @@
 """Length-8 two-even squares are OO/OOO bootstrap, not leftovers.
 
 Not a Research Engine control-layer experiment. Not a halt theorem.
-Not a length-8 census and not a leftover_prefix_cell family.
+Not a length-8 census and not a leftover_prefix_preimage family.
 
 The even-terminating expanding length-8 words that are not
 Theorem 3.12 are OOOOEOOE = OO(OOE)^2 and OOOEOOOE = (OOOE)^2,
@@ -26,7 +26,7 @@ from research.juggler_sequence.cycle_length_seven import (
     suffix_after_last_internal_e,
 )
 from research.juggler_sequence.cycle_ooo_scale import cyclemin_orientation
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLES,
@@ -36,7 +36,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_length8_bootstrap.json"
@@ -59,17 +59,17 @@ LEAN_THEOREMS = (
     "ooo_suffix_threshold",
     "odd_run_suffix_threshold",
     "no_cycle_odd_run_append_even",
-    "no_cycle_word_two_even_ee",
-    "no_cycle_word_two_even_eoe",
-    "no_cycle_word_ooeooe",
-    "no_cycle_word_oooeooe",
-    "no_cycle_word_ooeoooe",
-    "no_cycle_word_length_le_seven",
+    "no_cycle_itinerary_two_even_ee",
+    "no_cycle_itinerary_two_even_eoe",
+    "no_cycle_itinerary_ooeooe",
+    "no_cycle_itinerary_oooeooe",
+    "no_cycle_itinerary_ooeoooe",
+    "no_cycle_itinerary_length_le_seven",
     "exists_cycleMin",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eight",
+    "no_cycle_itinerary_length_eight",
     "no_juggler_cycle",
 )
 
@@ -151,13 +151,13 @@ def row_for(word: str) -> dict[str, Any]:
 
 
 def small_n_follows(word: str) -> dict[str, Any]:
-    follows = [n for n in range(2, 8) if follows_word(n, word)]
+    follows = [n for n in range(2, 8) if follows_itinerary(n, word)]
     returns = [n for n in follows if image_after(n, word) == n]
     return {"word": word, "follows": follows, "returns": returns}
 
 
 def transient_row(n: int, word: str) -> dict[str, Any]:
-    ok = follows_word(n, word)
+    ok = follows_itinerary(n, word)
     image = image_after(n, word) if ok else None
     return {
         "n": n,
@@ -231,7 +231,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in combined,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "Minimal_untouched": "length8_bootstrap" not in MINIMAL.read_text(
             encoding="utf-8"
         ),
@@ -244,9 +244,9 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycleMin_internal_even_threshold"]
         and lean["oo_suffix_threshold"]
         and lean["ooo_suffix_threshold"]
-        and lean["no_cycle_word_ooeooe"]
-        and lean["no_cycle_word_oooeooe"]
-        and lean["no_cycle_word_length_eight"]
+        and lean["no_cycle_itinerary_ooeooe"]
+        and lean["no_cycle_itinerary_oooeooe"]
+        and lean["no_cycle_itinerary_length_eight"]
         and lean["length_eight_open_in_census"]
         and lean["no_all_cycles_impossible"]
     )
@@ -380,9 +380,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
             f"- `no_cycleMin_internal_even_threshold`: `{lean['no_cycleMin_internal_even_threshold']}`",
             f"- `oo_suffix_threshold`: `{lean['oo_suffix_threshold']}`",
             f"- `ooo_suffix_threshold`: `{lean['ooo_suffix_threshold']}`",
-            f"- `no_cycle_word_ooeooe`: `{lean['no_cycle_word_ooeooe']}`",
-            f"- `no_cycle_word_oooeooe`: `{lean['no_cycle_word_oooeooe']}`",
-            f"- no length-8 theorem: `{lean['no_cycle_word_length_eight']}`",
+            f"- `no_cycle_itinerary_ooeooe`: `{lean['no_cycle_itinerary_ooeooe']}`",
+            f"- `no_cycle_itinerary_oooeooe`: `{lean['no_cycle_itinerary_oooeooe']}`",
+            f"- no length-8 theorem: `{lean['no_cycle_itinerary_length_eight']}`",
             f"- length eight open in census: `{lean['length_eight_open_in_census']}`",
             "",
             "## Anti-overclaim",

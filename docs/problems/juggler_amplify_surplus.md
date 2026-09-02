@@ -17,7 +17,7 @@ later floors. Does that bound beat the formal surplus
 
 ## Exact statement
 
-For a realized word \(w\),
+For a realized itinerary \(w\),
 
 \[
 \Delta_w(n)\ge\operatorname{Amplify}(n,w),\qquad
@@ -25,15 +25,15 @@ G_w(n)=n^{3^{\#O}}-n^{2^{|w|}}.
 \]
 
 \(\operatorname{Amplify}>G\) forces \(T_w(n)<n\), so \(w\) is not a
-cycle word. Phase 0 asks whether a uniform first-defect \(F\le
+cycle itinerary. Phase 0 asks whether a uniform first-defect \(F\le
 \operatorname{Amplify}\) exceeds \(G\) on the thirty words
 \(O^{a_0}EO^{a_1}EO^{a_2}EO^{a_3}E\) at the first expanding \(a_0\)
 (seven odds, length 11), at an \(N_0\) below the leftover-cell fire.
 
-This is not a `CycleWord` theorem. It is not a length-8, length-9,
+This is not a `CycleItinerary` theorem. It is not a length-8, length-9,
 or length-11 census and not a halt theorem. There is no
-`no_cycle_word_amplify_surplus` and no
-`no_cycle_word_length_eleven`.
+`no_cycle_itinerary_amplify_surplus` and no
+`no_cycle_itinerary_length_eleven`.
 
 ## Current literature
 
@@ -48,7 +48,7 @@ or length-11 census and not a halt theorem. There is no
 - Tighter last-cluster pullback —
   **REFUTED** / **CLOSE**.
 - \(O^7\mathrm{EEEE}\) +1-chain —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_oooooooeeee`).
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_oooooooeeee`).
   A different comparison: image versus \((n+1)^{16}\), not
   Amplify versus \(G\).
 
@@ -69,7 +69,7 @@ Existing machinery      amplifyDefect; formal surplus;
 Maximum Phase-0 scope   Exponent census plus log F vs log G;
                         no Lean, no length-11 assembler
 Promotion criterion     A uniform F fires below leftover N0
-                        on a named word, and is not T<n
+                        on a named itinerary, and is not T<n
 Stop criterion          F is the trailing-evens cell; Amplify
                         never beats G past the seven-odd cutoff
 ```
@@ -143,8 +143,8 @@ The stronger claims that remain false or unproved:
 None new. `amplifyDefect` and
 `power_bound_compensated_contracts` already exist.
 `SmallCycleCensus.lean` still assembles only through length
-seven. No `no_cycle_word_amplify_surplus`. No
-`no_cycle_word_length_eleven`. No `sorry`. No halt theorem.
+seven. No `no_cycle_itinerary_amplify_surplus`. No
+`no_cycle_itinerary_length_eleven`. No `sorry`. No halt theorem.
 Paper A is unchanged.
 
 ## Results
@@ -174,7 +174,7 @@ cutoff. The method is \(T_w<n\) with the later remainders
 dropped, and those remainders are the gap. It is not a
 length-11 census and not a halt theorem.
 
-Best next question: a word-equation or inverse-cell argument
+Best next question: an itinerary-equation or inverse-cell argument
 for a named leftover other than \(O^7\mathrm{EEEE}\), not
 another defect-versus-surplus bound.
 

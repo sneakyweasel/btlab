@@ -77,7 +77,7 @@ Pin n<=`80`: easy `13`, hard `0`, odd `5`.
 
 - `minimal_first_even_overshoots`: `True`
 - `cycleMin_first_even_overshoots`: `True`
-- `no_cycle_word_even_count_le_three`: `True`
+- `no_cycle_itinerary_even_count_le_three`: `True`
 - `ReturnBelow`: `True`
 - `finiteProgress_of_returnBelow`: `True`
 - `minimal_first_even_dichotomy`: `True`

@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.bunched_last_cluster import FAMILIES, family_word
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     LEFTOVER_FAMILIES,
@@ -28,7 +28,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -95,7 +95,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_juggler_cycle",
 )
@@ -107,7 +107,7 @@ def path_row(spec: dict[str, Any]) -> dict[str, Any]:
     hits: list[dict[str, int | bool]] = []
     overshoots: list[dict[str, int]] = []
     for y in range(2, spec["cutoff"]):
-        if not follows_word(y, word):
+        if not follows_itinerary(y, word):
             continue
         follows += 1
         n = image_after(y, word)
@@ -223,7 +223,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "PrefixBunched" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -238,7 +238,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycleMin_prefix_eoeoe"]
         and lean["no_cycleMin_prefix_eooeoe"]
         and lean["returnsIntoB"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]
@@ -329,10 +329,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     CycleMin n (u ++ threeEvenXXX a)",
         "                        is impossible for every prefix u",
         "Novelty hypothesis      y>=n plus the path table at y replace",
-        "                        CycleWord tables at the cycle start",
+        "                        CycleItinerary tables at the cycle start",
         "Falsifier               a path y -> n in [2,y] below cutoff,",
         "                        or the large-y tail failing when y>=n",
-        "Existing machinery      seven bunched CycleWord exclusions;",
+        "Existing machinery      seven bunched CycleItinerary exclusions;",
         "                        CycleMin; family tails; seven-odd",
         "Maximum Phase-0 scope   path census; Lean wrapper; no Z5,",
         "                        no length-11, no bunched-short",
@@ -353,7 +353,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "The coarse comparison `Y^{3^a} > 2^e (Y+1)^{K 2^a}` never",
         "fires at a=3 for EOOOEE or EOOEOE. Those two cells use the",
-        "tight split already proved for CycleWord, measured at y.",
+        "tight split already proved for CycleItinerary, measured at y.",
         "",
         "## Path rows",
         "",

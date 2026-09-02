@@ -55,7 +55,7 @@ N_w is not an upper tail: inversions n1 in N_w < n2 in C_w exist. The same (k,o)
 
 - `N_wb ⊆ N_w`: `False`
 - late expand (contracting prefix, NC word): `1774` smallest=`{'parent': 'EO', 'child': 'EOO', 'n': 10}`
-- late contract (NC prefix, contracting word): `3554` smallest=`{'parent': 'OOOE', 'child': 'OOOEE', 'n': 3}`
+- late contract (NC prefix, contracting itinerary): `3554` smallest=`{'parent': 'OOOE', 'child': 'OOOEE', 'n': 3}`
 
 ## First defect
 
@@ -149,7 +149,7 @@ N_w is not an upper tail: inversions n1 in N_w < n2 in C_w exist. The same (k,o)
 
 - `power_bound_contracts`: `True`
 - `image_monotone_of_follows`: `True`
-- `even_cell_iff`: `True`
+- `even_preimage_iff`: `True`
 - no forbidden engines: `True`
 - no global halt theorem: `True`
 

@@ -130,7 +130,7 @@ It is not required.
   **REFUTED**.
 - same \(L\)-entrance recurs — not claimed
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -167,7 +167,7 @@ the Phase-0 window \(12\le n<801\).
 
 None. Existing `Envelope.lean` `power_bound_word` and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -206,7 +206,7 @@ z\text{ even}\Rightarrow T(z)<n^{5/2}<n^3.
 
 Even \(u\) returns below \(n^4\). Neither even landing
 restarts \(L\). Scale-band return is not episode
-recurrence: the word-progress is \(W_5+\mathtt{OO}\) or
+recurrence: the itinerary-progress is \(W_5+\mathtt{OO}\) or
 \(W_5+\mathtt{OOO}\), not \(L\).
 
 This is not \(Z_5\), not a length-11 census, not a four-even
@@ -219,7 +219,7 @@ Lean-package \(3^{21}<5\cdot 2^{31}\) and
 is the separate branch
 [juggler_odd_u_next_o.md](juggler_odd_u_next_o.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 build a \(p\)-adic system. Do not formulate an
 arbitrary-word rung theorem.
 

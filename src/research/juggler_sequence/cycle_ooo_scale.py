@@ -3,7 +3,7 @@
 Not a Research Engine control-layer experiment. Not a halt theorem.
 Does not search cycle states and does not run a length-6 census.
 Tests whether existing OOO / OOOO thresholds plus LowerPowerBound
-exclude CycleWord on OOOEOE and OOOOEE, or only repackage known cells.
+exclude CycleItinerary on OOOEOE and OOOOEE, or only repackage known cells.
 """
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     ENVELOPE,
@@ -51,7 +51,7 @@ LEAN_THEOREMS = (
 
 CERTIFICATE_UNCHANGED = (
     "no_cycleMin_internal_even_threshold",
-    "no_cycle_word_ooeooe",
+    "no_cycle_itinerary_ooeooe",
     "ooo_suffix_threshold",
     "cycle_last_even_interval",
     "exists_cycle_min_odd",
@@ -90,7 +90,7 @@ def icbrt(value: int) -> int:
     return low
 
 
-def rotate_word(word: str) -> str:
+def rotate_itinerary(word: str) -> str:
     return word[1:] + word[0]
 
 
@@ -98,7 +98,7 @@ def rotations(word: str) -> list[str]:
     seen = [word]
     current = word
     for _ in range(len(word) - 1):
-        current = rotate_word(current)
+        current = rotate_itinerary(current)
         seen.append(current)
     return seen
 
@@ -181,22 +181,22 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in text
-        and "theorem no_cycle_word " not in text,
+        and "theorem no_cycle_itinerary " not in text,
         "no_cycle_engine": "def CycleSearch" not in text
         and "def CycleStates" not in text,
-        "no_length_six_theorem": "theorem no_cycle_word_length_six" not in text
+        "no_length_six_theorem": "theorem no_cycle_itinerary_length_six" not in text
         and "length_six" not in floor,
         "no_infinite_path_type": "coinductive" not in text.lower()
         and "def InfinitePath" not in text,
-        "FloorPower_not_rewritten": "CycleWord" not in floor
+        "FloorPower_not_rewritten": "CycleItinerary" not in floor
         and "CycleMin" not in floor,
-        "Progress_unchanged": "CycleWord" not in progress,
+        "Progress_unchanged": "CycleItinerary" not in progress,
         "orbit_min_not_used": "MinimalNonTerm" not in text,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
-        "O_terminating_not_claimed": "no_cycle_word_length_six_ends_odd"
+        "O_terminating_not_claimed": "no_cycle_itinerary_length_six_ends_odd"
         not in text,
-        "no_ooooee_cycleword_theorem": "no_cycle_word_ooooee" not in text,
-        "no_ooooeoe_cycleword_theorem": "no_cycle_word_ooooeoe" not in text,
+        "no_ooooee_cycleword_theorem": "no_cycle_itinerary_ooooee" not in text,
+        "no_ooooeoe_cycleword_theorem": "no_cycle_itinerary_ooooeoe" not in text,
         "Minimal_untouched": "cycleMin_not_end_odd" not in MIN_PATH.read_text(
             encoding="utf-8"
         ),
@@ -215,7 +215,7 @@ def run_probe() -> dict[str, Any]:
     cubes = {n: succ_sq_le_cube(n) for n in (3, 5, 7, 9)}
     return {
         "basin": [1],
-        "leftover_words": list(LEFTOVER_WORDS),
+        "leftover_itineraries": list(LEFTOVER_WORDS),
         "y_eq_n": y_eq_n_contradiction(5),
         "succ_sq_le_cube": cubes,
         "succ_sq_le_cube_holds": all(cubes.values()),
@@ -328,13 +328,13 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"Status: **{decision['classification']}**",
         "",
         "Standalone application phase. Not a Research Engine experiment",
-        "and not a termination theorem. Two leftover words, not a census.",
+        "and not a termination theorem. Two leftover itineraries, not a census.",
         "",
         "## Branch budget",
         "",
         "```text",
         "Mathematical target     prefix-OOO extra scale or OOOOEE rotation",
-        "                        excludes CycleWord on OOOEOE and OOOOEE",
+        "                        excludes CycleItinerary on OOOEOE and OOOOEE",
         "Novelty hypothesis      T^3 >= (n+1)^2 plus the even cell of y",
         "                        forces T(y) >= (n+1)^2; OOOOEE dies by rotation",
         "Falsifier               y=n is the OOO threshold; extra scale is",
@@ -361,7 +361,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "## Identities",
         "",
-        f"- leftover words: `{scan['leftover_words']}`",
+        f"- leftover itineraries: `{scan['leftover_itineraries']}`",
         f"- y=n incompatible: `{scan['y_eq_n']['incompatible']}`",
         f"- y=n is the OOO threshold: `{scan['y_eq_n_is_ooo_threshold']}`",
         f"- succ_sq_le_cube on 3,5,7,9: `{scan['succ_sq_le_cube_holds']}`",
@@ -402,8 +402,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
             f"- orbit-min hypothesis unused: `{lean.get('orbit_min_not_used')}`",
             f"- PowerBoundEq not used as cycle attack: `{lean.get('PowerBoundEq_not_used_as_cycle_attack')}`",
             f"- O-terminating not claimed: `{lean.get('O_terminating_not_claimed')}`",
-            f"- no OOOEOE CycleWord theorem: `{lean.get('no_ooooeoe_cycleword_theorem')}`",
-            f"- no OOOOEE CycleWord theorem: `{lean.get('no_ooooee_cycleword_theorem')}`",
+            f"- no OOOEOE CycleItinerary theorem: `{lean.get('no_ooooeoe_cycleword_theorem')}`",
+            f"- no OOOOEE CycleItinerary theorem: `{lean.get('no_ooooee_cycleword_theorem')}`",
             f"- no all-cycles-impossible theorem: `{lean.get('no_all_cycles_impossible')}`",
             f"- no cycle engine: `{lean.get('no_cycle_engine')}`",
             f"- no global halt theorem: `{lean.get('no_global_termination_theorem')}`",
@@ -423,8 +423,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             decision["reason"] + ".",
             "",
-            "This is not a halt result. Neither leftover CycleWord is excluded.",
-            "Cycles ending in O as CycleWord are not treated. Length 7 was not opened.",
+            "This is not a halt result. Neither leftover CycleItinerary is excluded.",
+            "Cycles ending in O as CycleItinerary are not treated. Length 7 was not opened.",
             "",
         ]
     )

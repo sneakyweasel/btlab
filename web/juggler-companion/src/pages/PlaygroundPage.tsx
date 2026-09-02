@@ -3,8 +3,8 @@ import { Disclaimer } from "../components/Disclaimer";
 
 const TABS = [
   { to: "/play/trajectory", label: "Trajectory" },
-  { to: "/play/word", label: "Word" },
-  { to: "/play/cells", label: "Cells" },
+  { to: "/play/itinerary", label: "Itinerary" },
+  { to: "/play/preimages", label: "Preimages" },
   { to: "/play/cycle", label: "Cycle" },
   { to: "/play/finance", label: "Finance" },
 ];
@@ -19,11 +19,11 @@ export function PlaygroundPage() {
       <header>
         <h1 className="text-4xl">Playground</h1>
         <p className="prose-measure mt-3 text-muted">
-          Basic tests only: walk a start, follow a short word, look at a
-          preimage cell, rotate a necklace, or look up a length in the shipped
-          Theorem 4.6 table. Caps: 80 steps, 256 bits, words of length at most
-          8 (cycles 16). The trajectory is the values; the word is the O/E
-          parities of a prefix. A cell is the set of one-step preimages.
+          Basic tests only: walk a start, follow a short itinerary, look at a
+          one-step preimage, rotate a necklace, or look up a length in the shipped
+          Theorem 4.6 table. Caps: 80 steps, 256 bits, itineraries of length at most
+          8 (cycles 16). The trajectory is the values; the itinerary is the O/E
+          parities of a prefix. A one-step preimage is the set J⁻¹(m).
         </p>
       </header>
       <nav className="flex flex-wrap gap-2">

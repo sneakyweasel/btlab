@@ -190,7 +190,7 @@
     "has_juggler_reaches_one": false,
     "has_all_finiteProgress": false,
     "has_no_juggler_cycle": false,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "in_laboratory_barrel": true,
     "not_in_paper_barrel": true,
     "no_halt_theorem": true,

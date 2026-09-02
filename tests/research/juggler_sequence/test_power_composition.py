@@ -23,7 +23,7 @@ from research.juggler_sequence.power_composition import (
     square_towers,
     word_of,
 )
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     WORD_OOOEE,

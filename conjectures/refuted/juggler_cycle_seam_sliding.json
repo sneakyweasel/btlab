@@ -1,21 +1,21 @@
 {
   "id": "juggler_cycle_seam_sliding",
   "title": "Sliding a first-intersection cut through a homogeneous E^r run produces a new boundary inequality",
-  "statement": "If the first intersection of an initial climb with a cycle lies in a homogeneous parity run, the cut may be shifted to either boundary as a first-intersection type, and choosing the peak or valley boundary of E^r produces an inequality, or a restriction on r, that is not cycleWord_rotateWord / rotateWord_even_run / cycle_trailing_evens_lt / even_run_scale_barrier / odd_cell_unique / oddLanding_preimage_unique / no_cycle_word_even_count_le_three / the archived OE and EO cells.",
+  "statement": "If the first intersection of an initial climb with a cycle lies in a homogeneous parity run, the cut may be shifted to either boundary as a first-intersection type, and choosing the peak or valley boundary of E^r produces an inequality, or a restriction on r, that is not cycleItinerary_rotateItinerary / rotateItinerary_even_run / cycle_trailing_evens_lt / even_run_scale_barrier / odd_preimage_unique / oddLanding_preimage_unique / no_cycle_itinerary_even_count_le_three / the archived OE and EO cells.",
   "status": "REFUTED",
   "counterexamples": [
-    "E|EEE, EE|EE, EEE|E are rotateWord of the necklace OOEEEE",
+    "E|EEE, EE|EE, EEE|E are rotateItinerary of the necklace OOEEEE",
     "100 --E--> 10 --E--> 3 versus 102 --E--> 10 --E--> 3: first intersection is 10, not the peak 100 and not the valley 3",
     "P < (V+1)^{2^r} is cycle_trailing_evens_lt (100 < 4^4, 10000 < 4^8)",
-    "O^r interiors are not first meetings (odd_cell_unique); how long E^r can be is even-count plus the trailing cell"
+    "O^r interiors are not first meetings (odd_preimage_unique); how long E^r can be is even-count plus the trailing cell"
   ],
   "first_seen": "juggler cyclic seam sliding",
-  "lean_reference": "cycleWord_rotateWord",
+  "lean_reference": "cycleItinerary_rotateItinerary",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],
   "mathematical_domain": "Juggler CycleMin homogeneous-run cut sliding",
-  "notes": "Phase 0 only. Not a reopen of the E^r-block leftover-killer (that branch already pushes even interiors forward to the valley). This phase refutes the stronger bidirectional slide. Combinatorial sliding is a REPARAMETERIZATION of rotateWord. No finance, no K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean. Not a halt theorem.",
+  "notes": "Phase 0 only. Not a reopen of the E^r-block leftover-killer (that branch already pushes even interiors forward to the valley). This phase refutes the stronger bidirectional slide. Combinatorial sliding is a REPARAMETERIZATION of rotateItinerary. No finance, no K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean. Not a halt theorem.",
   "origin": "docs/problems/juggler_cycle_seam_sliding.md",
   "proof_reference": "docs/problems/juggler_cycle_seam_sliding.md",
   "tested_range": "necklace identity at r=4; backward-slide witnesses 100 --E^2--> 3 and 10000 --E^3--> 3; trailing-cell checks 100 < 4^4 and 10000 < 4^8"

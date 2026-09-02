@@ -1,4 +1,4 @@
-# Juggler cycle-word arithmetic
+# Juggler cycle-itinerary arithmetic
 
 Status: **EXPLORATORY**
 
@@ -9,12 +9,12 @@ every positive integer reaches 1.
 ## Problem
 
 Can exact last-branch cells and a one-letter rotation exclude the first
-nontrivial mixed cycle words `OOE` and `OEO`, without tightening
+nontrivial mixed cycle itineraries `OOE` and `OEO`, without tightening
 \(D_w\) and without a cycle engine?
 
 ## Exact statement
 
-`CycleWord n w` is unchanged: `follows n w`, \(T_w(n)=n\), and \(w\)
+`CycleItinerary n w` is unchanged: `follows n w`, \(T_w(n)=n\), and \(w\)
 nonempty. It does not assume `MinimalNonTerm`.
 
 If the last letter is even, write \(z=T_u(n)\) for \(w=uE\). Then
@@ -26,9 +26,9 @@ n^2\le z<(n+1)^2.
 This is a square cell, not the identity \(z=n^2\). If \(n\) is odd,
 then \(z\neq n^2\) because \(n^2\) is odd.
 
-If `CycleWord n (b::w)`, then `CycleWord (T(n)) (w++[b])`.
+If `CycleItinerary n (b::w)`, then `CycleItinerary (T(n)) (w++[b])`.
 
-If `CycleWord n w` and \(n\ge 2\), some state on the word is a
+If `CycleItinerary n w` and \(n\ge 2\), some state on the itinerary is a
 minimum, and that minimum is odd: an even state \(x\ge 2\) satisfies
 \(T(x)<x\).
 
@@ -40,7 +40,7 @@ letter.
 `OEO` is impossible for \(n\ge 2\): one rotation is `EOO`, already
 excluded.
 
-Do not prove that every cycle word is impossible. Do not treat last-even
+Do not prove that every cycle itinerary is impossible. Do not treat last-even
 return as \(z=n^2\). Do not attack cycles through `PowerBoundEq`. Do
 not prove totality.
 
@@ -55,17 +55,17 @@ not prove totality.
 - `EOO` has no cycle for \(n\ge 2\) —
   **EXACT — LEAN VERIFIED**.
 
-Project relationship: **extended**. The first mixed expanding words are
+Project relationship: **extended**. The first mixed expanding itineraries are
 excluded by cells and rotation, not by searching \(D_w\). Totality
 remains unclaimed.
 
 ## Branch budget
 
 ```text
-Mathematical target     exclude CycleWord on OOE and OEO by exact cells
+Mathematical target     exclude CycleItinerary on OOE and OEO by exact cells
 Novelty hypothesis      last-even cell plus OO threshold, or rotation to EOO
 Falsifier               an OOE/OEO cycle; or last-even identity z = n^2
-Existing machinery      CycleWord, oo_suffix_threshold, no_cycle_word_eoo
+Existing machinery      CycleItinerary, oo_suffix_threshold, no_cycle_itinerary_eoo
 Maximum Phase-0 scope   last-even interval; min odd; no OOE; no OEO
 Promotion criterion     Lean exclusion of OOE, preferably also OEO
 Stop criterion          cycle engine; all cycles impossible; FloorPower rewrite
@@ -91,7 +91,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - no `OEO` cycle for \(n\ge 2\) —
   **EXACT — LEAN VERIFIED**
-- all cycle words are impossible — not claimed
+- all cycle itineraries are impossible — not claimed
 - last-even return is the exact square — **REFUTED**
 - cycle return is `PowerBoundEq` — **REFUTED** as an attack
 - global halt — not claimed
@@ -123,13 +123,13 @@ None to the `OOE`/`OEO` exclusions. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `cycle_last_even_interval` / `cycle_last_even_ne_odd_sq`
 - `cycle_last_odd_interval`
-- `cycleWord_rotate_cons`
+- `cycleItinerary_rotate_cons`
 - `floorPower_even_lt` / `exists_cycle_min_odd`
-- `no_cycle_word_ooe` / `no_cycle_word_oeo`
+- `no_cycle_itinerary_ooe` / `no_cycle_itinerary_oeo`
 
 `FloorPower`, `Progress`, and `MinimalNonTerm` are not rewritten. No
 `sorry`. No halt theorem. No `no_juggler_cycle`. No `CycleSearch`.
@@ -161,5 +161,5 @@ Best next question: answered in
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A finite-word exclusion lemma, not a paper
+Status: `EXPLORATORY`. A finite-itinerary exclusion lemma, not a paper
 candidate and not a Juggler totality result.

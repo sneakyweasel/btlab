@@ -140,7 +140,7 @@ Stop criterion          one-step killed by bounded ψ; no
 
 ## Explicitly out of Phase-0
 
-An unbounded \(\psi\), a word-dependent ranking function, a new
+An unbounded \(\psi\), an itinerary-dependent ranking function, a new
 DK envelope, a floor raise, CLI, visualization, Paper A/B edit.
 
 ## Balanced-ternary formulation
@@ -211,7 +211,7 @@ Classification **WALK_COBOUNDARY_DEFEATED**.
 ## Open questions
 
 None from a bounded state-phase coboundary. An unbounded
-correction, or a word-dependent ranking, would be a different
+correction, or an itinerary-dependent ranking, would be a different
 object; not opened. The fan-minimum CF reduction stays the
 cycle frontier.
 

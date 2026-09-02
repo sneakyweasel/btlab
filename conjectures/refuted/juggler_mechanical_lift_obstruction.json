@@ -6,14 +6,14 @@
   "counterexamples": [
     "1223 OOE and 2529 OE realizers: corr(ξ_in, ξ_out) = 0.019 and 0.021, within-bin variance ratio 0.995, bucket ξ_out range ≈ 1; no scale-stable Φ",
     "OE starts 1000001 and 1000003 have ξ_in in {0.00037, 0.00337} and the same landing 31622: ξ_out is a function of the image, not of ξ_in",
-    "even cell q=10: eleven even occupants, one image, ξ ranges over [0, 0.95] (INERT_EVEN / cell_same_next_state)",
-    "odd cells m<=200 have at most one integer (UNIQUE_ODD / odd_cell_unique)",
+    "even cell q=10: eleven even occupants, one image, ξ ranges over [0, 0.95] (INERT_EVEN / preimage_same_next_state)",
+    "odd cells m<=200 have at most one integer (UNIQUE_ODD / odd_preimage_unique)",
     "hug(19) contains OOEOE; 365 --OOE--> 763 < 2609 = oe_start_min(365) (SCALE_HUG / cyclic_valley)",
     "hug(19) inverse at y=101 dies at empty_ooe, k=5 (LOCAL_CELL / inverse_width)",
     "slope gaps at L=19,84,1054 improve by four orders while max follow depth stays 13,13,10"
   ],
   "first_seen": "2026-09-01",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles",
     "fernandez-ibanez-2026"

@@ -7,7 +7,7 @@ Refinement of
 paper. It asks whether minimum uniqueness, odd-run type, and the
 cycle maximum force a strictly smaller length-only error budget
 than parity finance on \(\mathcal E_{\mathrm{par}}(10^6)\). Not a
-halt theorem, not a leftover-word census, and not a floor raise.
+halt theorem, not a leftover-itinerary census, and not a floor raise.
 Paper A now prints the packing and the lattice.
 
 ## Problem
@@ -259,7 +259,7 @@ arithmetic is `formal/Problems/Juggler/RunSurvivorLattice.lean`
 
 None from cyclic run packing. The necklace
 \((\mathtt{OOE})^{o-e}(\mathtt{OE})^{2e-o}\) is not a feasible
-consecutive word, but that is the existing envelope: other cheap
+consecutive itinerary, but that is the existing envelope: other cheap
 valleys may still sit at \(n+2\). Do not reopen extremal
 scale composition.
 

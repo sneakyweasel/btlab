@@ -15,7 +15,7 @@ from typing import Any, Iterable
 from research.juggler_sequence.equality_rigidity import powers_equal
 from research.juggler_sequence.power_algebra import is_square, local_tight
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,

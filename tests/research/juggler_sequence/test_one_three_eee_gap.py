@@ -18,7 +18,7 @@ from research.juggler_sequence.one_three_eee_gap import (
     eee_cell_hi,
     elementary_comparisons,
     first_prefix_start,
-    follows_word,
+    follows_itinerary,
     fudge_exp,
     lean_api_present,
     leading_beats_v,
@@ -27,10 +27,10 @@ from research.juggler_sequence.one_three_eee_gap import (
     pin_family,
     prefix,
     render_markdown,
-    word,
+    itinerary,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_family_identity_and_elementary():
@@ -39,8 +39,8 @@ def test_family_identity_and_elementary():
     assert SLACK == 139
     assert len(FAMILY) == 5
     assert [member.a0 + member.a1 for member in FAMILY] == [7] * 5
-    assert word(6, 1) == "OOOOOOEOEEE"
-    assert word(2, 5) == "OOEOOOOOEEE"
+    assert itinerary(6, 1) == "OOOOOOEOEEE"
+    assert itinerary(2, 5) == "OOEOOOOOEEE"
     assert left_plus(6) == (1995, 1266, 64)
     assert left_plus(2) == (15, 6, 4)
     assert fudge_exp(6, 1) == 384
@@ -54,7 +54,7 @@ def test_first_starts_and_prefix_above_cell():
     expected = {6: 163, 5: 241, 4: 37, 3: 113, 2: 173}
     for member in FAMILY:
         assert first_prefix_start(member.a0, member.a1) == expected[member.a0]
-        z = follows_word(member.first, prefix(member.a0, member.a1))
+        z = follows_itinerary(member.first, prefix(member.a0, member.a1))
         assert z is not None
         assert z >= eee_cell_hi(member.first)
         assert leading_beats_v(member.first, member.a0, member.v_lb)
@@ -81,7 +81,7 @@ def test_lean_has_o7_and_no_family_census():
         assert lean[name] is True, name
     for name in FORBIDDEN_THEOREMS:
         assert lean[name] is True, name
-    assert lean["no_nonunique_family_cycle_word"] is True
+    assert lean["no_nonunique_family_cycle_itinerary"] is True
     assert lean["paper_a_has_no_family"] is True
 
 
@@ -107,4 +107,4 @@ def test_classify_render_and_artifacts():
     )
     assert "PROMOTE" in dossier
     assert "OOOOOOEOEEE" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier

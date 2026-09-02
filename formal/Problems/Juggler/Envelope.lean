@@ -1,15 +1,15 @@
 import Mathlib.Data.Nat.Factorization.Basic
-import Problems.Juggler.WordStats
+import Problems.Juggler.ItineraryStats
 
 namespace Problems.Juggler
 
 /-!
-# Finite-word envelope
+# Finite-itinerary envelope
 
-One-sided floor-power composition on realized finite words.
+One-sided floor-power composition on realized finite itineraries.
 `EnvelopeState n x` is the free-exponent form `x^A ≤ n^B`.
-Composition is `EnvelopeState.even` / `.odd` / `.map_word`.
-`PowerBound` is the word-stat specialization `A = 2^k`, `B = 3^o`.
+Composition is `EnvelopeState.even` / `.odd` / `.map_itinerary`.
+`PowerBound` is the itinerary-stat specialization `A = 2^k`, `B = 3^o`.
 `power_bound_lt_pow` is `EnvelopeState.of_follows.lt_pow`.
 `power_bound_contracts` is the `k = 1` case.
 `power_bound_word` remains a public alias; new proofs should
@@ -202,7 +202,7 @@ def EnvelopeState.odd {n x : ℕ} (h : EnvelopeState n x) (hodd : x % 2 = 1) :
       _ = n ^ (h.B * 3) := (Nat.pow_mul n h.B 3).symm
       _ = n ^ (3 * h.B) := by rw [Nat.mul_comm]
 
-/-- Empty-word envelope: `n^1 ≤ n^1`. -/
+/-- Empty-itinerary envelope: `n^1 ≤ n^1`. -/
 def EnvelopeState.refl (n : ℕ) : EnvelopeState n n where
   A := 1
   B := 1
@@ -215,39 +215,39 @@ def EnvelopeState.map_letter {n x : ℕ} (h : EnvelopeState n x) {b : Branch}
   | .even => h.even hw.1
   | .odd => h.odd hw.1
 
-/-- Compose an envelope along a realized word. -/
-def EnvelopeState.map_word {n x : ℕ} (h : EnvelopeState n x) :
+/-- Compose an envelope along a realized itinerary. -/
+def EnvelopeState.map_itinerary {n x : ℕ} (h : EnvelopeState n x) :
     ∀ {w : List Branch}, follows x w → EnvelopeState n (image x w)
   | [], _ => by simpa [image] using h
-  | .even :: rest, hw => (h.even hw.1).map_word hw.2
-  | .odd :: rest, hw => (h.odd hw.1).map_word hw.2
+  | .even :: rest, hw => (h.even hw.1).map_itinerary hw.2
+  | .odd :: rest, hw => (h.odd hw.1).map_itinerary hw.2
 
-theorem EnvelopeState.map_word_A {n x : ℕ} (h : EnvelopeState n x) :
+theorem EnvelopeState.map_itinerary_A {n x : ℕ} (h : EnvelopeState n x) :
     ∀ {w : List Branch} (hw : follows x w),
-      (h.map_word hw).A = h.A * 2 ^ w.length
-  | [], _ => by simp [EnvelopeState.map_word]
+      (h.map_itinerary hw).A = h.A * 2 ^ w.length
+  | [], _ => by simp [EnvelopeState.map_itinerary]
   | .even :: rest, hw => by
-      have ih := EnvelopeState.map_word_A (h.even hw.1) hw.2
-      simp [EnvelopeState.map_word] at ih ⊢
+      have ih := EnvelopeState.map_itinerary_A (h.even hw.1) hw.2
+      simp [EnvelopeState.map_itinerary] at ih ⊢
       rw [ih, EnvelopeState.even]
       ring
   | .odd :: rest, hw => by
-      have ih := EnvelopeState.map_word_A (h.odd hw.1) hw.2
-      simp [EnvelopeState.map_word] at ih ⊢
+      have ih := EnvelopeState.map_itinerary_A (h.odd hw.1) hw.2
+      simp [EnvelopeState.map_itinerary] at ih ⊢
       rw [ih, EnvelopeState.odd]
       ring
 
-theorem EnvelopeState.map_word_B {n x : ℕ} (h : EnvelopeState n x) :
+theorem EnvelopeState.map_itinerary_B {n x : ℕ} (h : EnvelopeState n x) :
     ∀ {w : List Branch} (hw : follows x w),
-      (h.map_word hw).B = h.B * 3 ^ oddCount w
-  | [], _ => by simp [EnvelopeState.map_word]
+      (h.map_itinerary hw).B = h.B * 3 ^ oddCount w
+  | [], _ => by simp [EnvelopeState.map_itinerary]
   | .even :: rest, hw => by
-      have ih := EnvelopeState.map_word_B (h.even hw.1) hw.2
-      simp [EnvelopeState.map_word] at ih ⊢
+      have ih := EnvelopeState.map_itinerary_B (h.even hw.1) hw.2
+      simp [EnvelopeState.map_itinerary] at ih ⊢
       rw [ih, EnvelopeState.even]
   | .odd :: rest, hw => by
-      have ih := EnvelopeState.map_word_B (h.odd hw.1) hw.2
-      simp [EnvelopeState.map_word] at ih ⊢
+      have ih := EnvelopeState.map_itinerary_B (h.odd hw.1) hw.2
+      simp [EnvelopeState.map_itinerary] at ih ⊢
       rw [ih, EnvelopeState.odd]
       ring
 
@@ -255,20 +255,20 @@ def EnvelopeState.of_powerBound {m n k o : ℕ} (h : PowerBound m n k o) :
     EnvelopeState n m :=
   ⟨2 ^ k, 3 ^ o, h⟩
 
-/-- Word envelope from `map_word` on `refl`. -/
+/-- Word envelope from `map_itinerary` on `refl`. -/
 def EnvelopeState.of_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
     EnvelopeState n (image n w) :=
-  (EnvelopeState.refl n).map_word hw
+  (EnvelopeState.refl n).map_itinerary hw
 
 theorem EnvelopeState.of_follows_A {n : ℕ} {w : List Branch} (hw : follows n w) :
     (EnvelopeState.of_follows hw).A = 2 ^ w.length := by
-  simp [EnvelopeState.of_follows, EnvelopeState.map_word_A, EnvelopeState.refl]
+  simp [EnvelopeState.of_follows, EnvelopeState.map_itinerary_A, EnvelopeState.refl]
 
 theorem EnvelopeState.of_follows_B {n : ℕ} {w : List Branch} (hw : follows n w) :
     (EnvelopeState.of_follows hw).B = 3 ^ oddCount w := by
-  simp [EnvelopeState.of_follows, EnvelopeState.map_word_B, EnvelopeState.refl]
+  simp [EnvelopeState.of_follows, EnvelopeState.map_itinerary_B, EnvelopeState.refl]
 
-/-- Weak composition: every realized finite word obeys the one-sided bound. -/
+/-- Weak composition: every realized finite itinerary obeys the one-sided bound. -/
 theorem power_bound_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
     PowerBound (floorPower^[w.length] n) n w.length (oddCount w) := by
   have hle := (EnvelopeState.of_follows hw).le
@@ -331,22 +331,22 @@ theorem power_bound_contracts {n : ℕ} {w : List Branch}
   have hlt := power_bound_lt_pow (k := 1) hn hw (by simpa using hgap)
   simpa [image_eq_iterate] using hlt
 
-def wordOOOEE : List Branch := [.odd, .odd, .odd, .even, .even]
+def itineraryOOOEE : List Branch := [.odd, .odd, .odd, .even, .even]
 
-def wordOOOEEEOO : List Branch :=
+def itineraryOOOEEEOO : List Branch :=
   [.odd, .odd, .odd, .even, .even, .even, .odd, .odd]
 
-theorem follows_wordOOOEE_iff {n : ℕ} :
-    follows n wordOOOEE ↔
+theorem follows_itineraryOOOEE_iff {n : ℕ} :
+    follows n itineraryOOOEE ↔
       n % 2 = 1 ∧
       floorPower n % 2 = 1 ∧
       floorPower (floorPower n) % 2 = 1 ∧
       floorPower (floorPower (floorPower n)) % 2 = 0 ∧
       floorPower (floorPower (floorPower (floorPower n))) % 2 = 0 := by
-  simp [follows, wordOOOEE]
+  simp [follows, itineraryOOOEE]
 
-theorem follows_wordOOOEEEOO_iff {n : ℕ} :
-    follows n wordOOOEEEOO ↔
+theorem follows_itineraryOOOEEEOO_iff {n : ℕ} :
+    follows n itineraryOOOEEEOO ↔
       n % 2 = 1 ∧
       floorPower n % 2 = 1 ∧
       floorPower (floorPower n) % 2 = 1 ∧
@@ -357,25 +357,25 @@ theorem follows_wordOOOEEEOO_iff {n : ℕ} :
           (floorPower n))))) % 2 = 1 ∧
       floorPower (floorPower (floorPower (floorPower (floorPower
           (floorPower (floorPower n)))))) % 2 = 1 := by
-  simp [follows, wordOOOEEEOO]
+  simp [follows, itineraryOOOEEEOO]
 
 theorem floorPower_oooee_of_follows {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOOEE) :
+    (hw : follows n itineraryOOOEE) :
     floorPower^[5] n < n := by
-  have h := power_bound_contracts (w := wordOOOEE) hn hw
-  have hgap : 3 ^ oddCount wordOOOEE < 2 ^ wordOOOEE.length := by
-    simp [wordOOOEE]
-  simpa [wordOOOEE] using h hgap
+  have h := power_bound_contracts (w := itineraryOOOEE) hn hw
+  have hgap : 3 ^ oddCount itineraryOOOEE < 2 ^ itineraryOOOEE.length := by
+    simp [itineraryOOOEE]
+  simpa [itineraryOOOEE] using h hgap
 
 theorem floorPower_oooeeeoo_of_follows {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOOEEEOO) :
+    (hw : follows n itineraryOOOEEEOO) :
     floorPower^[8] n < n := by
-  have h := power_bound_contracts (w := wordOOOEEEOO) hn hw
-  have hgap : 3 ^ oddCount wordOOOEEEOO < 2 ^ wordOOOEEEOO.length := by
-    simp [wordOOOEEEOO]
-  simpa [wordOOOEEEOO] using h hgap
+  have h := power_bound_contracts (w := itineraryOOOEEEOO) hn hw
+  have hgap : 3 ^ oddCount itineraryOOOEEEOO < 2 ^ itineraryOOOEEEOO.length := by
+    simp [itineraryOOOEEEOO]
+  simpa [itineraryOOOEEEOO] using h hgap
 
-/-- On the OOOEE branch word, `T^5(n) < n` for `n ≥ 2`. Wrapper of
+/-- On the OOOEE branch itinerary, `T^5(n) < n` for `n ≥ 2`. Wrapper of
 `floorPower_oooee_of_follows`. Not a halt theorem. -/
 theorem floorPower_oooee_five_step_lt
     {n : ℕ} (hn : 2 ≤ n) (h0 : n % 2 = 1)
@@ -384,13 +384,13 @@ theorem floorPower_oooee_five_step_lt
     (h3 : floorPower (floorPower (floorPower n)) % 2 = 0)
     (h4 : floorPower (floorPower (floorPower (floorPower n))) % 2 = 0) :
     floorPower (floorPower (floorPower (floorPower (floorPower n)))) < n := by
-  have hw : follows n wordOOOEE :=
-    (follows_wordOOOEE_iff (n := n)).mpr ⟨h0, h1, h2, h3, h4⟩
-  simpa [wordOOOEE] using floorPower_oooee_of_follows hn hw
+  have hw : follows n itineraryOOOEE :=
+    (follows_itineraryOOOEE_iff (n := n)).mpr ⟨h0, h1, h2, h3, h4⟩
+  simpa [itineraryOOOEE] using floorPower_oooee_of_follows hn hw
 
 /-- Power comparison for the OOOEEEOO floor-power block: five odd steps
 and three even steps give `n8 ^ 256 ≤ n ^ 243`. Canonical exponents of
-the word exponent `243/256`. -/
+the itinerary exponent `243/256`. -/
 theorem floorPower_oooeeeoo_pow_chain
     {n n1 n2 n3 n4 n5 n6 n7 n8 : ℕ}
     (h1 : n1 ^ 2 ≤ n ^ 3)
@@ -425,7 +425,7 @@ theorem floorPower_oooeeeoo_pow_chain
     _ ≤ n ^ (3 * 81) := pow_sq_le_cube h1
     _ = n ^ 243 := by norm_num
 
-/-- On the OOOEEEOO branch word, `T^8(n) < n` for `n ≥ 2`. Wrapper of
+/-- On the OOOEEEOO branch itinerary, `T^8(n) < n` for `n ≥ 2`. Wrapper of
 `floorPower_oooeeeoo_of_follows`. Not a halt theorem. -/
 theorem floorPower_oooeeeoo_eight_step_lt
     {n : ℕ} (hn : 2 ≤ n) (h0 : n % 2 = 1)
@@ -440,12 +440,12 @@ theorem floorPower_oooeeeoo_eight_step_lt
         (floorPower (floorPower n)))))) % 2 = 1) :
     floorPower (floorPower (floorPower (floorPower (floorPower (floorPower
         (floorPower (floorPower n))))))) < n := by
-  have hw : follows n wordOOOEEEOO :=
-    (follows_wordOOOEEEOO_iff (n := n)).mpr ⟨h0, h1, h2, h3, h4, h5, h6, h7⟩
-  simpa [wordOOOEEEOO] using floorPower_oooeeeoo_of_follows hn hw
+  have hw : follows n itineraryOOOEEEOO :=
+    (follows_itineraryOOOEEEOO_iff (n := n)).mpr ⟨h0, h1, h2, h3, h4, h5, h6, h7⟩
+  simpa [itineraryOOOEEEOO] using floorPower_oooeeeoo_of_follows hn hw
 
-/-- An all-even realized word of length `k ≥ 1` contracts for `n ≥ 2`. -/
-theorem even_word_contracts {n k : ℕ} (hn : 2 ≤ n) (hk : 1 ≤ k)
+/-- An all-even realized itinerary of length `k ≥ 1` contracts for `n ≥ 2`. -/
+theorem even_itinerary_contracts {n k : ℕ} (hn : 2 ≤ n) (hk : 1 ≤ k)
     (hw : follows n (List.replicate k Branch.even)) :
     floorPower^[k] n < n := by
   have h := power_bound_contracts (w := List.replicate k Branch.even) hn hw
@@ -492,8 +492,8 @@ theorem floorPower_iterate_odd_nondecreasing {m k : ℕ} (hm : 1 ≤ m)
       rw [iterate_cons]
       exact le_trans hstep hrest
 
-/-- An all-odd realized word of length `k ≥ 1` expands for `n ≥ 3`. -/
-theorem odd_word_expands {n k : ℕ} (hn : 3 ≤ n) (hk : 1 ≤ k)
+/-- An all-odd realized itinerary of length `k ≥ 1` expands for `n ≥ 3`. -/
+theorem odd_itinerary_expands {n k : ℕ} (hn : 3 ≤ n) (hk : 1 ≤ k)
     (hw : follows n (List.replicate k Branch.odd)) :
     n < floorPower^[k] n := by
   cases k with
@@ -532,7 +532,7 @@ theorem cycle_envelope {x : ℕ} {w : List Branch}
   rw [himg] at hpow
   exact (Nat.pow_le_pow_iff_right (show 1 < x by omega)).mp hpow
 
-/-- Equality `2^r = 3^o` is impossible for a nonempty word, so every
+/-- Equality `2^r = 3^o` is impossible for a nonempty itinerary, so every
 nontrivial cycle is strictly expanding in the exponent. -/
 theorem cycle_strict_envelope {x : ℕ} {w : List Branch}
     (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x)

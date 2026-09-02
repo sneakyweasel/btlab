@@ -13,7 +13,7 @@ from research.juggler_sequence.adversarial_paths import (
     lean_api_present,
     walk_row,
 )
-from research.juggler_sequence.compensated_contraction import follows_word
+from research.juggler_sequence.compensated_contraction import follows_itinerary
 
 
 def test_even_return_is_e():
@@ -40,7 +40,7 @@ def test_adjacent_swaps_preserve_counts():
 
 
 def test_follows_swap_is_state_specific():
-    assert follows_word(9, "OOEE") is False
+    assert follows_itinerary(9, "OOEE") is False
     rec = walk_row(9)
     assert rec["word"] != "E"
 

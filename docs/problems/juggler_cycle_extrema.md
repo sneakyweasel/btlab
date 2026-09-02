@@ -10,11 +10,11 @@ every positive integer reaches 1.
 
 Can the existing power, parity, and cell machinery impose incompatible
 constraints on the excursion from a cycle minimum \(m\) to a cycle
-maximum \(M\) and back, without enumerating cycle words?
+maximum \(M\) and back, without enumerating cycle itineraries?
 
 ## Exact statement
 
-For a nontrivial `CycleWord` with \(n\ge 2\), write \(m\) for a
+For a nontrivial `CycleItinerary` with \(n\ge 2\), write \(m\) for a
 minimum state and \(M\) for a maximum state. Then:
 
 - \(m\) is odd,
@@ -28,7 +28,7 @@ and parity forbids equality. First-even overshoot on a `CycleMin`
 then places the first even residual at or above \((m+1)^2\), so the
 maximum satisfies \(M\ge(m+1)^2\) and \(T(M)>m\).
 
-Any realized finite word from a start \(n\ge 2\) to a state at least
+Any realized finite itinerary from a start \(n\ge 2\) to a state at least
 \(n^2\) is superquadratic:
 
 \[
@@ -53,7 +53,7 @@ This does not force \(q=m\). The first-cell family
 satisfies \(q>m\).
 
 This says nothing about cycles ending in a particular letter. Do not
-prove that every cycle word is impossible. Do not prove totality.
+prove that every cycle itinerary is impossible. Do not prove totality.
 
 ## Current literature
 
@@ -61,13 +61,13 @@ prove that every cycle word is impossible. Do not prove totality.
   is not claimed.
 - Cycle minimum is odd —
   **EXACT — LEAN VERIFIED**.
-- Finite-word power envelope —
+- Finite-itinerary power envelope —
   **EXACT — LEAN VERIFIED**.
 - Internal-E bootstrap —
   **EXACT — LEAN VERIFIED**.
 
 Project relationship: **extended**. Extrema are packaged independently
-of word length. Totality remains unclaimed.
+of itinerary length. Totality remains unclaimed.
 
 ## Branch budget
 
@@ -78,7 +78,7 @@ Falsifier               a CycleMin whose max sits below (m+1)^2
 Existing machinery      CycleMin, cycleMin_first_even_overshoots, cycleMin_max_gt_sq
 Maximum Phase-0 scope   CycleMax; M ≥ (m+1)^2; square-scale superquadratic; transient calibration
 Promotion criterion     reusable extrema package, or a genuine prefix law
-Stop criterion          cycle engine; word census; FloorPower rewrite; first-cell census
+Stop criterion          cycle engine; itinerary census; FloorPower rewrite; first-cell census
 ```
 
 ## Balanced-ternary formulation
@@ -106,7 +106,7 @@ It is not required.
 - min-to-even (hence min-to-max) prefixes are superquadratic —
   **EXACT — LEAN VERIFIED**
 - growth and collapse cannot coexist — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -138,7 +138,7 @@ None to the extrema package. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `CycleMax` / `exists_cycle_max_even` / `cycleMax_start_even`
 - `cycleMin_max_gt_sq` / `cycleMax_return_cell`

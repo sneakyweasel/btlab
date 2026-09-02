@@ -4,20 +4,20 @@ Status: **THEOREM**
 
 Phase-0 gate for iterating the one-step image-parity discrepancy bound
 (Theorem 5.1 of the finite-dynamics note, \(|S_O(N)|\ll N^{5/6}\)) to
-joint parity words of depth two through four on odd starts. Exact
+joint parity itineraries of depth two through four on odd starts. Exact
 integer counting only. Not a frequency theorem, not a predictive-state
 claim, and not a termination claim.
 
 ## Problem
 
-Do the joint parity words \((n, J(n), J^2(n), J^3(n)) \bmod 2\) on odd
+Do the joint parity itineraries \((n, J(n), J^2(n), J^3(n)) \bmod 2\) on odd
 starts converge to the product densities, and with what empirical
 discrepancy exponent — i.e., is the depth-2 analytic lemma worth
 attempting?
 
 ## Exact statement
 
-For odd \(n\), let \(w(n)\) be the length-4 itinerary parity word
+For odd \(n\), let \(w(n)\) be the length-4 itinerary parity itinerary
 (first letter always `O`). For each word \(w\) of length
 \(d\in\{2,3,4\}\), set
 
@@ -40,7 +40,7 @@ not prove any bound.
   short-interval law). Avoided here: the summation variable stays
   \(n\), never the sparse image set.
 - Landing-θ and residue predictive states — **CLOSE**/**REFUTED**.
-  Not reopened: densities of word classes are counted, no state is
+  Not reopened: densities of itinerary classes are counted, no state is
   claimed to predict the next letter.
 - `ooe_cylinder_both_next_parities` — residue classes do not decide
   letter 3. Consistent with (and explains the need for) an
@@ -83,7 +83,7 @@ It is not required. The 2-adic / BT bridge stays closed.
 
 ## Candidate operations / invariants
 
-- Depth-4 itinerary word census over odd \(n \le 10^7\) —
+- Depth-4 itinerary itinerary census over odd \(n \le 10^7\) —
   **COMPUTATIONALLY VERIFIED** (exact isqrt counting)
 - All eight depth-4 classes at product density \(1/8\pm0.2\%\) —
   **OBSERVATION**
@@ -470,7 +470,7 @@ lattices versus a new wall. The wall is real.
 
 ## Phase 13: length-7 engine contractors — density \(57/64\)
 
-Working document, Part X. Scope: the two leftover words that
+Working document, Part X. Scope: the two leftover itineraries that
 contract at length 7 without \(K_3\).
 
 - **Corollary R′** — **EXACT — HUMAN PROOF**
@@ -953,7 +953,7 @@ amplitude-product model) from outside the parked toolkits.
 
 **PROMOTE** (Phase 23, the length-8 engine quartet, 29 August
 2026): re-examining the frontier found a consolidation overclaim
-("every uncounted contracting word passes through \(OOOO*\)" —
+("every uncounted contracting itinerary passes through \(OOOO*\)" —
 false: \(OOEOOOEE\) is a counterexample; fixed) and a provable
 depth-8 ring. Theorem AA (`J-depth8-engine-quartet`, EXACT —
 HUMAN PROOF): the four contracting length-8 words
@@ -1059,7 +1059,7 @@ odd-\(n\) sums are no longer treated as consecutive). **Framing**:
 machine gates, Lean identifiers, sample counts, and the
 laboratory-record confession stripped from the analytic text (checks
 stay in the repository and are labelled as such); scope narrowed to
-O-rooted words over odd starts everywhere; "exact linearization" and
+O-rooted itineraries over odd starts everywhere; "exact linearization" and
 "carry-branch decomposition" no longer claimed as new — the *package*
 is; related work expanded (digital vs. convex outer functions,
 Beatty compositions, Bergelson–Leibman and why generalized

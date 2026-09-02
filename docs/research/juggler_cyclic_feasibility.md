@@ -1,9 +1,9 @@
-# Juggler cyclic itinerary feasibility
+# Juggler cyclic word feasibility
 
 Closed-word question `CycReal(w)`: some `n>=2` realises `w` and `T^k(n)=n`. Absence is `NOT OBSERVED WITHIN SEARCH BOUND`. Not a halt theorem.
 
 - classification: `CYCLIC_FEASIBILITY_CLOSED`
-- reason: cheap cyclic filters are the existing CycleWord layer (envelope, odd_word_expands, even-count <= 3, length >= 11); interval and phi-product never fire; the residue is the already-studied e>=4 leftover family
+- reason: cheap cyclic filters are the existing CycleItinerary layer (envelope, odd_itinerary_expands, even-count <= 3, length >= 11); interval and phi-product never fire; the residue is the already-studied e>=4 leftover family
 - k_max: `8`
 - n_max: `160`
 - claim: `NOT OBSERVED WITHIN SEARCH BOUND`
@@ -25,9 +25,9 @@ A001037 match: `True`.
 
 ## Filter survival
 
-`{'power_bound_contracts': 55, 'no_cycle_word_even_count_le_three': 14}`
+`{'power_bound_contracts': 55, 'no_cycle_itinerary_even_count_le_three': 14}`
 
-known CycleWord deaths: `69`. new joint (interval/phi): `0`. plus-one m=2 scans: `0`. leftover residue: `0` unresolved `0`.
+known CycleItinerary deaths: `69`. new joint (interval/phi): `0`. plus-one m=2 scans: `0`. leftover residue: `0` unresolved `0`.
 
 ## Direct cycles
 
@@ -43,11 +43,11 @@ The unweighted cell product
 
 `prod_O x^3/(x+1)^2 * prod_E x/(x+1)^2 < 1`
 
-is necessary on any integer cycle. It kills all-odd words with states `>=3`, already excluded by `odd_word_expands`. On mixed leftover words the even factors can be arbitrarily small, so the product does not fire from interval hulls.
+is necessary on any integer cycle. It kills all-odd itineraries with states `>=3`, already excluded by `odd_itinerary_expands`. On mixed leftover itineraries the even factors can be arbitrarily small, so the product does not fire from interval hulls.
 
 ## Relation to CycleMin
 
-After the existing CycleWord layer the only expanding mixed necklaces have `e>=4` and length `>=11`. That is `cycle_word_length_ge_eleven`. Joint interval / phi-product constraints did not shrink this residue.
+After the existing CycleItinerary layer the only expanding mixed necklaces have `e>=4` and length `>=11`. That is `cycle_itinerary_length_ge_eleven`. Joint interval / phi-product constraints did not shrink this residue.
 
 ## Anti-overclaim
 

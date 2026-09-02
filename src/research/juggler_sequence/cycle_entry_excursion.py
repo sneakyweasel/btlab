@@ -38,8 +38,8 @@ from research.juggler_sequence.cycle_finance import (
     parity_excludes,
 )
 from research.juggler_sequence.cycle_ordered_excursion import excursion_map, first_a2
-from research.juggler_sequence.floor_cells import even_cell
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.floor_preimages import even_preimage
+from research.juggler_sequence.power_itineraries import floor_power
 
 ENTRY_DIR = DATA_DIR / "entry_excursion"
 START = PUBLISHED_FLOOR + 1
@@ -58,7 +58,7 @@ ARCHIVED = (
     "F2_gt_v",
     "oe_start_min",
     "terminal_21_realized",
-    "odd_cell_unique",
+    "odd_preimage_unique",
 )
 
 
@@ -75,7 +75,7 @@ def entry_even_cell(n: int) -> dict[str, Any]:
 
     if n < 1 or n % 2 == 0:
         raise ValueError("entry_even_cell requires a positive odd n")
-    lo, hi = even_cell(n)
+    lo, hi = even_preimage(n)
     start = lo if lo % 2 == 0 else lo + 1
     count = 0
     if start < hi:

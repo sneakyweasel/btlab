@@ -9,7 +9,7 @@
     "Max R_W on packed/bunched prefixes is 7 at both 10^2 and 10^6; no log-scale growth in the window"
   ],
   "first_seen": "juggler inverse-tube realizability",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

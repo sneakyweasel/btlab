@@ -15,7 +15,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_ooo_escape import starts_ooe, walk_language
 from research.juggler_sequence.lean_paths import (
     CELLS,
@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.second_oo_cube import scale_band, second_oo
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -74,7 +74,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -158,8 +158,8 @@ def loop_record(n: int) -> dict[str, Any] | None:
         "t_gt_n": t > n,
         "t_eq_n": t == n,
         "in_envelope": return_in_envelope(n, t),
-        "follows_word": follows_word(n, WORD),
-        "image": image_after(n, WORD) if follows_word(n, WORD) else None,
+        "follows_itinerary": follows_itinerary(n, WORD),
+        "image": image_after(n, WORD) if follows_itinerary(n, WORD) else None,
         "hits": hits,
         "hit_count": len(hits),
         "word": "".join(r["par"] for r in path if r.get("par") in "OE"),
@@ -259,7 +259,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "ScaleLoopHidden" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_lean": True,
     }
 
@@ -275,7 +275,7 @@ def _loop_ok(rec: dict[str, Any] | None, expected: dict[str, Any]) -> bool:
         and rec["t_gt_n"]
         and not rec["t_eq_n"]
         and rec["in_envelope"]
-        and rec["follows_word"]
+        and rec["follows_itinerary"]
         and rec["image"] == expected["t"]
         and rec["hit_count"] == 1
         and rec["drop"] == expected["drop"]
@@ -289,7 +289,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["CycleMin"]
         and lean["power_bound_word"]
         and lean["no_cycleMin_ooeoooe"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]
@@ -421,7 +421,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         decision["reason"] + ".",
         "",
-        "## Attack 1 — the loop is a word",
+        "## Attack 1 — the loop is an word",
         "",
         "Even-even `C2 -> C4 -> C2 -> C1` from inherited odd `q` is",
         f"`OEE` on `q`, equivalently `{WORD}` on `n`. The return",

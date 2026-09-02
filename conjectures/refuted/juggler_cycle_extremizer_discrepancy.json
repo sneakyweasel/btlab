@@ -9,7 +9,7 @@
     "Five same-OOE-prefix words with Delta_fin spanning 7.2e-5 have identical d_closure (max 6, mean 2.0169)"
   ],
   "first_seen": "juggler 25781 finance-extremizer discrepancy",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

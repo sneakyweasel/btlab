@@ -271,8 +271,8 @@ theorem firstDefect_lt_of_odd_run_then_even {n odds : ℕ} {w : List Branch}
     have hlen : (List.replicate odds Branch.odd).length = odds :=
       List.length_replicate
     simpa [word, hlen] using
-      (List.take_left (l := List.replicate odds Branch.odd)
-        (l' := Branch.even :: w))
+      (List.take_left (l₁ := List.replicate odds Branch.odd)
+        (l₂ := Branch.even :: w))
   have htake_nested :
       word.take odds = (word.take (firstDefect n word)).take odds := by
     rw [List.take_take, min_eq_left hge']

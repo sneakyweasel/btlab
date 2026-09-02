@@ -1,4 +1,4 @@
-# Juggler fixed-word power inequalities
+# Juggler fixed-itinerary power inequalities
 
 Status: **EXPLORATORY**
 
@@ -15,7 +15,7 @@ word length and odd-count, as suggested by the formal exponent
 
 ## Exact statement
 
-For a parity word \(w\) of length \(k=\lvert w\rvert\) with \(o=\#O(w)\),
+For a parity itinerary \(w\) of length \(k=\lvert w\rvert\) with \(o=\#O(w)\),
 and for every positive integer \(n\) whose first \(k\) Juggler parities
 equal \(w\), does the canonical comparison
 
@@ -58,7 +58,7 @@ Existing machinery      math.isqrt Juggler step; FloorPower.lean (OE, OO,
                         OOOEE); Phase-12 calibration on n in {3,25,39}.
 Maximum Phase-0 scope   Exhaustive |w|<=8 on 1<=n<=10^6, plus a targeted
                         (k,o)=(9,6) scan for 729/512. No engine-control edits.
-Promotion criterion     A near-critical contracting word survives, Lean
+Promotion criterion     A near-critical contracting itinerary survives, Lean
                         proves one new exact inequality beyond OOOEE, and
                         the result is classified without termination claims.
 Stop criterion          Machinery gravity; any global frequency/termination
@@ -76,7 +76,7 @@ It is not required. Balanced-ternary digit structure is not used.
 
 ## Candidate operations / invariants
 
-- Formal word exponent \(3^{\#O(w)}/2^{|w|}\) — **OBSERVATION** (heuristic)
+- Formal itinerary exponent \(3^{\#O(w)}/2^{|w|}\) — **OBSERVATION** (heuristic)
 - One-sided floor composition \(T_w(n)^{2^k}\le n^{3^o}\) —
   **COMPUTATIONALLY VERIFIED** on \(1\le n\le 10^6\), \(|w|\le 8\), plus
   the \((k,o)=(9,6)\) family; **EXACT — LEAN VERIFIED** for `OOOEE` and
@@ -89,13 +89,13 @@ It is not required. Balanced-ternary digit structure is not used.
 
 ## Experiments
 
-- Probe: `research.juggler_sequence.power_words`
+- Probe: `research.juggler_sequence.power_itineraries`
 - Range: \(1\le n\le 10^6\), exhaustive \(|w|\le 8\), targeted \(729/512\)
   family at \(k=9\), \(o=6\)
 - Exact comparison: integer `cmp_pow`; float logarithms are a filter only
-- Records: [juggler_power_words.md](../research/juggler_power_words.md),
-  [juggler_power_words.json](../research/juggler_power_words.json)
-- Tests: `tests/research/juggler_sequence/test_power_words.py`
+- Records: [juggler_power_itineraries.md](../research/juggler_power_itineraries.md),
+  [juggler_power_itineraries.json](../research/juggler_power_itineraries.json)
+- Tests: `tests/research/juggler_sequence/test_power_itineraries.py`
 - The Research Engine control layer is not modified.
 
 ## Conjectures
@@ -146,7 +146,7 @@ two-sided exponent law, a frequency theorem, or termination.
 ## Open questions
 
 Can the one-sided floor-power chain be packaged as a composition lemma
-indexed by a finite word, without a general-word tactic and without a
+indexed by a finite itinerary, without a general-word tactic and without a
 parity-frequency theorem?
 
 ## Decision
@@ -159,7 +159,7 @@ termination, divergence, or that every trajectory contains `OOOEEEOO`.
 Stop rather than write a general-word theorem.
 
 Best next question: can the one-sided floor-power chain be packaged as
-a composition lemma indexed by a finite word, without a general-word
+a composition lemma indexed by a finite itinerary, without a general-word
 tactic and without a parity-frequency theorem?
 
 ## Publication assessment

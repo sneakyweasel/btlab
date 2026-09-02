@@ -347,12 +347,12 @@ def test_dossier_boundary():
     assert "## Decision" in dossier
     assert "## Publication assessment" in dossier
     assert "**PROMOTE**" in dossier
-    assert "cycle_word_formally_expanding" in dossier
+    assert "cycle_itinerary_formally_expanding" in dossier
     assert "simons-de-weger-2005-collatz-m-cycles" in dossier
-    assert "cycle_word_eliahou_leftover" in dossier
-    assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in dossier
+    assert "cycle_itinerary_eliahou_leftover" in dossier
+    assert "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five" in dossier
     assert "juggler_cycle_finance_note.md" in dossier
-    assert "theorem no_cycle_word_any_length" not in dossier
+    assert "theorem no_cycle_itinerary_any_length" not in dossier
     assert "import Problems.Juggler.CycleFinance" in paper
     assert "import Problems.Juggler.CycleHeightFinance" not in paper
     assert "cycleMin_finance" in note
@@ -371,8 +371,8 @@ def test_dossier_boundary():
     assert "juggler_cycle_loss_persistence_leftover_killer" in note
     assert "juggler_cycle_budget_opt.md" in note
     assert "25780" in note
-    assert "cycle_word_length_eighty_four_or_ge_eighty_five" in note
-    assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in note
+    assert "cycle_itinerary_length_eighty_four_or_ge_eighty_five" in note
+    assert "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five" in note
     assert "not a halt theorem" in note.lower()
     assert "JugglerPaper" in note or "Paper A" in note
     assert "not a second manuscript" in note or "absorbed into Paper A" in note

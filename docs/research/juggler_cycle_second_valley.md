@@ -3,7 +3,7 @@
 Status: **SECOND_VALLEY_CLOSED**
 
 Does CycleMin force the other valleys to sit at ≥ 281?
-Not a halt theorem. Not a leftover-word census. No new Lean.
+Not a halt theorem. Not a leftover-itinerary census. No new Lean.
 
 ## Metadata
 
@@ -26,7 +26,7 @@ Not a halt theorem. Not a leftover-word census. No new Lean.
 - all-281 inv-sum: `0.0121263` kills=`False`
 - slogan false: `True`
 
-height-split const 1 first kills at n2=281, but that form is not proved. Lean inv-sum still misses when both others sit at 281 (S=0.012126 > 0.011568). The adversarial Lean-allowed triple is [261, 281, 303] (first circuit k=12 lands at 281; from 281, k=12 lands at 303). Height 6/5 RHS=0.002429 and inv-sum S=0.011868 both miss θ=0.002086 / need=0.011568; 6/5 first kills at 369. A later OE landing at 263 requires a start valley ≥ 1687 and that triple dies. The 281 landing is even_iter_lt_succ_pow. Not a leftover-word census and not a floor raise
+height-split const 1 first kills at n2=281, but that form is not proved. Lean inv-sum still misses when both others sit at 281 (S=0.012126 > 0.011568). The adversarial Lean-allowed triple is [261, 281, 303] (first circuit k=12 lands at 281; from 281, k=12 lands at 303). Height 6/5 RHS=0.002429 and inv-sum S=0.011868 both miss θ=0.002086 / need=0.011568; 6/5 first kills at 369. A later OE landing at 263 requires a start valley ≥ 1687 and that triple dies. The 281 landing is even_iter_lt_succ_pow. Not a leftover-itinerary census and not a floor raise
 
 ## First-circuit odd landings at n=261
 
@@ -73,5 +73,5 @@ height-split const 1 first kills at n2=281, but that form is not proved. Lean in
 
 **SECOND_VALLEY_CLOSED**
 
-height-split const 1 first kills at n2=281, but that form is not proved. Lean inv-sum still misses when both others sit at 281 (S=0.012126 > 0.011568). The adversarial Lean-allowed triple is [261, 281, 303] (first circuit k=12 lands at 281; from 281, k=12 lands at 303). Height 6/5 RHS=0.002429 and inv-sum S=0.011868 both miss θ=0.002086 / need=0.011568; 6/5 first kills at 369. A later OE landing at 263 requires a start valley ≥ 1687 and that triple dies. The 281 landing is even_iter_lt_succ_pow. Not a leftover-word census and not a floor raise
+height-split const 1 first kills at n2=281, but that form is not proved. Lean inv-sum still misses when both others sit at 281 (S=0.012126 > 0.011568). The adversarial Lean-allowed triple is [261, 281, 303] (first circuit k=12 lands at 281; from 281, k=12 lands at 303). Height 6/5 RHS=0.002429 and inv-sum S=0.011868 both miss θ=0.002086 / need=0.011568; 6/5 first kills at 369. A later OE landing at 263 requires a start valley ≥ 1687 and that triple dies. The 281 landing is even_iter_lt_succ_pow. Not a leftover-itinerary census and not a floor raise
 

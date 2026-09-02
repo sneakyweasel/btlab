@@ -25,7 +25,7 @@ from research.juggler_sequence.cell_hut import (
     signature_tuple,
     signature_uses_identifier,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_geometry_one_two_five():
@@ -145,8 +145,8 @@ def test_module_does_not_import_collatz():
 def test_lean_api():
     lean = lean_api_present()
     assert lean["sorry_free"] is True
-    assert lean["even_cell_iff"] is True
-    assert lean["odd_cell_unique"] is True
+    assert lean["even_preimage_iff"] is True
+    assert lean["odd_preimage_unique"] is True
     assert lean["no_global_termination_theorem"] is True
     assert lean["no_collatz_inverse"] is True
     assert lean["no_new_lean_module"] is True

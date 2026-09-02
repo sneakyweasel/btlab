@@ -260,7 +260,7 @@
     "power_bound_contracts": true,
     "floorPower_oooee_of_follows": true,
     "wordOOOEE": true,
-    "odd_cell_unique": true,
+    "odd_preimage_unique": true,
     "no_global_termination_theorem": true,
     "no_all_finiteProgress_proved": true,
     "no_progress_tactic": true,

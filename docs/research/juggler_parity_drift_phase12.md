@@ -3,7 +3,7 @@
 Status: **PHASE_12_JUGGLER_PARITY_DRIFT_FALSIFIER**
 
 This is not a termination attack, not a divergence theorem, and not a
-parity-frequency theorem. Depth is at most `k=5`. Fixed parity words only.
+parity-frequency theorem. Depth is at most `k=5`. Fixed parity itineraries only.
 The exact surrogate is `T^k(n)<n` or the floor-power inequalities, never a
 floating-point log-log comparison.
 
@@ -73,7 +73,7 @@ log-log energy is undefined/awkward at 1; T(1)=1. Not a termination theorem.
 
 ## Candidate 2: `oooee_conditional_contraction` (survived)
 
-- Statement: If a trajectory follows the parity word OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.
+- Statement: If a trajectory follows the parity itinerary OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.
 - Domain: n>=2 whose five successive branch parities are OOOEE
 - Word: `OOOEE`
 - Idealized drift: 3^3 < 2^{2+3} (exact negative)
@@ -83,7 +83,7 @@ log-log energy is undefined/awkward at 1; T(1)=1. Not a termination theorem.
 
 ## Candidate 3: `shortest_negative_block` (survived)
 
-- Statement: If a trajectory follows the parity word EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.
+- Statement: If a trajectory follows the parity itinerary EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.
 - Domain: n>=2 whose successive branch parities are EE
 - Word: `EE`
 - Idealized drift: 3^0 < 2^{2+0} (exact negative)

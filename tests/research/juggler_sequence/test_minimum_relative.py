@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.minimum_relative import (
     CLASS_GREEN,
     FORBIDDEN_THEOREMS,
@@ -20,20 +20,20 @@ from research.juggler_sequence.minimum_relative import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_trivial_cycle_is_above_anchor():
     assert floor_power(1) == 1
     assert above_anchor(1, "")
     assert above_anchor(1, "O")
-    assert follows_word(1, "O")
+    assert follows_itinerary(1, "O")
 
 
 def test_ooe_at_five_is_above_anchor():
     word = isolated_prefix_word(2, 0)
     assert word == "OOE"
-    assert follows_word(5, word)
+    assert follows_itinerary(5, word)
     assert image_after(5, word) == 6
     assert above_anchor(5, word)
 
@@ -41,13 +41,13 @@ def test_ooe_at_five_is_above_anchor():
 def test_ooeoe_at_nine_is_not_above_anchor():
     word = isolated_prefix_word(2, 1)
     assert word == "OOEOE"
-    assert follows_word(9, word)
+    assert follows_itinerary(9, word)
     assert image_after(9, word) < 9
     assert above_anchor(9, word) is False
 
 
 def test_even_square_trap_on_69():
-    assert follows_word(69, "OOEOOE")
+    assert follows_itinerary(69, "OOEOOE")
     x = image_after(69, "OOEOOE")
     assert x == 212
     assert even_below_square_gives_drop(x, 69)

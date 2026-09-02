@@ -54,9 +54,9 @@ theorem descentCertificate_stop_or_reachesOne {n : ℕ}
 theorem descentCertificate_of_coeffStop {n : ℕ} (hn : 2 ≤ n)
     (h : HasFiniteCoeffStop n) : DescentCertificate n := by
   obtain ⟨k, hk, hgap⟩ := h
-  refine DescentCertificate.exponent (word n k) (follows_word_self n k) ?_ hn
+  refine DescentCertificate.exponent (itinerary n k) (follows_itinerary_self n k) ?_ hn
   unfold exponentGap
-  simpa [word_length] using trajectoryExponentGap_iff.mp hgap
+  simpa [itinerary_length] using trajectoryExponentGap_iff.mp hgap
 
 theorem capture_reachesOne {n : ℕ} {w : List Branch}
     (_hw : follows n w) (himg : image n w = 1) : ReachesOne n :=
@@ -92,11 +92,11 @@ theorem even_tower_odd_tail_capture {k o : ℕ} (hk : 1 ≤ k) :
     (even_tower_odd_tail_contracts (k := k) (o := o) hk).2.1⟩
 
 theorem odd_even_tower_seven_capture :
-    follows 7 wordOEEE9 ∧ image 7 wordOEEE9 = 1 :=
+    follows 7 itineraryOEEE9 ∧ image 7 itineraryOEEE9 = 1 :=
   ⟨odd_even_tower_seven.1, odd_even_tower_seven.2.1⟩
 
 theorem nested_even_collapse_2500_capture :
-    follows 2500 wordEE_OEEE12 ∧ image 2500 wordEE_OEEE12 = 1 :=
+    follows 2500 itineraryEE_OEEE12 ∧ image 2500 itineraryEE_OEEE12 = 1 :=
   ⟨nested_even_collapse_2500.1, nested_even_collapse_2500.2.1⟩
 
 theorem first_even_cell_capture {n : ℕ} {v : List Branch}
@@ -120,21 +120,21 @@ theorem minimal_avoids_progress {n : ℕ} {w : List Branch}
   ⟨fun hd => hfail (descent_of_below hmin hd.1 hd.2),
     fun hc => hfail (capture_reachesOne hc.1 hc.2)⟩
 
-theorem even_word_descent {n k : ℕ} (hn : 2 ≤ n) (hk : 1 ≤ k)
+theorem even_itinerary_descent {n k : ℕ} (hn : 2 ≤ n) (hk : 1 ≤ k)
     (hw : follows n (List.replicate k Branch.even)) :
     follows n (List.replicate k Branch.even) ∧
       image n (List.replicate k Branch.even) < n :=
   ⟨hw, by
     have himg := image_eq_iterate n (List.replicate k Branch.even)
     rw [himg, List.length_replicate]
-    exact even_word_contracts hn hk hw⟩
+    exact even_itinerary_contracts hn hk hw⟩
 
 theorem minimal_odd_start {n : ℕ} (hn : 3 ≤ n)
     (hfail : ¬ReachesOne n) (hmin : ∀ m, m < n → ReachesOne m) :
     n % 2 = 1 := by
   by_cases heven : n % 2 = 0
   · have hw : follows n (List.replicate 1 Branch.even) := ⟨heven, trivial⟩
-    have hd := even_word_descent (by omega) (by decide) hw
+    have hd := even_itinerary_descent (by omega) (by decide) hw
     exact (minimal_avoids_progress (w := List.replicate 1 Branch.even)
       hfail hmin).1 hd |>.elim
   · omega

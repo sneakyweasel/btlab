@@ -63,14 +63,14 @@ N_MAX_CAP = 10**18
 EXISTING_LEAN = (
     "cycleMin_finance",
     "cycle_finance_min_fifty_three",
-    "cycle_word_length_nineteen_or_ge_thirty",
+    "cycle_itinerary_length_nineteen_or_ge_thirty",
 )
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
-    "no_cycle_word_any_length",
+    "no_cycle_itinerary_any_length",
     "rhin_excludes_length",
     "baker_excludes_length",
-    "no_cycle_word_length_nineteen",
+    "no_cycle_itinerary_length_nineteen",
 )
 FORBIDDEN_NEW_API = (
     "BakerGap",

@@ -4,7 +4,7 @@ Status: **EXPLORATORY**
 
 Standalone first-descent census of steps where the Juggler floor is
 a no-op because the real power is already an integer. It is **not**
-a Research Engine control-layer experiment, not a word-atlas
+a Research Engine control-layer experiment, not an itinerary-atlas
 recensus, not a reopen of floor-boundary, and not a claim that
 every positive integer reaches 1.
 
@@ -66,7 +66,7 @@ Novelty hypothesis      Isolated exact landings concentrate on first-
                         from square density and the monochrome letter law
 Falsifier               Exact-event rate matches square density in the
                         visited parity class; first-descent class is the
-                        parity word; PE exact hits are exactly the odd
+                        parity itinerary; PE exact hits are exactly the odd
                         squares that appear, with no extra continuation
 Existing machinery      local_tight / is_square (power_algebra.py),
                         local_defect, saturation_prefix,
@@ -139,7 +139,7 @@ None opened. Computational observations are not conjectures.
 - “Isolated exact steps create a new first-descent class” — mid-path
   isolated hits are 8 OE + 16 OOEE + 29 leftover. Class E never
   appears (word length 1, start not a square). That is occupancy
-  of a longer word, not a new certificate.
+  of a longer itinerary, not a new certificate.
 - “PE exact continuation is extra” — image is \(m^3\) on odd
   squares and \(m\) on even squares. Eight PE hits, zero extras.
 
@@ -171,7 +171,7 @@ Classification **EXACT_FLOOR_IMPACT_KNOWN**.
 
 ## Open questions
 
-None from exact-floor impact. Do not recensus the word atlas, do
+None from exact-floor impact. Do not recensus the itinerary atlas, do
 not reopen floor-boundary next-gap, do not raise \(N_0\), and do
 not add a companion mark from this branch.
 

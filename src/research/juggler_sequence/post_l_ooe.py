@@ -15,7 +15,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_ooo_escape import starts_ooe, walk_language
 from research.juggler_sequence.lean_paths import (
     CELLS,
@@ -34,7 +34,7 @@ from research.juggler_sequence.oneshot_recovery import (
     post_kind,
     post_record,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.second_oo_cube import second_oo
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -82,7 +82,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -132,7 +132,7 @@ def residual_row(n: int) -> dict[str, Any] | None:
     if rec is None or rec["kind"] != "OO":
         return None
     t = rec["t"]
-    if not follows_word(t, "OOE"):
+    if not follows_itinerary(t, "OOE"):
         return None
     t1 = floor_power(t)
     t2 = floor_power(t1)
@@ -148,10 +148,10 @@ def residual_row(n: int) -> dict[str, Any] | None:
         "s_kind": post_kind(s),
         "starts_ooe_t": starts_ooe(t),
         "starts_ooe_s": starts_ooe(s),
-        "follows_M": follows_word(n, WORD_M),
-        "image_M": image_after(n, WORD_M) if follows_word(n, WORD_M) else None,
-        "follows_L_t": follows_word(t, WORD),
-        "follows_L_s": follows_word(s, WORD),
+        "follows_M": follows_itinerary(n, WORD_M),
+        "image_M": image_after(n, WORD_M) if follows_itinerary(n, WORD_M) else None,
+        "follows_L_t": follows_itinerary(t, WORD),
+        "follows_L_s": follows_itinerary(s, WORD),
         "t_walk_exit": None if walk_t is None else walk_t["exit"],
         "t_second_ooo": walk_t is not None and walk_t["exit"] == "OOO",
         "second_oo_t": None if soo_t is None else soo_t.get("first"),
@@ -201,7 +201,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "PostLOoe" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_lean": True,
     }
 
@@ -235,7 +235,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["power_bound_word"]
         and lean["power_bound_contracts"]
         and lean["no_cycleMin_ooeoooe"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]

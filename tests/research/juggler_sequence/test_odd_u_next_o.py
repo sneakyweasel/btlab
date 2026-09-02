@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word
+from research.juggler_sequence.cycle_itinerary import follows_itinerary
 from research.juggler_sequence.k5_post_l_ooe import WORD_W5
 from research.juggler_sequence.oneshot_recovery import WORD
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.w5_second_oo import WORD_W5OOO, first_integer_cell
 from research.juggler_sequence.odd_u_next_o import (
     CLASS_GREEN,
@@ -79,8 +79,8 @@ def test_crossings_and_no_short_recovery():
     assert recovers_from_u("OEE") is False
     assert odd_v_sixteenth() is False
     assert odd_v_seventeenth() is True
-    assert follows_word(501, WORD_W5) is False
-    assert follows_word(501, WORD_W5OOOO) is False
+    assert follows_itinerary(501, WORD_W5) is False
+    assert follows_itinerary(501, WORD_W5OOOO) is False
 
 
 def test_probe_and_classify_green():
@@ -142,5 +142,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "n^{11}" in dossier or "n^11" in dossier
     assert "juggler_odd_u_next_o" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

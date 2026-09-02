@@ -15,7 +15,7 @@ Mathematical target     Does a compact signature of Pred_E / Pred_O
 Novelty hypothesis      wide-even / singleton-odd is a natural hut class
 Falsifier               bijection with m, unbounded out-degree, or
                         same-class incompatible successors
-Existing machinery      even_cell, pred_odd, floor_power, Cells.lean
+Existing machinery      even_preimage, pred_odd, floor_power, Preimages.lean
 Maximum Phase-0 scope   m<=4000; selected 1e5; no GPU; no Lean pilot
 ```
 
@@ -84,7 +84,7 @@ unless the family is small *and* parameterized.
 ## D. Odd spines
 
 The unique odd predecessor, when it exists, is iterated until the
-odd cell is empty. This is the existing `odd_cell_unique` spine,
+odd cell is empty. This is the existing `odd_preimage_unique` spine,
 not a new inverse law.
 
 - root `1` depth `1` stop `fixed_point` nodes `[1, 1]`
@@ -170,9 +170,9 @@ This is not a halt result. Hut descent is not termination.
 
 - sorry-free: `True`
 - no new Lean module: `True`
-- `even_cell_iff`: `True`
-- `odd_cell_iff`: `True`
-- `odd_cell_unique`: `True`
+- `even_preimage_iff`: `True`
+- `odd_preimage_iff`: `True`
+- `odd_preimage_unique`: `True`
 - `floorPower_even_eq_iff_sq_interval`: `True`
 - `floorPower_odd_eq_iff_cube_interval`: `True`
 - `floorPower_one`: `True`

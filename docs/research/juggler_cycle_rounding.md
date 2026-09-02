@@ -11,7 +11,7 @@ and not a termination theorem. Exact remainders, not a census.
 Mathematical target     exact local remainders plus cyclic closure, not an exponent budget
 Novelty hypothesis      keeping ρ around a cycle sees something the envelope drops
 Falsifier               every remainder identity reduces to power_bound_word or a known cell
-Existing machinery      localDefect, cube/square cells, CycleWord, equality rigidity
+Existing machinery      localDefect, cube/square cells, CycleItinerary, equality rigidity
 Maximum Phase-0 scope   remainder API; cycle balance; all-zero rigidity; peak ρ_O>0; transients
 ```
 
@@ -49,7 +49,7 @@ statements.
 - start=`21` M=`140` x=`27` p=`11` ρ_O=`83` ρ_top=`19` identity=`True` correction=`440` grows=`False`
 
 - n-search: `False`
-- cycle-word census: `False`
+- cycle-itinerary census: `False`
 - remainder dynamics: `False`
 - new energy: `False`
 
@@ -67,7 +67,7 @@ statements.
 - `cycleMax_pred_cube_strict`: `True`
 - `cycle_peak_odd_remainder_pos`: `True`
 - certificate unchanged: `True`
-- FloorPower has no CycleWord: `True`
+- FloorPower has no CycleItinerary: `True`
 - orbit-min hypothesis unused: `True`
 - PowerBoundEq not used as cycle attack: `True`
 - no remainder dynamics: `True`

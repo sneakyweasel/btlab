@@ -16,9 +16,9 @@ from math import gcd
 from pathlib import Path
 from typing import Any, Iterable
 
-from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
+from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     local_defect,
@@ -32,7 +32,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 from research.juggler_sequence.residual_chain import residual_excursion
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -79,7 +79,7 @@ LEAN_THEOREMS = (
     "image_monotone_of_follows",
     "global_defect_identity",
     "residualStep_global_defect",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "image_eq_iterate",
 )
 
@@ -142,12 +142,12 @@ def exact_macro_defect(n: int, a: int, b: int, target: int) -> int | None:
 
 
 def even_predecessors(m: int) -> list[int]:
-    lo, hi = even_cell(m)
+    lo, hi = even_preimage(m)
     return [item for item in range(lo, hi) if item % 2 == 0 and item >= 2]
 
 
 def odd_predecessors(m: int) -> list[int]:
-    return [item for item in odd_cell_integers(m) if item % 2 == 1 and item >= 1]
+    return [item for item in odd_preimage_integers(m) if item % 2 == 1 and item >= 1]
 
 
 def macro_predecessors(m: int, a: int, b: int, *, cap: int = INVERSE_FIBER_CAP) -> dict[str, Any]:
@@ -302,7 +302,7 @@ def validate_step(row: dict[str, Any]) -> str:
         return STATUS_INVALID
     if word != "O" + ("E" * b):
         return STATUS_INVALID
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         return STATUS_INVALID
     if image_after(n, word) != target:
         return STATUS_INVALID
@@ -1237,7 +1237,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "## G. Macro inverse geometry",
         "",
-        "Fixed `(1,0)`: `Pred_O(m)`, at most one integer (`odd_cell_unique`).",
+        "Fixed `(1,0)`: `Pred_O(m)`, at most one integer (`odd_preimage_unique`).",
         "Fixed `(1,b)`: one odd cell then `b` even square cells. This is the",
         "closed backward-geometry conclusion, not a new inverse law.",
         "",
@@ -1280,7 +1280,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "The only statement that is not an immediate rewrite of a word /",
+            "The only statement that is not an immediate rewrite of an word /",
             "floor-power theorem is the first-return distinction: a J-return",
             "below n may land on an even intermediate before A(n).",
             "That is a warning against replacing J by A, not a simpler law.",

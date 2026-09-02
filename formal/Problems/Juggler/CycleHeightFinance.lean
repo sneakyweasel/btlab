@@ -824,7 +824,7 @@ theorem no_cycleMin_length_eighty_four_of_circuit_le_two
     (hm : cycleCircuitCount w ≤ 2) : False := by
   have hn261 : 261 ≤ n := by
     simpa using
-      (cycleWord_iterate_not_lt_two_hundred_sixty_one (i := 0) hn h.1)
+      (cycleItinerary_iterate_not_lt_two_hundred_sixty_one (i := 0) hn h.1)
   have ho : 53 ≤ oddCount w := by
     have hpred : (3 : ℕ) ^ 52 ≤ 2 ^ w.length := by
       rw [hL]
@@ -834,7 +834,7 @@ theorem no_cycleMin_length_eighty_four_of_circuit_le_two
   have hfin := cycleMin_finance_inv_sum hn2 h
   have hS := cycleMin_l84_inv_sum_le_cap hn261 h hL hm ho
   have hexp : (2 : ℝ) ^ w.length < (3 : ℝ) ^ oddCount w := by
-    exact_mod_cast cycle_word_formally_expanding hn h.1
+    exact_mod_cast cycle_itinerary_formally_expanding hn h.1
   have hlog : (61 / 11 : ℝ) < Real.log n := by
     have hle257 : (257 : ℝ) ≤ (n : ℝ) := by
       exact_mod_cast (le_trans (by decide : (257 : ℕ) ≤ 261) hn261)
@@ -902,27 +902,27 @@ theorem no_cycleMin_length_eighty_four_of_circuit_le_two
 /-- Length `84` with at most two odd-runs is impossible. -/
 theorem no_length_eighty_four_circuit_le_two
     {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (hL : w.length = 84) (h : CycleWord n w)
+    (hn : 2 ≤ n) (hL : w.length = 84) (h : CycleItinerary n w)
     {k : ℕ} (hk : k < w.length)
-    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k))
-    (hm : cycleCircuitCount (rotateWord w k) ≤ 2) : False := by
-  have hlen : (rotateWord w k).length = 84 := by
-    simpa [rotateWord_length, hL]
+    (hmin : CycleMin (floorPower^[k] n) (rotateItinerary w k))
+    (hm : cycleCircuitCount (rotateItinerary w k) ≤ 2) : False := by
+  have hlen : (rotateItinerary w k).length = 84 := by
+    simpa [rotateItinerary_length, hL]
   have hm2 : 2 ≤ floorPower^[k] n :=
-    cycleWord_iterate_ge_two hn h hk
+    cycleItinerary_iterate_ge_two hn h hk
   exact no_cycleMin_length_eighty_four_of_circuit_le_two hm2 hmin hlen hm
 
 /-- If a nontrivial cycle exists, it is period `84` with at least
 three odd-runs on a `CycleMin` rotation, or else length at least
 `85`. -/
-theorem cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+theorem cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five
     {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) :
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
     (w.length = 84 ∧ ∃ k < w.length,
-        CycleMin (floorPower^[k] n) (rotateWord w k) ∧
-          3 ≤ cycleCircuitCount (rotateWord w k)) ∨
+        CycleMin (floorPower^[k] n) (rotateItinerary w k) ∧
+          3 ≤ cycleCircuitCount (rotateItinerary w k)) ∨
       85 ≤ w.length := by
-  rcases cycle_word_length_eighty_four_or_ge_eighty_five hn h with h84 | h85
+  rcases cycle_itinerary_length_eighty_four_or_ge_eighty_five hn h with h84 | h85
   · obtain ⟨k, hk, hmin⟩ := exists_cycleMin hn h
     refine Or.inl ⟨h84, k, hk, hmin, ?_⟩
     by_contra hm

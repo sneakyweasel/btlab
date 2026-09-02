@@ -9,7 +9,7 @@ not a new paper. After Section 5 named
 asks whether a return-cost coupling forces
 \(N_{\mathrm{cheap}}<o-e\) on a realized `CycleMin` strongly
 enough to raise the period cutoff. Not a halt theorem, not a
-leftover-word census, and not a floor raise.
+leftover-itinerary census, and not a floor raise.
 
 ## Problem
 

@@ -37,15 +37,15 @@ suffix threshold forbids any cycle vE once T_v sits at or above the next square;
 - `EEOE` o=`1` expanding=`False`
 - `EEEE` o=`0` expanding=`False`
 
-- unique expanding word: `['OOOE']`
+- unique expanding itinerary: `['OOOE']`
 
 ## Lean
 
 - `cycle_last_even_cell`: `True`
 - `cycle_last_even_cell_odd`: `True`
 - `no_cycle_append_even_of_suffix_threshold`: `True`
-- `no_cycle_word_oooe`: `True`
-- `no_cycle_word_length_four_ends_even`: `True`
+- `no_cycle_itinerary_oooe`: `True`
+- `no_cycle_itinerary_length_four_ends_even`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
 - MinimalNonTerm not rewritten: `True`

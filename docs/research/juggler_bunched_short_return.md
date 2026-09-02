@@ -16,7 +16,7 @@ Novelty hypothesis      exact preimages of n are rigid and
                         incompatible with CycleMin prefixes
 Falsifier               abundant exact returns; fat odd
                         preimages of n^2; no rigidity
-Existing machinery      even/odd floor cells; odd_cell_unique;
+Existing machinery      even/odd floor cells; odd_preimage_unique;
                         cycle_last_even_ne_odd_sq
 Maximum Phase-0 scope   exact inverses; R counts; CycleMin
                         exact hits; no Lean, no Z5
@@ -53,7 +53,7 @@ The singleton `z = n^2` is false. On a CycleMin, `n` is odd, so
 
 ## Attack 2 / 5 — odd preimage of n^2
 
-By `odd_cell_unique` there is at most one integer in the odd cell of `m = n^2`. Through `n <= 500`: empty=`477`, even-blocked=`10`, odd hits=`12`.
+By `odd_preimage_unique` there is at most one integer in the odd cell of `m = n^2`. Through `n <= 500`: empty=`477`, even-blocked=`10`, odd hits=`12`.
 
 On a CycleMin the start `n` is odd, so `n^2` is odd and is not in the last-even cell. The square-edge equation `floor(z^{3/2}) = n^2` is therefore not the CycleMin last-odd condition. The last odd step of an `EOE` tail must hit some even in `[n^2, (n+1)^2)`.
 
@@ -89,7 +89,7 @@ All odd-cell hits at `m = n^2` through the cutoff:
 
 - `floorPower_even_eq_iff_sq_interval`: `True`
 - `floorPower_odd_eq_iff_cube_interval`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `cycle_last_even_ne_odd_sq`: `True`
 - `cycle_trailing_evens_lt`: `True`
 - `CycleMin`: `True`

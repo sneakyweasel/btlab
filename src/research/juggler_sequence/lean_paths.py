@@ -15,17 +15,17 @@ PAPER_MODULES: tuple[str, ...] = (
     "Iteration",
     "Termination",
     "Itinerary",
-    "WordStats",
+    "ItineraryStats",
     "Envelope",
     "Equality",
     "Defect",
     "GlobalDefect",
-    "Cells",
+    "Preimages",
     "Certificates",
     "Progress",
     "Cycles",
     "LeftoverEval",
-    "LeftoverCell",
+    "LeftoverPreimage",
     "LeftoverShort",
     "LeftoverFamilies",
     "EvenCountThree",
@@ -36,7 +36,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "CycleFinance",
     "CycleFinanceLeftovers",
     "RunSurvivorLattice",
-    "WalkChargeWords",
+    "WalkChargeItineraries",
     "OstrowskiSandwich",
     "OstrowskiNumeration",
     "RotationAverage",
@@ -51,7 +51,7 @@ LAYERS: dict[str, Path] = {
     "Termination": JUGGLER_DIR / "Termination.lean",
     "TerminationFloor257": JUGGLER_DIR / "TerminationFloor257.lean",
     "Itinerary": JUGGLER_DIR / "Itinerary.lean",
-    "WordStats": JUGGLER_DIR / "WordStats.lean",
+    "ItineraryStats": JUGGLER_DIR / "ItineraryStats.lean",
     "Envelope": JUGGLER_DIR / "Envelope.lean",
     "Corridor": JUGGLER_DIR / "Corridor.lean",
     "CubeCorridor": JUGGLER_DIR / "CubeCorridor.lean",
@@ -59,7 +59,7 @@ LAYERS: dict[str, Path] = {
     "Defect": JUGGLER_DIR / "Defect.lean",
     "GlobalDefect": JUGGLER_DIR / "GlobalDefect.lean",
     "DefectLowerBound": JUGGLER_DIR / "DefectLowerBound.lean",
-    "Cells": JUGGLER_DIR / "Cells.lean",
+    "Preimages": JUGGLER_DIR / "Preimages.lean",
     "Collapse": JUGGLER_DIR / "Collapse.lean",
     "Drift": JUGGLER_DIR / "Drift.lean",
     "FirstPassage": JUGGLER_DIR / "FirstPassage.lean",
@@ -82,7 +82,7 @@ LAYERS: dict[str, Path] = {
     "CycleExtrema": JUGGLER_DIR / "CycleExtrema.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "LeftoverEval": JUGGLER_DIR / "LeftoverEval.lean",
-    "LeftoverCell": JUGGLER_DIR / "LeftoverCell.lean",
+    "LeftoverPreimage": JUGGLER_DIR / "LeftoverPreimage.lean",
     "LeftoverShort": JUGGLER_DIR / "LeftoverShort.lean",
     "FirstETransportEval": JUGGLER_DIR / "FirstETransportEval.lean",
     "BunchedTight": JUGGLER_DIR / "BunchedTight.lean",
@@ -102,14 +102,14 @@ LAYERS: dict[str, Path] = {
     "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
     "PreimageCylinders": JUGGLER_DIR / "PreimageCylinders.lean",
     "OddLandingSets": JUGGLER_DIR / "OddLandingSets.lean",
-    "WordLanguage": JUGGLER_DIR / "WordLanguage.lean",
+    "ItineraryLanguage": JUGGLER_DIR / "ItineraryLanguage.lean",
     "GapCells": JUGGLER_DIR / "GapCells.lean",
     "Escape": JUGGLER_DIR / "Escape.lean",
     "CycleFinance": JUGGLER_DIR / "CycleFinance.lean",
     "CycleFinanceLeftovers": JUGGLER_DIR / "CycleFinanceLeftovers.lean",
     "RunSurvivorLattice": JUGGLER_DIR / "RunSurvivorLattice.lean",
     "CycleHeightFinance": JUGGLER_DIR / "CycleHeightFinance.lean",
-    "WalkChargeWords": JUGGLER_DIR / "WalkChargeWords.lean",
+    "WalkChargeItineraries": JUGGLER_DIR / "WalkChargeItineraries.lean",
     "OstrowskiSandwich": JUGGLER_DIR / "OstrowskiSandwich.lean",
     "OstrowskiNumeration": JUGGLER_DIR / "OstrowskiNumeration.lean",
     "RotationAverage": JUGGLER_DIR / "RotationAverage.lean",
@@ -123,13 +123,14 @@ DYNAMICS = LAYERS["Dynamics"]
 ITERATION = LAYERS["Iteration"]
 TERMINATION = LAYERS["Termination"]
 ITINERARY = LAYERS["Itinerary"]
-WORD_STATS = LAYERS["WordStats"]
+WORD_STATS = LAYERS["ItineraryStats"]
 ENVELOPE = LAYERS["Envelope"]
 EQUALITY = LAYERS["Equality"]
 DEFECT = LAYERS["Defect"]
 GLOBAL_DEFECT = LAYERS["GlobalDefect"]
 DEFECT_LOWER_BOUND = LAYERS["DefectLowerBound"]
-CELLS = LAYERS["Cells"]
+PREIMAGES = LAYERS["Preimages"]
+CELLS = PREIMAGES
 COLLAPSE = LAYERS["Collapse"]
 DRIFT = LAYERS["Drift"]
 FIRST_PASSAGE = LAYERS["FirstPassage"]
@@ -168,7 +169,8 @@ class _CycleKernel:
 
 CYCLES = _CycleKernel()
 LEFTOVER_EVAL = LAYERS["LeftoverEval"]
-LEFTOVER_CELL = LAYERS["LeftoverCell"]
+LEFTOVER_PREIMAGE = LAYERS["LeftoverPreimage"]
+LEFTOVER_CELL = LEFTOVER_PREIMAGE
 LEFTOVER_SHORT = LAYERS["LeftoverShort"]
 LEFTOVER_FAMILIES = LAYERS["LeftoverFamilies"]
 PREFIX_TWO_EVEN_EVAL = LAYERS["PrefixTwoEvenEval"]
@@ -209,14 +211,14 @@ SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 LANDING_VALUATION = LAYERS["LandingValuation"]
 PREIMAGE_CYLINDERS = LAYERS["PreimageCylinders"]
 ODD_LANDING_SETS = LAYERS["OddLandingSets"]
-WORD_LANGUAGE = LAYERS["WordLanguage"]
+WORD_LANGUAGE = LAYERS["ItineraryLanguage"]
 GAP_CELLS = LAYERS["GapCells"]
 ESCAPE = LAYERS["Escape"]
 CYCLE_FINANCE = LAYERS["CycleFinance"]
 CYCLE_FINANCE_LEFTOVERS = LAYERS["CycleFinanceLeftovers"]
 RUN_SURVIVOR_LATTICE = LAYERS["RunSurvivorLattice"]
 CYCLE_HEIGHT_FINANCE = LAYERS["CycleHeightFinance"]
-WALK_CHARGE_WORDS = LAYERS["WalkChargeWords"]
+WALK_CHARGE_WORDS = LAYERS["WalkChargeItineraries"]
 WALK_TRANSPORT = LAYERS["WalkTransport"]
 ABOVE_ANCHOR_WALK = LAYERS["AboveAnchorWalk"]
 # Historical name: the open-flight transport envelope was re-rooted on
@@ -233,7 +235,7 @@ DELETED_ENGINE = (
     ENGINE_DIR / "ResidualChain.lean",
     ENGINE_DIR / "ResidualPath.lean",
     ENGINE_DIR / "RepeatedBlock.lean",
-    ENGINE_DIR / "CycleWord.lean",
+    ENGINE_DIR / "CycleItinerary.lean",
     ENGINE_DIR / "CycleDiophantine.lean",
 )
 

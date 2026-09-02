@@ -5,9 +5,9 @@ and not a formalization of the height law.
 
 Question: can all m local minima equal the global minimum n?
 
-On a leftover-length CycleWord that is already excluded at every
+On a leftover-length CycleItinerary that is already excluded at every
 proper shorter length, an intermediate return T^k(n)=n is a shorter
-CycleWord (follows_take + image_take_of_le). So n occurs once, and
+CycleItinerary (follows_take + image_take_of_le). So n occurs once, and
 at most one valley equals n. For m≥2 the other valleys are at least
 the next odd, n+2.
 
@@ -45,7 +45,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_equal_valleys.json"
@@ -63,17 +63,17 @@ LEAN_CONST = 1.0
 N2_SEARCH_CAP = 50_000
 
 EXISTING_LEAN = (
-    "CycleWord",
+    "CycleItinerary",
     "CycleMin",
     "cycle_iterate_period",
     "follows_take",
     "image_take_of_le",
-    "cycle_word_length_eighty_four_or_ge_eighty_five",
+    "cycle_itinerary_length_eighty_four_or_ge_eighty_five",
 )
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
-    "no_cycle_word_any_length",
-    "no_cycle_word_length_eighty_four",
+    "no_cycle_itinerary_any_length",
+    "no_cycle_itinerary_length_eighty_four",
     "cycle_equal_valleys",
     "second_valley_ge",
 )
@@ -314,7 +314,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_CLOSED,
             "reason": (
                 "all m valleys equal n is impossible for m≥2 on a leftover "
-                "length (intermediate return is a shorter CycleWord). The "
+                "length (intermediate return is a shorter CycleItinerary). The "
                 "next odd n+2 does not exclude L=84 at m=3: split RHS "
                 f"{m3['split_n_plus_two_rhs']:.6f} > θ={m3['theta']:.6f} "
                 f"at floor {scan['floor']}, Lean constant 1. Height plus "
@@ -351,7 +351,7 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "prefix-return uniqueness of n on leftover CycleWord; "
+            "prefix-return uniqueness of n on leftover CycleItinerary; "
             "split-valley finance at n vs n+2 for L=84 m≥3 at floor 261"
         ),
     }

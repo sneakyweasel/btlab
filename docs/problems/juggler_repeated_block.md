@@ -13,7 +13,7 @@ minimal non-terminating orbit without violating the scale budget?
 
 ## Exact statement
 
-If a later orbit state \(x\) realizes \(B^r=(O^aE^b)^r\), the word
+If a later orbit state \(x\) realizes \(B^r=(O^aE^b)^r\), the itinerary
 envelope gives
 
 \[
@@ -39,7 +39,7 @@ not prove totality.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Finite-word envelope \(T_w(n)^{2^k}\le n^{3^o}\) —
+- Finite-itinerary envelope \(T_w(n)^{2^k}\le n^{3^o}\) —
   **EXACT — LEAN VERIFIED**.
 - Repeated-`OE` scale \(n^{4^r}\le x^{3^r}\) —
   **EXACT — LEAN VERIFIED**.

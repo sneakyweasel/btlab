@@ -1857,7 +1857,7 @@
       1
     ],
     "n_search": false,
-    "cycle_word_census": false,
+    "cycle_itinerary_census": false,
     "remainder_dynamics": false,
     "explicit_L": false
   },
@@ -1868,7 +1868,7 @@
     "OddOddResidual_absent": true,
     "no_oddOddAdmissibility": true,
     "no_oddOddResidual_bounded": true,
-    "CycleWord_not_rewritten": true,
+    "CycleItinerary_not_rewritten": true,
     "CycleDiophantine_not_rewritten": true,
     "FloorPower_not_rewritten": true,
     "no_global_termination_theorem": true,

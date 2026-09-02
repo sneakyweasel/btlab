@@ -10,7 +10,7 @@ not a new paper. It asks whether the unfolded slack-weight vector
 of a cyclic word plays the role of the Collatz functional
 \(\varphi(s)\) and yields a closure inequality beyond \((L,o)\),
 `lowerDenom`, or run-type finance.
-Not a halt theorem, not a leftover-word census, not a new finance
+Not a halt theorem, not a leftover-itinerary census, not a new finance
 identity, not Fourier, not a \(Q\)-return, and not a residue /
 \(p\)-adic system.
 
@@ -23,7 +23,7 @@ the floor-power recursion and gives a sharp closure inequality?
 
 ## Exact statement
 
-Unfold the exact \(1+q\) one-step laws. For a realized word \(w\),
+Unfold the exact \(1+q\) one-step laws. For a realized itinerary \(w\),
 
 \[
 \alpha_i(w)=2^i\,3^{\#O(w[i+1:])},\qquad
@@ -44,7 +44,7 @@ The universal cell bound \(1+\eta<4\) then gives
 \mathrm{lowerDenom}(w)=4^{S(w)}.
 \]
 
-On a `CycleWord`, \(T_w(n)=n\), so \(n^{3^o-2^L}\le 4^{S(w)}\).
+On a `CycleItinerary`, \(T_w(n)=n\), so \(n^{3^o-2^L}\le 4^{S(w)}\).
 This is the existing size bound `cycle_pow_le_lowerDenom`.
 
 Same \((L,o)\) need not give the same \(\alpha\) or \(S\):
@@ -117,7 +117,7 @@ Existing machinery      onePlusSlack_concat; relative_slack_even/odd;
                         closed pair-level / ordered-excursion branches
 Maximum Phase-0 scope   Define α and S; prove D_w = 4^{S(w)}; verify
                         the product identity on short orbits; census
-                        expanding words through length 8; compare
+                        expanding itineraries through length 8; compare
                         bunched / mechanical / extremal shapes at
                         L=5,8,11,19. No leftover enumeration at
                         L=25781; no CLI; no Lean; no new finance.
@@ -147,28 +147,28 @@ It is not required.
   (\(92\) short orbits, \(0\) fails)
 - \(\mathrm{lowerDenom}(w)=4^{S(w)}\) —
   **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED**
-  (all \(511\) words of length \(\le 8\))
+  (all \(511\) itineraries of length \(\le 8\))
 - Same \((L,o)\), different \(S\) —
   **EXACT — HUMAN PROOF** (\(\mathtt{OE}\) versus \(\mathtt{EO}\))
 - `CycleMin` leading-weight freeze —
   **EXACT — HUMAN PROOF** (any start \(\mathtt{OO}\) with fixed
   \(o\) has \(\alpha_0=3^{o-1}\), \(\alpha_1=2\cdot 3^{o-2}\))
 - Halbeisen \(M_{L,o}\) leftover-killer —
-  **REFUTED** (`juggler_cycle_word_functional_closure`)
+  **REFUTED** (`juggler_cycle_itinerary_functional_closure`)
 - No cycle of any length — not claimed
 
 ## Experiments
 
-- Probe: `research.juggler_sequence.cycle_word_functional`
+- Probe: `research.juggler_sequence.cycle_itinerary_functional`
 - Dataset: `data/research/juggler/cycle_finance/word_functional/summary.json`
-- Tests: `tests/research/juggler_sequence/test_cycle_word_functional.py`
+- Tests: `tests/research/juggler_sequence/test_cycle_itinerary_functional.py`
 - Window: identity \(n\le 24\), \(k\le 4\); denom and necklace
   census \(k\le 8\); shaped words at \(L=5,8,11,19\).
   Fast suite only. No CLI. No Lean.
 
 ## Conjectures
 
-`juggler_cycle_word_functional_closure` — **REFUTED**.
+`juggler_cycle_itinerary_functional_closure` — **REFUTED**.
 
 ## Counterexamples
 
@@ -191,7 +191,7 @@ It is not required.
 
 ## Formalization
 
-None. No `CycleWordFunctional.lean`. The identities are the
+None. No `CycleItineraryFunctional.lean`. The identities are the
 existing `onePlusSlack` laws plus the closed-form
 `lowerDenom=4^S`. Paper A is unchanged.
 

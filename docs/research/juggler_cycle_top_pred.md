@@ -49,7 +49,7 @@ The nested cells do not empty any top-run length.
 - start=`25` M=`52214` x=`1397` p=`15` r=`2` three=`True` cube=`True` vs_p2=`gt` scale=`True`
 
 - n-search: `False`
-- cycle-word census: `False`
+- cycle-itinerary census: `False`
 
 ## Lean
 

@@ -9,12 +9,12 @@ every positive integer reaches 1.
 ## Problem
 
 Is the surviving one-sided envelope \(T_w(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\)
-a compositional theorem of realized finite parity words, or only an
+a compositional theorem of realized finite parity itineraries, or only an
 empirical regularity requiring word-specific proofs?
 
 ## Exact statement
 
-For every finite parity word \(w\) realized by the Juggler orbit of a
+For every finite parity itinerary \(w\) realized by the Juggler orbit of a
 positive integer \(n\),
 
 \[
@@ -29,23 +29,23 @@ If additionally \(3^{\#O(w)}<2^{|w|}\) and \(n\ge 2\), then
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
 - Phase-12: `OOOEE` implies \(T^5(n)<n\) for \(n\ge 2\). **extended**.
-- Phase-13 (`juggler_power_words`): two-sided exponent law **REFUTED**;
+- Phase-13 (`juggler_power_itineraries`): two-sided exponent law **REFUTED**;
   one-sided bound computationally survived. This phase packages that
   envelope as an inductive theorem.
 
 ## Branch budget
 
 ```text
-Mathematical target     Does every realized finite parity word satisfy
+Mathematical target     Does every realized finite parity itinerary satisfy
                         T_w(n)^{2^k} <= n^{3^o} by inductive floor composition?
 Novelty hypothesis      OOOEE / OOOEEEOO are instances of one weak bound plus
                         an exponent-gap contraction corollary.
 Falsifier               A realized (w,n) with T_w(n)^{2^k} > n^{3^o}.
-Existing machinery      power_words cmp_pow; FloorPower even/odd square bounds;
+Existing machinery      power_itineraries cmp_pow; FloorPower even/odd square bounds;
                         pow_sq_le / pow_sq_le_cube.
-Maximum Phase-0 scope   Near-equality scan reusing power_words; then a tiny
+Maximum Phase-0 scope   Near-equality scan reusing power_itineraries; then a tiny
                         Lean API if the weak bound survives. No engine edits.
-Promotion criterion     Weak bound proved for arbitrary realized finite words;
+Promotion criterion     Weak bound proved for arbitrary realized finite itineraries;
                         existing block contractions follow; no termination claim.
 Stop criterion          A onesided counterexample; a second transition engine;
                         a general-word tactic; a frequency theorem.
@@ -72,7 +72,7 @@ It is not required.
 ## Experiments
 
 - Probe: `research.juggler_sequence.power_composition`
-- Reuses `research.juggler_sequence.power_words` (`cmp_pow`, itinerary)
+- Reuses `research.juggler_sequence.power_itineraries` (`cmp_pow`, itinerary)
 - Near-equality focus plus the Phase-13 sweep \(1\le n\le 10^6\),
   \(|w|\le 8\)
 - Records: [juggler_power_composition.md](../research/juggler_power_composition.md),
@@ -113,7 +113,7 @@ Instances: `floorPower_oooee_of_follows`,
 Classification **POWER_COMPOSITION_GREEN**.
 
 The predicate \(P_k(m,n,o)\equiv m^{2^k}\le n^{3^o}\) is preserved by
-appending an even branch or an odd branch. Every realized finite word
+appending an even branch or an odd branch. Every realized finite itinerary
 therefore satisfies the one-sided envelope. If \(3^o<2^k\) and
 \(n\ge 2\), the exponent gap yields \(T_w(n)<n\). `OOOEE` and
 `OOOEEEOO` are instances.
@@ -122,12 +122,12 @@ This is not a termination theorem.
 
 ## Open questions
 
-When does equality \(T_w(n)^{2^k}=n^{3^o}\) occur for mixed words, if
+When does equality \(T_w(n)^{2^k}=n^{3^o}\) occur for mixed itineraries, if
 ever? Secondary; do not delay the weak theorem, which is already proved.
 
 ## Decision
 
-**PROMOTE** the one-sided finite-word power calculus
+**PROMOTE** the one-sided finite-itinerary power calculus
 (`power_bound_follows` and `power_bound_contracts`). Record the
 classification `POWER_COMPOSITION_GREEN`. Do not register an attack.
 Do not claim that trajectories contain negative-drift words.

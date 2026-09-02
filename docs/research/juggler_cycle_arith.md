@@ -1,4 +1,4 @@
-# Juggler cycle-word arithmetic
+# Juggler cycle-itinerary arithmetic
 
 Status: **OOE_CYCLE_EXCLUDED**
 
@@ -9,10 +9,10 @@ square cell, not `z = n^2`.
 ## Branch budget
 
 ```text
-Mathematical target     exclude CycleWord on OOE and OEO by exact cells
+Mathematical target     exclude CycleItinerary on OOE and OEO by exact cells
 Novelty hypothesis      last-even cell plus OO threshold, or rotation to EOO
 Falsifier               an OOE/OEO cycle; or last-even identity z = n^2
-Existing machinery      CycleWord, oo_suffix_threshold, no_cycle_word_eoo
+Existing machinery      CycleItinerary, oo_suffix_threshold, no_cycle_itinerary_eoo
 Maximum Phase-0 scope   last-even interval; min odd; no OOE; no OEO
 ```
 
@@ -39,11 +39,11 @@ OOE is excluded by the last-even cell against the OO suffix threshold; OEO rotat
 - `cycle_last_even_interval`: `True`
 - `cycle_last_even_ne_odd_sq`: `True`
 - `cycle_last_odd_interval`: `True`
-- `cycleWord_rotate_cons`: `True`
+- `cycleItinerary_rotate_cons`: `True`
 - `exists_cycle_min_odd`: `True`
 - `floorPower_even_lt`: `True`
-- `no_cycle_word_ooe`: `True`
-- `no_cycle_word_oeo`: `True`
+- `no_cycle_itinerary_ooe`: `True`
+- `no_cycle_itinerary_oeo`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
 - MinimalNonTerm not rewritten: `True`

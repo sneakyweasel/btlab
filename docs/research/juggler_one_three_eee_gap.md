@@ -92,25 +92,25 @@ signatures are a separate job.
 ## Lean
 
 - `cycle_trailing_evens_lt`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `o7_image_ge_succ_pow16`: `True`
-- `no_cycle_word_oooooooeeee`: `True`
-- `no_cycle_word_even_count_le_three`: `True`
-- `no_cycle_word_ooooooeoeee`: `True`
+- `no_cycle_itinerary_oooooooeeee`: `True`
+- `no_cycle_itinerary_even_count_le_three`: `True`
+- `no_cycle_itinerary_ooooooeoeee`: `True`
 - `no_cycleMin_ooooooeoeee`: `True`
 - `no_cycleMin_oooooeooeee`: `True`
 - `no_cycleMin_ooooeoooeee`: `True`
 - `no_cycleMin_oooeooooeee`: `True`
 - `no_cycleMin_ooeoooooeee`: `True`
 - `no_cycleMin_one_three_eee`: `True`
-- no `no_cycle_word_length_eleven`: `True`
-- no `no_cycle_word_four_even`: `True`
+- no `no_cycle_itinerary_length_eleven`: `True`
+- no `no_cycle_itinerary_four_even`: `True`
 - no `juggler_reaches_one`: `True`
-- no `no_cycle_word_oooooeooeee`: `True`
-- no `no_cycle_word_ooooeoooeee`: `True`
-- no `no_cycle_word_oooeooooeee`: `True`
-- no `no_cycle_word_ooeoooooeee`: `True`
-- no non-unique family CycleWord: `True`
+- no `no_cycle_itinerary_oooooeooeee`: `True`
+- no `no_cycle_itinerary_ooooeoooeee`: `True`
+- no `no_cycle_itinerary_oooeooooeee`: `True`
+- no `no_cycle_itinerary_ooeoooooeee`: `True`
+- no non-unique family CycleItinerary: `True`
 - Paper A has no family word: `True`
 
 ## Anti-overclaim

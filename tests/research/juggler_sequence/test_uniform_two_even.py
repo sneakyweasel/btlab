@@ -5,8 +5,8 @@ from __future__ import annotations
 import json
 
 from research.juggler_sequence.cycle_length_nine import odd_log2_C
-from research.juggler_sequence.cycle_word import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import (
     CLASS_GREEN,
     EXPECTED_N0,
@@ -76,7 +76,7 @@ def test_tables_empty_below_cutoffs():
     for k, n0 in ((6, 205), (7, 14), (8, 8), (11, 5)):
         for word in (word_ee(k), word_eoe(k)):
             for n in range(2, n0):
-                assert image_after(n, word) != n or not follows_word(n, word)
+                assert image_after(n, word) != n or not follows_itinerary(n, word)
 
 
 def test_lean_api_without_length_eight_census():
@@ -90,8 +90,8 @@ def test_lean_api_without_length_eight_census():
     from research.juggler_sequence.lean_paths import SMALL_CYCLE_CENSUS
 
     census = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_length_eight" not in census
-    assert "theorem no_cycle_word_length_le_eight" not in census
+    assert "theorem no_cycle_itinerary_length_eight" not in census
+    assert "theorem no_cycle_itinerary_length_le_eight" not in census
     assert "Length eight is open" in census
 
 
@@ -155,12 +155,12 @@ def test_dossier_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_length_eight" in dossier
+    assert "no_cycle_itinerary_length_eight" in dossier
     assert "not a length-8 census" in dossier
-    assert "theorem no_cycle_word_length_eight" not in note
+    assert "theorem no_cycle_itinerary_length_eight" not in note
     assert (
         "Theorems 3.12--3.21 assemble into an even-count exclusion: no "
-        "cycle word has fewer than four even letters, so a nontrivial "
+        "cycle itinerary has fewer than four even letters, so a nontrivial "
         "cycle has period at least eleven (Theorem 3.22). Section 4 "
         "excludes later periods by financing."
     ) in " ".join(note.split())

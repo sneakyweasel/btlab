@@ -39,8 +39,8 @@ OOEOOEOO < n^3 and OOEOOEOOE < n^2; CE even third-OOE landing drops; 365 is PE a
 
 ## Lean
 
-- `wordOOEOOEOO`: `True`
-- `wordOOEOOEOOE`: `True`
+- `itineraryOOEOOEOO`: `True`
+- `itineraryOOEOOEOOE`: `True`
 - `follows_ooeooeoo_image_lt_cube`: `True`
 - `follows_ooeooeooe_image_lt_sq`: `True`
 - `minimal_ooeooe_follows_ooeooeoo`: `True`

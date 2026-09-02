@@ -4,7 +4,7 @@
   "statement": "The discrete spectrum of a closed Juggler log-state or valley-state wave forbids a finance-expensive valley occupancy that the OOE/OE run-type packing still allows, and the resulting exact finance RHS is strictly smaller than budget_rhs on E_run(10^6).",
   "status": "REFUTED",
   "counterexamples": [
-    "Parseval plus the O/E increment law is the spectral moment 1/16, achieved by every cyclic wave with |Δt|≈t/2. At L=19 the bunched word (m=1) and the mechanical OOE/OE necklace (m=7) both hit 1/16",
+    "Parseval plus the O/E increment law is the spectral moment 1/16, achieved by every cyclic wave with |Δt|≈t/2. At L=19 the bunched itinerary (m=1) and the mechanical OOE/OE necklace (m=7) both hit 1/16",
     "On all 99 run-type leftovers at n=10^6+1 the closed run-type wave has moment 1/16, sign-changes equal 2m, and packed heights reproduce budget_rhs. spectral_killed is empty. L=25781 still has θ≈2.55e-5 versus RHS≈5.89e-4",
     "Band-limit m≤L/12 fails: tail past L/12 is ≥0.088 on L=19 and L=84 closed waves and 0.095–0.125 on controls 365/501/1517/6187. Valley-indicator tails are ≈0.63"
   ],

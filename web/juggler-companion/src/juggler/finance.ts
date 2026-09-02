@@ -10,7 +10,7 @@ import {
   PAPER_L_CAP,
   PAPER_PERIOD,
 } from "./constants";
-import { oMinForLength } from "./word";
+import { oMinForLength } from "./itinerary";
 
 export type FinanceStatus = "excluded" | "admissible" | "beyond table" | "invalid";
 

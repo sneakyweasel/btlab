@@ -116,6 +116,6 @@ def test_dossier_boundary():
     assert "## Decision" in dossier
     assert "## Publication assessment" in dossier
     assert "CLOSE" in dossier
-    assert "odd_cell_unique" in dossier
+    assert "odd_preimage_unique" in dossier
     assert "OddChain" not in paper
     assert "theorem no_juggler_escape" not in dossier

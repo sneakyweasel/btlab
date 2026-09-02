@@ -1446,5 +1446,5 @@
     ],
     "reason": "on G<=0, M = T^{2^k}-n^{2^k} and M>=0 iff T>=n; that is actual non-contraction, not a new progress law; escape images move farther from the start on known expanders"
   },
-  "search_method": "M = formal_gap-\u0394 compared with T^{2^k}-n^{2^k} on G<=0; HARD_STARTS (5, 9, 37, 69, 173); window n<=200 k<=8; no ResidualStep; no word-exclusion census"
+  "search_method": "M = formal_gap-\u0394 compared with T^{2^k}-n^{2^k} on G<=0; HARD_STARTS (5, 9, 37, 69, 173); window n<=200 k<=8; no ResidualStep; no itinerary-exclusion census"
 }

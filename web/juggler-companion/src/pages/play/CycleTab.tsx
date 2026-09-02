@@ -4,33 +4,33 @@ import { CycleNecklace } from "../../visuals/CycleNecklace";
 import { usePlayState } from "../../context/PlayState";
 import { CYCLE_PRESETS } from "../../juggler/constants";
 import { formatInt, parsePositiveInt } from "../../juggler/format";
-import { tryCycleWord } from "../../juggler/trajectory";
+import { tryCycleItinerary } from "../../juggler/trajectory";
 import {
   evenCount,
   expanding,
   oddCount,
-  parseCycleWord,
-  rotateWord,
-} from "../../juggler/word";
+  parseCycleItinerary,
+  rotateItinerary,
+} from "../../juggler/itinerary";
 
 export function CycleTab() {
-  const { nText, cycleWord, setCycleWord, cycleShift, setCycleShift } =
+  const { nText, cycleItinerary, setCycleItinerary, cycleShift, setCycleShift } =
     usePlayState();
-  const parsed = parseCycleWord(cycleWord);
+  const parsed = parseCycleItinerary(cycleItinerary);
   const n = parsePositiveInt(nText);
-  const current = parsed ? rotateWord(parsed, cycleShift) : "";
-  const trial = n !== null && current ? tryCycleWord(n, current) : null;
+  const current = parsed ? rotateItinerary(parsed, cycleShift) : "";
+  const trial = n !== null && current ? tryCycleItinerary(n, current) : null;
   return (
     <div className="space-y-5">
       <StartControl />
       <div className="flex flex-wrap items-end gap-3">
         <label className="text-sm text-muted">
-          Cycle word
+          Cycle itinerary
           <input
             className="ml-2 rounded border border-line bg-card px-2 py-1 font-mono uppercase"
-            value={cycleWord}
+            value={cycleItinerary}
             onChange={(event) => {
-              setCycleWord(event.target.value.toUpperCase());
+              setCycleItinerary(event.target.value.toUpperCase());
               setCycleShift(0);
             }}
           />
@@ -40,7 +40,7 @@ export function CycleTab() {
           value=""
           onChange={(event) => {
             if (event.target.value) {
-              setCycleWord(event.target.value);
+              setCycleItinerary(event.target.value);
               setCycleShift(0);
             }
           }}
@@ -97,7 +97,7 @@ export function CycleTab() {
           </div>
           {!expanding(parsed) ? (
             <p className="text-sm text-warn">
-              A contracting word cannot close a nontrivial cycle (Theorem 3.2).
+              A contracting itinerary cannot close a nontrivial cycle (Theorem 3.2).
             </p>
           ) : (
             <p className="text-sm text-muted">
@@ -108,7 +108,7 @@ export function CycleTab() {
           )}
           {trial ? (
             <div className="grid gap-3 sm:grid-cols-3">
-              <Metric label="Followed the word?" value={trial.follows ? "yes" : "no"} />
+              <Metric label="Followed the itinerary?" value={trial.follows ? "yes" : "no"} />
               <Metric
                 label="Image"
                 value={trial.image === null ? "—" : formatInt(trial.image)}

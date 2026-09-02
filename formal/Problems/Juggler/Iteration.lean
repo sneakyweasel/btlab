@@ -5,7 +5,7 @@ namespace Problems.Juggler
 /-!
 # Iteration of the one-step map
 
-`floorPower^[k]` and the addition law. No parity, no words.
+`floorPower^[k]` and the addition law. No parity, no itineraries.
 -/
 
 theorem iterate_cons (n : ℕ) (k : ℕ) :

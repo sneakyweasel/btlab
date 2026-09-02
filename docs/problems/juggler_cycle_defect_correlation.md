@@ -8,7 +8,7 @@ Refinement of
 not a new paper. It asks whether successive exact floor defects
 are coupled strongly enough that the run-type finance budget is
 unattainable, even though aggregate \((L,o)\) packing remains
-feasible. Not a halt theorem, not a leftover-word census, not a
+feasible. Not a halt theorem, not a leftover-itinerary census, not a
 new global finance identity, not Fourier, and not a residue /
 \(p\)-adic system.
 
@@ -111,7 +111,7 @@ Existing machinery      global_defect_identity; globalDefect;
                         lowerDenom; CycleMin; AboveAnchor;
                         run-type finance; 99 survivor set;
                         exact odd/even floor cells;
-                        odd_cell_unique; power-gap recurrence
+                        odd_preimage_unique; power-gap recurrence
 Maximum Phase-0 scope   First derive exact two-step and three-step
                         defect-correlation inequalities.
                         Test them on the finance-hardest survivors,

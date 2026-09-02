@@ -16,7 +16,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.k5_post_l_ooe import WORD_W5, row_501
 from research.juggler_sequence.lean_paths import (
     CELLS,
@@ -29,7 +29,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.oneshot_recovery import WORD, post_kind
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_persist.json"
@@ -85,13 +85,13 @@ LEAN_THEOREMS = (
     "power_bound_word",
     "power_bound_contracts",
     "ooo_residual_ge_cube",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "no_cycleMin_ooeoooe",
     "floorPower_oooee_five_step_lt",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -111,7 +111,7 @@ def odd_run_len(x: int, cap: int = 20) -> int:
 
 
 def l_row(n: int) -> dict[str, Any] | None:
-    if not follows_word(n, WORD):
+    if not follows_itinerary(n, WORD):
         return None
     t = image_after(n, WORD)
     return {
@@ -119,7 +119,7 @@ def l_row(n: int) -> dict[str, Any] | None:
         "t": t,
         "run": odd_run_len(t),
         "kind": post_kind(t),
-        "follows_w5": follows_word(n, WORD_W5),
+        "follows_w5": follows_itinerary(n, WORD_W5),
     }
 
 
@@ -216,7 +216,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "ParityPersist" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_lean": True,
     }
 
@@ -238,8 +238,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         lean["sorry_free"]
         and lean["CycleMin"]
         and lean["power_bound_word"]
-        and lean["odd_cell_unique"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and lean["odd_preimage_unique"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]

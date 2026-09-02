@@ -84,7 +84,7 @@
     ],
     "eq_sq_hits": 0,
     "n_search": false,
-    "cycle_word_census": false,
+    "cycle_itinerary_census": false,
     "excursions": [
       {
         "m": 3,
@@ -627,5 +627,5 @@
     ],
     "reason": "every nontrivial cycle has odd min, even max, and M >= (m+1)^2; any realized path from m to an even cycle state is superquadratic. First-cell maxima are impossible. Ordinary stay-above-min transients often drop before m^2, so the cycle constraint is not vacuous"
   },
-  "search_method": "stay-above-min transient calibration; no cycle-state search; no cycle-word census; exact integer cells only"
+  "search_method": "stay-above-min transient calibration; no cycle-state search; no cycle-itinerary census; exact integer cells only"
 }

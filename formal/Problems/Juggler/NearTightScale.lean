@@ -7,7 +7,7 @@ namespace Problems.Juggler
 
 The local remainder window `0 ≤ ρ < 2T+1` makes the relative
 remainder `η = ρ / T^2` decay as `T` grows. For a fixed finite
-word the relative slack `1+q` is a weighted product of local
+itinerary the relative slack `1+q` is a weighted product of local
 `1+η` factors, so `q` becomes small at large scale. A large-`λ`
 predecessor only enters by making the next start enormous.
 

@@ -16,9 +16,9 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.backward_geometry import pred_even, pred_odd
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
-from research.juggler_sequence.power_words import floor_power, itinerary, word_of
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
+from research.juggler_sequence.power_itineraries import floor_power, itinerary, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_first_collision.md"
@@ -35,10 +35,10 @@ START_MAX = 400
 WORD_LEN_MAX = 3
 
 ARCHIVED = (
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "oddLanding_preimage_unique",
-    "even_cell_iff",
-    "odd_cell_iff",
+    "even_preimage_iff",
+    "odd_preimage_iff",
 )
 
 WITNESS_EE = {"n": 100, "u": "E", "m": 102, "v": "E", "x": 10}
@@ -53,7 +53,7 @@ def orbit(n: int, word: str) -> list[int]:
 
     if not word:
         raise ValueError("orbit requires a nonempty word")
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         raise ValueError(f"word {word!r} does not follow from {n}")
     current = n
     states = [current]
@@ -69,7 +69,7 @@ def last_parent(n: int, word: str) -> int:
 
 def parent_type(u: str, v: str) -> str:
     if not u or not v:
-        raise ValueError("parent_type requires nonempty words")
+        raise ValueError("parent_type requires nonempty itinerarys")
     if u[-1] not in "EO" or v[-1] not in "EO":
         raise ValueError(f"invalid parent letters {(u[-1], v[-1])}")
     return u[-1] + v[-1]
@@ -87,7 +87,7 @@ def is_first_collision(
 
     if n == m or not u or not v:
         return False
-    if not follows_word(n, u) or not follows_word(m, v):
+    if not follows_itinerary(n, u) or not follows_itinerary(m, v):
         return False
     left = orbit(n, u)
     right = orbit(m, v)
@@ -99,7 +99,7 @@ def is_first_collision(
 
 
 def even_preds_from_cell(x: int) -> list[int]:
-    lo, hi = even_cell(x)
+    lo, hi = even_preimage(x)
     first = max(lo, 2)
     if first % 2:
         first += 1
@@ -107,7 +107,7 @@ def even_preds_from_cell(x: int) -> list[int]:
 
 
 def odd_preds_from_cell(x: int) -> list[int]:
-    return [n for n in odd_cell_integers(x) if n >= 1 and n % 2 == 1 and floor_power(n) == x]
+    return [n for n in odd_preimage_integers(x) if n >= 1 and n % 2 == 1 and floor_power(n) == x]
 
 
 def one_step_row(x: int) -> dict[str, Any]:
@@ -318,7 +318,7 @@ def witness_record(row: dict[str, Any], *, exclude_sink: bool = True) -> dict[st
         "type": parent_type(u, v),
         "first": is_first_collision(n, u, m, v, exclude_sink=exclude_sink),
         "distinct_parents": left[-2] != right[-2],
-        "follows": follows_word(n, u) and follows_word(m, v),
+        "follows": follows_itinerary(n, u) and follows_itinerary(m, v),
         "same_image": left[-1] == right[-1] == row["x"],
     }
 
@@ -375,7 +375,7 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
             "decision": "CLOSE",
             "reason": (
                 "first collision iff distinct last parents; OO empty by "
-                "odd_cell_unique; OE/EO and EE are the one-step cells"
+                "odd_preimage_unique; OE/EO and EE are the one-step cells"
             ),
             "new_seam": False,
             "leftover_killer": False,

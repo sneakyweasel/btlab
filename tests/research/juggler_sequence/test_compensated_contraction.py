@@ -10,7 +10,7 @@ from research.juggler_sequence.compensated_contraction import (
     classify,
     eoo_witnesses,
     first_defect_sufficient,
-    follows_word,
+    follows_itinerary,
     formal_gap,
     image_after,
     lean_api_present,
@@ -20,14 +20,14 @@ from research.juggler_sequence.compensated_contraction import (
     word_row,
 )
 from research.juggler_sequence.envelope_defect import local_defect
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_eoo_witnesses_contract_and_first_defect_fails():
-    assert follows_word(2, "EOO")
-    assert follows_word(12, "EOO")
-    assert follows_word(14, "EOO")
-    assert follows_word(10, "EOO")
+    assert follows_itinerary(2, "EOO")
+    assert follows_itinerary(12, "EOO")
+    assert follows_itinerary(14, "EOO")
+    assert follows_itinerary(10, "EOO")
     assert image_after(2, "EOO") == 1
     assert image_after(12, "EOO") == 11
     assert image_after(14, "EOO") == 11
@@ -54,9 +54,9 @@ def test_ooe_oeo_no_contraction_on_small_window():
     assert oeo["realized"] >= 1
     assert ooe["contract_count"] == 0
     assert oeo["contract_count"] == 0
-    assert follows_word(5, "OOE")
+    assert follows_itinerary(5, "OOE")
     assert image_after(5, "OOE") == 6
-    assert follows_word(15, "OEO")
+    assert follows_itinerary(15, "OEO")
     assert image_after(15, "OEO") == 18
 
 

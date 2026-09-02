@@ -8,12 +8,12 @@ Refinement of
 not a new paper. After the closed return-cost / descent leftover-killers,
 this phase asks whether peak count \(p\) is a new structural axis
 between Section 3 run form and Section 4 finance. Not a halt theorem,
-not a leftover-word census, not a floor raise, and not a reopen of
+not a leftover-itinerary census, not a floor raise, and not a reopen of
 Section 5.
 
 ## Problem
 
-On a CycleMin word, write the parity word in run form
+On a CycleMin itinerary, write the parity itinerary in run form
 \(O^{a_1}E^{b_1}\cdots O^{a_p}E^{b_p}\) with \(a_i,b_i\ge 1\) and
 \(a_1\ge 2\). Then \(p\) is the number of nonempty odd runs. Is
 \(p=1\) impossible for an elementary cell/return reason that is not
@@ -33,8 +33,8 @@ CycleMax landing of
 Every CycleMin word satisfies \(p\le\min(e,o-1)\) and therefore
 \(p<(1-\log 2/\log 3)L\approx 0.36907\,L\). The bound \(p\le e\) is
 already in Paper A §4. The bound \(p\le o-1\) never binds on an
-expanding word of length \(\ge 4\). Theorem 4.7 packing achieves
-\(p=e\), so no sharper \(c<0.36907\) exists at the word level.
+expanding itinerary of length \(\ge 4\). Theorem 4.7 packing achieves
+\(p=e\), so no sharper \(c<0.36907\) exists at the itinerary level.
 
 **B1 leftover table (COMPUTATIONALLY VERIFIED).**
 At floor \(N_0=10^6\), existing joint-minima and height packing
@@ -77,7 +77,7 @@ No cycle of any length — not claimed.
 - \(O^a EE\), \(O^a EEE\) —
   **EXACT — LEAN VERIFIED** (Theorems 3.12, 3.14)
 - \(O^7\mathrm{EEEE}\) +1-chain —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_oooooooeeee`)
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_oooooooeeee`)
 - Odd-run starts \(\le e\) —
   **EXACT — HUMAN PROOF** (Paper A §4)
 - Run-type packing achieves \(p=e\) —
@@ -118,7 +118,7 @@ Falsifier               leftover-scale (o,e) leak the cell and
 Existing machinery      Lemma 3.21b run form; Thm 3.22 e≥4;
                         trailing-evens (Lemma 3.9);
                         O^a EE / O^a EEE (Thm 3.12, 3.14);
-                        no_cycle_word_oooooooeeee;
+                        no_cycle_itinerary_oooooooeeee;
                         CycleMin slack 3^o-2^{o+4};
                         m-finance / height packing;
                         adversarial_valley_count
@@ -151,7 +151,7 @@ It is not required.
 - \(p\le\min(e,o-1)<0.36907\,L\) —
   **REPARAMETERIZATION** of Lemma 3.21b and Theorem 3.2
 - Sharper \(p\le cL-C\) with \(c<0.36907\) —
-  **REFUTED** at the word level by Theorem 4.7
+  **REFUTED** at the itinerary level by Theorem 4.7
 - Height / joint-minima kill of leftover \(m=1,2\) —
   **COMPUTATIONALLY VERIFIED**; Section 4 corollary
 - Denom-cell on leftover \(O^o E^e\) —

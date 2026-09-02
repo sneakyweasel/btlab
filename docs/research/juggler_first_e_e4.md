@@ -50,14 +50,14 @@ gapped last-cluster is Theorem 3.13 on the last two-even suffix; long-a1 bunched
 - `CycleMin`: `True`
 - `no_cycleMin_gapped_three_even_ee`: `True`
 - `no_cycleMin_gapped_three_even_eoe`: `True`
-- `no_cycle_word_gapped_three_even_ee`: `True`
-- `no_cycle_word_three_even_eee`: `True`
-- `no_cycle_word_three_even_eoee`: `True`
-- `no_cycle_word_three_even_eooee`: `True`
-- `no_cycle_word_three_even_eoooee`: `True`
-- `no_cycle_word_three_even_eeoe`: `True`
-- `no_cycle_word_three_even_eoeoe`: `True`
-- `no_cycle_word_three_even_eooeoe`: `True`
+- `no_cycle_itinerary_gapped_three_even_ee`: `True`
+- `no_cycle_itinerary_three_even_eee`: `True`
+- `no_cycle_itinerary_three_even_eoee`: `True`
+- `no_cycle_itinerary_three_even_eooee`: `True`
+- `no_cycle_itinerary_three_even_eoooee`: `True`
+- `no_cycle_itinerary_three_even_eeoe`: `True`
+- `no_cycle_itinerary_three_even_eoeoe`: `True`
+- `no_cycle_itinerary_three_even_eooeoe`: `True`
 - no four-even theorem: `True`
 - no first-E e=4 theorem: `True`
 - length eight open in census: `True`

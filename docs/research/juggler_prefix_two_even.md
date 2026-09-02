@@ -56,8 +56,8 @@ not the loose algebra.
 - `cycleMin_ge`: `True`
 - `cycle_trailing_evens_lt`: `True`
 - `shared_two_even_tail`: `True`
-- `no_cycle_word_two_even_ee`: `True`
-- `no_cycle_word_two_even_eoe`: `True`
+- `no_cycle_itinerary_two_even_ee`: `True`
+- `no_cycle_itinerary_two_even_eoe`: `True`
 - `no_cycleMin_gapped_three_even_ee`: `True`
 - `no_cycleMin_gapped_three_even_eoe`: `True`
 - `returnsIntoB`: `True`

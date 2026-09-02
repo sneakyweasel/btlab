@@ -7,32 +7,32 @@ namespace Problems.Juggler
 set_option maxHeartbeats 8000000
 set_option exponentiation.threshold 2048
 
-def wordOOOOEE : List Branch :=
+def itineraryOOOOEE : List Branch :=
   [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even, Branch.even]
 
-def wordOOOEOE' : List Branch :=
+def itineraryOOOEOE' : List Branch :=
   [Branch.odd, Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.even]
 
-def cycleWordB (n : ℕ) (w : List Branch) : Bool :=
+def cycleItineraryB (n : ℕ) (w : List Branch) : Bool :=
   followsB n w && (image n w == n) && decide (1 ≤ w.length)
 
 theorem two_mul_pow256_gt_pow257 :
     (257 : ℕ) ^ 64 < 2 * 256 ^ 64 := by
   native_decide
 
-theorem cycleWordB_oooeoe_lt256 :
-    ∀ n : Fin 256, cycleWordB n.val wordOOOEOE' = false := by
+theorem cycleItineraryB_oooeoe_lt256 :
+    ∀ n : Fin 256, cycleItineraryB n.val itineraryOOOEOE' = false := by
   native_decide
 
-theorem cycleWordB_ooooee_lt256 :
-    ∀ n : Fin 256, cycleWordB n.val wordOOOOEE = false := by
+theorem cycleItineraryB_ooooee_lt256 :
+    ∀ n : Fin 256, cycleItineraryB n.val itineraryOOOOEE = false := by
   native_decide
 
-def wordOOOOOEE : List Branch :=
+def itineraryOOOOOEE : List Branch :=
   [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
     Branch.even, Branch.even]
 
-def wordOOOOEOE : List Branch :=
+def itineraryOOOOEOE : List Branch :=
   [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even,
     Branch.odd, Branch.even]
 
@@ -41,15 +41,15 @@ theorem pow14_243_gt_two_pow422_pow15_128 :
     (2 : ℕ) ^ 422 * 15 ^ 128 < 14 ^ 243 := by
   native_decide
 
-theorem cycleWordB_oooooee_lt14 :
-    ∀ n : Fin 14, cycleWordB n.val wordOOOOOEE = false := by
+theorem cycleItineraryB_oooooee_lt14 :
+    ∀ n : Fin 14, cycleItineraryB n.val itineraryOOOOOEE = false := by
   native_decide
 
-theorem cycleWordB_ooooeoe_lt14 :
-    ∀ n : Fin 14, cycleWordB n.val wordOOOOEOE = false := by
+theorem cycleItineraryB_ooooeoe_lt14 :
+    ∀ n : Fin 14, cycleItineraryB n.val itineraryOOOOEOE = false := by
   native_decide
 
-def wordOOOOOOEEE : List Branch :=
+def itineraryOOOOOOEEE : List Branch :=
   [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
     Branch.even, Branch.even, Branch.even]
 
@@ -58,8 +58,8 @@ theorem pow129_512_lt_64_mul_pow128_512 :
     (129 : ℕ) ^ 512 < 64 * 128 ^ 512 := by
   native_decide
 
-theorem cycleWordB_ooooooeee_lt128 :
-    ∀ n : Fin 128, cycleWordB n.val wordOOOOOOEEE = false := by
+theorem cycleItineraryB_ooooooeee_lt128 :
+    ∀ n : Fin 128, cycleItineraryB n.val itineraryOOOOOOEEE = false := by
   native_decide
 
 /-! Uniform two-even leftovers. Below `256` no start `n ≥ 2` realizes
@@ -69,14 +69,14 @@ need tables. -/
 def sevenOdds : List Branch :=
   List.replicate 7 Branch.odd
 
-def wordTwoEvenEE8 : List Branch :=
+def itineraryTwoEvenEE8 : List Branch :=
   List.replicate 6 Branch.odd ++ [Branch.even, Branch.even]
 
-def wordTwoEvenEOE8 : List Branch :=
+def itineraryTwoEvenEOE8 : List Branch :=
   List.replicate 5 Branch.odd ++
     [Branch.even, Branch.odd, Branch.even]
 
-def wordTwoEvenEOE9 : List Branch :=
+def itineraryTwoEvenEOE9 : List Branch :=
   List.replicate 6 Branch.odd ++
     [Branch.even, Branch.odd, Branch.even]
 
@@ -84,16 +84,16 @@ theorem followsB_seven_odds_of_lt256 :
     ∀ n : Fin 256, 2 ≤ n.val → followsB n.val sevenOdds = false := by
   native_decide
 
-theorem cycleWordB_two_even_ee8_lt256 :
-    ∀ n : Fin 256, cycleWordB n.val wordTwoEvenEE8 = false := by
+theorem cycleItineraryB_two_even_ee8_lt256 :
+    ∀ n : Fin 256, cycleItineraryB n.val itineraryTwoEvenEE8 = false := by
   native_decide
 
-theorem cycleWordB_two_even_eoe8_lt256 :
-    ∀ n : Fin 256, cycleWordB n.val wordTwoEvenEOE8 = false := by
+theorem cycleItineraryB_two_even_eoe8_lt256 :
+    ∀ n : Fin 256, cycleItineraryB n.val itineraryTwoEvenEOE8 = false := by
   native_decide
 
-theorem cycleWordB_two_even_eoe9_lt256 :
-    ∀ n : Fin 256, cycleWordB n.val wordTwoEvenEOE9 = false := by
+theorem cycleItineraryB_two_even_eoe9_lt256 :
+    ∀ n : Fin 256, cycleItineraryB n.val itineraryTwoEvenEOE9 = false := by
   native_decide
 
 
@@ -114,22 +114,22 @@ other five bunched families.
 -/
 
 
-def wordOOOOOEOEE : List Branch :=
+def itineraryOOOOOEOEE : List Branch :=
   List.replicate 5 Branch.odd ++
     [Branch.even, Branch.odd, Branch.even, Branch.even]
 
-def wordOOOOOOEOEE : List Branch :=
+def itineraryOOOOOOEOEE : List Branch :=
   List.replicate 6 Branch.odd ++
     [Branch.even, Branch.odd, Branch.even, Branch.even]
 
-theorem cycleWordB_ooooo_eoee_lt314 :
+theorem cycleItineraryB_ooooo_eoee_lt314 :
     ∀ n : Fin 314, 2 ≤ n.val →
-      cycleWordB n.val wordOOOOOEOEE = false := by
+      cycleItineraryB n.val itineraryOOOOOEOEE = false := by
   native_decide
 
-theorem cycleWordB_oooooo_eoee_lt16 :
+theorem cycleItineraryB_oooooo_eoee_lt16 :
     ∀ n : Fin 16, 2 ≤ n.val →
-      cycleWordB n.val wordOOOOOOEOEE = false := by
+      cycleItineraryB n.val itineraryOOOOOOEOEE = false := by
   native_decide
 
 theorem pow314_243_gt_two_pow422_succ_pow192 :
@@ -152,9 +152,9 @@ def threeEvenEOOEE (a : ℕ) : List Branch :=
   List.replicate a Branch.odd ++
     [Branch.even, Branch.odd, Branch.odd, Branch.even, Branch.even]
 
-theorem cycleWordB_eooee_prefix_lt256 :
+theorem cycleItineraryB_eooee_prefix_lt256 :
     ∀ n : Fin 256, ∀ a : Fin 3, 2 ≤ n.val →
-      cycleWordB n.val (threeEvenEOOEE (a.val + 4)) = false := by
+      cycleItineraryB n.val (threeEvenEOOEE (a.val + 4)) = false := by
   native_decide
 
 /-!
@@ -165,22 +165,22 @@ other bunched families.
 -/
 
 
-def wordOOOOOEEOE : List Branch :=
+def itineraryOOOOOEEOE : List Branch :=
   List.replicate 5 Branch.odd ++
     [Branch.even, Branch.even, Branch.odd, Branch.even]
 
-def wordOOOOOOEEOE : List Branch :=
+def itineraryOOOOOOEEOE : List Branch :=
   List.replicate 6 Branch.odd ++
     [Branch.even, Branch.even, Branch.odd, Branch.even]
 
-theorem cycleWordB_ooooo_eeoe_lt314 :
+theorem cycleItineraryB_ooooo_eeoe_lt314 :
     ∀ n : Fin 314, 2 ≤ n.val →
-      cycleWordB n.val wordOOOOOEEOE = false := by
+      cycleItineraryB n.val itineraryOOOOOEEOE = false := by
   native_decide
 
-theorem cycleWordB_oooooo_eeoe_lt16 :
+theorem cycleItineraryB_oooooo_eeoe_lt16 :
     ∀ n : Fin 16, 2 ≤ n.val →
-      cycleWordB n.val wordOOOOOOEEOE = false := by
+      cycleItineraryB n.val itineraryOOOOOOEEOE = false := by
   native_decide
 
 /-!
@@ -194,9 +194,9 @@ def threeEvenEOEOE (a : ℕ) : List Branch :=
   List.replicate a Branch.odd ++
     [Branch.even, Branch.odd, Branch.even, Branch.odd, Branch.even]
 
-theorem cycleWordB_eoeoe_prefix_lt256 :
+theorem cycleItineraryB_eoeoe_prefix_lt256 :
     ∀ n : Fin 256, ∀ a : Fin 3, 2 ≤ n.val →
-      cycleWordB n.val (threeEvenEOEOE (a.val + 4)) = false := by
+      cycleItineraryB n.val (threeEvenEOEOE (a.val + 4)) = false := by
   native_decide
 
 /-!
@@ -213,9 +213,9 @@ def threeEvenEOOOEE (a : ℕ) : List Branch :=
     [Branch.even, Branch.odd, Branch.odd, Branch.odd,
       Branch.even, Branch.even]
 
-theorem cycleWordB_eoooee_prefix_lt256 :
+theorem cycleItineraryB_eoooee_prefix_lt256 :
     ∀ n : Fin 256, ∀ a : Fin 4, 2 ≤ n.val →
-      cycleWordB n.val (threeEvenEOOOEE (a.val + 3)) = false := by
+      cycleItineraryB n.val (threeEvenEOOOEE (a.val + 3)) = false := by
   native_decide
 
 theorem pow40_27_lt_two_mul_pow39_27 :
@@ -244,9 +244,9 @@ def threeEvenEOOEOE (a : ℕ) : List Branch :=
     [Branch.even, Branch.odd, Branch.odd, Branch.even,
       Branch.odd, Branch.even]
 
-theorem cycleWordB_eooeoe_prefix_lt256 :
+theorem cycleItineraryB_eooeoe_prefix_lt256 :
     ∀ n : Fin 256, ∀ a : Fin 4, 2 ≤ n.val →
-      cycleWordB n.val (threeEvenEOOEOE (a.val + 3)) = false := by
+      cycleItineraryB n.val (threeEvenEOOEOE (a.val + 3)) = false := by
   native_decide
 
 theorem pow40_9_lt_two_mul_pow39_9 :

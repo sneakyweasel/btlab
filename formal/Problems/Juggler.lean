@@ -3,7 +3,7 @@ import Problems.Juggler.Iteration
 import Problems.Juggler.Termination
 import Problems.Juggler.TerminationFloor257
 import Problems.Juggler.Itinerary
-import Problems.Juggler.WordStats
+import Problems.Juggler.ItineraryStats
 import Problems.Juggler.Envelope
 import Problems.Juggler.Corridor
 import Problems.Juggler.CubeCorridor
@@ -11,7 +11,7 @@ import Problems.Juggler.Equality
 import Problems.Juggler.Defect
 import Problems.Juggler.GlobalDefect
 import Problems.Juggler.DefectLowerBound
-import Problems.Juggler.Cells
+import Problems.Juggler.Preimages
 import Problems.Juggler.Collapse
 import Problems.Juggler.Drift
 import Problems.Juggler.FirstPassage
@@ -33,7 +33,7 @@ import Problems.Juggler.CycleObstructions
 import Problems.Juggler.CycleExtrema
 import Problems.Juggler.Cycles
 import Problems.Juggler.LeftoverEval
-import Problems.Juggler.LeftoverCell
+import Problems.Juggler.LeftoverPreimage
 import Problems.Juggler.LeftoverShort
 import Problems.Juggler.FirstETransportEval
 import Problems.Juggler.BunchedTight
@@ -54,14 +54,14 @@ import Problems.Juggler.SequentialMordell
 import Problems.Juggler.LandingValuation
 import Problems.Juggler.PreimageCylinders
 import Problems.Juggler.OddLandingSets
-import Problems.Juggler.WordLanguage
+import Problems.Juggler.ItineraryLanguage
 import Problems.Juggler.GapCells
 import Problems.Juggler.Escape
 import Problems.Juggler.CycleFinance
 import Problems.Juggler.CycleFinanceLeftovers
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.CycleHeightFinance
-import Problems.Juggler.WalkChargeWords
+import Problems.Juggler.WalkChargeItineraries
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.RotationAverage

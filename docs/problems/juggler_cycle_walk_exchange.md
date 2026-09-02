@@ -1,4 +1,4 @@
-# Juggler hug-word exchange and explicit \(C_*(n)\)
+# Juggler hug-itinerary exchange and explicit \(C_*(n)\)
 
 Status: **ACTIVE** (Phase 0 decided)
 
@@ -11,7 +11,7 @@ or leftover-cell slogans.
 ## Problem
 
 Greedy PROMOTE identified the certified walk-charge maximizer with
-the hug word, computationally. Is that an exchange lemma for every
+the hug itinerary, computationally. Is that an exchange lemma for every
 feasible \((L,o)\), and is leftover charge-per-letter the explicit
 ergodic integral of that walk?
 
@@ -54,7 +54,7 @@ invariant probability is Lebesgue/\((1+\alpha)\). Mean height is
 \((1+\alpha)/2\).
 
 **Explicit \(C_*(n)\) (EXACT — HUMAN PROOF).** Charge-per-letter
-along the infinite hug word is
+along the infinite hug itinerary is
 
 \[
 C_*(n)
@@ -92,7 +92,7 @@ No cycle of any length — not claimed.
 
 ## Current literature
 
-- Greedy hug-word maximizer —
+- Greedy hug-itinerary maximizer —
   **COMPUTATIONALLY VERIFIED**
   ([juggler_cycle_walk_greedy.md](juggler_cycle_walk_greedy.md))
 - Mechanical extremizer —
@@ -220,7 +220,7 @@ Classification **WALK_EXCHANGE_GREEN**.
 
 A Koksma / Denjoy–Koksma envelope
 \(C_L\le C_*(n)+1/L\), or the cruder
-\(C_L\le 1/(\ln 3\,\ln n)\), for leftover hug words. Either would
+\(C_L\le 1/(\ln 3\,\ln n)\), for leftover hug itineraries. Either would
 make the 18 kills DP-free. Do not raise \(N_0\) and do not claim
 a uniform \(B/\theta\) gap.
 
@@ -239,7 +239,7 @@ envelope, so it is not promoted as a certified kill table.
 
 Best next question: does Koksma give
 \(C_L\le C_*(n')+1/L\) (or \(C_L\le 1/(\ln 3\,\ln n')\)) for
-every leftover hug word, making the 18 kills DP-free?
+every leftover hug itinerary, making the 18 kills DP-free?
 
 ## Publication assessment
 

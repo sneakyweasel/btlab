@@ -15,7 +15,7 @@ witnesses and separate language tags.
 
 ## Exact statement
 
-Keep the quantifiers existential. A word is experimentally realized
+Keep the quantifiers existential. An itinerary is experimentally realized
 when some scanned \(n\) follows it. Failure to find a realizer is
 
 \[
@@ -37,7 +37,7 @@ This says nothing about totality.
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.Residuals`.
 - Existential languages `jugglerLanguage` /
   `expandingLanguage` / `persistentExpandingLanguage` —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.WordLanguage`.
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.ItineraryLanguage`.
 - Word-language arrangement attack —
   **CLOSE** as `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`. This atlas does
   not reopen that claim.
@@ -57,9 +57,9 @@ Novelty hypothesis      None in M1. This is infrastructure for later
 Falsifier               GPU itinerary disagrees with the CPU/Lean
                         floorPower/follows fixtures, or PE_PROXY is
                         written as PE_CERTIFIED.
-Existing machinery      floor_power, follows_word, classify_step,
-                        walk_pe_run, WordLanguage.lean, closed
-                        word_language.py prototype
+Existing machinery      floor_power, follows_itinerary, classify_step,
+                        walk_pe_run, ItineraryLanguage.lean, closed
+                        itinerary_language.py prototype
 Maximum Phase-0 scope   Milestone 1 only: k<=12, n<=10^6, Kernel A,
                         compact tables, validation, manifest
 Promotion criterion     Not applicable in M1. Default is PARK as

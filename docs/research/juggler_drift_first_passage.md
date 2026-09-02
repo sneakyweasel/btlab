@@ -36,7 +36,7 @@ Maximum Phase-0 scope   one probe; nested signatures; hunt; no Lean
 - classification: **DRIFT_FIRST_PASSAGE_COMPLEX**
 - sorry-free: `True`
 
-nested A_w signatures do not compress below the words themselves; 10 extensions are tautological window subsets and 259 named-thinner hits are residue/modulus artefacts of longer prefixes, not a pruning rule; hunt max tau_+=253 is a larger record, not a structured unbounded family; 1 hunt bit-cap leftovers are not a bound L.
+nested A_w signatures do not compress below the itineraries themselves; 10 extensions are tautological window subsets and 259 named-thinner hits are residue/modulus artefacts of longer prefixes, not a pruning rule; hunt max tau_+=253 is a larger record, not a structured unbounded family; 1 hunt bit-cap leftovers are not a bound L.
 
 ## Nested census
 
@@ -255,7 +255,7 @@ nested A_w signatures do not compress below the words themselves; 10 extensions 
 
 **DRIFT_FIRST_PASSAGE_COMPLEX**
 
-nested A_w signatures do not compress below the words themselves; 10 extensions are tautological window subsets and 259 named-thinner hits are residue/modulus artefacts of longer prefixes, not a pruning rule; hunt max tau_+=253 is a larger record, not a structured unbounded family; 1 hunt bit-cap leftovers are not a bound L.
+nested A_w signatures do not compress below the itineraries themselves; 10 extensions are tautological window subsets and 259 named-thinner hits are residue/modulus artefacts of longer prefixes, not a pruning rule; hunt max tau_+=253 is a larger record, not a structured unbounded family; 1 hunt bit-cap leftovers are not a bound L.
 
 A finite tau_+ on this window is not tau_+ < infinity.
 A search-horizon miss is not a bound L.

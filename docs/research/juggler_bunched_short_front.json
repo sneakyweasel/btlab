@@ -907,7 +907,7 @@
     "oe_block_contracts": true,
     "no_cycleMin_prefix_two_even_eoe": true,
     "no_cycleMin_prefix_eee": true,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "has_no_cycleMin_four_even": false,
     "has_no_cycleMin_five_even": false,
     "has_no_juggler_cycle": false,

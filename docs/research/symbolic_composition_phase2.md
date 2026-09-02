@@ -98,7 +98,7 @@ descent fails at 3->8; ascent fails at 1->0
 - Derivation: A weak two-step length inequality may survive while the one-step concat-length law already fails. Aggregate Omega/omega/length still miss the factor-word rewrite.
 - Classification: **HOME_COMPOSITION_NEEDS_RICHER_STRUCTURE**
 - Lean: `NOT_YET_FORMALIZATION_READY`
-- Relation to Phase 1: Phase-1 V_C failed on 4->22 and 10->25. Two-step composition still sees concat as a word rewrite, not as a scalar descent on (length, Omega, omega).
+- Relation to Phase 1: Phase-1 V_C failed on 4->22 and 10->25. Two-step composition still sees concat as an itinerary rewrite, not as a scalar descent on (length, Omega, omega).
 - Next proposal: `concat_word_composition`
 
 ### Checks
@@ -142,7 +142,7 @@ and a factor-word rewrite, not a simpler exact bound.
 
 Juggler: composition → simpler state → exact bound (`T^2(n) < n`).
 Reverse-add: composition → new complexity (collapse at `1→2→0`, growth at `3→4→8`).
-Home Prime: composition → new complexity (concat is a word rewrite; `10→25` keeps length,
+Home Prime: composition → new complexity (concat is an itinerary rewrite; `10→25` keeps length,
 `16→2222→211101` drops `Omega`).
 There is no shared three-target composition theory.
 

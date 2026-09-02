@@ -16,8 +16,8 @@ from research.juggler_sequence.cycle_defect_congruence import (
 from research.juggler_sequence.cycle_gap_baker import exact_gap
 from research.juggler_sequence.cycle_mod_closure import MODULI, defect_width_collapses
 from research.juggler_sequence.cycle_remainder_finance import cell_record
-from research.juggler_sequence.global_defect import follows_word
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.global_defect import follows_itinerary
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_defect_congruence.md"
@@ -61,7 +61,7 @@ def test_seams_are_the_existing_cells():
 
 
 def test_composed_residual_is_the_global_defect():
-    assert follows_word(365, "OOE")
+    assert follows_itinerary(365, "OOE")
     rec = composed_residual(365, "OOE")
     assert rec["identity"] is True
     assert rec["cycle_formula_if_return"] is False

@@ -2653,7 +2653,7 @@
   ],
   "decision": {
     "classification": "CONTROL_FRONTIER_GREEN",
-    "reason": "The ideal first-return frontier is the unique bang-bang word, and it is realized at small admissible horizons, but the known long first-return records are not bang-bang and sit a definite peak gap below the same-horizon optimum. No uniform all-horizon realizability theorem is proved.",
+    "reason": "The ideal first-return frontier is the unique bang-bang itinerary, and it is realized at small admissible horizons, but the known long first-return records are not bang-bang and sit a definite peak gap below the same-horizon optimum. No uniform all-horizon realizability theorem is proved.",
     "branch": "PARK"
   },
   "success_criteria": {

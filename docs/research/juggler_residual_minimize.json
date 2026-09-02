@@ -13,7 +13,7 @@
     "residual_state_object": false,
     "residual_step_extended": false,
     "finite_residual_automaton": false,
-    "word_language_reopened": false,
+    "itinerary_language_reopened": false,
     "history_is_new_state": false,
     "defect_financing_opened": false,
     "global_defect_growth_opened": false
@@ -5105,7 +5105,7 @@
     "no_global_termination_theorem": true,
     "GlobalDefect_untouched_by_this_probe": true,
     "FloorPower_absent": true,
-    "no_word_language_reopen": true
+    "no_itinerary_language_reopen": true
   },
   "decision": {
     "classification": "RESIDUAL_MN_REPACK",

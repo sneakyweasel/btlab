@@ -36,14 +36,14 @@ theorem. Do not prove totality.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Finite-word envelope \(T_w(n)^{2^k}\le n^{3^o}\) —
+- Finite-itinerary envelope \(T_w(n)^{2^k}\le n^{3^o}\) —
   **EXACT — LEAN VERIFIED**.
 - Even-run scale barrier \(m\ge n_*^{2^r}\) —
   **EXACT — LEAN VERIFIED**.
 - First image of a minimal start is odd —
   **EXACT — LEAN VERIFIED**.
 
-Project relationship: **extended**. The word envelope is specialized
+Project relationship: **extended**. The itinerary envelope is specialized
 to repeated `OE` and combined with minimality. Totality remains
 unclaimed.
 
@@ -129,7 +129,7 @@ Classification **REPEATED_OE_SCALE_GREEN**, with
 A later \((\texttt{OE})^r\) segment on a minimal non-1 orbit requires
 \(n_*^{4^r}\le x^{3^r}\). The start cannot carry any such segment.
 Odd growth must finance every later `OE` block. That is a scale
-budget, not a grammar of all parity words.
+budget, not a grammar of all parity itineraries.
 
 ## Open questions
 

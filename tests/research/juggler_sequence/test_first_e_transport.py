@@ -26,7 +26,7 @@ from research.juggler_sequence.first_e_transport import (
     word_gapped_ee,
     word_gapped_eoe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import shared_tail_holds
 
 
@@ -135,8 +135,8 @@ def test_dossier_boundary():
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
     assert "no_cycleMin_gapped_three_even_ee" in dossier
-    assert "no_cycle_word_length_eight" in dossier
-    assert "no_cycle_word_length_nine" in dossier
+    assert "no_cycle_itinerary_length_eight" in dossier
+    assert "no_cycle_itinerary_length_nine" in dossier
     assert "not a length-8" in dossier or "not a length-8/9" in dossier
-    assert "theorem no_cycle_word_length_eight" not in note
-    assert "theorem no_cycle_word_length_nine" not in note
+    assert "theorem no_cycle_itinerary_length_eight" not in note
+    assert "theorem no_cycle_itinerary_length_nine" not in note

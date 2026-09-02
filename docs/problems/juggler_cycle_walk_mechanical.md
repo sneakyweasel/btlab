@@ -11,7 +11,7 @@ slogan.
 ## Problem
 
 Walk-excursion identified leftover DP maximizers with the ceiling
-Christoffel word of slope \(o/L\). Is that word prefix-minimal in
+Christoffel word of slope \(o/L\). Is that itinerary prefix-minimal in
 \(u_k\) among all admissible \(u\ge 0\) walks with the same
 \((L,o)\), and does leftover charge-per-letter converge to the
 irrational mechanical average of slope \(1/(1+\log_2(3/2))\)?
@@ -38,7 +38,7 @@ Christoffel \(B\) equals the committed survey DP on
 \(L=50508,101016,151524,176251\) (relative error \(<10^{-14}\)).
 On the \(1054\)-family offsets, survey \(B\) exceeds Christoffel
 \(B\) by up to \(1.50\cdot 10^{-3}\) (worst \(L=180467\)). The
-certified maximizer is therefore the hugging word, which coincides
+certified maximizer is therefore the hugging itinerary, which coincides
 with Christoffel only on the seeds.
 
 **Mechanical average at this floor (COMPUTATIONALLY VERIFIED).**
@@ -179,7 +179,7 @@ Classification **WALK_MECHANICAL_CLOSED**.
 
 ## Open questions
 
-The charge maximizer is the greedy hugging word, which equals
+The charge maximizer is the greedy hugging itinerary, which equals
 Christoffel only near the critical slope. A human exchange lemma
 for that greedy word — not for ceiling Christoffel — is a
 different statement. Do not raise \(N_0\) and do not claim a

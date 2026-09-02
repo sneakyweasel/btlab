@@ -54,7 +54,7 @@ not resumed.
 - `power_bound_word`: `True`
 - `power_bound_contracts`: `True`
 - `ooo_residual_ge_cube`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `no_cycleMin_ooeoooe`: `True`
 - `floorPower_oooee_five_step_lt`: `True`
 

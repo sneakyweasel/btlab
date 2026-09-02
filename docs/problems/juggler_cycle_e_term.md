@@ -11,11 +11,11 @@ every positive integer reaches 1.
 Can the `OOE` last-even cell argument be lifted to a generic theorem
 — whenever the suffix \(v\) of \(vE\) sits at or above the next
 square, the cycle is impossible — and does that close every length-4
-E-terminating cycle word?
+E-terminating cycle itinerary?
 
 ## Exact statement
 
-If `CycleWord n (v ++ [E])`, then
+If `CycleItinerary n (v ++ [E])`, then
 
 \[
 n^2\le T_v(n)<(n+1)^2.
@@ -37,7 +37,7 @@ gives \(T_{OOO}(n)\ge(n+1)^2\) for \(n\ge 3\). Hence there is no
 length-4 E-terminating cycle for \(n\ge 2\).
 
 This says nothing about cycles ending in `O`. Do not prove that every
-cycle word is impossible. Do not attack cycles through `PowerBoundEq`.
+cycle itinerary is impossible. Do not attack cycles through `PowerBoundEq`.
 Do not prove totality.
 
 ## Current literature
@@ -84,7 +84,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - all E-terminating cycles are impossible — not claimed
 - cycles ending in `O` are impossible — not claimed
-- all cycle words are impossible — not claimed
+- all cycle itineraries are impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -111,12 +111,12 @@ exclusion. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `cycle_last_even_cell` / `cycle_last_even_cell_odd`
 - `no_cycle_append_even_of_suffix_threshold`
-- `no_cycle_word_oooe`
-- `no_cycle_word_length_four_ends_even`
+- `no_cycle_itinerary_oooe`
+- `no_cycle_itinerary_length_four_ends_even`
 
 `FloorPower`, `Progress`, and `MinimalNonTerm` are not rewritten. No
 `sorry`. No halt theorem. No `no_juggler_cycle`. No `CycleSearch`.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.square_seam import (
     CLASS_REPARAM,
     DOSSIER_PATH,

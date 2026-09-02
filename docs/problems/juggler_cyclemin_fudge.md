@@ -42,15 +42,15 @@ For every such \(w\) the integer comparison
 No \(n\) with \(2\le n<30\) follows any of the thirty prefixes.
 Hence none of the thirty words is a `CycleMin` word. The eight
 leftovers whose only CycleMin-shaped rotation is themselves are
-not cycle words. There is no `no_cycle_word_length_eleven` and
-no `no_cycle_word_four_even`.
+not cycle itineraries. There is no `no_cycle_itinerary_length_eleven` and
+no `no_cycle_itinerary_four_even`.
 
 ## Current literature
 
 - \(O^{7}\mathrm{EEEE}\) +1-chain —
   **EXACT — LEAN VERIFIED**.
 - \(O^{6}\mathrm{EEEOE}\) cell argument —
-  **EXACT — HUMAN PROOF**; cycle-word corollary Lean.
+  **EXACT — HUMAN PROOF**; cycle-itinerary corollary Lean.
 - the five `(1,3)` words as `CycleMin` —
   **EXACT — LEAN VERIFIED**; EEE-cell argument human.
 - Four-even short-first-gap \(Z_4\) —
@@ -80,7 +80,7 @@ Existing machinery      absorb_odd_step; trailing-evens cell;
                         30-word list; O^7 / (1,3) chains
 Maximum Phase-0 scope   exponent machine on 30 words; Lean
                         CycleMin exclusion; no Z5, no census
-Promotion criterion     slack 139 on every word and chain N0
+Promotion criterion     slack 139 on every itinerary and chain N0
                         at or below the first prefix start
 Stop criterion          slack <= 0; leftover-scale N0; a
                         23-word rescue
@@ -104,7 +104,7 @@ It is not required.
   **EXACT — LEAN VERIFIED** (`noFollowsFrom2Below`)
 - the thirty words are not `CycleMin` words —
   **EXACT — LEAN VERIFIED** (`no_cycleMin_cyclemin_fudge`)
-- the eight unique-rotation leftovers are not cycle words —
+- the eight unique-rotation leftovers are not cycle itineraries —
   **EXACT — LEAN VERIFIED**
 - leftover \(2\)-fudge unused —
   **COMPUTATIONALLY VERIFIED**
@@ -146,11 +146,11 @@ None to the fudge. The stronger claims that fail:
 barrel, not by `JugglerPaper`. `absorb_even_step`,
 `family_slack139`, `no_cycleMin_cyclemin_fudge`, named
 `no_cycleMin_*` for all thirty leftovers, and unique-rotation
-`no_cycle_word_*` including `no_cycle_word_ooooooeeeoe` and
-`no_cycle_word_ooooooeoeee`. `SmallCycleCensus.lean` still
+`no_cycle_itinerary_*` including `no_cycle_itinerary_ooooooeeeoe` and
+`no_cycle_itinerary_ooooooeoeee`. `SmallCycleCensus.lean` still
 assembles only through length seven. No
-`no_cycle_word_length_eleven`. No `no_cycle_word_four_even`.
-No `no_cycle_word_cyclemin_fudge`. No `sorry`. No halt theorem.
+`no_cycle_itinerary_length_eleven`. No `no_cycle_itinerary_four_even`.
+No `no_cycle_itinerary_cyclemin_fudge`. No `sorry`. No halt theorem.
 Paper A is unchanged.
 
 ## Results
@@ -163,7 +163,7 @@ first-expanding leftover, independent of even placement. The
 integer comparison fires at \(N_0\le 29\). No prefix start
 exists below \(30\). The thirty length-11 short-gap leftovers
 are not `CycleMin` words. The eight unique-rotation leftovers
-are not cycle words.
+are not cycle itineraries.
 
 This is not a four-even assembler. The tails \(a_0>a_0^*\)
 were taken up by [juggler_cyclemin_tails](juggler_cyclemin_tails.md).
@@ -172,7 +172,7 @@ were taken up by [juggler_cyclemin_tails](juggler_cyclemin_tails.md).
 
 The tails \(a_0>a_0^*\) are recorded in
 [juggler_cyclemin_tails](juggler_cyclemin_tails.md). Do not
-write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
+write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 

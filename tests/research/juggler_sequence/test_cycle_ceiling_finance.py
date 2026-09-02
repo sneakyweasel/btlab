@@ -145,7 +145,7 @@ def test_dossier_and_registry():
     assert "juggler_ceiling_finance_leftover_killer" in dossier
     assert "even_iter_lt_succ_pow" in dossier
     assert "CycleCeilingFinance" not in paper
-    assert "theorem no_cycle_word_any_length" not in dossier
+    assert "theorem no_cycle_itinerary_any_length" not in dossier
     get_reference("simons-de-weger-2005-collatz-m-cycles")
     rec = get_conjecture("juggler_ceiling_finance_leftover_killer")
     assert rec["status"] == "REFUTED"

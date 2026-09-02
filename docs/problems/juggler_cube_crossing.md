@@ -34,7 +34,7 @@ realized `AboveAnchor` orbit, if it exists. Phase 0 asks whether
 the pair \((x^{3}=y^{2}+\delta,\; n^{2}\le x<n^{3})\) imposes a
 reusable restriction on \(F(x)\) or on the first return to
 \([n,n^{3})\), beyond `CubeOddLanding`, `cube_odd_lift`,
-`cube_lift_even_reset`, `odd_cell_unique`, and `EnvelopeState`.
+`cube_lift_even_reset`, `odd_preimage_unique`, and `EnvelopeState`.
 
 The named starts are \(37,69,89,365,501,1517,6187\). This is not
 a halt theorem.
@@ -51,7 +51,7 @@ a halt theorem.
 - Two-sided corridor width as a Lyapunov quantity —
   **CLOSE** (`juggler_odd_escape_corridor.md`)
 - Unique occupant of an odd floor cell —
-  **EXACT — LEAN VERIFIED** (`odd_cell_unique`)
+  **EXACT — LEAN VERIFIED** (`odd_preimage_unique`)
 - Empty-odd-cell PE forward law —
   **REFUTED** (`J-empty-odd-pe-forward`)
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**.
@@ -77,7 +77,7 @@ Falsifier D             a periodic orbit of F
 Falsifier E             every relation is EnvelopeState,
                         cube_odd_lift, or even_below_anchor_pow
 Existing machinery      CubeOddLanding; cube_odd_lift;
-                        cube_lift_even_reset; odd_cell_unique;
+                        cube_lift_even_reset; odd_preimage_unique;
                         EnvelopeState; 37 / leftover laboratories
 Maximum Phase-0 scope   cube-crossing dataset on named starts;
                         no Lean; no inverse census; no Sigma
@@ -101,7 +101,7 @@ It is not required.
 
 - \(\delta\) even and \(\delta\equiv x-1\pmod 8\) when \(y\) is
   odd — **REPARAMETERIZATION** of a generic odd-odd step
-- unique \(x\) with \(T(x)=y\) — **KNOWN** (`odd_cell_unique`)
+- unique \(x\) with \(T(x)=y\) — **KNOWN** (`odd_preimage_unique`)
 - \(n^{3}\le y<n^{5}\) — **EXACT — LEAN VERIFIED**
   (`cube_odd_lift`)
 - even \(y\) gives \(T^{2}(x)<x\) — **EXACT — LEAN VERIFIED**
@@ -171,7 +171,7 @@ The exact floor identity \(x^{3}=y^{2}+\delta\) forces only
 generic odd-odd arithmetic: \(\delta\) even and
 \(\delta\equiv x-1\pmod 8\) when both are odd. The same
 congruence holds on non-cube odd-odd steps. Unique preimage
-is `odd_cell_unique`, independent of the source cell. The
+is `odd_preimage_unique`, independent of the source cell. The
 two-step identity
 \(x^{9}-z^{4}=3y^{4}\delta_{1}+3y^{2}\delta_{1}^{2}+\delta_{1}^{3}+2\delta_{2}y^{3}-\delta_{2}^{2}\)
 holds, but \(\Psi\) does not exclude a return cell.
@@ -199,7 +199,7 @@ local identity at the boundary.
 ## Decision
 
 **CLOSE**. The exact near-power relation together with the
-source cell adds no restriction beyond `odd_cell_unique`,
+source cell adds no restriction beyond `odd_preimage_unique`,
 `cube_odd_lift`, and generic odd-odd parity. \(F\) is not a
 stable residual class. The missing hypothesis that would
 reuse the even-return theorem after one more odd step does

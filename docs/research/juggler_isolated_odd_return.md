@@ -31,7 +31,7 @@ Maximum Phase-0 scope   OE block; family landings; no Lean
 - exact fibre hits: `0`
 - empty / single-O hits: `0` / `0`
 
-OE contracts below the CycleMin floor, so the only isolated-odd prefixes are empty and O; those plus a short tail are CycleWords of length at most 6.
+OE contracts below the CycleMin floor, so the only isolated-odd prefixes are empty and O; those plus a short tail are CycleItineraries of length at most 6.
 
 ## Attack 1 — OE block map
 
@@ -48,17 +48,17 @@ window are `['', 'O']`. Extra prefixes:
 `0`. Fibre hits:
 `0`.
 
-Empty and single-`O` landings plus a short tail are CycleWords
+Empty and single-`O` landings plus a short tail are CycleItineraries
 of length at most 6, already excluded.
 
 ## Lean
 
 - `oe_block_contracts`: `True`
 - `oe_block_scale`: `True`
-- `no_cycle_word_length_le_six`: `True`
+- `no_cycle_itinerary_length_le_six`: `True`
 - `CycleMin`: `True`
 - `cycleMin_ge_twelve`: `True`
-- `CycleWord`: `True`
+- `CycleItinerary`: `True`
 
 ## Anti-overclaim
 
@@ -78,7 +78,7 @@ of length at most 6, already excluded.
 
 **ISO_ODD_RETURN_CLOSE**
 
-OE contracts below the CycleMin floor, so the only isolated-odd prefixes are empty and O; those plus a short tail are CycleWords of length at most 6.
+OE contracts below the CycleMin floor, so the only isolated-odd prefixes are empty and O; those plus a short tail are CycleItineraries of length at most 6.
 
 This is not a halt result, not a Z5 exclusion, and not a
 length-11 assembler.

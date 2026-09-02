@@ -33,7 +33,7 @@ the second O loses the square cell (19683 > 16384) and keeps the cube (19683 < 2
 
 ## Lean
 
-- `wordOOEOOEOOEOEOO`: `True`
+- `itineraryOOEOOEOOEOEOO`: `True`
 - `ooeooeooeoeoo_loses_square`: `True`
 - `follows_ooeooeooeoeoo_image_lt_cube`: `True`
 - `minimal_ooeooeooeoeo_follows_o`: `True`

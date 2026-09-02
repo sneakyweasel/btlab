@@ -36,7 +36,7 @@ from research.juggler_sequence.cycle_seam_propagate import (
     realized_transition_graph,
     walk_blocks,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 ANCESTRY_DIR = DATA_DIR / "seam_ancestry"
 START = PUBLISHED_FLOOR + 1
@@ -61,7 +61,7 @@ PHASE_NECKLACE = {
 }
 
 ARCHIVED = (
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "oddLanding_preimage_unique",
     "ee_entry_count",
     "LEGAL_22",

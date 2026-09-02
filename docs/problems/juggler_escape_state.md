@@ -42,7 +42,7 @@ non-termination. A search-horizon escape prefix is not a bound
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Finite-word envelope and formal contraction —
+- Finite-itinerary envelope and formal contraction —
   **EXACT — LEAN VERIFIED**.
 - Compensated contraction \(\Delta>\mathrm{formal\_gap}\Rightarrow T<n\)
   — **EXACT — LEAN VERIFIED**.
@@ -66,7 +66,7 @@ Existing machinery      formal_gap, tiny_deficit, compensated contraction,
                         prefix_noncontracting, first defect
 Maximum Phase-0 scope   identity; HARD_STARTS; n<=200 k<=8; no automaton
 Promotion criterion     a progress law not equivalent to image>=n
-Stop criterion          ESCAPE_STATE_COMPLEX; ResidualStep; word census;
+Stop criterion          ESCAPE_STATE_COMPLEX; ResidualStep; itinerary census;
                         inferred L; halt
 ```
 

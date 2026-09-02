@@ -17,7 +17,7 @@ from research.juggler_sequence.information_complexity import (
     walk,
     word_future,
 )
-from research.juggler_sequence.power_words import itinerary, word_of
+from research.juggler_sequence.power_itineraries import itinerary, word_of
 
 
 def test_f_h_is_next_h_parities():

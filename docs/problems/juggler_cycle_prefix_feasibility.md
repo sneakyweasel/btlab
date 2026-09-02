@@ -6,7 +6,7 @@ Refinement of
 [juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md), not a new
 paper. It asks whether a run-type leftover \((L,o_{\min})\) admits
 any cyclic \(O/E\) lattice path whose every prefix stays expanding.
-Not a halt theorem, not a leftover-word census, not a finance
+Not a halt theorem, not a leftover-itinerary census, not a finance
 reoptimization, not a \(Q\) / Fourier / residue reopen, and not a
 claim that a symbolic path is an integer cycle.
 
@@ -81,7 +81,7 @@ Maximum Phase-0 scope   exact lattice witness on 25781, 55293, then 99;
 Promotion criterion     some leftover has A_{L,o}=empty, preferably
                         an infinite near-convergent family
 Stop criterion          every leftover has a witness; prefix ≡ endpoint
-                        plus a0>=2; or it becomes a word census
+                        plus a0>=2; or it becomes an itinerary census
 ```
 
 ## Balanced-ternary formulation
@@ -152,7 +152,7 @@ None. No `PrefixBalance.lean`. Paper A is unchanged.
 
 None from prefix expansion. The order of letters does not add a
 constraint beyond the endpoint plus \(a_0\ge 2\). Do not start a
-word census. Do not treat a symbolic path as an integer cycle.
+itinerary census. Do not treat a symbolic path as an integer cycle.
 
 ## Decision
 

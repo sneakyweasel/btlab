@@ -1,5 +1,5 @@
 import Problems.Juggler.LeftoverShort
-import Problems.Juggler.LeftoverCell
+import Problems.Juggler.LeftoverPreimage
 import Problems.Juggler.FirstETransportEval
 import Problems.Juggler.BunchedTight
 import Problems.Juggler.LeftoverEval
@@ -9,9 +9,9 @@ namespace Problems.Juggler
 /-!
 # Infinite leftover families
 
-Instances of `leftover_prefix_cell`: two-even, seven bunched
+Instances of `leftover_prefix_preimage`: two-even, seven bunched
 last-cluster words, and first-E transport of the two-even tail.
-Gapped `CycleWord` is `exists_cycleMin` plus rotation onto an
+Gapped `CycleItinerary` is `exists_cycleMin` plus rotation onto an
 already-excluded `CycleMin` class, not a cell instance.
 
 Existing theorem names stay. This is not a length-8 census and
@@ -27,29 +27,29 @@ def twoEvenEOE (k : ℕ) : List Branch :=
   List.replicate (k - 3) Branch.odd ++
     [Branch.even, Branch.odd, Branch.even]
 
-theorem twoEvenEE_of_six : twoEvenEE 6 = wordOOOOEE :=
+theorem twoEvenEE_of_six : twoEvenEE 6 = itineraryOOOOEE :=
   rfl
 
-theorem twoEvenEE_of_seven : twoEvenEE 7 = wordOOOOOEE :=
+theorem twoEvenEE_of_seven : twoEvenEE 7 = itineraryOOOOOEE :=
   rfl
 
-theorem twoEvenEE_of_eight : twoEvenEE 8 = wordTwoEvenEE8 :=
+theorem twoEvenEE_of_eight : twoEvenEE 8 = itineraryTwoEvenEE8 :=
   rfl
 
-theorem twoEvenEOE_of_six : twoEvenEOE 6 = wordOOOEOE :=
+theorem twoEvenEOE_of_six : twoEvenEOE 6 = itineraryOOOEOE :=
   rfl
 
-theorem twoEvenEOE_of_seven : twoEvenEOE 7 = wordOOOOEOE :=
+theorem twoEvenEOE_of_seven : twoEvenEOE 7 = itineraryOOOOEOE :=
   rfl
 
-theorem twoEvenEOE_of_eight : twoEvenEOE 8 = wordTwoEvenEOE8 :=
+theorem twoEvenEOE_of_eight : twoEvenEOE 8 = itineraryTwoEvenEOE8 :=
   rfl
 
-theorem twoEvenEOE_of_nine : twoEvenEOE 9 = wordTwoEvenEOE9 :=
+theorem twoEvenEOE_of_nine : twoEvenEOE 9 = itineraryTwoEvenEOE9 :=
   rfl
 
-theorem no_cycle_word_two_even_ee_of_ge {n k : ℕ}
-    (hn : 256 ≤ n) (hk : 6 ≤ k) (h : CycleWord n (twoEvenEE k)) : False := by
+theorem no_cycle_itinerary_two_even_ee_of_ge {n k : ℕ}
+    (hn : 256 ≤ n) (hk : 6 ≤ k) (h : CycleItinerary n (twoEvenEE k)) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hk2 : 2 ≤ k := le_trans (by decide : (2 : ℕ) ≤ 6) hk
   have hz := cycle_trailing_evens_lt (r := 2) (by decide) h
@@ -58,13 +58,13 @@ theorem no_cycle_word_two_even_ee_of_ge {n k : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 4) ^ (2 ^ (k - 2)) = (n + 1) ^ (2 ^ k) := by
     rw [← Nat.pow_mul, four_mul_two_pow_sub hk2]
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using shared_two_even_tail hn hk)
 
 theorem cycle_eoe_suffix_y_cube_lt {n : ℕ} {u : List Branch}
-    (h : CycleWord n (u ++ [Branch.even, Branch.odd, Branch.even])) :
+    (h : CycleItinerary n (u ++ [Branch.even, Branch.odd, Branch.even])) :
     image n (u ++ [Branch.even]) ^ 3 < (n + 1) ^ 4 := by
-  have hcell : CycleWord n
+  have hcell : CycleItinerary n
       ((u ++ [Branch.even, Branch.odd]) ++ [Branch.even]) := by
     simpa [List.append_assoc] using h
   have hI := cycle_last_even_interval hcell
@@ -95,15 +95,15 @@ theorem cycle_eoe_suffix_y_cube_lt {n : ℕ} {u : List Branch}
     (Nat.pow_mul (n + 1) 2 2).symm
   exact lt_of_lt_of_le hylt (hexp ▸ hsq)
 
-theorem no_cycle_word_two_even_eoe_of_ge {n k : ℕ}
-    (hn : 256 ≤ n) (hk : 6 ≤ k) (h : CycleWord n (twoEvenEOE k)) : False := by
+theorem no_cycle_itinerary_two_even_eoe_of_ge {n k : ℕ}
+    (hn : 256 ≤ n) (hk : 6 ≤ k) (h : CycleItinerary n (twoEvenEOE k)) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hk2 : 2 ≤ k := le_trans (by decide : (2 : ℕ) ≤ 6) hk
   have hk3 : 3 ≤ k := le_trans (by decide : (3 : ℕ) ≤ 6) hk
   set u := List.replicate (k - 3) Branch.odd
   set z := image n u
   set y := image n (u ++ [Branch.even])
-  have hC : CycleWord n (u ++ [Branch.even, Branch.odd, Branch.even]) := h
+  have hC : CycleItinerary n (u ++ [Branch.even, Branch.odd, Branch.even]) := h
   have hO : follows n u :=
     follows_of_append_left (v := [Branch.even, Branch.odd, Branch.even]) h.1
   have he : z % 2 = 0 := by
@@ -189,7 +189,7 @@ theorem no_follows_seven_odds_of_lt256 {n : ℕ}
   exact Bool.false_ne_true htrue
 
 theorem twoEvenEE_follows_seven_odds {n k : ℕ}
-    (hk : 9 ≤ k) (h : CycleWord n (twoEvenEE k)) :
+    (hk : 9 ≤ k) (h : CycleItinerary n (twoEvenEE k)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate (k - 2) Branch.odd) :=
     follows_of_append_left (v := List.replicate 2 Branch.even) h.1
@@ -202,7 +202,7 @@ theorem twoEvenEE_follows_seven_odds {n k : ℕ}
   exact follows_of_append_left (v := List.replicate (k - 9) Branch.odd) hO'
 
 theorem twoEvenEOE_follows_seven_odds {n k : ℕ}
-    (hk : 10 ≤ k) (h : CycleWord n (twoEvenEOE k)) :
+    (hk : 10 ≤ k) (h : CycleItinerary n (twoEvenEOE k)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate (k - 3) Branch.odd) :=
     follows_of_append_left (v := [Branch.even, Branch.odd, Branch.even]) h.1
@@ -214,64 +214,64 @@ theorem twoEvenEOE_follows_seven_odds {n k : ℕ}
     simpa [hsplit] using hO
   exact follows_of_append_left (v := List.replicate (k - 10) Branch.odd) hO'
 
-theorem no_cycle_word_two_even_ee_of_lt {n k : ℕ}
+theorem no_cycle_itinerary_two_even_ee_of_lt {n k : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (hk : 6 ≤ k)
-    (h : CycleWord n (twoEvenEE k)) : False := by
+    (h : CycleItinerary n (twoEvenEE k)) : False := by
   have hcases : k = 6 ∨ k = 7 ∨ k = 8 ∨ 9 ≤ k := by omega
   rcases hcases with h6 | h7 | h8 | hge
   · subst h6
-    exact no_cycle_word_ooooee hn2 (by simpa [twoEvenEE_of_six] using h)
+    exact no_cycle_itinerary_ooooee hn2 (by simpa [twoEvenEE_of_six] using h)
   · subst h7
-    exact no_cycle_word_oooooee hn2 (by simpa [twoEvenEE_of_seven] using h)
+    exact no_cycle_itinerary_oooooee hn2 (by simpa [twoEvenEE_of_seven] using h)
   · subst h8
-    have hfalse := cycleWordB_two_even_ee8_lt256 ⟨n, hn⟩
-    have htrue : cycleWordB n wordTwoEvenEE8 = true :=
-      cycleWordB_iff.mpr (by simpa [twoEvenEE_of_eight] using h)
+    have hfalse := cycleItineraryB_two_even_ee8_lt256 ⟨n, hn⟩
+    have htrue : cycleItineraryB n itineraryTwoEvenEE8 = true :=
+      cycleItineraryB_iff.mpr (by simpa [twoEvenEE_of_eight] using h)
     rw [hfalse] at htrue
     exact Bool.false_ne_true htrue
   · exact no_follows_seven_odds_of_lt256 hn2 hn
       (twoEvenEE_follows_seven_odds hge h)
 
-theorem no_cycle_word_two_even_eoe_of_lt {n k : ℕ}
+theorem no_cycle_itinerary_two_even_eoe_of_lt {n k : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (hk : 6 ≤ k)
-    (h : CycleWord n (twoEvenEOE k)) : False := by
+    (h : CycleItinerary n (twoEvenEOE k)) : False := by
   have hcases : k = 6 ∨ k = 7 ∨ k = 8 ∨ k = 9 ∨ 10 ≤ k := by omega
   rcases hcases with h6 | h7 | h8 | h9 | hge
   · subst h6
-    exact no_cycle_word_oooeoe hn2 (by simpa [twoEvenEOE_of_six] using h)
+    exact no_cycle_itinerary_oooeoe hn2 (by simpa [twoEvenEOE_of_six] using h)
   · subst h7
-    exact no_cycle_word_ooooeoe hn2 (by simpa [twoEvenEOE_of_seven] using h)
+    exact no_cycle_itinerary_ooooeoe hn2 (by simpa [twoEvenEOE_of_seven] using h)
   · subst h8
-    have hfalse := cycleWordB_two_even_eoe8_lt256 ⟨n, hn⟩
-    have htrue : cycleWordB n wordTwoEvenEOE8 = true :=
-      cycleWordB_iff.mpr (by simpa [twoEvenEOE_of_eight] using h)
+    have hfalse := cycleItineraryB_two_even_eoe8_lt256 ⟨n, hn⟩
+    have htrue : cycleItineraryB n itineraryTwoEvenEOE8 = true :=
+      cycleItineraryB_iff.mpr (by simpa [twoEvenEOE_of_eight] using h)
     rw [hfalse] at htrue
     exact Bool.false_ne_true htrue
   · subst h9
-    have hfalse := cycleWordB_two_even_eoe9_lt256 ⟨n, hn⟩
-    have htrue : cycleWordB n wordTwoEvenEOE9 = true :=
-      cycleWordB_iff.mpr (by simpa [twoEvenEOE_of_nine] using h)
+    have hfalse := cycleItineraryB_two_even_eoe9_lt256 ⟨n, hn⟩
+    have htrue : cycleItineraryB n itineraryTwoEvenEOE9 = true :=
+      cycleItineraryB_iff.mpr (by simpa [twoEvenEOE_of_nine] using h)
     rw [hfalse] at htrue
     exact Bool.false_ne_true htrue
   · exact no_follows_seven_odds_of_lt256 hn2 hn
       (twoEvenEOE_follows_seven_odds hge h)
 
-theorem no_cycle_word_two_even_ee {n k : ℕ} (hn : 2 ≤ n) (hk : 6 ≤ k) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_two_even_ee {n k : ℕ} (hn : 2 ≤ n) (hk : 6 ≤ k) :
+    ¬CycleItinerary n
       (List.replicate (k - 2) Branch.odd ++ List.replicate 2 Branch.even) := by
   intro h
   cases lt_or_ge n 256 with
-  | inl hlt => exact no_cycle_word_two_even_ee_of_lt hn hlt hk h
-  | inr hge => exact no_cycle_word_two_even_ee_of_ge hge hk h
+  | inl hlt => exact no_cycle_itinerary_two_even_ee_of_lt hn hlt hk h
+  | inr hge => exact no_cycle_itinerary_two_even_ee_of_ge hge hk h
 
-theorem no_cycle_word_two_even_eoe {n k : ℕ} (hn : 2 ≤ n) (hk : 6 ≤ k) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_two_even_eoe {n k : ℕ} (hn : 2 ≤ n) (hk : 6 ≤ k) :
+    ¬CycleItinerary n
       (List.replicate (k - 3) Branch.odd ++
         [Branch.even, Branch.odd, Branch.even]) := by
   intro h
   cases lt_or_ge n 256 with
-  | inl hlt => exact no_cycle_word_two_even_eoe_of_lt hn hlt hk h
-  | inr hge => exact no_cycle_word_two_even_eoe_of_ge hge hk h
+  | inl hlt => exact no_cycle_itinerary_two_even_eoe_of_lt hn hlt hk h
+  | inr hge => exact no_cycle_itinerary_two_even_eoe_of_ge hge hk h
 
 
 /-! ## `OOOOOOEEE` as the `a = 6` EEE instance -/
@@ -284,11 +284,11 @@ Not a length-nine census. -/
 set_option exponentiation.threshold 2048
 set_option maxRecDepth 2048
 
-theorem no_cycle_word_ooooooeee_of_lt {n : ℕ} (hn : n < 128) :
-    ¬CycleWord n wordOOOOOOEEE := by
+theorem no_cycle_itinerary_ooooooeee_of_lt {n : ℕ} (hn : n < 128) :
+    ¬CycleItinerary n itineraryOOOOOOEEE := by
   intro h
-  have hfalse := cycleWordB_ooooooeee_lt128 ⟨n, hn⟩
-  have htrue : cycleWordB n wordOOOOOOEEE = true := cycleWordB_iff.mpr h
+  have hfalse := cycleItineraryB_ooooooeee_lt128 ⟨n, hn⟩
+  have htrue : cycleItineraryB n itineraryOOOOOOEEE = true := cycleItineraryB_iff.mpr h
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
@@ -399,18 +399,18 @@ theorem pow729_gt_two_pow1330_succ_pow512 {n : ℕ} (hn : 128 ≤ n) :
     rw [← Nat.pow_add]
   exact (h1336.trans h1519).trans_le (hle.trans_eq h729)
 
-theorem wordOOOOOOEEE_split :
-    wordOOOOOOEEE =
+theorem itineraryOOOOOOEEE_split :
+    itineraryOOOOOOEEE =
       [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
           Branch.odd] ++
         List.replicate 3 Branch.even :=
   rfl
 
-theorem no_cycle_word_ooooooeee_of_ge {n : ℕ} (hn : 128 ≤ n)
-    (h : CycleWord n wordOOOOOOEEE) : False := by
+theorem no_cycle_itinerary_ooooooeee_of_ge {n : ℕ} (hn : 128 ≤ n)
+    (h : CycleItinerary n itineraryOOOOOOEEE) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 128) hn
-  have hsplit := wordOOOOOOEEE_split
-  have hC : CycleWord n
+  have hsplit := itineraryOOOOOOEEE_split
+  have hC : CycleItinerary n
       ([Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
           Branch.odd] ++
         List.replicate 3 Branch.even) := by
@@ -435,12 +435,12 @@ theorem no_cycle_word_ooooooeee_of_ge {n : ℕ} (hn : 128 ≤ n)
       (pow_pos (by decide : (0 : ℕ) < 2) 1330))
   exact (not_lt_of_gt (pow729_gt_two_pow1330_succ_pow512 hn)) hlt
 
-theorem no_cycle_word_ooooooeee {n : ℕ} (_hn : 2 ≤ n) :
-    ¬CycleWord n wordOOOOOOEEE := by
+theorem no_cycle_itinerary_ooooooeee {n : ℕ} (_hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOOOOOEEE := by
   intro h
   cases lt_or_ge n 128 with
-  | inl hlt => exact no_cycle_word_ooooooeee_of_lt hlt h
-  | inr hge => exact no_cycle_word_ooooooeee_of_ge hge h
+  | inl hlt => exact no_cycle_itinerary_ooooooeee_of_lt hlt h
+  | inr hge => exact no_cycle_itinerary_ooooooeee_of_ge hge h
 
 /-! ## Bunched EEE -/
 
@@ -488,7 +488,7 @@ theorem two_pow_nine : (2 : ℕ) ^ 9 = 512 := by
 theorem two_pow_six_add_three : (2 : ℕ) ^ (6 + 3) = 512 :=
   two_pow_nine
 
-theorem threeEvenEEE_of_six : threeEvenEEE 6 = wordOOOOOOEEE :=
+theorem threeEvenEEE_of_six : threeEvenEEE 6 = itineraryOOOOOOEEE :=
   rfl
 
 theorem three_even_eee_tail_succ {n a : ℕ} (hn : 128 ≤ n)
@@ -556,8 +556,8 @@ theorem three_even_eee_tail {n a : ℕ} (hn : 128 ≤ n) (ha : 6 ≤ a) :
   | succ t ih =>
       exact three_even_eee_tail_succ hn ih
 
-theorem no_cycle_word_three_even_eee_of_ge {n a : ℕ}
-    (hn : 128 ≤ n) (ha : 6 ≤ a) (h : CycleWord n (threeEvenEEE a)) :
+theorem no_cycle_itinerary_three_even_eee_of_ge {n a : ℕ}
+    (hn : 128 ≤ n) (ha : 6 ≤ a) (h : CycleItinerary n (threeEvenEEE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 128) hn
   have hz := cycle_trailing_evens_lt (r := 3) (by decide) h
@@ -566,11 +566,11 @@ theorem no_cycle_word_three_even_eee_of_ge {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 8) ^ (2 ^ a) = (n + 1) ^ (2 ^ (a + 3)) := by
     rw [← Nat.pow_mul, eight_mul_two_pow a]
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eee_tail hn ha)
 
 theorem threeEvenEEE_follows_seven_odds {n a : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (threeEvenEEE a)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (threeEvenEEE a)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate a Branch.odd) :=
     follows_of_append_left (v := List.replicate 3 Branch.even) h.1
@@ -581,24 +581,24 @@ theorem threeEvenEEE_follows_seven_odds {n a : ℕ}
   exact follows_of_append_left (v := List.replicate (a - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_three_even_eee_of_lt {n a : ℕ}
+theorem no_cycle_itinerary_three_even_eee_of_lt {n a : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 128) (ha : 6 ≤ a)
-    (h : CycleWord n (threeEvenEEE a)) : False := by
+    (h : CycleItinerary n (threeEvenEEE a)) : False := by
   have hcases : a = 6 ∨ 7 ≤ a := by omega
   rcases hcases with h6 | hge
   · subst h6
-    exact no_cycle_word_ooooooeee hn2 (by simpa [threeEvenEEE_of_six] using h)
+    exact no_cycle_itinerary_ooooooeee hn2 (by simpa [threeEvenEEE_of_six] using h)
   · exact no_follows_seven_odds_of_lt256 hn2
       (lt_trans hn (by decide : (128 : ℕ) < 256))
       (threeEvenEEE_follows_seven_odds hge h)
 
-theorem no_cycle_word_three_even_eee {n a : ℕ} (hn : 2 ≤ n) (ha : 6 ≤ a) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_three_even_eee {n a : ℕ} (hn : 2 ≤ n) (ha : 6 ≤ a) :
+    ¬CycleItinerary n
       (List.replicate a Branch.odd ++ List.replicate 3 Branch.even) := by
   intro h
   cases lt_or_ge n 128 with
-  | inl hlt => exact no_cycle_word_three_even_eee_of_lt hn hlt ha h
-  | inr hge => exact no_cycle_word_three_even_eee_of_ge hge ha h
+  | inl hlt => exact no_cycle_itinerary_three_even_eee_of_lt hn hlt ha h
+  | inr hge => exact no_cycle_itinerary_three_even_eee_of_ge hge ha h
 
 /-! ## Bunched EOEE -/
 
@@ -647,10 +647,10 @@ theorem six_mul_two_pow_five : 6 * 2 ^ 5 = 192 := by
 theorem six_mul_two_pow_six : 6 * 2 ^ 6 = 384 := by
   decide
 
-theorem threeEvenEOEE_of_five : threeEvenEOEE 5 = wordOOOOOEOEE :=
+theorem threeEvenEOEE_of_five : threeEvenEOEE 5 = itineraryOOOOOEOEE :=
   rfl
 
-theorem threeEvenEOEE_of_six : threeEvenEOEE 6 = wordOOOOOOEOEE :=
+theorem threeEvenEOEE_of_six : threeEvenEOEE 6 = itineraryOOOOOOEOEE :=
   rfl
 
 theorem eoee_tail_five_succ {n : ℕ} (hn : 1 ≤ n)
@@ -833,14 +833,14 @@ theorem four_mul_succ_pow8_lt_succ_pow9 {n : ℕ} (hn : 4 ≤ n) :
   exact Nat.mul_lt_mul_of_pos_right this hpos
 
 theorem threeEvenEOEE_z_lt {n a : ℕ} (hn : 4 ≤ n)
-    (h : CycleWord n (threeEvenEOEE a)) :
+    (h : CycleItinerary n (threeEvenEOEE a)) :
     image n (List.replicate a Branch.odd) < (n + 1) ^ 6 := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 4) hn
   have hsplit : threeEvenEOEE a =
       (List.replicate a Branch.odd ++ [Branch.even, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOEE]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       ((List.replicate a Branch.odd ++ [Branch.even, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
     simpa [hsplit] using h
@@ -887,8 +887,8 @@ theorem threeEvenEOEE_z_lt {n a : ℕ} (hn : 4 ≤ n)
     exact lt_of_lt_of_le hzlt (hexp ▸ this)
   exact hz6
 
-theorem no_cycle_word_three_even_eoee_of_ge_five {n a : ℕ}
-    (hn : 314 ≤ n) (ha : 5 ≤ a) (h : CycleWord n (threeEvenEOEE a)) :
+theorem no_cycle_itinerary_three_even_eoee_of_ge_five {n a : ℕ}
+    (hn : 314 ≤ n) (ha : 5 ≤ a) (h : CycleItinerary n (threeEvenEOEE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 314) hn
   have hn4 : 4 ≤ n := le_trans (by decide : (4 : ℕ) ≤ 314) hn
@@ -900,11 +900,11 @@ theorem no_cycle_word_three_even_eoee_of_ge_five {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 6) ^ (2 ^ a) = (n + 1) ^ (6 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 6 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eoee_tail_of_five hn ha)
 
-theorem no_cycle_word_three_even_eoee_of_ge_six {n a : ℕ}
-    (hn : 16 ≤ n) (ha : 6 ≤ a) (h : CycleWord n (threeEvenEOEE a)) :
+theorem no_cycle_itinerary_three_even_eoee_of_ge_six {n a : ℕ}
+    (hn : 16 ≤ n) (ha : 6 ≤ a) (h : CycleItinerary n (threeEvenEOEE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 16) hn
   have hn4 : 4 ≤ n := le_trans (by decide : (4 : ℕ) ≤ 16) hn
@@ -916,11 +916,11 @@ theorem no_cycle_word_three_even_eoee_of_ge_six {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 6) ^ (2 ^ a) = (n + 1) ^ (6 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 6 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eoee_tail_of_six hn ha)
 
 theorem threeEvenEOEE_follows_seven_odds {n a : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (threeEvenEOEE a)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (threeEvenEOEE a)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate a Branch.odd) :=
     follows_of_append_left
@@ -933,28 +933,28 @@ theorem threeEvenEOEE_follows_seven_odds {n a : ℕ}
   exact follows_of_append_left (v := List.replicate (a - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_three_even_eoee_of_lt_five {n : ℕ}
-    (hn2 : 2 ≤ n) (hn : n < 314) (h : CycleWord n (threeEvenEOEE 5)) :
+theorem no_cycle_itinerary_three_even_eoee_of_lt_five {n : ℕ}
+    (hn2 : 2 ≤ n) (hn : n < 314) (h : CycleItinerary n (threeEvenEOEE 5)) :
     False := by
-  have hfalse : cycleWordB n wordOOOOOEOEE = false :=
-    cycleWordB_ooooo_eoee_lt314 ⟨n, hn⟩ hn2
-  have htrue : cycleWordB n wordOOOOOEOEE = true :=
-    cycleWordB_iff.mpr (by simpa [threeEvenEOEE_of_five] using h)
+  have hfalse : cycleItineraryB n itineraryOOOOOEOEE = false :=
+    cycleItineraryB_ooooo_eoee_lt314 ⟨n, hn⟩ hn2
+  have htrue : cycleItineraryB n itineraryOOOOOEOEE = true :=
+    cycleItineraryB_iff.mpr (by simpa [threeEvenEOEE_of_five] using h)
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eoee_of_lt_six {n : ℕ}
-    (hn2 : 2 ≤ n) (hn : n < 16) (h : CycleWord n (threeEvenEOEE 6)) :
+theorem no_cycle_itinerary_three_even_eoee_of_lt_six {n : ℕ}
+    (hn2 : 2 ≤ n) (hn : n < 16) (h : CycleItinerary n (threeEvenEOEE 6)) :
     False := by
-  have hfalse : cycleWordB n wordOOOOOOEOEE = false :=
-    cycleWordB_oooooo_eoee_lt16 ⟨n, hn⟩ hn2
-  have htrue : cycleWordB n wordOOOOOOEOEE = true :=
-    cycleWordB_iff.mpr (by simpa [threeEvenEOEE_of_six] using h)
+  have hfalse : cycleItineraryB n itineraryOOOOOOEOEE = false :=
+    cycleItineraryB_oooooo_eoee_lt16 ⟨n, hn⟩ hn2
+  have htrue : cycleItineraryB n itineraryOOOOOOEOEE = true :=
+    cycleItineraryB_iff.mpr (by simpa [threeEvenEOEE_of_six] using h)
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eoee {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_three_even_eoee {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) :
+    ¬CycleItinerary n
       (List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.even, Branch.even]) := by
   intro h
@@ -962,19 +962,19 @@ theorem no_cycle_word_three_even_eoee {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) 
   rcases hcases with h5 | hrest
   · subst h5
     cases lt_or_ge n 314 with
-    | inl hlt => exact no_cycle_word_three_even_eoee_of_lt_five hn hlt h
-    | inr hge => exact no_cycle_word_three_even_eoee_of_ge_five hge (by decide) h
+    | inl hlt => exact no_cycle_itinerary_three_even_eoee_of_lt_five hn hlt h
+    | inr hge => exact no_cycle_itinerary_three_even_eoee_of_ge_five hge (by decide) h
   rcases hrest with h6 | hge
   · subst h6
     cases lt_or_ge n 16 with
-    | inl hlt => exact no_cycle_word_three_even_eoee_of_lt_six hn hlt h
-    | inr hge => exact no_cycle_word_three_even_eoee_of_ge_six hge (by decide) h
+    | inl hlt => exact no_cycle_itinerary_three_even_eoee_of_lt_six hn hlt h
+    | inr hge => exact no_cycle_itinerary_three_even_eoee_of_ge_six hge (by decide) h
   · cases lt_or_ge n 256 with
     | inl hlt =>
         exact no_follows_seven_odds_of_lt256 hn hlt
           (threeEvenEOEE_follows_seven_odds hge h)
     | inr hge' =>
-        exact no_cycle_word_three_even_eoee_of_ge_six
+        exact no_cycle_itinerary_three_even_eoee_of_ge_six
           (le_trans (by decide : (16 : ℕ) ≤ 256) hge')
           (le_trans (by decide : (6 : ℕ) ≤ 7) hge) h
 
@@ -1041,7 +1041,7 @@ theorem three_even_eooee_tail {n a : ℕ} (hn : 256 ≤ n) (ha : 4 ≤ a) :
   simpa [hsub, four_mul_two_pow_a a] using h
 
 theorem threeEvenEOOEE_z_lt {n a : ℕ} (hn : 32 ≤ n)
-    (h : CycleWord n (threeEvenEOOEE a)) :
+    (h : CycleItinerary n (threeEvenEOOEE a)) :
     image n (List.replicate a Branch.odd) < (n + 1) ^ 4 := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 32) hn
   have hsplit : threeEvenEOOEE a =
@@ -1049,7 +1049,7 @@ theorem threeEvenEOOEE_z_lt {n a : ℕ} (hn : 32 ≤ n)
         [Branch.even, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOOEE]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       ((List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
@@ -1098,8 +1098,8 @@ theorem threeEvenEOOEE_z_lt {n a : ℕ} (hn : 32 ≤ n)
   have hexp : ((n + 1) ^ 2) ^ 2 = (n + 1) ^ 4 := by rw [← Nat.pow_mul]
   exact lt_of_lt_of_le hzlt (hexp ▸ this)
 
-theorem no_cycle_word_three_even_eooee_of_ge {n a : ℕ}
-    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleWord n (threeEvenEOOEE a)) :
+theorem no_cycle_itinerary_three_even_eooee_of_ge {n a : ℕ}
+    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleItinerary n (threeEvenEOOEE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hn32 : 32 ≤ n := le_trans (by decide : (32 : ℕ) ≤ 256) hn
@@ -1111,11 +1111,11 @@ theorem no_cycle_word_three_even_eooee_of_ge {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 4) ^ (2 ^ a) = (n + 1) ^ (4 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 4 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eooee_tail hn ha)
 
 theorem threeEvenEOOEE_follows_seven_odds {n a : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (threeEvenEOOEE a)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (threeEvenEOOEE a)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate a Branch.odd) :=
     follows_of_append_left
@@ -1128,23 +1128,23 @@ theorem threeEvenEOOEE_follows_seven_odds {n a : ℕ}
   exact follows_of_append_left (v := List.replicate (a - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_three_even_eooee_of_lt {n a : ℕ}
+theorem no_cycle_itinerary_three_even_eooee_of_lt {n a : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (ha4 : 4 ≤ a) (ha6 : a ≤ 6)
-    (h : CycleWord n (threeEvenEOOEE a)) : False := by
+    (h : CycleItinerary n (threeEvenEOOEE a)) : False := by
   have hA : a - 4 < 3 := by omega
   have hfalse :
-      cycleWordB n (threeEvenEOOEE (a - 4 + 4)) = false :=
-    cycleWordB_eooee_prefix_lt256 ⟨n, hn⟩ ⟨a - 4, hA⟩ hn2
+      cycleItineraryB n (threeEvenEOOEE (a - 4 + 4)) = false :=
+    cycleItineraryB_eooee_prefix_lt256 ⟨n, hn⟩ ⟨a - 4, hA⟩ hn2
   have ha : a - 4 + 4 = a := by omega
-  have hfalse' : cycleWordB n (threeEvenEOOEE a) = false := by
+  have hfalse' : cycleItineraryB n (threeEvenEOOEE a) = false := by
     simpa [ha] using hfalse
-  have htrue : cycleWordB n (threeEvenEOOEE a) = true :=
-    cycleWordB_iff.mpr h
+  have htrue : cycleItineraryB n (threeEvenEOOEE a) = true :=
+    cycleItineraryB_iff.mpr h
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eooee {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_three_even_eooee {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a) :
+    ¬CycleItinerary n
       (List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd, Branch.even, Branch.even]) := by
   intro h
@@ -1152,10 +1152,10 @@ theorem no_cycle_word_three_even_eooee {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a)
   | inl hlt =>
       have hcases : a ≤ 6 ∨ 7 ≤ a := by omega
       rcases hcases with hle | hge
-      · exact no_cycle_word_three_even_eooee_of_lt hn hlt ha hle h
+      · exact no_cycle_itinerary_three_even_eooee_of_lt hn hlt ha hle h
       · exact no_follows_seven_odds_of_lt256 hn hlt
           (threeEvenEOOEE_follows_seven_odds hge h)
-  | inr hge => exact no_cycle_word_three_even_eooee_of_ge hge ha h
+  | inr hge => exact no_cycle_itinerary_three_even_eooee_of_ge hge ha h
 
 /-! ## Bunched EEOE -/
 
@@ -1189,10 +1189,10 @@ def threeEvenEEOE (a : ℕ) : List Branch :=
   List.replicate a Branch.odd ++
     [Branch.even, Branch.even, Branch.odd, Branch.even]
 
-theorem threeEvenEEOE_of_five : threeEvenEEOE 5 = wordOOOOOEEOE :=
+theorem threeEvenEEOE_of_five : threeEvenEEOE 5 = itineraryOOOOOEEOE :=
   rfl
 
-theorem threeEvenEEOE_of_six : threeEvenEEOE 6 = wordOOOOOOEEOE :=
+theorem threeEvenEEOE_of_six : threeEvenEEOE 6 = itineraryOOOOOOEEOE :=
   rfl
 
 theorem two_mul_succ_cube_lt_succ_pow6 {n y : ℕ} (hn : 4 ≤ n)
@@ -1233,14 +1233,14 @@ theorem two_mul_succ_cube_lt_succ_pow6 {n y : ℕ} (hn : 4 ≤ n)
   exact h4 ▸ (hmid.trans_eq hmid').trans hfin
 
 theorem threeEvenEEOE_z_lt {n a : ℕ} (hn : 4 ≤ n)
-    (h : CycleWord n (threeEvenEEOE a)) :
+    (h : CycleItinerary n (threeEvenEEOE a)) :
     image n (List.replicate a Branch.odd) < (n + 1) ^ 6 := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 4) hn
   set u := List.replicate a Branch.odd ++ [Branch.even]
   have hsplit : threeEvenEEOE a =
       u ++ [Branch.even, Branch.odd, Branch.even] := by
     simp [threeEvenEEOE, u]
-  have hC : CycleWord n (u ++ [Branch.even, Branch.odd, Branch.even]) := by
+  have hC : CycleItinerary n (u ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [hsplit] using h
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := u) hC
   set z := image n (List.replicate a Branch.odd)
@@ -1274,8 +1274,8 @@ theorem threeEvenEEOE_z_lt {n a : ℕ} (hn : 4 ≤ n)
     cube_succ_lt_two_mul_of_cube_lt_pow4 hA hy3'
   exact lt_of_lt_of_le hz4 (le_of_lt (two_mul_succ_cube_lt_succ_pow6 hn hysucc))
 
-theorem no_cycle_word_three_even_eeoe_of_ge_five {n a : ℕ}
-    (hn : 314 ≤ n) (ha : 5 ≤ a) (h : CycleWord n (threeEvenEEOE a)) :
+theorem no_cycle_itinerary_three_even_eeoe_of_ge_five {n a : ℕ}
+    (hn : 314 ≤ n) (ha : 5 ≤ a) (h : CycleItinerary n (threeEvenEEOE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 314) hn
   have hn4 : 4 ≤ n := le_trans (by decide : (4 : ℕ) ≤ 314) hn
@@ -1287,11 +1287,11 @@ theorem no_cycle_word_three_even_eeoe_of_ge_five {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 6) ^ (2 ^ a) = (n + 1) ^ (6 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 6 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eoee_tail_of_five hn ha)
 
-theorem no_cycle_word_three_even_eeoe_of_ge_six {n a : ℕ}
-    (hn : 16 ≤ n) (ha : 6 ≤ a) (h : CycleWord n (threeEvenEEOE a)) :
+theorem no_cycle_itinerary_three_even_eeoe_of_ge_six {n a : ℕ}
+    (hn : 16 ≤ n) (ha : 6 ≤ a) (h : CycleItinerary n (threeEvenEEOE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 16) hn
   have hn4 : 4 ≤ n := le_trans (by decide : (4 : ℕ) ≤ 16) hn
@@ -1303,11 +1303,11 @@ theorem no_cycle_word_three_even_eeoe_of_ge_six {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 6) ^ (2 ^ a) = (n + 1) ^ (6 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 6 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eoee_tail_of_six hn ha)
 
 theorem threeEvenEEOE_follows_seven_odds {n a : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (threeEvenEEOE a)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (threeEvenEEOE a)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate a Branch.odd) :=
     follows_of_append_left
@@ -1320,28 +1320,28 @@ theorem threeEvenEEOE_follows_seven_odds {n a : ℕ}
   exact follows_of_append_left (v := List.replicate (a - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_three_even_eeoe_of_lt_five {n : ℕ}
-    (hn2 : 2 ≤ n) (hn : n < 314) (h : CycleWord n (threeEvenEEOE 5)) :
+theorem no_cycle_itinerary_three_even_eeoe_of_lt_five {n : ℕ}
+    (hn2 : 2 ≤ n) (hn : n < 314) (h : CycleItinerary n (threeEvenEEOE 5)) :
     False := by
-  have hfalse : cycleWordB n wordOOOOOEEOE = false :=
-    cycleWordB_ooooo_eeoe_lt314 ⟨n, hn⟩ hn2
-  have htrue : cycleWordB n wordOOOOOEEOE = true :=
-    cycleWordB_iff.mpr (by simpa [threeEvenEEOE_of_five] using h)
+  have hfalse : cycleItineraryB n itineraryOOOOOEEOE = false :=
+    cycleItineraryB_ooooo_eeoe_lt314 ⟨n, hn⟩ hn2
+  have htrue : cycleItineraryB n itineraryOOOOOEEOE = true :=
+    cycleItineraryB_iff.mpr (by simpa [threeEvenEEOE_of_five] using h)
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eeoe_of_lt_six {n : ℕ}
-    (hn2 : 2 ≤ n) (hn : n < 16) (h : CycleWord n (threeEvenEEOE 6)) :
+theorem no_cycle_itinerary_three_even_eeoe_of_lt_six {n : ℕ}
+    (hn2 : 2 ≤ n) (hn : n < 16) (h : CycleItinerary n (threeEvenEEOE 6)) :
     False := by
-  have hfalse : cycleWordB n wordOOOOOOEEOE = false :=
-    cycleWordB_oooooo_eeoe_lt16 ⟨n, hn⟩ hn2
-  have htrue : cycleWordB n wordOOOOOOEEOE = true :=
-    cycleWordB_iff.mpr (by simpa [threeEvenEEOE_of_six] using h)
+  have hfalse : cycleItineraryB n itineraryOOOOOOEEOE = false :=
+    cycleItineraryB_oooooo_eeoe_lt16 ⟨n, hn⟩ hn2
+  have htrue : cycleItineraryB n itineraryOOOOOOEEOE = true :=
+    cycleItineraryB_iff.mpr (by simpa [threeEvenEEOE_of_six] using h)
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_three_even_eeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) :
+    ¬CycleItinerary n
       (List.replicate a Branch.odd ++
         [Branch.even, Branch.even, Branch.odd, Branch.even]) := by
   intro h
@@ -1349,19 +1349,19 @@ theorem no_cycle_word_three_even_eeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) 
   rcases hcases with h5 | hrest
   · subst h5
     cases lt_or_ge n 314 with
-    | inl hlt => exact no_cycle_word_three_even_eeoe_of_lt_five hn hlt h
-    | inr hge => exact no_cycle_word_three_even_eeoe_of_ge_five hge (by decide) h
+    | inl hlt => exact no_cycle_itinerary_three_even_eeoe_of_lt_five hn hlt h
+    | inr hge => exact no_cycle_itinerary_three_even_eeoe_of_ge_five hge (by decide) h
   rcases hrest with h6 | hge
   · subst h6
     cases lt_or_ge n 16 with
-    | inl hlt => exact no_cycle_word_three_even_eeoe_of_lt_six hn hlt h
-    | inr hge => exact no_cycle_word_three_even_eeoe_of_ge_six hge (by decide) h
+    | inl hlt => exact no_cycle_itinerary_three_even_eeoe_of_lt_six hn hlt h
+    | inr hge => exact no_cycle_itinerary_three_even_eeoe_of_ge_six hge (by decide) h
   · cases lt_or_ge n 256 with
     | inl hlt =>
         exact no_follows_seven_odds_of_lt256 hn hlt
           (threeEvenEEOE_follows_seven_odds hge h)
     | inr hge' =>
-        exact no_cycle_word_three_even_eeoe_of_ge_six
+        exact no_cycle_itinerary_three_even_eeoe_of_ge_six
           (le_trans (by decide : (16 : ℕ) ≤ 256) hge')
           (le_trans (by decide : (6 : ℕ) ≤ 7) hge) h
 
@@ -1412,14 +1412,14 @@ theorem eight_mul_succ_lt_succ_sq {n y : ℕ} (hn : 32 ≤ n)
   exact (Nat.pow_lt_pow_iff_left (by decide : (3 : ℕ) ≠ 0)).mp (h6 ▸ hcube)
 
 theorem threeEvenEOEOE_z_lt {n a : ℕ} (hn : 32 ≤ n)
-    (h : CycleWord n (threeEvenEOEOE a)) :
+    (h : CycleItinerary n (threeEvenEOEOE a)) :
     image n (List.replicate a Branch.odd) < (n + 1) ^ 4 := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 32) hn
   set pref := List.replicate a Branch.odd ++ [Branch.even, Branch.odd]
   have hsplit : threeEvenEOEOE a =
       pref ++ [Branch.even, Branch.odd, Branch.even] := by
     simp [threeEvenEOEOE, pref]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (pref ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [hsplit] using h
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := pref) hC
@@ -1496,8 +1496,8 @@ theorem threeEvenEOEOE_z_lt {n a : ℕ} (hn : 32 ≤ n)
   have hexp : ((n + 1) ^ 2) ^ 2 = (n + 1) ^ 4 := by rw [← Nat.pow_mul]
   exact lt_of_lt_of_le hzlt (hexp ▸ this)
 
-theorem no_cycle_word_three_even_eoeoe_of_ge {n a : ℕ}
-    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleWord n (threeEvenEOEOE a)) :
+theorem no_cycle_itinerary_three_even_eoeoe_of_ge {n a : ℕ}
+    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleItinerary n (threeEvenEOEOE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hn32 : 32 ≤ n := le_trans (by decide : (32 : ℕ) ≤ 256) hn
@@ -1509,11 +1509,11 @@ theorem no_cycle_word_three_even_eoeoe_of_ge {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 4) ^ (2 ^ a) = (n + 1) ^ (4 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 4 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eooee_tail hn ha)
 
 theorem threeEvenEOEOE_follows_seven_odds {n a : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (threeEvenEOEOE a)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (threeEvenEOEOE a)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate a Branch.odd) :=
     follows_of_append_left
@@ -1526,23 +1526,23 @@ theorem threeEvenEOEOE_follows_seven_odds {n a : ℕ}
   exact follows_of_append_left (v := List.replicate (a - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_three_even_eoeoe_of_lt {n a : ℕ}
+theorem no_cycle_itinerary_three_even_eoeoe_of_lt {n a : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (ha4 : 4 ≤ a) (ha6 : a ≤ 6)
-    (h : CycleWord n (threeEvenEOEOE a)) : False := by
+    (h : CycleItinerary n (threeEvenEOEOE a)) : False := by
   have hA : a - 4 < 3 := by omega
   have hfalse :
-      cycleWordB n (threeEvenEOEOE (a - 4 + 4)) = false :=
-    cycleWordB_eoeoe_prefix_lt256 ⟨n, hn⟩ ⟨a - 4, hA⟩ hn2
+      cycleItineraryB n (threeEvenEOEOE (a - 4 + 4)) = false :=
+    cycleItineraryB_eoeoe_prefix_lt256 ⟨n, hn⟩ ⟨a - 4, hA⟩ hn2
   have ha : a - 4 + 4 = a := by omega
-  have hfalse' : cycleWordB n (threeEvenEOEOE a) = false := by
+  have hfalse' : cycleItineraryB n (threeEvenEOEOE a) = false := by
     simpa [ha] using hfalse
-  have htrue : cycleWordB n (threeEvenEOEOE a) = true :=
-    cycleWordB_iff.mpr h
+  have htrue : cycleItineraryB n (threeEvenEOEOE a) = true :=
+    cycleItineraryB_iff.mpr h
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eoeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_three_even_eoeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a) :
+    ¬CycleItinerary n
       (List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.even, Branch.odd, Branch.even]) := by
   intro h
@@ -1550,10 +1550,10 @@ theorem no_cycle_word_three_even_eoeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a)
   | inl hlt =>
       have hcases : a ≤ 6 ∨ 7 ≤ a := by omega
       rcases hcases with hle | hge
-      · exact no_cycle_word_three_even_eoeoe_of_lt hn hlt ha hle h
+      · exact no_cycle_itinerary_three_even_eoeoe_of_lt hn hlt ha hle h
       · exact no_follows_seven_odds_of_lt256 hn hlt
           (threeEvenEOEOE_follows_seven_odds hge h)
-  | inr hge => exact no_cycle_word_three_even_eoeoe_of_ge hge ha h
+  | inr hge => exact no_cycle_itinerary_three_even_eoeoe_of_ge hge ha h
 
 /-! ## Bunched EOOOEE -/
 
@@ -1583,7 +1583,7 @@ theorem three_pow_three : (3 : ℕ) ^ 3 = 27 := by
   decide
 
 theorem threeEvenEOOOEE_z_lt {n a : ℕ} (hn : 3 ≤ n)
-    (h : CycleWord n (threeEvenEOOOEE a)) :
+    (h : CycleItinerary n (threeEvenEOOOEE a)) :
     image n (List.replicate a Branch.odd) < (n + 1) ^ 4 := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 3) hn
   have hsplit : threeEvenEOOOEE a =
@@ -1591,7 +1591,7 @@ theorem threeEvenEOOOEE_z_lt {n a : ℕ} (hn : 3 ≤ n)
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOOOEE]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       ((List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
@@ -1633,8 +1633,8 @@ theorem threeEvenEOOOEE_z_lt {n a : ℕ} (hn : 3 ≤ n)
   have hy27 : y ^ 27 < 2 ^ 38 * (n + 1) ^ 32 := lt_of_le_of_lt hle' hplt
   exact z_lt_succ_pow4_of_y hzlt (y_lt_succ_sq_of_odd27 hn hy27)
 
-theorem no_cycle_word_three_even_eoooee_of_ge_four {n a : ℕ}
-    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleWord n (threeEvenEOOOEE a)) :
+theorem no_cycle_itinerary_three_even_eoooee_of_ge_four {n a : ℕ}
+    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleItinerary n (threeEvenEOOOEE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hn3 : 3 ≤ n := le_trans (by decide : (3 : ℕ) ≤ 256) hn
@@ -1647,11 +1647,11 @@ theorem no_cycle_word_three_even_eoooee_of_ge_four {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 4) ^ (2 ^ a) = (n + 1) ^ (4 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 4 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eooee_tail hn ha)
 
-theorem no_cycle_word_three_even_eoooee_of_ge_three {n : ℕ}
-    (hn : 256 ≤ n) (h : CycleWord n (threeEvenEOOOEE 3)) : False := by
+theorem no_cycle_itinerary_three_even_eoooee_of_ge_three {n : ℕ}
+    (hn : 256 ≤ n) (h : CycleItinerary n (threeEvenEOOOEE 3)) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hn197 : 197 ≤ n := le_trans (by decide : (197 : ℕ) ≤ 256) hn
   have hn24 : 24 ≤ n := le_trans (by decide : (24 : ℕ) ≤ 256) hn
@@ -1686,7 +1686,7 @@ theorem no_cycle_word_three_even_eoooee_of_ge_three {n : ℕ}
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOOOEE]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       ((List.replicate 3 Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
@@ -1719,7 +1719,7 @@ theorem no_cycle_word_three_even_eoooee_of_ge_three {n : ℕ}
   | inr hge => exact eoooee_large_y_false hn197 hge hy27 h27
 
 theorem threeEvenEOOOEE_follows_seven_odds {n a : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (threeEvenEOOOEE a)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (threeEvenEOOOEE a)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate a Branch.odd) :=
     follows_of_append_left
@@ -1733,23 +1733,23 @@ theorem threeEvenEOOOEE_follows_seven_odds {n a : ℕ}
   exact follows_of_append_left (v := List.replicate (a - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_three_even_eoooee_of_lt {n a : ℕ}
+theorem no_cycle_itinerary_three_even_eoooee_of_lt {n a : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (ha3 : 3 ≤ a) (ha6 : a ≤ 6)
-    (h : CycleWord n (threeEvenEOOOEE a)) : False := by
+    (h : CycleItinerary n (threeEvenEOOOEE a)) : False := by
   have hA : a - 3 < 4 := by omega
   have hfalse :
-      cycleWordB n (threeEvenEOOOEE (a - 3 + 3)) = false :=
-    cycleWordB_eoooee_prefix_lt256 ⟨n, hn⟩ ⟨a - 3, hA⟩ hn2
+      cycleItineraryB n (threeEvenEOOOEE (a - 3 + 3)) = false :=
+    cycleItineraryB_eoooee_prefix_lt256 ⟨n, hn⟩ ⟨a - 3, hA⟩ hn2
   have ha : a - 3 + 3 = a := by omega
-  have hfalse' : cycleWordB n (threeEvenEOOOEE a) = false := by
+  have hfalse' : cycleItineraryB n (threeEvenEOOOEE a) = false := by
     simpa [ha] using hfalse
-  have htrue : cycleWordB n (threeEvenEOOOEE a) = true :=
-    cycleWordB_iff.mpr h
+  have htrue : cycleItineraryB n (threeEvenEOOOEE a) = true :=
+    cycleItineraryB_iff.mpr h
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eoooee {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_three_even_eoooee {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a) :
+    ¬CycleItinerary n
       (List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd, Branch.odd,
           Branch.even, Branch.even]) := by
@@ -1758,15 +1758,15 @@ theorem no_cycle_word_three_even_eoooee {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a
   | inl hlt =>
       have hcases : a ≤ 6 ∨ 7 ≤ a := by omega
       rcases hcases with hle | hge
-      · exact no_cycle_word_three_even_eoooee_of_lt hn hlt ha hle h
+      · exact no_cycle_itinerary_three_even_eoooee_of_lt hn hlt ha hle h
       · exact no_follows_seven_odds_of_lt256 hn hlt
           (threeEvenEOOOEE_follows_seven_odds hge h)
   | inr hge =>
       have hcases : a = 3 ∨ 4 ≤ a := by omega
       rcases hcases with h3 | h4
       · subst h3
-        exact no_cycle_word_three_even_eoooee_of_ge_three hge h
-      · exact no_cycle_word_three_even_eoooee_of_ge_four hge h4 h
+        exact no_cycle_itinerary_three_even_eoooee_of_ge_three hge h
+      · exact no_cycle_itinerary_three_even_eoooee_of_ge_four hge h4 h
 
 /-! ## Bunched EOOEOE -/
 
@@ -1790,7 +1790,7 @@ set_option maxRecDepth 512
 set_option maxHeartbeats 400000
 
 theorem threeEvenEOOEOE_z_lt {n a : ℕ} (hn : 4 ≤ n)
-    (h : CycleWord n (threeEvenEOOEOE a)) :
+    (h : CycleItinerary n (threeEvenEOOEOE a)) :
     image n (List.replicate a Branch.odd) < (n + 1) ^ 4 := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 4) hn
   set pref :=
@@ -1798,7 +1798,7 @@ theorem threeEvenEOOEOE_z_lt {n a : ℕ} (hn : 4 ≤ n)
   have hsplit : threeEvenEOOEOE a =
       pref ++ [Branch.even, Branch.odd, Branch.even] := by
     simp [threeEvenEOOEOE, pref]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (pref ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [hsplit] using h
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := pref) hC
@@ -1850,8 +1850,8 @@ theorem threeEvenEOOEOE_z_lt {n a : ℕ} (hn : 4 ≤ n)
     cube_succ_lt_two_mul_of_cube_lt_pow4 hA hy3'
   exact z_lt_succ_pow4_of_y hzlt (eooeoe_u_lt_succ_sq hn hu9 hysucc)
 
-theorem no_cycle_word_three_even_eooeoe_of_ge_four {n a : ℕ}
-    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleWord n (threeEvenEOOEOE a)) :
+theorem no_cycle_itinerary_three_even_eooeoe_of_ge_four {n a : ℕ}
+    (hn : 256 ≤ n) (ha : 4 ≤ a) (h : CycleItinerary n (threeEvenEOOEOE a)) :
     False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hn4 : 4 ≤ n := le_trans (by decide : (4 : ℕ) ≤ 256) hn
@@ -1864,11 +1864,11 @@ theorem no_cycle_word_three_even_eooeoe_of_ge_four {n a : ℕ}
   have hpow := odd_run_lower_growth hn1 hO
   have hZ : ((n + 1) ^ 4) ^ (2 ^ a) = (n + 1) ^ (4 * 2 ^ a) :=
     (Nat.pow_mul (n + 1) 4 (2 ^ a)).symm
-  exact leftover_prefix_cell hpow hz
+  exact leftover_prefix_preimage hpow hz
     (by simpa [hZ] using three_even_eooee_tail hn ha)
 
-theorem no_cycle_word_three_even_eooeoe_of_ge_three {n : ℕ}
-    (hn : 256 ≤ n) (h : CycleWord n (threeEvenEOOEOE 3)) : False := by
+theorem no_cycle_itinerary_three_even_eooeoe_of_ge_three {n : ℕ}
+    (hn : 256 ≤ n) (h : CycleItinerary n (threeEvenEOOEOE 3)) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hn197 : 197 ≤ n := le_trans (by decide : (197 : ℕ) ≤ 256) hn
   have hn24 : 24 ≤ n := le_trans (by decide : (24 : ℕ) ≤ 256) hn
@@ -1902,7 +1902,7 @@ theorem no_cycle_word_three_even_eooeoe_of_ge_three {n : ℕ}
     exact lt_of_le_of_lt hle
       (Nat.mul_lt_mul_of_pos_left hz8
         (pow_pos (by decide : (0 : ℕ) < 2) 38))
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (pref ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [threeEvenEOOEOE, pref] using h
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := pref) hC
@@ -1945,7 +1945,7 @@ theorem no_cycle_word_three_even_eooeoe_of_ge_three {n : ℕ}
   | inr hge => exact eoooee_large_y_false hn197 hge hu27 h27
 
 theorem threeEvenEOOEOE_follows_seven_odds {n a : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (threeEvenEOOEOE a)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (threeEvenEOOEOE a)) :
     follows n sevenOdds := by
   have hO : follows n (List.replicate a Branch.odd) :=
     follows_of_append_left
@@ -1959,23 +1959,23 @@ theorem threeEvenEOOEOE_follows_seven_odds {n a : ℕ}
   exact follows_of_append_left (v := List.replicate (a - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_three_even_eooeoe_of_lt {n a : ℕ}
+theorem no_cycle_itinerary_three_even_eooeoe_of_lt {n a : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (ha3 : 3 ≤ a) (ha6 : a ≤ 6)
-    (h : CycleWord n (threeEvenEOOEOE a)) : False := by
+    (h : CycleItinerary n (threeEvenEOOEOE a)) : False := by
   have hA : a - 3 < 4 := by omega
   have hfalse :
-      cycleWordB n (threeEvenEOOEOE (a - 3 + 3)) = false :=
-    cycleWordB_eooeoe_prefix_lt256 ⟨n, hn⟩ ⟨a - 3, hA⟩ hn2
+      cycleItineraryB n (threeEvenEOOEOE (a - 3 + 3)) = false :=
+    cycleItineraryB_eooeoe_prefix_lt256 ⟨n, hn⟩ ⟨a - 3, hA⟩ hn2
   have ha : a - 3 + 3 = a := by omega
-  have hfalse' : cycleWordB n (threeEvenEOOEOE a) = false := by
+  have hfalse' : cycleItineraryB n (threeEvenEOOEOE a) = false := by
     simpa [ha] using hfalse
-  have htrue : cycleWordB n (threeEvenEOOEOE a) = true :=
-    cycleWordB_iff.mpr h
+  have htrue : cycleItineraryB n (threeEvenEOOEOE a) = true :=
+    cycleItineraryB_iff.mpr h
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_three_even_eooeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a) :
-    ¬CycleWord n
+theorem no_cycle_itinerary_three_even_eooeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a) :
+    ¬CycleItinerary n
       (List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd, Branch.even,
           Branch.odd, Branch.even]) := by
@@ -1984,15 +1984,15 @@ theorem no_cycle_word_three_even_eooeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a
   | inl hlt =>
       have hcases : a ≤ 6 ∨ 7 ≤ a := by omega
       rcases hcases with hle | hge
-      · exact no_cycle_word_three_even_eooeoe_of_lt hn hlt ha hle h
+      · exact no_cycle_itinerary_three_even_eooeoe_of_lt hn hlt ha hle h
       · exact no_follows_seven_odds_of_lt256 hn hlt
           (threeEvenEOOEOE_follows_seven_odds hge h)
   | inr hge =>
       have hcases : a = 3 ∨ 4 ≤ a := by omega
       rcases hcases with h3 | h4
       · subst h3
-        exact no_cycle_word_three_even_eooeoe_of_ge_three hge h
-      · exact no_cycle_word_three_even_eooeoe_of_ge_four hge h4 h
+        exact no_cycle_itinerary_three_even_eooeoe_of_ge_three hge h
+      · exact no_cycle_itinerary_three_even_eooeoe_of_ge_four hge h4 h
 
 /-! ## First-E transport -/
 
@@ -2006,7 +2006,7 @@ at `y ≥ n`. The leftover cell is measured against the cycle start
 `y`. Large `y` is the uniform cutoff `y ≥ 256`. Below `256`, short
 gaps are tables and long gaps are seven-odd.
 
-This excludes gapped `CycleMin`s only. It is not a `CycleWord`
+This excludes gapped `CycleMin`s only. It is not a `CycleItinerary`
 theorem at a non-minimum start, not a bunched-tail attack, not a
 length-8 or length-9 census, and not a halt theorem. Paper A
 records the transport as Theorem 3.13.
@@ -2105,7 +2105,7 @@ theorem firstEPrefix_image_ge_two {n a : ℕ}
   have hn3 : 3 ≤ n := by omega
   have hz : n < image n (List.replicate a Branch.odd) := by
     simpa [image_eq_iterate, List.length_replicate] using
-      odd_word_expands hn3 ha hO
+      odd_itinerary_expands hn3 ha hO
   have hz4 : 4 ≤ image n (List.replicate a Branch.odd) := by omega
   have he : image n (List.replicate a Branch.odd) % 2 = 0 := by
     have hf : follows (image n (List.replicate a Branch.odd)) [Branch.even] :=
@@ -2122,7 +2122,7 @@ theorem firstEPrefix_image_ge_two {n a : ℕ}
 
 theorem gapped_ee_cell {n a b : ℕ}
     (hy : 1 ≤ image n (firstEPrefix a))
-    (h : CycleWord n (gappedThreeEvenEE a b)) :
+    (h : CycleItinerary n (gappedThreeEvenEE a b)) :
     image n (firstEPrefix a) ^ (3 ^ b) <
       2 ^ denomBits b * (n + 1) ^ (2 ^ (b + 2)) := by
   set y := image n (firstEPrefix a)
@@ -2130,7 +2130,7 @@ theorem gapped_ee_cell {n a b : ℕ}
   have hsplit : gappedThreeEvenEE a b =
       v ++ List.replicate 2 Branch.even := by
     simp [gappedThreeEvenEE, v, List.append_assoc]
-  have hC : CycleWord n (v ++ List.replicate 2 Branch.even) := by
+  have hC : CycleItinerary n (v ++ List.replicate 2 Branch.even) := by
     simpa [hsplit] using h
   have hz := cycle_trailing_evens_lt (r := 2) (by decide) hC
   have hO : follows y (List.replicate b Branch.odd) :=
@@ -2153,14 +2153,14 @@ theorem gapped_ee_cell {n a b : ℕ}
 
 theorem gapped_eoe_cell {n a b : ℕ}
     (hn : 2 ≤ n) (hy : 1 ≤ image n (firstEPrefix a))
-    (h : CycleWord n (gappedThreeEvenEOE a b)) :
+    (h : CycleItinerary n (gappedThreeEvenEOE a b)) :
     image n (firstEPrefix a) ^ (3 ^ (b + 1)) <
       2 ^ denomBits (b + 1) * (n + 1) ^ (2 ^ (b + 3)) := by
   set y := image n (firstEPrefix a)
   set u := List.replicate b Branch.odd
   set z := image y u
   set w := image y (u ++ [Branch.even])
-  have hC' : CycleWord n
+  have hC' : CycleItinerary n
       ((firstEPrefix a ++ u) ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [gappedThreeEvenEOE, List.append_assoc] using h
   have hO : follows y u := follows_gapped_eoe_remaining_odds h.1
@@ -2243,7 +2243,7 @@ theorem no_cycleMin_gapped_three_even_ee_of_y {n a b : ℕ}
     (hb : 4 ≤ b) (h : CycleMin n (gappedThreeEvenEE a b))
     (hy : 256 ≤ image n (firstEPrefix a)) : False := by
   set y := image n (firstEPrefix a)
-  have hC : CycleWord n (gappedThreeEvenEE a b) := cycleMin_cycleWord h
+  have hC : CycleItinerary n (gappedThreeEvenEE a b) := cycleMin_cycleItinerary h
   have hyn : n ≤ y := cycleMin_gapped_ee_y_ge h
   have hy1 : 1 ≤ y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
   have hcell := gapped_ee_cell (n := n) (a := a) (b := b) hy1 hC
@@ -2263,7 +2263,7 @@ theorem no_cycleMin_gapped_three_even_eoe_of_y {n a b : ℕ}
     (hn : 2 ≤ n) (hb : 3 ≤ b) (h : CycleMin n (gappedThreeEvenEOE a b))
     (hy : 256 ≤ image n (firstEPrefix a)) : False := by
   set y := image n (firstEPrefix a)
-  have hC : CycleWord n (gappedThreeEvenEOE a b) := cycleMin_cycleWord h
+  have hC : CycleItinerary n (gappedThreeEvenEOE a b) := cycleMin_cycleItinerary h
   have hyn : n ≤ y := cycleMin_gapped_eoe_y_ge h
   have hy1 : 1 ≤ y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
   have hcell := gapped_eoe_cell hn hy1 hC
@@ -2282,7 +2282,7 @@ theorem no_cycleMin_gapped_three_even_eoe_of_y {n a b : ℕ}
   exact (not_lt_of_gt htail') hlt
 
 theorem gapped_ee_prefix_seven_odds {n a b : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (gappedThreeEvenEE a b)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (gappedThreeEvenEE a b)) :
     follows n sevenOdds := by
   have hP := follows_gapped_ee_prefix h.1
   have hO : follows n (List.replicate a Branch.odd) :=
@@ -2296,7 +2296,7 @@ theorem gapped_ee_prefix_seven_odds {n a b : ℕ}
     (by simpa [hsplit] using hO)
 
 theorem gapped_eoe_prefix_seven_odds {n a b : ℕ}
-    (ha : 7 ≤ a) (h : CycleWord n (gappedThreeEvenEOE a b)) :
+    (ha : 7 ≤ a) (h : CycleItinerary n (gappedThreeEvenEOE a b)) :
     follows n sevenOdds := by
   have hP := follows_gapped_eoe_prefix h.1
   have hO : follows n (List.replicate a Branch.odd) :=
@@ -2310,7 +2310,7 @@ theorem gapped_eoe_prefix_seven_odds {n a b : ℕ}
     (by simpa [hsplit] using hO)
 
 theorem gapped_ee_remaining_seven_odds {n a b : ℕ}
-    (hb : 7 ≤ b) (h : CycleWord n (gappedThreeEvenEE a b)) :
+    (hb : 7 ≤ b) (h : CycleItinerary n (gappedThreeEvenEE a b)) :
     follows (image n (firstEPrefix a)) sevenOdds := by
   have hO := follows_gapped_ee_remaining_odds h.1
   have hsplit : List.replicate b Branch.odd =
@@ -2321,7 +2321,7 @@ theorem gapped_ee_remaining_seven_odds {n a b : ℕ}
     (by simpa [hsplit] using hO)
 
 theorem gapped_eoe_remaining_seven_odds {n a b : ℕ}
-    (hb : 7 ≤ b) (h : CycleWord n (gappedThreeEvenEOE a b)) :
+    (hb : 7 ≤ b) (h : CycleItinerary n (gappedThreeEvenEOE a b)) :
     follows (image n (firstEPrefix a)) sevenOdds := by
   have hO := follows_gapped_eoe_remaining_odds h.1
   have hsplit : List.replicate b Branch.odd =
@@ -2331,46 +2331,46 @@ theorem gapped_eoe_remaining_seven_odds {n a b : ℕ}
   exact follows_of_append_left (v := List.replicate (b - 7) Branch.odd)
     (by simpa [hsplit] using hO)
 
-theorem no_cycle_word_gapped_ee_short_of_lt {n a b : ℕ}
+theorem no_cycle_itinerary_gapped_ee_short_of_lt {n a b : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (ha2 : 2 ≤ a) (ha6 : a ≤ 6)
     (hb4 : 4 ≤ b) (hb6 : b ≤ 6)
-    (h : CycleWord n (gappedThreeEvenEE a b)) : False := by
+    (h : CycleItinerary n (gappedThreeEvenEE a b)) : False := by
   have hA : a - 2 < 5 := by omega
   have hB : b - 4 < 3 := by omega
   have hfalse :
-      cycleWordB n (gappedThreeEvenEE (a - 2 + 2) (b - 4 + 4)) = false :=
-    cycleWordB_gapped_ee_short_lt256 ⟨n, hn⟩ ⟨a - 2, hA⟩ ⟨b - 4, hB⟩ hn2
+      cycleItineraryB n (gappedThreeEvenEE (a - 2 + 2) (b - 4 + 4)) = false :=
+    cycleItineraryB_gapped_ee_short_lt256 ⟨n, hn⟩ ⟨a - 2, hA⟩ ⟨b - 4, hB⟩ hn2
   have ha : a - 2 + 2 = a := by omega
   have hb : b - 4 + 4 = b := by omega
-  have hfalse' : cycleWordB n (gappedThreeEvenEE a b) = false := by
+  have hfalse' : cycleItineraryB n (gappedThreeEvenEE a b) = false := by
     simpa [ha, hb] using hfalse
-  have htrue : cycleWordB n (gappedThreeEvenEE a b) = true :=
-    cycleWordB_iff.mpr h
+  have htrue : cycleItineraryB n (gappedThreeEvenEE a b) = true :=
+    cycleItineraryB_iff.mpr h
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_gapped_eoe_short_of_lt {n a b : ℕ}
+theorem no_cycle_itinerary_gapped_eoe_short_of_lt {n a b : ℕ}
     (hn2 : 2 ≤ n) (hn : n < 256) (ha2 : 2 ≤ a) (ha6 : a ≤ 6)
     (hb3 : 3 ≤ b) (hb6 : b ≤ 6)
-    (h : CycleWord n (gappedThreeEvenEOE a b)) : False := by
+    (h : CycleItinerary n (gappedThreeEvenEOE a b)) : False := by
   have hA : a - 2 < 5 := by omega
   have hB : b - 3 < 4 := by omega
   have hfalse :
-      cycleWordB n (gappedThreeEvenEOE (a - 2 + 2) (b - 3 + 3)) = false :=
-    cycleWordB_gapped_eoe_short_lt256 ⟨n, hn⟩ ⟨a - 2, hA⟩ ⟨b - 3, hB⟩ hn2
+      cycleItineraryB n (gappedThreeEvenEOE (a - 2 + 2) (b - 3 + 3)) = false :=
+    cycleItineraryB_gapped_eoe_short_lt256 ⟨n, hn⟩ ⟨a - 2, hA⟩ ⟨b - 3, hB⟩ hn2
   have ha : a - 2 + 2 = a := by omega
   have hb : b - 3 + 3 = b := by omega
-  have hfalse' : cycleWordB n (gappedThreeEvenEOE a b) = false := by
+  have hfalse' : cycleItineraryB n (gappedThreeEvenEOE a b) = false := by
     simpa [ha, hb] using hfalse
-  have htrue : cycleWordB n (gappedThreeEvenEOE a b) = true :=
-    cycleWordB_iff.mpr h
+  have htrue : cycleItineraryB n (gappedThreeEvenEOE a b) = true :=
+    cycleItineraryB_iff.mpr h
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
 theorem no_cycleMin_gapped_three_even_ee_of_lt {n a b : ℕ}
     (hn : 2 ≤ n) (hnlt : n < 256) (ha : 2 ≤ a) (hb : 4 ≤ b)
     (h : CycleMin n (gappedThreeEvenEE a b)) : False := by
-  have hC : CycleWord n (gappedThreeEvenEE a b) := cycleMin_cycleWord h
+  have hC : CycleItinerary n (gappedThreeEvenEE a b) := cycleMin_cycleItinerary h
   cases lt_or_ge a 7 with
   | inr ha7 =>
       exact no_follows_seven_odds_of_lt256 hn hnlt
@@ -2389,13 +2389,13 @@ theorem no_cycleMin_gapped_three_even_ee_of_lt {n a b : ℕ}
               exact no_follows_seven_odds_of_lt256 hy2 hylt
                 (gapped_ee_remaining_seven_odds hb7 hC)
           | inl hb6 =>
-              exact no_cycle_word_gapped_ee_short_of_lt hn hnlt ha
+              exact no_cycle_itinerary_gapped_ee_short_of_lt hn hnlt ha
                 (Nat.le_of_lt_succ ha6) hb (Nat.le_of_lt_succ hb6) hC
 
 theorem no_cycleMin_gapped_three_even_eoe_of_lt {n a b : ℕ}
     (hn : 2 ≤ n) (hnlt : n < 256) (ha : 2 ≤ a) (hb : 3 ≤ b)
     (h : CycleMin n (gappedThreeEvenEOE a b)) : False := by
-  have hC : CycleWord n (gappedThreeEvenEOE a b) := cycleMin_cycleWord h
+  have hC : CycleItinerary n (gappedThreeEvenEOE a b) := cycleMin_cycleItinerary h
   cases lt_or_ge a 7 with
   | inr ha7 =>
       exact no_follows_seven_odds_of_lt256 hn hnlt
@@ -2414,7 +2414,7 @@ theorem no_cycleMin_gapped_three_even_eoe_of_lt {n a b : ℕ}
               exact no_follows_seven_odds_of_lt256 hy2 hylt
                 (gapped_eoe_remaining_seven_odds hb7 hC)
           | inl hb6 =>
-              exact no_cycle_word_gapped_eoe_short_of_lt hn hnlt ha
+              exact no_cycle_itinerary_gapped_eoe_short_of_lt hn hnlt ha
                 (Nat.le_of_lt_succ ha6) hb (Nat.le_of_lt_succ hb6) hC
 
 theorem no_cycleMin_gapped_three_even_ee {n a b : ℕ}
@@ -2457,30 +2457,30 @@ theorem no_cycleMin_gapped_three_even_eoe {n a b : ℕ}
         le_trans hge (cycleMin_gapped_eoe_y_ge h')
       exact no_cycleMin_gapped_three_even_eoe_of_y hn hb h' hy
 
-/-! ## Gapped CycleWord by rotation -/
+/-! ## Gapped CycleItinerary by rotation -/
 
 /-!
-# Gapped three-even leftovers as `CycleWord`s
+# Gapped three-even leftovers as `CycleItinerary`s
 
 First-E transport excludes the gapped leftovers only as `CycleMin`s.
 Every rotation is already an excluded `CycleMin` orientation, so
-`exists_cycleMin` upgrades both families to `CycleWord`.
+`exists_cycleMin` upgrades both families to `CycleItinerary`.
 
 Not a length-8 or length-9 census and not a halt theorem. Paper A
 records the families as Theorem 3.21.
 -/
 
-theorem rotateWord_cons {w : List Branch} {k : ℕ} (hk : k < w.length) :
-    rotateWord w k = w[k] :: (w.drop (k + 1) ++ w.take k) := by
-  rw [rotateWord_eq_drop_append_take w k (Nat.le_of_lt hk),
+theorem rotateItinerary_cons {w : List Branch} {k : ℕ} (hk : k < w.length) :
+    rotateItinerary w k = w[k] :: (w.drop (k + 1) ++ w.take k) := by
+  rw [rotateItinerary_eq_drop_append_take w k (Nat.le_of_lt hk),
     List.drop_eq_getElem_cons hk, List.cons_append]
 
-theorem rotateWord_cons_cons {w : List Branch} {k : ℕ}
+theorem rotateItinerary_cons_cons {w : List Branch} {k : ℕ}
     (hk : k + 1 < w.length) :
-    rotateWord w k =
+    rotateItinerary w k =
       w[k] :: w[k + 1] :: (w.drop (k + 2) ++ w.take k) := by
   have hk0 : k < w.length := Nat.lt_of_succ_lt hk
-  rw [rotateWord_cons hk0, List.drop_eq_getElem_cons hk, List.cons_append]
+  rw [rotateItinerary_cons hk0, List.drop_eq_getElem_cons hk, List.cons_append]
 
 theorem take_snoc {w : List Branch} {k : ℕ}
     (hk0 : 0 < k) (hk : k ≤ w.length) :
@@ -2493,34 +2493,34 @@ theorem take_snoc {w : List Branch} {k : ℕ}
   rw [hsucc] at h
   exact h
 
-theorem rotateWord_snoc {w : List Branch} {k : ℕ}
+theorem rotateItinerary_snoc {w : List Branch} {k : ℕ}
     (hk0 : 0 < k) (hk : k ≤ w.length) :
-    rotateWord w k =
+    rotateItinerary w k =
       (w.drop k ++ w.take (k - 1)) ++
         [w[k - 1]'(Nat.lt_of_lt_of_le (Nat.sub_one_lt_of_lt hk0) hk)] := by
-  rw [rotateWord_eq_drop_append_take w k hk, take_snoc hk0 hk,
+  rw [rotateItinerary_eq_drop_append_take w k hk, take_snoc hk0 hk,
     List.append_assoc]
 
 theorem cycleMin_of_rotate_ends_odd {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (hk0 : 0 < k) (hk : k ≤ w.length)
     (hodd : w[k - 1]'(Nat.lt_of_lt_of_le (Nat.sub_one_lt_of_lt hk0) hk) =
       Branch.odd)
-    (h : CycleMin n (rotateWord w k)) : False := by
-  rw [rotateWord_snoc hk0 hk, hodd] at h
+    (h : CycleMin n (rotateItinerary w k)) : False := by
+  rw [rotateItinerary_snoc hk0 hk, hodd] at h
   exact cycleMin_not_end_odd hn h
 
 theorem cycleMin_rotate_start_even {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (hk : k < w.length)
     (he : w[k] = Branch.even)
-    (h : CycleMin n (rotateWord w k)) : False := by
-  rw [rotateWord_cons hk, he] at h
+    (h : CycleMin n (rotateItinerary w k)) : False := by
+  rw [rotateItinerary_cons hk, he] at h
   exact cycleMin_not_start_even hn h
 
 theorem cycleMin_rotate_start_OE {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (hk : k + 1 < w.length)
     (ho : w[k] = Branch.odd) (he : w[k + 1] = Branch.even)
-    (h : CycleMin n (rotateWord w k)) : False := by
-  rw [rotateWord_cons_cons hk, ho, he] at h
+    (h : CycleMin n (rotateItinerary w k)) : False := by
+  rw [rotateItinerary_cons_cons hk, ho, he] at h
   exact cycleMin_not_odd_even hn h
 
 theorem getElem_of_list_eq {w w' : List Branch} (h : w = w') {i : ℕ}
@@ -2763,7 +2763,7 @@ theorem gappedEOEBootstrap_split (a b : ℕ) :
   simp [gappedEOEBootstrap, List.append_assoc]
 
 theorem gapped_ee_rotate_succ_a {a b : ℕ} :
-    rotateWord (gappedThreeEvenEE a b) (a + 1) = gappedEEBootstrap a b := by
+    rotateItinerary (gappedThreeEvenEE a b) (a + 1) = gappedEEBootstrap a b := by
   have hlen := gappedThreeEvenEE_length a b
   have hk : a + 1 ≤ (gappedThreeEvenEE a b).length := by rw [hlen]; omega
   have hpre := firstEPrefix_length a
@@ -2773,13 +2773,13 @@ theorem gapped_ee_rotate_succ_a {a b : ℕ} :
     List.drop_eq_nil_of_le (Nat.le_of_eq hpre)
   have htake : (firstEPrefix a).take (a + 1) = firstEPrefix a :=
     List.take_of_length_le (Nat.le_of_eq hpre)
-  rw [rotateWord_eq_drop_append_take _ _ hk, hword,
+  rw [rotateItinerary_eq_drop_append_take _ _ hk, hword,
     List.drop_append_of_le_length hle, List.take_append_of_le_length hle,
     hdrop, htake]
   simp [gappedEEBootstrap, firstEPrefix]
 
 theorem gapped_eoe_rotate_succ_a {a b : ℕ} :
-    rotateWord (gappedThreeEvenEOE a b) (a + 1) = gappedEOEBootstrap a b := by
+    rotateItinerary (gappedThreeEvenEOE a b) (a + 1) = gappedEOEBootstrap a b := by
   have hlen := gappedThreeEvenEOE_length a b
   have hk : a + 1 ≤ (gappedThreeEvenEOE a b).length := by rw [hlen]; omega
   have hpre := firstEPrefix_length a
@@ -2789,7 +2789,7 @@ theorem gapped_eoe_rotate_succ_a {a b : ℕ} :
     List.drop_eq_nil_of_le (Nat.le_of_eq hpre)
   have htake : (firstEPrefix a).take (a + 1) = firstEPrefix a :=
     List.take_of_length_le (Nat.le_of_eq hpre)
-  rw [rotateWord_eq_drop_append_take _ _ hk, hword,
+  rw [rotateItinerary_eq_drop_append_take _ _ hk, hword,
     List.drop_append_of_le_length hle, List.take_append_of_le_length hle,
     hdrop, htake]
   simp [gappedEOEBootstrap, firstEPrefix]
@@ -2896,22 +2896,22 @@ theorem no_cycleMin_gapped_eoe_bootstrap {n a b : ℕ}
           exact no_follows_three_eoe_bootstrap hb
             (by simpa [gappedEOEBootstrap_split] using h.1.1)
 
-theorem no_cycle_word_gapped_three_even_ee {n a b : ℕ}
+theorem no_cycle_itinerary_gapped_three_even_ee {n a b : ℕ}
     (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 4 ≤ b) :
-    ¬CycleWord n (gappedThreeEvenEE a b) := by
+    ¬CycleItinerary n (gappedThreeEvenEE a b) := by
   intro h
   obtain ⟨k, hk, hm⟩ := exists_cycleMin hn h
   have hlen := gappedThreeEvenEE_length a b
   rw [hlen] at hk
   have hnk : 2 ≤ floorPower^[k] n :=
-    cycleWord_iterate_ge_two hn h (by simpa [hlen] using hk)
+    cycleItinerary_iterate_ge_two hn h (by simpa [hlen] using hk)
   have hcases :
       k = 0 ∨ k = a + 1 ∨ k = a + b + 2 ∨
         (0 < k ∧ k ≠ a + 1 ∧ k ≠ a + b + 2) := by omega
   rcases hcases with h0 | hsucc | hlast | hmid
   · subst h0
     exact no_cycleMin_gapped_three_even_ee hnk ha hb
-      (by simpa [rotateWord, gapped_ee_expanded] using hm)
+      (by simpa [rotateItinerary, gapped_ee_expanded] using hm)
   · subst hsucc
     exact no_cycleMin_gapped_ee_bootstrap hnk ha hb
       (by simpa [gapped_ee_rotate_succ_a] using hm)
@@ -2922,22 +2922,22 @@ theorem no_cycle_word_gapped_three_even_ee {n a b : ℕ}
       (by simpa [hlen] using Nat.le_of_lt hk)
       (gappedThreeEvenEE_pred_odd hmid.1 hk hmid.2.1 hmid.2.2) hm
 
-theorem no_cycle_word_gapped_three_even_eoe {n a b : ℕ}
+theorem no_cycle_itinerary_gapped_three_even_eoe {n a b : ℕ}
     (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 3 ≤ b) :
-    ¬CycleWord n (gappedThreeEvenEOE a b) := by
+    ¬CycleItinerary n (gappedThreeEvenEOE a b) := by
   intro h
   obtain ⟨k, hk, hm⟩ := exists_cycleMin hn h
   have hlen := gappedThreeEvenEOE_length a b
   rw [hlen] at hk
   have hnk : 2 ≤ floorPower^[k] n :=
-    cycleWord_iterate_ge_two hn h (by simpa [hlen] using hk)
+    cycleItinerary_iterate_ge_two hn h (by simpa [hlen] using hk)
   have hcases :
       k = 0 ∨ k = a + 1 ∨ k = a + b + 2 ∨
         (0 < k ∧ k ≠ a + 1 ∧ k ≠ a + b + 2) := by omega
   rcases hcases with h0 | hsucc | hO | hmid
   · subst h0
     exact no_cycleMin_gapped_three_even_eoe hnk ha hb
-      (by simpa [rotateWord, gapped_eoe_expanded] using hm)
+      (by simpa [rotateItinerary, gapped_eoe_expanded] using hm)
   · subst hsucc
     exact no_cycleMin_gapped_eoe_bootstrap hnk ha hb
       (by simpa [gapped_eoe_rotate_succ_a] using hm)

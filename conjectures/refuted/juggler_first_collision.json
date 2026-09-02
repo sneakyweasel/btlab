@@ -1,17 +1,17 @@
 {
   "id": "juggler_first_collision",
   "title": "Parent-type first collisions EE, EO, OE, OO form a new seam",
-  "statement": "Classifying T_u(n)=T_v(m)=x with no earlier shared state by the last-letter parent types EE, EO, OE, OO produces a fibre, emptiness, or word-pair restriction that is not odd_cell_unique / oddLanding_preimage_unique / even_cell_iff / shared-tail determinism / trailing-EE count n(n^2+n+1) / twin-flight sink convention / NC inversion.",
+  "statement": "Classifying T_u(n)=T_v(m)=x with no earlier shared state by the last-letter parent types EE, EO, OE, OO produces a fibre, emptiness, or word-pair restriction that is not odd_preimage_unique / oddLanding_preimage_unique / even_preimage_iff / shared-tail determinism / trailing-EE count n(n^2+n+1) / twin-flight sink convention / NC inversion.",
   "status": "REFUTED",
   "counterexamples": [
     "off {1,2}, first collision iff last parents differ (9375 itinerary meetings, |u|,|v|<=3, starts <=400)",
-    "odd_cell_unique / oddLanding_preimage_unique: OO first meetings are empty",
+    "odd_preimage_unique / oddLanding_preimage_unique: OO first meetings are empty",
     "OE/EO one-step counts equal |Pred_O|*|Pred_E| (4288 each on x in [3,400]); witness 5 -O-> 11 <-E- 122",
     "EE one-step count equals P(P-1) for P=|Pred_E| (21413594 on the same window); witness 100 -> 10 <- 102",
     "4 -EEO-> 1 <-E- 2 has distinct last parents after the orbits already joined; sink overshoot along 2->1->1, not a new type"
   ],
   "first_seen": "juggler first-collision / ancestry",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "oeis-A094683",
     "pickover-1991-computers-imagination"

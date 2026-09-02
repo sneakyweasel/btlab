@@ -27,7 +27,7 @@ from pathlib import Path
 from typing import Any, Callable, Iterable
 
 from research.juggler_sequence.flight_divergent_structure import HIGH_FLYERS
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "walk_coboundary"

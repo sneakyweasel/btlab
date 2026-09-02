@@ -11,7 +11,7 @@
   "notes": "WORD_WN_RULES is WORD_SIMP_RULES plus one-way N\u2218S\u2192S\u2218N, N\u2218W\u2192W\u2218N, and N\u2218K3\u2192K3\u2218N. Termination is the lex rank (I0-count, N-inversion, length) with pushable {S,W,K3}. Local confluence is the complete finite string-rewriting overlap list (SIMP overlaps plus the nine new N\u2218N / N\u2218W / N\u2218K3 peaks). Newman gives unique syntactic NF. Semantic canonicity is not claimed. N\u2218K3 is not installed in WORD_REWRITE_RULES. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
   "origin": "docs/theory/rewrite_calculus.md",
   "proof_reference": "docs/theory/rewrite_calculus.md",
-  "statement": "The opt-in fragment WORD_WN_RULES is terminating and locally confluent; every word has a unique syntactic normal form.",
+  "statement": "The opt-in fragment WORD_WN_RULES is terminating and locally confluent; every itinerary has a unique syntactic normal form.",
   "status": "EXACT \u2014 HUMAN PROOF",
   "tested_range": "complete critical-pair list and bounded unique-NF census in tests/unit/test_rewrite_word_fragments.py",
   "title": "Opt-in W+N word fragment has unique NF"

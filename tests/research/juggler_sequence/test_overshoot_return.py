@@ -19,7 +19,7 @@ from research.juggler_sequence.overshoot_return import (
     render_markdown,
     suffix_after_oa_ee,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 

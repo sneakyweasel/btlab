@@ -28,7 +28,7 @@ from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_last_cluster_split_covers_examples():
@@ -96,7 +96,7 @@ def test_lean_cube_transport_and_boundaries():
     assert "sorry" not in obst
     assert "admit" not in obst
     assert "theorem no_juggler_cycle" not in obst
-    assert "theorem no_cycle_word_length_eleven" not in obst
+    assert "theorem no_cycle_itinerary_length_eleven" not in obst
     assert "theorem cycleMin_ooo_residual_ge_cube" not in paper
     assert "theorem cycleMin_ooo_residual_ge_cube" not in census7
 
@@ -133,6 +133,6 @@ def test_dossier_boundary():
     assert "ooo_residual_ge_cube" in dossier
     assert "cycleMin_transport_second_oo" in dossier
     assert "bunched-short last cluster" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier
     assert "not a length-11" in dossier or "not a halt" in dossier
     assert ANTI_OVERCLAIM["global_termination"] is False

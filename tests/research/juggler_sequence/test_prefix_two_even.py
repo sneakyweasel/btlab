@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.prefix_two_even import (
     CLASS_GREEN,
     FORBIDDEN_THEOREMS,
@@ -104,6 +104,6 @@ def test_dossier_boundary():
     assert "no_cycleMin_prefix_two_even_ee" in dossier
     assert "no_cycleMin_prefix_two_even_eoe" in dossier
     assert "bunched-short" in dossier
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_cycleMin_four_even" not in note
     assert "theorem no_juggler_cycle" not in note

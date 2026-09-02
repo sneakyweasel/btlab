@@ -36,7 +36,7 @@ envelope.
 ## Current literature
 
 - CE `OE` landing after a third `OOE` is odd and below \(n^{2}\) —
-  **EXACT — LEAN VERIFIED** (`J-ce-escaped-even-oe-cell`).
+  **EXACT — LEAN VERIFIED** (`J-ce-escaped-even-oe-preimage`).
 - Every escaped even drops —
   **REFUTED** (`J-escaped-even-always-drops`; witness \(1517\)).
 - \(429\) dies by even `OE` landing —
@@ -83,7 +83,7 @@ It is not required.
 - another escaped even occurs on this step —
   **REFUTED** (square gap forbids \(q\ge n^{2}\))
 - no trajectory escapes — not claimed
-- length-11 cycle words are impossible — not claimed
+- length-11 cycle itineraries are impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -127,7 +127,7 @@ with \(2493\le 124475<1517^{2}\) and \(124475\) odd.
 `minimal_ooeooeooeoe_follows_o`, and
 `minimal_ooeooeooeoeo_not_even`. `FloorPower` and
 `MinimalNonTerm` are not rewritten. No `sorry`. No
-`no_juggler_escape`. No `no_cycle_word_length_eleven`. Paper A
+`no_juggler_escape`. No `no_cycle_itinerary_length_eleven`. Paper A
 is unchanged.
 
 ## Results

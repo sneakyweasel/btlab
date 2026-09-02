@@ -17,7 +17,7 @@ from research.juggler_sequence.length8_bootstrap import (
     render_markdown,
     two_even_parts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 _PAYLOAD = None
 

@@ -49,7 +49,7 @@ The crude comparison of \(x^3\ge p^{2^{r+1}}\) with
 \(x<M<(p+1)^{2^r}\) does not empty the region for every \(p\) and
 every \(r\ge 1\). In particular \(x\ge p^2\) is not forced.
 
-This says nothing about totality. Do not prove that every cycle word
+This says nothing about totality. Do not prove that every cycle itinerary
 is impossible.
 
 ## Current literature
@@ -74,7 +74,7 @@ Falsifier               a cycle-legal even predecessor; or nested cells empty fo
 Existing machinery      cycleMax_top_normal_form, even_iter_*, odd-even two-step, odd cube cell
 Maximum Phase-0 scope   predecessor odd; p<x<M; nested cells; x^3≥p^{2^{r+1}}; transient preds
 Promotion criterion     reusable three-level top structure, or a genuine p–x scale gap
-Stop criterion          cycle engine; word census; FloorPower rewrite; r-census; log/cube-root in Lean
+Stop criterion          cycle engine; itinerary census; FloorPower rewrite; r-census; log/cube-root in Lean
 ```
 
 ## Balanced-ternary formulation
@@ -100,7 +100,7 @@ It is not required.
 - a class of top-run lengths is impossible — not claimed
 - \(x\ge p^2\) — **REFUTED** as a forced relation (transient \(9\), \(77\))
 - \(x=p\) — excluded on cycles
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -131,7 +131,7 @@ claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `cycleMax_predecessor_odd` / `cycleMax_predecessor_lt`
 - `cycle_top_predecessor_cell`

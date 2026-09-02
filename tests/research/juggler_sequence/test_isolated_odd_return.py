@@ -20,7 +20,7 @@ from research.juggler_sequence.isolated_odd_return import (
     render_markdown,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_block_map_contracts_and_family_is_isolated():
@@ -122,6 +122,6 @@ def test_dossier_boundary():
     assert "CLOSE" in dossier
     assert "isolated-odd" in dossier.lower()
     assert "juggler_isolated_odd_return" in ret
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_cycleMin_four_even" not in note
     assert "theorem no_juggler_cycle" not in note

@@ -11,7 +11,7 @@ reaches 1.
 ## Problem
 
 The thirty first-expanding leftovers are 30 of the 56 start-`OO`
-four-even words of length 11. Extra CycleMin-shaped rotations of
+four-even itineraries of length 11. Extra CycleMin-shaped rotations of
 the other twenty-two leftovers land in the remaining 26, typically
 \(a_3\ge 2\). Does slack \(139\) plus a bounded pin exclude the
 whole 56?
@@ -28,7 +28,7 @@ prefix start, with no prefix follower below \(\max(N_0,30)\).
 
 Five or more evens at length 11 are formally contracting
 (\(3^{6}<2^{11}\)). That is not used as a census. There is no
-`no_cycle_word_length_eleven`, no `no_cycleMin_necklace`, and no
+`no_cycle_itinerary_length_eleven`, no `no_cycleMin_necklace`, and no
 halt theorem.
 
 ## Current literature
@@ -53,7 +53,7 @@ Project relationship: **extended**, then **refuted**.
 ```text
 Mathematical target     Does slack 139 plus a bounded pin exclude
                         every length-11 CycleMin-shaped four-even
-                        word (the 56)?
+                        itinerary (the 56)?
 Novelty hypothesis      extra rotations are a3>=2 spellings of the
                         same identity, not a new cell; e>=5 is
                         contracting, so a census is a corollary
@@ -65,7 +65,7 @@ Maximum Phase-0 scope   one scan of the 56 words; no Lean census,
                         no 26 named theorems, no tails pin, no e=5
 Promotion criterion     all 56 have slack 139, chain N0 at or below
                         the first prefix start, pin empty below N0
-Stop criterion          any word misses; a 26-word rescue; Z5;
+Stop criterion          any itinerary misses; a 26-word rescue; Z5;
                         assembling the census before the scan
 ```
 
@@ -89,7 +89,7 @@ It is not required.
   **COMPUTATIONALLY VERIFIED**
 - `OOOEEEOOOOE` has first prefix start \(3\) and chain \(N_0=42\) —
   **COMPUTATIONALLY VERIFIED**
-- the other 24 extra words fire at their first prefix start —
+- the other 24 extra itineraries fire at their first prefix start —
   **COMPUTATIONALLY VERIFIED**
 - slack 139 plus a uniform pin excludes the 56 —
   **REFUTED**
@@ -114,7 +114,7 @@ None opened.
 
 ## Counterexamples
 
-The uniform-fire claim fails on two extra words:
+The uniform-fire claim fails on two extra itineraries:
 
 - `OOEEEOOOOOE` = \((2,0,0,5)\). \(A=30705\), chain \(N_0=55\),
   first prefix start \(5\). The prefix `OOEEEOOOOO` is followed
@@ -128,7 +128,7 @@ Do not pin those two starts. That is the two-word rescue.
 ## Formalization
 
 None. `Problems/Juggler/CycleMinFudge.lean` is not rewritten.
-No `no_cycleMin_necklace`. No `no_cycle_word_length_eleven`.
+No `no_cycleMin_necklace`. No `no_cycle_itinerary_length_eleven`.
 No `sorry`. No halt theorem. Paper A is unchanged.
 
 ## Results
@@ -136,14 +136,14 @@ No `sorry`. No halt theorem. Paper A is unchanged.
 Classification **CYCLEMIN_NECKLACE_REFUTED**.
 
 Slack \(139\) holds on all 56 words. Early evens and late odds
-inflate \(A\) past the fudge bound \(13905\). Two extra words
+inflate \(A\) past the fudge bound \(13905\). Two extra itineraries
 have a prefix start below their chain \(N_0\). The other 24 extra
 words fire. This is not a length-11 census and not a halt theorem.
 
 ## Open questions
 
 Stop. Do not pin the two misses. Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`.
+assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 

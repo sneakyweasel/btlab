@@ -6,35 +6,35 @@ from research.juggler_sequence.lean_paths import juggler_text
 
 from math import isqrt
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.floor_cells import (
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.floor_preimages import (
     CLASS_FREEZE,
     LEAN_THEOREMS,
     cell_regime,
     classify,
     eeo_oooo_witnesses,
-    even_cell,
-    even_cell_width,
+    even_preimage,
+    even_preimage_width,
     first_even_image,
     lean_api_present,
-    odd_cell_integers,
+    odd_preimage_integers,
     render_markdown,
     run_probe,
     scan_first_even_cells,
     scan_first_even_freeze,
-    scan_odd_cell_widths,
+    scan_odd_preimage_widths,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_even_and_odd_primitive_cells():
-    assert even_cell(1) == (1, 4)
-    assert even_cell(3) == (9, 16)
-    assert even_cell_width(1) == 3
-    assert even_cell_width(100) == 201
-    assert odd_cell_integers(0) in ([], [0])
-    assert odd_cell_integers(1) == [1]
-    widths = scan_odd_cell_widths(m_max=80)
+    assert even_preimage(1) == (1, 4)
+    assert even_preimage(3) == (9, 16)
+    assert even_preimage_width(1) == 3
+    assert even_preimage_width(100) == 201
+    assert odd_preimage_integers(0) in ([], [0])
+    assert odd_preimage_integers(1) == [1]
+    widths = scan_odd_preimage_widths(m_max=80)
     assert widths["multi"] == 0
     assert widths["singleton"] >= 1
 
@@ -43,7 +43,7 @@ def test_first_even_freeze_and_eoo_threshold():
     freeze = scan_first_even_freeze(q_max=20)
     assert freeze["failures"] == []
     for n in (2, 10, 12, 14):
-        assert follows_word(n, "EOO")
+        assert follows_itinerary(n, "EOO")
         assert image_after(n, "EOO") == first_even_image(n, "OO")
         q = isqrt(n)
         assert (image_after(n, "EOO") < n) == (first_even_image(n, "OO") < n)
@@ -111,7 +111,7 @@ def test_classify_freeze_on_small_probe():
 def test_committed_artifacts_schema():
     import json
 
-    from research.juggler_sequence.floor_cells import JSON_PATH
+    from research.juggler_sequence.floor_preimages import JSON_PATH
 
     assert JSON_PATH.is_file()
     data = json.loads(JSON_PATH.read_text(encoding="utf-8"))

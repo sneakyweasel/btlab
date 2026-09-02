@@ -156,7 +156,7 @@ theorem cycle_top_landing_ge_thirteen {n : ℕ} {w : List Branch}
       _hpx, _hxn, _hTx, _himg, _hC⟩ :=
     cycle_top_three_level hn h
   have h12 : 12 ≤ p := by
-    simpa [hpdef] using cycleWord_iterate_not_lt_twelve hn h.1 (i := r)
+    simpa [hpdef] using cycleItinerary_iterate_not_lt_twelve hn h.1 (i := r)
   have hp13 : 13 ≤ p := by
     have : p % 2 = 1 := hpodd
     omega

@@ -8,7 +8,7 @@ Refinement of
 paper. It asks whether the modular shadow of the exact square/cube
 floor cells refuses to close on a surviving \((L,o)\) in
 \(\mathcal E_{\mathrm{run}}(10^6)\) without enumerating words.
-Not a halt theorem, not a leftover-word census, not a new finance
+Not a halt theorem, not a leftover-itinerary census, not a new finance
 budget, not Fourier, not a \(Q\)-return, not a 2-adic cylinder
 reopen, and not a generic residue automaton.
 
@@ -48,7 +48,7 @@ parity of the source. The diagonal \(\Delta_m\) meets
 **Even-cell existence (EXACT — HUMAN PROOF).**
 If \(Y\ge m\) and the source class has an even lift, the interval
 \([Y^2,(Y+1)^2)\) is longer than \(m\), so every target residue
-is realized. This is the existence half of `even_cell_iff`, not a
+is realized. This is the existence half of `even_preimage_iff`, not a
 new cell.
 
 **No leftover \((L,o)\) dies (COMPUTATIONALLY VERIFIED).**
@@ -64,8 +64,8 @@ No cycle of any length — not claimed.
 
 ## Current literature
 
-- Inverse-floor cells, `odd_cell_unique`, `even_cell_iff` —
-  **EXACT — LEAN VERIFIED** (`Cells.lean`)
+- Inverse-floor cells, `odd_preimage_unique`, `even_preimage_iff` —
+  **EXACT — LEAN VERIFIED** (`Preimages.lean`)
 - Odd-odd remainder \(\rho\equiv y-1\pmod 8\) —
   **EXACT — LEAN VERIFIED** (`LandingValuation.lean`)
 - Defect lower bounds mod \(4\) and \(8\) —
@@ -107,10 +107,10 @@ Novelty hypothesis      Exact floor cells impose modular compatibility
                         hulls cannot see
 Falsifier               Every tested modulus admits a diagonal residue
                         realization; or the relation is only parity /
-                        odd_cell_unique / existing cells; or only a
+                        odd_preimage_unique / existing cells; or only a
                         complete word dies; or the useful modulus is a
                         large automaton / p-adic system
-Existing machinery      CycleMin; Cells; odd_cell_unique; even_cell_iff;
+Existing machinery      CycleMin; Cells; odd_preimage_unique; even_preimage_iff;
                         LandingValuation mod-8; run-type finance;
                         prefix_feasibility; cycle_closure (CLOSED)
 Maximum Phase-0 scope   Exact modular shadows of composed floor cells;

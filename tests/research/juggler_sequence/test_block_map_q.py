@@ -26,7 +26,7 @@ from research.juggler_sequence.block_map_q import (
     write_artifacts,
 )
 from research.juggler_sequence.odd_run_itinerary import prefix_lambda
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_convention_and_leftover_orbits():

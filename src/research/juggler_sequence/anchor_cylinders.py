@@ -29,7 +29,7 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.minimum_relative import above_anchor
 from research.juggler_sequence.near_extremal_prefixes import prefix_noncontracting
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_anchor_cylinders.json"
@@ -390,7 +390,7 @@ def run_probe(
         "oe_r_positive": oe["r_count"] > 0,
         "extra_aa_not_formal": extra_aa_not_formal,
         "letter_chain": False,
-        "word_language_reopen": False,
+        "itinerary_language_reopen": False,
         "anchor_cylinder_lean": False,
         "paper_a_modified": False,
         "halt_theorem": False,
@@ -415,7 +415,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "AnchorCylinder" not in paper
         and "NestedAnchor" not in paper,
         "no_atlas_lang": "LANG_ANCHOR" not in schema and "LANG_CYLINDER" not in schema,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -433,7 +433,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         return {"classification": CLASS_INCOMPLETE, "reason": f"lean_ok={lean_ok}"}
     if (
         scan["letter_chain"]
-        or scan["word_language_reopen"]
+        or scan["itinerary_language_reopen"]
         or scan["halt_theorem"]
         or scan["anchor_cylinder_lean"]
         or scan["extra_aa_not_formal"]
@@ -529,7 +529,7 @@ def probe_payload(
             "search_horizon_is_L": False,
             "density_theorem": False,
             "anchor_cylinder_lean": False,
-            "word_language_reopen": False,
+            "itinerary_language_reopen": False,
             "global_termination": False,
         }
     )

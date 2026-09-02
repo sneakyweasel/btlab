@@ -85,7 +85,7 @@ because the even intermediate is already `>= n^2`.
 - `no_cycleMin_ooeooe`: `True`
 - `no_cycleMin_ooeoooe`: `True`
 - `no_cycleMin_prefix_ooe_oe`: `True`
-- `no_cycle_word_ooe`: `True`
+- `no_cycle_itinerary_ooe`: `True`
 - `ooo_suffix_threshold`: `True`
 - `isolated_oe_r_max_two`: `True`
 

@@ -15,7 +15,7 @@ parity support of the image?
 
 ## Exact statement
 
-For a finite word \(w\) and a bound \(N\),
+For a finite itinerary \(w\) and a bound \(N\),
 
 \[
 Y_w(N)=T_w\bigl(R_w(N)\bigr),\qquad
@@ -37,7 +37,7 @@ This says nothing about totality.
 - `follows` / `image` / `floorPower` —
   **EXACT — LEAN VERIFIED**.
 - Inverse-floor cells —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Cells`.
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Preimages`.
 - Realization-set geometry —
   **PARK**; \(d(w)\) is landing-parity monochromicity.
 - Word-language / PE-factor —
@@ -55,7 +55,7 @@ Novelty hypothesis      monotone / cell / Phi calculus stronger than
                         elementwise landing parity
 Falsifier               inversions; Y_wb != Phi_b(Y_w); only tautologies
 Existing machinery      image_after, floor_power, collect_realizing,
-                        even_cell
+                        even_preimage
 Maximum Phase-0 scope   N<=4000 prefixes k<=12; selected confirm N<=1e5
 Promotion criterion     an exact image theorem that is not d(w)
 Stop criterion          generic fragmentation; one cell per start;

@@ -3,7 +3,7 @@
 The almost-cycle search closed: the L=25781 finance-optimal word
 is unrealized past depth 11, and exact backward dies at an empty
 OOE preimage after at most two blocks. This phase asks whether
-that failure is a word-independent law
+that failure is an word-independent law
 
     finance extremality  =>  exact-cell incompatibility
 

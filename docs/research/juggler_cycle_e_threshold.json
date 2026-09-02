@@ -70,7 +70,7 @@
     "odd_run_suffix_threshold": true,
     "no_cycle_odd_run_append_even": true,
     "eventually_no_cycle_append_even": true,
-    "no_cycle_word_length_five_ends_even": true,
+    "no_cycle_itinerary_length_five_ends_even": true,
     "certificate_present": true,
     "PowerHeight_absent": true,
     "no_global_termination_theorem": true,

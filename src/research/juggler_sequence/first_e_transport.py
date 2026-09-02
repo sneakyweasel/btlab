@@ -18,7 +18,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     FIRST_E_TRANSPORT,
@@ -30,7 +30,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import (
     denom_bits,
     shared_tail_holds,
@@ -60,10 +60,10 @@ LEAN_THEOREMS = (
     "cycleMin_ge",
     "cycle_trailing_evens_lt",
     "shared_two_even_tail",
-    "no_cycle_word_two_even_ee",
-    "no_cycle_word_two_even_eoe",
+    "no_cycle_itinerary_two_even_ee",
+    "no_cycle_itinerary_two_even_eoe",
     "no_cycleMin_internal_even_threshold",
-    "no_cycle_word_length_le_seven",
+    "no_cycle_itinerary_length_le_seven",
     "no_cycleMin_gapped_three_even_ee",
     "no_cycleMin_gapped_three_even_eoe",
 )
@@ -144,7 +144,7 @@ def small_n_route(n: int, a: int, b: int) -> str:
     if a >= SEVEN:
         return "seven_odds_prefix"
     prefix = "O" * a + "E"
-    if not follows_word(n, prefix):
+    if not follows_itinerary(n, prefix):
         return "prefix_unrealized"
     y = image_after(n, prefix)
     if y >= N_CUTOFF:
@@ -166,11 +166,11 @@ def transport_contradiction(n: int, y: int, leftover_k: int) -> bool:
     return y ** (3**a) > tail >= cell
 
 
-def cycle_word_hits(word: str, n_lo: int, n_hi: int) -> dict[str, Any]:
+def cycle_itinerary_hits(word: str, n_lo: int, n_hi: int) -> dict[str, Any]:
     hits: list[int] = []
     follows = 0
     for n in range(n_lo, n_hi):
-        if not follows_word(n, word):
+        if not follows_itinerary(n, word):
             continue
         follows += 1
         if image_after(n, word) == n:
@@ -193,7 +193,7 @@ def finite_window_rows() -> list[dict[str, Any]]:
             for a, b in pairs:
                 word = word_fn(a, b)
                 leftover_k = leftover_k_fn(b)
-                table = cycle_word_hits(word, 2, N_CUTOFF)
+                table = cycle_itinerary_hits(word, 2, N_CUTOFF)
                 rows.append(
                     {
                         "k": k,
@@ -323,14 +323,14 @@ def lean_api_present() -> dict[str, bool]:
         and "def CycleStates" not in combined,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "no_length_eight_theorem": "theorem no_cycle_word_length_eight"
+        "no_length_eight_theorem": "theorem no_cycle_itinerary_length_eight"
         not in combined,
-        "no_length_nine_theorem": "theorem no_cycle_word_length_nine"
+        "no_length_nine_theorem": "theorem no_cycle_itinerary_length_nine"
         not in combined,
         "no_first_e_transport_theorem": "theorem no_cycleMin_gapped_three_even"
         not in combined
         and "theorem no_cycle_min_first_e_transport" not in combined,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "Minimal_untouched": "first_e_transport" not in MINIMAL.read_text(
             encoding="utf-8"
         ),
@@ -340,7 +340,7 @@ def lean_api_present() -> dict[str, bool]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["no_cycle_word_two_even_ee"]
+        and lean["no_cycle_itinerary_two_even_ee"]
         and lean["shared_two_even_tail"]
         and lean["CycleMin"]
         and lean["no_length_eight_theorem"]
@@ -371,7 +371,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "reason": "transport chain does not match y>=n plus tail at y",
         }
     if not scan["all_finite_tables_empty"]:
-        return {"classification": CLASS_REMAINS, "reason": "CycleWord hit in k=9..16"}
+        return {"classification": CLASS_REMAINS, "reason": "CycleItinerary hit in k=9..16"}
     if not scan["large_k_small_n_sealed"]:
         return {
             "classification": CLASS_REMAINS,
@@ -382,7 +382,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         "reason": (
             "Lean excludes gapped three-even CycleMins by first-E "
             "transport of the two-even tail at y>=n; the finite window "
-            "k=9..16 has empty CycleWord tables below 256; for k>=17 "
+            "k=9..16 has empty CycleItinerary tables below 256; for k>=17 "
             "small n is seven-odd on the prefix or the remainder; "
             "bunched a1-short leftovers remain"
         ),
@@ -414,7 +414,7 @@ def probe_payload() -> dict[str, Any]:
         "decision": decision,
         "search_method": (
             "CycleMin first-E transport of the uniform two-even tail; "
-            "gapped leftovers only (b>=4 EE, b>=3 EOE); CycleWord "
+            "gapped leftovers only (b>=4 EE, b>=3 EOE); CycleItinerary "
             "tables for k=9..16 below 256; seven-odd seal for k>=17; "
             "no bunched-tail attack; no length-8/9 census; Lean "
             "CycleMin exclusion at y>=256"

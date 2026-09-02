@@ -1,7 +1,7 @@
 {
   "id": "juggler_walk_greedy_prefix",
   "title": "Greedy E-when-legal prefix-minimizes the exponent walk among admissible words",
-  "statement": "Among all nonnegative exponent walks with a prescribed (L, o), the hug word that takes E at the first legal time (u >= 1 and an even remaining) satisfies a_k(hug) = min a_k among admissible walks for every k (equivalently u_k(hug) = min u_k), and therefore attains the walk-charge maximum. At the certified reduced base its charge equals the certified survey DP, and leftover charge-per-letter equals the mechanical average of that hugging walk.",
+  "statement": "Among all nonnegative exponent walks with a prescribed (L, o), the hug itinerary that takes E at the first legal time (u >= 1 and an even remaining) satisfies a_k(hug) = min a_k among admissible walks for every k (equivalently u_k(hug) = min u_k), and therefore attains the walk-charge maximum. At the certified reduced base its charge equals the certified survey DP, and leftover charge-per-letter equals the mechanical average of that hugging walk.",
   "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
   "origin": "docs/problems/juggler_cycle_walk_greedy.md",
   "status": "ACTIVE",

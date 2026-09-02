@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_ooo_escape import walk_language
 from research.juggler_sequence.oneshot_recovery import WORD, compose_below_anchor
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.post_l_ooe import (
     CLASS_GREEN,
     FORBIDDEN_THEOREMS,
@@ -55,7 +55,7 @@ def test_501_continues_oo_without_l():
     assert row["follows_L_t"] is False
     assert row["t_second_ooo"] is False
     assert row["second_oo_t"] is None
-    assert follows_word(501, WORD_M)
+    assert follows_itinerary(501, WORD_M)
     assert image_after(501, WORD_M) == 1749
     walk = walk_language(763)
     assert walk is not None
@@ -71,12 +71,12 @@ def test_17245_oe_after_first_ooe():
     assert row["s_kind"] == "OE"
     assert row["drop"] == 6565
     assert row["recovery"] == "OOEOE"
-    assert follows_word(OE_AFTER_M["n"], WORD_M)
+    assert follows_itinerary(OE_AFTER_M["n"], WORD_M)
     assert image_after(OE_AFTER_M["n"], WORD_M) == OE_AFTER_M["s"]
     assert image_after(OE_AFTER_M["s"], "OE") == 6565
     assert 6565 < OE_AFTER_M["n"]
-    assert follows_word(OE_AFTER_M["n"], WORD)
-    assert not follows_word(OE_AFTER_M["t"], WORD)
+    assert follows_itinerary(OE_AFTER_M["n"], WORD)
+    assert not follows_itinerary(OE_AFTER_M["t"], WORD)
 
 
 def test_probe_and_classify_green():
@@ -137,5 +137,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "OOEOOOEOOEEOOE" in dossier
     assert "juggler_post_l_ooe" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

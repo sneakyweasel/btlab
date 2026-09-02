@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     ESCAPE,
     JUGGLER_PAPER_BARREL,
@@ -23,7 +23,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.oe_next_oo import oe_next_row
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_second_o_lost_sq.json"
@@ -36,7 +36,7 @@ CLASS_INCOMPLETE = "SECOND_O_LOST_SQ_INCOMPLETE"
 WITNESS = (1517, 124475, 43916043)
 
 LEAN_THEOREMS = (
-    "wordOOEOOEOOEOEOO",
+    "itineraryOOEOOEOOEOEOO",
     "ooeooeooeoeoo_loses_square",
     "follows_ooeooeooeoeoo_image_lt_cube",
     "minimal_ooeooeooeoeo_follows_o",
@@ -47,7 +47,7 @@ FORBIDDEN_THEOREMS = (
     "no_juggler_escape",
     "juggler_reaches_one",
     "no_juggler_cycle",
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
 )
 
 
@@ -87,7 +87,7 @@ def witness_1517() -> dict[str, Any]:
         "n": n,
         "q": q,
         "u": u,
-        "follows": follows_word(n, "OOEOOEOOEOEOO"),
+        "follows": follows_itinerary(n, "OOEOOEOOEOEOO"),
         "image": image_after(n, "OOEOOEOOEOEOO"),
         "ge_sq": u >= n * n,
         "lt_cube": u < n**3,
@@ -124,7 +124,7 @@ def lean_api_present() -> dict[str, bool]:
         "escape_has_cube": has_named(escape, "follows_ooeooeooeoeoo_image_lt_cube"),
         "escape_has_lost_sq": has_named(escape, "ooeooeooeoeoo_loses_square"),
         "not_in_paper_barrel": "Problems.Juggler.Escape" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -135,7 +135,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["escape_has_cube"]
         and lean["escape_has_lost_sq"]
         and not lean["has_no_juggler_escape"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and lean["not_in_paper_barrel"]
     )
     if not lean_ok:

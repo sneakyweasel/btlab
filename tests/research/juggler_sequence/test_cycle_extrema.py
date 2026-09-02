@@ -16,7 +16,7 @@ from research.juggler_sequence.cycle_extrema import (
     stay_above_min_excursion,
     superquadratic,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_superquadratic_is_strictly_stronger_than_expanding():
@@ -73,7 +73,7 @@ def test_lean_api_extrema_without_census():
     assert "theorem cycleMax_exists_min_succ_sq" in even
     assert "theorem cycle_distinguished_order_succ_sq" in even
     assert "theorem cycleMin_max_sqrt_ge" not in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
     assert "PowerHeight" not in src
@@ -86,7 +86,7 @@ def test_classify_extrema_green():
     assert decision["classification"] == CLASS_EXTREMES
     assert CLASS_ASCEND in decision["secondary"]
     assert scan["n_search"] is False
-    assert scan["cycle_word_census"] is False
+    assert scan["cycle_itinerary_census"] is False
     assert scan["drop_before_hit"] > 0
     assert scan["hit_square_scale"] > 0
     assert scan["all_hits_superquadratic"] is True
@@ -127,4 +127,4 @@ def test_committed_artifacts_schema():
     assert data["lean"]["square_scale_superquadratic"] is True
     assert data["lean"]["no_length_six_theorem"] is True
     assert data["scan"]["n_search"] is False
-    assert data["scan"]["cycle_word_census"] is False
+    assert data["scan"]["cycle_itinerary_census"] is False

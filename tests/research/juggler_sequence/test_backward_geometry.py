@@ -17,7 +17,7 @@ from research.juggler_sequence.backward_geometry import (
     pred_odd,
     pred_summary,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_pred_one_is_fixed_point_and_two():
@@ -94,8 +94,8 @@ def test_module_does_not_import_collatz():
 def test_lean_api():
     lean = lean_api_present()
     assert lean["sorry_free"] is True
-    assert lean["even_cell_iff"] is True
-    assert lean["odd_cell_unique"] is True
+    assert lean["even_preimage_iff"] is True
+    assert lean["odd_preimage_unique"] is True
     assert lean["no_global_termination_theorem"] is True
 
 

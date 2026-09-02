@@ -90,7 +90,7 @@ It is not required.
 
 ## Experiments
 
-- Probe: `research.juggler_sequence.floor_cells`
+- Probe: `research.juggler_sequence.floor_preimages`
 - Records: [juggler_floor_cells.md](../research/juggler_floor_cells.md),
   [juggler_floor_cells.json](../research/juggler_floor_cells.json)
 - Tests: `tests/research/juggler_sequence/test_floor_cells.py`
@@ -105,20 +105,20 @@ None opened.
 - Odd-start words are constant on their first cells only because those
   cells are singletons. That is not a useful freeze.
 - `n=10` remains the mixed-cell expander for `EOO` (\(c=11\)).
-- Positive-drift `Ev` words of length \(\le6\) produced no parametrized
+- Positive-drift `Ev` itineraries of length \(\le6\) produced no parametrized
   family of contraction cells.
 
 ## Formalization
 
 `formal/Problems/Engine/FloorPower.lean`. Added:
 
-- `even_cell_iff` / `odd_cell_iff`
+- `even_preimage_iff` / `odd_preimage_iff`
 - `iterate_cons_even` / `iterate_cons_odd`
 - `first_even_freeze` / `first_odd_freeze`
 - `first_even_contracts_iff` / `eoo_from_first_even`
 - `suffix_same_output_on_cell`
 - `constant_cell_trichotomy`
-- `odd_cell_unique`
+- `odd_preimage_unique`
 
 Unchanged: `power_bound_compensated_contracts`,
 `floorPower_eoo_contracts_iff`, `eoo_contracts_on_cell`. No cell tree.
@@ -164,5 +164,5 @@ the next square for infinitely many \(q\).
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A local finite-word cell identity, not a paper
+Status: `EXPLORATORY`. A local finite-itinerary cell identity, not a paper
 candidate and not a Juggler totality result.

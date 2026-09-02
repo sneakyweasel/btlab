@@ -9,12 +9,12 @@ every positive integer reaches 1.
 ## Problem
 
 Can a realized non-monochrome prefix stay on the non-contracting side
-of the finite-word exponent test, with accumulated defect too small
+of the finite-itinerary exponent test, with accumulated defect too small
 to force contraction, for arbitrarily long prefixes?
 
 ## Exact statement
 
-For a realized word \(w\) of length \(k\) with \(o=\#O(w)\), write
+For a realized itinerary \(w\) of length \(k\) with \(o=\#O(w)\), write
 
 \[
 G(w)=2^k-3^o,\qquad
@@ -75,7 +75,7 @@ It is not required.
 ## Candidate operations / invariants
 
 - Exponent gap \(G=2^k-3^o\) — exact integer
-- Prefix-noncontracting words start with \(O\); length \(\ge 2\)
+- Prefix-noncontracting itineraries start with \(O\); length \(\ge 2\)
   starts with \(OO\) — **OBSERVATION**, follows from \(G(E)=1\) and
   \(G(OE)=1\)
 - Mixed family \(O^k E\) for \(k\ge 2\) is prefix-NC —
@@ -101,10 +101,10 @@ None opened.
 
 ## Counterexamples
 
-- `EOO` is not a prefix-noncontracting word: \(\tau=1\). Compensated
+- `EOO` is not a prefix-noncontracting itinerary: \(\tau=1\). Compensated
   contraction of the *block* `EOO` is a different object.
 - `n=3` realizes `OOOE`, not `OOE`. Image \(6>3\).
-- Realized mixed prefix-NC words of length \(10\) expand
+- Realized mixed prefix-NC itineraries of length \(10\) expand
   (`n=37`, `OOOOEOOOEE`; `n=173`, `OOEOOOOOOO`). A horizon hit is
   not an infinite family.
 
@@ -128,7 +128,7 @@ Classification **NEAR_EXTREMAL_STRUCTURE_GREEN**. Decision **PARK**.
 The prefix-NC language is nonempty, starts odd, and is strictly
 larger than \(\{O^k\}\cup\{O^k E:k\ge 2\}\). On
 \(2\le n\le 2000\) and \(k\le 10\) there were \(1541\) mixed
-prefix-NC rows, \(0\) defect-driven certificates, and mixed words
+prefix-NC rows, \(0\) defect-driven certificates, and mixed itineraries
 that remain prefix-NC through the horizon while expanding. Closest
 computed \(\Delta\) versus \(n^{3^o}-n^{2^k}\) occurs on short
 `OOE` starts and is still far below the formal gap.
@@ -140,7 +140,7 @@ This is not `BAD_PREFIX_BOUNDED_GREEN` and not a halt theorem.
 Answered in
 [juggler_prefix_nc_admissibility.md](juggler_prefix_nc_admissibility.md)
 as arithmetic pullback: the constraints are the existing floor
-cells, and every mixed prefix-NC word of length \(\le 8\) is
+cells, and every mixed prefix-NC itinerary of length \(\le 8\) is
 realized. An explicit infinite family, or a defect that exceeds
 the formal gap, remains open and is not started there.
 

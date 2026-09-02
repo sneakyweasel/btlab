@@ -1,4 +1,4 @@
-# Juggler greedy hug-word as walk-charge maximizer
+# Juggler greedy hug-itinerary as walk-charge maximizer
 
 Status: **ACTIVE** (Phase 0 decided)
 
@@ -12,14 +12,14 @@ or leftover-cell slogans.
 
 Mechanical CLOSE left the charge maximizer as greedy
 \(E\)-at-first-legal-time, which equals Christoffel only near the
-critical slope. Does that hug word prefix-minimize \(a_k\) (hence
+critical slope. Does that hug itinerary prefix-minimize \(a_k\) (hence
 \(u_k\)) among all admissible \(u\ge 0\) walks with fixed
 \((L,o)\), and does its charge equal the certified survey \(B\)
 — including the \(1054\)-family offsets where Christoffel lost?
 
 ## Exact statement
 
-**Hug word (definition).** On a feasible pair
+**Hug itinerary (definition).** On a feasible pair
 (\(\mathrm{STEP}\cdot o\ge L\)) take \(E\) iff \(u\ge 1\) and an
 even remains, else \(O\). The completable table is redundant: when
 only evens remain, \(u=\mathrm{surplus}+e_{\mathrm{left}}\ge
@@ -137,7 +137,7 @@ walk-charge DP is not edited.
 
 ## Conjectures
 
-`juggler_walk_greedy_prefix` — **ACTIVE**. The hug word
+`juggler_walk_greedy_prefix` — **ACTIVE**. The hug itinerary
 prefix-minimizes \(u_k\) among admissible walks of a given
 \((L,o)\) and therefore attains the walk-charge maximum; leftover
 \(C\) is the mechanical average of that walk.
@@ -169,7 +169,7 @@ Classification **WALK_GREEDY_GREEN**.
 
 ## Open questions
 
-A human exchange lemma for the hug word — not for ceiling
+A human exchange lemma for the hug itinerary — not for ceiling
 Christoffel — together with an explicit bound or integral for
 \(C_*(n')\). Do not raise \(N_0\) and do not claim a uniform
 \(B/\theta\) gap.
@@ -187,7 +187,7 @@ It is not a leftover-cell reopen, not a Baker reopen, and not a
 reparameterization of the exponential DP: the DP is no longer
 needed to price a leftover.
 
-Best next question: a human exchange lemma for the hug word,
+Best next question: a human exchange lemma for the hug itinerary,
 together with an explicit bound or integral for \(C_*(n')\)?
 
 ## Publication assessment
@@ -195,6 +195,6 @@ together with an explicit bound or integral for \(C_*(n')\)?
 Status: `STRUCTURAL`.
 
 A laboratory identification of the walk-charge maximizer as the
-hug word, now matching the certified survey on seeds and offsets.
+hug itinerary, now matching the certified survey on seeds and offsets.
 Not a paper candidate until the exchange lemma and the density
 bound are human proofs. Not a halt theorem.

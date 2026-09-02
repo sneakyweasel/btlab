@@ -173,7 +173,7 @@
     "power_bound_word": true,
     "no_cycleMin_ooeooe": true,
     "oo_suffix_threshold": true,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "has_no_cycleMin_four_even": false,
     "has_no_cycleMin_five_even": false,
     "has_no_juggler_cycle": false,

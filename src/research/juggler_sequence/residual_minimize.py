@@ -19,7 +19,7 @@ from research.juggler_sequence.lean_paths import (
     engine_floor_text,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.residual_chain import (
     HARD_PROBES,
     residual_class,
@@ -479,7 +479,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one" not in combined,
         "GlobalDefect_untouched_by_this_probe": True,
         "FloorPower_absent": "ResidualStep" not in floor,
-        "no_word_language_reopen": True,
+        "no_itinerary_language_reopen": True,
     }
 
 
@@ -507,7 +507,7 @@ def probe_payload() -> dict[str, Any]:
     anti["residual_state_object"] = False
     anti["residual_step_extended"] = False
     anti["finite_residual_automaton"] = False
-    anti["word_language_reopened"] = False
+    anti["itinerary_language_reopened"] = False
     anti["history_is_new_state"] = False
     anti["global_termination"] = False
     anti["defect_financing_opened"] = False

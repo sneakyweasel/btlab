@@ -24,7 +24,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_balance.json"
@@ -87,9 +87,9 @@ SHARED_PATTERNS = (
 )
 
 CYCLE_ONLY_PATTERNS = (
-    "no_cycle_word_* leftover cells",
+    "no_cycle_itinerary_* leftover cells",
     "even_count_le_three",
-    "leftover_prefix_cell",
+    "leftover_prefix_preimage",
     "small-cycle census",
 )
 
@@ -210,7 +210,7 @@ def optimize(length: int) -> dict[str, Any]:
                 nxt[new_odds] = (keep_max, keep_min)
         reachable = nxt
         if not reachable:
-            raise RuntimeError(f"no surviving words of length {length}")
+            raise RuntimeError(f"no surviving itineraries of length {length}")
 
     max_odd = max(reachable)
     min_odd = min(reachable)
@@ -362,7 +362,7 @@ def lean_api_present() -> dict[str, bool]:
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "not_in_paper_barrel": "ParityBalance" not in paper
         and "OddDensity" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

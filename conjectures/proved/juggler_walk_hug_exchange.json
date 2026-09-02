@@ -1,7 +1,7 @@
 {
   "id": "juggler_walk_hug_exchange",
   "title": "Hug E-when-legal is the unique prefix-min admissible exponent walk",
-  "statement": "Among all nonnegative exponent walks with a prescribed (L, o), the hug word that takes E at the first legal time is the unique prefix-minimal path: a_k(hug) <= a_k(w) for every admissible w and every k, with equality at all k iff w is hug. Because g(u) = 1/(n^{2^u} 2^u ln n) is strictly decreasing, hug uniquely maximises walk charge. The infinite hug walk is rotation by log2(3/2) on R/(1+log2(3/2))Z, with charge-per-letter C_*(n) = (1/ln 3) ∫_1^3 n^{1-t} t^{-2} dt < 1/(ln 3 ln n).",
+  "statement": "Among all nonnegative exponent walks with a prescribed (L, o), the hug itinerary that takes E at the first legal time is the unique prefix-minimal path: a_k(hug) <= a_k(w) for every admissible w and every k, with equality at all k iff w is hug. Because g(u) = 1/(n^{2^u} 2^u ln n) is strictly decreasing, hug uniquely maximises walk charge. The infinite hug walk is rotation by log2(3/2) on R/(1+log2(3/2))Z, with charge-per-letter C_*(n) = (1/ln 3) ∫_1^3 n^{1-t} t^{-2} dt < 1/(ln 3 ln n).",
   "mathematical_domain": "Juggler cycle finance / exponent-walk optimal control",
   "origin": "docs/problems/juggler_cycle_walk_exchange.md",
   "status": "EXACT — HUMAN PROOF",
@@ -13,6 +13,6 @@
   "literature": [
     "fernandez-ibanez-2026"
   ],
-  "notes": "The δ-invariant: first disagreement is hug-E versus other-O (hug takes O only when E is illegal, hence illegal for any word with the same prefix); the odd-count gap is a path in {-1,0,+1} that cannot go negative because δ=0 restores the same state. No-strand: o_left=0 implies u = surplus + e_left >= e_left. Finite leftover C <= C_* is FALSE (excess up to 1.57e-5). The simple bound leftover C < 1/(ln 3 ln n') is only computationally verified on the 19-row survey and is not a certified kill table. Uniform B/theta<1 at a fixed floor stays false. Christoffel prefix-dominance stays refuted. The leftover-cell slogan stays refuted. Not a halt theorem.",
+  "notes": "The δ-invariant: first disagreement is hug-E versus other-O (hug takes O only when E is illegal, hence illegal for any itinerary with the same prefix); the odd-count gap is a path in {-1,0,+1} that cannot go negative because δ=0 restores the same state. No-strand: o_left=0 implies u = surplus + e_left >= e_left. Finite leftover C <= C_* is FALSE (excess up to 1.57e-5). The simple bound leftover C < 1/(ln 3 ln n') is only computationally verified on the 19-row survey and is not a certified kill table. Uniform B/theta<1 at a fixed floor stays false. Christoffel prefix-dominance stays refuted. The leftover-cell slogan stays refuted. Not a halt theorem.",
   "not_a_halt_theorem": true
 }

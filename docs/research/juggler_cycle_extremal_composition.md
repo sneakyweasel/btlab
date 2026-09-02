@@ -52,7 +52,7 @@ cycle-only statements.
 - start=`25` M=`52214` x=`1397` p=`15` r=`2` a=`3` z=`52214` b=`2` y=`15` start≤p=`False` z=M=`True` z_vs_x=`gt` window=`True` fourth=`True`
 
 - n-search: `False`
-- cycle-word census: `False`
+- cycle-itinerary census: `False`
 - odd-landing engine: `False`
 - residual graph: `False`
 - new energy: `False`

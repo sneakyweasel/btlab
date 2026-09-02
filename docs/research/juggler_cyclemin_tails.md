@@ -101,10 +101,10 @@ This is not a four-even assembler and not Z5.
 - `slack_of_four_even`: `True`
 - `slack_of_four_even_word`: `True`
 - `no_cycleMin_cyclemin_fudge`: `True`
-- no `no_cycle_word_length_eleven`: `True`
-- no `no_cycle_word_four_even`: `True`
+- no `no_cycle_itinerary_length_eleven`: `True`
+- no `no_cycle_itinerary_four_even`: `True`
 - no `no_cycleMin_four_even`: `True`
-- no `no_cycle_word_cyclemin_tails`: `True`
+- no `no_cycle_itinerary_cyclemin_tails`: `True`
 - no `juggler_reaches_one`: `True`
 
 ## Anti-overclaim

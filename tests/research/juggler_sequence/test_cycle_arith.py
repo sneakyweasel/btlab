@@ -10,16 +10,16 @@ from research.juggler_sequence.cycle_arith import (
     classify,
     even_descends,
     floor_power,
-    follows_word,
+    follows_itinerary,
     image_after,
     last_even_cell,
     last_even_is_exact_square,
     lean_api_present,
     render_markdown,
-    rotate_word,
+    rotate_itinerary,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_last_even_is_a_cell_not_a_square():
@@ -27,7 +27,7 @@ def test_last_even_is_a_cell_not_a_square():
     assert lo == 25
     assert hi == 36
     assert last_even_is_exact_square(3, "OOE") is None
-    assert follows_word(3, "OO")
+    assert follows_itinerary(3, "OO")
     assert image_after(3, "OO") == 11
     assert 11 % 2 == 1
     for n in range(3, 40, 2):
@@ -35,9 +35,9 @@ def test_last_even_is_a_cell_not_a_square():
 
 
 def test_oeo_rotates_onto_eoo():
-    assert rotate_word("OEO") == "EOO"
-    assert rotate_word("OOE") == "OEO"
-    assert rotate_word("EOO") == "OOE"
+    assert rotate_itinerary("OEO") == "EOO"
+    assert rotate_itinerary("OOE") == "OEO"
+    assert rotate_itinerary("EOO") == "OOE"
 
 
 def test_even_states_descend():
@@ -75,8 +75,8 @@ def test_lean_api_excludes_ooe_oeo_without_engine():
     assert "sorry" not in src
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
-    assert "theorem no_cycle_word_ooe" in src
-    assert "theorem no_cycle_word_oeo" in src
+    assert "theorem no_cycle_itinerary_ooe" in src
+    assert "theorem no_cycle_itinerary_oeo" in src
     assert "theorem exists_cycle_min_odd" in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
@@ -121,5 +121,5 @@ def test_committed_artifacts_schema():
     assert data["anti_overclaim"]["last_even_is_exact_square"] is False
     assert data["anti_overclaim"]["global_termination"] is False
     assert data["lean"]["sorry_free"] is True
-    assert data["lean"]["no_cycle_word_ooe"] is True
-    assert data["lean"]["no_cycle_word_oeo"] is True
+    assert data["lean"]["no_cycle_itinerary_ooe"] is True
+    assert data["lean"]["no_cycle_itinerary_oeo"] is True

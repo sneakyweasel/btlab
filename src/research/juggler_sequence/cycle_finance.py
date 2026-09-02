@@ -23,10 +23,10 @@ The length-only parity refinement charges even states at n^2 and
 internal odds at floor(n^{3/2}); write_parity_artifacts records
 that table as exceptions_parity.json without touching the crude
 exceptions.json.
-Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_nineteen,
-cycle_word_length_eighty_four_or_ge_eighty_five, cycle_word_eliahou_leftover)
+Lean: CycleFinance.lean (cycleMin_finance, no_cycle_itinerary_length_le_nineteen,
+cycle_itinerary_length_eighty_four_or_ge_eighty_five, cycle_itinerary_eliahou_leftover)
 and CycleHeightFinance.lean
-(cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five).
+(cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five).
 Eliahou leftover: period 84, or a listed near-convergent, or >= 10^5.
 The laboratory leftover is period 84 with at least three odd-runs,
 or length >= 85.
@@ -101,49 +101,49 @@ ELIAHOU_LEAN_PERIOD = 84
 EXPECTED_LEAN_KILL = (1, 2, 4, 5, 7, 8)
 
 EXISTING_LEAN = (
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "global_defect_identity",
-    "no_cycle_word_length_le_eight",
+    "no_cycle_itinerary_length_le_eight",
     "reachesOne_of_lt_twelve",
     "cycle_peak_finance",
     "cycleMin_finance",
     "cycle_finance_min_thirteen",
-    "no_cycle_word_length_le_ten",
-    "cycle_word_length_eleven_or_ge_fourteen",
+    "no_cycle_itinerary_length_le_ten",
+    "cycle_itinerary_length_eleven_or_ge_fourteen",
     "reachesOne_of_lt_fifty_three",
     "cycle_finance_min_fifty_three",
     "finance_excludes_length_eleven",
-    "no_cycle_word_length_le_eleven",
-    "cycle_word_length_ge_fourteen",
+    "no_cycle_itinerary_length_le_eleven",
+    "cycle_itinerary_length_ge_fourteen",
     "finance_excludes_length_fourteen",
-    "no_cycle_word_length_le_eighteen",
-    "cycle_word_length_nineteen_or_ge_thirty",
-    "cycle_word_length_nineteen_or_ge_twenty",
+    "no_cycle_itinerary_length_le_eighteen",
+    "cycle_itinerary_length_nineteen_or_ge_thirty",
+    "cycle_itinerary_length_nineteen_or_ge_twenty",
     "eliahouTableCutoff",
     "EliahouLeftover",
     "EliahouTable",
-    "cycle_word_eliahou_leftover",
+    "cycle_itinerary_eliahou_leftover",
     "reachesOne_of_lt_two_hundred_fifty_seven",
     "cycle_finance_min_two_hundred_fifty_seven",
     "finance_excludes_length_nineteen",
-    "no_cycle_word_length_le_nineteen",
-    "cycle_word_length_ge_thirty",
-    "cycle_word_length_thirty_eight_or_ge_thirty_nine",
+    "no_cycle_itinerary_length_le_nineteen",
+    "cycle_itinerary_length_ge_thirty",
+    "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
     "finance_excludes_length_thirtyeight",
-    "cycle_word_length_fifty_seven_or_ge_fifty_eight",
+    "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
     "reachesOne_of_lt_two_hundred_sixty_one",
     "cycle_finance_min_two_hundred_sixty_one",
     "finance_excludes_length_fiftyseven",
     "finance_excludes_length_seventysix",
-    "cycle_word_length_eighty_four_or_ge_eighty_five",
-    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five",
+    "cycle_itinerary_length_eighty_four_or_ge_eighty_five",
+    "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
 )
 
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
-    "no_cycle_word_any_length",
+    "no_cycle_itinerary_any_length",
     "no_juggler_escape",
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
 )
 
 FORBIDDEN_NEW_API = (

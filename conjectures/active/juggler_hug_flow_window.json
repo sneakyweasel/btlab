@@ -1,7 +1,7 @@
 {
   "id": "juggler_hug_flow_window",
   "title": "Short-interval parity hits for nested floor powers at window X^{1/3}",
-  "statement": "There is X_0 such that for all X >= X_0, away from sqrt-resonant regions: (depth 1) every window of consecutive odd x of length (2/3) X^{1/3} at scale X contains x with floor(x^{3/2}) even (and one with it odd); (depth 2) every such window contains x with floor(x^{3/2}) odd and floor(floor(x^{3/2})^{3/2}) even, in a prescribed target interval of relative length ~1. Together with the positive backward freedom flow of the hug word's OE/OOE blocks (+5 len/12 and +7 len/24 bits per block), these give C_L nonempty for every L: hug cylinders are realized at all depths.",
+  "statement": "There is X_0 such that for all X >= X_0, away from sqrt-resonant regions: (depth 1) every window of consecutive odd x of length (2/3) X^{1/3} at scale X contains x with floor(x^{3/2}) even (and one with it odd); (depth 2) every such window contains x with floor(x^{3/2}) odd and floor(floor(x^{3/2})^{3/2}) even, in a prescribed target interval of relative length ~1. Together with the positive backward freedom flow of the hug itinerary's OE/OOE blocks (+5 len/12 and +7 len/24 bits per block), these give C_L nonempty for every L: hug cylinders are realized at all depths.",
   "mathematical_domain": "Juggler descent-free flights / short-interval equidistribution of nested floor powers",
   "origin": "docs/problems/juggler_hug_cylinder_construction.md",
   "status": "ACTIVE",

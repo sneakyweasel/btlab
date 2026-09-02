@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from research.juggler_sequence.lean_paths import juggler_text
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 from research.juggler_sequence.uniform_superquadratic import (
     CLASS_COUNTER,
     LEAN_THEOREMS,
@@ -28,7 +28,7 @@ def test_short_word_q_max_not_controlled_by_margin_alone():
     assert q_contracts(3, "OO")
     assert q_contracts(2, "EOOOO")
     assert not q_contracts(5, "OO")
-    assert follows_word(3, "OO")
+    assert follows_itinerary(3, "OO")
     assert image_after(3, "OO") == 11
 
 
@@ -46,7 +46,7 @@ def test_even_tower_collapse_family():
         word = even_tower_odd_tail(k, o)
         q = collapse_q(k)
         assert is_superquadratic(word)
-        assert follows_word(q, word)
+        assert follows_itinerary(q, word)
         assert image_after(q, word) == 1
         assert q_contracts(q, word)
         assert q == 2 ** (2 ** (k - 1))

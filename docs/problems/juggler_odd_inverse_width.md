@@ -1,7 +1,7 @@
 # Juggler odd-inverse width (fan-follower integer hits)
 
 Status: **CLOSE** (the width law is elementary; uniqueness is
-`odd_cell_unique`; the boxed infinite-hit slogan is a quantifier
+`odd_preimage_unique`; the boxed infinite-hit slogan is a quantifier
 reversal of a realized odd step)
 
 Not a halt theorem, not a divergence exclusion, not a reopen of
@@ -26,7 +26,7 @@ odd-cell and hug-flow law?
 VERIFIED).** \(\Delta x<1\) for every \(y\ge 1\): set \(t=y^{1/3}\ge 1\),
 then \(2t<3t^2+3\) because \(3t^2-2t+3\) has discriminant \(-32<0\).
 The lattice statement is stronger and already Lean: an odd floor
-cell contains at most one integer (`odd_cell_unique`, Paper A
+cell contains at most one integer (`odd_preimage_unique`, Paper A
 Lemma 3.1). Occupancy is the cube test of `J-odd-pred-empty-cube`.
 
 **Forward hits are tautological (COMPUTATIONALLY VERIFIED on the
@@ -47,10 +47,10 @@ claimed.
 ## Current literature
 
 - Odd cell uniqueness — **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, Paper A Lemma 3.1)
+  (`odd_preimage_unique`, Paper A Lemma 3.1)
 - Type 0/1/2 emptiness — **EXACT — HUMAN PROOF**
   (`J-odd-pred-empty-cube`); **PARK** as a forward law
-  ([juggler_empty_odd_cell.md](juggler_empty_odd_cell.md))
+  ([juggler_empty_odd_preimage.md](juggler_empty_odd_preimage.md))
 - Inverse-tube width as a leftover-killer — **REFUTED**
   ([juggler_cycle_inverse_width.md](juggler_cycle_inverse_width.md));
   occupied hull of width \(0.221<1\)
@@ -78,10 +78,10 @@ Novelty hypothesis      uniqueness plus shrinking width makes an
                         sequence of exact integer hits, stricter
                         than a forward parity census
 Falsifier               width < 1 for all y ≥ 1; uniqueness is
-                        odd_cell_unique; every odd x makes T(x)
+                        odd_preimage_unique; every odd x makes T(x)
                         Type 2; hug/fan words interleave E so net
                         backward flow is already positive
-Existing machinery      odd_cell_unique (Cells.lean);
+Existing machinery      odd_preimage_unique (Preimages.lean);
                         J-odd-pred-empty-cube; empty_odd_cell
                         Types 0/1/2; hug-cylinder O-pullback
                         ~ (1/3) X^{-1/3} with OE/OOE net positive;
@@ -90,7 +90,7 @@ Maximum Phase-0 scope   exact width table on a log grid; Type 0/1/2
                         shares vs (2/3)y^{-1/3}; elementary width<1;
                         read existing hug-flow / fan-concat artifacts;
                         no new n-window, no Lean, no Paper A
-Promotion criterion     a hit law that is not odd_cell_unique, not
+Promotion criterion     a hit law that is not odd_preimage_unique, not
                         Type 2-from-odd, and not the priced O-pullback
 Stop criterion          statements are KNOWN or REPARAMETERIZATION
 ```
@@ -110,12 +110,12 @@ It is not required.
 - \(\Delta x<1\) for large \(y\) only —
   **false**; true for every \(y\ge 1\)
 - Unique odd predecessor —
-  **EXACT — LEAN VERIFIED** (`odd_cell_unique`)
+  **EXACT — LEAN VERIFIED** (`odd_preimage_unique`)
 - Occupied share \(\sim\tfrac23 y^{-1/3}\) —
   **OBSERVATION** on 80-point decade windows and on
   \(y\le 4000\) (Type 0 share \(0.937\))
 - Odd step produces Type 2 —
-  **KNOWN** (empty-odd-cell); confirmed on
+  **KNOWN** (empty-odd-preimage); confirmed on
   \(\{3,37,365,761\}\)
 - Infinite exact hits starve a fan-follower —
   **REFUTED** (`juggler_odd_inverse_width`)
@@ -156,7 +156,7 @@ read, not rerun. No CLI. No Lean. No \(n_{\max}\) raise.
 
 ## Formalization
 
-None new. `odd_cell_unique` stays in `Cells.lean`. No
+None new. `odd_preimage_unique` stays in `Preimages.lean`. No
 `OddInverseWidth.lean`. Paper A is unchanged. No `sorry`.
 
 ## Results

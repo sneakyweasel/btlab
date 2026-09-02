@@ -11,8 +11,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH
 from research.juggler_sequence.lean_paths import juggler_text
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -84,7 +84,7 @@ def scan_suffix(v: str, *, q_max: int = Q_MAX) -> dict[str, Any]:
     mono_breaks: list[dict[str, Any]] = []
     seen_expand_q: int | None = None
     for q in range(1, q_max + 1):
-        if not follows_word(q, v):
+        if not follows_itinerary(q, v):
             continue
         output = image_after(q, v)
         lo, hi = cell_bounds(q)

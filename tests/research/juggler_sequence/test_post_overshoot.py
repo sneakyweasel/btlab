@@ -16,7 +16,7 @@ from research.juggler_sequence.post_overshoot import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 

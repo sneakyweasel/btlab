@@ -35,7 +35,7 @@ OOEOOEOOEOEO < n^2 so another escaped even is impossible; CE forces the next ima
 
 ## Lean
 
-- `wordOOEOOEOOEOEO`: `True`
+- `itineraryOOEOOEOOEOEO`: `True`
 - `follows_ooeooeooeoeo_image_lt_sq`: `True`
 - `minimal_ooeooeooeoe_follows_o`: `True`
 - `minimal_ooeooeooeoeo_not_even`: `True`

@@ -95,7 +95,7 @@ It is not required.
   **REFUTED**. Both have \(w/n^2\approx 0.533\). The split
   is the parity of \(q\).
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -145,10 +145,10 @@ continues by `OOE` and later drops.
 
 ## Formalization
 
-None. Existing `Envelope.lean`, `Cells.lean`, and
+None. Existing `Envelope.lean`, `Preimages.lean`, and
 `CycleCore.lean` lemmas are cited, not rewritten. No
 `no_cycleMin_prefix_ooeoooee`. No `no_cycleMin_four_even`.
-No `no_cycle_word_length_eleven`. No `no_juggler_cycle`.
+No `no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`.
 Paper A is unchanged.
 
 ## Results
@@ -189,7 +189,7 @@ The residual after odd \(q\) is the second `OO` from
 \([n^2,n^3)\), now the separate branch
 [juggler_second_oo_cube.md](juggler_second_oo_cube.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`.
+Do not assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 

@@ -1,6 +1,6 @@
 # Juggler leftover-class certificate harvest
 
-First contracting word after Theorem 4.1 / `OOEE`. Absence is `NOT OBSERVED WITHIN SEARCH BOUND`. Not a halt theorem.
+First contracting itinerary after Theorem 4.1 / `OOEE`. Absence is `NOT OBSERVED WITHIN SEARCH BOUND`. Not a halt theorem.
 
 - classification: `CERTIFICATE_HARVEST_PARK`
 - reason: leftover mass is a short mixed O/E-block list with small scale drift; a verification bound, not a new law
@@ -25,7 +25,7 @@ Leftover types: `3081`. Unary `O+E+` share: `0.2895`. `OOOO*` share: `0.0789`.
 
 ## Scale split
 
-Total-variation of leftover word shares: `0.0133`. Max abs delta: `0.0027`.
+Total-variation of leftover itinerary shares: `0.0133`. Max abs delta: `0.0027`.
 
 ## Window `all` (2..1000000000)
 

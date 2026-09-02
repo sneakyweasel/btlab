@@ -10,7 +10,7 @@ bootstrap branch.
 ## Problem
 
 Do prefix-`OOO` extra scale, or an `OOOOEE` `CycleMin` rotation, exclude
-`CycleWord` on the two parked leftovers `OOOEOE` and `OOOOEE`?
+`CycleItinerary` on the two parked leftovers `OOOEOE` and `OOOOEE`?
 
 ## Exact statement
 
@@ -33,7 +33,7 @@ enough that \(T(y)\ge(n+1)^2\). Decide whether `LowerPowerBound` on
 and `OE` are already forbidden. A last letter `O` is the last-odd cell
 \(n^2\le x^3<(n+1)^2\) against \(x\ge n\).
 
-This says nothing about cycles as `CycleWord` ending in `O`. It does
+This says nothing about cycles as `CycleItinerary` ending in `O`. It does
 not exclude every length-6 E-terminating word. Do not prove totality.
 
 ## Current literature
@@ -56,7 +56,7 @@ Project relationship: **extended**. The parked leftover of
 
 ```text
 Mathematical target     Do prefix-OOO extra scale, or an OOOOEE CycleMin
-                        rotation, exclude CycleWord on OOOEOE and OOOOEE?
+                        rotation, exclude CycleItinerary on OOOEOE and OOOOEE?
 Novelty hypothesis      T^3(n) ≥ (n+1)^2 plus the even cell of y forces
                         T(y) ≥ (n+1)^2; OOOOEE dies by rotation
 Falsifier               y=n is the OOO threshold; leftover is envelope
@@ -66,7 +66,7 @@ Existing machinery      CycleMin, cycleMin_even_ge_sq, last-even/odd
                         cycleMin_not_odd_even / not_start_even
 Maximum Phase-0 scope   Two words only. Exact cell/threshold identities.
                         Lean iff a reusable inequality is proved.
-Promotion criterion     Lean exclusion of CycleWord on one or both words,
+Promotion criterion     Lean exclusion of CycleItinerary on one or both words,
                         or a named extra-scale lemma that is not a rewrite
                         of ooo_suffix_threshold
 Stop criterion          Both leftovers are KNOWN/REPARAMETERIZATION;
@@ -93,9 +93,9 @@ It is not required.
   **REFUTED**
 - `OOOOEE` reduces to `CycleMin OOOOEE` —
   **EXACT — HUMAN PROOF** (rotation inventory)
-- `CycleWord` on `OOOEOE` or `OOOOEE` is impossible — not claimed
+- `CycleItinerary` on `OOOEOE` or `OOOOEE` is impossible — not claimed
 - no length-6 E-terminating cycle — not claimed
-- cycles ending in `O` as `CycleWord` are impossible — not claimed
+- cycles ending in `O` as `CycleItinerary` are impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -133,8 +133,8 @@ stronger claims that fail:
 
 `FloorPower`, `Progress`, and `Minimal` are not rewritten. No `sorry`.
 No halt theorem. No `no_juggler_cycle`. No `CycleSearch`. No
-`no_cycle_word_ooooeoe` / `no_cycle_word_ooooee`. No
-`no_cycle_word_length_six`. No `PowerBoundEq` attack. No `PowerHeight`.
+`no_cycle_itinerary_ooooeoe` / `no_cycle_itinerary_ooooee`. No
+`no_cycle_itinerary_length_six`. No `PowerBoundEq` attack. No `PowerHeight`.
 No ledger row.
 
 ## Results
@@ -145,13 +145,13 @@ Classification **OOO_SCALE_THRESHOLD_ONLY**.
 The `y=n` landing is the `OOO` threshold. `CycleMin` cannot end in
 `O`. `LowerPowerBound` on `OOO` has `D=2^{38}` and first forced
 overshoot at `n=109`; it is not uniform from `n=3`. Neither leftover
-`CycleWord` is excluded.
+`CycleItinerary` is excluded.
 
 ## Open questions
 
 Whether every positive integer reaches 1. Extra scale on these two
 words is not a new uniform law. Do not open length 7. Do not start
-an O-terminating `CycleWord` programme.
+an O-terminating `CycleItinerary` programme.
 
 ## Decision
 
@@ -166,7 +166,7 @@ Best next question: write the structure paper (Atlas +
 `FiniteProgress` leftover + cycle stack + \(N^{5/6}\)).
 
 A later branch, [juggler_leftover_cycles](juggler_leftover_cycles.md),
-excludes both leftover `CycleWord`s by a finite evaluation below
+excludes both leftover `CycleItinerary`s by a finite evaluation below
 \(256\) plus the tail \(n^{81}>2^{130}(n+1)^{64}\). That is not this
 branch's uniform-from-\(3\) attack; the `CLOSE` here is unchanged.
 

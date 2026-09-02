@@ -28,7 +28,7 @@ steps: on the scanned windows that density is 1.
 
 What is exact:
 
-- \(E(w)>0\) if and only if the word is formally expanding;
+- \(E(w)>0\) if and only if the itinerary is formally expanding;
 - an expanding residual block \(O^a E^b\) (\(b\ge 1\)) satisfies
   \(b<a\) (and already \(a\ge 2\));
 - relative slack multiplies under concatenation; the numerator folds
@@ -84,7 +84,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - Expanding residual \(\Rightarrow \#E<\#O\) —
   **EXACT — LEAN VERIFIED**
-- Block-growth identity \(n^{3^o}=n^{2^k+E(w)}\) on expanding words —
+- Block-growth identity \(n^{3^o}=n^{2^k+E(w)}\) on expanding itineraries —
   **EXACT — LEAN VERIFIED**
 - Slack-numerator three-block fold —
   **EXACT — LEAN VERIFIED**

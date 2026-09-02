@@ -23,7 +23,7 @@ from typing import Any
 from research.juggler_sequence.cycle_error_transport import letter_transport
 from research.juggler_sequence.cycle_finance import git_commit, o_min_and_theta
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     local_defect,
@@ -35,7 +35,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_padic_coupling"
@@ -235,7 +235,7 @@ def cycle_lte_formula(n: int, length: int, odd: int) -> dict[str, Any]:
 
 
 def realized_record(n: int, word: str) -> dict[str, Any]:
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         raise ValueError(f"{n} does not follow {word}")
     rows = [letter_transport(n, word, index) for index in range(len(word))]
     delta = global_defect(n, word)
@@ -306,7 +306,7 @@ def local_window(*, word: str = "OOE", lo: int = 13, hi: int = 400) -> dict[str,
     checked = 0
     high_v2 = 0
     for n in range(lo if lo % 2 else lo + 1, hi, 2):
-        if not follows_word(n, word):
+        if not follows_itinerary(n, word):
             continue
         current = n
         for _letter in word:

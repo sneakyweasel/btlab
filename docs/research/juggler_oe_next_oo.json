@@ -78,7 +78,7 @@
   },
   "lean": {
     "sorry_free": true,
-    "wordOOEOOEOOEOEO": true,
+    "itineraryOOEOOEOOEOEO": true,
     "follows_ooeooeooeoeo_image_lt_sq": true,
     "minimal_ooeooeooeoe_follows_o": true,
     "minimal_ooeooeooeoeo_not_even": true,
@@ -86,7 +86,7 @@
     "has_no_juggler_escape": false,
     "has_juggler_reaches_one": false,
     "has_no_juggler_cycle": false,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "escape_has_next_sq": true,
     "not_in_paper_barrel": true,
     "FloorPower_not_rewritten": true

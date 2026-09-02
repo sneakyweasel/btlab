@@ -1,6 +1,6 @@
 /**
  * Exact Juggler step. Display fork of
- * src/research/juggler_sequence/power_words.py:floor_power.
+ * src/research/juggler_sequence/power_itineraries.py:floor_power.
  * Even: floor(sqrt n). Odd: floor(n^{3/2}) = isqrt(n^3).
  */
 

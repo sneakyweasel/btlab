@@ -48,19 +48,19 @@
   },
   "lean": {
     "sorry_free": true,
-    "no_cycle_word_ooooeooe": true,
-    "no_cycle_word_oooeoooe": true,
-    "no_cycle_word_ooeooooe": true,
-    "no_cycle_word_ooooooee": true,
-    "no_cycle_word_oooooeeoe": true,
-    "no_cycle_word_len_eight_ends_even": true,
-    "no_cycle_word_length_le_eight": true,
-    "no_cycle_word_length_le_seven": true,
-    "no_cycle_word_two_even_ee": true,
+    "no_cycle_itinerary_ooooeooe": true,
+    "no_cycle_itinerary_oooeoooe": true,
+    "no_cycle_itinerary_ooeooooe": true,
+    "no_cycle_itinerary_ooooooee": true,
+    "no_cycle_itinerary_oooooeeoe": true,
+    "no_cycle_itinerary_len_eight_ends_even": true,
+    "no_cycle_itinerary_length_le_eight": true,
+    "no_cycle_itinerary_length_le_seven": true,
+    "no_cycle_itinerary_two_even_ee": true,
     "no_cycle_odd_run_append_even": true,
-    "no_cycle_word_length_eight": true,
-    "no_cycle_word_length_nine": true,
-    "no_cycle_word_length_le_nine": true,
+    "no_cycle_itinerary_length_eight": true,
+    "no_cycle_itinerary_length_nine": true,
+    "no_cycle_itinerary_length_le_nine": true,
     "no_juggler_cycle": true,
     "juggler_reaches_one": true,
     "paper_a_length_eight_open": true,
@@ -70,7 +70,7 @@
   },
   "decision": {
     "classification": "LENGTH_EIGHT_CENSUS_GREEN",
-    "reason": "no_cycle_word_length_le_eight assembles the named length-8 filters; Paper A census file still stops at seven"
+    "reason": "no_cycle_itinerary_length_le_eight assembles the named length-8 filters; Paper A census file still stops at seven"
   },
   "search_method": "Laboratory assembler of named filters already in Lean; no leftover cell and no Paper A theorem number"
 }

@@ -27,9 +27,9 @@ already starts \(\mathrm{OO}\) and ends \(E\), so each is a
 Phase 0 tests the two leftover-path attacks that are not last-cluster
 pullback:
 
-1. **Rotation** (the Theorem 3.21 playbook). A `CycleWord` has a
+1. **Rotation** (the Theorem 3.21 playbook). A `CycleItinerary` has a
    `CycleMin` rotation. That upgrades an excluded `CycleMin` class to
-   a `CycleWord` theorem only when *every* `CycleMin`-legal orientation
+   a `CycleItinerary` theorem only when *every* `CycleMin`-legal orientation
    is already excluded. The thirty words are the orientations that are
    still open as `CycleMin`s.
 2. **Internal-E next-square**
@@ -39,10 +39,10 @@ pullback:
    \(3^{\#O(v)}\ge 2^{\mathrm{len}(v)+1}\). Here \(v\) is the suffix
    strictly between an internal \(E\) and the last \(E\).
 
-This is not a `CycleWord` theorem. It is not a length-8, length-9, or
+This is not a `CycleItinerary` theorem. It is not a length-8, length-9, or
 length-11 census and not a halt theorem. There is no
-`no_cycle_word_length_eight`, no `no_cycle_word_length_eleven`, and
-no `no_cycle_word_oooooooeeee`.
+`no_cycle_itinerary_length_eight`, no `no_cycle_itinerary_length_eleven`, and
+no `no_cycle_itinerary_oooooooeeee`.
 
 ## Current literature
 
@@ -75,7 +75,7 @@ Project relationship: **extended**, then **refuted**.
 ```text
 Mathematical target     Do rotation or internal-E next-square
                         exclude any of the 30 length-11 leftovers?
-Novelty hypothesis      A mixed word dies by orientation or by
+Novelty hypothesis      A mixed itinerary dies by orientation or by
                         a next-square suffix after an internal E
 Falsifier               Every word is already a surviving
                         CycleMin spelling; every internal-E
@@ -85,7 +85,7 @@ Existing machinery      exists_cycleMin; internal-E threshold;
 Maximum Phase-0 scope   Classify rotations and exponents;
                         no Lean, no census, no Paper A
 Promotion criterion     At least one cyclic word is excluded
-                        as CycleWord or CycleMin by one of
+                        as CycleItinerary or CycleMin by one of
                         these two methods
 Stop criterion          Both methods are inapplicable or
                         exponent-obstructed; or a census
@@ -106,7 +106,7 @@ It is not required.
   **EXACT — HUMAN PROOF**
 - the thirty words are thirty distinct necklaces —
   **COMPUTATIONALLY VERIFIED**
-- rotation upgrades `CycleMin` to `CycleWord` only after the
+- rotation upgrades `CycleMin` to `CycleItinerary` only after the
   `CycleMin` class is already excluded —
   **EXACT — HUMAN PROOF** (Theorem 3.21 playbook)
 - every suffix between an internal \(E\) and the last \(E\)
@@ -161,8 +161,8 @@ The stronger claims that remain false or unproved:
 None new. `exists_cycleMin` and
 `no_cycleMin_internal_even_threshold` already exist.
 `SmallCycleCensus.lean` still assembles only through length
-seven. No `no_cycle_word_length_eight`. No
-`no_cycle_word_length_eleven`. No `no_cycle_word_oooooooeeee`.
+seven. No `no_cycle_itinerary_length_eight`. No
+`no_cycle_itinerary_length_eleven`. No `no_cycle_itinerary_oooooooeeee`.
 No `sorry`. No halt theorem. Paper A is unchanged.
 
 ## Results
@@ -173,7 +173,7 @@ Rotation is the 3.21 upgrade, not a method for leftovers that
 are still open as `CycleMin`s. Internal-E next-square is
 exponent-obstructed on every split of every one of the thirty
 words. The closest miss is \(243/256\). `OOOOOOOEEEE` is not a
-special case of this obstruction: the mixed words fail too.
+special case of this obstruction: the mixed itineraries fail too.
 
 Together with the \(Z_4\) `PARK` and the EEEE tight-pullback
 `CLOSE`, the leftover-cell / rotation / internal-E toolkit does
@@ -182,8 +182,8 @@ not hit the thirty length-11 words.
 ## Open questions
 
 Stop on the thirty length-11 leftovers as a leftover-path
-target. Do not assemble `no_cycle_word_length_eight`,
-`no_cycle_word_length_nine`, or `no_cycle_word_length_eleven`.
+target. Do not assemble `no_cycle_itinerary_length_eight`,
+`no_cycle_itinerary_length_nine`, or `no_cycle_itinerary_length_eleven`.
 Do not claim halt. Do not start a thirty-family Lean list from
 this `CLOSE`. Length 8 remains open as a census; that is a
 different branch.

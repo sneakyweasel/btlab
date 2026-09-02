@@ -29,7 +29,7 @@ BOXED = (
     "MinimalNonTerm",
     "MinimalImpliesCoeffStop",
     "AboveAnchor",
-    "follows_iff_word",
+    "follows_iff_itinerary",
     "coeffStop_implies_stop",
 )
 
@@ -43,7 +43,7 @@ FORBIDDEN_ENGINE_NAMES = (
     "Problems.Engine.ResidualChain",
     "Problems.Engine.ResidualPath",
     "Problems.Engine.RepeatedBlock",
-    "Problems.Engine.CycleWord",
+    "Problems.Engine.CycleItinerary",
     "Problems.Engine.CycleDiophantine",
 )
 
@@ -92,9 +92,9 @@ def test_paper_barrel_is_the_named_review_object():
     assert imported == list(PAPER_MODULES)
     assert "laboratory target, not a claim" in body
     assert "lake build Problems.JugglerPaper" in body
-    assert "no_cycle_word_oooeoe" in body
-    assert "no_cycle_word_ooooee" in body
-    assert "no_cycle_word_length_six" not in body
+    assert "no_cycle_itinerary_oooeoe" in body
+    assert "no_cycle_itinerary_ooooee" in body
+    assert "no_cycle_itinerary_length_six" not in body
 
 
 def test_no_engine_juggler_names_in_live_sources():

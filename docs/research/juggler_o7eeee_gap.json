@@ -59,13 +59,13 @@
   "lean": {
     "sorry_free": true,
     "no_follows_seven_odds_of_lt256": true,
-    "leftover_prefix_cell": true,
+    "leftover_prefix_preimage": true,
     "cycle_trailing_evens_lt": true,
-    "odd_cell_unique": true,
+    "odd_preimage_unique": true,
     "o7_image_ge_succ_pow16": true,
-    "no_cycle_word_oooooooeeee": true,
-    "no_cycle_word_length_eleven": true,
-    "no_cycle_word_four_even": true,
+    "no_cycle_itinerary_oooooooeeee": true,
+    "no_cycle_itinerary_length_eleven": true,
+    "no_cycle_itinerary_four_even": true,
     "juggler_reaches_one": true,
     "paper_a_has_no_o7eeee": true,
     "seven_odd_cutoff_in_families": true,
@@ -77,5 +77,5 @@
     "classification": "O7EEEE_GAP_PROVED",
     "reason": "no O^7 below 256; +1-chain gives T^7(n) >= (n+1)^16 for n>=256; pin n<10000 has 84 O^7 starts, first=289, zero cell hits, min ratio 445.01033356279396 at n=289"
   },
-  "search_method": "exact (T+1)^2 > x^3 +1-chain with x_k >= n; n<256 by no_follows_seven_odds_of_lt256; 256^{6177} > 257^{6038} by 257^{256}<3*256^{256} and 3^{24}<2^{40}; Lean o7_image_ge_succ_pow16 and no_cycle_word_oooooooeeee; no Paper A import, no Z5, no thirty-word census"
+  "search_method": "exact (T+1)^2 > x^3 +1-chain with x_k >= n; n<256 by no_follows_seven_odds_of_lt256; 256^{6177} > 257^{6038} by 257^{256}<3*256^{256} and 3^{24}<2^{40}; Lean o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee; no Paper A import, no Z5, no thirty-itinerary census"
 }

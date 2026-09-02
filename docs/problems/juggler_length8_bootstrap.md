@@ -40,10 +40,10 @@ scale: \(69\xrightarrow{(\mathrm{OOE})^2}212\) and
 \(225\xrightarrow{(\mathrm{OOOE})^2}4990602\).
 
 This CLOSE is not a leftover cell and not itself a census. A later
-laboratory branch assembled `no_cycle_word_length_le_eight` from
+laboratory branch assembled `no_cycle_itinerary_length_le_eight` from
 these named filters; that packaging is
 [juggler_length_eight_cycles.md](juggler_length_eight_cycles.md).
-There is still no `no_cycle_word_length_eight` (the Paper A name
+There is still no `no_cycle_itinerary_length_eight` (the Paper A name
 was not used) and no halt theorem.
 
 ## Current literature
@@ -79,7 +79,7 @@ Maximum Phase-0 scope   Name the eight-word inventory; no Lean,
                         no census, no Paper A
 Promotion criterion     A new leftover cell that is not bootstrap
 Stop criterion          The suffixes are already next-square; or
-                        assembling no_cycle_word_length_eight
+                        assembling no_cycle_itinerary_length_eight
 ```
 
 ## Balanced-ternary formulation
@@ -129,7 +129,7 @@ claims that fail:
   the suffix after the internal \(E\) is already next-square.
 - “the square reading is a new cycle obstruction” — it is the
   bootstrap split \(uEvE\); \((\mathrm{OOE})^2\) is already
-  `no_cycle_word_ooeooe`.
+  `no_cycle_itinerary_ooeooe`.
 - “repeated expansion contradicts a cycle” — the recorded
   transients expand and do not return.
 
@@ -156,7 +156,7 @@ expanding length-8 word. That is not a census theorem.
 
 Answered by the laboratory census
 [juggler_length_eight_cycles.md](juggler_length_eight_cycles.md):
-`no_cycle_word_length_le_eight`. Do not claim halt. Do not reopen
+`no_cycle_itinerary_length_le_eight`. Do not claim halt. Do not reopen
 the thirty length-11 leftovers.
 
 ## Decision

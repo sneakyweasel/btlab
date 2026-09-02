@@ -26,7 +26,7 @@ An ideal first-return control of length `k` satisfies
 2. whether that optimiser coincides with the 2025 large-deviation
    ascent (`p^*=3/4`);
 3. whether exact first-return trajectories of `J` realize that
-   word, and what the same-horizon peak gap is on `n ≤ 4000` and
+   itinerary, and what the same-horizon peak gap is on `n ≤ 4000` and
    selected hard `n ≤ 10^5`.
 
 A finite gap is not a bound on `τ_<`. This is not a termination
@@ -47,7 +47,7 @@ theorem.
 - Parked statistical phase — **STATISTICAL_ONLY**. Used here only
   as an extremal-target list. Not reopened as a fitting exercise.
 - PE / residual-future / residual projections / summed-rho /
-  realization-set / landing-image / finite-word `N_w` / first-return
+  realization-set / landing-image / finite-itinerary `N_w` / first-return
   structural laws / generic adversarial paths / information-complexity /
   backward cells / acceleration / floor-boundary / 2-adic bridge —
   **CLOSE**. Do not reopen.

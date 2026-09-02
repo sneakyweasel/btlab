@@ -57,7 +57,7 @@ five of them with two Dirichlet-good parts (all of the form
 \(1054+\)seed or \(25781+25781\)). Equal valleys at the same \(n\)
 are already REFUTED
 ([juggler_cycle_equal_valleys.md](juggler_cycle_equal_valleys.md)).
-The hug word does not use those parts as returning circuits.
+The hug itinerary does not use those parts as returning circuits.
 
 **Slogan.** A CycleMin cycle of fan-member length forces two or
 more distinct fan-quality \((L,o)\) relations simultaneously —
@@ -124,7 +124,7 @@ Falsifier               Every exact cycle constraint reduces to one
                         (L, o); hug circuits are only OE/OOE;
                         fan-neighbors are Q-steps (both can be good),
                         not exponent-neighbors
-Existing machinery      Competition exact thetas; hug word;
+Existing machinery      Competition exact thetas; hug itinerary;
                         walk-excursion types; m-finance / equal
                         valleys; Baker transfer REFUTED
 Maximum Phase-0 scope   Neighbor-quality profile, hug-circuit census,
@@ -177,7 +177,7 @@ exponent-neighbor separation kills the fan.
 
 ## Counterexamples
 
-- Hug words of \(19,84,1054,25781,50508,176251\) have only circuit
+- Hug itineraries of \(19,84,1054,25781,50508,176251\) have only circuit
   types \((1,1)\) and \((2,1)\). Letter counts match:
   \(5415\cdot 2+13226\cdot 3=50508\).
 - At leftover seeds, \(\theta(L\pm 1)\) is \(O(1)\) while

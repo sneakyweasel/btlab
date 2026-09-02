@@ -32,7 +32,7 @@ from research.juggler_sequence.first_e_e4 import (
     remainder_shapes,
     word_e4,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def _layer_words() -> list[str]:
@@ -117,4 +117,4 @@ def test_classify_render_and_artifacts():
         encoding="utf-8"
     )
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier

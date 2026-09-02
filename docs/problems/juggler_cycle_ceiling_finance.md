@@ -5,7 +5,7 @@ Status: **ARCHIVED**
 Standalone application phase on the Juggler floor-power map, on the
 **cycle half** of the `cycles_or_escapes` split. It attacks the
 named even-run upper cell \((p+1)^{2^r}\) as leftover finance. It
-is not a leftover-word census at the peak, not a floor raise, not
+is not a leftover-itinerary census at the peak, not a floor raise, not
 a `PositionFinance` layer, and not a halt theorem.
 
 ## Problem
@@ -15,7 +15,7 @@ at the valleys: enough of the orbit is forced into the top window
 that \(\sum 1/(x\ln x)<\theta\).
 
 Everything else either was run and collapsed to the envelope, or
-is a leftover-word census at the peak, or is another floor raise.
+is a leftover-itinerary census at the peak, or is another floor raise.
 The upper cell \((p+1)^{2^r}\) is the only named object that was
 recorded (`even_iter_lt_succ_pow`) and then left unused.
 
@@ -89,7 +89,7 @@ No cycle of any length — not claimed.
   ([juggler_cycle_extremal_composition.md](juggler_cycle_extremal_composition.md))
 - Height leftover period \(84\) with \(m\ge 3\) or \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Cheap \(m\ge 3\) refinements at floor \(261\) —
   **REFUTED**
   ([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md))
@@ -120,7 +120,7 @@ Maximum Phase-0 scope   exact landing table at n=261 for peak
                         census
 Promotion criterion     a new leftover (L, m) kill that is not
                         height packing, not a floor raise, and
-                        not a leftover-word census
+                        not a leftover-itinerary census
 Stop criterion          some leftover m survives under every
                         proved constant; or the coupling is only
                         the named cell
@@ -139,7 +139,7 @@ It is not required.
 - Ceiling landing \(p\ge\operatorname{isqrt}^{r}(M_{\min})\) —
   **REPARAMETERIZATION** of `even_iter_lt_succ_pow`
 - Pigeonhole \(k=18\) landing \(p=3075\) excludes \(m=3\) —
-  **COMPUTATIONALLY VERIFIED**, and not the leftover (the word
+  **COMPUTATIONALLY VERIFIED**, and not the leftover (the itinerary
   may use a longer peak run)
 - Ceiling leftover-killer for every \(m\ge 3\) at floor \(261\) —
   **REFUTED** (`juggler_ceiling_finance_leftover_killer`)
@@ -205,7 +205,7 @@ Classification **CLOSED**. The slogan is false at floor \(261\).
 
 Stop. The laboratory leftover remains period \(84\) with
 \(m\ge 3\), or \(\ge 85\). Do not raise the residual floor. Do
-not open a leftover-word census of peak runs.
+not open a leftover-itinerary census of peak runs.
 
 ## Decision
 

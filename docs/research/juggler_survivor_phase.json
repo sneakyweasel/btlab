@@ -15,7 +15,7 @@
     "floor_phase_lean": false,
     "excursion_reopen": false,
     "defect_cut_reopen": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "global_non_realizability": false
   },
   "scan": {
@@ -1104,7 +1104,7 @@
     ],
     "git": "9767c506bfc559156d6600df8a083b3fd7087445",
     "letter_chain": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "excursion_reopen": false,
     "defect_cut_reopen": false,
     "halt_theorem": false,

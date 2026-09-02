@@ -240,7 +240,7 @@
     "collapse_basin_one": true,
     "nested_even_collapse_2500": true,
     "nested_even_collapse_2500_superquadratic": true,
-    "maxEvenRun_wordEE_OEEE12": true,
+    "maxEvenRun_itineraryEE_OEEE12": true,
     "odd_even_tower_seven": true,
     "collapse_on_pow_two": true,
     "image_append": true,

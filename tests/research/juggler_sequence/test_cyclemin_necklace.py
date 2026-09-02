@@ -28,7 +28,7 @@ from research.juggler_sequence.cyclemin_necklace import (
     write_artifacts,
 )
 from research.juggler_sequence.first_e_e4 import word_e4
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_fifty_six_params_and_slack_identity():
@@ -113,5 +113,5 @@ def test_classify_render_and_artifacts():
         / "juggler_cyclemin_necklace.md"
     ).read_text(encoding="utf-8")
     assert "CLOSE" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier
     assert "OOEEEOOOOOE" in dossier

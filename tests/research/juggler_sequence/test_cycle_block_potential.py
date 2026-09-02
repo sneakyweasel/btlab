@@ -18,7 +18,7 @@ from research.juggler_sequence.cycle_block_potential import (
 )
 from research.juggler_sequence.cycle_e_block import cyclemin_shaped_block, first_oe_block
 from research.juggler_sequence.cycle_exponent_budget import rho
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_block_potential.md"
@@ -44,7 +44,7 @@ def test_dossier_has_triage_and_closed_gates():
     assert "Do **not** raise" in text
     assert "power_bound_contracts" in text
     assert "power_bound_word_strict" in text
-    assert "cycle_word_formally_expanding" in text
+    assert "cycle_itinerary_formally_expanding" in text
 
 
 def test_log_and_loglog_have_the_same_sign_as_contraction():

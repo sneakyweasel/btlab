@@ -9,7 +9,7 @@ and
 not a new paper. It asks whether large usable odd-run floor loss
 can persist across successive finance-critical odd valleys, or
 whether a two-excursion tax appears after finance weighting.
-Not a halt theorem, not a leftover-word census, not a new period
+Not a halt theorem, not a leftover-itinerary census, not a new period
 identity, not Fourier, not a \(Q\)-return, and not a residue /
 \(p\)-adic system.
 
@@ -123,7 +123,7 @@ Maximum Phase-0 scope   The consecutive-excursion table
                         persistence, payment timing, and weighted U.
                         No adversary necklace, no cumulative D_k
                         process, no signature optimization, no
-                        Fourier, no residues, no word enumeration
+                        Fourier, no residues, no itinerary enumeration
 Promotion criterion     A reusable inequality
                         R_i+R_{i+1} ≤ R_i^max+R_{i+1}^max-δ
                         strong enough to kill at least one of the 99

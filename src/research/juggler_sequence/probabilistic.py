@@ -29,7 +29,7 @@ from research.juggler_sequence.excursions import (
     _walk_returns,
 )
 from research.juggler_sequence.lean_paths import ENVELOPE, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_probabilistic.json"
@@ -86,7 +86,7 @@ CLOSED_IMPORT_TOKENS = (
     "sum_rho",
     "realization_geometry",
     "landing_image",
-    "word_language",
+    "itinerary_language",
     "word_atlas",
     "nc_boundary",
     "adversarial_paths",
@@ -1522,7 +1522,7 @@ Known records replayed on CPU (exact `J`):
 `n<=4000` delay records. `n=2183` remains the peak-bit record in that
 window. Label: **EXACT COMPUTATION**. Rarity under `M0` is not an
 explanation: the exact feature is a long expanding odd prefix, already
-visible in the itinerary.
+visible in the word.
 
 ## 10. Scale dependence
 

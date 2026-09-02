@@ -29,7 +29,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_survivor_phase.json"
@@ -487,7 +487,7 @@ def run_probe(
         "labs": lab_detail,
         "git": git_commit(),
         "letter_chain": False,
-        "word_language_reopen": False,
+        "itinerary_language_reopen": False,
         "excursion_reopen": False,
         "defect_cut_reopen": False,
         "halt_theorem": False,
@@ -514,7 +514,7 @@ def lean_api_present() -> dict[str, bool]:
             name not in paper for name in FORBIDDEN_NEW_API
         ),
         "no_atlas_lang": "LANG_PHASE" not in combined,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -532,7 +532,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         return {"classification": CLASS_INCOMPLETE, "reason": f"lean_ok={lean_ok}"}
     if (
         scan["letter_chain"]
-        or scan["word_language_reopen"]
+        or scan["itinerary_language_reopen"]
         or scan["excursion_reopen"]
         or scan["defect_cut_reopen"]
         or scan["halt_theorem"]
@@ -603,7 +603,7 @@ def probe_payload(
             "floor_phase_lean": False,
             "excursion_reopen": False,
             "defect_cut_reopen": False,
-            "word_language_reopen": False,
+            "itinerary_language_reopen": False,
             "global_non_realizability": False,
         }
     )

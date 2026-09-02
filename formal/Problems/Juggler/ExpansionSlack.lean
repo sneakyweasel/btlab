@@ -23,7 +23,7 @@ def blockMultiplier (w : List Branch) : ℕ × ℕ :=
   (3 ^ oddCount w, 2 ^ w.length)
 
 /-- Formal expansion margin `μ = λ - 1` as the pair `(A - B, B)`.
-The first component is `0` in `ℕ` when the word is not expanding. -/
+The first component is `0` in `ℕ` when the itinerary is not expanding. -/
 def expansionMargin (w : List Branch) : ℕ × ℕ :=
   ((blockMultiplier w).1 - (blockMultiplier w).2, (blockMultiplier w).2)
 
@@ -172,7 +172,7 @@ theorem block_growth_compat {n : ℕ} {w : List Branch}
     exact (Nat.pow_lt_pow_iff_left hne).mp hpow
 
 theorem pe_ooe_of {x y : ℕ}
-    (hw : word x 3 = [.odd, .odd, .even])
+    (hw : itinerary x 3 = [.odd, .odd, .even])
     (himg : floorPower^[3] x = y)
     (hxy : x < y) (hy : y % 2 = 1)
     (ht : floorPower y % 2 = 1) :
@@ -189,12 +189,12 @@ theorem ooooee_is_expanding : exponentExpanding (oddEvenBlock 4 2) := by
   decide
 
 theorem follows_oddEvenBlock_four_two {n : ℕ}
-    (h : word n 6 = [.odd, .odd, .odd, .odd, .even, .even]) :
+    (h : itinerary n 6 = [.odd, .odd, .odd, .odd, .even, .even]) :
     follows n (oddEvenBlock 4 2) := by
   have hlen : (oddEvenBlock 4 2).length = 6 := length_oddEvenBlock 4 2
-  have hw : word n (oddEvenBlock 4 2).length = oddEvenBlock 4 2 := by
+  have hw : itinerary n (oddEvenBlock 4 2).length = oddEvenBlock 4 2 := by
     rw [hlen, oddEvenBlock_four_two, h]
-  exact (follows_iff_word n _).mpr hw
+  exact (follows_iff_itinerary n _).mpr hw
 
 theorem image_oddEvenBlock_four_two {n y : ℕ}
     (h : floorPower^[6] n = y) :
@@ -202,7 +202,7 @@ theorem image_oddEvenBlock_four_two {n y : ℕ}
   simpa [image_eq_iterate, length_oddEvenBlock] using h
 
 theorem pe_ooooee_of {x y : ℕ}
-    (hw : word x 6 = [.odd, .odd, .odd, .odd, .even, .even])
+    (hw : itinerary x 6 = [.odd, .odd, .odd, .odd, .even, .even])
     (himg : floorPower^[6] x = y)
     (hxy : x < y) (hy : y % 2 = 1)
     (ht : floorPower y % 2 = 1) :
@@ -217,11 +217,11 @@ theorem four_block_pe_1999 :
       PersistentExpandingResidual 5169 50093 ∧
       PersistentExpandingResidual 50093 193753 ∧
       PersistentExpandingResidual 193753 887471 := by
-  have w1999 : word 1999 3 = [.odd, .odd, .even] := by native_decide
-  have w5169 : word 5169 6 = [.odd, .odd, .odd, .odd, .even, .even] := by
+  have w1999 : itinerary 1999 3 = [.odd, .odd, .even] := by native_decide
+  have w5169 : itinerary 5169 6 = [.odd, .odd, .odd, .odd, .even, .even] := by
     native_decide
-  have w50093 : word 50093 3 = [.odd, .odd, .even] := by native_decide
-  have w193753 : word 193753 3 = [.odd, .odd, .even] := by native_decide
+  have w50093 : itinerary 50093 3 = [.odd, .odd, .even] := by native_decide
+  have w193753 : itinerary 193753 3 = [.odd, .odd, .even] := by native_decide
   have i1999 : floorPower^[3] 1999 = 5169 := by native_decide
   have i5169 : floorPower^[6] 5169 = 50093 := by native_decide
   have i50093 : floorPower^[3] 50093 = 193753 := by native_decide

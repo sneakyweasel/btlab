@@ -1,4 +1,4 @@
-"""Cyclic itinerary feasibility. Not a halt test."""
+"""Cyclic word feasibility. Not a halt test."""
 
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ from research.juggler_sequence.cyclic_feasibility import (
     word_class,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_primitive_counts_match_a001037():
@@ -140,8 +140,8 @@ def test_dossier_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "## Publication assessment" in dossier
-    assert "cycle_word_length_ge_eleven" in dossier
-    assert "no_cycle_word_even_count_le_three" in dossier
+    assert "cycle_itinerary_length_ge_eleven" in dossier
+    assert "no_cycle_itinerary_even_count_le_three" in dossier
     assert "**CLOSE**" in dossier
     assert "CycReal" not in paper
     assert "theorem no_juggler_escape" not in dossier

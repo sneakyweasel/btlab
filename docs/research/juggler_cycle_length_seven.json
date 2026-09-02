@@ -148,7 +148,7 @@
         "leftover": true
       }
     ],
-    "leftover_words": [
+    "leftover_itineraries": [
       "OOOOEOE",
       "OOOOOEE"
     ],
@@ -340,7 +340,7 @@
   },
   "lean": {
     "sorry_free": true,
-    "cycle_word_formally_expanding": true,
+    "cycle_itinerary_formally_expanding": true,
     "no_cycle_odd_run_append_even": true,
     "oo_suffix_threshold": true,
     "ooo_suffix_threshold": true,
@@ -348,12 +348,12 @@
     "cycleMin_not_odd_even": true,
     "cycleMin_not_start_even": true,
     "cycle_last_even_interval": true,
-    "no_cycle_word_length_le_six": true,
-    "no_cycle_word_ooeoooe": true,
-    "no_cycle_word_oooeooe": true,
-    "no_cycle_word_oooooee": true,
-    "no_cycle_word_ooooeoe": true,
-    "no_cycle_word_length_le_seven": true,
+    "no_cycle_itinerary_length_le_six": true,
+    "no_cycle_itinerary_ooeoooe": true,
+    "no_cycle_itinerary_oooeooe": true,
+    "no_cycle_itinerary_oooooee": true,
+    "no_cycle_itinerary_ooooeoe": true,
+    "no_cycle_itinerary_length_le_seven": true,
     "certificate_present": true,
     "PowerHeight_absent": true,
     "no_global_termination_theorem": true,
@@ -375,7 +375,7 @@
     "secondary": [
       "TWO_EVEN_TYPE_THROUGH_EIGHT"
     ],
-    "reason": "length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_word_length_le_seven"
+    "reason": "length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_itinerary_length_le_seven"
   },
-  "search_method": "structural inventory of even-terminating expanding length-7 words; Paper A filters; leftover-tail cutoffs; exact follows+image table below N0; Lean leftover exclusions and no_cycle_word_length_le_seven; no cycle-state search"
+  "search_method": "structural inventory of even-terminating expanding length-7 words; Paper A filters; leftover-tail cutoffs; exact follows+image table below N0; Lean leftover exclusions and no_cycle_itinerary_length_le_seven; no cycle-state search"
 }

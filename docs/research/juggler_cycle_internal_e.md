@@ -23,7 +23,7 @@ Maximum Phase-0 scope   CycleMin barrier; generic bootstrap; OOEOOE; record OOOE
 - secondary: `['OOOEOE_EXCEPTION']`
 - sorry-free: `True`
 
-an internal even cycle state is at least n^2, so its image is at least n; a next-square suffix then overshoots the last-even cell. This excludes CycleMin OEOOOE and the full CycleWord OOEOOE. OOOEOE and OOOOEE remain.
+an internal even cycle state is at least n^2, so its image is at least n; a next-square suffix then overshoots the last-even cell. This excludes CycleMin OEOOOE and the full CycleItinerary OOEOOE. OOOEOE and OOOOEE remain.
 
 The bootstrap uses `y ≥ n`, not `y > n`. If the internal even
 state sits in the first square cell, `isqrt` may return `n`, and
@@ -40,7 +40,7 @@ not imply `T_OOOOE ≥ (n+1)^2`.
 - `OOOEOE` α=`81/64` internal_E=`3` suffix=`O` th=`None` bootstrap=`False` Q0_exists=`True` cyclemin=`False` cycleword=`False`
 - `OOOOEE` α=`81/64` internal_E=`4` suffix=`` th=`None` bootstrap=`False` Q0_exists=`True` cyclemin=`False` cycleword=`False`
 
-- bootstrap words: `['OEOOOE', 'OOEOOE']`
+- bootstrap itineraries: `['OEOOOE', 'OOEOOE']`
 - exceptions: `['OOOEOE', 'OOOOEE']`
 - all-odd last-E: `['OOOOOE']`
 - n-search: `False`
@@ -53,7 +53,7 @@ not imply `T_OOOOE ≥ (n+1)^2`.
 - `no_cycleMin_internal_even_threshold`: `True`
 - `no_cycleMin_oeoooe`: `True`
 - `no_cycleMin_ooeooe`: `True`
-- `no_cycle_word_ooeooe`: `True`
+- `no_cycle_itinerary_ooeooe`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
 - no length-6 theorem: `True`
@@ -88,7 +88,7 @@ not imply `T_OOOOE ≥ (n+1)^2`.
 
 **INTERNAL_E_BOOTSTRAP_GREEN**
 
-an internal even cycle state is at least n^2, so its image is at least n; a next-square suffix then overshoots the last-even cell. This excludes CycleMin OEOOOE and the full CycleWord OOEOOE. OOOEOE and OOOOEE remain.
+an internal even cycle state is at least n^2, so its image is at least n; a next-square suffix then overshoots the last-even cell. This excludes CycleMin OEOOOE and the full CycleItinerary OOEOOE. OOOEOE and OOOOEE remain.
 
 This is not a halt result. Length-6 E-cycles are not all excluded.
 Cycles ending in O are not treated. Q0 was not computed.

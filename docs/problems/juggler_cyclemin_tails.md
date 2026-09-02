@@ -27,8 +27,8 @@ first holds at some \(N_0\le 7\), and no \(n<8\) follows the
 prefix. The first tail layer (\(o=8\), thirty words) has
 \(N_0\in\{5,6,7\}\) and first prefix starts \(37\) through
 \(4481\). Leftover \(Z_4\) is unused. There is no
-`no_cycle_word_four_even`, no `no_cycleMin_four_even`, and no
-`no_cycle_word_length_eleven`.
+`no_cycle_itinerary_four_even`, no `no_cycleMin_four_even`, and no
+`no_cycle_itinerary_length_eleven`.
 
 ## Current literature
 
@@ -125,7 +125,7 @@ laboratory barrel, not by `JugglerPaper`. `familySlack`,
 `slack_of_four_even`, `slack_of_four_even_word`. The
 length-11 identity `slack139_of_seven_odd_length_eleven` is
 now a corollary. There is no `no_cycleMin_four_even` and no
-`no_cycle_word_cyclemin_tails`. The 367-word pin and \(N_0\)
+`no_cycle_itinerary_cyclemin_tails`. The 367-word pin and \(N_0\)
 scan is not Lean. No `sorry`. No halt theorem. Paper A is
 unchanged.
 
@@ -142,7 +142,7 @@ not.
 ## Open questions
 
 Stop. Do not write \(Z_5\). Do not assemble
-`no_cycle_word_four_even`. Do not Lean the 367-word pin.
+`no_cycle_itinerary_four_even`. Do not Lean the 367-word pin.
 
 ## Decision
 

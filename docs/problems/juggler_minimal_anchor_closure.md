@@ -74,7 +74,7 @@ Falsifier               no smaller analogue; no short return;
                         rank is not a potential
 Existing machinery      AboveAnchor; ReturnBelow; PredEven/PredOdd;
                         PredClosure <-> ReachesOne (CLOSED);
-                        odd_cell_unique; even_below_anchor_pow
+                        odd_preimage_unique; even_below_anchor_pow
 Maximum Phase-0 scope   365, 501, 1517, 6187; 69/89 contrast; no new Lean
 Promotion criterion     exact smaller-bad descent, or good-interval
                         closure that is not ReachesOne restated
@@ -101,7 +101,7 @@ observation. Neither is required for the Phase-0 verdict.
 - `x \in \operatorname{Pred}_w([1,n-1])` iff `ReturnBelow` —
   **EXACT — LEAN VERIFIED**. Already the FiniteProgress bridge
 - unique odd predecessor of \(T(n)\) is \(n\) —
-  **EXACT — LEAN VERIFIED** (`odd_cell_unique`)
+  **EXACT — LEAN VERIFIED** (`odd_preimage_unique`)
 - leftover first overshoot has only `OE`, and `OE` stays above \(n\) —
   **COMPUTATIONALLY VERIFIED**
 - leftover high corridor has no odd predecessor \(< n\) —
@@ -176,7 +176,7 @@ adds no information beyond `AboveAnchor` on the remaining corridor.
 
 ## Open questions
 
-What arithmetic feature of an empty-odd-cell PE landing, if any,
+What arithmetic feature of an empty-odd-preimage PE landing, if any,
 could force a later even-below-square without a minimality argument?
 Do not reopen interval closure. Do not build a residue automaton.
 
@@ -186,14 +186,14 @@ Do not reopen interval closure. Do not build a residue automaton.
 remaining leftover generators `365` and `1517`: no smaller structured
 predecessor, no short good-set closure at the first escape layer, and
 no well-founded corridor rank. `6187` drops by `OE` after \(L\), which
-is a word exit rather than a minimality descent. The one inheritance
+is an itinerary exit rather than a minimality descent. The one inheritance
 example (`501 \to 365`) is a larger start merging into a smaller
 *good* orbit, which is the already-known implication “hit a good
 state \(\Rightarrow\) good”. That does not produce a smaller *bad*
 anchor.
 
 Best next question: the leftover generator is a unique odd spine
-into empty-odd-cell PE landings — is there a Diophantine constraint
+into empty-odd-preimage PE landings — is there a Diophantine constraint
 on those landings that is not another word/scale census?
 
 ## Publication assessment

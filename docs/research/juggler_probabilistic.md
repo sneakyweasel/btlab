@@ -41,7 +41,7 @@ It does not reproduce the Prasad constants and does not assume
 
 Phase-12 parity-drift already recorded the *conceptual* costs
 `+log(3/2)` / `+log(1/2)` and proved exact block inequalities
-(`OOOEE`, `EE`) as `T^k(n)<n`. Those are finite-word certificates.
+(`OOOEE`, `EE`) as `T^k(n)<n`. Those are finite-itinerary certificates.
 They are not a statistical law. Label of the block lemmas:
 **LEAN-CERTIFIED**. This page is not a reopen of that branch.
 
@@ -356,7 +356,7 @@ questions. No new finite exceptional family appears.
 Existing exact certificates that remain in force:
 `power_bound_contracts` (`3^o < 2^k ⇒ T_w(n)<n` for `n>=2`) and
 `floorPower_odd_ge`. Label: **LEAN-CERTIFIED**. They already handle
-every completed contracting word. They do not bound `H(n)` uniformly.
+every completed contracting itinerary. They do not bound `H(n)` uniformly.
 
 ## 12. What is NOT proved
 

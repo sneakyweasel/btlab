@@ -1,6 +1,6 @@
 {
   "id": "juggler_cycle_finance_cell_bridge",
-  "title": "Finance extremality of the L=25781 word forces a word-independent empty OOE cell",
+  "title": "Finance extremality of the L=25781 word forces an itinerary-independent empty OOE cell",
   "statement": "The unique finance-optimal two-type word at L=25781 fails after O(1) blocks because a sufficiently finance-optimal OOE/OE packing necessarily contains an OOE transition whose exact predecessor cell is empty, and that emptiness is not the existing F_2 envelope or the (2,2,1) comparison 243<256.",
   "status": "REFUTED",
   "counterexamples": [
@@ -9,7 +9,7 @@
     "Empty (2,2,1) into n (0/19, 0/16) is the dual of two_ooe_still_blocks_oe (243<256), not a new cell"
   ],
   "first_seen": "juggler finance-extremal word versus exact terminal cells",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

@@ -19,7 +19,7 @@ from research.juggler_sequence.cycle_cluster_amplify import (
     surplus_exponent,
 )
 from research.juggler_sequence.defect_lower_bound import amplify_from_first, formal_surplus
-from research.juggler_sequence.global_defect import follows_word
+from research.juggler_sequence.global_defect import follows_itinerary
 
 REPO = Path(__file__).resolve().parents[3]
 SUMMARY = (
@@ -59,7 +59,7 @@ def test_cubics_stay_behind_the_linear_term():
 
 def test_realized_ooe_amplify_loses_to_surplus():
     for seed in (365, 1517, 1000057):
-        assert follows_word(seed, "OOE")
+        assert follows_itinerary(seed, "OOE")
         assert amplify_from_first(seed, "OOE") < formal_surplus(seed, "OOE")
         row = exact_k1_row(seed)
         assert row["amplify_lt_surplus"]

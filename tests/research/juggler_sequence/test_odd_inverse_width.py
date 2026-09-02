@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from research.juggler_sequence.empty_odd_cell import odd_cell_kind
+from research.juggler_sequence.empty_odd_preimage import odd_preimage_kind
 from research.juggler_sequence.odd_inverse_width import (
     CLASS_REPARAM,
     EXISTING_LEAN,
@@ -18,7 +18,7 @@ from research.juggler_sequence.odd_inverse_width import (
     width_lt_one_elementary,
     width_row,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 CONJECTURE = Path("conjectures/refuted/juggler_odd_inverse_width.json")
 DOSSIER = Path("docs/problems/juggler_odd_inverse_width.md")
@@ -51,7 +51,7 @@ def test_mvt_ratio_approaches_one() -> None:
 def test_odd_step_is_type2_self_preimage() -> None:
     for x in ODD_HITS:
         image = floor_power(x)
-        assert odd_cell_kind(image) == 2
+        assert odd_preimage_kind(image) == 2
 
 
 def test_artifact_is_reparameterization() -> None:
@@ -95,5 +95,5 @@ def test_conjecture_and_dossier() -> None:
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "CLOSE" in dossier
-    assert "odd_cell_unique" in dossier
+    assert "odd_preimage_unique" in dossier
     assert "Paper A" in dossier

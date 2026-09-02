@@ -14,7 +14,7 @@ from typing import Any
 
 from research.juggler_sequence.landing_parity import theta
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 N_MAX = 4000
 

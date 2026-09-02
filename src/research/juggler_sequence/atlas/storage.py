@@ -436,7 +436,7 @@ def write_parquet_partitions(
                 }
             )
         table = pa.Table.from_pylist(rows)
-        out_dir = experiment_dir / "observations" / f"word_length={length}"
+        out_dir = experiment_dir / "observations" / f"itinerary_length={length}"
         out_dir.mkdir(parents=True, exist_ok=True)
         path = out_dir / "census.parquet"
         pq.write_table(table, path)

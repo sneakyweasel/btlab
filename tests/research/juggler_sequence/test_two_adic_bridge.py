@@ -7,9 +7,9 @@ from math import isqrt
 
 from bt.calculus.derivative import D, lsd
 from bt.calculus.jets import integer_jet
-from research.juggler_sequence.compensated_contraction import follows_word
+from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.information_complexity import DOCUMENTED_MOD16_PAIR
-from research.juggler_sequence.power_words import itinerary, word_of
+from research.juggler_sequence.power_itineraries import itinerary, word_of
 from research.juggler_sequence.realization_geometry import even_tower
 from research.juggler_sequence.two_adic_bridge import (
     CLASS_COMPLEX,
@@ -68,8 +68,8 @@ def test_odd_split_small_precision():
     assert rec["certificate"] == "ODD_LANDING_SEARCH"
     assert rec["witness_even_landing"] % 8 == 1
     assert rec["witness_odd_landing"] % 8 == 1
-    assert follows_word(rec["witness_even_landing"], "OE")
-    assert follows_word(rec["witness_odd_landing"], "OO")
+    assert follows_itinerary(rec["witness_even_landing"], "OE")
+    assert follows_itinerary(rec["witness_odd_landing"], "OO")
 
 
 def test_word_status_only_forces_length_one():
@@ -80,7 +80,7 @@ def test_word_status_only_forces_length_one():
 
 
 def test_follows_implies_not_forbidden():
-    assert follows_word(5, "OOE")
+    assert follows_itinerary(5, "OOE")
     assert cylinder_status("OOE", 5, 4)["status"] != STATUS_FORBIDDEN
     assert cylinder_status("OOE", 4, 4)["status"] == STATUS_FORBIDDEN
 
@@ -88,7 +88,7 @@ def test_follows_implies_not_forbidden():
 def test_even_tower_realizes_eeeeee():
     n = even_tower(6)
     assert n == 2**32
-    assert follows_word(n, "EEEEEE")
+    assert follows_itinerary(n, "EEEEEE")
     lift = cylinder_lift("EEEEEE", 0, 8, n_max=N_MAX)
     assert lift["follows"] is False
     assert lift["failure_reason"] == "NO_WITNESS_IN_BOUND"
@@ -97,7 +97,7 @@ def test_even_tower_realizes_eeeeee():
 def test_first_holes_are_scale_limited_not_type3():
     for word, rec in HOLE_WITNESSES.items():
         assert word in FIRST_HOLES
-        assert follows_word(rec["n"], word)
+        assert follows_itinerary(rec["n"], word)
         assert rec["status"] == "SCALE_LIMITED"
         assert cylinder_status(word, 0, 8)["status"] == STATUS_INCONCLUSIVE
 

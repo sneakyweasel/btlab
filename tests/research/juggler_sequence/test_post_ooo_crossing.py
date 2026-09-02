@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.minimal_ooe_corridor import square_cell_gap
 from research.juggler_sequence.post_ooo_crossing import (
     CASE_A,
@@ -24,7 +24,7 @@ from research.juggler_sequence.post_ooo_crossing import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_k1_envelopes():
@@ -49,7 +49,7 @@ def test_case_a_even_drop():
     assert event["next"] == CASE_A["drop"]
     assert event["next_drop"] is True
     assert event["u_lt_n4"] is True
-    assert follows_word(CASE_A["n"], "OOEOOOEE")
+    assert follows_itinerary(CASE_A["n"], "OOEOOOEE")
     assert image_after(CASE_A["n"], "OOEOOOEE") == CASE_A["drop"]
     assert CASE_A["drop"] < CASE_A["n"]
 
@@ -157,5 +157,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "OOOE" in dossier
     assert "juggler_post_ooo_crossing" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

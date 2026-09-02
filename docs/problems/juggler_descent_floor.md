@@ -9,7 +9,7 @@ Parent inequality:
 
 Standalone application phase on the **cycle half** of the Juggler
 map. It is not a halt theorem, not an escape statement, not a
-leftover-word census, and not a claim that a larger finite search
+leftover-itinerary census, and not a claim that a larger finite search
 found no cycles.
 
 The published Theorem 4.6 instance uses a verified descent floor

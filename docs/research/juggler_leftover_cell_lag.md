@@ -15,7 +15,7 @@ Mathematical target     Does leftover-cell lag of O^{a_*(e)} E^e
 Novelty hypothesis      lag grows, so leftover induction is
                         permanently parked for e>=4
 Falsifier               lag stays 0 or 1 through e<=16
-Existing machinery      leftover_prefix_cell; denomBits; Z=(n+1)^{2^e}
+Existing machinery      leftover_prefix_preimage; denomBits; Z=(n+1)^{2^e}
 Maximum Phase-0 scope   N0 at a_*, a_*+1, a_*+2 for e=2..16;
                         no Lean, no Z5, no thirty shapes
 ```
@@ -61,13 +61,13 @@ lag is 0 or 1 on e=2..16; max lag 1; a_*+1 always fires in the window. Leftover 
 
 ## Lean
 
-- `leftover_prefix_cell`: `True`
+- `leftover_prefix_preimage`: `True`
 - `denomBits`: `True`
 - `cycle_trailing_evens_lt`: `True`
-- `no_cycle_word_two_even_ee`: `True`
-- `no_cycle_word_three_even_eee`: `True`
-- no `no_cycle_word_five_even`: `True`
-- no `no_cycle_word_e5_cell`: `True`
+- `no_cycle_itinerary_two_even_ee`: `True`
+- `no_cycle_itinerary_three_even_eee`: `True`
+- no `no_cycle_itinerary_five_even`: `True`
+- no `no_cycle_itinerary_e5_cell`: `True`
 - no `leftover_cell_lag_inductive`: `True`
 - no `juggler_reaches_one`: `True`
 - Paper A has no lag theorem: `True`

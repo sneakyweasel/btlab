@@ -29,8 +29,8 @@ def EscapesToInfinity (n : ℕ) : Prop :=
 def EventuallyCycles (n : ℕ) : Prop :=
   ∃ i j, i < j ∧ floorPower^[i] n = floorPower^[j] n
 
-def wordOOEOOEO : List Branch :=
-  wordOOEOOE ++ [Branch.odd]
+def itineraryOOEOOEO : List Branch :=
+  itineraryOOEOOE ++ [Branch.odd]
 
 theorem not_escapes_iff_bounded {n : ℕ} :
     ¬EscapesToInfinity n ↔ ∃ M, ∀ k, floorPower^[k] n ≤ M := by
@@ -99,15 +99,15 @@ theorem minimal_nonterm_cycle_values_ge {n i : ℕ}
     (h : MinimalNonTerm n) : n ≤ floorPower^[i] n :=
   minimal_nonterm_iterate_ge h i
 
-theorem cycleWord_of_repeat {n i j : ℕ} (hij : i < j)
+theorem cycleItinerary_of_repeat {n i j : ℕ} (hij : i < j)
     (heq : floorPower^[i] n = floorPower^[j] n) :
-    CycleWord (floorPower^[i] n) (word (floorPower^[i] n) (j - i)) := by
-  have hlen : 1 ≤ (word (floorPower^[i] n) (j - i)).length := by
-    simpa [word_length] using Nat.succ_le_of_lt (Nat.sub_pos_of_lt hij)
-  refine ⟨follows_word_self _ _, ?_, hlen⟩
+    CycleItinerary (floorPower^[i] n) (itinerary (floorPower^[i] n) (j - i)) := by
+  have hlen : 1 ≤ (itinerary (floorPower^[i] n) (j - i)).length := by
+    simpa [itinerary_length] using Nat.succ_le_of_lt (Nat.sub_pos_of_lt hij)
+  refine ⟨follows_itinerary_self _ _, ?_, hlen⟩
   have hsum : i + (j - i) = j := Nat.add_sub_of_le (Nat.le_of_lt hij)
   have himg :
-      image (floorPower^[i] n) (word (floorPower^[i] n) (j - i)) =
+      image (floorPower^[i] n) (itinerary (floorPower^[i] n) (j - i)) =
         floorPower^[j - i] (floorPower^[i] n) :=
     image_word _ _
   rw [himg, ← iterate_add_right, hsum, heq]
@@ -116,14 +116,14 @@ theorem cycleWord_of_repeat {n i j : ℕ} (hij : i < j)
 not a no-cycle theorem and not a halt theorem: unbounded escape
 remains. -/
 theorem no_nontrivial_cycle_no_bounded_nonterm
-    (hno : ∀ (m : ℕ) (w : List Branch), 2 ≤ m → ¬CycleWord m w)
+    (hno : ∀ (m : ℕ) (w : List Branch), 2 ≤ m → ¬CycleItinerary m w)
     {n : ℕ} (hn : 2 ≤ n) (hnt : ¬ReachesOne n) :
     EscapesToInfinity n := by
   cases cycles_or_escapes n with
   | inr hesc => exact hesc
   | inl hcyc =>
       obtain ⟨i, j, hij, heq⟩ := hcyc
-      have hC := cycleWord_of_repeat hij heq
+      have hC := cycleItinerary_of_repeat hij heq
       have hpos : 1 ≤ floorPower^[i] n :=
         floorPower_iterate_pos (le_trans (by decide : (1 : ℕ) ≤ 2) hn) i
       have hne1 : floorPower^[i] n ≠ 1 := fun h1 => hnt ⟨i, h1⟩
@@ -131,32 +131,32 @@ theorem no_nontrivial_cycle_no_bounded_nonterm
         Nat.succ_le_of_lt (lt_of_le_of_ne hpos hne1.symm)
       exact (hno _ _ hm2 hC).elim
 
-theorem wordOOEOOE_length : wordOOEOOE.length = 6 := rfl
+theorem itineraryOOEOOE_length : itineraryOOEOOE.length = 6 := rfl
 
-theorem wordOOEOOE_oddCount : oddCount wordOOEOOE = 4 := by
-  simp [wordOOEOOE]
+theorem itineraryOOEOOE_oddCount : oddCount itineraryOOEOOE = 4 := by
+  simp [itineraryOOEOOE]
 
-theorem wordOOEOOEO_length : wordOOEOOEO.length = 7 := by
-  simp [wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEO_length : itineraryOOEOOEO.length = 7 := by
+  simp [itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEO_oddCount : oddCount wordOOEOOEO = 5 := by
-  simp [wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEO_oddCount : oddCount itineraryOOEOOEO = 5 := by
+  simp [itineraryOOEOOEO, itineraryOOEOOE]
 
 /-- Same square-cell comparison as the human `OOEOOE` corridor, with
 no `CycleMin` return hypothesis. -/
 theorem follows_ooeooe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOEOOE) :
-    image n wordOOEOOE < n ^ 2 :=
+    (hw : follows n itineraryOOEOOE) :
+    image n itineraryOOEOOE < n ^ 2 :=
   power_bound_lt_pow (k := 2) hn hw (by
-    rw [wordOOEOOE_length, wordOOEOOE_oddCount]
+    rw [itineraryOOEOOE_length, itineraryOOEOOE_oddCount]
     decide)
 
-/-- The word `OOEOOEO` has the square-cell gap `256 > 243`. -/
+/-- The itinerary `OOEOOEO` has the square-cell gap `256 > 243`. -/
 theorem follows_ooeooeo_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOEOOEO) :
-    image n wordOOEOOEO < n ^ 2 :=
+    (hw : follows n itineraryOOEOOEO) :
+    image n itineraryOOEOOEO < n ^ 2 :=
   power_bound_lt_pow (k := 2) hn hw (by
-    rw [wordOOEOOEO_length, wordOOEOOEO_oddCount]
+    rw [itineraryOOEOOEO_length, itineraryOOEOOEO_oddCount]
     decide)
 
 theorem follows_singleton_even {m : ℕ} (he : m % 2 = 0) :
@@ -167,68 +167,68 @@ theorem follows_singleton_odd {m : ℕ} (hodd : m % 2 = 1) :
     follows m [Branch.odd] :=
   ⟨hodd, trivial⟩
 
-theorem follows_ooeooe_even {n : ℕ} (hw : follows n wordOOEOOE)
-    (he : image n wordOOEOOE % 2 = 0) :
-    follows n (wordOOEOOE ++ [Branch.even]) :=
+theorem follows_ooeooe_even {n : ℕ} (hw : follows n itineraryOOEOOE)
+    (he : image n itineraryOOEOOE % 2 = 0) :
+    follows n (itineraryOOEOOE ++ [Branch.even]) :=
   follows_append hw (follows_singleton_even he)
 
 theorem image_ooeooe_even (n : ℕ) :
-    image n (wordOOEOOE ++ [Branch.even]) =
-      floorPower (image n wordOOEOOE) := by
+    image n (itineraryOOEOOE ++ [Branch.even]) =
+      floorPower (image n itineraryOOEOOE) := by
   rw [image_append]
   rfl
 
 /-- Even `OOEOOE` landing is the shared square trap, hence
 `FiniteProgress`. No cycle-return hypothesis. -/
 theorem finiteProgress_of_ooeooe_even_landing {n : ℕ}
-    (hn : 2 ≤ n) (hw : follows n wordOOEOOE)
-    (he : image n wordOOEOOE % 2 = 0) : FiniteProgress n :=
+    (hn : 2 ≤ n) (hw : follows n itineraryOOEOOE)
+    (he : image n itineraryOOEOOE % 2 = 0) : FiniteProgress n :=
   finiteProgress_of_even_below_square hw he (follows_ooeooe_image_lt_sq hn hw)
 
 /-- Even `OOEOOE` landing is descent, hence impossible on a CE. -/
 theorem minimal_ooeooe_not_even_landing {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOE) :
-    image n wordOOEOOE % 2 = 1 := by
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOE) :
+    image n itineraryOOEOOE % 2 = 1 := by
   have hn2 : 2 ≤ n :=
     le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
   by_contra heven
-  have he : image n wordOOEOOE % 2 = 0 := by omega
+  have he : image n itineraryOOEOOE % 2 = 0 := by omega
   exact minimal_nonterm_not_finiteProgress h
     (finiteProgress_of_ooeooe_even_landing hn2 hw he)
 
-theorem follows_wordOOEOOEO_of_odd_landing {n : ℕ}
-    (hw : follows n wordOOEOOE) (hodd : image n wordOOEOOE % 2 = 1) :
-    follows n wordOOEOOEO := by
-  simpa [wordOOEOOEO] using follows_append hw (follows_singleton_odd hodd)
+theorem follows_itineraryOOEOOEO_of_odd_landing {n : ℕ}
+    (hw : follows n itineraryOOEOOE) (hodd : image n itineraryOOEOOE % 2 = 1) :
+    follows n itineraryOOEOOEO := by
+  simpa [itineraryOOEOOEO] using follows_append hw (follows_singleton_odd hodd)
 
-theorem follows_ooeooeo_even {n : ℕ} (hw : follows n wordOOEOOEO)
-    (he : image n wordOOEOOEO % 2 = 0) :
-    follows n (wordOOEOOEO ++ [Branch.even]) :=
+theorem follows_ooeooeo_even {n : ℕ} (hw : follows n itineraryOOEOOEO)
+    (he : image n itineraryOOEOOEO % 2 = 0) :
+    follows n (itineraryOOEOOEO ++ [Branch.even]) :=
   follows_append hw (follows_singleton_even he)
 
 theorem image_ooeooeo_even (n : ℕ) :
-    image n (wordOOEOOEO ++ [Branch.even]) =
-      floorPower (image n wordOOEOOEO) := by
+    image n (itineraryOOEOOEO ++ [Branch.even]) =
+      floorPower (image n itineraryOOEOOEO) := by
   rw [image_append]
   rfl
 
 /-- On a CE, `OOEOOE` forces another `OO`. The next completed letter
 after the forced `O` cannot be `E`. -/
 theorem minimal_ooeooe_forces_oo {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOE) :
-    follows n wordOOEOOEO ∧ image n wordOOEOOEO % 2 = 1 := by
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOE) :
+    follows n itineraryOOEOOEO ∧ image n itineraryOOEOOEO % 2 = 1 := by
   have hodd := minimal_ooeooe_not_even_landing h hw
-  have hf := follows_wordOOEOOEO_of_odd_landing hw hodd
+  have hf := follows_itineraryOOEOOEO_of_odd_landing hw hodd
   refine ⟨hf, ?_⟩
   have hn2 : 2 ≤ n :=
     le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
   have hzlt := follows_ooeooeo_image_lt_sq hn2 hf
   by_contra heven
-  have he : image n wordOOEOOEO % 2 = 0 := by omega
+  have he : image n itineraryOOEOOEO % 2 = 0 := by omega
   exact minimal_nonterm_not_finiteProgress h
     (finiteProgress_of_even_below_square hf he hzlt)
 
-/-- A CE never realizes a formally contracting word. Contrapositive of
+/-- A CE never realizes a formally contracting itinerary. Contrapositive of
 `power_bound_contracts`. -/
 theorem minimal_nonterm_not_exponentGap {n : ℕ} {w : List Branch}
     (h : MinimalNonTerm n) (hw : follows n w) : ¬exponentGap w := by
@@ -249,124 +249,124 @@ theorem minimal_nonterm_prefix_noncontracting {n : ℕ} {w : List Branch}
     simpa [List.take_append_drop] using hw
   exact minimal_nonterm_not_exponentGap h (follows_of_append_left hw') hg
 
-def wordOOEOOEOO : List Branch :=
-  wordOOEOOEO ++ [Branch.odd]
+def itineraryOOEOOEOO : List Branch :=
+  itineraryOOEOOEO ++ [Branch.odd]
 
-def wordOOEOOEOOE : List Branch :=
-  wordOOEOOEOO ++ [Branch.even]
+def itineraryOOEOOEOOE : List Branch :=
+  itineraryOOEOOEOO ++ [Branch.even]
 
-theorem wordOOEOOEOO_length : wordOOEOOEOO.length = 8 := by
-  simp [wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOO_length : itineraryOOEOOEOO.length = 8 := by
+  simp [itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOO_oddCount : oddCount wordOOEOOEOO = 6 := by
-  simp [wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOO_oddCount : oddCount itineraryOOEOOEOO = 6 := by
+  simp [itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOOE_length : wordOOEOOEOOE.length = 9 := by
-  simp [wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOE_length : itineraryOOEOOEOOE.length = 9 := by
+  simp [itineraryOOEOOEOOE, itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOOE_oddCount : oddCount wordOOEOOEOOE = 6 := by
-  simp [wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOE_oddCount : oddCount itineraryOOEOOEOOE = 6 := by
+  simp [itineraryOOEOOEOOE, itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem follows_wordOOEOOEOO_of_forced_oo {n : ℕ}
-    (h : follows n wordOOEOOEO ∧ image n wordOOEOOEO % 2 = 1) :
-    follows n wordOOEOOEOO := by
-  simpa [wordOOEOOEOO] using follows_append h.1 (follows_singleton_odd h.2)
+theorem follows_itineraryOOEOOEOO_of_forced_oo {n : ℕ}
+    (h : follows n itineraryOOEOOEO ∧ image n itineraryOOEOOEO % 2 = 1) :
+    follows n itineraryOOEOOEOO := by
+  simpa [itineraryOOEOOEOO] using follows_append h.1 (follows_singleton_odd h.2)
 
 theorem minimal_ooeooe_follows_ooeooeoo {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOE) :
-    follows n wordOOEOOEOO :=
-  follows_wordOOEOOEOO_of_forced_oo (minimal_ooeooe_forces_oo h hw)
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOE) :
+    follows n itineraryOOEOOEOO :=
+  follows_itineraryOOEOOEOO_of_forced_oo (minimal_ooeooe_forces_oo h hw)
 
-/-- The word `OOEOOEOO` has the cube-cell gap `768 > 729`. -/
+/-- The itinerary `OOEOOEOO` has the cube-cell gap `768 > 729`. -/
 theorem follows_ooeooeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOEOOEOO) :
-    image n wordOOEOOEOO < n ^ 3 :=
+    (hw : follows n itineraryOOEOOEOO) :
+    image n itineraryOOEOOEOO < n ^ 3 :=
   power_bound_lt_pow (k := 3) hn hw (by
-    rw [wordOOEOOEOO_length, wordOOEOOEOO_oddCount]
+    rw [itineraryOOEOOEOO_length, itineraryOOEOOEOO_oddCount]
     decide)
 
 /-- The completed third `OOE` has the square-cell gap `1024 > 729`. -/
 theorem follows_ooeooeooe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOEOOEOOE) :
-    image n wordOOEOOEOOE < n ^ 2 :=
+    (hw : follows n itineraryOOEOOEOOE) :
+    image n itineraryOOEOOEOOE < n ^ 2 :=
   power_bound_lt_pow (k := 2) hn hw (by
-    rw [wordOOEOOEOOE_length, wordOOEOOEOOE_oddCount]
+    rw [itineraryOOEOOEOOE_length, itineraryOOEOOEOOE_oddCount]
     decide)
 
-theorem follows_ooeooeooe_even {n : ℕ} (hw : follows n wordOOEOOEOOE)
-    (he : image n wordOOEOOEOOE % 2 = 0) :
-    follows n (wordOOEOOEOOE ++ [Branch.even]) :=
+theorem follows_ooeooeooe_even {n : ℕ} (hw : follows n itineraryOOEOOEOOE)
+    (he : image n itineraryOOEOOEOOE % 2 = 0) :
+    follows n (itineraryOOEOOEOOE ++ [Branch.even]) :=
   follows_append hw (follows_singleton_even he)
 
 theorem image_ooeooeooe_even (n : ℕ) :
-    image n (wordOOEOOEOOE ++ [Branch.even]) =
-      floorPower (image n wordOOEOOEOOE) := by
+    image n (itineraryOOEOOEOOE ++ [Branch.even]) =
+      floorPower (image n itineraryOOEOOEOOE) := by
   rw [image_append]
   rfl
 
 /-- On a CE, a completed third `OOE` cannot land even: the landing is
 below `n^2`, so an even landing is descent. This is not a PE theorem. -/
 theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOE) :
-    image n wordOOEOOEOOE % 2 = 1 := by
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOEOOE) :
+    image n itineraryOOEOOEOOE % 2 = 1 := by
   have hn2 : 2 ≤ n :=
     le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
   have hlt := follows_ooeooeooe_image_lt_sq hn2 hw
   by_contra heven
-  have he : image n wordOOEOOEOOE % 2 = 0 := by omega
-  have hdrop : floorPower (image n wordOOEOOEOOE) < n :=
+  have he : image n itineraryOOEOOEOOE % 2 = 0 := by omega
+  have hdrop : floorPower (image n itineraryOOEOOEOOE) < n :=
     (even_floorPower_lt_iff he).mpr hlt
   exact minimal_nonterm_no_descent h
     ⟨follows_ooeooeooe_even hw he, by simpa [image_ooeooeooe_even] using hdrop⟩
 
-def wordOOEOOEOOEO : List Branch :=
-  wordOOEOOEOOE ++ [Branch.odd]
+def itineraryOOEOOEOOEO : List Branch :=
+  itineraryOOEOOEOOE ++ [Branch.odd]
 
-def wordOOEOOEOOEOE : List Branch :=
-  wordOOEOOEOOEO ++ [Branch.even]
+def itineraryOOEOOEOOEOE : List Branch :=
+  itineraryOOEOOEOOEO ++ [Branch.even]
 
-theorem wordOOEOOEOOEO_length : wordOOEOOEOOEO.length = 10 := by
-  simp [wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEO_length : itineraryOOEOOEOOEO.length = 10 := by
+  simp [itineraryOOEOOEOOEO, itineraryOOEOOEOOE, itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOOEO_oddCount : oddCount wordOOEOOEOOEO = 7 := by
-  simp [wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEO_oddCount : oddCount itineraryOOEOOEOOEO = 7 := by
+  simp [itineraryOOEOOEOOEO, itineraryOOEOOEOOE, itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOOEOE_length : wordOOEOOEOOEOE.length = 11 := by
-  simp [wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO,
-    wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEOE_length : itineraryOOEOOEOOEOE.length = 11 := by
+  simp [itineraryOOEOOEOOEOE, itineraryOOEOOEOOEO, itineraryOOEOOEOOE, itineraryOOEOOEOO,
+    itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOOEOE_oddCount : oddCount wordOOEOOEOOEOE = 7 := by
-  simp [wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO,
-    wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEOE_oddCount : oddCount itineraryOOEOOEOOEOE = 7 := by
+  simp [itineraryOOEOOEOOEOE, itineraryOOEOOEOOEO, itineraryOOEOOEOOE, itineraryOOEOOEOO,
+    itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem follows_wordOOEOOEOOEO_of_odd_third {n : ℕ}
-    (hw : follows n wordOOEOOEOOE) (hodd : image n wordOOEOOEOOE % 2 = 1) :
-    follows n wordOOEOOEOOEO := by
-  simpa [wordOOEOOEOOEO] using follows_append hw (follows_singleton_odd hodd)
+theorem follows_itineraryOOEOOEOOEO_of_odd_third {n : ℕ}
+    (hw : follows n itineraryOOEOOEOOE) (hodd : image n itineraryOOEOOEOOE % 2 = 1) :
+    follows n itineraryOOEOOEOOEO := by
+  simpa [itineraryOOEOOEOOEO] using follows_append hw (follows_singleton_odd hodd)
 
 theorem minimal_ooeooeooe_follows_o {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOE) :
-    follows n wordOOEOOEOOEO :=
-  follows_wordOOEOOEOOEO_of_odd_third hw
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOEOOE) :
+    follows n itineraryOOEOOEOOEO :=
+  follows_itineraryOOEOOEOOEO_of_odd_third hw
     (minimal_ooeooeooe_not_even_landing h hw)
 
 /-- The escaped-even `OE` after a third `OOE` has the square-cell gap
 `4096 > 2187`. This is not a length-11 cycle census. -/
 theorem follows_ooeooeooeoe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOEOOEOOEOE) :
-    image n wordOOEOOEOOEOE < n ^ 2 :=
+    (hw : follows n itineraryOOEOOEOOEOE) :
+    image n itineraryOOEOOEOOEOE < n ^ 2 :=
   power_bound_lt_pow (k := 2) hn hw (by
-    rw [wordOOEOOEOOEOE_length, wordOOEOOEOOEOE_oddCount]
+    rw [itineraryOOEOOEOOEOE_length, itineraryOOEOOEOOEOE_oddCount]
     decide)
 
-theorem follows_ooeooeooeoe_even {n : ℕ} (hw : follows n wordOOEOOEOOEOE)
-    (he : image n wordOOEOOEOOEOE % 2 = 0) :
-    follows n (wordOOEOOEOOEOE ++ [Branch.even]) :=
+theorem follows_ooeooeooeoe_even {n : ℕ} (hw : follows n itineraryOOEOOEOOEOE)
+    (he : image n itineraryOOEOOEOOEOE % 2 = 0) :
+    follows n (itineraryOOEOOEOOEOE ++ [Branch.even]) :=
   follows_append hw (follows_singleton_even he)
 
 theorem image_ooeooeooeoe_even (n : ℕ) :
-    image n (wordOOEOOEOOEOE ++ [Branch.even]) =
-      floorPower (image n wordOOEOOEOOEOE) := by
+    image n (itineraryOOEOOEOOEOE ++ [Branch.even]) =
+      floorPower (image n itineraryOOEOOEOOEOE) := by
   rw [image_append]
   rfl
 
@@ -374,57 +374,57 @@ theorem image_ooeooeooeoe_even (n : ℕ) :
 The landing is below `n^2`, so an even landing is descent. This does
 not kill an odd landing such as `1517`. -/
 theorem minimal_ooeooeooeoe_not_even_landing {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
-    image n wordOOEOOEOOEOE % 2 = 1 := by
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOEOOEOE) :
+    image n itineraryOOEOOEOOEOE % 2 = 1 := by
   have hn2 : 2 ≤ n :=
     le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
   have hlt := follows_ooeooeooeoe_image_lt_sq hn2 hw
   by_contra heven
-  have he : image n wordOOEOOEOOEOE % 2 = 0 := by omega
-  have hdrop : floorPower (image n wordOOEOOEOOEOE) < n :=
+  have he : image n itineraryOOEOOEOOEOE % 2 = 0 := by omega
+  have hdrop : floorPower (image n itineraryOOEOOEOOEOE) < n :=
     (even_floorPower_lt_iff he).mpr hlt
   exact minimal_nonterm_no_descent h
     ⟨follows_ooeooeooeoe_even hw he, by simpa [image_ooeooeooeoe_even] using hdrop⟩
 
-def wordOOEOOEOOEOEO : List Branch :=
-  wordOOEOOEOOEOE ++ [Branch.odd]
+def itineraryOOEOOEOOEOEO : List Branch :=
+  itineraryOOEOOEOOEOE ++ [Branch.odd]
 
-theorem wordOOEOOEOOEOEO_length : wordOOEOOEOOEOEO.length = 12 := by
-  simp [wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE,
-    wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEOEO_length : itineraryOOEOOEOOEOEO.length = 12 := by
+  simp [itineraryOOEOOEOOEOEO, itineraryOOEOOEOOEOE, itineraryOOEOOEOOEO, itineraryOOEOOEOOE,
+    itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOOEOEO_oddCount : oddCount wordOOEOOEOOEOEO = 8 := by
-  simp [wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE,
-    wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEOEO_oddCount : oddCount itineraryOOEOOEOOEOEO = 8 := by
+  simp [itineraryOOEOOEOOEOEO, itineraryOOEOOEOOEOE, itineraryOOEOOEOOEO, itineraryOOEOOEOOE,
+    itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem follows_wordOOEOOEOOEOEO_of_odd_oe {n : ℕ}
-    (hw : follows n wordOOEOOEOOEOE) (hodd : image n wordOOEOOEOOEOE % 2 = 1) :
-    follows n wordOOEOOEOOEOEO := by
-  simpa [wordOOEOOEOOEOEO] using follows_append hw (follows_singleton_odd hodd)
+theorem follows_itineraryOOEOOEOOEOEO_of_odd_oe {n : ℕ}
+    (hw : follows n itineraryOOEOOEOOEOE) (hodd : image n itineraryOOEOOEOOEOE % 2 = 1) :
+    follows n itineraryOOEOOEOOEOEO := by
+  simpa [itineraryOOEOOEOOEOEO] using follows_append hw (follows_singleton_odd hodd)
 
 theorem minimal_ooeooeooeoe_follows_o {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
-    follows n wordOOEOOEOOEOEO :=
-  follows_wordOOEOOEOOEOEO_of_odd_oe hw
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOEOOEOE) :
+    follows n itineraryOOEOOEOOEOEO :=
+  follows_itineraryOOEOOEOOEOEO_of_odd_oe hw
     (minimal_ooeooeooeoe_not_even_landing h hw)
 
 /-- After an odd `OE` landing the next `O` still has the square-cell
 gap `8192 > 6561`. Another escaped even is impossible on this step. -/
 theorem follows_ooeooeooeoeo_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOEOOEOOEOEO) :
-    image n wordOOEOOEOOEOEO < n ^ 2 :=
+    (hw : follows n itineraryOOEOOEOOEOEO) :
+    image n itineraryOOEOOEOOEOEO < n ^ 2 :=
   power_bound_lt_pow (k := 2) hn hw (by
-    rw [wordOOEOOEOOEOEO_length, wordOOEOOEOOEOEO_oddCount]
+    rw [itineraryOOEOOEOOEOEO_length, itineraryOOEOOEOOEOEO_oddCount]
     decide)
 
-theorem follows_ooeooeooeoeo_even {n : ℕ} (hw : follows n wordOOEOOEOOEOEO)
-    (he : image n wordOOEOOEOOEOEO % 2 = 0) :
-    follows n (wordOOEOOEOOEOEO ++ [Branch.even]) :=
+theorem follows_ooeooeooeoeo_even {n : ℕ} (hw : follows n itineraryOOEOOEOOEOEO)
+    (he : image n itineraryOOEOOEOOEOEO % 2 = 0) :
+    follows n (itineraryOOEOOEOOEOEO ++ [Branch.even]) :=
   follows_append hw (follows_singleton_even he)
 
 theorem image_ooeooeooeoeo_even (n : ℕ) :
-    image n (wordOOEOOEOOEOEO ++ [Branch.even]) =
-      floorPower (image n wordOOEOOEOOEOEO) := by
+    image n (itineraryOOEOOEOOEOEO ++ [Branch.even]) =
+      floorPower (image n itineraryOOEOOEOOEOEO) := by
   rw [image_append]
   rfl
 
@@ -432,40 +432,40 @@ theorem image_ooeooeooeoeo_even (n : ℕ) :
 below `n^2`. An even image would be descent. This is not a halt
 theorem. -/
 theorem minimal_ooeooeooeoeo_not_even {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
-    follows n wordOOEOOEOOEOEO ∧ image n wordOOEOOEOOEOEO % 2 = 1 := by
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOEOOEOE) :
+    follows n itineraryOOEOOEOOEOEO ∧ image n itineraryOOEOOEOOEOEO % 2 = 1 := by
   have hf := minimal_ooeooeooeoe_follows_o h hw
   refine ⟨hf, ?_⟩
   have hn2 : 2 ≤ n :=
     le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
   have hlt := follows_ooeooeooeoeo_image_lt_sq hn2 hf
   by_contra heven
-  have he : image n wordOOEOOEOOEOEO % 2 = 0 := by omega
-  have hdrop : floorPower (image n wordOOEOOEOOEOEO) < n :=
+  have he : image n itineraryOOEOOEOOEOEO % 2 = 0 := by omega
+  have hdrop : floorPower (image n itineraryOOEOOEOOEOEO) < n :=
     (even_floorPower_lt_iff he).mpr hlt
   exact minimal_nonterm_no_descent h
     ⟨follows_ooeooeooeoeo_even hf he, by simpa [image_ooeooeooeoeo_even] using hdrop⟩
 
-def wordOOEOOEOOEOEOO : List Branch :=
-  wordOOEOOEOOEOEO ++ [Branch.odd]
+def itineraryOOEOOEOOEOEOO : List Branch :=
+  itineraryOOEOOEOOEOEO ++ [Branch.odd]
 
-theorem wordOOEOOEOOEOEOO_length : wordOOEOOEOOEOEOO.length = 13 := by
-  simp [wordOOEOOEOOEOEOO, wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO,
-    wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEOEOO_length : itineraryOOEOOEOOEOEOO.length = 13 := by
+  simp [itineraryOOEOOEOOEOEOO, itineraryOOEOOEOOEOEO, itineraryOOEOOEOOEOE, itineraryOOEOOEOOEO,
+    itineraryOOEOOEOOE, itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem wordOOEOOEOOEOEOO_oddCount : oddCount wordOOEOOEOOEOEOO = 9 := by
-  simp [wordOOEOOEOOEOEOO, wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO,
-    wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+theorem itineraryOOEOOEOOEOEOO_oddCount : oddCount itineraryOOEOOEOOEOEOO = 9 := by
+  simp [itineraryOOEOOEOOEOEOO, itineraryOOEOOEOOEOEO, itineraryOOEOOEOOEOE, itineraryOOEOOEOOEO,
+    itineraryOOEOOEOOE, itineraryOOEOOEOO, itineraryOOEOOEO, itineraryOOEOOE]
 
-theorem follows_wordOOEOOEOOEOEOO_of_forced_oo {n : ℕ}
-    (h : follows n wordOOEOOEOOEOEO ∧ image n wordOOEOOEOOEOEO % 2 = 1) :
-    follows n wordOOEOOEOOEOEOO := by
-  simpa [wordOOEOOEOOEOEOO] using follows_append h.1 (follows_singleton_odd h.2)
+theorem follows_itineraryOOEOOEOOEOEOO_of_forced_oo {n : ℕ}
+    (h : follows n itineraryOOEOOEOOEOEO ∧ image n itineraryOOEOOEOOEOEO % 2 = 1) :
+    follows n itineraryOOEOOEOOEOEOO := by
+  simpa [itineraryOOEOOEOOEOEOO] using follows_append h.1 (follows_singleton_odd h.2)
 
 theorem minimal_ooeooeooeoeo_follows_o {n : ℕ}
-    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
-    follows n wordOOEOOEOOEOEOO :=
-  follows_wordOOEOOEOOEOEOO_of_forced_oo (minimal_ooeooeooeoeo_not_even h hw)
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOEOOEOE) :
+    follows n itineraryOOEOOEOOEOEOO :=
+  follows_itineraryOOEOOEOOEOEOO_of_forced_oo (minimal_ooeooeooeoeo_not_even h hw)
 
 theorem ooeooeooeoeoo_loses_square : ¬(3 ^ 9 < 2 ^ (13 + 1)) := by
   decide
@@ -476,10 +476,10 @@ The square comparison `3^9 < 2 · 2^13` fails; see
 `ooeooeooeoeoo_loses_square`. A cube-cell even landing is therefore
 not `FiniteProgress`. -/
 theorem follows_ooeooeooeoeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
-    (hw : follows n wordOOEOOEOOEOEOO) :
-    image n wordOOEOOEOOEOEOO < n ^ 3 :=
+    (hw : follows n itineraryOOEOOEOOEOEOO) :
+    image n itineraryOOEOOEOOEOEOO < n ^ 3 :=
   power_bound_lt_pow (k := 3) hn hw (by
-    rw [wordOOEOOEOOEOEOO_length, wordOOEOOEOOEOEOO_oddCount]
+    rw [itineraryOOEOOEOOEOEOO_length, itineraryOOEOOEOOEOEOO_oddCount]
     decide)
 
 end Problems.Juggler

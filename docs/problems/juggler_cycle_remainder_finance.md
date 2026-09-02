@@ -8,7 +8,7 @@ Refinement of
 not a new paper. It asks whether CycleMin-legal square/cube-cell
 positions are forced away from the top often enough to shrink the
 run-type budget on \(\mathcal E_{\mathrm{run}}(10^6)\).
-Not a halt theorem, not a leftover-word census, not a new period
+Not a halt theorem, not a leftover-itinerary census, not a new period
 identity, not Fourier, not a \(Q\)-return, and not a residue /
 \(p\)-adic system.
 

@@ -144,7 +144,7 @@ formal-independence statement.
 
 ## Decision
 
-**CLOSE**. Longer finite word futures do not require progressively
+**CLOSE**. Longer finite itinerary futures do not require progressively
 finer arithmetic information once \(H\ge 2\) is allowed on a fixed
 sample. The collapse mechanism is the \(2^H\) itinerary bound plus a
 sample-diameter 2-adic pair. Do not invent another complexity measure.

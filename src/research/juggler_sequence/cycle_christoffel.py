@@ -43,7 +43,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_christoffel.json"
@@ -85,14 +85,14 @@ IDENTIFICATIONS: dict[int, dict[str, Any]] = {
 
 EXISTING_LEAN = (
     "cycleMin_finance",
-    "no_cycle_word_length_le_nineteen",
-    "cycle_word_length_thirty_eight_or_ge_thirty_nine",
+    "no_cycle_itinerary_length_le_nineteen",
+    "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
     "power_bound_eq_implies_monochrome",
 )
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
-    "no_cycle_word_any_length",
-    "no_cycle_word_christoffel",
+    "no_cycle_itinerary_any_length",
+    "no_cycle_itinerary_christoffel",
     "cycle_near_christoffel",
     "christoffel_excludes_length",
 )

@@ -23,7 +23,7 @@ OOEOOEOO first cube-odd lifts sit next to n^{729/256}, not on a forced n^8 lower
 
 ## Lean
 
-- `wordOOEOOEOO`: `True`
+- `itineraryOOEOOEOO`: `True`
 - `follows_ooeooeoo_image_lt_cube`: `True`
 - `odd_even_eighth_lt_sq`: `True`
 - `power_bound_word`: `True`

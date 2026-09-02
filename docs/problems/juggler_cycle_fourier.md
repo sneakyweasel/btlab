@@ -7,7 +7,7 @@ Refinement of
 paper. It asks whether the closed peak–valley wave of a hypothetical
 Juggler cycle imposes a spectral constraint strong enough to reduce
 the finance error budget below the current 99-survivor run-type
-packing. Not a halt theorem, not a leftover-word census, not a
+packing. Not a halt theorem, not a leftover-itinerary census, not a
 residue / \(p\)-adic system, not a \(Q\)-return section, and not a
 terminal-cluster reopen.
 

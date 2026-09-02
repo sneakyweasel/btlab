@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,

@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from research.juggler_sequence.expansion_slack import walk_pe_run
-from research.juggler_sequence.global_defect import follows_word, image_after
+from research.juggler_sequence.global_defect import follows_itinerary, image_after
 from research.juggler_sequence.landing_parity import theta
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.preimage_cylinders import (
     CHAIN_365,
     LEAN_THEOREMS,
@@ -26,7 +26,7 @@ def test_word_cylinder_matches_follows_and_image():
     odd = OOE_SPLIT["odd"]
     assert word_cylinder(even["x"], "OOE", even["y"])
     assert word_cylinder(odd["x"], "OOE", odd["y"])
-    assert follows_word(even["x"], "OOE")
+    assert follows_itinerary(even["x"], "OOE")
     assert image_after(odd["x"], "OOE") == odd["y"]
     src = even["y"] ** 3
     t = next_landing(even["y"])

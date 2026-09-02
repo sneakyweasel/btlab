@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word
+from research.juggler_sequence.cycle_itinerary import follows_itinerary
 from research.juggler_sequence.k5_post_l_ooe import WORD_W5
 from research.juggler_sequence.oneshot_recovery import WORD
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.odd_k5_leak import (
     CLASS_GREEN,
     FORBIDDEN_THEOREMS,
@@ -82,8 +82,8 @@ def test_second_oo_residual():
 
 
 def test_501_still_not_w5():
-    assert follows_word(501, WORD_W5) is False
-    assert follows_word(501, WORD_W5O) is False
+    assert follows_itinerary(501, WORD_W5) is False
+    assert follows_itinerary(501, WORD_W5O) is False
 
 
 def test_probe_and_classify_green():
@@ -145,5 +145,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "OEE" in dossier
     assert "juggler_odd_k5_leak" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

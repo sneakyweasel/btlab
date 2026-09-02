@@ -8,7 +8,7 @@ namespace Problems.Juggler
 
 Three notions stay separate:
 
-* `expandingWord w` — syntactic `2^{|w|} < 3^{#O(w)}`
+* `expandingItinerary w` — syntactic `2^{|w|} < 3^{#O(w)}`
 * a realized expanding residual — `ResidualStep` with image strictly
   above the start
 * `PersistentExpandingResidual` — persistent odd-to-odd plus expansion
@@ -23,20 +23,20 @@ This file does not claim a finite run bound, an infinite trajectory, or
 that every start reaches `1`.
 -/
 
-def expandingWord (w : List Branch) : Prop :=
+def expandingItinerary (w : List Branch) : Prop :=
   exponentExpanding w
 
-theorem expanding_word_ratio (w : List Branch) :
-    expandingWord w ↔ 2 ^ w.length < 3 ^ oddCount w :=
+theorem expanding_itinerary_ratio (w : List Branch) :
+    expandingItinerary w ↔ 2 ^ w.length < 3 ^ oddCount w :=
   Iff.rfl
 
 theorem expanding_oddEvenBlock_ratio (a b : ℕ) :
-    expandingWord (oddEvenBlock a b) ↔ 2 ^ (a + b) < 3 ^ a :=
+    expandingItinerary (oddEvenBlock a b) ↔ 2 ^ (a + b) < 3 ^ a :=
   exponentExpanding_oddEvenBlock a b
 
 /-- Formal expansion of an `O^a E^b` block is an odd-density bound. -/
 theorem expanding_implies_odd_density {a b : ℕ}
-    (h : expandingWord (oddEvenBlock a b)) :
+    (h : expandingItinerary (oddEvenBlock a b)) :
     2 ^ b * 2 ^ a < 3 ^ a := by
   have := (expanding_oddEvenBlock_ratio a b).mp h
   rwa [pow_add, mul_comm] at this
@@ -57,7 +57,7 @@ theorem le_log_three_pow (a : ℕ) : a ≤ Nat.log 2 (3 ^ a) :=
 
 /-- For `a ≥ 1`, `O^a E^b` expands if and only if `a+b ≤ log₂(3^a)`. -/
 theorem expanding_oddEvenBlock_iff_log {a b : ℕ} (ha : 1 ≤ a) :
-    expandingWord (oddEvenBlock a b) ↔ a + b ≤ Nat.log 2 (3 ^ a) := by
+    expandingItinerary (oddEvenBlock a b) ↔ a + b ≤ Nat.log 2 (3 ^ a) := by
   have hlen : 1 ≤ a + b := by omega
   constructor
   · intro h
@@ -73,7 +73,7 @@ theorem expanding_oddEvenBlock_iff_log {a b : ℕ} (ha : 1 ≤ a) :
     exact (expanding_oddEvenBlock_ratio a b).mpr (lt_of_le_of_ne hpow hne)
 
 theorem expanding_oddEvenBlock_iff_maxEvens {a b : ℕ} (ha : 1 ≤ a) :
-    expandingWord (oddEvenBlock a b) ↔ b ≤ maxExpandingEvens a := by
+    expandingItinerary (oddEvenBlock a b) ↔ b ≤ maxExpandingEvens a := by
   constructor
   · intro h
     have hlog := (expanding_oddEvenBlock_iff_log ha).mp h
@@ -88,21 +88,21 @@ theorem expanding_oddEvenBlock_iff_maxEvens {a b : ℕ} (ha : 1 ≤ a) :
       rwa [Nat.add_comm] at hba)
 
 theorem expanding_block_odds_two {b : ℕ} :
-    expandingWord (oddEvenBlock 2 b) ↔ b ≤ 1 := by
+    expandingItinerary (oddEvenBlock 2 b) ↔ b ≤ 1 := by
   rw [expanding_oddEvenBlock_iff_log (by decide : (1 : ℕ) ≤ 2)]
   have hlog : Nat.log 2 (3 ^ 2) = 3 := by decide
   rw [hlog]
   omega
 
 theorem expanding_block_odds_three {b : ℕ} :
-    expandingWord (oddEvenBlock 3 b) ↔ b ≤ 1 := by
+    expandingItinerary (oddEvenBlock 3 b) ↔ b ≤ 1 := by
   rw [expanding_oddEvenBlock_iff_log (by decide : (1 : ℕ) ≤ 3)]
   have hlog : Nat.log 2 (3 ^ 3) = 4 := by decide
   rw [hlog]
   omega
 
 theorem expanding_block_odds_four {b : ℕ} :
-    expandingWord (oddEvenBlock 4 b) ↔ b ≤ 2 := by
+    expandingItinerary (oddEvenBlock 4 b) ↔ b ≤ 2 := by
   rw [expanding_oddEvenBlock_iff_log (by decide : (1 : ℕ) ≤ 4)]
   have hlog : Nat.log 2 (3 ^ 4) = 6 := by decide
   rw [hlog]
@@ -117,7 +117,7 @@ theorem persistent_odd_residual_expanding {x y : ℕ}
   refine persistent_expanding_of hb hw himg hgt hy ht ?_
   by_contra hgap
   have hnot : ¬2 ^ (a + b) < 3 ^ a := by
-    simpa [expandingWord, exponentExpanding, length_oddEvenBlock,
+    simpa [expandingItinerary, exponentExpanding, length_oddEvenBlock,
       oddCount_oddEvenBlock] using hgap
   have hle : 3 ^ a ≤ 2 ^ (a + b) := Nat.not_lt.mp hnot
   rcases lt_or_eq_of_le hle with hlt | heq

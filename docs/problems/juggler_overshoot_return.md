@@ -20,8 +20,8 @@ every positive integer reaches 1. Automatic coverage is `E` and
 `OE`. The leftover is odd-to-odd.
 
 On `MinimalNonTerm n` or `CycleMin n w`, the first `O^a E` cannot
-return to \(n\): that word has even-count 1, now excluded by
-`no_cycle_word_even_count_le_three`. Therefore the first even
+return to \(n\): that itinerary has even-count 1, now excluded by
+`no_cycle_itinerary_even_count_le_three`. Therefore the first even
 residual overshoots:
 
 \[
@@ -30,11 +30,11 @@ residual overshoots:
 n<T^{a+1}(n).
 \]
 
-Halt on that leftover is `ReturnBelow`: a later finite word from
+Halt on that leftover is `ReturnBelow`: a later finite itinerary from
 \(y=T^{a+1}(n)>n\) lands strictly below \(n\). A prefix to \(y\)
 together with `ReturnBelow` is `FiniteProgress`.
 
-The even-\(y\) class splits. For \(a\in\{2,3\}\) the words `OOEE`
+The even-\(y\) class splits. For \(a\in\{2,3\}\) the itineraries `OOEE`
 and `OOOEE` are already Paper B contractors
 (\(3^a<2^{a+2}\)). For \(a\ge 4\), \(O^a\mathrm{EE}\) is formally
 expanding and sits in the `OOOO*` tree. Phase 0 asks whether those
@@ -55,7 +55,7 @@ totality. Do not reopen \(K_3\).
   **EXACT — LEAN VERIFIED**.
 - Two excursions do not always return below \(n\) (\(37\), \(77\),
   both odd \(y\)) — **REFUTED** as a general law.
-- Even-count \(\le 3\) cycle words —
+- Even-count \(\le 3\) cycle itineraries —
   **EXACT — LEAN VERIFIED**.
 - Paper B certified descent density \(13/16\); laboratory
   length-5 repair \(7/8\) (`J-five-step-descent-density`);
@@ -148,7 +148,7 @@ fails:
 `formal/Problems/Juggler/EvenCountThree.lean`. Added:
 
 - `evenCount_oddEvenBlock` / `oddEvenBlock_length`
-- `no_cycle_word_oddEvenBlock_one`
+- `no_cycle_itinerary_oddEvenBlock_one`
 - `minimal_first_even_overshoots`
 - `cycleMin_oddEvenBlock_starts_two_odds` /
   `cycleMin_first_even_overshoots`

@@ -1812,7 +1812,7 @@
     "sorry_free": true,
     "power_bound_contracts": true,
     "image_monotone_of_follows": true,
-    "even_cell_iff": true,
+    "even_preimage_iff": true,
     "no_forbidden_engines": true,
     "no_global_termination_theorem": true
   },

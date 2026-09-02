@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_one_three_eee_gap.json"
@@ -46,11 +46,11 @@ PIN_MAX = 10_000
 
 LEAN_THEOREMS = (
     "cycle_trailing_evens_lt",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "o7_image_ge_succ_pow16",
-    "no_cycle_word_oooooooeeee",
-    "no_cycle_word_even_count_le_three",
-    "no_cycle_word_ooooooeoeee",
+    "no_cycle_itinerary_oooooooeeee",
+    "no_cycle_itinerary_even_count_le_three",
+    "no_cycle_itinerary_ooooooeoeee",
     "no_cycleMin_ooooooeoeee",
     "no_cycleMin_oooooeooeee",
     "no_cycleMin_ooooeoooeee",
@@ -60,8 +60,8 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_CORE = (
-    "no_cycle_word_length_eleven",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_length_eleven",
+    "no_cycle_itinerary_four_even",
     "juggler_reaches_one",
 )
 
@@ -89,13 +89,13 @@ FAMILY: tuple[FamilyMember, ...] = (
 )
 
 FORBIDDEN_THEOREMS = FORBIDDEN_CORE + tuple(
-    f"no_cycle_word_{word_e4(member.a0, member.a1, 0, 0).lower()}"
+    f"no_cycle_itinerary_{word_e4(member.a0, member.a1, 0, 0).lower()}"
     for member in FAMILY
     if (member.a0, member.a1) != (6, 1)
 )
 
 
-def word(a0: int, a1: int) -> str:
+def itinerary(a0: int, a1: int) -> str:
     return word_e4(a0, a1, 0, 0)
 
 
@@ -113,7 +113,7 @@ def fudge_exp(a0: int, a1: int) -> int:
     return (2 ** (a0 + 1)) * 3 * (3**a1 - 2**a1)
 
 
-def follows_word(n: int, letters: str) -> int | None:
+def follows_itinerary(n: int, letters: str) -> int | None:
     x = n
     for letter in letters:
         if letter == "O" and x % 2 == 0:
@@ -151,7 +151,7 @@ def first_prefix_start(a0: int, a1: int, cap: int = 300) -> int | None:
     letters = prefix(a0, a1)
     n = 3
     while n < cap:
-        if follows_word(n, letters) is not None:
+        if follows_itinerary(n, letters) is not None:
             return n
         n += 2
     return None
@@ -167,7 +167,7 @@ def pin_member(member: FamilyMember, n_hi: int = PIN_MAX) -> dict[str, Any]:
     min_n = None
     n = 3
     while n < n_hi:
-        z = follows_word(n, letters)
+        z = follows_itinerary(n, letters)
         if z is not None:
             count += 1
             if first is None:
@@ -185,7 +185,7 @@ def pin_member(member: FamilyMember, n_hi: int = PIN_MAX) -> dict[str, Any]:
     return {
         "a0": member.a0,
         "a1": member.a1,
-        "word": word(member.a0, member.a1),
+        "word": itinerary(member.a0, member.a1),
         "prefix": letters,
         "n_hi": n_hi,
         "first": first,
@@ -211,7 +211,7 @@ def elementary_comparisons() -> dict[str, bool]:
         "slack139": SLACK == 139,
         "five_words": len(FAMILY) == 5,
         "a0_plus_a1": all(m.a0 + m.a1 == FAMILY_ODDS for m in FAMILY),
-        "words_are_eee": all(word(m.a0, m.a1).endswith("EEE") for m in FAMILY),
+        "words_are_eee": all(itinerary(m.a0, m.a1).endswith("EEE") for m in FAMILY),
         "o6_left": left_plus(6) == (1995, 1266, 64),
         "o2_left": left_plus(2) == (15, 6, 4),
         "fudge_61": fudge_exp(6, 1) == 384,
@@ -246,13 +246,13 @@ def lean_api_present() -> dict[str, bool]:
         **{name: has_named(combined, name) for name in LEAN_THEOREMS},
         **{name: f"theorem {name}" not in combined for name in FORBIDDEN_THEOREMS},
         "paper_a_has_no_family": all(
-            word(m.a0, m.a1).lower() not in paper_l for m in FAMILY
+            itinerary(m.a0, m.a1).lower() not in paper_l for m in FAMILY
         ),
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "FloorPower_not_rewritten": "one_three_eee" not in engine_floor_text(),
-        "no_nonunique_family_cycle_word": all(
-            f"theorem no_cycle_word_{word(m.a0, m.a1).lower()}" not in combined
+        "no_nonunique_family_cycle_itinerary": all(
+            f"theorem no_cycle_itinerary_{itinerary(m.a0, m.a1).lower()}" not in combined
             for m in FAMILY
             if (m.a0, m.a1) != (6, 1)
         ),
@@ -265,12 +265,12 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["cycle_trailing_evens_lt"]
-        and lean["no_cycle_word_oooooooeeee"]
-        and lean["no_cycle_word_even_count_le_three"]
-        and lean["no_cycle_word_ooooooeoeee"]
+        and lean["no_cycle_itinerary_oooooooeeee"]
+        and lean["no_cycle_itinerary_even_count_le_three"]
+        and lean["no_cycle_itinerary_ooooooeoeee"]
         and lean["no_cycleMin_one_three_eee"]
-        and lean["no_nonunique_family_cycle_word"]
-        and lean["no_cycle_word_length_eleven"]
+        and lean["no_nonunique_family_cycle_itinerary"]
+        and lean["no_cycle_itinerary_length_eleven"]
         and lean["paper_a_has_no_family"]
     )
     if not lean_ok or not all(elem.values()):
@@ -322,7 +322,7 @@ def run_probe() -> dict[str, Any]:
         "surplus": SURPLUS,
         "cell_bits": CELL_BITS,
         "slack": SLACK,
-        "words": [word(m.a0, m.a1) for m in FAMILY],
+        "words": [itinerary(m.a0, m.a1) for m in FAMILY],
         "elementary": elementary_comparisons(),
         "pin": pin_family(),
         "length_eleven_census": False,
@@ -468,7 +468,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         lines.append(f"- no `{name}`: `{lean.get(name)}`")
     lines.extend(
         [
-            f"- no non-unique family CycleWord: `{lean.get('no_nonunique_family_cycle_word')}`",
+            f"- no non-unique family CycleItinerary: `{lean.get('no_nonunique_family_cycle_itinerary')}`",
             f"- Paper A has no family word: `{lean.get('paper_a_has_no_family')}`",
             "",
             "## Anti-overclaim",

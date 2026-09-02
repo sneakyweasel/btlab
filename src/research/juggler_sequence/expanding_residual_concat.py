@@ -22,7 +22,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.residual_chain import residual_chain
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -182,7 +182,7 @@ def lean_api_present() -> dict[str, bool]:
             "minimal_nonterm_prefix_noncontracting",
         ),
         "not_in_paper_barrel": "Problems.Juggler.Escape" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

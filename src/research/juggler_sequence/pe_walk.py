@@ -16,7 +16,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -30,7 +30,7 @@ from research.juggler_sequence.minimal_anchor_closure import (
     trajectory_until_drop,
     word_of_path,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_pe_walk.json"
@@ -43,7 +43,7 @@ CONTROLS = (365, 501, 1517, 6187)
 CONTRAST = (69, 89)
 
 EXISTING_LEAN = (
-    "wordOE",
+    "itineraryOE",
     "oe_block_contracts",
     "repeated_oe_scale",
     "power_bound_word",
@@ -118,7 +118,7 @@ def pe_blocks(n: int) -> list[dict[str, Any]]:
                 "alpha": f"{alpha.numerator}/{alpha.denominator}",
                 "alpha_gt_one": alpha > 1,
                 "odd_defect": odd_def,
-                "oe_follows": odds == 0 or follows_word(state, "OE"),
+                "oe_follows": odds == 0 or follows_itinerary(state, "OE"),
             }
         )
         if landing < n:
@@ -207,7 +207,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "paper_a_has_new_api": any(name in paper for name in FORBIDDEN_NEW_API),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

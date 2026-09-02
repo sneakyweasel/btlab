@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.expansion_slack import NEAR_TIGHT
-from research.juggler_sequence.global_defect import follows_word
+from research.juggler_sequence.global_defect import follows_itinerary
 from research.juggler_sequence.lean_paths import juggler_text
 from research.juggler_sequence.near_tight_scale import (
     LEAN_THEOREMS,
@@ -18,7 +18,7 @@ from research.juggler_sequence.near_tight_scale import (
     q_exact,
 )
 from research.juggler_sequence.normalized_defect import eta_pair
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_eta_stays_inside_successor_window():
@@ -52,7 +52,7 @@ def test_large_lambda_successor_matches_y_scale():
     w0, w1, w2 = pred["weights"]
     assert w2 > w0 and w2 > w1
     assert exact_q_positive(pred["y"], "OOE")
-    assert follows_word(pred["y"], "OOE")
+    assert follows_itinerary(pred["y"], "OOE")
 
 
 def test_pe_successor_q_tracks_image_scale():
@@ -68,7 +68,7 @@ def test_mixed_ooe_can_be_near_tight_without_equality():
     y = NEAR_TIGHT["x"]
     assert q_exact(y, "OOE") > 0
     assert q_exact(y, "OOE") < 1e-30
-    assert follows_word(y, "OOE")
+    assert follows_itinerary(y, "OOE")
 
 
 def test_lean_api_and_sorry_free():

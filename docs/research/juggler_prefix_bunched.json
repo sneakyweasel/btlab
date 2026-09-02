@@ -414,7 +414,7 @@
     "no_cycleMin_prefix_eeoe": true,
     "no_cycleMin_prefix_eoeoe": true,
     "no_cycleMin_prefix_eooeoe": true,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "has_no_cycleMin_four_even": false,
     "has_no_juggler_cycle": false,
     "no_global_termination_theorem": true,

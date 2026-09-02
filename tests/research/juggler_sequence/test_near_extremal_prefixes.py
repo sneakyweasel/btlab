@@ -18,7 +18,7 @@ from research.juggler_sequence.near_extremal_prefixes import (
     render_markdown,
     scan_realized,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, word_of, itinerary
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, word_of, itinerary
 
 
 def test_exponent_gap_and_prefix_nc():

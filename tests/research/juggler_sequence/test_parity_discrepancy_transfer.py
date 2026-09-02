@@ -87,7 +87,7 @@ def test_scan_closes_without_overclaim():
 def test_lean_and_anti_overclaim():
     lean = lean_api_present()
     assert lean["sorry_free"]
-    assert lean["odd_cell_unique"]
+    assert lean["odd_preimage_unique"]
     anti = anti_overclaim()
     assert anti["parity_frequency_theorem"] is False
     assert anti["iterate_a_theorem"] is False

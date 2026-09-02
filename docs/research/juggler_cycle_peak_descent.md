@@ -47,7 +47,7 @@ T(p) may be odd or even; no milestone engine is opened.
 - start=`25` M=`52214` x=`1397` p=`15` r=`2` peak=`True` contracting=`True` T(p)=`58` odd=`False`
 
 - n-search: `False`
-- cycle-word census: `False`
+- cycle-itinerary census: `False`
 - odd-milestone engine: `False`
 
 ## Lean

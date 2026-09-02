@@ -120,7 +120,7 @@ def test_walk_records_envelope_and_cell_geometry():
         assert row["deficit"] == row["env"] - rec[1]
         assert ooe_cell_holds(START, rec[1])
         assert row["defects"]
-        assert row["even_cell_width"] == 2 * rec[1] + 1
+        assert row["even_preimage_width"] == 2 * rec[1] + 1
 
 
 def test_zero_tax_does_not_kill_25781_at_the_published_floor():

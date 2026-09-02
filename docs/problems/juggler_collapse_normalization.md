@@ -8,7 +8,7 @@ every positive integer reaches 1.
 
 ## Problem
 
-Can a finite word be split into an initial even-run collapse and a
+Can a finite itinerary be split into an initial even-run collapse and a
 residual suffix, and does a bound on that initial run restore
 family-level first-even non-contraction?
 
@@ -28,7 +28,7 @@ superquadratic \(v\) with initial even-run length \(\le R\) satisfies
 \(T_v(q)\ge(q+1)^2\) for all realized \(q\ge Q(R)\).
 
 Do not reopen the false \(\varepsilon\)-only theorem. Do not replace
-the fixed-word lower-growth theorem.
+the fixed-itinerary lower-growth theorem.
 
 ## Current literature
 
@@ -96,7 +96,7 @@ None opened.
 
 ## Counterexamples
 
-Initial even-run length \(0\) is not a bound. The words
+Initial even-run length \(0\) is not a bound. The itineraries
 
 \[
 v_k=OE^kO^{3k}
@@ -143,7 +143,7 @@ case \(a\)-after-collapse \(=1\).
 
 A bound on the *initial* even-run length does not restore a family
 threshold. The additional scale information is the longest even run
-anywhere in the word, together with the residual state after that run.
+anywhere in the itinerary, together with the residual state after that run.
 
 This is not a termination theorem. It does not claim that a bound on
 the longest even run is sufficient; that is the next question.
@@ -159,7 +159,7 @@ Nested `E^3 O` blocks with `maxEvenRun=3` still collapse onto \(1\) at
 
 **PROMOTE** the collapse residual identity and the refutation of
 initial even-run as a sufficient collapse complexity.
-`COLLAPSE_DEPTH_TOO_WEAK`. Keep the fixed-word theorem and the
+`COLLAPSE_DEPTH_TOO_WEAK`. Keep the fixed-itinerary theorem and the
 \(E^kO^{3k}\) family. Do not add a collapse algebra. Do not claim
 termination.
 

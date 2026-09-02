@@ -15,7 +15,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     ESCAPE,
     JUGGLER_PAPER_BARREL,
@@ -23,7 +23,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_excursion
 
@@ -42,8 +42,8 @@ OVERSHOOT_WITNESS = 565
 CONTRACTING_DROP = (2177, 2185, 3565)
 
 LEAN_THEOREMS = (
-    "wordOOEOOEOO",
-    "wordOOEOOEOOE",
+    "itineraryOOEOOEOO",
+    "itineraryOOEOOEOOE",
     "follows_ooeooeoo_image_lt_cube",
     "follows_ooeooeooe_image_lt_sq",
     "minimal_ooeooe_follows_ooeooeoo",
@@ -75,7 +75,7 @@ def is_expanding(odds: int, length: int) -> bool:
 
 
 def third_residual_row(n: int) -> dict[str, Any] | None:
-    if not follows_word(n, "OOEOOE"):
+    if not follows_itinerary(n, "OOEOOE"):
         return None
     x = image_after(n, "OOEOOE")
     z = floor_power(x)
@@ -230,7 +230,7 @@ def lean_api_present() -> dict[str, bool]:
         "escape_has_cube": has_named(escape, "follows_ooeooeoo_image_lt_cube"),
         "escape_has_third_sq": has_named(escape, "follows_ooeooeooe_image_lt_sq"),
         "not_in_paper_barrel": "Problems.Juggler.Escape" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

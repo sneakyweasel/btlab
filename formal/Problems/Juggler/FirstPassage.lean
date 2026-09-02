@@ -36,7 +36,7 @@ theorem hasFiniteCoeffStop_of_gap {n k : ℕ}
     HasFiniteCoeffStop n :=
   ⟨k, hk, hgap⟩
 
-/-- A realized word that lands strictly below `n` is a first-passage stop. -/
+/-- A realized itinerary that lands strictly below `n` is a first-passage stop. -/
 theorem hasFiniteStop_of_imageLt {n : ℕ} {w : List Branch}
     (_hw : follows n w) (hlt : image n w < n) : HasFiniteStop n := by
   have hlen : 0 < w.length := by
@@ -60,12 +60,12 @@ itinerary forces a strict descent. Wraps `power_bound_contracts`. -/
 theorem coeffStop_implies_stop {n : ℕ} (hn : 2 ≤ n)
     (h : HasFiniteCoeffStop n) : HasFiniteStop n := by
   obtain ⟨k, hk, hgap⟩ := h
-  have hw : follows n (word n k) := follows_word_self n k
+  have hw : follows n (itinerary n k) := follows_itinerary_self n k
   have hlt : floorPower^[k] n < n := by
-    have hgap' : 3 ^ oddCount (word n k) < 2 ^ (word n k).length := by
-      simpa [word_length] using trajectoryExponentGap_iff.mp hgap
+    have hgap' : 3 ^ oddCount (itinerary n k) < 2 ^ (itinerary n k).length := by
+      simpa [itinerary_length] using trajectoryExponentGap_iff.mp hgap
     have := power_bound_contracts hn hw hgap'
-    simpa [word_length] using this
+    simpa [itinerary_length] using this
   exact ⟨k, hk, hlt⟩
 
 end Problems.Juggler

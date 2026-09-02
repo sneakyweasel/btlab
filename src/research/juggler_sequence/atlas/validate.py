@@ -22,8 +22,8 @@ from research.juggler_sequence.atlas.packed import (
 )
 from research.juggler_sequence.atlas.pe_adapter import classify_persistent_expanding
 from research.juggler_sequence.atlas.schema import CLAIM_CPU, CLAIM_LEAN, STATUS_FOUND
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def check_floor_power_fixtures() -> list[str]:
@@ -40,20 +40,20 @@ def check_lean_word_fixtures() -> list[str]:
     n, word, image = OOE_AT_FIVE["n"], OOE_AT_FIVE["word"], OOE_AT_FIVE["image"]
     if itinerary_symbols(n, len(word)) != word:
         errors.append(f"itinerary({n},{len(word)}) != {word}")
-    if not follows_word(n, word):
-        errors.append(f"follows_word({n},{word}) is false")
+    if not follows_itinerary(n, word):
+        errors.append(f"follows_itinerary({n},{word}) is false")
     if image_after(n, word) != image:
         errors.append(f"image_after({n},{word}) != {image}")
     if image_after_steps(n, len(word)) != image:
         errors.append(f"image_after_steps({n},{len(word)}) != {image}")
     if n >= image:
         errors.append("OOE at 5 should expand")
-    if follows_word(EEOE_AT_2500["n"], EEOE_AT_2500["word"]) is False:
+    if follows_itinerary(EEOE_AT_2500["n"], EEOE_AT_2500["word"]) is False:
         errors.append("EEOE at 2500 should be realized")
     for chain in (PE_CHAIN_365, PE_CHAIN_1999):
         for start, w, img in zip(chain["starts"], chain["words"], chain["images"], strict=True):
-            if not follows_word(start, w):
-                errors.append(f"follows_word({start},{w}) is false")
+            if not follows_itinerary(start, w):
+                errors.append(f"follows_itinerary({start},{w}) is false")
             if image_after(start, w) != img:
                 errors.append(f"image({start},{w})={image_after(start, w)} != {img}")
             row = classify_persistent_expanding(start)

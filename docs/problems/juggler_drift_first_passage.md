@@ -14,7 +14,7 @@ that forbids indefinite continuation?
 
 ## Exact statement
 
-For a finite actual parity word \(w\) write
+For a finite actual parity itinerary \(w\) write
 
 \[
 A_w=\{n:\operatorname{follows}(n,w)\},\qquad
@@ -32,7 +32,7 @@ G(v)\le 0\text{ for every prefix }v\preceq w\}.
 
 If \(w\) is already prefix-NC then \(A_w^{NC}=A_w\). Phase 0 asks
 whether the node \((w,A_w,G(w))\) thins or prunes under
-NC-preserving extension in a way that is not the word itself, not
+NC-preserving extension in a way that is not the itinerary itself, not
 \(T\ge n\), and not the \(G\)-recurrence.
 
 Do not claim \(\tau_+(n)<\infty\). A window-empty child is not
@@ -55,7 +55,7 @@ is not an unbounded family.
   **COMPUTATIONALLY VERIFIED** on \(n\le 10^5\) except one bit-cap
   leftover.
 - Prefix-NC arithmetic admissibility — closed as
-  `PREFIX_NC_ARITHMETIC_COMPLEX`. Dangerous finite words are
+  `PREFIX_NC_ARITHMETIC_COMPLEX`. Dangerous finite itineraries are
   realizable.
 - Drift-crossing endpoint filtration — closed as
   `DRIFT_ENDPOINT_COMPLEX`. Endpoints of long NC prefixes do not
@@ -73,15 +73,15 @@ the same prefixes. Totality remains unclaimed.
 Mathematical target     Along actual prefix-NC chains, does A_w^{NC}
                         acquire a named arithmetic constraint that
                         forbids indefinite NC continuation?
-Novelty hypothesis      Dangerous finite words exist, but the nested
+Novelty hypothesis      Dangerous finite itineraries exist, but the nested
                         start-set (w, A_w, G) thins or prunes in a
-                        way the word-only and endpoint labs missed
+                        way the itinerary-only and endpoint labs missed
 Falsifier               The only shrinkage is tautological
                         |A_w ∩ window| decrease, or every signature
-                        is the word / T≥n / G-recurrence
+                        is the itinerary / T≥n / G-recurrence
 Existing machinery      walk_until_crossing, exponent_gap,
-                        prefix_noncontracting, follows_word, Ival
-                        pullback, even_cell / odd_cell_unique,
+                        prefix_noncontracting, follows_itinerary, Ival
+                        pullback, even_preimage / odd_preimage_unique,
                         n=193 record, power_bound_contracts
 Maximum Phase-0 scope   One probe: nested-set signatures on actual
                         prefixes; short-word structure; modest τ_+
@@ -109,7 +109,7 @@ It is not required.
 - Window-exact \(A_w\cap[2,2000]\) — **COMPUTATIONALLY VERIFIED**
   relative to the window; not the exact unbounded set
 - AP modulus and residue signatures of \(A_w\cap[2,N]\) —
-  **OBSERVATION**; they do not compress below the words
+  **OBSERVATION**; they do not compress below the itineraries
 - Named thinning versus tautological subset —
   **OBSERVATION**; named-thinner hits are residue/modulus
   artefacts of longer prefixes, not a pruning rule

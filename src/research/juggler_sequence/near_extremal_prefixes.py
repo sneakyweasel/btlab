@@ -20,7 +20,7 @@ from research.juggler_sequence.envelope_defect import (
 )
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.lean_paths import SCALE, juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     itinerary,
@@ -77,7 +77,7 @@ def prefix_noncontracting(word: str) -> bool:
 
 
 def prefix_nc_words(k_max: int) -> list[str]:
-    """All nonempty prefix-noncontracting words of length at most k_max."""
+    """All nonempty prefix-noncontracting itineraries of length at most k_max."""
 
     if k_max < 0:
         raise ValueError("prefix_nc_words requires nonnegative k_max")
@@ -326,7 +326,7 @@ def classify(comb: dict[str, Any], scan: dict[str, Any], lean: dict[str, bool]) 
         return {
             "classification": CLASS_STRUCTURE,
             "reason": (
-                "prefix-noncontracting words start with O, length ≥ 2 "
+                "prefix-noncontracting itineraries start with O, length ≥ 2 "
                 "starts with OO, and include the unbounded mixed family "
                 "O^k E for k≥2 plus other mixed patterns; defect-driven "
                 "contraction is already Lean and did not fire on the "

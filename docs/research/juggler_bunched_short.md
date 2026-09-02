@@ -58,7 +58,7 @@ short leftovers return into [12, y]; the leftover-suffix path table is not a sea
 - `no_cycleMin_prefix_eee`: `True`
 - `no_cycleMin_prefix_eoooee`: `True`
 - `no_cycleMin_prefix_two_even_ee`: `True`
-- `no_cycle_word_even_count_le_three`: `True`
+- `no_cycle_itinerary_even_count_le_three`: `True`
 
 ## Anti-overclaim
 

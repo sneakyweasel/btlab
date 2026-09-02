@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from research.juggler_sequence.compensated_contraction import follows_word
+from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.near_extremal_prefixes import prefix_noncontracting
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.prefix_nc_admissibility import (
     CLASS_COMPLEX,
     FORBIDDEN_ENGINES,
@@ -28,7 +28,7 @@ def test_ooe_fiber_of_six_is_five():
     assert back["truncated"] is False
     assert back["min_start"] == 5
     assert back["max_start"] == 5
-    assert follows_word(5, "OOE")
+    assert follows_itinerary(5, "OOE")
 
 
 def test_known_witnesses_realize_mixed_prefix_nc():
@@ -36,13 +36,13 @@ def test_known_witnesses_realize_mixed_prefix_nc():
         assert prefix_noncontracting(word)
         assert not is_monochrome(word)
         assert n is not None
-        assert follows_word(n, word)
+        assert follows_itinerary(n, word)
 
 
 def test_thirty_seven_and_one_seventy_three():
-    assert follows_word(37, "OOOOEOOOEE")
-    assert follows_word(173, "OOEOOOOOOO")
-    assert follows_word(2127, "OOOOEOOOOEE")
+    assert follows_itinerary(37, "OOOOEOOOEE")
+    assert follows_itinerary(173, "OOEOOOOOOO")
+    assert follows_itinerary(2127, "OOOOEOOOOEE")
 
 
 def test_all_mixed_k8_realized_in_forward_window():
@@ -71,7 +71,7 @@ def test_lean_gate_adds_no_file():
     assert lean["sorry_free"] is True
     assert lean["PrefixNCAdmissibility_absent"] is True
     assert lean["floorPower_odd_eq_iff_cube_interval"] is True
-    assert lean["odd_cell_unique"] is True
+    assert lean["odd_preimage_unique"] is True
     assert lean["ResidualStep_not_extended"] is True
     assert lean["no_global_termination_theorem"] is True
     assert not LEAN_NEW.is_file()

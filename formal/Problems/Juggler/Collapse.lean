@@ -1,11 +1,11 @@
-import Problems.Juggler.Cells
+import Problems.Juggler.Preimages
 
 namespace Problems.Juggler
 
 /-!
 # Even-run residual evaluation
 
-The fixed-word threshold depends on `v`. A uniform-in-`ε` upgrade is
+The fixed-itinerary threshold depends on `v`. A uniform-in-`ε` upgrade is
 false: an even tower can collapse a huge perfect power of two onto `1`,
 after which any odd tail stays at `1`. Formal exponent `α_v` is then
 irrelevant. This is not a lower-envelope theory and does not replace
@@ -231,27 +231,27 @@ theorem odd_then_even_collapse (q k : ℕ) (u : List Branch) :
   rw [List.cons_append, image_cons, collapse_residual_identity]
 
 /-- `OEEE` followed by nine odds. Initial even-run length is `0`. -/
-def wordOEEE9 : List Branch :=
+def itineraryOEEE9 : List Branch :=
   [.odd, .even, .even, .even, .odd, .odd, .odd, .odd, .odd, .odd, .odd, .odd, .odd]
 
-theorem wordOEEE9_eq :
-    wordOEEE9 =
+theorem itineraryOEEE9_eq :
+    itineraryOEEE9 =
       .odd :: List.replicate 3 Branch.even ++ List.replicate 9 Branch.odd :=
   rfl
 
 theorem odd_even_tower_seven :
-    follows 7 wordOEEE9 ∧ image 7 wordOEEE9 = 1 ∧
-      image 7 wordOEEE9 + 1 < (7 + 1) ^ 2 := by
-  have himg : image 7 wordOEEE9 = 1 := by
-    simp [image, wordOEEE9, floorPower_seven, floorPower_eighteen,
+    follows 7 itineraryOEEE9 ∧ image 7 itineraryOEEE9 = 1 ∧
+      image 7 itineraryOEEE9 + 1 < (7 + 1) ^ 2 := by
+  have himg : image 7 itineraryOEEE9 = 1 := by
+    simp [image, itineraryOEEE9, floorPower_seven, floorPower_eighteen,
       floorPower_four, floorPower_two, floorPower_one]
-  have hw : follows 7 wordOEEE9 := by
-    simp [follows, wordOEEE9, floorPower_seven, floorPower_eighteen,
+  have hw : follows 7 itineraryOEEE9 := by
+    simp [follows, itineraryOEEE9, floorPower_seven, floorPower_eighteen,
       floorPower_four, floorPower_two, floorPower_one]
   exact ⟨hw, himg, by simp [himg]⟩
 
 theorem odd_even_tower_seven_superquadratic :
-    2 ^ (wordOEEE9.length + 1) < 3 ^ oddCount wordOEEE9 := by
+    2 ^ (itineraryOEEE9.length + 1) < 3 ^ oddCount itineraryOEEE9 := by
   native_decide
 
 /-!
@@ -280,8 +280,8 @@ theorem collapse_basin_one (o : ℕ) :
     image 1 (List.replicate o Branch.odd) = 1 :=
   image_replicate_odd_one o
 
-def wordEE_OEEE12 : List Branch :=
-  [.even, .even] ++ wordOEEE9 ++ [.odd, .odd, .odd]
+def itineraryEE_OEEE12 : List Branch :=
+  [.even, .even] ++ itineraryOEEE9 ++ [.odd, .odd, .odd]
 
 theorem floorPower_fifty : floorPower 50 = 7 := by
   native_decide
@@ -289,24 +289,24 @@ theorem floorPower_fifty : floorPower 50 = 7 := by
 theorem floorPower_2500 : floorPower 2500 = 50 := by
   native_decide
 
-theorem maxEvenRun_wordEE_OEEE12 : maxEvenRun wordEE_OEEE12 = 3 := by
+theorem maxEvenRun_itineraryEE_OEEE12 : maxEvenRun itineraryEE_OEEE12 = 3 := by
   native_decide
 
 theorem nested_even_collapse_2500 :
-    follows 2500 wordEE_OEEE12 ∧ image 2500 wordEE_OEEE12 = 1 ∧
-      image 2500 wordEE_OEEE12 + 1 < (2500 + 1) ^ 2 := by
-  have himg : image 2500 wordEE_OEEE12 = 1 := by
-    simp [wordEE_OEEE12, image, wordOEEE9, floorPower_2500, floorPower_fifty,
+    follows 2500 itineraryEE_OEEE12 ∧ image 2500 itineraryEE_OEEE12 = 1 ∧
+      image 2500 itineraryEE_OEEE12 + 1 < (2500 + 1) ^ 2 := by
+  have himg : image 2500 itineraryEE_OEEE12 = 1 := by
+    simp [itineraryEE_OEEE12, image, itineraryOEEE9, floorPower_2500, floorPower_fifty,
       floorPower_seven, floorPower_eighteen, floorPower_four, floorPower_two,
       floorPower_one]
-  have hw : follows 2500 wordEE_OEEE12 := by
-    simp [wordEE_OEEE12, follows, wordOEEE9, floorPower_2500, floorPower_fifty,
+  have hw : follows 2500 itineraryEE_OEEE12 := by
+    simp [itineraryEE_OEEE12, follows, itineraryOEEE9, floorPower_2500, floorPower_fifty,
       floorPower_seven, floorPower_eighteen, floorPower_four, floorPower_two,
       floorPower_one]
   exact ⟨hw, himg, by simp [himg]⟩
 
 theorem nested_even_collapse_2500_superquadratic :
-    2 ^ (wordEE_OEEE12.length + 1) < 3 ^ oddCount wordEE_OEEE12 := by
+    2 ^ (itineraryEE_OEEE12.length + 1) < 3 ^ oddCount itineraryEE_OEEE12 := by
   native_decide
 
 end Problems.Juggler

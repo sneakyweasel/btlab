@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 
 from research.juggler_sequence.global_defect import global_defect, local_defect
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.sum_rho import (
     CLASS_COMPLEX,
     DATA_DIR,

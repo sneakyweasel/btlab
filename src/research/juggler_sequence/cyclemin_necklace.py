@@ -22,7 +22,7 @@ from research.juggler_sequence.cyclemin_fudge import (
     PIN_MAX,
     chain_n0,
     first_prefix_start,
-    follows_word,
+    follows_itinerary,
     prefix_cell_exponents,
     trailing_even_run,
 )
@@ -34,7 +34,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_necklace.json"
@@ -61,17 +61,17 @@ LEAN_THEOREMS = (
     "slack139_of_seven_odd_length_eleven",
     "no_cycleMin_slack139",
     "no_cycleMin_cyclemin_fudge",
-    "no_cycle_word_even_count_le_three",
-    "cycle_word_formally_expanding",
+    "no_cycle_itinerary_even_count_le_three",
+    "cycle_itinerary_formally_expanding",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_length_eleven",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_four_even",
     "no_cycleMin_four_even",
     "no_cycleMin_necklace",
-    "no_cycle_word_cyclemin_necklace",
+    "no_cycle_itinerary_cyclemin_necklace",
     "juggler_reaches_one",
 )
 
@@ -104,7 +104,7 @@ def pin_hits_below(word: str, n_hi: int) -> list[int]:
     hits = []
     n = 3
     while n < n_hi:
-        if follows_word(n, prefix) is not None:
+        if follows_itinerary(n, prefix) is not None:
             hits.append(n)
         n += 2
     return hits
@@ -424,7 +424,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "below that N0. Five or more evens at length 11 are",
             "formally contracting (3^6 < 2^{11}).",
             "",
-            "Two extra words miss: OOEEEOOOOOE follows its prefix at",
+            "Two extra itineraries miss: OOEEEOOOOOE follows its prefix at",
             "n=5 with N0=55, and OOOEEEOOOOE follows at n=3 with N0=42.",
             "Slack 139 is not enough for a uniform pin. This is not a",
             "length-11 census and not a two-word rescue.",

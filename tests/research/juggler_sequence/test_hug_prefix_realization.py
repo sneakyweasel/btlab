@@ -13,7 +13,7 @@ from research.juggler_sequence.hug_prefix_realization import (
     scan,
     slope_fit,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_hug_letters_match_hug_odds() -> None:

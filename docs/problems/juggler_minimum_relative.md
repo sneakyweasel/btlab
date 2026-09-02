@@ -42,7 +42,7 @@ and every finite prefix realized from a `MinimalNonTerm` start is
 certificate via the shared square trap. An isolated prefix
 `O^a E (OE)^r` that stays at least \(n\) forces
 \(2^{a+2r+1}\le 3^{a+r}\); in particular \(a=2\) forces \(r=0\).
-If every nontrivial cycle word is impossible, then a start that never
+If every nontrivial cycle itinerary is impossible, then a start that never
 reaches 1 must escape. This last implication is not a no-cycle
 theorem.
 
@@ -177,7 +177,7 @@ The leftover termination class is **odd-landing corridors** that
 remain `AboveAnchor` on every finite prefix, never land even below
 \(n^{2}\), may sit in a cube cell \(T_w(n)<n^{3}\) without a square
 cell, never realize a scale-gap isolated prefix, and do not
-eventually cycle. The word `OOEOOEOOEOEOO` is the named instance:
+eventually cycle. The itinerary `OOEOOEOOEOEOO` is the named instance:
 \(3^{9}<3\cdot 2^{13}\) and \(\neg(3^{9}<2\cdot 2^{13})\). A
 cube-cell even landing is not `FiniteProgress`.
 

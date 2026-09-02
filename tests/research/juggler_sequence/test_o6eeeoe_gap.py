@@ -30,7 +30,7 @@ from research.juggler_sequence.o6eeeoe_gap import (
     write_artifacts,
 )
 from research.juggler_sequence.o7eeee_window import odd_run_image
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_exponents_and_elementary():
@@ -101,4 +101,4 @@ def test_classify_render_and_artifacts():
     )
     assert "PROMOTE" in dossier
     assert "OOOOOOEEEOE" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier

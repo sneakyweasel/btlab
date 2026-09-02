@@ -34,7 +34,7 @@ lands in that inverse cell.
 
 This is one word. It is not a length-11 census and not a halt
 theorem. The later satellite `O7EEEEGap.lean` has
-`no_cycle_word_oooooooeeee`.
+`no_cycle_itinerary_oooooooeeee`.
 
 ## Current literature
 
@@ -45,7 +45,7 @@ theorem. The later satellite `O7EEEEGap.lean` has
   ([juggler_leftover_cell_lag](juggler_leftover_cell_lag.md)).
 - Four-even short-gap \(Z_4\) leaks at length 11 —
   **PARK**.
-- Tight last-cluster pullback on this word —
+- Tight last-cluster pullback on this itinerary —
   **REFUTED** / **CLOSE**.
 - Rotation / internal-E on the thirty leftovers —
   **REFUTED** / **CLOSE**.
@@ -63,10 +63,10 @@ Mathematical target     Is T_{O^7 EEEE}(n)=n empty on the
 Novelty hypothesis      the EEEE inverse cell is empty of
                         O^7 images below N0
 Falsifier               a hit, or T^7 enters the cell
-Existing machinery      leftover_prefix_cell; trailing evens
-                        r=4; odd_cell_unique; N0=828484409
+Existing machinery      leftover_prefix_preimage; trailing evens
+                        r=4; odd_preimage_unique; N0=828484409
 Maximum Phase-0 scope   exact window scan of one word; no Lean,
-                        no thirty-word census, no Z5
+                        no thirty-itinerary census, no Z5
 Promotion criterion     Empty window, or a cycle
 Stop criterion          A hit without a theorem; a 30-word
                         scan; Z5; halt claim
@@ -93,7 +93,7 @@ It is not required.
   **COMPUTATIONALLY VERIFIED**
 - closest ratio \(T^7(n)/(n+1)^{16}=445.01\) at \(n=289\) —
   **COMPUTATIONALLY VERIFIED**
-- `no_cycle_word_oooooooeeee` — later Lean, see
+- `no_cycle_itinerary_oooooooeeee` — later Lean, see
   [juggler_o7eeee_gap](juggler_o7eeee_gap.md)
 - no cycle of length 11 — not claimed
 - global halt — not claimed
@@ -123,16 +123,16 @@ None to emptiness. The stronger claims that fail:
 ## Formalization
 
 The later laboratory satellite `O7EEEEGap.lean` now has
-`no_cycle_word_oooooooeeee`. This window page remains a
+`no_cycle_itinerary_oooooooeeee`. This window page remains a
 computational scan. Paper A is unchanged.
 
 ## Results
 
 Classification **O7EEEE_WINDOW_EMPTY**.
 
-There is no cycle word \(O^7\mathrm{EEEE}\) on
+There is no cycle itinerary \(O^7\mathrm{EEEE}\) on
 \(3\le n<828\,484\,409\). Combined with the leftover cell, there
-is no such cycle word for any \(n\ge 3\). The seven-odd image
+is no such cycle itinerary for any \(n\ge 3\). The seven-odd image
 never meets the EEEE inverse cell. This is a one-word
 computational exclusion, not a Lean theorem and not a
 length-11 census.

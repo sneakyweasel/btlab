@@ -12,8 +12,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     PROGRESS,
@@ -56,7 +56,7 @@ CERTIFICATE_UNCHANGED = (
     "power_bound_contracts",
     "floorPower_odd_even_two_step_lt",
     "floorPower_odd_odd_two_step_gt",
-    "even_word_contracts",
+    "even_itinerary_contracts",
     "descent_of_below",
     "ReachesOne",
     "DescentCertificate",
@@ -144,7 +144,7 @@ def calibration_rows() -> list[dict[str, Any]]:
             row["E_image"] = t
             row["E_lt"] = t < n
         elif t % 2 == 0:
-            row["OE_follows"] = follows_word(n, "OE")
+            row["OE_follows"] = follows_itinerary(n, "OE")
             row["OE_image"] = image_after(n, "OE")
             row["OE_lt"] = image_after(n, "OE") < n
         else:
@@ -276,7 +276,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     isolate the FiniteProgress coverage gap after even and OE",
         "Novelty hypothesis      leftover class is odd-to-odd; first even residual stays >= n",
         "Falsifier               even or OE without FiniteProgress, or a halt theorem",
-        "Existing machinery      even_word_contracts, floorPower_odd_even_two_step_lt, ReachesOne",
+        "Existing machinery      even_itinerary_contracts, floorPower_odd_even_two_step_lt, ReachesOne",
         "Maximum Phase-0 scope   induction spine; even/OE coverage; odd-odd leftover census",
         "```",
         "",

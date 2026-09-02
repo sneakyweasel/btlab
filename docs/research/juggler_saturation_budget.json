@@ -4132,7 +4132,7 @@
   "decision": {
     "classification": "SATURATION_BUDGET_GREEN",
     "depth_status": "POWER_TWO_DEPTH_GREEN",
-    "reason": "Each exact branch consumes one unit of 2-adic perfect-power depth, so a realized equality word of length k forces the start to be a 2^k-th power"
+    "reason": "Each exact branch consumes one unit of 2-adic perfect-power depth, so a realized equality itinerary of length k forces the start to be a 2^k-th power"
   },
   "search_method": "local tightness and repeated isqrt depth; powers_equal only as a tiny sanity check; no cmp_pow on n^{3^o}"
 }

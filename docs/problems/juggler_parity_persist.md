@@ -105,7 +105,7 @@ It is not required.
   (**CLOSE** as `LANDING_THETA_UNRESTRICTED`).
 - Episode automaton / finite exponent-state set — not built.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 - unbounded odd runs for all large \(n\) — not claimed
 
@@ -143,9 +143,9 @@ No \(W_5\) follower occurs among those \(23\) starts.
 
 ## Formalization
 
-None. Existing `odd_cell_unique`, `power_bound_word`, and
+None. Existing `odd_preimage_unique`, `power_bound_word`, and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged. The closed
 odd-landing-set and landing-valuation modules are not
 reopened.
@@ -180,7 +180,7 @@ is the separate branch
 [juggler_l_odd_run_cap.md](juggler_l_odd_run_cap.md).
 Do not reopen \(\theta\), valuation, or predecessor
 cylinders. Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not build a \(p\)-adic
+`no_cycle_itinerary_length_eleven`. Do not build a \(p\)-adic
 system.
 
 ## Decision

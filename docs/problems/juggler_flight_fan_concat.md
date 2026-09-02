@@ -38,7 +38,7 @@ mid-record at step 19 whose both halves are near-returns.
 **Observation (COMPUTATIONALLY VERIFIED).** On \(n\le 2000\) there
 are exactly the 44 length-19 and 7 length-38 near-returns of
 `J-flight-return-quantization`. All have \((p,o)=(19,12)\) or
-\((38,24)\). None is the hug word (window Hamming \(\ge 2\)).
+\((38,24)\). None is the hug itinerary (window Hamming \(\ge 2\)).
 Seventeen of the 44 length-19 endpoints are odd, so a hug-admissible
 \(R_{0.05}\) word is formally launchable; all 44 endpoints are
 remaining-tail records. None glue: \(19\to 19\), \(19\to 38\),
@@ -63,7 +63,7 @@ constructed. Exclusion of divergent flights is not claimed.
   \(\{19{:}44,\,38{:}7\}\) on \(n\le 2000\) — **EXACT — HUMAN
   PROOF** / **COMPUTATIONALLY VERIFIED**
   (`J-flight-return-quantization`).
-- Hug word prefix-min and \(\theta_{19}>0\) — **EXACT — LEAN
+- Hug itinerary prefix-min and \(\theta_{19}>0\) — **EXACT — LEAN
   VERIFIED** (`aboveAnchor_prefix_odds_ge_hug`, `hugOdds_pow_lt`).
 - Record-composition of \(\delta\)-totals — **CLOSE** /
   **REPARAMETERIZATION**
@@ -76,7 +76,7 @@ constructed. Exclusion of divergent flights is not claimed.
 - Exact hug(19) integer lifts — **CLOSE**
   ([juggler_cycle_mechanical_lift.md](juggler_cycle_mechanical_lift.md)),
   death at `empty_ooe`. Not reopened: realized 19-near-returns here
-  are not hug words.
+  are not hug itineraries.
 - Hug-prefix realization, formal-versus-realized, valley-composition
   exclusion, DK-as-kill, odd towers, hug-cylinder \(C_L\neq\emptyset\)
   (PARK), interval-ET depth 2 — not reopened.
@@ -181,7 +181,7 @@ No Paper A edit.
 Classification **FAN_CONCAT_NO_GLUE**.
 
 - The existing 44+7 near-returns are quantized
-  \((19,12)\)/\((38,24)\) and are not hug words.
+  \((19,12)\)/\((38,24)\) and are not hug itineraries.
 - Formal launch (odd endpoint) occurs; realized glue does not,
   including two tails long enough to host another 19.
 - The typical 19-near-return sits at the end of a dying

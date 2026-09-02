@@ -7,7 +7,7 @@ namespace Problems.Juggler
 /-!
 # Ostrowski sandwich for θ = log(3/2)/log 3
 
-Paper A Section 5.5 decomposes hug-word prefixes into blocks of
+Paper A Section 5.5 decomposes hug-itinerary prefixes into blocks of
 convergent denominators of `θ = log(3/2)/log 3` and applies
 Denjoy–Koksma per block. The convergent data are certified there by
 an interval continued fraction on a big-integer sandwich.

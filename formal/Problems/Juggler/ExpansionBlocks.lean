@@ -5,7 +5,7 @@ namespace Problems.Juggler
 /-!
 # Expanding persistent residual blocks
 
-The integer exponent surplus of a finite word is `3^{#O} - 2^{|w|}`.
+The integer exponent surplus of a finite itinerary is `3^{#O} - 2^{|w|}`.
 An expanding residual block has strictly fewer even letters than odd
 letters. Concatenation of relative slack is the existing product law,
 written here as a two- and three-block identity.
@@ -14,7 +14,7 @@ This file does not claim a uniform bound on consecutive expanding
 persistent blocks, and it does not claim that every start reaches `1`.
 -/
 
-/-- Integer exponent surplus. Zero in `ℕ` when the word is not
+/-- Integer exponent surplus. Zero in `ℕ` when the itinerary is not
 formally expanding. -/
 def expansionSurplus (w : List Branch) : ℕ :=
   3 ^ oddCount w - 2 ^ w.length
@@ -50,7 +50,7 @@ theorem logSlack_concat_three (n : ℕ) (u v w : List Branch) :
       slackNum n u ^ (3 ^ (oddCount v + oddCount w)) := by
   rw [slackNum_append, slackNum_append, ← Nat.pow_mul, ← Nat.pow_add]
 
-/-- Integer form of the block-growth identity: on an expanding word,
+/-- Integer form of the block-growth identity: on an expanding itinerary,
 `n^{3^o} = n^{2^k + E(w)}`. -/
 theorem block_growth_identity (n : ℕ) (w : List Branch)
     (h : exponentExpanding w) :
@@ -92,7 +92,7 @@ theorem expansion_run_365_len_three :
     PersistentExpandingResidual 365 763 ∧
       PersistentExpandingResidual 763 1749 ∧
         PersistentExpandingResidual 1749 4447 := by
-  have w1749 : word 1749 3 = [.odd, .odd, .even] := by native_decide
+  have w1749 : itinerary 1749 3 = [.odd, .odd, .even] := by native_decide
   have i1749 : floorPower^[3] 1749 = 4447 := by native_decide
   have h1749 := follows_oddEvenBlock_two_one w1749
   have hz : (4447 : ℕ) % 2 = 1 := by native_decide

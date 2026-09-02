@@ -95,7 +95,7 @@ It is not required.
 - \(e=4\) short-first-gap is a four-even cell —
   already **PARK**; not reopened
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -128,13 +128,13 @@ The stronger claims that remain false or unproved:
   false; 96 isolated-odd shapes at \(e=5\) in the expanding
   window.
 - “every last-cluster class is now excluded” — false.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 None. `PrefixBunched.lean` is not rewritten to short \(a\).
 No `no_cycleMin_four_even`. No `no_cycleMin_five_even`. No
-`no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A
+`no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`. Paper A
 is unchanged.
 
 ## Results
@@ -159,14 +159,14 @@ The exact-return attack \(S_{b,c}(y)=n\) is also parked
 The isolated-odd prefix attack is **CLOSE**
 ([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
 Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not reopen four-even cells.
+`no_cycle_itinerary_length_eleven`. Do not reopen four-even cells.
 
 ## Decision
 
 **PARK**. The leftover-suffix path table is the wrong tool for
 the residual. The residual remains bunched-short last cluster,
 now with an explicit return family. Do not claim that every
-cycle word is impossible.
+cycle itinerary is impossible.
 
 Best next question: answered in
 [juggler_bunched_short_front.md](juggler_bunched_short_front.md),

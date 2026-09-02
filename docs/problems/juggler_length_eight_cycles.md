@@ -1,4 +1,4 @@
-# Juggler length-8 cycle-word census
+# Juggler length-8 cycle-itinerary census
 
 Status: **EXPLORATORY**
 
@@ -9,13 +9,13 @@ not start a length-9 census.
 
 ## Problem
 
-Do the named filters already in Lean exclude every cycle word of
+Do the named filters already in Lean exclude every cycle itinerary of
 length at most eight?
 
 ## Exact statement
 
 A length-8 word is formally expanding if and only if it has at least
-six odd letters (\(2^8=256<729=3^6\)). Every mixed cycle word rotates
+six odd letters (\(2^8=256<729=3^6\)). Every mixed cycle itinerary rotates
 to an even-terminating orientation. The even-terminating expanding
 candidates are exactly
 
@@ -32,8 +32,8 @@ OOOOOOEE.
 
 These are already named: odd-run \(O^7E\), Theorem 3.12 at \(k=8\)
 (and the two rotations onto those leftovers), and the internal-E
-bootstrap words \(OOOOEOOE\), \(OOOEOOOE\), \(OOEOOOOE\). The
-laboratory theorem `no_cycle_word_length_le_eight` assembles them
+bootstrap itineraries \(OOOOEOOE\), \(OOOEOOOE\), \(OOEOOOOE\). The
+laboratory theorem `no_cycle_itinerary_length_le_eight` assembles them
 together with the length-≤7 census. Paper A Corollary 3.23 implies
 the same exclusion (period at least eleven). This is not a halt
 theorem.
@@ -41,7 +41,7 @@ theorem.
 ## Current literature
 
 - Small-cycle census (Paper A Theorems 3.6 and 3.8) —
-  **EXACT — LEAN VERIFIED**. No cycle word of length at most seven.
+  **EXACT — LEAN VERIFIED**. No cycle itinerary of length at most seven.
 - Two-even leftover families (Paper A Theorem 3.12) —
   **EXACT — LEAN VERIFIED**. Includes \(k=8\).
 - Length-8 two-even squares —
@@ -55,17 +55,17 @@ from 7 to 8. Paper A is unchanged.
 ## Branch budget
 
 ```text
-Mathematical target     Assemble no_cycle_word_length_le_eight from
+Mathematical target     Assemble no_cycle_itinerary_length_le_eight from
                         the named filters already in Lean
 Novelty hypothesis      packaging: the census bound moves from 7 to 8
 Falsifier               a length-8 expanding even-terminating word
-                        with no CycleWord exclusion
+                        with no CycleItinerary exclusion
 Existing machinery      Theorem 3.12, odd-run, internal-E threshold,
                         exists_cycleMin, length-7 assembler
-Maximum Phase-0 scope   CycleWord for the three bootstrap words;
+Maximum Phase-0 scope   CycleItinerary for the three bootstrap itineraries;
                         assembler; ledger; no Paper A
-Promotion criterion     Lean no_cycle_word_length_le_eight, sorry-free
-Stop criterion          a word that needs a new leftover cell
+Promotion criterion     Lean no_cycle_itinerary_length_le_eight, sorry-free
+Stop criterion          an itinerary that needs a new leftover cell
 ```
 
 ## Balanced-ternary formulation
@@ -88,8 +88,8 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - `OOOOEOOE` / `OOOEOOOE` / `OOEOOOOE` are internal-E bootstrap —
   **EXACT — LEAN VERIFIED**
-- every length-8 cycle word is impossible —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_eight`)
+- every length-8 cycle itinerary is impossible —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_length_le_eight`)
 - cycles of length nine or more are impossible — not claimed
 - global halt — not claimed
 
@@ -117,11 +117,11 @@ remain unproved:
 ## Formalization
 
 `formal/Problems/Juggler/LengthEightCensus.lean` proves
-`no_cycle_word_ooooeooe`, `no_cycle_word_oooeoooe`,
-`no_cycle_word_ooeooooe`, and assembles
-`no_cycle_word_length_le_eight`. `SmallCycleCensus.lean` still
+`no_cycle_itinerary_ooooeooe`, `no_cycle_itinerary_oooeoooe`,
+`no_cycle_itinerary_ooeooooe`, and assembles
+`no_cycle_itinerary_length_le_eight`. `SmallCycleCensus.lean` still
 assembles only through length seven and records that length eight is
-open in that module. No `no_cycle_word_length_eight`. No
+open in that module. No `no_cycle_itinerary_length_eight`. No
 `sorry`. No halt theorem. Paper A Corollary 3.23 implies period
 at least eleven.
 
@@ -129,7 +129,7 @@ at least eleven.
 
 Classification **LENGTH_EIGHT_CENSUS_GREEN**.
 
-No `n\ge 2` realizes a cycle word of length at most eight. A
+No `n\ge 2` realizes a cycle itinerary of length at most eight. A
 nontrivial cycle, if one exists, has period at least nine. Paper A
 Corollary 3.23 is stronger (period at least eleven). This is not a
 halt theorem.
@@ -137,17 +137,17 @@ halt theorem.
 ## Open questions
 
 Length 9 is the first three-even even-terminating expanding length.
-Do not assemble `no_cycle_word_length_le_nine` automatically. Do
+Do not assemble `no_cycle_itinerary_length_le_nine` automatically. Do
 not claim halt. Do not reopen the thirty length-11 leftovers.
 
 ## Decision
 
 **PROMOTE**. The eight expanding even-terminating length-8 words were
-already named. The missing pieces were CycleWord theorems for the
+already named. The missing pieces were CycleItinerary theorems for the
 three bootstrap spellings and an assembler. Both are now sorry-free
 Lean. This is not a halt theorem and not a length-9 programme.
 
-Best next question: assemble `no_cycle_word_length_le_nine` from
+Best next question: assemble `no_cycle_itinerary_length_le_nine` from
 named leftover families, or stop.
 
 ## Publication assessment

@@ -17,7 +17,7 @@ from research.juggler_sequence.floor_boundary import (
     unique_state_census,
 )
 from research.juggler_sequence.global_defect import local_defect
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.realization_geometry import even_tower
 
 
@@ -74,8 +74,8 @@ def test_lean_and_anti_overclaim():
     lean = lean_api_present()
     assert lean["sorry_free"]
     assert lean["localDefectEven_eq_zero_iff"]
-    assert lean["even_cell_iff"]
-    assert lean["odd_cell_unique"]
+    assert lean["even_preimage_iff"]
+    assert lean["odd_preimage_unique"]
     assert lean["no_forbidden_engines"]
     anti = anti_overclaim()
     assert anti["theta_is_an_invariant"] is False

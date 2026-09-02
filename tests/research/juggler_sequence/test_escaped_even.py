@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.escaped_even import (
     CLASS_GREEN,
     DROP_WITNESS,
@@ -38,7 +38,7 @@ def test_429_even_w_drops():
     assert row["w_even"] is True
     assert row["w_lt_sq"] is True
     assert row["w_ge_n"] is True
-    assert follows_word(n, "OOEOOEOOEOE")
+    assert follows_itinerary(n, "OOEOOEOOEOE")
     assert image_after(n, "OOEOOEOOEOE") == w
     assert image_after(n, "OOEOOEOOEOEE") == drop
     assert drop < n
@@ -55,7 +55,7 @@ def test_1517_odd_w_survives():
     assert row["ce_shaped_odd_w"] is True
     assert row["w_lt_sq"] is True
     assert row["drop"] is False
-    assert follows_word(n, "OOEOOEOOEOE")
+    assert follows_itinerary(n, "OOEOOEOOEOE")
     assert image_after(n, "OOEOOEOOEOE") == w
 
 

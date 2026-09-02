@@ -54,7 +54,7 @@ This is not the concatenated endpoint inequality \(T_{uv}(x)<x\).
 - ResidualStep / PersistentOddResidual —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.Residuals`.
 - Formal exponent gap / drift —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.WordStats`.
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.ItineraryStats`.
 - Normalized slack \(1+q\) —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.NormalizedDefect`.
 - “An expanding persistent residual block forces a contracting
@@ -145,7 +145,7 @@ None opened in `conjectures/`.
 
 ## Formalization
 
-`exponentExpanding` in `WordStats.lean`. Expanding residual
+`exponentExpanding` in `ItineraryStats.lean`. Expanding residual
 \(a\ge 2\) in `Scale.lean`. `PersistentExpandingResidual`, the
 next-run bound, and `two_block_ooe_365` in `Residuals.lean`. No
 new layer. No `sorry`. No halt theorem.

@@ -46,7 +46,7 @@ parents already met at that parent. On itinerary pairs with
 \(3733\) same-parent).
 
 **\(\mathtt{OO}\) is empty (KNOWN / EXACT — LEAN VERIFIED).**
-At most one odd parent (`odd_cell_unique`,
+At most one odd parent (`odd_preimage_unique`,
 `oddLanding_preimage_unique`). Two odd arrivals already agreed at
 that parent, so the meeting is not first. One-step \(\mathtt{OO}\)
 count is \(0\) on every \(x\in[3,400]\).
@@ -63,7 +63,7 @@ is \(\mathrm{Pred}_E(x)\). Ordered one-step counts on
 (KNOWN / REPARAMETERIZATION).**
 Ordered one-step count \(21413594\) on \(x\in[3,400]\), matching
 \(P(P-1)\) for \(P=|\mathrm{Pred}_E(x)|\). Fibres match
-`even_cell`. Witness \(100\to 10\leftarrow 102\). Same last parent
+`even_preimage`. Witness \(100\to 10\leftarrow 102\). Same last parent
 is not first: \(16\xrightarrow{EE}2\leftarrow_{EE}18\) share \(4\).
 The two-step count \(n(n^2+n+1)\) stays archived with the entry
 corridor.
@@ -83,9 +83,9 @@ No cycle of any length — not claimed.
   `pickover-1991-computers-imagination`)
 - Unique odd cell —
   **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, `oddLanding_preimage_unique`)
+  (`odd_preimage_unique`, `oddLanding_preimage_unique`)
 - Even square cell —
-  **EXACT — LEAN VERIFIED** (`even_cell_iff`)
+  **EXACT — LEAN VERIFIED** (`even_preimage_iff`)
 - First-intersection taxonomy —
   **CLOSE** / **REPARAMETERIZATION**
   ([juggler_cycle_intersection_taxonomy.md](juggler_cycle_intersection_taxonomy.md))
@@ -113,7 +113,7 @@ one-step cells plus shared-tail determinism.
 ## Branch budget
 
 ```text
-Mathematical target     For nonempty words u,v, when is
+Mathematical target     For nonempty itinerarys u,v, when is
                         T_u(n)=T_v(m)=x a first collision,
                         and what do the four last-letter
                         types EE, EO, OE, OO force?
@@ -122,15 +122,15 @@ Novelty hypothesis      parent type plus the first-collision
                         or thins in a way that is not the
                         one-step cells
 Falsifier               first collision iff last parents
-                        differ; OO empty by odd_cell_unique;
+                        differ; OO empty by odd_preimage_unique;
                         OE/EO = unique odd parent x even cell;
                         EE = distinct even-cell pairs
 Existing machinery      pred_even / pred_odd
                         (backward_geometry.py);
-                        even_cell / odd_cell_integers
-                        (floor_cells.py); follows_word /
+                        even_preimage / odd_preimage_integers
+                        (floor_cells.py); follows_itinerary /
                         image_after (compensated_contraction.py);
-                        odd_cell_unique; ee_entry_count
+                        odd_preimage_unique; ee_entry_count
 Maximum Phase-0 scope   define first collision; one-step
                         parent census on x <= 400; check
                         first_collision <=> distinct last
@@ -154,7 +154,7 @@ the entry corridor, seam sliding, or seam propagate. Do not
 reopen twin-flight or backward geometry.
 
 - **CLOSE** if first collision iff distinct last parents.
-- **CLOSE** if OO is `odd_cell_unique`.
+- **CLOSE** if OO is `odd_preimage_unique`.
 - **CLOSE** if OE/EO is the unique odd parent times the even cell.
 - **CLOSE** if EE is distinct even-cell pairs (two-step count
   \(n(n^2+n+1)\) stays archived; do not reopen the corridor).
@@ -167,7 +167,7 @@ rebuild a predecessor BFS. Do **not** open a \(|u|\ge 4\) census.
 
 ## Explicitly out of Phase-0
 
-A leftover-word attack, finance, \(N_0\) raise, ledger row, new
+A leftover-itinerary attack, finance, \(N_0\) raise, ledger row, new
 Lean, CLI, visualization, Paper A edit, a collision graph, a
 length-4 ancestry engine.
 
@@ -185,7 +185,7 @@ It is not required.
   **KNOWN** / **REPARAMETERIZATION** of determinism, off
   \(\{1,2\}\)
 - \(\mathtt{OO}\) first meeting —
-  **KNOWN** empty (`odd_cell_unique`)
+  **KNOWN** empty (`odd_preimage_unique`)
 - \(\mathtt{OE}\) / \(\mathtt{EO}\) —
   **KNOWN**; unique odd parent times \(\mathrm{Pred}_E(x)\)
 - \(\mathtt{EE}\) —
@@ -213,9 +213,9 @@ witnesses \(100,102\to 10\), \(5,122\to 11\), same-parent
 
 ## Counterexamples
 
-- `odd_cell_unique`: two odd parents of the same image cannot
+- `odd_preimage_unique`: two odd parents of the same image cannot
   exist. Falsifier of \(\mathtt{OO}\) as a first-collision type.
-- One-step fibres equal `even_cell` / `odd_cell_integers` on
+- One-step fibres equal `even_preimage` / `odd_preimage_integers` on
   \(x\le 400\). Falsifier of a thinner OE/EO or EE channel.
 - Itinerary iff on \(9375\) non-sink meetings. Falsifier of a
   first-collision cut that is not distinct last parents.
@@ -226,8 +226,8 @@ witnesses \(100,102\to 10\), \(5,122\to 11\), same-parent
 ## Formalization
 
 None added. The uniqueness lemma is already
-`odd_cell_unique` / `oddLanding_preimage_unique`. The even cell
-is already `even_cell_iff`. Paper A is unchanged. Do not add
+`odd_preimage_unique` / `oddLanding_preimage_unique`. The even cell
+is already `even_preimage_iff`. Paper A is unchanged. Do not add
 `FirstCollision.lean`.
 
 ## Results
@@ -237,7 +237,7 @@ Classification **FIRST_COLLISION_CLOSED**.
 - **Iff** — **KNOWN** / **REPARAMETERIZATION**: off \(\{1,2\}\),
   first collision iff last parents differ.
 - **\(\mathtt{OO}\)** — **EXACT — LEAN VERIFIED**: empty
-  (`odd_cell_unique`).
+  (`odd_preimage_unique`).
 - **\(\mathtt{OE}\) / \(\mathtt{EO}\)** — **KNOWN**: \(4288\)
   one-step pairs each on \(x\in[3,400]\).
 - **\(\mathtt{EE}\)** — **KNOWN**: \(21413594\) ordered distinct

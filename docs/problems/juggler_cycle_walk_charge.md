@@ -274,8 +274,8 @@ Classification **WALK_CHARGE_GREEN**.
   (`WalkChargeMax.lean`), defect finance and the kill template
   (`DefectFinance.lean`), DK block hypotheses and the rotation
   average Laplace bound (`OstrowskiSandwich.lean`,
-  `RotationAverage.lean`), on top of the word identity and
-  quotient arithmetic (`WalkChargeWords.lean`,
+  `RotationAverage.lean`), on top of the itinerary identity and
+  quotient arithmetic (`WalkChargeItineraries.lean`,
   `OstrowskiSandwich.lean`)
 - **Kill-table numerics in Lean: PARK (1 Sep 2026,
   certificate-size obstruction).** Making the 15 per-length kill
@@ -291,7 +291,7 @@ Classification **WALK_CHARGE_GREEN**.
   \(10^3\)–\(10^4\) s per length). The exact weights
   \(3^{a_k}/2^k\) are themselves \(\tfrac13\)-million-bit ratios;
   compressing them certifiably is the PARKED DK route. Positive
-  side-finding: `hug_charge_maximal` (Lean) proves the hug word
+  side-finding: `hug_charge_maximal` (Lean) proves the hug itinerary
   dominates every admissible walk, so a future certified
   evaluation needs only the straight hug-profile sum — the DP
   layer of the kill table is already subsumed by a Lean theorem.
@@ -321,13 +321,13 @@ VERIFIED**). The 1 September 2026 consolidation absorbed the
 walk-charge program into Paper A Section 5
 ([juggler_finite_dynamics_note.md](../theory/juggler_finite_dynamics_note.md)):
 transport is Theorem 5.3, the hug adversary Theorem 5.4, the
-word identity Lemma 5.6, the DK/Ostrowski envelope Theorem 5.7,
+itinerary identity Lemma 5.6, the DK/Ostrowski envelope Theorem 5.7,
 the window theorem Theorem 5.8, and the kill table / period
 bound Theorem 5.9; since the same-day second-floor pass the
 paper also prints Corollary 5.10 (floor \(162849448\), period
 \(\ge 478245\), the \(478245\) fan blocker, and the Appendix B
 hashes for the new certificate and the 15-kill table, plus the
 GPU reproducibility remark). The discrete word layer and the
-quotient arithmetic are Lean (`WalkChargeWords.lean`,
+quotient arithmetic are Lean (`WalkChargeItineraries.lean`,
 `OstrowskiSandwich.lean`). The first length-only charge that
 kills a survivor-lattice seed below its parity ceiling.

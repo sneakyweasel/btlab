@@ -16,6 +16,6 @@
   "literature": [
     "fernandez-ibanez-2026"
   ],
-  "notes": "Prefix dominance and greedy=Christoffel do hold on the short near-convergents of 1/(1+log2(3/2)) and on leftover L=19,84,1054. The mechanical average C_*=0.047947 at the 50508 reduced base matches seed leftover C. The charge maximizer is the greedy hugging word, which coincides with Christoffel only near the critical slope. This is a statement about the u>=0 relaxation, not about realized cycle words. The leftover-cell slogan stays refuted. Uniform B/theta<1 at a fixed floor stays false. Not a halt theorem.",
+  "notes": "Prefix dominance and greedy=Christoffel do hold on the short near-convergents of 1/(1+log2(3/2)) and on leftover L=19,84,1054. The mechanical average C_*=0.047947 at the 50508 reduced base matches seed leftover C. The charge maximizer is the greedy hugging itinerary, which coincides with Christoffel only near the critical slope. This is a statement about the u>=0 relaxation, not about realized cycle itineraries. The leftover-cell slogan stays refuted. Uniform B/theta<1 at a fixed floor stays false. Not a halt theorem.",
   "not_a_halt_theorem": true
 }

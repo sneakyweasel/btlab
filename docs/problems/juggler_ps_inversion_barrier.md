@@ -127,7 +127,7 @@ no new ledger row).** Let \(\mu\) be a subsequential limit of the
 depth-\(d\) class frequencies as in Lemma B, fix
 \(\beta>\beta_*\), and call \(\sigma\) *biased* if
 \(\mu(\sigma O)>(1-\beta)\mu(\sigma)\). If the total \(\mu\)-mass of
-biased words of length \(k\) is \(\le\varepsilon_k\) with
+biased itineraries of length \(k\) is \(\le\varepsilon_k\) with
 \(\frac1d\sum_{k<d}\varepsilon_k\to 0\), then density-one finite
 descent still holds. *Proof.* The expected number of biased nodes on
 a \(\mu\)-random path of length \(d\) is \(\le\sum\varepsilon_k=o(d)\);

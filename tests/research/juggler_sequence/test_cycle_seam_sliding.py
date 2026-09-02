@@ -14,7 +14,7 @@ from research.juggler_sequence.cycle_seam_sliding import (
     peak_valley_scale,
     same_necklace,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_seam_sliding.md"
@@ -38,7 +38,7 @@ def test_dossier_has_triage_and_closed_gates():
     assert "## Publication assessment" in text
     assert "**CLOSE**" in text
     assert "Do **not** raise" in text
-    assert "cycleWord_rotateWord" in text
+    assert "cycleItinerary_rotateItinerary" in text
     assert "cycle_trailing_evens_lt" in text
 
 
@@ -95,5 +95,5 @@ def test_dossier_and_conjecture_record_close():
     assert "**CLOSE**" in dossier
     rec = get_conjecture("juggler_cycle_seam_sliding")
     assert rec["status"] == "REFUTED"
-    assert rec["lean_reference"] == "cycleWord_rotateWord"
+    assert rec["lean_reference"] == "cycleItinerary_rotateItinerary"
     assert rec["counterexamples"]

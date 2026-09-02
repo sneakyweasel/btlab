@@ -8,13 +8,13 @@ every positive integer reaches 1.
 
 ## Problem
 
-Which realized finite parity words can saturate the one-sided
+Which realized finite parity itineraries can saturate the one-sided
 floor-power envelope? In particular, must every equality word be
 monochrome, \(E^k\) or \(O^k\)?
 
 ## Exact statement
 
-If a realized word \(w\) of length \(k\) attains
+If a realized itinerary \(w\) of length \(k\) attains
 
 \[
 T_w(n)^{2^k}=n^{3^{\#O(w)}},
@@ -81,7 +81,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - Odd family \(T^k(a^{2^k})=a^{3^k}\) —
   **EXACT — LEAN VERIFIED**
-- Equality-word census / `PowerHeight` — not added
+- Equality-itinerary census / `PowerHeight` — not added
 
 ## Experiments
 
@@ -124,7 +124,7 @@ saturation-budget theorems are unchanged.
 
 Classification **EXTREMAL_FAMILY_GREEN**.
 
-Envelope equality for a realized word \(w\) is equivalent to one of the
+Envelope equality for a realized itinerary \(w\) is equivalent to one of the
 two monochrome towers:
 
 \[
@@ -140,12 +140,12 @@ expanding. For \(n\ge 2\), the even minimum is \(2^{2^k}\). For
 \(n\ge 3\), the odd minimum is \(3^{2^k}\).
 
 Computational search (\(n\le 10^4\), depth 8; square towers; prescribed
-mixed words `EO`, `OE`, and short alternations): 0
+mixed itineraries `EO`, `OE`, and short alternations): 0
 `MIXED_EQUALITY_WORD_FOUND`. This is not a termination theorem.
 
 ## Open questions
 
-What exact deficit does a non-monochrome realized word have relative to
+What exact deficit does a non-monochrome realized itinerary have relative to
 the weak envelope? Do not census equality words. Do not return to
 global termination from this lemma.
 

@@ -15,7 +15,7 @@ from research.juggler_sequence.cycle_top_excursion import (
     run_probe,
     top_of_orbit,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_even_run_window_on_small_maxima():
@@ -62,7 +62,7 @@ def test_lean_api_top_without_contradiction():
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
     assert "PowerHeight" not in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
 
 
 def test_classify_top_green():
@@ -73,7 +73,7 @@ def test_classify_top_green():
     assert CLASS_WINDOW in decision["secondary"]
     assert CLASS_SURVIVES in decision["secondary"]
     assert scan["n_search"] is False
-    assert scan["cycle_word_census"] is False
+    assert scan["cycle_itinerary_census"] is False
     assert scan["window_fails"] == 0
     assert scan["closed_tops"] == 0
     assert scan["window_holds"] == scan["start_count"]
@@ -113,4 +113,4 @@ def test_committed_artifacts_schema():
     assert data["lean"]["sorry_free"] is True
     assert data["lean"]["cycleMax_top_normal_form"] is True
     assert data["scan"]["n_search"] is False
-    assert data["scan"]["cycle_word_census"] is False
+    assert data["scan"]["cycle_itinerary_census"] is False

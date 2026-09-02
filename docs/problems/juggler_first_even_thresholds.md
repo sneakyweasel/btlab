@@ -18,7 +18,7 @@ finite when \(Ev\) has positive formal drift?
 
 ## Exact statement
 
-Write \(\alpha_v=3^{\#O(v)}/2^{|v|}\). The word \(Ev\) has formal
+Write \(\alpha_v=3^{\#O(v)}/2^{|v|}\). The itinerary \(Ev\) has formal
 ratio \(\alpha_v/2\), so it is formally expanding iff \(\alpha_v>2\).
 On the square-root cell of \(q\), contraction occurs iff
 \(T_v(q)<n\). For integers this is any-contraction iff
@@ -158,5 +158,5 @@ with \(\alpha_v>2\), or find one such suffix with unbounded \(Q_v\).
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A local finite-word threshold statement, not a
+Status: `EXPLORATORY`. A local finite-itinerary threshold statement, not a
 paper candidate and not a Juggler totality result.

@@ -36,7 +36,7 @@ OOEOOEOOEOE < n^2; CE even OE landing drops; 429 dies by even w; 1517 survives w
 
 ## Lean
 
-- `wordOOEOOEOOEOE`: `True`
+- `itineraryOOEOOEOOEOE`: `True`
 - `follows_ooeooeooeoe_image_lt_sq`: `True`
 - `minimal_ooeooeooe_follows_o`: `True`
 - `minimal_ooeooeooeoe_not_even_landing`: `True`

@@ -25,7 +25,7 @@ Maximum Phase-0 scope   LowerPowerBound; eventual non-contraction
 - classification: **FIRST_E_EVENTUAL_NONCONTRACTION_GREEN**
 - sorry-free: `True`
 
-each fixed v with 3^#O(v) > 2^(|v|+1) has LowerPowerBound q^{3^o} ≤ D_v T_v(q)^{2^r} and therefore only finitely many first-even contraction cells; no finite word has α_v = 2.
+each fixed v with 3^#O(v) > 2^(|v|+1) has LowerPowerBound q^{3^o} ≤ D_v T_v(q)^{2^r} and therefore only finitely many first-even contraction cells; no finite itinerary has α_v = 2.
 
 ## Superquadratic scans
 
@@ -69,7 +69,7 @@ each fixed v with 3^#O(v) > 2^(|v|+1) has LowerPowerBound q^{3^o} ≤ D_v T_v(q)
 
 **FIRST_E_EVENTUAL_NONCONTRACTION_GREEN**
 
-each fixed v with 3^#O(v) > 2^(|v|+1) has LowerPowerBound q^{3^o} ≤ D_v T_v(q)^{2^r} and therefore only finitely many first-even contraction cells; no finite word has α_v = 2.
+each fixed v with 3^#O(v) > 2^(|v|+1) has LowerPowerBound q^{3^o} ≤ D_v T_v(q)^{2^r} and therefore only finitely many first-even contraction cells; no finite itinerary has α_v = 2.
 
-This is a fixed-word threshold statement, not a global halt result.
+This is a fixed-itinerary threshold statement, not a global halt result.
 

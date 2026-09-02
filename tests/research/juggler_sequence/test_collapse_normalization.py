@@ -20,8 +20,8 @@ from research.juggler_sequence.collapse_normalization import (
     run_probe,
     strip_initial_even,
 )
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_decomposition_and_pow_two_identity():
@@ -54,7 +54,7 @@ def test_internal_collapse_has_initial_run_zero():
     assert max_even_run("OEEE" + "O" * 9) == 3
     assert q_contracts(7, "OEEE" + "O" * 9)
     assert image_after(7, "OEEE" + "O" * 9) == 1
-    assert follows_word(7, "OEEE" + "O" * 9)
+    assert follows_itinerary(7, "OEEE" + "O" * 9)
     internal = odd_internal_collapse(q_max=400)
     ks = {row["k"] for row in internal}
     assert 3 in ks and 4 in ks

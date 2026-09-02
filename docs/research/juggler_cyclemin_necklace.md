@@ -85,7 +85,7 @@ when n^{139} > (1+1/n)^{A-139} and no prefix start exists
 below that N0. Five or more evens at length 11 are
 formally contracting (3^6 < 2^{11}).
 
-Two extra words miss: OOEEEOOOOOE follows its prefix at
+Two extra itineraries miss: OOEEEOOOOOE follows its prefix at
 n=5 with N0=55, and OOOEEEOOOOE follows at n=3 with N0=42.
 Slack 139 is not enough for a uniform pin. This is not a
 length-11 census and not a two-word rescue.
@@ -100,14 +100,14 @@ length-11 census and not a two-word rescue.
 - `slack139_of_seven_odd_length_eleven`: `True`
 - `no_cycleMin_slack139`: `True`
 - `no_cycleMin_cyclemin_fudge`: `True`
-- `no_cycle_word_even_count_le_three`: `True`
-- `cycle_word_formally_expanding`: `True`
-- no `no_cycle_word_length_eleven`: `True`
+- `no_cycle_itinerary_even_count_le_three`: `True`
+- `cycle_itinerary_formally_expanding`: `True`
+- no `no_cycle_itinerary_length_eleven`: `True`
 - no `no_cycleMin_length_eleven`: `True`
-- no `no_cycle_word_four_even`: `True`
+- no `no_cycle_itinerary_four_even`: `True`
 - no `no_cycleMin_four_even`: `True`
 - no `no_cycleMin_necklace`: `True`
-- no `no_cycle_word_cyclemin_necklace`: `True`
+- no `no_cycle_itinerary_cyclemin_necklace`: `True`
 - no `juggler_reaches_one`: `True`
 
 ## Anti-overclaim

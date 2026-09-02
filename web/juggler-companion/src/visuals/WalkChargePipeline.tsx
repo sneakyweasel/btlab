@@ -1,7 +1,7 @@
 const STAGES = [
   "Transport",
   "Hug adversary",
-  "Word identity",
+  "Itinerary identity",
   "Denjoy–Koksma",
   "Window",
   "L ≥ 478245",

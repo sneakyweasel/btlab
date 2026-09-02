@@ -181,7 +181,7 @@
     "cycleMin_ge_twelve": true,
     "cycleMin_first_even_overshoots": true,
     "oe_block_contracts": true,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "has_no_cycleMin_four_even": false,
     "has_no_cycleMin_five_even": false,
     "has_no_juggler_cycle": false,

@@ -37,7 +37,7 @@ test does not force `T_{O^k}(t) < n`. Slack at `k=0` is
 ## Attack 2 — cycle suffix is not a path cap
 
 `odd_run_suffix_threshold` and `no_cycle_odd_run_append_even`
-forbid `CycleWord` of the form `O^a E` for `a >= 3`. They do
+forbid `CycleItinerary` of the form `O^a E` for `a >= 3`. They do
 not forbid a path `L+O^k` that does not return. `33391`
 realizes `k=5` and does not follow `W_5`.
 
@@ -45,7 +45,7 @@ realizes `k=5` and does not follow `W_5`.
 
 Any finite `K` must come from non-existence of `n` following
 `L+O^k`, not from `power_bound_contracts`. That realization
-question is not a word census in this phase.
+question is not an word census in this phase.
 
 ## Lean
 
@@ -54,7 +54,7 @@ question is not a word census in this phase.
 - `power_bound_contracts`: `True`
 - `odd_run_suffix_threshold`: `True`
 - `no_cycle_odd_run_append_even`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `no_cycleMin_ooeoooe`: `True`
 
 ## Anti-overclaim

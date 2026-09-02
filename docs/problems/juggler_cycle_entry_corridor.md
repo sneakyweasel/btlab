@@ -251,7 +251,7 @@ on archived cells.
 **CLOSE**. On an isolated-E CycleMin necklace the last run is
 \(\mathtt{OE}\), but that is `oo_suffix_threshold` versus the last-even
 cell — the same comparison that already kills \(\mathtt{OOE}\) as a
-cycle word. On a genuine cycle the incoming side is not forced:
+cycle itinerary. On a genuine cycle the incoming side is not forced:
 trailing \(\mathtt{EE}\) is an enormous CycleMin-legal cell, so
 \(\mathcal B_n\) is not a thin backward corridor. The OE slice’s first
 backward block is the archived occupied \((2,1)\); three \(\mathtt{OOE}\)

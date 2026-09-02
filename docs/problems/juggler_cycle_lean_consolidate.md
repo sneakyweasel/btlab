@@ -11,7 +11,7 @@ family, and not a halt theorem.
 
 The leftover programme is already one argument: a prefix cell versus
 a tail, with two-even, bunched, and first-E as instances, and gapped
-`CycleWord` as rotation of `CycleMin`. The Lean files were not.
+`CycleItinerary` as rotation of `CycleMin`. The Lean files were not.
 
 ## Exact statement
 
@@ -23,25 +23,25 @@ z < Z
 2^{denomBits a} * Z^{2^a} < n^{3^a}
 ```
 
-recorded as `leftover_prefix_cell`. Two-even is the instance
+recorded as `leftover_prefix_preimage`. Two-even is the instance
 `Z = (n+1)^4`. Bunched uses `Z ∈ {(n+1)^8, (n+1)^6, (n+1)^4}` or a
 tight last-odd cell. First-E is the same comparison started at
-`y = T_{O^a E}(n)` on a `CycleMin`. Gapped `CycleWord` is
+`y = T_{O^a E}(n)` on a `CycleMin`. Gapped `CycleItinerary` is
 `exists_cycleMin` plus rotation onto an already-excluded `CycleMin`
 class, not a cell instance.
 
 The small-cycle census remains length `≤ 7` only. Existing theorem
-names stay. There is no `no_cycle_word_length_eight`, no
-`no_cycle_word_bunched`, and no `no_juggler_cycle`.
+names stay. There is no `no_cycle_itinerary_length_eight`, no
+`no_cycle_itinerary_bunched`, and no `no_juggler_cycle`.
 
 ## Current literature
 
 All instances were already **EXACT — LEAN VERIFIED**:
 
-- two-even leftovers (`no_cycle_word_two_even_ee`, `_eoe`);
+- two-even leftovers (`no_cycle_itinerary_two_even_ee`, `_eoe`);
 - seven bunched last-cluster families;
 - first-E gapped `CycleMin`s;
-- gapped `CycleWord` by rotation;
+- gapped `CycleItinerary` by rotation;
 - named length-6/7 leftovers and the length-`≤7` census.
 
 Project relationship: **reparameterization** of file layout, not of
@@ -52,7 +52,7 @@ the mathematics.
 ```text
 Mathematical target     One leftover-cell-versus-tail lemma, with
                         two-even, bunched, and first-E as instances;
-                        gapped CycleWord as rotation of CycleMin;
+                        gapped CycleItinerary as rotation of CycleMin;
                         census still length ≤7 only
 Novelty hypothesis      none — packaging of theorems that already
                         survived
@@ -78,8 +78,8 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- `leftover_prefix_cell` is the shared contradiction.
-- `CycleCore` holds `CycleWord`, `CycleMin`, `rotateWord`, and
+- `leftover_prefix_preimage` is the shared contradiction.
+- `CycleCore` holds `CycleItinerary`, `CycleMin`, `rotateItinerary`, and
   last-even cells.
 - `CycleExtrema` holds peak/defect math, off the leftover path.
 - `SmallCycleCensus` imports `CycleCore` and `LeftoverShort` only.
@@ -101,20 +101,20 @@ None. Packaging does not reopen refuted leftover attacks.
 - `formal/Problems/Juggler/CycleCore.lean`
 - `formal/Problems/Juggler/CycleExtrema.lean`
 - `formal/Problems/Juggler/Cycles.lean` (barrel)
-- `formal/Problems/Juggler/LeftoverCell.lean`
+- `formal/Problems/Juggler/LeftoverPreimage.lean`
 - `formal/Problems/Juggler/LeftoverShort.lean`
 - `formal/Problems/Juggler/LeftoverFamilies.lean`
 - eval satellites and `BunchedTight.lean` unchanged
 - `formal/Problems/Juggler/SmallCycleCensus.lean` still only
-  `no_cycle_word_length_le_six` / `_seven`
+  `no_cycle_itinerary_length_le_six` / `_seven`
 
 No `sorry`. Paper A was not edited.
 
 ## Results
 
-`leftover_prefix_cell` is the shared lemma. Two-even, EEE, EOEE,
+`leftover_prefix_preimage` is the shared lemma. Two-even, EEE, EOEE,
 EOOEE, EEOE, EOEOE, EOOOEE, and EOOEOE `_of_ge` proofs are
-instances. First-E and gapped `CycleWord` live in the same module
+instances. First-E and gapped `CycleItinerary` live in the same module
 as sections. `ooooooeee` is the `a = 6` EEE instance, not a second
 proof in `LeftoverShort`. Census still stops at length 7.
 

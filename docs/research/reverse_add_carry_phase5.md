@@ -76,12 +76,12 @@ The Phase-4 two-step length bound is not proved here.
 
 - Counterexample: `2 -> 0` (C=0, W=-2, length 2->1)
 - Failure class: `REVERSAL_DEPENDENCE`
-- Mechanism: Zero carry still changes canonical length: C(2)=0, W(2)=-2, 2->0, bt_length 2->1. Opposite-trit cancellation from reverse-as-negation collapses the word without carry.
+- Mechanism: Zero carry still changes canonical length: C(2)=0, W(2)=-2, 2->0, bt_length 2->1. Opposite-trit cancellation from reverse-as-negation collapses the itinerary without carry.
 
 ## Candidate 3: `positive_carry_forces_length_plus_one` (failed)
 
 - Statement: C(x)>0 implies bt_length(T(x))-bt_length(x)=1 for the one-step addition T(x)=x+W(x)
-- Motivation: If carry were the hidden coordinate of representation change, a nonzero chain would force the only nontrivial one-step length delta available to a word sum: growth by exactly one trit.
+- Motivation: If carry were the hidden coordinate of representation change, a nonzero chain would force the only nontrivial one-step length delta available to an itinerary sum: growth by exactly one trit.
 - Domain: integers with C(x)>0 and a defined one-step successor
 - Expected yield: a one-dimensional carry law determining successor length
 - Cheapest falsifier: the first frozen seed with C(x)>0 whose length delta is not +1

@@ -1,5 +1,5 @@
 import Problems.Juggler.Minimal
-import Problems.Juggler.Cells
+import Problems.Juggler.Preimages
 
 namespace Problems.Juggler
 

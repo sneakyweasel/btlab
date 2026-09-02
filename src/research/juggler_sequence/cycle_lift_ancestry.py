@@ -14,7 +14,7 @@ kill initial-cycle intersection.
 Lift identity: T(t) = T(c) and T^L(c) = c imply T^L(t) = c.
 CycleMin then forces T^L(t) >= n. The drop is the opposite
 inequality. Parent identity is forgotten after one step
-(`cell_same_next_state`). The same landing holds at every
+(`preimage_same_next_state`). The same landing holds at every
 ancestry depth.
 
 Not a halt theorem, not a leftover-killer, not a finance reopen,
@@ -32,8 +32,8 @@ from typing import Any
 from research.juggler_sequence.cycle_almost_search import odd_preimage
 from research.juggler_sequence.cycle_arith import last_even_cell
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
-from research.juggler_sequence.floor_cells import even_cell
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.floor_preimages import even_preimage
+from research.juggler_sequence.power_itineraries import floor_power
 
 LIFT_DIR = DATA_DIR / "cycle_lift_ancestry"
 START = PUBLISHED_FLOOR + 1
@@ -53,12 +53,12 @@ SINK_L = 1
 DEPTH2_CAP = 40
 
 ARCHIVED = (
-    "even_cell_iff",
-    "odd_cell_unique",
+    "even_preimage_iff",
+    "odd_preimage_unique",
     "oddLanding_preimage_unique",
     "cycleMin_not_end_odd",
     "cycle_last_even_interval",
-    "cell_same_next_state",
+    "preimage_same_next_state",
     "first_even_freeze",
 )
 
@@ -71,7 +71,7 @@ def iterate_floor(x: int, k: int) -> int:
 
 
 def even_parent_range(x: int) -> tuple[int, int]:
-    lo, hi = even_cell(x)
+    lo, hi = even_preimage(x)
     start = lo if lo % 2 == 0 else lo + 1
     last = hi - 1 if (hi - 1) % 2 == 0 else hi - 2
     return start, last

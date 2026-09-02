@@ -905,7 +905,7 @@
   },
   "lean": {
     "sorry_free": true,
-    "wordOE": true,
+    "itineraryOE": true,
     "oe_block_contracts": true,
     "repeated_oe_scale": true,
     "power_bound_word": true,

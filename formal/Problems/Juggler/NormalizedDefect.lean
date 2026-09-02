@@ -32,7 +32,7 @@ def relativeSlack (n : ℕ) (w : List Branch) : ℕ × ℕ :=
 def onePlusSlack (n : ℕ) (w : List Branch) : ℕ × ℕ :=
   (slackNum n w, slackDen n w)
 
-/-- Formal envelope surplus. Zero in `ℕ` when the word is
+/-- Formal envelope surplus. Zero in `ℕ` when the itinerary is
 exponent-contracting. -/
 def formalSurplus (n : ℕ) (w : List Branch) : ℕ :=
   n ^ (3 ^ oddCount w) - n ^ (2 ^ w.length)

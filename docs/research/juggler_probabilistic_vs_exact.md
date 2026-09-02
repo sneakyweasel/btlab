@@ -272,7 +272,7 @@ Count: `95`. Only-long-O reading:
 
 ## 10. Exact arithmetic causes of model deviations
 
-The exact word, not the random model, produces every deviation.
+The exact itinerary, not the random model, produces every deviation.
 On this window the dominant exact mechanism is:
 
 - an initial odd run (the expanding branch of `J`), often frequency 1
@@ -283,7 +283,7 @@ On this window the dominant exact mechanism is:
   (the model zero-drift / survival frequency), not `p*`;
 - floor error that is already negligible on those orbits.
 
-No new residue family, no new finite word, and no floor-boundary search
+No new residue family, no new finite itinerary, and no floor-boundary search
 was opened. `power_bound_contracts` and `floorPower_odd_ge` remain the
 exact contraction certificates for completed words. Label of those
 lemmas: **LEAN-CERTIFIED**. Label of the deviation reading:
@@ -298,7 +298,7 @@ Exact hard paths begin with a long odd run (frequency 1), then a mix
 whose full-word frequency sits near the *zero-drift* value `p0`,
 while only the longest delay records have pre-peak `p_O` near `p*`.
 That is the expanding branch plus an ordinary suffix, already visible
-in the itinerary. No new finite-word constraint is proposed. No
+in the itinerary. No new finite-itinerary constraint is proposed. No
 **CANDIDATE CONJECTURE** is opened.
 
 ## 12. Limitations

@@ -1,0 +1,154 @@
+{
+  "experiment": "juggler_cycle_itinerary",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false,
+    "cycles_impossible": false,
+    "cycle_is_envelope_equality": false,
+    "power_bound_eq_forbids_cycles": false
+  },
+  "scan": {
+    "words": [
+      {
+        "word": "O",
+        "k": 1,
+        "o": 1,
+        "expanding": true,
+        "D": 4,
+        "exponent": 1,
+        "n_le": 4,
+        "searched_to": 4,
+        "hits": []
+      },
+      {
+        "word": "E",
+        "k": 1,
+        "o": 0,
+        "expanding": false,
+        "D": 4,
+        "exponent": -1,
+        "n_le": null,
+        "searched_to": 0,
+        "hits": []
+      },
+      {
+        "word": "OE",
+        "k": 2,
+        "o": 1,
+        "expanding": false,
+        "D": 64,
+        "exponent": -1,
+        "n_le": null,
+        "searched_to": 0,
+        "hits": []
+      },
+      {
+        "word": "EO",
+        "k": 2,
+        "o": 1,
+        "expanding": false,
+        "D": 1024,
+        "exponent": -1,
+        "n_le": null,
+        "searched_to": 0,
+        "hits": []
+      },
+      {
+        "word": "OO",
+        "k": 2,
+        "o": 2,
+        "expanding": true,
+        "D": 1024,
+        "exponent": 5,
+        "n_le": 4,
+        "searched_to": 4,
+        "hits": []
+      },
+      {
+        "word": "OOO",
+        "k": 3,
+        "o": 3,
+        "expanding": true,
+        "D": 274877906944,
+        "exponent": 19,
+        "n_le": 4,
+        "searched_to": 4,
+        "hits": []
+      },
+      {
+        "word": "OOE",
+        "k": 3,
+        "o": 2,
+        "expanding": true,
+        "D": 262144,
+        "exponent": 1,
+        "n_le": 262144,
+        "searched_to": 262144,
+        "hits": []
+      },
+      {
+        "word": "OEO",
+        "k": 3,
+        "o": 2,
+        "expanding": true,
+        "D": 67108864,
+        "exponent": 1,
+        "n_le": 67108864,
+        "searched_to": 3000,
+        "hits": []
+      },
+      {
+        "word": "EOO",
+        "k": 3,
+        "o": 2,
+        "expanding": true,
+        "D": 274877906944,
+        "exponent": 1,
+        "n_le": 274877906944,
+        "searched_to": 0,
+        "hits": []
+      }
+    ],
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleItinerary": true,
+    "cycle_itinerary_formally_expanding": true,
+    "cycle_itinerary_not_contracting": true,
+    "cycle_lower_growth": true,
+    "cycle_pow_le_lowerDenom": true,
+    "cycle_le_lowerDenom": true,
+    "no_cycle_itinerary_odd": true,
+    "no_cycle_itinerary_oo": true,
+    "no_cycle_itinerary_eoo": true,
+    "cycle_ooe_le_lowerDenom": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "no_infinite_path_type": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "PowerBoundEq_not_used_as_cycle_attack": true
+  },
+  "decision": {
+    "classification": "CYCLE_BOUND_GREEN",
+    "secondary": [
+      "CYCLE_WORD_EXCLUDED"
+    ],
+    "reason": "cycle return implies n^{3^o-2^k} \u2264 D_w and n \u2264 D_w; contracting itineraries, O, OO, and EOO are excluded; OOE is finite-bounded"
+  },
+  "search_method": "lower-growth cycle inequality; explicit n \u2264 D_w; short-word exclusion; OOE searched to its bound; no CycleSearch engine"
+}

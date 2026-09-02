@@ -84,6 +84,6 @@ export const LIVE_STARTS = [
   },
 ] as const;
 
-export const WORD_PRESETS = ["OOE", "OOOEE", "OOOEOE", "OOOOEE"] as const;
+export const ITINERARY_PRESETS = ["OOE", "OOOEE", "OOOEOE", "OOOOEE"] as const;
 export const CYCLE_PRESETS = ["OEO", "OOE", "OOOEOE", "OOOOEE"] as const;
 export const RECORD_LENGTHS = [1, 3, 11, 19, 84, 569, 1054, 25781, 50508] as const;

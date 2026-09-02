@@ -73,7 +73,7 @@ length `k`:
 
 ```text
 H(w) = max_j S_j(w)
-H_k^* = max H(w) over first-return words of length k.
+H_k^* = max H(w) over first-return itineraries of length k.
 ```
 
 For fixed admissible `o`, front-loading every `O` uniquely maximises
@@ -94,7 +94,7 @@ w_o  = O^o E^{e(o)}.
 ```
 
 A finite-horizon DP on the state `(j, o_j)` with `k <= 24` reproduces
-this word and peak at every horizon. Label: **EXACT CONTROL RESULT**.
+this itinerary and peak at every horizon. Label: **EXACT CONTROL RESULT**.
 DP agreement: `True`.
 
 This is not the 2025 large-deviation optimiser. The Cramér tilt for
@@ -178,7 +178,7 @@ Label: **EXACT COMPUTATION**. `n = 3` realizes the `k = 5` optimiser
 The best *realized* peak at a horizon `k` is the actual frontier.
 When a bang-bang realizer exists it is the actual peak winner at that
 `k`, up to floor error in `A`. When no bang-bang realizer is found,
-the actual winner is a mixed word.
+the actual winner is a mixed itinerary.
 
 ## 5. Control gaps
 
@@ -209,7 +209,7 @@ Label: **EXACT COMPUTATION** for the numbers;
 **COMPUTATIONALLY OBSERVED** for the pattern.
 
 At every admissible `k <= 13` the bang-bang word is realized in
-`n <= 4000`, the actual peak winner is that word, and the `A`-peak
+`n <= 4000`, the actual peak winner is that itinerary, and the `A`-peak
 gap is floor error (numerically `0` at large `n`, `0.034` at `n = 3`).
 Admissible `k ∈ {15, 16, 18}` have no bang-bang realizer in the
 window; the best mixed-word peak equals `(o_k^* − 2) log(3/2)`, so
@@ -454,7 +454,7 @@ A finite-horizon gap does not prove termination.
 
 Classification: **CONTROL_FRONTIER_GREEN**.
 
-The ideal first-return frontier is the unique bang-bang word, and it is realized at small admissible horizons, but the known long first-return records are not bang-bang and sit a definite peak gap below the same-horizon optimum. No uniform all-horizon realizability theorem is proved.
+The ideal first-return frontier is the unique bang-bang itinerary, and it is realized at small admissible horizons, but the known long first-return records are not bang-bang and sit a definite peak gap below the same-horizon optimum. No uniform all-horizon realizability theorem is proved.
 
 The conjunction “adversarial first-return control + exact Juggler
 realizability” is a well-posed object. The ideal side is settled as a

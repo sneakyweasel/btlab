@@ -25,7 +25,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_source_return.json"
@@ -111,7 +111,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "not_in_paper_barrel": "NextOddSource" not in paper
         and "source_relation_well_founded" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

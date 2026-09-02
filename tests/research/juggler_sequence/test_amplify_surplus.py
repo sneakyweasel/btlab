@@ -18,7 +18,7 @@ from research.juggler_sequence.amplify_surplus import (
     probe_payload,
     render_markdown,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 _PAYLOAD = None
 
@@ -91,4 +91,4 @@ def test_classify_render_and_artifacts():
     )
     assert "CLOSE" in dossier
     assert "AMPLIFY_SURPLUS_REFUTED" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier

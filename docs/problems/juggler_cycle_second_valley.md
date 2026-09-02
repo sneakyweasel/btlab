@@ -9,7 +9,7 @@ Standalone application phase on the Juggler floor-power map, on the
 **cycle half** of the `cycles_or_escapes` split. It asks whether
 CycleMin geometry forces the other valleys on leftover
 \(L=84\), \(m\ge 3\) to sit at \(\ge 281\). It is not a
-leftover-word census, not a floor raise, not a reopen of equal
+leftover-itinerary census, not a floor raise, not a reopen of equal
 valleys or the ceiling, and not a halt theorem.
 
 ## Problem
@@ -61,7 +61,7 @@ No cycle of any length — not claimed.
 
 - Height leftover period \(84\) with \(m\ge 3\) or \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Equal-valleys \(n+2\); height-split would need \(281\) —
   **REFUTED** as a leftover-killer
   ([juggler_cycle_equal_valleys.md](juggler_cycle_equal_valleys.md))
@@ -92,7 +92,7 @@ Existing machinery      even_iter_lt_succ_pow, cycleMin_not_odd_even,
 Maximum Phase-0 scope   first-circuit k=2..24 at n=261; later
                         landings from 281; k=1 OE window; mixed
                         packing 261/281/303. No Lean, no floor
-                        raise, no word census
+                        raise, no itinerary census
 Promotion criterion     a forced valley bound that kills leftover
                         under a proved constant and is not the
                         ceiling cell
@@ -178,7 +178,7 @@ constant.
 
 Stop. The laboratory leftover remains period \(84\) with
 \(m\ge 3\), or \(\ge 85\). Do not raise the residual floor. Do
-not open a leftover-word census.
+not open a leftover-itinerary census.
 
 ## Decision
 

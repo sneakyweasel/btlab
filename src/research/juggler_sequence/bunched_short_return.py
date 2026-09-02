@@ -16,8 +16,8 @@ from math import isqrt
 from pathlib import Path
 from typing import Any, Iterator
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
-from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
+from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short_return.json"
@@ -75,7 +75,7 @@ ODD_SQUARE_HITS_500: tuple[tuple[int, int], ...] = (
 LEAN_THEOREMS = (
     "floorPower_even_eq_iff_sq_interval",
     "floorPower_odd_eq_iff_cube_interval",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "cycle_last_even_ne_odd_sq",
     "cycle_trailing_evens_lt",
     "CycleMin",
@@ -83,7 +83,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_juggler_cycle",
 )
@@ -94,13 +94,13 @@ def short_tail(b: int, c: int) -> str:
 
 
 def even_preimages(m: int) -> list[int]:
-    lo, hi = even_cell(m)
+    lo, hi = even_preimage(m)
     start = lo if lo % 2 == 0 else lo + 1
     return list(range(start, hi, 2))
 
 
 def even_preimage_count(m: int) -> int:
-    lo, hi = even_cell(m)
+    lo, hi = even_preimage(m)
     start = lo if lo % 2 == 0 else lo + 1
     if start >= hi:
         return 0
@@ -108,7 +108,7 @@ def even_preimage_count(m: int) -> int:
 
 
 def odd_preimages(m: int) -> list[int]:
-    return [z for z in odd_cell_integers(m) if z % 2 == 1]
+    return [z for z in odd_preimage_integers(m) if z % 2 == 1]
 
 
 def pullback(states: list[int], letter: str) -> list[int]:
@@ -157,7 +157,7 @@ def exact_even_inverse(n: int) -> dict[str, Any]:
 
 def odd_square_cell(n: int) -> dict[str, Any]:
     m = n * n
-    ints = odd_cell_integers(m)
+    ints = odd_preimage_integers(m)
     odds = [z for z in ints if z % 2 == 1]
     lo2, hi2 = m * m, (m + 1) * (m + 1)
     z_lo = 0
@@ -382,7 +382,7 @@ def cyclemin_exact() -> dict[str, Any]:
             landings.append({"n": n, "y": y, "u": word, "a0": a0, "a": a})
             for b, c in SHORT_PAIRS:
                 tail = short_tail(b, c)
-                if not follows_word(y, tail):
+                if not follows_itinerary(y, tail):
                     continue
                 follows += 1
                 s = image_after(y, tail)
@@ -443,7 +443,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "BunchedShortReturn" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -451,9 +451,9 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["floorPower_even_eq_iff_sq_interval"]
-        and lean["odd_cell_unique"]
+        and lean["odd_preimage_unique"]
         and lean["cycle_last_even_ne_odd_sq"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]
@@ -557,7 +557,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        incompatible with CycleMin prefixes",
         "Falsifier               abundant exact returns; fat odd",
         "                        preimages of n^2; no rigidity",
-        "Existing machinery      even/odd floor cells; odd_cell_unique;",
+        "Existing machinery      even/odd floor cells; odd_preimage_unique;",
         "                        cycle_last_even_ne_odd_sq",
         "Maximum Phase-0 scope   exact inverses; R counts; CycleMin",
         "                        exact hits; no Lean, no Z5",
@@ -598,7 +598,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "## Attack 2 / 5 — odd preimage of n^2",
             "",
-            f"By `odd_cell_unique` there is at most one integer in the odd "
+            f"By `odd_preimage_unique` there is at most one integer in the odd "
             f"cell of `m = n^2`. Through `n <= {inverse['odd_sq_n_max']}`: "
             f"empty=`{inverse['odd_sq_empty']}`, even-blocked="
             f"`{inverse['odd_sq_even_blocked']}`, odd hits="

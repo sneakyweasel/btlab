@@ -4,12 +4,12 @@ Status: **EXPLORATORY**
 
 Standalone application phase on the Juggler floor-power map. It is
 **not** a Research Engine control-layer experiment, not a reopen of
-the closed formal-versus-realized word census, not a parity-balance
+the closed formal-versus-realized itinerary census, not a parity-balance
 reopen, not a new atlas language tag, not an automaton, not Paper A,
 and not a claim that every positive integer reaches 1.
 
 Finite history realizability is closed: every
-`prefixNoncontracting` word of length \(\le 20\) is atlas
+`prefixNoncontracting` itinerary of length \(\le 20\) is atlas
 `REALIZABLE`, and apparent `AboveAnchor` holes below \(10^6\)
 are hold-out unstable. This phase measures a different object:
 the nested integer support of a fixed history.
@@ -22,7 +22,7 @@ support of a prefix migrate upward or shrink as the prefix grows?
 
 ## Exact statement
 
-For a window \(X\) and a word \(w\) write
+For a window \(X\) and an itinerary \(w\) write
 
 \[
 R_w(X)=\{n\le X:\operatorname{follows}(n,w)\},
@@ -54,7 +54,7 @@ This is not a halt theorem.
 
 - Shared formal language is `prefixNoncontracting` —
   **CLOSE** as `PARITY_BALANCE_CLOSED`
-- Formal versus AA word gap —
+- Formal versus AAn itinerary gap —
   **CLOSE** as `FORMAL_REALIZED_GAP_CLOSED`
   ([juggler_formal_realized_gap.md](juggler_formal_realized_gap.md))
 - Existential PE grammar —
@@ -68,7 +68,7 @@ This is not a halt theorem.
 - Every start reaches 1 — not claimed
 
 Project relationship: **extended**. The designated diagnostic
-after the word-language close.
+after the itinerary-language close.
 
 ## Branch budget
 
@@ -155,7 +155,7 @@ None opened.
 - “Deep uniqueness of \(501\) or \(33391\) is a hard-branch
   law.” False: \(M_{20}(10^6)=7\), so uniqueness at
   \(k\sim\log_2 X\) is the generic occupancy of one length-\(k\)
-  word (`NOT OBSERVED WITHIN SEARCH BOUND`).
+  itinerary (`NOT OBSERVED WITHIN SEARCH BOUND`).
 - “Every hard laboratory has vanishing density as \(X\)
   grows.” False: \(69\) and \(89\) keep scale-stable fractions
   \(\approx 0.016\) and \(\approx 0.008\) from \(X=10^5\) to

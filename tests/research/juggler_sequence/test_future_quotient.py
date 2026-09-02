@@ -25,7 +25,7 @@ from research.juggler_sequence.future_quotient import (
     visited_ys,
     window_census,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_label_key_keeps_predicates_separate():

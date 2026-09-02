@@ -3346,7 +3346,7 @@
     "floor_sqrt_eq_iff_sq_interval": true,
     "floorPower_even_eq_iff_sq_interval": true,
     "floorPower_odd_eq_iff_cube_interval": true,
-    "odd_cell_unique": true,
+    "odd_preimage_unique": true,
     "power_bound_compensated_contracts": true,
     "PrefixNCAdmissibility_absent": true,
     "no_prefix_nc_admissible": true,

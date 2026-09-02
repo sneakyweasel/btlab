@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.oo_descent_density import (
     CLASS_LEFTOVER,
     CLASS_VANISHING,
@@ -21,20 +21,20 @@ from research.juggler_sequence.oo_descent_density import (
     walk_prefix,
     window_census,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_oooee_and_ooeoe_are_the_shortest_contracting_oo_words():
     assert is_odd_odd(3)
-    assert follows_word(3, WORD_OOOEE)
+    assert follows_itinerary(3, WORD_OOOEE)
     assert image_after(3, WORD_OOOEE) < 3
     walked = walk_prefix(3)
     assert walked["oooee"] is True
     assert walked["ooeoe"] is False
     assert walked["tau"] == 5
     assert is_odd_odd(5)
-    assert not follows_word(5, WORD_OOOEE)
-    assert not follows_word(5, WORD_OOEOE)
+    assert not follows_itinerary(5, WORD_OOOEE)
+    assert not follows_itinerary(5, WORD_OOEOE)
     five = walk_prefix(5)
     assert five["oooee"] is False
     assert five["ooeoe"] is False
@@ -93,7 +93,7 @@ def test_lean_witnesses_without_new_attack():
     assert lean["sorry_free"] is True
     assert lean["FiniteProgress"] is True
     assert lean["floorPower_oooee_of_follows"] is True
-    assert lean["wordOOOEE"] is True
+    assert lean["itineraryOOOEE"] is True
     assert lean["no_global_termination_theorem"] is True
     assert lean["no_all_finiteProgress_proved"] is True
     assert lean["no_progress_tactic"] is True

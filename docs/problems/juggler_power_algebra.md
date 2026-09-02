@@ -1,4 +1,4 @@
-# Juggler finite-word power algebra and equality rigidity
+# Juggler finite-itinerary power algebra and equality rigidity
 
 Status: **EXPLORATORY**
 
@@ -8,7 +8,7 @@ every positive integer reaches 1.
 
 ## Problem
 
-Does global envelope equality for a realized finite parity word force
+Does global envelope equality for a realized finite parity itinerary force
 every local branch inequality to be tight, and is each local tightness
 equivalent to the branch input being a perfect square?
 
@@ -36,7 +36,7 @@ Mixed-word strictness is not in scope: it is already **REFUTED**.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Phase-13 (`juggler_power_words`): two-sided exponent law **REFUTED**.
+- Phase-13 (`juggler_power_itineraries`): two-sided exponent law **REFUTED**.
 - Phase-14 (`juggler_power_composition`): one-sided envelope
   **EXACT — LEAN VERIFIED** as `power_bound_follows`.
 - Phase-15 (`juggler_equality_rigidity`): mixed-word strictness
@@ -47,7 +47,7 @@ Mixed-word strictness is not in scope: it is already **REFUTED**.
 ## Branch budget
 
 ```text
-Mathematical target     Does global envelope equality for a realized finite word
+Mathematical target     Does global envelope equality for a realized finite itinerary
                         force every local branch inequality to be tight, and is
                         each local tightness equivalent to the branch input
                         being a perfect square?
@@ -91,12 +91,12 @@ It is not required.
 - Global equality implies every relevant state is a square —
   **EXACT — LEAN VERIFIED**
 - Mixed-word strictness — **REFUTED** (prior phase)
-- `PowerHeight` / equality-word census — not added
+- `PowerHeight` / equality-itinerary census — not added
 
 ## Experiments
 
 - Probe: `research.juggler_sequence.power_algebra`
-- Reuses itinerary helpers from `research.juggler_sequence.power_words`
+- Reuses itinerary helpers from `research.juggler_sequence.power_itineraries`
   and tiny integer-root sanity checks from
   `research.juggler_sequence.equality_rigidity` (`powers_equal`)
 - Search compares local tightness and `isqrt` squares; it does not

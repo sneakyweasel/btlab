@@ -1,7 +1,7 @@
 {
   "id": "juggler_christoffel_one_parameter",
   "title": "Leftover-word cells at a Juggler near-convergent apply to a one-parameter Christoffel necklace",
-  "statement": "At a leftover near-convergent length L with o = o_min(L), leftover-word cells or CycleMin-legal expanding words of weight o concentrate on the Christoffel / mechanical necklace of slope o/L (cyclic Hamming radius O(1) or o(L)), so those cells apply to a one-parameter family instead of C(L, o) words.",
+  "statement": "At a leftover near-convergent length L with o = o_min(L), leftover-itinerary cells or CycleMin-legal expanding itineraries of weight o concentrate on the Christoffel / mechanical necklace of slope o/L (cyclic Hamming radius O(1) or o(L)), so those cells apply to a one-parameter family instead of C(L, o) words.",
   "status": "REFUTED",
   "counterexamples": [
     "L=11: thirty first-expanding short-gap leftovers have cyclic Hamming histogram 0:1, 2:16, 4:13 versus necklace size 4; OOOOOOOEEEE is distance 4",
@@ -15,7 +15,7 @@
     "lebel-2026"
   ],
   "mathematical_domain": "Juggler cycle finance / mechanical words",
-  "notes": "Fernández–Ibáñez maximizers need the Collatz affine / Terras constant C, which Juggler does not have. Lebel modular sieving is not transferred. Cycle-only near-Christoffel rigidity (a realized cycle word must be close to the necklace) is not refuted and is the same open question as cycle-only near-tightness. Not a leftover-length exclusion and not a halt theorem.",
+  "notes": "Fernández–Ibáñez maximizers need the Collatz affine / Terras constant C, which Juggler does not have. Lebel modular sieving is not transferred. Cycle-only near-Christoffel rigidity (a realized cycle itinerary must be close to the necklace) is not refuted and is the same open question as cycle-only near-tightness. Not a leftover-length exclusion and not a halt theorem.",
   "origin": "docs/problems/juggler_cycle_christoffel.md",
   "proof_reference": "docs/problems/juggler_cycle_christoffel.md",
   "tested_range": "leftover records 38,84,569,1054 plus killed near-convergents 11,19; thirty L=11 leftovers; all CycleMin weight-o_min words at L=11,19"

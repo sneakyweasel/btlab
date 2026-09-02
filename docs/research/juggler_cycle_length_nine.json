@@ -135,7 +135,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "EE",
         "remaining_is_lemma35": false,
-        "named_filter": "leftover_prefix_cell_EE",
+        "named_filter": "leftover_prefix_preimage_EE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EEEOOOOOO|EEOOOOOOE|EOOOOOOEE|OEEEOOOOO|OOEEEOOOO|OOOEEEOOO|OOOOEEEOO|OOOOOEEEO|OOOOOOEEE"
@@ -175,7 +175,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "OEE",
         "remaining_is_lemma35": false,
-        "named_filter": "leftover_prefix_cell_EE",
+        "named_filter": "leftover_prefix_preimage_EE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EEOOOOOEO|EOEEOOOOO|EOOOOOEOE|OEEOOOOOE|OEOEEOOOO|OOEOEEOOO|OOOEOEEOO|OOOOEOEEO|OOOOOEOEE"
@@ -197,7 +197,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "EOE",
         "remaining_is_lemma35": false,
-        "named_filter": "leftover_prefix_cell_EOE",
+        "named_filter": "leftover_prefix_preimage_EOE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EEOEOOOOO|EOEOOOOOE|EOOOOOEEO|OEEOEOOOO|OEOOOOOEE|OOEEOEOOO|OOOEEOEOO|OOOOEEOEO|OOOOOEEOE"
@@ -237,7 +237,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "OOEE",
         "remaining_is_lemma35": false,
-        "named_filter": "leftover_prefix_cell_EE",
+        "named_filter": "leftover_prefix_preimage_EE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EEOOOOEOO|EOOEEOOOO|EOOOOEOOE|OEEOOOOEO|OEOOEEOOO|OOEEOOOOE|OOEOOEEOO|OOOEOOEEO|OOOOEOOEE"
@@ -259,7 +259,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "OEOE",
         "remaining_is_lemma35": false,
-        "named_filter": "leftover_prefix_cell_EOE",
+        "named_filter": "leftover_prefix_preimage_EOE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EOEOEOOOO|EOEOOOOEO|EOOOOEOEO|OEOEOEOOO|OEOEOOOOE|OEOOOOEOE|OOEOEOEOO|OOOEOEOEO|OOOOEOEOE"
@@ -321,7 +321,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "OOOEE",
         "remaining_is_lemma35": false,
-        "named_filter": "leftover_prefix_cell_EE",
+        "named_filter": "leftover_prefix_preimage_EE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EEOOOEOOO|EOOOEEOOO|EOOOEOOOE|OEEOOOEOO|OEOOOEEOO|OOEEOOOEO|OOEOOOEEO|OOOEEOOOE|OOOEOOOEE"
@@ -343,7 +343,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "OOEOE",
         "remaining_is_lemma35": false,
-        "named_filter": "leftover_prefix_cell_EOE",
+        "named_filter": "leftover_prefix_preimage_EOE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EOEOOOEOO|EOOEOEOOO|EOOOEOOEO|OEOEOOOEO|OEOOEOEOO|OEOOOEOOE|OOEOEOOOE|OOEOOEOEO|OOOEOOEOE"
@@ -427,7 +427,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "OOOOEE",
         "remaining_is_lemma35": true,
-        "named_filter": "leftover_prefix_cell_EE",
+        "named_filter": "leftover_prefix_preimage_EE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EEOOEOOOO|EOOEOOOOE|EOOOOEEOO|OEEOOEOOO|OEOOOOEEO|OOEEOOEOO|OOEOOOOEE|OOOEEOOEO|OOOOEEOOE"
@@ -449,7 +449,7 @@
         "blocked_by": null,
         "remaining_after_first_e": "OOOEOE",
         "remaining_is_lemma35": true,
-        "named_filter": "leftover_prefix_cell_EOE",
+        "named_filter": "leftover_prefix_preimage_EOE",
         "leftover": true,
         "bootstrap": false,
         "rotation_class": "EOEOOEOOO|EOOEOOOEO|EOOOEOEOO|OEOEOOEOO|OEOOEOOOE|OEOOOEOEO|OOEOEOOEO|OOEOOOEOE|OOOEOEOOE"
@@ -843,7 +843,7 @@
         "rotation_class": "EEEOOOOOO|EEOOOOOOE|EOOOOOOEE|OEEEOOOOO|OOEEEOOOO|OOOEEEOOO|OOOOEEEOO|OOOOOEEEO|OOOOOOEEE"
       }
     ],
-    "leftover_words": [
+    "leftover_itineraries": [
       "OOOOOOEEE",
       "OOOOOEOEE",
       "OOOOOEEOE",
@@ -1252,7 +1252,7 @@
   },
   "lean": {
     "sorry_free": true,
-    "cycle_word_formally_expanding": true,
+    "cycle_itinerary_formally_expanding": true,
     "no_cycle_odd_run_append_even": true,
     "oo_suffix_threshold": true,
     "ooo_suffix_threshold": true,
@@ -1261,13 +1261,13 @@
     "cycleMin_not_start_even": true,
     "cycle_last_even_interval": true,
     "cycle_trailing_evens_lt": true,
-    "no_cycle_word_length_le_six": true,
-    "no_cycle_word_oooeoe": true,
-    "no_cycle_word_ooooee": true,
-    "no_cycle_word_oooooee": true,
-    "no_cycle_word_ooooeoe": true,
-    "no_cycle_word_length_le_seven": true,
-    "no_cycle_word_ooooooeee": true,
+    "no_cycle_itinerary_length_le_six": true,
+    "no_cycle_itinerary_oooeoe": true,
+    "no_cycle_itinerary_ooooee": true,
+    "no_cycle_itinerary_oooooee": true,
+    "no_cycle_itinerary_ooooeoe": true,
+    "no_cycle_itinerary_length_le_seven": true,
+    "no_cycle_itinerary_ooooooeee": true,
     "no_global_termination_theorem": true,
     "no_all_cycles_impossible": true,
     "no_cycle_engine": true,
@@ -1284,7 +1284,7 @@
       "FIRST_E_TRANSPORT_FOR_A2",
       "LAST_INTERNAL_SUFFIX_ALWAYS_O_RUN"
     ],
-    "reason": "length 9 has 28 three-even even-terminating expanding words; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleWord tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE"
+    "reason": "length 9 has 28 three-even even-terminating expanding itineraries; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleItinerary tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE"
   },
   "search_method": "structural inventory of even-terminating expanding length-9 words; last-internal vs first-E split; odd-prefix cell tails on the nine three-even leftovers; exact follows+image table below N0 only; Lean excludes OOOOOOEEE only; no length-9 census; no cycle-state search; no length-10"
 }

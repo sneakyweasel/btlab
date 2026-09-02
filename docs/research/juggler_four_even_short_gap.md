@@ -35,9 +35,9 @@ Maximum Phase-0 scope   Log-cell N0 for 30 shapes; no Lean,
 - min large N0 at first expanding: `437599552`
 - max large N0 at first expanding: `1612237392847051`
 
-Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shapes at a0_exp+1 with N0<=180 and at a0_exp+2 with N0<=22; at the first expanding length (30 words of length 11) N0 is 10^8 to 10^15; not a thirty-family Lean list and not a length-11 census.
+Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shapes at a0_exp+1 with N0<=180 and at a0_exp+2 with N0<=22; at the first expanding length (30 itineraries of length 11) N0 is 10^8 to 10^15; not a thirty-family Lean list and not a length-11 census.
 
-## First-expanding words (length 11)
+## First-expanding itineraries (length 11)
 
 - `OOOOOOOEEEE` (EEE, a1=0, N0~828484409, a0+1 N0=37)
 - `OOOOOOEOEEE` (EEE, a1=1, N0~1568526333, a0+1 N0=39)
@@ -73,10 +73,10 @@ Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shape
 ## Lean
 
 - `CycleMin`: `True`
-- `no_cycle_word_two_even_ee`: `True`
+- `no_cycle_itinerary_two_even_ee`: `True`
 - `no_cycleMin_gapped_three_even_ee`: `True`
-- `no_cycle_word_three_even_eee`: `True`
-- `no_cycle_word_three_even_eoooee`: `True`
+- `no_cycle_itinerary_three_even_eee`: `True`
+- `no_cycle_itinerary_three_even_eoooee`: `True`
 - no four-even theorem: `True`
 - no length-11 theorem: `True`
 - length eight open in census: `True`
@@ -104,7 +104,7 @@ Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shape
 
 **FOUR_EVEN_SHORT_GAP_PARK**
 
-Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shapes at a0_exp+1 with N0<=180 and at a0_exp+2 with N0<=22; at the first expanding length (30 words of length 11) N0 is 10^8 to 10^15; not a thirty-family Lean list and not a length-11 census.
+Z4 is the three-even cell pulled back through E O^{a1}; it fires on all 30 shapes at a0_exp+1 with N0<=180 and at a0_exp+2 with N0<=22; at the first expanding length (30 itineraries of length 11) N0 is 10^8 to 10^15; not a thirty-family Lean list and not a length-11 census.
 
 This is not a halt result and not a length-8/9/11 census.
 

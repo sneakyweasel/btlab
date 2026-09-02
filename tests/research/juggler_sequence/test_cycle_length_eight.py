@@ -20,7 +20,7 @@ from research.juggler_sequence.lean_paths import (
     LENGTH_EIGHT_CENSUS,
     SMALL_CYCLE_CENSUS,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_inventory_is_the_eight_expanding_words():
@@ -44,13 +44,13 @@ def test_lean_laboratory_census_and_paper_a_boundary():
     assert lean["paper_a_has_no_le_eight"] is True
     census8 = LENGTH_EIGHT_CENSUS.read_text(encoding="utf-8")
     census7 = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_length_le_eight" in census8
-    assert "theorem no_cycle_word_ooooeooe" in census8
-    assert "theorem no_cycle_word_oooeoooe" in census8
-    assert "theorem no_cycle_word_ooeooooe" in census8
+    assert "theorem no_cycle_itinerary_length_le_eight" in census8
+    assert "theorem no_cycle_itinerary_ooooeooe" in census8
+    assert "theorem no_cycle_itinerary_oooeoooe" in census8
+    assert "theorem no_cycle_itinerary_ooeooooe" in census8
     assert "sorry" not in census8
     assert "admit" not in census8
-    assert "theorem no_cycle_word_length_le_eight" not in census7
+    assert "theorem no_cycle_itinerary_length_le_eight" not in census7
     assert "Length eight is open" in census7
     assert "theorem juggler_reaches_one" not in census8
     assert "theorem no_juggler_cycle" not in census8
@@ -69,7 +69,7 @@ def test_classify_green_and_write_artifacts():
     assert data["anti_overclaim"]["paper_a_length_eight"] is False
     text = render_markdown(data)
     assert CLASS_GREEN in text
-    assert "no_cycle_word_length_le_eight" in text
+    assert "no_cycle_itinerary_length_le_eight" in text
     from research.juggler_sequence.cycle_length_eight import JSON_PATH
 
     assert JSON_PATH.is_file()
@@ -91,14 +91,14 @@ def test_dossier_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_length_le_eight" in dossier
+    assert "no_cycle_itinerary_length_le_eight" in dossier
     assert "EXACT — LEAN VERIFIED" in dossier
-    assert "no_cycle_word_length_le_eight" not in note
-    assert "theorem no_cycle_word_length_eight" not in note
+    assert "no_cycle_itinerary_length_le_eight" not in note
+    assert "theorem no_cycle_itinerary_length_eight" not in note
     flat = " ".join(note.split())
     assert (
         "Theorems 3.12--3.21 assemble into an even-count exclusion: no "
-        "cycle word has fewer than four even letters, so a nontrivial "
+        "cycle itinerary has fewer than four even letters, so a nontrivial "
         "cycle has period at least eleven (Theorem 3.22). Section 4 "
         "excludes later periods by financing."
     ) in flat

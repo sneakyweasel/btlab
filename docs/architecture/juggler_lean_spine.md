@@ -6,7 +6,7 @@ architecture dossier is
 This note is not a research attack.
 
 `EnvelopeState` implements one-sided cell comparison via
-`map_word`. `PowerCorridor` is the two-sided collision.
+`map_itinerary`. `PowerCorridor` is the two-sided collision.
 `AboveAnchor` is the shared prefix geometry. `CycleMin` and
 `MinimalNonTerm` consume it downward. Paper A
 (`Problems.JugglerPaper`) imports `CycleFinance` for Theorem 4.4.
@@ -14,7 +14,7 @@ This note is not a research attack.
 ## Live import graph
 
 ```text
-Dynamics → Iteration → Termination → Itinerary → WordStats
+Dynamics → Iteration → Termination → Itinerary → ItineraryStats
                                               ↓
                                            Envelope
                                               ↓
@@ -57,8 +57,8 @@ laboratory extract is
 
 | Kind | Objects | Home |
 |------|---------|------|
-| Primitive | `floorPower` / `follows` / words | `Dynamics.lean`, `Itinerary.lean`, `WordStats.lean` |
-| Primitive | `EnvelopeState` / `map_word` / `envelope_lt_pow` | `Envelope.lean` |
+| Primitive | `floorPower` / `follows` / itineraries | `Dynamics.lean`, `Itinerary.lean`, `ItineraryStats.lean` |
+| Primitive | `EnvelopeState` / `map_itinerary` / `envelope_lt_pow` | `Envelope.lean` |
 | Primitive | `PowerCorridor` / Corollaries A–C | `Corridor.lean` |
 | Primitive | cube-band geometry | `CubeCorridor.lean` |
 | Primitive | `AboveAnchor` / Corollaries D–E | `MinimumRelative.lean` |
@@ -69,7 +69,7 @@ laboratory extract is
 | Derived | `power_bound_word` / `power_bound_lt_pow` | `Envelope.lean` |
 | Consumer | `CycleMin` + `aboveAnchor_of_cycleMin` | `CycleCore.lean` |
 | Consumer | `MinimalNonTerm` + `aboveAnchor_of_minimalNonTerm` | `Minimal.lean` |
-| Consumer | named `no_cycle_word_*` / isolated CycleMin wrappers | `CycleObstructions.lean` |
+| Consumer | named `no_cycle_itinerary_*` / isolated CycleMin wrappers | `CycleObstructions.lean` |
 | Consumer | cycle finance inequality (Paper A Theorem 4.4); leftover \(84\) companion | `CycleFinance.lean` |
 | Consumer | height leftover (`L=84` with \(m\ge 3\), or \(L\ge 85\)) | `CycleHeightFinance.lean` |
 | Consumer | `ReturnBelow` | `Residuals.lean` |

@@ -9,7 +9,7 @@ anti-clustering plan. The closed correlation branch already found
 same-pair \(\eta\ge 0.9\). This phase asks only whether a sharper
 map \(u\ge p\Rightarrow u(T(x))\le f(p)<1\) exists at the
 thresholds that could move \(\mathcal E_{\mathrm{run}}(10^6)\).
-Not a halt theorem, not a leftover-word census, not a new finance
+Not a halt theorem, not a leftover-itinerary census, not a new finance
 identity, not Fourier, and not a residue search.
 
 ## Problem

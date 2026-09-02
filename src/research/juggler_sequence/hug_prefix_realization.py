@@ -16,7 +16,7 @@ obstruction.
 
 Not a reopen of the closed formal-realized-gap branch (generic
 prefix-NC fills), the closed mechanical-lift branch (inverse cycle
-lifts of hug words), or the refuted ambient-discrepancy transfer.
+lifts of hug itineraries), or the refuted ambient-discrepancy transfer.
 A hug-matching prefix keeps the exponent walk in the unit window
 u in [0, 1 + log2(3/2)), so states stay below n^3 and the scan is
 exact integer arithmetic throughout.
@@ -33,7 +33,7 @@ from research.juggler_sequence.above_anchor_walk import (
     HAVE_GMPY2,
     hug_odds_prefix,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 if HAVE_GMPY2:
     from gmpy2 import isqrt as _gmp_isqrt

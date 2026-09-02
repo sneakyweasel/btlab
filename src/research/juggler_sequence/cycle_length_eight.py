@@ -20,7 +20,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_length_eight.json"
@@ -41,22 +41,22 @@ EXPECTED_WORDS = (
 )
 
 LEAN_THEOREMS = (
-    "no_cycle_word_ooooeooe",
-    "no_cycle_word_oooeoooe",
-    "no_cycle_word_ooeooooe",
-    "no_cycle_word_ooooooee",
-    "no_cycle_word_oooooeeoe",
-    "no_cycle_word_len_eight_ends_even",
-    "no_cycle_word_length_le_eight",
-    "no_cycle_word_length_le_seven",
-    "no_cycle_word_two_even_ee",
+    "no_cycle_itinerary_ooooeooe",
+    "no_cycle_itinerary_oooeoooe",
+    "no_cycle_itinerary_ooeooooe",
+    "no_cycle_itinerary_ooooooee",
+    "no_cycle_itinerary_oooooeeoe",
+    "no_cycle_itinerary_len_eight_ends_even",
+    "no_cycle_itinerary_length_le_eight",
+    "no_cycle_itinerary_length_le_seven",
+    "no_cycle_itinerary_two_even_ee",
     "no_cycle_odd_run_append_even",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eight",
-    "no_cycle_word_length_nine",
-    "no_cycle_word_length_le_nine",
+    "no_cycle_itinerary_length_eight",
+    "no_cycle_itinerary_length_nine",
+    "no_cycle_itinerary_length_le_nine",
     "no_juggler_cycle",
     "juggler_reaches_one",
 )
@@ -73,9 +73,9 @@ def lean_api_present() -> dict[str, bool]:
         **named,
         **forbidden,
         "paper_a_length_eight_open": "Length eight is open" in census7,
-        "laboratory_assembler_present": "theorem no_cycle_word_length_le_eight"
+        "laboratory_assembler_present": "theorem no_cycle_itinerary_length_le_eight"
         in census8,
-        "paper_a_has_no_le_eight": "theorem no_cycle_word_length_le_eight"
+        "paper_a_has_no_le_eight": "theorem no_cycle_itinerary_length_le_eight"
         not in census7,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in combined,
     }
@@ -99,15 +99,15 @@ def run_probe() -> dict[str, Any]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["no_cycle_word_length_le_eight"]
-        and lean["no_cycle_word_ooooeooe"]
-        and lean["no_cycle_word_oooeoooe"]
-        and lean["no_cycle_word_ooeooooe"]
+        and lean["no_cycle_itinerary_length_le_eight"]
+        and lean["no_cycle_itinerary_ooooeooe"]
+        and lean["no_cycle_itinerary_oooeoooe"]
+        and lean["no_cycle_itinerary_ooeooooe"]
         and lean["laboratory_assembler_present"]
         and lean["paper_a_length_eight_open"]
         and lean["paper_a_has_no_le_eight"]
-        and lean["no_cycle_word_length_eight"]
-        and lean["no_cycle_word_length_nine"]
+        and lean["no_cycle_itinerary_length_eight"]
+        and lean["no_cycle_itinerary_length_nine"]
         and lean["no_juggler_cycle"]
         and lean["no_all_cycles_impossible"]
     )
@@ -123,7 +123,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     return {
         "classification": CLASS_GREEN,
         "reason": (
-            "no_cycle_word_length_le_eight assembles the named length-8 "
+            "no_cycle_itinerary_length_le_eight assembles the named length-8 "
             "filters; Paper A census file still stops at seven"
         ),
     }
@@ -180,10 +180,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "## Lean",
             "",
-            f"- `no_cycle_word_length_le_eight`: `{lean['no_cycle_word_length_le_eight']}`",
-            f"- `no_cycle_word_ooooeooe`: `{lean['no_cycle_word_ooooeooe']}`",
+            f"- `no_cycle_itinerary_length_le_eight`: `{lean['no_cycle_itinerary_length_le_eight']}`",
+            f"- `no_cycle_itinerary_ooooeooe`: `{lean['no_cycle_itinerary_ooooeooe']}`",
             f"- paper A length eight open: `{lean['paper_a_length_eight_open']}`",
-            f"- no `no_cycle_word_length_eight`: `{lean['no_cycle_word_length_eight']}`",
+            f"- no `no_cycle_itinerary_length_eight`: `{lean['no_cycle_itinerary_length_eight']}`",
             "",
             "## Decision",
             "",

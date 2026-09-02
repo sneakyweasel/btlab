@@ -35,8 +35,8 @@ from research.juggler_sequence.cycle_prefix_feasibility import (
     extremal_word,
     prefix_report,
 )
-from research.juggler_sequence.floor_cells import odd_cell_integers
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.floor_preimages import odd_preimage_integers
+from research.juggler_sequence.power_itineraries import floor_power
 
 ALMOST_DIR = DATA_DIR / "almost_search"
 PHASE1_L = 25781
@@ -100,7 +100,7 @@ def odd_preimage(y: int) -> int | None:
 
     if y < 0:
         return None
-    for candidate in odd_cell_integers(y):
+    for candidate in odd_preimage_integers(y):
         if candidate % 2 == 1:
             return candidate
     return None

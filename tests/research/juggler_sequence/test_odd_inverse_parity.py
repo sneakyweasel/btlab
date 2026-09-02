@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from research.juggler_sequence.empty_odd_cell import odd_cell_kind
+from research.juggler_sequence.empty_odd_preimage import odd_preimage_kind
 from research.juggler_sequence.odd_inverse_parity import (
     CLASS_REPARAM,
     EXISTING_LEAN,
@@ -19,7 +19,7 @@ from research.juggler_sequence.odd_inverse_parity import (
     named_hit_row,
     offset_hunt,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 CONJECTURE = Path("conjectures/refuted/juggler_odd_inverse_parity.json")
 DOSSIER = Path("docs/problems/juggler_odd_inverse_parity.md")
@@ -49,7 +49,7 @@ def test_named_hits_are_type2_self_preimages() -> None:
         assert row["kind"] == 2
         assert row["self_preimage"] is True
         assert inverse_candidate(image) == x
-        assert odd_cell_kind(image) == 2
+        assert odd_preimage_kind(image) == 2
         assert floor_power(x) == image
 
 
@@ -124,4 +124,4 @@ def test_conjecture_and_dossier() -> None:
     assert "CLOSE" in dossier
     assert "J-odd-pred-empty-cube" in dossier
     assert "Paper A" in dossier
-    assert "odd_cell_unique" in dossier
+    assert "odd_preimage_unique" in dossier

@@ -71,7 +71,7 @@ H1–H3 and H5 fail. H4 (final E, n<=y<n^2) is floorPower_odd_ge plus isqrt. The
 ## G. Same word / same (k,o) / same run
 
 - multi-start words: `49`
-- margin varies on a word: `{'word': 'OOEE', 'n_starts': 255, 'min_M': 3, 'max_M': 3878}`
+- margin varies on an itinerary: `{'word': 'OOEE', 'n_starts': 255, 'min_M': 3, 'max_M': 3878}`
 - (k,o) groups that split M: `28`
 - strongest (k,o) split: `{'k': 15, 'o': 9, 'min_M': 29, 'max_M': 3691, 'n_words': 21}`
 - run-signature groups that split M: `51`
@@ -117,7 +117,7 @@ H1–H3 and H5 fail. H4 (final E, n<=y<n^2) is floorPower_odd_ge plus isqrt. The
 - first-return maximality on observed returns: **COMPUTATIONALLY VERIFIED**
 - even starts are the single letter `E`: **COMPUTATIONALLY VERIFIED**
 - odd steps cannot descend: **EXACT — LEAN VERIFIED** (`floorPower_odd_ge`)
-- formally contracting words satisfy `T_w(n)<n` for `n>1`: **EXACT — LEAN VERIFIED** (`power_bound_contracts`)
+- formally contracting itineraries satisfy `T_w(n)<n` for `n>1`: **EXACT — LEAN VERIFIED** (`power_bound_contracts`)
 - observed first-return words are the first formally contracting prefix: **COMPUTATIONALLY VERIFIED** (parked `EXCURSION_ENVELOPE_GREEN`)
 - H1 margin law stronger than `M>=1`: **REFUTED** (`OOOEE` at 3)
 - H2 peak law stronger than the envelope: **REFUTED** (`n=2183`, 19694-bit peak)

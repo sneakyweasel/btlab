@@ -12,7 +12,7 @@ an odd run of length \(k\) the state is \(\asymp n^{(3/2)^k}\), so
 most of the finance sum is far smaller than the \(T(n)\) bound.
 Adversarial circuit-partition without a height law is a
 reparameterization of `cycleMin_finance`; only a stronger height law
-is new. Not a halt theorem, not a leftover-word census, not a floor
+is new. Not a halt theorem, not a leftover-itinerary census, not a floor
 raise, and not a claim that every positive integer reaches 1.
 
 ## Problem
@@ -29,7 +29,7 @@ at the Lean residual floor \(257\), in particular \(L=38\) at small
 ## Exact statement
 
 On Juggler, every odd step with \(n\ge 3\) strictly increases and
-every even step strictly decreases. An \(m\)-cycle is a cycle word
+every even step strictly decreases. An \(m\)-cycle is a cycle itinerary
 with exactly \(m\) blocks \(O^{k_i}E^{l_i}\). Write
 \(\theta=1-2^L/3^o\) and \(T(x)=\lfloor x^{3/2}\rfloor\) on odds.
 
@@ -74,9 +74,9 @@ cycle, any \(m\le 14\). At \(n=257\), \(t=T(257)=4120\), the worst
 case \(m=14\) has RHS \(=0.01215<\theta=0.02674\). Global
 `cycleMin_finance` does not exclude \(L=38\)
 (\(n_{\max}\approx 299\)). The Lean leftover
-`cycle_word_length_thirty_eight_or_ge_thirty_nine` is therefore not
+`cycle_itinerary_length_thirty_eight_or_ge_thirty_nine` is therefore not
 sharp: \(38\) dies by extrema finance at the residual floor, not by
-a height law and not by a leftover-word census.
+a height law and not by a leftover-itinerary census.
 
 **Length 84 at small \(m\) (EXACT — HUMAN PROOF).**
 Joint-minima at \(n=257\) misses every \(m\): already \(m=1\) has
@@ -99,7 +99,7 @@ No cycle of any length — not claimed.
   [juggler_cycle_finance.md](juggler_cycle_finance.md)); Lean
   leftover is period \(84\) with \(m\ge 3\) or \(\ge 85\) at
   residual floor \(261\)
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Joint-minima finance — **EXACT — HUMAN PROOF**
   ([juggler_cycle_m_finance.md](juggler_cycle_m_finance.md));
   tabulated there at floor \(53\), not at \(257\)
@@ -161,7 +161,7 @@ It is not required.
 - Laboratory leftover period \(84\) with \(m\ge 3\), or
   \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Adversarial circuit-partition — **REPARAMETERIZATION** of
   `cycleMin_finance`
 - Peak finance, extremal composition — not reopened
@@ -200,7 +200,7 @@ does it for every \(m\).
 `CycleHeightFinance.lean` sits on `CycleFinance.lean` and packages
 the inv-sum height cap at floor \(261\): length \(84\) with at
 most two odd-runs is impossible, leftover
-`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`.
+`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`.
 Not added: `CyclePositionFinance.lean`, `PositionFinance.lean`,
 `cycle_position_finance`, `cycle_height_finance`,
 `OddRunHeight`. The full \(6/5\) greedy packing stays
@@ -255,7 +255,7 @@ Classification **POSITION_FINANCE_GREEN**. Regenerate with
 ## Open questions
 
 The Lean leftover is
-`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`.
+`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`.
 Excluding length \(84\) at \(m\ge 3\) at floor \(261\) is
 **REFUTED**
 ([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md)).

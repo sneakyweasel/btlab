@@ -3,13 +3,13 @@
 Status: **OOO_SCALE_THRESHOLD_ONLY**
 
 Standalone application phase. Not a Research Engine experiment
-and not a termination theorem. Two leftover words, not a census.
+and not a termination theorem. Two leftover itineraries, not a census.
 
 ## Branch budget
 
 ```text
 Mathematical target     prefix-OOO extra scale or OOOOEE rotation
-                        excludes CycleWord on OOOEOE and OOOOEE
+                        excludes CycleItinerary on OOOEOE and OOOOEE
 Novelty hypothesis      T^3 >= (n+1)^2 plus the even cell of y
                         forces T(y) >= (n+1)^2; OOOOEE dies by rotation
 Falsifier               y=n is the OOO threshold; extra scale is
@@ -36,7 +36,7 @@ A cycle minimum cannot end in `O` because `x >= n` and
 
 ## Identities
 
-- leftover words: `['OOOEOE', 'OOOOEE']`
+- leftover itineraries: `['OOOEOE', 'OOOOEE']`
 - y=n incompatible: `True`
 - y=n is the OOO threshold: `True`
 - succ_sq_le_cube on 3,5,7,9: `True`
@@ -75,8 +75,8 @@ A cycle minimum cannot end in `O` because `x >= n` and
 - orbit-min hypothesis unused: `True`
 - PowerBoundEq not used as cycle attack: `True`
 - O-terminating not claimed: `True`
-- no OOOEOE CycleWord theorem: `True`
-- no OOOOEE CycleWord theorem: `True`
+- no OOOEOE CycleItinerary theorem: `True`
+- no OOOOEE CycleItinerary theorem: `True`
 - no all-cycles-impossible theorem: `True`
 - no cycle engine: `True`
 - no global halt theorem: `True`
@@ -108,6 +108,6 @@ A cycle minimum cannot end in `O` because `x >= n` and
 
 y=n is the OOO threshold plus the even cell; CycleMin cannot end in O by the last-odd cell plus succ_sq_le_cube; LowerPowerBound extra scale is not uniform from n=3; OOOOEE reduces to CycleMin OOOOEE and is not excluded.
 
-This is not a halt result. Neither leftover CycleWord is excluded.
-Cycles ending in O as CycleWord are not treated. Length 7 was not opened.
+This is not a halt result. Neither leftover CycleItinerary is excluded.
+Cycles ending in O as CycleItinerary are not treated. Length 7 was not opened.
 

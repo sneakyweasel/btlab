@@ -32,7 +32,7 @@ from research.juggler_sequence.minimal_anchor_closure import (
     trajectory_until_drop,
     word_of_path,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_certificate_transitions.json"
@@ -427,7 +427,7 @@ def run_probe(*, n_max: int = TEST_N_MAX) -> dict[str, Any]:
         "every_descent_is_fp": True,
         "git": git_commit(),
         "letter_chain": False,
-        "word_language_reopen": False,
+        "itinerary_language_reopen": False,
         "halt_theorem": False,
         "atlas_language_tag": False,
         "certificate_automaton_lean": False,
@@ -450,7 +450,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": all(name not in paper for name in FORBIDDEN_NEW_API),
         "no_atlas_lang": "LANG_CERT_TRANS" not in combined
         and "LANG_CERT_TRANS" not in LANGUAGE_IDS,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -473,7 +473,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "reason": (
                 "every first descent is already FiniteProgress via "
                 "finiteProgress_of_imageLt; the first certificate word "
-                "is the Q-itinerary; R->R is a strictly decreasing "
+                "is the Q-word; R->R is a strictly decreasing "
                 "landing quotient; the layer is a 4-letter label on T<n"
             ),
         }
@@ -551,7 +551,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         f"`{inner['first_counts']}`",
         "",
-        f"Q-itinerary identity on first words: `{inner['q_identity_all']}`.",
+        f"Q-word identity on first words: `{inner['q_identity_all']}`.",
         "",
         "## Transition support",
         "",
@@ -628,7 +628,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "## Strongest falsifiers",
             "",
-            "- C: first certificate word is the Q-itinerary.",
+            "- C: first certificate word is the Q-word.",
             "- every descent is FiniteProgress via `finiteProgress_of_imageLt`.",
             "- D: all 16 edges occur; residual concatenates freely at this alphabet.",
             "- A does not arise: landings strictly decrease.",

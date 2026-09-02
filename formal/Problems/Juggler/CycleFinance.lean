@@ -7,7 +7,7 @@ namespace Problems.Juggler
 /-!
 # Cycle finance inequality (Paper A Theorem 4.4 / Corollary 4.4c)
 
-A cycle word is formally expanding (`2^L < 3^o`) yet returns
+A cycle itinerary is formally expanding (`2^L < 3^o`) yet returns
 exactly, so the multiplicative surplus must be financed by the
 floor defects, which are relatively `O(1/x)` in logarithms. The
 whole-cycle log unroll gives, for any `CycleMin` start `n`,
@@ -110,7 +110,7 @@ theorem cycleMin_log_envelope {n : ℕ} {w : List Branch}
     have htake : w.take (k + 1) = w.take k ++ [w[k]] := by
       rw [List.take_add_one, List.getElem?_eq_getElem hk]
       rfl
-    have hx2 : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h.1 hk
+    have hx2 : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn h.1 hk
     have hiter : floorPower^[k + 1] n = floorPower (floorPower^[k] n) :=
       Function.iterate_succ_apply' floorPower k n
     have hxk1 : n ≤ floorPower^[k + 1] n := cycleMin_iterate_ge h (k + 1) hk1
@@ -234,7 +234,7 @@ theorem cycleMin_iterate_ge_two {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (h : CycleMin n w) (hk : k ≤ w.length) :
     2 ≤ floorPower^[k] n := by
   rcases lt_or_eq_of_le hk with hlt | rfl
-  · exact cycleWord_iterate_ge_two hn h.1 hlt
+  · exact cycleItinerary_iterate_ge_two hn h.1 hlt
   · rw [cycle_iterate_period h.1]
     exact hn
 

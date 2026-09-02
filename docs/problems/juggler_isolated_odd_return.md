@@ -25,7 +25,7 @@ and
 \[
 R_{b,c}(n)=\{y\ge n:T_{O^bEO^cE}(y)=n\}.
 \]
-A word \(u\) is **isolated-odd** when every maximal odd run has
+An itinerary \(u\) is **isolated-odd** when every maximal odd run has
 length \(1\) (equivalently, \(u\) contains no `OO`). Write
 \(P_{\mathrm{iso}}(n)\) for the landings \(T_u(n)\) of isolated-odd
 words that remain a `CycleMin` prefix at odd \(n\ge 12\). The
@@ -44,9 +44,9 @@ It is not a four-even cell and not a halt theorem.
   **EXACT — LEAN VERIFIED** (`oe_block_contracts`).
 - `OE` envelope \(T_{OE}(x)^4\le x^3\) —
   **EXACT — LEAN VERIFIED** (`oe_block_scale`).
-- No cycle word of length at most six —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_six`).
-- `CycleMin` is `CycleWord` plus a path minimum —
+- No cycle itinerary of length at most six —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_length_le_six`).
+- `CycleMin` is `CycleItinerary` plus a path minimum —
   **EXACT — LEAN VERIFIED**.
 - Exact return sets \(R_{b,c}(n)\) —
   **PARK** (`J-cyclemin-short-return-census`). The `EE` fibre
@@ -106,9 +106,9 @@ It is not required.
   **REFUTED**. \(R_{0,0}\) is even; CycleMin \(n\) is odd
 - \(P_{\mathrm{iso}}(n)\cap R_{b,c}(n)=\varnothing\) —
   **REPARAMETERIZATION**. Empty or single-`O` plus a short tail
-  is a `CycleWord` of length at most 6
+  is a `CycleItinerary` of length at most 6
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -138,13 +138,13 @@ The stronger claims that remain false or unproved:
 
 - “\(R_{0,0}(n)\) is empty” — false; it is not the question.
 - “every short-cluster CycleMin is impossible” — not claimed.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 None. Existing `Scale.lean` and `SmallCycleCensus.lean` lemmas
 are cited, not rewritten. No `no_cycleMin_prefix_short`. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`. No
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`. No
 `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -155,7 +155,7 @@ An isolated-odd word that contains `OE` contracts at the first
 even step (`oe_block_contracts`). CycleMin therefore forbids
 every isolated-odd prefix except empty and `O`. Those two
 landings are \(\{n,T_O(n)\}\). Composing either with a short
-tail \(O^bEO^cE\) produces a `CycleWord` of length at most 6,
+tail \(O^bEO^cE\) produces a `CycleItinerary` of length at most 6,
 already excluded.
 
 The Attack-7 dichotomy therefore collapses on this class:
@@ -172,15 +172,15 @@ prefix already contains `OO`. The isolated-odd-after-first-E
 line with \(a_0\ge 2\) is already parked
 ([juggler_isolated_odd_fibre.md](juggler_isolated_odd_fibre.md)).
 Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not reopen four-even cells,
+`no_cycle_itinerary_length_eleven`. Do not reopen four-even cells,
 the interval seal, or the defect rewrite.
 
 ## Decision
 
 **CLOSE**. The intersection \(P_{\mathrm{iso}}\cap R_{b,c}\) is
 empty, but only as a reparameterization of `oe_block_contracts`
-and `no_cycle_word_length_le_six`. There is no new obstruction.
-Do not claim that every cycle word is impossible.
+and `no_cycle_itinerary_length_le_six`. There is no new obstruction.
+Do not claim that every cycle itinerary is impossible.
 
 Best next question: the \(a_0\ge 2\) isolated-odd-after-first-E
 line is already **PARK**

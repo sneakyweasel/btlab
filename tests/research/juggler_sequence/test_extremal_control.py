@@ -19,12 +19,12 @@ from research.juggler_sequence.extremal_control import (
     corridor_holds,
     dp_matches_closed_form,
     first_return_odd_count,
-    follows_word,
+    follows_itinerary,
     is_ideal_first_return,
     ld_balanced_word,
     word_operations,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_landing_corridor_is_integer():
@@ -72,7 +72,7 @@ def test_canonical_realizers():
     assert nine["word"] == "OOEOE"
     assert nine["is_ideal_first_return_word"]
     assert not nine["is_bang_bang"]
-    assert follows_word(271, "OOOOEEE")
+    assert follows_itinerary(271, "OOOOEEE")
     assert analyze_trajectory(271)["is_bang_bang"]
 
 

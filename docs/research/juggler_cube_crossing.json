@@ -795,7 +795,7 @@
     "cube_lift_even_reset": true,
     "cube_lift_odd_ge_fourth": true,
     "cube_lift_odd_continues": true,
-    "odd_cell_unique": true,
+    "odd_preimage_unique": true,
     "EnvelopeState": true,
     "envelope_lt_pow": true,
     "even_below_anchor_pow": true,
@@ -814,7 +814,7 @@
   },
   "decision": {
     "classification": "CUBE_CROSSING_CLOSED",
-    "reason": "delta parity is generic odd-odd; unique preimage is odd_cell_unique; F is not defined on a stable class and moves both ways; even-return cannot apply after an odd lift because y already left the cube band"
+    "reason": "delta parity is generic odd-odd; unique preimage is odd_preimage_unique; F is not defined on a stable class and moves both ways; even-return cannot apply after an odd lift because y already left the cube band"
   },
   "search_method": "cube-odd landings on 37/69/89/365/501/1517/6187; defect, F, return cell; no inverse census"
 }

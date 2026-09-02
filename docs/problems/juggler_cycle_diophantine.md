@@ -45,7 +45,7 @@ Parity already forces \(\delta>0\), \(\varepsilon>0\), and both odd.
 The residual class \(R=\{1,\ldots,11\}\) is `ReachesOne`. A
 nontrivial cycle therefore cannot visit \(R\), so \(p\ge 13\).
 
-This says nothing about totality. Do not prove that every cycle word
+This says nothing about totality. Do not prove that every cycle itinerary
 is impossible. Do not introduce remainder dynamics, a Mordell solver,
 or a cycle engine.
 
@@ -85,7 +85,7 @@ Promotion criterion     A cycle-forced congruence or residual restriction
                         that still-allowed scale inequalities do not imply.
 Stop criterion          DIOPHANTINE_REPACKAGING: composition = envelope
                         slack + existing parity. No RemainderDynamics,
-                        no Mordell solver, no word census, no halt.
+                        no Mordell solver, no itinerary census, no halt.
 ```
 
 ## Balanced-ternary formulation
@@ -118,7 +118,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**, a named corollary of
   `reachesOne_of_lt_twelve` plus cyclic return
 - a modular restriction stronger than odd/odd — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -154,7 +154,7 @@ cycle-only theorem.
 
 `formal/Problems/Engine/CycleDiophantine.lean`, imported from
 `formal/Problems.lean`. Wrappers and the sequential identity only.
-`CycleWord.lean` and `FloorPower.lean` are not rewritten.
+`CycleItinerary.lean` and `FloorPower.lean` are not rewritten.
 
 Added:
 
@@ -164,7 +164,7 @@ Added:
 - `peak_diophantine_compose` / `peak_diophantine_slack`
 - `cycle_peak_diophantine` / `cycle_peak_diophantine_slack`
 - `cycle_top_landing_ge_thirteen`
-- `cycleWord_not_reachesOne` / `cycleWord_iterate_not_lt_twelve`
+- `cycleItinerary_not_reachesOne` / `cycleItinerary_iterate_not_lt_twelve`
   (cycle facts; live in `CycleCore.lean`)
 
 Not added: a modular lemma beyond odd/odd, `RemainderDynamics`,

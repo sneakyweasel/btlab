@@ -22,7 +22,7 @@ from research.juggler_sequence.atlas.schema import (
 )
 from research.juggler_sequence.atlas.storage import DEFAULT_DATA_DIR, connect
 from research.juggler_sequence.normalized_defect import odd_even_word
-from research.juggler_sequence.word_language import (
+from research.juggler_sequence.itinerary_language import (
     LATE_PE_FACTORS,
     collect_slices,
     factors,
@@ -178,7 +178,7 @@ def science_report(
         "claims": {
             "realized": CLAIM_OBSERVED,
             "missing": CLAIM_NOT_OBSERVED,
-            "closed_word_language": CLAIM_CLOSED,
+            "closed_itinerary_language": CLAIM_CLOSED,
             "pe_definition": PE_CERTIFIED,
         },
     }
@@ -195,7 +195,7 @@ def write_science_markdown(report: dict[str, Any], path: Path) -> None:
         f"- k_max: {report['k_max']}",
         f"- n_max: {report['n_max']}",
         f"- PE definition: `{PE_CERTIFIED}`",
-        f"- realized words: {CLAIM_OBSERVED}",
+        f"- realized itineraries: {CLAIM_OBSERVED}",
         f"- missing words: {CLAIM_NOT_OBSERVED}",
         f"- word-language branch: {CLAIM_CLOSED} (`JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`)",
         "",

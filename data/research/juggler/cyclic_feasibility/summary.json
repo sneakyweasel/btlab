@@ -1,13 +1,13 @@
 {
   "classification": "CYCLIC_FEASIBILITY_CLOSED",
-  "reason": "cheap cyclic filters are the existing CycleWord layer (envelope, odd_word_expands, even-count <= 3, length >= 11); interval and phi-product never fire; the residue is the already-studied e>=4 leftover family",
+  "reason": "cheap cyclic filters are the existing CycleItinerary layer (envelope, odd_itinerary_expands, even-count <= 3, length >= 11); interval and phi-product never fire; the residue is the already-studied e>=4 leftover family",
   "summary": {
     "by_status": {
       "INFEASIBLE": 69
     },
     "by_filter": {
       "power_bound_contracts": 55,
-      "no_cycle_word_even_count_le_three": 14
+      "no_cycle_itinerary_even_count_le_three": 14
     },
     "known_dead": 69,
     "new_joint_hits": 0,
@@ -23,5 +23,5 @@
   "k_max": 8,
   "n_max": 160,
   "claim": "NOT OBSERVED WITHIN SEARCH BOUND",
-  "git": "dd72754c41d2240a8ed44f45c994cb06ccda3e8d"
+  "git": "b8370cd5295d4ad348cef9fb15b0a8f38d07ce70"
 }

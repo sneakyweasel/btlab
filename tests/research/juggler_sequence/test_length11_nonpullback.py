@@ -19,7 +19,7 @@ from research.juggler_sequence.length11_nonpullback import (
     render_markdown,
     rotate,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 _PAYLOAD = None
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.even_scale_barrier import (
     CLASS_GREEN,
     LEAN_THEOREMS,
@@ -16,7 +16,7 @@ from research.juggler_sequence.even_scale_barrier import (
     run_probe,
     scale_holds,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_even_run_power_and_scale():
@@ -29,7 +29,7 @@ def test_even_run_power_and_scale():
     assert 2 ** 4 <= 36
     assert classify_block(13, "OE") == "DESCENT"
     assert image_after(13, "OE") == 6
-    assert follows_word(13, "OE")
+    assert follows_itinerary(13, "OE")
 
 
 def test_oe_descent_and_even_above_start():

@@ -66,7 +66,7 @@ Candidate list frozen at three. reverse_gap is not reopened.
 ## Candidate 3: `two_step_length_plus_one` (survived)
 
 - Statement: bt_length(T^2(x)) <= bt_length(x) + 1 whenever T^2 is defined
-- Motivation: Reverse-plus-add is a digit-wise sum of a word and its reverse, so one step can create at most one extra trit. The strongest two-step length law that is not the trivial iterated bound +2 is that two steps still create at most one trit.
+- Motivation: Reverse-plus-add is a digit-wise sum of an itinerary and its reverse, so one step can create at most one extra trit. The strongest two-step length law that is not the trivial iterated bound +2 is that two steps still create at most one trit.
 - Domain: integers with a defined two-step successor
 - Expected yield: an exact length obstruction from reverse-add carry
 - Cheapest falsifier: the first frozen seed whose two-step canonical length grows by 2 or more

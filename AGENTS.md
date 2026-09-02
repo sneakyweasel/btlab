@@ -18,7 +18,7 @@ bt.*                        problem-independent BT mathematics
 
 ## Juggler reading path
 
-1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (word obstructions + finance + the §5 walk-charge envelope; lab extract in [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md))
+1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (itinerary obstructions + finance + the §5 walk-charge envelope; lab extract in [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md))
 2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers
 3. [docs/theory/juggler_flight_note.md](docs/theory/juggler_flight_note.md) — laboratory extract: descent-free flights (envelope, dichotomy, anchor-period, divergent structure, shared lattice). Not a paper; the flight program is descriptively terminal.
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
@@ -43,7 +43,7 @@ for external review.
  \(3.48\cdot 10^8\) — Diophantine, not computational).
  Since the 1 Sep 2026 consolidation Paper A prints the
  \(26254995\) floor: parity cutoff \(50507\) (§5.1), then the
- walk-charge envelope — transport, hug adversary, word identity,
+ walk-charge envelope — transport, hug adversary, itinerary identity,
  Denjoy–Koksma over certified Ostrowski blocks, window theorem on
  \([50508,301994)\) — gives period \(\ge 176251\) (§5.2–5.7,
  `J-cyclemin-walk-charge-instance`), and Corollary 5.10 prints the
@@ -61,7 +61,7 @@ for external review.
  (`rotationAverage_gap`, quadratic-majorant FTC, no quadrature),
  the Thm 4.6 certified identity
  (`cycleMin_defect_finance`), and the Thm 5.9 kill template
- (`cycleMin_hug_kill_criterion`) are Lean (`WalkChargeWords.lean`,
+ (`cycleMin_hug_kill_criterion`) are Lean (`WalkChargeItineraries.lean`,
  `OstrowskiSandwich.lean`, `OstrowskiNumeration.lean`,
  `RotationAverage.lean`, `WalkTransport.lean`, `WalkChargeMax.lean`,
  `DefectFinance.lean`); of the §5 envelope chain only the
@@ -157,7 +157,7 @@ for external review.
   \(\lambda=0\), or further literature-name audits. Not
   claimed.
 - **Local attacks are closed.** Fibres are parity + interval only
-  (`even_cell_iff`, `odd_cell_unique`, `cell_same_next_state`): no finite
+  (`even_preimage_iff`, `odd_preimage_unique`, `preimage_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,
   ancestry, provenance, collision-pair, word-order, error-transport, and
   cycle-lift drops all reduce to Collision Factorization (first meeting iff
@@ -173,7 +173,7 @@ for external review.
 | Probes / censuses | `src/research/juggler_sequence/<branch>.py` |
 | Tests (fast suite) | `tests/research/juggler_sequence/test_<branch>.py` |
 | Data artifacts | `data/research/juggler/.../summary.json` |
-| Lean (words, cells, CycleMin, finance, lattice) | `formal/Problems/Juggler/` |
+| Lean (itineraries, cells, CycleMin, finance, lattice) | `formal/Problems/Juggler/` (`WalkChargeItineraries.lean`) |
 | Branch dossier | `docs/problems/juggler_<id>.md` (all TEMPLATE headings; enforced by `tests/integration/test_problem_dossiers.py`) |
 | Conjecture record | `conjectures/{active,refuted,proved,archived}/<id>.json` |
 | Journal entry | `docs/research_journal.md` (consolidations allowed; no auto-milestones) |

@@ -70,7 +70,7 @@ exact EE closure is y = n^4 + 2 eps n^2 + eps^2 + eta with ordinary unrestricted
 - `localDefectOdd_lt_succ`: `True`
 - `cycle_last_even_ne_odd_sq`: `True`
 - `odd_remainder_even`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 
 ## Anti-overclaim
 

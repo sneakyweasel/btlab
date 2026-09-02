@@ -22,7 +22,7 @@ from research.juggler_sequence.first_internal_oo import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_decomposition_and_prefix():
@@ -130,5 +130,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "first internal" in dossier.lower() or "first-OO" in dossier
     assert "terminal" in dossier.lower()
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

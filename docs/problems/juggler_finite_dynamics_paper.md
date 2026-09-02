@@ -33,9 +33,9 @@ pointwise-progress boundary?
 The paper-level target is not universal termination. It is the qualified
 math note:
 
-> Realized finite words obey a power envelope. Inverse cells and a
+> Realized finite itineraries obey a power envelope. Inverse cells and a
 > classification of even-count \(\le 3\) exclude every such cycle
-> word (Theorem C: period at least eleven). A financing inequality
+> itinerary (Theorem C: period at least eleven). A financing inequality
 > at a cycle minimum, plus the verified descent floor \(10^6\),
 > excludes every period at most \(25780\) (Theorem A) and leaves
 > only an explicit admissible set of \(141\) lengths through
@@ -112,11 +112,11 @@ added to `bt.*`.
 
 - finite itinerary semantics and word images —
   **EXACT — LEAN VERIFIED**;
-- finite-word power envelope and exponent-gap contraction —
+- finite-itinerary power envelope and exponent-gap contraction —
   **EXACT — LEAN VERIFIED**;
 - exact global defect, vanishing, and two-term composition —
   **EXACT — LEAN VERIFIED**;
-- fixed-word monotonicity —
+- fixed-itinerary monotonicity —
   **EXACT — LEAN VERIFIED**;
 - even/odd inverse-cell asymmetry —
   **EXACT — LEAN VERIFIED**;
@@ -126,15 +126,15 @@ added to `bt.*`.
   **EXACT — LEAN VERIFIED** (recorded in the leftover-cycles branch);
 - leftover length-seven orientations \(OOOOEOE\) and \(OOOOOEE\) —
   **EXACT — LEAN VERIFIED** (ledger `J-leftover-length-seven-orientations`);
-- small-cycle census: no cycle word of length at most seven —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_six`,
-  `no_cycle_word_length_le_seven`, ledgers `J-small-cycle-census` and
+- small-cycle census: no cycle itinerary of length at most seven —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_length_le_six`,
+  `no_cycle_itinerary_length_le_seven`, ledgers `J-small-cycle-census` and
   `J-small-cycle-census-seven`; strengthened by Theorem 3.22);
-- even-count assembly: no cycle word with fewer than four evens,
+- even-count assembly: no cycle itinerary with fewer than four evens,
   so the period is at least eleven —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 3.22 / Corollary 3.23;
-  `no_cycle_word_even_count_le_three`,
-  `cycle_word_length_ge_eleven`; ledger `J-even-count-le-three`);
+  `no_cycle_itinerary_even_count_le_three`,
+  `cycle_itinerary_length_ge_eleven`; ledger `J-even-count-le-three`);
 - two-even leftover families \(O^{k-2}EE\) and \(O^{k-3}EOE\) —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 3.12; ledgers
   `J-two-even-leftover-ee`, `J-two-even-leftover-eoe`);
@@ -144,7 +144,7 @@ added to `bt.*`.
 - bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\),
   \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) —
   **EXACT — LEAN VERIFIED** (Paper A Theorems 3.14--3.20);
-- gapped leftovers as cycle words —
+- gapped leftovers as cycle itineraries —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 3.21);
 - finance inequality at a cycle minimum —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 4.4; `cycleMin_finance`;
@@ -226,7 +226,7 @@ These refute the named candidate laws, not termination.
 
 The census consolidation added
 `formal/Problems/Juggler/SmallCycleCensus.lean`
-(`no_cycle_word_length_le_six`, later `no_cycle_word_length_le_seven`).
+(`no_cycle_itinerary_length_le_six`, later `no_cycle_itinerary_length_le_seven`).
 The length-seven leftovers reuse `LeftoverEval.lean` / `LeftoverCycles.lean`
 with a `Fin 14` table; the census assembly itself adds no
 `native_decide` table. The discrepancy consolidation added
@@ -260,7 +260,7 @@ standalone checkability. The stack now consists of:
   census (Theorems 3.6 and 3.8), leftover families
   (Theorems 3.12--3.21), even-count assembly (Theorem 3.22:
   period at least eleven), the excursion necklace as the
-  geometry of a minimum-based word (Section 4 opening; not a
+  geometry of a minimum-based itinerary (Section 4 opening; not a
   new theorem), finance (Theorems 4.4--4.8,
   Proposition 4.9), short
   certificates as a remark. The complement of those

@@ -647,10 +647,10 @@
     "even_iter_lt_succ_pow": true,
     "cycleMin_even_ge_sq": true,
     "cycleMin_not_odd_even": true,
-    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five": true,
+    "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five": true,
     "has_juggler_reaches_one": false,
-    "has_no_cycle_word_any_length": false,
-    "has_no_cycle_word_length_eighty_four": false,
+    "has_no_cycle_itinerary_any_length": false,
+    "has_no_cycle_itinerary_length_eighty_four": false,
     "has_cycle_ceiling_finance": false,
     "has_ceiling_finance": false,
     "has_api_CycleCeilingFinance": false,
@@ -663,7 +663,7 @@
   },
   "decision": {
     "classification": "CEILING_FINANCE_CLOSED",
-    "reason": "the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a corollary of even_iter_lt_succ_pow, but the adversarial peak run k=24 lands at p=304. Proved 6/5 RHS=0.002495 and Lean inv-sum S=0.012130 both miss \u03b8=0.002086 / need=0.011568. 6/5 needs p>=659; inv-sum needs p>=367. Pigeonhole k=18 lands at 3075 and would kill; the leftover can choose k=24. Large m is worse. Not a leftover-word census and not a floor raise"
+    "reason": "the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a corollary of even_iter_lt_succ_pow, but the adversarial peak run k=24 lands at p=304. Proved 6/5 RHS=0.002495 and Lean inv-sum S=0.012130 both miss \u03b8=0.002086 / need=0.011568. 6/5 needs p>=659; inv-sum needs p>=367. Pigeonhole k=18 lands at 3075 and would kill; the leftover can choose k=24. Large m is worse. Not a leftover-itinerary census and not a floor raise"
   },
   "search_method": "even_iter_lt_succ_pow plus odd-run height lower bound on the peak; adversarial r = max even-run with landing >= n; height packing with one valley at p_min; exact k=18..24 and log2 lower bounds through k=51; pigeonhole m-table"
 }

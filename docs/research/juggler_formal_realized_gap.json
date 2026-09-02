@@ -1442,7 +1442,7 @@
     "property": {
       "found": false,
       "name": null,
-      "reason": "no exact predicate holds on all F_j and fails on some formal word",
+      "reason": "no exact predicate holds on all F_j and fails on some formal itinerary",
       "distinctive": [],
       "counts": {
         "n_minimal": 8498,

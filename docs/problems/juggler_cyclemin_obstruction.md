@@ -27,7 +27,7 @@ A `CycleMin` word starts `OO`, ends `E`, and has last gap in
 4. last cluster is one of the seven bunched-short pairs
    \((b,c)\in\{(0,0),(1,0),(2,0),(3,0),(0,1),(1,1),(2,1)\}\).
 
-This is a finite last-cluster split, not a word list. On the
+This is a finite last-cluster split, not an itinerary list. On the
 expanding window \(4\le e\le 6\), \(7\le o\le 14\) every
 CycleMin-shaped word hits one class.
 
@@ -58,7 +58,7 @@ transport alone is not a halt theorem.
 The residual family is the bunched-short last cluster. At \(e=4\)
 these are the existing short-gap leftovers. At \(e\ge 5\) the same
 seven last-cluster types survive, with or without an internal `OO`
-in the front. There is no `no_cycle_word_length_eleven`, no
+in the front. There is no `no_cycle_itinerary_length_eleven`, no
 `no_cycleMin_four_even`, and no halt theorem.
 
 ## Current literature
@@ -75,7 +75,7 @@ in the front. There is no `no_cycle_word_length_eleven`, no
   **EXACT — LEAN VERIFIED**
   ([juggler_prefix_two_even.md](juggler_prefix_two_even.md)).
 - Seven bunched last-cluster families —
-  **EXACT — LEAN VERIFIED** as cycle words. The same leftovers
+  **EXACT — LEAN VERIFIED** as cycle itineraries. The same leftovers
   after an arbitrary CycleMin prefix \(u\) are now
   **EXACT — LEAN VERIFIED**
   ([juggler_prefix_bunched.md](juggler_prefix_bunched.md)).
@@ -132,7 +132,7 @@ It is not required.
   \((y+1)^2\) and \((n+2)^2\) —
   **EXACT — LEAN VERIFIED** (`cycleMin_transport_second_oo`,
   `cycleMin_transport_second_oo_ge`)
-- last-cluster split of every CycleMin-shaped expanding word —
+- last-cluster split of every CycleMin-shaped expanding itinerary —
   **EXACT — HUMAN PROOF**; window \(e=4..6\), \(o=7..14\) is
   **COMPUTATIONALLY VERIFIED**
 - residual family is bunched-short last cluster —
@@ -141,7 +141,7 @@ It is not required.
   **COMPUTATIONALLY VERIFIED** on \(n\le 5000\), not used as a
   cycle invariant (`OE` contracts)
 - defect accumulation across persistent blocks — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -151,7 +151,7 @@ It is not required.
   [juggler_cyclemin_obstruction.json](../research/juggler_cyclemin_obstruction.json)
 - Tests: `tests/research/juggler_sequence/test_cyclemin_obstruction.py`
 - Lean: `formal/Problems/Juggler/CycleMinObstruction.lean` and the
-  cube lemmas in `Cells.lean`. Not imported by
+  cube lemmas in `Preimages.lean`. Not imported by
   `Problems.JugglerPaper`. No `sorry`. No halt theorem.
 
 ## Conjectures
@@ -173,22 +173,22 @@ stronger claims that fail or remain unproved:
   second residual is not the last-even cell when more evens follow.
 - “\(x/n\) increases on every admissible block” — `OE` after the
   first even event contracts.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
-`Cells.lean` adds `odd_ge_succ_sq_floorPower_ge_cube` and
+`Preimages.lean` adds `odd_ge_succ_sq_floorPower_ge_cube` and
 `ooo_residual_ge_cube`. `CycleMinObstruction.lean` adds
 `cycleMin_ooo_residual_ge_cube`, `cycleMin_transport_second_oo`,
 and `cycleMin_transport_second_oo_ge`. No `sorry`. No
-`no_juggler_cycle`. No `no_cycle_word_length_eleven`. Paper A is
+`no_juggler_cycle`. No `no_cycle_itinerary_length_eleven`. Paper A is
 unchanged.
 
 ## Results
 
 Classification **CYCLEMIN_OBSTRUCTION_GREEN**.
 
-Every scanned CycleMin-shaped expanding word hits bootstrap, a last
+Every scanned CycleMin-shaped expanding itinerary hits bootstrap, a last
 two-even leftover, a last three-even bunched family, or a
 bunched-short last cluster. The `OOO` residual upgrades from
 \((n+1)^2\) to \((n+1)^3\). Internal `OO` transports the next
@@ -213,13 +213,13 @@ exact-return attacks on bunched-short are parked
 The isolated-odd prefix attack is **CLOSE**
 ([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
 The residual named here is still bunched-short last cluster. Do not
-write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
+write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 
 **PROMOTE** the last-cluster split, the `OOO` cube upgrade, and
 second-`OO` transport. The residual is named: bunched-short last
-cluster. Do not claim that every cycle word is impossible.
+cluster. Do not claim that every cycle itinerary is impossible.
 
 Best next question: those prefix lemmas are now separate
 branches

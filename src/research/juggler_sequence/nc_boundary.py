@@ -16,10 +16,10 @@ from typing import Any
 
 from research.juggler_sequence.compensated_contraction import image_after
 from research.juggler_sequence.envelope_defect import first_nonexact_index, local_defect
-from research.juggler_sequence.floor_cells import even_cell
+from research.juggler_sequence.floor_preimages import even_preimage
 from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, ITINERARY, juggler_text
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_nc_boundary.json"
@@ -49,7 +49,7 @@ FORBIDDEN_ENGINES = (
 LEAN_THEOREMS = (
     "power_bound_contracts",
     "image_monotone_of_follows",
-    "even_cell_iff",
+    "even_preimage_iff",
 )
 
 FAMILIES = tuple(
@@ -210,7 +210,7 @@ def word_row(word: str, starts: list[int], nc_list: list[int]) -> dict[str, Any]
 def formal_contracting_exceptions(
     realizing: dict[str, list[int]], noncontracting: dict[str, list[int]]
 ) -> list[dict[str, Any]]:
-    """N_w on formally contracting words should be empty except n=1 on O^k."""
+    """N_w on formally contracting itineraries should be empty except n=1 on O^k."""
 
     bad = []
     for word, starts in realizing.items():
@@ -406,7 +406,7 @@ def adjacency(
             }
         if word[0] == "E" and a_w % 2 == 0:
             q = isqrt(a_w)
-            lo, _hi = even_cell(q)
+            lo, _hi = even_preimage(q)
             cell_checked += 1
             if a_w == lo or a_w == lo + (lo & 1):
                 cell_left += 1
@@ -598,7 +598,7 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "one-pass itinerary partition of R_w into C_w / N_w; "
+            "one-pass word partition of R_w into C_w / N_w; "
             "threshold inversions; same (k,o) and run-signature splits; "
             "prefix-extension inheritance; first-defect positions; "
             "selected families at n<=1e5"

@@ -12,7 +12,7 @@ from research.juggler_sequence.odd_landing_sets import (
     odd_run,
     odd_run_length,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 

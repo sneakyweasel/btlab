@@ -8,8 +8,8 @@ zero-defect step is an algebraic junction. Split the map:
 
 Ask whether the two-sided constraints around those seams are a new
 word factor, a strictly stronger finance identity, or a Diophantine
-restriction on s — or whether they reduce to even_cell_iff,
-odd_cell_unique, CycleMin square-scale, and a vanishing local defect.
+restriction on s — or whether they reduce to even_preimage_iff,
+odd_preimage_unique, CycleMin square-scale, and a vanishing local defect.
 
 Not a halt theorem, not an exact-floor-impact recensus, not a
 cyclic-seam reopen, and not a leftover-killer campaign.
@@ -23,12 +23,12 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.floor_cells import even_cell, even_cell_width, odd_cell_integers
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.floor_preimages import even_preimage, even_preimage_width, odd_preimage_integers
 from research.juggler_sequence.global_defect import local_defect
 from research.juggler_sequence.lean_paths import JUGGLER_DIR, has_named, juggler_text
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "square_seam"
@@ -50,8 +50,8 @@ BLOCKER_L = 478_245
 LOG2_3_2 = math.log2(1.5)
 
 EXISTING_LEAN = (
-    "even_cell_iff",
-    "odd_cell_unique",
+    "even_preimage_iff",
+    "odd_preimage_unique",
     "localDefectEven_eq_zero_iff",
     "localDefectOdd_eq_zero_iff",
     "power_bound_eq_implies_monochrome",
@@ -75,11 +75,11 @@ def letter_of(n: int) -> str:
 
 
 def odd_parents(q: int) -> list[int]:
-    return [z for z in odd_cell_integers(q) if z % 2 == 1 and floor_power(z) == q]
+    return [z for z in odd_preimage_integers(q) if z % 2 == 1 and floor_power(z) == q]
 
 
 def even_parent_count(q: int) -> int:
-    lo, hi = even_cell(q)
+    lo, hi = even_preimage(q)
     start = lo if lo % 2 == 0 else lo + 1
     if start >= hi:
         return 0
@@ -106,7 +106,7 @@ def odd_isolated_seam(s: int) -> dict[str, Any]:
         "local_word": "*" + letter_of(state) + letter_of(image),
         "log_increment": LOG2_3_2,
         "odd_parents": odd_parents(state),
-        "even_width": even_cell_width(state),
+        "even_width": even_preimage_width(state),
         "even_parent_count": even_parent_count(state),
     }
 
@@ -130,7 +130,7 @@ def even_isolated_seam(k: int) -> dict[str, Any]:
         "local_word": "*" + letter_of(state) + letter_of(image),
         "log_increment": -1.0,
         "odd_parents": odd_parents(state),
-        "even_width": even_cell_width(state),
+        "even_width": even_preimage_width(state),
         "even_parent_count": even_parent_count(state),
         "tower_square": is_square(k),
     }
@@ -237,7 +237,7 @@ def cyclemin_square_algebra(*, max_s: int = PARENT_MAX) -> dict[str, Any]:
         next_sq = (n + 1) * (n + 1)
         oo_ok = t2 >= next_sq
         oo_suffix_ok = oo_suffix_ok and oo_ok
-        last_lo, last_hi = even_cell(n)
+        last_lo, last_hi = even_preimage(n)
         last_even_is_cell = last_even_is_cell and last_lo == n * n and last_hi == next_sq
         first_even_scale = first_even_scale and last_lo == n * n
         if s <= 15 or not oo_ok:
@@ -309,11 +309,11 @@ def short_closure(*, max_root: int = SHORT_ROOT_MAX, max_len: int = SHORT_LEN) -
         state = s * s
         image = s * s * s
         for w_plus in words:
-            if not follows_word(image, w_plus):
+            if not follows_itinerary(image, w_plus):
                 continue
             y = image_after(image, w_plus)
             for w_minus in words:
-                if not follows_word(y, w_minus):
+                if not follows_itinerary(y, w_minus):
                     continue
                 if image_after(y, w_minus) == state:
                     odd_hits.append(
@@ -329,11 +329,11 @@ def short_closure(*, max_root: int = SHORT_ROOT_MAX, max_len: int = SHORT_LEN) -
         state = k * k
         image = k
         for w_plus in words:
-            if not follows_word(image, w_plus):
+            if not follows_itinerary(image, w_plus):
                 continue
             y = image_after(image, w_plus)
             for w_minus in words:
-                if not follows_word(y, w_minus):
+                if not follows_itinerary(y, w_minus):
                     continue
                 if image_after(y, w_minus) == state:
                     even_hits.append(
@@ -392,7 +392,7 @@ def classify(summary: dict[str, Any]) -> str:
     cyc_ok = not cyc["extra_beyond_d0"]
     fin_ok = not fin["leftover_mover"]
     short_ok = short["no_short_cycle"]
-    lean_ok = lean["odd_cell_unique"] and lean["even_cell_iff"] and not lean["new_lean_file"]
+    lean_ok = lean["odd_preimage_unique"] and lean["even_preimage_iff"] and not lean["new_lean_file"]
     if word_ok and cell_ok and cyc_ok and fin_ok and short_ok and lean_ok:
         return CLASS_REPARAM
     return CLASS_NEW

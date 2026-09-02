@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.second_o_lost_sq import (
     CLASS_GREEN,
     FORBIDDEN_THEOREMS,
@@ -37,7 +37,7 @@ def test_1517_second_o_in_cube_corridor():
     assert row["lt_sq"] is False
     assert row["lt_cube"] is True
     assert row["in_cube_corridor"] is True
-    assert follows_word(n, "OOEOOEOOEOEOO")
+    assert follows_itinerary(n, "OOEOOEOOEOEOO")
     assert image_after(n, "OOEOOEOOEOEOO") == u
 
 

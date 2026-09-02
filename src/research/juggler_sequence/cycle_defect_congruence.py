@@ -26,13 +26,13 @@ from research.juggler_sequence.cycle_remainder_finance import cell_record
 from research.juggler_sequence.cycle_rounding import path_identity
 from research.juggler_sequence.global_defect import (
     envelope_slack,
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     local_defect,
     odd_count,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 CONGRUENCE_DIR = DATA_DIR / "defect_congruence"
 START = PUBLISHED_FLOOR + 1
@@ -58,7 +58,7 @@ ARCHIVED = (
     "cycle_not_localsTight",
     "peak_diophantine_slack",
     "cycleMin_finance",
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
 )
 
 
@@ -88,7 +88,7 @@ def seam_cell(v: int) -> dict[str, Any]:
 def composed_residual(n: int, word: str) -> dict[str, Any]:
     """Weighted composition of the seam remainders is the global defect."""
 
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         raise ValueError(f"{n} does not follow {word}")
     delta = global_defect(n, word)
     slack = envelope_slack(n, word)
@@ -166,7 +166,7 @@ def residue_occupancy(
     occupied: dict[int, set[int]] = {m: set() for m in RESIDUE_MODULI}
     checked = 0
     for n in range(lo, hi):
-        if n % 2 == 0 or not follows_word(n, word):
+        if n % 2 == 0 or not follows_itinerary(n, word):
             continue
         checked += 1
         rho = local_defect(n)

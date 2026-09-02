@@ -122,7 +122,7 @@ It is not required.
 - \(r\to\infty\) with \(b=2\) and \(x_j\ge n\) —
   **REFUTED**. \(r\le R(a_0)\).
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -167,7 +167,7 @@ The stronger claims that remain false or unproved:
 - “every first `OO` produces `OOEE`” — false.
 - “the \(x_1\)-even residual is included” — false; it is outside
   the isolated-`OE` corridor.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
@@ -183,7 +183,7 @@ The stronger claims that remain false or unproved:
 Existing `power_bound_word` and `repeated_oe_scale` are cited, not
 rewritten. No
 `no_cycleMin_first_oo`. No `no_cycleMin_four_even`. No
-`no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A is
+`no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`. Paper A is
 unchanged.
 
 ## Results
@@ -227,7 +227,7 @@ The exponent comparison is in `FirstInternalOO.lean`. The
 \(a_0=2\), \(r=0\), \(b=2\) cut is a separate branch
 ([juggler_minimal_ooe_corridor.md](juggler_minimal_ooe_corridor.md)).
 Do not reopen bunched-short cells. Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`. The \(x_1\)-even residual
+assemble `no_cycle_itinerary_length_eleven`. The \(x_1\)-even residual
 is a separate corridor.
 
 ## Decision

@@ -49,8 +49,8 @@ OOOOEOOE = OO(OOE)^2 and OOOEOOOE = (OOOE)^2 are the next OO/OOO bootstrap insta
 - `no_cycleMin_internal_even_threshold`: `True`
 - `oo_suffix_threshold`: `True`
 - `ooo_suffix_threshold`: `True`
-- `no_cycle_word_ooeooe`: `True`
-- `no_cycle_word_oooeooe`: `True`
+- `no_cycle_itinerary_ooeooe`: `True`
+- `no_cycle_itinerary_oooeooe`: `True`
 - no length-8 theorem: `True`
 - length eight open in census: `True`
 

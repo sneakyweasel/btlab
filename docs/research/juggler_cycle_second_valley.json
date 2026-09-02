@@ -441,10 +441,10 @@
     "cycleMin_even_ge_sq": true,
     "cycleMin_not_odd_even": true,
     "even_iter_lt_succ_pow": true,
-    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five": true,
+    "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five": true,
     "has_juggler_reaches_one": false,
-    "has_no_cycle_word_any_length": false,
-    "has_no_cycle_word_length_eighty_four": false,
+    "has_no_cycle_itinerary_any_length": false,
+    "has_no_cycle_itinerary_length_eighty_four": false,
     "has_second_valley_ge": false,
     "has_cycle_second_valley": false,
     "has_api_SecondValley": false,
@@ -457,7 +457,7 @@
   },
   "decision": {
     "classification": "SECOND_VALLEY_CLOSED",
-    "reason": "height-split const 1 first kills at n2=281, but that form is not proved. Lean inv-sum still misses when both others sit at 281 (S=0.012126 > 0.011568). The adversarial Lean-allowed triple is [261, 281, 303] (first circuit k=12 lands at 281; from 281, k=12 lands at 303). Height 6/5 RHS=0.002429 and inv-sum S=0.011868 both miss \u03b8=0.002086 / need=0.011568; 6/5 first kills at 369. A later OE landing at 263 requires a start valley \u2265 1687 and that triple dies. The 281 landing is even_iter_lt_succ_pow. Not a leftover-word census and not a floor raise"
+    "reason": "height-split const 1 first kills at n2=281, but that form is not proved. Lean inv-sum still misses when both others sit at 281 (S=0.012126 > 0.011568). The adversarial Lean-allowed triple is [261, 281, 303] (first circuit k=12 lands at 281; from 281, k=12 lands at 303). Height 6/5 RHS=0.002429 and inv-sum S=0.011868 both miss \u03b8=0.002086 / need=0.011568; 6/5 first kills at 369. A later OE landing at 263 requires a start valley \u2265 1687 and that triple dies. The 281 landing is even_iter_lt_succ_pow. Not a leftover-itinerary census and not a floor raise"
   },
   "search_method": "odd ceiling landings for first-circuit k=2..24 at n=261; later-circuit landings from 281 down to floor 261; k=1 OE window; adversarial packing 261/281/303"
 }

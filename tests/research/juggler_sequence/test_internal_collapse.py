@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from research.juggler_sequence.lean_paths import juggler_text
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.internal_collapse import (
     CLASS_RUN,
     LEAN_THEOREMS,
@@ -18,7 +18,7 @@ from research.juggler_sequence.internal_collapse import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_internal_run_factors_and_basin_one():
@@ -42,7 +42,7 @@ def test_nested_family_grows_at_fixed_max_run():
     assert family[2]["q"] == 6_250_000
     assert family[3]["q_bit_length"] == 121
     assert all(row["max_even_run"] == 3 and row["T"] == 1 and row["contracts"] for row in family)
-    assert follows_word(7, "OEEE" + "O" * 9)
+    assert follows_itinerary(7, "OEEE" + "O" * 9)
 
 
 def test_examples_and_lean_api():

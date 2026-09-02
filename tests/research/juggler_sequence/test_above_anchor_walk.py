@@ -15,7 +15,7 @@ from research.juggler_sequence.above_anchor_walk import (
     lean_wired,
     walk_profile,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def brute_descent(n: int, cap: int = 500) -> int:

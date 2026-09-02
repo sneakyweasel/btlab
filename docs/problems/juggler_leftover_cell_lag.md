@@ -61,7 +61,7 @@ Mathematical target     Does leftover-cell lag of O^{a_*(e)} E^e
 Novelty hypothesis      lag grows, so leftover induction is
                         permanently parked for e≥4
 Falsifier               lag stays 0 or 1 through e≤16
-Existing machinery      leftover_prefix_cell; denomBits;
+Existing machinery      leftover_prefix_preimage; denomBits;
                         Z=(n+1)^{2^e}; e=4 lag 1
 Maximum Phase-0 scope   N0 at a_*, a_*+1, a_*+2 for e=2..16;
                         no Lean, no Z5, no thirty shapes
@@ -116,13 +116,13 @@ None opened.
 - “\(a_*+1\) eventually needs a huge \(N_0\)” — max
   \(N_0(a_*+1)\) on the range is \(59\) (at \(e=7\)).
 - “leftover induction is a step on \(e\)” — when lag is
-  \(1\), the first expanding word still leaks, as at
+  \(1\), the first expanding itinerary still leaks, as at
   \(O^7\mathrm{EEEE}\).
 
 ## Formalization
 
-None. Existing `leftover_prefix_cell` and `denomBits` are
-unchanged. No `sorry`. No `no_cycle_word_five_even`. No
+None. Existing `leftover_prefix_preimage` and `denomBits` are
+unchanged. No `sorry`. No `no_cycle_itinerary_five_even`. No
 `leftover_cell_lag_inductive`. Paper A is unchanged.
 
 ## Results

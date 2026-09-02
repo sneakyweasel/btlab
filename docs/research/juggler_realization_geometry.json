@@ -1489,16 +1489,16 @@
   "lean": {
     "sorry_free": true,
     "even_tower_to_one": true,
-    "even_cell_iff": true,
-    "odd_cell_iff": true,
-    "odd_cell_unique": true,
+    "even_preimage_iff": true,
+    "odd_preimage_iff": true,
+    "odd_preimage_unique": true,
     "no_forbidden_engines": true,
     "no_global_termination_theorem": true
   },
   "decision": {
     "classification": "REALIZATION_GEOMETRY_COMPLEX",
     "secondary": "REALIZATION_COUNTEREXAMPLE",
-    "reason": "Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_cell_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived."
+    "reason": "Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_preimage_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived."
   },
   "search_method": "nested R_w by one-pass itinerary; append children by landing parity; prepend children by even_cell / odd_cell; interior states of first holes; selected exact roots at n<=1e7"
 }

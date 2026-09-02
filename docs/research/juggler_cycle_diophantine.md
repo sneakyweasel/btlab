@@ -62,7 +62,7 @@ refute the cycle-only bound p≥13.
 - start=`21` M=`140` x=`27` p=`11` r=`1` δ=`83` ε=`19` compose=`True` slack=`True` in_R=`True`
 
 - n-search: `False`
-- cycle-word census: `False`
+- cycle-itinerary census: `False`
 - remainder dynamics: `False`
 - new energy: `False`
 - Mordell solver: `False`
@@ -81,11 +81,11 @@ refute the cycle-only bound p≥13.
 - `peak_diophantine_slack`: `True`
 - `cycle_peak_diophantine`: `True`
 - `cycle_peak_diophantine_slack`: `True`
-- `cycleWord_not_reachesOne`: `True`
-- `cycleWord_iterate_not_lt_twelve`: `True`
+- `cycleItinerary_not_reachesOne`: `True`
+- `cycleItinerary_iterate_not_lt_twelve`: `True`
 - `cycle_top_landing_ge_thirteen`: `True`
 - certificate unchanged: `True`
-- CycleWord not rewritten: `True`
+- CycleItinerary not rewritten: `True`
 - FloorPower not rewritten: `True`
 - orbit-min hypothesis unused: `True`
 - PowerBoundEq not used as cycle attack: `True`

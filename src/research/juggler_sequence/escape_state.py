@@ -24,7 +24,7 @@ from research.juggler_sequence.near_extremal_prefixes import (
     exponent_gap,
     prefix_noncontracting,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, itinerary, odd_count, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, itinerary, odd_count, word_of
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     RESIDUALS,

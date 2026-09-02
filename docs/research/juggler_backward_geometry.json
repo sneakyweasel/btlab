@@ -28,9 +28,9 @@
   },
   "lean": {
     "sorry_free": true,
-    "even_cell_iff": true,
-    "odd_cell_iff": true,
-    "odd_cell_unique": true,
+    "even_preimage_iff": true,
+    "odd_preimage_iff": true,
+    "odd_preimage_unique": true,
     "floorPower_even_eq_iff_sq_interval": true,
     "floorPower_odd_eq_iff_cube_interval": true,
     "floorPower_one": true,

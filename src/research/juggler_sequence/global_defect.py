@@ -9,7 +9,7 @@ from __future__ import annotations
 from typing import Any
 
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 LEAN_THEOREMS = (
     "powGap",
@@ -68,7 +68,7 @@ def image_after(n: int, word: str) -> int:
     return current
 
 
-def follows_word(n: int, word: str) -> bool:
+def follows_itinerary(n: int, word: str) -> bool:
     current = n
     for letter in word:
         if letter == "E" and current % 2 != 0:
@@ -190,7 +190,7 @@ def ce_prefix_scan(*, n_max: int = 400) -> dict[str, Any]:
         for n in range(12, n_max + 1):
             if n % 2 == 0:
                 continue
-            if not follows_word(n, word):
+            if not follows_itinerary(n, word):
                 continue
             checked += 1
             end = image_after(n, word)

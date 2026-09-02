@@ -14,6 +14,6 @@
     "herman-1979",
     "kuipers-niederreiter-1974"
   ],
-  "notes": "Denjoy-Koksma at each convergent denominator is KNOWN; the laboratory content is the Var < 2 bound, the block split, the exact integer certification of the q_j list, and the word identity hug = exact IET prefix (E at step k iff 3^a >= 2^(k+1), decided by the certified rational sandwich). Explains the REFUTED Koksma constant 1: the six +1/L failures are exactly the rows with excess*L > 1, all covered by 2s with s >= 4. Replaces the 19-row occupancy census h <= 4 of juggler_walk_crude_envelope. Uniform B/theta < 1 at a fixed floor stays false; L = 176251 still survives; period bound unchanged. Not a halt theorem.",
+  "notes": "Denjoy-Koksma at each convergent denominator is KNOWN; the laboratory content is the Var < 2 bound, the block split, the exact integer certification of the q_j list, and the itinerary identity hug = exact IET prefix (E at step k iff 3^a >= 2^(k+1), decided by the certified rational sandwich). Explains the REFUTED Koksma constant 1: the six +1/L failures are exactly the rows with excess*L > 1, all covered by 2s with s >= 4. Replaces the 19-row occupancy census h <= 4 of juggler_walk_crude_envelope. Uniform B/theta < 1 at a fixed floor stays false; L = 176251 still survives; period bound unchanged. Not a halt theorem.",
   "not_a_halt_theorem": true
 }

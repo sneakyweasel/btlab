@@ -41,18 +41,18 @@ contradiction fires whenever \(y\ge 256\), whether \(2\le n<256\)
 is empty on the finite window \(k=9,\ldots,16\), and whether
 \(k\ge 17\) is sealed by seven consecutive odds.
 
-This is not a `CycleWord` theorem on those words (a non-minimum
+This is not a `CycleItinerary` theorem on those itineraries (a non-minimum
 start may have \(y<n\)). It is not a length-8 or length-9 census
 and not a halt theorem. There is no
-`no_cycle_word_length_eight` and no `no_cycle_word_length_nine`.
+`no_cycle_itinerary_length_eight` and no `no_cycle_itinerary_length_nine`.
 
 ## Current literature
 
 - Leftover length-six and length-seven orientations —
   **EXACT — LEAN VERIFIED**.
 - Uniform two-even leftover families —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_two_even_ee`,
-  `no_cycle_word_two_even_eoe`, `shared_two_even_tail`).
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_two_even_ee`,
+  `no_cycle_itinerary_two_even_eoe`, `shared_two_even_tail`).
 - Internal-E bootstrap —
   **EXACT — LEAN VERIFIED**. Last gap \(a_{e-1}\ge 2\).
 - `CycleMin` scale barrier —
@@ -80,7 +80,7 @@ Falsifier               A CycleMin realization; y≥n failing to
 Existing machinery      uniform two-even Lean; CycleMin;
                         trailing-even / last-odd cells
 Maximum Phase-0 scope   classify gapped vs bunched; verify the
-                        chain; CycleWord tables for k=9..16
+                        chain; CycleItinerary tables for k=9..16
                         below 256; seven-odd split for k≥17.
                         No Lean, no length-8/9 census, no
                         bunched-tail attack, no halt
@@ -113,19 +113,19 @@ It is not required.
   **EXACT — LEAN VERIFIED** (`no_cycleMin_gapped_three_even_ee`,
   `no_cycleMin_gapped_three_even_eoe`)
 - transport requires \(y\ge n\); it does not exclude a
-  non-minimum `CycleWord` start —
+  non-minimum `CycleItinerary` start —
   **EXACT — HUMAN PROOF**
 - for \(k\ge 17\), a gapped leftover has \(a\ge 7\) or \(b\ge 7\),
   so \(n<256\) dies by seven odds —
   **EXACT — HUMAN PROOF**
-- 72 gapped words at lengths \(9\le k\le 16\) have no `CycleWord`
+- 72 gapped words at lengths \(9\le k\le 16\) have no `CycleItinerary`
   on \(2\le n<256\); the Lean tables cover the short-gap
   \(a,b\le 6\) window, and longer gaps are seven-odd —
   **EXACT — LEAN VERIFIED**
 - bunched remainder is \(b\le 3\) (EE) or \(b\le 2\) (EOE),
   independent of \(k\) —
   **EXACT — HUMAN PROOF**
-- every three-even cycle word is impossible — not claimed
+- every three-even cycle itinerary is impossible — not claimed
 - no cycle of length eight or nine — not claimed
 - global halt — not claimed
 
@@ -149,11 +149,11 @@ None opened.
 None to the transport chain or to the empty finite window. The
 stronger claims that remain false or unproved:
 
-- “first-E transport excludes the word as `CycleWord` at a
+- “first-E transport excludes the itinerary as `CycleItinerary` at a
   non-minimum start” — false as stated; \(y<n\) loosens the cell.
 - “rotation of a gapped leftover is again gapped” — false.
   Length-9 leftovers with \(b\ge 2\) share a necklace with a
-  bootstrap word.
+  bootstrap itinerary.
 - “induction on the period reduces \(e=3\) to \(e=2\)” — still
   false. This is a `CycleMin` reduction on even-count, not on
   period.
@@ -168,10 +168,10 @@ stronger claims that remain false or unproved:
 `no_cycleMin_gapped_three_even_eoe`. Large \(y\) is the shared
 two-even tail at the leftover start; \(n<256\) is seven-odd or
 the short-gap `native_decide` tables in
-`FirstETransportEval.lean`. This is not a `CycleWord` theorem at
+`FirstETransportEval.lean`. This is not a `CycleItinerary` theorem at
 a non-minimum start. `SmallCycleCensus.lean` still assembles only
-through length seven. No `no_cycle_word_length_eight`. No
-`no_cycle_word_length_nine`. No bunched-tail Lean. No `sorry`.
+through length seven. No `no_cycle_itinerary_length_eight`. No
+`no_cycle_itinerary_length_nine`. No bunched-tail Lean. No `sorry`.
 No halt theorem. Paper A records Theorem 3.13 as CycleMin-only.
 
 ## Results
@@ -194,9 +194,9 @@ no-cycles theorem.
 
 ## Open questions
 
-`CycleWord` exclusion of these gapped leftovers is now Paper A
-Theorem 3.21 (`no_cycle_word_gapped_three_even_ee`,
-`no_cycle_word_gapped_three_even_eoe`). Theorem 3.13 remains
+`CycleItinerary` exclusion of these gapped leftovers is now Paper A
+Theorem 3.21 (`no_cycle_itinerary_gapped_three_even_ee`,
+`no_cycle_itinerary_gapped_three_even_eoe`). Theorem 3.13 remains
 CycleMin-only. First-E at \(e=4\) is `CLOSE` as a
 reparameterization ([first-E at four evens](juggler_first_e_e4.md)).
 The thirty-shape remainder is `PARK`
@@ -204,8 +204,8 @@ The thirty-shape remainder is `PARK`
 Rotation and internal-E next-square are `CLOSE`
 ([length-11 non-pullback](juggler_length11_nonpullback.md)).
 Stop on the thirty length-11 leftovers as a leftover-path
-target. Do not assemble `no_cycle_word_length_eight` or
-`no_cycle_word_length_nine`. Do not claim halt.
+target. Do not assemble `no_cycle_itinerary_length_eight` or
+`no_cycle_itinerary_length_nine`. Do not claim halt.
 
 ## Decision
 

@@ -39,7 +39,7 @@ This object is not the REFUTED two-sided exponent-only law.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Finite-word envelope, equality rigidity, first-defect, and
+- Finite-itinerary envelope, equality rigidity, first-defect, and
   compensated contraction — **EXACT — LEAN VERIFIED**.
 - `minimal_nonterm_image_ge` — **EXACT — LEAN VERIFIED**. A
   `MinimalNonTerm` already satisfies \(T^j(n)\ge n\).
@@ -72,7 +72,7 @@ Existing machinery      power_bound_*, first-defect, cmp_pow,
 Maximum Phase-0 scope   one probe; stay-above + first-return census;
                         classify; no Lean; no engine
 Promotion criterion     a pivot constraint not implied by the
-                        concatenated word, or a new rigidity/defect law
+                        concatenated itinerary, or a new rigidity/defect law
 Stop criterion          algebraic collapse; machinery gravity; halt
                         claim; ResidualStep / CycleDiophantine / prefix-NC
 ```
@@ -173,7 +173,7 @@ class. Closed as `DRIFT_ENDPOINT_COMPLEX`.
 
 **CLOSE** the corridor branch as `CORRIDOR_REPACKAGING`. On
 stay-above segments the two-sided inequalities are the existing
-finite-word envelope plus \(T^s(x)\ge n\). Their composition is
+finite-itinerary envelope plus \(T^s(x)\ge n\). Their composition is
 the concatenated-word test. No pivot-specific contraction,
 rigidity, or descent appeared. Do not add Lean. Do not claim
 termination.

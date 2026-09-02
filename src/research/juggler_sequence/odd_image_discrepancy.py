@@ -20,11 +20,11 @@ from math import isqrt, log
 from pathlib import Path
 from typing import Any, Iterable
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.floor_cells import odd_cell_integers
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.floor_preimages import odd_preimage_integers
 from research.juggler_sequence.lean_paths import has_named, juggler_text
 from research.juggler_sequence.parity_discrepancy import odd_start_count
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_image_discrepancy.json"
@@ -48,8 +48,8 @@ CLASS_SHARP = "ODD_IMAGE_SHARP_GREEN"
 CLASS_IMAGE = "IMAGE_DISCREPANCY_GREEN"
 
 LEAN_THEOREMS = (
-    "odd_cell_unique",
-    "odd_cell_iff",
+    "odd_preimage_unique",
+    "odd_preimage_iff",
     "floorPower_odd_macro_direction",
     "landingParity_odd_iff",
 )
@@ -94,7 +94,7 @@ def fractional_part_identity(n: int) -> bool:
 
 
 def cell_occupants(m: int) -> list[int]:
-    return odd_cell_integers(m)
+    return odd_preimage_integers(m)
 
 
 def cell_multiplicity(m: int) -> dict[str, Any]:
@@ -331,7 +331,7 @@ def juggler_image(n_max: int, steps: int) -> set[int]:
 def word_image(word: str, n_max: int) -> set[int]:
     out: set[int] = set()
     for n in range(1, n_max + 1):
-        if follows_word(n, word):
+        if follows_itinerary(n, word):
             out.add(image_after(n, word))
     return out
 
@@ -721,9 +721,9 @@ the floor. Label: **EXACT IDENTITY**.
 ## 2. Cell decomposition
 
 `C_m = {{odd n : a_n = m}}` is the odd part of the cube cell
-`m^2 <= n^3 < (m+1)^2`. `odd_cell_unique` says that cell contains at
+`m^2 <= n^3 < (m+1)^2`. `odd_preimage_unique` says that cell contains at
 most one integer, so `c_m = |C_m| in {{0,1}}`. Label:
-**LEAN-CERTIFIED** (`odd_cell_unique`).
+**LEAN-CERTIFIED** (`odd_preimage_unique`).
 
 Prefix `m<= {cells["m_max"]}`: value counts `{cells["value_counts"]}`,
 `c_m <= 1` is `{cells["c_m_le_1"]}`. Label: **EXACT COMPUTATION**.
@@ -852,12 +852,12 @@ drift theorem.
 
 ## 11. Lean candidates
 
-Existing: `odd_cell_unique`, `odd_cell_iff`,
+Existing: `odd_preimage_unique`, `odd_preimage_iff`,
 `landingParity_odd_iff`, `floorPower_odd_macro_direction`.
 Present: `{scan_row["lean"]}`.
 
 Not added: van der Corput / Erdős–Turán. The elementary cell-sum
-identity is a packaging of `odd_cell_unique` and is not a new Lean
+identity is a packaging of `odd_preimage_unique` and is not a new Lean
 file. No `sorry`.
 
 ## 12. Decision
@@ -903,7 +903,7 @@ words. Totality is unclaimed.
 
 - Parent census [juggler_parity_discrepancy.md](juggler_parity_discrepancy.md)
   **PARK** / `IMAGE_PARITY_CENSUS`. \\(D_O=-S_O/2\\).
-- `odd_cell_unique` / `odd_cell_iff` —
+- `odd_preimage_unique` / `odd_preimage_iff` —
   **EXACT — LEAN VERIFIED**.
 - `floorPower_odd_macro_direction` —
   **EXACT — LEAN VERIFIED**.
@@ -929,8 +929,8 @@ Novelty hypothesis      Cell pairing cancellation, or an explicit
                         fractional-part discrepancy rate
 Falsifier               Pairing is linear variation only; no honest
                         F; images concentrate one sign
-Existing machinery      odd_cell_unique; parity_discrepancy D_O;
-                        floor_power; follows_word / image_after
+Existing machinery      odd_preimage_unique; parity_discrepancy D_O;
+                        floor_power; follows_itinerary / image_after
 Maximum Phase-0 scope   Exact S_O; c_m prefix; pairing/runs;
                         one analytic rate; image/word tests on
                         the existing grids; no CUDA; no Lean ANT

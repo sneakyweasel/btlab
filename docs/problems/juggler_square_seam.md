@@ -28,9 +28,9 @@ Split the map. Do not write \(J(s^2)=s^3\) for every square.
 An incoming parent \(y\) of the square is either an even cell
 occupant or the unique odd-cell occupant. An outgoing arc starts
 at the exact image. Phase 0 asks whether those two arcs, coupled
-through the same integer \(s\) or \(k\), yield a word factor, a
+through the same integer \(s\) or \(k\), yield an itinerary factor, a
 strictly stronger finance identity, or a Diophantine restriction
-that is not `even_cell_iff`, `odd_cell_unique`, CycleMin
+that is not `even_preimage_iff`, `odd_preimage_unique`, CycleMin
 square-scale, or a vanishing local in the global-defect identity.
 This says nothing about totality.
 
@@ -45,7 +45,7 @@ out of scope.
   **EXACT — LEAN VERIFIED** (`floorPower_odd_sq_eq_cube_iff_square`,
   `isSquare_pow_three_iff`).
 - Even / odd parents —
-  **EXACT — LEAN VERIFIED** (`even_cell_iff`, `odd_cell_unique`).
+  **EXACT — LEAN VERIFIED** (`even_preimage_iff`, `odd_preimage_unique`).
 - CycleMin is odd; even states \(\ge n^2\); last even is the
   cell \([n^2,(n+1)^2)\), not the point \(n^2\) —
   **EXACT — LEAN VERIFIED** / last-even square **REFUTED**
@@ -77,7 +77,7 @@ Novelty hypothesis      The zero-defect junction couples W- and W+
                         through one integer s (or k) and yields a
                         word factor, a strictly stronger finance
                         identity, or a Diophantine restriction on s
-                        that is not even_cell_iff / odd_cell_unique /
+                        that is not even_preimage_iff / odd_preimage_unique /
                         CycleMin square-scale / global defect
 Falsifier               Both seams rewrite as the existing cells plus
                         localDefect=0; local word is *OO (odd) or
@@ -85,8 +85,8 @@ Falsifier               Both seams rewrite as the existing cells plus
                         crumb saves O(1/x) and does not move any
                         leftover; short W+/- closure is a cell
                         composition or the small-cycle census
-Existing machinery      localDefect*_eq_zero_iff, even_cell_iff,
-                        odd_cell_unique, cycleMin_even_ge_sq,
+Existing machinery      localDefect*_eq_zero_iff, even_preimage_iff,
+                        odd_preimage_unique, cycleMin_even_ge_sq,
                         cycle_last_even_interval, cycleMin_start_odd,
                         even_tower_to_one, cycleMin_finance,
                         isSquare_pow_three_iff
@@ -160,7 +160,7 @@ None opened. Computational observations are not conjectures.
 - “\(J(s^2)=s^3\) for every square” — even isolated witness
   \(36\to 6\), \(100\to 10\).
 - “Odd entrance is a new thin-cell law” — it is
-  `odd_cell_unique`; 5 of 93 isolated odd roots \(\le 200\) have
+  `odd_preimage_unique`; 5 of 93 isolated odd roots \(\le 200\) have
   an odd parent, never more than one. Even width is \(2q+1\).
 - “Square CycleMin tightens the last-even cell” — the cell is
   \([n^2,(n+1)^2)=[s^4,(s^2+1)^2)\), the standard even cell of

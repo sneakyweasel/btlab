@@ -64,14 +64,14 @@
   },
   "lean": {
     "sorry_free": true,
-    "leftover_prefix_cell": true,
+    "leftover_prefix_preimage": true,
     "cycle_trailing_evens_lt": true,
-    "odd_cell_unique": true,
-    "even_cell_iff": true,
-    "cycle_word_length_ge_eleven": true,
-    "no_cycle_word_oooooooeeee": true,
-    "no_cycle_word_length_eleven": true,
-    "no_cycle_word_four_even": true,
+    "odd_preimage_unique": true,
+    "even_preimage_iff": true,
+    "cycle_itinerary_length_ge_eleven": true,
+    "no_cycle_itinerary_oooooooeeee": true,
+    "no_cycle_itinerary_length_eleven": true,
+    "no_cycle_itinerary_four_even": true,
     "juggler_reaches_one": true,
     "paper_a_has_no_o7eeee": true,
     "cell_schema_present": true,
@@ -82,5 +82,5 @@
     "classification": "O7EEEE_WINDOW_EMPTY",
     "reason": "no O^7 EEEE cycle on 3<=n<828484409; T^7 never entered the EEEE cell (below=0, in=0, above=3234088); closest ratio 445.01033356279396 at n=289"
   },
-  "search_method": "exact forward O^7 then EEEE inverse cell [n^16,(n+1)^16); window 3<=n<828484409; leftover_prefix_cell above N0; no Z5, no thirty-word census, no halt theorem"
+  "search_method": "exact forward O^7 then EEEE inverse cell [n^16,(n+1)^16); window 3<=n<828484409; leftover_prefix_preimage above N0; no Z5, no thirty-itinerary census, no halt theorem"
 }

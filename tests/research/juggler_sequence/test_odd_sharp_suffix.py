@@ -39,7 +39,7 @@ from research.juggler_sequence.odd_sharp_suffix import (
     write_nearest_cube_analysis,
 )
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 from research.juggler_sequence.saturation_budget import has_pow_two_depth, square_depth
 
 

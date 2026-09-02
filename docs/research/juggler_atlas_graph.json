@@ -7,12 +7,12 @@
     "even_tower_min_realizer": "EXACT — HUMAN PROOF",
     "census_reading": "COMPUTATIONALLY VERIFIED",
     "missing_prefixes": "NOT OBSERVED WITHIN SEARCH BOUND",
-    "closed_word_language": "CLOSED BRANCH"
+    "closed_itinerary_language": "CLOSED BRANCH"
   },
   "anti_overclaim": {
     "global_termination": false,
     "forbidden_factor_law": false,
-    "reopen_word_language": false,
+    "reopen_itinerary_language": false,
     "expanding_is_factor_closed": false,
     "prefix_table_is_substring_language": false
   },

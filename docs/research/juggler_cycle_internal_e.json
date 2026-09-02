@@ -142,7 +142,7 @@
     "no_cycleMin_internal_even_threshold": true,
     "no_cycleMin_oeoooe": true,
     "no_cycleMin_ooeooe": true,
-    "no_cycle_word_ooeooe": true,
+    "no_cycle_itinerary_ooeooe": true,
     "certificate_present": true,
     "PowerHeight_absent": true,
     "no_global_termination_theorem": true,
@@ -163,7 +163,7 @@
     "secondary": [
       "OOOEOE_EXCEPTION"
     ],
-    "reason": "an internal even cycle state is at least n^2, so its image is at least n; a next-square suffix then overshoots the last-even cell. This excludes CycleMin OEOOOE and the full CycleWord OOEOOE. OOOEOE and OOOOEE remain"
+    "reason": "an internal even cycle state is at least n^2, so its image is at least n; a next-square suffix then overshoots the last-even cell. This excludes CycleMin OEOOOE and the full CycleItinerary OOEOOE. OOOEOE and OOOOEE remain"
   },
   "search_method": "structural inventory of normalized expanding length-6 E-words; internal-E bootstrap; no cycle-state search; no length-6 census theorem"
 }

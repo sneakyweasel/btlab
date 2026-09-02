@@ -13,7 +13,7 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.equality_rigidity import powers_equal
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,
@@ -311,7 +311,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "## Metadata",
         "",
-        f"- itinerary layer: `n <= {scan['n_max']}`, `k <= {scan['k_max']}`",
+        f"- word layer: `n <= {scan['n_max']}`, `k <= {scan['k_max']}`",
         f"- local iff-square layer: `n <= {scan['local_iff']['n_max']}`",
         f"- engine control layer modified: `{payload['engine_control_layer_modified']}`",
         f"- classification: **{decision['classification']}**",

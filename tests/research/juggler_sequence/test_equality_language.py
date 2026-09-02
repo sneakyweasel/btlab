@@ -18,7 +18,7 @@ from research.juggler_sequence.equality_language import (
     run_probe,
     scan_mixed,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH
 from research.juggler_sequence.saturation_budget import (
     saturation_prefix,
     saturates_word,

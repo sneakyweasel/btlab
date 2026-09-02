@@ -15,9 +15,9 @@ from research.juggler_sequence.cycle_first_collision import (
     named_fork,
     nearest_even_gap_in_cell,
 )
-from research.juggler_sequence.empty_odd_cell import cube_gap, odd_cell_kind
-from research.juggler_sequence.floor_cells import even_cell
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.empty_odd_preimage import cube_gap, odd_preimage_kind
+from research.juggler_sequence.floor_preimages import even_preimage
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_first_collision.md"
@@ -41,7 +41,7 @@ def test_dossier_has_triage_and_closed_gates():
     assert "## Publication assessment" in text
     assert "**CLOSE**" in text
     assert "Do **not** raise" in text
-    assert "odd_cell_unique" in text
+    assert "odd_preimage_unique" in text
     assert "cycleMin_not_end_odd" in text
     assert "Collision Factorization" in text
 
@@ -59,7 +59,7 @@ def test_oo_is_empty_and_valley_return_o_is_below_n():
 
 
 def test_valley_eo_is_empty_odd_cell_occupancy():
-    assert odd_cell_kind(START) == 0
+    assert odd_preimage_kind(START) == 0
     assert even_parent_count(START) == START
     assert odd_preimage(START) is None
     witness = odd_preimage(125)
@@ -71,7 +71,7 @@ def test_valley_eo_is_empty_odd_cell_occupancy():
 def test_mixed_offset_is_the_cube_gap():
     t = 25
     x = 125
-    lo, hi = even_cell(x)
+    lo, hi = even_preimage(x)
     t3 = t * t * t
     assert lo <= t3 < hi
     assert t3 - lo == cube_gap(x)["gap"]
@@ -87,7 +87,7 @@ def test_named_forks_are_ee():
     assert merge["meet"] == 763
     assert merge["pred_a"] == 582_276
     assert merge["pred_b"] == 582_916
-    assert merge["odd_cell_kind"] == 0
+    assert merge["odd_preimage_kind"] == 0
     assert merge["fork"]["type"] == "E,E"
 
 
@@ -120,5 +120,5 @@ def test_dossier_and_conjecture_record_close():
     assert "**CLOSE**" in dossier
     rec = get_conjecture("juggler_cycle_first_collision")
     assert rec["status"] == "REFUTED"
-    assert rec["lean_reference"] == "odd_cell_unique"
+    assert rec["lean_reference"] == "odd_preimage_unique"
     assert rec["counterexamples"]

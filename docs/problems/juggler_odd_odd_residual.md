@@ -79,7 +79,7 @@ Promotion criterion     An exact successor obstruction or a finite L
 Stop criterion          ODD_ODD_RESIDUAL_COMPLEX; no jointly necessary
                         and recursively preserved condition; ResidualStep
                         rewritten. No RemainderDynamics, PowerHeight,
-                        halt, prefix-NC project, CycleWord growth.
+                        halt, prefix-NC project, CycleItinerary growth.
 ```
 
 ## Balanced-ternary formulation
@@ -147,7 +147,7 @@ statement and do not imply a bound \(L\).
 
 None added. `ResidualStep` and `PersistentOddResidual` already live
 in `formal/Problems/Engine/ResidualChain.lean`. No
-`OddOddResidual.lean`. `CycleWord.lean`, `CycleDiophantine.lean`, and
+`OddOddResidual.lean`. `CycleItinerary.lean`, `CycleDiophantine.lean`, and
 `FloorPower.lean` are not rewritten. No `sorry`. No ledger row.
 
 ## Results

@@ -70,5 +70,5 @@ Exact any-contraction: `any contraction on [q^2,(q+1)^2) is c+1 < (q+1)^2, not m
 
 Q_OO = {1,3} and Q_OOO = {1} with Lean eventual thresholds; Q_O is all realized odd q because α=3/2<2, which is formal contraction of EO, not compensated positive drift.
 
-This is a finite-word threshold statement, not a global halt result.
+This is a finite-itinerary threshold statement, not a global halt result.
 

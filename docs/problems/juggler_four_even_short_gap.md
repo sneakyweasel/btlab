@@ -41,11 +41,11 @@ n^{3^{a_0}}>2^{e_{a_0}}Z_4^{2^{a_0}}.
 Phase 0 asks whether this cell fires at the first expanding
 \(a_0\), and whether \(N_0\) stays bounded one and two odds later.
 
-This is not a `CycleWord` theorem. It is not a length-8, length-9,
+This is not a `CycleItinerary` theorem. It is not a length-8, length-9,
 or length-11 census and not a halt theorem. There is no
-`no_cycle_word_length_eight`, no `no_cycle_word_length_nine`,
-no `no_cycle_word_length_eleven`, and no
-`no_cycle_word_four_even`.
+`no_cycle_itinerary_length_eight`, no `no_cycle_itinerary_length_nine`,
+no `no_cycle_itinerary_length_eleven`, and no
+`no_cycle_itinerary_four_even`.
 
 ## Current literature
 
@@ -145,11 +145,11 @@ The stronger claims that remain false or unproved:
 
 ## Formalization
 
-None. Existing first-E, gapped CycleWord, and bunched modules
+None. Existing first-E, gapped CycleItinerary, and bunched modules
 are not rewritten. `SmallCycleCensus.lean` still assembles only
-through length seven. No `no_cycle_word_length_eight`. No
-`no_cycle_word_length_nine`. No `no_cycle_word_length_eleven`.
-No `no_cycle_word_four_even`. No `sorry`. No halt theorem.
+through length seven. No `no_cycle_itinerary_length_eight`. No
+`no_cycle_itinerary_length_nine`. No `no_cycle_itinerary_length_eleven`.
+No `no_cycle_itinerary_four_even`. No `sorry`. No halt theorem.
 Paper A is unchanged.
 
 ## Results
@@ -160,7 +160,7 @@ The thirty short-first-gap shapes are one prefix-cell: the
 three-even \(Z\) pulled back through \(E O^{a_1}\). That cell
 fires uniformly one odd past first expanding (\(N_0\le 180\))
 and two odds past it (\(N_0\le 22\)). At the first expanding
-length it does not: those are thirty words of length \(11\),
+length it does not: those are thirty itineraries of length \(11\),
 and the cutoff is \(10^8\) to \(10^{15}\).
 
 Three-even bunched families fired at the first expanding \(a\)
@@ -176,8 +176,8 @@ A tighter last-cluster pullback is `CLOSE`
 Rotation and internal-E next-square are `CLOSE`
 ([length-11 non-pullback](juggler_length11_nonpullback.md)).
 Stop on the thirty length-11 leftovers as a leftover-path
-target. Do not assemble `no_cycle_word_length_eight`,
-`no_cycle_word_length_nine`, or `no_cycle_word_length_eleven`.
+target. Do not assemble `no_cycle_itinerary_length_eight`,
+`no_cycle_itinerary_length_nine`, or `no_cycle_itinerary_length_eleven`.
 Do not claim halt.
 
 ## Decision

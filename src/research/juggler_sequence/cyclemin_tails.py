@@ -18,7 +18,7 @@ from typing import Any
 from research.juggler_sequence.cyclemin_fudge import (
     chain_n0,
     first_prefix_start,
-    follows_word,
+    follows_itinerary,
     prefix_cell_exponents,
     trailing_even_run,
 )
@@ -35,7 +35,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_tails.json"
@@ -66,10 +66,10 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_length_eleven",
+    "no_cycle_itinerary_four_even",
     "no_cycleMin_four_even",
-    "no_cycle_word_cyclemin_tails",
+    "no_cycle_itinerary_cyclemin_tails",
     "juggler_reaches_one",
 )
 
@@ -83,7 +83,7 @@ def pin_hits(word: str, n_hi: int = PIN_MAX) -> list[int]:
     hits = []
     n = 3
     while n < n_hi:
-        if follows_word(n, prefix) is not None:
+        if follows_itinerary(n, prefix) is not None:
             hits.append(n)
         n += 2
     return hits

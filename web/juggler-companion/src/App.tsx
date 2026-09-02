@@ -5,11 +5,11 @@ import { ClaimsPage } from "./pages/ClaimsPage";
 import { HomePage } from "./pages/HomePage";
 import { PlaygroundIndexPage, PlaygroundPage } from "./pages/PlaygroundPage";
 import { TourIndexPage, TourPage } from "./pages/TourPage";
-import { CellsTab } from "./pages/play/CellsTab";
+import { PreimagesTab } from "./pages/play/PreimagesTab";
 import { CycleTab } from "./pages/play/CycleTab";
 import { FinanceTab } from "./pages/play/FinanceTab";
 import { TrajectoryTab } from "./pages/play/TrajectoryTab";
-import { WordTab } from "./pages/play/WordTab";
+import { ItineraryTab } from "./pages/play/ItineraryTab";
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -26,8 +26,10 @@ export default function App() {
               <Route index element={<PlaygroundIndexPage />} />
               <Route path="trajectory" element={<TrajectoryTab />} />
               <Route path="orbit" element={<Navigate to="/play/trajectory" replace />} />
-              <Route path="word" element={<WordTab />} />
-              <Route path="cells" element={<CellsTab />} />
+              <Route path="itinerary" element={<ItineraryTab />} />
+              <Route path="word" element={<Navigate to="/play/itinerary" replace />} />
+              <Route path="preimages" element={<PreimagesTab />} />
+              <Route path="cells" element={<Navigate to="/play/preimages" replace />} />
               <Route path="cycle" element={<CycleTab />} />
               <Route path="finance" element={<FinanceTab />} />
             </Route>

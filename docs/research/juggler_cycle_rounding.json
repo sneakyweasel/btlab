@@ -231,7 +231,7 @@
       }
     ],
     "n_search": false,
-    "cycle_word_census": false,
+    "cycle_itinerary_census": false,
     "remainder_dynamics": false,
     "new_energy": false,
     "rows": [
@@ -1121,7 +1121,7 @@
     "no_cycle_engine": true,
     "no_length_six_theorem": true,
     "no_infinite_path_type": true,
-    "FloorPower_no_cycle_word": true,
+    "FloorPower_no_cycle_itinerary": true,
     "Progress_unchanged": true,
     "orbit_min_not_used": true,
     "PowerBoundEq_not_used_as_cycle_attack": true,

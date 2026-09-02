@@ -149,7 +149,7 @@
       }
     ],
     "n_search": false,
-    "cycle_word_census": false,
+    "cycle_itinerary_census": false,
     "rows": [
       {
         "start": 3,
@@ -830,5 +830,5 @@
     ],
     "reason": "every cycle maximum is reached from an odd predecessor x with p < x < M, nested cells, x^3 \u2265 p^{2^{r+1}}, and M < x^2. The integer region stays nonempty; x \u2265 p^2 is not forced"
   },
-  "search_method": "finite-orbit maxima and their odd predecessors; no cycle-state search; no cycle-word census; exact integer cells only"
+  "search_method": "finite-orbit maxima and their odd predecessors; no cycle-state search; no cycle-itinerary census; exact integer cells only"
 }

@@ -1,4 +1,4 @@
-# Juggler finite-word power algebra and equality rigidity
+# Juggler finite-itinerary power algebra and equality rigidity
 
 Status: **EQUALITY_RIGIDITY_GREEN**
 
@@ -10,7 +10,7 @@ propagation of the one-sided envelope.
 ## Branch budget
 
 ```text
-Mathematical target     Does global envelope equality for a realized finite word
+Mathematical target     Does global envelope equality for a realized finite itinerary
                         force every local branch inequality to be tight, and is
                         each local tightness equivalent to the branch input
                         being a perfect square?

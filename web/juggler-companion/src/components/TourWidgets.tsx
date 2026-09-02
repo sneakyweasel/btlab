@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { evenCell, oddCellIntegers } from "../juggler/cells";
+import { evenPreimage, oddPreimageIntegers } from "../juggler/preimages";
 import { LIVE_STARTS, NOTE_TRAJECTORY_3, TRAJECTORY_STEPS_MAX } from "../juggler/constants";
 import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
@@ -8,18 +8,18 @@ import { monsterCatalog, resolveTrajectory } from "../juggler/monsters";
 import {
   envelopeSlack,
   expanding,
-  followsWord,
+  followsItinerary,
   imageAfter,
   oddCount,
-  parseWord,
+  parseItinerary,
   regimeOf,
-  rotateWord,
-} from "../juggler/word";
-import { CellNumberLine } from "../visuals/CellNumberLine";
+  rotateItinerary,
+} from "../juggler/itinerary";
+import { PreimageNumberLine } from "../visuals/PreimageNumberLine";
 import { CycleNecklace } from "../visuals/CycleNecklace";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
 import { FloorLadder } from "../visuals/FloorLadder";
-import { AppearingWord } from "../visuals/AppearingWord";
+import { AppearingItinerary } from "../visuals/AppearingItinerary";
 import { FloorCut } from "../visuals/FloorCut";
 import { MapDoors } from "../visuals/MapDoors";
 import { TrajectoryBeads } from "../visuals/TrajectoryBeads";
@@ -376,15 +376,15 @@ export function MapWidget() {
       />
       <div className="grid gap-3 sm:grid-cols-2 sm:items-stretch">
         <FloorCut n={cursor} result={next} />
-        <AppearingWord
-          word={trajectory.word}
+        <AppearingItinerary
+          itinerary={trajectory.itinerary}
           revealed={stepIndex}
           note={
             trajectory.source === "monster"
               ? `Shipped trajectory${trajectory.peakBits ? ` (peak ${trajectory.peakBits} bits)` : ""}. The browser did not walk this start. ${trajectory.blurb ?? ""} Hitting 1 is not a theorem.`
               : trajectory.bitCapped
                 ? "A value exceeded the live 256-bit cap. Famous larger starts are under Monsters if we shipped them."
-                : trajectory.reachedOne && stepIndex >= trajectory.word.length
+                : trajectory.reachedOne && stepIndex >= trajectory.itinerary.length
                   ? "This walk hit 1, which is not a theorem."
                   : null
           }
@@ -417,7 +417,7 @@ export function TrajectoryWidget() {
         </button>
       </div>
       <p className="text-sm text-muted">
-        Word so far:{" "}
+        Itinerary so far:{" "}
         <span className="font-mono">
           {states.slice(0, -1).map((state) => letterOf(state)).join("") || "—"}
         </span>
@@ -428,10 +428,10 @@ export function TrajectoryWidget() {
 }
 
 export function CycleWidget() {
-  const [word, setWord] = useState("OEO");
+  const [itinerary, setWord] = useState("OEO");
   const [shift, setShift] = useState(0);
-  const parsed = parseWord(word, 16) ?? "";
-  const current = parsed ? rotateWord(parsed, shift) : "";
+  const parsed = parseItinerary(itinerary, 16) ?? "";
+  const current = parsed ? rotateItinerary(parsed, shift) : "";
   return (
     <div className="space-y-3">
       <CycleNecklace word={parsed} shift={shift} minIndex={0} />
@@ -468,13 +468,13 @@ export function CycleWidget() {
 
 export function ExpandingWidget() {
   const [text, setText] = useState("OOE");
-  const word = parseWord(text, 16) ?? "";
+  const word = parseItinerary(text, 16) ?? "";
   const odds = oddCount(word);
   return (
     <div className="space-y-3">
       <SurplusScale odds={odds} length={word.length} />
       <label className="block text-sm text-muted">
-        Short O/E word
+        Short O/E itinerary
         <input
           className="mt-1 block w-full max-w-xs rounded border border-line bg-card px-2 py-1 font-mono"
           value={text}
@@ -493,7 +493,7 @@ export function ExpandingWidget() {
 export function EnvelopeWidget() {
   const n = 5n;
   const word = "OOE";
-  const follows = followsWord(n, word);
+  const follows = followsItinerary(n, word);
   const image = follows ? imageAfter(n, word) : null;
   const slack =
     image === null ? null : envelopeSlack(n, image, word.length, oddCount(word));
@@ -526,21 +526,21 @@ export function EnvelopeWidget() {
   );
 }
 
-export function CellsWidget() {
-  const even = evenCell(6);
-  const odds = oddCellIntegers(11);
+export function PreimagesWidget() {
+  const even = evenPreimage(6);
+  const odds = oddPreimageIntegers(11);
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div>
-        <h3 className="mb-2 font-serif text-lg">Even cell of 6</h3>
-        <CellNumberLine lo={even.lo} hi={even.hi} marks={[36, 38, 40]} label="Even parents of 6" />
+        <h3 className="mb-2 font-serif text-lg">Even one-step preimage of 6</h3>
+        <PreimageNumberLine lo={even.lo} hi={even.hi} marks={[36, 38, 40]} label="Even parents of 6" />
         <p className="text-sm text-muted">
           Even n in [{even.lo}, {even.hi}) all map to 6.
         </p>
       </div>
       <div>
-        <h3 className="mb-2 font-serif text-lg">Odd cell of 11</h3>
-        <CellNumberLine lo={4} hi={7} marks={odds} label="Odd parent of 11" />
+        <h3 className="mb-2 font-serif text-lg">Odd one-step preimage of 11</h3>
+        <PreimageNumberLine lo={4} hi={7} marks={odds} label="Odd parent of 11" />
         <p className="text-sm text-muted">
           At most one integer: here {odds[0] ?? "none"}.
         </p>

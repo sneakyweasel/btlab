@@ -11,9 +11,9 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import CERTIFICATES, has_named, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_capture_certificates.json"
@@ -53,7 +53,7 @@ CERTIFICATE_UNCHANGED = (
 
 
 def classify_block(n: int, word: str) -> str:
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         return "NO_CERTIFICATE"
     endpoint = image_after(n, word)
     if endpoint == 1:
@@ -98,12 +98,12 @@ def known_blocks() -> list[dict[str, Any]]:
     ]
     rows = []
     for word, n in samples:
-        endpoint = image_after(n, word) if follows_word(n, word) else None
+        endpoint = image_after(n, word) if follows_itinerary(n, word) else None
         rows.append(
             {
                 "word": word,
                 "n": n,
-                "follows": follows_word(n, word),
+                "follows": follows_itinerary(n, word),
                 "endpoint": endpoint,
                 "kind": classify_block(n, word),
                 "contracts": endpoint is not None and endpoint < n,

@@ -13,9 +13,9 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import CELLS, DYNAMICS, ITINERARY
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.realization_geometry import collect_realizing
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -238,7 +238,7 @@ def selected_confirm(*, n_max: int = CONFIRM_N) -> dict[str, Any]:
     rows = []
     inversions = []
     for word in SPECIAL:
-        starts = [n for n in range(1, n_max + 1) if follows_word(n, word)]
+        starts = [n for n in range(1, n_max + 1) if follows_itinerary(n, word)]
         if not starts:
             continue
         row = image_row(word, starts)
@@ -280,7 +280,7 @@ def lean_api_present() -> dict[str, Any]:
         "floorPower": "def floorPower" in text,
         "follows": "def follows" in text,
         "image": "def image" in text,
-        "even_cell_iff": "theorem even_cell_iff" in text,
+        "even_preimage_iff": "theorem even_preimage_iff" in text,
         "floorPower_even_mono": "theorem floorPower_even_mono" in text,
         "floorPower_odd_mono": "theorem floorPower_odd_mono" in text,
         "image_monotone_of_follows": "theorem image_monotone_of_follows" in text,
@@ -401,7 +401,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     Is Y_w a low-complexity exact image object?",
         "Novelty hypothesis      monotone / cell / Phi calculus stronger than parity",
         "Falsifier               inversions; Y_{wb} != Phi_b(Y_w); only tautologies",
-        "Existing machinery      image_after, floor_power, collect_realizing, even_cell",
+        "Existing machinery      image_after, floor_power, collect_realizing, even_preimage",
         "Maximum Phase-0 scope   N<=4000 all prefixes k<=12; selected confirm 1e5",
         "```",
         "",
@@ -461,7 +461,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "floorPower",
         "follows",
         "image",
-        "even_cell_iff",
+        "even_preimage_iff",
         "floorPower_even_mono",
         "floorPower_odd_mono",
         "image_monotone_of_follows",

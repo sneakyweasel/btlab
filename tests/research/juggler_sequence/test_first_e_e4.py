@@ -17,7 +17,7 @@ from research.juggler_sequence.first_e_e4 import (
     render_markdown,
     word_e4,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 _PAYLOAD = None
 
@@ -109,8 +109,8 @@ def test_classify_render_and_artifacts():
     assert stored["anti_overclaim"]["cycles_impossible"] is False
     assert stored["anti_overclaim"]["first_e_e4_lean"] is False
     assert stored["anti_overclaim"]["four_even_bunched_attack"] is False
-    assert stored["lean"]["no_cycle_word_four_even"] is True
-    assert stored["lean"]["no_cycle_word_length_eight"] is True
+    assert stored["lean"]["no_cycle_itinerary_four_even"] is True
+    assert stored["lean"]["no_cycle_itinerary_length_eight"] is True
     assert stored["scan"]["length_eight_census"] is False
     assert dict(ANTI_OVERCLAIM)["global_termination"] is False
 
@@ -129,9 +129,9 @@ def test_dossier_boundary():
     assert "## Decision" in dossier
     assert "CLOSE" in dossier
     assert "REPARAMETERIZATION" in dossier
-    assert "no_cycle_word_length_eight" in dossier
-    assert "no_cycle_word_length_nine" in dossier
+    assert "no_cycle_itinerary_length_eight" in dossier
+    assert "no_cycle_itinerary_length_nine" in dossier
     assert "not a length-8" in dossier or "not a length-8/9" in dossier
-    assert "theorem no_cycle_word_four_even" not in note
-    assert "theorem no_cycle_word_length_eight" not in note
-    assert "theorem no_cycle_word_length_nine" not in note
+    assert "theorem no_cycle_itinerary_four_even" not in note
+    assert "theorem no_cycle_itinerary_length_eight" not in note
+    assert "theorem no_cycle_itinerary_length_nine" not in note

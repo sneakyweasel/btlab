@@ -332,7 +332,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Literature:** Hensel lifting, the singular split, and root counting remain KNOWN; the nonsingular half of the classification is a REPARAMETERIZATION of Newton's method; the minimal-state statement itself has no located prior form, but it is a two-line consequence of the definitions and is best described as a correction to our own earlier sufficiency claim
 - **Open:** the one gap in the closed form — injectivity of `d mod 3^{r-e} ↦ (B_{r-e}(d+s))_{|s| ≤ e}` for `1 < e < r`, which is all that stands between `COMPUTATIONALLY VERIFIED` and a proof of `L_r`
 - **Decision:** PARK. The extreme rows, the structure theorem, the overlap, the attainment, and the reduction of the total to the rows are proved; the general row rests on exhaustion to `r = 6`, which is exactly the plan's own PARK criterion. The nonsingular half being Newton's method also keeps `CLOSE — REPARAMETERIZATION` live: the burden of showing the quotient is more than bookkeeping about Hensel lifting has not been discharged. Do not open a numbered milestone.
-- **Superseded** by *Shifted-family separation closes the lifting count* below. The shift window `|s| ≤ e` above is wrong — it comes from taking the digit sum of the word instead of its balanced value — so the "gap" was our own arithmetic error, and the corrected statement is provable. The PARK is superseded by CLOSE — REPARAMETERIZATION.
+- **Superseded** by *Shifted-family separation closes the lifting count* below. The shift window `|s| ≤ e` above is wrong — it comes from taking the digit sum of the itinerary instead of its balanced value — so the "gap" was our own arithmetic error, and the corrected statement is provable. The PARK is superseded by CLOSE — REPARAMETERIZATION.
 
 ## Operator-fragment unique NF (not a numbered milestone)
 
@@ -361,7 +361,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-23
 - **Objective:** Does adding exact-on-ℤ `Add` / `Mul` / `W` rules to the unary tree core stay locally confluent and semantically complete, or is `{D, I_a, S, N}` maximal?
 - **Hypotheses:** either the first counterexample appears as soon as `Add` or `Mul` or `W` is added, or a small oriented extension remains a complete core
-- **Major results:** `D` through `Add`/`Mul` and `I_a` through `Mul` are unsound (trit carry); push-in `S(x+y)→S(x)+S(y)` overlaps `D∘S=id` in the non-joining peak `D(S(x+y)) → x+y | D(S(x)+S(y))`; the same shape is `D(S(x*y))` for `Mul`; `N`-through-`Add` alone joins its `N`-overlaps but leaves the twins `S(x+y)` / `S(x)+S(y)`; factor-out `S(x)+S(y)→S(x+y)` repairs the Add peak and stops (KNOWN AC twins, not a CAS); one-way `W` plus stock `K3` rules fails at `N∘W∘W → K3∘N | N∘K3`, repaired on a bounded CP list by exact `N∘K3→K3∘N` (not a word-table confluence claim)
+- **Major results:** `D` through `Add`/`Mul` and `I_a` through `Mul` are unsound (trit carry); push-in `S(x+y)→S(x)+S(y)` overlaps `D∘S=id` in the non-joining peak `D(S(x+y)) → x+y | D(S(x)+S(y))`; the same shape is `D(S(x*y))` for `Mul`; `N`-through-`Add` alone joins its `N`-overlaps but leaves the twins `S(x+y)` / `S(x)+S(y)`; factor-out `S(x)+S(y)→S(x+y)` repairs the Add peak and stops (KNOWN AC twins, not a CAS); one-way `W` plus stock `K3` rules fails at `N∘W∘W → K3∘N | N∘K3`, repaired on a bounded CP list by exact `N∘K3→K3∘N` (not an itinerary-table confluence claim)
 - **Refuted ideas:** that unary + push-in `S` through `Add` is locally confluent; the same for `Mul`; that `N`-through-`Add` alone is semantically canonical; that one-way `N`–`D` plus stock `W`/`K3` rules is locally confluent
 - **Literature:** Knuth–Bendix / Newman; AC incompleteness of sums is KNOWN. The `D∘S` / `S`-distrib overlap and the `N∘K3` gap are project-specific.
 - **Next question:** does any finite exact-on-ℤ *factor-out* Add extension escape the `D∘S` obstruction and become complete even modulo AC, or is that already a computer-algebra engine? Taken up immediately below.
@@ -393,9 +393,9 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 
 - **Date:** 2026-08-23
 - **Objective:** Prove or refute the one recorded gap in `L_r`: injectivity of `d mod 3^{r-e} ↦ (B_{r-e}(d+s))_s`, the shifted family of a singular valuation row.
-- **Hypotheses:** the incoming question assumed the shift window was `|s| ≤ e`, from the digit sum of the word, and asked whether so few shifts could activate enough singular branches to separate the residue `d`
+- **Hypotheses:** the incoming question assumed the shift window was `|s| ≤ e`, from the digit sum of the itinerary, and asked whether so few shifts could activate enough singular branches to separate the residue `d`
 - **Major results:** the shift is the **balanced value** `packWord(w)`, not the digit sum — the constant after `j` steps is `3^{e-j}(d + a_1 + 3a_2 + … + 3^{j-1}a_j)`, generalised to `𝔇_w(3^j d + 3^{j+i}x) = (d + 3^i·packWord(w)) + 3^{j+i}x` and Lean-verified as `residualAlong_linState_pow` with the fully ternary block `outputAlong_linState_pow`; consequently the window is `W_e = [-(3^e-1)/2, (3^e-1)/2]`, all `3^e` values, a complete residue system modulo `3^e`, so each block has exactly one leaf that continues; separation then holds for every `e ≥ 1` and `R ≥ 0` by induction on `R`, identifying that leaf as the unique window entry of depth `≥ min(e,R)` and descending to horizon `R - e`; hence the rows are exactly `3^{r-e} + e` and `L_r = (3^{r+1}-1)/2 + r` is proved rather than exhausted, retagged `EXACT — HUMAN PROOF`; and the count is a corollary of a **normal form** — scale `b` to `3^e`, then the behaviour is `T_{v_3(c)}` and depends on `v_3(c)` alone where `v_3(c) < e` (`r` classes), and is exactly the unit-scaling orbit with no further collapse where `v_3(c) ≥ e` (`(3^{r+1}-1)/2` classes), a bijection with behaviour classes verified for `r ≤ 4`
-- **Refuted ideas:** that the shift is the digit sum of the word — our own earlier error, and the reason the row count looked unreachable; with that window the separation is genuinely **false**, since at `e = 2` every `d ≡ 3` and `d ≡ 6 (mod 9)` gives the identical tuple `(∅,∅,T_1,∅,∅)`, so the recorded "gap" was an artefact of the error rather than a real obstruction. Also refuted: that unit-orbit non-minimality is a phenomenon of the whole state space — it is entirely an artefact of the dominated stratum, and on `v_3(c) ≥ v_3(b)` the orbit *is* the minimal state.
+- **Refuted ideas:** that the shift is the digit sum of the itinerary — our own earlier error, and the reason the row count looked unreachable; with that window the separation is genuinely **false**, since at `e = 2` every `d ≡ 3` and `d ≡ 6 (mod 9)` gives the identical tuple `(∅,∅,T_1,∅,∅)`, so the recorded "gap" was an artefact of the error rather than a real obstruction. Also refuted: that unit-orbit non-minimality is a phenomenon of the whole state space — it is entirely an artefact of the dominated stratum, and on `v_3(c) ≥ v_3(b)` the orbit *is* the minimal state.
 - **Literature:** the normal form is the identification the branch was missing, and it identifies against us. "Unit orbit, degenerated to `v_3(c)` where the constant dominates" is Newton-polygon dominance plus Hensel rigidity in residual coordinates; the `3^{r-e} + e` rows and the `C(r,2)` overlap are arithmetic bookkeeping over that description. The exact count is new as a number; the object it counts is not new as an object.
 - **Open:** nothing in this sub-branch. The parent dossier kept deep-regime valuation determinacy of the *unordered* shape (now closed below) and the shallow regime `k < r`.
 - **Decision:** CLOSE — REPARAMETERIZATION for the minimal-state sub-branch. All four plan targets are proved and the count is attained, so the PARK criterion is gone; but promotion required the quotient not to be a standard classical object, and the normal form shows it is one. Retained as machinery: the block shift law (Lean), the separation theorem, `minimal_state_key`, and the correction of our own sufficiency-as-minimality claim. Do not open a numbered milestone.
@@ -463,7 +463,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Refuted ideas:** none new. The system without `N(D)→D(N)` remains semantically incomplete
 - **Decision:** PROMOTE the Lean semantic-canonicity package. Do not open a numbered milestone. Do not auto-extend to `Add`/`Mul`/`W`.
 
-## Word-table fragments excluding Add (not a numbered milestone)
+## Itinerary-table fragments excluding Add (not a numbered milestone)
 
 - **Date:** 2026-08-23
 - **Objective:** Independent of `Add`, is the full `WORD_REWRITE_RULES` table confluent on any named fragment that still excludes `Add`, or is that permanently a non-claim?
@@ -480,18 +480,18 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Objective:** Does adding the exact missing commute `N∘K3`, and keeping only one-way `N`-commutes, yield a larger confluent production fragment containing both `W` and `N`, or do further named peaks appear?
 - **Hypotheses:** (A) SIMP + one-way `N∘W` / `N∘D` (oriented carefully) + `N∘K3` is terminating and locally confluent; or (B) a named new peak appears
 - **Major results:** `WORD_WN_RULES` = SIMP + one-way `N∘S→S∘N`, `N∘W→W∘N`, `N∘K3→K3∘N` terminates on `(I0-count, N-inversion, length)` and every string-rewriting critical pair joins, including the old `N∘W∘W` peak (now `K3∘N`). `N∘S` is required (`N∘W∘S → W∘N∘S | W∘N` without it). The opposite orientation `K3∘N→N∘K3` fails at `N∘W∘K3`. Two-way `N∘K3` is a cycle. Production `WORD_REWRITE_RULES` was not widened
-- **Refuted ideas:** that `N∘K3` is enough to add one-way `N∘D` to SIMP — peaks `N∘D∘Ip → D∘N∘Ip | N` and `N∘D∘Im → D∘N∘Im | N` (no word-level `I±` sign-flip). The earlier bounded `{N,D,S,W,K3}` check hid this by omitting `D∘I±`
+- **Refuted ideas:** that `N∘K3` is enough to add one-way `N∘D` to SIMP — peaks `N∘D∘Ip → D∘N∘Ip | N` and `N∘D∘Im → D∘N∘Im | N` (no itinerary-level `I±` sign-flip). The earlier bounded `{N,D,S,W,K3}` check hid this by omitting `D∘I±`
 - **Literature:** Knuth–Bendix / Newman for string rewriting is KNOWN. The named W+N fragment and the `N∘D∘I±` obstruction are project-specific
 - **Next question:** do the tree-level `I±` sign-flips, installed as word rules, join `N∘D∘I±` without a new named peak, or is a W+N+D word fragment a different object?
 - **Decision:** PROMOTE `WORD_WN_RULES` as **EXACT — HUMAN PROOF** and SIMP+`N∘D` as **REFUTED**. `N∘K3` enlarges the confluent W+N fragment and is not enough for `N∘D`. Do not open a numbered milestone. Do not install `N∘K3` or `N∘D` in default production. Do not edit `BTCalculus/Confluence.lean`.
 
-## Word I± sign-flips close a confluent W+N+D fragment (not a numbered milestone)
+## Itinerary I± sign-flips close a confluent W+N+D fragment (not a numbered milestone)
 
 - **Date:** 2026-08-23
 - **Objective:** Do the tree-level `I±` sign-flips, installed as word rules, join `N∘D∘I±` without a new named peak, or is a W+N+D word fragment a different object?
 - **Hypotheses:** (A) `WORD_WN_RULES` + one-way `N∘D` + exact word `N∘Ip → Im∘N`, `N∘Im → Ip∘N` is T+LC; or (B) a new named peak appears, or the sign-flips are not exact as pure word rules
 - **Major results:** `WORD_WND_RULES` = WN + one-way `N∘D→D∘N` + `N∘Ip→Im∘N` + `N∘Im→Ip∘N` terminates on `(I0-count, N-inversion, length)` with pushable `{S,W,K3,D,Ip,Im}` and every string-rewriting critical pair joins, including the old `N∘D∘I±` peaks (`D∘N∘Ip → D∘Im∘N → N`). The identities are exact (`I_a(x)=a+3x`). Reverse `N∘D` and reverse sign-flips are cycles. Production `WORD_REWRITE_RULES` was not widened
-- **Refuted ideas:** that word-level `I±` sign-flips are a different encoding than a named W+N+D fragment — they are exact pure word rules and close the fragment
+- **Refuted ideas:** that itinerary-level `I±` sign-flips are a different encoding than a named W+N+D fragment — they are exact pure word rules and close the fragment
 - **Literature:** Knuth–Bendix / Newman for string rewriting is KNOWN. The named W+N+D fragment is project-specific
 - **Next question:** do the remaining production one-way commutes (`N∘M2`, `N∘Wz`, `N∘Wt`) enlarge WND without a new named peak, or does each need a companion the way `N∘D` needed `I±`?
 - **Decision:** PROMOTE `WORD_WND_RULES` as **EXACT — HUMAN PROOF**. Tree `I±` sign-flips, as one-way word rules, join `N∘D∘I±` and do not create a new peak. Do not open a numbered milestone. Do not install `N∘D` or the sign-flips in default production. Do not edit `BTCalculus/Confluence.lean`.
@@ -558,7 +558,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-23
 - **Objective:** Can Claim A and a *restricted* Add/carry exclusion be Lean-verified without an AC-matching library?
 - **Hypotheses:** unary completeness already lives in OpFrag*; the next-state output `D(x+y)` is not determined by `(D(x),D(y))`; constructor-sum identities classify by slope/const; the named carry-free S-through-Add system fails local confluence at `D∘S`
-- **Major results:** `RewriteCore.unary_complete_canonical_form` packages Claim A. `RewriteAddBoundary` proves `add_not_DLocal` (witness `(0,0)` vs `(1,1)`), `exactTriple_characterization` (eight concrete triples), `not_exact_Ip_Ip` / `not_exact_Im_Im`, and `pushIn_not_locally_confluent`. Packaged exclusion: `add_requires_carry_state`. No `sorry`. No word-table enlargement. No AC library. Ledger rows `BTC-add-not-D-local`, `BTC-constructor-sum-class`, `BTC-push-in-S-peak`, `BTC-add-requires-carry-state` are **EXACT — LEAN VERIFIED**. The unrestricted “any TRS is a CAS” wording stays human
+- **Major results:** `RewriteCore.unary_complete_canonical_form` packages Claim A. `RewriteAddBoundary` proves `add_not_DLocal` (witness `(0,0)` vs `(1,1)`), `exactTriple_characterization` (eight concrete triples), `not_exact_Ip_Ip` / `not_exact_Im_Im`, and `pushIn_not_locally_confluent`. Packaged exclusion: `add_requires_carry_state`. No `sorry`. No itinerary-table enlargement. No AC library. Ledger rows `BTC-add-not-D-local`, `BTC-constructor-sum-class`, `BTC-push-in-S-peak`, `BTC-add-requires-carry-state` are **EXACT — LEAN VERIFIED**. The unrestricted “any TRS is a CAS” wording stays human
 - **Refuted ideas:** that formalizing the boundary requires a generic AC-matching engine; that `D(x+y)=D(x)+D(y)` is exact
 - **Literature:** Newman / Avizienis / unique expansion remain KNOWN. D-locality failure + six-row classification + named peak remain PROJECT-SPECIFIC
 - **Open:** none on this gate. Drafting the note is editorial, not a rewrite milestone
@@ -583,7 +583,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Major results:** one page under Calculus research with views Claim map, Unary, Carry, Constructor sums, Push-in peak. View-model `visualization.rewrite_explorer` calls `rewrite_once` / `D` / `I_a` only. Add is not installed in `_step`. Word tables stay closed
 - **Refuted ideas:** none new
 - **Open:** none. Isolated reviewer deploy remains deferred
-- **Decision:** PROMOTE the companion page as laboratory infrastructure. CLOSE further rewrite UI (no rule editor, no word-fragment view, no second remote). Cubic residuals remain the frontier.
+- **Decision:** PROMOTE the companion page as laboratory infrastructure. CLOSE further rewrite UI (no rule editor, no itinerary-fragment view, no second remote). Cubic residuals remain the frontier.
 
 ## Rewrite-paper refinement and maximality gate (not a numbered milestone)
 
@@ -830,7 +830,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-24
 - **Objective:** Decide whether an expanding residual can be sustained on co-live control prefixes of unbounded length
 - **Hypotheses:** H1, a forbidden short factor cuts off long live trajectories; H2, an occurring block of length \(4\)–\(6\) stays co-live under repetition with \(\lvert s\rvert\to\infty\); H3, extension types collapse to a finite control automaton that bounds \(s\)
-- **Major results:** origin-reachable live DAG with all edges, co-live = can reach remaining \(0\); at \(N=8,12,16,20\) live nodes equal co-live nodes; \(\lvert\mathcal L_k(12)\rvert\) frozen; \(\lvert\mathcal L_6(20)\rvert=361\), \(729\) remaining-\(0\) states, \(38625503\) accepting words of length \(20\); exactly \(22\) Ext sets, all consecutive windows in \(W\) of length \(\le 4\), stable \(N=8\to 20\); all \(49+343\) interior factors of length \(2,3\) occur at \(N=12\); every length-\(\le 6\) co-live prefix of \(N=20\) is co-live at \(N=16\); two length-\(6\) words fail at \(N=12\); \(14\) occurring \(k=4,5,6\) blocks stay live for three repeats from remaining \(18\) and all return to \(0\); expanding occurring blocks leave \(K\); Perron pairing grows as remaining drops (floats). No new Lean. `energy_telescope` / `energy_step` / `kernel_unreachable_of_not_exceptional` unchanged
+- **Major results:** origin-reachable live DAG with all edges, co-live = can reach remaining \(0\); at \(N=8,12,16,20\) live nodes equal co-live nodes; \(\lvert\mathcal L_k(12)\rvert\) frozen; \(\lvert\mathcal L_6(20)\rvert=361\), \(729\) remaining-\(0\) states, \(38625503\) accepting itineraries of length \(20\); exactly \(22\) Ext sets, all consecutive windows in \(W\) of length \(\le 4\), stable \(N=8\to 20\); all \(49+343\) interior factors of length \(2,3\) occur at \(N=12\); every length-\(\le 6\) co-live prefix of \(N=20\) is co-live at \(N=16\); two length-\(6\) words fail at \(N=12\); \(14\) occurring \(k=4,5,6\) blocks stay live for three repeats from remaining \(18\) and all return to \(0\); expanding occurring blocks leave \(K\); Perron pairing grows as remaining drops (floats). No new Lean. `energy_telescope` / `energy_step` / `kernel_unreachable_of_not_exceptional` unchanged
 - **Refuted ideas:** that a length-\(2\) or \(3\) interior factor is forbidden at these horizons; that occurring length-\(4\)–\(6\) prefixes yield a co-live expanding family; that finite-horizon co-liveness of a prefix is \(\lvert H(u)\rvert=\infty\); that \(22\) Ext windows bound \(\lvert s\rvert\)
 - **Literature:** FS1996 unchanged
 - **Open:** \(\lvert L_0\rvert\). Not taken up
@@ -885,7 +885,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-24
 - **Objective:** Decide whether the place-value recurrence admits a \(W\)-valued consecutive zero-sum block that is fully live, not a reset, and expanding under iteration
 - **Hypotheses:** H1, MSD \(\mathrm{val}=\texttt{consumed_sum}=-s_3\); H2, \(B_\ast=(1,-2,-1,-3)\) has \(\mathrm{val}=0\); H3, a short shift-combination is a non-reset live expander; H4, algebraic zero-sum is fully live
-- **Major results:** Lean `Ostrowski.NP.recurrence_word_zero` (ledger `OST-np-recurrence-word-zero`), novelty KNOWN, zero `sorry`; \(B_\ast\) last letter \(-3\notin\) LSD; \(T_{B_\ast}(0)=0\); \(11\) length-\(\le 6\) \(W\)-valued combos, all algebraic zero-sum resets; four LSD-legal complete resets; no expander. `iterateA_e3` / `origin_particular` / `energy_telescope` unchanged
+- **Major results:** Lean `Ostrowski.NP.recurrence_itinerary_zero` (ledger `OST-np-recurrence-word-zero`), novelty KNOWN, zero `sorry`; \(B_\ast\) last letter \(-3\notin\) LSD; \(T_{B_\ast}(0)=0\); \(11\) length-\(\le 6\) \(W\)-valued combos, all algebraic zero-sum resets; four LSD-legal complete resets; no expander. `iterateA_e3` / `origin_particular` / `energy_telescope` unchanged
 - **Refuted ideas:** that the recurrence word is an expanding live family; that algebraic zero-sum is fully live (LSD); that a reset block is \(\lvert L_0\rvert=\infty\)
 - **Literature:** FS1996 unchanged. The identity is \(q_{\mathrm{rec}}\), not that paper
 - **Open:** \(\lvert L_0\rvert\); a contracting functional on \(\ker(u_n)\). Not taken up
@@ -896,7 +896,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-24
 - **Objective:** Decide whether \(\mathrm{val}(B)=0\) is equivalent to \((c_B)_3=0\), and whether that forces \(c_B=0\)
 - **Hypotheses:** H1, \((c_B)_3=-\mathrm{val}\); H2, identically zero-for-all-alignments is the recurrence reset lattice; H3, zero at one alignment forces a reset; H4, the shortest complete non-reset is new
-- **Major results:** Lean `Ostrowski.NP.particular_s3` (ledger `OST-np-particular-s3`), novelty KNOWN, zero `sorry`; \(\mathrm{val}=0\) iff \(c_B\in F\); shortest complete non-reset is \((1,-2)\) with \(c_B=(-3,-1,0)\) (known hub), algebraic zero-sum / LSD-legal / fully live; complete \(k\le 4\) table has \(k^\ast=2\); recurrence \(11\) remain resets; \(L_0(12)\) is the live fiber on \(F\), not a new census. `recurrence_word_zero` / `iterateA_e3` / `origin_particular` / `energy_telescope` unchanged
+- **Major results:** Lean `Ostrowski.NP.particular_s3` (ledger `OST-np-particular-s3`), novelty KNOWN, zero `sorry`; \(\mathrm{val}=0\) iff \(c_B\in F\); shortest complete non-reset is \((1,-2)\) with \(c_B=(-3,-1,0)\) (known hub), algebraic zero-sum / LSD-legal / fully live; complete \(k\le 4\) table has \(k^\ast=2\); recurrence \(11\) remain resets; \(L_0(12)\) is the live fiber on \(F\), not a new census. `recurrence_itinerary_zero` / `iterateA_e3` / `origin_particular` / `energy_telescope` unchanged
 - **Refuted ideas:** that \(\mathrm{val}(B)=0\Rightarrow c_B=0\); that a non-reset complete word is \(\lvert L_0\rvert=\infty\); that repeating the length-2 return is a new family (it is the bounded \(F\to F\) ray)
 - **Literature:** FS1996 unchanged. The identity is energy at remaining \(0\), not that paper
 - **Open:** \(\lvert L_0\rvert\); a contracting functional on \(\ker(u_n)\). Not taken up
@@ -940,9 +940,9 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-24
 - **Objective:** Decide whether arbitrarily long origin-accepted words force infinitely many distinct remaining-0 terminals
 - **Hypotheses:** H1, \(U_k=(B_\ast)^k\cdot(1,-2)\) is complete live with \(\tau=\) hub; H2, that implication holds for the full language; H3, König of \(\mathcal T_\infty\) decides \(\lvert L_0\rvert\); H4, a seven-module extendability stack is required
-- **Major results:** Lean `Ostrowski.NP.recurrence_word_reset` / `reset_pow_origin` / `reset_pow_then_hub` (ledger `OST-np-reset-pow-then-hub`), novelty KNOWN, zero `sorry`; Python `U_k` fully live for \(k=0..4\), one terminal the hub; König of \((B_\ast)^\infty\) stays at the origin. No new modules. `fold_s3` / `hub_nonreset` / `recurrence_word_zero` unchanged
+- **Major results:** Lean `Ostrowski.NP.recurrence_word_reset` / `reset_pow_origin` / `reset_pow_then_hub` (ledger `OST-np-reset-pow-then-hub`), novelty KNOWN, zero `sorry`; Python `U_k` fully live for \(k=0..4\), one terminal the hub; König of \((B_\ast)^\infty\) stays at the origin. No new modules. `fold_s3` / `hub_nonreset` / `recurrence_itinerary_zero` unchanged
 - **Refuted ideas:** that arbitrarily long accepted words force infinitely many terminals (ledger `OST-np-long-words-infinite-L0`); that König compactness is an \(L_0\) theorem; that finite-horizon \(\lvert L_0(N)\rvert\) growth is infinitude
-- **Literature:** FS1996 unchanged. The family is the recurrence reset plus the known hub word, not that paper
+- **Literature:** FS1996 unchanged. The family is the recurrence reset plus the known hub itinerary, not that paper
 - **Open:** \(\lvert L_0\rvert\); a contracting functional on \(\ker(u_n)\). Not taken up
 - **Decision:** PARK \(\lvert L_0\rvert\). PROMOTE the KNOWN `reset_pow_then_hub` identity. REFUTED long-words\(\Rightarrow\lvert L_0\rvert=\infty\). CLOSE König/\(\mathcal T_\infty\) as new math. Do not claim \(\lvert L_0\rvert\) finite or infinite. No order 4, CLI, or Walnut
 
@@ -1049,7 +1049,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 
 - **Date:** 2026-08-24
 - **Objective:** Add five tiny systems with known behavior and run the cheap-attack planner on all of them, fixing abstraction leaks, without touching \(\lvert L_0\rvert\)
-- **Hypotheses:** H1, a collapse to 0 is a finite live closure; H2, \(x\mapsto x+1\) is an infinite live family that remains a `BOUNDED` census; H3, a reset loop has infinitely many words and one terminal; H4, \(x\mapsto 3x\) is an exact residue law; H5, \(x\mapsto 2x\) can expand out of a live box
+- **Hypotheses:** H1, a collapse to 0 is a finite live closure; H2, \(x\mapsto x+1\) is an infinite live family that remains a `BOUNDED` census; H3, a reset loop has infinitely many itineraries and one terminal; H4, \(x\mapsto 3x\) is an exact residue law; H5, \(x\mapsto 2x\) can expand out of a live box
 - **Major results:** `research_engine.benchmarks` A–E. Planner default `max_steps=16`. Forward search reports actual depth, not the cap. New schema `unbounded_accepted_words ⇒ unbounded_terminals` REFUTED as kinds. None of the five emits a `LIVE` claim. Ostrowski \(\lvert L_0\rvert\) stays PARKED. Named theorem ledger unchanged. Fast and `--runslow` pytest green. `lake build Problems.Ostrowski.NP` green
 - **Refuted ideas:** none new Ostrowski mathematics. The reset-loop toy is the Phase-0 word/terminal trap, not a new counterexample to \(\Gamma_{NP}\)
 - **Literature:** unchanged. Infrastructure only
@@ -1159,12 +1159,12 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 
 - **Date:** 2026-08-24
 - **Objective:** Decide whether the monoid generated by \(\{S,N,D,W\}\) has a composition identity that is not a consequence of the identities already recorded in `docs/operator_algebra.md`
-- **Hypotheses:** the recorded list already generates every identity of word length \(\le 4\); alternatively one missing exact relation remains and is PROJECT-SPECIFIC
-- **Major results:** a terminating orientation of the recorded list (auxiliary \(K_3=W\circ W\), one-way \(N\)-commutes) has joining critical pairs; 341 words of length \(\le 4\) reduce to 77 normal forms; the rewrite is sound on the probe set; no two distinct normal forms agree as maps on \(\mathbb{Z}\) probes. Already-recorded non-identities stay distinct (\(W\circ W\ne\mathrm{id}\) at \(n=3\); \(W(3n)\ne 3W(n)\) at \(n=1\); \(S\circ D\ne\mathrm{id}\) at \(n=1\); \(D\circ W\ne W\circ D\) at \(n=10\)). The production peak \(N\circ W\circ W\) joins to \(K_3\circ N\) under the recorded commute, which is not installed in `WORD_REWRITE_RULES`. No ledger row. No Lean. No CLI
+- **Hypotheses:** the recorded list already generates every identity of itinerary length \(\le 4\); alternatively one missing exact relation remains and is PROJECT-SPECIFIC
+- **Major results:** a terminating orientation of the recorded list (auxiliary \(K_3=W\circ W\), one-way \(N\)-commutes) has joining critical pairs; 341 itineraries of length \(\le 4\) reduce to 77 normal forms; the rewrite is sound on the probe set; no two distinct normal forms agree as maps on \(\mathbb{Z}\) probes. Already-recorded non-identities stay distinct (\(W\circ W\ne\mathrm{id}\) at \(n=3\); \(W(3n)\ne 3W(n)\) at \(n=1\); \(S\circ D\ne\mathrm{id}\) at \(n=1\); \(D\circ W\ne W\circ D\) at \(n=10\)). The production peak \(N\circ W\circ W\) joins to \(K_3\circ N\) under the recorded commute, which is not installed in `WORD_REWRITE_RULES`. No ledger row. No Lean. No CLI
 - **Refuted ideas:** that a new exact identity of length \(\le 4\) remains after the recorded list; re-testing \(W\circ W=\mathrm{id}\), \(W(3n)=3W(n)\), or \(S\circ D=\mathrm{id}\)
 - **Literature:** Knuth unique expansion and OEIS A134028 remain KNOWN for the maps. `WORD_SIMP` / `WORD_WN` / `WORD_WND` remain syntactic Newman certificates and were not enlarged. The recorded identities were already project facts
 - **Open:** nothing on this line
-- **Decision:** CLOSE. The remaining question was taxonomy. Do not enlarge the word bound or the generator set. Do not add production rules. Do not open a numbered milestone
+- **Decision:** CLOSE. The remaining question was taxonomy. Do not enlarge the itinerary bound or the generator set. Do not add production rules. Do not open a numbered milestone
 
 ## WORD_SIMP Lean Newman packaging (not a numbered milestone)
 
@@ -1237,7 +1237,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-25
 - **Objective:** Decide whether the research engine can discover a finite residual and bounded affine-block certificate that forces strict descent in the shortcut map `C` (even `n/2`, odd `(3n+1)/2`), or an exact obstruction in a natural finite-state class
 - **Hypotheses:** a finite residual `R` plus blocks of length `≤ L` certifies `C^{ℓ(R(n))}(n)<n` for all large `n`; `V(n)=n` is a one-step Lyapunov; `n mod 2^L` is a closed residual of one-step `C`
-- **Major results:** `ShortcutSpec` reuses the generic planner. Controls are state-determined parity. `AffineSystem` is inapplicable. Integer-state BFS from 27 hits the cap (`INCONCLUSIVE`). Forward closure from 1 is the terminal cycle `{1,2}`. Derived blocks `C^k(n)=(a_w n+b_w)/2^k` on a unique residue. `n=2^L-1` realises the all-odd word and `C^L(n)=3^L-1>n`. Lean `shortcutC`, `shortcutC_terminal_cycle`, `shortcutC_odd_increases`, `shortcutC_no_uniform_L_descent`. Perturbation `C_{5,1}` still has no uniform `L`-descent on `n mod 2^L`. Claim ladder: not B, not C. Did not modify `research.collatz` or `bt.*`
+- **Major results:** `ShortcutSpec` reuses the generic planner. Controls are state-determined parity. `AffineSystem` is inapplicable. Integer-state BFS from 27 hits the cap (`INCONCLUSIVE`). Forward closure from 1 is the terminal cycle `{1,2}`. Derived blocks `C^k(n)=(a_w n+b_w)/2^k` on a unique residue. `n=2^L-1` realises the all-odd itinerary and `C^L(n)=3^L-1>n`. Lean `shortcutC`, `shortcutC_terminal_cycle`, `shortcutC_odd_increases`, `shortcutC_no_uniform_L_descent`. Perturbation `C_{5,1}` still has no uniform `L`-descent on `n mod 2^L`. Claim ladder: not B, not C. Did not modify `research.collatz` or `bt.*`
 - **Refuted ideas:** one-step Lyapunov `V(n)=n`; uniform bounded-block descent determined by `n mod 2^L`
 - **Literature:** unbounded stopping time of `2^L-1` is `KNOWN`. Tao logarithmic density is not a target
 - **Open:** none opened. Do not auto-start a second Collatz phase
@@ -1348,7 +1348,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-25
 - **Objective:** Decide whether `M=|R|` is a theorem for `F_{λ,U}` with output `lsd(s+u)`, or an artifact of previously tested alphabets
 - **Hypotheses:** some sparse `U` merges distinct reachable residuals; identical 1-letter `lsd` signatures force equivalence
-- **Major results:** If `λ` is not divisible by 3, distinct integers are separated by a constant word of length `v_3(s-t)+1` (`residual_separation`). Immediate signatures agree iff `s≡t (mod 3)`, and the successor difference `λ(s-t)/3` is independent of the control. Listed alphabets and `U_m` (`m≤6`) have singleton Mealy classes. At `λ=3`, `s ~ s+3k` on `ℤ` (`lambda3_trace_translate`), but that symmetry is not origin-reachable when `max|u|≤1`. Reused `SignedDigitResidualSpec` and `mealy_partition`. Did not reopen the phase law, the `U_m` fill, T/jets, Collatz, primes, or Ostrowski
+- **Major results:** If `λ` is not divisible by 3, distinct integers are separated by a constant itinerary of length `v_3(s-t)+1` (`residual_separation`). Immediate signatures agree iff `s≡t (mod 3)`, and the successor difference `λ(s-t)/3` is independent of the control. Listed alphabets and `U_m` (`m≤6`) have singleton Mealy classes. At `λ=3`, `s ~ s+3k` on `ℤ` (`lambda3_trace_translate`), but that symmetry is not origin-reachable when `max|u|≤1`. Reused `SignedDigitResidualSpec` and `mealy_partition`. Did not reopen the phase law, the `U_m` fill, T/jets, Collatz, primes, or Ostrowski
 - **Refuted ideas:** a listed alphabet with `M<|R|`; identical 1-letter signatures imply a merge (`0` vs `3` at `λ=1`, word `(0,0)`)
 - **Literature:** unique BT expansion and carry-transducer minimization are `KNOWN`. The 3-adic distinguishing length for this residual map is `NEW FORMULATION`
 - **Open:** none opened
@@ -1359,7 +1359,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-25
 - **Objective:** Test whether 3-adic residual rigidity survives a finite control language
 - **Hypotheses:** rigidity requires a common cyclic letter; some Model A–D constraint merges distinct residuals at one control state
-- **Major results:** Every word of length `v_3(s-t)+1` separates when `3∤λ` (`any_word_separation`). No-repeat `U_2` has a 10-state minimal product. Equal-parity Model D collapses `(s,0)∼(s,1)` without residual merge. `λ=3` translation holds for every word (`lambda3_constrained_symmetry`). Reused `signed_step` and `mealy_partition`. Did not reopen the phase law, Collatz, primes, T/jets, or Ostrowski
+- **Major results:** Every itinerary of length `v_3(s-t)+1` separates when `3∤λ` (`any_word_separation`). No-repeat `U_2` has a 10-state minimal product. Equal-parity Model D collapses `(s,0)∼(s,1)` without residual merge. `λ=3` translation holds for every itinerary (`lambda3_constrained_symmetry`). Reused `signed_step` and `mealy_partition`. Did not reopen the phase law, Collatz, primes, T/jets, or Ostrowski
 - **Refuted ideas:** a cyclic/constant letter is necessary; Models A–D produce residual merges
 - **Literature:** constrained synchronization and carry transducers are `KNOWN` and answer different questions. The any-word strengthening is `NEW FORMULATION`
 - **Open:** none opened
@@ -1381,7 +1381,7 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Date:** 2026-08-25
 - **Objective:** Reproduce promoted residual theorems through the v2 engine API, reproduce the short-horizon theorem exactly, and decide whether a proper subset of a complete depth-L control tree can create extra residual merges
 - **Hypotheses:** missing some (but not all) length-k words can merge a pair; finite L_q merges iff max|w|<v_3(s-t)+1
-- **Major results:** v2 `observe` / identity factorization / envelope holes / `separate_states` / `CertificateKind` reproduce the signed-digit, geometry, minimality, product, D+Add, expanding-D, short-horizon, Collatz, and prime facts. Short-horizon `(0,q_1)∼(3,q_1)` is `EXACT_CLOSURE`; length 2 is `EXACT_COUNTEREXAMPLE`. Proper subsets with a remaining word of length k still separate. Lean `traces_eq_iff_len_le_val`. Horizon-2 U_2 profile: 5 controls = 5 contributions, 7 reachable, 5 Mealy, `EXACT_CLOSURE`. No new engine
+- **Major results:** v2 `observe` / identity factorization / envelope holes / `separate_states` / `CertificateKind` reproduce the signed-digit, geometry, minimality, product, D+Add, expanding-D, short-horizon, Collatz, and prime facts. Short-horizon `(0,q_1)∼(3,q_1)` is `EXACT_CLOSURE`; length 2 is `EXACT_COUNTEREXAMPLE`. Proper subsets with a remaining itinerary of length k still separate. Lean `traces_eq_iff_len_le_val`. Horizon-2 U_2 profile: 5 controls = 5 contributions, 7 reachable, 5 Mealy, `EXACT_CLOSURE`. No new engine
 - **Refuted ideas:** a proper subset of the complete tree can hide every separator while keeping a long word
 - **Literature:** Mealy/Nerode and Anashin remain `KNOWN`. The per-word iff is `NEW FORMULATION` of the two previous 3-adic theorems
 - **Open:** none opened
@@ -1762,7 +1762,7 @@ Why
 - The missing domain-certification limitation is gone for the reconstructed relation. Remaining gaps are Collatz-scale and explicitly out of scope.
 
 Best next question
-- Can exact reconstructed latent control be consumed by generic control-word, cycle, modular, quotient, or residual attacks?
+- Can exact reconstructed latent control be consumed by generic control-itinerary, cycle, modular, quotient, or residual attacks?
 ```
 
 ## Control-word composition of certified latent families
@@ -1809,7 +1809,7 @@ Best next question
 - Can exact multi-step control-word constraints feed a generic obstruction attack that remains map-agnostic?
 ```
 
-## Control-word obstruction calculus
+## Control-itinerary obstruction calculus
 
 - **Date:** 2026-08-25
 - **Objective:** Consume exact control-word constraints and derive class-level arithmetic obstructions without map-specific logic
@@ -1853,10 +1853,10 @@ Best next question
 - Can class-level obstructions for m≥2 be proved symbolically in the remainder C(k)?
 ```
 
-## Symbolic multi-step control-word obstructions
+## Symbolic multi-step control-itinerary obstructions
 
 - **Date:** 2026-08-25
-- **Objective:** Prove infinite class-level impossibility from the symbolic remainder of a multi-step control word, without enumerating words
+- **Objective:** Prove infinite class-level impossibility from the symbolic remainder of a multi-step control itinerary, without enumerating words
 - **Hypotheses:** Last-control independence of C plus |D|>|C| yields a symbolic class; total length-m emptiness is false on power-clear; r=0 must not be obstructed; Syracuse is only a consumer
 - **Major results:** `SYMBOLIC_CLASS` last-k bound (k_min=2 on 2^k y=x+1; k_min=4 on Syracuse m=2). Remainder C=p C_prefix+r A_prefix independent of last k (Lean `last_step_remainder`). Counterexample-first: all length-2 impossible is REFUTED by (1,1). Zero remainder (2^k y=x) is not obstructed. Fingerprint `SYMBOLIC_CLASS`. Engine `CONTINUE`. No ledger row
 - **Refuted ideas:** enumerative emptiness billed as symbolic; total m=2 impossibility; last-k class including C=0
@@ -2077,7 +2077,7 @@ Best next question
 
 - **Date:** 2026-08-25
 - **Objective:** Run frozen Research Engine v2 against Carelli 2026 one-variable SLCs without adding attacks
-- **Hypotheses:** Blind adapters can yield DISCOVERED affine/residue structure; control-word obstructions; the engine stops at the Reachability barrier
+- **Hypotheses:** Blind adapters can yield DISCOVERED affine/residue structure; control-itinerary obstructions; the engine stops at the Reachability barrier
 - **Major results:** Decrement: adapter-given \(y=x-1\), WORD cycle obstruction, Lean termination. Negation: census UNRESOLVED (sign truncation of \(y=-x\)); control-word stack skipped; 2-cycles only post-run. \(R^+\): DISCOVERED \(3y=4x-1\) and \(3y=4x-2\) on residues 1 and 2 mod 3; CLASS obstructions; empirical halt, not a theorem. Seeded corpus bills all three `FAMILY_SATURATED` against digit-fold cores. ResearchLoop selected `hidden_vector_parity_shear` (`ExpectedResearchValue=0.027`), no override. Lean `rplusRel_*` / `decrement_reaches_zero` / `negation_period2`. Quotient deadlock fix (partial `legal_controls`). No ledger. No new attack
 - **Refuted ideas:** monotone descent / one-step contraction on \(R^+\); complete census of the involution \(x\mapsto -x\); seed closure as map contraction
 - **Literature:** Carelli 2026; Matthews–Watts 1984; Möller 1978; Braverman 2006; Tiwari 2004; Hosseini–Ouaknine–Worrell 2019; Ben-Amram et al. 2025 survey. All recovered identities KNOWN
@@ -2297,7 +2297,7 @@ Best next question
 - **Date:** 2026-08-25
 - **Objective:** Persist accumulated experiment history as classified research knowledge without adding attacks or contaminating blind discovery
 - **Hypotheses:** Failures cluster by mathematical signature; known rediscoveries stay non-novel; `score_candidate` is unchanged unless memory is passed
-- **Major results:** `research_engine.memory` (`MemoryExperiment`, `FailureRecord`, `GreyLoot`, `MathematicalYield`, `ResearchMemory`). Historical seed covers digit-fold, Syracuse, Euclidean/vector, matrix-word, nondeterministic SLC, involution census (not implemented), Carelli \(R^+\), BB-5, aliquot, Skolem order 6, and the `skolem_lrs` identifier hygiene false positive. Global-reachability cluster emits `PROMOTE_TO_NEXT_VERSION` as guidance only. No new attack. No Lean. Package 0.2.2
+- **Major results:** `research_engine.memory` (`MemoryExperiment`, `FailureRecord`, `GreyLoot`, `MathematicalYield`, `ResearchMemory`). Historical seed covers digit-fold, Syracuse, Euclidean/vector, matrix-itinerary, nondeterministic SLC, involution census (not implemented), Carelli \(R^+\), BB-5, aliquot, Skolem order 6, and the `skolem_lrs` identifier hygiene false positive. Global-reachability cluster emits `PROMOTE_TO_NEXT_VERSION` as guidance only. No new attack. No Lean. Package 0.2.2
 - **Refuted ideas:** treating `skolem_lrs` as a literature leak; a single failure justifying a new attack; silent grey-loot injection into `BlindPacket`
 - **Literature:** none new; historical campaigns remain KNOWN / PARK as in their dossiers
 - **Open:** which cluster, if any, later justifies a v2.3 abstraction from evidence rather than intuition
@@ -2698,7 +2698,7 @@ What was learned
 - Frozen v2.3 rediscovers 2^k y = 7x+1; that is infrastructure, not yield
 - T(n) lands in <2> = {1,2,4} inside (Z/7Z)*; 3x+1 and 5x+1 fill all units
 - C_out is transient, not basin-excluded: T(73)=1 and T(299593)=1
-- Generic cycle-word obstructions classify 1-cycles (only x=1), they do not block reaching 1
+- Generic cycle-itinerary obstructions classify 1-cycles (only x=1), they do not block reaching 1
 - Finite non-visit of 1 from seed 3 is not divergence and not a class obstruction
 
 Strongest theorem
@@ -2861,7 +2861,7 @@ Best next question
 ## Research Campaign 05: skolem_order5_unconditional
 
 - **Date:** 2026-08-26
-- **Objective:** On a declared order-5 companion window, see whether frozen v2.3 can do more than a finite prefix, without interpolants, without un-skipping matrix-word, and without claiming an unconditional order-5 decision
+- **Objective:** On a declared order-5 companion window, see whether frozen v2.3 can do more than a finite prefix, without interpolants, without un-skipping matrix-itinerary, and without claiming an unconditional order-5 decision
 - **Hypotheses:** dimension 5 might be a new computational cluster; a finite zero might be billed as an order-5 procedure; uniqueness might fall out of the prefix
 - **Major results:** Blind `StrategyPlanner(ORIGIN_AVOIDANCE)` selected `vector_matrix` with empty results. Prefix is `ZERO_WITNESS` at index 2. Skip pair at d=5 equals skip pair at d=6 (`COMPUTATION_EXHAUSTED`). Lean `companion_shift_order5_zero_second`. No new attacks
 - **Refuted ideas:** census runs at d=5; d=5 skip is a new cluster; ZERO_WITNESS is an unconditional order-5 procedure; prefix recovers uniqueness; this is the order-6 flagship or the order-2 window
@@ -3040,7 +3040,7 @@ Best next question
 - **Objective:** Diagnose the stored 0|->0, 1|->11 rewrite (halt on empty) as an integer-encoded word map, using frozen v2.3 without a tag-system attack and without a universality claim
 - **Hypotheses:** census might fake an affine cover; seed-101 halt might be billed as an integer Z-theorem; the mismatch might require a new tag attack
 - **Major results:** Blind `StrategyPlanner(TERMINATION)` selected `global_inductive` with empty results. Live `ResearchLoop` CONTINUE with EXPANDING / UNBOUNDED_SAMPLE, piecewise-affine INCONCLUSIVE, closure INCONCLUSIVE at cap 32. Exact: empty has no successor; [0] is fixed; 101 maps to 0111; length is nondecreasing. Lean in `Problems.Engine.CyclicTag`. No new attacks
-- **Refuted ideas:** residue-affine cover; seed-101 halt is an integer Z-theorem; the successor is affine on the encoding; nonempty words map to empty in one step; a new tag attack is required
+- **Refuted ideas:** residue-affine cover; seed-101 halt is an integer Z-theorem; the successor is affine on the encoding; nonempty itinerarys map to empty in one step; a new tag attack is required
 - **Literature:** Baader–Nipkow 1998
 - **Open:** none on this production; nonempty length never drops
 - **Decision:** CLOSE. The surviving statements are KNOWN. Predicted word/integer mismatch; low-value obvious incompatibility; board has no remaining unrun names
@@ -3363,7 +3363,7 @@ What was learned
 - Special probes respond to the arithmetic: palindrome 1 grows with C=2; seed 196 grows with C=7; W<0 at 2 and successor 0 at 8 have C=0
 
 Strongest theorem
-- none; the growth bound is a restatement of how a word sum creates an extra MSD
+- none; the growth bound is a restatement of how an itinerary sum creates an extra MSD
 
 Strongest refutation
 - 5→-6: C=2 with bt_length 3→3, so carry is not the same coordinate as length change
@@ -3715,7 +3715,7 @@ What was learned
 - A contractive block is not a theorem that every orbit contains that block
 
 Strongest theorem
-- If n≥2 follows the parity word OOOEE, then T^5(n)<n (floorPower_oooee_five_step_lt)
+- If n≥2 follows the parity itinerary OOOEE, then T^5(n)<n (floorPower_oooee_five_step_lt)
 
 Strongest refutation
 - One-step additive costs are definitional; EE is not mixed-branch energy loot
@@ -3739,15 +3739,15 @@ Best next question
 - Other k≤5 mixed blocks as Level B conditionals, without a parity-frequency theorem.
 ```
 
-## Juggler fixed-word power inequalities
+## Juggler fixed-itinerary power inequalities
 
 - **Date:** 2026-08-26
-- **Objective:** Falsify the exponent-only hypothesis that a Juggler parity word \(w\) obeys \(T^{|w|}(n)^{2^{|w|}}\lessgtr n^{3^{\#O(w)}}\) with the sign of \(3^{\#O}\) versus \(2^{|w|}\), independently of letter order
+- **Objective:** Falsify the exponent-only hypothesis that a Juggler parity itinerary \(w\) obeys \(T^{|w|}(n)^{2^{|w|}}\lessgtr n^{3^{\#O(w)}}\) with the sign of \(3^{\#O}\) versus \(2^{|w|}\), independently of letter order
 - **Hypotheses:** two-sided canonical comparison; one-sided floor composition \(T^k(n)^{2^k}\le n^{3^o}\); same-count permutations agree; near-critical words \(27/32\), \(243/256\), \(729/512\) are the strongest floor-error tests
-- **Major results:** Exhaustive \(|w|\le 8\) on \(1\le n\le 10^6\) plus targeted \(k=9\), \(o=6\). Two-sided exponent-only law **REFUTED** (expanding reverse fails at `O`/\(n=3\); strict even contraction equals on perfect squares). One-sided composition held on the whole domain (H1, including `OE` vs `EO` and all realized \(243/256\) words). Lean **PROVED** `floorPower_oooeeeoo_eight_step_lt`: `OOOEEEOO` implies \(T^8(n)^{256}\le n^{243}\) and \(T^8(n)<n\) for \(n\ge 2\). Classification **POWER_WORD_COUNTEREXAMPLE**. Records: `docs/research/juggler_power_words.md`, `docs/problems/juggler_power_words.md`. Research Engine control layer unchanged
+- **Major results:** Exhaustive \(|w|\le 8\) on \(1\le n\le 10^6\) plus targeted \(k=9\), \(o=6\). Two-sided exponent-only law **REFUTED** (expanding reverse fails at `O`/\(n=3\); strict even contraction equals on perfect squares). One-sided composition held on the whole domain (H1, including `OE` vs `EO` and all realized \(243/256\) words). Lean **PROVED** `floorPower_oooeeeoo_eight_step_lt`: `OOOEEEOO` implies \(T^8(n)^{256}\le n^{243}\) and \(T^8(n)<n\) for \(n\ge 2\). Classification **POWER_WORD_COUNTEREXAMPLE**. Records: `docs/research/juggler_power_itineraries.md`, `docs/problems/juggler_power_itineraries.md`. Research Engine control layer unchanged
 - **Refuted ideas:** expanding reverse inequality \(T_w(n)^{2^k}>n^{3^o}\); strict \(T(n)^2<n\) on all even \(n\ge 2\); treating `OOOEE` as an isolated lucky word rather than one-sided composition
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** a word-indexed one-sided composition lemma without a general-word tactic or frequency theorem
+- **Open:** an itinerary-indexed one-sided composition lemma without a general-word tactic or frequency theorem
 - **Decision:** PROMOTE the one-sided composition and the `OOOEEEOO` theorem. Record the two-sided law as COUNTEREXAMPLE. Do not register an attack
 
 ```text
@@ -3756,16 +3756,16 @@ What was learned
 - The expanding reverse inequality is false at the first odd n>=3
 - Pure-even strict contraction fails with equality on the infinite square-tower family
 - Same (k,o) permutations agreed on both comparisons (H1); ordering was not a discriminator
-- Near-critical 243/256 mixed words survived; OOOEE is the (5,3) calibration of the same mechanism
+- Near-critical 243/256 mixed itineraries survived; OOOEE is the (5,3) calibration of the same mechanism
 
 Strongest theorem
-- If n>=2 follows the parity word OOOEEEOO, then T^8(n)<n (floorPower_oooeeeoo_eight_step_lt)
+- If n>=2 follows the parity itinerary OOOEEEOO, then T^8(n)<n (floorPower_oooeeeoo_eight_step_lt)
 
 Strongest refutation
 - OO at n=3: 11^4 = 14641 < 3^9 = 19683, against the expanding reverse inequality
 
 Reusable machinery
-- research.juggler_sequence.power_words: exact cmp_pow and fixed-word sweep
+- research.juggler_sequence.power_itineraries: exact cmp_pow and fixed-itinerary sweep
 - FloorPower primitives pow_sq_le / pow_sq_le_cube / floorPower_even_sq_le / floorPower_odd_sq_le_cube
 
 Prior-art status
@@ -3781,30 +3781,30 @@ Why
 - The two-sided exponent-only law is false, but the one-sided OOOEE mechanism is not an isolated word: a near-critical 243/256 block is Lean-proved. Stop before a general-word tactic.
 
 Best next question
-- Can the one-sided floor-power chain be packaged as a composition lemma indexed by a finite word, without a general-word tactic and without a parity-frequency theorem?
+- Can the one-sided floor-power chain be packaged as a composition lemma indexed by a finite itinerary, without a general-word tactic and without a parity-frequency theorem?
 ```
 
 ## Juggler one-sided floor-power composition
 
 - **Date:** 2026-08-26
-- **Objective:** Decide whether the surviving one-sided envelope \(T_w(n)^{2^k}\le n^{3^o}\) is a compositional theorem of realized finite words
+- **Objective:** Decide whether the surviving one-sided envelope \(T_w(n)^{2^k}\le n^{3^o}\) is a compositional theorem of realized finite itineraries
 - **Hypotheses:** `PowerBound` is preserved by append-even and append-odd; the exponent gap \(3^o<2^k\) at \(n\ge 2\) yields strict contraction; mixed-word equality is not required for the weak theorem
 - **Major results:** Near-equality scan found no one-sided failure. Mixed words had no equality in the focus set. Lean API `power_bound_empty` / `power_bound_append_even` / `power_bound_append_odd` / `power_bound_follows` / `power_bound_contracts` **PROVED**. `OOOEE` and `OOOEEEOO` are instances via `floorPower_oooee_of_follows` and `floorPower_oooeeeoo_of_follows`. Classification **POWER_COMPOSITION_GREEN**. Records: `docs/research/juggler_power_composition.md`, `docs/problems/juggler_power_composition.md`. Control layer unchanged
 - **Refuted ideas:** requiring a strict floor inequality in the composition theorem; treating OOOEE as an isolated chain rather than an instance of `PowerBound`
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
 - **Open:** mixed-word equality classification (secondary)
-- **Decision:** PROMOTE the finite-word power calculus. Do not register an attack. Do not claim termination
+- **Decision:** PROMOTE the finite-itinerary power calculus. Do not register an attack. Do not claim termination
 
 ```text
 What was learned
-- The weak bound is inductive: empty word, append even (k,o)->(k+1,o), append odd (k,o)->(k+1,o+1)
+- The weak bound is inductive: empty itinerary, append even (k,o)->(k+1,o), append odd (k,o)->(k+1,o+1)
 - Realization is a finite itinerary hypothesis `follows`, not a second engine
 - Strict contraction is the exponent gap at n>=2, not a strict floor inequality
 - Equality is structural (square towers, n=1), so the weak theorem is correctly non-strict
 - OOOEE and OOOEEEOO are ordinary instances of the same corollary
 
 Strongest theorem
-- Every realized finite word w obeys T_w(n)^{2^{|w|}} <= n^{3^{#O(w)}}; if 3^o < 2^k and n>=2 then T_w(n)<n
+- Every realized finite itinerary w obeys T_w(n)^{2^{|w|}} <= n^{3^{#O(w)}}; if 3^o < 2^k and n>=2 then T_w(n)<n
 
 Strongest refutation
 - none for the weak bound; the two-sided expanding reverse remains false at OO, n=3
@@ -3823,7 +3823,7 @@ Branch status
 - PROMOTE
 
 Why
-- The one-sided envelope is a finite-word theorem, not a word-specific accident. Stop rather than classify mixed equality or add a tactic.
+- The one-sided envelope is a finite-itinerary theorem, not an itinerary-specific accident. Stop rather than classify mixed equality or add a tactic.
 
 Best next question
 - Is mixed-word equality possible, or is equality generated only by even perfect-power towers and the odd fixed point n=1?
@@ -3837,7 +3837,7 @@ Best next question
 - **Major results:** Mixed-word equality **exists**. Smallest witness: word `O`, \(n=9\), \(T(9)=27\), \(27^2=9^3\). Mechanism: odd squares have integer \(n^{3/2}\). Lean **PROVED** `floorPower_odd_sq_eq_cube_of_sq` and `floorPower_nine_odd_eq`. No both-letter (`O` and `E`) equality on the searched domain. Classification **MIXED_EQUALITY_FOUND**. Records: `docs/research/juggler_equality_rigidity.md`, `docs/problems/juggler_equality_rigidity.md`. Control layer unchanged
 - **Refuted ideas:** mixed-word strictness `mixed_word_power_lt`; universal `T(n)^2<n^3` for odd \(n\ge 3\); `floorPower_odd_sq_lt_cube` as a lemma for all odd \(n\ge 3\)
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** whether a word containing `E` can attain equality for \(n\ge 2\); whether all-odd equality is exactly the odd \(b^{2^j}\) family
+- **Open:** whether an itinerary containing `E` can attain equality for \(n\ge 2\); whether all-odd equality is exactly the odd \(b^{2^j}\) family
 - **Decision:** PROMOTE the witness and the odd-square mechanism. Stop mixed-strictness. Do not register an attack
 
 ```text
@@ -3855,7 +3855,7 @@ Strongest refutation
 - Mixed-word equality at O, n=9: 27^2 = 9^3 = 729
 
 Reusable machinery
-- research.juggler_sequence.equality_rigidity: mixed-equality search reusing power_words cmp_pow
+- research.juggler_sequence.equality_rigidity: mixed-equality search reusing power_itineraries cmp_pow
 - FloorPower lemmas floorPower_odd_sq_eq_cube_of_sq and floorPower_nine_odd_eq
 
 Prior-art status
@@ -3874,15 +3874,15 @@ Best next question
 - Is equality for words containing E impossible for n>=2, and is all-odd equality exactly the odd b^{2^j} family?
 ```
 
-## Juggler finite-word power algebra and equality rigidity
+## Juggler finite-itinerary power algebra and equality rigidity
 
 - **Date:** 2026-08-26
-- **Objective:** Decide whether global envelope equality for a realized finite word forces every local branch inequality to be tight, and whether each local tightness is equivalent to a perfect square
+- **Objective:** Decide whether global envelope equality for a realized finite itinerary forces every local branch inequality to be tight, and whether each local tightness is equivalent to a perfect square
 - **Hypotheses:** even `T(n)^2=n` iff square; odd `T(n)^2=n^3` iff square; composite envelope equality implies every local inequality is tight, hence every relevant state is square
 - **Major results:** Local iff-square theorems **PROVED**. Equality propagation **PROVED** (`power_bound_eq_implies_local_eq`). Square-state consequence **PROVED** (`power_bound_eq_implies_square`). Unfolded word theorem `power_bound_word`. Computational search: 0 `LOCAL_SQUARE_EQ_FALSE`, 0 `GLOBAL_EQ_PROPAGATION_FALSE`; 118 predicted equalities on \(n\le 10^4\), depth 8, none both-letter. Classification **EQUALITY_RIGIDITY_GREEN**. Records: `docs/research/juggler_power_algebra.md`, `docs/problems/juggler_power_algebra.md`. Control layer unchanged
 - **Refuted ideas:** mixed-word strictness remains refuted (prior phase); huge `cmp_pow` equality search; `PowerBoundStrict` / `PowerHeight` certificates
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** how `O` and `E` act on successive perfect powers; not an equality-word census
+- **Open:** how `O` and `E` act on successive perfect powers; not an equality-itinerary census
 - **Decision:** PROMOTE the rigidity chain. Do not register an attack. Do not claim termination
 
 ```text
@@ -3894,7 +3894,7 @@ What was learned
 - Contraction from 3^o < 2^k is a separate comparison from floor equality
 
 Strongest theorem
-- If a realized finite word attains the envelope with equality, then every local branch is exact and every relevant state is a perfect square
+- If a realized finite itinerary attains the envelope with equality, then every local branch is exact and every relevant state is a perfect square
 
 Strongest refutation
 - none for the rigidity chain; mixed-word strictness remains false at O, n=9
@@ -3913,7 +3913,7 @@ Branch status
 - PROMOTE
 
 Why
-- Equality is controlled by the same local inequalities that built the finite-word envelope, with an exact square condition at each step. Stop rather than census equality words or add PowerHeight.
+- Equality is controlled by the same local inequalities that built the finite-itinerary envelope, with an exact square condition at each step. Stop rather than census equality words or add PowerHeight.
 
 Best next question
 - How do O and E act on successive perfect powers (the descending s^2 ↦ s^3 / s^2 ↦ s dynamics)?
@@ -3922,10 +3922,10 @@ Best next question
 ## Juggler exact perfect-power dynamics and saturation budget
 
 - **Date:** 2026-08-26
-- **Objective:** Decide whether a realized word of length \(k\) can attain the finite-word floor-power envelope with equality only if the start is a \(2^k\)-th power
+- **Objective:** Decide whether a realized itinerary of length \(k\) can attain the finite-itinerary floor-power envelope with equality only if the start is a \(2^k\)-th power
 - **Hypotheses:** if \(n=a^{2^r}\) then exact \(E\) is \(a^{2^{r-1}}\) and exact \(O\) is \(a^{3\cdot 2^{r-1}}\); each exact branch drops one factor of \(2\); equality of length \(k\) forces \(HasPowTwoDepth(n,k)\)
 - **Major results:** Exact even/odd transitions **PROVED**. Depth-drop lemmas **PROVED**. Cube-depth pullback `hasPowTwoDepth_of_cube` **PROVED**. Budget theorem `power_bound_eq_implies_pow_two_depth` **PROVED**. For \(n\ge 2\), equality of length \(k\) implies \(2^{2^k}\le n\). Computational search: 0 `POWER_TWO_DEPTH_COUNTEREXAMPLE` on \(n\le 10^4\), depth 8, prescribed words to length 6, and square towers of bases \(2..30\); 99 saturating starts, 0 mixed saturations. Classification **SATURATION_BUDGET_GREEN**. Records: `docs/research/juggler_saturation_budget.md`, `docs/problems/juggler_saturation_budget.md`. Control layer unchanged
-- **Refuted ideas:** mixed-word strictness remains refuted (prior phase); `PowerHeight` hierarchy; huge `cmp_pow` equality search; equality-word census
+- **Refuted ideas:** mixed-word strictness remains refuted (prior phase); `PowerHeight` hierarchy; huge `cmp_pow` equality search; equality-itinerary census
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
 - **Open:** which words arise as traces of the even exponent maps \(e\mapsto e/2\) and \(e\mapsto 3e/2\)
 - **Decision:** PROMOTE the finite saturation-budget theorem. Do not register an attack. Do not claim termination
@@ -3935,11 +3935,11 @@ What was learned
 - Exact E on a^{2^r} is a^{2^{r-1}}; exact O is a^{3·2^{r-1}} = (a^3)^{2^{r-1}}
 - Both transitions drop one factor of 2 from the exponent; the image stays square iff r ≥ 2 (or the remaining base is square)
 - Envelope equality of length k forces HasPowTwoDepth(n, k), hence n ≥ 2^{2^k} for n ≥ 2
-- Exact steps preserve parity, so mixed words cannot saturate; all-even equality is the contracting case and is tight at 2^{2^k}
+- Exact steps preserve parity, so mixed itineraries cannot saturate; all-even equality is the contracting case and is tight at 2^{2^k}
 - The simple 2-adic depth invariant was not falsified; no PowerHeight datatype was required
 
 Strongest theorem
-- If a realized finite word of length k attains the floor-power envelope with equality, then the start is a 2^k-th power
+- If a realized finite itinerary of length k attains the floor-power envelope with equality, then the start is a 2^k-th power
 
 Strongest refutation
 - none for the budget; mixed-word strictness remains false at O, n=9
@@ -3967,12 +3967,12 @@ Best next question
 ## Juggler equality-word language and parity rigidity
 
 - **Date:** 2026-08-26
-- **Objective:** Decide whether a realized finite word attaining the floor-power envelope with equality must be monochrome, \(E^k\) or \(O^k\), and whether those families are exactly the even and odd perfect-power towers
+- **Objective:** Decide whether a realized finite itinerary attaining the floor-power envelope with equality must be monochrome, \(E^k\) or \(O^k\), and whether those families are exactly the even and odd perfect-power towers
 - **Hypotheses:** exact perfect-power states keep the parity of the base; therefore an equality itinerary cannot switch letters; the reverse towers realize \(E^k\) and \(O^k\)
-- **Major results:** Parity of \(a^e\) **PROVED**. Exact-step parity preservation **PROVED**. Monochrome theorem `power_bound_eq_implies_monochrome` **PROVED**. Extremal iff `power_bound_eq_iff_extremal` **PROVED**: equality is exactly \(a^{2^k}\xrightarrow{E^k}a\) or \(a^{2^k}\xrightarrow{O^k}a^{3^k}\). Even minimum \(2^{2^k}\) for \(n\ge 2\); odd minimum \(3^{2^k}\) for \(n\ge 3\). Computational search: 0 `MIXED_EQUALITY_WORD_FOUND` on \(n\le 10^4\), depth 8, square towers, and prescribed mixed words. Classification **EXTREMAL_FAMILY_GREEN**. Records: `docs/research/juggler_equality_language.md`, `docs/problems/juggler_equality_language.md`. Control layer unchanged
-- **Refuted ideas:** mixed-word strictness remains refuted (prior phase; one-letter equality at `O`, \(n=9\), not a both-letter word); equality-word census; `PowerHeight`; a second exponent automaton
+- **Major results:** Parity of \(a^e\) **PROVED**. Exact-step parity preservation **PROVED**. Monochrome theorem `power_bound_eq_implies_monochrome` **PROVED**. Extremal iff `power_bound_eq_iff_extremal` **PROVED**: equality is exactly \(a^{2^k}\xrightarrow{E^k}a\) or \(a^{2^k}\xrightarrow{O^k}a^{3^k}\). Even minimum \(2^{2^k}\) for \(n\ge 2\); odd minimum \(3^{2^k}\) for \(n\ge 3\). Computational search: 0 `MIXED_EQUALITY_WORD_FOUND` on \(n\le 10^4\), depth 8, square towers, and prescribed mixed itineraries. Classification **EXTREMAL_FAMILY_GREEN**. Records: `docs/research/juggler_equality_language.md`, `docs/problems/juggler_equality_language.md`. Control layer unchanged
+- **Refuted ideas:** mixed-word strictness remains refuted (prior phase; one-letter equality at `O`, \(n=9\), not a both-letter word); equality-itinerary census; `PowerHeight`; a second exponent automaton
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** exact deficit of a non-monochrome realized word relative to the weak envelope
+- **Open:** exact deficit of a non-monochrome realized itinerary relative to the weak envelope
 - **Decision:** PROMOTE the monochrome language and the two extremal families. Do not register an attack. Do not claim termination
 
 ```text
@@ -3984,7 +3984,7 @@ What was learned
 - The simple parity invariant was not falsified; no PowerHeight or word automaton was required
 
 Strongest theorem
-- A realized finite word attains the floor-power envelope with equality if and only if it is an exact even tower or an exact odd tower
+- A realized finite itinerary attains the floor-power envelope with equality if and only if it is an exact even tower or an exact odd tower
 
 Strongest refutation
 - none for the language; mixed-word strictness remains false at O, n=9
@@ -4003,16 +4003,16 @@ Branch status
 - PROMOTE
 
 Why
-- Equality is not a free language over {E,O}. It collapses to two monochrome arithmetic extremals, which are the boundary of the existing finite-word envelope. Stop rather than census words or return to termination.
+- Equality is not a free language over {E,O}. It collapses to two monochrome arithmetic extremals, which are the boundary of the existing finite-itinerary envelope. Stop rather than census words or return to termination.
 
 Best next question
-- What exact deficit does a non-monochrome realized word have relative to the one-sided envelope?
+- What exact deficit does a non-monochrome realized itinerary have relative to the one-sided envelope?
 ```
 
-## Juggler finite-word envelope defect and strictness
+## Juggler finite-itinerary envelope defect and strictness
 
 - **Date:** 2026-08-26
-- **Objective:** Decide whether a realized non-monochrome finite word has a compositional algebraic deficit relative to the one-sided floor-power envelope, traced from the first non-exact branch
+- **Objective:** Decide whether a realized non-monochrome finite itinerary has a compositional algebraic deficit relative to the one-sided floor-power envelope, traced from the first non-exact branch
 - **Hypotheses:** a positive local defect \(\delta_E\) or \(\delta_O\) persists through every suffix; the weakest useful quantitative law is \(\Delta_w(n)\ge\delta_j\); unit positivity \(\Delta\ge 1\) is only the baseline
 - **Major results:** Local defects **PROVED**. `StrictPowerBound` append and suffix persistence **PROVED**. Non-monochrome \(\Rightarrow\Delta\ge 1\) **PROVED**. Deficit is monotone under even/odd continuation **PROVED**. First-defect bound \(\Delta\ge\delta_j\) through an arbitrary realized suffix **PROVED**. Probe on \(n\le 400\), depth 6: 0 unit falsifiers, 0 \(\Delta<\delta_j\), 0 suffix decreases. Classification **DEFECT_QUANTITATIVE_GREEN**. Records: `docs/research/juggler_envelope_defect.md`, `docs/problems/juggler_envelope_defect.md`. Control layer unchanged
 - **Refuted ideas:** mixed-word local strictness remains refuted (prior phase; `O`, \(n=9\)); a first-defect-position order on same-count words; `PowerHeight`; a suffix-length closed form; contraction-margin upgrade
@@ -4024,12 +4024,12 @@ Best next question
 What was learned
 - δ_E(x) is the even square remainder; δ_O(x) is the isqrt remainder of x^3
 - StrictPowerBound appends, so a first positive defect cannot be repaired by any suffix
-- Non-monochrome realized words satisfy Δ ≥ 1, the integer complement of the extremal families
+- Non-monochrome realized itineraries satisfy Δ ≥ 1, the integer complement of the extremal families
 - powerDeficit is nondecreasing along every realized continuation
 - The first local defect is a certified lower bound: Δ_w(n) ≥ δ_j
 
 Strongest theorem
-- If a realized word leaves an equality prefix at the first non-exact even or odd branch, then the final envelope deficit is at least that local defect
+- If a realized itinerary leaves an equality prefix at the first non-exact even or odd branch, then the final envelope deficit is at least that local defect
 
 Strongest refutation
 - none for the defect law; mixed-word local strictness remains false at O, n=9
@@ -4149,7 +4149,7 @@ Best next question
 - **Date:** 2026-08-26
 - **Objective:** Make `Problems.Engine.FloorPower` paper-ready (unique proofs, glue, section order) and retry the parked odd-start \(s\ge 2\) question
 - **Hypotheses:** specialized OOOEE/OOOEEEOO proofs are instances of `power_bound_contracts`; cubes in \([b^8,(b^4+1)^2)\) are even unless exact
-- **Major results:** `floorPower` now uses `n^3`. Shared exponent rewrites (`two_pow_succ`, `three_pow_succ`, `pow_three_succ_right`). `follows_wordOOOEE_iff` / `follows_wordOOOEEEOO_iff`; nested-hyp block lemmas are wrappers. Glue: `floorPower_even_eq_iff_sq_interval`, `localTight_*_iff_square`, `even_word_contracts`, `odd_word_expands`. No `sorry`. Extended search: fourth powers \(b\le 20000\) still one inexact cube (`b=97`, even \(n=198636\)); odd starts \(n\le 200000\) still max depth 1. No elementary \(s\ge 2\) obstruction. Reserved `floorPower_odd_pow_two_depth_ge_two_false` remains absent. Classification still **ODD_SHARP_SUFFIX_INCOMPLETE**. No ledger row. Control layer unchanged
+- **Major results:** `floorPower` now uses `n^3`. Shared exponent rewrites (`two_pow_succ`, `three_pow_succ`, `pow_three_succ_right`). `follows_itineraryOOOEE_iff` / `follows_itineraryOOOEEEOO_iff`; nested-hyp block lemmas are wrappers. Glue: `floorPower_even_eq_iff_sq_interval`, `localTight_*_iff_square`, `even_word_contracts`, `odd_word_expands`. No `sorry`. Extended search: fourth powers \(b\le 20000\) still one inexact cube (`b=97`, even \(n=198636\)); odd starts \(n\le 200000\) still max depth 1. No elementary \(s\ge 2\) obstruction. Reserved `floorPower_odd_pow_two_depth_ge_two_false` remains absent. Classification still **ODD_SHARP_SUFFIX_INCOMPLETE**. No ledger row. Control layer unchanged
 - **Refuted ideas:** treating the still-empty odd search as impossibility; adding `PowerHeight`; expanding `lean_export.py` beyond the seed-13 trio; reopening Phase 11 as a macro grammar
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
 - **Open:** whether a cube in a fourth-power square interval must be even
@@ -4159,7 +4159,7 @@ Best next question
 What was learned
 - OOOEE / OOOEEEOO nested-hyp theorems are definitionally the follows predicates
 - The one-step map is cleaner as Nat.sqrt / Nat.sqrt (n^3)
-- Even equality words of length k≥1 contract; odd equality words of length k≥1 expand for n≥3
+- Even equality itineraries of length k≥1 contract; odd equality itineraries of length k≥1 expand for n≥3
 - b=97 remains the only inexact fourth-power cube through b=20000
 - No odd s≥2 hit through n=200000; no short integer obstruction appeared
 
@@ -4170,7 +4170,7 @@ Strongest refutation
 - none for s≥2; the even b=97 cube is still the only inexact interval hit
 
 Reusable machinery
-- FloorPower paper sections; follows_word iff wrappers; even/odd inverse-floor pair
+- FloorPower paper sections; follows_itinerary iff wrappers; even/odd inverse-floor pair
 - even_word_contracts / odd_word_expands
 
 Prior-art status
@@ -4192,7 +4192,7 @@ Best next question
 ## Juggler defect-compensated contraction
 
 - **Date:** 2026-08-26
-- **Objective:** Decide whether a mixed realized word with \(3^o>2^k\) can still contract because floor defect exceeds the formal gap \(n^{3^o}-n^{2^k}\)
+- **Objective:** Decide whether a mixed realized itinerary with \(3^o>2^k\) can still contract because floor defect exceeds the formal gap \(n^{3^o}-n^{2^k}\)
 - **Hypotheses:** `COMPENSATED_CONTRACTION_FOUND`, `COMPENSATION_FIRST_DEFECT_SUFFICIENT`, `POSITIVE_DRIFT_NONCONTRACTION`, or `NO_USEFUL_COMPENSATION`
 - **Major results:** Certificate `power_bound_compensated_contracts` **PROVED**. `EOO` contracts iff \(n\in\{2,12,14\}\) **PROVED**. First local defect never exceeds the \((k,o)=(3,2)\) formal gap **PROVED**. `OOE`/`OEO` produced no contraction on the scanned odd window. Classification **COMPENSATED_CONTRACTION_FOUND**. Records: `docs/research/juggler_compensated_contraction.md`, `docs/problems/juggler_compensated_contraction.md`. Control layer unchanged
 - **Refuted ideas:** first-defect-only compensation \(\delta_j>G\) on the shortest mixed positive-drift family; treating \(\Delta>G\) as new arithmetic rather than a packaging of contraction; opening a lower-envelope theory; reopening parked \(OE^s\)
@@ -4219,7 +4219,7 @@ Reusable machinery
 - research.juggler_sequence.compensated_contraction bounded exact probe
 
 Prior-art status
-- local finite-word direction, not a Juggler halt result
+- local finite-itinerary direction, not a Juggler halt result
 
 Complexity profile
 - unchanged flood order; no new production attack; control layer not modified
@@ -4240,7 +4240,7 @@ Best next question
 - **Objective:** Replace the enumerated `EOO` contraction set \(\{2,12,14\}\) by an exact square-root cell threshold on \(q=\lfloor\sqrt n\rfloor\)
 - **Hypotheses:** `EOO_CELL_MECHANISM_GREEN`, `EOO_CELL_COUNTEREXAMPLE`, `COMPENSATED_PATTERN_FOUND`, `COMPENSATED_EOO_ISOLATED`, or `POSITIVE_DRIFT_CONTRACTION_FAMILY`
 - **Major results:** On a realized `EOO` start, \(T^3(n)=\mathrm{eooCellOutput}\,q\) and contracts iff \(n>c(q)\) **PROVED**. Only \(q=1,3\) have \(c<(q+1)^2\). `OOE`/`OEO` vary on n-sqrt cells. `EOOO` uses the same first-even freeze but contracts only at \(n=2\). Classification **EOO_CELL_MECHANISM_GREEN**. Records: `docs/research/juggler_eoo_cell_mechanism.md`, `docs/problems/juggler_eoo_cell_mechanism.md`. Control layer unchanged
-- **Refuted ideas:** `OOE`/`OEO` freeze on the start square-root cell; a three-point residue pattern beyond “same cell, \(n>c\)”; an infinite length-4 mixed contraction family on the scanned window; turning the generic \(\Delta>G\) certificate into a word-specific tactic
+- **Refuted ideas:** `OOE`/`OEO` freeze on the start square-root cell; a three-point residue pattern beyond “same cell, \(n>c\)”; an infinite length-4 mixed contraction family on the scanned window; turning the generic \(\Delta>G\) certificate into an itinerary-specific tactic
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
 - **Open:** whether `OOE`/`OEO` never contract, or whether a first-even positive-drift word has \(c(q)\) strictly inside \((q^2,(q+1)^2)\) for infinitely many odd \(q\)
 - **Decision:** PROMOTE the cell/threshold classification. Do not register an attack. Do not claim termination. Do not add a generic cell calculus
@@ -4264,7 +4264,7 @@ Reusable machinery
 - research.juggler_sequence.eoo_cell_mechanism cell scan
 
 Prior-art status
-- local finite-word cell classification, not a Juggler halt result
+- local finite-itinerary cell classification, not a Juggler halt result
 
 Complexity profile
 - unchanged flood order; no new production attack; control layer not modified
@@ -4309,7 +4309,7 @@ Reusable machinery
 - research.juggler_sequence.floor_cells
 
 Prior-art status
-- local finite-word cell identity, not a Juggler halt result
+- local finite-itinerary cell identity, not a Juggler halt result
 
 Complexity profile
 - unchanged flood order; no new production attack; control layer not modified
@@ -4354,7 +4354,7 @@ Reusable machinery
 - research.juggler_sequence.first_even_thresholds
 
 Prior-art status
-- local finite-word threshold, not a Juggler halt result
+- local finite-itinerary threshold, not a Juggler halt result
 
 Complexity profile
 - unchanged flood order; no new production attack; control layer not modified
@@ -4363,7 +4363,7 @@ Branch status
 - PROMOTE
 
 Why
-- The EOO and EOOO contraction starts are the realized points of two finite Q_v, now with explicit eventual bounds. Suffixes with α≤2 can have large Q_v, but those words are not formally expanding.
+- The EOO and EOOO contraction starts are the realized points of two finite Q_v, now with explicit eventual bounds. Suffixes with α≤2 can have large Q_v, but those itineraries are not formally expanding.
 
 Best next question
 - Prove eventual non-contraction for every suffix with α_v>2, or find one such suffix with unbounded Q_v
@@ -4374,18 +4374,18 @@ Best next question
 - **Date:** 2026-08-26
 - **Objective:** Prove or refute that every fixed suffix \(v\) with \(\alpha_v>2\) has finite first-even contraction set \(Q_v\)
 - **Hypotheses:** `FIRST_E_EVENTUAL_NONCONTRACTION_GREEN`, `LOWER_GROWTH_COMPOSITION_GREEN`, `SUPERQUADRATIC_COUNTEREXAMPLE`, or `LOWER_BOUND_TECHNIQUE_TOO_WEAK`
-- **Major results:** Coarse bound \(n<4\cdot n.\mathrm{sqrt}^2\) **PROVED**. `LowerPowerBound` composes along any realized word **PROVED**. Eventual \(T_v(q)\ge(q+1)^2\) for each fixed \(v\) with \(3^{\#O(v)}>2^{|v|+1}\) **PROVED**. No finite word has \(\alpha_v=2\) **PROVED**. Scan of superquadratic words of length \(\le5\) found only \(Q_v\subseteq\{1,2,3\}\). Classification **FIRST_E_EVENTUAL_NONCONTRACTION_GREEN**. Records: `docs/research/juggler_superquadratic_suffixes.md`, `docs/problems/juggler_superquadratic_suffixes.md`. Control layer unchanged
-- **Refuted ideas:** deriving the threshold from the one-sided upper envelope; a critical \(\alpha_v=2\) regime for finite words; a uniform-in-\(v\) threshold
+- **Major results:** Coarse bound \(n<4\cdot n.\mathrm{sqrt}^2\) **PROVED**. `LowerPowerBound` composes along any realized itinerary **PROVED**. Eventual \(T_v(q)\ge(q+1)^2\) for each fixed \(v\) with \(3^{\#O(v)}>2^{|v|+1}\) **PROVED**. No finite itinerary has \(\alpha_v=2\) **PROVED**. Scan of superquadratic itineraries of length \(\le5\) found only \(Q_v\subseteq\{1,2,3\}\). Classification **FIRST_E_EVENTUAL_NONCONTRACTION_GREEN**. Records: `docs/research/juggler_superquadratic_suffixes.md`, `docs/problems/juggler_superquadratic_suffixes.md`. Control layer unchanged
+- **Refuted ideas:** deriving the threshold from the one-sided upper envelope; a critical \(\alpha_v=2\) regime for finite itineraries; a uniform-in-\(v\) threshold
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
 - **Open:** whether changing superquadratic suffixes can still produce infinitely many first-even contraction cells; whether a uniform bound exists for \(\alpha_v\ge2+\varepsilon\)
-- **Decision:** PROMOTE the fixed-word lower-growth theorem. Keep exact OO/OOO classifications. Do not open a generic lower-envelope theory. Do not claim termination
+- **Decision:** PROMOTE the fixed-itinerary lower-growth theorem. Keep exact OO/OOO classifications. Do not open a generic lower-envelope theory. Do not claim termination
 
 ```text
 What was learned
 - 4 T^2 beats n (even) and n^3 (odd) for every n≥1
-- These compose to q^{3^o} ≤ D_v T_v(q)^{2^r} for a word-dependent D_v
+- These compose to q^{3^o} ≤ D_v T_v(q)^{2^r} for an itinerary-dependent D_v
 - The integer gap 3^o > 2^{r+1} then beats (q+1)^2 for large q
-- No finite word has α_v=2, because 3^o is odd
+- No finite itinerary has α_v=2, because 3^o is odd
 - Exact OO/OOO bounds remain much sharper than the coarse Q0(v)
 
 Strongest theorem
@@ -4399,7 +4399,7 @@ Reusable machinery
 - research.juggler_sequence.superquadratic_suffixes
 
 Prior-art status
-- local fixed-word threshold, not a Juggler halt result
+- local fixed-itinerary threshold, not a Juggler halt result
 
 Complexity profile
 - unchanged flood order; no new production attack; control layer not modified
@@ -4423,7 +4423,7 @@ Best next question
 - **Refuted ideas:** a threshold depending only on the exponent margin \(\varepsilon\); restoring uniformity by improving the coarse \(4T^2\) constants; treating \(D_v\) as the essential obstruction
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
 - **Open:** whether a residual uniform bound survives after excluding even-tower collapses onto a small state
-- **Decision:** PROMOTE the changing-suffix family theorem. Close \(\varepsilon\)-only uniformity as REFUTED. Keep the fixed-word theorem. Do not open a lower-envelope theory. Do not claim termination
+- **Decision:** PROMOTE the changing-suffix family theorem. Close \(\varepsilon\)-only uniformity as REFUTED. Keep the fixed-itinerary theorem. Do not open a lower-envelope theory. Do not claim termination
 
 ```text
 What was learned
@@ -4453,7 +4453,7 @@ Branch status
 - PROMOTE
 
 Why
-- The remaining loophole of the fixed-word theorem was a changing suffix v=v_q. A uniform superquadratic margin does not close it: a long even prefix can collapse a huge perfect power of two onto 1.
+- The remaining loophole of the fixed-itinerary theorem was a changing suffix v=v_q. A uniform superquadratic margin does not close it: a long even prefix can collapse a huge perfect power of two onto 1.
 
 Best next question
 - If suffixes that collapse a large even tower onto a small state are excluded, does any residual uniform bound remain?
@@ -4498,7 +4498,7 @@ Branch status
 - PROMOTE
 
 Why
-- The missing state for changing families is scale collapse, but the collapse need not sit at the start of the word. Bounding only the leading E-run leaves an internal even basin that still feeds 1.
+- The missing state for changing families is scale collapse, but the collapse need not sit at the start of the itinerary. Bounding only the leading E-run leaves an internal even basin that still feeds 1.
 
 Best next question
 - Does a bound on the longest even run restore family-level first-even non-contraction for superquadratic suffixes?
@@ -4524,7 +4524,7 @@ What was learned
 - Large changing-family contractions on the scan are collapse-to-1, not generic α-growth
 
 Strongest theorem
-- follows 2500 (EE ++ OEEE ++ O^12), the word is superquadratic with maxEvenRun=3, and T=1
+- follows 2500 (EE ++ OEEE ++ O^12), the itinerary is superquadratic with maxEvenRun=3, and T=1
 
 Strongest refutation
 - maxEvenRun=3 does not give a useful family threshold; q can have 121 bits
@@ -4543,7 +4543,7 @@ Branch status
 - PROMOTE
 
 Why
-- Changing families defeat fixed-word bounds by feeding a large state into an even run that exits at 1. Bounding the length of those runs does not bound the entry state, because an extra even run can be stacked in front.
+- Changing families defeat fixed-itinerary bounds by feeding a large state into an even run that exits at 1. Bounding the length of those runs does not bound the entry state, because an extra even run can be stacked in front.
 
 Best next question
 - Must every large superquadratic first-even contraction contain an even run that lands in an inert basin with unbounded entry/exit ratio?
@@ -4742,7 +4742,7 @@ Best next question
 
 ```text
 What was learned
-- One OE block is the word envelope T^2(x)^4 ≤ x^3; (OE)^r is T^{2r}(x)^{4^r} ≤ x^{3^r}
+- One OE block is the itinerary envelope T^2(x)^4 ≤ x^3; (OE)^r is T^{2r}(x)^{4^r} ≤ x^{3^r}
 - Minimality converts that into n^{4^r} ≤ x^{3^r}
 - (OE)^r cannot start at n_* because the first image is odd
 - Consecutive OE can stay above n (77: 17537 --(OE)^2--> 243); r is not uniformly bounded
@@ -4777,7 +4777,7 @@ Best next question
 ## Juggler odd-run financing
 
 - **Date:** 2026-08-27
-- **Objective:** Convert minimality plus the word envelope into an exact odd-run financing law for the first legal even residual
+- **Objective:** Convert minimality plus the itinerary envelope into an exact odd-run financing law for the first legal even residual
 - **Hypotheses:** `ODD_RUN_FINANCING_GREEN`, `ODD_RUN_MINIMUM_GREEN`, `BLOCK_FINANCING_GREEN`, or `SCALE_FINANCING_COUNTEREXAMPLE`
 - **Major results:** \(O^aE\) on a `MinimalNonTerm` orbit requires \(n^{2^{a+1}}\le x^{3^a}\) **EXACT — LEAN VERIFIED**. \(O^aE^b\) requires \(n^{2^{a+b}}\le x^{3^a}\) **EXACT — LEAN VERIFIED**. At the start, \(2^{a+1}\le 3^a\) iff \(a\ge 2\), so the first even residual cannot occur before `OOE` **EXACT — LEAN VERIFIED**. No envelope or financing failure on \(n\le 80\). Later \(a=1\) occurs (\(77\): \(1523\xrightarrow{\mathrm{OE}}243\)). Classification **ODD_RUN_FINANCING_GREEN**. Records: `docs/research/juggler_odd_run_financing.md`, `docs/problems/juggler_odd_run_financing.md`. Control layer unchanged
 - **Refuted ideas:** an absolute later odd-run lower bound \(a\ge 2\); an odd-run frequency theorem; a halt theorem; a lower-envelope theory
@@ -4813,7 +4813,7 @@ Branch status
 - PROMOTE
 
 Why
-- Minimality plus the word envelope is now an exact integer-power balance between odd expansion and even collapse, including a finite start constraint.
+- Minimality plus the itinerary envelope is now an exact integer-power balance between odd expansion and even collapse, including a finite start constraint.
 
 Best next question
 - For a fixed pair (a,b), can repeated O^a E^b stay >= n_* indefinitely, or does financing eventually fail?
@@ -5049,22 +5049,22 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Split a hypothetical residual path into a bounded cycle-candidate regime and an unbounded scale-budget regime
 - **Hypotheses:** `BOUNDED_RESIDUAL_CYCLE_GREEN`, `CYCLE_OBSTRUCTION_GREEN`, `UNBOUNDED_RESIDUAL_SCALE_GREEN`, or `NO_RESIDUAL_CONSTRAINT`
-- **Major results:** A repeated orbit state is a finite Juggler cycle **EXACT — LEAN VERIFIED**. A bounded prefix longer than its window is not nodup **EXACT — LEAN VERIFIED**. Every nonempty cycle word has \(2^r<3^o\); contracting words and \(2^r=3^o\) are impossible **EXACT — LEAN VERIFIED**. Residual returns need \(a\ge 2\) **EXACT — LEAN VERIFIED**. Scan \(2\le n\le 400\): only fixed point is \(1\); no residual period-1. Classification **BOUNDED_RESIDUAL_CYCLE_GREEN**. Records: `docs/research/juggler_residual_path.md`, `docs/problems/juggler_residual_path.md`. Control layer unchanged
-- **Refuted ideas:** residual return with \(a\le 1\); contracting cycle words; a halt theorem; an infinite-path type
+- **Major results:** A repeated orbit state is a finite Juggler cycle **EXACT — LEAN VERIFIED**. A bounded prefix longer than its window is not nodup **EXACT — LEAN VERIFIED**. Every nonempty cycle itinerary has \(2^r<3^o\); contracting itineraries and \(2^r=3^o\) are impossible **EXACT — LEAN VERIFIED**. Residual returns need \(a\ge 2\) **EXACT — LEAN VERIFIED**. Scan \(2\le n\le 400\): only fixed point is \(1\); no residual period-1. Classification **BOUNDED_RESIDUAL_CYCLE_GREEN**. Records: `docs/research/juggler_residual_path.md`, `docs/problems/juggler_residual_path.md`. Control layer unchanged
+- **Refuted ideas:** residual return with \(a\le 1\); contracting cycle itineraries; a halt theorem; an infinite-path type
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed or found here
-- **Open:** answered in the fixed cycle-word bound phase
+- **Open:** answered in the fixed cycle-itinerary bound phase
 - **Decision:** PROMOTE the bounded-path reduction and the strict cycle envelope. Do not claim that cycles are impossible. Do not close the unbounded branch. Do not claim termination
 
 ```text
 What was learned
 - A repeated iterate is a finite cycle; a bounded residual prefix must repeat
-- Every nonempty cycle word satisfies 2^r < 3^o
-- Residual period-1 needs a ≥ 2; a ≤ 1 and contracting words are excluded
+- Every nonempty cycle itinerary satisfies 2^r < 3^o
+- Residual period-1 needs a ≥ 2; a ≤ 1 and contracting itineraries are excluded
 - In 2..400 the only fixed point is 1; no residual period-1 appears
 - The unbounded branch still only has the existing per-step financing
 
 Strongest theorem
-- If a realized word returns to x ≥ 2, then 2^r < 3^o; a residual return therefore has a ≥ 2
+- If a realized itinerary returns to x ≥ 2, then 2^r < 3^o; a residual return therefore has a ≥ 2
 
 Strongest refutation
 - residual return with a ≤ 1; 2^{1+b} ≤ 3 is impossible for b ≥ 1
@@ -5089,15 +5089,15 @@ Best next question
 - Can a mixed residual word with a ≥ 2 return exactly to its start, or does the existing strict defect already forbid PowerBoundEq on that return?
 ```
 
-## Juggler fixed cycle-word size bounds
+## Juggler fixed cycle-itinerary size bounds
 
 - **Date:** 2026-08-27
 - **Objective:** Turn exact cycle return into a finite size bound via lower growth, then exclude short words
 - **Hypotheses:** `CYCLE_BOUND_GREEN`, `CYCLE_WORD_EXCLUDED`, `CYCLE_SMALL_SEARCH_GREEN`, `CYCLE_BOUND_TOO_WEAK`, or `CYCLE_REALIZATION_COUNTEREXAMPLE`
-- **Major results:** `CycleWord n w` implies \(n^{3^o-2^k}\le D_w\) and \(n\le D_w\) **EXACT — LEAN VERIFIED**. Contracting words cannot cycle **EXACT — LEAN VERIFIED**. No `O` or `OO` cycle for \(n\ge 2\) **EXACT — LEAN VERIFIED**. No `EOO` cycle **EXACT — LEAN VERIFIED**. `OOE` has \(n\le 262144\). Classification **CYCLE_BOUND_GREEN**. Records: `docs/research/juggler_cycle_word.md`, `docs/problems/juggler_cycle_word.md`. Control layer unchanged
-- **Refuted ideas:** cycle return is envelope equality / `PowerBoundEq`; \(D_w\) is tight for every mixed word; a halt theorem
+- **Major results:** `CycleItinerary n w` implies \(n^{3^o-2^k}\le D_w\) and \(n\le D_w\) **EXACT — LEAN VERIFIED**. Contracting words cannot cycle **EXACT — LEAN VERIFIED**. No `O` or `OO` cycle for \(n\ge 2\) **EXACT — LEAN VERIFIED**. No `EOO` cycle **EXACT — LEAN VERIFIED**. `OOE` has \(n\le 262144\). Classification **CYCLE_BOUND_GREEN**. Records: `docs/research/juggler_cycle_itinerary.md`, `docs/problems/juggler_cycle_word.md`. Control layer unchanged
+- **Refuted ideas:** cycle return is envelope equality / `PowerBoundEq`; \(D_w\) is tight for every mixed itinerary; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** answered in the cycle-word arithmetic phase
+- **Open:** answered in the cycle-itinerary arithmetic phase
 - **Decision:** PROMOTE the cycle size inequality and the short-word exclusions. Do not claim that all cycles are impossible. Do not claim termination
 
 ```text
@@ -5109,14 +5109,14 @@ What was learned
 - OOE is finite-bounded by 262144; OEO still has a weak D_w
 
 Strongest theorem
-- If CycleWord n w and n ≥ 2, then n^{3^o-2^k} ≤ lowerDenom w
+- If CycleItinerary n w and n ≥ 2, then n^{3^o-2^k} ≤ lowerDenom w
 
 Strongest refutation
 - cycle return contradicts PowerBoundEq; the cycle defect is n^{3^o}-n^{2^k} > 0
 
 Reusable machinery
-- Problems.Engine.CycleWord CycleWord / cycle_pow_le_lowerDenom / no_cycle_word_eoo
-- research.juggler_sequence.cycle_word
+- Problems.Engine.CycleItinerary CycleItinerary / cycle_pow_le_lowerDenom / no_cycle_itinerary_eoo
+- research.juggler_sequence.cycle_itinerary
 
 Prior-art status
 - finite reduction, not a Juggler halt result
@@ -5128,13 +5128,13 @@ Branch status
 - PROMOTE
 
 Why
-- Each fixed cycle word is now a finite arithmetic problem, and several short expanding words are already excluded without a cycle engine.
+- Each fixed cycle itinerary is now a finite arithmetic problem, and several short expanding itineraries are already excluded without a cycle engine.
 
 Best next question
 - Can OEO be reduced below its crude D_w bound by unfolding the even square cell, the way EOO was reduced?
 ```
 
-## Juggler cycle-word arithmetic
+## Juggler cycle-itinerary arithmetic
 
 - **Date:** 2026-08-27
 - **Objective:** Exclude `OOE` and `OEO` by exact last-branch cells and rotation, without tightening \(D_w\)
@@ -5154,17 +5154,17 @@ What was learned
 - The minimum state of a nontrivial cycle is odd
 
 Strongest theorem
-- There is no CycleWord n wordOOE or CycleWord n wordOEO for n ≥ 2
+- There is no CycleItinerary n wordOOE or CycleItinerary n wordOEO for n ≥ 2
 
 Strongest refutation
 - last-even return is the exact square z = n^2
 
 Reusable machinery
-- Problems.Engine.CycleWord cycle_last_even_interval / exists_cycle_min_odd / no_cycle_word_ooe
+- Problems.Engine.CycleItinerary cycle_last_even_interval / exists_cycle_min_odd / no_cycle_itinerary_ooe
 - research.juggler_sequence.cycle_arith
 
 Prior-art status
-- finite-word exclusion, not a Juggler halt result
+- finite-itinerary exclusion, not a Juggler halt result
 
 Complexity profile
 - unchanged flood order; no new production attack; control layer not modified
@@ -5173,10 +5173,10 @@ Branch status
 - PROMOTE
 
 Why
-- The first mixed expanding words are now closed by exact cells and rotation, without a cycle engine and without touching the unbounded residual branch.
+- The first mixed expanding itineraries are now closed by exact cells and rotation, without a cycle engine and without touching the unbounded residual branch.
 
 Best next question
-- Can a cycle word of length at least 4 that ends in E be excluded by the same last-even cell against an existing superquadratic prefix, without a cycle engine?
+- Can a cycle itinerary of length at least 4 that ends in E be excluded by the same last-even cell against an existing superquadratic prefix, without a cycle engine?
 ```
 
 ## Juggler E-terminating suffix thresholds
@@ -5199,13 +5199,13 @@ What was learned
 - Cycles ending in O are a separate branch
 
 Strongest theorem
-- If T_v(m) ≥ (m+1)^2 whenever m ≥ N follows v, then there is no CycleWord n (vE) for n ≥ N
+- If T_v(m) ≥ (m+1)^2 whenever m ≥ N follows v, then there is no CycleItinerary n (vE) for n ≥ N
 
 Strongest refutation
 - length-4 E-terminating words other than OOOE require a new cell argument; they are contracting
 
 Reusable machinery
-- Problems.Engine.CycleWord no_cycle_append_even_of_suffix_threshold / no_cycle_word_length_four_ends_even
+- Problems.Engine.CycleItinerary no_cycle_append_even_of_suffix_threshold / no_cycle_itinerary_length_four_ends_even
 - research.juggler_sequence.cycle_e_term
 
 Prior-art status
@@ -5218,7 +5218,7 @@ Branch status
 - PROMOTE
 
 Why
-- The OOE argument is now a generic interface, and every length-4 E-terminating cycle word is excluded without a cycle engine.
+- The OOE argument is now a generic interface, and every length-4 E-terminating cycle itinerary is excluded without a cycle engine.
 
 Best next question
 - Which existing suffix thresholds already sit above the next square for words longer than OOO, and do they exclude the corresponding E-terminating cycles without a new census?
@@ -5244,13 +5244,13 @@ What was learned
 - The first mixed expanding E-suffix appears at length 6
 
 Strongest theorem
-- There is no CycleWord n (v ++ [E]) for |v|=4 and n≥2
+- There is no CycleItinerary n (v ++ [E]) for |v|=4 and n≥2
 
 Strongest refutation
 - the eventual Q0 is a practical uniform bound; it is D_v · 4^{2^|v|}
 
 Reusable machinery
-- Problems.Engine.CycleWord threshold_inherits_odd_append / odd_run_suffix_threshold / no_cycle_word_length_five_ends_even
+- Problems.Engine.CycleItinerary threshold_inherits_odd_append / odd_run_suffix_threshold / no_cycle_itinerary_length_five_ends_even
 - research.juggler_sequence.cycle_e_threshold
 
 Prior-art status
@@ -5274,8 +5274,8 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Use the cycle-minimum even-scale barrier to bootstrap existing next-square suffixes across an internal even step
 - **Hypotheses:** `INTERNAL_E_BOOTSTRAP_GREEN`, `E_TERMINATING_LENGTH6_GREEN`, `OOOEOE_EXCEPTION`, `INTERNAL_E_COUNTEREXAMPLE`, or `LAST_E_METHOD_LIMITED`
-- **Major results:** even cycle states on a cycle minimum satisfy \(z\ge n^2\) **EXACT — LEAN VERIFIED**. If the suffix after an internal `E` has a next-square threshold at \(N\), there is no such `CycleMin` for \(n\ge N\) **EXACT — LEAN VERIFIED**. No `CycleMin` for `OEOOOE` **EXACT — LEAN VERIFIED**. No `CycleWord` for `OOEOOE` **EXACT — LEAN VERIFIED**. Classification **INTERNAL_E_BOOTSTRAP_GREEN**. Records: `docs/research/juggler_cycle_internal_e.md`, `docs/problems/juggler_cycle_internal_e.md`. Control layer unchanged
-- **Refuted ideas:** \(y>n\) is required for the bootstrap; `OOOOEE` dies through the `OOOOE` threshold; `¬CycleMin` is `¬CycleWord`; every mixed length-6 E-word is excluded; a halt theorem
+- **Major results:** even cycle states on a cycle minimum satisfy \(z\ge n^2\) **EXACT — LEAN VERIFIED**. If the suffix after an internal `E` has a next-square threshold at \(N\), there is no such `CycleMin` for \(n\ge N\) **EXACT — LEAN VERIFIED**. No `CycleMin` for `OEOOOE` **EXACT — LEAN VERIFIED**. No `CycleItinerary` for `OOEOOE` **EXACT — LEAN VERIFIED**. Classification **INTERNAL_E_BOOTSTRAP_GREEN**. Records: `docs/research/juggler_cycle_internal_e.md`, `docs/problems/juggler_cycle_internal_e.md`. Control layer unchanged
+- **Refuted ideas:** \(y>n\) is required for the bootstrap; `OOOOEE` dies through the `OOOOE` threshold; `¬CycleMin` is `¬CycleItinerary`; every mixed length-6 E-word is excluded; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
 - **Open:** what exact extra scale does the prefix `OOO` give before the internal `E` of `OOOEOE`?
 - **Decision:** PROMOTE the cycle-minimum barrier and the internal-E bootstrap. Do not claim that all length-6 E-cycles are impossible. Do not treat cycles ending in `O`
@@ -5285,7 +5285,7 @@ What was learned
 - Cycle-min even states satisfy z ≥ n^2 by parity on the realized cycle
 - y ≥ n is enough: a next-square suffix then overshoots the last-even cell
 - OEOOOE is impossible as a cycle minimum via suffix OOO
-- OOEOOE is impossible as a CycleWord: every rotation dies
+- OOEOOE is impossible as a CycleItinerary: every rotation dies
 - OOOEOE and OOOOEE are not covered by existing next-square suffixes
 
 Strongest theorem
@@ -5295,7 +5295,7 @@ Strongest refutation
 - OOOOEE is free from the OOOOE threshold; T_OOOO ≥ (n+1)^2 does not lift across an extra E
 
 Reusable machinery
-- Problems.Engine.CycleWord CycleMin / no_cycleMin_internal_even_threshold / no_cycle_word_ooeooe
+- Problems.Engine.CycleItinerary CycleMin / no_cycleMin_internal_even_threshold / no_cycle_itinerary_ooeooe
 - research.juggler_sequence.cycle_internal_e
 
 Prior-art status
@@ -5322,7 +5322,7 @@ Best next question
 - **Major results:** cycle maximum is even **EXACT — LEAN VERIFIED**. On a cycle minimum, \(M>m^2\) **EXACT — LEAN VERIFIED**. Any realized path from \(n\ge 2\) to a state \(\ge n^2\) is superquadratic **EXACT — LEAN VERIFIED**. Min-to-even prefixes on a cycle minimum are superquadratic **EXACT — LEAN VERIFIED**. Classification **CYCLE_EXTREMES_GREEN**. Records: `docs/research/juggler_cycle_extrema.md`, `docs/problems/juggler_cycle_extrema.md`. Control layer unchanged
 - **Refuted ideas:** \(M=m^2\) is possible; the full-cycle envelope already forces the prefix law; every odd start hits \(m^2\) before dropping; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** does the superquadratic min-to-max prefix plus the exact maximum return cell force a forbidden transition without a word census?
+- **Open:** does the superquadratic min-to-max prefix plus the exact maximum return cell force a forbidden transition without an itinerary census?
 - **Decision:** PROMOTE the extrema package and the square-scale prefix law. Do not claim that growth and collapse cannot coexist. Do not exclude first-cell maxima
 
 ```text
@@ -5340,7 +5340,7 @@ Strongest refutation
 - every odd start hits m^2 before dropping; 7 walks OE and falls to 4
 
 Reusable machinery
-- Problems.Engine.CycleWord CycleMax / cycleMin_max_gt_sq / square_scale_superquadratic
+- Problems.Engine.CycleItinerary CycleMax / cycleMin_max_gt_sq / square_scale_superquadratic
 - research.juggler_sequence.cycle_extrema
 
 Prior-art status
@@ -5353,10 +5353,10 @@ Branch status
 - PROMOTE
 
 Why
-- Stopping the length programme produced a reusable constraint that applies to every cycle word at once: the path from the minimum to any even cycle state is superquadratic.
+- Stopping the length programme produced a reusable constraint that applies to every cycle itinerary at once: the path from the minimum to any even cycle state is superquadratic.
 
 Best next question
-- Does the superquadratic min-to-max prefix plus the exact maximum return cell force a forbidden transition without a word census?
+- Does the superquadratic min-to-max prefix plus the exact maximum return cell force a forbidden transition without an itinerary census?
 ```
 
 ## Juggler top excursions
@@ -5385,7 +5385,7 @@ Strongest refutation
 - the top window is empty; it is a nonempty integer interval
 
 Reusable machinery
-- Problems.Engine.CycleWord even_iter_pow_le / cycleMax_top_normal_form / power_scale_superquadratic
+- Problems.Engine.CycleItinerary even_iter_pow_le / cycleMax_top_normal_form / power_scale_superquadratic
 - research.juggler_sequence.cycle_top_excursion
 
 Prior-art status
@@ -5430,7 +5430,7 @@ Strongest refutation
 - x ≥ p^2; start 9 has p=11, x=27, M=140
 
 Reusable machinery
-- Problems.Engine.CycleWord cycle_top_three_level / cycle_top_nested_cell / cycle_top_pred_scale
+- Problems.Engine.CycleItinerary cycle_top_three_level / cycle_top_nested_cell / cycle_top_pred_scale
 - research.juggler_sequence.cycle_top_pred
 
 Prior-art status
@@ -5443,7 +5443,7 @@ Branch status
 - PROMOTE
 
 Why
-- The global maximum is now a three-level exact cell, not merely a two-sided window. That is a word-independent restriction. It is not an r-obstruction.
+- The global maximum is now a three-level exact cell, not merely a two-sided window. That is an itinerary-independent restriction. It is not an r-obstruction.
 
 Best next question
 - Answered in the peak-descent branch: the maximum determines a canonical contracting OE^r block, and financing it recovers the existing ascent scale.
@@ -5475,7 +5475,7 @@ Strongest refutation
 - peak finance is stronger than the top ascent; it is the same exponent comparison
 
 Reusable machinery
-- Problems.Engine.CycleWord cycle_peak_descent / peak_ascent_scale / cycle_peak_finance
+- Problems.Engine.CycleItinerary cycle_peak_descent / peak_ascent_scale / cycle_peak_finance
 - research.juggler_sequence.cycle_peak_descent
 
 Prior-art status
@@ -5497,7 +5497,7 @@ Best next question
 ## Juggler extremal composition
 
 - **Date:** 2026-08-27
-- **Objective:** Compose existing cycle constraints (minimum scale, first-even financing, top cell, peak descent) and test whether they yield a word-independent contradiction or only the ordinary envelope
+- **Objective:** Compose existing cycle constraints (minimum scale, first-even financing, top cell, peak descent) and test whether they yield an itinerary-independent contradiction or only the ordinary envelope
 - **Hypotheses:** `GLOBAL_EXTREMAL_COMPOSITION_GREEN`, `FIRST_TO_TOP_SCALE_GREEN`, `TOP_TO_RETURN_GREEN`, `DEFECT_EXTREMAL_GREEN`, `COMPOSITION_REPACKAGING`, or `EXTREMAL_COUNTEREXAMPLE`
 - **Major results:** distinguished order \(m\le p<x<M\) **EXACT — LEAN VERIFIED**. Strict top window \(p^{2^r}<M\) **EXACT — LEAN VERIFIED**. Derived \(m^4<x^3\) **EXACT — LEAN VERIFIED** and a **REPARAMETERIZATION** of \(M>m^2\) plus the cube cell. Every attempted stronger scale law reduces to `power_bound_word` or an existing extremal theorem. Classification **COMPOSITION_REPACKAGING**. Records: `docs/research/juggler_cycle_extremal_composition.md`, `docs/problems/juggler_cycle_extremal_composition.md`. Control layer unchanged
 - **Refuted ideas:** first-even versus top is a new scale gap; \(p=m\); \(z<p\) or \(z>x\) as universal; split min-to-max is stronger than the envelope; a halt theorem
@@ -5520,7 +5520,7 @@ Strongest refutation
 - composing scale laws beats the envelope; every such composition is power_bound_word or an existing extremal theorem
 
 Reusable machinery
-- Problems.Engine.CycleWord cycle_distinguished_order / cycle_top_window_strict / cycleMax_min_sq_lt
+- Problems.Engine.CycleItinerary cycle_distinguished_order / cycle_top_window_strict / cycleMax_min_sq_lt
 - research.juggler_sequence.cycle_extremal_composition
 
 Prior-art status
@@ -5559,14 +5559,14 @@ What was learned
 - A later remainder need not grow; start 9 has 0, 83, 19
 
 Strongest theorem
-- On a CycleWord, ∑ρ + ∑_{even} x(x-1) = ∑_{odd} x^2(x-1), and some ρ is positive for n ≥ 2
+- On a CycleItinerary, ∑ρ + ∑_{even} x(x-1) = ∑_{odd} x^2(x-1), and some ρ is positive for n ≥ 2
 
 Strongest refutation
 - remainder amplification; start 9 has remainders 0, 83, 19
 
 Reusable machinery
 - Problems.Engine.FloorPower branchDefect / localDefectOdd_lt_succ
-- Problems.Engine.CycleWord cycle_remainder_balance / cycle_exists_pos_remainder
+- Problems.Engine.CycleItinerary cycle_remainder_balance / cycle_exists_pos_remainder
 - research.juggler_sequence.cycle_rounding
 
 Prior-art status
@@ -5612,7 +5612,7 @@ Strongest refutation
 
 Reusable machinery
 - Problems.Engine.CycleDiophantine peakOddDefect / topEvenDefect / peak_diophantine_slack
-- cycleWord_iterate_not_lt_twelve / cycle_top_landing_ge_thirteen
+- cycleItinerary_iterate_not_lt_twelve / cycle_top_landing_ge_thirteen
 - research.juggler_sequence.cycle_diophantine
 
 Prior-art status
@@ -5923,7 +5923,7 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Decide whether realized non-monochrome prefixes can keep \(G_j=2^j-3^{o_j}\le 0\) with \(\Delta\) too small to force contraction
 - **Hypotheses:** `NEAR_EXTREMAL_STRUCTURE_GREEN`, `DEFECT_DRIVEN_CONTRACTION_GREEN`, `BAD_PREFIX_BOUNDED_GREEN`, `BAD_PREFIX_ARBITRARY`, `NEAR_EXTREMAL_COUNTEREXAMPLE`
-- **Major results:** Prefix-NC words start with \(O\); length \(\ge 2\) starts with \(OO\); the mixed family \(O^k E\) (\(k\ge 2\)) is already Lean. The language also contains other mixed patterns (`OOEO`, …). `EOO` has \(\tau=1\) and is not a bad prefix. Scan \(n\le 2000\), \(k\le 10\): 1541 mixed prefix-NC rows, 0 defect-driven certificates, mixed words of length 10 that expand (`n=37`, `n=173`). Closest computed \(\Delta/G\) is on short `OOE` and still far below the formal gap. Classification **NEAR_EXTREMAL_STRUCTURE_GREEN**. No new Lean. No ledger row. Control layer unchanged
+- **Major results:** Prefix-NC words start with \(O\); length \(\ge 2\) starts with \(OO\); the mixed family \(O^k E\) (\(k\ge 2\)) is already Lean. The language also contains other mixed patterns (`OOEO`, …). `EOO` has \(\tau=1\) and is not a bad prefix. Scan \(n\le 2000\), \(k\le 10\): 1541 mixed prefix-NC rows, 0 defect-driven certificates, mixed itineraries of length 10 that expand (`n=37`, `n=173`). Closest computed \(\Delta/G\) is on short `OOE` and still far below the formal gap. Classification **NEAR_EXTREMAL_STRUCTURE_GREEN**. No new Lean. No ledger row. Control layer unchanged
 - **Refuted ideas:** treating `EOO` block contraction as a prefix-NC escape; treating a horizon hit as an infinite realized family
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
 - **Open:** answered in the prefix-NC admissibility branch as `PREFIX_NC_ARITHMETIC_COMPLEX`; an explicit infinite family remains open
@@ -5936,7 +5936,7 @@ What was learned
 - EOO has tau=1, so it is not a bad prefix
 - n=3 realizes OOOE, not OOE
 - 1541 mixed prefix-NC rows on n<=2000, k<=10; 0 defect certificates
-- Mixed prefix-NC words of length 10 expand (n=37, n=173)
+- Mixed prefix-NC itineraries of length 10 expand (n=37, n=173)
 
 Strongest theorem
 - none new; compensated contraction and 2^{k+1}<=3^k remain the Lean facts
@@ -6016,9 +6016,9 @@ Best next question
 ## Juggler prefix-NC arithmetic admissibility
 
 - **Date:** 2026-08-27
-- **Objective:** Test whether backward even/odd floor-cell constraints empty the realizing set of a mixed prefix-noncontracting word
+- **Objective:** Test whether backward even/odd floor-cell constraints empty the realizing set of a mixed prefix-noncontracting itinerary
 - **Hypotheses:** `PREFIX_NC_ADMISSIBILITY_GREEN`, `PREFIX_NC_ESCAPE_SET_SHRINKS`, `PREFIX_NC_NEAR_EXTREMAL_GREEN`, `PREFIX_NC_COUNTEREXAMPLE`, or `PREFIX_NC_ARITHMETIC_COMPLEX`
-- **Major results:** \(A(\mathtt{OOE},6)=\{5\}\) **COMPUTATIONALLY VERIFIED**. All \(43\) mixed prefix-NC words of length \(\le 8\) are realized with \(n\le 800\). Empty fiber over images \(1..24\) does not mean unrealizable (`OOEOOOOOOO` at \(173\)). Horizon witnesses: \(37\) realizes `OOOOEOOOEE`, \(173\) realizes `OOEOOOOOOO`, \(2127\) realizes `OOOOEOOOOEE`. Backward constraints are the existing even cell and `odd_cell_unique`. No Lean file. Classification **PREFIX_NC_ARITHMETIC_COMPLEX**. Records: `docs/research/juggler_prefix_nc_admissibility.md`, `docs/problems/juggler_prefix_nc_admissibility.md`, `data/research/juggler/prefix_nc_admissibility/`. Control layer unchanged. `ResidualStep` not extended
+- **Major results:** \(A(\mathtt{OOE},6)=\{5\}\) **COMPUTATIONALLY VERIFIED**. All \(43\) mixed prefix-NC itineraries of length \(\le 8\) are realized with \(n\le 800\). Empty fiber over images \(1..24\) does not mean unrealizable (`OOEOOOOOOO` at \(173\)). Horizon witnesses: \(37\) realizes `OOOOEOOOEE`, \(173\) realizes `OOEOOOOOOO`, \(2127\) realizes `OOOOEOOOOEE`. Backward constraints are the existing even cell and `odd_cell_unique`. No Lean file. Classification **PREFIX_NC_ARITHMETIC_COMPLEX**. Records: `docs/research/juggler_prefix_nc_admissibility.md`, `docs/problems/juggler_prefix_nc_admissibility.md`, `data/research/juggler/prefix_nc_admissibility/`. Control layer unchanged. `ResidualStep` not extended
 - **Refuted ideas:** long mixed prefix-NC words are arithmetically empty; empty-over-image-cap is unrealizable; a search-horizon word is an infinite family; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
 - **Open:** answered in the escape-state branch as `ESCAPE_STATE_COMPLEX`
@@ -6026,11 +6026,11 @@ Best next question
 
 ```text
 What was learned
-- Backward admissibility is the existing even cell and odd_cell_unique, composed along the word
+- Backward admissibility is the existing even cell and odd_cell_unique, composed along the itinerary
 - A(OOE, 6) = {5}
-- Every mixed prefix-NC word of length <= 8 has a realizing start n <= 800
+- Every mixed prefix-NC itinerary of length <= 8 has a realizing start n <= 800
 - Empty fiber over images 1..24 is not A(w)=empty; OOEOOOOOOO is realized at 173
-- A dangerous finite word is not a dangerous infinite trajectory
+- A dangerous finite itinerary is not a dangerous infinite trajectory
 
 Strongest theorem
 - none new; inverse-floor cells and odd_cell_unique remain the Lean facts
@@ -6106,7 +6106,7 @@ Best next question
 ## Juggler excursions and first-return induction
 
 - **Date:** 2026-08-27
-- **Objective:** Test whether first-return-below words can be certified by the existing finite-word envelope and defect calculus, without a new engine
+- **Objective:** Test whether first-return-below words can be certified by the existing finite-itinerary envelope and defect calculus, without a new engine
 - **Hypotheses:** `EXCURSION_ENVELOPE_GREEN`, `FIRST_RETURN_DEFECT_GREEN`, `MINIMAL_COUNTEREXAMPLE_ROUTE_GREEN`, `EXCURSION_STRUCTURE_GREEN`, `EXCURSION_COUNTEREXAMPLE`, or `EXCURSION_INDUCTION_COMPLEX`
 - **Major results:** On \(2\le n\le 2000\), all 1999 starts return below \(n\) before horizon \(10^4\). Every first-return word has \(2^k>3^o\) **COMPUTATIONALLY VERIFIED**. First-defect and peak-suffix never certify a return the exponent gap misses. `COMPUTED_ONLY` count \(0\). Lemma A universal **REFUTED** (even \(n\) has word \(E\)). Lemma A for odd starts and Lemma B hold on the window. No measure \(M\) other than the defined return. Classification **EXCURSION_ENVELOPE_GREEN**. Records: `docs/research/juggler_excursions.md`, `docs/problems/juggler_excursions.md`, `data/research/juggler/excursions/`. Control layer unchanged. `ResidualStep` not extended. No Lean file
 - **Refuted ideas:** first-return words must be non-extremal for every start; full-word \(\Delta\) as a certificate on a completed return; return value \(<n\) as a new canonical measure
@@ -6244,7 +6244,7 @@ Best next question
 - **Objective:** Test whether nested realizing sets \(A_w^{NC}\) of actual prefix-NC words acquire a named arithmetic constraint that forbids indefinite continuation
 - **Hypotheses:** `DRIFT_TREE_PRUNING_GREEN`, `DRIFT_FIRST_PASSAGE_UNBOUNDED`, `DRIFT_FIRST_PASSAGE_COMPLEX`, `DRIFT_FIRST_PASSAGE_INCOMPLETE`, `DRIFT_FIRST_PASSAGE_COUNTEREXAMPLE`
 - **Major results:** Nested window \(n=2..2000\): \(1318\) prefix-NC words, compression \(\approx 1\) after length \(4\); tags empty \(1072\), same \(1048\), tautological subset \(10\), named-thinner \(259\) (residue/modulus artefacts, not a rule). Hunt \(n\le 10^5\): max \(\tau_+=253\) at \(n=78901\); \(n=193\), \(\tau_+=70\), last NC \(6498\) still holds; leftover \(n=48443\) at the bit cap. Classification **DRIFT_FIRST_PASSAGE_COMPLEX**. Records: `docs/research/juggler_drift_first_passage.md`, `docs/problems/juggler_drift_first_passage.md`, `data/research/juggler/drift_first_passage/`. Control layer unchanged. `ResidualStep` not extended. No Lean file
-- **Refuted ideas:** nested start-set signatures compress below the words; a cardinality drop is a pruning rule; \(\tau_+\le 70\); late first-passage starts occupy a thin residue class; a larger record is an unbounded family
+- **Refuted ideas:** nested start-set signatures compress below the itineraries; a cardinality drop is a pruning rule; \(\tau_+\le 70\); late first-passage starts occupy a thin residue class; a larger record is an unbounded family
 - **Literature:** `oeis-A007320`; Terras stopping-time is methodological only (`terras-1976-stopping-time`); prefix-NC / endpoint / corridor / CycleDiophantine remain closed; odd-fourth-power remains parked
 - **Open:** does every \(n\ge 2\) realize a finite prefix with \(3^o<2^k\)? Nested start-sets do not supply the obstruction
 - **Decision:** CLOSE the drift-first-passage branch as `DRIFT_FIRST_PASSAGE_COMPLEX`. Do not add Lean. Do not claim termination
@@ -6252,7 +6252,7 @@ Best next question
 ```text
 What was learned
 - A_w as part of the node is the right object; window-exact nested sets still do not prune
-- After length 4, distinct arithmetic signatures track the words (compression near 1)
+- After length 4, distinct arithmetic signatures track the itineraries (compression near 1)
 - Named-thinner hits are residue death or modulus artefacts of longer prefixes, not a rule
 - Least-constrained mixed prefixes are the short words OOE / OOEO / OOOE
 - Hunt record is n=78901 with tau_+=253; n=193 / tau_+=70 remains the nested-window regression
@@ -6288,8 +6288,8 @@ Best next question
 
 - **Date:** 2026-08-27
 - **Objective:** Rewrite the Juggler Lean stack as one-way layers under `Problems.Juggler` so the only unproved global arrow is finite coefficient stopping time
-- **Hypotheses:** the missing object is a first-passage / certificate separation, not another word identity; fused `FloorPower` caused recent CLOSE loops
-- **Major results:** Live Lean is `formal/Problems/Juggler/` with barrel `formal/Problems/Juggler.lean`. Engine copies of FloorPower, Progress, MinimalNonTerm, RepeatedOE, OddRunFinancing, OddOddFrontier, ResidualChain, ResidualPath, RepeatedBlock, CycleWord, and CycleDiophantine are deleted; no export shims. `follows ↔ word`, `HasFiniteCoeffStop → HasFiniteStop`, `DescentCertificate → HasFiniteStop ∨ ReachesOne`, and `HasFiniteCoeffStop → ¬MinimalNonTerm` are proved. `∀ n ≥ 2, HasFiniteCoeffStop n` and `MinimalNonTerm n → HasFiniteCoeffStop n` are first-class unproved Props. Python paths go through `research.juggler_sequence.lean_paths`. No new hunt. No halt theorem. No ledger row (reparameterization / packaging)
+- **Hypotheses:** the missing object is a first-passage / certificate separation, not another itinerary identity; fused `FloorPower` caused recent CLOSE loops
+- **Major results:** Live Lean is `formal/Problems/Juggler/` with barrel `formal/Problems/Juggler.lean`. Engine copies of FloorPower, Progress, MinimalNonTerm, RepeatedOE, OddRunFinancing, OddOddFrontier, ResidualChain, ResidualPath, RepeatedBlock, CycleItinerary, and CycleDiophantine are deleted; no export shims. `follows ↔ word`, `HasFiniteCoeffStop → HasFiniteStop`, `DescentCertificate → HasFiniteStop ∨ ReachesOne`, and `HasFiniteCoeffStop → ¬MinimalNonTerm` are proved. `∀ n ≥ 2, HasFiniteCoeffStop n` and `MinimalNonTerm n → HasFiniteCoeffStop n` are first-class unproved Props. Python paths go through `research.juggler_sequence.lean_paths`. No new hunt. No halt theorem. No ledger row (reparameterization / packaging)
 - **Refuted ideas:** dual Engine/Juggler namespaces; leftover FloorPower as a compatibility layer
 - **Literature:** `oeis-A007320`; Terras stopping-time is methodological only (`terras-1976-stopping-time`); drift-crossing / drift-first-passage remain closed
 - **Open:** does every \(n\ge 2\) have finite coefficient / drift stopping time?
@@ -6297,8 +6297,8 @@ Best next question
 
 ```text
 What was learned
-- The fused FloorPower stack mixed orbit, word, envelope, stopping time, and certificates
-- follows ↔ word is the itinerary bridge; G(w) is a property of the word alone
+- The fused FloorPower stack mixed orbit, itinerary, envelope, stopping time, and certificates
+- follows ↔ word is the itinerary bridge; G(w) is a property of the itinerary alone
 - Finite coefficient stop already implies a strict smaller iterate
 - One inductive DescentCertificate replaces Descent/Capture/FiniteProgress as parallel defs
 - MinimalNonTerm is incompatible with a realized coefficient stop
@@ -6335,7 +6335,7 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Assemble local Juggler floor remainders into one exact compositional global defect
 - **Hypotheses:** the correct recurrence is a weighted lift through later exponents, not `Δ_{i+1}=Δ_i+ρ_i`; the envelope slack is a theorem, not the definition
-- **Major results:** `powGap a ρ e = (a+ρ)^e-a^e`. Even step keeps the old slack and lifts `ρ` through `2^k`. Odd step cubes the running slack and then lifts `ρ`. Lean `global_defect_identity`: `n^{3^o}=T_w(n)^{2^k}+Δ_w(n)`. Envelope is the corollary `Δ≥0`. `Δ=0` iff every local remainder vanishes iff `localsTight` iff `PowerBoundEq`. Mixed realized words have `Δ>0`. First-defect bound `ρ_i^{2^i}≤Δ`. Composition is the two-term lift `powGap(mid^{2^{|u|}},Δ_u,3^{#O(v)})+powGap(T_v^{2^{|v|}},Δ_v,2^{|u|})`. A `ResidualStep` carries the same identity. On a CE, `Δ+n^{2^k}≤n^{3^o}`. Short-word census `n≤80`, length `≤5` matches the slack exactly. No halt theorem
+- **Major results:** `powGap a ρ e = (a+ρ)^e-a^e`. Even step keeps the old slack and lifts `ρ` through `2^k`. Odd step cubes the running slack and then lifts `ρ`. Lean `global_defect_identity`: `n^{3^o}=T_w(n)^{2^k}+Δ_w(n)`. Envelope is the corollary `Δ≥0`. `Δ=0` iff every local remainder vanishes iff `localsTight` iff `PowerBoundEq`. Mixed realized itineraries have `Δ>0`. First-defect bound `ρ_i^{2^i}≤Δ`. Composition is the two-term lift `powGap(mid^{2^{|u|}},Δ_u,3^{#O(v)})+powGap(T_v^{2^{|v|}},Δ_v,2^{|u|})`. A `ResidualStep` carries the same identity. On a CE, `Δ+n^{2^k}≤n^{3^o}`. Short-itinerary census `n≤80`, length `≤5` matches the slack exactly. No halt theorem
 - **Refuted ideas:** additive accumulation `Δ_{i+1}=Δ_i+ρ_i`; treating `Δ` as a prior subtraction of `PowerBound`; `Δ` larger than the formal surplus forbids `OOE`/`OOEO`/`OOOE` on a CE (that inequality is `T_w(n)<n`)
 - **Literature:** OEIS A007320; existing envelope / equality / local-defect layers
 - **Open:** can a first-defect lower bound beat `n^{3^o}-n^{2^k}` on a mixed expanding class?
@@ -6350,7 +6350,7 @@ What was learned
 - The CE surplus inequality restates T_w(n)≥n and does not kill expanding mixed prefixes
 
 Strongest theorem
-- n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n) for every realized finite word
+- n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n) for every realized finite itinerary
 
 Strongest refutation
 - Δ > n^{3^o}-n^{2^k} on an expanding mixed CE prefix: equivalent to T_w(n)<n
@@ -6559,7 +6559,7 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Determine whether expanding persistent residual blocks can occur with arbitrarily high density, or whether a finite consecutive-run bound or a density bound strictly below 1 exists that is not \(T_w(n)<n\)
 - **Hypotheses:** cumulative block surplus and weighted slack forbid dense PE runs; a finite \(M\) or \(\limsup r/m<1\) might survive after the two-block obstruction died
-- **Major results:** Integer surplus \(E(w)=3^{\#O}-2^{|w|}\) is positive iff the word is expanding. An expanding residual \(O^a E^b\) has \(b<a\) (and already \(a\ge 2\)). Slack numerator folds on three blocks; the certified chain is 365 --OOE--> 763 --OOE--> 1749 --OOE--> 4447. Computed consecutive PE runs reach length 7 (starts 11681, 14237, 15343, 27623). Density of expanding among persistent residual steps is 1 on \(n\le 2000\). The 365 run ends at 4447 because 12707 is odd-to-even, not because the next block contracts. No halt theorem
+- **Major results:** Integer surplus \(E(w)=3^{\#O}-2^{|w|}\) is positive iff the itinerary is expanding. An expanding residual \(O^a E^b\) has \(b<a\) (and already \(a\ge 2\)). Slack numerator folds on three blocks; the certified chain is 365 --OOE--> 763 --OOE--> 1749 --OOE--> 4447. Computed consecutive PE runs reach length 7 (starts 11681, 14237, 15343, 27623). Density of expanding among persistent residual steps is 1 on \(n\le 2000\). The 365 run ends at 4447 because 12707 is odd-to-even, not because the next block contracts. No halt theorem
 - **Refuted ideas:** consecutive PE runs have length at most 3; expanding fraction among persistent steps is bounded by \(1-c\); one expansion poisons the next (already dead)
 - **Literature:** OEIS A007320; PersistentExpandingResidual / 1+q / two-block refutation
 - **Open:** what forces a PE run to end (contracting residual versus odd-to-even landing) without becoming \(T_w(n)<n\)
@@ -6648,7 +6648,7 @@ Best next question
 
 - **Date:** 2026-08-27
 - **Objective:** Decide whether tiny successor q after a large-λ expanding block is exceptional rigidity or automatic floor-scale decay
-- **Hypotheses:** η=O(1/T) from ρ<2T+1; fixed-word q→0; OOE is dominated by the last even remainder of order n^{-9/8}; large λ acts only by inflating y
+- **Hypotheses:** η=O(1/T) from ρ<2T+1; fixed-itinerary q→0; OOE is dominated by the last even remainder of order n^{-9/8}; large λ acts only by inflating y
 - **Major results:** Lean η bounds and 1+η<(1+1/T)^2; exact OOE product 1+q=(1+η0)^3(1+η1)^2(1+η2)^4; successor-ratio upper bound. Census: last-even dominates 96% of realized OOE; median q/n^{-9/8}≈4.25. The 329 --OOOOOOOOE--> y successor has 0<q<10^{-30} and q/y^{-9/8}≈2.64. PE pairs track y^{-9/8}. Mixed OOE can be arbitrarily near-tight. No halt theorem
 - **Refuted ideas:** tiny q is exceptional arithmetic; mixed-word q→0 implies a rigid monochrome tower; large λ controls successor q by a mechanism other than the size of y
 - **Literature:** OEIS A007320; Defect remainder window; NormalizedDefect 1+q; expansion-slack close
@@ -6695,7 +6695,7 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Decide whether the realized persistent residual grammar can sustain λ>1 indefinitely, or whether a finite parity/threshold quotient forces a contracting block
 - **Hypotheses:** syntactic expansion of O^a E^b is a sharp even-run bound; persistence already forces expansion; type-level OOE self-loops are not orbit cycles; finite residues do not decide continuation
-- **Major results:** Lean `expandingWord` / `maxExpandingEvens` / `a+b ≤ log₂(3^a)`; `PersistentOddResidual ↔ PersistentExpandingResidual` for n≥2. Census: no persistent contracting residual; OOE type cycle at 365 exits odd-to-even at 4447; residue mod 8 both continues and exits; max PE run still 5. No halt theorem
+- **Major results:** Lean `expandingItinerary` / `maxExpandingEvens` / `a+b ≤ log₂(3^a)`; `PersistentOddResidual ↔ PersistentExpandingResidual` for n≥2. Census: no persistent contracting residual; OOE type cycle at 365 exits odd-to-even at 4447; residue mod 8 both continues and exits; max PE run still 5. No halt theorem
 - **Refuted ideas:** the expanding-word grammar is an independent obstruction to an infinite PE chain; a type-level recurrent component is an infinite expanding grammar; residue modulo 8 decides PE continuation
 - **Literature:** OEIS A007320; Envelope `power_bound_contracts`; Residuals PE definitions; two-block and expansion-slack existence; residual-state CLOSE; near-tight PROMOTE
 - **Open:** what decides whether a persistent residual landing stays odd-to-odd
@@ -6794,13 +6794,13 @@ Best next question
 ```text
 What was learned
 - (x³-ρ)³=(z²+σ)² is y⁶=y⁶
-- Γ=x⁹-z⁴ is globalDefect of the word OO
+- Γ=x⁹-z⁴ is globalDefect of the itinerary OO
 - On odd-odd, ρ is even
 - Peak slack needs even M; persistent OO supplies odd y
 - (ρ,σ) show no coupling beyond independent floor windows
 
 Strongest theorem
-- On a realized OO word, sequentialDefect x z = globalDefect x [.odd,.odd], and if x and y are odd then ρ is even
+- On a realized OO itinerary, sequentialDefect x z = globalDefect x [.odd,.odd], and if x and y are odd then ρ is even
 
 Strongest refutation
 - Peak Diophantine slack transports to a persistent odd-odd pair
@@ -6883,7 +6883,7 @@ Best next question
 
 ```text
 What was learned
-- The inverse of a finite word is follows plus image
+- The inverse of a finite itinerary is follows plus image
 - T(y) is a function of y; history can only thin the attainable y
 - Every well-sampled PE word realises both next parities
 - Same residue and θ still split, including OOE at y≡1 (mod 8)
@@ -6986,8 +6986,8 @@ Strongest refutation
 - A grammar-legal PE factor is permanently forbidden (EEEEEE at 14237; OEEEEO at 9157)
 
 Reusable machinery
-- formal/Problems/Juggler/WordLanguage.lean
-- research.juggler_sequence.word_language
+- formal/Problems/Juggler/ItineraryLanguage.lean
+- research.juggler_sequence.itinerary_language
 
 Prior-art status
 - negative language census, not a Juggler halt result
@@ -7219,7 +7219,7 @@ Strongest theorem
 - min realizer of E^r is 2^{2^{r-1}} (elementary; census confirms r<=5)
 
 Strongest refutation
-- "EEEEEE is absent as a factor of stored realizable words of length <=20"
+- "EEEEEE is absent as a factor of stored realizable itineraries of length <=20"
 
 Reusable machinery
 - none; reading of existing tables
@@ -7293,7 +7293,7 @@ Best next question
 ## Juggler global sum-rho / word-statistics
 
 - **Date:** 2026-08-27
-- **Objective:** Test whether the existing naive pathDefectSum admits a word-statistics bound that is not a rewrite of Delta or T_w(n)<n
+- **Objective:** Test whether the existing naive pathDefectSum admits an itinerary-statistics bound that is not a rewrite of Delta or T_w(n)<n
 - **Hypotheses:** H1–H3 survive, or a new A(x)-A(T(x)) telescope, or H4 is a non-circular contraction law
 - **Major results:** RHO_COMPLEX on 79553 itinerary prefixes (n≤4000, k≤20). H1 fails at E: n=4 Rho=0 vs n=3968 Rho=124. H3 fails on the same pair. H2 fails at OOO (n=3 and n=25). OOE Rho ranges from 39 at 5 to 6023969 at 775. No new telescope. H4 is T<n. Delta ≥ Rho on the short identity window
 - **Refuted ideas:** Rho ≤ F(k,o); Rho ≤ F(k,o,runs); k(2n+1) and k(2n^3+1) envelopes; a new state potential
@@ -7307,7 +7307,7 @@ What was learned
 - The same one-letter word E already forbids a pure word bound
 - Scale envelopes fail at OOO; later expanding prefixes make Rho / n^3 explode
 - H4 never beats surplus on expanding rows because Delta ≥ Rho and Delta > surplus iff T < n
-- Same word, different n: OOE Rho is state-dependent by many orders of magnitude
+- Same itinerary, different n: OOE Rho is state-dependent by many orders of magnitude
 
 Strongest theorem
 - none added
@@ -7436,15 +7436,15 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Describe \(N_w=\{n\in R_w:T_w(n)\ge n\}\) by something structurally simpler than evaluating \(T_w\)
 - **Hypotheses:** upper-tail threshold; \(a_w\) from \((k,o)\) or runs; \(N_{wb}\subseteq N_w\); first-defect restriction
-- **Major results:** Formally contracting words have empty \(N\) for \(n>1\) (envelope). Expanding words: \(2583/2584\) nonempty windows are upper tails; the only inversion is `EOO` at \(10\) vs \(12\) with the same image \(11\). Same \((k,o)\) splits \(a_w\) by factor \(108\). Late expand `EO`→`EOO` at \(10\); late contract `OOOE`→`OOOEE` at \(3\). First-defect position does not separate \(C_w\) from \(N_w\). Classification `NC_BOUNDARY_COMPLEX`
-- **Refuted ideas:** threshold for all expanding words; \(a_w=F(k,o)\); \(a_w=F(k,o,\mathrm{runs})\); prefix inheritance either way; first-defect restriction on \(N_w\)
+- **Major results:** Formally contracting itineraries have empty \(N\) for \(n>1\) (envelope). Expanding itineraries: \(2583/2584\) nonempty windows are upper tails; the only inversion is `EOO` at \(10\) vs \(12\) with the same image \(11\). Same \((k,o)\) splits \(a_w\) by factor \(108\). Late expand `EO`→`EOO` at \(10\); late contract `OOOE`→`OOOEE` at \(3\). First-defect position does not separate \(C_w\) from \(N_w\). Classification `NC_BOUNDARY_COMPLEX`
+- **Refuted ideas:** threshold for all expanding itineraries; \(a_w=F(k,o)\); \(a_w=F(k,o,\mathrm{runs})\); prefix inheritance either way; first-defect restriction on \(N_w\)
 - **Literature:** `power_bound_contracts` / `image_monotone_of_follows`; PE / residual-future / sum-rho stay CLOSE; realization-set and landing-image stay closed/parked
 - **Open:** none from this branch
 - **Decision:** CLOSE. The only exact positive law is the existing envelope. Do not invent another statistic
 
 ```text
 What was learned
-- N_w is empty on formally contracting words for n>1
+- N_w is empty on formally contracting itineraries for n>1
 - N_E is empty; N_{O^r} is all odds in the window
 - The only threshold inversion is EOO at 10 vs 12 (constant image 11)
 - a_w is not a function of (k,o) or of the tested run signature
@@ -7481,7 +7481,7 @@ Best next question
 ## Juggler first-return excursion frontier
 
 - **Date:** 2026-08-27
-- **Objective:** Determine whether first-return maximality (every proper prefix stays at or above n, and the complete word returns strictly below n) forces a new exact relation among word, peak, defects, and return margin
+- **Objective:** Determine whether first-return maximality (every proper prefix stays at or above n, and the complete word returns strictly below n) forces a new exact relation among itinerary, peak, defects, and return margin
 - **Hypotheses:** H1 nontrivial margin bound; H2 peak bound stronger than the envelope; H3 new G_j profile law; H4 new final-step restriction; H5 Pareto extremals form one class. H6 not attempted
 - **Major results:** All 3999 starts in 2..4000 returned (two after a 25000-bit promotion). tau ranges from 1 to 77; 272 distinct first-return words. Every observed return is maximal and ends with E. Classification EXCURSION_COMPLEX
 - **Refuted ideas:** M >= F(k,o) stronger than M>=1 (OOOEE at 3); peak bound stronger than the envelope (n=2183, 19694-bit peak); first-return word determines M (OOEE, M from 3 to 3878); same (k,o) determines M; a single extremal class
@@ -7495,7 +7495,7 @@ What was learned
 - First-return words are maximal and the first formally contracting prefix
 - Every return ends with E; the predecessor lies in [n, n^2)
 - M=1 is attained (n=2 and OOOEE at 3); no stronger F(k,o) survives
-- Peak size is unbounded as a word statistic; n=2183 reaches 19694 bits
+- Peak size is unbounded as an itinerary statistic; n=2183 reaches 19694 bits
 - G_j<=0 then G_tau>0 is the parked envelope census, not a new grammar
 - Same first-return word still has state-determined margin
 - Lex extremals and the Pareto front sit in different word classes
@@ -7558,7 +7558,7 @@ Reusable machinery
 - research.juggler_sequence.information_complexity
 
 Prior-art status
-- information-complexity reading of word futures, not a Juggler halt or independence result
+- information-complexity reading of itinerary futures, not a Juggler halt or independence result
 
 Complexity profile
 - unchanged flood order; no new production attack
@@ -7589,7 +7589,7 @@ Best next question
 What was learned
 - The hardest paths on n<=4000 are the known first-return records
 - Prefix endpoint/peak records for k<=10 are long initial odd runs of large odds
-- Every multi-word (k,o) group with k<=12 splits min-margin and peak bits
+- Every multi-itinerary (k,o) group with k<=12 splits min-margin and peak bits
 - Same word OOEE still has M from 3 to 3878
 - first G_j>0 equals tau on all 3999 returns
 - Peak-at-OE is universal on long odd returns, not an extremal-only law
@@ -7629,7 +7629,7 @@ Best next question
 - **Objective:** Test whether repeated exact inversion of the Juggler floor-power map imposes a structural constraint invisible in the forward O/E dynamics
 - **Hypotheses:** mixed inverse paths obey a new scale inequality, sparsity bound, well-founded rank, or hard-path restriction beyond the floor cells
 - **Major results:** Pred is the existing even/odd floor cells with T(n)=m. On m=1..4000 every even cell is nonempty, 126 odd cells are occupied (rate 63/2000), |Pred_E| is m or m+1, even edges ascend, odd edges descend except 1->1. Composed bounds are nested cells; hull-versus-fiber gaps are relaxations. Bounded inverse BFS on selected roots has no same-root collisions. Hard walks 3, 365, 425, 2183, 3889 reverse to unique-odd or ordinary even-cell points. Classification BACKWARD_COMPLEX
-- **Refuted ideas:** Collatz n=(2^k m-1)/3 as the Juggler inverse; affine inverse composition; a new scale law from mixed words; distinguished inverse labels on hard forward paths; m mod 3 as an inverse admissibility rule
+- **Refuted ideas:** Collatz n=(2^k m-1)/3 as the Juggler inverse; affine inverse composition; a new scale law from mixed itineraries; distinguished inverse labels on hard forward paths; m mod 3 as an inverse admissibility rule
 - **Literature:** Cells.lean stays the predecessor law. prefix-NC / preimage-cylinder / realization-geometry / odd-landing / first-return / adversarial / information-complexity stay CLOSE
 - **Open:** none from this branch. Finite backward depth is not a theorem. The basin of 1 is not a totality result
 - **Decision:** CLOSE. Repeated inversion is the nested floor cells. Do not invent another scalar. Do not launch a GPU predecessor census
@@ -7678,7 +7678,7 @@ Best next question
 - **Objective:** Decide whether first-return-to-odd A, with exact branch (a,b), is a simpler exact dynamical system than one-step J or ResidualStep
 - **Hypotheses:** even-tail collapse after an odd start yields a cleaner transition, inverse, contraction, or repeated-branch law
 - **Major results:** On odd n<=4000 every start has a next odd landing and a=1. J(n) odd on 1009 starts (A=J); J(n) even on 990 starts (A equals ResidualStep with a=1). Defect, monotonicity, contraction, beta, and inverse are existing word / cell theorems. First J-return can land on an even intermediate before A(n); smallest witness n=7. Classification ACCELERATION_COMPLEX, secondary ACCELERATION_REPACKAGING
-- **Refuted ideas:** A is ResidualStep; A is a new transition law; macro contraction stronger than the envelope; fixed-(a,b) inverse cleaner than the floor cells; every first J-return is an A-state; macro word (1,0)/(1,b) is a mathematical discovery
+- **Refuted ideas:** A is ResidualStep; A is a new transition law; macro contraction stronger than the envelope; fixed-(a,b) inverse cleaner than the floor cells; every first J-return is an A-state; macro itinerary (1,0)/(1,b) is a mathematical discovery
 - **Literature:** ResidualStep, image_monotone_of_follows, global_defect_identity, floor cells, and first-return-below stay in place. PE / residual-quotient / sum-rho / realization geometry / information-complexity / backward-geometry stay CLOSE
 - **Open:** none from this branch. Do not replace J by A. Finite domain in the window is not a totality theorem
 - **Decision:** CLOSE. Acceleration is a shorter encoding of the same odd-state dynamics. Do not invent a second acceleration. Do not launch CUDA Phase 2
@@ -7736,7 +7736,7 @@ Best next question
 What was learned
 - Juggler has no Collatz-style 2-adic word automaton; Admissible_P is first-letter parity
 - Every tested cylinder splits at letter 2; later letters are Archimedean, not 2-adic
-- Weak Admissible_P contains every finite word; Forced_P contains only length 0/1
+- Weak Admissible_P contains every finite itinerary; Forced_P contains only length 0/1
 - A_P \\ I gaps are Type 1 SCALE_LIMITED or bound-limited; no Type-3 certificate
 - Finite BT jets never determine n mod 2; CRT intersections are infinite families
 - P_adm is undefined for |w|>=2, so it does not predict m(w)
@@ -7751,7 +7751,7 @@ Strongest refutation
 
 Reusable machinery
 - research.juggler_sequence.two_adic_bridge
-- reuses follows_word, floor_power, even_tower, landing_row, integer_jet / encode
+- reuses follows_itinerary, floor_power, even_tower, landing_row, integer_jet / encode
 
 Prior-art status
 - negative bridge between residue constraints and follows, not a halt result
@@ -7777,10 +7777,10 @@ Best next question
 - **Objective:** Decide whether exact floor-boundary positions (e,u) impose a Diophantine restriction on difficult Juggler trajectories invisible in the existing envelope and cell lemmas
 - **Hypotheses:** small (e,u) forces a next-step gap law; small odd defects form a restricting Mordell family; mixed boundary chains have an exact compatibility rule; hard starts hug a wall
 - **Major results:** (e,u) is local_defect plus the complementary cell width 2m+1. Even-cell position is inert (even_cell_iff). Odd e=0 is odd squares. On odd n<=1e5 and e<=16 the only non-squares are 3 (e=2), 5 (e=4), 15 (e=11), 17 (e=13). Those isolates do not force the next gap to be small (next theta mean 0.453). Exact consecutive hits are monochrome towers / 4th powers. Same word OOE has first thetas 0.174 / 0.660 / 0.379. Hard start 193 has mean theta 0.492. Classification FLOOR_BOUNDARY_COMPLEX
-- **Refuted ideas:** even wall vs mid-cell changes J; e_O<=2 forces a small next gap; a word has a characteristic boundary profile; hard starts hug a floor wall; FLOOR_BOUNDARY_GREEN and the other green promotion targets
+- **Refuted ideas:** even wall vs mid-cell changes J; e_O<=2 forces a small next gap; an itinerary has a characteristic boundary profile; hard starts hug a floor wall; FLOOR_BOUNDARY_GREEN and the other green promotion targets
 - **Literature:** localDefect*_eq_zero_iff / *_lt_succ, even_cell_iff, odd_cell_unique, equality monochrome, even_tower_to_one stay in place. Sum-rho / landing theta / 2-adic bridge / first-return / realization geometry stay CLOSE
 - **Open:** none from this branch. A Mordell-rank classification of n^3-m^2=delta is not opened
-- **Decision:** CLOSE as FLOOR_BOUNDARY_COMPLEX. Boundary position does not add a finite-word theorem beyond the existing cells and equality families. Do not invent another distance
+- **Decision:** CLOSE as FLOOR_BOUNDARY_COMPLEX. Boundary position does not add a finite-itinerary theorem beyond the existing cells and equality families. Do not invent another distance
 
 ```text
 What was learned
@@ -7800,7 +7800,7 @@ Strongest refutation
 
 Reusable machinery
 - research.juggler_sequence.floor_boundary
-- reuses local_defect, floor_power, even_tower, follows_word
+- reuses local_defect, floor_power, even_tower, follows_itinerary
 
 Prior-art status
 - negative Diophantine reading of the certified floor cells, not a halt result
@@ -7992,7 +7992,7 @@ What was learned
 - No F(k) lower bound and no all-horizon gap theorem
 
 Strongest theorem
-- among ideal first-return words of length k, the unique peak maximiser is O^{o} E^{k-o} for the unique o with 2^{k-1} ≤ 3^o < 2^k, when that o exists
+- among ideal first-return itineraries of length k, the unique peak maximiser is O^{o} E^{k-o} for the unique o with 2^{k-1} ≤ 3^o < 2^k, when that o exists
 
 Strongest refutation
 - the deterministic control optimiser coincides with the 2025 LD optimiser
@@ -8337,9 +8337,9 @@ Best next question
 ## Juggler prefix-OOO extra scale
 
 - **Date:** 2026-08-28
-- **Objective:** Decide whether prefix-`OOO` extra scale, or an `OOOOEE` `CycleMin` rotation, excludes `CycleWord` on the parked leftovers `OOOEOE` and `OOOOEE`
+- **Objective:** Decide whether prefix-`OOO` extra scale, or an `OOOOEE` `CycleMin` rotation, excludes `CycleItinerary` on the parked leftovers `OOOEOE` and `OOOOEE`
 - **Hypotheses:** \(T^3(n)\ge(n+1)^2\) plus the even cell of \(y=\mathrm{isqrt}(T^3(n))\) forces \(T(y)\ge(n+1)^2\); `OOOOEE` dies by rotation plus existing thresholds
-- **Major results:** `y=n` is `ooo_suffix_threshold` against the even cell of `n` **EXACT — LEAN VERIFIED** (`cycleMin_prefix_ooo_even_sqrt_ne`). `CycleMin` cannot end in `O` **EXACT — LEAN VERIFIED** (`cycleMin_not_end_odd`), a **REPARAMETERIZATION** of the last-odd cell plus `succ_sq_le_cube`. `LowerPowerBound` on `OOO` has `lowerDenom=2^{38}` and first forced last-even overshoot at `n=109`; it is not uniform from `n=3` (**REFUTED**). `OOOOEE` rotations reduce to `CycleMin OOOOEE` only; that word is not excluded. No `CycleWord` theorem for either leftover. Classification `OOO_SCALE_THRESHOLD_ONLY`
+- **Major results:** `y=n` is `ooo_suffix_threshold` against the even cell of `n` **EXACT — LEAN VERIFIED** (`cycleMin_prefix_ooo_even_sqrt_ne`). `CycleMin` cannot end in `O` **EXACT — LEAN VERIFIED** (`cycleMin_not_end_odd`), a **REPARAMETERIZATION** of the last-odd cell plus `succ_sq_le_cube`. `LowerPowerBound` on `OOO` has `lowerDenom=2^{38}` and first forced last-even overshoot at `n=109`; it is not uniform from `n=3` (**REFUTED**). `OOOOEE` rotations reduce to `CycleMin OOOOEE` only; that itinerary is not excluded. No `CycleItinerary` theorem for either leftover. Classification `OOO_SCALE_THRESHOLD_ONLY`
 - **Refuted ideas:** `LowerPowerBound` extra scale from `n=3`; `y=n` is new extra scale; `OOOOEE` is excluded by rotation
 - **Literature:** oeis-A007320 known. Internal-E bootstrap, `ooo_suffix_threshold`, last-even/odd cells, `succ_sq_le_cube` reused. Closed compose / Diophantine / Mordell / \(G_r\) branches not reopened
 - **Open:** whether every positive integer reaches 1. Extra scale on these two words is not a new uniform law
@@ -8352,7 +8352,7 @@ What was learned
 - LowerPowerBound(OOO) has D=2^38 and first forced overshoot at n=109
 - extra scale is not uniform from n=3
 - OOOOEE CycleMin orientations reduce to OOOOEE itself
-- neither leftover CycleWord is excluded
+- neither leftover CycleItinerary is excluded
 - no n-search, no length-6 theorem, no O-terminating programme
 
 Strongest theorem
@@ -8399,7 +8399,7 @@ Best next question
 
 ```text
 What was learned
-- The finite-word envelope and global defect provide the exact contraction spine
+- The finite-itinerary envelope and global defect provide the exact contraction spine
 - Fixed-word monotonicity and inverse-cell asymmetry are useful surviving structure
 - The Atlas is strongest as a validated conjecture/counterexample apparatus
 - Closed quotient branches become negative knowledge when their tested families are stated precisely
@@ -8408,7 +8408,7 @@ What was learned
 - Statistical negative drift describes typical finite behavior, not pointwise progress
 
 Strongest theorem
-- For every realized finite word w at n>=2,
+- For every realized finite itinerary w at n>=2,
   3^{#O(w)}<2^{|w|} implies T_w(n)<n; the exact global defect records
   the slack in the underlying power envelope
 
@@ -8464,7 +8464,7 @@ What was learned
 - Atlas and closed-compression diaries do not carry a math paper
 
 Strongest theorem
-- Realized words obey the power envelope; even and odd-to-even starts
+- Realized itineraries obey the power envelope; even and odd-to-even starts
   have uniform short certificates; odd-to-odd starts have density 1/4
 
 Strongest refutation
@@ -8488,7 +8488,7 @@ Best next question
 
 - **Date:** 2026-08-28
 - **Objective:** Repair the finite-dynamics note so every paper claim is independently checkable at its stated strength
-- **Major results:** The horizon-\(20\) first-return census was rerun with uncapped Python integers and has zero unresolved cases in all four paper rows. Ordinary proofs were added for fixed-word monotonicity, the zero-defect tower classification, odd-cell uniqueness, and the cycle/superquadratic restrictions. The discrepancy proof now defines unnormalized discrepancy, cites the precise classical estimates, and handles the initial dyadic block. The laboratory frontier chart was replaced by a theorem-flow figure
+- **Major results:** The horizon-\(20\) first-return census was rerun with uncapped Python integers and has zero unresolved cases in all four paper rows. Ordinary proofs were added for fixed-itinerary monotonicity, the zero-defect tower classification, odd-cell uniqueness, and the cycle/superquadratic restrictions. The discrepancy proof now defines unnormalized discrepancy, cites the precise classical estimates, and handles the initial dyadic block. The laboratory frontier chart was replaced by a theorem-flow figure
 - **Refuted ideas:** The previous description of the capped census as exact was invalid provenance; finite concentration data alone did not justify a general image-set statement
 - **Open:** almost-all finite descent on odd-to-odd starts
 - **Decision:** PROMOTE the corrected paper synthesis. No new research branch or theorem attack was opened
@@ -8501,7 +8501,7 @@ What was learned
 - The finite n<256 Lean boundary checks include two itinerary tables and one numerical inequality
 
 Strongest theorem
-- realized finite words satisfy the exact global-defect identity and its two-term composition law
+- realized finite itineraries satisfy the exact global-defect identity and its two-term composition law
 
 Strongest refutation
 - a capped trajectory census cannot be presented as exact without resolving every cutoff exit
@@ -8524,10 +8524,10 @@ Best next question
 ## Juggler leftover length-six orientations
 
 - **Date:** 2026-08-28
-- **Objective:** Exclude the leftover legal `CycleMin` orientations `OOOEOE` and `OOOOEE` as `CycleWord` for every \(n\ge 2\)
+- **Objective:** Exclude the leftover legal `CycleMin` orientations `OOOEOE` and `OOOOEE` as `CycleItinerary` for every \(n\ge 2\)
 - **Hypotheses:** finite evaluation below \(256\) plus the last-even cell against `LowerPowerBound` yields \(n^{81}>2^{130}(n+1)^{64}\) for \(n\ge256\)
-- **Major results:** `no_cycle_word_oooeoe` and `no_cycle_word_ooooee` **EXACT — LEAN VERIFIED**. Math-note Theorem 3.2. Isolated `native_decide` in `LeftoverEval.lean`; algebra in `LeftoverCycles.lean`. Records: `docs/problems/juggler_leftover_cycles.md`
-- **Refuted ideas:** uniform extra-scale from \(n=3\) (already closed); all length-six cycle words are excluded; a halt theorem
+- **Major results:** `no_cycle_itinerary_oooeoe` and `no_cycle_itinerary_ooooee` **EXACT — LEAN VERIFIED**. Math-note Theorem 3.2. Isolated `native_decide` in `LeftoverEval.lean`; algebra in `LeftoverCycles.lean`. Records: `docs/problems/juggler_leftover_cycles.md`
+- **Refuted ideas:** uniform extra-scale from \(n=3\) (already closed); all length-six cycle itineraries are excluded; a halt theorem
 - **Literature:** oeis-A007320 known. Internal-E bootstrap and prefix-OOO `CLOSE` reused, not reopened
 - **Open:** almost-all descent on odd-to-odd starts. Do not open length 7
 - **Decision:** PROMOTE the two leftover exclusions. The closed uniform-from-3 extra-scale branch stays `CLOSE`. No length-six census. No halt theorem
@@ -8543,7 +8543,7 @@ What was learned
 - This is not a length-six census and not a halt theorem
 
 Strongest theorem
-- Neither OOOEOE nor OOOOEE is a CycleWord at any n ≥ 2
+- Neither OOOEOE nor OOOOEE is a CycleItinerary at any n ≥ 2
 
 Strongest refutation
 - LowerPowerBound extra-scale from n=3 excludes the leftovers
@@ -8565,7 +8565,7 @@ Branch status
 - PROMOTE
 
 Why
-- Both leftover CycleWords are excluded by a finite check plus a
+- Both leftover CycleItineraries are excluded by a finite check plus a
   reusable tail inequality, without claiming a length-six census.
 
 Best next question
@@ -8580,7 +8580,7 @@ Best next question
 - **Major results:** Classification **FIXED_FAMILY_POSITIVE_LEFTOVER**. At \(N=10^6\), \(\#\mathrm{OO}=249926\); `OOOEE` leftover \(0.875\); word union leftover \(0.750\); horizon \(20\) leftover \(0.105\) (Proposition 4.5 reproduced, \(26243\) leftovers); horizon \(40\) leftover \(0.0239\), already \(0.0244\) at \(N=10^4\). Records: `docs/research/juggler_oo_descent_density.md`, `docs/problems/juggler_oo_descent_density.md`
 - **Refuted ideas:** `OOOEE` or `OOOEE∪OOEOE` covers almost all of `OO`; fixed horizon \(20\) or \(40\) has leftover \(o(|OO|)\); Terras cylinder-sum copies to \(J\); a halt theorem
 - **Literature:** Terras–Everett known, not imported. Corollary 5.2 and `floorPower_oooee_of_follows` reused. Image-discrepancy transfer stays REFUTED
-- **Open:** a measure on unbounded Juggler words, weaker than residue classes, on which contracting words cover almost every OO start. Do not start that here
+- **Open:** a measure on unbounded Juggler words, weaker than residue classes, on which contracting itineraries cover almost every OO start. Do not start that here
 - **Decision:** CLOSE the finite-family attack. The almost-all FiniteProgress question remains, but it is unbounded-length and has no 2-adic measure. Do not fish horizons past \(K=40\)
 
 ```text
@@ -8616,7 +8616,7 @@ Why
 
 Best next question
 - is there a measure on unbounded Juggler words, weaker than residue
-  classes, on which contracting words cover almost every OO start?
+  classes, on which contracting itineraries cover almost every OO start?
 ```
 
 ## Juggler math-note defect restoration
@@ -8660,11 +8660,11 @@ Best next question
 
 - **Date:** 2026-08-28
 - **Objective:** Assemble the existing certified cycle exclusions into a single census theorem — no nontrivial Juggler cycle of length at most six — and upgrade the math note with it, the cycle-surplus identity, the proven slack-scale bound, and a negative-knowledge record
-- **Hypotheses:** rotation invariance plus the expanding filter and the recorded thresholds already cover every word of length at most six; no new evaluation table is needed
-- **Major results:** `no_cycle_word_length_le_six` in `formal/Problems/Juggler/SmallCycleCensus.lean` (ledger `J-small-cycle-census`, EXACT — LEAN VERIFIED), assembled from rotation dispatch, the all-odd ascent exclusion, the even-terminating length-four/five theorems, the odd-run and internal-even thresholds, and the two leftover exclusions; the note states it as Theorem 3.3 with the leftover pair as Lemma 3.2, adds Corollary 2.7 (a cycle burns its whole formal surplus, `image_eq_start_defectRatio`), replaces the observational no-tax hedge with the per-step bound `one_plus_eta_lt_succ_sq`, and records the certified four-block chain `four_block_pe_1999` with five refuted finite-state reductions in Section 6
+- **Hypotheses:** rotation invariance plus the expanding filter and the recorded thresholds already cover every itinerary of length at most six; no new evaluation table is needed
+- **Major results:** `no_cycle_itinerary_length_le_six` in `formal/Problems/Juggler/SmallCycleCensus.lean` (ledger `J-small-cycle-census`, EXACT — LEAN VERIFIED), assembled from rotation dispatch, the all-odd ascent exclusion, the even-terminating length-four/five theorems, the odd-run and internal-even thresholds, and the two leftover exclusions; the note states it as Theorem 3.3 with the leftover pair as Lemma 3.2, adds Corollary 2.7 (a cycle burns its whole formal surplus, `image_eq_start_defectRatio`), replaces the observational no-tax hedge with the per-step bound `one_plus_eta_lt_succ_sq`, and records the certified four-block chain `four_block_pe_1999` with five refuted finite-state reductions in Section 6
 - **Refuted ideas:** none new; the five recorded reduction failures are cited, not retested
 - **Literature:** no new citation; ledger rows `J-leftover-length-six-orientations`, `J-near-tight-scale-bounds`, `J-four-block-persistent-expanding` reused
-- **Open:** length-seven cycle words; almost-all descent on odd-to-odd starts
+- **Open:** length-seven cycle itineraries; almost-all descent on odd-to-odd starts
 - **Decision:** PROMOTE. The census is a strict strengthening with zero new axioms and no new native_decide table. No length-seven programme is opened
 
 ```text
@@ -8674,17 +8674,17 @@ What was learned
 - All-odd words die by strict odd ascent, so every remaining case is
   even-terminating
 - EOOOOE and OEOOOE need no individual argument: they rotate onto the
-  two leftover words
+  two leftover itineraries
 
 Strongest theorem
-- no_cycle_word_length_le_six: no cycle word of length ≤ 6 at any n ≥ 2
+- no_cycle_itinerary_length_le_six: no cycle itinerary of length ≤ 6 at any n ≥ 2
 
 Strongest refutation
 - none new
 
 Reusable machinery
-- SmallCycleCensus.lean: rotateWord_eq_drop_append_take,
-  cycleWord_exists_even_terminating, no_cycle_word_replicate_odd
+- SmallCycleCensus.lean: rotateItinerary_eq_drop_append_take,
+  cycleItinerary_exists_even_terminating, no_cycle_itinerary_replicate_odd
 
 Branch status
 - PROMOTE
@@ -8701,7 +8701,7 @@ Best next question
 ## Juggler two-step parity census
 
 - **Date:** 2026-08-28
-- **Objective:** Phase-0 gate for iterating the one-step discrepancy bound (Theorem 5.1) to joint parity words of depth 2–4 on odd starts: do the classes equidistribute, and with what empirical exponent?
+- **Objective:** Phase-0 gate for iterating the one-step discrepancy bound (Theorem 5.1) to joint parity itineraries of depth 2–4 on odd starts: do the classes equidistribute, and with what empirical exponent?
 - **Hypotheses:** all depth \(\le 4\) itinerary parity classes converge to the product densities with envelope exponent clearly below 1; the contracting `OOEE` class then becomes the target of a depth-2 analytic lemma
 - **Major results:** at \(N=10^7\) all eight depth-4 classes sit within \(0.2\%\) of \(1/8\) of odd starts; running envelopes \(\max|D|\) are \(195\) (depth 2), \(1156.5\) (depth 3), \(3020.75\) (depth 4) with fitted exponents \(0.28/0.63/0.66\), all below the proven depth-1 exponent \(5/6\); the depth-2 envelope is on the same \(N^{1/3}\) scale as the proven depth-1 case; `OOEE` holds \(12.504\%\) of odd starts with zero four-step descent violations (guard for the exact contraction \(x^{16}\le n^9\)). Records: `docs/research/juggler_two_step_parity.md`, `docs/problems/juggler_two_step_parity.md`
 - **Refuted ideas:** none new; the falsifier (class bias or exponent \(\approx 1\)) did not fire. Transfer, θ-state, and residue-prediction refutations were cited, not retested
@@ -9211,7 +9211,7 @@ passenger-robust variant inside the Phase-5 reduction - expected to
 be routine for this engine, deferred to the review scope. No note
 import, no density claim: the OOO* classes are non-contracting at
 depth 4, so 13/16 does not move; what a confirmed Theorem R opens is
-depth >= 5 contracting words (OOOEE) and the unconditional d <= 4
+depth >= 5 contracting itineraries (OOOEE) and the unconditional d <= 4
 base of Proposition 6.1's hypothesis.
 
 ```text
@@ -9342,7 +9342,7 @@ Reusable machinery
 - the targeted-differencing + J = F - {F} pattern (scale inversion),
   T_3 probes, the (b, kappa)-branch organization
 Branch status
-- PROMOTE (tier-3 ladder: depth-5 OOO-prefixed contracting words,
+- PROMOTE (tier-3 ladder: depth-5 OOO-prefixed contracting itineraries,
   the only route above 13/16; editorial import of R/S into the note)
 Why
 - the kernel was the single irreducible obstruction of this branch;
@@ -9350,12 +9350,12 @@ Why
   density is unchanged until depth 5 opens
 Best next question
 - does the tier-3 ladder (three differencings, same exact identities)
-  close OOOEE, the shortest contracting word beyond depth 4?
+  close OOOEE, the shortest contracting itinerary beyond depth 4?
 ```
 
 ## Juggler depth 5: OOOEE and OOEOE close, certified density 7/8 (Phase 10)
 
-The promoted question — do the two length-5 contracting words close
+The promoted question — do the two length-5 contracting itineraries close
 under the existing engine? — answered affirmatively. Working document
 Part VII; rows `J-depth5-contracting`, `J-five-step-descent-density`.
 
@@ -10263,7 +10263,7 @@ re-enters a recorded obstruction (BB, GG, CC, JJ), confirming the
 obstruction propositions. The deep dive then found two real items.
 
 First, a consolidation overclaim: the note asserted "every uncounted
-contracting word passes through OOOO*". False — OOEOOOEE (five odd
+contracting itinerary passes through OOOO*". False — OOEOOOEE (five odd
 letters, 3^5 = 243 < 256 = 2^8) contracts, has no OOOO factor, and
 was uncounted. Fixed in both copies, then superseded by the theorem
 below.
@@ -10436,7 +10436,7 @@ Appendix A.
 `Problems.JugglerPaper` now matches Paper A only: `GapCells` is
 dropped from the barrel and from `PAPER_MODULES`. The reviewer
 packet, formalization map, paper dossier, and `juggler_review/`
-snapshot were synced to that wording.
+snapshot were synced to that itinerarying.
 
 ```text
 What was learned
@@ -10601,7 +10601,7 @@ was complete only because a start realizing OO is odd; the note now
 says so. (2) Both length-six exclusions began "suppose n >= 256
 realizes w" and then silently used the return J^6(n) = n through
 Lemma 3.4(iv) and the odd-cell bound; the supposition is now "w is a
-cycle word at n >= 256", which is what those tools require.
+cycle itinerary at n >= 256", which is what those tools require.
 
 Three reproducibility/clarity fixes. The 10^-30 slack example now
 carries its own four-line exact check (verified: 0 < (n^9 - x^8) *
@@ -10755,7 +10755,7 @@ Best next question
 
 - **Date:** 2026-08-29
 - **Objective:** Rewrite Paper A so a journal referee can accept it as a short note
-- **Major results:** Retitled *Small cycles of the Juggler map*. The census is the theorem; the envelope is the tool; the defect is exact bookkeeping used once on mixed cycle words. Lemma 3.1 written strictly; Theorem 2.2 induction uses prefix length \(\ell\); Lemma 3.4(v) records the already-proved odd-run exclusion \(O^aE\) (\(a\ge 3\)). Related work now includes Pickover 2002, Weisstein, Smith 1992, A094716, and the 2026 computational record through \(7\,110\,200\). Python listings removed. Certificates and the remaining gap are remarks. Theorem numbers 2.1--4.1 unchanged.
+- **Major results:** Retitled *Small cycles of the Juggler map*. The census is the theorem; the envelope is the tool; the defect is exact bookkeeping used once on mixed cycle itineraries. Lemma 3.1 written strictly; Theorem 2.2 induction uses prefix length \(\ell\); Lemma 3.4(v) records the already-proved odd-run exclusion \(O^aE\) (\(a\ge 3\)). Related work now includes Pickover 2002, Weisstein, Smith 1992, A094716, and the 2026 computational record through \(7\,110\,200\). Python listings removed. Certificates and the remaining gap are remarks. Theorem numbers 2.1--4.1 unchanged.
 - **Refuted ideas:** none (editorial)
 - **Literature:** pickover-2002-mathematics-of-oz, weisstein-juggler-sequence, smith-1992-juggler-letter, oeis-A094716, derneueschwan-2026-juggler added or retagged as Paper A citations
 - **Open:** length \(\ge 7\) cycles; universal arrival at \(1\)
@@ -10862,7 +10862,7 @@ Best next question
 - publish the Zenodo record and put the DOI in Paper B [22]
 ```
 
-## Juggler length-7 cycle-word inventory
+## Juggler length-7 cycle-itinerary inventory
 
 - **Date:** 2026-08-29
 - **Objective:** Apply the Paper A cycle filters to even-terminating expanding length-7 words and test whether the Lemma 3.5 leftover tails exclude the two predicted leftovers
@@ -10876,7 +10876,7 @@ Best next question
 ```text
 What was learned
 - Length 7 has the same two-even geometry as length 6: one odd-run
-  word, a bootstrap pair, and two leftover families O^{k-2}EE and
+  itinerary, a bootstrap pair, and two leftover families O^{k-2}EE and
   O^{k-3}EOE
 - OOEOOOE / OOOEOOE die as CycleMin by the existing internal-E
   bootstrap; n=3 is a parity failure (11 odd, 6 even)
@@ -10887,7 +10887,7 @@ What was learned
   three-even length. Neither was opened
 Strongest theorem
 - none new in Lean; computationally, neither OOOOOEE nor OOOOEOE
-  is a CycleWord at any n ≥ 2 by the N0=14 tail plus an empty table
+  is a CycleItinerary at any n ≥ 2 by the N0=14 tail plus an empty table
 Strongest refutation
 - none; the inventory matched the prediction
 Reusable machinery
@@ -10898,9 +10898,9 @@ Why
 - both leftover tails fire and the finite tables are empty, so the
   Lemma 3.5 method reaches the first open length
 Best next question
-- Lean-exclude CycleWord on OOOOOEE and OOOOEOE by the tail
+- Lean-exclude CycleItinerary on OOOOOEE and OOOOEOE by the tail
   n^243 > 2^422 (n+1)^128 for n ≥ 14, then assemble
-  no_cycle_word_length_seven
+  no_cycle_itinerary_length_seven
 ```
 
 ## Juggler length-9 three-even leftovers
@@ -10908,7 +10908,7 @@ Best next question
 - **Date:** 2026-08-29
 - **Objective:** Name the argument that excludes even-terminating expanding length-9 words with three evens, after the two leftover families \(O^{k-2}EE\) and \(O^{k-3}EOE\) stop covering
 - **Hypotheses:** last-internal suffix is always \(O^c\); leftovers are the nine words \(O^aEO^bEO^cE\) with \(a\ge 2\) and \(c\in\{0,1\}\); odd-prefix plus mixed-tail cells replace those two families; this is not induction on \(n\) or on the period
-- **Major results:** Classification **THREE_EVEN_PREFIX_CELL_GREEN**. Length 9 has 37 even-terminating expanding words: 1 odd-run, 8 two-even, 28 three-even. The 28 split as 7 start \(E\), 6 start \(OE\), 6 last-internal bootstrap, 9 leftovers. All nine prefix-cell tails fire (\(N_0\le 374\)); exact tables below the cutoffs have zero returns. The \(a=2\) remainders are the Lemma 3.5 words `OOOOEE` / `OOOEOE`. Records: `docs/problems/juggler_length_nine_three_even.md`, `docs/research/juggler_cycle_length_nine.md`. No Lean. No Paper A edit. Length 10 and four-even words were not opened
+- **Major results:** Classification **THREE_EVEN_PREFIX_CELL_GREEN**. Length 9 has 37 even-terminating expanding itineraries: 1 odd-run, 8 two-even, 28 three-even. The 28 split as 7 start \(E\), 6 start \(OE\), 6 last-internal bootstrap, 9 leftovers. All nine prefix-cell tails fire (\(N_0\le 374\)); exact tables below the cutoffs have zero returns. The \(a=2\) remainders are the Lemma 3.5 words `OOOOEE` / `OOOEOE`. Records: `docs/problems/juggler_length_nine_three_even.md`, `docs/research/juggler_cycle_length_nine.md`. No Lean. No Paper A edit. Length 10 and four-even words were not opened
 - **Refuted ideas:** last two \(E\)s separated by a suffix containing \(E\); induction on period as a reduction; a general no-cycle induction on \(n\); naive full-word `lowerDenom` as the leftover tail
 - **Literature:** oeis-A007320 known. Internal-E bootstrap, Lemma 3.5, and the length-7 Lean census reused, not reopened
 - **Open:** Lean exclusion of the nine leftovers, starting with `OOOOOOEEE` at \(N_0=8\). Uniform two-even theorem for lengths 6–8 not opened
@@ -10928,7 +10928,7 @@ What was learned
   first-E transport is a CycleMin simplification of the same tail
 Strongest theorem
 - none new in Lean; computationally, none of the nine leftovers is
-  a CycleWord at any n >= 2
+  a CycleItinerary at any n >= 2
 Strongest refutation
 - "the last two E's may be separated by OE..." is false for an
   even-terminating word; that gap is first-E, not last-internal
@@ -10940,16 +10940,16 @@ Why
 - the three-even gap is a finite leftover list with a named
   Lemma 3.5-style exclusion path that fires for every leftover
 Best next question
-- Lean-exclude CycleWord on OOOOOOEEE by the prefix-cell tail at
+- Lean-exclude CycleItinerary on OOOOOOEEE by the prefix-cell tail at
   N0=8, then the remaining eight leftovers
 ```
 
 ## Juggler length-7 Lean census
 
 - **Date:** 2026-08-29
-- **Objective:** Lean-exclude the two length-7 leftovers and assemble `no_cycle_word_length_le_seven`
+- **Objective:** Lean-exclude the two length-7 leftovers and assemble `no_cycle_itinerary_length_le_seven`
 - **Hypotheses:** the \(N_0=14\) tail plus `Fin 14` tables exclude `OOOOOEE` and `OOOOEOE`; internal-E bootstrap excludes `OOEOOOE` / `OOOEOOE`; the existing census assembly extends from length 6 to 7
-- **Major results:** `no_cycle_word_oooooee`, `no_cycle_word_ooooeoe` (**EXACT — LEAN VERIFIED**, Paper A Lemma 3.7, ledger `J-leftover-length-seven-orientations`); `no_cycle_word_ooeoooe`, `no_cycle_word_oooeooe`; `no_cycle_word_length_le_seven` (**EXACT — LEAN VERIFIED**, Paper A Theorem 3.8, ledger `J-small-cycle-census-seven`). Paper A boundary moved to length eight. No halt theorem. Length 8 was not opened
+- **Major results:** `no_cycle_itinerary_oooooee`, `no_cycle_itinerary_ooooeoe` (**EXACT — LEAN VERIFIED**, Paper A Lemma 3.7, ledger `J-leftover-length-seven-orientations`); `no_cycle_itinerary_ooeoooe`, `no_cycle_itinerary_oooeooe`; `no_cycle_itinerary_length_le_seven` (**EXACT — LEAN VERIFIED**, Paper A Theorem 3.8, ledger `J-small-cycle-census-seven`). Paper A boundary moved to length eight. No halt theorem. Length 8 was not opened
 - **Refuted ideas:** a third leftover shape; a uniform defect tax at length 7; a halt theorem
 - **Literature:** Paper A Theorems 3.6–3.8. Length-6 leftover method reused
 - **Open:** length-8 two-even leftovers; length-9 three-even Lean census. Neither opened here
@@ -10966,7 +10966,7 @@ What was learned
   even-terminating layer
 - Length 8 is the first open even-terminating expanding length
 Strongest theorem
-- no_cycle_word_length_le_seven: no CycleWord of length ≤ 7 at n ≥ 2
+- no_cycle_itinerary_length_le_seven: no CycleItinerary of length ≤ 7 at n ≥ 2
 Strongest refutation
 - none; the Phase-0 leftover inventory was exactly the Lean cases
 Reusable machinery
@@ -10978,18 +10978,18 @@ Why
   first open length after Paper A's original census is now closed
 Best next question
 - do the same two leftover families exclude every even-terminating
-  expanding length-8 word, or does a new leftover shape appear?
+  expanding length-8 itinerary, or does a new leftover shape appear?
 ```
 
 ## Juggler trailing-even cell and `OOOOOOEEE`
 
 - **Date:** 2026-08-30
 - **Objective:** Lean-exclude the first three-even leftover `OOOOOOEEE` by a uniform trailing-even cell, after repairing the Phase-0 two-even bound
-- **Hypotheses:** \(r\) trailing evens on a cycle word give \(T_v(n)<(n+1)^{2^r}\); for `OOOOOOEEE` the prefix image sits before three square roots, so \(z<(n+1)^8\); the envelope \(n^{729}>2^{1330}(n+1)^{512}\) plus a finite table excludes the word
-- **Major results:** `cycle_trailing_evens_lt` (**EXACT — LEAN VERIFIED**, ledger `J-cycle-trailing-evens`); `no_cycle_word_ooooooeee` (**EXACT — LEAN VERIFIED**, ledger `J-leftover-ooooooeee`). Computational cutoff \(N_0=73\); Lean algebraic cutoff \(n\ge 128\) plus `Fin 128`. Not a length-9 census. Paper A not edited. The remaining eight leftovers were not opened
+- **Hypotheses:** \(r\) trailing evens on a cycle itinerary give \(T_v(n)<(n+1)^{2^r}\); for `OOOOOOEEE` the prefix image sits before three square roots, so \(z<(n+1)^8\); the envelope \(n^{729}>2^{1330}(n+1)^{512}\) plus a finite table excludes the itinerary
+- **Major results:** `cycle_trailing_evens_lt` (**EXACT — LEAN VERIFIED**, ledger `J-cycle-trailing-evens`); `no_cycle_itinerary_ooooooeee` (**EXACT — LEAN VERIFIED**, ledger `J-leftover-ooooooeee`). Computational cutoff \(N_0=73\); Lean algebraic cutoff \(n\ge 128\) plus `Fin 128`. Not a length-9 census. Paper A not edited. The remaining eight leftovers were not opened
 - **Refuted ideas:** treating `OOOOOOEEE` as a two-even tail \(z<(n+1)^4\) (spurious \(N_0=8\)); a length-9 Lean census; induction on \(n\) or on the period
 - **Literature:** Paper A Lemma 3.5 last-even cell reused. Length-7 Lean census reused, not reopened
-- **Open:** the remaining eight three-even leftovers. Length 8 still open. No `no_cycle_word_length_nine`
+- **Open:** the remaining eight three-even leftovers. Length 8 still open. No `no_cycle_itinerary_length_nine`
 - **Decision:** PROMOTE the trailing-even cell and the one leftover. Not a length-9 census and not a halt theorem
 
 ```text
@@ -11005,7 +11005,7 @@ What was learned
 - This kills one leftover only; eight remain; length 8 is still
   the first open even-terminating expanding length
 Strongest theorem
-- no_cycle_word_ooooooeee: OOOOOOEEE is not a CycleWord at n ≥ 2
+- no_cycle_itinerary_ooooooeee: OOOOOOEEE is not a CycleItinerary at n ≥ 2
 Strongest refutation
 - z < (n+1)^4 as the OOOOOOEEE prefix-cell (spurious N0=8)
 Reusable machinery
@@ -11042,7 +11042,7 @@ What was learned
 - EOE adds no extra cutoff; tables below N0 are empty
 Strongest theorem
 - none new in Lean; computationally, neither leftover family is
-  a CycleWord at any tested k>=6
+  a CycleItinerary at any tested k>=6
 Strongest refutation
 - N0 tends to 2
 Reusable machinery
@@ -11060,9 +11060,9 @@ Best next question
 ## Juggler uniform two-even leftovers in Lean
 
 - **Date:** 2026-08-30
-- **Objective:** Lean-exclude `CycleWord` on \(O^{k-2}EE\) and \(O^{k-3}EOE\) for every \(k\ge 6\) and \(n\ge 2\)
+- **Objective:** Lean-exclude `CycleItinerary` on \(O^{k-2}EE\) and \(O^{k-3}EOE\) for every \(k\ge 6\) and \(n\ge 2\)
 - **Hypotheses:** the length-6 tail cubes in \(k\) for \(n\ge 256\); below 256 the longest odd run on \(n\ge 2\) has length 6, so only three tables are needed
-- **Major results:** `no_cycle_word_two_even_ee` and `no_cycle_word_two_even_eoe` (**EXACT — LEAN VERIFIED**, ledger `J-two-even-leftover-ee`, `J-two-even-leftover-eoe`). Shared tail `shared_two_even_tail`. `lowerDenom(O^a)=2^{denomBits a}` with `denomBits a = 2(3^a-2^a)`. Small \(n\): existing \(k=6,7\), `Fin 256` tables at EE \(k=8\) and EOE \(k=8,9\), seven-odd obstruction thereafter. Not a length-8 census. Paper A not edited
+- **Major results:** `no_cycle_itinerary_two_even_ee` and `no_cycle_itinerary_two_even_eoe` (**EXACT — LEAN VERIFIED**, ledger `J-two-even-leftover-ee`, `J-two-even-leftover-eoe`). Shared tail `shared_two_even_tail`. `lowerDenom(O^a)=2^{denomBits a}` with `denomBits a = 2(3^a-2^a)`. Small \(n\): existing \(k=6,7\), `Fin 256` tables at EE \(k=8\) and EOE \(k=8,9\), seven-odd obstruction thereafter. Not a length-8 census. Paper A not edited
 - **Refuted ideas:** a length-8 Lean census as an automatic corollary; induction on \(n\) or on the period
 - **Literature:** Paper A Lemmas 3.5 and 3.7 reused as the \(k=6,7\) instances
 - **Open:** first-E transport for three-even leftovers with second gap \(\ge 2\), or bunched-tail cells. Length 8 still open
@@ -11080,8 +11080,8 @@ What was learned
 - This kills the two leftover families for every k>=6; it does
   not assemble a length-8 census
 Strongest theorem
-- no_cycle_word_two_even_ee / no_cycle_word_two_even_eoe:
-  neither leftover family is a CycleWord at n>=2, k>=6
+- no_cycle_itinerary_two_even_ee / no_cycle_itinerary_two_even_eoe:
+  neither leftover family is a CycleItinerary at n>=2, k>=6
 Strongest refutation
 - none new; N0 tends to 2 remains refuted
 Reusable machinery
@@ -11102,8 +11102,8 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Decide whether gapped three-even `CycleMin`s die by transporting the uniform two-even tail across the first even letter
 - **Hypotheses:** \(y\ge n\) tightens the leftover cell against the shared tail at \(y\); \(k\ge 17\) small-\(n\) is seven-odd on the prefix or the remainder; bunched \(a_1\)-short leftovers are a named remainder
-- **Major results:** Classification **FIRST_E_TRANSPORT_GREEN**. Remainder after the first \(E\) of a leftover with \(c\in\{0,1\}\) is a two-even family. Transport is `CycleMin`-only. 72 gapped words at lengths \(9\le k\le 16\) have empty `CycleWord` tables below 256. From \(k=17\) a gapped leftover has \(a\ge 7\) or \(b\ge 7\). Bunched remainder is \(b\le 3\) (EE) or \(b\le 2\) (EOE), independent of \(k\). Records: `docs/problems/juggler_first_e_transport.md`. No Lean. No length-8/9 census. No Paper A edit
-- **Refuted ideas:** transport as a `CycleWord` theorem at a non-minimum start; rotation of a gapped leftover staying gapped; induction on period
+- **Major results:** Classification **FIRST_E_TRANSPORT_GREEN**. Remainder after the first \(E\) of a leftover with \(c\in\{0,1\}\) is a two-even family. Transport is `CycleMin`-only. 72 gapped words at lengths \(9\le k\le 16\) have empty `CycleItinerary` tables below 256. From \(k=17\) a gapped leftover has \(a\ge 7\) or \(b\ge 7\). Bunched remainder is \(b\le 3\) (EE) or \(b\le 2\) (EOE), independent of \(k\). Records: `docs/problems/juggler_first_e_transport.md`. No Lean. No length-8/9 census. No Paper A edit
+- **Refuted ideas:** transport as a `CycleItinerary` theorem at a non-minimum start; rotation of a gapped leftover staying gapped; induction on period
 - **Literature:** uniform two-even Lean and `CycleMin` reused. Length-9 \(a=2\) words are the first gapped cases
 - **Open:** Lean exclusion of the gapped `CycleMin`s. Bunched-tail cells not opened
 - **Decision:** PROMOTE the `CycleMin` reduction. Not a length-9 census and not a halt theorem
@@ -11114,7 +11114,7 @@ What was learned
   {0,1}, the remainder is a two-even leftover family
 - CycleMin puts that remainder at y>=n, which tightens the
   leftover cell and contradicts the shared tail at y
-- The same chain fails if y<n, so this is not a CycleWord
+- The same chain fails if y<n, so this is not a CycleItinerary
   theorem at a non-minimum start
 - Lengths 9..16 are a finite window of 72 gapped words with
   empty tables; k>=17 is seven-odd
@@ -11124,7 +11124,7 @@ Strongest theorem
 - none new in Lean; on a CycleMin, a gapped three-even leftover
   contradicts the two-even tail once y>=256
 Strongest refutation
-- first-E transport excludes the word as CycleWord at every
+- first-E transport excludes the itinerary as CycleItinerary at every
   start (false when y<n)
 Reusable machinery
 - src/research/juggler_sequence/first_e_transport.py
@@ -11143,8 +11143,8 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Lean-exclude gapped three-even `CycleMin`s by first-E transport of the uniform two-even tail
 - **Hypotheses:** \(y\ge n\) plus the shared tail at \(y\) is one argument once \(y\ge 256\); \(n<256\) is seven-odd or a short-gap table
-- **Major results:** `no_cycleMin_gapped_three_even_ee` and `no_cycleMin_gapped_three_even_eoe` (**EXACT — LEAN VERIFIED**, ledger `J-first-e-transport-ee`, `J-first-e-transport-eoe`). Large \(y\) reuses `shared_two_even_tail`. Short gaps \(a,b\le 6\) are `native_decide` tables in `FirstETransportEval.lean`; longer gaps are seven-odd. Not a `CycleWord` theorem at a non-minimum start. Not a length-8/9 census. Paper A not edited
-- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; transport as a `CycleWord` theorem at every start
+- **Major results:** `no_cycleMin_gapped_three_even_ee` and `no_cycleMin_gapped_three_even_eoe` (**EXACT — LEAN VERIFIED**, ledger `J-first-e-transport-ee`, `J-first-e-transport-eoe`). Large \(y\) reuses `shared_two_even_tail`. Short gaps \(a,b\le 6\) are `native_decide` tables in `FirstETransportEval.lean`; longer gaps are seven-odd. Not a `CycleItinerary` theorem at a non-minimum start. Not a length-8/9 census. Paper A not edited
+- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; transport as a `CycleItinerary` theorem at every start
 - **Literature:** uniform two-even Lean and `CycleMin` reused
 - **Open:** bunched-tail cells (\(b\le 3\) EE, \(b\le 2\) EOE), or first-E transport at \(e\ge 4\). Length 8 still open
 - **Decision:** PROMOTE the Lean exclusion of both gapped `CycleMin` families. Not a length-9 census and not a halt theorem
@@ -11162,7 +11162,7 @@ Strongest theorem
 - no_cycleMin_gapped_three_even_ee / _eoe: neither gapped
   three-even leftover is a CycleMin at n>=2
 Strongest refutation
-- none new; transport as CycleWord at a non-minimum start
+- none new; transport as CycleItinerary at a non-minimum start
   remains false
 Reusable machinery
 - FirstETransport.lean, FirstETransportEval.lean
@@ -11217,9 +11217,9 @@ Best next question
 ## Juggler bunched O^a EEE in Lean
 
 - **Date:** 2026-08-30
-- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EEE}\) for every \(a\ge 6\) and \(n\ge 2\)
+- **Objective:** Lean-exclude `CycleItinerary` on \(O^a\texttt{EEE}\) for every \(a\ge 6\) and \(n\ge 2\)
 - **Hypotheses:** the \(a=6\) three-even cell cubes in \(a\) for \(n\ge 128\); below 128, \(a=6\) is the existing table and \(a\ge 7\) is seven-odd
-- **Major results:** `no_cycle_word_three_even_eee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eee`). Tail `three_even_eee_tail`. Large \(n\) cubes \(n^{729}>2^{1330}(n+1)^{512}\) using \(e_a=2(3^a-2^a)\). Small \(n\): `no_cycle_word_ooooooeee` at \(a=6\), seven-odd thereafter. Not the other six bunched families. Not a length-8/9 census. Paper A not edited
+- **Major results:** `no_cycle_itinerary_three_even_eee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eee`). Tail `three_even_eee_tail`. Large \(n\) cubes \(n^{729}>2^{1330}(n+1)^{512}\) using \(e_a=2(3^a-2^a)\). Small \(n\): `no_cycle_itinerary_ooooooeee` at \(a=6\), seven-odd thereafter. Not the other six bunched families. Not a length-8/9 census. Paper A not edited
 - **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; Lean of all seven bunched families as one theorem
 - **Literature:** `OOOOOOEEE` reused as the \(a=6\) instance; `denomBits` and seven-odd from the two-even layer
 - **Open:** the other six bunched families (`EOEE` and the rest), or a uniform mixed-tail cell. Length 8 still open as a census
@@ -11236,7 +11236,7 @@ What was learned
 - This kills one bunched family for every a>=6; it does not
   exclude EOEE or assemble a length-8 census
 Strongest theorem
-- no_cycle_word_three_even_eee: O^a EEE is not a CycleWord
+- no_cycle_itinerary_three_even_eee: O^a EEE is not a CycleItinerary
   at n>=2, a>=6
 Strongest refutation
 - none new; N0 tends to 2 remains refuted
@@ -11255,9 +11255,9 @@ Best next question
 ## Juggler bunched O^a EOEE in Lean
 
 - **Date:** 2026-08-30
-- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EOEE}\) for every \(a\ge 5\) and \(n\ge 2\), or decide whether a uniform coarse \((n+1)^K\) cell covers all six remaining bunched families
+- **Objective:** Lean-exclude `CycleItinerary` on \(O^a\texttt{EOEE}\) for every \(a\ge 5\) and \(n\ge 2\), or decide whether a uniform coarse \((n+1)^K\) cell covers all six remaining bunched families
 - **Hypotheses:** \(z<(n+1)^6\) for \(n\ge 4\); the \(a=5\) tail cubes from \(n\ge 314\); a uniform \(K\) for all six remaining families
-- **Major results:** `no_cycle_word_three_even_eoee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eoee`). Mixed cell \(z<(n+1)^6\). Tails at \(a=5\), \(n\ge 314\) and \(a=6\), \(n\ge 16\). Small \(n\): `Fin 314` and `Fin 16` tables, seven-odd thereafter. A uniform coarse \((n+1)^K\) cell for all six remaining families is **REFUTED** (`EOOOEE`, `EEOE`, `EOEOE`, `EOOEOE` have \(K\cdot 2^a\ge 3^a\) at first expanding \(a\)). Not a length-8/9 census. Paper A not edited
+- **Major results:** `no_cycle_itinerary_three_even_eoee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eoee`). Mixed cell \(z<(n+1)^6\). Tails at \(a=5\), \(n\ge 314\) and \(a=6\), \(n\ge 16\). Small \(n\): `Fin 314` and `Fin 16` tables, seven-odd thereafter. A uniform coarse \((n+1)^K\) cell for all six remaining families is **REFUTED** (`EOOOEE`, `EEOE`, `EOEOE`, `EOOEOE` have \(K\cdot 2^a\ge 3^a\) at first expanding \(a\)). Not a length-8/9 census. Paper A not edited
 - **Refuted ideas:** a uniform coarse \((n+1)^K\) cell for all six remaining bunched families; a length-8 or length-9 Lean census as an automatic corollary
 - **Literature:** `OOOOOEOEE` is the \(a=5\) instance; `denomBits`, trailing-evens, and seven-odd reused
 - **Open:** `O^a`EOOEE by the \(K=4\) coarse cell, or a tight-\(Z\) Lean for a family whose coarse exponent is impossible. Length 8 still open as a census
@@ -11274,7 +11274,7 @@ What was learned
   EOEOE / EOOEOE: K*2^a >= 3^a at first expanding a
 - This kills one more bunched family; five remain
 Strongest theorem
-- no_cycle_word_three_even_eoee: O^a EOEE is not a CycleWord
+- no_cycle_itinerary_three_even_eoee: O^a EOEE is not a CycleItinerary
   at n>=2, a>=5
 Strongest refutation
 - a uniform coarse (n+1)^K cell for all six remaining
@@ -11297,8 +11297,8 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Record the Lean leftover-family theorems in Paper A at publication standard, without extending the length-7 census
 - **Hypotheses:** Theorems 3.12--3.15 are ordinary integer arguments already in Lean; the census boundary at length seven is unchanged if the family statements keep their quantifiers
-- **Major results:** Paper A dated 30 August 2026 now states the trailing-even cell (Lemma 3.9), the odd-run constant \(e_a\) (Lemma 3.10), the seven-odd window (Lemma 3.11), the two-even leftover families (Theorem 3.12), first-even transport on a cycle minimum (Theorem 3.13), and the bunched families \(O^aEEE\), \(O^aEOEE\), and \(O^aEOOEE\) (Theorems 3.14--3.16). `Problems.JugglerPaper` imports the corresponding modules. No `no_cycle_word_length_eight` and no `no_cycle_word_length_nine`. No halt theorem. Reviewer packet, formalization map, ledger sources, and paper dossier synced
-- **Refuted ideas:** reading the family theorems as a length-8 or length-9 census; reading Theorem 3.13 as a cycle-word exclusion at a non-minimum start
+- **Major results:** Paper A dated 30 August 2026 now states the trailing-even cell (Lemma 3.9), the odd-run constant \(e_a\) (Lemma 3.10), the seven-odd window (Lemma 3.11), the two-even leftover families (Theorem 3.12), first-even transport on a cycle minimum (Theorem 3.13), and the bunched families \(O^aEEE\), \(O^aEOEE\), and \(O^aEOOEE\) (Theorems 3.14--3.16). `Problems.JugglerPaper` imports the corresponding modules. No `no_cycle_itinerary_length_eight` and no `no_cycle_itinerary_length_nine`. No halt theorem. Reviewer packet, formalization map, ledger sources, and paper dossier synced
+- **Refuted ideas:** reading the family theorems as a length-8 or length-9 census; reading Theorem 3.13 as a cycle-itinerary exclusion at a non-minimum start
 - **Literature:** existing Paper A citations unchanged
 - **Open:** five remaining bunched families; length-8 and length-9 census assembly; totality
 - **Decision:** PROMOTE the paper revision. The mathematical next question is unchanged: Lean-exclude \(O^a\texttt{EOOEE}\), or assemble a length-8 census only after the remaining orientations are named
@@ -11329,9 +11329,9 @@ Best next question
 ## Juggler bunched O^a EOOEE in Lean
 
 - **Date:** 2026-08-30
-- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EOOEE}\) for every \(a\ge 4\) and \(n\ge 2\)
+- **Objective:** Lean-exclude `CycleItinerary` on \(O^a\texttt{EOOEE}\) for every \(a\ge 4\) and \(n\ge 2\)
 - **Hypotheses:** \(z<(n+1)^4\) for \(n\ge 32\); the resulting comparison is the shared two-even tail at length \(a+2\), already proved for \(n\ge 256\)
-- **Major results:** `no_cycle_word_three_even_eooee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eooee`). Mixed cell \(z<(n+1)^4\). Large \(n\) is `shared_two_even_tail` at \(k=a+2\). Below 256: `Fin 256` tables at \(a=4,5,6\), seven-odd thereafter. Paper A Theorem 3.16 is no longer a forward reference. Not a length-8/9 census. Four bunched families remain computational
+- **Major results:** `no_cycle_itinerary_three_even_eooee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eooee`). Mixed cell \(z<(n+1)^4\). Large \(n\) is `shared_two_even_tail` at \(k=a+2\). Below 256: `Fin 256` tables at \(a=4,5,6\), seven-odd thereafter. Paper A Theorem 3.16 is no longer a forward reference. Not a length-8/9 census. Four bunched families remain computational
 - **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; a uniform coarse \(K\) for the remaining four families (already **REFUTED**)
 - **Literature:** `OOOOEOOEE` is the \(a=4\) instance; the two-even tail and seven-odd reused; Paper A already named the family as Theorem 3.16
 - **Open:** the other four bunched families (`EOOOEE`, `EEOE`, `EOEOE`, `EOOEOE`), all of whose coarse exponents are impossible. Length 8 still open as a census
@@ -11348,8 +11348,8 @@ What was learned
 - This kills the last bunched family whose coarse K is
   possible; the remaining four need a tight Z
 Strongest theorem
-- no_cycle_word_three_even_eooee: O^a EOOEE is not a
-  CycleWord at n>=2, a>=4
+- no_cycle_itinerary_three_even_eooee: O^a EOOEE is not a
+  CycleItinerary at n>=2, a>=4
 Strongest refutation
 - none new; uniform coarse K remains refuted
 Reusable machinery
@@ -11367,12 +11367,12 @@ Best next question
 ## Juggler bunched remaining four families in Lean
 
 - **Date:** 2026-08-30
-- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EOOOEE}\), \(O^a\texttt{EEOE}\), \(O^a\texttt{EOEOE}\), and \(O^a\texttt{EOOEOE}\) for every expanding prefix length
+- **Objective:** Lean-exclude `CycleItinerary` on \(O^a\texttt{EOOOEE}\), \(O^a\texttt{EEOE}\), \(O^a\texttt{EOEOE}\), and \(O^a\texttt{EOOEOE}\) for every expanding prefix length
 - **Hypotheses:** `EEOE` reuses the `EOEE` cell \(z<(n+1)^6\); `EOEOE` reuses the `EOOEE` cell \(z<(n+1)^4\); `EOOOEE` and `EOOEOE` reuse that cell for \(a\ge 4\) and need a tight last-odd split at \(a=3\)
-- **Major results:** `no_cycle_word_three_even_eoooee`, `no_cycle_word_three_even_eeoe`, `no_cycle_word_three_even_eoeoe`, `no_cycle_word_three_even_eooeoe` (**EXACT — LEAN VERIFIED**, ledgers `J-three-even-eoooee`, `J-three-even-eeoe`, `J-three-even-eoeoe`, `J-three-even-eooeoe`). All seven bunched families are now Lean `CycleWord` exclusions. Paper A Theorems 3.17--3.20. Uniform coarse \(K\) stays **REFUTED**. Not a length-8/9 census. No `no_cycle_word_bunched`
-- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; a single `no_cycle_word_bunched` theorem
+- **Major results:** `no_cycle_itinerary_three_even_eoooee`, `no_cycle_itinerary_three_even_eeoe`, `no_cycle_itinerary_three_even_eoeoe`, `no_cycle_itinerary_three_even_eooeoe` (**EXACT — LEAN VERIFIED**, ledgers `J-three-even-eoooee`, `J-three-even-eeoe`, `J-three-even-eoeoe`, `J-three-even-eooeoe`). All seven bunched families are now Lean `CycleItinerary` exclusions. Paper A Theorems 3.17--3.20. Uniform coarse \(K\) stays **REFUTED**. Not a length-8/9 census. No `no_cycle_itinerary_bunched`
+- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; a single `no_cycle_itinerary_bunched` theorem
 - **Literature:** the three already-Lean bunched families and the two-even tail reused; tight last-odd cells at \(a=3\) for `EOOOEE` and `EOOEOE`
-- **Open:** `CycleWord` exclusion of gapped three-even leftovers at a non-minimum start. Length 8 still open as a census
+- **Open:** `CycleItinerary` exclusion of gapped three-even leftovers at a non-minimum start. Length 8 still open as a census
 - **Decision:** PROMOTE the Lean exclusion of the remaining four bunched families. Not a bunched-tail census theorem and not a halt theorem
 
 ```text
@@ -11385,10 +11385,10 @@ What was learned
 - Heavy 27th-power algebra must live in BunchedTight.lean;
   family files stay at exponentiation.threshold 16
 - All seven bunched leftovers are now one Lean type each;
-  there is still no no_cycle_word_bunched
+  there is still no no_cycle_itinerary_bunched
 Strongest theorem
-- no_cycle_word_three_even_eoooee / eeoe / eoeoe / eooeoe:
-  the last four bunched families are not CycleWords
+- no_cycle_itinerary_three_even_eoooee / eeoe / eoeoe / eooeoe:
+  the last four bunched families are not CycleItineraries
 Strongest refutation
 - none new; uniform coarse K remains refuted
 Reusable machinery
@@ -11400,20 +11400,20 @@ Why
 - the bunched last-cluster remainder is now seven Lean
   family theorems, recorded as Paper A 3.14--3.20
 Best next question
-- CycleWord exclusion of gapped three-even leftovers at a
+- CycleItinerary exclusion of gapped three-even leftovers at a
   non-minimum start, or stop
 ```
 
-## Juggler gapped leftovers as CycleWords
+## Juggler gapped leftovers as CycleItineraries
 
 - **Date:** 2026-08-30
-- **Objective:** Upgrade the gapped three-even leftovers from `CycleMin` to `CycleWord` by rotation, without a length-8/9 census
+- **Objective:** Upgrade the gapped three-even leftovers from `CycleMin` to `CycleItinerary` by rotation, without a length-8/9 census
 - **Hypotheses:** every rotation of \(O^aEO^bEE\) (\(a\ge 2\), \(b\ge 4\)) or \(O^aEO^bEOE\) (\(a\ge 2\), \(b\ge 3\)) is an already-excluded `CycleMin` orientation, so \(y<n\) is irrelevant
-- **Major results:** `no_cycle_word_gapped_three_even_ee`, `no_cycle_word_gapped_three_even_eoe` (**EXACT — LEAN VERIFIED**, ledgers `J-gapped-cycle-word-ee`, `J-gapped-cycle-word-eoe`). Paper A Theorem 3.21. Probe: 1099 rotations, 0 forbidden. Theorem 3.13 stays CycleMin-only. Not a length-8/9 census. No `no_cycle_word_bunched`
+- **Major results:** `no_cycle_itinerary_gapped_three_even_ee`, `no_cycle_itinerary_gapped_three_even_eoe` (**EXACT — LEAN VERIFIED**, ledgers `J-gapped-cycle-itinerary-ee`, `J-gapped-cycle-itinerary-eoe`). Paper A Theorem 3.21. Probe: 1099 rotations, 0 forbidden. Theorem 3.13 stays CycleMin-only. Not a length-8/9 census. No `no_cycle_itinerary_bunched`
 - **Refuted ideas:** a bunched or unclassified rotation of a gapped leftover; a length-8 or length-9 Lean census as an automatic corollary
 - **Literature:** first-E CycleMin (Theorem 3.13), last-gap bootstrap, end-odd / start-even / start-`OE`
 - **Open:** first-E transport at \(e\ge 4\), or stop. Length 8 still open as a census
-- **Decision:** PROMOTE the Lean `CycleWord` upgrade of both gapped families. Not a census theorem and not a halt theorem
+- **Decision:** PROMOTE the Lean `CycleItinerary` upgrade of both gapped families. Not a census theorem and not a halt theorem
 
 ```text
 What was learned
@@ -11422,20 +11422,20 @@ What was learned
   starts-even, or starts-OE; none is bunched
 - bootstrap at k=a+1 is last-gap >=2: OOO at N=3, or OO at
   N=5 with n=3 failing four odds (EOE b=3 reaches 6 after OOOE)
-- Theorem 3.13 stays CycleMin-only; 3.21 is the CycleWord
+- Theorem 3.13 stays CycleMin-only; 3.21 is the CycleItinerary
   upgrade, not a rewrite of first-E quantifiers
 Strongest theorem
-- no_cycle_word_gapped_three_even_ee / eoe: both gapped
-  leftovers are not CycleWords at n>=2
+- no_cycle_itinerary_gapped_three_even_ee / eoe: both gapped
+  leftovers are not CycleItineraries at n>=2
 Strongest refutation
 - a bunched rotation of a gapped leftover (none found)
 Reusable machinery
-- GappedCycleWord.lean: rotation cons/snoc, letter-at-index
-  lemmas, bootstrap last-gap, both CycleWord theorems
+- GappedCycleItinerary.lean: rotation cons/snoc, letter-at-index
+  lemmas, bootstrap last-gap, both CycleItinerary theorems
 Branch status
 - PROMOTE
 Why
-- both families are Lean CycleWords by rotation of already
+- both families are Lean CycleItineraries by rotation of already
   excluded CycleMin orientations; recorded as Paper A 3.21
 Best next question
 - first-E transport at e>=4, or stop
@@ -11448,7 +11448,7 @@ Best next question
 - **Hypotheses:** a new infinite \(e=4\) layer, not a restatement of Theorems 3.13--3.20
 - **Major results:** classification **FIRST_E_E4_REPARAMETERIZATION**. Through odd-count \(16\): \(1185\) expanding leftovers split as \(570\) gapped last-cluster (Theorem 3.13 on the last two-even suffix), \(315\) bunched remainder (Theorems 3.14--3.20 at \(y\)), and \(300\) short-first-gap leftovers in \(30\) shapes. No Lean. No Paper A theorem. Not a length-8/9 census
 - **Refuted ideas:** first-E at \(e=4\) excludes four-even leftovers; gapped last-cluster at \(e=4\) is a new theorem; bunched remainder transport is a new tail; a length-8 or length-9 Lean census as an automatic corollary
-- **Literature:** first-E CycleMin (Theorem 3.13), bunched last-cluster (Theorems 3.14--3.20), gapped CycleWord (Theorem 3.21)
+- **Literature:** first-E CycleMin (Theorem 3.13), bunched last-cluster (Theorems 3.14--3.20), gapped CycleItinerary (Theorem 3.21)
 - **Open:** four-even leftovers with bunched last cluster and short first remainder gap, or stop. Length 8 still open as a census
 - **Decision:** CLOSE. Every transportable class is a reparameterization of Theorems 3.13--3.20. Thirty short-first-gap shapes remain. Not a census theorem and not a halt theorem
 
@@ -11489,7 +11489,7 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Decide whether the thirty four-even short-first-gap leftovers fire as one prefix-cell, without a thirty-family Lean list or a length-8/9/11 census
 - **Hypotheses:** \(Z_4\) is the three-even last-cluster bound pulled back through \(E O^{a_1}\), and fires at the first expanding \(a_0\) with bounded \(N_0\)
-- **Major results:** classification **FOUR_EVEN_SHORT_GAP_PARK**. All thirty first-expanding words have length 11. \(Z_4\) misses \(n\le 800\) there; log-cutoffs are \(4\cdot 10^8\) to \(1.6\cdot 10^{15}\). At \(a_0+1\) every shape fires with \(N_0\le 180\); at \(a_0+2\), with \(N_0\le 22\). No Lean. No Paper A theorem. Not a length-8/9/11 census
+- **Major results:** classification **FOUR_EVEN_SHORT_GAP_PARK**. All thirty first-expanding itineraries have length 11. \(Z_4\) misses \(n\le 800\) there; log-cutoffs are \(4\cdot 10^8\) to \(1.6\cdot 10^{15}\). At \(a_0+1\) every shape fires with \(N_0\le 180\); at \(a_0+2\), with \(N_0\le 22\). No Lean. No Paper A theorem. Not a length-8/9/11 census
 - **Refuted ideas:** \(Z_4\) fires at the first expanding \(a_0\) with a practical cutoff; the thirty shapes need thirty different cells; a length-11 Lean census as an automatic corollary
 - **Literature:** bunched last-cluster \(Z\) (Theorems 3.14--3.20), first-E at \(e=4\) `CLOSE`
 - **Open:** a tighter last-cluster pullback that fires at the thirty length-11 words, or stop. Length 8 still open as a census
@@ -11567,7 +11567,7 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Re-layer the existing cycle Lean around one leftover-cell-versus-tail lemma and a thin length-≤7 census
 - **Hypotheses:** none — packaging of theorems that already survived
-- **Major results:** `leftover_prefix_cell` in `LeftoverCell.lean`; two-even and the seven bunched `_of_ge` proofs are instances in `LeftoverFamilies.lean`; first-E transport and gapped CycleWord are sections of the same module; `CycleCore` / `CycleExtrema` split; census still `no_cycle_word_length_le_six` / `_seven`. Same theorem names. No Paper A edit. No new ledger rows
+- **Major results:** `leftover_prefix_cell` in `LeftoverCell.lean`; two-even and the seven bunched `_of_ge` proofs are instances in `LeftoverFamilies.lean`; first-E transport and gapped CycleItinerary are sections of the same module; `CycleCore` / `CycleExtrema` split; census still `no_cycle_itinerary_length_le_six` / `_seven`. Same theorem names. No Paper A edit. No new ledger rows
 - **Refuted ideas:** none; this branch did not reopen leftover mathematics
 - **Literature:** leftover families already **EXACT — LEAN VERIFIED** (Theorems 3.12--3.21); census already length ≤7
 - **Open:** length 8 as a census; four-even leftovers as already recorded. Not opened here
@@ -11578,7 +11578,7 @@ What was learned
 - leftover_prefix_cell is the shared contradiction
 - two-even, bunched of_ge proofs are instances of that cell
 - first-E is the same comparison at y on CycleMin
-- gapped CycleWord is rotation, not a cell instance
+- gapped CycleItinerary is rotation, not a cell instance
 - census imports only CycleCore and LeftoverShort
 Strongest theorem
 - leftover_prefix_cell (packaging of existing
@@ -11603,16 +11603,16 @@ Best next question
 
 - **Date:** 2026-08-30
 - **Objective:** Decide whether rotation or internal-E next-square excludes any of the thirty length-11 four-even short-gap leftovers
-- **Hypotheses:** a mixed word dies by orientation like Theorem 3.21, or an internal E bootstraps a next-square suffix
+- **Hypotheses:** a mixed itinerary dies by orientation like Theorem 3.21, or an internal E bootstraps a next-square suffix
 - **Major results:** classification **LENGTH11_NONPULLBACK_REFUTED**. All thirty words are `CycleMin`-legal and are thirty distinct necklaces; each is its own surviving short-gap orientation, so `exists_cycleMin` upgrades nothing. All ninety internal-E suffixes satisfy \(3^{\#O}<2^{\mathrm{len}+1}\); closest margin \(243/256\) on \(v=\mathrm{OOOOOEE}\) from `OOEOOOOOEEE`, undershoot at \(m=1\,000\,215\). No Lean. No Paper A theorem. Not a length-11 census
 - **Refuted ideas:** rotation excludes an open `CycleMin` leftover; an internal-E next-square suffix exists on one of the thirty length-11 words
-- **Literature:** `exists_cycleMin`; `no_cycleMin_internal_even_threshold`; gapped CycleWord 3.21; four-even short-gap `PARK`; EEEE tight pullback `CLOSE`
+- **Literature:** `exists_cycleMin`; `no_cycleMin_internal_even_threshold`; gapped CycleItinerary 3.21; four-even short-gap `PARK`; EEEE tight pullback `CLOSE`
 - **Open:** stop on the thirty length-11 leftovers as a leftover-path target. Length 8 still open as a census
 - **Decision:** CLOSE. Rotation is the 3.21 upgrade, not a method for leftovers that are still open as `CycleMin`s. Internal-E is exponent-obstructed on every split. Not a census theorem and not a halt theorem
 
 ```text
 What was learned
-- rotation upgrades CycleMin to CycleWord only after the
+- rotation upgrades CycleMin to CycleItinerary only after the
   CycleMin class is already excluded
 - the thirty length-11 leftovers are already those open
   CycleMin spellings; 30 distinct necklaces
@@ -11645,7 +11645,7 @@ Best next question
 - **Hypotheses:** the square reading OO(OOE)^2 / (OOOE)^2 is a new leftover last cluster
 - **Major results:** classification **LENGTH8_BOOTSTRAP_REPARAMETERIZATION**. All eight even-terminating expanding length-8 words have a named filter. The two squares have next-square suffixes OO and OOO. Repeated-block transients 69 and 225 follow and do not return. No Lean. No Paper A theorem. Not a length-8 census
 - **Refuted ideas:** OOOOEOOE and OOOEOOOE are leftovers; the square reading is a new cycle obstruction
-- **Literature:** `no_cycleMin_internal_even_threshold`; `no_cycle_word_ooeooe`; Theorem 3.12; repeated-block `PROMOTE` with expanding transients
+- **Literature:** `no_cycleMin_internal_even_threshold`; `no_cycle_itinerary_ooeooe`; Theorem 3.12; repeated-block `PROMOTE` with expanding transients
 - **Open:** a length-8 census is packaging of named filters. Not assembled here
 - **Decision:** CLOSE. The suspected new leftovers are the existing internal-E bootstrap. Not a census theorem and not a halt theorem
 
@@ -11670,16 +11670,16 @@ Why
 - square reading is the bootstrap split already used at
   lengths 6 and 7; leftover_prefix_cell is not needed
 Best next question
-- assemble no_cycle_word_length_eight from the named
+- assemble no_cycle_itinerary_length_eight from the named
   filters, or stop
 ```
 
-## Juggler length-8 cycle-word census
+## Juggler length-8 cycle-itinerary census
 
 - **Date:** 2026-08-30
-- **Objective:** Assemble `no_cycle_word_length_le_eight` from named filters already in Lean
+- **Objective:** Assemble `no_cycle_itinerary_length_le_eight` from named filters already in Lean
 - **Hypotheses:** packaging moves the laboratory census bound from 7 to 8; no new leftover cell is required
-- **Major results:** Lean `no_cycle_word_length_le_eight` in `LengthEightCensus.lean`. CycleWord theorems for `OOOOEOOE`, `OOOEOOOE`, and `OOEOOOOE`. Paper A barrel and note unchanged. Ledger row `J-small-cycle-census-eight`. Not a halt theorem
+- **Major results:** Lean `no_cycle_itinerary_length_le_eight` in `LengthEightCensus.lean`. CycleItinerary theorems for `OOOOEOOE`, `OOOEOOOE`, and `OOEOOOOE`. Paper A barrel and note unchanged. Ledger row `J-small-cycle-census-eight`. Not a halt theorem
 - **Refuted ideas:** none; the eight expanding even-terminating words were already named
 - **Literature:** Paper A Theorem 3.8; Theorem 3.12 at \(k=8\); `no_cycleMin_internal_even_threshold`; length-8 bootstrap `CLOSE`
 - **Open:** length 9. Do not assemble automatically
@@ -11693,7 +11693,7 @@ What was learned
 - the assembler is the length-7 pattern plus one letter
 - Paper A can stay at ≤7 while the laboratory moves to ≤8
 Strongest theorem
-- no_cycle_word_length_le_eight
+- no_cycle_itinerary_length_le_eight
   (EXACT — LEAN VERIFIED)
 Strongest refutation
 - none
@@ -11703,19 +11703,19 @@ Branch status
 - PROMOTE
 Why
 - every even-terminating expanding length-8 word already
-  had a named filter; the missing CycleWord theorems and
+  had a named filter; the missing CycleItinerary theorems and
   the assembler are now sorry-free
 Best next question
-- assemble no_cycle_word_length_le_nine from named leftover
+- assemble no_cycle_itinerary_length_le_nine from named leftover
   families, or stop
 ```
 
-## Juggler even-count ≤ 3 cycle words
+## Juggler even-count ≤ 3 cycle itineraries
 
 - **Date:** 2026-08-30
-- **Objective:** Decide whether every cycle word with at most three even letters is already excluded by named filters, so a nontrivial cycle has period at least 11
+- **Objective:** Decide whether every cycle itinerary with at most three even letters is already excluded by named filters, so a nontrivial cycle has period at least 11
 - **Hypotheses:** Theorems 3.12--3.21 plus odd-run, bootstrap, and start-E/OE rotation partition e≤3; lengths 9 and 10 add no new leftover geometry
-- **Major results:** Necklace inventory of 604 even-terminating expanding words with e≤3 at lengths 9..16 (226 necklaces), all named. Lean `no_cycle_word_even_count_le_three` and `cycle_word_length_ge_eleven` in `EvenCountThree.lean`. Ledger row `J-even-count-le-three`. Paper A barrel and note unchanged. Not a length-9 census and not a halt theorem
+- **Major results:** Necklace inventory of 604 even-terminating expanding itineraries with e≤3 at lengths 9..16 (226 necklaces), all named. Lean `no_cycle_itinerary_even_count_le_three` and `cycle_itinerary_length_ge_eleven` in `EvenCountThree.lean`. Ledger row `J-even-count-le-three`. Paper A barrel and note unchanged. Not a length-9 census and not a halt theorem
 - **Refuted ideas:** induction on the period reduces length 9 to length 8; leftover cells automatically kill the next even-count
 - **Literature:** Paper A Theorems 3.12--3.21; laboratory length-8 census; four-even short-gap `PARK`
 - **Open:** e≥4 leftover cells remain parked. Do not assemble a length-9 or length-10 census
@@ -11723,16 +11723,16 @@ Best next question
 
 ```text
 What was learned
-- every e≤3 even-terminating expanding word at
+- every e≤3 even-terminating expanding itinerary at
   lengths 9..16 hits a named filter or start-E/OE glue
 - lengths 9 and 10 are the same leftover geometry as
   the family theorems; e=4 first appears at length 11
 - CycleMin starts OO, ends E, and sits at n≥12
 - leftover-cell induction is not the next step
 Strongest theorem
-- no_cycle_word_even_count_le_three
+- no_cycle_itinerary_even_count_le_three
   (EXACT — LEAN VERIFIED)
-- cycle_word_length_ge_eleven
+- cycle_itinerary_length_ge_eleven
   (EXACT — LEAN VERIFIED)
 Strongest refutation
 - none in the inventory; e=4 cell lag remains the wall
@@ -11755,7 +11755,7 @@ Best next question
 - **Hypotheses:** after \(e\le 3\) the first even always overshoots; the even-\(y\) class then has one later contractor, giving FiniteProgress on that class
 - **Major results:** Lean `minimal_first_even_overshoots` and `cycleMin_first_even_overshoots` in `EvenCountThree.lean`. Ledger row `J-first-even-overshoots`. On \(n\le 10^4\), \(a\in\{2,3\}\) even-\(y\) first excursions all descend (Paper B replay). The expanding class \(a\ge 4\) has 317 overshoots: first excursion not uniform (147 descend, 170 stay, \(N_0=9883\)); next excursion not uniform; 96 ReturnBelow suffixes after \(O^a\mathrm{EE}\), lengths 7..115. Classification **EVEN_Y_RETURN_SUFFIX_SCATTER**. Paper A barrel and note unchanged. Not a halt theorem
 - **Refuted ideas:** a uniform later contractor for \(a\ge 4\) even-\(y\) overshoots; first excursion \(O^a E^b\) is that contractor; 37 and 77 are even-\(y\) stays
-- **Literature:** FiniteProgress spine; ReturnBelow; two-excursion REFUTED (odd \(y\)); Paper B 29/32; \(K_3\) parked; `no_cycle_word_even_count_le_three`
+- **Literature:** FiniteProgress spine; ReturnBelow; two-excursion REFUTED (odd \(y\)); Paper B 29/32; \(K_3\) parked; `no_cycle_itinerary_even_count_le_three`
 - **Open:** stop. Do not open odd-\(y\), \(K_3\), or another non-OOOO engine
 - **Decision:** PARK. The overshoot corollary is recorded. The Phase-0 halt question fails by suffix scatter. Not a halt theorem and not a longer cycle bound
 
@@ -11843,7 +11843,7 @@ What was learned
 - closest miss is 445x at n=289
 - the envelope cell is not the real obstruction
 Strongest theorem
-- no O^7 EEEE cycle word for n>=3
+- no O^7 EEEE cycle itinerary for n>=3
   (COMPUTATIONALLY VERIFIED)
 Strongest refutation
 - the leftover cell is sharp in the window
@@ -11864,16 +11864,16 @@ Best next question
 
 - **Date:** 2026-08-30
 - **Objective:** Package the free leftover corollary that the return-to-\(n\) cell of `minimal_first_even_dichotomy` is dead after \(e\le 3\)
-- **Hypotheses:** return on the first \(O^a E\) is an even-count-1 cycle word, so `MinimalNonTerm` / `CycleMin` must overshoot
+- **Hypotheses:** return on the first \(O^a E\) is an even-count-1 cycle itinerary, so `MinimalNonTerm` / `CycleMin` must overshoot
 - **Major results:** Lean `minimal_first_even_overshoots` and `cycleMin_first_even_overshoots` in `EvenCountThree.lean`. Ledger row `J-first-even-overshoots` recorded on the even-count dossier. No new file. Paper A unchanged. Not a four-even exclusion and not a halt theorem
 - **Refuted ideas:** the first-even dichotomy still has a live return-to-\(n\) cell on a leftover start
-- **Literature:** `minimal_first_even_dichotomy`; `no_cycle_word_even_count_le_three`
+- **Literature:** `minimal_first_even_dichotomy`; `no_cycle_itinerary_even_count_le_three`
 - **Open:** stop. Do not open ReturnBelow, \(K_3\), or a four-even leftover on this corollary
 - **Decision:** PROMOTE. Named leftover-start upgrade. It sharpens the halt setup and does not kill a four-even word
 
 ```text
 What was learned
-- return on the first O^a E is an e=1 cycle word
+- return on the first O^a E is an e=1 cycle itinerary
 - after e<=3 that cell is empty
 - leftover starts overshoot at the first even
 - the leftover is then y>n, not T(z)=n
@@ -11902,8 +11902,8 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Prove \(T^7(n)\ge(n+1)^{16}\) on \(O^7\) starts, replacing the leftover-cell scan
 - **Hypotheses:** the leftover \(4\)-fudge is the slack; the exact successor cell \((T+1)^2>x^3\) with \(x_k\ge n\) fires at the existing seven-odd cutoff \(256\)
-- **Major results:** classification **O7EEEE_GAP_PROVED**. On an \(O^7\) run, \(n^{6177}<(n+1)^{3990}(T^7(n)+1)^{128}\). For \(n\ge 256\), \(n^{6177}>(n+1)^{6038}\) by \(256^{139}>2^{40}>3^{24}>(257/256)^{6038}\). Combined with `no_follows_seven_odds_of_lt256`, every \(O^7\) image sits at or above \((n+1)^{16}\), so \(O^7\mathrm{EEEE}\) is not a cycle word. Ledger row `J-o7eeee-gap`. No Lean. First \(O^7\) start is \(n=289\). Not a length-11 census and not a halt theorem
-- **Refuted ideas:** the leftover \(4\)-fudge is necessary for this word; the gap still needs a pin near \(10^8\)
+- **Major results:** classification **O7EEEE_GAP_PROVED**. On an \(O^7\) run, \(n^{6177}<(n+1)^{3990}(T^7(n)+1)^{128}\). For \(n\ge 256\), \(n^{6177}>(n+1)^{6038}\) by \(256^{139}>2^{40}>3^{24}>(257/256)^{6038}\). Combined with `no_follows_seven_odds_of_lt256`, every \(O^7\) image sits at or above \((n+1)^{16}\), so \(O^7\mathrm{EEEE}\) is not a cycle itinerary. Ledger row `J-o7eeee-gap`. No Lean. First \(O^7\) start is \(n=289\). Not a length-11 census and not a halt theorem
+- **Refuted ideas:** the leftover \(4\)-fudge is necessary for this itinerary; the gap still needs a pin near \(10^8\)
 - **Literature:** `no_follows_seven_odds_of_lt256`; leftover_prefix_cell; inverse-cell window `PROMOTE`
 - **Open:** Lean packaging of this one inequality. Do not scan the other twenty-nine automatically
 - **Decision:** PROMOTE. Exact one-word exclusion. The \(4\)-fudge was the threshold obstruction
@@ -11918,10 +11918,10 @@ What was learned
 - seven odds below 256 are already impossible
 Strongest theorem
 - T^7(n) >= (n+1)^{16} on every O^7 start;
-  O^7 EEEE is not a cycle word
+  O^7 EEEE is not a cycle itinerary
   (EXACT — HUMAN PROOF)
 Strongest refutation
-- the leftover 4-fudge is necessary for this word
+- the leftover 4-fudge is necessary for this itinerary
 Reusable machinery
 - o7eeee_gap.py; no Lean
 Branch status
@@ -11939,7 +11939,7 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Formalize \(T^7(n)\ge(n+1)^{16}\) on \(O^7\) starts
 - **Hypotheses:** the exact successor cell and \(x_k\ge n\) close in Lean at the existing seven-odd cutoff
-- **Major results:** `o7_image_ge_succ_pow16` and `no_cycle_word_oooooooeeee` in `O7EEEEGap.lean`, sorry-free. Ledger row `J-o7eeee-gap` retagged `EXACT — LEAN VERIFIED`. The comparison \(257^{256}<3\cdot256^{256}\) replaces the incorrect \(257<768\) justification. Remainder in \(6038=256\cdot23+150\). Not imported by Paper A. Not a length-11 census and not a halt theorem
+- **Major results:** `o7_image_ge_succ_pow16` and `no_cycle_itinerary_oooooooeeee` in `O7EEEEGap.lean`, sorry-free. Ledger row `J-o7eeee-gap` retagged `EXACT — LEAN VERIFIED`. The comparison \(257^{256}<3\cdot256^{256}\) replaces the incorrect \(257<768\) justification. Remainder in \(6038=256\cdot23+150\). Not imported by Paper A. Not a length-11 census and not a halt theorem
 - **Refuted ideas:** \(257<768\) proves \((1+1/256)^{256}<3\)
 - **Literature:** `no_follows_seven_odds_of_lt256`; `cycle_trailing_evens_lt`; human +1-chain `PROMOTE`
 - **Open:** stop. Do not open the other twenty-nine leftovers from this theorem
@@ -11955,7 +11955,7 @@ What was learned
 Strongest theorem
 - o7_image_ge_succ_pow16
   (EXACT — LEAN VERIFIED)
-- no_cycle_word_oooooooeeee
+- no_cycle_itinerary_oooooooeeee
   (EXACT — LEAN VERIFIED)
 Strongest refutation
 - 257 < 768 implies (257/256)^256 < 3
@@ -11977,7 +11977,7 @@ Best next question
 - **Hypotheses:** the cubic lift of the first remainder eats the \(n^{139}\) surplus earlier than \(Z=(n+1)^{16}\)
 - **Major results:** Classification **AMPLIFY_SURPLUS_REFUTED**. Linear Amplify exponent is 2184 (\(\rho=1\)) or 2185.5 (max \(\rho\)) on every short-gap shape; even letters leave \(2^{k+1}x\) invariant. \(\rho=1\) misses \(G\) at every \(n\ge 12\). Optimistic max-\(\rho\) Amplify already misses at the seven-odd cutoff 256. Realized followers \(n\le 400\) have Amplify \(<G\). No Lean. Not a length-11 census and not a halt theorem
 - **Refuted ideas:** first-defect Amplify repairs the length-11 leak; interleaved evens strengthen Amplify; later remainders dropped from Amplify are a small error
-- **Literature:** `amplifyDefect`; compensated contraction; \(Z_4\) `PARK`; E4 tight pullback `CLOSE`; `no_cycle_word_oooooooeeee` (a different comparison)
+- **Literature:** `amplifyDefect`; compensated contraction; \(Z_4\) `PARK`; E4 tight pullback `CLOSE`; `no_cycle_itinerary_oooooooeeee` (a different comparison)
 - **Open:** stop. Do not write an Amplify assembler. Do not automatically scan the other twenty-nine leftovers
 - **Decision:** CLOSE. Amplify is \(T_w<n\) with the later remainders dropped, and those remainders are the \(n^3\) gap
 
@@ -12000,7 +12000,7 @@ Why
 - the first remainder cannot pay the surplus; the later
   floors are the gap the leftover path already knew
 Best next question
-- a word-equation or inverse-cell argument for a named
+- an itinerary-equation or inverse-cell argument for a named
   leftover other than O^7 EEEE, not another Delta vs G
 ```
 
@@ -12011,8 +12011,8 @@ Best next question
 - **Hypotheses:** \(T^6(n)\) sits above the EEEOE inverse cell at the first \(O^6\) start, not at leftover \(N_0\sim 4\cdot 10^8\)
 - **Major results:** Classification **O6EEEOE_GAP_PROVED**. On an \(O^6\) run, \(n^{1995}<(n+1)^{1266}(T^6(n)+1)^{64}\). The EEEOE cell is \(z<(v+1)^8\) with \(v^3<(n+1)^4\). For \(n\ge 25\), \(n^{1995}>(n+1)^{1970}\) and \((v_{\max}+1)^8<(n+1)^{11}\) (\(898^8<164^{11}\) at \(n=163\)). First \(O^6\) start is \(163\); pin \(n<10^4\) has 170 starts, all above the cell, min ratio \(37.3\). Leftover \(N_0=437\,599\,552\) unused. Ledger row `J-o6eeeoe-gap`. No Lean. Not a length-11 census and not a halt theorem
 - **Refuted ideas:** this shape needs the leftover \(4\)-fudge; Amplify-versus-surplus is the method
-- **Literature:** `no_cycle_word_oooooooeeee`; \(Z_4\) `PARK`; Amplify `CLOSE`
-- **Open:** Lean this word, or the five `(1,3)` leftovers. Do not scan the other twenty-eight automatically
+- **Literature:** `no_cycle_itinerary_oooooooeeee`; \(Z_4\) `PARK`; Amplify `CLOSE`
+- **Open:** Lean this itinerary, or the five `(1,3)` leftovers. Do not scan the other twenty-eight automatically
 - **Decision:** PROMOTE. Exact one-word exclusion at the first \(O^6\) start
 
 ```text
@@ -12024,10 +12024,10 @@ What was learned
 - leftover 4-fudge is again the threshold obstruction
 Strongest theorem
 - T^6(n) lies above the EEEOE inverse of n;
-  OOOOOOEEEOE is not a cycle word
+  OOOOOOEEEOE is not a cycle itinerary
   (EXACT — HUMAN PROOF)
 Strongest refutation
-- this word requires leftover N0 ~ 4e8
+- this itinerary requires leftover N0 ~ 4e8
 Reusable machinery
 - o6eeeoe_gap.py; no Lean
 Branch status
@@ -12036,7 +12036,7 @@ Why
 - the same exact successor cell that killed O^7 EEEE
   kills the nearest surviving even-run signature
 Best next question
-- Lean no_cycle_word_ooooooeeeoe, or the five
+- Lean no_cycle_itinerary_ooooooeeeoe, or the five
   (1,3) words O^a E O^{7-a} EEE
 ```
 
@@ -12047,7 +12047,7 @@ Best next question
 - **Hypotheses:** prefix images sit above the EEE cell at the first prefix starts, not at leftover \(N_0\sim 10^{9}\)–\(10^{12}\)
 - **Major results:** Classification **ONE_THREE_EEE_GAP_PROVED**. A cell hit plus the mixed +1-chain is \(n^{2187}<(n+1)^{2048}(1+1/v)^{E}\), i.e. \(3^{7}>2^{11}\) with slack \(139\). Leading-chain bounds \(v\ge V\) at first starts \(37,113,163,173,241\) contradict the cell. Pin \(n<10^{4}\) empty, closest ratio \(5.73\) at \(n=37\) on `OOOOEOOOEEE`. Leftover \(N_0\) unused. Ledger row `J-one-three-eee-gap`. No Lean. Not a length-11 census and not a halt theorem
 - **Refuted ideas:** these shapes need leftover \(N_0\sim 10^{9}\); Amplify-versus-surplus is the method; this is a length-11 census
-- **Literature:** `no_cycle_word_oooooooeeee`; `J-o6eeeoe-gap`; \(Z_4\) `PARK`; Amplify `CLOSE`
+- **Literature:** `no_cycle_itinerary_oooooooeeee`; `J-o6eeeoe-gap`; \(Z_4\) `PARK`; Amplify `CLOSE`
 - **Open:** Lean the five words, or the three `(2,2)` leftovers. Do not scan the other twenty-three automatically
 - **Decision:** PROMOTE. Exact five-word exclusion at the first prefix starts
 
@@ -12059,10 +12059,10 @@ What was learned
 - leftover 4-fudge is again the threshold obstruction
 - OOOOOOEOEEE is also a corollary of T^6 >= (n+1)^11
 Strongest theorem
-- the five (1,3) leftovers are not cycle words
+- the five (1,3) leftovers are not cycle itineraries
   (EXACT — HUMAN PROOF)
 Strongest refutation
-- these words require leftover N0 ~ 1e9 to 1e12
+- these itineraries require leftover N0 ~ 1e9 to 1e12
 Reusable machinery
 - one_three_eee_gap.py; no Lean
 Branch status
@@ -12079,7 +12079,7 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Decide whether CycleMin \((x+1)/x\le(n+1)/n\) keeps slack \(139\) on the thirty first-expanding leftovers and fires at the first prefix start
 - **Hypotheses:** leftover \(N_0\) is the \(2\)-bound; even placement does not eat slack once the crossing is CycleMin
-- **Major results:** Classification **CYCLEMIN_FUDGE_LAYER_PROVED**. Slack is identically \(3^{7}-2^{11}=139\) on every 7-odd word that starts \(O\). Chain \(N_0\le 29\). Pin \(n<30\) empty. First prefix starts \(37\) through \(2935\). The thirty length-11 short-gap leftovers are not cycle words. Ledger row `J-cyclemin-fudge`. No Lean. Not a length-11 census and not a halt theorem
+- **Major results:** Classification **CYCLEMIN_FUDGE_LAYER_PROVED**. Slack is identically \(3^{7}-2^{11}=139\) on every 7-odd word that starts \(O\). Chain \(N_0\le 29\). Pin \(n<30\) empty. First prefix starts \(37\) through \(2935\). The thirty length-11 short-gap leftovers are not cycle itineraries. Ledger row `J-cyclemin-fudge`. No Lean. Not a length-11 census and not a halt theorem
 - **Refuted ideas:** even placement eats slack \(139\); the layer needs leftover \(N_0\sim 10^{8}\); a 23-word hunt is required
 - **Literature:** `absorb_odd_step`; `J-o7eeee-gap`; `J-o6eeeoe-gap`; `J-one-three-eee-gap`; \(Z_4\) `PARK`
 - **Open:** Lean `absorb_even_step` and the slack identity, or the \(a_0\ge 8\) tails. Do not write \(Z_5\)
@@ -12094,7 +12094,7 @@ What was learned
 - the thirty length-11 leftovers die as one comparison
 Strongest theorem
 - the thirty first-expanding short-gap leftovers
-  are not cycle words (EXACT — HUMAN PROOF)
+  are not cycle itineraries (EXACT — HUMAN PROOF)
 Strongest refutation
 - even placement eats slack 139; the layer needs leftover N0
 Reusable machinery
@@ -12113,12 +12113,12 @@ Best next question
 
 - **Date:** 2026-08-30
 - **Objective:** Package the CycleMin \((n+1)/n\) harvest in Lean, sorry-free, with the named corollaries
-- **Hypotheses:** the even sibling, slack identity, pin, and \(n\ge 30\) comparison cover the thirty leftovers as `CycleMin` words; unique-rotation leftovers upgrade to `CycleWord`
-- **Major results:** `Problems/Juggler/CycleMinFudge.lean` builds. `absorb_even_step`, `family_slack139`, `no_cycleMin_cyclemin_fudge`, named `no_cycleMin_*` for all thirty leftovers, and unique-rotation `no_cycle_word_*` including `no_cycle_word_ooooooeeeoe` and `no_cycle_word_ooooooeoeee`. Ledger `J-cyclemin-fudge` retagged **EXACT — LEAN VERIFIED**. The twenty-two leftovers with extra CycleMin-shaped 4-even rotations outside the thirty are not upgraded to `CycleWord`. `J-o6eeeoe-gap` and `J-one-three-eee-gap` keep their cell arguments as **EXACT — HUMAN PROOF**. No `no_cycle_word_length_eleven`. No `no_cycle_word_four_even`. Paper A unchanged
-- **Refuted ideas:** the thirty leftovers are Lean-excluded as cycle words; a length-11 census is the next assembler
+- **Hypotheses:** the even sibling, slack identity, pin, and \(n\ge 30\) comparison cover the thirty leftovers as `CycleMin` words; unique-rotation leftovers upgrade to `CycleItinerary`
+- **Major results:** `Problems/Juggler/CycleMinFudge.lean` builds. `absorb_even_step`, `family_slack139`, `no_cycleMin_cyclemin_fudge`, named `no_cycleMin_*` for all thirty leftovers, and unique-rotation `no_cycle_itinerary_*` including `no_cycle_itinerary_ooooooeeeoe` and `no_cycle_itinerary_ooooooeoeee`. Ledger `J-cyclemin-fudge` retagged **EXACT — LEAN VERIFIED**. The twenty-two leftovers with extra CycleMin-shaped 4-even rotations outside the thirty are not upgraded to `CycleItinerary`. `J-o6eeeoe-gap` and `J-one-three-eee-gap` keep their cell arguments as **EXACT — HUMAN PROOF**. No `no_cycle_itinerary_length_eleven`. No `no_cycle_itinerary_four_even`. Paper A unchanged
+- **Refuted ideas:** the thirty leftovers are Lean-excluded as cycle itineraries; a length-11 census is the next assembler
 - **Literature:** `J-cyclemin-fudge`; `J-o6eeeoe-gap`; `J-one-three-eee-gap`; `J-o7eeee-gap`
-- **Open:** the \(a_0\ge 8\) tails. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
-- **Decision:** PROMOTE. The Lean layer matches the honest English: thirty `CycleMin` exclusions and eight unique-rotation cycle-word exclusions
+- **Open:** the \(a_0\ge 8\) tails. Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`
+- **Decision:** PROMOTE. The Lean layer matches the honest English: thirty `CycleMin` exclusions and eight unique-rotation cycle-itinerary exclusions
 
 ```text
 What was learned
@@ -12130,9 +12130,9 @@ What was learned
 Strongest theorem
 - the thirty first-expanding leftovers are not CycleMin
   words; the eight unique-rotation leftovers are not
-  cycle words (EXACT — LEAN VERIFIED)
+  cycle itineraries (EXACT — LEAN VERIFIED)
 Strongest refutation
-- a single no_cycle_word_cyclemin_fudge / length-11 census
+- a single no_cycle_itinerary_cyclemin_fudge / length-11 census
 Reusable machinery
 - CycleMinFudge.lean; absorb_even_step; family_slack139
 Branch status
@@ -12220,12 +12220,12 @@ Best next question
 ## Juggler CycleMin necklace slack
 
 - **Date:** 2026-08-30
-- **Objective:** Decide whether slack \(139\) plus a bounded pin excludes every length-11 CycleMin-shaped four-even word (the 56)
+- **Objective:** Decide whether slack \(139\) plus a bounded pin excludes every length-11 CycleMin-shaped four-even itinerary (the 56)
 - **Hypotheses:** extra rotations are \(a_3\ge 2\) spellings of the same identity; \(e\ge 5\) is contracting, so a census would be a corollary
-- **Major results:** Classification **CYCLEMIN_NECKLACE_REFUTED**. Slack is identically \(139\) on all 56. \(A\) reaches \(30705>13905\). `OOEEEOOOOOE` has first prefix start \(5\) and chain \(N_0=55\). `OOOEEEOOOOE` has first prefix start \(3\) and chain \(N_0=42\). The other 24 extra words fire (including `OOEEOEOOOOE` at \(77625\)). Ledger row `J-cyclemin-necklace`. No Lean. Not a length-11 census and not a halt theorem
+- **Major results:** Classification **CYCLEMIN_NECKLACE_REFUTED**. Slack is identically \(139\) on all 56. \(A\) reaches \(30705>13905\). `OOEEEOOOOOE` has first prefix start \(5\) and chain \(N_0=55\). `OOOEEEOOOOE` has first prefix start \(3\) and chain \(N_0=42\). The other 24 extra itineraries fire (including `OOEEOEOOOOE` at \(77625\)). Ledger row `J-cyclemin-necklace`. No Lean. Not a length-11 census and not a halt theorem
 - **Refuted ideas:** rotate-to-CycleMin plus slack \(139\) excludes the 56; a two-word pin is the next assembler
 - **Literature:** `J-cyclemin-fudge`; `J-cyclemin-slack`; first-E \(e=4\) `CLOSE`; length-11 non-pullback `CLOSE`
-- **Open:** stop. Do not pin the two misses. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Open:** stop. Do not pin the two misses. Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** CLOSE. The uniform pin is false; a rescue is the stop criterion
 
 ```text
@@ -12234,7 +12234,7 @@ What was learned
 - slack stays 139 on every necklace spelling
 - early evens inflate A to 30705
 - OOEEEOOOOOE and OOOEEEOOOOE start below their N0
-- the other 24 extra words fire
+- the other 24 extra itineraries fire
 Strongest theorem
 - none; slack 139 is already J-cyclemin-slack
 Strongest refutation
@@ -12244,7 +12244,7 @@ Reusable machinery
 Branch status
 - CLOSE
 Why
-- two extra words have prefix starts 3 and 5 below
+- two extra itineraries have prefix starts 3 and 5 below
   chain N0 42 and 55; pinning them is the rescue
 Best next question
 - stop; do not pin the two misses; do not open e=5
@@ -12288,10 +12288,10 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Globalize the cycle-minimum / first-even obstruction to an unavoidable last-cluster pattern, with exact odd-run and transport inequalities
 - **Hypotheses:** \(A=3\) is not the CycleMin odd-run bound; every CycleMin-shaped word is bootstrap, a last leftover suffix, or a bunched-short last cluster; internal `OO` transports a strict scale bump
-- **Major results:** Classification **CYCLEMIN_OBSTRUCTION_GREEN**. Smallest universal local-overshoot \(A\) is \(2\). `OOO` at \(n\ge 5\) gives \(T^3(n)\ge(n+1)^3\) **EXACT — LEAN VERIFIED**. Internal `OO` after the first even event gives second residual \(\ge(y+1)^2\ge(n+2)^2\) **EXACT — LEAN VERIFIED**. Last-cluster split of every CycleMin-shaped expanding word **EXACT — HUMAN PROOF**; window \(e=4..6\), \(o=7..14\) empty of missed shapes **COMPUTATIONALLY VERIFIED**. Residual family is the seven bunched-short last-cluster types. Ledger rows `J-ooo-residual-cube`, `J-cyclemin-transport-oo`, `J-cyclemin-last-cluster`. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Major results:** Classification **CYCLEMIN_OBSTRUCTION_GREEN**. Smallest universal local-overshoot \(A\) is \(2\). `OOO` at \(n\ge 5\) gives \(T^3(n)\ge(n+1)^3\) **EXACT — LEAN VERIFIED**. Internal `OO` after the first even event gives second residual \(\ge(y+1)^2\ge(n+2)^2\) **EXACT — LEAN VERIFIED**. Last-cluster split of every CycleMin-shaped expanding itinerary **EXACT — HUMAN PROOF**; window \(e=4..6\), \(o=7..14\) empty of missed shapes **COMPUTATIONALLY VERIFIED**. Residual family is the seven bunched-short last-cluster types. Ledger rows `J-ooo-residual-cube`, `J-cyclemin-transport-oo`, `J-cyclemin-last-cluster`. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** \(A=3\) is the universal CycleMin odd-run bound; some finite \(A\) forbids contained \(O^aE\) as a prefix; two consecutive short odd runs close a cycle by themselves; \(x/n\) is monotone on every admissible block
 - **Literature:** `J-first-even-overshoots`; `J-even-count-le-three`; first-E \(e=4\) `CLOSE`; necklace slack `REFUTED`; leftover \(Z_4\) `PARK`
-- **Open:** last two-even leftover after an arbitrary CycleMin prefix \(u\). Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Open:** last two-even leftover after an arbitrary CycleMin prefix \(u\). Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PROMOTE. The split names the residual; the cube and transport inequalities are new exact scale laws, not leftover-cell reparameterizations
 
 ```text
@@ -12358,10 +12358,10 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Exclude `CycleMin n (u ++ twoEvenEE/EOE k)` for an arbitrary prefix `u`, not only after `O^a E`
 - **Hypotheses:** `y = T_u(n) ≥ n` tightens the leftover cell against the shared tail at `y`; below 256 the seal is a path table on `y`, not tables-for-all-`u` and not the loose `n`-cell algebra
-- **Major results:** Classification **PREFIX_TWO_EVEN_GREEN**. Lean theorems `no_cycleMin_prefix_two_even_ee`, `no_cycleMin_prefix_two_even_eoe`. Large `y` is `shared_two_even_tail` at `y`. Below 256, no start follows a short leftover into `[2, y]` (`returnsIntoB` tables); longer leftovers are seven-odd on the remainder. `y = n` reduces to the existing cycle-word exclusions. The comparison `y^{3^{k-2}} > 2^e (n+1)^{2^k}` fails for some `12 ≤ n < y < 256` at `k=6` — **REFUTED** as a small-`y` seal. Ledger rows `J-cyclemin-prefix-two-even-ee`, `J-cyclemin-prefix-two-even-eoe`. Residual is still bunched-short last cluster. No `Z_5`. No length-11 assembler. Paper A unchanged
+- **Major results:** Classification **PREFIX_TWO_EVEN_GREEN**. Lean theorems `no_cycleMin_prefix_two_even_ee`, `no_cycleMin_prefix_two_even_eoe`. Large `y` is `shared_two_even_tail` at `y`. Below 256, no start follows a short leftover into `[2, y]` (`returnsIntoB` tables); longer leftovers are seven-odd on the remainder. `y = n` reduces to the existing cycle-itinerary exclusions. The comparison `y^{3^{k-2}} > 2^e (n+1)^{2^k}` fails for some `12 ≤ n < y < 256` at `k=6` — **REFUTED** as a small-`y` seal. Ledger rows `J-cyclemin-prefix-two-even-ee`, `J-cyclemin-prefix-two-even-eoe`. Residual is still bunched-short last cluster. No `Z_5`. No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** the loose `n`-cell algebra seals every `n < y < 256`; first-E tables-for-`(a,b)` are required for a general prefix
 - **Literature:** `J-two-even-leftover-ee`; `J-first-e-transport-ee`; last-cluster `PROMOTE`
-- **Open:** bunched-short last cluster after an arbitrary prefix. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Open:** bunched-short last cluster after an arbitrary prefix. Do not write `Z_5`. Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PROMOTE. The last two-even leftover is now a CycleMin theorem for every prefix
 
 ```text
@@ -12391,17 +12391,17 @@ Best next question
 ## Juggler last three-even bunched leftover after an arbitrary prefix
 
 - **Date:** 2026-08-30
-- **Objective:** Exclude `CycleMin n (u ++ threeEvenXXX a)` for each of the seven bunched families after an arbitrary prefix `u`, not only as a cycle word
+- **Objective:** Exclude `CycleMin n (u ++ threeEvenXXX a)` for each of the seven bunched families after an arbitrary prefix `u`, not only as a cycle itinerary
 - **Hypotheses:** `y = T_u(n) ≥ n` tightens the leftover cell against the family tail at `y`; below cutoff the seal is a path table on `y`; at `a=3` the existing tight split applies with `n := y`
 - **Major results:** Classification **PREFIX_BUNCHED_GREEN**. Lean theorems `no_cycleMin_prefix_eee`, `no_cycleMin_prefix_eoee`, `no_cycleMin_prefix_eooee`, `no_cycleMin_prefix_eoooee`, `no_cycleMin_prefix_eeoe`, `no_cycleMin_prefix_eoeoe`, `no_cycleMin_prefix_eooeoe`. Large `y` is the existing family tail at `y`. Below cutoff, no start follows a short leftover into `[2, y]` (`returnsIntoB` tables); longer leftovers are seven-odd. `a=3` uses `eoooee_small_y_false` / `eoooee_large_y_false` at `y`. The coarse comparison `Y^{27} > 2^{38}(Y+1)^{32}` never fires — **REFUTED** as an `a=3` seal. Ledger rows `J-cyclemin-prefix-bunched-*`. Residual is still bunched-short last cluster. No `Z_5`. No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** the coarse `a=3` comparison seals EOOOEE/EOOEOE; tables-for-all-`u` are required for a general prefix
 - **Literature:** `J-three-even-eee` through `J-three-even-eooeoe`; last-cluster `PROMOTE`; prefix two-even `PROMOTE`
-- **Open:** bunched-short last cluster. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Open:** bunched-short last cluster. Do not write `Z_5`. Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PROMOTE. The last three-even bunched leftover is now a CycleMin theorem for every prefix
 
 ```text
 What was learned
-- CycleWord exclusions are the special case u empty
+- CycleItinerary exclusions are the special case u empty
 - y >= n plus the family tail at y is the large-y engine
 - a=3 never fires the coarse (n+1)^4 cell; the tight split at y does
 - no y below cutoff follows a short leftover and returns into [2, y]
@@ -12418,7 +12418,7 @@ Branch status
 - PROMOTE
 Why
 - the last-cluster bunched class is now a CycleMin theorem for
-  every prefix, not a CycleWord reparameterization
+  every prefix, not a CycleItinerary reparameterization
 Best next question
 - bunched-short last cluster after an arbitrary CycleMin prefix
 ```
@@ -12431,7 +12431,7 @@ Best next question
 - **Major results:** Classification **BUNCHED_SHORT_PARK**. The hypothesis is **REFUTED**: 18 returns with `12 ≤ n ≤ y < 256`, including `129 → 100` on `OOOOOEEE` and `81 → 16` on `OOOEOEE`. Zero overshoots below 256. Isolated-odd bunched-short shapes exist at `e=5` (96) and `e=6` (128) in the expanding window. Ledger row `J-cyclemin-bunched-short-path`. No Lean. No `Z_5`. No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** leftover-suffix path tables seal bunched-short; short leftovers overshoot like expanding leftovers; every `e≥5` bunched-short word has an internal `OO`
 - **Literature:** last-cluster `PROMOTE`; prefix bunched `PROMOTE`; four-even short-gap `PARK`; first-E at `e=4` `CLOSE`
-- **Open:** a front invariant that is not a leftover cell. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Open:** a front invariant that is not a leftover cell. Do not write `Z_5`. Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PARK. The leftover-suffix method is the wrong tool for the residual
 
 ```text
@@ -12465,7 +12465,7 @@ Best next question
 - **Major results:** Classification **BUNCHED_SHORT_FRONT_PARK**. Re-rooting never hits an excluded leftover **EXACT — HUMAN PROOF** (`J-cyclemin-short-reroot`). \((3,1)\) is the unique expanding pair in the short rectangle and is already `O^3EOE` **EXACT — HUMAN PROOF** (`J-cyclemin-short-31-exponent`). The 18 leftover-suffix returns are predecessor-infeasible; no CycleMin \(u{+}{+}O^bEO^cE\) on \(12\le n<256\) with \(e_u\in\{2,3\}\) **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-front-census`). Four interval leaks with \(S>n\) scatter across predecessor types and ranks; trailing-even overflow is \(S\ge n+1\), not a new cell. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** unavoidable concatenation into an excluded leftover; \(Q\) obstructs the short tails; the 18 returns are CycleMin fronts; \(S_{b,c}(y)\notin[n,y]\) for every CycleMin-shaped front; trailing-even overflow is a new invariant
 - **Literature:** leftover-suffix `PARK`; last-cluster `PROMOTE`; prefix two-even and prefix bunched `PROMOTE`; four-even short-gap `PARK`
-- **Open:** a symbolic \(S_{b,c}(y)=n\) obstruction at a CycleMin front. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Open:** a symbolic \(S_{b,c}(y)=n\) obstruction at a CycleMin front. Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PARK. Predecessor infeasibility of the 18 returns and an empty cycle window are not yet a parameterized cell-intersection
 
 ```text
@@ -12500,7 +12500,7 @@ Best next question
 - **Major results:** Classification **FRONT_OVERSHOOT_PARK**. The raise-above invariant is **REFUTED** (`J-cyclemin-front-oo-raise`): the prefix-independent floor `(n+2)^2` is compatible with all seven remaining scales, and three interval leaks with a later `OO` exist (`37 → 76`, `113 → 1942`, `205 → 598`). Finite scan **COMPUTATIONALLY VERIFIED** (`J-cyclemin-front-oo-scan`): `T_OO` after first-even never lands in `[n^8,(n+1)^8)` on `13≤n<501`, `2≤a0≤8` (27 below, 4 above); no exact Case A/B `CycleMin` return. All 18 parked suffix returns start below `n^2`. No Lean. No `Z_5`. No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** later `OO` permanently raises the return floor above every short-tail cell; `T_remaining` after that `OO` cannot land in `[n,y]`; `T_OO` is uniformly above the EEE cell; cell depth after `OO` drops by at most a uniform `C` on a short tail
 - **Literature:** leftover-suffix `PARK`; predecessor cells `PARK`; last-cluster `PROMOTE`; prefix two-even and prefix bunched `PROMOTE`
-- **Open:** bunched-short last cluster with no later `OO` after the first-even landing. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Open:** bunched-short last cluster with no later `OO` after the first-even landing. Do not write `Z_5`. Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PARK. The raise-above invariant is false, and never-inside plus an empty exact-return scan is not a parameterized Lean theorem
 
 ```text
@@ -12523,7 +12523,7 @@ Branch status
 Why
 - the same front lower bound is compatible with all seven short
   tails, and the interval form fails on named leaks; a Lean cell
-  theorem would fragment by a0 and by leftover word
+  theorem would fragment by a0 and by leftover itinerary
 Best next question
 - bunched-short last cluster with no later OO after the
   first-even landing; not a leftover cell
@@ -12537,7 +12537,7 @@ Best next question
 - **Major results:** Classification **SHORT_RETURN_PARK**. Even inverse is the interval \([n^2,(n+1)^2)\cap 2\mathbb{Z}\), not \(\{n^2\}\) — **REFUTED** (`J-cyclemin-short-even-not-square`). Odd cell of \(n^2\) through 500: 477 empty, 10 even-blocked, 12 odd hits — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-odd-square-cell`). CycleMin \(n\) is odd, so \(n^2\) is not in the last-even cell; last-odd layer of that cell has size \(\le 2\) for \(n\le 48\). \(R_{0,0}\) has order \(n^3\); \(R_{2,1}\) is almost empty. One two-even CycleMin landing below 64, no short tail follows, no exact hit — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-return-census`). No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** last even landing is \(n^2\); \(\lfloor z^{3/2}\rfloor=n^2\) is the CycleMin last-odd equation; every \(R_{b,c}\) is tiny; terminal exact arithmetic alone empties \(R\cap P\)
 - **Literature:** leftover-suffix `PARK`; predecessor cells `PARK`; front overshoot `PARK`; last-cluster `PROMOTE`; prefix two-even and prefix bunched `PROMOTE`; `odd_cell_unique` / even-cell Lean
-- **Open:** isolated-odd CycleMin prefix landing in \(R_{b,c}(n)\). Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`. Do not reopen the interval seal
+- **Open:** isolated-odd CycleMin prefix landing in \(R_{b,c}(n)\). Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`. Do not reopen the interval seal
 - **Decision:** PARK. Exact return is characterized and is fat at `EE`; there is no reusable A/B/C exclusion
 
 ```text
@@ -12571,7 +12571,7 @@ Best next question
 - **Major results:** Classification **SHORT_DEFECT_PARK**. EE identity \(y=n^4+2\varepsilon n^2+\varepsilon^2+\eta\) **EXACT — HUMAN PROOF** (`J-cyclemin-short-ee-compose`). The obstruction hypothesis is **REFUTED** (`J-cyclemin-short-defect-obstruction`): for odd \(n\) the last-odd gap from \(n^4\) is at least \(2n^2+1\); last-odd \(\delta\) is ordinary and odd; the EE fibre at \(n=13\) has 2366 states and all 16 admissible 8-adic pairs; composed \(1+Q\) is the leftover EE cell. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** tiny-gap last-odd equation; impossible EE defect; last-odd parity mismatch; finite EE signatures; \(1+Q\) is a new sign obstruction
 - **Literature:** exact-return `PARK`; leftover-suffix / predecessor / front overshoot `PARK`; `localDefect*` and `odd_remainder_even` Lean
-- **Open:** isolated-odd CycleMin prefix landing in the \((\varepsilon,\eta)\) fibre. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Open:** isolated-odd CycleMin prefix landing in the \((\varepsilon,\eta)\) fibre. Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PARK. Exact closure is a satisfiable ordinary-defect identity, not a new obstruction
 
 ```text
@@ -12605,7 +12605,7 @@ Best next question
 - **Major results:** Classification **ISO_FIBRE_PARK**. 588 words with `e∈{5,6}`; on odd `13≤n<151` there are 34 follows, 0 paths stay `≥ n`, 0 fibre hits, 0 CycleMin returns — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-iso-odd-fibre`). Follows only at `a0∈{2,3,5}`; after the first-even overshoot the isolated middle collapses below `n`. `e=4` is the parked four-even cell and was not reopened. No Lean. No `Z_5`. No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** an isolated-odd `e≥5` CycleMin-shaped word stays `≥ n` through a short tail in this window; those prefixes hit the exact fibre
 - **Literature:** defect-closure `PARK`; leftover-suffix / predecessor / front overshoot `PARK`; four-even short-gap `PARK`; `oe_block_contracts`
-- **Open:** none on this line. Do not reopen four-even cells. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Open:** none on this line. Do not reopen four-even cells. Do not write `Z_5`. Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** PARK. An empty finite window is not a Lean transport theorem
 
 ```text
@@ -12636,10 +12636,10 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Decide whether an isolated-odd CycleMin prefix can land in \(R_{b,c}(n)\)
 - **Hypotheses:** isolated-odd block structure imposes a landing signature that exact short-tail closure cannot satisfy
-- **Major results:** Classification **ISO_ODD_RETURN_CLOSE**. \(B=T_{OE}\) always contracts (`oe_block_contracts`). The only isolated-odd CycleMin prefixes are empty and `O`. Those plus a short tail are CycleWords of length \(\le 6\) (`no_cycle_word_length_le_six`). Through odd \(12\le n<64\) the 170-word isolated-odd family has 52 landings, all on empty or `O`, and 0 fibre hits. Ledger row `J-cyclemin-iso-odd-return`. No new Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Major results:** Classification **ISO_ODD_RETURN_CLOSE**. \(B=T_{OE}\) always contracts (`oe_block_contracts`). The only isolated-odd CycleMin prefixes are empty and `O`. Those plus a short tail are CycleItineraries of length \(\le 6\) (`no_cycle_itinerary_length_le_six`). Through odd \(12\le n<64\) the 170-word isolated-odd family has 52 landings, all on empty or `O`, and 0 fibre hits. Ledger row `J-cyclemin-iso-odd-return`. No new Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
 - **Refuted ideas:** \(B\) can expand or fix an odd start; \((OE)^r\) or \(OEE\cdots\) can stay CycleMin; \(P_{\mathrm{iso}}\) is large enough to meet the abundant `EE` fibre
 - **Literature:** `oe_block_contracts`; length-\(\le 6\) census; exact-return `PARK`; defect `PARK`
-- **Open:** CycleMin prefixes with \(a_0\ge 2\). Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Open:** CycleMin prefixes with \(a_0\ge 2\). Do not write \(Z_5\). Do not assemble `no_cycle_itinerary_length_eleven`
 - **Decision:** CLOSE. The empty intersection is a reparameterization of two existing Lean lemmas
 
 ```text
@@ -12648,7 +12648,7 @@ What was learned
 - an isolated-odd prefix that contains OE is not CycleMin
 - P_iso(n) = {n, T_O(n)}
 - n is odd, so n is not in the even EE fibre
-- empty or O plus a short tail is a CycleWord of length <= 6
+- empty or O plus a short tail is a CycleItinerary of length <= 6
 Strongest theorem
 - P_iso(n) ∩ R_{b,c}(n) = ∅ (REPARAMETERIZATION)
 Strongest refutation
@@ -12659,7 +12659,7 @@ Branch status
 - CLOSE
 Why
 - the preferred exclusion is true, but it is exactly
-  oe_block_contracts plus no_cycle_word_length_le_six
+  oe_block_contracts plus no_cycle_itinerary_length_le_six
 Best next question
 - the a0>=2 isolated-odd-after-first-E line is already PARK;
   do not reopen four-even cells
@@ -12916,7 +12916,7 @@ Best next question
 - **Major results:** Classification **NON_ESCAPE_SPINE_GREEN**. Every orbit eventually cycles or escapes — **EXACT — LEAN VERIFIED** (`J-orbit-cycle-or-escape`). If \(n\ge 2\) follows `OOEOOE` then \(T(n)<n^{2}\); on `MinimalNonTerm` the landing is odd and the forced next `O` is followed by another `O` — **EXACT — LEAN VERIFIED** (`J-minimal-ooeooe-escape-trap`). The even trap does not use `image = n`. The chain \(365\to 763\to 1749\to 4447\) is a finite escape prefix, not an unbounded orbit. Laboratory barrel only. Paper A unchanged. No halt theorem. No `FiniteCoeffStopConjecture` theorem
 - **Refuted ideas:** the transfer needs a cycle return; a finite growing residual prefix is already escape
 - **Literature:** `bounded_prefix_not_nodup`; `minimal_nonterm_iterate_ge`; `wordOOEOOE`; `even_floorPower_lt_iff`; residual-path unbounded leftover
-- **Open:** can a `MinimalNonTerm` itinerary concatenate infinitely many expanding residual blocks without realizing a contracting word? Do not auto-continue. Do not reopen Paper B, escape-margin \(M\), or bunched-short cells
+- **Open:** can a `MinimalNonTerm` itinerary concatenate infinitely many expanding residual blocks without realizing a contracting itinerary? Do not auto-continue. Do not reopen Paper B, escape-margin \(M\), or bunched-short cells
 - **Decision:** PROMOTE the Lean split and the escape-capable `OOEOOE` trap. Do not claim that escape is impossible
 
 ```text
@@ -12941,7 +12941,7 @@ Why
   and it does not restate residual_path pigeonhole alone
 Best next question
 - can a MinimalNonTerm itinerary concatenate infinitely
-  many expanding residual blocks without a contracting word?
+  many expanding residual blocks without a contracting itinerary?
 ```
 
 ## Juggler second OO from the cube corridor
@@ -12992,7 +12992,7 @@ Best next question
 
 ```text
 What was learned
-- C2-C4-C2-C1 is the word OOEOOOEOOEE, not a repeating machine
+- C2-C4-C2-C1 is the itinerary OOEOOOEOOEE, not a repeating machine
 - C1-pre and C1-post coincide iff t = n
 - 501 vs 763: same scale+parity, different futures
 - 6187 returns and drops by OE; each orbit has one coarse hit
@@ -13019,9 +13019,9 @@ Best next question
 ## Juggler expanding-residual concatenation
 
 - **Date:** 2026-08-30
-- **Objective:** Decide whether infinite PE concatenation without a contracting word is a stricter class than `MinimalNonTerm`
+- **Objective:** Decide whether infinite PE concatenation without a contracting itinerary is a stricter class than `MinimalNonTerm`
 - **Hypotheses:** either a CE realizes a contracting concatenation, or the leftover is the same unbounded CE branch
-- **Major results:** Classification **EXPANDING_CONCAT_CE_CLOSE**. Expanding words are closed under concatenation — **EXACT — LEAN VERIFIED** (`J-exponent-expanding-append`). A CE never realizes an exponent-gap word, so every realized prefix is prefix-noncontracting — **EXACT — LEAN VERIFIED** (`J-minimal-prefix-noncontracting`). Infinite PE concatenation without a contracting word is the unbounded CE leftover rewritten — **REPARAMETERIZATION** (`J-expanding-concat-is-ce`). Window \(n<801\): \(87/87\) persistent blocks expand; concatenations stay expanding; \(83\) later residuals stay above the original start while contracting versus their own \(x\) (not PE). Prefix \(365\to 763\to 1749\to 4447\) is three expanding `OOE`. Laboratory barrel only. Paper A unchanged. No halt theorem. No finite PE-run bound
+- **Major results:** Classification **EXPANDING_CONCAT_CE_CLOSE**. Expanding itineraries are closed under concatenation — **EXACT — LEAN VERIFIED** (`J-exponent-expanding-append`). A CE never realizes an exponent-gap itinerary, so every realized prefix is prefix-noncontracting — **EXACT — LEAN VERIFIED** (`J-minimal-prefix-noncontracting`). Infinite PE concatenation without a contracting itinerary is the unbounded CE leftover rewritten — **REPARAMETERIZATION** (`J-expanding-concat-is-ce`). Window \(n<801\): \(87/87\) persistent blocks expand; concatenations stay expanding; \(83\) later residuals stay above the original start while contracting versus their own \(x\) (not PE). Prefix \(365\to 763\to 1749\to 4447\) is three expanding `OOE`. Laboratory barrel only. Paper A unchanged. No halt theorem. No finite PE-run bound
 - **Refuted ideas:** the leftover is a stricter combinatorial PE class; formal contraction kills a PE concatenation; \(y\ge n\) is already persistence
 - **Literature:** `exponentExpanding`; `power_bound_contracts`; `minimal_nonterm_no_descent`; `EXPANDING_GRAMMAR_IS_PERSISTENCE`; non-escape spine
 - **Open:** after the CE `OOEOOE` trap forces `OOEOOEOO`, does the completed third residual drop below \(n\) or remain a PE block? Do not auto-continue. Do not reopen the expanding-grammar obstruction
@@ -13029,7 +13029,7 @@ Best next question
 
 ```text
 What was learned
-- expanding words are closed under concatenation
+- expanding itineraries are closed under concatenation
 - a CE never realizes an exponent-gap word
 - every realized CE prefix is prefix-noncontracting
 - 87/87 persistent blocks in n<801 expand
@@ -13039,7 +13039,7 @@ Strongest theorem
   exponentExpanding (u ++ v)
   (EXACT — LEAN VERIFIED)
 Strongest refutation
-- infinite PE concat without a contracting word is a
+- infinite PE concat without a contracting itinerary is a
   stricter class than MinimalNonTerm
 Reusable machinery
 - exponentExpanding_append; CE prefix-NC in Escape.lean
@@ -13542,7 +13542,7 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Decide whether the inherited \(L\)-envelope forbids arbitrarily long odd runs from \(t=T_L(n)\), or whether any finite \(K\) must come from non-realization of \(L+\mathtt{O}^k\)
 - **Hypotheses:** \(2187/2048\) supplies a finite \(K\); cycle-suffix theorems cap the path
-- **Major results:** Classification **L_ODD_RUN_CAP_PARK**. \(2187\cdot 3^{k}>2048\cdot 2^{k}\) for every \(k\ge 0\), so the compose test never drops — **EXACT — HUMAN PROOF** (`J-cyclemin-l-odd-run-envelope`). Envelope / cycle-suffix cap — **REFUTED** (`J-cyclemin-l-odd-run-envelope-caps`). \(33391\) realizes \(k=5\). Realization of \(L+\mathtt{O}^k\) remains open. No word census. No Lean. No \(Z_5\). Paper A unchanged
+- **Major results:** Classification **L_ODD_RUN_CAP_PARK**. \(2187\cdot 3^{k}>2048\cdot 2^{k}\) for every \(k\ge 0\), so the compose test never drops — **EXACT — HUMAN PROOF** (`J-cyclemin-l-odd-run-envelope`). Envelope / cycle-suffix cap — **REFUTED** (`J-cyclemin-l-odd-run-envelope-caps`). \(33391\) realizes \(k=5\). Realization of \(L+\mathtt{O}^k\) remains open. No itinerary census. No Lean. No \(Z_5\). Paper A unchanged
 - **Refuted ideas:** \(L\)-envelope compose-drops \(\mathtt{O}^k\); `no_cycle_odd_run_append_even` is a path cap
 - **Literature:** oneshot recovery compose; parity-persist \(k=5\); `odd_run_suffix_threshold`
 - **Open:** is there a preimage obstruction to \(L+\mathtt{O}^k\) for large \(k\), other than a follower search? Do not census words
@@ -13873,7 +13873,7 @@ Best next question
 
 ```text
 What was learned
-- EnvelopeState is x^A <= n^B; PowerBound is the word-stat case
+- EnvelopeState is x^A <= n^B; PowerBound is the itinerary-stat case
 - envelope_lt_pow is the shared cell comparison
 - Escape square/cube proofs are k=2,3 instances
 - OOEOOEOOEOEOO has cube and not square
@@ -13946,7 +13946,7 @@ Best next question
 - **Date:** 2026-08-30
 - **Objective:** Classify the live Juggler Lean tree as primitive / derived / wrapper and fix the confirmed import inversion plus the unused `EnvelopeState` path
 - **Hypotheses:** the leftover class is already expressible; remaining debt is import direction and a dead `EnvelopeState` API
-- **Major results:** Architecture note [juggler_lean_spine.md](architecture/juggler_lean_spine.md). `wordOE` / `repeatedOE` / `oddEvenBlock` moved to `WordStats`; `MinimumRelative` imports `Envelope` + `Progress` + `WordStats`, not `Scale`. CE consumers `aboveAnchor_of_minimalNonTerm`, `minimal_nonterm_not_follow_odd_even`, `minimal_cube_even_forces_odd_image` live in `Minimal.lean`. `power_bound_lt_pow` is `EnvelopeState.of_follows.lt_pow`; `power_bound_contracts` is the `k=1` case. Unused Escape `follows_*_pow` theorems deleted. Paper A unchanged. No new ledger row. No halt theorem
+- **Major results:** Architecture note [juggler_lean_spine.md](architecture/juggler_lean_spine.md). `wordOE` / `repeatedOE` / `oddEvenBlock` moved to `ItineraryStats`; `MinimumRelative` imports `Envelope` + `Progress` + `ItineraryStats`, not `Scale`. CE consumers `aboveAnchor_of_minimalNonTerm`, `minimal_nonterm_not_follow_odd_even`, `minimal_cube_even_forces_odd_image` live in `Minimal.lean`. `power_bound_lt_pow` is `EnvelopeState.of_follows.lt_pow`; `power_bound_contracts` is the `k=1` case. Unused Escape `follows_*_pow` theorems deleted. Paper A unchanged. No new ledger row. No halt theorem
 - **Refuted ideas:** `AboveAnchor` must sit above `MinimalNonTerm`; `EnvelopeState` is a parallel unused encoding
 - **Literature:** `J-envelope-lt-pow`; `J-above-anchor`; `J-cube-not-square-split`
 - **Open:** none from this audit. Do not rename wrappers. Do not resume the odd-lift letter chain
@@ -13955,7 +13955,7 @@ Best next question
 ```text
 What was learned
 - AboveAnchor imported Minimal through Scale
-- word combinators belong in WordStats
+- word combinators belong in ItineraryStats
 - CE wrappers belong in Minimal.lean
 - EnvelopeState now implements power_bound_lt_pow
 - unused Escape *_pow unfolds were leftover envelopes
@@ -14212,7 +14212,7 @@ Best next question
 
 ```text
 What was learned
-- map_word is the composition engine; PowerBound is the word-stat face
+- map_word is the composition engine; PowerBound is the itinerary-stat face
 - two-sided corridor is a genuine boundary; reset stays even_below_anchor_pow
 - cube two-even drop is n^3 < n^4 plus two_even_below_fourth
 - CycleCore used Residuals only as an accidental import
@@ -14271,7 +14271,7 @@ Best next question
 ## Juggler prefix growth / retention balance
 
 - **Date:** 2026-08-30
-- **Objective:** Find a prefix-level growth/retention law that constrains infinite AboveAnchor orbits independently of the word envelope
+- **Objective:** Find a prefix-level growth/retention law that constrains infinite AboveAnchor orbits independently of the itinerary envelope
 - **Hypotheses:** \(F_k\ge n^{2^k-3^{O_k}}\) is a new budget; leftover prefixes separate min \(F\) from max \(F\)
 - **Major results:** Classification **GROWTH_BALANCE_CLOSED**. Required retention \(F_k\ge n^{2^k-3^{O_k}}\) is \(x_k\ge n\) — **REPARAMETERIZATION** (`J-prefix-retention-budget`). Growth law \(3^{O_k}\ge 2^k\) is `power_bound_word` plus `AboveAnchor`. Weighted \(\rho\)-product is `globalDefect`. Leftovers \(365,501,1517,6187\) stay noncontracting until a formally contracting extra even step. No `GrowthBalance.lean`. Paper A unchanged. No halt theorem
 - **Refuted ideas:** an independent prefix retention budget; aggregate \(\Gamma_k\) as a new survival law
@@ -14608,7 +14608,7 @@ Best next question
 - **Major results:** Classification **FORMAL_REALIZED_GAP_CLOSED**. Formal language is `prefixNoncontracting`. AA language fills through \(N=16\) for odd \(n\le 10^6\) (\(R_N=1\)). First holes at \(N=17\) (\(3\) words). At \(N=20\): formal \(27328\), AA \(16822\), dead \(10506\), \(\lvert\mathcal F_j\rvert=8498\), no distinctive exact \(P\). Hold-out later fraction \(0.504\). Atlas `REALIZABLE` missing-by-\(N\) is \(0\) through length \(20\). No new Lean file. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row
 - **Refuted ideas:** a stable minimal forbidden history with a simple exact \(P\); a follows-language hole inside prefix-NC at \(k\le 20\); hold-out-stable unobserved prefixes
 - **Literature:** `prefixNoncontracting`; `aboveAnchor_not_envelope_drop`; `juggler_parity_balance.md`; `juggler_word_language.md`; `juggler_word_atlas.md`
-- **Open:** none from this word language. The leftover hole is still a cube cell without a square cell
+- **Open:** none from this itinerary language. The leftover hole is still a cube cell without a square cell
 - **Decision:** CLOSE. Later dead prefixes are window or scale artefacts, not a new formal law
 
 ```text
@@ -14617,7 +14617,7 @@ What was learned
 - AA fills through N=16 at n<=10^6
 - first AA holes at N=17; no common exact P
 - half of low-n F_j realize in the hold-out half
-- every formal word of length <=20 is atlas REALIZABLE
+- every formal itinerary of length <=20 is atlas REALIZABLE
 Strongest theorem
 - none new
 Strongest refutation
@@ -14627,10 +14627,10 @@ Reusable machinery
 Branch status
 - CLOSE
 Why
-- the word filter is already the shared envelope;
+- the itinerary filter is already the shared envelope;
   the AA gap is hold-out unstable and has no P
 Best next question
-- none from this word language
+- none from this itinerary language
 ```
 
 ## Juggler nested anchor cylinders
@@ -14736,7 +14736,7 @@ Best next question
 
 - **Date:** 2026-08-30
 - **Objective:** Adapt the parked Atlas GPU engine into a first-descent leftover-class histogram through \(10^9\)
-- **Hypotheses:** a short leftover dictionary appears, or leftover word shares drift with scale
+- **Hypotheses:** a short leftover dictionary appears, or leftover itinerary shares drift with scale
 - **Major results:** Classification **CERTIFICATE_HARVEST_PARK**. CUDA harvest \(2\le n\le 10^9\), \(k\le 20\): \(E=5.00\cdot 10^8\), \(OE=2.50\cdot 10^8\), \(OOEE=6.25\cdot 10^7\), leftover-with-word \(1.48\cdot 10^8\), uncapped \(4.06\cdot 10^6\), Wide8 overflow \(3.50\cdot 10^7\). Unfinished plus leftover is \(3/16\). Leading words `OOOEE` and `OOEOE` at share \(\approx 0.21\) each; scale-split TV \(0.013\). Unary \(O^+E^+\) share \(0.29\), `OOOO*` share \(0.08\). No Lean. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row. \(10^{10}\) not run
 - **Refuted ideas:** leftover is only `OOOO*` then evens; leftover shares drift with scale; overflow stays rare at \(10^9\)
 - **Literature:** Paper A Theorem 4.1; `juggler_word_atlas.md`; Paper B `OOEE`
@@ -14771,10 +14771,10 @@ Best next question
 - **Objective:** Iterate existing first-descent certificates \(\{E,OE,OOEE,R\}\) from each landing and test whether the residual graph closes under composition
 - **Hypotheses:** residual-to-next has missing edges or a bounded \(\tau_R\), giving a certificate calculus beyond \(T<n\)
 - **Major results:** Classification **CERTIFICATE_TRANSITIONS_CLOSED**. CPU iterator \(n\le 2\cdot 10^4\): all 16 transitions present; first-certificate counts \(E=10000\), \(OE=4989\), \(OOEE=1225\), \(R=3785\); Q-itinerary identity on every first word; \(R\to R=1113\); Type A/B from residual starts \(3073/712\); \(\max\tau_R=4\) at \(1891\to 895\to 309\to 37\); one SCC \(\{E,OE,OOEE,R\}\) as a decreasing landing quotient; labs all have \(\tau_R=1\); \(365\) and \(501\) share \(R\,E\,OOEE\,E\) and merge at \(34\); no forced composition pair; no graph-absorbing certificate. No Lean. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row
-- **Refuted ideas:** residual remains AboveAnchor after the leftover word; first residual certificate is not a \(Q\)-itinerary; some \(C_i\to C_j\) is impossible at this alphabet; \(R\to R\) is a numerical cycle; a pair of certificates forces a unique third
+- **Refuted ideas:** residual remains AboveAnchor after the leftover itinerary; first residual certificate is not a \(Q\)-itinerary; some \(C_i\to C_j\) is impossible at this alphabet; \(R\to R\) is a numerical cycle; a pair of certificates forces a unique third
 - **Literature:** `even_finiteProgress`; `odd_even_finiteProgress`; `finiteProgress_of_imageLt`; `juggler_certificate_harvest.md`; `q_blocks`
 - **Open:** none from certificate-transition composition
-- **Decision:** CLOSE. The layer is a 4-letter label on successive first descents / \(Q\)-itineraries; every leftover word is already `FiniteProgress`
+- **Decision:** CLOSE. The layer is a 4-letter label on successive first descents / \(Q\)-itineraries; every leftover itinerary is already `FiniteProgress`
 
 ```text
 What was learned
@@ -14788,7 +14788,7 @@ Strongest theorem
 - none new
 Strongest refutation
 - residual is an unresolved AboveAnchor state whose
-  leftover word is not a Q-block
+  leftover itinerary is not a Q-block
 Reusable machinery
 - none; no new Lean primitive; compact transition tables only
 Branch status
@@ -14840,7 +14840,7 @@ Best next question
 - **Hypotheses:** the whole-cycle log financing identity forces \(n\ln n\le\frac65 L\,3^o/(3^o-2^L)\), so one verified floor excludes every length at once outside near-convergent exceptions
 - **Major results:** Classification **CYCLE_FINANCE_GREEN**. The finance inequality is **EXACT — HUMAN PROOF** (dossier): unroll \(x_{i+1}^2=x_i^{e_i}-d_i\), \(0\le d_i\le 2x_{i+1}\), in logs around the cycle; per-step \(\varepsilon_i\le(6/5)/x_{i+1}\) for states \(\ge12\). Exact gap table \(L\le10^5\); descent-induction floor: every \(2\le n\le10^6\) reaches 1 (**COMPUTATIONALLY VERIFIED**; max first passage 253 steps at seed 78901, peak value \(6.3\cdot10^6\) bits). Consequences: no Juggler cycle of length \(\le1053\); none of length \(\le10^5\) outside 397 explicit near-convergent lengths (94 multiples of 1054 plus combinations); record lengths \(1,3,11,19,84,569,1054,25781,50508\) track the convergents of \(\ln2/\ln3\); a \(10^9\) floor would clear all \(L\le10^5\). Census cross-check: finance + the Lean residual floor independently kill \(L\in\{1,2,4,5,7,8\}\), leaving \(\{3,6\}\) census-only. Slack on real orbits: worst per-step margin \(\ge0.17\), identity exact to \(2\cdot10^{-16}\), orbits use \(0.22\)–\(0.47\) of budget. No new Lean file. Paper A unchanged. Not a halt theorem
 - **Refuted ideas:** none; the falsifier (per-step bound violation on real orbit data) did not fire
-- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `no_cycle_word_length_le_eight`; `global_defect_identity`; `cycle_peak_finance`
+- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `no_cycle_itinerary_length_le_eight`; `global_defect_identity`; `cycle_peak_finance`
 - **Open:** the near-convergent exceptional lengths need a growing floor, a Baker-type gap bound, or near-tight rigidity to cover all \(L\)
 - **Decision:** PROMOTE. Promotion is to Lean formalization of the inequality over `pathDefectSum`/`global_defect_identity`
 
@@ -14877,12 +14877,12 @@ Best next question
 ## Juggler cycle finance Lean formalization
 
 - **Date:** 2026-08-31
-- **Objective:** Formalize the cycle finance inequality in Lean over the existing `follows`/`image`/`CycleWord` machinery (`Real.log` form) and extract wholesale length exclusions from the residual floor `reachesOne_of_lt_twelve`
-- **Hypotheses:** the dyadic-cell bound \(\log z\le 2\log y+2/y\) unrolls on a `CycleMin` to \(n\log n\cdot(3^o-2^L)\le L\cdot 3^o\), and \(13\log 13>65/2\) excludes lengths \(9\) and \(10\) (and isolated \(12\), \(13\), \(16\)) without a word census
-- **Major results:** `CycleFinance.lean` is `sorry`-free. `cycleMin_finance` and `cycle_finance_min_thirteen` are **EXACT — LEAN VERIFIED**. Census extension `no_cycle_word_length_le_ten` is **EXACT — LEAN VERIFIED**. Isolated exclusions of lengths \(12\), \(13\), and \(16\); residual `cycle_word_length_eleven_or_ge_fourteen`. Ledger rows `J-cycle-finance-inequality`, `J-small-cycle-census-ten`, `J-cycle-word-length-eleven-or-ge-fourteen`. Paper A unchanged. The Python floor \(N_0=10^6\) (all \(L\le1053\)) remains **COMPUTATIONALLY VERIFIED**, not Lean. Not a halt theorem
+- **Objective:** Formalize the cycle finance inequality in Lean over the existing `follows`/`image`/`CycleItinerary` machinery (`Real.log` form) and extract wholesale length exclusions from the residual floor `reachesOne_of_lt_twelve`
+- **Hypotheses:** the dyadic-cell bound \(\log z\le 2\log y+2/y\) unrolls on a `CycleMin` to \(n\log n\cdot(3^o-2^L)\le L\cdot 3^o\), and \(13\log 13>65/2\) excludes lengths \(9\) and \(10\) (and isolated \(12\), \(13\), \(16\)) without an itinerary census
+- **Major results:** `CycleFinance.lean` is `sorry`-free. `cycleMin_finance` and `cycle_finance_min_thirteen` are **EXACT — LEAN VERIFIED**. Census extension `no_cycle_itinerary_length_le_ten` is **EXACT — LEAN VERIFIED**. Isolated exclusions of lengths \(12\), \(13\), and \(16\); residual `cycle_itinerary_length_eleven_or_ge_fourteen`. Ledger rows `J-cycle-finance-inequality`, `J-small-cycle-census-ten`, `J-cycle-itinerary-length-eleven-or-ge-fourteen`. Paper A unchanged. The Python floor \(N_0=10^6\) (all \(L\le1053\)) remains **COMPUTATIONALLY VERIFIED**, not Lean. Not a halt theorem
 - **Refuted ideas:** none; the Lean unroll did not stall
-- **Literature:** Phase-0 dossier `juggler_cycle_finance`; `no_cycle_word_length_le_eight`; `cycle_word_formally_expanding`; `reachesOne_of_lt_twelve`; `simons-de-weger-2005-collatz-m-cycles`
-- **Open:** length \(11\) (near-convergent \(2^{11}<3^7\), \(n_{\max}\approx52\)) and lengths \(\ge14\) except \(16\) still need a larger Lean floor or a word-specific argument
+- **Literature:** Phase-0 dossier `juggler_cycle_finance`; `no_cycle_itinerary_length_le_eight`; `cycle_itinerary_formally_expanding`; `reachesOne_of_lt_twelve`; `simons-de-weger-2005-collatz-m-cycles`
+- **Open:** length \(11\) (near-convergent \(2^{11}<3^7\), \(n_{\max}\approx52\)) and lengths \(\ge14\) except \(16\) still need a larger Lean floor or an itinerary-specific argument
 - **Decision:** PROMOTE. The inequality and the length-\(\le10\) census enter the laboratory stack
 
 ```text
@@ -14892,7 +14892,7 @@ What was learned
 - CycleMin plus the residual floor 12 plus oddness of the
   rotated minimum yields 13 log 13 > 65/2
 - that numeric comparison excludes L = 9, 10, 12, 13, 16
-  with no word census
+  with no itinerary census
 - the Lean-verified census is now L <= 10; any remaining
   cycle has period 11 or >= 14
 - the computational 1053-exclusion is still a Python floor,
@@ -14918,11 +14918,11 @@ Best next question
 ## Juggler cycle finance length 11
 
 - **Date:** 2026-08-31
-- **Objective:** Exclude length-11 cycle words in Lean, the first near-convergent residual after the finance census \(\le10\)
-- **Hypotheses:** raising the residual floor past \(n_{\max}(11)\approx52\) lets `cycleMin_finance` kill \(L=11\) without a leftover-word census
-- **Major results:** `reachesOne_of_lt_fifty_three` is **EXACT — LEAN VERIFIED** (evens \(<144\) already reduce to \(\{1,\dots,11\}\); odd seeds \(13,\dots,51\) are finite certificates; \(37\) takes 17 steps). `finance_excludes_length_eleven` and `no_cycle_word_length_le_eleven` are **EXACT — LEAN VERIFIED**. Residual `cycle_word_length_ge_fourteen`. Ledger rows `J-residual-floor-fifty-three`, `J-small-cycle-census-eleven`, `J-cycle-word-length-ge-fourteen`. No theorem named `no_cycle_word_length_eleven`. Paper A unchanged. Not a leftover census of the thirty length-11 short-gap families
+- **Objective:** Exclude length-11 cycle itineraries in Lean, the first near-convergent residual after the finance census \(\le10\)
+- **Hypotheses:** raising the residual floor past \(n_{\max}(11)\approx52\) lets `cycleMin_finance` kill \(L=11\) without a leftover-itinerary census
+- **Major results:** `reachesOne_of_lt_fifty_three` is **EXACT — LEAN VERIFIED** (evens \(<144\) already reduce to \(\{1,\dots,11\}\); odd seeds \(13,\dots,51\) are finite certificates; \(37\) takes 17 steps). `finance_excludes_length_eleven` and `no_cycle_itinerary_length_le_eleven` are **EXACT — LEAN VERIFIED**. Residual `cycle_itinerary_length_ge_fourteen`. Ledger rows `J-residual-floor-fifty-three`, `J-small-cycle-census-eleven`, `J-cycle-itinerary-length-ge-fourteen`. No theorem named `no_cycle_itinerary_length_eleven`. Paper A unchanged. Not a leftover census of the thirty length-11 short-gap families
 - **Refuted ideas:** none; the floor raise closed
-- **Literature:** `juggler_cycle_finance`; `cycle_word_length_ge_eleven` (even-count \(\ge4\)); parked leftover-word attacks at length 11
+- **Literature:** `juggler_cycle_finance`; `cycle_itinerary_length_ge_eleven` (even-count \(\ge4\)); parked leftover-itinerary attacks at length 11
 - **Open:** lengths \(14\), \(15\); next convergent \(L=19\) needs a floor past \(\approx297\)
 - **Decision:** PROMOTE. Length 11 dies by finance plus a finite residual floor
 
@@ -14932,9 +14932,9 @@ What was learned
 - the existing even residual even n < 144 already reaches 1
 - a finite odd-orbit table through 51 raises the Lean floor to 53
 - 53 log 53 > 371/2 is enough to finance-exclude L=11
-- the leftover-census name no_cycle_word_length_eleven stays unused
+- the leftover-census name no_cycle_itinerary_length_eleven stays unused
 Strongest theorem
-- no_cycle_word_length_le_eleven (EXACT — LEAN VERIFIED);
+- no_cycle_itinerary_length_le_eleven (EXACT — LEAN VERIFIED);
   any remaining cycle has period >= 14
 Strongest refutation
 - none
@@ -14944,7 +14944,7 @@ Branch status
 - PROMOTE
 Why
 - first near-convergent length killed formally, by finance,
-  not by assembling the thirty leftover words
+  not by assembling the thirty leftover itineraries
 Best next question
 - can lengths 14 and 15 be excluded in Lean, or can the
   residual floor be raised past 297 so finance kills L=19?
@@ -14955,9 +14955,9 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Connect `cycle_finance_min_fifty_three` to every length it already excludes, and name the residual leftover
 - **Hypotheses:** the unused floor-`53` comparison kills \(L\in\{14,15,17,18\}\) at \(o_{\min}\), so the leftover is \(19\) or \(\ge 20\)
-- **Major results:** `finance_excludes_at` packages the comparison. Lengths \(14\), \(15\), \(17\), \(18\), and \(20\)–\(29\) are **EXACT — LEAN VERIFIED**. `no_cycle_word_length_le_eighteen` and leftover `cycle_word_length_nineteen_or_ge_thirty` (weaker corollary `nineteen_or_ge_twenty`). \(L=30\) survives \(\tfrac{371}{2}\), so the optional leftover \(19\) or \(\ge 38\) is false at this floor. Ledger rows `J-small-cycle-census-eighteen`, `J-cycle-word-length-nineteen-or-ge-thirty`. `EvenCountThree` does not import finance; `cycle_word_length_ge_eleven` remains the even-count bound. Paper A unchanged. Not a halt theorem
+- **Major results:** `finance_excludes_at` packages the comparison. Lengths \(14\), \(15\), \(17\), \(18\), and \(20\)–\(29\) are **EXACT — LEAN VERIFIED**. `no_cycle_itinerary_length_le_eighteen` and leftover `cycle_itinerary_length_nineteen_or_ge_thirty` (weaker corollary `nineteen_or_ge_twenty`). \(L=30\) survives \(\tfrac{371}{2}\), so the optional leftover \(19\) or \(\ge 38\) is false at this floor. Ledger rows `J-small-cycle-census-eighteen`, `J-cycle-itinerary-length-nineteen-or-ge-thirty`. `EvenCountThree` does not import finance; `cycle_itinerary_length_ge_eleven` remains the even-count bound. Paper A unchanged. Not a halt theorem
 - **Refuted ideas:** leftover \(19\) or \(\ge 38\) at floor \(53\) — \(L=30\) survives
-- **Literature:** `cycle_finance_min_fifty_three`; `cycle_word_length_ge_fourteen`
+- **Literature:** `cycle_finance_min_fifty_three`; `cycle_itinerary_length_ge_fourteen`
 - **Open:** \(L=19\) needs a floor past \(\approx 297\); \(L=30\) needs a larger floor or a different argument
 - **Decision:** PROMOTE. The floor already in the file now matches the leftover statement
 
@@ -14968,7 +14968,7 @@ What was learned
 - leftover is 19 or >= 30, not >= 14
 - EvenCountThree stays independent (period >= 11)
 Strongest theorem
-- cycle_word_length_nineteen_or_ge_thirty (EXACT — LEAN VERIFIED)
+- cycle_itinerary_length_nineteen_or_ge_thirty (EXACT — LEAN VERIFIED)
 Strongest refutation
 - L=30 survives the floor-53 finance comparison
 Reusable machinery
@@ -15027,9 +15027,9 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Package the existing finance leftover in Eliahou form: period \(19\), or a listed near-convergent, or \(\ge 10^5\)
 - **Hypotheses:** the Lean leftover \(19\) or \(\ge 30\), plus the computational finance table, is already the Collatz Eliahou leftover; the work is bookkeeping, not a new inequality
-- **Major results:** `cycle_word_eliahou_leftover` is **EXACT — LEAN VERIFIED** (implication: `nineteen_or_ge_thirty` plus `EliahouTable` gives period \(19\), a listed family, or \(\ge 10^5\)). The instance at the Python floor \(10^6\) is **COMPUTATIONALLY VERIFIED**: the existing \(397\) near-convergents. Length \(19\) is kept as the Lean-named leftover and is computationally already excluded (\(n_{\max}\approx297\)). Ledger rows `J-cycle-word-eliahou-leftover`, `J-cycle-word-eliahou-leftover-instance`. Paper A unchanged. Not a halt theorem
+- **Major results:** `cycle_itinerary_eliahou_leftover` is **EXACT — LEAN VERIFIED** (implication: `nineteen_or_ge_thirty` plus `EliahouTable` gives period \(19\), a listed family, or \(\ge 10^5\)). The instance at the Python floor \(10^6\) is **COMPUTATIONALLY VERIFIED**: the existing \(397\) near-convergents. Length \(19\) is kept as the Lean-named leftover and is computationally already excluded (\(n_{\max}\approx297\)). Ledger rows `J-cycle-itinerary-eliahou-leftover`, `J-cycle-itinerary-eliahou-leftover-instance`. Paper A unchanged. Not a halt theorem
 - **Refuted ideas:** none; the leftover is a rewrite of recorded exclusions
-- **Literature:** Eliahou leftover packaging for Collatz (period \(\ge X\), or a named convergent family); `cycle_word_length_nineteen_or_ge_thirty`; `simons-de-weger-2005-collatz-m-cycles`
+- **Literature:** Eliahou leftover packaging for Collatz (period \(\ge X\), or a named convergent family); `cycle_itinerary_length_nineteen_or_ge_thirty`; `simons-de-weger-2005-collatz-m-cycles`
 - **Open:** \(L=19\) still needs a Lean floor past \(\approx297\); the \(397\) family still needs a larger floor or near-tight rigidity
 - **Decision:** PROMOTE. The leftover is now theorem-shaped. No new inequality
 
@@ -15044,7 +15044,7 @@ What was learned
 - no new comparison and no 397-numeral dump in Lean
 - Baker on |3^o-2^L| remains closed; this is not that branch
 Strongest theorem
-- cycle_word_eliahou_leftover (EXACT — LEAN VERIFIED implication);
+- cycle_itinerary_eliahou_leftover (EXACT — LEAN VERIFIED implication);
   instance COMPUTATIONALLY VERIFIED
 Strongest refutation
 - none
@@ -15108,9 +15108,9 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Raise the Lean residual floor far enough that `cycleMin_finance` excludes the near-convergent length \(19\)
 - **Hypotheses:** the Python \(6/5\) table needs a floor past \(n_{\max}(19)=297\); Lean's constant \(1\) only needs \(n\ln n>19\cdot 3^{12}/(3^{12}-2^{19})=1411.63\), so a floor of \(257\) suffices
-- **Major results:** `reachesOne_of_lt_two_hundred_fifty_seven` is **EXACT — LEAN VERIFIED** (evens \(<2809\) reduce to \(\{1,\dots,52\}\); odd seeds \(53,\dots,255\) are finite certificates; \(193\) takes 73 steps). `cycle_finance_min_two_hundred_fifty_seven` uses \(257\log 257>2827/2\). `finance_excludes_length_nineteen` and `no_cycle_word_length_le_nineteen` are **EXACT — LEAN VERIFIED**. Lengths \(30\)–\(37\) die by the same comparison. Leftover `cycle_word_length_thirty_eight_or_ge_thirty_nine`. Eliahou packaging now names period \(38\), a listed near-convergent, or \(\ge 10^5\). Ledger rows `J-residual-floor-two-hundred-fifty-seven`, `J-small-cycle-census-nineteen`, `J-cycle-word-length-ge-thirty`, `J-cycle-word-length-thirty-eight-or-ge-thirty-nine`. Paper A unchanged. Not a halt theorem
+- **Major results:** `reachesOne_of_lt_two_hundred_fifty_seven` is **EXACT — LEAN VERIFIED** (evens \(<2809\) reduce to \(\{1,\dots,52\}\); odd seeds \(53,\dots,255\) are finite certificates; \(193\) takes 73 steps). `cycle_finance_min_two_hundred_fifty_seven` uses \(257\log 257>2827/2\). `finance_excludes_length_nineteen` and `no_cycle_itinerary_length_le_nineteen` are **EXACT — LEAN VERIFIED**. Lengths \(30\)–\(37\) die by the same comparison. Leftover `cycle_itinerary_length_thirty_eight_or_ge_thirty_nine`. Eliahou packaging now names period \(38\), a listed near-convergent, or \(\ge 10^5\). Ledger rows `J-residual-floor-two-hundred-fifty-seven`, `J-small-cycle-census-nineteen`, `J-cycle-itinerary-length-ge-thirty`, `J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine`. Paper A unchanged. Not a halt theorem
 - **Refuted ideas:** that the Lean floor must pass the Python \(6/5\) threshold \(297\) to kill \(L=19\)
-- **Literature:** `juggler_cycle_finance`; `cycle_word_length_nineteen_or_ge_thirty`; `juggler_cycle_gap_baker` (CLOSE)
+- **Literature:** `juggler_cycle_finance`; `cycle_itinerary_length_nineteen_or_ge_thirty`; `juggler_cycle_gap_baker` (CLOSE)
 - **Open:** \(L=38\) survives \(2827/2\); exact \(\log 257\) would kill it (\(257\ln 257\approx1426>1421.2\)); next substantial convergent is \(L=84\)
 - **Decision:** PROMOTE. Length 19 dies by finance plus a finite residual floor
 
@@ -15123,8 +15123,8 @@ What was learned
 - exact log 257 would also kill L=38, but 11/2 does not
 - 102 odd-orbit certificates; worst is n=193 (73 steps)
 Strongest theorem
-- no_cycle_word_length_le_nineteen and
-  cycle_word_length_thirty_eight_or_ge_thirty_nine
+- no_cycle_itinerary_length_le_nineteen and
+  cycle_itinerary_length_thirty_eight_or_ge_thirty_nine
   (EXACT — LEAN VERIFIED)
 Strongest refutation
 - L=38 survives 2827/2 at floor 257
@@ -15135,7 +15135,7 @@ Branch status
 - PROMOTE
 Why
 - the next near-convergent dies by the same finance
-  comparison, without a leftover-word census
+  comparison, without a leftover-itinerary census
 Best next question
 - can a tighter log 257 certificate, or a few more
   odd seeds, kill L=38, or is the next real target L=84?
@@ -15181,9 +15181,9 @@ Best next question
 
 - **Date:** 2026-08-31
 - **Objective:** Transfer Fernández–Ibáñez Christoffel / mechanical words as unique maximizers to Juggler leftover near-convergents, without the affine equation and without Lebel modular sieving
-- **Hypotheses:** a cycle at leftover \(L\) with \(o=o_{\min}(L)\) is combinatorially close to the Christoffel word of slope \(o/L\), so leftover-word cells apply to a one-parameter necklace instead of \(\binom{L}{o}\) words
+- **Hypotheses:** a cycle at leftover \(L\) with \(o=o_{\min}(L)\) is combinatorially close to the Christoffel word of slope \(o/L\), so leftover-itinerary cells apply to a one-parameter necklace instead of \(\binom{L}{o}\) words
 - **Major results:** Classification **CYCLE_CHRISTOFFEL_CLOSED**. Leftover lengths are the named Beatty / Farey approximations (**KNOWN**): \(7/11=2/3\oplus 5/8\), \(12/19\), \(24/38=2\cdot(12/19)\), \(53/84\), \(359/569=53/84\oplus 306/485\), \(665/1054\). Ceiling Christoffel \(c_L\) is balanced with \(\max O=2\), \(\max E=1\); \(c_{38}=c_{19}^2\). The one-parameter leftover-cell slogan is **REFUTED**: thirty L=11 leftovers have Hamming histogram \(0:1,2:16,4:13\); L=19 CycleMin weight-12 has \(12376\) words, median Hamming \(6\), radius \(0\) only \(7\); isolated-even worst-\(m\) family has \(462\) words. Finance and CycleMin slack \(139\) are word-order-independent. Conjecture `juggler_christoffel_one_parameter` is **REFUTED**. Ledger row `J-christoffel-one-parameter`. No Lebel. No new Lean. Paper A unchanged. Cycle-only near-Christoffel rigidity is not refuted
-- **Refuted ideas:** that leftover-word cells apply only to the Christoffel necklace; that Fernández–Ibáñez unique maximizers transfer without the affine equation as a one-parameter reduction
+- **Refuted ideas:** that leftover-itinerary cells apply only to the Christoffel necklace; that Fernández–Ibáñez unique maximizers transfer without the affine equation as a one-parameter reduction
 - **Literature:** `fernandez-ibanez-2026`; `lebel-2026`; `juggler_cycle_finance`; `juggler_cycle_near_tight`; `J-approx-equality-rigidity`
 - **Open:** cycle-only near-Christoffel rigidity remains the same open question as cycle-only near-tightness; leftovers remain a floor question
 - **Decision:** CLOSE. The unused combinatorial half does not reduce leftover candidates to a necklace
@@ -15192,7 +15192,7 @@ Best next question
 What was learned
 - leftover L are Beatty / Farey approximations of log 2 / log 3
 - c_L is the balanced mechanical word; c_38 = c_19 squared
-- leftover-word cells at L=11 hit a 30-word family, not a necklace
+- leftover-itinerary cells at L=11 hit a 30-word family, not a necklace
 - L=19 CycleMin candidates have median Hamming 6 to Christoffel
 - worst m-finance (isolated evens) is 462 words, not 7
 - finance and L=11 slack are word-order-independent
@@ -15258,9 +15258,9 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether a tighter Lean lower bound on \(\log 257\), or a few more odd residual seeds, excludes \(L=38\), or whether the next real leftover is the convergent \(L=84\)
 - **Hypotheses:** exact \(257\ln 257\approx1426>1421.2=n_{\mathrm{need}}(38)\), so a rational certificate between \(11/2=5.5\) and \(\ln 257\approx5.549\) kills \(L=38\) with no new floor
-- **Major results:** `log_two_hundred_fifty_seven_gt` is now \(\log 257>61/11\) (**EXACT — LEAN VERIFIED**; \(e<2.7182818286\) and \(e^{61}<257^{11}\)). Finance constant \(15677/11\approx1425.18\) excludes \(L=38\) and \(39\)–\(56\). Leftover `cycle_word_length_fifty_seven_or_ge_fifty_eight`. Eliahou period moves \(38\to 57\). \(L=57\) (need \(1430.8\)) and \(L=76\) (need \(1440.5\)) are cheap \(19\)-gap multiples; \(L=84\) needs \(\approx40269\) (exact-log floor \(\approx4756\)). A few more odd seeds at \(11/2\) would also have killed \(38\) (floor \(259\)) and then \(57\) (\(261\)) and \(76\) (\(263\)), still leaving \(84\). Ledger rows `J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths`, `J-cycle-word-length-fifty-seven-or-ge-fifty-eight`. Paper A unchanged. Not a halt theorem
+- **Major results:** `log_two_hundred_fifty_seven_gt` is now \(\log 257>61/11\) (**EXACT — LEAN VERIFIED**; \(e<2.7182818286\) and \(e^{61}<257^{11}\)). Finance constant \(15677/11\approx1425.18\) excludes \(L=38\) and \(39\)–\(56\). Leftover `cycle_itinerary_length_fifty_seven_or_ge_fifty_eight`. Eliahou period moves \(38\to 57\). \(L=57\) (need \(1430.8\)) and \(L=76\) (need \(1440.5\)) are cheap \(19\)-gap multiples; \(L=84\) needs \(\approx40269\) (exact-log floor \(\approx4756\)). A few more odd seeds at \(11/2\) would also have killed \(38\) (floor \(259\)) and then \(57\) (\(261\)) and \(76\) (\(263\)), still leaving \(84\). Ledger rows `J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths`, `J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight`. Paper A unchanged. Not a halt theorem
 - **Refuted ideas:** that \(L=84\) is the next Lean leftover after \(38\); that killing \(38\) requires a floor past \(297\) or new odd-orbit certificates
-- **Literature:** `juggler_cycle_finance`; `cycle_word_length_thirty_eight_or_ge_thirty_nine`
+- **Literature:** `juggler_cycle_finance`; `cycle_itinerary_length_thirty_eight_or_ge_thirty_nine`
 - **Open:** cheap leftovers \(57\), \(76\), \(95,\ldots\) versus the record convergent \(L=84\)
 - **Decision:** PROMOTE. Length 38 dies by a tighter log certificate at the existing floor
 
@@ -15273,7 +15273,7 @@ What was learned
 - L=57 and L=76 are cheap 19-gap multiples, not L=84
 - L=84 needs ≈40269; exact-log floor ≈4756
 Strongest theorem
-- cycle_word_length_fifty_seven_or_ge_fifty_eight
+- cycle_itinerary_length_fifty_seven_or_ge_fifty_eight
   (EXACT — LEAN VERIFIED)
 Strongest refutation
 - L=84 is the next Lean leftover after 38
@@ -15295,9 +15295,9 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether the cheap leftovers \(57\) and \(76\) are worth a few more odd residual seeds, or whether the next real target is the convergent \(L=84\)
 - **Hypotheses:** exact \(\log 257\) cannot kill \(57\); two short odd orbits raise the floor to \(261\) and name leftover as \(84\) or \(\ge 85\)
-- **Major results:** `reachesOne_n257` and `reachesOne_n259` are five-step certificates (peak \(13\) bits). `reachesOne_of_lt_two_hundred_sixty_one` is **EXACT — LEAN VERIFIED**. `cycle_finance_min_two_hundred_sixty_one` uses \(261\log 257>15921/11\). Lengths \(57\)–\(83\) are excluded. Leftover `cycle_word_length_eighty_four_or_ge_eighty_five`. Eliahou period moves \(57\to 84\). \(L=95,114,\ldots\) remain in the \(\ge 85\) bucket. Ledger rows `J-residual-floor-two-hundred-sixty-one`, `J-cycle-word-length-eighty-four-or-ge-eighty-five`. Paper A unchanged. Not a halt theorem
+- **Major results:** `reachesOne_n257` and `reachesOne_n259` are five-step certificates (peak \(13\) bits). `reachesOne_of_lt_two_hundred_sixty_one` is **EXACT — LEAN VERIFIED**. `cycle_finance_min_two_hundred_sixty_one` uses \(261\log 257>15921/11\). Lengths \(57\)–\(83\) are excluded. Leftover `cycle_itinerary_length_eighty_four_or_ge_eighty_five`. Eliahou period moves \(57\to 84\). \(L=95,114,\ldots\) remain in the \(\ge 85\) bucket. Ledger rows `J-residual-floor-two-hundred-sixty-one`, `J-cycle-itinerary-length-eighty-four-or-ge-eighty-five`. Paper A unchanged. Not a halt theorem
 - **Refuted ideas:** that \(57\) and \(76\) can be skipped because they are not record convergents (they blocked naming leftover as \(84\)); that a tighter log at floor \(257\) kills \(57\)
-- **Literature:** `juggler_cycle_finance`; `cycle_word_length_fifty_seven_or_ge_fifty_eight`
+- **Literature:** `juggler_cycle_finance`; `cycle_itinerary_length_fifty_seven_or_ge_fifty_eight`
 - **Open:** \(L=84\) needs \(n\ln n>40269\) (exact-log floor \(\approx 4756\))
 - **Decision:** PROMOTE. The two seeds were worth it: leftover is now the record convergent
 
@@ -15311,7 +15311,7 @@ What was learned
 - leftover is now 84 or >= 85, the next record convergent
 - cheap cousins 95, 114, … sit in the >= 85 bucket
 Strongest theorem
-- cycle_word_length_eighty_four_or_ge_eighty_five
+- cycle_itinerary_length_eighty_four_or_ge_eighty_five
   (EXACT — LEAN VERIFIED)
 Strongest refutation
 - that 57/76 should be skipped; they blocked naming 84
@@ -15370,7 +15370,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether a cycle can have every local minimum equal to the global minimum \(n\), and whether forbidding that coincidence excludes leftover \((L,m)\)
 - **Hypotheses:** all \(m\) valleys equal \(n\) is a real geometric possibility, or else \(n+2\) is a leftover-killing height
-- **Major results:** Classification **EQUAL_VALLEYS_CLOSED**. Unique visit of \(n\) on a leftover length is **REPARAMETERIZATION** of `follows_take` / `image_take_of_le` (`J-cycle-unique-minimum-visit`): an intermediate return is a shorter `CycleWord`. For \(m\ge 2\) the other valleys are \(\ge n+2\). The leftover-killer slogan is **REFUTED** (`juggler_equal_valleys_leftover_killer`, `J-equal-valleys-leftover-killer`): at \(L=84\), \(m=3\), floor \(261\), Lean constant \(1\), split RHS \(\approx 0.003515\) and height plus \(n+2\) \(\approx 0.002180\), both above \(\theta\approx 0.002086\). Joint-style split never kills (climbs at \(T(261)=4216\) dominate). Height-split would need the other valleys \(\ge 281\). No new Lean. Paper A unchanged. Not a leftover-length exclusion
+- **Major results:** Classification **EQUAL_VALLEYS_CLOSED**. Unique visit of \(n\) on a leftover length is **REPARAMETERIZATION** of `follows_take` / `image_take_of_le` (`J-cycle-unique-minimum-visit`): an intermediate return is a shorter `CycleItinerary`. For \(m\ge 2\) the other valleys are \(\ge n+2\). The leftover-killer slogan is **REFUTED** (`juggler_equal_valleys_leftover_killer`, `J-equal-valleys-leftover-killer`): at \(L=84\), \(m=3\), floor \(261\), Lean constant \(1\), split RHS \(\approx 0.003515\) and height plus \(n+2\) \(\approx 0.002180\), both above \(\theta\approx 0.002086\). Joint-style split never kills (climbs at \(T(261)=4216\) dominate). Height-split would need the other valleys \(\ge 281\). No new Lean. Paper A unchanged. Not a leftover-length exclusion
 - **Refuted ideas:** all leftover \(m\)-valleys can equal \(n\); \(n+2\) excludes \(L=84\) at \(m\ge 3\)
 - **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `juggler_cycle_finance`; `juggler_cycle_m_finance`; `juggler_cycle_position_finance`
 - **Open:** stop on equal valleys; height law at \(m=1,2\) remains the unpaid Lean packaging
@@ -15408,7 +15408,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Formalize the odd-run height law so the Lean leftover becomes period \(84\) with \(m\ge 3\), or length \(\ge 85\)
 - **Hypotheses:** the inv-sum form of `cycleMin_finance` plus a uniform height cap at floor \(261\) excludes every length-\(84\) `CycleMin` with at most two odd-runs
-- **Major results:** `cycleMin_log_envelope_inv` and `cycleMin_finance_inv_sum` keep the defects as \(\sum 1/x_i\). Certificates `floorPower 261 = 4216` and `floorPower 4217 = 273845` classify first-odd / later-odd / even-even / valley terms. The uniform cap \(2/261+2/4217+84/273845+31/68121\) is strictly below \(\theta\cdot 61/11\) at \(o\ge 53\). `no_cycleMin_length_eighty_four_of_circuit_le_two` is **EXACT — LEAN VERIFIED**. Leftover `cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`. Residual floor stays \(261\). No `PositionFinance` layer. Paper A unchanged. Not a halt theorem
+- **Major results:** `cycleMin_log_envelope_inv` and `cycleMin_finance_inv_sum` keep the defects as \(\sum 1/x_i\). Certificates `floorPower 261 = 4216` and `floorPower 4217 = 273845` classify first-odd / later-odd / even-even / valley terms. The uniform cap \(2/261+2/4217+84/273845+31/68121\) is strictly below \(\theta\cdot 61/11\) at \(o\ge 53\). `no_cycleMin_length_eighty_four_of_circuit_le_two` is **EXACT — LEAN VERIFIED**. Leftover `cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`. Residual floor stays \(261\). No `PositionFinance` layer. Paper A unchanged. Not a halt theorem
 - **Refuted ideas:** none new; the \(4756\) residual-floor campaign stays **PARK**
 - **Literature:** `juggler_cycle_finance`; `juggler_cycle_position_finance`; `juggler_cycle_m_finance`
 - **Open:** length \(84\) with \(m\ge 3\)
@@ -15424,7 +15424,7 @@ What was learned
 - Eliahou leftover stays length-only (84, listed, or >=10^5)
 - residual-floor factory to 1981/4756 remains PARK
 Strongest theorem
-- cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+- cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five
   (EXACT — LEAN VERIFIED)
 Strongest refutation
 - none new
@@ -15461,7 +15461,7 @@ What was learned
 - pigeonhole k>=18 still has 29 evens; 11 sqrts return to n
 Strongest theorem
 - none; leftover stays
-  cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+  cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five
 Strongest refutation
 - juggler_l84_m_ge_three_floor_261
 Reusable machinery
@@ -15495,7 +15495,7 @@ What was learned
 - the note is not Paper A and not a halt theorem
 Strongest theorem
 - cycleMin_finance together with
-  cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+  cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five
 Strongest refutation
 - none new
 Reusable machinery
@@ -15514,7 +15514,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Attack the named even-run upper cell \((p+1)^{2^r}\) as leftover finance: does it force enough \(1/(x\ln x)\) mass into the top window that leftover \(L=84\) at \(m\ge 3\) dies at floor \(261\)?
 - **Hypotheses:** \(M<(p+1)^{2^r}\) plus the odd-run height of the peak forces a landing \(p\ge\operatorname{isqrt}^{r}(M_{\min})\) that height packing still charges at \(n\), and that raise excludes every \(m\ge 3\) under a proved constant
-- **Major results:** Classification **CLOSED**. Landing corollary **REPARAMETERIZATION** of `even_iter_lt_succ_pow` (`J-cycle-ceiling-landing`). Leftover-killer **REFUTED** (`juggler_ceiling_finance_leftover_killer`, `J-ceiling-finance-leftover-killer`). At \(n=261\), \(m=3\), pigeonhole \(k=18\) lands at \(p=3075\) and would kill; the adversarial peak run \(k=24\) has \(r=14\), \(p=304\). Constant \(6/5\) RHS \(\approx 0.002495>\theta\approx 0.002086\); Lean inv-sum \(S\approx 0.012130>0.011568\). Those forms first kill at \(p\ge 659\) and \(p\ge 367\). Log-two lower bounds for \(k=25,\ldots,51\) all sit above \(304\). Large \(m\) is worse. No new Lean. Paper A unchanged. Not a leftover-word census and not a floor raise
+- **Major results:** Classification **CLOSED**. Landing corollary **REPARAMETERIZATION** of `even_iter_lt_succ_pow` (`J-cycle-ceiling-landing`). Leftover-killer **REFUTED** (`juggler_ceiling_finance_leftover_killer`, `J-ceiling-finance-leftover-killer`). At \(n=261\), \(m=3\), pigeonhole \(k=18\) lands at \(p=3075\) and would kill; the adversarial peak run \(k=24\) has \(r=14\), \(p=304\). Constant \(6/5\) RHS \(\approx 0.002495>\theta\approx 0.002086\); Lean inv-sum \(S\approx 0.012130>0.011568\). Those forms first kill at \(p\ge 659\) and \(p\ge 367\). Log-two lower bounds for \(k=25,\ldots,51\) all sit above \(304\). Large \(m\) is worse. No new Lean. Paper A unchanged. Not a leftover-itinerary census and not a floor raise
 - **Refuted ideas:** that the unused upper cell forces enough top-window mass to kill leftover \(84\) at \(m\ge 3\); that pigeonhole \(k=18\) is the worst peak run (the fractional part \(\{k\log_2(3/2)\}\) can sit near \(0\))
 - **Literature:** `juggler_cycle_finance`; `juggler_cycle_top_excursion`; `even_iter_lt_succ_pow`
 - **Open:** stop; leftover remains \(84\) with \(m\ge 3\) or \(\ge 85\)
@@ -15567,7 +15567,7 @@ What was learned
 - the note is not Paper A and not a halt theorem
 Strongest theorem
 - cycleMin_finance together with
-  cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+  cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five
 Strongest refutation
 - none new; ceiling leftover-killer already recorded
 Reusable machinery
@@ -15598,7 +15598,7 @@ What was learned
 - finance is now Paper A Section 5, not a second manuscript
 - printed leftover is floor 10^6 plus Eliahou form
 - Lean leftover 84 is formalization lag, not the title claim
-- word census vs period exclusion is the surviving scope sentence
+- itinerary census vs period exclusion is the surviving scope sentence
 - height leftover stays out of the paper barrel
 Strongest theorem
 - cycleMin_finance (Paper A Theorem 5.1), already proved
@@ -15619,21 +15619,21 @@ Best next question
 
 - **Date:** 2026-08-31
 - **Objective:** Print Paper A's cycle leftover as the Lean even-count assembler already proved
-- **Hypotheses:** Theorems 3.12--3.21 plus bootstrap already exclude every cycle word with fewer than four evens
-- **Major results:** Paper A Theorem 3.22 / Corollary 3.23: no cycle word has even-count at most three, so a nontrivial cycle has period at least eleven. `EvenCountThree` is imported by `Problems.JugglerPaper`. Ledger `J-even-count-le-three` is now a Paper A row. Length-8 is an implied corollary, not a second census. Lean leftover \(84\) stays an Appendix A companion. No halt theorem
+- **Hypotheses:** Theorems 3.12--3.21 plus bootstrap already exclude every cycle itinerary with fewer than four evens
+- **Major results:** Paper A Theorem 3.22 / Corollary 3.23: no cycle itinerary has even-count at most three, so a nontrivial cycle has period at least eleven. `EvenCountThree` is imported by `Problems.JugglerPaper`. Ledger `J-even-count-le-three` is now a Paper A row. Length-8 is an implied corollary, not a second census. Lean leftover \(84\) stays an Appendix A companion. No halt theorem
 - **Refuted ideas:** none (claim-alignment pass)
 - **Literature:** none added
 - **Open:** four-even leftovers; finance leftover after period 11
-- **Decision:** PROMOTE the printed even-count assembly. Do not import leftover \(84\) or a length-9 word census
+- **Decision:** PROMOTE the printed even-count assembly. Do not import leftover \(84\) or a length-9 itinerary census
 
 ```text
 What was learned
 - the printed census lagged the Lean assembler by one
   even-count theorem
 - period ≥ 11 is the expansion corollary of e ≥ 4, not
-  a length-9 or length-10 word census
+  a length-9 or length-10 itinerary census
 Strongest theorem
-- no cycle word has fewer than four even letters; a
+- no cycle itinerary has fewer than four even letters; a
   nontrivial cycle has period at least eleven
 Strongest refutation
 - none
@@ -15654,7 +15654,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Does CycleMin geometry force the other valleys on leftover \(L=84\), \(m\ge 3\) to sit at \(\ge 281\) at floor \(261\)?
 - **Hypotheses:** `cycleMin_not_odd_even`, `cycleMin_even_ge_sq`, and `even_iter_lt_succ_pow` force that height-split threshold and exclude the leftover under a proved constant
-- **Major results:** Classification **CLOSED**. Landing **REPARAMETERIZATION** of `even_iter_lt_succ_pow` (`J-second-valley-landing`). Leftover-killer **REFUTED** (`juggler_second_valley_leftover_killer`, `J-second-valley-leftover-killer`). Height-split constant \(1\) first kills at \(281\), but Lean inv-sum misses even \(261/281/281\) (\(S\approx 0.012126>0.011568\)). First circuit \(k=12\) lands at \(281\); from \(281\), \(k=12\) lands at \(303\). Adversarial triple \(261/281/303\): \(6/5\) RHS \(\approx 0.002429\); inv-sum \(S\approx 0.011868\). Those forms first kill at \(n_2\ge 369\). Later `OE` at \(263\) requires \(v=1687\) and that triple dies. No new Lean. Paper A unchanged. Not a leftover-word census and not a floor raise
+- **Major results:** Classification **CLOSED**. Landing **REPARAMETERIZATION** of `even_iter_lt_succ_pow` (`J-second-valley-landing`). Leftover-killer **REFUTED** (`juggler_second_valley_leftover_killer`, `J-second-valley-leftover-killer`). Height-split constant \(1\) first kills at \(281\), but Lean inv-sum misses even \(261/281/281\) (\(S\approx 0.012126>0.011568\)). First circuit \(k=12\) lands at \(281\); from \(281\), \(k=12\) lands at \(303\). Adversarial triple \(261/281/303\): \(6/5\) RHS \(\approx 0.002429\); inv-sum \(S\approx 0.011868\). Those forms first kill at \(n_2\ge 369\). Later `OE` at \(263\) requires \(v=1687\) and that triple dies. No new Lean. Paper A unchanged. Not a leftover-itinerary census and not a floor raise
 - **Refuted ideas:** that \(281\) is a forced leftover-killing valley height at floor \(261\)
 - **Literature:** `juggler_cycle_equal_valleys`; `juggler_cycle_ceiling_finance`; `even_iter_lt_succ_pow`
 - **Open:** stop; leftover remains \(84\) with \(m\ge 3\) or \(\ge 85\)
@@ -15831,7 +15831,7 @@ Best next question
 
 ```text
 What was learned
-- the e=3 split is formal once minimum-based words are O^aEO^bEO^cE
+- the e=3 split is formal once minimum-based itineraries are O^aEO^bEO^cE
 - the 6/5 weakening is a uniformity choice, not a gap
 Strongest theorem
 - unchanged: cycleMin_finance and L >= 1054
@@ -16225,8 +16225,8 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether the unfolded slack-weight vector \(\alpha_i(w)=2^i 3^{o_{>i}}\) is a compressed cyclic-word functional that yields a closure inequality beyond \((L,o)\), `lowerDenom`, or run-type finance
 - **Hypotheses:** Collatz \(\varphi(s)\) and Halbeisen \(M_{l,n}=\max_s\min_\sigma\varphi(t)\) are the missing layer after run statistics; the \(1+q\) recursion supplies the Juggler analogue
-- **Major results:** Product identity \(1+q=\prod(1+\eta_i)^{\alpha_i}\) **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED** (\(92\) orbits, \(0\) fails). \(\mathrm{lowerDenom}(w)=4^{S(w)}\) **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED** (all \(511\) words of length \(\le 8\)). Same \((2,1)\): \(\mathtt{OE}\) has \(S=3\), \(\mathtt{EO}\) has \(S=5\), but \(\min_\sigma S=3\) on both. Every \(\mathtt{OO}\)-prefix with fixed \(o\) shares leading weights \((3^{o-1},2\cdot 3^{o-2})\). Through length \(8\), \(9\) of \(17\) expanding pairs have several \(S\) and \(3\) have several \(\min_\sigma S\); `new_necklace_kills=0`. At \(L=19\) bunched / mechanical / extremal have \(S=1047537,2816889,3130233\); the finance-relevant mechanical word has the weaker bound. Artifact `word_functional/summary.json`. Literature `halbeisen-hungerbuehler-1997-collatz-cycles`, `hercher-2023-collatz-m-cycles`. No ledger row, no Paper A, no Lean
-- **Refuted ideas:** Halbeisen-style word-functional closure (`juggler_cycle_word_functional_closure`)
+- **Major results:** Product identity \(1+q=\prod(1+\eta_i)^{\alpha_i}\) **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED** (\(92\) orbits, \(0\) fails). \(\mathrm{lowerDenom}(w)=4^{S(w)}\) **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED** (all \(511\) itineraries of length \(\le 8\)). Same \((2,1)\): \(\mathtt{OE}\) has \(S=3\), \(\mathtt{EO}\) has \(S=5\), but \(\min_\sigma S=3\) on both. Every \(\mathtt{OO}\)-prefix with fixed \(o\) shares leading weights \((3^{o-1},2\cdot 3^{o-2})\). Through length \(8\), \(9\) of \(17\) expanding pairs have several \(S\) and \(3\) have several \(\min_\sigma S\); `new_necklace_kills=0`. At \(L=19\) bunched / mechanical / extremal have \(S=1047537,2816889,3130233\); the finance-relevant mechanical word has the weaker bound. Artifact `word_functional/summary.json`. Literature `halbeisen-hungerbuehler-1997-collatz-cycles`, `hercher-2023-collatz-m-cycles`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** Halbeisen-style word-functional closure (`juggler_cycle_itinerary_functional_closure`)
 - **Literature:** Halbeisen–Hungerbühler \(\varphi(s)\) and cyclic-shift \(M_{l,n}\); Hercher \(m\ge 92\) (Juggler analogue is the existing valley count \(e\)); existing `lowerDenom` / `onePlusSlack` / run-type packing
 - **Open:** none from cyclic-word functionals extracted from \(1+q\)
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE
@@ -16337,7 +16337,7 @@ What was learned
 - local B_2 around each landing is multi-valued
 - every tested two-block return sign is sign(mu(a)mu(b)-1)
 - a contracting block does not force a large sequel
-- three-block composition is the word-level boundary
+- three-block composition is the itinerary-level boundary
 Strongest theorem
 - none new; two-block persistence remains 243<256
 Strongest refutation
@@ -16457,7 +16457,7 @@ Best next question
 
 - **Date:** 2026-08-31
 - **Objective:** Find \(\min E_L(n,w)=\lvert T_w(n)-n\rvert/n\) at \(L=25781\) over finance-admissible words and \(n\ge 10^6+1\), by exact search without enumerating \(2^L\), and decide whether near-closure reveals a reusable obstruction
-- **Hypotheses:** the 99 finance survivors are not killed by any word-independent statistic; the missing obstruction appears only when an ordered word gets unusually close to integer closure
+- **Hypotheses:** the 99 finance survivors are not killed by any itinerary-independent statistic; the missing obstruction appears only when an ordered word gets unusually close to integer closure
 - **Major results:** Extremal, Christoffel, and packed Beatty coincide at \((25781,16266)\). Forward scan of \(8505038\) odds in \([2000001,19010076]\): \(0\) survive \(25781\) `AboveAnchor` steps; max packed-legal first-passage \(257\) at \(n=6127057\); \(7481\) high-peak bit-cap hits (a \(64\)-sample: \(60\) drop, \(4\) still grow). Distinguished-word follow depth at most \(11\) (mean \(2.03\)). Exact backward on \(96\) endpoints dies at an empty `OOE` preimage after at most two of \(9515\) blocks. \(\min E\) is undefined. Artifact `almost_search/summary.json`. No ledger row, no Paper A, no Lean. Phases 2--3 not opened
 - **Refuted ideas:** near-closure leftover-killer (`juggler_cycle_almost_search`)
 - **Literature:** closed word-independent leftover-killers; existing cells / `F_a` / first-passage floor; same Simons–de Weger finance template
@@ -16526,7 +16526,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Answer the review that Section 2.4 is elegant but unused by Theorem 4.4
 - **Hypotheses:** none; editorial. Option B (a nontrivial itinerary-dependent lower bound on \(\Delta_w\)) is already the closed leftover-killer cemetery
-- **Major results:** Theorems 2.4--2.6 and Corollary 2.7 move into Appendix C. Section 2.4 keeps the identity, the positivity of mixed words, the explicit statement that Theorem 4.4 uses only nonnegativity, and the no-uniform-local-tax obstruction. Reviewer packet theses no longer sell the defect as a main Paper A claim. No new Lean, no new experiment, no new branch
+- **Major results:** Theorems 2.4--2.6 and Corollary 2.7 move into Appendix C. Section 2.4 keeps the identity, the positivity of mixed itineraries, the explicit statement that Theorem 4.4 uses only nonnegativity, and the no-uniform-local-tax obstruction. Reviewer packet theses no longer sell the defect as a main Paper A claim. No new Lean, no new experiment, no new branch
 - **Refuted ideas:** reopening first-defect Amplify, pair-correlation, anti-clustering, or a uniform local tax as a finance input (already CLOSE)
 - **Literature:** none added
 - **Open:** a run-level / valley-level / minimum-return tax on \(\Delta_w\) remains a genuine future-work question; it is not reopened here
@@ -17102,7 +17102,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Assemble the existing CycleMin, run-form, peak, valley, and last-even facts of Paper A into one circular itinerary at the opening of Section 4
 - **Hypotheses:** none; editorial packaging of Theorem 3.2, Lemma 3.4, Lemma 3.21b, and the last-even cell
-- **Major results:** Section 4 of `docs/theory/juggler_finite_dynamics_note.md` now opens with the excursion necklace. No new theorem. Theorem 4.4 numbering unchanged. First peak overshoots the entry cell; last peak lands in it. Appendix A gained `CycleMin`, `cycle_last_even_ne_odd_sq`, `oddEvenBlock`, `no_cycle_word_ooe`. Formalization map §8.5 records Lean/code/status. No ledger row, no Lean, no PDF rebuild
+- **Major results:** Section 4 of `docs/theory/juggler_finite_dynamics_note.md` now opens with the excursion necklace. No new theorem. Theorem 4.4 numbering unchanged. First peak overshoots the entry cell; last peak lands in it. Appendix A gained `CycleMin`, `cycle_last_even_ne_odd_sq`, `oddEvenBlock`, `no_cycle_itinerary_ooe`. Formalization map §8.5 records Lean/code/status. No ledger row, no Lean, no PDF rebuild
 - **Refuted ideas:** none; later leftover-killers stay archived
 - **Literature:** Paper A §§3--4
 - **Open:** the missing link from the forced lift, the complete necklace, and the entry cell to a leftover exclusion --- already the Section 5 question on a lower bound for the odd-run count \(p\)
@@ -17112,7 +17112,7 @@ Best next question
 What was learned
 - the paper already had the pieces; they were not stated as one itinerary
 - first peak and last peak are different even states
-- mu(a) is the word envelope, not a pair transition law
+- mu(a) is the itinerary envelope, not a pair transition law
 - 1517 is not in Lean; the note points at the existing 1999 chain
 Strongest theorem
 - none new
@@ -17135,7 +17135,7 @@ Best next question
 - **Objective:** Decide whether a CycleMin \(n\) has a forced incoming `OE` seam, and whether the backward entry corridor then fails to join the forward launch for a reason that is not last-even / `oo_suffix` / \(F_2(v)>v\) / \(2048<2187\) / realized \((2,1)\)
 - **Hypotheses:** the two sides of \(n\) are asymmetric enough that exact closure, not finance, cuts the last run and a thin backward tree \(\mathcal B_n\)
 - **Major results:** Classification **ENTRY_CORRIDOR_CLOSED**. Isolated-E last run \(a_e=1\) is **EXACT — LEAN VERIFIED** / **REPARAMETERIZATION** of `oo_suffix_threshold` versus the last-even cell (`cycleMin_last_odd_run_eq_one` in `EvenCountThree.lean`; ledger `J-cyclemin-last-odd-run`). Trailing `EE` is **EXACT — HUMAN PROOF**: count \(n(n^2+n+1)\), all of scale \(n^4\), so “every CycleMin word ends `OE`” is false and \(\mathcal B_n\) is not thin. At \(n=10^6+1\): \(33\) OE valleys, all in \(n^4<v^3<(n+1)^4\); \(a\ge 2\) empty; first backward block \(F_1=5101\), \(F_2\) witness \(12915515\to 100000159\to n\), \(F_3\) empty; no launch collision; \(2048<2187\); \(99/99\) survivors composition-feasible. Artifact `entry_corridor/summary.json`. No leftover-killer, no Paper A, no \(N_0\) raise, no finance reopen
-- **Refuted ideas:** incoming run is forced `OE` on every CycleMin word (`juggler_cycle_entry_corridor`); \(\mathcal B_n\) is a thin scale-restricted tree; the seam lifts the \(99\) into an infeasible run composition
+- **Refuted ideas:** incoming run is forced `OE` on every CycleMin itinerary (`juggler_cycle_entry_corridor`); \(\mathcal B_n\) is a thin scale-restricted tree; the seam lifts the \(99\) into an infeasible run composition
 - **Literature:** last-even / `oo_suffix_threshold`; `oe_start_min`; entry-excursion CLOSE; cyclic-valley wrap `OE`; cell-bridge terminal \((2,1)\); trailing-evens cell; \(243<256\)
 - **Open:** none from the entry corridor
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE
@@ -17160,7 +17160,7 @@ Branch status
 Why
 - exact closure did determine the structure, and the structure
   is the archived seam plus an enormous trailing-EE cell.
-  Finance was not asked to invent the word
+  Finance was not asked to invent the itinerary
 Best next question
 - none from the CycleMin entry corridor
 ```
@@ -17199,7 +17199,7 @@ Best next question
 ## Juggler CycleMin cyclic seam types
 
 - **Date:** 2026-08-31
-- **Objective:** Decide whether the local parity word on both sides of a CycleMin \(n\) is a small finite set of seam types with any inequality that is not start-OO / no-end-O / last-even / trailing-evens / `oo_suffix`
+- **Objective:** Decide whether the local parity itinerary on both sides of a CycleMin \(n\) is a small finite set of seam types with any inequality that is not start-OO / no-end-O / last-even / trailing-evens / `oo_suffix`
 - **Hypotheses:** classifying the cut by the letters touching \(n\) is a useful replacement for the OE-privileged corridor; return through \(O\) might still be open in the genuine-cycle setting
 - **Major results:** Classification **CYCLIC_SEAM_CLOSED**. The \(2{+}2\) window is exactly \(\{\mathtt{OE}\mid\mathtt{OO},\mathtt{EE}\mid\mathtt{OO}\}\) (**REPARAMETERIZATION** of `cycleMin_starts_two_odds` plus `exists_cycleMin_last_odd_run`). Return \(O\) is empty under the \(\ge n\) tube (`cycleMin_not_end_odd`). Both legal types occupied at \(n=10^6+1\): \(33\) OE, \(n(n^2+n+1)\) EE; left \(\mathtt{OOE}\) empty; \(\mathtt{EEE}\) realized. Launch split on \([13,2001)\): \(252\) \(\mathtt{OOE}\), \(250\) \(\mathtt{OOO}\), first witnesses \(33\) and \(25\). Artifact `cyclic_seam/summary.json`. No corridor reopen, no finance, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** a 2-sided seam type produces a new cell (`juggler_cycle_cyclic_seam`); CycleMin return can be odd
@@ -17303,11 +17303,11 @@ Best next question
 ## Juggler cyclic seam sliding
 
 - **Date:** 2026-08-31
-- **Objective:** Decide whether sliding a first-intersection cut through a homogeneous \(E^r\) (or \(O^r\)) run produces a two-sided envelope, or a restriction on \(r\), that is not `rotateWord` / `cycle_trailing_evens_lt` / `even_run_scale_barrier` / `odd_cell_unique` / the archived \(\mathtt{OE}\)/\(\mathtt{EO}\) cells
+- **Objective:** Decide whether sliding a first-intersection cut through a homogeneous \(E^r\) (or \(O^r\)) run produces a two-sided envelope, or a restriction on \(r\), that is not `rotateItinerary` / `cycle_trailing_evens_lt` / `even_run_scale_barrier` / `odd_cell_unique` / the archived \(\mathtt{OE}\)/\(\mathtt{EO}\) cells
 - **Hypotheses:** interior \(E\)-cuts collapse to one cyclic geometry, so only \(\mathtt{EO}\) and \(\mathtt{OE}\) plus run length remain, and choosing the peak or valley boundary yields a stronger inequality
-- **Major results:** Classification **SEAM_SLIDING_CLOSED**. Interior cuts \(E\mid EEE\), \(EE\mid EE\), \(EEE\mid E\) are `rotateWord` of \(\mathtt{OOEEEE}\) (**REPARAMETERIZATION** of `cycleWord_rotateWord` / `rotateWord_even_run`). A first intersection interior to \(E^r\) cannot be slid to the peak and is not first at the valley: witness \(100\xrightarrow{E}10\xrightarrow{E}3\) versus \(102\xrightarrow{E}10\xrightarrow{E}3\). Peak / valley transfer \(P<(V+1)^{2^r}\) is `cycle_trailing_evens_lt`. \(O^r\) interiors are not first meetings. Artifact `seam_sliding/summary.json`. No taxonomy reopen, no finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Major results:** Classification **SEAM_SLIDING_CLOSED**. Interior cuts \(E\mid EEE\), \(EE\mid EE\), \(EEE\mid E\) are `rotateItinerary` of \(\mathtt{OOEEEE}\) (**REPARAMETERIZATION** of `cycleItinerary_rotateItinerary` / `rotateItinerary_even_run`). A first intersection interior to \(E^r\) cannot be slid to the peak and is not first at the valley: witness \(100\xrightarrow{E}10\xrightarrow{E}3\) versus \(102\xrightarrow{E}10\xrightarrow{E}3\). Peak / valley transfer \(P<(V+1)^{2^r}\) is `cycle_trailing_evens_lt`. \(O^r\) interiors are not first meetings. Artifact `seam_sliding/summary.json`. No taxonomy reopen, no finance, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** first-intersection sliding to either boundary of a homogeneous run (`juggler_cycle_seam_sliding`); \(P\approx V^{2^r}\) as a new cell
-- **Literature:** `cycleWord_rotateWord`; `rotateWord_even_run`; `cycle_trailing_evens_lt`; `even_run_scale_barrier`; `odd_cell_unique`; intersection-taxonomy CLOSE; \(E^r\)-block CLOSE (one-way push); cyclic-seam CLOSE
+- **Literature:** `cycleItinerary_rotateItinerary`; `rotateItinerary_even_run`; `cycle_trailing_evens_lt`; `even_run_scale_barrier`; `odd_cell_unique`; intersection-taxonomy CLOSE; \(E^r\)-block CLOSE (one-way push); cyclic-seam CLOSE
 - **Open:** none from cyclic seam sliding
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE
 
@@ -17320,11 +17320,11 @@ What was learned
 - reducing to EO and OE plus run length is the closed taxonomy under a cleaner name
 - how long E^r can be is even-count plus that cell, not a sliding consequence
 Strongest theorem
-- cycleWord_rotateWord: a cyclic shift of a cycle word is a cycle word
+- cycleItinerary_rotateItinerary: a cyclic shift of a cycle itinerary is a cycle itinerary
 Strongest refutation
 - 102 and 100 first meet at 10, not at the peak 100 and not at the valley 3
 Reusable machinery
-- rotate_word / backward_slide_witness / seam_sliding/summary.json
+- rotate_itinerary / backward_slide_witness / seam_sliding/summary.json
 Branch status
 - CLOSE
 Why
@@ -17339,9 +17339,9 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether the cycle-wide product of block exponents \(\rho_i=3^{a_i}/2^{a_i+r_i}\) is a closure obstruction that is not \(3^o>2^L\) / `cycleMin_finance` / the global defect / leftover near-convergents
 - **Hypotheses:** local CycleMin block constraints make the signed exponent sum incompatible with exact integer return; this is stronger than the first-block prefix test
-- **Major results:** Classification **EXPONENT_BUDGET_CLOSED**. \(\prod\rho_i=3^o/2^L\) identically; \(\sum(a_i\log 3-(a_i+r_i)\log 2)=o\log 3-L\log 2\) (**REPARAMETERIZATION**). \(3^A=2^{A+R}\) is unique factorization (`cycle_word_formally_expanding`). Exact return is \(\Delta=n^{3^o}-n^{2^L}\) (`global_defect_identity`). Floors are `cycleMin_finance`. Leftover \(L=19,84\): expanding \(\mathtt{OOE}\) (\(\rho=9/8\)) forces rest \(<1\) (\(59049/65536\) at \(L=19\)). Artifact `exponent_budget/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
+- **Major results:** Classification **EXPONENT_BUDGET_CLOSED**. \(\prod\rho_i=3^o/2^L\) identically; \(\sum(a_i\log 3-(a_i+r_i)\log 2)=o\log 3-L\log 2\) (**REPARAMETERIZATION**). \(3^A=2^{A+R}\) is unique factorization (`cycle_itinerary_formally_expanding`). Exact return is \(\Delta=n^{3^o}-n^{2^L}\) (`global_defect_identity`). Floors are `cycleMin_finance`. Leftover \(L=19,84\): expanding \(\mathtt{OOE}\) (\(\rho=9/8\)) forces rest \(<1\) (\(59049/65536\) at \(L=19\)). Artifact `exponent_budget/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** a cycle-wide exponent separation the integer map cannot realize (`juggler_cycle_exponent_budget`); the block product is stronger than the prefix test
-- **Literature:** `cycle_word_formally_expanding`; `cycleMin_finance`; `global_defect_identity`; `image_eq_start_defectRatio`; \(E^r\)-block CLOSE; Baker CLOSE; near-tight CLOSE
+- **Literature:** `cycle_itinerary_formally_expanding`; `cycleMin_finance`; `global_defect_identity`; `image_eq_start_defectRatio`; \(E^r\)-block CLOSE; Baker CLOSE; near-tight CLOSE
 - **Open:** none from the exponent budget
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
 
@@ -17354,7 +17354,7 @@ What was learned
 - leftover near-convergents make later blocks contract after an expanding first block
 - this is finance under a new name, not a termination route
 Strongest theorem
-- cycle_word_formally_expanding: 2^L < 3^o on every nonempty cycle
+- cycle_itinerary_formally_expanding: 2^L < 3^o on every nonempty cycle
 Strongest refutation
 - exponent-budget leftover-killer; partition-dependent sign; unrealizable exact balance
 Reusable machinery
@@ -17375,14 +17375,14 @@ Best next question
 - **Hypotheses:** interval transfer plus general \(r\) plus cyclic return of \(I_1\) makes A or B fire, or C forbids a directed cycle of run types
 - **Major results:** Classification **BLOCK_TRANSFER_CLOSED**. \(F_{a,r}\) is the archived OE/OOE cell plus even tower; \(r=1\) agrees with `excursion_map`. Formal \(F_{\mathrm{cycle}}\) is \(x^{3^o/2^L}\): leftover \(19\) and \(84\) have outcome A, which is required expansion, not a contradiction. Two-block hulls are \(\mu\) products; \((2,1)^2\) is \(81/64\) and \(243<256\). Outcome C is \(365=(2,2,2,2)\) versus \(1517=(2,2,2,1)\). Artifact `block_transfer/summary.json`. No run automaton, no leftover census, no finance reopen, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** a cyclic interval transfer that is not an archived cell (`juggler_cycle_block_transfer`); A/B as a new kill; an empty run-type digraph
-- **Literature:** `power_bound_word`; `excursion_map`; `cycle_word_formally_expanding`; ordered-excursion CLOSE; pair-closure CLOSE; exponent-budget CLOSE; odd-run itinerary PARK
+- **Literature:** `power_bound_word`; `excursion_map`; `cycle_itinerary_formally_expanding`; ordered-excursion CLOSE; pair-closure CLOSE; exponent-budget CLOSE; odd-run itinerary PARK
 - **Open:** none from the cyclic block transfer
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
 
 ```text
 What was learned
 - F_{a,r} is the archived exponent cell plus even tower, not a new solver
-- formal F_cycle is x^{3^o/2^L}; A is required expansion, B is a contracting word
+- formal F_cycle is x^{3^o/2^L}; A is required expansion, B is a contracting itinerary
 - leftover 19 and 84 have outcome A and do not contradict a cycle
 - two-block hulls are μ products; (2,1)^2 is the archived 243<256 comparison
 - outcome C is the standing 365/1517 split; do not build a run automaton
@@ -17407,7 +17407,7 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether composing the exact peak–valley cells \(P\xrightarrow{E^r}V\xrightarrow{O^a}P'\) around a necklace forces \(P>P\) or \(P<P\) without identifying a dangerous seam, for a reason that is not `power_bound_word` / the closed exponent budget / cycle closure
 - **Hypotheses:** the unit of proof becoming the whole necklace yields a global inconsistency the local cells do not
-- **Major results:** Classification **PEAK_VALLEY_COMPOSITION_CLOSED**. Exact cells compose to \(T_w\) (**REPARAMETERIZATION**): \(25\xrightarrow{\mathtt{OOOEE}}15\), \(365\xrightarrow{\mathtt{OOEOOE}}1749\). One-sided product is \(3^o/2^L\) (**REPARAMETERIZATION** of `power_bound_word` / the closed exponent budget): \(\mathtt{OOOEE}\) is \(27/32\), leftover \(\mathtt{OOEOOEOOEOE}\) is \(2187/2048\). Real slack sits below \(P\) on contracting words and above \(P\) on leftover shape at \(10^3,10^6\). Naive \(\lfloor 365^{9/4}\rfloor=582316\) versus exact peak \(582276\). Mechanical meeting at \(L=25781\) is the closed cycle-closure record. Artifact `peak_valley_composition/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Major results:** Classification **PEAK_VALLEY_COMPOSITION_CLOSED**. Exact cells compose to \(T_w\) (**REPARAMETERIZATION**): \(25\xrightarrow{\mathtt{OOOEE}}15\), \(365\xrightarrow{\mathtt{OOEOOE}}1749\). One-sided product is \(3^o/2^L\) (**REPARAMETERIZATION** of `power_bound_word` / the closed exponent budget): \(\mathtt{OOOEE}\) is \(27/32\), leftover \(\mathtt{OOEOOEOOEOE}\) is \(2187/2048\). Real slack sits below \(P\) on contracting itineraries and above \(P\) on leftover shape at \(10^3,10^6\). Naive \(\lfloor 365^{9/4}\rfloor=582316\) versus exact peak \(582276\). Mechanical meeting at \(L=25781\) is the closed cycle-closure record. Artifact `peak_valley_composition/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** necklace-level \(P>P\) or \(P<P\) from composing exact cells (`juggler_cycle_peak_valley_composition`)
 - **Literature:** `power_bound_word`; `power_bound_contracts`; `cycle_trailing_evens_lt`; `two_block_ooe_365`; exponent budget CLOSE; cycle closure CLOSE; seam sliding CLOSE; \(E^r\)-block CLOSE
 - **Open:** none from peak–valley interval composition
@@ -17418,7 +17418,7 @@ What was learned
 - exact peak–valley cells fix V = isqrt^r(P) and compose to T_w
 - a cycle would have P=P, so the exact composite cannot be P>P
 - one-sided composition is P' ≤ P^{3^o/2^L}; that product is the closed exponent budget
-- leftover-shaped words expand (2187/2048); contracting words sit below P (27/32)
+- leftover-shaped words expand (2187/2048); contracting itineraries sit below P (27/32)
 - the naive exponent floor is an envelope (365: 582316 versus 582276)
 - leftover hulls already meet; this is not a leftover-killer
 Strongest theorem
@@ -17477,7 +17477,7 @@ Best next question
 - **Hypotheses:** floors turn \(L\mapsto\rho L\) into a strict Lyapunov even on expanding first blocks; a first-\(E\) decrease forbids a cycle
 - **Major results:** Classification **BLOCK_POTENTIAL_CLOSED**. \(\log\) and \(\log\log\) are monotone on integers \(\ge 3\), so \(\Phi(T)<\Phi(n)\) iff \(T<n\) (**REPARAMETERIZATION**). CycleMin-legal first blocks have valley \(\ge n\), so \(L\) never drops. Expanding witness \(115\xrightarrow{\mathtt{O}^5E^2}8165\) (\(\rho=243/128\)). Contracting witness \(25\xrightarrow{\mathtt{OOOEE}}15\) is `power_bound_contracts`. \(L(T)<\rho L(n)\) is `power_bound_word_strict`. First \(E\) always decreases and does not kill a cycle. A state-only \(\Phi\) cannot telescope. Artifact `block_potential/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** a logarithmic block Lyapunov that kills cycles (`juggler_cycle_block_potential`); floors turn expanding blocks into descents; one decreasing event per block forbids return
-- **Literature:** `power_bound_contracts`; `power_bound_word_strict`; `cycle_word_formally_expanding`; `cycleMin_finance`; exponent-budget CLOSE
+- **Literature:** `power_bound_contracts`; `power_bound_word_strict`; `cycle_itinerary_formally_expanding`; `cycleMin_finance`; exponent-budget CLOSE
 - **Open:** none from the block potential
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
 
@@ -17580,16 +17580,16 @@ Best next question
 - **Date:** 2026-08-31
 - **Objective:** Decide whether the exact ordered map \(T_w\) yields a cycle-usable quantity that depends on \(O/E\) order, not only \((o,L)\), and that is not already \(D_w\) / \(S(w)\), a named cell, cheap-\(\mathtt{OOE}\) adjacency, peak–valley composition, cyclic rounding, or prefix expansion
 - **Hypotheses:** two words with the same exponent budget have different exact compositions, so some intermediate exact \(Q\) could forbid a cycle that finance and the exponent budget cannot see
-- **Major results:** Classification **WORD_ORDER_CLOSED**. CycleWord endpoints \(\Delta=n^{3^o}-n^{2^L}\) and \(T/n^P=n^{1-P}\) are \((n,o,L)\)-only (**REPARAMETERIZATION** of `global_defect_identity` / `image_eq_start_defectRatio`). Each start follows exactly one word of each length (**EXACT — HUMAN PROOF**). Expanding census \(k\le 8\): \(105\) words, \(17\) budgets, \(12\) distinct-necklace pairs, all `lowerDenom`, `unarchived=0`. \(\mathtt{OOE}/\mathtt{OEO}/\mathtt{EOO}\) share budget \(9/8\) and are one necklace of named cells. \(\mathtt{OOOEE}\) versus \(\mathtt{OOEOE}\) is archived adjacency. Artifact `word_order/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
-- **Refuted ideas:** a new cycle-usable word-order invariant (`juggler_cycle_word_order`); a same-\(n\) comparison of two same-length exact maps
-- **Literature:** `global_defect_identity`; `image_eq_start_defectRatio`; `lowerDenom`; `no_cycle_word_ooe` / `oeo` / `eoo`; `ooe_blocks_oe`; word-functional CLOSE; exponent-budget CLOSE
-- **Open:** none from a word-order exact-map invariant
+- **Major results:** Classification **WORD_ORDER_CLOSED**. CycleItinerary endpoints \(\Delta=n^{3^o}-n^{2^L}\) and \(T/n^P=n^{1-P}\) are \((n,o,L)\)-only (**REPARAMETERIZATION** of `global_defect_identity` / `image_eq_start_defectRatio`). Each start follows exactly one word of each length (**EXACT — HUMAN PROOF**). Expanding census \(k\le 8\): \(105\) words, \(17\) budgets, \(12\) distinct-necklace pairs, all `lowerDenom`, `unarchived=0`. \(\mathtt{OOE}/\mathtt{OEO}/\mathtt{EOO}\) share budget \(9/8\) and are one necklace of named cells. \(\mathtt{OOOEE}\) versus \(\mathtt{OOEOE}\) is archived adjacency. Artifact `word_order/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a new cycle-usable word-order invariant (`juggler_cycle_itinerary_order`); a same-\(n\) comparison of two same-length exact maps
+- **Literature:** `global_defect_identity`; `image_eq_start_defectRatio`; `lowerDenom`; `no_cycle_itinerary_ooe` / `oeo` / `eoo`; `ooe_blocks_oe`; word-functional CLOSE; exponent-budget CLOSE
+- **Open:** none from an itinerary-order exact-map invariant
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
 
 ```text
 What was learned
 - same (o, L) does not fix T_w; that slogan is already used
-- on a CycleWord, Delta and T/n^P forget the letter order
+- on a CycleItinerary, Delta and T/n^P forget the letter order
 - a start follows exactly one word of each length
 - 12 expanding necklace pairs through length 8 all differ by S(w)
 - OOE / OEO / EOO are one necklace excluded by cells
@@ -17607,14 +17607,14 @@ Why
 - every same-budget distinction is D_w, a named cell, adjacency,
   or the cycle-endpoint collapse to (o, L)
 Best next question
-- none from a word-order exact-map invariant
+- none from an itinerary-order exact-map invariant
 ```
 
 ## Juggler ordered floor-error transport
 
 - **Date:** 2026-08-31
 - **Objective:** Decide whether position-weighted, seam-split transport of local floor errors gives a one-sided or ordered constraint that is not scalar \(\Delta\), first-defect Amplify, finance, or the closed congruence / interval attacks
-- **Hypotheses:** an error's suffix lift depends on where it sits in the word; climb-half versus descent-half can obstruct a cycle without summing to \(\Delta\)
+- **Hypotheses:** an error's suffix lift depends on where it sits in the itinerary; climb-half versus descent-half can obstruct a cycle without summing to \(\Delta\)
 - **Major results:** Classification **ERROR_TRANSPORT_CLOSED**. \(\sum e_i+X=\Delta\) on \(\mathtt{OE}\) at \(13\) (\(81+820=901\)), \(\mathtt{OOE}\) at \(365/1517/1000057\), \(\mathtt{OOOEE}\) at \(25\), \(\mathtt{OOEOOE}\) at \(365\), leftover shape at \(429\). First-defect Amplify is the first positive \(e_j\). Formal weights are suffix \(3^{o'}\) (\(429\) leftover: \(729,243,243,81,27,27,9,3,3,1,1\)). \(X=0\) with no shared later odd; \(X>0\) on \(\mathtt{OOEOOE}\) / leftover, which is `accumulateOdd`. Expanding halves miss \(G\) (\(365\) \(\mathtt{OOE}\): \(E_O/G\approx 2.8\cdot 10^{-4}\); \(429\) leftover: \(E_E/G\approx 0.70\)). Contracting \(\mathtt{OE}\) / \(\mathtt{OOOEE}\) have \(T_w<n\). Artifact `error_transport/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** ordered seam-split transport obstructs a cycle without summing to \(\Delta\) (`juggler_cycle_error_transport`)
 - **Literature:** `global_defect_identity`; `amplifyDefect`; `firstDefect`; `cycleMin_finance`; Amplify leftover-killer CLOSE; defect-congruence CLOSE; peak–valley CLOSE; exponent-budget CLOSE; cumulative floor-loss CLOSE
@@ -17628,11 +17628,11 @@ What was learned
 - formal position weights are suffix 3^{o'}, the closed exponent budget backwards
 - X vanishes unless two positive chunks share a later odd
 - expanding seam halves miss G, including leftover shape at 429 (E_E/G ~ 0.70)
-- contracting words die by T_w < n, not by a new one-sided inequality
+- contracting itineraries die by T_w < n, not by a new one-sided inequality
 Strongest theorem
 - global_defect_identity: n^{3^o} = T_w(n)^{2^L} + Δ_w(n)
 Strongest refutation
-- ordered leftover-killer; seam-half or single e_i exceeds G on an expanding word
+- ordered leftover-killer; seam-half or single e_i exceeds G on an expanding itinerary
 Reusable machinery
 - letter_transport / seam_halves / error_transport/summary.json
 Branch status
@@ -17755,7 +17755,7 @@ Best next question
 - **Objective:** Decide whether any Paper B mechanism (kernel bounds, equidistribution, exact linearization, weight or spectral refinement) supplies a certified finance improvement of factor \(\mathrm{RHS}/\theta\) on a run-survivor length at floor \(10^6\) — the merged attack on the survivor lattice
 - **Hypotheses:** the tension between the exact finance gap (Paper A) and the analytic floor-defect program (Paper B) yields an \(n\)-dependent gap bound on \(|3^o-2^L|\) that neither paper has alone
 - **Major results:** Consolidation only; zero new experiments. Required-improvement profile from `cycle_finance/prefix_weights.json` (141 parity leftovers, \(n=10^6+1\)): \(\mathrm{RHS}/\theta\) has min \(1.04\) (\(L=99561\)), median \(1.96\), but \(32.5\) at the first survivor \(L=25781\) and \(223\) at the second seed \(L=50508\). A hypothetical uniform improvement \(C=9/8\) kills \(18/141\), \(C=2\) kills \(72\), \(C=30\) kills \(136\) — the affine-family seeds are the last to die, so constant-factor refinements can never close the lattice, and floor raises give linear progress on an infinite convergent family. Every merge formulation maps onto a named kill: exact/bounded suffix weights (`juggler_cycle_prefix_weight_leftover_killer`, max uncertified constant \(9/8\)); spectral constraints (`juggler_cycle_fourier_leftover_killer`, arrangement-independent moment \(1/16\)); reduction to mechanical words (`juggler_christoffel_one_parameter`, candidates far from the necklace); ambient-to-generated equidistribution transfer (`juggler_parity_discrepancy_transfer`); linear-forms transfer (`juggler_cycle_gap_baker`, weaker than the exact gap on every tested length); and Paper B's own kernel route at a specific point (BB/GG/JJ — a single hypothetical cycle is a specific point in metric theory, exactly the `J-derandomization-obstruction`). Reverse direction (survivor-lattice / Ostrowski structure feeding transport Conjecture EE) stays parked behind GG. Conclusion: a successful merge must produce a power-of-\(n\) saving on the closure residual; no archived or Paper-B mechanism supplies one
-- **Refuted ideas:** a Paper A × Paper B merged leftover-killer (`juggler_cycle_paper_merge`); constant-factor finance refinements closing the lattice; Sturmian/Denjoy–Koksma suffix-weight bands as a length-killer (weights are word-specific, the word space is not mechanical)
+- **Refuted ideas:** a Paper A × Paper B merged leftover-killer (`juggler_cycle_paper_merge`); constant-factor finance refinements closing the lattice; Sturmian/Denjoy–Koksma suffix-weight bands as a length-killer (weights are word-specific, the itinerary space is not mechanical)
 - **Literature:** `cycleMin_finance`; `RunSurvivorLattice.lean`; prefix-weight REFUTED; Fourier REFUTED; Christoffel CLOSE; discrepancy-transfer REFUTED; gap-Baker REFUTED; `J-k3-toolkit-obstruction`; `J-intra-block-harmonic-obstruction`; `J-derandomization-obstruction`; `simons-de-weger-2005-collatz-m-cycles`
 - **Open:** the single surviving formulation is an \(n\)-power-saving lower bound on the cycle closure residual — an effective bound on \(|3^o-2^L|\) in terms of the cycle's own floor \(n\), on the three affine families
 - **Decision:** CLOSE (directed consolidation). Paper A and Paper B stay PROMOTE; the merge surface is fully covered by six named obstructions
@@ -17924,13 +17924,13 @@ Best next question
 What was learned
 - the walk-DP maximizer hugs the floor: only types (2,1)=OOE and
   (1,1)=OE, the two smallest semi-convergents of log2(3/2)
-- on leftover (L, o_min) that word is exactly the Christoffel word
+- on leftover (L, o_min) that itinerary is exactly the Christoffel word
   of slope o/L (checked at 19, 84, 1054)
 - bunched O^12 E^7 is a legal near-return and a named type, but it
   is not the charge maximizer
 - survey B/L is constant to three digits (C ~ 0.048); B/theta is
   not, so the uniform-ratio dream dies at any fixed floor
-- this is the relaxation adversary, not a realized-cycle-word claim;
+- this is the relaxation adversary, not a realized-cycle-itinerary claim;
   the closed leftover-cell slogan stays closed
 Strongest theorem
 - none; the identification is COMPUTATIONALLY VERIFIED
@@ -17978,7 +17978,7 @@ Strongest theorem
 Strongest refutation
 - juggler_walk_christoffel_prefix: (4,3) and survey offsets
 Reusable machinery
-- cycle_walk_mechanical.py (prefix-min DP, greedy word,
+- cycle_walk_mechanical.py (prefix-min DP, greedy itinerary,
   streamed Christoffel charge, mechanical prefix average)
 Branch status
 - CLOSE
@@ -17991,15 +17991,15 @@ Best next question
   admissible walks, and is that enough for an explicit C_*(n')?
 ```
 
-## Juggler greedy hug-word maximizer
+## Juggler greedy hug-itinerary maximizer
 
 - **Date:** 2026-09-01
-- **Objective:** Decide whether greedy \(E\)-when-legal prefix-minimizes \(a_k\) among admissible \(u\ge 0\) walks of a given \((L,o)\), and whether that word's charge equals the certified survey \(B\) (and the mechanical \(C_*\)) at floor \(26254995\)
-- **Hypotheses:** \(g\) decreasing plus a pointwise min-\(u\) path identifies the DP maximizer as an \(O(L)\) hug word; leftover \(C\) is then the ergodic average of that walk, including family offsets
+- **Objective:** Decide whether greedy \(E\)-when-legal prefix-minimizes \(a_k\) among admissible \(u\ge 0\) walks of a given \((L,o)\), and whether that itinerary's charge equals the certified survey \(B\) (and the mechanical \(C_*\)) at floor \(26254995\)
+- **Hypotheses:** \(g\) decreasing plus a pointwise min-\(u\) path identifies the DP maximizer as an \(O(L)\) hug itinerary; leftover \(C\) is then the ergodic average of that walk, including family offsets
 - **Major results:** Classification **WALK_GREEDY_GREEN**. Hug equals the prefix-min path on \(123/123\) feasible pairs with \(L\le 24\) and at leftover \(19,84,1054\); the streamed \(O(L)\) hug equals the \(O(Lo)\) table-greedy word on the same set. Streamed hug \(B\) matches certified survey \(B\) on all 19 leftovers (max relative error \(8.15\cdot 10^{-11}\)), including every \(1054\)-family offset. Leftover \(C\in[0.047946,0.047957]\) vs mechanical \(C_*=0.047947\) (relative spread \(2.12\cdot 10^{-4}\)). Uniform \(B/\theta<1\) at the fixed floor stays false (\(B/\theta=5.25\) at \(176251\)). Conjecture `juggler_walk_greedy_prefix` opened in `conjectures/active/`. Artifact `cycle_walk_greedy/summary.json`
 - **Refuted ideas:** none new; Christoffel prefix-dominance and uniform \(B/\theta<1\) at fixed \(N_0\) remain refuted
 - **Literature:** walk mechanical CLOSE; walk excursion; walk charge; `juggler_walk_christoffel_prefix` REFUTED; `juggler_christoffel_one_parameter` REFUTED; `juggler_baker_kills_near_convergents` REFUTED
-- **Open:** a human exchange lemma for the hug word, and an explicit bound or integral for \(C_*(n')\)
+- **Open:** a human exchange lemma for the hug itinerary, and an explicit bound or integral for \(C_*(n')\)
 - **Decision:** PROMOTE
 
 ```text
@@ -18018,7 +18018,7 @@ Strongest theorem
 Strongest refutation
 - none new; Christoffel prefix-dominance stays refuted
 Reusable machinery
-- cycle_walk_greedy.py (streamed hug word and hug charge)
+- cycle_walk_greedy.py (streamed hug itinerary and hug charge)
 Branch status
 - PROMOTE
 Why
@@ -18026,11 +18026,11 @@ Why
   and hug B = survey B on every leftover; C_* is that walk's
   average, not 19 independent DPs
 Best next question
-- a human exchange lemma for the hug word, together with an
+- a human exchange lemma for the hug itinerary, together with an
   explicit bound or integral for C_*(n')?
 ```
 
-## Juggler hug-word exchange and explicit C_*
+## Juggler hug-itinerary exchange and explicit C_*
 
 - **Date:** 2026-09-01
 - **Objective:** Prove that hug \(E\)-when-legal is the unique prefix-min admissible walk, and identify leftover \(C\) with an explicit integral \(C_*(n)\)
@@ -18068,7 +18068,7 @@ Why
   19 DPs; the finite envelope is a different question
 Best next question
 - does Koksma give C_L <= C_*(n') + 1/L (or
-  C_L <= 1/(ln 3 ln n')) for leftover hug words, making the
+  C_L <= 1/(ln 3 ln n')) for leftover hug itineraries, making the
   18 kills DP-free?
 ```
 
@@ -18169,7 +18169,7 @@ What was learned
   decomposition of L gives |C_L - C_*| <= 2 s(L)/L
 - the q_j list up to 176251 is certified by two big-int
   power comparisons plus an interval continued fraction
-- the budgeted hug word IS the exact IET prefix on all 19
+- the budgeted hug itinerary IS the exact IET prefix on all 19
   leftovers (integer-exact letters, o_min odds), so the
   theorem prices the leftover charge directly
 - leftover digit sums are 1..6; excess*L <= 1.868 <= 2s;
@@ -18184,7 +18184,7 @@ Strongest refutation
 - none new this phase
 Reusable machinery
 - cycle_walk_ostrowski.py (integer x-sandwich, interval CF,
-  greedy Ostrowski digits, exact hug-word generator)
+  greedy Ostrowski digits, exact hug-itinerary generator)
 Branch status
 - PROMOTE
 Why
@@ -18204,7 +18204,7 @@ Best next question
 - **Date:** 2026-09-01
 - **Objective:** Make the DK/Ostrowski envelope uniform: prove \(C_L<1/(\ln 3\,\ln n')\) for **every** \(L\in[50508,301994)\) at the certified floor, with no census and no DP
 - **Hypotheses:** (i) budgeted hug \(=\) exact IET prefix is a theorem for all \(L\), not a 19-row check; (ii) greedy Ostrowski digits obey \(b_j\le a_{j+1}\), so \(s(L)\) is uniformly small and \(2s/L\) stays under the \(J\)-gap on the whole window
-- **Major results:** Classification **WALK_WINDOW_GREEN**. Word identity is **EXACT — HUMAN PROOF**: the exact rule keeps \(u\in[0,1+\alpha)\), so the \(L\)-prefix uses exactly \(o_{\min}=\lceil Lx\rceil\) odds, and a first budget-forced divergence would make the exact prefix exceed one of its own letter totals. With the certified quotients, \(s(L)\le 47\) on the window and \(\ln n'\ge 17.07\), so \(2s/L\le 94/50508=1.87\cdot10^{-3}<0.00514\le\) \(J\)-gap — the envelope holds for every window length by the DK row. Exact scan of all \(251486\) lengths: every digit within cap (level \(1054\) hits \(23\) exactly), max \(s=37\) at \(L=275632\), worst \(2s/L\) over gap \(0.1823\) at \(L=74654\) — uniform margin \(\ge 5.48\). Integer-exact word spot checks at \(60000,123456,250000,301993\). Conjecture `juggler_walk_window_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-window-envelope`. Artifact `cycle_walk_window/summary.json`
+- **Major results:** Classification **WALK_WINDOW_GREEN**. Itinerary identity is **EXACT — HUMAN PROOF**: the exact rule keeps \(u\in[0,1+\alpha)\), so the \(L\)-prefix uses exactly \(o_{\min}=\lceil Lx\rceil\) odds, and a first budget-forced divergence would make the exact prefix exceed one of its own letter totals. With the certified quotients, \(s(L)\le 47\) on the window and \(\ln n'\ge 17.07\), so \(2s/L\le 94/50508=1.87\cdot10^{-3}<0.00514\le\) \(J\)-gap — the envelope holds for every window length by the DK row. Exact scan of all \(251486\) lengths: every digit within cap (level \(1054\) hits \(23\) exactly), max \(s=37\) at \(L=275632\), worst \(2s/L\) over gap \(0.1823\) at \(L=74654\) — uniform margin \(\ge 5.48\). Integer-exact word spot checks at \(60000,123456,250000,301993\). Conjecture `juggler_walk_window_envelope` EXACT — HUMAN PROOF; ledger row `J-cyclemin-walk-window-envelope`. Artifact `cycle_walk_window/summary.json`
 - **Refuted ideas:** none new (no new kills claimed; uniform \(B/\theta\) stays false)
 - **Literature:** DK/Ostrowski envelope PROMOTE; Ostrowski digit bound (KNOWN); crude envelope superseded on the window
 - **Open:** is the DK constant \(2s(L)\) sharp here, or does the hug excess stay \(O(1)/L\) uniformly (leftover excesses were \(\le 1.87/L\) even at \(2s=12\))?
@@ -18226,7 +18226,7 @@ What was learned
   near-convergents still survive
 Strongest theorem
 - for every L in [50508, 301994), C_L <= C_* + 2 s(L)/L
-  < 1/(ln 3 ln n') for the budgeted hug word (word identity
+  < 1/(ln 3 ln n') for the budgeted hug itinerary (itinerary identity
   + digit caps + DK row)
 Strongest refutation
 - none new this phase
@@ -18237,7 +18237,7 @@ Branch status
 - PROMOTE
 Why
 - both open ends of the DK branch close on the window: the
-  word identity becomes a theorem and the envelope becomes
+  itinerary identity becomes a theorem and the envelope becomes
   uniform and census-free; the only computational content
   left is exact integer arithmetic
 Best next question
@@ -18295,7 +18295,7 @@ Best next question
 ## Juggler walk-charge program consolidation
 
 - **Date:** 2026-09-01
-- **Objective:** Consolidation entry (no new branch, no new milestone): assemble the walk-charge program — transport, hug identification, word identity, DK/Ostrowski envelope, uniform window theorem, sharpness context — into one laboratory extract
+- **Objective:** Consolidation entry (no new branch, no new milestone): assemble the walk-charge program — transport, hug identification, itinerary identity, DK/Ostrowski envelope, uniform window theorem, sharpness context — into one laboratory extract
 - **Hypotheses:** none (post-theorem consolidation; infrastructure after the theorems survived)
 - **Major results:** New note [docs/theory/juggler_walk_charge_note.md](theory/juggler_walk_charge_note.md) with the full human chain: transport to the reduced base (\(\ln n'\ge 17.07\)); hug as unique prefix-min maximizer and \(C_*\) Laplace integral; budgeted hug \(=\) exact IET prefix for every \(L\); \(|C_L-C_*|\le 2s(L)/L\) over certified Ostrowski blocks; \(C_L<1/(\ln 3\,\ln n')\) for every \(L\in[50508,301994)\), census-free and DP-free; 18 kills with \(L=176251\) surviving; refuted Koksma constant \(1\) and refuted uniform \(B/\theta\) recorded in place; sharpness census as context. Guard test `test_walk_charge_note.py`
 - **Refuted ideas:** none new (consolidation)
@@ -18333,7 +18333,7 @@ Best next question
 - **Hypotheses:** \(n^*(\ln n^*)^2\theta/L\to 6/(5\ln3)\), so the machinery's future is the Diophantine law \(n^*(q_j)\asymp q_jq_{j+1}\) — computable with exact big-int arithmetic and no floor verification
 - **Major results:** Classification **WALK_COMPETITION_GREEN**. Deep sandwich \(171928773/272500658<x<53715833/85137581\) certified by two big-int comparisons (width \(4.31\cdot10^{-17}\)); \(\theta_{\rm rot}\) quotients \([0;2,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4]\), denominators certified through \(85137581\). Dangerous seeds \(50508,176251,16785921,85137581\) plus the fans \(176251+k\cdot301994\) (\(k\le54\); \(k=1\) is \(478245\)) and \(16785921+k\cdot17087915\) (\(k\le3\)): 78 rows with exact big-int \(\theta\) and per-row \(o\)-minimality certificates. Cross-checks exact: stored 19-row DK margins to \(2.3\cdot10^{-16}\), DK margin \(1.1980\) at \(176251\)/floor \(162849448\) just below the DP \(1.1983\). Break-even floors \(2.37\cdot10^7\to1.38\cdot10^8\to3.48\cdot10^8\to4.54\cdot10^{11}\to2.64\cdot10^{13}\); law ratio \([0.8956,0.9409]\) matching \(J(n^*)=1-2/\ln n^*\); \(n^*(\ln n^*)^2/(q_jq_{j+1})\in\{1.077,0.912,1.140\}\). Self-consistent schedule: 61 levels, all rows killed by \(2.64\cdot10^{13}\), required improvement \(6.30\to2.31\to\min\mathbf{1.0735}\) (mid-fan) with kill-contiguity throughout. Conjecture `juggler_walk_finance_competition` ACTIVE. Artifact `cycle_walk_competition/summary.json`
 - **Refuted ideas:** none new (uniform \(B/\theta\) stays false and is not reasserted; Baker transfer stays refuted — \(\theta\) is exact)
-- **Literature:** DK/Ostrowski envelope and window word identity (laboratory, EXACT — HUMAN PROOF); continued fractions of \(\log2/\log3\) (KNOWN)
+- **Literature:** DK/Ostrowski envelope and window itinerary identity (laboratory, EXACT — HUMAN PROOF); continued fractions of \(\log2/\log3\) (KNOWN)
 - **Open:** is the mid-fan minimum of the required improvement bounded away from \(1\) uniformly over fans, or does a subsequence of fans drive it to \(1\)?
 - **Decision:** PROMOTE
 
@@ -18474,8 +18474,8 @@ Best next question
 - **Objective:** Consolidation pass (no new branch): absorb the walk-charge program into Paper A, land the deferred Lean for its discrete layer, and record the half-finished \(162849448\) floor extension honestly
 - **Hypotheses:** none — editorial and formalization work on decided branches
 - **Major results:**
-  - **Paper A raised and extended.** [juggler_finite_dynamics_note.md](theory/juggler_finite_dynamics_note.md) now prints the laboratory instance: Proposition 5.1 (certified floor \(N_0=26254995\)), Theorem 5.2 (parity cutoff \(50507\), first survivor \(50508\), \(19\) leftovers through \(2\cdot 10^5\)), and a new Section 5 absorbing the walk-charge chain — transport (Thm 5.3), hug adversary (Thm 5.4), rotation average (Prop 5.5), word identity (Lem 5.6), DK/Ostrowski block envelope (Thm 5.7), uniform window envelope on \([50508,301994)\) (Thm 5.8), and the kill table with the period bound \(\ge 176251\) (Thm 5.9). The \(10^6\) base instance and the survivor lattice stay in Section 4; old Section 5 (limitations) is now Section 6. Abstract, contributions (new Contribution 4), related-work layers, verification roles, Appendix A, and Appendix B (laboratory artifacts and hashes) updated. PDF rebuilt (`pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex`) and hash-synced to `juggler_review/`; reviewer README and formalization map updated (new §8.7)
-  - **Lean landed for the discrete walk layer.** `WalkChargeWords.lean`: unit-window invariant `hugOdds_pow_ge` / `hugOdds_pow_lt`, minimality `hugOdds_least`, prefix-minimality `hugOdds_le_of_admissible` (combinatorial core of Thm 5.4), and the word identity `budgetedWord_eq_hugWord` (Lem 5.6, discrete side); sanity instances \(84\to 53\), \(1054\to 665\), \(50508\to 31867\). `OstrowskiSandwich.lean`: big-int sandwich \(3^{10781274}<2^{17087915}\), \(2^{16785921}<3^{10590737}\) by `native_decide`, real bounds on \(\theta=\log(3/2)/\log 3\) via `Real.log`, shared CF prefix \([2,1,2,2,3,1,5,2,23,2,2,1]\) of both rational endpoints, and the convergent denominators through \(176251\). Both in the paper barrel; `lake build Problems.JugglerPaper` clean, no `sorry`. New ledger rows `J-cyclemin-walk-word-identity`, `J-cyclemin-walk-ostrowski-arithmetic` (**EXACT — LEAN VERIFIED**); the analytic rows keep their tags. Deferred (not short): transport recursion, Laplace integral, Denjoy–Koksma, digit caps
+  - **Paper A raised and extended.** [juggler_finite_dynamics_note.md](theory/juggler_finite_dynamics_note.md) now prints the laboratory instance: Proposition 5.1 (certified floor \(N_0=26254995\)), Theorem 5.2 (parity cutoff \(50507\), first survivor \(50508\), \(19\) leftovers through \(2\cdot 10^5\)), and a new Section 5 absorbing the walk-charge chain — transport (Thm 5.3), hug adversary (Thm 5.4), rotation average (Prop 5.5), itinerary identity (Lem 5.6), DK/Ostrowski block envelope (Thm 5.7), uniform window envelope on \([50508,301994)\) (Thm 5.8), and the kill table with the period bound \(\ge 176251\) (Thm 5.9). The \(10^6\) base instance and the survivor lattice stay in Section 4; old Section 5 (limitations) is now Section 6. Abstract, contributions (new Contribution 4), related-work layers, verification roles, Appendix A, and Appendix B (laboratory artifacts and hashes) updated. PDF rebuilt (`pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex`) and hash-synced to `juggler_review/`; reviewer README and formalization map updated (new §8.7)
+  - **Lean landed for the discrete walk layer.** `WalkChargeItineraries.lean`: unit-window invariant `hugOdds_pow_ge` / `hugOdds_pow_lt`, minimality `hugOdds_least`, prefix-minimality `hugOdds_le_of_admissible` (combinatorial core of Thm 5.4), and the itinerary identity `budgetedWord_eq_hugWord` (Lem 5.6, discrete side); sanity instances \(84\to 53\), \(1054\to 665\), \(50508\to 31867\). `OstrowskiSandwich.lean`: big-int sandwich \(3^{10781274}<2^{17087915}\), \(2^{16785921}<3^{10590737}\) by `native_decide`, real bounds on \(\theta=\log(3/2)/\log 3\) via `Real.log`, shared CF prefix \([2,1,2,2,3,1,5,2,23,2,2,1]\) of both rational endpoints, and the convergent denominators through \(176251\). Both in the paper barrel; `lake build Problems.JugglerPaper` clean, no `sorry`. New ledger rows `J-cyclemin-walk-word-identity`, `J-cyclemin-walk-ostrowski-arithmetic` (**EXACT — LEAN VERIFIED**); the analytic rows keep their tags. Deferred (not short): transport recursion, Laplace integral, Denjoy–Koksma, digit caps
   - **Floor \(162849448\) extension PARKED partial.** \(10\) leftover DP kills landed under `cycle_walk_charge/new_floor_kills/` (including \(176251\) at margin \(1.198\) and \(303048\) at \(8.44\)); \(L=478245\) (required \(19.5\)) and the floor certificate itself (verification stopped near \(99.94\%\)) are unfinished. No period claim from that floor; the certified bound stays \(176251\) at \(26254995\). Dossier, branch ledger, and AGENTS.md wording fixed (was "in flight"); reopening point recorded
   - Stale prose fixed: walk-charge dossier status and Publication assessment (transport is **EXACT — HUMAN PROOF**, not "CONJECTURE until exact"); walk-window and walk-Ostrowski dossier Formalization sections; walk-charge note endpoint ("no Lean" superseded)
 - **Refuted ideas:** none — no hypothesis tested
@@ -18488,7 +18488,7 @@ What was learned
 - the walk-charge program is now a paper section, not a
   laboratory extract: Paper A prints the certified period
   bound 176251 at the laboratory floor
-- the discrete half of the envelope chain (word identity,
+- the discrete half of the envelope chain (itinerary identity,
   hug prefix-minimality, quotient arithmetic) is short in
   Lean; the analytic half (transport, Laplace, DK, digit
   caps) is not, and stays human by the no-long-proof rule
@@ -18501,7 +18501,7 @@ Strongest theorem
 Strongest refutation
 - none (consolidation)
 Reusable machinery
-- WalkChargeWords.lean, OstrowskiSandwich.lean; the
+- WalkChargeItineraries.lean, OstrowskiSandwich.lean; the
   markdown-to-PDF pipeline recorded explicitly
 Branch status
 - PROMOTE (walk charge, unchanged); PARK (floor extension)
@@ -18700,7 +18700,7 @@ Best next question
 - **Objective:** Review the Lean tree after the consolidation — merge/reorganize opportunities, appearing corollaries, candidate new theories. No new branch
 - **Hypotheses:** none — formalization review on decided mathematics
 - **Major results:**
-  - **Cycle words dominate the hug word (new, Lean end to end).** The existing cycle prefix envelope `cycleMin_prefix_pow_le` (CycleFinance, \(2^k\le 3^{a_k}\) on every CycleMin prefix) composes with hug minimality `hugOdds_least` into `cycleMin_prefix_odds_ge_hug` / `cycleMin_odds_ge_hug`: every prefix of a minimum-based cycle word carries at least \(o_{\min}(k)\) odd letters. The hug adversary of Paper A Thm 5.4 is now a *cycle-native* Lean statement, not only a \(u\ge 0\)-relaxation one. Strict window `hugOdds_pow_gt` (powers of \(2\) and \(3\) never meet) identifies `hugOdds` with the strict finance \(o_{\min}\). New ledger row `J-cyclemin-hug-prefix-bound` (**EXACT — LEAN VERIFIED**)
+  - **Cycle itineraries dominate the hug itinerary (new, Lean end to end).** The existing cycle prefix envelope `cycleMin_prefix_pow_le` (CycleFinance, \(2^k\le 3^{a_k}\) on every CycleMin prefix) composes with hug minimality `hugOdds_least` into `cycleMin_prefix_odds_ge_hug` / `cycleMin_odds_ge_hug`: every prefix of a minimum-based cycle itinerary carries at least \(o_{\min}(k)\) odd letters. The hug adversary of Paper A Thm 5.4 is now a *cycle-native* Lean statement, not only a \(u\ge 0\)-relaxation one. Strict window `hugOdds_pow_gt` (powers of \(2\) and \(3\) never meet) identifies `hugOdds` with the strict finance \(o_{\min}\). New ledger row `J-cyclemin-hug-prefix-bound` (**EXACT — LEAN VERIFIED**)
   - **Survivor lattice sits on the hug diagonal.** `hugOdds_lattice_base` (\(25781\to 16266\)) joins `hugOdds_1054` and `hugOdds_seed`: all three `RunSurvivorLattice` generators satisfy \(o=\mathrm{hugOdds}(L)\); hug counts along the certified convergent denominators are Lean-listed (`hugOdds_convergent_denoms`). The lattice and walk-charge modules now certify each other's constants
   - **Theorem 5.8 digit scan upgraded to Lean.** `OstrowskiSandwich.lean` gains greedy Ostrowski digits over the certified denominators and the window scan: for all \(251486\) lengths \(50508\le L<301994\), the digits reconstruct \(L\) and \(s(L)\le 37\) (`window_digit_scan`, pointwise `window_digit_cap`), attained at \(L=275632\) (`window_digit_max`); \(24\)s `native_decide`. The previously computational scan sharpening is now Lean; the DK comparison and structural cap \(b_j\le a_{j+1}\) stay human (KNOWN). Ledger row `J-cyclemin-walk-ostrowski-arithmetic` extended
   - **Merge/reorganize verdicts (reviewed, mostly no).** Custom `cfQuotients` stays over Mathlib's `GenContFract` (decidable, five lines, no dependency weight); `Problems.Ostrowski.NP` shares only the name Ostrowski (Γ_NP place-value numeration) — no merge; `hugWord : List Bool` versus `List Branch` needs no bridge because the appearing corollary lives at count level; `three_pow_step_gt_two_pow_step` in the published `RunSurvivorLattice` is untouched (now independently derivable from `hugOdds_1054` + `hugOdds_pow_gt`). Paper A §5.3/§5.8, Appendix A, and the reviewer formalization map §8.7 updated; PDF rebuilt
@@ -18720,7 +18720,7 @@ Best next question
   - **Bridge:** `native_decide` over all \(301994\) lengths identifies the function-form digits with the fold-form `greedyDigitSum` (`greedy_eq_ostro_below_window`), so the structural cap lands on the paper's object (`greedyDigitSum_le`). Module in both barrels; `lake build` clean, no `sorry`. New ledger row `J-cyclemin-walk-ostrowski-numeration` (**EXACT — LEAN VERIFIED**). Paper A §1.2 roles, Theorem 5.8 proof text, Appendix A, paper barrel docstring, and reviewer formalization map §8.7 updated; PDF rebuilt
 - **Refuted ideas:** none
 - **Literature:** Ostrowski numeration (KNOWN); the Lean content is the formalization, not the mathematics
-- **Open:** remaining Lean ladder unchanged — mechanical/Sturmian balancedness of the hug word, transport recursion (Thm 5.3), Denjoy–Koksma on `AddCircle` (Thm 5.7)
+- **Open:** remaining Lean ladder unchanged — mechanical/Sturmian balancedness of the hug itinerary, transport recursion (Thm 5.3), Denjoy–Koksma on `AddCircle` (Thm 5.7)
 - **Decision:** PROMOTE (theory landed and wired into Paper A's trust boundary); no new mathematical branch opened
 
 ## Juggler transport lemma in Lean
@@ -18734,7 +18734,7 @@ Best next question
   - **Boundary kept honest:** the walk-charge consequence (DP over nonnegative closed walks at the reduced base, feed into the 6/5 unroll) stays a human reduction; `J-cyclemin-walk-transport` keeps EXACT — HUMAN PROOF, new row `J-cyclemin-walk-transport-envelope` (**EXACT — LEAN VERIFIED**) carries the inequality. Module in both barrels; full `lake build` clean, no `sorry`; Paper A §1.2 roles, §5.2 proof note, Appendix A, paper-barrel docstring, reviewer formalization map §8.7 updated; PDF rebuilt
 - **Refuted ideas:** none
 - **Literature:** none new — the mathematics is Paper A's own Theorem 5.3
-- **Open:** remaining Lean ladder — mechanical/Sturmian balancedness of the hug word; Denjoy–Koksma on `AddCircle` (Thm 5.7), now the only analytic step of the §5 envelope chain without Lean
+- **Open:** remaining Lean ladder — mechanical/Sturmian balancedness of the hug itinerary; Denjoy–Koksma on `AddCircle` (Thm 5.7), now the only analytic step of the §5 envelope chain without Lean
 - **Decision:** PROMOTE (formalization landed); no new mathematical branch opened
 
 ## Juggler floor 162849448 certified: period bound 478245
@@ -18789,7 +18789,7 @@ Best next question
 - **Objective:** The transport pass ended on one question: is the analytic half of Theorem 5.4 — strict monotonicity of the charge \(g(u)\) and the exchange conclusion — formalizable with the elementary toolkit, or does it need the real charge integral?
 - **Hypotheses:** at walk points the charge is \(g=1/(e^{W\nu}W\nu)\) with rational weight \(W=2^u=3^a/2^k\) and \(\nu=\ln n'\), so antitonicity should be bare \(\exp\) monotonicity — confirmed; the module compiled clean on the first attempt
 - **Major results:**
-  - **Theorem 5.4's analytic half is Lean, strengthened** (`WalkChargeMax.lean`, `stateCharge_antitone` + `hug_charge_maximal`): the charge is antitone in the weight, and composed with `hugOdds_le_of_admissible` the exact hug word maximises the total walk charge over **all** admissible exponent walks, not just a fixed \((L,o)\) class. No charge integral; the strict within-\((L,o)\) uniqueness of the maximiser is the only piece left human
+  - **Theorem 5.4's analytic half is Lean, strengthened** (`WalkChargeMax.lean`, `stateCharge_antitone` + `hug_charge_maximal`): the charge is antitone in the weight, and composed with `hugOdds_le_of_admissible` the exact hug itinerary maximises the total walk charge over **all** admissible exponent walks, not just a fixed \((L,o)\) class. No charge integral; the strict within-\((L,o)\) uniqueness of the maximiser is the only piece left human
   - **The §5.2 consequence is Lean end to end** (`cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge`): exponentiating `cycleMin_transport`, on a CycleMin cycle at \(n\ge 400\) with positive reduced log-base \(\nu=\ln n-D\) the cyclic defect sum obeys \(\sum_k 1/(x_k\ln x_k)\le\sum_k g(w_k)\le\sum_k g(\mathrm{hugWeight}\,k)\). The full structural half of the walk-charge envelope — transport, defect-to-charge, hug maximality — is now inside the Lean trust boundary
   - **Boundary kept honest:** the rotation average (Prop 5.5), Denjoy–Koksma (Thm 5.7), and the kill evaluations (Thms 5.2/5.9) remain human/verified computation; the Lean finance inequality is the division-free form, so a fully formal kill criterion would additionally need the defect-sum finance lower bound (Lemma 4.3 route) — noted, not opened. New row `J-cyclemin-hug-charge-max` (**EXACT — LEAN VERIFIED**); module in both barrels; Paper A §1.2 roles, §5.2/§5.3 notes, Appendix A, formalization map, AGENTS.md updated; full `lake build` clean, no `sorry`
 - **Refuted ideas:** none — the falsifier (a hidden dependence on the Laplace integral) did not fire
@@ -18859,9 +18859,9 @@ Best next question
 - **Objective:** Port the §5 walk-charge layer from hypothetical cycles to **open** trajectories: does `AboveAnchor` force the nonnegative exponent walk and hug domination, and does the near-minimum slack-vs-defect ledger force eventual descent — unconditionally, or only conditional on floor-defect lower bounds? Reviewer framing: "eventual descent" / "asymptotic descent" as the concrete target between the certified-density results and full termination
 - **Hypotheses:** the walk layer constrains descent-free flight, not just cycles (confirmed, Lean); the defect route might force descent at walk near-minima (priced and found empirically idle); \(D(n)=O(\log n)\) (testable, recorded as CONJECTURE)
 - **Major results:**
-  - **Porting lemma (`J-above-anchor-hug-domination`, EXACT — LEAN VERIFIED):** `AboveAnchorWalk.lean` — an above-anchor prefix keeps \(2^k\le 3^{a_k}\) at every prefix length (`aboveAnchor_prefix_pow_le`, composing `power_bound_contracts` with the anchor hypothesis: `cycleMin_prefix_pow_le` with the cycle deleted) and hence dominates the exact hug word in odd count (`aboveAnchor_prefix_odds_ge_hug`). A hypothetical never-descending orbit carries odd density \(\ge\log 2/\log 3\approx 0.631\) in **every** prefix; the hug adversary now prices open descent-free flight. Full `lake build` clean, no `sorry`
+  - **Porting lemma (`J-above-anchor-hug-domination`, EXACT — LEAN VERIFIED):** `AboveAnchorWalk.lean` — an above-anchor prefix keeps \(2^k\le 3^{a_k}\) at every prefix length (`aboveAnchor_prefix_pow_le`, composing `power_bound_contracts` with the anchor hypothesis: `cycleMin_prefix_pow_le` with the cycle deleted) and hence dominates the exact hug itinerary in odd count (`aboveAnchor_prefix_odds_ge_hug`). A hypothetical never-descending orbit carries odd density \(\ge\log 2/\log 3\approx 0.631\) in **every** prefix; the hug adversary now prices open descent-free flight. Full `lake build` clean, no `sorry`
   - **Descent-time census \([2,2\cdot 10^6]\) (COMPUTATIONALLY VERIFIED):** every start descends below itself; max \(D=257\) at \(n=1122603\); six high-flyers (\(48443,275485,412027,463157,1245741,1267909\)) needed the exact gmpy2 retry pass, peaking at \(6.5\cdot 10^6\) bits (\(\approx 1.9\) million digits for \(275485\)) and still descending (\(D\le 213\)). Artifact `data/research/juggler/above_anchor_walk/summary.json`
-  - **Every first descent is a gap descent:** all \(1999999\) starts descend with \(3^{a_D}<2^D\) — the parity word itself goes exponent-negative; **zero defect descents** (floors never push an orbit below its anchor while the walk is still nonnegative). On laboratory and record orbits the defect consumes at most \(\rho\sim 2\cdot 10^{-3}\) of the walk slack at the tightest near-minimum visits: the zero-defect adversary is effectively realized, so an envelope kill needs defect lower bounds — exactly the deterministic-equidistribution wall (BB/GG/JJ) that parks the density program
+  - **Every first descent is a gap descent:** all \(1999999\) starts descend with \(3^{a_D}<2^D\) — the parity itinerary itself goes exponent-negative; **zero defect descents** (floors never push an orbit below its anchor while the walk is still nonnegative). On laboratory and record orbits the defect consumes at most \(\rho\sim 2\cdot 10^{-3}\) of the walk slack at the tightest near-minimum visits: the zero-defect adversary is effectively realized, so an envelope kill needs defect lower bounds — exactly the deterministic-equidistribution wall (BB/GG/JJ) that parks the density program
   - **Scaling:** record \(D/\ln n\) grows slowly through the records (\(13.3\) at \(193\), \(22.4\) at \(78901\), \(18.4\) at the final record) — consistent with \(O(\log n)\) up to a slowly varying factor and decisively below the \(\sqrt{n\log n}\) envelope scale (that ratio falls from \(2.75\) to \(0.065\)); hug tightness: the \(1999\) chain touches the hug bound (min gap \(0\))
 - **Refuted ideas:** none formally; the analytic defect route is priced as empirically idle at laboratory scales (negative knowledge, not a refutation)
 - **Literature:** none new
@@ -18885,7 +18885,7 @@ What was learned
 Strongest theorem
 - J-above-anchor-hug-domination: every prefix of a
   hypothetical never-descending orbit dominates the exact
-  hug word in odd count (EXACT - LEAN VERIFIED)
+  hug itinerary in odd count (EXACT - LEAN VERIFIED)
 Strongest refutation
 - none; the zero-defect adversary being effectively
   realized is negative knowledge pricing the analytic route
@@ -18968,7 +18968,7 @@ Best next question
 
 ```text
 What was learned
-- backward freedom flow of the hug word is strictly positive
+- backward freedom flow of the hug itinerary is strictly positive
   per block (+5λ/12 OE, +7λ/24 OOE) - all-depth nonemptiness
   reduces to short-interval depth-<=2 parity hits, not K3
 - the needed window is X^{1/3} (vdC-nontrivial), not the
@@ -19005,11 +19005,11 @@ Best next question
 ## Juggler flight envelope (fly exponent = peak walk weight)
 
 - **Date:** 2026-09-01
-- **Objective:** Package a Juggler fly-height theory: does the peak walk weight \(W=\max_k 3^{a_k}/2^k\) of the parity word predict the realized trajectory peak \(H(n)\), and does the Paper A Theorem 5.3 transport port from `CycleMin` to open `AboveAnchor` prefixes?
+- **Objective:** Package a Juggler fly-height theory: does the peak walk weight \(W=\max_k 3^{a_k}/2^k\) of the parity itinerary predict the realized trajectory peak \(H(n)\), and does the Paper A Theorem 5.3 transport port from `CycleMin` to open `AboveAnchor` prefixes?
 - **Hypotheses:** the transport induction goes through verbatim off-cycle (confirmed - both injection cells were already anchor-form); large fly excess \(E_H\) on some flight would refute the idle-defect picture (did not fire)
 - **Major results:**
   - **Flight envelope (EXACT - LEAN VERIFIED, `J-flight-envelope-transport`):** on `AboveAnchor n w` with \(n\ge 400\), \(w_k(\log n-\Delta)\le\log x_k\le w_k\log n\) with \(\Delta=1.05e/n+0.7o/(n\sqrt n)\) (`aboveAnchor_transport`, `aboveAnchor_flight_envelope`, `FlightEnvelope.lean`); the upper side is anchor-free (`follows_log_le_walkWeight`, log form of `power_bound_word`) - every realized peak obeys \(\log H\le w_P\log n\). The fly exponent \(\Phi=\log H/\log n\) of an ascent prefix is its peak walk weight up to \(O(w_P\Delta/\log n)\)
-  - **Razor sharp at height (COMPUTATIONALLY VERIFIED, float diagnostics):** atlas on odd \(n\le 2\cdot10^4\) plus the seven high-flyers (probe `flight_envelope.py`, artifact `data/research/juggler/flight_envelope/summary.json`, classification `FLIGHT_ENVELOPE_SHARP`): zero violations of either side; worst transport-applicable relative fly excess \(1.61\cdot10^{-4}\); the floors shave at most \(0.014\) **bits** off multi-million-bit ideal peaks (\(275485\): \(6342922\) bits, \(E_H=-3\cdot10^{-6}\) bits, \(\Phi=350988.1\)) - the parity word determines the peak to sub-bit precision
+  - **Razor sharp at height (COMPUTATIONALLY VERIFIED, float diagnostics):** atlas on odd \(n\le 2\cdot10^4\) plus the seven high-flyers (probe `flight_envelope.py`, artifact `data/research/juggler/flight_envelope/summary.json`, classification `FLIGHT_ENVELOPE_SHARP`): zero violations of either side; worst transport-applicable relative fly excess \(1.61\cdot10^{-4}\); the floors shave at most \(0.014\) **bits** off multi-million-bit ideal peaks (\(275485\): \(6342922\) bits, \(E_H=-3\cdot10^{-6}\) bits, \(\Phi=350988.1\)) - the parity itinerary determines the peak to sub-bit precision
   - **Peak placement (OBSERVATION):** all seven high-flyers peak on the ascent prefix, but \(1964/9999\) odd starts (\(19.6\%\)) peak *after* first descent (smallest \(n=19\)); those peaks are priced only by the anchor-free upper side - re-anchoring at valleys is the recorded reopening key
 - **Refuted ideas:** none (the predicted falsifier - a floor-suppressed flight family - did not appear through \(2\cdot10^4\))
 - **Literature:** none new
@@ -19077,7 +19077,7 @@ Best next question
 - **Objective:** Answer the above-anchor branch's best next question: can the proved depth-\(\le 4\) parity layer of Paper B kill extremal hug-hugging descent-free flights the way parity/walk finance killed short cycle leftovers?
 - **Hypotheses:** the hug-domination floor (Lean, new since Paper B) might let the proved ambient layer act pointwise on open flights; falsifier: every route reduces to the REFUTED ambient-to-orbit transfer or the parked K3/JJ wall.
 - **Major results:**
-  - **Flight walk-divergence (EXACT - HUMAN PROOF, `J-flight-walk-divergence`):** every descent-free flight has unbounded exponent walk. Walk \(\le B\) forces states \(\le n^{2^B}\) (Lean `power_bound_word`), hence eventual periodicity (pigeonhole), and the period word is strictly expanding (Lean `cycle_strict_envelope`: \(2^p<3^o\), equality impossible), so the walk gains \(\delta=\log_2(3^o/2^p)>0\) per traversal - contradiction. With the Lean hug band \(0\le u^{\mathrm{hug}}<\log_2 3\), no flight stays within bounded excess of the hug word: the extremal hug-hugging adversary is cycle-exclusive.
+  - **Flight walk-divergence (EXACT - HUMAN PROOF, `J-flight-walk-divergence`):** every descent-free flight has unbounded exponent walk. Walk \(\le B\) forces states \(\le n^{2^B}\) (Lean `power_bound_word`), hence eventual periodicity (pigeonhole), and the period word is strictly expanding (Lean `cycle_strict_envelope`: \(2^p<3^o\), equality impossible), so the walk gains \(\delta=\log_2(3^o/2^p)>0\) per traversal - contradiction. With the Lean hug band \(0\le u^{\mathrm{hug}}<\log_2 3\), no flight stays within bounded excess of the hug itinerary: the extremal hug-hugging adversary is cycle-exclusive.
   - **Flight dichotomy at the frontier:** a descent-free flight starts above the certified floor \(162849448\) and either enters a nontrivial cycle (min above the floor, period \(\ge 478245\)) or has unbounded states (a divergent orbit). First flight-level consequence of the cycle period bound.
   - **Paper B answer (negative as mechanism):** its proved depth-\(\le 4\) layer is ambient-density; the transfer refutation (`TRANSFER_COMPLEX`) stands; every odd-rooted window class has positive ambient density, so no finite window is forbidden pointwise. The kill that works is pigeonhole + strict expansion, not equidistribution. The refuted transfer was not re-tested.
   - **Probe (`flight_walk_divergence.py`, `FLIGHT_WALK_DIVERGENCE_CONFIRMED`):** hug band \(2^k\le 3^{a_k}<3\cdot 2^k\) exact over \(2\cdot 10^5\) letters (max \(u=1.58495721\)); all seven hug pairs at the leftover/survivor lengths strictly expanding; drift from \(3.0\cdot 10^{-3}\) (\(L=84\)) down to \(5.1\cdot 10^{-6}\) (\(L=478245\)); the \(L=301994\) pair overshoots by almost \(\log_2 3\) (near-convergent from above).
@@ -19137,8 +19137,8 @@ Best next question
 - **Objective:** Review the whole Juggler Lean tree and make it pristine: one transport induction, census off the walk-layer import graph, no duplicated majorants, no wrapper sprawl. No mathematical claim changed; no ledger tag changed.
 - **Major results (all structural):**
   - **Transport re-rooted on `AboveAnchor`:** `FlightEnvelope.lean` deleted; its content merged into `WalkTransport.lean`. The ~130-line transport induction now runs once, on the never-descending hypothesis (`aboveAnchor_transport_prefix` / `aboveAnchor_transport`), and the Paper A statements `cycleMin_transport_prefix` / `cycleMin_transport` are one-line corollaries via `aboveAnchor_of_cycleMin`. This is the one change with mathematical content: every descent-free prefix, not just a hypothetical cycle, is priced by the transport envelope.
-  - **Prefix non-contraction moved to `CycleCore.lean`:** `aboveAnchor_prefix_pow_le` is the primitive; `cycleMin_prefix_pow_le` and `cycleMin_iterate_ge` are corollaries next to `AboveAnchor` itself. `WalkChargeWords.lean` and `WalkTransport.lean` now import `CycleCore` instead of `CycleFinance` — the §5 walk layer no longer compiles the §4 census.
-  - **`CycleFinance.lean` split:** the file keeps only Theorem 4.4 / Corollary 4.4c (`cycleMin_finance`, `cycleMin_finance_inv_sum`) on top of `CycleCore`; the entire census (length exclusions, floor-261 comparison, `EliahouTable`, `cycle_word_eliahou_leftover`, leftover `84`-or-`\ge 85`) moved to the laboratory companion `CycleFinanceLeftovers.lean`.
+  - **Prefix non-contraction moved to `CycleCore.lean`:** `aboveAnchor_prefix_pow_le` is the primitive; `cycleMin_prefix_pow_le` and `cycleMin_iterate_ge` are corollaries next to `AboveAnchor` itself. `WalkChargeItineraries.lean` and `WalkTransport.lean` now import `CycleCore` instead of `CycleFinance` — the §5 walk layer no longer compiles the §4 census.
+  - **`CycleFinance.lean` split:** the file keeps only Theorem 4.4 / Corollary 4.4c (`cycleMin_finance`, `cycleMin_finance_inv_sum`) on top of `CycleCore`; the entire census (length exclusions, floor-261 comparison, `EliahouTable`, `cycle_itinerary_eliahou_leftover`, leftover `84`-or-`\ge 85`) moved to the laboratory companion `CycleFinanceLeftovers.lean`.
   - **Length exclusions table-driven:** ~70 individual `finance_excludes_length_*` wrappers replaced by three row tables (`financeRows53`, `financeRows257`, `financeRows261`) with one membership lemma each (`fin_cases` + `decide`); the six named exclusions used by probes survive as corollaries. Same theorems, several hundred lines gone.
   - **Log majorant parameterized:** `neg_log_one_sub_le_mul` (\(-\log(1-t)\le ct\) for \(t\le 1-1/c\)) in `WalkTransport.lean`; the \(1.05\) transport instance and the \(6/5\) defect-finance instance (`neg_log_one_sub_le_sixth`, `DefectFinance.lean`) are corollaries.
   - **`Bunched*Eval` collapsed:** six isolated `native_decide` table files merged into `LeftoverEval.lean` under one `maxHeartbeats`; importers rewired.
@@ -19153,7 +19153,7 @@ Best next question
 - **Objective:** Triage the one candidate the hygiene pass surfaced: does the anchor-rooted transport envelope compose with the flight walk-divergence theorem into an unconditional doubly-exponential height law for descent-free flights?
 - **Hypotheses:** before the re-rooting the composition was not even well-typed (transport lived on `CycleMin`, and cycles are exactly the bounded-walk case); on `AboveAnchor` it should be a five-line corollary. Falsifier: the composition needs an infinite-flight hypothesis at every step, or the deficit \(D\) makes the bound vacuous at the anchor floor.
 - **Major results:**
-  - **Walk-height law (EXACT — LEAN VERIFIED, `J-flight-height-law`):** on `AboveAnchor n w` with \(n\ge 400\), a walk height of \(B\) doublings at step \(k\) (\(2^{k+B}\le 3^{a_k}\)) forces \(2^B(\log n-D)\le\log x_k\), i.e. \(x_k\ge(ne^{-D})^{2^B}\) (`aboveAnchor_height_of_walk`, weight form `two_pow_le_walkWeight`, `WalkTransport.lean`). The proof is exactly the predicted composition: \(2^B\le w_k\) from the height hypothesis, then `aboveAnchor_transport`; the \(\log n<D\) case is vacuous since \(x_k\ge 1\). Finite-word, no pigeonhole needed.
+  - **Walk-height law (EXACT — LEAN VERIFIED, `J-flight-height-law`):** on `AboveAnchor n w` with \(n\ge 400\), a walk height of \(B\) doublings at step \(k\) (\(2^{k+B}\le 3^{a_k}\)) forces \(2^B(\log n-D)\le\log x_k\), i.e. \(x_k\ge(ne^{-D})^{2^B}\) (`aboveAnchor_height_of_walk`, weight form `two_pow_le_walkWeight`, `WalkTransport.lean`). The proof is exactly the predicted composition: \(2^B\le w_k\) from the height hypothesis, then `aboveAnchor_transport`; the \(\log n<D\) case is vacuous since \(x_k\ge 1\). Finite-itinerary, no pigeonhole needed.
   - **Flight consequence (rate form of the dichotomy):** composed with the human walk-divergence theorem, every descent-free flight realizes the rate along an unbounded walk — divergent orbits escape doubly exponentially in their walk height. The only human glue remains the infinite pigeonhole of `J-flight-walk-divergence`.
   - **Nonvacuity regime recorded:** \(D<\log n\) holds for prefix lengths up to order \(n\log n/1.05\); flights start above the certified floor \(162849448\), so the law is live for astronomically long prefixes.
   - **Wiring:** probe `flight_walk_divergence.py` asserts the new lemma; summary regenerated; dossiers (`juggler_flight_walk_divergence.md`, `juggler_flight_envelope.md`) and ledger updated; full `lake build` and fast suite green.
@@ -19166,7 +19166,7 @@ What was learned
   law type-checks only because transport now lives on
   AboveAnchor; on CycleMin the hypothesis class excluded
   exactly the orbits the law prices
-- the rate side of flight divergence is finite-word
+- the rate side of flight divergence is finite-itinerary
   mathematics: only the pigeonhole (eventual periodicity of
   bounded flights) is genuinely infinite
 - vacuity is a regime, not a defect: D < log n up to prefix
@@ -19512,13 +19512,13 @@ Best next question
 - **Objective:** The anchor-period branch's best next question: do the proved layers say anything about divergent (non-eventually-periodic) descent-free flights, or is that frontier fully behind all-depth equidistribution?
 - **Hypotheses:** injectivity of non-periodic orbits plus the Lean envelope force pointwise laws (states, walk, rates, word recurrence); falsifier: everything reduces to the recorded sup-form walk-divergence (REPARAMETERIZATION).
 - **Major results:**
-  - **Divergent flight structure theorem (EXACT - HUMAN PROOF, components Lean, `J-flight-divergent-structure`):** a divergent descent-free flight from anchor \(n\) has (1) all states distinct and \(x_k\to\infty\) *pointwise* (a repeat forces periodicity; distinct integers \(\ge n\) leave every bounded set), with \(x_0=n\) the global minimum; (2) linear peak growth \(\max_{j\le k}x_j\ge n+k\); (3) pointwise walk divergence with a log-log rate \(u_k\ge\log_2(\log x_k/\log n)\to\infty\) (anchor-free envelope, Lean), hence \(\sup_{j\le k}u_j\ge\log_2(\log(n+k)/\log n)\) - strengthening walk-divergence from \(\sup\) to pointwise; (4) hug-excess divergence \(a_k-\mathrm{hugOdds}(k)\to\infty\); (5) *recurrent hug domination*: tail minima are attained and strictly increase, giving infinitely many cofinal record indices from which the tail is itself a descent-free flight, so hug domination (Lean) restarts from every record - a translation-recurrent density constraint on the word.
+  - **Divergent flight structure theorem (EXACT - HUMAN PROOF, components Lean, `J-flight-divergent-structure`):** a divergent descent-free flight from anchor \(n\) has (1) all states distinct and \(x_k\to\infty\) *pointwise* (a repeat forces periodicity; distinct integers \(\ge n\) leave every bounded set), with \(x_0=n\) the global minimum; (2) linear peak growth \(\max_{j\le k}x_j\ge n+k\); (3) pointwise walk divergence with a log-log rate \(u_k\ge\log_2(\log x_k/\log n)\to\infty\) (anchor-free envelope, Lean), hence \(\sup_{j\le k}u_j\ge\log_2(\log(n+k)/\log n)\) - strengthening walk-divergence from \(\sup\) to pointwise; (4) hug-excess divergence \(a_k-\mathrm{hugOdds}(k)\to\infty\); (5) *recurrent hug domination*: tail minima are attained and strictly increase, giving infinitely many cofinal record indices from which the tail is itself a descent-free flight, so hug domination (Lean) restarts from every record - a translation-recurrent density constraint on the itinerary.
   - **Sharpness:** the log-log rate is attained with equality at realized peaks - probe slack \(0.0\) on all seven canonical high-flyers (peaks \(3.2\cdot 10^6\) to \(6.5\cdot 10^6\) bits); no faster pointwise rate follows from these layers (a flight may hug from each record arbitrarily long, so slow state growth is not excluded here).
   - **Answer to the standing question:** the proved layers *describe* divergent flights with rates; only their *exclusion* is behind all-depth equidistribution. The cleanest named fragment of that frontier is the eventually-all-odd subcase (infinite odd towers) - open, strictly weaker than full all-depth equidistribution, beyond Paper B's depth \(\le 4\).
   - **Probe (all-anchor mirrors):** hug domination and the envelope inequality verified at *every* anchor of every orbit \(n\le 2000\) - \(21341\) anchored segments (max length \(69\)), zero violations; classification `DIVERGENT_STRUCTURE_MIRRORS_CONFIRMED`.
 - **Refuted ideas:** none (the falsifier did not fire: points 1-3 and 5 are not restatements of the sup-form theorem).
 - **Literature:** none new.
-- **Open:** infinite odd towers (named above); any Diophantine consequence of recurrent hug domination for the word of a divergent flight (no route visible). The PARKed re-anchored excursion envelope (quantitative valley composition) was not reopened - point 5 is qualitative recurrence.
+- **Open:** infinite odd towers (named above); any Diophantine consequence of recurrent hug domination for the itinerary of a divergent flight (no route visible). The PARKed re-anchored excursion envelope (quantitative valley composition) was not reopened - point 5 is qualitative recurrence.
 - **Decision:** PROMOTE - dossier `docs/problems/juggler_flight_divergent_structure.md`, ledger row `J-flight-divergent-structure`. With this the flight program's descriptive arc is complete (envelope, dichotomy, anchor-period ladder, divergent structure); the frontier returns to the two named programs and neither is auto-opened.
 
 ```text
@@ -19531,7 +19531,7 @@ What was learned
   exactly attained at realized peaks
 - tail minima of a divergent flight are internal anchors:
   hug domination restarts from infinitely many cofinal
-  records - the word is recurrently hug-dominated
+  records - the itinerary is recurrently hug-dominated
 - the proved layers describe divergent flights; only their
   exclusion is behind all-depth equidistribution, with the
   infinite odd tower as the cleanest named open fragment
@@ -19569,7 +19569,7 @@ Best next question
   - **Scope correction (machinery gravity honored):** the originally scoped tower census was dropped on discovering it duplicates the closed \(\mathcal P_r\) census (`juggler_odd_landing_sets`, `ODD_LANDING_SETS_ARE_FORWARD_ORBITS`): the depth-\(r\) tower sets *are* the iterated odd-landing sets, already measured (stay \(\approx 1/2\) through \(r=7\), singleton cells, no residue/\(\theta\)/2-adic recognition — all REFUTED, `J-odd-landing-set-structure`).
   - **Placement (EXACT - HUMAN PROOF, recorded in the dossier):** (i) all-depth equidistribution is a density statement and cannot exclude a density-zero-but-nonempty \(\mathcal T_\infty\) - even the full program would not settle the fragment; (ii) tower exclusion is a single cylinder and implies no equidistribution - so the fragment is *incomparable* to the all-depth frontier, answering the question: neither attackable by it nor embedding it; (iii) the only counting route past depth 4 (Paper B along sparse tower-tail images) is exactly the refuted ambient-to-orbit transfer (`TRANSFER_COMPLEX`); (iv) the only pointwise routes (residues, cylinders, \(\theta\), valuation) are the refuted candidates of the odd-landing branch. A self-contained pointwise digit problem (parity of iterated isqrt(x^3)), Mahler-flavored, no lab machinery applies.
   - **Corollary 1 (floor for towers):** every state of a hypothetical infinite odd tower exceeds \(162849448\) (tails of towers are towers; towers are strictly increasing hence descent-free; the certified floor kills all smaller starts).
-  - **Corollary 2 (doubly-exponential pinning, components Lean):** a tower from \(n\ge 400\) has walk weight exactly \((3/2)^k\), so the flight envelope pins \((3/2)^k(\log n-\Delta)\le\log x_k\le(3/2)^k\log n\); its walk \(u_k=k(\log_2 3-1)\) is the fastest any word admits.
+  - **Corollary 2 (doubly-exponential pinning, components Lean):** a tower from \(n\ge 400\) has walk weight exactly \((3/2)^k\), so the flight envelope pins \((3/2)^k(\log n-\Delta)\le\log x_k\le(3/2)^k\log n\); its walk \(u_k=k(\log_2 3-1)\) is the fastest any itinerary admits.
 - **Refuted ideas:** none new (the falsifier did not fire; existing refutations were cited, not re-tested).
 - **Literature:** external check - the Juggler literature (Pickover, OEIS A007320 circle) records only the termination conjecture; no source poses the odd-tower fragment separately; the problem type parallels Mahler's Z-number problem in flavor only.
 - **Open:** \(\mathcal T_\infty=\emptyset\) itself - now placed as pointwise, incomparable to equidistribution, beyond current machinery.
@@ -19725,7 +19725,7 @@ Best next question
   - **Packing attack PARK.** Uniqueness itself is compatible with divergence on a half-line. Bounded-walk packing is the existing pigeonhole (`J-flight-walk-divergence`). Hug domination constrains words, and the extremal hug cylinders are filled at the \(2^{-L}\) scale (`juggler_hug_prefix_realization`, CLOSE). Recurrent records strictly increase, so later valleys draw from a fresh half-line; later high-walk peaks occupy larger scales by the walk-height law. A sparsity contradiction would need envelope windows at comparable scales to be over-occupied — quantitative valley composition, already PARK with the flight-envelope branch.
 - **Refuted ideas:** uniqueness-as-contradiction (KNOWN, not a Juggler obstruction). State packing as a new exclusion mechanism is not refuted as a sentence, but the natural static-count and shared-pool versions are dead for the reasons above; not recorded as a `conjectures/refuted/` id because no precise packing conjecture was stated.
 - **Literature:** none new.
-- **Open:** the word-side question named by the odd-tower CLOSE stands (DK/Ostrowski pricing of translation-recurrent hug words versus DK needing cycle closure). Not auto-opened. State packing is not that question.
+- **Open:** the itinerary-side question named by the odd-tower CLOSE stands (DK/Ostrowski pricing of translation-recurrent hug itineraries versus DK needing cycle closure). Not auto-opened. State packing is not that question.
 - **Decision:** CLOSE on uniqueness-as-new-theorem (KNOWN / reparameterization of existing rows). PARK on state-sparsity as an exclusion attack (obstructions recorded; reduces to PARKed valley composition). Formulation written into `juggler_flight_walk_divergence`, `juggler_flight_anchor_period`, and `juggler_flight_divergent_structure`. No probe, no ledger row, no Lean.
 
 ```text
@@ -21555,7 +21555,7 @@ Best next question
 - **Objective:** After a realized record segment of shortest fan type \((p,o)=(19,12)\), can the terminal state launch another \(R_\varepsilon\) fan block, or is there a local launch obstruction? Not a CF census and not a reopen of record composition, mechanical lift, or expanding-residual concat.
 - **Hypotheses:** word/state glue is a different object from \(\delta\)-lattice composition; finite \(19\to 19\) or \(38=19\mid 19\) would make the mechanism live at finite scale; a new launch law would promote.
 - **Major results:**
-  - Window \(n\le 2000\) reconciles the return-quantization census: 44 length-19 and 7 length-38 near-returns, all \((19,12)\) or \((38,24)\), none the hug word (Hamming \(\ge 2\)).
+  - Window \(n\le 2000\) reconciles the return-quantization census: 44 length-19 and 7 length-38 near-returns, all \((19,12)\) or \((38,24)\), none the hug itinerary (Hamming \(\ge 2\)).
   - Formal launch (odd endpoint) occurs on 17/44; every 19-endpoint is a remaining-tail record. Realized glue is zero: no \(19\to 19\), \(19\to 38\), \(19\to R_{0.05}\), or \(38=19\mid 19\).
   - Typical next-segment length is 0 (27/44). Two long tails still miss: \(n=761\) (41 steps), high-flyer \(n=1245741\) (118 steps). Seven high-flyers add 8+6 near-returns and no glue.
   - Classification `FAN_CONCAT_NO_GLUE`. No launch invariant, no infinite A–F sequence, no ledger row, no Paper A, no flight-note rewrite.
@@ -21566,7 +21566,7 @@ Best next question
 
 ```text
 What was learned
-- existing 19/38 near-returns are quantized (p,o), not hug words
+- existing 19/38 near-returns are quantized (p,o), not hug itineraries
 - formal odd-end launch occurs; realized glue does not
 - 38 is a single window, not 19|19
 - most 19s sit at the end of a dying climb
@@ -21760,13 +21760,13 @@ Best next question
 - **Hypotheses:** a reverse-time fan-admissibility cocycle, global on exact inverse branches, is stricter than a local rule after one 19-block; falsifier: the predicate is `follows` / `wordCylinder`, next parity after a cylinder is already REFUTED, \(\xi\)-transport is already REFUTED.
 - **Major results:**
   - The forward monomial \(q_W=(3/2)^o2^{-e}\) is `walkWeight`. For \((19,12)\) this is \(3^{12}/2^{19}\approx 1.0136\).
-  - Occupancy of the inverse cells of one \(W\) is `follows` (`J-word-cylinder-exact`). Realized one-block inverses land in the required parities by construction (the 44 length-19 near-returns).
+  - Occupancy of the inverse cells of one \(W\) is `follows` (`J-itinerary-cylinder-exact`). Realized one-block inverses land in the required parities by construction (the 44 length-19 near-returns).
   - Next parity after a block is not selected: `ooe_cylinder_both_next_parities` / `J-pe-cylinder-next-landing` **REFUTED**.
   - Repeated-block glue is already measured zero ([fan-concat](problems/juggler_flight_fan_concat.md) PARK). Failures are walk-height, not a reverse cocycle.
   - Scale-stable transport is the mechanical-lift \(\xi\)-cocycle (**REFUTED**). The only exact additive block cocycle is weighted slack (`J-weighted-slack-cocycle`, REPARAMETERIZATION) and does not constrain parity.
   - Cycle-fan reading (hug/IET through fan B) is the same mechanical-lift CLOSE. No new dossier, no probe, no Lean, no ledger theorem row.
 - **Refuted ideas:** that “global compatibility of exact inverse branches” is a new predicate beyond `follows` plus the closed next-parity and \(\xi\)-transport statements.
-- **Literature:** `odd_cell_unique`; `J-word-cylinder-exact`; `J-pe-cylinder-next-landing` REFUTED; mechanical lift CLOSE; fan-concat PARK; fan-landing CLOSE; odd-inverse width CLOSE.
+- **Literature:** `odd_cell_unique`; `J-itinerary-cylinder-exact`; `J-pe-cylinder-next-landing` REFUTED; mechanical lift CLOSE; fan-concat PARK; fan-landing CLOSE; odd-inverse width CLOSE.
 - **Open:** none from this door.
 - **Decision:** CLOSE. Journal and branch-ledger row only.
 
@@ -21840,8 +21840,8 @@ Best next question
 ## Exact-floor impact: tagged no-op floors (Phase-0)
 
 - **Date:** 2026-09-02
-- **Objective:** On first-descent walks, do isolated exact-floor steps (already-integer powers, i.e. perfect squares that are not a continuing equality tower) bias first-descent class or PE continuation beyond the known local package (exact iff square; crumb 0; next letter = current letter; tower iff the image is a square)? Not a word-atlas recensus, not a floor-boundary reopen, and not a Paper A edit.
-- **Hypotheses:** isolated exact landings concentrate on first-descent E or PE odd-squares at a rate invisible from square density and the monochrome letter law; falsifier: exact-event rate matches square density, first-descent class is the parity word, PE exact hits are the odd squares that appear.
+- **Objective:** On first-descent walks, do isolated exact-floor steps (already-integer powers, i.e. perfect squares that are not a continuing equality tower) bias first-descent class or PE continuation beyond the known local package (exact iff square; crumb 0; next letter = current letter; tower iff the image is a square)? Not an itinerary-atlas recensus, not a floor-boundary reopen, and not a Paper A edit.
+- **Hypotheses:** isolated exact landings concentrate on first-descent E or PE odd-squares at a rate invisible from square density and the monochrome letter law; falsifier: exact-event rate matches square density, first-descent class is the parity itinerary, PE exact hits are the odd squares that appear.
 - **Major results:**
   - Identity on \(n\le 10^5\): 374 exact events (356 isolated, 18 tower), 0 mismatches, 0 letter-force failures, 0 even-square walk-increment failures. Fixtures \(9\to 27\), \(36\to 6\) on the orbit of 3, \(16\to 4\).
   - Density versus per-state \(1/\sqrt x\) baseline matches in every magnitude bin. E-certificates: \(158/50000\) exact descending evens, ratio \(1\) against even-square density.
@@ -21857,7 +21857,7 @@ Best next question
 What was learned
 - floor is a no-op exactly on perfect squares
 - isolated exact steps have crumb 0 and force the next letter
-- first-descent class is the parity word; longer words hit more squares
+- first-descent class is the parity itinerary; longer words hit more squares
 - PE exact hits continue as the integer cube or root
 - no new impact beyond the known local package
 Strongest theorem

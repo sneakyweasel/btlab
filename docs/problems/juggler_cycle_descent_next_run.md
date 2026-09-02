@@ -8,7 +8,7 @@ Refinement of
 not a new paper. After return-cost coupling closed, this phase asks
 the remaining local slogan of the Section 5 program: whether a
 descending even run onto the cheap band \([n,19n]\) is forbidden
-from starting \(a=2\). Not a halt theorem, not a leftover-word
+from starting \(a=2\). Not a halt theorem, not a leftover-itinerary
 census, not a floor raise, and not a reopen of
 \((5,3)\) envelope accounting.
 

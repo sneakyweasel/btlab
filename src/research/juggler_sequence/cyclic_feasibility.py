@@ -1,8 +1,8 @@
-"""Global cyclic itinerary feasibility. Not a halt theorem.
+"""Global cyclic word feasibility. Not a halt theorem.
 
 CycReal(w) means some n>=2 realises the exact Juggler word w and
 returns: T^k(n)=n. Phase 0 asks whether joint floor-cell closure
-adds a word-independent obstruction beyond the existing CycleWord
+adds an word-independent obstruction beyond the existing CycleItinerary
 layer (envelope, all-odd expansion, even-count <= 3, length >= 11).
 
 Not a Research Engine control-layer experiment. Not a reopen of
@@ -31,7 +31,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclic_feasibility.json"
@@ -64,14 +64,14 @@ SCIENCE_NEAR_K = 12
 SCIENCE_BIT_CAP = 256
 
 EXISTING_LEAN = (
-    "CycleWord",
-    "cycle_word_formally_expanding",
-    "odd_word_expands",
+    "CycleItinerary",
+    "cycle_itinerary_formally_expanding",
+    "odd_itinerary_expands",
     "power_bound_contracts",
     "two_pow_ne_three_pow",
-    "no_cycle_word_even_count_le_three",
-    "cycle_word_even_count_ge_four",
-    "cycle_word_length_ge_eleven",
+    "no_cycle_itinerary_even_count_le_three",
+    "cycle_itinerary_even_count_ge_four",
+    "cycle_itinerary_length_ge_eleven",
     "envelope_corridor_contradiction",
 )
 
@@ -250,7 +250,7 @@ def min_plus_one_w(word: str) -> tuple[int, str]:
 
 
 def w_range(k: int, o: int) -> tuple[int | None, int | None]:
-    """Min/max plus-one W over words of length k with o odds."""
+    """Min/max plus-one W over itineraries of length k with o odds."""
 
     if o < 0 or o > k:
         return None, None
@@ -642,7 +642,7 @@ def classify_one(
         return row
     if kind == "all_odd":
         row["status"] = "INFEASIBLE"
-        row["filter"] = "odd_word_expands"
+        row["filter"] = "odd_itinerary_expands"
         return row
     if kind == "contracting":
         row["status"] = "INFEASIBLE"
@@ -654,7 +654,7 @@ def classify_one(
         return row
     if e <= 3:
         row["status"] = "INFEASIBLE"
-        row["filter"] = "no_cycle_word_even_count_le_three"
+        row["filter"] = "no_cycle_itinerary_even_count_le_three"
         return row
 
     weight, rot = min_plus_one_w(word)
@@ -875,10 +875,10 @@ def summarise_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 unresolved.append(row)
     known_filters = {
         "all_even_descent",
-        "odd_word_expands",
+        "odd_itinerary_expands",
         "power_bound_contracts",
         "two_pow_ne_three_pow",
-        "no_cycle_word_even_count_le_three",
+        "no_cycle_itinerary_even_count_le_three",
     }
     known_dead = sum(by_filter.get(name, 0) for name in known_filters)
     new_joint = interval_hits + phi_hits
@@ -1006,8 +1006,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         return {
             "classification": CLASS_CLOSED,
             "reason": (
-                "cheap cyclic filters are the existing CycleWord layer "
-                "(envelope, odd_word_expands, even-count <= 3, length >= 11); "
+                "cheap cyclic filters are the existing CycleItinerary layer "
+                "(envelope, odd_itinerary_expands, even-count <= 3, length >= 11); "
                 "interval and phi-product never fire; the residue is the "
                 "already-studied e>=4 leftover family"
             ),
@@ -1074,7 +1074,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     decision = payload["decision"]
     summary = scan["summary"]
     lines = [
-        "# Juggler cyclic itinerary feasibility",
+        "# Juggler cyclic word feasibility",
         "",
         "Closed-word question `CycReal(w)`: some `n>=2` realises `w` and "
         "`T^k(n)=n`. Absence is `NOT OBSERVED WITHIN SEARCH BOUND`. "
@@ -1106,7 +1106,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             f"`{summary['by_filter']}`",
             "",
-            f"known CycleWord deaths: `{summary['known_dead']}`. "
+            f"known CycleItinerary deaths: `{summary['known_dead']}`. "
             f"new joint (interval/phi): `{summary['new_joint_hits']}`. "
             f"plus-one m=2 scans: `{summary['m2_scan_hits']}`. "
             f"leftover residue: `{summary['leftover_count']}` "
@@ -1140,16 +1140,16 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "`prod_O x^3/(x+1)^2 * prod_E x/(x+1)^2 < 1`",
             "",
-            "is necessary on any integer cycle. It kills all-odd words "
-            "with states `>=3`, already excluded by `odd_word_expands`. "
-            "On mixed leftover words the even factors can be arbitrarily "
+            "is necessary on any integer cycle. It kills all-odd itineraries "
+            "with states `>=3`, already excluded by `odd_itinerary_expands`. "
+            "On mixed leftover itineraries the even factors can be arbitrarily "
             "small, so the product does not fire from interval hulls.",
             "",
             "## Relation to CycleMin",
             "",
-            "After the existing CycleWord layer the only expanding mixed "
+            "After the existing CycleItinerary layer the only expanding mixed "
             "necklaces have `e>=4` and length `>=11`. That is "
-            "`cycle_word_length_ge_eleven`. Joint interval / phi-product "
+            "`cycle_itinerary_length_ge_eleven`. Joint interval / phi-product "
             "constraints did not shrink this residue.",
             "",
             "## Anti-overclaim",
@@ -1233,7 +1233,7 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
     )
     (DATA_DIR / "README.md").write_text(
         "# Juggler cyclic feasibility\n\n"
-        "Closed itinerary filters. Absence is NOT_OBSERVED_WITHIN_BOUND.\n\n"
+        "Closed word filters. Absence is NOT_OBSERVED_WITHIN_BOUND.\n\n"
         "Regenerate with `python -m research.juggler_sequence.cyclic_feasibility`.\n",
         encoding="utf-8",
     )

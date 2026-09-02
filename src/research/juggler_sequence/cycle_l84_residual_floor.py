@@ -29,7 +29,7 @@ from research.juggler_sequence.cycle_position_finance import (
     position_rhs,
     smallest_n_ln_gt,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_position_finance"
@@ -356,7 +356,7 @@ def run_floor_checksums(
 def _python_harvest_window(n_begin: int, n_max: int, *, k_max: int) -> dict[str, Any]:
     coarse = {"E": 0, "OE": 0, "OOEE": 0, "leftover": 0, "uncapped": 0}
     overflow = 0
-    leftover_words: dict[str, int] = {}
+    leftover_itineraries: dict[str, int] = {}
     for n in range(n_begin, n_max + 1):
         if n % 2 == 0:
             coarse["E"] += 1
@@ -370,7 +370,7 @@ def _python_harvest_window(n_begin: int, n_max: int, *, k_max: int) -> dict[str,
         if cls in coarse:
             coarse[cls] += 1
         if cls == "leftover":
-            leftover_words[rec["word"]] = leftover_words.get(rec["word"], 0) + 1
+            leftover_itineraries[rec["word"]] = leftover_itineraries.get(rec["word"], 0) + 1
     return {
         "backend": "python",
         "n_begin": n_begin,
@@ -378,8 +378,8 @@ def _python_harvest_window(n_begin: int, n_max: int, *, k_max: int) -> dict[str,
         "k_max": k_max,
         "coarse": coarse,
         "overflow_count": overflow,
-        "leftover_types": len(leftover_words),
-        "leftover_words": leftover_words,
+        "leftover_types": len(leftover_itineraries),
+        "leftover_itineraries": leftover_itineraries,
     }
 
 

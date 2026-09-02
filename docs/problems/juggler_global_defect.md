@@ -13,7 +13,7 @@ assembled into one exact, compositional global defect?
 
 ## Exact statement
 
-For a realized word \(w\) of length \(k\) with \(o\) odd letters,
+For a realized itinerary \(w\) of length \(k\) with \(o\) odd letters,
 
 \[
 n^{3^o}
@@ -85,7 +85,7 @@ It is not required.
 - `global_defect_append` — **EXACT — LEAN VERIFIED**
 - `Δ = 0 ↔` all local remainders vanish `↔ localsTight ↔ PowerBoundEq`
   — **EXACT — LEAN VERIFIED**
-- Mixed realized word `⇒ Δ > 0` — **EXACT — LEAN VERIFIED**
+- Mixed realized itinerary `⇒ Δ > 0` — **EXACT — LEAN VERIFIED**
 - First-defect bound `ρ_i^{2^i} ≤ Δ` — **EXACT — LEAN VERIFIED**
 - Residual step carries the identity — **EXACT — LEAN VERIFIED**
 - On a CE, `Δ + n^{2^k} ≤ n^{3^o}` — **EXACT — LEAN VERIFIED**
@@ -94,8 +94,8 @@ It is not required.
 
 ## Experiments
 
-Short realized words, `n ≤ 80`, length `≤ 5`: recurrence matches the
-envelope slack exactly; mixed words have `Δ > 0`; composition matches
+Short realized itineraries, `n ≤ 80`, length `≤ 5`: recurrence matches the
+envelope slack exactly; mixed itineraries have `Δ > 0`; composition matches
 the two-lift formula. Prefix scan of `OOE`, `OOEO`, `OOOE` on odd
 `n ∈ [12, 400]`: no witness with `Δ` larger than the formal surplus.
 

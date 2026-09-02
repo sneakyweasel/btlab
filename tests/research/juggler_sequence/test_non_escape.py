@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.non_escape import (
     CLASS_GREEN,
     ESCAPE_PREFIX,
@@ -20,7 +20,7 @@ from research.juggler_sequence.non_escape import (
     write_artifacts,
 )
 from research.juggler_sequence.odd_ooe_landing import first_event
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_one_cycles_and_is_not_escape():
@@ -58,7 +58,7 @@ def test_ooeooe_forces_oo_on_365():
     assert row["x"] == 1749
     assert row["forced_oo"] is True
     assert row["z_below_sq"] is True
-    assert follows_word(365, "OOEOOE")
+    assert follows_itinerary(365, "OOEOOE")
     assert image_after(365, "OOEOOE") == 1749
 
 
@@ -67,11 +67,11 @@ def test_365_chain_is_a_finite_escape_prefix():
     assert chain == [365, 763, 1749, 4447]
     current = chain[0]
     for nxt in chain[1:]:
-        assert follows_word(current, "OOE")
+        assert follows_itinerary(current, "OOE")
         assert image_after(current, "OOE") == nxt
         assert nxt > current
         current = nxt
-    assert follows_word(365, "OOEOOE")
+    assert follows_itinerary(365, "OOEOOE")
 
 
 def test_probe_and_classify_green():

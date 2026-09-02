@@ -8,7 +8,7 @@ every positive integer reaches 1.
 
 ## Problem
 
-Why does the formally expanding word `EOO` contract exactly at
+Why does the formally expanding itinerary `EOO` contract exactly at
 \(n\in\{2,12,14\}\)? Can that finite list be replaced by a square-root
 cell threshold on the intermediate state \(q=\lfloor\sqrt n\rfloor\)?
 
@@ -32,7 +32,7 @@ This is a local arithmetic question. It is not a termination theorem.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Phase-17 (`juggler_power_words`): weak envelope
+- Phase-17 (`juggler_power_itineraries`): weak envelope
   \(T_w(n)^{2^k}\le n^{3^o}\) **EXACT — LEAN VERIFIED**.
 - Previous phase (`juggler_compensated_contraction`):
   \(\Delta>G\Rightarrow T_w(n)<n\) **EXACT — LEAN VERIFIED**;
@@ -81,7 +81,7 @@ It is not required.
   \(q\ge5\Rightarrow c\ge(q+1)^2\) —
   **EXACT — LEAN VERIFIED**
 - `OOE`/`OEO` freeze on n-sqrt cells — **REFUTED**
-  computationally: those words vary inside the start cell
+  computationally: those itineraries vary inside the start cell
 - Length-4 mixed \(o=3\) infinite contraction family —
   **REFUTED** on the scanned window; `EOOO` contracts only at \(n=2\)
 - Generic cell calculus — not added
@@ -159,7 +159,7 @@ positive-drift word whose cell output lies strictly inside
 **PROMOTE** the EOO cell/threshold classification
 `EOO_CELL_MECHANISM_GREEN`. Record the first-even pattern on `EOOO`
 without claiming `POSITIVE_DRIFT_CONTRACTION_FAMILY`. Keep the
-generic certificate separate from this word-specific geometry. Do not
+generic certificate separate from this itinerary-specific geometry. Do not
 register an attack. Do not claim termination. Do not add a generic
 cell calculus.
 
@@ -169,5 +169,5 @@ first-even positive-drift word whose cell output sits strictly inside
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A local finite-word cell classification, not a
+Status: `EXPLORATORY`. A local finite-itinerary cell classification, not a
 paper candidate and not a Juggler totality result.

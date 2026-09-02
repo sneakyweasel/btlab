@@ -14,8 +14,8 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 from research.juggler_sequence.lean_paths import juggler_text
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -34,7 +34,7 @@ LEAN_THEOREMS = (
     "collapse_basin_one",
     "nested_even_collapse_2500",
     "nested_even_collapse_2500_superquadratic",
-    "maxEvenRun_wordEE_OEEE12",
+    "maxEvenRun_itineraryEE_OEEE12",
     "odd_even_tower_seven",
     "collapse_on_pow_two",
     "image_append",
@@ -81,7 +81,7 @@ def even_runs(word: str) -> list[tuple[int, int]]:
 
 
 def q_contracts(q: int, word: str) -> bool:
-    return follows_word(q, word) and image_after(q, word) + 1 < (q + 1) ** 2
+    return follows_itinerary(q, word) and image_after(q, word) + 1 < (q + 1) ** 2
 
 
 def states_along(q: int, word: str) -> list[int]:
@@ -116,7 +116,7 @@ def residual_at_small_y() -> list[dict[str, Any]]:
     rows = []
     for y in range(1, 6):
         for residual in ("", "O", "OO", "OOO", "E"):
-            if not follows_word(y, residual):
+            if not follows_itinerary(y, residual):
                 continue
             rows.append({"y": y, "residual": residual, "T": image_after(y, residual)})
     return rows

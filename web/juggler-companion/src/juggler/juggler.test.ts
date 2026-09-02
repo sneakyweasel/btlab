@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { evenCell, oddCellIntegers } from "./cells";
+import { evenPreimage, oddPreimageIntegers } from "./preimages";
 import {
   NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
@@ -13,10 +13,10 @@ import { walkTrajectory } from "./trajectory";
 import {
   envelopeSlack,
   expanding,
-  followsWord,
+  followsItinerary,
   imageAfter,
   regimeOf,
-} from "./word";
+} from "./itinerary";
 
 describe("floorPower", () => {
   it("matches the note trajectory of 3", () => {
@@ -33,7 +33,7 @@ describe("walkTrajectory", () => {
   it("replays the note trajectory of 3", () => {
     const view = walkTrajectory(3n, 20);
     expect(view.states).toEqual([...NOTE_TRAJECTORY_3]);
-    expect(view.word).toBe("OOOEEE");
+    expect(view.itinerary).toBe("OOOEEE");
     expect(view.reachedOne).toBe(true);
     expect(view.tooLarge).toBe(false);
   });
@@ -41,7 +41,7 @@ describe("walkTrajectory", () => {
   it("collapses the even tower 256", () => {
     const view = walkTrajectory(256n, 20);
     expect(view.states).toEqual([256n, 16n, 4n, 2n, 1n]);
-    expect(view.word).toBe("EEEE");
+    expect(view.itinerary).toBe("EEEE");
     expect(view.reachedOne).toBe(true);
   });
 
@@ -82,17 +82,17 @@ describe("monster trajectories", () => {
   });
 });
 
-describe("words", () => {
+describe("itineraries", () => {
   it("follows OOE at 5 and lands at 6", () => {
-    expect(followsWord(5n, "OOE")).toBe(true);
+    expect(followsItinerary(5n, "OOE")).toBe(true);
     expect(imageAfter(5n, "OOE")).toBe(6n);
     expect(regimeOf(3, 2)).toBe("expanding");
     expect(expanding("OOE")).toBe(true);
   });
 
   it("rejects a parity mismatch", () => {
-    expect(followsWord(3n, "E")).toBe(false);
-    expect(followsWord(2n, "O")).toBe(false);
+    expect(followsItinerary(3n, "E")).toBe(false);
+    expect(followsItinerary(2n, "O")).toBe(false);
   });
 
   it("computes one-letter envelope slack at n=3", () => {
@@ -100,13 +100,13 @@ describe("words", () => {
   });
 });
 
-describe("cells", () => {
-  it("gives the even cell of 6 as [36, 49)", () => {
-    expect(evenCell(6)).toEqual({ lo: 36, hi: 49 });
+describe("preimages", () => {
+  it("gives the even one-step preimage of 6 as [36, 49)", () => {
+    expect(evenPreimage(6)).toEqual({ lo: 36, hi: 49 });
   });
 
   it("gives the unique parent 5 of odd image 11", () => {
-    expect(oddCellIntegers(11)).toEqual([5]);
+    expect(oddPreimageIntegers(11)).toEqual([5]);
   });
 });
 

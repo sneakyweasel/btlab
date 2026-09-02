@@ -29,7 +29,7 @@ from research.juggler_sequence.cycle_entry_excursion import (
 )
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
 from research.juggler_sequence.cycle_ordered_excursion import excursion_map
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 CORRIDOR_DIR = DATA_DIR / "entry_corridor"
 START = PUBLISHED_FLOOR + 1

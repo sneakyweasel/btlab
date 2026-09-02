@@ -39,7 +39,7 @@ Maximum Phase-0 scope   Exact a^(2^r) transitions; HasPowTwoDepth drop
 - tower counterexamples: `0`
 - sorry-free: `True`
 
-Each exact branch consumes one unit of 2-adic perfect-power depth, so a realized equality word of length k forces the start to be a 2^k-th power.
+Each exact branch consumes one unit of 2-adic perfect-power depth, so a realized equality itinerary of length k forces the start to be a 2^k-th power.
 
 ## Local transitions
 
@@ -62,7 +62,7 @@ a square when `r = 1`.
 - depth 1 at 36: saturates `E`
   and then stops; the image 6 is not a square
 
-Exact steps preserve parity, so a mixed word cannot saturate.
+Exact steps preserve parity, so a mixed itinerary cannot saturate.
 All-even equality is formally contracting and meets the lower
 bound `2^{2^k}` at the towers `2^{2^k}`.
 
@@ -95,7 +95,7 @@ bound `2^{2^k}` at the towers `2^{2^k}`.
 
 **SATURATION_BUDGET_GREEN**
 
-Each exact branch consumes one unit of 2-adic perfect-power depth, so a realized equality word of length k forces the start to be a 2^k-th power.
+Each exact branch consumes one unit of 2-adic perfect-power depth, so a realized equality itinerary of length k forces the start to be a 2^k-th power.
 
 This is a finite local budget, not a global halt result.
 

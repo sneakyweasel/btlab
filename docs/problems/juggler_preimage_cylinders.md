@@ -13,7 +13,7 @@ square-root floor of \(y\) in a way that \(y\) alone does not?
 
 ## Exact statement
 
-A word cylinder is
+An itinerary cylinder is
 
 \[
 \mathcal C_w=\{y:\exists x,\ \text{\texttt{follows}}(x,w)\wedge T_w(x)=y\}.
@@ -35,7 +35,7 @@ totality.
 ## Current literature
 
 - Inverse-floor cells —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Cells`.
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Preimages`.
 - `follows` / `image` —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.Itinerary`.
 - Landing \(\theta\) unrestricted —
@@ -64,7 +64,7 @@ Existing machinery      inverse-floor cells, follows/image, PE
 Maximum Phase-0 scope   Census C_w by word; opposite-parity pairs;
                         package the inverse word relation; one
                         Lean split witness. No halt
-Promotion criterion     A word forces next parity or forbids a
+Promotion criterion     An itinerary forces next parity or forbids a
                         next residual class, not from y alone
 Stop criterion          Falsifiers A–E; cylinder is y; machinery
                         gravity
@@ -80,7 +80,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- `wordCylinder` / `word_cylinder_exact` / letter cons —
+- `itineraryCylinder` / `itinerary_cylinder_exact` / letter cons —
   **REPARAMETERIZATION** of `follows` and `image`
 - `squareCylinder` / `square_gap_exact` —
   **REPARAMETERIZATION** of the inverse-floor cells and
@@ -148,7 +148,7 @@ state machine.
 - \(T(y)\) is a function of \(y\). History can only thin the set
   of attainable \(y\).
 - That set still realises both next parities for every
-  well-sampled PE word, including at fixed residue and \(\theta\).
+  well-sampled PE itinerary, including at fixed residue and \(\theta\).
 
 ## Open questions
 
@@ -163,7 +163,7 @@ expanding-word grammar.
 ## Decision
 
 **CLOSE** the predecessor-cylinder attack as
-`PREIMAGE_CYLINDER_IS_Y`. The exact inverse of a finite word is
+`PREIMAGE_CYLINDER_IS_Y`. The exact inverse of a finite itinerary is
 the existing itinerary relation. The cylinder of a PE word does
 not restrict the next square cell or the next residual grammar
 beyond the integer \(y\). Do not claim termination.

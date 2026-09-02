@@ -48,7 +48,7 @@ maxEvenRun=3 still admits nested E^3 O collapses onto 1 at q=7, 2500, 6250000, a
 - `collapse_basin_one`: `True`
 - `nested_even_collapse_2500`: `True`
 - `nested_even_collapse_2500_superquadratic`: `True`
-- `maxEvenRun_wordEE_OEEE12`: `True`
+- `maxEvenRun_itineraryEE_OEEE12`: `True`
 - `odd_even_tower_seven`: `True`
 - `collapse_on_pow_two`: `True`
 - `image_append`: `True`
@@ -74,5 +74,5 @@ maxEvenRun=3 still admits nested E^3 O collapses onto 1 at q=7, 2500, 6250000, a
 
 maxEvenRun=3 still admits nested E^3 O collapses onto 1 at q=7, 2500, 6250000, and a 121-bit q; the mechanism is numeric collapse to the inert basin 1.
 
-The fixed-word theorem remains. This is not a halt result.
+The fixed-itinerary theorem remains. This is not a halt result.
 

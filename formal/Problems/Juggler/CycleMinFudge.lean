@@ -8,14 +8,14 @@ namespace Problems.Juggler
 
 Laboratory satellite. On a `CycleMin` every later state is `≥ n`, so
 `(x+1)/x ≤ (n+1)/n`. The even sibling of `absorb_odd_step` plus that
-crossing keeps slack `3^7 - 2^11 = 139` on every 7-odd word that
-starts `O`. On any start-`O` four-even word with `o ≥ 7` odds the
+crossing keeps slack `3^7 - 2^11 = 139` on every 7-odd itinerary that
+starts `O`. On any start-`O` four-even itinerary with `o ≥ 7` odds the
 slack is `3^o - 2^{o+4}`. The thirty first-expanding short-gap
 leftovers are not `CycleMin` words. The eight leftovers whose only
-CycleMin-shaped rotation is themselves are not cycle words.
+CycleMin-shaped rotation is themselves are not cycle itineraries.
 
 Not imported by `Problems.JugglerPaper`. Not a length-11 census, not
-`no_cycle_word_four_even`, and not a halt theorem.
+`no_cycle_itinerary_four_even`, and not a halt theorem.
 -/
 
 set_option maxHeartbeats 8000000
@@ -93,7 +93,7 @@ def startsTwoOddsEndsEven (w : List Branch) : Bool :=
 
 def onlySelfCycleMinShape (w : List Branch) : Bool :=
   (List.range w.length).all fun k =>
-    !startsTwoOddsEndsEven (rotateWord w k) || decide (rotateWord w k == w)
+    !startsTwoOddsEndsEven (rotateItinerary w k) || decide (rotateItinerary w k == w)
 
 def fudgeReady (w : List Branch) : Bool :=
   decide (w.head? == some Branch.odd) &&
@@ -292,7 +292,7 @@ theorem exponents_starts_odd :
 
 theorem family_slack139 : (3 : ℕ) ^ 7 - 2 ^ 11 = 139 := by decide
 
-/-- Slack of a start-`O` four-even word with `o` odds: `3^o - 2^{o+4}`. -/
+/-- Slack of a start-`O` four-even itinerary with `o` odds: `3^o - 2^{o+4}`. -/
 def familySlack (o : ℕ) : ℕ := 3 ^ o - 2 ^ (o + 4)
 
 theorem familySlack_seven : familySlack 7 = 139 := family_slack139
@@ -320,7 +320,7 @@ theorem familySlack_add {o : ℕ} (ho : 7 ≤ o) :
     familySlack o + 2 ^ (o + 4) = 3 ^ o :=
   Nat.sub_add_cancel (two_pow_add_four_le_three_pow ho)
 
-/-- On any start-`O` word the leftover of `A` versus the trailing-even
+/-- On any start-`O` itinerary the leftover of `A` versus the trailing-even
 cell is `3^{#O} - 2^{|pref|+r}`. -/
 theorem exponents_slack_add {pref : List Branch} {r : ℕ}
     (h0 : pref.head? = some .odd) :
@@ -640,7 +640,7 @@ theorem succ_pow_slack139_of_ge_30 {n A : ℕ} (hn : 30 ≤ n)
   have hpos : 0 < n ^ (13766 - R) := pow_pos hn0 _
   exact (Nat.mul_lt_mul_right hpos).mp hlt
 
-/-! ## Finite pin and word table -/
+/-! ## Finite pin and itinerary table -/
 
 theorem fudge_words_ready :
     fudgeWords.all fudgeReady = true := by
@@ -807,12 +807,12 @@ theorem no_cycleMin_cyclemin_fudge {n : ℕ} {w : List Branch}
     (hw : w ∈ fudgeWords) (h : CycleMin n w) : False :=
   no_cycleMin_slack139 (of_fudge_ready hw) h
 
-/-! ## Unique-rotation CycleWord upgrade -/
+/-! ## Unique-rotation CycleItinerary upgrade -/
 
 theorem rotate_eq_of_only_self {w : List Branch} {k : ℕ}
     (hu : onlySelfCycleMinShape w = true) (hk : k < w.length)
-    (hshape : startsTwoOddsEndsEven (rotateWord w k) = true) :
-    rotateWord w k = w := by
+    (hshape : startsTwoOddsEndsEven (rotateItinerary w k) = true) :
+    rotateItinerary w k = w := by
   have hmem : k ∈ List.range w.length := List.mem_range.mpr hk
   have hall := List.all_eq_true.mp hu k hmem
   simp [hshape] at hall
@@ -829,21 +829,21 @@ theorem startsTwoOddsEndsEven_of_cycleMin {n : ℕ} {w : List Branch}
     simp [hw]
   simp [startsTwoOddsEndsEven, hhead, h1, hend]
 
-theorem no_cycle_word_of_unique_fudge {n : ℕ} {w : List Branch}
+theorem no_cycle_itinerary_of_unique_fudge {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hw : w ∈ fudgeWords)
     (hu : onlySelfCycleMinShape w = true)
-    (h : CycleWord n w) : False := by
+    (h : CycleItinerary n w) : False := by
   obtain ⟨k, hk, hm⟩ := exists_cycleMin hn h
-  have hnk : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h hk
+  have hnk : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn h hk
   have hshape := startsTwoOddsEndsEven_of_cycleMin hnk hm
   have heq := rotate_eq_of_only_self hu hk hshape
   exact no_cycleMin_cyclemin_fudge hw (by simpa [heq] using hm)
 
 /-! ## Named corollaries
 
-`no_cycleMin_*` for every first-expanding leftover. `no_cycle_word_*`
+`no_cycleMin_*` for every first-expanding leftover. `no_cycle_itinerary_*`
 only when the leftover is its unique CycleMin-shaped rotation.
-`OOOOOOOEEEE` is already `no_cycle_word_oooooooeeee` in `O7EEEEGap`.
+`OOOOOOOEEEE` is already `no_cycle_itinerary_oooooooeeee` in `O7EEEEGap`.
 -/
 
 theorem no_cycleMin_of_fourEven {n a0 a1 a2 a3 : ℕ}
@@ -962,26 +962,26 @@ theorem unique_oooooeeoeoe :
 theorem unique_ooooeoeoeoe :
     onlySelfCycleMinShape (fourEvenWord 4 1 1 1) = true := by native_decide
 
-theorem no_cycle_word_ooooooeoeee {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n (fourEvenWord 6 1 0 0) :=
-  fun h => no_cycle_word_of_unique_fudge hn (by decide) unique_ooooooeoeee h
-theorem no_cycle_word_ooooooeeeoe {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n (fourEvenWord 6 0 0 1) :=
-  fun h => no_cycle_word_of_unique_fudge hn (by decide) unique_ooooooeeeoe h
-theorem no_cycle_word_oooooeoeeoe {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n (fourEvenWord 5 1 0 1) :=
-  fun h => no_cycle_word_of_unique_fudge hn (by decide) unique_oooooeoeeoe h
-theorem no_cycle_word_ooooooeeoee {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n (fourEvenWord 6 0 1 0) :=
-  fun h => no_cycle_word_of_unique_fudge hn (by decide) unique_ooooooeeoee h
-theorem no_cycle_word_oooooeoeoee {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n (fourEvenWord 5 1 1 0) :=
-  fun h => no_cycle_word_of_unique_fudge hn (by decide) unique_oooooeoeoee h
-theorem no_cycle_word_oooooeeoeoe {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n (fourEvenWord 5 0 1 1) :=
-  fun h => no_cycle_word_of_unique_fudge hn (by decide) unique_oooooeeoeoe h
-theorem no_cycle_word_ooooeoeoeoe {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n (fourEvenWord 4 1 1 1) :=
-  fun h => no_cycle_word_of_unique_fudge hn (by decide) unique_ooooeoeoeoe h
+theorem no_cycle_itinerary_ooooooeoeee {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 6 1 0 0) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_ooooooeoeee h
+theorem no_cycle_itinerary_ooooooeeeoe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 6 0 0 1) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_ooooooeeeoe h
+theorem no_cycle_itinerary_oooooeoeeoe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 5 1 0 1) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_oooooeoeeoe h
+theorem no_cycle_itinerary_ooooooeeoee {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 6 0 1 0) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_ooooooeeoee h
+theorem no_cycle_itinerary_oooooeoeoee {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 5 1 1 0) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_oooooeoeoee h
+theorem no_cycle_itinerary_oooooeeoeoe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 5 0 1 1) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_oooooeeoeoe h
+theorem no_cycle_itinerary_ooooeoeoeoe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n (fourEvenWord 4 1 1 1) :=
+  fun h => no_cycle_itinerary_of_unique_fudge hn (by decide) unique_ooooeoeoeoe h
 
 end Problems.Juggler

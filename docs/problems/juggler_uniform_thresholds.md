@@ -24,7 +24,7 @@ Write \(\alpha_v=3^{\#O(v)}/2^{|v|}\). Prove or refute:
 If this fails, identify the smallest extra parameter that restores a
 true family statement, or exhibit an unbounded changing-suffix family.
 
-The fixed-word theorem `eventually_no_first_even_contraction` remains.
+The fixed-itinerary theorem `eventually_no_first_even_contraction` remains.
 This is not a termination theorem.
 
 ## Current literature
@@ -36,7 +36,7 @@ This is not a termination theorem.
 - Exact short thresholds \(Q_{OO}=\{1,3\}\), \(Q_{OOO}=\{1\}\) —
   **EXACT — LEAN VERIFIED**.
 
-Project relationship: **extended**. The fixed-word theorem is kept; the
+Project relationship: **extended**. The fixed-itinerary theorem is kept; the
 \(\varepsilon\)-only upgrade is refuted.
 
 ## Branch budget
@@ -74,7 +74,7 @@ It is not required.
 - Collapse family \(v_k=E^kO^{3k}\), \(q_k=2^{2^{k-1}}\), \(T=1\) —
   **EXACT — LEAN VERIFIED**
 - Uniform \(Q(\varepsilon)\) — **REFUTED**
-- \(Q(\varepsilon,|v|)\) exists by finiteness of words of length \(r\),
+- \(Q(\varepsilon,|v|)\) exists by finiteness of itineraries of length \(r\),
   but must be at least \(2^{2^{r-1}}\) on this family — not useful
 - Generic lower-envelope structure — not added
 - `PowerHeight` — not added
@@ -139,7 +139,7 @@ universal branch constants cannot restore \(Q(\varepsilon)\), because
 the collapsing \(q\) makes the formal exponent irrelevant.
 
 A length-and-margin bound \(Q(\varepsilon,r)\) is true for the trivial
-reason that there are finitely many words of length \(r\). On the
+reason that there are finitely many itineraries of length \(r\). On the
 collapse family it must grow at least like \(2^{2^{k-1}}\). That is
 not useful family-level control of unbounded-length suffixes.
 
@@ -160,7 +160,7 @@ after an odd letter still collapse large \(q\) onto \(1\).
 
 **PROMOTE** the changing-suffix family theorem
 `CHANGING_SUFFIX_COUNTEREXAMPLE`. Close the \(\varepsilon\)-only
-uniformity hypothesis as **REFUTED**. Keep the fixed-word theorem and
+uniformity hypothesis as **REFUTED**. Keep the fixed-itinerary theorem and
 the exact OO/OOO classifications. Do not open a generic lower-envelope
 theory. Do not claim termination.
 

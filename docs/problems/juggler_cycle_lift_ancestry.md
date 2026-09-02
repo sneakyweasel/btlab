@@ -66,7 +66,7 @@ image are sent *up*, not down.
 **Parent identity is forgotten after one step
 (KNOWN / REPARAMETERIZATION).**
 The even cell has a constant next state
-(`cell_same_next_state`, `first_even_freeze`). An odd
+(`preimage_same_next_state`, `first_even_freeze`). An odd
 parent, if present, joins the same point. After one step
 the future does not depend on \(t\). Ancestry depth only
 shifts the index: \(T^{d}(s)=x\) implies
@@ -84,10 +84,10 @@ No cycle of any length — not claimed.
 
 - Unique odd cell —
   **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, `oddLanding_preimage_unique`)
+  (`odd_preimage_unique`, `oddLanding_preimage_unique`)
 - Even cell constant next state —
   **EXACT — LEAN VERIFIED**
-  (`even_cell_iff`, `cell_same_next_state`,
+  (`even_preimage_iff`, `preimage_same_next_state`,
   `first_even_freeze`)
 - CycleMin cannot end odd —
   **EXACT — LEAN VERIFIED**
@@ -118,7 +118,7 @@ No cycle of any length — not claimed.
 Project relationship: **refuted** as a circuit-drop
 obstruction; the lift equation is a **REPARAMETERIZATION**
 of determinism plus periodicity; the even-fibre future is
-`cell_same_next_state`.
+`preimage_same_next_state`.
 
 ## Branch budget
 
@@ -134,10 +134,10 @@ Falsifier               lift identity T^L(t)=c together with
                         CycleMin c>=n; sink 2->1; valley
                         last-even scale n^2; identity
                         forgotten after one step
-Existing machinery      floor_power; even_cell /
-                        odd_cell_unique; cycleMin_not_end_odd;
+Existing machinery      floor_power; even_preimage /
+                        odd_preimage_unique; cycleMin_not_end_odd;
                         cycle_last_even_interval;
-                        cell_same_next_state;
+                        preimage_same_next_state;
                         first_even_freeze; Collision
                         Factorization
 Maximum Phase-0 scope   prove the lift identity; calibrate
@@ -167,7 +167,7 @@ or finance.
 - **CLOSE** if the valley circuit image sits in the
   last-even cell of scale \(n^2\).
 - **CLOSE** if parent identity is forgotten after one
-  step (`cell_same_next_state`).
+  step (`preimage_same_next_state`).
 - **CLOSE** if ancestry depth only shifts the index.
 - **PROMOTE** only if a circuit drop below \(n\) survives
   those identities and is not termination.
@@ -178,7 +178,7 @@ Do **not** raise \(N_0\). Do **not** open \(L=55293\). Do
 
 ## Explicitly out of Phase-0
 
-A leftover-word attack, a \(K=11\) proof, defect
+A leftover-itinerary attack, a \(K=11\) proof, defect
 amplification, Fourier / residues / \(Q\)-sections, a
 branch-and-bound engine, ledger theorem row, new Lean,
 CLI, visualization, Paper A edit, a halt theorem, a
@@ -204,7 +204,7 @@ It is not required.
 - Valley last-even scale \(n^2\) —
   **KNOWN** (`cycle_last_even_interval`)
 - Parent-identity erasure —
-  **KNOWN** (`cell_same_next_state`)
+  **KNOWN** (`preimage_same_next_state`)
 - Ancestry-depth shift —
   **REPARAMETERIZATION** of the same identity
 - Cycle-lift leftover-killer —
@@ -245,7 +245,7 @@ It is not required.
 ## Formalization
 
 None added. The even-fibre future is already
-`cell_same_next_state` / `first_even_freeze`. The last-even
+`preimage_same_next_state` / `first_even_freeze`. The last-even
 cell is already `cycle_last_even_interval`. Valley return
 is already `cycleMin_not_end_odd`. Paper A is unchanged.
 Do not add `CycleLiftAncestry.lean`.

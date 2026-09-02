@@ -1,7 +1,7 @@
 {
   "id": "juggler_cycle_e_block",
   "title": "An E^r first-intersection block for r>=2 produces a two-sided envelope that is not trailing-evens / the expanding-prefix test / the archived OE corridor",
-  "statement": "After odd-run interiors push to the peak and even-run interiors push to the next valley, classifying the first intersection by the length r of the common E^r suffix produces an O E^r O envelope, or an emptiness for r>=2, that is not cycle_trailing_evens_lt / odd_cell_unique / power_bound_word plus even_run_scale_barrier / corridor_bounds / ee_entry_count n(n^2+n+1), and that type empties or tightens a bound for a reason that is not an archived cell.",
+  "statement": "After odd-run interiors push to the peak and even-run interiors push to the next valley, classifying the first intersection by the length r of the common E^r suffix produces an O E^r O envelope, or an emptiness for r>=2, that is not cycle_trailing_evens_lt / odd_preimage_unique / power_bound_word plus even_run_scale_barrier / corridor_bounds / ee_entry_count n(n^2+n+1), and that type empties or tightens a bound for a reason that is not an archived cell.",
   "status": "REFUTED",
   "counterexamples": [
     "r=1 outer cell is n^4 <= u^3 < (n+1)^4, the archived OE corridor",

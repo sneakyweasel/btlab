@@ -2,7 +2,7 @@
 
 Phase 0 only: classify (c, t) in E/O x E/O at a first meeting
 x with a hypothetical CycleMin cycle, and test whether CycleMin
-imposes a joint law on that pair beyond Pred cells, odd_cell_unique,
+imposes a joint law on that pair beyond Pred cells, odd_preimage_unique,
 and the cyclic-parent type.
 
 Collision Factorization: a cycle is forward-invariant, so x is the
@@ -24,9 +24,9 @@ from typing import Any
 from research.juggler_sequence.cycle_almost_search import odd_preimage
 from research.juggler_sequence.cycle_cyclic_seam import odd_return_ge_n
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
-from research.juggler_sequence.empty_odd_cell import cube_gap, odd_cell_kind
-from research.juggler_sequence.floor_cells import even_cell
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.empty_odd_preimage import cube_gap, odd_preimage_kind
+from research.juggler_sequence.floor_preimages import even_preimage
+from research.juggler_sequence.power_itineraries import floor_power
 
 COLLISION_DIR = DATA_DIR / "cycle_first_collision"
 START = PUBLISHED_FLOOR + 1
@@ -42,11 +42,11 @@ EE_GAP_X = 10
 EE_PAIR_CAP = 80
 
 ARCHIVED = (
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "oddLanding_preimage_unique",
     "cycleMin_not_end_odd",
-    "even_cell_iff",
-    "odd_cell_iff",
+    "even_preimage_iff",
+    "odd_preimage_iff",
     "cycleMin_starts_two_odds",
 )
 
@@ -56,7 +56,7 @@ LEMMA_TABLE = (
         "c": "O",
         "t": "O",
         "status": "KNOWN",
-        "lean": "odd_cell_unique",
+        "lean": "odd_preimage_unique",
         "empty": True,
     },
     {
@@ -72,7 +72,7 @@ LEMMA_TABLE = (
         "c": "E",
         "t": "O",
         "status": "REPARAMETERIZATION",
-        "lean": "odd_cell_iff",
+        "lean": "odd_preimage_iff",
         "empty": False,
         "note": "occupancy is odd-cell Type 2; t < n is automatically off-cycle",
     },
@@ -81,7 +81,7 @@ LEMMA_TABLE = (
         "c": "E",
         "t": "E",
         "status": "REPARAMETERIZATION",
-        "lean": "even_cell_iff",
+        "lean": "even_preimage_iff",
         "empty": False,
         "note": "any other even parent; first iff t not on the cycle",
     },
@@ -90,7 +90,7 @@ LEMMA_TABLE = (
         "c": "O",
         "t": "O",
         "status": "KNOWN",
-        "lean": "odd_cell_unique",
+        "lean": "odd_preimage_unique",
         "empty": True,
     },
     {
@@ -98,7 +98,7 @@ LEMMA_TABLE = (
         "c": "O",
         "t": "E",
         "status": "REPARAMETERIZATION",
-        "lean": "odd_cell_unique",
+        "lean": "odd_preimage_unique",
         "empty": False,
         "note": "forced if the cycle arrives by O and the odd parent is >= n",
     },
@@ -107,7 +107,7 @@ LEMMA_TABLE = (
         "c": "E",
         "t": "O",
         "status": "REPARAMETERIZATION",
-        "lean": "even_cell_iff",
+        "lean": "even_preimage_iff",
         "empty": False,
         "note": "cycle arrives by E; odd parent if Type 2",
     },
@@ -116,7 +116,7 @@ LEMMA_TABLE = (
         "c": "E",
         "t": "E",
         "status": "REPARAMETERIZATION",
-        "lean": "even_cell_iff",
+        "lean": "even_preimage_iff",
         "empty": False,
         "note": "cycle arrives by E; any other even parent",
     },
@@ -126,7 +126,7 @@ LEMMA_TABLE = (
 def even_parent_range(x: int) -> tuple[int, int]:
     """First even in [x^2, (x+1)^2) and the exclusive top."""
 
-    lo, hi = even_cell(x)
+    lo, hi = even_preimage(x)
     start = lo if lo % 2 == 0 else lo + 1
     return start, hi
 
@@ -159,10 +159,10 @@ def nearest_even_gap_in_cell(t3: int, lo: int, hi: int) -> int | None:
 
 def valley_occupancy(*, n: int = START) -> dict[str, Any]:
     n_evens = even_parent_count(n)
-    kind = odd_cell_kind(n)
+    kind = odd_preimage_kind(n)
     odd = odd_preimage(n)
     odd_ge_n = odd_return_ge_n(n)
-    lo, hi = even_cell(n)
+    lo, hi = even_preimage(n)
     eo_exists = kind == 2 and odd is not None and odd < n
     return {
         "n": n,
@@ -170,7 +170,7 @@ def valley_occupancy(*, n: int = START) -> dict[str, Any]:
         "pred_e_count": n_evens,
         "pred_e_count_formula": n if n % 2 == 1 else n + 1,
         "ee_pair_count": ee_pair_count(n_evens),
-        "odd_cell_kind": kind,
+        "odd_preimage_kind": kind,
         "odd_parent": odd,
         "odd_parent_lt_n": odd is not None and odd < n,
         "odd_return_ge_n": odd_ge_n,
@@ -213,7 +213,7 @@ def interior_occupancy(
         if odd != y:
             oo_collision += 1
         n_evens = even_parent_count(x)
-        kind = odd_cell_kind(x)
+        kind = odd_preimage_kind(x)
         if kind == 2 and odd is not None:
             n_type2 += 1
             if x % 2 == 1:
@@ -235,7 +235,7 @@ def interior_occupancy(
             if odd < x:
                 n_odd_lt_image += 1
             t3 = odd * odd * odd
-            sq_lo, sq_hi = even_cell(x)
+            sq_lo, sq_hi = even_preimage(x)
             width = sq_hi - sq_lo
             offset = t3 - sq_lo
             gap = nearest_even_gap_in_cell(t3, sq_lo, sq_hi)
@@ -358,7 +358,7 @@ def first_merge_fork(a: int, b: int, *, cap: int = 400) -> dict[str, Any]:
         "meet": meet,
         "pred_a": pred_a,
         "pred_b": pred_b,
-        "odd_cell_kind": odd_cell_kind(meet),
+        "odd_preimage_kind": odd_preimage_kind(meet),
         "fork": named_fork(pred_a, pred_b) if pred_a is not None and pred_b is not None else None,
     }
 
@@ -375,7 +375,7 @@ def calibration() -> dict[str, Any]:
             merge.get("fork") and merge["fork"]["type"] == "E,E"
         ),
         "merge_meet": merge.get("meet"),
-        "merge_odd_empty": merge.get("odd_cell_kind") in (0, 1),
+        "merge_odd_empty": merge.get("odd_preimage_kind") in (0, 1),
     }
 
 
@@ -391,7 +391,7 @@ def factorization_checks(
         "oo_empty_on_window": bool(interior["oo_empty_on_window"]),
         "valley_odd_return_ge_n_empty": valley["odd_return_ge_n"] is None,
         "valley_oe_empty": bool(valley["oe_empty"]),
-        "valley_eo_is_type2": valley["eo_exists"] == (valley["odd_cell_kind"] == 2),
+        "valley_eo_is_type2": valley["eo_exists"] == (valley["odd_preimage_kind"] == 2),
         "pred_e_count_matches_formula": pred_e_formula,
         "ee_gaps_arithmetic_free": bool(gaps_small["arithmetic_free"])
         and bool(gaps_small["prefix_free"])
@@ -442,7 +442,7 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         reason = (
             "Collision Factorization holds: first iff t is off-cycle; "
             "CycleMin constrains only the cyclic-parent type; every "
-            "empty type is odd_cell_unique or cycleMin_not_end_odd; "
+            "empty type is odd_preimage_unique or cycleMin_not_end_odd; "
             "mixed (c, t^3) placement is the cube-gap; (E,E) gaps "
             "are the even widths of Pred_E"
         )
@@ -516,7 +516,7 @@ def main() -> None:
             {
                 "n": payload["n"],
                 "pred_e": payload["valley"]["pred_e_count"],
-                "odd_kind": payload["valley"]["odd_cell_kind"],
+                "odd_kind": payload["valley"]["odd_preimage_kind"],
                 "odd_return_ge_n": payload["valley"]["odd_return_ge_n"],
                 "eo_exists": payload["valley"]["eo_exists"],
                 "n_both": payload["interior"]["n_both_parent_types"],

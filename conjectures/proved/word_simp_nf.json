@@ -11,7 +11,7 @@
   "notes": "WORD_SIMP_RULES is the sixteen simplifying=True rows. Termination is the lex rank (I0-count, length). Local confluence is the complete finite string-rewriting overlap list (W/K3 stock plus disjoint cancellations and I0\u2282D\u2218I0). Newman gives unique syntactic NF. Semantic canonicity is not claimed. Production rules were not widened. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
   "origin": "docs/theory/rewrite_calculus.md",
   "proof_reference": "docs/theory/rewrite_calculus.md",
-  "statement": "The simplifying-only fragment of WORD_REWRITE_RULES is terminating and locally confluent; every word has a unique syntactic normal form.",
+  "statement": "The simplifying-only fragment of WORD_REWRITE_RULES is terminating and locally confluent; every itinerary has a unique syntactic normal form.",
   "status": "EXACT \u2014 LEAN VERIFIED",
   "tested_range": "complete critical-pair list and bounded unique-NF census in tests/unit/test_rewrite_word_fragments.py",
   "title": "Simplifying word fragment has unique NF"

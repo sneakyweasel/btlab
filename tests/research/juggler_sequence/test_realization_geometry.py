@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.realization_geometry import (
     CLASS_COMPLEX,
     FIRST_HOLES,
@@ -33,7 +33,7 @@ def test_even_tower_and_follows():
     assert even_tower(5) == 65536
     assert even_tower(6) == 4294967296
     for r in range(1, 6):
-        assert follows_word(even_tower(r), "E" * r)
+        assert follows_itinerary(even_tower(r), "E" * r)
         assert image_after(even_tower(r), "E" * r) == 1
 
 

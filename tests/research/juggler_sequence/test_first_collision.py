@@ -25,7 +25,7 @@ from research.juggler_sequence.first_collision import (
     parent_type,
     witnesses,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 SUMMARY = DATA_DIR / "summary.json"
@@ -41,8 +41,8 @@ def test_dossier_has_triage_and_closed_gates():
     assert "## Publication assessment" in text
     assert "**CLOSE**" in text
     assert "Do **not** raise" in text
-    assert "odd_cell_unique" in text
-    assert "even_cell" in text
+    assert "odd_preimage_unique" in text
+    assert "even_preimage" in text
     assert "first collision iff distinct last parents" in text
 
 
@@ -126,5 +126,5 @@ def test_dossier_and_conjecture_record_close():
     assert "**CLOSE**" in dossier
     rec = get_conjecture("juggler_first_collision")
     assert rec["status"] == "REFUTED"
-    assert rec["lean_reference"] == "odd_cell_unique"
+    assert rec["lean_reference"] == "odd_preimage_unique"
     assert rec["counterexamples"]

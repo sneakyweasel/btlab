@@ -30,7 +30,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_fudge.json"
@@ -51,21 +51,21 @@ N0_CAP = 10**18
 LEFTOVER_SCALE = 10**8
 
 UNIQUE_CYCLE_WORD_THEOREMS = (
-    "no_cycle_word_oooooooeeee",
-    "no_cycle_word_ooooooeoeee",
-    "no_cycle_word_ooooooeeeoe",
-    "no_cycle_word_oooooeoeeoe",
-    "no_cycle_word_ooooooeeoee",
-    "no_cycle_word_oooooeoeoee",
-    "no_cycle_word_oooooeeoeoe",
-    "no_cycle_word_ooooeoeoeoe",
+    "no_cycle_itinerary_oooooooeeee",
+    "no_cycle_itinerary_ooooooeoeee",
+    "no_cycle_itinerary_ooooooeeeoe",
+    "no_cycle_itinerary_oooooeoeeoe",
+    "no_cycle_itinerary_ooooooeeoee",
+    "no_cycle_itinerary_oooooeoeoee",
+    "no_cycle_itinerary_oooooeeoeoe",
+    "no_cycle_itinerary_ooooeoeoeoe",
 )
 
 LEAN_CORE = (
     "CycleMin",
     "cycle_trailing_evens_lt",
     "o7_image_ge_succ_pow16",
-    "no_cycle_word_even_count_le_three",
+    "no_cycle_itinerary_even_count_le_three",
     "absorb_even_step",
     "family_slack139",
     "no_cycleMin_cyclemin_fudge",
@@ -74,9 +74,9 @@ LEAN_CORE = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
-    "no_cycle_word_four_even",
-    "no_cycle_word_cyclemin_fudge",
+    "no_cycle_itinerary_length_eleven",
+    "no_cycle_itinerary_four_even",
+    "no_cycle_itinerary_cyclemin_fudge",
     "juggler_reaches_one",
 )
 
@@ -179,7 +179,7 @@ def chain_n0(a_exp: int, right: int, cap: int = N0_CAP) -> int | None:
     return hi
 
 
-def follows_word(n: int, letters: str) -> int | None:
+def follows_itinerary(n: int, letters: str) -> int | None:
     x = n
     for letter in letters:
         if letter == "O" and x % 2 == 0:
@@ -195,7 +195,7 @@ def first_prefix_start(word: str, cap: int = FIRST_SEARCH_CAP) -> int | None:
     prefix = word[:-run]
     n = 3
     while n < cap:
-        if follows_word(n, prefix) is not None:
+        if follows_itinerary(n, prefix) is not None:
             return n
         n += 2
     return None
@@ -211,7 +211,7 @@ def pin_below(words: list[str], n_hi: int = PIN_MAX) -> list[tuple[str, int]]:
         prefix = word[: -trailing_even_run(word)]
         n = 3
         while n < n_hi:
-            if follows_word(n, prefix) is not None:
+            if follows_itinerary(n, prefix) is not None:
                 hits.append((word, n))
             n += 2
     return hits

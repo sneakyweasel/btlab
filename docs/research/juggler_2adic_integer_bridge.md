@@ -30,7 +30,7 @@ cylinder is `ADMISSIBLE` for the whole word.
 
 The existing odd-odd law \(\rho\equiv y-1\pmod 8\)
 (`odd_odd_remainder_mod_eight`) is a constraint on a *realized* odd-to-odd
-landing, not a filter that forbids the word `OO`.
+landing, not a filter that forbids the itinerary `OO`.
 
 **B. Integer realizability.**
 
@@ -62,10 +62,10 @@ Quantifiers stay separate:
 | Object | API | Semantics |
 | --- | --- | --- |
 | exact step | `floor_power` | \(J\) |
-| itinerary word | `follows_word` / Lean `follows` | IntReal witness check |
+| itinerary word | `follows_itinerary` / Lean `follows` | IntReal witness check |
 | even tower | `even_tower` / Lean `even_tower_to_one` | \(m(E^r)=2^{2^{r-1}}\) |
 | odd-odd remainder | `landing_row` / `odd_odd_remainder_mod_eight` | \(\rho\equiv y-1\pmod 8\) on realized OO |
-| 2-adic valuation | `landing_valuation.v2` | \(v_2\) of an integer, not a word automaton |
+| 2-adic valuation | `landing_valuation.v2` | \(v_2\) of an integer, not an itinerary automaton |
 | BT coordinates | `encode`, `lsd`, `D`, `integer_jet` | \(n=\mathrm{lsd}(n)+3D(n)\), \(J_k(n)\) |
 | first rooted holes | realization-geometry certificates | `SCALE_LIMITED`, not `CELL_EMPTY` |
 | documented \(2^{16}\) pair | `DOCUMENTED_MOD16_PAIR` | same residue, words `OO` vs `OE` |
@@ -78,8 +78,8 @@ the exact first-letter law plus the exact second-letter split.
 ## 3. Finite-precision comparison
 
 Phase 0: \(k\le 12\), \(P\le 16\),
-\(n\le 4000\). Weak `Admissible_P` contains every word of
-length \(k\) for every tested \(P\ge 1\), because every word has a
+\(n\le 4000\). Weak `Admissible_P` contains every itinerary of
+length \(k\) for every tested \(P\ge 1\), because every itinerary has a
 first-letter-compatible residue and no later letter is 2-adically
 forced.
 
@@ -105,7 +105,7 @@ law. That direction is expected and is not the bridge.
 
 `A \\ I` at \(k=6\): `EEEEEE`, `EEEEEO`, `EEEEOE`, `EEEOEE`, `EEEOEO`, `EEEOOE`, `EEOEEO`, `EEOEOE`, `EEOEOO`, `EEOOEO`, `EOEEOE`, `EOEOOO`, `EOOEOO`, `EOOOEO`, `OEEEOE`.
 
-Do not call a word missing from \(I(k)\) unrealizable. The three first
+Do not call an itinerary missing from \(I(k)\) unrealizable. The three first
 atlas holes remain `SCALE_LIMITED`. Length \(\le 4\) fills completely
 inside \(n\le 4000\).
 
@@ -200,8 +200,8 @@ does not exist in the Phase-0 range.
 | EEEOEO | None | 2608762880 | 31 | 21 | TYPE_C_SCALE_DELAYED |
 
 Length-one words are Type A: `P_adm=1` matches the parity of \(m(w)\).
-Longer realized words are Type B: a finite realizer exists while no
-finite precision forces the word. The first holes are Type C only as
+Longer realized itineraries are Type B: a finite realizer exists while no
+finite precision forces the itinerary. The first holes are Type C only as
 *scale delay*, not as 2-adically forced empty cylinders.
 
 ## 6. Balanced-ternary bridge
@@ -263,12 +263,12 @@ For the *first-letter* constraint \(C_P(n):\Leftrightarrow n\equiv w_0\pmod 2\):
 
 For the *strong* constraint “the cylinder forces \(w\)”:
 
-- no \(P\le 16\) has a cylinder forcing a word of length \(\ge 2\);
+- no \(P\le 16\) has a cylinder forcing an itinerary of length \(\ge 2\);
 - compactness of \(\mathbb Z_2\) therefore does not produce a
   2-adic Juggler itinerary. \(J\) is an Archimedean floor map, not a
   2-adic dynamical system.
 
-For `EEEEEE`, \(2^{32}\) realises the word and lies in
+For `EEEEEE`, \(2^{32}\) realises the itinerary and lies in
 \(0\bmod 2^P\) for all \(P\le 32\). That is one integer meeting every
 *listed* even cylinder up to \(P=32\). It is not a point of
 \(\bigcap_P 2^P\mathbb Z_2=\{0\}\).
@@ -288,7 +288,7 @@ For `EEEEEE`, \(2^{32}\) realises the word and lies in
 
 `EEEEEE`, `EEEEOE`, and `EEEOEO` remain `SCALE_LIMITED`. 2-adic
 admissibility does not confuse a scale-bound witness with a genuine
-integer incompatibility: those words are weakly admissible at every
+integer incompatibility: those itineraries are weakly admissible at every
 tested \(P\) and strongly unresolved at every tested \(P\).
 
 Landing valuation on OO starts \(n\le 64\):
@@ -329,7 +329,7 @@ No statement is **LEAN-CERTIFIED** beyond the already-packaged `follows`,
 
 **BRIDGE_COMPLEX**. Branch decision: **CLOSE**.
 
-Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite word. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived.
+Every tested 2-adic cylinder splits at the second Juggler letter. Weak Admissible_P is first-letter survival and therefore contains every finite itinerary. Every Phase-0 gap is Type 1 or INTEGER-WITNESS-ABSENT-WITHIN-BOUND. Finite BT jets are CRT-transverse to 2-adic residues and do not determine the first letter. No Type-3 integer obstruction and no lifting bound survived.
 
 Do not call weak admissibility equivalent to IntReal. The layers differ
 by witness scale, not by an extra finite 2-adic prohibition. Do not

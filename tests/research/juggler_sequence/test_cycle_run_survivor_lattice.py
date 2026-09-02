@@ -68,5 +68,5 @@ def test_lean_and_paper_name_the_lattice():
     assert "run_survivor_unimodular" in note
     assert r"\mathcal E_{\mathrm{run}}" in note
     assert "99" in note
-    assert "theorem no_cycle_word_any_length" not in note
+    assert "theorem no_cycle_itinerary_any_length" not in note
     assert "theorem juggler_reaches_one" not in note

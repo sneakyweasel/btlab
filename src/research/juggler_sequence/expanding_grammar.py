@@ -27,8 +27,8 @@ N_MAX = 4000
 CHAIN_CAP = 24
 
 LEAN_THEOREMS = (
-    "expandingWord",
-    "expanding_word_ratio",
+    "expandingItinerary",
+    "expanding_itinerary_ratio",
     "expanding_implies_odd_density",
     "maxExpandingEvens",
     "expanding_oddEvenBlock_iff_log",

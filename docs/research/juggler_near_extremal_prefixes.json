@@ -341,7 +341,7 @@
   },
   "decision": {
     "classification": "NEAR_EXTREMAL_STRUCTURE_GREEN",
-    "reason": "prefix-noncontracting words start with O, length \u2265 2 starts with OO, and include the unbounded mixed family O^k E for k\u22652 plus other mixed patterns; defect-driven contraction is already Lean and did not fire on the realized mixed prefixes in range. A finite horizon hit is not an infinite family"
+    "reason": "prefix-noncontracting itineraries start with O, length \u2265 2 starts with OO, and include the unbounded mixed family O^k E for k\u22652 plus other mixed patterns; defect-driven contraction is already Lean and did not fire on the realized mixed prefixes in range. A finite horizon hit is not an infinite family"
   },
   "search_method": "exact G = 2^k - 3^o on prefixes; realized itineraries via floor_power; \u0394 and n^{3^o}-n^{2^k} only inside a bit budget; no floats"
 }

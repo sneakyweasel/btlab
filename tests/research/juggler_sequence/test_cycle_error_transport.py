@@ -15,7 +15,7 @@ from research.juggler_sequence.cycle_error_transport import (
     has_shared_later_odd,
     transport_record,
 )
-from research.juggler_sequence.global_defect import follows_word, odd_count
+from research.juggler_sequence.global_defect import follows_itinerary, odd_count
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_error_transport.md"
@@ -46,7 +46,7 @@ def test_dossier_has_triage_and_closed_gates():
 
 def test_oe_unrolls_to_the_global_defect():
     rec = transport_record(13, WORD_OE)
-    assert follows_word(13, WORD_OE)
+    assert follows_itinerary(13, WORD_OE)
     assert rec["identity"] is True
     assert rec["X"] == 0
     assert rec["halves"]["E_O"] == 81

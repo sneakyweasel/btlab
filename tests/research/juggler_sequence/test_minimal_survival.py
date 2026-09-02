@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from research.juggler_sequence.lean_paths import MINIMAL, MINIMAL_CLOSURE, PROGRESS, has_named
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.minimal_survival import (
     ANTI,
     CLASS_COMPLEX,

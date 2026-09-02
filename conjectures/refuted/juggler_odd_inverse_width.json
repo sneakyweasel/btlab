@@ -4,13 +4,13 @@
   "statement": "The odd inverse interval has width ~ (2/3) y^{-1/3}, so for large y the width is < 1 and the odd predecessor is unique. A long O-dominated trajectory therefore has essentially zero backward branching, and an infinite fan-follower requires infinitely many exact integer hits of these shrinking nonlinear inverse intervals — a new obstruction, stricter than a forward parity census.",
   "status": "REFUTED",
   "counterexamples": [
-    "width < 1 for every y >= 1 (y=1 already has width 2^{2/3}-1 ≈ 0.587); uniqueness is odd_cell_unique for all y, not a large-y threshold",
+    "width < 1 for every y >= 1 (y=1 already has width 2^{2/3}-1 ≈ 0.587); uniqueness is odd_preimage_unique for all y, not a large-y threshold",
     "every odd x makes T(x) Type 2 with occupant x (named 3,37,365,761); forward infinite hits are tautological",
     "9 --OOE--> 11 occupies a real hull of width 0.221 < 1 (archived juggler_cycle_inverse_width)",
     "hug/fan words are OE/OOE; existing hug-flow ledger is net positive (+5λ/12, +7λ/24); 17/44 existing 19-endpoints are already odd"
   ],
   "first_seen": "2026-09-02",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [],
   "mathematical_domain": "Juggler descent-free flights / odd inverse cells",
   "notes": "Phase 0 only. Width is the MVT expansion of the odd cell. The boxed infinite-hit slogan is a quantifier reversal of a realized odd letter plus the priced O-pullback. No hug-cylinder rerun, no fan-concat n-window, no Lean, no Paper A, no ledger theorem row. Not a halt theorem.",

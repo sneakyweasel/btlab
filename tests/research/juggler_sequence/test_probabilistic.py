@@ -6,7 +6,7 @@ import json
 import math
 from pathlib import Path
 
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.probabilistic import (
     ANTI,
     CLASS_STAT_ONLY,

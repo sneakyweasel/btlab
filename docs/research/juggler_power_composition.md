@@ -5,19 +5,19 @@ Status: **POWER_COMPOSITION_GREEN**
 Standalone application phase. Not a Research Engine experiment, not a
 termination theorem, and not a parity-frequency theorem. The Phase-13
 two-sided exponent law remains `POWER_WORD_COUNTEREXAMPLE`. This page
-records whether the surviving one-sided envelope is a finite-word theorem.
+records whether the surviving one-sided envelope is a finite-itinerary theorem.
 
 ## Branch budget
 
 ```text
-Mathematical target     Does every realized finite parity word satisfy
+Mathematical target     Does every realized finite parity itinerary satisfy
                         T_w(n)^{2^k} <= n^{3^o} by inductive floor composition?
 Novelty hypothesis      OOOEE / OOOEEEOO are instances of one weak bound plus
                         an exponent-gap contraction corollary.
 Falsifier               A realized (w,n) with T_w(n)^{2^k} > n^{3^o}.
-Existing machinery      power_words cmp_pow; FloorPower even/odd square bounds;
+Existing machinery      power_itineraries cmp_pow; FloorPower even/odd square bounds;
                         pow_sq_le / pow_sq_le_cube.
-Maximum Phase-0 scope   Near-equality scan reusing power_words; then a tiny
+Maximum Phase-0 scope   Near-equality scan reusing power_itineraries; then a tiny
                         Lean API if the weak bound survives. No engine edits.
 ```
 
@@ -30,7 +30,7 @@ Maximum Phase-0 scope   Near-equality scan reusing power_words; then a tiny
 - Lean empty/even/odd/follows/contracts: `True`/`True`/`True`/`True`/`True`
 - sorry-free: `True`
 
-The weak bound is an inductive floor-power composition on realized finite words; strict contraction follows from the exponent gap at n>=2.
+The weak bound is an inductive floor-power composition on realized finite itineraries; strict contraction follows from the exponent gap at n>=2.
 
 ## Weak composition law
 
@@ -67,7 +67,7 @@ Smallest positive mixed gaps (raw `G_w` when it fits in 4096 bits):
 | `EEOO` | 4 | 262143 | 1 |
 
 Equality observed in the focus scan is the square-tower / `n=1` family,
-not mixed words. The weak theorem is therefore non-strict by design.
+not mixed itineraries. The weak theorem is therefore non-strict by design.
 
 ## Strict corollary
 
@@ -88,5 +88,5 @@ implies `T_w(n) < n`. At `n=1` both powers are 1 and the gap is silent.
 
 **POWER_COMPOSITION_GREEN**
 
-The weak bound is an inductive floor-power composition on realized finite words; strict contraction follows from the exponent gap at n>=2.
+The weak bound is an inductive floor-power composition on realized finite itineraries; strict contraction follows from the exponent gap at n>=2.
 

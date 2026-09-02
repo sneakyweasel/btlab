@@ -34,7 +34,7 @@ from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     has_named,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_position_finance.json"
@@ -57,20 +57,20 @@ MIN_TERM = 3
 
 EXISTING_LEAN = (
     "cycleMin_finance",
-    "cycle_word_length_thirty_eight_or_ge_thirty_nine",
+    "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
     "reachesOne_of_lt_two_hundred_fifty_seven",
     "cycleMin_even_ge_sq",
     "floorPower_odd_mono",
     "cycleCircuitCount",
     "no_cycleMin_length_eighty_four_of_circuit_le_two",
-    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five",
+    "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
 )
 
 FORBIDDEN_THEOREMS = (
     "cycle_position_finance",
     "cycle_height_finance",
     "no_juggler_cycle",
-    "no_cycle_word_any_length",
+    "no_cycle_itinerary_any_length",
     "juggler_reaches_one",
 )
 

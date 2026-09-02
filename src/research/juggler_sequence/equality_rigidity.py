@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,
@@ -411,7 +411,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        strict for n>=2, forbidding mixed-word equality?",
         "Novelty hypothesis      Mixed-word equality does not occur for n>=2.",
         "Falsifier               A realized mixed word with T_w(n)^{2^k} = n^{3^o}.",
-        "Existing machinery      power_words cmp_pow; PowerBound composition.",
+        "Existing machinery      power_itineraries cmp_pow; PowerBound composition.",
         "Maximum Phase-0 scope   Mixed-equality search; one-step odd analysis;",
         "                        stop strictness API if a witness appears.",
         "```",
@@ -422,7 +422,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- wide layer: `n <= {scan.get('n_wide', N_WIDE)}`, `k <= {scan.get('k_wide', K_WIDE)}`",
         f"- odd squares through: `{scan.get('odd_square_limit', ODD_SQUARE_LIMIT)}`",
         f"- perfect-power targets through: `{scan.get('target_limit', TARGET_LIMIT)}`",
-        f"- bit cap on itinerary states: `{scan.get('bit_cap', BIT_CAP)}`",
+        f"- bit cap on word states: `{scan.get('bit_cap', BIT_CAP)}`",
         f"- engine control layer modified: `{payload['engine_control_layer_modified']}`",
         f"- classification: **{decision['classification']}**",
         f"- mixed equality hits: `{scan['hit_count']}` (all all-odd)",

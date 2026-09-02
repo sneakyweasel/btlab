@@ -13,13 +13,13 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.compensated_contraction import (
-    follows_word,
+    follows_itinerary,
     formal_gap,
     image_after,
     word_row,
 )
 from research.juggler_sequence.envelope_defect import tiny_deficit
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 from research.juggler_sequence.lean_paths import juggler_text
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -125,7 +125,7 @@ def scan_eoo_cells(*, q_max: int = Q_MAX) -> dict[str, Any]:
     for q in range(1, q_max + 1, 2):
         lo, hi = sqrt_cell(q)
         output = eoo_cell_output(q)
-        realized = [n for n in range(lo, hi) if n % 2 == 0 and follows_word(n, "EOO")]
+        realized = [n for n in range(lo, hi) if n % 2 == 0 and follows_itinerary(n, "EOO")]
         images = {n: image_after(n, "EOO") for n in realized}
         distinct = set(images.values())
         constant = len(distinct) <= 1
@@ -180,7 +180,7 @@ def scan_word_sqrt_cells(
         for n in range(max(lo, 2), hi):
             if n_parity is not None and n % 2 != n_parity:
                 continue
-            if follows_word(n, word):
+            if follows_itinerary(n, word):
                 realized.append(n)
         if len(realized) < 2:
             continue
@@ -213,7 +213,7 @@ def scan_first_even_cells(word: str, *, q_max: int = Q_MAX) -> dict[str, Any]:
     contracting = []
     for q in range(1, q_max + 1, 2):
         lo, hi = sqrt_cell(q)
-        realized = [n for n in range(max(lo, 2), hi) if n % 2 == 0 and follows_word(n, word)]
+        realized = [n for n in range(max(lo, 2), hi) if n % 2 == 0 and follows_itinerary(n, word)]
         if not realized:
             continue
         images = {n: image_after(n, word) for n in realized}
@@ -253,7 +253,7 @@ def scan_length4(*, n_max: int = LENGTH4_N_MAX) -> dict[str, Any]:
         contracts = []
         realized = 0
         for n in range(2, n_max + 1):
-            if not follows_word(n, word):
+            if not follows_itinerary(n, word):
                 continue
             realized += 1
             image = image_after(n, word)

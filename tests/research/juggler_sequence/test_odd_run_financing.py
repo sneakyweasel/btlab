@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.odd_run_financing import (
     CLASS_GREEN,
     CLASS_LATER_A1,
@@ -21,11 +21,11 @@ from research.juggler_sequence.odd_run_financing import (
     smallest_admissible_a,
     two_pow_succ_le_three,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_start_oe_is_short_and_below_square():
-    assert follows_word(13, "OE")
+    assert follows_itinerary(13, "OE")
     assert image_after(13, "O") == 46
     assert image_after(13, "OE") == 6
     assert 46 < 13 * 13
@@ -44,7 +44,7 @@ def test_start_ooe_is_first_admissible_exponent():
     assert two_pow_succ_le_three(2)
     assert not two_pow_succ_le_three(0)
     assert not two_pow_succ_le_three(1)
-    assert follows_word(5, "OOE")
+    assert follows_itinerary(5, "OOE")
     assert image_after(5, "OO") == 36
     assert 36 >= 5 * 5
     assert envelope_holds(5, 2, 36)
@@ -55,7 +55,7 @@ def test_start_ooe_is_first_admissible_exponent():
 
 
 def test_twenty_five_oooe_even_residual_above_square():
-    assert follows_word(25, "OOOE")
+    assert follows_itinerary(25, "OOOE")
     xa = image_after(25, "OOO")
     assert xa == 52214
     assert xa % 2 == 0

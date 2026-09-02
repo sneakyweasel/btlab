@@ -1,7 +1,7 @@
 """Two-sided minimal-counterexample corridor for the Juggler map.
 
 Not a Research Engine control-layer experiment. Not a halt theorem.
-Not the REFUTED two-sided exponent-only law from power_words. For a
+Not the REFUTED two-sided exponent-only law from power_itineraries. For a
 pivot x = T^j(n) and a realized suffix of length s, compare the exact
 forward envelope x^{2^r} <= n^{3^o} with the reverse constraint
 n^{2^s} <= x^{3^q} forced by T^s(x) >= n plus the suffix envelope.
@@ -31,7 +31,7 @@ from research.juggler_sequence.lean_paths import (
     RESIDUALS,
     juggler_text,
 )
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     EXACT_POW_BITS,
     cmp_pow,

@@ -76,7 +76,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- Even-even \(C_2\to C_4\to C_2\to C_1\) is the word
+- Even-even \(C_2\to C_4\to C_2\to C_1\) is the itinerary
   `OEE` on \(q\), equivalently `OOEOOOEOOEE` on \(n\) —
   **EXACT — HUMAN PROOF**.
 - The return satisfies \(t^{2048}\le n^{2187}\) —
@@ -106,7 +106,7 @@ It is not required.
   exact CycleMin closure of `OOEOOOEOOEE`, not a
   length-11 assembler.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -152,9 +152,9 @@ No exact integer closure \(t=n\) was found.
 
 ## Formalization
 
-None. Existing `Envelope.lean`, `Cells.lean`, and
+None. Existing `Envelope.lean`, `Preimages.lean`, and
 `CycleCore.lean` lemmas are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -195,7 +195,7 @@ The residual after \(C_1^{\mathrm{post}}\) is the
 post-\(L\) recovery
 [juggler_oneshot_recovery.md](juggler_oneshot_recovery.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 build a \(p\)-adic dynamical system.
 
 ## Decision

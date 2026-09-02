@@ -17,7 +17,7 @@ grammar force a contracting block after finitely many steps?
 
 Keep three notions separate.
 
-1. Syntactic expansion: `expandingWord w` means \(2^{|w|}<3^{\#O(w)}\).
+1. Syntactic expansion: `expandingItinerary w` means \(2^{|w|}<3^{\#O(w)}\).
    For a residual shape \(O^a E^b\) this is \(2^{a+b}<3^a\), or
    equivalently \(a+b\le\log_2(3^a)\) when \(a\ge 1\), or
    \(b\le\texttt{maxExpandingEvens}(a)\).
@@ -33,7 +33,7 @@ On the domain \(n\ge 2\),
 \texttt{PersistentExpandingResidual}(x,y).
 \]
 
-A contracting word cannot overshoot (`power_bound_contracts`), and
+A contracting itinerary cannot overshoot (`power_bound_contracts`), and
 \(2^k=3^o\) is impossible for a nonempty residual. The expanding-word
 grammar is therefore the already-known persistence condition
 \(T_w(n)>n\) on an odd-to-odd residual, not a new combinatorial
@@ -45,7 +45,7 @@ orbit. This branch does not claim either.
 ## Current literature
 
 - Formal exponent gap / `exponentExpanding` —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.WordStats`.
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.ItineraryStats`.
 - `power_bound_contracts` —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.Envelope`.
 - `PersistentOddResidual` / `PersistentExpandingResidual` —
@@ -96,7 +96,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- `expandingWord` / `expanding_word_ratio` /
+- `expandingItinerary` / `expanding_word_ratio` /
   `expanding_implies_odd_density` —
   **EXACT — LEAN VERIFIED**
 - `maxExpandingEvens` / `expanding_oddEvenBlock_iff_log` —

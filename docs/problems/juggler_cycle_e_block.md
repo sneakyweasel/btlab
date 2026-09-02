@@ -28,7 +28,7 @@ that comparison already on the ledger?
 **Odd-run interiors push to the peak
 (KNOWN / EXACT — LEAN VERIFIED).**
 A first meeting strictly inside an odd run is not first:
-`odd_cell_unique` / `oddLanding_preimage_unique`. The future after
+`odd_preimage_unique` / `oddLanding_preimage_unique`. The future after
 the unique odd parent is shared, so the canonical cut is the peak.
 
 **Even-run interiors push to the next valley, keeping \(r\)
@@ -48,7 +48,7 @@ The unique odd parent of \(p\) sits in the outer cube cell
 \[
 v^{2^{r+1}}\le u^3<(v+1)^{2^{r+1}}.
 \]
-This is `cycle_trailing_evens_lt` plus `odd_cell_unique`.
+This is `cycle_trailing_evens_lt` plus `odd_preimage_unique`.
 
 **Type I at \(r=1\) is the archived corridor
 (KNOWN / REPARAMETERIZATION).**
@@ -92,7 +92,7 @@ No cycle of any length — not claimed.
 
 - Unique odd cell —
   **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, `oddLanding_preimage_unique`)
+  (`odd_preimage_unique`, `oddLanding_preimage_unique`)
 - Trailing-evens cell \(T_v(n)<(n+1)^{2^r}\) —
   **EXACT — LEAN VERIFIED**
   (`cycle_trailing_evens_lt`)
@@ -131,7 +131,7 @@ Novelty hypothesis      the r-parameter of the common even suffix
 Falsifier               r=1 recovers n^4 <= u^3 < (n+1)^4; first-run
                         r vs a0 is 2^{a0+r} <= 3^{a0}; last-run
                         r>=2 is the occupied EE/EEE family
-Existing machinery      odd_cell_unique; cycle_trailing_evens_lt;
+Existing machinery      odd_preimage_unique; cycle_trailing_evens_lt;
                         even_run_scale_barrier; power_bound_word;
                         ee_entry_count; corridor_bounds; eee_witness
 Maximum Phase-0 scope   exact O E^r O cells; r=1 corridor recovery;
@@ -179,7 +179,7 @@ It is not required.
 ## Candidate operations / invariants
 
 - Odd-interior push to peak —
-  **KNOWN** (`odd_cell_unique`)
+  **KNOWN** (`odd_preimage_unique`)
 - Even-interior push to valley + \(r\) —
   **KNOWN** (determinism)
 - \(\mathtt{O}\,E^r\,\mathtt{O}\) envelope —
@@ -225,7 +225,7 @@ It is not required.
 ## Formalization
 
 None added. The uniqueness lemma is already
-`odd_cell_unique`. The even cell is already
+`odd_preimage_unique`. The even cell is already
 `cycle_trailing_evens_lt`. The first-run cap is already
 `power_bound_word` plus `even_run_scale_barrier`. Paper A is
 unchanged. Do not add `EBlock.lean`.

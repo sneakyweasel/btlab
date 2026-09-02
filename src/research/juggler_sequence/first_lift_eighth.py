@@ -31,7 +31,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.mixed_oe_cell import mixed_return
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_lift_eighth.json"
@@ -205,7 +205,7 @@ def run_probe() -> dict[str, Any]:
         and row.get("envelope_implies_eighth")
         for row in leftovers.values()
     )
-    leftover_words = {n: leftovers[n].get("word") for n in LEFTOVER_STARTS}
+    leftover_itineraries = {n: leftovers[n].get("word") for n in LEFTOVER_STARTS}
     leftover_z_odd = {
         n: leftovers[n].get("hit") and not leftovers[n].get("z_even")
         for n in LEFTOVER_STARTS
@@ -215,7 +215,7 @@ def run_probe() -> dict[str, Any]:
     return {
         "basin": "ordinary_integers",
         "leftover_first_eighth": leftovers,
-        "leftover_words": leftover_words,
+        "leftover_itineraries": leftover_itineraries,
         "witness_4309": unsafe,
         "witness_5791": long_unsafe,
         "witness_501_later": later,
@@ -261,7 +261,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "in_laboratory_barrel": "Problems.Juggler.MinimumRelative" in barrel,
         "not_in_paper_barrel": "odd_even_eighth_lt_sq" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_first_lift_lean": "first_lift_eighth" not in combined
         and "leftover_first_eighth" not in combined,
     }

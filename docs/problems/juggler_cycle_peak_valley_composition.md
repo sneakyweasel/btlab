@@ -16,7 +16,7 @@ necklace forces \(P_1>P_1\) or \(P_1<P_1\) without identifying a
 dangerous seam.
 
 Not a halt theorem, not a finance leftover-killer, and not a
-claim that every cycle word is impossible.
+claim that every cycle itinerary is impossible.
 
 ## Problem
 
@@ -27,7 +27,7 @@ P_i\xrightarrow{E^{r_i}}V_i\xrightarrow{O^{a_{i+1}}}P_{i+1},
 the even tower and the odd climb are exact. After one necklace,
 \(P_1\mapsto P_2\mapsto\cdots\mapsto P_1\). Does that composite
 interval map sit strictly off the diagonal, for a reason that is
-not the word envelope or an archived cell?
+not the itinerary envelope or an archived cell?
 
 ## Exact statement
 
@@ -46,7 +46,7 @@ cell, not the nested climb. At \(365\), the exact first peak is
 \(582276\) and \(\lfloor 365^{9/4}\rfloor=582316\); the exact
 \(\mathtt{OOE}\) landing is \(763=\lfloor 365^{9/8}\rfloor\).
 
-**One-sided composition is the word envelope
+**One-sided composition is the itinerary envelope
 (KNOWN / REPARAMETERIZATION).**
 Composing \(P<(V+1)^{2^r}\) with \(P'\le V^{3^a/2^a}\) yields
 \(P'\le P^{3^o/2^L}\). The block product is identically
@@ -96,7 +96,7 @@ No cycle of any length — not claimed.
   (`even_tower_bounds`)
 - Formal expansion \(2^L<3^o\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_formally_expanding`)
+  (`cycle_itinerary_formally_expanding`)
 - Global defect —
   **EXACT — LEAN VERIFIED**
   (`global_defect_identity`)
@@ -140,7 +140,7 @@ Novelty hypothesis      the unit of proof becoming the whole
                         local cells do not
 Falsifier               exact cells compose to T_w (a cycle has
                         P=P); one-sided composition is 3^o/2^L;
-                        leftover words expand; slack sign is the
+                        leftover itineraries expand; slack sign is the
                         exponent gap; mechanical hulls meet
 Existing machinery      even_tower_bounds; cycle_trailing_evens_lt;
                         power_bound_word; power_bound_contracts;
@@ -166,7 +166,7 @@ budget, cycle closure, or extremal composition.
 - **CLOSE** if the one-sided product is \(3^o/2^L\).
 - **CLOSE** if leftover-shaped words have \(3^o>2^L\).
 - **CLOSE** if real slack intervals sit above \(P\) exactly
-  when the word expands and below \(P\) exactly when it
+  when the itinerary expands and below \(P\) exactly when it
   contracts.
 - **CLOSE** if the leftover hull meeting is the closed
   cycle-closure record.
@@ -258,7 +258,7 @@ Do not add `PeakValleyComposition.lean`.
 - **Exponent** — **REPARAMETERIZATION** of `power_bound_word`
   and the closed exponent budget.
 - **Sign** — **OBSERVATION**: real slack sits below \(P\) on
-  contracting words and above \(P\) on expanding words.
+  contracting itineraries and above \(P\) on expanding itineraries.
 - **No new cyclic obstruction.**
 
 ## Open questions

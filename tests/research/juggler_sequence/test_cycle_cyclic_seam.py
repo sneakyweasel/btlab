@@ -18,7 +18,7 @@ from research.juggler_sequence.cycle_cyclic_seam import (
 )
 from research.juggler_sequence.cycle_entry_corridor import ee_entry_count
 from research.juggler_sequence.cycle_entry_excursion import run_layer
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_cyclic_seam.md"

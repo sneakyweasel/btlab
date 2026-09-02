@@ -12,8 +12,8 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, cmp_pow, floor_power, word_of
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, cmp_pow, floor_power, word_of
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     MINIMAL,
@@ -244,7 +244,7 @@ def odd_run_census(*, n_max: int = N_MAX, cap: int = PREFIX_CAP) -> dict[str, An
 def calibration_rows() -> list[dict[str, Any]]:
     rows = []
     for n, word in CALIBRATION:
-        if not follows_word(n, word):
+        if not follows_itinerary(n, word):
             rows.append({"n": n, "word": word, "follows": False})
             continue
         a = word.count("O")

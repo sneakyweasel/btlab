@@ -18,7 +18,7 @@ Falsifier               no smaller analogue; no short return;
                         rank is not a potential
 Existing machinery      AboveAnchor; ReturnBelow; PredEven/PredOdd;
                         PredClosure <-> ReachesOne (CLOSED);
-                        odd_cell_unique; even_below_anchor_pow
+                        odd_preimage_unique; even_below_anchor_pow
 Maximum Phase-0 scope   365, 501, 1517, 6187; 69/89 contrast; no new Lean
 ```
 
@@ -51,7 +51,7 @@ Maximum Phase-0 scope   365, 501, 1517, 6187; 69/89 contrast; no new Lean
 - `AboveAnchor`: `True`
 - `finiteProgress_of_aboveAnchor_returnBelow`: `True`
 - `predClosure_iff_good`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `Good`: `True`
 - `Bad`: `True`
 - new Lean file: `False`

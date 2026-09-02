@@ -1,25 +1,25 @@
-import Problems.Juggler.WordStats
+import Problems.Juggler.ItineraryStats
 
 namespace Problems.Juggler
 
 /-!
 # Trajectory drift
 
-`G` along an actual itinerary is the combinatorial drift of `word n k`.
+`G` along an actual itinerary is the combinatorial drift of `itinerary n k`.
 This file does not mention stopping times or certificates.
 -/
 
 def trajectoryDrift (n k : ℕ) : ℤ :=
-  driftG (word n k)
+  driftG (itinerary n k)
 
 def trajectoryExponentGap (n k : ℕ) : Prop :=
-  exponentGap (word n k)
+  exponentGap (itinerary n k)
 
 theorem trajectoryExponentGap_iff {n k : ℕ} :
-    trajectoryExponentGap n k ↔ 3 ^ oddCount (word n k) < 2 ^ k := by
-  simp [trajectoryExponentGap, exponentGap, word_length]
+    trajectoryExponentGap n k ↔ 3 ^ oddCount (itinerary n k) < 2 ^ k := by
+  simp [trajectoryExponentGap, exponentGap, itinerary_length]
 
-theorem follows_word_self (n k : ℕ) : follows n (word n k) :=
-  (follows_iff_word n (word n k)).mpr (by simp [word_length])
+theorem follows_itinerary_self (n k : ℕ) : follows n (itinerary n k) :=
+  (follows_iff_itinerary n (itinerary n k)).mpr (by simp [itinerary_length])
 
 end Problems.Juggler

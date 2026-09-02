@@ -32,7 +32,7 @@ Do not prove totality. Do not prove that the orbit is all-odd.
   is not claimed.
 - Finite `ReachesOne` interval \(\{1,\ldots,11\}\) and even residuals
   below \(144\) — **EXACT — LEAN VERIFIED**.
-- `even_word_contracts`, first-even freeze, changing-family capture —
+- `even_itinerary_contracts`, first-even freeze, changing-family capture —
   **EXACT — LEAN VERIFIED**.
 
 Project relationship: **extended**. Minimality is turned into a
@@ -44,7 +44,7 @@ numerical lower bound on even-run entries. Totality remains unclaimed.
 Mathematical target     E^r on a minimal non-1 orbit implies entry >= n^{2^r}
 Novelty hypothesis      Minimality plus even square-root gives a scale barrier
 Falsifier               An even run with exit >= n but entry < n^{2^r}
-Existing machinery      ReachesOne closure, even_word_contracts, even_run identities
+Existing machinery      ReachesOne closure, even_itinerary_contracts, even_run identities
 Maximum Phase-0 scope   MinimalNonTerm; barrier; normal form; short pattern census
 Promotion criterion     Proved scale barrier, or a packaged finite-prefix normal form
 Stop criterion          Halt; all-odd claim; PowerHeight; infinite paths; Q0/grammar programme

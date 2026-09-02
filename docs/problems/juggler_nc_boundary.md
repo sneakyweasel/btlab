@@ -10,7 +10,7 @@ branches, and not a claim that every positive integer reaches 1.
 ## Problem
 
 For a fixed finite \(O/E\) word \(w\), what is the arithmetic structure
-of the starting states that realize \(w\) and fail the finite-word
+of the starting states that realize \(w\) and fail the finite-itinerary
 contraction test?
 
 ## Exact statement
@@ -25,7 +25,7 @@ On a bound \(N\), write \(R_w(N)=R_w\cap[1,N]\) and
 The identity \(n\in N_w\Leftrightarrow T_w(n)\ge n\) is the definition,
 not a theorem. When \(3^{\#O(w)}<2^{|w|}\) the existing envelope already
 forces \(T_w(n)<n\) for \(n>1\). The Phase-0 question is whether the
-boundary of \(N_w\) on formally expanding words admits a description
+boundary of \(N_w\) on formally expanding itineraries admits a description
 structurally simpler than evaluating \(T_w\).
 
 Absence under a scan bound is not global emptiness. This says nothing
@@ -60,7 +60,7 @@ Falsifier               inversions; same (k,o) split a_w;
                         every useful statement is T>=n
 Existing machinery      follows, image, power_bound_contracts,
                         image_monotone_of_follows, first_nonexact,
-                        even_cell
+                        even_preimage
 Maximum Phase-0 scope   n<=4000 k<=20 complete; selected families
                         n<=1e5; no census / GPU / automaton
 Promotion criterion     exact inequality or inheritance/cell law
@@ -78,12 +78,12 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- \(N_w=\varnothing\) on formally contracting words (\(n>1\)) —
+- \(N_w=\varnothing\) on formally contracting itineraries (\(n>1\)) —
   **EXACT — LEAN VERIFIED** (`power_bound_contracts`);
   **COMPUTATIONALLY VERIFIED** on \(n\le 4000\), \(k\le 20\)
 - \(N_E=\varnothing\), \(N_{O^r}=\) all odds in the window —
   **COMPUTATIONALLY VERIFIED** (calibration)
-- \(n\ge a_w\Rightarrow n\in N_w\) on expanding words —
+- \(n\ge a_w\Rightarrow n\in N_w\) on expanding itineraries —
   **REFUTED** by `EOO` at \(10\in N\), \(12\notin N\), same image \(11\)
 - \(a_w\) determined by \((k,o)\) —
   **REFUTED**; 58 expanding groups split, ratio \(37\) vs \(3989\)
@@ -100,7 +100,7 @@ It is not required.
 ## Experiments
 
 - Probe: `research.juggler_sequence.nc_boundary`
-- Diagnostic: \(n\le 4000\), \(k\le 20\) (7519 realized words)
+- Diagnostic: \(n\le 4000\), \(k\le 20\) (7519 realized itineraries)
 - Selected confirm: \(n\le 10^5\) on the fixed family list
 - Records: [juggler_nc_boundary.md](../research/juggler_nc_boundary.md)
 - Tests: `tests/research/juggler_sequence/test_nc_boundary.py`
@@ -136,8 +136,8 @@ Phase 0 is recorded in
 [juggler_nc_boundary.md](../research/juggler_nc_boundary.md).
 Classification **NC_BOUNDARY_COMPLEX**.
 
-Formally contracting words have empty \(N_w\) for \(n>1\). That is
-the existing envelope. On expanding words, \(2583/2584\) nonempty
+Formally contracting itineraries have empty \(N_w\) for \(n>1\). That is
+the existing envelope. On expanding itineraries, \(2583/2584\) nonempty
 windows are upper tails; the only inversion is the constant-image
 pair on `EOO`. Word shape does not fix \(a_w\). Prefix extension
 fails in both directions. First-defect position does not separate

@@ -5,13 +5,13 @@ Status: **ARCHIVED**
 Refinement of
 [juggler_cycle_finance.md](juggler_cycle_finance.md) and
 [juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md),
-not a new paper. After the word-independent leftover-killers
+not a new paper. After the itinerary-independent leftover-killers
 closed at the exponent envelope, this phase asks whether a
 large exact search for
 \(E_L(n,w)=\lvert T_w(n)-n\rvert/n\) on the finance-surviving
 frontier produces a cycle, an unusually close almost-cycle, or
 a reusable terminal failure. Phase 1 is \(L=25781\) only.
-Not a halt theorem, not a leftover-word census, not a
+Not a halt theorem, not a leftover-itinerary census, not a
 \(2^L\) enumeration, and not a floor-extension campaign.
 
 ## Problem
@@ -24,7 +24,7 @@ failure is a common arithmetic configuration?
 
 ## Exact statement
 
-**Distinguished word (COMPUTATIONALLY VERIFIED).**
+**Distinguished itinerary (COMPUTATIONALLY VERIFIED).**
 For \((L,o)=(25781,16266)\) the extremal path \(o_k=r(k)\),
 the ceiling Christoffel word of slope \(o/L\), and the
 packed `OOE`/`OE` Beatty interleaving are the same word.
@@ -60,7 +60,7 @@ the same way. This is the existing \(F_2\) cell, not a
 terminal failure after a near-return.
 
 **Envelope scale (EXACT — HUMAN PROOF / OBSERVATION).**
-If a word with \(\theta=3^o/2^L-1\) completed, the
+If an itinerary with \(\theta=3^o/2^L-1\) completed, the
 defect-free return error would be
 \(E_{\mathrm{env}}=n^\theta-1=\mathrm{expm1}(\theta\ln n)\),
 equal to \(3.52\cdot10^{-4}\) at \(n=10^6+1\). No completed
@@ -83,7 +83,7 @@ opened.
 - Pair-level, modular, conditioned, and ordered closure —
   **REFUTED** as leftover-killers; intervals reduce to the
   envelope
-- `odd_cell_unique` / `even_cell_iff` / `F_a` —
+- `odd_preimage_unique` / `even_preimage_iff` / `F_a` —
   **EXACT — LEAN VERIFIED** / existing block maps
 - Descent floor \(N_0=2\cdot10^6\) —
   **COMPUTATIONALLY VERIFIED**; max first-passage \(257\)
@@ -114,7 +114,7 @@ Falsifier               no unusually close returns; or
 Existing machinery      CycleMin; AboveAnchor; run-type
                         finance; 99 survivors;
                         prefix_feasibility; exact cells;
-                        odd_cell_unique; F_a / Q;
+                        odd_preimage_unique; F_a / Q;
                         power_bound_word; a0>=2; exact T
 Maximum Phase-0 scope   L=25781 only; distinguished words
                         + run-length beam + exact backward
@@ -177,7 +177,7 @@ It is not required.
   or even stays `AboveAnchor` for \(258\) steps. Falsifier:
   no unusually close return.
 - Maximum follow depth of the distinguished word is \(11\).
-  The word is not a realized itinerary.
+  The itinerary is not a realized itinerary.
 - All \(96\) exact backward attempts die at an empty `OOE`
   preimage after at most two blocks. This is the existing
   cell, not a near-closure signature.

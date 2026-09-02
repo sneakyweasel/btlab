@@ -4,7 +4,7 @@ Status: **ARCHIVED**
 
 Standalone application phase on the Juggler floor-power map. It is
 **not** a Research Engine control-layer experiment, not a reopen of
-`high_merge` / minimal-anchor closure, not a leftover-word census,
+`high_merge` / minimal-anchor closure, not a leftover-itinerary census,
 not a \(10^9\) stopping-time census, not Paper A, and not a claim
 that every positive integer reaches 1. Coalescence is not evidence
 of termination.

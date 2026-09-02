@@ -75,7 +75,7 @@ claimed.
 
 ## Current literature
 
-- DK/Ostrowski envelope and word identity — **EXACT — HUMAN
+- DK/Ostrowski envelope and itinerary identity — **EXACT — HUMAN
   PROOF** (`J-cyclemin-walk-ostrowski-arithmetic`,
   `juggler_walk_dk_envelope`, `juggler_walk_window_envelope`);
   Denjoy–Koksma per convergent block is **KNOWN**

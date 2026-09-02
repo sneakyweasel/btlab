@@ -112,7 +112,7 @@ estimates, applied to one further letter, count the two length-five
 contractors \(OOOEE\) and \(OOEOE\) (Theorem 6.3), so the certified
 descent class has density \(7/8\) (Corollary 6.4). The leftover
 eighth is the expanding length-five tree
-\(OOEOO\cup OOOEO\cup OOOO*\): the first two of those words are
+\(OOEOO\cup OOOEO\cup OOOO*\): the first two of those itineraries are
 counted and do not contract, and \(OOOO*\) is the level-3 kernel.
 
 The chains are not chosen at random: they are the itineraries of the
@@ -127,7 +127,7 @@ J(n)=
 introduced by Pickover [1] (OEIS A094683 [2]); universal arrival at
 \(1\) is open. The map is niche; the nested-floor sums must stand on
 their own, and the paper is organized so that they do. The exact
-finite-word calculus of \(J\) — the power envelope
+finite-itinerary calculus of \(J\) — the power envelope
 \(J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\), the defect identity, and a
 small-cycle census — is a companion manuscript [22]; here we use
 only the contraction criterion (Proposition 3.1), whose short
@@ -281,7 +281,7 @@ word of depth \(d\) at \(n\) is the sequence of parities
 prefix \(w\) when \(\mathrm{word}_{|w|}(n)=w\).
 
 **Proposition 3.1 (power-envelope contraction; companion [22]).**
-If the word \(w\) is realized at \(n\ge2\) (the orbit's parities are
+If the itinerary \(w\) is realized at \(n\ge2\) (the orbit's parities are
 the letters of \(w\)) and \(3^{\#O(w)}<2^{|w|}\), then
 \(J^{|w|}(n)<n\).
 
@@ -299,18 +299,18 @@ at \(w\). The exponent gap and \(n\ge2\) give
 \(n^{3^{\#O(w)}}<n^{2^k}\), hence \(m^{2^k}<n^{2^k}\). Since
 \(m\ge1\), one has \(m<n\). \(\square\)
 
-The companion [22] develops the same envelope as a finite-word
+The companion [22] develops the same envelope as a finite-itinerary
 identity with an exact defect; only the contraction criterion is
 used below. The induction is recorded here so that the criterion
 does not depend on an unpublished text.
 
-A word \(w\) with \(3^{\#O(w)}<2^{|w|}\) is *contracting*; realizing a
-contracting word is a *descent certificate* of length \(|w|\).
+An itinerary \(w\) with \(3^{\#O(w)}<2^{|w|}\) is *contracting*; realizing a
+contracting itinerary is a *descent certificate* of length \(|w|\).
 Contracting words used below: \(E\), \(OE\), \(OOEE\), and the two
 length-five words \(OOOEE\) and \(OOEOE\). Every even start realizes
 \(E\), and every odd start with even image realizes \(OE\); those two
 certificates cover all starts except the odd-to-odd class, which is
-where the counting problem lives. Longer contracting words exist
+where the counting problem lives. Longer contracting itineraries exist
 (length seven and eight); this paper makes no counting claims about
 them.
 
@@ -366,12 +366,12 @@ nonnegative trigonometric polynomial of the same shape.
 
 The class indicators below are products of half-wave factors
 \(\tfrac12(1\pm\psi)\) evaluated along *formal* chains — chains whose
-branches are dictated by the target word, not by the orbit. The next
+branches are dictated by the target itinerary, not by the orbit. The next
 lemma is the exact identity that justifies this; it replaces any
 appeal to sampled verification.
 
 **Lemma 3.6 (branch consistency).**
-Let \(d\ge1\) and let \(w=w_1\cdots w_d\) be a word with \(w_1=O\).
+Let \(d\ge1\) and let \(w=w_1\cdots w_d\) be an itinerary with \(w_1=O\).
 For odd \(n\), define the formal chain \(x_1=n\) and, for
 \(1\le t<d\),
 \[
@@ -1144,8 +1144,8 @@ steps has cardinality
 =\tfrac{13N}{16}+O(N^{23/24+\varepsilon}).
 \]
 No other depth-\(\le4\) word class is used. In particular this is
-not a census of \(E\)-rooted words of length \(\ge2\), and it is
-not a census of every \(O\)-rooted word of length four (the
+not a census of \(E\)-rooted itineraries of length \(\ge2\), and it is
+not a census of every \(O\)-rooted itinerary of length four (the
 classes \(OOO*\) are Theorem 6.1, and they are non-contracting at
 this depth).
 
@@ -1162,8 +1162,8 @@ three classes are disjoint because they are distinct prefixes.
 \(\square\)
 
 The density \(13/16\) is the exact ceiling of this one-growing-layer
-machinery: a word contracts iff \(3^{o}<2^{\ell}\), the method so far
-proves letters at positions 1–3 of any word plus further letters along
+machinery: an itinerary contracts iff \(3^{o}<2^{\ell}\), the method so far
+proves letters at positions 1–3 of any itinerary plus further letters along
 even branches only, and the contracting minimal words with all odd
 letters at positions \(\le2\) are exactly \(E\), \(OE\), and \(OOEE\).
 Completing depth 4 requires the \(OOO*\) split — a second
@@ -2514,7 +2514,7 @@ the mode weights (\(O(\log^3P)\)), the majorant costs
 gives the theorem. \(\square\)
 
 The four-step certified class remains \(13/16\): \(OOO*\) does not
-contract (\(3^3>2^4\)). The next two contracting words are
+contract (\(3^3>2^4\)). The next two contracting itineraries are
 \(OOOEE\) and \(OOEOE\) (\(3^3<2^5\)). Neither is a third growing
 layer. After \(OOOE\) the fifth letter is a decaying nest plus one
 slow sawtooth of coefficient \(n^{3/16}<n\); after \(OOEO\) it is
@@ -2756,7 +2756,7 @@ steps has cardinality
 =\tfrac{7N}8+O\bigl(N^{1-1/96+\varepsilon}\bigr).
 \]
 No other depth-\(\le5\) word class is used. In particular this
-is not a census of every \(O\)-rooted word of length five: the
+is not a census of every \(O\)-rooted itinerary of length five: the
 classes \(OOOO*\) remain open, and \(OOEOO\), \(OOOEO\) are
 counted by Theorem 6.3 but do not contract.
 
@@ -2793,7 +2793,7 @@ descent certificate has natural density \(1\).
 
 *Proof.* Every \(E\)-rooted word has a contracting prefix at length
 one (\(3^0<2\)), so the starts with no contracting prefix of length
-\(\le d\) all realize an \(O\)-rooted word of length \(d\). A word
+\(\le d\) all realize an \(O\)-rooted itinerary of length \(d\). An itinerary
 \(w\) of length \(d\) has a contracting prefix iff
 \(3^{o_t}<2^t\) for some \(t\le d\), where \(o_t\) counts odd letters
 among the first \(t\). If \(w\) has no contracting prefix then
@@ -2962,7 +2962,7 @@ The open question, stated once:
 > Conjecture 7.3, whose deterministic model instance is
 > Conjecture 7.5.
 
-![The theorem flow of the paper. The exact finite-word calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
+![The theorem flow of the paper. The exact finite-itinerary calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
 
 ## 8. Software note
 
@@ -2970,7 +2970,7 @@ A repository accompanies the paper:
 [https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
 It is not required to read or check any proof above. It contains Lean
 formalizations of the exact floor identities cited in Section 1.1 and
-of the companion manuscript's finite-word theorems, scaled-integer
+of the companion manuscript's finite-itinerary theorems, scaled-integer
 validations of the linearization identities of Lemmas 4.3, 4.6, 5.1,
 6.2, and 7.2, and exact-phase numerical probes of the sums \(K_c\),
 \(K_3\), and the differenced sums of Lemma 5.2 and Theorem 5.3, all
@@ -2991,7 +2991,7 @@ the text, organizing companion notes, and as an interactive assistant
 for Lean statements, tests, and literature records. The models are
 not authors. The theorems of this paper are human proofs from the
 cited classical inequalities; the Lean certificates cover only the
-exact floor identities and the companion's finite-word theorems. I
+exact floor identities and the companion's finite-itinerary theorems. I
 take full responsibility for the contents.
 
 ## References

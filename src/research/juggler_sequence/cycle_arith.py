@@ -12,7 +12,7 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     ENVELOPE,
@@ -42,20 +42,20 @@ LEAN_THEOREMS = (
     "cycle_last_even_interval",
     "cycle_last_even_ne_odd_sq",
     "cycle_last_odd_interval",
-    "cycleWord_rotate_cons",
+    "cycleItinerary_rotate_cons",
     "exists_cycle_min_odd",
     "floorPower_even_lt",
-    "no_cycle_word_ooe",
-    "no_cycle_word_oeo",
+    "no_cycle_itinerary_ooe",
+    "no_cycle_itinerary_oeo",
 )
 
 CERTIFICATE_UNCHANGED = (
-    "CycleWord",
+    "CycleItinerary",
     "oo_suffix_threshold",
-    "wordOOE",
-    "wordOEO",
-    "wordEOO",
-    "no_cycle_word_eoo",
+    "itineraryOOE",
+    "itineraryOEO",
+    "itineraryEOO",
+    "no_cycle_itinerary_eoo",
     "lower_growth_word",
 )
 
@@ -68,7 +68,7 @@ def floor_power(n: int) -> int:
     return isqrt(n * n * n)
 
 
-def follows_word(n: int, word: str) -> bool:
+def follows_itinerary(n: int, word: str) -> bool:
     current = n
     for letter in word:
         if letter == "O" and current % 2 == 0:
@@ -90,7 +90,7 @@ def last_even_cell(n: int) -> tuple[int, int]:
     return n * n, (n + 1) * (n + 1)
 
 
-def rotate_word(word: str) -> str:
+def rotate_itinerary(word: str) -> str:
     return word[1:] + word[0]
 
 
@@ -99,7 +99,7 @@ def even_descends(n: int) -> bool:
 
 
 def last_even_is_exact_square(n: int, word: str) -> bool | None:
-    if not word.endswith("E") or not follows_word(n, word):
+    if not word.endswith("E") or not follows_itinerary(n, word):
         return None
     z = image_after(n, word[:-1])
     return z == n * n
@@ -124,16 +124,16 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in text
-        and "theorem no_cycle_word " not in text,
+        and "theorem no_cycle_itinerary " not in text,
         "no_cycle_engine": "def CycleSearch" not in text
         and "def CycleStates" not in text,
         "no_infinite_path_type": "coinductive" not in text.lower()
         and "def InfinitePath" not in text,
-        "FloorPower_not_rewritten": "CycleWord" not in floor
-        and "no_cycle_word_ooe" not in floor,
-        "Progress_unchanged": "CycleWord" not in progress,
-        "MinimalNonTerm_not_rewritten": "CycleWord" not in minimal
-        and "no_cycle_word_ooe" not in minimal,
+        "FloorPower_not_rewritten": "CycleItinerary" not in floor
+        and "no_cycle_itinerary_ooe" not in floor,
+        "Progress_unchanged": "CycleItinerary" not in progress,
+        "MinimalNonTerm_not_rewritten": "CycleItinerary" not in minimal
+        and "no_cycle_itinerary_ooe" not in minimal,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
         "no_exact_square_identity": "theorem cycle_last_even_eq_sq" not in text
         and "image n u = n ^ 2" not in text,
@@ -144,12 +144,12 @@ def run_probe() -> dict[str, Any]:
     ooe_small = [
         n
         for n in range(2, 80)
-        if follows_word(n, "OOE") and image_after(n, "OOE") == n
+        if follows_itinerary(n, "OOE") and image_after(n, "OOE") == n
     ]
     oeo_small = [
         n
         for n in range(2, 80)
-        if follows_word(n, "OEO") and image_after(n, "OEO") == n
+        if follows_itinerary(n, "OEO") and image_after(n, "OEO") == n
     ]
     exact_square_hits = [
         n
@@ -157,15 +157,15 @@ def run_probe() -> dict[str, Any]:
         if last_even_is_exact_square(n, "OOE") is True
     ]
     rotate = {
-        "OOE": rotate_word("OOE"),
-        "OEO": rotate_word("OEO"),
-        "EOO": rotate_word("EOO"),
+        "OOE": rotate_itinerary("OOE"),
+        "OEO": rotate_itinerary("OEO"),
+        "EOO": rotate_itinerary("EOO"),
     }
     return {
         "basin": [1],
         "ooe_hits": ooe_small,
         "oeo_hits": oeo_small,
-        "ooe_three_follows": follows_word(3, "OOE"),
+        "ooe_three_follows": follows_itinerary(3, "OOE"),
         "ooe_three_prefinal_odd": image_after(3, "OO") % 2 == 1,
         "last_even_exact_square_hits": exact_square_hits,
         "rotate": rotate,
@@ -178,8 +178,8 @@ def run_probe() -> dict[str, Any]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["no_cycle_word_ooe"]
-        and lean["no_cycle_word_oeo"]
+        and lean["no_cycle_itinerary_ooe"]
+        and lean["no_cycle_itinerary_oeo"]
         and lean["cycle_last_even_interval"]
         and lean["exists_cycle_min_odd"]
         and lean["FloorPower_not_rewritten"]
@@ -250,10 +250,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "## Branch budget",
         "",
         "```text",
-        "Mathematical target     exclude CycleWord on OOE and OEO by exact cells",
+        "Mathematical target     exclude CycleItinerary on OOE and OEO by exact cells",
         "Novelty hypothesis      last-even cell plus OO threshold, or rotation to EOO",
         "Falsifier               an OOE/OEO cycle; or last-even identity z = n^2",
-        "Existing machinery      CycleWord, oo_suffix_threshold, no_cycle_word_eoo",
+        "Existing machinery      CycleItinerary, oo_suffix_threshold, no_cycle_itinerary_eoo",
         "Maximum Phase-0 scope   last-even interval; min odd; no OOE; no OEO",
         "```",
         "",

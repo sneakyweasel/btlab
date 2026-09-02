@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -45,16 +45,16 @@ N0_WINDOW = 800
 LARGE_N0_CAP = 10**18
 
 LEAN_THEOREMS = (
-    "leftover_prefix_cell",
+    "leftover_prefix_preimage",
     "denomBits",
     "cycle_trailing_evens_lt",
-    "no_cycle_word_two_even_ee",
-    "no_cycle_word_three_even_eee",
+    "no_cycle_itinerary_two_even_ee",
+    "no_cycle_itinerary_three_even_eee",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_five_even",
-    "no_cycle_word_e5_cell",
+    "no_cycle_itinerary_five_even",
+    "no_cycle_itinerary_e5_cell",
     "leftover_cell_lag_inductive",
     "juggler_reaches_one",
 )
@@ -175,7 +175,7 @@ def lean_api_present() -> dict[str, bool]:
         **{name: has_named(combined, name) for name in LEAN_THEOREMS},
         **{name: f"theorem {name}" not in combined for name in FORBIDDEN_THEOREMS},
         "paper_a_has_no_lag": "leftover_cell_lag" not in paper,
-        "cell_schema_present": "leftover_prefix_cell" in cell,
+        "cell_schema_present": "leftover_prefix_preimage" in cell,
         "length_eight_open_in_census": "Length eight is open" in census,
         "FloorPower_not_rewritten": "leftover_cell_lag" not in engine_floor_text(),
     }
@@ -184,8 +184,8 @@ def lean_api_present() -> dict[str, bool]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["leftover_prefix_cell"]
-        and lean["no_cycle_word_five_even"]
+        and lean["leftover_prefix_preimage"]
+        and lean["no_cycle_itinerary_five_even"]
         and lean["paper_a_has_no_lag"]
     )
     if not lean_ok or scan["max_lag"] is None:
@@ -235,7 +235,7 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "trailing-evens leftover_prefix_cell for O^a E^e; "
+            "trailing-evens leftover_prefix_preimage for O^a E^e; "
             "a_*(e) first expanding a; N0 by log doubling; lag = "
             "extra odds past a_* until N0<=800; e=2..16; no Z5"
         ),
@@ -264,7 +264,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Novelty hypothesis      lag grows, so leftover induction is",
         "                        permanently parked for e>=4",
         "Falsifier               lag stays 0 or 1 through e<=16",
-        "Existing machinery      leftover_prefix_cell; denomBits; Z=(n+1)^{2^e}",
+        "Existing machinery      leftover_prefix_preimage; denomBits; Z=(n+1)^{2^e}",
         "Maximum Phase-0 scope   N0 at a_*, a_*+1, a_*+2 for e=2..16;",
         "                        no Lean, no Z5, no thirty shapes",
         "```",

@@ -25,14 +25,14 @@ from research.juggler_sequence.first_e_e4 import (
     remainder_shapes,
     word_e4,
 )
-from research.juggler_sequence.global_defect import follows_word
+from research.juggler_sequence.global_defect import follows_itinerary
 from research.juggler_sequence.lean_paths import (
     DEFECT_LOWER_BOUND,
     SMALL_CYCLE_CENSUS,
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_amplify_surplus.json"
@@ -62,11 +62,11 @@ FORBIDDEN_THEOREMS = tuple(
     name
     for name in E4_FORBIDDEN
     + (
-        "no_cycle_word_length_eleven",
-        "no_cycle_word_amplify_surplus",
-        "no_cycle_word_four_even_amplify",
+        "no_cycle_itinerary_length_eleven",
+        "no_cycle_itinerary_amplify_surplus",
+        "no_cycle_itinerary_four_even_amplify",
     )
-    if name != "no_cycle_word_oooooooeeee"
+    if name != "no_cycle_itinerary_oooooooeeee"
 )
 
 
@@ -177,7 +177,7 @@ def beats_surplus(n: int, word: str, *, rho: float) -> bool:
 
 
 def realized_log_amplify(n: int, word: str) -> float | None:
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         return None
     j, current, rho, d_after, suffix = first_defect_payload(n, word)
     if j == len(word) or rho <= 0 or d_after <= 0:
@@ -303,9 +303,9 @@ def lean_api_present() -> dict[str, bool]:
         "amplify_does_not_claim_surplus": "exceeds the formal surplus" in defect,
         "length_eight_open_in_census": "Length eight is open" in census
         or "length 8" in census.lower()
-        or "no_cycle_word_length_le_seven" in census,
+        or "no_cycle_itinerary_length_le_seven" in census,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in combined,
-        "no_amplify_surplus_theorem": "theorem no_cycle_word_amplify_surplus"
+        "no_amplify_surplus_theorem": "theorem no_cycle_itinerary_amplify_surplus"
         not in combined,
     }
 
@@ -316,8 +316,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["amplifyDefect"]
         and lean["firstDefect"]
         and lean["power_bound_compensated_contracts"]
-        and lean["no_cycle_word_length_eleven"]
-        and lean["no_cycle_word_amplify_surplus"]
+        and lean["no_cycle_itinerary_length_eleven"]
+        and lean["no_cycle_itinerary_amplify_surplus"]
         and lean["no_all_cycles_impossible"]
     )
     if not lean_ok:
@@ -358,7 +358,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "first-defect Amplify has exponent 2184 (rho=1) or 2185.5 "
             "(max rho) against surplus n^{2187}; the n^3 gap is invariant "
             "under even letters. Optimistic max-rho Amplify already loses "
-            "at the seven-odd cutoff 256, which is where these words can "
+            "at the seven-odd cutoff 256, which is where these itineraries can "
             "first be followed; leftover N0 is later still"
         ),
     }

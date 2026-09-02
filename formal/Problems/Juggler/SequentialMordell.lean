@@ -10,7 +10,7 @@ An odd Juggler step is the existing local identity
 `x^3 = T(x)^2 + ρ` with `ρ < 2T(x)+1`. Two consecutive odd
 steps give a second copy of the same identity. The polynomial
 `(x^3-ρ)^3 = (z^2+σ)^2` is `y^6 = y^6`. The sequential defect
-`x^9 - z^4` is `globalDefect` of the word `OO`.
+`x^9 - z^4` is `globalDefect` of the itinerary `OO`.
 
 The peak slack `x^3 = (p^{2^r}+ε)^2 + δ` needs an even maximum.
 A second odd step has an odd landing, so that law does not apply.

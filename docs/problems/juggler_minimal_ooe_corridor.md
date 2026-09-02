@@ -38,7 +38,7 @@ The Phase-0 questions are:
    \]
    holds for arbitrary \(v\).
 
-The empty word \(v=\varepsilon\) is already excluded
+The empty itinerary \(v=\varepsilon\) is already excluded
 (`no_cycleMin_ooeooe`). Isolated `OE` after the first even is already
 excluded (`no_cycleMin_prefix_ooe_oe`). Neither is reopened.
 
@@ -94,7 +94,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- \(T_{OOEOOE}(n)<n^2\) whenever the word follows —
+- \(T_{OOEOOE}(n)<n^2\) whenever the itinerary follows —
   **EXACT — HUMAN PROOF**. `power_bound_word` gives
   \(x_6^{64}\le n^{81}\). Then \(n^2\le x_6\) implies
   \(n^{128}\le n^{81}\), impossible for \(n\ge 2\). The same
@@ -121,7 +121,7 @@ It is not required.
   length-\(6\) envelope \(81<128\), not
   \((x_3+1)^2\) applied twice.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -161,14 +161,14 @@ The stronger claims that remain false or unproved:
   landings continue.
 - “\(b\ge 3\) is the same theorem” — only \(b=3\) inherits the
   square-cell gap; \(b\ge 4\) does not.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 None. Existing `Envelope.lean`, `CycleCore.lean`, and
 `FirstInternalOO.lean` lemmas are cited, not rewritten. No
 `no_cycleMin_prefix_ooeooe`. No `no_cycleMin_four_even`. No
-`no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A is
+`no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`. Paper A is
 unchanged.
 
 ## Results
@@ -186,7 +186,7 @@ If that landing is even, the next even step is strictly below
 \;\Rightarrow\;
 v\text{ begins with }O
 \]
-(after the already-excluded empty word). The new constraint
+(after the already-excluded empty itinerary). The new constraint
 created by the second `OOE` is not “the number is too large”.
 It is the opposite: two minimal blocks still cannot reach the
 even-contraction cell \(n^2\), so a safe even letter is
@@ -205,7 +205,7 @@ The odd-landing residual is treated in
 [juggler_odd_ooe_landing.md](juggler_odd_ooe_landing.md).
 Lean-package the square-cell ceiling. Do not reopen bunched-short
 cells. Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`.
+`no_cycle_itinerary_length_eleven`.
 
 ## Decision
 

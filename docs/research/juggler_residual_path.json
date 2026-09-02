@@ -208,7 +208,7 @@
     "secondary": [
       "CYCLE_OBSTRUCTION_GREEN"
     ],
-    "reason": "a repeated orbit state is a finite cycle; every nonempty cycle word has 2^r < 3^o; residual returns need a \u2265 2; contracting and a = 1 residual returns are excluded; no cycle found in the scan n \u2264 400"
+    "reason": "a repeated orbit state is a finite cycle; every nonempty cycle itinerary has 2^r < 3^o; residual returns need a \u2265 2; contracting and a = 1 residual returns are excluded; no cycle found in the scan n \u2264 400"
   },
   "search_method": "finite residual prefixes; exact cycle envelope; residual period-1 scan; no CycleSearch engine; no infinite-path type"
 }

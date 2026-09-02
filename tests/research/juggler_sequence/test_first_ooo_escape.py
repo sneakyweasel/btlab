@@ -27,7 +27,7 @@ from research.juggler_sequence.first_ooo_escape import (
     write_artifacts,
 )
 from research.juggler_sequence.minimal_ooe_corridor import square_cell_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_language_envelopes():
@@ -45,7 +45,7 @@ def test_language_envelopes():
 
 
 def test_second_odd_escapes_square():
-    from research.juggler_sequence.power_words import floor_power
+    from research.juggler_sequence.power_itineraries import floor_power
 
     for n in range(3, 401, 2):
         assert cube_isqrt_ge_fourth(n)
@@ -155,5 +155,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "OOO" in dossier
     assert "juggler_first_ooo_escape" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

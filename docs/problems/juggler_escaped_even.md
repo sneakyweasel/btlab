@@ -38,7 +38,7 @@ envelope.
 ## Current literature
 
 - CE third `OOE` landing is odd and below \(n^{2}\) —
-  **EXACT — LEAN VERIFIED** (`J-ce-third-residual-cells`).
+  **EXACT — LEAN VERIFIED** (`J-ce-third-residual-preimages`).
 - Late `OE` after \(k\ge 3\) `OOE` blocks need not drop on the
   first even — **REFUTED** as a CycleMin claim
   (`J-cyclemin-ooo-inevitable`; witnesses \(365\), \(429\)).
@@ -92,7 +92,7 @@ It is not required.
 - `OOEOOEOOEOEE` is contracting —
   **EXACT — HUMAN PROOF**
 - no trajectory escapes — not claimed
-- length-11 cycle words are impossible — not claimed
+- length-11 cycle itineraries are impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -141,7 +141,7 @@ odd-odd, so the next image is odd.
 square envelope, `minimal_ooeooeooe_follows_o`, and
 `minimal_ooeooeooeoe_not_even_landing`. `FloorPower` and
 `MinimalNonTerm` are not rewritten. No `sorry`. No
-`no_juggler_escape`. No `no_cycle_word_length_eleven`. Paper A
+`no_juggler_escape`. No `no_cycle_itinerary_length_eleven`. Paper A
 is unchanged.
 
 ## Results
@@ -150,7 +150,7 @@ Classification **ESCAPED_EVEN_GREEN**.
 
 A CE that follows a third `OOE` follows the next `O`. The
 escaped-even `OE` lands below \(n^{2}\); an even landing is
-descent — **EXACT — LEAN VERIFIED** (`J-ce-escaped-even-oe-cell`).
+descent — **EXACT — LEAN VERIFIED** (`J-ce-escaped-even-oe-preimage`).
 So on a CE an escaped even forces an odd landing in
 \([n,n^{2})\). That leftover is realized by \(1517\). The
 witness \(429\) is the even-landing drop, not a CE survivor.

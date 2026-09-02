@@ -1,7 +1,7 @@
 {
   "id": "juggler_cycle_block_potential",
   "title": "A state-only logarithmic potential strictly decreases on every CycleMin-legal O^a E^r block",
-  "statement": "There is a potential Phi in {log n, log log n}, or a floor-corrected variant in that monotone class, such that every CycleMin-legal block O^a E^r satisfies Phi(J^{block}(n)) < Phi(n), or such that a canonical in-block event (the first E) decreasing Phi forbids a cycle, and that obstruction is not T < n / power_bound_contracts / power_bound_word_strict / cycle_word_formally_expanding / the cycle-wide exponent budget / cycleMin_finance.",
+  "statement": "There is a potential Phi in {log n, log log n}, or a floor-corrected variant in that monotone class, such that every CycleMin-legal block O^a E^r satisfies Phi(J^{block}(n)) < Phi(n), or such that a canonical in-block event (the first E) decreasing Phi forbids a cycle, and that obstruction is not T < n / power_bound_contracts / power_bound_word_strict / cycle_itinerary_formally_expanding / the cycle-wide exponent budget / cycleMin_finance.",
   "status": "REFUTED",
   "counterexamples": [
     "log n and log log n decrease iff T < n on integers >= 3; the logarithmic Lyapunov is block contraction",

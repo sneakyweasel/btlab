@@ -9,7 +9,7 @@
     "The same nonempty witness diagonal and count-return hold for m in {8,16,32,64,3,9,27,81} and products through 16*81 on both (25781, 16266) and (55293, 34886). Defect-width collapse needs m>2n"
   ],
   "first_seen": "juggler exact modular cycle closure",
-  "lean_reference": "even_cell_iff",
+  "lean_reference": "even_preimage_iff",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

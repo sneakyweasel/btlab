@@ -27,7 +27,7 @@ Maximum Phase-0 scope   combinatorial prefix-NC tree; realized
 - classification: **NEAR_EXTREMAL_STRUCTURE_GREEN**
 - sorry-free: `True`
 
-prefix-noncontracting words start with O, length ≥ 2 starts with OO, and include the unbounded mixed family O^k E for k≥2 plus other mixed patterns; defect-driven contraction is already Lean and did not fire on the realized mixed prefixes in range. A finite horizon hit is not an infinite family.
+prefix-noncontracting itineraries start with O, length ≥ 2 starts with OO, and include the unbounded mixed family O^k E for k≥2 plus other mixed patterns; defect-driven contraction is already Lean and did not fire on the realized mixed prefixes in range. A finite horizon hit is not an infinite family.
 
 ## Combinatorial prefix-NC language
 
@@ -35,7 +35,7 @@ prefix-noncontracting words start with O, length ≥ 2 starts with OO, and inclu
 - mixed: `5001`
 - `O^k E` family: `14`
 - other mixed: `4987`
-- every word starts with `O`: `True`
+- every itinerary starts with `O`: `True`
 - length ≥ 2 starts with `OO`: `True`
 - `E` is prefix-NC: `False`
 - `OE` is prefix-NC: `False`
@@ -110,7 +110,7 @@ Calibration: `n=3` realizes `OOOE` with image `6`; `τ(OE)=2`; `τ(EOO)=1` so `E
 
 **NEAR_EXTREMAL_STRUCTURE_GREEN**
 
-prefix-noncontracting words start with O, length ≥ 2 starts with OO, and include the unbounded mixed family O^k E for k≥2 plus other mixed patterns; defect-driven contraction is already Lean and did not fire on the realized mixed prefixes in range. A finite horizon hit is not an infinite family.
+prefix-noncontracting itineraries start with O, length ≥ 2 starts with OO, and include the unbounded mixed family O^k E for k≥2 plus other mixed patterns; defect-driven contraction is already Lean and did not fire on the realized mixed prefixes in range. A finite horizon hit is not an infinite family.
 
 This is a finite-prefix language statement, not a global halt result.
 

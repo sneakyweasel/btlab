@@ -26,7 +26,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.o7eeee_window import odd_run_image
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_o6eeeoe_gap.json"
@@ -50,16 +50,16 @@ LEFTOVER_N0 = 437_599_552
 
 LEAN_THEOREMS = (
     "cycle_trailing_evens_lt",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "o7_image_ge_succ_pow16",
-    "no_cycle_word_oooooooeeee",
+    "no_cycle_itinerary_oooooooeeee",
     "no_cycleMin_ooooooeeeoe",
-    "no_cycle_word_ooooooeeeoe",
+    "no_cycle_itinerary_ooooooeeeoe",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_length_eleven",
+    "no_cycle_itinerary_four_even",
     "juggler_reaches_one",
 )
 
@@ -176,7 +176,7 @@ def lean_api_present() -> dict[str, bool]:
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "FloorPower_not_rewritten": "o6eeeoe" not in engine_floor_text(),
-        "o6eeeoe_lean": has_named(combined, "no_cycle_word_ooooooeeeoe"),
+        "o6eeeoe_lean": has_named(combined, "no_cycle_itinerary_ooooooeeeoe"),
     }
 
 
@@ -186,10 +186,10 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["cycle_trailing_evens_lt"]
-        and lean["no_cycle_word_oooooooeeee"]
-        and lean["no_cycle_word_ooooooeeeoe"]
+        and lean["no_cycle_itinerary_oooooooeeee"]
+        and lean["no_cycle_itinerary_ooooooeeeoe"]
         and lean["o6eeeoe_lean"]
-        and lean["no_cycle_word_length_eleven"]
+        and lean["no_cycle_itinerary_length_eleven"]
         and lean["paper_a_has_no_o6eeeoe"]
     )
     if not lean_ok or not all(elem.values()):

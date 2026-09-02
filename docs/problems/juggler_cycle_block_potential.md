@@ -12,7 +12,7 @@ scale is a Lyapunov function: a state-only \(\Phi\) with
 block, or at one canonical event per block.
 
 Not a halt theorem, not a leftover-killer, and not a claim that
-every cycle word is impossible.
+every cycle itinerary is impossible.
 
 ## Problem
 
@@ -50,7 +50,7 @@ not weaker. Witness \(25\xrightarrow{\mathtt{OOOEE}}15\)
 
 **The floor-strict scale is the mixed envelope
 (KNOWN / EXACT — LEAN VERIFIED).**
-For a mixed word,
+For a mixed itinerary,
 \[
 T^{2^{a+r}}<n^{3^a},
 \]
@@ -88,7 +88,7 @@ No cycle of any length — not claimed.
   (`power_bound_contracts`)
 - Formal expansion on a cycle —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_formally_expanding`)
+  (`cycle_itinerary_formally_expanding`)
 - Cycle finance —
   **EXACT — LEAN VERIFIED**
   (`cycleMin_finance`;
@@ -127,7 +127,7 @@ Falsifier               log and log log are monotone, so Φ(T)<Φ(n)
                         valley ≥ n; 115→8165 increases L; a state-only
                         Φ cannot telescope around a cycle
 Existing machinery      power_bound_word, power_bound_word_strict,
-                        power_bound_contracts, cycle_word_formally_expanding,
+                        power_bound_contracts, cycle_itinerary_formally_expanding,
                         cycleMin_finance, exponent-budget CLOSE
 Maximum Phase-0 scope   monotone equivalence; expanding/contracting
                         witnesses; first-E event; L(T)<ρ L(n) iff the
@@ -166,7 +166,7 @@ Do **not** raise \(N_0\). Do **not** open \(L=55293\). Do
 
 A \(K=11\) proof, defect amplification, Fourier / residues /
 \(Q\)-sections, a branch-and-bound engine, ledger row, new Lean,
-CLI, visualization, Paper A edit, a word-dependent ranking
+CLI, visualization, Paper A edit, an itinerary-dependent ranking
 function, a finance floor raise.
 
 ## Balanced-ternary formulation
@@ -228,7 +228,7 @@ It is not required.
 
 None added. Contraction is already `power_bound_contracts`.
 The mixed scale is already `power_bound_word_strict`. Formal
-expansion is already `cycle_word_formally_expanding`. Paper A
+expansion is already `cycle_itinerary_formally_expanding`. Paper A
 is unchanged. Do not add `BlockPotential.lean`.
 
 ## Results
@@ -246,7 +246,7 @@ is unchanged. Do not add `BlockPotential.lean`.
 
 None from the block potential. Do not reopen the exponent
 budget, finance, or compensated contraction as a global
-Lyapunov. Do not start a word-dependent ranking function from
+Lyapunov. Do not start an itinerary-dependent ranking function from
 this close.
 
 ## Decision

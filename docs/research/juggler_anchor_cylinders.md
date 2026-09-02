@@ -74,7 +74,7 @@ nested |A_w| follows the generic ~X/2^k occupancy of a length-k word; short left
 - search_horizon_is_L: `False`
 - density_theorem: `False`
 - anchor_cylinder_lean: `False`
-- word_language_reopen: `False`
+- itinerary_language_reopen: `False`
 
 ## Decision
 

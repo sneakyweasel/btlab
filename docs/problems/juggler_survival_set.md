@@ -47,7 +47,7 @@ imply \(B_\infty=\varnothing\). Absence under a bound is
 ## Current literature
 
 - Even starts contract —
-  **EXACT — LEAN VERIFIED** (`even_word_contracts`)
+  **EXACT — LEAN VERIFIED** (`even_itinerary_contracts`)
 - Odd-to-even two-step descent —
   **EXACT — LEAN VERIFIED**
 - Progress coverage leftover is odd-to-odd —
@@ -85,8 +85,8 @@ Falsifier               R_k -> 1 or exceeds 1 after scaling;
                         density grows with X; only even
                         FiniteProgress leaks; weights fail;
                         core stays macroscopic.
-Existing machinery      floor_power; even_cell; pred_odd;
-                        even_word_contracts; progress
+Existing machinery      floor_power; even_preimage; pred_odd;
+                        even_itinerary_contracts; progress
                         coverage; stopping_times
 Maximum Phase-0 scope   Forward tau_N census; several N;
                         X,2X,4X; even/odd inverse mass;
@@ -111,7 +111,7 @@ It is not required.
 - \(B_{k+1}=[N,\infty)\cap T^{-1}(B_k)\) —
   **KNOWN** as set algebra
 - Even leak \(n<N^2\Rightarrow T(n)<N\) —
-  **EXACT — LEAN VERIFIED** (`even_word_contracts`);
+  **EXACT — LEAN VERIFIED** (`even_itinerary_contracts`);
   this is exactly \(S_0-S_1\) at every tested \((N,X)\)
 - Uniform \(\rho<1\) inverse contraction —
   **REFUTED** at the Phase-0 windows (\(R_k\) after the
@@ -145,7 +145,7 @@ None opened.
 
 - “\(S_1=S_0\cdot\rho\) for a new \(\rho\).” False:
   \(S_0-S_1\) equals the even count in \([N,\min(X,N^2))\),
-  already `even_word_contracts`.
+  already `even_itinerary_contracts`.
 - “\(R_k\le\rho<1\) uniformly in \(k\) and \(X\).” False:
   late ratios sit near \(0.91\)–\(0.93\) and rise with
   \(X\) (e.g. \(N=2\): \(0.913\to 0.924\)).
@@ -159,7 +159,7 @@ None opened.
 
 ## Formalization
 
-None added. Existing `even_word_contracts` and even/odd
+None added. Existing `even_itinerary_contracts` and even/odd
 cells already contain the identities. No `SurvivalSet.lean`.
 No `sorry`. Paper A is unchanged.
 
@@ -173,7 +173,7 @@ Science window: anchors \(2,3,5,10,50,100,1000\), windows
 density is not emptiness):
 
 - \(S_1=S_0-\#\{\text{evens }n\in[N,X]:n<N^2\}\) at every
-  pair. The first leak is `even_word_contracts`.
+  pair. The first leak is `even_itinerary_contracts`.
 - No uniform \(\rho<1\). Late \(R_k\) is \(0.91\)–\(0.93\)
   and increases with \(X\).
 - \(S_k/X\) grows with \(X\) at many \(k\) (Falsifier A

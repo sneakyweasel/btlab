@@ -30,7 +30,7 @@ bounds for a hypothetical nontrivial cycle, once a verified descent
 floor is given.
 
 We develop a cycle-financing inequality for this floor-power map.
-Exact integer cells give a one-step logarithmic defect; cycle
+Exact integer one-step preimages give a one-step logarithmic defect; cycle
 minimality lets that defect be unrolled against the cycle
 minimum; the formal surplus \(3^o-2^L\) must then be paid by a
 finite accumulated budget. For a hypothetical cycle of length
@@ -48,7 +48,7 @@ table yields \(L\ge 50508\). The novelty is not a new
 computational record; it is that implication. A walk-charge
 envelope — transport of the floor losses to a
 reduced base, identification of the extremal exponent walk as a
-rotation word, and a Denjoy--Koksma bound over certified
+rotation itinerary, and a Denjoy--Koksma bound over certified
 Ostrowski blocks, census-free on the window
 \([50508,301994)\) — then extends the exclusion at the
 laboratory floor: any nontrivial cycle has period at least
@@ -105,34 +105,34 @@ odd.
 values \(n_0=n\), \(n_{i+1}=J(n_i)\) (also called an orbit in some
 dynamics texts).
 
-**Word.** The *word* of the first \(k\) steps is the length-\(k\)
+**Itinerary.** The *itinerary* of the first \(k\) steps is the length-\(k\)
 string \(w\in\{O,E\}^k\) with \(w_i=O\) if \(n_i\) is odd and
-\(w_i=E\) if \(n_i\) is even. The word is the list of branch
+\(w_i=E\) if \(n_i\) is even. Synonyms: itinerary = parity sequence;
+trajectory = orbit. The itinerary is the list of branch
 labels, not the list of values. The integer \(k\) is any finite
 prefix length; the definition does not assume that the trajectory
 reaches \(1\).
 
-**Ideal exponent.** A word of length \(k\) with \(o\) odd letters
+**Ideal exponent.** An itinerary of length \(k\) with \(o\) odd letters
 has ideal exponent \(3^o/2^k\). Ignoring floors, those letters
 would multiply the start by that ratio. Floors make the actual
 image smaller.
 
-**Realized word.** A word \(w\) is *realized* at \(n\) when the
+**Realized itinerary.** An itinerary \(w\) is *realized* at \(n\) when the
 first \(\lvert w\rvert\) parities of the trajectory of \(n\) are exactly
 the letters of \(w\). Equivalently: a formal string over
 \(\{O,E\}\) is an itinerary only when some start actually follows
-those branches. That is what is meant by: a word is available only
+those branches. That is what is meant by: an itinerary is available only
 when the trajectory realizes those parities. Floors are applied after
-every letter of a realized word.
+every letter of a realized itinerary.
 
-**Cell.** The map \(J\) is not invertible. For \(m\in\mathbb N\),
-the *cell* (or one-step preimage) of \(m\) is the set
+**One-step preimage.** The map \(J\) is not invertible. For \(m\in\mathbb N\),
+the *one-step preimage* of \(m\) is the set
 \[
 J^{-1}(m)=\{k\in\mathbb N:J(k)=m\}.
 \]
 An even image has a whole interval of even parents; an odd image
-has at most one odd parent (Lemma 3.1). A cell is not a
-cellular-automaton cell and not an approximation.
+has at most one odd parent (Lemma 3.1).
 
 **Lemma 1.1 (three fates).**
 Let \(n\in\mathbb N\). The trajectory of \(n\) does exactly one of the
@@ -159,16 +159,16 @@ theorem.
 | \(J\) | the one-step map |
 | \(E\), \(O\) | even and odd branches |
 | trajectory | the sequence of values |
-| word | a finite string in \(\{O,E\}\) of parities |
-| realized word | the trajectory actually follows those letters |
-| \(3^o/2^k\) | ideal exponent of a word of length \(k\) with \(o\) odd letters |
-| \(J^{-1}(m)\) | cell: the set of one-step preimages of \(m\) |
+| itinerary | a finite string in \(\{O,E\}\) of parities |
+| realized itinerary | the trajectory actually follows those letters |
+| \(3^o/2^k\) | ideal exponent of an itinerary of length \(k\) with \(o\) odd letters |
+| \(J^{-1}(m)\) | the one-step preimage of \(m\) |
 | \(N_0\) | a verified descent floor (a computational input) |
-| CycleMin | a minimum-based rotation of a cycle word |
+| CycleMin | a minimum-based rotation of a cycle itinerary |
 
 The mechanism is the interaction of three elementary facts:
-exact integer cells, a logarithmic defect, and cycle
-minimality. Exact cells give a one-step logarithmic defect;
+exact integer one-step preimages, a logarithmic defect, and cycle
+minimality. Exact one-step preimages give a one-step logarithmic defect;
 cycle minimality lets the defect be unrolled against the cycle
 minimum; the formal surplus \(3^o-2^L\) must then be paid by a
 finite accumulated budget. That is Theorem 4.4:
@@ -223,7 +223,7 @@ extended at the laboratory floor by
 \to
 \text{hug adversary}
 \to
-\text{word identity}
+\text{itinerary identity}
 \to
 \text{Denjoy--Koksma}
 \to
@@ -236,9 +236,9 @@ amplifies that floor to the period bound.
 
 Roadmap. Section 2 records the power envelope and the exact
 defect identity that explains it. Section 3 classifies
-minimum-based cycle words and proves that every nontrivial
+minimum-based cycle itineraries and proves that every nontrivial
 cycle has at least four even letters. Section 4 records the
-excursion necklace of a minimum-based word, unrolls the cell
+excursion necklace of a minimum-based itinerary, unrolls the one-step-preimage
 logarithm around that minimum, obtains the finance inequality,
 and applies it at the known floor \(10^6\). The necklace is
 the geometry of the unroll, not a fourth main theorem. A
@@ -247,18 +247,18 @@ refinement; the arithmetic of the leftover lengths is
 secondary. Section 5 certifies the laboratory floor
 \(26254995\), replaces the length-only charge by a coupled
 exponent-walk charge, identifies its extremal word as a
-rotation word, and proves a census-free envelope for every
+rotation itinerary, and proves a census-free envelope for every
 length in the window \([50508,301994)\); the resulting kill
 table gives the period bound \(176251\), and a certified
 evaluation of the same kill criterion at a second certified
 floor raises it to \(478245\) (Corollary 5.10). Section 6
 records limitations.
 
-A nonempty realized word \(w\) with
-\(J^{|w|}(n)=n\) is a *cycle word*. The unique fixed point is \(1\);
+A nonempty realized itinerary \(w\) with
+\(J^{|w|}(n)=n\) is a *cycle itinerary*. The unique fixed point is \(1\);
 a cycle is *nontrivial* when it contains some \(n\ge 2\). A cycle
 word at \(n\) is *minimum-based* when \(n\) is a cycle minimum:
-\(J^j(n)\ge n\) for every \(0\le j<|w|\). Every cycle word has a
+\(J^j(n)\ge n\) for every \(0\le j<|w|\). Every cycle itinerary has a
 minimum-based rotation.
 
 All exceptional sets below are *finance-survivor* sets: lengths
@@ -277,11 +277,11 @@ n\log n\cdot(3^o-2^L)\le L\cdot 3^o
 (Theorem 4.4). Floor defects become a quantitative bound on the
 cycle minimum.
 
-**Contribution 2 — structural word obstruction.**
-Every nontrivial cycle word has at least four even letters, and
+**Contribution 2 — structural itinerary obstruction.**
+Every nontrivial cycle itinerary has at least four even letters, and
 hence period at least eleven (Theorem 3.22 and Corollary 3.23).
-The argument classifies the minimum-based word geometry; it is
-not a raw census of words of length at most ten. This bound does
+The argument classifies the minimum-based itinerary geometry; it is
+not a raw census of itineraries of length at most ten. This bound does
 not use the verified descent floor.
 
 **Contribution 3 — explicit conditional consequence for
@@ -298,7 +298,7 @@ bound.**
 On a minimum-based cycle every state is coupled through one
 closed exponent walk. Transport of the floor losses to a
 reduced base (Theorem 5.3), identification of the extremal walk
-as the rotation (hug) word (Theorem 5.4, Lemma 5.6), and a
+as the rotation (hug) itinerary (Theorem 5.4, Lemma 5.6), and a
 Denjoy--Koksma bound over certified Ostrowski blocks
 (Theorem 5.7) give a uniform envelope for every length in the
 window \([50508,301994)\) (Theorem 5.8) — census-free on that
@@ -360,11 +360,11 @@ The layers of the argument are as follows.
 
 1. *Classical ideas, not claimed as new:* cycle financing
    (Simons--de Weger [12]); logarithmic and continued-fraction
-   approximation of \(\log 2/\log 3\); cycle-word restrictions
+   approximation of \(\log 2/\log 3\); cycle-itinerary restrictions
    and leftover packaging (Eliahou [13]; Lagarias [8,9]); the
    Denjoy--Koksma inequality and Ostrowski numeration, used as
    known tools in Section 5.
-2. *New object:* the exact one-step floor-power cells of \(J\).
+2. *New object:* the exact one-step floor-power preimages of \(J\).
 3. *New theorem:* the Juggler-specific cycle-minimum finance
    inequality of Theorem 4.4.
 4. *New consequence:* \(L\ge 25781\) at the verified descent
@@ -394,7 +394,7 @@ into a cycle-financing inequality that forces the minimum of a
 hypothetical cycle below the independently verified descent
 region unless the period is at least \(25781\). Coupling the
 states through the closed exponent walk and bounding the
-extremal rotation word by Denjoy--Koksma over certified
+extremal rotation itinerary by Denjoy--Koksma over certified
 Ostrowski blocks raises that period bound to \(176251\) at the
 laboratory floor, census-free on an explicit window of lengths,
 and — by certified evaluation of the same kill criterion on the
@@ -444,7 +444,7 @@ as a known tool; its per-block hypotheses — convergent quality
 \(|\theta-p/q|<1/q^2\) and the block permutation — are Lean,
 `theta_convergent_quality`, `theta_block_permutations`) and so
 is the rotation identification in
-Lemma 5.6, whose word identity itself is Lean
+Lemma 5.6, whose itinerary identity itself is Lean
 (`budgetedWord_eq_hugWord`); the Laplace bound of
 Proposition 5.5 is Lean (`rotation_average_le`,
 `rotationAverage_gap`; the ergodic identification stays
@@ -480,18 +480,18 @@ those hashes.
 
 ## 2. Envelope
 
-Let \(\mathcal B=\{E,O\}\). A finite word \(w\in\mathcal B^*\) is
+Let \(\mathcal B=\{E,O\}\). A finite itinerary \(w\in\mathcal B^*\) is
 *realized* at \(n\in\mathbb N\) when the successive parities of the
 trajectory of \(n\) are exactly the letters of \(w\). Write \(J^{|w|}(n)\)
 for the endpoint after those letters, and \(\#O(w)\) for the number
 of odd letters. When \(w\) is realized, this endpoint is the
 \(|w|\)-fold iterate.
 
-**Theorem 2.1 (fixed-word monotonicity).**
+**Theorem 2.1 (fixed-itinerary monotonicity).**
 If \(n\le m\) and both realize \(w\), then
 \(J^{|w|}(n)\le J^{|w|}(m)\).
 
-*Proof.* Induct on \(w\). The empty word is immediate. The images
+*Proof.* Induct on \(w\). The empty itinerary is immediate. The images
 after a common realized prefix remain ordered, and both current
 states realize the same next letter. The even branch is the
 monotone integer square root; the odd branch is \(x\mapsto x^3\)
@@ -500,13 +500,13 @@ followed by the integer square root. \(\square\)
 The realizing set of a fixed word need not be an interval: \(OE\) is
 realized at \(7\) and at \(11\) but not at \(9\).
 
-**Theorem 2.2 (finite-word power envelope).**
+**Theorem 2.2 (finite-itinerary power envelope).**
 If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
 \[
 m^{2^{|w|}}\le n^{3^{\#O(w)}}.
 \]
 
-*Proof.* The empty word is the equality \(n\le n\). Suppose a
+*Proof.* The empty itinerary is the equality \(n\le n\). Suppose a
 realized prefix of length \(\ell\) with odd count \(o\) ends at
 \(x\) and satisfies \(x^{2^\ell}\le n^{3^o}\), and the next letter
 is realized.
@@ -535,7 +535,7 @@ If \(n\ge2\), \(w\) is realized at \(n\), and
 one has \(m<n\). \(\square\)
 
 The corollary includes familiar contracting blocks such as \(OOOEE\).
-It does not prove that every start realizes some contracting word.
+It does not prove that every start realizes some contracting itinerary.
 
 ### 2.4 Exact floor defect
 
@@ -546,7 +546,7 @@ n^{3^{\#O(w)}}=J^{|w|}(n)^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
 The identity, its vanishing law, and the two-term composition are
 Theorems 2.4--2.6 and Corollary 2.7 in Appendix C. A mixed realized
 word has \(\Delta_w(n)>0\). This explains why the envelope of
-Theorem 2.2 is true, and why a mixed cycle word is formally
+Theorem 2.2 is true, and why a mixed cycle itinerary is formally
 expanding. Theorem 4.4 uses only the nonnegativity
 \(\Delta_w(n)\ge0\).
 
@@ -557,16 +557,16 @@ quantitative itinerary-dependent lower bound on \(\Delta_w\), or
 a tighter upper bound on \(\sum 1/(x_i\log x_i)\), would improve
 the period cutoff; neither is proved here.
 
-## 3. Structural restrictions on cycle words
+## 3. Structural restrictions on cycle itineraries
 
 The role of this section in the paper is structural, not
 numerical. The minimum geometry established here — the cycle
 minimum is odd, prefixes to even states are superquadratic
-(Theorem 3.2), a minimum-based word has the canonical run form
+(Theorem 3.2), a minimum-based itinerary has the canonical run form
 of Lemma 3.21b, and the last even letter lands in an explicit
-cell (Lemma 3.4(iv)) — is exactly what the finance unroll of
+one-step preimage (Lemma 3.4(iv)) — is exactly what the finance unroll of
 Section 4 and the transport of Section 5 consume. The
-even-count exclusion (Theorem 3.22: every nontrivial cycle word
+even-count exclusion (Theorem 3.22: every nontrivial cycle itinerary
 has at least four even letters, hence period at least eleven)
 is the section's own headline, but as a period bound it is
 superseded the moment financing appears; it is retained because
@@ -574,12 +574,12 @@ it is floor-free. The small-period censuses (Theorems 3.6
 and 3.8) are supporting. Main-text proofs are kept to the short
 structural lemmas; the longer case analyses — Lemmas 3.5
 and 3.7, the censuses of Theorems 3.6 and 3.8, and the family
-exclusions of Theorems 3.12--3.21 — are Appendix D. After the one-step cells, a minimum-based word
+exclusions of Theorems 3.12--3.21 — are Appendix D. After the one-step preimages, a minimum-based itinerary
 has a canonical run form. There are only three even-count
 regimes with \(e\le 3\); each reduces to a finite collection of
 geometries \(O^aEO^bEO^cE\). Those geometries are eliminated by
 a next-square obstruction, by long odd-run growth against a
-last-even cell, or by a finite exceptional window. The family
+last-even one-step preimage, or by a finite exceptional window. The family
 calculations are Appendix D.
 
 The exact one-step fibers are
@@ -593,11 +593,11 @@ J(n)=m\iff m^2\le n^3<(m+1)^2
 \quad(n\ \text{odd}).
 \]
 
-**Lemma 3.1 (odd cells are unique).**
+**Lemma 3.1 (odd one-step preimages are unique).**
 An odd fiber contains at most one integer. An even fiber is a
 parity-restricted square interval and may contain many predecessors.
 
-*Proof.* Suppose \(a<b\) lie in the same odd cell indexed by \(m\).
+*Proof.* Suppose \(a<b\) lie in the same odd one-step preimage indexed by \(m\).
 Then \((a+1)^3\le b^3<(m+1)^2\) and \(m^2\le a^3\). Subtracting the
 latter lower bound from the former upper bound gives
 \[
@@ -609,18 +609,18 @@ squaring and using \(m^2\le a^3\) gives \(9a^4<4m^2\le 4a^3\),
 contradicting \(4a^3<9a^4\). \(\square\)
 
 **Theorem 3.2 (cycle restrictions).**
-Let \(w\) be a cycle word at \(n\ge2\).
+Let \(w\) be a cycle itinerary at \(n\ge2\).
 
-(i) The word is formally expanding:
+(i) The itinerary is formally expanding:
 \[
 2^{|w|}<3^{\#O(w)}.
 \]
-A contracting word cannot close a nontrivial cycle.
+A contracting itinerary cannot close a nontrivial cycle.
 
 (ii) The cycle minimum is odd and the cycle maximum is even. A
 minimum-based orientation cannot end in an odd letter.
 
-(iii) A realized word \(v\) is *superquadratic* if
+(iii) A realized itinerary \(v\) is *superquadratic* if
 \[
 3^{\#O(v)}\ge 2^{|v|+1}.
 \]
@@ -634,7 +634,7 @@ minimum to square scale.
 \(n^{2^{|w|}}\le n^{3^{\#O(w)}}\). Since \(n\ge2\), comparison of
 exponents gives \(2^{|w|}\le 3^{\#O(w)}\); equality is impossible
 because the two sides have different prime divisors and \(|w|\ge 1\).
-Alternatively: a mixed cycle word has \(\Delta_w(n)>0\) by
+Alternatively: a mixed cycle itinerary has \(\Delta_w(n)>0\) by
 Theorem 2.5 in Appendix C, so the envelope is strict; a monochrome
 tower cannot return for \(n\ge 2\).
 
@@ -645,11 +645,11 @@ be even. An odd state \(x\ge 3\) satisfies \(J(x)>x\), so a cycle
 maximum cannot be odd. This proves the first assertion of (ii). For
 the final-letter assertion, let \(x\) be the predecessor of a
 minimum-oriented return \(n\). If the last letter were odd, the odd
-return cell would give \(n^2\le x^3<(n+1)^2\). Minimality gives
+return one-step preimage would give \(n^2\le x^3<(n+1)^2\). Minimality gives
 \(x\ge n\), hence \(n^3<(n+1)^2\), impossible for \(n\ge 3\); and the
 minimum is odd, so \(n\ge 3\).
 
-For (iii), let a realized word \(v\) send \(n\) to \(y\ge n^2\).
+For (iii), let a realized itinerary \(v\) send \(n\) to \(y\ge n^2\).
 Theorem 2.2 gives
 \[
 n^{2^{|v|+1}}=(n^2)^{2^{|v|}}
@@ -662,20 +662,20 @@ so \(n^2\le y\), and the preceding argument applies to that prefix.
 \(\square\)
 
 **Lemma 3.21b (canonical run form).**
-After rotation to a minimum-based orientation, the word begins
-with \(OO\) and ends with \(E\); hence every word with
+After rotation to a minimum-based orientation, the itinerary begins
+with \(OO\) and ends with \(E\); hence every itinerary with
 \(1\le e\le 3\) even letters has the canonical run decomposition
 \(O^aEO^bEO^cE\) (unused runs empty). The case \(e=0\) is
 all-odd and is already forbidden by the last-letter restriction.
 No other cyclic rotation needs a separate case.
 
-*Proof.* Theorem 3.2: the minimum is odd, so the word cannot
+*Proof.* Theorem 3.2: the minimum is odd, so the itinerary cannot
 begin with \(E\) or \(OE\), and it cannot end with an odd letter.
-Thus a minimum-based word starts \(OO\) and ends \(E\), so
+Thus a minimum-based itinerary starts \(OO\) and ends \(E\), so
 \(e\ge 1\). The remaining letters are odd runs separated by the
-\(e\) even letters, so the word is \(O^{a_1}E\cdots O^{a_e}E\)
+\(e\) even letters, so the itinerary is \(O^{a_1}E\cdots O^{a_e}E\)
 with \(a_1\ge 2\). For \(e\le 3\) this is \(O^aEO^bEO^cE\) with
-unused runs empty. Every cycle word has a minimum-based rotation
+unused runs empty. Every cycle itinerary has a minimum-based rotation
 of the same even-count, and that orientation is already in this
 form. \(\square\)
 
@@ -693,7 +693,7 @@ For \(n\ge 1\), write \(q=\lfloor\sqrt n\rfloor\). Then
 n<4\,\lfloor\sqrt n\rfloor^2.
 \]
 Thus an even step satisfies \(n\le 4\,J(n)^2\) and an odd step
-satisfies \(n^3\le 4\,J(n)^2\). Composing along a realized word \(v\)
+satisfies \(n^3\le 4\,J(n)^2\). Composing along a realized itinerary \(v\)
 of length \(k\) with odd count \(o\) gives
 \[
 n^{3^{o}}\le C_v\,J^{k}(n)^{2^{k}}.
@@ -712,12 +712,12 @@ those two words. \(\square\)
 **Lemma 3.4 (next-square thresholds).**
 (i) If \(q\ge 5\) realizes \(OO\), then \(J^2(q)\ge(q+1)^2\).
 (ii) If \(q\ge 3\) realizes \(OOO\), then \(J^3(q)\ge(q+1)^2\).
-(iii) If a realized word \(v\) satisfies \(J^{|v|}(q)\ge(q+1)^2\) and
+(iii) If a realized itinerary \(v\) satisfies \(J^{|v|}(q)\ge(q+1)^2\) and
 the next realized letter is odd, then
 \(J^{|v|+1}(q)\ge(q+1)^2\).
-(iv) If \(vE\) is a cycle word at \(n\), then
+(iv) If \(vE\) is a cycle itinerary at \(n\), then
 \(J^{|v|}(n)<(n+1)^2\).
-(v) If \(a\ge 3\), then \(O^aE\) is not a cycle word at any
+(v) If \(a\ge 3\), then \(O^aE\) is not a cycle itinerary at any
 \(n\ge 2\).
 
 *Proof.* For (i), write \(m=\lfloor q^{3/2}\rfloor\). The bound
@@ -748,35 +748,35 @@ so the odd branch does not decrease it.
 For (iv), the last letter is even, so the preimage \(z=J^{|v|}(n)\)
 is even and satisfies \(n^2\le z<(n+1)^2\).
 
-For (v), suppose \(O^aE\) is a cycle word at \(n\ge 2\). The start
+For (v), suppose \(O^aE\) is a cycle itinerary at \(n\ge 2\). The start
 is odd, hence at least \(3\), and realizes \(O^a\). Parts (ii) and
 (iii) give \(J^a(n)\ge(n+1)^2\), contradicting (iv). \(\square\)
 
 **Lemma 3.5 (two length-six exclusions).**
-Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge 2\).
+Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle itinerary at any \(n\ge 2\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.6 (small-cycle census).**
-No word of length at most six is a cycle word at any \(n\ge 2\).
+No itinerary of length at most six is a cycle itinerary at any \(n\ge 2\).
 Equivalently, a nontrivial Juggler cycle, if one exists, has period at
 least seven.
 
-*Proof.* Appendix D. The reduction used there — an all-odd word
-cannot return, and every mixed cycle word rotates to an
-even-terminating cycle word based at a cycle state \(m\ge 2\) —
+*Proof.* Appendix D. The reduction used there — an all-odd itinerary
+cannot return, and every mixed cycle itinerary rotates to an
+even-terminating cycle itinerary based at a cycle state \(m\ge 2\) —
 is reused by Theorem 3.8 and Theorem 3.22.
 
 Lemma 3.4(v) excludes every odd-run-then-even word \(O^aE\) with
 \(a\ge 3\), of any length.
 
 **Lemma 3.7 (two length-seven exclusions).**
-Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle word at any \(n\ge 2\).
+Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle itinerary at any \(n\ge 2\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.8 (small-cycle census through length seven).**
-No word of length at most seven is a cycle word at any \(n\ge 2\).
+No itinerary of length at most seven is a cycle itinerary at any \(n\ge 2\).
 Equivalently, a nontrivial Juggler cycle, if one exists, has period at
 least eight.
 
@@ -784,19 +784,19 @@ least eight.
 
 Theorems 3.6 and 3.8 are supporting period statements. The
 structural claim is the even-count exclusion of Theorem 3.22.
-The same cells organise leftover words by even-count. Write
+The same one-step preimages organise leftover itineraries by even-count. Write
 \[
 e_a=2\bigl(3^a-2^a\bigr)
 \]
 for \(a\ge 0\).
 
 **Lemma 3.9 (trailing even run).**
-If a cycle word based at \(n\) ends with \(r\ge 1\) even letters,
+If a cycle itinerary based at \(n\) ends with \(r\ge 1\) even letters,
 the state immediately before that run is strictly less than
 \((n+1)^{2^r}\).
 
 *Proof.* The case \(r=1\) is Lemma 3.4(iv). Suppose the claim holds
-for some \(r\ge 1\), and let \(vE^{r+1}\) be a cycle word at \(n\).
+for some \(r\ge 1\), and let \(vE^{r+1}\) be a cycle itinerary at \(n\).
 Write \(z=J^{|v|}(n)\). The inductive hypothesis applied to the
 suffix \(E^r\) after the first of those even letters gives
 \(J(z)<(n+1)^{2^r}\). The state \(z\) is even, so
@@ -810,7 +810,7 @@ n^{3^a}\le 2^{e_a}\,J^a(n)^{2^a}.
 \]
 
 *Proof.* Lemma 3.3 supplies a multiplicative constant \(C_v\) along
-any realized word, with \(C_\varepsilon=1\),
+any realized itinerary, with \(C_\varepsilon=1\),
 \(C\mapsto C\cdot 4^{2^j}\) on an even letter, and
 \(C\mapsto C^3\cdot 4^{2^j}\) on an odd letter, at step \(j\). On
 the pure odd word \(O^a\) every letter is odd, so
@@ -821,7 +821,7 @@ form \(e_a=2(3^a-2^a)\) satisfies the recurrence and the initial
 value. \(\square\)
 
 **Lemma 3.11 (seven-odd window).**
-No integer \(n\) with \(2\le n<256\) realizes the word \(O^7\).
+No integer \(n\) with \(2\le n<256\) realizes the itinerary \(O^7\).
 
 *Proof.* This is a table of \(254\) seven-step evaluations: at every
 such start, some letter fails to match the current parity. The same
@@ -830,81 +830,81 @@ finite check is the Lean `native_decide` evaluation behind
 
 **Theorem 3.12 (two-even leftover families).**
 Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
-\(O^{k-3}EOE\) is a cycle word at \(n\).
+\(O^{k-3}EOE\) is a cycle itinerary at \(n\).
 
 *Proof.* Appendix D.
 
-A cycle word \(w\) at \(n\) is *minimum-based* when \(n\) is a
+A cycle itinerary \(w\) at \(n\) is *minimum-based* when \(n\) is a
 cycle minimum: \(J^j(n)\ge n\) for every \(0\le j<|w|\). The
-remainder after a proper prefix of a cycle word need not itself be
-a cycle word at the prefix endpoint. The next statement therefore
-transports the tail inequality of Theorem 3.12, not the cycle-word
+remainder after a proper prefix of a cycle itinerary need not itself be
+a cycle itinerary at the prefix endpoint. The next statement therefore
+transports the tail inequality of Theorem 3.12, not the cycle-itinerary
 exclusion at a later start.
 
 **Theorem 3.13 (first-even transport).**
-Let \(n\ge 2\). No minimum-based cycle word at \(n\) has the form
+Let \(n\ge 2\). No minimum-based cycle itinerary at \(n\) has the form
 \(O^aEO^bEE\) with \(a\ge 2\) and \(b\ge 4\), or the form
 \(O^aEO^bEOE\) with \(a\ge 2\) and \(b\ge 3\).
 
 *Proof.* Appendix D.
 
 The hypothesis that the start is a cycle minimum is essential. If
-\(y<n\), the leftover cell is measured against a larger start and
+\(y<n\), the leftover one-step preimage is measured against a larger start and
 need not contradict the tail at \(y\). In particular, Theorem 3.13
-does not assert that those words fail to be cycle words at a
+does not assert that those itineraries fail to be cycle itineraries at a
 non-minimum start. That upgrade is Theorem 3.21.
 
 **Theorem 3.14 (three trailing evens).**
-Let \(a\ge 6\) and \(n\ge 2\). The word \(O^aEEE\) is not a cycle
+Let \(a\ge 6\) and \(n\ge 2\). The itinerary \(O^aEEE\) is not a cycle
 word at \(n\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.15 (mixed bunched family \(EOEE\)).**
-Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEOEE\) is not a cycle
+Let \(a\ge 5\) and \(n\ge 2\). The itinerary \(O^aEOEE\) is not a cycle
 word at \(n\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.16 (mixed bunched family \(EOOEE\)).**
-Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOOEE\) is not a
-cycle word at \(n\).
+Let \(a\ge 4\) and \(n\ge 2\). The itinerary \(O^aEOOEE\) is not a
+cycle itinerary at \(n\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.17 (mixed bunched family \(EOOOEE\)).**
-Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOOEE\) is not a
-cycle word at \(n\).
+Let \(a\ge 3\) and \(n\ge 2\). The itinerary \(O^aEOOOEE\) is not a
+cycle itinerary at \(n\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.18 (mixed bunched family \(EEOE\)).**
-Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEEOE\) is not a
-cycle word at \(n\).
+Let \(a\ge 5\) and \(n\ge 2\). The itinerary \(O^aEEOE\) is not a
+cycle itinerary at \(n\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.19 (mixed bunched family \(EOEOE\)).**
-Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOEOE\) is not a
-cycle word at \(n\).
+Let \(a\ge 4\) and \(n\ge 2\). The itinerary \(O^aEOEOE\) is not a
+cycle itinerary at \(n\).
 
 *Proof.* Appendix D.
 
 **Theorem 3.20 (mixed bunched family \(EOOEOE\)).**
-Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOEOE\) is not a
-cycle word at \(n\).
+Let \(a\ge 3\) and \(n\ge 2\). The itinerary \(O^aEOOEOE\) is not a
+cycle itinerary at \(n\).
 
 *Proof.* Appendix D.
 
-**Theorem 3.21 (gapped leftovers as cycle words).**
-Let \(n\ge 2\). No cycle word at \(n\) has the form \(O^aEO^bEE\)
+**Theorem 3.21 (gapped leftovers as cycle itineraries).**
+Let \(n\ge 2\). No cycle itinerary at \(n\) has the form \(O^aEO^bEE\)
 with \(a\ge 2\) and \(b\ge 4\), or the form \(O^aEO^bEOE\) with
 \(a\ge 2\) and \(b\ge 3\).
 
 *Proof.* Appendix D.
 
 Theorems 3.12--3.21 assemble into an even-count exclusion: no
-cycle word has fewer than four even letters, so a nontrivial
+cycle itinerary has fewer than four even letters, so a nontrivial
 cycle has period at least eleven (Theorem 3.22). Section 4
 excludes later periods by financing.
 
@@ -913,13 +913,13 @@ at least \(12\). Write \(e\) for the number of even letters.
 Lemma 3.21b is the canonical run form.
 
 **Lemma 3.21a (classification).**
-Every minimum-based cycle word with at most three even letters
+Every minimum-based cycle itinerary with at most three even letters
 belongs to one of the families excluded by Lemma 3.4(v) and
 Theorems 3.12--3.21.
 
-*Proof.* Lemma 3.21b puts the word in the form
+*Proof.* Lemma 3.21b puts the itinerary in the form
 \(O^aEO^bEO^cE\) with \(a\ge 2\) and unused runs empty. If
-\(e=0\), the word is all-odd. If \(e=1\), it is \(O^aE\). If
+\(e=0\), the itinerary is all-odd. If \(e=1\), it is \(O^aE\). If
 \(e=2\), a last run \(c\ge 2\) is the internal-even bootstrap of
 Lemma 3.4, and the remaining shapes are the two-even families of
 Theorem 3.12. If \(e=3\), again \(c\ge 2\) is the bootstrap, while
@@ -935,40 +935,40 @@ of the seven bunched families (Theorems 3.14--3.20). \(\square\)
 | \(\ge 4\) | not excluded by even-count | finance (Section 4) |
 
 **Theorem 3.22 (even-count).**
-No word with fewer than four even letters is a cycle word at any
-\(n\ge 2\). Equivalently, a nontrivial cycle word has at least
+No itinerary with fewer than four even letters is a cycle itinerary at any
+\(n\ge 2\). Equivalently, a nontrivial cycle itinerary has at least
 four even letters.
 
-*Proof.* Every cycle word has a minimum-based rotation, with the
+*Proof.* Every cycle itinerary has a minimum-based rotation, with the
 same even-count. Lemma 3.21b puts that orientation in canonical
 run form; Lemma 3.21a names the families. In detail:
 
-If \(e=0\), the word is all-odd and cannot return, as in
+If \(e=0\), the itinerary is all-odd and cannot return, as in
 Theorem 3.6.
 
-If \(e=1\), the word is \(O^aE\) with \(a\ge 2\). The case
+If \(e=1\), the itinerary is \(O^aE\) with \(a\ge 2\). The case
 \(a=2\) is \(OOE\), excluded in Theorem 3.6. The cases
 \(a\ge 3\) are Lemma 3.4(v).
 
-If \(e=2\), the word is \(O^aEO^cE\) with \(a\ge 2\). A last
+If \(e=2\), the itinerary is \(O^aEO^cE\) with \(a\ge 2\). A last
 odd-run \(c\ge 2\) is an internal even letter followed by
 \(OO\) or \(OOO\). Lemma 3.4 at the cycle minimum
-(\(n\ge 12\)) contradicts the last-even cell. The remaining
+(\(n\ge 12\)) contradicts the last-even one-step preimage. The remaining
 shapes are \(O^aEE\) and \(O^aEOE\). Expansion forces
 \(a\ge 4\) and \(a\ge 3\) respectively, so both are
 Theorem 3.12.
 
-If \(e=3\), the word is \(O^aEO^bEO^cE\) with \(a\ge 2\).
+If \(e=3\), the itinerary is \(O^aEO^bEO^cE\) with \(a\ge 2\).
 Again \(c\ge 2\) is the internal-even bootstrap. The remaining
 last runs are \(c=0\) and \(c=1\). For \(c=0\) and
-\(b\ge 4\) the word is a gapped leftover \(O^aEO^bEE\),
+\(b\ge 4\) the itinerary is a gapped leftover \(O^aEO^bEE\),
 excluded by Theorem 3.21. For \(c=0\) and \(b\le 3\) the
 word is one of \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\),
 \(O^aEOOOEE\), excluded by Theorems 3.14--3.17 once
 expansion supplies the stated lower bounds on \(a\). For
-\(c=1\) and \(b\ge 3\) the word is a gapped leftover
+\(c=1\) and \(b\ge 3\) the itinerary is a gapped leftover
 \(O^aEO^bEOE\), excluded by Theorem 3.21. For \(c=1\) and
-\(b\le 2\) the word is one of \(O^aEEOE\), \(O^aEOEOE\),
+\(b\le 2\) the itinerary is one of \(O^aEEOE\), \(O^aEOEOE\),
 \(O^aEOOEOE\), excluded by Theorems 3.18--3.20.
 
 Thus \(e\le 3\) is impossible. \(\square\)
@@ -985,7 +985,7 @@ In particular there is no cycle of length eight, nine, or ten.
 
 ## 4. Cycle finance
 
-A cycle word is formally expanding (Theorem 3.2), yet the trajectory
+A cycle itinerary is formally expanding (Theorem 3.2), yet the trajectory
 returns exactly. The multiplicative surplus \(3^o-2^L\) must be
 financed by the floor remainders, which are relatively \(O(1/x)\)
 in logarithms. The resulting bound on the cycle minimum excludes
@@ -994,10 +994,10 @@ uniform logarithmic floor-error bound is available above a
 verified descent floor.
 
 The identity is unrolled along a circular word. After rotation
-to a cycle minimum that word is a necklace of odd-run
+to a cycle minimum that itinerary is a necklace of odd-run
 excursions. The geometry below records that itinerary. It
 introduces no new theorem: every named constraint is Theorem 3.2,
-Lemma 3.4, Lemma 3.21b, or the last-even cell.
+Lemma 3.4, Lemma 3.21b, or the last-even one-step preimage.
 
 ### The excursion necklace
 
@@ -1032,22 +1032,22 @@ n.
 
 Two meanings of *entry* must not be conflated. *Cycle entry* is
 the distinguished cut that places the minimum at the start of
-the word. *Dynamical entry* is the last even step into \(n\).
+the itinerary. *Dynamical entry* is the last even step into \(n\).
 The second is a genuine boundary condition; the first is a
 choice of origin.
 
 #### Cycle minimum and the forced lift
 
-The minimum is odd, so the word cannot begin with \(E\) or
+The minimum is odd, so the itinerary cannot begin with \(E\) or
 \(OE\), and it cannot end with an odd letter (Theorem 3.2).
 The first two letters are therefore \(OO\):
 \[
 n\overset{O}{\longrightarrow}y\overset{O}{\longrightarrow}z.
 \]
 For \(n\ge 5\) one has \(z=J^2(n)\ge(n+1)^2\) (Lemma 3.4(i)).
-In particular \(OOE\) cannot be a cycle word
-(`no_cycle_word_ooe`). On a cycle minimum the first even
-residual overshoots the entry cell: the first peak satisfies
+In particular \(OOE\) cannot be a cycle itinerary
+(`no_cycle_itinerary_ooe`). On a cycle minimum the first even
+residual overshoots the entry one-step preimage: the first peak satisfies
 \(p_0\ge(n+1)^2\). That is the opposite of the last-peak
 condition below. Even \(J^2(n)\) may continue with \(E\); odd
 \(J^2(n)\) continues with \(O\). Either way the minimum-based
@@ -1056,7 +1056,7 @@ prefix is still \(OO\).
 #### Excursions, valleys, and peaks
 
 An ordinary excursion is one block \(O^{a}E\). In the itinerary
-semantics that word is `oddEvenBlock a 1`. Write
+semantics that itinerary is `oddEvenBlock a 1`. Write
 \[
 \mu(a)=\frac{3^a}{2^{a+1}}
 \]
@@ -1064,9 +1064,9 @@ for the ideal (floor-free) exponent of the block. The block is
 formally expanding if and only if \(\mu(a)>1\), equivalently
 \(2^{a+1}<3^a\). Thus \(OE\) contracts (\(\mu(1)=3/4\)) and
 \(OOE\) expands (\(\mu(2)=9/8\)). This is a reparameterization
-of the word envelope of Theorem 2.2, not a transition law on
+of the itinerary envelope of Theorem 2.2, not a transition law on
 pairs \((a_i,a_{i+1})\). Lemma 3.4(v) forbids \(O^aE\) as a
-*cycle word* for \(a\ge 3\); it does not forbid an internal
+*cycle itinerary* for \(a\ge 3\); it does not forbid an internal
 block of that shape.
 
 The trajectory is then the wave
@@ -1085,10 +1085,10 @@ drop without crossing the anchor: four consecutive expanding
 blocks occur already at the certified start \(1999\) recorded
 in Section 6.
 
-#### Closure and the entry cell
+#### Closure and the entry one-step preimage
 
 The valley sequence is circular. The last letter is \(E\), so
-the last peak occupies the last-even cell of Lemma 3.4(iv):
+the last peak occupies the last-even one-step preimage of Lemma 3.4(iv):
 \[
 n^2\le p_{e-1}<(n+1)^2.
 \]
@@ -1098,7 +1098,7 @@ The minimum is odd, so \(p_{e-1}\neq n^2\)
 n^2+1\le p_{e-1}<(n+1)^2,\qquad p_{e-1}\text{ even}.
 \]
 An ordinary excursion needs only \(v_i\ge n\). The last
-excursion must hit this cell and land on \(n\):
+excursion must hit this one-step preimage and land on \(n\):
 \[
 v_{e-1}
 \overset{O^{a_e}}{\longrightarrow}
@@ -1106,13 +1106,13 @@ p_{e-1}
 \overset{E}{\longrightarrow}
 n.
 \]
-The first peak overshoots the same cell; the last peak lands
+The first peak overshoots the same one-step preimage; the last peak lands
 in it. Those are different even states.
 
 Once the trajectory returns to \(n\), the prefix \(OO\) is forced
 again. A genuine cycle is a closed necklace of excursions
 whose first block starts \(OO\), whose last peak lies in the
-entry cell, and whose entire trajectory stays at least \(n\). The
+entry one-step preimage, and whose entire trajectory stays at least \(n\). The
 global constraints already proved are
 \[
 \sum_i a_i=o,\qquad e=L-o,\qquad 2^L<3^o,
@@ -1136,7 +1136,7 @@ lengths,
 \[
 \text{minimum geometry}
 +\text{necklace of excursions}
-+\text{entry cell}
++\text{entry one-step preimage}
 \;\Rightarrow\;\bot.
 \]
 That is a formulation of the remaining cycle problem, not a
@@ -1144,7 +1144,7 @@ theorem. A genuine lower bound on the number of odd runs would
 feed Theorem 4.7; none is proved here.
 
 Throughout this section write \(L=|w|\) and \(o=\#O(w)\) for a
-cycle word \(w\) based at a cycle minimum \(n\ge 2\). Natural
+cycle itinerary \(w\) based at a cycle minimum \(n\ge 2\). Natural
 logarithms are written \(\log\) in this section and \(\ln\) in
 Section 5; both denote the natural logarithm. The unique one-step fibres of
 Section 3 give, for every state \(x\ge 1\) with image
@@ -1155,7 +1155,7 @@ y^2\le x^e<(y+1)^2,
 e=\begin{cases}1,&x\text{ even},\\3,&x\text{ odd}.\end{cases}
 \]
 
-**Lemma 4.1 (dyadic-cell logarithm).**
+**Lemma 4.1 (dyadic one-step-preimage logarithm).**
 If \(z,y\ge 1\) and \(z<(y+1)^2\), then
 \(\log z\le 2\log y+2/y\).
 
@@ -1168,8 +1168,8 @@ Let \(x\ge 2\) and \(y=J(x)\). If \(x\) is even, then
 \(\log x\le 2\log y+2/y\). If \(x\) is odd, then
 \(3\log x\le 2\log y+2/y\).
 
-*Proof.* The even cell is \(y^2\le x<(y+1)^2\). The cell logarithm
-lemma on \(z=x\) is the first claim. The odd cell is
+*Proof.* The even one-step preimage is \(y^2\le x<(y+1)^2\). The one-step-preimage logarithm
+lemma on \(z=x\) is the first claim. The odd one-step preimage is
 \(y^2\le x^3<(y+1)^2\). The same lemma on \(z=x^3\) gives
 \(\log(x^3)\le 2\log y+2/y\). \(\square\)
 
@@ -1229,7 +1229,7 @@ This is the claim at \(k+1\). \(\square\)
 \vspace{0.8em}
 
 **Theorem 4.4 (finance).**
-Let \(w\) be a cycle word of length \(L\) with \(o\) odd letters,
+Let \(w\) be a cycle itinerary of length \(L\) with \(o\) odd letters,
 based at a cycle minimum \(n\ge 2\). Then
 \[
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
@@ -1240,12 +1240,12 @@ n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \[
 3^o\log n\le 2^L\log n+\frac{L\cdot 3^o}{n}.
 \]
-The word is formally expanding, so \(3^o>2^L\). Rearranging and
+The itinerary is formally expanding, so \(3^o>2^L\). Rearranging and
 multiplying by \(n\) is the claim. \(\square\)
 
 \vspace{0.4em}
 
-This is the conceptual centre of the note. Exact cells give a
+This is the conceptual centre of the note. Exact one-step preimages give a
 one-step logarithmic defect; cycle minimality lets the defect
 be unrolled against the cycle minimum; the formal surplus
 \(3^o-2^L\) must then be paid by a finite accumulated budget.
@@ -1264,10 +1264,10 @@ These three layers must not be conflated.
    n\log n\cdot(3^o-2^L)\le L\cdot 3^o,
    \]
    equivalently \(\theta\le L/(n\log n)\) with
-   \(\theta=1-2^L/3^o\). It charges every cell defect at the
+   \(\theta=1-2^L/3^o\). It charges every one-step-preimage defect at the
    cycle minimum. Lean: `cycleMin_finance`.
 
-2. *Corollary 4.4c* (below) is the same cell-log unroll with
+2. *Corollary 4.4c* (below) is the same one-step-preimage-log unroll with
    remainders kept as \(1/x_{i+1}\). It is the strongest proved
    form of those defects. Lean: `cycleMin_finance_inv_sum`.
 
@@ -1302,14 +1302,14 @@ only through length \(1053\). The computational table uses a
 stricter length-only parity charge of the same identity.
 
 **Corollary 4.4c (inv-sum).**
-Let \(w\) be a cycle word of length \(L\) with \(o\) odd letters,
+Let \(w\) be a cycle itinerary of length \(L\) with \(o\) odd letters,
 based at a cycle minimum \(n\ge 2\). Write \(x_i=J^i(n)\). Then
 \[
 (3^o-2^L)\log n\le 3^o\sum_{i=1}^{L}\frac1{x_i},
 \]
 equivalently \(\theta\le\bigl(\sum_i 1/x_i\bigr)/\log n\).
 
-*Proof.* The same induction as Lemma 4.3, keeping each cell
+*Proof.* The same induction as Lemma 4.3, keeping each one-step preimage
 defect as \(2^{k+1}/x_{k+1}\) instead of replacing it by
 \(3^{o_{k+1}}/n\). At \(k=L\) one has \(x_L=n\). Lean:
 `cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum`.
@@ -1473,7 +1473,7 @@ a supporting comparison at the same floor; the leftover count
 \(n\) only if \(3^k\ge 2^{k+\ell}\).
 
 **Theorem 4.7 (run-type packing).**
-Let \(w\) be a cycle word of length \(L\) with \(o=o_{\min}(L)\)
+Let \(w\) be a cycle itinerary of length \(L\) with \(o=o_{\min}(L)\)
 odd letters and \(e=L-o\) even letters, based at a cycle
 minimum \(n\ge 12\). Write \(v\) for the least odd integer with
 \(v^3\ge n^4\), and write \(t=\lfloor n^{3/2}\rfloor\). Then
@@ -1565,7 +1565,7 @@ accepts any verified descent floor. This section first records
 a second, laboratory-certified instance of the same
 architecture, then replaces the length-only charge by a coupled
 exponent-walk charge. The extremal walk is identified exactly
-as a rotation word, and a Denjoy--Koksma bound over certified
+as a rotation itinerary, and a Denjoy--Koksma bound over certified
 Ostrowski blocks produces an envelope valid for *every* length
 in an explicit window — no per-length census and no dynamic
 program is needed on that window. The kill table at the
@@ -1580,7 +1580,7 @@ in the sense of Section 1.
 computational input).**
 Every integer \(2\le n\le 26254995\) reaches \(1\). Precisely:
 an exact-integer first-passage run records, for each such
-\(n\), a finite realized word with image strictly below the
+\(n\), a finite realized itinerary with image strictly below the
 start; strong induction on that image reaches \(1\). The run
 walks the \(13127497\) odd starts (even starts descend by
 \(E\)) over \(106\) contiguous chunk records. Three bit-cap
@@ -1671,11 +1671,11 @@ word is dominated by the hug charge of the same length
 (`cycleMin_defect_le_hug_charge`, using Theorem 5.4 below), all
 under the recorded hypothesis \(\nu>0\).
 
-### 5.3 The adversary is the hug word
+### 5.3 The adversary is the hug itinerary
 
 **Theorem 5.4 (hug exchange).**
 Among nonnegative exponent walks with prescribed \((L,o)\), the
-*hug word* — take \(E\) at every step where \(u\ge 1\), else
+*hug itinerary* — take \(E\) at every step where \(u\ge 1\), else
 \(O\) — is prefix-minimal: writing \(a_k\) for the odd count of
 a length-\(k\) prefix,
 \[
@@ -1683,7 +1683,7 @@ a_k^{\mathrm{hug}}\le a_k
 \qquad\text{for every admissible walk and every }k,
 \]
 equivalently \(u_k^{\mathrm{hug}}\le u_k\). Consequently the
-hug word maximises the walk charge: since \(g\) is strictly
+hug itinerary maximises the walk charge: since \(g\) is strictly
 decreasing in \(u\),
 \[
 g\bigl(u_k^{\mathrm{hug}}\bigr)\ge g(u_k)
@@ -1693,7 +1693,7 @@ g\bigl(u_k^{\mathrm{hug}}\bigr)\ge g(u_k)
 \]
 
 *Proof.* At the first disagreement with any other admissible
-word, the hug word holds \(E\) where the other holds \(O\),
+itinerary, the hug itinerary holds \(E\) where the other holds \(O\),
 because hug takes \(O\) only when \(E\) is illegal and the two
 words share the same prefix state. The odd-count gap
 \(\delta_k=a_k(\text{other})-a_k(\text{hug})\) is a path with
@@ -1709,7 +1709,7 @@ Applying the strict antitonicity of \(g\) termwise and summing
 over \(k\) is the charge comparison. The prefix-minimality core
 is Lean: `hugOdds_le_of_admissible`. \(\square\)
 
-*Remark (uniqueness).* The hug word is in fact the *unique*
+*Remark (uniqueness).* The hug itinerary is in fact the *unique*
 prefix-minimal admissible path in its \((L,o)\) class, so it
 uniquely maximises the charge; at the first disagreement the
 competitor already carries a strictly larger prefix odd count,
@@ -1720,26 +1720,26 @@ displayed domination is.
 The analytic half is also Lean, in a strengthened form
 (`WalkChargeMax.lean`): the charge is antitone in the rational
 weight (`stateCharge_antitone`, elementary \(\exp\)
-monotonicity — no charge integral), so the exact hug word
+monotonicity — no charge integral), so the exact hug itinerary
 maximises the total charge over *all* admissible exponent
 walks, not just a fixed \((L,o)\) class
 (`hug_charge_maximal`). Only the strict within-\((L,o)\)
 uniqueness of the maximiser remains a human argument.
 
 The statement is about the \(u\ge 0\) relaxation, not about
-realized cycle words. Word-order (Christoffel) prefix-dominance
+realized cycle itineraries. Word-order (Christoffel) prefix-dominance
 is *false* for this family — the greedy word \(OOEO\) beats
 \(OOOE\) at \((L,o)=(4,3)\) — so the exchange argument above,
 not a dominance order, is the correct mechanism.
 
-Realized words do, however, dominate the hug word at the level
-of odd counts: on any minimum-based cycle word, every length-\(k\)
+Realized itineraries do, however, dominate the hug itinerary at the level
+of odd counts: on any minimum-based cycle itinerary, every length-\(k\)
 prefix carries at least \(o_{\min}(k)\) odd letters. This is
 Lean end to end (`cycleMin_prefix_odds_ge_hug`,
 `cycleMin_odds_ge_hug`), composing the formalized cycle prefix
 envelope \(2^k\le 3^{a_k}\) (`cycleMin_prefix_pow_le`) with the
 hug minimality `hugOdds_least`. It is exactly the sense in which
-the hug word is the cheapest adversary any hypothetical cycle
+the hug itinerary is the cheapest adversary any hypothetical cycle
 can present. The survivor-lattice generators of Proposition 4.9
 lie on this hug diagonal: \((1054,665)\), \((25781,16266)\), and
 the seed \((50508,31867)\) all satisfy \(o=o_{\min}(L)\) (Lean:
@@ -1770,7 +1770,7 @@ an exact antiderivative evaluation, giving
 at \(\nu=\ln n'\) with no quadrature
 (`rotation_average_lt`, `rotationAverage_le`,
 gap form `rotationAverage_gap`). Only the ergodic
-*identification* of \(C_*\) as the infinite-word average
+*identification* of \(C_*\) as the infinite-itinerary average
 remains classical prose. The observable has one wrap
 discontinuity, so bare unique ergodicity — uniform Birkhoff
 convergence for *continuous* observables — is not invoked
@@ -1779,19 +1779,19 @@ Riemann-integrable observables of an irrational rotation, and
 the observable here is monotone with a single jump, hence
 Riemann integrable and of bounded variation.
 
-This is the infinite-word average, not a finite-\(L\)
+This is the infinite-itinerary average, not a finite-\(L\)
 inequality: on the certified survey the finite leftover charge
 exceeds \(C_*\) by up to \(1.57\cdot 10^{-5}\), so
 \(C_L\le C_*\) is false. The next two subsections quantify the
 finite-\(L\) error.
 
-### 5.4 Word identity
+### 5.4 Itinerary identity
 
 Write \(C_L\) for the charge-per-letter of the budgeted hug
 word at \((L,o_{\min}(L))\).
 
-**Lemma 5.6 (word identity).**
-For every \(L\), the budgeted hug word at \((L,o_{\min}(L))\)
+**Lemma 5.6 (itinerary identity).**
+For every \(L\), the budgeted hug itinerary at \((L,o_{\min}(L))\)
 equals the exact rotation \(L\)-prefix generated by the integer
 rule: \(E\) at step \(k\) if and only if \(3^a\ge 2^{k+1}\),
 where \(a\) is the number of odd letters already used. In
@@ -1804,7 +1804,7 @@ budget-forced divergence between the two words would make the
 exact prefix use more of one letter than its own total, which
 is impossible. Lean: `budgetedWord_eq_hugWord`, with the window
 invariant `hugOdds_pow_ge` / `hugOdds_pow_lt` and minimality
-`hugOdds_least` (`WalkChargeWords.lean`). \(\square\)
+`hugOdds_least` (`WalkChargeItineraries.lean`). \(\square\)
 
 ### 5.5 Denjoy--Koksma over certified Ostrowski blocks
 
@@ -2040,7 +2040,7 @@ finance-survivor lengths are uncontrolled, and existence of a
 cycle at such a length is open.
 
 A start \(n\ge 2\) has a *descent certificate* if there exists a
-realized finite word \(w\) with \(J^{|w|}(n)<n\). Even starts
+realized finite itinerary \(w\) with \(J^{|w|}(n)<n\). Even starts
 realize \(E\); an odd start with even image realizes \(OE\). The
 complement of those two words is the odd-to-odd class. If every
 start above \(1\) has some descent certificate, strong induction
@@ -2059,11 +2059,11 @@ minimum-based cycle --- equivalently, the number of excursions
 on the necklace of Section 4. The run form already gives
 \(p\le e\) and, because the first odd run has length at least
 two, \(p\le o-1\), hence \(p\le\min(e,o-1)<0.3691\,L\) on an
-expanding word. That is only the trivial ceiling. A genuine
+expanding itinerary. That is only the trivial ceiling. A genuine
 lower bound on \(p\), or a peak-height / peak-count tradeoff,
 would feed Theorem 4.7. Neither is proved here. The remaining
 gap recorded there is the missing link from the forced lift at
-the minimum, through the complete necklace, to the entry cell;
+the minimum, through the complete necklace, to the entry one-step preimage;
 it is not a halt theorem.
 
 The same pattern --- a piecewise power map, integer rounding,
@@ -2088,7 +2088,7 @@ Theorem 4.8.
 
 | Text | Lean |
 |---|---|
-| itinerary semantics | `follows_iff_word`, `image_eq_iterate`, `image_append` |
+| itinerary semantics | `follows_iff_itinerary`, `image_eq_iterate`, `image_append` |
 | Theorem 2.1 | `image_monotone_of_follows` |
 | Theorem 2.2 | `power_bound_word` |
 | Corollary 2.3 | `power_bound_contracts` |
@@ -2097,31 +2097,31 @@ Theorem 4.8.
 | Theorem 2.6 | `global_defect_append` |
 | Corollary 2.7 | `image_eq_start_defectRatio` |
 | per-step slack | `one_plus_eta_lt_succ_sq` |
-| Lemma 3.1 | `odd_cell_unique` |
+| Lemma 3.1 | `odd_preimage_unique` |
 | CycleMin | `CycleMin` |
-| Theorem 3.2 | `cycle_word_formally_expanding`, `cycleMin_start_odd`, `cycleMax_start_even`, `cycleMin_not_end_odd`, `square_scale_superquadratic`, `cycleMin_to_even_superquadratic` |
+| Theorem 3.2 | `cycle_itinerary_formally_expanding`, `cycleMin_start_odd`, `cycleMax_start_even`, `cycleMin_not_end_odd`, `square_scale_superquadratic`, `cycleMin_to_even_superquadratic` |
 | Lemma 3.3 | `lower_growth_word` |
-| Lemma 3.4 | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`, `cycle_last_even_interval`, `cycle_last_even_ne_odd_sq`, `no_cycle_odd_run_append_even`, `no_cycle_word_ooe` |
+| Lemma 3.4 | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`, `cycle_last_even_interval`, `cycle_last_even_ne_odd_sq`, `no_cycle_odd_run_append_even`, `no_cycle_itinerary_ooe` |
 | odd-run block | `oddEvenBlock` |
-| Lemma 3.5 | `no_cycle_word_oooeoe`, `no_cycle_word_ooooee` |
-| Theorem 3.6 | `no_cycle_word_length_le_six` |
-| Lemma 3.7 | `no_cycle_word_ooooeoe`, `no_cycle_word_oooooee` |
-| Theorem 3.8 | `no_cycle_word_length_le_seven`, with `no_cycle_word_ooeoooe`, `no_cycle_word_oooeooe` |
+| Lemma 3.5 | `no_cycle_itinerary_oooeoe`, `no_cycle_itinerary_ooooee` |
+| Theorem 3.6 | `no_cycle_itinerary_length_le_six` |
+| Lemma 3.7 | `no_cycle_itinerary_ooooeoe`, `no_cycle_itinerary_oooooee` |
+| Theorem 3.8 | `no_cycle_itinerary_length_le_seven`, with `no_cycle_itinerary_ooeoooe`, `no_cycle_itinerary_oooeooe` |
 | Lemma 3.9 | `cycle_trailing_evens_lt` |
 | Lemma 3.10 | `lowerDenom_replicate_odd`, `odd_run_lower_growth` |
 | Lemma 3.11 | `no_follows_seven_odds_of_lt256` |
-| Theorem 3.12 | `no_cycle_word_two_even_ee`, `no_cycle_word_two_even_eoe` |
+| Theorem 3.12 | `no_cycle_itinerary_two_even_ee`, `no_cycle_itinerary_two_even_eoe` |
 | Theorem 3.13 | `no_cycleMin_gapped_three_even_ee`, `no_cycleMin_gapped_three_even_eoe` |
-| Theorem 3.14 | `no_cycle_word_three_even_eee`, with `no_cycle_word_ooooooeee` |
-| Theorem 3.15 | `no_cycle_word_three_even_eoee` |
-| Theorem 3.16 | `no_cycle_word_three_even_eooee` |
-| Theorem 3.17 | `no_cycle_word_three_even_eoooee` |
-| Theorem 3.18 | `no_cycle_word_three_even_eeoe` |
-| Theorem 3.19 | `no_cycle_word_three_even_eoeoe` |
-| Theorem 3.20 | `no_cycle_word_three_even_eooeoe` |
-| Theorem 3.21 | `no_cycle_word_gapped_three_even_ee`, `no_cycle_word_gapped_three_even_eoe` |
-| Theorem 3.22 | `no_cycle_word_even_count_le_three` |
-| Corollary 3.23 | `cycle_word_length_ge_eleven` |
+| Theorem 3.14 | `no_cycle_itinerary_three_even_eee`, with `no_cycle_itinerary_ooooooeee` |
+| Theorem 3.15 | `no_cycle_itinerary_three_even_eoee` |
+| Theorem 3.16 | `no_cycle_itinerary_three_even_eooee` |
+| Theorem 3.17 | `no_cycle_itinerary_three_even_eoooee` |
+| Theorem 3.18 | `no_cycle_itinerary_three_even_eeoe` |
+| Theorem 3.19 | `no_cycle_itinerary_three_even_eoeoe` |
+| Theorem 3.20 | `no_cycle_itinerary_three_even_eooeoe` |
+| Theorem 3.21 | `no_cycle_itinerary_gapped_three_even_ee`, `no_cycle_itinerary_gapped_three_even_eoe` |
+| Theorem 3.22 | `no_cycle_itinerary_even_count_le_three` |
+| Corollary 3.23 | `cycle_itinerary_length_ge_eleven` |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
 | Lemma 4.1 | `log_le_two_log_add` |
@@ -2137,7 +2137,7 @@ Theorem 4.8.
 | Proposition 5.1 | laboratory floor; certified computation, not Lean |
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
-| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-word domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict within-\((L,o)\) uniqueness human |
+| Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict within-\((L,o)\) uniqueness human |
 | Proposition 5.5 | ergodic identification human; Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
 | Theorem 5.7 | Denjoy--Koksma's variation inequality (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
@@ -2291,7 +2291,7 @@ n^{3^{\#O(w)}}=m^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
 \]
 Theorem 2.2 is the inequality \(\Delta_w(n)\ge0\).
 
-*Proof.* Induct on \(w\). The empty word is \(n=n+0\). An even
+*Proof.* Induct on \(w\). The empty itinerary is \(n=n+0\). An even
 letter substitutes \(x=J(x)^2+\rho(x)\) into the inductive
 identity and lifts the new remainder through \(2^\ell\). An odd
 letter cubes the identity and then substitutes
@@ -2307,7 +2307,7 @@ If \(w\) is realized at \(n\), the following are equivalent:
 \(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}=n^{3^{\#O(w)}}\). In that case
 \(w\) is monochrome: either \(w=E^k\) and \(n=a^{2^k}\) for an
 even \(a\), or \(w=O^k\) and \(n=a^{2^k}\) for an odd \(a\). A
-realized mixed word therefore has \(\Delta_w(n)>0\).
+realized mixed itinerary therefore has \(\Delta_w(n)>0\).
 
 *Proof.* Theorem 2.4 gives the first and third items. A power-gap
 vanishes if and only if its addend vanishes, so zero defect forces
@@ -2330,12 +2330,12 @@ Composition is polynomial, not additive. The Lean form is
 `global_defect_append`.
 
 **Corollary 2.7 (cycle surplus).**
-If \(w\) is a cycle word at \(n\), then
+If \(w\) is a cycle itinerary at \(n\), then
 \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) exactly.
 
 *Proof.* Theorem 2.4 with \(m=n\). \(\square\)
 
-A mixed word has strict total defect, but the relative slack of a
+A mixed itinerary has strict total defect, but the relative slack of a
 single letter tends to \(0\) with the state, so no uniform local
 tax exists. Theorem 4.4 does not use these identities.
 
@@ -2345,10 +2345,10 @@ This appendix records the small-cycle censuses (Lemma 3.5,
 Theorem 3.6, Lemma 3.7, Theorem 3.8) and the family-by-family
 exhaustion used by Lemma 3.21a and Theorem 3.22. Each geometry is
 killed by a next-square obstruction, by long odd-run growth
-against a last-even cell, or by a finite exceptional window.
+against a last-even one-step preimage, or by a finite exceptional window.
 
 **Lemma 3.5 (two length-six exclusions).**
-Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge 2\).
+Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle itinerary at any \(n\ge 2\).
 
 *Proof.* First, if \(n\ge 256\), then
 \[
@@ -2365,21 +2365,21 @@ For \(2\le n<256\), neither word returns to its start. This is a
 table of \(254\) evaluations of each word: at every start, either
 some letter fails to match the current parity, or the six-step image
 differs from the start. The same finite check is the Lean
-`native_decide` evaluation behind `no_cycle_word_oooeoe` and
-`no_cycle_word_ooooee` (Appendix A).
+`native_decide` evaluation behind `no_cycle_itinerary_oooeoe` and
+`no_cycle_itinerary_ooooee` (Appendix A).
 
-Now suppose \(OOOOEE\) is a cycle word at \(n\ge 256\), and write
+Now suppose \(OOOOEE\) is a cycle itinerary at \(n\ge 256\), and write
 \(z=J^4(n)\) for the image after the prefix \(OOOO\). Lemma 3.4(iv)
 gives \(J(z)<(n+1)^2\), and the preceding even letter gives
 \(z<(J(z)+1)^2\), hence \(z<(n+1)^4\). Lemma 3.3 on \(OOOO\) gives
 \(n^{81}\le 2^{130}z^{16}\), so
 \(n^{81}<2^{130}(n+1)^{64}\), contradicting the tail inequality.
 
-Finally suppose \(OOOEOE\) is a cycle word at \(n\ge 256\). Write
+Finally suppose \(OOOEOE\) is a cycle itinerary at \(n\ge 256\). Write
 \(z_3=J^3(n)\) and \(y=J(z_3)=\lfloor\sqrt{z_3}\rfloor\), so
 \(z_3<(y+1)^2\). Lemma 3.3 on \(OOO\) gives
 \(n^{27}\le 2^{38}z_3^8<2^{38}(y+1)^{16}\). Cubing yields
-\(n^{81}<2^{114}(y+1)^{48}\). The last letters \(OE\) give the odd-cell
+\(n^{81}<2^{114}(y+1)^{48}\). The last letters \(OE\) give the odd-preimage
 bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 257\). We claim
 \((y+1)^3<2A^4\). If \(y\le A\), this is \((A+1)^3<2A^4\). If
 \(y>A\), then \(y\ge 258\), so \(3y+1<y^2\) and hence
@@ -2389,10 +2389,10 @@ power gives \((y+1)^{48}<2^{16}(n+1)^{64}\). Combining with the cubed
 lower envelope produces again \(n^{81}<2^{130}(n+1)^{64}\). \(\square\)
 
 **Theorem 3.6 (small-cycle census).**
-No word of length at most six is a cycle word at any \(n\ge 2\).
+No itinerary of length at most six is a cycle itinerary at any \(n\ge 2\).
 
-*Proof.* Rotating a cycle word by one letter moves the base point one
-step along the trajectory and yields another cycle word; every state of
+*Proof.* Rotating a cycle itinerary by one letter moves the base point one
+step along the trajectory and yields another cycle itinerary; every state of
 the cycle is at least \(2\), because a trajectory that reaches \(1\) stays
 at \(1\) and cannot return to a start \(n\ge 2\).
 
@@ -2400,12 +2400,12 @@ If every letter is odd, the start is odd, hence \(n\ge 3\), and the
 odd branch strictly increases there: \(J(x)>x\) for odd \(x\ge 3\),
 since \(x^3\ge(x+1)^2\). The trajectory ascends strictly and never returns.
 Otherwise some letter is even, and a rotation ending just after that
-letter produces an even-terminating cycle word \(vE\) of the same
+letter produces an even-terminating cycle itinerary \(vE\) of the same
 length based at a cycle state \(m\ge 2\). It therefore suffices to
-exclude even-terminating cycle words of length at most six.
+exclude even-terminating cycle itineraries of length at most six.
 
-By Theorem 3.2(i) a cycle word is formally expanding. No
-even-terminating word of length one or two is expanding (\(2>3^0\) and
+By Theorem 3.2(i) a cycle itinerary is formally expanding. No
+even-terminating itinerary of length one or two is expanding (\(2>3^0\) and
 \(4>3\)).
 
 Length three: the only expanding candidate is \(OOE\). If \(m\ge 5\)
@@ -2421,11 +2421,11 @@ four, leaving only \(O^4E\), excluded by Lemma 3.4(v).
 
 Length six: the filter requires at least four odd letters among the
 first five, leaving \(O^5E\), \(EOOOOE\), \(OEOOOE\), \(OOEOOE\),
-\(OOOEOE\), and \(OOOOEE\). Lemma 3.4(v) excludes \(O^5E\). The word
+\(OOOEOE\), and \(OOOOEE\). Lemma 3.4(v) excludes \(O^5E\). The itinerary
 \(EOOOOE\) rotates one step onto \(OOOOEE\), and \(OEOOOE\) rotates
 two steps onto \(OOOEOE\); both are excluded by Lemma 3.5.
 
-It remains to exclude \(OOEOOE\). Let this word be a cycle word at
+It remains to exclude \(OOEOOE\). Let this itinerary be a cycle itinerary at
 some start, and rotate to a cycle minimum \(m\ge 2\). The three
 alignments of the two even letters are \(OOEOOE\), \(OEOOEO\), and
 \(EOOEOO\). The last starts even, so it cannot be a minimum, by
@@ -2442,7 +2442,7 @@ is realized at \(y\), and Lemma 3.4(i) gives
 Lemma 3.4(iv) gives \(J^2(y)<(m+1)^2\). \(\square\)
 
 **Lemma 3.7 (two length-seven exclusions).**
-Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle word at any \(n\ge 2\).
+Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle itinerary at any \(n\ge 2\).
 
 *Proof.* First, if \(n\ge 14\), then
 \[
@@ -2456,20 +2456,20 @@ Indeed \(14(n+1)\le 15n\), so
 For \(2\le n<14\), neither word is realized: at every such start,
 some letter fails to match the current parity. The same finite check
 is the Lean `native_decide` evaluation behind
-`no_cycle_word_ooooeoe` and `no_cycle_word_oooooee` (Appendix A).
+`no_cycle_itinerary_ooooeoe` and `no_cycle_itinerary_oooooee` (Appendix A).
 
-Now suppose \(OOOOOEE\) is a cycle word at \(n\ge 14\), and write
+Now suppose \(OOOOOEE\) is a cycle itinerary at \(n\ge 14\), and write
 \(z=J^5(n)\) for the image after the prefix \(OOOOO\). Lemma 3.4(iv)
 on the last even letter, together with the preceding even letter,
 gives \(z<(n+1)^4\). Lemma 3.3 on \(OOOOO\) gives
 \(n^{243}\le 2^{422}z^{32}\), so
 \(n^{243}<2^{422}(n+1)^{128}\), contradicting the tail inequality.
 
-Finally suppose \(OOOOEOE\) is a cycle word at \(n\ge 14\). Write
+Finally suppose \(OOOOEOE\) is a cycle itinerary at \(n\ge 14\). Write
 \(z_4=J^4(n)\) and \(y=J(z_4)=\lfloor\sqrt{z_4}\rfloor\), so
 \(z_4<(y+1)^2\). Lemma 3.3 on \(OOOO\) gives
 \(n^{81}\le 2^{130}z_4^{16}<2^{130}(y+1)^{32}\). Cubing yields
-\(n^{243}<2^{390}(y+1)^{96}\). The last letters \(OE\) give the odd-cell
+\(n^{243}<2^{390}(y+1)^{96}\). The last letters \(OE\) give the odd-preimage
 bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 15\). The same comparison
 \((y+1)^3<2A^4\) as in Lemma 3.5 holds at this smaller scale. Raising
 to the thirty-second power gives
@@ -2477,18 +2477,18 @@ to the thirty-second power gives
 envelope produces again \(n^{243}<2^{422}(n+1)^{128}\). \(\square\)
 
 **Theorem 3.8 (small-cycle census through length seven).**
-No word of length at most seven is a cycle word at any \(n\ge 2\).
+No itinerary of length at most seven is a cycle itinerary at any \(n\ge 2\).
 
 *Proof.* The reduction of Theorem 3.6 applies at every length: an
-all-odd word cannot return, and every mixed cycle word rotates to an
-even-terminating cycle word based at a cycle state \(m\ge 2\).
+all-odd itinerary cannot return, and every mixed cycle itinerary rotates to an
+even-terminating cycle itinerary based at a cycle state \(m\ge 2\).
 Lengths at most six are Theorem 3.6. It remains to exclude
-even-terminating cycle words of length seven.
+even-terminating cycle itineraries of length seven.
 
-By Theorem 3.2(i) a cycle word is formally expanding. The
+By Theorem 3.2(i) a cycle itinerary is formally expanding. The
 even-terminating expanding length-seven words are exactly
 \(O^6E\), \(EO^5E\), \(OEO^4E\), \(OOEO^3E\), \(O^3EO^2E\),
-\(O^4EOE\), and \(O^5EE\). Lemma 3.4(v) excludes \(O^6E\). The word
+\(O^4EOE\), and \(O^5EE\). Lemma 3.4(v) excludes \(O^6E\). The itinerary
 \(EO^5E\) rotates one step onto \(O^5EE\), and \(OEO^4E\) starts
 \(OE\), so it cannot be a cycle minimum (Theorem 3.2(iii)) and
 rotates two steps onto \(O^4EOE\); both leftovers are excluded by
@@ -2499,14 +2499,14 @@ word to a cycle minimum \(m\ge 2\). For \(OOEO^3E\) the minimum
 orientation retains the internal even letter followed by the suffix
 \(OOO\). Then \(m\ge 3\), the prefix through that even letter is
 realized, and Lemma 3.4(ii) at threshold \(3\) contradicts the last
-even cell. For \(O^3EO^2E\) the same bootstrap applies with suffix
+even one-step preimage. For \(O^3EO^2E\) the same bootstrap applies with suffix
 \(OO\) and threshold \(5\), once \(m=3\) is removed: at \(m=3\) the
 state after \(OOO\) is even, so the next even letter is not
 realized. \(\square\)
 
 **Theorem 3.12 (two-even leftover families).**
 Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
-\(O^{k-3}EOE\) is a cycle word at \(n\).
+\(O^{k-3}EOE\) is a cycle itinerary at \(n\).
 
 
 *Proof.* First, if \(n\ge 256\), then
@@ -2525,17 +2525,17 @@ the desired comparison at length \(k+1\) reduces to
 \(2^{2^{k-1}}<(n+1)^{2^k}\). Equivalently \(2<(n+1)^2\), which holds
 for every \(n\ge 256\).
 
-Now suppose \(O^{k-2}EE\) is a cycle word at such an \(n\). Write
+Now suppose \(O^{k-2}EE\) is a cycle itinerary at such an \(n\). Write
 \(z=J^{k-2}(n)\). Lemma 3.9 with \(r=2\) gives \(z<(n+1)^4\).
 Lemma 3.10 on the prefix \(O^{k-2}\) gives
 \(n^{3^{k-2}}\le 2^{e_{k-2}}z^{2^{k-2}}\), hence
 \(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\), contradicting the tail.
 
-Finally suppose \(O^{k-3}EOE\) is a cycle word at such an \(n\).
+Finally suppose \(O^{k-3}EOE\) is a cycle itinerary at such an \(n\).
 Write \(z=J^{k-3}(n)\) and \(y=\lfloor\sqrt z\rfloor\), so
 \(z<(y+1)^2\). Lemma 3.10 on \(O^{k-3}\) and cubing produce
 \(n^{3^{k-2}}<2^{3e_{k-3}}(y+1)^{3\cdot 2^{k-2}}\). The last letters
-\(OE\) give the odd-cell bound \(y^3<(n+1)^4\). The comparison
+\(OE\) give the odd-preimage bound \(y^3<(n+1)^4\). The comparison
 \((y+1)^3<2(n+1)^4\) of Lemma 3.5 applies at this scale. Raising it
 to the power \(2^{k-2}\) and using \(e_{k-2}=3e_{k-3}+2^{k-2}\)
 recovers again \(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\).
@@ -2544,13 +2544,13 @@ For \(2\le n<256\), the cases \(k=6\) and \(k=7\) are Lemmas 3.5
 and 3.7. The remaining short words \(O^6EE\), \(O^5EOE\), and
 \(O^6EOE\) fail to return on the same \(254\)-start window; this is
 the Lean `native_decide` evaluation behind
-`no_cycle_word_two_even_ee` and `no_cycle_word_two_even_eoe`
+`no_cycle_itinerary_two_even_ee` and `no_cycle_itinerary_two_even_eoe`
 (Appendix A). Any longer leftover of either family begins with
 seven consecutive odd letters, which Lemma 3.11 forbids on this
 window. \(\square\)
 
 **Theorem 3.13 (first-even transport).**
-Let \(n\ge 2\). No minimum-based cycle word at \(n\) has the form
+Let \(n\ge 2\). No minimum-based cycle itinerary at \(n\) has the form
 \(O^aEO^bEE\) with \(a\ge 2\) and \(b\ge 4\), or the form
 \(O^aEO^bEOE\) with \(a\ge 2\) and \(b\ge 3\).
 
@@ -2559,7 +2559,7 @@ Let \(n\ge 2\). No minimum-based cycle word at \(n\) has the form
 letter. Minimum-basedness gives \(y\ge n\). In the first family the
 remainder after that letter is \(O^bEE\) with \(b+2\ge 6\); in the
 second it is \(O^bEOE\) with \(b+3\ge 6\). The trailing-even and
-last-odd cells of those remainders are measured against the cycle
+last-odd one-step preimages of those remainders are measured against the cycle
 start \(n\). Combined with Lemma 3.10 at the remainder start \(y\),
 the same algebra as in Theorem 3.12 produces
 \[
@@ -2576,19 +2576,19 @@ If \(y<256\), then \(n\le y<256\). A gapped leftover of total
 length at least \(17\) has \(a\ge 7\) or \(b\ge 7\), so either the
 prefix or the remainder realizes seven consecutive odd letters,
 contradicting Lemma 3.11. The finitely many short-gap words with
-\(2\le a\le 6\) and \(b\le 6\) fail to be minimum-based cycle words
+\(2\le a\le 6\) and \(b\le 6\) fail to be minimum-based cycle itineraries
 on the window \(2\le n<256\); this is the Lean `native_decide`
 evaluation behind `no_cycleMin_gapped_three_even_ee` and
 `no_cycleMin_gapped_three_even_eoe` (Appendix A). \(\square\)
 
 **Theorem 3.14 (three trailing evens).**
-Let \(a\ge 6\) and \(n\ge 2\). The word \(O^aEEE\) is not a cycle
+Let \(a\ge 6\) and \(n\ge 2\). The itinerary \(O^aEEE\) is not a cycle
 word at \(n\).
 
 
 *Proof.* Write \(z=J^a(n)\). Lemma 3.9 with \(r=3\) gives
 \(z<(n+1)^8\). Lemma 3.10 then yields
-\(n^{3^a}<2^{e_a}(n+1)^{2^{a+3}}\) on any such cycle word. For
+\(n^{3^a}<2^{e_a}(n+1)^{2^{a+3}}\) on any such cycle itinerary. For
 \(n\ge 128\) the opposite comparison
 \[
 n^{3^a}>2^{e_a}(n+1)^{2^{a+3}}
@@ -2603,14 +2603,14 @@ Lemma 3.10 reduces the inductive step to \((n+1)^4>2\), which holds
 for every \(n\ge 128\).
 
 For \(2\le n<128\), the case \(a=6\) is a table of evaluations of
-\(OOOOOOEEE\): at every such start the word fails to return. The
+\(OOOOOOEEE\): at every such start the itinerary fails to return. The
 same finite check is the Lean `native_decide` evaluation behind
-`no_cycle_word_ooooooeee` (Appendix A). For \(a\ge 7\) the prefix
+`no_cycle_itinerary_ooooooeee` (Appendix A). For \(a\ge 7\) the prefix
 contains seven consecutive odd letters, which Lemma 3.11 forbids
 on this window. \(\square\)
 
 **Theorem 3.15 (mixed bunched family \(EOEE\)).**
-Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEOEE\) is not a cycle
+Let \(a\ge 5\) and \(n\ge 2\). The itinerary \(O^aEOEE\) is not a cycle
 word at \(n\).
 
 
@@ -2619,9 +2619,9 @@ word at \(n\).
 \(r=2\) after the prefix \(O^aEO\) gives \(p<(n+1)^4\). The letter
 after \(y\) is odd, so Lemma 3.10 at length one yields
 \(y^3\le 4p^2<4(n+1)^8\). For \(n\ge 4\) one has
-\(4(n+1)^8<(n+1)^9\), hence \(y<(n+1)^3\). The even cell at \(z\)
+\(4(n+1)^8<(n+1)^9\), hence \(y<(n+1)^3\). The even one-step preimage at \(z\)
 then gives \(z<(y+1)^2\le(n+1)^6\). Combined with Lemma 3.10,
-any such cycle word would satisfy
+any such cycle itinerary would satisfy
 \[
 n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
 \]
@@ -2636,15 +2636,15 @@ Cubing then produces the comparison at \(a+1\), once
 every \(n\ge 16\).
 
 For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
-\(a=6\), the word fails to return; these are the Lean
-`native_decide` evaluations behind `no_cycle_word_three_even_eoee`
+\(a=6\), the itinerary fails to return; these are the Lean
+`native_decide` evaluations behind `no_cycle_itinerary_three_even_eoee`
 (Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies. For
 \(a\ge 6\) and \(n\ge 16\), the tail of the previous paragraph
 applies. \(\square\)
 
 **Theorem 3.16 (mixed bunched family \(EOOEE\)).**
-Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOOEE\) is not a
-cycle word at \(n\).
+Let \(a\ge 4\) and \(n\ge 2\). The itinerary \(O^aEOOEE\) is not a
+cycle itinerary at \(n\).
 
 
 *Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
@@ -2652,9 +2652,9 @@ cycle word at \(n\).
 prefix \(O^aEOO\). Lemma 3.9 with \(r=2\) gives \(p<(n+1)^4\).
 The two letters after \(y\) are odd, so Lemma 3.10 at length two
 yields \(y^9\le 2^{10}p^4<2^{10}(n+1)^{16}\). For \(n\ge 32\) one
-has \(2^{10}<(n+1)^2\), hence \(y<(n+1)^2\). The even cell at
+has \(2^{10}<(n+1)^2\), hence \(y<(n+1)^2\). The even one-step preimage at
 \(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
-Lemma 3.10, any such cycle word would satisfy
+Lemma 3.10, any such cycle itinerary would satisfy
 \[
 n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
 \]
@@ -2663,12 +2663,12 @@ shared tail of Theorem 3.12 at length \(k=a+2\).
 
 For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
 window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eooee` (Appendix A). For \(a\ge 7\),
+`no_cycle_itinerary_three_even_eooee` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
 **Theorem 3.17 (mixed bunched family \(EOOOEE\)).**
-Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOOEE\) is not a
-cycle word at \(n\).
+Let \(a\ge 3\) and \(n\ge 2\). The itinerary \(O^aEOOOEE\) is not a
+cycle itinerary at \(n\).
 
 
 *Proof.* First let \(a\ge 4\) and \(n\ge 3\), and write
@@ -2677,9 +2677,9 @@ after the prefix \(O^aEOOO\). Lemma 3.9 with \(r=2\) gives
 \(p<(n+1)^4\). The three letters after \(y\) are odd, so
 Lemma 3.10 at length three yields
 \(y^{27}\le 2^{38}p^8<2^{38}(n+1)^{32}\). For \(n\ge 3\) one has
-\(2^{38}<(n+1)^{22}\), hence \(y<(n+1)^2\). The even cell at
+\(2^{38}<(n+1)^{22}\), hence \(y<(n+1)^2\). The even one-step preimage at
 \(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
-Lemma 3.10, any such cycle word would satisfy
+Lemma 3.10, any such cycle itinerary would satisfy
 \[
 n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
 \]
@@ -2687,7 +2687,7 @@ For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
 shared tail of Theorem 3.12 at length \(k=a+2\), already used in
 Theorem 3.16.
 
-Now let \(a=3\) and \(n\ge 256\). The same two-even cell gives
+Now let \(a=3\) and \(n\ge 256\). The same two-even one-step preimage gives
 \(z<(y+1)^2\), so Lemma 3.10 at the prefix \(O^3\) yields
 \(n^{27}<2^{38}(y+1)^{16}\). The three-odd envelope on \(y\) still
 gives \(y^{27}<2^{38}(n+1)^{32}\).
@@ -2709,12 +2709,12 @@ Theorem 3.15.
 
 For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
 that window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eoooee` (Appendix A). For \(a\ge 7\),
+`no_cycle_itinerary_three_even_eoooee` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
 **Theorem 3.18 (mixed bunched family \(EEOE\)).**
-Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEEOE\) is not a
-cycle word at \(n\).
+Let \(a\ge 5\) and \(n\ge 2\). The itinerary \(O^aEEOE\) is not a
+cycle itinerary at \(n\).
 
 
 *Proof.* First let \(n\ge 4\), and write \(z=J^a(n)\) and \(y\)
@@ -2723,7 +2723,7 @@ cycle suffix, so the last-odd cube of Theorem 3.15 gives
 \(y^3<(n+1)^4\). The two letters between \(z\) and \(y\) are
 even, so \(z<(y+1)^4\). For \(n\ge 4\) the successor comparison
 \((y+1)^3<2(n+1)^4\) upgrades this to \(z<(n+1)^6\). Combined
-with Lemma 3.10, any such cycle word would satisfy the same
+with Lemma 3.10, any such cycle itinerary would satisfy the same
 display as Theorem 3.15:
 \[
 n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
@@ -2733,24 +2733,24 @@ it holds for \(a=5\) and \(n\ge 314\), and already for \(a=6\)
 and \(n\ge 16\).
 
 For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
-\(a=6\), the word fails to return; these are the Lean
-`native_decide` evaluations behind `no_cycle_word_three_even_eeoe`
+\(a=6\), the itinerary fails to return; these are the Lean
+`native_decide` evaluations behind `no_cycle_itinerary_three_even_eeoe`
 (Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies.
 For \(a\ge 6\) and \(n\ge 16\), the tail of the previous
 paragraph applies. \(\square\)
 
 **Theorem 3.19 (mixed bunched family \(EOEOE\)).**
-Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOEOE\) is not a
-cycle word at \(n\).
+Let \(a\ge 4\) and \(n\ge 2\). The itinerary \(O^aEOEOE\) is not a
+cycle itinerary at \(n\).
 
 
 *Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
 \(w=\lfloor\sqrt z\rfloor\), and \(y\) for the last odd letter.
 The suffix \(EOE\) again gives \(y^3<(n+1)^4\). The one-odd
 envelope on \(w\) yields \(w^3\le 4s^2\), where \(s\) is the
-image after \(O^aEO\). The last-odd cell and \(n\ge 32\) upgrade
+image after \(O^aEO\). The last-odd one-step preimage and \(n\ge 32\) upgrade
 this to \(w<(n+1)^2\), hence \(z<(w+1)^2\le(n+1)^4\). Combined
-with Lemma 3.10, any such cycle word would satisfy
+with Lemma 3.10, any such cycle itinerary would satisfy
 \[
 n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
 \]
@@ -2759,12 +2759,12 @@ used in Theorem 3.16.
 
 For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
 window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eoeoe` (Appendix A). For \(a\ge 7\),
+`no_cycle_itinerary_three_even_eoeoe` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
 **Theorem 3.20 (mixed bunched family \(EOOEOE\)).**
-Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOEOE\) is not a
-cycle word at \(n\).
+Let \(a\ge 3\) and \(n\ge 2\). The itinerary \(O^aEOOEOE\) is not a
+cycle itinerary at \(n\).
 
 
 *Proof.* First let \(a\ge 4\) and \(n\ge 4\), and write
@@ -2777,7 +2777,7 @@ the last-odd successor bound produces
 \(u^{27}<2^{38}(n+1)^{32}\). The same comparison as in
 Theorem 3.17 then gives \(u<(n+1)^2\), hence
 \(z<(u+1)^2\le(n+1)^4\). Combined with Lemma 3.10, any such
-cycle word would satisfy the shared two-even tail of
+cycle itinerary would satisfy the shared two-even tail of
 Theorem 3.16.
 
 Now let \(a=3\) and \(n\ge 256\). The prefix \(O^3\) against
@@ -2789,23 +2789,23 @@ in the \(a=3\) case of Theorem 3.17, with \(u\) in place of
 
 For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
 that window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eooeoe` (Appendix A). For \(a\ge 7\),
+`no_cycle_itinerary_three_even_eooeoe` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
-**Theorem 3.21 (gapped leftovers as cycle words).**
-Let \(n\ge 2\). No cycle word at \(n\) has the form \(O^aEO^bEE\)
+**Theorem 3.21 (gapped leftovers as cycle itineraries).**
+Let \(n\ge 2\). No cycle itinerary at \(n\) has the form \(O^aEO^bEE\)
 with \(a\ge 2\) and \(b\ge 4\), or the form \(O^aEO^bEOE\) with
 \(a\ge 2\) and \(b\ge 3\).
 
 
-*Proof.* Every cycle word has a minimum-based rotation. It is
+*Proof.* Every cycle itinerary has a minimum-based rotation. It is
 therefore enough to check that every cyclic shift of either word
 is an already-excluded cycle-minimum orientation.
 
 Write \(w\) for the gapped word. In the first family,
 \(\lvert w\rvert=a+b+3\). The rotation by \(k=0\) is the original
-word, excluded as a cycle minimum by Theorem 3.13. The rotation
-by \(k=a+1\) is the bootstrap word \(O^bEEO^aE\). That word has
+itinerary, excluded as a cycle minimum by Theorem 3.13. The rotation
+by \(k=a+1\) is the bootstrap itinerary \(O^bEEO^aE\). That itinerary has
 an internal even letter and last gap at least \(2\). If
 \(a\ge 3\), the last-gap threshold of Lemma 3.4 at \(OOO\) and
 \(N=3\) excludes it. If \(a=2\), the same lemma at \(OO\) and

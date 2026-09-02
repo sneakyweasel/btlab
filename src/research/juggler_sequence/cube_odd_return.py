@@ -15,7 +15,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     MINIMAL,
@@ -24,7 +24,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cube_odd_return.json"
@@ -114,7 +114,7 @@ def witness_1517() -> dict[str, Any]:
     path = [u, row["y"], row["z"], floor_power(row["z"])]
     return {
         "word": word,
-        "follows": follows_word(n, word),
+        "follows": follows_itinerary(n, word),
         "image": image_after(n, word),
         "in_cell": cube_odd_landing(n, u),
         "path": path,
@@ -213,7 +213,7 @@ def lean_api_present() -> dict[str, bool]:
         "in_laboratory_barrel": "Problems.Juggler.MinimumRelative" in barrel,
         "not_in_paper_barrel": "cube_lift_even_reset" not in paper
         and "CubeOddLanding" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

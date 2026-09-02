@@ -13,7 +13,7 @@ first-even contraction set \(Q_v\) finite?
 
 ## Exact statement
 
-Write \(\alpha_v=3^{\#O(v)}/2^{|v|}\). The word \(Ev\) is formally
+Write \(\alpha_v=3^{\#O(v)}/2^{|v|}\). The itinerary \(Ev\) is formally
 expanding iff \(\alpha_v>2\), i.e. \(3^{\#O(v)}>2^{|v|+1}\). Prove or
 refute: for every such fixed \(v\) there exists \(Q_0(v)\) such that
 
@@ -72,7 +72,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - Eventual non-contraction for each fixed superquadratic \(v\) —
   **EXACT — LEAN VERIFIED**
-- No finite word has \(\alpha_v=2\) —
+- No finite itinerary has \(\alpha_v=2\) —
   **EXACT — LEAN VERIFIED**
 - Exact \(Q_{OO}\), \(Q_{OOO}\) classifications — retained
 - Uniform threshold over all superquadratic \(v\) — not claimed
@@ -93,7 +93,7 @@ None opened.
 
 ## Counterexamples
 
-None found. Scanned superquadratic words of length \(\le5\) have
+None found. Scanned superquadratic itineraries of length \(\le5\) have
 \(Q_v\subseteq\{1,2,3\}\).
 
 ## Formalization
@@ -125,7 +125,7 @@ and therefore \(T_v(q)\ge(q+1)^2\) for all sufficiently large realized
 \(q\). The constant \(D_v\) and the threshold \(Q_0(v)\) depend on
 \(v\). The existing exact bounds for `OO` and `OOO` remain sharper.
 
-No finite word satisfies \(\alpha_v=2\), because \(3^o\) is odd and
+No finite itinerary satisfies \(\alpha_v=2\), because \(3^o\) is odd and
 \(2^{r+1}\) is even.
 
 This is not a termination theorem. It does not rule out infinite
@@ -139,7 +139,7 @@ a uniform \(Q(\varepsilon)\) does not exist. The even-tower family
 
 ## Decision
 
-**PROMOTE** the fixed-word lower-growth theorem and the eventual
+**PROMOTE** the fixed-itinerary lower-growth theorem and the eventual
 non-contraction corollary `FIRST_E_EVENTUAL_NONCONTRACTION_GREEN`.
 Keep the exact short-word classifications. Do not open a generic
 lower-envelope theory. Do not claim a uniform-in-\(v\) bound. Do not
@@ -151,5 +151,5 @@ threshold for \(\alpha_v\ge 2+\varepsilon\)?
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A local fixed-word threshold theorem, not a
+Status: `EXPLORATORY`. A local fixed-itinerary threshold theorem, not a
 paper candidate and not a Juggler totality result.

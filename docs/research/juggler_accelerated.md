@@ -84,7 +84,7 @@ Label: `OBSERVATION`. Compression is not a discovery.
 
 On a realized branch `(1,b)` the identity A(n)=J^{1+b}(n)=T_w(n)
 with w=OE^b (or w=O) is `image_eq_iterate`. The envelope
-\(A(n)^{2^{1+b}}\le n^{3}\) is the existing finite-word bound, not a
+\(A(n)^{2^{1+b}}\le n^{3}\) is the existing finite-itinerary bound, not a
 new result. The exact defect
 
 \[
@@ -126,7 +126,7 @@ Label: `OBSERVATION`.
 
 ## G. Macro inverse geometry
 
-Fixed `(1,0)`: `Pred_O(m)`, at most one integer (`odd_cell_unique`).
+Fixed `(1,0)`: `Pred_O(m)`, at most one integer (`odd_preimage_unique`).
 Fixed `(1,b)`: one odd cell then `b` even square cells. This is the
 closed backward-geometry conclusion, not a new inverse law.
 
@@ -165,13 +165,13 @@ Label: `REPACKAGING`. Not `MACRO_STRUCTURE_GREEN` or `MACRO_HARDNESS_GREEN`.
 - Delta_{a,b} equals global_defect on the realizing word — `REPARAMETERIZATION` novelty `REPARAMETERIZATION` repackaging `True`
 - A is monotone on each fixed (a,b) — `REPARAMETERIZATION` novelty `REPARAMETERIZATION` repackaging `True`
 - A(n)<n iff J(n) is even — `EXACT — HUMAN PROOF` novelty `REPARAMETERIZATION` repackaging `True`
-- beta(a,b) is the finite-word exponent — `REPARAMETERIZATION` novelty `REPARAMETERIZATION` repackaging `True`
+- beta(a,b) is the finite-itinerary exponent — `REPARAMETERIZATION` novelty `REPARAMETERIZATION` repackaging `True`
 - A_{1,b}^{-1} is nested floor cells — `REPARAMETERIZATION` novelty `REPARAMETERIZATION` repackaging `True`
 - first J-return below n can occur on an even state before A(n) — `EXACT — HUMAN PROOF` novelty `PROJECT-SPECIFIC` repackaging `False`
-- macro word (1,0),(1,b) is a shorter encoding of the same O/E word — `OBSERVATION` novelty `REPARAMETERIZATION` repackaging `True`
+- macro itinerary (1,0),(1,b) is a shorter encoding of the same O/E word — `OBSERVATION` novelty `REPARAMETERIZATION` repackaging `True`
 - consecutive macro branches are ResidualStep blocks — `REPARAMETERIZATION` novelty `REPARAMETERIZATION` repackaging `True`
 
-The only statement that is not an immediate rewrite of a word /
+The only statement that is not an immediate rewrite of an itinerary /
 floor-power theorem is the first-return distinction: a J-return
 below n may land on an even intermediate before A(n).
 That is a warning against replacing J by A, not a simpler law.
@@ -192,7 +192,7 @@ That is a warning against replacing J by A, not a simpler law.
 
 **CLOSE** — `ACCELERATION_COMPLEX`
 
-A is the odd subsequence of J: A(n)=J(n) when J(n) is odd, and A(n) is the a=1 ResidualStep landing when J(n) is even. Defect, monotonicity, contraction, beta, and inverse reduce to global_defect_identity, image_monotone_of_follows, power_bound_contracts / floorPower_odd_ge, the word exponent, and the floor cells. Acceleration removes only even tails.
+A is the odd subsequence of J: A(n)=J(n) when J(n) is odd, and A(n) is the a=1 ResidualStep landing when J(n) is even. Defect, monotonicity, contraction, beta, and inverse reduce to global_defect_identity, image_monotone_of_follows, power_bound_contracts / floorPower_odd_ge, the itinerary exponent, and the floor cells. Acceleration removes only even tails.
 
 This is not a halt result and not a proof that every odd start
 has a next odd landing outside the scanned window. A does not
@@ -206,7 +206,7 @@ replace J.
 - `image_monotone_of_follows`: `True`
 - `global_defect_identity`: `True`
 - `residualStep_global_defect`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `image_eq_iterate`: `True`
 - no forbidden engines: `True`
 - no global halt theorem: `True`

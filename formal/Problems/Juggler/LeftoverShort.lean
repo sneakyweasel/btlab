@@ -1,12 +1,12 @@
 import Problems.Juggler.CycleCore
 import Problems.Juggler.CycleObstructions
 import Problems.Juggler.LeftoverEval
-import Problems.Juggler.LeftoverCell
+import Problems.Juggler.LeftoverPreimage
 
 namespace Problems.Juggler
 
 /-!
-# Named leftover cycle words at lengths six and seven
+# Named leftover cycle itineraries at lengths six and seven
 
 `OOOEOE` and `OOOOEE` are the remaining legal `CycleMin` orientations
 among the expanding length-six even-terminating words. `OOOOEOE` and
@@ -22,32 +22,32 @@ Uniform extra scale from `n = 3` fails. Length six is a finite
 evaluation below `256` plus `n^81 > 2^130 (n+1)^64`. Length seven
 is a finite evaluation below `14` plus
 `n^243 > 2^422 (n+1)^128`. Not an exclusion of odd-terminating
-cycle words. The length-six and length-seven censuses are assembled
+cycle itineraries. The length-six and length-seven censuses are assembled
 in `SmallCycleCensus.lean`.
 -/
 
-theorem wordOOOEOE_eq_eval : wordOOOEOE = wordOOOEOE' :=
+theorem itineraryOOOEOE_eq_eval : itineraryOOOEOE = itineraryOOOEOE' :=
   rfl
 
-theorem cycleWordB_iff {n : ℕ} {w : List Branch} :
-    cycleWordB n w = true ↔ CycleWord n w := by
-  simp [cycleWordB, CycleWord, followsB_iff, Bool.and_eq_true, beq_iff_eq]
+theorem cycleItineraryB_iff {n : ℕ} {w : List Branch} :
+    cycleItineraryB n w = true ↔ CycleItinerary n w := by
+  simp [cycleItineraryB, CycleItinerary, followsB_iff, Bool.and_eq_true, beq_iff_eq]
   exact and_assoc
 
-theorem no_cycle_word_oooeoe_of_lt {n : ℕ} (hn : n < 256) :
-    ¬CycleWord n wordOOOEOE := by
+theorem no_cycle_itinerary_oooeoe_of_lt {n : ℕ} (hn : n < 256) :
+    ¬CycleItinerary n itineraryOOOEOE := by
   intro h
-  have hfalse : cycleWordB n wordOOOEOE = false := by
-    simpa [wordOOOEOE_eq_eval] using cycleWordB_oooeoe_lt256 ⟨n, hn⟩
-  have htrue : cycleWordB n wordOOOEOE = true := cycleWordB_iff.mpr h
+  have hfalse : cycleItineraryB n itineraryOOOEOE = false := by
+    simpa [itineraryOOOEOE_eq_eval] using cycleItineraryB_oooeoe_lt256 ⟨n, hn⟩
+  have htrue : cycleItineraryB n itineraryOOOEOE = true := cycleItineraryB_iff.mpr h
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_ooooee_of_lt {n : ℕ} (hn : n < 256) :
-    ¬CycleWord n wordOOOOEE := by
+theorem no_cycle_itinerary_ooooee_of_lt {n : ℕ} (hn : n < 256) :
+    ¬CycleItinerary n itineraryOOOOEE := by
   intro h
-  have hfalse := cycleWordB_ooooee_lt256 ⟨n, hn⟩
-  have htrue : cycleWordB n wordOOOOEE = true := cycleWordB_iff.mpr h
+  have hfalse := cycleItineraryB_ooooee_lt256 ⟨n, hn⟩
+  have htrue : cycleItineraryB n itineraryOOOOEE = true := cycleItineraryB_iff.mpr h
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
@@ -200,20 +200,20 @@ theorem cube_succ_lt_two_mul_of_cube_lt_pow4 {y A : ℕ}
       exact hsum.trans htwo
 
 theorem ooooee_prefix_lt_succ_pow4 {n : ℕ}
-    (h : CycleWord n wordOOOOEE) :
+    (h : CycleItinerary n itineraryOOOOEE) :
     image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd] < (n + 1) ^ 4 := by
   have hcell :
-      CycleWord n
+      CycleItinerary n
         ([Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even] ++
           [Branch.even]) := by
-    simpa [wordOOOOEE] using h
+    simpa [itineraryOOOOEE] using h
   have hI := cycle_last_even_interval hcell
   have hf4 :
       follows (image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd])
         [Branch.even, Branch.even] :=
     follows_of_append_right
       (u := [Branch.odd, Branch.odd, Branch.odd, Branch.odd])
-      (by simpa [wordOOOOEE] using h.1)
+      (by simpa [itineraryOOOOEE] using h.1)
   have he4 :
       image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd] % 2 = 0 :=
     hf4.1
@@ -320,13 +320,13 @@ theorem combine_ooo_tail {n y : ℕ}
   rw [h130] at hexp
   exact hexp ▸ hmid
 
-theorem no_cycle_word_ooooee_of_ge {n : ℕ} (hn : 256 ≤ n)
-    (h : CycleWord n wordOOOOEE) : False := by
+theorem no_cycle_itinerary_ooooee_of_ge {n : ℕ} (hn : 256 ≤ n)
+    (h : CycleItinerary n itineraryOOOOEE) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hOOOO :
       follows n [Branch.odd, Branch.odd, Branch.odd, Branch.odd] :=
     follows_of_append_left (v := [Branch.even, Branch.even])
-      (by simpa [wordOOOOEE] using h.1)
+      (by simpa [itineraryOOOOEE] using h.1)
   have hz := ooooee_prefix_lt_succ_pow4 h
   have hpow := oooo_lower_growth hn1 hOOOO
   have hz16 : image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd] ^ 16 <
@@ -338,21 +338,21 @@ theorem no_cycle_word_ooooee_of_ge {n : ℕ} (hn : 256 ≤ n)
       (pow_pos (by decide : (0 : ℕ) < 2) 130))
   exact (not_lt_of_gt (pow81_gt_two_pow130_succ_pow64 hn)) hlt
 
-theorem oooeoe_y_cube_lt {n : ℕ} (h : CycleWord n wordOOOEOE) :
+theorem oooeoe_y_cube_lt {n : ℕ} (h : CycleItinerary n itineraryOOOEOE) :
     image n [Branch.odd, Branch.odd, Branch.odd, Branch.even] ^ 3 <
       (n + 1) ^ 4 := by
   have hcell :
-      CycleWord n
+      CycleItinerary n
         ([Branch.odd, Branch.odd, Branch.odd, Branch.even, Branch.odd] ++
           [Branch.even]) := by
-    simpa [wordOOOEOE] using h
+    simpa [itineraryOOOEOE] using h
   have hI := cycle_last_even_interval hcell
   have hyO :
       follows (image n [Branch.odd, Branch.odd, Branch.odd, Branch.even])
         [Branch.odd, Branch.even] :=
     follows_of_append_right
       (u := [Branch.odd, Branch.odd, Branch.odd, Branch.even])
-      (by simpa [wordOOOEOE] using h.1)
+      (by simpa [itineraryOOOEOE] using h.1)
   have hyodd :
       image n [Branch.odd, Branch.odd, Branch.odd, Branch.even] % 2 = 1 :=
     hyO.1
@@ -384,19 +384,19 @@ theorem oooeoe_y_cube_lt {n : ℕ} (h : CycleWord n wordOOOEOE) :
     (Nat.pow_mul (n + 1) 2 2).symm
   exact lt_of_lt_of_le hylt (hexp ▸ hsq)
 
-theorem no_cycle_word_oooeoe_of_ge {n : ℕ} (hn : 256 ≤ n)
-    (h : CycleWord n wordOOOEOE) : False := by
+theorem no_cycle_itinerary_oooeoe_of_ge {n : ℕ} (hn : 256 ≤ n)
+    (h : CycleItinerary n itineraryOOOEOE) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
   have hOOO : follows n [Branch.odd, Branch.odd, Branch.odd] :=
     follows_of_append_left
       (v := [Branch.even, Branch.odd, Branch.even])
-      (by simpa [wordOOOEOE] using h.1)
+      (by simpa [itineraryOOOEOE] using h.1)
   set z3 := image n [Branch.odd, Branch.odd, Branch.odd]
   set y := image n [Branch.odd, Branch.odd, Branch.odd, Branch.even]
   have he3 : z3 % 2 = 0 := by
     have hf : follows z3 [Branch.even, Branch.odd, Branch.even] :=
       follows_of_append_right (u := [Branch.odd, Branch.odd, Branch.odd])
-        (by simpa [wordOOOEOE] using h.1)
+        (by simpa [itineraryOOOEOE] using h.1)
     exact hf.1
   have hyeq : floorPower z3 = y := by
     simp [z3, y, image]
@@ -419,19 +419,19 @@ theorem no_cycle_word_oooeoe_of_ge {n : ℕ} (hn : 256 ≤ n)
   have hlt := combine_ooo_tail h81 hy48
   exact (not_lt_of_gt (pow81_gt_two_pow130_succ_pow64 hn)) hlt
 
-theorem no_cycle_word_oooeoe {n : ℕ} (_hn : 2 ≤ n) :
-    ¬CycleWord n wordOOOEOE := by
+theorem no_cycle_itinerary_oooeoe {n : ℕ} (_hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOOEOE := by
   intro h
   cases lt_or_ge n 256 with
-  | inl hlt => exact no_cycle_word_oooeoe_of_lt hlt h
-  | inr hge => exact no_cycle_word_oooeoe_of_ge hge h
+  | inl hlt => exact no_cycle_itinerary_oooeoe_of_lt hlt h
+  | inr hge => exact no_cycle_itinerary_oooeoe_of_ge hge h
 
-theorem no_cycle_word_ooooee {n : ℕ} (_hn : 2 ≤ n) :
-    ¬CycleWord n wordOOOOEE := by
+theorem no_cycle_itinerary_ooooee {n : ℕ} (_hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOOOEE := by
   intro h
   cases lt_or_ge n 256 with
-  | inl hlt => exact no_cycle_word_ooooee_of_lt hlt h
-  | inr hge => exact no_cycle_word_ooooee_of_ge hge h
+  | inl hlt => exact no_cycle_itinerary_ooooee_of_lt hlt h
+  | inr hge => exact no_cycle_itinerary_ooooee_of_ge hge h
 
 /-! Length-7 leftovers `OOOOOEE` and `OOOOEOE`. Finite evaluation
 below `14` plus `n^243 > 2^422 (n+1)^128` for `n ≥ 14`. -/
@@ -439,19 +439,19 @@ below `14` plus `n^243 > 2^422 (n+1)^128` for `n ≥ 14`. -/
 set_option exponentiation.threshold 512
 set_option maxRecDepth 1024
 
-theorem no_cycle_word_oooooee_of_lt {n : ℕ} (hn : n < 14) :
-    ¬CycleWord n wordOOOOOEE := by
+theorem no_cycle_itinerary_oooooee_of_lt {n : ℕ} (hn : n < 14) :
+    ¬CycleItinerary n itineraryOOOOOEE := by
   intro h
-  have hfalse := cycleWordB_oooooee_lt14 ⟨n, hn⟩
-  have htrue : cycleWordB n wordOOOOOEE = true := cycleWordB_iff.mpr h
+  have hfalse := cycleItineraryB_oooooee_lt14 ⟨n, hn⟩
+  have htrue : cycleItineraryB n itineraryOOOOOEE = true := cycleItineraryB_iff.mpr h
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
-theorem no_cycle_word_ooooeoe_of_lt {n : ℕ} (hn : n < 14) :
-    ¬CycleWord n wordOOOOEOE := by
+theorem no_cycle_itinerary_ooooeoe_of_lt {n : ℕ} (hn : n < 14) :
+    ¬CycleItinerary n itineraryOOOOEOE := by
   intro h
-  have hfalse := cycleWordB_ooooeoe_lt14 ⟨n, hn⟩
-  have htrue : cycleWordB n wordOOOOEOE = true := cycleWordB_iff.mpr h
+  have hfalse := cycleItineraryB_ooooeoe_lt14 ⟨n, hn⟩
+  have htrue : cycleItineraryB n itineraryOOOOEOE = true := cycleItineraryB_iff.mpr h
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
@@ -551,14 +551,14 @@ theorem pow243_gt_two_pow422_succ_pow128 {n : ℕ} (hn : 14 ≤ n) :
   exact (hcancel.trans_le hle).trans_eq h243n
 
 theorem oooooee_prefix_lt_succ_pow4 {n : ℕ}
-    (h : CycleWord n wordOOOOOEE) :
+    (h : CycleItinerary n itineraryOOOOOEE) :
     image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd] <
       (n + 1) ^ 4 := by
   have hcell :
-      CycleWord n
+      CycleItinerary n
         ([Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
             Branch.even] ++ [Branch.even]) := by
-    simpa [wordOOOOOEE] using h
+    simpa [itineraryOOOOOEE] using h
   have hI := cycle_last_even_interval hcell
   have hf5 :
       follows
@@ -566,7 +566,7 @@ theorem oooooee_prefix_lt_succ_pow4 {n : ℕ}
         [Branch.even, Branch.even] :=
     follows_of_append_right
       (u := [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd])
-      (by simpa [wordOOOOOEE] using h.1)
+      (by simpa [itineraryOOOOOEE] using h.1)
   have he5 :
       image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd] % 2 =
         0 :=
@@ -609,14 +609,14 @@ theorem oooooee_prefix_lt_succ_pow4 {n : ℕ}
     (Nat.pow_mul (n + 1) 2 2).symm
   exact lt_of_lt_of_le hz5lt (hexp ▸ hsq)
 
-theorem no_cycle_word_oooooee_of_ge {n : ℕ} (hn : 14 ≤ n)
-    (h : CycleWord n wordOOOOOEE) : False := by
+theorem no_cycle_itinerary_oooooee_of_ge {n : ℕ} (hn : 14 ≤ n)
+    (h : CycleItinerary n itineraryOOOOOEE) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 14) hn
   have hOOOOO :
       follows n
         [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd] :=
     follows_of_append_left (v := [Branch.even, Branch.even])
-      (by simpa [wordOOOOOEE] using h.1)
+      (by simpa [itineraryOOOOOEE] using h.1)
   have hz := oooooee_prefix_lt_succ_pow4 h
   have hpow := ooooo_lower_growth hn1 hOOOOO
   have hz32 :
@@ -629,14 +629,14 @@ theorem no_cycle_word_oooooee_of_ge {n : ℕ} (hn : 14 ≤ n)
       (pow_pos (by decide : (0 : ℕ) < 2) 422))
   exact (not_lt_of_gt (pow243_gt_two_pow422_succ_pow128 hn)) hlt
 
-theorem ooooeoe_y_cube_lt {n : ℕ} (h : CycleWord n wordOOOOEOE) :
+theorem ooooeoe_y_cube_lt {n : ℕ} (h : CycleItinerary n itineraryOOOOEOE) :
     image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even] ^ 3 <
       (n + 1) ^ 4 := by
   have hcell :
-      CycleWord n
+      CycleItinerary n
         ([Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even,
             Branch.odd] ++ [Branch.even]) := by
-    simpa [wordOOOOEOE] using h
+    simpa [itineraryOOOOEOE] using h
   have hI := cycle_last_even_interval hcell
   have hyO :
       follows
@@ -644,7 +644,7 @@ theorem ooooeoe_y_cube_lt {n : ℕ} (h : CycleWord n wordOOOOEOE) :
         [Branch.odd, Branch.even] :=
     follows_of_append_right
       (u := [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even])
-      (by simpa [wordOOOOEOE] using h.1)
+      (by simpa [itineraryOOOOEOE] using h.1)
   have hyodd :
       image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even] % 2 =
         1 :=
@@ -736,21 +736,21 @@ theorem combine_oooo_tail {n y : ℕ}
   rw [h422] at hexp
   exact hexp ▸ hmid
 
-theorem no_cycle_word_ooooeoe_of_ge {n : ℕ} (hn : 14 ≤ n)
-    (h : CycleWord n wordOOOOEOE) : False := by
+theorem no_cycle_itinerary_ooooeoe_of_ge {n : ℕ} (hn : 14 ≤ n)
+    (h : CycleItinerary n itineraryOOOOEOE) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 14) hn
   have hOOOO :
       follows n [Branch.odd, Branch.odd, Branch.odd, Branch.odd] :=
     follows_of_append_left
       (v := [Branch.even, Branch.odd, Branch.even])
-      (by simpa [wordOOOOEOE] using h.1)
+      (by simpa [itineraryOOOOEOE] using h.1)
   set z4 := image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd]
   set y := image n [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even]
   have he4 : z4 % 2 = 0 := by
     have hf : follows z4 [Branch.even, Branch.odd, Branch.even] :=
       follows_of_append_right
         (u := [Branch.odd, Branch.odd, Branch.odd, Branch.odd])
-        (by simpa [wordOOOOEOE] using h.1)
+        (by simpa [itineraryOOOOEOE] using h.1)
     exact hf.1
   have hyeq : floorPower z4 = y := by
     simp [z4, y, image]
@@ -773,18 +773,18 @@ theorem no_cycle_word_ooooeoe_of_ge {n : ℕ} (hn : 14 ≤ n)
   have hlt := combine_oooo_tail h243 hy96
   exact (not_lt_of_gt (pow243_gt_two_pow422_succ_pow128 hn)) hlt
 
-theorem no_cycle_word_oooooee {n : ℕ} (_hn : 2 ≤ n) :
-    ¬CycleWord n wordOOOOOEE := by
+theorem no_cycle_itinerary_oooooee {n : ℕ} (_hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOOOOEE := by
   intro h
   cases lt_or_ge n 14 with
-  | inl hlt => exact no_cycle_word_oooooee_of_lt hlt h
-  | inr hge => exact no_cycle_word_oooooee_of_ge hge h
+  | inl hlt => exact no_cycle_itinerary_oooooee_of_lt hlt h
+  | inr hge => exact no_cycle_itinerary_oooooee_of_ge hge h
 
-theorem no_cycle_word_ooooeoe {n : ℕ} (_hn : 2 ≤ n) :
-    ¬CycleWord n wordOOOOEOE := by
+theorem no_cycle_itinerary_ooooeoe {n : ℕ} (_hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOOOEOE := by
   intro h
   cases lt_or_ge n 14 with
-  | inl hlt => exact no_cycle_word_ooooeoe_of_lt hlt h
-  | inr hge => exact no_cycle_word_ooooeoe_of_ge hge h
+  | inl hlt => exact no_cycle_itinerary_ooooeoe_of_lt hlt h
+  | inr hge => exact no_cycle_itinerary_ooooeoe_of_ge hge h
 
 end Problems.Juggler

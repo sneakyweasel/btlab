@@ -60,7 +60,7 @@ This is **not** a halt theorem. It does **not** prove
 - `MinimalNonTerm` orbits stay \(\ge n\); first `O^a E` overshoots
   — **EXACT — LEAN VERIFIED**.
 - \(T_{\mathtt{OOEOOE}}(n)<n^{2}\); even landing drops —
-  **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-square-cell`).
+  **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-square-preimage`).
 - Next-`O` dichotomy on `CycleMin` —
   **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-next-o`).
 - Escape-state margin \(M\) —

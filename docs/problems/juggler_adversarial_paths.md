@@ -30,7 +30,7 @@ theorem and not a claim that \(\tau\) is finite.
 
 - First-return maximality — **CLOSE** as `EXCURSION_COMPLEX`.
   The lex records reappear here and are not a new discovery.
-- Finite-word envelope — **EXACT — LEAN VERIFIED**
+- Finite-itinerary envelope — **EXACT — LEAN VERIFIED**
   (`power_bound_contracts`). Every observed return is the first
   formally contracting prefix.
 - Odd steps cannot descend — **EXACT — LEAN VERIFIED**
@@ -52,7 +52,7 @@ Falsifier               records are the known first-return extremals;
                         same (k,o) splits; swaps do not harden;
                         certificates fire exactly at first G_j>0
 Existing machinery      _walk_returns, exponent_gap,
-                        first_defect_sufficient, follows_word
+                        first_defect_sufficient, follows_itinerary
 Maximum Phase-0 scope   n=2..4000; prefix records k<=20; observed
                         (k,o) shape tables; local swaps of extremals;
                         no GPU; no Lean; no new scalar

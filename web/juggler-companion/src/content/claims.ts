@@ -10,13 +10,13 @@ import {
 
 export const CLAIM_ROWS = [
   {
-    plain: "After a word, the result cannot outrun a known power bound.",
+    plain: "After an itinerary, the result cannot outrun a known power bound.",
     theorem: "Theorem 2.2 / Corollary 2.3 power envelope",
     tag: "EXACT — LEAN VERIFIED",
   },
   {
     plain: "Going backwards, an odd image has at most one odd parent.",
-    theorem: "Lemma 3.1 odd cells unique",
+    theorem: "Lemma 3.1 odd one-step preimages unique",
     tag: "EXACT — LEAN VERIFIED",
   },
   {
@@ -70,20 +70,20 @@ export const DEFINITIONS = [
     meaning: "The list of values n, J(n), J²(n), … .",
   },
   {
-    term: "Word",
+    term: "Itinerary",
     meaning: "A finite string of O/E parities of a prefix. Not the trajectory.",
   },
   {
-    term: "Realized word",
+    term: "Realized itinerary",
     meaning: "The trajectory of n actually follows those letters.",
   },
   {
     term: "Ideal exponent",
-    meaning: "3^o / 2^k for a word of length k with o odd letters, before floors.",
+    meaning: "3^o / 2^k for an itinerary of length k with o odd letters, before floors.",
   },
   {
-    term: "Cell",
-    meaning: "The preimage set J⁻¹(m) = {k : J(k) = m}. J is not invertible.",
+    term: "One-step preimage",
+    meaning: "The set J⁻¹(m) = {k : J(k) = m}. J is not invertible.",
   },
   {
     term: "N₀",

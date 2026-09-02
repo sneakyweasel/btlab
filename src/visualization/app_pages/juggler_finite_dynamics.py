@@ -52,7 +52,7 @@ from visualization.juggler_finite_dynamics import (
     descent_view,
     descent_window,
     envelope_view,
-    even_cell_view,
+    even_preimage_view,
     finance_chart_rows,
     finance_view,
     format_int,
@@ -63,7 +63,7 @@ from visualization.juggler_finite_dynamics import (
     length11_inventory,
     length_eight_status_rows,
     next_square_view,
-    odd_cell_view,
+    odd_preimage_view,
     paper_exception_lengths,
     parse_cycle_word,
     parse_word,
@@ -79,7 +79,7 @@ VIEWS = (
     "Walk charge",
     "Trajectory",
     "Envelope",
-    "Cells and census",
+    "Preimages and census",
     "Cycle words",
     "Leftover families",
     "Descent",
@@ -90,13 +90,13 @@ VIEW_LABEL = {
     "Walk charge": "Walk",
     "Trajectory": "Trajectory",
     "Envelope": "Envelope",
-    "Cells and census": "Cells",
+    "Preimages and census": "Preimages",
     "Cycle words": "Cycle",
     "Leftover families": "Leftovers",
     "Descent": "Descent",
 }
 VIEWS_WITH_START = frozenset(
-    {"Trajectory", "Envelope", "Cells and census", "Cycle words", "Descent"}
+    {"Trajectory", "Envelope", "Preimages and census", "Cycle words", "Descent"}
 )
 VIEW_BLURB = {
     "Claim map": (
@@ -127,7 +127,7 @@ VIEW_BLURB = {
         "is how much room is left. Section 4 uses the envelope, not the "
         "defect composition."
     ),
-    "Cells and census": (
+    "Preimages and census": (
         "Work backwards: which numbers land on a given image? Then see "
         "which short loop-shapes are already ruled out."
     ),
@@ -137,7 +137,7 @@ VIEW_BLURB = {
         "says whether that loop is already impossible."
     ),
     "Leftover families": (
-        "Local leftover spellings the easy cells did not kill. Paper A "
+        "Local leftover spellings the easy one-step preimages did not kill. Paper A "
         "already excludes every cycle word with fewer than four evens, "
         "and Theorem 4.6 excludes every period at most 25780. These "
         "thirty words are a lab gate, not open cycles."
@@ -152,7 +152,7 @@ CLAIM_PLAIN = {
     "J-fixed-word-image-monotone": "Same word, bigger start never finishes smaller.",
     "J-power-envelope-contraction": "After a word, the result cannot outrun a known power bound.",
     "J-global-defect-identity": "The leftover slack after a word can be written exactly.",
-    "J-inverse-cell-asymmetry": "Going backwards, an odd image has at most one odd parent.",
+    "J-inverse-preimage-asymmetry": "Going backwards, an odd image has at most one odd parent.",
     "J-cycle-finite-structure": "A real loop must mix O and E, and grow more than it shrinks.",
     "J-leftover-length-six-orientations": "The two leftover length-6 loops cannot close.",
     "J-small-cycle-census": "No loop of length 6 or less.",
@@ -917,16 +917,16 @@ def _envelope() -> None:
                 st.success("The two-term formula matches Δ of the whole word.", icon=":material/check:")
 
 
-def _cells() -> None:
-    _blurb("Cells and census")
+def _preimages() -> None:
+    _blurb("Preimages and census")
     _proof_tags(*CENSUS_LEDGER_IDS)
     left, right = st.columns(2, gap="small")
     with left:
         with st.container(border=True, gap="small"):
-            st.markdown("**Even cell**")
+            st.markdown("**Even one-step preimage**")
             st.caption("Even parents of an image sit in one square interval.")
             q = int(st.number_input("Image q", min_value=0, step=1, value=6, key="juggler_q"))
-            cell = even_cell_view(q)
+            cell = even_preimage_view(q)
             st.metric("Interval", f"[{cell.lo}, {cell.hi})", border=True)
             st.caption(f"{cell.even_count} even predecessors.")
             st.dataframe(
@@ -939,10 +939,10 @@ def _cells() -> None:
                 st.caption("List truncated.")
     with right:
         with st.container(border=True, gap="small"):
-            st.markdown("**Odd cell**")
+            st.markdown("**Odd one-step preimage**")
             st.caption("An odd image has at most one odd parent.")
             m = int(st.number_input("Image m", min_value=0, step=1, value=11, key="juggler_m"))
-            odd = odd_cell_view(m)
+            odd = odd_preimage_view(m)
             st.metric("Odd parents", len(odd.integers), border=True)
             if odd.integers:
                 st.dataframe(
@@ -952,7 +952,7 @@ def _cells() -> None:
                     height=160,
                 )
             else:
-                st.caption("Empty odd cell.")
+                st.caption("Empty odd one-step preimage.")
 
     with st.expander("Word playground", icon=":material/tune:"):
         st.caption(
@@ -1431,8 +1431,8 @@ def juggler_finite_dynamics_page() -> None:
         _trajectory()
     elif view == "Envelope":
         _envelope()
-    elif view == "Cells and census":
-        _cells()
+    elif view == "Preimages and census":
+        _preimages()
     elif view == "Cycle words":
         _cycle_words()
     elif view == "Leftover families":

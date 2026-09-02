@@ -9,7 +9,7 @@ not a new paper. After a cheap-band descent was shown to start
 \(a=2\), this phase asks whether first-defect Amplify on
 \(w_k=(\mathtt{OOE})^k\) beats the formal surplus
 \(G=n^{3^{2k}}-n^{2^{3k}}\) for some \(k\le 25\). Not a halt
-theorem, not a leftover-word census, and not a floor raise.
+theorem, not a leftover-itinerary census, and not a floor raise.
 
 ## Problem
 

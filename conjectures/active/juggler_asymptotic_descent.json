@@ -1,7 +1,7 @@
 {
   "id": "juggler_asymptotic_descent",
   "title": "Asymptotic Descent: every sufficiently large start has a finite descent certificate",
-  "statement": "There exists N such that every n >= N admits a realized finite word w with J^{|w|}(n) < n (equivalently: no AboveAnchor prefix of the orbit of n extends indefinitely). Together with a finite check of the starts below N, strict integer descent and strong induction would give arrival at 1; this is exactly the missing induction hypothesis of Paper A Section 6. The Lean-verified constraint on the negation (J-above-anchor-hug-domination): a descent-free flight keeps the exponent walk u_k = a_k log2 3 - k nonnegative and dominates the exact hug word in odd count at every prefix, so its odd-letter density is at least log 2 / log 3 in every prefix.",
+  "statement": "There exists N such that every n >= N admits a realized finite itinerary w with J^{|w|}(n) < n (equivalently: no AboveAnchor prefix of the orbit of n extends indefinitely). Together with a finite check of the starts below N, strict integer descent and strong induction would give arrival at 1; this is exactly the missing induction hypothesis of Paper A Section 6. The Lean-verified constraint on the negation (J-above-anchor-hug-domination): a descent-free flight keeps the exponent walk u_k = a_k log2 3 - k nonnegative and dominates the exact hug itinerary in odd count at every prefix, so its odd-letter density is at least log 2 / log 3 in every prefix.",
   "mathematical_domain": "Juggler open-trajectory dynamics / descent certificates",
   "origin": "docs/problems/juggler_above_anchor_walk.md",
   "status": "ACTIVE",
@@ -11,7 +11,7 @@
   "proof_reference": "",
   "lean_reference": "Problems/Juggler/AboveAnchorWalk.lean (constraint on the negation only)",
   "literature": [],
-  "notes": "Weaker than the full Juggler conjecture (finitely many small starts remain) and stronger than the certified-density results (13/16 proved, Paper B): it is pointwise for large n, not density. The walk-envelope route to proving it requires floor-defect lower bounds at walk near-minima; the Phase-0 census finds first descents are overwhelmingly gap descents (the parity word itself goes exponent-negative), so the binding mechanism is the parity of nested floor powers - Paper B / K3 territory, parked behind BB/GG/JJ. Not a claim; recorded as the branch's target statement.",
+  "notes": "Weaker than the full Juggler conjecture (finitely many small starts remain) and stronger than the certified-density results (13/16 proved, Paper B): it is pointwise for large n, not density. The walk-envelope route to proving it requires floor-defect lower bounds at walk near-minima; the Phase-0 census finds first descents are overwhelmingly gap descents (the parity itinerary itself goes exponent-negative), so the binding mechanism is the parity of nested floor powers - Paper B / K3 territory, parked behind BB/GG/JJ. Not a claim; recorded as the branch's target statement.",
   "not_a_halt_theorem": true,
   "no_cycle_all_lengths": false
 }

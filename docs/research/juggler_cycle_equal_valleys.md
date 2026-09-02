@@ -15,7 +15,7 @@ Not a halt theorem. Not a leftover-length exclusion. No new Lean.
 - second valley ≥ n+2: `True`
 - n+2 leftover-killer slogan false: `True`
 
-all m valleys equal n is impossible for m≥2 on a leftover length (intermediate return is a shorter CycleWord). The next odd n+2 does not exclude L=84 at m=3: split RHS 0.003515 > θ=0.002086 at floor 261, Lean constant 1. Height plus n+2 is 0.002180. Height-split killing n2 is 281
+all m valleys equal n is impossible for m≥2 on a leftover length (intermediate return is a shorter CycleItinerary). The next odd n+2 does not exclude L=84 at m=3: split RHS 0.003515 > θ=0.002086 at floor 261, Lean constant 1. Height plus n+2 is 0.002180. Height-split killing n2 is 281
 
 ## Split-valley finance at leftover L=84
 
@@ -44,5 +44,5 @@ all m valleys equal n is impossible for m≥2 on a leftover length (intermediate
 
 **EQUAL_VALLEYS_CLOSED**
 
-all m valleys equal n is impossible for m≥2 on a leftover length (intermediate return is a shorter CycleWord). The next odd n+2 does not exclude L=84 at m=3: split RHS 0.003515 > θ=0.002086 at floor 261, Lean constant 1. Height plus n+2 is 0.002180. Height-split killing n2 is 281
+all m valleys equal n is impossible for m≥2 on a leftover length (intermediate return is a shorter CycleItinerary). The next odd n+2 does not exclude L=84 at m=3: split RHS 0.003515 > θ=0.002086 at floor 261, Lean constant 1. Height plus n+2 is 0.002180. Height-split killing n2 is 281
 

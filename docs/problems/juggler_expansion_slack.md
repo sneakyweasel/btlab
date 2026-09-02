@@ -122,7 +122,7 @@ It is not required.
   **REPARAMETERIZATION** of `slack_identity` and
   `onePlusSlack_concat`
 - `block_growth_compat` —
-  **REPARAMETERIZATION** of \(T_w(n)>n\) on an expanding word
+  **REPARAMETERIZATION** of \(T_w(n)>n\) on an expanding itinerary
 - Four consecutive `PersistentExpandingResidual` blocks —
   **EXACT — LEAN VERIFIED** (`four_block_pe_1999`)
 - Five consecutive expanding persistent blocks starting at \(2183\) —
@@ -190,7 +190,7 @@ identities under new names.
 
 - The logarithmic affine law and the weighted cocycle are exact
   rewrites of `1+q`.
-- `block_growth_compat` is \(T>n\) on an expanding word.
+- `block_growth_compat` is \(T>n\) on an expanding itinerary.
 - Four consecutive PE blocks are Lean-certified; five occur on the
   walker.
 - There is no uniform positive tax \(c/(\lambda-1)\).

@@ -31,9 +31,9 @@ the floor. Label: **EXACT IDENTITY**.
 ## 2. Cell decomposition
 
 `C_m = {odd n : a_n = m}` is the odd part of the cube cell
-`m^2 <= n^3 < (m+1)^2`. `odd_cell_unique` says that cell contains at
+`m^2 <= n^3 < (m+1)^2`. `odd_preimage_unique` says that cell contains at
 most one integer, so `c_m = |C_m| in {0,1}`. Label:
-**LEAN-CERTIFIED** (`odd_cell_unique`).
+**LEAN-CERTIFIED** (`odd_preimage_unique`).
 
 Prefix `m<= 8000`: value counts `{0: 7800, 1: 200, 'ge2': 0}`,
 `c_m <= 1` is `True`. Label: **EXACT COMPUTATION**.
@@ -188,12 +188,12 @@ drift theorem.
 
 ## 11. Lean candidates
 
-Existing: `odd_cell_unique`, `odd_cell_iff`,
+Existing: `odd_preimage_unique`, `odd_preimage_iff`,
 `landingParity_odd_iff`, `floorPower_odd_macro_direction`.
-Present: `{'sorry_free': True, 'odd_cell_unique': True, 'odd_cell_iff': True, 'floorPower_odd_macro_direction': True, 'landingParity_odd_iff': True, 'no_forbidden_engines': True}`.
+Present: `{'sorry_free': True, 'odd_preimage_unique': True, 'odd_preimage_iff': True, 'floorPower_odd_macro_direction': True, 'landingParity_odd_iff': True, 'no_forbidden_engines': True}`.
 
 Not added: van der Corput / Erdős–Turán. The elementary cell-sum
-identity is a packaging of `odd_cell_unique` and is not a new Lean
+identity is a packaging of `odd_preimage_unique` and is not a new Lean
 file. No `sorry`.
 
 ## 12. Decision

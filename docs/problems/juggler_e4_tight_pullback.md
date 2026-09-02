@@ -12,7 +12,7 @@ length-11 census, not a thirty-family Lean list, and not induction on
 
 \(Z_4\) leaks at the thirty first-expanding four-even short-gap
 words, all of length \(11\). Does a tighter last-cluster pullback
-make those words fire?
+make those itineraries fire?
 
 ## Exact statement
 
@@ -41,10 +41,10 @@ whether this fires at a practical \(N_0\) (below the seven-odd
 cut \(256\), or at least in a table window), and whether any of
 the other twenty-nine words fire in \(n\le 800\) under \(Z_4\).
 
-This is not a `CycleWord` theorem. It is not a length-8, length-9,
+This is not a `CycleItinerary` theorem. It is not a length-8, length-9,
 or length-11 census and not a halt theorem. There is no
-`no_cycle_word_length_eight`, no `no_cycle_word_length_eleven`,
-and no `no_cycle_word_oooooooeeee`.
+`no_cycle_itinerary_length_eight`, no `no_cycle_itinerary_length_eleven`,
+and no `no_cycle_itinerary_oooooooeeee`.
 
 ## Current literature
 
@@ -145,8 +145,8 @@ The stronger claims that remain false or unproved:
 
 None new. `cycle_trailing_evens_lt` already covers \(r=4\).
 `SmallCycleCensus.lean` still assembles only through length
-seven. No `no_cycle_word_length_eight`. No
-`no_cycle_word_length_eleven`. No `no_cycle_word_oooooooeeee`.
+seven. No `no_cycle_itinerary_length_eight`. No
+`no_cycle_itinerary_length_eleven`. No `no_cycle_itinerary_oooooooeeee`.
 No `sorry`. No halt theorem. Paper A is unchanged.
 
 ## Results
@@ -154,7 +154,7 @@ No `sorry`. No halt theorem. Paper A is unchanged.
 Classification **E4_TIGHT_PULLBACK_REFUTED**.
 
 The last-cluster cell on \(O^7\mathrm{EEEE}\) is already sharp.
-Tightening the \(Z_4\) pullback cannot help that word: the tail
+Tightening the \(Z_4\) pullback cannot help that itinerary: the tail
 is four evens, and `cycle_trailing_evens_lt` at \(r=4\) is the
 bound. The ideal form \(n^{139}>2^{4118}\) first fires at
 \(828\,484\,394\). All thirty length-11 words still miss
@@ -169,8 +169,8 @@ methods.
 Rotation and internal-E next-square are `CLOSE`
 ([length-11 non-pullback](juggler_length11_nonpullback.md)).
 Stop on the thirty length-11 leftovers as a leftover-path
-target. Do not assemble `no_cycle_word_length_eight`,
-`no_cycle_word_length_nine`, or `no_cycle_word_length_eleven`.
+target. Do not assemble `no_cycle_itinerary_length_eight`,
+`no_cycle_itinerary_length_nine`, or `no_cycle_itinerary_length_eleven`.
 Do not claim halt. Do not start a thirty-family Lean list from
 this `CLOSE`.
 

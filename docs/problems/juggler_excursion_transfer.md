@@ -5,7 +5,7 @@ Status: **EXPLORATORY**
 Standalone application phase on the Juggler floor-power map. It is
 **not** a Research Engine control-layer experiment, not a reopen of
 macro-event coupling, odd-source return, two-episode source descent,
-first-return maximality, prefix-cylinder occupancy, or the word
+first-return maximality, prefix-cylinder occupancy, or the itinerary
 language, not a new atlas language tag, not an automaton, not Paper A,
 and not a claim that every positive integer reaches 1.
 
@@ -66,7 +66,7 @@ This is not a halt theorem.
   ([juggler_first_return_excursions.md](juggler_first_return_excursions.md))
 - Nested start-set occupancy —
   **CLOSE** as `ANCHOR_CYLINDER_CLOSED`
-- Formal versus AA word gap —
+- Formal versus AAn itinerary gap —
   **CLOSE** as `FORMAL_REALIZED_GAP_CLOSED`
 - Shared formal language is `prefixNoncontracting` —
   **CLOSE** as `PARITY_BALANCE_CLOSED`

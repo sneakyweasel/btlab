@@ -15,7 +15,7 @@ from research.juggler_sequence.cycle_diophantine import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_nine_composition_and_slack():
@@ -63,7 +63,7 @@ def test_lean_api_diophantine_without_engine():
     assert lean["no_remainder_dynamics"] is True
     assert lean["no_energy"] is True
     assert lean["no_mordell_solver"] is True
-    assert lean["CycleWord_not_rewritten"] is True
+    assert lean["CycleItinerary_not_rewritten"] is True
     assert lean["FloorPower_not_rewritten"] is True
     assert lean["orbit_min_not_used"] is True
     assert lean["PowerBoundEq_not_used_as_cycle_attack"] is True
@@ -91,7 +91,7 @@ def test_classify_diophantine_repackaging():
     assert decision["classification"] == CLASS_REPACK
     assert CLASS_R in decision["secondary"]
     assert scan["n_search"] is False
-    assert scan["cycle_word_census"] is False
+    assert scan["cycle_itinerary_census"] is False
     assert scan["remainder_dynamics"] is False
     assert scan["mordell_solver"] is False
     assert scan["compose_fails"] == 0

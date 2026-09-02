@@ -6,7 +6,7 @@ generic inverse search, Z5, length-11, four-even, or p-adic attack.
 
 Phase 0 asks whether an entire odd chain encodes a smaller bad
 witness or a good-set contradiction, beyond floorPower_odd_gt,
-odd_cell_unique, and EnvelopeState applied step by step.
+odd_preimage_unique, and EnvelopeState applied step by step.
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimal_anchor_closure import WORD_L, trajectory_until_drop
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_chain_minimality.json"
@@ -45,7 +45,7 @@ SHIFT = 2
 
 EXISTING_LEAN = (
     "floorPower_odd_gt",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "odd_run_power_bound",
     "EnvelopeState",
     "AboveAnchor",
@@ -270,7 +270,7 @@ def lean_api_present() -> dict[str, bool]:
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "not_in_paper_barrel": "OddChain" not in paper
         and "OddChainCompression" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

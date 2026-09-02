@@ -71,13 +71,13 @@ separate job.
 ## Lean
 
 - `cycle_trailing_evens_lt`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `o7_image_ge_succ_pow16`: `True`
-- `no_cycle_word_oooooooeeee`: `True`
+- `no_cycle_itinerary_oooooooeeee`: `True`
 - `no_cycleMin_ooooooeeeoe`: `True`
-- `no_cycle_word_ooooooeeeoe`: `True`
-- no `no_cycle_word_length_eleven`: `True`
-- no `no_cycle_word_four_even`: `True`
+- `no_cycle_itinerary_ooooooeeeoe`: `True`
+- no `no_cycle_itinerary_length_eleven`: `True`
+- no `no_cycle_itinerary_four_even`: `True`
 - no `juggler_reaches_one`: `True`
 - O^6 EEEOE theorem: `True`
 - Paper A has no O^6 EEEOE: `True`

@@ -161,7 +161,7 @@ Q_H plateaus below |Y| only because some landings share a complete block-word to
 - residual_state_object: `False`
 - residual_step_extended: `False`
 - finite_residual_automaton: `False`
-- word_language_reopened: `False`
+- itinerary_language_reopened: `False`
 - history_is_new_state: `False`
 - defect_financing_opened: `False`
 - global_defect_growth_opened: `False`

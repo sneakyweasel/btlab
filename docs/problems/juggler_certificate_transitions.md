@@ -30,8 +30,8 @@ The iterator continues from the landing \(T_{|w|}(x)<x\). Absence
 of a transition under a bound is `NOT OBSERVED WITHIN SEARCH BOUND`.
 This is not a halt theorem.
 
-Residual does **not** remain `AboveAnchor` after the leftover word
-fires. The leftover word is already a descent. Taken literally,
+Residual does **not** remain `AboveAnchor` after the leftover itinerary
+fires. The leftover itinerary is already a descent. Taken literally,
 “until `FiniteProgress`” has depth 1 for every start. The Phase-0
 object is therefore the **labelled descent chain**, not a new
 unresolved residual state.
@@ -50,7 +50,7 @@ unresolved residual state.
 - Every start reaches 1 — not claimed
 
 Project relationship: **extended**. Composition of existing
-certificates. Do not reopen source descent or the word language.
+certificates. Do not reopen source descent or the itinerary language.
 
 ## Branch budget
 
@@ -116,7 +116,7 @@ None opened.
 ## Counterexamples
 
 - “a residual first certificate remains `AboveAnchor` and is not
-  yet `FiniteProgress`” — every realized leftover word is already
+  yet `FiniteProgress`” — every realized leftover itinerary is already
   a first descent, hence `finiteProgress_of_imageLt`.
 - “the first residual certificate is a new object, not a \(Q\)-block
   itinerary” — on every start \(2\le n\le 2\cdot 10^4\), the first
@@ -219,7 +219,7 @@ None in the transition graph: every class, including \(E\) and
 \(OE\), has outgoing edges to all four classes. Semantically,
 every certificate including \(R\) is already `FiniteProgress` at
 the current state. There is no residual absorbing-exit law
-beyond “the leftover word drops.”
+beyond “the leftover itinerary drops.”
 
 ### 8. Strongest candidate composition rules
 

@@ -17,7 +17,7 @@ The greedy mechanical word is feasible as an exponent walk
 one-step floor cells are already classified. Does the exact
 Juggler map still force a transported law on the within-cell
 coordinate \(\xi\) whose cyclic closure \(\xi_L=\xi_0\) fails
-for sufficiently good survivor words?
+for sufficiently good survivor itineraries?
 
 ## Exact statement
 
@@ -58,7 +58,7 @@ and \(\Phi_{\mathtt{OE}}\) was skipped: there is no scale-stable
 All even occupants of \([q^2,(q+1)^2)\) map to \(q\)
 (\(q=10,20,100\)). Odd cells through \(m=200\) have at most one
 integer (\(166\) empty, \(35\) singleton). These are
-`cell_same_next_state` and `odd_cell_unique`.
+`preimage_same_next_state` and `odd_preimage_unique`.
 
 **Hug concatenations are SCALE_HUG, not a \(\xi\) law
 (COMPUTATIONALLY VERIFIED / archived).**
@@ -117,7 +117,7 @@ No cycle of any length — not claimed.
   **REPARAMETERIZATION**
   ([juggler_cycle_error_transport.md](juggler_cycle_error_transport.md),
   [juggler_cycle_defect_congruence.md](juggler_cycle_defect_congruence.md))
-- `odd_cell_unique` / `cell_same_next_state` —
+- `odd_preimage_unique` / `preimage_same_next_state` —
   **EXACT — LEAN VERIFIED**
 - Every start reaches 1 — not claimed
 
@@ -137,13 +137,13 @@ Mathematical target     Does the greedy mechanical word induce a
 Novelty hypothesis      The integer Juggler map is a skew product
                         (u,ξ)↦(u',Ξ_σ(u,ξ)) whose cheap-excursion
                         maps Φ_OOE, Φ_OE have no periodic lift on
-                        sufficiently good survivor words
+                        sufficiently good survivor itineraries
 Falsifier               Ξ is not a function of (u,ξ); or Φ has a
                         cyclic fixed point / nonempty invariant
                         interval; or every emptiness is LOCAL_CELL,
                         INERT_EVEN, SCALE_HUG, or DEFECT_REPARAM
 Existing machinery      hug_word, o_min_and_theta, cell_record pos
-                        (already ξ=ρ/(2T+1)), follows_word,
+                        (already ξ=ρ/(2T+1)), follows_itinerary,
                         excursion_map, inverse_walk, controls
                         365/1517/1000057/1016445; cyclic_valley
                         (OE after OOE at 9/8<4/3); remainder_finance
@@ -182,8 +182,8 @@ It is not required.
   **REFUTED** (uncorrelated scatter)
 - CycleMin lift of hug concatenations —
   **REPARAMETERIZATION** of cyclic-valley SCALE_HUG
-- Inverse emptiness of hug words —
-  **REPARAMETERIZATION** of `empty_ooe` / `odd_cell_unique`
+- Inverse emptiness of hug itineraries —
+  **REPARAMETERIZATION** of `empty_ooe` / `odd_preimage_unique`
 - Better \(o/L\) \(\Rightarrow\) smaller admissible \(\xi\)-set —
   **REFUTED** (follow depths flat)
 - No cycle of any length — not claimed

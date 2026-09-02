@@ -74,7 +74,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_harv = sub.add_parser(
         "harvest",
-        help="first-descent leftover-class histogram (not a word-atlas recensus)",
+        help="first-descent leftover-class histogram (not an word-atlas recensus)",
     )
     p_harv.add_argument("--k-max", type=int, default=20)
     p_harv.add_argument("--n-max", type=int, default=400)

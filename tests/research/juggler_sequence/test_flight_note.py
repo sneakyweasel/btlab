@@ -36,7 +36,7 @@ def test_note_anti_overclaim() -> None:
     assert "not a halt theorem" in lower
     assert "not a second manuscript" in note
     assert "478245" in note or "478\\,245" in note
-    assert "theorem no_cycle_word_any_length" not in note
+    assert "theorem no_cycle_itinerary_any_length" not in note
     assert "no cycle of any length" in lower
     assert "REFUTED" in note
     assert "REPARAMETERIZATION" in note

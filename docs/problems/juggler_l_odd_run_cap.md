@@ -32,7 +32,7 @@ follows \(\mathtt{O}^k\), does the compose test
 force \(T_{\mathtt{O}^k}(t)<n\)? If not, is there another
 exact obstruction to all large \(k\)?
 
-Do not open an \(L+\mathtt{O}^k\) word census. Do not reopen
+Do not open an \(L+\mathtt{O}^k\) itinerary census. Do not reopen
 \(\theta\), valuation, or predecessor cylinders.
 
 ## Current literature
@@ -45,7 +45,7 @@ Do not open an \(L+\mathtt{O}^k\) word census. Do not reopen
 - Inherited history forces even / \(K=2\) —
   **REFUTED**.
 - `odd_run_suffix_threshold` / `no_cycle_odd_run_append_even`
-  forbid `CycleWord` \(\mathtt{O}^a\mathrm{E}\) for \(a\ge 3\) —
+  forbid `CycleItinerary` \(\mathtt{O}^a\mathrm{E}\) for \(a\ge 3\) —
   **EXACT — LEAN VERIFIED**.
 - Iterated odd-landing sets stay at half —
   **CLOSE**.
@@ -62,7 +62,7 @@ Mathematical target     L-envelope vs long odd runs from t
 Novelty hypothesis      2187/2048 supplies a finite K
 Falsifier               compose never drops; k=5 realized
 Existing machinery      compose_below_anchor; 33391 run 5
-Maximum Phase-0 scope   compose test; 33391; no word census
+Maximum Phase-0 scope   compose test; 33391; no itinerary census
 Promotion criterion     finite K theorem, or unboundedness
 Stop criterion          only a larger computational max;
                         L+O^k census; p-adic; another cell
@@ -89,7 +89,7 @@ It is not required.
 - `no_cycle_odd_run_append_even` caps path-length from
   \(t\) —
   **REFUTED** as a deduction. That theorem is a
-  `CycleWord` obstruction, not a path obstruction.
+  `CycleItinerary` obstruction, not a path obstruction.
   \(33391\) realizes \(k=5\).
 - Realization of \(L+\mathtt{O}^k\) for all \(k\) —
   not claimed. Not a census.
@@ -98,7 +98,7 @@ It is not required.
   found no \(k=6\) (**OBSERVATION**, not re-run in the
   probe).
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -131,7 +131,7 @@ length \(5\).
 None. Existing `power_bound_contracts`,
 `odd_run_suffix_threshold`, and
 `no_cycle_odd_run_append_even` are cited, not rewritten.
-No `no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+No `no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -154,10 +154,10 @@ assembler, and not a halt theorem.
 Does \(L+\mathtt{O}^k\) fail to be realized for all large
 \(k\), or does some sequence of \(L\)-followers realize
 arbitrarily large \(k\)? That is a preimage/realization
-question. Do not open a word census here. Do not reopen
+question. Do not open an itinerary census here. Do not reopen
 \(\theta\), valuation, or predecessor cylinders. Do not
 write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not build a \(p\)-adic
+`no_cycle_itinerary_length_eleven`. Do not build a \(p\)-adic
 system. Do not resume the integer-cell ladder.
 
 ## Decision

@@ -9,13 +9,13 @@ assembler, and not a claim that every positive integer reaches 1.
 
 ## Problem
 
-Once the seven bunched leftovers are excluded as cycle words, do
+Once the seven bunched leftovers are excluded as cycle itineraries, do
 they remain impossible as a `CycleMin` suffix after an *arbitrary*
 prefix \(u\)?
 
 ## Exact statement
 
-Let \(n\ge 2\) and let \(u\) be any word. There is no `CycleMin` of
+Let \(n\ge 2\) and let \(u\) be any itinerary. There is no `CycleMin` of
 the form
 
 \[
@@ -34,7 +34,7 @@ Write \(y=T_u(n)\). `CycleMin` gives \(y\ge n\). The leftover cell
 is measured against the cycle start \(n\), so \(y\ge n\) tightens
 it against the existing family tail at \(y\).
 
-Large \(y\) is the family cutoff already used for `CycleWord`
+Large \(y\) is the family cutoff already used for `CycleItinerary`
 (\(y\ge 256\), or \(y\ge 314\) for EOEE/EEOE at \(a=5\)). Below
 that cutoff, the seal is a path table on \(y\): no start follows
 the leftover and lands in \([2,y]\). Longer odd runs are seven
@@ -44,17 +44,17 @@ At \(a=3\) the coarse comparison
 \(Y^{27}>2^{38}(Y+1)^{32}\) never fires. Those two families use
 the existing tight split, measured at \(y\).
 
-If \(y=n\), the suffix itself is a bunched cycle word, already
+If \(y=n\), the suffix itself is a bunched cycle itinerary, already
 excluded.
 
-This is not a `CycleWord` theorem at a non-minimum start
+This is not a `CycleItinerary` theorem at a non-minimum start
 (\(y<n\) loosens the cell). It is not a bunched-short exclusion
 and not a halt theorem.
 
 ## Current literature
 
-- Seven bunched leftovers as cycle words —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_three_even_*`).
+- Seven bunched leftovers as cycle itineraries —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_three_even_*`).
 - Last two-even leftover after an arbitrary prefix —
   **EXACT — LEAN VERIFIED**
   ([juggler_prefix_two_even.md](juggler_prefix_two_even.md)).
@@ -70,7 +70,7 @@ and not a halt theorem.
 - Four-even leftover cells —
   **PARK**. Not reopened as \(Z_5\).
 
-Project relationship: **extended**. The `CycleWord` exclusions
+Project relationship: **extended**. The `CycleItinerary` exclusions
 are the special case \(u=\varepsilon\).
 
 ## Branch budget
@@ -79,10 +79,10 @@ are the special case \(u=\varepsilon\).
 Mathematical target     CycleMin n (u ++ threeEvenXXX a) is
                         impossible for every prefix u
 Novelty hypothesis      y>=n plus a path table at y replace
-                        CycleWord tables at the cycle start
+                        CycleItinerary tables at the cycle start
 Falsifier               a path y -> n in [2,y] below cutoff,
                         or the large-y tail failing when y>=n
-Existing machinery      seven bunched CycleWord exclusions;
+Existing machinery      seven bunched CycleItinerary exclusions;
                         CycleMin; family tails; seven-odd
 Maximum Phase-0 scope   path census; Lean wrapper;
                         no Z5, no length-11, no bunched-short
@@ -122,7 +122,7 @@ It is not required.
 - the coarse \(a=3\) comparison seals EOOOEE/EOOEOE —
   **REFUTED**; the tight split at \(y\) is the seal
 - bunched-short last cluster is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -151,7 +151,7 @@ or remain unproved:
   false; the table is on the leftover start \(y\), not on \(u\).
 - “every last-cluster class is now Lean-excluded” — false.
   Bunched-short last cluster remains.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
@@ -165,8 +165,8 @@ it with the family tail at \(y\). At \(a=3\) the tight lemmas
 the leftover start \(y\). Below cutoff,
 `PrefixBunchedEval.lean` has `returnsIntoB` tables; longer
 leftovers are seven-odd on the remainder. \(y=n\) reduces to the
-existing cycle-word exclusions. No `sorry`. No `no_juggler_cycle`.
-No `no_cycle_word_length_eleven`. Paper A is unchanged.
+existing cycle-itinerary exclusions. No `sorry`. No `no_juggler_cycle`.
+No `no_cycle_itinerary_length_eleven`. Paper A is unchanged.
 
 ## Results
 
@@ -184,12 +184,12 @@ The leftover-suffix attack on bunched-short is now a separate
 parked branch
 ([juggler_bunched_short.md](juggler_bunched_short.md)). Short
 leftovers return into \([12,y]\). Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`.
+assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 
 **PROMOTE**. The last three-even bunched leftover is now a
-`CycleMin` theorem for every prefix, not only as a cycle word.
+`CycleMin` theorem for every prefix, not only as a cycle itinerary.
 The small-\(y\) seal is a path table. The \(a=3\) seal is the
 existing tight split at \(y\). Do not claim that every cycle
 word is impossible.

@@ -64,16 +64,16 @@ both leftover families are Lean-excluded for every k>=6 and n>=2 by the shared t
 
 ## Lean
 
-- `cycle_word_formally_expanding`: `True`
+- `cycle_itinerary_formally_expanding`: `True`
 - `cycle_last_even_interval`: `True`
 - `cycle_trailing_evens_lt`: `True`
-- `no_cycle_word_ooooee`: `True`
-- `no_cycle_word_oooeoe`: `True`
-- `no_cycle_word_oooooee`: `True`
-- `no_cycle_word_ooooeoe`: `True`
-- `no_cycle_word_length_le_seven`: `True`
-- `no_cycle_word_two_even_ee`: `True`
-- `no_cycle_word_two_even_eoe`: `True`
+- `no_cycle_itinerary_ooooee`: `True`
+- `no_cycle_itinerary_oooeoe`: `True`
+- `no_cycle_itinerary_oooooee`: `True`
+- `no_cycle_itinerary_ooooeoe`: `True`
+- `no_cycle_itinerary_length_le_seven`: `True`
+- `no_cycle_itinerary_two_even_ee`: `True`
+- `no_cycle_itinerary_two_even_eoe`: `True`
 - `shared_two_even_tail`: `True`
 - `denomBits`: `True`
 - length eight open in census: `True`

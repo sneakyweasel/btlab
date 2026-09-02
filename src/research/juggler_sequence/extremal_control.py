@@ -26,7 +26,7 @@ from research.juggler_sequence.excursions import (
     STATUS_RETURNED,
     _walk_returns,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_extremal_control.json"
@@ -103,7 +103,7 @@ CLOSED_IMPORT_TOKENS = (
     "sum_rho",
     "realization_geometry",
     "landing_image",
-    "word_language",
+    "itinerary_language",
     "nc_boundary",
     "adversarial_paths",
     "information_complexity",
@@ -439,7 +439,7 @@ def dp_matches_closed_form(k_max: int = 24) -> list[dict[str, Any]]:
     return rows
 
 
-def follows_word(n: int, word: str) -> bool:
+def follows_itinerary(n: int, word: str) -> bool:
     x = n
     for ch in word:
         if branch_of(x) != ch:
@@ -1293,7 +1293,7 @@ length `k`:
 
 ```text
 H(w) = max_j S_j(w)
-H_k^* = max H(w) over first-return words of length k.
+H_k^* = max H(w) over first-return itineraries of length k.
 ```
 
 For fixed admissible `o`, front-loading every `O` uniquely maximises

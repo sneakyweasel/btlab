@@ -41,7 +41,7 @@ frequency bound. Finite horizons are not a bound \(L\).
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Finite-word envelope, equality rigidity, first-defect, and
+- Finite-itinerary envelope, equality rigidity, first-defect, and
   compensated contraction — **EXACT — LEAN VERIFIED**.
 - \(G_k>0\Longrightarrow T^k(n)<n\) — **EXACT — LEAN VERIFIED**
   (`power_bound_contracts`).

@@ -5,11 +5,11 @@ Status: laboratory extract. Date: 1 September 2026.
 > **Consolidated.** As of the 1 September 2026 consolidation this
 > content is printed in Paper A Section 5
 > ([juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)):
-> transport is Theorem 5.3, the hug adversary Theorem 5.4, the word
+> transport is Theorem 5.3, the hug adversary Theorem 5.4, the itinerary
 > identity Lemma 5.6, DK/Ostrowski Theorem 5.7, the window theorem
 > Theorem 5.8, and the kill table Theorem 5.9. The discrete word
 > layer and the quotient arithmetic are Lean
-> (`WalkChargeWords.lean`, `OstrowskiSandwich.lean`;
+> (`WalkChargeItineraries.lean`, `OstrowskiSandwich.lean`;
 > `J-cyclemin-walk-word-identity`,
 > `J-cyclemin-walk-ostrowski-arithmetic`). This extract stays as the
 > program-order reading path over the nine dossiers.
@@ -49,11 +49,11 @@ base \(n'=n e^{-D}\); at the certified floor and window lengths
 (`J-cyclemin-walk-transport`; the certified \(L=50508\) kill by
 the walk DP has margin \(1.1204\).)
 
-## 2. The adversary is the hug word — **EXACT — HUMAN PROOF**
+## 2. The adversary is the hug itinerary — **EXACT — HUMAN PROOF**
 
 Admissible words are exponent walks
 \(u_k=(1+\alpha)a_k-k\ge 0\), \(\alpha=\log_2(3/2)\). The hug
-word (take \(E\) at the first legal time) is the unique
+itinerary (take \(E\) at the first legal time) is the unique
 prefix-minimal admissible walk: at the first disagreement the
 other word holds an \(O\) where \(E\) was legal, and the
 odd-count gap is a nonnegative \(\{-1,0,+1\}\) path. Since the
@@ -66,9 +66,9 @@ the rotation is the Laplace integral
 \(C_*(n)=(1/\ln 3)\int_1^3 n^{1-t}t^{-2}\,dt<1/(\ln 3\,\ln n)\).
 (`J-cyclemin-walk-hug-exchange`, `J-cyclemin-walk-cstar`.)
 
-## 3. Word identity — **EXACT — HUMAN PROOF**
+## 3. Itinerary identity — **EXACT — HUMAN PROOF**
 
-For every \(L\), the budgeted hug word at \((L,o_{\min})\)
+For every \(L\), the budgeted hug itinerary at \((L,o_{\min})\)
 equals the exact IET \(L\)-prefix: the exact rule (E iff
 \(u\ge 1\), integer test \(3^a\ge 2^{k+1}\)) keeps
 \(u\in[0,1+\alpha)\), forcing exactly
@@ -159,11 +159,11 @@ stays **REFUTED**).
 
 The walk-charge program replaced a certified DP and two finite
 censuses with a human chain: transport, hug identification,
-word identity, Denjoy–Koksma over certified Ostrowski blocks,
+itinerary identity, Denjoy–Koksma over certified Ostrowski blocks,
 and digit caps. Every claim above carries its ledger row; the
 artifacts live under `data/research/juggler/cycle_walk_*`. Since
 the consolidation the discrete word layer and the quotient
-arithmetic are Lean (`WalkChargeWords.lean`,
+arithmetic are Lean (`WalkChargeItineraries.lean`,
 `OstrowskiSandwich.lean`); the transport recursion, the Laplace
 integral, Denjoy–Koksma, and the digit caps stay human.
 `RunSurvivorLattice.lean` and the finance Lean layers are

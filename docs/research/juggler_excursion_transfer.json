@@ -15,7 +15,7 @@
     "two_episode_descent_theorem": false,
     "compensation_theorem": false,
     "excursion_transfer_lean": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "macro_event_reopen": false,
     "source_descent_reopen": false,
     "search_horizon_is_L": false
@@ -7776,7 +7776,7 @@
     ],
     "git": "3a134a81d010fd95ea5bbdc96cc3f78f3af016ae",
     "letter_chain": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "macro_event_reopen": false,
     "source_descent_reopen": false,
     "halt_theorem": false,

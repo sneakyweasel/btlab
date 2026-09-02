@@ -251,7 +251,7 @@ theorem cycleMin_log_le_weight {n : ℕ} {w : List Branch}
 
 /-- Accumulated defect charge along the first `k` steps, priced at
 the images: `C_k = Σ_{i<k} 1.2·log n/(x_{i+1}·log x_{i+1})`.
-Depends only on the trajectory, not on the word. -/
+Depends only on the trajectory, not on the itinerary. -/
 noncomputable def prefixCharge (n : ℕ) : ℕ → ℝ
   | 0 => 0
   | k + 1 => prefixCharge n k +

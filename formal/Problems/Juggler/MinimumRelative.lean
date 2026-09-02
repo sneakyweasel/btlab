@@ -43,7 +43,7 @@ theorem aboveAnchor_not_lt {n : ℕ} {w : List Branch}
     (h : AboveAnchor n w) : ¬image n w < n :=
   fun hlt => (not_le_of_gt hlt) (aboveAnchor_image_ge h)
 
-/-- Corollary D: a contracting word envelope forbids `AboveAnchor`. -/
+/-- Corollary D: a contracting itinerary envelope forbids `AboveAnchor`. -/
 theorem aboveAnchor_not_envelope_drop {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hw : follows n w)
     (hgap : 3 ^ oddCount w < 2 ^ w.length) :

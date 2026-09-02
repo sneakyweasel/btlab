@@ -18,7 +18,7 @@ from research.juggler_sequence.defect_sharpness import (
     suffix_is_exact_even,
 )
 from research.juggler_sequence.envelope_defect import defect_record
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH
 
 
 def test_nonempty_sharp_witnesses():

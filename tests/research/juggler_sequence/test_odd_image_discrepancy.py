@@ -85,8 +85,8 @@ def test_scan_keeps_frequency_flag_false():
 def test_lean_and_anti_overclaim():
     lean = lean_api_present()
     assert lean["sorry_free"]
-    assert lean["odd_cell_unique"]
-    assert lean["odd_cell_iff"]
+    assert lean["odd_preimage_unique"]
+    assert lean["odd_preimage_iff"]
     anti = anti_overclaim()
     assert anti["parity_frequency_theorem"] is False
     assert anti["interval_bound_transfers_to_arbitrary_sets"] is False

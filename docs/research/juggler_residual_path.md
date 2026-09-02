@@ -4,7 +4,7 @@ Status: **BOUNDED_RESIDUAL_CYCLE_GREEN**
 
 Standalone application phase. Not a Research Engine experiment
 and not a termination theorem. A bounded residual prefix with a
-repeat is a Juggler cycle. Every nonempty cycle word satisfies
+repeat is a Juggler cycle. Every nonempty cycle itinerary satisfies
 `2^r < 3^o`. Residual returns need `a ≥ 2`.
 
 ## Branch budget
@@ -12,7 +12,7 @@ repeat is a Juggler cycle. Every nonempty cycle word satisfies
 ```text
 Mathematical target     bounded residual prefix ⇒ cycle; cycle envelope 2^r < 3^o
 Novelty hypothesis      residual return needs a ≥ 2; equality 2^r = 3^o is impossible
-Falsifier               a residual return with a ≤ 1; or a contracting cycle word
+Falsifier               a residual return with a ≤ 1; or a contracting cycle itinerary
 Existing machinery      ResidualStep, power_bound_word, power_bound_contracts
 Maximum Phase-0 scope   orbit repeat; cycle envelope; residual-return a≥2; small cycle scan
 ```
@@ -25,7 +25,7 @@ Maximum Phase-0 scope   orbit repeat; cycle envelope; residual-return a≥2; sma
 - secondary: `['CYCLE_OBSTRUCTION_GREEN']`
 - sorry-free: `True`
 
-a repeated orbit state is a finite cycle; every nonempty cycle word has 2^r < 3^o; residual returns need a ≥ 2; contracting and a = 1 residual returns are excluded; no cycle found in the scan n ≤ 400.
+a repeated orbit state is a finite cycle; every nonempty cycle itinerary has 2^r < 3^o; residual returns need a ≥ 2; contracting and a = 1 residual returns are excluded; no cycle found in the scan n ≤ 400.
 
 ## Cycle scan
 
@@ -107,7 +107,7 @@ a repeated orbit state is a finite cycle; every nonempty cycle word has 2^r < 3^
 
 **BOUNDED_RESIDUAL_CYCLE_GREEN**
 
-a repeated orbit state is a finite cycle; every nonempty cycle word has 2^r < 3^o; residual returns need a ≥ 2; contracting and a = 1 residual returns are excluded; no cycle found in the scan n ≤ 400.
+a repeated orbit state is a finite cycle; every nonempty cycle itinerary has 2^r < 3^o; residual returns need a ≥ 2; contracting and a = 1 residual returns are excluded; no cycle found in the scan n ≤ 400.
 
 This is not a halt result. Cycles are not proved impossible.
 The unbounded residual branch is not closed.

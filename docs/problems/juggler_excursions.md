@@ -9,7 +9,7 @@ every positive integer reaches 1.
 ## Problem
 
 Can realized first-return-below words be certified by the existing
-finite-word envelope and defect calculus, and do leftover weak returns
+finite-itinerary envelope and defect calculus, and do leftover weak returns
 form a small exact family with a candidate smaller canonical state?
 
 ## Exact statement
@@ -22,7 +22,7 @@ For \(n\ge 2\) write
 
 when the minimum exists, and keep \(\tau_\le\), the first peak time, and
 the peak-to-return suffix as separate objects. Let \(w(n)\) be the
-realized word of length \(\tau_<(n)\). Phase 0 asks whether \(w(n)\) on
+realized itinerary of length \(\tau_<(n)\). Phase 0 asks whether \(w(n)\) on
 \(2\le n\le 2000\), together with the hard starts
 \(9,37,49,69,77,173\), admits a **non-tautological** certificate:
 
@@ -43,7 +43,7 @@ A search-horizon miss is not a bound \(L\). This is not a halt theorem.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Finite-word envelope, equality rigidity, first-defect, and
+- Finite-itinerary envelope, equality rigidity, first-defect, and
   compensated contraction — **EXACT — LEAN VERIFIED**.
 - Automatic `FiniteProgress` off the odd-odd class —
   **EXACT — LEAN VERIFIED**.
@@ -162,7 +162,7 @@ return in this window is exactly the first formally contracting
 realized prefix. That is **COMPUTATIONALLY VERIFIED**, not a
 theorem that every orbit realizes such a prefix.
 
-Lemma B holds on the window: an all-odd word does not return.
+Lemma B holds on the window: an all-odd itinerary does not return.
 Lemma D shapes are many: first-defect compensation is not needed
 and does not constrain the peak split. No candidate \(M\) for a
 minimal-counterexample route.

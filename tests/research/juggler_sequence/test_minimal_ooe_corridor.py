@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_internal_oo import first_oo_decompose
 from research.juggler_sequence.minimal_ooe_corridor import (
     CLASS_GREEN,
@@ -24,7 +24,7 @@ from research.juggler_sequence.minimal_ooe_corridor import (
     square_cell_gap,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_square_cell_comparison():
@@ -66,7 +66,7 @@ def test_named_witnesses():
 
 def test_power_bound_implies_below_square():
     n = 69
-    assert follows_word(n, WORD)
+    assert follows_itinerary(n, WORD)
     x6 = image_after(n, WORD)
     assert x6 ** 64 <= n ** 81
     assert x6 < n * n
@@ -133,5 +133,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "OOEOOE" in dossier
     assert "juggler_minimal_ooe_corridor" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

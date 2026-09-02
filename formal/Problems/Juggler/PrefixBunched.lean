@@ -6,7 +6,7 @@ namespace Problems.Juggler
 /-!
 # Last three-even bunched leftover after an arbitrary CycleMin prefix
 
-Generalizes the seven bunched `CycleWord` exclusions to
+Generalizes the seven bunched `CycleItinerary` exclusions to
 `CycleMin n (u ++ family)`. Large `y = T_u(n)` uses the existing
 family tail at `y`. Below the family cutoff, a start that follows
 the leftover never returns into `[2, y]`. Not a bunched-short
@@ -51,14 +51,14 @@ theorem prefix_odd_run_seven_odds {n a : ℕ} {u v : List Branch}
 
 theorem prefix_eee_cell {n a : ℕ} {u : List Branch}
     (_ha : 6 ≤ a) (hy : 1 ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEEE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEEE a)) :
     image n u ^ (3 ^ a) <
       2 ^ denomBits a * (n + 1) ^ (2 ^ (a + 3)) := by
   set y := image n u
   set v := u ++ List.replicate a Branch.odd
   have hsplit : u ++ threeEvenEEE a = v ++ List.replicate 3 Branch.even := by
     simp [threeEvenEEE, v, List.append_assoc]
-  have hC : CycleWord n (v ++ List.replicate 3 Branch.even) := by
+  have hC : CycleItinerary n (v ++ List.replicate 3 Branch.even) := by
     simpa [hsplit] using h
   have hz := cycle_trailing_evens_lt (r := 3) (by decide) hC
   have hO : follows y (List.replicate a Branch.odd) :=
@@ -84,7 +84,7 @@ theorem no_cycleMin_prefix_eee_of_y {n a : ℕ} {u : List Branch}
     (ha : 6 ≤ a) (h : CycleMin n (u ++ threeEvenEEE a))
     (hy : 128 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEEE a).length := by
     have : (threeEvenEEE a).length = a + 3 := threeEvenEEE_length a
     omega
@@ -108,14 +108,14 @@ theorem no_cycleMin_prefix_eee_of_lt {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ y := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ y := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB y (threeEvenEEE a) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : a = 6 ∨ 7 ≤ a := by omega
   rcases hcases with h6 | hge
   · subst h6
     have hfalse := returnsIntoB_ooooooeee_lt256 ⟨y, hylt⟩ hy2
-    have htrue' : returnsIntoB y wordOOOOOOEEE = true := by
+    have htrue' : returnsIntoB y itineraryOOOOOOEEE = true := by
       simpa [threeEvenEEE_of_six] using htrue
     rw [hfalse] at htrue'
     exact Bool.false_ne_true htrue'
@@ -137,7 +137,7 @@ theorem no_cycleMin_prefix_eee {n a : ℕ} {u : List Branch}
 
 theorem prefix_eoee_z_lt {n a : ℕ} {u : List Branch}
     (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOEE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOEE a)) :
     image (image n u) (List.replicate a Branch.odd) <
       (image n u + 1) ^ 6 := by
   set Y := image n u
@@ -146,7 +146,7 @@ theorem prefix_eoee_z_lt {n a : ℕ} {u : List Branch}
       (u ++ List.replicate a Branch.odd ++ [Branch.even, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOEE, List.append_assoc]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       ((u ++ List.replicate a Branch.odd ++ [Branch.even, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
     simpa [hsplit] using h
@@ -196,7 +196,7 @@ theorem prefix_eoee_z_lt {n a : ℕ} {u : List Branch}
 
 theorem prefix_eoee_cell {n a : ℕ} {u : List Branch}
     (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOEE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOEE a)) :
     image n u ^ (3 ^ a) <
       2 ^ denomBits a * (image n u + 1) ^ (6 * 2 ^ a) := by
   set Y := image n u
@@ -223,7 +223,7 @@ theorem no_cycleMin_prefix_eoee_of_y_five {n : ℕ} {u : List Branch}
     (h : CycleMin n (u ++ threeEvenEOEE 5))
     (hy : 314 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEOEE 5).length := by
     have : (threeEvenEOEE 5).length = 9 := threeEvenEOEE_length 5
     omega
@@ -237,7 +237,7 @@ theorem no_cycleMin_prefix_eoee_of_y_six {n a : ℕ} {u : List Branch}
     (ha : 6 ≤ a) (h : CycleMin n (u ++ threeEvenEOEE a))
     (hy : 16 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEOEE a).length := by
     have : (threeEvenEOEE a).length = a + 4 := threeEvenEOEE_length a
     omega
@@ -256,7 +256,7 @@ theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ image n u := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ image n u := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB (image n u) (threeEvenEOEE a) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : a = 5 ∨ a = 6 ∨ 7 ≤ a := by omega
@@ -265,7 +265,7 @@ theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
     cases lt_or_ge (image n u) 314 with
     | inl hlt =>
         have hfalse := returnsIntoB_ooooo_eoee_lt314 ⟨image n u, hlt⟩ hy2
-        have htrue' : returnsIntoB (image n u) wordOOOOOEOEE = true := by
+        have htrue' : returnsIntoB (image n u) itineraryOOOOOEOEE = true := by
           simpa [threeEvenEOEE_of_five] using htrue
         rw [hfalse] at htrue'
         exact Bool.false_ne_true htrue'
@@ -274,7 +274,7 @@ theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
     cases lt_or_ge (image n u) 256 with
     | inl hlt =>
         have hfalse := returnsIntoB_oooooo_eoee_lt256 ⟨image n u, hlt⟩ hy2
-        have htrue' : returnsIntoB (image n u) wordOOOOOOEOEE = true := by
+        have htrue' : returnsIntoB (image n u) itineraryOOOOOOEOEE = true := by
           simpa [threeEvenEOEE_of_six] using htrue
         rw [hfalse] at htrue'
         exact Bool.false_ne_true htrue'
@@ -296,7 +296,7 @@ theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
 
 theorem prefix_eeoe_z_lt {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEEOE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEEOE a)) :
     image (image n u) (List.replicate a Branch.odd) <
       (image n u + 1) ^ 6 := by
   set Y := image n u
@@ -305,7 +305,7 @@ theorem prefix_eeoe_z_lt {n a : ℕ} {u : List Branch}
   have hsplit : u ++ threeEvenEEOE a =
       pref ++ [Branch.even, Branch.odd, Branch.even] := by
     simp [threeEvenEEOE, pref, List.append_assoc]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (pref ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [hsplit] using h
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := pref) hC
@@ -347,7 +347,7 @@ theorem prefix_eeoe_z_lt {n a : ℕ} {u : List Branch}
 
 theorem prefix_eeoe_cell {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEEOE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEEOE a)) :
     image n u ^ (3 ^ a) <
       2 ^ denomBits a * (image n u + 1) ^ (6 * 2 ^ a) := by
   set Y := image n u
@@ -374,7 +374,7 @@ theorem no_cycleMin_prefix_eeoe_of_y_five {n : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n (u ++ threeEvenEEOE 5))
     (hy : 314 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEEOE 5).length := by
     have : (threeEvenEEOE 5).length = 9 := threeEvenEEOE_length 5
     omega
@@ -388,7 +388,7 @@ theorem no_cycleMin_prefix_eeoe_of_y_six {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 6 ≤ a) (h : CycleMin n (u ++ threeEvenEEOE a))
     (hy : 16 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEEOE a).length := by
     have : (threeEvenEEOE a).length = a + 4 := threeEvenEEOE_length a
     omega
@@ -407,7 +407,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ image n u := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ image n u := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB (image n u) (threeEvenEEOE a) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : a = 5 ∨ a = 6 ∨ 7 ≤ a := by omega
@@ -416,7 +416,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
     cases lt_or_ge (image n u) 314 with
     | inl hlt =>
         have hfalse := returnsIntoB_ooooo_eeoe_lt314 ⟨image n u, hlt⟩ hy2
-        have htrue' : returnsIntoB (image n u) wordOOOOOEEOE = true := by
+        have htrue' : returnsIntoB (image n u) itineraryOOOOOEEOE = true := by
           simpa [threeEvenEEOE_of_five] using htrue
         rw [hfalse] at htrue'
         exact Bool.false_ne_true htrue'
@@ -425,7 +425,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
     cases lt_or_ge (image n u) 256 with
     | inl hlt =>
         have hfalse := returnsIntoB_oooooo_eeoe_lt256 ⟨image n u, hlt⟩ hy2
-        have htrue' : returnsIntoB (image n u) wordOOOOOOEEOE = true := by
+        have htrue' : returnsIntoB (image n u) itineraryOOOOOOEEOE = true := by
           simpa [threeEvenEEOE_of_six] using htrue
         rw [hfalse] at htrue'
         exact Bool.false_ne_true htrue'
@@ -447,7 +447,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
 
 theorem prefix_eooee_z_lt {n a : ℕ} {u : List Branch}
     (hY : 32 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOOEE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOOEE a)) :
     image (image n u) (List.replicate a Branch.odd) <
       (image n u + 1) ^ 4 := by
   set Y := image n u
@@ -457,7 +457,7 @@ theorem prefix_eooee_z_lt {n a : ℕ} {u : List Branch}
         [Branch.even, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOOEE, List.append_assoc]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       ((u ++ List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
@@ -511,7 +511,7 @@ theorem prefix_eooee_z_lt {n a : ℕ} {u : List Branch}
 
 theorem prefix_eooee_cell {n a : ℕ} {u : List Branch}
     (hY : 32 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOOEE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOOEE a)) :
     image n u ^ (3 ^ a) <
       2 ^ denomBits a * (image n u + 1) ^ (4 * 2 ^ a) := by
   set Y := image n u
@@ -538,7 +538,7 @@ theorem no_cycleMin_prefix_eooee_of_y {n a : ℕ} {u : List Branch}
     (ha : 4 ≤ a) (h : CycleMin n (u ++ threeEvenEOOEE a))
     (hy : 256 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEOOEE a).length := by
     have : (threeEvenEOOEE a).length = a + 5 := threeEvenEOOEE_length a
     omega
@@ -557,7 +557,7 @@ theorem no_cycleMin_prefix_eooee {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ image n u := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ image n u := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB (image n u) (threeEvenEOOEE a) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : a ≤ 6 ∨ 7 ≤ a := by omega
@@ -586,7 +586,7 @@ theorem no_cycleMin_prefix_eooee {n a : ℕ} {u : List Branch}
 
 theorem prefix_eoeoe_z_lt {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 32 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOEOE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOEOE a)) :
     image (image n u) (List.replicate a Branch.odd) <
       (image n u + 1) ^ 4 := by
   set Y := image n u
@@ -595,7 +595,7 @@ theorem prefix_eoeoe_z_lt {n a : ℕ} {u : List Branch}
   have hsplit : u ++ threeEvenEOEOE a =
       pref ++ [Branch.even, Branch.odd, Branch.even] := by
     simp [threeEvenEOEOE, pref, List.append_assoc]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (pref ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [hsplit] using h
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := pref) hC
@@ -677,7 +677,7 @@ theorem prefix_eoeoe_z_lt {n a : ℕ} {u : List Branch}
 
 theorem prefix_eoeoe_cell {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 32 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOEOE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOEOE a)) :
     image n u ^ (3 ^ a) <
       2 ^ denomBits a * (image n u + 1) ^ (4 * 2 ^ a) := by
   set Y := image n u
@@ -704,7 +704,7 @@ theorem no_cycleMin_prefix_eoeoe_of_y {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 4 ≤ a) (h : CycleMin n (u ++ threeEvenEOEOE a))
     (hy : 256 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEOEOE a).length := by
     have : (threeEvenEOEOE a).length = a + 5 := threeEvenEOEOE_length a
     omega
@@ -723,7 +723,7 @@ theorem no_cycleMin_prefix_eoeoe {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ image n u := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ image n u := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB (image n u) (threeEvenEOEOE a) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : a ≤ 6 ∨ 7 ≤ a := by omega
@@ -754,7 +754,7 @@ set_option exponentiation.threshold 64
 
 theorem prefix_eoooee_z_lt {n a : ℕ} {u : List Branch}
     (hY : 3 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOOOEE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOOOEE a)) :
     image (image n u) (List.replicate a Branch.odd) <
       (image n u + 1) ^ 4 := by
   set Y := image n u
@@ -764,7 +764,7 @@ theorem prefix_eoooee_z_lt {n a : ℕ} {u : List Branch}
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOOOEE, List.append_assoc]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       ((u ++ List.replicate a Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
@@ -811,7 +811,7 @@ theorem prefix_eoooee_z_lt {n a : ℕ} {u : List Branch}
 
 theorem prefix_eoooee_cell {n a : ℕ} {u : List Branch}
     (hY : 3 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOOOEE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOOOEE a)) :
     image n u ^ (3 ^ a) <
       2 ^ denomBits a * (image n u + 1) ^ (4 * 2 ^ a) := by
   set Y := image n u
@@ -839,7 +839,7 @@ theorem no_cycleMin_prefix_eoooee_of_y_four {n a : ℕ} {u : List Branch}
     (ha : 4 ≤ a) (h : CycleMin n (u ++ threeEvenEOOOEE a))
     (hy : 256 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEOOOEE a).length := by
     have : (threeEvenEOOOEE a).length = a + 6 := threeEvenEOOOEE_length a
     omega
@@ -853,7 +853,7 @@ theorem no_cycleMin_prefix_eoooee_of_y_three {n : ℕ} {u : List Branch}
     (h : CycleMin n (u ++ threeEvenEOOOEE 3))
     (hy : 256 ≤ image n u) : False := by
   set Y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hY1 : 1 ≤ Y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
   have hn197 : 197 ≤ Y := le_trans (by decide : (197 : ℕ) ≤ 256) hy
   have hn24 : 24 ≤ Y := le_trans (by decide : (24 : ℕ) ≤ 256) hy
@@ -893,7 +893,7 @@ theorem no_cycleMin_prefix_eoooee_of_y_three {n : ℕ} {u : List Branch}
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even := by
     simp [threeEvenEOOOEE, List.append_assoc]
-  have hC' : CycleWord n
+  have hC' : CycleItinerary n
       ((u ++ List.replicate 3 Branch.odd ++
         [Branch.even, Branch.odd, Branch.odd, Branch.odd]) ++
         List.replicate 2 Branch.even) := by
@@ -936,7 +936,7 @@ theorem no_cycleMin_prefix_eoooee {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ image n u := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ image n u := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB (image n u) (threeEvenEOOOEE a) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : a ≤ 6 ∨ 7 ≤ a := by omega
@@ -972,7 +972,7 @@ theorem no_cycleMin_prefix_eoooee {n a : ℕ} {u : List Branch}
 
 theorem prefix_eooeoe_z_lt {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOOEOE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOOEOE a)) :
     image (image n u) (List.replicate a Branch.odd) <
       (image n u + 1) ^ 4 := by
   set Y := image n u
@@ -982,7 +982,7 @@ theorem prefix_eooeoe_z_lt {n a : ℕ} {u : List Branch}
   have hsplit : u ++ threeEvenEOOEOE a =
       pref ++ [Branch.even, Branch.odd, Branch.even] := by
     simp [threeEvenEOOEOE, pref, List.append_assoc]
-  have hC : CycleWord n
+  have hC : CycleItinerary n
       (pref ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [hsplit] using h
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := pref) hC
@@ -1040,7 +1040,7 @@ theorem prefix_eooeoe_z_lt {n a : ℕ} {u : List Branch}
 
 theorem prefix_eooeoe_cell {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hY : 4 ≤ image n u) (hyn : n ≤ image n u)
-    (h : CycleWord n (u ++ threeEvenEOOEOE a)) :
+    (h : CycleItinerary n (u ++ threeEvenEOOEOE a)) :
     image n u ^ (3 ^ a) <
       2 ^ denomBits a * (image n u + 1) ^ (4 * 2 ^ a) := by
   set Y := image n u
@@ -1068,7 +1068,7 @@ theorem no_cycleMin_prefix_eooeoe_of_y_four {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 4 ≤ a) (h : CycleMin n (u ++ threeEvenEOOEOE a))
     (hy : 256 ≤ image n u) : False := by
   set y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hlen : 1 ≤ (threeEvenEOOEOE a).length := by
     have : (threeEvenEOOEOE a).length = a + 6 := threeEvenEOOEOE_length a
     omega
@@ -1082,7 +1082,7 @@ theorem no_cycleMin_prefix_eooeoe_of_y_three {n : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n (u ++ threeEvenEOOEOE 3))
     (hy : 256 ≤ image n u) : False := by
   set Y := image n u
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have hY1 : 1 ≤ Y := le_trans (by decide : (1 : ℕ) ≤ 256) hy
   have hn197 : 197 ≤ Y := le_trans (by decide : (197 : ℕ) ≤ 256) hy
   have hn24 : 24 ≤ Y := le_trans (by decide : (24 : ℕ) ≤ 256) hy
@@ -1121,7 +1121,7 @@ theorem no_cycleMin_prefix_eooeoe_of_y_three {n : ℕ} {u : List Branch}
     exact lt_of_le_of_lt hle
       (Nat.mul_lt_mul_of_pos_left hz8
         (pow_pos (by decide : (0 : ℕ) < 2) 38))
-  have hC' : CycleWord n
+  have hC' : CycleItinerary n
       (pref ++ [Branch.even, Branch.odd, Branch.even]) := by
     simpa [threeEvenEOOEOE, pref, List.append_assoc] using hC
   have hy3 := cycle_eoe_suffix_y_cube_lt (u := pref) hC'
@@ -1175,7 +1175,7 @@ theorem no_cycleMin_prefix_eooeoe {n a : ℕ} {u : List Branch}
     omega
   have hyn : n ≤ image n u := cycleMin_prefix_y_ge hlen h
   have hy2 : 2 ≤ image n u := le_trans hn hyn
-  have hC := cycleMin_cycleWord h
+  have hC := cycleMin_cycleItinerary h
   have htrue : returnsIntoB (image n u) (threeEvenEOOEOE a) = true :=
     returnsIntoB_of_cycleMin_suffix hn hlen h
   have hcases : a ≤ 6 ∨ 7 ≤ a := by omega

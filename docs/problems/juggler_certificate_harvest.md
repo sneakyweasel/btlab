@@ -10,13 +10,13 @@ Paper B, and not a claim that every positive integer reaches 1.
 
 ## Problem
 
-Among \(n\le X\), what first contracting words fire on the complement
+Among \(n\le X\), what first contracting itineraries fire on the complement
 of \(\{E, OE, OOEE\}\), and does that leftover dictionary drift with
 scale?
 
 ## Exact statement
 
-A **certificate** is the first realized word \(w\) with
+A **certificate** is the first realized itinerary \(w\) with
 \(T_{|w|}(n)<n\). Coarse bins are
 
 - \(E\) — even \(n\ge 2\) (Paper A Theorem 4.1)
@@ -48,7 +48,7 @@ existing certificates. Do not reopen
 ## Branch budget
 
 ```text
-Mathematical target     Among n ≤ X, what first contracting words fire
+Mathematical target     Among n ≤ X, what first contracting itineraries fire
                         on the complement of {E, OE, OOEE}, and does
                         that leftover dictionary drift with scale?
 Novelty hypothesis      A short stable leftover list (or a persistent
@@ -60,7 +60,7 @@ Falsifier               Histogram is only OOOO* until an even letter,
 Existing machinery      Atlas Kernel A + Wide8 floor_power; packed
                         O/E words; trajectory_until_drop; Theorem 4.1
                         (E / OE); Paper B OOEE class
-Maximum Phase-0 scope   Harvest kernel; leftover-word histogram;
+Maximum Phase-0 scope   Harvest kernel; leftover-itinerary histogram;
                         coarse counts; overflow CPU merge; science
                         at 10^9; optional 10^10 slabs. No Lean, no
                         new atlas language, no per-n storage.
@@ -80,7 +80,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- first contracting word —
+- first contracting itinerary —
   **COMPUTATIONALLY VERIFIED** as a bounded observation
 - coarse split \(E\) / \(OE\) / \(OOEE\) / leftover —
   **COMPUTATIONALLY VERIFIED** as a bounded observation
@@ -111,11 +111,11 @@ None opened.
 ## Counterexamples
 
 - “the leftover histogram is only `OOOO*` until an even letter” —
-  at \(n\le 10^9\) the two leading leftover words are `OOOEE`
+  at \(n\le 10^9\) the two leading leftover itineraries are `OOOEE`
   (unary) and `OOEOE` (mixed), each about \(21\%\) of the
   \(k\le 20\) leftover mass. Unary \(O^+E^+\) is only \(0.29\) of
   that mass; `OOOO*` is \(0.08\).
-- “leftover word shares drift with scale” — total variation
+- “leftover itinerary shares drift with scale” — total variation
   between \([2,10^8]\) and \((10^8,10^9]\) is \(0.013\).
 - “overflow stays rare out to \(10^9\)” — \(3.50\cdot 10^7\)
   Wide8 overflows and \(4.06\cdot 10^6\) uncapped starts.
@@ -139,7 +139,7 @@ On \(2\le n\le 10^9\), CUDA, \(k\le 20\), histogram only
   uncapped \(4.06\cdot 10^6\), overflow \(3.50\cdot 10^7\).
   The unfinished plus leftover-with-word mass is \(3/16\) of the
   window, the complement of \(\{E,OE,OOEE\}\).
-- Leading leftover words: `OOOEE` and `OOEOE`, then a
+- Leading leftover itineraries: `OOOEE` and `OOEOE`, then a
   length-\(7/8\) octet at about one-quarter of that mass. Shares
   match a product-density split. Scale-split TV \(0.013\).
 - \(3081\) leftover types at \(k\le 20\); mass is concentrated in

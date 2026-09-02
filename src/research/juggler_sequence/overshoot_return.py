@@ -32,7 +32,7 @@ from research.juggler_sequence.odd_odd_frontier import (
     residual_cell,
 )
 from research.juggler_sequence.post_overshoot import excursion
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, itinerary, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, itinerary, word_of
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -66,7 +66,7 @@ PAPER_B_ENGINES = frozenset(
 LEAN_THEOREMS = (
     "minimal_first_even_overshoots",
     "cycleMin_first_even_overshoots",
-    "no_cycle_word_even_count_le_three",
+    "no_cycle_itinerary_even_count_le_three",
     "ReturnBelow",
     "finiteProgress_of_returnBelow",
     "minimal_first_even_dichotomy",

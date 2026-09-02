@@ -103,7 +103,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**, and a **REPARAMETERIZATION**
   (both sides are \(y^6\))
 - \(\Gamma=x^9-z^4\) —
-  **REPARAMETERIZATION** of `globalDefect` of the word `OO`
+  **REPARAMETERIZATION** of `globalDefect` of the itinerary `OO`
 - Peak slack transports to persistent OO —
   **REFUTED** (needs even \(M\); the landing \(y\) is odd)
 - A \(\rho\)–\(\sigma\) coupling beyond independent floor windows —

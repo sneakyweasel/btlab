@@ -9,7 +9,7 @@
     "deepen_all_still_above_theta is true, so even a ban on every two-type word stays inside slack"
   ],
   "first_seen": "juggler realizable-prefix finance",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

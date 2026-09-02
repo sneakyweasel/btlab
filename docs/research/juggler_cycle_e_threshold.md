@@ -42,7 +42,7 @@ OOO odd-append inheritance gives O^a for a≥3; the only expanding length-5 E-wo
 - `odd_run_suffix_threshold`: `True`
 - `no_cycle_odd_run_append_even`: `True`
 - `eventually_no_cycle_append_even`: `True`
-- `no_cycle_word_length_five_ends_even`: `True`
+- `no_cycle_itinerary_length_five_ends_even`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
 - no length-6 theorem: `True`

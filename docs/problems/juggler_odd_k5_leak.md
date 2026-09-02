@@ -98,7 +98,7 @@ It is not required.
   \(3^{20}<2^{32}\), hence \(z<n^{3^{20}/2^{31}}<n^2\) —
   **EXACT — HUMAN PROOF**. This is the known \(C_1\)
   corridor. Even \(y\) cannot start \(L\).
-- From \(x_5\), the words `E`, `OE`, `OOE`, `OOOE` contract
+- From \(x_5\), the itineraries `E`, `OE`, `OOE`, `OOOE` contract
   versus \(n\) —
   **REFUTED**.
 - `OEE` contracts:
@@ -114,7 +114,7 @@ It is not required.
 - \(501\) realizes the odd leak —
   **REFUTED**. Max consecutive post-\(M\) `OOE` is \(k=2\).
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 - a recurrent \(k=5\) episode exists — not claimed
 
@@ -154,7 +154,7 @@ the Phase-0 window \(12\le n<801\).
 
 None. Existing `Envelope.lean` `power_bound_word` and
 `power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`.
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
 No `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -201,7 +201,7 @@ square reset. The odd-\(y\) second-`OO` residual is the
 separate branch
 [juggler_w5_second_oo.md](juggler_w5_second_oo.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
-Do not assemble `no_cycle_word_length_eleven`. Do not
+Do not assemble `no_cycle_itinerary_length_eleven`. Do not
 build a \(p\)-adic system.
 
 ## Decision

@@ -131,7 +131,7 @@ It is not required.
   [juggler_above_anchor_first_fail.json](../research/juggler_above_anchor_first_fail.json)
 - Tests: `tests/research/juggler_sequence/test_above_anchor_first_fail.py`
 
-No CLI. No Lean. No leftover-word census.
+No CLI. No Lean. No leftover-itinerary census.
 
 ## Conjectures
 

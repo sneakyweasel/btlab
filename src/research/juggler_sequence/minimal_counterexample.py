@@ -23,7 +23,7 @@ from typing import Any
 from bt.calculus.derivative import D, lsd
 from bt.representation import encode
 from research.juggler_sequence.lean_paths import MINIMAL, MINIMAL_CLOSURE, has_named
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_counterexample.json"
@@ -42,7 +42,7 @@ CLOSED_IMPORT_TOKENS = (
     "sum_rho",
     "realization_geometry",
     "landing_image",
-    "word_language",
+    "itinerary_language",
     "nc_boundary",
     "adversarial_paths",
     "information_complexity",

@@ -33,7 +33,7 @@ On the record leftovers \(L\in\{19,84,1054,25781\}\) the
 extremal path \(o_k=r(k)\), the ceiling Christoffel word of
 slope \(o_{\min}/L\), and the packed `OOE`/`OE` Beatty word
 are the same string. `OE` is isolated (Sturmian majority
-`OOE`). The word ends `OOE OE`. This is Beatty plus the
+`OOE`). The itinerary ends `OOE OE`. This is Beatty plus the
 standard `OOE`/`OE` Sturmian morphism, not a new cycle law.
 
 **Last circuit cannot be `OOE` (COMPUTATIONALLY VERIFIED).**
@@ -200,7 +200,7 @@ parked floor campaign.
 ## Decision
 
 **CLOSE**. Finance extremality does determine a unique
-two-type word, and Sturmian isolation plus an expanding last
+two-type itinerary, and Sturmian isolation plus an expanding last
 `OOE` forces the terminal pair \((2,1)\). That pair is
 commonly realized. The backward search died one block later,
 at \((2,2,1)\), which is the closed ordered-excursion

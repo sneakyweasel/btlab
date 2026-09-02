@@ -52,7 +52,7 @@ This is not a halt theorem.
 
 ## Current literature
 
-- Finite-word envelope \(x_k^{2^k}\le n^{3^{O_k}}\) —
+- Finite-itinerary envelope \(x_k^{2^k}\le n^{3^{O_k}}\) —
   **EXACT — LEAN VERIFIED** (`J-power-envelope-contraction`)
 - `AboveAnchor` plus \(3^{O_k}<2^k\) forbids the prefix —
   **EXACT — LEAN VERIFIED** (`aboveAnchor_not_envelope_drop`)
@@ -85,7 +85,7 @@ designated global question after \(Q\)-section PARK.
 ```text
 Mathematical target     a prefix growth/retention law that
                         constrains infinite AboveAnchor orbits
-                        independently of the word envelope
+                        independently of the itinerary envelope
 Novelty hypothesis      required retention F_k >= n^{2^k-3^{O_k}}
                         is a new budget, or leftover prefixes
                         separate min F from max F
@@ -99,7 +99,7 @@ Existing machinery      power_bound_word; aboveAnchor_not_envelope_drop;
                         globalDefect; compensated contraction;
                         leftovers 365, 501, 1517, 6187
 Maximum Phase-0 scope   algebraic identity; leftover prefix tables;
-                        modest odd window; no Lean; no word census
+                        modest odd window; no Lean; no itinerary census
 Promotion criterion     a necessary law not equivalent to
                         3^{O}>=2^{k} or x_k>=n, or a floor upper
                         bound on F that is not Delta
@@ -136,7 +136,7 @@ It is not required.
   [juggler_growth_balance.json](../research/juggler_growth_balance.json)
 - Tests: `tests/research/juggler_sequence/test_growth_balance.py`
 
-No CLI. No Lean. No \(\alpha\)-grid. No return-word census.
+No CLI. No Lean. No \(\alpha\)-grid. No return-itinerary census.
 
 ## Conjectures
 

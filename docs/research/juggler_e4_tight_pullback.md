@@ -37,7 +37,7 @@ OOOOOOOEEEE already uses the sharp r=4 trailing-evens cell z<(n+1)^{16}; even Z=
 ## Lean
 
 - `cycle_trailing_evens_lt`: `True`
-- `no_cycle_word_three_even_eee`: `True`
+- `no_cycle_itinerary_three_even_eee`: `True`
 - `odd_run_suffix_threshold`: `True`
 - no O^7 EEEE theorem: `True`
 - length eight open in census: `True`

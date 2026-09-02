@@ -38,7 +38,7 @@ from research.juggler_sequence.cycle_finance import (
 )
 from research.juggler_sequence.cycle_run_extremum import survivor_lengths
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 CONTROLS = (365, 501, 1517, 6187)
 SPOTLIGHT = (25781, 55293)

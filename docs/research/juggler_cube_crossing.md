@@ -27,7 +27,7 @@ Maximum Phase-0 scope   named starts; no Lean; no Sigma
 - defect generic: `True`
 - periodic F: `False`
 
-delta parity is generic odd-odd; unique preimage is odd_cell_unique; F is not defined on a stable class and moves both ways; even-return cannot apply after an odd lift because y already left the cube band.
+delta parity is generic odd-odd; unique preimage is odd_preimage_unique; F is not defined on a stable class and moves both ways; even-return cannot apply after an odd lift because y already left the cube band.
 
 ## Crossings
 
@@ -62,7 +62,7 @@ delta parity is generic odd-odd; unique preimage is odd_cell_unique; F is not de
 - `cube_lift_even_reset`: `True`
 - `cube_lift_odd_ge_fourth`: `True`
 - `cube_lift_odd_continues`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `EnvelopeState`: `True`
 - `envelope_lt_pow`: `True`
 - `even_below_anchor_pow`: `True`
@@ -89,5 +89,5 @@ delta parity is generic odd-odd; unique preimage is odd_cell_unique; F is not de
 
 **CUBE_CROSSING_CLOSED**
 
-delta parity is generic odd-odd; unique preimage is odd_cell_unique; F is not defined on a stable class and moves both ways; even-return cannot apply after an odd lift because y already left the cube band.
+delta parity is generic odd-odd; unique preimage is odd_preimage_unique; F is not defined on a stable class and moves both ways; even-return cannot apply after an odd lift because y already left the cube band.
 

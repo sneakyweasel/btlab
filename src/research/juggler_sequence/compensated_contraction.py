@@ -17,7 +17,7 @@ from research.juggler_sequence.envelope_defect import (
     tiny_deficit,
 )
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,
@@ -59,7 +59,7 @@ LEAN_THEOREMS = (
 )
 
 
-def follows_word(n: int, word: str) -> bool:
+def follows_itinerary(n: int, word: str) -> bool:
     current = n
     for letter in word:
         if letter == "O":
@@ -163,7 +163,7 @@ def scan_word(
     first_fail = 0
     first_unknown = 0
     for n in range(n_min, n_max + 1, step):
-        if not follows_word(n, word):
+        if not follows_itinerary(n, word):
             continue
         realized += 1
         row = word_row(n, word, bit_limit=bit_limit)

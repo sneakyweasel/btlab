@@ -22,7 +22,7 @@ from research.juggler_sequence.power_algebra import (
     scan_local_iff,
     tiny_global_eq,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power, itinerary
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power, itinerary
 
 
 def test_nine_and_sixteen_are_structured_equalities():

@@ -13,9 +13,9 @@ reopen PE-factor grammar or residual-future quotients.
 Mathematical target     What geometry of R_w makes a prefix unary?
 Novelty hypothesis      inverse-floor cells / scale of R_w force d(w)=1
 Falsifier               unary without monochrome landings, or a square
-                        amplification law that survives mixed words, or
+                        amplification law that survives mixed itineraries, or
                         a hole that is CELL_EMPTY rather than scale
-Existing machinery      follows_word, image_after, even_cell, atlas trie
+Existing machinery      follows_itinerary, image_after, even_preimage, atlas trie
 Maximum Phase-0 scope   R_w on n<=4000 then 1e5; selected roots n<=1e7
 ```
 
@@ -27,7 +27,7 @@ Maximum Phase-0 scope   R_w on n<=4000 then 1e5; selected roots n<=1e7
 - classification: **REALIZATION_GEOMETRY_COMPLEX**
 - sorry-free: `True`
 
-Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_cell_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived.
+Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_preimage_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived.
 
 ## Atlas reproduction
 
@@ -91,13 +91,13 @@ Leading-`E` unary fraction at length 19:
 
 ## Set recurrence
 
-- prepend E on the empty word: exact=`True`
-- prepend O on the empty word: exact=`False` predicted=`126` actual=`2000` leak=`1874`
+- prepend E on the empty itinerary: exact=`True`
+- prepend O on the empty itinerary: exact=`False` predicted=`126` actual=`2000` leak=`1874`
 - even-tower prepend E: `True`
 - prepend E mismatches among prefixes: `0`
 - prepend O mismatches among prefixes: `946` first=`{'word': 'O', 'predicted': 67, 'actual': 1010, 'missing': 943}`
 - append rule: R_{wb} = {n in R_w : T_w(n) has parity b}
-- prepend E rule: R_{Ew}(N) = union_{q in R_w(N)} (even_cell(q) ∩ 2Z ∩ [1,N])
+- prepend E rule: R_{Ew}(N) = union_{q in R_w(N)} (even_preimage(q) ∩ 2Z ∩ [1,N])
 - prepend O rule: R_{Ow} = union_{q in R_w} (odd_cell(q) ∩ (2Z+1)); not closed on [1,N]
 
 ## Diagnostic realizing sets
@@ -186,14 +186,14 @@ Atlas unary-to-binary (capped scan of continuations):
 
 The identity `m(E^{r+1})=m(E^r)^2` is special to the pure even
 tower. After an odd letter, `m(wE)=m(w)` whenever `T_w(m(w))` is
-even. The square lower bound does not survive mixed words.
+even. The square lower bound does not survive mixed itineraries.
 
 ## Lean
 
 - `even_tower_to_one`: `True`
-- `even_cell_iff`: `True`
-- `odd_cell_iff`: `True`
-- `odd_cell_unique`: `True`
+- `even_preimage_iff`: `True`
+- `odd_preimage_iff`: `True`
+- `odd_preimage_unique`: `True`
 - no forbidden engines: `True`
 - no global halt theorem: `True`
 
@@ -215,7 +215,7 @@ even. The square lower bound does not survive mixed words.
 
 **REALIZATION_GEOMETRY_COMPLEX**
 
-Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_cell_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived.
+Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_preimage_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived.
 
 This is not a halt result and not a forbidden-factor law.
 

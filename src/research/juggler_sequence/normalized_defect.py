@@ -13,7 +13,7 @@ from typing import Any
 
 from research.juggler_sequence.defect_lower_bound import first_defect
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     global_defect,
     image_after,
     itinerary_word,
@@ -21,7 +21,7 @@ from research.juggler_sequence.global_defect import (
     odd_count,
 )
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import (
     CHAIN_CAP,
@@ -117,7 +117,7 @@ def concat_product_holds(n: int, u: str, v: str) -> bool:
 
 
 def one_step_holds(n: int, word: str, letter: str) -> bool:
-    if not follows_word(n, word + letter):
+    if not follows_itinerary(n, word + letter):
         return False
     mid = image_after(n, word)
     eta_num, eta_den = eta_pair(mid)
@@ -132,7 +132,7 @@ def one_step_holds(n: int, word: str, letter: str) -> bool:
 
 
 def measurable(n: int, word: str, *, bit_limit: int = BIT_LIMIT) -> bool:
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         return False
     o = odd_count(word)
     k = len(word)
@@ -354,7 +354,7 @@ def persistent_census(
 
 
 def prefix_ratio_census(*, n_max: int = 80, k_max: int = 6) -> dict[str, Any]:
-    """Running surplus ratio along one itinerary. ``R`` may fall when a
+    """Running surplus ratio along one word. ``R`` may fall when a
     later letter creates more formal surplus than defect."""
     decreases = 0
     checked = 0

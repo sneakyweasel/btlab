@@ -34,7 +34,7 @@ if str(REPO_ROOT / "src") not in sys.path:
 
 from research.juggler_sequence.odd_sharp_suffix import integer_cbrt
 from research.juggler_sequence.power_algebra import is_square
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 DEFAULT_DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_sharp_suffix"
 SOFTWARE_VERSION = "0.2.2"

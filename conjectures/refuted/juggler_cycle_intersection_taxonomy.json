@@ -1,21 +1,21 @@
 {
   "id": "juggler_cycle_intersection_taxonomy",
   "title": "A first-intersection valley / odd-ascent / peak / even-descent taxonomy produces a new two-sided envelope",
-  "statement": "Classifying the first shared point x of a forward trajectory from n with a hypothetical cycle by valley / odd interior / peak / even interior produces a first-intersection type, or a two-sided envelope at that type, that is not odd_cell_unique / oddLanding_preimage_unique / cycleMin_starts_two_odds / cycleMin_not_odd_even / cycleMin_not_end_odd / exists_cycleMin_last_odd_run / cycle_peak_finance / extremal composition / trailing-EE count n(n^2+n+1), and that type empties or tightens a bound for a reason that is not an archived cell.",
+  "statement": "Classifying the first shared point x of a forward trajectory from n with a hypothetical cycle by valley / odd interior / peak / even interior produces a first-intersection type, or a two-sided envelope at that type, that is not odd_preimage_unique / oddLanding_preimage_unique / cycleMin_starts_two_odds / cycleMin_not_odd_even / cycleMin_not_end_odd / exists_cycleMin_last_odd_run / cycle_peak_finance / extremal composition / trailing-EE count n(n^2+n+1), and that type empties or tightens a bound for a reason that is not an archived cell.",
   "status": "REFUTED",
   "counterexamples": [
     "if n is on the cycle the first intersection is n; the 2+2 window is {OE|OO, EE|OO}",
-    "odd_cell_unique / oddLanding_preimage_unique: at most one odd parent, so OO interior and a climb-created peak cannot be first intersections",
+    "odd_preimage_unique / oddLanding_preimage_unique: at most one odd parent, so OO interior and a climb-created peak cannot be first intersections",
     "peak two-sided scale F_climb(x) <= x <= D_cycle(x) is cycle_peak_finance / COMPOSITION_REPACKAGING",
     "the only bulk distinct-parent channel is even+even, with count n(n^2+n+1)"
   ],
   "first_seen": "juggler first-intersection taxonomy",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],
   "mathematical_domain": "Juggler CycleMin first-intersection classification",
-  "notes": "Phase 0 only. Not a reopen of the OE-corridor or cyclic-seam leftover-killers. The odd-odd collapse is a REPARAMETERIZATION of odd_cell_unique. No finance, no K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean, no census. Not a halt theorem.",
+  "notes": "Phase 0 only. Not a reopen of the OE-corridor or cyclic-seam leftover-killers. The odd-odd collapse is a REPARAMETERIZATION of odd_preimage_unique. No finance, no K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean, no census. Not a halt theorem.",
   "origin": "docs/problems/juggler_cycle_intersection_taxonomy.md",
   "proof_reference": "docs/problems/juggler_cycle_intersection_taxonomy.md",
   "tested_range": "paper collapse against existing Lean; unique odd parent on odd starts in [1,2001); uniqueness window [1,401) already in test_odd_landing_sets"

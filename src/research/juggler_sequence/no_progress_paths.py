@@ -15,7 +15,7 @@ from typing import Any
 from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.envelope_defect import tiny_deficit
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,
@@ -50,11 +50,11 @@ LEAN_THEOREMS = (
     "image_eight_reachesOne",
     "reachesOne_of_image",
     "minimal_avoids_reachesOne_image",
-    "even_word_descent",
+    "even_itinerary_descent",
     "minimal_odd_start",
     "minimal_avoids_progress",
     "reachesOne_of_iterate",
-    "even_word_contracts",
+    "even_itinerary_contracts",
     "floorPower_two",
 )
 
@@ -366,7 +366,7 @@ def classify(
         and lean["image_two_reachesOne"]
         and lean["reachesOne_of_image"]
         and lean["minimal_avoids_reachesOne_image"]
-        and lean["even_word_descent"]
+        and lean["even_itinerary_descent"]
         and lean["minimal_odd_start"]
         and lean["minimal_avoids_progress"]
         and lean["no_no_progress_prefix_type"]

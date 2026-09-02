@@ -200,7 +200,7 @@ Closed branches were not reopened: `RESIDUAL_STATE_NEEDS_X`,
 - residual_state_object: `False`
 - residual_step_extended: `False`
 - finite_residual_automaton: `False`
-- word_language_reopened: `False`
+- itinerary_language_reopened: `False`
 - pe_factor_reopened: `False`
 - history_is_new_state: `False`
 - new_scalar_energy: `False`

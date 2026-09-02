@@ -14,8 +14,8 @@ Mathematical target     Does arithmetic realizability eliminate
                         long mixed prefix-NC words?
 Novelty hypothesis      backward floor cells empty or shrink A_NC
 Falsifier               existing cells rewritten; horizon ≠ L;
-                        realized mixed words survive
-Existing machinery      inverse-floor iff, odd_cell_unique,
+                        realized mixed itineraries survive
+Existing machinery      inverse-floor iff, odd_preimage_unique,
                         prefix_nc_words, compensated contraction
 Maximum Phase-0 scope   pullback on mixed k<=8 plus known witnesses
 ```
@@ -59,7 +59,7 @@ backward constraints are the existing even/odd cells; long mixed prefix-NC words
 - `floor_sqrt_eq_iff_sq_interval`: `True`
 - `floorPower_even_eq_iff_sq_interval`: `True`
 - `floorPower_odd_eq_iff_cube_interval`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - `power_bound_compensated_contracts`: `True`
 - new PrefixNCAdmissibility file absent: `True`
 - ResidualStep not extended: `True`
@@ -86,6 +86,6 @@ backward constraints are the existing even/odd cells; long mixed prefix-NC words
 
 backward constraints are the existing even/odd cells; long mixed prefix-NC words remain realizable; empty-over-image-24 is not unrealizable; no jointly preserved obstruction.
 
-A dangerous finite word is not a dangerous infinite
+A dangerous finite itinerary is not a dangerous infinite
 trajectory. A search-horizon depth is not a bound L.
 

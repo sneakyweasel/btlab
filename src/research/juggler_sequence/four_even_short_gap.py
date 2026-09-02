@@ -42,7 +42,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -61,15 +61,15 @@ LARGE_N0_CAP = 10**18
 
 LEAN_THEOREMS = (
     "CycleMin",
-    "no_cycle_word_two_even_ee",
+    "no_cycle_itinerary_two_even_ee",
     "no_cycleMin_gapped_three_even_ee",
-    "no_cycle_word_three_even_eee",
-    "no_cycle_word_three_even_eoooee",
+    "no_cycle_itinerary_three_even_eee",
+    "no_cycle_itinerary_three_even_eoooee",
 )
 
 FORBIDDEN_THEOREMS = E4_FORBIDDEN + (
-    "no_cycle_word_length_eleven",
-    "no_cycle_word_four_even_short_gap",
+    "no_cycle_itinerary_length_eleven",
+    "no_cycle_itinerary_four_even_short_gap",
 )
 
 
@@ -226,7 +226,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in combined,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "Minimal_untouched": "four_even_short_gap" not in MINIMAL.read_text(
             encoding="utf-8"
         ),
@@ -237,11 +237,11 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["CycleMin"]
-        and lean["no_cycle_word_three_even_eee"]
-        and lean["no_cycle_word_length_eight"]
-        and lean["no_cycle_word_four_even"]
-        and lean["no_cycle_word_length_eleven"]
-        and lean["no_cycle_word_four_even_short_gap"]
+        and lean["no_cycle_itinerary_three_even_eee"]
+        and lean["no_cycle_itinerary_length_eight"]
+        and lean["no_cycle_itinerary_four_even"]
+        and lean["no_cycle_itinerary_length_eleven"]
+        and lean["no_cycle_itinerary_four_even_short_gap"]
         and lean["length_eight_open_in_census"]
         and lean["no_all_cycles_impossible"]
     )
@@ -259,7 +259,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     if scan["shape_count"] != 30 or not scan["all_first_expanding_length_eleven"]:
         return {
             "classification": CLASS_INCOMPLETE,
-            "reason": "expected 30 length-11 first-expanding words",
+            "reason": "expected 30 length-11 first-expanding itineraries",
         }
     if not scan["all_miss_first_expanding_window"] or not scan["all_large_n0_huge"]:
         return {
@@ -277,7 +277,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "Z4 is the three-even cell pulled back through E O^{a1}; "
             "it fires on all 30 shapes at a0_exp+1 with N0<=180 and at "
             "a0_exp+2 with N0<=22; at the first expanding length "
-            "(30 words of length 11) N0 is 10^8 to 10^15; not a "
+            "(30 itineraries of length 11) N0 is 10^8 to 10^15; not a "
             "thirty-family Lean list and not a length-11 census"
         ),
     }
@@ -360,7 +360,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         decision["reason"] + ".",
         "",
-        "## First-expanding words (length 11)",
+        "## First-expanding itineraries (length 11)",
         "",
     ]
     for row in scan["rows"]:
@@ -379,8 +379,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         lines.append(f"- `{name}`: `{lean.get(name)}`")
     lines.extend(
         [
-            f"- no four-even theorem: `{lean.get('no_cycle_word_four_even')}`",
-            f"- no length-11 theorem: `{lean.get('no_cycle_word_length_eleven')}`",
+            f"- no four-even theorem: `{lean.get('no_cycle_itinerary_four_even')}`",
+            f"- no length-11 theorem: `{lean.get('no_cycle_itinerary_length_eleven')}`",
             f"- length eight open in census: `{lean.get('length_eight_open_in_census')}`",
             "",
             "## Anti-overclaim",

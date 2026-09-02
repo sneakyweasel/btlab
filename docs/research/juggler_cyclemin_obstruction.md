@@ -103,11 +103,11 @@ every scanned CycleMin-shaped expanding word hits bootstrap, a last two-even lef
 - `cycleMin_transport_second_oo`: `True`
 - `cycleMin_first_even_overshoots`: `True`
 - `no_cycleMin_bootstrap_last_gap`: `True`
-- `no_cycle_word_even_count_le_three`: `True`
+- `no_cycle_itinerary_even_count_le_three`: `True`
 - `no_cycleMin_gapped_three_even_ee`: `True`
 - `no_cycleMin_gapped_three_even_eoe`: `True`
-- `no_cycle_word_two_even_ee`: `True`
-- `no_cycle_word_two_even_eoe`: `True`
+- `no_cycle_itinerary_two_even_ee`: `True`
+- `no_cycle_itinerary_two_even_eoe`: `True`
 - `no_cycleMin_cyclemin_fudge`: `True`
 
 - cube in Cells: `True`

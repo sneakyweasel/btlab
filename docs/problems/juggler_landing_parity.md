@@ -44,7 +44,7 @@ class.
 - Inverse-floor cells
   `floorPower_even_eq_iff_sq_interval` /
   `floorPower_odd_eq_iff_cube_interval` —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Cells`.
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Preimages`.
 - Remainder window \(\rho<2T+1\) —
   **EXACT — LEAN VERIFIED** in `Problems.Juggler.Defect`.
 - Residual-state finite quotients need the integer itself —

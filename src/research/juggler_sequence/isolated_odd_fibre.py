@@ -27,7 +27,7 @@ from research.juggler_sequence.bunched_short_front import (
     walk,
 )
 from research.juggler_sequence.cyclemin_obstruction import FAMILY_A_MIN, word_from_runs
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     CYCLEMIN_OBSTRUCTION,
     EVEN_COUNT_THREE,
@@ -38,7 +38,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_isolated_odd_fibre.json"
@@ -64,7 +64,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -112,7 +112,7 @@ def prefix_and_tail(runs: tuple[int, ...]) -> tuple[str, str, int, int]:
 
 def fibre_eps_eta(n: int, y: int) -> dict[str, int] | None:
     """If T_EE(y)=n, return the (eps, eta) coordinates."""
-    if y % 2 != 0 or not follows_word(y, "EE"):
+    if y % 2 != 0 or not follows_itinerary(y, "EE"):
         return None
     t = floor_power(y)
     if t % 2 != 0 or floor_power(t) != n:
@@ -142,7 +142,7 @@ def scan_window(n_hi: int = N_HI) -> dict[str, Any]:
             follows += 1
             prefix, tail, b, c = prefix_and_tail(runs)
             y = image_after(n, prefix)
-            tail_ok = follows_word(y, tail)
+            tail_ok = follows_itinerary(y, tail)
             exact = tail_ok and image_after(y, tail) == n
             stayed = path_min >= n
             a0_follows[runs[0]] += 1
@@ -245,7 +245,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "IsolatedOddFibre" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_lean": True,
     }
 
@@ -256,7 +256,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["CycleMin"]
         and lean["cycleMin_first_even_overshoots"]
         and lean["oe_block_contracts"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]

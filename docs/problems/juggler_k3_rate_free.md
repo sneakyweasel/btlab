@@ -52,7 +52,7 @@ unconditionally, because floors only lose:
 
 **Lemma B (biased-split reduction; EXACT — HUMAN PROOF).** Full
 equidistribution is not needed. Suppose for each fixed \(d\) and
-every word \(\sigma\) of length \(<d\),
+every itinerary \(\sigma\) of length \(<d\),
 \[
 \limsup_{N\to\infty}\frac{\#(\sigma O)(N)}{\#\sigma(N)}\ \le\
 1-\beta \quad\text{for some fixed }\beta>\beta_*=1-\frac{\log 2}{\log 3}.
@@ -70,7 +70,7 @@ induction on depth gives the generating-function domination
 since each node contributes
 \(1+(x-1)\,\mu(\sigma O)/\mu(\sigma)\le 1+(x-1)(1-\beta)\).
 Chernoff at \(\gamma=\log 2/\log 3\): the \(\mu\)-measure of
-\(\{o_d\ge\gamma d\}\) — which contains every never-contracting word
+\(\{o_d\ge\gamma d\}\) — which contains every never-contracting itinerary
 — is at most \(e^{-D(\gamma\,\|\,1-\beta)\,d}\), with relative
 entropy \(D>0\) exactly when \(\gamma>1-\beta\), i.e.
 \(\beta>\beta_*\). Certificates as in Lemma A; let \(d\to\infty\).
@@ -139,7 +139,7 @@ parked K3 line at a rate-free target).
 
 ## Balanced-ternary formulation
 
-None required. The reduction lives on parity words and class
+None required. The reduction lives on parity itineraries and class
 densities; the tower lives on the 3-torus.
 
 ## Why BT may be relevant
@@ -204,7 +204,7 @@ None new, and none needed for the claim tags: the certificate side
 of both lemmas is already Lean (`power_bound_word`,
 `J-power-envelope-contraction`); the measure side (limit order,
 generating-function domination, Chernoff) is classical prose. The
-lab's finite-word Lean idiom does not cover natural-density
+lab's finite-itinerary Lean idiom does not cover natural-density
 statements; packaging them would be machinery gravity.
 
 ## Results

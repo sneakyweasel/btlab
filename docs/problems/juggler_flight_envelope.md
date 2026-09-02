@@ -12,7 +12,7 @@ flights.
 
 ## Problem
 
-Does the peak walk weight \(W=\max_k 3^{a_k}/2^k\) of the parity word
+Does the peak walk weight \(W=\max_k 3^{a_k}/2^k\) of the parity itinerary
 predict the realized trajectory peak \(H(n)\), and how much of the
 floor-suppression budget permitted by transport is actually consumed?
 
@@ -32,7 +32,7 @@ w_k\,(\log n-\Delta)\ \le\ \log x_k\ \le\ w_k\log n,
 \]
 
 The upper side needs no anchor (floors only lose) and holds on the
-whole realized word. At the prefix peak this sandwiches the fly
+whole realized itinerary. At the prefix peak this sandwiches the fly
 exponent: \(w_P(1-\Delta/\log n)\le\Phi\le w_P\). The audit question
 with quantifiers: over \(n\le 2\cdot10^4\) and the high-flyer corpus,
 is the realized fly excess \(E_H=\log_2 H-w_P\log_2 n\le 0\) within
@@ -180,7 +180,7 @@ No `sorry`; full `lake build` clean. Ledger row
   \(\Phi=207559.1\); \(275485\): \(6342922\) bits,
   \(E_H=-3\cdot10^{-6}\) bits, \(\Phi=350988.1\); \(1267909\):
   \(6485496\) bits, \(E_H=-7.8\cdot10^{-5}\) bits). \(\Phi=w_P\) to
-  relative error \(10^{-9}\)–\(10^{-11}\) at height: the parity word
+  relative error \(10^{-9}\)–\(10^{-11}\) at height: the parity itinerary
   alone determines the peak to sub-bit precision.
 - **Peak placement (OBSERVATION):** all seven high-flyers peak on the
   ascent prefix (\(P<D\)), but \(1964\) of \(9999\) odd starts

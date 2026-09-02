@@ -6,7 +6,7 @@ of `J-odd-pred-empty-cube`; cube-block Type-2 sets are
 either a finite descent or forward landing parity)
 
 Not a halt theorem, not a divergence exclusion, not a reopen of
-odd-inverse width, empty-odd-cell forward laws, odd-landing
+odd-inverse width, empty-odd-preimage forward laws, odd-landing
 residues, odd towers, hug-cylinders, or fan-concat. Not a Paper A
 edit and not a forward census of \(\lfloor x^{3/2}\rfloor\bmod 2\).
 
@@ -64,9 +64,9 @@ claimed.
 
 - Type 0/1/2 emptiness — **EXACT — HUMAN PROOF**
   (`J-odd-pred-empty-cube`); **PARK** as a forward law
-  ([juggler_empty_odd_cell.md](juggler_empty_odd_cell.md))
+  ([juggler_empty_odd_preimage.md](juggler_empty_odd_preimage.md))
 - Odd cell uniqueness — **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`)
+  (`odd_preimage_unique`)
 - Odd-inverse width as a hit obstruction — **REFUTED**
   ([juggler_odd_inverse_width.md](juggler_odd_inverse_width.md))
 - Repeated inversion — **CLOSE**
@@ -99,9 +99,9 @@ Falsifier               Type-2 y in block m are exactly
                         have no simpler residue/AP/polynomial law;
                         backward odd nesting is finite; forward
                         nesting is landing parity
-Existing machinery      odd_cell_unique; J-odd-pred-empty-cube
+Existing machinery      odd_preimage_unique; J-odd-pred-empty-cube
                         (k=ceil(y^{2/3}), Types 0/1/2);
-                        empty_odd_cell.icbrt/ceil_cbrt/odd_cell_kind;
+                        empty_odd_cell.icbrt/ceil_cbrt/odd_preimage_kind;
                         backward_geometry (odd inverse descends);
                         odd_landing_sets / odd_tower CLOSE
 Maximum Phase-0 scope   prove or refute the cube-block identity;
@@ -182,7 +182,7 @@ Lean. No \(n_{\max}\) raise.
 
 ## Formalization
 
-None new. `odd_cell_unique` stays in `Cells.lean`. No
+None new. `odd_preimage_unique` stays in `Preimages.lean`. No
 `OddInverseParity.lean`. The cube-block identity is a
 one-line corollary of `J-odd-pred-empty-cube` and is not
 a ledger row. Paper A is unchanged. No `sorry`.
@@ -209,7 +209,7 @@ Classification **ODD_INVERSE_PARITY_REPARAMETERIZATION**.
 ## Open questions
 
 None from inverse-candidate parity. Do not reopen odd-inverse
-width, empty-odd-cell forward laws, odd-landing residues, odd
+width, empty-odd-preimage forward laws, odd-landing residues, odd
 towers, hug-cylinders, or a new \(n\)-window for fan-concat.
 The fan-follower stays a coherent surviving failure mode; this
 door does not kill it and does not construct it.

@@ -1,4 +1,4 @@
-# Juggler length-7 cycle-word inventory
+# Juggler length-7 cycle-itinerary inventory
 
 Status: **EXPLORATORY**
 
@@ -11,12 +11,12 @@ and does not start a general no-cycle theorem.
 
 Do the Paper A cycle filters, together with the leftover-tail method of
 Lemma 3.5, exclude every even-terminating expanding length-7 word as a
-`CycleWord` for \(n\ge 2\)?
+`CycleItinerary` for \(n\ge 2\)?
 
 ## Exact statement
 
 A length-7 word is formally expanding if and only if it has at least
-five odd letters (\(2^7=128<243=3^5\)). Every mixed cycle word rotates
+five odd letters (\(2^7=128<243=3^5\)). Every mixed cycle itinerary rotates
 to an even-terminating orientation. The even-terminating expanding
 candidates are exactly
 
@@ -38,10 +38,10 @@ Lemma 3.5 tail
 n^{243}>2^{422}(n+1)^{128}
 \]
 
-for all \(n\ge N_0\), with no `CycleWord` realization on
+for all \(n\ge N_0\), with no `CycleItinerary` realization on
 \(2\le n<N_0\).
 
-This is now a Lean census (`no_cycle_word_length_le_seven`) and
+This is now a Lean census (`no_cycle_itinerary_length_le_seven`) and
 not a halt theorem.
 
 ## Current literature
@@ -49,7 +49,7 @@ not a halt theorem.
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
 - Small-cycle census (Paper A Theorems 3.6 and 3.8) —
-  **EXACT — LEAN VERIFIED**. No cycle word of length at most seven.
+  **EXACT — LEAN VERIFIED**. No cycle itinerary of length at most seven.
   Length eight is the stated boundary.
 - Internal-E bootstrap —
   **EXACT — LEAN VERIFIED**. Length-6 leftovers were `OOOEOE` and
@@ -70,7 +70,7 @@ eight is the first open even-terminating expanding length.
 ```text
 Mathematical target     Which even-terminating expanding length-7 words
                         survive the Paper A filters, and do the two
-                        leftover tails exclude CycleWord for all n≥2?
+                        leftover tails exclude CycleItinerary for all n≥2?
 Novelty hypothesis      Length 7 is the same two-even type as length 6;
                         bootstrap kills the OO/OOO-suffix pair; the
                         leftover-tail method of Lemma 3.5 kills
@@ -83,7 +83,7 @@ Existing machinery      formal expansion; rotation to even-terminating;
                         lowerDenom / last-even cell; leftover finite
                         table + tail (LeftoverCycles.lean).
 Maximum Phase-0 scope   One probe: inventory + leftover-tail cutoffs
-                        + exact CycleWord check on 2≤n<N0 for the two
+                        + exact CycleItinerary check on 2≤n<N0 for the two
                         leftovers only. No Lean, no Paper A edit, no
                         length 8/9, no halt, no cycle search, no CLI.
 Promotion criterion     Both leftovers excluded by tail+finite check,
@@ -118,20 +118,20 @@ It is not required.
 - `lowerDenom(OOOOO)=2^{422}` and the tail
   \(n^{243}>2^{422}(n+1)^{128}\) for \(n\ge 14\) —
   **COMPUTATIONALLY VERIFIED**
-- neither leftover is a `CycleWord` on \(2\le n<14\) (neither is even
+- neither leftover is a `CycleItinerary` on \(2\le n<14\) (neither is even
   realized) —
   **COMPUTATIONALLY VERIFIED**
 - length-8 is the same two-even type; length 9 is the first
   three-even length —
   **OBSERVATION** (not implemented)
-- every length-7 cycle word is impossible —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_seven`)
+- every length-7 cycle itinerary is impossible —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_length_le_seven`)
 - leftover orientations `OOOOOEE` and `OOOOEOE` —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_oooooee`,
-  `no_cycle_word_ooooeoe`)
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_oooooee`,
+  `no_cycle_itinerary_ooooeoe`)
 - bootstrap pair `OOEOOOE` / `OOOEOOE` —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_ooeoooe`,
-  `no_cycle_word_oooeooe`)
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_ooeoooe`,
+  `no_cycle_itinerary_oooeooe`)
 - cycles of length eight or more are impossible — not claimed
 - global halt — not claimed
 
@@ -166,11 +166,11 @@ claims that remain false or unproved:
 `formal/Problems/Juggler/LeftoverEval.lean` isolates the `Fin 14`
 tables and `2^{422}15^{128}<14^{243}`.
 `formal/Problems/Juggler/LeftoverCycles.lean` proves
-`no_cycle_word_oooooee` and `no_cycle_word_ooooeoe`.
+`no_cycle_itinerary_oooooee` and `no_cycle_itinerary_ooooeoe`.
 `formal/Problems/Juggler/Cycles.lean` proves the bootstrap pair
-`no_cycle_word_ooeoooe` and `no_cycle_word_oooeooe`.
+`no_cycle_itinerary_ooeoooe` and `no_cycle_itinerary_oooeooe`.
 `formal/Problems/Juggler/SmallCycleCensus.lean` assembles
-`no_cycle_word_length_le_seven`. No `sorry`. No halt theorem. No
+`no_cycle_itinerary_length_le_seven`. No `sorry`. No halt theorem. No
 `CycleSearch`. No `PowerBoundEq` attack. No `PowerHeight`.
 FloorPower, Progress, and Minimal are not rewritten. Length eight
 is open.
@@ -180,7 +180,7 @@ is open.
 Classification **LENGTH_SEVEN_LEFTOVER_TAIL_GREEN**, with secondary
 **TWO_EVEN_TYPE_THROUGH_EIGHT**.
 
-The seven even-terminating expanding words are exactly the predicted
+The seven even-terminating expanding itineraries are exactly the predicted
 family. Odd-run and internal-E bootstrap cover five of them, up to
 rotation. The two leftovers are the length-7 members of the same
 families as `OOOOEE` and `OOOEOE`. Both die by the refined tail at
@@ -189,7 +189,7 @@ realizations and zero returns. The naive `OOOOEOE` comparison
 \(n^{243}>2^{550}(n+1)^{128}\) also fires, at \(N_0=29\).
 
 The Lean phase packages both leftovers and the bootstrap pair, then
-assembles `no_cycle_word_length_le_seven` (**EXACT — LEAN VERIFIED**,
+assembles `no_cycle_itinerary_length_le_seven` (**EXACT — LEAN VERIFIED**,
 Paper A Lemma 3.7 and Theorem 3.8; ledger rows
 `J-leftover-length-seven-orientations` and
 `J-small-cycle-census-seven`).
@@ -198,17 +198,17 @@ Paper A Lemma 3.7 and Theorem 3.8; ledger rows
 
 Length 8 is the same two-even type; length 9 is the first three-even
 length. Do not open length 8 automatically. Do not start an
-O-terminating `CycleWord` programme. Do not claim halt.
+O-terminating `CycleItinerary` programme. Do not claim halt.
 
 ## Decision
 
 **PROMOTE**. The inventory is the length-6 geometry with one extra
 odd letter. Both leftover tails fire at \(N_0=14\), the finite
-tables are empty, and Lean now excludes every length-7 cycle word.
+tables are empty, and Lean now excludes every length-7 cycle itinerary.
 This is not a halt theorem and not a length-8 programme.
 
 Best next question: do the same two leftover families exclude every
-even-terminating expanding length-8 word, or does a new leftover
+even-terminating expanding length-8 itinerary, or does a new leftover
 shape appear?
 
 ## Publication assessment

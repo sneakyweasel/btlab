@@ -1,6 +1,6 @@
 {
   "counterexamples": [
-    "word (1,2,1,1,1,1,2,2,1,2) with early lifts then zeros"
+    "itinerary (1,2,1,1,1,1,2,2,1,2) with early lifts then zeros"
   ],
   "first_seen": "Milestone 6",
   "id": "expanding_extension_must_lift",

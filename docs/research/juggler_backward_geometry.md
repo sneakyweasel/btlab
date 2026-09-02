@@ -14,7 +14,7 @@ Mathematical target     Does repeated mixed inversion impose a
                         constraint beyond the floor cells?
 Novelty hypothesis      mixed-path scale, sparsity, rank, or hard-path rigidity
 Falsifier               every candidate is a cell corollary or reverse itinerary
-Existing machinery      even_cell, odd_cell_integers, floor_power, Cells.lean
+Existing machinery      even_preimage, odd_preimage_integers, floor_power, Preimages.lean
 Maximum Phase-0 scope   Pred census m<=4000; bounded BFS; composition; hard reverse
 ```
 
@@ -77,7 +77,7 @@ does not apply. Composed bounds are the nested cells
 
 When the exact fiber interval sits inside the parity nest, the nest is the interval hull of a parent range and therefore includes non-predecessors. The exact set is the cell law applied to the actual predecessor set. EE fibers also have holes from skipped odd intermediates. Neither is a new scale inequality.
 
-Label: `REPARAMETERIZATION` of repeated `even_cell` / `odd_cell`.
+Label: `REPARAMETERIZATION` of repeated `even_preimage` / `odd_cell`.
 
 ## E. Long backward paths
 
@@ -198,9 +198,9 @@ An infinite even inverse ray is not a nontermination certificate.
 ## Lean
 
 - sorry-free: `True`
-- `even_cell_iff`: `True`
-- `odd_cell_iff`: `True`
-- `odd_cell_unique`: `True`
+- `even_preimage_iff`: `True`
+- `odd_preimage_iff`: `True`
+- `odd_preimage_unique`: `True`
 - `floorPower_even_eq_iff_sq_interval`: `True`
 - `floorPower_odd_eq_iff_cube_interval`: `True`
 - `floorPower_one`: `True`

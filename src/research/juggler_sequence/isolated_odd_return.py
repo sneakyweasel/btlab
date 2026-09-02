@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any, Iterator
 
 from research.juggler_sequence.bunched_short_return import SHORT_PAIRS, short_tail
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     SCALE,
@@ -24,7 +24,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_isolated_odd_return.json"
@@ -44,14 +44,14 @@ K_MAX = 4
 LEAN_THEOREMS = (
     "oe_block_contracts",
     "oe_block_scale",
-    "no_cycle_word_length_le_six",
+    "no_cycle_itinerary_length_le_six",
     "CycleMin",
     "cycleMin_ge_twelve",
-    "CycleWord",
+    "CycleItinerary",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_juggler_cycle",
 )
@@ -62,7 +62,7 @@ def is_isolated_odd(word: str) -> bool:
 
 
 def block_map(x: int) -> int | None:
-    if not follows_word(x, "OE"):
+    if not follows_itinerary(x, "OE"):
         return None
     return image_after(x, "OE")
 
@@ -71,7 +71,7 @@ def in_return_fibre(n: int, y: int, b: int, c: int) -> bool:
     if y < n:
         return False
     tail = short_tail(b, c)
-    return follows_word(y, tail) and image_after(y, tail) == n
+    return follows_itinerary(y, tail) and image_after(y, tail) == n
 
 
 def cyclemin_image(n: int, word: str) -> int | None:
@@ -230,7 +230,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "not_in_paper_barrel": "IsolatedOddReturn" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -238,9 +238,9 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["oe_block_contracts"]
-        and lean["no_cycle_word_length_le_six"]
+        and lean["no_cycle_itinerary_length_le_six"]
         and lean["CycleMin"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]
@@ -280,7 +280,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "reason": (
                 "OE contracts below the CycleMin floor, so the only "
                 "isolated-odd prefixes are empty and O; those plus a "
-                "short tail are CycleWords of length at most 6"
+                "short tail are CycleItineraries of length at most 6"
             ),
         }
     return {
@@ -375,7 +375,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"`{census['extra_cyclemin_prefixes']}`. Fibre hits:",
         f"`{census['hit_count']}`.",
         "",
-        "Empty and single-`O` landings plus a short tail are CycleWords",
+        "Empty and single-`O` landings plus a short tail are CycleItineraries",
         "of length at most 6, already excluded.",
         "",
         "## Lean",

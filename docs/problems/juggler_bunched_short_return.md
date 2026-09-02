@@ -46,7 +46,7 @@ The Phase-0 questions are:
    `CycleMin` prefixes?
 
 This is not the parked interval statement \(S_{b,c}(y)\notin[n,y]\).
-It is not a `CycleWord` theorem at a non-minimum start, not a
+It is not a `CycleItinerary` theorem at a non-minimum start, not a
 four-even cell, and not a halt theorem.
 
 ## Current literature
@@ -65,10 +65,10 @@ four-even cell, and not a halt theorem.
   \(S>n\).
 - Front overshoot plus later `OO` —
   **PARK** (`J-cyclemin-front-oo-raise`).
-- Even / odd floor cells —
+- Even / odd one-step preimages —
   **EXACT — LEAN VERIFIED**
   (`floorPower_even_eq_iff_sq_interval`,
-  `floorPower_odd_eq_iff_cube_interval`, `odd_cell_unique`).
+  `floorPower_odd_eq_iff_cube_interval`, `odd_preimage_unique`).
 - Last even landing of a cycle is not an odd square —
   **EXACT — LEAN VERIFIED** (`cycle_last_even_ne_odd_sq`).
 
@@ -85,7 +85,7 @@ Novelty hypothesis      the seven short tails have extremely
                         with the constraints already on y
 Falsifier               an abundant exact-return family; a fat
                         odd cell of n^2; no rigidity beyond y≥n
-Existing machinery      even/odd floor cells; odd_cell_unique;
+Existing machinery      even/odd one-step preimages; odd_preimage_unique;
                         cycle_last_even_ne_odd_sq; CycleMin
 Maximum Phase-0 scope   exact inverses; |R| census; CycleMin
                         exact hits; no Lean, no Z5, no interval
@@ -116,16 +116,16 @@ It is not required.
   \(n^2\) is odd and cannot be the last even landing
   (`cycle_last_even_ne_odd_sq`)
 - odd inverse of \(n^2\) is a uniformly fat set —
-  **REFUTED**. `odd_cell_unique` gives at most one integer.
+  **REFUTED**. `odd_preimage_unique` gives at most one integer.
   Through \(n\le 500\) the odd cell of \(n^2\) is empty for 477
   values, even-blocked for 10, and odd for 12
-  (`J-cyclemin-short-odd-square-cell`)
+  (`J-cyclemin-short-odd-square-preimage`)
 - \(\lfloor z^{3/2}\rfloor=n^2\) is the CycleMin last-odd
   condition —
   **REFUTED** as a CycleMin equation. CycleMin \(n\) is odd, so
   \(n^2\notin[n^2,(n+1)^2)\cap 2\mathbb{Z}\). The last odd step
-  of an `EOE` tail must hit some even in the last-even cell
-- last-odd layer of the last-even cell is tiny —
+  of an `EOE` tail must hit some even in the last-even one-step preimage
+- last-odd layer of the last-even one-step preimage is tiny —
   **COMPUTATIONALLY VERIFIED** through \(n\le 48\): empty for
   15 values, size at most 2
 - all seven \(R_{b,c}(n)\) are extremely narrow —
@@ -137,7 +137,7 @@ It is not required.
   **COMPUTATIONALLY VERIFIED** empty of exact returns
   (one prefix landing, no short tail follows)
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -156,7 +156,7 @@ None opened.
 ## Counterexamples
 
 The Attack-1 singleton \(z=n^2\) is **REFUTED** by the even
-floor cell. Witness: \(n=13\) has last-even cell
+floor cell. Witness: \(n=13\) has last-even one-step preimage
 \([169,196)\) and even preimages \(\{170,172,\ldots,194\}\).
 
 The hypothesis that every short family has a tiny exact
@@ -185,13 +185,13 @@ The stronger claims that remain false or unproved:
 - “\(S_{b,c}(y)\notin[n,y]\)” — already **REFUTED** on the
   parked front branch; not retested here.
 - “every last-cluster class is now excluded” — false.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
-None. Existing `Cells.lean` and `CycleCore.lean` lemmas are
+None. Existing `Preimages.lean` and `CycleCore.lean` lemmas are
 cited, not rewritten. No `no_cycleMin_prefix_short`. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`. No
+`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`. No
 `no_juggler_cycle`. Paper A is unchanged.
 
 ## Results
@@ -207,7 +207,7 @@ than from a singleton-square ansatz:
 | \((1,0)\) | \(T_O(y)\) even in that `EE` fibre |
 | \((2,0)\) | \(T_{OO}(y)\) even in that `EE` fibre |
 | \((3,0)\) | \(T_{OOO}(y)\) even in that `EE` fibre |
-| \((0,1)\) | \(T_E(y)\) odd in the last-odd layer of the last-even cell |
+| \((0,1)\) | \(T_E(y)\) odd in the last-odd layer of the last-even one-step preimage |
 | \((1,1)\) | \(T_O(y)\) even and \(T_{OE}(y)\) in that last-odd layer |
 | \((2,1)\) | \(T_{OO}(y)\) even and \(T_{OOE}(y)\) in that last-odd layer |
 
@@ -232,7 +232,7 @@ defect-closure attacks remain parked
 The isolated-odd prefix attack is **CLOSE**
 ([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
 Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not reopen four-even cells
+`no_cycle_itinerary_length_eleven`. Do not reopen four-even cells
 or the interval seal \(S\notin[n,y]\).
 
 ## Decision

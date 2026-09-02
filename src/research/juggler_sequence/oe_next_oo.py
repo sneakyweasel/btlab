@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.escaped_even import escaped_even_row
 from research.juggler_sequence.lean_paths import (
     ESCAPE,
@@ -23,7 +23,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_oe_next_oo.json"
@@ -38,7 +38,7 @@ OO_WITNESS = (1517, 2493, 124475)
 DROP_WITNESS = (7653, 14041, 1663784)
 
 LEAN_THEOREMS = (
-    "wordOOEOOEOOEOEO",
+    "itineraryOOEOOEOOEOEO",
     "follows_ooeooeooeoeo_image_lt_sq",
     "minimal_ooeooeooeoe_follows_o",
     "minimal_ooeooeooeoeo_not_even",
@@ -49,7 +49,7 @@ FORBIDDEN_THEOREMS = (
     "no_juggler_escape",
     "juggler_reaches_one",
     "no_juggler_cycle",
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
 )
 
 
@@ -120,7 +120,7 @@ def witness_1517() -> dict[str, Any]:
         "w": w,
         "q": q,
         "q_odd": q % 2 == 1,
-        "follows": follows_word(n, "OOEOOEOOEOEO"),
+        "follows": follows_itinerary(n, "OOEOOEOOEOEO"),
         "image": image_after(n, "OOEOOEOOEOEO"),
     }
 
@@ -135,7 +135,7 @@ def witness_7653() -> dict[str, Any]:
         "q_even": q % 2 == 0,
         "drop": drop,
         "drop_lt_n": drop < n,
-        "follows": follows_word(n, "OOEOOEOOEOEO"),
+        "follows": follows_itinerary(n, "OOEOOEOOEOEO"),
         "image": image_after(n, "OOEOOEOOEOEO"),
     }
 
@@ -168,7 +168,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "escape_has_next_sq": has_named(escape, "follows_ooeooeooeoeo_image_lt_sq"),
         "not_in_paper_barrel": "Problems.Juggler.Escape" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -178,7 +178,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and all(lean[name] for name in LEAN_THEOREMS)
         and lean["escape_has_next_sq"]
         and not lean["has_no_juggler_escape"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and lean["not_in_paper_barrel"]
     )
     if not lean_ok:

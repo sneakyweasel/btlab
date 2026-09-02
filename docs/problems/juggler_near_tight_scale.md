@@ -27,7 +27,7 @@ hence
 \]
 
 In particular \(\eta_E=O(T^{-1})=O(x^{-1/2})\) and
-\(\eta_O=O(T^{-1})=O(x^{-3/2})\). For the mixed word `OOE`,
+\(\eta_O=O(T^{-1})=O(x^{-3/2})\). For the mixed itinerary `OOE`,
 
 \[
 1+q_{\mathrm{OOE}}
@@ -74,7 +74,7 @@ Project relationship: **extended**.
 ```text
 Mathematical target     Is tiny q automatic floor-scale decay,
                         predicted by predecessor λ only through y?
-Novelty hypothesis      η=O(1/T); fixed-word q→0; OOE is dominated
+Novelty hypothesis      η=O(1/T); fixed-itinerary q→0; OOE is dominated
                         by the last even remainder ~ n^{-9/8}
 Falsifier               q does not decay; successor q ignores y;
                         large-y blocks keep η bounded away from 0

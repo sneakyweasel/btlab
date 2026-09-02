@@ -43,7 +43,7 @@ from research.juggler_sequence.near_extremal_prefixes import (
     prefix_noncontracting,
 )
 from research.juggler_sequence.parity_balance import prefix_survives
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_formal_realized_gap.json"
@@ -286,7 +286,7 @@ def minimal_unobserved(
     realized: list[set[int]],
     k_max: int,
 ) -> list[str]:
-    """Shortest formal words with no AA realizer whose parent was realized."""
+    """Shortest formal itineraries with no AA realizer whose parent was realized."""
 
     out: list[str] = []
     for length in range(1, k_max + 1):
@@ -495,7 +495,7 @@ def atlas_follows_control(
     formal: dict[int, list[str]],
     k_max: int,
 ) -> dict[str, Any]:
-    """Optional: formal words missing from atlas REALIZABLE prefixes."""
+    """Optional: formal itineraries missing from atlas REALIZABLE prefixes."""
 
     path = sqlite_path(DEFAULT_DATA_DIR)
     if not path.is_file():
@@ -728,7 +728,7 @@ def lean_api_present() -> dict[str, bool]:
         and "FormalRealizedGap" not in paper,
         "no_atlas_lang_formal": "LANG_FORMAL" not in schema
         and "LANG_ABOVE_ANCHOR" not in schema,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -811,7 +811,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_CLOSED,
             "reason": (
                 "D_N stays rich and F_j has no simple exact P beyond envelope "
-                "or scale; the formal abstraction is not losing a word-level law"
+                "or scale; the formal abstraction is not losing an word-level law"
             ),
         }
     return {

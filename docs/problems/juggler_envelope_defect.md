@@ -1,4 +1,4 @@
-# Juggler finite-word envelope defect and strictness
+# Juggler finite-itinerary envelope defect and strictness
 
 Status: **EXPLORATORY**
 
@@ -8,7 +8,7 @@ every positive integer reaches 1.
 
 ## Problem
 
-For a realized non-monochrome finite word, how far below the one-sided
+For a realized non-monochrome finite itinerary, how far below the one-sided
 floor-power envelope must the image lie, and can that gap be traced to
 the first non-exact branch?
 
@@ -79,7 +79,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - `StrictPowerBound` append / suffix persistence —
   **EXACT — LEAN VERIFIED**
-- Non-monochrome realized word \(\Rightarrow\Delta\ge 1\) —
+- Non-monochrome realized itinerary \(\Rightarrow\Delta\ge 1\) —
   **EXACT — LEAN VERIFIED**
 - First local defect \(\Rightarrow\Delta\ge\delta_j\) through any suffix —
   **EXACT — LEAN VERIFIED**
@@ -132,7 +132,7 @@ are unchanged.
 
 Classification **DEFECT_QUANTITATIVE_GREEN**.
 
-A realized word that leaves an extremal tower at the first non-exact
+A realized itinerary that leaves an extremal tower at the first non-exact
 branch \(j\) satisfies
 
 \[

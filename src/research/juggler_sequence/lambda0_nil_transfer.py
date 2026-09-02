@@ -66,7 +66,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.bracket_nil_lift import scaled_root4, tower_data
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.two_step_parity import shift_average_probe
 
 REPO_ROOT = Path(__file__).resolve().parents[3]

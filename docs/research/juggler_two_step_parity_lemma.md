@@ -517,7 +517,7 @@ cardinality
 (1-\psi_1)(1+\psi_2)(1+\psi_3)\); expanding gives the main term
 \(\tfrac18 \cdot \tfrac N2\) and seven sign sums bounded by
 Theorem E. Every \(OOEE\) start descends within four steps by the
-power envelope: the word \(OOEE\) has \(3^2 < 2^4\), so the
+power envelope: the itinerary \(OOEE\) has \(3^2 < 2^4\), so the
 Lean-verified contraction (`J-power-envelope-contraction`) applies.
 The even class and the \(OE\) class carry their existing one- and
 two-step certificates (Theorem 5.1 machinery,
@@ -571,7 +571,7 @@ bricks for the next tier, two recorded route obstructions, and the
 conditional density-one theorem. The tier-2 discrepancy bound itself
 is **not claimed**.
 
-**Layer bookkeeping.** Along a word, the \((t{+}1)\)-th letter is the
+**Layer bookkeeping.** Along an itinerary, the \((t{+}1)\)-th letter is the
 parity of \(\lfloor x_t^{3/2}\rfloor\) (odd branch) or
 \(\lfloor x_t^{1/2}\rfloor\) (even branch), with \(x_t \asymp
 n^{\gamma_t}\), \(\gamma_t = \prod_{s\le t} e_s\), \(e_s \in
@@ -590,15 +590,15 @@ descent density \(13/16\) of Corollary F is the exact ceiling of the
 method. Any further certified density requires a second growing
 layer.
 
-*Proof.* A word is contracting at length \(\ell\) with \(o\) odd
+*Proof.* An itinerary is contracting at length \(\ell\) with \(o\) odd
 letters iff \(3^o < 2^\ell\). The method proves letters at positions
-1–3 of any word (one growing layer) and further letters only along
+1–3 of any itinerary (one growing layer) and further letters only along
 even branches (decaying layers). Hence the analyzable words have all
 odd letters at positions \(\le 2\): the contracting minimal ones are
 \(E\) (\(3^0 < 2\)), \(OE\) (\(3 < 4\)), and \(OOE^k\) with
 \(9 < 2^{k+2}\), minimal at \(k = 2\), i.e. \(OOEE\). Extensions of a
-contracting word certify no new starts. Densities: \(\tfrac12 +
-\tfrac14 + \tfrac1{16} = \tfrac{13}{16}\). Any other contracting word
+contracting itinerary certify no new starts. Densities: \(\tfrac12 +
+\tfrac14 + \tfrac1{16} = \tfrac{13}{16}\). Any other contracting itinerary
 has an odd letter at a position \(\ge 3\), whose parity needs the
 \(x_t^{3/2}\) layer with growing amplitude \(n^{\gamma_t/2}\) —
 a second growing layer. \(\square\)
@@ -744,7 +744,7 @@ O_d(N^{1-\delta_d})\) with \(\delta_d > 0\) for every \(d\), the set
 of starts admitting a finite descent certificate has natural density
 \(1\).
 
-*Proof.* A word \(w\) of length \(d\) has a contracting prefix iff
+*Proof.* An itinerary \(w\) of length \(d\) has a contracting prefix iff
 \(3^{o_t} < 2^t\) for some \(t \le d\), where \(o_t\) counts odd
 letters among the first \(t\). If \(w\) has no contracting prefix
 then in particular \(3^{o_d} \ge 2^d\), i.e. \(o_d \ge \beta d\) with
@@ -752,7 +752,7 @@ then in particular \(3^{o_d} \ge 2^d\), i.e. \(o_d \ge \beta d\) with
 \(2^d\,\Pr[\mathrm{Bin}(d, \tfrac12) \ge \beta d] \le 2^d
 e^{-2(\beta - 1/2)^2 d}\) by Hoeffding's inequality. Each word class
 has at most \(2^{-d}N + E_d(N)\) members; summing over the
-non-contracting words gives the count. The density-one statement
+non-contracting itineraries gives the count. The density-one statement
 follows by letting \(d \to \infty\) slowly with \(N\) (e.g. any
 \(d(N) \to \infty\) with \(2^{d}E_d(N)/N \to 0\)). \(\square\)
 
@@ -762,12 +762,12 @@ almost every start descends below itself. The implication is
 unconditional; only the hypothesis is open beyond the proved cases
 (\(d \le 3\) fully — Theorems 5.1/C plus Proposition L of Part IV,
 which closed a gap in an earlier phrasing of this remark; at
-\(d = 4\), every word except OOO\* via Theorems E and Q of Part V).
+\(d = 4\), every itinerary except OOO\* via Theorems E and Q of Part V).
 
 ### Census gate at depth 6 — COMPUTATIONALLY VERIFIED
 
 Exact census of all 32 depth-6 words on odd \(n \le 2\cdot10^6\):
-every word is realized, and the deviations obey the two-regime
+every itinerary is realized, and the deviations obey the two-regime
 minimal-scale envelope
 
 \[
@@ -791,7 +791,7 @@ degrades as \(\gamma_{\min}(w)\) shrinks.
 For every fixed itinerary word \(w\): \(\#\{n \le N:
 \mathrm{word}(n) \text{ has prefix } w\} = 2^{-|w|}N +
 O(N^{1-\delta_w})\), \(\delta_w > 0\). Proved for \(|w| \le 3\)
-(Theorems 5.1/C, Proposition L) and for every word at \(|w| = 4\)
+(Theorems 5.1/C, Proposition L) and for every itinerary at \(|w| = 4\)
 except OOO\* (Theorems E and Q). With Proposition J this implies
 density-one finite descent. The only remaining depth-4 case is
 tier 2, the OOO\* split, whose precise obstruction — the kernel
@@ -1167,7 +1167,7 @@ OOO\* sits above the line.
 
 ### Remark (Proposition J needs only O-rooted words)
 
-The word classes in Proposition J range over all starts, but every
+The itinerary classes in Proposition J range over all starts, but every
 E-rooted word has a contracting prefix at length 1 (\(3^0 < 2\)), so
 E-rooted classes never enter the exceptional set: the hypothesis only
 ever consumes O-rooted class bounds, which are exactly what Theorems
@@ -1942,7 +1942,7 @@ Even a power-saving bound on \(K_3\) at depth 5 only *counts*
 OOOOE and OOOOO. Neither contracts:
 \(3^4 = 81 > 32 = 2^5\). Certified descent stays \(7/8\).
 The first OOOO-prefixed contractor is OOOOEEE
-(\(81 < 128 = 2^7\)), a length-7 word, not this phase.
+(\(81 < 128 = 2^7\)), a length-7 itinerary, not this phase.
 
 A saving \(\delta\) that halves per extra nesting
 (\(1/72 \to 1/144 \to \cdots\)) does **not** feed the
@@ -2088,7 +2088,7 @@ increment that does *not* need \(K_3\) is taken up in Part X.
 
 ## Part X: the length-7 engine contractors — density \(57/64\) (Phase 13)
 
-Scope: the two leftover words that contract at length 7
+Scope: the two leftover itineraries that contract at length 7
 *without* meeting \(K_3\). The third length-7 contractor
 OOOOEEE still needs the OOOO\* split and is not attempted.
 
@@ -3212,12 +3212,12 @@ found two things: an overclaim introduced during consolidation,
 and a provable depth-8 ring the \(K_3\) fixation had hidden.
 
 **The overclaim (fixed).** The consolidated note asserted "every
-uncounted contracting word passes through \(OOOO*\)". False:
+uncounted contracting itinerary passes through \(OOOO*\)". False:
 \(OOEOOOEE\) (five odd letters, \(3^5 = 243 < 256 = 2^8\)) is
 contracting, contains no \(OOOO\) factor, and was uncounted —
 only its length-7 prefix was (Theorem X). The sentence is
 corrected in both copies of the note; the fix is subsumed by the
-theorem below, which counts that word.
+theorem below, which counts that itinerary.
 
 **The observation.** The six counted expanding length-7
 cylinders (Theorem X) have exactly four contracting length-8
@@ -3275,7 +3275,7 @@ exponents \(p \in \{\tfrac{81}{64}, \tfrac{27}{32},
 (positive for \(p > 1\), negative for \(p < 1\)) and bounded by
 the stated envelopes. The key structural fact is that the even
 letters interpose square roots that keep every intermediate
-exponent below \(2\) — no state on these words reaches the
+exponent below \(2\) — no state on these itineraries reaches the
 \(\lfloor \cdot^{3/2}\rfloor\)-map at scale \(> n^{9/4}\), so no
 coefficient reaches \(n\), in contrast to \(OOOO*\) where the
 fifth-letter coefficient is \(n^{27/16}\cdot k\) (Lemma V1).

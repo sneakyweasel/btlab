@@ -36,7 +36,7 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.odd_run_itinerary import prefix_lambda
 from research.juggler_sequence.parity_persist import odd_run_len
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_block_map_q.json"
@@ -328,7 +328,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "paper_a_has_new_api": any(name in paper for name in FORBIDDEN_NEW_API),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

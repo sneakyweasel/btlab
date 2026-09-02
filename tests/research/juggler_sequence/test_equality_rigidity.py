@@ -18,7 +18,7 @@ from research.juggler_sequence.equality_rigidity import (
     smallest_hit,
     word_of,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_smallest_mixed_equality_is_nine_word_o():
@@ -94,7 +94,7 @@ def test_lean_witness_and_anti_strictness_api():
 
 def test_powers_equal_matches_small_cmp_pow():
     from research.juggler_sequence.equality_rigidity import powers_equal
-    from research.juggler_sequence.power_words import cmp_pow
+    from research.juggler_sequence.power_itineraries import cmp_pow
 
     assert powers_equal(27, 2, 9, 3) is True
     assert powers_equal(5, 2, 3, 3) is False

@@ -14,7 +14,7 @@ from typing import Any
 from research.juggler_sequence.expansion_slack import walk_pe_run
 from research.juggler_sequence.global_defect import local_defect
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.two_block_residual import (
     odd_odd_starts,

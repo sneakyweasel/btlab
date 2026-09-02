@@ -37,7 +37,7 @@ from research.juggler_sequence.lean_paths import (
     WALK_CHARGE_WORDS,
     has_named,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 try:  # exact big-int acceleration for the high-flyer retry pass only
     from gmpy2 import isqrt as _gmp_isqrt
@@ -84,7 +84,7 @@ REQUIRED_LEAN = (
     ("AboveAnchorWalk", "aboveAnchor_prefix_odds_ge_hug"),
     ("AboveAnchorWalk", "aboveAnchor_odds_ge_hug"),
     ("MinimumRelative", "AboveAnchor"),
-    ("WalkChargeWords", "hugOdds_least"),
+    ("WalkChargeItineraries", "hugOdds_least"),
 )
 
 
@@ -336,7 +336,7 @@ def lean_wired() -> dict[str, bool]:
         else "",
         "CycleCore": CYCLE_CORE.read_text(encoding="utf-8"),
         "MinimumRelative": MINIMUM_RELATIVE.read_text(encoding="utf-8"),
-        "WalkChargeWords": WALK_CHARGE_WORDS.read_text(encoding="utf-8"),
+        "WalkChargeItineraries": WALK_CHARGE_WORDS.read_text(encoding="utf-8"),
     }
     return {
         f"{module}.{name}": has_named(texts[module], name)

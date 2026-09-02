@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.oneshot_recovery import WORD, post_kind
 from research.juggler_sequence.post_l_ooe import WORD_M
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.second_post_l_ooe import m_ooe_k_square
 from research.juggler_sequence.k5_post_l_ooe import (
     CLASS_GREEN,
@@ -84,9 +84,9 @@ def test_501_never_reaches_k5():
     assert row["oe_kind"] == "OE"
     assert row["max_k"] == 2
     assert row["follows_w5"] is False
-    assert follows_word(501, WORD_W5) is False
-    assert follows_word(501, WORD_M + "OOE" * 2) is True
-    assert follows_word(501, WORD_M + "OOE" * 3) is False
+    assert follows_itinerary(501, WORD_W5) is False
+    assert follows_itinerary(501, WORD_M + "OOE" * 2) is True
+    assert follows_itinerary(501, WORD_M + "OOE" * 3) is False
     assert image_after(501, WORD_M + "OOE" * 2) == 12707
     assert post_kind(12707) == "OE"
     assert 12707 < 501 * 501
@@ -152,5 +152,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "9/8" in dossier or "9\\,/\\,8" in dossier
     assert "juggler_k5_post_l_ooe" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

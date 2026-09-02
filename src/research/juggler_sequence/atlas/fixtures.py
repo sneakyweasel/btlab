@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.atlas.packed import pack_word
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 # Lean Dynamics / native_decide seeds.
 FLOOR_POWER_SEEDS = (

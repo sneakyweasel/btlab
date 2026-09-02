@@ -97,7 +97,7 @@ It is not required.
   **REFUTED** in the same window (34 follows, all
   \(\mathrm{path\_min}<n\))
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -136,13 +136,13 @@ The stronger claims that remain false or unproved:
   \(a_0\in\{2,3,5\}\) followed.
 - “every last-cluster class is now excluded” — false; the
   window is finite and \(e=4\) is parked.
-- “every cycle word is impossible” — not claimed.
+- “every cycle itinerary is impossible” — not claimed.
 
 ## Formalization
 
 None. `oe_block_contracts` is cited, not rewritten. No
 `no_cycleMin_isolated_odd`. No `no_cycleMin_four_even`. No
-`no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A
+`no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`. Paper A
 is unchanged.
 
 ## Results
@@ -164,13 +164,13 @@ assembler, and not a halt theorem.
 
 The bunched-short residual is now parked in every named
 subattack. Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not reopen four-even cells.
+`no_cycle_itinerary_length_eleven`. Do not reopen four-even cells.
 
 ## Decision
 
 **PARK**. The isolated-odd fibre is empty in a finite window,
 and every follow drops below \(n\). That is not a Lean
-transport theorem. Do not claim that every cycle word is
+transport theorem. Do not claim that every cycle itinerary is
 impossible.
 
 Best next question: none on this line. The \(e=4\) isolated-odd

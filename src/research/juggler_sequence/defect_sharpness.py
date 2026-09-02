@@ -18,7 +18,7 @@ from research.juggler_sequence.envelope_defect import (
     tiny_deficit,
 )
 from research.juggler_sequence.power_algebra import local_tight
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,

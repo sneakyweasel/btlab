@@ -43,7 +43,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_certificate_harvest.json"
@@ -436,8 +436,8 @@ def analyze_window(tables: dict[str, Any], name: str) -> dict[str, Any]:
         "n_max": tables.get("n_max"),
         "backend": tables.get("backend"),
         "coarse": coarse,
-        "leftover_words": rows[:40],
-        "leftover_words_all": rows,
+        "leftover_itineraries": rows[:40],
+        "leftover_itineraries_all": rows,
         "n_leftover_types": len(rows),
         "signatures": signature_histogram(rows)[:24],
         "unary_block_count": unary,
@@ -545,8 +545,8 @@ def run_probe(
     drift = None
     if "low" in by_name and "high" in by_name:
         drift = scale_drift(
-            by_name["low"].get("leftover_words_all") or by_name["low"]["leftover_words"],
-            by_name["high"].get("leftover_words_all") or by_name["high"]["leftover_words"],
+            by_name["low"].get("leftover_itineraries_all") or by_name["low"]["leftover_itineraries"],
+            by_name["high"].get("leftover_itineraries_all") or by_name["high"]["leftover_itineraries"],
             int(by_name["low"]["coarse"]["leftover"]),
             int(by_name["high"]["coarse"]["leftover"]),
         )
@@ -579,7 +579,7 @@ def run_probe(
         "native_available": find_binary() is not None,
         "git": git_commit(),
         "letter_chain": False,
-        "word_language_reopen": False,
+        "itinerary_language_reopen": False,
         "halt_theorem": False,
         "atlas_language_tag": False,
         "certificate_harvest_lean": False,
@@ -642,7 +642,7 @@ def lean_api_present() -> dict[str, bool]:
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "not_in_paper_barrel": all(name not in paper for name in FORBIDDEN_NEW_API),
         "no_atlas_lang": "LANG_HARVEST" not in combined and "LANG_HARVEST" not in LANGUAGE_IDS,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -784,7 +784,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
                 "|---|---|---|---|---|",
             ]
         )
-        for row in window["leftover_words"][:20]:
+        for row in window["leftover_itineraries"][:20]:
             lines.append(
                 f"| `{row['word']}` | {row['count']} | {row['min_n']} | "
                 f"`{row['run_signature']}` | {row['unary_block']} |"
@@ -826,7 +826,7 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
     )
     rows = []
     for window in scan["windows"]:
-        for row in window["leftover_words"]:
+        for row in window["leftover_itineraries"]:
             rows.append({"window": window["name"], **row})
     (DATA_DIR / "leftover_histogram.json").write_text(
         json.dumps(rows, indent=2) + "\n",
@@ -843,7 +843,7 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
 def write_artifacts(payload: dict[str, Any] | None = None) -> dict[str, Any]:
     data = payload if payload is not None else probe_payload()
     for window in data.get("scan", {}).get("windows", []):
-        window.pop("leftover_words_all", None)
+        window.pop("leftover_itineraries_all", None)
     JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
     JSON_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     DOC_PATH.write_text(render_markdown(data), encoding="utf-8")

@@ -33,7 +33,7 @@ CLASS_PARK = "EXPONENT_BUDGET_PARK"
 LEFTOVER_LENGTHS = (19, 84)
 
 ARCHIVED = (
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "cycleMin_finance",
     "image_eq_start_defectRatio",
     "global_defect_identity",

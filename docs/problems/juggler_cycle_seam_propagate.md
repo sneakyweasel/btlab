@@ -207,7 +207,7 @@ It is not required.
 - Window: prefix table \(a,a'\le 6\), \(r,r'\le 4\); CycleMin
   tube at \(n=10^6+1\); realized transitions on odds in
   \([13,2001)\); shrink check on a short odd interval; cyclic
-  closure on three short expanding words. Fast suite only.
+  closure on three short expanding itineraries. Fast suite only.
   No CLI. No new Lean. No \(N_0\) raise.
 
 ## Conjectures

@@ -26,7 +26,7 @@ from research.juggler_sequence.minimal_anchor_closure import (
     corridor_rank,
     trajectory_until_drop,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_global_record_min_is_frozen_until_the_drop():

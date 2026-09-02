@@ -13,7 +13,7 @@ from typing import Any
 
 from research.juggler_sequence.expansion_slack import NEAR_TIGHT
 from research.juggler_sequence.global_defect import (
-    follows_word,
+    follows_itinerary,
     image_after,
     odd_count,
 )
@@ -25,7 +25,7 @@ from research.juggler_sequence.normalized_defect import (
     slack_den,
     slack_num,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_excursion
 from research.juggler_sequence.two_block_residual import (
@@ -104,7 +104,7 @@ def ooe_scale_census(*, n_max: int = N_MAX) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     last_even_dom = 0
     for n in range(3, n_max + 1, 2):
-        if not is_odd_odd(n) or not follows_word(n, "OOE"):
+        if not is_odd_odd(n) or not follows_itinerary(n, "OOE"):
             continue
         if not bits_ok(n, 9) or not bits_ok(image_after(n, "OOE"), 8):
             continue
@@ -186,7 +186,7 @@ def pe_pair_census(*, n_max: int = N_MAX) -> dict[str, Any]:
         if not second["expanding"]:
             continue
         word = odd_even_word(second["a"], second["b"])
-        if not follows_word(y, word):
+        if not follows_itinerary(y, word):
             continue
         q2 = q_log(y, word)
         if q2 <= 0:

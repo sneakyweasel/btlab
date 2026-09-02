@@ -11,7 +11,7 @@ Reviewer follow-up of the arithmetic seam stack
 not a reopen of those branches and not a new paper. Total defect
 and first-defect Amplify already exist. This phase asks whether
 keeping every local remainder, transporting it by its position
-in the word, and splitting the vector at the \(O\mid E\) seam
+in the itinerary, and splitting the vector at the \(O\mid E\) seam
 produces a one-sided constraint the scalar \(\Delta\) cannot see.
 
 Not a halt theorem, not a leftover-killer, not a finance reopen,
@@ -20,7 +20,7 @@ and not a claim that every positive integer reaches 1.
 ## Problem
 
 Do not look at total defect. Track how each floor error is
-amplified according to its position in the word and split the
+amplified according to its position in the itinerary and split the
 vector at the peak/valley seam. Does a climb-half, a descent-half,
 or a single position obstruct a cycle without summing to
 \(\Delta\)?
@@ -65,7 +65,7 @@ length-11 leftover this is
 \((729,243,243,81,27,27,9,3,3,1,1)\). That is the closed
 exponent budget read backwards, not a new position law.
 
-**No seam-half beats \(G\) on an expanding word
+**No seam-half beats \(G\) on an expanding itinerary
 (COMPUTATIONALLY VERIFIED).**
 On expanding \(\mathtt{OOE}\) at \(365\), \(1517\), and
 \(1000057\), both halves and every single \(e_i\) stay below
@@ -125,7 +125,7 @@ Mathematical target     Does position-weighted, seam-split
                         finance, or the closed congruence /
                         interval attacks?
 Novelty hypothesis      An error's suffix lift depends on where
-                        it sits in the word; climb-half vs
+                        it sits in the itinerary; climb-half vs
                         descent-half can obstruct a cycle
                         without summing to Δ
 Falsifier               attributed chunks + cross terms = Δ;
@@ -161,7 +161,7 @@ loss, or the exponent budget.
 
 - **CLOSE** if \(\sum e_i+X=\Delta\).
 - **CLOSE** if no seam-half or single \(e_i\) exceeds \(G\)
-  except on contracting words where \(T_w<n\).
+  except on contracting itineraries where \(T_w<n\).
 - **CLOSE** if \(W_i=3^{\#O(\mathrm{suffix})}\).
 - **CLOSE** if \(X\) is the odd-step cubic cross.
 - **CLOSE** if first-defect Amplify is the first positive \(e_j\).
@@ -224,7 +224,7 @@ It is not required.
   \(X=0\). Falsifier of a residual that is not the global defect.
 - \(365\xrightarrow{\mathtt{OOE}}763\): \(E_O/G\approx 2.8\cdot 10^{-4}\),
   Amplify\(/G\approx 2.7\cdot 10^{-4}\), \(X=0\). Falsifier of a
-  seam-half that beats \(G\) on an expanding word.
+  seam-half that beats \(G\) on an expanding itinerary.
 - \(1517\xrightarrow{\mathtt{OOE}}3789\) and
   \(1000057\xrightarrow{\mathtt{OOE}}5623773\): same one-sided
   miss. Falsifier of a scale where the vector catches up.
@@ -276,7 +276,7 @@ existing lift produces a vector whose sum plus the cubic
 cross is \(\Delta\), whose first positive coordinate is
 Amplify, and whose formal weights are suffix \(3^{o'}\).
 Seam halves stay below \(G\) on every expanding Phase-0
-word, including leftover shape at \(429\). Contracting
+itinerary, including leftover shape at \(429\). Contracting
 words die by \(T_w<n\). That is useful negative knowledge;
 it is not a new invariant. No Paper A edit, no ledger row,
 no new Lean, no \(N_0\) raise, no finance reopen.

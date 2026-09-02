@@ -9,11 +9,11 @@ every positive integer reaches 1.
 ## Problem
 
 Does every odd step make the composed one-sided envelope strict for
-\(n\ge 2\), so that a realized mixed word cannot attain equality?
+\(n\ge 2\), so that a realized mixed itinerary cannot attain equality?
 
 ## Exact statement
 
-The weak bound is already a theorem: every realized finite parity word
+The weak bound is already a theorem: every realized finite parity itinerary
 \(w\) satisfies
 
 \[
@@ -38,7 +38,7 @@ These strictness claims are independent of the contraction criterion
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Phase-13 (`juggler_power_words`): two-sided exponent law **REFUTED**.
+- Phase-13 (`juggler_power_itineraries`): two-sided exponent law **REFUTED**.
 - Phase-14 (`juggler_power_composition`): one-sided envelope
   **EXACT — LEAN VERIFIED** as `power_bound_follows`. Mixed-word
   equality was left open.
@@ -49,8 +49,8 @@ These strictness claims are independent of the contraction criterion
 Mathematical target     Does every odd step make the composed bound
                         strict for n>=2, forbidding mixed-word equality?
 Novelty hypothesis      Mixed-word equality does not occur for n>=2.
-Falsifier               A realized mixed word with T_w(n)^{2^k} = n^{3^o}.
-Existing machinery      power_words cmp_pow; PowerBound composition.
+Falsifier               A realized mixed itinerary with T_w(n)^{2^k} = n^{3^o}.
+Existing machinery      power_itineraries cmp_pow; PowerBound composition.
 Maximum Phase-0 scope   Mixed-equality search; one-step odd analysis;
                         stop strictness API if a witness appears.
 Promotion criterion     A minimized mixed-equality witness, or a Lean
@@ -85,7 +85,7 @@ It is not required.
 ## Experiments
 
 - Probe: `research.juggler_sequence.equality_rigidity`
-- Reuses `research.juggler_sequence.power_words` (`cmp_pow`, itinerary)
+- Reuses `research.juggler_sequence.power_itineraries` (`cmp_pow`, itinerary)
 - Deep layer: all \(n\le 10^4\), depth \(12\), itinerary bit cap \(1024\)
   (54 mixed equalities)
 - Wide layer: all \(n\le 10^6\), depth \(8\) (516 mixed equalities)
@@ -134,7 +134,7 @@ if and only if \(n\) is a square (**COMPUTATIONALLY VERIFIED**, 0
 mismatches). Therefore a single odd letter can be an equality case, and
 mixed-word equality occurs.
 
-Merged search: 15996 mixed equalities, all all-odd words. No equality
+Merged search: 15996 mixed equalities, all all-odd itineraries. No equality
 containing both `O` and `E` was found. A tight odd step from an odd
 square has odd image, so `E` cannot follow immediately. That is
 **OBSERVATION**, not a theorem of this phase.
@@ -145,7 +145,7 @@ This is not a termination theorem.
 
 ## Open questions
 
-Is equality for a word that contains `E` impossible for \(n\ge 2\)? Is
+Is equality for an itinerary that contains `E` impossible for \(n\ge 2\)? Is
 all-odd equality exactly the odd \(b^{2^j}\) family?
 
 ## Decision

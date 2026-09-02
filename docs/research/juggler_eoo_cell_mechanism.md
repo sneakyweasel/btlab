@@ -97,5 +97,5 @@ the remaining word.
 
 EOO contracts exactly on the cells q=1,3 by the threshold n > c(q); q≥5 has c(q) ≥ (q+1)^2. The same first-even freeze appears for EOOO, but only n=2 meets the threshold.
 
-This is a finite-word cell classification, not a global halt result.
+This is a finite-itinerary cell classification, not a global halt result.
 

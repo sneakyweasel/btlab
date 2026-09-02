@@ -1820,7 +1820,7 @@
     "floorPower": true,
     "follows": true,
     "image": true,
-    "even_cell_iff": true,
+    "even_preimage_iff": true,
     "floorPower_even_mono": true,
     "floorPower_odd_mono": true,
     "image_monotone_of_follows": true,

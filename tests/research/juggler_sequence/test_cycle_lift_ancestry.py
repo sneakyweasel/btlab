@@ -13,7 +13,7 @@ from research.juggler_sequence.cycle_lift_ancestry import (
     iterate_floor,
     parents_of,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_lift_ancestry.md"
@@ -86,5 +86,5 @@ def test_dossier_and_conjecture_record_close():
     assert "**CLOSE**" in dossier
     rec = get_conjecture("juggler_cycle_lift_ancestry")
     assert rec["status"] == "REFUTED"
-    assert rec["lean_reference"] == "cell_same_next_state"
+    assert rec["lean_reference"] == "preimage_same_next_state"
     assert rec["counterexamples"]

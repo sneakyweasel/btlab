@@ -31,10 +31,10 @@ trailing-evens cell?
 
 **Combinatorial sliding is cyclic rotation
 (KNOWN / EXACT — LEAN VERIFIED).**
-If \(w\) is a cycle word and the cut sits \(k\) letters into a
-homogeneous run, `rotateWord w k` is the same necklace
-(`cycleWord_rotateWord`). Sliding through a leading even run is
-`rotateWord_even_run`. The interior cuts
+If \(w\) is a cycle itinerary and the cut sits \(k\) letters into a
+homogeneous run, `rotateItinerary w k` is the same necklace
+(`cycleItinerary_rotateItinerary`). Sliding through a leading even run is
+`rotateItinerary_even_run`. The interior cuts
 \[
 E\mid EEE,\qquad EE\mid EE,\qquad EEE\mid E
 \]
@@ -61,7 +61,7 @@ not two views of one first intersection.
 
 **Peak / valley transfer is the trailing-evens cell
 (KNOWN / REPARAMETERIZATION).**
-On a cycle word that ends \(E^r\),
+On a cycle itinerary that ends \(E^r\),
 `cycle_trailing_evens_lt` is \(P<(n+1)^{2^r}\). The slogan
 \(P\approx V^{2^r}\) is that two-sided cell. Taking \(2^r\)-th
 roots does not add a bound. On a minimal non-terminating orbit
@@ -69,13 +69,13 @@ the matching lower cell is `even_run_scale_barrier`.
 
 **Odd interiors are not first meetings
 (KNOWN / EXACT — LEAN VERIFIED).**
-`odd_cell_unique` already closed interior \(\mathtt{OO}\). Sliding
+`odd_preimage_unique` already closed interior \(\mathtt{OO}\). Sliding
 an \(O^r\) cut is vacuous for first intersections.
 
 **Run length is the archived even-count
 (KNOWN).**
 A nontrivial cycle has at least four evens
-(`no_cycle_word_even_count_le_three`). How long one homogeneous
+(`no_cycle_itinerary_even_count_le_three`). How long one homogeneous
 block can be is that count plus `cycle_trailing_evens_lt` at
 each \(r\), not a sliding consequence.
 
@@ -83,9 +83,9 @@ No cycle of any length — not claimed.
 
 ## Current literature
 
-- Cyclic shift of a cycle word —
+- Cyclic shift of a cycle itinerary —
   **EXACT — LEAN VERIFIED**
-  (`rotateWord`, `cycleWord_rotateWord`, `rotateWord_even_run`)
+  (`rotateItinerary`, `cycleItinerary_rotateItinerary`, `rotateItinerary_even_run`)
 - Trailing-evens cell \(T_v(n)<(n+1)^{2^r}\) —
   **EXACT — LEAN VERIFIED**
   (`cycle_trailing_evens_lt`)
@@ -94,10 +94,10 @@ No cycle of any length — not claimed.
   (`even_run_scale_barrier`)
 - Unique odd parent —
   **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, `oddLanding_preimage_unique`)
+  (`odd_preimage_unique`, `oddLanding_preimage_unique`)
 - Even-count \(\le 3\) impossible —
   **EXACT — LEAN VERIFIED**
-  (`no_cycle_word_even_count_le_three`)
+  (`no_cycle_itinerary_even_count_le_three`)
 - \(2{+}2\) window \(\{\mathtt{OE}\mid\mathtt{OO},\mathtt{EE}\mid\mathtt{OO}\}\) —
   **CLOSE** / **REPARAMETERIZATION**
   ([juggler_cycle_cyclic_seam.md](juggler_cycle_cyclic_seam.md))
@@ -116,7 +116,7 @@ No cycle of any length — not claimed.
 
 Project relationship: **refuted** as a sliding leftover
 obstruction; combinatorial sliding is a **REPARAMETERIZATION** of
-`cycleWord_rotateWord`; peak / valley transfer is
+`cycleItinerary_rotateItinerary`; peak / valley transfer is
 `cycle_trailing_evens_lt`.
 
 ## Branch budget
@@ -125,19 +125,19 @@ obstruction; combinatorial sliding is a **REPARAMETERIZATION** of
 Mathematical target     Does sliding a first-intersection cut through
                         a homogeneous E^r (or O^r) run produce a
                         two-sided envelope, or a restriction on r,
-                        that is not rotateWord / cycle_trailing_evens_lt /
-                        even_run_scale_barrier / odd_cell_unique /
+                        that is not rotateItinerary / cycle_trailing_evens_lt /
+                        even_run_scale_barrier / odd_preimage_unique /
                         the archived OE/EO cells?
 Novelty hypothesis      interior E-cuts collapse, so only EO and OE
                         plus run length remain, and choosing the peak
                         or valley boundary yields a stronger inequality
-Falsifier               combinatorial sliding is rotateWord; a first
+Falsifier               combinatorial sliding is rotateItinerary; a first
                         intersection cannot slide backward to the peak;
                         P ~ V^{2^r} is trailing-evens; O interiors are
                         not first meetings; max E^r is even-count
-Existing machinery      cycleWord_rotateWord, rotateWord_even_run,
+Existing machinery      cycleItinerary_rotateItinerary, rotateItinerary_even_run,
                         cycle_trailing_evens_lt, even_run_scale_barrier,
-                        odd_cell_unique, no_cycle_word_even_count_le_three,
+                        odd_preimage_unique, no_cycle_itinerary_even_count_le_three,
                         closed cyclic-seam / intersection-taxonomy /
                         E^r block
 Maximum Phase-0 scope   three-way split (word / trajectory / scale);
@@ -158,11 +158,11 @@ Do not reopen the entry corridor, the cyclic seam, the
 first-intersection taxonomy, or the \(E^r\) block. Do not
 reopen \(r=4\) pullback.
 
-- **CLOSE** if interior \(E\)-cuts are `rotateWord` of one necklace.
+- **CLOSE** if interior \(E\)-cuts are `rotateItinerary` of one necklace.
 - **CLOSE** if a first intersection interior to \(E^r\) cannot be
   slid to the peak and is not first at the valley.
 - **CLOSE** if \(P<(V+1)^{2^r}\) is `cycle_trailing_evens_lt`.
-- **CLOSE** if \(O^r\) interiors are `odd_cell_unique`.
+- **CLOSE** if \(O^r\) interiors are `odd_preimage_unique`.
 - **CLOSE** if “how long can \(E^r\) be” is even-count plus the
   trailing cell.
 - **PROMOTE** only if a sliding type empties, or a bound appears,
@@ -190,7 +190,7 @@ It is not required.
 ## Candidate operations / invariants
 
 - Interior \(E\)-cuts of one necklace —
-  **KNOWN** / **REPARAMETERIZATION** of `cycleWord_rotateWord`
+  **KNOWN** / **REPARAMETERIZATION** of `cycleItinerary_rotateItinerary`
 - First-intersection backward slide —
   **REFUTED**; witness \(102\to 10\leftarrow 100\), first meet \(10\)
 - Forward slide to the valley —
@@ -198,7 +198,7 @@ It is not required.
 - Peak / valley transfer \(P<(V+1)^{2^r}\) —
   **REPARAMETERIZATION** of `cycle_trailing_evens_lt`
 - \(O^r\) interiors as first meetings —
-  **KNOWN** empty (`odd_cell_unique`)
+  **KNOWN** empty (`odd_preimage_unique`)
 - Canonical seams \(\{\mathtt{EO},\mathtt{OE}\}\) —
   **REPARAMETERIZATION** of the closed intersection taxonomy
 - Homogeneous-run leftover-killer —
@@ -235,7 +235,7 @@ It is not required.
 ## Formalization
 
 None added. Combinatorial sliding is already
-`cycleWord_rotateWord` / `rotateWord_even_run`. The cell is
+`cycleItinerary_rotateItinerary` / `rotateItinerary_even_run`. The cell is
 already `cycle_trailing_evens_lt`. Paper A is unchanged. Do not
 add `SeamSliding.lean`.
 
@@ -259,7 +259,7 @@ taxonomy, the \(E^r\) block, or the entry corridor. Do not open an
 ## Decision
 
 **CLOSE**. Homogeneous \(E^r\) is dynamically uniform for the
-*word*: interior cuts slide by `rotateWord`. It is not uniform
+*word*: interior cuts slide by `rotateItinerary`. It is not uniform
 for a *first intersection*: the \(E^r\) block already permits
 only the forward push to the valley, and sliding backward to
 the peak is false. The numerical transfer \(P\approx V^{2^r}\)

@@ -26,7 +26,7 @@ Maximum Phase-0 scope   Parity lemmas; monochromatic theorem; exact E^k/O^k
 - classification: **EXTREMAL_FAMILY_GREEN**
 - domain saturations: `99`
 - mixed saturations: `0`
-- prescribed mixed words realized: `0`
+- prescribed mixed itineraries realized: `0`
 - tower mixed count: `0`
 - family witnesses match: `True`
 - sorry-free: `True`
@@ -40,7 +40,7 @@ Envelope equality is exactly the two monochrome towers a^{2^k} --E^k--> a and a^
 - word `EE` at 16: base `2`,
   trajectory `[16, 4, 2]`
 - word `OO` at 81: base `3`
-- mixed word `EO` at 9: `False`
+- mixed itinerary `EO` at 9: `False`
 
 Exact even towers contract (`3^0 < 2^k`). Exact odd towers expand
 (`3^k > 2^k`). Both saturate the one-sided envelope.
@@ -77,5 +77,5 @@ Exact even towers contract (`3^0 < 2^k`). Exact odd towers expand
 
 Envelope equality is exactly the two monochrome towers a^{2^k} --E^k--> a and a^{2^k} --O^k--> a^{3^k}.
 
-This is a finite-word boundary statement, not a global halt result.
+This is a finite-itinerary boundary statement, not a global halt result.
 

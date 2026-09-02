@@ -12,7 +12,7 @@ cycle-wide product of those block exponents is a stronger
 closure obstruction.
 
 Not a halt theorem, not a floor raise, and not a claim that
-every cycle word is impossible.
+every cycle itinerary is impossible.
 
 ## Problem
 
@@ -26,7 +26,7 @@ finance?
 
 ## Exact statement
 
-**The product is the word ratio
+**The product is the itinerary ratio
 (KNOWN / REPARAMETERIZATION).**
 Write \(A=\sum a_i\) and \(R=\sum r_i\). Then
 \[
@@ -51,12 +51,12 @@ total.
 (KNOWN).**
 \(3^A=2^{A+R}\) never holds for \(L\ge 1\): the two sides have
 distinct prime factors. That is already why every nonempty
-cycle word is strictly expanding,
-\(2^L<3^o\) (`cycle_word_formally_expanding`).
+cycle itinerary is strictly expanding,
+\(2^L<3^o\) (`cycle_itinerary_formally_expanding`).
 
 **Exact integer return is the defect identity
 (KNOWN / EXACT — LEAN VERIFIED).**
-On a realized word, \(n^{3^o}=T_w(n)^{2^L}+\Delta_w(n)\). A
+On a realized itinerary, \(n^{3^o}=T_w(n)^{2^L}+\Delta_w(n)\). A
 cycle has \(T_w(n)=n\), so
 \[
 \Delta_w(n)=n^{3^o}-n^{2^L}=n^{2^L}(n^{3^o-2^L}-1).
@@ -97,7 +97,7 @@ No cycle of any length — not claimed.
 
 - Formal expansion \(2^L<3^o\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_formally_expanding`)
+  (`cycle_itinerary_formally_expanding`)
 - Global defect \(n^{3^o}=T_w(n)^{2^L}+\Delta\) —
   **EXACT — LEAN VERIFIED**
   (`global_defect_identity`)
@@ -141,7 +141,7 @@ Novelty hypothesis      local CycleMin block constraints make
 Falsifier               ∏ ρ_i = 3^o/2^L identically; the signed
                         sum ignores the partition; floors are
                         finance; leftovers have tiny θ
-Existing machinery      cycle_word_formally_expanding;
+Existing machinery      cycle_itinerary_formally_expanding;
                         cycleMin_finance;
                         image_eq_start_defectRatio;
                         global_defect_identity;
@@ -164,7 +164,7 @@ block leftover-killer.
 - **CLOSE** if \(\prod\rho_i=3^o/2^L\) identically.
 - **CLOSE** if the signed sum is \(o\log 3-L\log 2\).
 - **CLOSE** if \(3^A=2^{A+R}\) is unique factorization, already
-  used by `cycle_word_formally_expanding`.
+  used by `cycle_itinerary_formally_expanding`.
 - **CLOSE** if exact return is `global_defect_identity` /
   `image_eq_start_defectRatio` and the floors are
   `cycleMin_finance`.
@@ -198,7 +198,7 @@ It is not required.
 - Signed sum \(o\log 3-L\log 2\) —
   **KNOWN** / **REPARAMETERIZATION**
 - \(3^A\neq 2^{A+R}\) —
-  **KNOWN** (`cycle_word_formally_expanding`)
+  **KNOWN** (`cycle_itinerary_formally_expanding`)
 - Exact return defect —
   **EXACT — LEAN VERIFIED** (`global_defect_identity`)
 - Floors —
@@ -238,7 +238,7 @@ It is not required.
 ## Formalization
 
 None added. Formal expansion is already
-`cycle_word_formally_expanding`. The defect identity is already
+`cycle_itinerary_formally_expanding`. The defect identity is already
 `global_defect_identity`. The floors are already
 `cycleMin_finance`. Paper A is unchanged. Do not add
 `ExponentBudget.lean`.

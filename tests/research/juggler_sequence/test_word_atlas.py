@@ -50,8 +50,8 @@ from research.juggler_sequence.atlas.validate import (
     compare_dense_allow_overflow,
     validate_suite,
 )
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_packed_word_roundtrip():
@@ -69,15 +69,15 @@ def test_packed_word_roundtrip():
 def test_floor_power_and_lean_word_fixtures():
     for n, expected in FLOOR_POWER_SEEDS:
         assert floor_power(n) == expected
-    assert follows_word(OOE_AT_FIVE["n"], OOE_AT_FIVE["word"])
+    assert follows_itinerary(OOE_AT_FIVE["n"], OOE_AT_FIVE["word"])
     assert image_after(OOE_AT_FIVE["n"], OOE_AT_FIVE["word"]) == OOE_AT_FIVE["image"]
-    assert follows_word(EEOE_AT_2500["n"], EEOE_AT_2500["word"])
+    assert follows_itinerary(EEOE_AT_2500["n"], EEOE_AT_2500["word"])
     start, word, image = (
         PE_CHAIN_365["starts"][0],
         PE_CHAIN_365["words"][0],
         PE_CHAIN_365["images"][0],
     )
-    assert follows_word(start, word)
+    assert follows_itinerary(start, word)
     assert image_after(start, word) == image
 
 

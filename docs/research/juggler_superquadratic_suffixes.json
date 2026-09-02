@@ -167,7 +167,7 @@
   "decision": {
     "classification": "FIRST_E_EVENTUAL_NONCONTRACTION_GREEN",
     "secondary": "LOWER_GROWTH_COMPOSITION_GREEN",
-    "reason": "each fixed v with 3^#O(v) > 2^(|v|+1) has LowerPowerBound q^{3^o} \u2264 D_v T_v(q)^{2^r} and therefore only finitely many first-even contraction cells; no finite word has \u03b1_v = 2"
+    "reason": "each fixed v with 3^#O(v) > 2^(|v|+1) has LowerPowerBound q^{3^o} \u2264 D_v T_v(q)^{2^r} and therefore only finitely many first-even contraction cells; no finite itinerary has \u03b1_v = 2"
   },
   "search_method": "realized q only; integer comparison T_v(q)+1 < (q+1)^2; no huge envelope powers"
 }

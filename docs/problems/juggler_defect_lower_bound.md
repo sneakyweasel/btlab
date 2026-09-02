@@ -14,7 +14,7 @@ produce?
 
 ## Exact statement
 
-For a realized word \(w\), let \(j=\operatorname{firstDefect}(n,w)\) be
+For a realized itinerary \(w\), let \(j=\operatorname{firstDefect}(n,w)\) be
 the first index with \(\rho_j>0\), or \(|w|\) if every remainder
 vanishes. The prefix before \(j\) is tight, hence an even or odd
 power-of-two tower. After inserting that remainder, later remainders
@@ -47,7 +47,7 @@ This does **not** claim
 n^{3^o}-n^{2^k}
 \]
 
-on expanding mixed words. That inequality is \(T_w(n)<n\).
+on expanding mixed itineraries. That inequality is \(T_w(n)<n\).
 
 ## Current literature
 

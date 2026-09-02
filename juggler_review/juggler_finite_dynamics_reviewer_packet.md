@@ -26,7 +26,7 @@ The former single note has been split into two manuscripts:
   Theorem 3.22 (\(e\ge 4\)) is the Section 3 structural
   headline. Theorem 4.7 is the supporting run-packing
   refinement. Section 4 opens with the excursion necklace of a
-  minimum-based word: organizing prose, not a new theorem.
+  minimum-based itinerary: organizing prose, not a new theorem.
   Finance-survivor arithmetic is secondary. Lemma 4.4b is the
   odd-count monotonicity used to evaluate the table at
   \(o_{\min}\). The core lemmas are mechanized in Lean 4;
@@ -98,7 +98,7 @@ Paper B; every analytic estimate of Paper B is a human proof.
 **Paper A.** Every realized finite Juggler word obeys a power
 envelope. An exact compositional global defect is recorded in
 Appendix C; Theorem 4.4 uses only the envelope's nonnegativity.
-Inverse-cell geometry classifies minimum-based words with at
+One-step-preimage geometry classifies minimum-based itineraries with at
 most three evens; the small-cycle censuses and the family
 calculations (both Appendix D) assemble
 to \(e\ge 4\), hence period at least eleven (Theorem 3.22). The
@@ -109,7 +109,7 @@ Proposition 1.3, yields \(L\ge 25781\). Theorem 4.6 certifies
 that bound with a conservative \(6/5\) majorant; the cutoff is
 not an artifact of that majorant.
 Section 5 couples the states through one closed exponent walk:
-transport to a reduced base, the hug adversary, the word
+transport to a reduced base, the hug adversary, the itinerary
 identity, and Denjoy--Koksma over certified Ostrowski blocks
 give a census-free envelope on \([50508,301994)\); the kill
 table yields \(L\ge 176251\) at the laboratory floor, and a
@@ -139,24 +139,24 @@ Proposition 7.4 says nothing about the deterministic shift).
 
 | Claim | Evidence | Scope |
 |---|---|---|
-| Power envelope and exponent-gap contraction | **EXACT — LEAN VERIFIED** | conditional on a realized word |
+| Power envelope and exponent-gap contraction | **EXACT — LEAN VERIFIED** | conditional on a realized itinerary |
 | Global defect identity, vanishing, and composition (Appendix C) | **EXACT — LEAN VERIFIED** | weighted lift, not an additive sum; not a uniform tax; not an input to Theorem 4.4 |
-| Odd inverse cells have at most one integer (Lemma 3.1) | **EXACT — LEAN VERIFIED** | one-step fibers |
-| Nontrivial cycle words are formally expanding; min-to-even prefixes are superquadratic (Theorem 3.2) | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
+| Odd one-step preimages have at most one integer (Lemma 3.1) | **EXACT — LEAN VERIFIED** | one-step fibers |
+| Nontrivial cycle itineraries are formally expanding; min-to-even prefixes are superquadratic (Theorem 3.2) | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
 | Coarse lower envelope \(C_v\) (Lemma 3.3) | **EXACT — LEAN VERIFIED** | one-step \(n<4\lfloor\sqrt n\rfloor^2\) and composition; used by Lemma 3.5; Lean `lower_growth_word` |
-| Next-square thresholds (Lemma 3.4) | **EXACT — LEAN VERIFIED** | \(OO\) at \(q\ge5\), \(OOO\) at \(q\ge3\), odd inheritance, last-even cell, and \(O^aE\) for \(a\ge3\) |
+| Next-square thresholds (Lemma 3.4) | **EXACT — LEAN VERIFIED** | \(OO\) at \(q\ge5\), \(OOO\) at \(q\ge3\), odd inheritance, last-even one-step preimage, and \(O^aE\) for \(a\ge3\) |
 | Length-six orientations \(OOOEOE\) and \(OOOOEE\) (Lemma 3.5) | **EXACT — LEAN VERIFIED** | the only two leftover even-terminating length-six words; \(n<256\) is a \(254\)-start table, not a census of all words; tail \(n\ge256\) by \(n^{81}>2^{130}(n+1)^{64}\) |
-| Small-cycle census: no cycle word of length \(\le6\) (Theorem 3.6) | **EXACT — LEAN VERIFIED** | lengths \(\le6\) only; strengthened by Theorem 3.8 |
+| Small-cycle census: no cycle itinerary of length \(\le6\) (Theorem 3.6) | **EXACT — LEAN VERIFIED** | lengths \(\le6\) only; strengthened by Theorem 3.8 |
 | Leftover length-seven orientations \(OOOOEOE\) and \(OOOOOEE\) (Lemma 3.7) | **EXACT — LEAN VERIFIED** | the only two leftover even-terminating length-seven words; \(n<14\) is a \(12\)-start table; tail \(n\ge14\) by \(n^{243}>2^{422}(n+1)^{128}\) |
-| Small-cycle census: no cycle word of length \(\le7\) (Theorem 3.8) | **EXACT — LEAN VERIFIED** | lengths \(\le7\) only; strengthened by Theorem 3.22 |
-| Trailing even run (Lemma 3.9) | **EXACT — LEAN VERIFIED** | cell identity; \(r=1\) is Lemma 3.4(iv) |
+| Small-cycle census: no cycle itinerary of length \(\le7\) (Theorem 3.8) | **EXACT — LEAN VERIFIED** | lengths \(\le7\) only; strengthened by Theorem 3.22 |
+| Trailing even run (Lemma 3.9) | **EXACT — LEAN VERIFIED** | one-step-preimage identity; \(r=1\) is Lemma 3.4(iv) |
 | Two-even leftover families (Theorem 3.12) | **EXACT — LEAN VERIFIED** | \(O^{k-2}EE\) and \(O^{k-3}EOE\) for every \(k\ge6\); not a length-8 census |
-| First-even transport (Theorem 3.13) | **EXACT — LEAN VERIFIED** | minimum-based starts only; not a `CycleWord` theorem at a non-minimum start |
+| First-even transport (Theorem 3.13) | **EXACT — LEAN VERIFIED** | minimum-based starts only; not a `CycleItinerary` theorem at a non-minimum start |
 | Bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\), \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) (Theorems 3.14--3.20) | **EXACT — LEAN VERIFIED** | seven families only; not a length-8 or length-9 census |
-| Gapped leftovers as cycle words (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
-| Canonical run form (Lemma 3.21b); classification (Lemma 3.21a); even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | minimum-based words are \(O^aEO^bEO^cE\); no cycle word with fewer than four evens; expansion corollary, not a length-9 or length-10 word census |
+| Gapped leftovers as cycle itineraries (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
+| Canonical run form (Lemma 3.21b); classification (Lemma 3.21a); even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | minimum-based itineraries are \(O^aEO^bEO^cE\); no cycle itinerary with fewer than four evens; expansion corollary, not a length-9 or length-10 itinerary census |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7, Appendix C); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists; recorded for future work |
-| Excursion necklace (Section 4 opening) | organizing; no new tag | names the circular itinerary of Theorem 3.2, Lemma 3.4, Lemma 3.21b, and the last-even cell; first peak overshoots, last peak lands in the entry cell; not a contradiction and not a halt theorem |
+| Excursion necklace (Section 4 opening) | organizing; no new tag | names the circular itinerary of Theorem 3.2, Lemma 3.4, Lemma 3.21b, and the last-even one-step preimage; first peak overshoots, last peak lands in the entry one-step preimage; not a contradiction and not a halt theorem |
 | Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); conceptual sharp form; not a halt theorem |
 | Inv-sum form (Corollary 4.4c) | **EXACT — LEAN VERIFIED** | `cycleMin_finance_inv_sum`; same defects, remainders kept as \(1/x_{i+1}\) |
 | Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | convenient length-only statewise bound; \(n_{\max}\) from the parity charge |
@@ -169,7 +169,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Transport to a reduced base (Theorem 5.3) | **EXACT — HUMAN PROOF** | Lean in log form (`cycleMin_transport`); \(n\ge 400\) hypothesis |
 | Hug charge domination (Theorem 5.4) | **EXACT — HUMAN PROOF** | maximisation Lean (`hug_charge_maximal`); strict uniqueness human, unused by kills |
 | Rotation average \(C_*\) (Proposition 5.5) | **EXACT — HUMAN PROOF** | Laplace bound Lean (`rotationAverage_gap`); ergodic identification classical prose |
-| Word identity (Lemma 5.6) | **EXACT — LEAN VERIFIED** | `budgetedWord_eq_hugWord` |
+| Itinerary identity (Lemma 5.6) | **EXACT — LEAN VERIFIED** | `budgetedWord_eq_hugWord` |
 | Denjoy--Koksma block envelope (Theorem 5.7) | **EXACT — HUMAN PROOF** | DK classical, stated in §5.5 with the \(\alpha\to\theta\) coordinate change; per-block hypotheses Lean (`theta_convergent_quality`, `theta_block_permutations`) |
 | Census-free window envelope on \([50508,301994)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | digit caps and scan Lean; valid on the window only — do not read beyond \(301994\) |
 | Kill table, period \(\ge 176251\) (Theorem 5.9) | **COMPUTATIONALLY VERIFIED** | kill template Lean (`cycleMin_hug_kill_criterion`); per-length evaluation certified computation |
@@ -206,7 +206,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 
 ## Quantifier checks
 
-1. A descent certificate is a realized word with image strictly
+1. A descent certificate is a realized itinerary with image strictly
    below the start. Paper A's short-certificate remark isolates a
    uniform short subclass. It does not say that odd-to-odd starts
    lack descent.
@@ -220,7 +220,7 @@ Proposition 7.4 says nothing about the deterministic shift).
    unconditional *implication* from all-depth equidistribution, whose
    hypothesis is a theorem for \(d\le4\) and open beyond (first open
    case: the depth-5 \(OOOO*\) split, Conjecture 7.3).
-4. `power_bound_contracts` requires a realized contracting word.
+4. `power_bound_contracts` requires a realized contracting itinerary.
 5. Cycle restrictions do not exclude all cycles. Paper A Theorem 3.6
    is a census for lengths at most six; Theorem 3.8 extends it to
    lengths at most seven. Theorems 3.12--3.21 exclude leftover
@@ -248,7 +248,7 @@ Proposition 7.4 says nothing about the deterministic shift).
   (Conjecture 7.3 is open), or any bound on the pure
   amplitude-product model at the deterministic shift
   (Conjecture 7.5 is open; Theorem 7.4 is almost-every-shift only).
-- Every trajectory meets a contracting word.
+- Every trajectory meets a contracting itinerary.
 - Every nontrivial cycle is impossible.
 - A state-distribution finance inequality (the maximum of
   \(\sum 1/(x_i\log x_i)\) over realizable cycle geometry).
@@ -256,7 +256,7 @@ Proposition 7.4 says nothing about the deterministic shift).
   are length-only upper bounds on the same sum.
 - That the excursion necklace of Section 4, or the missing
   implication from the forced lift plus the necklace plus the
-  entry cell, excludes leftover lengths or proves there is no
+  entry one-step preimage, excludes leftover lengths or proves there is no
   cycle.
 - The Juggler map is irreducible or has no finite-state model.
 - The \(N^{5/6}\) bound controls trajectories or arbitrary image sets.
@@ -272,9 +272,9 @@ Reject or revise if:
 4. any analytic estimate of Paper B is described as Lean-certified;
 5. the census of Paper A Theorem 3.6 is read beyond length six, or
    Theorem 3.8 beyond length seven, or Theorem 3.22 is read as a
-   length-9 or length-10 word census rather than an even-count
+   length-9 or length-10 itinerary census rather than an even-count
    assembly, or Theorem 3.13 is read
-   as a cycle-word exclusion at a non-minimum start, or Theorem
+   as a cycle-itinerary exclusion at a non-minimum start, or Theorem
    4.6 is quoted as a Lean theorem, or leftover \(84\) is quoted
    as the printed leftover, or an exclusion of every leftover
    length is attributed to either paper;
@@ -296,7 +296,7 @@ Reject or revise if:
     only the repaired length-5 count and the density \(7/8\);
 12. the excursion necklace of Paper A Section 4 is quoted as a
     new theorem, or the first CycleMin peak is identified with
-    the last-even entry cell;
+    the last-even entry one-step preimage;
 13. Theorem 5.8 is quoted for a length outside
     \([50508,301994)\), or Corollary 5.10 is described as an
     extension of the census-free window rather than a certified
@@ -315,7 +315,7 @@ python -m pytest tests/research/juggler_sequence/test_oo_descent_density.py
 python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
 python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
 python -m pytest tests/research/juggler_sequence/test_two_step_parity.py
-python -m pytest tests/research/juggler_sequence/test_cycle_leftover_words.py
+python -m pytest tests/research/juggler_sequence/test_cycle_leftover_itineraries.py
 python -m pytest tests/research/juggler_sequence/test_layer_architecture.py
 ```
 

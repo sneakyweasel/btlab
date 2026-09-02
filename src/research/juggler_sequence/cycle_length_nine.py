@@ -16,7 +16,7 @@ against a last-even / last-odd bound through the mixed tail
 E O^b E O^c E. For a = 2 the remaining word after the first E is a
 length-6 leftover, so first-E transport of Lemma 3.5 is available on
 a cycle minimum; the prefix-cell comparison already excludes both
-a = 2 words as CycleWord, so the transport is not required.
+a = 2 words as CycleItinerary, so the transport is not required.
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ from research.juggler_sequence.cycle_ooo_scale import (
     lower_denom,
     rotations,
 )
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLES,
@@ -51,7 +51,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_length_nine.json"
@@ -89,7 +89,7 @@ TRANSPORT_REMAINING = {
 ODD_RUN_WORD = "OOOOOOOOE"
 
 LEAN_THEOREMS = (
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "no_cycle_odd_run_append_even",
     "oo_suffix_threshold",
     "ooo_suffix_threshold",
@@ -98,13 +98,13 @@ LEAN_THEOREMS = (
     "cycleMin_not_start_even",
     "cycle_last_even_interval",
     "cycle_trailing_evens_lt",
-    "no_cycle_word_length_le_six",
-    "no_cycle_word_oooeoe",
-    "no_cycle_word_ooooee",
-    "no_cycle_word_oooooee",
-    "no_cycle_word_ooooeoe",
-    "no_cycle_word_length_le_seven",
-    "no_cycle_word_ooooooeee",
+    "no_cycle_itinerary_length_le_six",
+    "no_cycle_itinerary_oooeoe",
+    "no_cycle_itinerary_ooooee",
+    "no_cycle_itinerary_oooooee",
+    "no_cycle_itinerary_ooooeoe",
+    "no_cycle_itinerary_length_le_seven",
+    "no_cycle_itinerary_ooooooeee",
 )
 
 N0_SEARCH_CAP = 500
@@ -185,7 +185,7 @@ def named_filter(word: str) -> str:
     if c >= 2 and orientation["legal_cyclemin"] and threshold is not None:
         return f"bootstrap_{threshold[0]}"
     if c in (0, 1) and a >= 2:
-        return "leftover_prefix_cell_EE" if c == 0 else "leftover_prefix_cell_EOE"
+        return "leftover_prefix_preimage_EE" if c == 0 else "leftover_prefix_preimage_EOE"
     return "unclassified"
 
 
@@ -231,7 +231,7 @@ def ymax_from_odd_bound(c_bits: int, rhs: int, odd_exp: int) -> int:
 
 
 def z_upper_cells_ee(n: int, b: int) -> int:
-    """Upper bound on T_{O^a}(n) for a CycleWord tail E O^b EE.
+    """Upper bound on T_{O^a}(n) for a CycleItinerary tail E O^b EE.
 
     Last two evens give p < (n+1)^4. The tail always starts with E,
     so z --E--> y --O^b--> p. If b = 0 the tail is EEE and
@@ -246,7 +246,7 @@ def z_upper_cells_ee(n: int, b: int) -> int:
 
 
 def z_upper_cells_eoe(n: int, b: int) -> int:
-    """Upper bound on T_{O^a}(n) for a CycleWord tail E O^b EOE.
+    """Upper bound on T_{O^a}(n) for a CycleItinerary tail E O^b EOE.
 
     Last-odd cell y^3 < (n+1)^4, then one even back to s < (y+1)^2.
     If b = 0 the tail is EEOE and z < (s+1)^2. If b >= 1 then
@@ -280,12 +280,12 @@ def first_tail_cutoff(a: int, b: int, c: int) -> int | None:
     return None
 
 
-def cycle_word_hits(word: str, n_lo: int, n_hi: int) -> dict[str, Any]:
+def cycle_itinerary_hits(word: str, n_lo: int, n_hi: int) -> dict[str, Any]:
     follows = 0
     hits: list[int] = []
     follow_starts: list[int] = []
     for n in range(n_lo, n_hi):
-        if not follows_word(n, word):
+        if not follows_itinerary(n, word):
             continue
         follows += 1
         follow_starts.append(n)
@@ -309,7 +309,7 @@ def leftover_tails() -> dict[str, Any]:
         a, b, c = abc(word)
         n0 = first_tail_cutoff(a, b, c)
         remaining = remaining_after_first_e(word)
-        table = None if n0 is None else cycle_word_hits(word, 2, n0)
+        table = None if n0 is None else cycle_itinerary_hits(word, 2, n0)
         rows.append(
             {
                 "word": word,
@@ -359,7 +359,7 @@ def bootstrap_small_n() -> dict[str, Any]:
             steps = orbit_until_fail(n, word)
             fail = next((row for row in steps if not row["parity_ok"]), None)
             word_row[f"n{n}"] = {
-                "realizes": follows_word(n, word),
+                "realizes": follows_itinerary(n, word),
                 "fail_index": None if fail is None else fail["index"],
                 "fail_state": None if fail is None else fail["state"],
             }
@@ -406,9 +406,9 @@ def lean_api_present() -> dict[str, bool]:
         "no_cycle_engine": "def CycleSearch" not in combined
         and "def CycleStates" not in combined,
         "length_eight_open_in_census": "Length eight is open" in census,
-        "no_length_nine_theorem": "theorem no_cycle_word_length_nine"
+        "no_length_nine_theorem": "theorem no_cycle_itinerary_length_nine"
         not in combined,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text()
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text()
         and "CycleMin" not in engine_floor_text(),
         "orbit_min_not_used": "MinimalNonTerm" not in text,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
@@ -433,7 +433,7 @@ def run_probe() -> dict[str, Any]:
         "three_even_count": len(three),
         "two_even_count": len(two),
         "candidates": rows,
-        "leftover_words": leftovers,
+        "leftover_itineraries": leftovers,
         "leftovers_are_predicted": set(leftovers) == set(EXPECTED_LEFTOVERS),
         "bootstrap_words": bootstrap,
         "bootstrap_are_predicted": set(bootstrap) == set(BOOTSTRAP_WORDS),
@@ -456,14 +456,14 @@ def run_probe() -> dict[str, Any]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["cycle_word_formally_expanding"]
+        and lean["cycle_itinerary_formally_expanding"]
         and lean["no_cycleMin_internal_even_threshold"]
-        and lean["no_cycle_word_length_le_six"]
+        and lean["no_cycle_itinerary_length_le_six"]
         and lean["no_length_nine_theorem"]
         and lean["length_eight_open_in_census"]
-        and lean["no_cycle_word_length_le_seven"]
+        and lean["no_cycle_itinerary_length_le_seven"]
         and lean["cycle_trailing_evens_lt"]
-        and lean["no_cycle_word_ooooooeee"]
+        and lean["no_cycle_itinerary_ooooooeee"]
         and lean["no_cycle_engine"]
         and lean["no_all_cycles_impossible"]
     )
@@ -520,10 +520,10 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "LAST_INTERNAL_SUFFIX_ALWAYS_O_RUN",
         ],
         "reason": (
-            "length 9 has 28 three-even even-terminating expanding words; "
+            "length 9 has 28 three-even even-terminating expanding itineraries; "
             "last-internal suffix is always O^c so bootstrap still kills c>=2; "
             "the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} "
-            "die by the odd-prefix cell tail (N0<=374) with empty CycleWord "
+            "die by the odd-prefix cell tail (N0<=374) with empty CycleItinerary "
             "tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE"
         ),
     }
@@ -580,13 +580,13 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "```text",
         "Mathematical target     What argument excludes the length-9",
-        "                        three-even leftover CycleWords?",
+        "                        three-even leftover CycleItineraries?",
         "Novelty hypothesis      Last-internal suffix is always O^c;",
         "                        leftovers are nine words O^a E O^b E O^c E;",
         "                        odd-prefix + mixed-tail cells replace the",
         "                        two-even families",
         "Falsifier               A leftover whose prefix-cell tail never",
-        "                        fires, or a CycleWord realization below N0",
+        "                        fires, or a CycleItinerary realization below N0",
         "Existing machinery      expansion, CycleMin, last-internal",
         "                        bootstrap, Lemma 3.5 cells, lowerDenom",
         "Maximum Phase-0 scope   inventory + prefix-cell N0 + finite table;",
@@ -609,7 +609,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- odd-run: `{scan['odd_run_words']}`",
         f"- two-even: `{scan['two_even_count']}` (same type as lengths 6-8; not opened)",
         f"- three-even: `{scan['three_even_count']}`",
-        f"- leftovers: `{scan['leftover_words']}`",
+        f"- leftovers: `{scan['leftover_itineraries']}`",
         f"- bootstrap: `{scan['bootstrap_words']}`",
         f"- unclassified: `{scan['unclassified']}`",
         f"- last-internal suffix contains E: `{not scan['last_internal_suffix_never_contains_E']}`",
@@ -686,7 +686,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "This is not a halt result and not a length-9 census.",
             "Two-even length-9 leftovers were not opened. Length 10 and",
             "four-even words were not opened. Lean excludes `OOOOOOEEE`",
-            "only (`cycle_trailing_evens_lt`, `no_cycle_word_ooooooeee`).",
+            "only (`cycle_trailing_evens_lt`, `no_cycle_itinerary_ooooooeee`).",
             "",
         ]
     )

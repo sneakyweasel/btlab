@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.atlas.packed import dense_index, dense_size
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def census(

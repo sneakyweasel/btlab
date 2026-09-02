@@ -1,17 +1,17 @@
 {
   "id": "juggler_cycle_exponent_budget",
   "title": "A cycle-wide product of block exponents produces a closure separation that exact integer dynamics cannot realize",
-  "statement": "For a CycleMin word written as O^{a_i} E^{r_i} blocks, the product of rho_i = 3^{a_i}/2^{a_i+r_i}, together with local CycleMin constraints, yields an exponent balance or a sign obstruction that is not 3^o/2^L / cycle_word_formally_expanding / global_defect_identity / image_eq_start_defectRatio / cycleMin_finance / leftover near-convergents of log 2 / log 3, and that obstruction empties or tightens a leftover length for a reason that is not finance.",
+  "statement": "For a CycleMin word written as O^{a_i} E^{r_i} blocks, the product of rho_i = 3^{a_i}/2^{a_i+r_i}, together with local CycleMin constraints, yields an exponent balance or a sign obstruction that is not 3^o/2^L / cycle_itinerary_formally_expanding / global_defect_identity / image_eq_start_defectRatio / cycleMin_finance / leftover near-convergents of log 2 / log 3, and that obstruction empties or tightens a leftover length for a reason that is not finance.",
   "status": "REFUTED",
   "counterexamples": [
     "∏ rho_i = 3^A/2^{A+R} identically on (2,1)+(3,2)+(7,4) and on the single block (12,7)",
     "the signed sum is o log 3 − L log 2 and ignores the partition",
-    "3^A = 2^{A+R} is impossible by unique factorization; that is cycle_word_formally_expanding",
+    "3^A = 2^{A+R} is impossible by unique factorization; that is cycle_itinerary_formally_expanding",
     "exact return is Delta = n^{3^o} − n^{2^L} (global_defect_identity); floors are cycleMin_finance",
     "L=19 OOE has rho=9/8 and rest 59049/65536 < 1; an expanding first block forces later contraction, not a global sign kill"
   ],
   "first_seen": "juggler cycle-wide block exponent budget",
-  "lean_reference": "cycle_word_formally_expanding",
+  "lean_reference": "cycle_itinerary_formally_expanding",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

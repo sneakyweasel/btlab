@@ -26,7 +26,7 @@ from research.juggler_sequence.cycle_ordered_excursion import (
     excursion_map,
     ooe_cell_holds,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 TRANSFER_DIR = DATA_DIR / "block_transfer"
 START = PUBLISHED_FLOOR + 1
@@ -42,7 +42,7 @@ ARCHIVED = (
     "power_bound_word",
     "cycle_trailing_evens_lt",
     "excursion_map",
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "cycleMin_finance",
     "corridor_bounds",
 )
@@ -280,7 +280,7 @@ def probe_payload() -> dict[str, Any]:
             "demo": formal_ab([(2, 1), (3, 2), (7, 4)]),
             "leftovers": leftover_formal_rows(),
             "note": (
-                "A is 3^o>2^L (cycle_word_formally_expanding); "
+                "A is 3^o>2^L (cycle_itinerary_formally_expanding); "
                 "B is a contracting word; floors are cycleMin_finance"
             ),
         },

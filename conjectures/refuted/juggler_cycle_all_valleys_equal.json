@@ -4,7 +4,7 @@
   "statement": "On a Juggler CycleMin of leftover length L (currently 84 or ≥ 85) with m local minima, every valley can equal the global minimum n.",
   "status": "REFUTED",
   "counterexamples": [
-    "If T^k(n)=n for 0<k<L then follows_take and image_take_of_le give CycleWord n (w.take k), a shorter cycle word. Every length < 84 is already excluded, so n occurs once. For m≥2 the other valleys are different odd states and are at least n+2"
+    "If T^k(n)=n for 0<k<L then follows_take and image_take_of_le give CycleItinerary n (w.take k), a shorter cycle itinerary. Every length < 84 is already excluded, so n occurs once. For m≥2 the other valleys are different odd states and are at least n+2"
   ],
   "first_seen": "juggler cycle equal valleys",
   "lean_reference": "",

@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.repeated_oe import (
     CLASS_GREEN,
     LEAN_THEOREMS,
@@ -21,12 +21,12 @@ from research.juggler_sequence.repeated_oe import (
 
 
 def test_oe_envelope_and_contraction():
-    assert follows_word(13, "OE")
+    assert follows_itinerary(13, "OE")
     assert image_after(13, "OE") == 6
     assert 6 ** 4 <= 13 ** 3
     assert oe_envelope_holds(13)
     assert classify_block(13, "OE") == "DESCENT"
-    assert follows_word(27, "OE")
+    assert follows_itinerary(27, "OE")
     assert image_after(27, "OE") == 11
     assert oe_envelope_holds(27)
 

@@ -17,7 +17,7 @@ from research.juggler_sequence.odd_odd_frontier import (
     frontier_row,
     post_even_kind,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,

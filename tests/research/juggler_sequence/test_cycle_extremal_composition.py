@@ -16,7 +16,7 @@ from research.juggler_sequence.cycle_extremal_composition import (
     run_probe,
     superquadratic,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_nine_and_seventy_seven_local_cells():
@@ -107,7 +107,7 @@ def test_lean_api_composition_without_engine():
         assert f"theorem {name}" not in src
     for name in FORBIDDEN_ENGINES:
         assert name not in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
 
 
 def test_classify_composition_repackaging():
@@ -116,7 +116,7 @@ def test_classify_composition_repackaging():
     decision = classify(scan, lean)
     assert decision["classification"] == CLASS_REPACK
     assert scan["n_search"] is False
-    assert scan["cycle_word_census"] is False
+    assert scan["cycle_itinerary_census"] is False
     assert scan["odd_landing_engine"] is False
     assert scan["residual_graph"] is False
     assert scan["new_energy"] is False
@@ -160,5 +160,5 @@ def test_committed_artifacts_schema():
     assert data["lean"]["sorry_free"] is True
     assert data["lean"]["cycle_distinguished_order"] is True
     assert data["scan"]["n_search"] is False
-    assert data["scan"]["cycle_word_census"] is False
+    assert data["scan"]["cycle_itinerary_census"] is False
     assert data["scan"]["odd_landing_engine"] is False

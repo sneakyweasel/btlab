@@ -23,13 +23,13 @@ floor \(261\).
 ## Exact statement
 
 A **local minimum** is a cyclic even-to-odd landing. An
-**\(m\)-cycle** has \(m\) blocks \(O^{k_i}E^{\ell_i}\). `CycleWord n w`
+**\(m\)-cycle** has \(m\) blocks \(O^{k_i}E^{\ell_i}\). `CycleItinerary n w`
 is a realized return \(T_w(n)=n\). `CycleMin` adds that every
 interior state is \(\ge n\).
 
 **Unique visit (REPARAMETERIZATION of prefix return).**
-If `CycleWord n w` and \(0<k<L\) satisfy \(T^k(n)=n\), then
-`follows_take` and `image_take_of_le` give `CycleWord n (w.take k)`.
+If `CycleItinerary n w` and \(0<k<L\) satisfy \(T^k(n)=n\), then
+`follows_take` and `image_take_of_le` give `CycleItinerary n (w.take k)`.
 On a leftover length — currently \(L=84\) or \(\ge 85\), with every
 shorter length already excluded — there is no such \(k\). Hence \(n\)
 occurs once per period. The CycleMin start is that unique occurrence
@@ -63,7 +63,7 @@ No cycle of any length — not claimed.
 - Cycle finance leftover is period \(84\) with \(m\ge 3\) or
   \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`,
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`,
   [juggler_cycle_finance.md](juggler_cycle_finance.md))
 - Prefix itinerary: `follows_take`, `image_take_of_le` —
   **EXACT — LEAN VERIFIED** (`Itinerary.lean`)
@@ -94,7 +94,7 @@ Novelty hypothesis      forbidding a repeated global minimum is a
                         new valley-height law, not first-return
 Falsifier               unique visit is prefix return; n+2 does not
                         move any leftover pair below θ
-Existing machinery      CycleWord, follows_take, image_take_of_le,
+Existing machinery      CycleItinerary, follows_take, image_take_of_le,
                         leftover 84 or ≥85, joint-minima, height law
 Maximum Phase-0 scope   prefix-return uniqueness; split-valley
                         arithmetic at L=84, m=3, floor 261.
@@ -114,7 +114,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- Intermediate return \(T^k(n)=n\) is a shorter `CycleWord` —
+- Intermediate return \(T^k(n)=n\) is a shorter `CycleItinerary` —
   **REPARAMETERIZATION** of `follows_take` / `image_take_of_le`
 - On leftover \(L\), \(n\) occurs once; \(m\ge 2\) forces a valley
   \(\ge n+2\) —
@@ -147,7 +147,7 @@ unchanged.
 ## Counterexamples
 
 - A leftover-length \(m\)-cycle with all valleys equal to \(n\)
-  would be a shorter `CycleWord` at the first repeated visit.
+  would be a shorter `CycleItinerary` at the first repeated visit.
 - \(L=84\), \(m=3\), \(n=261\): split RHS \(0.003515>\theta\);
   height plus \(n+2\) is \(0.002180>\theta\).
 

@@ -14,34 +14,34 @@ def returnsIntoB (y : ℕ) (w : List Branch) : Bool :=
   followsB y w && decide (2 ≤ image y w) && decide (image y w ≤ y)
 
 theorem returnsIntoB_ooooee_lt256 :
-    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val wordOOOOEE = false := by
+    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val itineraryOOOOEE = false := by
   native_decide
 
 theorem returnsIntoB_oooooee_lt256 :
-    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val wordOOOOOEE = false := by
+    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val itineraryOOOOOEE = false := by
   native_decide
 
 theorem returnsIntoB_two_even_ee8_lt256 :
     ∀ y : Fin 256, 2 ≤ y.val →
-      returnsIntoB y.val wordTwoEvenEE8 = false := by
+      returnsIntoB y.val itineraryTwoEvenEE8 = false := by
   native_decide
 
 theorem returnsIntoB_oooeoe_lt256 :
-    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val wordOOOEOE' = false := by
+    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val itineraryOOOEOE' = false := by
   native_decide
 
 theorem returnsIntoB_ooooeoe_lt256 :
-    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val wordOOOOEOE = false := by
+    ∀ y : Fin 256, 2 ≤ y.val → returnsIntoB y.val itineraryOOOOEOE = false := by
   native_decide
 
 theorem returnsIntoB_two_even_eoe8_lt256 :
     ∀ y : Fin 256, 2 ≤ y.val →
-      returnsIntoB y.val wordTwoEvenEOE8 = false := by
+      returnsIntoB y.val itineraryTwoEvenEOE8 = false := by
   native_decide
 
 theorem returnsIntoB_two_even_eoe9_lt256 :
     ∀ y : Fin 256, 2 ≤ y.val →
-      returnsIntoB y.val wordTwoEvenEOE9 = false := by
+      returnsIntoB y.val itineraryTwoEvenEOE9 = false := by
   native_decide
 
 end Problems.Juggler

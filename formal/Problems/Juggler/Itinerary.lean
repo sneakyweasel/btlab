@@ -5,12 +5,12 @@ namespace Problems.Juggler
 /-!
 # Trajectory itinerary
 
-`bit` is the parity observation. `word n k` is the actual length-`k`
+`bit` is the parity observation. `itinerary n k` is the actual length-`k`
 itinerary of `n`. `follows` is the same fact as a predicate on a
-combinatorial word. The bridge is
+combinatorial itinerary. The bridge is
 
 ```
-follows n w  ↔  word n w.length = w
+follows n w  ↔  itinerary n w.length = w
 ```
 -/
 
@@ -22,17 +22,17 @@ inductive Branch where
 def bit (n : ℕ) : Branch :=
   if n % 2 = 0 then .even else .odd
 
-def word : ℕ → ℕ → List Branch
+def itinerary : ℕ → ℕ → List Branch
   | _, 0 => []
-  | n, k + 1 => bit n :: word (floorPower n) k
+  | n, k + 1 => bit n :: itinerary (floorPower n) k
 
-/-- The trajectory of `n` realizes the finite parity word `w`. -/
+/-- The trajectory of `n` realizes the finite parity itinerary `w`. -/
 def follows : ℕ → List Branch → Prop
   | _, [] => True
   | n, .even :: w => n % 2 = 0 ∧ follows (floorPower n) w
   | n, .odd :: w => n % 2 = 1 ∧ follows (floorPower n) w
 
-/-- Image of `n` after the realized word `w`. Definitional on `cons`. -/
+/-- Image of `n` after the realized itinerary `w`. Definitional on `cons`. -/
 def image : ℕ → List Branch → ℕ
   | n, [] => n
   | n, _ :: w => image (floorPower n) w
@@ -49,29 +49,29 @@ theorem bit_odd {n : ℕ} (hodd : n % 2 = 1) : bit n = .odd := by
   have : n % 2 ≠ 0 := by omega
   simp [bit, this]
 
-theorem word_zero (n : ℕ) : word n 0 = [] := rfl
+theorem itinerary_zero (n : ℕ) : itinerary n 0 = [] := rfl
 
-theorem word_succ (n k : ℕ) :
-    word n (k + 1) = bit n :: word (floorPower n) k := rfl
+theorem itinerary_succ (n k : ℕ) :
+    itinerary n (k + 1) = bit n :: itinerary (floorPower n) k := rfl
 
-theorem word_length (n : ℕ) : ∀ k, (word n k).length = k
+theorem itinerary_length (n : ℕ) : ∀ k, (itinerary n k).length = k
   | 0 => rfl
-  | k + 1 => by simp [word_succ, word_length (floorPower n) k]
+  | k + 1 => by simp [itinerary_succ, itinerary_length (floorPower n) k]
 
 theorem follows_nil (n : ℕ) : follows n [] := trivial
 
-theorem follows_iff_word (n : ℕ) : ∀ w : List Branch,
-    follows n w ↔ word n w.length = w
-  | [] => by simp [follows, word]
+theorem follows_iff_itinerary (n : ℕ) : ∀ w : List Branch,
+    follows n w ↔ itinerary n w.length = w
+  | [] => by simp [follows, itinerary]
   | .even :: w => by
-      have ih := follows_iff_word (floorPower n) w
+      have ih := follows_iff_itinerary (floorPower n) w
       constructor
       · intro hw
-        simp [word_succ, bit_even hw.1, ih.mp hw.2, List.length_cons]
+        simp [itinerary_succ, bit_even hw.1, ih.mp hw.2, List.length_cons]
       · intro hw
         have hbit : bit n = .even := by
           have := congrArg List.head? hw
-          simp [word_succ] at this
+          simp [itinerary_succ] at this
           exact this
         have heven : n % 2 = 0 := by
           by_cases h : n % 2 = 0
@@ -80,26 +80,26 @@ theorem follows_iff_word (n : ℕ) : ∀ w : List Branch,
               have h1 : n % 2 = 1 := by omega
               exact bit_odd h1
             exact (Branch.noConfusion (hbit.symm.trans this))
-        have htail : word (floorPower n) w.length = w := by
-          simpa [word_succ, bit_even heven, List.length_cons] using hw
+        have htail : itinerary (floorPower n) w.length = w := by
+          simpa [itinerary_succ, bit_even heven, List.length_cons] using hw
         exact ⟨heven, ih.mpr htail⟩
   | .odd :: w => by
-      have ih := follows_iff_word (floorPower n) w
+      have ih := follows_iff_itinerary (floorPower n) w
       constructor
       · intro hw
-        simp [word_succ, bit_odd hw.1, ih.mp hw.2, List.length_cons]
+        simp [itinerary_succ, bit_odd hw.1, ih.mp hw.2, List.length_cons]
       · intro hw
         have hbit : bit n = .odd := by
           have := congrArg List.head? hw
-          simp [word_succ] at this
+          simp [itinerary_succ] at this
           exact this
         have hodd : n % 2 = 1 := by
           by_cases h : n % 2 = 0
           · have : bit n = .even := bit_even h
             exact (Branch.noConfusion (hbit.symm.trans this))
           · omega
-        have htail : word (floorPower n) w.length = w := by
-          simpa [word_succ, bit_odd hodd, List.length_cons] using hw
+        have htail : itinerary (floorPower n) w.length = w := by
+          simpa [itinerary_succ, bit_odd hodd, List.length_cons] using hw
         exact ⟨hodd, ih.mpr htail⟩
 
 theorem image_eq_iterate (n : ℕ) : ∀ w, image n w = floorPower^[w.length] n := by
@@ -109,8 +109,8 @@ theorem image_eq_iterate (n : ℕ) : ∀ w, image n w = floorPower^[w.length] n 
   | cons _b w ih =>
       simp [List.length_cons, ih, iterate_cons]
 
-theorem image_word (n k : ℕ) : image n (word n k) = floorPower^[k] n := by
-  rw [image_eq_iterate, word_length]
+theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n := by
+  rw [image_eq_iterate, itinerary_length]
 
 theorem image_append (n : ℕ) : ∀ u v, image n (u ++ v) = image (image n u) v
   | [], _ => rfl
@@ -261,7 +261,7 @@ theorem reachesOne_of_image {n : ℕ} {w : List Branch}
     (hm : ReachesOne (image n w)) : ReachesOne n :=
   reachesOne_of_iterate (image_eq_iterate n w).symm hm
 
-/-- Boolean realization check. Definitionally recursive on the word. -/
+/-- Boolean realization check. Definitionally recursive on the itinerary. -/
 def followsB : ℕ → List Branch → Bool
   | _, [] => true
   | n, .even :: w => (n % 2 == 0) && followsB (floorPower n) w

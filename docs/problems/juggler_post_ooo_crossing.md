@@ -87,7 +87,7 @@ It is not required.
 - Completed `OOOE` then has \(n\le w<n^2\) —
   **EXACT — HUMAN PROOF**. Lower bound from
   \(u\ge(x+1)^3>(n+1)^3>n^2\). Upper bound from \(u<n^4\).
-  The word `OOEOOOE` has the square-cell gap \(256>243\).
+  The itinerary `OOEOOOE` has the square-cell gap \(256>243\).
 - even \(w\) forces FiniteProgress —
   **EXACT — HUMAN PROOF**. `OOEOOOEE` contracts versus
   \(n\) because \(243<256\), and \(w<n^2\) even implies
@@ -108,7 +108,7 @@ It is not required.
   `E`. `OOO` is the unique *odd* \(T^2\) crossing, which
   refuses that return.
 - bunched-short `CycleMin` is impossible — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -157,10 +157,10 @@ and \(173\) (\(O^8\) after one `OOE`).
 
 ## Formalization
 
-None. Existing `Envelope.lean`, `Cells.lean`, and
+None. Existing `Envelope.lean`, `Preimages.lean`, and
 `CycleCore.lean` lemmas are cited, not rewritten. No
 `no_cycleMin_prefix_ooeoooee`. No `no_cycleMin_four_even`.
-No `no_cycle_word_length_eleven`. No `no_juggler_cycle`.
+No `no_cycle_itinerary_length_eleven`. No `no_juggler_cycle`.
 Paper A is unchanged.
 
 ## Results
@@ -198,7 +198,7 @@ Lean-package the \(243<256\) third-odd envelope and
 odd `OOOE` landing — the forced next `O` — is the separate
 branch [juggler_odd_oooe_next.md](juggler_odd_oooe_next.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\). Do
-not assemble `no_cycle_word_length_eleven`.
+not assemble `no_cycle_itinerary_length_eleven`.
 
 ## Decision
 

@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_internal_oo import isolated_oe_exponent_ok
 from research.juggler_sequence.lean_paths import (
     ESCAPE,
@@ -22,7 +22,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimum_relative.json"
@@ -86,7 +86,7 @@ def above_anchor(n: int, word: str) -> bool:
     """Python face of AboveAnchor: realized word and every state >= n."""
     if n < 1:
         raise ValueError("anchor must be a positive integer")
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         return False
     current = n
     if current < n:
@@ -123,7 +123,7 @@ def witness_row(n: int, cap: int = 80) -> dict[str, Any]:
         "above_anchor_before_drop": above_anchor(n, word[: drop - 1])
         if drop is not None and drop > 1
         else above_anchor(n, word),
-        "follows": follows_word(n, word),
+        "follows": follows_itinerary(n, word),
         "image": image_after(n, word) if word else n,
     }
 
@@ -135,7 +135,7 @@ def negative_anchor_checks() -> dict[str, Any]:
     return {
         "n": n,
         "word": word,
-        "follows": follows_word(n, word),
+        "follows": follows_itinerary(n, word),
         "image": image_after(n, word),
         "above_anchor": above_anchor(n, word),
         "survives_exponent": isolated_oe_exponent_ok(2, 1),
@@ -149,7 +149,7 @@ def ooe_anchor_check() -> dict[str, Any]:
     return {
         "n": n,
         "word": word,
-        "follows": follows_word(n, word),
+        "follows": follows_itinerary(n, word),
         "image": image_after(n, word),
         "above_anchor": above_anchor(n, word),
         "survives_exponent": isolated_oe_exponent_ok(2, 0),
@@ -163,7 +163,7 @@ def even_trap_check() -> dict[str, Any]:
     return {
         "n": n,
         "word": word,
-        "follows": follows_word(n, word),
+        "follows": follows_itinerary(n, word),
         "x": x,
         "x_even": x % 2 == 0,
         "x_below_sq": x < n * n,
@@ -228,7 +228,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "in_laboratory_barrel": "Problems.Juggler.MinimumRelative" in barrel,
         "not_in_paper_barrel": "MinimumRelative" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

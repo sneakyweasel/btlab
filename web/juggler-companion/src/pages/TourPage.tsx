@@ -2,7 +2,7 @@ import type { JSX } from "react";
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
-  CellsWidget,
+  PreimagesWidget,
   CycleWidget,
   EnvelopeWidget,
   ExpandingWidget,
@@ -21,11 +21,11 @@ import {
 
 const SHORT_TERM: Record<TourSlug, string> = {
   "the-map": "Map",
-  "trajectory-word": "Trajectory",
-  "cycle-word": "Cycle",
+  "trajectory-itinerary": "Trajectory",
+  "cycle-itinerary": "Cycle",
   expanding: "Expand",
   envelope: "Envelope",
-  cells: "Cells",
+  preimages: "Preimages",
   "descent-floor": "Floor",
   finance: "Finance",
   "walk-charge": "Walk",
@@ -33,11 +33,11 @@ const SHORT_TERM: Record<TourSlug, string> = {
 
 const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "the-map": MapWidget,
-  "trajectory-word": TrajectoryWidget,
-  "cycle-word": CycleWidget,
+  "trajectory-itinerary": TrajectoryWidget,
+  "cycle-itinerary": CycleWidget,
   expanding: ExpandingWidget,
   envelope: EnvelopeWidget,
-  cells: CellsWidget,
+  preimages: PreimagesWidget,
   "descent-floor": FloorWidget,
   finance: FinanceWidget,
   "walk-charge": WalkChargeWidget,
@@ -50,8 +50,11 @@ export function TourIndexPage() {
 export function TourPage() {
   const { slug } = useParams();
   const [menuOpen, setMenuOpen] = useState(false);
-  if (slug === "orbit-word") {
-    return <Navigate to="/tour/trajectory-word" replace />;
+  if (slug === "orbit-word" || slug === "trajectory-word") {
+    return <Navigate to="/tour/trajectory-itinerary" replace />;
+  }
+  if (slug === "cells") {
+    return <Navigate to="/tour/preimages" replace />;
   }
   const chapter = chapterBySlug(slug);
   if (!chapter) {

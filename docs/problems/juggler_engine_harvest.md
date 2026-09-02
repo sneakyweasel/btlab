@@ -152,7 +152,7 @@ discarded, not a refutation of the count.
 
 ## Formalization
 
-None added. The lab’s finite-word Lean idiom does not cover
+None added. The lab’s finite-itinerary Lean idiom does not cover
 ambient discrepancy counts. Packaging them would be machinery
 gravity.
 

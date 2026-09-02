@@ -29,7 +29,7 @@ Maximum Phase-1 scope   Lean CycleMin exclusion; tables;
 - tables empty: `True`
 - k>=17 small-n sealed: `True`
 
-Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
+Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleItinerary tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
 
 ## Length-9 transport words
 
@@ -53,10 +53,10 @@ Lean excludes gapped three-even CycleMins by first-E transport of the two-even t
 - `cycleMin_ge`: `True`
 - `cycle_trailing_evens_lt`: `True`
 - `shared_two_even_tail`: `True`
-- `no_cycle_word_two_even_ee`: `True`
-- `no_cycle_word_two_even_eoe`: `True`
+- `no_cycle_itinerary_two_even_ee`: `True`
+- `no_cycle_itinerary_two_even_eoe`: `True`
 - `no_cycleMin_internal_even_threshold`: `True`
-- `no_cycle_word_length_le_seven`: `True`
+- `no_cycle_itinerary_length_le_seven`: `True`
 - `no_cycleMin_gapped_three_even_ee`: `True`
 - `no_cycleMin_gapped_three_even_eoe`: `True`
 - no first-E transport theorem: `False`
@@ -84,7 +84,7 @@ Lean excludes gapped three-even CycleMins by first-E transport of the two-even t
 
 **FIRST_E_TRANSPORT_GREEN**
 
-Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
+Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleItinerary tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
 
 This is not a halt result, not a length-8/9 census, and
 not an exclusion of bunched three-even leftovers.

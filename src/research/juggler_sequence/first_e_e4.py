@@ -37,7 +37,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_e_e4.json"
@@ -77,24 +77,24 @@ LEAN_THEOREMS = (
     "CycleMin",
     "no_cycleMin_gapped_three_even_ee",
     "no_cycleMin_gapped_three_even_eoe",
-    "no_cycle_word_gapped_three_even_ee",
-    "no_cycle_word_three_even_eee",
-    "no_cycle_word_three_even_eoee",
-    "no_cycle_word_three_even_eooee",
-    "no_cycle_word_three_even_eoooee",
-    "no_cycle_word_three_even_eeoe",
-    "no_cycle_word_three_even_eoeoe",
-    "no_cycle_word_three_even_eooeoe",
+    "no_cycle_itinerary_gapped_three_even_ee",
+    "no_cycle_itinerary_three_even_eee",
+    "no_cycle_itinerary_three_even_eoee",
+    "no_cycle_itinerary_three_even_eooee",
+    "no_cycle_itinerary_three_even_eoooee",
+    "no_cycle_itinerary_three_even_eeoe",
+    "no_cycle_itinerary_three_even_eoeoe",
+    "no_cycle_itinerary_three_even_eooeoe",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eight",
-    "no_cycle_word_length_nine",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_length_eight",
+    "no_cycle_itinerary_length_nine",
+    "no_cycle_itinerary_four_even",
     "no_cycleMin_four_even",
-    "no_cycle_word_first_e_e4",
+    "no_cycle_itinerary_first_e_e4",
     "no_cycleMin_first_e_e4",
-    "no_cycle_word_bunched",
+    "no_cycle_itinerary_bunched",
 )
 
 
@@ -290,7 +290,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in combined,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "Minimal_untouched": "first_e_e4" not in MINIMAL.read_text(encoding="utf-8"),
     }
 
@@ -300,11 +300,11 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         lean["sorry_free"]
         and lean["CycleMin"]
         and lean["no_cycleMin_gapped_three_even_ee"]
-        and lean["no_cycle_word_three_even_eee"]
-        and lean["no_cycle_word_length_eight"]
-        and lean["no_cycle_word_four_even"]
-        and lean["no_cycle_word_first_e_e4"]
-        and lean["no_cycle_word_bunched"]
+        and lean["no_cycle_itinerary_three_even_eee"]
+        and lean["no_cycle_itinerary_length_eight"]
+        and lean["no_cycle_itinerary_four_even"]
+        and lean["no_cycle_itinerary_first_e_e4"]
+        and lean["no_cycle_itinerary_bunched"]
         and lean["length_eight_open_in_census"]
         and lean["no_all_cycles_impossible"]
     )
@@ -451,8 +451,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         lines.append(f"- `{name}`: `{lean.get(name)}`")
     lines.extend(
         [
-            f"- no four-even theorem: `{lean.get('no_cycle_word_four_even')}`",
-            f"- no first-E e=4 theorem: `{lean.get('no_cycle_word_first_e_e4')}`",
+            f"- no four-even theorem: `{lean.get('no_cycle_itinerary_four_even')}`",
+            f"- no first-E e=4 theorem: `{lean.get('no_cycle_itinerary_first_e_e4')}`",
             f"- length eight open in census: `{lean.get('length_eight_open_in_census')}`",
             "",
             "## Anti-overclaim",

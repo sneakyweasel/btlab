@@ -22,7 +22,7 @@ from research.juggler_sequence.odd_run_itinerary import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_multipliers_and_365_1517_split():

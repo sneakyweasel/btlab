@@ -6,7 +6,7 @@ import json
 
 from research.juggler_sequence.minimal_ooe_corridor import square_cell_gap
 from research.juggler_sequence.odd_oooe_next import odd_oooe_next
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.second_oo_cube import (
     CLASS_GREEN,
     CONTRAST_EVEN_Q,
@@ -180,5 +180,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "2187" in dossier
     assert "juggler_second_oo_cube" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

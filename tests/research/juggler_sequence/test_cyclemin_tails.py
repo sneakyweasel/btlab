@@ -30,7 +30,7 @@ from research.juggler_sequence.first_e_e4 import (
     remainder_shapes,
     word_e4,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_slack_identity_and_o8eeee():
@@ -129,7 +129,7 @@ def test_classify_render_and_artifacts():
         / "juggler_cyclemin_tails.md"
     ).read_text(encoding="utf-8")
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_length_eleven" in dossier
+    assert "no_cycle_itinerary_length_eleven" in dossier
     assert "no_cycleMin_four_even" in dossier
     assert "slack_of_four_even" in dossier
     assert "J-cyclemin-slack" in dossier

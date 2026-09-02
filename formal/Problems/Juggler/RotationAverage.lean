@@ -7,7 +7,7 @@ namespace Problems.Juggler
 /-!
 # The rotation average bound (Paper A Proposition 5.5)
 
-Paper A Proposition 5.5 evaluates the infinite-hug-word charge per
+Paper A Proposition 5.5 evaluates the infinite-hug-itinerary charge per
 letter as the rotation average
 `C*(ν) = (1/ln 3) ∫_1^3 e^{ν(1−t)} t⁻² dt` at `ν = ln n'`, and
 Theorem 5.8 consumes the quantitative Laplace bound
@@ -196,7 +196,7 @@ theorem rotation_average_lt {ν : ℝ} (hν : 0 < ν) :
 
 /-- The rotation average `C*(ν)` of Paper A Proposition 5.5, with
 the `1/ln 3` normalisation; at `ν = ln n'` this is the charge per
-letter of the infinite hug word at the reduced base. -/
+letter of the infinite hug itinerary at the reduced base. -/
 noncomputable def rotationAverage (ν : ℝ) : ℝ :=
   (∫ t in (1 : ℝ)..3, Real.exp (ν * (1 - t)) / t ^ 2) / Real.log 3
 

@@ -80,7 +80,7 @@ Novelty hypothesis      leftover excesses (≤ 1.87) sit far under 2s, but
                         any bounded-remainder rescue
 Falsifier               for boundedness: an L with large |e|; for sharpness:
                         e staying O(1) across digit-rich lengths
-Existing machinery      exact hug-word generator and certified CF/digits
+Existing machinery      exact hug-itinerary generator and certified CF/digits
                         (cycle_walk_ostrowski), c_star_integral, window scan
 Maximum Phase-0 scope   one single-pass probe at a fixed representative
                         base + stats + structure tests; no Lean, no Paper A,

@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_ooo_escape import walk_language
 from research.juggler_sequence.oneshot_recovery import post_kind
 from research.juggler_sequence.post_l_ooe import WORD_M
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.second_oo_cube import second_oo
 from research.juggler_sequence.second_post_l_ooe import (
     CLASS_GREEN,
@@ -57,7 +57,7 @@ def test_501_second_ooe_stays_in_square():
     assert row["r_kind"] == "OO"
     assert row["r_lt_n2"]
     assert row["r_ge_n"]
-    assert follows_word(501, WORD_M2)
+    assert follows_itinerary(501, WORD_M2)
     assert image_after(501, WORD_M2) == 4447
     assert image_after(1749, "OOE") == 4447
     assert post_kind(1749) == "OO"
@@ -132,5 +132,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "k \\le 4" in dossier or "k<=4" in dossier or "k=5" in dossier
     assert "juggler_second_post_l_ooe" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

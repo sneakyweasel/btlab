@@ -6,7 +6,7 @@ This is the laboratory writeup of the finance theorem after the
 leftover refinements. The publication text is Paper A
 ([juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)),
 Section 4. This page is not a second manuscript, not Paper B, not
-a leftover-word census, and not a halt theorem. It does not claim
+a leftover-itinerary census, and not a halt theorem. It does not claim
 that every positive integer reaches 1. Height leftover and residual
 floor \(261\) remain laboratory companions, not Paper A theorems.
 
@@ -20,9 +20,9 @@ Ledger: `J-cycle-finance-inequality`,
 `J-cycle-budget-opt-instance`,
 `J-residual-floor-two-hundred-sixty-one`,
 `J-residual-floor-two-million`,
-`J-cycle-word-length-eighty-four-or-ge-eighty-five`,
-`J-cycle-word-length-eighty-four-m-ge-three-or-ge-eighty-five`,
-`J-cycle-word-eliahou-leftover`.
+`J-cycle-itinerary-length-eighty-four-or-ge-eighty-five`,
+`J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five`,
+`J-cycle-itinerary-eliahou-leftover`.
 
 ## The map
 
@@ -33,11 +33,11 @@ J(n)=\begin{cases}
 \lfloor n^{3/2}\rfloor,&n\text{ odd}.
 \end{cases}
 \]
-A *cycle word* of length \(L\) at \(n\ge 2\) is a parity word
+A *cycle itinerary* of length \(L\) at \(n\ge 2\) is a parity itinerary
 \(w\) with \(J_w(n)=n\). Write \(o\) for the number of odd
 letters and \(m\) for the number of odd-runs on a `CycleMin`
-rotation (local minima). The word is formally expanding:
-\(2^L<3^o\) (`cycle_word_formally_expanding`).
+rotation (local minima). The itinerary is formally expanding:
+\(2^L<3^o\) (`cycle_itinerary_formally_expanding`).
 
 A periodic state never reaches \(1\). Combined with a residual
 floor, that is the only totality input used below.
@@ -74,17 +74,17 @@ Hence every cycle state is at least \(261\). Combined with
 \(n\log n>15921/11\) on a `CycleMin`.
 
 **Length leftover (EXACT — LEAN VERIFIED,
-`cycle_word_length_eighty_four_or_ge_eighty_five`).**
-If a nontrivial cycle word exists at \(n\ge 2\), its period is
+`cycle_itinerary_length_eighty_four_or_ge_eighty_five`).**
+If a nontrivial cycle itinerary exists at \(n\ge 2\), its period is
 \(84\) or at least \(85\). Lengths \(\le 19\) are the census
-through `no_cycle_word_length_le_nineteen`. Lengths \(20\)–\(83\)
+through `no_cycle_itinerary_length_le_nineteen`. Lengths \(20\)–\(83\)
 die by the finance comparison at floors \(257\) and \(261\).
 The cheap leftovers \(19\), \(38\), \(57\), and \(76\) are not
 Lean leftovers.
 
 **Height leftover (EXACT — LEAN VERIFIED,
-`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`).**
-If a nontrivial cycle word exists at \(n\ge 2\), then either its
+`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`).**
+If a nontrivial cycle itinerary exists at \(n\ge 2\), then either its
 period is \(84\) and some `CycleMin` rotation has at least three
 odd-runs, or its period is at least \(85\). Length \(84\) with
 at most two odd-runs is impossible at floor \(261\): the inv-sum
@@ -179,7 +179,7 @@ Length \(84\) is the first record convergent that survives the
 Lean floor (\(n_{\max}(84)=5599\)).
 
 **Eliahou leftover (EXACT — LEAN VERIFIED implication
-`cycle_word_eliahou_leftover`; instance COMPUTATIONALLY
+`cycle_itinerary_eliahou_leftover`; instance COMPUTATIONALLY
 VERIFIED).**
 If every length in \([30,10^5)\) outside a named list is already
 excluded, then the period is \(84\), or belongs to that list, or
@@ -322,9 +322,9 @@ These were run. None of them changes the leftover.
 
 ## What this theorem is not
 
-- Not `juggler_reaches_one`, not `no_cycle_word_any_length`, and
-  not `no_cycle_word_length_eleven`.
-- Not a leftover-word census of the length-\(11\) short-gap
+- Not `juggler_reaches_one`, not `no_cycle_itinerary_any_length`, and
+  not `no_cycle_itinerary_length_eleven`.
+- Not a leftover-itinerary census of the length-\(11\) short-gap
   families. Paper A prints Theorem 4.4, the floor-\(10^6\)
   parity leftover (prefix \(25780\), Theorem 4.6), the run-type
   leftover of \(99\) lengths (Theorems 4.7--4.8), and the
@@ -351,10 +351,10 @@ packaging, on a different map.
 | Inv-sum form | `cycleMin_finance_inv_sum` |
 | Floor \(261\) | `reachesOne_of_lt_two_hundred_sixty_one` |
 | \(\log 257>61/11\) | `log_two_hundred_fifty_seven_gt` |
-| Census through \(19\) | `no_cycle_word_length_le_nineteen` |
-| Length leftover | `cycle_word_length_eighty_four_or_ge_eighty_five` |
-| Height leftover | `cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five` |
-| Eliahou packaging | `cycle_word_eliahou_leftover` |
+| Census through \(19\) | `no_cycle_itinerary_length_le_nineteen` |
+| Length leftover | `cycle_itinerary_length_eighty_four_or_ge_eighty_five` |
+| Height leftover | `cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five` |
+| Eliahou packaging | `cycle_itinerary_eliahou_leftover` |
 | Survivor lattice | `run_survivor_unimodular`, `runSurvivors_length` |
 
 No `sorry`. `Problems.JugglerPaper` imports `CycleFinance` for

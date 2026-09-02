@@ -111,7 +111,7 @@ every tested fixed family has a stable leftover fraction bounded away from 0.
 - `power_bound_contracts`: `True`
 - `floorPower_oooee_of_follows`: `True`
 - `wordOOOEE`: `True`
-- `odd_cell_unique`: `True`
+- `odd_preimage_unique`: `True`
 - no halt theorem: `True`
 - no all-FiniteProgress theorem: `True`
 - no progress tactic: `True`

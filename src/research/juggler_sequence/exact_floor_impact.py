@@ -7,7 +7,7 @@ current letter, tower iff the image is a square. This probe asks
 whether isolated exact steps bias first-descent class or PE
 continuation beyond that package.
 
-Not a halt theorem, not a word-atlas recensus, not a floor-boundary
+Not a halt theorem, not an word-atlas recensus, not a floor-boundary
 reopen, and not a Paper A edit.
 """
 
@@ -22,7 +22,7 @@ from typing import Any
 from research.juggler_sequence.global_defect import local_defect
 from research.juggler_sequence.lean_paths import JUGGLER_DIR, has_named, juggler_text
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_chain import residual_excursion
 from research.juggler_sequence.saturation_budget import saturation_prefix
 from research.juggler_sequence.two_block_residual import classify_step, odd_odd_starts

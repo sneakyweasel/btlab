@@ -146,7 +146,7 @@ def build(
             "pe_records": pe_count,
         },
         "search_limits": {"k_max": k_max, "n_begin": n_begin, "n_max": n_max},
-        "word_lengths": list(range(1, k_max + 1)),
+        "itinerary_lengths": list(range(1, k_max + 1)),
         "manifest_path": str(exp_dir / "manifest.json"),
     }
     manifest_path, checksums = write_manifest(exp_dir, payload, parquet_paths)

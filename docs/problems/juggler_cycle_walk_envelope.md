@@ -156,7 +156,7 @@ occupancy need not stay within \(1\) of \(L/m\).
 
 `juggler_walk_crude_envelope` — **ACTIVE**. Occupancy \(\le 4\)
 plus the Riemann/\(J\) schema gives \(C_L<1/(\ln 3\,\ln n')\)
-on leftover hug words at this floor.
+on leftover hug itineraries at this floor.
 
 ## Counterexamples
 

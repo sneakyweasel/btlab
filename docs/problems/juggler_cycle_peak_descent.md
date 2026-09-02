@@ -53,7 +53,7 @@ top-ascent law
 The peak-finance identity is therefore a **reparameterization** of
 `top_ascent_superquadratic`, not a stronger cycle-scale gap.
 
-This says nothing about totality. Do not prove that every cycle word
+This says nothing about totality. Do not prove that every cycle itinerary
 is impossible. Do not build an odd-milestone graph.
 
 ## Current literature
@@ -100,7 +100,7 @@ It is not required.
 - a stronger scale gap than the top ascent — not claimed
 - odd-milestone residual cycle — not built
 - \(p=m\) — not claimed
-- every cycle word is impossible — not claimed
+- every cycle itinerary is impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -129,7 +129,7 @@ None to the peak descent. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `peak_block_formally_contracting` / `peak_block_contracts`
 - `cycle_peak_descent`

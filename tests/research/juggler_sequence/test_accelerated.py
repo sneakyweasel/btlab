@@ -23,7 +23,7 @@ from research.juggler_sequence.accelerated import (
     validate_step,
 )
 from research.juggler_sequence.global_defect import global_defect, image_after, local_defect
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_chain import residual_excursion
 
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 from research.juggler_sequence.lean_paths import juggler_text
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.no_progress_paths import (
     ANNOTATED_STARTS,
     CLASS_GREEN,
@@ -19,24 +19,24 @@ from research.juggler_sequence.no_progress_paths import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_extra_constraint_is_not_descent_or_capture():
-    assert follows_word(3, "OOOE")
+    assert follows_itinerary(3, "OOOE")
     assert image_after(3, "OOOE") == 6
     assert classify_block(3, "OOOE") == "NO_CERTIFICATE"
-    assert follows_word(5, "OOE")
+    assert follows_itinerary(5, "OOE")
     assert image_after(5, "OOE") == 6
     assert classify_block(5, "OOE") == "NO_CERTIFICATE"
     assert 6 > 5
 
 
 def test_uncertified_collapse_then_later_descent():
-    assert follows_word(9, "OOE")
+    assert follows_itinerary(9, "OOE")
     assert image_after(9, "OOE") == 11
     assert classify_block(9, "OOE") == "NO_CERTIFICATE"
-    assert follows_word(9, "OOEOE")
+    assert follows_itinerary(9, "OOEOE")
     assert image_after(9, "OOEOE") == 6
     assert classify_block(9, "OOEOE") == "DESCENT"
 
@@ -100,7 +100,7 @@ def test_lean_api_and_no_new_path_type():
     assert "structure NoProgressPrefix" not in text
     assert "theorem two_reachesOne" in text
     assert "theorem minimal_avoids_reachesOne_image" in text
-    assert "theorem even_word_descent" in text
+    assert "theorem even_itinerary_descent" in text
     assert "theorem power_bound_compensated_contracts" in text
     assert "theorem first_even_freeze" in text
     assert "theorem eventually_no_first_even_contraction" in text

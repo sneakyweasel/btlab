@@ -30,7 +30,7 @@ proved layer kill it?
 **Theorem (flight walk-divergence; EXACT — HUMAN PROOF, components
 Lean).** Every descent-free flight has unbounded exponent walk:
 \(\sup_k u_k=\infty\). Consequently no descent-free flight stays
-within bounded excess of the hug word.
+within bounded excess of the hug itinerary.
 
 *Proof.* Suppose \(u_k\le B\) for all \(k\). The defect-free upper
 envelope (Lean `power_bound_word` / `follows_log_le_walkWeight`)
@@ -94,7 +94,7 @@ forever in \([n,n^3)\) (the hug band exponent is exactly
 any such object *is* a cycle and inherits every cycle obstruction.
 
 **Scope guard.** The theorem constrains descent-free flights only.
-An orbit realizing the hug word while dipping below its anchor
+An orbit realizing the hug itinerary while dipping below its anchor
 (a defect descent — never observed, not disproved) is outside the
 statement. The hug-cylinder question (finite hug prefixes realized
 at every depth, \(C_L\neq\emptyset\)) is untouched: realizing every
@@ -175,7 +175,7 @@ It is not required.
   survivor-lattice lengths
 - Pigeonhole eventual periodicity of bounded flights — **EXACT —
   HUMAN PROOF** (infinite-object glue; the lab's Lean idiom is
-  finite words, packaging not attempted). The uniqueness lemma
+  finite itineraries, packaging not attempted). The uniqueness lemma
   (pairwise-distinct preperiod until first return) is the
   combinatorial content of that pigeonhole.
 - No divergent orbit exists / all flights killed — not claimed
@@ -219,7 +219,7 @@ All quantitative components are already Lean
 `aboveAnchor_prefix_pow_le`). The only human glue is the
 infinite-flight framing (pigeonhole on a finite state set plus the
 period-word extraction), which lies outside the laboratory's
-finite-word Lean idiom; no new Lean file was added and none is
+finite-itinerary Lean idiom; no new Lean file was added and none is
 needed for the claim tag.
 
 **Walk-height law (added at the September 2026 consolidation,
@@ -242,7 +242,7 @@ glue remains human.
 Classification **FLIGHT_WALK_DIVERGENCE_CONFIRMED**.
 
 - **Theorem:** every descent-free flight has unbounded exponent
-  walk; no flight stays within bounded excess of the hug word. The
+  walk; no flight stays within bounded excess of the hug itinerary. The
   extremal hug-hugging adversary of the above-anchor branch is a
   phantom: below the cycle frontier it is a cycle.
 - **Dichotomy:** descent-free flights start above \(162\,849\,448\)
@@ -266,7 +266,7 @@ Classification **FLIGHT_WALK_DIVERGENCE_CONFIRMED**.
   prefix with anchor \(n\ge 400\) forces
   \(\log x_k\ge 2^B(\log n-D)\)
   (`aboveAnchor_height_of_walk`, `WalkTransport.lean`): the
-  quantitative rate side of the divergence theorem, finite-word and
+  quantitative rate side of the divergence theorem, finite-itinerary and
   fully formal.
 
 ## Open questions

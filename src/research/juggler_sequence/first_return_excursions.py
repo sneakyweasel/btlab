@@ -18,7 +18,7 @@ from research.juggler_sequence.envelope_defect import first_nonexact_index, loca
 from research.juggler_sequence.excursions import STATUS_RETURNED, _walk_returns, peak_index
 from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, juggler_text
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_return_excursions.json"
@@ -632,7 +632,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "## G. Same word / same (k,o) / same run",
         "",
         f"- multi-start words: `{scan['same_word']['multi_start_words']}`",
-        f"- margin varies on a word: `{scan['same_word']['margin_varies']}`",
+        f"- margin varies on an word: `{scan['same_word']['margin_varies']}`",
         f"- (k,o) groups that split M: `{scan['same_ko']['groups_split']}`",
         f"- strongest (k,o) split: `{scan['same_ko']['strongest']}`",
         f"- run-signature groups that split M: `{scan['same_run']['groups_split']}`",
@@ -669,7 +669,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "- first-return maximality on observed returns: **COMPUTATIONALLY VERIFIED**",
             "- even starts are the single letter `E`: **COMPUTATIONALLY VERIFIED**",
             "- odd steps cannot descend: **EXACT — LEAN VERIFIED** (`floorPower_odd_ge`)",
-            "- formally contracting words satisfy `T_w(n)<n` for `n>1`: **EXACT — LEAN VERIFIED** (`power_bound_contracts`)",
+            "- formally contracting itineraries satisfy `T_w(n)<n` for `n>1`: **EXACT — LEAN VERIFIED** (`power_bound_contracts`)",
             "- observed first-return words are the first formally contracting prefix: **COMPUTATIONALLY VERIFIED** (parked `EXCURSION_ENVELOPE_GREEN`)",
             "- H1 margin law stronger than `M>=1`: **REFUTED** (`OOOEE` at 3)",
             "- H2 peak law stronger than the envelope: **REFUTED** (`n=2183`, 19694-bit peak)",

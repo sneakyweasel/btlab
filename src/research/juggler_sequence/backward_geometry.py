@@ -16,9 +16,9 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Iterable
 
-from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
+from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
 from research.juggler_sequence.lean_paths import CELLS, DYNAMICS, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_backward_geometry.json"
@@ -48,9 +48,9 @@ CLASS_BRIDGE = "BACKWARD_FORWARD_BRIDGE_GREEN"
 CLASS_COMPLEX = "BACKWARD_COMPLEX"
 
 LEAN_THEOREMS = (
-    "even_cell_iff",
-    "odd_cell_iff",
-    "odd_cell_unique",
+    "even_preimage_iff",
+    "odd_preimage_iff",
+    "odd_preimage_unique",
     "floorPower_even_eq_iff_sq_interval",
     "floorPower_odd_eq_iff_cube_interval",
     "floorPower_one",
@@ -96,7 +96,7 @@ def even_pred_range(m: int) -> tuple[int, int, int] | None:
 
     if m < 1:
         raise ValueError("even_pred_range requires a positive integer")
-    lo, hi = even_cell(m)
+    lo, hi = even_preimage(m)
     first = lo if lo % 2 == 0 else lo + 1
     if first < 2:
         first = 2
@@ -125,14 +125,14 @@ def pred_odd(m: int, *, validate: bool = True) -> list[int]:
     if m < 1:
         raise ValueError("pred_odd requires a positive integer")
     out = []
-    for n in odd_cell_integers(m):
+    for n in odd_preimage_integers(m):
         if n < 1 or n % 2 == 0:
             continue
         if validate and floor_power(n) != m:
             raise ValueError(f"odd predecessor {n} of {m} failed T(n)=m")
         out.append(n)
     if len(out) > 1:
-        raise ValueError(f"odd_cell_unique violated at m={m}: {out}")
+        raise ValueError(f"odd_preimage_unique violated at m={m}: {out}")
     return out
 
 
@@ -757,7 +757,7 @@ def lean_api_present() -> dict[str, bool]:
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         **{name: f"theorem {name}" in combined for name in LEAN_THEOREMS},
-        "cells_present": "theorem even_cell_iff" in cells,
+        "cells_present": "theorem even_preimage_iff" in cells,
         "floorPower_one": "theorem floorPower_one" in dynamics or "theorem floorPower_one" in combined,
         "no_forbidden_engines": all(
             f"structure {name}" not in text and f"inductive {name}" not in text
@@ -947,8 +947,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     Does repeated mixed inversion impose a",
         "                        constraint beyond the floor cells?",
         "Novelty hypothesis      mixed-path scale, sparsity, rank, or hard-path rigidity",
-        "Falsifier               every candidate is a cell corollary or reverse itinerary",
-        "Existing machinery      even_cell, odd_cell_integers, floor_power, Cells.lean",
+        "Falsifier               every candidate is a cell corollary or reverse word",
+        "Existing machinery      even_preimage, odd_preimage_integers, floor_power, Preimages.lean",
         "Maximum Phase-0 scope   Pred census m<=4000; bounded BFS; composition; hard reverse",
         "```",
         "",
@@ -1011,7 +1011,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         scan["composition"]["note"],
         "",
-        "Label: `REPARAMETERIZATION` of repeated `even_cell` / `odd_cell`.",
+        "Label: `REPARAMETERIZATION` of repeated `even_preimage` / `odd_cell`.",
         "",
         "## E. Long backward paths",
         "",
@@ -1188,7 +1188,7 @@ def probe_payload(*, m_max: int = CENSUS_MAX) -> dict[str, Any]:
         "scan": slim,
         "artifacts": artifacts,
         "search_method": (
-            "exact Pred from even_cell / odd_cell_integers with T(n)=m; "
+            "exact Pred from even_preimage / odd_preimage_integers with T(n)=m; "
             "one-step census m<=4000; nested cell composition; bounded "
             "inverse BFS on selected roots; reverse images of known walks"
         ),

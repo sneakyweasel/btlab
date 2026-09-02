@@ -1,7 +1,7 @@
 {
   "id": "juggler_cycle_ordered_excursion_leftover_killer",
   "title": "Exact ordered two-/three-block valley maps empty a surviving (L,o) in E_run(10^6)",
-  "statement": "A finance-surviving CycleMin word, in particular L=25781 or L=55293, must contain an ordered excursion transition (v,a) -> (w,b) that the exact floor cells forbid, so the leftover pair dies without enumerating complete words.",
+  "statement": "A finance-surviving CycleMin itinerary, in particular L=25781 or L=55293, must contain an ordered excursion transition (v,a) -> (w,b) that the exact floor cells forbid, so the leftover pair dies without enumerating complete words.",
   "status": "REFUTED",
   "counterexamples": [
     "Unscaled pairs (1,1), (2,1), (2,2), (2,3), (3,1) are realized below 20000. (2,2,2) occurs 36 times in [10^6+1, 10^6+20001). (2,2,1) is CycleMin-legal 36 times at scale n^{9/8}",

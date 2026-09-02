@@ -48,7 +48,7 @@
   },
   "lean": {
     "sorry_free": true,
-    "wordOOEOOEOOEOEOO": true,
+    "itineraryOOEOOEOOEOEOO": true,
     "ooeooeooeoeoo_loses_square": true,
     "follows_ooeooeooeoeoo_image_lt_cube": true,
     "minimal_ooeooeooeoeo_follows_o": true,
@@ -56,7 +56,7 @@
     "has_no_juggler_escape": false,
     "has_juggler_reaches_one": false,
     "has_no_juggler_cycle": false,
-    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycle_itinerary_length_eleven": false,
     "escape_has_cube": true,
     "escape_has_lost_sq": true,
     "not_in_paper_barrel": true,

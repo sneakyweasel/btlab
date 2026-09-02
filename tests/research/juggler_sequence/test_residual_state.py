@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_state import (
     CLASS_NEEDS_X,

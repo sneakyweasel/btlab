@@ -16,7 +16,7 @@ only unproved global arrow is finite coefficient stopping time?
 Separate
 
 \[
-\text{orbit}\neq\text{parity word}\neq\text{word envelope}
+\text{orbit}\neq\text{parity itinerary}\neq\text{word envelope}
 \neq\text{stopping time}\neq\text{descent certificate}
 \]
 
@@ -39,7 +39,7 @@ iterate and a contradiction to minimality.
 - Terras stopping-time residue trees (`terras-1976-stopping-time`) are
   **methodological guidance only**. No Collatz density theorem is
   imported.
-- Finite-word envelope, equality, first-defect, compensated
+- Finite-itinerary envelope, equality, first-defect, compensated
   contraction, descent/capture, finite-progress coverage, and
   minimal-nontermination constraints — **EXACT — LEAN VERIFIED** in
   the previous fused stack. This branch re-homes those proofs.
@@ -59,7 +59,7 @@ Mathematical target     Can the Juggler formalization isolate a single
                         such that every later proposed theorem either
                         reduces to an existing layer or introduces a
                         new ingredient?
-Novelty hypothesis      The missing object is not another word identity.
+Novelty hypothesis      The missing object is not another itinerary identity.
                         It is a clean first-passage / certificate
                         separation. Recent CLOSE loops happened because
                         those layers were fused inside FloorPower.
@@ -92,7 +92,7 @@ It is not required.
 
 ## Candidate operations / invariants
 
-- `word n k` and `follows n w ↔ word n |w| = w` —
+- `itinerary n k` and `follows n w ↔ itinerary n |w| = w` —
   **EXACT — LEAN VERIFIED** (reparameterization of `follows`)
 - Word drift \(G(w)=2^{|w|}-3^{\#O(w)}\) — **EXACT — LEAN VERIFIED**
   (reparameterization of the exponent gap)
@@ -132,14 +132,14 @@ every start has one.
 - `FloorPower.lean`, `Progress.lean`, `MinimalNonTerm.lean`
 - `RepeatedOE.lean`, `OddRunFinancing.lean`, `RepeatedBlock.lean`
 - `OddOddFrontier.lean`, `ResidualChain.lean`, `ResidualPath.lean`
-- `CycleWord.lean`, `CycleDiophantine.lean`
+- `CycleItinerary.lean`, `CycleDiophantine.lean`
 
 No `sorry`. No halt theorem. No ledger row.
 
 ## Results
 
 - Engine Juggler files are gone. Live Lean is `formal/Problems/Juggler/` with one-way imports and barrel `formal/Problems/Juggler.lean`.
-- `follows n w ↔ word n |w| = w` is proved in Itinerary.
+- `follows n w ↔ itinerary n |w| = w` is proved in Itinerary.
 - `HasFiniteCoeffStop n → HasFiniteStop n` is proved; `∀ n ≥ 2, HasFiniteCoeffStop n` is the unproved `FiniteCoeffStopConjecture`.
 - `DescentCertificate` is the only certificate type. `FiniteProgress n` is that type. Capture and Descent are not standalone defs.
 - `HasFiniteCoeffStop n → ¬MinimalNonTerm n` is proved. `MinimalNonTerm n → HasFiniteCoeffStop n` is the unproved `MinimalImpliesCoeffStop`.

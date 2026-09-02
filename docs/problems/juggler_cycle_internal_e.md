@@ -10,7 +10,7 @@ every positive integer reaches 1.
 
 Can an internal even step, together with the cycle-minimum scale
 barrier, bootstrap an existing next-square suffix threshold strongly
-enough to exclude the first mixed E-terminating cycle words?
+enough to exclude the first mixed E-terminating cycle itineraries?
 
 ## Exact statement
 
@@ -43,7 +43,7 @@ Applied to the normalized expanding length-6 E-words:
 - `OOOOOE` is already excluded by the inherited `OOOO` threshold.
 - `OEOOOE` is impossible as a cycle minimum, by bootstrap with suffix
   `OOO`.
-- `OOEOOE` is impossible as a `CycleWord`: every rotation is a cycle
+- `OOEOOE` is impossible as a `CycleItinerary`: every rotation is a cycle
   minimum that either starts `E`, starts `OE`, or is `OOEOOE` itself.
 - `OOOEOE` has suffix `O` after the internal `E`. There is no
   next-square `O` threshold, so bootstrap does not apply.
@@ -98,7 +98,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - no `CycleMin` for `OEOOOE` or `OOEOOE` —
   **EXACT — LEAN VERIFIED**
-- no `CycleWord` for `OOEOOE` —
+- no `CycleItinerary` for `OOEOOE` —
   **EXACT — LEAN VERIFIED**
 - no length-6 E-terminating cycle — not claimed
 - `OOOEOE` is impossible — not claimed
@@ -128,16 +128,16 @@ None to the bootstrap. The stronger claims that fail:
 - “`OOOOEE` dies through the `OOOOE` threshold” —
   \(T_{OOOO}\ge(n+1)^2\) does not lift across the extra `E`.
 - “every mixed length-6 E-word is excluded” — `OOOEOE` has suffix `O`.
-- “`¬CycleMin` is `¬CycleWord`” — `OEOOOE` rotates onto `OOOEOE`.
+- “`¬CycleMin` is `¬CycleItinerary`” — `OEOOOE` rotates onto `OOOEOE`.
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `CycleMin` / `cycleMin_even_ge_sq` / `cycleMin_not_odd_even`
 - `no_cycleMin_internal_even_threshold`
 - `no_cycleMin_oeoooe` / `no_cycleMin_ooeooe`
-- `no_cycle_word_ooeooe`
+- `no_cycle_itinerary_ooeooe`
 
 `FloorPower`, `Progress`, and the orbit-minimum module are not
 rewritten. No `sorry`. No halt theorem. No `no_juggler_cycle`. No
@@ -153,12 +153,12 @@ The generic theorem is the reusable result. `OOEOOE` is fully excluded.
 `OEOOOE` is excluded as a cycle minimum. `OOOEOE` and `OOOOEE` remain
 as leftovers of this bootstrap. A later branch,
 [juggler_leftover_cycles](juggler_leftover_cycles.md), excludes both
-as `CycleWord`. That is not this branch's next-square-suffix argument;
+as `CycleItinerary`. That is not this branch's next-square-suffix argument;
 the `PROMOTE` here is unchanged.
 
 ## Open questions
 
-The word-length programme is stopped. The next opened branch is
+The itinerary-length programme is stopped. The next opened branch is
 [juggler_cycle_extrema.md](juggler_cycle_extrema.md). The parked
 word-specific question remains: what exact extra scale does the prefix
 `OOO` give before the internal `E` of `OOOEOE`? Do not open length 7.

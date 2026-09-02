@@ -375,7 +375,7 @@
     "sorry_free": true,
     "minimal_first_even_overshoots": true,
     "cycleMin_first_even_overshoots": true,
-    "no_cycle_word_even_count_le_three": true,
+    "no_cycle_itinerary_even_count_le_three": true,
     "ReturnBelow": true,
     "finiteProgress_of_returnBelow": true,
     "minimal_first_even_dichotomy": true,

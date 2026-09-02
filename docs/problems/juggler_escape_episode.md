@@ -211,7 +211,7 @@ already visible on `69` and `89`, so a generic trajectory theorem
 would not be leftover-specific.
 
 Best next question: is there a Diophantine obstruction at an
-empty-odd-cell PE landing that forces a later even-below-square,
+empty-odd-preimage PE landing that forces a later even-below-square,
 without a new episode rank?
 
 ## Publication assessment

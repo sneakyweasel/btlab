@@ -14,7 +14,7 @@ scale-invariant copy of Theorem R, the increment-first
 K3 attack, and X1-absorption of K3 are **REFUTED**;
 the K3 toolkit is **PARKED**.
 
-Exact census of the joint parity word of the first four itinerary
+Exact census of the joint parity itinerary of the first four itinerary
 letters on odd starts. Phase-0 falsifier for iterating the one-step
 discrepancy bound (Theorem 5.1 in the finite-dynamics note) to
 depth two and beyond. Not a frequency theorem, not a predictive

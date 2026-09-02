@@ -8,7 +8,7 @@
   "lean_reference": "",
   "literature": [],
   "mathematical_domain": "balanced ternary calculus",
-  "notes": "N∘K3 joins N∘W∘W but does not join N∘D∘I±. The word table has no I± sign-flip (those are tree rules). The earlier bounded one-way {N,D,S,W,K3} list omitted D∘I± and so hid the peak. Two-way N∘D↔D∘N is a separate KNOWN termination obstruction. The repair that does install the exact word sign-flips is the opt-in fragment WORD_WND_RULES (BTC-word-wnd-nf), not WORD_WN_RULES. Not a reason to install N∘D in WORD_REWRITE_RULES. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
+  "notes": "N∘K3 joins N∘W∘W but does not join N∘D∘I±. The itinerary table has no I± sign-flip (those are tree rules). The earlier bounded one-way {N,D,S,W,K3} list omitted D∘I± and so hid the peak. Two-way N∘D↔D∘N is a separate KNOWN termination obstruction. The repair that does install the exact word sign-flips is the opt-in fragment WORD_WND_RULES (BTC-word-wnd-nf), not WORD_WN_RULES. Not a reason to install N∘D in WORD_REWRITE_RULES. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
   "origin": "docs/theory/rewrite_calculus.md",
   "proof_reference": "docs/theory/rewrite_calculus.md",
   "statement": "WORD_SIMP_RULES plus one-way N∘D→D∘N (together with N∘S and N∘K3) is locally confluent.",

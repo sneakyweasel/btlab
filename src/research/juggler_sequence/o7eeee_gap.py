@@ -31,7 +31,7 @@ from research.juggler_sequence.o7eeee_window import (
     eeee_cell,
     odd_run_image,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_o7eeee_gap.json"
@@ -50,16 +50,16 @@ SEVEN_ODD_CUTOFF = 256
 
 LEAN_THEOREMS = (
     "no_follows_seven_odds_of_lt256",
-    "leftover_prefix_cell",
+    "leftover_prefix_preimage",
     "cycle_trailing_evens_lt",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "o7_image_ge_succ_pow16",
-    "no_cycle_word_oooooooeeee",
+    "no_cycle_itinerary_oooooooeeee",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_length_eleven",
+    "no_cycle_itinerary_four_even",
     "juggler_reaches_one",
 )
 
@@ -125,10 +125,10 @@ def lean_api_present() -> dict[str, bool]:
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **{name: has_named(combined, name) for name in LEAN_THEOREMS},
         **{name: f"theorem {name}" not in combined for name in FORBIDDEN_THEOREMS},
-        "paper_a_has_no_o7eeee": "no_cycle_word_oooooooeeee" not in paper,
+        "paper_a_has_no_o7eeee": "no_cycle_itinerary_oooooooeeee" not in paper,
         "seven_odd_cutoff_in_families": "n < 256" in families
         and "sevenOdds" in families,
-        "cell_schema_present": "leftover_prefix_cell"
+        "cell_schema_present": "leftover_prefix_preimage"
         in LEFTOVER_CELL.read_text(encoding="utf-8"),
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
@@ -143,7 +143,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         lean["sorry_free"]
         and lean["no_follows_seven_odds_of_lt256"]
         and lean["o7_image_ge_succ_pow16"]
-        and lean["no_cycle_word_oooooooeeee"]
+        and lean["no_cycle_itinerary_oooooooeeee"]
         and lean["paper_a_has_no_o7eeee"]
     )
     if not lean_ok or not all(elem.values()):
@@ -207,7 +207,7 @@ def probe_payload() -> dict[str, Any]:
             "exact (T+1)^2 > x^3 +1-chain with x_k >= n; "
             "n<256 by no_follows_seven_odds_of_lt256; "
             "256^{6177} > 257^{6038} by 257^{256}<3*256^{256} and 3^{24}<2^{40}; "
-            "Lean o7_image_ge_succ_pow16 and no_cycle_word_oooooooeeee; "
+            "Lean o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee; "
             "no Paper A import, no Z5, no thirty-word census"
         ),
     }
@@ -238,7 +238,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        +1-chain still needs n ~ 10^8",
         "Existing machinery      (T+1)^2 > x^3; x_k >= n on odd runs;",
         "                        no_follows_seven_odds_of_lt256;",
-        "                        leftover_prefix_cell at N0=828484409",
+        "                        leftover_prefix_preimage at N0=828484409",
         "Maximum Phase-0 scope   one-word +1-chain; no Lean, no Z5,",
         "                        no thirty-word census",
         "```",
@@ -300,10 +300,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Thus 256^{139} > (257/256)^{6038}, hence 256^{6177} > 257^{6038},",
         "and the same holds for every larger n. Lean has",
         "no_follows_seven_odds_of_lt256, o7_image_ge_succ_pow16, and",
-        "no_cycle_word_oooooooeeee. The EEEE inverse cell",
+        "no_cycle_itinerary_oooooooeeee. The EEEE inverse cell",
         "[n^{16}, (n+1)^{16}) is empty, and O^7 EEEE is not a cycle word.",
         "",
-        "This is not leftover_prefix_cell: that comparison uses the",
+        "This is not leftover_prefix_preimage: that comparison uses the",
         "factor 2^{4118} and first fires at n = 828484409. The +1-chain",
         "replaces the 4-fudge by the exact successor cell.",
         "",

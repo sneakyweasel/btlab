@@ -18,7 +18,7 @@ starts, or is leftover density bounded away from \(0\)?
 Let
 \[
 \mathrm{OO}=\{n\ge 3:\ n\text{ odd},\ J(n)\text{ odd}\},\qquad
-\mathrm{FP}=\{n\ge 2:\ \text{some realized finite word has }J^{|w|}(n)<n\text{ or image }1\}.
+\mathrm{FP}=\{n\ge 2:\ \text{some realized finite itinerary has }J^{|w|}(n)<n\text{ or image }1\}.
 \]
 `FP` is Lean `FiniteProgress`. The Terras analogue is
 \[
@@ -26,7 +26,7 @@ Let
 \qquad(N\to\infty).
 \]
 Phase 0 does not prove that limit. It asks whether any *fixed* finite
-family — the contracting words `OOOEE` and `OOEOE`, or first return
+family — the contracting itineraries `OOOEE` and `OOEOE`, or first return
 in \(\le K\) steps for a fixed \(K\in\{5,10,20,40\}\) — has leftover
 \(o(|\mathrm{OO}|)\) as \(N\) runs through \(\{10^4,10^5,10^6\}\).
 
@@ -41,7 +41,7 @@ is the size of that realizing set inside \(\mathrm{OO}\).
   is not claimed.
 - Terras–Everett almost-all Collatz stopping times — **known**, not a
   theorem about \(J\). Residue-class cylinders do not copy: realizing
-  sets need not be intervals, and `odd_cell_unique` makes odd fibers
+  sets need not be intervals, and `odd_preimage_unique` makes odd fibers
   singletons.
 - Automatic `E` / `OE` coverage and `unresolved_is_odd_odd` —
   **EXACT — LEAN VERIFIED**.
@@ -53,7 +53,7 @@ is the size of that realizing set inside \(\mathrm{OO}\).
 - Math-note Proposition 4.4, horizon-\(20\) first return —
   **OBSERVATION**. The \(K=20\) row of this census must reproduce it.
 - `power_bound_contracts` / `floorPower_oooee_of_follows` —
-  **EXACT — LEAN VERIFIED**. Conditional on a realized word.
+  **EXACT — LEAN VERIFIED**. Conditional on a realized itinerary.
 - Negative log-log drift —
   **OBSERVATION** / **PARK**. Not a density theorem.
 
@@ -66,7 +66,7 @@ density corollary. Totality remains unclaimed.
 Mathematical target     Does any fixed finite certificate family
                         cover almost all of OO, or is leftover
                         density bounded away from 0?
-Novelty hypothesis      Either a named contracting word (OOOEE,
+Novelty hypothesis      Either a named contracting itinerary (OOOEE,
                         OOEOE, or a short finite list) has
                         leftover o(|OO|), or a fixed horizon K
                         does; or every fixed family has a
@@ -79,7 +79,7 @@ Falsifier               Leftover fraction for every tested fixed
 Existing machinery      FiniteProgress; unresolved_is_odd_odd;
                         power_bound_contracts; wordOOOEE;
                         |OO(N)-N/4| ≪ N^{5/6}; Prop 4.5 table;
-                        odd_cell_unique; REFUTED image transfer
+                        odd_preimage_unique; REFUTED image transfer
 Maximum Phase-0 scope   One CPU probe: densities inside OO for
                         OOOEE, OOEOE, and first-return horizons
                         5, 10, 20, 40, at N in {10^4, 10^5, 10^6}.
@@ -148,10 +148,10 @@ None added. Existing names used as witnesses only:
 
 - `FiniteProgress` / `unresolved_is_odd_odd`
 - `wordOOOEE` / `floorPower_oooee_of_follows`
-- `odd_cell_unique`
+- `odd_preimage_unique`
 
 `Progress` and `Envelope` are not rewritten. No `sorry`. No halt
-theorem. No `FiniteProgress` search tactic. No `no_cycle_word_length_seven`.
+theorem. No `FiniteProgress` search tactic. No `no_cycle_itinerary_length_seven`.
 
 ## Results
 
@@ -178,7 +178,7 @@ stable two-percent leftover.
 ## Open questions
 
 Is there a measure on unbounded Juggler words, weaker than residue
-classes, on which contracting words cover almost every OO start?
+classes, on which contracting itineraries cover almost every OO start?
 Do not start that branch here. Do not fish horizons past \(K=40\).
 
 ## Decision
@@ -191,13 +191,13 @@ census is not a rewrite of Corollary 5.2: that corollary counts the
 complementary short-certificate class, not leftover inside \(\mathrm{OO}\).
 
 Best next question: is there a measure on unbounded Juggler words,
-weaker than residue classes, on which contracting words cover almost
+weaker than residue classes, on which contracting itineraries cover almost
 every OO start?
 
 ## Publication assessment
 
 Status: `ARCHIVED`.
 
-A negative density gate: finite word lists and fixed horizons do not
+A negative density gate: finite itinerary lists and fixed horizons do not
 give almost-all descent on \(\mathrm{OO}\). Not a paper theorem and
 not a Juggler totality result.

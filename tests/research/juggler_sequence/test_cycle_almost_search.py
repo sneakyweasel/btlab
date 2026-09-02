@@ -24,7 +24,7 @@ from research.juggler_sequence.cycle_almost_search import (
 from research.juggler_sequence.cycle_budget_opt import run_type_counts
 from research.juggler_sequence.cycle_finance import PUBLISHED_FLOOR, o_min_and_theta
 from research.juggler_sequence.cycle_ordered_excursion import excursion_map
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 SUMMARY = (

@@ -1,7 +1,7 @@
 {
   "id": "juggler_cycle_error_transport",
   "title": "Position-weighted seam-split floor-error transport obstructs a cycle without summing to Delta",
-  "statement": "Transporting every local floor remainder by its position in the word and splitting the vector at the O|E seam produces a one-sided or ordered constraint (a climb-half, a descent-half, or a single e_i exceeds G, or an ordered climb/descent law) that is not global_defect_identity / amplifyDefect / firstDefect / cycleMin_finance / the closed defect-congruence residual / the closed peak-valley composite / the closed exponent budget / power_bound_contracts.",
+  "statement": "Transporting every local floor remainder by its position in the itinerary and splitting the vector at the O|E seam produces a one-sided or ordered constraint (a climb-half, a descent-half, or a single e_i exceeds G, or an ordered climb/descent law) that is not global_defect_identity / amplifyDefect / firstDefect / cycleMin_finance / the closed defect-congruence residual / the closed peak-valley composite / the closed exponent budget / power_bound_contracts.",
   "status": "REFUTED",
   "counterexamples": [
     "sum e_i + X = Delta on 13 OE (81+820=901), 365 OOE, 25 OOOEE, 365 OOEOOE, and 429 L11; the vector is accumulatedDefect unrolled",

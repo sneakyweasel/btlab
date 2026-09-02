@@ -34,7 +34,7 @@ from research.juggler_sequence.minimal_anchor_closure import (
     corridor_rank,
     trajectory_until_drop,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_escape_episode.json"
@@ -243,7 +243,7 @@ def machinery_reframe() -> dict[str, str]:
         "HasFiniteStop": "the same terminal drop; FirstPassage does not cut mid-corridor",
         "even_below_anchor_pow": "an even high state drops its own rank; the return stays rank 2",
         "FiniteProgress": "emitted only by the terminal drop on these laboratories",
-        "trajectoryExponentGap": "Drift is a word-exponent predicate, not an episode rank",
+        "trajectoryExponentGap": "Drift is an word-exponent predicate, not an episode rank",
         "collapse_on_pow_two": "Collapse is an even-tower identity, not a PE landing law",
         "cycles_or_escapes": "bounded recurrence is already a cycle; leftover prefixes are not recurrent",
     }
@@ -328,7 +328,7 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "paper_a_has_new_api": any(paper_new.values()),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

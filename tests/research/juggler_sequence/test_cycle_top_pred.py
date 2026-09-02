@@ -15,7 +15,7 @@ from research.juggler_sequence.cycle_top_pred import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_nine_and_seventy_seven_have_strict_pred_below_p_sq():
@@ -74,7 +74,7 @@ def test_lean_api_pred_without_obstruction():
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
     assert "PowerHeight" not in src
-    assert "theorem no_cycle_word_length_six" not in src
+    assert "theorem no_cycle_itinerary_length_six" not in src
 
 
 def test_classify_nested_green():
@@ -85,7 +85,7 @@ def test_classify_nested_green():
     assert CLASS_SCALE in decision["secondary"]
     assert CLASS_SURVIVES in decision["secondary"]
     assert scan["n_search"] is False
-    assert scan["cycle_word_census"] is False
+    assert scan["cycle_itinerary_census"] is False
     assert scan["structural_fails"] == 0
     assert scan["scale_fails"] == 0
     assert scan["three_level_holds"] == scan["start_count"]
@@ -127,4 +127,4 @@ def test_committed_artifacts_schema():
     assert data["lean"]["sorry_free"] is True
     assert data["lean"]["cycle_top_three_level"] is True
     assert data["scan"]["n_search"] is False
-    assert data["scan"]["cycle_word_census"] is False
+    assert data["scan"]["cycle_itinerary_census"] is False

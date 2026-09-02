@@ -24,7 +24,7 @@ from research.juggler_sequence.envelope_defect import (
     tiny_deficit,
 )
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, itinerary
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, itinerary
 
 
 def test_local_defects_match_isqrt_remainders():

@@ -76,7 +76,7 @@ Claim language: `NOT OBSERVED WITHIN SEARCH BOUND`.
 ## Property search
 
 - found: `False` name: `None`
-- reason: no exact predicate holds on all F_j and fails on some formal word
+- reason: no exact predicate holds on all F_j and fails on some formal itinerary
 - distinctive: `[]`
 
 ## Hold-out

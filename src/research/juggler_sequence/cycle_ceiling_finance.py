@@ -43,7 +43,7 @@ from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     has_named,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_ceiling_finance.json"
@@ -67,12 +67,12 @@ EXISTING_LEAN = (
     "even_iter_lt_succ_pow",
     "cycleMin_even_ge_sq",
     "cycleMin_not_odd_even",
-    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five",
+    "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
 )
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
-    "no_cycle_word_any_length",
-    "no_cycle_word_length_eighty_four",
+    "no_cycle_itinerary_any_length",
+    "no_cycle_itinerary_length_eighty_four",
     "cycle_ceiling_finance",
     "ceiling_finance",
 )

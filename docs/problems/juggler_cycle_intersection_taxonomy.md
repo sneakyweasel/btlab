@@ -42,7 +42,7 @@ That is the closed cyclic-seam window.
 **Odd-to-odd first meeting is impossible
 (KNOWN / EXACT — LEAN VERIFIED).**
 Every value has at most one odd parent
-(`odd_cell_unique`, `oddLanding_preimage_unique`). Two trajectories
+(`odd_preimage_unique`, `oddLanding_preimage_unique`). Two trajectories
 that both arrive by \(O\) already agreed at that unique parent, so
 the meeting was not first. Interior \(\mathtt{OO}\) and a
 climb-created peak (\(\mathtt{OE}\) with both arrivals odd) are
@@ -76,7 +76,7 @@ No cycle of any length — not claimed.
 
 - Unique odd cell —
   **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, `oddLanding_preimage_unique`)
+  (`odd_preimage_unique`, `oddLanding_preimage_unique`)
 - CycleMin starts \(\mathtt{OO}\), cannot start \(\mathtt{OE}\),
   cannot end odd —
   **EXACT — LEAN VERIFIED**
@@ -99,7 +99,7 @@ No cycle of any length — not claimed.
 
 Project relationship: **refuted** as a first-intersection leftover
 obstruction; the odd-odd collapse is a **REPARAMETERIZATION** of
-`odd_cell_unique`; the CycleMin cut is the archived seam.
+`odd_preimage_unique`; the CycleMin cut is the archived seam.
 
 ## Branch budget
 
@@ -108,14 +108,14 @@ Mathematical target     Can two trajectories first meet at a point
                         whose both parents are odd, or does a
                         valley / odd-ascent / peak / even-descent
                         taxonomy produce a two-sided envelope that
-                        is not odd_cell_unique / the CycleMin 2+2
+                        is not odd_preimage_unique / the CycleMin 2+2
                         seam / peak-finance / trailing-EE count?
 Novelty hypothesis      first-intersection geometry is finer than
                         the CycleMin seam and the archived corridor
-Falsifier               odd_cell_unique; first intersection of a
+Falsifier               odd_preimage_unique; first intersection of a
                         CycleMin orbit is n; peak scale is
                         COMPOSITION_REPACKAGING; EE is n(n^2+n+1)
-Existing machinery      odd_cell_unique; oddLanding_preimage_unique;
+Existing machinery      odd_preimage_unique; oddLanding_preimage_unique;
                         cycleMin_starts_two_odds; cycleMin_not_odd_even;
                         cycleMin_not_end_odd; exists_cycleMin_last_odd_run;
                         cycle_peak_finance; ee_entry_count
@@ -134,7 +134,7 @@ reopen peak finance.
 
 - **CLOSE** if a CycleMin first intersection is \(n\) and the
   \(2{+}2\) window is the archived pair.
-- **CLOSE** if odd+odd first meeting is `odd_cell_unique`.
+- **CLOSE** if odd+odd first meeting is `odd_preimage_unique`.
 - **CLOSE** if a climb-created peak is the unique odd parent.
 - **CLOSE** if peak two-sided scale is peak finance /
   extremal composition.
@@ -166,7 +166,7 @@ It is not required.
 - CycleMin first intersection is \(n\) —
   **KNOWN** / **REPARAMETERIZATION** of the \(2{+}2\) seam
 - Odd+odd first meeting —
-  **KNOWN** empty (`odd_cell_unique`)
+  **KNOWN** empty (`odd_preimage_unique`)
 - Climb-created peak as first meeting —
   **KNOWN** empty (`oddLanding_preimage_unique`)
 - Peak two-sided envelope \(F\le x\le D\) —
@@ -197,7 +197,7 @@ It is not required.
 
 - A CycleMin orbit first meets itself at \(n\). Falsifier of a
   free first-intersection cut at a later valley or peak.
-- `odd_cell_unique`: two odd parents of the same image cannot
+- `odd_preimage_unique`: two odd parents of the same image cannot
   exist. Falsifier of interior \(\mathtt{OO}\) and of a
   climb-created peak as first intersections.
 - Peak finance equals the top-ascent envelope. Falsifier of
@@ -209,7 +209,7 @@ It is not required.
 ## Formalization
 
 None added. The uniqueness lemma is already
-`odd_cell_unique` / `oddLanding_preimage_unique`. The CycleMin
+`odd_preimage_unique` / `oddLanding_preimage_unique`. The CycleMin
 cut is already `cycleMin_starts_two_odds` plus
 `exists_cycleMin_last_odd_run`. Paper A is unchanged. Do not
 add `IntersectionTaxonomy.lean`.
@@ -242,7 +242,7 @@ is a separate closed branch
 **CLOSE**. The four-position language is a restatement of run
 form. If \(n\) is on the cycle, the first intersection is the
 archived CycleMin seam. If \(n\) is a transient, odd-to-odd and
-climb-created-peak meetings die on `odd_cell_unique`. The
+climb-created-peak meetings die on `odd_preimage_unique`. The
 photogenic peak comparison is extremal composition under a new
 name. The only bulk distinct-parent channel is the even tree
 already measured as \(n(n^2+n+1)\). That is useful negative

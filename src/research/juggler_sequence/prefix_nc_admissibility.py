@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.compensated_contraction import (
-    follows_word,
+    follows_itinerary,
     formal_gap,
     image_after,
 )
@@ -32,7 +32,7 @@ from research.juggler_sequence.near_extremal_prefixes import (
     prefix_nc_words,
     prefix_noncontracting,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary, odd_count, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, odd_count, word_of
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     RESIDUALS,
@@ -88,7 +88,7 @@ FLOOR_LEMMAS = (
     "floor_sqrt_eq_iff_sq_interval",
     "floorPower_even_eq_iff_sq_interval",
     "floorPower_odd_eq_iff_cube_interval",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "power_bound_compensated_contracts",
 )
 
@@ -316,7 +316,7 @@ def extremal_deviation(word: str) -> dict[str, Any]:
 
 
 def defect_row(n: int, word: str) -> dict[str, Any] | None:
-    if n < 1 or not follows_word(n, word):
+    if n < 1 or not follows_itinerary(n, word):
         return None
     path = itinerary(n, len(word))
     image = path[-1]
@@ -343,12 +343,12 @@ def word_payload(word: str, image: Ival, *, known_n: int | None = None) -> dict[
     min_start = None if back["truncated"] else back["min_start"]
     realizable = False
     defect = None
-    if known_n is not None and follows_word(known_n, word):
+    if known_n is not None and follows_itinerary(known_n, word):
         realizable = True
         defect = defect_row(known_n, word)
         if min_start is None or known_n < min_start:
             min_start = known_n
-    elif min_start is not None and follows_word(min_start, word):
+    elif min_start is not None and follows_itinerary(min_start, word):
         realizable = True
         defect = defect_row(min_start, word)
     return {
@@ -451,7 +451,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         lean["sorry_free"]
         and lean["PrefixNCAdmissibility_absent"]
         and lean["floorPower_odd_eq_iff_cube_interval"]
-        and lean["odd_cell_unique"]
+        and lean["odd_preimage_unique"]
         and lean["no_global_termination_theorem"]
         and lean["ResidualStep_not_extended"]
     )
@@ -472,7 +472,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         return {
             "classification": CLASS_NEAR,
             "secondary": [],
-            "reason": "long surviving mixed words are O^k E shadows",
+            "reason": "long surviving mixed itineraries are O^k E shadows",
         }
     if census["o_shrinks"] and census["e_widens"] and not census["empty_law"]:
         return {
@@ -623,8 +623,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        long mixed prefix-NC words?",
         "Novelty hypothesis      backward floor cells empty or shrink A_NC",
         "Falsifier               existing cells rewritten; horizon ≠ L;",
-        "                        realized mixed words survive",
-        "Existing machinery      inverse-floor iff, odd_cell_unique,",
+        "                        realized mixed itineraries survive",
+        "Existing machinery      inverse-floor iff, odd_preimage_unique,",
         "                        prefix_nc_words, compensated contraction",
         "Maximum Phase-0 scope   pullback on mixed k<=8 plus known witnesses",
         "```",

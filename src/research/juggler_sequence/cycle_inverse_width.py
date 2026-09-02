@@ -28,7 +28,7 @@ from research.juggler_sequence.cycle_extremizer_discrepancy import (
     extra_odd_word,
 )
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR, o_min_and_theta
-from research.juggler_sequence.floor_cells import even_cell, even_cell_width
+from research.juggler_sequence.floor_preimages import even_preimage, even_preimage_width
 
 INVERSE_DIR = DATA_DIR / "inverse_width"
 PREFIX_LEN = 18
@@ -175,7 +175,7 @@ def inverse_walk(word: str, y: int) -> dict[str, Any]:
     """
 
     if y < 1 or not word:
-        raise ValueError("inverse_walk requires a positive endpoint and a word")
+        raise ValueError("inverse_walk requires a positive endpoint and an word")
     kind = "points"
     points = [y]
     hull_lo, hull_hi = float(y), float(y) + 1.0
@@ -199,7 +199,7 @@ def inverse_walk(word: str, y: int) -> dict[str, Any]:
             if kind == "points":
                 if not points:
                     nxt_kind, nxt_points = "points", []
-                elif sum(even_cell_width(q) for q in points) > POINT_CAP:
+                elif sum(even_preimage_width(q) for q in points) > POINT_CAP:
                     nxt_kind, nxt_points = "even_cells", list(points)
                 else:
                     nxt_kind, nxt_points = "even_cells", list(points)
@@ -272,8 +272,8 @@ def inverse_walk(word: str, y: int) -> dict[str, Any]:
         if nxt_kind == "points" and nxt_points:
             hull_lo, hull_hi = float(min(nxt_points)), float(max(nxt_points)) + 1.0
         elif nxt_kind == "even_cells" and nxt_points:
-            lo, _ = even_cell(min(nxt_points))
-            _, hi = even_cell(max(nxt_points))
+            lo, _ = even_preimage(min(nxt_points))
+            _, hi = even_preimage(max(nxt_points))
             hull_lo, hull_hi = float(lo), float(hi)
 
     survived = death_tag is None and not hulled

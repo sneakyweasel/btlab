@@ -33,7 +33,7 @@ from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_algebra import local_tight
 from research.juggler_sequence.lean_paths import ENVELOPE, RESIDUALS, juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     EXACT_POW_BITS,
     cmp_pow,
@@ -369,7 +369,7 @@ def _slim_row(row: dict[str, Any], *, word_cap: int = 80) -> dict[str, Any]:
         "odd_count": row["odd_count"],
         "exponent_gap": row["exponent_gap"],
         "word_preview": preview,
-        "word_length": len(word),
+        "itinerary_length": len(word),
         "peak": row["peak"],
         "peak_index": row["peak_index"],
         "return_value": row["return_value"],

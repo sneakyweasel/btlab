@@ -1,4 +1,4 @@
-# Juggler finite-word envelope defect and strictness
+# Juggler finite-itinerary envelope defect and strictness
 
 Status: **DEFECT_QUANTITATIVE_GREEN**
 
@@ -64,7 +64,7 @@ under `isqrt`.
 - word `E` at 2: unit defect, Δ `1`
 - word `O` at 9 has no first defect: `True`
 
-Same-count mixed words with different first-defect positions do not
+Same-count mixed itineraries with different first-defect positions do not
 obey a position-only order. The certified lower bound uses the first
 local defect, not the letter counts. Split groups: `3`.
 
@@ -103,5 +103,5 @@ local defect, not the letter counts. Split groups: `3`.
 
 A positive first local defect persists through every realized suffix, and the final envelope deficit is at least that defect.
 
-This is a finite-word defect statement, not a global halt result.
+This is a finite-itinerary defect statement, not a global halt result.
 

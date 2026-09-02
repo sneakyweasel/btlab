@@ -5,9 +5,9 @@ Status: **ACTIVE** (Phase 0 decided)
 Successor of the DK/Ostrowski envelope
 ([juggler_cycle_walk_ostrowski.md](juggler_cycle_walk_ostrowski.md)),
 answering the synthesis question it left open: finance identifies
-the words that are globally almost neutral (the near-resonances
+the itineraries that are globally almost neutral (the near-resonances
 \(\varepsilon_L=1-2^L/3^o\)); the greedy/IET walk determines the
-maximum local compensation those words can extract. Which asymptotic
+maximum local compensation those itineraries can extract. Which asymptotic
 scale wins? Not a halt theorem, not a floor raise, not a uniform
 \(B/\theta\) claim (REFUTED at fixed floor), and not a Baker revival
 (\(\theta\) is computed exactly, never lower-bounded).

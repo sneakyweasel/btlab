@@ -98,20 +98,20 @@ This is not a length-11 census. It does not exclude e=5.
 - `CycleMin`: `True`
 - `cycle_trailing_evens_lt`: `True`
 - `o7_image_ge_succ_pow16`: `True`
-- `no_cycle_word_even_count_le_three`: `True`
+- `no_cycle_itinerary_even_count_le_three`: `True`
 - `absorb_even_step`: `True`
 - `family_slack139`: `True`
 - `no_cycleMin_cyclemin_fudge`: `True`
 - `no_cycleMin_slack139`: `True`
 - `no_cycleMin_oooooooeeee`: `True`
-- `no_cycle_word_oooooooeeee`: `True`
-- `no_cycle_word_ooooooeoeee`: `True`
-- `no_cycle_word_ooooooeeeoe`: `True`
-- `no_cycle_word_oooooeoeeoe`: `True`
-- `no_cycle_word_ooooooeeoee`: `True`
-- `no_cycle_word_oooooeoeoee`: `True`
-- `no_cycle_word_oooooeeoeoe`: `True`
-- `no_cycle_word_ooooeoeoeoe`: `True`
+- `no_cycle_itinerary_oooooooeeee`: `True`
+- `no_cycle_itinerary_ooooooeoeee`: `True`
+- `no_cycle_itinerary_ooooooeeeoe`: `True`
+- `no_cycle_itinerary_oooooeoeeoe`: `True`
+- `no_cycle_itinerary_ooooooeeoee`: `True`
+- `no_cycle_itinerary_oooooeoeoee`: `True`
+- `no_cycle_itinerary_oooooeeoeoe`: `True`
+- `no_cycle_itinerary_ooooeoeoeoe`: `True`
 - `no_cycleMin_ooooooeoeee`: `True`
 - `no_cycleMin_oooooeooeee`: `True`
 - `no_cycleMin_ooooeoooeee`: `True`
@@ -141,9 +141,9 @@ This is not a length-11 census. It does not exclude e=5.
 - `no_cycleMin_ooooeeoooee`: `True`
 - `no_cycleMin_oooeoeoooee`: `True`
 - `no_cycleMin_ooeooeoooee`: `True`
-- no `no_cycle_word_length_eleven`: `True`
-- no `no_cycle_word_four_even`: `True`
-- no `no_cycle_word_cyclemin_fudge`: `True`
+- no `no_cycle_itinerary_length_eleven`: `True`
+- no `no_cycle_itinerary_four_even`: `True`
+- no `no_cycle_itinerary_cyclemin_fudge`: `True`
 - no `juggler_reaches_one`: `True`
 
 ## Anti-overclaim

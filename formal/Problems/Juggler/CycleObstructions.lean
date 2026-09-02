@@ -4,30 +4,30 @@ import Problems.Juggler.FirstInternalOO
 namespace Problems.Juggler
 
 /-!
-# Named CycleMin / CycleWord exclusions
+# Named CycleMin / CycleItinerary exclusions
 
 Why particular trajectories cannot be cycles. Cycle foundations
-(`CycleWord`, `CycleMin`, extrema, last-even cell) stay in
+(`CycleItinerary`, `CycleMin`, extrema, last-even cell) stay in
 `CycleCore`. Isolated-prefix algebra stays in `FirstInternalOO`.
 This file is not a halt theorem.
 -/
 
-def wordOOEOOE : List Branch :=
+def itineraryOOEOOE : List Branch :=
   [.odd, .odd, .even, .odd, .odd, .even]
 
-def wordOEOOOE : List Branch :=
+def itineraryOEOOOE : List Branch :=
   [.odd, .even, .odd, .odd, .odd, .even]
 
-theorem wordOOEOOE_split :
-    wordOOEOOE = [.odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even] :=
+theorem itineraryOOEOOE_split :
+    itineraryOOEOOE = [.odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even] :=
   rfl
 
-theorem wordOEOOOE_is_odd_even :
-    wordOEOOOE = .odd :: .even :: [.odd, .odd, .odd, .even] :=
+theorem itineraryOEOOOE_is_odd_even :
+    itineraryOEOOOE = .odd :: .even :: [.odd, .odd, .odd, .even] :=
   rfl
 
 theorem no_cycleMin_ooeooe {n : ℕ} (hn : 2 ≤ n)
-    (h : CycleMin n wordOOEOOE) : False := by
+    (h : CycleMin n itineraryOOEOOE) : False := by
   have hodd : n % 2 = 1 := h.1.1.1
   have hn5 : 5 ≤ n := by
     cases lt_or_ge n 5 with
@@ -35,7 +35,7 @@ theorem no_cycleMin_ooeooe {n : ℕ} (hn : 2 ≤ n)
         have hn3 : n = 3 := by omega
         subst hn3
         have hOOE : follows 3 ([.odd, .odd] ++ [.even]) :=
-          follows_of_append_left (by simpa [wordOOEOOE] using h.1.1)
+          follows_of_append_left (by simpa [itineraryOOEOOE] using h.1.1)
         have he : image 3 [.odd, .odd] % 2 = 0 :=
           (follows_of_append_right (u := [.odd, .odd]) hOOE).1
         have himg : image 3 [.odd, .odd] = 11 := by native_decide
@@ -43,81 +43,81 @@ theorem no_cycleMin_ooeooe {n : ℕ} (hn : 2 ≤ n)
         exact absurd he (by decide : ¬(11 : ℕ) % 2 = 0)
     | inr hge => exact hge
   have hsplit : CycleMin n ([.odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even]) := by
-    simpa [wordOOEOOE] using h
+    simpa [itineraryOOEOOE] using h
   refine no_cycleMin_internal_even_threshold (N := 5) ?_ hn5 hsplit
   intro m hm hf
   simpa [image_eq_iterate] using oo_suffix_threshold hm hf
 
 theorem no_cycleMin_oeoooe {n : ℕ} (hn : 2 ≤ n)
-    (h : CycleMin n wordOEOOOE) : False := by
+    (h : CycleMin n itineraryOEOOOE) : False := by
   have hodd : n % 2 = 1 := h.1.1.1
   have hn3 : 3 ≤ n := by omega
   have hsplit : CycleMin n ([.odd] ++ [.even] ++ [.odd, .odd, .odd] ++ [.even]) := by
-    simpa [wordOEOOOE] using h
+    simpa [itineraryOEOOOE] using h
   refine no_cycleMin_internal_even_threshold (N := 3) ?_ hn3 hsplit
   intro m hm hf
   simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
 
 theorem rotate_ooeooe :
     ∀ k, k < 6 →
-      rotateWord wordOOEOOE k = wordOOEOOE ∨
-        rotateWord wordOOEOOE k = [.odd, .even, .odd, .odd, .even, .odd] ∨
-          rotateWord wordOOEOOE k = [.even, .odd, .odd, .even, .odd, .odd] := by
+      rotateItinerary itineraryOOEOOE k = itineraryOOEOOE ∨
+        rotateItinerary itineraryOOEOOE k = [.odd, .even, .odd, .odd, .even, .odd] ∨
+          rotateItinerary itineraryOOEOOE k = [.even, .odd, .odd, .even, .odd, .odd] := by
   intro k hk
-  interval_cases k <;> simp [wordOOEOOE, rotateWord]
+  interval_cases k <;> simp [itineraryOOEOOE, rotateItinerary]
 
-theorem no_cycle_word_ooeooe {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n wordOOEOOE := by
+theorem no_cycle_itinerary_ooeooe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOEOOE := by
   intro h
   have ⟨k, hk, hm⟩ := exists_cycleMin hn h
-  have hlen : wordOOEOOE.length = 6 := rfl
+  have hlen : itineraryOOEOOE.length = 6 := rfl
   rw [hlen] at hk
   have hnk : 2 ≤ floorPower^[k] n :=
-    cycleWord_iterate_ge_two hn h (by omega)
+    cycleItinerary_iterate_ge_two hn h (by omega)
   rcases rotate_ooeooe k hk with h0 | h1 | h2
   · exact no_cycleMin_ooeooe hnk (by simpa [h0] using hm)
   · exact cycleMin_not_odd_even hnk (by simpa [h1] using hm)
   · exact cycleMin_not_start_even hnk (by simpa [h2] using hm)
 
-def wordOOEOOOE : List Branch :=
+def itineraryOOEOOOE : List Branch :=
   [.odd, .odd, .even, .odd, .odd, .odd, .even]
 
-def wordOOOEOOE : List Branch :=
+def itineraryOOOEOOE : List Branch :=
   [.odd, .odd, .odd, .even, .odd, .odd, .even]
 
-theorem wordOOEOOOE_split :
-    wordOOEOOOE =
+theorem itineraryOOEOOOE_split :
+    itineraryOOEOOOE =
       [.odd, .odd] ++ [.even] ++ [.odd, .odd, .odd] ++ [.even] :=
   rfl
 
-theorem wordOOOEOOE_split :
-    wordOOOEOOE =
+theorem itineraryOOOEOOE_split :
+    itineraryOOOEOOE =
       [.odd, .odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even] :=
   rfl
 
 theorem no_cycleMin_ooeoooe {n : ℕ} (hn : 2 ≤ n)
-    (h : CycleMin n wordOOEOOOE) : False := by
+    (h : CycleMin n itineraryOOEOOOE) : False := by
   have hn3 : 3 ≤ n := by
     have : n % 2 = 1 := h.1.1.1
     omega
   have hsplit :
       CycleMin n ([.odd, .odd] ++ [.even] ++ [.odd, .odd, .odd] ++ [.even]) := by
-    simpa [wordOOEOOOE] using h
+    simpa [itineraryOOEOOOE] using h
   refine no_cycleMin_internal_even_threshold (N := 3) ?_ hn3 hsplit
   intro m hm hf
   simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
 
-theorem no_followsB_3_oooeooe : followsB 3 wordOOOEOOE = false := by
+theorem no_followsB_3_oooeooe : followsB 3 itineraryOOOEOOE = false := by
   native_decide
 
-theorem no_follows_3_oooeooe : ¬follows 3 wordOOOEOOE := by
+theorem no_follows_3_oooeooe : ¬follows 3 itineraryOOOEOOE := by
   intro hf
-  have htrue : followsB 3 wordOOOEOOE = true := (followsB_iff 3 _).mpr hf
+  have htrue : followsB 3 itineraryOOOEOOE = true := (followsB_iff 3 _).mpr hf
   rw [no_followsB_3_oooeooe] at htrue
   exact Bool.false_ne_true htrue
 
 theorem no_cycleMin_oooeooe {n : ℕ} (hn : 2 ≤ n)
-    (h : CycleMin n wordOOOEOOE) : False := by
+    (h : CycleMin n itineraryOOOEOOE) : False := by
   have hodd : n % 2 = 1 := h.1.1.1
   cases lt_or_ge n 5 with
   | inl hlt =>
@@ -128,53 +128,53 @@ theorem no_cycleMin_oooeooe {n : ℕ} (hn : 2 ≤ n)
       have hsplit :
           CycleMin n
             ([.odd, .odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even]) := by
-        simpa [wordOOOEOOE] using h
+        simpa [itineraryOOOEOOE] using h
       refine no_cycleMin_internal_even_threshold (N := 5) ?_ hge hsplit
       intro m hm hf
       simpa [image_eq_iterate] using oo_suffix_threshold hm hf
 
 theorem rotate_ooeoooe :
     ∀ k, k < 7 →
-      rotateWord wordOOEOOOE k = wordOOEOOOE ∨
-        rotateWord wordOOEOOOE k = wordOOOEOOE ∨
-          rotateWord wordOOEOOOE k =
+      rotateItinerary itineraryOOEOOOE k = itineraryOOEOOOE ∨
+        rotateItinerary itineraryOOEOOOE k = itineraryOOOEOOE ∨
+          rotateItinerary itineraryOOEOOOE k =
               [.odd, .even, .odd, .odd, .odd, .even, .odd] ∨
-            rotateWord wordOOEOOOE k =
+            rotateItinerary itineraryOOEOOOE k =
                 [.even, .odd, .odd, .odd, .even, .odd, .odd] ∨
-              rotateWord wordOOEOOOE k =
+              rotateItinerary itineraryOOEOOOE k =
                   [.odd, .odd, .even, .odd, .odd, .even, .odd] ∨
-                rotateWord wordOOEOOOE k =
+                rotateItinerary itineraryOOEOOOE k =
                     [.odd, .even, .odd, .odd, .even, .odd, .odd] ∨
-                  rotateWord wordOOEOOOE k =
+                  rotateItinerary itineraryOOEOOOE k =
                     [.even, .odd, .odd, .even, .odd, .odd, .odd] := by
   intro k hk
-  interval_cases k <;> simp [wordOOEOOOE, wordOOOEOOE, rotateWord]
+  interval_cases k <;> simp [itineraryOOEOOOE, itineraryOOOEOOE, rotateItinerary]
 
 theorem rotate_oooeooe :
     ∀ k, k < 7 →
-      rotateWord wordOOOEOOE k = wordOOOEOOE ∨
-        rotateWord wordOOOEOOE k = wordOOEOOOE ∨
-          rotateWord wordOOOEOOE k =
+      rotateItinerary itineraryOOOEOOE k = itineraryOOOEOOE ∨
+        rotateItinerary itineraryOOOEOOE k = itineraryOOEOOOE ∨
+          rotateItinerary itineraryOOOEOOE k =
               [.odd, .odd, .even, .odd, .odd, .even, .odd] ∨
-            rotateWord wordOOOEOOE k =
+            rotateItinerary itineraryOOOEOOE k =
                 [.odd, .even, .odd, .odd, .even, .odd, .odd] ∨
-              rotateWord wordOOOEOOE k =
+              rotateItinerary itineraryOOOEOOE k =
                   [.even, .odd, .odd, .even, .odd, .odd, .odd] ∨
-                rotateWord wordOOOEOOE k =
+                rotateItinerary itineraryOOOEOOE k =
                     [.odd, .even, .odd, .odd, .odd, .even, .odd] ∨
-                  rotateWord wordOOOEOOE k =
+                  rotateItinerary itineraryOOOEOOE k =
                     [.even, .odd, .odd, .odd, .even, .odd, .odd] := by
   intro k hk
-  interval_cases k <;> simp [wordOOOEOOE, wordOOEOOOE, rotateWord]
+  interval_cases k <;> simp [itineraryOOOEOOE, itineraryOOEOOOE, rotateItinerary]
 
-theorem no_cycle_word_ooeoooe {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n wordOOEOOOE := by
+theorem no_cycle_itinerary_ooeoooe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOEOOOE := by
   intro h
   have ⟨k, hk, hm⟩ := exists_cycleMin hn h
-  have hlen : wordOOEOOOE.length = 7 := rfl
+  have hlen : itineraryOOEOOOE.length = 7 := rfl
   rw [hlen] at hk
   have hnk : 2 ≤ floorPower^[k] n :=
-    cycleWord_iterate_ge_two hn h (by omega)
+    cycleItinerary_iterate_ge_two hn h (by omega)
   rcases rotate_ooeoooe k hk with h0 | h1 | h2 | h3 | h4 | h5 | h6
   · exact no_cycleMin_ooeoooe hnk (by simpa [h0] using hm)
   · exact no_cycleMin_oooeooe hnk (by simpa [h1] using hm)
@@ -196,14 +196,14 @@ theorem no_cycle_word_ooeoooe {n : ℕ} (hn : 2 ≤ n) :
   · exact cycleMin_not_odd_even hnk (by simpa [h5] using hm)
   · exact cycleMin_not_start_even hnk (by simpa [h6] using hm)
 
-theorem no_cycle_word_oooeooe {n : ℕ} (hn : 2 ≤ n) :
-    ¬CycleWord n wordOOOEOOE := by
+theorem no_cycle_itinerary_oooeooe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleItinerary n itineraryOOOEOOE := by
   intro h
   have ⟨k, hk, hm⟩ := exists_cycleMin hn h
-  have hlen : wordOOOEOOE.length = 7 := rfl
+  have hlen : itineraryOOOEOOE.length = 7 := rfl
   rw [hlen] at hk
   have hnk : 2 ≤ floorPower^[k] n :=
-    cycleWord_iterate_ge_two hn h (by omega)
+    cycleItinerary_iterate_ge_two hn h (by omega)
   rcases rotate_oooeooe k hk with h0 | h1 | h2 | h3 | h4 | h5 | h6
   · exact no_cycleMin_oooeooe hnk (by simpa [h0] using hm)
   · exact no_cycleMin_ooeoooe hnk (by simpa [h1] using hm)
@@ -225,23 +225,23 @@ theorem no_cycle_word_oooeooe {n : ℕ} (hn : 2 ≤ n) :
     exact cycleMin_not_end_odd hnk hm
   · exact cycleMin_not_start_even hnk (by simpa [h6] using hm)
 
-def wordOOOEOE : List Branch :=
+def itineraryOOOEOE : List Branch :=
   [Branch.odd, Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.even]
 
-theorem wordOOOEOE_split :
-    wordOOOEOE =
+theorem itineraryOOOEOE_split :
+    itineraryOOOEOE =
       [Branch.odd, Branch.odd, Branch.odd] ++ [Branch.even] ++
         [Branch.odd] ++ [Branch.even] :=
   rfl
 
 theorem no_cycleMin_ooooeoe_of_sqrt_eq {n : ℕ} (hn : 2 ≤ n)
-    (h : CycleMin n wordOOOEOE)
+    (h : CycleMin n itineraryOOOEOE)
     (hy : image n ([Branch.odd, Branch.odd, Branch.odd] ++ [Branch.even]) = n) :
     False := by
   have hsplit : CycleMin n
       ([Branch.odd, Branch.odd, Branch.odd] ++ [Branch.even] ++
         [Branch.odd] ++ [Branch.even]) := by
-    simpa [wordOOOEOE] using h
+    simpa [itineraryOOOEOE] using h
   exact cycleMin_prefix_ooo_even_sqrt_ne hn hsplit hy
 
 theorem no_cycleMin_isolated_prefix_of_gap {n a r : ℕ} {v : List Branch}

@@ -25,7 +25,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.leftover_cell_lag import n0_by_doubling, tail_holds_log
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_o7eeee_window.json"
@@ -43,16 +43,16 @@ PIN_MAX = 10_000
 NEAR_MAX = 10_000_000
 
 LEAN_THEOREMS = (
-    "leftover_prefix_cell",
+    "leftover_prefix_preimage",
     "cycle_trailing_evens_lt",
-    "odd_cell_unique",
-    "even_cell_iff",
-    "cycle_word_length_ge_eleven",
+    "odd_preimage_unique",
+    "even_preimage_iff",
+    "cycle_itinerary_length_ge_eleven",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
-    "no_cycle_word_four_even",
+    "no_cycle_itinerary_length_eleven",
+    "no_cycle_itinerary_four_even",
     "juggler_reaches_one",
 )
 
@@ -143,8 +143,8 @@ def lean_api_present() -> dict[str, bool]:
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **{name: has_named(combined, name) for name in LEAN_THEOREMS},
         **{name: f"theorem {name}" not in combined for name in FORBIDDEN_THEOREMS},
-        "paper_a_has_no_o7eeee": "no_cycle_word_oooooooeeee" not in paper,
-        "cell_schema_present": "leftover_prefix_cell"
+        "paper_a_has_no_o7eeee": "no_cycle_itinerary_oooooooeeee" not in paper,
+        "cell_schema_present": "leftover_prefix_preimage"
         in LEFTOVER_CELL.read_text(encoding="utf-8"),
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
@@ -155,7 +155,7 @@ def lean_api_present() -> dict[str, bool]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["leftover_prefix_cell"]
+        and lean["leftover_prefix_preimage"]
         and lean["paper_a_has_no_o7eeee"]
     )
     full = scan["full"]
@@ -224,7 +224,7 @@ def probe_payload(*, full: bool = True) -> dict[str, Any]:
         "decision": decision,
         "search_method": (
             "exact forward O^7 then EEEE inverse cell [n^16,(n+1)^16); "
-            f"window 3<=n<{N0_CELL}; leftover_prefix_cell above N0; "
+            f"window 3<=n<{N0_CELL}; leftover_prefix_preimage above N0; "
             "no Z5, no thirty-word census, no halt theorem"
         ),
     }
@@ -255,8 +255,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Novelty hypothesis      the EEEE inverse cell is empty of",
         "                        O^7 images below N0",
         "Falsifier               a hit, or T^7 enters the cell",
-        "Existing machinery      leftover_prefix_cell; trailing evens",
-        "                        r=4; odd_cell_unique; N0=828484409",
+        "Existing machinery      leftover_prefix_preimage; trailing evens",
+        "                        r=4; odd_preimage_unique; N0=828484409",
         "Maximum Phase-0 scope   exact window scan of one word; no Lean,",
         "                        no thirty-word census, no Z5",
         "```",

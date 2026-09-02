@@ -91,7 +91,7 @@ no jointly necessary recursively preserved obstruction; killed ['y>x', 'interval
 - `ResidualStep`: `True`
 - `PersistentOddResidual`: `True`
 - new OddOddResidual file absent: `True`
-- CycleWord not rewritten: `True`
+- CycleItinerary not rewritten: `True`
 - CycleDiophantine not rewritten: `True`
 - FloorPower not rewritten: `True`
 - no forbidden engine: `True`

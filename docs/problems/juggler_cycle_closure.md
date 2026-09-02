@@ -8,7 +8,7 @@ Refinement of
 not a new paper. It asks whether the exact coupled floor equations
 around a hypothetical cycle empty a surviving \((L,o)\) in
 \(\mathcal E_{\mathrm{run}}(10^6)\) without enumerating words.
-Not a halt theorem, not a leftover-word census, not a new finance
+Not a halt theorem, not a leftover-itinerary census, not a new finance
 budget, not Fourier, not a \(Q\)-return, and not a residue /
 \(p\)-adic system.
 
@@ -46,7 +46,7 @@ set.
 
 **Word-independent hull (EXACT — HUMAN PROOF).**
 Using only \((L,o)\), the envelope gives
-\(T_w(n)\le n^{3^o/2^L}=n^{P_L}\) and no word-free positive lower
+\(T_w(n)\le n^{3^o/2^L}=n^{P_L}\) and no itinerary-free positive lower
 bound better than \(1\). On the finance window
 \([N_0+1,n_{\max}^{\mathrm{par}}]\) the start interval meets the
 envelope hull at both leftover lengths. First-odd and last-even
@@ -69,15 +69,15 @@ No new divisibility.
 
 **Odd inverse chain (REPARAMETERIZATION).**
 A consecutive odd predecessor is unique or absent
-(`odd_cell_unique`). Empty cells appear immediately on the
+(`odd_preimage_unique`). Empty cells appear immediately on the
 sampled starts. This is not a new cyclic obstruction.
 
 No cycle of any length — not claimed.
 
 ## Current literature
 
-- Inverse-floor cells and `odd_cell_unique` —
-  **EXACT — LEAN VERIFIED** (`Cells.lean`)
+- Inverse-floor cells and `odd_preimage_unique` —
+  **EXACT — LEAN VERIFIED** (`Preimages.lean`)
 - Repeated mixed inversion —
   **CLOSE**
   ([juggler_backward_geometry.md](juggler_backward_geometry.md));
@@ -159,7 +159,7 @@ It is not required.
 - Cycle remainder \(n^{3^o}-n^{2^L}=\Delta\) —
   **REPARAMETERIZATION** of `global_defect_identity`
 - Odd inverse uniqueness —
-  **REPARAMETERIZATION** of `odd_cell_unique`
+  **REPARAMETERIZATION** of `odd_preimage_unique`
 - Exact closure empties a leftover \((L,o)\) —
   **REFUTED** (`juggler_cycle_closure_leftover_killer`)
 - No cycle of any length — not claimed
@@ -190,7 +190,7 @@ It is not required.
   the gap is first-even overshoot.
 - \(\gcd(n,\Delta)=n^{2^L}\) does not constrain leftover \(n\).
 - A long odd inverse chain hits an empty cell at once
-  (`odd_cell_unique`), not a new cyclic pattern.
+  (`odd_preimage_unique`), not a new cyclic pattern.
 
 ## Formalization
 
@@ -207,22 +207,22 @@ None. No `CycleClosure.lean`. Paper A is unchanged.
   single necklace, not as a pair theorem.
 - **Remainder** — **REPARAMETERIZATION** of
   `global_defect_identity`.
-- **Odd chains** — **REPARAMETERIZATION** of `odd_cell_unique`.
+- **Odd chains** — **REPARAMETERIZATION** of `odd_preimage_unique`.
 
 ## Open questions
 
 None from exact closure at the \((L,o)\) level. A kill would
-require a complete word, which Phase 0 forbids and which is not
+require a complete itinerary, which Phase 0 forbids and which is not
 a pair obstruction.
 
 ## Decision
 
-**CLOSE**. Exact floor closure, once the word is not fixed, is
+**CLOSE**. Exact floor closure, once the itinerary is not fixed, is
 the existing exponent envelope plus the existing cells. Local
 OE/OOE images are singletons (the map is a function). Forward
 hulls stay feasible on both spotlight leftovers. The cycle
 identity is `global_defect_identity`. Odd inverses are
-`odd_cell_unique`. First versus last cells are CycleMin extrema
+`odd_preimage_unique`. First versus last cells are CycleMin extrema
 at different indices. Keep the OE cell lemma as negative
 knowledge. No Paper A edit, no ledger row, no Lean.
 

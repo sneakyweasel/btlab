@@ -13,8 +13,8 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 from research.juggler_sequence.lean_paths import juggler_text
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -38,7 +38,7 @@ LEAN_THEOREMS = (
     "even_tower_collapse_residual",
     "odd_then_even_collapse",
     "odd_even_tower_seven",
-    "wordOEEE9",
+    "itineraryOEEE9",
     "odd_even_tower_seven_superquadratic",
     "floorPower_iterate_even_pow_two_eq",
     "image_append",
@@ -83,7 +83,7 @@ def max_even_run(word: str) -> int:
 
 
 def q_contracts(q: int, word: str) -> bool:
-    return follows_word(q, word) and image_after(q, word) + 1 < (q + 1) ** 2
+    return follows_itinerary(q, word) and image_after(q, word) + 1 < (q + 1) ** 2
 
 
 def even_steps_to_one(start: int, *, k_max: int = 12) -> int | None:
@@ -106,10 +106,10 @@ def collapse_on_pow_two(a: int, r: int, residual: str) -> dict[str, Any]:
         "q": q,
         "residual": residual,
         "word": word,
-        "follows_q": follows_word(q, word),
-        "follows_a": follows_word(a, residual),
-        "image_q": image_after(q, word) if follows_word(q, word) else None,
-        "image_a": image_after(a, residual) if follows_word(a, residual) else None,
+        "follows_q": follows_itinerary(q, word),
+        "follows_a": follows_itinerary(a, residual),
+        "image_q": image_after(q, word) if follows_itinerary(q, word) else None,
+        "image_a": image_after(a, residual) if follows_itinerary(a, residual) else None,
     }
 
 
@@ -251,7 +251,7 @@ def run_probe(*, q_max: int = 20000) -> dict[str, Any]:
         "seven_oeee": {
             "q": 7,
             "word": "OEEE" + "O" * 9,
-            "follows": follows_word(7, "OEEE" + "O" * 9),
+            "follows": follows_itinerary(7, "OEEE" + "O" * 9),
             "image": image_after(7, "OEEE" + "O" * 9),
             "superquadratic": is_superquadratic("OEEE" + "O" * 9),
         },

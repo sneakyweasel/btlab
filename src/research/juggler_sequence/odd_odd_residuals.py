@@ -18,7 +18,7 @@ from typing import Any
 
 from research.juggler_sequence.cycle_rounding import remainder
 from research.juggler_sequence.envelope_defect import tiny_deficit
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_chain, residual_excursion
 from research.juggler_sequence.lean_paths import (
@@ -110,7 +110,7 @@ def even_run_defect(z: int, y: int, b: int, *, bit_limit: int = BIT_LIMIT) -> in
     return z - power
 
 
-def even_cell_width(y: int, b: int, *, bit_limit: int = BIT_LIMIT) -> int | None:
+def even_preimage_width(y: int, b: int, *, bit_limit: int = BIT_LIMIT) -> int | None:
     upper = power_if_small(y + 1, 1 << b, bit_limit=bit_limit)
     lower = power_if_small(y, 1 << b, bit_limit=bit_limit)
     if upper is None or lower is None:
@@ -185,7 +185,7 @@ def step_record(x: int, cap: int = FIRST_EVEN_CAP) -> dict[str, Any] | None:
         "x_mod_8": x % 8,
         "y_mod_8": y % 8,
         "z_mod_8": z % 8,
-        "even_cell_width": even_cell_width(y, b),
+        "even_preimage_width": even_preimage_width(y, b),
         "last_odd_cell_width": last_odd_cell_width(z),
         "y_gt_x": y > x,
         "persistent": y > x and y >= 2 and is_odd_odd(y),
@@ -236,8 +236,8 @@ def interval_pairs(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     pairs: list[dict[str, Any]] = []
     odd_odd_rows = [row for row in rows if row["y_odd_odd"]]
     for prev, nxt in zip(odd_odd_rows, odd_odd_rows[1:]):
-        even_prev = prev["even_cell_width"]
-        even_next = nxt["even_cell_width"]
+        even_prev = prev["even_preimage_width"]
+        even_next = nxt["even_preimage_width"]
         odd_prev = prev["last_odd_cell_width"]
         odd_next = nxt["last_odd_cell_width"]
         pairs.append(
@@ -347,7 +347,7 @@ def lean_api_present() -> dict[str, bool]:
         "OddOddResidual_absent": not LEAN_NEW.is_file(),
         "no_oddOddAdmissibility": "oddOddAdmissibility" not in residual,
         "no_oddOddResidual_bounded": "oddOddResidual_bounded" not in residual,
-        "CycleWord_not_rewritten": "OddOddResidual" not in cycle
+        "CycleItinerary_not_rewritten": "OddOddResidual" not in cycle
         and "oddOddAdmissibility" not in cycle,
         "CycleDiophantine_not_rewritten": "OddOddResidual" not in dioph,
         "FloorPower_not_rewritten": "OddOddResidual" not in floor
@@ -367,7 +367,7 @@ def classify(census: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["OddOddResidual_absent"]
         and lean["no_global_termination_theorem"]
         and lean["no_forbidden_engine"]
-        and lean["CycleWord_not_rewritten"]
+        and lean["CycleItinerary_not_rewritten"]
         and lean["FloorPower_not_rewritten"]
     )
     if not lean_ok:
@@ -438,7 +438,7 @@ def run_probe() -> dict[str, Any]:
         "census": census,
         "basin": [1],
         "n_search": False,
-        "cycle_word_census": False,
+        "cycle_itinerary_census": False,
         "remainder_dynamics": False,
         "explicit_L": False,
     }
@@ -550,7 +550,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     lines.extend(
         [
             f"- new OddOddResidual file absent: `{lean.get('OddOddResidual_absent')}`",
-            f"- CycleWord not rewritten: `{lean.get('CycleWord_not_rewritten')}`",
+            f"- CycleItinerary not rewritten: `{lean.get('CycleItinerary_not_rewritten')}`",
             f"- CycleDiophantine not rewritten: `{lean.get('CycleDiophantine_not_rewritten')}`",
             f"- FloorPower not rewritten: `{lean.get('FloorPower_not_rewritten')}`",
             f"- no forbidden engine: `{lean.get('no_forbidden_engine')}`",

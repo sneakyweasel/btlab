@@ -16,7 +16,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     ESCAPE,
     JUGGLER_PAPER_BARREL,
@@ -26,7 +26,7 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.minimal_ooe_corridor import WORD, corridor_states
 from research.juggler_sequence.odd_ooe_landing import first_event
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -64,7 +64,7 @@ FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
     "all_finiteProgress",
     "no_juggler_cycle",
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
 )
 
 
@@ -177,7 +177,7 @@ def escape_prefix_row() -> dict[str, Any]:
     chain = list(ESCAPE_PREFIX)
     steps = []
     current = chain[0]
-    ok = follows_word(current, WORD)
+    ok = follows_itinerary(current, WORD)
     land = image_after(current, WORD) if ok else None
     for nxt in chain[1:]:
         steps.append({"from": current, "to": nxt, "grows": nxt > current})
@@ -239,7 +239,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_halt_theorem": "theorem no_juggler_escape" not in escape_text,
         "no_coeff_stop_theorem": "theorem FiniteCoeffStopConjecture"
         not in escape_text,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -349,7 +349,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     MinimalNonTerm is a cycle or escape;",
         "                        OOEOOE forces another OO on a CE",
         "Novelty hypothesis      the even trap does not need image = n",
-        "Existing machinery      bounded_prefix_not_nodup; wordOOEOOE;",
+        "Existing machinery      bounded_prefix_not_nodup; itineraryOOEOOE;",
         "                        even_floorPower_lt_iff",
         "Maximum Phase-0 scope   Lean Escape module; OOEOOE window;",
         "                        one finite escape prefix",

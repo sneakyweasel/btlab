@@ -40,11 +40,11 @@ theorem isolatedPrefix_zero (a : ℕ) :
 
 theorem isolatedPrefix_succ (a r : ℕ) :
     isolatedPrefix a (r + 1) =
-      oddEvenBlock a 1 ++ wordOE ++ repeatedOE r := by
+      oddEvenBlock a 1 ++ itineraryOE ++ repeatedOE r := by
   simp [isolatedPrefix, repeatedOE_succ]
 
 theorem isolatedPrefix_two_one :
-    isolatedPrefix 2 1 = oddEvenBlock 2 1 ++ wordOE := by
+    isolatedPrefix 2 1 = oddEvenBlock 2 1 ++ itineraryOE := by
   simp [isolatedPrefix, repeatedOE]
 
 theorem oddEvenBlock_one_append (a : ℕ) (w : List Branch) :

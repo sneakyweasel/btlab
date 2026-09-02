@@ -24,7 +24,7 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cube_crossing.json"
@@ -49,7 +49,7 @@ EXISTING_LEAN = (
     "cube_lift_even_reset",
     "cube_lift_odd_ge_fourth",
     "cube_lift_odd_continues",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "EnvelopeState",
     "envelope_lt_pow",
     "even_below_anchor_pow",
@@ -393,7 +393,7 @@ def lean_api_present() -> dict[str, bool]:
         "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
         "not_in_paper_barrel": "CubeCrossing" not in paper
         and "CrossingMap" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -437,7 +437,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_CLOSED,
             "reason": (
                 "delta parity is generic odd-odd; unique preimage is "
-                "odd_cell_unique; F is not defined on a stable class "
+                "odd_preimage_unique; F is not defined on a stable class "
                 "and moves both ways; even-return cannot apply after "
                 "an odd lift because y already left the cube band"
             ),

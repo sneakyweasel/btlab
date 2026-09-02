@@ -10,7 +10,7 @@ every positive integer reaches 1.
 
 Which already-proved suffix thresholds imply that \(vE\) cannot be a
 cycle, and does odd-append inheritance from `OOO` close every length-5
-E-terminating cycle word?
+E-terminating cycle itinerary?
 
 ## Exact statement
 
@@ -35,7 +35,7 @@ excluded by the inherited `OOOO` threshold. Every other length-5
 E-word is formally contracting.
 
 This says nothing about cycles ending in `O`. Do not prove that every
-cycle word is impossible. Do not prove totality. Do not treat the
+cycle itinerary is impossible. Do not prove totality. Do not treat the
 eventual \(Q_0\) as a useful uniform bound.
 
 ## Current literature
@@ -115,12 +115,12 @@ stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleWord.lean`, a small extension. Added:
+`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
 
 - `threshold_inherits_odd_append`
 - `odd_run_suffix_threshold` / `no_cycle_odd_run_append_even`
 - `eventually_no_cycle_append_even`
-- `no_cycle_word_length_five_ends_even`
+- `no_cycle_itinerary_length_five_ends_even`
 
 `FloorPower`, `Progress`, and `MinimalNonTerm` are not rewritten. No
 `sorry`. No halt theorem. No `no_juggler_cycle`. No `CycleSearch`.

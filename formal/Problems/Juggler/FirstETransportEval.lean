@@ -20,17 +20,17 @@ def gappedThreeEvenEOE (a b : ℕ) : List Branch :=
   firstEPrefix a ++ List.replicate b Branch.odd ++
     [Branch.even, Branch.odd, Branch.even]
 
-theorem cycleWordB_gapped_ee_short_lt256 :
+theorem cycleItineraryB_gapped_ee_short_lt256 :
     ∀ n : Fin 256, ∀ a : Fin 5, ∀ b : Fin 3,
       2 ≤ n.val →
-        cycleWordB n.val (gappedThreeEvenEE (a.val + 2) (b.val + 4)) =
+        cycleItineraryB n.val (gappedThreeEvenEE (a.val + 2) (b.val + 4)) =
           false := by
   native_decide
 
-theorem cycleWordB_gapped_eoe_short_lt256 :
+theorem cycleItineraryB_gapped_eoe_short_lt256 :
     ∀ n : Fin 256, ∀ a : Fin 5, ∀ b : Fin 4,
       2 ≤ n.val →
-        cycleWordB n.val (gappedThreeEvenEOE (a.val + 2) (b.val + 3)) =
+        cycleItineraryB n.val (gappedThreeEvenEOE (a.val + 2) (b.val + 3)) =
           false := by
   native_decide
 

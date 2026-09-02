@@ -21,7 +21,7 @@ from research.juggler_sequence.growth_balance import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_retention_required_is_above_anchor():

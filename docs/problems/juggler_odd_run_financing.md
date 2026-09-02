@@ -16,7 +16,7 @@ does the same accounting say for a later block \(O^aE^b\)?
 
 Assume `MinimalNonTerm n`. If a later orbit state \(x\) realizes
 \(O^aE\), the even residual \(x_a=T^a(x)\) satisfies \(x_a\ge n^2\),
-and the word envelope gives \(x_a^{2^a}\le x^{3^a}\). Therefore
+and the itinerary envelope gives \(x_a^{2^a}\le x^{3^a}\). Therefore
 
 \[
 n^{2^{a+1}}\le x^{3^a}.
@@ -40,14 +40,14 @@ odd-run frequency theorem. Do not prove totality.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Finite-word envelope \(T_w(n)^{2^k}\le n^{3^o}\) —
+- Finite-itinerary envelope \(T_w(n)^{2^k}\le n^{3^o}\) —
   **EXACT — LEAN VERIFIED**.
 - Even-run scale barrier \(m\ge n_*^{2^r}\) —
   **EXACT — LEAN VERIFIED**.
 - Repeated-`OE` scale budget \(n_*^{4^r}\le x^{3^r}\) —
   **EXACT — LEAN VERIFIED**.
 
-Project relationship: **extended**. The word envelope and the even-run
+Project relationship: **extended**. The itinerary envelope and the even-run
 barrier are multiplied into one integer-power financing law. Totality
 remains unclaimed.
 
@@ -146,7 +146,7 @@ for \(O^aE^b\). The stronger claim that every later odd run has
 length at least \(2\) is **SCALE_FINANCING_COUNTEREXAMPLE**.
 
 Odd expansion must finance the next allowed even collapse. That is a
-conditional scale law, not a grammar of all parity words.
+conditional scale law, not a grammar of all parity itineraries.
 
 ## Open questions
 

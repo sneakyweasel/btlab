@@ -21,7 +21,7 @@ from visualization.juggler_finite_dynamics import (
     descent_view,
     descent_window,
     envelope_view,
-    even_cell_view,
+    even_preimage_view,
     finance_view,
     four_block_replay,
     leftover_table,
@@ -30,7 +30,7 @@ from visualization.juggler_finite_dynamics import (
     length_eight_open_words,
     length_eight_status_rows,
     next_square_view,
-    odd_cell_view,
+    odd_preimage_view,
     paper_exception_lengths,
     parse_cycle_word,
     parse_word,
@@ -158,12 +158,12 @@ def test_next_square_on_three_and_five():
 
 
 def test_cells_match_floor_geometry():
-    even = even_cell_view(6)
+    even = even_preimage_view(6)
     assert even.lo == 36
     assert even.hi == 49
     assert 36 in even.evens
     assert 48 in even.evens
-    odd = odd_cell_view(11)
+    odd = odd_preimage_view(11)
     assert odd.integers == (5,)
 
 

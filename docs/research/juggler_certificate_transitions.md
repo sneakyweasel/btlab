@@ -16,7 +16,7 @@ Iterate `{E, OE, OOEE, R}` from each first-descent landing. Every realized desce
 | OOEE | `finiteProgress_of_imageLt` | first descent is exactly OOEE |
 | R | `finiteProgress_of_imageLt` | leftover first descent |
 
-R does not remain `AboveAnchor` after the leftover word fires. The leftover word is a descent.
+R does not remain `AboveAnchor` after the leftover itinerary fires. The leftover itinerary is a descent.
 
 ## Coarse first certificates
 

@@ -4,7 +4,7 @@ Status: **CYCLE_CHRISTOFFEL_CLOSED**
 
 Fernández–Ibáñez unique-maximizer combinatorics, without Lebel
 modular sieving and without the Collatz affine equation.
-Not a halt theorem. Not a leftover-word census. No new Lean.
+Not a halt theorem. Not a leftover-itinerary census. No new Lean.
 
 ## Metadata
 
@@ -16,7 +16,7 @@ Not a halt theorem. Not a leftover-word census. No new Lean.
 - L=19 CycleMin count: `12376` median Hamming `6` radius 0 `7` radius <= 2 `389`
 - L=19 isolated-even family: `462`
 
-leftover-word / CycleMin candidates are not a one-parameter Christoffel necklace: the thirty L=11 leftovers include Christoffel and 4 Hamming, family 30 versus necklace 4; L=19 CycleMin weight-12 has 12376 words, median cyclic Hamming 6, radius 0 only 7; the isolated-even worst-m family has 462 words. Finance is word-order-independent. Lebel sieving was not used. Cycle-only near-Christoffel rigidity is not claimed refuted.
+leftover-itinerary / CycleMin candidates are not a one-parameter Christoffel necklace: the thirty L=11 leftovers include Christoffel and 4 Hamming, family 30 versus necklace 4; L=19 CycleMin weight-12 has 12376 words, median cyclic Hamming 6, radius 0 only 7; the isolated-even worst-m family has 462 words. Finance is word-order-independent. Lebel sieving was not used. Cycle-only near-Christoffel rigidity is not claimed refuted.
 
 ## Christoffel words at leftover lengths
 
@@ -27,7 +27,7 @@ leftover-word / CycleMin candidates are not a one-parameter Christoffel necklace
 - L=`569` o=`359` even=`210` kind=`intermediate` balanced=`True` maxO=`2` maxE=`1` m=`210` necklace=`210` start=`OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEO`
 - L=`1054` o=`665` even=`389` kind=`principal` balanced=`True` maxO=`2` maxE=`1` m=`389` necklace=`389` start=`OOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEOOEOOEOEOOEOOEOEOOEO`
 
-## L=11 leftover-word cells versus Christoffel 7/11
+## L=11 leftover-itinerary cells versus Christoffel 7/11
 
 - Christoffel: `OOEOOEOOEOE`
 - thirty first-expanding short-gap leftovers, all length 11
@@ -64,5 +64,5 @@ leftover-word / CycleMin candidates are not a one-parameter Christoffel necklace
 
 **CYCLE_CHRISTOFFEL_CLOSED**
 
-leftover-word / CycleMin candidates are not a one-parameter Christoffel necklace: the thirty L=11 leftovers include Christoffel and 4 Hamming, family 30 versus necklace 4; L=19 CycleMin weight-12 has 12376 words, median cyclic Hamming 6, radius 0 only 7; the isolated-even worst-m family has 462 words. Finance is word-order-independent. Lebel sieving was not used. Cycle-only near-Christoffel rigidity is not claimed refuted.
+leftover-itinerary / CycleMin candidates are not a one-parameter Christoffel necklace: the thirty L=11 leftovers include Christoffel and 4 Hamming, family 30 versus necklace 4; L=19 CycleMin weight-12 has 12376 words, median cyclic Hamming 6, radius 0 only 7; the isolated-even worst-m family has 462 words. Finance is word-order-independent. Lebel sieving was not used. Cycle-only near-Christoffel rigidity is not claimed refuted.
 

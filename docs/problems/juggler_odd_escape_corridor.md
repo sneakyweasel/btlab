@@ -133,7 +133,7 @@ It is not required.
   (`aboveAnchor_even_run_ge_pow`)
 - `CubeOddLanding` \([2,3)\) — **EXACT — LEAN VERIFIED**
 - `cube_odd_lift` \([3,5)\) — **EXACT — LEAN VERIFIED**;
-  the word envelope often tightens the integer upper to \(4\)
+  the itinerary envelope often tightens the integer upper to \(4\)
 - `cube_lift_odd_ge_fourth` \(L=4\) — **EXACT — LEAN VERIFIED**
 - \(\Gamma=U-L\) as an independent Lyapunov function —
   **REFUTED** on the named set (oscillates on \(37\); holds at
@@ -179,7 +179,7 @@ None added. Existing `Envelope`, `Corridor`, and
 `MinimumRelative` already contain the cells. No
 `OddEscapeCorridor.lean`. No `CorridorGap.lean`. Do not add
 `LowerPowerBound` (that name is a different coarse object in
-`Cells.lean`). Paper A is unchanged. No `sorry`.
+`Preimages.lean`). Paper A is unchanged. No `sorry`.
 
 ## Results
 
@@ -207,7 +207,7 @@ Every start has first \(L>1\) at step \(i=2\). Leftovers land
 even in the cube band. The \(37\) laboratory lands odd there.
 
 On leftovers, every nontrivial cell has width \(\Gamma=1\):
-\([2,3)\), or a lift tightened by the word envelope to
+\([2,3)\), or a lift tightened by the itinerary envelope to
 \([3,4)\) or \([4,5)\). Even-reset \(U<2L\) fires exactly on
 those named even cells and is `even_below_anchor_pow`. No
 realized prefix has \(U\le L\).
@@ -221,7 +221,7 @@ The \(37\) chain in corridor language is
 The integer lift upper \(5\) is not sharp: `envelope_lt_pow`
 already gives \(U=4\) at \(196069\). The even state
 \(86818724\) has \(L=4\) from `cube_lift_odd_ge_fourth` and
-\(U=6\) from the word envelope; \(U<2L\) resets into the cube
+\(U=6\) from the itinerary envelope; \(U<2L\) resets into the cube
 band at \(9317\), which is larger than \(3375\). \(\Gamma\)
 holds at \(1\) on that pair and later oscillates
 (\(1,2,5,3,1\)). The type \([2,3)\) odd recurs with growing

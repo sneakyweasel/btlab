@@ -8,10 +8,10 @@
     "sink n=1, L=1, c=1, t=2: T(2)=1 is not < 1; depth-2 grandparents 4,6,8 satisfy T^2(s)=1",
     "valley last-even cell [n^2,(n+1)^2) at n=13, 25, 10^6+1; a circuit image of any parent of n is ≥ n^2",
     "Type-2 feeder 25->125 starts below the image and would land at scale 125^2 if 125 were a valley",
-    "parent futures agree on every multi-parent fibre x in [1,200] through 12 steps and on 100,102->10; cell_same_next_state. Eventual descent of 100/102 is termination, not a circuit drop"
+    "parent futures agree on every multi-parent fibre x in [1,200] through 12 steps and on 100,102->10; preimage_same_next_state. Eventual descent of 100/102 is termination, not a circuit drop"
   ],
   "first_seen": "juggler cycle-lift ancestry drop",
-  "lean_reference": "cell_same_next_state",
+  "lean_reference": "preimage_same_next_state",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.envelope_defect import local_defect_odd
-from research.juggler_sequence.floor_cells import odd_cell_integers
+from research.juggler_sequence.floor_preimages import odd_preimage_integers
 from research.juggler_sequence.lean_paths import (
     CYCLE_CORE,
     DEFECT,
@@ -30,7 +30,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short_defect.json"
@@ -62,11 +62,11 @@ LEAN_THEOREMS = (
     "localDefectOdd_lt_succ",
     "cycle_last_even_ne_odd_sq",
     "odd_remainder_even",
-    "odd_cell_unique",
+    "odd_preimage_unique",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -109,7 +109,7 @@ def last_odd_hits(n: int) -> list[dict[str, Any]]:
         t = n * n + eps
         if t % 2 != 0:
             continue
-        for z in odd_cell_integers(t):
+        for z in odd_preimage_integers(t):
             if z % 2 == 0:
                 continue
             delta = local_defect_odd(z)
@@ -279,7 +279,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "BunchedShortDefect" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_lean": True,
     }
 
@@ -291,7 +291,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["localDefectOdd_add"]
         and lean["cycle_last_even_ne_odd_sq"]
         and lean["odd_remainder_even"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]

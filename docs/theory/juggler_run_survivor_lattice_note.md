@@ -6,7 +6,7 @@ This records the Diophantine organization of
 \(\mathcal E_{\mathrm{run}}(10^6)\), the \(99\) lengths that
 survive both the length-only parity \(6/5\) table and the
 run-type packing at \(N_0=10^6\), \(L\le 10^5\). It is not a
-halt theorem, not a leftover-word census, and not a new finance
+halt theorem, not a leftover-itinerary census, and not a new finance
 identity. Paper A prints the packing as Theorems 4.7--4.8 and
 the lattice as Proposition 4.9. The finance writeup is
 [juggler_cycle_finance_note.md](juggler_cycle_finance_note.md).
@@ -131,7 +131,7 @@ restricted to surplus intermediates at floor \(10^6\) and
 treats it specially. A theorem that only uses \(\theta\to 0\)
 is aimed at that seed, not at the finance frontier \(55293\).
 
-## The \(1054\)-block is a word, not an obstruction
+## The \(1054\)-block is an itinerary, not an obstruction
 
 The ceiling Christoffel word changes along a family step by
 insertion of the length-\(1054\) Christoffel word of slope
@@ -150,7 +150,7 @@ E(L+1054)=E(L)\,E(1054).
 Both words are prefix-expanding and start `OOE`. Prefix
 feasibility already certified them at every leftover
 (`juggler_cycle_prefix_feasibility_leftover_killer`). A real
-cycle word need not be that necklace
+cycle itinerary need not be that necklace
 (`juggler_christoffel_one_parameter`).
 
 ## What is closed

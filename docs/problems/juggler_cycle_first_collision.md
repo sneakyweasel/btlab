@@ -49,7 +49,7 @@ the unique cyclic parent together with any other parent.
 | Interior, cycle arrives \(E\) | one even parent | other evens, and the odd parent if occupied |
 
 **The four types (KNOWN / REPARAMETERIZATION).**
-\((O,O)\) is empty by `odd_cell_unique`. At \(x=n\), \((O,E)\)
+\((O,O)\) is empty by `odd_preimage_unique`. At \(x=n\), \((O,E)\)
 and \((O,O)\) are empty by `cycleMin_not_end_odd` (the odd cell
 of \(n\) sits at scale \(n^{2/3}<n\)). Remaining types:
 
@@ -74,16 +74,16 @@ No cycle of any length — not claimed.
 
 - Unique odd cell —
   **EXACT — LEAN VERIFIED**
-  (`odd_cell_unique`, `oddLanding_preimage_unique`)
+  (`odd_preimage_unique`, `oddLanding_preimage_unique`)
 - CycleMin cannot end odd —
   **EXACT — LEAN VERIFIED**
   (`cycleMin_not_end_odd`)
 - Even / odd floor cells —
   **EXACT — LEAN VERIFIED**
-  (`even_cell_iff`, `odd_cell_iff`)
+  (`even_preimage_iff`, `odd_preimage_iff`)
 - Empty-odd-cell Type 0/1/2 —
   **KNOWN**
-  ([juggler_empty_odd_cell.md](juggler_empty_odd_cell.md))
+  ([juggler_empty_odd_preimage.md](juggler_empty_odd_preimage.md))
 - First-intersection taxonomy —
   **CLOSE** / **REPARAMETERIZATION**
   ([juggler_cycle_intersection_taxonomy.md](juggler_cycle_intersection_taxonomy.md))
@@ -128,14 +128,14 @@ Novelty hypothesis      the collision is jointly constrained
                         (forbidden type, order/gap/residue of
                         (c,t) or (c,t^3) in the square interval)
                         in a way that is not Pred cells,
-                        odd_cell_unique, or the cyclic-parent type
+                        odd_preimage_unique, or the cyclic-parent type
 Falsifier               Collision Factorization: first iff t not
                         on the cycle; CycleMin constrains only
                         which parent can be cyclic; (c,t) is then
                         any other parent
-Existing machinery      even_cell / odd_cell_integers / odd_preimage;
-                        cycleMin_not_end_odd; odd_cell_unique;
-                        even_predecessors; empty-odd-cell Type 0/1/2;
+Existing machinery      even_preimage / odd_preimage_integers / odd_preimage;
+                        cycleMin_not_end_odd; odd_preimage_unique;
+                        even_predecessors; empty-odd-preimage Type 0/1/2;
                         closed seam stack
 Maximum Phase-0 scope   4-type x {x=n, x interior} lemma table;
                         Pred occupancy at n=10^6+1 and odd x in
@@ -148,7 +148,7 @@ Promotion criterion     a pair type or a relation on (c,t) that
                         on the archived list
 Stop criterion          factorization holds; mixed placement is
                         generic; (E,E) gaps are free;
-                        every empty type is odd_cell_unique or
+                        every empty type is odd_preimage_unique or
                         cycleMin_not_end_odd
 ```
 
@@ -159,17 +159,17 @@ first-intersection taxonomy, the \(E^r\) block, seam sliding,
 seam propagate, the general first-collision / ancestry branch,
 the seam ancestry graph, the exponent budget, cyclic block
 transfer, peak–valley composition, finance, twin-flight,
-high-merge, backward-geometry rank, or the empty-odd-cell
+high-merge, backward-geometry rank, or the empty-odd-preimage
 forward law.
 
 - **CLOSE** if factorization holds: first \(\Leftrightarrow t\notin C\);
   CycleMin constrains only the cyclic-parent type.
-- **CLOSE** if every empty type is `odd_cell_unique` or
+- **CLOSE** if every empty type is `odd_preimage_unique` or
   `cycleMin_not_end_odd`.
 - **CLOSE** if mixed \((c,t^3)\) placement is generic in the
   square interval and \((E,E)\) gaps are free.
 - **CLOSE** if “odd feeder from below into \(n\)” is only
-  empty-odd-cell occupancy.
+  empty-odd-preimage occupancy.
 - **PROMOTE** only if a joint emptiness or residue/order/gap
   law survives those gates.
 
@@ -200,7 +200,7 @@ It is not required.
 - Valley \((O,\ast)\) —
   **KNOWN** empty (`cycleMin_not_end_odd`)
 - \((O,O)\) anywhere —
-  **KNOWN** empty (`odd_cell_unique`)
+  **KNOWN** empty (`odd_preimage_unique`)
 - Valley \((E,O)\) occupancy —
   **REPARAMETERIZATION** of odd-cell Type 2
 - Square-interval offset \(t^3-x^2\) —
@@ -233,10 +233,10 @@ It is not required.
   Falsifier of an extra ancestor condition on the pair.
 - `odd_return_ge_n` is empty at \(n=10^6+1\), \(13\), and
   \(125\). Falsifier of valley \((O,\ast)\).
-- `odd_cell_unique` on odd starts in \([1,2001)\). Falsifier of
+- `odd_preimage_unique` on odd starts in \([1,2001)\). Falsifier of
   \((O,O)\).
 - Valley \((E,O)\) is Type 0 at \(n=10^6+1\) and occupied at
-  \(25\to 125\). Falsifier of a pair law beyond empty-odd-cell
+  \(25\to 125\). Falsifier of a pair law beyond empty-odd-preimage
   occupancy.
 - Offset \(t^3-x^2\) equals the cube-gap on all \(994\) Type-2
   images of odd starts in \([13,2001)\); nearest-even gap is
@@ -249,10 +249,10 @@ It is not required.
 
 ## Formalization
 
-None added. Uniqueness is already `odd_cell_unique` /
+None added. Uniqueness is already `odd_preimage_unique` /
 `oddLanding_preimage_unique`. Valley return is already
-`cycleMin_not_end_odd`. Floor cells are already `even_cell_iff`
-/ `odd_cell_iff`. Paper A is unchanged. Do not add
+`cycleMin_not_end_odd`. Floor cells are already `even_preimage_iff`
+/ `odd_preimage_iff`. Paper A is unchanged. Do not add
 `FirstCollision.lean`.
 
 ## Results
@@ -289,10 +289,10 @@ exactly an off-cycle parent of a cycle point. CycleMin
 constrains only which parent can be cyclic — even at the
 valley, the unique odd parent on an odd arrival — and the
 transient is then any other parent. Every empty type is
-`odd_cell_unique` or `cycleMin_not_end_odd`. Mixed placement
+`odd_preimage_unique` or `cycleMin_not_end_odd`. Mixed placement
 of \((c,t^3)\) in the square interval is the archived cube-gap.
 Even-even gaps are free in \(\mathrm{Pred}_E\). The odd feeder
-from below is empty-odd-cell occupancy, not a new pair law.
+from below is empty-odd-preimage occupancy, not a new pair law.
 That is useful negative knowledge; it is not a new invariant.
 No Paper A edit, no ledger row, no new Lean, no \(N_0\) raise,
 no finance reopen, no twin-flight census.

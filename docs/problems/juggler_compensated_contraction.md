@@ -8,13 +8,13 @@ every positive integer reaches 1.
 
 ## Problem
 
-Can a non-monochrome realized word with formal drift \(3^o>2^k\) still
+Can a non-monochrome realized itinerary with formal drift \(3^o>2^k\) still
 contract because its floor-envelope deficit exceeds the formal gap
 \(n^{3^o}-n^{2^k}\)?
 
 ## Exact statement
 
-For a realized word \(w\) of length \(k\) with \(o=\#O(w)\), write
+For a realized itinerary \(w\) of length \(k\) with \(o=\#O(w)\), write
 
 \[
 \Delta_w(n)=n^{3^o}-T_w(n)^{2^k},\qquad
@@ -32,7 +32,7 @@ This is a local arithmetic question. It is not a termination theorem.
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Phase-17 (`juggler_power_words`): weak envelope
+- Phase-17 (`juggler_power_itineraries`): weak envelope
   \(T_w(n)^{2^k}\le n^{3^o}\) **EXACT — LEAN VERIFIED**. Formal
   contraction uses only \(3^o<2^k\).
 - Phase-19 (`juggler_envelope_defect`): first-defect bound
@@ -46,7 +46,7 @@ decide direction when the formal exponent points upward.
 ## Branch budget
 
 ```text
-Mathematical target     Can a mixed word with 3^o > 2^k still
+Mathematical target     Can a mixed itinerary with 3^o > 2^k still
                         contract because floor defect overcomes
                         the formal gap?
 Novelty hypothesis      A shortest mixed positive-drift family
@@ -117,7 +117,7 @@ None opened.
 
 - `power_bound_compensated_contracts` /
   `power_bound_compensated_contracts_follows`
-- `wordEOO` / `wordOOE` / `wordOEO` and `follows` wrappers
+- `itineraryEOO` / `wordOOE` / `wordOEO` and `follows` wrappers
 - `floorPower_eoo_contracts_iff`
 - `floorPower_eoo_two_contracts` / `_twelve_` / `_fourteen_`
 - `eoo_first_defect_lt_formal_gap`
@@ -130,7 +130,7 @@ row. Existing `PowerBound` and first-defect theorems are unchanged.
 
 Classification **COMPENSATED_CONTRACTION_FOUND**.
 
-`EOO` is a formally expanding mixed word (\(9>8\)) that nevertheless
+`EOO` is a formally expanding mixed itinerary (\(9>8\)) that nevertheless
 contracts, and only at \(n\in\{2,12,14\}\). The reusable certificate
 says that any deficit larger than the formal gap forces contraction.
 The first local defect never supplies that margin for
@@ -159,5 +159,5 @@ an infinite mixed positive-drift contraction family?
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A local finite-word direction lemma, not a
+Status: `EXPLORATORY`. A local finite-itinerary direction lemma, not a
 paper candidate and not a Juggler totality result.

@@ -1,11 +1,11 @@
-"""Multi-step itinerary-parity census. Not a halt test, not a frequency theorem."""
+"""Multi-step word-parity census. Not a halt test, not a frequency theorem."""
 
 from __future__ import annotations
 
 from fractions import Fraction
 from math import isqrt
 
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.two_step_parity import (
     ANTI_OVERCLAIM,
     CONTRACTING_TARGET,

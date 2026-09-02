@@ -41,7 +41,7 @@ from research.juggler_sequence.lean_paths import (
     LAYERS,
     has_named,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 try:
     from gmpy2 import isqrt as _gmp_isqrt

@@ -13,9 +13,9 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.no_progress_paths import even_collapses, realized_prefix
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     MINIMAL,
@@ -61,7 +61,7 @@ CERTIFICATE_UNCHANGED = (
     "first_even_freeze",
     "eventually_no_first_even_contraction",
     "changing_suffix_unbounded_contraction",
-    "even_word_contracts",
+    "even_itinerary_contracts",
     "reachesOne_of_lt_twelve",
 )
 
@@ -131,7 +131,7 @@ def pattern_rows() -> list[dict[str, Any]]:
     rows = []
     for n in PATTERN_STARTS:
         for word in PATTERNS:
-            if not follows_word(n, word):
+            if not follows_itinerary(n, word):
                 rows.append({"n": n, "word": word, "follows": False, "kind": "NO_FOLLOW"})
                 continue
             image = image_after(n, word)
@@ -171,7 +171,7 @@ def changing_family_forbidden() -> list[dict[str, Any]]:
                 "n": n,
                 "word": word,
                 "kind": classify_block(n, word),
-                "image": image_after(n, word) if follows_word(n, word) else None,
+                "image": image_after(n, word) if follows_itinerary(n, word) else None,
             }
         )
     return rows
@@ -317,7 +317,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     E^r on a minimal non-1 orbit implies entry >= n^{2^r}",
         "Novelty hypothesis      Minimality plus even square-root gives a scale barrier",
         "Falsifier               An even run with exit >= n but entry < n^{2^r}",
-        "Existing machinery      ReachesOne closure, even_word_contracts, even_run identities",
+        "Existing machinery      ReachesOne closure, even_itinerary_contracts, even_run identities",
         "Maximum Phase-0 scope   MinimalNonTerm; barrier; normal form; short pattern census",
         "```",
         "",

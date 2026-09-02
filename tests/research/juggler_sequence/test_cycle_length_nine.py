@@ -32,8 +32,8 @@ from research.juggler_sequence.cycle_length_seven import (
     suffix_after_last_internal_e,
 )
 from research.juggler_sequence.cycle_ooo_scale import lower_denom
-from research.juggler_sequence.cycle_word import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_three_even_words_are_o_a_e_o_b_e_o_c_e():
@@ -71,8 +71,8 @@ def test_filters_split_bootstrap_from_nine_leftovers():
     assert named_filter("OEOOOOEOE") == "cycleMin_not_odd_even"
     assert named_filter("OOOOEEOOE") == "bootstrap_oo_suffix_threshold"
     assert named_filter("OOEEOOOOE") == "bootstrap_odd_run_suffix_threshold"
-    assert named_filter("OOOOOOEEE") == "leftover_prefix_cell_EE"
-    assert named_filter("OOOOOEEOE") == "leftover_prefix_cell_EOE"
+    assert named_filter("OOOOOOEEE") == "leftover_prefix_preimage_EE"
+    assert named_filter("OOOOOEEOE") == "leftover_prefix_preimage_EOE"
     assert remaining_after_first_e("OOEOOOOEE") == "OOOOEE"
     assert remaining_after_first_e("OOEOOOEOE") == "OOOEOE"
     assert set(TRANSPORT_WORDS) == set(TRANSPORT_REMAINING)
@@ -110,8 +110,8 @@ def test_prefix_cell_cutoffs_and_empty_tables():
         assert tail_fires(n0, a, b, c) is True
         assert tail_fires(n0 - 1, a, b, c) is False
         for n in range(2, n0):
-            assert image_after(n, word) != n or not follows_word(n, word)
-    assert follows_word(183, "OOOEOOOEE")
+            assert image_after(n, word) != n or not follows_itinerary(n, word)
+    assert follows_itinerary(183, "OOOEOOOEE")
     assert image_after(183, "OOOEOOOEE") == 1664
 
 
@@ -124,9 +124,9 @@ def test_lean_api_without_length_nine_census():
     assert lean["no_cycle_engine"] is True
     assert lean["no_length_nine_theorem"] is True
     assert lean["length_eight_open_in_census"] is True
-    assert lean["no_cycle_word_length_le_seven"] is True
+    assert lean["no_cycle_itinerary_length_le_seven"] is True
     assert lean["cycle_trailing_evens_lt"] is True
-    assert lean["no_cycle_word_ooooooeee"] is True
+    assert lean["no_cycle_itinerary_ooooooeee"] is True
     from research.juggler_sequence.cycle_length_nine import CYCLES, SMALL_CYCLE_CENSUS
 
     src = CYCLES.read_text(encoding="utf-8")
@@ -134,8 +134,8 @@ def test_lean_api_without_length_nine_census():
     assert "sorry" not in src
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
-    assert "theorem no_cycle_word_length_nine" not in src
-    assert "theorem no_cycle_word_length_nine" not in census
+    assert "theorem no_cycle_itinerary_length_nine" not in src
+    assert "theorem no_cycle_itinerary_length_nine" not in census
     assert "Length eight is open" in census
     assert "def CycleSearch" not in src
     assert "MinimalNonTerm" not in src
@@ -190,7 +190,7 @@ def test_committed_artifacts_schema():
     assert data["lean"]["no_length_nine_theorem"] is True
     assert data["lean"]["length_eight_open_in_census"] is True
     assert data["lean"]["cycle_trailing_evens_lt"] is True
-    assert data["lean"]["no_cycle_word_ooooooeee"] is True
+    assert data["lean"]["no_cycle_itinerary_ooooooeee"] is True
     assert data["scan"]["three_even_count"] == 28
     assert data["scan"]["tails"]["max_n0"] == 374
     ooooooeee = next(
@@ -213,15 +213,15 @@ def test_dossier_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_length_nine" in dossier
-    assert "no_cycle_word_ooooooeee" in dossier
+    assert "no_cycle_itinerary_length_nine" in dossier
+    assert "no_cycle_itinerary_ooooooeee" in dossier
     assert "cycle_trailing_evens_lt" in dossier
     assert "not a Lean census" in dossier or "not this phase" in dossier
     assert "N_0=73" in dossier or "N0=73" in dossier
-    assert "theorem no_cycle_word_length_nine" not in note
+    assert "theorem no_cycle_itinerary_length_nine" not in note
     assert (
         "Theorems 3.12--3.21 assemble into an even-count exclusion: no "
-        "cycle word has fewer than four even letters, so a nontrivial "
+        "cycle itinerary has fewer than four even letters, so a nontrivial "
         "cycle has period at least eleven (Theorem 3.22). Section 4 "
         "excludes later periods by financing."
     ) in " ".join(note.split())

@@ -25,7 +25,7 @@ words. Totality is unclaimed.
 
 - Parent census [juggler_parity_discrepancy.md](juggler_parity_discrepancy.md)
   **PARK** / `IMAGE_PARITY_CENSUS`. \(D_O=-S_O/2\).
-- `odd_cell_unique` / `odd_cell_iff` —
+- `odd_preimage_unique` / `odd_preimage_iff` —
   **EXACT — LEAN VERIFIED**.
 - `floorPower_odd_macro_direction` —
   **EXACT — LEAN VERIFIED**.
@@ -51,8 +51,8 @@ Novelty hypothesis      Cell pairing cancellation, or an explicit
                         fractional-part discrepancy rate
 Falsifier               Pairing is linear variation only; no honest
                         F; images concentrate one sign
-Existing machinery      odd_cell_unique; parity_discrepancy D_O;
-                        floor_power; follows_word / image_after
+Existing machinery      odd_preimage_unique; parity_discrepancy D_O;
+                        floor_power; follows_itinerary / image_after
 Maximum Phase-0 scope   Exact S_O; c_m prefix; pairing/runs;
                         one analytic rate; image/word tests on
                         the existing grids; no CUDA; no Lean ANT

@@ -6,7 +6,7 @@ Follow-up to the above-anchor walk branch's best next question. It is
 **not** a \(K_3\) attack, not a reopen of the refuted
 ambient-discrepancy transfer, the closed formal-realized-gap branch
 (generic prefix-NC fills), the closed survival-set branch, or the
-closed mechanical-lift branch (inverse cycle lifts of hug words), and
+closed mechanical-lift branch (inverse cycle lifts of hug itineraries), and
 not a claim that every positive integer reaches 1.
 
 ## Problem
@@ -18,7 +18,7 @@ descent-free flight?
 
 ## Exact statement
 
-Hug domination makes the exact hug word the pointwise-minimal
+Hug domination makes the exact hug itinerary the pointwise-minimal
 descent-free word. Its depth-\(L\) cylinder is
 
 \[
@@ -124,7 +124,7 @@ fire.
 ## Formalization
 
 None new. The Lean inputs are `AboveAnchorWalk.lean` (hug
-domination) and `WalkChargeWords.lean` (exact hug rule); this branch
+domination) and `WalkChargeItineraries.lean` (exact hug rule); this branch
 adds measurements only.
 
 ## Results

@@ -18,7 +18,7 @@ from research.juggler_sequence.bunched_short import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_short_specs_are_below_a_min():
@@ -103,6 +103,6 @@ def test_dossier_boundary():
     assert "PARK" in dossier
     assert "129" in dossier
     assert "bunched-short" in dossier
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_cycleMin_four_even" not in note
     assert "theorem no_juggler_cycle" not in note

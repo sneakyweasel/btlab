@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.minimal_anchor_closure import (
     CLASS_PARK,
     CONTROLS,
@@ -23,7 +23,7 @@ from research.juggler_sequence.minimal_anchor_closure import (
     structured_from,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_corridor_rank_bands():
@@ -94,7 +94,7 @@ def test_1517_is_a_generator_spine():
 
 def test_6187_exits_by_oe_from_l_image():
     row = episode_row(6187)
-    assert follows_word(6187, WORD_L)
+    assert follows_itinerary(6187, WORD_L)
     assert image_after(6187, WORD_L) == 11189
     assert 11189 > 6187
     assert row["high_merge"] is None
@@ -105,7 +105,7 @@ def test_6187_exits_by_oe_from_l_image():
     assert oe["follows"] is True
     assert oe["image"] == 1087
     assert oe["below_anchor"] is True
-    assert follows_word(501, "OOEOOOEOOEEO")
+    assert follows_itinerary(501, "OOEOOOEOOEEO")
 
 
 def test_89_is_square_trap_contrast_not_leftover():

@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_discrepancy.json"
@@ -39,9 +39,9 @@ LINEAR_BIAS_FRAC = 0.01
 ALMOST_LINEAR_EXP = 0.9
 
 LEAN_THEOREMS = (
-    "even_cell_iff",
-    "odd_cell_unique",
-    "odd_cell_iff",
+    "even_preimage_iff",
+    "odd_preimage_unique",
+    "odd_preimage_iff",
     "landingParity",
     "landingParity_odd_iff",
     "landingParity_even_iff",
@@ -348,8 +348,8 @@ def scan(*, n_max: int = N_MAX, n_spot: int | None = N_SPOT) -> dict[str, Any]:
         "lean": lean_api_present(),
         "anti_overclaim": anti_overclaim(),
         "existing_api": {
-            "even_cell": "even_cell_iff: J(n)=q for even n iff q^2 <= n < (q+1)^2",
-            "odd_cell": "odd_cell_unique: the n^{3/2} cell is a singleton",
+            "even_preimage": "even_preimage_iff: J(n)=q for even n iff q^2 <= n < (q+1)^2",
+            "odd_cell": "odd_preimage_unique: the n^{3/2} cell is a singleton",
             "landing_parity": "landingParity = J(n) mod 2; tautological in T",
             "two_step": (
                 "floorPower_odd_macro_direction: odd n>=3 has T^2(n)<n iff "
@@ -547,7 +547,7 @@ O(N) = #{{n <= N : J(n) odd}}
 D(N) = O(N) - N/2
 ```
 
-This is image parity, the second itinerary letter, not start parity.
+This is image parity, the second word letter, not start parity.
 Uniform `P(n odd) = 1/2` is exact counting and is not the target.
 Label of the split below: **EXACT COMPUTATION**.
 
@@ -556,7 +556,7 @@ odd starts.
 
 ## B. Even cells — EXACT — HUMAN PROOF
 
-For even `n`, `even_cell_iff` says `J(n) = q` iff `q^2 <= n < (q+1)^2`.
+For even `n`, `even_preimage_iff` says `J(n) = q` iff `q^2 <= n < (q+1)^2`.
 Let `Q = floor(sqrt(N))`.
 
 A complete cell of odd `q` is the interval `[q^2, (q+1)^2)` of length
@@ -582,12 +582,12 @@ and moves `D_E` by at most `(Q+1)/2`. Therefore
 
 The census records `even_bound_holds = {census["even_bound_holds"]}`
 on `n <= {census["n_max"]}`. Label: **EXACT — HUMAN PROOF**, and
-**REPARAMETERIZATION** of `even_cell_iff`. This is not the promotion
+**REPARAMETERIZATION** of `even_preimage_iff`. This is not the promotion
 theorem.
 
 ## C. Odd cells — n^{{3/2}} census
 
-For odd `n`, `odd_cell_iff` plus `odd_cell_unique` say the cell
+For odd `n`, `odd_preimage_iff` plus `odd_preimage_unique` say the cell
 `m^2 <= n^3 < (m+1)^2` contains at most one integer. So `O_O(N)` is
 the number of occupied odd-`m` singletons with occupant `<= N`, not a
 length sum.
@@ -690,8 +690,8 @@ nothing about totality.
 
 ## Current literature
 
-- `even_cell_iff` / `odd_cell_iff` / `odd_cell_unique` —
-  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Cells`.
+- `even_preimage_iff` / `odd_preimage_iff` / `odd_preimage_unique` —
+  **EXACT — LEAN VERIFIED** in `Problems.Juggler.Preimages`.
 - `landingParity = J(n)\\bmod 2` —
   **EXACT — LEAN VERIFIED** and tautological in \\(T\\); landing-θ
   **CLOSE** as `LANDING_THETA_UNRESTRICTED`.
@@ -724,8 +724,8 @@ Novelty hypothesis      A deterministic Archimedean discrepancy law
 Falsifier               Total discrepancy is only the even-cell
                         O(√N) rewrite; odd-start error is Ω(N^{{1−ε}})
                         or a linear bias; or the count is T itself.
-Existing machinery      floor_power; even_cell_iff / odd_cell_iff /
-                        odd_cell_unique; landingParity = T mod 2
+Existing machinery      floor_power; even_preimage_iff / odd_preimage_iff /
+                        odd_preimage_unique; landingParity = T mod 2
                         (tautological); 2-adic bridge CLOSE; θ-landing
                         CLOSE; probabilistic P(O) PARK/CLOSE.
 Maximum Phase-0 scope   Exact even/odd split; human even-cell bound;
@@ -733,7 +733,7 @@ Maximum Phase-0 scope   Exact even/odd split; human even-cell bound;
                         E_odd(N); no k-step iteration; no CLI; no Lean
                         unless an odd-start inequality is proved.
 Promotion criterion     An explicit E_odd(N)=o(N) with a proof, or a
-                        total E(N) that is not just even_cell_iff.
+                        total E(N) that is not just even_preimage_iff.
 Stop criterion          All KNOWN/REPARAMETERIZATION; machinery
                         gravity (plots, word iteration, Weyl engine);
                         halt claim; flipping parity_frequency_theorem

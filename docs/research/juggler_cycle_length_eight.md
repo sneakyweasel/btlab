@@ -18,14 +18,14 @@ theorem. Length nine is open.
 
 ## Lean
 
-- `no_cycle_word_length_le_eight`: `True`
-- `no_cycle_word_ooooeooe`: `True`
+- `no_cycle_itinerary_length_le_eight`: `True`
+- `no_cycle_itinerary_ooooeooe`: `True`
 - paper A length eight open: `True`
-- no `no_cycle_word_length_eight`: `True`
+- no `no_cycle_itinerary_length_eight`: `True`
 
 ## Decision
 
 **LENGTH_EIGHT_CENSUS_GREEN**
 
-no_cycle_word_length_le_eight assembles the named length-8 filters; Paper A census file still stops at seven.
+no_cycle_itinerary_length_le_eight assembles the named length-8 filters; Paper A census file still stops at seven.
 

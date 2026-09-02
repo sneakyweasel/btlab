@@ -17,7 +17,7 @@ from research.juggler_sequence.cycle_seam_ancestry import (
     walk_letter_points,
 )
 from research.juggler_sequence.cycle_seam_propagate import walk_blocks
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]
 DOSSIER = REPO / "docs" / "problems" / "juggler_cycle_seam_ancestry.md"
@@ -41,7 +41,7 @@ def test_dossier_has_triage_and_closed_gates():
     assert "## Publication assessment" in text
     assert "**CLOSE**" in text
     assert "Do **not** raise" in text
-    assert "odd_cell_unique" in text
+    assert "odd_preimage_unique" in text
     assert "realized_transition_graph" in text
     assert "J-block-map-q-state" in text
 
@@ -134,5 +134,5 @@ def test_dossier_and_conjecture_record_close():
     assert "**CLOSE**" in dossier
     rec = get_conjecture("juggler_cycle_seam_ancestry")
     assert rec["status"] == "REFUTED"
-    assert rec["lean_reference"] == "odd_cell_unique"
+    assert rec["lean_reference"] == "odd_preimage_unique"
     assert rec["counterexamples"]

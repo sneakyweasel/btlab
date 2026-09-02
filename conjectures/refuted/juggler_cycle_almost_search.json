@@ -5,11 +5,11 @@
   "status": "REFUTED",
   "counterexamples": [
     "8.5e6 odds in [2e6+1, 19010076]: 0 survive 25781 AboveAnchor steps; max packed-legal first-passage is 257 at n=6127057",
-    "The unique distinguished word (extremal=Christoffel=packed Beatty) has max follow depth 11 and mean depth 2.03; 0 complete followers",
+    "The unique distinguished itinerary (extremal=Christoffel=packed Beatty) has max follow depth 11 and mean depth 2.03; 0 complete followers",
     "All 96 exact backward beams die at an empty OOE preimage after at most 2 of 9515 blocks; MITM fails the same way"
   ],
   "first_seen": "juggler exact almost-cycle search",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

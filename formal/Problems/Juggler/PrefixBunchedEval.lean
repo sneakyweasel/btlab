@@ -13,17 +13,17 @@ set_option maxHeartbeats 8000000
 
 theorem returnsIntoB_ooooooeee_lt256 :
     ∀ y : Fin 256, 2 ≤ y.val →
-      returnsIntoB y.val wordOOOOOOEEE = false := by
+      returnsIntoB y.val itineraryOOOOOOEEE = false := by
   native_decide
 
 theorem returnsIntoB_ooooo_eoee_lt314 :
     ∀ y : Fin 314, 2 ≤ y.val →
-      returnsIntoB y.val wordOOOOOEOEE = false := by
+      returnsIntoB y.val itineraryOOOOOEOEE = false := by
   native_decide
 
 theorem returnsIntoB_oooooo_eoee_lt256 :
     ∀ y : Fin 256, 2 ≤ y.val →
-      returnsIntoB y.val wordOOOOOOEOEE = false := by
+      returnsIntoB y.val itineraryOOOOOOEOEE = false := by
   native_decide
 
 theorem returnsIntoB_eooee_lt256 :
@@ -38,12 +38,12 @@ theorem returnsIntoB_eoooee_lt256 :
 
 theorem returnsIntoB_ooooo_eeoe_lt314 :
     ∀ y : Fin 314, 2 ≤ y.val →
-      returnsIntoB y.val wordOOOOOEEOE = false := by
+      returnsIntoB y.val itineraryOOOOOEEOE = false := by
   native_decide
 
 theorem returnsIntoB_oooooo_eeoe_lt256 :
     ∀ y : Fin 256, 2 ≤ y.val →
-      returnsIntoB y.val wordOOOOOOEEOE = false := by
+      returnsIntoB y.val itineraryOOOOOOEEOE = false := by
   native_decide
 
 theorem returnsIntoB_eoeoe_lt256 :

@@ -1,6 +1,6 @@
 """Predecessor cylinders of PE residual words. Not a termination theorem.
 
-A word cylinder is the set of y = T_w(x) for x realising w. On an
+An word cylinder is the set of y = T_w(x) for x realising w. On an
 expanding overshoot with x < y both odd, that set does not determine
 T(y) mod 2. The next square gap is a function of y alone.
 """
@@ -11,10 +11,10 @@ from collections import Counter, defaultdict
 from typing import Any
 
 from research.juggler_sequence.expansion_slack import walk_pe_run
-from research.juggler_sequence.global_defect import follows_word, image_after
+from research.juggler_sequence.global_defect import follows_itinerary, image_after
 from research.juggler_sequence.landing_parity import theta
 from research.juggler_sequence.lean_paths import has_named, juggler_text
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_excursion
 from research.juggler_sequence.two_block_residual import (
@@ -29,14 +29,14 @@ LEAN_THEOREMS = (
     "squareCylinder",
     "nextLanding",
     "nextSquareGap",
-    "wordCylinder",
+    "itineraryCylinder",
     "square_cylinder_even",
     "square_cylinder_odd",
     "square_gap_exact",
-    "word_cylinder_exact",
-    "word_cylinder_nil",
-    "word_cylinder_even_cons",
-    "word_cylinder_odd_cons",
+    "itinerary_cylinder_exact",
+    "itinerary_cylinder_nil",
+    "itinerary_cylinder_even_cons",
+    "itinerary_cylinder_odd_cons",
     "ooe_cylinder_both_next_parities",
     "ooe_cylinder_same_residue_splits",
 )
@@ -64,7 +64,7 @@ def next_square_gap(y: int) -> int:
 
 
 def word_cylinder(x: int, word: str, y: int) -> bool:
-    return follows_word(x, word) and image_after(x, word) == y
+    return follows_itinerary(x, word) and image_after(x, word) == y
 
 
 def overshoot_row(x: int, step: dict[str, Any]) -> dict[str, Any] | None:

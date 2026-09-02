@@ -19,7 +19,7 @@ from research.juggler_sequence.parity_discrepancy import (
     prefix_census,
     scan,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_even_count_inclusive():
@@ -77,8 +77,8 @@ def test_scan_parks_without_flipping_frequency():
 def test_lean_and_anti_overclaim():
     lean = lean_api_present()
     assert lean["sorry_free"]
-    assert lean["even_cell_iff"]
-    assert lean["odd_cell_unique"]
+    assert lean["even_preimage_iff"]
+    assert lean["odd_preimage_unique"]
     assert lean["floorPower_odd_macro_direction"]
     assert lean["landingParity_odd_iff"]
     assert lean["ooe_cylinder_both_next_parities"]

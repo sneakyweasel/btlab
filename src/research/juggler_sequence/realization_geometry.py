@@ -15,10 +15,10 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.atlas.packed import pack_word, split_word_id, unpack_word
 from research.juggler_sequence.atlas.storage import DEFAULT_DATA_DIR, connect, sqlite_path
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
 from research.juggler_sequence.lean_paths import CELLS, COLLAPSE
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_realization_geometry.json"
@@ -73,9 +73,9 @@ FORBIDDEN_ENGINES = (
 
 LEAN_THEOREMS = (
     "even_tower_to_one",
-    "even_cell_iff",
-    "odd_cell_iff",
-    "odd_cell_unique",
+    "even_preimage_iff",
+    "odd_preimage_iff",
+    "odd_preimage_unique",
 )
 
 
@@ -110,7 +110,7 @@ def prepend_E(starts: list[int], n_max: int) -> list[int]:
 
     out: list[int] = []
     for q in starts:
-        lo, hi = even_cell(q)
+        lo, hi = even_preimage(q)
         if lo > n_max:
             continue
         start = lo + (lo & 1)
@@ -125,7 +125,7 @@ def prepend_O(starts: list[int], n_max: int) -> list[int]:
 
     out: list[int] = []
     for q in starts:
-        for n in odd_cell_integers(q):
+        for n in odd_preimage_integers(q):
             if n % 2 == 1 and 1 <= n <= n_max:
                 out.append(n)
     out.sort()
@@ -188,7 +188,7 @@ def corridor_recurrence(
         "first_prepend_E_mismatch": first_e,
         "first_prepend_O_mismatch": first_o,
         "append_rule": "R_{wb} = {n in R_w : T_w(n) has parity b}",
-        "prepend_E_rule": "R_{Ew}(N) = union_{q in R_w(N)} (even_cell(q) ∩ 2Z ∩ [1,N])",
+        "prepend_E_rule": "R_{Ew}(N) = union_{q in R_w(N)} (even_preimage(q) ∩ 2Z ∩ [1,N])",
         "prepend_O_rule": "R_{Ow} = union_{q in R_w} (odd_cell(q) ∩ (2Z+1)); not closed on [1,N]",
     }
 
@@ -660,7 +660,7 @@ def interior_factors(
                         "n": start,
                         "state": state,
                         "host": unpack_word(length, packed_i),
-                        "follows": follows_word(state, word),
+                        "follows": follows_itinerary(state, word),
                     }
             if pos + 1 < length:
                 state = floor_power(state)
@@ -765,9 +765,9 @@ def atlas_unary_return(
 
 
 def next_step_cells(m: int) -> dict[str, Any]:
-    lo, hi = even_cell(m)
+    lo, hi = even_preimage(m)
     evens = [n for n in range(lo, hi) if n % 2 == 0]
-    odds = [n for n in odd_cell_integers(m) if n % 2 == 1]
+    odds = [n for n in odd_preimage_integers(m) if n % 2 == 1]
     return {"even_parents": evens[:8], "n_even_parents": len(evens), "odd_parents": odds}
 
 
@@ -846,7 +846,7 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
             "reason": (
                 "Appending a letter is the landing-parity filter of T_w(R_w), which "
                 "is the definition of follows. Prepending E is the even-cell union "
-                "already in even_cell_iff; it is exact on every finite window. "
+                "already in even_preimage_iff; it is exact on every finite window. "
                 "Prepending O leaks the window because odd landings escape [1,N]. "
                 "Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE "
                 "7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No "
@@ -935,8 +935,8 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "nested R_w by one-pass itinerary; append children by landing parity; "
-            "prepend children by even_cell / odd_cell; interior states of first holes; "
+            "nested R_w by one-pass word; append children by landing parity; "
+            "prepend children by even_preimage / odd_cell; interior states of first holes; "
             "selected exact roots at n<=1e7"
         ),
     }
@@ -976,9 +976,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     What geometry of R_w makes a prefix unary?",
         "Novelty hypothesis      inverse-floor cells / scale of R_w force d(w)=1",
         "Falsifier               unary without monochrome landings, or a square",
-        "                        amplification law that survives mixed words, or",
+        "                        amplification law that survives mixed itineraries, or",
         "                        a hole that is CELL_EMPTY rather than scale",
-        "Existing machinery      follows_word, image_after, even_cell, atlas trie",
+        "Existing machinery      follows_itinerary, image_after, even_preimage, atlas trie",
         "Maximum Phase-0 scope   R_w on n<=4000 then 1e5; selected roots n<=1e7",
         "```",
         "",
@@ -1147,7 +1147,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "The identity `m(E^{r+1})=m(E^r)^2` is special to the pure even",
             "tower. After an odd letter, `m(wE)=m(w)` whenever `T_w(m(w))` is",
-            "even. The square lower bound does not survive mixed words.",
+            "even. The square lower bound does not survive mixed itineraries.",
             "",
             "## Lean",
             "",

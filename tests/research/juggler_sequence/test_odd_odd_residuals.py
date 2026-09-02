@@ -18,7 +18,7 @@ from research.juggler_sequence.odd_odd_residuals import (
     step_record,
     walk_odd_odd,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_chain
 
@@ -105,9 +105,9 @@ def test_successor_exists_after_thirty_seven_but_intervals_grow():
     chain = walk_odd_odd(37)
     assert chain[0]["another_nonextremal_odd_odd"] is True
     assert chain[1]["another_nonextremal_odd_odd"] is False
-    assert chain[0]["even_cell_width"] == 18635
-    assert chain[1]["even_cell_width"] == 44567460015
-    assert chain[1]["even_cell_width"] > chain[0]["even_cell_width"]
+    assert chain[0]["even_preimage_width"] == 18635
+    assert chain[1]["even_preimage_width"] == 44567460015
+    assert chain[1]["even_preimage_width"] > chain[0]["even_preimage_width"]
     assert chain[1]["last_odd_cell_width"] > chain[0]["last_odd_cell_width"]
 
 
@@ -143,7 +143,7 @@ def test_lean_gate_adds_no_file():
     assert lean["OddOddResidual_absent"] is True
     assert lean["no_global_termination_theorem"] is True
     assert lean["no_forbidden_engine"] is True
-    assert lean["CycleWord_not_rewritten"] is True
+    assert lean["CycleItinerary_not_rewritten"] is True
     assert lean["FloorPower_not_rewritten"] is True
     assert not LEAN_NEW.is_file()
     from research.juggler_sequence.odd_odd_residuals import RESIDUAL_PATH

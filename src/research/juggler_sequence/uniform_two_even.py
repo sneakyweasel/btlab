@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.cycle_length_seven import (
-    cycle_word_hits,
+    cycle_itinerary_hits,
     y_succ_cube_lt_two_a4,
 )
 from research.juggler_sequence.cycle_length_nine import odd_log2_C
@@ -36,7 +36,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_uniform_two_even.json"
@@ -62,16 +62,16 @@ EXPECTED_N0 = {
 }
 
 LEAN_THEOREMS = (
-    "cycle_word_formally_expanding",
+    "cycle_itinerary_formally_expanding",
     "cycle_last_even_interval",
     "cycle_trailing_evens_lt",
-    "no_cycle_word_ooooee",
-    "no_cycle_word_oooeoe",
-    "no_cycle_word_oooooee",
-    "no_cycle_word_ooooeoe",
-    "no_cycle_word_length_le_seven",
-    "no_cycle_word_two_even_ee",
-    "no_cycle_word_two_even_eoe",
+    "no_cycle_itinerary_ooooee",
+    "no_cycle_itinerary_oooeoe",
+    "no_cycle_itinerary_oooooee",
+    "no_cycle_itinerary_ooooeoe",
+    "no_cycle_itinerary_length_le_seven",
+    "no_cycle_itinerary_two_even_ee",
+    "no_cycle_itinerary_two_even_eoe",
     "shared_two_even_tail",
     "denomBits",
 )
@@ -131,8 +131,8 @@ def row_for_k(k: int) -> dict[str, Any]:
     n0 = first_shared_cutoff(k)
     ee = word_ee(k)
     eoe = word_eoe(k)
-    table_ee = None if n0 is None else cycle_word_hits(ee, 2, n0)
-    table_eoe = None if n0 is None else cycle_word_hits(eoe, 2, n0)
+    table_ee = None if n0 is None else cycle_itinerary_hits(ee, 2, n0)
+    table_eoe = None if n0 is None else cycle_itinerary_hits(eoe, 2, n0)
     return {
         "k": k,
         "a_ee": k - 2,
@@ -211,11 +211,11 @@ def lean_api_present() -> dict[str, bool]:
         "no_cycle_engine": "def CycleSearch" not in combined
         and "def CycleStates" not in combined,
         "length_eight_open_in_census": "Length eight is open" in census,
-        "no_length_eight_theorem": "theorem no_cycle_word_length_eight"
+        "no_length_eight_theorem": "theorem no_cycle_itinerary_length_eight"
         not in combined,
-        "no_length_nine_theorem": "theorem no_cycle_word_length_nine"
+        "no_length_nine_theorem": "theorem no_cycle_itinerary_length_nine"
         not in combined,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "Minimal_untouched": "uniform_two_even" not in MINIMAL.read_text(
             encoding="utf-8"
         ),
@@ -225,11 +225,11 @@ def lean_api_present() -> dict[str, bool]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["no_cycle_word_ooooee"]
-        and lean["no_cycle_word_oooooee"]
-        and lean["no_cycle_word_length_le_seven"]
-        and lean["no_cycle_word_two_even_ee"]
-        and lean["no_cycle_word_two_even_eoe"]
+        and lean["no_cycle_itinerary_ooooee"]
+        and lean["no_cycle_itinerary_oooooee"]
+        and lean["no_cycle_itinerary_length_le_seven"]
+        and lean["no_cycle_itinerary_two_even_ee"]
+        and lean["no_cycle_itinerary_two_even_eoe"]
         and lean["shared_two_even_tail"]
         and lean["no_length_eight_theorem"]
         and lean["length_eight_open_in_census"]

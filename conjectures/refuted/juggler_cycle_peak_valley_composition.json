@@ -1,7 +1,7 @@
 {
   "id": "juggler_cycle_peak_valley_composition",
   "title": "Composing exact peak–valley cells around a necklace forces P>P or P<P",
-  "statement": "Composing the exact cells P --E^r--> V --O^a--> P' around a necklace forces the composite interval map to satisfy P_1>P_1 or P_1<P_1, without identifying a dangerous seam, for a reason that is not power_bound_word / power_bound_contracts / cycle_trailing_evens_lt / cycle_word_formally_expanding / global_defect_identity / the closed exponent budget / the closed cycle-closure leftover-killer.",
+  "statement": "Composing the exact cells P --E^r--> V --O^a--> P' around a necklace forces the composite interval map to satisfy P_1>P_1 or P_1<P_1, without identifying a dangerous seam, for a reason that is not power_bound_word / power_bound_contracts / cycle_trailing_evens_lt / cycle_itinerary_formally_expanding / global_defect_identity / the closed exponent budget / the closed cycle-closure leftover-killer.",
   "status": "REFUTED",
   "counterexamples": [
     "exact cells compose to T_w (25 --OOOEE--> 15, 365 --OOEOOE--> 1749); a cycle would have P=P",

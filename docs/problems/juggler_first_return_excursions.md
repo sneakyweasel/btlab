@@ -5,15 +5,15 @@ Status: **EXPLORATORY**
 Standalone arithmetic layer on complete first-return-below trajectories.
 It is **not** a Research Engine control-layer experiment, not a
 reopening of PE-factor, residual-future, sum-rho, realization-set,
-landing-image, or finite-word \(N_w\)-boundary branches, and not a
+landing-image, or finite-itinerary \(N_w\)-boundary branches, and not a
 claim that every positive integer reaches 1.
 
 ## Problem
 
 Does the conjunction “every proper prefix stays at or above \(n\), and
 the complete word returns strictly below \(n\)” force a structural
-relation among the first-return word, peak, defects, and return margin
-that is not already in the finite-word envelope?
+relation among the first-return itinerary, peak, defects, and return margin
+that is not already in the finite-itinerary envelope?
 
 ## Exact statement
 
@@ -47,7 +47,7 @@ Project relationship: **extended**. Totality remains unclaimed.
 
 ```text
 Mathematical target     Does first-return maximality force a new
-                        relation among word, peak, defects, margin?
+                        relation among itinerary, peak, defects, margin?
 Novelty hypothesis      H1–H5: margin/peak/profile/final-step/class
 Falsifier               every useful statement is T<n, 2^k>3^o,
                         or floorPower_odd_ge
@@ -130,7 +130,7 @@ raise). Every return is maximal. Every return word ends with \(E\).
 Every proper prefix is formally noncontracting and the complete word
 is formally contracting. Those facts are already Lean or the parked
 envelope census. H1–H3 and H5 fail. Margin remains state-dependent
-even for a fixed first-return word, a fixed \((k,o)\), or a fixed run
+even for a fixed first-return itinerary, a fixed \((k,o)\), or a fixed run
 signature. The exact Pareto front on \(\min M/n\), \(\max\) peak bits,
 \(\max\tau\) has ten records and no common word class.
 

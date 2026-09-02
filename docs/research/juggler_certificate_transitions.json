@@ -621,7 +621,7 @@
     "every_descent_is_fp": true,
     "git": "550ab99a229821977538d530dd4a724e9ef4729b",
     "letter_chain": false,
-    "word_language_reopen": false,
+    "itinerary_language_reopen": false,
     "halt_theorem": false,
     "atlas_language_tag": false,
     "certificate_automaton_lean": false,

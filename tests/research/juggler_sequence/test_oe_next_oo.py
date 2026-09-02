@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.oe_next_oo import (
     CLASS_GREEN,
     DROP_WITNESS,
@@ -20,7 +20,7 @@ from research.juggler_sequence.oe_next_oo import (
     square_gap_ooeooeooeoeo,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_exponent_gaps():
@@ -37,7 +37,7 @@ def test_1517_next_is_odd_oo():
     assert row["q_odd"] is True
     assert row["q_lt_sq"] is True
     assert row["another_oo"] is True
-    assert follows_word(n, "OOEOOEOOEOEO")
+    assert follows_itinerary(n, "OOEOOEOOEOEO")
     assert image_after(n, "OOEOOEOOEOEO") == q
 
 
@@ -50,7 +50,7 @@ def test_7653_even_next_drops():
     assert row["even_drop"] is True
     assert row["q_ge_sq"] is False
     assert floor_power(q) < n
-    assert follows_word(n, "OOEOOEOOEOEO")
+    assert follows_itinerary(n, "OOEOOEOOEOEO")
 
 
 def test_probe_and_classify_green():

@@ -31,7 +31,7 @@ from research.juggler_sequence.excursions import (
     start_class,
 )
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_path import first_return
 
 

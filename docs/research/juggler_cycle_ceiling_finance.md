@@ -3,7 +3,7 @@
 Status: **CEILING_FINANCE_CLOSED**
 
 The upper cell (p+1)^{2^r} as leftover finance.
-Not a halt theorem. Not a leftover-word census. No new Lean.
+Not a halt theorem. Not a leftover-itinerary census. No new Lean.
 
 ## Metadata
 
@@ -19,7 +19,7 @@ Not a halt theorem. Not a leftover-word census. No new Lean.
 - inv-sum killing p: `367`
 - slogan false: `True`
 
-the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a corollary of even_iter_lt_succ_pow, but the adversarial peak run k=24 lands at p=304. Proved 6/5 RHS=0.002495 and Lean inv-sum S=0.012130 both miss θ=0.002086 / need=0.011568. 6/5 needs p>=659; inv-sum needs p>=367. Pigeonhole k=18 lands at 3075 and would kill; the leftover can choose k=24. Large m is worse. Not a leftover-word census and not a floor raise.
+the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a corollary of even_iter_lt_succ_pow, but the adversarial peak run k=24 lands at p=304. Proved 6/5 RHS=0.002495 and Lean inv-sum S=0.012130 both miss θ=0.002086 / need=0.011568. 6/5 needs p>=659; inv-sum needs p>=367. Pigeonhole k=18 lands at 3075 and would kill; the leftover can choose k=24. Large m is worse. Not a leftover-itinerary census and not a floor raise.
 
 ## Exact peak-run landings at n=261, m=3
 
@@ -83,5 +83,5 @@ the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a coroll
 
 **CEILING_FINANCE_CLOSED**
 
-the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a corollary of even_iter_lt_succ_pow, but the adversarial peak run k=24 lands at p=304. Proved 6/5 RHS=0.002495 and Lean inv-sum S=0.012130 both miss θ=0.002086 / need=0.011568. 6/5 needs p>=659; inv-sum needs p>=367. Pigeonhole k=18 lands at 3075 and would kill; the leftover can choose k=24. Large m is worse. Not a leftover-word census and not a floor raise.
+the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a corollary of even_iter_lt_succ_pow, but the adversarial peak run k=24 lands at p=304. Proved 6/5 RHS=0.002495 and Lean inv-sum S=0.012130 both miss θ=0.002086 / need=0.011568. 6/5 needs p>=659; inv-sum needs p>=367. Pigeonhole k=18 lands at 3075 and would kill; the leftover can choose k=24. Large m is worse. Not a leftover-itinerary census and not a floor raise.
 

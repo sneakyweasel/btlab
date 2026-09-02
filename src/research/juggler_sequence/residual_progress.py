@@ -19,7 +19,7 @@ from research.juggler_sequence.no_progress_paths import (
     realized_prefix,
 )
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,
@@ -176,7 +176,7 @@ def residual_record(y: int, *, cap: int = HORIZON_CAP, start: int | None = None)
         "renewal_horizon": global_i,
         "renewal_image": None if global_i is None else path[global_i],
         "word": word if horizon is None else word[:horizon],
-        "word_length": len(word if horizon is None else word[:horizon]),
+        "itinerary_length": len(word if horizon is None else word[:horizon]),
         "odd_count": odd_count(word if horizon is None else word[:horizon]),
         **stats,
         "progress_within": kind != "UNRESOLVED",

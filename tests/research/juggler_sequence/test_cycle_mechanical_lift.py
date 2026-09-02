@@ -12,7 +12,7 @@ from research.juggler_sequence.cycle_mechanical_lift import (
 )
 from research.juggler_sequence.cycle_remainder_finance import cell_record
 from research.juggler_sequence.cycle_walk_greedy import hug_word
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 DOSSIER = Path("docs/problems/juggler_cycle_mechanical_lift.md")
 CONJECTURE = Path("conjectures/refuted/juggler_mechanical_lift_obstruction.json")

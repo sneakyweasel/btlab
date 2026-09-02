@@ -15,7 +15,7 @@ oddRun (r+1) y  ↔  y odd ∧ oddRun r (T(y))
 
 An odd floor cell has at most one integer, so the backward
 “cylinder” of a landing is empty or a singleton. This is the
-existing `odd_cell_unique` law, not a shrinking-interval calculus.
+existing `odd_preimage_unique` law, not a shrinking-interval calculus.
 
 This file does not claim a density law, a finite odd-run bound, or
 that every start reaches `1`.
@@ -76,7 +76,7 @@ theorem oddLanding_preimage_unique {y z m : ℕ}
     (hy : y % 2 = 1) (hz : z % 2 = 1)
     (hyT : floorPower y = m) (hzT : floorPower z = m) :
     y = z :=
-  odd_cell_unique
+  odd_preimage_unique
     ((floorPower_odd_eq_iff_cube_interval hy).mp hyT)
     ((floorPower_odd_eq_iff_cube_interval hz).mp hzT)
 

@@ -8,13 +8,13 @@ every positive integer reaches 1.
 
 ## Problem
 
-Can a mixed prefix-noncontracting word remain arithmetically realizable
+Can a mixed prefix-noncontracting itinerary remain arithmetically realizable
 as its length grows, once every exact floor-cell constraint is imposed
 backwards?
 
 ## Exact statement
 
-A word \(w\) of length \(k\) is prefix-noncontracting when every prefix
+An itinerary \(w\) of length \(k\) is prefix-noncontracting when every prefix
 has
 
 \[
@@ -38,7 +38,7 @@ not an infinite family.
   is not claimed.
 - Inverse-floor cells
   `floorPower_even_eq_iff_sq_interval` /
-  `floorPower_odd_eq_iff_cube_interval` / `odd_cell_unique` —
+  `floorPower_odd_eq_iff_cube_interval` / `odd_preimage_unique` —
   **EXACT — LEAN VERIFIED**.
 - Compensated contraction —
   **EXACT — LEAN VERIFIED**.
@@ -62,8 +62,8 @@ Novelty hypothesis      backward floor cells empty or shrink A_NC
 Falsifier               the constraints are the existing cells;
                         every mixed prefix-NC word of the window
                         is realized; empty-over-I is not empty
-Existing machinery      inverse-floor iff, odd_cell_unique,
-                        prefix_nc_words, follows_word, compensated
+Existing machinery      inverse-floor iff, odd_preimage_unique,
+                        prefix_nc_words, follows_itinerary, compensated
                         contraction, known horizon witnesses
 Maximum Phase-0 scope   exact pullback on mixed k≤8 plus the known
                         length-10/11 witnesses; compare min n,
@@ -88,10 +88,10 @@ It is not required.
 - Even pullback of an image \(q\) is the even cell
   \([q^2,(q+1)^2)\) — **EXACT — LEAN VERIFIED**
 - Odd pullback of an image \(m\) has at most one integer —
-  **EXACT — LEAN VERIFIED** (`odd_cell_unique`)
+  **EXACT — LEAN VERIFIED** (`odd_preimage_unique`)
 - \(A(\mathtt{OOE},6)=\{5\}\) —
   **COMPUTATIONALLY VERIFIED**
-- every mixed prefix-NC word of length \(\le 8\) is realized with
+- every mixed prefix-NC itinerary of length \(\le 8\) is realized with
   \(n\le 800\) — **OBSERVATION**
 - empty fiber over images \(1..24\) implies unrealizable —
   **REFUTED**; `OOEOOOOOOO` is empty over that interval and
@@ -119,11 +119,11 @@ None opened.
 
 ## Counterexamples
 
-- H1 (every mixed prefix-NC word of length \(\ge L\) is
-  unrealizable): all \(43\) mixed words of length \(\le 8\) are
+- H1 (every mixed prefix-NC itinerary of length \(\ge L\) is
+  unrealizable): all \(43\) mixed itineraries of length \(\le 8\) are
   realized with \(n\le 800\). Length-\(10\) and length-\(11\)
   witnesses exist.
-- H2 (those words require compensated contraction): `OOE` at
+- H2 (those itineraries require compensated contraction): `OOE` at
   \(n=5\) has \(\Delta\) below the formal gap. Horizon witnesses
   do not produce a defect-driven certificate inside the bit
   budget.
@@ -138,7 +138,7 @@ family and do not imply a bound \(L\).
 
 ## Formalization
 
-None added. The inverse-floor lemmas and `odd_cell_unique` already
+None added. The inverse-floor lemmas and `odd_preimage_unique` already
 live in `formal/Problems/Engine/FloorPower.lean`. No
 `PrefixNCAdmissibility.lean`. `ResidualChain.lean` is not
 rewritten. No `sorry`. No ledger row.
@@ -148,7 +148,7 @@ rewritten. No `sorry`. No ledger row.
 Classification **PREFIX_NC_ARITHMETIC_COMPLEX**.
 
 Backward admissibility is the existing even cell and the existing
-odd cell, composed along the word. On mixed prefix-NC words of
+odd cell, composed along the itinerary. On mixed prefix-NC words of
 length \(\le 8\) the combinatorial language and the arithmetic
 language agree: every such word has a realizing start. Empty
 fibers over a bounded image interval are not empty realizing

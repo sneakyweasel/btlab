@@ -194,8 +194,8 @@ def test_dossier_boundary():
     assert "not a new paper" in dossier
     assert "simons-de-weger-2005-collatz-m-cycles" in dossier
     assert tuple(FOCUS_LENGTHS) == (19, 38, 84, 168)
-    assert "theorem no_cycle_word_any_length" not in dossier
-    assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in dossier
+    assert "theorem no_cycle_itinerary_any_length" not in dossier
+    assert "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five" in dossier
     assert "CycleHeightFinance.lean" in dossier
     assert "juggler_cycle_finance_note.md" in dossier
     assert "CyclePositionFinance" not in paper

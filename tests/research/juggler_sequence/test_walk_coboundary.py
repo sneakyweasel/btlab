@@ -7,7 +7,7 @@ import math
 from pathlib import Path
 
 from research.conjectures import get_conjecture
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.walk_coboundary import (
     CLASS_DEFEATED,
     JSON_PATH,

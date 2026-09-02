@@ -46,7 +46,7 @@ No cycle of any length — not claimed.
 
 - Lean leftover is period \(84\) with \(m\ge 3\) or \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Height packing kills \(m=1,2\) at \(261\), \(m=3\) at \(273\),
   all \(m\) at \(1981\) —
   **COMPUTATIONALLY VERIFIED** (`l84_floors.json`)

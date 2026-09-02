@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from research.juggler_sequence.compensated_contraction import follows_word
+from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.drift_first_passage import (
     CLASS_COMPLEX,
     CLASS_COUNTER,
@@ -24,7 +24,7 @@ from research.juggler_sequence.drift_first_passage import (
     slim_crossing,
 )
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_even_start_crosses_at_one():
@@ -53,7 +53,7 @@ def test_one_ninety_three_is_the_known_record():
     assert walked["tau_plus"] == KNOWN_RECORD["tau_plus"]
     assert walked["word"] == KNOWN_RECORD["word"]
     assert walked["pred"] == KNOWN_RECORD["last_nc"]
-    assert follows_word(193, walked["nc_word"])
+    assert follows_itinerary(193, walked["nc_word"])
     assert walked["crossing_letter"] == "E"
     assert walked["crossing_window"] is True
 

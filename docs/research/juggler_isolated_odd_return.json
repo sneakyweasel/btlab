@@ -125,11 +125,11 @@
     "sorry_free": true,
     "oe_block_contracts": true,
     "oe_block_scale": true,
-    "no_cycle_word_length_le_six": true,
+    "no_cycle_itinerary_length_le_six": true,
     "CycleMin": true,
     "cycleMin_ge_twelve": true,
-    "CycleWord": true,
-    "has_no_cycle_word_length_eleven": false,
+    "CycleItinerary": true,
+    "has_no_cycle_itinerary_length_eleven": false,
     "has_no_cycleMin_four_even": false,
     "has_no_juggler_cycle": false,
     "no_global_termination_theorem": true,
@@ -138,7 +138,7 @@
   },
   "decision": {
     "classification": "ISO_ODD_RETURN_CLOSE",
-    "reason": "OE contracts below the CycleMin floor, so the only isolated-odd prefixes are empty and O; those plus a short tail are CycleWords of length at most 6"
+    "reason": "OE contracts below the CycleMin floor, so the only isolated-odd prefixes are empty and O; those plus a short tail are CycleItineraries of length at most 6"
   },
   "search_method": "OE block map; isolated-odd family landings; forward membership in R_{b,c}; no fibre enumeration"
 }

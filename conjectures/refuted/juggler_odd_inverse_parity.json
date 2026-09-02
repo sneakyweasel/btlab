@@ -11,7 +11,7 @@
     "forward continuation requires the image itself to be odd: landing parity, already CLOSE as odd_landing_sets / odd_tower"
   ],
   "first_seen": "2026-09-02",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [],
   "mathematical_domain": "Juggler descent-free flights / odd inverse cells",
   "notes": "Phase 0 only. Inverse candidate is the Type-2 occupant of J-odd-pred-empty-cube. Nested cubic conditions are a direction error. No odd-landing rerun, no odd-tower rerun, no Lean, no Paper A, no ledger theorem row. Not a halt theorem.",

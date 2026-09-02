@@ -21,23 +21,23 @@ formally contracting. Financing that descent from `p` back to `x`
 recovers the existing ascent scale, not a stronger envelope. The
 distinguished order is `m ≤ p < x < M` with a strict top window
 `p^{2^r} < M`. Composing the known scale laws does not beat the
-ordinary word envelope.
+ordinary itinerary envelope.
 
 The local floor remainder `branchDefect` is the information the
 envelope drops: `x^e = T(x)^2 + ρ` with `0 ≤ ρ < 2T(x)+1`. On a
 cycle these remainders balance against the odd/even state gaps, and
 at least one remainder is positive for `n ≥ 2`. Dropping every `ρ`
 recovers `power_bound_word`. Not on the leftover import path.
-This is not a halt theorem and not a claim that every cycle word
+This is not a halt theorem and not a claim that every cycle itinerary
 is impossible.
 -/
 
 /-- Dual of `CycleMin`: the start is a maximum of its realized cycle. -/
 def CycleMax (n : ℕ) (w : List Branch) : Prop :=
-  CycleWord n w ∧ ∀ j, j < w.length → floorPower^[j] n ≤ n
+  CycleItinerary n w ∧ ∀ j, j < w.length → floorPower^[j] n ≤ n
 
-theorem cycleMax_cycleWord {n : ℕ} {w : List Branch} (h : CycleMax n w) :
-    CycleWord n w :=
+theorem cycleMax_cycleItinerary {n : ℕ} {w : List Branch} (h : CycleMax n w) :
+    CycleItinerary n w :=
   h.1
 
 theorem cycleMax_le {n : ℕ} {w : List Branch} {j : ℕ}
@@ -76,13 +76,13 @@ theorem exists_iterate_max (n k : ℕ) (hk : 1 ≤ k) :
 /-- The maximum state of a nontrivial cycle is even, because an odd
 state strictly ascends. -/
 theorem exists_cycle_max_even {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) :
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
     ∃ i < w.length,
       (∀ j < w.length, floorPower^[j] n ≤ floorPower^[i] n) ∧
         floorPower^[i] n % 2 = 0 := by
   have ⟨i, hi, hmax⟩ := exists_iterate_max n w.length h.2.2
   refine ⟨i, hi, hmax, ?_⟩
-  have hge := cycleWord_iterate_ge_two hn h hi
+  have hge := cycleItinerary_iterate_ge_two hn h hi
   rcases Nat.mod_two_eq_zero_or_one (floorPower^[i] n) with he | ho
   · exact he
   · exfalso
@@ -119,12 +119,12 @@ theorem cycleMax_start_even {n : ℕ} {w : List Branch}
         exact (not_le_of_gt hgt) hle
 
 theorem exists_cycleMax {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) :
-    ∃ k < w.length, CycleMax (floorPower^[k] n) (rotateWord w k) := by
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
+    ∃ k < w.length, CycleMax (floorPower^[k] n) (rotateItinerary w k) := by
   have ⟨i, hi, hge, _heven⟩ := exists_cycle_max_even hn h
-  refine ⟨i, hi, cycleWord_rotateWord h i, ?_⟩
+  refine ⟨i, hi, cycleItinerary_rotateItinerary h i, ?_⟩
   intro j hj
-  have hlen : (rotateWord w i).length = w.length := rotateWord_length w i
+  have hlen : (rotateItinerary w i).length = w.length := rotateItinerary_length w i
   rw [hlen] at hj
   have himg : floorPower^[j] (floorPower^[i] n) = floorPower^[i + j] n := by
     simpa [Nat.add_comm] using
@@ -338,21 +338,21 @@ theorem take_eq_replicate_even {n : ℕ} :
         simpa [Function.iterate_succ_apply] using this
       simpa [List.take, List.replicate_succ] using hrest
 
-theorem rotateWord_even_run :
-    ∀ r u, rotateWord (List.replicate r Branch.even ++ u) r =
+theorem rotateItinerary_even_run :
+    ∀ r u, rotateItinerary (List.replicate r Branch.even ++ u) r =
       u ++ List.replicate r Branch.even
-  | 0, u => by simp [rotateWord]
+  | 0, u => by simp [rotateItinerary]
   | r + 1, u => by
       have hrep :
           List.replicate (r + 1) Branch.even ++ u =
             Branch.even :: (List.replicate r Branch.even ++ u) := by
         rw [List.replicate_succ, List.cons_append]
-      rw [hrep, rotateWord]
+      rw [hrep, rotateItinerary]
       have hassoc :
           List.replicate r Branch.even ++ u ++ [Branch.even] =
             List.replicate r Branch.even ++ (u ++ [Branch.even]) := by
         simp [List.append_assoc]
-      rw [hassoc, rotateWord_even_run r (u ++ [Branch.even])]
+      rw [hassoc, rotateItinerary_even_run r (u ++ [Branch.even])]
       simp [List.append_assoc, List.replicate_succ]
 
 /-- Every cycle maximum begins a finite even run onto an odd landing. -/
@@ -382,7 +382,7 @@ theorem cycleMax_top_normal_form {n : ℕ} {w : List Branch}
     ∃ r u p, 1 ≤ r ∧
       w = List.replicate r Branch.even ++ u ∧
         p = floorPower^[r] n ∧ p % 2 = 1 ∧ 2 ≤ p ∧
-          CycleWord p (u ++ List.replicate r Branch.even) ∧
+          CycleItinerary p (u ++ List.replicate r Branch.even) ∧
             image p u = n ∧
               p ^ (2 ^ r) ≤ n ∧ n < (p + 1) ^ (2 ^ r) ∧
                 2 ^ (u.length + r) ≤ 3 ^ oddCount u := by
@@ -394,11 +394,11 @@ theorem cycleMax_top_normal_form {n : ℕ} {w : List Branch}
   set u := w.drop r
   have hwform : w = List.replicate r Branch.even ++ u := by
     simpa [htake, u] using hsplit
-  have hp : 2 ≤ floorPower^[r] n := cycleWord_iterate_ge_two hn h.1 hrlt
-  have hrot := cycleWord_rotateWord h.1 r
-  have hrotw : rotateWord w r = u ++ List.replicate r Branch.even := by
-    simpa [hwform] using rotateWord_even_run r u
-  have hC : CycleWord (floorPower^[r] n) (u ++ List.replicate r Branch.even) := by
+  have hp : 2 ≤ floorPower^[r] n := cycleItinerary_iterate_ge_two hn h.1 hrlt
+  have hrot := cycleItinerary_rotateItinerary h.1 r
+  have hrotw : rotateItinerary w r = u ++ List.replicate r Branch.even := by
+    simpa [hwform] using rotateItinerary_even_run r u
+  have hC : CycleItinerary (floorPower^[r] n) (u ++ List.replicate r Branch.even) := by
     simpa [hrotw] using hrot
   have himg : image (floorPower^[r] n) u = n := by
     have hlenu : u.length = w.length - r := by
@@ -448,7 +448,7 @@ theorem cycleMax_predecessor_odd {n : ℕ} {w : List Branch}
   have hlen : 2 ≤ w.length := cycleMax_length_ge_two hn h
   have hi : w.length - 1 < w.length := by omega
   have hx2 : 2 ≤ floorPower^[w.length - 1] n :=
-    cycleWord_iterate_ge_two hn h.1 hi
+    cycleItinerary_iterate_ge_two hn h.1 hi
   have hTx : floorPower (floorPower^[w.length - 1] n) = n := by
     have hper := cycle_iterate_period h.1
     have hsum : w.length = w.length - 1 + 1 := by omega
@@ -475,7 +475,7 @@ theorem cycleMax_predecessor_lt {n : ℕ} {w : List Branch}
   have hlen : 2 ≤ w.length := cycleMax_length_ge_two hn h
   have hi : w.length - 1 < w.length := by omega
   have hx2 : 2 ≤ floorPower^[w.length - 1] n :=
-    cycleWord_iterate_ge_two hn h.1 hi
+    cycleItinerary_iterate_ge_two hn h.1 hi
   have ho := cycleMax_predecessor_odd hn h
   have hn3 : 3 ≤ floorPower^[w.length - 1] n := by omega
   have hTx := cycleMax_predecessor_apply hn h
@@ -571,7 +571,7 @@ theorem cycle_top_three_level {n : ℕ} {w : List Branch}
                 p < x ∧ x < n ∧
                   floorPower x = n ∧
                     image p u = n ∧
-                      CycleWord p (u ++ List.replicate r Branch.even) := by
+                      CycleItinerary p (u ++ List.replicate r Branch.even) := by
   have ⟨r, u, p, hr1, hw, hpdef, hpodd, hp2, hC, himg, _, _, _⟩ :=
     cycleMax_top_normal_form hn h
   have hi : w.length - 1 < w.length := by
@@ -579,7 +579,7 @@ theorem cycle_top_three_level {n : ℕ} {w : List Branch}
     omega
   have hxodd := cycleMax_predecessor_odd hn h
   have hx2 : 2 ≤ floorPower^[w.length - 1] n :=
-    cycleWord_iterate_ge_two hn h.1 hi
+    cycleItinerary_iterate_ge_two hn h.1 hi
   have hxl := cycleMax_predecessor_lt hn h
   have hTx := cycleMax_predecessor_apply hn h
   have he := cycleMax_start_even hn h
@@ -603,7 +603,7 @@ theorem cycle_top_three_level {n : ℕ} {w : List Branch}
     | cons _ _ =>
         simp [hwu]
   have hge : ∀ i < r, 2 ≤ floorPower^[i] n := fun i hi =>
-    cycleWord_iterate_ge_two hn h.1 (lt_trans hi hrw)
+    cycleItinerary_iterate_ge_two hn h.1 (lt_trans hi hrw)
   have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
     have hf : follows n (List.replicate r Branch.even ++ u) := by
       simpa [hw] using h.1.1
@@ -655,7 +655,7 @@ theorem cycle_top_scale_constraint {n : ℕ} {w : List Branch}
     have hi : w.length - 1 < w.length := by
       have : 2 ≤ w.length := cycleMax_length_ge_two hn h
       omega
-    simpa [hxdef] using cycleWord_iterate_ge_two hn h.1 hi
+    simpa [hxdef] using cycleItinerary_iterate_ge_two hn h.1 hi
   have hMx := cycle_top_max_lt_pred_sq hx2 hcell
   exact ⟨r, p, x, hr1, hpdef, hxdef, cycle_top_pred_scale hlo hcell, hMx,
     cycle_top_pred_gt_pow hr1 hlo hMx⟩
@@ -685,7 +685,7 @@ theorem peak_block_contracts {x r : ℕ} (hx : 2 ≤ x) (hr : 1 ≤ r)
 
 /-- Every cycle maximum carries a canonical peak descent
 `x --OE^r--> p` with `p < x`. Determined by the maximum, not by a
-word search. -/
+itinerary search. -/
 theorem cycle_peak_descent {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     ∃ r p x, 1 ≤ r ∧
@@ -882,17 +882,17 @@ theorem cycleMax_not_cycleMin {n : ℕ} {w : List Branch}
 The laboratory sharpening is `cycleMax_min_succ_sq_le`. -/
 theorem cycleMax_min_sq_lt {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (h : CycleMax n w) (hk : k < w.length)
-    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
+    (hmin : CycleMin (floorPower^[k] n) (rotateItinerary w k)) :
     floorPower^[k] n ^ 2 < n := by
   have hk0 : k ≠ 0 := by
     intro hk0
     have : CycleMin n w := by
-      simpa [hk0, rotateWord] using hmin
+      simpa [hk0, rotateItinerary] using hmin
     exact cycleMax_not_cycleMin hn h this
-  have hm2 : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h.1 hk
+  have hm2 : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn h.1 hk
   have ⟨i, hi, hmax, _, hgt⟩ :=
     cycleMin_max_gt_sq (n := floorPower^[k] n) hm2 hmin
-  have hlen : (rotateWord w k).length = w.length := rotateWord_length w k
+  have hlen : (rotateItinerary w k).length = w.length := rotateItinerary_length w k
   have hle : floorPower^[i] (floorPower^[k] n) ≤ n := by
     have himg : floorPower^[i] (floorPower^[k] n) = floorPower^[k + i] n := by
       simpa [Nat.add_comm] using
@@ -902,7 +902,7 @@ theorem cycleMax_min_sq_lt {n : ℕ} {w : List Branch} {k : ℕ}
     have hsum : w.length - k + k = w.length := Nat.sub_add_cancel (Nat.le_of_lt hk)
     have hiter := Function.iterate_add_apply floorPower (w.length - k) k n
     rw [← hiter, hsum, cycle_iterate_period h.1]
-  have hidx : w.length - k < (rotateWord w k).length := by
+  have hidx : w.length - k < (rotateItinerary w k).length := by
     rw [hlen]
     omega
   have hnle : n ≤ floorPower^[i] (floorPower^[k] n) := by
@@ -917,7 +917,7 @@ compositions beyond this package are envelope repackaging. -/
 theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     ∃ k m p x r, k < w.length ∧
-      CycleMin (floorPower^[k] n) (rotateWord w k) ∧
+      CycleMin (floorPower^[k] n) (rotateItinerary w k) ∧
       m = floorPower^[k] n ∧
       2 ≤ m ∧ 2 ≤ p ∧
       m % 2 = 1 ∧ p % 2 = 1 ∧
@@ -930,7 +930,7 @@ theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
   have ⟨r, u, p, x, hr1, hw, hpdef, hxdef, hpodd, hp2, _, _, hpx, hxn, _,
       himg, hC⟩ := cycle_top_three_level hn h
   have ⟨k, hk, hmin⟩ := exists_cycleMin hn h.1
-  have hm : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h.1 hk
+  have hm : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn h.1 hk
   have hmodd := cycleMin_start_odd (n := floorPower^[k] n) hm hmin
   have hMsq := cycleMax_min_sq_lt hn h hk hmin
   have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
@@ -1011,7 +1011,7 @@ theorem follows_singleton_of_get {n : ℕ} {w : List Branch}
   · exact ⟨follows_get_odd w hw i hi hbranch, trivial⟩
 
 theorem cycle_remainder_eq {n : ℕ} {w : List Branch} {i : ℕ}
-    (h : CycleWord n w) (hi : i < w.length) :
+    (h : CycleItinerary n w) (hi : i < w.length) :
     (floorPower^[i] n) ^ branchExp w[i] =
       (floorPower^[i + 1] n) ^ 2 +
         branchDefect w[i] (floorPower^[i] n) := by
@@ -1021,7 +1021,7 @@ theorem cycle_remainder_eq {n : ℕ} {w : List Branch} {i : ℕ}
   simpa [hiter] using hadd
 
 theorem cycle_remainder_lt {n : ℕ} {w : List Branch} {i : ℕ}
-    (h : CycleWord n w) (hi : i < w.length) :
+    (h : CycleItinerary n w) (hi : i < w.length) :
     branchDefect w[i] (floorPower^[i] n) <
       2 * floorPower^[i + 1] n + 1 := by
   have hlt := branchDefect_lt (follows_singleton_of_get h.1 hi)
@@ -1091,7 +1091,7 @@ theorem pathNextSquares_add_sq (n : ℕ) :
             omega
 
 theorem cycle_pathNextSquares_eq {n : ℕ} {w : List Branch}
-    (h : CycleWord n w) :
+    (h : CycleItinerary n w) :
     pathNextSquares n w = pathSquares n w := by
   have heq := pathNextSquares_add_sq n w
   rw [h.2.1] at heq
@@ -1100,7 +1100,7 @@ theorem cycle_pathNextSquares_eq {n : ℕ} {w : List Branch}
 /-- Cyclic closure keeps the remainders: `∑ρ + even gaps = odd gaps`.
 This is not the exponent envelope. -/
 theorem cycle_remainder_balance {n : ℕ} {w : List Branch}
-    (h : CycleWord n w) :
+    (h : CycleItinerary n w) :
     pathDefectSum n w + pathEvenGaps n w = pathOddGaps n w := by
   have hpow := pathPows_eq_next_add_defects h.1
   have hsq := cycle_pathNextSquares_eq h
@@ -1108,9 +1108,9 @@ theorem cycle_remainder_balance {n : ℕ} {w : List Branch}
   rw [hpow, hsq, Nat.add_assoc] at hgap
   exact Nat.add_left_cancel hgap
 
-/-- Dropping every remainder recovers the ordinary word envelope. -/
+/-- Dropping every remainder recovers the ordinary itinerary envelope. -/
 theorem cycle_remainders_project_to_envelope {n : ℕ} {w : List Branch}
-    (h : CycleWord n w) :
+    (h : CycleItinerary n w) :
     (floorPower^[w.length] n) ^ (2 ^ w.length) ≤
       n ^ (3 ^ oddCount w) := by
   simpa [image_eq_iterate] using power_bound_word h.1
@@ -1148,7 +1148,7 @@ theorem localsTight_of_defects_zero {n : ℕ} :
 
 /-- All-zero remainders are incompatible with a nontrivial cycle. -/
 theorem cycle_not_localsTight {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) : ¬localsTight n w := by
+    (hn : 2 ≤ n) (h : CycleItinerary n w) : ¬localsTight n w := by
   intro ht
   have hmono : isMonochrome w := by
     by_contra hmix
@@ -1157,7 +1157,7 @@ theorem cycle_not_localsTight {n : ℕ} {w : List Branch}
   · have hwE : follows n (List.replicate w.length Branch.even) := by
       rw [← he]
       exact h.1
-    have hlt := even_word_contracts hn h.2.2 hwE
+    have hlt := even_itinerary_contracts hn h.2.2 hwE
     have himg := cycle_iterate_period h
     rw [himg] at hlt
     exact (lt_irrefl n) hlt
@@ -1169,13 +1169,13 @@ theorem cycle_not_localsTight {n : ℕ} {w : List Branch}
       have : n ≠ 2 := fun h2 =>
         (by decide : ¬(2 : ℕ) % 2 = 1) (h2 ▸ hodd)
       omega
-    have hgt := odd_word_expands hn3 h.2.2 hwO
+    have hgt := odd_itinerary_expands hn3 h.2.2 hwO
     have himg := cycle_iterate_period h
     rw [himg] at hgt
     exact (lt_irrefl n) hgt
 
 theorem cycle_exists_pos_remainder {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) :
+    (hn : 2 ≤ n) (h : CycleItinerary n w) :
     ∃ i, ∃ hi : i < w.length,
       0 < branchDefect (w[i]'hi) (floorPower^[i] n) := by
   by_contra hnone

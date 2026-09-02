@@ -29,7 +29,7 @@ from research.juggler_sequence.cycle_finance import (
     o_min_and_theta,
     sha256_int_list,
 )
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 SPOTLIGHT = (25781, 55293)
 START = PUBLISHED_FLOOR + 1

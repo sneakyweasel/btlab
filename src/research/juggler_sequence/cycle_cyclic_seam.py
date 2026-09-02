@@ -23,8 +23,8 @@ from research.juggler_sequence.cycle_entry_excursion import (
     run_layer,
 )
 from research.juggler_sequence.cycle_finance import DATA_DIR, PUBLISHED_FLOOR
-from research.juggler_sequence.floor_cells import even_cell
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.floor_preimages import even_preimage
+from research.juggler_sequence.power_itineraries import floor_power
 
 SEAM_DIR = DATA_DIR / "cyclic_seam"
 START = PUBLISHED_FLOOR + 1
@@ -76,7 +76,7 @@ LEGAL_33 = (
 def even_predecessor_start(n: int) -> tuple[int, int]:
     """First even in (n^2, (n+1)^2) and the exclusive top."""
 
-    lo, hi = even_cell(n)
+    lo, hi = even_preimage(n)
     start = lo + 1 if lo % 2 else lo + 2
     return start, hi
 

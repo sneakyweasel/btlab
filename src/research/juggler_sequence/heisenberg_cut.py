@@ -42,7 +42,7 @@ from typing import Any
 import numpy as np
 
 from research.juggler_sequence.bracket_nil_lift import WINDOW, _collect
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "heisenberg_cut"

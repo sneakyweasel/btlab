@@ -7,7 +7,7 @@ Standalone application phase on the Juggler floor-power map, on the
 only unused Collatz word technique that does not need the affine
 equation: Fernández–Ibáñez Christoffel / mechanical words as unique
 maximizers, **without** Lebel modular sieving. It is not a halt
-theorem, not a leftover-word census, not a floor raise, and not a
+theorem, not a leftover-itinerary census, not a floor raise, and not a
 reopen of the closed almost-monochrome near-tight branch.
 
 ## Problem
@@ -16,7 +16,7 @@ Worst cycle finance is \(o=o_{\min}(L)\), the Beatty / Christoffel
 approximation to \(\log 2/\log 3\). The leftover lengths
 \(38,84,569,1054,\ldots\) are exactly those approximations. Does a
 hypothetical cycle at such an \(L\) have to be combinatorially
-close to the Christoffel word of slope \(o/L\), so that leftover-word
+close to the Christoffel word of slope \(o/L\), so that leftover-itinerary
 cells apply to a one-parameter necklace instead of \(\binom{L}{o}\)
 words?
 
@@ -36,10 +36,10 @@ The record leftover lengths track one-sided approximations of
 **Balance (KNOWN combinatorics on words).**
 \(c_L\) is balanced, with \(\max O\)-run \(2\) and \(\max E\)-run
 \(1\) for every tested leftover \(L\ge 3\). Local minima \(m\)
-equal the even count. The word at \(L=38\) is \(c_{19}^2\).
+equal the even count. The itinerary at \(L=38\) is \(c_{19}^2\).
 
 **One-parameter leftover-cell slogan (REFUTED).**
-Leftover-word cells, or CycleMin-legal expanding words of weight
+Leftover-word cells, or CycleMin-legal expanding itineraries of weight
 \(o_{\min}\), concentrate on the Christoffel necklace, so those
 cells apply to a one-parameter family instead of
 \(\binom{L}{o}\) words.
@@ -59,7 +59,7 @@ Counterexamples:
   only on \((L,o)\), not on letter order.
 
 **Cycle-only near-Christoffel rigidity** — a hypothetical realized
-cycle word at leftover \(L\) must still be close to \(c_L\) — is
+cycle itinerary at leftover \(L\) must still be close to \(c_L\) — is
 **not** refuted. There is no cycle in range. That is the same
 open question as cycle-only near-tightness after open-orbit
 approximate-equality rigidity and the almost-monochrome slogan
@@ -102,18 +102,18 @@ reduction; the Beatty identification remains **known**.
 
 ```text
 Mathematical target     At leftover near-convergent L with o=o_min(L),
-                        do leftover-word / CycleMin-legal expanding
+                        do leftover-itinerary / CycleMin-legal expanding
                         words concentrate on the Christoffel necklace
-                        of slope o/L, so leftover-word cells apply to
+                        of slope o/L, so leftover-itinerary cells apply to
                         a one-parameter family instead of C(L,o) words?
 Novelty hypothesis      Fernández–Ibáñez unique-maximizer combinatorics
                         transfers without the affine equation and
                         without Lebel modular sieving
-Falsifier               leftover-word survivors or CycleMin candidates
+Falsifier               leftover-itinerary survivors or CycleMin candidates
                         sit at large cyclic Hamming distance from the
                         Christoffel necklace, or the surviving family
                         is exponential rather than one-parameter
-Existing machinery      o_min / finance leftovers, L=11 leftover-word
+Existing machinery      o_min / finance leftovers, L=11 leftover-itinerary
                         cells, ceiling Christoffel formula, closed
                         almost-monochrome near-tight branch,
                         J-approx-equality-rigidity REFUTED
@@ -163,7 +163,7 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_cycle_christoffel.py`
 
 Science window: leftover records \(38,84,569,1054\) plus the
-killed near-convergents \(11,19\) for leftover-word / CycleMin
+killed near-convergents \(11,19\) for leftover-itinerary / CycleMin
 censuses. No CLI. No new Lean. Paper A is unchanged.
 
 ## Conjectures
@@ -196,7 +196,7 @@ Classification **CYCLE_CHRISTOFFEL_CLOSED**. Regenerate with
   \(\max O=2\), \(\max E=1\), \(m=\) even count
   (**COMPUTATIONALLY VERIFIED**).
 - The one-parameter leftover-cell slogan is **REFUTED** on the
-  candidate set: leftover-word cells at length 11 hit a
+  candidate set: leftover-itinerary cells at length 11 hit a
   \(30\)-word family; CycleMin candidates at length 19 have
   median Hamming \(6\); worst \(m\)-finance is \(462\)
   isolated-even words.
@@ -220,7 +220,7 @@ near-tightness. The leftover lengths remain a floor question.
 **CLOSE**. The unused Fernández–Ibáñez half does not become a
 Juggler reduction to a one-parameter family. The Beatty
 identification is already recorded; balance of \(c_L\) is
-classical; leftover-word and CycleMin candidates stay far from
+classical; leftover-itinerary and CycleMin candidates stay far from
 the necklace. Cycle-only near-Christoffel rigidity is not
 refuted and is not a new branch. This is not a halt theorem
 and not a reason to raise the floor inside this branch.

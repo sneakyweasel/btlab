@@ -70,7 +70,7 @@ the first-step leak is the even FiniteProgress cut n<N^2; later R_k is not a uni
 
 - `even_word_contracts`: `True`
 - `floorPower_odd_even_two_step_lt`: `True`
-- `even_cell_iff`: `True`
+- `even_preimage_iff`: `True`
 - `AboveAnchor`: `True`
 - new Lean file: `False`
 
@@ -88,7 +88,7 @@ the first-step leak is the even FiniteProgress cut n<N^2; later R_k is not a uni
 - invariant_measure_theorem: `False`
 - terras_reopen: `False`
 - phase_reopen: `False`
-- word_language_reopen: `False`
+- itinerary_language_reopen: `False`
 - global_non_realizability: `False`
 
 ## Decision

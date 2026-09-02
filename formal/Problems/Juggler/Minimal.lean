@@ -72,7 +72,7 @@ theorem minimal_nonterm_iterate_ge {n : ℕ} (h : MinimalNonTerm n) :
     ∀ k, n ≤ floorPower^[k] n
   | 0 => le_rfl
   | k + 1 => by
-      have hw : follows n (word n (k + 1)) := follows_word_self n (k + 1)
+      have hw : follows n (itinerary n (k + 1)) := follows_itinerary_self n (k + 1)
       have := minimal_nonterm_image_ge h hw
       simpa [image_word] using this
 
@@ -80,7 +80,7 @@ theorem minimal_nonterm_odd {n : ℕ} (h : MinimalNonTerm n) : n % 2 = 1 := by
   by_cases heven : n % 2 = 0
   · have hw : follows n (List.replicate 1 Branch.even) := ⟨heven, trivial⟩
     have hlt : floorPower n < n :=
-      even_word_contracts (by have := minimal_nonterm_ge_twelve h; omega)
+      even_itinerary_contracts (by have := minimal_nonterm_ge_twelve h; omega)
         (by decide) hw
     have hr : ReachesOne (floorPower n) :=
       h.below (floorPower_pos h.pos) hlt
@@ -101,13 +101,13 @@ theorem even_run_scale_barrier {n m k r : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = m)
     (hw : follows m (List.replicate r Branch.even)) :
     n ^ (2 ^ r) ≤ m := by
-  have hu : follows n (word n k) := follows_word_self n k
-  have himg : image n (word n k) = m := by
+  have hu : follows n (itinerary n k) := follows_itinerary_self n k
+  have himg : image n (itinerary n k) = m := by
     simpa [image_word] using hk
   have hfull :
-      follows n (word n k ++ List.replicate r Branch.even) :=
+      follows n (itinerary n k ++ List.replicate r Branch.even) :=
     follows_append hu (by simpa [himg] using hw)
-  have ha : AboveAnchor n (word n k ++ List.replicate r Branch.even) :=
+  have ha : AboveAnchor n (itinerary n k ++ List.replicate r Branch.even) :=
     ⟨hfull, fun i _ => minimal_nonterm_iterate_ge h i⟩
   have := aboveAnchor_even_run_ge_pow ha
   simpa [himg] using this

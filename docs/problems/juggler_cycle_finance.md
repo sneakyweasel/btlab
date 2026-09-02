@@ -14,7 +14,7 @@ theorem, not an escape/divergence statement, not a corridor
 extension past depth 13, not a reopen of any windowed population
 census, and not a claim that every positive integer reaches 1.
 
-The census line (`no_cycle_word_length_le_nineteen`) excludes cycle
+The census line (`no_cycle_itinerary_length_le_nineteen`) excludes cycle
 words length by length through \(19\). This phase asks a
 transversal question:
 does the exact defect bookkeeping around a hypothetical cycle bound
@@ -25,8 +25,8 @@ exceptional set?
 ## Problem
 
 For a hypothetical Juggler cycle of length \(L\) with \(o\) odd
-letters, the word is formally expanding
-(\(2^L<3^o\), `cycle_word_formally_expanding`), yet the orbit
+letters, the itinerary is formally expanding
+(\(2^L<3^o\), `cycle_itinerary_formally_expanding`), yet the orbit
 returns exactly. The multiplicative surplus must be financed
 entirely by the floor defects, which are relatively tiny. How much
 does that force?
@@ -101,18 +101,18 @@ uses the length-only sum. At the published floor \(N_0=10^6\),
 every \(L<25781\) is excluded by \(n_{\max}^{\mathrm{par}}\).
 
 **Eliahou leftover (EXACT — LEAN VERIFIED implication
-`cycle_word_eliahou_leftover`; instance COMPUTATIONALLY
-VERIFIED).** If a nontrivial cycle word exists at \(n\ge 2\), and
+`cycle_itinerary_eliahou_leftover`; instance COMPUTATIONALLY
+VERIFIED).** If a nontrivial cycle itinerary exists at \(n\ge 2\), and
 every length in \([30,10^5)\) outside a named list of
 near-convergents is already excluded, then the period is \(84\),
 or belongs to that list, or is at least \(10^5\). This is
-bookkeeping on `cycle_word_length_eighty_four_or_ge_eighty_five`
+bookkeeping on `cycle_itinerary_length_eighty_four_or_ge_eighty_five`
 plus the finance table: not a new inequality. The instance at the
 Python floor \(N_0=2\cdot 10^6\) is the existing family of \(166\)
 near-convergent lengths. Length \(84\) is the Lean-named leftover
 and is computationally already excluded; height finance further
 requires at least three odd-runs
-(`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`).
+(`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`).
 Lengths \(19\), \(38\), \(57\), and \(76\) die at the Lean
 residual floor \(261\).
 
@@ -127,7 +127,7 @@ x_{i+1}^2=x_i^{e_i}-d_i,\qquad 0\le d_i\le 2x_{i+1},
 \]
 
 because \(x_i^{e_i}<(x_{i+1}+1)^2=x_{i+1}^2+2x_{i+1}+1\). (This is
-the local defect of `Defect.lean`; composing it around a word is the
+the local defect of `Defect.lean`; composing it around an itinerary is the
 Lean `global_defect_identity`.) The relative defect
 
 \[
@@ -281,13 +281,13 @@ arbitrarily close to \(1\). \(\blacksquare\)
   financing constraint is far more lopsided here.
 - Eliahou leftover packaging for Collatz — **known** (period
   \(\ge X\), or one of a named convergent family). The Juggler
-  analogue is `cycle_word_eliahou_leftover`: period \(84\), or a
+  analogue is `cycle_itinerary_eliahou_leftover`: period \(84\), or a
   listed near-convergent, or \(\ge 10^5\).
 - Small-cycle census — **EXACT — LEAN VERIFIED**
-  (`no_cycle_word_length_le_eight`,
+  (`no_cycle_itinerary_length_le_eight`,
   [juggler_length_eight_cycles.md](juggler_length_eight_cycles.md))
-- Formal expansion of cycle words — **EXACT — LEAN VERIFIED**
-  (`cycle_word_formally_expanding`)
+- Formal expansion of cycle itineraries — **EXACT — LEAN VERIFIED**
+  (`cycle_itinerary_formally_expanding`)
 - Global defect identity — **EXACT — LEAN VERIFIED**
   (`global_defect_identity`,
   [juggler_global_defect.md](juggler_global_defect.md))
@@ -315,7 +315,7 @@ Falsifier               Financing slack measured on real orbit segments violates
                         per-step bound eps_i <= (6/5)/x_{i+1}, or the min bound stays
                         above any reachable floor for infinitely many lengths in a way
                         that is not confined to near-convergent L.
-Existing machinery      globalDefect identity, pathDefectSum/pathPows, cycle_word_
+Existing machinery      globalDefect identity, pathDefectSum/pathPows, cycle_itinerary_
                         formally_expanding, cycle_peak_finance, CycleDiophantine, census
                         <= 8, reachesOne_of_lt_twelve, Python juggler tooling.
 Maximum Phase-0 scope   Derivation note + one computational probe: exact gap table
@@ -360,37 +360,37 @@ It is not required.
   \(2e-o\) copies of `OE` from \(n^{4/3}\) —
   **EXACT — HUMAN PROOF**
   ([juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md))
-- No cycle word of length \(\le 19\) —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_nineteen`)
+- No cycle itinerary of length \(\le 19\) —
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_length_le_nineteen`)
 - Period is \(84\) or \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_or_ge_eighty_five`);
+  (`cycle_itinerary_length_eighty_four_or_ge_eighty_five`);
   the cheap leftovers \(57\) and \(76\) die at the floor \(261\);
   \(L=84\) is the next record near-convergent
 - Period is \(84\) with at least three odd-runs, or \(\ge 85\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+  (`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`)
 - Period is \(57\) or \(\ge 58\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_fifty_seven_or_ge_fifty_eight`), the
+  (`cycle_itinerary_length_fifty_seven_or_ge_fifty_eight`), the
   weaker leftover before the two extra odd seeds
 - Period is \(38\) or \(\ge 39\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_thirty_eight_or_ge_thirty_nine`), the
+  (`cycle_itinerary_length_thirty_eight_or_ge_thirty_nine`), the
   weaker leftover before the \(61/11\) certificate
 - Period is \(19\) or \(\ge 30\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_nineteen_or_ge_thirty`), the weaker
+  (`cycle_itinerary_length_nineteen_or_ge_thirty`), the weaker
   floor-\(53\) leftover
 - Eliahou leftover: period \(84\), or a listed near-convergent, or
   \(\ge 10^5\) —
   **EXACT — LEAN VERIFIED** as the implication
-  `cycle_word_eliahou_leftover`; the laboratory \(166\)-family
+  `cycle_itinerary_eliahou_leftover`; the laboratory \(166\)-family
   instance at floor \(2\cdot 10^6\) is **COMPUTATIONALLY VERIFIED**
   (Paper A Theorem 4.6 prints the parity table at floor \(10^6\):
   prefix \(25780\), \(141\) exceptions)
 - Period is \(\ge 14\) —
-  **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_fourteen`),
+  **EXACT — LEAN VERIFIED** (`cycle_itinerary_length_ge_fourteen`),
   a corollary of the stronger leftover
 - Residual floor \(n<261\) reaches \(1\) —
   **EXACT — LEAN VERIFIED**
@@ -424,12 +424,12 @@ for all \(2\le n\le 2\cdot 10^6\); slack stress on named hard seeds
 No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
 `cycle_finance_min_two_hundred_fifty_seven`) with the census
 companion `CycleFinanceLeftovers.lean`
-(`no_cycle_word_length_le_nineteen`,
-`cycle_word_length_eighty_four_or_ge_eighty_five`,
-`cycle_word_eliahou_leftover`; table-driven length exclusions over
+(`no_cycle_itinerary_length_le_nineteen`,
+`cycle_itinerary_length_eighty_four_or_ge_eighty_five`,
+`cycle_itinerary_eliahou_leftover`; table-driven length exclusions over
 `financeRows53` / `financeRows257` / `financeRows261`),
 `CycleHeightFinance.lean`
-(`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`),
+(`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`),
 `TerminationFloor257.lean`
 (`reachesOne_of_lt_two_hundred_fifty_seven`), and
 `Termination.lean` (`reachesOne_of_lt_fifty_three`). Writeup:
@@ -465,8 +465,8 @@ the unrolled envelope is `cycleMin_log_envelope`; the inequality is
 it: the residual floor `257`
 (`reachesOne_of_lt_two_hundred_fifty_seven`) gives
 `cycle_finance_min_two_hundred_sixty_one`, hence
-`no_cycle_word_length_le_nineteen` and the length leftover
-`cycle_word_length_eighty_four_or_ge_eighty_five`. Lengths `19`
+`no_cycle_itinerary_length_le_nineteen` and the length leftover
+`cycle_itinerary_length_eighty_four_or_ge_eighty_five`. Lengths `19`
 and `30`–`83` die by finance at floors `257` and `261`, encoded as
 the row tables `financeRows53` / `financeRows257` / `financeRows261`
 with one membership lemma each. The
@@ -474,15 +474,15 @@ floor-`261` comparison uses \(261\log 257>15921/11\); \(L=84\)
 survives the uniform bound. `CycleHeightFinance.lean` keeps the
 inv-sum defects and excludes every length-`84` word with at most
 two odd-runs, so the laboratory leftover is
-`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`.
-Eliahou packaging `cycle_word_eliahou_leftover` still rewrites
+`cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five`.
+Eliahou packaging `cycle_itinerary_eliahou_leftover` still rewrites
 the length leftover plus the finance table as period `84`, or
 a listed near-convergent, or at least `10^5`. There is no theorem named
-`no_cycle_word_length_eleven`: that name is reserved by the
-parked leftover-word probes. No `sorry`. Paper A imports
+`no_cycle_itinerary_length_eleven`: that name is reserved by the
+parked leftover-itinerary probes. No `sorry`. Paper A imports
 `CycleFinance` for Theorem 4.4 and Corollary 4.4c and does not
 import `CycleHeightFinance`.
-Not a halt theorem and not `no_cycle_word_any_length`.
+Not a halt theorem and not `no_cycle_itinerary_any_length`.
 The Python floor \(N_0=2\cdot 10^6\) is
 **COMPUTATIONALLY VERIFIED**, not Lean. Paper A Theorem 4.6
 prints the length-only parity table at the published floor
@@ -534,7 +534,7 @@ and `data/research/juggler/cycle_finance/`.
   (the longest is \(37\), seventeen steps, peak
   \(\approx 2.5\cdot10^{13}\)).
 - **Lean census extension** — **EXACT — LEAN VERIFIED**: no cycle
-  word of length \(\le 19\); lengths \(30\)–\(83\) die at floors
+  itinerary of length \(\le 19\); lengths \(30\)–\(83\) die at floors
   \(257\) and \(261\); any remaining cycle has period \(84\) with
   at least three odd-runs, or \(\ge 85\). The cheap leftovers
   \(57\) and \(76\) die at floor \(261\)
@@ -570,7 +570,7 @@ and `data/research/juggler/cycle_finance/`.
   there by raising the floor
   (\(n_{\max}\approx 1.997\cdot 10^6\)), not by the parity sum.
 - **Eliahou leftover** — **EXACT — LEAN VERIFIED** implication
-  (`cycle_word_eliahou_leftover`): period \(84\), or a listed
+  (`cycle_itinerary_eliahou_leftover`): period \(84\), or a listed
   near-convergent, or \(\ge 10^5\). The laboratory instance at
   floor \(2\cdot 10^6\) of the crude table is
   **COMPUTATIONALLY VERIFIED** (the existing \(166\)
@@ -628,7 +628,7 @@ and `data/research/juggler/cycle_finance/`.
   Lean residual floor (\(n\le11\) reaches 1) independently kill
   \(L\in\{1,2,4,5,7,8\}\); \(L\in\{3,6\}\) (the near-tight
   \(2^3<3^2\) and its double) remain census-only — consistent with
-  and transversal to `no_cycle_word_length_le_eight`.
+  and transversal to `no_cycle_itinerary_length_le_eight`.
 
 ## Open questions
 
@@ -667,7 +667,7 @@ and `data/research/juggler/cycle_finance/`.
   ([juggler_cycle_near_tight.md](juggler_cycle_near_tight.md),
   **CLOSE**): cycle \(1+q=n^{3^o-2^L}\) is the opposite of
   open-orbit \(q\to 0\). Christoffel / mechanical-word unique
-  maximizers do **not** reduce leftover-word or CycleMin
+  maximizers do **not** reduce leftover-itinerary or CycleMin
   candidates to a one-parameter necklace
   ([juggler_cycle_christoffel.md](juggler_cycle_christoffel.md),
   **CLOSE**). Prefix-weight finance
@@ -729,7 +729,7 @@ uncertain comparisons. Paper A Theorem 4.6 prints that
 table. The cutoff \(25781\) is not an artifact of \(6/5\). The crude table at floor \(2\cdot 10^6\) remains a
 separate laboratory certificate (same prefix, weaker
 inequality). Leftover \(84\) with \(m\ge 3\) is unchanged as the
-Lean companion. This is not a leftover-word census and not a
+Lean companion. This is not a leftover-itinerary census and not a
 halt theorem.
 
 The residual-floor campaign past \(\approx 4756\) is **PARK**.

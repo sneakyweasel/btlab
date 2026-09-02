@@ -20,7 +20,7 @@ from typing import Any, Iterator
 
 from research.juggler_sequence.bunched_last_cluster import FAMILIES, family_word
 from research.juggler_sequence.bunched_short import SHORT_SPECS
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.cyclemin_obstruction import (
     FAMILY_A_MIN,
     GAPPED_EE_MIN,
@@ -40,7 +40,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short_front.json"
@@ -84,7 +84,7 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -248,7 +248,7 @@ def short_tail_cell(b: int, c: int, cutoff: int = N_CUTOFF) -> dict[str, Any]:
     z_in_return_cell = 0
     z_rows = 0
     for y in range(2, cutoff):
-        if not follows_word(y, tail):
+        if not follows_itinerary(y, tail):
             continue
         follows += 1
         n = image_after(y, tail)
@@ -408,7 +408,7 @@ def known_n12_returns() -> list[dict[str, Any]]:
     for spec in SHORT_SPECS:
         word = family_word(spec["a"], spec["b"], spec["c"])
         for y in range(2, N_CUTOFF):
-            if not follows_word(y, word):
+            if not follows_itinerary(y, word):
                 continue
             n = image_after(y, word)
             if N_MIN <= n <= y:
@@ -679,7 +679,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "BunchedShortFront" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 
@@ -689,7 +689,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["cycleMin_first_even_overshoots"]
         and lean["cycleMin_transport_second_oo"]
         and lean["no_cycleMin_prefix_two_even_eoe"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_cycleMin_five_even"]
         and not lean["has_no_juggler_cycle"]

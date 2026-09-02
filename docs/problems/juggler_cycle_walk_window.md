@@ -19,14 +19,14 @@ at all?
 
 ## Exact statement
 
-**Word identity (EXACT — HUMAN PROOF).** For every \(L\), the
-budgeted hug word at \((L,o_{\min})\) equals the exact IET
+**Itinerary identity (EXACT — HUMAN PROOF).** For every \(L\), the
+budgeted hug itinerary at \((L,o_{\min})\) equals the exact IET
 \(L\)-prefix. Proof: the exact rule (E iff \(u\ge 1\)) keeps
 \(u\in[0,1+\alpha)\), so the prefix uses exactly
 \(a_L=\lceil L/(1+\alpha)\rceil=\lceil Lx\rceil=o_{\min}\) odds;
 if the budgeted word first diverged where a budget ran dry, the
 exact prefix would use strictly more of that letter than its own
-total — a contradiction. So budgets never bind and the words are
+total — a contradiction. So budgets never bind and the itineraries are
 identical. (Spot-checked with integer-exact letters at
 \(60000,123456,250000,301993\) beyond the 19 leftovers.)
 
@@ -46,7 +46,7 @@ hence
 <0.00514\le\frac1{\ln 3\,\ln n'}-C_*(n'),
 \]
 and by the DK/Ostrowski theorem
-\(C_L\le C_*+2s(L)/L<1/(\ln 3\,\ln n')\) for the hug word of
+\(C_L\le C_*+2s(L)/L<1/(\ln 3\,\ln n')\) for the hug itinerary of
 every window length, census-free. Scan sharpening: the worst
 ratio of \(2s/L\) to the \(J\)-gap over the \(251486\) window
 lengths is \(0.1823\) (at \(L=74654\), \(s=35\)) — envelope
@@ -81,7 +81,7 @@ becomes uniform on the window).
 
 ```text
 Mathematical target     Prove that for every L in [50508, 301994) at the
-                        certified floor, the budgeted hug word equals the
+                        certified floor, the budgeted hug itinerary equals the
                         exact IET prefix and C_L <= C_* + 2 s(L)/L <
                         1/(ln 3 ln n') — the crude-envelope caveat "not a
                         theorem for every L" discharged on the whole window
@@ -101,7 +101,7 @@ Existing machinery      certified q_j / a_j and exact_hug_word
 Maximum Phase-0 scope   one window-scan probe + dossier + conjecture +
                         ledger row + tests; no Lean, no Paper A, no N0,
                         no new DP, no new kill claims, no period change
-Promotion criterion     human proofs of word identity and digit bound;
+Promotion criterion     human proofs of itinerary identity and digit bound;
                         exact window max of s; envelope margin > 1 on
                         every L in the window
 Stop criterion          a falsifier fires, or the content reduces to the
@@ -144,7 +144,7 @@ walk-charge DP is not edited.
 ## Conjectures
 
 `juggler_walk_window_envelope` — **EXACT — HUMAN PROOF**.
-Word identity for all \(L\) plus the uniform census-free envelope
+Itinerary identity for all \(L\) plus the uniform census-free envelope
 \(C_L<1/(\ln 3\,\ln n')\) on \([50508,301994)\).
 
 ## Counterexamples
@@ -155,7 +155,7 @@ greedy digit stays within its cap.
 ## Formalization
 
 Since the 1 September 2026 consolidation the discrete side of the
-word identity is Lean: `WalkChargeWords.lean`
+itinerary identity is Lean: `WalkChargeItineraries.lean`
 (`budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`,
 `hugOdds_least`, `hugOdds_le_of_admissible`; ledger row
 `J-cyclemin-walk-word-identity`, **EXACT — LEAN VERIFIED**). The
@@ -167,7 +167,7 @@ computation. Paper A Section 5 now prints the window theorem
 
 Classification **WALK_WINDOW_GREEN**.
 
-- Word identity proved for all \(L\); integer-exact spot checks
+- Itinerary identity proved for all \(L\); integer-exact spot checks
   at \(60000,123456,250000,301993\) pass
 - Digit caps hold on all \(251486\) window lengths; exact max
   \(s=37\) at \(L=275632\) (cap sum \(47\)); level \(1054\)
@@ -188,7 +188,7 @@ not claim a uniform \(B/\theta\) gap.
 ## Decision
 
 **PROMOTE.** Both open ends of the DK branch close on the
-window: the word identity is now a theorem for every \(L\)
+window: the itinerary identity is now a theorem for every \(L\)
 (retiring the per-row verification), and the digit-cap chain
 \(b_j\le a_{j+1}\), cap sum \(47\), \(94/50508<\) \(J\)-gap makes
 the envelope uniform and census-free for every length in

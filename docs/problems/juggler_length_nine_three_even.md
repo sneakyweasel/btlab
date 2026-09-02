@@ -18,7 +18,7 @@ no longer cover?
 ## Exact statement
 
 A length-9 word is formally expanding if and only if it has at least
-six odd letters (\(2^9=512<729=3^6\)). Every mixed cycle word rotates
+six odd letters (\(2^9=512<729=3^6\)). Every mixed cycle itinerary rotates
 to an even-terminating orientation. Every even-terminating three-even
 word is uniquely
 
@@ -48,7 +48,7 @@ n^{3^a}>C_{O^a}\,Z^{2^a}
 
 for all \(n\ge N_0\), where \(Z\) is a last-even / last-odd upper bound
 on \(T_{O^a}(n)\) through the mixed tail \(EO^bEO^cE\), and whether
-there is no `CycleWord` realization on \(2\le n<N_0\).
+there is no `CycleItinerary` realization on \(2\le n<N_0\).
 
 This is not a Lean census and not a halt theorem.
 
@@ -57,21 +57,21 @@ This is not a Lean census and not a halt theorem.
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
 - Small-cycle census (Paper A Theorem 3.6) —
-  **EXACT — LEAN VERIFIED**. No cycle word of length at most six.
+  **EXACT — LEAN VERIFIED**. No cycle itinerary of length at most six.
 - Internal-E bootstrap —
   **EXACT — LEAN VERIFIED**. Last-internal next-square suffix.
 - Leftover length-six orientations (Lemma 3.5) —
   **EXACT — LEAN VERIFIED**. Finite table plus
   \(n^{81}>2^{130}(n+1)^{64}\).
 - Length-7 leftover inventory and census —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_oooooee`,
-  `no_cycle_word_ooooeoe`, `no_cycle_word_length_le_seven`).
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_oooooee`,
+  `no_cycle_itinerary_ooooeoe`, `no_cycle_itinerary_length_le_seven`).
   Length eight is open. Not reopened.
 - Trailing-even cell (`cycle_trailing_evens_lt`) —
-  **EXACT — LEAN VERIFIED**. If a cycle word ends with
+  **EXACT — LEAN VERIFIED**. If a cycle itinerary ends with
   \(r\ge 1\) evens then \(T_v(n)<(n+1)^{2^r}\).
 - Leftover `OOOOOOEEE` —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_ooooooeee`).
+  **EXACT — LEAN VERIFIED** (`no_cycle_itinerary_ooooooeee`).
   Finite table below \(128\) plus
   \(n^{729}>2^{1330}(n+1)^{512}\). Not a length-9 census.
 - Prefix-OOO extra scale from \(n=3\) —
@@ -84,13 +84,13 @@ expanding even-terminating word can have three evens.
 
 ```text
 Mathematical target     What argument excludes the length-9 three-even
-                        leftover CycleWords?
+                        leftover CycleItineraries?
 Novelty hypothesis      Last-internal suffix is always O^c; leftovers
                         are nine words O^a E O^b E O^c E; odd-prefix
                         plus mixed-tail cells replace the two-even
                         families
 Falsifier               A leftover whose prefix-cell tail never fires,
-                        or a CycleWord realization below N0
+                        or a CycleItinerary realization below N0
 Existing machinery      expansion; rotation; odd-run; OO/OOO/odd-run
                         thresholds; CycleMin; internal-E bootstrap;
                         Lemma 3.5 last-even / last-odd cells;
@@ -110,19 +110,19 @@ Phase-1 budget (one leftover, not a census):
 
 ```text
 Mathematical target     Does the trailing-even cell plus the O^6
-                        envelope exclude CycleWord on OOOOOOEEE
+                        envelope exclude CycleItinerary on OOOOOOEEE
                         for every n ≥ 2?
 Novelty hypothesis      Three trailing evens are one cell
                         z < (n+1)^8, not two last-even cells
-Falsifier               A CycleWord realization, or the algebraic
+Falsifier               A CycleItinerary realization, or the algebraic
                         tail n^729 > 2^1330 (n+1)^512 failing
 Existing machinery      cycle_last_even_interval; leftover 6/7
                         tables; lowerDenom(O^6)=2^1330
 Maximum Phase-1 scope   cycle_trailing_evens_lt and
-                        no_cycle_word_ooooooeee. No remaining
+                        no_cycle_itinerary_ooooooeee. No remaining
                         eight leftovers, no length-9 census,
                         no Paper A, no length 8/10, no halt
-Promotion criterion     Lean theorem no_cycle_word_ooooooeee
+Promotion criterion     Lean theorem no_cycle_itinerary_ooooooeee
 Stop criterion          remaining eight leftovers; census;
                         length 8; halt
 ```
@@ -159,13 +159,13 @@ It is not required.
 - the two-even cell \(z<(n+1)^4\) on `OOOOOOEEE` is
   a spurious cutoff \(N_0=8\) —
   **REFUTED**
-- no leftover is a `CycleWord` on \(2\le n<N_0\) —
+- no leftover is a `CycleItinerary` on \(2\le n<N_0\) —
   **COMPUTATIONALLY VERIFIED**
-- `OOOOOOEEE` is not a `CycleWord` at any \(n\ge 2\) —
+- `OOOOOOEEE` is not a `CycleItinerary` at any \(n\ge 2\) —
   **EXACT — LEAN VERIFIED**
 - `OOOEOOOEE` is realized at \(n=183\) but returns \(1664\), not \(183\) —
   **COMPUTATIONALLY VERIFIED**
-- every length-9 cycle word is impossible — not claimed
+- every length-9 cycle itinerary is impossible — not claimed
 - cycles of length ten or more are impossible — not claimed
 - global halt — not claimed
 - induction on \(n\) or on the period excludes cycles — not claimed
@@ -176,14 +176,14 @@ It is not required.
 - Records: [juggler_cycle_length_nine.md](../research/juggler_cycle_length_nine.md),
   [juggler_cycle_length_nine.json](../research/juggler_cycle_length_nine.json)
 - Tests: `tests/research/juggler_sequence/test_cycle_length_nine.py`,
-  `tests/research/juggler_sequence/test_cycle_leftover_words.py`
+  `tests/research/juggler_sequence/test_cycle_leftover_itineraries.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length 10. No four-even programme.
 - Phase 1 Lean: `cycle_trailing_evens_lt` in
   `formal/Problems/Juggler/Cycles.lean` and
-  `no_cycle_word_ooooooeee` in
+  `no_cycle_itinerary_ooooooeee` in
   `formal/Problems/Juggler/LeftoverCycles.lean`.
-  No `no_cycle_word_length_nine`. Paper A records the trailing-even
+  No `no_cycle_itinerary_length_nine`. Paper A records the trailing-even
   cell as Lemma 3.9 and \(OOOOOOEEE\) as the \(a=6\) case of
   Theorem 3.14.
 
@@ -213,12 +213,12 @@ claims that remain false or unproved:
 
 ## Formalization
 
-`cycle_trailing_evens_lt` in `Cycles.lean`: if a cycle word ends
+`cycle_trailing_evens_lt` in `Cycles.lean`: if a cycle itinerary ends
 with \(r\ge 1\) even letters then the state before that run is
 strictly less than \((n+1)^{2^r}\). The case \(r=3\) is the
 three-even cell for `OOOOOOEEE`.
 
-`no_cycle_word_ooooooeee` in `LeftoverCycles.lean`: finite
+`no_cycle_itinerary_ooooooeee` in `LeftoverCycles.lean`: finite
 evaluation on `Fin 128` plus
 \(n^{729}>2^{1330}(n+1)^{512}\) for \(n\ge 128\). The
 computational prefix-cell first fires at \(N_0=73\); \(128\) is
@@ -226,7 +226,7 @@ the algebraic cutoff.
 
 `SmallCycleCensus.lean` still assembles only through length
 seven and records that length eight is open. No
-`no_cycle_word_length_nine`. The remaining eight leftovers are
+`no_cycle_itinerary_length_nine`. The remaining eight leftovers are
 not Lean-excluded. No `sorry`. No halt theorem. No
 `CycleSearch`. FloorPower, Progress, and Minimal are not
 rewritten. Paper A records Lemma 3.9 and Theorem 3.14. This is
@@ -258,10 +258,10 @@ zero returns. Lean excludes `OOOOOOEEE` only.
 For the two \(a=2\) leftovers the remainder after the first \(E\) is
 exactly a length-6 leftover. On a cycle minimum that remainder starts
 at \(y\ge n\), so Lemma 3.5 transports at \(256\). The prefix-cell
-bound already excludes those two words as `CycleWord`, so the
+bound already excludes those two words as `CycleItinerary`, so the
 transport is a CycleMin simplification, not a second method.
 
-This is a computational exclusion of the nine leftover `CycleWord`s
+This is a computational exclusion of the nine leftover `CycleItinerary`s
 and a Lean exclusion of one leftover, not a Lean census and not a
 no-cycles theorem.
 
@@ -271,8 +271,8 @@ Lean-exclude the remaining eight three-even leftovers by the
 prefix-cell tails. Do not open length 8, length 10, or four-even
 words automatically. A uniform two-even theorem for lengths 6–8
 remains a later distill. Do not start an O-terminating
-`CycleWord` programme. Do not claim halt. Do not assemble
-`no_cycle_word_length_nine`.
+`CycleItinerary` programme. Do not claim halt. Do not assemble
+`no_cycle_itinerary_length_nine`.
 
 ## Decision
 

@@ -1,19 +1,19 @@
 {
   "id": "juggler_cycle_first_collision",
   "title": "CycleMin imposes a joint restriction on the first-collision pair (c, t) beyond Pred cells and the cyclic-parent type",
-  "statement": "Let x be the first meeting of an initial trajectory with a hypothetical CycleMin cycle, J(c)=J(t)=x, c on the cycle, t the transient parent, c\neq t. Classifying (c,t) in E/O x E/O, CycleMin imposes a restriction on the pair (c,t) — a forbidden type both cells allow, or an order/gap/residue of (c,t) or (c,t^3) in [x^2,(x+1)^2) — that is not odd_cell_unique / oddLanding_preimage_unique / cycleMin_not_end_odd / even_cell_iff / odd_cell_iff / Collision Factorization (first iff t is off-cycle; CycleMin constrains only which parent can be cyclic).",
+  "statement": "Let x be the first meeting of an initial trajectory with a hypothetical CycleMin cycle, J(c)=J(t)=x, c on the cycle, t the transient parent, c\neq t. Classifying (c,t) in E/O x E/O, CycleMin imposes a restriction on the pair (c,t) — a forbidden type both cells allow, or an order/gap/residue of (c,t) or (c,t^3) in [x^2,(x+1)^2) — that is not odd_preimage_unique / oddLanding_preimage_unique / cycleMin_not_end_odd / even_preimage_iff / odd_preimage_iff / Collision Factorization (first iff t is off-cycle; CycleMin constrains only which parent can be cyclic).",
   "status": "REFUTED",
   "counterexamples": [
     "Collision Factorization: a cycle is forward-invariant, so first meeting at x iff t is not on the cycle; the pair is the unique cyclic parent plus any other parent",
     "valley (O,*) empty by cycleMin_not_end_odd; odd_return_ge_n is None at n=10^6+1, 13, 125",
-    "(O,O) empty on odd starts in [1,2001) (odd_cell_unique)",
+    "(O,O) empty on odd starts in [1,2001) (odd_preimage_unique)",
     "valley (E,O) occupancy is odd-cell Type 2: empty at n=10^6+1 (Type 0); occupied at x=125 with t=25<125",
     "mixed offset t^3-x^2 equals the archived cube-gap on all 994 Type-2 images of odd starts in [13,2001); nearest-even gap is 1 by parity",
     "(E,E) gaps are the even widths 2,4,...,2(|Pred_E|-1); at x=10 the eleven evens 100..120 have max gap 20",
     "named forks 100->10<-102 and 365/501 at 763 via 582276 and 582916 are (E,E); 763 has empty odd cell"
   ],
   "first_seen": "juggler first exact collision",
-  "lean_reference": "odd_cell_unique",
+  "lean_reference": "odd_preimage_unique",
   "literature": [
     "simons-de-weger-2005-collatz-m-cycles"
   ],

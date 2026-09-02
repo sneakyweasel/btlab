@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.cycle_length_nine import (
-    cycle_word_hits,
+    cycle_itinerary_hits,
     odd_log2_C,
     tail_fires,
     z_upper,
@@ -49,7 +49,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     pre_finance_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -81,23 +81,23 @@ FAMILIES: tuple[dict[str, Any], ...] = (
 
 LEAN_THEOREMS = (
     "cycle_trailing_evens_lt",
-    "no_cycle_word_ooooooeee",
-    "no_cycle_word_two_even_ee",
-    "no_cycle_word_two_even_eoe",
+    "no_cycle_itinerary_ooooooeee",
+    "no_cycle_itinerary_two_even_ee",
+    "no_cycle_itinerary_two_even_eoe",
     "no_cycleMin_gapped_three_even_ee",
     "no_cycleMin_gapped_three_even_eoe",
-    "no_cycle_word_length_le_seven",
+    "no_cycle_itinerary_length_le_seven",
     "CycleMin",
-    "no_cycle_word_three_even_eee",
+    "no_cycle_itinerary_three_even_eee",
     "three_even_eee_tail",
-    "no_cycle_word_three_even_eoee",
+    "no_cycle_itinerary_three_even_eoee",
     "three_even_eoee_tail_of_five",
-    "no_cycle_word_three_even_eooee",
+    "no_cycle_itinerary_three_even_eooee",
     "three_even_eooee_tail",
-    "no_cycle_word_three_even_eoooee",
-    "no_cycle_word_three_even_eeoe",
-    "no_cycle_word_three_even_eoeoe",
-    "no_cycle_word_three_even_eooeoe",
+    "no_cycle_itinerary_three_even_eoooee",
+    "no_cycle_itinerary_three_even_eeoe",
+    "no_cycle_itinerary_three_even_eoeoe",
+    "no_cycle_itinerary_three_even_eooeoe",
 )
 
 
@@ -211,7 +211,7 @@ def row_for(family: dict[str, Any], a: int) -> dict[str, Any]:
     c = family["c"]
     word = family_word(a, b, c)
     n0 = first_cutoff(a, b, c)
-    table = None if n0 is None else cycle_word_hits(word, 2, n0)
+    table = None if n0 is None else cycle_itinerary_hits(word, 2, n0)
     return {
         "name": family["name"],
         "a": a,
@@ -327,14 +327,14 @@ def lean_api_present() -> dict[str, bool]:
         and "def CycleStates" not in combined,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "no_length_eight_theorem": "theorem no_cycle_word_length_eight"
+        "no_length_eight_theorem": "theorem no_cycle_itinerary_length_eight"
         not in combined,
-        "no_length_nine_theorem": "theorem no_cycle_word_length_nine"
+        "no_length_nine_theorem": "theorem no_cycle_itinerary_length_nine"
         not in combined,
-        "no_bunched_tail_theorem": "theorem no_cycle_word_bunched" not in combined
+        "no_bunched_tail_theorem": "theorem no_cycle_itinerary_bunched" not in combined
         and "theorem no_cycleMin_bunched" not in combined
-        and "theorem no_cycle_word_last_cluster" not in combined,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        and "theorem no_cycle_itinerary_last_cluster" not in combined,
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "Minimal_untouched": "bunched_last_cluster" not in MINIMAL.read_text(
             encoding="utf-8"
         ),
@@ -344,19 +344,19 @@ def lean_api_present() -> dict[str, bool]:
 def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
-        and lean["no_cycle_word_ooooooeee"]
-        and lean["no_cycle_word_two_even_ee"]
+        and lean["no_cycle_itinerary_ooooooeee"]
+        and lean["no_cycle_itinerary_two_even_ee"]
         and lean["no_cycleMin_gapped_three_even_ee"]
-        and lean["no_cycle_word_three_even_eee"]
+        and lean["no_cycle_itinerary_three_even_eee"]
         and lean["three_even_eee_tail"]
-        and lean["no_cycle_word_three_even_eoee"]
+        and lean["no_cycle_itinerary_three_even_eoee"]
         and lean["three_even_eoee_tail_of_five"]
-        and lean["no_cycle_word_three_even_eooee"]
+        and lean["no_cycle_itinerary_three_even_eooee"]
         and lean["three_even_eooee_tail"]
-        and lean["no_cycle_word_three_even_eoooee"]
-        and lean["no_cycle_word_three_even_eeoe"]
-        and lean["no_cycle_word_three_even_eoeoe"]
-        and lean["no_cycle_word_three_even_eooeoe"]
+        and lean["no_cycle_itinerary_three_even_eoooee"]
+        and lean["no_cycle_itinerary_three_even_eeoe"]
+        and lean["no_cycle_itinerary_three_even_eoeoe"]
+        and lean["no_cycle_itinerary_three_even_eooeoe"]
         and lean["no_length_eight_theorem"]
         and lean["length_eight_open_in_census"]
         and lean["no_bunched_tail_theorem"]
@@ -417,7 +417,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         "classification": CLASS_GREEN,
         "reason": (
             "seven bunched last-cluster families fire with N0 bounded "
-            "in a; Lean excludes all seven as CycleWord families; a "
+            "in a; Lean excludes all seven as CycleItinerary families; a "
             "uniform coarse (n+1)^K cell for the last four is refuted "
             "and those four use a tight last-odd cell; not a "
             "length-8/9 census"
@@ -459,7 +459,7 @@ def probe_payload() -> dict[str, Any]:
         "decision": decision,
         "search_method": (
             "prefix-cell N0(a) for the seven bunched last-cluster "
-            "families through a=20; empty CycleWord tables below N0; "
+            "families through a=20; empty CycleItinerary tables below N0; "
             "EEE coarse cubing from n>=73; Lean O^a EEE for a>=6; "
             "EOEE coarse cubing from n>=314; Lean O^a EOEE for a>=5; "
             "EOOEE coarse cubing from n>=205, Lean via the two-even "
@@ -553,7 +553,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             decision["reason"] + ".",
             "",
             "This is not a halt result, not a length-8/9 census, and",
-            "not a Lean theorem no_cycle_word_bunched.",
+            "not a Lean theorem no_cycle_itinerary_bunched.",
             "",
         ]
     )

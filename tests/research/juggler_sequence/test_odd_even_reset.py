@@ -19,7 +19,7 @@ from research.juggler_sequence.odd_even_reset import (
 )
 from research.juggler_sequence.odd_chain_minimality import extract_odd_runs
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 
 def test_37_first_reset_quadruple():

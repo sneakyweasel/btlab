@@ -1,7 +1,7 @@
 {
   "id": "juggler_mixed_word_strictness",
   "title": "Mixed Juggler words are strictly below the floor-power envelope",
-  "statement": "If n>=2 and w is a realized finite parity word containing at least one odd letter, then T_w(n)^{2^{|w|}} < n^{3^{#O(w)}}.",
+  "statement": "If n>=2 and w is a realized finite parity itinerary containing at least one odd letter, then T_w(n)^{2^{|w|}} < n^{3^{#O(w)}}.",
   "status": "REFUTED",
   "counterexamples": [
     "word O, n=9, T(9)=27, 27^2 = 9^3 = 729",

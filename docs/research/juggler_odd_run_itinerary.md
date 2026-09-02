@@ -1,4 +1,4 @@
-# Juggler maximal odd-run itinerary
+# Juggler maximal odd-run word
 
 Status: **ODD_RUN_ITINERARY_PARK**
 

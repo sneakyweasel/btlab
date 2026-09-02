@@ -39,7 +39,7 @@ from research.juggler_sequence.cycle_finance import (
 )
 from research.juggler_sequence.cycle_finance_cell_bridge import random_two_type
 from research.juggler_sequence.cycle_ordered_excursion import excursion_map
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.power_itineraries import floor_power
 
 REALIZABLE_DIR = DATA_DIR / "realizable_finance"
 START = PUBLISHED_FLOOR + 1
@@ -182,7 +182,7 @@ def forced_start_deviations(n: int, word: str) -> int:
 
 
 def actual_prefix_delta(n: int, cap: int = ACTUAL_CAP) -> dict[str, Any]:
-    """Finance of the actual itinerary versus two-type envelope of the same (k, o)."""
+    """Finance of the actual word versus two-type envelope of the same (k, o)."""
 
     letters: list[str] = []
     states = [n]

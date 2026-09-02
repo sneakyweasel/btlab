@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.k5_post_l_ooe import WORD_W5
 from research.juggler_sequence.oneshot_recovery import WORD, post_kind
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.parity_persist import (
     CLASS_PARK,
     EVEN_T,
@@ -30,27 +30,27 @@ from research.juggler_sequence.parity_persist import (
 
 
 def test_named_runs():
-    assert follows_word(LONG_RUN["n"], WORD)
+    assert follows_itinerary(LONG_RUN["n"], WORD)
     row = l_row(LONG_RUN["n"])
     assert row is not None
     assert row["t"] == 67709
     assert row["run"] == 5
     assert row["kind"] == "OO"
     assert odd_run_len(67709) == 5
-    assert follows_word(RUN4["n"], WORD)
+    assert follows_itinerary(RUN4["n"], WORD)
     assert l_row(RUN4["n"])["run"] == 4
     assert l_row(RUN3["n"])["run"] == 3
     assert l_row(RUN2["n"])["run"] == 2
     assert l_row(RUN1["n"])["run"] == 1
     assert l_row(EVEN_T["n"])["run"] == 0
     assert post_kind(21154) == "E"
-    assert follows_word(501, WORD_W5) is False
-    assert follows_word(33391, WORD_W5) is False
+    assert follows_itinerary(501, WORD_W5) is False
+    assert follows_itinerary(33391, WORD_W5) is False
 
 
 def test_window_is_exactly_the_l_followers():
     for n in L_WINDOW:
-        assert follows_word(n, WORD), n
+        assert follows_itinerary(n, WORD), n
     assert image_after(33391, WORD) == 67709
     assert image_after(501, WORD) == 763
 
@@ -116,5 +116,5 @@ def test_dossier_boundary():
     assert "PARK" in dossier
     assert "33391" in dossier
     assert "juggler_parity_persist" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

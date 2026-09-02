@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_ooo_escape import starts_ooe, walk_language
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.oneshot_recovery import (
     CLASS_GREEN,
     E_DROP,
@@ -51,7 +51,7 @@ def test_oe_and_e_drops():
     assert oe["recovery"] == "OE"
     assert oe["drop"] == OE_DROP["drop"]
     assert oe["follows_L"] is False
-    assert follows_word(OE_DROP["n"], WORD)
+    assert follows_itinerary(OE_DROP["n"], WORD)
     assert image_after(OE_DROP["n"], WORD) == OE_DROP["t"]
     assert image_after(OE_DROP["t"], "OE") == OE_DROP["drop"]
     ev = post_record(E_DROP["n"])
@@ -148,5 +148,5 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "6561" in dossier
     assert "juggler_oneshot_recovery" in parent
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_juggler_cycle" not in note

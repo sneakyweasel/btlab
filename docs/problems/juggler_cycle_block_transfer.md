@@ -45,8 +45,8 @@ At \((a,r)=(1,1)\) this is the \(\mathtt{OE}\) corridor
 (KNOWN / REPARAMETERIZATION).**
 The leading-scale composition is the exponent-budget product.
 Outcome A at this scale is \(3^o>2^L\), which every nonempty
-cycle word already needs (`cycle_word_formally_expanding`).
-Outcome B is a contracting word, already impossible. Leftover
+cycle itinerary already needs (`cycle_itinerary_formally_expanding`).
+Outcome B is a contracting itinerary, already impossible. Leftover
 \((L,o)=(19,12)\) and \((84,53)\) are formally expanding, so A
 does not contradict. Floors on the leftover gap are
 `cycleMin_finance`.
@@ -121,7 +121,7 @@ Falsifier               F_{a,r} is the archived cell; formal
                         F_cycle is x^{3^o/2^L}; C is 365 vs 1517
 Existing machinery      excursion_map; even_tower_bounds;
                         power_bound_word;
-                        cycle_word_formally_expanding;
+                        cycle_itinerary_formally_expanding;
                         ordered excursion; pair closure;
                         odd-run itinerary
 Maximum Phase-0 scope   write F_{a,r} as the existing cell;
@@ -146,7 +146,7 @@ run automaton.
 - **CLOSE** if \(F_{a,r}\) is the archived exponent cell plus
   even tower.
 - **CLOSE** if formal \(F_{\mathrm{cycle}}\) is \(x^{3^o/2^L}\),
-  so A is required expansion and B is a contracting word.
+  so A is required expansion and B is a contracting itinerary.
 - **CLOSE** if two-block hulls are \(\mu\) products
   (\(243<256\)).
 - **CLOSE** if C is the \(365/1517\) split.
@@ -243,7 +243,7 @@ closure, or the exponent budget.
 **CLOSE**. Interval transfer plus general \(r\) plus cyclic
 return does not produce a new map. \(F_{a,r}\) is the archived
 exponent cell. Formal composition is \(3^o/2^L\), so A is the
-expanding-word lemma and B is a contracting word. Two-block
+expanding-word lemma and B is a contracting itinerary. Two-block
 hulls are \(\mu\) products. Outcome C is the standing
 \(365/1517\) split: the next run is not a function of the
 run-type word. No Paper A edit, no ledger row, no new Lean,

@@ -227,7 +227,7 @@
       }
     ],
     "n_search": false,
-    "cycle_word_census": false,
+    "cycle_itinerary_census": false,
     "odd_landing_engine": false,
     "residual_graph": false,
     "new_energy": false,
@@ -1099,5 +1099,5 @@
     "secondary": [],
     "reason": "distinguished cycle locations package as m \u2264 p < x < M with a strict top window, but every scale composition is the ordinary word envelope. Transient starts show that p = m, z < p, z > x, and z \u2265 m^2 are not universal"
   },
-  "search_method": "finite-orbit distinguished points around the maximum; no cycle-state search; no cycle-word census; no residual graph"
+  "search_method": "finite-orbit distinguished points around the maximum; no cycle-state search; no cycle-itinerary census; no residual graph"
 }

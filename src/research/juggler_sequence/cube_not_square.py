@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.cycle_word import follows_word, image_after
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
     MINIMAL,
@@ -23,7 +23,7 @@ from research.juggler_sequence.lean_paths import (
     has_named,
     juggler_text,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cube_not_square.json"
@@ -90,7 +90,7 @@ def witness_1517() -> dict[str, Any]:
         "n": n,
         "word": word,
         "u": u,
-        "follows": follows_word(n, word),
+        "follows": follows_itinerary(n, word),
         "image": image_after(n, word),
         "in_cell": cube_not_square(n, u),
         "u_odd": u % 2 == 1,
@@ -111,7 +111,7 @@ def leftover_parities() -> dict[int, dict[str, Any]]:
     word = "OOEOOEOOEOEOO"
     out: dict[int, dict[str, Any]] = {}
     for n in (365, 501, 1517, 6187):
-        if not follows_word(n, word):
+        if not follows_itinerary(n, word):
             out[n] = {"follows": False}
             continue
         x = image_after(n, word)
@@ -159,7 +159,7 @@ def lean_api_present() -> dict[str, bool]:
         ).read_text(encoding="utf-8"),
         "not_in_paper_barrel": "cube_not_square" not in paper
         and "even_below_cube_cell" not in paper,
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
     }
 
 

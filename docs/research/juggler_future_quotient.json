@@ -13,7 +13,7 @@
     "residual_state_object": false,
     "residual_step_extended": false,
     "finite_residual_automaton": false,
-    "word_language_reopened": false,
+    "itinerary_language_reopened": false,
     "pe_factor_reopened": false,
     "history_is_new_state": false,
     "new_scalar_energy": false
@@ -5768,7 +5768,7 @@
     "forbidden_hits": [],
     "no_global_termination_theorem": true,
     "FloorPower_absent": true,
-    "no_word_language_reopen": true,
+    "no_itinerary_language_reopen": true,
     "no_pe_factor_reopen": true
   },
   "decision": {

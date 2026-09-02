@@ -5,8 +5,8 @@ from __future__ import annotations
 from research.juggler_sequence.lean_paths import juggler_text
 
 from research.juggler_sequence.capture_certificates import classify_block
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 from research.juggler_sequence.residual_progress import (
     CLASS_GREEN,
     LEAN_THEOREMS,
@@ -26,7 +26,7 @@ from research.juggler_sequence.residual_progress import (
 
 
 def test_progress_predicates_on_calibration():
-    assert follows_word(9, "OOE")
+    assert follows_itinerary(9, "OOE")
     assert image_after(9, "OOE") == 11
     assert classify_block(9, "OOE") == "NO_CERTIFICATE"
     assert certified_reaches_one(11) is True

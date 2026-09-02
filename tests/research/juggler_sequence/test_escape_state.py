@@ -16,7 +16,7 @@ from research.juggler_sequence.escape_state import (
     walk_prefixes,
 )
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, odd_count
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, odd_count
 
 
 def test_margin_identity_on_nonpositive_gap():

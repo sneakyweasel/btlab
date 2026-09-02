@@ -272,7 +272,7 @@ theorem prefixDeficit_eq (n : ℕ) (w : List Branch) :
       oddCount_take_succ hk]
     cases h : w[k] <;> · simp; ring
 
-/-- The full-word prefix deficit is the transport deficit. -/
+/-- The full-itinerary prefix deficit is the transport deficit. -/
 theorem prefixDeficit_length (n : ℕ) (w : List Branch) :
     prefixDeficit n w w.length = transportDeficit n w := by
   rw [prefixDeficit_eq n w le_rfl, List.take_length, transportDeficit]

@@ -1,7 +1,7 @@
 """Word-independent cycle extrema and square-scale excursion bounds.
 
 Not a Research Engine control-layer experiment. Not a halt theorem.
-Does not enumerate cycle words and does not search for periodic
+Does not enumerate cycle itineraries and does not search for periodic
 points. Calibrates stay-above-min transients against the forced
 cycle constraint M > m^2.
 """
@@ -13,7 +13,7 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     ENVELOPE,
@@ -173,19 +173,19 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in text
-        and "theorem no_cycle_word " not in text,
+        and "theorem no_cycle_itinerary " not in text,
         "no_cycle_engine": "def CycleSearch" not in text
         and "def CycleStates" not in text,
         "no_length_six_theorem": "length_six" not in text
         and "length_six" not in floor,
         "no_infinite_path_type": "coinductive" not in text.lower()
         and "def InfinitePath" not in text,
-        "FloorPower_not_rewritten": "CycleWord" not in floor
+        "FloorPower_not_rewritten": "CycleItinerary" not in floor
         and "CycleMax" not in floor,
-        "Progress_unchanged": "CycleWord" not in progress,
+        "Progress_unchanged": "CycleItinerary" not in progress,
         "orbit_min_not_used": "MinimalNonTerm" not in text,
         "PowerBoundEq_not_used_as_cycle_attack": "PowerBoundEq" not in text,
-        "O_terminating_not_claimed": "no_cycle_word_length_six_ends_odd"
+        "O_terminating_not_claimed": "no_cycle_itinerary_length_six_ends_odd"
         not in text,
         "no_cell_census": "no_cycle_max_first_cell" not in text,
     }
@@ -237,7 +237,7 @@ def run_probe() -> dict[str, Any]:
             and row["first_square_scale"]["cell"] == "eq_sq"
         ),
         "n_search": False,
-        "cycle_word_census": False,
+        "cycle_itinerary_census": False,
         "excursions": rows,
     }
 
@@ -270,7 +270,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_INCOMPLETE,
             "reason": f"lean_ok={lean_ok}",
         }
-    if scan["n_search"] or scan["cycle_word_census"]:
+    if scan["n_search"] or scan["cycle_itinerary_census"]:
         return {
             "classification": CLASS_INCOMPLETE,
             "reason": "cycle search is out of scope",
@@ -385,7 +385,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         [
             "",
             f"- n-search: `{scan['n_search']}`",
-            f"- cycle-word census: `{scan['cycle_word_census']}`",
+            f"- cycle-word census: `{scan['cycle_itinerary_census']}`",
             "",
             "## Lean",
             "",

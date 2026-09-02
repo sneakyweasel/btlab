@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from research.juggler_sequence.lean_paths import juggler_text
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.eoo_cell_mechanism import (
     CLASS_GREEN,
     CLASS_PATTERN,
@@ -22,7 +22,7 @@ from research.juggler_sequence.eoo_cell_mechanism import (
     scan_word_sqrt_cells,
     sqrt_cell,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
 
 
 def test_eoo_cell_output_and_threshold():
@@ -38,7 +38,7 @@ def test_eoo_cell_output_and_threshold():
     assert not follows_eoo_sqrt(4)
     assert not follows_eoo_sqrt(16)
     for n in (2, 10, 12, 14):
-        assert follows_word(n, "EOO") == follows_eoo_sqrt(n)
+        assert follows_itinerary(n, "EOO") == follows_eoo_sqrt(n)
         q, _r = residue(n)
         assert image_after(n, "EOO") == eoo_cell_output(q)
         assert (image_after(n, "EOO") < n) == (n > eoo_cell_output(q))
@@ -82,7 +82,7 @@ def test_ooe_oeo_vary_on_n_sqrt_cells():
     assert oeo["varying_cells"] >= 1
     assert ooe["varying_cells"] > ooe["constant_cells"]
     assert oeo["varying_cells"] > oeo["constant_cells"]
-    assert follows_word(5, "OOE")
+    assert follows_itinerary(5, "OOE")
     assert image_after(5, "OOE") == 6
 
 

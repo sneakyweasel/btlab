@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.oo_descent_density import window_census
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import (
     CLASS_FRONTIER,
     CLASS_RESIDUAL,
@@ -25,7 +25,7 @@ def test_even_and_oe_are_automatic_progress():
     assert coverage_bucket(2) == "EVEN_PROGRESS"
     assert floor_power(2) == 1
     assert coverage_bucket(13) == "OE_PROGRESS"
-    assert follows_word(13, "OE")
+    assert follows_itinerary(13, "OE")
     assert image_after(13, "OE") == 6
     assert 6 < 13
     assert coverage_bucket(7) == "OE_PROGRESS"

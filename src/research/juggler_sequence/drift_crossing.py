@@ -25,7 +25,7 @@ from research.juggler_sequence.near_extremal_prefixes import (
     prefix_noncontracting,
 )
 from research.juggler_sequence.power_algebra import is_square
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     floor_power,
     word_of,

@@ -15,7 +15,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.compensated_contraction import first_defect_sufficient, follows_word
+from research.juggler_sequence.compensated_contraction import first_defect_sufficient, follows_itinerary
 from research.juggler_sequence.envelope_defect import first_nonexact_index
 from research.juggler_sequence.excursions import STATUS_RETURNED, _walk_returns, peak_index
 from research.juggler_sequence.first_return_excursions import (
@@ -28,7 +28,7 @@ from research.juggler_sequence.first_return_excursions import (
 )
 from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, juggler_text
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, word_of
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, word_of
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_adversarial_paths.json"

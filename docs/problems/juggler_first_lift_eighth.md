@@ -44,7 +44,7 @@ with \(T(x)\) even and \(x^{3}\ge n^{8}\). The long leftover
 and the same unsafe side.
 
 The four named leftovers remain safe at their first lift, but
-only because those words keep the inherited envelope
+only because those itineraries keep the inherited envelope
 
 \[
 3^{o+1}<8\cdot 2^{|w|}.

@@ -1,4 +1,4 @@
-# Juggler length-7 cycle-word inventory
+# Juggler length-7 cycle-itinerary inventory
 
 Status: **LENGTH_SEVEN_LEFTOVER_TAIL_GREEN**
 
@@ -10,7 +10,7 @@ and not a termination theorem. Length 7 only; length 8 is open.
 ```text
 Mathematical target     Which even-terminating expanding length-7
                         words survive the Paper A filters, and do
-                        the two leftover tails exclude CycleWord?
+                        the two leftover tails exclude CycleItinerary?
 Novelty hypothesis      Length 7 is the same two-even type as
                         length 6; bootstrap plus Lemma 3.5 tails
 Falsifier               A leftover whose tail never fires, or a
@@ -28,7 +28,7 @@ Maximum Phase-0 scope   inventory + N0 + finite table; no Lean
 - secondary: `['TWO_EVEN_TYPE_THROUGH_EIGHT']`
 - sorry-free: `True`
 
-length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_word_length_le_seven.
+length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_itinerary_length_le_seven.
 
 ## Even-terminating expanding length-7 words
 
@@ -86,7 +86,7 @@ length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, i
 
 ## Lean
 
-- `cycle_word_formally_expanding`: `True`
+- `cycle_itinerary_formally_expanding`: `True`
 - `no_cycle_odd_run_append_even`: `True`
 - `oo_suffix_threshold`: `True`
 - `ooo_suffix_threshold`: `True`
@@ -94,12 +94,12 @@ length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, i
 - `cycleMin_not_odd_even`: `True`
 - `cycleMin_not_start_even`: `True`
 - `cycle_last_even_interval`: `True`
-- `no_cycle_word_length_le_six`: `True`
-- `no_cycle_word_ooeoooe`: `True`
-- `no_cycle_word_oooeooe`: `True`
-- `no_cycle_word_oooooee`: `True`
-- `no_cycle_word_ooooeoe`: `True`
-- `no_cycle_word_length_le_seven`: `True`
+- `no_cycle_itinerary_length_le_six`: `True`
+- `no_cycle_itinerary_ooeoooe`: `True`
+- `no_cycle_itinerary_oooeooe`: `True`
+- `no_cycle_itinerary_oooooee`: `True`
+- `no_cycle_itinerary_ooooeoe`: `True`
+- `no_cycle_itinerary_length_le_seven`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
 - length eight open in census: `True`
@@ -136,10 +136,10 @@ length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, i
 
 **LENGTH_SEVEN_LEFTOVER_TAIL_GREEN**
 
-length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_word_length_le_seven.
+length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_itinerary_length_le_seven.
 
-This is not a halt result. Length-7 cycle words are Lean-excluded.
-Cycles ending in O as CycleWord are not treated separately:
-mixed words rotate to an even-terminating orientation.
+This is not a halt result. Length-7 cycle itineraries are Lean-excluded.
+Cycles ending in O as CycleItinerary are not treated separately:
+mixed itineraries rotate to an even-terminating orientation.
 Length 8 and 9 were not opened.
 

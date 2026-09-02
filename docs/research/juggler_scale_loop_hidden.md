@@ -31,7 +31,7 @@ Maximum Phase-0 scope   two inherited even-even loops;
 
 C2->C4->C2->C1 is the one-shot word OOEOOOEOOEE; the return is C1-post, not C1-pre. 501 vs 763 is the same scale+parity with different futures. 6187 drops by OE. The exact signature does not repeat.
 
-## Attack 1 — the loop is a word
+## Attack 1 — the loop is an word
 
 Even-even `C2 -> C4 -> C2 -> C1` from inherited odd `q` is
 `OEE` on `q`, equivalently `OOEOOOEOOEE` on `n`. The return

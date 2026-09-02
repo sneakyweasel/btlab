@@ -1149,8 +1149,8 @@
   },
   "lean": {
     "sorry_free": true,
-    "odd_cell_unique": true,
-    "odd_cell_iff": true,
+    "odd_preimage_unique": true,
+    "odd_preimage_iff": true,
     "floorPower_odd_macro_direction": true,
     "landingParity_odd_iff": true,
     "no_forbidden_engines": true

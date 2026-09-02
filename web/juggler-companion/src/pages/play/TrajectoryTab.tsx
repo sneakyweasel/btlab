@@ -40,7 +40,7 @@ export function TrajectoryTab() {
   return (
     <div className="space-y-5">
       <p className="text-sm text-muted">
-        Trajectory = the list of values. Word = the O/E parities of the prefix so
+        Trajectory = the list of values. Itinerary = the O/E parities of the prefix so
         far. Hitting 1 is one trajectory, not a theorem.
       </p>
       <StartControl />
@@ -59,7 +59,7 @@ export function TrajectoryTab() {
       {view ? (
         <>
           <div className="grid gap-3 sm:grid-cols-4">
-            <Metric label="Word so far" value={view.word || "—"} />
+            <Metric label="Itinerary so far" value={view.itinerary || "—"} />
             <Metric label="Steps" value={String(view.states.length - 1)} />
             <Metric
               label="Hit 1?"

@@ -21,7 +21,7 @@ export type TrajectoryView = {
   n: bigint;
   stepsAsked: number;
   states: bigint[];
-  word: string;
+  itinerary: string;
   reachedOne: boolean;
   bitCapped: boolean;
   tooLarge: boolean;
@@ -48,7 +48,7 @@ export function walkTrajectory(n: bigint, steps: number): TrajectoryView {
       n,
       stepsAsked: cap,
       states: [n],
-      word: "",
+      itinerary: "",
       reachedOne: n === 1n,
       bitCapped: true,
       tooLarge: true,
@@ -84,7 +84,7 @@ export function walkTrajectory(n: bigint, steps: number): TrajectoryView {
     n,
     stepsAsked: cap,
     states: path,
-    word: letters.join(""),
+    itinerary: letters.join(""),
     reachedOne: path[path.length - 1] === 1n,
     bitCapped,
     tooLarge: false,
@@ -104,7 +104,7 @@ export function trajectoryFromStates(
     n,
     stepsAsked: Math.max(states.length - 1, 0),
     states,
-    word,
+    itinerary: word,
     reachedOne: states[states.length - 1] === 1n,
     bitCapped: false,
     tooLarge: false,
@@ -112,7 +112,7 @@ export function trajectoryFromStates(
   };
 }
 
-export function tryCycleWord(
+export function tryCycleItinerary(
   n: bigint,
   word: string,
 ): {

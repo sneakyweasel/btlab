@@ -587,16 +587,16 @@
     "firstDefect": true,
     "odd_defect_lift_lower_bound": true,
     "power_bound_compensated_contracts": true,
-    "no_cycle_word_length_eight": true,
-    "no_cycle_word_length_nine": true,
-    "no_cycle_word_four_even": true,
+    "no_cycle_itinerary_length_eight": true,
+    "no_cycle_itinerary_length_nine": true,
+    "no_cycle_itinerary_four_even": true,
     "no_cycleMin_four_even": true,
-    "no_cycle_word_first_e_e4": true,
+    "no_cycle_itinerary_first_e_e4": true,
     "no_cycleMin_first_e_e4": true,
-    "no_cycle_word_bunched": true,
-    "no_cycle_word_length_eleven": true,
-    "no_cycle_word_amplify_surplus": true,
-    "no_cycle_word_four_even_amplify": true,
+    "no_cycle_itinerary_bunched": true,
+    "no_cycle_itinerary_length_eleven": true,
+    "no_cycle_itinerary_amplify_surplus": true,
+    "no_cycle_itinerary_four_even_amplify": true,
     "amplify_does_not_claim_surplus": true,
     "length_eight_open_in_census": true,
     "no_all_cycles_impossible": true,
@@ -604,7 +604,7 @@
   },
   "decision": {
     "classification": "AMPLIFY_SURPLUS_REFUTED",
-    "reason": "first-defect Amplify has exponent 2184 (rho=1) or 2185.5 (max rho) against surplus n^{2187}; the n^3 gap is invariant under even letters. Optimistic max-rho Amplify already loses at the seven-odd cutoff 256, which is where these words can first be followed; leftover N0 is later still"
+    "reason": "first-defect Amplify has exponent 2184 (rho=1) or 2185.5 (max rho) against surplus n^{2187}; the n^3 gap is invariant under even letters. Optimistic max-rho Amplify already loses at the seven-odd cutoff 256, which is where these itineraries can first be followed; leftover N0 is later still"
   },
   "search_method": "tight-scale Amplify exponent versus 3^7; cubic-lift log comparison at n=12 and leftover N0; realized followers n<=400 on two sample words"
 }

@@ -22,7 +22,7 @@ from research.juggler_sequence.front_overshoot import (
     weak_floor_compatible_with_all_tails,
     write_artifacts,
 )
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 
 def test_cells_and_weak_floor():
@@ -152,6 +152,6 @@ def test_dossier_boundary():
     assert "first-even" in dossier.lower()
     assert "juggler_front_overshoot" in parked
     assert "juggler_front_overshoot" in pred
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_cycleMin_four_even" not in note
     assert "theorem no_juggler_cycle" not in note

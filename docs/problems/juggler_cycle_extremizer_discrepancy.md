@@ -252,7 +252,7 @@ archived shared-`OOE` prefix. When a prescribed `OOE` is
 realized, the landing equals the integer \(9/8\)-envelope and
 `ooe_cell` holds; there is nothing to charge. The graded sample
 that cell_bridge omitted shows \(d_{\mathrm{closure}}\)
-independent of \(\Delta_{\mathrm{fin}}\) on every word that
+independent of \(\Delta_{\mathrm{fin}}\) on every itinerary that
 keeps the `OOE` prefix. Both stop-gates fire. No Paper A edit,
 no ledger row, no Lean, no \(N_0\) raise.
 

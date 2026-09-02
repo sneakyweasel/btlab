@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_minimize import (
     ALPHABETS,
     CLASS_REPACK,
@@ -155,7 +155,7 @@ def test_committed_artifacts_schema():
     assert data["anti_overclaim"]["residual_state_object"] is False
     assert data["anti_overclaim"]["residual_step_extended"] is False
     assert data["anti_overclaim"]["finite_residual_automaton"] is False
-    assert data["anti_overclaim"]["word_language_reopened"] is False
+    assert data["anti_overclaim"]["itinerary_language_reopened"] is False
     assert data["anti_overclaim"]["global_termination"] is False
     assert data["lean"]["no_ResidualState_file"] is True
     assert data["scan"]["primary"]["n_y"] == 30

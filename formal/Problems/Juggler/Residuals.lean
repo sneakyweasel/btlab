@@ -403,7 +403,7 @@ theorem residualStep_amplify {x y : ℕ} (h : ResidualStep x y) :
   exact ⟨a, b, hb, hw, himg, fun hpos => firstDefect_contribution hw hpos⟩
 
 /-- Any certified residual closes `ReachesOne` at the source. Stronger
-than requiring a capture of the residual word itself. -/
+than requiring a capture of the residual itinerary itself. -/
 theorem reachesOne_of_residualStep {x y : ℕ}
     (h : ResidualStep x y) (hy : ReachesOne y) : ReachesOne x := by
   obtain ⟨w, _hw, himg⟩ := residualStep_word h
@@ -507,7 +507,7 @@ theorem finiteProgress_of_residualChain_capture {x y : ℕ} {v : List Branch}
 
 A residual step is already `ResidualStep`. This module records the
 finite bounded-path consequence (a repeated trajectory state is a cycle)
-and the cycle-word envelope `2^r < 3^o`. A residual return
+and the cycle-itinerary envelope `2^r < 3^o`. A residual return
 `ResidualStep x x` therefore needs `a ≥ 2`. This is not a halt
 theorem, not a cycle-impossibility theorem, and not an infinite-path
 type.
@@ -680,12 +680,12 @@ theorem ooe_is_expanding : exponentExpanding (oddEvenBlock 2 1) := by
 /-- Smallest odd-odd start of two consecutive expanding persistent
 `OOE` blocks. This kills the two-block impossibility. -/
 theorem follows_oddEvenBlock_two_one {n : ℕ}
-    (h : word n 3 = [.odd, .odd, .even]) :
+    (h : itinerary n 3 = [.odd, .odd, .even]) :
     follows n (oddEvenBlock 2 1) := by
   have hlen : (oddEvenBlock 2 1).length = 3 := length_oddEvenBlock 2 1
-  have hw : word n (oddEvenBlock 2 1).length = oddEvenBlock 2 1 := by
+  have hw : itinerary n (oddEvenBlock 2 1).length = oddEvenBlock 2 1 := by
     rw [hlen, oddEvenBlock_two_one, h]
-  exact (follows_iff_word n _).mpr hw
+  exact (follows_iff_itinerary n _).mpr hw
 
 theorem image_oddEvenBlock_two_one {n y : ℕ}
     (h : floorPower^[3] n = y) :
@@ -695,8 +695,8 @@ theorem image_oddEvenBlock_two_one {n y : ℕ}
 theorem two_block_ooe_365 :
     PersistentExpandingResidual 365 763 ∧
       PersistentExpandingResidual 763 1749 := by
-  have w365 : word 365 3 = [.odd, .odd, .even] := by native_decide
-  have w763 : word 763 3 = [.odd, .odd, .even] := by native_decide
+  have w365 : itinerary 365 3 = [.odd, .odd, .even] := by native_decide
+  have w763 : itinerary 763 3 = [.odd, .odd, .even] := by native_decide
   have i365 : floorPower^[3] 365 = 763 := by native_decide
   have i763 : floorPower^[3] 763 = 1749 := by native_decide
   have h365 := follows_oddEvenBlock_two_one w365

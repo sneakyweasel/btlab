@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.oneshot_recovery import L_DEN, L_NUM, WORD
 from research.juggler_sequence.parity_persist import LONG_RUN, l_row
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_l_odd_run_cap.json"
@@ -47,12 +47,12 @@ LEAN_THEOREMS = (
     "power_bound_contracts",
     "odd_run_suffix_threshold",
     "no_cycle_odd_run_append_even",
-    "odd_cell_unique",
+    "odd_preimage_unique",
     "no_cycleMin_ooeoooe",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_length_eleven",
+    "no_cycle_itinerary_length_eleven",
     "no_cycleMin_four_even",
     "no_cycleMin_five_even",
     "no_juggler_cycle",
@@ -133,7 +133,7 @@ def lean_api_present() -> dict[str, bool]:
         "not_in_paper_barrel": "LOddRunCap" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
-        "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
+        "FloorPower_not_rewritten": "CycleItinerary" not in engine_floor_text(),
         "no_new_lean": True,
     }
 
@@ -146,7 +146,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["power_bound_contracts"]
         and lean["odd_run_suffix_threshold"]
         and lean["no_cycle_odd_run_append_even"]
-        and not lean["has_no_cycle_word_length_eleven"]
+        and not lean["has_no_cycle_itinerary_length_eleven"]
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]
@@ -270,7 +270,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "## Attack 2 — cycle suffix is not a path cap",
         "",
         "`odd_run_suffix_threshold` and `no_cycle_odd_run_append_even`",
-        "forbid `CycleWord` of the form `O^a E` for `a >= 3`. They do",
+        "forbid `CycleItinerary` of the form `O^a E` for `a >= 3`. They do",
         "not forbid a path `L+O^k` that does not return. `33391`",
         "realizes `k=5` and does not follow `W_5`.",
         "",
@@ -278,7 +278,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "",
         "Any finite `K` must come from non-existence of `n` following",
         "`L+O^k`, not from `power_bound_contracts`. That realization",
-        "question is not a word census in this phase.",
+        "question is not an word census in this phase.",
         "",
     ]
     lines.extend(["## Lean", ""])

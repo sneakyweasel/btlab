@@ -55,7 +55,7 @@ This is not a halt theorem.
 
 ## Current literature
 
-- Finite-word envelope \(T_w(n)^{2^\ell}\le n^{3^o}\) —
+- Finite-itinerary envelope \(T_w(n)^{2^\ell}\le n^{3^o}\) —
   **EXACT — LEAN VERIFIED** (`J-power-envelope-contraction`)
 - `AboveAnchor` plus \(3^o<2^\ell\) forbids the prefix —
   **EXACT — LEAN VERIFIED** (`aboveAnchor_not_envelope_drop`)
@@ -181,7 +181,7 @@ parity-balance constraint, and it is already
 `aboveAnchor_not_envelope_drop`.
 
 The shared forbidden language, after removing CycleMin-only and
-termination-only wrappers, is the same constraint: a word is
+termination-only wrappers, is the same constraint: an itinerary is
 shared-admissible iff every prefix is noncontracting. Isolated
 `O^a E(\mathtt{OE})^r` and initial `OE` are instances, not extra
 letter-transition rules. They do not define a finite automaton

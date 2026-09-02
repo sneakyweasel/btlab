@@ -29,7 +29,7 @@ x^3-T(x)^2 & x\text{ odd}.
 \end{cases}
 \]
 
-This is `local_defect` / Lean `branchDefect`. For a realized word
+This is `local_defect` / Lean `branchDefect`. For a realized itinerary
 \(w\) of length \(k\),
 
 \[
@@ -75,7 +75,7 @@ CLOSE). Totality remains unclaimed.
 ## Branch budget
 
 ```text
-Mathematical target     Does pathDefectSum admit a word-statistics
+Mathematical target     Does pathDefectSum admit an itinerary-statistics
                         bound in (n, k, o, runs) that is not a
                         rewrite of Δ or T_w(n)<n?
 Novelty hypothesis      H1–H3 survive, or a new telescope A(x)-A(T(x))
@@ -150,7 +150,7 @@ None opened.
   \(\mathrm{Rho}=41>21\).
 - H2 “\(\mathrm{Rho}\le k(2n^3+1)\)”: `OOO` at \(n=25\),
   \(\mathrm{Rho}=97493>93753\).
-- Same word, different \(n\): `OOE` has \(\mathrm{Rho}=39\) at \(5\)
+- Same itinerary, different \(n\): `OOE` has \(\mathrm{Rho}=39\) at \(5\)
   and \(\mathrm{Rho}=6023969\) at \(775\).
 - H4 “\(\mathrm{Rho}>|3^o-2^k|\) forces contraction”: both
   directions fail; the surplus comparison reduces to \(T_w(n)<n\).

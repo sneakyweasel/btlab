@@ -36,7 +36,7 @@ from research.juggler_sequence.backward_geometry import (
 from research.juggler_sequence.excursions import HARD_STARTS
 from research.juggler_sequence.landing_valuation import v2
 from research.juggler_sequence.lean_paths import CELLS, DYNAMICS, juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.realization_geometry import FIRST_HOLES
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -76,9 +76,9 @@ CLASS_BRIDGE = "HUT_FORWARD_BRIDGE_GREEN"
 CLASS_COMPLEX = "HUT_COMPLEX"
 
 LEAN_THEOREMS = (
-    "even_cell_iff",
-    "odd_cell_iff",
-    "odd_cell_unique",
+    "even_preimage_iff",
+    "odd_preimage_iff",
+    "odd_preimage_unique",
     "floorPower_even_eq_iff_sq_interval",
     "floorPower_odd_eq_iff_cube_interval",
     "floorPower_one",
@@ -789,7 +789,7 @@ def lean_api_present() -> dict[str, bool]:
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         **{name: f"theorem {name}" in combined for name in LEAN_THEOREMS},
-        "cells_present": "theorem even_cell_iff" in cells,
+        "cells_present": "theorem even_preimage_iff" in cells,
         "floorPower_one": "theorem floorPower_one" in dynamics or "theorem floorPower_one" in combined,
         "no_forbidden_engines": all(
             f"structure {name}" not in text and f"inductive {name}" not in text
@@ -1213,7 +1213,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Novelty hypothesis      wide-even / singleton-odd is a natural hut class",
         "Falsifier               bijection with m, unbounded out-degree, or",
         "                        same-class incompatible successors",
-        "Existing machinery      even_cell, pred_odd, floor_power, Cells.lean",
+        "Existing machinery      even_preimage, pred_odd, floor_power, Preimages.lean",
         "Maximum Phase-0 scope   m<=4000; selected 1e5; no GPU; no Lean pilot",
         "```",
         "",
@@ -1311,7 +1311,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "## D. Odd spines",
             "",
             "The unique odd predecessor, when it exists, is iterated until the",
-            "odd cell is empty. This is the existing `odd_cell_unique` spine,",
+            "odd cell is empty. This is the existing `odd_preimage_unique` spine,",
             "not a new inverse law.",
             "",
         ]

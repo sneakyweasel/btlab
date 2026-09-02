@@ -223,7 +223,7 @@ Classification **PADIC_COUPLING_CLOSED**.
   zero mismatches.
 - **Return valuation** — **EXACT — HUMAN PROOF**:
   \(v_2(\Delta)=v_2(n-1)\).
-- **No coupled realized word** — **COMPUTATIONALLY VERIFIED**.
+- **No coupled realized itinerary** — **COMPUTATIONALLY VERIFIED**.
 - **No new cyclic obstruction.**
 
 ## Open questions

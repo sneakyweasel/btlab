@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.cycle_word import image_after
-from research.juggler_sequence.power_words import floor_power
+from research.juggler_sequence.cycle_itinerary import image_after
+from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.third_residual import (
     CLASS_GREEN,
     CONTRACTING_DROP,

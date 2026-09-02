@@ -22,8 +22,8 @@ from research.juggler_sequence.bunched_short_return import (
     short_tail,
     write_artifacts,
 )
-from research.juggler_sequence.cycle_word import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_short_tails_and_even_inverse():
@@ -82,7 +82,7 @@ def test_return_set_is_exact_forward_preimage():
         tail = short_tail(b, c)
         for y in states[:12]:
             assert y >= n
-            assert follows_word(y, tail)
+            assert follows_itinerary(y, tail)
             assert image_after(y, tail) == n
     assert return_set(12, 1, 1) == [91, 93]
     assert return_set(6, 2, 1) == [9]
@@ -172,6 +172,6 @@ def test_dossier_boundary():
     assert "R_{b,c}" in dossier or "R_{b,c}(n)" in dossier
     assert "interval" in dossier.lower()
     assert "juggler_bunched_short_return" in front
-    assert "theorem no_cycle_word_length_eleven" not in note
+    assert "theorem no_cycle_itinerary_length_eleven" not in note
     assert "theorem no_cycleMin_four_even" not in note
     assert "theorem no_juggler_cycle" not in note

@@ -95,5 +95,5 @@ bound is optimal: it is attained on an infinite exact-even family.
 
 A nonempty suffix preserves Δ = δ_j exactly when it is an exact even tower on T(n) after a first defect at the start.
 
-This is a finite-word sharpness statement, not a global halt result.
+This is a finite-itinerary sharpness statement, not a global halt result.
 

@@ -26,7 +26,7 @@ from research.juggler_sequence.defect_lower_bound import (
     first_defect,
     formal_surplus,
 )
-from research.juggler_sequence.global_defect import follows_word, global_defect, odd_count
+from research.juggler_sequence.global_defect import follows_itinerary, global_defect, odd_count
 
 K_MAX = 25
 CLUSTER_DIR = DATA_DIR / "cluster_amplify"
@@ -122,7 +122,7 @@ def exponent_row(k: int) -> dict[str, Any]:
 
 def exact_k1_row(n: int) -> dict[str, Any]:
     word = "OOE"
-    if not follows_word(n, word):
+    if not follows_itinerary(n, word):
         return {"n": n, "follows": False}
     amp = amplify_from_first(n, word)
     surplus = formal_surplus(n, word)

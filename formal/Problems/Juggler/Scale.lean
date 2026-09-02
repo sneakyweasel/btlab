@@ -1,4 +1,4 @@
-import Problems.Juggler.WordStats
+import Problems.Juggler.ItineraryStats
 import Problems.Juggler.Minimal
 
 namespace Problems.Juggler
@@ -12,17 +12,17 @@ halt theorem, and not a new energy.
 -/
 
 /-- One realized `OE` block: `T^2(x)^4 ≤ x^3`. -/
-theorem oe_block_scale {x : ℕ} (hw : follows x wordOE) :
-    image x wordOE ^ 4 ≤ x ^ 3 := by
+theorem oe_block_scale {x : ℕ} (hw : follows x itineraryOE) :
+    image x itineraryOE ^ 4 ≤ x ^ 3 := by
   have h := power_bound_word hw
-  simpa [wordOE, image_eq_iterate] using h
+  simpa [itineraryOE, image_eq_iterate] using h
 
-theorem oe_block_contracts {x : ℕ} (hx : 2 ≤ x) (hw : follows x wordOE) :
-    image x wordOE < x := by
-  have hgap : (3 : ℕ) ^ oddCount wordOE < 2 ^ wordOE.length := by
-    simp [wordOE]
+theorem oe_block_contracts {x : ℕ} (hx : 2 ≤ x) (hw : follows x itineraryOE) :
+    image x itineraryOE < x := by
+  have hgap : (3 : ℕ) ^ oddCount itineraryOE < 2 ^ itineraryOE.length := by
+    simp [itineraryOE]
   have h := power_bound_contracts hx hw hgap
-  simpa [wordOE, image_eq_iterate] using h
+  simpa [itineraryOE, image_eq_iterate] using h
 
 theorem repeated_oe_scale_barrier {n x k r : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = x) (hw : follows x (repeatedOE r)) :
@@ -44,9 +44,9 @@ theorem repeated_oe_scale_barrier_of_image {n : ℕ} {u : List Branch} {r : ℕ}
   repeated_oe_scale_barrier h (image_eq_iterate n u).symm hw
 
 theorem oe_requires_scale {n x k : ℕ} (h : MinimalNonTerm n)
-    (hk : floorPower^[k] n = x) (hw : follows x wordOE) : n ^ 4 ≤ x ^ 3 := by
+    (hk : floorPower^[k] n = x) (hw : follows x itineraryOE) : n ^ 4 ≤ x ^ 3 := by
   have hrep : follows x (repeatedOE 1) := by
-    simpa [repeatedOE, wordOE] using hw
+    simpa [repeatedOE, itineraryOE] using hw
   simpa using repeated_oe_scale_barrier (r := 1) h hk hrep
 
 /-- `(OE)^r` cannot start at the minimal state itself: the first image
@@ -57,8 +57,8 @@ theorem minimal_nonterm_not_repeated_oe {n r : ℕ} (h : MinimalNonTerm n)
   cases r with
   | zero => omega
   | succ r =>
-      have hOE : follows n wordOE :=
-        follows_of_append_left (u := wordOE) hw
+      have hOE : follows n itineraryOE :=
+        follows_of_append_left (u := itineraryOE) hw
       have heven : floorPower n % 2 = 0 := hOE.2.1
       have hodd := minimal_nonterm_odd_image_odd h
       omega
@@ -132,7 +132,7 @@ theorem initial_even_not_before_ooe {n a : ℕ} (h : MinimalNonTerm n)
 # Repeated `O^a E^b` scale budget
 
 If a later state realizes `r` consecutive copies of a fixed block
-`O^a E^b`, the word envelope and minimality give
+`O^a E^b`, the itinerary envelope and minimality give
 `n ^ (2 ^ (r * (a + b))) ≤ x ^ (3 ^ (a * r))`.
 
 Formally contracting blocks (`3^a < 2^{a+b}`) contract for `x ≥ 2`

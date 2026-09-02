@@ -8,7 +8,7 @@ Refinement of
 not a new paper. It asks whether leftover surplus forces
 near-extremal run structure tightly enough that exact floor cells
 empty a surviving \((L,o)\) in \(\mathcal E_{\mathrm{run}}(10^6)\).
-Not a halt theorem, not a leftover-word census, not a new global
+Not a halt theorem, not a leftover-itinerary census, not a new global
 finance identity, not Fourier, not a \(Q\)-return, and not a
 residue / \(p\)-adic system.
 
@@ -122,7 +122,7 @@ Existing machinery      cycleMin; AboveAnchor; cycleMin_finance;
                         parity_rhs; run_type_rhs / budget_rhs;
                         99 survivors E_run(10^6);
                         odd/even floor cells;
-                        odd_cell_unique; even_cell_iff;
+                        odd_preimage_unique; even_preimage_iff;
                         first-run a0≥2;
                         isolated-OE r-bound;
                         known local finite-progress exclusions;

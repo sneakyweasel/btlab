@@ -14,7 +14,7 @@
     "simons-de-weger-2005-collatz-m-cycles"
   ],
   "mathematical_domain": "Juggler cycle finance / valley height",
-  "notes": "The 281 first-circuit landing is a corollary of even_iter_lt_succ_pow, not a new defect law. Height-split constant 1 first kills at 281 but is not a proved form. Not a leftover-word census, not a floor raise, and not a halt theorem.",
+  "notes": "The 281 first-circuit landing is a corollary of even_iter_lt_succ_pow, not a new defect law. Height-split constant 1 first kills at 281 but is not a proved form. Not a leftover-itinerary census, not a floor raise, and not a halt theorem.",
   "origin": "docs/problems/juggler_cycle_second_valley.md",
   "proof_reference": "docs/problems/juggler_cycle_second_valley.md",
   "tested_range": "L=84, n=261, first-circuit k=2..24, later landings from 281, k=1 OE window through v=20000; constants 1 and 6/5 and Lean inv-sum"

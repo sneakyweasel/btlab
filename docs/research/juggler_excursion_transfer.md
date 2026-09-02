@@ -259,7 +259,7 @@ Return B is the Q-source chain; every tested one-step, two-step, compensation, a
 - two_episode_descent_theorem: `False`
 - compensation_theorem: `False`
 - excursion_transfer_lean: `False`
-- word_language_reopen: `False`
+- itinerary_language_reopen: `False`
 - macro_event_reopen: `False`
 - source_descent_reopen: `False`
 - search_horizon_is_L: `False`

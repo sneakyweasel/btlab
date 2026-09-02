@@ -15,7 +15,7 @@ from typing import Any
 
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.power_words import (
+from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
     floor_power,
@@ -521,7 +521,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- word `E` at 2: unit defect, Δ `{examples['unit_even_two']['global_deficit']}`",
         f"- word `O` at 9 has no first defect: `{examples['word_O_at_nine_is_exact']}`",
         "",
-        "Same-count mixed words with different first-defect positions do not",
+        "Same-count mixed itineraries with different first-defect positions do not",
         "obey a position-only order. The certified lower bound uses the first",
         f"local defect, not the letter counts. Split groups: `{perms['groups_with_split_positions']}`.",
         "",

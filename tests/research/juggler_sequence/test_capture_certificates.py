@@ -13,9 +13,9 @@ from research.juggler_sequence.capture_certificates import (
     render_markdown,
     run_probe,
 )
-from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import juggler_text
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 
 def test_capture_and_descent_split():
@@ -37,7 +37,7 @@ def test_capture_composes():
     assert check["suffix_kind"] == "CAPTURE"
     assert check["concat_kind"] == "CAPTURE"
     assert check["mid"] == 1
-    assert follows_word(16, "EEE" + "O" * 9)
+    assert follows_itinerary(16, "EEE" + "O" * 9)
 
 
 def test_small_one_is_inert_three_is_not():

@@ -82,5 +82,5 @@ E^r u on a^{2^r} reduces to u on a, but initial even-run length 0 still admits O
 
 E^r u on a^{2^r} reduces to u on a, but initial even-run length 0 still admits O E^k O^{3k} contractions at arbitrarily large scanned q; the extra parameter is the longest even run.
 
-The fixed-word theorem remains. This is not a halt result.
+The fixed-itinerary theorem remains. This is not a halt result.
 

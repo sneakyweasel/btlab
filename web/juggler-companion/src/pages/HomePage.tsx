@@ -47,7 +47,7 @@ export function HomePage() {
           <div className="mt-3 text-center">
             <Tex display>{String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n^{3/2}\rfloor,&n\text{ odd.}\end{cases}`}</Tex>
             <p className="mt-2 text-sm text-muted">
-              Trajectory of 3: the values 3, 5, 11, 36, 6, 2, 1. Word: OOOEEE —
+              Trajectory of 3: the values 3, 5, 11, 36, 6, 2, 1. Itinerary: OOOEEE —
               the parities, not the values. Floor: the brackets ⌊ ⌋ throw
               away the decimals. Example: ⌊3√3⌋ = ⌊5.196…⌋ = 5. Hitting 1
               here is one trajectory, not a theorem.
@@ -82,8 +82,8 @@ export function HomePage() {
       </section>
       <section className="prose-measure space-y-3 text-muted">
         <p>
-          Use the tour if the words are new. Use the playground to try the
-          trajectory of 3, a short O/E word, a preimage cell, a necklace rotation,
+          Use the tour if the itineraries are new. Use the playground to try the
+          trajectory of 3, a short O/E itinerary, a one-step preimage, a necklace rotation,
           or a finance length from the shipped table.
         </p>
         <p>

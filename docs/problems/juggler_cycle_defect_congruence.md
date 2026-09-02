@@ -17,7 +17,7 @@ floor errors force an impossible congruence or fractional-part
 combination.
 
 Not a halt theorem, not a floor raise, and not a claim that
-every cycle word is impossible.
+every cycle itinerary is impossible.
 
 ## Problem
 
