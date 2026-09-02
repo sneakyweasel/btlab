@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
 import { evenCell, oddCellIntegers } from "../juggler/cells";
-import { NOTE_ORBIT_3 } from "../juggler/constants";
+import { MAP_STARTS, NOTE_ORBIT_3, ORBIT_STEPS_MAX } from "../juggler/constants";
 import { financeView } from "../juggler/finance";
-import { formatInt } from "../juggler/format";
+import { formatInt, parsePositiveInt } from "../juggler/format";
 import { floorPower, letterOf } from "../juggler/map";
+import { walkOrbit } from "../juggler/orbit";
 import {
   envelopeSlack,
   expanding,
@@ -18,6 +19,7 @@ import { CellNumberLine } from "../visuals/CellNumberLine";
 import { CycleNecklace } from "../visuals/CycleNecklace";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
 import { FloorLadder } from "../visuals/FloorLadder";
+import { FloorCut } from "../visuals/FloorCut";
 import { MapDoors } from "../visuals/MapDoors";
 import { OrbitBeads } from "../visuals/OrbitBeads";
 import { SurplusScale } from "../visuals/SurplusScale";
@@ -25,53 +27,107 @@ import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
 import { Metric } from "./Metric";
 import { Tex } from "./Tex";
 
+const MAP_DEFAULT = 37n;
+
+function applyMapStart(
+  value: bigint,
+  setStartText: (text: string) => void,
+  setCursor: (value: bigint) => void,
+) {
+  setStartText(value.toString());
+  setCursor(value);
+}
+
 export function MapWidget() {
-  const [n, setN] = useState(3n);
-  const letter = letterOf(n);
-  const next = n < 1n ? null : floorPower(n);
+  const [startText, setStartText] = useState(MAP_DEFAULT.toString());
+  const [cursor, setCursor] = useState(MAP_DEFAULT);
+  const start = parsePositiveInt(startText);
+  const seed = start ?? MAP_DEFAULT;
+  const orbit = walkOrbit(seed, ORBIT_STEPS_MAX);
+  const letter = letterOf(cursor);
+  const next = cursor < 1n ? null : floorPower(cursor);
+  const active = orbit.states.findIndex((state) => state === cursor);
   return (
     <div className="space-y-4">
-      <MapDoors highlight={letter === "O" ? "odd" : "even"} />
-      <p className="text-sm text-muted">
-        Floor means: throw away the decimals and keep the integer part. It is
-        applied after every even or odd step, not once at the end.
-      </p>
-      <div className="flex flex-wrap items-end gap-3">
-        <label className="text-sm text-muted">
-          Start
-          <input
-            className="ml-2 rounded border border-line bg-card px-2 py-1 font-mono"
-            type="number"
-            min={1}
-            value={n.toString()}
-            onChange={(event) => {
-              const value = Number(event.target.value);
-              if (Number.isInteger(value) && value >= 1) setN(BigInt(value));
-            }}
-          />
-        </label>
-        <button
-          type="button"
-          className="rounded-full bg-deep px-3 py-1 text-sm text-card"
-          onClick={() => {
-            if (next !== null) setN(next);
-          }}
-        >
-          Step once
-        </button>
-        <button
-          type="button"
-          className="rounded-full border border-line px-3 py-1 text-sm"
-          onClick={() => setN(3n)}
-        >
-          Reset to 3
-        </button>
-      </div>
+      <MapDoors
+        states={orbit.states}
+        highlight={letter === "O" ? "odd" : "even"}
+        active={active >= 0 ? active : undefined}
+        controls={
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-wrap items-end gap-3">
+              <label className="text-sm text-muted">
+                Start
+                <input
+                  className="ml-2 w-28 rounded border border-line bg-paper px-2 py-1 font-mono"
+                  type="number"
+                  min={1}
+                  value={startText}
+                  onChange={(event) => {
+                    const text = event.target.value;
+                    setStartText(text);
+                    const value = parsePositiveInt(text);
+                    if (value !== null) setCursor(value);
+                  }}
+                />
+              </label>
+              <button
+                type="button"
+                className="rounded-full bg-deep px-3 py-1 text-sm text-card"
+                onClick={() => {
+                  if (next !== null) setCursor(next);
+                }}
+              >
+                Step once
+              </button>
+              <button
+                type="button"
+                className="rounded-full border border-line px-3 py-1 text-sm"
+                onClick={() => applyMapStart(MAP_DEFAULT, setStartText, setCursor)}
+              >
+                Reset to 37
+              </button>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm text-muted">Presets</span>
+              {MAP_STARTS.map((preset) => {
+                const selected = seed === preset.value;
+                return (
+                  <button
+                    key={preset.value.toString()}
+                    type="button"
+                    className={`rounded-full px-3 py-1 text-sm ${
+                      selected
+                        ? "bg-deep text-card"
+                        : "border border-line bg-paper"
+                    }`}
+                    onClick={() => applyMapStart(preset.value, setStartText, setCursor)}
+                  >
+                    {preset.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        }
+      />
+      <FloorCut n={cursor} />
       <div className="grid gap-3 sm:grid-cols-3">
-        <Metric label="Now" value={n.toString()} hint={letter === "O" ? "odd, will grow" : "even, will shrink"} />
+        <Metric
+          label="Now"
+          value={formatInt(cursor)}
+          hint={letter === "O" ? "odd, will grow" : "even, will shrink"}
+        />
         <Metric label="Letter" value={letter} />
-        <Metric label="J(n)" value={next === null ? "—" : next.toString()} />
+        <Metric label="J(n)" value={next === null ? "—" : formatInt(next)} />
       </div>
+      {orbit.word ? (
+        <p className="text-sm text-muted">
+          Word from this start: <span className="font-mono">{orbit.word}</span>
+          {orbit.reachedOne ? " — this walk hit 1, which is not a theorem." : ""}
+          {orbit.bitCapped ? " A value exceeded the display cap." : ""}
+        </p>
+      ) : null}
     </div>
   );
 }

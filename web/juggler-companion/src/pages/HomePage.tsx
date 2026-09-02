@@ -10,7 +10,7 @@ import { MapDoors } from "../visuals/MapDoors";
 export function HomePage() {
   return (
     <div className="space-y-10">
-      <section className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <section className="space-y-6">
         <div>
           <p className="text-sm uppercase tracking-[0.2em] text-muted">
             Paper A companion
@@ -47,8 +47,10 @@ export function HomePage() {
           <div className="mt-3 text-center">
             <Tex display>{String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n^{3/2}\rfloor,&n\text{ odd.}\end{cases}`}</Tex>
             <p className="mt-2 text-sm text-muted">
-              The brackets ⌊ ⌋ mean floor: remove the decimals, keep the
-              integer part. Example: ⌊3√3⌋ = ⌊5.196…⌋ = 5.
+              Left: the orbit of 3 goes up through three odd doors, then down
+              through three even doors, to 1. The brackets ⌊ ⌋ mean floor:
+              remove the decimals, keep the integer part. Example: ⌊3√3⌋ =
+              ⌊5.196…⌋ = 5.
             </p>
           </div>
         </div>

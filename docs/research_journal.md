@@ -21711,4 +21711,88 @@ Best next question
   rescue
 ```
 
+## Odd-inverse width: shrinking cells versus fan-follower hits (Phase-0)
+
+- **Date:** 2026-09-02
+- **Objective:** Is \(\Delta x\sim\tfrac23 y^{-1/3}\) a new concatenability obstruction for infinite fan-following, or the recorded odd-cell / hug-flow law? Not a forward parity census and not a reopen of cycle inverse-width or hug-cylinder \(C_L\).
+- **Hypotheses:** uniqueness plus shrinking width makes an infinite fan-follower a rigid infinite sequence of exact integer hits; falsifier: width \(<1\) for all \(y\ge 1\), uniqueness is `odd_cell_unique`, every odd \(x\) makes \(T(x)\) Type 2, hug/fan words interleave E so net backward flow is already positive.
+- **Major results:**
+  - Width matches the MVT term on \(y=10^k\) (\(k\le 12\)); ratio \(0.881\) at \(y=1\), then \(1-O(1/y)\). Occupant count is \(0\) or \(1\).
+  - \(\Delta x<1\) for every \(y\ge 1\) (elementary quadratic \(3t^2-2t+3\), discriminant \(-32\)); confirmed on \(y\le 10^5\). Maximum width is \(2^{2/3}-1\approx 0.587\) at \(y=1\).
+  - Named odd steps \(\{3,37,365,761\}\) are Type 2 self-preimages. Ambient Type 0 share on \(y\le 4000\) is \(0.937\).
+  - Existing hug-flow artifact still has positive `OE`/`OOE` bits; fan-concat still has \(17/44\) odd 19-endpoints and zero glue.
+  - Classification `ODD_INVERSE_WIDTH_REPARAMETERIZATION`. Slogan **REFUTED** (`juggler_odd_inverse_width`). No ledger theorem row, no Lean, no Paper A.
+- **Refuted ideas:** that uniqueness is a large-\(y\) threshold; that width \(<1\) empties the cell; that infinite exact hits are a new fan-follower demand.
+- **Literature:** `odd_cell_unique`; `J-odd-pred-empty-cube`; `juggler_cycle_inverse_width` REFUTED; hug-cylinder PARK; fan-concat PARK.
+- **Open:** none from inverse width.
+- **Decision:** CLOSE. Dossier `docs/problems/juggler_odd_inverse_width.md`.
+
+```text
+What was learned
+- Δx ~ (2/3) y^{-1/3} is the MVT expansion of the odd cell
+- width < 1 for every y ≥ 1, not only large y
+- uniqueness is odd_cell_unique (Paper A Lemma 3.1)
+- every odd step is already a Type 2 hit
+- hug/fan E-regeneration keeps net backward flow positive
+Strongest theorem
+- none new (width < 1 is elementary; uniqueness is Lean)
+Strongest refutation
+- shrinking odd-inverse width is a new fan-follower
+  obstruction (juggler_odd_inverse_width)
+Reusable machinery
+- odd_inverse_width calibration of the existing cell
+  and hug-flow artifacts
+Branch status
+- CLOSE
+Why
+- every Phase-0 statement is KNOWN or
+  REPARAMETERIZATION; the boxed infinite-hit slogan
+  reverses the quantifiers of a realized odd letter
+Best next question
+- none from this door; the fan-follower stays a
+  surviving failure mode, not a demonstrated orbit
+```
+
+## Reverse fan-admissibility cocycle (consolidation)
+
+- **Date:** 2026-09-02
+- **Objective:** After an expanding fan block \(W\), do the unique odd inverse cells land in the parity required to invert another \(W\)? Reviewer item 4 of the inverse/fan-follower series (item 2 inverse-flight tree, item 3 odd-inverse width). Not a landing-cell reopen, not a leftover-killer, not a floor raise, and not a Paper A edit.
+- **Hypotheses:** a reverse-time fan-admissibility cocycle, global on exact inverse branches, is stricter than a local rule after one 19-block; falsifier: the predicate is `follows` / `wordCylinder`, next parity after a cylinder is already REFUTED, \(\xi\)-transport is already REFUTED.
+- **Major results:**
+  - The forward monomial \(q_W=(3/2)^o2^{-e}\) is `walkWeight`. For \((19,12)\) this is \(3^{12}/2^{19}\approx 1.0136\).
+  - Occupancy of the inverse cells of one \(W\) is `follows` (`J-word-cylinder-exact`). Realized one-block inverses land in the required parities by construction (the 44 length-19 near-returns).
+  - Next parity after a block is not selected: `ooe_cylinder_both_next_parities` / `J-pe-cylinder-next-landing` **REFUTED**.
+  - Repeated-block glue is already measured zero ([fan-concat](problems/juggler_flight_fan_concat.md) PARK). Failures are walk-height, not a reverse cocycle.
+  - Scale-stable transport is the mechanical-lift \(\xi\)-cocycle (**REFUTED**). The only exact additive block cocycle is weighted slack (`J-weighted-slack-cocycle`, REPARAMETERIZATION) and does not constrain parity.
+  - Cycle-fan reading (hug/IET through fan B) is the same mechanical-lift CLOSE. No new dossier, no probe, no Lean, no ledger theorem row.
+- **Refuted ideas:** that “global compatibility of exact inverse branches” is a new predicate beyond `follows` plus the closed next-parity and \(\xi\)-transport statements.
+- **Literature:** `odd_cell_unique`; `J-word-cylinder-exact`; `J-pe-cylinder-next-landing` REFUTED; mechanical lift CLOSE; fan-concat PARK; fan-landing CLOSE; odd-inverse width CLOSE.
+- **Open:** none from this door.
+- **Decision:** CLOSE. Journal and branch-ledger row only.
+
+```text
+What was learned
+- q_W is walkWeight, not a new envelope
+- one-W inverse compatibility is follows
+- next parity after a cylinder is already REFUTED
+- W then W is fan-concat PARK (zero 19 to 19)
+- xi-cocycle and walk coboundary stay closed
+Strongest theorem
+- none new
+Strongest refutation
+- a reverse-time fan-admissibility cocycle is a
+  new object (REPARAMETERIZATION of follows /
+  J-pe-cylinder-next-landing / xi-cocycle)
+Reusable machinery
+- none
+Branch status
+- CLOSE
+Why
+- every reading is KNOWN or REPARAMETERIZATION of a
+  closed inverse, cylinder, lift, or glue branch
+Best next question
+- none from this door; the fan-follower stays a
+  surviving failure mode, not a demonstrated orbit
+```
+
 

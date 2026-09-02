@@ -47,8 +47,15 @@ h3 {
   line-height: 1.15;
 }
 
-a {
-  color: var(--color-deep);
+@layer base {
+  a {
+    color: var(--color-deep);
+  }
+}
+
+a.bg-deep,
+button.bg-deep {
+  color: var(--color-paper);
 }
 
 .prose-measure {

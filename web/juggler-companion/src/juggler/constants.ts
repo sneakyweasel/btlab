@@ -30,6 +30,15 @@ export const N_PRESETS = [
   { label: "1999 — four-block", value: 1999n },
 ] as const;
 
+/** Short starts for the map tour: 37 plus the note-orbit odds and 1999. */
+export const MAP_STARTS = [
+  { label: "37 peak", value: 37n },
+  { label: "3", value: 3n },
+  { label: "5", value: 5n },
+  { label: "11", value: 11n },
+  { label: "1999", value: 1999n },
+] as const;
+
 export const WORD_PRESETS = ["OOE", "OOOEE", "OOOEOE", "OOOOEE"] as const;
 export const CYCLE_PRESETS = ["OEO", "OOE", "OOOEOE", "OOOOEE"] as const;
 export const RECORD_LENGTHS = [1, 3, 11, 19, 84, 569, 1054, 25781, 50508] as const;

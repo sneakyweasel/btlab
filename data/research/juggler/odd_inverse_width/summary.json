@@ -1,0 +1,334 @@
+{
+  "experiment": "juggler_odd_inverse_width",
+  "anti_overclaim": {
+    "halt_theorem": false,
+    "divergence_excluded": false,
+    "divergent_orbit_exists": false,
+    "infinite_fan_sequence_constructed": false,
+    "cycle_inverse_width_reopened": false,
+    "hug_cylinder_rerun": false,
+    "fan_concat_rerun": false,
+    "n_window_raised": false,
+    "paper_a_modified": false,
+    "global_termination": false
+  },
+  "slogan": "infinitely many exact integer hits of shrinking nonlinear inverse intervals is a new fan-follower obstruction",
+  "power_grid": [
+    {
+      "y": 1,
+      "width": 0.5874010519681994,
+      "mvt": 0.6666666666666666,
+      "ratio": 0.881101577952299,
+      "width_lt_one": true,
+      "kind": 2,
+      "occupants": [
+        1
+      ],
+      "occupant_count": 1
+    },
+    {
+      "y": 10,
+      "width": 0.30449860963592196,
+      "mvt": 0.3094392555741853,
+      "ratio": 0.9840335514991606,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 100,
+      "width": 0.14339065545648616,
+      "mvt": 0.14362897933545893,
+      "ratio": 0.9983406978168651,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 1000,
+      "width": 0.0666555604909484,
+      "mvt": 0.06666666666666668,
+      "ratio": 0.9998334073642258,
+      "width_lt_one": true,
+      "kind": 1,
+      "occupants": [
+        100
+      ],
+      "occupant_count": 1
+    },
+    {
+      "y": 10000,
+      "width": 0.030943409848245982,
+      "mvt": 0.03094392555741853,
+      "ratio": 0.9999833340740305,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 100000,
+      "width": 0.014362873995489052,
+      "mvt": 0.014362897933545895,
+      "ratio": 0.99999833334074,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 1000000,
+      "width": 0.006666665555556046,
+      "mvt": 0.006666666666666668,
+      "ratio": 0.9999998333334067,
+      "width_lt_one": true,
+      "kind": 1,
+      "occupants": [
+        10000
+      ],
+      "occupant_count": 1
+    },
+    {
+      "y": 10000000,
+      "width": 0.0030943925041686427,
+      "mvt": 0.0030943925557418536,
+      "ratio": 0.9999999833333327,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 100000000,
+      "width": 0.001436289790960772,
+      "mvt": 0.0014362897933545894,
+      "ratio": 0.9999999983333326,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 1000000000,
+      "width": 0.0006666666665555551,
+      "mvt": 0.000666666666666667,
+      "ratio": 0.9999999998333322,
+      "width_lt_one": true,
+      "kind": 1,
+      "occupants": [
+        1000000
+      ],
+      "occupant_count": 1
+    },
+    {
+      "y": 10000000000,
+      "width": 0.00030943925556902764,
+      "mvt": 0.0003094392555741854,
+      "ratio": 0.9999999999833319,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 100000000000,
+      "width": 0.00014362897933521937,
+      "mvt": 0.00014362897933545897,
+      "ratio": 0.9999999999983318,
+      "width_lt_one": true,
+      "kind": 0,
+      "occupants": [],
+      "occupant_count": 0
+    },
+    {
+      "y": 1000000000000,
+      "width": 6.666666666665548e-05,
+      "mvt": 6.66666666666667e-05,
+      "ratio": 0.9999999999998317,
+      "width_lt_one": true,
+      "kind": 1,
+      "occupants": [
+        100000000
+      ],
+      "occupant_count": 1
+    }
+  ],
+  "elementary": {
+    "identity": "2t < 3t^2 + 3 for t = y^{1/3} >= 1",
+    "quadratic": "3t^2 - 2t + 3",
+    "discriminant": -32,
+    "leading_positive": true,
+    "always_positive": true,
+    "samples": [
+      4,
+      11,
+      24,
+      283
+    ]
+  },
+  "finite_width": {
+    "n_max": 100000,
+    "all_lt_one": true,
+    "first_ge_one": null,
+    "min_width": 0.014362873995489052,
+    "max_width": 0.5874010519681994,
+    "y1_width": 0.5874010519681994
+  },
+  "decade_shares": [
+    {
+      "start": 100,
+      "window": 80,
+      "counts": {
+        "0": 70,
+        "1": 5,
+        "2": 5
+      },
+      "occupied_share": 0.125,
+      "type2_share": 0.0625,
+      "predicted_occupied": 0.12839045237027857,
+      "multi": 0
+    },
+    {
+      "start": 1000,
+      "window": 80,
+      "counts": {
+        "0": 74,
+        "1": 3,
+        "2": 3
+      },
+      "occupied_share": 0.075,
+      "type2_share": 0.0375,
+      "predicted_occupied": 0.06580076779161904,
+      "multi": 0
+    },
+    {
+      "start": 10000,
+      "window": 80,
+      "counts": {
+        "0": 78,
+        "1": 1,
+        "2": 1
+      },
+      "occupied_share": 0.025,
+      "type2_share": 0.0125,
+      "predicted_occupied": 0.0309027766716988,
+      "multi": 0
+    },
+    {
+      "start": 100000,
+      "window": 80,
+      "counts": {
+        "0": 79,
+        "1": 0,
+        "2": 1
+      },
+      "occupied_share": 0.0125,
+      "type2_share": 0.0125,
+      "predicted_occupied": 0.01436098339101008,
+      "multi": 0
+    },
+    {
+      "start": 1000000,
+      "window": 80,
+      "counts": {
+        "0": 79,
+        "1": 1,
+        "2": 0
+      },
+      "occupied_share": 0.0125,
+      "type2_share": 0.0,
+      "predicted_occupied": 0.006666577780148075,
+      "multi": 0
+    }
+  ],
+  "ambient_types": {
+    "n_max": 4000,
+    "counts": {
+      "0": 3748,
+      "1": 126,
+      "2": 126
+    },
+    "mismatches": 0,
+    "type0_share": 0.937
+  },
+  "odd_step_type2": {
+    "rows": [
+      {
+        "x": 3,
+        "T_x": 5,
+        "kind": 2,
+        "occupants": [
+          3
+        ]
+      },
+      {
+        "x": 37,
+        "T_x": 225,
+        "kind": 2,
+        "occupants": [
+          37
+        ]
+      },
+      {
+        "x": 365,
+        "T_x": 6973,
+        "kind": 2,
+        "occupants": [
+          365
+        ]
+      },
+      {
+        "x": 761,
+        "T_x": 20993,
+        "kind": 2,
+        "occupants": [
+          761
+        ]
+      }
+    ],
+    "all_type2": true,
+    "all_self_preimage": true
+  },
+  "hug_flow": {
+    "classification": "HUG_FLOW_CONFIRMED",
+    "flow_ledger": {
+      "per_E_regeneration_bits": "+len(X)/2",
+      "per_O_pullback_bits": "-len(X)/3 - log2(3)",
+      "per_OE_block_bits": "+5*len(X)/12",
+      "per_OOE_block_bits": "+7*len(X)/24",
+      "needed_lemmas": "hit-count lower bounds on odd-x windows of length ~(2/3)X^{1/3} for depth-<=2 nested floor parities; window above the van der Corput threshold X^{1/4}",
+      "construction_cost": "any backward construction pays ~X^{1/9} anchor pulls per OOE block, cascading multiplicatively - no cheaper than the 2^L forward scan"
+    },
+    "oe_last_survival_rate": 0.4996,
+    "oe_zero_survivor_anchors": 0,
+    "ooe_generic_hit_over_predicted": [
+      0.781,
+      0.748,
+      0.752,
+      0.783,
+      0.819,
+      0.706,
+      0.809
+    ],
+    "net_oe_positive": true,
+    "net_ooe_positive": true
+  },
+  "fan_concat": {
+    "end_odd_19": 17,
+    "n19": 44,
+    "glue_19_to_19": 0,
+    "formal_launchable_19": 17
+  },
+  "lean": {
+    "odd_cell_unique": true,
+    "odd_cell_iff": true,
+    "sorry_free": true,
+    "new_lean_file": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false
+  },
+  "classification": "ODD_INVERSE_WIDTH_REPARAMETERIZATION"
+}
