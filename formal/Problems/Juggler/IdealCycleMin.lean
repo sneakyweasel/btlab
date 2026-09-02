@@ -15,16 +15,16 @@ floor, and is not a halt theorem.
 
 Imported by `Problems.Juggler` only. Not a `JugglerPaper` review object.
 
-Lemma 3.21b's full e-run form
-`w = O^{a₁} E ⋯ O^{aₑ} E` with `a₁ ≥ 2` is `EXACT — HUMAN PROOF`.
-Lean wraps the first block (`oddEvenBlock`, `cycleMin_exists_oddEven_split`)
-and the last odd-run (`exists_cycleMin_last_odd_run`). Unused middle
-runs stay interval slots, not beads.
+The combinatorial e-run form
+`w = O^{a₁} E ⋯ O^{aₑ} E` with `e = #E`, `a₁ ≥ 2`, `aₑ ≤ 1` is Lean
+(`cycleMin_has_full_odd_even_run_form`). Lemma 3.21b's leftover use of
+that form for `e ≤ 3` stays the Paper A argument. Unused middle runs
+are interval slots, not beads.
 
-`balloonSchema` is a candidate bead schema. `cycleMin_projects_balloonSchema`
-is projection onto forced stations, not an `assembleFill` reconstruction.
-Exact fill counts live on `NecklaceFill`. A general CycleMin word need
-not equal `assembleFill f`.
+`balloonSchema` is a projection of this run list onto six sure letters
+and four slots, not an `assembleFill` reconstruction. Exact fill counts
+live on `NecklaceFill`. A general CycleMin run list need not equal
+`NecklaceFill.toRuns f`.
 -/
 
 /-! ## Shape -/
@@ -264,9 +264,177 @@ theorem sureLink_iff (i j : ℕ) :
     · exact OO_sure_link
     · exact wrap_sure_link
 
+/-- The only forced cyclic adjacencies are launch `OO` and wrap `EO`. -/
+theorem cycleMin_only_forced_adjacencies (i j : ℕ) :
+    sureLink i j = true ↔ (i = 0 ∧ j = 1) ∨ (i = 5 ∧ j = 0) :=
+  sureLink_iff i j
+
 theorem sure_beads_known_parity :
     ∀ p ∈ sureBeadParities, p ≠ .unknown := by
   decide
+
+/-! ## Full odd-even run form -/
+
+/-- Concatenate odd-runs separated by one even each. -/
+def assembleOddEvenRuns : List ℕ → List Branch
+  | [] => []
+  | a :: as =>
+      List.replicate a Branch.odd ++ Branch.even :: assembleOddEvenRuns as
+
+/-- Recover the odd-run lengths of a word. Empty unless the word ends `E`. -/
+def oddEvenRuns : List Branch → List ℕ
+  | [] => []
+  | Branch.odd :: rest =>
+      match oddEvenRuns rest with
+      | [] => []
+      | a :: as => (a + 1) :: as
+  | Branch.even :: rest => 0 :: oddEvenRuns rest
+
+theorem oddEvenRuns_ne_nil_of_endsEven {w : List Branch}
+    (hw : w.getLast? = some Branch.even) : oddEvenRuns w ≠ [] := by
+  induction w with
+  | nil => simp at hw
+  | cons b rest ih =>
+      cases b with
+      | even => simp [oddEvenRuns]
+      | odd =>
+          have hrest : rest.getLast? = some Branch.even := by
+            cases rest with
+            | nil => simp [List.getLast?] at hw
+            | cons _ _ => simpa [List.getLast?] using hw
+          have hne := ih hrest
+          match hruns : oddEvenRuns rest with
+          | [] => exact (hne hruns).elim
+          | a :: as => simp [oddEvenRuns, hruns]
+
+theorem assemble_oddEvenRuns {w : List Branch}
+    (hw : w.getLast? = some Branch.even) :
+    assembleOddEvenRuns (oddEvenRuns w) = w := by
+  induction w with
+  | nil => simp at hw
+  | cons b rest ih =>
+      cases b with
+      | even =>
+          cases rest with
+          | nil => simp [oddEvenRuns, assembleOddEvenRuns]
+          | cons c t =>
+              have hrest : (c :: t).getLast? = some Branch.even := by
+                simpa [List.getLast?] using hw
+              simp [oddEvenRuns, assembleOddEvenRuns, ih hrest]
+      | odd =>
+          have hrest : rest.getLast? = some Branch.even := by
+            cases rest with
+            | nil => simp [List.getLast?] at hw
+            | cons _ _ => simpa [List.getLast?] using hw
+          have hne := oddEvenRuns_ne_nil_of_endsEven hrest
+          match hruns : oddEvenRuns rest with
+          | [] => exact (hne hruns).elim
+          | a :: as =>
+              have hrest' : assembleOddEvenRuns (a :: as) = rest := by
+                simpa [hruns] using ih hrest
+              simp [oddEvenRuns, hruns, assembleOddEvenRuns, List.replicate_succ]
+              exact hrest'
+
+theorem evenCount_assembleOddEvenRuns : ∀ as : List ℕ,
+    evenCount (assembleOddEvenRuns as) = as.length
+  | [] => rfl
+  | a :: as => by
+      simp [assembleOddEvenRuns, evenCount_append, evenCount_replicate_odd,
+        evenCount_assembleOddEvenRuns as]
+
+theorem oddEvenRuns_length_eq_evenCount {w : List Branch}
+    (hw : w.getLast? = some Branch.even) :
+    (oddEvenRuns w).length = evenCount w := by
+  have h := evenCount_assembleOddEvenRuns (oddEvenRuns w)
+  rw [assemble_oddEvenRuns hw] at h
+  exact h.symm
+
+theorem oddEvenRuns_cons_first_even (a : ℕ) (v : List Branch) :
+    oddEvenRuns (List.replicate a Branch.odd ++ Branch.even :: v) =
+      a :: oddEvenRuns v := by
+  induction a with
+  | zero => simp [oddEvenRuns]
+  | succ a ih =>
+      simp [List.replicate_succ, oddEvenRuns, ih]
+
+theorem oddEvenRuns_replicate_odds_even (a : ℕ) :
+    oddEvenRuns (List.replicate a Branch.odd ++ [Branch.even]) = [a] := by
+  simpa [oddEvenRuns] using oddEvenRuns_cons_first_even a []
+
+theorem oddEvenRuns_append_of_endsEven {u w : List Branch}
+    (hu : u.getLast? = some Branch.even) :
+    oddEvenRuns (u ++ w) = oddEvenRuns u ++ oddEvenRuns w := by
+  induction u with
+  | nil => simp at hu
+  | cons b rest ih =>
+      cases b with
+      | even =>
+          cases rest with
+          | nil => simp [oddEvenRuns]
+          | cons c t =>
+              have hrest : (c :: t).getLast? = some Branch.even := by
+                simpa [List.getLast?] using hu
+              simp [oddEvenRuns]
+              exact ih hrest
+      | odd =>
+          have hrest : rest.getLast? = some Branch.even := by
+            cases rest with
+            | nil => simp [List.getLast?] at hu
+            | cons _ _ => simpa [List.getLast?] using hu
+          have hne := oddEvenRuns_ne_nil_of_endsEven hrest
+          have happ := ih hrest
+          match hruns : oddEvenRuns rest with
+          | [] => exact (hne hruns).elim
+          | a :: as =>
+              have hsplit :
+                  oddEvenRuns (rest ++ w) = a :: as ++ oddEvenRuns w := by
+                simpa [hruns] using happ
+              simp [oddEvenRuns, hruns, hsplit]
+
+theorem assembleOddEvenRuns_append : ∀ as bs : List ℕ,
+    assembleOddEvenRuns (as ++ bs) =
+      assembleOddEvenRuns as ++ assembleOddEvenRuns bs
+  | [], bs => by simp [assembleOddEvenRuns]
+  | a :: as, bs => by
+      simp [assembleOddEvenRuns, assembleOddEvenRuns_append as bs,
+        List.append_assoc]
+
+theorem assembleOddEvenRuns_singleton (a : ℕ) :
+    assembleOddEvenRuns [a] =
+      List.replicate a Branch.odd ++ [Branch.even] := by
+  simp [assembleOddEvenRuns]
+
+theorem assembleOddEvenRuns_replicate_zero :
+    ∀ k, assembleOddEvenRuns (List.replicate k 0) = List.replicate k Branch.even
+  | 0 => rfl
+  | k + 1 => by
+      simp [List.replicate_succ, assembleOddEvenRuns,
+        assembleOddEvenRuns_replicate_zero k]
+
+theorem assembleOddEvenRuns_eq_nil (as : List ℕ) :
+    assembleOddEvenRuns as = [] ↔ as = [] := by
+  cases as with
+  | nil => simp [assembleOddEvenRuns]
+  | cons a rest => simp [assembleOddEvenRuns]
+
+theorem oddEvenRuns_assemble : ∀ as, oddEvenRuns (assembleOddEvenRuns as) = as
+  | [] => rfl
+  | a :: as => by
+      simp [assembleOddEvenRuns, oddEvenRuns_cons_first_even, oddEvenRuns_assemble as]
+
+theorem assembleOddEvenRuns_inj {as bs : List ℕ}
+    (h : assembleOddEvenRuns as = assembleOddEvenRuns bs) : as = bs := by
+  rw [← oddEvenRuns_assemble as, ← oddEvenRuns_assemble bs, h]
+
+/-- Combinatorial splitting: a word ending `E` is odd-runs separated by
+    its `e` evens. Unique. -/
+theorem exists_oddEven_run_form {w : List Branch}
+    (hw : w.getLast? = some Branch.even) :
+    ∃! as, w = assembleOddEvenRuns as := by
+  refine ⟨oddEvenRuns w, (assemble_oddEvenRuns hw).symm, ?_⟩
+  intro bs hbs
+  apply assembleOddEvenRuns_inj
+  rw [← hbs, assemble_oddEvenRuns hw]
 
 /-! ## First-block and even roles -/
 
@@ -350,6 +518,38 @@ theorem cycleMin_last_interval {n : ℕ} {w : List Branch}
       w = u ++ List.replicate k Branch.odd ++ [Branch.even] := by
   obtain ⟨u, a, hw, ha, _⟩ := exists_cycleMin_last_odd_run hn h
   refine ⟨u, a, (CountBound.admitsProp_zeroOrOne a).mpr ha, hw⟩
+
+/-- Full CycleMin run form: `w = O^{a₁}E ⋯ O^{aₑ}E` with `e = #E`,
+    `a₁ ≥ 2`, `aₑ ≤ 1`. The bead schema is a projection of this list,
+    not a characterization. Lemma 3.21b's leftover use for `e ≤ 3`
+    stays the Paper A argument. -/
+theorem cycleMin_has_full_odd_even_run_form {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ as, w = assembleOddEvenRuns as ∧
+      as.length = evenCount w ∧
+        4 ≤ as.length ∧
+          (∃ a1 t, as = a1 :: t ∧ 2 ≤ a1) ∧
+            (∃ u ae, as = u ++ [ae] ∧ ae ≤ 1) := by
+  have hend := cycleMin_getLast_even hn h
+  refine ⟨oddEvenRuns w, (assemble_oddEvenRuns hend).symm,
+    oddEvenRuns_length_eq_evenCount hend, ?_, ?_, ?_⟩
+  · have he := cycle_itinerary_even_count_ge_four hn h.1
+    rwa [← oddEvenRuns_length_eq_evenCount hend] at he
+  · obtain ⟨a, v, ha, hw⟩ := cycleMin_run_form_first_block hn h
+    have hw' : w = List.replicate a Branch.odd ++ Branch.even :: v := by
+      simpa [oddEvenBlock] using hw
+    refine ⟨a, oddEvenRuns v, ?_, ha⟩
+    rw [hw', oddEvenRuns_cons_first_even]
+  · obtain ⟨u, a, hw, ha, hcut⟩ := exists_cycleMin_last_odd_run hn h
+    have hw' : w = u ++ (List.replicate a Branch.odd ++ [Branch.even]) := by
+      simpa [List.append_assoc] using hw
+    refine ⟨oddEvenRuns u, a, ?_, ha⟩
+    cases hcut with
+    | inl hu =>
+        rw [hw', hu, List.nil_append, oddEvenRuns_replicate_odds_even]
+        simp [oddEvenRuns]
+    | inr hu =>
+        rw [hw', oddEvenRuns_append_of_endsEven hu, oddEvenRuns_replicate_odds_even]
 
 theorem cycleMin_realizes_sure_links {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) :
@@ -474,6 +674,17 @@ theorem balloonSchema_sure_even_count :
 theorem balloonSchema_sure_launch_repeat :
     BalloonStation.sureLetterCount .sureLaunchO = 2 :=
   rfl
+
+/-- Six sure letters: launch `OO` plus four sure `E`. -/
+theorem cycleMin_sure_letter_inventory :
+    (balloonSchemaForced.map BalloonStation.sureLetterCount).sum = 6 ∧
+      (balloonSchemaForced.filter fun s =>
+        match s with
+        | .sureEven _ => true
+        | _ => false).length = 4 ∧
+          BalloonStation.sureLetterCount .sureLaunchO = 2 :=
+  ⟨balloonSchema_sure_letter_count, balloonSchema_sure_even_count,
+    balloonSchema_sure_launch_repeat⟩
 
 theorem last_odd_interval_bounds :
     BalloonStation.intervalMin (.intervalOdd .lastZeroOrOne) = some 0 ∧
@@ -683,6 +894,66 @@ theorem necklaceFill_unplaced_odd_budget (f : NecklaceFill) :
 theorem necklaceFill_extra_even_budget (f : NecklaceFill) :
     evenCount (assembleFill f) - 4 = f.extraEvens :=
   assembleFill_extra_evens f
+
+/-- Bead fill as a run list: first run, bunched middle odds, extra
+    evens as empty interior runs, last run. This is a projection, not
+    the general CycleMin decomposition. -/
+def NecklaceFill.toRuns (f : NecklaceFill) : List ℕ :=
+  [2 + f.a1Extras, f.middleOdds] ++
+    List.replicate (f.extraEvens + 1) 0 ++
+    [f.lastOdds]
+
+theorem NecklaceFill.toRuns_length (f : NecklaceFill) :
+    f.toRuns.length = 4 + f.extraEvens := by
+  simp [NecklaceFill.toRuns]
+  omega
+
+theorem NecklaceFill.toRuns_index_two (f : NecklaceFill) :
+    f.toRuns[2]? = some 0 := by
+  have h :
+      f.toRuns =
+        (2 + f.a1Extras) :: f.middleOdds ::
+          0 :: (List.replicate f.extraEvens 0 ++ [f.lastOdds]) := by
+    simp [NecklaceFill.toRuns, List.replicate_succ]
+  simp [h]
+
+/-- The four-slot bead word is exactly this aggregated run list. -/
+theorem assembleFill_eq_assembleOddEvenRuns (f : NecklaceFill) :
+    assembleFill f = assembleOddEvenRuns f.toRuns := by
+  have hruns :
+      f.toRuns =
+        [2 + f.a1Extras, f.middleOdds] ++
+          List.replicate (f.extraEvens + 1) 0 ++ [f.lastOdds] :=
+    rfl
+  have hleft :
+      assembleOddEvenRuns f.toRuns =
+        List.replicate (2 + f.a1Extras) Branch.odd ++ [Branch.even] ++
+          List.replicate f.middleOdds Branch.odd ++ [Branch.even] ++
+          List.replicate (f.extraEvens + 1) Branch.even ++
+          List.replicate f.lastOdds Branch.odd ++ [Branch.even] := by
+    rw [hruns, assembleOddEvenRuns_append, assembleOddEvenRuns_append,
+      assembleOddEvenRuns_replicate_zero]
+    simp [assembleOddEvenRuns]
+  have hrep :
+      List.replicate (2 + f.a1Extras) Branch.odd =
+        List.replicate 2 Branch.odd ++ List.replicate f.a1Extras Branch.odd :=
+    List.replicate_add 2 f.a1Extras Branch.odd
+  have hextra :
+      List.replicate (f.extraEvens + 1) Branch.even =
+        List.replicate f.extraEvens Branch.even ++ [Branch.even] :=
+    List.replicate_succ'
+  simp [assembleFill, hleft, hrep, hextra, List.append_assoc]
+
+theorem fourEvenWord_eq_assembleOddEvenRuns (a0 a1 a2 a3 : ℕ) :
+    fourEvenWord a0 a1 a2 a3 = assembleOddEvenRuns [a0, a1, a2, a3] := by
+  simp [fourEvenWord, assembleOddEvenRuns]
+
+/-- Interior three-valley leftover is a run list, not a bead fill. -/
+theorem leftover_three_valley_not_fill_runs (f : NecklaceFill) :
+    f.toRuns ≠ [3, 2, 2, 0] := by
+  intro hf
+  have h0 : f.toRuns[2]? = some 0 := NecklaceFill.toRuns_index_two f
+  simp [hf] at h0
 
 /-! ## Leftovers inhabit the shape and are not cycles -/
 

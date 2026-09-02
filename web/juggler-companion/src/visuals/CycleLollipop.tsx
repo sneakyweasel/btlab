@@ -797,13 +797,14 @@ export function CycleLollipop({
         <span className="mx-2 text-muted">→</span>
         candidate schema
         <span className="ml-2 font-sans text-muted">
-          · a₁≥2 · e≥4 · o≥7 · aₑ∈{"{0,1}"} · first block Lean · full e-run 3.21b human · not a cycle
+          · a₁≥2 · e≥4 · o≥7 · aₑ∈{"{0,1}"} · full e-run Lean · schema is a projection · not a cycle
         </span>
       </p>
       <p className="mt-2 text-sm text-muted">
         The cycle is a Lean candidate schema: six sure letters and
-        interval slots between them. Projection onto forced stations is
-        Lean; assembleFill is not a CycleMin reconstruction. Extra odds
+        interval slots between them. The full e-run is Lean; the schema
+        is a projection of that run list, not an assembleFill
+        reconstruction. Extra odds
         past launch OO have minimum 5 and stay unplaced. Extra E past
         the four forced evens have minimum 0. Last odd-run is 0 or 1.
         Stem OO???E is an optional first visit. Cycle letters are O or

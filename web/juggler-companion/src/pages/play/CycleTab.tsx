@@ -10,6 +10,8 @@ import {
   cycleMinShape,
   expanding,
   formatNecklaceFill,
+  necklaceFillToRuns,
+  oddEvenRuns,
   parseCycleItinerary,
   rotateItinerary,
   tryAssembleFill,
@@ -24,6 +26,7 @@ export function CycleTab() {
   const shape = current ? cycleMinShape(current) : null;
   const fill = current ? tryAssembleFill(current) : null;
   const fillCounts = fill ? assembleFillCounts(fill) : null;
+  const runs = current ? oddEvenRuns(current) : null;
   const trial = n !== null && current ? tryCycleItinerary(n, current) : null;
   return (
     <div className="space-y-5">
@@ -110,6 +113,17 @@ export function CycleTab() {
                   shape?.cycleMinShaped
                     ? `${shape.seam.replace("|", " | n | ")} seam. Necessary, not a cycle (CycleMinShape_not_of_CycleMin).`
                     : "needs OO…E, four evens, seven odds, expanding, last odd-run a ≤ 1"
+                }
+              />
+              <Metric
+                label="odd-even runs"
+                value={runs ? `[${runs.join(", ")}]` : "needs terminal E"}
+                hint={
+                  fill
+                    ? `bead projection ${JSON.stringify(necklaceFillToRuns(fill))}`
+                    : runs
+                      ? "full run list; not a four-slot fill"
+                      : undefined
                 }
               />
               <Metric

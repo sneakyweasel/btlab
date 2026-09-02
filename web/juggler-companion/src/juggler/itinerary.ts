@@ -214,6 +214,36 @@ export function cycleMinShape(word: string): CycleMinShape {
   };
 }
 
+/** Lean `assembleOddEvenRuns`: odd-runs separated by one even each. */
+export function assembleOddEvenRuns(runs: readonly number[]): string {
+  return runs.map((run) => "O".repeat(run) + "E").join("");
+}
+
+/** Lean `oddEvenRuns`. Null unless the word ends E. */
+export function oddEvenRuns(word: string): number[] | null {
+  if (!word.endsWith("E") || !/^[OE]+$/.test(word)) return null;
+  const runs: number[] = [];
+  let odds = 0;
+  for (const letter of word) {
+    if (letter === "O") odds += 1;
+    else {
+      runs.push(odds);
+      odds = 0;
+    }
+  }
+  return runs;
+}
+
+/** Lean `NecklaceFill.toRuns`: bunched middle odds and empty extra evens. */
+export function necklaceFillToRuns(fill: NecklaceFill): number[] {
+  return [
+    2 + fill.a1Extras,
+    fill.middleOdds,
+    ...Array.from({ length: fill.extraEvens + 1 }, () => 0),
+    fill.lastOdds,
+  ];
+}
+
 /** Lean `assembleFill`: bunched extra evens, empty third odd-run. */
 export function assembleFill(fill: NecklaceFill): string {
   return (

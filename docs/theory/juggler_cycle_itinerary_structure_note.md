@@ -292,7 +292,11 @@ Paper A Lemma 3.21b. After rotation to a minimum,
 \[
 w=O^{a_1}EO^{a_2}E\cdots O^{a_e}E,\qquad a_1\ge 2,
 \]
-with unused runs empty when \(e\le 3\). Valleys \(v_i\) are
+with unused runs empty when \(e\le 3\). The combinatorial
+splitting, \(a_1\ge 2\), and \(a_e\le 1\) are Lean
+(`cycleMin_has_full_odd_even_run_form`); the leftover use of
+that form for \(e\le 3\) stays the Paper A argument. The bead
+schema is a projection of this run list, not a characterization. Valleys \(v_i\) are
 cyclic even-to-odd landings; peaks \(p_i\) are the even states
 just before each final \(E\):
 \[

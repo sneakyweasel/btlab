@@ -169,9 +169,9 @@ export type BalloonInterval = {
 
 /**
  * Candidate bead schema in CycleMin reading order.
- * Same order as Lean `balloonSchema`. Exact realization of a CycleMin
- * word as this schema needs Lemma 3.21b (HUMAN PROOF). Projection onto
- * forced stations is Lean; `assembleFill` is not a characterization.
+ * Same order as Lean `balloonSchema`. The full e-run is Lean
+ * (`cycleMin_has_full_odd_even_run_form`); this schema is a projection
+ * of that run list. `assembleFill` is not a characterization.
  */
 export const BALLOON_SCHEMA: readonly BalloonStation[] = [
   { kind: "sureLaunchO" },

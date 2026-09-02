@@ -22014,4 +22014,35 @@ Best next question
 - none from this door; 3.21b stays HUMAN PROOF
 ```
 
+## CycleMin full run-form interface (not a numbered milestone)
+
+- **Date:** 2026-09-02
+- **Objective:** Add the missing run-list interface to `formal/Problems/Juggler/IdealCycleMin.lean` so the bead schema is a named projection of \(w=O^{a_1}E\cdots O^{a_e}E\). Not a `NecklaceFill` reconstruction, not a Paper A edit, and not a halt theorem.
+- **Hypotheses:** none new. Falsifier: a word ending `E` that is not `assembleOddEvenRuns` of its even-count, or a CycleMin word whose first/last run violates \(a_1\ge 2\), \(a_e\le 1\).
+- **Major results:** Combinatorial uniqueness `exists_oddEven_run_form`. CycleMin wrapper `cycleMin_has_full_odd_even_run_form` with \(e=\#E\), \(a_1\ge 2\), \(a_e\le 1\). Fill projection `assembleFill_eq_assembleOddEvenRuns` / `NecklaceFill.toRuns`, with `leftover_three_valley_not_fill_runs` as the bunched-schema boundary. Naming lemmas `cycleMin_sure_letter_inventory` (six sure letters `OO+EEEE`) and `cycleMin_only_forced_adjacencies`. No `sorry` / `admit`. `lake build Problems.Juggler.IdealCycleMin` succeeded.
+- **Refuted ideas:** none new. A general CycleMin run list still need not equal `NecklaceFill.toRuns`.
+- **Literature:** existing first-block and last-run lemmas; Lemma 3.21b leftover use for \(e\le 3\) stays the Paper A argument.
+- **Open:** none from this door.
+- **Decision:** PROMOTE the run-form interface into the existing formal bead file. PARK the `CycleMin → NecklaceFill` reconstruction. Do not open a rescue branch.
+
+```text
+What was learned
+- any E-terminal word splits uniquely as odd-runs separated by its evens
+- CycleMin adds a1 ≥ 2 and ae ≤ 1 to that unique list
+- the bead schema is a bunched projection of the run list
+- [3,2,2,0] is a shaped run list and not a fill
+Strongest theorem
+- cycleMin_has_full_odd_even_run_form
+Strongest refutation
+- leftover_three_valley_not_fill_runs
+Reusable machinery
+- assembleOddEvenRuns / oddEvenRuns / NecklaceFill.toRuns
+Branch status
+- PROMOTE (run-form interface); PARK (reconstruction)
+Why
+- the interface makes the bead projection airtight; reconstruction remains false
+Best next question
+- none from this door; freeze the bead file
+```
+
 

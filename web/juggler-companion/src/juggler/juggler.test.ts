@@ -32,7 +32,10 @@ import { walkTrajectory } from "./trajectory";
 import {
   assembleFill,
   assembleFillCounts,
+  assembleOddEvenRuns,
   cycleMinShape,
+  necklaceFillToRuns,
+  oddEvenRuns,
   envelopeSlack,
   expanding,
   followsItinerary,
@@ -193,6 +196,16 @@ describe("assembleFill identities", () => {
 
   it("does not treat a three-valley leftover as a fill", () => {
     expect(tryAssembleFill("OOOEOOEOOEE")).toBeNull();
+    expect(oddEvenRuns("OOOEOOEOOEE")).toEqual([3, 2, 2, 0]);
+    expect(assembleOddEvenRuns([3, 2, 2, 0])).toBe("OOOEOOEOOEE");
+  });
+
+  it("projects a fill onto a bunched run list", () => {
+    const o7 = { a1Extras: 5, middleOdds: 0, extraEvens: 0, lastOdds: 0 };
+    expect(necklaceFillToRuns(o7)).toEqual([7, 0, 0, 0]);
+    expect(assembleOddEvenRuns(necklaceFillToRuns(o7))).toBe(assembleFill(o7));
+    expect(necklaceFillToRuns(o7)[2]).toBe(0);
+    expect(necklaceFillToRuns(o7)).not.toEqual([3, 2, 2, 0]);
   });
 });
 
@@ -352,16 +365,19 @@ describe("idealized figure decisions", () => {
 
   it("records the Lean honesty split on the cycle figure", () => {
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-run")?.why).toMatch(
-      /HUMAN PROOF/,
+      /cycleMin_has_full_odd_even_run_form/,
+    );
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-run")?.why).toMatch(
+      /projection/,
     );
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-fill")?.why).toMatch(
-      /not an assembleFill/,
+      /not a fill/,
     );
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "leftovers")?.lemma).toContain(
       "CycleMinShape_not_of_CycleMin",
     );
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-links")?.lemma).toContain(
-      "sureLink_iff",
+      "cycleMin_only_forced_adjacencies",
     );
   });
 });

@@ -126,14 +126,14 @@ export function CycleTourWidget() {
     >
       <p className="text-sm text-muted">
         If a cycle existed it would need a CycleMin rotation: launch OO,
-        wrap EO, four evens, seven odds, period at least 11. The figure
-        is a candidate bead schema — projection onto those forced
-        stations, not an assembleFill reconstruction. Lemma 3.21b’s
-        full e-run stays human proof. The stem OO???E is an optional
-        first visit. Click a bead or a row to see the Lean name. Click
-        empty space to show the whole figure again. Pictures of
-        necessity, not a realized loop beyond 1. The unique known
-        cycle is 1.
+        wrap EO, four evens, seven odds, period at least 11. The full
+        e-run O^a1 E ... O^ae E is Lean. The figure is a projection of
+        that run list onto six sure letters, not an assembleFill
+        reconstruction. Lemma 3.21b’s leftover use for e ≤ 3 stays the
+        paper argument. The stem OO???E is an optional first visit.
+        Click a bead or a row to see the Lean name. Click empty space
+        to show the whole figure again. Pictures of necessity, not a
+        realized loop beyond 1. The unique known cycle is 1.
       </p>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
@@ -240,8 +240,8 @@ export function CycleTourWidget() {
                 <Check ok={shape.startsOO}>
                   Launch OO — cycleMin_launch_is_OO
                 </Check>
-                <Check ok={shape.startsOddEvenBlock}>
-                  First block O^a1 E then a tail — Lean, not the full e-run
+                <Check ok={shape.startsOddEvenBlock && shape.lastOddRunAtMost1 && shape.endsE}>
+                  Full run O^a1 E ... O^ae E — cycleMin_has_full_odd_even_run_form
                 </Check>
                 <Check ok={shape.endsE}>
                   Wrap EO — cycleMin_wrap_is_EO, last-even cell
@@ -315,8 +315,8 @@ export function CycleTourWidget() {
       </label>
       <p className="text-sm text-muted">
         O⁷EEEE and O⁶EEEOE are assembleFill leftovers. The three-valley
-        word is CycleMin-shaped and is not an assembleFill. None of them
-        close.{" "}
+        word has runs [3, 2, 2, 0]: CycleMin-shaped and not a fill.
+        None of them close.{" "}
         <Link to="/play/cycle">Try the same necklace in the playground</Link>.
       </p>
     </div>
