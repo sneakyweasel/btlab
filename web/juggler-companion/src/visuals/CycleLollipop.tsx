@@ -504,7 +504,8 @@ export function CycleLollipop({
       >
         <title>
           Optional stem joining a CycleMin cycle at a sure letter.
-          Six sure letters; interval marks are bounds, not letter beads
+          Candidate schema: six sure letters; interval marks are bounds.
+          Not an assembleFill reconstruction
         </title>
         <text
           x={(stem[0].x + stem[Math.max(stem.length - 2, 0)].x) / 2}
@@ -757,7 +758,7 @@ export function CycleLollipop({
       </p>
       <div
         className="mt-1 flex flex-wrap items-end justify-center gap-1.5"
-        aria-label="CycleMin run form with six sure letters and interval bounds"
+        aria-label="Candidate CycleMin schema with six sure letters and interval bounds"
       >
         {RUNS.map((run, index) => {
           const lit = regionLit(focus, run.focus);
@@ -794,18 +795,20 @@ export function CycleLollipop({
         <span className="mx-2 text-muted">+</span>
         intervals
         <span className="mx-2 text-muted">→</span>
-        O<sup>a₁</sup>E⋯O<sup>aₑ</sup>E
+        candidate schema
         <span className="ml-2 font-sans text-muted">
-          · a₁≥2 · e≥4 · aₑ∈{"{0,1}"} · period at least 11 · not a cycle
+          · a₁≥2 · e≥4 · o≥7 · aₑ∈{"{0,1}"} · first block Lean · full e-run 3.21b human · not a cycle
         </span>
       </p>
       <p className="mt-2 text-sm text-muted">
-        The cycle is the Lean station list: six sure letters and
-        interval slots between them. Extra odds past launch OO have
-        minimum 5 and stay unplaced. Extra E past the four forced evens
-        have minimum 0. Last odd-run is 0 or 1, not a grey letter.
-        Stem OO???E is an optional first visit. Left and right walk the
-        join around the six sure letters.
+        The cycle is a Lean candidate schema: six sure letters and
+        interval slots between them. Projection onto forced stations is
+        Lean; assembleFill is not a CycleMin reconstruction. Extra odds
+        past launch OO have minimum 5 and stay unplaced. Extra E past
+        the four forced evens have minimum 0. Last odd-run is 0 or 1.
+        Stem OO???E is an optional first visit. Cycle letters are O or
+        E; unknown beads are stem-only. Left and right walk the join
+        around the six sure letters.
       </p>
     </div>
   );

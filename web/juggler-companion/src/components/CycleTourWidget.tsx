@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CYCLE_TOUR_PRESETS, TOUR_WORD_MAX } from "../juggler/constants";
 import {
+  assembleFillCounts,
   cycleMinShape,
+  formatNecklaceFill,
   parseItinerary,
   rotateItinerary,
+  tryAssembleFill,
 } from "../juggler/itinerary";
 import { CycleAnatomy } from "../visuals/CycleAnatomy";
 import { CycleLollipop } from "../visuals/CycleLollipop";
@@ -93,6 +96,9 @@ export function CycleTourWidget() {
   const balloonWord = stored ? rotateItinerary(stored, minIndex) : "";
   const shape = cycleMinShape(current);
   const balloonShape = cycleMinShape(balloonWord);
+  const currentFill = current ? tryAssembleFill(current) : null;
+  const balloonFill = balloonWord ? tryAssembleFill(balloonWord) : null;
+  const balloonFillCounts = balloonFill ? assembleFillCounts(balloonFill) : null;
   const aligned =
     stored.length > 0 &&
     ((shift % stored.length) + stored.length) % stored.length === minIndex;
@@ -119,13 +125,15 @@ export function CycleTourWidget() {
       }}
     >
       <p className="text-sm text-muted">
-        If a cycle existed it would need a CycleMin cycle: six sure
-        letters plus interval slots, period at least 11. The stem OO???E
-        is an optional first visit, not a forced preperiod. Rotate
-        the join among the six sure letters; CycleMin is one placement.
-        Click a bead or a row to see the lemma. Click empty space to
-        show the whole figure again. Pictures of necessity, not a
-        realized loop beyond 1. The unique known cycle is 1.
+        If a cycle existed it would need a CycleMin rotation: launch OO,
+        wrap EO, four evens, seven odds, period at least 11. The figure
+        is a candidate bead schema — projection onto those forced
+        stations, not an assembleFill reconstruction. Lemma 3.21b’s
+        full e-run stays human proof. The stem OO???E is an optional
+        first visit. Click a bead or a row to see the Lean name. Click
+        empty space to show the whole figure again. Pictures of
+        necessity, not a realized loop beyond 1. The unique known
+        cycle is 1.
       </p>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
@@ -179,11 +187,13 @@ export function CycleTourWidget() {
                   : "border-line bg-paper/70 text-muted"
             }`}
           >
-            {balloonShape.cycleMinShaped
-              ? "This leftover fills the interval slots. Still not a realized cycle."
-              : aligned
-                ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, and has four evens."
-                : "Rotate until the min bead sits at the leftover knot."}
+            {balloonShape.cycleMinShaped && balloonFill
+              ? `CycleMin-shaped leftover and an assembleFill ${formatNecklaceFill(balloonFill)}. Lean fill counts are exact here. Still not a realized cycle.`
+              : balloonShape.cycleMinShaped
+                ? "CycleMin-shaped leftover, not an assembleFill. Extra runs are not bunched into the four-slot candidate. Still not a realized cycle (CycleMinShape_not_of_CycleMin)."
+                : aligned
+                  ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, has four evens and seven odds."
+                  : "Rotate until the min bead sits at the leftover knot."}
           </div>
           <div className="grid gap-6 md:grid-cols-[minmax(16rem,22rem)_1fr] md:items-start">
             <div>
@@ -228,22 +238,27 @@ export function CycleTourWidget() {
               </p>
               <ul className="grid gap-1.5">
                 <Check ok={shape.startsOO}>
-                  Starts OO — not E, not OE
+                  Launch OO — cycleMin_launch_is_OO
                 </Check>
-                <Check ok={shape.startsOO}>
-                  Launch is OO — T(n) odd, T²(n) overshoots (n+1)²
+                <Check ok={shape.startsOddEvenBlock}>
+                  First block O^a1 E then a tail — Lean, not the full e-run
                 </Check>
                 <Check ok={shape.endsE}>
-                  Ends E — last peak lands in the last-even cell
+                  Wrap EO — cycleMin_wrap_is_EO, last-even cell
                 </Check>
-                <Check ok={shape.evenCountGe4}>
-                  At least four evens — period at least 11
+                <Check ok={shape.evenCountGe4 && shape.oddCountGe7 && shape.lengthGe11}>
+                  At least four evens and seven odds — period at least 11
                 </Check>
                 <Check ok={shape.expanding}>
                   {`Expanding — 3^${shape.oddCount} beats 2^${current.length}`}
                 </Check>
                 <Check ok={shape.lastOddRunAtMost1}>
                   Last odd-run a ≤ 1 — ends OE or EE, not OOE…
+                </Check>
+                <Check ok={Boolean(currentFill)}>
+                  {currentFill
+                    ? `assembleFill ${formatNecklaceFill(currentFill)} — counts exact on this fill`
+                    : "Not an assembleFill — four-slot candidate does not reconstruct this word"}
                 </Check>
               </ul>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -259,7 +274,25 @@ export function CycleTourWidget() {
                 <Metric
                   label="Odds / evens"
                   value={current ? `${shape.oddCount} / ${shape.evenCount}` : "—"}
-                  hint="four evens first hold at length 11"
+                  hint={
+                    current
+                      ? `unplaced odds ${shape.unplacedOdds}, extra evens ${shape.extraEvens}`
+                      : "four evens first hold at length 11"
+                  }
+                />
+                <Metric
+                  label="Lean fill"
+                  value={balloonFill ? formatNecklaceFill(balloonFill) : "none"}
+                  hint={
+                    balloonFillCounts
+                      ? `#O=${balloonFillCounts.oddCount}, #E=${balloonFillCounts.evenCount}, L=${balloonFillCounts.length}`
+                      : "shaped leftover need not be a NecklaceFill"
+                  }
+                />
+                <Metric
+                  label="Shape vs cycle"
+                  value={shape.cycleMinShaped ? "shape only" : "not shaped"}
+                  hint="CycleMinShape_not_of_CycleMin: leftovers inhabit the shape"
                 />
               </div>
             </div>
@@ -281,9 +314,9 @@ export function CycleTourWidget() {
         />
       </label>
       <p className="text-sm text-muted">
-        O⁷EEEE, O⁶EEEOE, and the three-valley word inhabit the CycleMin
-        shape and still do not close. Those spellings are leftovers, not
-        walks.{" "}
+        O⁷EEEE and O⁶EEEOE are assembleFill leftovers. The three-valley
+        word is CycleMin-shaped and is not an assembleFill. None of them
+        close.{" "}
         <Link to="/play/cycle">Try the same necklace in the playground</Link>.
       </p>
     </div>

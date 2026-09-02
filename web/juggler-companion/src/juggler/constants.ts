@@ -167,7 +167,12 @@ export type BalloonInterval = {
   label: string;
 };
 
-/** Unique figure schema. Same order as Lean `balloonSchema`. */
+/**
+ * Candidate bead schema in CycleMin reading order.
+ * Same order as Lean `balloonSchema`. Exact realization of a CycleMin
+ * word as this schema needs Lemma 3.21b (HUMAN PROOF). Projection onto
+ * forced stations is Lean; `assembleFill` is not a characterization.
+ */
 export const BALLOON_SCHEMA: readonly BalloonStation[] = [
   { kind: "sureLaunchO" },
   { kind: "intervalOdd", odd: "a1Extras" },
@@ -219,11 +224,17 @@ function sureBeadsFromSchema(schema: readonly BalloonStation[]): IdealBead[] {
 }
 
 /**
- * Six sure letters from the Lean schema: launch OO and four E.
+ * Six sure letters from the Lean candidate schema: launch OO and four E.
  * Interval slots are bounds, not letter beads.
  */
 export const IDEAL_BALLOON_BEADS: readonly IdealBead[] =
   sureBeadsFromSchema(BALLOON_SCHEMA);
+
+/** Lean `sureLink_iff`: exactly two table adjacencies are sure. */
+export const SURE_LINKS: readonly (readonly [number, number])[] = [
+  [0, 1],
+  [5, 0],
+];
 
 export const IDEAL_BALLOON_INTERVALS: readonly BalloonInterval[] = [
   { afterBead: 1, kind: "a1Extras", min: 0, max: null, label: "a₁ extras 0+" },

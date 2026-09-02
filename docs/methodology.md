@@ -142,6 +142,14 @@ theory pages, never as a ledger tag:
 A branch whose statements are all `KNOWN` or `REPARAMETERIZATION` is a
 `CLOSE`, however much machinery it produced.
 
+Do not inflate a finite check, period floor, density, leftover census,
+or weaker compiled lemma into a halt theorem, a “no cycle of any
+length” theorem, or a Collatz/Juggler solution. Those phrases become
+available only when the English is covered by `EXACT — LEAN VERIFIED`
+or `EXACT — HUMAN PROOF`. Then state the theorem; do not bury it under
+a disclaimer and do not replace it with a slogan. See
+[README.md](README.md).
+
 ## Machinery policy
 
 The repository is a research platform with interchangeable mathematical

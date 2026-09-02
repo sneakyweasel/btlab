@@ -6,10 +6,13 @@ import { CYCLE_PRESETS } from "../../juggler/constants";
 import { formatInt, parsePositiveInt } from "../../juggler/format";
 import { tryCycleItinerary } from "../../juggler/trajectory";
 import {
+  assembleFillCounts,
   cycleMinShape,
   expanding,
+  formatNecklaceFill,
   parseCycleItinerary,
   rotateItinerary,
+  tryAssembleFill,
 } from "../../juggler/itinerary";
 
 export function CycleTab() {
@@ -19,6 +22,8 @@ export function CycleTab() {
   const n = parsePositiveInt(nText);
   const current = parsed ? rotateItinerary(parsed, cycleShift) : "";
   const shape = current ? cycleMinShape(current) : null;
+  const fill = current ? tryAssembleFill(current) : null;
+  const fillCounts = fill ? assembleFillCounts(fill) : null;
   const trial = n !== null && current ? tryCycleItinerary(n, current) : null;
   return (
     <div className="space-y-5">
@@ -91,6 +96,11 @@ export function CycleTab() {
               <Metric
                 label="Odds / evens"
                 value={`${shape?.oddCount ?? 0} / ${shape?.evenCount ?? 0}`}
+                hint={
+                  shape
+                    ? `unplaced odds ${shape.unplacedOdds}, extra evens ${shape.extraEvens}`
+                    : undefined
+                }
               />
               <Metric label="Expanding?" value={expanding(parsed) ? "yes" : "no"} />
               <Metric
@@ -98,8 +108,17 @@ export function CycleTab() {
                 value={shape?.cycleMinShaped ? "yes" : "no"}
                 hint={
                   shape?.cycleMinShaped
-                    ? `${shape.seam.replace("|", " | n | ")} seam. Necessary, not a cycle.`
-                    : "needs OO…E, four evens, expanding, last odd-run a ≤ 1"
+                    ? `${shape.seam.replace("|", " | n | ")} seam. Necessary, not a cycle (CycleMinShape_not_of_CycleMin).`
+                    : "needs OO…E, four evens, seven odds, expanding, last odd-run a ≤ 1"
+                }
+              />
+              <Metric
+                label="assembleFill?"
+                value={fill ? formatNecklaceFill(fill) : "no"}
+                hint={
+                  fillCounts
+                    ? `#O=${fillCounts.oddCount}, #E=${fillCounts.evenCount}, L=${fillCounts.length}`
+                    : "four-slot candidate; not a CycleMin reconstruction"
                 }
               />
             </div>

@@ -16,7 +16,7 @@ Balanced ternary is the **core**. Research problems are **applications**.
 ## Claims
 
 Do not inflate weaker evidence into a global theorem. Finite checks are
-not proofs. Do not write `PROVED` or `VERIFIED COMPUTATIONALLY`.
+not proofs.
 
 A halt theorem, a "no cycle of any length" theorem, or a Collatz/Juggler
 solution is claimable only when the English is covered by a `sorry`-free

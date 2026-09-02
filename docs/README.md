@@ -16,6 +16,15 @@ These seven are the only tags allowed in
 [theory/theorem_ledger.json](theory/theorem_ledger.json) and in research
 notes. Do not write **PROVED** or **VERIFIED COMPUTATIONALLY**.
 
+A halt theorem, a “no cycle of any length” theorem, or a Collatz/Juggler
+solution slogan is overclaim unless the English is covered by
+**EXACT — LEAN VERIFIED** (compiled, no `sorry`, Lean matches English)
+or **EXACT — HUMAN PROOF**. Weaker compiled lemmas — period floors,
+densities, leftover censuses, finite certificates — do not unlock those
+phrases. If the covering statement exists, name the theorem with its
+quantifiers and Lean name; do not hide it under “this is not a halt
+theorem,” and do not replace it with “we solved Juggler / Collatz.”
+
 Novelty is a separate axis, used in dossiers and theory pages and never
 as a ledger tag: **KNOWN** (in the literature, cite a `literature/` id),
 **PROJECT-SPECIFIC** (what this project measures or refines), and
@@ -108,7 +117,9 @@ Historical layer notes (stubs that point at the monograph):
 
 ## Juggler application
 
-The active research application. No halt theorem is claimed.
+The active research application. No halt theorem is in the present
+record. That is a status line, not a ban on stating a later matching
+`EXACT` theorem.
 
 - [Paper A](theory/juggler_finite_dynamics_note.md): itinerary
   obstructions, finance, walk-charge envelope, certified floors

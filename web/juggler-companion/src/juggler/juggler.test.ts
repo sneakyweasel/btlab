@@ -18,6 +18,7 @@ import {
   intervalBoundLabel,
   intervalCountBead,
   packCountRuns,
+  SURE_LINKS,
   stepIdealJoin,
   IDEAL_STRING_BEADS,
   IDEAL_STRING_LETTERS,
@@ -29,12 +30,15 @@ import { floorPower } from "./map";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
 import {
+  assembleFill,
+  assembleFillCounts,
   cycleMinShape,
   envelopeSlack,
   expanding,
   followsItinerary,
   imageAfter,
   regimeOf,
+  tryAssembleFill,
 } from "./itinerary";
 
 describe("floorPower", () => {
@@ -126,6 +130,10 @@ describe("cycleMinShape", () => {
     expect(shape.seam).toBe("EE|OO");
     expect(shape.lastOddRun).toBe(0);
     expect(shape.evenCount).toBe(4);
+    expect(shape.oddCountGe7).toBe(true);
+    expect(shape.unplacedOdds).toBe(5);
+    expect(shape.extraEvens).toBe(0);
+    expect(shape.startsOddEvenBlock).toBe(true);
   });
 
   it("accepts O^6 EEEOE as an OE-seam leftover", () => {
@@ -155,6 +163,36 @@ describe("cycleMinShape", () => {
     expect(shape.seam).toBe("EE|OO");
     expect(shape.evenCount).toBe(4);
     expect(shape.oddCount).toBe(7);
+    expect(tryAssembleFill("OOOEOOEOOEE")).toBeNull();
+  });
+});
+
+describe("assembleFill identities", () => {
+  it("matches Lean leftover fills and count identities", () => {
+    const o7 = { a1Extras: 5, middleOdds: 0, extraEvens: 0, lastOdds: 0 };
+    const o6 = { a1Extras: 4, middleOdds: 0, extraEvens: 0, lastOdds: 1 };
+    expect(assembleFill(o7)).toBe("OOOOOOOEEEE");
+    expect(assembleFill(o6)).toBe("OOOOOOEEEOE");
+    expect(tryAssembleFill("OOOOOOOEEEE")).toEqual(o7);
+    expect(tryAssembleFill("OOOOOOEEEOE")).toEqual(o6);
+    expect(assembleFillCounts(o7)).toEqual({
+      oddCount: 7,
+      evenCount: 4,
+      length: 11,
+      unplacedOdds: 5,
+      extraEvens: 0,
+    });
+    expect(assembleFillCounts(o6)).toEqual({
+      oddCount: 7,
+      evenCount: 4,
+      length: 11,
+      unplacedOdds: 5,
+      extraEvens: 0,
+    });
+  });
+
+  it("does not treat a three-valley leftover as a fill", () => {
+    expect(tryAssembleFill("OOOEOOEOOEE")).toBeNull();
   });
 });
 
@@ -231,6 +269,10 @@ describe("idealized cycle", () => {
     expect(stepIdealJoin(5, 1)).toBe(0);
     expect(stepIdealJoin(0, -1)).toBe(5);
     expect(stepIdealJoin(2, 1)).toBe(3);
+    expect(SURE_LINKS).toEqual([
+      [0, 1],
+      [5, 0],
+    ]);
   });
 });
 
@@ -306,6 +348,21 @@ describe("idealized figure decisions", () => {
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "equidistribution")?.kind).toBe("off-figure");
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "automatic")?.kind).toBe("off-figure");
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "empty-string")?.why).toMatch(/minimum length 0/);
+  });
+
+  it("records the Lean honesty split on the cycle figure", () => {
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-run")?.why).toMatch(
+      /HUMAN PROOF/,
+    );
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-fill")?.why).toMatch(
+      /not an assembleFill/,
+    );
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "leftovers")?.lemma).toContain(
+      "CycleMinShape_not_of_CycleMin",
+    );
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-links")?.lemma).toContain(
+      "sureLink_iff",
+    );
   });
 });
 

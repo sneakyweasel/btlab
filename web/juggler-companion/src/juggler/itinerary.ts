@@ -125,11 +125,32 @@ export type CycleMinShape = {
   evenCount: number;
   oddCount: number;
   evenCountGe4: boolean;
+  oddCountGe7: boolean;
+  lengthGe11: boolean;
   expanding: boolean;
   lastOddRun: number | null;
   lastOddRunAtMost1: boolean;
+  startsOddEvenBlock: boolean;
+  unplacedOdds: number;
+  extraEvens: number;
   seam: CycleSeamKind;
   cycleMinShaped: boolean;
+};
+
+/** Candidate four-slot word. Same fields as Lean `NecklaceFill`. */
+export type NecklaceFill = {
+  a1Extras: number;
+  middleOdds: number;
+  extraEvens: number;
+  lastOdds: number;
+};
+
+export type AssembleFillCounts = {
+  oddCount: number;
+  evenCount: number;
+  length: number;
+  unplacedOdds: number;
+  extraEvens: number;
 };
 
 /** Odds immediately before the final E. Null if the spelling does not end E. */
@@ -165,17 +186,96 @@ export function cycleMinShape(word: string): CycleMinShape {
   const lastOddRunAtMost1 = closing !== null && closing <= 1;
   const isExpanding = expanding(word);
   const evenCountGe4 = evens >= 4;
+  const oddCountGe7 = odds >= 7;
+  const lengthGe11 = word.length >= 11;
   return {
     startsOO,
     endsE,
     evenCount: evens,
     oddCount: odds,
     evenCountGe4,
+    oddCountGe7,
+    lengthGe11,
     expanding: isExpanding,
     lastOddRun: closing,
     lastOddRunAtMost1,
+    startsOddEvenBlock: /^OO+E/.test(word),
+    unplacedOdds: Math.max(0, odds - 2),
+    extraEvens: Math.max(0, evens - 4),
     seam: cycleSeam(word),
     cycleMinShaped:
-      startsOO && endsE && evenCountGe4 && isExpanding && lastOddRunAtMost1,
+      startsOO &&
+      endsE &&
+      evenCountGe4 &&
+      oddCountGe7 &&
+      lengthGe11 &&
+      isExpanding &&
+      lastOddRunAtMost1,
   };
+}
+
+/** Lean `assembleFill`: bunched extra evens, empty third odd-run. */
+export function assembleFill(fill: NecklaceFill): string {
+  return (
+    "O".repeat(2 + fill.a1Extras) +
+    "E" +
+    "O".repeat(fill.middleOdds) +
+    "E" +
+    "E".repeat(fill.extraEvens) +
+    "E" +
+    "O".repeat(fill.lastOdds) +
+    "E"
+  );
+}
+
+export function necklaceFillAdmits(fill: NecklaceFill): boolean {
+  return (
+    fill.a1Extras >= 0 &&
+    fill.middleOdds >= 0 &&
+    fill.extraEvens >= 0 &&
+    fill.lastOdds >= 0 &&
+    fill.lastOdds <= 1
+  );
+}
+
+/** Exact Lean identities `assembleFill_oddCount` / `evenCount` / `length`. */
+export function assembleFillCounts(fill: NecklaceFill): AssembleFillCounts {
+  return {
+    oddCount: 2 + fill.a1Extras + fill.middleOdds + fill.lastOdds,
+    evenCount: 4 + fill.extraEvens,
+    length: 6 + fill.a1Extras + fill.middleOdds + fill.extraEvens + fill.lastOdds,
+    unplacedOdds: fill.a1Extras + fill.middleOdds + fill.lastOdds,
+    extraEvens: fill.extraEvens,
+  };
+}
+
+/**
+ * Parse the candidate four-slot word. Null if the spelling is not an
+ * `assembleFill` — a CycleMin-shaped leftover such as O³EO²EO²EE is not.
+ */
+export function tryAssembleFill(word: string): NecklaceFill | null {
+  if (!word.endsWith("E")) return null;
+  let index = 0;
+  while (index < word.length && word[index] === "O") index += 1;
+  if (index < 2 || word[index] !== "E") return null;
+  const a1Extras = index - 2;
+  index += 1;
+  const midStart = index;
+  while (index < word.length && word[index] === "O") index += 1;
+  const middleOdds = index - midStart;
+  if (index >= word.length || word[index] !== "E") return null;
+  index += 1;
+  const rest = word.slice(index);
+  const matched = /^(E+)(O*)E$/.exec(rest);
+  if (!matched) return null;
+  return {
+    a1Extras,
+    middleOdds,
+    extraEvens: matched[1].length - 1,
+    lastOdds: matched[2].length,
+  };
+}
+
+export function formatNecklaceFill(fill: NecklaceFill): string {
+  return `⟨${fill.a1Extras}, ${fill.middleOdds}, ${fill.extraEvens}, ${fill.lastOdds}⟩`;
 }
