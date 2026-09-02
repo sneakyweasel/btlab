@@ -22077,4 +22077,65 @@ Best next question
 - none from this door; do not treat SeamData as a leftover-killer
 ```
 
+## Orbit-indexed join table (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Lean-check the first-meeting fork at every CycleMin orbit index, and show it on the stem–cycle join walker. Separate that motion from necklace rotate.
+- **Hypotheses:** none new. Falsifier: a sure-letter join that is not an orbit vertex, or a CycleMin cut that starts E or OE.
+- **Major results:** `every_orbit_index_is_join_site`, `cycle_in_edge_unique_at`, `join_valley_arrival_even`, `join_arrives_odd_external_even`, `join_arrives_even_cycle_parent_cell`, `rotate_even_not_cycleMin`, `rotate_OE_not_cycleMin`. Companion `joinConfig.ts` drives the join card and the stem terminal bead. No `sorry`. `lake build Problems.Juggler.Seam` succeeded.
+- **Refuted ideas:** none new. Interval slots are still not leftover-killers.
+- **Literature:** closed first-collision table; Collision Factorization at a general vertex.
+- **Open:** none from this door.
+- **Decision:** CLOSE — REPARAMETERIZATION of the arrival table. Keep the UI card.
+
+```text
+What was learned
+- every orbit index is a legal join; interval slots are not stops
+- CycleMin cuts that start E or OE are forbidden; that is not the join walker
+- arriving O forces an even stem; the valley arrives E
+Strongest theorem
+- cycle_in_edge_unique_at / join_arrives_odd_external_even / rotate_even_not_cycleMin
+Strongest refutation
+- none new
+Reusable machinery
+- predIndex / cycleParentAt / joinArrival / idealJoinConfig
+Branch status
+- CLOSE — REPARAMETERIZATION
+Why
+- the table is the closed first-collision record under orbit indices
+Best next question
+- none from this door
+```
+
+## CycleMin bead negative-knowledge wrappers (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Name the two 2+2 seams, re-export fudge/slack, and record `J-cyclemin-necklace` on the bead file. Not a reconstruction, not last-cluster Lean, not a four-even census, and not a halt theorem.
+- **Hypotheses:** none new. Falsifier: a CycleMin word whose last two letters are neither `OE` nor `EE`, or a `CycleMinShape` proof of `OOEEEOOOOOE`.
+- **Major results:** `cycleMin_has_two_seams`, `cycleMin_ee_seam_prev_lt`, `isolated_OE_not_forced_on_shape`. Wrappers `leftover_fudge_not_cycleMin`, `leftover_four_even_slack`, `leftover_slack139`. Pin misses `(2,0,0,5)` and `(3,0,0,4)` are outside `CycleMinShape` and `NecklaceFill.admits`. Module docstring records no `no_cycleMin_four_even` / no `no_cycleMin_necklace`. No `sorry` / `admit`. `lake build Problems.Juggler.IdealCycleMin` succeeded.
+- **Refuted ideas:** none new. Forced isolated-`OE` remains refuted at shape level; the 56-word pin remains `J-cyclemin-necklace`.
+- **Literature:** existing last-odd-run, trailing-evens, fudge, and necklace dossiers.
+- **Open:** last-cluster stays `EXACT — HUMAN PROOF`. First-E at `e=4` stays `REPARAMETERIZATION`.
+- **Decision:** PROMOTE the wrappers into the existing formal bead file. Do not open a rescue branch.
+
+```text
+What was learned
+- CycleMin last two letters are OE or EE
+- both windows inhabit CycleMinShape; isolated OE is not a shape law
+- the necklace pin misses have a3 ≥ 2, so they are not bead fills
+- fudge and slack 3^o−2^{o+4} are already Lean and now named here
+Strongest theorem
+- cycleMin_has_two_seams
+Strongest refutation
+- necklace_pin_misses_not_CycleMinShape
+Reusable machinery
+- CycleSeamKind / leftover_fudge_not_cycleMin / leftover_four_even_slack
+Branch status
+- PROMOTE (wrappers); PARK (last-cluster Lean, reconstruction)
+Why
+- the companion seam and leftover cards already claimed these names
+Best next question
+- none from this door; freeze the bead file
+```
+
 

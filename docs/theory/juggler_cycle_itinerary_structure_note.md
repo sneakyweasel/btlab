@@ -258,7 +258,7 @@ junction.
 Return through \(O\) is impossible. Launch is \(\mathtt{OO}\).
 Every CycleMin word ends \(O^aE\) with \(a\le 1\)
 (`J-cyclemin-last-odd-run`). The \(2{+}2\) window has exactly
-two legal types
+two legal types (`cycleMin_has_two_seams`)
 ([juggler_cycle_cyclic_seam.md](../problems/juggler_cycle_cyclic_seam.md),
 [juggler_cycle_entry_corridor.md](../problems/juggler_cycle_entry_corridor.md)):
 
@@ -269,7 +269,8 @@ two legal types
   \(r\ge 2\) (\(a=0\)). Same last-even cell; previous even of
   scale \(n^4\); count \(n(n^2+n+1)\).
 
-Forced isolated-\(\mathtt{OE}\) is **REFUTED**. Both types are
+Forced isolated-\(\mathtt{OE}\) is **REFUTED**
+(`isolated_OE_not_forced_on_shape` at the word-shape level). Both types are
 occupied (**COMPUTATIONALLY VERIFIED** at \(n=10^6+1\): \(33\)
 CycleMin-legal \(\mathtt{OE}\) entries). The \(3{+}3\) window
 only lengthens those two families.
@@ -395,7 +396,11 @@ Named-word theorems, not a length-11 census.
 
 Closed / parked: first-E at \(e=4\) is `REPARAMETERIZATION`;
 \(Z_4\) is **PARK**; necklace slack is **REFUTED**
-(`J-cyclemin-necklace`).
+(`J-cyclemin-necklace`). The pin misses
+\(\mathtt{OOEEEOOOOOE}=(2,0,0,5)\) and
+\(\mathtt{OOOEEEOOOOE}=(3,0,0,4)\) are outside `CycleMinShape`
+(`necklace_pin_misses_not_CycleMinShape`). There is no
+`no_cycleMin_four_even`.
 
 ---
 

@@ -130,13 +130,13 @@ export function CycleTourWidget() {
       }}
     >
       <p className="text-sm text-muted">
-        If a cycle existed it would need a CycleMin rotation. The
-        latest Lean sits on the cycle half of this figure — click
-        Cycle or the run-list card under the ring. The stem OO???E is
-        an optional first visit and has no new Lean. The leftover
-        necklace below only supplies a sample word for that cycle
-        card. Pictures of necessity, not a realized loop beyond 1. The
-        unique known cycle is 1.
+        If a cycle existed it would need a CycleMin rotation. Join
+        left/right walks the stem around the six sure letters — that
+        card under the join buttons is the Lean fork at that bead.
+        Necklace rotate below is a different motion: it changes the
+        CycleMin cut, not the stem. Cuts that start E or OE are not
+        CycleMin. Pictures of necessity, not a realized loop beyond 1.
+        The unique known cycle is 1.
       </p>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
@@ -235,6 +235,11 @@ export function CycleTourWidget() {
                   Rotate right
                 </button>
               </div>
+              <p className="mt-1 text-center text-xs text-muted">
+                This rotate moves the CycleMin cut. It does not walk the
+                stem. A cut that starts E or OE is not CycleMin
+                (rotate_even_not_cycleMin, rotate_OE_not_cycleMin).
+              </p>
             </div>
             <div className="space-y-3">
               {currentRuns ? (

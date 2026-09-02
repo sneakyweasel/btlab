@@ -133,6 +133,13 @@ None.
 seam layer. No `sorry` / `admit`.
 `lake build Problems.Juggler.Seam` succeeded.
 
+Orbit-indexed join: `every_orbit_index_is_join_site`,
+`cycle_in_edge_unique_at`, `join_valley_arrival_even`,
+`join_arrives_odd_external_even`,
+`join_arrives_even_cycle_parent_cell`,
+`rotate_even_not_cycleMin`, `rotate_OE_not_cycleMin`.
+Companion table: `web/juggler-companion/src/juggler/joinConfig.ts`.
+
 ## Results
 
 Classification **FUNCTIONAL_GRAPH_SEAM_REPARAMETERIZATION**.

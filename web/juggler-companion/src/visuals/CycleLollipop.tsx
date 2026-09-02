@@ -2,7 +2,6 @@ import type { DecisionFocus } from "../content/idealDecisions";
 import {
   IDEAL_BALLOON_BEADS,
   IDEAL_BALLOON_INTERVALS,
-  IDEAL_STRING_BEADS,
   idealJoinLabel,
   idealJoinSpots,
   intervalBoundLabel,
@@ -20,6 +19,12 @@ import {
   runsEqual,
   type NecklaceFill,
 } from "../juggler/itinerary";
+import {
+  JOIN_INTERVALS_NOT_STOPS,
+  JOIN_VS_WORD_ROTATION,
+  idealJoinConfig,
+  stemBeadsForJoin,
+} from "../juggler/joinConfig";
 
 const CX = 548;
 const CY = 160;
@@ -166,11 +171,12 @@ function stemDecision(region: DecisionFocus): string {
   return "string-grey";
 }
 
-function stemCaption(index: number, bead: IdealBead): string {
+function stemCaption(index: number, bead: IdealBead, last: number): string {
   if (index === 0) return "start";
   if (index === 1) return "optional";
-  if (bead.tone === "unknown" && index === 2) return "min 0";
-  if (bead.letter === "E") return "t";
+  if (index === last && bead.letter === "E") return "t even";
+  if (index === last) return "t = E|O";
+  if (bead.tone === "unknown") return "0+";
   return "";
 }
 
@@ -231,7 +237,7 @@ function Bead({
           : undefined
       }
     >
-      <circle
+        <circle
         cx={x}
         cy={y}
         r={radius}
@@ -466,7 +472,8 @@ export function CycleLollipop({
   const n = balloon.length;
   const spots = idealJoinSpots(balloon);
   const joinAt = spots.includes(joinIndex) ? joinIndex : 0;
-  const stemLastX = 36 + (IDEAL_STRING_BEADS.length - 1) * 44;
+  const stemBeads = stemBeadsForJoin(joinAt);
+  const stemLastX = 36 + (stemBeads.length - 1) * 44;
   const entry = balloonXY(0, n);
   const joinPoint = balloonXY(joinAt, n);
   const entryAngle = beadAngle(0, n);
@@ -485,15 +492,16 @@ export function CycleLollipop({
           x: CX + (R + 38) * Math.cos(joinMid),
           y: CY + (R + 38) * Math.sin(joinMid) + 4,
         };
-  const stem = IDEAL_STRING_BEADS.map((bead, index) => ({
+  const stem = stemBeads.map((bead, index) => ({
     x: 36 + index * 44,
     bead,
-    region: stemRegion(index, IDEAL_STRING_BEADS.length - 1),
-    label: stemCaption(index, bead),
+    region: stemRegion(index, stemBeads.length - 1),
+    label: stemCaption(index, bead, stemBeads.length - 1),
   }));
+  const joinCfg = idealJoinConfig(joinAt, balloon);
   const beadR = Math.min(14, Math.max(9, (Math.PI * R) / n - 1.2));
   const joinLit = regionLit(focus, "join");
-  const joinName = idealJoinLabel(joinAt, balloon);
+  const joinName = joinCfg.name;
   const atCycleMin = joinAt === 0;
   const joinColor = letterColor(balloon[joinAt]?.letter ?? "?");
 
@@ -583,7 +591,7 @@ export function CycleLollipop({
               y1={CY}
               x2={next.x}
               y2={CY}
-              stroke={unsure ? GREY : letterColor(item.bead.letter)}
+              stroke={letterColor(item.bead.letter)}
               strokeWidth="2.2"
               strokeLinecap="round"
               strokeDasharray={unsure ? "3 3" : undefined}
@@ -621,7 +629,7 @@ export function CycleLollipop({
               key={`arc-${trueIndex}`}
               d={arcPath(CX, CY, R, a0, a1)}
               fill="none"
-              stroke={interval ? GREY : letterColor(bead.letter)}
+              stroke={letterColor(bead.letter)}
               strokeWidth={launchArc ? 5 : 3}
               strokeLinecap="round"
               strokeDasharray={interval ? "3 3" : undefined}
@@ -702,12 +710,12 @@ export function CycleLollipop({
           role="button"
           onClick={(event) => pick("join-seam", event)}
         />
-        <text
+      <text
           x={joinLabel.x}
           y={joinLabel.y}
           textAnchor="middle"
           fill="#1d1914"
-          fontFamily="Source Sans 3, sans-serif"
+        fontFamily="Source Sans 3, sans-serif"
           fontSize="11"
           opacity={joinLit ? 1 : 0.18}
           style={onSelectDecision ? { cursor: "pointer" } : undefined}
@@ -715,7 +723,7 @@ export function CycleLollipop({
           onClick={(event) => pick("join-seam", event)}
         >
           {atCycleMin ? "join · CycleMin" : `join · ${joinName}`}
-        </text>
+      </text>
         {balloon.map((bead, trueIndex) => {
           const { x, y } = balloonXY(trueIndex, n);
           const angle = beadAngle(trueIndex, n);
@@ -727,7 +735,7 @@ export function CycleLollipop({
           const region = balloonRegion(trueIndex, bead, balloon);
           const isJoin = trueIndex === joinAt;
           const joinFocus = focus === "join";
-          return (
+        return (
             <Bead
               key={`balloon-${trueIndex}`}
               x={x}
@@ -751,10 +759,10 @@ export function CycleLollipop({
             />
           );
         })}
-        <text
+            <text
           x={CX}
           y={CY - 8}
-          textAnchor="middle"
+              textAnchor="middle"
           fill="#1d1914"
           fontFamily="Fraunces, ui-serif, Georgia, serif"
           fontSize="20"
@@ -763,14 +771,14 @@ export function CycleLollipop({
           onClick={(event) => pick("balloon-run", event)}
         >
           Cycle
-        </text>
-        <text
+            </text>
+              <text
           x={CX}
           y={CY + 10}
           textAnchor="middle"
-          fill="#5e574c"
-          fontFamily="Source Sans 3, sans-serif"
-          fontSize="11"
+                fill="#5e574c"
+                fontFamily="Source Sans 3, sans-serif"
+                fontSize="11"
           style={onSelectDecision ? { cursor: "pointer" } : undefined}
           role="button"
           onClick={(event) => pick("balloon-run", event)}
@@ -829,7 +837,7 @@ export function CycleLollipop({
           onClick={(event) => pick("balloon-links", event)}
         >
           sure EO
-        </text>
+              </text>
         <defs />
       </svg>
       <CycleLeanPanel
@@ -871,29 +879,35 @@ export function CycleLollipop({
           Join right
         </button>
       </div>
-      <p className="mt-1 text-center text-sm text-muted" aria-live="polite">
-        Join at {joinName}
-        {atCycleMin ? " — the CycleMin placement" : " — not the CycleMin cut"}
-        . Sure letters OO+EEEE
-        {" "}
-        <button
-          type="button"
-          className="underline decoration-dotted underline-offset-2"
-          onClick={(event) => pick("balloon-links", event)}
-        >
-          (cycleMin_sure_letter_inventory)
-        </button>
-        . Sure links launch OO and wrap EO
-        {" "}
-        <button
-          type="button"
-          className="underline decoration-dotted underline-offset-2"
-          onClick={(event) => pick("balloon-links", event)}
-        >
-          (cycleMin_only_forced_adjacencies)
-        </button>
-        . Interval slots are not stops.
-      </p>
+      <button
+        type="button"
+        data-keep-focus
+        className="mt-2 block w-full rounded-lg border border-line bg-card px-3 py-2 text-left"
+        style={{ opacity: joinLit || !focus ? 1 : 0.55 }}
+        onClick={() => pick("join-seam")}
+      >
+        <p className="text-xs uppercase tracking-wide text-muted">
+          Join at {joinCfg.name}
+          {atCycleMin ? " — CycleMin cut" : " — same loop, not the CycleMin cut"}
+        </p>
+        <p className="mt-1 font-mono text-sm text-ink">
+          vertex {joinCfg.vertex} · cycle arrives {joinCfg.arrival} · stem t is{" "}
+          {joinCfg.stemTerminal === "E" ? "even" : "E or O"}
+        </p>
+        <p className="mt-1 text-sm text-ink">
+          Cyclic parent: {joinCfg.cycleParent}
+        </p>
+        <p className="mt-1 text-sm text-ink">Stem parent: {joinCfg.stem}</p>
+        <p className="mt-1 text-xs text-muted">{joinCfg.arrivalWhy}</p>
+        <ul className="mt-1 list-disc pl-4 text-xs text-muted">
+          {joinCfg.forbidden.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <p className="mt-1 text-xs text-muted">{joinCfg.lean}</p>
+        <p className="mt-1 text-xs text-muted">{JOIN_INTERVALS_NOT_STOPS}</p>
+        <p className="mt-1 text-xs text-muted">{JOIN_VS_WORD_ROTATION}</p>
+      </button>
       <div
         className="mt-1 flex flex-wrap items-end justify-center gap-1.5"
         aria-label="Bead schema: projection of the Lean run list onto six sure letters"
@@ -923,10 +937,10 @@ export function CycleLollipop({
                 <span className="text-[10px] uppercase tracking-wide text-muted">
                   {run.label}
                 </span>
-              ) : null}
+            ) : null}
             </button>
-          );
-        })}
+        );
+      })}
       </div>
       <p className="mt-2 font-mono text-sm text-ink">
         OOEEEE
@@ -945,9 +959,10 @@ export function CycleLollipop({
         reconstruction. Extra odds
         past launch OO have minimum 5 and stay unplaced. Extra E past
         the four forced evens have minimum 0. Last odd-run is 0 or 1.
-        Stem OO???E is an optional first visit. Cycle letters are O or
-        E; unknown beads are stem-only. Left and right walk the join
-        around the six sure letters.
+        The stem last bead follows the join: even-only when the cycle
+        arrives O, E or O at the valley or an E-arrival. Left and
+        right walk the join around the six sure letters. Necklace
+        rotate is not this walker.
       </p>
     </div>
   );

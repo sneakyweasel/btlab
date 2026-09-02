@@ -25,6 +25,20 @@ are interval slots, not beads.
 and four slots, not an `assembleFill` reconstruction. Exact fill counts
 live on `NecklaceFill`. A general CycleMin run list need not equal
 `NecklaceFill.toRuns f`.
+
+The 2+2 cut is exactly `OE|n|OO` or `EE|n|OO`
+(`cycleMin_has_two_seams`). Forced isolated-`OE` is not a shape law:
+both windows inhabit `CycleMinShape`. Occupation of both as realized
+CycleMin entries is `COMPUTATIONALLY VERIFIED`, not Lean. The
+functional-graph fork lives in `Seam.lean` and is a different object.
+
+There is no `no_cycleMin_four_even` and no `no_cycleMin_necklace`.
+Necklace slack on the 56 length-11 start-`OO` four-even words is
+`REFUTED` (`J-cyclemin-necklace`): the pin misses
+`OOEEEOOOOOE = (2,0,0,5)` and `OOOEEEOOOOE = (3,0,0,4)` have last
+odd-run `≥ 2`, so they are outside `CycleMinShape` and outside
+`NecklaceFill.admits`. Last-cluster remains `EXACT — HUMAN PROOF`.
+First-E at `e = 4` is `REPARAMETERIZATION`. `Z₄` is `PARK`.
 -/
 
 /-! ## Shape -/
@@ -83,6 +97,12 @@ theorem cycleMin_inhabits_shape {n : ℕ} {w : List Branch}
   endsEven := cycleMin_getLast_even hn h
   expanding := cycle_itinerary_formally_expanding hn h.1
   length_ge_eleven := cycle_itinerary_length_ge_eleven hn h.1
+
+/-- The CycleMin valley is odd. A word-only `CycleMinShape` does not
+    record this. -/
+theorem cycleMin_valley_is_odd {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) : n % 2 = 1 :=
+  cycleMin_start_odd hn h
 
 theorem cycle_has_cycleMin {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleItinerary n w) :
@@ -581,6 +601,63 @@ theorem cycleMin_lastEven_is_closure_cell {n : ℕ} {w : List Branch}
       n ^ 2 ≤ image n u ∧ image n u < (n + 1) ^ 2 :=
   cycleMin_last_even_role hn h
 
+theorem cycleMin_lastEven_ne_odd_sq {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ u, w = u ++ [Branch.even] ∧ image n u ≠ n ^ 2 := by
+  obtain ⟨u, hu, _⟩ := cycleMin_last_even_role hn h
+  exact ⟨u, hu,
+    cycle_last_even_ne_odd_sq (cycleMin_start_odd hn h)
+      (by simpa [hu] using h.1)⟩
+
+/-! ## Two legal 2+2 seams
+
+Word windows at the CycleMin cut. Not `Seam.lean`'s stem–cycle fork.
+Forced isolated-`OE` is not a shape theorem: both kinds inhabit
+`CycleMinShape`. -/
+
+inductive CycleSeamKind
+  | oeOO
+  | eeOO
+  deriving DecidableEq, Repr
+
+def CycleSeamKind.window : CycleSeamKind → List Branch
+  | CycleSeamKind.oeOO => [Branch.odd, Branch.even]
+  | CycleSeamKind.eeOO => [Branch.even, Branch.even]
+
+/-- Every CycleMin word is `OE|n|OO` or `EE|n|OO`. Trailing `EE` is
+    legal when `aₑ = 0`; it is not a sure table link. -/
+theorem cycleMin_has_two_seams {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ kind mid, w = mid ++ CycleSeamKind.window kind ∧
+      w.head? = some Branch.odd ∧ w.tail.head? = some Branch.odd := by
+  obtain ⟨u, a, hw, ha, hcut⟩ := exists_cycleMin_last_odd_run hn h
+  have hOO := cycleMin_sure_OO hn h
+  have h01 : a = 0 ∨ a = 1 := by omega
+  rcases h01 with rfl | rfl
+  · cases hcut with
+    | inl hu =>
+        have hstarts := cycleMin_starts_two_odds hn h
+        subst hu
+        simp [hw] at hstarts
+    | inr hu =>
+        obtain ⟨mid, hmid⟩ := (List.getLast?_eq_some_iff).mp hu
+        refine ⟨CycleSeamKind.eeOO, mid, ?_, hOO.1, hOO.2⟩
+        simp [CycleSeamKind.window, hw, hmid, List.append_assoc]
+  · refine ⟨CycleSeamKind.oeOO, u, ?_, hOO.1, hOO.2⟩
+    simp [CycleSeamKind.window, hw]
+
+/-- Trailing `EE` puts the previous even below `(n+1)^4`. -/
+theorem cycleMin_ee_seam_prev_lt {n : ℕ} {w : List Branch}
+    (_hn : 2 ≤ n) (h : CycleMin n w)
+    (hee : ∃ mid, w = mid ++ [Branch.even, Branch.even]) :
+    ∃ v, w = v ++ List.replicate 2 Branch.even ∧
+      image n v < (n + 1) ^ 4 := by
+  obtain ⟨mid, hw⟩ := hee
+  refine ⟨mid, by simpa [List.replicate] using hw, ?_⟩
+  have hC : CycleItinerary n (mid ++ List.replicate 2 Branch.even) := by
+    simpa [hw] using h.1
+  simpa using cycle_trailing_evens_lt (r := 2) (by decide) hC
+
 /-! ## Balloon stations: the only allowed UI alphabet -/
 
 inductive EvenRole
@@ -949,6 +1026,32 @@ theorem fourEvenWord_eq_assembleOddEvenRuns (a0 a1 a2 a3 : ℕ) :
     fourEvenWord a0 a1 a2 a3 = assembleOddEvenRuns [a0, a1, a2, a3] := by
   simp [fourEvenWord, assembleOddEvenRuns]
 
+theorem fourEvenWord_oddEvenRuns (a0 a1 a2 a3 : ℕ) :
+    oddEvenRuns (fourEvenWord a0 a1 a2 a3) = [a0, a1, a2, a3] := by
+  simpa [fourEvenWord_eq_assembleOddEvenRuns] using
+    oddEvenRuns_assemble [a0, a1, a2, a3]
+
+theorem oddEvenRuns_last_odd_run {u : List Branch} {a : ℕ}
+    (hcut : u = [] ∨ u.getLast? = some Branch.even) :
+    oddEvenRuns (u ++ List.replicate a Branch.odd ++ [Branch.even]) =
+      oddEvenRuns u ++ [a] := by
+  have hw : u ++ List.replicate a Branch.odd ++ [Branch.even] =
+      u ++ (List.replicate a Branch.odd ++ [Branch.even]) := by
+    simp [List.append_assoc]
+  cases hcut with
+  | inl hu =>
+      subst hu
+      simp [oddEvenRuns, oddEvenRuns_replicate_odds_even]
+  | inr hu =>
+      rw [hw, oddEvenRuns_append_of_endsEven hu, oddEvenRuns_replicate_odds_even]
+
+theorem CycleMinShape_oddEvenRuns_last_le_one {w : List Branch}
+    (h : CycleMinShape w) :
+    ∃ as ae, oddEvenRuns w = as ++ [ae] ∧ ae ≤ 1 := by
+  obtain ⟨u, a, hw, ha, hcut⟩ := h.lastOddRun_le_one
+  refine ⟨oddEvenRuns u, a, ?_, ha⟩
+  simpa [hw] using oddEvenRuns_last_odd_run hcut
+
 /-- Interior three-valley leftover is a run list, not a bead fill. -/
 theorem leftover_three_valley_not_fill_runs (f : NecklaceFill) :
     f.toRuns ≠ [3, 2, 2, 0] := by
@@ -1040,5 +1143,109 @@ theorem leftover_one_three_eee_not_cycleMin {n a0 a1 : ℕ}
     (hmem : fourEvenWord a0 a1 0 0 ∈ fudgeWords) :
     ¬ CycleMin n (fourEvenWord a0 a1 0 0) :=
   no_cycleMin_one_three_eee hmem
+
+/-- The thirty first-expanding short-gap leftovers are not `CycleMin`.
+    Not a length-11 census and not `no_cycleMin_four_even`. -/
+theorem leftover_fudge_not_cycleMin {n : ℕ} {w : List Branch}
+    (hw : w ∈ fudgeWords) : ¬ CycleMin n w :=
+  fun h => no_cycleMin_cyclemin_fudge hw h
+
+/-- Slack on a start-`O` four-even word: `3^{#O} - 2^{#O+4}`. -/
+theorem leftover_four_even_slack {w : List Branch}
+    (h0 : (dropTrailingEvens w).head? = some Branch.odd)
+    (he : evenCount w = 4) (ho : 7 ≤ oddCount w) :
+    let pref := dropTrailingEvens w
+    let r := trailingEvenCount w
+    (exponentsAfter pref).A =
+      (exponentsAfter pref).B + (exponentsAfter pref).gamma * 2 ^ r +
+        familySlack (oddCount w) :=
+  slack_of_four_even_word h0 he ho
+
+theorem leftover_slack139 : familySlack 7 = 139 :=
+  familySlack_seven
+
+theorem leftover_O7EEEE_ee_window :
+    ∃ mid, itineraryO7EEEE = mid ++ CycleSeamKind.window .eeOO :=
+  ⟨sevenOdds ++ List.replicate 2 Branch.even, by
+    simp [itineraryO7EEEE, CycleSeamKind.window, sevenOdds]⟩
+
+theorem leftover_O6EEEOE_oe_window :
+    ∃ mid, fourEvenWord 6 0 0 1 = mid ++ CycleSeamKind.window .oeOO :=
+  ⟨List.replicate 6 Branch.odd ++ [Branch.even, Branch.even, Branch.even], by
+    simp [fourEvenWord, CycleSeamKind.window]⟩
+
+/-- Forced isolated-`OE` is not a `CycleMinShape` law. Both 2+2
+    windows inhabit the shape. Realized CycleMin occupation of both
+    types is `COMPUTATIONALLY VERIFIED`, not Lean. -/
+theorem isolated_OE_not_forced_on_shape :
+    (∃ w mid, CycleMinShape w ∧ w = mid ++ CycleSeamKind.window .eeOO) ∧
+      (∃ w mid, CycleMinShape w ∧ w = mid ++ CycleSeamKind.window .oeOO) :=
+  ⟨⟨itineraryO7EEEE, sevenOdds ++ List.replicate 2 Branch.even,
+      leftover_O7EEEE_inhabits_shape, by
+      simp [itineraryO7EEEE, CycleSeamKind.window, sevenOdds]⟩,
+    ⟨fourEvenWord 6 0 0 1,
+      List.replicate 6 Branch.odd ++ [Branch.even, Branch.even, Branch.even],
+      leftover_O6EEEOE_inhabits_shape, by
+      simp [fourEvenWord, CycleSeamKind.window]⟩⟩
+
+/-! ## Necklace-pin misses (`J-cyclemin-necklace`, REFUTED)
+
+The 56-word slack-139 pin fails on two extra orientations with
+`a₃ ≥ 2`. They are start-`OO` four-even length-11 words and are
+outside `CycleMinShape` / `NecklaceFill.admits`. There is no
+`no_cycleMin_necklace`. -/
+
+def necklacePinMiss2005 : List Branch := fourEvenWord 2 0 0 5
+def necklacePinMiss3004 : List Branch := fourEvenWord 3 0 0 4
+def necklacePinMiss2005_fill : NecklaceFill := ⟨0, 0, 0, 5⟩
+def necklacePinMiss3004_fill : NecklaceFill := ⟨1, 0, 0, 4⟩
+
+theorem necklacePinMiss2005_eq :
+    assembleFill necklacePinMiss2005_fill = necklacePinMiss2005 := by
+  simpa [necklacePinMiss2005, necklacePinMiss2005_fill] using
+    assemble_of_no_extra_evens (⟨0, 0, 0, 5⟩ : NecklaceFill) rfl
+
+theorem necklacePinMiss3004_eq :
+    assembleFill necklacePinMiss3004_fill = necklacePinMiss3004 := by
+  simpa [necklacePinMiss3004, necklacePinMiss3004_fill] using
+    assemble_of_no_extra_evens (⟨1, 0, 0, 4⟩ : NecklaceFill) rfl
+
+theorem necklacePinMiss2005_not_admit :
+    ¬ necklacePinMiss2005_fill.admits := by
+  intro h
+  have : 5 ≤ 1 := (CountBound.admitsProp_zeroOrOne 5).mp h.2.2.2
+  omega
+
+theorem necklacePinMiss3004_not_admit :
+    ¬ necklacePinMiss3004_fill.admits := by
+  intro h
+  have : 4 ≤ 1 := (CountBound.admitsProp_zeroOrOne 4).mp h.2.2.2
+  omega
+
+theorem necklace_pin_miss_not_shape (a0 a3 : ℕ) (ha3 : 2 ≤ a3) :
+    ¬ CycleMinShape (fourEvenWord a0 0 0 a3) := by
+  intro h
+  obtain ⟨as, ae, hrs, hae⟩ := CycleMinShape_oddEvenRuns_last_le_one h
+  have hruns := fourEvenWord_oddEvenRuns a0 0 0 a3
+  have hlast : (as ++ [ae]).getLast? = some ae := by
+    simp
+  have hfive : (oddEvenRuns (fourEvenWord a0 0 0 a3)).getLast? = some a3 := by
+    simp [hruns]
+  have : ae = a3 := by
+    have heq : (as ++ [ae]).getLast? =
+        (oddEvenRuns (fourEvenWord a0 0 0 a3)).getLast? := by
+      rw [hrs]
+    exact Option.some_inj.mp (hlast.symm.trans (heq.trans hfive))
+  omega
+
+theorem necklace_pin_misses_not_CycleMinShape :
+    ¬ CycleMinShape necklacePinMiss2005 ∧
+      ¬ CycleMinShape necklacePinMiss3004 :=
+  ⟨necklace_pin_miss_not_shape 2 5 (by decide),
+    necklace_pin_miss_not_shape 3 4 (by decide)⟩
+
+theorem necklace_pin_misses_oddCount_seven :
+    oddCount necklacePinMiss2005 = 7 ∧ oddCount necklacePinMiss3004 = 7 := by
+  native_decide
 
 end Problems.Juggler

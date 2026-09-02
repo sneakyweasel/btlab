@@ -26,6 +26,7 @@ import {
   TOUR_WORD_MAX,
 } from "./constants";
 import { financeSnapshot, financeView } from "./finance";
+import { idealJoinConfig, stemBeadsForJoin, stemTerminalLetter } from "./joinConfig";
 import { floorPower } from "./map";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
@@ -36,6 +37,7 @@ import {
   cycleMinShape,
   formatOddEvenRuns,
   formatRunWord,
+  necklaceFillAdmits,
   necklaceFillToRuns,
   oddEvenRuns,
   runsEqual,
@@ -171,6 +173,19 @@ describe("cycleMinShape", () => {
     expect(shape.oddCount).toBe(7);
     expect(tryAssembleFill("OOOEOOEOOEE")).toBeNull();
   });
+
+  it("rejects the necklace-pin misses as CycleMinShape", () => {
+    const miss2005 = cycleMinShape("OOEEEOOOOOE");
+    const miss3004 = cycleMinShape("OOOEEEOOOOE");
+    expect(miss2005.cycleMinShaped).toBe(false);
+    expect(miss3004.cycleMinShaped).toBe(false);
+    expect(miss2005.lastOddRun).toBe(5);
+    expect(miss3004.lastOddRun).toBe(4);
+    expect(miss2005.startsOO).toBe(true);
+    expect(miss2005.evenCount).toBe(4);
+    expect(miss2005.oddCount).toBe(7);
+    expect(miss2005.expanding).toBe(true);
+  });
 });
 
 describe("assembleFill identities", () => {
@@ -208,6 +223,17 @@ describe("assembleFill identities", () => {
     expect(runsEqual([3, 2, 2, 0], [7, 0, 0, 0])).toBe(false);
   });
 
+  it("assembles the necklace-pin misses but does not admit them", () => {
+    const miss2005 = { a1Extras: 0, middleOdds: 0, extraEvens: 0, lastOdds: 5 };
+    const miss3004 = { a1Extras: 1, middleOdds: 0, extraEvens: 0, lastOdds: 4 };
+    expect(assembleFill(miss2005)).toBe("OOEEEOOOOOE");
+    expect(assembleFill(miss3004)).toBe("OOOEEEOOOOE");
+    expect(tryAssembleFill("OOEEEOOOOOE")).toEqual(miss2005);
+    expect(tryAssembleFill("OOOEEEOOOOE")).toEqual(miss3004);
+    expect(necklaceFillAdmits(miss2005)).toBe(false);
+    expect(necklaceFillAdmits(miss3004)).toBe(false);
+  });
+
   it("projects a fill onto a bunched run list", () => {
     const o7 = { a1Extras: 5, middleOdds: 0, extraEvens: 0, lastOdds: 0 };
     expect(necklaceFillToRuns(o7)).toEqual([7, 0, 0, 0]);
@@ -219,9 +245,9 @@ describe("assembleFill identities", () => {
 
 describe("idealized string stem", () => {
   it("starts OO, leaves the middle undefined, and ends E", () => {
-    expect(IDEAL_STRING_LETTERS.join("")).toBe("OO???E");
+    expect(IDEAL_STRING_LETTERS.join("")).toBe("OO?E");
     expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "sure").map((bead) => bead.letter).join("")).toBe("OOE");
-    expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "unknown")).toHaveLength(3);
+    expect(IDEAL_STRING_BEADS.filter((bead) => bead.tone === "unknown")).toHaveLength(1);
   });
 });
 
@@ -272,6 +298,19 @@ describe("idealized cycle", () => {
       letter: "O",
       tone: "count",
     });
+  });
+
+  it("classifies the six sure-letter join forks", () => {
+    expect(idealJoinConfig(0).arrival).toBe("E");
+    expect(idealJoinConfig(0).stemTerminal).toBe("E_or_O");
+    expect(idealJoinConfig(1).arrival).toBe("O");
+    expect(stemTerminalLetter(1)).toBe("E");
+    expect(stemBeadsForJoin(1).at(-1)).toEqual({ letter: "E", tone: "sure" });
+    expect(idealJoinConfig(2).forbidden.some((item) => /rotate_even_not_cycleMin/.test(item))).toBe(true);
+    expect(idealJoinConfig(3).arrival).toBe("O_or_E");
+    expect(idealJoinConfig(4).arrival).toBe("E");
+    expect(idealJoinConfig(5).arrival).toBe("O_or_E");
+    expect(stemBeadsForJoin(0).at(-1)).toEqual({ letter: "?", tone: "unknown" });
   });
 
   it("rotates the join only among the six sure letters", () => {
@@ -386,6 +425,15 @@ describe("idealized figure decisions", () => {
     );
     expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-links")?.lemma).toContain(
       "cycleMin_only_forced_adjacencies",
+    );
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "balloon-seam")?.lemma).toContain(
+      "cycleMin_has_two_seams",
+    );
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "leftovers")?.lemma).toContain(
+      "necklace_pin_misses_not_CycleMinShape",
+    );
+    expect(IDEAL_DECISIONS.find((decision) => decision.id === "leftovers")?.why).toMatch(
+      /no_cycleMin_four_even/,
     );
   });
 });

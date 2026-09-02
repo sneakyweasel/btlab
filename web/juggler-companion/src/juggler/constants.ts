@@ -185,19 +185,17 @@ export const BALLOON_SCHEMA: readonly BalloonStation[] = [
   { kind: "sureEven", role: "last" },
 ];
 
-/** Idealized first-visit stem: sure OO and t, unknown middle color. */
+/** Idealized first-visit stem: sure OO and t, one unknown-color 0+ slot. */
 export const IDEAL_STRING_BEADS: readonly IdealBead[] = [
   { letter: "O", tone: "sure" },
   { letter: "O", tone: "sure" },
-  { letter: "?", tone: "unknown" },
-  { letter: "?", tone: "unknown" },
   { letter: "?", tone: "unknown" },
   { letter: "E", tone: "sure" },
 ];
 
 /**
  * Collapse a known-parity unknown-count run to one bead.
- * Unknown-color beads stay distinct, like the stem ???.
+ * The stem keeps a single unknown-color 0+ slot.
  */
 export function packCountRuns(beads: readonly IdealBead[]): IdealBead[] {
   const packed: IdealBead[] = [];

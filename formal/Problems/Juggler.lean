@@ -73,6 +73,7 @@ import Problems.Juggler.IdealCycleMin
 import Problems.Juggler.FunctionalGraph
 import Problems.Juggler.InverseBranches
 import Problems.Juggler.Seam
+import Problems.Juggler.CyclePosition
 
 /-!
 # Juggler laboratory barrel

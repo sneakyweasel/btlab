@@ -319,4 +319,218 @@ def sink_seam_two_to_one : SeamData where
     subst this
     exact (by decide : ¬(1 : ℕ) = 2) hk1
 
+/-!
+## Join at an arbitrary orbit vertex
+
+A first meeting may sit at any `T^k(n)`. None of those indices is
+forbidden. CycleMin *cuts* that start `E` or `OE` are forbidden.
+The bead interval slots are a projection, not missing orbit points.
+-/
+
+/-- Wrap-around predecessor index on a nonempty word. -/
+def predIndex (L k : ℕ) : ℕ :=
+  (k + L - 1) % L
+
+def orbitVertex (n k : ℕ) : ℕ :=
+  floorPower^[k] n
+
+def cycleParentAt (n : ℕ) (w : List Branch) (k : ℕ) : ℕ :=
+  floorPower^[predIndex w.length k] n
+
+theorem predIndex_lt {L k : ℕ} (hL : 0 < L) : predIndex L k < L :=
+  Nat.mod_lt _ hL
+
+theorem predIndex_zero {L : ℕ} (hL : 1 ≤ L) : predIndex L 0 = L - 1 := by
+  have hlt : L - 1 < L :=
+    Nat.sub_lt (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) hL) (by decide)
+  simpa [predIndex] using Nat.mod_eq_of_lt hlt
+
+theorem predIndex_of_pos {L k : ℕ} (hL : 1 ≤ L) (hk : 0 < k) (hkL : k < L) :
+    predIndex L k = k - 1 := by
+  have hsum : k + L - 1 = L + (k - 1) := by omega
+  have hlt : k - 1 < L := Nat.lt_of_le_of_lt (Nat.sub_le k 1) hkL
+  simp [predIndex, hsum, Nat.add_mod, Nat.mod_self]
+  exact Nat.mod_eq_of_lt hlt
+
+theorem predIndex_succ_mod {L k : ℕ} (hL : 1 ≤ L) (hk : k < L) :
+    (predIndex L k + 1) % L = k := by
+  cases k with
+  | zero =>
+      rw [predIndex_zero hL, Nat.sub_add_cancel hL, Nat.mod_self]
+  | succ k =>
+      have hpos : 0 < k + 1 := Nat.succ_pos _
+      rw [predIndex_of_pos hL hpos hk]
+      exact Nat.mod_eq_of_lt hk
+
+def joinArrival (w : List Branch) (k : ℕ) (hk : k < w.length) : Branch :=
+  w[predIndex w.length k]'(predIndex_lt (lt_of_le_of_lt (Nat.zero_le k) hk))
+
+theorem cycleParentAt_zero {n : ℕ} {w : List Branch} (hL : 1 ≤ w.length) :
+    cycleParentAt n w 0 = cycleParentOf n w := by
+  simp [cycleParentAt, cycleParentOf, predIndex_zero hL]
+
+theorem cycleParentAt_onCycle {n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (_hk : k < w.length) :
+    OnCycle (cycleParentAt n w k) n w :=
+  cycle_iterate_onCycle h (predIndex w.length k)
+
+theorem every_orbit_index_is_join_site {n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (_hk : k < w.length) :
+    OnCycle (orbitVertex n k) n w :=
+  cycle_iterate_onCycle h k
+
+theorem onCycle_left_inverse {p n : ℕ} {w : List Branch} (hOn : OnCycle p n w) :
+    floorPower^[w.length - 1] (floorPower p) = p := by
+  have hL : 1 ≤ w.length := hOn.1.1.2.2
+  have hper : floorPower^[w.length] p = p := onCycle_period hOn
+  have hstep : floorPower^[w.length] p =
+      floorPower^[w.length - 1] (floorPower p) := by
+    rw [← Nat.sub_add_cancel hL]
+    exact iterate_cons p (w.length - 1)
+  exact hstep.symm.trans hper
+
+theorem cycleParentAt_edge {n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (hk : k < w.length) :
+    floorPower (cycleParentAt n w k) = orbitVertex n k := by
+  have hL : 1 ≤ w.length := h.1.2.2
+  have hnext :
+      floorPower (floorPower^[predIndex w.length k] n) =
+        floorPower^[predIndex w.length k + 1] n :=
+    (Function.iterate_succ_apply' floorPower (predIndex w.length k) n).symm
+  have hmod : floorPower^[predIndex w.length k + 1] n =
+      floorPower^[k] n := by
+    rw [cycle_iterate_mod (k := predIndex w.length k + 1) h.1,
+      predIndex_succ_mod hL hk]
+  simpa [cycleParentAt, orbitVertex, hnext] using hmod
+
+/-- Unique cyclic in-edge at any orbit vertex, not only the valley. -/
+theorem cycle_in_edge_unique_at {p n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (_hk : k < w.length)
+    (hOn : OnCycle p n w) (hedge : floorPower p = orbitVertex n k) :
+    p = cycleParentAt n w k := by
+  have hL : 1 ≤ w.length := h.1.2.2
+  have hleft : floorPower^[w.length - 1] (orbitVertex n k) = p := by
+    simpa [hedge] using onCycle_left_inverse hOn
+  have hiter :
+      floorPower^[w.length - 1] (floorPower^[k] n) =
+        floorPower^[w.length - 1 + k] n :=
+    (Function.iterate_add_apply floorPower (w.length - 1) k n).symm
+  have hidx : (w.length - 1 + k) % w.length = predIndex w.length k := by
+    have : w.length - 1 + k = k + w.length - 1 := by omega
+    simp [predIndex, this]
+  have hmod : floorPower^[w.length - 1 + k] n =
+      floorPower^[predIndex w.length k] n := by
+    rw [cycle_iterate_mod (k := w.length - 1 + k) h.1, hidx]
+  have : floorPower^[predIndex w.length k] n = p := by
+    simpa [orbitVertex, hiter, hmod] using hleft
+  exact this.symm
+
+theorem join_arrival_parent_parity {n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (hk : k < w.length) :
+    (joinArrival w k hk = Branch.even ↔ cycleParentAt n w k % 2 = 0) ∧
+      (joinArrival w k hk = Branch.odd ↔ cycleParentAt n w k % 2 = 1) := by
+  have hpred : predIndex w.length k < w.length :=
+    predIndex_lt (lt_of_le_of_lt (Nat.zero_le k) hk)
+  have hf := h.1.1
+  constructor
+  · constructor
+    · intro he
+      simpa [cycleParentAt, joinArrival] using
+        follows_get_even w hf (predIndex w.length k) hpred he
+    · intro heven
+      cases hlet : (w[predIndex w.length k]'hpred) with
+      | even =>
+          simpa [joinArrival, hlet]
+      | odd =>
+          have := follows_get_odd w hf (predIndex w.length k) hpred hlet
+          simp [cycleParentAt] at heven
+          omega
+  · constructor
+    · intro ho
+      simpa [cycleParentAt, joinArrival] using
+        follows_get_odd w hf (predIndex w.length k) hpred ho
+    · intro hodd
+      cases hlet : (w[predIndex w.length k]'hpred) with
+      | odd =>
+          simpa [joinArrival, hlet]
+      | even =>
+          have := follows_get_even w hf (predIndex w.length k) hpred hlet
+          simp [cycleParentAt] at hodd
+          omega
+
+theorem join_valley_arrival_even {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    joinArrival w 0 (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.1.2.2) =
+      Branch.even := by
+  obtain ⟨u, hu⟩ := cycleMin_ends_even hn h
+  have hk : 0 < w.length := lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.1.2.2
+  have hL : 1 ≤ w.length := h.1.2.2
+  have hpred : predIndex w.length 0 = w.length - 1 := predIndex_zero hL
+  have hlast : w[w.length - 1]'(Nat.sub_lt hk (by decide)) = Branch.even := by
+    subst hu
+    simp [List.getElem_append_right]
+  simpa [joinArrival, hpred] using hlast
+
+/-- Arriving by `O`, the cyclic parent is odd and at least the valley. -/
+theorem join_arrives_odd_cycle_parent_ge {n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (hk : k < w.length)
+    (harr : joinArrival w k hk = Branch.odd) :
+    cycleParentAt n w k % 2 = 1 ∧ n ≤ cycleParentAt n w k := by
+  have hpred : predIndex w.length k < w.length :=
+    predIndex_lt (lt_of_le_of_lt (Nat.zero_le k) hk)
+  exact ⟨(join_arrival_parent_parity h hk).2.1 harr, cycleMin_ge h hpred⟩
+
+/-- If the cycle arrives by `O`, an odd stem parent would be the
+    unique odd parent, hence on-cycle. First meeting forces an even stem. -/
+theorem join_arrives_odd_external_even {t n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (hk : k < w.length)
+    (harr : joinArrival w k hk = Branch.odd)
+    (hedge : floorPower t = orbitVertex n k)
+    (hoff : ¬OnCycle t n w) : t % 2 = 0 := by
+  rcases Nat.mod_two_eq_zero_or_one t with he | ho
+  · exact he
+  · have hcodd : cycleParentAt n w k % 2 = 1 :=
+      (join_arrival_parent_parity h hk).2.1 harr
+    have heq : t = cycleParentAt n w k :=
+      odd_parents_eq hedge (cycleParentAt_edge h hk) ho hcodd
+    exact (hoff (heq ▸ cycleParentAt_onCycle h hk)).elim
+
+theorem join_arrives_even_cycle_parent_cell {n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleMin n w) (hk : k < w.length)
+    (harr : joinArrival w k hk = Branch.even) :
+    cycleParentAt n w k % 2 = 0 ∧
+      orbitVertex n k ^ 2 ≤ cycleParentAt n w k ∧
+        cycleParentAt n w k < (orbitVertex n k + 1) ^ 2 := by
+  have he : cycleParentAt n w k % 2 = 0 :=
+    (join_arrival_parent_parity h hk).1.1 harr
+  exact ⟨he, even_parent_cell he (cycleParentAt_edge h hk)⟩
+
+theorem rotateItinerary_get_zero {w : List Branch} {k : ℕ} (hk : k < w.length) :
+    rotateItinerary w k = w[k] :: (w.drop (k + 1) ++ w.take k) := by
+  rw [rotateItinerary_eq_drop_append_take w k (Nat.le_of_lt hk),
+    List.drop_eq_getElem_cons hk, List.cons_append]
+
+/-- A rotation that starts on an even vertex is not CycleMin. -/
+theorem rotate_even_not_cycleMin {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (_h : CycleItinerary n w) (hk : k < w.length)
+    (he : w[k] = Branch.even) :
+    ¬CycleMin (floorPower^[k] n) (rotateItinerary w k) := by
+  intro hm
+  have hn' : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn _h hk
+  rw [rotateItinerary_get_zero hk, he] at hm
+  exact cycleMin_not_start_even hn' hm
+
+/-- A rotation that starts `OE` is not CycleMin. -/
+theorem rotate_OE_not_cycleMin {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (_h : CycleItinerary n w) (hk1 : k + 1 < w.length)
+    (ho : w[k] = Branch.odd) (he : w[k + 1] = Branch.even) :
+    ¬CycleMin (floorPower^[k] n) (rotateItinerary w k) := by
+  intro hm
+  have hk : k < w.length := Nat.lt_of_succ_lt hk1
+  have hdrop : w.drop (k + 1) = w[k + 1] :: w.drop (k + 2) :=
+    List.drop_eq_getElem_cons hk1
+  have hn' : 2 ≤ floorPower^[k] n := cycleItinerary_iterate_ge_two hn _h hk
+  rw [rotateItinerary_get_zero hk, ho, hdrop, List.cons_append, he] at hm
+  exact cycleMin_not_odd_even hn' hm
+
 end Problems.Juggler
