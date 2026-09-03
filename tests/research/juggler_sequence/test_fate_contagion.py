@@ -61,6 +61,22 @@ def test_recursion_roots() -> None:
     assert roots["elementary_sweep_only"] < roots["block_average_only"] < roots["block_average_plus_sweep"] < roots["depth_two_ideal"] < 1
 
 
+def test_first_letter_decomposition_is_exact_and_oe_fair() -> None:
+    from research.juggler_sequence.fate_contagion import type_decomposition
+
+    seed, limit = 260, 1_000_000
+    closed, _ = certified_closure(seed, limit)
+    d = type_decomposition(closed, 10_000)
+    # the three pieces exhaust the members on (100, 10^4]
+    n = np.arange(101, 10_001)
+    total = float((1.0 / n[closed[n]]).sum())
+    assert abs(d["ell_even_members"] + d["ell_oe_members"] + d["ell_oo_members"] - total) < 1e-9
+    # OE-type members have the fair share of the landing range (fiber fairness)
+    assert abs(d["oe_share_of_members"] - d["oe_fair_share"]) < 0.01
+    # the closure omits the OO production above the seed: its OO members are seed elements only
+    assert d["oo_share_of_members"] < d["oo_fair_share"]
+
+
 def test_certified_closure_reaches_one_and_matches_definition() -> None:
     seed, limit = 12, 20000
     closed, closed_e = certified_closure(seed, limit)

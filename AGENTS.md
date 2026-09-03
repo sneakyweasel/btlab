@@ -200,10 +200,19 @@ for external review.
  iterated \(O^t\to O^{t+1}\) split, i.e. the \(K_3\) kernel uniformly
  in depth. Depth-two ceiling of the contagion method is
  \(\lambda=0.4927\); pointwise natural density for all \(x\) does not
- follow (single-seed \(E\)-trees are lacunary). Do not reopen: a Tao
- analogue with a *growing* target does not feed contagion;
- bounded-odd-run control cannot reach the hypothesis; the
- depth-uniform kernel question is PARK behind the \(K_3\) program.
+ follow (single-seed \(E\)-trees are lacunary). Exact map (note §6,
+ `J-fate-odd-generation`, Lean): a two-way closed class is the
+ \(E\)-forest over the odd preimages of its intersection with
+ \(S=\{\lfloor m^{3/2}\rfloor: m\text{ odd}\}\); the conjecture
+ \(\iff F\cap S=\emptyset\iff\) \(S\)-fairness of \(F\); the
+ first-letter decomposition (6.1) has one free term (the \(OO\)-type
+ share), Paper A bounds the seed of a cycle, Paper B the descending
+ branches. Do not reopen: a Tao analogue with a *growing* target does
+ not feed contagion; bounded-odd-run control cannot reach the
+ hypothesis; the depth-uniform kernel question is PARK behind the
+ \(K_3\) program. Open analytic task (PARK): localize Paper B's
+ Theorems 4.4/4.7 to intervals \(\ge P^{1/2+\varepsilon}\) — it would
+ add the \(OOEE\) production and lift \(\lambda^{**}\) to \(\approx 0.527\).
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_preimage_iff`, `odd_preimage_unique`, `preimage_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,

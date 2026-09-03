@@ -297,6 +297,59 @@ def closure_report(closed: np.ndarray, closed_e: np.ndarray, limit: int) -> dict
     }
 
 
+def type_decomposition(closed: np.ndarray, x: int) -> dict[str, Any]:
+    """Exact decomposition of the closure's log-mass on ``(sqrt x, x]`` by first letters.
+
+    Even members are the E-blocks of members at scale ``sqrt x``; odd members
+    split into OE-type (``floor(n^{3/2})`` even, landing ``floor(n^{3/4})``) and
+    OO-type (``floor(n^{3/2})`` odd, image at scale ``x^{3/2}``).  The OO-type
+    share is compared with the *fair share*: the log-density of the closure's
+    odd members on the image range ``(x^{3/4}, x^{3/2}]``.  Requires the
+    closure array to extend to ``x^{3/2}``.
+    """
+
+    limit = len(closed) - 1
+    assert x ** 1.5 <= limit + 1, "closure must extend to x^{3/2}"
+    r = int(math.isqrt(x))
+    n = np.arange(r + 1, x + 1, dtype=np.int64)
+    inv = 1.0 / n
+    inC = closed[n]
+    odd = n % 2 == 1
+    par, _ = _kpar_even_of_odd(n[odd])
+    # OE-type / OO-type among odd n (all odd n, not only members)
+    oe_mask = np.zeros(len(n), dtype=bool)
+    oo_mask = np.zeros(len(n), dtype=bool)
+    oe_mask[np.nonzero(odd)[0][par]] = True
+    oo_mask[np.nonzero(odd)[0][~par]] = True
+    ell_all = float(inv.sum())
+    ell_even_C = float(inv[inC & ~odd].sum())
+    ell_oe_C = float(inv[inC & oe_mask].sum())
+    ell_oo_C = float(inv[inC & oo_mask].sum())
+    ell_oe = float(inv[oe_mask].sum())
+    ell_oo = float(inv[oo_mask].sum())
+    # fair share of the OO-type members: odd log-density of the closure on the image range
+    lo_img, hi_img = int(x ** 0.75), int(x ** 1.5)
+    m = np.arange(lo_img + 1, hi_img + 1, dtype=np.int64)
+    m_odd = m[m % 2 == 1]
+    dens_odd_img = float((1.0 / m_odd[closed[m_odd]]).sum() / (1.0 / m_odd).sum())
+    # fair share of the OE-type members: log-density of the closure on the landing range
+    lo_l, hi_l = int(x ** 0.375), int(x ** 0.75)
+    a = np.arange(lo_l + 1, hi_l + 1, dtype=np.int64)
+    dens_land = float((1.0 / a[closed[a]]).sum() / (1.0 / a).sum())
+    return {
+        "x": x,
+        "ell_range": ell_all,
+        "ell_even_members": ell_even_C,
+        "ell_oe_members": ell_oe_C,
+        "ell_oo_members": ell_oo_C,
+        "oe_share_of_members": ell_oe_C / ell_oe if ell_oe else None,
+        "oe_fair_share": dens_land,
+        "oo_share_of_members": ell_oo_C / ell_oo if ell_oo else None,
+        "oo_fair_share": dens_odd_img,
+        "oo_bias": (ell_oo_C / ell_oo - dens_odd_img) if ell_oo else None,
+    }
+
+
 def lambda_root(coefficients: list[tuple[float, float]]) -> float:
     """Root ``lambda`` of ``sum c_i e_i^lambda = 1`` for the recursion ``g(t) >= sum c_i g(e_i t)``."""
 
@@ -333,6 +386,9 @@ def summary(closure_limit: int = 10**8, dense_hi: int = 100_000) -> dict[str, An
     blocks = [block_stats(mp) for mp in list(range(20, 40)) + list(range(200, 210)) + [1000, 3000]]
     closed, closed_e = certified_closure(LEAN_SEED, closure_limit)
     closure = closure_report(closed, closed_e, closure_limit)
+    decomposition = [
+        type_decomposition(closed, x) for x in (10**4, 10**5, 10**6) if x**1.5 <= closure_limit
+    ]
     roots = {name: lambda_root(coeffs) for name, coeffs in RECURSIONS.items()}
     falsified = (
         any(f["good_fibers_below_sweep_bound"] > 0 for f in fibers.values() if f["m_lo"] >= SWEEP_M0)
@@ -347,6 +403,7 @@ def summary(closure_limit: int = 10**8, dense_hi: int = 100_000) -> dict[str, An
         "block_max_deviation_over_proved_scale": max(abs(b["deviation_over_proved_scale"]) for b in blocks),
         "block_max_deviation_over_sqrt": max(abs(b["deviation_over_sqrt"]) for b in blocks),
         "closure": closure,
+        "first_letter_decomposition": decomposition,
         "lambda_roots": roots,
         "elapsed_seconds": time.time() - t0,
     }

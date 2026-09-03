@@ -160,7 +160,11 @@ with proportion \(0.328\).
 `even_block_card`, `sqrt_sqrt_eq_iff`, `floorPower_oe_fiber`,
 `oe_fiber_mem`, `oe_fiber_disjoint`, `Periodic`, `fate_trichotomy`,
 `reachesOne_not_escapes`, `cycle_basin_not_escapes`,
-`reachesOne_not_cycle_basin`. Imported by `Problems.Juggler`. No
+`reachesOne_not_cycle_basin`; odd generation (Theorem 6.1):
+`ForwardClosed`, `exists_odd_ancestor`, `exists_odd_ancestor_ge_three`,
+`nonempty_iff_odd_image_mem`, `odd_mem_iff`; envelope descent into
+the floor: `iterate_le_of_envelope`, `mem_of_envelope_floor`,
+`reachesOne_of_itinerary_envelope`. Imported by `Problems.Juggler`. No
 `sorry`. The analytic counting (Lemmas 3.1–3.3, Proposition 3.4,
 Theorem 4.2) is not formalized.
 
@@ -172,6 +176,11 @@ Theorem 4.2) is not formalized.
 
 ## Open questions
 
+- The free term (note §6.2): the \(S\)-fairness of the failure set —
+  equivalent to the conjecture. Localizing Paper B's Theorems 4.4/4.7
+  to intervals of length \(\ge P^{1/2+\varepsilon}\) would add the
+  \(OOEE\) production and raise \(\lambda^{**}\) to \(\approx 0.527\)
+  (not verified; recorded in §6.3).
 - Pointwise natural density \(\#(R\cap[1,x])\gg x(\log x)^{\lambda-1}\)
   for all \(x\): the fixed-ratio induction does not close; the E-tree
   of \([1,N_0]\) gives it for \(\log x\ll N_0\log N_0\) only.

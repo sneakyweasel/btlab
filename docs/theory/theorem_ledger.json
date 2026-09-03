@@ -6386,6 +6386,17 @@
   "related_conjectures": []
  },
  {
+  "id": "J-fate-odd-generation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Odd generation of two-way closed fate classes (fate-contagion note, Theorem 6.1). Fate classes are forward-closed as well as backward-closed (ForwardClosed; reachesOne_forwardClosed, not_reachesOne_forwardClosed, escapes_forwardClosed; mem_iff_floorPower_mem). For a class A that is closed both ways with 1 ∉ A: every member n ≥ 1 descends by even steps only to an odd member of A (exists_odd_ancestor: ∃ k with floorPower^[k] n odd and in A, all earlier iterates even), that member is ≥ 3 (exists_odd_ancestor_ge_three), the odd members are exactly the odd preimages of A ∩ {⌊m^{3/2}⌋ : m odd} (odd_mem_iff: for odd n, A n ↔ A (Nat.sqrt (n^3))), and A is nonempty iff it contains ⌊m^{3/2}⌋ for some odd m ≥ 3 (nonempty_iff_odd_image_mem). Consequence: every positive integer reaches 1 iff no image ⌊m^{3/2}⌋ of an odd m fails to reach 1; the failure set is the E-forest over the odd preimages of F ∩ S. This is the exact skeleton of the S-fairness reformulation: the one free term of the first-letter decomposition (6.1) is the share of OO-type odd numbers whose image lies in F. Not a halt theorem.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "Problems/Juggler/FateContagion.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-fate-envelope-floor",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "Envelope descent into a certified floor. For a realized word w at n (follows n w), if n ^ 3^{#O(w)} ≤ N₀ ^ 2^{|w|} as integers then floorPower^[|w|] n ≤ N₀ (iterate_le_of_envelope, from power_bound_word and Nat.pow_le_pow_iff_left); if moreover every 1 ≤ m ≤ N₀ lies in a backward-closed class A, then n ∈ A (mem_of_envelope_floor); in particular, with A = ReachesOne and the realized itinerary of the first k steps, n ^ 3^{#O(itinerary n k)} ≤ N₀ ^ 2^k implies ReachesOne n (reachesOne_of_itinerary_envelope). This is the exact step of the Tao-type reduction: a start whose exponent walk reaches −L(y) = −log₂(log 2y / log N₀) within d steps enters [1, N₀]. Not a halt theorem.",
