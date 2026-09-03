@@ -1,0 +1,14 @@
+{
+ "length": 730785,
+ "odd_count": 461074,
+ "theta": 3.9859580493710676e-05,
+ "floor": 350000000,
+ "const": 1.2,
+ "deficit_D": 0.0008091822885719217,
+ "walk_rhs_certified": 5.374505056503735e-06,
+ "kill_margin": 7.416418828274476,
+ "certified_excludes": true,
+ "elapsed_s": 12.215521099977195,
+ "device": "NVIDIA GeForce RTX 5090",
+ "implementation": "research.juggler_sequence.cycle_walk_charge_gpu.gpu_walk_budget (CuPy fp64 raw kernel)"
+}

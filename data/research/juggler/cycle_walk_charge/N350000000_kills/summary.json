@@ -1,0 +1,22 @@
+{
+ "floor": 350000000,
+ "kills": [
+  478245,
+  504026,
+  528753,
+  579261,
+  629769,
+  654496,
+  680277,
+  705004,
+  730785,
+  755512
+ ],
+ "first_survivor": 780239,
+ "all_ten_exclude": true,
+ "survivor_excludes": false,
+ "survivor_margin": 0.6048881510063475,
+ "sha256_ten_kill_records": "d16ccfed52757d4a44368a6549a8149ccbc926472737276c577912346db854ab",
+ "parity_leftover_count": 17,
+ "parity_leftover_path": "data/research/juggler/cycle_walk_charge/N350000000_parity_leftovers.json"
+}
