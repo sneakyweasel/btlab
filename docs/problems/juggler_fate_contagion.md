@@ -186,9 +186,25 @@ Theorem 4.2) is not formalized.
 - Done (note §7, `J-fate-ooeee-production`): Paper B's Theorems
   4.4/4.7 localize to intervals of length \(\ge P^{1/2}\) with relative
   saving \(P^{-1/24}\); the \(OOEEE\) production on even blocks raises
-  the exponent to \(\lambda^{***}=0.4922\). Next quantitative steps:
-  localize Theorem 6.3 (kernel theorem) for \(OOOEE\)/\(OOEOE\) on even
-  blocks; sharpen the fiber constant \(1/7\to 1/3\).
+  the exponent to \(\lambda^{***}=0.4922\). Assessed and parked (note
+  §7.4): localizing the kernel theorem (Paper B Theorem 5.3 → 6.1)
+  for \(OOOEE\)/\(OOEOE\) on even blocks would give \(\lambda=0.5561\),
+  rate threshold \(0.4439\), least \(C=18\) (\(C(0.55)=38\)); the proof
+  has the same scaling architecture as Theorem 4.4 (per-point costs
+  and per-window absolute costs \(\le P^{7/16}\) against the target
+  \(YP^{-1/24}=P^{0.677}\)), so localization is plausible, but the
+  forty-odd displayed estimates of Steps 3–5 are not re-derived here.
+  Falsifier: an absolute cost above \(P^{0.677}\). Remaining
+  quantitative step: sharpen the fiber constant \(1/7\to 1/3\).
+- Note §8: what the certified floor \(N_0=3.5\cdot 10^8\) and the
+  period bound \(L\ge 780239\) say in this framework — the floor
+  stratifies \(F\) (\(\min F\) is an \(OO\)-start; \(OE\)-failures
+  \(>N_0^{4/3}\), even failures \(>N_0^2\), \(F\cap S\subseteq(N_0^{3/2},\infty)\)),
+  lowers the Tao depth by \(35\)–\(38\) letters, and makes the aggregate
+  hypothesis testable (census in the sequel dossier); cycles sit
+  exactly at the critical odd share \(q^*=\log 2/\log 3\) of the
+  biased-split hypothesis, with the survivor periods the convergent and
+  semiconvergent denominators of \(q^*\). No threshold is crossed.
 - Pointwise natural density \(\#(R\cap[1,x])\gg x(\log x)^{\lambda-1}\)
   for all \(x\): the fixed-ratio induction does not close; the E-tree
   of \([1,N_0]\) gives it for \(\log x\ll N_0\log N_0\) only.

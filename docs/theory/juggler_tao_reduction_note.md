@@ -109,7 +109,10 @@ e(C)=\frac{C\,D(p_C\,\|\,\tfrac12)}{\ln 2},
 D(p\|\tfrac12)=p\ln(2p)+(1-p)\ln(2(1-p)).
 \]
 For \(L>0\) and \(d\ge CL\), the number of \(L\)-bad words of length
-\(d\) is at most \(2^d\cdot 2^{-e(C)L}\).
+\(d\) is at most \(2^d\cdot 2^{-e(C)L}\). Moreover, for every
+\(\varepsilon>0\) there is \(L_0\) such that for \(L\ge L_0\) and
+\(d=\lceil CL\rceil\) the number of \(L\)-bad words of length \(d\)
+*beginning with \(O\)* is at most \(2^{d-1}\cdot 2^{-(e(C)-\varepsilon)L}\).
 
 *Proof.* An \(L\)-bad word has \(u_d>-L\), i.e.
 \(o_d>(d-L)/\log_2 3\ge p_Cd\) (as \(L/d\le 1/C\)). For a fair coin,
@@ -117,7 +120,19 @@ For \(L>0\) and \(d\ge CL\), the number of \(L\)-bad words of length
 \(p\ge\tfrac12\), and \(D(\cdot\|\tfrac12)\) is increasing on
 \([\tfrac12,1]\); \(p_C\ge\tfrac12\) for \(C\ge 5\). Hence the count
 is at most \(2^d e^{-dD(p_C\|1/2)}\le 2^de^{-CL\,D(p_C\|1/2)}=2^d2^{-e(C)L}\).
-\(\square\)
+For the \(O\)-rooted count, the remaining \(d-1\) letters contain
+\(o_d-1>(d-L)/\log_2 3-1=p'(d-1)\) odd letters with
+\(p'=p_C-O(1/L)\); the same Chernoff bound with \(d-1\) trials gives
+\(2^{d-1}e^{-(d-1)D(p'\|1/2)}\), and \((d-1)D(p'\|1/2)\ge(e(C)-\varepsilon)L\ln 2\)
+for \(L\) large. \(\square\)
+
+Odd starts have first letter \(O\) deterministically; the fair share
+of an \(O\)-rooted cylinder of depth \(d\) among the \(y/2\) odd
+starts of \((y,2y]\) is therefore \(2^{-(d-1)}\cdot y/2\), and the
+relevant walk model conditions on \(u_1=\log_2 3-1\). Asymptotically
+in \(L\) this changes nothing (the exponent \(e(C)\) is unchanged);
+at finite depth it doubles the bad probability, as the census of
+Section 6 confirms.
 
 Numerically \(e(20)=0.574\), \(e(21)=0.621\), \(e(22)=0.668\),
 \(e(25)=0.812\), \(e(30)=1.054\), \(e(40)=1.544\); \(e(C)\sim 0.0488\,C\).
@@ -129,39 +144,42 @@ smaller on the range of the table in Section 6.
 
 **Hypothesis \(\mathrm H(C,A)\) (log-log-depth cylinder bound).** For
 all sufficiently large \(y\), with \(d=d(y)=\lceil C L(y)\rceil\),
-every word \(w\in\{O,E\}^{d}\) satisfies
+every word \(w\in\{O,E\}^{d}\) beginning with \(O\) satisfies
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ \mathrm{word}_d(n)=w\}
-\ \le\ 2^{-d}\cdot\frac y2+\frac{y}{(\log y)^{A}} .
+\ \le\ 2^{-(d-1)}\cdot\frac y2+\frac{y}{(\log y)^{A}} .
 \]
 
 Only an *upper* bound is asked, only at one depth per scale, and (as
 the proof shows) only for the \(L(y)\)-bad words. Since
-\(2^{-d}y/2\asymp y(\log y)^{-C}\) up to constants, \(\mathrm H(C,A)\)
-with \(A>C\) says that no cylinder of depth \(d(y)\) exceeds its fair
-share by more than a relative \(O((\log y)^{C-A})\).
+\(2^{-(d-1)}y/2\asymp y(\log y)^{-C}\) up to constants, \(\mathrm H(C,A)\)
+with \(A>C\) says that no \(O\)-rooted cylinder of depth \(d(y)\)
+exceeds its fair share among odd starts by more than a relative
+\(O((\log y)^{C-A})\).
 
 **Theorem B (Tao-type bound).** Assume \(\mathrm H(C,A)\) with
-\(C\ge 5\) and \(A>C+e(C)\). Then for all sufficiently large \(y\),
+\(C\ge 5\) and \(A>C+e(C)\). Then for every \(\varepsilon>0\) and all
+sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}
 \ \le\ \#\{n\ \text{odd in }(y,2y]:\ J^t(n)>N_0\ \forall t\le d(y)\}
-\ \le\ 2\,(\log N_0)^{e(C)}\,\frac{y}{(\log y)^{e(C)}} .
+\ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e(C)-\varepsilon)} .
 \]
-In words: all but \(O(y(\log y)^{-e(C)})\) odd starts in \((y,2y]\)
-enter \([1,N_0]\) within \(d(y)=O(\log\log y)\) steps.
+In words: all but \(O(y(\log y)^{-e(C)+\varepsilon})\) odd starts in
+\((y,2y]\) enter \([1,N_0]\) within \(d(y)=O(\log\log y)\) steps.
 
 *Proof.* The first inequality is Lemma 2.1 applied with \(d=d(y)\)
 (a start whose word is not bad enters \([1,N_0]\) within \(d\)
-steps). By Lemma 3.1 the bad words number at most
-\(2^d2^{-e(C)L(y)}\), and by \(\mathrm H(C,A)\) each carries at most
-\(2^{-d}y/2+y(\log y)^{-A}\) odd starts. Hence the count is at most
+steps). Every odd start has an \(O\)-rooted word; by Lemma 3.1 the
+\(O\)-rooted bad words number at most \(2^{d-1}2^{-(e(C)-\varepsilon)L(y)}\),
+and by \(\mathrm H(C,A)\) each carries at most
+\(2^{-(d-1)}y/2+y(\log y)^{-A}\) odd starts. Hence the count is at most
 \[
-\frac y2\,2^{-e(C)L(y)}+2^{d}\,\frac{y}{(\log y)^A}
-\ \le\ \frac y2\Bigl(\frac{\log N_0}{\log 2y}\Bigr)^{e(C)}
-+2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{C}\frac{y}{(\log y)^{A}},
+\frac y2\,2^{-(e(C)-\varepsilon)L(y)}+2^{d-1}\,\frac{y}{(\log y)^A}
+\ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e(C)-\varepsilon)}
++\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{C}\frac{y}{(\log y)^{A}},
 \]
-using \(2^{d}\le 2^{CL+1}\). The second term is
+using \(2^{d-1}\le 2^{CL}\). The second term is
 \(O(y(\log y)^{C-A})=o(y(\log y)^{-e(C)})\) because \(A>C+e(C)\).
 \(\square\)
 
@@ -228,13 +246,43 @@ With the certified floor \(N_0=3.5\cdot 10^8\) and \(C=21\):
 | \(10^{10000}\) | \(10.19\) | \(215\) | \(0.012\) | \(0.00057\) | \(0.0024\) | \(180\) |
 
 The "exact bad probability" is the fair-coin probability that a walk
-of length \(d(y)\) never reaches \(-L(y)\), by dynamic programming;
-the last column is the least depth at which that probability drops
-below \((\log y)^{-0.6}\) — about \(17\,L(y)\), so the hypothesis
-could be stated at depth \(\approx 17\log_2\log y\) with the exact
-walk count in place of Chernoff. With the Lean floor \(N_0=260\) the
-depths grow by about \(38\) letters. Source:
+of length \(d(y)\) never reaches \(-L(y)\), by dynamic programming
+(unconditioned first letter; for odd starts condition on
+\(u_1=\log_2 3-1\), which roughly doubles the finite-depth values —
+\(0.087\) in place of \(0.052\) at \((10^{20},27)\) — and leaves the
+exponent unchanged); the last column is the least depth at which
+that probability drops below \((\log y)^{-0.6}\) — about
+\(17\,L(y)\), so the hypothesis could be stated at depth
+\(\approx 17\log_2\log y\) with the exact walk count in place of
+Chernoff. With the Lean floor \(N_0=260\) the depths grow by about
+\(38\) letters. Source:
 `data/research/juggler/tao_reduction/summary.json`.
+
+**The census the certified floor makes possible.** Because every
+\(n\le N_0=3.5\cdot 10^8\) is known to reach \(1\), the Tao-type
+statistic "the orbit of \(n\) enters \([1,N_0]\) within \(d\) steps"
+is a finite computation on exact big-integer orbits, and it is
+exactly the aggregate form of \(\mathrm H_q(C,A)\): its complement is
+the bad set of Theorem B. For random odd starts in \((y,2y]\) at
+\(y=10^{12},10^{15},10^{20},10^{30},10^{50}\) (\(40000\), \(40000\),
+\(40000\), \(20000\), \(20000\) samples), the fraction of orbits
+still above \(N_0\) after \(d\) steps, \(d\le 40\), agrees with the
+odd-start fair-coin probability
+\(\Pr[u_t>-L(y)\ \forall t\le d\mid u_1=\log_2 3-1]\) to within
+\(3\%\) for \(d\ge 10\) at every scale (ratios \(0.92\)–\(1.05\); at
+\(10^{12}\), \(d=40\): \(0.0215\) against \(0.0219\); at \(10^{50}\),
+\(d=40\): \(0.087\) against \(0.084\)). The only systematic deviation
+is at depth \(\le 8\) for \(L(y)\) just below an integer (\(10^{15}\),
+\(10^{20}\)), where the floors in \(J^t(n)\le n^{2^{u_t}}\) make real
+orbits descend one step *earlier* than the continuous threshold —
+in the favourable direction. Source:
+`data/research/juggler/tao_reduction/summary.json` (`tao_census`).
+So the exponent walk to the certified floor is fair-coin to depth
+\(40\) at scales up to \(10^{50}\): the aggregate odd share along
+surviving prefixes is \(\tfrac12\), not \(0.55\), far from the
+critical \(0.6309\). This is evidence about the *aggregate* over
+cylinders; the hypothesis asks for every cylinder, which no sample
+can test.
 
 For comparison, Paper B controls depth \(4\) (all words) and two
 words of depth \(5\), with relative error \(y^{-1/96}\) on dyadic
@@ -275,11 +323,13 @@ cylinder \(\{n\ \text{odd}\in(y,2y]:\mathrm{word}_t(n)=w\}\),
 \(w\in\{O,E\}^t\).
 
 **Hypothesis \(\mathrm H_q(C,A)\) (log-log-depth odd-share bound).**
-For all sufficiently large \(y\), every \(t<d(y)=\lceil CL(y)\rceil\)
+For all sufficiently large \(y\), every \(1\le t<d(y)=\lceil CL(y)\rceil\)
 and every \(w\in\{O,E\}^t\),
 \[
 \#\{n\in[w]_y:\ \mathrm{word}_{t+1}(n)=wO\}\ \le\ q\,\#[w]_y+\frac{y}{(\log y)^{A}} .
 \]
+(The depth-\(0\) cylinder is all odd starts, whose next letter is
+\(O\) with share \(1\); the hypothesis starts at depth \(1\).)
 
 **Theorem B′ (biased-split Tao-type bound).** Let
 \(q<\log 2/\log 3\), \(\mu=1-q\log_2 3>0\), \(C>1/\mu\), and put
@@ -298,29 +348,31 @@ Consequently, if \(e_q(C)>1-\lambda^{**}\), Theorem A gives
 
 *Proof.* Let \(n\) be uniform on the odd integers of \((y,2y]\),
 \(\mathcal F_t\) the σ-algebra of the depth-\(t\) cylinders,
-\(X_t=\mathbf 1[\mathrm{word}_{t+1}(n)=\mathrm{word}_t(n)O]\), and
-\(u_t=\sum_{s<t}(X_s\log_2 3-1)\) the exponent walk. Put
-\(\eta_t=\max\bigl(0,\ \mathbb P(X_t=1\mid\mathcal F_t)-q\bigr)\).
-On a cylinder \([w]\) of depth \(t\), \(\mathrm H_q\) gives
-\(\eta_t\le y(\log y)^{-A}/\#[w]\), so
+\(X_t=\mathbf 1[\mathrm{word}_{t+1}(n)=\mathrm{word}_t(n)O]\) for
+\(t\ge 1\), and \(u_t=(\log_2 3-1)+\sum_{1\le s<t}(X_s\log_2 3-1)\) the
+exponent walk (the first letter is \(O\)). Put
+\(\eta_t=\max\bigl(0,\ \mathbb P(X_t=1\mid\mathcal F_t)-q\bigr)\) for
+\(t\ge 1\). On a cylinder \([w]\) of depth \(t\), \(\mathrm H_q\)
+gives \(\eta_t\le y(\log y)^{-A}/\#[w]\), so
 \(\mathbb E[\eta_t]\le\sum_w\frac{\#[w]}{y/2}\cdot\frac{y(\log y)^{-A}}{\#[w]}\le 2^{t+1}(\log y)^{-A}\)
-and \(\mathbb E\bigl[\sum_{t<d}\eta_t\bigr]\le 2^{d+1}(\log y)^{-A}\le 4(\log 2y/\log N_0)^{C}(\log y)^{-A}\).
-Since \(\mathbb E[u_{t+1}-u_t\mid\mathcal F_t]\le-\mu+\eta_t\log_2 3\),
-the process \(M_t=u_t-\sum_{s<t}\mathbb E[u_{s+1}-u_s\mid\mathcal F_s]\)
+and \(\mathbb E\bigl[\sum_{1\le t<d}\eta_t\bigr]\le 2^{d+1}(\log y)^{-A}\le 4(\log 2y/\log N_0)^{C}(\log y)^{-A}\).
+Since \(\mathbb E[u_{t+1}-u_t\mid\mathcal F_t]\le-\mu+\eta_t\log_2 3\)
+for \(t\ge 1\), the process
+\(M_t=u_t-u_1-\sum_{1\le s<t}\mathbb E[u_{s+1}-u_s\mid\mathcal F_s]\)
 is a martingale with increments in an interval of length
 \(\log_2 3\), and
-\(u_d\le M_d-d\mu+\log_2 3\sum_{s<d}\eta_s\). Fix \(\kappa\in(0,1)\). If
-\(n\notin R\) then by Lemma 2.1 the walk never reaches \(-L\), so
-\(u_d>-L\), hence either
-\(\log_2 3\sum_s\eta_s>\kappa d\mu\) or
-\(M_d>-L+(1-\kappa)d\mu\). By Markov and the bound on
+\(u_d\le u_1+M_d-(d-1)\mu+\log_2 3\sum_{1\le s<d}\eta_s\). Fix
+\(\kappa\in(0,1)\). If \(n\notin R\) then by Lemma 2.1 the walk never
+reaches \(-L\), so \(u_d>-L\), hence either
+\(\log_2 3\sum_s\eta_s>\kappa(d-1)\mu\) or
+\(M_d>-L-u_1+(1-\kappa)(d-1)\mu\). By Markov and the bound on
 \(\mathbb E[\sum\eta_s]\), the first event has probability
-\(\le\frac{4\log_2 3}{\kappa d\mu}(\log 2y/\log N_0)^{C}(\log y)^{-A}=O((\log y)^{C-A})\),
+\(\le\frac{4\log_2 3}{\kappa(d-1)\mu}(\log 2y/\log N_0)^{C}(\log y)^{-A}=O((\log y)^{C-A})\),
 negligible for \(A>C+1\). By Azuma–Hoeffding, with
-\(a=(1-\kappa)d\mu-L\ge L\bigl((1-\kappa)C\mu-1\bigr)\),
+\(a=(1-\kappa)(d-1)\mu-L-u_1\ge L\bigl((1-\kappa)C\mu-1\bigr)-\log_2 3\),
 \[
-\mathbb P(M_d>a)\le\exp\Bigl(-\frac{2a^2}{d(\log_2 3)^2}\Bigr)
-\le 2^{-L\,e_q^{(\kappa)}(C)},
+\mathbb P(M_d>a)\le\exp\Bigl(-\frac{2a^2}{(d-1)(\log_2 3)^2}\Bigr)
+\le 2^{-L\,(e_q^{(\kappa)}(C)-o(1))},
 \qquad
 e^{(\kappa)}_q(C)=\frac{2((1-\kappa)C\mu-1)^2}{C(\log_2 3)^2\ln 2},
 \]

@@ -93,6 +93,31 @@ def test_odd_run_census_is_fair_on_a_small_window() -> None:
     assert abs(shares[1] - 0.5) < 0.02 and abs(shares[2] - 0.5) < 0.03
 
 
+def test_odd_start_conditioning_doubles_finite_depth_bad_probability() -> None:
+    from research.juggler_sequence.tao_reduction import bad_word_probability_odd_start
+
+    # For L < 1 an E first letter descends at once, so P(bad | O first) = 2 P(bad).
+    L = scale_L(12 * math.log(10.0), 350_000_000)
+    assert L < 1
+    for d in (5, 10, 20):
+        assert abs(bad_word_probability_odd_start(L, d) - 2 * bad_word_probability(L, d)) < 1e-12
+    # For L > 1 the factor is strictly between 1 and 2.
+    L = scale_L(20 * math.log(10.0), 350_000_000)
+    ratio = bad_word_probability_odd_start(L, 27) / bad_word_probability(L, 27)
+    assert 1.0 < ratio < 2.0
+
+
+def test_tao_census_matches_fair_coin_to_the_certified_floor() -> None:
+    from research.juggler_sequence.tao_reduction import first_passage_below, tao_census
+
+    assert first_passage_below(10**12 + 1, 350_000_000, 10) == 3  # O E E: 1e18 -> 1e9 -> 31622
+    census = tao_census(12, 350_000_000, 4000, 20, seed=1)
+    # odd start: exactly OEE*, OEOE, OOEE descend within 4 steps -> fair survival 1/2
+    assert census["fair_coin_bad_probability_odd_start"][3] == 0.5
+    assert abs(census["empirical_survival"][3] - 0.5) < 0.03
+    assert 0.85 < census["empirical_survival"][19] / census["fair_coin_bad_probability_odd_start"][19] < 1.15
+
+
 def test_required_depth_grows_like_log_log() -> None:
     d20 = required_depth(20 * math.log(10.0), 350_000_000, 0.6)
     d100 = required_depth(100 * math.log(10.0), 350_000_000, 0.6)

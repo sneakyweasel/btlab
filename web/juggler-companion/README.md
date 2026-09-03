@@ -28,7 +28,18 @@ npm run build
 npm run preview
 ```
 
-Production builds use the GitHub project-pages base `/balanced_ternary/`.
+The default public base is `/` (Vercel and local preview). GitHub project
+pages set `VITE_BASE=/balanced_ternary/` in the workflow.
+
+## Vercel
+
+Import the GitHub repository on [Vercel](https://vercel.com/new). The root
+`vercel.json` points the project at this package, so you do not need to set
+a Root Directory. Framework is Vite; Node 22.
+
+SPA routes (`/tour`, `/play/trajectory`, …) are rewritten to `index.html`.
+If you instead set the Vercel Root Directory to `web/juggler-companion`,
+the package-local `vercel.json` does the same rewrite.
 
 ## What is in the TypeScript kernel
 

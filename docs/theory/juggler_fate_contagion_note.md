@@ -984,6 +984,108 @@ odd starts in an interval; it says nothing about the odd images
 \(S_{\rm odd}\) of §6, and the free term \(\psi_F\) of (6.1) is
 untouched. The improvement is quantitative.
 
+### 7.4 The kernel theorem: assessment, not a proof
+
+The next two productions on even blocks would be \(OOOEE\) and
+\(OOEOE\) (Paper B Theorem 6.1, the \(OOO*\) splits), each with
+coefficient \((1/32)/(27/32)=1/27\) at the root scale \(27t/64\).
+Their recursion root is \(\lambda=0.5561\ldots\), the rate threshold
+would drop to \(0.4439\), and the least depth constants to \(C=18\)
+(fair and \(q=\tfrac12\)) and \(C(0.55)=38\)
+(`hypothetical_kernel_localized` in the probe). Theorem 6.1 rests on
+the kernel theorem (Paper B Theorem 5.3, \(K_c(P)\ll P^{1-1/96+\varepsilon}\)),
+whose proof is a double Weyl differencing (\(H_1=P^{1/48}\),
+\(H_2=P^{1/24}\)) over an exact carry-branch decomposition, with the
+doubly differenced phase split by a master identity into four
+bounded pieces, each expanded by Lemma 3.7 on frozen windows and
+estimated per window by Lemmas 3.3, 3.8, 3.9 (Steps 1–6, some 430
+lines). We read the proof for the same question as in
+Proposition 7.1 — does every displayed cost scale with the number
+of summands or stay below the target? — and found the same
+architecture: the additive costs are per-point (flat term
+\(8(1+|B|)/T\), majorant \(1/(J+1)\), \(M_1\) deletion
+\(2.7kh_1h_2P^{-7/8}\), window residuals \(6.3P^{-1/8}\)) times the
+number of summands, or per-window absolute costs (\(M^{-1/2}\),
+\((P/M)^{1/3}\le P^{3/8}\), \(\lambda_a^{-1/2}\le P^{1/16}\)) times
+window counts that are themselves proportional to the length plus
+\(O(1)\); the leading term \(\sum_w|I_w|M^{1/2}\le2.5(k|j|)^{1/2}P^{15/16}\)
+is length times \(\lambda_a^{1/2}\) and scales. On an interval
+\(I\subseteq(P,2P]\) of length \(Y\) the differencing gives
+\(|K_c(I)|^2\le2Y^2/H_1+(4Y/H_1)\sum|T_1|\), and the balance
+\(|T_2|\ll YP^{-1/24+\varepsilon}\Rightarrow|K_c(I)|\ll YP^{-1/96+\varepsilon}\)
+needs every absolute leftover below \(YP^{-1/24}=P^{0.677}\) at
+\(Y=P^{23/32}\); the block proof's absolute terms are at most
+\(P^{7/16}\). So localization to \(Y\ge P^{23/32}\) is plausible and
+the check is mechanical. It is **not done here**: it requires
+re-deriving each of the roughly forty displayed estimates of
+Steps 3–5 with \(Y\) in place of \(P\) where it belongs, and the
+resonant, collision-band and anchor-class pieces have window
+hypotheses (Lemma 5.2's decorations) that must be re-verified on
+partial windows. The gain is one unit of \(C\) and \(0.064\) in the
+exponent; the free term \(\psi_F\) is untouched either way. Decision:
+PARK, with the precise falsifier "an absolute cost in Steps 3–5 of
+Paper B §5 exceeding \(P^{0.677}\)".
+
+## 8. What the certified floor and the period bound say here
+
+The laboratory's two large computations enter this note in three
+places; none is a threshold, and it is worth saying exactly why.
+
+*The floor \(N_0=3.5\cdot10^8\) stratifies the failure set.* By
+backward closure and Theorem 6.1, if \(F=\mathbb N_{\ge1}\setminus R\)
+is nonempty then: \(\min F\) is odd with odd image (an \(OO\)-start,
+descent-free, exactly as the minimum of a cycle in Paper A);
+every odd failure with even image exceeds \(N_0^{4/3}=2.4\cdot10^{11}\)
+(its image's square root is a smaller failure); every even failure
+exceeds \(N_0^{2}=1.2\cdot10^{17}\); and every failure that is an odd
+image exceeds \(N_0^{3/2}=6.5\cdot10^{12}\) (its odd preimage is a
+smaller failure), so \(F\cap S\subseteq(6.5\cdot10^{12},\infty)\). In
+the Tao-type reduction the floor enters only through
+\(L(y)=\log_2(\log 2y/\log N_0)\): against the Lean floor \(260\) it
+lowers \(L\) by \(\log_2(19.67/5.56)=1.82\), i.e. the required depth
+by \(35\)–\(38\) letters at every scale. That is all the floor does
+for the asymptotics.
+
+*The floor makes the aggregate hypothesis testable.* Because every
+\(n\le N_0\) reaches \(1\), the statistic "\(J^t(n)\le N_0\) for some
+\(t\le d\)" is a finite computation on exact big integers, and its
+complement is exactly the bad set of the sequel note's Theorem B. The
+census there (\(y=10^{12}\) to \(10^{50}\), depth \(40\)) finds the
+survival fraction equal to the odd-start fair-coin value within
+\(3\%\) for \(d\ge10\). The aggregate odd share along surviving
+prefixes — which is what \(\mathrm H_q(C,A)\) is about — is
+\(\tfrac12\) in every tested regime. This is the strongest evidence
+the laboratory has that the hypothesis is true in aggregate; it is no
+evidence at all about individual cylinders, which is where a proof
+must work.
+
+*The period bound places cycles at the critical share.* A cycle of
+period \(L\) with \(o\) odd states has \(3^{o}/2^{L}=1+\Lambda\) with
+\(\Lambda\) tiny (Paper A), so its word — an infinite bad word in the
+sense of §2 of the sequel note — has odd share
+\(o/L=\log 2/\log 3+O(\Lambda/L)\): exactly the critical share
+\(q^{*}=0.6309\) of the biased-split hypothesis, at which the exponent
+walk has zero drift. The surviving periods (\(176251\), \(301994\),
+\(478245\), \(780239\)) are denominators of convergents and
+semiconvergents of \(q^*\) (\(111202/176251\), \(190537/301994\),
+and their mediants), because a periodic bad word must realize \(q^*\)
+to within \(O(\Lambda/L)\) and Paper A's finance forces \(\Lambda\)
+small enough that only those denominators survive. So the
+finance/walk-charge program and
+the biased-split hypothesis are two views of one boundary: cycles
+must sit *on* the critical share, the Tao-type hypothesis asks that
+no cylinder be pushed *toward* it, and \(L\ge780239\) at
+\(n\ge3.5\cdot10^8\) is the statement that the boundary carries no
+short periodic word below that floor. A cycle's basin is nonetheless
+consistent with \(\mathrm H(C,A)\) at every finite scale — its
+cylinders carry one state each, far below their fair share
+\(y/2^{d}\) — which is why the conditional theorem must pass
+through contagion (the basin's \((\log x)^{\lambda}\) log-count
+against the bad set's \((\log x)^{1-e}\)). The exponent gap that
+closes the argument at \(C=19\) is \(0.5150-0.5078=0.0072\); it is a
+choice, not a coincidence — \(C=25\) gives \(0.81\), \(C=30\) gives
+\(1.05\) — but the depth \(C\log_2\log y\) is the price.
+
 ## Appendix. Lean names
 
 | Statement | Lean (`FateContagion.lean`) |

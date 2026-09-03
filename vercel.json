@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm ci --prefix web/juggler-companion",
+  "buildCommand": "npm run build --prefix web/juggler-companion",
+  "outputDirectory": "web/juggler-companion/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

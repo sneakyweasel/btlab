@@ -169,6 +169,195 @@ def odd_run_census(lo: int, hi: int, t_max: int = 14) -> dict[str, Any]:
     return {"lo": lo, "hi": hi, "odd_share_of_O_t": shares}
 
 
+def first_passage_below(n: int, N0: int, d_max: int, bit_cap: int = 4_000_000) -> int | None:
+    """Least ``t <= d_max`` with ``J^t(n) <= N0``; ``None`` if not within ``d_max`` steps or if an
+    intermediate state exceeds ``bit_cap`` bits (counted as not descended: conservative)."""
+
+    x = n
+    for t in range(1, d_max + 1):
+        if x % 2 == 0:
+            x = math.isqrt(x)
+        else:
+            if x.bit_length() * 3 > bit_cap:
+                return None
+            x = math.isqrt(x * x * x)
+        if x <= N0:
+            return t
+    return None
+
+
+def tao_census(log10_y: int, N0: int, samples: int, d_max: int, seed: int = 20260903) -> dict[str, Any]:
+    """Empirical Tao-type census at scale ``y = 10^{log10_y}``: the fraction of random odd starts in
+    ``(y, 2y]`` whose orbit has not entered ``[1, N0]`` within ``d`` steps, for ``d <= d_max``,
+    against the fair-coin bad-word probability ``bad_word_probability(L(y), d)``.  Exact
+    big-integer orbits; the certified floor ``N0`` is the target."""
+
+    import random
+
+    rng = random.Random(seed)
+    y = 10**log10_y
+    log_y = log10_y * math.log(10.0)
+    L = scale_L(log_y, N0)
+    times: list[int | None] = []
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1)
+        if n % 2 == 0:
+            n += 1
+        times.append(first_passage_below(n, N0, d_max))
+    survivors = [sum(1 for t in times if t is None or t > d) / samples for d in range(1, d_max + 1)]
+    fair_odd = [bad_word_probability_odd_start(L, d) for d in range(1, d_max + 1)]
+    d21 = math.ceil(21 * L)
+    d19 = math.ceil(19 * L)
+    ratios = [s / f for s, f in zip(survivors, fair_odd) if f > 0 and s > 0]
+    return {
+        "log10_y": log10_y,
+        "N0": N0,
+        "samples": samples,
+        "L": L,
+        "d_max": d_max,
+        "not_descended_within_d_max": sum(1 for t in times if t is None),
+        "empirical_survival": survivors,
+        "fair_coin_bad_probability_odd_start": fair_odd,
+        "max_ratio_empirical_over_fair": max(ratios) if ratios else None,
+        "min_ratio_empirical_over_fair": min(ratios) if ratios else None,
+        "depth_C21": d21,
+        "empirical_at_C21": survivors[min(d21, d_max) - 1],
+        "fair_at_C21": fair_odd[min(d21, d_max) - 1],
+        "depth_C19": d19,
+        "empirical_at_C19": survivors[min(d19, d_max) - 1],
+        "fair_at_C19": fair_odd[min(d19, d_max) - 1],
+        "mean_first_passage": sum(t for t in times if t is not None) / max(1, sum(1 for t in times if t is not None)),
+    }
+
+
+def bad_word_probability_odd_start(L: float, d: int) -> float:
+    """Exact fair-coin probability that ``u_t > -L`` for all ``1 <= t <= d`` given that the first
+    letter is ``O`` (odd starts): the walk begins at ``u_1 = log2(3) - 1`` and takes ``d - 1``
+    fair steps.  This is the correct comparison for cylinders of odd starts."""
+
+    if d < 1:
+        return 1.0
+    u1 = LOG2_3 - 1.0
+    if u1 <= -L:
+        return 0.0
+    counts = {1: 1}  # odd count after step 1
+    for t in range(2, d + 1):
+        nxt: dict[int, int] = {}
+        for o, c in counts.items():
+            for o2 in (o, o + 1):
+                if o2 * LOG2_3 - t > -L:
+                    nxt[o2] = nxt.get(o2, 0) + c
+        counts = nxt
+        if not counts:
+            return 0.0
+    return sum(counts.values()) / 2.0 ** (d - 1)
+
+
+def live_word_prefix(n: int, N0: int, d_max: int, bit_cap: int = 4_000_000) -> tuple[list[int], int | None, bool]:
+    """Parities (1 = odd) of ``n, J(n), ..., J^{t-1}(n)`` while the orbit is *live* (above ``N0``),
+    for ``t <= d_max``; the list has length ``min(tau, d_max)`` where ``tau`` is the first time the
+    orbit is ``<= N0`` (``None`` if not within ``d_max``).  The third component flags a bit-cap
+    abort (counted as live thereafter, letters unknown)."""
+
+    x = n
+    letters: list[int] = []
+    for t in range(1, d_max + 1):
+        if x % 2 == 0:
+            letters.append(0)
+            x = math.isqrt(x)
+        else:
+            if x.bit_length() * 3 > bit_cap:
+                return letters, None, True
+            letters.append(1)
+            x = math.isqrt(x * x * x)
+        if x <= N0:
+            return letters, t, False
+    return letters, None, False
+
+
+def fair_tilted_live(L: float, d: int, theta: float) -> float:
+    """Fair-coin value of ``E[exp(theta * o_d) * 1{u_t > -L for all t <= d}]`` given the first
+    letter is ``O`` (odd start), by dynamic programming over the exponent walk."""
+
+    u1 = LOG2_3 - 1.0
+    if u1 <= -L or d < 1:
+        return 0.0
+    counts = {1: 1.0}
+    for t in range(2, d + 1):
+        nxt: dict[int, float] = {}
+        for o, c in counts.items():
+            for o2 in (o, o + 1):
+                if o2 * LOG2_3 - t > -L:
+                    nxt[o2] = nxt.get(o2, 0.0) + c / 2.0
+        counts = nxt
+        if not counts:
+            return 0.0
+    return sum(c * math.exp(theta * o) for o, c in counts.items())
+
+
+def pressure_census(
+    log10_y: int, N0: int, samples: int, d_max: int, thetas: tuple[float, ...] = (0.396, 0.6), seed: int = 20260903
+) -> dict[str, Any]:
+    """The canonical statistic of the Tao-type reduction (Tao note §10): on the *live* odd starts
+    of ``(y, 2y]`` (orbit still above the certified floor ``N0``), the tilted measure
+    ``mu_{theta,t} ∝ exp(theta * o_t(n))`` and the share of odd next letters under it — the
+    "no momentum" hypothesis says this share is 1/2 + o(1) on average over depths.  Also the
+    live exponential moment ``E[exp(theta o_d) 1{tau > d}]`` against its fair-coin DP value."""
+
+    import random
+
+    rng = random.Random(seed)
+    y = 10**log10_y
+    log_y = log10_y * math.log(10.0)
+    L = scale_L(log_y, N0)
+    words: list[list[int]] = []
+    capped = 0
+    for _ in range(samples):
+        n = rng.randrange(y + 1, 2 * y + 1)
+        if n % 2 == 0:
+            n += 1
+        letters, _tau, cap = live_word_prefix(n, N0, d_max + 1)
+        capped += cap
+        words.append(letters)
+    out: dict[str, Any] = {
+        "log10_y": log10_y,
+        "N0": N0,
+        "samples": samples,
+        "L": L,
+        "d_max": d_max,
+        "bit_capped": capped,
+        "thetas": list(thetas),
+        "tilted_odd_share": {},
+        "cumulative_excess_over_half": {},
+        "live_mgf_ratio_to_fair": {},
+        "live_at_depth": [sum(1 for w in words if len(w) > t) for t in range(d_max + 1)],
+    }
+    for theta in thetas:
+        shares = []
+        excess = 0.0
+        for t in range(1, d_max + 1):  # letter index t (0-based) is the (t+1)-st letter; tilt by o_t = odd count of first t letters
+            num = 0.0
+            den = 0.0
+            for w in words:
+                if len(w) > t:  # live at depth t with a known (t+1)-st letter
+                    wt = math.exp(theta * sum(w[:t]))
+                    den += wt
+                    num += wt * w[t]
+            share = num / den if den > 0 else float("nan")
+            shares.append(share)
+            if den > 0:
+                excess += max(0.0, share - 0.5)
+        ratios = {}
+        for d in (10, 20, 30, d_max):
+            if d <= d_max:
+                emp = sum(math.exp(theta * sum(w[:d])) for w in words if len(w) > d) / samples
+                ratios[str(d)] = emp / fair_tilted_live(L, d, theta)
+        out["tilted_odd_share"][str(theta)] = shares
+        out["cumulative_excess_over_half"][str(theta)] = excess
+        out["live_mgf_ratio_to_fair"][str(theta)] = ratios
+    return out
+
+
 def required_depth(log_y: float, N0: int, e: float, d_max: int = 4000) -> int | None:
     """Least ``d`` with exact bad probability ``<= (log y)^{-e}``; ``log_y`` is the natural log of ``y``."""
 
@@ -210,6 +399,13 @@ def summary() -> dict[str, Any]:
     while chernoff_exponent(C_min_star3) <= REQUIRED_RATE_STAR3:
         C_min_star3 += 1
     census = odd_run_census(10**6, 2 * 10**6)
+    tao = {}
+    for exp10, samples in ((12, 40000), (15, 40000), (20, 40000), (30, 20000), (50, 20000)):
+        c = tao_census(exp10, N0_CERTIFIED, samples, 40)
+        c["empirical_survival"] = c["empirical_survival"][::5]
+        c["fair_coin_bad_probability_odd_start"] = c["fair_coin_bad_probability_odd_start"][::5]
+        c["survival_depths"] = list(range(1, 41))[::5]
+        tao[f"1e{exp10}"] = c
     return {
         "git_commit": git_commit(),
         "lambda_starstar": LAMBDA_STARSTAR,
@@ -223,6 +419,7 @@ def summary() -> dict[str, Any]:
         "biased_split": biased,
         "table": table,
         "odd_run_census": census,
+        "tao_census": tao,
     }
 
 

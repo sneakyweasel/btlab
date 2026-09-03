@@ -29,14 +29,26 @@ members through \(E\)-trees of log-mass \(\le 2/n_0\) per level and
 \(\ll(\log x)^{1-e}\log\log x\), contradicting contagion.)
 
 **Theorem B (EXACT — HUMAN PROOF, `J-tao-loglog-depth-bound`).** Under
-the cylinder bound \(\mathrm H(C,A)\) (no cylinder of depth
+the cylinder bound \(\mathrm H(C,A)\) (no \(O\)-rooted cylinder of depth
 \(d(y)=\lceil C\log_2(\log 2y/\log N_0)\rceil\) exceeds its fair share
-\(2^{-d}y/2\) by more than \(y(\log y)^{-A}\), \(A>C+e(C)\)), all but
-\(2(\log N_0)^{e(C)}y(\log y)^{-e(C)}\) odd starts in \((y,2y]\) enter
-\([1,N_0]\) within \(d(y)\) steps, where
+\(2^{-(d-1)}y/2\) among the odd starts — whose first letter is \(O\) —
+by more than \(y(\log y)^{-A}\), \(A>C+e(C)\)), for every
+\(\varepsilon>0\) all but
+\(\frac y2(\log 2y/\log N_0)^{-(e(C)-\varepsilon)}\) odd starts in
+\((y,2y]\) enter \([1,N_0]\) within \(d(y)\) steps, where
 \(e(C)=C\,D(p_C\|\tfrac12)/\ln 2\), \(p_C=(1-1/C)/\log_2 3\). (Proof:
 envelope descent `reachesOne_of_itinerary_envelope` plus Chernoff on
-the exponent walk.)
+the exponent walk conditioned on \(u_1=\log_2 3-1\).)
+
+**Census to the certified floor (OBSERVATION, `tao_census`).** With
+\(N_0=3.5\cdot 10^8\) as target, for random odd starts in \((y,2y]\),
+\(y=10^{12},10^{15},10^{20},10^{30},10^{50}\), the fraction of exact
+big-integer orbits still above \(N_0\) after \(d\le 40\) steps equals
+the odd-start fair-coin survival
+\(\Pr[u_t>-L(y)\ \forall t\le d\mid u_1=\log_2 3-1]\) within \(3\%\)
+for \(d\ge 10\) (ratios \(0.92\)–\(1.05\)): the aggregate odd share
+along surviving prefixes is \(\tfrac12\). Evidence about the aggregate
+only; \(\mathrm H_q(C,A)\) is about every cylinder.
 
 **Corollary C.** \(\mathrm H(C,A)\) with \(C\ge 21\) (\(e(21)=0.621\))
 implies that every positive integer reaches \(1\).

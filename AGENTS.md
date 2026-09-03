@@ -25,7 +25,7 @@ bt.*                        problem-independent BT mathematics
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
 6. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
 7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion (the three Moirai: Atropos = reach 1, Lachesis = nontrivial cycle, Clotho = escape): every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4050\) by elementary means and for \(\lambda<\lambda^{***}=0.4922\) with the localized Paper B estimate (§7); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
-8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.595\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 21\) (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`), because Juggler descent is by powers. Conditional; the hypothesis is at the \(K_3\) wall and beyond. Do not read it as evidence for termination.
+8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.595\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 19\) with \(\lambda^{***}\) (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`), because Juggler descent is by powers. Conditional; the hypothesis is at the \(K_3\) wall and beyond. Do not read it as evidence for termination.
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).
@@ -214,8 +214,19 @@ for external review.
  Theorems 4.4/4.7 localize to intervals \(\ge P^{1/2}\) with relative
  saving \(P^{-1/24}\); the \(OOEEE\) production on even blocks gives
  \(\lambda^{***}=0.4922\) (Tao threshold \(0.5077\), \(C(1/2)=19\),
- \(C(0.55)=41\)). Next quantitative step (not opened): localize the
- kernel theorem (Paper B 5.3/6.3) for \(OOOEE\)/\(OOEOE\) on even blocks.
+ \(C(0.55)=41\)). Kernel-theorem localization (Paper B 5.3/6.1, for
+ \(OOOEE\)/\(OOEOE\) on even blocks; would give \(\lambda=0.5561\),
+ \(C=18\)) is assessed plausible and PARK (fate note §7.4): same
+ scaling architecture, forty displayed estimates not re-derived;
+ falsifier is an absolute cost above \(P^{0.677}\). \(\mathrm H(C,A)\)
+ uses the odd-start fair share \(2^{-(d-1)}y/2\) (first letter \(O\)).
+ The certified floor is the *target*: exact orbits from \(10^{12}\) to
+ \(10^{50}\) stay above \(N_0\) at the odd-start fair-coin rate to depth
+ \(40\) within \(3\%\) (`tao_census`, OBSERVATION — aggregate evidence
+ only). The floor stratifies \(F\) (\(\min F\) is an \(OO\)-start,
+ \(F\cap S\subseteq(N_0^{3/2},\infty)\)) and cycles sit exactly at the
+ critical odd share \(\log 2/\log 3\) (fate note §8); no threshold is
+ crossed by \(N_0\) or \(L\).
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_preimage_iff`, `odd_preimage_unique`, `preimage_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,

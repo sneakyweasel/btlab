@@ -1,0 +1,17 @@
+# Laboratory sources are not part of the companion site.
+formal/
+data/
+experiments/
+src/
+tests/
+docs/
+.venv/
+juggler_review/
+atlas/
+conjectures/
+literature/
+__pycache__/
+*.pyc
+.pytest_cache/
+.lake/
+*.egg-info/

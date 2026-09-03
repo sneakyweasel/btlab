@@ -22479,3 +22479,52 @@ Best next question
 - does the kernel theorem (Paper B Theorem 5.3 / 6.3) localize to intervals
   of length P^{23/32}? (would add OOOEE and OOEOE on even blocks)
 ```
+
+## The floor as a target: Tao census, fair-share correction, kernel localization parked (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** (i) Ask what the certified descent floor \(N_0=3.5\cdot 10^8\) and the period bound \(L\ge 780239\) say inside the fate-contagion / Tao-type framework; (ii) answer the standing question "does the kernel theorem (Paper B Theorem 5.3 / 6.1) localize to intervals of length \(P^{23/32}\)?".
+- **Hypotheses:** The floor might cross a threshold in the reduction (it does not: it enters only through \(L(y)=\log_2(\log 2y/\log N_0)\), worth \(35\)–\(38\) letters of depth). The aggregate form of the cylinder hypothesis — the fraction of odd starts at scale \(y\) whose orbit is still above \(N_0\) after \(d\) steps — is computable exactly because the floor is certified, and should match the fair-coin survival if the parities along orbits are fair. Falsifier: a survival fraction systematically above the fair-coin value.
+- **Major results:**
+  - **Fair-share correction (Tao note §3–4, `J-tao-loglog-depth-bound`, conjecture record):** odd starts have first letter \(O\), so the fair share of an \(O\)-rooted depth-\(d\) cylinder among the \(y/2\) odd starts is \(2^{-(d-1)}y/2\), not \(2^{-d}y/2\); \(\mathrm H(C,A)\) as first written could not hold. Restated with the correct share; Lemma 3.1 gains the \(O\)-rooted count \(2^{d-1}2^{-(e(C)-\varepsilon)L}\); Theorem B's bound becomes \(\frac y2(\log 2y/\log N_0)^{-(e(C)-\varepsilon)}\); Theorem B′ starts its martingale at depth \(1\). Exponents unchanged; finite-depth bad probabilities double.
+  - **Tao census to the certified floor (OBSERVATION, `tao_census`, `data/research/juggler/tao_reduction/summary.json`):** random odd starts in \((y,2y]\), \(y=10^{12},10^{15},10^{20},10^{30},10^{50}\) (\(40000\)/\(40000\)/\(40000\)/\(20000\)/\(20000\)), exact big-integer orbits, target \([1,N_0]\), depth \(\le 40\). Survival equals the odd-start fair-coin value \(\Pr[u_t>-L\ \forall t\le d\mid u_1=\log_2 3-1]\) within \(3\%\) for \(d\ge 10\) at every scale (ratios \(0.92\)–\(1.05\); \(10^{12}\), \(d=40\): \(0.0215\) vs \(0.0219\); \(10^{50}\), \(d=40\): \(0.087\) vs \(0.084\)). The only systematic deviation is at depth \(\le 8\) when \(L(y)\) is just below an integer, in the favourable direction (floors make orbits descend one step early). Aggregate odd share along surviving prefixes: \(\tfrac12\).
+  - **Stratification of \(F\) by the floor (fate note §8):** \(\min F\) is an \(OO\)-start; \(OE\)-type odd failures \(>N_0^{4/3}\); even failures \(>N_0^2\); \(F\cap S\subseteq(N_0^{3/2},\infty)\). Cycles sit exactly at the critical odd share \(q^*=\log 2/\log 3\) of the biased-split hypothesis, and the survivor periods are convergent/semiconvergent denominators of \(q^*\): finance and the Tao hypothesis are two views of one boundary. No threshold crossed.
+  - **Kernel theorem localization (fate note §7.4, PARK):** the proof of Paper B Theorem 5.3 has the same scaling architecture as Theorem 4.4 (per-point costs \(\times\) count; per-window absolute costs \(M^{-1/2}\), \((P/M)^{1/3}\le P^{3/8}\), \(\lambda_a^{-1/2}\) \(\times\) window counts \(\propto\) length \(+O(1)\); leading term \(\sum_w|I_w|M^{1/2}\) scales). Localization to \(Y\ge P^{23/32}\) is plausible (absolute leftovers \(\le P^{7/16}\) against \(YP^{-1/24}=P^{0.677}\)) but the forty-odd displayed estimates of Steps 3–5 are not re-derived. Would-be gain: \(OOOEE\)/\(OOEOE\) on even blocks, coefficient \(1/27\) each at \(27t/64\), \(\lambda=0.5561\), rate threshold \(0.4439\), least \(C=18\), \(C(0.55)=38\) (`RECURSIONS["hypothetical_kernel_localized"]`).
+- **Refuted ideas:** the first normalization of \(\mathrm H(C,A)\) (fair share \(2^{-d}y/2\) for odd starts) — a statement error, not a mathematical refutation; corrected everywhere.
+- **Literature:** Paper B §3 (Lemma 3.7 flat and majorant costs), §5 (kernel theorem Steps 1–6).
+- **Open:** the free term \(\psi_F\) (unchanged); kernel localization (PARK, falsifier: an absolute cost above \(P^{0.677}\)); fiber constant \(1/7\to 1/3\).
+- **Decision:** PARK for the kernel localization; the Tao reduction dossier keeps PROMOTE for the conditional theorems with the corrected statement.
+
+```text
+What was learned
+- N0 enters the Tao reduction only through L(y): the certified floor is worth
+  35-38 letters of depth, no threshold
+- the certified floor makes the aggregate cylinder hypothesis testable: exact
+  orbits from 1e12 to 1e50 survive above N0 at the odd-start fair-coin rate to
+  depth 40 (within 3%)
+- H(C,A) had the wrong fair share for odd starts (2^{-d} for 2^{-(d-1)});
+  corrected, exponents unchanged
+- cycles live exactly at the critical odd share log 2 / log 3 of the biased-
+  split hypothesis; survivor periods are its convergent denominators
+- the kernel theorem's proof has the scaling architecture that localized
+  Theorem 4.4; the check is mechanical, long, and parked (gain: C 19 -> 18)
+Strongest theorem
+- Theorem B (corrected): H(C,A) with A > C + e(C) gives all but
+  (y/2)(log 2y / log N0)^{-(e(C)-eps)} odd starts in [1, N0] within d(y) steps
+Strongest refutation
+- none (a statement error corrected)
+Reusable machinery
+- tao_census / first_passage_below / bad_word_probability_odd_start;
+  RECURSIONS["hypothetical_kernel_localized"]
+Branch status
+- PARK (kernel localization); PROMOTE stands for the conditional theorems
+Why
+- the census is the strongest aggregate evidence the laboratory has for the
+  hypothesis and cost nothing beyond the certified floor; the localization is
+  a constants exercise that does not touch the free term
+Best next question
+- is there a single cylinder statement weaker than H_q(C,A) that contagion
+  can absorb — e.g. odd-share control only on cylinders of log-mass above
+  (log y)^{-C'} — so that the hypothesis becomes an almost-all statement
+  about cylinders rather than a uniform one?
+```

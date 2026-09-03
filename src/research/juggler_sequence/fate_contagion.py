@@ -375,6 +375,16 @@ RECURSIONS = {
     # + OOEEE production on even blocks (localized Paper B Theorem 4.7, note §7): coefficient
     # P_w / e_w = (1/16) / (9/16) = 1/9 at the root scale (9/32) t
     "block_sweep_plus_ooeee": [(1.0, 0.5), (5.0 / 21.0, 3.0 / 8.0), (2.0 / 21.0, 0.75), (1.0 / 9.0, 9.0 / 32.0)],
+    # hypothetical: + OOOEE and OOEOE productions on even blocks (would need the kernel theorem,
+    # Paper B Theorem 5.3 / 6.1, localized to |I| >= P^{23/32}; NOT proved, PARK): coefficient
+    # (1/32) / (27/32) = 1/27 each at the root scale (27/64) t
+    "hypothetical_kernel_localized": [
+        (1.0, 0.5),
+        (5.0 / 21.0, 3.0 / 8.0),
+        (2.0 / 21.0, 0.75),
+        (1.0 / 9.0, 9.0 / 32.0),
+        (2.0 / 27.0, 27.0 / 64.0),
+    ],
     "depth_two_ideal": [(1.0, 0.5), (1.0 / 3.0, 0.75)],
 }
 
