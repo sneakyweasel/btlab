@@ -22437,3 +22437,45 @@ Best next question
 - does Paper B's Theorem 4.4 localize to intervals of length >= P^{1/2+eps}
   with the same relative saving? (analytic task; not opened here)
 ```
+
+
+## Localizing Paper B: the OOEEE production, \(\lambda^{***}=0.4922\) (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Answer the localization question: do Paper B's Theorems 4.4/4.7 hold on sub-dyadic intervals, and what does the contagion recursion gain?
+- **Hypotheses:** Every displayed bound in Paper B's seven-step Weyl-differencing proof is either proportional to the number of summands or independent of it and small; if so the theorem holds on intervals of length \(Y\ge P^{1/2}\) with the same relative saving \(P^{-1/24}\), and the \(OOEEE\) production enters contagion on even blocks with coefficient \(P_w/e_w=(1/16)/(9/16)=1/9\) at root scale \(x^{9/32}\). Falsifier: a term in the proof that neither scales with \(Y\) nor falls below \(YP^{-1/24}\).
+- **Major results:**
+  - **Proposition 7.1 (EXACT — HUMAN PROOF, `J-fate-ooeee-production`):** localized triple parity discrepancy, \(|\sum_{n\in I\ \mathrm{odd}}\psi_1^a\psi_2^b\psi_3^c|\le YP^{-1/24+\varepsilon}\) for \(|I|=Y\ge P^{1/2}\); the non-scaling terms are the two end cells (\(P^{3/8}\)), the pure passenger (\(P^{7/16}\)) and majorant tails (\(P^{1/4}\)).
+  - **Proposition 7.2:** on \(I(m')=[m'^{32/9},(m'+1)^{32/9})\) (length \(\asymp P^{23/32}\)) the \(OOEEE\) starts landing at \(m'\) number \(\tfrac1{16}|I_{\rm odd}|+O(|I|m'^{-4/27+\varepsilon})\) (extra Vaaler layer for \(\psi(v^{1/4})\to\psi(n^{9/16})\), Kusmin–Landau for its pure modes; transparent-nesting exceptional set negligible), all in \(A\) when \(m'\in A\), log-mass \(\ge(1-o(1))/(9m')\).
+  - **Theorem 7.3:** contagion holds for every \(\lambda<\lambda^{***}=0.4922\ldots\) (root of \(2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda+\tfrac19(\tfrac9{32})^\lambda=1\)), within \(0.0005\) of the depth-two ceiling \(0.4927\) by a different route. Corrected in passing: the earlier estimate "\(\approx 0.527\)" used the wrong root argument (\(9t/16\) for \(9t/32\)).
+  - **Downstream:** Tao-type rate threshold \(0.5077\); least \(C=19\) (fair Chernoff), \(C(0.55)=41\), \(C(0.60)=223\), \(C(0.62)=1587\) (`tao_reduction/summary.json`).
+- **Refuted ideas:** none; the localization hypothesis held at every step.
+- **Literature:** Paper B §4 (Weyl differencing, exact linearization, cells), Kusmin–Landau first-derivative test.
+- **Open:** localize Theorem 6.3 (kernel theorem) for \(OOOEE\)/\(OOEOE\) on even blocks; fiber constant \(1/7\to 1/3\); the free term \(\psi_F\) is untouched.
+- **Decision:** PROMOTE (quantitative strengthening of `J-fate-log-density`; fate dossier updated). Not a step on the free term.
+
+```text
+What was learned
+- Paper B's differencing skeleton localizes: relative saving P^{-1/24} on any
+  interval of length >= P^{1/2}; only end cells and pure passengers fail to
+  scale, and they are <= P^{7/16}
+- the OOEEE production on even blocks adds (1/9) g(9t/32) to contagion:
+  lambda*** = 0.4922, essentially the depth-two ceiling
+- Tao rate threshold 0.5077; fair depth constant C = 19; C(0.55) = 41
+Strongest theorem
+- Theorem 7.3: every nonempty backward-closed set has log-count >> (log x)^lambda
+  for all lambda < 0.4922
+Strongest refutation
+- none
+Reusable machinery
+- Proposition 7.1 (localized Theorem 4.7) as a tool for fiber-union counts;
+  RECURSIONS["block_sweep_plus_ooeee"], LAMBDA_STAR3 constants
+Branch status
+- PROMOTE
+Why
+- a verified analytic strengthening with explicit constants; the wall (free
+  term) is unchanged, and the note says so
+Best next question
+- does the kernel theorem (Paper B Theorem 5.3 / 6.3) localize to intervals
+  of length P^{23/32}? (would add OOOEE and OOEOE on even blocks)
+```

@@ -20,6 +20,10 @@ at least like a fixed power of \(\log x\),
 \qquad(\lambda<\lambda^{**}=0.405\ldots),
 \]
 whereas the full set of integers has \(\sum_{n\le x}1/n\sim\log x\).
+(Section 7 raises the exponent to \(\lambda^{***}=0.4922\ldots\) by
+localizing Paper B's triple parity discrepancy to sub-dyadic intervals
+and adding the \(OOEEE\) production; every statement below holds with
+\(\lambda^{***}\) in place of \(\lambda^{**}\).)
 The mechanism is that the one-step preimages of the Juggler map are
 *large and structured*: the even preimages of \(m\) fill the whole
 interval \([m^2,(m+1)^2)\), and the two-step preimages through an
@@ -805,6 +809,180 @@ the honest boundary: parity equidistribution — or merely a one-sided
 odd-share bound \(q<\log 2/\log 3\) — on cylinders of depth
 \(O(\log\log y)\) implies the conjecture. Nothing unconditional is
 claimed beyond Theorem 4.2 and Theorem 6.1.
+
+## 7. Localizing Paper B: the \(OOEEE\) production and \(\lambda^{***}=0.4922\)
+
+Section 6.3 asked whether Paper B's depth-\(\le 4\) theorems localize to
+the sub-dyadic intervals that the contagion recursion needs. They do,
+for the Weyl-differencing skeleton of Theorems 4.4 and 4.7: every
+estimate in that proof scales with the length of the summation
+interval, and the few that do not are tiny. This section records the
+localized statement with its proof as a modification list, the
+resulting production, and the improved exponent.
+
+### 7.1 The localized triple parity discrepancy
+
+Notation as in Paper B: for odd \(n\), \(m=\lfloor n^{3/2}\rfloor\),
+\(v=\lfloor m^{3/2}\rfloor\), \(\psi_1=\psi(n^{3/2})\),
+\(\psi_2=\psi(m^{3/2})\), \(\psi_3=\psi(v^{1/2})\), with
+\(\psi(y)=(-1)^{\lfloor y\rfloor}\).
+
+**Proposition 7.1 (Paper B Theorem 4.7 on sub-dyadic intervals).**
+For every \(\varepsilon>0\) there is \(P_0\) such that for all
+\(P\ge P_0\), every interval \(I\subseteq(P,2P]\) of length
+\(Y\ge P^{1/2}\), and every \((a,b,c)\in\{0,1\}^3\setminus\{0\}\),
+\[
+\Bigl|\sum_{n\in I,\ n\ \mathrm{odd}}\psi_1^{a}\psi_2^{b}\psi_3^{c}\Bigr|
+\ \le\ Y\,P^{-1/24+\varepsilon}.
+\]
+
+*Proof.* Run the seven steps of the proof of Paper B Theorem 4.4 (and
+the passenger argument of Theorem 4.7) over \(I\) instead of
+\((P,2P]\), with the same truncations \(J_1=J_2=J_3=P^{1/24}\),
+\(H=P^{1/12}\), \(R=P^{1/4}\). Every displayed bound is of one of
+two kinds: a bound proportional to the number of summands, which
+becomes proportional to \(Y\); or a bound independent of the number
+of summands, which is unchanged and is \(\le P^{7/16}\).
+
+*Step 1 (wave expansion).* The majorant layers cost their constant
+terms \(\le Y/(2(J+1))\le YP^{-1/24}\) and mode sums
+\(\sum_{0<r\le 2J}(J+1)^{-1}|\sum_{n\in I}e(\tfrac r2n^{3/2})|\);
+Lemma 3.3 on \(I\) gives each inner sum
+\(\le 1.4\,r^{1/2}YP^{-1/4}+2P^{1/4}\), total
+\(\le 2.4\,J^{1/2}YP^{-1/4}+2P^{1/4}\le 3YP^{-11/48}+2P^{1/4}\).
+
+*Step 2 (linearization).* The phase change is \(\le\tfrac j4n^{-3/4}\)
+per summand, hence \(\le 2jYP^{-3/4}\) in total; the passenger
+\(\tfrac k2v^{1/2}\to\tfrac k2n^{9/8}\) (Lemma 4.6) costs
+\(\le 5|k|YP^{-3/8}\).
+
+*Step 3 (Weyl differencing).* For a sum of \(M=Y/2\) unimodular
+terms and \(H\le M\), the classical inequality reads
+\(|S|^2\le Y^2/(2H)+(2Y/H)\sum_{1\le h<H}|T_h|\), with \(T_h\) the
+differenced sum over \(n,n+2h\in I\).
+
+*Step 4 (differenced phase).* Exact identity, pointwise; discarding
+the sawtooth term costs \(\le 7.1\,jhP^{-1/4}\) per summand, i.e.
+\(\le 3.6\,jhYP^{-1/4}\).
+
+*Step 5 (cells).* The level sets of \(\lfloor\delta\rfloor\) cut
+\(I\) into at most \(1.5hYP^{-1/2}+2\) cells, all but the two end
+cells of length in \([\tfrac23,0.95]P^{1/2}/h\). The Vaaler layer for
+\(\kappa\) costs \(Y/(R+1)\le YP^{-1/4}\) plus mode sums bounded per
+cell by Lemma 3.3 and summed: \(\le 5.2R^{1/2}YP^{-1/4}+3hYP^{-3/8}\le 6YP^{-1/8}\).
+The exact shift device and the Abel summation per cell are unchanged.
+
+*Step 6 (second-derivative test per cell).* For \(r=0\):
+\(\sum_{\rm cells}(\ell_{\rm cell}\lambda^{1/2}+\lambda^{-1/2})
+\le 0.83(jh)^{1/2}YP^{-3/8}+3.9(h/j)^{1/2}YP^{-1/8}+5.2(jh)^{-1/2}P^{3/8}\),
+the last term from the two end cells. For \(r\ne 0\): the same
+per-cell bounds with the mode curvature, summed against the
+\(1/|r|\) weights, give \(\le 6YP^{-1/8}+13hYP^{-1/4}+7P^{1/4}\). All
+sign-dominance checks are pointwise and unchanged.
+
+*Step 7 (assembly).* \(|T_h|\le C\,YP^{-1/8}(1+h^{1/2})\log P+C'P^{3/8}\),
+so
+\(|S|^2\le Y^2/(2H)+(2Y/H)\sum_{h<H}\bigl(CYP^{-1/8}(1+h^{1/2})\log P+C'P^{3/8}\bigr)
+\le Y^2P^{-1/12}\bigl(\tfrac12+3C\log P\bigr)+2C'YP^{3/8}\).
+For \(Y\ge P^{1/2}\) the last term is \(\le 2C'Y^2P^{-1/8}\), and
+\(|S|\ll Y P^{-1/24}\log^{1/2}P\). The mode weights contribute
+\(O(\log^2P)\); the \(j=0\) sums are single smooth exponential sums on
+\(I\) bounded by \(Yi^{1/2}P^{-1/4}+P^{1/4}\) (\(i\ne 0\)) or
+\(Yk^{1/2}P^{-7/16}+k^{-1/2}P^{7/16}\) (\(i=0\)), both
+\(\le YP^{-1/24}\) for \(Y\ge P^{1/2}\). \(\square\)
+
+The threshold \(Y\ge P^{1/2}\) is where the two end cells
+(\(P^{3/8}\)) and the pure passenger term (\(P^{7/16}\)) fall below
+the main saving \(YP^{-1/24}\); nothing in the argument uses the
+dyadic length except through the number of summands.
+
+### 7.2 The \(OOEEE\) production on even blocks
+
+For \(m'\ge 2\) let \(I(m')=[m'^{32/9},(m'+1)^{32/9})\), an interval
+of length \((32/9)m'^{23/9}(1+O(1/m'))\) at scale
+\(P=m'^{32/9}\): so \(|I(m')|\asymp P^{23/32}\ge P^{1/2}\).
+
+**Proposition 7.2.** Let
+\(\mathcal O(m')=\{n\ \text{odd}\in I(m'):\ \mathrm{word}_5(n)=OOEEE,\ J^5(n)=m'\}\).
+Every \(n\in\mathcal O(m')\) has \(J^4(n)\in E(m')\), and
+\[
+|\mathcal O(m')|
+=\tfrac1{16}\#\{n\ \text{odd}\in I(m')\}+O_\varepsilon\bigl(|I(m')|\,m'^{-4/27+\varepsilon}\bigr).
+\]
+Consequently, for a backward-closed \(A\) and \(m'\in A\),
+\(\mathcal O(m')\subseteq A\), with log-mass at least
+\(\frac1{9m'}\bigl(1-O(m'^{-4/27+\varepsilon})\bigr)\).
+
+*Proof.* Along \(OOEEE\) the states \(J^0(n),\dots,J^4(n)\) are
+\(n\) (odd), \(m\) (odd), \(v\) (even), \(\lfloor v^{1/2}\rfloor\)
+(even), \(\lfloor v^{1/4}\rfloor\) (even), and
+\(J^5(n)=\lfloor\sqrt{J^4(n)}\rfloor\). If \(J^5(n)=m'\) then
+\(J^4(n)\in[m'^2,(m'+1)^2)\) and is even: \(J^4(n)\in E(m')\), and
+membership in \(A\) follows from Lemma 2.1 and backward closure. For
+the count, the transparent nesting gives
+\(\lfloor v^{1/4}\rfloor=\lfloor n^{9/16}\rfloor\) except when
+\(\{n^{9/16}\}<n^{-15/16}\) (Lemma 4.6 pattern:
+\(v^{1/4}=n^{9/16}-D''\), \(0\le D''\le n^{-15/16}\)); off that
+exceptional set, \(n\in I(m')\) forces
+\(\lfloor n^{9/16}\rfloor\in[m'^2,(m'+1)^2)\), hence \(J^5(n)=m'\)
+automatically, so \(|\mathcal O(m')|\) differs from
+\(\#\{n\ \text{odd}\in I(m'):\mathrm{word}_5(n)=OOEEE\}\) by at most
+the size of the exceptional set, which is \(\ll YP^{-1/24}+P^{7/16}\)
+(Erdős–Turán for \(\{n^{9/16}\}\) at resolution \(P^{-15/16}\), with
+the Kusmin–Landau bounds below).
+The indicator of \(OOEEE\) on odd \(n\) is
+\(\tfrac1{16}(1-\psi_1)(1+\psi_2)(1+\psi_3)(1+\psi_4)\) with
+\(\psi_4=\psi(v^{1/4})\). Expanding, the main term is
+\(\tfrac1{16}|I_{\rm odd}|\) and the fifteen sign sums split into
+those without \(\psi_4\) — Proposition 7.1 with \(Y=|I(m')|\ge P^{1/2}\)
+— and those with \(\psi_4\). For the latter, replace \(v^{1/4}\) by
+\(n^{9/16}\) (cost \(\le 2\pi\sum_{n\in I}D''\ll YP^{-15/16}\)) and
+Vaaler-expand \(\psi(n^{9/16})\) at truncation \(J_4=P^{1/24}\): its
+modes \(e(\tfrac\ell2n^{9/16})\) have second derivative
+\(\ll\ell P^{-23/16}\), far below every curvature retained in Steps 5–6
+of Proposition 7.1 and below the \(n^{9/8}\) passenger, so they ride
+along unchanged; the pure sums \(\sum_{n\in I}e(\tfrac\ell2n^{9/16})\)
+have monotone derivative in \((0,\tfrac12)\) and are
+\(\ll P^{7/16}/\ell\) by the Kusmin–Landau test; the majorant costs
+\(Y/J_4+P^{7/16}\log J_4\). Every error is
+\(\ll YP^{-1/24+\varepsilon}=Y m'^{-4/27+\varepsilon}\). The log-mass
+bound follows from \(1/n\ge(m'+1)^{-32/9}\) and
+\(\tfrac1{16}\cdot\tfrac12\cdot\tfrac{32}9m'^{23/9}=\tfrac19m'^{23/9}\). \(\square\)
+
+### 7.3 The improved exponent
+
+**Theorem 7.3.** Theorem 4.2 holds for every
+\(\lambda<\lambda^{***}=0.4922\ldots\), the root of
+\[
+2^{-\lambda}+\tfrac5{21}\bigl(\tfrac38\bigr)^{\lambda}+\tfrac2{21}\bigl(\tfrac34\bigr)^{\lambda}+\tfrac19\bigl(\tfrac9{32}\bigr)^{\lambda}=1 .
+\]
+
+*Proof.* Add to the three families of §4.1 a fourth: for
+\(m'\in A\cap(x^{9/64},x^{9/32}-1]\), the \(OOEEE\)-starts of
+\(I(m')\subseteq(\sqrt x,x]\). They are odd with odd \(\lfloor n^{3/2}\rfloor\),
+hence disjoint from the even members and from the \(OE\)-type
+members of the first three families, and distinct \(m'\) give
+disjoint \(I(m')\). By Proposition 7.2 their log-mass is at least
+\(\tfrac19(1-\varepsilon_7(x))\bigl(g_A(9t/32)-2x^{-9/32}\bigr)\), and (4.2)
+gains the term \((\tfrac19-\varepsilon_7)g_A(9t/32)\). The induction of
+§4.4 runs verbatim with the new root. \(\square\)
+
+Downstream: the rate requirement of the sequel note becomes
+\(e>1-\lambda^{***}=0.5077\ldots\); the least depth constants are
+\(C=19\) for the fair Chernoff bound (\(e(19)=0.527\)), and in the
+biased-split form \(C(0.5)=19\), \(C(0.55)=41\), \(C(0.60)=223\),
+\(C(0.62)=1587\). The depth-two ceiling of the method is \(0.4927\)
+(perfect fiber equidistribution *without* deeper certificates); the
+\(OOEEE\) production has carried the elementary exponent from
+\(0.405\) to within \(0.0005\) of it by a different route. Further
+gains would come from \(OOOEE\) and \(OOEOE\) on even blocks
+(Paper B Theorem 6.3 through the kernel theorem — its localization is
+not examined here) and from sharper fiber constants.
+
+*What is unchanged.* Proposition 7.1 is a statement about consecutive
+odd starts in an interval; it says nothing about the odd images
+\(S_{\rm odd}\) of §6, and the free term \(\psi_F\) of (6.1) is
+untouched. The improvement is quantitative.
 
 ## Appendix. Lean names
 

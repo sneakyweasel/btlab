@@ -34,7 +34,10 @@ DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler"
 
 LOG2_3 = math.log2(3.0)
 LAMBDA_STARSTAR = lambda_root(RECURSIONS["block_average_plus_sweep"])
-REQUIRED_RATE = 1.0 - LAMBDA_STARSTAR  # e must exceed this
+REQUIRED_RATE = 1.0 - LAMBDA_STARSTAR  # e must exceed this (elementary contagion exponent)
+#: with the OOEEE production (fate note §7, localized Paper B Theorem 4.7)
+LAMBDA_STAR3 = lambda_root(RECURSIONS["block_sweep_plus_ooeee"])
+REQUIRED_RATE_STAR3 = 1.0 - LAMBDA_STAR3
 N0_CERTIFIED = 350_000_000
 N0_LEAN = 260
 
@@ -202,12 +205,20 @@ def summary() -> dict[str, Any]:
         str(q): {"mu": 1.0 - q * LOG2_3, "least_C": least_C_biased(q), "azuma_exponent_at_least_C": azuma_exponent(least_C_biased(q) or 1, q)}
         for q in (0.5, 0.55, 0.6, 0.62, 0.63)
     }
+    biased_star3 = {str(q): least_C_biased(q, REQUIRED_RATE_STAR3) for q in (0.5, 0.55, 0.6, 0.62)}
+    C_min_star3 = 5
+    while chernoff_exponent(C_min_star3) <= REQUIRED_RATE_STAR3:
+        C_min_star3 += 1
     census = odd_run_census(10**6, 2 * 10**6)
     return {
         "git_commit": git_commit(),
         "lambda_starstar": LAMBDA_STARSTAR,
         "required_rate": REQUIRED_RATE,
         "least_C": C_min,
+        "lambda_star3_with_ooeee": LAMBDA_STAR3,
+        "required_rate_star3": REQUIRED_RATE_STAR3,
+        "least_C_star3": C_min_star3,
+        "biased_split_least_C_star3": biased_star3,
         "chernoff_exponent": {str(C): chernoff_exponent(C) for C in (20, 21, 22, 25, 30, 40)},
         "biased_split": biased,
         "table": table,

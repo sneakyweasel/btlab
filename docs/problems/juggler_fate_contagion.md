@@ -31,7 +31,12 @@ For every nonempty backward-closed \(A\subseteq\mathbb N\) and every
 \(\sum_{n\in A,\,n\le x}1/n\ge c(\log x)^\lambda\) for \(x\ge x_0\).
 With only the block average (no sweep lemma) the same holds for
 \(\lambda<\lambda^*=0.3774\ldots\), the root of
-\(2^{-\lambda}+\tfrac13(\tfrac38)^\lambda=1\).
+\(2^{-\lambda}+\tfrac13(\tfrac38)^\lambda=1\). **Theorem 7.3
+(`J-fate-ooeee-production`):** with Paper B's triple parity
+discrepancy localized to sub-dyadic intervals (Proposition 7.1) and
+the resulting \(OOEEE\) production on even blocks (Proposition 7.2),
+the exponent improves to \(\lambda^{***}=0.4922\ldots\), the root of
+\(2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda+\tfrac19(\tfrac9{32})^\lambda=1\).
 
 **Corollary 4.3.** For every \(X\ge x_0\) some \(y\in(\sqrt X,X]\) has
 \(\#(A\cap(y/2,y])\ge c\,y(\log y)^{\lambda-1}\).
@@ -177,10 +182,13 @@ Theorem 4.2) is not formalized.
 ## Open questions
 
 - The free term (note §6.2): the \(S\)-fairness of the failure set —
-  equivalent to the conjecture. Localizing Paper B's Theorems 4.4/4.7
-  to intervals of length \(\ge P^{1/2+\varepsilon}\) would add the
-  \(OOEE\) production and raise \(\lambda^{**}\) to \(\approx 0.527\)
-  (not verified; recorded in §6.3).
+  equivalent to the conjecture.
+- Done (note §7, `J-fate-ooeee-production`): Paper B's Theorems
+  4.4/4.7 localize to intervals of length \(\ge P^{1/2}\) with relative
+  saving \(P^{-1/24}\); the \(OOEEE\) production on even blocks raises
+  the exponent to \(\lambda^{***}=0.4922\). Next quantitative steps:
+  localize Theorem 6.3 (kernel theorem) for \(OOOEE\)/\(OOEOE\) on even
+  blocks; sharpen the fiber constant \(1/7\to 1/3\).
 - Pointwise natural density \(\#(R\cap[1,x])\gg x(\log x)^{\lambda-1}\)
   for all \(x\): the fixed-ratio induction does not close; the E-tree
   of \([1,N_0]\) gives it for \(\log x\ll N_0\log N_0\) only.

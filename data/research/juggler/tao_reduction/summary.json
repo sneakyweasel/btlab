@@ -1,8 +1,17 @@
 {
-  "git_commit": "1c82371b2b0cc9380a9a2013bd5f0662b1c55f95",
+  "git_commit": "82287e725db4a90eb7288aa77062e46f8dc0420f",
   "lambda_starstar": 0.40505943427374547,
   "required_rate": 0.5949405657262545,
   "least_C": 21,
+  "lambda_star3_with_ooeee": 0.492251926122687,
+  "required_rate_star3": 0.507748073877313,
+  "least_C_star3": 19,
+  "biased_split_least_C_star3": {
+    "0.5": 19,
+    "0.55": 41,
+    "0.6": 223,
+    "0.62": 1587
+  },
   "chernoff_exponent": {
     "20": 0.5737956448546405,
     "21": 0.6209644372577928,

@@ -6397,6 +6397,17 @@
   "related_conjectures": []
  },
  {
+  "id": "J-fate-ooeee-production",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Localized triple parity discrepancy and the OOEEE production (fate-contagion note §7). Proposition 7.1: for every ε > 0, P ≥ P₀(ε), every interval I ⊆ (P, 2P] of length Y ≥ P^{1/2}, and every (a,b,c) ≠ 0, |Σ_{n∈I odd} ψ(n^{3/2})^a ψ(m^{3/2})^b ψ(v^{1/2})^c| ≤ Y P^{−1/24+ε} — Paper B's Theorems 4.4/4.7 with the seven proof steps re-run over I: every displayed bound is either proportional to the number of summands (and becomes ∝ Y) or independent of it and ≤ P^{7/16} (two end cells P^{3/8}, pure passenger P^{7/16}, majorant tails P^{1/4}), absorbed for Y ≥ P^{1/2}. Proposition 7.2: for I(m') = [m'^{32/9}, (m'+1)^{32/9}) (length ≍ P^{23/32}), the odd starts with word OOEEE and J^5(n) = m' number (1/16)·#{odd n ∈ I(m')} + O(|I(m')| m'^{−4/27+ε}) (Proposition 7.1 plus a Vaaler layer for ψ(v^{1/4}) → ψ(n^{9/16}) handled by Kusmin–Landau), and every such n has J^4(n) ∈ E(m'); hence for m' in a backward-closed A they lie in A with log-mass ≥ (1/(9m'))(1 − o(1)). Theorem 7.3: the contagion recursion gains (1/9)·g(9t/32) and Theorem 4.2 holds for every λ < λ*** = 0.4922…, the root of 2^{−λ} + (5/21)(3/8)^λ + (2/21)(3/4)^λ + (1/9)(9/32)^λ = 1. Downstream: Tao rate threshold 0.5077, least C = 19 (fair), C(0.55) = 41, C(0.60) = 223. The free term ψ_F of (6.1) is untouched; the gain is quantitative. Paper B is a working draft; the proof here is a verified modification of its dyadic argument, not an independent derivation.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-fate-envelope-floor",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "Envelope descent into a certified floor. For a realized word w at n (follows n w), if n ^ 3^{#O(w)} ≤ N₀ ^ 2^{|w|} as integers then floorPower^[|w|] n ≤ N₀ (iterate_le_of_envelope, from power_bound_word and Nat.pow_le_pow_iff_left); if moreover every 1 ≤ m ≤ N₀ lies in a backward-closed class A, then n ∈ A (mem_of_envelope_floor); in particular, with A = ReachesOne and the realized itinerary of the first k steps, n ^ 3^{#O(itinerary n k)} ≤ N₀ ^ 2^k implies ReachesOne n (reachesOne_of_itinerary_envelope). This is the exact step of the Tao-type reduction: a start whose exponent walk reaches −L(y) = −log₂(log 2y / log N₀) within d steps enters [1, N₀]. Not a halt theorem.",

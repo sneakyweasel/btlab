@@ -371,6 +371,18 @@ of the \(q=0.55\) row. This is consistent with \(\mathrm H_q(C,A)\)
 and is not evidence for it in the required range (depth
 \(\approx 46\,L(y)\) at astronomically large \(y\)).
 
+*Update (fate note §7).* Paper B's Weyl-differencing skeleton
+(Theorems 4.4 and 4.7) localizes to sub-dyadic intervals of length
+\(\ge P^{1/2}\) with the same relative saving \(P^{-1/24}\); the
+resulting \(OOEEE\) production on even blocks raises the contagion
+exponent to \(\lambda^{***}=0.4922\ldots\). Every requirement in this
+note improves accordingly: the rate threshold becomes
+\(e>1-\lambda^{***}=0.5077\ldots\); the least depth constants are
+\(C=19\) for the fair bound (\(e(19)=0.527\)) and, in the biased-split
+form, \(C(0.5)=19\), \(C(0.55)=41\), \(C(0.60)=223\), \(C(0.62)=1587\).
+The structure of the hypothesis (odd-share control at depth
+\(O(\log\log y)\), carried by odd runs \(\ge 4\)) is unchanged.
+
 *Can Paper B's kernel method be made uniform in the depth?* Not by
 any route known to the laboratory. The rated methods (power savings
 per depth) are blocked at depth five by the BB/GG/JJ ladder; a

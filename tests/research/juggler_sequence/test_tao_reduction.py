@@ -52,6 +52,15 @@ def test_bad_words_by_brute_force_small_depth() -> None:
     assert abs(bad_word_probability(L, d) - count / 2**d) < 1e-12
 
 
+def test_improved_rate_with_ooeee_production() -> None:
+    from research.juggler_sequence.tao_reduction import REQUIRED_RATE_STAR3, least_C_biased
+
+    assert abs(REQUIRED_RATE_STAR3 - 0.5077) < 1e-3
+    assert chernoff_exponent(18) < REQUIRED_RATE_STAR3 < chernoff_exponent(19)
+    assert least_C_biased(0.5, REQUIRED_RATE_STAR3) == 19
+    assert least_C_biased(0.55, REQUIRED_RATE_STAR3) == 41
+
+
 def test_biased_split_constants() -> None:
     from research.juggler_sequence.tao_reduction import azuma_exponent, least_C_biased
 

@@ -24,7 +24,7 @@ bt.*                        problem-independent BT mathematics
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
 6. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
-7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion (the three Moirai: Atropos = reach 1, Lachesis = nontrivial cycle, Clotho = escape): every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4050\); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
+7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion (the three Moirai: Atropos = reach 1, Lachesis = nontrivial cycle, Clotho = escape): every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4050\) by elementary means and for \(\lambda<\lambda^{***}=0.4922\) with the localized Paper B estimate (§7); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
 8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.595\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 21\) (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`), because Juggler descent is by powers. Conditional; the hypothesis is at the \(K_3\) wall and beyond. Do not read it as evidence for termination.
 
 Claim labels: [docs/README.md](docs/README.md).
@@ -210,9 +210,12 @@ for external review.
  branches. Do not reopen: a Tao analogue with a *growing* target does
  not feed contagion; bounded-odd-run control cannot reach the
  hypothesis; the depth-uniform kernel question is PARK behind the
- \(K_3\) program. Open analytic task (PARK): localize Paper B's
- Theorems 4.4/4.7 to intervals \(\ge P^{1/2+\varepsilon}\) — it would
- add the \(OOEE\) production and lift \(\lambda^{**}\) to \(\approx 0.527\).
+ \(K_3\) program. Done (note §7, `J-fate-ooeee-production`): Paper B's
+ Theorems 4.4/4.7 localize to intervals \(\ge P^{1/2}\) with relative
+ saving \(P^{-1/24}\); the \(OOEEE\) production on even blocks gives
+ \(\lambda^{***}=0.4922\) (Tao threshold \(0.5077\), \(C(1/2)=19\),
+ \(C(0.55)=41\)). Next quantitative step (not opened): localize the
+ kernel theorem (Paper B 5.3/6.3) for \(OOOEE\)/\(OOEOE\) on even blocks.
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_preimage_iff`, `odd_preimage_unique`, `preimage_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,
