@@ -554,7 +554,18 @@ satisfies every depth-\(\le k\) statement and violates the bound); use
 the exact map (6.1) to replace contagion (its upper recursion has the
 same critical exponent \(0.507\) and never gives \(\varphi_F\equiv0\));
 or feed a Weyl-differencing saving into the Tao depth (per-depth loss
-must be below \(2^{1/C}=1.037\); differencing loses \(\ge 2\)).
+must be below \(2^{1/C}=1.037\); differencing loses \(\ge 2\));
+attempt a last-even reset of \(s_\theta\) as a Paper B estimate
+(high-walk forward images ending in \(E\) are sparse, so the split
+is \(\mathrm H_q\) at unbounded depth);
+treat the forward \(S\)-sampling identity for \(Z_d\) as a new wall
+(\(S\)-fairness of the live set);
+or expand the walk-live Walsh product as a new exponential-sum
+campaign (fixed-order characters are \(e^{o(d)}\); the tail is
+\(e^{\Theta(d)}\) and two-sided control is the pair-correlation
+reparameterization). Direct-attack dossier:
+[juggler_pressure_direct](problems/juggler_pressure_direct.md)
+(`J-pressure-direct-routes`).
 
 Members: `J-scale-invariant-R-extension`, `J-increment-first-K3`,
 `J-x1-absorption-K3`, `J-nested-floor-without-W-family`,

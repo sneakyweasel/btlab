@@ -296,6 +296,67 @@ def live_word_prefix(n: int, N0: int, d_max: int, bit_cap: int = 4_000_000) -> t
     return letters, None, False
 
 
+def p_of_C(C: float) -> float:
+    """``p_C = (1 - 1/C) / log2(3)``, the Chernoff threshold odd-share at depth ``C L``."""
+
+    return (1.0 - 1.0 / C) / LOG2_3
+
+
+def theta_of_C(C: float) -> float:
+    """``θ_C = log(p_C / (1 - p_C))``, the tilt of Theorem B‴ / Paper C Theorem 9.2."""
+
+    p = p_of_C(C)
+    if p <= 0.0 or p >= 1.0:
+        raise ValueError("p_C must be in (0, 1)")
+    return math.log(p / (1.0 - p))
+
+
+def fair_tilted_live_suffix_odd_mass(L: float, t: int, theta: float, k: int) -> float:
+    """Fair-coin tilted walk-live mass of suffix ``O^{≥k}`` at depth ``t``, odd start.
+
+    Among words of length ``t`` beginning with ``O`` whose exponent walk stays above
+    ``-L``, with weights ``exp(θ o_t)`` and fair-coin steps after the first letter,
+    the share whose last ``k`` letters are odd.  This is the fair-cylinder value of
+    ``μ_{θ,t}(suffix O^{≥k})`` in the reset split of ``s_θ``.  If ``t < k`` the
+    suffix cannot occur and the value is ``0``.  If no word is walk-live the value
+    is ``0``.
+    """
+
+    if t < 1 or k < 1:
+        return 0.0
+    if t < k:
+        return 0.0
+    u1 = LOG2_3 - 1.0
+    if u1 <= -L:
+        return 0.0
+    # state: (odd count, current odd run capped at k) → fair-coin path weight
+    counts: dict[tuple[int, int], float] = {(1, min(1, k)): 1.0}
+    for s in range(2, t + 1):
+        nxt: dict[tuple[int, int], float] = {}
+        for (o, run), c in counts.items():
+            half = c / 2.0
+            if o * LOG2_3 - s > -L:
+                key = (o, 0)
+                nxt[key] = nxt.get(key, 0.0) + half
+            o2 = o + 1
+            if o2 * LOG2_3 - s > -L:
+                key = (o2, min(run + 1, k))
+                nxt[key] = nxt.get(key, 0.0) + half
+        counts = nxt
+        if not counts:
+            return 0.0
+    total = 0.0
+    suffix = 0.0
+    for (o, run), c in counts.items():
+        wt = c * math.exp(theta * o)
+        total += wt
+        if run >= k:
+            suffix += wt
+    if total <= 0.0:
+        return 0.0
+    return suffix / total
+
+
 def fair_tilted_live(L: float, d: int, theta: float) -> float:
     """Fair-coin value of ``E[exp(theta * o_d) * 1{u_t > -L for all t <= d}]`` given the first
     letter is ``O`` (odd start), by dynamic programming over the exponent walk."""

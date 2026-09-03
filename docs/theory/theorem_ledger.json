@@ -6498,5 +6498,18 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-pressure-direct-routes",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Phase-0 direct estimates of live pressure P_θ and no-momentum M_{θ,q} (Tao note §10, Paper C §9). Route A, last-even reset of the tilted odd share: s_θ ≤ 1/2 + μ_k/2 if complementary cylinders split at 1/2. Fair-coin tilted walk-live μ_4 leaves q_★ ≈ 0.57 below p_19 = 0.598 at the Tao depths, so there is numerical room at k = 4; μ_3 does not (q_★ ≈ 0.61). The complementary term is not Paper B: a high-walk start-cylinder ending in E has a sparse forward image (OOOE at y = 10^5: 6342 points in a span 6.08·10^8, density 1.0·10^{-5}), not a dyadic interval, so Paper B Theorems 4.1, 4.4 and 4.7 do not apply and the split is H_q at unbounded depth, killed by Tao note §10.4(e). Route B1, forward S-sampling Z_d(y) = e^θ times the live tilted moment of S ∩ I(y), is S-fairness of the live set: already odd generation / J-tao-free-term-is-live-mass. Route B2, walk-live Walsh product: |W_T| ≤ N on |T| ≤ k_0 fixed is e^{O(log d)} = e^{o(d)}; the tail is (1+ρ)^d = e^{Θ(d)} with ρ = tanh(θ/2) ≈ 0.196; two-sided control of the tail is J-tao-cylinder-forms-reparameterization; Vaaler plus van der Corput on the nested-floor phase hits the two-monomial leftover or the Weyl budget cC < 1; Paper B on max T ≤ 4 is §10.4(e). No new sufficient inequality. CLOSE. Not a halt theorem.",
+  "source": "docs/problems/juggler_pressure_direct.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_direct.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

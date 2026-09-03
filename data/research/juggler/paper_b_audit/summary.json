@@ -1,0 +1,687 @@
+{
+  "git_commit": "bdada7096ff0838cd0b1d6d135b33f4f3fbd9408",
+  "identities": {
+    "samples": 360,
+    "failures": {},
+    "lemma_6_2_printed_violations": [],
+    "lemma_6_2_max_slack": 0.996562978926346,
+    "checks": {
+      "L4.3.E_nonneg": 360,
+      "L4.3.E_le_bound": 360,
+      "L4.3.E_le_coarse": 360,
+      "L4.3.gap_identity": 360,
+      "L5.1i.R_nonneg": 360,
+      "L5.1i.R_le_bound": 360,
+      "L5.1ii-iv.double_gap": 360,
+      "L5.1ii-iv.carry_sawtooth": 360,
+      "L5.1ii-iv.F_equals_DDY": 360,
+      "L5.1ii-iv.split_exact": 360,
+      "L5.1ii-iv.first_bracket_in_range": 360,
+      "L5.1ii-iv.second_bracket_in_range": 360,
+      "L5.1ii-iv.master_identity": 360,
+      "L5.1ii-iv.brackets_le_2": 360,
+      "L5.1ii-iv.M1_bound": 360,
+      "L5.1iii.j_le_3": 360,
+      "L6.2.i_printed": 360,
+      "L6.2.i_corrected": 360,
+      "L6.2.ii_printed": 360,
+      "L6.2.ii_corrected": 360
+    },
+    "all_identities_hold": true,
+    "lemma_3_9_inverse_linf_norm": 232.0,
+    "lemma_3_9_inverse_l1_norm": 288.0
+  },
+  "lemma_6_2_edge_search": {
+    "trials": 4000,
+    "printed_violations": [],
+    "printed_violation_count": 0,
+    "worst_ratio_to_printed_bound_i": 0.9997317869111302
+  },
+  "standing_estimates": [
+    {
+      "P": 1000000,
+      "observed_ranges": {
+        "X1_over_P12": [
+          1.5075119402512207,
+          2.116644573375511
+        ],
+        "X2_over_Pm12": [
+          0.531501610686536,
+          0.7462627458940878
+        ],
+        "DX_over_hP12": [
+          3.0150253730274406,
+          4.233290209754066
+        ],
+        "Dic_over_khP18": [
+          1.689608986166731,
+          1.8392170249071862
+        ],
+        "DDc_over_kh1h2Pm78": [
+          0.23091876239731102,
+          0.41820229318675145
+        ],
+        "W_over_h1P54": [
+          4.556518631066748,
+          10.64326091156097
+        ],
+        "Wcell_speed_over_h1P14": [
+          3.383411068012578,
+          4.008872908178234
+        ],
+        "E6_ratio": [
+          0.9993803500654104,
+          1.000637058940744
+        ],
+        "G1_over_bound": [
+          0.15146102390303146,
+          0.5569643413419153
+        ]
+      },
+      "printed_ranges": {
+        "X1_over_P12": [
+          1.5,
+          2.13
+        ],
+        "X2_over_Pm12": [
+          0.53,
+          0.75
+        ],
+        "DX_over_hP12": [
+          3.0,
+          4.3
+        ],
+        "Dic_over_khP18": [
+          1.68,
+          1.85
+        ],
+        "DDc_over_kh1h2Pm78": [
+          0.22,
+          0.43
+        ],
+        "W_over_h1P54": [
+          4.4,
+          11.0
+        ],
+        "Wcell_speed_over_h1P14": [
+          2.2,
+          10.4
+        ]
+      },
+      "verdict": {
+        "X1_over_P12": true,
+        "X2_over_Pm12": true,
+        "DX_over_hP12": true,
+        "Dic_over_khP18": true,
+        "DDc_over_kh1h2Pm78": true,
+        "W_over_h1P54": true,
+        "Wcell_speed_over_h1P14": true,
+        "E6_ratio_within_1pm_P^-1/4": true,
+        "G1_le_bound": true
+      },
+      "all_ok": true
+    },
+    {
+      "P": 100000000,
+      "observed_ranges": {
+        "X1_over_P12": [
+          1.5096079813978198,
+          2.120472276993972
+        ],
+        "X2_over_Pm12": [
+          0.5305421873257521,
+          0.7452265845589314
+        ],
+        "DX_over_hP12": [
+          3.019215977700171,
+          4.240944575209631
+        ],
+        "Dic_over_khP18": [
+          1.6901957802208083,
+          1.8400478505173827
+        ],
+        "DDc_over_kh1h2Pm78": [
+          0.23018999303707552,
+          0.4171873790587216
+        ],
+        "W_over_h1P54": [
+          4.5723822638871425,
+          10.69205791180759
+        ],
+        "Wcell_speed_over_h1P14": [
+          3.385773799564856,
+          4.012729482845174
+        ],
+        "E6_ratio": [
+          0.9998737558501922,
+          1.0001256426153464
+        ],
+        "G1_over_bound": [
+          0.1505979330650472,
+          0.5602081594736867
+        ]
+      },
+      "printed_ranges": {
+        "X1_over_P12": [
+          1.5,
+          2.13
+        ],
+        "X2_over_Pm12": [
+          0.53,
+          0.75
+        ],
+        "DX_over_hP12": [
+          3.0,
+          4.3
+        ],
+        "Dic_over_khP18": [
+          1.68,
+          1.85
+        ],
+        "DDc_over_kh1h2Pm78": [
+          0.22,
+          0.43
+        ],
+        "W_over_h1P54": [
+          4.4,
+          11.0
+        ],
+        "Wcell_speed_over_h1P14": [
+          2.2,
+          10.4
+        ]
+      },
+      "verdict": {
+        "X1_over_P12": true,
+        "X2_over_Pm12": true,
+        "DX_over_hP12": true,
+        "Dic_over_khP18": true,
+        "DDc_over_kh1h2Pm78": true,
+        "W_over_h1P54": true,
+        "Wcell_speed_over_h1P14": true,
+        "E6_ratio_within_1pm_P^-1/4": true,
+        "G1_le_bound": true
+      },
+      "all_ok": true
+    },
+    {
+      "P": 10000000000,
+      "observed_ranges": {
+        "X1_over_P12": [
+          1.5034685459047687,
+          2.1184866061943843
+        ],
+        "X2_over_Pm12": [
+          0.5310394678496138,
+          0.7482697280660361
+        ],
+        "DX_over_hP12": [
+          3.0069370919591916,
+          4.236973212494976
+        ],
+        "Dic_over_khP18": [
+          1.6884746837795759,
+          1.83961692853648
+        ],
+        "DDc_over_kh1h2Pm78": [
+          0.23056770617026157,
+          0.42017323726981165
+        ],
+        "W_over_h1P54": [
+          4.526063604971217,
+          10.667173732603242
+        ],
+        "Wcell_speed_over_h1P14": [
+          3.378903128656057,
+          4.010898803016963
+        ],
+        "E6_ratio": [
+          0.9999872039341675,
+          1.000012827441905
+        ],
+        "G1_over_bound": [
+          0.15194013146904672,
+          0.5617888653462026
+        ]
+      },
+      "printed_ranges": {
+        "X1_over_P12": [
+          1.5,
+          2.13
+        ],
+        "X2_over_Pm12": [
+          0.53,
+          0.75
+        ],
+        "DX_over_hP12": [
+          3.0,
+          4.3
+        ],
+        "Dic_over_khP18": [
+          1.68,
+          1.85
+        ],
+        "DDc_over_kh1h2Pm78": [
+          0.22,
+          0.43
+        ],
+        "W_over_h1P54": [
+          4.4,
+          11.0
+        ],
+        "Wcell_speed_over_h1P14": [
+          2.2,
+          10.4
+        ]
+      },
+      "verdict": {
+        "X1_over_P12": true,
+        "X2_over_Pm12": true,
+        "DX_over_hP12": true,
+        "Dic_over_khP18": true,
+        "DDc_over_kh1h2Pm78": true,
+        "W_over_h1P54": true,
+        "Wcell_speed_over_h1P14": true,
+        "E6_ratio_within_1pm_P^-1/4": true,
+        "G1_le_bound": true
+      },
+      "all_ok": true
+    }
+  ],
+  "cell_inventory": [
+    {
+      "P": 100000,
+      "h": 1,
+      "cells": 394,
+      "printed_max_cells": 475.34164902525697,
+      "min_full_cell_over_P12_h": 0.6640783086353595,
+      "max_full_cell_over_P12_h": 0.942358742730177,
+      "ok": true
+    },
+    {
+      "P": 100000,
+      "h": 2,
+      "cells": 787,
+      "printed_max_cells": 949.6832980505139,
+      "min_full_cell_over_P12_h": 0.6577537533150228,
+      "max_full_cell_over_P12_h": 0.9486832980505138,
+      "ok": true
+    },
+    {
+      "P": 100000,
+      "h": 3,
+      "cells": 1179,
+      "printed_max_cells": 1424.0249470757708,
+      "min_full_cell_over_P12_h": 0.6640783086353597,
+      "max_full_cell_over_P12_h": 0.9486832980505138,
+      "ok": true
+    }
+  ],
+  "frozen_run_inventory": [
+    {
+      "P": 100000,
+      "h1": 1,
+      "h2": 1,
+      "j": 0,
+      "runs": 50,
+      "printed_bound": 123715.0915418768,
+      "ok": true
+    },
+    {
+      "P": 100000,
+      "h1": 1,
+      "h2": 2,
+      "j": 0,
+      "runs": 99,
+      "printed_bound": 123715.0915418768,
+      "ok": true
+    }
+  ],
+  "exponent_checks": [
+    {
+      "check": "(C1) k h1 h2 <= P^{1/8}: 1/24+1/48+1/24 = 5/48 <= 1/8",
+      "ok": true
+    },
+    {
+      "check": "room P^{-1/48}: 1/8 - 5/48 = 1/48",
+      "ok": true
+    },
+    {
+      "check": "(C2) h1 h2 <= P^{1/2}/3: 1/48+1/24 < 1/2",
+      "ok": true
+    },
+    {
+      "check": "|T2| << P^{23/24} and H2 = P^{1/24}: (4P/H2) * H2 * P^{23/24} = 4P^{47/24} vs 2P^2/H2 = 2P^{47/24}",
+      "ok": true
+    },
+    {
+      "check": "|T1| << P^{1-1/48}: sqrt(P^{47/24}) = P^{47/48} = P^{1-1/48}",
+      "ok": true
+    },
+    {
+      "check": "|K_c|^2 <= 2P^2/H1 + (4P/H1) H1 P^{1-1/48} = P^{2-1/48}: sqrt gives 1-1/96",
+      "ok": true
+    },
+    {
+      "check": "M1 deletion: k h1 h2 P^{-7/8} * P <= P^{1/8-7/8+1} = P^{1/4}",
+      "ok": true
+    },
+    {
+      "check": "3a window hypothesis: T = P^{1/2}/(2h1) >= P^{23/48}/2 since h1 <= P^{1/48}",
+      "ok": true
+    },
+    {
+      "check": "3a: 8(1+|B|) <= 15 k h2 P^{1/8} <= 15 P^{10/48}",
+      "ok": true
+    },
+    {
+      "check": "3a: 23/48 > 10/48 (hypothesis holds for large P)",
+      "ok": true
+    },
+    {
+      "check": "3a flat cost: k h1 h2 P^{5/8} <= P^{1/8+5/8} = P^{3/4}",
+      "ok": true
+    },
+    {
+      "check": "3a modes: u h1 <= 1.85 k h1 h2 P^{1/8} + P^{1/2}/2 <= P^{1/2} (k h1 h2 P^{1/8} <= P^{1/4})",
+      "ok": true
+    },
+    {
+      "check": "3a window boundaries: 2 k h2 P^{1/4} * 3.4 P^{3/8} <= 7 P^{1/24+1/24+1/4+3/8} = 7 P^{17/24}",
+      "ok": true
+    },
+    {
+      "check": "3b majorant per layer: 4P/J2 = 4P^{23/24}",
+      "ok": true
+    },
+    {
+      "check": "Step 4 weight sum converges: exponent 7/6 > 1 with log^2 numerator",
+      "ok": true
+    },
+    {
+      "check": "5a anchor curvature constant 945/512 - 27/64 = 729/512",
+      "ok": true
+    },
+    {
+      "check": "5a ratio 945/512 : 27/64 = 4.375",
+      "ok": true
+    },
+    {
+      "check": "5a differenced-wave competitor: u h1 P^{-3/4} with u h1 <= 0.6 P^{1/2}: 0.51 P^{-1/4}; ratio to 1.2 P^{-1/8} is P^{-1/8}",
+      "ok": true
+    },
+    {
+      "check": "5a resonant: |q'| P^{-5/4} with |q'| <= 4P^{1/24} against P^{-1/8}: exponent 1/24 - 5/4 + 1/8 = -13/12",
+      "ok": true
+    },
+    {
+      "check": "5a slow modes: J2 P^{-5/4} vs P^{-1/8}: 1/24 - 9/8",
+      "ok": true
+    },
+    {
+      "check": "5a (D3) ratio: h1 h2 P^{-1/2} <= P^{1/48+1/24-1/2} <= P^{-1/4}",
+      "ok": true
+    },
+    {
+      "check": "5a window boundary: k|j| P^{3/8} * (k|j|)^{-1/2} P^{1/16} = (k|j|)^{1/2} P^{7/16}",
+      "ok": true
+    },
+    {
+      "check": "5a sum |I_w| M^{1/2}: P * (k|j|P^{-1/8})^{1/2} = (k|j|)^{1/2} P^{15/16}",
+      "ok": true
+    },
+    {
+      "check": "5a sum (P/M)^{1/3}: P^{1/4} * (P^{9/8})^{1/3} = P^{1/4+3/8} = P^{5/8}; with (k|j|)^{2/3}, times P^{1/8} slack: 3/4",
+      "ok": true
+    },
+    {
+      "check": "5a (k|j|)^{2/3} <= (3P^{1/24})^{2/3}: exponent 1/36",
+      "ok": true
+    },
+    {
+      "check": "5a bottleneck: k^{1/2} P^{15/16} <= P^{1/48} P^{15/16} = P^{23/24}",
+      "ok": true
+    },
+    {
+      "check": "5a run boundaries: (|j|+1)|j|^{-1/2} k^{-1/2} P^{13/16} << P^{23/24}",
+      "ok": true
+    },
+    {
+      "check": "5a run length P^{1/4}/(|j|+1) vs lambda_a^{-1/2} <= (k|j|)^{-1/2} P^{1/16}: 1/16 < 1/4",
+      "ok": true
+    },
+    {
+      "check": "5b anchor curvature scale k h1 h2 P^{-5/8}: (cF_sm)'' leading 2673/1024 - 729/1024 = 243/128",
+      "ok": true
+    },
+    {
+      "check": "5b interpolant b: b * 11/8 * 3/8 = 243/128 gives b = 81/22",
+      "ok": true
+    },
+    {
+      "check": "5b interpolant a: a * 5/4 * 1/4 = -27/32 gives a = -27/10",
+      "ok": true
+    },
+    {
+      "check": "5b inventory: u <= 360 k h2 P^{1/8} <= 360 P^{5/24}",
+      "ok": true
+    },
+    {
+      "check": "5b refinement count: (h1+h2) P^{1/2} <= 2 P^{1/24+1/2} = 2P^{13/24}",
+      "ok": true
+    },
+    {
+      "check": "5b anchor runs: h1 h2 P^{1/4} <= P^{1/48+1/24+1/4} <= P^{3/8}",
+      "ok": true
+    },
+    {
+      "check": "5b interpolant error: (u+u') P^{-5/4} <= 720 P^{5/24-5/4} = 720 P^{-25/24}",
+      "ok": true
+    },
+    {
+      "check": "5b interpolant error: |c''| <= 0.11 k P^{-7/8} <= 0.11 P^{1/24-7/8} = 0.11 P^{-5/6}",
+      "ok": true
+    },
+    {
+      "check": "5b interpolant error: 8k(h1+h2) P^{-9/8} <= 16 P^{1/24+1/24-9/8} = 16 P^{-25/24}",
+      "ok": true
+    },
+    {
+      "check": "5b S range: lower anchor P^{-5/8}; upper 300 P^{1/8-5/8} = 300 P^{-1/2}",
+      "ok": true
+    },
+    {
+      "check": "5b V/S with V = 3 S^{1/2} P^{-11/24}: 3 S^{-1/2} P^{-11/24} <= 3 P^{5/16-11/24} = 3 P^{-7/48}",
+      "ok": true
+    },
+    {
+      "check": "5b V >= 3 P^{-5/16-11/24} = 3 P^{-37/48}",
+      "ok": true
+    },
+    {
+      "check": "5b V dominates interpolant error: -37/48 > -5/6 = -40/48",
+      "ok": true
+    },
+    {
+      "check": "5b transition length P (V/S)^{1/2} <= 2.6 P^{1-7/96} = 2.6 P^{89/96}",
+      "ok": true
+    },
+    {
+      "check": "5b piece boundaries: 3.5 P^{13/24} * 0.91 P^{37/96} = 3.2 P^{89/96}",
+      "ok": true
+    },
+    {
+      "check": "5b good pieces: P * S^{1/2} <= P * P^{-1/4} = P^{3/4}",
+      "ok": true
+    },
+    {
+      "check": "5b total P^{89/96} log P <= P^{15/16} = P^{90/96}",
+      "ok": true
+    },
+    {
+      "check": "5b anchor-dominant: (k h1 h2)^{1/2} P^{11/16}: P * (P^{-5/8})^{1/2} = P^{11/16}",
+      "ok": true
+    },
+    {
+      "check": "5b mode-dominant run boundaries: 22 h1 h2 P^{1/4} <= 22 P^{5/16}; times 3.4 (uh1)^{-1/2} P^{3/8} <= 75 P^{11/16}",
+      "ok": true
+    },
+    {
+      "check": "5b mode-dominant: |B| <= 1.2 k h1 h2 P^{-1/8} <= 1.2 P^{-1/48} < 1",
+      "ok": true
+    },
+    {
+      "check": "5b totals P^{15/16} << P^{23/24}",
+      "ok": true
+    },
+    {
+      "check": "Step 6: additive costs 4P^{23/24}, 8P^{3/4}, 46P^{3/4}, 7P^{7/8} all <= P^{23/24}",
+      "ok": true
+    },
+    {
+      "check": "Step 6: slow modes and (D3) remnants P^{7/8} < P^{23/24}",
+      "ok": true
+    },
+    {
+      "check": "Step 6: |T1|^2 <= 2P^{2-1/24} + C P^{1+23/24}: 1 + 23/24 = 2 - 1/24",
+      "ok": true
+    },
+    {
+      "check": "L5.2 t <= 16 P^{1/24}: 2 t^{4/3} P^{1/12} <= 81 P^{1/18+1/12} = 81 P^{5/36} <= P^{1/2}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 H3 = t^{1/3} P^{1/12} <= 3 P^{1/72+1/12} = 3P^{7/72} <= P^{1/4}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 first term P^2/H3 <= t^{-1/3} P^{2-1/12} = t^{-1/3} P^{23/12}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 second term t^{1/2} H3^{1/2} P^{13/8} = t^{2/3} P^{1/24+13/8} = t^{2/3} P^{5/3}; ratio to t^{-1/3}P^{23/12} is t P^{-1/4}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 third term t^{-1/2} H3^{1/2} P^{15/8} = t^{-1/3} P^{1/24+15/8} = t^{-1/3} P^{23/12}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 fourth term P^{15/8} = t^{1/3} P^{-1/24} * t^{-1/3} P^{23/12}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (ii) result: sqrt(t^{-1/3} P^{23/12}) = t^{-1/6} P^{23/24}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D3) after differencing: 6 k h1 h2 h3 P^{-13/8} <= 6 k h1 h2 P^{1/4-13/8} = 6 k h1 h2 P^{-11/8} <= 3 k h1 h2 P^{-5/8}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Stage 1: u Delta E <= u P^{-3/4}; total u P^{1/4} <= P^{1/2+1/4} = P^{3/4} (uh <= P^{1/2})",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Stage 2: majorant 4P/R0 = 4P^{3/4} at R0 = P^{1/4}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Stage 3 (s1): uh <= P^{3/16} gives |B| <= 2.25 P^{3/16-1/4} = 2.25 P^{-1/16}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Stage 3 (s2): windows 0.6 P^{1/4}; boundary cost P^{1/4-3/32+3/8} = P^{17/32} <= P^{5/8}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Stage 4: P (uh P^{-3/4})^{1/2} = (uh)^{1/2} P^{5/8}; cells h P^{1/2} * (uh P^{-3/4})^{-1/2} = (h/u)^{1/2} P^{7/8}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Stage 5: R0^{1/2} P^{3/4} = P^{7/8}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Stage 5 collision (P/M)^{1/3}: P^{1/4} (P^{7/4})^{1/3} = P^{1/4+7/12} = P^{5/6}; with (uh)^{-1/3} <= P^{-1/16}: 37/48",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D1) theta-coefficient: 24 P^{1/24-1/4} = 24 P^{-5/24}; 160 P^{1/24+1/8+1/24-3/4} = 160 P^{-13/24}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D1) curvature ratio: 80 P^{1/24-1/2}, 672 P^{1/12-1} <= P^{-1/4}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D2)(a) flat: 15 k h P^{5/8} <= 15 P^{1/24+1/8+5/8} = 15 P^{19/24} <= P^{7/8}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D2)(a) modes curvature (2khP^{1/8}+P^{1/2}) 3|j| P^{-5/4} <= 18 P^{-3/4} P^{-1/16}: 1/2-5/4 = -3/4 and window hypothesis room 1/16",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D2)(b) drift: P * h * |j| P^{-5/4} <= 13 h P^{-1/4} < 1 for h <= P^{1/8}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D3) ratio: k h1 h2 P^{-7/8} / u <= P^{1/8-7/8} = P^{-3/4}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 totals: fourth term k (h/u)^{1/2} P^{1/2} <= P^{1/24} (h/u)^{1/2} P^{1/2} absorbed by (h/u)^{1/2} P^{7/8}",
+      "ok": true
+    },
+    {
+      "check": "Lemma 3.9: c7 = 1/288 (inverse l^inf norm 288) -- numeric check below",
+      "ok": true
+    }
+  ],
+  "exponent_checks_all_ok": true,
+  "kernel_observation": [
+    {
+      "P": 10000,
+      "k": 1,
+      "abs_K": 51.897808655559636,
+      "abs_K_over_P^(1-1/96)": 0.005712361548793694,
+      "abs_K_over_sqrtN": 0.7339458485813624,
+      "abs_wave_q1": 24.29118322400185,
+      "abs_wave_over_P^(23/24)": 0.00356545809458634,
+      "abs_wave_over_sqrtN": 0.34352920761473216
+    },
+    {
+      "P": 30000,
+      "k": 1,
+      "abs_K": 145.09265190733072,
+      "abs_K_over_P^(1-1/96)": 0.0053846917084731495,
+      "abs_K_over_sqrtN": 1.1846765420007221,
+      "abs_wave_q1": 90.30237374667708,
+      "abs_wave_over_P^(23/24)": 0.0046251373135848,
+      "abs_wave_over_sqrtN": 0.7373157941381948
+    },
+    {
+      "P": 100000,
+      "k": 1,
+      "abs_K": 124.43684070825849,
+      "abs_K_over_P^(1-1/96)": 0.0014029180720367576,
+      "abs_K_over_sqrtN": 0.5564984694579581,
+      "abs_wave_q1": 191.7494069945803,
+      "abs_wave_over_P^(23/24)": 0.0030978997731741726,
+      "abs_wave_over_sqrtN": 0.8575294173703104
+    },
+    {
+      "P": 300000,
+      "k": 1,
+      "abs_K": 154.81062826239614,
+      "abs_K_over_P^(1-1/96)": 0.0005884815681060899,
+      "abs_K_over_sqrtN": 0.3997193233841117,
+      "abs_wave_q1": 192.26335497159994,
+      "abs_wave_over_P^(23/24)": 0.0010838985799884653,
+      "abs_wave_over_sqrtN": 0.49642184792731436
+    }
+  ],
+  "classification": "PAPER_B_AUDIT_CONSISTENT",
+  "elapsed_seconds": 27.51879119873047
+}
