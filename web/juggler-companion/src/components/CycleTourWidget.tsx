@@ -312,7 +312,7 @@ export function CycleTourWidget() {
   const [minIndex, setMinIndex] = useState<number>(DEFAULT_SHAPE.minIndex);
   const [decisionId, setDecisionId] = useState<string | null>(null);
   const [joinIndex, setJoinIndex] = useState<number>(0);
-  const [stemMode, setStemMode] = useState<StemDisplayMode>("optionalLaunch");
+  const [stemMode, setStemMode] = useState<StemDisplayMode>("empty");
   const decision = findDecision(decisionId);
 
   const chooseDecision = useCallback((id: string | null) => {

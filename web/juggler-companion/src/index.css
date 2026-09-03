@@ -80,6 +80,10 @@ button.bg-odd {
   pointer-events: auto;
 }
 
+.stem-cycle-flow {
+  pointer-events: none;
+}
+
 .stem-cycle-title {
   fill: var(--color-ink);
   font-family: var(--font-serif);
@@ -105,12 +109,6 @@ button.bg-odd {
   font-family: var(--font-mono);
 }
 
-.stem-cycle-link {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  text-anchor: middle;
-}
-
 .stem-cycle-dim {
   opacity: 0.62;
 }
@@ -124,6 +122,51 @@ button.bg-odd {
   background: var(--color-card);
   padding: 0.5rem 0.75rem;
   text-align: left;
+}
+
+.stem-cycle-legend {
+  margin-top: 0.7rem;
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: 0.65rem;
+  row-gap: 0.4rem;
+  align-items: center;
+}
+
+.stem-cycle-legend-k {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.stem-cycle-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.85rem;
+}
+
+.stem-cycle-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.2;
+  cursor: pointer;
+  text-align: left;
+}
+
+.stem-cycle-legend-swatch {
+  display: block;
+  flex: none;
 }
 
 .start-input {

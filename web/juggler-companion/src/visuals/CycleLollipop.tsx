@@ -75,13 +75,48 @@ function atAngle(angle: number, radius: number, dy = 0): { x: number; y: number 
   return { x: CX + radius * Math.cos(angle), y: CY + radius * Math.sin(angle) + dy };
 }
 
+function arcSweep(a0: number, a1: number): number {
+  return (a1 - a0 + 2 * Math.PI) % (2 * Math.PI);
+}
+
 function arcPath(a0: number, a1: number): string {
   const x0 = CX + R * Math.cos(a0);
   const y0 = CY + R * Math.sin(a0);
   const x1 = CX + R * Math.cos(a1);
   const y1 = CY + R * Math.sin(a1);
-  const sweep = (a1 - a0 + 2 * Math.PI) % (2 * Math.PI);
+  const sweep = arcSweep(a0, a1);
   return `M ${x0} ${y0} A ${R} ${R} 0 ${sweep > Math.PI ? 1 : 0} 1 ${x1} ${y1}`;
+}
+
+function cwArrow(a0: number, a1: number): { x: number; y: number; deg: number } {
+  const tip = a0 + arcSweep(a0, a1) / 2;
+  const { x, y } = atAngle(tip, R);
+  return {
+    x,
+    y,
+    deg: (Math.atan2(Math.cos(tip), -Math.sin(tip)) * 180) / Math.PI,
+  };
+}
+
+function pointedArcPath(a0: number, a1: number): string {
+  const sweep = arcSweep(a0, a1);
+  const rim = Math.asin(Math.min(1, (BEAD_R + 0.4) / R));
+  const start = a0 + rim;
+  const span = sweep - 2 * rim;
+  const steps = 10;
+  const halfW = 2.7;
+  const outer: string[] = [];
+  const inner: string[] = [];
+  for (let i = 0; i <= steps; i += 1) {
+    const t = i / steps;
+    const ang = start + span * t;
+    const w = halfW * (1 - t);
+    const o = atAngle(ang, R + w);
+    const n = atAngle(ang, R - w);
+    outer.push(`${o.x} ${o.y}`);
+    inner.push(`${n.x} ${n.y}`);
+  }
+  return `M ${outer.join(" L ")} L ${inner.reverse().join(" L ")} Z`;
 }
 
 function intervalAngle(afterBead: number, joinAt = 0): number {
@@ -111,12 +146,6 @@ function beadPaint(bead: IdealBead | PaintedBead): {
     return { fill: "#fffdf7", stroke: fill, dash: "3 2", text: fill };
   }
   return { fill, stroke: "none", text: "#fffdf7" };
-}
-
-function balloonNote(index: number): string {
-  if (index === 0) return "CycleMin";
-  if (index === 1) return "a₁≥2";
-  return "";
 }
 
 function intervalBoundCaption(interval: BalloonInterval): string {
@@ -220,6 +249,8 @@ type ArcSeg = {
   color: string;
   dashed: boolean;
   region: DecisionFocus;
+  arrow?: { x: number; y: number; deg: number };
+  pointed?: string;
 };
 
 function stationLetter(slot: number): IdealBead["letter"] {
@@ -249,12 +280,17 @@ function arcRegion(slot: number): DecisionFocus {
 function balloonArcs(joinAt: number): ArcSeg[] {
   return Array.from({ length: STATIONS }, (_, slot) => {
     const next = (slot + 1) % STATIONS;
+    const a0 = stationAngle(slot, joinAt);
+    const a1 = stationAngle(next, joinAt);
+    const dashed = Boolean(intervalAtSlot(slot) || intervalAtSlot(next));
     return {
       key: `arc-${slot}`,
-      d: arcPath(stationAngle(slot, joinAt), stationAngle(next, joinAt)),
+      d: arcPath(a0, a1),
       color: letterColor(stationLetter(slot)),
-      dashed: Boolean(intervalAtSlot(slot) || intervalAtSlot(next)),
+      dashed,
       region: arcRegion(slot),
+      arrow: dashed ? undefined : cwArrow(a0, a1),
+      pointed: dashed ? pointedArcPath(a0, a1) : undefined,
     };
   });
 }
@@ -266,9 +302,9 @@ type FigureNode = {
   bead: IdealBead;
   radius: number;
   glyph?: string;
-  caption: string;
-  captionX: number;
-  captionY: number;
+  caption?: string;
+  captionX?: number;
+  captionY?: number;
   region: DecisionFocus;
   decision: string;
   marked?: boolean;
@@ -279,10 +315,6 @@ function balloonNodes(joinAt: number): FigureNode[] {
   return BALLOON.map((bead, index) => {
     const angle = beadAngle(index, joinAt);
     const { x, y } = atAngle(angle, R);
-    const atJoin = index === joinAt;
-    const outer = atJoin
-      ? { x: x + BEAD_R + 44, y: y - 2 }
-      : atAngle(angle, R + BEAD_R + 16);
     const region = balloonRegion(index, bead);
     return {
       key: `balloon-${index}`,
@@ -290,9 +322,6 @@ function balloonNodes(joinAt: number): FigureNode[] {
       y,
       bead,
       radius: BEAD_R,
-      caption: balloonNote(index),
-      captionX: outer.x,
-      captionY: outer.y,
       region,
       decision: index === 0 ? "balloon-cut" : balloonDecision(region),
       marked: index === 0,
@@ -303,9 +332,7 @@ function balloonNodes(joinAt: number): FigureNode[] {
 
 function intervalNodes(joinAt: number): FigureNode[] {
   return IDEAL_BALLOON_INTERVALS.map((interval) => {
-    const angle = intervalAngle(interval.afterBead, joinAt);
-    const { x, y } = atAngle(angle, R);
-    const outer = atAngle(angle, R + BEAD_R + 16);
+    const { x, y } = atAngle(intervalAngle(interval.afterBead, joinAt), R);
     const region = intervalRegion(interval);
     return {
       key: `interval-${interval.kind}`,
@@ -314,45 +341,23 @@ function intervalNodes(joinAt: number): FigureNode[] {
       bead: intervalCountBead(interval),
       radius: BEAD_R,
       caption: intervalBoundCaption(interval),
-      captionX: outer.x,
-      captionY: outer.y,
       region,
       decision: intervalDecision(interval),
     };
   });
 }
 
-function linkLabel(mid: number, side: number): { x: number; y: number } {
-  const outer = atAngle(mid, R + 18);
-  if (outer.y > JOIN_Y - 24 && Math.abs(outer.x - CX) < 56) {
-    return { x: CX + side * (R + 22), y: CY - 10 };
-  }
-  return outer;
-}
-
-function sureLabels(joinAt: number): { oo: { x: number; y: number }; eo: { x: number; y: number } } {
-  return {
-    oo: linkLabel((stationAngle(0, joinAt) + stationAngle(1, joinAt)) / 2, 1),
-    eo: linkLabel((stationAngle(9, joinAt) + stationAngle(10, joinAt)) / 2, -1),
-  };
-}
-
 type CycleFigure = {
   arcs: ArcSeg[];
   nodes: FigureNode[];
   intervals: FigureNode[];
-  sureOO: { x: number; y: number };
-  sureEO: { x: number; y: number };
 };
 
 function cycleFigure(joinAt: number): CycleFigure {
-  const sure = sureLabels(joinAt);
   return {
     arcs: balloonArcs(joinAt),
     nodes: balloonNodes(joinAt),
     intervals: intervalNodes(joinAt),
-    sureOO: sure.oo,
-    sureEO: sure.eo,
   };
 }
 
@@ -429,6 +434,137 @@ function SnapIcon() {
   );
 }
 
+function LegendBead({
+  letter,
+  kind,
+  label,
+}: {
+  letter: "O" | "E" | "?";
+  kind: "sure" | "count" | "unknown" | "min";
+  label?: string;
+}) {
+  const color = letterColor(letter);
+  const filled = kind === "sure" || kind === "min";
+  const shown =
+    label ??
+    (kind === "unknown" ? "?" : kind === "count" ? "≥0" : kind === "sure" || kind === "min" ? "1" : "");
+  return (
+    <svg viewBox="0 0 22 22" width="22" height="22" className="stem-cycle-legend-swatch" aria-hidden>
+      <circle
+        cx="11"
+        cy="11"
+        r="8"
+        fill={filled ? color : "#fffdf7"}
+        stroke={kind === "min" ? "#1d1914" : filled ? "none" : color}
+        strokeWidth={kind === "min" || !filled ? 1.6 : 0}
+        strokeDasharray={kind === "count" || kind === "unknown" ? "3 2" : undefined}
+      />
+      {shown ? (
+        <text
+          x="11"
+          y="15"
+          textAnchor="middle"
+          fill={filled ? "#fffdf7" : color}
+          className="stem-cycle-mono"
+          fontSize={shown.length >= 3 ? "7" : "9"}
+        >
+          {shown}
+        </text>
+      ) : null}
+    </svg>
+  );
+}
+
+function LegendLink({ pointed }: { pointed?: boolean }) {
+  return (
+    <svg viewBox="0 0 28 10" width="28" height="10" className="stem-cycle-legend-swatch" aria-hidden>
+      {pointed ? (
+        <path d="M 2 1.4 L 25 5 L 2 8.6 Z" fill="#1d1914" />
+      ) : (
+        <line
+          x1="2"
+          y1="5"
+          x2="26"
+          y2="5"
+          stroke="#1d1914"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+      )}
+    </svg>
+  );
+}
+
+function LegendItem({
+  label,
+  decision,
+  onPick,
+  children,
+}: {
+  label: string;
+  decision: string;
+  onPick: (id: string) => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      className="stem-cycle-legend-item"
+      onClick={() => onPick(decision)}
+    >
+      {children}
+      <span>{label}</span>
+    </button>
+  );
+}
+
+const FigureLegend = memo(function FigureLegend({
+  onPick,
+}: {
+  onPick: (id: string) => void;
+}) {
+  return (
+    <div className="stem-cycle-legend" data-keep-focus>
+      <span className="stem-cycle-legend-k">Parity</span>
+      <div className="stem-cycle-legend-row">
+        <LegendItem label="odd" decision="balloon-parity" onPick={onPick}>
+          <LegendBead letter="O" kind="sure" label="" />
+        </LegendItem>
+        <LegendItem label="even" decision="balloon-parity" onPick={onPick}>
+          <LegendBead letter="E" kind="sure" label="" />
+        </LegendItem>
+      </div>
+      <span className="stem-cycle-legend-k">Certainty</span>
+      <div className="stem-cycle-legend-row">
+        <LegendItem label="plain — sure link (OO, wrap EO)" decision="balloon-links" onPick={onPick}>
+          <LegendLink />
+        </LegendItem>
+        <LegendItem label="pointed — interval, may be empty" decision="balloon-links" onPick={onPick}>
+          <LegendLink pointed />
+        </LegendItem>
+      </div>
+      <span className="stem-cycle-legend-k">CycleMin</span>
+      <div className="stem-cycle-legend-row">
+        <LegendItem label="black ring — CycleMin only" decision="balloon-cut" onPick={onPick}>
+          <LegendBead letter="O" kind="min" />
+        </LegendItem>
+      </div>
+      <span className="stem-cycle-legend-k">Beads</span>
+      <div className="stem-cycle-legend-row">
+        <LegendItem label="filled — sure letter" decision="balloon-fade" onPick={onPick}>
+          <LegendBead letter="E" kind="sure" />
+        </LegendItem>
+        <LegendItem label="hollow — count bound" decision="balloon-fade" onPick={onPick}>
+          <LegendBead letter="O" kind="count" />
+        </LegendItem>
+        <LegendItem label="grey ? — unknown stem" decision="string-grey" onPick={onPick}>
+          <LegendBead letter="?" kind="unknown" />
+        </LegendItem>
+      </div>
+    </div>
+  );
+});
+
 function JoinIconButton({
   label,
   disabled,
@@ -476,7 +612,6 @@ const Bead = memo(function Bead({
   bead,
   radius,
   marked,
-  joined,
   caption,
   captionX,
   captionY,
@@ -489,7 +624,6 @@ const Bead = memo(function Bead({
   bead: IdealBead | PaintedBead;
   radius: number;
   marked?: boolean;
-  joined?: boolean;
   caption?: string;
   captionX?: number;
   captionY?: number;
@@ -498,42 +632,53 @@ const Bead = memo(function Bead({
   onPick?: () => void;
 }) {
   const paint = beadPaint(bead);
-  const shown = glyph ?? bead.letter;
-  const exponent = caption === "≥0" || caption?.startsWith("{") ? caption : undefined;
-  const note = exponent ? undefined : caption;
-  const glyphSize = shown.length >= 5 ? "8" : shown.length >= 3 ? "10" : "11";
+  const bound = caption === "≥0" || caption?.startsWith("{") ? caption : undefined;
+  const shown =
+    glyph ?? (bound ?? (bead.letter === "O" || bead.letter === "E" ? "" : bead.letter));
+  const note = bound ? undefined : caption;
+  const glyphSize = shown.length >= 5 ? "8" : shown.length >= 3 ? "9" : "11";
+  const aria =
+    bead.letter === "O"
+      ? shown
+        ? `odd ${shown}`
+        : "odd"
+      : bead.letter === "E"
+        ? shown
+          ? `even ${shown}`
+          : "even"
+        : shown === "?" || !shown
+          ? "unknown"
+          : `unknown ${shown}`;
   return (
     <g
       className={fadeClass(lit)}
       role={onPick ? "button" : undefined}
       tabIndex={onPick ? 0 : undefined}
+      aria-label={onPick ? aria : undefined}
       onClick={onPick ? (event) => activate(onPick, event) : undefined}
       onKeyDown={onPick ? (event) => activate(onPick, event) : undefined}
     >
-      <circle
+        <circle
         cx={x}
         cy={y}
         r={radius}
         fill={paint.fill}
-        stroke={joined || marked ? "#1d1914" : paint.stroke}
-        strokeWidth={paint.dash || joined || marked ? 1.6 : 0}
+        stroke={marked ? "#1d1914" : paint.stroke}
+        strokeWidth={paint.dash || marked ? 1.6 : 0}
         strokeDasharray={paint.dash}
       />
-      <text
-        x={x}
-        y={y + 4}
-        textAnchor="middle"
-        fill={paint.text}
-        className="stem-cycle-mono"
-        fontSize={glyphSize}
-      >
-        {shown}
-        {exponent ? (
-          <tspan dy="-7" fontSize="7" dx="1">
-            {exponent}
-          </tspan>
-        ) : null}
-      </text>
+      {shown ? (
+        <text
+          x={x}
+          y={y + 4}
+          textAnchor="middle"
+          fill={paint.text}
+          className="stem-cycle-mono"
+          fontSize={glyphSize}
+        >
+          {shown}
+        </text>
+      ) : null}
       {note ? (
         <text
           x={captionX ?? x}
@@ -655,20 +800,19 @@ const FigureSvg = memo(function FigureSvg({
   onClear?: () => void;
 }) {
   const stem = stemForJoin(joinAt, stemMode);
+  const emptyStem = stem.length === 0;
   const join = joinGeom(stem);
   const cycle = figureAt(joinAt);
   const joinLit = regionLit(focus, "join");
   const joinFocus = focus === "join";
   const atCycleMin = joinAt === 0;
   const joinCfg = idealJoinConfig(joinAt);
-  const stemTitleY =
-    stem.length === 0
-      ? JOIN_Y + STEP + BEAD_R + 22
-      : (stem[0].y ?? JOIN_Y) + BEAD_R + 22;
+  const viewH = emptyStem ? Math.ceil(JOIN_Y + BEAD_R + 16) : VIEW_H;
+  const stemTitleY = (stem[0]?.y ?? JOIN_Y) + BEAD_R + 22;
 
   return (
     <svg
-      viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+      viewBox={`0 0 ${VIEW_W} ${viewH}`}
       role="img"
       className="stem-cycle-svg mt-1 h-auto w-full"
       onClick={(event) => {
@@ -679,27 +823,19 @@ const FigureSvg = memo(function FigureSvg({
       <title>
         Schematic CycleMin geometry with an optional stem. No nontrivial cycle
         is known. The cycle is a projection of the Lean run list onto six sure
-        letters.
+        letters. Plain links are sure (OO, wrap EO). Pointed links are
+        interval slots and may be empty.
       </title>
-      <text x={CX} y={stemTitleY} className="stem-cycle-title">
-        {stem.length === 0 ? "Empty stem" : "Stem"}
-      </text>
-      {stem.length === 0 ? (
-        <text
-          x={CX}
-          y={JOIN_Y + STEP + 4}
-          className="stem-cycle-note"
-          role="button"
-          onClick={(event) => activate(() => onPick("empty-string"), event)}
-        >
-          empty
+      {emptyStem ? null : (
+        <text x={CX} y={stemTitleY} className="stem-cycle-title">
+          Stem
         </text>
-      ) : null}
+      )}
       {stem.slice(0, -1).map((item, index) => {
         const next = stem[index + 1];
         const unsure = item.bead.tone !== "sure" || next.bead.tone !== "sure";
         return (
-          <line
+      <line
             key={`stem-link-${index}`}
             x1={item.x}
             y1={item.y}
@@ -728,16 +864,27 @@ const FigureSvg = memo(function FigureSvg({
         />
       ))}
       {cycle.arcs.map((arc) => (
-        <path
-          key={arc.key}
-          d={arc.d}
-          fill="none"
-          stroke={arc.color}
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeDasharray={arc.dashed ? "3 3" : undefined}
-          className={fadeClass(regionLit(focus, arc.region))}
-        />
+        <g key={arc.key} className={fadeClass(regionLit(focus, arc.region))}>
+          {arc.pointed ? (
+            <path className="stem-cycle-flow" d={arc.pointed} fill={arc.color} />
+          ) : (
+            <path
+              d={arc.d}
+              fill="none"
+              stroke={arc.color}
+              strokeWidth="2.2"
+              strokeLinecap="round"
+            />
+          )}
+          {arc.arrow ? (
+            <path
+              className="stem-cycle-flow"
+              transform={`translate(${arc.arrow.x} ${arc.arrow.y}) rotate(${arc.arrow.deg})`}
+              d="M -2.4 -4.2 L 4.9 0 L -2.4 4.2 Z"
+              fill={arc.color}
+            />
+          ) : null}
+        </g>
       ))}
       {cycle.intervals.map((node) => (
         <Bead
@@ -754,26 +901,30 @@ const FigureSvg = memo(function FigureSvg({
           onPick={() => onPick(node.decision)}
         />
       ))}
-      <path
-        d={join.path}
-        fill="none"
-        stroke={join.color}
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        className={fadeClass(joinLit)}
-        role="button"
-        onClick={(event) => activate(() => onPick("join-seam"), event)}
-      />
+      {emptyStem ? null : (
+        <>
+          <path
+            d={join.path}
+            fill="none"
+            stroke={join.color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            className={fadeClass(joinLit)}
+            role="button"
+            onClick={(event) => activate(() => onPick("join-seam"), event)}
+          />
       <text
-        x={join.labelX}
-        y={join.labelY}
-        textAnchor="start"
-        className={`stem-cycle-note stem-cycle-ink ${fadeClass(joinLit) ?? ""}`}
-        role="button"
-        onClick={(event) => activate(() => onPick("join-seam"), event)}
-      >
-        {atCycleMin ? "join · CycleMin" : `join · ${joinCfg.name}`}
+            x={join.labelX}
+            y={join.labelY}
+            textAnchor="start"
+            className={`stem-cycle-note stem-cycle-ink ${fadeClass(joinLit) ?? ""}`}
+            role="button"
+            onClick={(event) => activate(() => onPick("join-seam"), event)}
+          >
+            {atCycleMin ? "join · CycleMin" : `join · ${joinCfg.name}`}
       </text>
+        </>
+      )}
       {cycle.nodes.map((node) => {
         const isJoin = node.index === joinAt;
         return (
@@ -784,7 +935,6 @@ const FigureSvg = memo(function FigureSvg({
             bead={node.bead}
             radius={node.radius}
             marked={node.marked}
-            joined={isJoin}
             glyph={node.glyph}
             caption={node.caption}
             captionX={node.captionX}
@@ -803,43 +953,6 @@ const FigureSvg = memo(function FigureSvg({
       >
         Idealized cycle
       </text>
-      <text
-        x={CX}
-        y={CY + 4}
-        className="stem-cycle-note"
-        role="button"
-        onClick={(event) => activate(() => onPick("balloon-run"), event)}
-      >
-        O
-        <tspan dy="-6" fontSize="8">
-          a₁
-        </tspan>
-        <tspan dy="6"> E … O</tspan>
-        <tspan dy="-6" fontSize="8">
-          aₑ
-        </tspan>
-        <tspan dy="6"> E</tspan>
-      </text>
-      <text
-        x={cycle.sureOO.x}
-        y={cycle.sureOO.y}
-        fill={ODD}
-        className={`stem-cycle-link ${fadeClass(regionLit(focus, "balloon-oo") || regionLit(focus, "balloon-seam") || regionLit(focus, "balloon")) ?? ""}`}
-        role="button"
-        onClick={(event) => activate(() => onPick("balloon-links"), event)}
-      >
-        sure OO
-      </text>
-      <text
-        x={cycle.sureEO.x}
-        y={cycle.sureEO.y}
-        fill={EVEN}
-        className={`stem-cycle-link ${fadeClass(regionLit(focus, "balloon-oo") || regionLit(focus, "balloon-seam") || regionLit(focus, "balloon")) ?? ""}`}
-        role="button"
-        onClick={(event) => activate(() => onPick("balloon-links"), event)}
-      >
-        sure EO
-      </text>
     </svg>
   );
 });
@@ -849,7 +962,7 @@ export const CycleLollipop = memo(function CycleLollipop({
   joinIndex = 0,
   word,
   fill = null,
-  stemMode = "optionalLaunch",
+  stemMode = "empty",
   onJoinIndex,
   onSelectDecision,
   onClearFocus,
@@ -915,6 +1028,7 @@ export const CycleLollipop = memo(function CycleLollipop({
             <RotateCwIcon />
           </JoinIconButton>
         </div>
+        <FigureLegend onPick={pick} />
       </div>
       <CycleLeanPanel
         word={word}
@@ -922,11 +1036,13 @@ export const CycleLollipop = memo(function CycleLollipop({
         lit={!focus || focus === "figure" || focus.startsWith("balloon")}
         onPick={pick}
       />
-      <JoinCard
-        joinAt={joinAt}
-        lit={regionLit(focus, "join") || !focus}
-        onPick={pick}
-      />
+      {stemMode === "empty" ? null : (
+        <JoinCard
+          joinAt={joinAt}
+          lit={regionLit(focus, "join") || !focus}
+          onPick={pick}
+        />
+      )}
     </div>
   );
 });
