@@ -61,7 +61,11 @@ the third certified floor \(N_0=350000000\): any nontrivial
 Juggler cycle has period at least \(780239\). We
 also prove that every nontrivial cycle contains at least four
 even steps, and hence has period at least eleven; that bound
-uses no descent floor. The core lemmas are formalized in
+uses no descent floor. A floor-free gap transfer,
+\(n\log n\cdot\min(o\log 3-L\log 2,\,1)\le 2L\), combined with
+Rhin's effective measure, excludes every cycle with
+\(L^{14.3}\le n\log n/915\) and reduces the no-cycle problem to
+the long regime, where it remains open. The core lemmas are formalized in
 Lean 4; the descent floors and the per-length kill tables are
 independently certified computations, and the paper does not
 claim to be formally verified as a whole.
@@ -320,6 +324,20 @@ certified floor \(N_0=350000000\) that comparison leaves only
 the next fan member \(780239\): any nontrivial cycle has
 period at least \(780239\).
 
+**Contribution 5 — floor-free gap transfer and the short-cycle
+reduction.**
+The finance inequality ties the relative surplus to the linear
+form \(\Lambda=o\log 3-L\log 2\) without any floor:
+\(n\log n\cdot\min(\Lambda,1)\le 2L\) (Theorem 4.10, Lean
+`cycleMin_gap_transfer`). With Rhin's effective measure this
+excludes every cycle with \(L^{14.3}\le n\log n/915\)
+(Corollary 4.11), for all \(n\ge 2\). The statement is a
+reduction, not a kill: it is weaker than the finance table at
+every certified floor, and it shows that the no-cycle problem is
+exactly the exclusion of long cycles,
+\(L>(n\log n/915)^{1/14.3}\), where the finance survivors
+(\(L\approx n^{0.64}\)) live.
+
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
 is the convenient length-only statewise bound that turns a
@@ -367,7 +385,9 @@ The layers of the argument are as follows.
 
 1. *Classical ideas, not claimed as new:* cycle financing
    (Simons--de Weger [12]); logarithmic and continued-fraction
-   approximation of \(\log 2/\log 3\); cycle-itinerary restrictions
+   approximation of \(\log 2/\log 3\), including Rhin's effective
+   measure for \(o\log 3-L\log 2\) [15], used only in
+   Corollary 4.11; cycle-itinerary restrictions
    and leftover packaging (Eliahou [13]; Lagarias [8,9]); the
    Denjoy--Koksma inequality and Ostrowski numeration, used as
    known tools in Section 5.
@@ -386,6 +406,10 @@ The layers of the argument are as follows.
    (Corollary 5.10), and \(780239\) at the third certified
    floor \(350000000\) (Corollary 5.11), by direct evaluation
    of the same criterion beyond the \(301994\) window boundary.
+8. *Reduction:* the floor-free gap transfer (Theorem 4.10) and
+   the short-cycle exclusion \(L^{14.3}>n\log n/915\)
+   (Corollary 4.11), which locate the open problem in the long
+   regime without claiming anything there.
 
 The
 argument below is elementary and independent of the Diophantine
@@ -1568,6 +1592,83 @@ the \(141\) lengths of Theorem 4.6(B) places each pair
 \((L,o_{\min})\) on the displayed lattice, with the \(42\)
 packing deaths the \(F_1\) continuation \(b\ge 29\). \(\square\)
 
+### The gap transfer and the short-cycle reduction
+
+Everything above turns a verified descent floor into a per-length
+exclusion. The floor is the only ingredient that is not
+scale-free, and along the convergent denominators \(q_k\) of
+\(\log 2/\log 3\) the threshold grows like
+\(n_{\max}(q_k)\asymp a_{k+1}q_k^2/\log^2 n\), so every floor
+leaves the next fan. This subsection records the one statement
+of the note that needs no floor. It transfers a lower bound on
+the linear form
+\[
+\Lambda=\Lambda(L,o)=o\log 3-L\log 2=-\log\!\Bigl(1-\theta\Bigr),
+\qquad \theta=1-\frac{2^L}{3^o},
+\]
+into a bound on the cycle minimum. The only new input is
+\(\log\frac1{1-\theta}\le\frac{\theta}{1-\theta}\).
+
+**Theorem 4.10 (gap transfer).**
+Let \(w\) be a cycle itinerary of length \(L\) with \(o\) odd
+letters, based at a cycle minimum \(n\ge 2\). Then
+\[
+n\log n\cdot\min(\Lambda,1)\le 2L.
+\]
+
+*Proof.* Write \(A=3^o\), \(B=2^L\), \(P=n\log n\ge 0\). Theorem
+4.4 reads \(P(A-B)\le LA\). If \(A\le B\) then \(\Lambda\le 0\)
+and the left side is nonpositive. If \(A\ge 2B\), then
+\(A-B\ge A/2\), so \(PA/2\le LA\), hence
+\(P\min(\Lambda,1)\le P\le 2L\).
+If \(B<A<2B\), then
+\(\Lambda=\log(A/B)\le A/B-1=(A-B)/B\), so
+\(P\Lambda\le P(A-B)/B\le LA/B\le 2L\). \(\square\)
+
+The Lean form is `cycleMin_gap_transfer`; the abstract corollary
+"\(\varepsilon\le\min(\Lambda,1)\) implies
+\(n\log n\cdot\varepsilon\le 2L\)" is `cycleMin_length_of_gap`.
+
+**Corollary 4.11 (short cycles are excluded).**
+Rhin's effective irrationality measure [15], in the packaged form
+of [12, Lemma 12], gives
+\(\Lambda>\exp\bigl(-13.3\,(0.46057+\log L)\bigr)
+=e^{-6.1256}L^{-13.3}\) for every pair \(o<L\) with
+\(3^o\ne 2^L\). Hence every nontrivial cycle satisfies
+\[
+n\log n\;\le\;2e^{6.1256}\,L^{14.3}\;<\;915\,L^{14.3},
+\qquad\text{equivalently}\qquad
+L\;>\;\Bigl(\frac{n\log n}{915}\Bigr)^{1/14.3}.
+\]
+In particular a cycle with minimum \(n\) and
+\(L^{14.3}\le n\log n/915\) does not exist, for every \(n\ge 2\)
+and without any descent floor.
+
+*Proof.* On a cycle itinerary \(o<L\), so \(H=\max(L,o)=L\) in
+[12, Lemma 12], and \(\varepsilon=e^{-6.1256}L^{-13.3}\le 1\).
+Apply Theorem 4.10 with this \(\varepsilon\). \(\square\)
+
+**Remark (what the reduction does and does not do).**
+Corollary 4.11 is a reduction of the no-cycle problem, not a
+kill. It says that the only cycles left to exclude are the *long*
+ones, \(L>(n\log n/915)^{1/14.3}\); every shorter cycle is
+excluded by transcendence plus finance alone. At the certified
+floors of Section 5 this is toothless — at \(N_0=3.5\cdot 10^8\)
+it forces only \(L\ge 4\), while the finance table forces
+\(L\ge 780239\) — which is the floor-level statement that a
+Baker-type transfer cannot compete with the exact gap. The value
+of the corollary is that it is floor-free and identifies the
+frontier exactly: the finance survivors of Theorems 4.6 and 5.9
+have \(L\approx n^{0.64}\), far inside the long regime, and no
+refinement of the defect *upper* bound can move them into the
+short one, because along the convergents the required minimum
+\(n_{\max}(q_k)\) grows quadratically in \(L\). Excluding long
+cycles is a statement about the parity word of a specific orbit
+at depth \(L\), which no estimate in this note or in the
+companion discrepancy manuscript controls. The problem "no
+nontrivial Juggler cycle" is therefore exactly the problem "no
+long Juggler cycle," and it remains open.
+
 ## 5. The laboratory instance and the walk-charge envelope
 
 Everything in Sections 2--4 is floor-generic: Corollary 4.5
@@ -2109,6 +2210,29 @@ gap recorded there is the missing link from the forced lift at
 the minimum, through the complete necklace, to the entry one-step preimage;
 it is not a halt theorem.
 
+Corollary 4.11 fixes what a full exclusion would have to prove.
+Every method of this note bounds the same side of one equation,
+\(\Lambda=\sum_i\delta_i/\log x_i\), and along the convergents of
+\(\log 2/\log 3\) the minimum required of a survivor grows
+quadratically in the period, so no descent floor and no
+refinement of the defect upper bound can exclude all lengths.
+Transcendence excludes the short cycles
+\(L^{14.3}\le n\log n/915\) unconditionally. What remains is the
+long regime, and there the obstruction would have to come from
+the parity word of a specific orbit at depth \(L\) — for a
+prescribed word \(w\) the integers \(m\) with \(f_w(m)=m\) under
+the prescribed branches number about
+\(1/(\Lambda(1+\log n))\approx n/L\) and sit in a band around the
+finance balance point, and a cycle exists exactly when one of them
+realizes \(w\). On the hug words at \(L=19,84,1054\) the band
+holds \(11\), \(55\), \(1689\) integers and the realized parity
+depth on it is a fair coin (mean \(1.03\) at \(L=1054\), maximum
+\(8<\log_2 1689\)). No estimate
+here, and none in the companion discrepancy manuscript (whose
+per-depth control stops near depth seven and is averaged over
+starts), addresses a single orbit at that depth. We record this
+as the open problem, not as a program.
+
 The same pattern --- a piecewise power map, integer rounding,
 and a cycle minimum --- produces a defect-financing obstruction.
 The Juggler-specific content is the interaction of \(x^{3/2}\)
@@ -2177,6 +2301,8 @@ Theorem 4.8.
 | Theorem 4.7 | run-type packing; human proof, not Lean |
 | Theorem 4.8 | run-type table; verified computation, not Lean |
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
+| Theorem 4.10 | `cycleMin_gap_transfer`; abstract length bound `cycleMin_length_of_gap` (`GapTransfer.lean`) |
+| Corollary 4.11 | `cycleMin_length_of_gap` with Rhin's measure [15] as hypothesis; the transcendence input is classical, not Lean |
 | Proposition 5.1 | laboratory floor; certified computation, not Lean |
 | Theorem 5.2 | raised cutoff; verified computation, not Lean |
 | Theorem 5.3 | transport inequality `cycleMin_transport`, per-step losses `log_floorPower_even_ge`, `log_floorPower_odd_ge` (`WalkTransport.lean`); §5.2 consequence `cycleMin_defect_le_charge`, `cycleMin_defect_le_hug_charge` (`WalkChargeMax.lean`) |
@@ -2957,3 +3083,7 @@ statements and code are the responsibility of the author.
     Peano arithmetic,” *Bull. London Math. Soc.* 14 (1982),
     285--293.
     [doi:10.1112/blms/14.4.285](https://doi.org/10.1112/blms/14.4.285).
+15. G. Rhin, “Approximants de Padé et mesures effectives
+    d'irrationalité,” in *Séminaire de Théorie des Nombres, Paris
+    1985--86*, Progress in Mathematics 71, Birkhäuser, Boston, 1987,
+    155--164.

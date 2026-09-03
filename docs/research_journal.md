@@ -22216,3 +22216,43 @@ Best next question
 ```
 
 
+
+## Gap transfer, short-cycle reduction, and the mechanical window (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Record the one floor-free statement finance admits — transfer of a lower bound on \(\Lambda=o\log 3-L\log 2\) into a bound on the cycle minimum — print it in Paper A and Lean, and run the Phase 0 it leaves: does the realized parity word on the band of mechanical fixed points of a survivor word show anything beyond a fair coin?
+- **Hypotheses:** (1) \(n\log n\cdot\min(\Lambda,1)\le 2L\) follows from Theorem 4.4 and \(\log\frac1{1-\theta}\le\frac{\theta}{1-\theta}\). (2) With Rhin (SdW Lemma 12) this excludes every cycle with \(L^{14.3}\le n\log n/915\) without a floor. (3) The band \(\{m: f_w(m)=m\}\) has \(\approx 1/(\Lambda(1+\log m))\) members and its realized depth is geometric\((1/2)\). Falsifier for (3): depth excess over \(\log_2\)(count) growing with \(L\).
+- **Major results:**
+  - **Theorem 4.10 (EXACT — LEAN VERIFIED, `J-cyclemin-gap-transfer`):** `cycleMin_gap_transfer`, abstract form `cycleMin_length_of_gap` (`GapTransfer.lean`, imported by `Problems.JugglerPaper` and `Problems.Juggler`; `lake build` green, no `sorry`).
+  - **Corollary 4.11 (EXACT — HUMAN PROOF, `J-cyclemin-short-cycle-rhin`):** every nontrivial cycle has \(n\log n<915\,L^{14.3}\); the no-cycle problem is exactly the exclusion of long cycles. At \(N_0=3.5\cdot 10^8\) it forces only \(L\ge 4\) — floor-free and toothless at floors, consistent with the REFUTED Baker transfer.
+  - **Paper A edited:** abstract sentence, Contribution 5, layer 8, new §4 subsection (Thm 4.10, Cor 4.11, remark), §6 paragraph naming the open problem, Appendix A rows, reference [15] (Rhin 1987). PDF rebuilt and synced to `juggler_review/`.
+  - **Mechanical window (OBSERVATION, `J-cyclemin-mechanical-window-coin`):** hug words at \(L=19,84,1054\): fixed points \(11,55,1689\) vs predicted \(16.3,68.6,1869.6\); a band (span/count \(1.6,4.5,8.8\)), not a run; realized depth at \(L=1054\): \(833,411,213,119,55,37,11,6,4\), mean \(1.03\), max \(8<\log_2 1689\). Fair coin. `data/research/juggler/cycle_mechanical_window/summary.json`, classification `MECHANICAL_WINDOW_CLOSED`.
+- **Refuted ideas:** that the fixed-point set is a contiguous run (it is a band with the predicted count); that the band carries a parity signal.
+- **Literature:** Rhin 1987 (`rhin-1987-pade-irrationality`) now cited in Paper A; SdW Lemma 12 packaging.
+- **Open:** exclusion of long cycles \(L^{14.3}>n\log n/915\) — a per-orbit parity statement at depth \(L\); no mechanism in the laboratory or the literature.
+- **Decision:** CLOSE ([juggler_cycle_mechanical_window](problems/juggler_cycle_mechanical_window.md)). The reduction is kept in the paper as what remains; the band experiment returns the null. Do not reopen as a short-interval Paper B, a two-copy Sturmian rigidity, or a longer band scan.
+
+```text
+What was learned
+- finance admits exactly one floor-free consequence: n log n · min(Λ,1) ≤ 2L
+- with Rhin it kills the short regime L^14.3 ≤ n log n / 915 for all n ≥ 2
+- survivors live at L ≈ n^0.64, deep in the long regime; no defect upper
+  bound moves them, since n_max(q_k) grows like a_{k+1} q_k^2
+- the mechanical fixed points of a survivor word have the finance-predicted
+  count and sit in a band, not a run
+- the realized parity word on that band is a fair coin at L = 1054
+Strongest theorem
+- cycleMin_gap_transfer: n log n · min(o log 3 − L log 2, 1) ≤ 2L
+Strongest refutation
+- the band carries no parity signal (depth histogram geometric(1/2))
+Reusable machinery
+- GapTransfer.lean; cycle_mechanical_window probe (mechanical_image,
+  crossing, window, realized_depth)
+Branch status
+- CLOSE
+Why
+- the reduction names the frontier without moving it; the Phase 0 finds
+  nothing to prove beyond a coin, and per-orbit depth L has no mechanism
+Best next question
+- none in this laboratory; the §6 sentence of Paper A is the deliverable
+```

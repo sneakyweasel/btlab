@@ -6274,5 +6274,38 @@
    "juggler_walk_arch_kills_blocker",
    "juggler_walk_excess_arch"
   ]
+ },
+ {
+  "id": "J-cyclemin-gap-transfer",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Gap transfer (Paper A Theorem 4.10). On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, n · log n · min(o log 3 − L log 2, 1) ≤ 2 L (cycleMin_gap_transfer). Proof: Theorem 4.4 reads P(A − B) ≤ L A with A = 3^o, B = 2^L, P = n log n; if A ≤ B the left side is nonpositive, if A ≥ 2B then P ≤ 2L, and if B < A < 2B then Λ = log(A/B) ≤ (A − B)/B and P(A − B)/B ≤ LA/B ≤ 2L. Abstract form cycleMin_length_of_gap: any ε ≤ min(Λ, 1) gives n log n · ε ≤ 2L. Floor-free; the classical transcendence input is a hypothesis, not a Lean theorem. Not a halt theorem and not a period bound at any floor.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/GapTransfer.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-cycle-rhin",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Short-cycle reduction (Paper A Corollary 4.11). Rhin's effective measure in the packaged form of Simons–de Weger Lemma 12, Λ = o log 3 − L log 2 > e^{−13.3(0.46057 + log L)} = e^{−6.1256} L^{−13.3} (H = max(L, o) = L on a cycle itinerary), fed into cycleMin_length_of_gap gives for every nontrivial Juggler cycle n log n ≤ 2 e^{6.1256} L^{14.3} < 915 L^{14.3}. Hence no cycle has L^{14.3} ≤ n log n / 915, for all n ≥ 2 and without any descent floor, and the no-cycle problem is exactly the exclusion of long cycles. At the certified floor 3.5·10^8 this forces only L ≥ 4 against 780239 from the finance table: a floor-free reduction, toothless at floors, consistent with the REFUTED Baker transfer (juggler_cycle_gap_baker). Not a halt theorem and not a claim in the long regime.",
+  "source": "docs/problems/juggler_cycle_mechanical_window.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-mechanical-window-coin",
+  "tag": "OBSERVATION",
+  "statement": "For the hug word at L = 19, 84, 1054 the integer fixed points of the prescribed-branch map f_w (odd branch isqrt(m^3), even branch isqrt(m), parity ignored) number 11, 55, 1689 against the drift prediction 1/(Λ(1 + log m)) = 16.3, 68.6, 1869.6 (ratios 0.68, 0.80, 0.90), sit in a band of span 18, 249, 14931 around the finance crossing 34, 397, 77062 (a band, not a run), and the realized parity depth on the band is a fair coin: at L = 1054 the histogram is 833, 411, 213, 119, 55, 37, 11, 6, 4 with mean 1.03 and maximum 8 < log2(1689). No member realizes its word. A cycle with word w exists iff a band member realizes w; nothing on the band distinguishes it from a coin, so per-orbit parity at depth growing with n has no candidate mechanism. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_mechanical_window.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
+  ],
+  "related_conjectures": []
  }
 ]

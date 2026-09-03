@@ -531,6 +531,27 @@ Those identities organise \(\mathcal E_{\mathrm{run}}\). They do
 not constrain an actual cycle. The identification of the \(99\)
 lattice points with the run-type table is Theorem 4.8, not Lean.
 
+The floor-free gap transfer (Theorem 4.10) is a second cycle leaf
+under this barrel:
+
+```text
+cycleMin_gap_transfer (hn : 2 ≤ n) (h : CycleMin n w) :
+  n * log n * min (oddCount w * log 3 - w.length * log 2) 1
+    ≤ 2 * w.length
+cycleMin_length_of_gap (hn : 2 ≤ n) (h : CycleMin n w)
+    (hε : ε ≤ 1)
+    (hgap : ε ≤ oddCount w * log 3 - w.length * log 2) :
+  n * log n * ε ≤ 2 * w.length
+    (GapTransfer.lean)
+```
+
+Corollary 4.11 instantiates `cycleMin_length_of_gap` with Rhin's
+effective measure \(\varepsilon=e^{-6.1256}L^{-13.3}\); that
+transcendence input is classical and is a hypothesis, not a Lean
+theorem. The corollary is a reduction (short cycles
+\(L^{14.3}\le n\log n/915\) are excluded for all \(n\ge 2\)), not a
+period bound at any floor.
+
 Companion names leftover \(84\), residual floor \(261\), and the
 census through length \(19\) are listed in Appendix A of the note
 and live in `CycleFinanceLeftovers.lean` (table-driven length

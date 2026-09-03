@@ -450,6 +450,18 @@ Members: `juggler_baker_kills_near_convergents`,
 `J-christoffel-one-parameter`, `juggler_cycle_near_tight_monochrome`,
 `J-cycle-near-tight-monochrome`.
 
+**Complement, not a kill (CLOSE).** The floor-free gap transfer
+\(n\log n\cdot\min(\Lambda,1)\le 2L\) (Paper A Thm 4.10, Lean
+`cycleMin_gap_transfer`) with Rhin's measure excludes every cycle
+with \(L^{14.3}\le n\log n/915\) — the *short* regime, where the
+REFUTED floor-level transfer never competed. It reparameterizes the
+no-cycle problem as "no long cycle" and excludes nothing the table
+did not; the mechanical fixed-point band of a survivor word has the
+finance-predicted count and a fair-coin realized parity depth
+(\(L=19,84,1054\)). Do not reopen as a short-interval Paper B, a
+two-copy Sturmian rigidity, or a longer band scan
+([juggler_cycle_mechanical_window](problems/juggler_cycle_mechanical_window.md)).
+
 Dossiers: [juggler_cycle_gap_baker](problems/juggler_cycle_gap_baker.md),
 [juggler_cycle_affine_n_gap](problems/juggler_cycle_affine_n_gap.md),
 [juggler_cycle_inhomogeneous_log](problems/juggler_cycle_inhomogeneous_log.md),

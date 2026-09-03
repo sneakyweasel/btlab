@@ -92,6 +92,17 @@ for external review.
  at margin \(0.433\) at the previous floor),
  and further \(N_0\) campaigns are PARK (the next useful floor is
  \(5.54\cdot 10^8\); the next *seed* waits at \(4.54\cdot 10^{11}\)).
+ Floor-free: the gap transfer
+ \(n\log n\cdot\min(o\log 3-L\log 2,1)\le 2L\) (Paper A Thm 4.10,
+ `cycleMin_gap_transfer`, `GapTransfer.lean`) with Rhin's measure
+ excludes every cycle with \(L^{14.3}\le n\log n/915\) (Cor 4.11,
+ `J-cyclemin-short-cycle-rhin`); the no-cycle problem is exactly
+ the long regime \(L\approx n^{0.64}\), a per-orbit parity statement
+ at depth \(L\) with no mechanism. The mechanical fixed-point band
+ of a survivor word has the finance-predicted count and a fair-coin
+ realized parity (`juggler_cycle_mechanical_window`, CLOSE). Do not
+ reopen as a short-interval Paper B, a two-copy Sturmian rigidity,
+ or a longer band scan.
 - **Flights:** the descent-free (open-orbit) program is descriptively
   terminal. Extract: [juggler_flight_note.md](docs/theory/juggler_flight_note.md).
   Lean envelope and walk-height law on `AboveAnchor`; every flight has

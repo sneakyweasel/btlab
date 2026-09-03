@@ -22,6 +22,7 @@ import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
 import Problems.Juggler.CycleFinance
 import Problems.Juggler.CycleFinanceLeftovers
+import Problems.Juggler.GapTransfer
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.WalkChargeItineraries
 import Problems.Juggler.OstrowskiSandwich
@@ -113,6 +114,10 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       computation
 * 4.7--4.8 run-type packing and the 99-length table
       (human proof and verified computation; not Lean)
+* 4.10 (gap transfer) `cycleMin_gap_transfer`, abstract length bound
+      `cycleMin_length_of_gap` (`GapTransfer.lean`); Corollary 4.11
+      instantiates the latter with Rhin's effective measure, which
+      stays a classical hypothesis
 * 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,
       `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`,
       `runSurvivors_length`
