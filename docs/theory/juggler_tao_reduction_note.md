@@ -674,3 +674,126 @@ momentum is detectable to depth \(40\) at any scale up to \(10^{50}\).
 This is an OBSERVATION about the aggregate statistic of
 \(\mathrm M_{\theta,1/2}\) in the accessible range; the hypothesis is
 about \(d(y)\to\infty\).
+
+## 11. One frontier statement: the free term is the live mass
+
+The fate note leaves the termination problem with two frontier
+statements: the free term \(\psi_F\) of the exact first-letter
+decomposition (fate note (6.1)) and the hypothesis of this note. This
+section shows they are the same object, records the exact duality
+between the two halves of (6.1), and derives from it what "uniform in
+depth" has to mean quantitatively for any analytic route.
+
+### 11.1 The free term as infinite-depth live mass
+
+Recall (fate note §6.2): with \(x=e^t\), \(\ell_A(a,b]=\sum_{n\in A\cap(a,b]}1/n\),
+\(\varphi_A(t)=\ell_A(e^{t/2},e^t]/(t/2)\), and \(\psi_A(t)\) the
+log-weighted fraction of the \(OO\)-type odd \(n\in(\sqrt x,x]\)
+(odd with odd \(\lfloor n^{3/2}\rfloor\)) whose image lies in \(A\),
+\[
+\varphi_A(t)=\tfrac12\varphi_A(t/2)+\tfrac14\varphi^{\rm fib}_A(3t/4)+\tfrac14\psi_A(t)+O(e^{-t/4}/t).
+\tag{6.1}
+\]
+For \(A=F=\mathbb N_{\ge1}\setminus R\) and odd \(n\), \(n\in F\iff\lfloor n^{3/2}\rfloor\in F\)
+(odd generation), and \(n\in F\iff\tau(n)=\infty\) since
+\([1,N_0]\subseteq R\). Hence, with \(\mathbb P^{\log}_x\) the
+\(1/n\)-weighted measure on the odd \(n\in(\sqrt x,x]\),
+
+**Proposition 11.1.** \(\psi_F(t)=\lim_{d\to\infty}\mathbb P^{\log}_x\bigl(\tau(n)>d\ \big|\ \mathrm{word}_2(n)=OO\bigr)\),
+a decreasing limit, and under \(\mathrm P_\theta(C)\) (equivalently
+under any hypothesis of Sections 4, 8, 10),
+\[
+\psi_F(t)\ \le\ 2\,(1+o(1))\Bigl(\frac{t}{2\log N_0}\Bigr)^{-(e(C)-\varepsilon)} .
+\]
+
+*Proof.* The first claim is the definition of \(\psi_F\) together with
+\(F\cap\{\text{odd}\}=\{\tau=\infty\}\cap\{\text{odd}\}=\bigcap_d\{\tau>d\}\).
+For the bound, cover \((\sqrt x,x]\) by dyadic blocks \((y,2y]\); the
+\(OO\)-type odd starts of a block number \(\tfrac y4(1+O(y^{-\delta}))\)
+(Paper B, depth two, unconditional, with a power saving), the live starts at depth
+\(d(y)\) number at most \(\tfrac y2(\log 2y/\log N_0)^{-(e(C)-\varepsilon)}\)
+by Theorem B‴, and \(\{\tau>d\}\) decreases in \(d\). The
+\(1/n\)-weighting only averages the block ratios. \(\square\)
+
+So the free term of the exact map is the infinite-depth live mass of
+the depth-two cylinder \(OO\), and the hypothesis of this note bounds
+it. There are not two frontier statements but one quantity — the
+live mass of odd-heavy parity words at depth \(\asymp\log\log x\) —
+seen once as a limit (exact map) and once at finite depth with a rate
+(Tao-type bound). The pressure form is the weakest condition on the
+concentration route that controls it.
+
+### 11.2 Exact map = contagion + free term, and the critical exponent
+
+The two halves of (6.1) are the two theorems of the fate note.
+Dropping \(\psi\ge0\) gives the *lower* recursion
+\(\varphi_F(t)\ge\tfrac12\varphi_F(t/2)+\tfrac14\varphi^{\rm fib}_F(3t/4)\),
+which in log-mass form \(g=(t/2)\varphi\) is
+\(g(t)\ge g(t/2)+\tfrac13g^{\rm fib}(3t/4)\): the ideal depth-two
+contagion recursion (fate note §4.2 with perfect fibers; the proved
+constants \(\tfrac5{21},\tfrac2{21}\) and the \(OOEEE\) term give
+\(\lambda^{***}=0.4922\) against the ideal \(0.4927\)). Dropping
+\(\psi\le1\) instead gives the *upper* recursion for the failure
+density. Its homogeneous solutions \(\varphi=t^{-e}\) satisfy
+\(\tfrac12 2^{e}+c\,(4/3)^{e}=1\) with \(c=\tfrac14\) for ideal fibers
+and \(c=\tfrac27\) with the two-sided sweep constant \(\tfrac47\):
+\[
+e_{\rm crit}=1-\lambda_{\rm ideal}=0.5073\quad(\text{ideal}),\qquad
+e_{\rm crit}=0.4354\quad(\text{sweep}).
+\]
+The Tao-type rate threshold \(e>1-\lambda^{***}=0.5078\) is therefore
+the homogeneous decay exponent of the exact map up to the
+fiber-constant gap: contagion's growth rate and the exact map's decay
+rate are the same number because they are the same recursion.
+
+**Corollary 11.2 (the exact map cannot replace contagion).** Suppose
+\(\psi_F(t)\le t^{-e}\) with \(e\) as large as one likes. The upper
+recursion then gives \(\varphi_F(t)\ll t^{-\min(e,e_{\rm crit})}\) and
+nothing more: with honest constants \(\varphi_F\ll t^{-0.435}\), ideally
+\(\varphi_F\ll t^{-0.507}\), never \(\varphi_F\equiv0\). Contagion gives
+\(\varphi_F\gg t^{-0.5078}\) if \(F\ne\emptyset\). The two bounds do not
+cross. What does cross contagion is the *direct* inclusion
+\(F\cap(y,2y]\subseteq\{\tau>d(y)\}\) applied to all starts — Theorem
+A — not the recursion. Conversely, if \(F\ne\emptyset\) and \(\psi_F\)
+decayed faster than the critical rate, the sandwich would force
+\(\varphi_F(t)\asymp t^{-0.507}\): a nonempty failure set with a small
+free term would have log-count exactly of the order
+\((\log x)^{0.4927}\).
+
+### 11.3 The depth-uniformity budget
+
+Section 10.4(e) says that a proof of the Tao-type bound must use
+information at depth \(\to\infty\). The exact form of the bound says
+how uniform that information must be. Suppose an analytic method
+proves cylinder equidistribution at depth \(d\) with a power saving,
+\(\#[w]_y=2^{-(d-1)}\tfrac y2+O(y^{1-\delta_d})\), where the saving
+exponent loses a factor \(2^{c}\) per depth: \(\delta_d=\delta_0 2^{-cd}\)
+(Weyl differencing loses \(c\ge1\); Paper B's chain \(\tfrac1{24}\to\tfrac1{96}\)
+from depth three to four is \(c=2\)). Theorem B needs the error to be
+\(o(y(\log y)^{-e(C)})\) at \(d=C\log_2\log y\), i.e.
+\(2^{-cd}\log y\ge e(C)\log\log y\), i.e. \((\log y)^{1-cC}\gtrsim\log\log y\):
+\[
+cC<1,\qquad\text{so the per-depth loss factor must be below }2^{1/C}=1.037\ (C=19),\ 1.017\ (C=41).
+\]
+Any method losing more than about \(4\%\) of its saving exponent per
+depth is structurally excluded from the Tao depth, whatever it does at
+depth five; Weyl differencing, at \(c\ge1\), reaches at most depth
+\(\approx\log_2\log y\) — one unit of \(L(y)\), enough for the all-\(E\)
+word to reach the floor, not for the Chernoff tail, which needs
+\(C\ge5\) units. (A polylogarithmic *relative* saving at every depth,
+as in \(\mathrm H(C,A)\), would suffice; what is excluded is
+power-saving machinery whose exponent decays exponentially in the
+depth.) This is the quantitative content of "uniform in depth": the
+saving may decay at most like \(2^{-d/C}\).
+
+### 11.4 What is closed
+
+The termination frontier of the laboratory is a single statement —
+the live mass of odd starts at scale \(y\) at depth \(C\log_2\log y\)
+decays like \((\log y)^{-e}\), \(e>1-\lambda^{***}\) — with the
+pressure/no-momentum form its weakest sufficient condition, the free
+term \(\psi_F\) its \(OO\)-restriction at infinite depth, contagion the
+mechanism that turns it into the conjecture, and the exact map the
+identity that shows nothing else is free. No new hypothesis arises;
+the unification is a `REPARAMETERIZATION` and the question is closed.
+Nothing unconditional is claimed.

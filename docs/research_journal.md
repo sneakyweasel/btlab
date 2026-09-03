@@ -22528,3 +22528,94 @@ Best next question
   (log y)^{-C'} — so that the hypothesis becomes an almost-all statement
   about cylinders rather than a uniform one?
 ```
+
+## The weakest hypothesis: live pressure and no momentum (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Answer the standing question: is there a hypothesis on Juggler parity words weaker than the uniform one-sided cylinder bound \(\mathrm H_q(C,A)\) from which the exponent-walk concentration argument still yields the Tao-type bound, and hence (through contagion) the conjecture?
+- **Hypotheses:** The concentration step needs one exponential moment of the odd count on live starts (orbit still above the certified floor), not per-cylinder control; if so, the hypothesis should be insensitive to bounded-depth phenomena and to the tower cylinders. Falsifier: every weakening reduces by Walsh inversion to per-cylinder control at all depths (then the question is a reparameterization and closes).
+- **Major results:**
+  - **Theorem B‴ (EXACT — HUMAN PROOF, `J-tao-pressure-form`):** the live pressure \(\mathrm P_\theta(C)\): \(\frac1N\sum_{n\ \mathrm{odd},\ \tau(n)>d}e^{\theta o_d(n)}\le(\tfrac12(1+e^\theta))^de^{o(d)}\) at \(\theta=\log(p_C/(1-p_C))\) gives the bound of Theorem B (exponential Markov + \(\tau>d\Rightarrow o_d\ge p_Cd\)); with \(C\ge 19\) the conjecture. Proposition 10.1: the no-momentum form — tilted odd share \(s_\theta(t)\) of live starts (weights \(e^{\theta o_t}\)) with \(\sum_{t<d}(s_\theta(t)-q)^+=o(d)\) — implies it, with exponent \(C\,D(p_C\|q)/\ln 2\ge\) Azuma's (least \(C\): 19, 41, 214, 1497 at \(q=0.5,0.55,0.60,0.62\)). The stopping at the floor is essential (\(J(1)=1\) is odd).
+  - **What the weakest form does not need (§10.4):** any \(o(\log\log y)\) initial depths (so \(K_3\) and every fixed-depth split are irrelevant to the reduction); towers \(O^t\) biased below odd share \((1+e^{-\theta})/2=0.836\) (\(\mathrm H_q\) needs \(<0.6309\); the conclusion fails only above \(0.981\)); any individual cylinder unless over-populated by \(1.67^t\). Walsh sums of order \(|T|\) enter the moment with weight \(\tanh(\theta/2)^{|T|}\).
+  - **What no form can avoid (§10.4(e)):** information at depth \(\to\infty\): the word measure fair to depth \(k\) and all-\(O\) afterwards satisfies every depth-\(\le k\) cylinder statement and violates the bound. Paper B's fixed-depth program is neither necessary nor sufficient for the reduction; the wall is the tilted average split of typical odd-heavy live words at depth \(\asymp\log\log y\) — a mean over cylinders, not a sup.
+  - **Reparameterizations (`J-tao-cylinder-forms-reparameterization`):** almost-all-cylinder form (exceptional mass \(N(\log y)^{-B}\)) and its pair-correlation form (\(\sum_wD(w)^2=2^{-t-2}\sum_S|W_{S\cup\{t\}}|^2=\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\), collision count \(\mathcal C_t\)) are equivalent up to exponents to \(\mathrm H(C,A)\) by Walsh inversion; recorded so they are not re-derived.
+  - **Pressure census (OBSERVATION, `pressure_census`):** \(40000\) exact orbits at each of \(y=10^{12},10^{20},10^{30},10^{50}\), depths \(\le 40\), \(\theta\in\{0.396,0.6\}\): \(s_\theta(t)\in[0.44,0.56]\) throughout, cumulative excess over \(\tfrac12\) equal to the positive-part noise (0.14–0.26), live moments within 5–8% of the fair-coin DP. No momentum to depth 40.
+- **Refuted ideas:** the framing "the hypothesis is the iterated \(O^t\to O^{t+1}\) split" (Tao note §9, AGENTS.md) — correct for \(\mathrm H_q\), not for the weakest form; corrected in place. The pair-correlation form as a genuinely weaker hypothesis — it is a reparameterization.
+- **Literature:** exponential Markov / Chernoff tilting; Walsh–Fourier analysis of \(\{O,E\}^d\); Paper B §§4–6 for what fixed depth gives.
+- **Open:** \(\mathrm P_\theta(C)\) itself (bulk depth); whether the free term \(\psi_F\) of the exact map admits the same exponentially weighted form (one frontier statement instead of two).
+- **Decision:** PROMOTE Theorem B‴ as the canonical hypothesis of `juggler_loglog_depth_cylinder_bound`; the weakening question is closed (nothing weaker in substance exists on this route); the Tao line stays PARK.
+
+```text
+What was learned
+- the concentration route needs one number per scale: the live pressure of the
+  odd count; everything finer (cylinders, one-sided shares) is convenience
+- any o(log log y) initial depths are free: K_3 is irrelevant to the reduction,
+  and no bounded-depth cylinder statement can close it (fair-then-all-O measure)
+- towers are harmless below odd share 0.84; the wall is the tilted average split
+  of typical odd-heavy live words at depth ~ log log y
+- almost-all-cylinder / pair-correlation forms are Walsh reparameterizations
+- census: tilted odd share 0.50 +- 0.06 to depth 40 at 1e12..1e50
+Strongest theorem
+- Theorem B''': P_theta(C) with C >= 19 implies the Juggler conjecture
+Strongest refutation
+- the "K_3 uniformly in depth" framing of the wall: neither necessary nor sufficient
+Reusable machinery
+- pressure_census, live_word_prefix, fair_tilted_live, chernoff_biased_exponent
+Branch status
+- PROMOTE (Theorem B'''); weakening question CLOSE; Tao line PARK
+Why
+- the weakest form is identified and proved, the census is consistent, and the
+  form shows exactly which information a proof must use (bulk depth) and which
+  it need not (fixed depth, towers)
+Best next question
+- can the free term psi_F of the exact first-letter decomposition (fate note
+  6.2) be written as an exponentially weighted aggregate over live words of the
+  same kind as P_theta, so that the exact map and the Tao reduction have one
+  frontier statement rather than two?
+```
+
+## One frontier statement: the free term is the live mass (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Answer the standing question: can the free term \(\psi_F\) of the exact first-letter decomposition (fate note (6.1)) be written in the live-word language of the pressure hypothesis, so that the exact map and the Tao reduction share one frontier statement?
+- **Hypotheses:** For odd \(n\), \(n\in F\) iff its orbit never enters \([1,N_0]\); so \(\psi_F\) should be a limit of live masses and every Tao-type hypothesis should bound it. Falsifier: a component of \(\psi_F\) not expressible through live words.
+- **Major results (all `REPARAMETERIZATION`, `J-tao-free-term-is-live-mass`, Tao note §11):**
+  - **Proposition 11.1:** \(\psi_F(t)=\lim_{d}\mathbb P^{\log}_{(\sqrt x,x]}(\tau>d\mid OO)\), and under any hypothesis of the note \(\psi_F(t)\le 2(1+o(1))(t/2\log N_0)^{-(e(C)-\varepsilon)}\). The free term is the infinite-depth live mass of the depth-two cylinder \(OO\).
+  - **Duality (§11.2):** the two halves of (6.1) are the two theorems of the fate note — \(\psi\ge0\) is the ideal depth-two contagion recursion (\(\lambda_{\rm ideal}=0.4927\)), \(\psi\le1\) the failure-density upper recursion with homogeneous exponent \(1-\lambda_{\rm ideal}=0.5073\) (ideal fibers) or \(0.4354\) (sweep constant \(2/7\)); the Tao threshold \(0.5078\) is this exponent up to the fiber-constant gap.
+  - **Corollary 11.2:** the exact map cannot replace contagion: \(\psi_F\le t^{-e}\) for any \(e\) gives only \(\varphi_F\ll t^{-\min(e,e_{\rm crit})}\), never \(\varphi_F\equiv0\); the contradiction comes from the direct inclusion \(F\cap(y,2y]\subseteq\{\tau>d(y)\}\) on all starts. A nonempty \(F\) with a small free term would have log-count \(\asymp(\log x)^{0.4927}\).
+  - **Depth-uniformity budget (§11.3):** a cylinder saving \(y^{1-\delta_d}\) with \(\delta_d=\delta_02^{-cd}\) feeds Theorem B at depth \(C\log_2\log y\) iff \(cC<1\): per-depth loss factor below \(2^{1/C}=1.037\) (\(C=19\)). Weyl differencing (\(c\ge1\); Paper B's \(1/24\to1/96\) is \(c=2\)) reaches depth \(\approx\log_2\log y\), one unit of \(L(y)\) — the all-\(E\) word, not the Chernoff tail. Structural, independent of \(K_3\).
+- **Refuted ideas:** "two walls" (free term and Tao hypothesis as distinct obstructions) — they are one quantity; the exact map as a route to \(F=\emptyset\) — its critical exponent equals contagion's.
+- **Literature:** none new.
+- **Open:** the single statement itself — live mass of odd starts at depth \(C\log_2\log y\) decays like \((\log y)^{-e}\), \(e>1-\lambda^{***}\) — in its weakest form \(\mathrm M_{\theta,q}(C)\).
+- **Decision:** CLOSE for the unification question (reparameterization; recorded in `docs/negative_knowledge.md` under Paper B / \(K_3\)); the Tao dossier stays PROMOTE for the conditional theorems, PARK for the hypothesis. The termination line is at its terminal reformulation: one statement, no third formulation to open.
+
+```text
+What was learned
+- psi_F = infinite-depth live mass of the OO cylinder; every Tao-type
+  hypothesis bounds it: one frontier quantity, not two
+- exact map = contagion (psi >= 0) + failure-density upper recursion (psi <= 1);
+  both have critical exponent 1 - lambda_ideal = 0.507 = the Tao threshold
+- the exact map cannot replace contagion; the contradiction needs the direct
+  inclusion F ⊆ {tau > d} on all starts
+- depth-uniformity budget: saving exponent may lose at most 2^{1/C} = 1.037 per
+  depth; Weyl differencing is excluded from the Tao depth regardless of K_3
+Strongest theorem
+- Proposition 11.1 (psi_F as live mass) with Corollary 11.2 (duality)
+Strongest refutation
+- the exact map as an alternative route: same critical exponent, no crossing
+Reusable machinery
+- none new (lambda_root reused for the dual exponents)
+Branch status
+- CLOSE (unification question); Tao line PARK; conditional theorems PROMOTE
+Why
+- the frontier is now a single quantity with its weakest sufficient condition,
+  its exact identity, its mechanism, and a quantitative budget for any
+  analytic attack; nothing weaker exists on this route and no third
+  formulation is warranted
+Best next question
+- none on termination in this laboratory: the statement to export is the
+  no-momentum form M_{theta,q}(C) with the depth budget 2^{-d/C}. Elsewhere:
+  Lachesis — does the tilted-measure view of a periodic word (odd share exactly
+  log 2 / log 3, tilted weight (beta e^theta / a_theta)^L) reproduce Paper A's
+  finance identity as the theta -> theta* limit of a pressure statement?
+```

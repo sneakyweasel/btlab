@@ -741,6 +741,22 @@ number above the floor fails) is consistent with (6.1). So:
 > over-represented among \(\{\lfloor m^{3/2}\rfloor:m\ \text{odd}\}\)
 > at some scales.**
 
+*What the free term is (sequel note §11).* For odd \(n\), \(n\in F\)
+iff its orbit never enters \([1,N_0]\), so \(\psi_F(t)\) is the
+infinite-depth *live mass* of the depth-two cylinder \(OO\) at scale
+\(e^t\): \(\psi_F(t)=\lim_d\mathbb P^{\log}(\tau>d\mid OO)\). The
+Tao-type hypotheses of the sequel note bound exactly this quantity
+(\(\psi_F(t)\ll(t/\log N_0)^{-e}\) under any of them). The two halves
+of (6.1) are the two theorems of this note: \(\psi\ge0\) is the ideal
+depth-two contagion recursion (lower bound, \(\lambda_{\rm ideal}=0.4927\)),
+\(\psi\le1\) the upper recursion for the failure density, whose
+homogeneous decay exponent \(1-\lambda_{\rm ideal}=0.5073\) is the
+Tao-type rate threshold up to the fiber-constant gap. The exact map
+therefore cannot replace contagion (a small free term gives
+\(\varphi_F\ll t^{-0.507}\), not \(\varphi_F\equiv0\)); the frontier is
+one quantity, the live mass of odd-heavy words at depth
+\(\asymp\log\log x\).
+
 A quantitative form (the amount of bias forced by contagion) is
 vacuous with the present constants: contagion's constant for \(F\) is
 \(\asymp 1/\min F\le 1/N_0\), below the boundary slop of (6.1); the
@@ -807,7 +823,10 @@ conditional theorems of the sequel note
 ([juggler_tao_reduction_note.md](juggler_tao_reduction_note.md)) are
 the honest boundary: parity equidistribution — or merely a one-sided
 odd-share bound \(q<\log 2/\log 3\) — on cylinders of depth
-\(O(\log\log y)\) implies the conjecture. Nothing unconditional is
+\(O(\log\log y)\) implies the conjecture; the weakest form is the live
+pressure / no-momentum hypothesis (sequel note §10), and the free term
+\(\psi_F\) is the infinite-depth live mass it controls (sequel note
+§11): one frontier statement, not two. Nothing unconditional is
 claimed beyond Theorem 4.2 and Theorem 6.1.
 
 ## 7. Localizing Paper B: the \(OOEEE\) production and \(\lambda^{***}=0.4922\)

@@ -71,11 +71,39 @@ would allow depth \(\approx 17\log_2\log y\).
 
 **Anatomy of the bad words (COMPUTATIONALLY VERIFIED).** Among
 fair-coin bad words at \((y,d)=(10^{100},75)\), \(99.99\%\) contain an
-odd run \(\ge 4\) and \(98.8\%\) a run \(\ge 5\): the hypothesis is the
-\(O^t\to O^{t+1}\) split for \(t\ge 4\) (the \(K_3\) kernel and its
-iterates), not bounded odd runs. Census on \((10^6,2\cdot 10^6]\): the
-\(O^t\) cylinders split with odd-share within binomial noise of
-\(\tfrac12\) for \(t\le 14\).
+odd run \(\ge 4\) and \(98.8\%\) a run \(\ge 5\): for the uniform
+hypothesis \(\mathrm H_q\) this means the \(O^t\to O^{t+1}\) split for
+\(t\ge 4\) (the \(K_3\) kernel and its iterates), not bounded odd runs.
+Census on \((10^6,2\cdot 10^6]\): the \(O^t\) cylinders split with
+odd-share within binomial noise of \(\tfrac12\) for \(t\le 14\).
+
+**Theorem B‴ (EXACT — HUMAN PROOF, `J-tao-pressure-form`; the weakest
+form).** Let \(\tau(n)\) be the entrance time into \([1,N_0]\) and
+\(o_d(n)\) the odd count of the first \(d\) letters. The *live
+pressure* hypothesis \(\mathrm P_\theta(C)\):
+\(\frac1N\sum_{n\ \mathrm{odd},\ \tau(n)>d(y)}e^{\theta o_d(n)}\le(\tfrac12(1+e^\theta))^{d(y)}e^{o(d)}\),
+at \(\theta=\log(p_C/(1-p_C))\), gives the bound of Theorem B and
+hence (with \(C\ge 19\)) the conjecture. It follows from the
+*no-momentum* form: the tilted odd share \(s_\theta(t)\) — the share of
+odd next letters among live starts weighted by \(e^{\theta o_t}\) —
+satisfies \(\sum_{t<d}(s_\theta(t)-q)^+=o(d)\) for some
+\(q<\log 2/\log 3\) (exponent \(C\,D(p_C\|q)/\ln 2\); least \(C\): 19,
+41, 214, 1497 at \(q=0.5,0.55,0.60,0.62\)). What it does *not* need
+(note §10.4): any \(o(\log\log y)\) initial depths (so \(K_3\) is
+irrelevant to the reduction); towers \(O^t\) biased below odd share
+\(0.836\); any individual cylinder unless over-populated by a factor
+\(1.67^t\). What no form can avoid: information at depth \(\to\infty\)
+— a word measure fair to depth \(k\) and all-\(O\) afterwards satisfies
+every depth-\(\le k\) cylinder statement and violates the bound. The
+intermediate almost-all-cylinder and pair-correlation forms are
+`REPARAMETERIZATION` (`J-tao-cylinder-forms-reparameterization`).
+
+**Pressure census (OBSERVATION, `pressure_census`).** On live starts
+from \(40000\) exact orbits at each of \(y=10^{12},10^{20},10^{30},10^{50}\),
+\(s_\theta(t)\in[0.44,0.56]\) for \(t\le 40\), \(\theta\in\{0.396,0.6\}\);
+cumulative excess over \(\tfrac12\) equal to the positive-part noise;
+live exponential moments within \(5\)–\(8\%\) of the fair-coin DP. No
+momentum to depth \(40\).
 
 ## Current literature
 
@@ -182,12 +210,35 @@ Chernoff count and the \(E\)-tree bookkeeping are human proofs.
 - Lowering \(C\): sharper fiber constants in fate contagion
   (\(\lambda^{**}\to 0.49\)) would allow \(C\ge 18\); the exact walk
   count in place of Chernoff allows depth \(\approx 17\log_2\log y\).
+- Answered (note §10): the weakest hypothesis on the concentration
+  route is the live pressure \(\mathrm P_\theta(C)\) / no-momentum
+  form; it decouples the reduction from every bounded-depth statement
+  (\(K_3\) is neither necessary nor sufficient) and relocates the wall
+  to the tilted average split of typical odd-heavy live words at depth
+  \(\asymp\log\log y\). The intermediate almost-all-cylinder and
+  pair-correlation forms are reparameterizations of \(\mathrm H(C,A)\).
+- Answered (note §11, `J-tao-free-term-is-live-mass`): the free term
+  \(\psi_F\) of the exact map is the infinite-depth live mass of the
+  \(OO\) cylinder, bounded by every hypothesis of the note; the two
+  halves of (6.1) are contagion (lower) and the failure-density upper
+  recursion, with the same critical exponent \(1-\lambda_{\rm ideal}=0.5073\)
+  as the Tao rate threshold; the exact map cannot replace contagion.
+  One frontier statement. Depth-uniformity budget: an analytic
+  cylinder method may lose at most a factor \(2^{1/C}=1.037\) in its
+  saving exponent per depth to reach the Tao depth; Weyl differencing
+  (factor \(\ge 2\)) is structurally excluded regardless of \(K_3\).
 
 ## Decision
 
-`PROMOTE` (Theorems A, B, B′, Corollary C); the follow-up question
-"can Paper B's kernel method be made uniform in the depth" is
-`PARK` behind the \(K_3\) program (`PARK_STOP`, not a refutation).
+`PROMOTE` (Theorems A, B, B′, B‴, Corollary C); the follow-up
+question "can Paper B's kernel method be made uniform in the depth" is
+`PARK` behind the \(K_3\) program (`PARK_STOP`, not a refutation), and
+after §10 it is also known to be beside the point for the reduction:
+the pressure form needs no fixed-depth control and no fixed-depth
+control can reach it. The weakening question ("a hypothesis weaker
+than \(\mathrm H_q\) that contagion still absorbs") is answered by
+Theorem B‴ and closed: the pressure form is the weakest, and the forms
+between it and \(\mathrm H(C,A)\) are reparameterizations.
 
 The question is answered exactly: unconditionally the Tao-type
 statement with bounded target and rate above \(1-\lambda^{**}\) is the
@@ -203,9 +254,14 @@ control (transparent nesting for runs of length one, Paper B for two
 and three) does not reach it, and no laboratory route (rated methods
 blocked at BB/GG/JJ, rate-free methods without depth uniformity)
 gives odd-share control at depth \(\log\log y\). No fate is excluded.
-Best next question: none in this laboratory beyond the recorded
-\(K_3\) program; the odd-share form \(\mathrm H_q(C,A)\) is the
-statement to hand to an analytic number theorist.
+Best next question: none on the Tao line. The termination frontier is
+one statement (note §11.4): the live mass of odd starts at depth
+\(C\log_2\log y\) decays like \((\log y)^{-e}\), \(e>1-\lambda^{***}\);
+the no-momentum form \(\mathrm M_{\theta,q}(C)\) is the version to
+hand to an analytic number theorist — a mean over cylinders, not a
+sup, needing a saving that decays at most like \(2^{-d/C}\) in the
+depth. The unification question (free term versus Tao hypothesis) is
+closed as a reparameterization. Do not open a third formulation.
 
 ## Publication assessment
 

@@ -6458,5 +6458,45 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-tao-pressure-form",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Theorem B‴ and Proposition 10.1 of the Tao-reduction note (the weakest form on the concentration route). Let τ(n) be the entrance time of the orbit of n into the certified floor [1, N₀], o_t(n) the number of odd letters among n, …, J^{t−1}(n), d(y) = ⌈C L(y)⌉, a_θ = (1 + e^θ)/2. Live pressure P_θ(C): (1/N) Σ_{n odd in (y,2y], τ(n) > d} e^{θ o_d(n)} ≤ a_θ^d e^{o(d)}. Theorem B‴: P_θ(C) at θ_C = log(p_C/(1 − p_C)) gives #{n odd in (y,2y] : τ(n) > d(y)} ≤ (y/2)(log 2y / log N₀)^{−(e(C) − ε)}, the bound of Theorem B (proof: τ > d ⟹ u_d > −L ⟹ o_d ≥ p_C d, then the exponential Markov inequality; θ p_C − log a_θ = D(p_C ‖ 1/2)); hence P_{θ_C}(C) with C ≥ 19 implies the Juggler conjecture. No-momentum form M_{θ,q}(C): with μ_{θ,t} the measure on live starts with density ∝ e^{θ o_t(n)} and s_θ(t) = μ_{θ,t}(J^t(n) odd) the tilted odd share, Σ_{t<d} (s_θ(t) − q)^+ = o(d) implies P_θ (q = 1/2) and in general #{τ > d} ≤ N exp(−d D(p_C ‖ q)(1 − o(1))) — exponent C D(p_C ‖ q)/ln 2, at least Azuma’s (least C: 19 at q = 1/2, 41 at 0.55, 214 at 0.60, 1497 at 0.62). The stopping at the floor is essential (J(1) = 1 is odd; the unstopped odd count of every start that reaches 1 grows linearly). Consequences (§10.4): any o(log log y) initial depths are free (each letter costs a factor ≤ e^θ), so K₃ and every fixed-depth split are irrelevant to the reduction; the tower O^t enters only through its tilted weight (β e^θ/a_θ)^{t−1} and is harmless below odd share (1 + e^{−θ})/2 = 0.836 at θ = 0.396 (H_q needs < 0.6309; the conclusion fails only above 2^{−e(C)/C} = 0.981); Walsh sums of order |T| enter the unstopped moment with weight tanh(θ/2)^{|T|}; and no bounded-depth cylinder statement can close the reduction (a word measure fair to depth k and all-O afterwards satisfies every depth-≤ k statement and violates the bound). The wall is the tilted average split of typical odd-heavy live words at depth ≍ log log y, not any individual cylinder. Census (pressure_census, OBSERVATION): s_θ(t) ∈ [0.44, 0.56] for t ≤ 40 at y = 10^12, 10^20, 10^30, 10^50 (40000 exact orbits each), cumulative excess over 1/2 equal to the positive-part noise, live moments within 5–8% of the fair DP. Not a halt theorem; the hypothesis is not proved.",
+  "source": "docs/theory/juggler_tao_reduction_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-tao-cylinder-forms-reparameterization",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Tao-reduction note §10.4(d). The intermediate hypotheses between the uniform cylinder bound H(C, A) and the pressure form P_θ — the almost-all-cylinders form (odd share ≤ q on all cylinders of depth t < d(y) except a family of total mass ≤ N (log y)^{−B}, B > e_q(C); absorbed by the Markov step of Theorem B′) and its second-moment form — are reparameterizations of H(C, A). With D(w) = #[wO] − #[w]/2 and the collision count 𝒞_t = Σ_{|w|=t} #[w]², Parseval over the Walsh characters of the parity word gives Σ_w D(w)² = 2^{−t−2} Σ_{S ⊆ [0,t)} |W_{S ∪ {t}}|² = 𝒞_{t+1}/2 − 𝒞_t/4, so the almost-all form follows from the pair-correlation asymptotic 𝒞_t ≤ (N²/2^{t−1})(1 + (log y)^{−A′}), A′ > C + 2 (two random odd starts share their first t parities with probability 2^{−(t−1)}(1 + o(1))); but by Walsh inversion any two-sided bound of this kind is equivalent, up to the exponent, to polylogarithmic savings on every Walsh sum W_T = Σ_n Π_{s ∈ T} (−1)^{J^s(n)} to depth d(y), i.e. to H(C, A) with another A — the tower cylinders (mass N/2^t ≫ N (log y)^{−B} for t < B log₂ log y) are still required individually. The forms are not weaker in substance; the pressure form (J-tao-pressure-form) is. Do not re-derive them as new hypotheses.",
+  "source": "docs/theory/juggler_tao_reduction_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-tao-free-term-is-live-mass",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Tao-reduction note §11 (one frontier statement). Proposition 11.1: for odd n, n ∈ F iff its orbit never enters [1, N₀], so the free term of the exact first-letter decomposition (fate note (6.1)) is the infinite-depth live mass of the depth-two cylinder OO: ψ_F(t) = lim_{d→∞} P^{log}_{(√x, x]}(τ(n) > d | word₂(n) = OO), a decreasing limit; under any hypothesis of the note (H(C,A), H_q, P_θ) ψ_F(t) ≤ 2(1 + o(1))(t/(2 log N₀))^{−(e(C) − ε)} (dyadic blocks, Paper B depth two for the OO count, Theorem B‴ for the live count). §11.2 (duality): the two halves of (6.1) are the two theorems of the fate note — ψ ≥ 0 is the ideal depth-two contagion recursion g(t) ≥ g(t/2) + (1/3) g(3t/4) (λ_ideal = 0.4927; proved constants give λ*** = 0.4922), ψ ≤ 1 the upper recursion φ_F(t) ≤ φ_F(t/2)/2 + c φ_F(3t/4) + ψ_F(t)/4 whose homogeneous decay exponent is 1 − λ_ideal = 0.5073 (c = 1/4) or 0.4354 (sweep constant c = 2/7); the Tao rate threshold 1 − λ*** = 0.5078 is this exponent up to the fiber-constant gap. Corollary 11.2: the exact map cannot replace contagion — ψ_F ≤ t^{−e} for any e gives only φ_F ≪ t^{−min(e, e_crit)}, never φ_F ≡ 0; the contradiction with contagion comes from the direct inclusion F ∩ (y, 2y] ⊆ {τ > d(y)} on all starts (Theorem A); a nonempty F with a small free term would have log-count ≍ (log x)^{0.4927}. §11.3 (depth-uniformity budget): an analytic method with cylinder saving y^{1−δ_d}, δ_d = δ₀ 2^{−cd}, feeds Theorem B at depth d = C log₂ log y iff cC < 1, i.e. the saving exponent may lose at most a factor 2^{1/C} = 1.037 (C = 19) per depth; Weyl differencing (c ≥ 1; Paper B 1/24 → 1/96 is c = 2) reaches depth ≈ log₂ log y, one unit of L(y), enough for the all-E word, not for the Chernoff tail (C ≥ 5 units). Consequence: the termination frontier of the laboratory is one quantity — the live mass of odd-heavy parity words at depth ≍ log log y — with the pressure form its weakest sufficient condition, ψ_F its OO-restriction at infinite depth, contagion the mechanism, and the exact map the identity showing nothing else is free. No new hypothesis; the unification question is closed. Not a halt theorem.",
+  "source": "docs/theory/juggler_tao_reduction_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py",
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

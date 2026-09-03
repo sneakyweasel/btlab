@@ -537,6 +537,25 @@ a Juggler branch. The remaining external question is
 Rated-line wall BB/GG/JJ is `PARK_STOP` of quantitative \(K_3\), not a
 refutation of Conjectures V/HH.
 
+**Tao-type reduction: reformulations that are not weaker.** The
+weakest hypothesis on the concentration route is the live pressure /
+no-momentum form (`J-tao-pressure-form`, Tao note §10). The
+almost-all-cylinder and pair-correlation forms are Walsh
+reparameterizations of \(\mathrm H(C,A)\)
+(`J-tao-cylinder-forms-reparameterization`); the free term
+\(\psi_F\) of the exact map is the infinite-depth live mass of the
+\(OO\) cylinder and not a second wall
+(`J-tao-free-term-is-live-mass`, note §11). Kind:
+`REPARAMETERIZATION`. Do not: re-derive an "almost all cylinders" or
+"pair correlation" hypothesis as new; treat \(K_3\) as necessary or
+sufficient for the reduction (any \(o(\log\log y)\) initial depths are
+free; a word measure fair to depth \(k\) and all-\(O\) afterwards
+satisfies every depth-\(\le k\) statement and violates the bound); use
+the exact map (6.1) to replace contagion (its upper recursion has the
+same critical exponent \(0.507\) and never gives \(\varphi_F\equiv0\));
+or feed a Weyl-differencing saving into the Tao depth (per-depth loss
+must be below \(2^{1/C}=1.037\); differencing loses \(\ge 2\)).
+
 Members: `J-scale-invariant-R-extension`, `J-increment-first-K3`,
 `J-x1-absorption-K3`, `J-nested-floor-without-W-family`,
 `J-dispersion-count-route`, `J-length7-passenger-theorem-t`,

@@ -25,7 +25,7 @@ bt.*                        problem-independent BT mathematics
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
 6. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
 7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion (the three Moirai: Atropos = reach 1, Lachesis = nontrivial cycle, Clotho = escape): every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4050\) by elementary means and for \(\lambda<\lambda^{***}=0.4922\) with the localized Paper B estimate (§7); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
-8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.595\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 19\) with \(\lambda^{***}\) (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`), because Juggler descent is by powers. Conditional; the hypothesis is at the \(K_3\) wall and beyond. Do not read it as evidence for termination.
+8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.595\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 19\) with \(\lambda^{***}\) (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`), because Juggler descent is by powers. Weakest form (§10, `J-tao-pressure-form`): the live pressure \(\mathrm P_\theta(C)\) — one exponential moment of the odd count on starts still above \(N_0\) — or its no-momentum form (tilted odd share of live starts \(\le q+o(1)\) on average over depths); it needs no fixed-depth control (\(K_3\) is irrelevant to the reduction) and no fixed-depth control can reach it. Conditional; the wall is the bulk of the parity word at depth \(\asymp\log\log y\). Do not read it as evidence for termination.
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).
@@ -196,9 +196,28 @@ for external review.
  and even from its one-sided form: odd-share \(\le q<\log 2/\log 3\)
  on every cylinder of depth \(<C(q)\log_2(\log 2y/\log N_0)\),
  \(C(0.55)=46\) (`J-tao-biased-split-bound`, Azuma). The bad mass sits
- on odd runs \(\ge 4\) (99.99% at \(10^{100}\)): the hypothesis is the
- iterated \(O^t\to O^{t+1}\) split, i.e. the \(K_3\) kernel uniformly
- in depth. Depth-two ceiling of the contagion method is
+ on odd runs \(\ge 4\) (99.99% at \(10^{100}\)): for the uniform form
+ the hypothesis is the iterated \(O^t\to O^{t+1}\) split. The weakest
+ form is the live pressure / no-momentum hypothesis
+ (`J-tao-pressure-form`, Tao note §10): the tilted odd share of live
+ starts (weights \(e^{\theta o_t}\)) is \(\le q+o(1)\) on average over
+ depths \(<C\log_2\log y\); it is one-sided, aggregated over cylinders,
+ free of any \(o(\log\log y)\) initial depths, tolerant of towers biased
+ below \(0.84\), and no bounded-depth cylinder statement can reach it
+ (fair-to-depth-\(k\)-then-all-\(O\) measure). Almost-all-cylinder and
+ pair-correlation forms are `REPARAMETERIZATION`
+ (`J-tao-cylinder-forms-reparameterization`); do not re-derive them.
+ Pressure census: tilted share \(0.50\pm0.06\) to depth \(40\) at
+ \(10^{12}\)–\(10^{50}\) (OBSERVATION). One frontier statement (Tao
+ note §11, `J-tao-free-term-is-live-mass`): the free term \(\psi_F\)
+ of the exact map is the infinite-depth live mass of the \(OO\)
+ cylinder; the two halves of (6.1) are contagion and the
+ failure-density upper recursion with the same critical exponent
+ \(0.507\) as the Tao threshold; the exact map cannot replace
+ contagion; an analytic cylinder method may lose at most a factor
+ \(2^{1/C}=1.037\) in saving exponent per depth (Weyl differencing
+ excluded regardless of \(K_3\)). Do not open a third formulation.
+ Depth-two ceiling of the contagion method is
  \(\lambda=0.4927\); pointwise natural density for all \(x\) does not
  follow (single-seed \(E\)-trees are lacunary). Exact map (note §6,
  `J-fate-odd-generation`, Lean): a two-way closed class is the
