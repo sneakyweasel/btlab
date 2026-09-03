@@ -375,9 +375,10 @@ RECURSIONS = {
     # + OOEEE production on even blocks (localized Paper B Theorem 4.7, note §7): coefficient
     # P_w / e_w = (1/16) / (9/16) = 1/9 at the root scale (9/32) t
     "block_sweep_plus_ooeee": [(1.0, 0.5), (5.0 / 21.0, 3.0 / 8.0), (2.0 / 21.0, 0.75), (1.0 / 9.0, 9.0 / 32.0)],
-    # hypothetical: + OOOEE and OOEOE productions on even blocks (would need the kernel theorem,
-    # Paper B Theorem 5.3 / 6.1, localized to |I| >= P^{23/32}; NOT proved, PARK): coefficient
-    # (1/32) / (27/32) = 1/27 each at the root scale (27/64) t
+    # orientation only: + OOOEE and OOEOE on even blocks. Localization of the
+    # kernel theorem to those fibers is CLOSE (J-kernel-localize): the fibers
+    # have length P^{5/32}, not P^{23/32}. Coefficient (1/32)/(27/32) = 1/27
+    # each at the root scale (27/64) t. Not a theorem.
     "hypothetical_kernel_localized": [
         (1.0, 0.5),
         (5.0 / 21.0, 3.0 / 8.0),

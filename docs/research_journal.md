@@ -22689,3 +22689,57 @@ Best next question
 - none on this line; the no-momentum form stays the export
 ```
 
+## Kernel localization of Theorem 5.3 to \(OOOEE\) / \(OOEOE\) fibers (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Run the falsifier named in fate note §7.4: does any printed leftover of Paper B Theorem 5.3 exceed \(YP^{-1/24}\) on the even-block intervals that \(OOOEE\) / \(OOEOE\) productions use?
+- **Hypotheses:** §7.4 assessed localization at the \(OOEEE\) length \(Y=P^{23/32}\) with leftovers \(\le P^{7/16}\). Either that target is the right one and every leftover sits under it, or the true fiber is shorter and/or Lemma 3.9 is larger.
+- **Major results:**
+  - **Fiber length (EXACT):** \(J^5\asymp n^{27/32}\), so \(I(m')=[m'^{32/27},(m'+1)^{32/27})\) has \(Y\asymp P^{5/32}\) and target \(P^{11/96}\). Below the triple-parity threshold \(P^{1/2}\), below a gap cell \(P^{11/24}\), and below a Lemma 3.7 window \(P^{23/48}\).
+  - **Lemma 3.9 (EXACT — HUMAN PROOF, printed):** \(\lvert\Omega_V\rvert\le C(E)\,P^{89/96}\), so \(\lvert\Omega_V\cap I\rvert\le\min(Y,P^{89/96})=Y\) at both \(P^{5/32}\) and \(P^{23/32}\). \(T_2\) has no saving; Weyl assembly returns no kernel cancellation.
+  - **Passenger leftovers:** \(P^{7/16}\) and \(P^{3/8}\) exceed \(P^{11/96}\); they sit under the (wrong) §7.4 target \(P^{65/96}\).
+  - **\(V\)-retune empty:** at \(Y=P^{23/32}\), sublevel needs \(\sigma\le P^{-31/48}\), piece boundaries need \(\sigma\ge P^{-5/24}\).
+  - Ledger: `J-kernel-localize` (**REFUTED** as a method). Dossier: [juggler_kernel_localize.md](problems/juggler_kernel_localize.md). Probe: `research.juggler_sequence.kernel_localize`. Dyadic `J-kernel-cancellation` not retagged. Fate note §7.4 corrected from PARK to CLOSE. Paper C Appendix C orientation sentence corrected in the markdown source and the `juggler_review/` copy; PDF not rebuilt.
+- **Refuted ideas:** kernel localization to \(OOOEE\) / \(OOEOE\) even-block fibers; the §7.4 reading that leftovers \(\le P^{7/16}\) make \(Y=P^{23/32}\) plausible.
+- **Literature:** Paper B Theorem 5.3 / Lemma 3.9; fate note §7.4; Paper B Theorems 4.11–4.12.
+- **Open:** none on this line. Fiber constant \(1/7\to 1/3\) stays the recorded quantitative step on the contagion dossier.
+- **Decision:** CLOSE.
+
+```text
+What was learned
+- OOOEE / OOEOE even-block fibers have length P^{5/32}, not P^{23/32}
+- Lemma 3.9 leftover is the whole interval at both candidate lengths
+- P^{7/16} exceeds the true target P^{11/96}; it does not exceed P^{0.677}
+- V-retune constraints are disjoint at the §7.4 length
+- the forty estimates are not a pending check
+Strongest theorem
+- none new; J-kernel-cancellation stays the dyadic statement
+Strongest refutation
+- kernel localization to those fibers: T2 has no saving
+Reusable machinery
+- kernel_localize scale arithmetic (printed exponents only)
+Branch status
+- CLOSE
+Why
+- the named falsifier fires on a printed leftover, and the true
+  fiber is shorter than the interval §7.4 assessed
+Best next question
+- none on this line; 1/7 to 1/3 on the OE fiber stays recorded
+```
+
+
+## Paper B audited and upgraded after the first external review (consolidation, not a milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Implement the review of Paper B ([docs/theory/juggler_parity_discrepancy_note.md](theory/juggler_parity_discrepancy_note.md)): an adversarial audit of the kernel argument (Sections 4–6), the localized and twisted forms of Theorems 4.4/4.7 as full theorems, a reframed outlook using Paper C, and the reviewer's editorial points.
+- **Audit (new Appendix A, one row per displayed estimate; probe `research.juggler_sequence.paper_b_audit`, artifact `data/research/juggler/paper_b_audit/summary.json`, test `tests/research/juggler_sequence/test_paper_b_audit.py`):**
+  - Machine layer: exact identities of Lemma 4.3, Lemma 5.1(i)–(iv) (including the master identity and the carry-as-sawtooth identity) and Lemma 6.2 evaluated at 60–120 digits on 360 random odd starts, \(10^4\le n\le 2\cdot10^{14}\) — all hold; standing estimates (E1)–(E6) contain the observed values at \(P=10^6,10^8,10^{10}\); cell inventory exhaustive at \(P=10^5\) (394/787/1179 cells against 475/950/1424; full-cell lengths in \([0.66,0.95]P^{1/2}/h\)); frozen-run counts within bound; 75 displayed \(P\)-power comparisons of Section 5 hold as exact rationals; observation: \(|K_c(P)|\) at \(P\le3\cdot10^5\) is \(0.4\)–\(1.2\) times \((P/2)^{1/2}\).
+  - Hand layer: Lemma 5.1, the standing estimates ((E5) speed constant \(\tfrac{27}8\), (E6) constant \(\tfrac{945}{512}\)), Lemma 5.2 stage by stage (Stage 1 cancellation \(A_h=-\tfrac{27}8h^2\nu^{1/4}\); Stage 3–6 constants recomputed), Theorem 5.3 Steps 1–6 with 5a (\(\lambda_a\in[1.31,1.42]k|j|P^{-1/8}\); collision sums; run sums) and 5b (\(\tfrac{243}{128}=\tfrac{2673-729}{1024}\); \(a=-\tfrac{27}{10}\), \(b=\tfrac{81}{22}\); \(V/S\le3P^{-7/48}\); \(P^{89/96}\)) — all consistent.
+  - **Three corrections, none changing a statement:** Lemma 4.3's proof printed \(f''=\tfrac38(X-t)^{-1/2}\) (correct \(\tfrac34\); the Lagrange term is \(\tfrac38(X-\xi)^{-1/2}\theta^2\) directly); Lemma 3.9's "\(\ell^\infty\) operator norm 288" is the \(\ell^1\) norm — the \(\ell^\infty\) norm the proof needs is \(232\) (inverse \(\bigl(\begin{smallmatrix}10&68&32\\-24&-144&-64\\15&76&32\end{smallmatrix}\bigr)\)), so \(c_7=1/288\) stays valid; Lemma 6.2 absorbed the Lagrange remainders \(E_2,E_z\) into coefficients \(\tfrac34,\tfrac12\) that have no slack near \(\theta_2,\theta_z\to1\) — now displayed (orders \(n^{-45/16}\), \(n^{-81/16}\)).
+- **New Section 4.5 (`J-parity-triple-discrepancy-localized`):** Lemma 4.10 (a slow twist \(e(\tfrac\ell2n^{9/16})\), \(|\ell|\le P^{1/24}\), is removed by partial summation after differencing; total variation \(\le0.26P^{-5/16}\)); Theorems 4.11–4.12 (Theorems 4.4/4.7 on any \(I\subseteq(P,2P]\) of length \(Y\ge P^{1/2}\), with the twist), proved by re-running Steps 1–7 with \(Y\) and exhibiting the three absolute terms (\(5.2(jh)^{-1/2}P^{3/8}\), \(3.8P^{7/16}\), \(17P^{1/4}\)); Corollary 4.13 (the \(OOEEE\) count on \(I(m')\)). Paper C's Hypothesis L is now this theorem; Paper C's Appendix C status paragraph updated and rebuilt.
+- **Section 7.6 (new):** what each depth buys (contagion exponent \(0.4050\to0.4922\), certificate densities, Tao constants) and what no depth can buy (the frontier statement is insensitive to \(o(\log\log y)\) depths; no bounded-depth cylinder statement suffices; per-depth loss budget \(2^{1/19}=1.037\) against differencing's factor \(\ge2\)).
+- **Editorial:** novelty wording ("we are unaware of a published power-saving estimate…", the falsifiable new object named independently of the literature); "complete depth-4 parity equidistribution for odd-rooted itineraries" and "certificate density" throughout; Lemma 5.2 promoted in abstract, introduction and the Section 5 opening; §1.1 describes the audit without claiming independent verification; abstract states "first genuinely nested layers, not the infinite-depth problem".
+- **Lean:** `GapCells.lean` gains `carry_eq_fract_add_sub_fract` and `second_difference_product_rule` (`lake env lean` clean; module already registered).
+- **Records:** ledger rows `J-parity-triple-discrepancy-localized` (EXACT — HUMAN PROOF), `J-parity-paper-b-audit` (COMPUTATIONALLY VERIFIED); `J-fate-ooeee-production` now points to the Paper B theorem; review README and packet updated (Paper B claim map extended; Paper C's Hypothesis L row); `AGENTS.md` item 2. PDF rebuilt (39 pages).
+- **Decision:** consolidation; Paper B remains a working draft awaiting a second human reading of Lemma 5.2 and Steps 5a–5b, which Appendix A now makes possible row by row. Not a halt theorem.
+

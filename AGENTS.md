@@ -19,7 +19,7 @@ bt.*                        problem-independent BT mathematics
 ## Juggler reading path
 
 1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (itinerary obstructions + finance + the §5 walk-charge envelope; lab extracts [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md) and [juggler_cycle_itinerary_structure_note.md](docs/theory/juggler_cycle_itinerary_structure_note.md) — word geometry for termination, cycles, and escape)
-2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers
+2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers (audited 3 Sep 2026: Appendix A audit ledger + `research.juggler_sequence.paper_b_audit`, three corrections changing no statement; §4.5 localized/twisted Theorems 4.11–4.12 and the \(OOEEE\) Corollary 4.13 feeding Paper C; §7.6 what the kernel program buys and cannot)
 3. [docs/theory/juggler_flight_note.md](docs/theory/juggler_flight_note.md) — laboratory extract: descent-free flights (envelope, dichotomy, anchor-period, divergent structure, shared lattice). Not a paper; the flight program is descriptively terminal.
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
@@ -235,10 +235,13 @@ for external review.
  saving \(P^{-1/24}\); the \(OOEEE\) production on even blocks gives
  \(\lambda^{***}=0.4922\) (Tao threshold \(0.5077\), \(C(1/2)=19\),
  \(C(0.55)=41\)). Kernel-theorem localization (Paper B 5.3/6.1, for
- \(OOOEE\)/\(OOEOE\) on even blocks; would give \(\lambda=0.5561\),
- \(C=18\)) is assessed plausible and PARK (fate note §7.4): same
- scaling architecture, forty displayed estimates not re-derived;
- falsifier is an absolute cost above \(P^{0.677}\). \(\mathrm H(C,A)\)
+ \(OOOEE\)/\(OOEOE\) on even blocks; orientation \(\lambda=0.5561\),
+ \(C=18\)) is **CLOSE** (fate note §7.4, `J-kernel-localize`): the
+ fibers have length \(P^{5/32}\), below the triple-parity threshold
+ \(P^{1/2}\), and Lemma 3.9's trivial bound is the whole interval
+ (\(P^{89/96}\) on a dyadic block; \(\min(Y,P^{89/96})=Y\) on either
+ candidate \(Y\)). Do not reopen as a forty-estimate re-derivation
+ or a \(V\)-retune. \(\mathrm H(C,A)\)
  uses the odd-start fair share \(2^{-(d-1)}y/2\) (first letter \(O\)).
  The certified floor is the *target*: exact orbits from \(10^{12}\) to
  \(10^{50}\) stay above \(N_0\) at the odd-start fair-coin rate to depth

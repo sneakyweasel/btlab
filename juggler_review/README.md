@@ -44,13 +44,25 @@ https://sneakyweasel.github.io/balanced_ternary/
    \(10^5\) are supporting material.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
-   kernel theorem, depth-4 completeness over odd starts, the
+   level-2 wave bound (Lemma 5.2) and the kernel theorem, complete
+   depth-4 parity equidistribution for odd-rooted itineraries, the
    length-5 contractors, and the certified-descent densities
    \(13/16\) (four steps) and \(7/8\) (five steps). Human proofs.
-   Writeup repaired and harvest imported 2 September 2026
-   (Lemma 5.2 budget, Step 5b interpolant, named \(P_0\);
-   Lemma 6.2 / Theorem 6.3 / Corollary 6.4). Length 7/8 remain
-   laboratory conjectures.
+   Revised 3 September 2026 after a first external review: a full
+   audit of Sections 4–6 (Appendix A, one row per displayed
+   estimate; machine layer `research.juggler_sequence.paper_b_audit`
+   — exact identities at 60–120 digits, standing estimates on three
+   scales, 75 exponent checks) with three corrections that change no
+   statement (Lemma 4.3 proof coefficient, the norm named in
+   Lemma 3.9, two displayed remainders in Lemma 6.2); new Section 4.5
+   proving Theorems 4.4 and 4.7 on sub-dyadic intervals of length
+   \(\ge P^{1/2}\) with a slow twist (Theorems 4.11–4.12, Corollary
+   4.13 — the \(OOEEE\) production that Paper C's Appendix C uses);
+   new Section 7.6 on what the kernel program buys for termination
+   and what it cannot; novelty and "certificate density" phrasing
+   tightened. Two more exact identities in Lean
+   (`carry_eq_fract_add_sub_fract`, `second_difference_product_rule`).
+   Length 7/8 remain laboratory conjectures.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)
    — **Paper C**: *Fate Contagion in the Juggler Map and the
    Almost-All Reduction of Termination* (revised 3 September 2026

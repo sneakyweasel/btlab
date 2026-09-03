@@ -109,6 +109,39 @@ theorem seq_floor_gap_second (Y : ℕ → ℝ) (n h₁ h₂ : ℕ) :
       Y (n + h₁ + h₂) - Y (n + h₂) from by ring] at hDW
   omega
 
+/-- Carry as a difference of sawtooths (Lemma 5.1(ii) of the
+parity-discrepancy note): the 0/1 carry `𝟙[{a} + {b} ≥ 1]` equals
+`{a} + {b} − {a + b}` exactly, for all reals. This is the identity that
+lets the kernel argument expand each carry additively by finite
+Fourier series. -/
+theorem carry_eq_fract_add_sub_fract (a b : ℝ) :
+    (if 1 ≤ Int.fract a + Int.fract b then (1 : ℝ) else 0) =
+      Int.fract a + Int.fract b - Int.fract (a + b) := by
+  have hfl := floor_add_eq_add_carry a b
+  have ha := Int.floor_add_fract a
+  have hb := Int.floor_add_fract b
+  have hab := Int.floor_add_fract (a + b)
+  have hcast : ((⌊a + b⌋ : ℤ) : ℝ) =
+      (⌊a⌋ : ℝ) + (⌊b⌋ : ℝ) +
+        (if 1 ≤ Int.fract a + Int.fract b then (1 : ℝ) else 0) := by
+    rw [hfl]; push_cast
+    split_ifs <;> simp
+  linarith
+
+/-- The exact product rule for second differences over four base
+points (the algebraic skeleton of the master identity, Lemma 5.1(iv)
+of the parity-discrepancy note): with the values of `c` and `f` at
+`n`, `n+d₁`, `n+d₂`, `n+d₁+d₂` written `ca, cb, cc, cd` and
+`fa, fb, fc, fd`, the doubly differenced product decomposes into the
+doubly differenced `f` weighted by the shifted `c`, two mixed terms,
+and the doubly differenced `c` weighted by `f`. -/
+theorem second_difference_product_rule
+    (ca cb cc cd fa fb fc fd : ℝ) :
+    cd * fd - cb * fb - cc * fc + ca * fa =
+      cd * (fd - fb - fc + fa) + (cd - cb) * (fb - fa) +
+        (cd - cc) * (fc - fa) + (cd - cb - cc + ca) * fa := by
+  ring
+
 /-- Parity bridge: `⌊x⌋` is odd exactly when `{x/2} ≥ 1/2`. This is
 the exact fractional-part reduction that converts the parity sums of
 the discrepancy program into interval discrepancies. -/

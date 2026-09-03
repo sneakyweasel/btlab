@@ -210,6 +210,11 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Level-3 kernel cancellation \(K_3(P)\ll P^{1-\delta}\) (Conjecture 7.3) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
 | Shift-averaged \(L^2\) bound (Proposition 7.4) | **EXACT — HUMAN PROOF** | almost-every-shift, square-root times \(\sqrt{\log L}\) in general; no claim at \(\lambda=0\) |
 | Pure amplitude-product model (Conjecture 7.5) | **CONJECTURE** | not claimed; Exp(1) censuses at \(P=10^6\)–\(10^{10}\) |
+| Nested and triple parity discrepancy on sub-dyadic intervals \(Y\ge P^{1/2}\) with a slow twist \(e(\tfrac\ell2n^{9/16})\), \(\lvert\ell\rvert\le P^{1/24}\) (Lemma 4.10, Theorems 4.11–4.12) | **EXACT — HUMAN PROOF** | Steps 1–7 of Theorems 4.4/4.7 with \(Y\) for the number of summands; three absolute terms \(\le P^{7/16}\); twist removed by partial summation after differencing (total variation \(\le0.26P^{-5/16}\)) |
+| \(OOEEE\) production on even blocks, \(\lvert\mathcal O(m')\rvert=\tfrac1{16}\lvert I(m')_{\rm odd}\rvert+O(\lvert I(m')\rvert m'^{-4/27+\varepsilon})\) (Corollary 4.13) | **EXACT — HUMAN PROOF** | nesting bound \(0\le n^{9/16}-v^{1/4}\le n^{-15/16}\); exceptional set \(\ll YP^{-1/16}\) by Erdős–Turán + Kusmin–Landau; Vaaler expansion of the fifth letter; discharges Paper C's Hypothesis L |
+| Audit of Sections 4–6 (Appendix A; `paper_b_audit`) | **COMPUTATIONALLY VERIFIED** (machine layer) + hand re-derivation | exact identities on 360 starts at 60–120 digits; standing estimates on \(P=10^6,10^8,10^{10}\); 75 exponent checks; three corrections changing no statement (Lemma 4.3 proof coefficient \(3/4\); Lemma 3.9 norm \(232\) vs printed \(288\), \(c_7\) unchanged; Lemma 6.2 remainders displayed); not an independent verification |
+| Carry as sawtooth difference; second-difference product rule | **EXACT — LEAN VERIFIED** | `GapCells.lean`: `carry_eq_fract_add_sub_fract`, `second_difference_product_rule` |
+| What the kernel program buys and cannot (Section 7.6) | prose, cites Paper C | fixed-depth results improve constants (\(\lambda^{***}\), certificate densities, Tao constants) and cannot reach the termination frontier (per-depth loss budget \(2^{1/19}\)) |
 
 ## Claim map — Paper C
 
@@ -241,7 +246,7 @@ imported as the explicit standalone Hypothesis L.
 | What the weakest form does not need; bounded-depth barrier (Section 9.3) | **EXACT — HUMAN PROOF** | fair-to-depth-\(k\)-then-all-\(O\) measure; intermediate forms are **REPARAMETERIZATION** |
 | Free term = infinite-depth live mass; duality; critical exponent \(0.5073\) (Proposition 10.1, Corollary 10.2; Theorem 5) | **EXACT — HUMAN PROOF** / **REPARAMETERIZATION** | exact map cannot replace contagion |
 | Depth-uniformity budget \(cC<1\) (Proposition 10.3) | **EXACT — HUMAN PROOF** | narrow by design: methods whose only error term decays like \(2^{-cd}\), used through the per-cylinder count |
-| Hypothesis L (localized twisted triple discrepancy), Appendix C | **CONJECTURE** (hypothesis) | dyadic untwisted case is Paper B Theorem 4.7; localization and twist not proved; status stated |
+| Hypothesis L (localized twisted triple discrepancy), Appendix C | hypothesis in Paper C; **EXACT — HUMAN PROOF** in Paper B (Theorem 4.12) | Paper C relies only on the statement; Paper B remains a working draft |
 | \(OOEEE\) production and \(\lambda^{***}=0.4922\) from Hypothesis L (Lemmas C.1–C.3, Proposition C.4, Theorem C.5) | **EXACT — HUMAN PROOF**, conditional on Hypothesis L | nesting, exceptional set (Erdős–Turán + Kusmin–Landau), Vaaler expansion written out |
 | Fiber/block/closure, survival and pressure experiments (Section 11) | **OBSERVATION** / **COMPUTATIONALLY VERIFIED** (closure to \(10^9\)) | prove nothing; one table, one paragraph |
 

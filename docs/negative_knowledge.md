@@ -567,6 +567,22 @@ reparameterization). Direct-attack dossier:
 [juggler_pressure_direct](problems/juggler_pressure_direct.md)
 (`J-pressure-direct-routes`).
 
+**Kernel localization to \(OOOEE\) / \(OOEOE\) even-block fibers.**
+Killed claim: Paper B Theorem 5.3 localizes to those fibers (fate
+note §7.4: leftovers \(\le P^{7/16}\) against \(YP^{-1/24}=P^{0.677}\)
+at the \(OOEEE\) length \(Y=P^{23/32}\); forty estimates pending).
+Kill: the fibers have length \(Y\asymp P^{5/32}\), target
+\(P^{11/96}\); Lemma 3.9's trivial bound is \(\min(Y,P^{89/96})=Y\)
+at both candidate lengths, so \(T_2\) has no saving; \(P^{7/16}\)
+exceeds the fiber target; \(V\)-retune constraints are disjoint.
+Kind: `REFUTED` / `METHOD_OBSTRUCTION`.
+Do not reopen: forty-estimate re-derivation; short-interval kernel;
+\(V\)-retune; bulk count over a long union of \(m'\) (sparse \(A\)
+still needs per-seed mass). The dyadic theorem
+`J-kernel-cancellation` is not retagged. Dossier:
+[juggler_kernel_localize](problems/juggler_kernel_localize.md)
+(`J-kernel-localize`).
+
 Members: `J-scale-invariant-R-extension`, `J-increment-first-K3`,
 `J-x1-absorption-K3`, `J-nested-floor-without-W-family`,
 `J-dispersion-count-route`, `J-length7-passenger-theorem-t`,
@@ -698,7 +714,8 @@ CLOSE) are included so the completeness gate cannot hide them.
 ### Additional ledger REFUTED
 
 `J-ceiling-finance-leftover-killer`, `J-equal-valleys-leftover-killer`,
-`J-l84-m-ge-three-floor-261`, `J-second-valley-leftover-killer`.
+`J-kernel-localize`, `J-l84-m-ge-three-floor-261`,
+`J-second-valley-leftover-killer`.
 
 ### Additional CLOSE / MIXED dossiers
 
@@ -728,6 +745,7 @@ CLOSE) are included so the completeness gate cannot hide them.
 [juggler_four_even_short_gap](problems/juggler_four_even_short_gap.md),
 [juggler_growth_balance](problems/juggler_growth_balance.md),
 [juggler_isolated_odd_return](problems/juggler_isolated_odd_return.md),
+[juggler_kernel_localize](problems/juggler_kernel_localize.md),
 [juggler_landing_parity](problems/juggler_landing_parity.md),
 [juggler_landing_valuation](problems/juggler_landing_valuation.md),
 [juggler_lean_architecture](problems/juggler_lean_architecture.md),

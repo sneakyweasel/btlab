@@ -994,56 +994,64 @@ biased-split form \(C(0.5)=19\), \(C(0.55)=41\), \(C(0.60)=223\),
 (perfect fiber equidistribution *without* deeper certificates); the
 \(OOEEE\) production has carried the elementary exponent from
 \(0.405\) to within \(0.0005\) of it by a different route. Further
-gains would come from \(OOOEE\) and \(OOEOE\) on even blocks
-(Paper B Theorem 6.3 through the kernel theorem — its localization is
-not examined here) and from sharper fiber constants.
+gains from \(OOOEE\) and \(OOEOE\) on even blocks are closed
+(§7.4): those fibers have length \(P^{5/32}\), below the threshold
+of Theorem 4.11, and the kernel theorem does not localize to them.
+Sharper fiber constants remain the only recorded quantitative step.
 
 *What is unchanged.* Proposition 7.1 is a statement about consecutive
 odd starts in an interval; it says nothing about the odd images
 \(S_{\rm odd}\) of §6, and the free term \(\psi_F\) of (6.1) is
 untouched. The improvement is quantitative.
 
-### 7.4 The kernel theorem: assessment, not a proof
+### 7.4 The kernel theorem: the falsifier fires
 
 The next two productions on even blocks would be \(OOOEE\) and
 \(OOEOE\) (Paper B Theorem 6.1, the \(OOO*\) splits), each with
 coefficient \((1/32)/(27/32)=1/27\) at the root scale \(27t/64\).
-Their recursion root is \(\lambda=0.5561\ldots\), the rate threshold
-would drop to \(0.4439\), and the least depth constants to \(C=18\)
-(fair and \(q=\tfrac12\)) and \(C(0.55)=38\)
-(`hypothetical_kernel_localized` in the probe). Theorem 6.1 rests on
-the kernel theorem (Paper B Theorem 5.3, \(K_c(P)\ll P^{1-1/96+\varepsilon}\)),
-whose proof is a double Weyl differencing (\(H_1=P^{1/48}\),
-\(H_2=P^{1/24}\)) over an exact carry-branch decomposition, with the
-doubly differenced phase split by a master identity into four
-bounded pieces, each expanded by Lemma 3.7 on frozen windows and
-estimated per window by Lemmas 3.3, 3.8, 3.9 (Steps 1–6, some 430
-lines). We read the proof for the same question as in
-Proposition 7.1 — does every displayed cost scale with the number
-of summands or stay below the target? — and found the same
-architecture: the additive costs are per-point (flat term
-\(8(1+|B|)/T\), majorant \(1/(J+1)\), \(M_1\) deletion
-\(2.7kh_1h_2P^{-7/8}\), window residuals \(6.3P^{-1/8}\)) times the
-number of summands, or per-window absolute costs (\(M^{-1/2}\),
-\((P/M)^{1/3}\le P^{3/8}\), \(\lambda_a^{-1/2}\le P^{1/16}\)) times
-window counts that are themselves proportional to the length plus
-\(O(1)\); the leading term \(\sum_w|I_w|M^{1/2}\le2.5(k|j|)^{1/2}P^{15/16}\)
-is length times \(\lambda_a^{1/2}\) and scales. On an interval
-\(I\subseteq(P,2P]\) of length \(Y\) the differencing gives
-\(|K_c(I)|^2\le2Y^2/H_1+(4Y/H_1)\sum|T_1|\), and the balance
-\(|T_2|\ll YP^{-1/24+\varepsilon}\Rightarrow|K_c(I)|\ll YP^{-1/96+\varepsilon}\)
-needs every absolute leftover below \(YP^{-1/24}=P^{0.677}\) at
-\(Y=P^{23/32}\); the block proof's absolute terms are at most
-\(P^{7/16}\). So localization to \(Y\ge P^{23/32}\) is plausible and
-the check is mechanical. It is **not done here**: it requires
-re-deriving each of the roughly forty displayed estimates of
-Steps 3–5 with \(Y\) in place of \(P\) where it belongs, and the
-resonant, collision-band and anchor-class pieces have window
-hypotheses (Lemma 5.2's decorations) that must be re-verified on
-partial windows. The gain is one unit of \(C\) and \(0.064\) in the
-exponent; the free term \(\psi_F\) is untouched either way. Decision:
-PARK, with the precise falsifier "an absolute cost in Steps 3–5 of
-Paper B §5 exceeding \(P^{0.677}\)".
+Their recursion root is \(\lambda=0.5561\ldots\)
+(`hypothetical_kernel_localized` in the probe). That number is
+orientation only. Theorem 6.1 rests on the kernel theorem (Paper B
+Theorem 5.3), a double Weyl differencing whose \(T_2\) target on an
+interval of length \(Y\) is \(\lvert T_2(I)\rvert\ll YP^{-1/24}\).
+
+The even-block fiber of either word is
+\(I(m')=[m'^{32/27},(m'+1)^{32/27})\), because \(J^5(n)\asymp n^{27/32}\).
+At \(P=m'^{32/27}\) one has \(Y\asymp P^{5/32}\), so the target is
+\(YP^{-1/24}=P^{11/96}\). This is below the triple-parity threshold
+\(Y\ge P^{1/2}\) of Theorem 4.11, and below a single gap cell
+(\(\ge P^{11/24}\)) and a single Lemma 3.7 freeze window
+(\(\ge P^{23/48}\)). An earlier reading used the \(OOEEE\) length
+\(Y=P^{23/32}\) and the target \(P^{65/96}\approx P^{0.677}\), and
+concluded that the block proof's per-window leftovers
+(\(P^{7/16}\), \(P^{3/8}\)) sat underneath. That is the wrong
+interval: \(P^{7/16}>P^{11/96}\).
+
+Independently, Step 5b's Lemma 3.9 leftover is already above both
+targets. The printed trivial bound is
+\(\lvert\Omega_V\rvert\le C(E)\,P^{89/96}\) at the printed \(V\),
+so \(\lvert\Omega_V\cap I\rvert\le\min(Y,P^{89/96})\). At
+\(Y=P^{5/32}\) and at \(Y=P^{23/32}\) this is the whole interval.
+The transition set receives the trivial bound, so \(T_2\) has no
+saving and the Weyl assembly returns \(\lvert K_c(I)\rvert\ll Y\)
+with no \(P^{-1/96}\). Retuning \(V\) to shorten \(\Omega_V\) on
+\(Y=P^{23/32}\) forces \(\sigma=V/S\le P^{-31/48}\) for the
+sublevel and \(\sigma\ge P^{-5/24}\) for the piece-boundary sum
+\(N_I V^{-1/2}\); the two constraints are disjoint. The printed
+\(\Omega_V\) bound meets \(YP^{-1/24}\) only for
+\(Y\ge P^{31/32}\), a near-dyadic block, not a fiber.
+
+The forty displayed estimates of Steps 3–5 are therefore not a
+pending check: the falsifier named in the parked assessment
+("an absolute cost exceeding \(P^{0.677}\)") already fires on a
+printed leftover, and the true fiber is shorter still. The dyadic
+kernel theorem is untouched. The free term \(\psi_F\) is untouched
+either way. Decision: CLOSE
+(`J-kernel-localize`; dossier
+[juggler_kernel_localize.md](../problems/juggler_kernel_localize.md)).
+Do not reopen as a forty-estimate re-derivation, a short-interval
+kernel, a \(V\)-retune, or a bulk count over a long union of \(m'\)
+(a sparse backward-closed \(A\) still needs per-seed mass).
 
 ## 8. What the certified floor and the period bound say here
 

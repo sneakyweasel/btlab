@@ -186,15 +186,12 @@ Theorem 4.2) is not formalized.
 - Done (note §7, `J-fate-ooeee-production`): Paper B's Theorems
   4.4/4.7 localize to intervals of length \(\ge P^{1/2}\) with relative
   saving \(P^{-1/24}\); the \(OOEEE\) production on even blocks raises
-  the exponent to \(\lambda^{***}=0.4922\). Assessed and parked (note
-  §7.4): localizing the kernel theorem (Paper B Theorem 5.3 → 6.1)
-  for \(OOOEE\)/\(OOEOE\) on even blocks would give \(\lambda=0.5561\),
-  rate threshold \(0.4439\), least \(C=18\) (\(C(0.55)=38\)); the proof
-  has the same scaling architecture as Theorem 4.4 (per-point costs
-  and per-window absolute costs \(\le P^{7/16}\) against the target
-  \(YP^{-1/24}=P^{0.677}\)), so localization is plausible, but the
-  forty-odd displayed estimates of Steps 3–5 are not re-derived here.
-  Falsifier: an absolute cost above \(P^{0.677}\). Remaining
+  the exponent to \(\lambda^{***}=0.4922\). Closed (note §7.4,
+  `J-kernel-localize`): localizing the kernel theorem for
+  \(OOOEE\)/\(OOEOE\) on even blocks does not meet the \(T_2\) target.
+  Those fibers have length \(P^{5/32}\), below the triple-parity
+  threshold \(P^{1/2}\); Lemma 3.9's trivial bound is the whole
+  interval. The orientation root \(0.5561\) is not a theorem. Remaining
   quantitative step: sharpen the fiber constant \(1/7\to 1/3\).
 - Note §8: what the certified floor \(N_0=3.5\cdot 10^8\) and the
   period bound \(L\ge 780239\) say in this framework — the floor

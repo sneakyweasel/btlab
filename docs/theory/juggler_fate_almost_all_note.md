@@ -228,8 +228,8 @@ iff \(cC<1\) (Proposition 10.3). Weyl differencing has \(c\ge 1\).
 
 Under a localization of the triple parity discrepancy of nested floor
 powers to sub-dyadic intervals — stated as an explicit hypothesis in
-Appendix C, where its status relative to the working draft [12] is
-described — the exponent of Theorem 1 improves to
+Appendix C; it is Theorem 4.12 of the working draft [12], and its
+status is described there — the exponent of Theorem 1 improves to
 \(\lambda^{***}=0.4922\ldots\), the rate threshold of Theorem 3 to
 \(0.5078\), and the least depth constant of Theorem 4 to \(C\ge 19\).
 Nothing in Sections 2--12 depends on Appendix C.
@@ -1684,7 +1684,7 @@ analytic density estimates.
 | block average + sweep (\(\lambda^{**}\), Theorem 1) | \((\tfrac5{21},\tfrac38),(\tfrac2{21},\tfrac34)\) | \(0.4051\) |
 | + \(OOEEE\) on even blocks (\(\lambda^{***}\), Appendix C, conditional) | \(\ldots,(\tfrac19,\tfrac9{32})\) | \(0.4923\) |
 | depth-two ideal | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
-| + \(OOOEEE\), \(OOEOEE\) (not proved, for orientation) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
+| + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
 
 *Depth constants.* Chernoff exponent \(e(C)\): \(0.480\) (\(18\)),
 \(0.527\) (\(19\)), \(0.574\) (\(20\)), \(0.621\) (\(21\)), \(0.812\)
@@ -1740,20 +1740,19 @@ every integer \(\ell\) with \(|\ell|\le P^{1/24}\),
 \ \le\ Y\,P^{-1/24+\varepsilon}.
 \]
 
-*Status.* For \(I=(P,2P]\) and \(\ell=0\) this is Theorem 4.7 of the
-working draft [12], proved there by a seven-step Weyl-differencing
-argument (exact linearization of the nested floors, differencing with
-\(H=P^{1/12}\), a cell decomposition, second-derivative tests per
-cell). The sub-dyadic range \(Y\ge P^{1/2}\) and the twist
-\(e(\tfrac\ell2n^{9/16})\) are not proved in [12]. A step-by-step
-re-examination of that proof over a sub-dyadic interval — in which
-every displayed bound is either proportional to the number of summands
-or independent of it and at most \(P^{7/16}\), and in which the twist,
-of curvature \(\ll P^{-23/16}\), is negligible against the curvatures
-between \(P^{-5/4}\) and \(P^{-1/2}\) that drive the cell analysis — is
-recorded in the repository notes [14]. That record is not a refereed
-proof, and nothing below relies on it: Hypothesis L is used only as
-stated. What *is* proved here is everything that follows from it.
+*Status.* Hypothesis L is Theorem 4.12 of the working draft [12]
+(Section 4.5 there), whose Lemma 4.10 removes the twist by partial
+summation after the Weyl differencing and whose proof runs the
+seven-step argument of its Theorems 4.4 and 4.7 (exact linearization
+of the nested floors, differencing with \(H=P^{1/12}\), a cell
+decomposition, second-derivative tests per cell) over a sub-dyadic
+interval, exhibiting the three absolute terms — two partial end cells
+\(5.2P^{3/8}\), the pure passenger \(3.8P^{7/16}\), the majorant end
+cells \(17P^{1/4}\) — that do not scale with the number of summands.
+Because [12] is an unrefereed working draft, we keep the statement as
+a hypothesis here and rely on nothing but the statement; what *is*
+proved in this appendix is everything that follows from it. (The
+derivation below coincides with Corollary 4.13 of [12].)
 
 ### C.2 The \(OOEEE\) production on even blocks
 
@@ -1915,11 +1914,13 @@ the least depth constant of Corollary 8.4 and Theorem 9.2 is
 \(C(0.55)=41\), \(C(0.60)=223\), \(C(0.62)=1587\); in the pressure form
 \(19\), \(41\), \(214\), \(1497\). The exponent \(0.4922\) is within
 \(0.0005\) of the depth-two ceiling \(0.4927\), reached by a different
-route. A further production from the words \(OOOEEE\) and \(OOEOEE\)
-on even blocks would give \(\lambda=0.5561\) and \(C=18\); it would need
-the analogue of Hypothesis L for the kernel theorem of [12] (a double
-Weyl differencing) on intervals of length \(P^{23/32}\), which we do
-not assume. Hypothesis L concerns consecutive odd starts in an
+route. A further production from the words \(OOOEE\) and \(OOEOE\)
+on even blocks would give \(\lambda=0.5561\) and \(C=18\); those
+fibers have length \(P^{5/32}\), below the threshold of the localized
+triple, and Lemma 3.9's trivial bound on the kernel proof is the
+whole interval, so the analogue of Hypothesis L for the kernel
+theorem of [12] is not available (fate-contagion note §7.4).
+Hypothesis L concerns consecutive odd starts in an
 interval and says nothing about the odd images \(S_{\rm odd}\); the
 free term \(\psi_F\) is untouched by this appendix.
 

@@ -6399,11 +6399,36 @@
  {
   "id": "J-fate-ooeee-production",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Localized triple parity discrepancy and the OOEEE production (fate-contagion note §7). Proposition 7.1: for every ε > 0, P ≥ P₀(ε), every interval I ⊆ (P, 2P] of length Y ≥ P^{1/2}, and every (a,b,c) ≠ 0, |Σ_{n∈I odd} ψ(n^{3/2})^a ψ(m^{3/2})^b ψ(v^{1/2})^c| ≤ Y P^{−1/24+ε} — Paper B's Theorems 4.4/4.7 with the seven proof steps re-run over I: every displayed bound is either proportional to the number of summands (and becomes ∝ Y) or independent of it and ≤ P^{7/16} (two end cells P^{3/8}, pure passenger P^{7/16}, majorant tails P^{1/4}), absorbed for Y ≥ P^{1/2}. Proposition 7.2: for I(m') = [m'^{32/9}, (m'+1)^{32/9}) (length ≍ P^{23/32}), the odd starts with word OOEEE and J^5(n) = m' number (1/16)·#{odd n ∈ I(m')} + O(|I(m')| m'^{−4/27+ε}) (Proposition 7.1 plus a Vaaler layer for ψ(v^{1/4}) → ψ(n^{9/16}) handled by Kusmin–Landau), and every such n has J^4(n) ∈ E(m'); hence for m' in a backward-closed A they lie in A with log-mass ≥ (1/(9m'))(1 − o(1)). Theorem 7.3: the contagion recursion gains (1/9)·g(9t/32) and Theorem 4.2 holds for every λ < λ*** = 0.4922…, the root of 2^{−λ} + (5/21)(3/8)^λ + (2/21)(3/4)^λ + (1/9)(9/32)^λ = 1. Downstream: Tao rate threshold 0.5077, least C = 19 (fair), C(0.55) = 41, C(0.60) = 223. The free term ψ_F of (6.1) is untouched; the gain is quantitative. Paper B is a working draft; the proof here is a verified modification of its dyadic argument, not an independent derivation.",
+  "statement": "Localized triple parity discrepancy and the OOEEE production (fate-contagion note §7). Proposition 7.1: for every ε > 0, P ≥ P₀(ε), every interval I ⊆ (P, 2P] of length Y ≥ P^{1/2}, and every (a,b,c) ≠ 0, |Σ_{n∈I odd} ψ(n^{3/2})^a ψ(m^{3/2})^b ψ(v^{1/2})^c| ≤ Y P^{−1/24+ε} — Paper B's Theorems 4.4/4.7 with the seven proof steps re-run over I: every displayed bound is either proportional to the number of summands (and becomes ∝ Y) or independent of it and ≤ P^{7/16} (two end cells P^{3/8}, pure passenger P^{7/16}, majorant tails P^{1/4}), absorbed for Y ≥ P^{1/2}. Proposition 7.2: for I(m') = [m'^{32/9}, (m'+1)^{32/9}) (length ≍ P^{23/32}), the odd starts with word OOEEE and J^5(n) = m' number (1/16)·#{odd n ∈ I(m')} + O(|I(m')| m'^{−4/27+ε}) (Proposition 7.1 plus a Vaaler layer for ψ(v^{1/4}) → ψ(n^{9/16}) handled by Kusmin–Landau), and every such n has J^4(n) ∈ E(m'); hence for m' in a backward-closed A they lie in A with log-mass ≥ (1/(9m'))(1 − o(1)). Theorem 7.3: the contagion recursion gains (1/9)·g(9t/32) and Theorem 4.2 holds for every λ < λ*** = 0.4922…, the root of 2^{−λ} + (5/21)(3/8)^λ + (2/21)(3/4)^λ + (1/9)(9/32)^λ = 1. Downstream: Tao rate threshold 0.5077, least C = 19 (fair), C(0.55) = 41, C(0.60) = 223. The free term ψ_F of (6.1) is untouched; the gain is quantitative. Paper B §4.5 (Theorems 4.11–4.12, Corollary 4.13; J-parity-triple-discrepancy-localized) now proves the localized and twisted statements in full, so this production rests on a Paper B theorem; Paper B remains a working draft.",
   "source": "docs/theory/juggler_fate_contagion_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-parity-triple-discrepancy-localized",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B §4.5, Lemma 4.10 and Theorems 4.11–4.12 (nested and triple parity discrepancy on sub-dyadic intervals, with a slow twist). For every ε > 0 there is P₀ such that for P ≥ P₀, every interval I ⊆ (P, 2P] of length Y ≥ P^{1/2}, every (a,b,c) ∈ {0,1}³ ∖ {0} and every slow twist g(n) = (ℓ/2) n^{9/16} with |ℓ| ≤ P^{1/24}: |Σ_{n ∈ I odd} ψ(n^{3/2})^a ψ(m^{3/2})^b ψ(v^{1/2})^c e(g(n))| ≤ Y P^{−1/24+ε} (Theorem 4.12; Theorem 4.11 is the case c = 0). Proof: Steps 1–7 of Theorems 4.4/4.7 run over I with the number of summands Y in place of P; every cost is proportional to Y except three absolute terms — the two partial end cells 5.2 (jh)^{−1/2} P^{3/8}, the pure passenger 3.8 P^{7/16}, the majorant end cells 17 P^{1/4} — which fall below Y P^{−1/24} for Y ≥ P^{1/2}; the twist survives the Weyl differencing as e(Δ_{2h} g) with total variation ≤ 0.26 P^{−5/16} over the block and is removed by one partial summation (Lemma 4.10) against the untwisted differenced sums on initial sub-intervals, whose bound is nondecreasing in the length; in the single-smooth-sum cases the twist’s curvature 0.13 P^{1/24−23/16} is dominated by powers of P. Corollary 4.13 (the OOEEE production on even blocks): for m′ ≥ 2 and I(m′) = [m′^{32/9}, (m′+1)^{32/9}), #{odd n ∈ I(m′) : word₅(n) = OOEEE, J⁵(n) = m′} = (1/16)#{odd n ∈ I(m′)} + O(|I(m′)| m′^{−4/27+ε}), via the nesting bound 0 ≤ n^{9/16} − v^{1/4} ≤ n^{−15/16}, an Erdős–Turán/Kusmin–Landau bound Y P^{−1/16} for the exceptional set, and a Vaaler expansion of the fifth letter whose modes are the slow twists. This discharges Hypothesis L of Paper C (Appendix C) to a Paper B theorem; Paper B remains a working draft. Not a halt theorem.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_audit.py",
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-parity-paper-b-audit",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Paper B Appendix A (audit ledger) and research.juggler_sequence.paper_b_audit. Machine layer: the exact identities of Lemma 4.3 (one-signed remainder 0 ≤ E ≤ (3/8)(X−1)^{−1/2}, gap identity), Lemma 5.1(i)–(iv) (0 ≤ R ≤ (3/16) v^{−1/2}; double-gap identity; carry as sawtooth difference; ΔΔY = F_κ(m), |j| ≤ 3, the offset/second-difference split with its numerical ranges and the |G′| bound; the master identity with all four brackets ≤ 2) and Lemma 6.2 hold on 360 random odd starts across 10⁴ ≤ n ≤ 2·10¹⁴ at 60–120 digits; the standing estimates (E1)–(E6) contain the observed values at P = 10⁶, 10⁸, 10¹⁰; the cell inventory 1.5 h P^{1/2} + 1 with lengths [2/3, 0.95] P^{1/2}/h holds exhaustively at P = 10⁵; 75 displayed P-power comparisons of Section 5 hold as exact rational statements. Hand layer (Appendix A): Lemma 5.1, the standing estimates, Lemma 5.2 stage by stage, Theorem 5.3 Steps 1–6 with 5a and 5b re-derived with recomputed constants; all consistent. Three corrections, none changing a statement: Lemma 4.3’s proof printed f″ = (3/8)(X−t)^{−1/2} (correct (3/4)); Lemma 3.9’s printed ℓ^∞ operator norm 288 is the ℓ¹ norm (the ℓ^∞ norm is 232; c₇ = 1/288 remains valid); Lemma 6.2 now displays the two Lagrange remainders (orders n^{−45/16}, n^{−81/16}) instead of absorbing them into coefficients without slack. Observation only: |K_c(P)| at P ≤ 3·10⁵ is 0.4–1.2 times (P/2)^{1/2}, square-root scale. A script check is consistency of what is printed, not a proof, and not an independent human verification.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_b_audit.py"
   ],
   "related_conjectures": []
  },
@@ -6507,6 +6532,19 @@
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_pressure_direct.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-kernel-localize",
+  "tag": "REFUTED",
+  "statement": "Localization of Paper B Theorem 5.3 to the even-block fibers of OOOEE and OOEOE does not meet the T2 target. Those fibers have length Y ≍ P^{5/32}, so Y P^{-1/24} = P^{11/96}. Lemma 3.9's printed trivial bound is P^{89/96}, hence |Ω_V ∩ I| ≤ min(Y, P^{89/96}) = Y at both Y = P^{5/32} and the §7.4 length Y = P^{23/32}, which exceeds the target by P^{1/24}. The printed absolute leftovers P^{7/16} and P^{3/8} also exceed P^{11/96}. Retuning V cannot close both the sublevel length and the piece-boundary sum (σ ≤ P^{-31/48} versus σ ≥ P^{-5/24} at Y = P^{23/32}). The dyadic kernel theorem J-kernel-cancellation is untouched. The free term is untouched. CLOSE. Not a halt theorem.",
+  "source": "docs/problems/juggler_kernel_localize.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_kernel_localize.py"
   ],
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"

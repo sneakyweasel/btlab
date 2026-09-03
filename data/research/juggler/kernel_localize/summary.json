@@ -1,0 +1,154 @@
+{
+  "git_commit": "b9c280ce0f9afc2c176cd9ae90fed4bea9f04d77",
+  "anti": {
+    "halt_theorem": false,
+    "paper_a_modified": false,
+    "paper_b_modified": false,
+    "kernel_retagged": false,
+    "forty_estimates_rederived": false
+  },
+  "scales": {
+    "y_fiber": "5/32",
+    "y_assessed": "23/32",
+    "y_triple_threshold": "1/2",
+    "saving": "1/24",
+    "lemma39": "89/96",
+    "t_min": "23/48",
+    "cell_min": "11/24",
+    "y_needed_for_passenger": "23/48",
+    "y_needed_for_printed_omega": "31/32"
+  },
+  "fiber": {
+    "label": "OOOEE_OOEOE_even_block_fiber",
+    "y_exponent": 0.15625,
+    "y_as": "5/32",
+    "target_exponent": 0.11458333333333333,
+    "target_as": "11/96",
+    "fiber_shorter_than_gap_cell": true,
+    "fiber_shorter_than_freeze_window": true,
+    "below_triple_threshold": true,
+    "leftovers": [
+      {
+        "id": "lemma39_trivial",
+        "step": "5b",
+        "kind": "measure",
+        "printed_exponent": 0.9270833333333334,
+        "printed_as": "89/96",
+        "note": "min(Y, P^{89/96}); does not shrink below Y",
+        "effective_exponent": 0.15625,
+        "target_exponent": 0.11458333333333333,
+        "exceeds_target": true
+      },
+      {
+        "id": "pure_passenger",
+        "step": "3/5",
+        "kind": "absolute",
+        "printed_exponent": 0.4375,
+        "printed_as": "7/16",
+        "note": "Kusmin--Landau / passenger end cell",
+        "effective_exponent": 0.4375,
+        "target_exponent": 0.11458333333333333,
+        "exceeds_target": true
+      },
+      {
+        "id": "end_cell",
+        "step": "3a",
+        "kind": "window_plus_one",
+        "printed_exponent": 0.375,
+        "printed_as": "3/8",
+        "note": "one leftover freeze/collision window",
+        "effective_exponent": 0.375,
+        "target_exponent": 0.11458333333333333,
+        "exceeds_target": true
+      },
+      {
+        "id": "majorant_tail",
+        "step": "3",
+        "kind": "absolute",
+        "printed_exponent": 0.25,
+        "printed_as": "1/4",
+        "note": "Vaaler / majorant end cells",
+        "effective_exponent": 0.25,
+        "target_exponent": 0.11458333333333333,
+        "exceeds_target": true
+      }
+    ],
+    "falsifier_fires": true
+  },
+  "assessed": {
+    "label": "section_7_4_OOEEE_length",
+    "y_exponent": 0.71875,
+    "y_as": "23/32",
+    "target_exponent": 0.6770833333333334,
+    "target_as": "65/96",
+    "fiber_shorter_than_gap_cell": false,
+    "fiber_shorter_than_freeze_window": false,
+    "below_triple_threshold": false,
+    "leftovers": [
+      {
+        "id": "lemma39_trivial",
+        "step": "5b",
+        "kind": "measure",
+        "printed_exponent": 0.9270833333333334,
+        "printed_as": "89/96",
+        "note": "min(Y, P^{89/96}); does not shrink below Y",
+        "effective_exponent": 0.71875,
+        "target_exponent": 0.6770833333333334,
+        "exceeds_target": true
+      },
+      {
+        "id": "pure_passenger",
+        "step": "3/5",
+        "kind": "absolute",
+        "printed_exponent": 0.4375,
+        "printed_as": "7/16",
+        "note": "Kusmin--Landau / passenger end cell",
+        "effective_exponent": 0.4375,
+        "target_exponent": 0.6770833333333334,
+        "exceeds_target": false
+      },
+      {
+        "id": "end_cell",
+        "step": "3a",
+        "kind": "window_plus_one",
+        "printed_exponent": 0.375,
+        "printed_as": "3/8",
+        "note": "one leftover freeze/collision window",
+        "effective_exponent": 0.375,
+        "target_exponent": 0.6770833333333334,
+        "exceeds_target": false
+      },
+      {
+        "id": "majorant_tail",
+        "step": "3",
+        "kind": "absolute",
+        "printed_exponent": 0.25,
+        "printed_as": "1/4",
+        "note": "Vaaler / majorant end cells",
+        "effective_exponent": 0.25,
+        "target_exponent": 0.6770833333333334,
+        "exceeds_target": false
+      }
+    ],
+    "falsifier_fires": true
+  },
+  "v_retune": {
+    "interval": "Y = P^{23/32}",
+    "sigma_max_for_sublevel": "-31/48",
+    "sigma_min_for_piece_boundaries": "-5/24",
+    "gap_exponent": "7/16",
+    "constraints_compatible": false,
+    "y_needed_for_printed_omega": "31/32"
+  },
+  "classification": {
+    "true_fiber_is_p_5_32": true,
+    "section_7_4_used_wrong_y": true,
+    "lemma39_exceeds_assessed_target": true,
+    "lemma39_exceeds_fiber_target": true,
+    "fiber_below_triple_threshold": true,
+    "fiber_inside_one_gap_cell": true,
+    "v_retune_impossible_at_assessed_y": true,
+    "free_term_untouched": true,
+    "decision": "CLOSE"
+  }
+}
