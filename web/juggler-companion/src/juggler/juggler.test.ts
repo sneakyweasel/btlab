@@ -39,6 +39,7 @@ import {
   siteRigidity,
 } from "./lollipop";
 import { floorPower } from "./map";
+import { EMBER, FLARE, PLUNGE, SEA, mixHex, stepPathColor } from "./palette";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
 import {
@@ -58,9 +59,21 @@ import {
   expanding,
   followsItinerary,
   imageAfter,
+  idealExponentApprox,
   regimeOf,
   tryAssembleFill,
 } from "./itinerary";
+
+describe("stepPathColor", () => {
+  it("stays ember or sea on a flat step and runs toward flare or plunge when steep", () => {
+    expect(stepPathColor(0)).toBe(EMBER);
+    expect(stepPathColor(-0)).toBe(EMBER);
+    expect(mixHex(EMBER, FLARE, 1)).toBe(FLARE);
+    expect(mixHex(SEA, PLUNGE, 1)).toBe(PLUNGE);
+    expect(stepPathColor(3)).toBe(FLARE);
+    expect(stepPathColor(-3)).toBe(PLUNGE);
+  });
+});
 
 describe("floorPower", () => {
   it("matches the note trajectory of 3", () => {
@@ -132,6 +145,8 @@ describe("itineraries", () => {
     expect(imageAfter(5n, "OOE")).toBe(6n);
     expect(regimeOf(3, 2)).toBe("expanding");
     expect(expanding("OOE")).toBe(true);
+    expect(regimeOf(17, 9)).toBe("contracting");
+    expect(idealExponentApprox(9, 17)).toBeCloseTo(19683 / 131072, 6);
   });
 
   it("rejects a parity mismatch", () => {

@@ -9,7 +9,6 @@ import {
   FinanceWidget,
   FloorWidget,
   MapWidget,
-  TrajectoryWidget,
   WalkChargeWidget,
 } from "../components/TourWidgets";
 import {
@@ -21,7 +20,6 @@ import {
 
 const SHORT_TERM: Record<TourSlug, string> = {
   "the-map": "Map",
-  "trajectory-itinerary": "Trajectory",
   "cycle-itinerary": "Cycle",
   expanding: "Expand",
   envelope: "Envelope",
@@ -33,7 +31,6 @@ const SHORT_TERM: Record<TourSlug, string> = {
 
 const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "the-map": MapWidget,
-  "trajectory-itinerary": TrajectoryWidget,
   "cycle-itinerary": CycleWidget,
   expanding: ExpandingWidget,
   envelope: EnvelopeWidget,
@@ -50,8 +47,12 @@ export function TourIndexPage() {
 export function TourPage() {
   const { slug } = useParams();
   const [menuOpen, setMenuOpen] = useState(false);
-  if (slug === "orbit-word" || slug === "trajectory-word") {
-    return <Navigate to="/tour/trajectory-itinerary" replace />;
+  if (
+    slug === "orbit-word" ||
+    slug === "trajectory-word" ||
+    slug === "trajectory-itinerary"
+  ) {
+    return <Navigate to="/tour/the-map" replace />;
   }
   if (slug === "cells") {
     return <Navigate to="/tour/preimages" replace />;
@@ -119,13 +120,15 @@ export function TourPage() {
           })}
         </ol>
       </aside>
-      <article className="space-y-6">
+      <article className="min-w-0 space-y-6">
         <header>
-          <p className="text-sm text-muted">Chapter {chapter.number} of 9</p>
+          <p className="text-sm text-muted">
+            Chapter {chapter.number} of {TOUR_CHAPTERS.length}
+          </p>
           <h1 className="mt-1 text-4xl">{chapter.term}</h1>
           <p className="prose-measure mt-3 text-lg text-muted">{chapter.blurb}</p>
         </header>
-        <div className="rounded-2xl border border-line bg-card p-4 sm:p-6">
+        <div className="min-w-0 overflow-hidden rounded-2xl border border-line bg-card p-4 sm:p-6">
           <Widget />
         </div>
         {chapter.body.split("\n\n").map((paragraph) => (

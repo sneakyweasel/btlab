@@ -165,7 +165,6 @@ function TrajectoryPlot({
     };
   });
   const shortTrajectory = states.length <= 10;
-  const showEveryLetter = !sparseScale && states.length <= 22;
   return (
     <svg viewBox={`0 0 ${PLOT_WIDTH} 272`} role="img" className="h-auto w-full">
       <title>Juggler trajectory, logarithmic value scale</title>
@@ -225,21 +224,13 @@ function TrajectoryPlot({
           active === undefined
             ? shortTrajectory || index === 0 || index === points.length - 1
             : isActive;
-        const next = points[index + 1];
-        const showLetter =
-          Boolean(point.letter) &&
-          next !== undefined &&
-          (showEveryLetter || isActive || index === 0 || index === points.length - 2);
-        const letterOdd = point.letter === "O";
-        const mx = next === undefined ? point.x : (point.x + next.x) / 2;
-        const my = next === undefined ? point.y : (point.y + next.y) / 2;
         return (
           <g key={index}>
             <circle
               cx={point.x}
               cy={point.y}
               r={isActive ? 11 : 8}
-              fill={odd ? "#c45c26" : "#1f6f6a"}
+              fill={odd ? "var(--color-odd)" : "var(--color-even)"}
               stroke={isActive ? "#1d1914" : "none"}
               strokeWidth={isActive ? 2 : 0}
             />
@@ -262,28 +253,6 @@ function TrajectoryPlot({
                   );
                 })()}
               </text>
-            ) : null}
-            {showLetter ? (
-              <g>
-                <rect
-                  x={mx - 5}
-                  y={my - 5}
-                  width="10"
-                  height="10"
-                  rx="5"
-                  fill={letterOdd ? "#c45c26" : "#1f6f6a"}
-                />
-                <text
-                  x={mx}
-                  y={my + 2.5}
-                  textAnchor="middle"
-                  fill="#fffdf7"
-                  fontFamily="IBM Plex Mono, monospace"
-                  fontSize="7"
-                >
-                  {point.letter}
-                </text>
-              </g>
             ) : null}
           </g>
         );

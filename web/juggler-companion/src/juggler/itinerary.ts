@@ -26,11 +26,16 @@ export function evenCount(word: string): number {
 
 export function regimeOf(length: number, odds: number): Regime {
   if (length <= 0) return "empty";
-  const left = 3 ** odds;
-  const right = 2 ** length;
+  const left = 3n ** BigInt(Math.max(odds, 0));
+  const right = 2n ** BigInt(length);
   if (left < right) return "contracting";
   if (left > right) return "expanding";
   return "critical";
+}
+
+export function idealExponentApprox(odds: number, length: number): number {
+  if (length <= 0) return 1;
+  return Math.exp(odds * Math.log(3) - length * Math.log(2));
 }
 
 export function expanding(word: string): boolean {

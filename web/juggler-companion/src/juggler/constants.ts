@@ -45,24 +45,34 @@ export const LIVE_STARTS = [
     note: "A short live walk under the 256-bit cap, easy to step through.",
   },
   {
-    label: "16",
-    value: 16n,
-    note: "Even tower: nested square roots 16 → 4 → 2 → 1. The even branch only.",
-  },
-  {
     label: "37 peak",
     value: 37n,
     note: "Paper A’s note peak: a small start that climbs high, then falls. One walk, not a theorem.",
   },
   {
+    label: "5 OE",
+    value: 5n,
+    note: "First OE meeting at 11: 5 -O→ 11 ←E- 122. Collision Factorization witness, not a leftover-killer.",
+  },
+  {
+    label: "122 OE",
+    value: 122n,
+    note: "Even parent of the first OE meeting at 11. Pair with 5. Not a cycle.",
+  },
+  {
+    label: "100 EE",
+    value: 100n,
+    note: "First EE meeting at 10: 100 → 10 ← 102. Collision Factorization witness, not a leftover-killer.",
+  },
+  {
+    label: "102 EE",
+    value: 102n,
+    note: "Even parent of the first EE meeting at 10. Pair with 100. Not a cycle.",
+  },
+  {
     label: "113",
     value: 113n,
     note: "A longer live walk that still fits in the browser walker.",
-  },
-  {
-    label: "256",
-    value: 256n,
-    note: "Even tower: 256 → 16 → 4 → 2 → 1. Four even letters, then 1.",
   },
   {
     label: "365 leftover",
@@ -74,15 +84,14 @@ export const LIVE_STARTS = [
     value: 1999n,
     note: "A four-block start from the playground list. Still live, under 256 bits.",
   },
-  {
-    label: "65536",
-    value: 65536n,
-    note: "Even tower: 65536 → 256 → 16 → 4 → 2 → 1. A taller square-root stack.",
-  },
+] as const;
+
+/** Live-walkable starts shown on the monster chip row. */
+export const MONSTER_ROW_LIVE = [
   {
     label: "2^32",
     value: 4294967296n,
-    note: "Even tower 2^32. Still live: nested square roots the browser can walk.",
+    note: "Even tower 2^32 → 2^16 → … → 1. The browser can walk it. Not a shipped peak and not a theorem.",
   },
 ] as const;
 

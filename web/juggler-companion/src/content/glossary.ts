@@ -1,6 +1,5 @@
 export type TourSlug =
   | "the-map"
-  | "trajectory-itinerary"
   | "cycle-itinerary"
   | "expanding"
   | "envelope"
@@ -27,21 +26,12 @@ export const TOUR_CHAPTERS: TourChapter[] = [
       "Odds flap, evens fall, decimals shed—and still it flies.",
     // "Even numbers shrink. Odd numbers grow. Decimals vanish. Do it forever?",
     body:
-      "J is the one-step map. The Juggler sequence starting at n is the trajectory of iterates n, J(n), J²(n), … . Floor means the integer part: remove everything after the decimal point. So floor(5.196) = 5 and floor(6) = 6. Start with a positive integer n. If n is even, take the square root and then floor. If n is odd, raise n to the three-halves and then floor: floor(n^{3/2}) = floor(n√n) = floor(√(n³)). That is not the cube root. The floor is applied after every step, not once at the end. Those two rules are the whole map. Paper A writes the even branch as E and the odd branch as O. The leftover crumbs after each floor are what later inequalities budget. The paper does not prove that every start reaches 1.",
-    paper: "Abstract and §1: the map J, floor, the even branch E, and the odd branch O. Lemma 1.1 lists the three possible fates.",
-  },
-  {
-    slug: "trajectory-itinerary",
-    number: 2,
-    term: "Trajectory and itinerary",
-    blurb: "The trajectory is the list of values. The itinerary is the list of odd/even letters.",
-    body:
-      "Apply J again and again. The sequence of values is the trajectory (also called an orbit in some dynamics texts). The itinerary of the first k steps is the length-k string over {O, E} that records the parity of each value: O if that value is odd, E if it is even. The itinerary is not the trajectory. The integer k is any finite prefix; the definition does not assume that the walk reaches 1. An itinerary is realized at n only when the trajectory of n actually follows those parities — a formal string that no start follows is not an itinerary. Ignoring floors, o odd letters in length k would multiply by 3^o / 2^k; that ratio is the ideal exponent of the itinerary. The famous walk of 3 is 3, 5, 11, 36, 6, 2, 1, with realized itinerary OOOEEE. Hitting 1 here is one trajectory, not a proof that every start does.",
-    paper: "§1: trajectory, itinerary, realized itinerary, and ideal exponent 3^o/2^k.",
+      "J is that one-step map. The Juggler sequence is the flight: n, J(n), J²(n), … . Paper A writes the even drop as E and the odd leap as O. The sequence of values is the trajectory. The itinerary of a prefix is the O/E string of those parities — not the values. An itinerary is realized at n only when the walk actually follows those letters. Ignoring floors, o odd letters in k steps would send the start to n · 3^o / 2^k. The finished walk of 37 has 9 O letters in 17 steps (and 8 E letters), so the ideal exponent is 3^9 / 2^17 = 19683/131072 ≈ 0.150 < 1: contracting — even the ideal arithmetic shrinks. The crumbs that fall off each floor are the budget later inequalities will spend. The paper does not prove that every start reaches 1.",
+    paper: "Abstract and §1: the map J, floor, the even branch E, the odd branch O, trajectory, itinerary, and the ideal exponent 3^o/2^k. Lemma 1.1 lists the three possible fates.",
   },
   {
     slug: "cycle-itinerary",
-    number: 3,
+    number: 2,
     term: "At the Cycle’s Abyss",
     blurb:
       "The black ring marks CycleMin, the smallest value. That bead is odd and the next one is too; an even returns, and four evens are forced.",
@@ -52,7 +42,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "expanding",
-    number: 4,
+    number: 3,
     term: "Expanding versus contracting",
     blurb: "Count the O letters. Compare 3^o with 2 to the length. A real loop must expand.",
     body:
@@ -61,7 +51,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "envelope",
-    number: 5,
+    number: 4,
     term: "Power envelope",
     blurb: "If a start actually follows an itinerary, the result cannot outrun a known power bound.",
     body:
@@ -70,7 +60,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "preimages",
-    number: 6,
+    number: 5,
     term: "One-step preimages",
     blurb: "J is not invertible. The one-step preimage of m is a set. Even parents fill a square interval. An odd image has at most one odd parent.",
     body:
@@ -79,7 +69,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "descent-floor",
-    number: 7,
+    number: 6,
     term: "Verified descent floor N₀",
     blurb: "Every start from 2 through N₀ has already been checked to reach 1. A floor is an input.",
     body:
@@ -88,7 +78,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "finance",
-    number: 8,
+    number: 7,
     term: "Finance",
     blurb: "At a cycle minimum the surplus 3^o − 2^L must be paid by a finite budget of floor crumbs.",
     body:
@@ -97,7 +87,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "walk-charge",
-    number: 9,
+    number: 8,
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:

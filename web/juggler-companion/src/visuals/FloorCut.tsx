@@ -19,7 +19,7 @@ function Card({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-full flex-col rounded-2xl border border-line bg-paper/70 px-4 py-3">
       <p className="text-xs uppercase tracking-wide text-muted">
-        Floor this step — throw away the decimals
+        Step computation
       </p>
       {children}
     </div>

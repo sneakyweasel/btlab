@@ -1,6 +1,10 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { evenPreimage, oddPreimageIntegers } from "../juggler/preimages";
-import { LIVE_STARTS, NOTE_TRAJECTORY_3, TRAJECTORY_STEPS_MAX } from "../juggler/constants";
+import {
+  LIVE_STARTS,
+  MONSTER_ROW_LIVE,
+  TRAJECTORY_STEPS_MAX,
+} from "../juggler/constants";
 import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
 import { floorPower, letterOf } from "../juggler/map";
@@ -18,10 +22,9 @@ import { PreimageNumberLine } from "../visuals/PreimageNumberLine";
 import { CycleTourWidget } from "./CycleTourWidget";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
 import { FloorLadder } from "../visuals/FloorLadder";
-import { AppearingItinerary } from "../visuals/AppearingItinerary";
 import { FloorCut } from "../visuals/FloorCut";
+import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
-import { TrajectoryBeads } from "../visuals/TrajectoryBeads";
 import { SurplusScale } from "../visuals/SurplusScale";
 import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
 import { Metric } from "./Metric";
@@ -196,12 +199,12 @@ export function MapWidget() {
   }, [playing, seed]);
 
   function chooseStart(value: bigint) {
-    setPlaying(false);
     setStartText(value.toString());
     setCursor(value);
+    setPlaying(true);
   }
 
-  function playCurrent() {
+  const playCurrent = useCallback(() => {
     if (playing) {
       setPlaying(false);
       return;
@@ -210,16 +213,60 @@ export function MapWidget() {
     const atEnd = next === null || cursor === path[path.length - 1];
     if (atEnd) setCursor(seed);
     setPlaying(true);
-  }
+  }, [cursor, next, playing, seed]);
 
-  function seekTo(index: number) {
-    const clamped = Math.max(0, Math.min(stepLast, index));
-    const state = trajectory.states[clamped];
-    if (state !== undefined) setCursor(state);
-  }
+  const seekTo = useCallback(
+    (index: number) => {
+      const clamped = Math.max(0, Math.min(stepLast, index));
+      const state = trajectory.states[clamped];
+      if (state !== undefined) setCursor(state);
+    },
+    [stepLast, trajectory.states],
+  );
+
+  const keysRef = useRef({ playCurrent, seekTo, stepIndex, next });
+  keysRef.current = { playCurrent, seekTo, stepIndex, next };
+
+  useEffect(() => {
+    function fieldHasFocus(target: EventTarget | null): boolean {
+      if (!(target instanceof HTMLElement)) return false;
+      if (target.isContentEditable) return true;
+      const tag = target.tagName;
+      if (tag === "TEXTAREA" || tag === "SELECT") return true;
+      if (tag !== "INPUT") return false;
+      return (target as HTMLInputElement).type !== "range";
+    }
+
+    function onKey(event: KeyboardEvent) {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (fieldHasFocus(event.target)) return;
+      const frame = keysRef.current;
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setPlaying(false);
+        if (frame.stepIndex === 0) return;
+        frame.seekTo(frame.stepIndex - 1);
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setPlaying(false);
+        if (frame.next === null) return;
+        setCursor(frame.next);
+        return;
+      }
+      if (event.key === " " || event.code === "Space") {
+        event.preventDefault();
+        frame.playCurrent();
+      }
+    }
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="min-w-0 space-y-4">
       <MapDoors
         states={trajectory.states}
         highlight={letter === "O" ? "odd" : "even"}
@@ -249,14 +296,14 @@ export function MapWidget() {
             <div className="grid min-w-0 flex-1 gap-1.5">
               <p
                 className="text-xs uppercase tracking-wide text-muted"
-                title="Ideas the browser can walk — including even towers of nested square roots — and shipped monsters that outgrow that walker. Pictures only: hitting 1 is not a theorem."
+                title="Ideas the browser can walk, and shipped monsters that outgrow that walker. Pictures only: hitting 1 is not a theorem."
               >
                 Interesting presets
               </p>
               <div className="flex flex-wrap items-center gap-1.5">
                 <span
                   className="w-6 text-center text-base leading-none"
-                  title="Live starts the browser can walk, including even towers, under 256 bits."
+                  title="Live starts the browser can walk under 256 bits."
                   aria-label="Ideas"
                 >
                   ⚡
@@ -275,11 +322,22 @@ export function MapWidget() {
               <div className="flex flex-wrap items-center gap-1.5">
                 <span
                   className="w-6 text-center text-base leading-none"
-                  title="Shipped trajectories whose peak exceeds the live 256-bit walker."
+                  title="Shipped trajectories whose peak exceeds the live 256-bit walker, plus the even tower 2^32."
                   aria-label="Monsters"
                 >
                   👹
                 </span>
+                {MONSTER_ROW_LIVE.map((preset) => (
+                  <Chip
+                    key={preset.value.toString()}
+                    selected={seed === preset.value}
+                    tone="monster"
+                    title={preset.note}
+                    onClick={() => chooseStart(preset.value)}
+                  >
+                    {preset.label}
+                  </Chip>
+                ))}
                 {monsterCatalog().map((preset) => (
                   <Chip
                     key={preset.n.toString()}
@@ -334,7 +392,7 @@ export function MapWidget() {
                 <IconFirst />
               </Transport>
               <Transport
-                label="Previous frame"
+                label="Previous frame (←)"
                 disabled={stepIndex === 0}
                 onClick={() => {
                   setPlaying(false);
@@ -343,11 +401,15 @@ export function MapWidget() {
               >
                 <IconPrevFrame />
               </Transport>
-              <Transport label={playing ? "Pause" : "Play"} primary onClick={playCurrent}>
+              <Transport
+                label={playing ? "Pause (space)" : "Play (space)"}
+                primary
+                onClick={playCurrent}
+              >
                 {playing ? <IconPause /> : <IconPlay />}
               </Transport>
               <Transport
-                label="Next frame"
+                label="Next frame (→)"
                 disabled={next === null}
                 onClick={() => {
                   setPlaying(false);
@@ -373,55 +435,25 @@ export function MapWidget() {
           </div>
         }
       />
-      <div className="grid gap-3 sm:grid-cols-2 sm:items-stretch">
-        <FloorCut n={cursor} result={next} />
-        <AppearingItinerary
-          itinerary={trajectory.itinerary}
-          revealed={stepIndex}
-          note={
-            trajectory.source === "monster"
-              ? `Shipped trajectory${trajectory.peakBits ? ` (peak ${trajectory.peakBits} bits)` : ""}. The browser did not walk this start. ${trajectory.blurb ?? ""} Hitting 1 is not a theorem.`
-              : trajectory.bitCapped
-                ? "A value exceeded the live 256-bit cap. Famous larger starts are under Monsters if we shipped them."
-                : trajectory.reachedOne && stepIndex >= trajectory.itinerary.length
-                  ? "This walk hit 1, which is not a theorem."
-                  : null
-          }
-        />
-      </div>
-    </div>
-  );
-}
-
-export function TrajectoryWidget() {
-  const [shown, setShown] = useState<number>(NOTE_TRAJECTORY_3.length);
-  const states = NOTE_TRAJECTORY_3.slice(0, shown);
-  return (
-    <div className="space-y-3">
-      <TrajectoryBeads states={states} active={shown - 1} />
-      <div className="flex gap-2">
-        <button
-          type="button"
-          className="rounded-full bg-deep px-3 py-1 text-sm text-card"
-          onClick={() => setShown((value) => Math.min(NOTE_TRAJECTORY_3.length, value + 1))}
-        >
-          Replay next
-        </button>
-        <button
-          type="button"
-          className="rounded-full border border-line px-3 py-1 text-sm"
-          onClick={() => setShown(1)}
-        >
-          Restart
-        </button>
-      </div>
-      <p className="text-sm text-muted">
-        Itinerary so far:{" "}
-        <span className="font-mono">
-          {states.slice(0, -1).map((state) => letterOf(state)).join("") || "—"}
-        </span>
-        . Reaching 1 here is the trajectory of 3, not a halt theorem.
-      </p>
+      <LinkedWalk
+        states={trajectory.states}
+        itinerary={trajectory.itinerary}
+        active={stepIndex}
+        onSeek={(index) => {
+          setPlaying(false);
+          seekTo(index);
+        }}
+        note={
+          trajectory.source === "monster"
+            ? `Shipped trajectory${trajectory.peakBits ? ` (peak ${trajectory.peakBits} bits)` : ""}. The browser did not walk this start. ${trajectory.blurb ?? ""} Hitting 1 is not a theorem.`
+            : trajectory.bitCapped
+              ? "A value exceeded the live 256-bit cap. Famous larger starts are under Monsters if we shipped them."
+              : trajectory.reachedOne && stepIndex >= trajectory.itinerary.length
+                ? "This walk hit 1, which is not a theorem."
+                : null
+        }
+      />
+      <FloorCut n={cursor} result={next} />
     </div>
   );
 }
