@@ -99,9 +99,9 @@ export function CycleSeamStrip({
       </div>
       <p className="mt-3 text-center text-sm text-muted">
         {seam === "OE|OO"
-          ? "Cycle: return cannot be O. Launch is OO. Incoming OE — isolated last E. The stem OO?E is an optional first visit."
+          ? "Cycle: return cannot be O. Launch is OO. Incoming OE — isolated last E. The stem is optional and not sure OO?E."
           : seam === "EE|OO"
-            ? "Cycle: return cannot be O. Launch is OO. Incoming EE — trailing even run. The stem OO?E is an optional first visit."
+            ? "Cycle: return cannot be O. Launch is OO. Incoming EE — trailing even run. The stem is optional and not sure OO?E."
             : "Not a CycleMin seam. Legal cuts are last-peak E, then n, then OO. The stem is still optional."}
       </p>
     </div>

@@ -280,15 +280,14 @@ export const DEFAULT_STEM_BEADS: readonly PaintedBead[] = [
     letter: "?",
     tone: "unknown",
     mark: "unknown",
-    caption: "0+",
-    glyph: "0+",
+    caption: "≥0",
   },
 ];
 
 export const OPTIONAL_LAUNCH_STEM: readonly PaintedBead[] = [
-  { letter: "O", tone: "sure", mark: "optional", caption: "optional" },
-  { letter: "O", tone: "sure", mark: "optional", caption: "optional" },
-  { letter: "?", tone: "unknown", mark: "unknown", caption: "unknown", glyph: "0+" },
+  { letter: "O", tone: "sure", mark: "optional" },
+  { letter: "O", tone: "sure", mark: "optional" },
+  { letter: "?", tone: "unknown", mark: "unknown", caption: "≥0" },
 ];
 
 export function terminalBead(join: JoinFigure): PaintedBead {

@@ -456,8 +456,10 @@ theorem sink_seam_is_oArrival_join :
     joinArrival [.odd] 0 (by decide) = Branch.odd := by
   simp [joinArrival, predIndex]
 
-/-- Valley / E-arrival stem terminal is unknown. `{1}` cannot E-arrive,
-    so there is no compiled odd-stem valley witness. -/
+/-- Valley / E-arrival stem terminal is unknown. `{1}` cannot E-arrive
+    (`cycleItinerary_one_not_eArrival`). An E-arrival odd-stem witness
+    is already a nontrivial CycleMin
+    (`eArrival_odd_stem_has_nontrivial_cycleMin`). -/
 theorem valley_stem_terminal_unknown {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) :
     stemTerminalOf (cycleArrival w 0

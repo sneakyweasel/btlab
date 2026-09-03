@@ -46,6 +46,7 @@ import {
   cycleMinShape,
   formatOddEvenRuns,
   formatRunWord,
+  formatRunWordTex,
   necklaceFillAdmits,
   necklaceFillToRuns,
   oddEvenRuns,
@@ -228,6 +229,8 @@ describe("assembleFill identities", () => {
     expect(formatOddEvenRuns([3, 2, 2, 0])).toBe("[3, 2, 2, 0]");
     expect(formatRunWord([3, 2, 2, 0])).toBe("O^3 E O^2 E O^2 E E");
     expect(formatRunWord([7, 0, 0, 0])).toBe("O^7 E E E E");
+    expect(formatRunWordTex([3, 2, 2, 0])).toBe("O^{3}E\\,O^{2}E\\,O^{2}E\\,E");
+    expect(formatRunWordTex([7, 0, 0, 0])).toBe("O^{7}E\\,E\\,E\\,E");
     expect(runsEqual([3, 2, 2, 0], [3, 2, 2, 0])).toBe(true);
     expect(runsEqual([3, 2, 2, 0], [7, 0, 0, 0])).toBe(false);
   });

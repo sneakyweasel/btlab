@@ -1,6 +1,11 @@
-import { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { CYCLE_TOUR_PRESETS, TOUR_WORD_MAX } from "../juggler/constants";
+import { Tex } from "./Tex";
+import {
+  CYCLE_TOUR_PRESETS,
+  TOUR_WORD_MAX,
+} from "../juggler/constants";
+import { type StemDisplayMode } from "../juggler/lollipop";
 import {
   assembleFillCounts,
   cycleMinShape,
@@ -14,7 +19,6 @@ import {
   type CycleMinShape,
   type NecklaceFill,
 } from "../juggler/itinerary";
-import { CycleAnatomy } from "../visuals/CycleAnatomy";
 import { CycleLollipop } from "../visuals/CycleLollipop";
 import { CycleNecklace } from "../visuals/CycleNecklace";
 import { OddEvenRunStrip } from "../visuals/OddEvenRunStrip";
@@ -182,7 +186,12 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
             <Check ok={Boolean(currentRuns) && shape.startsOO && shape.lastOddRunAtMost1}>
               {currentRuns
                 ? `Full run ${formatOddEvenRuns(currentRuns)} — cycleMin_has_full_odd_even_run_form`
-                : "Full run O^a1 E ... O^ae E — needs terminal E"}
+                : (
+                  <>
+                    Full run <Tex>{String.raw`O^{a_1}E\cdots O^{a_e}E`}</Tex>
+                    {" — needs terminal E"}
+                  </>
+                )}
             </Check>
             <Check ok={shape.endsE}>
               Wrap EO — cycleMin_wrap_is_EO, last-even cell
@@ -243,17 +252,11 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
           </div>
         </div>
       </div>
-      <CycleAnatomy
-        word={current}
-        aligned={aligned}
-        shaped={shape.cycleMinShaped}
-        seam={shape.seam}
-      />
     </div>
   );
 });
 
-function Check({ ok, children }: { ok: boolean; children: string }) {
+function Check({ ok, children }: { ok: boolean; children: ReactNode }) {
   return (
     <li className={`flex gap-2 text-sm ${ok ? "text-ink" : "text-muted"}`}>
       <span
@@ -309,6 +312,7 @@ export function CycleTourWidget() {
   const [minIndex, setMinIndex] = useState<number>(DEFAULT_SHAPE.minIndex);
   const [decisionId, setDecisionId] = useState<string | null>(null);
   const [joinIndex, setJoinIndex] = useState<number>(0);
+  const [stemMode, setStemMode] = useState<StemDisplayMode>("optionalLaunch");
   const decision = findDecision(decisionId);
 
   const chooseDecision = useCallback((id: string | null) => {
@@ -384,16 +388,43 @@ export function CycleTourWidget() {
       }}
     >
       <p className="text-sm text-muted">
-        Join left/right walks the stem around the six sure letters.
-        Necklace rotate changes the CycleMin cut, not the stem. Cuts
-        that start E or OE are not CycleMin. The unique known cycle is 1.
+        No nontrivial cycle is known. The balloon is CycleMin geometry,
+        not a realized loop.         Join left/right walks the stem around the
+        six sure letters. Necklace rotate changes the CycleMin cut.
       </p>
+      <div className="flex flex-wrap items-center gap-1.5">
+        <span className="text-xs uppercase tracking-wide text-muted">Stem</span>
+        {(
+          [
+            ["empty", "Empty"],
+            ["unknownSlot", "Unknown ≥0"],
+            ["optionalLaunch", "Optional OO"],
+          ] as const
+        ).map(([mode, label]) => (
+          <button
+            key={mode}
+            type="button"
+            className={`rounded-full px-2.5 py-0.5 text-sm ${
+              stemMode === mode
+                ? "bg-deep text-card"
+                : "border border-line bg-card text-ink"
+            }`}
+            onClick={() => {
+              setStemMode(mode);
+              chooseDecision(mode === "empty" ? "empty-string" : "string-oo");
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
           focus={decision?.focus}
           joinIndex={joinIndex}
           word={word.balloonWord}
           fill={word.balloonFill}
+          stemMode={stemMode}
           onJoinIndex={setJoin}
           onSelectDecision={toggleDecision}
           onClearFocus={clearDecision}
@@ -425,6 +456,7 @@ export function CycleTourWidget() {
       <p className="text-sm text-muted">
         O⁷EEEE and O⁶EEEOE are assembleFill leftovers. The three-valley
         word has runs [3, 2, 2, 0]: CycleMin-shaped and not a fill.
+        Pin misses OOEEEOOOOOE and OOOEEEOOOOE are outside CycleMinShape.
         None of them close.{" "}
         <Link to="/play/cycle">Try the same necklace in the playground</Link>.
       </p>

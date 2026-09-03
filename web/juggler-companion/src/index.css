@@ -83,12 +83,8 @@ button.bg-odd {
 .stem-cycle-title {
   fill: var(--color-ink);
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 18px;
   text-anchor: middle;
-}
-
-.stem-cycle-title-sm {
-  font-size: 16px;
 }
 
 .stem-cycle-note {

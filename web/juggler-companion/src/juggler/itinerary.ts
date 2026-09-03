@@ -243,6 +243,11 @@ export function formatRunWord(runs: readonly number[]): string {
   return runs.map((odds) => (odds === 0 ? "E" : `O^${odds} E`)).join(" ");
 }
 
+/** KaTeX form of a Lean run list: `O^{3}E\,O^{2}E\,E`. */
+export function formatRunWordTex(runs: readonly number[]): string {
+  return runs.map((odds) => (odds === 0 ? "E" : `O^{${odds}}E`)).join("\\,");
+}
+
 export function runsEqual(left: readonly number[], right: readonly number[]): boolean {
   return left.length === right.length && left.every((value, index) => value === right[index]);
 }

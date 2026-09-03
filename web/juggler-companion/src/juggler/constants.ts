@@ -138,6 +138,20 @@ export const CYCLE_TOUR_PRESETS = [
     label: "3 valleys",
     hint: "CycleMin shape with three odd-runs. Not a cycle.",
   },
+  {
+    id: "pin-2005",
+    word: "OOEEEOOOOOE",
+    minIndex: 0,
+    label: "pin (2,0,0,5)",
+    hint: "Necklace pin miss. Last odd-run 5. Outside CycleMinShape.",
+  },
+  {
+    id: "pin-3004",
+    word: "OOOEEEOOOOE",
+    minIndex: 0,
+    label: "pin (3,0,0,4)",
+    hint: "Necklace pin miss. Last odd-run 4. Outside CycleMinShape.",
+  },
 ] as const;
 
 export type IdealTone = "sure" | "count" | "unknown";

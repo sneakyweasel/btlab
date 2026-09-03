@@ -1,4 +1,4 @@
-import { memo, useCallback, type KeyboardEvent, type MouseEvent } from "react";
+import { memo, useCallback, type KeyboardEvent, type MouseEvent, type ReactNode } from "react";
 import type { DecisionFocus } from "../content/idealDecisions";
 import {
   IDEAL_BALLOON_BEADS,
@@ -9,10 +9,11 @@ import {
   type BalloonInterval,
   type IdealBead,
 } from "../juggler/constants";
+import { Tex } from "../components/Tex";
 import {
   formatNecklaceFill,
   formatOddEvenRuns,
-  formatRunWord,
+  formatRunWordTex,
   necklaceFillToRuns,
   oddEvenRuns,
   runsEqual,
@@ -24,29 +25,33 @@ import {
   idealJoinConfig,
 } from "../juggler/joinConfig";
 import {
-  FIGURE_BANNER,
   joinFigure,
-  paintCaptureStem,
   paintStem,
   siteAtIndex,
   type FigureMark,
   type PaintedBead,
-  type RealizedWitness,
   type StemDisplayMode,
 } from "../juggler/lollipop";
 
-const CX = 548;
-const CY = 160;
-const R = 104;
+const STATIONS = 10;
+const BEAD_R = 13;
+const STEP = 42;
+const R = STEP / (2 * Math.sin(Math.PI / STATIONS));
+const STEM_STEP = STEP;
+const STEM_MAX = 4;
+const JOIN_ANGLE = Math.PI / 2;
+const TITLE_ABOVE = BEAD_R + 22;
+const CX = 180;
+const CY = TITLE_ABOVE + R + 12;
+const JOIN_Y = CY + R;
+const VIEW_W = 360;
+const VIEW_H = Math.ceil(JOIN_Y + STEM_MAX * STEP + BEAD_R + 36);
 const ODD = "#c45c26";
 const EVEN = "#1f6f6a";
 const GREY = "#8a8378";
-const STEM_X0 = 36;
-const STEM_STEP = 54;
 const BALLOON = IDEAL_BALLOON_BEADS;
 const N = BALLOON.length;
 const JOIN_SPOTS = idealJoinSpots(BALLOON);
-const BEAD_R = Math.min(14, Math.max(9, (Math.PI * R) / N - 1.2));
 
 function letterColor(letter: IdealBead["letter"]): string {
   if (letter === "O") return ODD;
@@ -54,8 +59,16 @@ function letterColor(letter: IdealBead["letter"]): string {
   return GREY;
 }
 
-function beadAngle(index: number): number {
-  return (index / N) * 2 * Math.PI + Math.PI;
+function sureSlot(sureIndex: number): number {
+  return sureIndex <= 1 ? sureIndex : 2 * sureIndex - 1;
+}
+
+function stationAngle(slot: number, joinAt = 0): number {
+  return ((slot - sureSlot(joinAt)) / STATIONS) * 2 * Math.PI + JOIN_ANGLE;
+}
+
+function beadAngle(index: number, joinAt = 0): number {
+  return stationAngle(sureSlot(index), joinAt);
 }
 
 function atAngle(angle: number, radius: number, dy = 0): { x: number; y: number } {
@@ -71,25 +84,8 @@ function arcPath(a0: number, a1: number): string {
   return `M ${x0} ${y0} A ${R} ${R} 0 ${sweep > Math.PI ? 1 : 0} 1 ${x1} ${y1}`;
 }
 
-function minorArcDelta(from: number, to: number): number {
-  const tau = 2 * Math.PI;
-  const a0 = ((from % tau) + tau) % tau;
-  const a1 = ((to % tau) + tau) % tau;
-  let delta = a1 - a0;
-  if (delta > Math.PI) delta -= tau;
-  if (delta < -Math.PI) delta += tau;
-  return delta;
-}
-
-function intervalAngle(afterBead: number): number {
-  const a0 = beadAngle(afterBead);
-  let a1 = beadAngle(afterBead + 1);
-  if (a1 <= a0) a1 += 2 * Math.PI;
-  return (a0 + a1) / 2;
-}
-
-function intervalAfter(index: number): BalloonInterval | undefined {
-  return IDEAL_BALLOON_INTERVALS.find((item) => item.afterBead === index);
+function intervalAngle(afterBead: number, joinAt = 0): number {
+  return stationAngle(sureSlot(afterBead) + 1, joinAt);
 }
 
 function beadMark(bead: IdealBead | PaintedBead): FigureMark | undefined {
@@ -118,26 +114,13 @@ function beadPaint(bead: IdealBead | PaintedBead): {
 }
 
 function balloonNote(index: number): string {
-  const sureEvens = BALLOON.flatMap((item, itemIndex) =>
-    item.letter === "E" && item.tone === "sure" ? [itemIndex] : [],
-  );
   if (index === 0) return "CycleMin";
-  if (index === 1) return "launch";
-  if (index === sureEvens[0]) return "overshoots";
-  if (index === sureEvens[sureEvens.length - 1]) return "lands";
-  const evenRank = sureEvens.indexOf(index);
-  return evenRank > 0 ? `E ${evenRank + 1}` : "";
+  if (index === 1) return "a₁≥2";
+  return "";
 }
 
-function intervalNote(interval: BalloonInterval): string {
-  if (interval.kind === "a1Extras") return "a₁ extras";
-  if (interval.kind === "middle") return "middle odds";
-  if (interval.kind === "extraEven") return "extra E";
-  return "last odd";
-}
-
-function intervalCountGlyph(interval: BalloonInterval): string {
-  return interval.max === null ? `${interval.min}+` : `{${interval.min},${interval.max}}`;
+function intervalBoundCaption(interval: BalloonInterval): string {
+  return interval.max === null ? "≥0" : `{${interval.min},${interval.max}}`;
 }
 
 function regionLit(focus: DecisionFocus | undefined, region: DecisionFocus): boolean {
@@ -199,27 +182,23 @@ function stemDecision(region: DecisionFocus): string {
   return "string-grey";
 }
 
-function stemCaption(index: number, bead: IdealBead | PaintedBead, last: number): string {
-  if ("caption" in bead && bead.caption) return bead.caption;
-  if (index === last && bead.letter === "E") return "t even";
-  if (index === last) return "t = E|O";
-  if (beadMark(bead) === "optional") return "optional";
-  if (bead.tone === "unknown") return "unknown";
-  return "";
-}
-
 type StemItem = {
   x: number;
+  y: number;
   bead: IdealBead | PaintedBead;
   region: DecisionFocus;
-  label: string;
-  glyph?: string;
+  caption?: string;
 };
+
+function stemBoundCaption(bead: PaintedBead): string | undefined {
+  return bead.caption === "≥0" ? "≥0" : undefined;
+}
 
 function stemItemsFromPainted(beads: readonly PaintedBead[]): StemItem[] {
   const last = beads.length - 1;
   return beads.map((bead, index) => ({
-    x: STEM_X0 + index * STEM_STEP,
+    x: CX,
+    y: JOIN_Y + (beads.length - index) * STEM_STEP,
     bead,
     region:
       bead.mark === "optional"
@@ -227,99 +206,58 @@ function stemItemsFromPainted(beads: readonly PaintedBead[]): StemItem[] {
         : index === last
           ? "string-e"
           : stemRegion(index, last),
-    label: stemCaption(index, bead, last),
-    glyph: bead.glyph,
+    caption: stemBoundCaption(bead),
   }));
 }
 
-function stemForJoin(
-  joinAt: number,
-  mode: StemDisplayMode,
-  witness: RealizedWitness | null,
-): StemItem[] {
-  if (witness?.fate === "capture") return stemItemsFromPainted(paintCaptureStem(witness));
+function stemForJoin(joinAt: number, mode: StemDisplayMode): StemItem[] {
   return stemItemsFromPainted(paintStem(mode, joinFigure(siteAtIndex(joinAt), joinAt)));
 }
-
-type CycleTile = {
-  note: string;
-  glyph: string;
-  decision: string;
-  focus: DecisionFocus;
-  bead: IdealBead;
-};
-
-const CYCLE_TILES: CycleTile[] = BALLOON.flatMap((bead, index) => {
-  const region = balloonRegion(index, bead);
-  const count = index === 1 ? "a₁≥2" : "";
-  const tile: CycleTile = {
-    note: balloonNote(index),
-    glyph: index === 0 ? "n" : count || bead.letter,
-    decision: index === 0 ? "balloon-cut" : balloonDecision(region),
-    focus: index === 0 ? "balloon" : region,
-    bead,
-  };
-  const interval = intervalAfter(index);
-  if (!interval) return [tile];
-  return [
-    tile,
-    {
-      note: intervalNote(interval),
-      glyph: intervalCountGlyph(interval),
-      decision: intervalDecision(interval),
-      focus: intervalRegion(interval),
-      bead: intervalCountBead(interval),
-    },
-  ];
-});
 
 type ArcSeg = {
   key: string;
   d: string;
   color: string;
   dashed: boolean;
-  launch: boolean;
   region: DecisionFocus;
 };
 
-const BALLOON_ARCS: ArcSeg[] = BALLOON.flatMap((bead, index): ArcSeg[] => {
-  const a0 = beadAngle(index);
-  const a1 = beadAngle(index + 1);
-  const interval = intervalAfter(index);
-  const region = interval ? intervalRegion(interval) : balloonRegion(index, bead);
-  const launch = index === 0;
-  if (!interval) {
-    return [
-      {
-        key: `arc-${index}`,
-        d: arcPath(a0, a1),
-        color: letterColor(bead.letter),
-        dashed: false,
-        launch,
-        region,
-      },
-    ];
-  }
-  const mid = intervalAngle(interval.afterBead);
-  return [
-    {
-      key: `arc-${index}-a`,
-      d: arcPath(a0, mid),
-      color: letterColor(bead.letter),
-      dashed: true,
-      launch,
-      region,
-    },
-    {
-      key: `arc-${index}-b`,
-      d: arcPath(mid, a1),
-      color: letterColor(intervalCountBead(interval).letter),
-      dashed: true,
-      launch,
-      region,
-    },
-  ];
-});
+function stationLetter(slot: number): IdealBead["letter"] {
+  if (slot === 0 || slot === 1) return "O";
+  const interval = IDEAL_BALLOON_INTERVALS.find(
+    (item) => sureSlot(item.afterBead) + 1 === slot,
+  );
+  if (interval) return intervalCountBead(interval).letter;
+  return "E";
+}
+
+function intervalAtSlot(slot: number): BalloonInterval | undefined {
+  return IDEAL_BALLOON_INTERVALS.find(
+    (item) => sureSlot(item.afterBead) + 1 === slot,
+  );
+}
+
+function arcRegion(slot: number): DecisionFocus {
+  const here = intervalAtSlot(slot);
+  if (here) return intervalRegion(here);
+  const next = intervalAtSlot((slot + 1) % STATIONS);
+  if (next) return intervalRegion(next);
+  if (slot === 0) return "balloon-oo";
+  return "balloon-seam";
+}
+
+function balloonArcs(joinAt: number): ArcSeg[] {
+  return Array.from({ length: STATIONS }, (_, slot) => {
+    const next = (slot + 1) % STATIONS;
+    return {
+      key: `arc-${slot}`,
+      d: arcPath(stationAngle(slot, joinAt), stationAngle(next, joinAt)),
+      color: letterColor(stationLetter(slot)),
+      dashed: Boolean(intervalAtSlot(slot) || intervalAtSlot(next)),
+      region: arcRegion(slot),
+    };
+  });
+}
 
 type FigureNode = {
   key: string;
@@ -337,52 +275,92 @@ type FigureNode = {
   index?: number;
 };
 
-const BALLOON_NODES: FigureNode[] = BALLOON.map((bead, index) => {
-  const angle = beadAngle(index);
-  const { x, y } = atAngle(angle, R);
-  const count = index === 1 ? "a₁≥2" : "";
-  const radius = index === 0 || count ? BEAD_R + 4 : BEAD_R;
-  const outer = index === 0 ? { x, y: y - radius - 14 } : atAngle(angle, R + radius + 16, 4);
-  const region = balloonRegion(index, bead);
-  return {
-    key: `balloon-${index}`,
-    x,
-    y,
-    bead,
-    radius,
-    glyph: count || undefined,
-    caption: balloonNote(index),
-    captionX: outer.x,
-    captionY: outer.y,
-    region,
-    decision: balloonDecision(region),
-    marked: index === 0,
-    index,
-  };
-});
+function balloonNodes(joinAt: number): FigureNode[] {
+  return BALLOON.map((bead, index) => {
+    const angle = beadAngle(index, joinAt);
+    const { x, y } = atAngle(angle, R);
+    const atJoin = index === joinAt;
+    const outer = atJoin
+      ? { x: x + BEAD_R + 44, y: y - 2 }
+      : atAngle(angle, R + BEAD_R + 16);
+    const region = balloonRegion(index, bead);
+    return {
+      key: `balloon-${index}`,
+      x,
+      y,
+      bead,
+      radius: BEAD_R,
+      caption: balloonNote(index),
+      captionX: outer.x,
+      captionY: outer.y,
+      region,
+      decision: index === 0 ? "balloon-cut" : balloonDecision(region),
+      marked: index === 0,
+      index,
+    };
+  });
+}
 
-const INTERVAL_NODES: FigureNode[] = IDEAL_BALLOON_INTERVALS.map((interval) => {
-  const angle = intervalAngle(interval.afterBead);
-  const { x, y } = atAngle(angle, R);
-  const outer = atAngle(angle, R + BEAD_R + 17, 4);
-  const region = intervalRegion(interval);
-  return {
-    key: `interval-${interval.kind}`,
-    x,
-    y,
-    bead: intervalCountBead(interval),
-    radius: BEAD_R + 1,
-    glyph: intervalCountGlyph(interval),
-    caption: intervalNote(interval),
-    captionX: outer.x,
-    captionY: outer.y,
-    region,
-    decision: intervalDecision(interval),
-  };
-});
+function intervalNodes(joinAt: number): FigureNode[] {
+  return IDEAL_BALLOON_INTERVALS.map((interval) => {
+    const angle = intervalAngle(interval.afterBead, joinAt);
+    const { x, y } = atAngle(angle, R);
+    const outer = atAngle(angle, R + BEAD_R + 16);
+    const region = intervalRegion(interval);
+    return {
+      key: `interval-${interval.kind}`,
+      x,
+      y,
+      bead: intervalCountBead(interval),
+      radius: BEAD_R,
+      caption: intervalBoundCaption(interval),
+      captionX: outer.x,
+      captionY: outer.y,
+      region,
+      decision: intervalDecision(interval),
+    };
+  });
+}
 
-const SURE_OO = atAngle((beadAngle(0) + beadAngle(1)) / 2, R - 34);
-const SURE_EO = atAngle(intervalAngle(N - 1), R + 28);
+function linkLabel(mid: number, side: number): { x: number; y: number } {
+  const outer = atAngle(mid, R + 18);
+  if (outer.y > JOIN_Y - 24 && Math.abs(outer.x - CX) < 56) {
+    return { x: CX + side * (R + 22), y: CY - 10 };
+  }
+  return outer;
+}
+
+function sureLabels(joinAt: number): { oo: { x: number; y: number }; eo: { x: number; y: number } } {
+  return {
+    oo: linkLabel((stationAngle(0, joinAt) + stationAngle(1, joinAt)) / 2, 1),
+    eo: linkLabel((stationAngle(9, joinAt) + stationAngle(10, joinAt)) / 2, -1),
+  };
+}
+
+type CycleFigure = {
+  arcs: ArcSeg[];
+  nodes: FigureNode[];
+  intervals: FigureNode[];
+  sureOO: { x: number; y: number };
+  sureEO: { x: number; y: number };
+};
+
+function cycleFigure(joinAt: number): CycleFigure {
+  const sure = sureLabels(joinAt);
+  return {
+    arcs: balloonArcs(joinAt),
+    nodes: balloonNodes(joinAt),
+    intervals: intervalNodes(joinAt),
+    sureOO: sure.oo,
+    sureEO: sure.eo,
+  };
+}
+
+const CYCLE_FIGURES = new Map(JOIN_SPOTS.map((spot) => [spot, cycleFigure(spot)]));
+
+function figureAt(joinAt: number): CycleFigure {
+  return CYCLE_FIGURES.get(joinAt) ?? CYCLE_FIGURES.get(0) ?? cycleFigure(0);
+}
 
 type JoinGeom = {
   path: string;
@@ -391,28 +369,95 @@ type JoinGeom = {
   color: string;
 };
 
-function joinGeom(joinAt: number, stem: StemItem[]): JoinGeom {
-  const stemLastX = stem.at(-1)?.x ?? STEM_X0;
-  const dest = atAngle(beadAngle(joinAt), R);
-  const color = letterColor(stem.at(-1)?.bead.letter ?? "?");
-  if (joinAt === 0) {
-    return {
-      path: `M ${stemLastX} ${CY} L ${dest.x} ${dest.y}`,
-      labelX: (stemLastX + dest.x) / 2,
-      labelY: CY - 22,
-      color,
-    };
-  }
-  const entry = atAngle(beadAngle(0), R);
-  const delta = minorArcDelta(beadAngle(0), beadAngle(joinAt));
-  const mid = beadAngle(0) + delta / 2;
-  const label = atAngle(mid, R + 38, 4);
+function joinGeom(stem: StemItem[]): JoinGeom {
+  const stemLastY = stem.at(-1)?.y ?? JOIN_Y + STEP;
   return {
-    path: `M ${stemLastX} ${CY} L ${entry.x} ${entry.y} A ${R} ${R} 0 0 ${delta >= 0 ? 1 : 0} ${dest.x} ${dest.y}`,
-    labelX: label.x,
-    labelY: label.y,
-    color,
+    path: `M ${CX} ${stemLastY} L ${CX} ${JOIN_Y}`,
+    labelX: CX + 36,
+    labelY: (stemLastY + JOIN_Y) / 2 + 4,
+    color: letterColor(stem.at(-1)?.bead.letter ?? "?"),
   };
+}
+
+function RotateCcwIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+      <path
+        d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function RotateCwIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+      <path
+        d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function SnapIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+      <circle
+        cx="12"
+        cy="12"
+        r="3"
+        fill="currentColor"
+      />
+      <path
+        d="M12 3v3M12 18v3M3 12h3M18 12h3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function JoinIconButton({
+  label,
+  disabled,
+  active,
+  onClick,
+  children,
+}: {
+  label: string;
+  disabled?: boolean;
+  active?: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      title={label}
+      aria-label={label}
+      disabled={disabled}
+      className={`grid h-8 w-8 place-items-center rounded-full border ${
+        active
+          ? "border-deep bg-deep text-card"
+          : "border-line bg-card text-ink"
+      } disabled:opacity-40`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 }
 
 function activate(
@@ -453,9 +498,10 @@ const Bead = memo(function Bead({
   onPick?: () => void;
 }) {
   const paint = beadPaint(bead);
-  const shown = glyph ?? (bead.letter === "O" && marked ? "n" : bead.letter);
-  const glyphSize =
-    shown.length >= 5 ? "8" : shown.length >= 3 ? "10" : radius >= 15 ? "13" : "11";
+  const shown = glyph ?? bead.letter;
+  const exponent = caption === "≥0" || caption?.startsWith("{") ? caption : undefined;
+  const note = exponent ? undefined : caption;
+  const glyphSize = shown.length >= 5 ? "8" : shown.length >= 3 ? "10" : "11";
   return (
     <g
       className={fadeClass(lit)}
@@ -470,7 +516,7 @@ const Bead = memo(function Bead({
         r={radius}
         fill={paint.fill}
         stroke={joined || marked ? "#1d1914" : paint.stroke}
-        strokeWidth={joined ? 3.4 : marked ? 3 : paint.dash ? 1.6 : 0}
+        strokeWidth={paint.dash || joined || marked ? 1.6 : 0}
         strokeDasharray={paint.dash}
       />
       <text
@@ -482,50 +528,23 @@ const Bead = memo(function Bead({
         fontSize={glyphSize}
       >
         {shown}
+        {exponent ? (
+          <tspan dy="-7" fontSize="7" dx="1">
+            {exponent}
+          </tspan>
+        ) : null}
       </text>
-      {caption ? (
+      {note ? (
         <text
           x={captionX ?? x}
           y={captionY ?? y + radius + 16}
           textAnchor="middle"
           className="stem-cycle-note"
         >
-          {caption}
+          {note}
         </text>
       ) : null}
     </g>
-  );
-});
-
-const RunTile = memo(function RunTile({
-  bead,
-  glyph,
-  ring,
-}: {
-  bead: IdealBead;
-  glyph?: string;
-  ring?: boolean;
-}) {
-  const paint = beadPaint(bead);
-  const shown = glyph ?? bead.letter;
-  const wide = shown.length > 1;
-  return (
-    <span
-      className="inline-flex h-7 items-center justify-center rounded-full font-mono text-xs"
-      style={{
-        minWidth: wide ? 38 : 28,
-        paddingInline: wide ? 5 : 0,
-        background: paint.fill,
-        color: paint.text,
-        border: ring
-          ? "2px solid #1d1914"
-          : paint.dash
-            ? `1px dashed ${paint.stroke}`
-            : "none",
-      }}
-    >
-      {shown}
-    </span>
   );
 });
 
@@ -554,9 +573,19 @@ const CycleLeanPanel = memo(function CycleLeanPanel({
         On the cycle — cycleMin_has_full_odd_even_run_form
       </p>
       <p className="mt-1 font-mono text-sm text-ink">
-        {runs
-          ? `w = ${formatRunWord(runs)}   ${formatOddEvenRuns(runs)}`
-          : "w = O^a1 E ... O^ae E   with a1 >= 2, ae <= 1"}
+        {runs ? (
+          <>
+            w = <Tex>{formatRunWordTex(runs)}</Tex>
+            {"  "}
+            {formatOddEvenRuns(runs)}
+          </>
+        ) : (
+          <>
+            w = <Tex>{String.raw`O^{a_1}E\cdots O^{a_e}E`}</Tex>
+            {"  "}
+            <Tex>{String.raw`a_1\ge 2,\; a_e\le 1`}</Tex>
+          </>
+        )}
       </p>
       <p className="mt-1 text-xs text-muted">
         {runs && projected && matchesFill
@@ -579,7 +608,7 @@ const JoinCard = memo(function JoinCard({
   onPick: (id: string) => void;
 }) {
   const join = idealJoinConfig(joinAt);
-  const atCycleMin = joinAt === 0;
+  const atCycleMin = join.isValley;
   return (
     <button
       type="button"
@@ -590,14 +619,21 @@ const JoinCard = memo(function JoinCard({
       <p className="text-xs uppercase tracking-wide text-muted">
         Join at {join.name}
         {atCycleMin ? " — CycleMin cut" : " — same loop, not the CycleMin cut"}
+        {join.fillDependent ? " — fill-dependent arrival" : ""}
       </p>
       <p className="mt-1 font-mono text-sm text-ink">
-        vertex {join.vertex} · arrives {join.arrival} · stem t is{" "}
-        {join.stemTerminal === "E" ? "even" : "E or O"}
+        vertex {join.vertex} · arrives {join.arrival}
+        {join.fillDependent ? " (fill-dependent)" : ""} · stem t is{" "}
+        {join.stemTerminal === "E" ? "even (forced)" : "unknown"}
       </p>
       <p className="mt-1 text-sm text-ink">
         Cyclic parent: {join.cycleParent}. Stem: {join.stem}.
       </p>
+      <ul className="mt-1 list-disc pl-4 text-xs text-muted">
+        {join.forbidden.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
       <p className="mt-1 text-xs text-muted">
         {join.arrivalWhy} {join.lean}. {JOIN_INTERVALS_NOT_STOPS} {JOIN_VS_WORD_ROTATION}
       </p>
@@ -608,24 +644,31 @@ const JoinCard = memo(function JoinCard({
 const FigureSvg = memo(function FigureSvg({
   focus,
   joinAt,
+  stemMode,
   onPick,
   onClear,
 }: {
   focus?: DecisionFocus;
   joinAt: number;
+  stemMode: StemDisplayMode;
   onPick: (id: string) => void;
   onClear?: () => void;
 }) {
-  const stem = stemForJoin(joinAt);
-  const join = JOIN_GEOM[joinAt] ?? JOIN_GEOM[0]!;
+  const stem = stemForJoin(joinAt, stemMode);
+  const join = joinGeom(stem);
+  const cycle = figureAt(joinAt);
   const joinLit = regionLit(focus, "join");
   const joinFocus = focus === "join";
   const atCycleMin = joinAt === 0;
   const joinCfg = idealJoinConfig(joinAt);
+  const stemTitleY =
+    stem.length === 0
+      ? JOIN_Y + STEP + BEAD_R + 22
+      : (stem[0].y ?? JOIN_Y) + BEAD_R + 22;
 
   return (
     <svg
-      viewBox="0 0 720 340"
+      viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
       role="img"
       className="stem-cycle-svg mt-1 h-auto w-full"
       onClick={(event) => {
@@ -634,12 +677,24 @@ const FigureSvg = memo(function FigureSvg({
       }}
     >
       <title>
-        Optional stem joining a CycleMin cycle at a sure letter. The cycle is a
-        projection of the Lean run list onto six sure letters.
+        Schematic CycleMin geometry with an optional stem. No nontrivial cycle
+        is known. The cycle is a projection of the Lean run list onto six sure
+        letters.
       </title>
-      <text x={(stem[0].x + stem[Math.max(stem.length - 2, 0)].x) / 2} y={CY - 44} className="stem-cycle-title">
-        Stem
+      <text x={CX} y={stemTitleY} className="stem-cycle-title">
+        {stem.length === 0 ? "Empty stem" : "Stem"}
       </text>
+      {stem.length === 0 ? (
+        <text
+          x={CX}
+          y={JOIN_Y + STEP + 4}
+          className="stem-cycle-note"
+          role="button"
+          onClick={(event) => activate(() => onPick("empty-string"), event)}
+        >
+          empty
+        </text>
+      ) : null}
       {stem.slice(0, -1).map((item, index) => {
         const next = stem[index + 1];
         const unsure = item.bead.tone !== "sure" || next.bead.tone !== "sure";
@@ -647,9 +702,9 @@ const FigureSvg = memo(function FigureSvg({
           <line
             key={`stem-link-${index}`}
             x1={item.x}
-            y1={CY}
+            y1={item.y}
             x2={next.x}
-            y2={CY}
+            y2={next.y}
             stroke={letterColor(item.bead.letter)}
             strokeWidth="2.2"
             strokeLinecap="round"
@@ -658,32 +713,33 @@ const FigureSvg = memo(function FigureSvg({
           />
         );
       })}
-      {stem.map((item) => (
+      {stem.map((item, index) => (
         <Bead
-          key={`stem-${item.region}-${item.x}`}
+          key={`stem-${item.region}-${index}`}
           x={item.x}
-          y={CY}
+          y={item.y}
           bead={item.bead}
-          radius={16}
-          glyph={item.glyph}
-          caption={item.label}
+          radius={BEAD_R}
+          caption={item.caption}
+          captionX={item.x + BEAD_R + 20}
+          captionY={item.y + 4}
           lit={regionLit(focus, item.region)}
           onPick={() => onPick(stemDecision(item.region))}
         />
       ))}
-      {BALLOON_ARCS.map((arc) => (
+      {cycle.arcs.map((arc) => (
         <path
           key={arc.key}
           d={arc.d}
           fill="none"
           stroke={arc.color}
-          strokeWidth={arc.launch ? 5 : 3}
+          strokeWidth="2.2"
           strokeLinecap="round"
           strokeDasharray={arc.dashed ? "3 3" : undefined}
           className={fadeClass(regionLit(focus, arc.region))}
         />
       ))}
-      {INTERVAL_NODES.map((node) => (
+      {cycle.intervals.map((node) => (
         <Bead
           key={node.key}
           x={node.x}
@@ -711,14 +767,14 @@ const FigureSvg = memo(function FigureSvg({
       <text
         x={join.labelX}
         y={join.labelY}
-        textAnchor="middle"
+        textAnchor="start"
         className={`stem-cycle-note stem-cycle-ink ${fadeClass(joinLit) ?? ""}`}
         role="button"
         onClick={(event) => activate(() => onPick("join-seam"), event)}
       >
         {atCycleMin ? "join · CycleMin" : `join · ${joinCfg.name}`}
       </text>
-      {BALLOON_NODES.map((node) => {
+      {cycle.nodes.map((node) => {
         const isJoin = node.index === joinAt;
         return (
           <Bead
@@ -740,8 +796,8 @@ const FigureSvg = memo(function FigureSvg({
       })}
       <text
         x={CX}
-        y={CY - 8}
-        className="stem-cycle-title stem-cycle-title-sm"
+        y={CY - R - BEAD_R - 18}
+        className="stem-cycle-title"
         role="button"
         onClick={(event) => activate(() => onPick("balloon-run"), event)}
       >
@@ -749,16 +805,24 @@ const FigureSvg = memo(function FigureSvg({
       </text>
       <text
         x={CX}
-        y={CY + 14}
+        y={CY + 4}
         className="stem-cycle-note"
         role="button"
         onClick={(event) => activate(() => onPick("balloon-run"), event)}
       >
-        O^a₁ E … O^aₑ E
+        O
+        <tspan dy="-6" fontSize="8">
+          a₁
+        </tspan>
+        <tspan dy="6"> E … O</tspan>
+        <tspan dy="-6" fontSize="8">
+          aₑ
+        </tspan>
+        <tspan dy="6"> E</tspan>
       </text>
       <text
-        x={SURE_OO.x}
-        y={SURE_OO.y}
+        x={cycle.sureOO.x}
+        y={cycle.sureOO.y}
         fill={ODD}
         className={`stem-cycle-link ${fadeClass(regionLit(focus, "balloon-oo") || regionLit(focus, "balloon-seam") || regionLit(focus, "balloon")) ?? ""}`}
         role="button"
@@ -767,8 +831,8 @@ const FigureSvg = memo(function FigureSvg({
         sure OO
       </text>
       <text
-        x={SURE_EO.x}
-        y={SURE_EO.y}
+        x={cycle.sureEO.x}
+        y={cycle.sureEO.y}
         fill={EVEN}
         className={`stem-cycle-link ${fadeClass(regionLit(focus, "balloon-oo") || regionLit(focus, "balloon-seam") || regionLit(focus, "balloon")) ?? ""}`}
         role="button"
@@ -780,61 +844,12 @@ const FigureSvg = memo(function FigureSvg({
   );
 });
 
-const TileRow = memo(function TileRow({
-  focus,
-  joinAt,
-  onPick,
-}: {
-  focus?: DecisionFocus;
-  joinAt: number;
-  onPick: (id: string) => void;
-}) {
-  const stem = stemForJoin(joinAt);
-  return (
-    <div className="mt-2 grid gap-3">
-      <div>
-        <p className="text-[10px] uppercase tracking-wide text-muted">Stem</p>
-        <div className="mt-1.5 flex flex-wrap items-end justify-center gap-2">
-          {stem.map((item, index) => (
-            <button
-              key={`stem-tile-${index}`}
-              type="button"
-              className={`grid justify-items-center gap-0.5 ${fadeClass(regionLit(focus, item.region)) ?? ""}`}
-              onClick={() => onPick(stemDecision(item.region))}
-            >
-              <RunTile bead={item.bead} glyph={item.glyph ?? item.bead.letter} />
-              <span className="text-[10px] text-muted">{item.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-      <div>
-        <p className="text-[10px] uppercase tracking-wide text-muted">
-          Idealized cycle
-        </p>
-        <div className="mt-1.5 flex flex-wrap items-end justify-center gap-1.5">
-          {CYCLE_TILES.map((tile, index) => (
-            <button
-              key={`${tile.note}-${index}`}
-              type="button"
-              className={`grid justify-items-center gap-0.5 ${fadeClass(regionLit(focus, tile.focus)) ?? ""}`}
-              onClick={() => onPick(tile.decision)}
-            >
-              <RunTile bead={tile.bead} glyph={tile.glyph} />
-              <span className="text-[10px] text-muted">{tile.note}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-});
-
 export const CycleLollipop = memo(function CycleLollipop({
   focus,
   joinIndex = 0,
   word,
   fill = null,
+  stemMode = "optionalLaunch",
   onJoinIndex,
   onSelectDecision,
   onClearFocus,
@@ -843,6 +858,7 @@ export const CycleLollipop = memo(function CycleLollipop({
   joinIndex?: number;
   word?: string;
   fill?: NecklaceFill | null;
+  stemMode?: StemDisplayMode;
   onJoinIndex?: (index: number) => void;
   onSelectDecision?: (id: string) => void;
   onClearFocus?: () => void;
@@ -862,48 +878,55 @@ export const CycleLollipop = memo(function CycleLollipop({
         if (event.target === event.currentTarget) onClearFocus?.();
       }}
     >
-      <FigureSvg focus={focus} joinAt={joinAt} onPick={pick} onClear={onClearFocus} />
-      <TileRow focus={focus} joinAt={joinAt} onPick={pick} />
+      <div>
+        <FigureSvg
+          focus={focus}
+          joinAt={joinAt}
+          stemMode={stemMode}
+          onPick={pick}
+          onClear={onClearFocus}
+        />
+        <div
+          className="flex items-center gap-1.5"
+          style={{
+            marginLeft: `${(CX / VIEW_W) * 100}%`,
+            transform: "translateX(-50%)",
+            width: "max-content",
+          }}
+        >
+          <JoinIconButton
+            label="Join left"
+            onClick={() => onJoinIndex?.(stepIdealJoin(joinAt, -1, JOIN_SPOTS))}
+          >
+            <RotateCcwIcon />
+          </JoinIconButton>
+          <JoinIconButton
+            label="Snap join to CycleMin"
+            disabled={joinAt === 0}
+            active={joinAt === 0}
+            onClick={() => onJoinIndex?.(0)}
+          >
+            <SnapIcon />
+          </JoinIconButton>
+          <JoinIconButton
+            label="Join right"
+            onClick={() => onJoinIndex?.(stepIdealJoin(joinAt, 1, JOIN_SPOTS))}
+          >
+            <RotateCwIcon />
+          </JoinIconButton>
+        </div>
+      </div>
       <CycleLeanPanel
         word={word}
         fill={fill}
         lit={!focus || focus === "figure" || focus.startsWith("balloon")}
         onPick={pick}
       />
-      <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
-        <button
-          type="button"
-          className="rounded-full border border-line px-3 py-1 text-sm"
-          onClick={() => onJoinIndex?.(stepIdealJoin(joinAt, -1, JOIN_SPOTS))}
-        >
-          Join left
-        </button>
-        <button
-          type="button"
-          className="rounded-full bg-deep px-3 py-1 text-sm text-card disabled:opacity-40"
-          disabled={joinAt === 0}
-          onClick={() => onJoinIndex?.(0)}
-        >
-          Snap join to CycleMin
-        </button>
-        <button
-          type="button"
-          className="rounded-full border border-line px-3 py-1 text-sm"
-          onClick={() => onJoinIndex?.(stepIdealJoin(joinAt, 1, JOIN_SPOTS))}
-        >
-          Join right
-        </button>
-      </div>
       <JoinCard
         joinAt={joinAt}
         lit={regionLit(focus, "join") || !focus}
         onPick={pick}
       />
-      <p className="mt-2 text-sm text-muted">
-        Counts sit in the beads, notes outside. Join left/right walks the
-        stem around the six sure letters. Necklace rotate is a different
-        motion: a cut that starts E or OE is not CycleMin.
-      </p>
     </div>
   );
 });

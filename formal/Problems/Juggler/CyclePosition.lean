@@ -377,6 +377,83 @@ theorem parent_fibre_of_vertex {y x : ℕ} (h : ParentOf y x) :
       (y % 2 = 1 ∧ x ^ 2 ≤ y ^ 3 ∧ y ^ 3 < (x + 1) ^ 2) :=
   parent_cases h
 
+/-! ## E-arrival odd stem forces a nontrivial CycleMin
+
+A realized E-arrival with an odd parent is not a search gap on `{1}`.
+The sink word is all-odd, so every arrival at `1` is O-arrival.
+The only other compiled return through `0` is even, and `0` has no
+odd parent. Any remaining E-arrival odd parent sits on a
+`CycleItinerary` with start `≥ 2`, hence a nontrivial `CycleMin`.
+
+This is not a halt theorem and not a claim that no such parent exists.
+-/
+
+theorem follows_one_all_odd {w : List Branch} (hw : follows 1 w) :
+    ∀ b ∈ w, b = Branch.odd := by
+  induction w with
+  | nil =>
+      intro b hb
+      exact (List.not_mem_nil hb).elim
+  | cons b rest ih =>
+      cases b with
+      | even =>
+          exact absurd hw.1 (by decide)
+      | odd =>
+          intro c hc
+          rcases List.mem_cons.1 hc with h | h
+          · exact h
+          · have hrest : follows 1 rest := by
+              simpa [floorPower_one] using hw.2
+            exact ih hrest c h
+
+theorem cycleItinerary_one_not_eArrival {w : List Branch} {k : ℕ}
+    (h : CycleItinerary 1 w) (hk : k < w.length) :
+    cycleArrival w k hk ≠ .eArrival := by
+  have hodd : cyclePrevBranch w k hk = Branch.odd :=
+    follows_one_all_odd h.1 _ (List.getElem_mem _)
+  intro harr
+  have he : cyclePrevBranch w k hk = Branch.even :=
+    (cycleArrival_eArrival_iff hk).mp harr
+  cases hodd.symm.trans he
+
+theorem not_odd_parent_zero {t : ℕ} (ho : t % 2 = 1) : ¬ParentOf t 0 := by
+  intro h
+  have h3 : t ^ 3 < 1 := (odd_parent_cell ho h).2
+  have ht0 : t = 0 := by
+    by_contra ht
+    have : 1 ≤ t ^ 3 :=
+      Nat.pow_le_pow_left (Nat.succ_le_of_lt (Nat.pos_of_ne_zero ht)) 3
+    omega
+  omega
+
+/-- E-arrival plus an odd parent of that vertex forces start `≥ 2`.
+    The odd parent is not claimed to exist. -/
+theorem eArrival_odd_parent_start_ge_two {t n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleItinerary n w) (hk : k < w.length)
+    (harr : cycleArrival w k hk = .eArrival)
+    (hedge : ParentOf t (cycleVertex n k))
+    (ho : t % 2 = 1) : 2 ≤ n := by
+  match n with
+  | 0 =>
+      have hfix : floorPower 0 = 0 := by decide
+      have hx : cycleVertex 0 k = 0 := Function.iterate_fixed hfix k
+      exact (not_odd_parent_zero ho (by simpa [hx] using hedge)).elim
+  | 1 =>
+      exact (cycleItinerary_one_not_eArrival h hk harr).elim
+  | n + 2 =>
+      exact Nat.le_add_left 2 n
+
+theorem eArrival_odd_stem_has_nontrivial_cycleMin
+    (C : CollisionFactorization)
+    (harr : C.arrival = .eArrival)
+    (hodd : C.stemParent % 2 = 1) :
+    ∃ k < C.word.length,
+      CycleMin (floorPower^[k] C.start) (rotateItinerary C.word k) :=
+  exists_cycleMin
+    (eArrival_odd_parent_start_ge_two C.hCycle C.hIndex harr
+      C.hStemEdge hodd)
+    C.hCycle
+
 /-! ## Valley specialization of E-arrival -/
 
 theorem cycleMin_ends_even {n : ℕ} {w : List Branch}
