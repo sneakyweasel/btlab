@@ -37,8 +37,37 @@ if (snapshot.firstSurvivor !== PAPER_PERIOD) {
 if (snapshot.exceptionCount !== PAPER_EXCEPTION_COUNT) {
   throw new Error("finance snapshot exception count is not 141");
 }
+if (snapshot.survivors.length !== PAPER_EXCEPTION_COUNT) {
+  throw new Error("finance snapshot survivor rows are not 141");
+}
 
 export const financeSnapshot = snapshot;
+
+/** One finance survivor at the floor 10^6 with its Proposition 4.9 coordinates. */
+export type FinanceSurvivor = {
+  L: number;
+  o: number;
+  nMax: number;
+  /** (L, o) = a·v* + b·v_1054 with v* = (25781, 16266), v_1054 = (1054, 665). */
+  a: number;
+  b: number;
+  /** Theorem 4.8: killed by the run-type packing at the same floor. */
+  packingDeath: boolean;
+};
+
+export const financeSurvivors: readonly FinanceSurvivor[] = snapshot.survivors;
+export const financeLattice = snapshot.lattice;
+
+const survivorByLength = new Map(financeSurvivors.map((row) => [row.L, row] as const));
+
+export function survivorOf(length: number): FinanceSurvivor | undefined {
+  return survivorByLength.get(length);
+}
+
+/** Shipped parity n_max for a length: a record row or a survivor row, else null. */
+export function shippedNMax(length: number): number | null {
+  return records.get(length)?.nMax ?? survivorByLength.get(length)?.nMax ?? null;
+}
 
 export function financeView(length: number): FinanceView {
   if (!Number.isInteger(length) || length < 1) {
@@ -52,6 +81,7 @@ export function financeView(length: number): FinanceView {
     };
   }
   const record = records.get(length);
+  const survivor = survivorByLength.get(length);
   const inExceptionSet = exceptionSet.has(length);
   if (length > PAPER_L_CAP) {
     return {
@@ -65,8 +95,8 @@ export function financeView(length: number): FinanceView {
   }
   return {
     length,
-    oMin: record?.o ?? oMinForLength(length),
-    nMax: record?.nMax ?? null,
+    oMin: record?.o ?? survivor?.o ?? oMinForLength(length),
+    nMax: record?.nMax ?? survivor?.nMax ?? null,
     record: record !== undefined,
     inExceptionSet,
     status: inExceptionSet ? "admissible" : "excluded",

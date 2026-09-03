@@ -400,3 +400,42 @@ export const STRING_TOUR_PRESETS = [
   },
 ] as const;
 export const RECORD_LENGTHS = [1, 3, 11, 19, 84, 569, 1054, 25781, 50508] as const;
+
+/**
+ * Starts for the excursion necklace of §4. The browser walks each start
+ * for |word| realized steps and reads the wave; whether the word is
+ * followed is reported, never assumed. None of these is a cycle.
+ */
+export const NECKLACE_PRESETS = [
+  {
+    id: "365",
+    n: 365n,
+    word: "OOEOOEOOEOOEOEEEOOEEE",
+    label: "365 · six excursions",
+    hint: "The finance-leftover shape: four OOE climbs, then the wave falls through n. Not a cycle minimum.",
+  },
+  {
+    id: "1999",
+    n: 1999n,
+    word: "OOEOOOOEEOOE",
+    label: "1999 · rising valleys",
+    hint: "Valleys 1999 → 5169 → 50093 → 193753: the four consecutive expanding blocks of §6. The first peak overshoots; nothing lands.",
+  },
+  {
+    id: "o7eeee-5",
+    n: 5n,
+    word: "OOOOOOOEEEE",
+    label: "O⁷EEEE at 5",
+    hint: "The CycleMin-shaped survivor tried on a real start: the walk leaves the word at the third letter.",
+  },
+  {
+    id: "37",
+    n: 37n,
+    word: "OOOOEOOOEEOOEEEEE",
+    label: "37 · the note peak",
+    hint: "Three blocks, then a tower of evens. The second peak is the printed 24,906,114,455,136, far above (n+1)².",
+  },
+] as const;
+
+/** Necklace words are capped like tour strings. */
+export const NECKLACE_WORD_MAX = 32;

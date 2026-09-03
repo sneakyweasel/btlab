@@ -8,3 +8,4 @@ export * from "./monsters";
 export * from "./trajectory";
 export * from "./itinerary";
 export * from "./lollipop";
+export * from "./necklace";

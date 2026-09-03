@@ -10,6 +10,14 @@ export function formatInt(value: bigint | number): string {
   return `${text.slice(0, 6)}…${text.slice(-4)} (${text.length} digits)`;
 }
 
+/** log10 of a positive bigint for plotting; exact below 2^53, bit-length estimate above. */
+export function log10Of(state: bigint): number {
+  if (state <= 1n) return 0;
+  const bits = bitLength(state);
+  if (bits <= 53) return Math.log10(Number(state));
+  return (bits - 1) * Math.LOG10E * Math.LN2;
+}
+
 export function formatGrouped(value: number): string {
   return value.toLocaleString("en-US");
 }

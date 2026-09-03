@@ -3,8 +3,10 @@ import { evenPreimage, oddPreimageIntegers } from "../juggler/preimages";
 import {
   LIVE_STARTS,
   MONSTER_ROW_LIVE,
+  RECORD_LENGTHS,
   TRAJECTORY_STEPS_MAX,
 } from "../juggler/constants";
+import { usePlayState } from "../context/PlayState";
 import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
 import { floorPower, letterOf } from "../juggler/map";
@@ -21,7 +23,10 @@ import {
 import { PreimageNumberLine } from "../visuals/PreimageNumberLine";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
+import { FinanceBalance, FinanceHierarchy } from "../visuals/FinanceBalance";
 import { FloorLadder } from "../visuals/FloorLadder";
+import { NmaxStaircase } from "../visuals/NmaxStaircase";
+import { NecklaceExplorer } from "./NecklaceExplorer";
 import { FloorCut } from "../visuals/FloorCut";
 import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
@@ -561,36 +566,87 @@ export function FloorWidget() {
   );
 }
 
-export function FinanceWidget() {
-  const records = [11, 19, 84, 569, 1054, 25781];
-  const [length, setLength] = useState(11);
-  const view = financeView(length);
+function Movement({
+  number,
+  title,
+  question,
+  children,
+}: {
+  number: number;
+  title: string;
+  question: string;
+  children: ReactNode;
+}) {
   return (
-    <div className="space-y-3">
-      <Tex display>{String.raw`n\log n\cdot(3^o-2^L)\le L\cdot 3^o`}</Tex>
-      <label className="block text-sm text-muted">
-        Record length
-        <select
-          className="ml-2 rounded border border-line bg-card px-2 py-1 font-mono"
-          value={length}
-          onChange={(event) => setLength(Number(event.target.value))}
-        >
-          {records.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-      </label>
-      <div className="grid gap-3 sm:grid-cols-3">
-        <Metric label="Status" value={view.status} />
-        <Metric label="o_min" value={view.oMin === null ? "—" : String(view.oMin)} />
-        <Metric
-          label="n_max"
-          value={view.nMax === null ? "—" : view.nMax.toLocaleString("en-US")}
-          hint="from the shipped 6/5 table"
-        />
-      </div>
+    <section className="space-y-3">
+      <header className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+          Movement {number}
+        </span>
+        <h3 className="font-serif text-xl">{title}</h3>
+        <span className="text-sm text-muted">{question}</span>
+      </header>
+      {children}
+    </section>
+  );
+}
+
+export function FinanceWidget() {
+  const { financeL, setFinanceL } = usePlayState();
+  const view = financeView(financeL);
+  return (
+    <div className="space-y-8">
+      <Movement number={1} title="The necklace" question="what does a cycle look like at its minimum?">
+        <NecklaceExplorer compact />
+        <p className="text-sm text-muted">
+          Rotate a hypothetical cycle to its smallest value n and read it round the
+          circle: one turn is the word, the angle is the step, the radius is the value.
+          Each block OᵃE leaves a valley, climbs to an even peak, and drops. The first
+          peak must clear the outer ring (n+1)²; the last peak must land in the thin
+          band [n²+1, (n+1)²) so that one square root returns exactly to n and the curve
+          closes at the top. Real walks show the miss: the curve either spirals outward
+          or falls inside the ring n.
+        </p>
+      </Movement>
+      <Movement number={2} title="The ledger" question="why must the surplus be paid?">
+        <Tex display>{String.raw`n\log n\cdot(3^o-2^L)\le L\cdot 3^o\qquad\Longleftrightarrow\qquad \theta(L)=1-\frac{2^L}{3^o}\le\frac{L}{n\log n}`}</Tex>
+        <FinanceBalance length={financeL} compact />
+        <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
+          <span>Length</span>
+          <select
+            className="rounded border border-line bg-card px-2 py-1 font-mono"
+            value={RECORD_LENGTHS.includes(financeL as (typeof RECORD_LENGTHS)[number]) ? financeL : ""}
+            onChange={(event) => {
+              if (event.target.value) setFinanceL(Number(event.target.value));
+            }}
+          >
+            {RECORD_LENGTHS.includes(financeL as (typeof RECORD_LENGTHS)[number]) ? null : (
+              <option value="">{financeL.toLocaleString("en-US")}</option>
+            )}
+            {RECORD_LENGTHS.map((item) => (
+              <option key={item} value={item}>
+                {item.toLocaleString("en-US")}
+              </option>
+            ))}
+          </select>
+          <span>
+            — o_min {view.oMin === null ? "—" : view.oMin.toLocaleString("en-US")}, shipped n_max{" "}
+            {view.nMax === null ? "not tabulated" : view.nMax.toLocaleString("en-US")}
+          </span>
+        </div>
+        <FinanceHierarchy />
+      </Movement>
+      <Movement number={3} title="The staircase" question="where does the floor cut the lengths?">
+        <NmaxStaircase selected={financeL} onSelect={setFinanceL} compact />
+        <p className="text-sm text-muted">
+          Each record raises the bar n_max(L) a cycle minimum would have to sit under.
+          The floor 10⁶ is the line already searched: every length whose bar is below
+          it is dead. The first length to clear the line is 25,781; the 141 that clear
+          it before 100,000 are the finance survivors, and they sit on a two-vector
+          lattice around the convergents of log 2 / log 3. A survivor is a length the
+          inequality did not kill, not a candidate cycle.
+        </p>
+      </Movement>
     </div>
   );
 }

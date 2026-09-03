@@ -5,9 +5,12 @@ import {
 } from "../content/idealDecisions";
 import { evenPreimage, oddPreimageIntegers } from "./preimages";
 import {
+  NECKLACE_PRESETS,
   NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
   PAPER_EXCEPTION_COUNT,
+  PAPER_FLOOR,
+  PAPER_L_CAP,
   PAPER_PERIOD,
   BALLOON_SCHEMA,
   IDEAL_BALLOON_BEADS,
@@ -27,7 +30,22 @@ import {
   STRING_TOUR_PRESETS,
   TOUR_WORD_MAX,
 } from "./constants";
-import { financeSnapshot, financeView } from "./finance";
+import {
+  financeLattice,
+  financeSnapshot,
+  financeSurvivors,
+  financeView,
+  shippedNMax,
+  survivorOf,
+} from "./finance";
+import {
+  blockExponent,
+  constantOneCrossing,
+  financeBudgetConstantOne,
+  necklaceView,
+  oMinExact,
+  thetaExact,
+} from "./necklace";
 import { idealJoinConfig, stemBeadsForJoin, stemTerminalLetter } from "./joinConfig";
 import {
   DEFAULT_STEM_BEADS,
@@ -535,5 +553,110 @@ describe("finance lookup", () => {
     expect(view.oMin).toBe(16266);
     expect(view.nMax).toBe(26_254_995);
     expect(financeSnapshot.exceptionCount).toBe(PAPER_EXCEPTION_COUNT);
+  });
+
+  it("ships the 141 survivors above the floor with their n_max", () => {
+    expect(financeSurvivors).toHaveLength(PAPER_EXCEPTION_COUNT);
+    expect(financeSurvivors.map((row) => row.L)).toEqual(financeSnapshot.exceptionLengths);
+    for (const row of financeSurvivors) {
+      expect(row.nMax).toBeGreaterThan(PAPER_FLOOR);
+      expect(row.L).toBeLessThanOrEqual(PAPER_L_CAP);
+    }
+    expect(survivorOf(26835)?.nMax).toBe(10_630_371);
+    expect(financeView(26835).nMax).toBe(10_630_371);
+    expect(shippedNMax(1054)).toBe(788_014);
+    expect(shippedNMax(1055)).toBeNull();
+  });
+
+  it("places every survivor on the Proposition 4.9 lattice", () => {
+    const [vStarL, vStarO] = financeLattice.vStar;
+    const [v1054L, v1054O] = financeLattice.v1054;
+    expect(vStarL * v1054O - v1054L * vStarO).toBe(1);
+    for (const row of financeSurvivors) {
+      expect(row.a * vStarL + row.b * v1054L).toBe(row.L);
+      expect(row.a * vStarO + row.b * v1054O).toBe(row.o);
+      expect(row.o).toBe(oMinExact(row.L));
+    }
+    const deaths = financeSurvivors.filter((row) => row.packingDeath);
+    expect(deaths).toHaveLength(42);
+    expect(deaths.map((row) => row.L)).toEqual(
+      Array.from({ length: 42 }, (_, k) => 56347 + 1054 * k),
+    );
+    const slices = [1, 2, 3].map(
+      (a) => financeSurvivors.filter((row) => !row.packingDeath && row.a === a).length,
+    );
+    expect(slices).toEqual([29, 47, 23]);
+    expect(financeLattice.sliceCounts).toEqual(slices);
+  });
+});
+
+describe("excursion necklace", () => {
+  it("prices blocks by μ(a) = 3^a / 2^(a+1)", () => {
+    expect(blockExponent(1)).toMatchObject({ num: 3n, den: 4n, regime: "contracting" });
+    expect(blockExponent(2)).toMatchObject({ num: 9n, den: 8n, regime: "expanding" });
+    expect(blockExponent(0)).toMatchObject({ num: 1n, den: 2n, regime: "contracting" });
+    expect(blockExponent(3).approx).toBeCloseTo(27 / 16);
+  });
+
+  it("reads the walk of 365 as six excursions that fall through n", () => {
+    const preset = NECKLACE_PRESETS[0];
+    const view = necklaceView(preset.n, preset.word);
+    expect(view.follows).toBe(true);
+    expect(view.realized).toBe(preset.word);
+    expect(view.excursions.map((block) => block.odds)).toEqual([2, 2, 2, 2, 1, 0, 0, 2, 0, 0]);
+    expect(view.excursions.every((block) => block.complete)).toBe(true);
+    expect(view.excursions[0].valley).toBe(365n);
+    expect(view.excursions[0].peak).toBe(582276n);
+    expect(view.excursions[0].landing).toBe(763n);
+    expect(view.firstPeakOvershoots).toBe(true);
+    expect(view.lastPeakLands).toBe(false);
+    expect(view.returns).toBe(false);
+    expect(view.belowMinimumIndex).toBe(15);
+    expect(view.states[15]).toBe(34n);
+  });
+
+  it("reports where O⁷EEEE leaves the real walk of 5", () => {
+    const view = necklaceView(5n, "OOOOOOOEEEE");
+    expect(view.follows).toBe(false);
+    expect(view.failIndex).toBe(2);
+    expect(view.realized.startsWith("OOE")).toBe(true);
+    expect(view.firstPeak).toBe(36n);
+    expect(view.firstPeakOvershoots).toBe(true);
+    expect(view.lastPeakLands).toBe(false);
+  });
+
+  it("keeps an unfinished odd-run as an incomplete block", () => {
+    const view = necklaceView(3n, "OO");
+    expect(view.excursions).toHaveLength(1);
+    expect(view.excursions[0]).toMatchObject({ odds: 2, complete: false, peak: null });
+    expect(view.firstPeak).toBeNull();
+    expect(view.lastPeakLands).toBeNull();
+  });
+
+  it("computes θ(L) exactly and agrees with the shipped records", () => {
+    expect(oMinExact(1)).toBe(1);
+    expect(oMinExact(11)).toBe(7);
+    expect(oMinExact(1054)).toBe(665);
+    expect(oMinExact(25781)).toBe(16266);
+    expect(oMinExact(50508)).toBe(31867);
+    for (const row of financeSnapshot.records) {
+      expect(oMinExact(row.L)).toBe(row.o);
+    }
+    const theta = thetaExact(25781);
+    expect(theta.o).toBe(16266);
+    expect(theta.den).toBe(3n ** 16266n);
+    expect(theta.num).toBe(3n ** 16266n - 2n ** 25781n);
+    expect(theta.approx).toBeCloseTo(2.5459198127264017e-5, 12);
+    expect(theta.decimal.startsWith("0.0000254591")).toBe(true);
+    expect(thetaExact(1)).toMatchObject({ o: 1, num: 1n, den: 3n });
+    expect(thetaExact(1).decimal).toBe("0.333333333333");
+  });
+
+  it("solves the constant-1 crossing of Theorem 4.4", () => {
+    const theta = thetaExact(25781);
+    const n = constantOneCrossing(25781, theta.approx);
+    expect(n * Math.log(n)).toBeCloseTo(25781 / theta.approx, -2);
+    expect(financeBudgetConstantOne(25781, n)).toBeCloseTo(theta.approx, 12);
+    expect(n).toBeGreaterThan(shippedNMax(25781)!);
   });
 });

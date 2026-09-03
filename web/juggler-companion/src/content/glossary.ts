@@ -92,10 +92,12 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     slug: "finance",
     number: 8,
     term: "Finance",
-    blurb: "At a cycle minimum the surplus 3^o − 2^L must be paid by a finite budget of floor crumbs.",
+    blurb:
+      "Ideal dynamics expands, exact dynamics returns; the difference is paid in floor crumbs, and the crumbs run out.",
     body:
-      "Write the envelope at the smallest point of a hypothetical loop. The formal surplus 3^o − 2^L has to be paid by accumulated floor error. That is the inequality n log n · (3^o − 2^L) ≤ L · 3^o. With the floor 10⁶ it excludes every period at most 25,780. A length the table does not kill is a finance-survivor. That is not evidence for a cycle.",
-    paper: "Theorem 4.4 (finance) and Theorem 4.6 (the 10⁶ instance).",
+      "The necklace. Rotate a hypothetical cycle so that its minimum n comes first. Its word is then a necklace of blocks O^{a}E: from a valley at least n, a run of odd climbs to an even peak, one square root down to the next valley. Each block has an ideal exponent μ(a) = 3^a / 2^{a+1}; OE contracts (3/4), OOE expands (9/8). The first two letters are OO and the first peak clears (n+1)². The last peak is the dynamical entry: an even integer in [n²+1, (n+1)²), so that one square root lands exactly on n.\n\nThe ledger. Unroll the one-step floor defects around the necklace against the minimum. The word is formally expanding — 3^o > 2^L — yet the trajectory returns, so the surplus θ(L) = 1 − 2^L/3^o must be financed by accumulated floor error: n log n · (3^o − 2^L) ≤ L · 3^o. The only analytic input is log(1+u) ≤ u. The four forms of that inequality — constant 1, per-state defects, the statewise parity charge that yields n_max(L), and the certified 6/5 table — are rungs of one ladder and must not be conflated.\n\nThe staircase. For each length, n_max(L) is the largest minimum the parity charge still allows. Once every start up to N₀ is known to reach 1, a length with n_max(L) ≤ N₀ has no cycle. At the floor 10⁶ the bar clears the line first at L = 25,781; the 141 lengths below 100,000 that clear it are the finance survivors, and they sit on the lattice a·(25781, 16266) + b·(1054, 665) around the convergents of log 2 / log 3. Run-type packing kills 42 more. A survivor is a length the inequality did not kill; it is not a candidate cycle.",
+    paper:
+      "§4: the excursion necklace, Lemmas 4.1–4.3, Theorem 4.4 (finance, cycleMin_finance), Corollary 4.4c, Corollary 4.5, Theorem 4.6 (the 10⁶ table, 141 survivors), Theorems 4.7–4.8 (run packing), Proposition 4.9 (survivor lattice).",
   },
   {
     slug: "walk-charge",
