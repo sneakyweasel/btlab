@@ -604,7 +604,7 @@ const FigureLegend = memo(function FigureLegend({
 }) {
   return (
     <div className="stem-cycle-legend" data-keep-focus>
-      <span className="stem-cycle-legend-k">Parity</span>
+      <span className="stem-cycle-legend-k">Beads</span>
       <div className="stem-cycle-legend-row">
         <LegendItem label="odd" decision="balloon-parity" onPick={onPick}>
           <LegendBead letter="O" kind="sure" />
@@ -612,40 +612,31 @@ const FigureLegend = memo(function FigureLegend({
         <LegendItem label="even" decision="balloon-parity" onPick={onPick}>
           <LegendBead letter="E" kind="sure" />
         </LegendItem>
-      </div>
-      <span className="stem-cycle-legend-k">Certainty</span>
-      <div className="stem-cycle-legend-row">
-        <LegendItem label="plain — sure link (OO, wrap EO)" decision="balloon-links" onPick={onPick}>
-          <LegendLink />
-        </LegendItem>
-        <LegendItem label="hollow — interval, may be empty" decision="balloon-links" onPick={onPick}>
-          <LegendLink hollow />
-        </LegendItem>
-      </div>
-      <span className="stem-cycle-legend-k">CycleMin</span>
-      <div className="stem-cycle-legend-row">
-        <LegendItem label="black ring — CycleMin only" decision="balloon-cut" onPick={onPick}>
+        <LegendItem label="CycleMin" decision="balloon-cut" onPick={onPick}>
           <LegendBead letter="O" kind="min" />
         </LegendItem>
-      </div>
-      <span className="stem-cycle-legend-k">Letters</span>
-      <div className="stem-cycle-legend-row">
-        <LegendItem label="filled — sure letter" decision="balloon-fade" onPick={onPick}>
-          <LegendBead letter="E" kind="sure" />
-        </LegendItem>
-        <LegendItem label="hollow — aₑ" decision="balloon-seam" onPick={onPick}>
+        <LegendItem label="last odd-run aₑ" decision="balloon-seam" onPick={onPick}>
           <LegendBead letter="O" kind="count" />
         </LegendItem>
-        <LegendItem label="grey ? — unknown stem" decision="string-grey" onPick={onPick}>
+        <LegendItem label="unknown stem" decision="string-grey" onPick={onPick}>
           <LegendBead letter="?" kind="unknown" />
         </LegendItem>
       </div>
-      <span className="stem-cycle-legend-k">Mass</span>
+      <span className="stem-cycle-legend-k">Links</span>
       <div className="stem-cycle-legend-row">
-        <LegendItem label="ink band — leftover count, may split" decision="balloon-fade" onPick={onPick}>
+        <LegendItem label="sure (OO, wrap EO)" decision="balloon-links" onPick={onPick}>
+          <LegendLink />
+        </LegendItem>
+        <LegendItem label="may be empty" decision="balloon-links" onPick={onPick}>
+          <LegendLink hollow />
+        </LegendItem>
+      </div>
+      <span className="stem-cycle-legend-k">Bands</span>
+      <div className="stem-cycle-legend-row">
+        <LegendItem label="extra mass, may split" decision="balloon-fade" onPick={onPick}>
           <LegendMass />
         </LegendItem>
-        <LegendItem label="orange dots — a₁ continues OO" decision="balloon-oo" onPick={onPick}>
+        <LegendItem label="a₁ continues OO" decision="balloon-oo" onPick={onPick}>
           <LegendMass rim={ODD} />
         </LegendItem>
       </div>
@@ -965,10 +956,10 @@ const FigureSvg = memo(function FigureSvg({
       }}
     >
       <title>
-        Schematic CycleMin geometry with an optional stem. No nontrivial cycle
-        is known. Circles are letters. Ink bands in the gaps are leftover mass,
-        not a letter color. Pointed links: filled is sure (OO, wrap EO), hollow
-        may be empty.
+        Schematic CycleMin geometry with an optional stem. Filled beads are
+        known letters; the black ring is CycleMin; hollow O is the last odd-run
+        aₑ; grey ? is an unknown stem. Filled links are sure (OO, wrap EO);
+        hollow links may be empty. Bands are extra mass in the gaps.
       </title>
       {emptyStem ? null : (
         <text x={CX} y={stemTitleY} className="stem-cycle-title">

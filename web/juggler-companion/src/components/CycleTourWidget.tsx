@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo, useState, type ReactNode } from "react";
+import { memo, useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Tex } from "./Tex";
 import {
@@ -85,7 +85,7 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
     <div className="space-y-5">
       <div>
         <p className="mb-1.5 text-xs uppercase tracking-wide text-muted">
-          Cycle leftovers — not realized loops
+          Named survivors
         </p>
         <div className="flex flex-wrap items-center gap-1.5">
           {CYCLE_TOUR_PRESETS.map((preset) => (
@@ -118,12 +118,12 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
         }`}
       >
         {balloonShape.cycleMinShaped && balloonFill && balloonRuns
-          ? `CycleMin-shaped leftover. Runs ${formatOddEvenRuns(balloonRuns)} equal toRuns of assembleFill ${formatNecklaceFill(balloonFill)}. Still not a realized cycle.`
+          ? `CycleMin-shaped survivor. Runs ${formatOddEvenRuns(balloonRuns)} equal toRuns of assembleFill ${formatNecklaceFill(balloonFill)}. Still not a realized cycle.`
           : balloonShape.cycleMinShaped && balloonRuns
-            ? `CycleMin-shaped leftover. Runs ${formatOddEvenRuns(balloonRuns)} are not a four-slot fill. Still not a realized cycle (CycleMinShape_not_of_CycleMin).`
+            ? `CycleMin-shaped survivor. Runs ${formatOddEvenRuns(balloonRuns)} are not a four-slot fill. Still not a realized cycle (CycleMinShape_not_of_CycleMin).`
             : aligned
               ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, has four evens and seven odds."
-              : "Rotate until the min bead sits at the leftover knot."}
+              : "Rotate until the min bead sits at the survivor knot."}
       </div>
       <div className="grid gap-6 md:grid-cols-[minmax(16rem,22rem)_1fr] md:items-start">
         <div>
@@ -241,13 +241,13 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
               hint={
                 balloonFillCounts
                   ? `#O=${balloonFillCounts.oddCount}, #E=${balloonFillCounts.evenCount}, L=${balloonFillCounts.length}`
-                  : "shaped leftover need not be a NecklaceFill"
+                  : "shaped survivor need not be a NecklaceFill"
               }
             />
             <Metric
               label="Shape vs cycle"
               value={shape.cycleMinShaped ? "shape only" : "not shaped"}
-              hint="CycleMinShape_not_of_CycleMin: leftovers inhabit the shape"
+              hint="CycleMinShape_not_of_CycleMin: survivors inhabit the shape"
             />
           </div>
         </div>
@@ -306,31 +306,12 @@ function LetterRow({
   );
 }
 
-export function CycleTourWidget() {
+export function LeftoverWidget() {
   const [text, setText] = useState<string>(DEFAULT_SHAPE.word);
   const [shift, setShift] = useState<number>(0);
   const [minIndex, setMinIndex] = useState<number>(DEFAULT_SHAPE.minIndex);
-  const [decisionId, setDecisionId] = useState<string | null>(null);
-  const [joinIndex, setJoinIndex] = useState<number>(0);
-  const [stemMode, setStemMode] = useState<StemDisplayMode>("empty");
+  const [decisionId, setDecisionId] = useState<string>("leftovers");
   const decision = findDecision(decisionId);
-
-  const chooseDecision = useCallback((id: string | null) => {
-    setDecisionId(id);
-  }, []);
-
-  const toggleDecision = useCallback((id: string) => {
-    setDecisionId((current) => (current === id ? null : id));
-  }, []);
-
-  const clearDecision = useCallback(() => {
-    setDecisionId(null);
-  }, []);
-
-  const setJoin = useCallback((index: number) => {
-    setJoinIndex(index);
-    setDecisionId("join-seam");
-  }, []);
 
   const word = useMemo(() => {
     const parsed = parseItinerary(text, TOUR_WORD_MAX);
@@ -373,9 +354,74 @@ export function CycleTourWidget() {
     [word.stored],
   );
 
-  const snapCut = useCallback(() => {
-    setShift(word.minIndex);
-  }, [word.minIndex]);
+  return (
+    <div className="space-y-5">
+      {word.parsed === null ? (
+        <p className="text-sm text-warn">Use only O and E, length at most 24.</p>
+      ) : (
+        <CycleTourLeftovers
+          word={word}
+          onChooseShape={chooseShape}
+          onRotate={rotateBy}
+          onSnap={() => setShift(word.minIndex)}
+          onSelectIndex={setShift}
+          onLeftover={() => setDecisionId("leftovers")}
+          onRun={() => setDecisionId("leftovers")}
+        />
+      )}
+      <label className="block text-sm text-muted">
+        Or type a short necklace
+        <input
+          className="mt-1 block w-full max-w-md rounded border border-line bg-card px-2 py-1 font-mono uppercase"
+          value={text}
+          onChange={(event) => chooseShape(event.target.value.toUpperCase(), 0)}
+        />
+      </label>
+      <IdealDecisionCard decision={decision} />
+      <p className="text-sm text-muted">
+        O⁷EEEE and O⁶EEEOE are assembleFill survivors. The three-valley
+        word has runs [3, 2, 2, 0]: CycleMin-shaped and not a fill.
+        Pin misses OOEEEOOOOOE and OOOEEEOOOOE are outside CycleMinShape.
+        None of them close.{" "}
+        <Link to="/play/cycle">Try the same necklace in the playground</Link>.
+      </p>
+    </div>
+  );
+}
+
+export function CycleTourWidget() {
+  const [decisionId, setDecisionId] = useState<string | null>(null);
+  const [joinIndex, setJoinIndex] = useState<number>(0);
+  const [stemMode, setStemMode] = useState<StemDisplayMode>("empty");
+  const [wash, setWash] = useState(false);
+  const decision = findDecision(decisionId);
+
+  useEffect(() => {
+    if (!decisionId) {
+      setWash(false);
+      return;
+    }
+    setWash(true);
+    const id = window.setTimeout(() => setWash(false), 1000);
+    return () => window.clearTimeout(id);
+  }, [decisionId]);
+
+  const chooseDecision = useCallback((id: string | null) => {
+    setDecisionId(id);
+  }, []);
+
+  const toggleDecision = useCallback((id: string) => {
+    setDecisionId((current) => (current === id ? null : id));
+  }, []);
+
+  const clearDecision = useCallback(() => {
+    setDecisionId(null);
+  }, []);
+
+  const setJoin = useCallback((index: number) => {
+    setJoinIndex(index);
+    setDecisionId("join-seam");
+  }, []);
 
   return (
     <div
@@ -420,7 +466,7 @@ export function CycleTourWidget() {
       </div>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
-          focus={decision?.focus}
+          focus={wash ? decision?.focus : undefined}
           joinIndex={joinIndex}
           stemMode={stemMode}
           onSelectDecision={toggleDecision}
@@ -429,34 +475,6 @@ export function CycleTourWidget() {
         <IdealDecisionCard decision={decision} />
       </div>
       <IdealDecisionList selectedId={decision?.id ?? null} onSelect={chooseDecision} />
-      {word.parsed === null ? (
-        <p className="text-sm text-warn">Use only O and E, length at most 24.</p>
-      ) : (
-        <CycleTourLeftovers
-          word={word}
-          onChooseShape={chooseShape}
-          onRotate={rotateBy}
-          onSnap={snapCut}
-          onSelectIndex={setShift}
-          onLeftover={() => chooseDecision("leftovers")}
-          onRun={() => chooseDecision("balloon-run")}
-        />
-      )}
-      <label className="block text-sm text-muted">
-        Or type a short necklace
-        <input
-          className="mt-1 block w-full max-w-md rounded border border-line bg-card px-2 py-1 font-mono uppercase"
-          value={text}
-          onChange={(event) => chooseShape(event.target.value.toUpperCase(), 0)}
-        />
-      </label>
-      <p className="text-sm text-muted">
-        O⁷EEEE and O⁶EEEOE are assembleFill leftovers. The three-valley
-        word has runs [3, 2, 2, 0]: CycleMin-shaped and not a fill.
-        Pin misses OOEEEOOOOOE and OOOEEEOOOOE are outside CycleMinShape.
-        None of them close.{" "}
-        <Link to="/play/cycle">Try the same necklace in the playground</Link>.
-      </p>
     </div>
   );
 }

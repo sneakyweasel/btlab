@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { Banner } from "./Disclaimer";
 
 const LINKS = [
   { to: "/", label: "Home", end: true },
@@ -33,7 +32,6 @@ export function Layout() {
             ))}
           </nav>
         </div>
-        <Banner />
       </header>
       <main className="mx-auto max-w-6xl px-4 py-8">
         <Outlet />

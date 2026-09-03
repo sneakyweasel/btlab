@@ -1,8 +1,7 @@
-import { Tex } from "../components/Tex";
 import { formatInt } from "../juggler/format";
-import { idealExponentApprox, regimeOf } from "../juggler/itinerary";
+import { oddCount } from "../juggler/itinerary";
 import { bitLength, letterOf } from "../juggler/map";
-import { SurplusScale } from "./SurplusScale";
+import { IdealExponent } from "./IdealExponent";
 
 const WINDOW = 7;
 
@@ -38,16 +37,6 @@ function windowRange(length: number, active: number, size: number): { start: num
   return { start, end };
 }
 
-function formatApprox(value: number): string {
-  if (!Number.isFinite(value)) return "\\infty";
-  if (value !== 0 && (value < 0.001 || value >= 1000)) {
-    const exp = Math.floor(Math.log10(Math.abs(value)));
-    const mant = value / 10 ** exp;
-    return `${mant.toFixed(2)}\\times 10^{${exp}}`;
-  }
-  return value.toFixed(3);
-}
-
 function shortInt(value: bigint): string {
   const bits = bitLength(value);
   if (bits > 24) {
@@ -68,28 +57,6 @@ export function LinkedWalk({
 }: LinkedWalkProps) {
   const cursor = Math.max(0, Math.min(active, Math.max(states.length - 1, 0)));
   const realized = Math.max(0, Math.min(cursor, itinerary.length));
-  const odds = [...itinerary.slice(0, realized)].filter((letter) => letter === "O").length;
-  const evens = realized - odds;
-  const regime = regimeOf(realized, odds);
-  const approx = idealExponentApprox(odds, realized);
-  const origin = states[0];
-  const numer = 3n ** BigInt(odds);
-  const denom = 2n ** BigInt(realized);
-  const showExact = numer.toString().length <= 12 && denom.toString().length <= 12;
-  const startShown =
-    origin !== undefined && origin.toString().length <= 8 ? origin.toString() : null;
-  const tex =
-    realized === 0
-      ? ""
-      : showExact
-        ? String.raw`\dfrac{3^{${odds}}}{2^{${realized}}}=\dfrac{${numer}}{${denom}}\approx ${formatApprox(approx)}`
-        : String.raw`\dfrac{3^{${odds}}}{2^{${realized}}}\approx ${formatApprox(approx)}`;
-  const startTex =
-    realized === 0 || startShown === null
-      ? ""
-      : showExact
-        ? String.raw`${startShown}\cdot\dfrac{3^{${odds}}}{2^{${realized}}}=${startShown}\cdot\dfrac{${numer}}{${denom}}`
-        : String.raw`${startShown}\cdot\dfrac{3^{${odds}}}{2^{${realized}}}`;
   const { start, end } = windowRange(states.length, cursor, WINDOW);
   const visible = states.slice(start, end);
   const hiddenBefore = start > 0;
@@ -210,49 +177,6 @@ export function LinkedWalk({
           </div>
         </div>
       )}
-      {realized > 0 ? (
-        <div className="mt-4">
-          <p className="text-xs uppercase tracking-wide text-muted">
-            Ideal exponent of this prefix
-          </p>
-          <Tex display>{tex}</Tex>
-          {startTex ? (
-            <>
-              <p className="text-sm text-muted">
-                Ignoring floors, that would send the start to
-              </p>
-              <Tex display>{startTex}</Tex>
-            </>
-          ) : null}
-          <p className="text-sm text-ink">
-            <span
-              className={
-                regime === "expanding"
-                  ? "font-medium text-odd"
-                  : regime === "contracting"
-                    ? "font-medium text-even"
-                    : "font-medium text-muted"
-              }
-            >
-              {regime}
-            </span>
-            {regime === "contracting"
-              ? ": the ratio is less than 1, so even without floors this prefix shrinks."
-              : regime === "expanding"
-                ? ": the ratio is greater than 1, so without floors this prefix grows."
-                : regime === "critical"
-                  ? ": the ratio is exactly 1."
-                  : ""}
-          </p>
-          <p className="mt-2 text-sm text-muted">
-            {odds} O and {evens} E in {realized} {realized === 1 ? "step" : "steps"}.
-            Floors are not in this ratio.
-          </p>
-          <div className="mx-auto mt-3 max-w-xs">
-            <SurplusScale odds={odds} length={realized} />
-          </div>
-        </div>
-      ) : null}
       <p className="mt-3 text-sm text-muted">
         {states.length === 0
           ? "The browser did not write a walk for this start."
@@ -263,6 +187,15 @@ export function LinkedWalk({
               : `${itinerary.length} letters in the word.`}
         {note ? ` ${note}` : ""}
       </p>
+      {realized > 0 ? (
+        <div className="mt-4 border-t border-line pt-3">
+          <IdealExponent
+            odds={oddCount(itinerary.slice(0, realized))}
+            length={realized}
+            start={states[0]}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

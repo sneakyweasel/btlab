@@ -12,6 +12,7 @@ type MapDoorsProps = {
   axis?: ReactNode;
   player?: ReactNode;
   sparseScale?: boolean;
+  stepComputation?: ReactNode;
 };
 
 const PLOT_LEFT = 64;
@@ -95,41 +96,48 @@ function pointLabel(state: bigint): { kind: "plain"; text: string } | { kind: "p
 function BranchCard({
   kind,
   active,
+  computation,
 }: {
   kind: "odd" | "even";
   active: boolean;
+  computation?: ReactNode;
 }) {
   const odd = kind === "odd";
   const color = odd ? "#c45c26" : "#1f6f6a";
+  const showWork = active && computation != null;
   return (
     <div
-      className={`flex flex-1 flex-col items-center justify-center gap-1.5 rounded-2xl border border-line bg-card px-2 py-3 text-center ${
+      className={`flex flex-1 flex-col items-center justify-center gap-1 rounded-2xl border border-line bg-card px-2 py-2 text-center ${
         active ? "" : "opacity-45"
       }`}
     >
-      <p className="font-serif text-lg leading-tight" style={{ color }}>
-        {odd ? "Odd branch" : "Even branch"}
+      <p className="font-serif text-base leading-tight" style={{ color }}>
+        {odd ? "Odd" : "Even"}
+        <span className="ml-1 font-mono text-lg">{odd ? "O" : "E"}</span>
       </p>
-      <p className="font-mono text-2xl leading-none" style={{ color }}>
-        {odd ? "O" : "E"}
-      </p>
-      <p className="text-xs text-muted">
-        {odd ? (
-          <>
-            n odd → ⌊n<sup>3/2</sup>⌋
-          </>
-        ) : (
-          <>
-            n even → ⌊n<sup>1/2</sup>⌋
-          </>
-        )}
-      </p>
-      <p className="text-4xl leading-none" style={{ color }} aria-hidden>
-        {odd ? "⬆" : "⬇"}
-      </p>
-      <p className="text-xs" style={{ color }}>
-        {odd ? "grows" : "shrinks"}
-      </p>
+      {showWork ? (
+        computation
+      ) : (
+        <>
+          <p className="text-xs text-muted">
+            {odd ? (
+              <>
+                n odd → ⌊√(n<sup>3</sup>)⌋
+              </>
+            ) : (
+              <>
+                n even → ⌊√n⌋
+              </>
+            )}
+          </p>
+          <p className="text-3xl leading-none" style={{ color }} aria-hidden>
+            {odd ? "⬆" : "⬇"}
+          </p>
+          <p className="text-xs" style={{ color }}>
+            {odd ? "grows" : "shrinks"}
+          </p>
+        </>
+      )}
     </div>
   );
 }
@@ -270,6 +278,7 @@ export function MapDoors({
   axis,
   player,
   sparseScale = false,
+  stepComputation,
 }: MapDoorsProps) {
   const evenActive = highlight !== "odd";
   const oddActive = highlight !== "even";
@@ -280,7 +289,7 @@ export function MapDoors({
       {controls ? (
         <div className="rounded-2xl border border-line bg-paper px-4 py-2.5">{controls}</div>
       ) : null}
-      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_9.5rem] lg:items-stretch">
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_8.5rem] lg:items-stretch">
         <div className="rounded-2xl border border-line bg-card px-3 py-3">
           <h3 className="px-1 text-center font-serif text-lg">{heading}</h3>
           <TrajectoryPlot states={states} active={active} sparseScale={sparseScale} />
@@ -297,9 +306,17 @@ export function MapDoors({
           ) : null}
           {player ? <div className="pt-2">{player}</div> : null}
         </div>
-        <div className="flex flex-col gap-3">
-          <BranchCard kind="odd" active={oddActive} />
-          <BranchCard kind="even" active={evenActive} />
+        <div className="flex min-w-0 flex-col gap-3">
+          <BranchCard
+            kind="odd"
+            active={oddActive}
+            computation={highlight === "odd" ? stepComputation : undefined}
+          />
+          <BranchCard
+            kind="even"
+            active={evenActive}
+            computation={highlight === "even" ? stepComputation : undefined}
+          />
         </div>
       </div>
     </div>

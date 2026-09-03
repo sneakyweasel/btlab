@@ -1,11 +1,23 @@
 import type { ReactNode } from "react";
-import { formatInt } from "../juggler/format";
+import { Tex } from "../components/Tex";
 import { bitLength, floorPower, letterOf } from "../juggler/map";
 
 type FloorCutProps = {
   n: bigint;
   result?: bigint | null;
+  compact?: boolean;
 };
+
+function shortDigits(
+  value: bigint | number | string,
+  head = 3,
+  tail = 3,
+  maxFull = head + tail + 1,
+): string {
+  const text = value.toString();
+  if (text.length <= maxFull) return text;
+  return `${text.slice(0, head)}…${text.slice(-tail)}`;
+}
 
 function threeDecimals(raw: number, integer: number): string {
   const frac = raw - integer;
@@ -15,7 +27,14 @@ function threeDecimals(raw: number, integer: number): string {
     .padStart(3, "0");
 }
 
-function Card({ children }: { children: ReactNode }) {
+function Card({
+  children,
+  compact,
+}: {
+  children: ReactNode;
+  compact?: boolean;
+}) {
+  if (compact) return <div className="grid gap-1 text-center">{children}</div>;
   return (
     <div className="flex h-full flex-col rounded-2xl border border-line bg-paper/70 px-4 py-3">
       <p className="text-xs uppercase tracking-wide text-muted">
@@ -26,11 +45,11 @@ function Card({ children }: { children: ReactNode }) {
   );
 }
 
-export function FloorCut({ n, result }: FloorCutProps) {
+export function FloorCut({ n, result, compact = false }: FloorCutProps) {
   if (n < 1n) {
     return (
-      <Card>
-        <p className="mt-2 text-sm text-muted">
+      <Card compact={compact}>
+        <p className="text-sm text-muted">
           Floor still means: throw away the decimals and keep the integer part.
         </p>
       </Card>
@@ -42,29 +61,18 @@ export function FloorCut({ n, result }: FloorCutProps) {
 
   if (bitLength(n) > 50) {
     return (
-      <Card>
-        <p className="mt-2 font-mono text-sm" style={{ color: odd ? "#c45c26" : "#1f6f6a" }}>
-          {odd ? "Odd branch O" : "Even branch E"}
-        </p>
-        <p className="mt-3 font-mono text-lg leading-snug break-all">
-          {odd ? (
-            <>
-              ⌊{formatInt(n)}
-              <sup>3/2</sup>⌋
-            </>
-          ) : (
-            <>⌊√{formatInt(n)}⌋</>
-          )}
-          {result != null ? (
-            <>
-              <span className="mx-2 text-muted">→</span>
-              {formatInt(result)}
-            </>
-          ) : null}
-        </p>
-        <p className="mt-auto pt-3 text-sm text-muted">
-          This value is too large to print the decimals here. Floor still
-          means: throw away the decimals and keep the integer part.
+      <Card compact={compact}>
+        {compact ? null : (
+          <p className="mt-2 font-mono text-sm" style={{ color: odd ? "#c45c26" : "#1f6f6a" }}>
+            {odd ? "Odd branch O" : "Even branch E"}
+          </p>
+        )}
+        <p className={compact ? "text-xs" : "mt-3 text-lg"}>
+          <Tex>
+            {odd
+              ? String.raw`\lfloor\sqrt{${shortDigits(n, compact ? 2 : 3, compact ? 2 : 3, compact ? 6 : 9)}^{3}}\rfloor`
+              : String.raw`\lfloor\sqrt{${shortDigits(n, compact ? 2 : 3, compact ? 2 : 3, compact ? 6 : 9)}}\rfloor`}
+          </Tex>
         </p>
       </Card>
     );
@@ -75,34 +83,38 @@ export function FloorCut({ n, result }: FloorCutProps) {
   const next = result ?? floorPower(n);
   const integer = Number(next);
   const decimals = threeDecimals(raw, integer);
-  const exact = raw - integer < 1e-12;
-  const formula = odd ? `${n}√${n}` : `√${n}`;
+  const head = compact ? 2 : 3;
+  const tail = compact ? 2 : 3;
+  const maxFull = compact ? 6 : 9;
+  const shownN = shortDigits(n, head, tail, maxFull);
+  const shownInt = shortDigits(next, head, tail, maxFull);
+  const work = odd ? String.raw`\sqrt{${shownN}^{3}}` : String.raw`\sqrt{${shownN}}`;
   return (
-    <Card>
-      <p className="mt-1 font-mono text-sm" style={{ color: odd ? "#c45c26" : "#1f6f6a" }}>
-        {odd ? "n odd → ⌊n√n⌋" : "n even → ⌊√n⌋"}
-        <span className="ml-2">{letterOf(n)}</span>
+    <Card compact={compact}>
+      {compact ? null : (
+        <p className="mt-1 font-mono text-sm" style={{ color: odd ? "#c45c26" : "#1f6f6a" }}>
+          {odd ? "n odd → ⌊n√n⌋" : "n even → ⌊√n⌋"}
+          <span className="ml-2">{letterOf(n)}</span>
+        </p>
+      )}
+      <p className={compact ? "text-xs" : "text-sm"}>
+        <Tex>{work}</Tex>
       </p>
-      <p className="mt-2 font-mono text-sm text-muted">
-        {formula} = {integer}.{decimals}…
-      </p>
-      <div className="mt-3 flex flex-wrap items-center gap-3 font-mono text-4xl leading-none">
-        <span>{integer}</span>
-        <span className="relative text-odd">
+      <div
+        title={`${next.toString()}.${decimals}…`}
+        className={`flex max-w-full items-center justify-center overflow-hidden font-mono leading-none ${
+          compact ? "gap-0.5 text-lg" : "mt-3 gap-1 text-4xl"
+        }`}
+      >
+        <span className="min-w-0 truncate">{shownInt}</span>
+        <span className="relative shrink-0 text-odd">
           .{decimals}
           <span
             aria-hidden="true"
             className="absolute inset-x-0 top-1/2 h-[3px] -translate-y-1/2 rotate-[-8deg] bg-warn"
           />
         </span>
-        <span className="text-2xl text-muted">→</span>
-        <span className="text-ink">{next.toString()}</span>
       </div>
-      <p className="mt-auto pt-3 text-sm text-muted">
-        {exact
-          ? `${formula} is already an integer, so floor leaves it unchanged.`
-          : `Cross out .${decimals} and keep ${integer}. That is ⌊${formula}⌋.`}
-      </p>
     </Card>
   );
 }

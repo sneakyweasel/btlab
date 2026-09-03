@@ -4,6 +4,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import {
   PreimagesWidget,
   CycleWidget,
+  LeftoversWidget,
   EnvelopeWidget,
   ExpandingWidget,
   FinanceWidget,
@@ -21,6 +22,7 @@ import {
 const SHORT_TERM: Record<TourSlug, string> = {
   "the-map": "Map",
   "cycle-itinerary": "Cycle",
+  "cycle-survivors": "Survivors",
   expanding: "Expand",
   envelope: "Envelope",
   preimages: "Preimages",
@@ -32,6 +34,7 @@ const SHORT_TERM: Record<TourSlug, string> = {
 const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "the-map": MapWidget,
   "cycle-itinerary": CycleWidget,
+  "cycle-survivors": LeftoversWidget,
   expanding: ExpandingWidget,
   envelope: EnvelopeWidget,
   preimages: PreimagesWidget,
@@ -56,6 +59,9 @@ export function TourPage() {
   }
   if (slug === "cells") {
     return <Navigate to="/tour/preimages" replace />;
+  }
+  if (slug === "cycle-leftovers") {
+    return <Navigate to="/tour/cycle-survivors" replace />;
   }
   const chapter = chapterBySlug(slug);
   if (!chapter) {

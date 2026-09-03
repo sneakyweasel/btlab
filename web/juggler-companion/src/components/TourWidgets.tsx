@@ -19,7 +19,7 @@ import {
   regimeOf,
 } from "../juggler/itinerary";
 import { PreimageNumberLine } from "../visuals/PreimageNumberLine";
-import { CycleTourWidget } from "./CycleTourWidget";
+import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
 import { FloorLadder } from "../visuals/FloorLadder";
 import { FloorCut } from "../visuals/FloorCut";
@@ -272,6 +272,7 @@ export function MapWidget() {
         highlight={letter === "O" ? "odd" : "even"}
         active={active >= 0 ? active : undefined}
         sparseScale={trajectory.source === "monster"}
+        stepComputation={<FloorCut compact n={cursor} result={next} />}
         controls={
           <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
             <label className="grid gap-1">
@@ -453,13 +454,16 @@ export function MapWidget() {
                 : null
         }
       />
-      <FloorCut n={cursor} result={next} />
     </div>
   );
 }
 
 export function CycleWidget() {
   return <CycleTourWidget />;
+}
+
+export function LeftoversWidget() {
+  return <LeftoverWidget />;
 }
 
 export function ExpandingWidget() {
