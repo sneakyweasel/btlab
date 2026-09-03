@@ -19,7 +19,7 @@ bt.*                        problem-independent BT mathematics
 ## Juggler reading path
 
 1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (itinerary obstructions + finance + the §5 walk-charge envelope; lab extracts [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md) and [juggler_cycle_itinerary_structure_note.md](docs/theory/juggler_cycle_itinerary_structure_note.md) — word geometry for termination, cycles, and escape). §6.1 (3 Sep 2026) records the companion context — envelope as Paper C's descent step, floor as its target, cycle basins contagious, cycles at the critical odd share \(\log 2/\log 3\), floor stratifies the failure set — as imports; it proves nothing new about cycles.
-2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers (audited 3 Sep 2026: Appendix A audit ledger + `research.juggler_sequence.paper_b_audit`, three corrections changing no statement; §4.5 localized/twisted Theorems 4.11–4.12 and the \(OOEEE\) Corollary 4.13 feeding Paper C; §7.6 what the kernel program buys and cannot)
+2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers (audited 3 Sep 2026, frozen-shape repair 4 Sep 2026: Appendix A audit ledger + `research.juggler_sequence.paper_b_audit`, five corrections changing no statement — Lemma 5.2b and Theorem 6.1 Step E had differentiated moving interpolants; composites now \(243/512\) and \(1095/1024\); §4.5 localized/twisted Theorems 4.11–4.12 and the \(OOEEE\) Corollary 4.13 feeding Paper C; §7.6 what the kernel program buys and cannot)
 3. [docs/theory/juggler_flight_note.md](docs/theory/juggler_flight_note.md) — laboratory extract: descent-free flights (envelope, dichotomy, anchor-period, divergent structure, shared lattice). Not a paper; the flight program is descriptively terminal.
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
@@ -187,16 +187,21 @@ for external review.
  mechanism: even blocks are intervals, OE fibers of
  \(\lfloor n^{3/4}\rfloor\) carry \(\ge 1/3-O(1/H)\) of each parity of
  \(\lfloor n^{3/2}\rfloor\) and average \(1/2\) over even blocks).
+ The rest-average lift \(1/3\to 1/2\) is PARK
+ (`juggler_oe_rest_average`): a fixed low-even seed mixes, infinite
+ planting does not yield a coefficient. The gap \(0.448\to 0.4927\)
+ is a dynamical averaging problem for the low-even set \(P\), not
+ another pointwise fiber bound, and is not opened.
  Hence the conjecture \(\iff\) the failures have log-count
  \(o((\log x)^{\lambda})\) (`J-fate-contagion-equivalence`), and a
  bounded-target Tao-type bound \(\#\{n\text{ odd}\in(y,2y]:n\notin R\}
  \le y(\log y)^{-e}\) with \(e>0.552\) implies the conjecture
  (`J-tao-rate-implies-conjecture`); that bound follows from the
- log-log-depth cylinder conjecture \(\mathrm H(C,A)\), \(C\ge 21\)
+ log-log-depth cylinder conjecture \(\mathrm H(C,A)\), \(C\ge 20\)
  (`J-tao-loglog-depth-bound`, `juggler_loglog_depth_cylinder_bound`),
  and even from its one-sided form: odd-share \(\le q<\log 2/\log 3\)
  on every cylinder of depth \(<C(q)\log_2(\log 2y/\log N_0)\),
- \(C(0.55)=46\) (`J-tao-biased-split-bound`, Azuma). The bad mass sits
+ \(C(0.55)=44\) (`J-tao-biased-split-bound`, Azuma). The bad mass sits
  on odd runs \(\ge 4\) (99.99% at \(10^{100}\)): for the uniform form
  the hypothesis is the iterated \(O^t\to O^{t+1}\) split. The weakest
  form is the live pressure / no-momentum hypothesis

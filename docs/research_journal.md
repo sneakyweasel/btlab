@@ -22804,3 +22804,98 @@ Best next question
 - the remaining depth-two gap 0.448 to 0.4927 is 1/3 vs 1/2,
   not a uniform per-fiber statement
 `
+
+## OE rest average: 1/3 vs 1/2 on A^rest (PARK)
+
+- **Date:** 2026-09-04
+- **Objective:** The leftover depth-two gap after pairing: can every backward-closed A have even-share 1/2-o(1) on A^rest, so (4.2) becomes the ideal recursion (root 0.4927)?
+- **Triage:** not a per-fiber 1/2 (already closed). Falsifier: E+OE closure of all low-even m keeps rest even-share at 1/3 with definite mass. Phase-0: poor-set log-mass, closure-of-P, capped-seed descendants, thick control.
+- **What was learned:**
+  - The one-sided set P = {m : G_m/H_m <= 0.40} has log-mass fraction >= 0.059 on dyadics in [2^8, 2^16], not O(U^{-1/3}).
+  - A two-sided poor set (scarcer <= 0.40) averages even-share 1/2 by orientation; that is the wrong adversary.
+  - Capped seeds (P cap [1, 3000], close to 8e4): odd members above the cap have even-share 0.515, low-even fraction 0.06. A fixed A mixes.
+  - Infinite planting (closure of all of P): odd-member even-share rises 0.25 to 0.41 from 2^8 to 2^16, low-even fraction falls 1.00 to 0.37. Intermediate coefficient, no lemma.
+  - Child phase {(3/2) m^{8/9}} on low-even parents is uniform (TV 0.046). Thick control ([1,260]) has rest even-share 0.44-0.50.
+  - Classification OE_REST_AVERAGE_MIXED. lambda** stays 0.4480.
+- **Strongest theorem:** none. Pairing remains the uniform floor.
+- **Strongest refutation:** a pairing-style rewrite of (4.2) with rest coefficient 1/3 (ideal) is not available uniformly in A.
+- **Reusable machinery:** research.juggler_sequence.oe_rest_average.
+- **Records:** dossier docs/problems/juggler_oe_rest_average.md; artifact data/research/juggler/oe_rest_average/summary.json.
+- **Decision:** PARK. Not a halt theorem. Not a new production.
+
+`	ext
+What was learned
+- P has positive log-mass fraction; it is not a Lemma 3.3 error
+- a fixed low-even seed set mixes to even-share 1/2
+- planting P at every scale leaves 0.25 to 0.41 through 2^16
+- two-sided scarcer-poor is the wrong adversary (orientations cancel)
+- the ideal root is not a pairing-style theorem
+Strongest theorem
+- none
+Strongest refutation
+- uniform rest even-share 1/2 is not a lemma of the same kind as pairing
+Reusable machinery
+- oe_rest_average probe
+Branch status
+- PARK
+Why
+- drowning is real for a fixed seed and unproved for infinite planting;
+  the leftover is a constant hunt
+Best next question
+- none on this line
+`
+
+## Depth-two gap reread as dynamical averaging of P (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Record the reading of the leftover \(0.448\to 0.4927\) after the rest-average PARK.
+- **Interpretation:** pairing closed the pointwise fiber door at \(1/3\) (\(\alpha_m\) is dense at \(1/3\)). A pairing-style rewrite of (4.2) with rest coefficient \(1/3\) is PARK. If the gap is attacked at all, it is by a dynamical averaging theorem for the low-even set \(P=\{m:G_m/H_m\le 0.40\}\): even-share \(1/2-o(1)\) along the \(E{+}OE\) orbit of \(P\). That is not opened.
+- **Records:** rest-average dossier Open questions / Decision; fate note §5.5 and §7; Paper C sharpness paragraph; AGENTS; branch-ledger row.
+- **Decision:** consolidation of a PARK. No new branch, no new probe, no ledger row. Not a halt theorem.
+
+## Paper B Theorem 6.1 Step E: frozen-shape composites (not a numbered milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Recompute Theorem 6.1 Step E's two sign-critical composites from the frozen total phase (the Lemma 5.2b architecture), and check whether the printed exponent \(1-1/96\) still closes.
+- **Triage:**
+  - Mathematical target: after \(F_\kappa\) cancellation, are the offset and zero-offset composites still \(405/512\) and \(8.27\)?
+  - Novelty hypothesis: those two numbers differentiated the moving total phase \(\tfrac k2\nu^{27/8}\), the same error as the withdrawn Step 5b interpolant.
+  - Falsifier: frozen samples at large \(P\) disagree, a composite changes sign, or a competitor is no longer dominated.
+  - Existing machinery: Lemma 5.1(i), Lemma 5.2b, `paper_b_audit.frozen_anchor_curvature_samples`.
+  - Phase-0 scope: analytic leading terms, mpmath frozen samples, rewrite of Step E and the audit checks.
+  - Promotion: frozen coefficients match samples and \(1-1/96\) still closes.
+  - Stop: a sign change in the standing range, or a competitor not dominated.
+- **What was learned:**
+  - Differenced total phase is \(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\) plus Step D passengers. Hold \(\beta_i\), \(J_F\) frozen; \(X(\nu)\) and the weights move.
+  - Offset leftover \(81/512\) after master-identity cancellation; window-centre \(324/512\); composite \(243/512\); \(\lambda_a'\in[0.40,0.52]\,k|j|P^{-1/8}\); \(B=\tfrac{27}{32}kj\nu^{3/8}\) (one and a half times the kernel \(9/16\), not the moving-gap \(45/32\)).
+  - Zero-offset \(\lambda_0'=\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\), which is \(2190/16929\) of the moving monomial \(16929/2048\). Interpolant \(b'=-365/176\).
+  - The withdrawn \(405/512\) and \(8.27\) match only the fully-smooth fourth derivative, not the frozen total. Samples at \(P=10^6\): offset tot/81 near \(1\), \(B/(kj\nu^{3/8})\) near \(27/32\); zero-offset tot against \(16929/2048\) near \(2190/16929\).
+  - Smaller \(\lambda\) shrinks the main vdC term; \(\lambda^{-1/2}\) grows by \(\sqrt{5/3}\) and stays \(P^{13/16}\). Competitors remain dominated. Exponent \(1-1/96\) unchanged.
+- **Strongest theorem:** unchanged: \(\#\mathrm{OOOE}(N),\#\mathrm{OOOO}(N)=N/16+O(N^{1-1/96+\varepsilon})\) (Theorem 6.1 / `J-depth4-complete`).
+- **Strongest refutation:** the moving interpolants \(405/512\) and \(8.27\,kh_1h_2\nu^{-5/8}\) are not the local frozen curvature of the total phase.
+- **Reusable machinery:** `paper_b_audit.frozen_total_phase_samples`; 14 new exponent-check rows (91 total).
+- **Records:** Paper B Step E, Theorem 6.3 sign-critical bullet, Appendix A row, §1.1 five-item list; ledger `J-depth4-complete`, `J-depth5-contracting`, `J-parity-paper-b-audit`; test `test_frozen_total_phase_matches_81_over_512_and_1095_over_1024`.
+- **Decision:** PROMOTE the correction inside the frozen claim set. Theorem 6.1's statement is unchanged. Not a halt theorem. Not a \(K_3\) attack.
+
+```text
+What was learned
+- Step E is the same frozen-versus-smooth error as Step 5b, one theorem later
+- composites are 243/512 and 1095/1024, not 405/512 and 8.27
+- B is 27/32, not the moving-gap 45/32
+- 1-1/96 still closes; inverse-power growth is sqrt(5/3)
+- moving 8.27 is the smooth fourth derivative of (k/2) nu^{27/8}
+Strongest theorem
+- Theorem 6.1 unchanged
+Strongest refutation
+- the moving total-phase interpolant is the wrong local curvature
+Reusable machinery
+- frozen_total_phase_samples
+Branch status
+- PROMOTE (write-up repair; claim set frozen)
+Why
+- the architecture matches Lemma 5.2b, the samples match the new
+  coefficients, and the printed exponent does not move
+Best next question
+- none on this line
+```
+

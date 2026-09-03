@@ -192,8 +192,12 @@ Theorem 4.2) is not formalized.
   threshold \(P^{1/2}\); Lemma 3.9's trivial bound is the whole
   interval. The orientation root \(0.5561\) is not a theorem.
   The fiber constant \(1/7\to 1/3\) is done
-  ([juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md));
-  the remaining depth-two gap is \(0.448\to 0.4927\).
+  ([juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md)).
+  The rest-average lift \(1/3\to 1/2\) is PARK
+  ([juggler_oe_rest_average.md](juggler_oe_rest_average.md));
+  the remaining depth-two gap \(0.448\to 0.4927\) is a dynamical
+  averaging problem for the low-even set \(P\), not a pointwise
+  fiber bound, and is not opened.
 - Note §8: what the certified floor \(N_0=3.5\cdot 10^8\) and the
   period bound \(L\ge 780239\) say in this framework — the floor
   stratifies \(F\) (\(\min F\) is an \(OO\)-start; \(OE\)-failures

@@ -97,8 +97,10 @@ None. `FateContagion.lean` stays the exact layer. No `sorry`.
 
 ## Open questions
 
-The remaining depth-two gap \(0.448\to 0.4927\) is the uniform
-\(1/3\) versus mean \(1/2\). Not a uniform per-fiber statement. The
+The remaining depth-two gap \(0.448\to 0.4927\) is a dynamical
+averaging problem for the low-even set \(P\), not another pointwise
+fiber bound. The average-on-rest attack is PARK
+([juggler_oe_rest_average.md](juggler_oe_rest_average.md)). The
 free term \(\psi_F\) is untouched.
 
 ## Decision

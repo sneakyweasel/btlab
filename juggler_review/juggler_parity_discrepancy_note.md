@@ -203,11 +203,14 @@ recomputed by hand from its stated inputs, every exact identity
 starts, the standing estimates and inventories were compared with
 observed values on three scales, and every displayed \(P\)-power
 comparison of Section 5 was checked as an exact rational statement.
-Appendix A records the outcome, one row per estimate. Four items
+Appendix A records the outcome, one row per estimate. Five items
 were corrected (a coefficient in the proof of Lemma 4.3, the norm
-named in Lemma 3.9, two absorbed remainders in Lemma 6.2, and the
+named in Lemma 3.9, two absorbed remainders in Lemma 6.2, the
 zero-offset interpolant of Step 5b, which had differentiated the
-moving gaps instead of holding them frozen: Lemma 5.2b); no
+moving gaps instead of holding them frozen: Lemma 5.2b, and
+Theorem 6.1 Step E, which had differentiated the moving total
+phase \(\tfrac k2\nu^{27/8}\) instead of the frozen difference
+\(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\)); no
 statement of Theorem 5.3 or Theorem 6.1 changed. This is a
 re-derivation by the author with machine assistance, not an
 independent verification; the theorems remain human proofs and are
@@ -1812,8 +1815,11 @@ Lemma 5.1 (exact identities); Lemma 5.2(i) (differenced wave);
 Lemma 5.2(ii) from (i) (mixed pieces); Lemma 5.2b (frozen-shape
 interpolant: local \(f''\) versus global \(\Lambda\)); Theorem 5.3
 Step 5a (offset composite); Theorem 5.3 Step 5b (three regimes,
-the middle band citing Lemma 5.2b and Lemma 3.9). No later
-section re-derives these.
+the middle band citing Lemma 5.2b and Lemma 3.9); Theorem 6.1
+Step E (frozen-shape total phase
+\(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\),
+composites \(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\)).
+No later section re-derives these.
 
 **Lemma 5.2 (level-2 waves: the mixed-piece bound).**
 Assume (C1)–(C3), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
@@ -2871,109 +2877,144 @@ kernel is listed here with its range and its check.
   \(\le31kP^{5/8}\le P^{2/3}\)), and decaying remainders.
 
 *Step E (the two sign-critical composites, rerun).* The passengers
-change the two composites of Step 5 of Theorem 5.3, and both are
-recomputed here from the smooth model of the *total* phase — the
-model in which every frozen integer is replaced by its interpolant,
-as in Step 5b there; each unit deviation of a frozen integer
-perturbs the curvatures below by \(\le Ck\nu^{-13/8}\), a relative
-\(O(P^{-1})\).
-
-*Offset branches (\(j\ne0\)).* The model offset content is
-\(\tfrac k2\,j\,\partial_m\bigl(m^{9/4}\bigr)
-=\tfrac{9k}8\,j\,m^{5/4}\), i.e. the smooth phase
-\(\tfrac98kj\nu^{15/8}\) with curvature
-\(\tfrac{945}{512}kj\nu^{-1/8}\) — the same as in Theorem 5.3 —
-*but* the total \(\theta\)-coefficient is now
-\(B=\tfrac k2\,j\,\partial_m\partial_\theta\)-content
-\(=-\tfrac{9k}8j\cdot\tfrac54m^{1/4}
-=-\tfrac{45}{32}\,kj\,\nu^{3/8}\,(1+O(P^{-1/4}))\),
-two and a half times the bare-kernel value \(\tfrac9{16}kj\nu^{3/8}\).
-The window-centre mode therefore carries
-\(u_0X''=-\tfrac{45}{32}\cdot\tfrac34\,kj\,\nu^{-1/8}
-=-\tfrac{135}{128}\,kj\,\nu^{-1/8}\), and the composite is
+change the two composites of Step 5 of Theorem 5.3. Both are
+recomputed here from the *frozen-shape* model of Lemma 5.2b, not
+from the moving-\((m,v)\) interpolant of \(\tfrac k2\nu^{27/8}\).
+The identity that organises the difference is Lemma 5.1(i):
 \[
-\Bigl(\tfrac{945}{512}-\tfrac{540}{512}\Bigr)kj\,\nu^{-1/8}
-=\tfrac{405}{512}\,kj\,\nu^{-1/8},
-\qquad\text{ratio }945:540=7:4,
+\tfrac k2\,v^{3/2}
+=\tfrac k2\,m^{9/4}-c\,\theta_2-kR,
+\qquad
+c=\tfrac{3k}4\,v^{1/2},
 \]
-single-signed with
-\(\lambda_a'\in[0.72,\,0.80]\,k|j|P^{-1/8}(1+O(P^{-1/8}))\). The
-competitors of Step 5a, now read against
-\(\lambda_a'\ge0.72\,k|j|P^{-1/8}\ge0.72P^{-1/8}\), remain dominated:
-differenced-wave modes
+with \(\lvert kR\rvert\ll kP^{-9/8}\) discarded as in Step B. The
+differenced total phase is therefore
+\(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\) plus
+the Step D passengers. On a piece the integers
+\(\beta_i\), \(J_F\) are held frozen; \(X(\nu)\) and the smooth
+weights move; the values of \(\Delta_iX\) may be substituted for
+the \(\beta_i\) as *values only*. Differentiating the moving
+composite \(\tfrac k2\nu^{27/8}\) is the same error as the
+withdrawn interpolant of Step 5b, and it is not used.
+
+*Offset branches (\(j\ne0\)).* The frozen-shape offset content of
+\(\Delta\Delta(\tfrac k2 m^{9/4})\), with \(m=X\) as a value, is
+the same monomial as in Theorem 5.3,
+\(\tfrac98 kj\nu^{15/8}\), with curvature
+\(\tfrac{945}{512}kj\nu^{-1/8}\). The frozen kernel anchor
+\((c(G_F-J_F))''\), now including the \(-J_Fc''\) term that
+Lemma 5.2b isolates as part of \(c''(G_F-J_F)\) only after the
+fractional part is taken, is
+\(\tfrac{27}{16}kj\nu^{-1/8}=\tfrac{864}{512}kj\nu^{-1/8}\).
+The difference — the surviving total-phase offset — is
+\[
+\bigl(\tfrac{945}{512}-\tfrac{864}{512}\bigr)kj\nu^{-1/8}
+=\tfrac{81}{512}\,kj\nu^{-1/8}.
+\]
+This is \(J_Fc''\) at leading order: after the master identity
+cancels \(c_{11}F_{\boldsymbol\kappa}\) against \(\Delta\Delta(cY)\),
+what remains of the growing smooth offset is the frozen integer
+times \(c''\). The total \(\theta\)-coefficient on the piece is
+\[
+B=\tfrac{27}{32}\,kj\,\nu^{3/8}\,(1+O(P^{-1/4})),
+\]
+one and a half times the bare-kernel value \(\tfrac9{16}kj\nu^{3/8}\)
+(not the moving-gap value \(\tfrac{45}{32}\)). The window-centre
+mode therefore carries
+\(u_0X''=-\tfrac{27}{32}\cdot\tfrac34\,kj\,\nu^{-1/8}
+=-\tfrac{81}{128}\,kj\,\nu^{-1/8}
+=-\tfrac{324}{512}\,kj\,\nu^{-1/8}\), and the composite is
+\[
+\Bigl(\tfrac{81}{512}-\tfrac{324}{512}\Bigr)kj\,\nu^{-1/8}
+=-\tfrac{243}{512}\,kj\,\nu^{-1/8},
+\]
+single-signed, with
+\(\lambda_a'\in[0.40,\,0.52]\,k|j|P^{-1/8}(1+O(P^{-1/8}))\).
+(The withdrawn composite \(\tfrac{405}{512}\) was
+\(\tfrac{945}{512}-\tfrac{540}{512}\), using the moving-gap \(B\).)
+The competitors of Step 5a, now read against
+\(\lambda_a'\ge0.40\,k|j|P^{-1/8}\ge0.40P^{-1/8}\), remain dominated
+for \(P\ge P_0\): differenced-wave modes
 \(\le0.84\,uh_1P^{-3/4}\le0.51P^{-1/4}\), ratio
-\(\le0.71P^{-1/8}\); resonant (D1) content, ratio
-\(\le7P^{-9/16}\); slow modes
+\(\le1.3P^{-1/8}\); resonant (D1) content, ratio
+\(\le13P^{-9/16}\); slow modes
 \(\le3J_2|j|P^{-5/4}\), ratio
-\(\le5P^{1/24-5/4+1/8}=5P^{-13/12}\); (D3) content, ratio
-\(\le4h_1h_2P^{-1/2}\le P^{-1/4}\). The window count grows by
-\(\tfrac{45/32}{9/16}=2.5\), so at most
-\(3.0\,k|j|P^{3/8}+1\) windows; the collision-band Lemma 3.8 sum
-is then \(\le4.0\,(k|j|)^{1/2}P^{15/16}\log P\). Run lengths are
+\(\le9P^{-13/12}\); (D3) content, ratio
+\(\le4h_1h_2P^{-1/2}/(0.40P^{-1/8})\le3P^{-1/8}\). The window count
+grows by \(\tfrac{27/32}{9/16}=\tfrac32\), so at most
+\(1.8\,k|j|P^{3/8}+1\) windows; the collision-band Lemma 3.8 sum
+is then \(\le3.0\,(k|j|)^{1/2}P^{15/16}\log P\). Run lengths are
 unchanged, and
 \[
 \sum_{\mathrm{runs}}\bigl(\ell\lambda_a'^{1/2}+\lambda_a'^{-1/2}\bigr)
-\le1.7\,(k|j|)^{1/2}P^{15/16}
-+26\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
+\le1.4\,(k|j|)^{1/2}P^{15/16}
++34\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
 \]
 Summed over the eight branches and \(\lvert j\rvert\le3\) with the
 \(O(\log^3P)\) piece masses:
 \(\ll k^{1/2}P^{15/16+\varepsilon}\le P^{1/48}P^{15/16+\varepsilon}
 =P^{23/24+\varepsilon}\) already at the kernel's \(k\le P^{1/24}\);
 the actual range \(k\le2P^{1/96}\) sits strictly inside.
+The inverse-power term grows by \(\sqrt{405/243}=\sqrt{5/3}\)
+against the withdrawn composite and remains \(P^{13/16}\).
 
-*Zero-offset branches (\(j=0\)).* The model \(h_1h_2\)-content of
-the total differenced phase is
-\(4h_1h_2\cdot\tfrac k2\,\partial_\nu^4(\nu^{27/8})(\xi)/4!\)-form;
-its curvature is
+*Zero-offset branches (\(j=0\)).* The same frozen-shape difference,
+after \(\beta_1\beta_2\sim9h_1h_2\nu\), has leading curvature
 \[
-4h_1h_2\cdot\tfrac k2\cdot
-\tfrac{27}8\cdot\tfrac{19}8\cdot\tfrac{11}8\cdot\tfrac38\,
-\nu^{-5/8}
-=8.27\,kh_1h_2\,\nu^{-5/8}\,(1+O(hP^{-1/2})),
+\lambda_0'
+=\tfrac{1095}{1024}\,kh_1h_2\,\nu^{-5/8}
+\in[0.60,\,1.25]\,kh_1h_2P^{-5/8}.
 \]
-positive and single-signed, so
-\(\lambda_0'\in[4.5,\,8.5]\,kh_1h_2P^{-5/8}\) replaces the
-kernel \(\lambda_0\in[0.35,2.6]\,kh_1h_2P^{-5/8}\) of
-Lemma 5.2b. The three-regime split of Step 5b is read at this
-scale. The thresholds (factor \(60\)) are scale-free. In the
-anchor-dominant regime, Lemma 3.3 per run gives
-\(\le4.0(kh_1h_2)^{1/2}P^{11/16}
-+12\,(h_1h_2/k)^{1/2}P^{9/16}\)
-(the first term grows like \(\lambda_0'^{1/2}\), the second
-shrinks). In the mode-dominant regime the undifferenced-anchor
-decoration is the same as in Step 5b, and the \(j=0\)
-\(\theta\)-coefficient remains sub-unit. In the middle band the
-frozen-shape interpolant of Lemma 5.2b is reused: the
-kernel-anchor leading \(-\tfrac{1215}{1024}kh_1h_2\nu^{-5/8}\)
-is replaced by the passenger total
-\(8.27\,kh_1h_2\nu^{-5/8}\), so
+(The coefficient is
+\(\tfrac{2190}{16929}\) of the moving monomial
+\(4h_1h_2\cdot\tfrac k2\cdot\partial_\nu^4(\nu^{27/8})
+=\tfrac{16929}{2048}kh_1h_2\nu^{-5/8}\); the audit records the
+ratio at \(P=10^6,10^7,10^8\). The withdrawn \(8.27\) is that
+moving monomial itself.) The three-regime split of Step 5b is
+read at this scale. The thresholds (factor \(60\)) are
+scale-free. In the anchor-dominant regime, Lemma 3.3 per run gives
+\(\le2.0(kh_1h_2)^{1/2}P^{11/16}
++30\,(h_1h_2/k)^{1/2}P^{9/16}\).
+In the mode-dominant regime the undifferenced-anchor decoration
+is the same as in Step 5b. The \(j=0\) \(\theta\)-coefficient of
+the *total* phase is \(O(1)\), typically in \([0.5,1.6]\):
+Lemma 3.7 applies in a single window at \(T=P^{1/2}\)
+(hypothesis \(T\ge8(1+\lvert B\rvert)\) holds for
+\(\lvert B\rvert\le2\)). In the middle band the frozen-shape
+interpolant of Lemma 5.2b is reused with the kernel-anchor
+leading \(-\tfrac{1215}{1024}kh_1h_2\nu^{-5/8}\) replaced by
+\(-\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\), so
 \(\Phi=a\nu^{5/4}+b'\nu^{11/8}+w\nu^{3/2}\) with
-\(b'=8.27\cdot\tfrac{64}{33}kh_1h_2\). The \(\rho_0(E)\) bounds
+\(a=-\tfrac{27}{10}(uh_1+u'h_2)\) and
+\(b'=-\tfrac{365}{176}\,kh_1h_2\). The \(\rho_0(E)\) bounds
 are unchanged, and
 \[
 S
 \le\max\bigl(60\lambda_0',\,\lambda_0',\,\lvert w\rvert P^{-1/2}\bigr)
-\le520\,P^{-1/2}
+\le80\,P^{-1/2}
 \]
-by (C1) and the collision-band restriction. The balanced choice
+by (C1) and \(\lvert w\rvert\le2\). The balanced choice
 \(V=3S^{1/2}P^{-11/24}\) still satisfies \(V\le c_7S/2\) at
 \(c_7=1/288\) and \(V\ge10\lvert f''-\Lambda\rvert\) against
-the two-term interpolant majorant, for \(P\ge P_0\). Transition
-length and piece-boundary costs shrink (larger \(S\) shrinks
-\(V/S\) and \(V^{-1/2}\)); good pieces cost
-\(\le P\cdot(520)^{1/2}P^{-1/4}\le23P^{3/4}\). The middle band
+the two-term interpolant majorant, for \(P\ge P_0\): at the
+lower end \(S\ge0.60P^{-5/8}\) one has
+\(V\ge2.3P^{-37/48}\) and the interpolant error is
+\(O(P^{-25/24})+O(P^{-5/6})\). Transition length and
+piece-boundary costs are as in Step 5b (the same exponents;
+the smaller \(S\) enlarges \(V/S\) by a constant, still
+\(O(P^{-7/48})\)). Good pieces cost
+\(\le P\cdot(80)^{1/2}P^{-1/4}\le9P^{3/4}\). The middle band
 therefore remains \(\ll P^{15/16+\varepsilon}\).
 
 The passengers of Step D are inside these estimates: the
 \(\tfrac i2X\)-term is (D3) as listed; the \(\tfrac j2Y\)-term
 shifts each \(q_d\) by at most \(P^{1/96}\), keeping
 \(\lvert q_d\rvert\le4P^{1/24}\) and \(uh_1\le0.6P^{1/2}\); the
-pure-\(m\) smooth pieces add a relative \(O(P^{-1})\) to
-\(\lambda_a'\) and \(\lambda_0'\), already present in the
-\(O(P^{-1/8})\) and \(O(hP^{-1/2})\) factors; the sub-unit
-\(\theta\)-coefficients of those pieces are among the slow modes
-already bounded.
+pure-\(m\) smooth pieces are already in
+\(\Delta\Delta(\tfrac k2 m^{9/4})\) and do not add a further
+relative \(O(1)\) to \(\lambda_a'\) or \(\lambda_0'\); the
+sub-unit \(\theta\)-coefficients of those pieces are among the
+slow modes already bounded.
 
 *Step F (assembly).* With the inventory of Step D and the
 composites of Step E, Steps 2–6 of Theorem 5.3 give
@@ -3106,12 +3147,12 @@ Steps D–E apply at this range.
   \(\lvert q_d\rvert\le3P^{1/24}+P^{1/96}\le4P^{1/24}\) is
   unchanged.
 - *The sign-critical composites.* An \(X\)-mode is smooth, so it
-  does not enter the kernel \(\theta\)-coefficient \(B\). The
-  offset composite \(405/512\) (ratio \(7:4\)) and the
-  zero-offset curvature \(8.27\,kh_1h_2\nu^{-5/8}\) are therefore
-  the values of Theorem 6.1. The (D3) curvature of the new modes
-  is dominated at the ratios already displayed there
-  (\(\le P^{-1/4}\) against \(\lambda_a'\ge0.72P^{-1/8}\)).
+  does not enter the frozen \(\theta\)-coefficient \(B\). The
+  offset composite \(\tfrac{243}{512}\) and the zero-offset
+  curvature \(\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\) are therefore
+  the values of Theorem 6.1 Step E. The (D3) curvature of the new
+  modes is dominated at the ratios already displayed there
+  (\(\le 3P^{-1/8}\) against \(\lambda_a'\ge0.40P^{-1/8}\)).
 - *The Lemma 5.2(i) budget.* Modes with \(\lvert u\rvert\le P^{1/4}\)
   are a subset of the family already bounded by
   \(3R_0^{1/2}P^{3/4}\log P=3P^{7/8}\log P\). Collision-band
@@ -3452,10 +3493,10 @@ preimage intervals of the landing points — intervals of length
 \(x^{1-e_w}\), which is why Section 4.5 localizes Theorems 4.4 and 4.7
 to sub-dyadic intervals. Through Corollary 4.13 the \(OOEEE\)
 production on even blocks raises the contagion exponent from
-\(\lambda^{**}=0.4050\) to \(\lambda^{***}=0.4922\), the rate threshold
-of the almost-all reformulation from \(0.595\) to \(0.508\), and the
-least depth constant of its conditional theorems from \(21\) to
-\(19\). A localized form of the kernel theorem (Theorem 5.3 on
+\(\lambda^{**}=0.4480\) to \(\lambda^{***}=0.5392\), the rate threshold
+of the almost-all reformulation from \(0.552\) to \(0.461\), and the
+least depth constant of its conditional theorems from \(20\) to
+\(18\). A localized form of the kernel theorem (Theorem 5.3 on
 intervals of length \(P^{23/32}\), which we have not proved; the
 scaling architecture is the same, with per-window absolute costs at
 most \(P^{7/16}\)) would add the words \(OOOEEE\) and \(OOEOEE\) and
@@ -3535,11 +3576,11 @@ the standing estimates and inventories on the blocks
 \(P=10^6,10^8,10^{10}\) (and, for cell counts, exhaustively at
 \(P=10^5\)), and every displayed \(P\)-power comparison of Section 5
 as an exact rational statement
-(`research.juggler_sequence.paper_b_audit`, \(77\) exponent checks;
+(`research.juggler_sequence.paper_b_audit`, \(91\) exponent checks;
 artifact `data/research/juggler/paper_b_audit/summary.json`). A
 script check confirms consistency of what is printed; it is not a
 proof, and this appendix is not an independent human verification.
-Four items were corrected; none changes a statement of
+Five items were corrected; none changes a statement of
 Theorem 5.3 or of Theorem 6.1.
 
 | Item | Check | Outcome |
@@ -3567,6 +3608,7 @@ Theorem 5.3 or of Theorem 6.1.
 | Step 5b / Lemma 5.2b: local frozen \((cG)''=-\tfrac{135}{1024}k\beta_1\beta_2\nu^{-13/8}\) (three chain-rule terms \(81-972+756\)); \(\lambda_0\in[0.35,2.6]kh_1h_2P^{-5/8}\); interpolant is frozen-shape (values of \(\Delta_iX\) substituted, not differentiated); \(a=-\tfrac{27}{10}\), \(b=-\tfrac{405}{176}\); error \(219P^{-25/24}+0.11P^{-5/6}\); \(S\in[0.35P^{-5/8},300P^{-1/2}]\); \(V=3S^{1/2}P^{-11/24}\), \(V/S\le5.1P^{-7/48}\), \(V\ge1.7P^{-37/48}\); transition \(2.3P^{89/96}\) | hand; script (frozen \((cF)''\) matches \(135/1024\) on \(j=0\) samples; the moving-gap \((cF_{\mathrm{sm}})''\) matches \(243/128\) and is *not* the local curvature) | **corrected architecture**: the previous interpolant differentiated the moving gaps and used the wrong leading coefficient \(\tfrac{243}{128}\) and the wrong range \([1.0,5.0]\); Theorem 5.3's exponent is unchanged |
 | Lemma 3.9 constant for the triple \((\tfrac54,\tfrac{11}8,\tfrac32)\) | hand and exact inverse | **corrected**: the inverse's \(\ell^\infty\) operator norm is \(232\); the printed \(288\) is its \(\ell^1\) norm; \(c_7=1/288\le1/232\) remains valid, so Step 5b is unchanged |
 | Step 6 assembly | hand; script | consistent |
+| Theorem 6.1 Step E: frozen-shape total phase \(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\); offset leftover \(\tfrac{81}{512}\), window-centre \(\tfrac{81}{128}\), composite \(\tfrac{243}{512}\); \(B=\tfrac{27}{32}kj\nu^{3/8}\); zero-offset \(\lambda_0'=\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\); interpolant \(b'=-\tfrac{365}{176}\) | hand; script (offset tot/81 and \(B/(kj\nu^{3/8})\) near \(1\) and \(27/32\); zero-offset tot against \(16929/2048\) near \(2190/16929\)) | **corrected architecture**: the previous composites \(405/512\) and \(8.27\) differentiated the moving total phase \(\tfrac k2\nu^{27/8}\); the \(1-1/96\) exponent is unchanged |
 | Lemma 6.2, remainder bounds | hand | **corrected**: the two Lagrange remainders (orders \(n^{-45/16}\), \(n^{-81/16}\)) are now displayed instead of being absorbed into coefficients that have no slack when \(\theta_2\) or \(\theta_z\) is close to \(1\); Theorem 6.3 uses only the order of magnitude |
 | Kernel sum \(K_c(P)\), \(k=1\), \(P\le3\cdot10^5\), and the wave \(\sum e(Y(n))\) | script, OBSERVATION | \(\lvert K_c\rvert\) between \(0.4\) and \(1.2\) times \(\sqrt{P/2}\): square-root scale, far below \(P^{1-1/96}\); the wave likewise; neither is evidence for the theorem's exponent, only consistent with it |
 

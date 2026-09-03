@@ -796,6 +796,8 @@ def test_sign_critical_domain_scan():
     e6 = r["pieces"]["e6_step5a"]
     assert e6["worst_ratio"] != 4.375
     assert 3.5 < e6["worst_ratio"] < 4.375
+    # Historical moving-gap interpolants (withdrawn). Live Step E:
+    # test_frozen_total_phase_matches_81_over_512_and_1095_over_1024.
     t61 = r["pieces"]["thm61_offset"]
     assert 1.5 < t61["worst_ratio"] < 1.75
     z = r["pieces"]["thm61_zero_offset"]

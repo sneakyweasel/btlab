@@ -877,7 +877,9 @@ is lacunary at the dyadic scale.
 *Sharpness of the constants.* The monotone pairing gives
 \(\tfrac13H_m-2\); the observed floor on good fibers is \(0.328\) at
 \(\alpha_m\approx\tfrac13\) (Section 11). The remaining depth-two gap
-\(0.448\to 0.4927\) is the uniform \(1/3\) versus mean \(1/2\).
+\(0.448\to 0.4927\) is a dynamical averaging problem for the
+low-even set \(P=\{m:G_m/H_m\le 0.40\}\), not another pointwise
+fiber bound.
 
 *What is excluded.* Nothing. Corollary 5.5 does not say that a cycle
 or a divergent orbit is impossible; it says that either would be

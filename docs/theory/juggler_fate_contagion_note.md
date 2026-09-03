@@ -721,6 +721,11 @@ three-cluster case), and every fiber with \(G_m/H_m<\tfrac17\) flagged
 bad by the \(\alpha\)-criterion. Lemma 3.1′ gives \(\tfrac13H_m-2\)
 on monotone fibers; the remaining depth-two gap \(0.448\to 0.4927\)
 is the uniform \(1/3\) versus mean \(1/2\), not a missing pairing.
+The rest-average attack is PARK: a fixed low-even seed mixes,
+infinite planting does not yield a coefficient. The gap is now read
+as a dynamical averaging problem for the low-even set
+\(P=\{m:G_m/H_m\le 0.40\}\) (even-share of the \(E{+}OE\) orbit of
+\(P\)), not as another pointwise fiber bound.
 
 ## 6. The termination problem after contagion: an exact map
 
@@ -1050,8 +1055,8 @@ because \(OOEEE\) is a third-letter production. Further gains from
 \(OOOEE\) and \(OOEOE\) on even blocks are closed (§7.4): those
 fibers have length \(P^{5/32}\), below the threshold of Theorem 4.11,
 and the kernel theorem does not localize to them. The remaining
-depth-two gap \(0.448\to 0.4927\) is the \(1/3\) versus \(1/2\)
-uniform-fiber gap.
+depth-two gap \(0.448\to 0.4927\) is a dynamical averaging problem
+for the low-even set \(P\), not a uniform-fiber gap.
 
 *What is unchanged.* Proposition 7.1 is a statement about consecutive
 odd starts in an interval; it says nothing about the odd images

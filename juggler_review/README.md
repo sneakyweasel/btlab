@@ -59,13 +59,15 @@ https://sneakyweasel.github.io/balanced_ternary/
    depth-4 parity equidistribution for odd-rooted itineraries, the
    length-5 contractors, and the certified-descent densities
    \(13/16\) (four steps) and \(7/8\) (five steps). Human proofs.
-   Revised 3 September 2026 after a first external review: a full
+   Revised 3 September 2026 after a first external review, and
+   repaired 4 September 2026 (frozen-shape interpolants): a full
    audit of Sections 4–6 (Appendix A, one row per displayed
    estimate; machine layer `research.juggler_sequence.paper_b_audit`
    — exact identities at 60–120 digits, standing estimates on three
-   scales, 75 exponent checks) with three corrections that change no
+   scales, 91 exponent checks) with five corrections that change no
    statement (Lemma 4.3 proof coefficient, the norm named in
-   Lemma 3.9, two displayed remainders in Lemma 6.2); new Section 4.5
+   Lemma 3.9, two displayed remainders in Lemma 6.2, Lemma 5.2b,
+   Theorem 6.1 Step E composites \(243/512\) and \(1095/1024\)); new Section 4.5
    proving Theorems 4.4 and 4.7 on sub-dyadic intervals of length
    \(\ge P^{1/2}\) with a slow twist (Theorems 4.11–4.12, Corollary
    4.13 — the \(OOEEE\) production that Paper C's Appendix C uses);

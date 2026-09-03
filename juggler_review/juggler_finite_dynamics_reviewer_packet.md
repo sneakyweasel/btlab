@@ -71,8 +71,8 @@ double Weyl differencing over the carry-branch decomposition and
 master identity of Lemma 5.1, with the level-2 wave Lemma 5.2,
 \(\delta=1/96\), and the Step-5b sublevel splitting of Lemma 3.9) a
 complete proof a stranger can check; is Theorem 6.1's passenger
-inventory (explicit mode ranges, recomputed composites \(405/512\)
-and \(8.27\,kh_1h_2\nu^{-5/8}\)) correctly reduced to it; is Theorem 6.3's length-5 passenger slot (Stage-2 \(X\)-modes, not
+inventory (explicit mode ranges, frozen-shape composites \(243/512\)
+and \(\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\)) correctly reduced to it; is Theorem 6.3's length-5 passenger slot (Stage-2 \(X\)-modes, not
 (D1) decorations) correctly reduced to Theorem 6.1; and are the
 densities (Corollaries 4.2, 4.9, 6.4) kept distinct from existential
 descent and \(\operatorname{ReachesOne}\)?

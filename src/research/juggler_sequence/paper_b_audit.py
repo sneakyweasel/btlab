@@ -8,8 +8,10 @@ Three layers, none of which is a proof:
    Lemma 6.2, also in the corrected form with the two Lagrange remainders displayed.
 2. Standing estimates (E1)-(E6) and the inventories of Section 5 evaluated on blocks ``P``: every
    displayed interval of constants must contain the observed values.
-3. Exponent bookkeeping: every displayed ``P``-power comparison of Section 5 transcribed as an
-   exact ``Fraction`` statement and checked.
+3. Exponent bookkeeping: every displayed ``P``-power comparison of Section 5, and the
+   Theorem 6.1 Step E frozen-shape composites, transcribed as exact ``Fraction`` statements
+   and checked.  Frozen total-phase samples (offset leftover ``81/512``, ``B = 27/32``,
+   zero-offset ``1095/1024``) live in ``frozen_total_phase_samples``.
 
 A fourth, observation-only layer evaluates the kernel sum ``K_c(P)`` and a level-2 wave sum at small
 ``P`` against the printed exponents (scaling check, OBSERVATION; it proves nothing).
@@ -560,6 +562,117 @@ def frozen_anchor_curvature_samples(P: int = 10**8, seed: int = 3, trials: int =
     }
 
 
+def _frozen_total_d2(n: int, h1: int, h2: int, k: int) -> tuple[mp.mpf, int, mp.mpf]:
+    """Second nu-derivative of DeltaDelta(k/2 m^{9/4}) - c(G_F - J_F), betas frozen."""
+
+    d1, d2 = 2 * h1, 2 * h2
+    beta1, _, _ = level1_data(n, d1)
+    beta2, _, _ = level1_data(n, d2)
+    beta12, _, _ = level1_data(n, d1 + d2)
+    j = beta12 - beta1 - beta2
+    x0 = X_of(n)
+    G0 = (
+        mp.power(x0 + beta12, mp.mpf(3) / 2)
+        - mp.power(x0 + beta1, mp.mpf(3) / 2)
+        - mp.power(x0 + beta2, mp.mpf(3) / 2)
+        + mp.power(x0, mp.mpf(3) / 2)
+    )
+    jf = int(mp.floor(G0))
+
+    def tot(nu: mp.mpf) -> mp.mpf:
+        xt = mp.power(nu, mp.mpf(3) / 2)
+        m94 = mp.mpf(k) / 2 * (
+            mp.power(xt + beta12, mp.mpf(9) / 4)
+            - mp.power(xt + beta1, mp.mpf(9) / 4)
+            - mp.power(xt + beta2, mp.mpf(9) / 4)
+            + mp.power(xt, mp.mpf(9) / 4)
+        )
+        ker = mp.mpf(3 * k) / 4 * mp.power(nu, mp.mpf(9) / 8) * (
+            mp.power(xt + beta12, mp.mpf(3) / 2)
+            - mp.power(xt + beta1, mp.mpf(3) / 2)
+            - mp.power(xt + beta2, mp.mpf(3) / 2)
+            + mp.power(xt, mp.mpf(3) / 2)
+            - jf
+        )
+        return m94 - ker
+
+    return mp.diff(tot, mp.mpf(n), 2), j, G0 - jf
+
+
+def frozen_total_phase_samples(P: int = 10**6, seed: int = 7, trials: int = 8) -> dict[str, Any]:
+    """Theorem 6.1 Step E: frozen total-phase curvature against 81/512 (offset) and 1095/1024 (j=0)."""
+
+    rng = random.Random(seed)
+    off_ratios: list[float] = []
+    b_ratios: list[float] = []
+    z_ratios: list[float] = []
+    moving_z: list[float] = []
+    attempts = 0
+    while (len(off_ratios) < trials or len(z_ratios) < trials) and attempts < 4000:
+        attempts += 1
+        n = rng.randrange(P + 80, 2 * P - 80) | 1
+        h1, h2, k = 1, 1, 1
+        d2, j, _frac = _frozen_total_d2(n, h1, h2, k)
+        nm = mp.mpf(n)
+        if j == 0 and len(z_ratios) < trials:
+            lead = mp.mpf(1095) / 1024 * k * h1 * h2 * mp.power(nm, -mp.mpf(5) / 8)
+            moving = mp.mpf(16929) / 2048 * k * h1 * h2 * mp.power(nm, -mp.mpf(5) / 8)
+            if lead != 0:
+                z_ratios.append(float(abs(d2) / lead))
+                moving_z.append(float(abs(d2) / moving))
+        elif j != 0 and len(off_ratios) < trials:
+            lead = mp.mpf(81) / 512 * k * j * mp.power(nm, -mp.mpf(1) / 8)
+            if lead != 0:
+                off_ratios.append(float(d2 / lead))
+            # B by a tiny theta shift
+            beta1, _, _ = level1_data(n, 2)
+            beta2, _, _ = level1_data(n, 2)
+            beta12, _, _ = level1_data(n, 4)
+            x0 = X_of(n)
+            G0 = (
+                mp.power(x0 + beta12, mp.mpf(3) / 2)
+                - mp.power(x0 + beta1, mp.mpf(3) / 2)
+                - mp.power(x0 + beta2, mp.mpf(3) / 2)
+                + mp.power(x0, mp.mpf(3) / 2)
+            )
+            jf = int(mp.floor(G0))
+
+            def phase(eps: mp.mpf) -> mp.mpf:
+                xt = x0 - eps
+                m94 = mp.mpf(k) / 2 * (
+                    mp.power(xt + beta12, mp.mpf(9) / 4)
+                    - mp.power(xt + beta1, mp.mpf(9) / 4)
+                    - mp.power(xt + beta2, mp.mpf(9) / 4)
+                    + mp.power(xt, mp.mpf(9) / 4)
+                )
+                ker = c_of(n, k) * (
+                    mp.power(xt + beta12, mp.mpf(3) / 2)
+                    - mp.power(xt + beta1, mp.mpf(3) / 2)
+                    - mp.power(xt + beta2, mp.mpf(3) / 2)
+                    + mp.power(xt, mp.mpf(3) / 2)
+                    - jf
+                )
+                return m94 - ker
+
+            eps = mp.mpf("1e-8")
+            B = -(phase(eps) - phase(mp.mpf(0))) / eps
+            Blead = mp.mpf(27) / 32 * k * j * mp.power(nm, mp.mpf(3) / 8)
+            if Blead != 0:
+                b_ratios.append(float(B / Blead))
+    return {
+        "P": P,
+        "offset_samples": len(off_ratios),
+        "zero_samples": len(z_ratios),
+        "offset_ratio_range": (min(off_ratios), max(off_ratios)) if off_ratios else None,
+        "B_ratio_range": (min(b_ratios), max(b_ratios)) if b_ratios else None,
+        "zero_ratio_range": (min(z_ratios), max(z_ratios)) if z_ratios else None,
+        "offset_near_one": bool(off_ratios) and all(abs(x - 1) <= 0.04 for x in off_ratios),
+        "B_near_27_over_32": bool(b_ratios) and all(abs(x - 1) <= 0.06 for x in b_ratios),
+        "zero_near_one": bool(z_ratios) and all(abs(x - 1) <= 0.04 for x in z_ratios),
+        "moving_8_27_is_wrong_model": bool(moving_z) and all(abs(x - 1) > 0.5 for x in moving_z),
+    }
+
+
 # ----------------------------------------------------------------------------------------------
 # Layer 3: exponent bookkeeping
 # ----------------------------------------------------------------------------------------------
@@ -658,6 +771,21 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("L5.2 totals: fourth term k (h/u)^{1/2} P^{1/2} <= P^{1/24} (h/u)^{1/2} P^{1/2} absorbed by (h/u)^{1/2} P^{7/8}", F(1, 24) + F(1, 2) < F(7, 8)),
         # Lemma 3.9 constant
         ("Lemma 3.9: c7 = 1/288 (inverse l^inf norm 288) -- numeric check below", True),
+        # Theorem 6.1 Step E frozen-shape composites
+        ("6.1 offset leftover: 945/512 - 864/512 = 81/512", F(945, 512) - F(864, 512) == F(81, 512)),
+        ("6.1 kernel frozen offset 27/16 = 864/512", F(27, 16) == F(864, 512)),
+        ("6.1 window-centre: 27/32 * 3/4 = 81/128 = 324/512", F(27, 32) * F(3, 4) == F(81, 128) and F(81, 128) == F(324, 512)),
+        ("6.1 composite: 81/512 - 324/512 = -243/512", F(81, 512) - F(324, 512) == F(-243, 512)),
+        ("6.1 B ratio to kernel: (27/32) / (9/16) = 3/2", F(27, 32) / F(9, 16) == F(3, 2)),
+        ("6.1 withdrawn 405/512 = 945/512 - 540/512", F(945, 512) - F(540, 512) == F(405, 512)),
+        ("6.1 smooth 4th derivative: 2*(27/8)*(19/8)*(11/8)*(3/8) = 16929/2048", F(2) * F(27, 8) * F(19, 8) * F(11, 8) * F(3, 8) == F(16929, 2048)),
+        ("6.1 lambda_0' / smooth = 1095/1024 over 16929/2048 = 2190/16929", F(1095, 1024) / F(16929, 2048) == F(2190, 16929)),
+        ("6.1 interpolant b': -365/176 * 11/8 * 3/8 = -1095/1024", F(-365, 176) * F(11, 8) * F(3, 8) == F(-1095, 1024)),
+        ("6.1 inverse-power growth 405/243 = 5/3", F(405, 243) == F(5, 3)),
+        ("6.1 offset wave ratio: -1/4 + 1/8 = -1/8", -F(1, 4) + F(1, 8) == -F(1, 8)),
+        ("6.1 S upper: 1/8 - 5/8 = -1/2", F(1, 8) - F(5, 8) == -F(1, 2)),
+        ("6.1 V at S = P^{-5/8}: -5/16 - 11/24 = -37/48", -F(5, 16) - F(11, 24) == -F(37, 48)),
+        ("6.1 good pieces: 1 - 1/4 = 3/4", 1 - F(1, 4) == F(3, 4)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 

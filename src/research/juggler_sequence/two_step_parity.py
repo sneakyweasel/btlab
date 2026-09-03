@@ -3002,8 +3002,11 @@ def sign_critical_domain_scan(
 
     Pieces:
       e6_step5a          (cF)'' vs B X'' at j ≠ 0; predicted 945/512 − 27/64
-      thm61_offset       same (cF)'' vs 2.5× kernel B; predicted 405/512
-      thm61_zero_offset  mixed fourth derivative of (k/2) n^{27/8} vs 8.27
+      thm61_offset       withdrawn moving-gap interpolant vs 2.5× kernel B
+                         (printed 405/512). Live Step E is
+                         paper_b_audit.frozen_total_phase_samples (243/512).
+      thm61_zero_offset  withdrawn mixed fourth derivative of (k/2) n^{27/8}
+                         vs 8.27. Live zero-offset is 1095/1024.
       lemma52_stage4     W3'' against −9/32 β n^{-5/4} and [0.30, 1.35] uh P^{-3/4}
       lemma52_stage6     (D1) actual / (D2)(D3) printed vs 0.30 uh P^{-3/4}
     """

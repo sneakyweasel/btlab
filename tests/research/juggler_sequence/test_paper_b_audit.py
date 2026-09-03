@@ -34,7 +34,7 @@ def test_lemma_3_9_constant() -> None:
 
 def test_exponent_bookkeeping_all_pass() -> None:
     checks = A.exponent_checks()
-    assert len(checks) >= 70
+    assert len(checks) >= 91
     assert all(c["ok"] for c in checks), [c["check"] for c in checks if not c["ok"]]
 
 
@@ -53,3 +53,13 @@ def test_frozen_zero_offset_curvature_is_135_over_1024() -> None:
     assert r["samples"] >= 8, r
     assert r["frozen_near_one"], r
     assert r["moving_gap_is_wrong_model"], r
+
+
+def test_frozen_total_phase_matches_81_over_512_and_1095_over_1024() -> None:
+    r = A.frozen_total_phase_samples(P=10**6, seed=8, trials=6)
+    assert r["offset_samples"] >= 5, r
+    assert r["zero_samples"] >= 5, r
+    assert r["offset_near_one"], r
+    assert r["B_near_27_over_32"], r
+    assert r["zero_near_one"], r
+    assert r["moving_8_27_is_wrong_model"], r
