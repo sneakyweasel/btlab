@@ -118,6 +118,56 @@ def test_tao_census_matches_fair_coin_to_the_certified_floor() -> None:
     assert 0.85 < census["empirical_survival"][19] / census["fair_coin_bad_probability_odd_start"][19] < 1.15
 
 
+def test_pressure_form_constants() -> None:
+    from research.juggler_sequence.tao_reduction import (
+        REQUIRED_RATE_STAR3,
+        chernoff_biased_exponent,
+        least_C_pressure,
+    )
+
+    # q = 1/2 reduces to the fair Chernoff exponent
+    assert abs(chernoff_biased_exponent(19, 0.5) - chernoff_exponent(19)) < 1e-12
+    assert least_C_pressure(0.5, REQUIRED_RATE_STAR3) == 19
+    # Chernoff for a biased coin is at least as good as Azuma (Theorem B') at q = 0.55
+    assert least_C_pressure(0.55, REQUIRED_RATE_STAR3) <= 41
+    assert chernoff_biased_exponent(10, 0.64) == 0.0  # above the critical share nothing is gained
+
+
+def test_fair_tilted_live_matches_brute_force() -> None:
+    from research.juggler_sequence.tao_reduction import fair_tilted_live
+
+    L, d, theta = 1.3, 8, 0.5
+    total = 0.0
+    for bits in range(2 ** (d - 1)):
+        o, live = 1, True
+        for t in range(2, d + 1):
+            o += (bits >> (t - 2)) & 1
+            if o * LOG2_3 - t <= -L:
+                live = False
+                break
+        if live:
+            total += math.exp(theta * o) / 2 ** (d - 1)
+    assert abs(fair_tilted_live(L, d, theta) - total) < 1e-12
+    assert fair_tilted_live(L, d, 0.0) == bad_word_probability_odd_start_ref(L, d)
+
+
+def bad_word_probability_odd_start_ref(L: float, d: int) -> float:
+    from research.juggler_sequence.tao_reduction import bad_word_probability_odd_start
+
+    return bad_word_probability_odd_start(L, d)
+
+
+def test_pressure_census_has_no_momentum_on_a_small_sample() -> None:
+    from research.juggler_sequence.tao_reduction import live_word_prefix, pressure_census
+
+    letters, tau, capped = live_word_prefix(10**12 + 1, 350_000_000, 10)
+    assert letters == [1, 0, 0] and tau == 3 and not capped
+    census = pressure_census(12, 350_000_000, 3000, 12, thetas=(0.396,), seed=7)
+    shares = census["tilted_odd_share"]["0.396"]
+    assert all(abs(s - 0.5) < 0.08 for s in shares[:8])
+    assert 0.8 < census["live_mgf_ratio_to_fair"]["0.396"]["10"] < 1.2
+
+
 def test_required_depth_grows_like_log_log() -> None:
     d20 = required_depth(20 * math.log(10.0), 350_000_000, 0.6)
     d100 = required_depth(100 * math.log(10.0), 350_000_000, 0.6)

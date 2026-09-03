@@ -51,11 +51,17 @@ converts the almost-all statement into the full conjecture.
 What this note does **not** do: it does not prove the hypothesis.
 Paper B proves parity equidistribution to depth four (with power
 savings on dyadic blocks) and two depth-five words; the hypothesis
-here asks for depth \(\to\infty\) like \(\log\log y\), i.e. every
-level of the nested-floor tower, uniformly. That is the \(K_3\) wall
-and its iterates. The reduction shows what stands behind that wall:
-not merely density-one descent (Paper B, Proposition 7.1), but the
-conjecture itself.
+here asks for depth \(\to\infty\) like \(\log\log y\). Section 10
+identifies the weakest form the argument can use — a single
+exponential moment of the odd count on *live* starts (the "pressure"
+form, Theorem B‴) — and shows that it is insensitive to any
+\(o(\log\log y)\) initial depths and tolerates tower cylinders
+\(O^t\) biased up to odd share \(0.84\):
+the obstruction is the bulk behaviour of typical odd-heavy parity
+words at depth \(\asymp\log\log y\), not the \(K_3\) split, and no
+bounded-depth cylinder statement can close the reduction. The
+reduction shows what stands behind that wall: not merely density-one
+descent (Paper B, Proposition 7.1), but the conjecture itself.
 
 Lean: the exact envelope-descent step is
 `iterate_le_of_envelope`, `mem_of_envelope_floor`,
@@ -445,3 +451,226 @@ one. The question is recorded as PARK behind the \(K_3\) program
 the reduction adds is the size of the prize: uniform odd-share control
 at depth \(O(\log\log y)\) — one-sided, with any constant below
 \(0.6309\) — is the whole Juggler conjecture.
+
+*Update (Section 10).* The uniform per-cylinder form is not what the
+argument needs. The pressure form of Section 10 is one-sided,
+aggregated over cylinders with exponential weights, tolerant of tower
+cylinders \(O^t\) biased up to \(0.84\) and of any \(o(\log\log y)\)
+initial depths;
+what it needs is the *aggregate* split of typical odd-heavy live
+words at depth \(\asymp\log\log y\). The statements "the hypothesis is
+the \(O^t\to O^{t+1}\) split" and "long odd runs are essential" above
+are correct for \(\mathrm H_q\) and for the shape of bad words; they
+do not describe the weakest hypothesis. See §10.4.
+
+## 10. The weakest form: live pressure and the no-momentum hypothesis
+
+The question this section answers: what is the weakest hypothesis on
+Juggler parity words from which the exponent-walk argument still
+yields the Tao-type bound? Theorems B and B′ condition on the past
+letter by letter; the concentration step actually needs one number
+per scale.
+
+### 10.1 Live starts and the stopped walk
+
+Let \(N=y/2\) count the odd starts of \((y,2y]\), let
+\(\tau(n)=\min\{t\ge 1:\ J^t(n)\le N_0\}\) be the entrance time into
+the certified floor, and call \(n\) *live at depth \(t\)* if
+\(\tau(n)>t\). Write \(o_t(n)\) for the number of odd letters among
+\(n,J(n),\dots,J^{t-1}(n)\). By Lemma 2.1, \(\tau(n)>t\) implies
+\(u_t(n)=o_t\log_2 3-t>-L(y)\).
+
+The stopping is essential and not a technicality: \(J(1)=1\) is odd,
+so after entering \([1,N_0]\) an orbit that reaches \(1\) has an
+all-\(O\) tail, and the unstopped odd count of *every* start grows
+linearly. Every statement below is about live starts.
+
+### 10.2 The pressure form
+
+For \(\theta>0\) put \(a_\theta=\tfrac12(1+e^{\theta})\), the fair-coin
+value of \(\mathbb E[e^{\theta X}]\) for one letter.
+
+**Hypothesis \(\mathrm P_\theta(C)\) (live pressure).** For all
+sufficiently large \(y\), with \(d=d(y)=\lceil CL(y)\rceil\),
+\[
+\frac1N\sum_{\substack{n\ \mathrm{odd}\in(y,2y]\\ \tau(n)>d}}e^{\theta\,o_d(n)}
+\ \le\ a_\theta^{\,d}\,e^{o(d)} .
+\]
+
+**Theorem B‴ (pressure form).** Assume \(\mathrm P_\theta(C)\) with
+\(C\ge 5\) and \(\theta=\theta_C=\log\bigl(p_C/(1-p_C)\bigr)\). Then for
+every \(\varepsilon>0\) and all large \(y\),
+\[
+\#\{n\ \mathrm{odd}\in(y,2y]:\ \tau(n)>d(y)\}
+\ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e(C)-\varepsilon)},
+\]
+the bound of Theorem B; hence \(\mathrm P_{\theta_C}(C)\) with
+\(C\ge 19\) implies the Juggler conjecture (Theorem A with
+\(\lambda^{***}\)).
+
+*Proof.* If \(\tau(n)>d\) then \(u_d>-L\), i.e.
+\(o_d>(d-L)/\log_2 3\ge p_Cd\). Hence
+\[
+\#\{\tau>d\}\le\#\{\tau>d,\ o_d\ge p_Cd\}
+\le e^{-\theta p_Cd}\sum_{\tau(n)>d}e^{\theta o_d(n)}
+\le N\,e^{-\theta p_Cd}a_\theta^{\,d}e^{o(d)} .
+\]
+At \(\theta=\theta_C\), \(\theta p_C-\log a_\theta=D(p_C\|\tfrac12)\),
+so the count is \(\le N\exp(-dD(p_C\|\tfrac12)(1-o(1)))\le N2^{-(e(C)-\varepsilon)L}\).
+\(\square\)
+
+### 10.3 The tilted share: no momentum
+
+For \(1\le t<d\) let \(\mu_{\theta,t}\) be the probability measure on
+the starts live at depth \(t\) with density proportional to
+\(e^{\theta o_t(n)}\), and let
+\[
+s_\theta(t)=\mu_{\theta,t}\bigl(J^t(n)\ \text{odd}\bigr)
+\]
+be the *tilted odd share*: the probability that the next letter is
+\(O\) when odd-heavy live prefixes are up-weighted exponentially.
+
+**Hypothesis \(\mathrm M_{\theta,q}(C)\) (no momentum).** For all large
+\(y\),
+\(\sum_{t=1}^{d(y)-1}\bigl(s_\theta(t)-q\bigr)^+=o(d(y))\).
+
+**Proposition 10.1.** \(\mathrm M_{\theta,1/2}(C)\) implies
+\(\mathrm P_\theta(C)\). More generally \(\mathrm M_{\theta,q}(C)\)
+with \(q<p_C\) gives
+\(\#\{\tau>d\}\le N\exp(-d\,D(p_C\|q)(1-o(1)))\), i.e. the exponent
+\(e_q^{\rm Ch}(C)=C\,D(p_C\|q)/\ln 2\), which is at least the Azuma
+exponent of Theorem B′ (least \(C\): \(19\) at \(q=\tfrac12\), \(41\)
+at \(0.55\), \(214\) at \(0.60\), \(1497\) at \(0.62\)).
+
+*Proof.* Dropping the condition \(\tau>t+1\) in favour of \(\tau>t\)
+only enlarges the sum, so
+\[
+\sum_{\tau>t+1}e^{\theta o_{t+1}}\le\sum_{\tau>t}e^{\theta o_{t+1}}
+=\Bigl(\sum_{\tau>t}e^{\theta o_t}\Bigr)\bigl(1+(e^{\theta}-1)s_\theta(t)\bigr).
+\]
+With \(a_{\theta,q}=1+(e^\theta-1)q\) and \(c_\theta=(e^\theta-1)/a_{\theta,q}\),
+\(1+(e^\theta-1)s\le a_{\theta,q}\exp\bigl(c_\theta(s-q)^+\bigr)\).
+Telescoping from \(t=1\) (\(\sum_{\tau>1}e^{\theta o_1}\le Ne^\theta\))
+gives
+\(\sum_{\tau>d}e^{\theta o_d}\le Ne^{\theta}a_{\theta,q}^{\,d-1}\exp\bigl(c_\theta\sum_{t<d}(s_\theta(t)-q)^+\bigr)\),
+which is \(\mathrm P_\theta\) at \(q=\tfrac12\); the Chernoff step of
+Theorem B‴ with \(a_{\theta,q}\) in place of \(a_\theta\) and
+\(\theta=\log\frac{p_C(1-q)}{q(1-p_C)}\) gives \(D(p_C\|q)\).
+\(\square\)
+
+### 10.4 What the pressure form does not need
+
+Each of the following is a consequence of the form of
+\(\mathrm P_\theta\); together they relocate the wall.
+
+**(a) Any \(o(\log\log y)\) initial depths are free.** A letter
+contributes a factor at most \(e^\theta\) to the moment, so bias —
+however extreme — at any set of depths of size \(o(d(y))\) is absorbed
+by the \(e^{o(d)}\). In particular the depth-\(5\) split (\(K_3\),
+Paper B Conjecture 7.3) and every split to any fixed depth, or to depth
+\(s_0(y)\) for any \(s_0=o(\log\log y)\), is irrelevant to the
+reduction.
+
+**(b) The tower cylinders are nearly free.** A cylinder \(w\) of depth
+\(t\) enters \(\mathrm P_\theta\) only through \(\#[w]e^{\theta o(w)}\),
+against a fair total \(Ne^{\theta}a_\theta^{\,t-1}\). If the tower
+\(O^t\) splits with odd share \(\beta\) at every level,
+\(\#[O^t]=N\beta^{t-1}\) and its tilted weight relative to the fair
+total is \((\beta e^{\theta}/a_\theta)^{t-1}\), which decays
+geometrically iff \(\beta<a_\theta e^{-\theta}=\tfrac12(1+e^{-\theta})\)
+— \(0.836\) at \(\theta_{19}=0.396\). So a tower biased anywhere below
+\(0.836\) contributes a bounded total to \(\sum_t(s_\theta(t)-\tfrac12)^+\)
+when the rest of the population is fair, hence \(o(d)\); the uniform
+hypothesis \(\mathrm H_q\) needs the same tower to split below
+\(q<0.6309\), and the Tao-type *conclusion* itself only fails once
+\(\beta>2^{-e(C)/C}=0.981\). The same accounting holds for any family
+of cylinders whose tilted weights sum to \(o(d)\) over depths: a single
+cylinder of depth \(t\) matters only if it is over-populated by an
+exponential factor \((2a_\theta e^{-\theta})^{t}=(1.67)^t\) relative to
+its fair share. The iterated \(O^t\to O^{t+1}\) splits of Section 9 —
+the "hardest cylinders" — are therefore not what the weakest hypothesis
+is about; it is about the tilted average over all live cylinders.
+
+**(c) One-sidedness and aggregation.** \(\mathrm M_{\theta,q}\) bounds
+one weighted average per depth from above; under-populated odd
+continuations anywhere, and over-populated ones on cylinders of small
+tilted weight, cost nothing. In Walsh terms, \(e^{\theta X_s}=a_\theta+b_\theta(-1)^{J^s(n)}\)
+with \(b_\theta/a_\theta=-\tanh(\theta/2)\), so
+\[
+\frac1N\sum_ne^{\theta o_d(n)}=a_\theta^{\,d}\Bigl(1+\sum_{\emptyset\ne T}(-\tanh\tfrac\theta2)^{|T|}\frac{W_T}{N}\Bigr),
+\qquad W_T=\sum_n\prod_{s\in T}(-1)^{J^s(n)} :
+\]
+the Walsh sums of high order are exponentially down-weighted
+(\(\tanh(0.198)=0.196\) per letter), whereas the uniform cylinder
+hypothesis needs all \(2^{d}\) of them with equal weight. (The live
+restriction adds the indicator of \(\{u_t>-L\ \forall t\}\); the
+identity is stated for the unstopped moment to show the weights.)
+
+**(d) The intermediate forms are reparameterizations.** Between
+\(\mathrm H(C,A)\) and \(\mathrm P_\theta\) sit the "almost all
+cylinders" form (odd-share \(\le q\) on all but a set of cylinders of
+total mass \(\le N(\log y)^{-B}\) per depth, \(B>e_q(C)\); the Markov
+step of Theorem B′ absorbs it) and its second-moment version. With
+\(D(w)=\#[wO]-\tfrac12\#[w]\) and the collision count
+\(\mathcal C_t=\sum_{|w|=t}\#[w]^2\), Parseval gives
+\(\sum_wD(w)^2=2^{-t-2}\sum_{S\subseteq[0,t)}|W_{S\cup\{t\}}|^2=\tfrac12\mathcal C_{t+1}-\tfrac14\mathcal C_t\),
+so the almost-all form follows from the pair-correlation asymptotic
+\(\mathcal C_t\le(N^2/2^{t-1})(1+(\log y)^{-A'})\), \(A'>C+2\) — a
+two-point statement — but by Walsh inversion any such two-sided
+bound is equivalent, up to the exponent, to polylogarithmic savings on
+every Walsh sum to depth \(d(y)\), i.e. to \(\mathrm H(C,A)\) with a
+different \(A\). They are recorded as `REPARAMETERIZATION`; the
+pressure form is the one that is weaker in substance.
+
+**(e) No bounded-depth cylinder statement can close the reduction.**
+Fix \(k\). The probability measure on parity words that is fair to
+depth \(k\) and all-\(O\) afterwards satisfies every cylinder-count
+statement of depth \(\le k\) exactly, and under it a positive
+proportion of starts is live for ever. An argument for the Tao-type
+bound that used only depth-\(\le k\) cylinder statistics of the
+Juggler map and the walk logic would prove the same bound for that
+measure. Hence every proof of the Tao-type bound — in any of the
+forms of this note — must use information about the parity words at
+depth \(\to\infty\); Paper B's program at any fixed depth is neither
+necessary (by (a)) nor sufficient (by (e)) for it.
+
+### 10.5 Where the wall is, in this language
+
+\(\mathrm P_\theta(C)\) says that the exponentially tilted distribution
+of live parity words of length \(d\asymp\log_2\log y\) has the fair
+pressure \(\log a_\theta\): odd-heavy live words — those with about
+\(e^\theta/(1+e^\theta)\approx 60\%\) odd letters, the words the tilt
+selects — are not over-populated at an exponential rate in \(d\).
+Typical such words contain odd runs of length \(\ge 4\) (so the nested
+towers of height \(\ge 4\) that block Paper B at depth five sit inside
+almost every relevant cylinder), but no individual cylinder is
+required to split fairly: only the tilted average over the
+\(\approx 2^{0.97d}\) typical cylinders at each depth. This is a
+statement about *averaging over cylinders at unbounded depth*, of a
+kind (mean over characters, not sup) for which analytic number theory
+sometimes has tools where pointwise bounds fail; the laboratory knows
+no such tool for nested-floor parities, and records the question,
+not an approach. The two frontier statements of the termination
+problem — the free term \(\psi_F\) of the exact map (fate note §6.2)
+and \(\mathrm P_\theta(C)\) here — are both bulk-depth parity
+statements; neither is approached by fixed-depth equidistribution.
+
+### 10.6 Census
+
+`pressure_census` (`data/research/juggler/tao_reduction/summary.json`)
+computes the tilted odd share \(s_\theta(t)\) on live starts from
+exact orbits: \(40000\) random odd starts in \((y,2y]\) for
+\(y=10^{12},10^{20},10^{30},10^{50}\), target \(N_0=3.5\cdot 10^8\),
+depths \(t=1,\dots,40\), \(\theta\in\{0.396,0.6\}\). Live populations
+at depth \(40\): \(858\), \(1534\), \(2069\), \(3408\). Results:
+\(s_\theta(t)\in[0.44,0.56]\) at every depth and scale, within the
+binomial noise of the effective tilted sample; the cumulative excess
+\(\sum_{t<40}(s_\theta(t)-\tfrac12)^+\) is \(0.14\)–\(0.19\) at
+\(\theta=0.396\) and \(0.19\)–\(0.26\) at \(\theta=0.6\), exactly the
+expected positive-part noise (\(\approx 0.4\sigma_t\) per depth); the
+live moment \(\frac1N\sum_{\tau>d}e^{\theta o_d}\) divided by its
+fair-coin DP value is \(0.95\)–\(1.08\) for \(d=10,20,30,40\). No
+momentum is detectable to depth \(40\) at any scale up to \(10^{50}\).
+This is an OBSERVATION about the aggregate statistic of
+\(\mathrm M_{\theta,1/2}\) in the accessible range; the hypothesis is
+about \(d(y)\to\infty\).

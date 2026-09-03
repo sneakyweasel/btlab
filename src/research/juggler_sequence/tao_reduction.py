@@ -253,6 +253,27 @@ def bad_word_probability_odd_start(L: float, d: int) -> float:
     return sum(counts.values()) / 2.0 ** (d - 1)
 
 
+def chernoff_biased_exponent(C: int, q: float) -> float:
+    """Exponent ``C D(p_C || q) / ln 2`` of the tilted-share (pressure) form with odd share ``q``
+    (Tao note Theorem B''' with (M_{theta,q})): the bad probability is ``2^{-e L}`` with this ``e``.
+    Returns 0 if ``p_C <= q``."""
+
+    p = (1.0 - 1.0 / C) / LOG2_3
+    if p <= q or q <= 0 or q >= 1:
+        return 0.0
+    D = p * math.log(p / q) + (1 - p) * math.log((1 - p) / (1 - q))
+    return C * D / math.log(2.0)
+
+
+def least_C_pressure(q: float, required: float = REQUIRED_RATE) -> int | None:
+    """Least ``C`` with ``chernoff_biased_exponent(C, q) > required``."""
+
+    for C in range(2, 100_000):
+        if chernoff_biased_exponent(C, q) > required:
+            return C
+    return None
+
+
 def live_word_prefix(n: int, N0: int, d_max: int, bit_cap: int = 4_000_000) -> tuple[list[int], int | None, bool]:
     """Parities (1 = odd) of ``n, J(n), ..., J^{t-1}(n)`` while the orbit is *live* (above ``N0``),
     for ``t <= d_max``; the list has length ``min(tau, d_max)`` where ``tau`` is the first time the
@@ -406,6 +427,19 @@ def summary() -> dict[str, Any]:
         c["fair_coin_bad_probability_odd_start"] = c["fair_coin_bad_probability_odd_start"][::5]
         c["survival_depths"] = list(range(1, 41))[::5]
         tao[f"1e{exp10}"] = c
+    pressure = {}
+    for exp10, samples in ((12, 40000), (20, 40000), (30, 40000), (50, 40000)):
+        p = pressure_census(exp10, N0_CERTIFIED, samples, 40)
+        p["tilted_odd_share_range"] = {
+            th: [min(v), max(v)] for th, v in p["tilted_odd_share"].items()
+        }
+        p["tilted_odd_share"] = {th: v[::5] for th, v in p["tilted_odd_share"].items()}
+        p["tilted_share_depths"] = list(range(1, 41))[::5]
+        pressure[f"1e{exp10}"] = p
+    pressure_constants = {
+        str(q): {"least_C_star3": least_C_pressure(q, REQUIRED_RATE_STAR3), "least_C_starstar": least_C_pressure(q)}
+        for q in (0.5, 0.55, 0.6, 0.62)
+    }
     return {
         "git_commit": git_commit(),
         "lambda_starstar": LAMBDA_STARSTAR,
@@ -420,6 +454,8 @@ def summary() -> dict[str, Any]:
         "table": table,
         "odd_run_census": census,
         "tao_census": tao,
+        "pressure_census": pressure,
+        "pressure_form_least_C": pressure_constants,
     }
 
 

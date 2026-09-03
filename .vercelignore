@@ -1,15 +1,16 @@
-# Laboratory sources are not part of the companion site.
-formal/
-data/
-experiments/
-src/
-tests/
-docs/
-.venv/
-juggler_review/
-atlas/
-conjectures/
-literature/
+# Laboratory trees only. Unanchored `src/` / `data/` also match
+# web/juggler-companion/src and its JSON snapshots.
+/formal/
+/data/
+/experiments/
+/src/
+/tests/
+/docs/
+/.venv/
+/juggler_review/
+/atlas/
+/conjectures/
+/literature/
 __pycache__/
 *.pyc
 .pytest_cache/
