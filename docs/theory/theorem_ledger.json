@@ -6384,5 +6384,57 @@
    "tests/research/juggler_sequence/test_fate_contagion.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-fate-envelope-floor",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Envelope descent into a certified floor. For a realized word w at n (follows n w), if n ^ 3^{#O(w)} ≤ N₀ ^ 2^{|w|} as integers then floorPower^[|w|] n ≤ N₀ (iterate_le_of_envelope, from power_bound_word and Nat.pow_le_pow_iff_left); if moreover every 1 ≤ m ≤ N₀ lies in a backward-closed class A, then n ∈ A (mem_of_envelope_floor); in particular, with A = ReachesOne and the realized itinerary of the first k steps, n ^ 3^{#O(itinerary n k)} ≤ N₀ ^ 2^k implies ReachesOne n (reachesOne_of_itinerary_envelope). This is the exact step of the Tao-type reduction: a start whose exponent walk reaches −L(y) = −log₂(log 2y / log N₀) within d steps enters [1, N₀]. Not a halt theorem.",
+  "source": "docs/theory/juggler_tao_reduction_note.md",
+  "lean": "Problems/Juggler/FateContagion.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-tao-rate-implies-conjecture",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Theorem A of the Tao-reduction note. If for some e > 1 − λ** = 0.5950… and all sufficiently large y, #{n odd in (y, 2y] : n does not reach 1} ≤ y (log y)^{−e}, then every positive integer reaches 1. Proof: every failure lies in the E-tree of an odd failure (forward closure), each E-tree level has log-mass ≤ 2/n₀ and at most 1 + log₂ log x levels meet [1, x], so the log-count of the failure set is ≪ (log x)^{1−e} log log x, contradicting fate contagion (J-fate-log-density) for any λ ∈ (1 − e, λ**). The same holds for the hypothesis stated over all n in (y, 2y], and in logarithmic form it is Corollary 4.5 of the fate note. A Tao-type almost-all theorem with the bounded target [1, N₀] and rate (log y)^{−0.6} would therefore prove the Juggler conjecture; for the Collatz map the analogous implication fails (thin preimage trees). Not a halt theorem: the hypothesis is not proved.",
+  "source": "docs/theory/juggler_tao_reduction_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-tao-loglog-depth-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Theorem B and Corollary C of the Tao-reduction note. Let L(y) = log₂(log 2y / log N₀), d(y) = ⌈C L(y)⌉, p_C = (1 − 1/C)/log₂ 3, e(C) = C D(p_C ‖ 1/2)/ln 2 (Chernoff exponent; e(21) = 0.621, e(25) = 0.812, e(30) = 1.054). The L-bad words of length d ≥ C L (exponent walk never reaching −L) number at most 2^d 2^{−e(C) L}. Under the cylinder bound H(C, A) — every word w of length d(y) has #{n odd in (y, 2y] : word_{d(y)}(n) = w} ≤ 2^{−d(y)} y/2 + y (log y)^{−A}, with A > C + e(C) — all but 2 (log N₀)^{e(C)} y (log y)^{−e(C)} odd starts in (y, 2y] enter [1, N₀] within d(y) = O(log log y) steps (envelope descent, J-fate-envelope-floor). Hence H(C, A) with C ≥ 21 implies the Juggler conjecture through J-tao-rate-implies-conjecture. The depth is O(log log y) because the Juggler descent is by powers (one certificate sends n to n^e); the Collatz analogue would need depth Θ(log y), where cylinders have single elements. Exact walk counts (data/research/juggler/tao_reduction/summary.json) show depth ≈ 17 L(y) would suffice in place of 21 L(y). H(C, A) is the conjecture juggler_loglog_depth_cylinder_bound; depth ≤ 4 is Paper B, depth 5 is the K₃ wall. Not a halt theorem.",
+  "source": "docs/theory/juggler_tao_reduction_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-tao-biased-split-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Theorem B′ of the Tao-reduction note (biased-split form). Let q < log 2 / log 3 = 0.6309…, μ = 1 − q log₂ 3 > 0, C > 1/μ, e_q(C) = 2 (Cμ − 1)² / (C (log₂ 3)² ln 2) = 1.1486·(Cμ − 1)²/C. Hypothesis H_q(C, A): for all large y, every t < d(y) = ⌈C L(y)⌉ and every word w of length t, the cylinder [w]_y of odd starts in (y, 2y] sends at most q·#[w]_y + y (log y)^{−A} of its members to an odd next state (one-sided odd-share bound with additive slack), A > C + 1. Then for every ε > 0 and large y, #{n odd in (y, 2y] : n does not reach 1} ≤ (y/2) (log 2y / log N₀)^{−(e_q(C) − ε)}. Proof: the exponent walk u_t = o_t log₂ 3 − t has conditional drift ≤ −μ + η_t log₂ 3 with E[Σ η_t] ≤ 4 (log 2y/log N₀)^C (log y)^{−A}; a start not reaching 1 has u_d > −L (envelope descent, J-fate-envelope-floor); Markov on the slack and Azuma–Hoeffding on the martingale part (increment range log₂ 3) give the bound. With Theorem A (J-tao-rate-implies-conjecture): e_q(C) > 1 − λ** = 0.5950 implies the Juggler conjecture; least C: 21 at q = 1/2, 46 at q = 0.55, 255 at q = 0.60, 1840 at q = 0.62. Hence: if no cylinder of depth below 46 log₂(log 2y / log N₀) sends more than 55% of its members to an odd state, every positive integer reaches 1. Anatomy (exact DP): among fair-coin bad words at (y, d) = (10^100, 75) the fraction containing an odd run ≥ 4 is 0.9999 and ≥ 5 is 0.988, so the hypothesis cannot be met by controlling bounded odd runs — it is the O⁴ → O⁵ split (Conjecture 7.3, K₃) and its iterates. Odd-run census on (10^6, 2·10^6]: the cylinders O^t split with odd-share within binomial noise of 1/2 for t ≤ 14. Not a halt theorem; the hypothesis is not proved.",
+  "source": "docs/theory/juggler_tao_reduction_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

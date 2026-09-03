@@ -1,0 +1,283 @@
+{
+  "git_commit": "1c82371b2b0cc9380a9a2013bd5f0662b1c55f95",
+  "lambda_starstar": 0.40505943427374547,
+  "required_rate": 0.5949405657262545,
+  "least_C": 21,
+  "chernoff_exponent": {
+    "20": 0.5737956448546405,
+    "21": 0.6209644372577928,
+    "22": 0.6683923845726047,
+    "25": 0.8119224011715979,
+    "30": 1.0540544998777706,
+    "40": 1.544355272368268
+  },
+  "biased_split": {
+    "0.5": {
+      "mu": 0.20751874963942196,
+      "least_C": 21,
+      "azuma_exponent_at_least_C": 0.6167102336604117
+    },
+    "0.55": {
+      "mu": 0.12827062460336414,
+      "least_C": 46,
+      "azuma_exponent_at_least_C": 0.5996259504550215
+    },
+    "0.6": {
+      "mu": 0.04902249956730642,
+      "least_C": 255,
+      "azuma_exponent_at_least_C": 0.5957687848282701
+    },
+    "0.62": {
+      "mu": 0.017323249552883224,
+      "least_C": 1840,
+      "azuma_exponent_at_least_C": 0.5950540957649936
+    },
+    "0.63": {
+      "mu": 0.0014736245456716812,
+      "least_C": null,
+      "azuma_exponent_at_least_C": 0.0
+    }
+  },
+  "table": [
+    {
+      "log10_y": 20,
+      "N0_3.5e8": {
+        "L": 1.2485578843236127,
+        "depth_C21": 27,
+        "chernoff_bound_C21": 0.5842630490708989,
+        "exact_bad_probability_C21": 0.052335627377033234,
+        "target_log_y_pow_minus_0.6": 0.10047374481040945,
+        "required_depth_e0.6": 19,
+        "required_depth_e1.0": 41,
+        "bad_mass_with_odd_run_ge4_C21": 0.9672840364735964,
+        "bad_mass_with_odd_run_ge5_C21": 0.7954483883178688
+      },
+      "N0_260": {
+        "L": 3.0714737535780916,
+        "depth_C21": 65,
+        "chernoff_bound_C21": 0.26659544369267013,
+        "exact_bad_probability_C21": 0.01791854413599898,
+        "target_log_y_pow_minus_0.6": 0.10047374481040945,
+        "required_depth_e0.6": 35,
+        "required_depth_e1.0": 62,
+        "bad_mass_with_odd_run_ge4_C21": 0.9997274778562069,
+        "bad_mass_with_odd_run_ge5_C21": 0.9784213653248423
+      }
+    },
+    {
+      "log10_y": 50,
+      "N0_3.5e8": {
+        "L": 2.55759290016367,
+        "depth_C21": 54,
+        "chernoff_bound_C21": 0.33259209030482334,
+        "exact_bad_probability_C21": 0.02547385380478351,
+        "target_log_y_pow_minus_0.6": 0.05798138487364925,
+        "required_depth_e0.6": 40,
+        "required_depth_e1.0": 74,
+        "bad_mass_with_odd_run_ge4_C21": 0.9988098873328668,
+        "bad_mass_with_odd_run_ge5_C21": 0.9568267830086088
+      },
+      "N0_260": {
+        "L": 4.380508769418149,
+        "depth_C21": 92,
+        "chernoff_bound_C21": 0.15175961585194725,
+        "exact_bad_probability_C21": 0.009629235068878094,
+        "target_log_y_pow_minus_0.6": 0.05798138487364925,
+        "required_depth_e0.6": 57,
+        "required_depth_e1.0": 95,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999893098506567,
+        "bad_mass_with_odd_run_ge5_C21": 0.9951920543414075
+      }
+    },
+    {
+      "log10_y": 100,
+      "N0_3.5e8": {
+        "L": 3.55326947430744,
+        "depth_C21": 75,
+        "chernoff_bound_C21": 0.21666620079225657,
+        "exact_bad_probability_C21": 0.014140390920951542,
+        "target_log_y_pow_minus_0.6": 0.038253448009174004,
+        "required_depth_e0.6": 56,
+        "required_depth_e1.0": 102,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999188269393148,
+        "bad_mass_with_odd_run_ge5_C21": 0.9877325021952952
+      },
+      "N0_260": {
+        "L": 5.376185343561919,
+        "depth_C21": 113,
+        "chernoff_bound_C21": 0.09886338358256762,
+        "exact_bad_probability_C21": 0.006097549867136329,
+        "target_log_y_pow_minus_0.6": 0.038253448009174004,
+        "required_depth_e0.6": 72,
+        "required_depth_e1.0": 120,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999990832483724,
+        "bad_mass_with_odd_run_ge5_C21": 0.9984667245842708
+      }
+    },
+    {
+      "log10_y": 300,
+      "N0_3.5e8": {
+        "L": 5.135342476353216,
+        "depth_C21": 108,
+        "chernoff_bound_C21": 0.1096619508414282,
+        "exact_bad_probability_C21": 0.0068403857243116446,
+        "target_log_y_pow_minus_0.6": 0.01978781466001267,
+        "required_depth_e0.6": 85,
+        "required_depth_e1.0": 144,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999983315432636,
+        "bad_mass_with_odd_run_ge5_C21": 0.997975977913542
+      },
+      "N0_260": {
+        "L": 6.958258345607695,
+        "depth_C21": 147,
+        "chernoff_bound_C21": 0.05003803763949257,
+        "exact_bad_probability_C21": 0.0026681154957030623,
+        "target_log_y_pow_minus_0.6": 0.01978781466001267,
+        "required_depth_e0.6": 101,
+        "required_depth_e1.0": 163,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999999855934695,
+        "bad_mass_with_odd_run_ge5_C21": 0.9997763417701058
+      }
+    },
+    {
+      "log10_y": 1000,
+      "N0_3.5e8": {
+        "L": 6.87129537719735,
+        "depth_C21": 145,
+        "chernoff_bound_C21": 0.051946484687115525,
+        "exact_bad_probability_C21": 0.0027616538449859395,
+        "target_log_y_pow_minus_0.6": 0.009608831701270136,
+        "required_depth_e0.6": 117,
+        "required_depth_e1.0": 191,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999999819705085,
+        "bad_mass_with_odd_run_ge5_C21": 0.9997531139550153
+      },
+      "N0_260": {
+        "L": 8.694211246451829,
+        "depth_C21": 183,
+        "chernoff_bound_C21": 0.023702844387401188,
+        "exact_bad_probability_C21": 0.0012343327304915673,
+        "target_log_y_pow_minus_0.6": 0.009608831701270136,
+        "required_depth_e0.6": 133,
+        "required_depth_e1.0": 209,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999999997893831,
+        "bad_mass_with_odd_run_ge5_C21": 0.9999683751195545
+      }
+    },
+    {
+      "log10_y": 10000,
+      "N0_3.5e8": {
+        "L": 10.19283267175205,
+        "depth_C21": 215,
+        "chernoff_bound_C21": 0.012435543700385762,
+        "exact_bad_probability_C21": 0.0005703743275440563,
+        "target_log_y_pow_minus_0.6": 0.002413629397307957,
+        "required_depth_e0.6": 180,
+        "required_depth_e1.0": 283,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999999999959307,
+        "bad_mass_with_odd_run_ge5_C21": 0.9999949292034598
+      },
+      "N0_260": {
+        "L": 12.01574854100653,
+        "depth_C21": 253,
+        "chernoff_bound_C21": 0.005674258017233659,
+        "exact_bad_probability_C21": 0.0002413158119835562,
+        "target_log_y_pow_minus_0.6": 0.002413629397307957,
+        "required_depth_e0.6": 195,
+        "required_depth_e1.0": 299,
+        "bad_mass_with_odd_run_ge4_C21": 0.9999999999999598,
+        "bad_mass_with_odd_run_ge5_C21": 0.9999993984242744
+      }
+    }
+  ],
+  "odd_run_census": {
+    "lo": 1000000,
+    "hi": 2000000,
+    "odd_share_of_O_t": [
+      {
+        "t": 1,
+        "members": 500000,
+        "continue_odd": 250114,
+        "odd_share": 0.500228
+      },
+      {
+        "t": 2,
+        "members": 250114,
+        "continue_odd": 124850,
+        "odd_share": 0.4991723773959075
+      },
+      {
+        "t": 3,
+        "members": 124850,
+        "continue_odd": 62199,
+        "odd_share": 0.498189827793352
+      },
+      {
+        "t": 4,
+        "members": 62199,
+        "continue_odd": 31202,
+        "odd_share": 0.501647936462001
+      },
+      {
+        "t": 5,
+        "members": 31202,
+        "continue_odd": 15729,
+        "odd_share": 0.5041023011345427
+      },
+      {
+        "t": 6,
+        "members": 15729,
+        "continue_odd": 7820,
+        "odd_share": 0.4971708309492021
+      },
+      {
+        "t": 7,
+        "members": 7820,
+        "continue_odd": 3820,
+        "odd_share": 0.4884910485933504
+      },
+      {
+        "t": 8,
+        "members": 3820,
+        "continue_odd": 1908,
+        "odd_share": 0.49947643979057593
+      },
+      {
+        "t": 9,
+        "members": 1908,
+        "continue_odd": 978,
+        "odd_share": 0.5125786163522013
+      },
+      {
+        "t": 10,
+        "members": 978,
+        "continue_odd": 527,
+        "odd_share": 0.5388548057259713
+      },
+      {
+        "t": 11,
+        "members": 527,
+        "continue_odd": 258,
+        "odd_share": 0.48956356736242884
+      },
+      {
+        "t": 12,
+        "members": 258,
+        "continue_odd": 130,
+        "odd_share": 0.5038759689922481
+      },
+      {
+        "t": 13,
+        "members": 130,
+        "continue_odd": 69,
+        "odd_share": 0.5307692307692308
+      },
+      {
+        "t": 14,
+        "members": 69,
+        "continue_odd": 33,
+        "odd_share": 0.4782608695652174
+      }
+    ]
+  }
+}

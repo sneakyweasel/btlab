@@ -22306,3 +22306,93 @@ Best next question
 - is there a Juggler analogue of Tao's almost-bounded-values theorem
   in logarithmic density with target [1, N_0] and rate (log x)^{-0.6}?
 ```
+
+
+## Tao-type reduction: the conjecture from a log-log-depth cylinder bound (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Answer the question left by fate contagion: is there a Juggler analogue of Tao's almost-bounded-values theorem, in logarithmic density, with the bounded target \(\left[1,N_0\right]\) and rate \((\log x)^{-0.6}\)? Adapt the environment notes (AGENTS.md, `.cursor/rules/environment.mdc`) so later sessions do not repeat this session's detours.
+- **Hypotheses:** (1) Because Juggler descent is by powers, a start of size \(y\) reaches the floor once its exponent walk \(u_t=o_t\log_2 3-t\) drops to \(-L(y)\), \(L(y)=\log_2(\log 2y/\log N_0)\) — a distance \(O(\log\log y)\), so one-shot Terras counting at depth \(CL(y)\) suffices and no renewal (Syracuse-random-variable) step is needed. (2) Chernoff at depth \(CL\) leaves \((\log 2y/\log N_0)^{-e(C)}\) unaccounted with \(e(21)=0.621>1-\lambda^{**}=0.5950\), so contagion closes. Falsifier: the depth needed exceeding \(\log_2 y\), or \(e(C)\) never reaching \(1-\lambda^{**}\).
+- **Major results:**
+  - **Envelope descent into the floor (EXACT — LEAN VERIFIED, `J-fate-envelope-floor`):** `iterate_le_of_envelope`, `mem_of_envelope_floor`, `reachesOne_of_itinerary_envelope` (`FateContagion.lean`; `lake build` green).
+  - **Theorem A (EXACT — HUMAN PROOF, `J-tao-rate-implies-conjecture`):** if \(\#\{n\text{ odd}\in(y,2y]:n\notin R\}\le y(\log y)^{-e}\) for all large \(y\) with \(e>1-\lambda^{**}\), then every positive integer reaches 1 (E-tree bookkeeping of the failure set plus contagion). A Tao-type theorem with bounded target and rate \((\log y)^{-0.6}\) *is* the conjecture; the Collatz analogue fails.
+  - **Theorem B and Corollary C (EXACT — HUMAN PROOF, `J-tao-loglog-depth-bound`):** the log-log-depth cylinder bound \(\mathrm H(C,A)\) (no cylinder of depth \(d(y)=\lceil CL(y)\rceil\) exceeds its fair share by more than \(y(\log y)^{-A}\), \(A>C+e(C)\)) gives the Tao-type bound with \(e=e(C)\); with \(C\ge 21\) it implies the Juggler conjecture. Depth \(27\) at \(y=10^{20}\), \(75\) at \(10^{100}\), \(145\) at \(10^{1000}\) (\(N_0=3.5\cdot 10^8\)); exact walk counts show depth \(\approx 17L(y)\) would do.
+  - **Conjecture recorded:** `conjectures/active/juggler_loglog_depth_cylinder_bound.json` (\(\mathrm H(C,A)\)); depth \(\le 4\) is Paper B, depth \(5\) is the \(K_3\) wall.
+  - **Environment:** `.cursor/rules/environment.mdc` and the AGENTS.md checklist (PowerShell pitfalls, registration gates, auto-commit, substring `sorry` test, ledger JSON format, docs-link false positives); `lean_paths.py` now registers `GapTransfer`, `FunctionalGraph`, `FateContagion`.
+- **Refuted ideas:** the route "Tao with a *growing* target plus contagion" — contagion needs the bounded target; and a renewal-based Juggler–Tao — unnecessary, since the one-shot depth is \(O(\log\log y)\).
+- **Literature:** Tao 2022; Terras 1976 / Everett 1977; Krasikov–Lagarias 2003; Paper B Proposition 7.1.
+- **Open:** \(\mathrm H(C,A)\) — parity equidistribution at depth \(C\log_2\log y\) with relative error \(o(1)\); uniformity of Paper B's kernel method in the depth.
+- **Decision:** PROMOTE ([juggler_tao_almost_bounded](problems/juggler_tao_almost_bounded.md)). Conditional theorems with explicit constants; the hypothesis is not attacked and is not a Phase 0.
+
+```text
+What was learned
+- a bounded-target Tao-type bound with rate e > 1 - lambda** = 0.595 is
+  equivalent to the Juggler conjecture (contagion), unlike Collatz
+- Juggler descent by powers puts the bounded target at exponent-walk
+  distance log2 log y, so one-shot Terras counting at depth 21 L(y) gives
+  the bound with e(21) = 0.621; no renewal step is needed
+- hence the conjecture follows from the log-log-depth cylinder bound
+  H(C,A): the K_3 wall at unbounded depth has the conjecture behind it,
+  not only density-one descent
+Strongest theorem
+- H(C,A) with C >= 21 implies every positive integer reaches 1
+  (conditional; the hypothesis is a conjecture)
+Strongest refutation
+- none (the growing-target Tao route is shown not to feed contagion)
+Reusable machinery
+- envelope-floor lemmas in FateContagion.lean; tao_reduction probe
+  (chernoff_exponent, bad_word_probability, required_depth);
+  environment rule file
+Branch status
+- PROMOTE
+Why
+- the question is answered exactly and the answer reorganizes the
+  frontier: termination is now a depth-O(log log y) equidistribution
+  statement, with explicit constants and no Collatz analogue
+Best next question
+- can Paper B's kernel method be made uniform in the depth, even as
+  slowly as log log y? (the K_3 program; not opened here)
+```
+
+
+## Biased-split sharpening and the anatomy of the wall (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Take the question "can Paper B's kernel method be made uniform in the depth?" as far as the laboratory can: find the weakest hypothesis that still yields the conjecture through the Tao-type reduction, and locate exactly which cylinders carry it.
+- **Hypotheses:** (1) The exponent walk only needs to drift down, so a *one-sided* bound on the conditional odd-share of cylinders, with any constant \(q<\log 2/\log 3\), should suffice via Azuma–Hoeffding (no equidistribution, no vanishing error). (2) The bad words (walk never reaching \(-L\)) might be dominated by words with bounded odd runs, which transparent nesting and Paper B could handle. Falsifier for (2): the bad mass concentrating on odd runs \(\ge 4\).
+- **Major results:**
+  - **Theorem B′ (EXACT — HUMAN PROOF, `J-tao-biased-split-bound`):** if every cylinder of depth \(t<\lceil CL(y)\rceil\) sends at most \(q\#[w]+y(\log y)^{-A}\) of its members to an odd next state (\(q<0.6309\), \(A>C+1\)), then \(\#\{n\text{ odd}\in(y,2y]:n\notin R\}\le\frac y2(\log 2y/\log N_0)^{-(e_q(C)-\varepsilon)}\), \(e_q(C)=1.1486(C\mu-1)^2/C\), \(\mu=1-q\log_2 3\). Least \(C\): \(21\) (\(q=\tfrac12\)), \(46\) (\(0.55\)), \(255\) (\(0.60\)), \(1840\) (\(0.62\)). With Theorem A: **odd-share \(\le 55\%\) on every cylinder of depth \(<46\log_2(\log 2y/\log N_0)\) implies the Juggler conjecture.**
+  - **Anatomy (COMPUTATIONALLY VERIFIED):** at \((y,d)=(10^{100},75)\), \(99.99\%\) of the fair-coin bad mass contains an odd run \(\ge 4\) and \(98.8\%\) a run \(\ge 5\) (exact DP). Hypothesis (2) is refuted: bounded-run control cannot reach the hypothesis; its content is the \(O^t\to O^{t+1}\) split for \(t\ge 4\) — the \(K_3\) kernel and its iterates.
+  - **Census:** on \((10^6,2\cdot 10^6]\) the \(O^t\) cylinders have odd-share within binomial noise of \(\tfrac12\) for \(t\le 14\) (members \(5\cdot 10^5\) down to \(69\)).
+  - Probe extended (`azuma_exponent`, `least_C_biased`, `bad_mass_long_run_fraction`, `odd_run_census`); note §8–§9; conjecture record updated with the one-sided form.
+- **Refuted ideas:** that bad words could be handled through bounded odd runs (the bad mass is on runs \(\ge 4\)); that two-sided equidistribution is needed (one-sided odd-share control suffices).
+- **Literature:** Azuma–Hoeffding; the laboratory's node-wise \(E\)-share threshold \(\beta^*\) (`J-rate-free-density-one` (B)) reappears as \(q<\log 2/\log 3\), now at depth \(O(\log\log y)\) with the conjecture as conclusion.
+- **Open:** \(\mathrm H_q(C,A)\). No laboratory route: rated methods stop at BB/GG/JJ, rate-free methods have no depth uniformity, transparent nesting covers only runs of length one.
+- **Decision:** PROMOTE for Theorem B′; PARK for the depth-uniformity question (behind the \(K_3\) program, not reopened). Dossier: [juggler_tao_almost_bounded](problems/juggler_tao_almost_bounded.md).
+
+```text
+What was learned
+- one-sided odd-share control q < log 2/log 3 on cylinders of depth
+  C(q) log2 log y implies the conjecture (Azuma on the exponent walk);
+  C(1/2) = 21, C(0.55) = 46, C(0.60) = 255
+- the bad mass lives on odd runs >= 4 (99.99% at 10^100): the hypothesis
+  is the iterated K_3 split, not bounded runs
+- the hardest cylinders O^t look fair to depth 14 at scale 10^6
+Strongest theorem
+- Theorem B': odd-share <= 55% on every cylinder of depth < 46 L(y)
+  => every positive integer reaches 1 (conditional)
+Strongest refutation
+- bounded-odd-run control cannot reach the hypothesis
+Reusable machinery
+- azuma_exponent, least_C_biased, bad_mass_long_run_fraction,
+  odd_run_census in tao_reduction.py
+Branch status
+- PROMOTE (theorem); PARK (depth-uniform kernel method)
+Why
+- the weakest sufficient hypothesis is now explicit and one-sided, and
+  the wall is located to the letter: O^t -> O^{t+1} for t >= 4, uniformly
+  in t up to C log2 log y; no laboratory method reaches it
+Best next question
+- none in this laboratory; H_q(C,A) is the statement for analytic
+  number theory
+```

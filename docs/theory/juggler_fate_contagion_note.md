@@ -47,6 +47,22 @@ This note excludes no fate. It does not prove termination, it does
 not exclude cycles, and it does not exclude divergent orbits. Its
 content is the quantitative shape of the trichotomy.
 
+*Naming.* The three fates are the three Moirai: **Atropos** cuts the
+thread — the orbit is absorbed at \(1\) (the class \(R\));
+**Lachesis** measures out an allotted length — the orbit is eventually
+periodic on a nontrivial cycle (the basins \(B(C)\)); **Clotho** spins
+without end — the orbit is unbounded (the class \(D\)). Only Atropos
+is known to act; contagion says that whichever sister acts at all acts
+on a set of positive \((\log x)^{\lambda}\)-mass.
+
+*Sequel.* The Tao-type reformulation that Corollary 4.5 suggests is
+worked out in
+[juggler_tao_reduction_note.md](juggler_tao_reduction_note.md): a
+Tao-type almost-all theorem with the bounded target \([1,N_0]\) and
+rate \((\log y)^{-e}\), \(e>1-\lambda^{**}\), implies the conjecture,
+and such a theorem follows from parity equidistribution at depth
+\(O(\log\log y)\) because the Juggler descent is by powers.
+
 Lean: the exact combinatorial layer (backward closure of the fate
 classes, the even block, the OE fiber, the fourth-power cell identity,
 the trichotomy with basins named, mutual exclusion of the fates) is

@@ -210,6 +210,42 @@ theorem fate_trichotomy {n : ℕ} (hn : 1 ≤ n) :
       omega
   · exact Or.inr (Or.inr hesc)
 
+/-! ### Envelope descent into a certified floor
+
+The power envelope `power_bound_word` gives `J^{|w|}(n)^{2^{|w|}} ≤ n^{3^{#O(w)}}`
+for every realized word `w`.  If the integer comparison
+`n^{3^{#O(w)}} ≤ N₀^{2^{|w|}}` holds, the orbit is at or below `N₀` after
+`|w|` steps; when every start up to `N₀` belongs to a backward-closed
+class, so does `n`.  This is the exact step behind the Tao-type
+reduction (`docs/theory/juggler_tao_reduction_note.md`): the Chernoff
+count of words violating the comparison is the human part. -/
+
+theorem iterate_le_of_envelope {n N₀ : ℕ} {w : List Branch} (hw : follows n w)
+    (h : n ^ (3 ^ oddCount w) ≤ N₀ ^ (2 ^ w.length)) :
+    floorPower^[w.length] n ≤ N₀ := by
+  have h1 := power_bound_word hw
+  have h2 : (floorPower^[w.length] n) ^ (2 ^ w.length) ≤ N₀ ^ (2 ^ w.length) :=
+    le_trans h1 h
+  exact (Nat.pow_le_pow_iff_left (by positivity)).mp h2
+
+theorem mem_of_envelope_floor {A : ℕ → Prop} (hA : BackwardClosed A) {N₀ n : ℕ}
+    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → A m) (hn : 1 ≤ n) {w : List Branch}
+    (hw : follows n w) (h : n ^ (3 ^ oddCount w) ≤ N₀ ^ (2 ^ w.length)) : A n :=
+  backwardClosed_iterate hA w.length n
+    (hfloor _ (floorPower_iterate_pos hn _) (iterate_le_of_envelope hw h))
+
+/-- Realized-itinerary form: if the first `k` letters of the orbit of `n`
+satisfy the envelope comparison against `N₀`, and every start up to `N₀`
+reaches `1`, then `n` reaches `1`. -/
+theorem reachesOne_of_itinerary_envelope {N₀ n k : ℕ}
+    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (hn : 1 ≤ n)
+    (h : n ^ (3 ^ oddCount (itinerary n k)) ≤ N₀ ^ (2 ^ k)) : ReachesOne n := by
+  have hk : (itinerary n k).length = k := itinerary_length n k
+  refine mem_of_envelope_floor reachesOne_backwardClosed hfloor hn
+    (follows_itinerary_self n k) ?_
+  rw [hk]
+  exact h
+
 /-! ### Mutual exclusion of the fates -/
 
 theorem iterate_one_fixed (d : ℕ) : floorPower^[d] 1 = 1 :=

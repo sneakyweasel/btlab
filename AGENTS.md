@@ -24,7 +24,8 @@ bt.*                        problem-independent BT mathematics
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
 6. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
-7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion: every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<0.405\); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
+7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion (the three Moirai: Atropos = reach 1, Lachesis = nontrivial cycle, Clotho = escape): every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4050\); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
+8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.595\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 21\) (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`), because Juggler descent is by powers. Conditional; the hypothesis is at the \(K_3\) wall and beyond. Do not read it as evidence for termination.
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).
@@ -178,6 +179,31 @@ for external review.
   \(\beta\)-fallback as a weaker species, PET, Theorem R,
   \(\lambda=0\), or further literature-name audits. Not
   claimed.
+- **Fates (the Moirai):** every realized fate class — Atropos
+ (reach 1), Lachesis (a nontrivial cycle's basin), Clotho (escape) —
+ is backward-closed and has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\)
+ for every \(\lambda<\lambda^{**}=0.4050\) (`J-fate-log-density`,
+ mechanism: even blocks are intervals, OE fibers of
+ \(\lfloor n^{3/4}\rfloor\) carry \(\ge 1/7\) of each parity of
+ \(\lfloor n^{3/2}\rfloor\) and average \(1/2\) over even blocks).
+ Hence the conjecture \(\iff\) the failures have log-count
+ \(o((\log x)^{\lambda})\) (`J-fate-contagion-equivalence`), and a
+ bounded-target Tao-type bound \(\#\{n\text{ odd}\in(y,2y]:n\notin R\}
+ \le y(\log y)^{-e}\) with \(e>0.595\) implies the conjecture
+ (`J-tao-rate-implies-conjecture`); that bound follows from the
+ log-log-depth cylinder conjecture \(\mathrm H(C,A)\), \(C\ge 21\)
+ (`J-tao-loglog-depth-bound`, `juggler_loglog_depth_cylinder_bound`),
+ and even from its one-sided form: odd-share \(\le q<\log 2/\log 3\)
+ on every cylinder of depth \(<C(q)\log_2(\log 2y/\log N_0)\),
+ \(C(0.55)=46\) (`J-tao-biased-split-bound`, Azuma). The bad mass sits
+ on odd runs \(\ge 4\) (99.99% at \(10^{100}\)): the hypothesis is the
+ iterated \(O^t\to O^{t+1}\) split, i.e. the \(K_3\) kernel uniformly
+ in depth. Depth-two ceiling of the contagion method is
+ \(\lambda=0.4927\); pointwise natural density for all \(x\) does not
+ follow (single-seed \(E\)-trees are lacunary). Do not reopen: a Tao
+ analogue with a *growing* target does not feed contagion;
+ bounded-odd-run control cannot reach the hypothesis; the
+ depth-uniform kernel question is PARK behind the \(K_3\) program.
 - **Local attacks are closed.** Fibres are parity + interval only
   (`even_preimage_iff`, `odd_preimage_unique`, `preimage_same_next_state`): no finite
   local configuration around a hypothetical cycle is contradictory. Seam,
@@ -273,6 +299,43 @@ python tools/render_theorem_ledger.py --check
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake build                               # no sorry / admit
 ```
+## Adding a Lean module or a probe (checklist)
+
+1. New Lean file under `formal/Problems/Juggler/` → import it in the
+   barrel `formal/Problems/Juggler.lean`, register it in `LAYERS` of
+   `src/research/juggler_sequence/lean_paths.py` (imports must point to
+   lower-ranked entries), and — if it is a review object of Paper A —
+   in `PAPER_MODULES` and `formal/Problems/JugglerPaper.lean`.
+   `tests/research/juggler_sequence/test_layer_architecture.py` is a
+   plain substring test: the words `sorry`, `admit`, `axiom` may not
+   appear anywhere in a registered file, not even in comments.
+   `Seam.lean` already owns the name `OnCycle`.
+2. Compile one file with `lake env lean <file>` (≈ 40 s) before
+   `lake build Problems.Juggler` (≈ 1 min when oleans are cached).
+3. New probe → `src/research/juggler_sequence/<branch>.py`, fast test,
+   `data/research/juggler/<branch>/summary.json`, dossier with every
+   TEMPLATE heading, ledger rows (JSON is `indent=1`, `ensure_ascii=False`;
+   re-render), journal entry, branch-ledger row.
+4. `tests/integration/test_docs_links.py` treats every `](` as a
+   markdown link: do not write `[a − b](1 − c)`-style math in ledger
+   statements or notes.
+
+## Environment notes for agents
+
+- Shell is PowerShell: no `head`/`tail`/heredocs (`<<'EOF'` fails);
+  use `Select-Object -First/-Last`, `Select-String`, and write
+  multi-line scripts to a temp file. `rg` globs like `dir/*.lean`
+  fail on Windows paths — use `rg -g "*.lean" dir`; parentheses in
+  `rg` patterns must be escaped or avoided.
+- Floats: `10.0**1000` overflows; work in `log y`.
+- The fast suite (`pytest`, xdist) takes ≈ 3.5 min; the research-control
+  tests regenerate `docs/research/*.json` artifacts (harmless
+  churn). The working tree may be auto-committed by the host between
+  turns; check `git log -1` before assuming files are uncommitted.
+- Mathlib names used here: `Nat.eq_sqrt`, `Nat.le_sqrt`, `Nat.sqrt_lt`,
+  `Nat.pow_le_pow_iff_left`, `Function.iterate_fixed`,
+  `Function.iterate_mul`, `Function.iterate_add_apply`.
+
 ## Remarks
 
 If you're Fable don't spend ages fixing tests - focus on the math.

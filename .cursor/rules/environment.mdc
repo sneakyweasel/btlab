@@ -1,0 +1,44 @@
+---
+description: Windows/PowerShell environment, test gates, and registration steps that cost time when forgotten
+alwaysApply: true
+---
+
+# Environment
+
+- PowerShell only: no `head`, `tail`, heredocs, or `python - <<EOF`. Use
+  `Select-Object -First N`, `Select-String`, or write a temp script.
+  `rg dir/*.lean` fails; use `rg -g "*.lean" dir`. Escape parentheses in
+  `rg` patterns.
+- The host may auto-commit the working tree between turns. Run
+  `git log -1 --stat` before assuming files are uncommitted; never
+  `git add` regenerated `docs/research/*.json` (test churn).
+- Fast suite ≈ 3.5 min under xdist. Targeted runs:
+  `pytest tests/integration tests/unit/test_theorem_ledger.py -q` after
+  docs/ledger edits; `pytest tests/research/juggler_sequence/test_<branch>.py -q`
+  after a probe.
+
+# Registration gates (each forgotten one costs a failing test)
+
+- New Lean module: barrel `formal/Problems/Juggler.lean`; `LAYERS` (and
+  `PAPER_MODULES` if it is a Paper A review object) in
+  `src/research/juggler_sequence/lean_paths.py`; the words `sorry`,
+  `admit`, `axiom` may not appear in a registered file, even in prose.
+- Ledger: edit `docs/theory/theorem_ledger.json` (`indent=1`, UTF-8,
+  literal `—`), then `python tools/render_theorem_ledger.py` and
+  `--check`. Every `source`/`tests`/`lean` path must exist.
+- Docs: `tests/integration/test_docs_links.py` reads every `](` as a
+  link; keep `[...](...)` math out of prose. Dossiers keep all TEMPLATE
+  headings and one of `PROMOTE | PARK | CLOSE` under `## Decision`.
+  CLOSE dossiers and REFUTED rows must be indexed in
+  `docs/negative_knowledge.md`.
+- Compile a single Lean file with `lake env lean <file>` (≈ 40 s)
+  before `lake build Problems.Juggler`.
+
+# Numerics
+
+- `10.0**1000` overflows; carry `log y`. Exact parities of
+  `isqrt(n^3)` need Python ints above `n ≈ 2·10^6`; use float with an
+  exact fix-up on ambiguous fractional parts (see
+  `research.juggler_sequence.fate_contagion`).
+- Do not raise `N_0`; the certified floor is `3.5·10^8` and the next
+  useful floor is priced in `docs/negative_knowledge.md`.
