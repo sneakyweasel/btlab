@@ -1101,9 +1101,9 @@ cylinders carry one state each, far below their fair share
 \(y/2^{d}\) — which is why the conditional theorem must pass
 through contagion (the basin's \((\log x)^{\lambda}\) log-count
 against the bad set's \((\log x)^{1-e}\)). The exponent gap that
-closes the argument at \(C=19\) is \(0.5150-0.5078=0.0072\); it is a
-choice, not a coincidence — \(C=25\) gives \(0.81\), \(C=30\) gives
-\(1.05\) — but the depth \(C\log_2\log y\) is the price.
+closes the argument at \(C=19\) is \(e(19)-0.5078=0.5269-0.5078=0.019\);
+it is a choice, not a coincidence — \(C=25\) gives \(0.81\), \(C=30\)
+gives \(1.05\) — but the depth \(C\log_2\log y\) is the price.
 
 ## Appendix. Lean names
 

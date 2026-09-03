@@ -1,8 +1,10 @@
-# Juggler reviewer packet (two manuscripts)
+# Juggler reviewer packet (three manuscripts)
 
-Author: Philippe Cochin. Date: 2 September 2026.
+Author: Philippe Cochin. Date: 3 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
-working draft (2 September 2026; certified density \(7/8\)).
+working draft (2 September 2026; certified density \(7/8\));
+Paper C (fate contagion, 3 September 2026) is a first complete draft
+— see its claim map below.
 
 The former single note has been split into two manuscripts:
 
@@ -208,6 +210,45 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Level-3 kernel cancellation \(K_3(P)\ll P^{1-\delta}\) (Conjecture 7.3) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
 | Shift-averaged \(L^2\) bound (Proposition 7.4) | **EXACT — HUMAN PROOF** | almost-every-shift, square-root times \(\sqrt{\log L}\) in general; no claim at \(\lambda=0\) |
 | Pure amplitude-product model (Conjecture 7.5) | **CONJECTURE** | not claimed; Exp(1) censuses at \(P=10^6\)–\(10^{10}\) |
+
+## Claim map — Paper C
+
+Paper C is
+[juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md):
+*Fate Contagion and the Juggler Conjecture as an Almost-All Statement*
+(3 September 2026). It cites Papers A and B and reproves nothing from
+them; only its Section 10 depends on Paper B.
+
+| Claim | Evidence | Scope |
+|---|---|---|
+| Fate classes closed, trichotomy, exclusion (Lemma 2.1) | **EXACT — LEAN VERIFIED** | `FateContagion.lean` |
+| Even block and \(OE\) fiber are exact intervals; cell identity (Lemmas 3.1, 3.2) | **EXACT — LEAN VERIFIED** | `even_block_mem`, `oe_fiber_mem`, `sqrt_sqrt_eq_iff`, `oe_fiber_disjoint` |
+| Sweep lemma, fiber parity \(\ge 1/7\), thin bad fibers (Lemmas 4.1–4.3) | **EXACT — HUMAN PROOF** | elementary; constants explicit; \(m\ge 10^6\) |
+| Block average \(|U(m')|=\tfrac14|I(m')_{\rm odd}|+O(m'^{11/9}\log m')\) (Proposition 4.4) | **EXACT — HUMAN PROOF** | Vaaler + second-derivative test + Kusmin–Landau; not sharp |
+| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<0.4050\) (Theorem 5.2; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; excludes no fate |
+| Fate contagion, natural density infinitely often (Corollaries 5.3, 5.4) | **EXACT — HUMAN PROOF** | \((\log y)^{\lambda-1}\) on infinitely many dyadic blocks, not all |
+| Conjecture \(\iff\) log-count \(o((\log x)^\lambda)\) of failures (Corollary 5.5) | **EXACT — HUMAN PROOF** | needs \([1,N_0]\subseteq R\) |
+| Odd generation; \(F\) is the \(E\)-forest over odd preimages of \(F\cap S\) (Theorem 6.1) | **EXACT — LEAN VERIFIED** | `odd_mem_iff`, `nonempty_iff_odd_image_mem` |
+| Exact first-letter decomposition (6.1); single free term \(\psi_F\) | **EXACT — HUMAN PROOF** | fiber-weighted density \(\varphi^{\rm fib}\); qualitative equivalence with \(S\)-fairness |
+| Envelope descent into the floor (Lemma 7.1) | **EXACT — LEAN VERIFIED** | `reachesOne_of_itinerary_envelope`; uses Paper A's `power_bound_word` |
+| Chernoff count of bad words, odd-start share (Lemma 7.2) | **EXACT — HUMAN PROOF** | \(e(19)=0.527\), \(e(21)=0.621\) |
+| \(\mathrm H(C,A)\Rightarrow\) Tao-type bound (Theorem 7.3) | **EXACT — HUMAN PROOF** | conditional; fair share \(2^{-(d-1)}y/2\) |
+| Tao-type bound with \(e>1-\lambda^{**}\) \(\Rightarrow\) conjecture; equivalence (Theorems 7.4, 7.5; Theorem 2) | **EXACT — HUMAN PROOF** | via contagion and odd generation; no Collatz analogue |
+| One-sided form (Theorem 8.1), pressure and no-momentum forms (Theorem 8.2, Proposition 8.3) | **EXACT — HUMAN PROOF** | conditional; Azuma / exponential Markov; stopping at the floor essential |
+| What the weakest form does not need; bounded-depth barrier (Section 8.3) | **EXACT — HUMAN PROOF** | fair-to-depth-\(k\)-then-all-\(O\) measure; intermediate forms are **REPARAMETERIZATION** |
+| Free term = infinite-depth live mass; duality; critical exponent \(0.5073\); depth budget \(2^{1/C}\) (Section 9) | **EXACT — HUMAN PROOF** / **REPARAMETERIZATION** | exact map cannot replace contagion |
+| Localized triple discrepancy and \(OOEEE\) production; \(\lambda^{***}=0.4922\) (Section 10) | **EXACT — HUMAN PROOF**, conditional on Paper B | proof sketches; modification list in the laboratory note |
+| Fiber/block/closure, Tao and pressure censuses (Section 11) | **OBSERVATION** / **COMPUTATIONALLY VERIFIED** (closure to \(10^9\)) | prove nothing; labelled |
+
+Falsifiers for Paper C: a nonempty backward-closed set with
+\(\sum_{n\in A,n\le x}1/n=o((\log x)^{0.40})\); a good fiber
+(\(m\ge 10^6\)) with fewer than \(H_m/7\) even images; an even block
+\(I(m')\) with \(|U(m')|\) below the main term by more than
+\(C_0m'^{11/9}\log m'\); an odd \(n\ge 3\) with
+\(n\in F\not\ni\lfloor n^{3/2}\rfloor\); a start whose word reaches
+\(u_t\le -L(y)\) without entering \([1,N_0]\); a word measure fair to
+depth \(k\) and all-\(O\) afterwards for which the reduction's
+argument still yields the bound (would refute Section 8.3(e)).
 
 ## Quantifier checks
 

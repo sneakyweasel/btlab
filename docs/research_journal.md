@@ -22619,3 +22619,14 @@ Best next question
   log 2 / log 3, tilted weight (beta e^theta / a_theta)^L) reproduce Paper A's
   finance identity as the theta -> theta* limit of a pressure statement?
 ```
+
+## Paper C drafted: Fate Contagion and the Juggler Conjecture as an Almost-All Statement (consolidation, not a milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Write the paper distilled from the fate-contagion and Tao-reduction notes: one unconditional main theorem, the equivalence with a Tao-type almost-all bound, the conditional reduction with its weakest form, the exact map, the one-frontier statement; Papers A and B cited, not reproved.
+- **Deliverable:** [docs/theory/juggler_fate_almost_all_note.md](theory/juggler_fate_almost_all_note.md) (source of truth, 23 pages when built), PDF and Markdown copy in `juggler_review/`, Paper C entry in the review README, claim map and falsifiers in the reviewer packet, reading-path item 9 in `AGENTS.md`.
+- **Structure:** Abstract; 1 Introduction (1.0 main results Theorems 1–5, 1.1 the three fates as constrained, 1.2 related work, 1.3 verification roles); 2 fate classes (Lean); 3 the two productions (Lean); 4 parity on a fiber (sweep, fiber parity \(\ge 1/7\), thin fibers, block average — full proofs); 5 recursion and Theorem 5.2 (\(\lambda^{**}=0.4050\)), Corollaries 5.3–5.5; 6 odd generation (Lean) and the exact decomposition (6.1); 7 Tao-type reduction (envelope descent, odd-start Chernoff, \(\mathrm H(C,A)\), Theorems 7.3–7.5, Juggler–Collatz inversion, constants); 8 weaker forms (one-sided Azuma, pressure, no-momentum; what the weakest form does not need; bounded-depth barrier; reparameterizations); 9 one frontier statement (free term = live mass, duality at \(0.5073\), depth budget \(2^{1/C}\)); 10 conditional strengthening via localized Paper B (\(\lambda^{***}=0.4922\)); 11 observations (closure, Tao census, pressure census); 12 limitations and the frontier statement; Appendix A Lean names; Appendix B constants and SHA-256 of artifacts; references (A/B entries reused; Krasikov–Lagarias added).
+- **Decisions:** main theorem printed with the unconditional \(\lambda^{**}\); \(\lambda^{***}\) confined to Section 10 and labelled conditional on Paper B; censuses labelled OBSERVATION; no halt language; the paper states that no fate is excluded.
+- **Corrected in passing:** fate note §8 printed \(e(19)=0.5150\); the value is \(0.5269\) (gap to the threshold \(0.019\), not \(0.0072\)).
+- **Build:** `pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex -V geometry:margin=1in docs/theory/juggler_fate_almost_all_note.md -o juggler_review/juggler_fate_almost_all_note.pdf`; one font warning fixed (a literal σ in prose replaced by math mode).
+- **Decision:** consolidation; no ledger rows change; no branch opened. The paper is a first complete draft for external review, not a submission.

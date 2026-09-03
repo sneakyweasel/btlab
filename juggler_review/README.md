@@ -1,17 +1,21 @@
-# Juggler reviewer bundle (two manuscripts)
+# Juggler reviewer bundle (three manuscripts)
 
-Author: Philippe Cochin. Date: 2 September 2026.
+Author: Philippe Cochin. Date: 3 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
 working draft (writeup repaired; length-5 harvest imported;
-certified density \(7/8\)).
+certified density \(7/8\)); Paper C (fate contagion and the
+almost-all reformulation, 3 September 2026) is a first complete
+draft whose main theorem is unconditional and whose Section 10 alone
+depends on Paper B.
 
 This folder is a snapshot of the files to send for external review. It
 is not the laboratory. No termination theorem is claimed.
 
 **Source of truth is `docs/theory/`.** Edit
-[juggler_finite_dynamics_note.md](../docs/theory/juggler_finite_dynamics_note.md)
-and
+[juggler_finite_dynamics_note.md](../docs/theory/juggler_finite_dynamics_note.md),
 [juggler_parity_discrepancy_note.md](../docs/theory/juggler_parity_discrepancy_note.md)
+and
+[juggler_fate_almost_all_note.md](../docs/theory/juggler_fate_almost_all_note.md)
 there, then rebuild this bundle. Do not hand-edit both copies.
 
 Interactive glossary and playground (Paper A vocabulary only):
@@ -47,12 +51,30 @@ https://sneakyweasel.github.io/balanced_ternary/
    (Lemma 5.2 budget, Step 5b interpolant, named \(P_0\);
    Lemma 6.2 / Theorem 6.3 / Corollary 6.4). Length 7/8 remain
    laboratory conjectures.
-3. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
-   — claim map and falsifiers for both papers. Optional for the proofs.
+3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)
+   — **Paper C**: *Fate Contagion and the Juggler Conjecture as an
+   Almost-All Statement*. Every nonempty backward-closed set
+   (every realized fate class: reaching \(1\), a cycle basin,
+   divergence) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for
+   \(\lambda<0.4050\) (elementary: even blocks are intervals, \(OE\)
+   fibers sweep parity). Consequences: the conjecture is equivalent
+   to a Tao-type almost-all bound with bounded target and rate
+   \((\log y)^{-e}\), \(e>0.595\); that bound follows from parity
+   control on itinerary cylinders of depth \(C\log_2\log y\), in a
+   hierarchy of forms down to a single exponential moment of the odd
+   count on live starts; the exact first-letter decomposition has one
+   free term, the infinite-depth live mass; a depth-uniformity budget
+   for analytic attacks. Section 10 (exponent \(0.4922\)) is
+   conditional on Paper B. Lean exact layer; censuses labelled as
+   observations. Excludes no fate.
+4. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
+   — claim map and falsifiers for the three papers. Optional for the
+   proofs.
 
 Markdown sources:
-[juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md) and
-[juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md).
+[juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md),
+[juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
+and [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md).
 Paper B's Section 7 figure is
 [figures/juggler_frontier.png](figures/juggler_frontier.png).
 
@@ -83,7 +105,12 @@ Every analytic estimate of Paper B (including the kernel theorem
 and the shift-average theorem) is a human proof and is not in
 Lean; only the exact floor reductions beneath them are
 (`GapCells.lean`, including the double-gap identity
-`seq_floor_gap_second`).
+`seq_floor_gap_second`). Paper C's exact layer (closure of the fate
+classes, trichotomy and exclusion, the even block and \(OE\) fiber
+as intervals, odd generation, envelope descent into the floor) is
+Lean (`FateContagion.lean`); its counting, its conditional
+reduction and its exact map are human proofs; its censuses are
+observations.
 
 ## What is not here
 
