@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -80,6 +81,68 @@ def test_calibration_reproduces_archived_necklace_value():
     assert math.isclose(row0["walk_rhs"], 1.2984e-4, rel_tol=1e-3)
     assert row0["walk_excludes"] is False
     assert row0["kill_margin"] < 0.2
+
+
+N350_KILLS = (
+    478245,
+    504026,
+    528753,
+    579261,
+    629769,
+    654496,
+    680277,
+    705004,
+    730785,
+    755512,
+)
+N350_KILL_DIR = Path("data/research/juggler/cycle_walk_charge/N350000000_kills")
+N350_LEFTOVERS = Path(
+    "data/research/juggler/cycle_walk_charge/N350000000_parity_leftovers.json"
+)
+N350_KILL_SHA = "d16ccfed52757d4a44368a6549a8149ccbc926472737276c577912346db854ab"
+N350_BELOW_SURVIVOR = (
+    176251,
+    226759,
+    352502,
+    403010,
+    453518,
+    *N350_KILLS,
+)
+
+
+def test_n350_walk_kills_ten_and_leaves_780239():
+    blob = b"".join(
+        (N350_KILL_DIR / f"L{length}.json").read_bytes() for length in N350_KILLS
+    )
+    assert hashlib.sha256(blob).hexdigest() == N350_KILL_SHA
+    for length in N350_KILLS:
+        report = json.loads(
+            (N350_KILL_DIR / f"L{length}.json").read_text(encoding="utf-8")
+        )
+        assert report["length"] == length
+        assert report["floor"] == 350_000_000
+        assert report["certified_excludes"] is True
+        assert report["kill_margin"] > 1.0
+    blocker = json.loads(
+        (N350_KILL_DIR / "L780239.json").read_text(encoding="utf-8")
+    )
+    assert blocker["certified_excludes"] is False
+    assert blocker["floor"] == 350_000_000
+    assert 0.60 < blocker["kill_margin"] < 0.61
+    leftovers = json.loads(N350_LEFTOVERS.read_text(encoding="utf-8"))
+    assert leftovers["floor"] == 350_000_000
+    assert leftovers["l_max"] == 800_000
+    lengths = [row["L"] for row in leftovers["leftovers"]]
+    assert lengths[0] == 176251
+    assert 780239 in lengths
+    assert [L for L in lengths if L < 780239] == list(N350_BELOW_SURVIVOR)
+    summary = json.loads(
+        (N350_KILL_DIR / "summary.json").read_text(encoding="utf-8")
+    )
+    assert summary["first_survivor"] == 780239
+    assert summary["all_ten_exclude"] is True
+    assert summary["survivor_excludes"] is False
+    assert summary["sha256_ten_kill_records"] == N350_KILL_SHA
 
 
 def test_dossier_and_conjecture_record_are_consistent():

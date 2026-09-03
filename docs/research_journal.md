@@ -22171,4 +22171,48 @@ Best next question
 - none from this door; do not treat CyclePosition as a leftover-killer
 ```
 
+## Juggler floor 350000000 certified: period bound 780239
+
+- **Date:** 2026-09-03
+- **Objective:** Execute the parked \(N_0=350000000\) campaign (DK break-even of \(478245\) is \(n^*=348306663.43\)): certify first-passage descent through that floor, then walk-kill the leftovers so the unconditional period bound jumps from \(478245\) to \(780239\). No new mathematics. Do not chase \(n^*(780239)=5.54\cdot 10^8\).
+- **Hypotheses:** none new — execution of a PARK'd attack. The prose "next fan member waits at \(4.54\cdot 10^{11}\)" was wrong: that number is the next *seed* \(16785921\); the next fan member is \(780239\).
+- **Major results:**
+  - **Floor certificate complete (COMPUTATIONALLY VERIFIED, `J-residual-floor-three-hundred-fifty-million`):** every \(2\le n\le 350000000\) reaches \(1\) by first-passage descent induction. Extension segment from \(162849449\): \(93575276\) odd starts over \(749\) contiguous chunks; two bit-cap leftovers \(172376627\) (249 steps, peak \(1493770145\) bits, landing \(23298163\)) and \(240154767\) (265 steps, peak \(1096792314\) bits, landing \(5677296\)) resolved exactly at a \(3\cdot 10^9\)-bit cap with gmpy2 `mpz` isqrt; max first passage \(466\) at \(198424189\); zero unresolved failures. Certificate `floor_verify/N350000000/certificate.json`, chunk SHA-256 `c57f5ccc…acbe7472`, resolved-seed SHA `ea4ab9b1…b15fe7`. The campaign \(10^9\) cap aborted at those two peaks; the higher-cap walks continued and both descended (peaks did not grow further).
+  - **All 10 killable leftovers killed (COMPUTATIONALLY VERIFIED):** parity at this floor leaves \(17\) leftovers through \(L=8\cdot 10^5\) (`N350000000_parity_leftovers.json`); the five leftovers below \(478245\) carry by monotonicity from the previous floor; the certified reduced-base walk charge kills all \(10\) in \([478245,755512]\) — margins \(1.00555\) (\(478245\)) to \(7.824\) (\(504026\)) — `N350000000_kills/`, SHA-256 of the 10 records `d16ccfed…b854ab`. GPU fp64 DP (RTX 5090); \(780239\) confirmed non-kill at margin \(0.6049\).
+  - **Period bound (`J-cycle-period-seven-hundred-eighty-thousand`):** combined parity + walk contiguous prefix \(780238\) — **no nontrivial Juggler cycle has length \(\le 780238\)**, a \(1.63\times\) extension of the \(478244\) bound. First survivor \(L=780239=176251+2\cdot 301994\) (\(k=2\) member of the F1 semiconvergent fan): required improvement \(14.46\), walk margin \(0.6049\), DK break-even floor \(5.54\cdot 10^8\) (`J-cyclemin-walk-competition-law`) — the blocker is Diophantine, not computational.
+  - **Paper A prints the instance:** new Corollary 5.11 (third laboratory floor \(350000000\), the 17/10 kill table, period \(\ge 780239\), and the \(780239\) fan blocker with its direct margin \(0.6049\)); abstract, introduction, contributions, verification roles, §5 intro, and the closing Diophantine paragraph updated; Appendix B extended with the new certificate hash `c57f5ccc…acbe7472`, the parity scan, and the 10-kill-record hash `d16ccfed…b854ab`. PDF rebuilt and synced (`juggler_review/`).
+- **Refuted ideas:** none — no hypothesis tested
+- **Literature:** none new
+- **Open:** unchanged — the fan blocker \(780239\) needs floor \(\approx 5.54\cdot 10^8\); the next *seed* \(16785921\) waits at \(4.54\cdot 10^{11}\); the asymptotic frontier stays `juggler_walk_fan_minimum_law` (unbounded dangerous partial quotients of \(\log 2/\log 3\), classical OPEN)
+- **Decision:** PROMOTE the instance (`J-residual-floor-three-hundred-fifty-million`, `J-cycle-period-seven-hundred-eighty-thousand`); PARK further \(N_0\) campaigns — the next useful floor is \(5.54\cdot 10^8\) and buys exactly one fan member. Do not open it.
+
+```text
+What was learned
+- the parked 3.48e8 campaign completed: certificate plus
+  10 kills, nothing new had to be invented
+- two seeds jumped past the 1e9 campaign cap in one step
+  and both descended under a 3e9 cap at the same peaks
+- the walk-charge margin at 478245 confirms the DK
+  prediction (1.0053 predicted, 1.00555 measured)
+- the next fan member is 780239, not the seed at 4.54e11
+Strongest theorem
+- no nontrivial Juggler cycle has length <= 780238 at the
+  certified descent floor 350000000
+Strongest refutation
+- none (execution pass)
+Reusable machinery
+- patch_chunks_with_resolved_seeds inherits n_from from
+  an existing certificate (needed for extension campaigns);
+  N350000000_kills/ and N350000000_parity_leftovers.json
+Branch status
+- PROMOTE (instance); PARK (further floors)
+Why
+- the certificate and kill table close the recorded
+  reopening point; the sole survivor's break-even floor
+  5.54e8 prices the next campaign and it is not worth it
+Best next question
+- unchanged from the fan-minimum terminal: unboundedness of
+  the dangerous-position partial quotients of log 2/log 3
+```
+
 

@@ -214,6 +214,19 @@ run, then the post-run decision in the writeup.
   \(478245\), so the combined period bound is **no nontrivial
   cycle of length \(\le 478244\)**
   (`J-cycle-period-four-hundred-seventy-eight-thousand`).
+- **Third certified run** — \(N_0=350000000\) complete
+  (`J-residual-floor-three-hundred-fifty-million`, 3 Sep
+  2026): extension segment from \(162849449\), \(93575276\) odd
+  starts over \(749\) contiguous chunks; two bit-cap seeds
+  \(172376627\) and \(240154767\) resolved exactly at a
+  \(3\cdot 10^9\)-bit cap (largest intermediate \(1493770145\)
+  bits at \(172376627\); \(240154767\) peaked at \(1096792314\)
+  bits); max first passage \(466\) at \(198424189\); zero
+  unresolved failures. The floor sits above the DK break-even
+  \(n^*(478245)=348306663.43\). Combined with the walk charge
+  the period bound is **no nontrivial cycle of length
+  \(\le 780238\)**
+  (`J-cycle-period-seven-hundred-eighty-thousand`).
 
 ## Open questions
 
@@ -224,20 +237,21 @@ run, then the post-run decision in the writeup.
   (`J-cyclemin-walk-charge-instance`); the \(1.63\cdot 10^8\)
   floor was then certified anyway and its instance is
   `J-cycle-period-four-hundred-seventy-eight-thousand`.
-- Paper A still prints the \(10^6\) instance. Updating the
+- Paper A still prints the \(10^6\) instance in Section 4.
+  Corollary 5.11 prints the \(350000000\) floor. Updating the
   printed Theorem 4.6 is a publication decision, not a new
   inequality.
 
 ## Decision
 
 **PROMOTE** the sensitivity table and the Theorem 4.6 instances
-at \(N_0=26254995\) and \(N_0=162849448\). Then **stop scaling
-the computation**.
+at \(N_0=26254995\), \(N_0=162849448\), and \(N_0=350000000\).
+Then **stop scaling the computation**.
 
-The two certified floors were the only cheap jumps. The next
-useful floor is the DK break-even of the fan blocker \(478245\)
-at \(\approx 3.48\cdot 10^8\); beyond it the next fan member
-waits at \(4.54\cdot 10^{11}\) (`J-cyclemin-walk-competition-law`).
+The three certified floors were the cheap jumps. The next useful
+floor is the DK break-even of the fan blocker \(780239\) at
+\(n^*=5.54\cdot 10^8\); the next *seed* \(16785921\) waits at
+\(4.54\cdot 10^{11}\) (`J-cyclemin-walk-competition-law`).
 Further \(N_0\) campaigns are **PARK**. Finance and the
 Diophantine fan, not the verifier, are the limiters.
 
@@ -249,4 +263,5 @@ not a second manuscript. The inequality is unchanged
 (`cycleMin_finance`). The new statements are the Theorem 4.6
 instance at \(N_0=26254995\) (no period \(\le 50507\)) and,
 combined with the walk charge, the \(N_0=162849448\) instance
-(no period \(\le 478244\)). Not a totality result.
+(no period \(\le 478244\)) and the \(N_0=350000000\) instance
+(no period \(\le 780238\)). Not a totality result.

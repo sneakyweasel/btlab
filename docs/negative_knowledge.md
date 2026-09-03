@@ -622,8 +622,11 @@ continue automatically. Parked modules stay in the tree and are not a
 second frontier.
 
 - **Rated \(K_3\)** behind BB/GG/JJ. Conjectures V/HH stay open.
-- **Further descent floors.** Next useful floor is \(3.48\cdot 10^8\)
-  (DK break-even of \(478245\)).
+- **Further descent floors.** The \(3.48\cdot 10^8\) campaign is
+  executed (\(N_0=350000000\), period \(\ge 780239\)). Next useful
+  floor is \(5.54\cdot 10^8\) (DK break-even of \(780239\)); the
+  next *seed* \(16785921\) waits at \(4.54\cdot 10^{11}\). Do not
+  open \(N_0=5.54\cdot 10^8\).
 - **Residual floor \(1981\)/\(4756\)** for leftover \(84\)
   ([juggler_cycle_l84_residual_floor](problems/juggler_cycle_l84_residual_floor.md)).
 - **Hug-cylinder construction** depth \(\ge 2\); depth \(1\) is

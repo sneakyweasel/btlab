@@ -18,11 +18,13 @@ The former single note has been split into two manuscripts:
   blocks (Theorem 5.7), and the census-free window theorem on
   \([50508,301994)\) (Theorem 5.8). The kill table gives
   \(L\ge 176251\) at the laboratory floor \(26254995\)
-  (Theorem 5.9); the main numerical result is \(L\ge 478245\)
-  at the second certified floor \(162849448\)
-  (Corollary 5.10) — a certified evaluation of the same kill
+  (Theorem 5.9); Corollary 5.10 evaluates the same kill
+  criterion at the second certified floor \(162849448\) and
+  gives \(L\ge 478245\); the main numerical result is
+  \(L\ge 780239\) at the third certified floor \(350000000\)
+  (Corollary 5.11) — certified evaluations of the same kill
   criterion on the survivors, including lengths beyond the
-  census-free window; it is not an extension of Theorem 5.8.
+  census-free window; they are not extensions of Theorem 5.8.
   Theorem 3.22 (\(e\ge 4\)) is the Section 3 structural
   headline. Theorem 4.7 is the supporting run-packing
   refinement. Section 4 opens with the excursion necklace of a
@@ -31,7 +33,7 @@ The former single note has been split into two manuscripts:
   odd-count monotonicity used to evaluate the table at
   \(o_{\min}\). The core lemmas are mechanized in Lean 4;
   selected finite classifications, the descent floors
-  (Propositions 1.3 and 5.1, Corollary 5.10), and the
+  (Propositions 1.3 and 5.1, Corollaries 5.10 and 5.11), and the
   per-length kill tables are independently certified
   computations. Leftover \(84\) is a laboratory companion, not
   a paper theorem. Peak/run bounds and the closed return-cost
@@ -58,9 +60,10 @@ not a Lean theorem? For Section 5: is the transport recursion of
 Theorem 5.3 correct with its stated constants; is the hug
 domination chain of Theorem 5.4 complete; is Denjoy--Koksma
 applied in the correct coordinate (\(\theta=\alpha/(1+\alpha)\),
-§5.5); and is Corollary 5.10 read as a certified evaluation of
-the kill criterion beyond the \([50508,301994)\) window, not as
-an extension of Theorem 5.8? For Paper B: are the depth-1–4 estimates (exponents
+§5.5); and are Corollaries 5.10 and 5.11 read as certified
+evaluations of the kill criterion beyond the
+\([50508,301994)\) window, not as extensions of Theorem 5.8?
+For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
 double Weyl differencing over the carry-branch decomposition and
 master identity of Lemma 5.1, with the level-2 wave Lemma 5.2,
@@ -114,8 +117,9 @@ identity, and Denjoy--Koksma over certified Ostrowski blocks
 give a census-free envelope on \([50508,301994)\); the kill
 table yields \(L\ge 176251\) at the laboratory floor, and a
 certified evaluation of the same criterion at the second floor
-\(162849448\) — beyond the window, not through it — yields the
-main bound \(L\ge 478245\).
+\(162849448\) — beyond the window, not through it — yields
+\(L\ge 478245\), and a third certified floor \(350000000\)
+yields the main bound \(L\ge 780239\).
 Finance-survivor lengths through \(10^5\) and their lattice
 are supporting material. Short certificates are a remark in
 Section 6. Peak count \(p\) is named there as the next
@@ -174,6 +178,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Census-free window envelope on \([50508,301994)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | digit caps and scan Lean; valid on the window only — do not read beyond \(301994\) |
 | Kill table, period \(\ge 176251\) (Theorem 5.9) | **COMPUTATIONALLY VERIFIED** | kill template Lean (`cycleMin_hug_kill_criterion`); per-length evaluation certified computation |
 | Second floor \(162849448\), period \(\ge 478245\) (Corollary 5.10) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion beyond the window; **not** an extension of Theorem 5.8 |
+| Third floor \(350000000\), period \(\ge 780239\) (Corollary 5.11) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion beyond the window; **not** an extension of Theorem 5.8 |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 6) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of the short-certificate remark |
@@ -298,10 +303,10 @@ Reject or revise if:
     new theorem, or the first CycleMin peak is identified with
     the last-even entry one-step preimage;
 13. Theorem 5.8 is quoted for a length outside
-    \([50508,301994)\), or Corollary 5.10 is described as an
+    \([50508,301994)\), or Corollary 5.10 or 5.11 is described as an
     extension of the census-free window rather than a certified
     evaluation of the Theorem 5.9 kill criterion, or the
-    \(478245\) bound is quoted as a Lean theorem.
+    \(478245\) or \(780239\) bound is quoted as a Lean theorem.
 
 ## Verification
 

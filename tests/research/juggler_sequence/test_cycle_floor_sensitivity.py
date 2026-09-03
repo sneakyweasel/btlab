@@ -137,6 +137,43 @@ def test_committed_certificate_is_verified_at_26254995():
     assert cert["max_bits_seed"] == 7_110_201
 
 
+def test_committed_certificate_is_verified_at_350000000():
+    import json
+    from pathlib import Path
+
+    base = Path("data/research/juggler/cycle_finance/floor_verify/N350000000")
+    cert = json.loads((base / "certificate.json").read_text(encoding="utf-8"))
+    assert cert["N0"] == 350_000_000
+    assert cert["n_from"] == 162_849_449
+    assert cert["verified"] is True
+    assert cert["step_failures"] == []
+    assert cert["bit_failures"] == []
+    assert cert["other_failures"] == []
+    assert cert["unresolved"] == []
+    assert cert["chunk_count"] == 749
+    assert cert["odds_walked"] == 93_575_276
+    assert cert["exact_integer"] is True
+    assert cert["floating_point_used_for_certification"] is False
+    assert cert["halt_theorem"] is False
+    assert cert["no_cycle_all_lengths"] is False
+    resolved = {row["n"] for row in cert["hard_seed_resolutions"]}
+    assert resolved == {172_376_627, 240_154_767}
+    assert all(row["ok"] for row in cert["hard_seed_resolutions"])
+    assert cert["max_stopping_time"] == 466
+    assert cert["hardest_seed"] == 198_424_189
+    assert cert["max_bits"] == 1_493_770_145
+    assert cert["max_bits_seed"] == 172_376_627
+    assert cert["bit_cap"] == 3_000_000_000
+    assert (
+        cert["sha256_chunks"]
+        == "c57f5ccc9bce980f478dafec00c449050a5e217a4f0f3e100916c41dacbe7472"
+    )
+    assert (
+        cert["sha256_resolved_seeds"]
+        == "ea4ab9b18e76c6f45e114071c45bf6ce3cf271a59d25ce1c8145ba7402b15fe7"
+    )
+
+
 def test_committed_period_bound_is_50507():
     import json
     from pathlib import Path

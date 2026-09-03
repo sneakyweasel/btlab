@@ -42,7 +42,7 @@ the least-significant digit $a_0$.
 3. **Operators** — domain, involution, and integer/word agreement for each map.
 4. **Rewrite calculus** — unary stepper and Add/carry witnesses from the paper candidate.
 5. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
-6. **Juggler cycles** — Paper A companion: finance, walk charge, period ≥ 478245, leftover families.
+6. **Juggler cycles** — Paper A companion: finance, walk charge, period ≥ 780239, leftover families.
 7. Collatz pages stay available as one application of the same words.
                 """
             )
@@ -72,8 +72,8 @@ the least-significant digit $a_0$.
             },
             {
                 "layer": "Juggler finite dynamics",
-                "object": "Parity finance + floor 10^6 ⇒ L ≥ 25781; walk charge + N0 = 162849448 ⇒ L ≥ 478245; even-count ≥ 4",
-                "status": "Paper A companion; Theorem 4.6 and Corollary 5.10 are verified computations",
+                "object": "Parity finance + floor 10^6 ⇒ L ≥ 25781; walk charge + N0 = 350000000 ⇒ L ≥ 780239; even-count ≥ 4",
+                "status": "Paper A companion; Theorem 4.6 and Corollary 5.11 are verified computations",
             },
             {
                 "layer": "Finite-state Collatz",

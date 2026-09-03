@@ -5806,6 +5806,30 @@
   ]
  },
  {
+  "id": "J-residual-floor-three-hundred-fifty-million",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Every integer 2 ≤ n ≤ 350000000 reaches 1 under the Juggler map by first-passage descent induction (verify_floor_certified). Extension segment from n_from = 162849449: 93575276 odd starts walked with exact integer isqrt over 749 contiguous chunk records; two bit-cap seeds 172376627 and 240154767 resolved exactly at a 3·10^9-bit cap with gmpy2 mpz isqrt (largest intermediate 1493770145 bits at 172376627, 249 steps, landing 23298163; 240154767: 265 steps, 1096792314 bits, landing 5677296); zero unresolved failures; maximum first passage 466 steps at seed 198424189. Base segments 2..26254995 and 26254996..162849448 are J-residual-floor-twenty-six-million and J-residual-floor-one-hundred-sixty-two-million. Certificate data/research/juggler/cycle_finance/floor_verify/N350000000/certificate.json (SHA-256 of chunks c57f5ccc9bce980f478dafec00c449050a5e217a4f0f3e100916c41dacbe7472; resolved-seed SHA ea4ab9b18e76c6f45e114071c45bf6ce3cf271a59d25ce1c8145ba7402b15fe7). The floor exceeds the DK break-even n*(478245) = 348306663.43. Printed as Corollary 5.11 of Paper A (docs/theory/juggler_finite_dynamics_note.md). This is not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_descent_floor.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_floor_sensitivity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-period-seven-hundred-eighty-thousand",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "At the certified descent floor N_0 = 350000000 (J-residual-floor-three-hundred-fifty-million) the parity 6/5 table plus the reduced-base walk charge of J-cyclemin-walk-transport exclude every cycle length L ≤ 780238: any nontrivial Juggler cycle has period at least 780239. The parity table leaves 17 leftovers through L = 8·10^5 (data/research/juggler/cycle_walk_charge/N350000000_parity_leftovers.json); the 5 leftovers below 478245 carry by monotonicity from J-cycle-period-four-hundred-seventy-eight-thousand, and the 10 leftovers in [478245, 755512] are walk-killed with certified margins 1.00555 at L = 478245 up to 7.824 at 504026; SHA-256 of the 10 kill records concatenated in length order is d16ccfed52757d4a44368a6549a8149ccbc926472737276c577912346db854ab (data/research/juggler/cycle_walk_charge/N350000000_kills/). Lengths L ≤ 478244 are covered because both exclusions are monotone in the floor. First survivor L = 780239 = 176251 + 2·301994, the k = 2 member of the F1 semiconvergent fan: required improvement 14.46 against walk margin 0.6049, DK break-even floor n* = 5.54·10^8 (J-cyclemin-walk-competition-law) — the blocker is Diophantine, not computational. Supersedes the cutoff 478244 of J-cycle-period-four-hundred-seventy-eight-thousand (factor 1.63). Printed as Corollary 5.11 of Paper A (docs/theory/juggler_finite_dynamics_note.md). Same trust boundary as Theorem 4.6: exact human inequalities plus guarded float comparisons. Not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_cycle_walk_charge.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_cycle_walk_charge"
+  ]
+ },
+ {
   "id": "J-cyclemin-walk-hug-exchange",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Among nonnegative exponent walks with a prescribed (L, o) (u_k = (1+μ)a_k − k ≥ 0, μ = log_2(3/2)), the hug itinerary that takes E iff u ≥ 1 and an even remains is the unique prefix-minimal path. First disagreement with any other admissible word is hug-E versus other-O, because hug takes O only when E is illegal and the two words share the same prefix state; the odd-count gap δ_k = a_k(other) − a_k(hug) is a path in {−1,0,+1} that cannot go negative, since δ = 0 restores the same state. Feasible pairs ( (1+μ)o ≥ L ) never strand: o_left = 0 implies u = surplus + e_left ≥ e_left. The charge g(u) = 1/(n^{2^u} 2^u ln n) is strictly decreasing, so hug uniquely maximises the walk sum. This is a statement about the u ≥ 0 relaxation, not about realized cycle itineraries. Not a halt theorem.",

@@ -102,7 +102,7 @@ VIEW_BLURB = {
     "Claim map": (
         "Paper A scoreboard. The printed theorem is a period lower bound, "
         "not a halt proof. Lean is the authority for the exact claims; "
-        "Theorem 4.6 and Corollary 5.10 are verified computations."
+        "Theorem 4.6 and Corollary 5.11 are verified computations."
     ),
     "Finance": (
         "The engine of Sections 2–4: at a cycle minimum the surplus "
@@ -113,8 +113,8 @@ VIEW_BLURB = {
     "Walk charge": (
         "Section 5 couples the floor losses through one exponent walk. "
         "At the laboratory floor the envelope gives period "
-        f"$\\ge {LAB_WALK_PERIOD}$; the second certified floor prints "
-        f"period $\\ge {PRINTED_PERIOD}$ (Corollary 5.10)."
+        f"$\\ge {LAB_WALK_PERIOD}$; the third certified floor prints "
+        f"period $\\ge {PRINTED_PERIOD}$ (Corollary 5.11)."
     ),
     "Trajectory": (
         "Start at **n** and apply the Juggler map. **O** is an odd step "
@@ -169,6 +169,8 @@ CLAIM_PLAIN = {
     "J-cycle-period-fifty-thousand": "At the laboratory floor 26254995 the same table gives period ≥ 50508.",
     "J-cyclemin-walk-charge-instance": "Walk charge at that floor kills the parity leftovers below 176251.",
     "J-cycle-period-four-hundred-seventy-eight-thousand": "At the second certified floor 162849448, period ≥ 478245.",
+    "J-residual-floor-three-hundred-fifty-million": "Every start through 350000000 reaches 1 by first-passage descent.",
+    "J-cycle-period-seven-hundred-eighty-thousand": "At the third certified floor 350000000, period ≥ 780239.",
     "J-finite-progress-boundary": "Even starts drop in one step; odd-then-even starts drop in two.",
 }
 _BADGE_COLOR = {
@@ -229,7 +231,7 @@ def _glossary() -> None:
 - **Leftover** — a word the easy filters did not kill. It needs a leftover
   cell or a finite table.
 - **N0** — a verified descent floor: every start $2\\le n\\le N_0$
-  reaches 1. Paper A uses $10^6$, then $26254995$, then $162849448$.
+  reaches 1. Paper A uses $10^6$, then $26254995$, then $162849448$, then $350000000$.
 - **CycleMin** — the rotation that starts at the smallest value on the loop.
 - **Finance** — the cycle-minimum inequality
   $n\\log n\\cdot(3^o-2^L)\\le L\\cdot 3^o$.
@@ -398,6 +400,7 @@ def _claim_map() -> None:
         "J-cycle-word-eliahou-leftover-instance",
         "J-cyclemin-walk-charge-instance",
         "J-cycle-period-four-hundred-seventy-eight-thousand",
+        "J-cycle-period-seven-hundred-eighty-thousand",
     )
     cards = st.container(horizontal=True)
     with cards:
@@ -405,13 +408,13 @@ def _claim_map() -> None:
             "Period",
             f"≥ {PRINTED_PERIOD:,}",
             border=True,
-            help="Corollary 5.10. Not evidence for a 478245-cycle.",
+            help="Corollary 5.11. Not evidence for a 780239-cycle.",
         )
         st.metric(
             "Printed floor N0",
             f"{PRINTED_FLOOR:,}",
             border=True,
-            help="Second certified descent floor. Every start through this n reaches 1.",
+            help="Third certified descent floor. Every start through this n reaches 1.",
         )
         st.metric(
             "Even letters",
@@ -432,8 +435,10 @@ flowchart LR
   thm46 --> lab["N0 = 26254995"]
   lab --> walk[Walk charge]
   walk --> thm59["L ≥ 176251"]
-  thm59 --> printed["N0 = 162849448"]
-  printed --> cor510["L ≥ 478245"]
+  thm59 --> floor2["N0 = 162849448"]
+  floor2 --> cor510["L ≥ 478245"]
+  cor510 --> printed["N0 = 350000000"]
+  printed --> cor511["L ≥ 780239"]
 ```
         """
     )
@@ -468,7 +473,7 @@ flowchart LR
             "Theorem 4.6 bound does not exclude the length. The thirty "
             "length-11 short-gap words are a laboratory leftover gate, "
             "not Paper A open cycles: period 11 is already excluded. "
-            "The walk program is terminal: killing 478245 is Diophantine."
+            "The walk program is terminal: killing 780239 is Diophantine."
         )
 
 
@@ -636,10 +641,10 @@ def _walk_charge() -> None:
             "Printed period",
             f"≥ {PRINTED_PERIOD:,}",
             border=True,
-            help="Corollary 5.10. Not evidence for a cycle of that length.",
+            help="Corollary 5.11. Not evidence for a cycle of that length.",
         )
         st.metric(
-            "Second certified floor",
+            "Third certified floor",
             f"{PRINTED_FLOOR:,}",
             border=True,
         )
@@ -660,7 +665,9 @@ flowchart LR
   dk --> window["Window 50508, 301994"]
   window --> lab["L ≥ 176251"]
   lab --> floor2["N0 = 162849448"]
-  floor2 --> printed["L ≥ 478245"]
+  floor2 --> cor510["L ≥ 478245"]
+  cor510 --> printed["N0 = 350000000"]
+  printed --> cor511["L ≥ 780239"]
 ```
         """
     )
@@ -678,7 +685,7 @@ flowchart LR
             border=True,
         )
         st.metric(
-            "Corollary 5.10",
+            "Corollary 5.11",
             f"≥ {PRINTED_PERIOD:,}",
             border=True,
         )
@@ -686,8 +693,8 @@ flowchart LR
         f"Theorem 5.9 at N0 = {LAB_FLOOR:,} leaves the single walk "
         f"survivor {int(survey['combined_first_survivor']):,}. "
         f"The census-free window is [{WALK_WINDOW_LO}, {WALK_WINDOW_HI}). "
-        f"The blocker is the fan member "
-        f"{PRINTED_PERIOD:,} = {LAB_WALK_PERIOD:,} + {BLOCKER_FAN:,}."
+        f"The blocker is the k=2 fan member "
+        f"{PRINTED_PERIOD:,} = {LAB_WALK_PERIOD:,} + 2·{BLOCKER_FAN:,}."
     )
     with st.container(border=True, gap="small"):
         st.markdown("**Blocker**")
@@ -768,7 +775,7 @@ flowchart LR
                 width="stretch",
             )
             st.caption(
-                "These lengths lie beyond Corollary 5.10. They are not "
+                "These lengths lie beyond Corollary 5.11. They are not "
                 "open cycles."
             )
 
@@ -1403,8 +1410,8 @@ def juggler_finite_dynamics_page() -> None:
     st.caption(
         "Companion to Paper A: local word obstructions plus finance give "
         f"period ≥ {PAPER_PERIOD:,} at $N_0=10^6$; the walk-charge "
-        f"envelope at the second certified floor $N_0={PRINTED_FLOOR:,}$ "
-        f"prints period ≥ {PRINTED_PERIOD:,} (Corollary 5.10). Lean is "
+        f"envelope at the third certified floor $N_0={PRINTED_FLOOR:,}$ "
+        f"prints period ≥ {PRINTED_PERIOD:,} (Corollary 5.11). Lean is "
         "the authority through Theorem 4.4; the numerical cutoffs are "
         "verified computations. Arrival at 1 is not claimed."
     )

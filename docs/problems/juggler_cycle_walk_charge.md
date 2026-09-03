@@ -4,7 +4,10 @@ Status: **PROMOTE** (transport lemma proved; certified survey
 complete — period bound 176251 at floor 26254995; consolidated
 into Paper A Section 5 on 1 September 2026; new-floor instance
 complete — period bound 478245 at certified floor 162849448,
-`J-cycle-period-four-hundred-seventy-eight-thousand`)
+`J-cycle-period-four-hundred-seventy-eight-thousand`;
+third-floor instance complete — period bound 780239 at
+certified floor 350000000,
+`J-cycle-period-seven-hundred-eighty-thousand`)
 
 Refinement of the Paper A Section 5 state-distribution program
 ([juggler_cycle_finance.md](juggler_cycle_finance.md)), answering
@@ -253,6 +256,26 @@ Classification **WALK_CHARGE_GREEN**.
   against the stored CPU record at \(176251\) to
   \(3.6\cdot 10^{-14}\)), DK break-even floor \(3.48\cdot 10^8\)
   — Diophantine, not computational.
+- **Third-floor instance (3 Sep 2026, executing the parked
+  \(3.48\cdot 10^8\) campaign).** The descent floor
+  \(350000000>n^*(478245)\) is certified
+  (`J-residual-floor-three-hundred-fifty-million`: 749 chunks,
+  two bit-cap seeds resolved at \(3\cdot 10^9\), peak
+  \(1493770145\) bits). Parity there leaves \(17\) leftovers
+  through \(8\cdot 10^5\)
+  (`N350000000_parity_leftovers.json`); the five leftovers
+  below \(478245\) carry by monotonicity, and the walk kills
+  all \(10\) in \([478245,755512]\) (margins \(1.00555\) at
+  \(478245\) up to \(7.824\) at \(504026\);
+  `N350000000_kills/`, SHA-256 of the 10 kill records
+  `d16ccfed…b854ab`). Combined contiguous prefix **780238**:
+  any nontrivial cycle has period \(\ge 780239\)
+  (`J-cycle-period-seven-hundred-eighty-thousand`), a
+  \(1.63\times\) extension. Sole survivor
+  \(780239=176251+2\cdot 301994\) (\(k=2\) semiconvergent fan):
+  required improvement \(14.46\), walk margin \(0.6049\)
+  (`N350000000_kills/L780239.json`), DK break-even floor
+  \(5.54\cdot 10^8\) — Diophantine, not computational.
 - GPU port performance (repository record; the paper now cites
   this dossier instead of printing figures):
   `cycle_walk_charge_gpu` (CuPy fp64 raw kernel) reproduces the
@@ -262,9 +285,10 @@ Classification **WALK_CHARGE_GREEN**.
 
 ## Open questions
 
-- The blocker \(L=478245\) needs floor \(\approx 3.48\cdot 10^8\)
+- The blocker \(L=780239\) needs floor \(\approx 5.54\cdot 10^8\)
   (DK break-even, `J-cyclemin-walk-competition-law`) before the
   walk can kill it; further \(N_0\) campaigns are PARK. The
+  next *seed* \(16785921\) waits at \(4.54\cdot 10^{11}\). The
   asymptotic frontier stays the fan-minimum reduction
   (`juggler_walk_fan_minimum_law`)
 - Whether the walk charge plus run-pack composition tightens the
@@ -303,13 +327,18 @@ lemma is proved in reduced-base form, and the certified comparison
 kills \(L=50508\) at the laboratory floor with margin \(1.1204\).
 The certified survey fixed the combined contiguous cutoff at
 \(176250\): period \(\ge 176251\)
-(`J-cyclemin-walk-charge-instance`); the completed new-floor
+(`J-cyclemin-walk-charge-instance`); the completed second-floor
 instance raised it to \(478244\): period \(\ge 478245\)
-(`J-cycle-period-four-hundred-seventy-eight-thousand`). Ledger
+(`J-cycle-period-four-hundred-seventy-eight-thousand`); the
+third-floor instance raised it to \(780238\): period
+\(\ge 780239\)
+(`J-cycle-period-seven-hundred-eighty-thousand`). Ledger
 rows `J-cyclemin-walk-transport` (the lemma),
-`J-cyclemin-walk-charge-instance` (the kill table), and
+`J-cyclemin-walk-charge-instance` (the first kill table),
 `J-cycle-period-four-hundred-seventy-eight-thousand` (the
-new-floor instance) are in. Further floors are PARK.
+second-floor instance), and
+`J-cycle-period-seven-hundred-eighty-thousand` (the
+third-floor instance) are in. Further floors are PARK.
 
 ## Publication assessment
 
@@ -326,7 +355,10 @@ the window theorem Theorem 5.8, and the kill table / period
 bound Theorem 5.9; since the same-day second-floor pass the
 paper also prints Corollary 5.10 (floor \(162849448\), period
 \(\ge 478245\), the \(478245\) fan blocker, and the Appendix B
-hashes for the new certificate and the 15-kill table, plus the
+hashes for that certificate and the 15-kill table) and
+Corollary 5.11 (floor \(350000000\), period \(\ge 780239\),
+the \(780239\) fan blocker, and the Appendix B hashes for the
+third-floor certificate and the 10-kill table, plus the
 GPU reproducibility remark). The discrete word layer and the
 quotient arithmetic are Lean (`WalkChargeItineraries.lean`,
 `OstrowskiSandwich.lean`). The first length-only charge that

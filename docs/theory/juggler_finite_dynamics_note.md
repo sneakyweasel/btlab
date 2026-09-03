@@ -52,11 +52,13 @@ rotation itinerary, and a Denjoy--Koksma bound over certified
 Ostrowski blocks, census-free on the window
 \([50508,301994)\) — then extends the exclusion at the
 laboratory floor: any nontrivial cycle has period at least
-\(176251\). The main numerical result evaluates the same
+\(176251\). The same
 certified kill criterion at a second certified floor,
 \(N_0=162849448\), on the surviving lengths — including those
-beyond the census-free window: any nontrivial Juggler cycle has
-period at least \(478245\). We
+beyond the census-free window — gives period at least
+\(478245\). The main numerical result evaluates it once more at
+the third certified floor \(N_0=350000000\): any nontrivial
+Juggler cycle has period at least \(780239\). We
 also prove that every nontrivial cycle contains at least four
 even steps, and hence has period at least eleven; that bound
 uses no descent floor. The core lemmas are formalized in
@@ -180,7 +182,7 @@ is not the content of the theorem.
 
 Write \(N_0\) for a *verified descent floor*: every start
 \(2\le n\le N_0\) reaches \(1\). A floor is an input, not the
-result. Two instances are used. The base instance is
+result. Four instances are used. The base instance is
 \(N_0=10^6\), reported by Weisstein [5] and recomputed here by
 exact first-passage. Combined with Theorem 4.4 it gives
 \[
@@ -194,15 +196,16 @@ The laboratory instance is \(N_0=26254995\), certified by the
 same exact first-passage method (Proposition 5.1); the same
 table then gives \(L\ge 50508\) (Theorem 5.2), and the
 walk-charge envelope of Section 5 amplifies it to
-\(L\ge 176251\) (Theorem 5.9). The main numerical result is
-Corollary 5.10: at the second certified floor
-\(N_0=162849448\), the same kill criterion — a certified
-computation of the Theorem 5.9 comparison, evaluated directly
-on the surviving lengths, including those beyond the
-\([50508,301994)\) window of Theorem 5.8 — gives
-\(L\ge 478245\). The census-free window theorem itself stops at
-\(301994\); the second-floor extension is a certified
-evaluation of the same criterion, not an extension of that
+\(L\ge 176251\) (Theorem 5.9). Corollary 5.10 evaluates the
+same kill criterion at the second certified floor
+\(N_0=162849448\), including those lengths beyond the
+\([50508,301994)\) window of Theorem 5.8, and gives
+\(L\ge 478245\). The main numerical result is
+Corollary 5.11: at the third certified floor
+\(N_0=350000000\) the same comparison gives \(L\ge 780239\).
+The census-free window theorem itself stops at
+\(301994\); the later-floor extensions are certified
+evaluations of the same criterion, not extensions of that
 window. The architecture is
 \[
 \text{envelope}
@@ -249,10 +252,11 @@ secondary. Section 5 certifies the laboratory floor
 exponent-walk charge, identifies its extremal word as a
 rotation itinerary, and proves a census-free envelope for every
 length in the window \([50508,301994)\); the resulting kill
-table gives the period bound \(176251\), and a certified
+table gives the period bound \(176251\), a certified
 evaluation of the same kill criterion at a second certified
-floor raises it to \(478245\) (Corollary 5.10). Section 6
-records limitations.
+floor raises it to \(478245\) (Corollary 5.10), and a third
+certified floor raises it to \(780239\) (Corollary 5.11).
+Section 6 records limitations.
 
 A nonempty realized itinerary \(w\) with
 \(J^{|w|}(n)=n\) is a *cycle itinerary*. The unique fixed point is \(1\);
@@ -306,12 +310,15 @@ window. At the laboratory
 floor the resulting kill table leaves a single finance survivor
 below \(2\cdot 10^5\): any nontrivial cycle has period at least
 \(176251\) (Theorem 5.9), the first laboratory instance. The
-main numerical result is Corollary 5.10: at the second
-certified floor \(N_0=162849448\), the same kill criterion,
+second-floor evaluation is Corollary 5.10: at
+\(N_0=162849448\) the same kill criterion,
 evaluated as a certified computation on the additional
 survivors (the window theorem itself stops at \(301994\)),
-leaves only the semiconvergent fan member \(478245\): any
-nontrivial cycle has period at least \(478245\).
+leaves only the semiconvergent fan member \(478245\). The
+main numerical result is Corollary 5.11: at the third
+certified floor \(N_0=350000000\) that comparison leaves only
+the next fan member \(780239\): any nontrivial cycle has
+period at least \(780239\).
 
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
@@ -374,10 +381,11 @@ The layers of the argument are as follows.
 6. *New theorem:* the reduced-base transport and the uniform
    window envelope of Section 5 (Theorems 5.3 and 5.8).
 7. *New consequence:* period at least \(176251\) at the
-   laboratory floor \(26254995\) (Theorem 5.9), and \(478245\)
+   laboratory floor \(26254995\) (Theorem 5.9), \(478245\)
    at the second certified floor \(162849448\)
-   (Corollary 5.10, by direct evaluation of the same criterion
-   beyond the \(301994\) window boundary).
+   (Corollary 5.10), and \(780239\) at the third certified
+   floor \(350000000\) (Corollary 5.11), by direct evaluation
+   of the same criterion beyond the \(301994\) window boundary.
 
 The
 argument below is elementary and independent of the Diophantine
@@ -399,7 +407,7 @@ Ostrowski blocks raises that period bound to \(176251\) at the
 laboratory floor, census-free on an explicit window of lengths,
 and — by certified evaluation of the same kill criterion on the
 survivors beyond that window — to \(478245\) at the second
-certified floor.
+certified floor and \(780239\) at the third.
 
 ### 1.2 Verification
 
@@ -426,8 +434,10 @@ regeneration commands are Appendix B.
 (Theorem 4.4). Computational input: every \(2\le n\le 10^6\)
 reaches \(1\) (this proposition), every
 \(2\le n\le 26254995\) reaches \(1\) (Proposition 5.1, the
-laboratory instance), and every \(2\le n\le 162849448\) reaches
-\(1\) (Corollary 5.10, the second laboratory instance).
+laboratory instance), every \(2\le n\le 162849448\) reaches
+\(1\) (Corollary 5.10, the second laboratory instance), and
+every \(2\le n\le 350000000\) reaches \(1\) (Corollary 5.11,
+the third laboratory instance).
 Independently recomputed: the exact
 first-passage runs of Appendix B. Not proved: global
 termination.
@@ -1571,7 +1581,8 @@ in an explicit window — no per-length census and no dynamic
 program is needed on that window. The kill table at the
 laboratory floor then yields the period bound \(176251\), and
 the second certified floor raises it to \(478245\)
-(Corollary 5.10). Throughout, survivors are finance-survivors
+(Corollary 5.10) and the third to \(780239\)
+(Corollary 5.11). Throughout, survivors are finance-survivors
 in the sense of Section 1.
 
 ### 5.1 The laboratory floor
@@ -2016,20 +2027,52 @@ there is a direct certified evaluation of the Theorem 5.9
 comparison at the reduced base, not an instance of the window
 theorem. The combined contiguous
 excluded prefix is \(478244\): any nontrivial Juggler cycle has
-period at least \(478245\). This is the main numerical result
-of the paper.
+period at least \(478245\).
 
-The sole survivor is the semiconvergent fan member
+The sole survivor at this floor is the semiconvergent fan member
 \(478245=176251+301994\): required improvement over parity
 \(19.46\), direct walk margin \(0.4334\) — the obstruction is
 the Diophantine quality of \(|3^o-2^L|\) along the fan, not the
 envelope. The kill table recomputes on commodity hardware in
-minutes (Appendix B).
+minutes (Appendix B). Corollary 5.11 evaluates the same
+criterion at the next cheap floor.
+
+**Corollary 5.11 (verified computation; third laboratory
+floor).**
+Every integer \(2\le n\le 350000000\) reaches \(1\)
+(first-passage certificate exactly as in Proposition 5.1: the
+extension segment from \(162849449\) walks \(93575276\) odd
+starts over \(749\) contiguous chunk records with exact integer
+square roots; two bit-cap seeds \(172376627\) and
+\(240154767\) are resolved at a \(3\cdot 10^9\)-bit cap, the
+largest intermediate having \(1493770145\) bits at seed
+\(172376627\); the maximum first passage is \(466\) steps at
+seed \(198424189\); hashes in Appendix B).
+At \(N_0=350000000\) the parity table leaves \(17\) survivors
+through \(L=8\cdot 10^5\); the five leftovers below
+\(478245\) stay excluded because both exclusions are monotone
+in the floor, and the walk charge of Theorem 5.3 kills the
+\(10\) leftovers in \([478245,755512]\) (margins \(1.00555\)
+at \(478245\), up to \(7.824\) at \(504026\)). Survivor lengths
+above \(301994\) lie beyond the window of Theorem 5.8; each
+kill there is a direct certified evaluation of the Theorem 5.9
+comparison at the reduced base, not an instance of the window
+theorem. The combined contiguous excluded prefix is
+\(780238\): any nontrivial Juggler cycle has period at least
+\(780239\). This is the main numerical result of the paper.
+
+The sole survivor is the semiconvergent fan member
+\(780239=176251+2\cdot 301994\): required improvement over
+parity \(14.46\), direct walk margin \(0.6049\) — the
+obstruction remains the Diophantine quality of
+\(|3^o-2^L|\) along the fan, not the envelope. The kill table
+is the GPU floating-point certified comparison of the same
+Theorem 5.9 criterion (Appendix B).
 
 Beyond \(q_{13}=301994\) the window theorem needs deeper
 certified quotients of \(\theta\), and killing the remaining
 near-convergent survivors (starting with the fan member
-\(L=478245\)) is a Diophantine question about \(|3^o-2^L|\);
+\(L=780239\)) is a Diophantine question about \(|3^o-2^L|\);
 neither is attempted here. The survivors are
 finance-survivors, not candidate cycles.
 
@@ -2144,6 +2187,7 @@ Theorem 4.8.
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Corollary 5.10 | second floor and kill table; verified computation, not Lean |
+| Corollary 5.11 | third floor and kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
@@ -2235,13 +2279,26 @@ SHA-256
 `148180cbbfba93985b7a1be455fee16db97816f1534b1feca5a4740d475aeda0`
 (concatenated in length order); the direct non-kill record for
 the survivor \(478245\) (margin \(0.4334\)) is stored alongside.
+The third-floor certificate of Corollary 5.11 is
+`data/research/juggler/cycle_finance/floor_verify/N350000000/certificate.json`;
+the SHA-256 of its chunk records is
+`c57f5ccc9bce980f478dafec00c449050a5e217a4f0f3e100916c41dacbe7472`.
+Its parity survivor scan is
+`data/research/juggler/cycle_walk_charge/N350000000_parity_leftovers.json`,
+and the \(10\) kill records under
+`data/research/juggler/cycle_walk_charge/N350000000_kills/` have
+SHA-256
+`d16ccfed52757d4a44368a6549a8149ccbc926472737276c577912346db854ab`
+(concatenated in length order); the direct non-kill record for
+the survivor \(780239\) (margin \(0.6049\)) is stored alongside.
 The exact-integer CPU computation with guarded comparisons is
-the authoritative record for every claim in this note; a GPU
-implementation
-(`research.juggler_sequence.cycle_walk_charge_gpu`) is provided
-as an optional reproducibility aid, no statement depends on it,
-and its performance figures live in the repository
-documentation.
+the authoritative record for the first- and second-floor claims
+in this note. The third-floor kill table is the GPU
+floating-point certified comparison
+(`research.juggler_sequence.cycle_walk_charge_gpu`), the same
+IEEE-double kernel previously checked against stored CPU
+records to relative error below \(10^{-13}\); its performance
+figures live in the repository documentation.
 The probes are
 `research.juggler_sequence.cycle_walk_charge` (transport and
 kill table), `cycle_walk_ostrowski` (certified quotient
@@ -2266,6 +2323,20 @@ non-kill); the same call through the GPU port,
 GPU. The first-floor kill table of Theorem 5.9 is
 `python -m research.juggler_sequence.cycle_walk_charge
 --survey`.
+
+*Reproducibility of the third-floor kill table.* The committed
+records behind Corollary 5.11 are the GPU certified reports.
+From a fresh checkout,
+
+```text
+python -c "from research.juggler_sequence.cycle_walk_charge_gpu \
+import gpu_certified_report; print(gpu_certified_report(L, 350000000))"
+```
+
+recomputes the record for length \(L\) at this floor (at
+\(L=780239\) it prints the non-kill). Do not pass `--write`
+to the module CLI: that path is hardcoded to the second-floor
+directory.
 
 ## Appendix C. Exact floor defect
 

@@ -1,8 +1,9 @@
 """View-model for the finite-dynamics note companion.
 
 Instantiates existing Juggler maps. Does not prove anything: Lean remains
-the authority for exact claims; Theorem 4.6 and Corollary 5.10 are
+the authority for exact claims; Theorem 4.6 and Corollary 5.11 are
 verified computations. Bit caps keep Streamlit reruns bounded.
+The printed instance is Corollary 5.11.
 """
 
 from __future__ import annotations
@@ -273,6 +274,11 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
         "ledger": "J-cycle-period-four-hundred-seventy-eight-thousand",
     },
     {
+        "text": "Corollary 5.11: L ≥ 780239 at N0 = 350000000",
+        "lean": "named computation; not Lean",
+        "ledger": "J-cycle-period-seven-hundred-eighty-thousand",
+    },
+    {
         "text": "Section 6 descent certificates (not a halt theorem)",
         "lean": "even_finiteProgress / odd_even_finiteProgress",
         "ledger": "J-finite-progress-boundary",
@@ -347,12 +353,14 @@ PAPER_EXCEPTION_COUNT = 141
 LAB_FLOOR = 26_254_995
 LAB_PARITY_PERIOD = 50_508
 LAB_WALK_PERIOD = 176_251
-PRINTED_FLOOR = 162_849_448
-PRINTED_PERIOD = 478_245
+SECOND_FLOOR = 162_849_448
+SECOND_PERIOD = 478_245
+PRINTED_FLOOR = 350_000_000
+PRINTED_PERIOD = 780_239
 WALK_WINDOW_LO = 50_508
 WALK_WINDOW_HI = 301_994
 BLOCKER_FAN = 301_994
-DK_BREAKEVEN_FLOOR = 348_000_000
+DK_BREAKEVEN_FLOOR = 554_000_000
 PRINTED_KILL_COUNT = 15
 FINANCE_UI_L_MAX = 2_000
 FINANCE_CHART_L_MAX = 400
@@ -362,6 +370,8 @@ WALK_CHARGE_LEDGER_IDS: tuple[str, ...] = (
     "J-cyclemin-walk-charge-instance",
     "J-residual-floor-one-hundred-sixty-two-million",
     "J-cycle-period-four-hundred-seventy-eight-thousand",
+    "J-residual-floor-three-hundred-fifty-million",
+    "J-cycle-period-seven-hundred-eighty-thousand",
 )
 
 INSTANCE_ROWS: tuple[dict[str, Any], ...] = (
@@ -388,10 +398,17 @@ INSTANCE_ROWS: tuple[dict[str, Any], ...] = (
     },
     {
         "theorem": "Corollary 5.10",
-        "floor": PRINTED_FLOOR,
-        "period": PRINTED_PERIOD,
+        "floor": SECOND_FLOOR,
+        "period": SECOND_PERIOD,
         "mechanism": "same kill criterion at the second floor",
         "ledger": "J-cycle-period-four-hundred-seventy-eight-thousand",
+    },
+    {
+        "theorem": "Corollary 5.11",
+        "floor": PRINTED_FLOOR,
+        "period": PRINTED_PERIOD,
+        "mechanism": "same kill criterion at the third floor",
+        "ledger": "J-cycle-period-seven-hundred-eighty-thousand",
     },
 )
 
@@ -538,17 +555,25 @@ def lab_walk_survey() -> dict[str, Any]:
 @lru_cache(maxsize=1)
 def printed_floor_leftovers() -> tuple[dict[str, Any], ...]:
     payload = json.loads(
-        (WALK_DATA_DIR / "new_floor_parity_leftovers.json").read_text(
+        (WALK_DATA_DIR / "N350000000_parity_leftovers.json").read_text(
             encoding="utf-8"
         )
     )
     if int(payload["floor"]) != PRINTED_FLOOR:
-        raise ValueError("new_floor leftovers are not the Corollary 5.10 floor")
+        raise ValueError("N350 leftovers are not the Corollary 5.11 floor")
     return tuple(dict(row) for row in payload["leftovers"])
 
 
 @lru_cache(maxsize=1)
 def printed_floor_kills() -> dict[int, dict[str, Any]]:
+    kills: dict[int, dict[str, Any]] = {}
+    for path in (WALK_DATA_DIR / "N350000000_kills").glob("L*.json"):
+        row = json.loads(path.read_text(encoding="utf-8"))
+        kills[int(row["length"])] = row
+    return kills
+
+
+def _second_floor_kills() -> dict[int, dict[str, Any]]:
     kills: dict[int, dict[str, Any]] = {}
     for path in (WALK_DATA_DIR / "new_floor_kills").glob("L*.json"):
         row = json.loads(path.read_text(encoding="utf-8"))
@@ -557,13 +582,14 @@ def printed_floor_kills() -> dict[int, dict[str, Any]]:
 
 
 def printed_floor_kill_rows() -> tuple[WalkKillRow, ...]:
-    """Corollary 5.10 leftovers joined to the certified kill records."""
+    """Corollary 5.11 leftovers joined to the certified kill records."""
 
     kills = printed_floor_kills()
+    prior = _second_floor_kills()
     rows: list[WalkKillRow] = []
     for leftover in printed_floor_leftovers():
         length = int(leftover["L"])
-        kill = kills.get(length)
+        kill = kills.get(length) or prior.get(length)
         if kill is not None:
             excluded = bool(kill["certified_excludes"])
             margin = float(kill["kill_margin"])

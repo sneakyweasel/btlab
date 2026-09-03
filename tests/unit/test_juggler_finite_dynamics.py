@@ -284,7 +284,8 @@ def test_printed_walk_charge_matches_corollary_5_10():
     leftovers = [row for row in rows if row.length > PRINTED_PERIOD]
     assert leftovers
     assert all(not row.excluded for row in leftovers)
-    assert PRINTED_FLOOR == 162_849_448
+    assert PRINTED_FLOOR == 350_000_000
+    assert PRINTED_PERIOD == 780_239
 
 
 def test_length11_inventory_is_thirty_first_expanding_words():

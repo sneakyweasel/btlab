@@ -3,7 +3,7 @@
 This page is the Lean companion to the two manuscripts: **Paper A**,
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)
 (cycle-length lower bounds; core lemmas Lean-backed, while the
-descent floors, Theorems 4.6, 4.8, 5.2, 5.9, and Corollary 5.10
+descent floors, Theorems 4.6, 4.8, 5.2, 5.9, and Corollaries 5.10--5.11
 are independently certified computations, and Denjoy--Koksma and
 the ergodic identification of \(C_*\) are classical prose), and **Paper B**,
 [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
@@ -670,7 +670,7 @@ g(\mathrm{hugWeight}\ k)\) (`cycleMin_defect_le_charge`,
 chain: the rotation average (Proposition 5.5), Denjoy–Koksma
 (Theorem 5.7), the strict within-\((L,o)\) uniqueness of the
 maximiser, and the final kill evaluations of Theorems 5.2/5.9
-and Corollary 5.10 (verified computation).
+and Corollaries 5.10--5.11 (verified computation).
 
 `DefectFinance.lean` closes the finance side. The certified identity
 of Theorem 4.6 — \(1-2^L/3^o\le\tfrac65\sum_k 1/(x_k\log x_k)\) on
@@ -756,7 +756,7 @@ Denjoy–Koksma's variation-versus-integral inequality and the
 cylinder-interval bridge from the endpoints
 to \(\theta\) itself are classical and stay prose; the
 Denjoy–Koksma comparison and the kill tables (Theorem 5.9,
-Corollary 5.10) are human proof plus certified computation, not
+Corollaries 5.10--5.11) are human proof plus certified computation, not
 Lean (the kill *template* is: `cycleMin_hug_kill_criterion`).
 
 ## 9. Exact floor reductions for the discrepancy paper

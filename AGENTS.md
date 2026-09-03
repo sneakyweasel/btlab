@@ -33,22 +33,31 @@ for external review.
 
 ## Juggler state of the problem
 
-- **Cycles:** no nontrivial cycle of period \(<478245\) at the
- laboratory certified descent floor \(N_0=162849448\)
+- **Cycles:** no nontrivial cycle of period \(<780239\) at the
+ laboratory certified descent floor \(N_0=350000000\)
+ (`J-residual-floor-three-hundred-fifty-million`,
+ `J-cycle-period-seven-hundred-eighty-thousand`): the floor
+ certificate is complete (749-chunk extension from \(162849449\),
+ two bit-cap leftovers resolved at \(3\cdot 10^9\), peak
+ \(1493770145\) bits) and the walk charge kills all \(10\) parity
+ leftovers below the blocker \(780239=176251+2\cdot 301994\)
+ (\(k=2\) semiconvergent fan, required \(14.46\), walk margin
+ \(0.6049\), DK break-even \(5.54\cdot 10^8\) — Diophantine, not
+ computational). Lengths \(\le 478244\) carry from the previous
+ floor \(N_0=162849448\)
  (`J-residual-floor-one-hundred-sixty-two-million`,
- `J-cycle-period-four-hundred-seventy-eight-thousand`): the floor
- certificate is complete (547 chunks, zero failures, peak
- \(463362780\) bits) and the walk charge kills all \(15\) parity
- leftovers below the blocker \(478245=176251+301994\) (\(k=1\)
- semiconvergent fan, required \(19.46\), DK break-even
- \(3.48\cdot 10^8\) — Diophantine, not computational).
+ `J-cycle-period-four-hundred-seventy-eight-thousand`: 547 chunks,
+ zero failures, peak \(463362780\) bits; walk killed all \(15\)
+ leftovers below \(478245=176251+301994\)).
  Since the 1 Sep 2026 consolidation Paper A prints the
  \(26254995\) floor: parity cutoff \(50507\) (§5.1), then the
  walk-charge envelope — transport, hug adversary, itinerary identity,
  Denjoy–Koksma over certified Ostrowski blocks, window theorem on
  \([50508,301994)\) — gives period \(\ge 176251\) (§5.2–5.7,
- `J-cyclemin-walk-charge-instance`), and Corollary 5.10 prints the
- second floor \(162849448\) with period \(\ge 478245\); the
+ `J-cyclemin-walk-charge-instance`), Corollary 5.10 prints the
+ second floor \(162849448\) with period \(\ge 478245\), and
+ Corollary 5.11 prints the third floor \(350000000\) with period
+ \(\ge 780239\); the
  \(10^6\) base instance and
  the \(99\)-length survivor lattice on \((25781,16266),(1054,665)\)
  (`RunSurvivorLattice.lean`) stay in §4. Discrete word layer,
@@ -74,21 +83,21 @@ for external review.
  fan-minimum reduction (`juggler_walk_fan_minimum_law`, CONJECTURE)
  ties further asymptotic progress to unbounded partial quotients of
  \(\log 2/\log 3\) — classical OPEN. Killing the
- remaining near-convergents (first \(478245\)) is Diophantine; the
+ remaining near-convergents (first \(780239\)) is Diophantine; the
  direct Baker/SdW transfer is **REFUTED** (`juggler_cycle_gap_baker`),
  the Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`),
  the DK-arch free-kill of \(478245\) is **REFUTED**
  (`juggler_walk_arch_kills_blocker`: any valid tightening of
  \(2s(L)\) sits above the already-computed hug DP, which loses
- at margin \(0.433\)),
+ at margin \(0.433\) at the previous floor),
  and further \(N_0\) campaigns are PARK (the next useful floor is
- \(3.48\cdot 10^8\)).
+ \(5.54\cdot 10^8\); the next *seed* waits at \(4.54\cdot 10^{11}\)).
 - **Flights:** the descent-free (open-orbit) program is descriptively
   terminal. Extract: [juggler_flight_note.md](docs/theory/juggler_flight_note.md).
   Lean envelope and walk-height law on `AboveAnchor`; every flight has
   unbounded walk (hug-hugging is cycle-exclusive); bounded-walk flights
   from \(n\ge 3.5\cdot 10^8\) have eventual period \(\ge 780239\)
-  (conditional, no new floor); divergent flights diverge pointwise with
+  (the cycle bound at this floor is now unconditional); divergent flights diverge pointwise with
   recurrent hug domination and record jumps quantized to the
   \(\log_2 3\)-lattice (shortest near-return \(19\)).   Do not reopen
   composition (`REPARAMETERIZATION`), odd-tower placement, DK-as-kill,

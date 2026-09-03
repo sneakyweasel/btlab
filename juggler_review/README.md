@@ -28,11 +28,13 @@ https://sneakyweasel.github.io/balanced_ternary/
    Section 5 walk-charge envelope (transport, hug adversary,
    Denjoy–Koksma over certified Ostrowski blocks, window
    theorem on \([50508,301994)\)) raises the bound to
-   \(L\ge 176251\) at that floor. The main numerical result is
-   \(L\ge 478245\) at the second certified floor \(162849448\)
-   (Corollary 5.10) — a certified evaluation of the same kill
-   criterion on the survivors beyond the census-free window,
-   not an extension of the window theorem.
+   \(L\ge 176251\) at that floor. Corollary 5.10 evaluates the
+   same kill criterion at the second certified floor
+   \(162849448\) and gives \(L\ge 478245\). The main numerical
+   result is \(L\ge 780239\) at the third certified floor
+   \(350000000\) (Corollary 5.11) — certified evaluations of
+   the same kill criterion on the survivors beyond the
+   census-free window, not extensions of the window theorem.
    Every nontrivial cycle has at least four even letters, hence
    period at least eleven. Finance-survivor lengths through
    \(10^5\) are supporting material.
