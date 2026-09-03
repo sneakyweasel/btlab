@@ -136,6 +136,12 @@ def patch_chunks_with_resolved_seeds(
         path.write_text(json.dumps(row, indent=2) + "\n", encoding="utf-8")
         records.append(row)
     records.sort(key=lambda row: row["start"])
+    existing_cert = out_dir / "certificate.json"
+    inherited_n_from = 2
+    if existing_cert.is_file():
+        inherited_n_from = int(
+            json.loads(existing_cert.read_text(encoding="utf-8")).get("n_from", 2)
+        )
     step_failures = [n for row in records for n in row.get("step_failures", [])]
     bit_failures = [n for row in records for n in row.get("bit_failures", [])]
     other_failures = [n for row in records for n in row.get("other_failures", [])]
@@ -157,7 +163,7 @@ def patch_chunks_with_resolved_seeds(
     certificate = {
         "schema": "juggler-descent-floor-v1",
         "N0": n_top,
-        "n_from": 2,
+        "n_from": inherited_n_from,
         "starting_values": n_top,
         "odds_walked": sum(row.get("odds_walked", 0) for row in records),
         "total_first_passage_steps": sum(row.get("total_steps", 0) for row in records),
