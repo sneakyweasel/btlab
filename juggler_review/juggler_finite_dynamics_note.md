@@ -1,7 +1,7 @@
 ---
 title: "Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map"
 author: Philippe Cochin
-date: 1 September 2026
+date: 3 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -68,7 +68,14 @@ Rhin's effective measure, excludes every cycle with
 the long regime, where it remains open. The core lemmas are formalized in
 Lean 4; the descent floors and the per-length kill tables are
 independently certified computations, and the paper does not
-claim to be formally verified as a whole.
+claim to be formally verified as a whole. Two companion manuscripts
+use this paper's power envelope and certified floor as inputs: a
+parity-discrepancy paper (depth-4 equidistribution of nested floor
+powers, certificate density \(7/8\)) and a fate-contagion paper, in
+which the floor is the target of a Tao-type reduction and the basin of
+any hypothetical cycle is shown to have logarithmic count
+\(\gg(\log x)^{0.405}\); Section 6.1 records what they add to the cycle
+problem and what they do not.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -380,6 +387,23 @@ natural numbers --- every Goodstein sequence terminates at \(0\)
 --- which cannot be proved in Peano arithmetic [14]. No such
 independence claim is made for the Juggler conjecture, and this
 paper does not study Goodstein sequences.
+
+**Companion manuscripts.** Two later manuscripts by the author
+build on this one and are cited where they bear on the cycle
+problem. Paper B [16] proves parity equidistribution of the nested
+floor powers along the itineraries of \(J\), with power savings,
+completely through depth four for odd-rooted itineraries and for the
+two length-five contractors, giving the certified-descent densities
+\(13/16\) and \(7/8\); its only input from this paper is the
+contraction criterion of Theorem 2.2. Paper C [17] proves that every
+nonempty backward-closed set — in particular the basin of any
+nontrivial cycle, and the set of divergent starts — has logarithmic
+count \(\gg(\log x)^{\lambda}\) for \(\lambda<0.4050\), and reduces the
+Juggler conjecture to a Tao-type almost-all statement whose bounded
+target is the certified floor of Section 5 and whose descent step is
+the power envelope of Theorem 2.2 (`power_bound_word`). Section 6.1
+states precisely what those results add to the cycle problem, and
+what they leave untouched.
 
 The layers of the argument are as follows.
 
@@ -1665,7 +1689,7 @@ short one, because along the convergents the required minimum
 \(n_{\max}(q_k)\) grows quadratically in \(L\). Excluding long
 cycles is a statement about the parity word of a specific orbit
 at depth \(L\), which no estimate in this note or in the
-companion discrepancy manuscript controls. The problem "no
+companion discrepancy manuscript [16] controls. The problem "no
 nontrivial Juggler cycle" is therefore exactly the problem "no
 long Juggler cycle," and it remains open.
 
@@ -2228,16 +2252,102 @@ realizes \(w\). On the hug words at \(L=19,84,1054\) the band
 holds \(11\), \(55\), \(1689\) integers and the realized parity
 depth on it is a fair coin (mean \(1.03\) at \(L=1054\), maximum
 \(8<\log_2 1689\)). No estimate
-here, and none in the companion discrepancy manuscript (whose
-per-depth control stops near depth seven and is averaged over
-starts), addresses a single orbit at that depth. We record this
-as the open problem, not as a program.
+here, and none in the companion discrepancy manuscript [16] (whose
+per-depth control is complete through depth four and covers two
+words of depth five, and is averaged over starts), addresses a
+single orbit at that depth. We record this as the open problem, not
+as a program.
 
 The same pattern --- a piecewise power map, integer rounding,
 and a cycle minimum --- produces a defect-financing obstruction.
 The Juggler-specific content is the interaction of \(x^{3/2}\)
 and \(x^{1/2}\). Analogous questions for other piecewise
 floor-power maps are not taken up here.
+
+### 6.1 What the companion manuscripts add, and what they do not
+
+The results of [16] and [17] postdate the theorems above. They
+change the *context* of the cycle problem in five ways, none of which
+excludes a cycle.
+
+*The envelope becomes a descent step.* Theorem 2.2 bounds the state
+after an itinerary \(w\) by \(J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\).
+In [17] this is used in the other direction: if the exponent walk
+\(u_t=o_t\log_2 3-t\) of a start \(n\in(y,2y]\) reaches
+\(-L(y)\), \(L(y)=\log_2(\log 2y/\log N_0)\), within \(t\) steps, then
+\(J^t(n)\le N_0\), so \(n\) reaches \(1\) by the certified floor. The
+floor of Section 5 is thereby the *target* of a Tao-type reduction: a
+bound \(\#\{n\ \text{odd}\in(y,2y]:\ J^t(n)>N_0\ \forall t\le C\log_2\log y\}\le y(\log y)^{-e}\)
+with \(e>0.595\) implies the whole conjecture, cycles included ([17],
+Theorems 3 and 4). A larger floor lowers \(L(y)\): the certified
+\(3.5\cdot10^8\) against the Lean-verified \(260\) is worth
+\(\log_2(19.67/5.56)=1.82\) units of the walk, which lowers the
+required depth \(C\,L(y)\) by \(35\)–\(38\) letters (\(C=19\) to
+\(21\)) at every scale \(y\). That is all the floor does for the
+asymptotics; it crosses no threshold.
+
+*Cycle basins are contagious.* If a nontrivial cycle \(C\) exists,
+its basin \(B(C)=\{n:\exists k,\ J^k(n)\in C\}\) is backward-closed,
+and [17, Theorem 1] gives \(\sum_{n\in B(C),\,n\le x}1/n\gg(\log x)^{\lambda}\)
+for every \(\lambda<0.4050\): on infinitely many dyadic blocks the
+starts that enter \(C\) have natural density \(\gg(\log y)^{-0.6}\).
+The two constraints do not meet. This paper bounds the *states* of
+\(C\) — minimum above \(3.5\cdot10^8\), period at least \(780239\),
+at least four even steps — and thereby the seed of the basin
+(\(\sum_{x\in C}1/x\le L/\min C\)); contagion bounds the growth of the
+basin from any seed, from below; no inequality in either paper bounds
+a basin from above. A cycle would be rare in its states and common
+in its basin, and neither statement contradicts the other.
+
+*Cycles sit at the critical odd share.* The gap transfer of
+Theorem 4.10 forces \(0<\Lambda=o\log 3-L\log 2\le 2L/(n\log n)\) on a
+cycle with minimum \(n>2L/\log n\), so
+\(o/L=\log 2/\log 3+\Lambda/(L\log 3)\) with
+\(\Lambda/L\le 2/(n\log n)\). The weakest
+hypothesis of the reduction in [17] — the no-momentum form — asks that
+the tilted odd share of the starts still above the floor stay below
+some \(q<\log 2/\log 3=0.6309\), on average over depths; a cycle's
+word is a periodic itinerary that never descends, at *exactly* that
+critical share. The finance-survivor lengths \(176251\), \(301994\),
+\(478245\), \(780239\) are denominators of convergents and
+semiconvergents of \(\log 2/\log 3\) because a periodic non-descending
+word must realize the critical share to within \(2/(n\log n\log 3)\). The
+walk-charge program of Section 5 and the no-momentum hypothesis are
+two views of one boundary — the periodic side and the almost-all
+side of the zero-drift line — and the period bound \(L\ge780239\) is
+the statement that the boundary carries no short periodic word above
+the floor.
+
+*The floor stratifies the failure set.* By backward closure, the
+minimum of the failure set \(F\) (if \(F\ne\emptyset\)) is odd with odd
+image, exactly as the minimum of a cycle is (Theorem 3.2(ii), and the
+run form of Section 3, whose first odd run has length at least two);
+every odd
+failure with even image exceeds \(N_0^{4/3}=2.5\cdot10^{11}\), every
+even failure exceeds \(N_0^{2}=1.2\cdot10^{17}\), and every failure that
+is the image \(\lfloor m^{3/2}\rfloor\) of an odd \(m\) exceeds
+\(N_0^{3/2}=6.5\cdot10^{12}\) ([17, Section 6]). These are the scales
+at which each type of failure — cycle state or divergent start — can
+first appear.
+
+*The floor is a testable target.* Because every \(n\le N_0\) reaches
+\(1\), the statistic "\(J^t(n)\le N_0\) for some \(t\le d\)" is a finite
+computation on exact orbits, and [17, Section 11] reports that for
+random odd starts at \(y=10^{12}\) to \(10^{50}\) the fraction still
+above \(N_0\) after \(d\le40\) steps matches the odd-start fair-coin
+survival within \(3\%\). This is an observation about aggregates; it
+proves nothing about cycles.
+
+What none of this does: exclude a cycle, bound a basin from above, or
+address the parity word of a single orbit at depth \(L\). Paper C
+shows that the termination problem, cycles included, is one
+almost-all statement about parity words at depth \(\asymp\log\log n\);
+Paper B shows that fixed-depth parity control, which its methods
+deliver through depth four, improves the constants of that statement
+and cannot reach it. The cycle problem as posed in this paper — the
+long regime \(L\approx n^{0.64}\), a per-orbit parity statement at
+depth \(L\) — is therefore a special case of the same frontier, seen
+from the periodic side, and remains open.
 
 Lean names are in Appendix A. The computational certificates
 are Propositions 1.3 and 5.1.
@@ -3087,3 +3197,10 @@ statements and code are the responsibility of the author.
     d'irrationalité,” in *Séminaire de Théorie des Nombres, Paris
     1985--86*, Progress in Mathematics 71, Birkhäuser, Boston, 1987,
     155--164.
+16. P. Cochin, “Parity equidistribution of nested floor powers, with
+    descent applications to the Juggler map,” companion manuscript
+    (Paper B), 2026. Repository copy:
+    `docs/theory/juggler_parity_discrepancy_note.md`.
+17. P. Cochin, “Fate contagion in the Juggler map and the almost-all
+    reduction of termination,” companion manuscript (Paper C), 2026.
+    Repository copy: `docs/theory/juggler_fate_almost_all_note.md`.

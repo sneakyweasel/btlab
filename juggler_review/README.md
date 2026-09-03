@@ -41,7 +41,18 @@ https://sneakyweasel.github.io/balanced_ternary/
    census-free window, not extensions of the window theorem.
    Every nontrivial cycle has at least four even letters, hence
    period at least eleven. Finance-survivor lengths through
-   \(10^5\) are supporting material.
+   \(10^5\) are supporting material. Updated 3 September 2026 with
+   the companion context (new Section 6.1; references [16], [17]):
+   the power envelope of Theorem 2.2 is Paper C's descent step and
+   the certified floor is its bounded target; the basin of any
+   nontrivial cycle has logarithmic count \(\gg(\log x)^{0.405}\)
+   (Paper C, Theorem 1) while this paper bounds the cycle's states —
+   the two constraints do not meet; a cycle's word sits at the
+   critical odd share \(\log 2/\log 3\) of Paper C's no-momentum
+   hypothesis (the survivor lengths are convergent and semiconvergent
+   denominators); the floor stratifies the failure set exactly as it
+   does a cycle minimum. Nothing in Section 6.1 excludes a cycle; the
+   theorems and numbers of Sections 2–5 are unchanged.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    level-2 wave bound (Lemma 5.2) and the kernel theorem, complete
@@ -82,7 +93,8 @@ https://sneakyweasel.github.io/balanced_ternary/
    argument labelled a heuristic; a narrowly stated depth-uniformity
    budget. Appendix C (exponent \(0.4922\), \(C\ge 19\)) is
    conditional on the standalone Hypothesis L, the only import from
-   Paper B, with the downstream derivations written out. Three
+   Paper B (now its Theorem 4.12, Section 4.5, still an unrefereed
+   working draft), with the downstream derivations written out. Three
    figures (dependency map, productions, decomposition). Lean exact
    layer; one numerical section, labelled observation. Excludes no
    fate.

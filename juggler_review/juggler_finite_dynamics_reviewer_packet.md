@@ -184,6 +184,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 6) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of the short-certificate remark |
+| Companion context (Section 6.1): envelope as descent step, cycle basins contagious, cycles at the critical odd share, floor stratifies the failure set, floor as testable target | **imports from Paper C** (Theorems 1, 3, 4, Section 6; census OBSERVATION) | context only — excludes no cycle, bounds no basin from above; the convergent/semiconvergent claim for \(176251, 301994, 478245, 780239\) is elementary arithmetic |
 
 ## Claim map — Paper B
 

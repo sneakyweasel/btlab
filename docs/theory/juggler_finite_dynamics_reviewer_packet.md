@@ -1,8 +1,10 @@
-# Juggler reviewer packet (two manuscripts)
+# Juggler reviewer packet (three manuscripts)
 
-Author: Philippe Cochin. Date: 2 September 2026.
+Author: Philippe Cochin. Date: 3 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
-working draft (2 September 2026; certified density \(7/8\)).
+working draft (2 September 2026; certified density \(7/8\));
+Paper C (fate contagion, 3 September 2026) is a first complete draft
+— see its claim map below.
 
 The former single note has been split into two manuscripts:
 
@@ -182,6 +184,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 6) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of the short-certificate remark |
+| Companion context (Section 6.1): envelope as descent step, cycle basins contagious, cycles at the critical odd share, floor stratifies the failure set, floor as testable target | **imports from Paper C** (Theorems 1, 3, 4, Section 6; census OBSERVATION) | context only — excludes no cycle, bounds no basin from above; the convergent/semiconvergent claim for \(176251, 301994, 478245, 780239\) is elementary arithmetic |
 
 ## Claim map — Paper B
 
@@ -208,6 +211,57 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Level-3 kernel cancellation \(K_3(P)\ll P^{1-\delta}\) (Conjecture 7.3) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
 | Shift-averaged \(L^2\) bound (Proposition 7.4) | **EXACT — HUMAN PROOF** | almost-every-shift, square-root times \(\sqrt{\log L}\) in general; no claim at \(\lambda=0\) |
 | Pure amplitude-product model (Conjecture 7.5) | **CONJECTURE** | not claimed; Exp(1) censuses at \(P=10^6\)–\(10^{10}\) |
+| Nested and triple parity discrepancy on sub-dyadic intervals \(Y\ge P^{1/2}\) with a slow twist \(e(\tfrac\ell2n^{9/16})\), \(\lvert\ell\rvert\le P^{1/24}\) (Lemma 4.10, Theorems 4.11–4.12) | **EXACT — HUMAN PROOF** | Steps 1–7 of Theorems 4.4/4.7 with \(Y\) for the number of summands; three absolute terms \(\le P^{7/16}\); twist removed by partial summation after differencing (total variation \(\le0.26P^{-5/16}\)) |
+| \(OOEEE\) production on even blocks, \(\lvert\mathcal O(m')\rvert=\tfrac1{16}\lvert I(m')_{\rm odd}\rvert+O(\lvert I(m')\rvert m'^{-4/27+\varepsilon})\) (Corollary 4.13) | **EXACT — HUMAN PROOF** | nesting bound \(0\le n^{9/16}-v^{1/4}\le n^{-15/16}\); exceptional set \(\ll YP^{-1/16}\) by Erdős–Turán + Kusmin–Landau; Vaaler expansion of the fifth letter; discharges Paper C's Hypothesis L |
+| Audit of Sections 4–6 (Appendix A; `paper_b_audit`) | **COMPUTATIONALLY VERIFIED** (machine layer) + hand re-derivation | exact identities on 360 starts at 60–120 digits; standing estimates on \(P=10^6,10^8,10^{10}\); 75 exponent checks; three corrections changing no statement (Lemma 4.3 proof coefficient \(3/4\); Lemma 3.9 norm \(232\) vs printed \(288\), \(c_7\) unchanged; Lemma 6.2 remainders displayed); not an independent verification |
+| Carry as sawtooth difference; second-difference product rule | **EXACT — LEAN VERIFIED** | `GapCells.lean`: `carry_eq_fract_add_sub_fract`, `second_difference_product_rule` |
+| What the kernel program buys and cannot (Section 7.6) | prose, cites Paper C | fixed-depth results improve constants (\(\lambda^{***}\), certificate densities, Tao constants) and cannot reach the termination frontier (per-depth loss budget \(2^{1/19}\)) |
+
+## Claim map — Paper C
+
+Paper C is
+[juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md):
+*Fate Contagion in the Juggler Map and the Almost-All Reduction of
+Termination* (3 September 2026; revised the same day after a first
+external review). It cites Papers A and B and reproves nothing from
+them; only its Appendix C depends on a statement of Paper B's type,
+imported as the explicit standalone Hypothesis L.
+
+| Claim | Evidence | Scope |
+|---|---|---|
+| Fate classes closed, trichotomy, exclusion (Lemma 2.1) | **EXACT — LEAN VERIFIED** | `FateContagion.lean` |
+| Even block and \(OE\) fiber are exact intervals; cell identity (Lemmas 3.1, 3.2) | **EXACT — LEAN VERIFIED** | `even_block_mem`, `oe_fiber_mem`, `sqrt_sqrt_eq_iff`, `oe_fiber_disjoint` |
+| Sweep lemma, fiber parity \(\ge 1/7\), thin bad fibers (Lemmas 4.1–4.3) | **EXACT — HUMAN PROOF** | elementary; constants explicit; \(m\ge 10^6\) |
+| Block average \(|U(m')|=\tfrac14|I(m')_{\rm odd}|+O(m'^{11/9}\log m')\) (Proposition 4.4) | **EXACT — HUMAN PROOF** | Vaaler + second-derivative test + Kusmin–Landau; not sharp |
+| Recursion lemma (Lemma 5.1) | **EXACT — HUMAN PROOF** | abstract: functional inequality with vanishing errors gives \(g\gg t^{\lambda}\) |
+| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<0.4050\) (Theorem 5.3; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; excludes no fate |
+| Fate contagion, natural density infinitely often (Corollaries 5.4, 5.5) | **EXACT — HUMAN PROOF** | \((\log y)^{\lambda-1}\) on infinitely many dyadic blocks, not all |
+| Odd generation; \(F\) is the \(E\)-forest over odd preimages of \(F\cap S\) (Theorem 6.1; Theorem 2) | **EXACT — LEAN VERIFIED** | `odd_mem_iff`, `nonempty_iff_odd_image_mem` |
+| Exact first-letter decomposition (6.1); free term \(\psi_F\); \(\psi_F\equiv0\iff F=\emptyset\) (Proposition 6.3) | **EXACT — HUMAN PROOF** | \(S\)-fairness defined (Def. 6.2); the walk argument is Remark 6.4, labelled heuristic, not a theorem |
+| Conjecture \(\iff\) log-count \(o((\log x)^\lambda)\) of failures (Corollary 7.1) | **EXACT — HUMAN PROOF** | needs \([1,N_0]\subseteq R\) |
+| Tao-type bound with \(e>1-\lambda^{**}\) \(\Rightarrow\) conjecture; equivalence (Theorems 7.2, 7.3; Theorem 3) | **EXACT — HUMAN PROOF** | via contagion and odd generation; Collatz comparison stated as a structural analogy of growth scales |
+| Envelope descent into the floor (Lemma 8.1) | **EXACT — LEAN VERIFIED** | `reachesOne_of_itinerary_envelope`; uses Paper A's `power_bound_word` |
+| Chernoff count of bad words, odd-start share (Lemma 8.2) | **EXACT — HUMAN PROOF** | \(e(19)=0.527\), \(e(21)=0.621\) |
+| \(\mathrm H(C,A)\Rightarrow\) Tao-type bound; \(C\ge 21\) unconditional, \(C\ge 19\) under Appendix C (Theorem 8.3, Corollary 8.4) | **EXACT — HUMAN PROOF** | conditional; fair share \(2^{-(d-1)}y/2\) |
+| One-sided form (Theorem 9.1), pressure and no-momentum forms (Theorem 9.2, Proposition 9.3) | **EXACT — HUMAN PROOF** | conditional; Azuma / exponential Markov; stopping at the floor essential |
+| What the weakest form does not need; bounded-depth barrier (Section 9.3) | **EXACT — HUMAN PROOF** | fair-to-depth-\(k\)-then-all-\(O\) measure; intermediate forms are **REPARAMETERIZATION** |
+| Free term = infinite-depth live mass; duality; critical exponent \(0.5073\) (Proposition 10.1, Corollary 10.2; Theorem 5) | **EXACT — HUMAN PROOF** / **REPARAMETERIZATION** | exact map cannot replace contagion |
+| Depth-uniformity budget \(cC<1\) (Proposition 10.3) | **EXACT — HUMAN PROOF** | narrow by design: methods whose only error term decays like \(2^{-cd}\), used through the per-cylinder count |
+| Hypothesis L (localized twisted triple discrepancy), Appendix C | hypothesis in Paper C; **EXACT — HUMAN PROOF** in Paper B (Theorem 4.12) | Paper C relies only on the statement; Paper B remains a working draft |
+| \(OOEEE\) production and \(\lambda^{***}=0.4922\) from Hypothesis L (Lemmas C.1–C.3, Proposition C.4, Theorem C.5) | **EXACT — HUMAN PROOF**, conditional on Hypothesis L | nesting, exceptional set (Erdős–Turán + Kusmin–Landau), Vaaler expansion written out |
+| Fiber/block/closure, survival and pressure experiments (Section 11) | **OBSERVATION** / **COMPUTATIONALLY VERIFIED** (closure to \(10^9\)) | prove nothing; one table, one paragraph |
+
+Falsifiers for Paper C: a nonempty backward-closed set with
+\(\sum_{n\in A,n\le x}1/n=o((\log x)^{0.40})\); a good fiber
+(\(m\ge 10^6\)) with fewer than \(H_m/7\) even images; an even block
+\(I(m')\) with \(|U(m')|\) below the main term by more than
+\(C_0m'^{11/9}\log m'\); an odd \(n\ge 3\) with
+\(n\in F\not\ni\lfloor n^{3/2}\rfloor\); a start whose word reaches
+\(u_t\le -L(y)\) without entering \([1,N_0]\); a word measure fair to
+depth \(k\) and all-\(O\) afterwards for which the reduction's
+argument still yields the bound (would refute Section 9.3(e)); an
+odd \(n\ge3\) with \(n^{9/16}-\lfloor\lfloor n^{3/2}\rfloor^{3/2}\rfloor^{1/4}>n^{-15/16}\)
+(would refute Lemma C.1).
 
 ## Quantifier checks
 
