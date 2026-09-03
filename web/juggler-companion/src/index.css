@@ -89,6 +89,7 @@ button.bg-odd {
   font-family: var(--font-serif);
   font-size: 18px;
   text-anchor: middle;
+  cursor: pointer;
 }
 
 .stem-cycle-note {

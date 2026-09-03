@@ -19,7 +19,7 @@ import {
   type CycleMinShape,
   type NecklaceFill,
 } from "../juggler/itinerary";
-import { CycleLollipop } from "../visuals/CycleLollipop";
+import { CycleLollipop, JoinRotateControls } from "../visuals/CycleLollipop";
 import { CycleNecklace } from "../visuals/CycleNecklace";
 import { OddEvenRunStrip } from "../visuals/OddEvenRunStrip";
 import {
@@ -387,45 +387,42 @@ export function CycleTourWidget() {
         clearDecision();
       }}
     >
-      <p className="text-sm text-muted">
-        No nontrivial cycle is known. The balloon is CycleMin geometry,
-        not a realized loop.         Join left/right walks the stem around the
-        six sure letters. Necklace rotate changes the CycleMin cut.
-      </p>
-      <div className="flex flex-wrap items-center gap-1.5">
-        <span className="text-xs uppercase tracking-wide text-muted">Stem</span>
-        {(
-          [
-            ["empty", "Empty"],
-            ["unknownSlot", "Unknown ≥0"],
-            ["optionalLaunch", "Optional OO"],
-          ] as const
-        ).map(([mode, label]) => (
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="flex items-center gap-2">
+          <span className="text-xs uppercase tracking-wide text-muted">Stem</span>
           <button
-            key={mode}
             type="button"
-            className={`rounded-full px-2.5 py-0.5 text-sm ${
-              stemMode === mode
-                ? "bg-deep text-card"
-                : "border border-line bg-card text-ink"
+            role="switch"
+            aria-checked={stemMode !== "empty"}
+            aria-label="Stem"
+            className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+              stemMode !== "empty" ? "bg-deep" : "border border-line bg-card"
             }`}
             onClick={() => {
-              setStemMode(mode);
-              chooseDecision(mode === "empty" ? "empty-string" : "string-oo");
+              const next = stemMode === "empty" ? "unknownSlot" : "empty";
+              setStemMode(next);
+              chooseDecision(next === "empty" ? "empty-string" : "string-grey");
             }}
           >
-            {label}
+            <span
+              className={`inline-block h-4 w-4 rounded-full transition-transform ${
+                stemMode !== "empty"
+                  ? "translate-x-6 bg-card"
+                  : "translate-x-1 bg-deep"
+              }`}
+            />
           </button>
-        ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xs uppercase tracking-wide text-muted">Rotate</span>
+          <JoinRotateControls joinAt={joinIndex} onJoinIndex={setJoin} />
+        </div>
       </div>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
           focus={decision?.focus}
           joinIndex={joinIndex}
-          word={word.balloonWord}
-          fill={word.balloonFill}
           stemMode={stemMode}
-          onJoinIndex={setJoin}
           onSelectDecision={toggleDecision}
           onClearFocus={clearDecision}
         />

@@ -232,13 +232,13 @@ export function joinFigure(site: SureLetterSite, index = siteIndex(site)): JoinF
   const copy =
     site === "extraLetter"
       ? {
-          arrivalWhy: "Not a sure-letter stop on this schema.",
-          cycleParent: "the unique cyclic predecessor of this vertex",
-          stem: "any other parent",
-          allowed: "A realized extra letter can be a first meeting.",
-          forbidden: ["interval slots that may be empty"],
-          lean: "every_orbit_index_is_join_site, cycle_in_edge_unique_at, join_extraLetter_depends",
-        }
+        arrivalWhy: "Not a sure-letter stop on this schema.",
+        cycleParent: "the unique cyclic predecessor of this vertex",
+        stem: "any other parent",
+        allowed: "A realized extra letter can be a first meeting.",
+        forbidden: ["interval slots that may be empty"],
+        lean: "every_orbit_index_is_join_site, cycle_in_edge_unique_at, join_extraLetter_depends",
+      }
       : SITE_COPY[site];
   return {
     site,
@@ -270,7 +270,7 @@ export const JOIN_INTERVALS_NOT_STOPS =
   "Interval slots may be empty, so they are not join stops. every_orbit_index_is_join_site is about realized vertices.";
 
 export const JOIN_VS_WORD_ROTATION =
-  "Join left/right walks the stem around sure letters. Necklace rotate changes the CycleMin cut. Cuts that start E or OE are not CycleMin.";
+  "Cuts that start E or OE are not CycleMin.";
 
 export const FIGURE_BANNER =
   "No nontrivial cycle is known. This is CycleMin geometry, not a realized loop. The only compiled cycle is {1}.";

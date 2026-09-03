@@ -261,6 +261,25 @@ export function intervalBoundLabel(interval: BalloonInterval): string {
     : `${interval.min} or ${interval.max}`;
 }
 
+/** Leftover count, not a letter. aₑ is the other kind. */
+export function intervalIsMass(interval: BalloonInterval): boolean {
+  return interval.kind !== "lastZeroOrOne";
+}
+
+/** Ring-facing slot name. Not the lattice family index. */
+export function intervalSlotName(interval: BalloonInterval): string {
+  switch (interval.kind) {
+    case "a1Extras":
+      return "a₁";
+    case "middle":
+      return "a∗";
+    case "extraEven":
+      return "e₊";
+    case "lastZeroOrOne":
+      return "aₑ";
+  }
+}
+
 /** Known parity, unknown count. Not a sure letter. */
 export function intervalCountBead(interval: BalloonInterval): IdealBead {
   return {

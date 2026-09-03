@@ -76,10 +76,13 @@ export const IdealDecisionList = memo(function IdealDecisionList({
   onSelect: (id: string | null) => void;
 }) {
   return (
-    <div className="rounded-xl border border-line bg-paper/70 px-3 py-3">
-      <p className="text-xs uppercase tracking-wide text-muted">
+    <details
+      className="rounded-xl border border-line bg-paper/70 px-3 py-3"
+      data-keep-focus
+    >
+      <summary className="cursor-pointer text-xs uppercase tracking-wide text-muted">
         Each decision, with its lemma
-      </p>
+      </summary>
       <p className="mt-1 text-sm text-muted">
         Theorem is forced. Optional stem is one legal first visit. Leftover
         is a named shape that still does not close. Off-figure was harvested
@@ -127,7 +130,7 @@ export const IdealDecisionList = memo(function IdealDecisionList({
           </section>
         ))}
       </div>
-    </div>
+    </details>
   );
 });
 

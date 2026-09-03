@@ -238,6 +238,11 @@ export function formatOddEvenRuns(runs: readonly number[]): string {
   return `[${runs.join(", ")}]`;
 }
 
+/** Four-slot names as painted on the ring. */
+export function formatBalloonSlots(fill: NecklaceFill): string {
+  return `a₁ = ${2 + fill.a1Extras}, a∗ = ${fill.middleOdds}, e₊ = ${fill.extraEvens}, aₑ = ${fill.lastOdds}`;
+}
+
 /** Display form `O^3 E O^2 E E` of a Lean run list. */
 export function formatRunWord(runs: readonly number[]): string {
   return runs.map((odds) => (odds === 0 ? "E" : `O^${odds} E`)).join(" ");

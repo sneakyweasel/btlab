@@ -17,6 +17,8 @@ import {
   idealJoinSpots,
   intervalBoundLabel,
   intervalCountBead,
+  intervalIsMass,
+  intervalSlotName,
   packCountRuns,
   SURE_LINKS,
   stepIdealJoin,
@@ -44,6 +46,7 @@ import {
   assembleFillCounts,
   assembleOddEvenRuns,
   cycleMinShape,
+  formatBalloonSlots,
   formatOddEvenRuns,
   formatRunWord,
   formatRunWordTex,
@@ -204,6 +207,8 @@ describe("assembleFill identities", () => {
     const o6 = { a1Extras: 4, middleOdds: 0, extraEvens: 0, lastOdds: 1 };
     expect(assembleFill(o7)).toBe("OOOOOOOEEEE");
     expect(assembleFill(o6)).toBe("OOOOOOEEEOE");
+    expect(formatBalloonSlots(o7)).toBe("a₁ = 7, a∗ = 0, e₊ = 0, aₑ = 0");
+    expect(formatBalloonSlots(o6)).toBe("a₁ = 6, a∗ = 0, e₊ = 0, aₑ = 1");
     expect(tryAssembleFill("OOOOOOOEEEE")).toEqual(o7);
     expect(tryAssembleFill("OOOOOOEEEOE")).toEqual(o6);
     expect(assembleFillCounts(o7)).toEqual({
@@ -315,6 +320,18 @@ describe("idealized cycle", () => {
     expect(intervalBoundLabel(IDEAL_BALLOON_INTERVALS[3])).toBe("0 or 1");
     expect(IDEAL_BALLOON_INTERVALS[3]?.max).toBe(1);
     expect(IDEAL_BALLOON_INTERVALS[2]?.max).toBeNull();
+    expect(IDEAL_BALLOON_INTERVALS.map(intervalSlotName)).toEqual([
+      "a₁",
+      "a∗",
+      "e₊",
+      "aₑ",
+    ]);
+    expect(IDEAL_BALLOON_INTERVALS.map(intervalIsMass)).toEqual([
+      true,
+      true,
+      true,
+      false,
+    ]);
     expect(intervalCountBead(IDEAL_BALLOON_INTERVALS[0]!)).toEqual({
       letter: "O",
       tone: "count",
