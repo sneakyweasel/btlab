@@ -215,9 +215,11 @@ Proposition 7.4 says nothing about the deterministic shift).
 
 Paper C is
 [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md):
-*Fate Contagion and the Juggler Conjecture as an Almost-All Statement*
-(3 September 2026). It cites Papers A and B and reproves nothing from
-them; only its Section 10 depends on Paper B.
+*Fate Contagion in the Juggler Map and the Almost-All Reduction of
+Termination* (3 September 2026; revised the same day after a first
+external review). It cites Papers A and B and reproves nothing from
+them; only its Appendix C depends on a statement of Paper B's type,
+imported as the explicit standalone Hypothesis L.
 
 | Claim | Evidence | Scope |
 |---|---|---|
@@ -225,20 +227,23 @@ them; only its Section 10 depends on Paper B.
 | Even block and \(OE\) fiber are exact intervals; cell identity (Lemmas 3.1, 3.2) | **EXACT — LEAN VERIFIED** | `even_block_mem`, `oe_fiber_mem`, `sqrt_sqrt_eq_iff`, `oe_fiber_disjoint` |
 | Sweep lemma, fiber parity \(\ge 1/7\), thin bad fibers (Lemmas 4.1–4.3) | **EXACT — HUMAN PROOF** | elementary; constants explicit; \(m\ge 10^6\) |
 | Block average \(|U(m')|=\tfrac14|I(m')_{\rm odd}|+O(m'^{11/9}\log m')\) (Proposition 4.4) | **EXACT — HUMAN PROOF** | Vaaler + second-derivative test + Kusmin–Landau; not sharp |
-| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<0.4050\) (Theorem 5.2; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; excludes no fate |
-| Fate contagion, natural density infinitely often (Corollaries 5.3, 5.4) | **EXACT — HUMAN PROOF** | \((\log y)^{\lambda-1}\) on infinitely many dyadic blocks, not all |
-| Conjecture \(\iff\) log-count \(o((\log x)^\lambda)\) of failures (Corollary 5.5) | **EXACT — HUMAN PROOF** | needs \([1,N_0]\subseteq R\) |
-| Odd generation; \(F\) is the \(E\)-forest over odd preimages of \(F\cap S\) (Theorem 6.1) | **EXACT — LEAN VERIFIED** | `odd_mem_iff`, `nonempty_iff_odd_image_mem` |
-| Exact first-letter decomposition (6.1); single free term \(\psi_F\) | **EXACT — HUMAN PROOF** | fiber-weighted density \(\varphi^{\rm fib}\); qualitative equivalence with \(S\)-fairness |
-| Envelope descent into the floor (Lemma 7.1) | **EXACT — LEAN VERIFIED** | `reachesOne_of_itinerary_envelope`; uses Paper A's `power_bound_word` |
-| Chernoff count of bad words, odd-start share (Lemma 7.2) | **EXACT — HUMAN PROOF** | \(e(19)=0.527\), \(e(21)=0.621\) |
-| \(\mathrm H(C,A)\Rightarrow\) Tao-type bound (Theorem 7.3) | **EXACT — HUMAN PROOF** | conditional; fair share \(2^{-(d-1)}y/2\) |
-| Tao-type bound with \(e>1-\lambda^{**}\) \(\Rightarrow\) conjecture; equivalence (Theorems 7.4, 7.5; Theorem 2) | **EXACT — HUMAN PROOF** | via contagion and odd generation; no Collatz analogue |
-| One-sided form (Theorem 8.1), pressure and no-momentum forms (Theorem 8.2, Proposition 8.3) | **EXACT — HUMAN PROOF** | conditional; Azuma / exponential Markov; stopping at the floor essential |
-| What the weakest form does not need; bounded-depth barrier (Section 8.3) | **EXACT — HUMAN PROOF** | fair-to-depth-\(k\)-then-all-\(O\) measure; intermediate forms are **REPARAMETERIZATION** |
-| Free term = infinite-depth live mass; duality; critical exponent \(0.5073\); depth budget \(2^{1/C}\) (Section 9) | **EXACT — HUMAN PROOF** / **REPARAMETERIZATION** | exact map cannot replace contagion |
-| Localized triple discrepancy and \(OOEEE\) production; \(\lambda^{***}=0.4922\) (Section 10) | **EXACT — HUMAN PROOF**, conditional on Paper B | proof sketches; modification list in the laboratory note |
-| Fiber/block/closure, Tao and pressure censuses (Section 11) | **OBSERVATION** / **COMPUTATIONALLY VERIFIED** (closure to \(10^9\)) | prove nothing; labelled |
+| Recursion lemma (Lemma 5.1) | **EXACT — HUMAN PROOF** | abstract: functional inequality with vanishing errors gives \(g\gg t^{\lambda}\) |
+| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<0.4050\) (Theorem 5.3; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; excludes no fate |
+| Fate contagion, natural density infinitely often (Corollaries 5.4, 5.5) | **EXACT — HUMAN PROOF** | \((\log y)^{\lambda-1}\) on infinitely many dyadic blocks, not all |
+| Odd generation; \(F\) is the \(E\)-forest over odd preimages of \(F\cap S\) (Theorem 6.1; Theorem 2) | **EXACT — LEAN VERIFIED** | `odd_mem_iff`, `nonempty_iff_odd_image_mem` |
+| Exact first-letter decomposition (6.1); free term \(\psi_F\); \(\psi_F\equiv0\iff F=\emptyset\) (Proposition 6.3) | **EXACT — HUMAN PROOF** | \(S\)-fairness defined (Def. 6.2); the walk argument is Remark 6.4, labelled heuristic, not a theorem |
+| Conjecture \(\iff\) log-count \(o((\log x)^\lambda)\) of failures (Corollary 7.1) | **EXACT — HUMAN PROOF** | needs \([1,N_0]\subseteq R\) |
+| Tao-type bound with \(e>1-\lambda^{**}\) \(\Rightarrow\) conjecture; equivalence (Theorems 7.2, 7.3; Theorem 3) | **EXACT — HUMAN PROOF** | via contagion and odd generation; Collatz comparison stated as a structural analogy of growth scales |
+| Envelope descent into the floor (Lemma 8.1) | **EXACT — LEAN VERIFIED** | `reachesOne_of_itinerary_envelope`; uses Paper A's `power_bound_word` |
+| Chernoff count of bad words, odd-start share (Lemma 8.2) | **EXACT — HUMAN PROOF** | \(e(19)=0.527\), \(e(21)=0.621\) |
+| \(\mathrm H(C,A)\Rightarrow\) Tao-type bound; \(C\ge 21\) unconditional, \(C\ge 19\) under Appendix C (Theorem 8.3, Corollary 8.4) | **EXACT — HUMAN PROOF** | conditional; fair share \(2^{-(d-1)}y/2\) |
+| One-sided form (Theorem 9.1), pressure and no-momentum forms (Theorem 9.2, Proposition 9.3) | **EXACT — HUMAN PROOF** | conditional; Azuma / exponential Markov; stopping at the floor essential |
+| What the weakest form does not need; bounded-depth barrier (Section 9.3) | **EXACT — HUMAN PROOF** | fair-to-depth-\(k\)-then-all-\(O\) measure; intermediate forms are **REPARAMETERIZATION** |
+| Free term = infinite-depth live mass; duality; critical exponent \(0.5073\) (Proposition 10.1, Corollary 10.2; Theorem 5) | **EXACT — HUMAN PROOF** / **REPARAMETERIZATION** | exact map cannot replace contagion |
+| Depth-uniformity budget \(cC<1\) (Proposition 10.3) | **EXACT — HUMAN PROOF** | narrow by design: methods whose only error term decays like \(2^{-cd}\), used through the per-cylinder count |
+| Hypothesis L (localized twisted triple discrepancy), Appendix C | **CONJECTURE** (hypothesis) | dyadic untwisted case is Paper B Theorem 4.7; localization and twist not proved; status stated |
+| \(OOEEE\) production and \(\lambda^{***}=0.4922\) from Hypothesis L (Lemmas C.1–C.3, Proposition C.4, Theorem C.5) | **EXACT — HUMAN PROOF**, conditional on Hypothesis L | nesting, exceptional set (Erdős–Turán + Kusmin–Landau), Vaaler expansion written out |
+| Fiber/block/closure, survival and pressure experiments (Section 11) | **OBSERVATION** / **COMPUTATIONALLY VERIFIED** (closure to \(10^9\)) | prove nothing; one table, one paragraph |
 
 Falsifiers for Paper C: a nonempty backward-closed set with
 \(\sum_{n\in A,n\le x}1/n=o((\log x)^{0.40})\); a good fiber
@@ -248,7 +253,9 @@ Falsifiers for Paper C: a nonempty backward-closed set with
 \(n\in F\not\ni\lfloor n^{3/2}\rfloor\); a start whose word reaches
 \(u_t\le -L(y)\) without entering \([1,N_0]\); a word measure fair to
 depth \(k\) and all-\(O\) afterwards for which the reduction's
-argument still yields the bound (would refute Section 8.3(e)).
+argument still yields the bound (would refute Section 9.3(e)); an
+odd \(n\ge3\) with \(n^{9/16}-\lfloor\lfloor n^{3/2}\rfloor^{3/2}\rfloor^{1/4}>n^{-15/16}\)
+(would refute Lemma C.1).
 
 ## Quantifier checks
 

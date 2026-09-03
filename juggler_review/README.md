@@ -52,21 +52,28 @@ https://sneakyweasel.github.io/balanced_ternary/
    Lemma 6.2 / Theorem 6.3 / Corollary 6.4). Length 7/8 remain
    laboratory conjectures.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)
-   — **Paper C**: *Fate Contagion and the Juggler Conjecture as an
-   Almost-All Statement*. Every nonempty backward-closed set
-   (every realized fate class: reaching \(1\), a cycle basin,
-   divergence) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for
-   \(\lambda<0.4050\) (elementary: even blocks are intervals, \(OE\)
-   fibers sweep parity). Consequences: the conjecture is equivalent
-   to a Tao-type almost-all bound with bounded target and rate
-   \((\log y)^{-e}\), \(e>0.595\); that bound follows from parity
-   control on itinerary cylinders of depth \(C\log_2\log y\), in a
-   hierarchy of forms down to a single exponential moment of the odd
-   count on live starts; the exact first-letter decomposition has one
-   free term, the infinite-depth live mass; a depth-uniformity budget
-   for analytic attacks. Section 10 (exponent \(0.4922\)) is
-   conditional on Paper B. Lean exact layer; censuses labelled as
-   observations. Excludes no fate.
+   — **Paper C**: *Fate Contagion in the Juggler Map and the
+   Almost-All Reduction of Termination* (revised 3 September 2026
+   after a first external review). Theorem 1: every nonempty
+   backward-closed set (every realized fate class: reaching \(1\), a
+   cycle basin, divergence) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\)
+   for \(\lambda<0.4050\) (elementary: even blocks are intervals,
+   \(OE\) fibers sweep parity; abstract recursion lemma). Theorem 2:
+   odd generation (Lean). Theorem 3: the conjecture is equivalent to
+   a Tao-type almost-all bound with bounded target and rate
+   \((\log y)^{-e}\), \(e>0.595\). Theorem 4: that bound follows from
+   parity control on itinerary cylinders of depth \(C\log_2\log y\),
+   in a hierarchy of forms down to a single exponential moment of the
+   odd count on live starts (\(C\ge 21\) unconditionally). Theorem 5:
+   the exact first-letter decomposition has one free term, the
+   infinite-depth live mass; \(S\)-fairness is defined and the walk
+   argument labelled a heuristic; a narrowly stated depth-uniformity
+   budget. Appendix C (exponent \(0.4922\), \(C\ge 19\)) is
+   conditional on the standalone Hypothesis L, the only import from
+   Paper B, with the downstream derivations written out. Three
+   figures (dependency map, productions, decomposition). Lean exact
+   layer; one numerical section, labelled observation. Excludes no
+   fate.
 4. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
    — claim map and falsifiers for the three papers. Optional for the
    proofs.

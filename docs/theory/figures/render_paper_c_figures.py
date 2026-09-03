@@ -1,16 +1,18 @@
 """Figures for Paper C (docs/theory/juggler_fate_almost_all_note.md).
 
-Writes three PNG files to juggler_review/figures/:
+Writes three PNG files to docs/theory/figures/ (the source of truth, next to this script) and
+mirrors them to juggler_review/figures/:
   paper_c_productions.png   - the two exact productions (even block, OE fiber with its parity sweep)
   paper_c_decomposition.png - the first-letter decomposition of a two-way closed set on (sqrt x, x]
   paper_c_dependencies.png  - logical dependency map of the paper
 
-Run:  python tools/paper_c_figures.py
+Run:  python docs/theory/figures/render_paper_c_figures.py
 """
 
 from __future__ import annotations
 
 import math
+import shutil
 from pathlib import Path
 
 import matplotlib
@@ -19,7 +21,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch  # noqa: E402
 
-OUT = Path(__file__).resolve().parents[1] / "juggler_review" / "figures"
+OUT = Path(__file__).resolve().parent
+MIRROR = OUT.parents[2] / "juggler_review" / "figures"
 
 
 def isqrt_floor_pow32(n: int) -> int:
@@ -208,7 +211,9 @@ def main() -> None:
     fig_productions()
     fig_decomposition()
     fig_dependencies()
+    MIRROR.mkdir(parents=True, exist_ok=True)
     for name in ("paper_c_productions.png", "paper_c_decomposition.png", "paper_c_dependencies.png"):
+        shutil.copyfile(OUT / name, MIRROR / name)
         print(OUT / name)
 
 
