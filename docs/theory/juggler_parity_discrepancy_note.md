@@ -3452,10 +3452,10 @@ preimage intervals of the landing points — intervals of length
 \(x^{1-e_w}\), which is why Section 4.5 localizes Theorems 4.4 and 4.7
 to sub-dyadic intervals. Through Corollary 4.13 the \(OOEEE\)
 production on even blocks raises the contagion exponent from
-\(\lambda^{**}=0.4050\) to \(\lambda^{***}=0.4922\), the rate threshold
-of the almost-all reformulation from \(0.595\) to \(0.508\), and the
-least depth constant of its conditional theorems from \(21\) to
-\(19\). A localized form of the kernel theorem (Theorem 5.3 on
+\(\lambda^{**}=0.4480\) to \(\lambda^{***}=0.5392\), the rate threshold
+of the almost-all reformulation from \(0.552\) to \(0.461\), and the
+least depth constant of its conditional theorems from \(20\) to
+\(18\). A localized form of the kernel theorem (Theorem 5.3 on
 intervals of length \(P^{23/32}\), which we have not proved; the
 scaling architecture is the same, with per-window absolute costs at
 most \(P^{7/16}\)) would add the words \(OOOEEE\) and \(OOEOEE\) and

@@ -1,11 +1,31 @@
 {
-  "git_commit": "d0275b0b1d0537c407d8e578eeb73853c5ff71da",
+  "git_commit": "c6188f9ec47a2f09938c2dae9384bec06a4dc98a",
   "classification": "OE_FIBER_PAIRING_CONSISTENT",
   "synthetic": {
     "n_ok": 318,
     "n_fail": 0,
-    "worst": null,
+    "worst": {
+      "a": 0.3333333333333333,
+      "eta": 0.016666666666666666,
+      "H": 40,
+      "x0": 0.0,
+      "n_lo": 24,
+      "n_hi": 16,
+      "scarcer": 16,
+      "proportion": 0.4,
+      "margin": 4.666666666666666
+    },
     "pairing_slack": 2.0
+  },
+  "adversarial_three_one": {
+    "H": 85,
+    "n_lo": 64,
+    "n_hi": 21,
+    "proportion": 0.24705882352941178,
+    "pairing_ok": false,
+    "steps_in_lemma_31": true,
+    "monotone": false,
+    "b_over_a": 1.0413223140495895
   },
   "fibers": {
     "spot_1e6": {
@@ -315,6 +335,7 @@
   "lambda_roots": {
     "block_average_plus_sweep": 0.40505943427374547,
     "block_average_plus_third": 0.44801700122730537,
+    "block_third_plus_ooeee": 0.5391796859705966,
     "depth_two_ideal": 0.4926579801153874
   }
 }

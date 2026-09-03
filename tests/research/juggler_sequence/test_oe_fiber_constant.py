@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from research.juggler_sequence.fate_contagion import fiber_stats, lambda_root
 from research.juggler_sequence.oe_fiber_constant import (
     PAIRING_SLACK,
@@ -57,3 +59,30 @@ def test_synthetic_and_spot_census_obey_pairing() -> None:
     assert spot["n_below_pairing"] == 0
     assert spot["min_scarcer_on_good"] > 0.32
     assert abs(result["lambda_roots"]["block_average_plus_third"] - 0.448) < 5e-3
+
+
+def test_dossier_headings_and_promote() -> None:
+    root = Path(__file__).resolve().parents[3]
+    dossier = (root / "docs" / "problems" / "juggler_oe_fiber_constant.md").read_text(
+        encoding="utf-8"
+    )
+    for heading in (
+        "## Problem",
+        "## Exact statement",
+        "## Current literature",
+        "## Branch budget",
+        "## Balanced-ternary formulation",
+        "## Why BT may be relevant",
+        "## Candidate operations / invariants",
+        "## Experiments",
+        "## Conjectures",
+        "## Counterexamples",
+        "## Formalization",
+        "## Results",
+        "## Open questions",
+        "## Decision",
+        "## Publication assessment",
+    ):
+        assert heading in dossier
+    decision = dossier.split("## Decision", 1)[1].split("## ", 1)[0]
+    assert "PROMOTE" in decision

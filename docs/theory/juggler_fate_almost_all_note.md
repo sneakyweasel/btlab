@@ -183,8 +183,8 @@ and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e
 \(L(y)=\log_2(\log 2y/\log N_0)\), \(d(y)=\lceil CL(y)\rceil\),
 \(p_C=(1-1/C)/\log_2 3\) and \(e(C)=C\,D(p_C\|\tfrac12)/\ln 2\). Each of
 the following hypotheses implies (iii) of Theorem 3 with
-\(e=e(C)-\varepsilon\), hence the conjecture for \(C\ge 21\)
-(unconditionally; \(C\ge 19\) under the conditional Appendix C):
+\(e=e(C)-\varepsilon\), hence the conjecture for \(C\ge 20\)
+(unconditionally; \(C\ge 18\) under the conditional Appendix C):
 
 (a) *cylinder form* \(\mathrm H(C,A)\): no \(O\)-rooted itinerary
 cylinder of depth \(d(y)\) exceeds its fair share \(2^{-(d-1)}y/2\)
@@ -194,7 +194,7 @@ among odd starts by more than \(y(\log y)^{-A}\), \(A>C+e(C)\)
 (b) *one-sided form* \(\mathrm H_q(C,A)\): every cylinder of depth
 \(1\le t<d(y)\) sends at most a fraction \(q<\log 2/\log 3\) of its
 members, plus \(y(\log y)^{-A}\), to an odd next state (Theorem 9.1;
-\(C\ge 46\) at \(q=0.55\));
+\(C\ge 44\) at \(q=0.55\));
 
 (c) *pressure form* \(\mathrm P_\theta(C)\):
 \(\frac1N\sum_{n\ \mathrm{odd},\ \tau(n)>d}e^{\theta o_d(n)}\le(\tfrac12(1+e^{\theta}))^{d}e^{o(d)}\)
@@ -554,8 +554,9 @@ is at most \((0.882u^{2/3}+2)(48\cdot 3^{1/3}+2)\le 63\,u^{2/3}\) for
 
 ### 4.2 The block average
 
-The elementary bound \(G_m\ge H_m/7\) is far from the truth: in the
-numerical experiments of Section 11 the mean of \(G_m/H_m\) is
+The adversarial sweep \(G_m\ge H_m/7\) is not the fiber bound: Lemma
+4.1′ gives the monotone floor \(H_m/3-2\). In the numerical
+experiments of Section 11 the mean of \(G_m/H_m\) is
 \(\tfrac12\) and the minimum on good fibers is near \(\tfrac13\). When
 the members of \(A\) come in even blocks — as the \(E\)-produced part
 of \(A\) always does — the fibers can be averaged over the block, and
@@ -929,9 +930,9 @@ members split by first letters into three exact pieces (Figure 3):
   of log-mass \(\ell_A(x^{1/4},\sqrt x]+O(x^{-1/4})\) (Lemma 3.1);
 - the **\(OE\)-type** odd members (\(\lfloor n^{3/2}\rfloor\) even),
   \(=\bigsqcup_{m\in A}\{n\in\Phi(m):\lfloor n^{3/2}\rfloor\ \text{even}\}\)
-  (Lemma 3.2), of log-mass between \(\tfrac2{21}\) and \(\tfrac47\)
+  (Lemma 3.2),   of log-mass between \(\tfrac29\) and \(\tfrac49\)
   times \(\ell_A(x^{3/8},x^{3/4}]\) on good fibers (Lemma 4.2,
-  two-sided) and \(\tfrac13(1+o(1))\) times it on \(E\)-blocks
+  two-sided pairing) and \(\tfrac13(1+o(1))\) times it on \(E\)-blocks
   (Proposition 4.4);
 - the **\(OO\)-type** odd members (\(\lfloor n^{3/2}\rfloor\) odd),
   \(=\) the odd preimages of \(A\cap S_{\rm odd}\cap(x^{3/4},x^{3/2}]\),
@@ -997,8 +998,8 @@ the harmonic inequality of a random walk on \(\log t\) with steps
 that the boundary condition \(\varphi_F=0\) below \(\log N_0\) would
 force \(\varphi_F\equiv 0\). None of the three conditions is available
 with the constants proved here: the fiber weights are only known to
-lie in \([\tfrac27,\tfrac87]\), so the coefficients of the inequality
-can sum to \(\tfrac12+\tfrac27+\tfrac14=1.036>1\), and the boundary
+lie in \([\tfrac23,\tfrac43]\), so the coefficients of the inequality
+can sum to \(\tfrac12+\tfrac13+\tfrac14=\tfrac{13}{12}>1\), and the boundary
 error \(O(e^{-t/4}/t)\) is not zero at the scales just above the floor
 where the walk exits. We therefore do not claim that \(S\)-fairness
 implies the conjecture. What is exact is Proposition 6.3; what is
@@ -1012,7 +1013,7 @@ Paper A [11] constrains the fate Lachesis from the inside: finance and
 the walk charge bound the *states* of a hypothetical cycle (minimum
 \(>3.5\cdot 10^8\), period \(\ge 780239\)). Theorem 1 constrains the
 basin: if the cycle exists, its basin is a two-way closed class with
-the cycle's states as seeds and log-count \(\gg(\log x)^{0.405}\). The
+the cycle's states as seeds and log-count \(\gg(\log x)^{0.448}\). The
 two do not meet: finance bounds the seed, contagion the growth from
 the seed, and no inequality bounds a basin from above. Paper B [12]
 controls the descending branches of (6.1) — the fairness of the
@@ -1217,10 +1218,10 @@ using \(2^{d-1}\le 2^{CL}\). The second term is
 \(\square\)
 
 **Corollary 8.4 (the conjecture from a cylinder bound).** If
-\(\mathrm H(C,A)\) holds for some \(C\ge 21\) and \(A>C+e(C)\), then
+\(\mathrm H(C,A)\) holds for some \(C\ge 20\) and \(A>C+e(C)\), then
 every positive integer reaches \(1\). Under the conditional exponent
 \(\lambda^{***}\) of Appendix C the same conclusion holds for
-\(C\ge 19\).
+\(C\ge 18\).
 
 *Proof.* Theorem 8.3 gives the hypothesis of Theorem 7.2 with
 \(e=e(C)-\varepsilon\ge e(20)-\varepsilon=0.574-\varepsilon>0.5520\);
@@ -1229,7 +1230,9 @@ with \(\lambda^{***}\) the threshold is \(0.4608<e(18)=0.480\).
 
 ### 8.4 Constants
 
-With the certified floor \(N_0=3.5\cdot 10^8\) and \(C=21\):
+With the certified floor \(N_0=3.5\cdot 10^8\) and \(C=21\)
+(\(C=20\) now suffices; the table is unchanged as a conservative
+illustration):
 
 | \(y\) | \(L(y)\) | \(d(y)\) | exact fair-coin bad probability | \((\log y)^{-0.6}\) | least depth for rate \(0.6\) |
 |---|---|---|---|---|---|
@@ -1333,8 +1336,8 @@ every \(\varepsilon>0\) and all large \(y\),
 \ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e(C)-\varepsilon)},
 \]
 the bound of Theorem 8.3. Hence \(\mathrm P_{\theta_C}(C)\) with
-\(C\ge 21\) implies the conjecture unconditionally, and with
-\(C\ge 19\) under the conditional exponent of Appendix C.
+\(C\ge 20\) implies the conjecture unconditionally, and with
+\(C\ge 18\) under the conditional exponent of Appendix C.
 
 *Proof.* If \(\tau(n)>d\) then \(u_d>-L\), i.e. \(o_d\ge p_Cd\). Hence
 \[
@@ -1509,14 +1512,14 @@ constants give \(\lambda^{**}=0.4480\), the ideal ones
 \(\lambda_{\rm ideal}=0.4927\)). Dropping \(\psi\le1\) instead gives
 the upper recursion for the failure density. Its homogeneous
 solutions \(\varphi=t^{-e}\) satisfy \(\tfrac12 2^{e}+c\,(4/3)^{e}=1\)
-with \(c=\tfrac14\) for ideal fibers and \(c=\tfrac27\) with the
-two-sided sweep constant \(\tfrac47\) of Lemma 4.2:
+with \(c=\tfrac14\) for ideal fibers and \(c=\tfrac13\) with the
+two-sided pairing constant \(\tfrac23\) of Lemma 4.2:
 \[
 e_{\rm crit}=1-\lambda_{\rm ideal}=0.5073\quad(\text{ideal}),\qquad
-e_{\rm crit}=0.4354\quad(\text{sweep}).
+e_{\rm crit}=0.3391\quad(\text{pairing}).
 \]
 The rate threshold \(e>1-\lambda^{**}\) of Theorem 7.2 (or
-\(1-\lambda^{***}=0.5078\) with Appendix C) is therefore the
+\(1-\lambda^{***}=0.4608\) with Appendix C) is therefore the
 homogeneous decay exponent of the exact map up to the fiber-constant
 gap: contagion's growth rate and the exact map's decay rate are the
 same number because they are the same recursion.
@@ -1524,7 +1527,7 @@ same number because they are the same recursion.
 **Corollary 10.2 (the exact map cannot replace contagion).** Suppose
 \(\psi_F(t)\le t^{-e}\) with \(e\) as large as one likes. The upper
 recursion then gives \(\varphi_F(t)\ll t^{-\min(e,e_{\rm crit})}\) and
-nothing more: with the proved constants \(\varphi_F\ll t^{-0.435}\),
+nothing more: with the proved constants \(\varphi_F\ll t^{-0.339}\),
 ideally \(\varphi_F\ll t^{-0.507}\), never \(\varphi_F\equiv 0\).
 Theorem 1 gives \(\varphi_F\gg t^{-(1-\lambda)}\) if \(F\ne\emptyset\).
 The two bounds do not cross. What crosses Theorem 1 is the direct
@@ -1692,8 +1695,9 @@ analytic density estimates.
 |---|---|---|
 | elementary sweep only | \((\tfrac2{21},\tfrac34)\) | \(0.1385\) |
 | block average only (\(\lambda^*\)) | \((\tfrac13,\tfrac38)\) | \(0.3774\) |
-| block average + sweep (\(\lambda^{**}\), Theorem 1) | \((\tfrac5{21},\tfrac38),(\tfrac2{21},\tfrac34)\) | \(0.4051\) |
-| + \(OOEEE\) on even blocks (\(\lambda^{***}\), Appendix C, conditional) | \(\ldots,(\tfrac19,\tfrac9{32})\) | \(0.4923\) |
+| block average + sweep (adversarial \(1/7\)) | \((\tfrac5{21},\tfrac38),(\tfrac2{21},\tfrac34)\) | \(0.4051\) |
+| block average + pairing (\(\lambda^{**}\), Theorem 1) | \((\tfrac19,\tfrac38),(\tfrac29,\tfrac34)\) | \(0.4480\) |
+| + \(OOEEE\) on even blocks (\(\lambda^{***}\), Appendix C, conditional) | \(\ldots,(\tfrac19,\tfrac9{32})\) | \(0.5392\) |
 | depth-two ideal | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
 | + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
 
@@ -1701,10 +1705,10 @@ analytic density estimates.
 \(0.527\) (\(19\)), \(0.574\) (\(20\)), \(0.621\) (\(21\)), \(0.812\)
 (\(25\)), \(1.054\) (\(30\)). Least \(C\) for the rate threshold
 \(1-\lambda^{**}=0.5520\) / conditional \(1-\lambda^{***}=0.4608\):
-fair Chernoff \(21\)/\(19\); one-sided Azuma at
-\(q=0.5,0.55,0.60,0.62\): \(21,46,255,1840\) / \(19,41,223,1587\);
-pressure (biased Chernoff) at the same \(q\): \(21,46,245,1735\) /
-\(19,41,214,1497\). Depth \(d(y)=\lceil 21L(y)\rceil\) with
+fair Chernoff \(20\)/\(18\); one-sided Azuma at
+\(q=0.5,0.55,0.60,0.62\): \(20,44,240,1715\) / \(18,39,206,1451\);
+pressure (biased Chernoff) at the same \(q\): \(20,43,230,1618\) /
+\(18,38,198,1369\). Depth \(d(y)=\lceil 21L(y)\rceil\) with
 \(N_0=3.5\cdot 10^8\): \(27\) at \(10^{20}\), \(75\) at \(10^{100}\),
 \(145\) at \(10^{1000}\), \(215\) at \(10^{10000}\).
 

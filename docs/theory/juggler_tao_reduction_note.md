@@ -192,7 +192,7 @@ using \(2^{d-1}\le 2^{CL}\). The second term is
 ## 5. Contagion closes the loop
 
 **Theorem A (Tao-type bound with rate implies the conjecture).**
-Suppose that for some \(e>1-\lambda^{**}=0.5950\ldots\) and all
+Suppose that for some \(e>1-\lambda^{**}=0.5520\ldots\) and all
 sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}\ \le\ \frac{y}{(\log y)^{e}} .
@@ -227,22 +227,23 @@ unnecessary — or in logarithmic form
 \(\lambda<\lambda^{**}\) (Corollary 4.5 of the fate note).
 
 **Corollary C (the conjecture from a cylinder bound).** If
-\(\mathrm H(C,A)\) holds for some \(C\ge 21\) and \(A>C+e(C)\), then
+\(\mathrm H(C,A)\) holds for some \(C\ge 20\) and \(A>C+e(C)\), then
 every positive integer reaches \(1\).
 
 *Proof.* Theorem B gives Theorem A's hypothesis with
-\(e=e(C)\ge e(21)=0.621>0.5950\). \(\square\)
+\(e=e(C)\ge e(20)=0.574>0.5520\). \(\square\)
 
 The rate requirement is exactly the complement of the contagion
 exponent. If \(\lambda^{**}\) is improved toward the depth-two ceiling
-\(0.4927\) (sharper fiber constants), then \(e>0.5073\) suffices and
-\(C\ge 18\) works; \(\lambda^{**}\to 1\) would make any positive rate
+\(0.4927\) (uniform fiber share \(1/2\)), then \(e>0.5073\) suffices and
+the remaining gap is \(1/3\) versus \(1/2\); \(\lambda^{**}\to 1\) would make any positive rate
 suffice, but that improvement requires all descent certificates and is
 circular here.
 
 ## 6. Constants and depth
 
-With the certified floor \(N_0=3.5\cdot 10^8\) and \(C=21\):
+With the certified floor \(N_0=3.5\cdot 10^8\) and \(C=21\)
+(\(C=20\) now suffices; the table is a conservative illustration):
 
 | \(y\) | \(L(y)\) | \(d(y)=\lceil 21L\rceil\) | Chernoff bound | exact bad probability | \((\log y)^{-0.6}\) | least depth for rate \(0.6\) (exact walk) |
 |---|---|---|---|---|---|---|
@@ -388,15 +389,15 @@ The least \(C\) with \(e_q(C)>1-\lambda^{**}\) (`least_C_biased`):
 
 | \(q\) | \(\mu\) | least \(C\) | \(e_q(C)\) |
 |---|---|---|---|
-| \(0.50\) | \(0.2075\) | \(21\) | \(0.617\) |
-| \(0.55\) | \(0.1283\) | \(46\) | \(0.600\) |
-| \(0.60\) | \(0.0490\) | \(255\) | \(0.596\) |
-| \(0.62\) | \(0.0173\) | \(1840\) | \(0.595\) |
+| \(0.50\) | \(0.2075\) | \(20\) | \(0.570\) |
+| \(0.55\) | \(0.1283\) | \(44\) | \(0.563\) |
+| \(0.60\) | \(0.0490\) | \(240\) | \(0.555\) |
+| \(0.62\) | \(0.0173\) | \(1715\) | \(0.552\) |
 
-So: **if no cylinder of depth below \(46\log_2(\log 2y/\log N_0)\)
+So: **if no cylinder of depth below \(44\log_2(\log 2y/\log N_0)\)
 sends more than \(55\%\) of its members to an odd next state, every
 positive integer reaches \(1\).** At \(q=\tfrac12\) the one-sided
-hypothesis reproduces the constant \(C=21\) of the two-sided
+hypothesis reproduces the constant \(C=20\) of the two-sided
 Chernoff argument; as \(q\to\log 2/\log 3\), \(C\to\infty\).
 
 ## 9. Anatomy of the bad words, and why the wall is unavoidable
@@ -433,11 +434,11 @@ and is not evidence for it in the required range (depth
 (Theorems 4.4 and 4.7) localizes to sub-dyadic intervals of length
 \(\ge P^{1/2}\) with the same relative saving \(P^{-1/24}\); the
 resulting \(OOEEE\) production on even blocks raises the contagion
-exponent to \(\lambda^{***}=0.4922\ldots\). Every requirement in this
+exponent to \(\lambda^{***}=0.5392\ldots\). Every requirement in this
 note improves accordingly: the rate threshold becomes
-\(e>1-\lambda^{***}=0.5077\ldots\); the least depth constants are
-\(C=19\) for the fair bound (\(e(19)=0.527\)) and, in the biased-split
-form, \(C(0.5)=19\), \(C(0.55)=41\), \(C(0.60)=223\), \(C(0.62)=1587\).
+\(e>1-\lambda^{***}=0.4608\ldots\); the least depth constants are
+\(C=18\) for the fair bound (\(e(18)=0.480\)) and, in the biased-split
+form, \(C(0.5)=18\), \(C(0.55)=39\), \(C(0.60)=206\), \(C(0.62)=1451\).
 The structure of the hypothesis (odd-share control at depth
 \(O(\log\log y)\), carried by odd runs \(\ge 4\)) is unchanged.
 
@@ -731,17 +732,18 @@ Dropping \(\psi\ge0\) gives the *lower* recursion
 which in log-mass form \(g=(t/2)\varphi\) is
 \(g(t)\ge g(t/2)+\tfrac13g^{\rm fib}(3t/4)\): the ideal depth-two
 contagion recursion (fate note §4.2 with perfect fibers; the proved
-constants \(\tfrac5{21},\tfrac2{21}\) and the \(OOEEE\) term give
-\(\lambda^{***}=0.4922\) against the ideal \(0.4927\)). Dropping
+constants \(\tfrac19,\tfrac29\) and the \(OOEEE\) term give
+\(\lambda^{***}=0.5392\), above the ideal depth-two ceiling \(0.4927\)
+because \(OOEEE\) is an extra production). Dropping
 \(\psi\le1\) instead gives the *upper* recursion for the failure
 density. Its homogeneous solutions \(\varphi=t^{-e}\) satisfy
 \(\tfrac12 2^{e}+c\,(4/3)^{e}=1\) with \(c=\tfrac14\) for ideal fibers
-and \(c=\tfrac27\) with the two-sided sweep constant \(\tfrac47\):
+and \(c=\tfrac13\) with the two-sided pairing constant \(\tfrac23\):
 \[
 e_{\rm crit}=1-\lambda_{\rm ideal}=0.5073\quad(\text{ideal}),\qquad
-e_{\rm crit}=0.4354\quad(\text{sweep}).
+e_{\rm crit}=0.3391\quad(\text{pairing}).
 \]
-The Tao-type rate threshold \(e>1-\lambda^{***}=0.5078\) is therefore
+The Tao-type rate threshold \(e>1-\lambda^{***}=0.4608\) is therefore
 the homogeneous decay exponent of the exact map up to the
 fiber-constant gap: contagion's growth rate and the exact map's decay
 rate are the same number because they are the same recursion.
@@ -749,9 +751,10 @@ rate are the same number because they are the same recursion.
 **Corollary 11.2 (the exact map cannot replace contagion).** Suppose
 \(\psi_F(t)\le t^{-e}\) with \(e\) as large as one likes. The upper
 recursion then gives \(\varphi_F(t)\ll t^{-\min(e,e_{\rm crit})}\) and
-nothing more: with honest constants \(\varphi_F\ll t^{-0.435}\), ideally
+nothing more: with honest constants \(\varphi_F\ll t^{-0.339}\), ideally
 \(\varphi_F\ll t^{-0.507}\), never \(\varphi_F\equiv0\). Contagion gives
-\(\varphi_F\gg t^{-0.5078}\) if \(F\ne\emptyset\). The two bounds do not
+\(\varphi_F\gg t^{-0.4608}\) if \(F\ne\emptyset\) under Appendix C.
+The two bounds do not
 cross. What does cross contagion is the *direct* inclusion
 \(F\cap(y,2y]\subseteq\{\tau>d(y)\}\) applied to all starts — Theorem
 A — not the recursion. Conversely, if \(F\ne\emptyset\) and \(\psi_F\)
@@ -773,7 +776,7 @@ from depth three to four is \(c=2\)). Theorem B needs the error to be
 \(o(y(\log y)^{-e(C)})\) at \(d=C\log_2\log y\), i.e.
 \(2^{-cd}\log y\ge e(C)\log\log y\), i.e. \((\log y)^{1-cC}\gtrsim\log\log y\):
 \[
-cC<1,\qquad\text{so the per-depth loss factor must be below }2^{1/C}=1.037\ (C=19),\ 1.017\ (C=41).
+cC<1,\qquad\text{so the per-depth loss factor must be below }2^{1/C}=1.035\ (C=20),\ 1.016\ (C=44).
 \]
 Any method losing more than about \(4\%\) of its saving exponent per
 depth is structurally excluded from the Tao depth, whatever it does at

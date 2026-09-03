@@ -171,8 +171,8 @@ def fig_dependencies() -> None:
 
     # Row 3: the reformulation, the single frontier, the conditional appendix
     box(0.0, 5.8, 3.0, 0.95, "Theorem 5: $\\psi_F=$ live mass; duality;\ndepth budget (Sec. 10)", fc=human)
-    box(3.6, 5.8, 3.8, 0.95, "Theorem 3: conjecture $\\Leftrightarrow$ Tao-type bound\n$\\#\\{n\\ \\mathrm{odd}\\in(y,2y]\\backslash R\\}\\leq y(\\log y)^{-e}$, $e>0.595$", fc=human)
-    box(7.7, 5.8, 2.1, 0.95, "Appendix C: $\\lambda^{***}=0.4922$,\nconditional on Hypothesis L", fc=cond, fs=8.2)
+    box(3.6, 5.8, 3.8, 0.95, "Theorem 3: conjecture $\\Leftrightarrow$ Tao-type bound\n$\\#\\{n\\ \\mathrm{odd}\\in(y,2y]\\backslash R\\}\\leq y(\\log y)^{-e}$, $e>0.552$", fc=human)
+    box(7.7, 5.8, 2.1, 0.95, "Appendix C: $\\lambda^{***}=0.5392$,\nconditional on Hypothesis L", fc=cond, fs=8.2)
 
     # Row 4
     box(4.4, 7.6, 2.2, 0.8, "Juggler conjecture\n(not proved)", fc="white", ec="black", lw=1.6)
