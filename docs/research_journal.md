@@ -22756,3 +22756,51 @@ Best next question
 - **Bundle:** PDF rebuilt (`pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex -V geometry:margin=1in`, 37 pages, no warnings) and copied to `juggler_review/`; the Zenodo kit refreshed (deposit PDF, HTML description = current abstract, version notes name Corollary 5.11 and `cycleMin_gap_transfer`, date 2026-09-03); reviewer packet gains one Paper A row for Section 6.1 and the `docs/theory/` copy of the packet — stale at the two-manuscript version — is re-synced with `juggler_review/`; README item 1 updated; README item 3 notes that Hypothesis L is now Paper B Theorem 4.12.
 - **Not done, on purpose:** no change to Sections 2–5, no new ledger row (Section 6.1 proves nothing new; every statement is an import from Paper C or elementary arithmetic), no branch opened.
 - **Decision:** consolidation. Paper A remains the submission candidate; the cycle problem remains the long regime \(L\approx n^{0.64}\), now recorded as the periodic side of the same frontier that Paper C states for all fates. Not a halt theorem.
+
+## OE-fiber pairing: Lemma 3.1 stays 1/7; monotone pairing gives 1/3 (PROMOTE)
+
+- **Date:** 2026-09-04
+- **Objective:** Sharpen the OE-fiber constant \(1/7\to 1/3\) as a child of fate contagion. Prove a pairing replacement for the sweep lemma; lift unconditional \(\lambda^{**}\) from \(0.405\) to \(\approx 0.448\). No Appendix C as a method, no new production, no \(\psi_F\), no Paper A, no Lean, no \(N_0\) raise.
+- **Triage:**
+  - Mathematical target: is the OE-fiber scarcer half at least \(H/3-O(1)\) on good fibers, and what is the new elementary root?
+  - Novelty hypothesis: the sweep \(H/7\) used only the interval of steps; OE-fiber steps are monotone, so run lengths cannot lock a \(3+1\) split.
+  - Falsifier: a good fiber (or a monotone synthetic orbit) with scarcer share \(<1/3-O(1/H)\); or the abstract sweep already \(1/3\).
+  - Existing machinery: Lemmas 3.1--3.2, block-average recursion, ate_contagion.recursion_root.
+  - Phase-0 scope: pairing lemma + synthetic/adversarial check + new root.
+  - Promotion: pairing theorem + \(\lambda^{**}\approx 0.448\) through Paper C Theorem 1 and the Tao rate.
+  - Stop: pairing false, or the lift is only a reparameterization.
+- **What was learned:**
+  - Lemma 3.1 stays \(H/7\): an adversarial (non-monotone) orbit with steps in \([0.242,0.252]\) locks a \(3+1\) split near \(1/4\) (scarcer \(\approx 0.247\), \(H=85\)).
+  - Lemma 3.1': same hypotheses plus monotone steps \(\Rightarrow\) both half-interval counts \(\ge H/3-2\). For \(a\ge 1/4\) runs have length \(1\) or \(2\); for \(a<1/4\) monotone sojourn forces run lengths into decreasing/increasing blocks (\(3\)s then \(2\)s then \(1\)s), not a persistent \(3+1\) lock.
+  - Lemma 3.2: OE-fiber steps are monotone (Case 1 increasing; Case 2 \(z_j\) decreasing), so \(G_m\ge H_m/3-2\) on good fibers. Recursion rest coefficient \(2/21\to 2/9\). Characteristic equation \(2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda=1\), \(\lambda^{**}=0.448017\).
+  - Depth-two ceiling remains \(0.4927\) (needs uniform \(c=1/2\)). Pairing + OOEEE consistency root \(\lambda^{***}=0.539180\) (above the ceiling because OOEEE is an extra production). Tao: \(e>0.551983\), least_C()=20; star3 rate \(0.460820\), \(C=18\).
+  - Census: min scarcer on good fibers still \(0.328\) at \(\alpha_m\approx 1/3\) (e.g. \(m=1003635\), \(22/67\)). Classification OE_FIBER_PAIRING_CONSISTENT.
+- **Strongest theorem:** on a good OE fiber, both parities of \(\lfloor n^{3/2}\rfloor\) occur at least \(H_m/3-2\) times; every nonempty backward-closed set has \(\sum_{n\le x}1/n\gg(\log x)^\lambda\) for \(\lambda<\lambda^{**}=0.4480\) (J-fate-log-density).
+- **Strongest refutation:** the abstract sweep cannot be rewritten as \(1/3\); the \(3+1\) lock is realizable without monotonicity.
+- **Reusable machinery:** 
+esearch.juggler_sequence.oe_fiber_constant (pairing check, adversarial lock, \(\alpha\)-binned fibers); lock_average_plus_third / lock_third_plus_ooeee in ate_contagion.py.
+- **Records:** dossier docs/problems/juggler_oe_fiber_constant.md; probe src/research/juggler_sequence/oe_fiber_constant.py; artifact data/research/juggler/oe_fiber_constant/summary.json; tests 	ests/research/juggler_sequence/test_oe_fiber_constant.py; ledger rows J-fate-log-density, J-fate-fiber-sweep, J-fate-ooeee-production, J-tao-rate-implies-conjecture updated; parent dossier and branch-ledger row updated.
+- **Decision:** PROMOTE. The remaining depth-two gap \(0.448\to 0.4927\) is \(1/3\) vs \(1/2\), not a uniform per-fiber statement. Not a halt theorem. Not a new production.
+
+`	ext
+What was learned
+- Lemma 3.1 stays H/7; monotone pairing is the 1/3 statement
+- OE-fiber steps are monotone, so Lemma 3.2 upgrades to H/3-2
+- elementary root lambda** = 0.448017; Tao e > 0.552, C = 20
+- pairing + OOEEE root 0.5392 sits above the depth-two ceiling
+- census min scarcer 0.328, consistent with pairing
+Strongest theorem
+- G_m >= H_m/3-2 on good fibers; contagion for every lambda < 0.4480
+Strongest refutation
+- adversarial 3+1 lock (scarcer ~0.247) kills rewriting the abstract sweep
+Reusable machinery
+- oe_fiber_constant probe; block_average_plus_third recursion
+Branch status
+- PROMOTE
+Why
+- pairing is a theorem, the lift is a new elementary constant, and
+  the abstract sweep is independently shown to be sharp at 1/7
+Best next question
+- the remaining depth-two gap 0.448 to 0.4927 is 1/3 vs 1/2,
+  not a uniform per-fiber statement
+`

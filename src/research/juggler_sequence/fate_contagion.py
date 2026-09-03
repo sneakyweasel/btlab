@@ -372,6 +372,14 @@ RECURSIONS = {
     "elementary_sweep_only": [(1.0, 0.5), (2.0 / 21.0, 0.75)],
     "block_average_only": [(1.0, 0.5), (1.0 / 3.0, 3.0 / 8.0)],
     "block_average_plus_sweep": [(1.0, 0.5), (5.0 / 21.0, 3.0 / 8.0), (2.0 / 21.0, 0.75)],
+    # monotone pairing on good fibers: 1/7 -> 1/3, rest coeff 2/21 -> 2/9
+    "block_average_plus_third": [(1.0, 0.5), (1.0 / 9.0, 3.0 / 8.0), (2.0 / 9.0, 0.75)],
+    "block_third_plus_ooeee": [
+        (1.0, 0.5),
+        (1.0 / 9.0, 3.0 / 8.0),
+        (2.0 / 9.0, 0.75),
+        (1.0 / 9.0, 9.0 / 32.0),
+    ],
     # + OOEEE production on even blocks (localized Paper B Theorem 4.7, note §7): coefficient
     # P_w / e_w = (1/16) / (9/16) = 1/9 at the root scale (9/32) t
     "block_sweep_plus_ooeee": [(1.0, 0.5), (5.0 / 21.0, 3.0 / 8.0), (2.0 / 21.0, 0.75), (1.0 / 9.0, 9.0 / 32.0)],

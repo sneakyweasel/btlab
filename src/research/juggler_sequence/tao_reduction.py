@@ -9,8 +9,9 @@ The *bad* words of length ``d`` are those whose walk never drops to ``-L``.
 
 * ``chernoff_exponent(C)``: with ``d = C L`` the fair-coin probability of a bad
   word is at most ``(log(2y)/log N0)^{-e(C)}``, ``e(C) = C D(p_C || 1/2)/ln 2``,
-  ``p_C = (1 - 1/C)/log2(3)``.  The contagion exponent ``lambda** = 0.4050``
-  requires ``e > 1 - lambda** = 0.5950``; ``C = 21`` is the least integer.
+  ``p_C = (1 - 1/C)/log2(3)``.  The contagion exponent ``lambda** = 0.4480``
+  (monotone pairing, ``block_average_plus_third``) requires
+  ``e > 1 - lambda** = 0.5520``; ``C = 21`` still exceeds it.
 * ``bad_word_probability(L, d)``: the exact fair-coin probability by dynamic
   programming (the Chernoff bound is loose).
 * ``required_depth(y, N0, e)``: the least ``d`` with exact bad probability
@@ -33,10 +34,11 @@ from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
 DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "tao_reduction"
 
 LOG2_3 = math.log2(3.0)
-LAMBDA_STARSTAR = lambda_root(RECURSIONS["block_average_plus_sweep"])
+LAMBDA_STARSTAR = lambda_root(RECURSIONS["block_average_plus_third"])
 REQUIRED_RATE = 1.0 - LAMBDA_STARSTAR  # e must exceed this (elementary contagion exponent)
 #: with the OOEEE production (fate note §7, localized Paper B Theorem 4.7)
-LAMBDA_STAR3 = lambda_root(RECURSIONS["block_sweep_plus_ooeee"])
+#: rest coefficient uses the monotone pairing (2/9), not the old sweep (2/21)
+LAMBDA_STAR3 = lambda_root(RECURSIONS["block_third_plus_ooeee"])
 REQUIRED_RATE_STAR3 = 1.0 - LAMBDA_STAR3
 N0_CERTIFIED = 350_000_000
 N0_LEAN = 260

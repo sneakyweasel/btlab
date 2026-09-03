@@ -375,6 +375,7 @@ def standing_estimates(P: int, seed: int = 11, samples: int = 200) -> dict[str, 
         "Wcell_speed_over_h1P14": [],
         "E6_ratio": [],
         "G1_over_bound": [],
+        "frozen_j0_ratio": [],
     }
     for _ in range(samples):
         n = rng.randrange(P + 1, 2 * P) | 1
@@ -413,10 +414,14 @@ def standing_estimates(P: int, seed: int = 11, samples: int = 200) -> dict[str, 
             )
             return mp.mpf(3 * k) / 4 * mp.power(nu, mp.mpf(9) / 8) * Fm
 
+        d2cF = mp.diff(cF, nm, 2)
         if j != 0:
-            d2cF = mp.diff(cF, nm, 2)
             lead = mp.mpf(945) / 512 * k * abs(j) * mp.power(nm, -mp.mpf(1) / 8)
             obs["E6_ratio"].append(float(abs(d2cF) / lead))
+        else:
+            lead0 = mp.mpf(135) / 1024 * k * abs(beta1 * beta2) * mp.power(nm, -mp.mpf(13) / 8)
+            if lead0 != 0:
+                obs["frozen_j0_ratio"].append(float(abs(d2cF) / lead0))
         # |G'| bound of Lemma 5.1(iii)
         def G(nu: mp.mpf) -> mp.mpf:
             Xn = mp.power(nu, mp.mpf(3) / 2)
@@ -445,6 +450,10 @@ def standing_estimates(P: int, seed: int = 11, samples: int = 200) -> dict[str, 
         r = rng_summary[key]
         verdict[key] = bool(r is not None and lo <= r[0] and r[1] <= hi)
     verdict["E6_ratio_within_1pm_P^-1/4"] = bool(rng_summary["E6_ratio"] is None or all(abs(x - 1) <= 1.5 * P ** (-0.25) + 0.02 for x in obs["E6_ratio"]))
+    verdict["frozen_j0_ratio_near_one"] = bool(
+        rng_summary["frozen_j0_ratio"] is None
+        or all(abs(x - 1) <= 0.08 for x in obs["frozen_j0_ratio"])
+    )
     verdict["G1_le_bound"] = bool(rng_summary["G1_over_bound"] is not None and rng_summary["G1_over_bound"][1] <= 1.0)
     return {"P": P, "observed_ranges": rng_summary, "printed_ranges": printed, "verdict": verdict, "all_ok": all(verdict.values())}
 
@@ -498,6 +507,59 @@ def frozen_run_inventory(P: int, h1: int, h2: int) -> dict[str, Any]:
     return {"P": P, "h1": h1, "h2": h2, "j": j, "runs": runs, "printed_bound": 22 * (abs(j) + 1) * P**0.75, "ok": runs <= 22 * (abs(j) + 1) * P**0.75}
 
 
+def frozen_anchor_curvature_samples(P: int = 10**8, seed: int = 3, trials: int = 40) -> dict[str, Any]:
+    """Lemma 5.2b: on j=0 branches, |(cF)''| / (135/1024 k |β1 β2| n^{-13/8}) ≈ 1.
+
+    The moving-gap model 243/128 k h1 h2 n^{-5/8} is a different number and is recorded
+    only to show it does *not* match the local second derivative.
+    """
+
+    rng = random.Random(seed)
+    H1 = max(1, int(P ** (1 / 48)))
+    H2 = max(1, int(P ** (1 / 24)))
+    K = max(1, int(P ** (1 / 24)))
+    frozen_ratios: list[float] = []
+    moving_ratios: list[float] = []
+    for _ in range(trials * 4):
+        if len(frozen_ratios) >= trials:
+            break
+        n = rng.randrange(P + 1, 2 * P) | 1
+        h1, h2, k = rng.randint(1, H1), rng.randint(1, H2), rng.randint(1, K)
+        beta1, _, _ = level1_data(n, 2 * h1)
+        beta2, _, _ = level1_data(n, 2 * h2)
+        beta12, _, _ = level1_data(n, 2 * h1 + 2 * h2)
+        j = beta12 - beta1 - beta2
+        if j != 0:
+            continue
+        nm = mp.mpf(n)
+
+        def cF(nu: mp.mpf) -> mp.mpf:
+            Xn = mp.power(nu, mp.mpf(3) / 2)
+            Fm = (
+                mp.power(Xn + beta12, mp.mpf(3) / 2)
+                - mp.power(Xn + beta1, mp.mpf(3) / 2)
+                - mp.power(Xn + beta2, mp.mpf(3) / 2)
+                + mp.power(Xn, mp.mpf(3) / 2)
+            )
+            return mp.mpf(3 * k) / 4 * mp.power(nu, mp.mpf(9) / 8) * Fm
+
+        d2 = mp.diff(cF, nm, 2)
+        lead = mp.mpf(135) / 1024 * k * abs(beta1 * beta2) * mp.power(nm, -mp.mpf(13) / 8)
+        moving = mp.mpf(243) / 128 * k * h1 * h2 * mp.power(nm, -mp.mpf(5) / 8)
+        if lead == 0:
+            continue
+        frozen_ratios.append(float(abs(d2) / lead))
+        moving_ratios.append(float(abs(d2) / moving))
+    return {
+        "P": P,
+        "samples": len(frozen_ratios),
+        "frozen_ratio_range": (min(frozen_ratios), max(frozen_ratios)) if frozen_ratios else None,
+        "moving_gap_ratio_range": (min(moving_ratios), max(moving_ratios)) if moving_ratios else None,
+        "frozen_near_one": bool(frozen_ratios) and all(abs(x - 1) <= 0.08 for x in frozen_ratios),
+        "moving_gap_is_wrong_model": bool(moving_ratios) and all(abs(x - 1) > 0.2 for x in moving_ratios),
+    }
+
+
 # ----------------------------------------------------------------------------------------------
 # Layer 3: exponent bookkeeping
 # ----------------------------------------------------------------------------------------------
@@ -542,10 +604,12 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("5a bottleneck: k^{1/2} P^{15/16} <= P^{1/48} P^{15/16} = P^{23/24}", F(1, 48) + F(15, 16) == F(23, 24)),
         ("5a run boundaries: (|j|+1)|j|^{-1/2} k^{-1/2} P^{13/16} << P^{23/24}", F(13, 16) < F(23, 24)),
         ("5a run length P^{1/4}/(|j|+1) vs lambda_a^{-1/2} <= (k|j|)^{-1/2} P^{1/16}: 1/16 < 1/4", F(1, 16) < F(1, 4)),
-        # Step 5b
-        ("5b anchor curvature scale k h1 h2 P^{-5/8}: (cF_sm)'' leading 2673/1024 - 729/1024 = 243/128", F(2673, 1024) - F(729, 1024) == F(243, 128)),
-        ("5b interpolant b: b * 11/8 * 3/8 = 243/128 gives b = 81/22", F(81, 22) * F(11, 8) * F(3, 8) == F(243, 128)),
+        # Step 5b / Lemma 5.2b (frozen-shape; the moving-gap 243/128 is not the local curvature)
+        ("5b frozen (cG)'' leading: 81/1024 - 972/1024 + 756/1024 = -135/1024", F(81, 1024) - F(972, 1024) + F(756, 1024) == F(-135, 1024)),
+        ("5b global monomial: 135/1024 * 9 = 1215/1024", F(135, 1024) * 9 == F(1215, 1024)),
+        ("5b interpolant b: b * 11/8 * 3/8 = -1215/1024 gives b = -405/176", F(-405, 176) * F(11, 8) * F(3, 8) == F(-1215, 1024)),
         ("5b interpolant a: a * 5/4 * 1/4 = -27/32 gives a = -27/10", F(-27, 10) * F(5, 4) * F(1, 4) == F(-27, 32)),
+        ("5b withdrawn moving-gap coefficient is a different object: 2673/1024 - 729/1024 = 243/128", F(2673, 1024) - F(729, 1024) == F(243, 128)),
         ("5b inventory: u <= 360 k h2 P^{1/8} <= 360 P^{5/24}", F(1, 24) + F(1, 24) + F(1, 8) == F(5, 24)),
         ("5b refinement count: (h1+h2) P^{1/2} <= 2 P^{1/24+1/2} = 2P^{13/24}", F(1, 24) + F(1, 2) == F(13, 24)),
         ("5b anchor runs: h1 h2 P^{1/4} <= P^{1/48+1/24+1/4} <= P^{3/8}", F(1, 48) + F(1, 24) + F(1, 4) <= F(3, 8)),
@@ -553,8 +617,8 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("5b interpolant error: |c''| <= 0.11 k P^{-7/8} <= 0.11 P^{1/24-7/8} = 0.11 P^{-5/6}", F(1, 24) - F(7, 8) == -F(5, 6)),
         ("5b interpolant error: 8k(h1+h2) P^{-9/8} <= 16 P^{1/24+1/24-9/8} = 16 P^{-25/24}", F(1, 24) + F(1, 24) - F(9, 8) == -F(25, 24)),
         ("5b S range: lower anchor P^{-5/8}; upper 300 P^{1/8-5/8} = 300 P^{-1/2}", F(1, 8) - F(5, 8) == -F(1, 2)),
-        ("5b V/S with V = 3 S^{1/2} P^{-11/24}: 3 S^{-1/2} P^{-11/24} <= 3 P^{5/16-11/24} = 3 P^{-7/48}", F(5, 16) - F(11, 24) == -F(7, 48)),
-        ("5b V >= 3 P^{-5/16-11/24} = 3 P^{-37/48}", -F(5, 16) - F(11, 24) == -F(37, 48)),
+        ("5b V/S exponent with V = 3 S^{1/2} P^{-11/24}: S^{-1/2} P^{-11/24} has P^{5/16-11/24} = P^{-7/48}", F(5, 16) - F(11, 24) == -F(7, 48)),
+        ("5b V at S = P^{-5/8}: 3 P^{-5/16-11/24} = 3 P^{-37/48}", -F(5, 16) - F(11, 24) == -F(37, 48)),
         ("5b V dominates interpolant error: -37/48 > -5/6 = -40/48", -F(37, 48) > -F(5, 6)),
         ("5b transition length P (V/S)^{1/2} <= 2.6 P^{1-7/96} = 2.6 P^{89/96}", 1 - F(7, 96) == F(89, 96)),
         ("5b piece boundaries: 3.5 P^{13/24} * 0.91 P^{37/96} = 3.2 P^{89/96}", F(13, 24) + F(37, 96) == F(89, 96)),

@@ -147,9 +147,8 @@ Classification **KERNEL_LOCALIZE_FALSIFIER_FIRES**
 
 None on this line. The contagion exponent stays at \(\lambda^{***}\)
 conditional on Hypothesis L / the localized triple, and at
-\(\lambda^{**}\) unconditionally. Sharpening the OE-fiber constant
-\(1/7\to 1/3\) remains the only recorded quantitative step that does
-not need a new production.
+\(\lambda^{**}\) unconditionally. The OE-fiber constant \(1/7\to 1/3\) is done
+([juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md)).
 
 ## Decision
 
@@ -165,8 +164,8 @@ effective cost \(\min(Y,P^{89/96})=Y\). Do not reopen as a
 forty-estimate re-derivation, a short-interval kernel, a \(V\)-retune,
 or a bulk count over a long union of \(m'\) (sparse \(A\) still
 needs per-seed mass). Best next question: none on this line; the
-fiber-constant \(1/7\to 1/3\) is the remaining quantitative step
-already recorded on the contagion dossier.
+fiber-constant pairing is recorded on
+[juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md).
 
 ## Publication assessment
 

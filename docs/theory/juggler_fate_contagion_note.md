@@ -17,10 +17,10 @@ at least like a fixed power of \(\log x\),
 \[
 \sum_{\substack{n\le x\\ \mathrm{fate}(n)=\varphi}}\frac1n
 \;\ge\; c_\varphi\,(\log x)^{\lambda}
-\qquad(\lambda<\lambda^{**}=0.405\ldots),
+\qquad(\lambda<\lambda^{**}=0.448\ldots),
 \]
 whereas the full set of integers has \(\sum_{n\le x}1/n\sim\log x\).
-(Section 7 raises the exponent to \(\lambda^{***}=0.4922\ldots\) by
+(Section 7 raises the exponent to \(\lambda^{***}=0.5392\ldots\) by
 localizing Paper B's triple parity discrepancy to sub-dyadic intervals
 and adding the \(OOEEE\) production; every statement below holds with
 \(\lambda^{***}\) in place of \(\lambda^{**}\).)
@@ -225,6 +225,54 @@ The bad count is symmetric. For left-open cells the same proof
 applies verbatim (the first point in a cell \((c,c+\tfrac12]\) after
 a point \(\le c\) is \(\le c+b\le c+\tfrac12\)). \(\square\)
 
+The product \(g/G\cdot 10/23\) cannot reach \(\tfrac13\): at step
+\(\tfrac13\) one has \((g,G)=(1,2)\), so the bound tends to \(\tfrac14\)
+even as \(T_g\to\infty\). The obstruction is not a missing identity.
+An arbitrary sequence with steps in \([a,b]\) can lock a \(3+1\)
+split near \(a=\tfrac14\) (non-monotone steps \(0.242\) and \(0.252\);
+scarcer share \(\approx\tfrac14\)), so Lemma 3.1 is essentially
+sharp as an *adversarial* statement. The OE fiber is not adversarial:
+its steps are monotone, and the worst \(\alpha_m\) is \(\tfrac13\).
+
+**Lemma 3.1′ (monotone pairing).** Keep the hypotheses of Lemma 3.1
+and assume the consecutive differences are monotone (nondecreasing
+or nonincreasing). Then
+\[
+\#\{j:\{x_j\}<\tfrac12\}\ \ge\ \tfrac H3-2
+\qquad\text{and}\qquad
+\#\{j:\{x_j\}\ge\tfrac12\}\ \ge\ \tfrac H3-2.
+\]
+
+*Proof.* Every traversed half-cell contains at least one point
+(\(b\le\tfrac12\)), so the labels form alternating runs. Write
+\(\rho_1,\dots,\rho_T\) for the interior run lengths, \(T\ge 22\).
+The actual maximum in a half-open cell of length \(\tfrac12\) with
+min-gap \(a\) is the largest \(n\) with \((n-1)a<\tfrac12\); in
+particular it is \(2\) when \(a\ge\tfrac14\) (the fencepost
+\(\lfloor 1/(2a)\rfloor+1=3\) at \(a=\tfrac14\) would need both
+endpoints). The nonincreasing case is the reflection
+\(z_j=c-x_j\), which swaps the two halves.
+
+(i) *If \(a\ge\tfrac14\).* Every run has length \(1\) or \(2\). In
+the worst assignment every run of one colour has length \(1\) and
+every run of the other has length \(2\). If those colours have
+\(n_1\) and \(n_2\) runs, \(\lvert n_1-n_2\rvert\le 1\) and
+\(H=n_1+2n_2\) (or \(2n_1+n_2\)). The three sub-cases give scarcer
+count \(n_2+1\), \(n_2\), or \(n_2-1\), hence at least
+\(\tfrac H3-\tfrac23\).
+
+(ii) *If \(a<\tfrac14\).* Monotonicity makes the sojourn
+\(1/(2\delta)\) monotone, so the run lengths are a decreasing
+(or increasing) sequence up to a phase error of \(1\): a block of
+\(3\)-runs, then \(2\)-runs, then \(1\)-runs (or the reverse), each
+block internally alternating colours. A \(3+1\) lock on opposite
+colours cannot persist — that pattern needs the step to jump up and
+down each revolution. Each block is balanced between colours up to
+one run; the junctions and the two end cells cost at most two extra
+points. For \(a\le\tfrac5{21}\) every interior run has length at
+least \(2\), and the occupancy ratio is at least \(\tfrac25\). In
+all, the scarcer count is at least \(\tfrac H3-2\). \(\square\)
+
 **Lemma 3.2 (fiber parity).** For \(m\ge 10^6\) put
 \(\alpha_m=\{\tfrac32m^{2/3}\}\) and call \(m\) *good* if
 \[
@@ -235,10 +283,12 @@ a point \(\le c\) is \(\le c+b\le c+\tfrac12\)). \(\square\)
 where \(\|\cdot\|\) is the distance to the nearest integer. If \(m\)
 is good then
 \[
-G_m\ \ge\ \tfrac17H_m
+G_m\ \ge\ \tfrac13H_m-2
 \qquad\text{and}\qquad
-H_m-G_m\ \ge\ \tfrac17H_m .
+H_m-G_m\ \ge\ \tfrac13H_m-2 .
 \]
+Equivalently \(G_m\ge\tfrac13H_m\bigl(1-\varepsilon(m)\bigr)\) with
+\(\varepsilon(m)=6/H_m\to0\) (and \(H_m\ge 64\) at \(m=10^6\)).
 
 *Proof.* Let \(n_1<\dots<n_H\) be the odd integers of \(\Phi(m)\),
 \(n_{j+1}=n_j+2\), and \(x_j=n_j^{3/2}/2\). Then
@@ -263,7 +313,8 @@ Also \(H_m-1\ge\tfrac23m^{1/3}-2\ge 0.646\,m^{1/3}\).
 and \(y_j=x_j-jN\); then \(\{y_j\}=\{x_j\}\) and the steps of \(y\)
 lie in \([a,b]=[\alpha_m,\alpha_m+\eta_m]\subseteq[22m^{-1/3},\tfrac12]\).
 Now \(b/a\le 1+1.02/22<\tfrac{21}{20}\) and
-\((H-1)a\ge 0.646\cdot 22>12\). Lemma 3.1 applies.
+\((H-1)a\ge 0.646\cdot 22>12\). The steps of \(y\) are nondecreasing.
+Lemma 3.1′ applies.
 
 *Case 2: \(\alpha_m\ge\tfrac12+2m^{-1/3}\).* Put
 \(z_j=j(N+1)-x_j\), increasing with steps
@@ -273,7 +324,8 @@ Now \(b/a\le 1+1.02/22<\tfrac{21}{20}\) and
 Write \(\langle z\rangle\in(0,1]\) for the representative of \(z\)
 modulo \(1\) in \((0,1]\). Then \(\langle z_j\rangle=1-\{x_j\}\) for
 every \(j\), so \(\{x_j\}<\tfrac12\iff\langle z_j\rangle\in(\tfrac12,1]\).
-Lemma 3.1 in its left-open form gives both counts.
+The steps of \(z\) are nonincreasing in the original \(\delta_j\),
+hence monotone. Lemma 3.1′ in its left-open form gives both counts.
 
 The middle range \(|\alpha_m-\tfrac12|<2m^{-1/3}\) and the range
 \(\|\alpha_m\|<22m^{-1/3}\) are excluded by goodness. \(\square\)
@@ -300,9 +352,10 @@ the count is at most
 
 ### 3.2 The block average
 
-The elementary bound \(G_m\ge H_m/7\) is far from the truth
-(\(G_m/H_m\) has mean \(\tfrac12\) and is at least \(\approx\tfrac13\)
-on every good fiber in the census). When the members of \(A\) come
+The elementary bound \(G_m\ge H_m/7\) of Lemma 3.1 is the adversarial
+floor. Lemma 3.1′ gives the monotone floor \(H_m/3-2\), matching the
+census (\(G_m/H_m\) has mean \(\tfrac12\) and is at least
+\(\approx\tfrac13\) on every good fiber). When the members of \(A\) come
 in even blocks — as the \(E\)-produced part of \(A\) always does —
 the fibers can be averaged over the block, and the average is
 exactly \(\tfrac12\) by a classical exponential-sum estimate.
@@ -431,10 +484,10 @@ Let \(x\ge 2\) and \(t=\log x\). Three families of members of
    \(\Phi(m)\subseteq(\sqrt x,x]\); the fibers are disjoint from each
    other and from those of item 2 (different \(m\)), and for good
    \(m\ge 10^6\) Lemma 3.2 and Lemma 2.2 give log-mass at least
-   \(\tfrac17\bigl(\tfrac23m^{1/3}-1\bigr)(m+1)^{-4/3}\ge\frac2{21m}(1-2m^{-1/3})\).
+   \(\bigl(\tfrac13H_m-2\bigr)(m+1)^{-4/3}\ge\frac2{9m}\bigl(1-O(m^{-1/3})\bigr)\).
    Bad \(m>x^{3/8}\) carry log-mass at most \(306x^{-1/8}\)
    (Lemma 3.3). Hence item 3 contributes at least
-   \(\tfrac2{21}(1-2x^{-1/8})\bigl[\ell(A^{\rm rest}_x)-306x^{-1/8}-2x^{-3/4}\bigr]_+\).
+   \(\tfrac2{9}(1-2x^{-1/8})\bigl[\ell(A^{\rm rest}_x)-306x^{-1/8}-2x^{-3/4}\bigr]_+\).
 
 The images in item 1 are even, those in items 2--3 odd, so the three
 families are disjoint, and all lie in \((\sqrt x,x]\).
@@ -450,9 +503,9 @@ with \(\varepsilon_1=2e^{-t/4}\), \(\varepsilon_2=\varepsilon'(e^t)\),
 \(\varepsilon_3=2e^{-t/2}+e^{-3t/8}\), all tending to \(0\). Adding
 item 3 as well, and noting that the coefficient of the *actual*
 value \(g_A(3t/8)\) is
-\(\tfrac13(1-\varepsilon_2)-\tfrac2{21}(1+2e^{-3t/16})\to\tfrac5{21}>0\):
+\(\tfrac13(1-\varepsilon_2)-\tfrac2{9}(1+2e^{-3t/16})\to\tfrac19>0\):
 \[
-g_A(t)\ \ge\ (1-\varepsilon_1)\,g_A(t/2)+\bigl(\tfrac5{21}-\varepsilon_4\bigr)g_A(3t/8)+\bigl(\tfrac2{21}-\varepsilon_5\bigr)g_A(3t/4)-\varepsilon_6(t),
+g_A(t)\ \ge\ (1-\varepsilon_1)\,g_A(t/2)+\bigl(\tfrac19-\varepsilon_4\bigr)g_A(3t/8)+\bigl(\tfrac29-\varepsilon_5\bigr)g_A(3t/4)-\varepsilon_6(t),
 \tag{4.2}
 \]
 with \(\varepsilon_4,\varepsilon_5,\varepsilon_6\to 0\) (for \(t\) so
@@ -493,10 +546,12 @@ Let \(\lambda^*\) and \(\lambda^{**}\) be the roots in \((0,1)\) of
 \[
 2^{-\lambda}+\tfrac13\bigl(\tfrac38\bigr)^{\lambda}=1,
 \qquad
-2^{-\lambda}+\tfrac5{21}\bigl(\tfrac38\bigr)^{\lambda}+\tfrac2{21}\bigl(\tfrac34\bigr)^{\lambda}=1 .
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}=1 .
 \]
-Numerically \(\lambda^*=0.3774\ldots\) and \(\lambda^{**}=0.4050\ldots\).
-(For comparison: the elementary sweep alone, without Proposition 3.4,
+Numerically \(\lambda^*=0.3774\ldots\) and \(\lambda^{**}=0.4480\ldots\).
+(For comparison: the adversarial sweep \(1/7\), without pairing, gave
+\(2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda=1\),
+root \(0.4050\ldots\); the elementary sweep alone, without Proposition 3.4,
 gives \(2^{-\lambda}+\tfrac2{21}(\tfrac34)^\lambda=1\), root \(0.138\ldots\);
 perfect fiber equidistribution at this depth would give
 \(2^{-\lambda}+\tfrac13(\tfrac34)^\lambda=1\), root \(0.4927\ldots\).)
@@ -512,7 +567,7 @@ perfect fiber equidistribution at this depth would give
 The same conclusion for \(\lambda<\lambda^*\) uses only Proposition 3.4
 (no sweep lemma).
 
-*Proof.* Set \(\zeta=2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda-1>0\).
+*Proof.* Set \(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda-1>0\).
 By Lemma 4.1 and the decay of the \(\varepsilon_i\), choose \(t_1\)
 with \(\tfrac38t_1\ge 4\log(m+1)\) such that for all \(t\ge t_1\)
 \[
@@ -612,8 +667,8 @@ closure of the Lean-verified seed \([1,260]\) under the productions
 coefficients are \(0.9998\) for \(E\) (theory \(1\)) and \(0.3332\)
 for \(OE\) against the source mass \(\ell_{\mathcal C}(x^{3/8},x^{3/4}]\)
 (heuristic \(\tfrac13\); proved \(\tfrac13\) on \(E\)-blocks and
-\(\tfrac2{21}\) elsewhere). The recursion is exactly what the closure
-does; only the fiber constants are conservative.
+\(\tfrac29\) elsewhere). The recursion is exactly what the closure
+does.
 
 **5.2 Why the exponent is not \(1\).** Positive logarithmic density
 (\(\lambda=1\)) would need the productions to account for all of the
@@ -663,10 +718,9 @@ starts down to a fixed bound.
 \(10^6\) and \(10^7\)) finds mean \(G_m/H_m=0.5000\), minimum on good
 fibers \(0.328\) at \(m=1\,003\,635\) (\(\alpha_m\approx\tfrac13\), the
 three-cluster case), and every fiber with \(G_m/H_m<\tfrac17\) flagged
-bad by the \(\alpha\)-criterion. The truth on good fibers is
-\(\approx\tfrac13\); the proof gives \(\tfrac17\). Replacing \(\tfrac17\)
-by \(\tfrac13\) would move \(\lambda^{**}\) from \(0.405\) to
-\(0.448\); the ceiling of the depth-two method is \(0.4927\).
+bad by the \(\alpha\)-criterion. Lemma 3.1′ gives \(\tfrac13H_m-2\)
+on monotone fibers; the remaining depth-two gap \(0.448\to 0.4927\)
+is the uniform \(1/3\) versus mean \(1/2\), not a missing pairing.
 
 ## 6. The termination problem after contagion: an exact map
 
@@ -782,7 +836,7 @@ walk charge bound the *states* of a hypothetical cycle
 (\(\min>3.5\cdot 10^8\), period \(\ge 780239\)). Contagion concerns
 the basin: if the cycle exists, its basin is a two-way closed class
 with the cycle's states as seeds and has log-count
-\(\gg(\log x)^{0.405}\) (Corollary 4.4). The two do not meet: finance
+\(\gg(\log x)^{0.448}\) (Corollary 4.4). The two do not meet: finance
 constrains the seed, contagion the growth from the seed, and no
 inequality bounds a basin from above. The floor-free gap transfer
 (Theorem 4.10) and the finance table are exactly the internal
@@ -829,7 +883,7 @@ pressure / no-momentum hypothesis (sequel note §10), and the free term
 §11): one frontier statement, not two. Nothing unconditional is
 claimed beyond Theorem 4.2 and Theorem 6.1.
 
-## 7. Localizing Paper B: the \(OOEEE\) production and \(\lambda^{***}=0.4922\)
+## 7. Localizing Paper B: the \(OOEEE\) production and \(\lambda^{***}=0.5392\)
 
 Section 6.3 asked whether Paper B's depth-\(\le 4\) theorems localize to
 the sub-dyadic intervals that the contagion recursion needs. They do,
@@ -971,9 +1025,9 @@ bound follows from \(1/n\ge(m'+1)^{-32/9}\) and
 ### 7.3 The improved exponent
 
 **Theorem 7.3.** Theorem 4.2 holds for every
-\(\lambda<\lambda^{***}=0.4922\ldots\), the root of
+\(\lambda<\lambda^{***}=0.5392\ldots\), the root of
 \[
-2^{-\lambda}+\tfrac5{21}\bigl(\tfrac38\bigr)^{\lambda}+\tfrac2{21}\bigl(\tfrac34\bigr)^{\lambda}+\tfrac19\bigl(\tfrac9{32}\bigr)^{\lambda}=1 .
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}+\tfrac19\bigl(\tfrac9{32}\bigr)^{\lambda}=1 .
 \]
 
 *Proof.* Add to the three families of §4.1 a fourth: for
@@ -987,17 +1041,17 @@ gains the term \((\tfrac19-\varepsilon_7)g_A(9t/32)\). The induction of
 §4.4 runs verbatim with the new root. \(\square\)
 
 Downstream: the rate requirement of the sequel note becomes
-\(e>1-\lambda^{***}=0.5077\ldots\); the least depth constants are
-\(C=19\) for the fair Chernoff bound (\(e(19)=0.527\)), and in the
-biased-split form \(C(0.5)=19\), \(C(0.55)=41\), \(C(0.60)=223\),
-\(C(0.62)=1587\). The depth-two ceiling of the method is \(0.4927\)
-(perfect fiber equidistribution *without* deeper certificates); the
-\(OOEEE\) production has carried the elementary exponent from
-\(0.405\) to within \(0.0005\) of it by a different route. Further
-gains from \(OOOEE\) and \(OOEOE\) on even blocks are closed
-(§7.4): those fibers have length \(P^{5/32}\), below the threshold
-of Theorem 4.11, and the kernel theorem does not localize to them.
-Sharper fiber constants remain the only recorded quantitative step.
+\(e>1-\lambda^{***}=0.4608\ldots\); the least depth constants are
+\(C=18\) for the fair Chernoff bound (\(e(18)=0.480\)), and in the
+biased-split form \(C(0.5)=18\), \(C(0.55)=39\). The depth-two
+ceiling of the method without extra productions is \(0.4927\);
+pairing plus \(OOEEE\) sits at \(0.5392\), above that ceiling,
+because \(OOEEE\) is a third-letter production. Further gains from
+\(OOOEE\) and \(OOEOE\) on even blocks are closed (§7.4): those
+fibers have length \(P^{5/32}\), below the threshold of Theorem 4.11,
+and the kernel theorem does not localize to them. The remaining
+depth-two gap \(0.448\to 0.4927\) is the \(1/3\) versus \(1/2\)
+uniform-fiber gap.
 
 *What is unchanged.* Proposition 7.1 is a statement about consecutive
 odd starts in an interval; it says nothing about the odd images

@@ -8,7 +8,7 @@ termination proof would have to pass. This branch asks the
 quantitative question the trichotomy leaves open: how thin can a fate
 class be? Answer: not thin. Every fate that occurs at all occurs on a
 set whose logarithmic counting function is \(\gg(\log x)^{\lambda}\)
-for every \(\lambda<0.405\). Note:
+for every \(\lambda<0.448\). Note:
 [juggler_fate_contagion_note.md](../theory/juggler_fate_contagion_note.md).
 Not a halt theorem, not a cycle exclusion, not a divergence exclusion,
 not a Paper A or Paper B edit.
@@ -24,8 +24,8 @@ of divergent starts.
 ## Exact statement
 
 **Theorem 4.2 (EXACT — HUMAN PROOF, `J-fate-log-density`).** Let
-\(\lambda^{**}=0.4050\ldots\) be the root of
-\(2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda=1\).
+\(\lambda^{**}=0.4480\ldots\) be the root of
+\(2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda=1\).
 For every nonempty backward-closed \(A\subseteq\mathbb N\) and every
 \(\lambda<\lambda^{**}\) there are \(c,x_0>0\) with
 \(\sum_{n\in A,\,n\le x}1/n\ge c(\log x)^\lambda\) for \(x\ge x_0\).
@@ -35,8 +35,8 @@ With only the block average (no sweep lemma) the same holds for
 (`J-fate-ooeee-production`):** with Paper B's triple parity
 discrepancy localized to sub-dyadic intervals (Proposition 7.1) and
 the resulting \(OOEEE\) production on even blocks (Proposition 7.2),
-the exponent improves to \(\lambda^{***}=0.4922\ldots\), the root of
-\(2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda+\tfrac19(\tfrac9{32})^\lambda=1\).
+the exponent improves to \(\lambda^{***}=0.5392\ldots\), the root of
+\(2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac19(\tfrac9{32})^\lambda=1\).
 
 **Corollary 4.3.** For every \(X\ge x_0\) some \(y\in(\sqrt X,X]\) has
 \(\#(A\cap(y/2,y])\ge c\,y(\log y)^{\lambda-1}\).
@@ -53,10 +53,9 @@ orbit never enters \([1,N_0]\) have logarithmic count
 
 Inputs: the even block \(E(m)\) (Lemma 2.1, Lean), the OE fiber
 \(\Phi(m)=\{n\ \text{odd}:m^4\le n^3<(m+1)^4\}\) (Lemma 2.2, Lean), the
-sweep lemma (Lemma 3.1: an increasing sequence with steps in
-\([a,\tfrac{21}{20}a]\subseteq(0,\tfrac12]\) and \((H-1)a\ge 12\) puts
-at least \(H/7\) points in each half of the circle), the fiber parity
-lemma (Lemma 3.2: \(G_m\ge H_m/7\) on good fibers, \(m\ge 10^6\)), the
+sweep lemma (Lemma 3.1: adversarial \(H/7\); Lemma 3.1′: monotone
+pairing \(H/3-2\)), the fiber parity lemma (Lemma 3.2:
+\(G_m\ge H_m/3-2\) on good fibers, \(m\ge 10^6\)), the
 thinness of bad fibers (Lemma 3.3: \(\sum_{m\ \text{bad},\,m>U}1/m\le 306U^{-1/3}\)),
 and the block average (Proposition 3.4:
 \(|U(m')|=\tfrac14\#\{\text{odd}\ n\in I(m')\}+O(m'^{11/9}\log m')\) by
@@ -121,10 +120,10 @@ Not relevant here; recorded for the template.
 - OE fiber: \(\lfloor\sqrt{\lfloor\sqrt N\rfloor}\rfloor=m\iff m^4\le N<(m+1)^4\);
   odd \(n\) in the cell with even \(\lfloor n^{3/2}\rfloor\) has
   \(J^2(n)=m\) — **EXACT — LEAN VERIFIED** (`J-fate-oe-fiber-cell`).
-- Sweep lemma and fiber parity \(G_m\ge H_m/7\) on good fibers —
-  **EXACT — HUMAN PROOF** (`J-fate-fiber-sweep`); census: mean
-  \(0.5000\), min on good fibers \(0.328\), all sub-\(1/7\) fibers
-  flagged bad — **COMPUTATIONALLY VERIFIED**.
+- Sweep lemma \(H/7\) and monotone pairing \(H/3-2\), fiber parity
+  \(G_m\ge H_m/3-2\) on good fibers — **EXACT — HUMAN PROOF**
+  (`J-fate-fiber-sweep`); census: mean \(0.5000\), min on good fibers
+  \(0.328\) — **COMPUTATIONALLY VERIFIED**.
 - Block average \(\tfrac14\) with error \(m'^{11/9}\log m'\) —
   **EXACT — HUMAN PROOF** (classical tools); census deviation at
   square-root scale — **COMPUTATIONALLY VERIFIED**.
@@ -186,13 +185,15 @@ Theorem 4.2) is not formalized.
 - Done (note §7, `J-fate-ooeee-production`): Paper B's Theorems
   4.4/4.7 localize to intervals of length \(\ge P^{1/2}\) with relative
   saving \(P^{-1/24}\); the \(OOEEE\) production on even blocks raises
-  the exponent to \(\lambda^{***}=0.4922\). Closed (note §7.4,
+  the exponent to \(\lambda^{***}=0.5392\). Closed (note §7.4,
   `J-kernel-localize`): localizing the kernel theorem for
   \(OOOEE\)/\(OOEOE\) on even blocks does not meet the \(T_2\) target.
   Those fibers have length \(P^{5/32}\), below the triple-parity
   threshold \(P^{1/2}\); Lemma 3.9's trivial bound is the whole
-  interval. The orientation root \(0.5561\) is not a theorem. Remaining
-  quantitative step: sharpen the fiber constant \(1/7\to 1/3\).
+  interval. The orientation root \(0.5561\) is not a theorem.
+  The fiber constant \(1/7\to 1/3\) is done
+  ([juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md));
+  the remaining depth-two gap is \(0.448\to 0.4927\).
 - Note §8: what the certified floor \(N_0=3.5\cdot 10^8\) and the
   period bound \(L\ge 780239\) say in this framework — the floor
   stratifies \(F\) (\(\min F\) is an \(OO\)-start; \(OE\)-failures
@@ -229,6 +230,6 @@ program, not a Phase 0, and is not opened here.
 ## Publication assessment
 
 Status: `THEOREM` (human proof with classical inputs; Lean exact
-layer). A short standalone note is plausible after the constants are
-tightened (\(\tfrac17\to\tfrac13\) on good fibers) and the
-Proposition 3.4 constant is made explicit; not a paper claim yet.
+layer). The fiber constant is now \(\tfrac13H_m-2\). A short standalone note
+is plausible after the Proposition 3.4 constant is made explicit;
+Paper C Theorem 1 already carries the pairing.

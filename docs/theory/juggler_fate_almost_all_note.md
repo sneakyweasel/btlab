@@ -35,7 +35,7 @@ of positive integers that is closed under taking preimages
 (\(J(n)\in A\Rightarrow n\in A\)) — in particular every fate class
 that occurs at all — satisfies
 \(\sum_{n\in A,\,n\le x}1/n\ge c\,(\log x)^{\lambda}\) for every
-\(\lambda<\lambda^{**}=0.4050\ldots\), whereas
+\(\lambda<\lambda^{**}=0.4480\ldots\), whereas
 \(\sum_{n\le x}1/n\sim\log x\). Fates are contagious. The mechanism is
 that the one-step preimages of the Juggler map are large and
 structured: the even preimages of \(m\) fill the interval
@@ -113,7 +113,7 @@ target \(f(N)\to\infty\) arbitrarily slowly. For the Juggler map,
 contagion and odd generation together turn a bounded-target statement
 into the conjecture: every positive integer reaches \(1\) if and only
 if all but \(O(y(\log y)^{-e})\) odd starts in \((y,2y]\) enter
-\([1,N_0]\), for some \(e>1-\lambda^{**}=0.595\) (Theorem 3). The
+\([1,N_0]\), for some \(e>1-\lambda^{**}=0.552\) (Theorem 3). The
 threshold is the complement of the contagion exponent. For Collatz
 the analogous implication is not available: the known lower bound for
 a preimage tree below \(x\) is of polynomial size, \(x^{0.84}\)
@@ -150,8 +150,8 @@ value is \(260\); the certified computational value is
 \(3.5\cdot 10^8\) [11]).
 
 **Theorem 1 (fate contagion).** Let \(A\subseteq\mathbb N\) be nonempty
-and backward-closed, and let \(\lambda<\lambda^{**}=0.4050\ldots\), the
-root of \(2^{-\lambda}+\tfrac5{21}(\tfrac38)^{\lambda}+\tfrac2{21}(\tfrac34)^{\lambda}=1\).
+and backward-closed, and let \(\lambda<\lambda^{**}=0.4480\ldots\), the
+root of \(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}+\tfrac29(\tfrac34)^{\lambda}=1\).
 There are \(c>0\) and \(x_0\), depending on \(A\) and \(\lambda\), with
 \[
 \sum_{\substack{n\in A\\ n\le x}}\frac1n\ \ge\ c\,(\log x)^{\lambda}
@@ -175,7 +175,7 @@ odd image fails to. (Theorem 6.1; Lean.)
 following are equivalent: (i) every positive integer reaches \(1\);
 (ii) for some \(\lambda<\lambda^{**}\), the starts \(n\le x\) whose
 orbit never enters \([1,N_0]\) have logarithmic count
-\(o((\log x)^{\lambda})\); (iii) for some \(e>1-\lambda^{**}=0.5950\ldots\)
+\(o((\log x)^{\lambda})\); (iii) for some \(e>1-\lambda^{**}=0.5520\ldots\)
 and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\).
 (Corollary 7.1, Theorems 7.2, 7.3.)
 
@@ -230,8 +230,8 @@ Under a localization of the triple parity discrepancy of nested floor
 powers to sub-dyadic intervals — stated as an explicit hypothesis in
 Appendix C; it is Theorem 4.12 of the working draft [12], and its
 status is described there — the exponent of Theorem 1 improves to
-\(\lambda^{***}=0.4922\ldots\), the rate threshold of Theorem 3 to
-\(0.5078\), and the least depth constant of Theorem 4 to \(C\ge 19\).
+\(\lambda^{***}=0.5392\ldots\), the rate threshold of Theorem 3 to
+\(0.4608\), and the least depth constant of Theorem 4 to \(C\ge 18\).
 Nothing in Sections 2--12 depends on Appendix C.
 
 ### 1.2 The three fates as currently constrained
@@ -473,6 +473,17 @@ The bad count is symmetric. For left-open cells the same proof applies
 verbatim (the first point in a cell \((c,c+\tfrac12]\) after a point
 \(\le c\) is \(\le c+b\le c+\tfrac12\)). \(\square\)
 
+The product \(g/G\cdot 10/23\) cannot reach \(\tfrac13\). An
+adversarial sequence with steps in \([a,b]\) can lock a \(3+1\)
+split near \(a=\tfrac14\). The OE fiber is monotone.
+
+**Lemma 4.1′ (monotone pairing).** Keep the hypotheses of Lemma 4.1
+and assume the consecutive differences are monotone. Then both
+half-interval counts are at least \(\tfrac H3-2\). (The case
+\(a\ge\tfrac14\) is a \(1\)–\(2\) run assignment; the case
+\(a<\tfrac14\) is a monotone block of run lengths. The laboratory
+note records the split in full as Lemma 3.1′.)
+
 **Lemma 4.2 (fiber parity).** For \(m\ge 10^6\) put
 \(\alpha_m=\{\tfrac32m^{2/3}\}\) and call \(m\) *good* if
 \[
@@ -481,7 +492,7 @@ verbatim (the first point in a cell \((c,c+\tfrac12]\) after a point
 \|\alpha_m-\tfrac12\|\ \ge\ 2\,m^{-1/3},
 \]
 where \(\|\cdot\|\) is the distance to the nearest integer. If \(m\)
-is good then \(G_m\ge\tfrac17H_m\) and \(H_m-G_m\ge\tfrac17H_m\).
+is good then \(G_m\ge\tfrac13H_m-2\) and \(H_m-G_m\ge\tfrac13H_m-2\).
 
 *Proof.* Let \(n_1<\dots<n_H\) be the odd integers of \(\Phi(m)\),
 \(n_{j+1}=n_j+2\), and \(x_j=n_j^{3/2}/2\). Then
@@ -506,7 +517,8 @@ Also \(H_m-1\ge\tfrac23m^{1/3}-2\ge 0.646\,m^{1/3}\).
 and \(y_j=x_j-jN\); then \(\{y_j\}=\{x_j\}\) and the steps of \(y\) lie
 in \([a,b]=[\alpha_m,\alpha_m+\eta_m]\subseteq[22m^{-1/3},\tfrac12]\).
 Now \(b/a\le 1+1.02/22<\tfrac{21}{20}\) and
-\((H-1)a\ge 0.646\cdot 22>12\). Lemma 4.1 applies.
+\((H-1)a\ge 0.646\cdot 22>12\). The steps of \(y\) are nondecreasing.
+Lemma 4.1′ applies.
 
 *Case 2: \(\alpha_m\ge\tfrac12+2m^{-1/3}\).* Put \(z_j=j(N+1)-x_j\),
 increasing with steps
@@ -515,8 +527,8 @@ again \(b/a\le 1+1.02/20.98<\tfrac{21}{20}\) and
 \((H-1)a\ge 0.646\cdot 20.98>12\). Write \(\langle z\rangle\in(0,1]\)
 for the representative of \(z\) modulo \(1\) in \((0,1]\). Then
 \(\langle z_j\rangle=1-\{x_j\}\) for every \(j\), so
-\(\{x_j\}<\tfrac12\iff\langle z_j\rangle\in(\tfrac12,1]\). Lemma 4.1 in
-its left-open form gives both counts.
+\(\{x_j\}<\tfrac12\iff\langle z_j\rangle\in(\tfrac12,1]\). The steps of
+\(z\) are monotone. Lemma 4.1′ in its left-open form gives both counts.
 
 The middle range \(|\alpha_m-\tfrac12|<2m^{-1/3}\) and the range
 \(\|\alpha_m\|<22m^{-1/3}\) are excluded by goodness. \(\square\)
@@ -671,10 +683,10 @@ Let \(x\ge 2\) and \(t=\log x\). Three families of members of
    \(\Phi(m)\subseteq(\sqrt x,x]\); the fibers are disjoint from each
    other and from those of item 2 (different \(m\)), and for good
    \(m\ge 10^6\) Lemmas 4.2 and 3.2 give log-mass at least
-   \(\tfrac17\bigl(\tfrac23m^{1/3}-1\bigr)(m+1)^{-4/3}\ge\frac2{21m}(1-2m^{-1/3})\).
+   \(\bigl(\tfrac13H_m-2\bigr)(m+1)^{-4/3}\ge\frac2{9m}\bigl(1-O(m^{-1/3})\bigr)\).
    Bad \(m>x^{3/8}\) carry log-mass at most \(306x^{-1/8}\)
    (Lemma 4.3). Hence item 3 contributes at least
-   \(\tfrac2{21}(1-2x^{-1/8})\bigl[\ell(A^{\rm rest}_x)-306x^{-1/8}-2x^{-3/4}\bigr]_+\).
+   \(\tfrac2{9}(1-2x^{-1/8})\bigl[\ell(A^{\rm rest}_x)-306x^{-1/8}-2x^{-3/4}\bigr]_+\).
 
 The images in item 1 are even, those in items 2--3 odd, so the three
 families are disjoint, and all lie in \((\sqrt x,x]\).
@@ -690,9 +702,9 @@ with \(\varepsilon_1=2e^{-t/4}\), \(\varepsilon_2=\varepsilon'(e^t)\),
 \(\varepsilon_3=2e^{-t/2}+e^{-3t/8}\), all tending to \(0\). Adding
 item 3 as well, and noting that the coefficient of the *actual* value
 \(g_A(3t/8)\) is
-\(\tfrac13(1-\varepsilon_2)-\tfrac2{21}(1+2e^{-3t/16})\to\tfrac5{21}>0\):
+\(\tfrac13(1-\varepsilon_2)-\tfrac2{9}(1+2e^{-3t/16})\to\tfrac19>0\):
 \[
-g_A(t)\ \ge\ (1-\varepsilon_1)\,g_A(t/2)+\bigl(\tfrac5{21}-\varepsilon_4\bigr)g_A(3t/8)+\bigl(\tfrac2{21}-\varepsilon_5\bigr)g_A(3t/4)-\varepsilon_6(t),
+g_A(t)\ \ge\ (1-\varepsilon_1)\,g_A(t/2)+\bigl(\tfrac19-\varepsilon_4\bigr)g_A(3t/8)+\bigl(\tfrac29-\varepsilon_5\bigr)g_A(3t/4)-\varepsilon_6(t),
 \tag{5.2}
 \]
 with \(\varepsilon_4,\varepsilon_5,\varepsilon_6\to 0\) (for \(t\) so
@@ -772,9 +784,9 @@ Let \(\lambda^*\) and \(\lambda^{**}\) be the roots in \((0,1)\) of
 \[
 2^{-\lambda}+\tfrac13\bigl(\tfrac38\bigr)^{\lambda}=1,
 \qquad
-2^{-\lambda}+\tfrac5{21}\bigl(\tfrac38\bigr)^{\lambda}+\tfrac2{21}\bigl(\tfrac34\bigr)^{\lambda}=1 .
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}=1 .
 \]
-Numerically \(\lambda^*=0.3774\ldots\) and \(\lambda^{**}=0.4050\ldots\).
+Numerically \(\lambda^*=0.3774\ldots\) and \(\lambda^{**}=0.4480\ldots\).
 For comparison: the elementary sweep alone, without Proposition 4.4,
 gives \(2^{-\lambda}+\tfrac2{21}(\tfrac34)^\lambda=1\), root
 \(0.138\ldots\); perfect fiber equidistribution at this depth would
@@ -795,7 +807,7 @@ Proposition 4.4 (no sweep lemma).
 
 *Proof.* Apply Lemma 5.1 to \(g=g_A\) with
 \((e_i,c_i)=(\tfrac12,1),(\tfrac38,\tfrac5{21}),(\tfrac34,\tfrac2{21})\),
-so that \(\zeta=2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda-1>0\)
+so that \(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda-1>0\)
 exactly when \(\lambda<\lambda^{**}\). Inequality (5.2) has the
 required form with \(\eta_1=\varepsilon_1\), \(\eta_2=\varepsilon_4\),
 \(\eta_3=\varepsilon_5\), \(\eta_0=\varepsilon_6\), all tending to
@@ -861,11 +873,10 @@ interval has ratio \(\sqrt r\) — and for a backward-closed set
 generated by a single seed it is false: the \(E\)-tree of one integer
 is lacunary at the dyadic scale.
 
-*Sharpness of the constants.* The fiber lemma gives \(\tfrac17\); the
-observed value on good fibers is about \(\tfrac13\) (Section 11).
-Replacing \(\tfrac17\) by \(\tfrac13\) would move \(\lambda^{**}\) from
-\(0.405\) to \(0.448\); the ceiling of the depth-two method is
-\(0.4927\).
+*Sharpness of the constants.* The monotone pairing gives
+\(\tfrac13H_m-2\); the observed floor on good fibers is \(0.328\) at
+\(\alpha_m\approx\tfrac13\) (Section 11). The remaining depth-two gap
+\(0.448\to 0.4927\) is the uniform \(1/3\) versus mean \(1/2\).
 
 *What is excluded.* Nothing. Corollary 5.5 does not say that a cycle
 or a divergent orbit is impossible; it says that either would be
@@ -1026,7 +1037,7 @@ in the set of (3). (2)\(\Rightarrow\)(1): \(F\) is backward-closed; if
 it were nonempty, Theorem 5.3 would contradict (2). \(\square\)
 
 **Theorem 7.2 (a Tao-type bound with rate implies the conjecture).**
-Suppose that for some \(e>1-\lambda^{**}=0.5950\ldots\) and all
+Suppose that for some \(e>1-\lambda^{**}=0.5520\ldots\) and all
 sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}\ \le\ \frac{y}{(\log y)^{e}} .
@@ -1059,7 +1070,7 @@ large \(y\).
 Conversely Theorem 7.2. \(\square\)
 
 The threshold \(1-\lambda^{**}\) is the complement of the contagion
-exponent; with \(\lambda^{***}\) of Appendix C it becomes \(0.5078\).
+exponent; with \(\lambda^{***}\) of Appendix C it becomes \(0.4608\).
 Any improvement of the contagion exponent lowers the rate required of
 the almost-all statement, and \(\lambda\to 1\) would make any positive
 rate suffice — but that improvement requires all descent certificates
@@ -1212,8 +1223,8 @@ every positive integer reaches \(1\). Under the conditional exponent
 \(C\ge 19\).
 
 *Proof.* Theorem 8.3 gives the hypothesis of Theorem 7.2 with
-\(e=e(C)-\varepsilon\ge e(21)-\varepsilon=0.621-\varepsilon>0.5950\);
-with \(\lambda^{***}\) the threshold is \(0.5078<e(19)=0.527\).
+\(e=e(C)-\varepsilon\ge e(20)-\varepsilon=0.574-\varepsilon>0.5520\);
+with \(\lambda^{***}\) the threshold is \(0.4608<e(18)=0.480\).
 \(\square\)
 
 ### 8.4 Constants
@@ -1494,7 +1505,7 @@ Dropping \(\psi\ge0\) gives the lower recursion
 which in log-mass form \(g=(t/2)\varphi\) is
 \(g(t)\ge g(t/2)+\tfrac13g^{\rm fib}(3t/4)\): the ideal depth-two
 contagion recursion of Section 5 with perfect fibers (the proved
-constants give \(\lambda^{**}=0.4050\), the ideal ones
+constants give \(\lambda^{**}=0.4480\), the ideal ones
 \(\lambda_{\rm ideal}=0.4927\)). Dropping \(\psi\le1\) instead gives
 the upper recursion for the failure density. Its homogeneous
 solutions \(\varphi=t^{-e}\) satisfy \(\tfrac12 2^{e}+c\,(4/3)^{e}=1\)
@@ -1635,7 +1646,7 @@ remaining problem to one statement:
 > **The frontier statement.** The number of odd starts in \((y,2y]\)
 > whose orbit is still above the certified floor \(N_0\) after
 > \(C\log_2\log y\) steps is at most \(y(\log y)^{-e}\) for some
-> \(e>1-\lambda^{**}=0.595\) (\(0.508\) under Appendix C).
+> \(e>1-\lambda^{**}=0.552\) (\(0.461\) under Appendix C).
 
 By Theorem 3 this statement is equivalent to the conjecture. Its
 weakest sufficient condition on the concentration route is the
@@ -1689,7 +1700,7 @@ analytic density estimates.
 *Depth constants.* Chernoff exponent \(e(C)\): \(0.480\) (\(18\)),
 \(0.527\) (\(19\)), \(0.574\) (\(20\)), \(0.621\) (\(21\)), \(0.812\)
 (\(25\)), \(1.054\) (\(30\)). Least \(C\) for the rate threshold
-\(1-\lambda^{**}=0.5950\) / conditional \(1-\lambda^{***}=0.5078\):
+\(1-\lambda^{**}=0.5520\) / conditional \(1-\lambda^{***}=0.4608\):
 fair Chernoff \(21\)/\(19\); one-sided Azuma at
 \(q=0.5,0.55,0.60,0.62\): \(21,46,255,1840\) / \(19,41,223,1587\);
 pressure (biased Chernoff) at the same \(q\): \(21,46,245,1735\) /
@@ -1888,9 +1899,9 @@ has \(1/n\ge(m'+1)^{-32/9}\), and
 ### C.3 The improved exponent
 
 **Theorem C.5 (conditional on Hypothesis L).** Theorem 5.3 holds for
-every \(\lambda<\lambda^{***}=0.4922\ldots\), the root of
+every \(\lambda<\lambda^{***}=0.5392\ldots\), the root of
 \[
-2^{-\lambda}+\tfrac5{21}\bigl(\tfrac38\bigr)^{\lambda}+\tfrac2{21}\bigl(\tfrac34\bigr)^{\lambda}+\tfrac19\bigl(\tfrac9{32}\bigr)^{\lambda}=1 .
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}+\tfrac19\bigl(\tfrac9{32}\bigr)^{\lambda}=1 .
 \]
 
 *Proof.* Add to the three families of Section 5.1 a fourth: for
@@ -1908,13 +1919,12 @@ additional pair \((e_4,c_4)=(\tfrac9{32},\tfrac19)\) and the new root.
 \(\square\)
 
 Downstream, every constant of Sections 7--10 improves: the rate
-threshold of Theorems 7.2--7.3 becomes \(e>1-\lambda^{***}=0.5078\);
+threshold of Theorems 7.2--7.3 becomes \(e>1-\lambda^{***}=0.4608\);
 the least depth constant of Corollary 8.4 and Theorem 9.2 is
-\(C=19\) (\(e(19)=0.527\)); in the one-sided form \(C(0.5)=19\),
-\(C(0.55)=41\), \(C(0.60)=223\), \(C(0.62)=1587\); in the pressure form
-\(19\), \(41\), \(214\), \(1497\). The exponent \(0.4922\) is within
-\(0.0005\) of the depth-two ceiling \(0.4927\), reached by a different
-route. A further production from the words \(OOOEE\) and \(OOEOE\)
+\(C=18\) (\(e(18)=0.480\)); in the one-sided form \(C(0.5)=18\),
+\(C(0.55)=39\). Pairing plus \(OOEEE\) sits at \(0.5392\), above the
+depth-two ceiling \(0.4927\), because \(OOEEE\) is an extra
+production. A further production from the words \(OOOEE\) and \(OOEOE\)
 on even blocks would give \(\lambda=0.5561\) and \(C=18\); those
 fibers have length \(P^{5/32}\), below the threshold of the localized
 triple, and Lemma 3.9's trivial bound on the kernel proof is the

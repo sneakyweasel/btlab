@@ -56,10 +56,12 @@ def test_recursion_roots() -> None:
     roots = {name: lambda_root(c) for name, c in RECURSIONS.items()}
     assert abs(roots["block_average_only"] - 0.3774) < 1e-3
     assert abs(roots["block_average_plus_sweep"] - 0.4051) < 1e-3
+    assert abs(roots["block_average_plus_third"] - 0.4480) < 1e-3
     assert abs(roots["elementary_sweep_only"] - 0.1385) < 1e-3
     assert abs(roots["depth_two_ideal"] - 0.4927) < 1e-3
     assert abs(roots["block_sweep_plus_ooeee"] - 0.4923) < 1e-3
-    assert roots["elementary_sweep_only"] < roots["block_average_only"] < roots["block_average_plus_sweep"] < roots["block_sweep_plus_ooeee"] < roots["depth_two_ideal"] < 1
+    assert roots["block_average_plus_third"] < roots["block_third_plus_ooeee"]
+    assert roots["elementary_sweep_only"] < roots["block_average_only"] < roots["block_average_plus_sweep"] < roots["block_average_plus_third"] < roots["block_sweep_plus_ooeee"] < roots["depth_two_ideal"] < 1
 
 
 def test_first_letter_decomposition_is_exact_and_oe_fair() -> None:

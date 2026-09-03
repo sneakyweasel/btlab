@@ -11,7 +11,7 @@ Fate contagion ([juggler_fate_contagion_note.md](juggler_fate_contagion_note.md)
 Corollary 4.5) turned the Juggler conjecture into an almost-all
 statement: every start reaches \(1\) **iff** the starts whose orbit
 never enters a certified interval \([1,N_0]\) have logarithmic count
-\(o((\log x)^{\lambda})\) for some \(\lambda<\lambda^{**}=0.4050\ldots\).
+\(o((\log x)^{\lambda})\) for some \(\lambda<\lambda^{**}=0.4480\ldots\).
 The question left open was whether a Tao-type theorem — "almost all
 orbits attain almost bounded values" — with the *bounded* target
 \([1,N_0]\) and the rate \((\log x)^{-0.6}\) is available for the

@@ -46,3 +46,10 @@ def test_standing_estimates_contain_observed_values() -> None:
 def test_cell_inventory_matches_printed_bounds() -> None:
     c = A.cell_inventory(20_000, 1)
     assert c["ok"], c
+
+
+def test_frozen_zero_offset_curvature_is_135_over_1024() -> None:
+    r = A.frozen_anchor_curvature_samples(P=10**7, seed=4, trials=12)
+    assert r["samples"] >= 8, r
+    assert r["frozen_near_one"], r
+    assert r["moving_gap_is_wrong_model"], r

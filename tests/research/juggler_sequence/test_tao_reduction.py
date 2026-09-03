@@ -16,13 +16,13 @@ from research.juggler_sequence.tao_reduction import (
 
 
 def test_required_rate_is_complement_of_contagion_exponent() -> None:
-    assert abs(REQUIRED_RATE - (1 - 0.40506)) < 1e-4
+    assert abs(REQUIRED_RATE - (1 - 0.44802)) < 1e-4
     assert REQUIRED_RATE < 0.6  # the user's rate (log x)^{-0.6} suffices
 
 
-def test_least_C_is_twenty_one() -> None:
-    assert least_C() == 21
-    assert chernoff_exponent(20) < REQUIRED_RATE < chernoff_exponent(21)
+def test_least_C_is_twenty() -> None:
+    assert least_C() == 20
+    assert chernoff_exponent(19) < REQUIRED_RATE < chernoff_exponent(20)
     assert abs(chernoff_exponent(21) - 0.6210) < 1e-3
 
 
@@ -55,21 +55,21 @@ def test_bad_words_by_brute_force_small_depth() -> None:
 def test_improved_rate_with_ooeee_production() -> None:
     from research.juggler_sequence.tao_reduction import REQUIRED_RATE_STAR3, least_C_biased
 
-    assert abs(REQUIRED_RATE_STAR3 - 0.5077) < 1e-3
-    assert chernoff_exponent(18) < REQUIRED_RATE_STAR3 < chernoff_exponent(19)
-    assert least_C_biased(0.5, REQUIRED_RATE_STAR3) == 19
-    assert least_C_biased(0.55, REQUIRED_RATE_STAR3) == 41
+    assert abs(REQUIRED_RATE_STAR3 - 0.4608) < 1e-3
+    assert chernoff_exponent(17) < REQUIRED_RATE_STAR3 < chernoff_exponent(18)
+    assert least_C_biased(0.5, REQUIRED_RATE_STAR3) == 18
+    assert least_C_biased(0.55, REQUIRED_RATE_STAR3) == 39
 
 
 def test_biased_split_constants() -> None:
     from research.juggler_sequence.tao_reduction import azuma_exponent, least_C_biased
 
-    assert least_C_biased(0.5) == 21
-    assert least_C_biased(0.55) == 46
-    assert least_C_biased(0.6) == 255
+    assert least_C_biased(0.5) == 20
+    assert least_C_biased(0.55) == 44
+    assert least_C_biased(0.6) == 240
     assert least_C_biased(0.64) is None  # above log 2 / log 3
     assert abs(azuma_exponent(21, 0.5) - 0.6167) < 1e-3
-    assert azuma_exponent(20, 0.5) < REQUIRED_RATE
+    assert azuma_exponent(19, 0.5) < REQUIRED_RATE < azuma_exponent(20, 0.5)
 
 
 def test_bad_words_almost_all_contain_long_odd_runs() -> None:
@@ -127,7 +127,7 @@ def test_pressure_form_constants() -> None:
 
     # q = 1/2 reduces to the fair Chernoff exponent
     assert abs(chernoff_biased_exponent(19, 0.5) - chernoff_exponent(19)) < 1e-12
-    assert least_C_pressure(0.5, REQUIRED_RATE_STAR3) == 19
+    assert least_C_pressure(0.5, REQUIRED_RATE_STAR3) == 18
     # Chernoff for a biased coin is at least as good as Azuma (Theorem B') at q = 0.55
     assert least_C_pressure(0.55, REQUIRED_RATE_STAR3) <= 41
     assert chernoff_biased_exponent(10, 0.64) == 0.0  # above the critical share nothing is gained

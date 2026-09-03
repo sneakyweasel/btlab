@@ -163,10 +163,10 @@ def fig_dependencies() -> None:
 
     # Row 1: human lemmas and the exact decomposition
     box(0.0, 2.2, 2.0, 0.9, "exact first-letter\ndecomposition (6.1), Sec. 6.2", fc=human, fs=8.2)
-    box(2.9, 2.2, 2.3, 0.9, "sweep lemma, fiber parity $\\geq 1/7$,\nblock average (Sec. 4)", fc=human, fs=8.2)
+    box(2.9, 2.2, 2.3, 0.9, "sweep lemma, fiber parity $\\geq 1/3$,\nblock average (Sec. 4)", fc=human, fs=8.2)
 
     # Row 2: the two engines
-    box(1.6, 4.0, 3.6, 0.95, "Theorem 1: contagion (Sec. 5)\n$\\sum_{n\\in A,\\,n\\leq x}1/n\\gg(\\log x)^{\\lambda}$, $\\lambda<0.4050$", fc=human)
+    box(1.6, 4.0, 3.6, 0.95, "Theorem 1: contagion (Sec. 5)\n$\\sum_{n\\in A,\\,n\\leq x}1/n\\gg(\\log x)^{\\lambda}$, $\\lambda<0.4480$", fc=human)
     box(5.6, 4.0, 4.2, 0.95, "Theorem 4: parity hypotheses $\\Rightarrow$ Tao-type bound\n$\\mathrm{H}(C,A)\\Leftarrow\\mathrm{H}_q\\Leftarrow\\mathrm{P}_\\theta\\Leftarrow\\mathrm{M}_{\\theta,q}$ (Sec. 8–9)", fc=human)
 
     # Row 3: the reformulation, the single frontier, the conditional appendix

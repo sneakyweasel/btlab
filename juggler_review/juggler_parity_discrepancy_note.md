@@ -1,7 +1,7 @@
 ---
 title: Parity equidistribution of nested floor powers, with descent applications to the Juggler map
 author: Philippe Cochin
-date: 2 September 2026
+date: 4 September 2026
 subtitle: Working draft. Not submitted.
 header-includes:
   - \AtBeginDocument{\author{Philippe Cochin \\ \texttt{philippe@cochin.fr}}}
@@ -203,12 +203,15 @@ recomputed by hand from its stated inputs, every exact identity
 starts, the standing estimates and inventories were compared with
 observed values on three scales, and every displayed \(P\)-power
 comparison of Section 5 was checked as an exact rational statement.
-Appendix A records the outcome, one row per estimate. Three items
+Appendix A records the outcome, one row per estimate. Four items
 were corrected (a coefficient in the proof of Lemma 4.3, the norm
-named in Lemma 3.9, and two absorbed remainders in Lemma 6.2); no
-statement changed. This is a re-derivation by the author with machine
-assistance, not an independent verification; the theorems remain
-human proofs and are labelled as such.
+named in Lemma 3.9, two absorbed remainders in Lemma 6.2, and the
+zero-offset interpolant of Step 5b, which had differentiated the
+moving gaps instead of holding them frozen: Lemma 5.2b); no
+statement of Theorem 5.3 or Theorem 6.1 changed. This is a
+re-derivation by the author with machine assistance, not an
+independent verification; the theorems remain human proofs and are
+labelled as such.
 
 ## 2. Related work
 
@@ -1761,13 +1764,17 @@ bounds of Lemma 5.1(iii) give, per branch with offset \(j\),
 \text{(E6)}\quad
 \bigl|(cF)''\bigr|
 =\tfrac{945}{512}\,k|j|\,n^{-1/8}\,(1+O(P^{-1/4}))
-+O\bigl(kh_1h_2P^{-5/8}\bigr),
++O\bigl(kh_1h_2P^{-5/8}\bigr).
 \]
-the two shapes being the composite monomials \(kjn^{15/8}\)
-(offset branches) and \(kh_1h_2\)-scale \(n^{11/8}\) (zero-offset),
-with sign product
-\(\alpha(\alpha-1)(\alpha+\beta-2)(\alpha+\beta-3)>0\) at
-\(\alpha=\tfrac98\), \(\beta\in\{\tfrac34,\tfrac14\}\). Finally, the
+The first summand is the offset monomial \(c\cdot\tfrac32j\,m^{1/2}
+=\tfrac98kj\,\nu^{15/8}\), differentiated in \(\nu\) with \(j\)
+frozen. The second is the zero-offset scale: on a cell the gaps
+\(\beta_i\) are frozen, and Lemma 5.2b computes the local curvature
+exactly as \(-\tfrac{135}{1024}\,k\beta_1\beta_2\nu^{-13/8}\), which
+is \(\asymp kh_1h_2\nu^{-5/8}\) and *negative*. (A model that
+differentiates the moving gaps \(\Delta_iX(\nu)\) produces a
+different, positive leading coefficient \(\tfrac{243}{128}\) and is
+not the local \(f''\).) Finally, the
 run and cell inventories: level-1 gap cells at shift \(2h\) number
 at most \(1.5hP^{1/2}+1\) with lengths in
 \([\tfrac23,\,0.95]\,P^{1/2}/h\), and the frozen-floor runs of
@@ -1800,7 +1807,13 @@ into four classes; three are handled by standard tests, and the
 fourth — an exact level-2 wave \(e(qY)\), possibly riding a frozen
 floor — is the genuinely new difficulty. We isolate it as a
 standalone lemma with its own differencing, so that it can be
-checked independently.
+checked independently. The checkable objects, in order, are:
+Lemma 5.1 (exact identities); Lemma 5.2(i) (differenced wave);
+Lemma 5.2(ii) from (i) (mixed pieces); Lemma 5.2b (frozen-shape
+interpolant: local \(f''\) versus global \(\Lambda\)); Theorem 5.3
+Step 5a (offset composite); Theorem 5.3 Step 5b (three regimes,
+the middle band citing Lemma 5.2b and Lemma 3.9). No later
+section re-derives these.
 
 **Lemma 5.2 (level-2 waves: the mixed-piece bound).**
 Assume (C1)–(C3), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
@@ -2141,6 +2154,202 @@ run-boundary cost \((h/u)^{1/2}P^{7/8}\), summed against the
 \(H_3\)-average, is exactly what pins the final exponent at
 \(\tfrac{23}{24}\).
 
+The remaining object that Theorem 5.3 must not confuse with
+Lemma 5.2 is the *zero-offset anchor*: the phase
+\(c(G_F-J_F)\) on a branch with \(j=0\). Two second derivatives
+are available, and they are not equal. On a cell the integers
+\(\beta_1,\beta_2,J_F\) are frozen, so
+\((cG_F)''=c''G_F+2c'G_F'+cG_F''\) is computed with those
+integers held constant while \(X(\nu)\) and \(c(\nu)\) move. Globally,
+to apply the three-term sublevel lemma, one needs a smooth model
+on the whole block. The only legitimate interpolant is the same
+frozen-shape formula with the smooth gap values \(\Delta_iX(\nu)\)
+*substituted as numbers*, not differentiated. Differentiating
+\(F_{\mathrm{sm}}(\nu)=\tfrac34(\Delta_1X)(\Delta_2X)X^{-1/2}\)
+instead produces \(\partial_\nu\beta\) terms that the local \(f''\)
+does not contain; that was the previous writeup of Step 5b, and it
+is withdrawn. The next lemma records the frozen-shape computation
+once, so that Step 5b is only a classification of scales.
+
+**Lemma 5.2b (frozen-shape interpolant on a zero-offset piece).**
+Assume (C1)–(C3) and \(j=0\). Work on a common-refinement piece of
+the gap cells of both shifts, the frozen-floor runs of
+\(\lfloor F_{\boldsymbol\kappa}(X)\rfloor\), and the sawtooth windows
+already counted, so that the integers \(G_1\), \(G_2\),
+\(\beta_1\), \(\beta_2\), and \(J_F=\lfloor F_{\boldsymbol\kappa}(X)\rfloor\)
+are constant. Write \(G_F=F_{\boldsymbol\kappa}\circ X\). The remaining
+phase on the piece has second derivative
+\[
+f''
+=-\tfrac9{32}\Bigl(uG_1(\nu{+}2h_1)^{-5/4}
++u'G_2(\nu{+}2h_2)^{-5/4}\Bigr)
++2c'G_F'+c\,G_F''+c''(G_F-J_F)
++wX''+O(\rho_0),
+\]
+where the \(O(\rho_0)\) collects decorations already shown small
+against the scales of Lemma 3.8, and the chain rule uses *frozen*
+\(\beta_i\):
+\[
+G_F'=F'(X)\,X',\qquad
+G_F''=F''(X)\,(X')^2+F'(X)\,X'',
+\]
+with, from Lemma 5.1(iii) at \(j=0\),
+\[
+F'(m)=-\tfrac38\beta_1\beta_2\,m^{-3/2},\qquad
+F''(m)=\tfrac9{16}\beta_1\beta_2\,m^{-5/2}
+\]
+up to the relative \(O(\beta/m)=O(P^{-1})\) of the mean-value
+\(\xi\). Define the *frozen-shape interpolant* \(\Lambda\) by
+substituting the smooth gap values
+\(\tilde\beta_i(\nu)=\Delta_iX(\nu)\) and
+\(\delta_{h_i}(\nu)=(\nu{+}2h_i)^{3/2}-\nu^{3/2}\) for those
+frozen integers *as values only*. The \(\nu\)-derivatives of
+\(\tilde\beta_i\) are not introduced:
+\[
+\begin{aligned}
+\Lambda(\nu)
+&=-\tfrac9{32}u\,\delta_{h_1}(\nu)\,(\nu{+}2h_1)^{-5/4}
+-\tfrac9{32}u'\,\delta_{h_2}(\nu)\,(\nu{+}2h_2)^{-5/4}\\
+&\qquad
++2c'(\nu)\,\widetilde F'(X(\nu))\,X'(\nu)
++c(\nu)\,\widetilde G''(\nu)
++\tfrac12 c''(\nu)
++wX''(\nu),
+\end{aligned}
+\]
+where \(\widetilde F'(m)=-\tfrac38\tilde\beta_1\tilde\beta_2\,m^{-3/2}\)
+and \(\widetilde G''\) is the frozen-shape formula for \(G_F''\)
+evaluated at \(\tilde\beta_i\). Then, for \(P\ge P_0\),
+\[
+\lvert f''-\Lambda\rvert
+\le\tfrac9{32}(u{+}u')P^{-5/4}
++\lvert c''\rvert
++8k(h_1{+}h_2)P^{-9/8}
+\le219P^{-25/24}+0.11P^{-5/6}.
+\]
+The second term is the leading interpolant error and is not
+absorbed into a smaller multiple of \(P^{-5/6}\). Moreover
+\(\Lambda=\Phi''+r\), where
+\[
+\Phi(\nu)
+=a\,\nu^{5/4}+b\,\nu^{11/8}+w\,\nu^{3/2},
+\qquad
+a=-\tfrac{27}{10}(uh_1+u'h_2),\quad
+b=-\tfrac{405}{176}\,kh_1h_2,
+\]
+the exponents \(\bigl(\tfrac54,\tfrac{11}8,\tfrac32\bigr)\) lie in
+\(E\) and are pairwise distinct, and \(r\) obeys the \(\rho_0(E)\)
+bounds of Lemma 3.9. If \(w=0\), drop the third term. The local
+frozen curvature of the anchor itself is
+\[
+2c'G_F'+c\,G_F''
+=-\tfrac{135}{1024}\,k\beta_1\beta_2\,\nu^{-13/8}
+\bigl(1+O(P^{-1/4})\bigr),
+\]
+and therefore
+\[
+\lambda_0
+:=\bigl\lvert\bigl(c(G_F-J_F)\bigr)''\bigr\rvert
+\in[0.35,\,2.6]\,kh_1h_2P^{-5/8}
+\]
+on the standing range: the summand \(c''(G_F-J_F)\) is
+\(O(kP^{-7/8})\) and sits in the \(O(P^{-1/4})\) relative error.
+
+*Proof.* There are three replacements of a frozen integer by a
+smooth gap of the same scale, and each moves its argument by at
+most \(1\).
+
+(i) \(\lvert G_i-\delta_{h_i}\rvert<2\), so the wave terms differ
+from \(\Lambda\) by at most \(\tfrac9{32}(u{+}u')P^{-5/4}\). In
+the middle band of Step 5b one has \(u,u'\le360P^{5/24}\), hence
+this is \(\le219P^{-25/24}\).
+
+(ii) \(\lvert\beta_i-\tilde\beta_i\rvert\le1\), so the product
+\(\beta_1\beta_2\) moves by
+\(O\bigl((h_1{+}h_2)P^{1/2}\bigr)\). The frozen-shape second
+derivative is linear in that product and of size
+\(k\beta_1\beta_2\nu^{-13/8}\); the difference is therefore
+\(O\bigl(k(h_1{+}h_2)P^{1/2}P^{-13/8}\bigr)
+=O\bigl(k(h_1{+}h_2)P^{-9/8}\bigr)\), which is the third
+displayed term.
+
+(iii) \(\lvert G_F-J_F\rvert<1\), and \(\Lambda\) replaces this
+fractional part by \(\tfrac12\) only in the already-expanded
+\(c''\)-term. The difference is at most \(\lvert c''\rvert
+\le0.11kP^{-7/8}\le0.11P^{-5/6}\). This replacement is *not*
+made in the phase \(c(G_F-J_F)\): substituting \(J_F\mapsto
+G_F-\tfrac12\) there would collapse the anchor to \(c/2\) and
+destroy the curvature.
+
+These are all the differences between \(f''\) and \(\Lambda\).
+In particular \(\Lambda\) is not \((cF_{\mathrm{sm}})''\) for
+\(F_{\mathrm{sm}}=\tfrac34(\Delta_1X)(\Delta_2X)X^{-1/2}\). That
+composite differentiates the moving gaps and is a different
+function.
+
+It remains to match leading monomials. Mean-value expansion
+gives \(\delta_h(\nu)=3h\,\xi^{1/2}\) with
+\(\xi\in(\nu,\nu{+}2h)\), hence
+\(\delta_h(\nu)\,(\nu{+}2h)^{-5/4}
+=3h\,\nu^{-3/4}\bigl(1+O(hP^{-1})\bigr)\) and
+\[
+-\tfrac9{32}u\,\delta_{h_1}(\nu)\,(\nu{+}2h_1)^{-5/4}
+=-\tfrac{27}{32}uh_1\,\nu^{-3/4}\bigl(1+O(h_1P^{-1})\bigr).
+\]
+This is \(\Phi''\) of \(a\nu^{5/4}\), because
+\(a\cdot\tfrac54\cdot\tfrac14=-\tfrac{27}{32}\).
+
+For the anchor, keep \(\beta_1,\beta_2\) frozen and expand the
+chain rule at \(c=\tfrac{3k}4\nu^{9/8}\),
+\(X=\nu^{3/2}\). Then \(G_F=\tfrac34\beta_1\beta_2X^{-1/2}
+=\tfrac34\beta_1\beta_2\nu^{-3/4}\) at leading order,
+\(G_F'=-\tfrac9{16}\beta_1\beta_2\nu^{-7/4}\), and
+\(G_F''=\tfrac{63}{64}\beta_1\beta_2\nu^{-11/4}\), so
+\[
+\begin{aligned}
+c''G_F
+&=\tfrac{81}{1024}\,k\beta_1\beta_2\nu^{-13/8},\\
+2c'G_F'
+&=-\tfrac{972}{1024}\,k\beta_1\beta_2\nu^{-13/8},\\
+c\,G_F''
+&=\tfrac{756}{1024}\,k\beta_1\beta_2\nu^{-13/8}.
+\end{aligned}
+\]
+The sum is \(-\tfrac{135}{1024}\,k\beta_1\beta_2\nu^{-13/8}\).
+(The term \(\tfrac12 c''\) in \(\Lambda\) is \(O(kP^{-7/8})\) and
+is absorbed in \(r\).) Substituting the interpolating values
+\(\tilde\beta_i=3h_i\nu^{1/2}(1+O(hP^{-1}))\) converts the
+product \(\beta_1\beta_2\) into \(9h_1h_2\nu\), and the curvature
+becomes \(-\tfrac{1215}{1024}kh_1h_2\nu^{-5/8}\). This is
+\(\Phi''\) of \(b\nu^{11/8}\), because
+\[
+b\cdot\tfrac{11}8\cdot\tfrac38
+=-\tfrac{405}{176}\cdot\tfrac{33}{64}
+=-\tfrac{1215}{1024}.
+\]
+The window mode is exactly \(wX''=\tfrac34w\nu^{-1/2}\). The
+relative errors \(O(hP^{-1})\) and
+\(\lvert\tfrac12 c''\rvert/B_{\mathrm{lead}}=O(P^{-1/4})\)
+whenever \(kh_1h_2\ge1\) are the \(\rho_0(E)\) bounds.
+
+The range of \(\lambda_0\) is the same leading term against
+\(\beta_i\in(3h_iP^{1/2}-1,\,4.3h_iP^{1/2}+1)\) and
+\(\nu\in(P,2P]\): the product \(\beta_1\beta_2\nu^{-13/8}\)
+runs through \([2.92,18.5]\,h_1h_2P^{-5/8}\), and
+\(\tfrac{135}{1024}\approx0.132\) converts this to
+\([0.38,2.44]\), opened to \([0.35,2.6]\) for the
+\(O(P^{-1/4})\) and the \(\pm1\) in the \(\beta\)-bounds.
+\(\square\)
+
+The global monomial \(\nu^{11/8}\) appears only after
+\(\tilde\beta_1\tilde\beta_2\sim\nu\) is substituted. On a single
+frozen run the curvature is a multiple of \(\nu^{-13/8}\), i.e.
+the second derivative of a \(\nu^{3/8}\) phase. Lemma 3.9 is
+applied to the *global* model \(\Phi\), whose second derivative
+tracks \(\Lambda\); the local \(f''\) stays within the interpolant
+error of that model, which is the only comparison the sublevel
+argument uses.
+
 **Theorem 5.3 (kernel cancellation).**
 Let \(c\) be smooth on \((P,2P]\) with \(c^{(r)}\asymp kP^{9/8-r}\)
 for \(r=0,\ldots,4\), derivative signs following the monomial pattern
@@ -2376,19 +2585,20 @@ Summed over the eight carry branches and \(|j|\le3\) with the
 at \(k\le P^{1/24}\) — the absorbed \((k|j|)^{1/2}\) loss, exactly
 at the bottleneck.
 
-**(5b) Zero-offset branches (\(j=0\)).** The expanded interpolant
-below gives the anchor curvature
-\(\lambda_0\in[1.0,5.0]\,kh_1h_2P^{-5/8}\) (leading coefficient
-\(\tfrac{243}{128}\), times the \((E2)\) variation of the gaps and
-the dyadic range of \(\nu^{-5/8}\)). Runs of length
+**(5b) Zero-offset branches (\(j=0\)).** Lemma 5.2b gives the
+local frozen curvature
+\(\lambda_0\in[0.35,\,2.6]\,kh_1h_2P^{-5/8}\)
+(leading coefficient \(\tfrac{135}{1024}\) in
+\(k\beta_1\beta_2\nu^{-13/8}\), converted by
+\(\beta_i\asymp h_iP^{1/2}\)). Runs of length
 \(\ge\tfrac1{22}P^{3/4}/(h_1h_2)\). Let
 \(\mu=0.84\max(uh_1,u'h_2)P^{-3/4}\) be the strongest
 differenced-wave scale present. Three regimes.
 
 - *Anchor-dominant* (\(60\mu\le\lambda_0\)): Lemma 3.3 per run at
   \(\lambda_0\), all else dominated at margin \(\ge20\):
-  \(\le3.0(kh_1h_2)^{1/2}P^{11/16}
-  +25\,(h_1h_2/k)^{1/2}P^{9/16}\).
+  \(\le1.7(kh_1h_2)^{1/2}P^{11/16}
+  +40\,(h_1h_2/k)^{1/2}P^{9/16}\).
 - *Mode-dominant* (\(\mu\ge60\lambda_0\), i.e.
   \(uh_1\ge60\,kh_1h_2P^{1/8}\)-form): Lemma 5.2(i) with the
   undifferenced anchor as decoration: its run boundaries number
@@ -2418,9 +2628,9 @@ differenced-wave scale present. Three regimes.
   (Lemma 3.9).
 
   *Inventory.* In this band
-  \(0.84\,uh_1P^{-3/4}=\mu\le60\lambda_0\le300\,kh_1h_2P^{-5/8}\)
-  forces \(u\le360\,kh_2P^{1/8}\le360\,P^{5/24}\), and likewise
-  \(u'\le360\,kh_1P^{1/8}\le360\,P^{5/24}\). The phase's second
+  \(0.84\,uh_1P^{-3/4}=\mu\le60\lambda_0\le160\,kh_1h_2P^{-5/8}\)
+  forces \(u\le200\,kh_2P^{1/8}\le200\,P^{5/24}\), and likewise
+  \(u'\le200\,kh_1P^{1/8}\le200\,P^{5/24}\). The phase's second
   derivative \(f''\) is smooth on the common refinement of the gap
   cells of both shifts (at most \(1.5(h_1{+}h_2)P^{1/2}+2\le
   3.1P^{13/24}\)), the anchor runs (\(\le22h_1h_2P^{1/4}\le
@@ -2433,129 +2643,44 @@ differenced-wave scale present. Three regimes.
   +\bigl(c_{11}(G_F-J_F)\bigr)''+wX''+O(\rho_0\text{-small}),
   \]
   with \(G_1,G_2,J_F\) (and the \(\beta_i\) inside \(G_F\)) frozen
-  integers.
+  integers. This is the local \(f''\) of Lemma 5.2b.
 
-  *Interpolant.* Write
-  \(\delta_h(\nu)=(\nu{+}2h)^{3/2}-\nu^{3/2}\) and
-  \(F_{\mathrm{sm}}(\nu)=\tfrac34\,(\Delta_1X(\nu))(\Delta_2X(\nu))\,
-  X(\nu)^{-1/2}\), the \(j=0\) branch function of Lemma 5.1(iii)
-  with each frozen \(\beta_i\) replaced by the smooth gap
-  \(\Delta_iX\). The second derivative on a cell is
-  \[
-  f''
-  =-\tfrac9{32}\Bigl(uG_1(\nu{+}2h_1)^{-5/4}
-  +u'G_2(\nu{+}2h_2)^{-5/4}\Bigr)
-  +\bigl(c_{11}(G_F-J_F)\bigr)''
-  +wX''+O(\rho_0\text{-small}),
-  \]
-  with \(G_i,J_F\) frozen. Expand the anchor *before* interpolating:
-  since \(J_F\) is constant on the run,
-  \[
-  \bigl(c_{11}(G_F-J_F)\bigr)''
-  =2c'G_F'+c\,G_F''+c''(G_F-J_F).
-  \]
-  The last summand is \(O(|c''|)\) because \(\lvert G_F-J_F\rvert<1\).
-  Define the interpolant by replacing the remaining frozen integers
-  in this expanded expression:
-  \[
-  \begin{aligned}
-  \Lambda(\nu)
-  &=-\tfrac9{32}u\,\delta_{h_1}(\nu)\,(\nu{+}2h_1)^{-5/4}
-  -\tfrac9{32}u'\,\delta_{h_2}(\nu)\,(\nu{+}2h_2)^{-5/4}\\
-  &\qquad
-  +2c'(\nu)F_{\mathrm{sm}}'(\nu)+c(\nu)F_{\mathrm{sm}}''(\nu)
-  +\tfrac12 c''(\nu)
-  +wX''(\nu).
-  \end{aligned}
-  \]
-  The replacement \(J_F\mapsto F_{\mathrm{sm}}-\tfrac12\) is made
-  only in the already-expanded \(c''\)-term, and produces the
-  displayed \(\tfrac12 c''\). It is *not* a replacement in the
-  phase \(c(G-J_F)\), which would collapse the anchor to
-  \(c/2\) and destroy the curvature.
+  *Interpolant.* Invoke Lemma 5.2b: the frozen-shape interpolant
+  \(\Lambda\) (values of \(\Delta_iX\) substituted, not
+  differentiated) satisfies
+  \(\lvert f''-\Lambda\rvert\le219P^{-25/24}+0.11P^{-5/6}\)
+  and \(\Lambda=\Phi''+r\) with
+  \(a=-\tfrac{27}{10}(uh_1+u'h_2)\) and
+  \(b=-\tfrac{405}{176}\,kh_1h_2\). The comparison
+  \(V\ge10\lvert f''-\Lambda\rvert\) below is read from that
+  two-term majorant. The withdrawn model
+  \(2c'F_{\mathrm{sm}}'+cF_{\mathrm{sm}}''=\tfrac{243}{128}kh_1h_2\nu^{-5/8}\)
+  is the second derivative of the moving-gap composite and is
+  not used.
 
-  Each replacement moves its argument by at most \(1\), so
-  \[
-  |f''-\Lambda|
-  \le\tfrac9{32}(u{+}u')P^{-5/4}
-  +\lvert c_{11}''\rvert
-  +8k(h_1{+}h_2)P^{-9/8}
-  \le219P^{-25/24}+0.11P^{-5/6}.
-  \]
-  The second term is the leading interpolant error and is not
-  absorbed into a smaller multiple of \(P^{-5/6}\). The first
-  term dies relative to it. The comparison
-  \(V\ge10\lvert f''-\Lambda\rvert\) below is read from this
-  two-term majorant, for \(P\ge P_0\).
-
-  *Leading monomials.* Mean-value expansion gives
-  \(\delta_h(\nu)=3h\,\xi^{1/2}\) with \(\xi\in(\nu,\nu{+}2h)\),
-  hence
-  \(\delta_h(\nu)\,(\nu{+}2h)^{-5/4}=3h\,\nu^{-3/4}\bigl(1+O(hP^{-1})\bigr)\),
-  and
-  \[
-  -\tfrac9{32}u\,\delta_{h_1}(\nu)\,(\nu{+}2h_1)^{-5/4}
-  =-\tfrac{27}{32}uh_1\,\nu^{-3/4}\bigl(1+O(h_1P^{-1})\bigr),
-  \]
-  and likewise for \(u'\). For the anchor,
-  \(\Delta_iX=3h_i\nu^{1/2}(1+O(h_iP^{-1}))\) and
-  \(X^{-1/2}=\nu^{-3/4}\), so
-  \(F_{\mathrm{sm}}=\tfrac{27}{4}h_1h_2\nu^{1/4}(1+O(hP^{-1}))\).
-  With \(c=\tfrac{3k}4\nu^{9/8}\),
-  \[
-  2c'F_{\mathrm{sm}}'+c\,F_{\mathrm{sm}}''
-  =\tfrac{243}{128}\,kh_1h_2\,\nu^{-5/8}\bigl(1+O(hP^{-1})\bigr):
-  \]
-  indeed \(cF_{\mathrm{sm}}=\tfrac{81k}{16}h_1h_2\nu^{11/8}
-  (1+O(hP^{-1}))\), so
-  \((cF_{\mathrm{sm}})''=\tfrac{2673}{1024}kh_1h_2\nu^{-5/8}
-  (1+O(hP^{-1}))\) and
-  \(c''F_{\mathrm{sm}}=\tfrac{729}{1024}kh_1h_2\nu^{-5/8}
-  (1+O(hP^{-1}))\), and the difference is
-  \(2c'F'+cF''=(cF)''-c''F\). The term \(\tfrac12 c''\) is
-  \(O(kP^{-7/8})\) and is absorbed in the perturbation below.
-  The window mode is exactly \(wX''=\tfrac34 w\nu^{-1/2}\).
-
-  Thus \(\Lambda=\Phi''+r\), where
-  \[
-  \Phi(\nu)
-  =a\,\nu^{5/4}+b\,\nu^{11/8}+w\,\nu^{3/2},
-  \qquad
-  a=-\tfrac{27}{10}(uh_1+u'h_2),\quad
-  b=\tfrac{81}{22}\,kh_1h_2,
-  \]
-  and the remainder \(r\) collects the relative
-  \(O(hP^{-1})\) expansions, the \(\tfrac12 c''\) term, and the
-  \(O(\rho_0)\) decorations. (Check:
-  \(\Phi''\) has leading coefficients
-  \(a\cdot\tfrac54\cdot\tfrac14=-\tfrac{27}{32}(uh_1+u'h_2)\) and
-  \(b\cdot\tfrac{11}8\cdot\tfrac38=\tfrac{243}{128}kh_1h_2\).)
-  The exponents \(\bigl(\tfrac54,\tfrac{11}8,\tfrac32\bigr)\) lie in
-  \(E\) and are pairwise distinct. If \(w=0\), drop the third term
-  and apply Lemma 3.8 (or Lemma 3.3 if only one of \(a,b\) is
-  present). In all cases the perturbation satisfies the
-  \(\rho_0(E)\) bounds of Lemma 3.8/3.9 for \(P\ge P_0\): each
-  relative error is \(O(P^{-1/4})\), and
-  \(\lvert\tfrac12 c''\rvert/B_{\mathrm{lead}}=O(P^{-1/4})\)
-  whenever \(kh_1h_2\ge1\). The scale is
+  The scale is
   \[
   S
   =\max\bigl(\lvert uh_1+u'h_2\rvert P^{-3/4},\,
   kh_1h_2P^{-5/8},\,\lvert w\rvert P^{-1/2}\bigr),
   \]
   and the middle-band constraints give
-  \(1.0P^{-5/8}\le S\le300\,P^{-1/2}\): the lower bound is the
-  anchor when \(kh_1h_2\ge1\), and the upper bound uses
+  \(0.35P^{-5/8}\le S\le300\,P^{-1/2}\): the lower bound is
+  \(\lambda_0\) when \(kh_1h_2\ge1\), and the upper bound uses
   \(kh_1h_2\le P^{1/8}\) from (C1) together with
-  \(\mu\le60\lambda_0\le300\,kh_1h_2P^{-5/8}\) and the
-  collision-band restriction
-  \(\lvert wX''\rvert\ll P^{-1/2}\).
+  \(\mu\le60\lambda_0\le160\,kh_1h_2P^{-5/8}\) (opened to
+  \(300\) against the older \(\lambda_0\le5\) majorant, which
+  only helps) and the collision-band restriction
+  \(\lvert wX''\rvert\ll P^{-1/2}\). If \(w=0\), drop the third
+  term of \(\Phi\) and apply Lemma 3.8 (or Lemma 3.3 if only
+  one of \(a,b\) is present).
 
   *Splitting.* Choose \(V:=3S^{1/2}P^{-11/24}\), so that
-  \(V/S\le6.7P^{-7/48}\) (hence \(V\le c_7S/2\) at
-  \(c_7=1/288\) for \(P\ge P_0\)) and
-  \(V\ge1.35P^{-37/48}\ge10\,|f''-\Lambda|\) against the
-  two-term interpolant majorant. The comparison
+  \(V/S\le5.1P^{-7/48}\) (hence \(V\le c_7S/2\) at
+  \(c_7=1/288\) for \(P\ge P_0\); the constant \(5.1\) is
+  \(3\cdot(0.35)^{-1/2}\)) and
+  \(V\ge1.7P^{-37/48}\ge10\,|f''-\Lambda|\) against the
+  two-term interpolant majorant of Lemma 5.2b. The comparison
   \(V\le c_7S/2\) is the large ineffective threshold of the
   standing estimates: until it holds, a three-term zero of
   \(\Phi''\) can keep \(\Omega_V\) of length \(\Theta(P)\) on a
@@ -2564,11 +2689,11 @@ differenced-wave scale present. Three regimes.
   interval counts remain \(O_E(1)\). By Lemma 3.9 the set
   \(\Omega=\{\nu:|\Lambda(\nu)|\le V\}\) is a union of at most
   \(C(E)\) intervals of total length
-  \(\le C(E)\,P(V/S)^{1/2}\le2.6\,C(E)\,P^{89/96}\), and on its
+  \(\le C(E)\,P(V/S)^{1/2}\le2.3\,C(E)\,P^{89/96}\), and on its
   complement \(f''\) is single-signed per interval with
   \(0.9V\le|f''|\le1.1\,C(E)S\). The three costs:
   \[
-  \text{transition (trivial):}\quad\le2.6\,C(E)\,P^{89/96};
+  \text{transition (trivial):}\quad\le2.3\,C(E)\,P^{89/96};
   \]
   \[
   \text{piece boundaries:}\quad
@@ -2808,20 +2933,23 @@ its curvature is
 =8.27\,kh_1h_2\,\nu^{-5/8}\,(1+O(hP^{-1/2})),
 \]
 positive and single-signed, so
-\(\lambda_0'\in[4.5,\,8.5]\,kh_1h_2P^{-5/8}\) replaces
-\(\lambda_0\in[0.2,0.9]kh_1h_2P^{-5/8}\). The three-regime split of
-Step 5b is read at this scale. The thresholds (factor \(60\)) are
-scale-free. In the anchor-dominant regime, Lemma 3.3 per run gives
+\(\lambda_0'\in[4.5,\,8.5]\,kh_1h_2P^{-5/8}\) replaces the
+kernel \(\lambda_0\in[0.35,2.6]\,kh_1h_2P^{-5/8}\) of
+Lemma 5.2b. The three-regime split of Step 5b is read at this
+scale. The thresholds (factor \(60\)) are scale-free. In the
+anchor-dominant regime, Lemma 3.3 per run gives
 \(\le4.0(kh_1h_2)^{1/2}P^{11/16}
 +12\,(h_1h_2/k)^{1/2}P^{9/16}\)
 (the first term grows like \(\lambda_0'^{1/2}\), the second
 shrinks). In the mode-dominant regime the undifferenced-anchor
 decoration is the same as in Step 5b, and the \(j=0\)
 \(\theta\)-coefficient remains sub-unit. In the middle band the
-interpolant of Step 5b is reused with \(B_{\mathrm{lead}}\)
-replaced by \(8.27\,kh_1h_2\nu^{-5/8}\): the phase is still
+frozen-shape interpolant of Lemma 5.2b is reused: the
+kernel-anchor leading \(-\tfrac{1215}{1024}kh_1h_2\nu^{-5/8}\)
+is replaced by the passenger total
+\(8.27\,kh_1h_2\nu^{-5/8}\), so
 \(\Phi=a\nu^{5/4}+b'\nu^{11/8}+w\nu^{3/2}\) with
-\(b'=8.27\cdot\tfrac{64}{33}kh_1h_2\), the \(\rho_0(E)\) bounds
+\(b'=8.27\cdot\tfrac{64}{33}kh_1h_2\). The \(\rho_0(E)\) bounds
 are unchanged, and
 \[
 S
@@ -3385,8 +3513,9 @@ of which exhibit cancellation at square-root scale — stronger than
 the theorems claim and stronger than they need. The same companion
 records scaled-integer gates for the exact identities of
 Section 1.1 and the named numerical margins of Section 5
-(Lemma 3.7 / Lemma 5.2 window hypotheses, the Step 5b interpolant
-majorant, and the Lemma 5.2 coefficient budget). Probes and
+(Lemma 3.7 / Lemma 5.2 window hypotheses, the Lemma 5.2b
+frozen-shape interpolant and its two-term majorant, and the
+Lemma 5.2 coefficient budget). Probes and
 validations are checks, not proofs, and no statement in this paper
 depends on them. In particular they are not evidence for
 Conjecture 7.3 or Conjecture 7.5. The audit of Appendix A is the
@@ -3406,11 +3535,12 @@ the standing estimates and inventories on the blocks
 \(P=10^6,10^8,10^{10}\) (and, for cell counts, exhaustively at
 \(P=10^5\)), and every displayed \(P\)-power comparison of Section 5
 as an exact rational statement
-(`research.juggler_sequence.paper_b_audit`, \(75\) exponent checks;
+(`research.juggler_sequence.paper_b_audit`, \(77\) exponent checks;
 artifact `data/research/juggler/paper_b_audit/summary.json`). A
 script check confirms consistency of what is printed; it is not a
 proof, and this appendix is not an independent human verification.
-Three items were corrected; none changes a statement.
+Four items were corrected; none changes a statement of
+Theorem 5.3 or of Theorem 6.1.
 
 | Item | Check | Outcome |
 |---|---|---|
@@ -3434,7 +3564,7 @@ Three items were corrected; none changes a statement.
 | Step 3a: windows \(2kh_2P^{1/4}+1\), hypothesis \(T\ge8(1+\lvert B\rvert)\), flat \(46P^{3/4}\), modes \(uh_1\le P^{1/2}\), boundaries \(7P^{17/24}\); 3b: \(\lvert(\Delta_2c)''\rvert\le0.19kh_2P^{-15/8}\), majorant \(4P^{23/24}\) | hand (window count \(0.22kh_2P^{1/4}+1\)) | consistent |
 | Step 4: weight sum \(\sum_t t^{-7/6}\log^2t<\infty\); \(\lvert t\rvert\) inside the Lemma 5.2 budget | hand | consistent |
 | Step 5a: \(\lambda_a\) constant \(\tfrac{945}{512}-\tfrac{27}{64}=\tfrac{729}{512}\), range \([1.2,1.5]k\lvert j\rvert P^{-1/8}\); competitor ratios; windows \(1.2k\lvert j\rvert P^{3/8}+1\); boundary \(1.1(k\lvert j\rvert)^{1/2}P^{7/16}\); collision sums \(2.5\), \(2.2\), \(1.8\); run sums \(1.3\), \(21\); total \(1.8P^{23/24}\) | hand (range \([1.31,1.42]\); windows \(0.17k\lvert j\rvert P^{3/8}+1\); sums \(2.45\), \(2.2\), \(1.8\); runs \(1.22\), \(20.2\)) | consistent |
-| Step 5b: \(\lambda_0\) leading \(\tfrac{243}{128}=\tfrac{2673-729}{1024}\); interpolant \(a=-\tfrac{27}{10}\), \(b=\tfrac{81}{22}\); error \(219P^{-25/24}+0.11P^{-5/6}\); \(S\in[1.0P^{-5/8},300P^{-1/2}]\); \(V=3S^{1/2}P^{-11/24}\), \(V/S\le6.7P^{-7/48}\), \(V\ge1.35P^{-37/48}\ge10\lvert f''-\Lambda\rvert\); transition \(2.6P^{89/96}\); boundaries \(3.2P^{89/96}\); good pieces \(18C'P^{3/4}\) | hand (\(V/S\le3P^{-7/48}\); \(V\ge3P^{-37/48}\); all exponents); script | consistent |
+| Step 5b / Lemma 5.2b: local frozen \((cG)''=-\tfrac{135}{1024}k\beta_1\beta_2\nu^{-13/8}\) (three chain-rule terms \(81-972+756\)); \(\lambda_0\in[0.35,2.6]kh_1h_2P^{-5/8}\); interpolant is frozen-shape (values of \(\Delta_iX\) substituted, not differentiated); \(a=-\tfrac{27}{10}\), \(b=-\tfrac{405}{176}\); error \(219P^{-25/24}+0.11P^{-5/6}\); \(S\in[0.35P^{-5/8},300P^{-1/2}]\); \(V=3S^{1/2}P^{-11/24}\), \(V/S\le5.1P^{-7/48}\), \(V\ge1.7P^{-37/48}\); transition \(2.3P^{89/96}\) | hand; script (frozen \((cF)''\) matches \(135/1024\) on \(j=0\) samples; the moving-gap \((cF_{\mathrm{sm}})''\) matches \(243/128\) and is *not* the local curvature) | **corrected architecture**: the previous interpolant differentiated the moving gaps and used the wrong leading coefficient \(\tfrac{243}{128}\) and the wrong range \([1.0,5.0]\); Theorem 5.3's exponent is unchanged |
 | Lemma 3.9 constant for the triple \((\tfrac54,\tfrac{11}8,\tfrac32)\) | hand and exact inverse | **corrected**: the inverse's \(\ell^\infty\) operator norm is \(232\); the printed \(288\) is its \(\ell^1\) norm; \(c_7=1/288\le1/232\) remains valid, so Step 5b is unchanged |
 | Step 6 assembly | hand; script | consistent |
 | Lemma 6.2, remainder bounds | hand | **corrected**: the two Lagrange remainders (orders \(n^{-45/16}\), \(n^{-81/16}\)) are now displayed instead of being absorbed into coefficients that have no slack when \(\theta_2\) or \(\theta_z\) is close to \(1\); Theorem 6.3 uses only the order of magnitude |
