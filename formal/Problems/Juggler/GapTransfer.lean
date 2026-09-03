@@ -20,7 +20,7 @@ Corollary 4.11: every nontrivial cycle satisfies
 `n log n ≤ 2 e^{6.1256} L^{14.3}`, so the no-cycle problem is exactly
 the exclusion of long cycles `L^{14.3} > n log n / 914.9`. The
 transcendence input is classical and stays a hypothesis here; the
-transfer itself is `sorry`-free.
+transfer itself is fully proved.
 
 This is a reduction, not a kill: at every certified floor the bound is
 weaker than the finance table (the REFUTED Baker transfer of

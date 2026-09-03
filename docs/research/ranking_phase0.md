@@ -21,7 +21,7 @@ Falsifier               Every canonical candidate fails on an exact
                         expansion anti-rankings / known halt restatements.
 Existing machinery      Frozen v2.3 discovery windows/orbits; integer
                         bit_length, bt_length, decimal length, parity,
-                        itinerary_length; AttackProposalDossier.
+                        word_length; AttackProposalDossier.
 Maximum Phase-0 scope   7^3 coefficient grid with gcd/sign canonicalization,
                         K<=8 known cores, exact integer comparisons,
                         four existing targets, no new state representation.
@@ -157,7 +157,7 @@ piecewise composite-versus-prime ranking; decimal length grows on factor concate
 
 ## Target `cyclic_tag_bit`
 
-- Available features: log_bit=bit_length(1+|encoding|), digit=itinerary_length, residue=leading bit
+- Available features: log_bit=bit_length(1+|encoding|), digit=word_length, residue=leading bit
 - Candidate count: 145
 - Transitions tested: 44
 - Exceptional set: 2

@@ -257,7 +257,7 @@
       "target": "cyclic_tag_bit",
       "available_features": [
         "log_bit=bit_length(1+|encoding|)",
-        "digit=itinerary_length",
+        "digit=word_length",
         "residue=leading bit"
       ],
       "candidate_count": 145,

@@ -35,6 +35,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "NearTightScale",
     "CycleFinance",
     "CycleFinanceLeftovers",
+    "GapTransfer",
     "RunSurvivorLattice",
     "WalkChargeItineraries",
     "OstrowskiSandwich",
@@ -117,6 +118,9 @@ LAYERS: dict[str, Path] = {
     "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
     "DefectFinance": JUGGLER_DIR / "DefectFinance.lean",
     "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
+    "GapTransfer": JUGGLER_DIR / "GapTransfer.lean",
+    "FunctionalGraph": JUGGLER_DIR / "FunctionalGraph.lean",
+    "FateContagion": JUGGLER_DIR / "FateContagion.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

@@ -31,7 +31,7 @@
     {
       "rank": 2,
       "name": "oooee_conditional_contraction",
-      "exact_statement": "If a trajectory follows the parity itinerary OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
+      "exact_statement": "If a trajectory follows the parity word OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
       "motivation": "OOOEE is the first mixed block whose idealized drift is negative: 3^3=27 < 2^5=32. Exact surrogate T^5(n)<n.",
       "relevant_domain": "n>=2 whose five successive branch parities are OOOEE",
       "expected_yield": "conditional five-step contraction, or a floor counterexample",
@@ -49,7 +49,7 @@
     {
       "rank": 3,
       "name": "shortest_negative_block",
-      "exact_statement": "If a trajectory follows the parity itinerary EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
+      "exact_statement": "If a trajectory follows the parity word EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
       "motivation": "Among EE, OEE, OOOE, OOOEE, OOOEEE, the shortest negative-drift word of depth<=5 is EE. Do not optimize over arbitrary words.",
       "relevant_domain": "n>=2 whose successive branch parities are EE",
       "expected_yield": "a short contractive block, or a restatement of even contraction",
@@ -87,7 +87,7 @@
     {
       "rank": 2,
       "name": "oooee_conditional_contraction",
-      "exact_statement": "If a trajectory follows the parity itinerary OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
+      "exact_statement": "If a trajectory follows the parity word OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
       "motivation": "OOOEE is the first mixed block whose idealized drift is negative: 3^3=27 < 2^5=32. Exact surrogate T^5(n)<n.",
       "relevant_domain": "n>=2 whose five successive branch parities are OOOEE",
       "expected_yield": "conditional five-step contraction, or a floor counterexample",
@@ -105,7 +105,7 @@
     {
       "rank": 3,
       "name": "shortest_negative_block",
-      "exact_statement": "If a trajectory follows the parity itinerary EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
+      "exact_statement": "If a trajectory follows the parity word EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
       "motivation": "Among EE, OEE, OOOE, OOOEE, OOOEEE, the shortest negative-drift word of depth<=5 is EE. Do not optimize over arbitrary words.",
       "relevant_domain": "n>=2 whose successive branch parities are EE",
       "expected_yield": "a short contractive block, or a restatement of even contraction",
@@ -2031,7 +2031,7 @@
     {
       "rank": 2,
       "name": "oooee_conditional_contraction",
-      "exact_statement": "If a trajectory follows the parity itinerary OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
+      "exact_statement": "If a trajectory follows the parity word OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
       "motivation": "OOOEE is the first mixed block whose idealized drift is negative: 3^3=27 < 2^5=32. Exact surrogate T^5(n)<n.",
       "relevant_domain": "n>=2 whose five successive branch parities are OOOEE",
       "expected_yield": "conditional five-step contraction, or a floor counterexample",
@@ -2049,7 +2049,7 @@
     {
       "rank": 3,
       "name": "shortest_negative_block",
-      "exact_statement": "If a trajectory follows the parity itinerary EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
+      "exact_statement": "If a trajectory follows the parity word EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
       "motivation": "Among EE, OEE, OOOE, OOOEE, OOOEEE, the shortest negative-drift word of depth<=5 is EE. Do not optimize over arbitrary words.",
       "relevant_domain": "n>=2 whose successive branch parities are EE",
       "expected_yield": "a short contractive block, or a restatement of even contraction",

@@ -24,7 +24,7 @@
     "negatives": "encode is sign-aware; C is computed on encode(x) and encode(W(x))",
     "msd_carry_counts": true,
     "digit_cancellation": "A position is affected iff carry_in != 0 or carry_out != 0. Opposite-trit cancellation with carry_in = carry_out = 0 is not a carry event. A nonzero final_carry creates an extra MSD position that counts.",
-    "zero": "encode(0) is the one-digit itinerary (0); C(0)=0",
+    "zero": "encode(0) is the one-digit word (0); C(0)=0",
     "deterministic": "the same integer always yields the same C"
   },
   "candidate_statements": [
@@ -61,7 +61,7 @@
         "carry_chain": 0,
         "note": "reverse T"
       },
-      "failure_mechanism": "Zero carry still changes canonical length: C(2)=0, W(2)=-2, 2->0, bt_length 2->1. Opposite-trit cancellation from reverse-as-negation collapses the itinerary without carry.",
+      "failure_mechanism": "Zero carry still changes canonical length: C(2)=0, W(2)=-2, 2->0, bt_length 2->1. Opposite-trit cancellation from reverse-as-negation collapses the word without carry.",
       "failure_class": "REVERSAL_DEPENDENCE",
       "checked": 1
     },
@@ -69,7 +69,7 @@
       "rank": 3,
       "name": "positive_carry_forces_length_plus_one",
       "exact_statement": "C(x)>0 implies bt_length(T(x))-bt_length(x)=1 for the one-step addition T(x)=x+W(x)",
-      "motivation": "If carry were the hidden coordinate of representation change, a nonzero chain would force the only nontrivial one-step length delta available to an itinerary sum: growth by exactly one trit.",
+      "motivation": "If carry were the hidden coordinate of representation change, a nonzero chain would force the only nontrivial one-step length delta available to a word sum: growth by exactly one trit.",
       "relevant_domain": "integers with C(x)>0 and a defined one-step successor",
       "expected_yield": "a one-dimensional carry law determining successor length",
       "cheapest_falsifier": "the first frozen seed with C(x)>0 whose length delta is not +1",
@@ -210,7 +210,7 @@
     {
       "name": "zero_carry_preserves_length",
       "class": "REVERSAL_DEPENDENCE",
-      "text": "Zero carry still changes canonical length: C(2)=0, W(2)=-2, 2->0, bt_length 2->1. Opposite-trit cancellation from reverse-as-negation collapses the itinerary without carry."
+      "text": "Zero carry still changes canonical length: C(2)=0, W(2)=-2, 2->0, bt_length 2->1. Opposite-trit cancellation from reverse-as-negation collapses the word without carry."
     },
     {
       "name": "positive_carry_forces_length_plus_one",

@@ -12,7 +12,7 @@
     "self_reverse": "when bt_length(x)=bt_length(W(x)), s_i = d_i + d_{L-1-i} on the canonical word of x",
     "leading_zeros": "encode strips canonical leading zeros before pairing",
     "negatives": "encode is sign-aware; digits lie in {-1,0,+1}",
-    "zero": "encode(0) is the one-digit itinerary (0); s=(0,)"
+    "zero": "encode(0) is the one-digit word (0); s=(0,)"
   },
   "pair_definition": {
     "s_i": "left_i + right_i, the raw aligned trit sum before rewrite_sum",
@@ -295,7 +295,7 @@
         "mathematical_target": "Keep the leading reverse-add proposal on nonlinear composition of W.",
         "mechanism": "Do not register reverse_pair_interaction as a production attack.",
         "required_capability": "symbolic nonlinear branch composition",
-        "expected_yield": "an exact reverse identity that uses the itinerary pair, not a count",
+        "expected_yield": "an exact reverse identity that uses the word pair, not a count",
         "falsifier": "A reverse-add sample whose named identity fails.",
         "novelty_risk": "HIGH",
         "implementation_scope": "LARGE",

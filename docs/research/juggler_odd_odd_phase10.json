@@ -310,7 +310,7 @@
         "rank": 3,
         "attack_name": "proof_guided_hypothesis_refinement",
         "trigger": "odd-even and odd-odd two-step lemmas are both local",
-        "mathematical_target": "Ask whether mixed-parity itineraries have an exact k=2 law without raising depth.",
+        "mathematical_target": "Ask whether mixed-parity words have an exact k=2 law without raising depth.",
         "mechanism": "If k>2 is required, PARK. Do not manufacture a survivor by depth.",
         "required_capability": "proof-guided hypothesis refinement",
         "expected_yield": "a mixed-parity identity at depth 2, or a stop at richer structure",
