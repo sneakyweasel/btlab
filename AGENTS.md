@@ -24,6 +24,7 @@ bt.*                        problem-independent BT mathematics
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
 6. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
+7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion: every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<0.405\); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).

@@ -76,6 +76,7 @@ import Problems.Juggler.FunctionalGraph
 import Problems.Juggler.InverseBranches
 import Problems.Juggler.Seam
 import Problems.Juggler.CyclePosition
+import Problems.Juggler.FateContagion
 
 /-!
 # Juggler laboratory barrel

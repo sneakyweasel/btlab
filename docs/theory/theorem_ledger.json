@@ -6307,5 +6307,82 @@
    "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-fate-classes-backward-closed",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Fate classes of the Juggler map are backward-closed (J n ∈ A ⟹ n ∈ A): the starts that reach 1 (reachesOne_backwardClosed), the starts that do not (not_reachesOne_backwardClosed), the basin Ancestor · m of any state m (ancestor_backwardClosed), and the divergent starts (escapes_backwardClosed); R and the divergent set are also forward-closed (reachesOne_floorPower, escapes_floorPower). Every start n ≥ 1 reaches 1, or is an ancestor of a state m ≥ 2 on a cycle (Periodic m), or escapes (fate_trichotomy, from cycles_or_escapes), and the fates exclude one another: a start that reaches 1 or enters a cycle has a bounded orbit (reachesOne_bounded, cycle_basin_bounded, reachesOne_not_escapes, cycle_basin_not_escapes), and a start that reaches 1 is not an ancestor of a cycle state m ≥ 2 (reachesOne_not_cycle_basin). Lemma 1.1 of the fate-contagion note. Not a halt theorem.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "Problems/Juggler/FateContagion.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-oe-fiber-cell",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The two exact productions of a backward-closed set A. Even block: if m ∈ A then every even n with m·m ≤ n < (m+1)(m+1) has J n = m (floorPower_even_block) and lies in A (even_block_mem); the block has at least m even elements (even_block_card). OE fiber: Nat.sqrt (Nat.sqrt N) = m ⟺ m^4 ≤ N < (m+1)^4 (sqrt_sqrt_eq_iff, the exact form of the transparent nesting ⌊√⌊n^{3/2}⌋⌋ = ⌊n^{3/4}⌋); hence an odd n with m^4 ≤ n^3 < (m+1)^4 and even ⌊n^{3/2}⌋ = Nat.sqrt (n^3) has J (J n) = m (floorPower_oe_fiber) and lies in A when m does (oe_fiber_mem); the fibers of distinct m are disjoint (oe_fiber_disjoint). Lemmas 2.1–2.2 of the fate-contagion note.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "Problems/Juggler/FateContagion.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-fiber-sweep",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Sweep lemma and fiber parity (fate-contagion note, Lemmas 3.1–3.3). Sweep: if x_1 < … < x_H are reals with consecutive differences in [a, b], 0 < a ≤ b ≤ 1/2, b ≤ (21/20) a and (H−1) a ≥ 12, then at least H/7 of the fractional parts lie in [0, 1/2) and at least H/7 in [1/2, 1) (half-unit cells; a traversed cell holds between ⌊1/(2b)⌋ and ⌊1/(2a)⌋+1 points, the ratio is ≥ 1/3, and the end cells cost a factor 10/23). Fiber parity: for m ≥ 10^6 with α_m = frac((3/2) m^{2/3}) satisfying ‖α_m‖ ≥ 22 m^{−1/3} and ‖α_m − 1/2‖ ≥ 2 m^{−1/3} (a good fiber), the odd n in the OE fiber m^4 ≤ n^3 < (m+1)^4 have even ⌊n^{3/2}⌋ for at least H_m/7 of them and odd for at least H_m/7 (the step of n^{3/2}/2 along the fiber lies in [α_m, α_m + 1.02 m^{−1/3}]). Thinness: at most 63 u^{2/3} bad m in (u, 2u] and Σ_{m bad, m > U} 1/m ≤ 306 U^{−1/3} for u, U ≥ 10^6. Census (m < 10^5, spot ranges at 10^6 and 10^7): mean G_m/H_m = 0.5000, minimum on good fibers 0.328 (α_m ≈ 1/3), every fiber below 1/7 flagged bad. Not an equidistribution statement.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-block-average",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Block average (fate-contagion note, Proposition 3.4). For m' ≥ 2 let I(m') = [m'^{8/3}, (m'+1)^{8/3}) and U(m') = {n odd in I(m') : ⌊n^{3/4}⌋ even and ⌊n^{3/2}⌋ even}, the union over the even block of m' of the good OE fibers. Then |U(m')| = (1/4)·#{odd n ∈ I(m')} + O(m'^{11/9} log m'), by Vaaler's expansion of the parity wave, the second-derivative test for the phases (q_1 n^{3/4} + q_2 n^{3/2})/2 with q_2 ≠ 0 (curvature ≍ |q_2| m'^{−4/3} on I(m')), Kusmin–Landau for the slow modes q_1 n^{3/4}/2, and exact run counting for Σ(−1)^{⌊n^{3/4}⌋}; truncation J = m'^{4/9}. The classical inputs are Paper B Lemmas 3.3 and 3.5 and the first-derivative test. Census m' ∈ [20,60) ∪ [200,230) ∪ [1000,1010) ∪ {3000, 5000}: deviation at most 0.9·√|I_odd| and at most 0.078·m'^{11/9} log m'. The constant is not made explicit.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-log-density",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Logarithmic density of a fate class (fate-contagion note, Theorem 4.2 and Corollary 4.3). Let λ** = 0.4050… be the root of 2^{−λ} + (5/21)(3/8)^λ + (2/21)(3/4)^λ = 1 (λ* = 0.3774…, root of 2^{−λ} + (1/3)(3/8)^λ = 1, without the sweep lemma). For every nonempty backward-closed A ⊆ ℕ and every λ < λ** there are c, x_0 > 0 with Σ_{n ∈ A, n ≤ x} 1/n ≥ c (log x)^λ for x ≥ x_0. Proof: with g(t) = Σ_{n ∈ A, e^{t/2} < n ≤ e^t} 1/n, the even blocks of A ∩ (x^{1/4}, √x] contribute g(t/2)(1 − o(1)), the OE images of the even blocks of A ∩ (x^{3/16}, x^{3/8}] contribute (1/3) g(3t/8)(1 − o(1)) by the block average, and the OE images of the remaining members of A ∩ (x^{3/8}, x^{3/4}] contribute (2/21)·(g(3t/4) − g(3t/8))·(1 − o(1)) by the sweep lemma, all in (√x, x] and pairwise disjoint; the seed lemma gives g ≥ c_A > 0 for t ≥ 4 log(m+1) for any m ≥ 3 in A; induction on t closes with the exponent λ. Corollary: for every X ≥ x_0 some y ∈ (√X, X] has #(A ∩ (y/2, y]) ≥ c y (log y)^{λ−1}. Consequences (Corollary 4.4): Σ_{n reaches 1, n ≤ x} 1/n ≫ (log x)^λ; if one start fails to reach 1 the failures satisfy the same bound; the basin of any existing cycle and the set of divergent starts likewise. Depth-two ceiling of the method 0.4927; positive logarithmic density (λ = 1) would need the full descent-certificate mass and is not claimed. Not a halt theorem; no fate is excluded.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-contagion-equivalence",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The Juggler conjecture as an almost-all statement (fate-contagion note, Corollary 4.5). Fix N_0 with [1, N_0] ⊆ R (Lean N_0 = 260, reachesOne_of_lt_two_hundred_sixty_one; certified N_0 = 3.5·10^8). The following are equivalent: (1) every n ≥ 1 reaches 1; (2) Σ_{n ≤ x, n ∉ R} 1/n = o((log x)^λ) for some λ < λ** = 0.405…; (3) the starts n ≤ x whose orbit never enters [1, N_0] have logarithmic count o((log x)^λ) for some λ < λ**. In natural-density terms (3) asks that all but O(x (log x)^{−0.6}) starts below x eventually fall below N_0 — a Tao-type almost-bounded-values statement with a bounded target and a mild logarithmic rate. For Collatz the analogous implication fails because preimage trees are thin (Krasikov–Lagarias x^{0.84}); for the Juggler map the even preimage interval makes fates contagious. This is a reduction, not a proof of termination, and no almost-all statement of type (3) is proved.",
+  "source": "docs/theory/juggler_fate_contagion_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-closure-census",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Certified closure of the Lean seed [1, 260] under the even-block and OE-fiber productions, computed exactly to 10^9 (research.juggler_sequence.fate_contagion, summary.json): every member reaches 1 (Lean even_block_mem, oe_fiber_mem with reachesOne_backwardClosed). Density 0.45–0.49 on every dyadic block (2^k, 2^{k+1}], 16 ≤ k ≤ 29, against 0.25 for the E-only closure; at x = 10^9 the log-mass on (√x, x] is 3.785 (even) + 1.547 (odd), with realised recursion coefficients 0.9998 (E, theory 1) and 0.3332 (OE against the source mass on (x^{3/8}, x^{3/4}]; heuristic 1/3; proved 1/3 on even blocks and 2/21 elsewhere). Classification FATE_CONTAGION_RECURSION_CONSISTENT. A census of the recursion, not a density theorem.",
+  "source": "docs/problems/juggler_fate_contagion.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
  }
 ]

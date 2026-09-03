@@ -22256,3 +22256,53 @@ Why
 Best next question
 - none in this laboratory; the §6 sentence of Paper A is the deliverable
 ```
+
+
+## Fate contagion: logarithmic density of the fate classes (not a numbered milestone)
+
+- **Date:** 2026-09-03
+- **Objective:** Attack termination through its three fates (reach 1 / nontrivial cycle / unbounded escape) at the only level where a theorem is available: how thin can a fate class be? Lower-bound the counting function of every nonempty backward-closed set of starts, hence of \(R\), of the failure set, of every cycle basin, and of the divergent set.
+- **Hypotheses:** (1) Even preimages are the full intervals \([m^2,(m+1)^2)\) and OE-preimages are fibers of \(\lfloor n^{3/4}\rfloor\) on which \(\lfloor n^{3/2}\rfloor\) sweeps mod 1, so a *lower-bound* recursion needs only per-fiber positive proportions and closes with an explicit exponent. Falsifier: a positive-density set of fibers with vanishing proportion of even \(\lfloor n^{3/2}\rfloor\), or block averages away from \(1/4\). (2) Over an even block of \(m\) the fiber proportions average to \(1/2\) by a two-monomial van der Corput estimate on the sub-dyadic interval \(I(m')\) of length \(x^{5/8}\).
+- **Major results:**
+  - **Fate classes backward-closed, trichotomy with basins, mutual exclusion (EXACT - LEAN VERIFIED, `J-fate-classes-backward-closed`):** `BackwardClosed`, `fate_trichotomy`, `reachesOne_not_escapes`, `cycle_basin_not_escapes`, `reachesOne_not_cycle_basin` (`FateContagion.lean`, in the `Problems.Juggler` barrel; `lake build` green, no `sorry`).
+  - **Even block and OE fiber (EXACT - LEAN VERIFIED, `J-fate-oe-fiber-cell`):** `even_block_mem`, `even_block_card`, `sqrt_sqrt_eq_iff` (\(\lfloor\sqrt{\lfloor\sqrt N\rfloor}\rfloor=m\iff m^4\le N<(m+1)^4\)), `oe_fiber_mem`, `oe_fiber_disjoint`.
+  - **Sweep lemma and fiber parity (EXACT - HUMAN PROOF, `J-fate-fiber-sweep`):** a monotone sequence with steps in \([a,\tfrac{21}{20}a]\subseteq(0,\tfrac12]\) and \((H-1)a\ge 12\) puts \(\ge H/7\) points in each half-circle; on good fibers (\(\|\alpha_m\|\ge 22m^{-1/3}\), \(\|\alpha_m-\tfrac12\|\ge 2m^{-1/3}\)) \(G_m\ge H_m/7\); bad fibers have \(\sum 1/m\le 306U^{-1/3}\).
+  - **Block average (EXACT - HUMAN PROOF, `J-fate-block-average`):** \(|U(m')|=\tfrac14\#\{\text{odd }n\in I(m')\}+O(m'^{11/9}\log m')\) (Vaaler, second-derivative test, Kusmin-Landau, run counting).
+  - **Theorem (EXACT - HUMAN PROOF, `J-fate-log-density`):** for every nonempty backward-closed \(A\) and every \(\lambda<\lambda^{**}=0.4050\ldots\) (root of \(2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda=1\)), \(\sum_{n\in A,n\le x}1/n\gg(\log x)^\lambda\); natural density \(\gg y(\log y)^{\lambda-1}\) on infinitely many dyadic blocks. Fates are contagious: one failure forces \(\gg(\log x)^{\lambda}\) failures in log-count.
+  - **Equivalence (EXACT - HUMAN PROOF, `J-fate-contagion-equivalence`):** every start reaches 1 iff the starts whose orbit never enters \([1,N_0]\) have logarithmic count \(o((\log x)^{\lambda})\) for some \(\lambda<\lambda^{**}\) - the Juggler conjecture is a Tao-type almost-all statement with a bounded target and a mild logarithmic rate. The Collatz analogue fails (thin preimage trees, \(x^{0.84}\)).
+  - **Censuses (COMPUTATIONALLY VERIFIED, `J-fate-closure-census`):** fiber mean \(0.5000\), min on good fibers \(0.328\) at \(\alpha_m\approx\tfrac13\), every sub-\(1/7\) fiber flagged bad; block deviations at square-root scale; the closure of the Lean seed \([1,260]\) under \(E\) and \(OE\) has density \(0.45\)-\(0.49\) on dyadic blocks to \(10^9\) (E-only \(0.25\)), realised recursion coefficients \(0.9998\) and \(0.3332\). `data/research/juggler/fate_contagion/summary.json`, classification `FATE_CONTAGION_RECURSION_CONSISTENT`.
+- **Refuted ideas:** none. Recorded as out of reach, not refuted: pointwise natural density for all \(x\) (fixed-ratio induction does not close; single-seed E-trees are lacunary); \(\lambda\to 1\) (needs the full descent-certificate mass; depth five would give \(\approx 0.75\)).
+- **Literature:** Krasikov-Lagarias (Collatz preimage trees \(x^{0.84}\)), Terras/Everett/Tao (almost-all Collatz), Paper B Lemmas 3.3/3.5 as tools. No published lower bound for the counting function of Juggler starts reaching 1 was found.
+- **Open:** a Juggler analogue of Tao's almost-bounded-values theorem with target \([1,N_0]\) and rate \((\log x)^{-0.6}\) would finish the conjecture; not attempted.
+- **Decision:** PROMOTE ([juggler_fate_contagion](problems/juggler_fate_contagion.md)). Note: [juggler_fate_contagion_note.md](theory/juggler_fate_contagion_note.md). No fate is excluded; termination is not proved.
+
+```text
+What was learned
+- fates are backward-closed and contagious: any realized fate has
+  log-count >> (log x)^0.40, against log x for all integers
+- even preimages are intervals and OE preimages are fibers of
+  floor(n^{3/4}); floor(n^{3/2}) sweeps mod 1 along a fiber, so a
+  lower-bound recursion closes where equidistribution would not
+- the closure of the Lean seed [1,260] reaches density ~0.47 to 1e9
+  and realises the recursion constants 1 and 1/3 exactly
+- the Juggler conjecture is equivalent to an almost-all statement
+  with a logarithmic rate; the Collatz analogue is false
+Strongest theorem
+- sum_{n in A, n <= x} 1/n >> (log x)^lambda for every nonempty
+  backward-closed A and lambda < 0.405
+Strongest refutation
+- none
+Reusable machinery
+- FateContagion.lean (BackwardClosed, even_block_mem, oe_fiber_mem,
+  sqrt_sqrt_eq_iff, fate_trichotomy, exclusion lemmas);
+  fate_contagion probe (fiber_census, block_stats, certified_closure)
+Branch status
+- PROMOTE
+Why
+- a new kind of statement for this map with an elementary proof at
+  depth two, an explicit exponent, and a genuine reduction of the
+  termination problem; it excludes nothing and claims nothing more
+Best next question
+- is there a Juggler analogue of Tao's almost-bounded-values theorem
+  in logarithmic density with target [1, N_0] and rate (log x)^{-0.6}?
+```
