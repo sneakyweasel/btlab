@@ -2,6 +2,7 @@ import { memo, useCallback, useEffect, useMemo, useState, type ReactNode } from 
 import { Link } from "react-router-dom";
 import { Tex } from "./Tex";
 import {
+  CYCLE_TOUR_PRESET_GROUPS,
   CYCLE_TOUR_PRESETS,
   TOUR_WORD_MAX,
 } from "../juggler/constants";
@@ -9,6 +10,7 @@ import { type StemDisplayMode } from "../juggler/lollipop";
 import {
   assembleFillCounts,
   cycleMinShape,
+  firstCycleMinCut,
   formatNecklaceFill,
   formatOddEvenRuns,
   oddEvenRuns,
@@ -19,7 +21,7 @@ import {
   type CycleMinShape,
   type NecklaceFill,
 } from "../juggler/itinerary";
-import { CycleLollipop, JoinRotateControls } from "../visuals/CycleLollipop";
+import { CycleLollipop, JoinRotateControls, RotateControls } from "../visuals/CycleLollipop";
 import { CycleNecklace } from "../visuals/CycleNecklace";
 import { OddEvenRunStrip } from "../visuals/OddEvenRunStrip";
 import {
@@ -37,10 +39,9 @@ type TourWord = {
   current: string;
   balloonWord: string;
   shift: number;
-  minIndex: number;
+  minIndex: number | undefined;
   text: string;
   shape: CycleMinShape;
-  balloonShape: CycleMinShape;
   currentFill: NecklaceFill | null;
   balloonFill: NecklaceFill | null;
   balloonFillCounts: AssembleFillCounts | null;
@@ -51,19 +52,15 @@ type TourWord = {
 
 const CycleTourLeftovers = memo(function CycleTourLeftovers({
   word,
-  onChooseShape,
   onRotate,
   onSnap,
   onSelectIndex,
-  onLeftover,
   onRun,
 }: {
   word: TourWord;
-  onChooseShape: (next: string, min: number) => void;
   onRotate: (delta: number) => void;
   onSnap: () => void;
   onSelectIndex: (index: number) => void;
-  onLeftover: () => void;
   onRun: () => void;
 }) {
   const {
@@ -71,9 +68,7 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
     current,
     shift,
     minIndex,
-    text,
     shape,
-    balloonShape,
     currentFill,
     balloonFill,
     balloonFillCounts,
@@ -83,47 +78,22 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
   } = word;
   return (
     <div className="space-y-5">
-      <div>
-        <p className="mb-1.5 text-xs uppercase tracking-wide text-muted">
-          Named survivors
-        </p>
-        <div className="flex flex-wrap items-center gap-1.5">
-          {CYCLE_TOUR_PRESETS.map((preset) => (
-            <button
-              key={preset.id}
-              type="button"
-              title={preset.hint}
-              className={`rounded-full px-2.5 py-0.5 font-mono text-sm ${
-                text === preset.word && shift === 0
-                  ? "bg-deep text-card"
-                  : "border border-line bg-card text-ink"
-              }`}
-              onClick={() => {
-                onChooseShape(preset.word, preset.minIndex);
-                onLeftover();
-              }}
-            >
-              {preset.label}
-            </button>
-          ))}
-        </div>
-      </div>
       <div
         className={`rounded-xl border px-3 py-2 text-sm ${
-          balloonShape.cycleMinShaped
+          shape.cycleMinShaped
             ? "border-ok/40 bg-ok/10 text-ink"
-            : aligned
-              ? "border-warn/40 bg-warn/10 text-ink"
-              : "border-line bg-paper/70 text-muted"
+            : minIndex !== undefined
+              ? "border-line bg-paper/70 text-muted"
+              : "border-warn/40 bg-warn/10 text-ink"
         }`}
       >
-        {balloonShape.cycleMinShaped && balloonFill && balloonRuns
-          ? `CycleMin-shaped survivor. Runs ${formatOddEvenRuns(balloonRuns)} equal toRuns of assembleFill ${formatNecklaceFill(balloonFill)}. Still not a realized cycle.`
-          : balloonShape.cycleMinShaped && balloonRuns
-            ? `CycleMin-shaped survivor. Runs ${formatOddEvenRuns(balloonRuns)} are not a four-slot fill. Still not a realized cycle (CycleMinShape_not_of_CycleMin).`
-            : aligned
-              ? "This cut is not CycleMin. A minimum spelling starts OO, ends E, has four evens and seven odds."
-              : "Rotate until the min bead sits at the survivor knot."}
+        {shape.cycleMinShaped && currentFill && currentRuns
+          ? `CycleMin-shaped survivor. Runs ${formatOddEvenRuns(currentRuns)} equal toRuns of assembleFill ${formatNecklaceFill(currentFill)}. Still not a realized cycle.`
+          : shape.cycleMinShaped && currentRuns
+            ? `CycleMin-shaped survivor. Runs ${formatOddEvenRuns(currentRuns)} are not a four-slot fill. Still not a realized cycle (CycleMinShape_not_of_CycleMin).`
+            : minIndex !== undefined
+              ? "This cut is not CycleMin. Rotate until the min bead sits at the survivor knot."
+              : "This cut is not CycleMin. A minimum spelling starts OO, ends E, has four evens and seven odds."}
       </div>
       <div className="grid gap-6 md:grid-cols-[minmax(16rem,22rem)_1fr] md:items-start">
         <div>
@@ -134,37 +104,16 @@ const CycleTourLeftovers = memo(function CycleTourLeftovers({
             showCut
             onSelectIndex={onSelectIndex}
           />
-          <div className="mt-1 flex justify-center gap-2">
-            <button
-              type="button"
-              className="rounded-full border border-line px-3 py-1 text-sm"
+          <div className="mt-2 flex justify-center" data-keep-focus>
+            <RotateControls
+              onLeft={() => onRotate(-1)}
+              onSnap={onSnap}
+              onRight={() => onRotate(1)}
               disabled={!stored}
-              onClick={() => onRotate(-1)}
-            >
-              Rotate left
-            </button>
-            <button
-              type="button"
-              className="rounded-full bg-deep px-3 py-1 text-sm text-card disabled:opacity-40"
-              disabled={!stored || aligned}
-              onClick={onSnap}
-            >
-              Snap to CycleMin
-            </button>
-            <button
-              type="button"
-              className="rounded-full border border-line px-3 py-1 text-sm"
-              disabled={!stored}
-              onClick={() => onRotate(1)}
-            >
-              Rotate right
-            </button>
+              snapDisabled={aligned || minIndex === undefined}
+              snapActive={aligned}
+            />
           </div>
-          <p className="mt-1 text-center text-xs text-muted">
-            This rotate moves the CycleMin cut. It does not walk the
-            stem. A cut that starts E or OE is not CycleMin
-            (rotate_even_not_cycleMin, rotate_OE_not_cycleMin).
-          </p>
         </div>
         <div className="space-y-3">
           {currentRuns ? (
@@ -309,15 +258,16 @@ function LetterRow({
 export function LeftoverWidget() {
   const [text, setText] = useState<string>(DEFAULT_SHAPE.word);
   const [shift, setShift] = useState<number>(0);
-  const [minIndex, setMinIndex] = useState<number>(DEFAULT_SHAPE.minIndex);
   const [decisionId, setDecisionId] = useState<string>("leftovers");
   const decision = findDecision(decisionId);
 
   const word = useMemo(() => {
     const parsed = parseItinerary(text, TOUR_WORD_MAX);
     const stored = parsed ?? "";
+    const minIndex = stored ? firstCycleMinCut(stored) : undefined;
     const current = stored ? rotateItinerary(stored, shift) : "";
-    const balloonWord = stored ? rotateItinerary(stored, minIndex) : "";
+    const balloonWord =
+      stored && minIndex !== undefined ? rotateItinerary(stored, minIndex) : stored;
     const balloonFill = balloonWord ? tryAssembleFill(balloonWord) : null;
     return {
       parsed,
@@ -328,21 +278,20 @@ export function LeftoverWidget() {
       minIndex,
       text,
       shape: cycleMinShape(current),
-      balloonShape: cycleMinShape(balloonWord),
       currentFill: current ? tryAssembleFill(current) : null,
       balloonFill,
       balloonFillCounts: balloonFill ? assembleFillCounts(balloonFill) : null,
       currentRuns: current ? oddEvenRuns(current) : null,
       balloonRuns: balloonWord ? oddEvenRuns(balloonWord) : null,
       aligned:
+        minIndex !== undefined &&
         stored.length > 0 &&
         ((shift % stored.length) + stored.length) % stored.length === minIndex,
     };
-  }, [text, shift, minIndex]);
+  }, [text, shift]);
 
-  const chooseShape = useCallback((next: string, min: number) => {
+  const chooseShape = useCallback((next: string) => {
     setText(next);
-    setMinIndex(min);
     setShift(0);
   }, []);
 
@@ -355,28 +304,69 @@ export function LeftoverWidget() {
   );
 
   return (
-    <div className="space-y-5">
-      {word.parsed === null ? (
-        <p className="text-sm text-warn">Use only O and E, length at most 24.</p>
-      ) : (
+    <div className="min-w-0 space-y-4">
+      <div className="rounded-2xl border border-line bg-paper px-4 py-2.5">
+        <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
+          <label className="grid gap-1">
+            <span className="text-xs uppercase tracking-wide text-muted">
+              Cycle itinerary
+            </span>
+            <input
+              className="start-input min-w-64 max-w-full rounded-xl border-2 border-ink bg-card px-3 py-2 font-mono text-3xl uppercase leading-none text-ink"
+              style={{ width: `calc(${Math.max(10, text.length)}ch + 1.5rem)` }}
+              spellCheck={false}
+              autoCapitalize="characters"
+              value={text}
+              onChange={(event) => chooseShape(event.target.value.toUpperCase())}
+            />
+            {word.parsed === null ? (
+              <span className="text-sm text-warn">
+                Use only O and E, length at most {TOUR_WORD_MAX}.
+              </span>
+            ) : null}
+          </label>
+          <div className="grid min-w-0 flex-1 gap-1.5">
+            {CYCLE_TOUR_PRESET_GROUPS.map((group) => (
+              <div key={group.role} className="flex flex-wrap items-center gap-1.5">
+                <span className="w-32 text-xs uppercase tracking-wide text-muted">
+                  {group.label}
+                </span>
+                {CYCLE_TOUR_PRESETS.filter((preset) => preset.role === group.role).map(
+                  (preset) => (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      title={preset.hint}
+                      className={`rounded-full px-2.5 py-0.5 font-mono text-sm ${
+                        text === preset.word && word.shift === 0
+                          ? "bg-deep text-card"
+                          : "border border-line bg-card text-ink"
+                      }`}
+                      onClick={() => {
+                        chooseShape(preset.word);
+                        setDecisionId("leftovers");
+                      }}
+                    >
+                      {preset.label}
+                    </button>
+                  ),
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {word.parsed === null ? null : (
         <CycleTourLeftovers
           word={word}
-          onChooseShape={chooseShape}
           onRotate={rotateBy}
-          onSnap={() => setShift(word.minIndex)}
+          onSnap={() => {
+            if (word.minIndex !== undefined) setShift(word.minIndex);
+          }}
           onSelectIndex={setShift}
-          onLeftover={() => setDecisionId("leftovers")}
           onRun={() => setDecisionId("leftovers")}
         />
       )}
-      <label className="block text-sm text-muted">
-        Or type a short necklace
-        <input
-          className="mt-1 block w-full max-w-md rounded border border-line bg-card px-2 py-1 font-mono uppercase"
-          value={text}
-          onChange={(event) => chooseShape(event.target.value.toUpperCase(), 0)}
-        />
-      </label>
       <IdealDecisionCard decision={decision} />
       <p className="text-sm text-muted">
         O⁷EEEE and O⁶EEEOE are assembleFill survivors. The three-valley
@@ -433,37 +423,6 @@ export function CycleTourWidget() {
         clearDecision();
       }}
     >
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-2">
-          <span className="text-xs uppercase tracking-wide text-muted">Stem</span>
-          <button
-            type="button"
-            role="switch"
-            aria-checked={stemMode !== "empty"}
-            aria-label="Stem"
-            className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
-              stemMode !== "empty" ? "bg-deep" : "border border-line bg-card"
-            }`}
-            onClick={() => {
-              const next = stemMode === "empty" ? "unknownSlot" : "empty";
-              setStemMode(next);
-              chooseDecision(next === "empty" ? "empty-string" : "string-grey");
-            }}
-          >
-            <span
-              className={`inline-block h-4 w-4 rounded-full transition-transform ${
-                stemMode !== "empty"
-                  ? "translate-x-6 bg-card"
-                  : "translate-x-1 bg-deep"
-              }`}
-            />
-          </button>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs uppercase tracking-wide text-muted">Rotate</span>
-          <JoinRotateControls joinAt={joinIndex} onJoinIndex={setJoin} />
-        </div>
-      </div>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,20rem)] lg:items-start">
         <CycleLollipop
           focus={wash ? decision?.focus : undefined}
@@ -471,6 +430,41 @@ export function CycleTourWidget() {
           stemMode={stemMode}
           onSelectDecision={toggleDecision}
           onClearFocus={clearDecision}
+          toolbar={
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-3" data-keep-focus>
+              <div className="flex items-center gap-2">
+                <span className="text-xs uppercase tracking-wide text-muted">Stem</span>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={stemMode !== "empty"}
+                  aria-label="Stem"
+                  className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+                    stemMode !== "empty" ? "bg-deep" : "border border-line bg-card"
+                  }`}
+                  onClick={() => {
+                    const next = stemMode === "empty" ? "unknownSlot" : "empty";
+                    setStemMode(next);
+                    chooseDecision(next === "empty" ? "empty-string" : "string-grey");
+                  }}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 rounded-full transition-transform ${
+                      stemMode !== "empty"
+                        ? "translate-x-6 bg-card"
+                        : "translate-x-1 bg-deep"
+                    }`}
+                  />
+                </button>
+              </div>
+              {stemMode === "empty" ? null : (
+                <div className="flex items-center gap-2">
+                  <span className="text-xs uppercase tracking-wide text-muted">Rotate</span>
+                  <JoinRotateControls joinAt={joinIndex} onJoinIndex={setJoin} />
+                </div>
+              )}
+            </div>
+          }
         />
         <IdealDecisionCard decision={decision} />
       </div>

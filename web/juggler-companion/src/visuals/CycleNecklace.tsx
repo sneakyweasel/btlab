@@ -47,11 +47,19 @@ export function CycleNecklace({
     return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
   }
 
+  const centerCaption = !word
+    ? "type O and E"
+    : atMin
+      ? null
+      : showCut
+        ? "click a bead to start there"
+        : "letters of the string";
+
   return (
     <svg viewBox="0 0 360 300" role="img" className="mx-auto h-auto w-full max-w-sm">
       <title>
         {showCut
-          ? "Cycle itinerary as a rotatable necklace"
+          ? "Cycle itinerary as a rotatable necklace. Walk clockwise."
           : "Capture string shown as letters, not a cycle"}
       </title>
       <circle cx={cx} cy={cy} r={r} fill="none" stroke="#d4cbb8" strokeWidth="2" />
@@ -61,15 +69,18 @@ export function CycleNecklace({
             const a0 = beadAngle(index, shift, n);
             const a1 = beadAngle(next, shift, n);
             const launchArc = cut !== undefined && index === cut;
+            const pointed = pointedLink(cx, cy, r, a0, a1, beadR);
+            if (!pointed) return null;
+            const color = letter === "O" ? "#c45c26" : "#1f6f6a";
             return (
               <path
                 key={`arc-${index}`}
-                d={arcPath(cx, cy, r, a0, a1)}
-                fill="none"
-                stroke={letter === "O" ? "#c45c26" : "#1f6f6a"}
-                strokeWidth={launchArc ? 5 : 3}
-                strokeLinecap="round"
-                opacity={launchArc ? 0.85 : 0.35}
+                d={pointed}
+                fill={color}
+                stroke={color}
+                strokeWidth="0.8"
+                strokeLinejoin="round"
+                opacity={launchArc ? 0.95 : 0.72}
               />
             );
           })
@@ -85,19 +96,21 @@ export function CycleNecklace({
         />
       ) : null}
       <polygon
-        points={`${cx},${cy - r - 30} ${cx - 7},${cy - r - 16} ${cx + 7},${cy - r - 16}`}
+        points={`${cx},${cy - r - 16} ${cx - 7},${cy - r - 30} ${cx + 7},${cy - r - 30}`}
         fill="#1f3d34"
       />
-      <text
-        x={cx}
-        y={cy - r - 36}
-        textAnchor="middle"
-        fill="#1f3d34"
-        fontFamily="Source Sans 3, sans-serif"
-        fontSize="12"
-      >
-        {atMin ? "CycleMin cut" : showCut ? "this spelling" : "capture string"}
-      </text>
+      {atMin || !showCut ? (
+        <text
+          x={cx}
+          y={cy - r - 36}
+          textAnchor="middle"
+          fill="#1f3d34"
+          fontFamily="Source Sans 3, sans-serif"
+          fontSize="12"
+        >
+          {atMin ? "CycleMin cut" : "capture string"}
+        </text>
+      ) : null}
       {Array.from(word).map((letter, index) => {
         const angle = beadAngle(index, shift, n);
         const x = cx + r * Math.cos(angle);
@@ -153,22 +166,18 @@ export function CycleNecklace({
           </g>
         );
       })}
-      <text
-        x={cx}
-        y={cy + 6}
-        textAnchor="middle"
-        fill="#5e574c"
-        fontFamily="Source Sans 3, sans-serif"
-        fontSize="13"
-      >
-        {word
-          ? atMin
-            ? "minimum at the top"
-            : showCut
-              ? "click a bead to start there"
-              : "letters of the string"
-          : "type O and E"}
-      </text>
+      {centerCaption ? (
+        <text
+          x={cx}
+          y={cy + 6}
+          textAnchor="middle"
+          fill="#5e574c"
+          fontFamily="Source Sans 3, sans-serif"
+          fontSize="13"
+        >
+          {centerCaption}
+        </text>
+      ) : null}
     </svg>
   );
 }
@@ -183,14 +192,41 @@ function beadAngle(index: number, shift: number, n: number): number {
   return ((index - shift) / n) * 2 * Math.PI - Math.PI / 2;
 }
 
-function arcPath(cx: number, cy: number, r: number, a0: number, a1: number): string {
-  const x0 = cx + r * Math.cos(a0);
-  const y0 = cy + r * Math.sin(a0);
-  const x1 = cx + r * Math.cos(a1);
-  const y1 = cy + r * Math.sin(a1);
+function atRadius(
+  cx: number,
+  cy: number,
+  r: number,
+  ang: number,
+): string {
+  return `${cx + r * Math.cos(ang)} ${cy + r * Math.sin(ang)}`;
+}
+
+function pointedLink(
+  cx: number,
+  cy: number,
+  r: number,
+  a0: number,
+  a1: number,
+  beadR: number,
+): string {
   const sweep = (a1 - a0 + 2 * Math.PI) % (2 * Math.PI);
-  const large = sweep > Math.PI ? 1 : 0;
-  return `M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1}`;
+  const pad = Math.asin(Math.min(1, (beadR + 1.4) / r));
+  const start = a0 + pad;
+  const span = sweep - 2 * pad;
+  if (span < 0.07) return "";
+  const halfW = 2.2;
+  const head = Math.min(0.2, span * 0.42);
+  const shaft = span - head;
+  const outer: string[] = [];
+  const inner: string[] = [];
+  const steps = 5;
+  for (let i = 0; i <= steps; i += 1) {
+    const ang = start + (shaft * i) / steps;
+    outer.push(atRadius(cx, cy, r + halfW, ang));
+    inner.push(atRadius(cx, cy, r - halfW, ang));
+  }
+  const tip = atRadius(cx, cy, r, start + span);
+  return `M ${outer.join(" L ")} L ${tip} L ${inner.reverse().join(" L ")} Z`;
 }
 
 function beadCaption(

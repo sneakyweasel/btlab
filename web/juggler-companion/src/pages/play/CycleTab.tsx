@@ -10,6 +10,7 @@ import {
   assembleFillCounts,
   cycleMinShape,
   expanding,
+  firstCycleMinCut,
   formatNecklaceFill,
   formatOddEvenRuns,
   necklaceFillToRuns,
@@ -93,7 +94,7 @@ export function CycleTab() {
             <CycleNecklace
               word={parsed}
               shift={cycleShift}
-              minIndex={cycleMinShape(parsed).cycleMinShaped ? 0 : undefined}
+              minIndex={firstCycleMinCut(parsed)}
               onSelectIndex={setCycleShift}
             />
             <div className="grid gap-3 sm:grid-cols-2">

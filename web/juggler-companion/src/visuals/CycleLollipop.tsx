@@ -547,14 +547,32 @@ function LegendBead({
 }
 
 function LegendMass({ rim = INK }: { rim?: string }) {
+  const span = (72 * Math.PI) / 180;
+  const cycles = 5;
+  const dashRatio = 0.58;
+  const outerPeriod = (18 * span) / cycles;
+  const innerPeriod = (12 * span) / cycles;
   return (
-    <svg viewBox="0 0 28 16" width="28" height="16" className="stem-cycle-legend-swatch" aria-hidden>
+    <svg viewBox="0 0 32 16" width="32" height="16" className="stem-cycle-legend-swatch" aria-hidden>
       <path
-        d="M 3 13 A 20 20 0 0 1 25 13 L 22.6 8.2 A 14 14 0 0 0 5.4 8.2 Z"
+        d="M 5.42 7.44 A 18 18 0 0 1 26.58 7.44 L 23.05 12.29 A 12 12 0 0 0 8.95 12.29 Z"
         fill="#fffdf7"
+      />
+      <path
+        d="M 5.42 7.44 A 18 18 0 0 1 26.58 7.44"
+        fill="none"
         stroke={rim}
-        strokeWidth="1.2"
-        strokeDasharray="2.6 1.8"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeDasharray={`${outerPeriod * dashRatio} ${outerPeriod * (1 - dashRatio)}`}
+      />
+      <path
+        d="M 8.95 12.29 A 12 12 0 0 1 23.05 12.29"
+        fill="none"
+        stroke={rim}
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeDasharray={`${innerPeriod * dashRatio} ${innerPeriod * (1 - dashRatio)}`}
       />
     </svg>
   );
@@ -675,6 +693,51 @@ function JoinIconButton({
   );
 }
 
+export function RotateControls({
+  onLeft,
+  onSnap,
+  onRight,
+  snapDisabled,
+  snapActive,
+  disabled,
+  leftLabel = "Rotate left",
+  snapLabel = "Snap to CycleMin",
+  rightLabel = "Rotate right",
+}: {
+  onLeft: () => void;
+  onSnap: () => void;
+  onRight: () => void;
+  snapDisabled?: boolean;
+  snapActive?: boolean;
+  disabled?: boolean;
+  leftLabel?: string;
+  snapLabel?: string;
+  rightLabel?: string;
+}) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <JoinIconButton label={leftLabel} disabled={disabled} onClick={onLeft}>
+        <RotateCcwIcon />
+      </JoinIconButton>
+      <JoinIconButton
+        label={snapLabel}
+        disabled={disabled || snapDisabled}
+        active={snapActive}
+        onClick={onSnap}
+      >
+        <SnapIcon />
+      </JoinIconButton>
+      <JoinIconButton
+        label={rightLabel}
+        disabled={disabled}
+        onClick={onRight}
+      >
+        <RotateCwIcon />
+      </JoinIconButton>
+    </div>
+  );
+}
+
 export function JoinRotateControls({
   joinAt,
   onJoinIndex,
@@ -684,28 +747,16 @@ export function JoinRotateControls({
 }) {
   const at = JOIN_SPOTS.includes(joinAt) ? joinAt : 0;
   return (
-    <div className="flex items-center gap-1.5">
-      <JoinIconButton
-        label="Join left"
-        onClick={() => onJoinIndex(stepIdealJoin(at, -1, JOIN_SPOTS))}
-      >
-        <RotateCcwIcon />
-      </JoinIconButton>
-      <JoinIconButton
-        label="Snap join to CycleMin"
-        disabled={at === 0}
-        active={at === 0}
-        onClick={() => onJoinIndex(0)}
-      >
-        <SnapIcon />
-      </JoinIconButton>
-      <JoinIconButton
-        label="Join right"
-        onClick={() => onJoinIndex(stepIdealJoin(at, 1, JOIN_SPOTS))}
-      >
-        <RotateCwIcon />
-      </JoinIconButton>
-    </div>
+    <RotateControls
+      onLeft={() => onJoinIndex(stepIdealJoin(at, -1, JOIN_SPOTS))}
+      onSnap={() => onJoinIndex(0)}
+      onRight={() => onJoinIndex(stepIdealJoin(at, 1, JOIN_SPOTS))}
+      snapDisabled={at === 0}
+      snapActive={at === 0}
+      leftLabel="Join left"
+      snapLabel="Snap join to CycleMin"
+      rightLabel="Join right"
+    />
   );
 }
 
@@ -1088,12 +1139,14 @@ export const CycleLollipop = memo(function CycleLollipop({
   stemMode = "empty",
   onSelectDecision,
   onClearFocus,
+  toolbar,
 }: {
   focus?: DecisionFocus;
   joinIndex?: number;
   stemMode?: StemDisplayMode;
   onSelectDecision?: (id: string) => void;
   onClearFocus?: () => void;
+  toolbar?: ReactNode;
 }) {
   const joinAt = JOIN_SPOTS.includes(joinIndex) ? joinIndex : 0;
   const pick = useCallback(
@@ -1118,6 +1171,7 @@ export const CycleLollipop = memo(function CycleLollipop({
           onPick={pick}
           onClear={onClearFocus}
         />
+        {toolbar}
         <FigureLegend onPick={pick} />
       </div>
       {stemMode === "empty" ? null : (

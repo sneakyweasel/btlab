@@ -104,60 +104,68 @@ export const CYCLE_PRESETS = [
   "OEO",
 ] as const;
 
+export const CYCLE_TOUR_PRESET_GROUPS = [
+  { role: "survivor", label: "Survivors" },
+  { role: "killed", label: "Easy kills" },
+  { role: "off-shape", label: "Outside CycleMin" },
+] as const;
+
+export type CycleTourPresetRole = (typeof CYCLE_TOUR_PRESET_GROUPS)[number]["role"];
+
 export const CYCLE_TOUR_PRESETS = [
   {
     id: "o7eeee",
+    role: "survivor",
     word: "OOOOOOOEEEE",
-    minIndex: 0,
     label: "O⁷EEEE",
-    hint: "CycleMin shape, four trailing evens. Named survivor: not a cycle.",
+    hint: "CycleMin shape, four trailing evens. Survivor of the even-count kill: not a cycle.",
   },
   {
     id: "o6eeeoe",
+    role: "survivor",
     word: "OOOOOOEEEOE",
-    minIndex: 0,
     label: "O⁶EEEOE",
-    hint: "OE seam: isolated last E. Named survivor: not a cycle.",
-  },
-  {
-    id: "offcut",
-    word: "EEOOOOOOOEE",
-    minIndex: 2,
-    label: "Wrong cut",
-    hint: "The same survivor, rotated off the minimum. Click the min bead.",
-  },
-  {
-    id: "ooe",
-    word: "OOE",
-    minIndex: 0,
-    label: "OOE",
-    hint: "Too few evens. Expanding, not superquadratic. Not a cycle.",
-  },
-  {
-    id: "oeo",
-    word: "OEO",
-    minIndex: 0,
-    label: "OEO",
-    hint: "Starts OE, not OO. Too few evens. Not a cycle.",
+    hint: "OE seam: isolated last E. Survivor of the even-count kill: not a cycle.",
   },
   {
     id: "three-valleys",
+    role: "survivor",
     word: "OOOEOOEOOEE",
-    minIndex: 0,
     label: "3 valleys",
-    hint: "CycleMin shape with three odd-runs. Not a cycle.",
+    hint: "CycleMin shape with three odd-runs. Not an assembleFill. Not a cycle.",
+  },
+  {
+    id: "ooe",
+    role: "killed",
+    word: "OOE",
+    label: "OOE",
+    hint: "Too few evens. Expanding, not superquadratic. Killed already.",
+  },
+  {
+    id: "oeo",
+    role: "killed",
+    word: "OEO",
+    label: "OEO",
+    hint: "Starts OE, not OO. Too few evens. Killed already.",
+  },
+  {
+    id: "offcut",
+    role: "off-shape",
+    word: "EEOOOOOOOEE",
+    label: "Wrong cut",
+    hint: "O⁷EEEE rotated off the minimum. This cut is not CycleMin.",
   },
   {
     id: "pin-2005",
+    role: "off-shape",
     word: "OOEEEOOOOOE",
-    minIndex: 0,
     label: "pin (2,0,0,5)",
     hint: "Necklace pin miss. Last odd-run 5. Outside CycleMinShape.",
   },
   {
     id: "pin-3004",
+    role: "off-shape",
     word: "OOOEEEOOOOE",
-    minIndex: 0,
     label: "pin (3,0,0,4)",
     hint: "Necklace pin miss. Last odd-run 4. Outside CycleMinShape.",
   },

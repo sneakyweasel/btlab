@@ -219,6 +219,27 @@ export function cycleMinShape(word: string): CycleMinShape {
   };
 }
 
+/**
+ * Indices where rotating the word to start there is CycleMin-shaped.
+ * Odd/even *counts* cannot locate the cut (they are rotation-invariant).
+ * The cut is a position: start OO, end E, last odd-run ≤ 1, enough letters.
+ */
+export function cycleMinCuts(word: string): number[] {
+  if (!word) return [];
+  const cuts: number[] = [];
+  for (let index = 0; index < word.length; index += 1) {
+    if (cycleMinShape(rotateItinerary(word, index)).cycleMinShaped) {
+      cuts.push(index);
+    }
+  }
+  return cuts;
+}
+
+/** First CycleMin cut in stored order, or undefined if no rotation is shaped. */
+export function firstCycleMinCut(word: string): number | undefined {
+  return cycleMinCuts(word)[0];
+}
+
 /** Lean `assembleOddEvenRuns`: odd-runs separated by one even each. */
 export function assembleOddEvenRuns(runs: readonly number[]): string {
   return runs.map((run) => "O".repeat(run) + "E").join("");

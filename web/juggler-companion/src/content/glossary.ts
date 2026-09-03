@@ -46,7 +46,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     number: 3,
     term: "Cycle survivors",
     blurb:
-      "A survivor of an easy kill is not a cycle.",
+      "A survivor of an easy kill is still not a cycle.",
     body:
       "CycleMin shape is necessary, not a cycle: O⁷EEEE inhabits the shape and never returns (CycleMinShape_not_of_CycleMin). A three-valley spelling such as O³EO²EO²EE is shaped and not an assembleFill. A finance survivor such as 365 is the same warning. None of these close.",
     paper:

@@ -46,7 +46,9 @@ import {
   assembleFill,
   assembleFillCounts,
   assembleOddEvenRuns,
+  cycleMinCuts,
   cycleMinShape,
+  firstCycleMinCut,
   formatBalloonSlots,
   formatOddEvenRuns,
   formatRunWord,
@@ -191,6 +193,19 @@ describe("cycleMinShape", () => {
   it("rejects a wrong cut of the leftover", () => {
     expect(cycleMinShape("EEOOOOOOOEE").cycleMinShaped).toBe(false);
     expect(cycleMinShape("EEOOOOOOOEE").startsOO).toBe(false);
+  });
+
+  it("finds the CycleMin cut from the O/E pattern, not from letter counts", () => {
+    expect(cycleMinCuts("OOOOOOOEEEE")).toEqual([0]);
+    expect(cycleMinCuts("EEOOOOOOOEE")).toEqual([2]);
+    expect(firstCycleMinCut("EEOOOOOOOEE")).toBe(2);
+    expect(cycleMinCuts("OOOOOOEEEOE")).toEqual([0]);
+    expect(cycleMinCuts("OOOEOOEOOEE")).toEqual([0]);
+    expect(cycleMinCuts("OOE")).toEqual([]);
+    expect(cycleMinCuts("OEO")).toEqual([]);
+    expect(firstCycleMinCut("OOE")).toBeUndefined();
+    expect(cycleMinCuts("OOEEEOOOOOE")).toEqual([5]);
+    expect(cycleMinCuts("OOOEEEOOOOE")).toEqual([6]);
   });
 
   it("accepts a three-valley CycleMin-shaped leftover", () => {
