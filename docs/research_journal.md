@@ -23994,3 +23994,68 @@ Best next question
   envelope, not the realizability slack -- that slack is unmeasured and
   is the one place a constant could still hide
 ```
+
+
+### Paper A: the exponent-walk relaxation measured (Prop 5.15) -- and a mechanism refuted
+
+The walk charge's DP maximises over every binary word with \(u_k\ge0\), realizable
+or not; its own docstring calls this "a relaxation of realizability". The paper's
+envelope-vs-DP cross-check (1.1204 vs 1.1196) compares two quantities that both
+live on the relaxed class, so it never bore on the gap to realizable words. That
+gap was the last place a factor could hide. Measured now.
+
+- **Part 1.** For \(14\le L\le24\) at \(o=o_{\min}(L)\), scanning odd
+  \(m<2\cdot10^7\): the charge-maximising admissible word is realizable at every
+  one of the eleven lengths, so the two maxima agree exactly.
+- **The relaxation is not vacuous.** Realized fraction 1.000 through \(L=21\),
+  then 0.992, 0.906, **0.695** at \(L=24\) -- the program maximises over half
+  again as many words as can occur.
+- **My explanation was wrong.** I proposed that unrealizable words sit at high
+  \(u\) where the charge is negligible ("the relaxation adds mass where the
+  charge does not look"). Refuted: the realized fraction is flat across charge
+  deciles (0.698, 0.702, 0.689, 0.694, 0.689, 0.691, 0.697, 0.698, 0.697, 0.695),
+  mean peak \(u\) is 4.188 realized vs 4.200 unrealized, and the **rank-2 word by
+  charge at \(L=24\) is unrealizable**, at 98.98% of the maximum. Realizability is
+  independent of charge.
+- **So Part 1 is a coincidence, and the robust bound is better.** The charge
+  ordering is flat at the top: rank2/rank1 \(\ge0.9846\) and rank10/rank1
+  \(\ge0.9214\), both *increasing* in \(L\). With realizability ~0.70 independent
+  of charge, the first realized word appears within a few ranks whatever the
+  argmax does, so the realized maximum sits within about **one percent** of the
+  relaxed maximum regardless. That is Prop 5.15(2), and it does not rest on the
+  coincidence.
+- **What it rules out.** A relaxation costing a factor 8 would have to remove
+  almost the whole top of the charge ordering; \(\mathcal R\) removes ~30% of it
+  uniformly. Whatever makes the walk charge's advantage \(0.44\ln n'\), it is not
+  the relaxation.
+
+**Methodological note.** The first scan (\(m<2\cdot10^6\)) reported the \(L=22\)
+argmax unrealizable and the fraction 0.38; at \(2\cdot10^7\) both reverse. A
+length-\(L\) word occurs with density \(\approx2^{-L}\), so one absence from a
+thin scan is not an exclusion. The caveat was flagged before the run, which is
+the only reason it did not become a finding.
+
+New: `walk_realizability.py`, Proposition 5.15, 9 tests.
+
+```text
+What was learned
+- the exponent-walk relaxation costs about one percent, not a factor;
+  the last place a constant could hide is now closed
+- realizability is uncorrelated with charge, which kills the natural
+  explanation and forces the flat-top argument instead
+Strongest theorem
+- Prop 5.15(2): flat top + charge-independent realizability bound the
+  slack without relying on the argmax surviving
+Strongest refutation
+- my own mechanism ("relaxation adds mass where the charge does not
+  look"), killed by the decile table
+Reusable machinery
+- walk_realizability: admissible_words / realized_words / slack
+Branch status
+- ADVANCE (relaxation closed; the 0.44 ln n' law stands unexplained by it)
+Why
+- the measurement bounds the slack above, which is the direction needed
+Best next question
+- does the flat top persist at L ~ 1e5?  the measurement is only
+  computable to L=24, and the whole bound rests on that flatness
+```

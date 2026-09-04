@@ -2188,11 +2188,61 @@ One caution about that cross-check, because it is easy to over-read.
 Both quantities compared there live on the *relaxed* class: the lattice
 program admits every binary word with \(o\) odds, \(e\) evens and
 \(u_k\ge0\), realizable or not. The agreement to \(0.07\%\) therefore
-says the envelope is tight against the relaxed optimum; it says nothing
-about how far the relaxed optimum sits above the true maximum over
-realizable cycle itineraries. That gap is unmeasured, and it is the one
-place in this construction where a constant factor could still be
-hiding.
+says the envelope is tight against the relaxed optimum, and says
+nothing about how far that optimum sits above the true maximum over
+*realizable* words. That is a separate question, and it is the only
+place in this construction where a factor of the size in question could
+plausibly hide, so it is worth measuring rather than assuming.
+
+**Proposition 5.15 (the relaxation cannot hide a constant).**
+For \(14\le L\le24\) and \(o=o_{\min}(L)\), let \(\mathcal A(L)\) be the
+class the lattice program maximises over --- all masks with \(o\) odds
+whose exponent walk stays nonnegative --- and let
+\(\mathcal R(L)\subseteq\mathcal A(L)\) be those realized as
+\(\mathrm{word}_L(m)\) for some odd \(m<2\cdot10^{7}\). Then
+
+1. the charge-maximising element of \(\mathcal A(L)\) lies in
+   \(\mathcal R(L)\) at every one of those eleven lengths, so the two
+   maxima agree exactly; and
+2. that agreement does not depend on (1). Ordering \(\mathcal A(L)\) by
+   charge, the second element carries at least \(0.9846\) of the
+   maximum and the tenth at least \(0.9214\), both ratios *increasing*
+   in \(L\) (at \(L=24\): \(0.9898\) and \(0.9481\)); and membership of
+   \(\mathcal R(L)\) is independent of charge to measurement accuracy
+   --- at \(L=24\) the realized fraction is \(0.698,0.702,0.689,0.694,
+   0.689,0.691,0.697,0.698,0.697,0.695\) across the ten charge deciles.
+   So the first realized word appears within the first few ranks
+   whatever the argmax does, and the realized maximum is within about
+   one percent of the relaxed maximum regardless.
+
+*Discussion.* The relaxation is not vacuous: the realized fraction
+\(\lvert\mathcal R\rvert/\lvert\mathcal A\rvert\) is \(1.000\) through
+\(L=21\) and then falls to \(0.992\), \(0.906\), \(0.695\), so by
+\(L=24\) the program maximises over half again as many words as can
+occur. But the words it adds are spread uniformly through the charge
+ordering rather than concentrated where the charge is small, and the
+ordering is flat at the top; those two facts together, not the
+coincidence in (1), are what bound the slack.
+
+It is worth recording what this rules out. A relaxation that cost a
+factor of \(8\) would have to remove almost the entire top of the
+charge ordering, and \(\mathcal R\) removes about \(30\%\) of it
+uniformly. Whatever explains the walk charge's advantage being
+\(\approx0.44\ln n'\) rather than something larger, it is not the
+exponent-walk relaxation.
+
+Two limits on how far this should be read. The comparison is only
+computable at short lengths, where \(o_{\min}(L)\) is not yet in the
+regime the kill tables use, and the flatness at the top could in
+principle behave differently at \(L\sim10^{5}\). And \(\mathcal R(L)\)
+is a scanned lower bound on the realizable set, so a word missing from
+it can only raise the realized maximum: the measurement bounds the
+slack above, which is the direction that matters. An earlier and
+thinner scan (\(m<2\cdot10^{6}\)) put the \(L=22\) argmax outside
+\(\mathcal R\) and the realized fraction at \(0.38\); at
+\(2\cdot10^{7}\) both reverse, which is the expected behaviour when a
+length-\(L\) word occurs with density \(\approx2^{-L}\), and a caution
+against reading one absence as an exclusion.
 
 What the boundary layer does suggest is that improvement will not come
 from a better envelope for this charge. It raises a sharper question
