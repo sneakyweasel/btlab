@@ -1,0 +1,330 @@
+{
+  "record_n_max": [
+    {
+      "L": 19,
+      "printed": 133,
+      "recomputed": 133,
+      "ok": true
+    },
+    {
+      "L": 84,
+      "printed": 2323,
+      "recomputed": 2323,
+      "ok": true
+    },
+    {
+      "L": 569,
+      "printed": 23568,
+      "recomputed": 23568,
+      "ok": true
+    },
+    {
+      "L": 1054,
+      "printed": 788014,
+      "recomputed": 788014,
+      "ok": true
+    },
+    {
+      "L": 25781,
+      "printed": 26254995,
+      "recomputed": 26254995,
+      "ok": true
+    },
+    {
+      "L": 50508,
+      "printed": 162848324,
+      "recomputed": 162848324,
+      "ok": true
+    }
+  ],
+  "record_n_max_all_ok": true,
+  "period_bounds": [
+    {
+      "N0": 1000000,
+      "site": "Thm 4.6",
+      "printed_bound": 25781,
+      "first_finance_survivor": 25781,
+      "ok": true
+    },
+    {
+      "N0": 26254995,
+      "site": "Prop 5.1 / Thm 5.2",
+      "printed_bound": 50508,
+      "first_finance_survivor": 50508,
+      "ok": true
+    },
+    {
+      "N0": 162849448,
+      "site": "Cor 5.10",
+      "printed_bound": 176251,
+      "first_finance_survivor": 176251,
+      "ok": true
+    },
+    {
+      "N0": 350000000,
+      "site": "Cor 5.11",
+      "printed_bound": 176251,
+      "first_finance_survivor": 176251,
+      "ok": true
+    }
+  ],
+  "period_bounds_all_ok": true,
+  "arithmetic_checks": [
+    {
+      "check": "Cor 3.23: 2^11 < 3^7 and 2^10 > 3^6",
+      "ok": true
+    },
+    {
+      "check": "Cor 3.23: 4 log 3 / log(3/2) = 10.84, so L >= 11",
+      "ok": true
+    },
+    {
+      "check": "Thm 2.2: floor(sqrt x)^2 <= x",
+      "ok": true
+    },
+    {
+      "check": "Thm 2.2: floor(x^{3/2})^2 <= x^3",
+      "ok": true
+    },
+    {
+      "check": "Sec 2: OE realized at 7 and 11, not at 9",
+      "ok": true
+    },
+    {
+      "check": "Thm 5.9/Cor 5.10: 478245 = 176251 + 301994",
+      "ok": true
+    },
+    {
+      "check": "Cor 5.11: 780239 = 176251 + 2*301994",
+      "ok": true
+    },
+    {
+      "check": "Thm 5.9: 101016 and 151524 are 2x and 3x the seed 50508",
+      "ok": true
+    },
+    {
+      "check": "Sec 5.7: 176251 and 301994 are convergent denominators",
+      "ok": true
+    },
+    {
+      "check": "Sec 5.7: 478245 and 780239 are semiconvergents, not convergents",
+      "ok": true
+    },
+    {
+      "check": "o_min(25781) = 16266",
+      "ok": true
+    },
+    {
+      "check": "o_min(176251) = 111202",
+      "ok": true
+    },
+    {
+      "check": "Sec 6: 1999 -OOE-> 5169 -OOOOEE-> 50093 -OOE-> 193753 -OOE-> 887471",
+      "ok": true
+    }
+  ],
+  "arithmetic_checks_all_ok": true,
+  "rhin_checks": [
+    {
+      "check": "13.3 * 0.46057 = 6.1256",
+      "ok": true,
+      "value": 6.125581
+    },
+    {
+      "check": "2 exp(6.1256) < 915",
+      "ok": true,
+      "value": 914.8207830387531
+    },
+    {
+      "check": "2 exp(6.1256) > 914 (the bound is not loose)",
+      "ok": true,
+      "value": 914.8207830387531
+    },
+    {
+      "check": "at N_0 = 3.5e8 the transfer forces only L >= 4",
+      "ok": true,
+      "value": 3.0260495673148995
+    }
+  ],
+  "rhin_checks_all_ok": true,
+  "convergent_invariant": [
+    {
+      "q": 19,
+      "q_next": 65,
+      "n_max": 133,
+      "nlogn_over_q_qnext": 0.5266529830392658,
+      "nlog2n_over_q_qnext": 2.5755169564814597
+    },
+    {
+      "q": 84,
+      "q_next": 485,
+      "n_max": 2323,
+      "nlogn_over_q_qnext": 0.44194104134083606,
+      "nlog2n_over_q_qnext": 3.4253147460321807
+    },
+    {
+      "q": 1054,
+      "q_next": 24727,
+      "n_max": 788014,
+      "nlogn_over_q_qnext": 0.41052006070684516,
+      "nlog2n_over_q_qnext": 5.5737421706472485
+    },
+    {
+      "q": 50508,
+      "q_next": 125743,
+      "n_max": 162848324,
+      "nlogn_over_q_qnext": 0.4848333351393534,
+      "nlog2n_over_q_qnext": 9.1673885978569
+    },
+    {
+      "q": 176251,
+      "q_next": 301994,
+      "n_max": 1044093213,
+      "nlogn_over_q_qnext": 0.40735297181018915,
+      "nlog2n_over_q_qnext": 8.459260703964862
+    }
+  ],
+  "invariant_range": [
+    0.40735297181018915,
+    0.5266529830392658
+  ],
+  "survivor_exponent": [
+    {
+      "L": 25781,
+      "n_max": 26254995,
+      "exponent": 0.5945779409718651
+    },
+    {
+      "L": 50508,
+      "n_max": 162848324,
+      "exponent": 0.5727574637359233
+    },
+    {
+      "L": 176251,
+      "n_max": 1044093213,
+      "exponent": 0.5816923442528824
+    },
+    {
+      "L": 478245,
+      "n_max": 2755936624,
+      "exponent": 0.6016407267744824
+    },
+    {
+      "L": 780239,
+      "n_max": 4479642886,
+      "exponent": 0.6105148750493137
+    }
+  ],
+  "fan_law": [
+    {
+      "check": "o_min is additive along the fan",
+      "ok": true
+    },
+    {
+      "check": "Lambda_k is affine in k",
+      "ok": true
+    },
+    {
+      "check": "Lambda' < 0: consecutive convergents lie on opposite sides",
+      "ok": true
+    },
+    {
+      "check": "Lambda_0 / |Lambda'| = 55.81, so k <= 55",
+      "ok": true
+    },
+    {
+      "check": "Lambda_55 > 0 and Lambda_56 < 0",
+      "ok": true
+    },
+    {
+      "check": "L_55 = q_14 = 16785921 and o_55 = p_14 = 10590737",
+      "ok": true
+    },
+    {
+      "check": "L_55 is a convergent denominator, L_1..L_54 are not",
+      "ok": true
+    },
+    {
+      "check": "theta(L_k) decreases, so n_max(L_k) increases",
+      "ok": true
+    },
+    {
+      "check": "the paper's three frontiers are L_0, L_1, L_2",
+      "ok": true
+    }
+  ],
+  "fan_law_all_ok": true,
+  "fan_prices": [
+    {
+      "k": 0,
+      "L": 176251,
+      "Lambda": 3.600213172437482e-06,
+      "n_max": 1044093213
+    },
+    {
+      "k": 1,
+      "L": 478245,
+      "Lambda": 3.535705669665727e-06,
+      "n_max": 2755936624
+    },
+    {
+      "k": 2,
+      "L": 780239,
+      "Lambda": 3.471198166893971e-06,
+      "n_max": 4479642886
+    },
+    {
+      "k": 3,
+      "L": 1082233,
+      "Lambda": 3.4066906641222154e-06,
+      "n_max": 6238195066
+    },
+    {
+      "k": 6,
+      "L": 1988215,
+      "Lambda": 3.2131681558069486e-06,
+      "n_max": 11816015279
+    },
+    {
+      "k": 31,
+      "L": 9538065,
+      "Lambda": 1.6004805865130591e-06,
+      "n_max": 104043192870
+    },
+    {
+      "k": 52,
+      "L": 15879939,
+      "Lambda": 2.45823028306192e-07,
+      "n_max": 1034170350849
+    },
+    {
+      "k": 54,
+      "L": 16483927,
+      "Lambda": 1.1680802276268086e-07,
+      "n_max": 2199215565043
+    },
+    {
+      "k": 55,
+      "L": 16785921,
+      "Lambda": 5.230051999092529e-08,
+      "n_max": 4865750064600
+    }
+  ],
+  "walk_charge_value": [
+    {
+      "site": "Cor 5.10",
+      "bound": 478245,
+      "floor_used": 162849448,
+      "floor_finance_only": 1044095006,
+      "factor": 6.411412619587142
+    },
+    {
+      "site": "Cor 5.11",
+      "bound": 780239,
+      "floor_used": 350000000,
+      "floor_finance_only": 2755936624,
+      "factor": 7.87410464
+    }
+  ],
+  "Lmax": 200000
+}

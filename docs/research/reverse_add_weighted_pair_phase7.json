@@ -307,11 +307,11 @@
   "tautology_checks": {
     "definitional_identity": "T(x)=sum_i s_i 3^i is not a candidate",
     "stored_statistics": [
-      "h2",
-      "sign_h2",
-      "m_minus",
-      "m_plus",
       "sign_h",
+      "m_minus",
+      "h2",
+      "m_plus",
+      "sign_h2",
       "h"
     ],
     "forbidden_keys": [

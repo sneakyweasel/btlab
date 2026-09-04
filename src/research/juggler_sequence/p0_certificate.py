@@ -68,6 +68,29 @@ def _V(S: float, P: float, kappa: float = KAPPA) -> float:
     return kappa * S**0.5 * P ** (-11 / 24)
 
 
+# Stage 2 of Theorem 5.3 Vaaler-expands the gap-cell indicator at truncation R_0.  An earlier
+# draft took R_0 = P^(1/4); that is too small for the depth-five window of Theorem 6.3, whose
+# Lemma 3.7 hypothesis then first holds at 2.5e19 and whose flat cost first clears P^(1-1/96) at
+# 1.8e24 -- both far above P_0.  R_0 = P^(5/16) sends every site below P_0 at a cost of P^(1/32)
+# on the collision-band sum and P^(1/16) on the |q''| curvature ratio, neither of which binds.
+R0_EXPONENT = 5 / 16
+R0_EXPONENT_SUPERSEDED = 1 / 4
+
+
+def R0(P: float, a: float = R0_EXPONENT) -> float:
+    """Stage 2's Vaaler truncation."""
+    return P**a
+
+
+def depth5_C_max(P: float) -> float:
+    """Fifth-letter sawtooth coefficient in Theorem 6.3, |C| = (9|l|/16) n^(3/16).
+
+    Worst case is |l| = J_5 = 2 P^(1/96) at the top of the block, n = 2P.  The paper prints the
+    round bound |C| <= 2 P^(19/96); this is the sharp constant 1.2812 P^(19/96).
+    """
+    return (9 / 16) * 2 * P ** (1 / 96) * (2 * P) ** (3 / 16)
+
+
 def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
     """Every printed threshold inequality of Sections 4-6, with its least admissible P."""
     rho0 = c7 / 8.0
@@ -145,6 +168,24 @@ def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
         ("5b-E<=c7S", "Thm 5.3 St.5b", "E alone <= c_7 S/2 (the floor as kappa -> 0)",
          lambda P: interpolant_error(P) <= c7 * S5b(P) / 2),
         # --- Section 6 ---
+        # Step B discards err with |err| <= (3/4) n^(-9/8) from the phase (k/2) v^(3/2).  Over a
+        # block that costs 2*pi*(k/2)*(3/4)*P^(-9/8)*P = (3 pi k/4) P^(-1/8) <= 4.8 P^(-11/96),
+        # i.e. under one unit in total.  An earlier draft printed this as <= 7 P^(7/8), which
+        # multiplied by the block length twice and needed k <= 7/(2 pi).
+        ("t61-stepB-discard", "Thm 6.1 St.B", "(3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96)",
+         lambda P: 1.5 * math.pi * P ** (1 / 96 - 1 / 8) <= 1),
+        # --- Stage 2's truncation R_0 = P^(5/16), and the three sites that pay for it ---
+        # R_0 was P^(1/4).  Raising it costs the collision-band sum and the |q''| curvature and
+        # buys the Theorem 6.3 window and flat cost; see `r0_tradeoff`.  Every site below stays
+        # under P_0, so the substitution is free at the threshold.
+        ("st2-collision", "Thm 5.3 St.5", "3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24)",
+         lambda P: 3 * R0(P) ** 0.5 * P**0.75 <= P ** (23 / 24)),
+        ("st5b-qpp", "Thm 5.3 St.5b(a)", "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+         lambda P: (1.85 * P ** (7 / 24) + R0(P)) * 6 * P ** (-5 / 4) / (0.35 * P**-0.75) <= 0.25),
+        ("t63-window", "Thm 6.3", "Lemma 3.7 window T = R_0 >= 8(1 + |C|)",
+         lambda P: R0(P) >= 8 * (1 + depth5_C_max(P))),
+        ("t63-flat", "Thm 6.3", "flat cost 8(1+|C|)/R_0 <= P^(-1/96) per point",
+         lambda P: 8 * (1 + depth5_C_max(P)) / R0(P) <= P ** (-1 / 96)),
         ("thm63-rem", "Thm 6.3", "linearization remainder P^(43/96) <= P^(1-1/96)",
          lambda P: P ** (43 / 96) <= P ** (1 - 1 / 96)),
     ]
@@ -153,6 +194,31 @@ def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
         lg = least_P(pred)
         out.append({"tag": tag, "site": site, "claim": claim, "log10_P_min": lg,
                     "P_min": None if lg is None else 10.0**lg})
+    return out
+
+
+def r0_tradeoff(a: float) -> dict[str, Any]:
+    """The four R_0-sensitive sites, as least-P thresholds, at truncation ``R_0 = P^a``.
+
+    Two sites are paid for by raising ``a`` and two are bought.  ``a = 1/4`` (the superseded
+    choice) leaves Theorem 6.3 needing ``1.8e24``; ``a = 5/16`` puts every site under ``P_0``.
+    """
+    T = lambda P: P**a  # noqa: E731
+    sites = {
+        "collision": lambda P: 3 * T(P) ** 0.5 * P**0.75 <= P ** (23 / 24),
+        "qpp": lambda P: (1.85 * P ** (7 / 24) + T(P)) * 6 * P ** (-5 / 4) / (0.35 * P**-0.75) <= 0.25,
+        "window": lambda P: T(P) >= 8 * (1 + depth5_C_max(P)),
+        "flat": lambda P: 8 * (1 + depth5_C_max(P)) / T(P) <= P ** (-1 / 96),
+    }
+    out: dict[str, Any] = {"a": a}
+    worst = 0.0
+    for name, pred in sites.items():
+        lg = least_P(pred)
+        P = None if lg is None else 10.0**lg
+        out[name] = P
+        if P is not None:
+            worst = max(worst, P)
+    out["worst"] = worst
     return out
 
 
@@ -361,6 +427,9 @@ def certificate() -> dict[str, Any]:
         "log10_P1_nontrivial": log10_P1(KAPPA),
         "P1_nontrivial": 10 ** log10_P1(KAPPA),
         "c7_lever": c7_lever(),
+        "R0_exponent": R0_EXPONENT,
+        "r0_tradeoff": [r0_tradeoff(a) for a in (1 / 4, 9 / 32, 5 / 16, 1 / 3, 3 / 8)],
+        "r0_superseded": r0_tradeoff(R0_EXPONENT_SUPERSEDED),
     }
 
 

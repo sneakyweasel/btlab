@@ -414,16 +414,89 @@ undifferenced budget is dominated and Stage 6 applies verbatim (Lean
 are flat (`wideD3_cells_flat`) and the frequency sweep is bounded below
 (`wideD3_frequency_sweep`).
 
-*What is missing.* A bound on
-\(\#\{i:\lVert f'_i\rVert\le\varepsilon\}\) for the cell
-frequencies --- a three-distance or Erdős--Turán statement about an
-approximate arithmetic progression of common difference
-\(\asymp uP^{-1/4}\). With it, regime B gives
-\(\ll hP^{1/2}\log P\le P^{5/8}\log P\), well inside the printed
-\(P^{7/8}\). Without it, regime B is open. So (i) stands as proved for
-the narrowed (D3) --- which is what Claim E supplies in every
-application --- and the wide class is recorded in the manuscript with
-its boundary explicit rather than implicit.
+*Regime B, closed but for a sliver.* The obstruction is sharper than
+"an equidistribution input". Writing \(t=\{\delta_h\}\) and
+\(q=\tfrac98u(\nu{+}2h)^{-1/4}\), one has
+\(f'=\Psi-qt\) with \(\Psi=\tfrac{27}8uh\nu^{1/4}+uA_h'+\varphi'\):
+the decoration enters *only* through \(\Psi\), and \(-qt\) comes from
+the frozen \(G\). Since \(t\) sweeps \([0,1)\) on every cell, the
+dichotomy is whether \(\Psi'\) cancels that sweep. Put
+\(D_i=\Psi'-q/\ell\).
+
+**(a) \(|D_i|\ge q/(2\ell)\): closed.** \(f'\) is monotone and sweeps
+\(\ge q/2\) on the cell; the dyadic Kusmin--Landau split (piece \(j\)
+has length \(\ll2^{-j}\ell\) and bound \(\ll2^j/q\), balanced at
+\(2^j=(\ell q)^{1/2}\)) gives a cell total
+\(\ll(\ell/q)^{1/2}\le1.01(uh)^{-1/2}P^{3/8}\), hence
+\(\ll1.6(h/u)^{1/2}P^{7/8}\) over the block --- *exactly* the second
+printed term of (i). This holds for every \(u\).
+
+**(b) \(|D_i|<q/(2\ell)\): closed for \(u\le P^{1/8}\).** The case is
+confined to \(uh\le6kh_1h_2P^{1/8}\) by the budget. There \(f'\) is
+nearly constant per cell at \(\alpha_i=\Psi(\nu_i)\), with
+\(\alpha_{i+1}-\alpha_i\asymp q\asymp uP^{-1/4}\), and \(\Psi\)
+monotone sweeping \(V\asymp uhP^{1/4}\) periods, giving
+\(\sum_i\min(\ell,\lVert\alpha_i\rVert^{-1})
+\ll P^{5/8}\log P+1.1uP^{3/4}\). The second term is \(\le P^{7/8}\)
+iff \(u\le0.9P^{1/8}\).
+
+**What is left** is the sliver \(P^{1/8}<u\le6kh_1h_2P^{1/8}/h\) inside
+case (b), where the argument charges a whole cell to each of the \(V\)
+crossings of \(\Psi\) through \(\mathbb Z\). Those cells carry
+different constant terms and should not add coherently, so the \(V\ell\)
+is lossy; making the saving explicit needs the classical
+\(\sum_{i<N}\min(\ell,\lVert iq\rVert^{-1})\) estimate for a
+*slowly varying* \(q\), which is not carried out here.
+
+*The sliver is a narrow-class problem (this turn).* Case (b) looks like
+the wide class but is not. Its defining condition \(|D_i|<q/(2\ell)\)
+reads \(\Psi'\in(q/2\ell,3q/2\ell)\), and with
+\(q/\ell=\tfrac{27}{16}uh\nu^{-3/4}\),
+\(\Psi'=\tfrac{27}{32}uh\nu^{-3/4}+\varphi''\), this pins
+\[
+0<\varphi''<\tfrac{27}{16}uh\nu^{-3/4}.
+\]
+So in the only case left open, \(|\varphi''|\) is at most \(4.83\)
+times the Stage-4 curvature --- the wide budget \(\Phi_2\), larger by
+\(P/(2h)\), is *never* attained there. The wide class collapses to a
+narrow one exactly where it mattered (Lean
+`wideD3_caseB_confines_phi`, `wideD3_caseB_ratio`).
+
+Two consequences. \(\Psi\) is strictly increasing with
+\(\Psi'\in[0.84,2.53]uh\nu^{-3/4}\), so the cell frequencies
+\(\alpha_i\) increase with gaps in \([0.562,1.688]uP^{-1/4}\), of
+bounded ratio \(3\) (`wideD3_caseB_gaps`). And in the extreme sub-case
+\(\Psi'\equiv q/\ell\) one has \(\Psi'=q\delta_h'\), so
+\(\alpha_i\approx qG_i+\)const with \(G_i\) consecutive integers:
+an approximate arithmetic progression of difference
+\(q\asymp uP^{-1/4}\) that *drifts by \(19\%\)* across the block,
+since \(q=\tfrac98u(\nu{+}2h)^{-1/4}\). That drift is what stops the
+progression locking onto a rational, and it is precisely the saving the
+crude \(V\ell\) discards.
+
+*The sliver, measured.* At \(h=1\), maximising over the free linear
+term, for \(u\) up to the top of the sliver: case (b) gives
+\(192,234\) at \(P=8\cdot10^3\) (\(u=1,13\)) and
+\(475,546,544\) at \(P=3.2\cdot10^4\) (\(u=1,7,13\)), against
+printed bounds \(5478,4315,18154,13788,13536\) --- ratios
+\(0.035,0.054,0.026,0.040,0.040\), stable across the sliver and falling
+with \(P\). At \(P=3.2\cdot10^4\), \(u=13\) the crude \(V\ell\)
+is \(34\,214\) against an actual \(544\): the period-counting step is
+lossy by a factor \(63\) there, and that factor is the whole of the
+remaining gap.
+
+*The adversary, measured.* The decoration may carry a linear term, so
+the honest test maximises over it --- on the natural grid, a DFT of
+\(e(f(n))\). At \(u=h=k=h_1=h_2=1\) the optimum over all class-(D3)
+linear shifts is, for the undecorated phase and the two extremal
+decorations \(\varphi=\pm\tfrac{27}{10}\nu^{5/4}\):
+\(169/192/397\) at \(P=8\cdot10^3\), \(383/475/1035\) at
+\(3.2\cdot10^4\), \(792/958/2536\) at \(1.28\cdot10^5\), against
+\(P^{7/8}=2601,8750,29431\). The worst case grows like \(P^{0.67}\)
+and its ratio to \(P^{7/8}\) *falls*: \(0.152,0.118,0.086\). The
+drift-cancelling decoration is the stronger of the two, as the analysis
+predicts. Lean `wideD3_caseA_total`, `wideD3_caseB_confined`,
+`wideD3_caseB_closes`.
 
 *Correction to the previous entry.* The \(P_1\) recorded above as
 \(3.2\cdot10^{37}\) was wrong. It collected the three middle-band
@@ -436,7 +509,7 @@ direction of the \(c_7\) trade is unchanged (raising \(c_2\) still
 sends \(P_1\) from \(5.0\cdot10^{19}\) to \(5.3\cdot10^{23}\)),
 so the decision to keep the uniform constant stands.
 
-*The thresholds stratify.* Twenty-seven of the thirty hold from
+*The thresholds stratify.* Twenty-eight of the thirty-one hold from
 \(2.9\cdot10^{10}\) on, and that value is set by a soft
 regime-naming inequality (\(2.25P^{-1/16}<\tfrac12\), Stage 3(s1)).
 The four Lemma 3.9 balance comparisons of Steps 5a and 5b carry the
@@ -461,3 +534,190 @@ Step 4 leftover-mode split are now written on the manuscript.
 A second human reading of the six-stage proof of Lemma 5.2(i)
 and of Steps 5a–5b remains the most valuable check this paper
 can receive; this file is not that reading.
+
+
+## Section 6, audited
+
+Section 6 carries the headline density results and was the least-audited
+part of the paper. Every constant it prints was recomputed from its
+stated inputs. The bookkeeping is sound throughout --- in particular the
+whole `OOEO*` branch of Theorem 6.3, twelve constants from `B'\asymp
+kn^{-7/16}` to the balance `J_*=P^{5/48}`, is exactly right --- and four
+things were wrong.
+
+*Theorem 6.1, Step B: the depth-four identity is correct, and sharper
+than it looks.* The six-term expansion of `v^{3/2}` as a polynomial of
+degree \((2,1)\) in \((m,v)\) is not an ad hoc fit. Its \(m\)-block is
+the degree-2 Taylor polynomial of \(-\tfrac12(1+\varepsilon)^{9/4}\) and
+its \(v\)-coefficient is that of \(\tfrac32(1+\varepsilon)^{3/4}\), with
+\(\varepsilon=(m-n^{3/2})/n^{3/2}\); that is why the six coefficients sum
+to \(1\) at the base point, why the \(m\)-derivative vanishes there (it
+must: \(v^{3/2}\) does not depend on \(m\)), and why the error is
+\(O(n^{-9/8})\). Checked numerically at 60 digits on \(n\) up to
+\(10^7\): the worst \(|\mathrm{err}|\,n^{9/8}\) is \(0.375\), exactly the
+predicted leading constant \(\tfrac38\), against the printed \(\tfrac34\).
+Lean `stepB_exact_at_base`, `stepB_m_derivative_vanishes`,
+`stepB_v_coefficient`, `stepB_m_block_in_epsilon`, `stepB_v_block_in_epsilon`.
+
+*The cost of discarding that error was over-stated by a factor \(P\).*
+The draft printed \(\le2\pi kP^{-1/8}\cdot P\le7P^{7/8}\). But
+\(P^{-9/8}\cdot P=P^{-1/8}\) already *is* the sum over the block; the
+line multiplies by the block length twice. It also needs \(2\pi k\le7\),
+i.e. \(k\le1.11\), while \(k\) runs to \(2P^{1/96}\). The true cost is
+\(2\pi\cdot\tfrac k2\cdot\tfrac34P^{-9/8}\cdot P=\tfrac{3\pi k}4P^{-1/8}
+\le4.8P^{-11/96}\), which is under **one unit** from \(P\ge7.6\cdot10^5\)
+--- and \(0.12\) at \(P_0\), against a printed bound of \(7\cdot10^{12}\).
+Corrected. Probe row `t61-stepB-discard`, Lean `stepB_discard`.
+
+*Theorem 6.1, Step E: `V >= 0.065 P^{-37/48}` is false; the value is
+\(0.0645\).* At \(S\ge0.60P^{-5/8}\), \(V=\tfrac1{12}S^{1/2}P^{-11/24}\)
+gives \(\tfrac1{12}\sqrt{0.60}=0.06455\). Off by \(0.7\%\) in the unsafe
+direction; corrected to \(0.064\). The threshold it feeds,
+\(1.6\cdot10^{13}\), is unaffected and was confirmed exactly
+(\(1.612\cdot10^{13}\), probe row `5a-W<=c7S`). Lean
+`stepE_j0_V_constant`, which brackets \(\tfrac1{12}\sqrt{0.6}\) by
+squaring rather than by taking a root.
+
+*Everything else in Step E checks.* \(945/512-864/512=81/512\);
+\(B=\tfrac{27}{32}\) is \(\tfrac32\) times the bare kernel \(\tfrac9{16}\);
+the composite \(81/512-324/512=-243/512\) is single-signed. Both printed
+\(\lambda\) ranges are *safe but loose* on \(\nu\in(P,2P]\): the true
+ranges are \((0.4352,0.4746]\) inside the printed \([0.40,0.52]\), and
+\((0.6934,1.0694]\) inside \([0.60,1.25]\). They were left loose, since
+the slack absorbs corrections the paper states only as \(O(\cdot)\);
+tightening \(\lambda_0'\) to \([0.69,1.07]\) would drop the \(j=0\)
+threshold from \(1.61\cdot10^{13}\) to \(1.03\cdot10^{13}\) and does not
+move \(P_0\). The interpolant coefficient \(b'=-365/176\) is *exactly*
+\(405\cdot1095/1215\), so it scales with the anchor it is built from ---
+a good sign that \(1095/1024\) was propagated and not guessed. Lean
+`stepE_offset_survivor`, `stepE_B_ratio`, `stepE_offset_composite`,
+`stepE_lambda_a_range`, `stepE_lambda_0_range`, `stepE_b_scales_with_anchor`.
+
+*Lemma 6.2 is correct.* Both identities, all nine remainder terms and
+all four orders were re-derived. One gap in the prose: the enumeration
+"the last three terms are \(O(n^{-21/16})\), \(O(n^{-45/16})\),
+\(O(n^{-81/16})\)" skips the second term, \(\tfrac12v^{-3/4}=O(n^{-27/16})\).
+Added.
+
+*Theorem 6.3 cites a superseded (D3) budget, and the ratio is garbled.*
+The passenger check reads "inside class (D3)
+\((|\varphi''|\le3kh_1h_2P^{-5/8})\) by
+\(P^{-35/16}/P^{-9/16}=P^{-13/8}\)". Under that budget the ratio would be
+\(P^{-25/16}\); the printed \(-9/16\) and \(-13/8\) are the ratio and the
+exponent of the *current* budget \(6kh_1h_2hP^{-13/8}\), written into
+each other's slots. Corrected to
+\(P^{-35/16}/P^{-26/16}=P^{-9/16}\); the conclusion holds, with more room
+than claimed. (The \(P^{-5/8}\) budget elsewhere in the paper is the
+deliberately *wide* class of the Stage 6 discussion and is correct there.)
+
+*Theorem 6.3's Lemma 3.7 window is not legal at \(P_0\).* This is the
+substantive finding. The fifth-letter sawtooth coefficient is
+\(|C|\le1.30P^{19/96}\) and the window is opened at \(T=P^{1/4}\), so the
+hypothesis \(T\ge8(1+|C|)\) has a margin of only \(P^{5/96}\) --- and at
+\(P_0=8.9\cdot10^{13}\) it *fails*: \(T=3.07\cdot10^3\) against
+\(8(1+|C|)=5.92\cdot10^3\), short by a factor \(1.93\). The draft's
+"since \(8|C|/T\le16P^{-5/96}\to0\)" is an asymptotic argument, correct
+as such, printed under a heading that claims effectivity at \(P_0\).
+The hypothesis first holds at \(2.55\cdot10^{19}\).
+
+Fixed, provisionally, by giving Theorem 6.3 its own threshold
+\(P_0^{(5)}=2.6\cdot10^{19}\). **Superseded by the next entry**, which found
+a second and worse failure at the same site and repaired both by raising
+\(R_0\); the figure \(2.6\cdot10^{19}\) was too small, and Theorem 6.3 now
+carries no threshold of its own. The alternative was checked
+and recorded: opening the window at \(T=P^{5/16}\) restores \(P_0\) (the
+hypothesis then holds from \(7.5\cdot10^8\)), at the price of carrying
+\(R_0=P^{5/16}\) through Stage 2 of Theorem 5.3, where the collision-band
+term grows from \(3P^{7/8}\log P\) to \(3P^{29/32}\log P\) --- still
+inside \(P^{23/24}\) --- and the Stage 5a slow-mode bound loses
+\(P^{5/96}\). Whether that trade is worth taking needs a re-reading of
+Stage 2 that was not done here, so it is left as a recorded option.
+**No exponent in any statement changes**; \(P_0\) itself is untouched at
+\(8.9458\cdot10^{13}\). Probe `depth5_thresholds`, Lean
+`row_t63_window`, `row_t63_window_fails_at_P0`,
+`row_t63_window_alternative`.
+
+*Corollary 6.4 is correct*, including the disjointness of the five
+prefixes and \(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}+\tfrac1{32}
+=\tfrac78\), and the error is indeed the worse of the two fifth-letter
+exponents.
+
+*A cosmetic defect not repaired.* Item numbers run one block ahead of
+their section numbers in Sections 2--5 (Lemma 3.3 is in \S2, Lemma 5.1
+in \S4, Theorem 6.1 in \S5, while Lemma 6.2 onwards is in \S6): the
+numbering is a legacy of an earlier sectioning. Every "Section \(N\)"
+cross-reference in the prose was checked and every one is consistent
+with the *headers*, so nothing points anywhere wrong. Renumbering would
+rename `Lemma 5.2b` and its siblings across the manuscript, the Lean
+development, the probe and this ledger, which is a large mechanical
+change with no mathematical content; left as it stands, and recorded
+here so a referee's first remark has an answer.
+
+## The depth-five threshold, resolved: \(R_0=P^{5/16}\)
+
+The previous entry recorded that Theorem 6.3's Lemma 3.7 window is not legal
+at \(P_0\), and left the repair --- raising Stage 2's truncation \(R_0\) ---
+as an option needing a re-reading of Stage 2. That reading was done. Two
+things came out of it.
+
+*The window was not the binding requirement.* The same fifth-letter Lemma 3.7
+application has a second cost, the flat cost \(8(1+\lvert C\rvert)/T\) per
+point, which over a block must stay inside \(P^{1-1/96}\). At \(T=P^{1/4}\)
+that reads \(10.25\,P^{1-5/96}\le P^{1-1/96}\): the *exponent* clears, but
+only by \(4/96\), so the constant \(10.25\) is not absorbed until
+\(10.25^{24}=1.8\cdot10^{24}\). That is five orders worse than the window's
+\(2.55\cdot10^{19}\) and ten orders above \(P_0\). The
+\(P_0^{(5)}=2.6\cdot10^{19}\) recorded in the previous entry was therefore
+**too small**; the honest figure at \(R_0=P^{1/4}\) is \(1.8\cdot10^{24}\).
+This is the same defect as the window, at the same site, and it was missed the
+first time because the printed line stops at the exponent comparison
+\(O(P^{1-5/96})\subseteq P^{1-1/96}\), which is true and, for an effective
+threshold, not enough.
+
+*Raising \(R_0\) is affordable, and \(5/16\) is the right value.* Four printed
+inequalities depend on \(a\) where \(R_0=P^a\), two paid for by raising \(a\)
+and two bought by it, so \(a\) is pinned from both sides:
+
+| \(a\) | collision | \(q''\) | window | flat cost | worst |
+|---|---|---|---|---|---|
+| \(1/4\) | \(5.3\cdot10^{5}\) | \(3.0\cdot10^{10}\) | \(2.5\cdot10^{19}\) | \(1.8\cdot10^{24}\) | \(1.8\cdot10^{24}\) |
+| \(9/32\) | \(1.1\cdot10^{7}\) | \(6.6\cdot10^{10}\) | \(1.4\cdot10^{12}\) | \(7.4\cdot10^{13}\) | \(7.4\cdot10^{13}\) |
+| \(5/16\) | \(1.4\cdot10^{9}\) | \(3.0\cdot10^{11}\) | \(7.4\cdot10^{8}\) | \(5.5\cdot10^{9}\) | \(3.0\cdot10^{11}\) |
+| \(1/3\) | \(2.8\cdot10^{11}\) | \(1.6\cdot10^{12}\) | \(3.5\cdot10^{7}\) | \(1.4\cdot10^{8}\) | \(1.6\cdot10^{12}\) |
+| \(3/8\) | \(8.0\cdot10^{22}\) | \(1.1\cdot10^{15}\) | \(6.9\cdot10^{5}\) | \(1.5\cdot10^{6}\) | \(8.0\cdot10^{22}\) |
+
+\(5/16\) minimises the last column. \(9/32\) also clears \(P_0\), but by less
+than a factor \(1.3\), which is not a margin worth printing; \(1/3\) clears it
+too and is worse. The substitution was made throughout: Stage 2, Stage 3(s1)'s
+majorant, Stage 5's collision band, Step 5b(a)'s \(q''\), and both
+\(R_0\)-dependent bullets of Theorem 6.3.
+
+*What it costs.* The Stage 2 majorant *improves*, \(4P^{3/4}\to4P^{11/16}\).
+The collision-band sum degrades, \(3P^{7/8}\log P\to3P^{29/32}\log P\), and
+stays inside \(P^{23/24}\) with exactly \(P^{5/96}\) to spare. The \(q''\)
+curvature ratio degrades from \(52P^{-5/24}\) to \(48.9P^{-3/16}\), which at
+\(P_0\) is \(0.12\) against the margin \(\tfrac14\). That last row,
+\(3.0\cdot10^{11}\), is now the worst threshold in the certificate outside the
+three Lemma 3.9 balance comparisons --- it displaces \(2.9\cdot10^{10}\) --- and
+it is still two and a half orders below \(P_0\).
+
+*What it buys.* Theorem 6.3 no longer carries a threshold of its own. Every
+threshold in the paper is \(P_0=8.9458\cdot10^{13}\), unchanged, still binding
+at Step 5b's \(W\le c_7S/2\). No exponent in any statement moves: \(1/96\),
+\(23/24\), \(43/48\) and \(7/8\) are all as printed.
+
+New: Appendix A.6; four probe rows (`st2-collision`, `st5b-qpp`,
+`t63-window`, `t63-flat`), taking the certificate from 31 to 35; `r0_tradeoff`
+in the probe; Lean `row_st2_collision`, `row_st5b_qpp`, `row_t63_window`,
+`row_t63_flat`, `row_t63_window_fails_at_quarter`; 14 more exponent checks
+(208 to 222).
+
+*The general lesson, recorded because it recurred twice at the same site.*
+Both defects were exponent comparisons that are correct asymptotically and
+insufficient effectively: \(O(P^{-5/96})\to0\) for the window, and
+\(O(P^{1-5/96})\subseteq P^{1-1/96}\) for the flat cost. In a paper claiming
+an explicit \(P_0\), every \(\to0\) and every \(\subseteq\) between two powers
+whose gap is a small fraction needs its constant carried, because the crossing
+is the constant raised to the reciprocal of that gap. A gap of \(4/96\) turns
+a constant of \(10\) into \(10^{24}\). The probe now transcribes such lines
+with their constants rather than their exponents.

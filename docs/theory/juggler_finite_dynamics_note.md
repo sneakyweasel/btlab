@@ -343,7 +343,7 @@ reduction, not a kill: it is weaker than the finance table at
 every certified floor, and it shows that the no-cycle problem is
 exactly the exclusion of long cycles,
 \(L>(n\log n/915)^{1/14.3}\), where the finance survivors
-(\(L\approx n^{0.64}\)) live.
+(\(L\approx n^{0.59}\)) live.
 
 These statements are not interchangeable. Theorem 4.4 is
 the conceptual sharp inequality (constant \(1\)). Corollary 4.5
@@ -466,6 +466,22 @@ independently certified computations. Appendix A records the Lean
 names. The finite tables used by Lemmas 3.5, 3.7, 3.11 and
 Theorems 3.12--3.20 are `native_decide` evaluations in the modules
 named there.
+
+Every number printed in Sections 4 and 5 is additionally recomputed
+from the *printed* criterion, independently of the probes that
+produced the tables, by `research.juggler_sequence.paper_a_audit`:
+the record \(n_{\max}\) values, the contiguous excluded prefix at each
+of the four certified floors, the Rhin constants of Corollary 4.11,
+the convergent asymptotic of Section 4, and the fan law of
+Proposition 5.12. Two of those recomputations are delicate enough to
+be worth stating. The crossings that define \(n_{\max}(25781)\) and
+\(n_{\max}(50508)\) are sharp to a relative \(2\cdot10^{-8}\) and
+\(3\cdot10^{-10}\) respectively --- each is the *last* integer at which
+the parity comparison holds, and the next one fails --- so
+\(	heta=1-2^L/3^o\) must be evaluated in extended precision: a
+double-precision evaluation of the exponent \(L\log 2-o\log 3\) carries
+enough relative error to move \(n_{\max}(25781)\) to \(26254996\). The
+remaining terms may be evaluated in double precision, and are.
 
 **Proposition 1.3 (certified computational input).**
 A machine-verifiable certificate establishes that every integer
@@ -1622,8 +1638,12 @@ Everything above turns a verified descent floor into a per-length
 exclusion. The floor is the only ingredient that is not
 scale-free, and along the convergent denominators \(q_k\) of
 \(\log 2/\log 3\) the threshold grows like
-\(n_{\max}(q_k)\asymp a_{k+1}q_k^2/\log^2 n\), so every floor
-leaves the next fan. This subsection records the one statement
+\(n_{\max}(q_k)\log n_{\max}(q_k)\asymp q_kq_{k+1}\), equivalently
+\(n_{\max}(q_k)\asymp a_{k+1}q_k^2/\log n\), so every floor leaves the
+next fan. (The invariant is the first form: over the good convergents
+\(q_k\in\{19,84,1054,50508,176251\}\) --- those with \(3^{p_k}>2^{q_k}\),
+which are every other one --- the ratio
+\(n\log n/(q_kq_{k+1})\) stays in \([0.41,0.53]\).) This subsection records the one statement
 of the note that needs no floor. It transfers a lower bound on
 the linear form
 \[
@@ -1683,7 +1703,10 @@ it forces only \(L\ge 4\), while the finance table forces
 Baker-type transfer cannot compete with the exact gap. The value
 of the corollary is that it is floor-free and identifies the
 frontier exactly: the finance survivors of Theorems 4.6 and 5.9
-have \(L\approx n^{0.64}\), far inside the long regime, and no
+have \(L\approx n^{0.59}\) --- the measured exponent
+\(\log L/\log n_{\max}(L)\) is \(0.595\) at \(L=25781\), \(0.573\) at
+\(50508\), \(0.582\) at \(176251\) and \(0.611\) at \(780239\) --- far
+inside the long regime, and no
 refinement of the defect *upper* bound can move them into the
 short one, because along the convergents the required minimum
 \(n_{\max}(q_k)\) grows quadratically in \(L\). Excluding long
@@ -1732,9 +1755,17 @@ cheapest floor that moves the Theorem 4.6 cutoff.
 At \(N_0=26254995\) the parity table of Theorem 4.6 excludes
 every length \(L\le 50507\): any nontrivial Juggler cycle has
 period at least \(50508\). The first finance survivor is
-\(L=50508\) with \(n_{\max}(50508)=162848325\); \(19\) parity
+\(L=50508\) with \(n_{\max}(50508)=162848324\); \(19\) parity
 survivors remain through \(L=2\cdot 10^5\) (run packing leaves
-\(11\) at the same cutoff).
+\(11\) at the same cutoff). This is the one row in the paper where
+the exact \(n_{\max}\) of Section 4 and the value in the committed
+table differ, and the reason is worth recording: the crossing at
+\(L=50508\) is sharp to a relative \(2.7\cdot10^{-10}\), which is
+*below* the \(10^{-9}\) relative guard the table's generator adds to
+the right-hand side. That guard is deliberate and conservative --- it
+can only make \(n_{\max}\) larger, hence can only refuse to exclude a
+length --- so the table prints \(162848325\). Both values give the
+same exclusion here, since the floor \(162849448\) exceeds either.
 
 *Proof.* Proposition 5.1 supplies the floor; Corollary 4.5 and
 the gap table of Proposition 4.4a exclude every \(L\) with
@@ -2204,6 +2235,110 @@ dangerous-position partial quotients — is the working draft
 [juggler_near_convergent_diophantine_note.md](juggler_near_convergent_diophantine_note.md).
 The survivors are finance-survivors, not candidate cycles.
 
+### 5.8 The price of the fan
+
+The paragraph above says the obstruction is Diophantine and stops. It
+can be made quantitative, and the answer is short: the frontier lengths
+form one explicit arithmetic progression of \(56\) terms, ending on the
+next convergent, and the descent floor each term costs is computable in
+closed form. Nothing here is a new exclusion. It is a price list for the
+exclusions that remain, and it says exactly what the walk charge of this
+section bought.
+
+**Proposition 5.12 (fan law).**
+Let \(q_{12}=176251\), \(q_{13}=301994\) be the consecutive convergent
+denominators of \(\log 2/\log 3\) bracketing the frontier, with
+numerators \(p_{12}=111202\), \(p_{13}=190537\). Put
+\[
+L_k=q_{12}+k\,q_{13},\qquad o_k=p_{12}+k\,p_{13},\qquad 0\le k\le 55 .
+\]
+Then \(o_k=o_{\min}(L_k)\) for every such \(k\); the linear form is
+exactly affine in \(k\),
+\[
+\Lambda_k=o_k\log 3-L_k\log 2=\Lambda_0+k\Lambda',
+\qquad
+\Lambda_0=3.6002\cdot10^{-6},
+\quad
+\Lambda'=-6.4508\cdot10^{-8};
+\]
+and \(k=55\) is the last index with \(\Lambda_k>0\), because
+\(\Lambda_0/\lvert\Lambda'\rvert=55.81\). At that last index
+\(L_{55}=16785921=q_{14}\) and \(o_{55}=10590737=p_{14}\): the fan ends
+on the next convergent, which is where the partial quotient
+\(a_{14}=55\) is consumed.
+
+*Proof.* \(\Lambda\) is linear in \((o,L)\) and
+\((o_k,L_k)=(p_{12},q_{12})+k\,(p_{13},q_{13})\), which is the affine
+formula; \(\Lambda'=\Lambda(q_{13})<0\) because \(3^{p_{13}}<2^{q_{13}}\),
+consecutive convergents lying on opposite sides. Since
+\(\Lambda_k\in(0,\log 3)\) for \(0\le k\le 55\), one has
+\(3^{o_k}>2^{L_k}>3^{o_k-1}\), which is \(o_k=o_{\min}(L_k)\). The sign
+change at \(55.81\) is arithmetic, and
+\(q_{14}=a_{14}q_{13}+q_{12}\) with \(a_{14}=55\) identifies the
+endpoint. \(\square\)
+
+Because \(\Lambda_k\) *decreases* in \(k\), so does \(\theta(L_k)\), and
+\(n_{\max}(L_k)\) increases: the fan grows strictly more expensive as it
+is climbed, and the cheapest member is always the one at the current
+frontier. The resulting rule is a single comparison. For every
+\(k\ge 1\),
+\[
+N_0\ \ge\ n_{\max}(L_k)
+\qquad\Longrightarrow\qquad
+\text{period}\ \ge\ L_{k+1},
+\]
+verified directly at \(k=1,\dots,12\) and at \(k=20,31,40,52,54\). (At
+\(k=0\) alone one extra length intervenes, the doubling
+\(2q_{12}=352502\), whose threshold \(1044095006\) sits \(1793\) above
+\(n_{\max}(q_{12})\); the multiples \(mq_{12}\) cluster just above
+\(n_{\max}(q_{12})\) in the same way and are all cleared by
+\(n_{\max}(L_1)\).)
+
+| \(k\) | \(L_k\) | \(\Lambda_k\) | \(n_{\max}(L_k)\) = floor that passes \(L_k\) |
+|---|---|---|---|
+| \(0\) | \(176251\) | \(3.600\cdot10^{-6}\) | \(1.044\cdot10^{9}\) |
+| \(1\) | \(478245\) | \(3.536\cdot10^{-6}\) | \(2.756\cdot10^{9}\) |
+| \(2\) | \(780239\) | \(3.471\cdot10^{-6}\) | \(4.480\cdot10^{9}\) |
+| \(3\) | \(1082233\) | \(3.407\cdot10^{-6}\) | \(6.238\cdot10^{9}\) |
+| \(6\) | \(1988215\) | \(3.213\cdot10^{-6}\) | \(1.182\cdot10^{10}\) |
+| \(31\) | \(9538065\) | \(1.600\cdot10^{-6}\) | \(1.040\cdot10^{11}\) |
+| \(52\) | \(15879939\) | \(0.246\cdot10^{-6}\) | \(1.034\cdot10^{12}\) |
+| \(54\) | \(16483927\) | \(0.117\cdot10^{-6}\) | \(2.199\cdot10^{12}\) |
+| \(55\) | \(16785921\) | \(0.052\cdot10^{-6}\) | \(4.866\cdot10^{12}\) |
+
+Three readings of this table.
+
+*What the walk charge is worth.* Corollary 5.11 reaches \(L_2=780239\)
+from \(N_0=3.5\cdot10^{8}\). Finance and parity alone reach it only from
+\(n_{\max}(L_1)=2.756\cdot10^{9}\). The walk charge is therefore worth a
+factor \(7.9\) in descent floor at the present frontier — and a factor
+\(6.4\) at the previous one, where Corollary 5.10 reached \(L_1\) from
+\(1.63\cdot10^{8}\) against a finance requirement of
+\(1.044\cdot10^{9}\).
+
+*What the next step costs.* A purely computational route to
+\(L_3=1082233\) — no walk charge, no new idea, only a longer
+first-passage run — needs
+\(N_0\ge n_{\max}(780239)=4479642886\), a floor \(12.8\) times the
+present one. With the walk charge at its present efficiency the same
+step would need roughly \(5.7\cdot10^{8}\).
+
+*Where computation ends.* Exhausting the fan, i.e. reaching
+\(L_{55}=16785921\), needs \(N_0\ge 2.20\cdot10^{12}\); passing the
+convergent itself needs \(4.87\cdot10^{12}\), after which the same
+structure repeats one scale up with \(q_{14}\) in the role of
+\(q_{12}\), at a cost that grows like \(a_{15}q_{14}^2/\log n\).
+
+So the bound is not stuck against a wall; it is on a staircase whose
+steps are priced, whose next step costs a factor \(12.8\) in floor, and
+whose \(56\) steps together cost a factor \(4660\). What no floor buys
+is the end of the staircase. The fans recur at every convergent, the
+required floor grows quadratically in the length, and a period bound
+obtained this way can never become a proof that no cycle exists. That
+gap is not computational, and it is the subject of the remark after
+Corollary 4.11.
+
+
 ## 6. Limitations and future directions
 
 The result does not imply termination. The remaining
@@ -2348,7 +2483,7 @@ almost-all statement about parity words at depth \(\asymp\log\log n\);
 Paper B shows that fixed-depth parity control, which its methods
 deliver through depth four, improves the constants of that statement
 and cannot reach it. The cycle problem as posed in this paper — the
-long regime \(L\approx n^{0.64}\), a per-orbit parity statement at
+long regime \(L\approx n^{0.59}\), a per-orbit parity statement at
 depth \(L\) — is therefore a special case of the same frontier, seen
 from the periodic side, and remains open.
 

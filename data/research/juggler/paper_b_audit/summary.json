@@ -207,6 +207,41 @@
         "P_min": 5701364162414.874
       },
       {
+        "tag": "t61-stepB-discard",
+        "site": "Thm 6.1 St.B",
+        "claim": "(3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96)",
+        "log10_P_min": 5.875558967998386,
+        "P_min": 750859.9980939378
+      },
+      {
+        "tag": "st2-collision",
+        "site": "Thm 5.3 St.5",
+        "claim": "3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24)",
+        "log10_P_min": 9.160728090617512,
+        "P_min": 1447865069.364798
+      },
+      {
+        "tag": "st5b-qpp",
+        "site": "Thm 5.3 St.5b(a)",
+        "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+        "log10_P_min": 11.474458698022962,
+        "P_min": 298166397427.1972
+      },
+      {
+        "tag": "t63-window",
+        "site": "Thm 6.3",
+        "claim": "Lemma 3.7 window T = R_0 >= 8(1 + |C|)",
+        "log10_P_min": 8.872073345719754,
+        "P_min": 744857758.4086101
+      },
+      {
+        "tag": "t63-flat",
+        "site": "Thm 6.3",
+        "claim": "flat cost 8(1+|C|)/R_0 <= P^(-1/96) per point",
+        "log10_P_min": 9.740828785110141,
+        "P_min": 5505905905.109001
+      },
+      {
         "tag": "thm63-rem",
         "site": "Thm 6.3",
         "claim": "linearization remainder P^(43/96) <= P^(1-1/96)",
@@ -215,7 +250,7 @@
       }
     ],
     "all_solved": true,
-    "n_thresholds": 30,
+    "n_thresholds": 35,
     "P0": 89457691736825.03,
     "log10_P0": 13.951617687946936,
     "binding": {
@@ -225,13 +260,13 @@
       "log10_P_min": 13.951617687946936,
       "P_min": 89457691736825.03
     },
-    "P0_excluding_lemma_3_9_balance": 28274844190.244324,
+    "P0_excluding_lemma_3_9_balance": 298166397427.1972,
     "binding_excluding_balance": {
-      "tag": "s3s1-Bsmall",
-      "site": "Thm 4.1 St.3(s1)",
-      "claim": "2.25 P^(-1/16) < 1/2",
-      "log10_P_min": 10.451400220405501,
-      "P_min": 28274844190.244324
+      "tag": "st5b-qpp",
+      "site": "Thm 5.3 St.5b(a)",
+      "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+      "log10_P_min": 11.474458698022962,
+      "P_min": 298166397427.1972
     },
     "P0_at_superseded_kappa": 5.819938645207617e+16,
     "kappa_tradeoff": [
@@ -356,10 +391,61 @@
         "P0": 26429370931451.99,
         "P1": 5.306055972098726e+23
       }
+    },
+    "R0_exponent": 0.3125,
+    "r0_tradeoff": [
+      {
+        "a": 0.25,
+        "collision": 531440.9999999959,
+        "qpp": 29672730633.01152,
+        "window": 2.5474354269100655e+19,
+        "flat": 1.8054435655866415e+24,
+        "worst": 1.8054435655866415e+24
+      },
+      {
+        "a": 0.28125,
+        "collision": 11135607.526343971,
+        "qpp": 66439817161.64233,
+        "window": 1394008931748.266,
+        "flat": 73992850275952.14,
+        "worst": 73992850275952.14
+      },
+      {
+        "a": 0.3125,
+        "collision": 1447865069.364798,
+        "qpp": 298166397427.1972,
+        "window": 744857758.4086101,
+        "flat": 5505905905.109001,
+        "worst": 298166397427.1972
+      },
+      {
+        "a": 0.3333333333333333,
+        "collision": 282429536480.991,
+        "qpp": 1580640553933.7385,
+        "window": 34914123.92307292,
+        "flat": 141561334.55895782,
+        "worst": 1580640553933.7385
+      },
+      {
+        "a": 0.375,
+        "collision": 7.976644307686548e+22,
+        "qpp": 1074129748307333.4,
+        "window": 688222.5326710425,
+        "flat": 1523647.098803368,
+        "worst": 7.976644307686548e+22
+      }
+    ],
+    "r0_superseded": {
+      "a": 0.25,
+      "collision": 531440.9999999959,
+      "qpp": 29672730633.01152,
+      "window": 2.5474354269100655e+19,
+      "flat": 1.8054435655866415e+24,
+      "worst": 1.8054435655866415e+24
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "22c00ed31e2452477b7484fd52b5707e81641001",
+  "git_commit": "e05c02ecc57a21cf6fad13fed8e9b5c956f2a182",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -1416,6 +1502,190 @@
     {
       "check": "A: log absorption needs ln P >= 96 A ln ln P; not used, Step 6 carries P^eps",
       "ok": true
+    },
+    {
+      "check": "6.1B: six coefficients sum to 1 at the base point (expansion exact there)",
+      "ok": true
+    },
+    {
+      "check": "6.1B: m-derivative vanishes at the base point (v^{3/2} does not depend on m)",
+      "ok": true
+    },
+    {
+      "check": "6.1B: v-coefficient 15/64+45/32-9/64 = 3/2, so c = (3k/4) nu^{9/8}",
+      "ok": true
+    },
+    {
+      "check": "6.1B: m-block is the Taylor polynomial of -(1/2)(1+e)^{9/4}",
+      "ok": true
+    },
+    {
+      "check": "6.1B: v-block is the Taylor polynomial of (3/2)(1+e)^{3/4}",
+      "ok": true
+    },
+    {
+      "check": "6.1B: discard cost P^{-9/8} * P = P^{-1/8}, not P^{7/8}",
+      "ok": true
+    },
+    {
+      "check": "6.1E: offset curvature (9/8)(15/8)(7/8) = 945/512",
+      "ok": true
+    },
+    {
+      "check": "6.1E: kernel anchor 27/16 = 864/512",
+      "ok": true
+    },
+    {
+      "check": "6.1E: survivor 945/512 - 864/512 = 81/512",
+      "ok": true
+    },
+    {
+      "check": "6.1E: B = 27/32 is 3/2 times the bare kernel 9/16",
+      "ok": true
+    },
+    {
+      "check": "6.1E: window mode (27/32)(3/4) = 324/512",
+      "ok": true
+    },
+    {
+      "check": "6.1E: composite 81/512 - 324/512 = -243/512 != 0",
+      "ok": true
+    },
+    {
+      "check": "6.1E: b' scales with the anchor: 405 * 1095 = 365 * 1215",
+      "ok": true
+    },
+    {
+      "check": "6.1E: 23/24 = 1/48 + 15/16 (k^{1/2} P^{15/16} at k <= P^{1/24})",
+      "ok": true
+    },
+    {
+      "check": "6.2: m^{9/8} at X = n^{3/2} is n^{27/16}",
+      "ok": true
+    },
+    {
+      "check": "6.2: sawtooth exponent (3/2)(1/8) = 3/16",
+      "ok": true
+    },
+    {
+      "check": "6.2(ii): v^{1/4} = n^{9/16}",
+      "ok": true
+    },
+    {
+      "check": "6.3: remainder |l| P P^{-9/16} = P^{1/96+7/16} = P^{43/96}",
+      "ok": true
+    },
+    {
+      "check": "6.3: |C| exponent 1/96 + 3/16 = 19/96",
+      "ok": true
+    },
+    {
+      "check": "6.3: window margin 19/96 - 1/4 = -5/96 (only P^{5/96}, hence the high threshold)",
+      "ok": true
+    },
+    {
+      "check": "6.3: (i/2)X passenger 1/4 + 1/16 - 5/2 = -35/16",
+      "ok": true
+    },
+    {
+      "check": "6.3: -35/16 is inside the (D3) budget P^{-13/8}, ratio P^{-9/16}",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: C_net = 27/32 - 9/16 = 9/32",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: window curvature (9/32)(3/4) = 216/1024",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: leading coefficient 1/2 - 3/4 = -1/4",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: curvature -(1/4)(27/16)(11/16) = -297/1024",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: composite -297/1024 + 216/1024 = -81/1024 != 0",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: L_B lambda^{1/2} = P^{7/16-5/32} = P^{9/32}",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: k P^{9/16} intervals give P^{9/16+9/32} = P^{27/32}",
+      "ok": true
+    },
+    {
+      "check": "6.3 OOEO*: balance J^{1/2} P^{27/32} = P/J at J = P^{5/48} gives P^{43/48}",
+      "ok": true
+    },
+    {
+      "check": "6.4: densities 1/2+1/4+1/16+1/32+1/32 = 7/8",
+      "ok": true
+    },
+    {
+      "check": "6.4: error is the worse exponent, 43/48 <= 1 - 1/96",
+      "ok": true
+    },
+    {
+      "check": "R_0: Stage 2 majorant 4P/R_0 = 4P^{11/16}",
+      "ok": true
+    },
+    {
+      "check": "R_0: collision band R_0^{1/2}P^{3/4} = P^{29/32}",
+      "ok": true
+    },
+    {
+      "check": "R_0: 29/32 inside 23/24 with 5/96 to spare",
+      "ok": true
+    },
+    {
+      "check": "R_0: 5/16 > 7/24, so R_0 dominates 1.85 k h P^{1/8} in |q''|",
+      "ok": true
+    },
+    {
+      "check": "R_0: |q''| curvature 5/16 - 5/4 = -15/16",
+      "ok": true
+    },
+    {
+      "check": "R_0: |q''| ratio -15/16 + 3/4 = -3/16, still o(1)",
+      "ok": true
+    },
+    {
+      "check": "R_0: window margin 5/16 - 19/96 = 11/96 (was 5/96 at R_0 = P^{1/4})",
+      "ok": true
+    },
+    {
+      "check": "R_0: flat cost per block 1 - 11/96 inside 1 - 1/96",
+      "ok": true
+    },
+    {
+      "check": "R_0: flat-cost exponent gap is 4/96 at P^{1/4} and 10/96 at P^{5/16}",
+      "ok": true
+    },
+    {
+      "check": "R_0: constant 10.25 absorbed at 10.25^24 = 1.8e24 vs 10.25^9.6 = 5.0e9",
+      "ok": true
+    },
+    {
+      "check": "R_0: upper limit a <= 5/12 from the collision band",
+      "ok": true
+    },
+    {
+      "check": "R_0: lower limit a > 19/96 from the window",
+      "ok": true
+    },
+    {
+      "check": "6.3: (i/2)X passenger at |i| <= 2P^{5/16}: 5/16 + 1/16 - 5/2 = -17/8",
+      "ok": true
+    },
+    {
+      "check": "6.3: -17/8 inside (D3) P^{-13/8} by P^{-1/2}",
+      "ok": true
     }
   ],
   "exponent_checks_all_ok": true,
@@ -1462,5 +1732,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 36.08051633834839
+  "elapsed_seconds": 27.63586115837097
 }

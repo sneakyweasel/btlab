@@ -57,7 +57,7 @@ inequivalent questions.
 3. **Long cycles.** Floor-free gap transfer plus Rhin excludes only
    the short regime \(L^{14.3}\le n\log n/915\) (Paper A Theorem
    4.10 / Corollary 4.11, `cycleMin_gap_transfer`). Survivors live
-   at \(L\approx n^{0.64}\). Paper A §6 records this as the open
+   at \(L\approx n^{0.59}\). Paper A §6 records this as the open
    problem and not as a program. The mechanical window is CLOSE
    ([juggler_cycle_mechanical_window.md](juggler_cycle_mechanical_window.md)).
 

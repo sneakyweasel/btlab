@@ -33,7 +33,7 @@ follows by double Weyl differencing over an exact carry-branch
 decomposition and master identity. All thresholds are effective: no
 divisor or gcd average occurs anywhere in the argument, so every
 \(\varepsilon\) is a power of \(\log P\) --- Theorem 5.3 holds in
-the form \(K_c\ll P^{1-1/96}\log^{3/4}P\) --- and the thirty
+the form \(K_c\ll P^{1-1/96}\log^{3/4}P\) --- and the thirty-five
 threshold inequalities of the proof are solved individually in
 Appendix A, giving \(P_0=8.9\cdot10^{13}\). The depth-\(\le3\) discrepancy
 estimates (Theorems 4.4 and 4.7) are also proved on sub-dyadic
@@ -1998,7 +1998,7 @@ the Lemma 3.9 comparison \(W\le c_7S/2\).
 
 Every numerical margin in this section is claimed only for
 \(P\ge P_0\), and \(P_0\) is **effective**: Appendix A solves
-each of the thirty printed threshold inequalities of
+each of the thirty-five printed threshold inequalities of
 Sections 4--6 separately and takes the maximum,
 \[
 P_0=8.9\cdot10^{13},
@@ -2375,7 +2375,19 @@ level sets of \(\lfloor\delta_h\rfloor\),
 \([\tfrac23,\,0.95]\,P^{1/2}/h\) (E1). On a cell \(g=G+\kappa\) with
 \(G=\lfloor\delta_h\rfloor\) frozen and
 \(\kappa=[\theta_\nu\ge1-\{\delta_h\}]\); Vaaler-expand \(\kappa\)
-at truncation \(R_0=P^{1/4}\) (majorant cost \(\le4P/R_0=4P^{3/4}\)).
+at truncation \(R_0=P^{5/16}\) (majorant cost
+\(\le4P/R_0=4P^{11/16}\)). The exponent \(5/16\) is not free choice:
+Stage 5 below pays \(R_0^{1/2}\) for it and Step 5b(a) pays \(R_0\),
+while the fifth-letter window of Theorem 6.3 needs \(R_0\) *large*.
+Appendix A.6 solves the four competing sites; \(5/16\) is the value
+at which all four hold below \(P_0\), and \(1/4\) --- the exponent an
+earlier draft used --- is not. \(R_0\) is the truncation of *this*
+expansion. It is reused as the Lemma 3.7 mode truncation \(J\) in
+Stage 3(s1) below, and again in Step 5b(a), where the modes counted
+are Stage 2's own and the identification \(J=R_0\) is deliberate; the
+per-window Lemma 3.7 truncation of Step 3a is a separate parameter,
+chosen there as \(P^{1/4}\), and is not affected by the value of
+\(R_0\).
 The moving endpoint costs nothing: as in Theorem 4.4, Step 4, the
 endpoint's smooth part contributes the exact phase
 \(r\delta_h(\nu)\), and
@@ -2396,7 +2408,7 @@ same two mode families at coefficient factor
 \(\min(2,2\pi|B|)\le14.2P^{-1/16}\) (the constant is
 \(2\pi\cdot2.25=14.14\), not \(14\)), mass \(O(\log P)\), flat
 cost \(\le12P^{1/2}\), majorant
-\(\le14.2P^{-1/16}\cdot4P^{3/4}\).
+\(\le14.2P^{-1/16}\cdot4P^{11/16}\).
 (s2) If \(P^{3/16}<uh\le P^{1/2}\) then \(|B|\le2.25P^{1/4}\) and
 \(B\) drifts by at most \(1\) on windows of length
 \(\ge P^{5/4}/(0.6uh)\ge1.2P^{3/4}\): at most \(0.6P^{1/4}+1\)
@@ -2448,7 +2460,7 @@ If \(0.53|w|P^{-1/2}\ge4\cdot1.20uhP^{-3/4}\), i.e.
 \(\ge4\): Lemma 3.3 over the full block gives
 \(\le1.4|w|^{1/2}P^{3/4}+1.4|w|^{-1/2}P^{1/4}\), and the
 coefficient-weighted sums are
-\(\le3R_0^{1/2}P^{3/4}\log P=3P^{7/8}\log P\) (families of Stage 2,
+\(\le3R_0^{1/2}P^{3/4}\log P=3P^{29/32}\log P\) (families of Stage 2,
 regime (s1)) and \(\le CP^{7/8}\log P\) (regime (s2) tails). If
 \(|w|\le0.11\,uhP^{-1/4}\) the main curvature dominates at margin
 \(\ge4\) and the mode rides along at Stage 4's scale, weight
@@ -2549,21 +2561,23 @@ margin against the Stage-4 curvature
   \(\le2khP^{1/8}(0.35\,uh)^{-1/2}P^{3/8}
   \le3.4\,k\,(h/u)^{1/2}P^{1/2}\). Per window, Lemma 3.7 at
   \(T=P^{1/2}\) yields modes \(e(q''(F\circ X))\) whose index obeys
-  \(|q''|\le|B_0|+J\) with the *truncation* \(J=R_0=P^{1/4}\) of
+  \(|q''|\le|B_0|+J\) with the *truncation* \(J=R_0=P^{5/16}\) of
   Stage 2 — not the window parameter \(T\) — so that
-  \(|q''|\le1.85khP^{1/8}+P^{1/4}\le3P^{7/24}\) by (C3) and
-  \(h\le P^{1/8}\), and the curvature is
+  \(|q''|\le1.85khP^{1/8}+P^{5/16}\le2.85P^{5/16}\) by (C3) and
+  \(h\le P^{1/8}\) (here \(R_0\) is the larger of the two, which it
+  was not at \(R_0=P^{1/4}\)), and the curvature is
   \[
   \le\bigl(1.85khP^{1/8}{+}R_0\bigr)\cdot3|j|P^{-5/4}
-  \le3P^{7/24}\cdot6P^{-5/4}
-  =18P^{-23/24},
+  \le2.85P^{5/16}\cdot6P^{-5/4}
+  =17.1P^{-15/16},
   \]
   ratio to the main curvature
-  \(\le52P^{-5/24}\le52P^{-1/16}\): dominated. (Substituting \(T\)
-  for \(J\) here would give only \(9P^{-3/4}\), whose ratio
-  \(26/(uh)\) is not \(o(1)\) at \(uh=O(1)\); the
-  \(52P^{-1/16}\) conclusion is correct and conservative,
-  and \(18/0.35=52\) fixes the constant either way.) The flat cost is, per point,
+  \(\le48.9P^{-3/16}\le49P^{-1/16}\): dominated for \(P\ge P_0\),
+  with room \(0.12\) against the margin \(\tfrac14\).
+  (Substituting \(T\) for \(J\) here would give only \(9P^{-3/4}\),
+  whose ratio \(26/(uh)\) is not \(o(1)\) at \(uh=O(1)\); the
+  \(49P^{-1/16}\) conclusion is correct and conservative,
+  and \(17.1/0.35=48.9\) fixes the constant either way.) The flat cost is, per point,
   \(8(1{+}B_0)/T\), so in total
   \(\le8\bigl(1{+}1.85khP^{1/8}\bigr)P^{1/2}
   \le8P^{1/2}+15\,khP^{5/8}\le23\,P^{1/24+1/8+5/8}
@@ -2644,14 +2658,125 @@ Stage-4 curvature exactly, the block sums at
 (\(\mathrm{amp}\cdot\ell^2\approx3\cdot10^{-3}\)) and \(f'\) sweeps
 \(19\) to \(37\) periods.
 
-**What is missing is the spacing input**: a bound on
-\(\#\{i:\lVert f'_i\rVert\le\varepsilon\}\) for the cell frequencies.
-That is a three-distance or Erdős–Turán statement about an approximate
-arithmetic progression of common difference \(\asymp uP^{-1/4}\), and it
-is *not* proved here. Until it is, (i) is established for the narrowed
-(D3) — which is what every application in this paper supplies
-(Claim E) — and regime B of the wide class is open. It is recorded so
-that the boundary is visible rather than implicit.
+*Closing regime B.* Write \(t=\{\delta_h(\nu)\}\in[0,1)\) on a cell and
+\(q(\nu)=\tfrac98u(\nu{+}2h)^{-1/4}\in[0.946,1.125]\,uP^{-1/4}\), so that
+\[
+f'(\nu)=\Psi(\nu)-q(\nu)\,t,
+\qquad
+\Psi:=\tfrac{27}8uh\nu^{1/4}+uA_h'+\varphi' .
+\]
+The decoration enters only through \(\Psi\); the term \(-qt\) comes from the
+frozen \(G\) and no choice of \(\varphi\) can remove it. Since \(t\) sweeps
+\([0,1)\) across each cell, \(f'\) sweeps an interval of length \(\asymp q\)
+there unless \(\Psi'\) cancels the sweep, and that dichotomy is the whole
+argument. Put \(D_i:=\Psi'-q/\ell\) on cell \(i\).
+
+*(a) \(|D_i|\ge q/(2\ell)\).* Then \(f'\) is monotone on the cell and sweeps an
+interval of length \(\ge q/2\). Split the cell by dyadic \(\lVert f'\rVert\):
+the \(j\)-th piece has length \(\ll2^{-j}\ell\) and Kusmin–Landau bounds its
+sum by \(\ll2^{j}/q\); balancing at \(2^{j}=(\ell q)^{1/2}\) gives a cell total
+\(\ll(\ell/q)^{1/2}\le1.01\,(uh)^{-1/2}P^{3/8}\). Summing over the
+\(\le1.5hP^{1/2}{+}1\) cells,
+\[
+\ll1.6\,(h/u)^{1/2}P^{7/8},
+\]
+which is exactly the second printed term of (i). Case (a) is closed.
+
+*(b) \(|D_i|<q/(2\ell)\).* Then \(\Psi'\asymp q/\ell\asymp uhP^{-3/4}\), so
+\(\varphi''\) must sit within \(O(uhP^{-3/4})\) of \(\tfrac12uhP^{-3/4}\), which
+by \(|\varphi''|\le\Phi_2\) confines this case to
+\(uh\le6\,kh_1h_2P^{1/8}\). Here \(f'\) is nearly constant on each cell, equal
+to \(\alpha_i:=\Psi(\nu_i)\) up to \(O(q)\), and \(\alpha_{i+1}-\alpha_i
+=\Psi'\ell\asymp q\): the cell frequencies advance by \(\asymp uP^{-1/4}\) per
+cell. The cell sums are \(\ll\min(\ell,\lVert\alpha_i\rVert^{-1})\), and
+\(\Psi\) is monotone here, sweeping \(V\asymp uhP^{1/4}\) periods over the
+block. Counting the samples in each period,
+\[
+\sum_i\min\bigl(\ell,\lVert\alpha_i\rVert^{-1}\bigr)
+\ll hP^{1/2}\log P+V\ell
+\ll P^{5/8}\log P+1.1\,uP^{3/4},
+\]
+using \(h\le P^{1/8}\). The first term is inside the third printed term of (i)
+with room. The second is \(\le P^{7/8}\) precisely when \(u\le0.9P^{1/8}\).
+
+So regime B closes outright for \(u\le P^{1/8}\), and case (a) closes for every
+\(u\). What remains is the sliver
+\[
+P^{1/8}<u\le 6\,kh_1h_2P^{1/8}/h
+\quad\text{inside case (b)},
+\]
+where the argument above yields only the crude \(V\ell\): it charges a full cell
+to each of the \(V\) crossings of \(\Psi\) through \(\mathbb Z\). That is
+certainly lossy — those \(V\) cells carry different constant terms and should
+not add coherently — but making the saving explicit needs a bound on how often
+\(\lVert\alpha_i\rVert\) is small, i.e. the classical
+\(\sum_{i<N}\min(\ell,\lVert iq\rVert^{-1})\) estimate for the *slowly varying*
+difference \(q\), and that is not carried out here.
+
+*The sliver is a narrow-class problem.* Case (b) looks like the wide class but
+is not. Its defining condition \(|D_i|<q/(2\ell)\) reads
+\(\Psi'\in\bigl(\tfrac{q}{2\ell},\tfrac{3q}{2\ell}\bigr)\), and with
+\(q/\ell=\tfrac{27}{16}uh\nu^{-3/4}\) and
+\(\Psi'=\tfrac{27}{32}uh\nu^{-3/4}+\varphi''\) this pins
+\[
+0\;<\;\varphi''\;<\;\tfrac{27}{16}\,uh\nu^{-3/4}
+\qquad\text{throughout case (b)} .
+\]
+So in the only case left open, \(|\varphi''|\) is at most \(4.8\) times the
+Stage-4 curvature \(0.35uhP^{-3/4}\): the wide budget
+\(\Phi_2=3kh_1h_2P^{-5/8}\), larger by \(P/(2h)\), is *never* attained there.
+The wide class collapses to a narrow one exactly where it mattered.
+
+Two consequences follow at once. First, \(\Psi\) is strictly increasing with
+\(\Psi'\in[0.84,2.53]uh\nu^{-3/4}\), so the cell frequencies
+\(\alpha_i=\Psi(\nu_i)\) form a strictly increasing sequence with gaps
+\[
+\alpha_{i+1}-\alpha_i\in[0.562,\,1.688]\,uP^{-1/4},
+\]
+of bounded ratio \(3\). Second, in the extreme sub-case \(\Psi'\equiv q/\ell\)
+one has \(\Psi'=q\,\delta_h'\), hence \(\alpha_i=\Psi(\nu_i)\approx qG_i+\)const
+with \(G_i\) consecutive integers: an approximate arithmetic progression of
+difference \(q\asymp uP^{-1/4}\). The residual is therefore exactly the
+classical sum \(\sum_{i<N}\min(\ell,\lVert iq\rVert^{-1})\), for a difference
+that drifts by \(19\%\) across the block (because
+\(q=\tfrac98u(\nu{+}2h)^{-1/4}\)); that drift is what prevents the progression
+from locking onto a rational, and it is the saving the crude \(V\ell\) throws
+away.
+
+*The sliver, measured.* Maximising over the free linear term as before, at
+\(h=1\) and \(u\) up to the top of the sliver:
+\[
+\begin{array}{r|rr|rr|r}
+P & u & \text{case (b)} & \text{case (a)} & \text{printed (i)} & \text{(b)}/\text{(i)}\\\hline
+8\cdot10^{3} & 1 & 192 & 397 & 5478 & 0.035\\
+8\cdot10^{3} & 13 & 234 & 193 & 4315 & 0.054\\
+3.2\cdot10^{4} & 1 & 475 & 1035 & 18154 & 0.026\\
+3.2\cdot10^{4} & 7 & 546 & 403 & 13788 & 0.040\\
+3.2\cdot10^{4} & 13 & 544 & 413 & 13536 & 0.040
+\end{array}
+\]
+The ratio to the printed bound stays near \(0.04\) across the whole sliver and
+falls with \(P\). At \(P=3.2\cdot10^{4}\), \(u=13\) the crude \(V\ell\) is
+\(34\,214\) against an actual \(544\): the period-counting step is lossy there by
+a factor \(63\), which is the whole of the remaining gap.
+*Numerical check of the whole regime.* The decoration is free to carry a linear
+term, so the honest test is to maximise over it; on the natural grid that
+maximum is a discrete Fourier transform of \(e(f(n))\). At
+\(u=h=k=h_1=h_2=1\), the optimum over all class-(D3) linear shifts, for the
+undecorated phase and for the two extremal decorations
+\(\varphi=\pm\tfrac{27}{10}\nu^{5/4}\) (which cancel the Stage-4 curvature and
+the drift of \(f'\) respectively), is
+\[
+\begin{array}{r|rrr|rr}
+P & \text{none} & \text{curvature} & \text{drift} & P^{7/8} & \text{worst}/P^{7/8}\\\hline
+8\cdot10^{3} & 169 & 192 & 397 & 2601 & 0.152\\
+3.2\cdot10^{4} & 383 & 475 & 1035 & 8750 & 0.118\\
+1.28\cdot10^{5} & 792 & 958 & 2536 & 29431 & 0.086
+\end{array}
+\]
+The worst case grows like \(P^{0.67}\) and its ratio to \(P^{7/8}\) *decreases*;
+the drift-cancelling decoration is the stronger of the two, as the analysis
+above predicts, and neither approaches the printed bound.
 
 *Totals.* Stages 1–6 bound \(V\) by
 \[
@@ -3087,7 +3212,7 @@ again.
 (3e) *\(M_4\), the anchor.* The factor
 \(e(c_{11}\{\Delta\Delta Y\})\) is never expanded away. On the
 branch decomposition of Lemma 5.1(iii) (arcs absorbed by the exact
-shift device at \(O(\log P)\) mass and \(4P^{3/4}\) majorant, as in
+shift device at \(O(\log P)\) mass and \(4P^{11/16}\) majorant, as in
 Theorem 4.4, Step 4), \(\{\Delta\Delta Y\}=G-J_F\) with
 \(G=F_{\boldsymbol\kappa}(X{-}\theta)\) and
 \(J_F=\lfloor G\rfloor\) frozen on the runs of (E6). The anchor
@@ -3552,7 +3677,9 @@ v^{3/2}=-\tfrac5{64}n^{27/8}+\tfrac9{32}mn^{15/8}
 +\mathrm{err},
 \]
 \(|\mathrm{err}|\le\tfrac34n^{-9/8}\) (discarding \(\mathrm{err}\)
-costs \(\le2\pi kP^{-1/8}\cdot P\le7P^{7/8}\)): the fourth-letter
+costs \(\le2\pi\cdot\tfrac k2\cdot\tfrac34P^{-9/8}\cdot P
+=\tfrac{3\pi k}4P^{-1/8}\le4.8\,P^{-11/96}<1\) for
+\(P\ge7.6\cdot10^{5}\)): the fourth-letter
 phase is a polynomial of degree \((2,1)\) in the integer pair
 \((m,v)\) with smooth coefficients. Substituting \(m=X-\theta\) in
 the \(v\)-coefficients, the total smooth \(v\)-coefficient is
@@ -3752,7 +3879,7 @@ by (C1) and \(\lvert w\rvert\le2\). The same choice
 \(P\ge1.6\cdot10^{13}\) -- a lower threshold than Step 5b's,
 because \(S\) is larger here: at the lower end
 \(S\ge0.60P^{-5/8}\) one has \(V/S\le0.11P^{-7/48}\) and
-\(V\ge0.065P^{-37/48}\), against the interpolant error
+\(V\ge0.064P^{-37/48}\), against the interpolant error
 \(106P^{-25/24}+0.11P^{-5/6}\). Transition length and
 piece-boundary costs are as in Step 5b (the same exponents;
 the smaller \(S\) enlarges \(V/S\) by a constant, still
@@ -3802,8 +3929,9 @@ z^{1/2}
 \le\tfrac34\,m^{-3/8}+\tfrac12\,v^{-3/4}+\tfrac9{128}\,(X-1)^{-7/8}
 +\tfrac3{32}(Y-1)^{-5/4}+\tfrac18(v^{3/2}-1)^{-3/2}.
 \]
-The last three terms are \(O(n^{-21/16})\), \(O(n^{-45/16})\) and
-\(O(n^{-81/16})\); the leading remainder is \(O(n^{-9/16})\).
+The second term is \(O(n^{-27/16})\), and the last three are
+\(O(n^{-21/16})\), \(O(n^{-45/16})\) and \(O(n^{-81/16})\); the
+leading remainder is \(O(n^{-9/16})\).
 
 (ii) *(\(OOEO*\) linearization.)*
 \[
@@ -3858,8 +3986,19 @@ coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 Of these four words only \(OOOEE\) and \(OOEOE\) contract. The
 expanding tree \(OOOO*\) is not estimated: it is the level-3
 kernel of Conjecture 7.3. All estimates below are for
-\(P\ge P_0=8.9\cdot10^{13}\), the effective threshold of
-Appendix A.
+\(P\ge P_0=8.9\cdot10^{13}\), the effective threshold of Appendix A
+--- but only because Stage 2 of Theorem 5.3 is run at
+\(R_0=P^{5/16}\). The fifth-letter window below is opened at
+\(T=R_0\) against a sawtooth coefficient
+\(\lvert C\rvert\le1.30\,P^{19/96}\), and both of its requirements ---
+the Lemma 3.7 hypothesis \(T\ge8(1+\lvert C\rvert)\) and the flat
+cost \(8(1+\lvert C\rvert)/T\le P^{-1/96}\) per point --- have a
+margin of only \(T/P^{19/96}\). At \(R_0=P^{1/4}\) that margin is
+\(P^{5/96}\), and the two requirements first hold at
+\(2.55\cdot10^{19}\) and \(1.81\cdot10^{24}\): both far above
+\(P_0\), the second by ten orders. At \(R_0=P^{5/16}\) the margin is
+\(P^{11/96}\) and they hold from \(7.5\cdot10^{8}\) and
+\(5.5\cdot10^{9}\). Appendix A.6 records the trade in full.
 
 *Proof.* \(OOOE*\). By Lemma 3.6 the class indicators are the
 \(OOOE\) indicator of Theorem 6.1 times
@@ -3873,30 +4012,32 @@ remainder costs
 inside \(P^{1-1/96}\). Write
 \(C=\tfrac{9l}{16}n^{3/16}\), so
 \(\lvert C\rvert\le2P^{19/96}\) on \(\lvert l\rvert\le2P^{1/96}\).
-Lemma 3.7 with \(T=P^{1/4}\) satisfies
-\(T\ge8(1+\lvert C\rvert)\), since
-\(8\lvert C\rvert/T\le16P^{-5/96}\to0\). The produced modes are
-\(e(uX)\) with \(\lvert u\rvert\le P^{1/4}\). These are
+Lemma 3.7 with \(T=R_0=P^{5/16}\) satisfies
+\(T\ge8(1+\lvert C\rvert)\) for \(P\ge P_0\), since
+\(8\lvert C\rvert/T\le11P^{-11/96}\), which is below \(1\) from
+\(P\ge7.5\cdot10^{8}\). The produced modes are
+\(e(uX)\) with \(\lvert u\rvert\le P^{5/16}\). These are
 first-letter monomials of the shape already estimated in the
 proof of Lemma 5.2(i) — the families \(e(r\nu^{3/2})\) with
-truncation \(R_0=P^{1/4}\) — and are not decorations of class
+truncation \(R_0=P^{5/16}\), which is exactly why Stage 2 is run at
+that truncation — and are not decorations of class
 (D1). (The coefficient budget \(\lvert q'\rvert\le4P^{1/24}\) of
 Lemma 5.2(ii) is the kernel's own \(Y\)-wave range after
 differencing; it is not a slot for \(X\)-modes.)
 
 Write \(I_{\mathrm{tot}}\) for the combined first-letter index:
 Theorem 6.1's own \(\lvert i\rvert\le2P^{1/96}\) plus the
-fifth-letter \(\lvert u\rvert\le P^{1/4}\). Then
-\(\lvert I_{\mathrm{tot}}\rvert\le2P^{1/4}\). Theorem 6.1
+fifth-letter \(\lvert u\rvert\le P^{5/16}\). Then
+\(\lvert I_{\mathrm{tot}}\rvert\le2P^{5/16}\). Theorem 6.1
 Steps D–E apply at this range.
 
 - *The \(\tfrac i2X\)-passenger.*
   \(\Delta\Delta(\tfrac i2 X)\) has second derivative
   \(\le2.3\,\lvert i\rvert h_1h_2P^{-5/2}\). At
-  \(\lvert i\rvert\le2P^{1/4}\) and \(h_1h_2\le P^{1/16}\) this is
-  \(O(P^{-35/16})\), inside class (D3)
-  (\(\lvert\varphi''\rvert\le3kh_1h_2P^{-5/8}\)) by
-  \(P^{-35/16}/P^{-9/16}=P^{-13/8}\). The fifth-letter chirp
+  \(\lvert i\rvert\le2P^{5/16}\) and \(h_1h_2\le P^{1/16}\) this is
+  \(O(P^{-34/16})\), inside class (D3)
+  (\(\lvert\varphi''\rvert\le6kh_1h_2h\,P^{-13/8}\)) by
+  \(P^{-34/16}/P^{-26/16}=P^{-1/2}\). The fifth-letter chirp
   \(\tfrac l2 n^{27/16}\), after the same double difference, is
   likewise (D3):
   \(h_1h_2\cdot l\cdot P^{27/16-4}=O(P^{1/16+1/96-37/16})\).
@@ -3911,14 +4052,18 @@ Steps D–E apply at this range.
   the values of Theorem 6.1 Step E. The (D3) curvature of the new
   modes is dominated at the ratios already displayed there
   (\(\le 3P^{-1/8}\) against \(\lambda_a'\ge0.40P^{-1/8}\)).
-- *The Lemma 5.2(i) budget.* Modes with \(\lvert u\rvert\le P^{1/4}\)
+- *The Lemma 5.2(i) budget.* Modes with \(\lvert u\rvert\le P^{5/16}\)
   are a subset of the family already bounded by
-  \(3R_0^{1/2}P^{3/4}\log P=3P^{7/8}\log P\). Collision-band
+  \(3R_0^{1/2}P^{3/4}\log P=3P^{29/32}\log P\), which is inside
+  \(P^{23/24}\) with \(P^{5/96}\) to spare. Collision-band
   mass stays \(O(\log P)\).
 - *The flat cost of Lemma 3.7.* Per point
-  \(8(1+\lvert C\rvert)/T=O(P^{19/96-1/4})=O(P^{-5/96})\); over
-  a block \(O(P^{1-5/96})\), inside Theorem 6.1's
-  \(P^{1-1/96}\) budget.
+  \(8(1+\lvert C\rvert)/T\le11P^{19/96-5/16}=11P^{-11/96}\); over
+  a block \(\le11P^{1-11/96}\), inside Theorem 6.1's
+  \(P^{1-1/96}\) budget from \(P\ge5.5\cdot10^{9}\). This is the
+  requirement that binds hardest on \(R_0\): at \(R_0=P^{1/4}\) the
+  same line reads \(11P^{1-5/96}\), which does not clear
+  \(P^{1-1/96}\) until \(1.8\cdot10^{24}\).
 
 Theorem 6.1 therefore applies to every fifth-letter decorated
 \(OOOE*\) mode sum, uniformly in \(\lvert l\rvert\le2P^{1/96}\).
@@ -3970,7 +4115,7 @@ of \(-\tfrac{3k}4 v^{3/4}\) is
 \(\tfrac{27k}{32}n^{3/16}\), and
 \(\tfrac{27k}{32}-\tfrac{9k}{16}=\tfrac{9k}{32}\). One slow
 \(\theta\)-sawtooth remains. Expand
-\(e(-C_{\mathrm{net}}\theta)\) on the same intervals, again by
+\(e(C_{\mathrm{net}}\theta)\) on the same intervals, again by
 the shifted-window device of Theorem 4.8
 (\(C_{\mathrm{net}}\) drifts by \(P^{-3/8}\ll1\) on each \(I\);
 window \(T_\theta=P^{1/8}\ll kP^{3/16}\); majorant \(P^{7/8}\)).
@@ -4336,7 +4481,7 @@ only inexact step in an otherwise exact chain. It is no longer a link in
 that chain. Every exponent in the paper lies in
 \(\tfrac1{96}\mathbb Z\), so the substitution \(P=t^n\) turns each
 row into a *polynomial* inequality in \(t\), with no real powers at
-all, and **all thirty rows are proved that way** in
+all, and **all thirty-five rows are proved that way** in
 `formal/Problems/Juggler/ThresholdCertificate.lean` (32 theorems: the
 window-boundary and \(\lambda_0\)-range rows each split in two). Each
 carries its substitution and a rational threshold \(t_0\) at or just
@@ -4368,17 +4513,22 @@ irrational constants are replaced by rational bounds, both recorded:
 | 0.6 P^(1/4) + 1 <= 0.65 P^(1/4) | Thm 4.1 St.3(s2) | $1.6\cdot10^{5}$ |
 | P^(1/2)/(2h1) >= 8(1+\|B\|): 0.5 P^(23/48) >= 15 P^(10/48) | Thm 5.3 St.3(a) | $2.8\cdot10^{5}$ |
 | P^(1/2)/(2h2) >= 8(1+\|B\|): 0.5 P^(22/48) >= 15 P^(9/48) | Thm 5.3 St.3(b) | $2.8\cdot10^{5}$ |
+| (3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96) | Thm 6.1 St.B | $7.5\cdot10^{5}$ |
 | P^(1/2) >= 8(1 + 7 P^(1/4)) | Thm 5.3 St.6(D1) | $9.9\cdot10^{6}$ |
 | wave remainder 200 P^(-35/24) vs S: 571 P^(-5/6) <= rho_0 | Thm 5.3 St.5b | $1.7\cdot10^{7}$ |
 | beta-substitution error 2.31 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.8\cdot10^{7}$ |
 | cells + anchor runs + windows <= 3.5 P^(13/24) | Thm 5.3 St.5b | $5.1\cdot10^{7}$ |
 | mode/cell curvature ratio 0.39 P^(1/8) >= 4 | Thm 4.1 St.2 | $1.2\cdot10^{8}$ |
 | every competitor ratio <= 1/4 (margin 4) | Thm 5.3 St.5a | $4.3\cdot10^{8}$ |
+| Lemma 3.7 window T = R_0 >= 8(1 + \|C\|) | Thm 6.3 | $7.4\cdot10^{8}$ |
+| 3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24) | Thm 5.3 St.5 | $1.4\cdot10^{9}$ |
 | P^2\|c''''/2\|/S <= rho_0: (0.044/0.35) P^(-1/4) | Thm 5.3 St.5b | $3.0\cdot10^{9}$ |
 | 96 P^(-5/24) <= 1 | Claim G | $3.3\cdot10^{9}$ |
 | P\|c'''/2\|/S <= rho_0: (0.047/0.35) P^(-1/4) | Thm 5.3 St.5b | $3.9\cdot10^{9}$ |
+| flat cost 8(1+\|C\|)/R_0 <= P^(-1/96) per point | Thm 6.3 | $5.5\cdot10^{9}$ |
 | \|c''/2\|/S <= rho_0: (0.053/0.35) P^(-1/4) | Thm 5.3 St.5b | $6.2\cdot10^{9}$ |
 | 2.25 P^(-1/16) < 1/2 | Thm 4.1 St.3(s1) | $2.8\cdot10^{10}$ |
+| \|q''\| curvature ratio 48.9 P^(-3/16) <= 1/4 | Thm 5.3 St.5b(a) | $3.0\cdot10^{11}$ |
 | E alone <= c_7 S/2 (the floor as kappa -> 0) | Thm 5.3 St.5b | $5.7\cdot10^{12}$ |
 | W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $1.6\cdot10^{13}$ |
 | W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8) | Thm 5.3 St.5b | $8.9\cdot10^{13}$ |
@@ -4393,12 +4543,15 @@ completeness rather than because they constrain anything.
 ### A.2 The stratification
 
 The thresholds are not spread out; they cluster and then jump.
-Twenty-seven of the thirty hold from \(2.9\cdot10^{10}\) on, and that
-value is set by a single soft inequality
-(\(2.25P^{-1/16}<\tfrac12\) in Stage 3(s1) of Theorem 4.1, which merely
-names the regime). The remaining three are the Lemma 3.9 balance
-comparisons of Steps 5a and 5b, and they alone carry \(P_0\) up by
-three and a half orders of magnitude.
+Thirty-one of the thirty-five hold from \(2.9\cdot10^{10}\) on, and
+that value is set by a single soft inequality
+(\(2.25P^{-1/16}<	frac12\) in Stage 3(s1) of Theorem 4.1, which merely
+names the regime). Of the remaining four, one is the \(q''\) curvature
+ratio of Step 5b(a) at \(3.0\cdot10^{11}\) --- the price of
+\(R_0=P^{5/16}\), and still two and a half orders below \(P_0\)
+(A.6) --- and the other three are the Lemma 3.9 balance comparisons of
+Steps 5a and 5b, which alone carry \(P_0\) up by three and a half
+orders of magnitude.
 
 \(W\le c_7S/2\) is a *hypothesis* of Lemma 3.9, not an optimisation: it
 is what makes \(\Omega_W\) empty on the \(r=2\) pieces. Its size is
@@ -4466,6 +4619,13 @@ Nor does \(P_0\) answer every question one might ask of a threshold. It
 is the point beyond which the proof's inequalities hold; it is not the
 point beyond which the resulting bound is better than the trivial one.
 That second threshold is computed in A.5.
+
+Nor was \(P_0\) always the threshold of the whole paper. In an earlier
+draft Stage 2 of Theorem 5.3 was run at \(R_0=P^{1/4}\), and with that
+truncation the depth-five Theorem 6.3 needed \(1.8\cdot10^{24}\), ten
+orders above \(P_0\). Section A.6 shows that \(R_0=P^{5/16}\) removes
+the gap at no cost that binds, and that is the value carried
+throughout. With it, every threshold in the paper is \(P_0\).
 
 ### A.5 The two constants that carry the threshold
 
@@ -4546,6 +4706,68 @@ the cap \(\tfrac{60\cdot2.6}{0.84}\), and the range \([0.35,2.6]\) for
 \(\lambda_0\). Narrowing the band would reduce \(E\) but weakens the
 margin-\(20\) domination claims in the anchor-dominant and
 mode-dominant regimes, which is a trade this draft has not made.
+
+### A.6 Why Stage 2 is truncated at \(P^{5/16}\)
+
+Stage 2 of Theorem 5.3 Vaaler-expands the gap-cell indicator at a
+truncation \(R_0=P^{a}\). Four printed inequalities depend on \(a\),
+two of them monotone each way, so \(a\) is not free.
+
+*Paid for by raising \(a\).*
+
+- The **collision-band sum** of Stage 5 is
+  \(3R_0^{1/2}P^{3/4}\log P=3P^{a/2+3/4}\log P\), which must stay inside
+  the theorem's own \(P^{23/24}\); this forces \(a\le5/12\).
+- The **\(q''\) curvature** of Step 5b(a) is
+  \(\bigl(1.85khP^{1/8}+R_0\bigr)\cdot3|j|P^{-5/4}\), whose ratio to the
+  main curvature is \(\asymp P^{a-1/2}\) once \(R_0\) is the larger
+  term; it must clear the margin \(\tfrac14\).
+
+*Bought by raising \(a\).* Both come from the fifth-letter Lemma 3.7
+window of Theorem 6.3, opened at \(T=R_0\) against
+\(\lvert C\rvert\le1.2812\,P^{19/96}\):
+
+- the **window hypothesis** \(T\ge8(1+\lvert C\rvert)\), and
+- the **flat cost** \(8(1+\lvert C\rvert)/T\) per point, which over a
+  block must stay inside \(P^{1-1/96}\).
+
+Both have margin \(P^{a-19/96}\), so both need \(a>19/96=0.198\), and
+they need it with room: the constant is \(8\cdot\tfrac98\cdot2^{3/16}
+=10.25\), and the flat cost must beat not \(1\) but \(P^{-1/96}\).
+
+Solving each site for its least admissible \(P\):
+
+| \(a\) | collision | \(q''\) | window | flat cost | worst |
+|---|---|---|---|---|---|
+| \(1/4\) | \(5.3\cdot10^{5}\) | \(3.0\cdot10^{10}\) | \(2.5\cdot10^{19}\) | \(1.8\cdot10^{24}\) | \(1.8\cdot10^{24}\) |
+| \(9/32\) | \(1.1\cdot10^{7}\) | \(6.6\cdot10^{10}\) | \(1.4\cdot10^{12}\) | \(7.4\cdot10^{13}\) | \(7.4\cdot10^{13}\) |
+| \(5/16\) | \(1.4\cdot10^{9}\) | \(3.0\cdot10^{11}\) | \(7.4\cdot10^{8}\) | \(5.5\cdot10^{9}\) | \(3.0\cdot10^{11}\) |
+| \(1/3\) | \(2.8\cdot10^{11}\) | \(1.6\cdot10^{12}\) | \(3.5\cdot10^{7}\) | \(1.4\cdot10^{8}\) | \(1.6\cdot10^{12}\) |
+| \(3/8\) | \(8.0\cdot10^{22}\) | \(1.1\cdot10^{15}\) | \(6.9\cdot10^{5}\) | \(1.5\cdot10^{6}\) | \(8.0\cdot10^{22}\) |
+
+The window is what makes the choice sharp. At \(a=1/4\) the two
+fifth-letter requirements are not merely inconvenient, they are the
+whole threshold of the depth-five theorem, and the binding one is the
+flat cost, which does not clear \(P^{1-1/96}\) until
+\(1.8\cdot10^{24}\) --- ten orders above \(P_0\). At \(a=9/32\) the
+worst site is \(7.4\cdot10^{13}\), which sneaks under
+\(P_0=8.9\cdot10^{13}\) by less than a factor \(1.3\): too close to
+print. At \(a=5/16\) the worst site is \(3.0\cdot10^{11}\), a clear
+factor \(300\) below \(P_0\), and it is the minimum of the last column
+over the admissible range. That is the value carried.
+
+Two things this table settles. First, the choice costs the paper
+nothing that binds: the collision-band term moves from
+\(3P^{7/8}\log P\) to \(3P^{29/32}\log P\), still inside \(P^{23/24}\)
+with \(P^{5/96}\) to spare, and the \(q''\) ratio moves from
+\(52P^{-5/24}\) to \(48.9P^{-3/16}\), which at \(P_0\) is \(0.12\)
+against a margin of \(\tfrac14\). \(P_0\) itself is unchanged, and no
+exponent in any statement moves. Second, the window's margin is
+genuinely narrow --- \(P^{a-19/96}\) with a constant above \(10\) ---
+so this is a place where an asymptotic argument and an effective one
+diverge by twenty orders of magnitude, and the paper's claim of
+effectivity is what forced the choice.
+
 
 ## Acknowledgments
 

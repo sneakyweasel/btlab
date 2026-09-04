@@ -298,6 +298,59 @@ theorem wideD3_cells_flat (u h Q : ℝ) (hu : 0 < u) (hh : 3 ≤ h) (hQ : 0 < Q)
     norm_num at h; linarith
   nlinarith [hB, hQ, hh0, h3, hu, mul_pos hQ hh0]
 
+/-- **Regime B, case (a): the dyadic Kusmin–Landau total is the printed second
+term.**  A cell total `(ℓ/q)^(1/2)` summed over `1.5 h P^(1/2)` cells, with
+`ℓ ≤ 0.95 P^(1/2)/h` and `q ≥ 0.946 u P^(-1/4)`, gives `≤ 1.6 (h/u)^(1/2) P^(7/8)`.
+Written at `P = p^8` (so `P^(1/2) = p^4`, `P^(3/8) = p^3`, `P^(7/8) = p^7`) and
+with the two square roots cleared. -/
+theorem wideD3_caseA_total (u h p : ℝ) (hu : 0 < u) (hh : 0 < h) (hp : 0 < p)
+    (cell : ℝ) (hcell : cell ≤ 1.01 * p ^ 3) :
+    1.5 * h * p ^ 4 * cell ≤ 1.6 * h * p ^ 7 := by
+  have hc : (0:ℝ) ≤ 1.5 * h * p ^ 4 := by positivity
+  have hprod := mul_le_mul_of_nonneg_left hcell hc
+  have e : 1.5 * h * p ^ 4 * (1.01 * p ^ 3) = 1.515 * h * p ^ 7 := by ring
+  rw [e] at hprod
+  nlinarith [hprod, mul_pos hh (pow_pos hp 7)]
+
+/-- **Regime B, case (b) is confined to small `uh`.**  `|D_i| < q/(2ℓ)` forces
+`φ''` within `O(u h P^(-3/4))` of `½ u h P^(-3/4)`, so `|φ''| ≤ Φ₂` confines the
+case to `u h ≤ 6 k h₁ h₂ P^(1/8)`. -/
+theorem wideD3_caseB_confined (K uh p : ℝ) (hK : 0 ≤ K) (hp : 0 < p)
+    (hcase : (1/2) * uh ≤ 3 * K * p ^ 3) : uh ≤ 6 * K * p ^ 3 := by linarith
+
+/-- **Where case (b) closes outright.**  Its second term is `1.1 u P^(3/4)`,
+inside `P^(7/8)` exactly when `u ≤ 0.9 P^(1/8)`.  At `P = p^8`: `1.1 u p^6 ≤ p^7`
+iff `u ≤ 0.9 p`. -/
+theorem wideD3_caseB_closes (u p : ℝ) (hp : 0 < p) (hu : u ≤ 0.9 * p) (hu0 : 0 ≤ u) :
+    1.1 * u * p ^ 6 ≤ p ^ 7 := by
+  have h6 : (0:ℝ) < p ^ 6 := pow_pos hp 6
+  nlinarith [h6, hu, hu0]
+
+/-- **Case (b) confines the decoration.**  Its defining condition
+`|Ψ' - q/ℓ| < q/(2ℓ)` with `q/ℓ = (27/16) u h ν^(-3/4)` and
+`Ψ' = (27/32) u h ν^(-3/4) + φ''` pins `0 < φ'' < (27/16) u h ν^(-3/4)`.
+So in the only case left open, `|φ''|` is at most `27/16` times
+`u h ν^(-3/4)` -- the wide budget is never attained there. -/
+theorem wideD3_caseB_confines_phi (uh3 phi2 : ℝ) (h3 : 0 < uh3)
+    (hcase : |((27:ℝ)/32) * uh3 + phi2 - (27/16) * uh3| < (27/32) * uh3) :
+    0 < phi2 ∧ phi2 < (27/16) * uh3 := by
+  rw [abs_lt] at hcase
+  constructor <;> linarith [hcase.1, hcase.2]
+
+/-- The confinement in the form used: `φ''` is at most `4.83` times the Stage-4
+curvature `0.35 u h ν^(-3/4)`, since `(27/16)/0.35 = 4.821…`. -/
+theorem wideD3_caseB_ratio (uh3 phi2 : ℝ) (h3 : 0 ≤ uh3)
+    (hb : phi2 < (27/16) * uh3) : phi2 < 4.83 * (0.35 * uh3) := by linarith
+
+/-- **The cell frequencies have bounded gaps.**  In case (b),
+`Ψ' ∈ [27/32, 81/32] u h ν^(-3/4)`, so with `ℓ = (2/3) ν^(1/2)/h` the gaps
+`α_{i+1} - α_i = Ψ' ℓ` lie in `[0.562, 1.688] u P^(-1/4)`: a strictly increasing
+sequence of bounded ratio `3`. -/
+theorem wideD3_caseB_gaps (Psi uh3 : ℝ) (h3 : 0 < uh3)
+    (hlo : (27/32) * uh3 ≤ Psi) (hhi : Psi ≤ (81/32) * uh3) :
+    (27/48) * uh3 ≤ Psi * (2/3) ∧ Psi * (2/3) ≤ (81/48) * uh3 := by
+  constructor <;> linarith
+
 end Stage6D3
 
 /-! ## 4. Lemma 3.9: the two sublevel-length bounds -/

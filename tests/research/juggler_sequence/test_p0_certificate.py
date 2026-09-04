@@ -47,13 +47,19 @@ def _pred_for(tag: str):
         "5a-W<=c7S": lambda P: V(S5a(P), P, k) + E(P) <= c7 * S5a(P) / 2,
         "5b-W<=c7S": lambda P: V(S5b(P), P, k) + E(P) <= c7 * S5b(P) / 2,
         "5b-E<=c7S": lambda P: E(P) <= c7 * S5b(P) / 2,
+        "t61-stepB-discard": lambda P: 1.5 * math.pi * P ** (1 / 96 - 1 / 8) <= 1,
+        "st2-collision": lambda P: 3 * P ** (5 / 16 / 2 + 3 / 4) <= P ** (23 / 24),
+        "st5b-qpp": lambda P: (1.85 * P ** (7 / 24) + P ** (5 / 16)) * 6 * P ** (-5 / 4)
+        / (0.35 * P**-0.75) <= 0.25,
+        "t63-window": lambda P: P ** (5 / 16) >= 8 * (1 + C.depth5_C_max(P)),
+        "t63-flat": lambda P: 8 * (1 + C.depth5_C_max(P)) / P ** (5 / 16) <= P ** (-1 / 96),
         "thm63-rem": lambda P: P ** (43 / 96) <= P ** (1 - 1 / 96),
     }[tag]
 
 
 def test_every_printed_threshold_is_solvable() -> None:
     rows = C.thresholds()
-    assert len(rows) == 30
+    assert len(rows) == 35
     assert all(r["log10_P_min"] is not None for r in rows), [
         r["tag"] for r in rows if r["log10_P_min"] is None
     ]
@@ -79,10 +85,17 @@ def test_each_threshold_is_sharp_at_its_own_crossing() -> None:
 
 def test_the_balance_comparisons_carry_the_threshold_alone() -> None:
     cert = C.certificate()
-    # everything except the three Lemma 3.9 balance comparisons is satisfied far earlier
-    assert 2.5e10 < cert["P0_excluding_lemma_3_9_balance"] < 3.5e10
-    assert cert["binding_excluding_balance"]["tag"] == "s3s1-Bsmall"
-    assert cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] > 10**3
+    # Excluding the three Lemma 3.9 balance comparisons, the worst row is now the
+    # q'' curvature ratio of Step 5b(a) at 3.0e11 -- the price of R_0 = P^(5/16).
+    # Before that substitution it was s3s1-Bsmall at 2.9e10.
+    assert 2.5e11 < cert["P0_excluding_lemma_3_9_balance"] < 3.5e11
+    assert cert["binding_excluding_balance"]["tag"] == "st5b-qpp"
+    assert cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] > 100
+
+    # and the soft regime-naming inequality still sets the floor for the rest
+    rest = [r for r in cert["thresholds"]
+            if r["tag"] not in {"5a-W<=c7S", "5b-W<=c7S", "5b-E<=c7S", "st5b-qpp"}]
+    assert max(rest, key=lambda r: r["log10_P_min"])["tag"] == "s3s1-Bsmall"
 
 
 def test_superseded_normalisation_is_recovered() -> None:
@@ -255,16 +268,24 @@ LEAN_ROWS = [
     ("5b-W<=c7S",      "row_5b_binding",     48, 1.96),
     ("5b-E<=c7S",      "row_5b_E_only",      48, 1.85),
     ("thm63-rem",      "row_thm63_rem",      96, 1),
+    ("t61-stepB-discard", "stepB_discard",    96, 1.16),
+    ("st2-collision",   "row_st2_collision",  96, 1.25),
+    ("st5b-qpp",        "row_st5b_qpp",       96, 1.32),
+    ("t63-window",      "row_t63_window",     96, 1.24),
+    ("t63-flat",        "row_t63_flat",       96, 1.27),
 ]
 
-_LEAN_FILE = "formal/Problems/Juggler/ThresholdCertificate.lean"
+_LEAN_FILES = (
+    "formal/Problems/Juggler/ThresholdCertificate.lean",
+    "formal/Problems/Juggler/DepthFourFive.lean",
+)
 
 
 def _lean_source() -> str:
     import pathlib
 
     root = pathlib.Path(__file__).resolve().parents[3]
-    return (root / _LEAN_FILE).read_text(encoding="utf-8")
+    return chr(10).join((root / f).read_text(encoding="utf-8") for f in _LEAN_FILES)
 
 
 def test_every_probe_row_has_a_lean_theorem() -> None:
@@ -293,3 +314,61 @@ def test_the_lean_certified_P0_is_the_binding_row() -> None:
     assert 1.0e14 < worst[3] ** worst[2] < 1.1e14
     # conservative by under 20% against the probe's 8.95e13
     assert 1.0 < (worst[3] ** worst[2]) / C.certificate()["P0"] < 1.25
+
+
+# --- Stage 2's truncation R_0, which decides four rows ---
+
+
+def test_R0_is_five_sixteenths() -> None:
+    assert C.R0_EXPONENT == 5 / 16
+    assert C.R0_EXPONENT_SUPERSEDED == 1 / 4
+
+
+def test_the_superseded_R0_puts_two_sites_far_above_P0() -> None:
+    """The finding: at R_0 = P^(1/4) the depth-five theorem needs 1.8e24."""
+    P0 = C.certificate()["P0"]
+    old = C.r0_tradeoff(C.R0_EXPONENT_SUPERSEDED)
+    assert 2.5e19 < old["window"] < 2.6e19
+    assert 1.8e24 < old["flat"] < 1.9e24
+    assert old["worst"] > P0 * 1e9          # ten orders above P_0
+    assert old["flat"] > old["window"]      # the flat cost is what binds
+
+
+def test_the_adopted_R0_puts_every_site_under_P0() -> None:
+    P0 = C.certificate()["P0"]
+    new = C.r0_tradeoff(C.R0_EXPONENT)
+    for site in ("collision", "qpp", "window", "flat"):
+        assert new[site] < P0, (site, new[site])
+    assert new["worst"] < P0 / 100          # and with two orders to spare
+
+
+def test_five_sixteenths_is_the_optimum_of_the_trade() -> None:
+    """Raising R_0 buys two sites and pays for two; 5/16 minimises the worst."""
+    grid = [C.r0_tradeoff(a) for a in (1 / 4, 9 / 32, 5 / 16, 1 / 3, 3 / 8)]
+    best = min(grid, key=lambda r: r["worst"])
+    assert best["a"] == 5 / 16
+    # the two neighbours are worse, in opposite directions
+    by_a = {round(r["a"], 6): r for r in grid}
+    assert by_a[round(9 / 32, 6)]["worst"] > best["worst"]   # window/flat too tight
+    assert by_a[round(1 / 3, 6)]["worst"] > best["worst"]    # collision/q'' too loose
+
+
+def test_P0_is_unchanged_by_the_substitution() -> None:
+    cert = C.certificate()
+    assert 8.9e13 < cert["P0"] < 9.0e13
+    assert cert["binding"]["tag"] == "5b-W<=c7S"
+
+
+def test_sharp_C_bound_is_inside_the_printed_one() -> None:
+    for e in (10.0, 14.0, 19.0, 24.0):
+        P = 10**e
+        assert C.depth5_C_max(P) <= 2 * P ** (19 / 96)
+
+
+def test_step_B_discard_costs_under_one_unit_at_P0() -> None:
+    """The draft printed 7 P^(7/8); the true cost is (3 pi k/4) P^(-1/8) < 1."""
+    import math
+
+    P0 = C.certificate()["P0"]
+    assert 1.5 * math.pi * P0 ** (1 / 96 - 1 / 8) < 1
+    assert 1.5 * math.pi * P0 ** (1 / 96 - 1 / 8) < 7 * P0**0.875
