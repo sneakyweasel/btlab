@@ -30,20 +30,32 @@ export const PRODUCTION_SEEDS = [
     note: "Smallest block: E(1) = {2}. The trivial cycle.",
   },
   {
+    value: 2,
+    note: "Even seed. The cube-root slot holds 2, which is even.",
+  },
+  {
+    value: 5,
+    note: "Odd seed. The unique odd parent of 5 is 3.",
+  },
+  {
+    value: 7,
+    note: "Odd seed whose cube-root slot is empty.",
+  },
+  {
     value: 11,
     note: "Odd seed, still drawable. The unique odd parent of 11 is 5.",
   },
   {
-    value: 12,
-    note: "Paper C figure (a): every even n in [144, 169) maps to 12.",
+    value: 14,
+    note: "Even seed. The cube-root slot holds 6, which is even.",
   },
   {
     value: 100,
     note: "First overflow: |E(100)| = 101, too many to draw one bead each.",
   },
   {
-    value: 100_000,
-    note: "Paper C figure (b): the OE fiber seed. The even block is too large to draw.",
+    value: 9962,
+    note: "A large even block, too many to draw one bead each.",
   },
 ] as const;
 export const EVEN_BLOCK_BEAD_MAX = 40;

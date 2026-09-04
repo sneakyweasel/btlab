@@ -630,7 +630,33 @@ test fails is short, and *measuring* it costs less than any attempt
 to oscillate over it: crucially, the transition cost \((P/M)^{1/3}\)
 carries no factor \(|I|\), so it sums over many short cells. All
 applications in Section 4 use exponent pairs from
-\(E=\{\tfrac34,\tfrac54,\tfrac{11}8,\tfrac32,\tfrac{15}8\}\). One
+\(E=\{\tfrac34,\tfrac54,\tfrac{11}8,\tfrac32,\tfrac{15}8\}\).
+
+For that \(E\) the constant \(c_6\) is not merely positive but
+computable in closed form: with \(p=\alpha-2\), \(q=\beta-2\), the two
+V-shapes \(|1-s|\) and \(|p-qs|\) have distinct zeros \(1\) and
+\(p/q\), so the minimum of their maximum is attained at a crossing and
+is rational. Over the twenty ordered pairs of \(E\):
+
+| \(\alpha\backslash\beta\) | \(\tfrac34\) | \(\tfrac54\) | \(\tfrac{11}8\) | \(\tfrac32\) | \(\tfrac{15}8\) |
+|---|---|---|---|---|---|
+| \(\tfrac34\) | — | \(\tfrac27\) | \(\tfrac5{13}\) | \(\tfrac12\) | \(1\) |
+| \(\tfrac54\) | \(\tfrac29\) | — | \(\tfrac1{13}\) | \(\tfrac16\) | \(\tfrac59\) |
+| \(\tfrac{11}8\) | \(\tfrac5{18}\) | \(\mathbf{\tfrac1{14}}\) | — | \(\tfrac1{12}\) | \(\tfrac49\) |
+| \(\tfrac32\) | \(\tfrac13\) | \(\tfrac17\) | \(\tfrac1{13}\) | — | \(\tfrac13\) |
+| \(\tfrac{15}8\) | \(\tfrac12\) | \(\tfrac5{14}\) | \(\tfrac4{13}\) | \(\tfrac14\) | — |
+
+The minimum is \(c_6(E)=\tfrac1{14}\), attained only at
+\((\alpha,\beta)=(\tfrac{11}8,\tfrac54)\) — there \(p=-\tfrac58\),
+\(q=-\tfrac34\) and the crossing is at \(s=\tfrac{13}{14}\), where both
+V-shapes equal \(\tfrac1{14}\). Consequently the admissible
+perturbation size of this section may be taken to be the explicit
+\(\rho_0(E)=c_6/8=\tfrac1{112}\), and every \(\ll_E\) in Lemma 3.8 is a
+constant depending only on that number and on \(K\). Lean:
+`c6_eleven_eighths_five_fourths` (the lower bound, for all \(s\)) and
+`c6_eleven_eighths_five_fourths_attained` (sharpness).
+
+One
 corner of Section 4 (three curvature scales meeting on a zero-offset
 branch) needs the three-term analogue, which we state directly as a
 sublevel bound: there the transition set is measured once against a
@@ -712,6 +738,24 @@ i.e. the maximal absolute row sum, since
 sum) is \(288\). One may therefore take \(c_7=1/232\); we keep the
 weaker value \(c_7=1/288\) used in Step 5b, which remains valid.
 \(\square\)
+
+The Step-5b triple is in fact the extremal one, so \(1/232\) serves as
+a single explicit constant for the whole section. Over the ten triples
+of \(E\) the norms \(\lVert M^{-1}\rVert_\infty\) are
+\(\tfrac{113}{10}\) \((\tfrac34,\tfrac54,\tfrac{15}8)\) and
+\((\tfrac34,\tfrac{11}8,\tfrac{15}8)\), \(\tfrac{113}9\), \(35\),
+\(\tfrac{95}3\), \(\tfrac{95}2\), \(56\), \(\tfrac{149}2\),
+\(\tfrac{181}3\), and \(232\) — the last being
+\((\tfrac54,\tfrac{11}8,\tfrac32)\). Hence
+\(c_7(E)=\tfrac1{232}\) is admissible uniformly in the triple, and the
+absorption hypothesis of the lemma may be taken as the explicit
+\(\rho_0\le c_7/8=\tfrac1{1856}\). Lean:
+`step5b_curvature_inverse` (the inversion, by `ring`) and
+`step5b_curvature_norm` (the \(\ell^\infty\) bound
+\(\max(|A|,|B|,|C|)\le232\max(|f''|,|nf'''|,|n^2f''''|)\)), with
+`step5b_c7_printed` recording that the manuscript's \(1/288\) follows a
+fortiori. The step where the \(\ell^\infty\)/\(\ell^1\) confusion
+originally arose is therefore now machine-checked.
 
 The lemma is a measure statement, not an exponential-sum estimate:
 in its one application (Theorem 5.3, Step 5b) the sublevel set
@@ -2083,13 +2127,30 @@ S_4
 \end{aligned}
 \]
 The identities used here are
-\(1/12+13/8=5/3\), \(5/3-23/12=-1/4\),
-\(1/12+15/8=23/12\), \(15/8+1/24=23/12\),
-and \(1/24+15/8=23/12\). Each prefactor is \(O(1)\) on
+\(1/24+13/8=5/3\), \(5/3-23/12=-1/4\),
+\(1/24+15/8=23/12\), \(15/8+1/24=23/12\),
+and \(1/24+15/8=23/12\). The exponent contributed by
+\(H_3^{1/2}\) is \(1/24\), not \(1/12\): the bound
+\(H_3\le2t^{1/3}P^{1/12}\) enters each of \(S_1,S_2\) under a
+square root, giving \(H_3^{1/2}\le\sqrt2\,t^{1/6}P^{1/24}\).
+Each prefactor is \(O(1)\) on
 \(t\ge1\), \(P\ge P_0\): \(96P^{-5/24}\to0\),
 \(P^{1/72-1/24}=P^{-1/36}\to0\), and \(4t^{-1/6}\le4\).
 Hence
 \(|U|^2\ll t^{-1/3}P^{23/12+\varepsilon}\).
+
+Only two of the five contributions survive with an \(O(1)\)
+prefactor — the \(A\)-process head \(2P^2/H_3\) and \(S_2\), of
+constants \(2\) and \(4\sqrt2\le6\) — so the balance is exact and
+explicit:
+\[
+|U|^2\le\bigl(8+o(1)\bigr)\,t^{-1/3}P^{23/12+\varepsilon},
+\qquad
+|U|\le\bigl(2.83+o(1)\bigr)\,t^{-1/6}P^{23/24+\varepsilon}.
+\]
+The choice \(H_3=\lceil t^{1/3}P^{1/12}\rceil\) is exactly the one
+that equalizes those two terms; any other exponent in \(H_3\) makes
+one of them dominate and loses the \(23/24\).
 
 *Claim H (square root).* Taking square roots,
 \(|U|\ll t^{-1/6}P^{23/24+\varepsilon}\), which is (ii).

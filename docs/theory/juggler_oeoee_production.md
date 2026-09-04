@@ -112,7 +112,7 @@ Paper B is unavoidable.
 \mathrm{word}_5(n)=OEOEE\}\). Then
 \[
 |\mathcal O(m')|=\tfrac1{16}\#\{n\ \text{odd}\in J(m')\}
-+O\bigl(|J(m')|\,P^{-1/12+\varepsilon}\bigr),
++O\bigl(|J(m')|\,P^{-1/8+\varepsilon}\bigr),
 \qquad P=m'^{32/9}.
 \]
 
@@ -147,31 +147,28 @@ reduces to the unweighted partial sums. Then:
   second-derivative test as above.
 - \(c=d=0,b=1\): \(\sum_{w\in K}(-1)^w=O(1)\).
 
-Half A therefore saves \(W^{-1/8+\varepsilon}=P^{-3/32+\varepsilon}\).
+With the truncation balanced instead of fixed (Section 11.4) Half A
+saves \(W^{-1/6+\varepsilon}=P^{-1/8+\varepsilon}\); the fixed choice
+\(S=U=W^{1/8}\) above gives only \(W^{-1/8}=P^{-3/32}\).
 
 *Half B — the eight terms with \(\psi_1\).* Each is
 \(\sum_w\Lambda_1^b\Lambda_2^c\Lambda_3^d\,T(w)\) with
 \(T(w)=\sum_{n\ \text{odd}\in I_w}\psi_1(n)\), so it is at most
-\(\sum_w|T(w)|\), and by Cauchy–Schwarz
-\(\sum_w|T(w)|\le\mathcal N^{1/2}\bigl(\sum_w|T(w)|^2\bigr)^{1/2}\).
-Vaaler-expand \(\psi_1\) at truncation \(R\); with
-\(S_r(w)=\sum_{n\ \text{odd}\in I_w}e(\tfrac r2n^{3/2})\), the phase has
-\(f'\asymp rP^{1/2}\) varying by only \(\asymp rP^{-1/4}\) across a
+\(\sum_w|T(w)|\). Vaaler-expand \(\psi_1\) at truncation \(R\); with
+\(S_q(w)=\sum_{n\ \text{odd}\in I_w}e(\tfrac q2n^{3/2})\), the phase has
+\(f'\asymp qP^{1/2}\) varying by only \(\asymp qP^{-1/4}\) across a
 block, so Kusmin–Landau gives
-\(|S_r(w)|\ll\min\bigl(H,\|\alpha_r(w)\|^{-1}\bigr)\) with
-\(\alpha_r(w)\asymp rw^{2/3}\) monotone in \(w\) and stepping by
-\(\asymp rP^{-1/4}\ll1\), with total variation \(\asymp rP^{7/32}\gg1\).
-The standard sum over a monotone slowly-stepping sequence gives
-\(\sum_w\min(H,\|\alpha_r\|^{-1})^2\ll rY\log P\), whence
-\(\sum_w|T(w)|^2\ll YR\log^2P\) and
-\(\sum_w|T(w)|\ll(\mathcal NYR)^{1/2}\log P\), against a Vaaler
-truncation error \(\mathcal N\cdot H/R=Y/R\). Balancing the two gives
-\(3R=Y-\mathcal N=H\), i.e. \(R=P^{1/12}\) and
-\(\sum_w|T(w)|\ll P^{61/96+\varepsilon}\). Against \(Y=P^{69/96}\) this
-saves \(P^{-1/12+\varepsilon}\). \(\square\)
+\(|S_q(w)|\ll\min\bigl(H,\|\alpha_q(w)\|^{-1}\bigr)\) with
+\(\alpha_q(w)=\tfrac{3q}2w^{2/3}\) monotone in \(w\), stepping by
+\(\asymp qP^{-1/4}\ll1\), of total variation \(\asymp qP^{7/32}\gg1\).
+Summing \(|S_q|\) **directly** — not through Cauchy–Schwarz, which is
+lossy here — gives \(\sum_w|S_q(w)|\ll qL+L\log P\), and the Vaaler
+weights \(2/q\) cancel the \(q\): \(\sum_w|T(w)|\ll LR+Y/R\), balanced
+at \(R\asymp(Y/L)^{1/2}\), i.e. \(\sum_w|T(w)|\ll(LY)^{1/2}\log P\).
+Against \(Y\) this saves \(P^{-1/8+\varepsilon}\). \(\square\)
 
-The needed saving is any fixed power; both halves clear it, the binding
-one being Half B at \(P^{-1/12}\).
+The needed saving is any fixed power; both halves clear it, and they
+**tie** at \(P^{-1/8}\) (Section 11).
 
 **Status.** Lemmas 1 and 2 are exact and Lean-adjacent (they use only
 `sqrt_sqrt_eq_iff`). Proposition 3's proof is complete in structure and
@@ -227,7 +224,7 @@ Ideal share \(\tfrac1{16}=0.0625\); mean block length matches
 \(\tfrac43P^{1/4}\) to three digits; \(\sum_w|T|^2\asymp Y\) as Half B
 predicts, against the trivial \(\mathcal NH^2\asymp P^{31/32}\); and the
 observed \(\sum_w|T|\) saving \(P^{-0.19}\) beats the proved
-\(P^{-1/16}\).
+\(P^{-1/8}\).
 
 ## 7. What this does and does not change
 
@@ -375,18 +372,18 @@ variable of their own layer**.
 | \(w_2\) | \(P^{9/16}\) | \(P^{3/16}\) | \(P^{45/128}\) | \(\mathbf{5/8}\) |
 
 **Proposition 8.** \(|\mathcal O(m')|=\tfrac1{64}\#\{n\ \text{odd}\in J(m')\}
-+O(|J(m')|P^{-1/16+\varepsilon})\).
++O(|J(m')|P^{-3/32+\varepsilon})\).
 
 *Reduction.* Four cases, by which layer the surviving factors live on.
 
 | terms | method | saving |
 |---|---|---|
-| \(\psi_1\) present | Cauchy–Schwarz over \(w_1\), Kusmin–Landau per \(n\)-block (Section 3, Half B verbatim) | \(P^{-1/16}\) |
-| \(\Lambda_2\) present, \(\psi_1\) absent | Cauchy–Schwarz over \(w_2\), Kusmin–Landau per \(w_1\)-block, Vaaler truncation \(S=H_2^{1/3}=P^{1/16}\) balancing \(\sum|{\rm inner}|^2\ll\omega^2L_2H_2S\) against the error \(L_2\omega H_2/S\) | \(P^{-1/16}\) |
+| \(\psi_1\) present | Cauchy–Schwarz over \(w_1\), Kusmin–Landau per \(n\)-block (Section 3, Half B verbatim) | \(P^{-1/8}\) |
+| \(\Lambda_2\) present, \(\psi_1\) absent | Cauchy–Schwarz over \(w_2\), Kusmin–Landau per \(w_1\)-block, Vaaler truncation \(S=H_2^{1/3}=P^{1/16}\) balancing \(\sum|{\rm inner}|^2\ll\omega^2L_2H_2S\) against the error \(L_2\omega H_2/S\) | \(P^{-3/32}\) |
 | only \(\Lambda_1\) | pairing of consecutive \(w_1\) against the slowly varying weight | \(P^{-3/16}\) |
-| only \(w_2\)-factors | one-variable sum at relative length \(5/8\) — Section 3 Half A verbatim, with \(W_2=P^{9/16}\) | \(P^{-9/128}\) |
+| only \(w_2\)-factors | one-variable sum at relative length \(5/8\) — Section 3 Half A verbatim, with \(W_2=P^{9/16}\) | \(P^{-3/32}\) |
 
-Two cases tie at the binding \(P^{-1/16}\), the same saving as \(V_2\).
+Two cases tie at the binding \(P^{-3/32}\) (Section 11).
 \(\square\)
 
 **Proposition 9 (bookkeeping).** A \(V_3\)-start lies in the \(OE\)-fiber
@@ -421,8 +418,8 @@ no bias — over \(2\cdot10^5\) consecutive \(w\) at those scales,
 \(\lfloor w^{3/4}\rfloor\) with \(0.4999,0.5000\).
 
 So the deviation is a small-sample effect in the deepest layers, and it
-sits well inside the proved error term: \(P^{-1/16}=0.32\) at
-\(P=10^8\). Reaching \(10\%\) would need \(P\approx10^{16}\), so
+sits well inside the proved error term: \(P^{-3/32}=0.18\) at
+\(P=10^8\). Reaching \(10\%\) would need \(P\approx10^{10.7}\), so
 **this census does not confirm the constant \(\tfrac1{64}\)** — it
 confirms the structure. \(V_2\)'s census, where the binding layer is the
 only deep one, does converge.
@@ -449,10 +446,11 @@ saving is always the deepest Cauchy–Schwarz case:
 It decays geometrically but never vanishes, so **every \(V_k\) carries a
 power saving** and every truncation of the family is a theorem.
 
-*(This corrects Section 3: \(V_2\) was recorded at \(P^{-1/16}\)
-because the truncation was fixed at \(P^{1/8}\); balancing it gives
-\(R=P^{1/12}\) and \(P^{-1/12}\). \(V_3\)'s \(P^{-1/16}\) is unchanged —
-its binding case is the layer-2 one, already balanced.)*
+*(Section 11 supersedes this law: summing \(|S_q|\) directly rather
+than through Cauchy–Schwarz, and balancing every Vaaler truncation,
+raises each Cauchy–Schwarz case from \(H_i/3\) to \(H_i/2\) and the
+one-variable case from scale\(/8\) to scale\(/6\) — whereupon the two
+tie and the binding saving becomes \(\tfrac16(3/4)^{k-1}\).)*
 
 **\(V_4=OEOEOEOEE\).** \(\rho_4=\tfrac{81}{512}\),
 \(Y=P^{431/512}\), ideal share \(2^{-8}=\tfrac1{256}\),
@@ -465,9 +463,9 @@ its binding case is the layer-2 one, already balanced.)*
 | \(w_2\) | \(P^{9/16}\) | \(P^{3/16}\) | \(P^{207/512}\) | \(23/32\) |
 | \(w_3\) | \(P^{27/64}\) | \(P^{9/64}\) | \(P^{135/512}\) | \(\mathbf{5/8}\) |
 
-Six cases, savings \(P^{-1/12},P^{-1/16},P^{-3/64}\) (the three
-Cauchy–Schwarz ones), \(P^{-27/512}\) (the one-variable case at
-\(W_3\)), and two pairing cases; binding \(P^{-3/64}\). A
+Six cases, savings \(P^{-1/8},P^{-3/32},P^{-9/128}\) (the three
+Cauchy–Schwarz ones), \(P^{-9/128}\) (the one-variable case at
+\(W_3\)), and two pairing cases; binding \(P^{-9/128}\). A
 \(V_4\)-start lies in the \(OE\)-fiber of a \(V_3\)-produced element, so
 the net gain is \(\tfrac19c_3=\tfrac1{243}\) at
 \(\rho_4=\tfrac{81}{512}\), giving \(\lambda=0.4916\) with \(V_2,V_3\)
@@ -494,3 +492,129 @@ evidence against Proposition 10: the exact identities and the block
 structure — which is what the proof actually uses — are confirmed
 without a single failure, and the shares that a single fiber *can*
 sample are all \(0.50\).
+
+## 11. The constants
+
+Writing them out changed the exponents. Two steps in Sections 3 and 10
+were lossy: Half B went through Cauchy–Schwarz, and the Vaaler
+truncations were fixed rather than balanced. Summing \(|S_q|\) directly
+and balancing every truncation gives
+
+\[
+\boxed{\ \text{binding saving for }V_k=\tfrac16\bigl(\tfrac34\bigr)^{k-1}
+=\tfrac18,\ \tfrac3{32},\ \tfrac9{128},\ \tfrac{27}{512},\dots\ }
+\]
+
+replacing \(\tfrac19(3/4)^{k-1}\), and the two binding cases now **tie
+exactly**: the deepest Cauchy–Schwarz case gives \(H_{k-1}/2\) and the
+one-variable case gives \(\tfrac16(3/4)^{k-1}\), and
+\(H_{k-1}/2=\tfrac12\cdot\tfrac13(3/4)^{k-1}\) is the same number. This
+does not move \(\lambda\): the exponents depend on the coefficients
+\(2^{-2k}\) and the bookkeeping, not on the savings, which only have to
+be positive powers.
+
+### 11.1 Toolkit
+
+- **(T1) Vaaler** — Paper B Lemma 3.5 as printed: \(\psi(x)=V_J(x/2)+O(\Delta_J(x/2))\)
+  with \(|a_q|\le\min(1,2/|q|)\) and \(\Delta_J\ge0\) whose coefficients,
+  constant term included, are \(\le 1/(J+1)\).
+- **(T2) Kusmin–Landau.** \(f'\) monotone with \(\lVert f'\rVert\ge\delta\):
+  \(|\sum e(f)|\le\cot(\pi\delta/2)\le 2/(\pi\delta)\). (Checked:
+  \(\max_{0<\delta\le1/2}[\cot(\pi\delta/2)-2/(\pi\delta)]=-5.2\cdot10^{-4}\).)
+- **(T3) Second-derivative test**, derived from (T2). If
+  \(\lambda\le|f''|\le\alpha\lambda\) on an interval of length \(M\) and
+  \(0<\lambda\le\pi/4\), then
+  \(|\sum e(f)|\le(\alpha\lambda M+1)\bigl(2.26\lambda^{-1/2}+1\bigr)\).
+  *Proof.* Split by \(\lfloor f'\rfloor\); \(f'\) crosses at most
+  \(\alpha\lambda M+1\) integers. Discard \(\{\lVert f'\rVert<\delta\}\),
+  of length \(\le2\delta/\lambda\), i.e. \(\le2\delta/\lambda+1\)
+  integers; apply (T2) elsewhere. The bracket is
+  \(2/(\pi\delta)+2\delta/\lambda+1\), minimised at
+  \(\delta=(\lambda/\pi)^{1/2}\) with value
+  \(4/\sqrt{\pi\lambda}+1\le2.26\lambda^{-1/2}+1\). \(\square\)
+  (Checked on \(4000\) random instances of \(f=\tfrac q2x^{3/2}\):
+  worst \(|{\sum}|/\text{bound}=0.52\).)
+- **(T4) Block counting.** If \(L\) consecutive blocks tile an
+  \(\alpha\)-range of length \(V\), each of length \(\le\delta\), then
+  for each \(j\ge0\) at most \(4(V+1)\) blocks meet the annulus
+  \(\{jδ\le\lVert\alpha\rVert<(j+1)\delta\}\).
+- **(T5) Pairing.** \(|g(v{+}1)-g(v)|\le\Delta\), \(|g|\le G\):
+  \(\bigl|\sum_{v\le V}(-1)^vg(v)\bigr|\le V\Delta/2+G\).
+
+### 11.2 Sizes
+
+\((8/3)m'^{5/3}-1\le L\le(8/3)(m'+1)^{5/3}+1\);
+\(|\omega(w)-\tfrac23w^{1/3}|\le\tfrac32\); \(Y=\sum_w\omega(w)\), with
+\(Y\ge\tfrac{16}9m'^{23/9}-1\).
+
+### 11.3 Half B
+
+With \(\alpha_q(w)=\tfrac{3q}2w^{2/3}\), block length
+\(\le\delta_q=qm'^{-8/9}\) and range
+\(V_q\le\tfrac{8q}3(m'+1)^{7/9}\), (T2)+(T4) give
+
+\[
+\sum_{w}|S_q(w)|\le 4(V_q+1)\omega_{\max}
++\tfrac8{\pi\delta_q}(V_q+1)\bigl(1+\log\tfrac1{2\delta_q}\bigr)
+\le\tfrac{64}9qm'^{5/3}+6.79\,m'^{5/3}\bigl(1+\tfrac89\log m'\bigr).
+\]
+
+Feeding this through (T1) with truncation \(R\),
+
+\[
+\sum_w|T(w)|\ \le\ 35.5\,R\,m'^{5/3}
++27.2\,m'^{5/3}\bigl(1+\tfrac89\log m'\bigr)(1+\log R)+\frac Y{R+1},
+\]
+
+and \(R=0.224\,m'^{4/9}\) gives \(\le15.9\,m'^{19/9}+\text{logs}
+=8.9\,Y\,m'^{-4/9}+\text{logs}\). Note \(m'^{-4/9}=P^{-1/8}\).
+
+### 11.4 Half A
+
+Partial summation splits \(\omega=\tfrac23w^{1/3}+\eta\), \(|\eta|\le\tfrac32\);
+the \(\eta\)-part costs \(\le\tfrac32L\le3Ym'^{-8/9}\), negligible.
+For the smooth part: with \(\Lambda_2\) present, (T1)+(T3) at
+\(\lambda=\tfrac{3s}8W^{-1/2}\), \(W=m'^{8/3}\), give
+\(9.85\,S^{1/2}m'^{17/9}+Y/S\); balancing at \(S=0.318\,m'^{4/9}\)
+yields \(\le11.2\,m'^{19/9}=6.3\,Y\,m'^{-4/9}\). The remaining cases use
+(T5): \(\Lambda_3\) alone gives \(\le0.89m'^{14/9}\)
+(\(=0.5\,Ym'^{-1}\)); \(\Lambda_1\Lambda_3\) gives \(\le1.33m'^{17/9}\);
+\(\Lambda_1\) alone \(\le2.67m'^{5/3}\).
+
+### 11.5 The bound
+
+Eight \(a=1\) terms at \(8.9\), four \(a=0,c=1\) terms at \(6.3\), the
+rest lower order:
+
+\[
+\bigl|16|\mathcal O(m')|-Y\bigr|\ \le\ 100\,Y\,m'^{-4/9}(1+\log m')^2,
+\qquad\text{i.e.}\qquad
+|\mathcal O(m')|=\tfrac{Y}{16}\bigl(1+\theta\bigr),\ \
+|\theta|\le 100\,m'^{-4/9}(1+\log m')^2 .
+\]
+
+The log-mass follows: \(\sum_{n\in\mathcal O(m')}1/n\ge
+\tfrac1{9m'}\bigl(1-|\theta|-\tfrac{32}{9m'}\bigr)\), which is
+Proposition 4's input with an explicit \(\varepsilon\).
+
+### 11.6 Measured margins
+
+| \(m'\) | \(Y\) | \(16|\mathcal O|-Y\) | \(/(Ym'^{-4/9})\) | share |
+|---|---|---|---|---|
+| 60 | 63574 | \(-2230\) | 0.216 | 0.06031 |
+| 120 | 369795 | \(11005\) | 0.250 | 0.06436 |
+| 200 | 1358503 | \(-30279\) | 0.235 | 0.06111 |
+| 250 | 2399746 | \(-4770\) | 0.023 | 0.06238 |
+
+against \(\tfrac1{16}=0.0625\). The envelope holds with the measured
+ratio never above \(0.25\), so the constant \(100\) above is generous by
+some \(400\times\); Half B's bound is met with a factor \(8\) of slack
+and Half A's with \(30\)–\(500\).
+
+**Status.** The chain is explicit end to end and every step is
+numerically checked, but it is a single pass: the constants have not
+been audited the way Paper B's were, and (T3), the sizes in 11.2 and the
+assembly in 11.5 are mine rather than the corpus's. I would not move
+Theorem 1's printed exponent to \(0.4801\) on this alone — the right
+next step is an audit pass in the style of the Paper B ledger, after
+which the promotion is a bookkeeping change.

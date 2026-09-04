@@ -56,6 +56,7 @@ import Problems.Juggler.PreimageCylinders
 import Problems.Juggler.OddLandingSets
 import Problems.Juggler.ItineraryLanguage
 import Problems.Juggler.GapCells
+import Problems.Juggler.MonomialSplitting
 import Problems.Juggler.Escape
 import Problems.Juggler.CycleFinance
 import Problems.Juggler.CycleFinanceLeftovers

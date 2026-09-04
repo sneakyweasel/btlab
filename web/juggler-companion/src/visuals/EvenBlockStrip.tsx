@@ -2,7 +2,7 @@ import { useState } from "react";
 import { oddPreimages } from "../juggler/preimages";
 import { EMBER, SEA } from "../juggler/palette";
 import { formatInt } from "../juggler/format";
-import type { EvenBlockView } from "../juggler/productions";
+import { centerEvenInBlock, type EvenBlockView } from "../juggler/productions";
 import { BeadMark } from "./BeadMark";
 import { FloorCut } from "./FloorCut";
 
@@ -33,7 +33,7 @@ function xOf(n: number, lo: number, hi: number): number {
 
 function integersOn(lo: number, hi: number): number[] {
   const out: number[] = [];
-  for (let n = lo; n < hi; n += 1) out.push(n);
+  for (let n = Math.max(0, Math.ceil(lo)); n < hi; n += 1) out.push(n);
   return out;
 }
 
@@ -100,7 +100,7 @@ type ParityLineProps = {
   showBeads: boolean;
   showWedge: boolean;
   markerId: string;
-  emptyText?: string;
+  insideColor?: string;
   hideActiveLabel?: boolean;
   onSelect?: (n: number) => void;
   onHover?: (n: number | null) => void;
@@ -122,7 +122,7 @@ function ParityLine({
   showBeads,
   showWedge,
   markerId,
-  emptyText,
+  insideColor,
   hideActiveLabel = false,
   onSelect,
   onHover,
@@ -227,6 +227,19 @@ function ParityLine({
                 />
               );
             }
+            if (inside && insideColor) {
+              return (
+                <BeadMark
+                  key={`i-${y}-${n}`}
+                  x={xOf(n, winLo, winHi)}
+                  y={y}
+                  n={n}
+                  color={n % 2 === 0 ? SEA : insideColor}
+                  radius={3.5}
+                  labelBelow={outward === "below"}
+                />
+              );
+            }
             return (
               <BeadMark
                 key={`p-${y}-${n}`}
@@ -263,18 +276,6 @@ function ParityLine({
         side={inward}
         lines={captions[1]}
       />
-      {emptyText ? (
-        <text
-          x={(cutLo + cutHi) / 2}
-          y={inward === "below" ? y + 46 : y - 40}
-          textAnchor="middle"
-          fill="#5e574c"
-          fontSize="10"
-          fontFamily="IBM Plex Mono, monospace"
-        >
-          {emptyText}
-        </text>
-      ) : null}
     </g>
   );
 }
@@ -301,19 +302,20 @@ export function EvenBlockStrip({
       ? evenHover
       : selected != null && selected % 2 === 0
         ? selected
-        : (evens[0] ?? (lo % 2 === 0 ? lo : lo + 1));
+        : centerEvenInBlock(view);
   const pad = 5;
   const evenLo = Math.max(0, lo - pad);
   const evenHi = hi + pad;
-  const evenSpan = evenHi - evenLo;
-  const oddSpan = listed ? evenSpan : 2 * pad + 1;
   const oddWashLo = Math.cbrt(lo);
   const oddWashHi = Math.cbrt(hi);
-  const oddCenter =
-    oddParent ??
-    Math.max(0, Math.round((oddWashLo + oddWashHi) / 2));
-  const oddLo = Math.max(0, oddCenter - Math.floor((oddSpan - 1) / 2));
-  const oddHi = oddLo + oddSpan;
+  const oddPad = 2;
+  const oddSpan = Math.max(
+    Math.ceil(oddWashHi) + oddPad - (Math.floor(oddWashLo) - oddPad),
+    1,
+  );
+  const oddAnchor = oddParent ?? (oddWashLo + oddWashHi) / 2;
+  const oddLo = oddAnchor - oddSpan / 2;
+  const oddHi = oddAnchor + oddSpan / 2;
   const evenMarkerId = `even-block-arrow-${m}`;
   const oddMarkerId = `odd-precursor-arrow-${m}`;
   return (
@@ -404,8 +406,8 @@ export function EvenBlockStrip({
           colorByParity={false}
           outward="below"
           captions={[
-            [oddWashLo.toFixed(3), `∛(${formatInt(m)}²)`],
-            [oddWashHi.toFixed(3), `∛(${formatInt(m + 1)}²)`],
+            [oddWashLo.toFixed(2), `∛(${formatInt(m)}²)`],
+            [oddWashHi.toFixed(2), `∛(${formatInt(m + 1)}²)`],
           ]}
           selected={oddParent}
           hideActiveLabel
@@ -413,9 +415,37 @@ export function EvenBlockStrip({
           showBeads
           showWedge={false}
           markerId={oddMarkerId}
-          emptyText={oddParent === null ? "no integer in the slot" : undefined}
+          insideColor={EMBER}
           onHover={handleOddHover}
         />
+        <text
+          x={TARGET_X}
+          y={(LINE_Y + TARGET_Y) / 2}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill={SEA}
+          fontSize="12"
+          fontFamily="IBM Plex Mono, monospace"
+          paintOrder="stroke"
+          stroke="#fffdf7"
+          strokeWidth="5"
+        >
+          even
+        </text>
+        <text
+          x={TARGET_X}
+          y={(TARGET_Y + ODD_Y) / 2}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill={EMBER}
+          fontSize="12"
+          fontFamily="IBM Plex Mono, monospace"
+          paintOrder="stroke"
+          stroke="#fffdf7"
+          strokeWidth="5"
+        >
+          odd
+        </text>
       </svg>
       <div
         className="pointer-events-none absolute -translate-y-full"

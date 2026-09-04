@@ -1156,12 +1156,14 @@ The sign sums fall into \(k-1\) Cauchy–Schwarz cases — the one whose
 deepest varying factor sits at layer \(i-1\) is summed over layer \(i\),
 with the Vaaler truncation balanced at \(3S=H_i\) and saving
 \(H_i/3\) — plus pairing cases and one one-variable case at layer
-\(k-1\) of saving \(\tfrac18(3/4)^{k-1}\). Since \(\tfrac19<\tfrac18\)
-the deepest Cauchy–Schwarz case always binds, so
+\(k-1\). Summing \(|S_q|\) directly rather than through Cauchy–Schwarz,
+and balancing every Vaaler truncation, gives \(H_i/2\) for the
+Cauchy–Schwarz cases and \(\tfrac16(3/4)^{k-1}\) for the one-variable
+case; these coincide, since \(H_{k-1}/2=\tfrac12\cdot\tfrac13(3/4)^{k-1}\), so
 
 \[
-\text{binding saving for }V_k=\tfrac19\bigl(\tfrac34\bigr)^{k-1}
-=\tfrac1{12},\ \tfrac1{16},\ \tfrac3{64},\ \tfrac9{256},\dots
+\text{binding saving for }V_k=\tfrac16\bigl(\tfrac34\bigr)^{k-1}
+=\tfrac18,\ \tfrac3{32},\ \tfrac9{128},\ \tfrac{27}{512},\dots
 \]
 
 geometrically decaying but never zero: **every \(V_k\) carries a power

@@ -129,13 +129,27 @@ export type EvenBlockView = {
   harmonicHi: number;
 };
 
-export function randomEvenInBlock(view: EvenBlockView): number {
+/** Even in E(m) nearest the strip midline (the seed’s vertical). */
+export function centerEvenInBlock(view: EvenBlockView, pad = 5): number {
+  const evenLo = Math.max(0, view.lo - pad);
+  const evenHi = view.hi + pad;
+  const atLine = (evenLo + evenHi) / 2;
   if (view.evens.length > 0) {
-    return view.evens[Math.floor(Math.random() * view.evens.length)] ?? view.lo;
+    return view.evens.reduce((best, n) =>
+      Math.abs(n - atLine) < Math.abs(best - atLine) ? n : best,
+    );
   }
   const first = view.lo % 2 === 0 ? view.lo : view.lo + 1;
+  const last = view.hi % 2 === 0 ? view.hi - 2 : view.hi - 1;
   if (view.count <= 0 || first >= view.hi) return first;
-  return first + 2 * Math.floor(Math.random() * view.count);
+  let n = 2 * Math.round(atLine / 2);
+  if (n < first) return first;
+  if (n > last) return last;
+  return n;
+}
+
+export function randomEvenInBlock(view: EvenBlockView): number {
+  return centerEvenInBlock(view);
 }
 
 export function evenBlockView(m: number): EvenBlockView {

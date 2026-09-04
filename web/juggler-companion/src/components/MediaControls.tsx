@@ -227,8 +227,7 @@ export function MediaControls({
   const atMin = value <= min;
   const atMax = value >= max;
   return (
-    <div className="space-y-2">
-      <MediaScrubber value={value} min={min} max={max} onSeek={onSeek} />
+    <div>
       <MediaPlayer
         playing={playing}
         prevLabel={prevLabel}

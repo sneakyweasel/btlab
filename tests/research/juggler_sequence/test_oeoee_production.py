@@ -413,17 +413,95 @@ def test_binding_layer_is_always_five_eighths():
 
 
 def test_saving_law():
-    # binding saving = min(H_i/3 over i, (3/4)^{k-1}/8) = (1/9)(3/4)^{k-1}
+    # With |S_q| summed directly (not via Cauchy-Schwarz) and every Vaaler
+    # truncation balanced, each Cauchy-Schwarz case saves H_i/2 and the
+    # one-variable case saves scale/6 -- and the two TIE, at (1/6)(3/4)^{k-1}.
     for k in range(2, 8):
         rho, Y, lay = layers(k)
-        cauchy = [H / 3 for _, H, _ in lay]
-        one_var = F(3, 4) ** (k - 1) / 8
-        assert min(cauchy + [one_var]) == F(1, 9) * F(3, 4) ** (k - 1)
-    assert F(1, 9) * F(3, 4) == F(1, 12)  # V_2, corrected from 1/16
-    assert F(1, 9) * F(3, 4) ** 2 == F(1, 16)  # V_3
-    assert F(1, 9) * F(3, 4) ** 3 == F(3, 64)  # V_4
+        cauchy = [H / 2 for _, H, _ in lay]
+        one_var = F(3, 4) ** (k - 1) / 6
+        assert min(cauchy) == one_var  # the tie
+        assert min(cauchy + [one_var]) == F(1, 6) * F(3, 4) ** (k - 1)
+    assert F(1, 6) * F(3, 4) == F(1, 8)  # V_2
+    assert F(1, 6) * F(3, 4) ** 2 == F(3, 32)  # V_3
+    assert F(1, 6) * F(3, 4) ** 3 == F(9, 128)  # V_4
+    # strictly better than the earlier (1/9)(3/4)^{k-1}, by a factor 3/2
+    for k in range(2, 8):
+        assert F(1, 6) * F(3, 4) ** (k - 1) == F(3, 2) * F(1, 9) * F(3, 4) ** (k - 1)
     # positive for every k: the family never runs out of saving
-    assert all(F(1, 9) * F(3, 4) ** (k - 1) > 0 for k in range(2, 40))
+    assert all(F(1, 6) * F(3, 4) ** (k - 1) > 0 for k in range(2, 40))
+
+
+# --------------------------------------------------------------------------
+# Section 11: the constants
+# --------------------------------------------------------------------------
+
+
+def test_kusmin_landau_constant():
+    from math import cos, pi, sin
+
+    # cot(pi d / 2) <= 2/(pi d) on (0, 1/2]
+    for i in range(1, 500):
+        d = i / 1000
+        assert cos(pi * d / 2) / sin(pi * d / 2) <= 2 / (pi * d)
+
+
+def test_second_derivative_test_constant():
+    # (T3): lambda <= |f''| <= alpha*lambda on length M, 0 < lambda <= pi/4
+    #       => |sum e(f)| <= (alpha*lambda*M + 1)(2.26 lambda^{-1/2} + 1)
+    import cmath
+    import math
+    import random
+
+    random.seed(3)
+    worst = 0.0
+    for _ in range(400):
+        W = random.choice([1e4, 1e5, 1e6])
+        q = random.randrange(1, 40)
+        a = random.uniform(W, 2 * W)
+        M = random.choice([50, 200, 1000])
+        c = q / 2.0
+        fpp = lambda x: c * 0.75 * x**-0.5
+        lam_lo, lam_hi = fpp(a + M), fpp(a)
+        if lam_lo <= 0 or lam_hi > math.pi / 4:
+            continue
+        alpha = lam_hi / lam_lo
+        S = abs(sum(cmath.exp(2j * math.pi * c * n**1.5) for n in range(int(a), int(a + M))))
+        bound = (alpha * lam_lo * M + 1) * (2.26 * lam_lo**-0.5 + 1)
+        worst = max(worst, S / bound)
+    assert worst < 1.0
+
+
+def test_explicit_envelope_end_to_end():
+    # |16|O(m')| - Y|  <=  100 Y m'^{-4/9} (1+log m')^2, checked exactly.
+    from math import log
+
+    def ninth_root_floor(x):
+        r = int(round(x ** (1 / 9)))
+        while r**9 > x:
+            r -= 1
+        while (r + 1) ** 9 <= x:
+            r += 1
+        return r
+
+    for mp in (60, 90, 120):
+        a, b = ninth_root_floor(mp**32), ninth_root_floor((mp + 1) ** 32 - 1)
+        Y = hits = 0
+        n = a | 1
+        while n <= b:
+            Y += 1
+            j1 = isqrt(n**3)
+            if j1 % 2 == 0:
+                w = isqrt(j1)
+                if w % 2 == 1:
+                    j3 = isqrt(w**3)
+                    if j3 % 2 == 0 and isqrt(j3) % 2 == 0:
+                        hits += 1
+            n += 2
+        err = abs(16 * hits - Y)
+        assert err <= 100 * Y * mp ** (-4 / 9) * (1 + log(mp)) ** 2
+        # and the measured ratio against the bare envelope stays below 1/2
+        assert err / (Y * mp ** (-4 / 9)) < 0.5
 
 
 def test_v4_scales():

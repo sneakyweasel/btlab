@@ -9,7 +9,7 @@ import {
   TOUR_OE_FIBER_M,
   TRAJECTORY_STEPS_MAX,
 } from "../juggler/constants";
-import { oddPreimages } from "../juggler/preimages";
+import { oddPreimageIntegers } from "../juggler/preimages";
 import { evenBlockView, fiberView, randomEvenInBlock } from "../juggler/productions";
 import { usePlayState } from "../context/PlayState";
 import { financeView } from "../juggler/finance";
@@ -403,7 +403,7 @@ export function PreimagesWidget() {
   const [m, setM] = useState(TOUR_EVEN_BLOCK_M);
   const [playing, setPlaying] = useState(false);
   const block = useMemo(() => evenBlockView(m), [m]);
-  const oddParent = useMemo(() => oddPreimages(m)[0] ?? null, [m]);
+  const slotInteger = useMemo(() => oddPreimageIntegers(m)[0] ?? null, [m]);
   const fiber = fiberView(TOUR_OE_FIBER_M);
   const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
   const [blockN, setBlockN] = useState<number | null>(() =>
@@ -519,9 +519,11 @@ export function PreimagesWidget() {
           Below, <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}{" "}
           exactly when n sits in [∛({formatInt(m)}²), ∛({formatInt(m + 1)}²)).
           That slot is shorter than 1, so it holds at most one integer.
-          {oddParent === null
+          {slotInteger === null
             ? " Here the slot is empty."
-            : ` Here that integer is ${formatInt(oddParent)}.`}{" "}
+            : slotInteger % 2 === 0
+              ? ` Here that integer is ${formatInt(slotInteger)}, not odd, so J does not use this cut.`
+              : ` Here that integer is ${formatInt(slotInteger)}.`}{" "}
           If {formatInt(m)} is in a backward-closed set A, every bead with an
           arrow joins A.
         </p>
