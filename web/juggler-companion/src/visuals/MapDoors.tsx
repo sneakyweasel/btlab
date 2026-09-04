@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { NOTE_TRAJECTORY_3 } from "../juggler/constants";
 import { formatInt } from "../juggler/format";
 import { bitLength, letterOf } from "../juggler/map";
@@ -14,6 +14,7 @@ type MapDoorsProps = {
   sparseScale?: boolean;
   stepComputation?: ReactNode;
   side?: ReactNode;
+  onSelect?: (index: number) => void;
 };
 
 const PLOT_LEFT = 64;
@@ -147,10 +148,12 @@ function TrajectoryPlot({
   states,
   active,
   sparseScale = false,
+  onSelect,
 }: {
   states: readonly bigint[];
   active?: number;
   sparseScale?: boolean;
+  onSelect?: (index: number) => void;
 }) {
   const logs = states.map((state) => log10Of(state));
   const dataMin = Math.min(...logs, 0);
@@ -174,6 +177,8 @@ function TrajectoryPlot({
     };
   });
   const shortTrajectory = states.length <= 10;
+  const [hover, setHover] = useState<number | null>(null);
+  const hoverPoint = hover === null ? null : points[hover];
   return (
     <svg viewBox={`0 0 ${PLOT_WIDTH} 272`} role="img" className="h-auto w-full">
       <title>Juggler trajectory, logarithmic value scale</title>
@@ -234,7 +239,26 @@ function TrajectoryPlot({
             ? shortTrajectory || index === 0 || index === points.length - 1
             : isActive;
         return (
-          <g key={index}>
+          <g
+            key={index}
+            role={onSelect ? "button" : undefined}
+            tabIndex={onSelect ? 0 : undefined}
+            aria-current={isActive ? "step" : undefined}
+            aria-label={`Step ${index}, value ${formatInt(point.state)}`}
+            onPointerEnter={() => setHover(index)}
+            onPointerLeave={() => setHover(null)}
+            onClick={() => onSelect?.(index)}
+            onKeyDown={(event) => {
+              if (!onSelect) return;
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onSelect(index);
+              }
+            }}
+            style={{ cursor: onSelect ? "pointer" : "default" }}
+          >
+            <title>{formatInt(point.state)}</title>
+            <circle cx={point.x} cy={point.y} r={Math.max(isActive ? 11 : 8, 10)} fill="transparent" />
             <circle
               cx={point.x}
               cy={point.y}
@@ -266,6 +290,22 @@ function TrajectoryPlot({
           </g>
         );
       })}
+      {hoverPoint ? (
+        <text
+          x={hoverPoint.x}
+          y={hoverPoint.y - 16}
+          textAnchor={hoverPoint.x > PLOT_RIGHT - 60 ? "end" : hoverPoint.x < PLOT_LEFT + 60 ? "start" : "middle"}
+          fill="#1d1914"
+          fontFamily="IBM Plex Mono, monospace"
+          fontSize="12"
+          paintOrder="stroke"
+          stroke="#fffdf7"
+          strokeWidth="4"
+          pointerEvents="none"
+        >
+          {formatInt(hoverPoint.state)}
+        </text>
+      ) : null}
     </svg>
   );
 }
@@ -281,6 +321,7 @@ export function MapDoors({
   sparseScale = false,
   stepComputation,
   side,
+  onSelect,
 }: MapDoorsProps) {
   const evenActive = highlight !== "odd";
   const oddActive = highlight !== "even";
@@ -294,7 +335,12 @@ export function MapDoors({
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-stretch">
         <div className="rounded-2xl border border-line bg-card px-3 py-3">
           <h3 className="px-1 text-center font-serif text-lg">{heading}</h3>
-          <TrajectoryPlot states={states} active={active} sparseScale={sparseScale} />
+          <TrajectoryPlot
+            states={states}
+            active={active}
+            sparseScale={sparseScale}
+            onSelect={onSelect}
+          />
           {axis ? (
             <div
               className="-mt-1"

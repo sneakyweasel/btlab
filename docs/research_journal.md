@@ -23192,3 +23192,36 @@ Why
 Best next question
 - the middle-band half-width 60 against the margin-20 domination claims
 ```
+
+## Paper B: tier-2 formalisation (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Formalise the *assembly* of Paper B with the analysis as hypotheses — the tier where every error found in this audit has lived. Two new Lean files, 25 theorems, building against Mathlib `v4.33.0`.
+- **Lemma 4.3(i) has a closed form (an improvement, not just a check).** The manuscript proves it by second-order Taylor with an unspecified \(\xi\). With \(a=\sqrt m\), \(b=\sqrt X=n^{3/4}\) the remainder is identically \(\tfrac12(a-b)^2(2a+b)\); \(E\ge0\) is then inspection and \(Ea\le\tfrac38\theta^2\) reduces to \((5a+3b)(a-b)\le0\). Sharper than the printed bound at every \(n\), and no analysis is used.
+- **The formalisation caught a rounding slip.** \((9/32)\cdot186=52.3125\), printed as \(52.3\); with step (ii) printed as \(0.6\) the sum is \(52.9125\), past the \(52.9\) the next line uses. Corrected to \(52.3125\) and \(0.57\). The probe was also using \(105.6\) where the honest combined constant is \(105.759\) — an under-estimate; now \(105.8\). \(P_0: 8.929\to8.946\cdot10^{13}\), no printed figure changes.
+- **Also proved:** the carry identity of Lemma 4.3(ii) outright; Lemma 3.9's \(r=3\) length bound from the mean value theorem (used, not assumed); its \(r=4\) bound from strong convexity in midpoint form.
+- **Discovery that made the threshold rows cheap:** every exponent in the paper lies in \((1/96)\mathbb Z\), so \(P=t^n\) turns each certificate row into a polynomial inequality — no `rpow`. Five rows proved including the binding one.
+- **Not claimed:** Lemma 5.2, Theorem 5.3, van der Corput, Vaaler, Erdős–Turán, the \(A\)-process. Those are hypotheses, not conclusions, and remain out of reach.
+- **Decision:** consolidation. Paper B remains a working draft.
+
+```text
+What was learned
+- the assembly tier is fully formalisable and that is where the errors are
+- Lemma 4.3(i)'s Taylor remainder is an algebraic identity in two square
+  roots; the mean value xi is avoidable entirely
+- writing a constant as an equality invites rounding slips: 52.3 for
+  52.3125 was caught only by having to prove it
+- exponents in (1/96)Z make every threshold row polynomial
+Strongest theorem
+- none new about the Juggler map; lemma43_closed_form is a sharpening
+Strongest refutation
+- none; one printed rounding and one under-estimate in the probe
+Reusable machinery
+- PaperBAssembly.lean (15 thm), ThresholdCertificate.lean (10 thm)
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- the checkable tier is now checked by machine rather than by float
+Best next question
+- the remaining 25 threshold rows, then Lemma 5.1's master identity
+```

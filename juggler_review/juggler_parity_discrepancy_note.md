@@ -889,7 +889,30 @@ statement; and \((X-1)^{-1/2}\le\tfrac43X^{-1/2}\) already for
 \(n\ge3\), whence \(E(n)\le\tfrac12 n^{-3/4}\). (ii)
 \(g=\lfloor X+\delta\rfloor-\lfloor X\rfloor
 =\lfloor\delta\rfloor+\lfloor\{X\}+\{\delta\}\rfloor\), and the last
-floor is \(1\) precisely when \(\{X\}+\{\delta\}\ge1\). \(\square\)
+floor is \(1\) precisely when \(\{X\}+\{\delta\}\ge1\)
+(Lean `carry_identity`, `carry_mem_zero_one`). \(\square\)
+
+*The remainder in closed form.* The mean value \(\xi\) is avoidable:
+(i) is an algebraic identity in two square roots. Write
+\(a=\sqrt m\) and \(b=\sqrt X=n^{3/4}\), so that
+\(m^{3/2}=a^3\), \(mX^{1/2}=a^2b\), \(X^{3/2}=b^3\) and
+\(\theta=b^2-a^2\). Then
+\[
+E=a^3-\tfrac32a^2b+\tfrac12b^3=\tfrac12(a-b)^2(2a+b),
+\]
+identically. Both printed bounds are immediate from this:
+\(E\ge0\) because \(a,b\ge0\); and \(Ea\le\tfrac38\theta^2\)
+--- i.e. \(E\le\tfrac38\theta^2m^{-1/2}\), which at
+\(\theta<1\) is the stated
+\(\tfrac38(n^{3/2}-1)^{-1/2}\) --- reduces after clearing
+\((a-b)^2\) to \(4a(2a+b)\le3(a+b)^2\), i.e.
+\((5a+3b)(a-b)\le0\), which holds because \(m\le X\). No Taylor
+expansion and no mean value are needed, and the resulting bound is
+sharper than the printed one at every \(n\), not merely
+asymptotically. Machine-checked in
+`formal/Problems/Juggler/PaperBAssembly.lean`
+(`lemma43_closed_form`, `lemma43_nonneg`, `lemma43_upper`,
+`lemma43_remainder_of_sqrt`).
 
 The point of (i): the non-smooth integer \(m\) enters the phase
 *linearly*, multiplied by a smooth coefficient; no fractional part of
@@ -2615,7 +2638,7 @@ evaluated at \(\tilde\beta_i\). Then, for \(P\ge P_0\),
 \lvert f''-\Lambda\rvert
 \le\tfrac9{32}(u{+}u')P^{-5/4}
 +\lvert c''\rvert
-+0.6\,k(h_1{+}h_2)P^{-9/8}
++0.57\,k(h_1{+}h_2)P^{-9/8}
 \le52.9\,k(h_1{+}h_2)P^{-9/8}+0.11P^{-5/6}
 \le106\,P^{-25/24}+0.11P^{-5/6}.
 \]
@@ -2664,9 +2687,9 @@ halves the error for one doubles it for the other. Hence the wave
 terms differ from \(\Lambda\) by at most
 \(\tfrac9{32}(u{+}u')P^{-5/4}\), and by (C5) this is
 \(\le\tfrac9{32}\cdot186\,k(h_1{+}h_2)P^{1/8-5/4}
-=52.3\,k(h_1{+}h_2)P^{-9/8}\) --- the *same shape* as the third
+=52.3125\,k(h_1{+}h_2)P^{-9/8}\) --- the *same shape* as the third
 term, which is why the two are added before converting. Together
-they are \(52.9\,k(h_1{+}h_2)P^{-9/8}\le105.8\), i.e.
+they are \(52.8795\le52.9\,k(h_1{+}h_2)P^{-9/8}\le105.8\), i.e.
 \(\le106\,P^{-25/24}\) by \(k(h_1{+}h_2)\le2P^{1/12}\) from
 (C3) and (C4).
 
@@ -2677,7 +2700,8 @@ they are \(52.9\,k(h_1{+}h_2)P^{-9/8}\le105.8\), i.e.
 linear in that product with coefficient
 \(\tfrac{135}{1024}k\nu^{-13/8}\), so the difference is at most
 \(\tfrac{135}{1024}\cdot4.3\;k(h_1{+}h_2)P^{1/2}P^{-13/8}
-=0.567\,k(h_1{+}h_2)P^{-9/8}\), printed as \(0.6\): this is the
+=0.567\,k(h_1{+}h_2)P^{-9/8}\), printed as \(0.57\) --- not \(0.6\),
+which would push the sum in (i) past \(52.9\): this is the
 third displayed term. (An earlier draft carried \(8\) here ---
 fourteen times the true value --- and \(219\) in place of
 \(106\) above.)
@@ -2689,6 +2713,12 @@ fractional part by \(\tfrac12\) only in the already-expanded
 made in the phase \(c(G_F-J_F)\): substituting \(J_F\mapsto
 G_F-\tfrac12\) there would collapse the anchor to \(c/2\) and
 destroy the curvature.
+
+Steps (i)--(iii) and the assembly are machine-checked in
+`formal/Problems/Juggler/PaperBAssembly.lean` (`interpolant_step_i`,
+`interpolant_step_ii_constant`, `interpolant_assembly`), with the power
+identities \(P^{1/8}P^{-5/4}=P^{-9/8}\) and
+\(P^{1/12}P^{-9/8}=P^{-25/24}\) as hypotheses.
 
 These are all the differences between \(f''\) and \(\Lambda\).
 In particular \(\Lambda\) is not \((cF_{\mathrm{sm}})''\) for

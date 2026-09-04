@@ -227,6 +227,10 @@ export function MapWidget({
         sparseScale={trajectory.source === "monster"}
         stepComputation={side ? undefined : <FloorCut compact n={cursor} result={next} />}
         side={side?.(frame)}
+        onSelect={(index) => {
+          setPlaying(false);
+          seekTo(index);
+        }}
         controls={
           <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
             <label className="grid gap-1">

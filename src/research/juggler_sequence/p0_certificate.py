@@ -37,7 +37,7 @@ KAPPA_SUPERSEDED = 1.0 / 3.0
 # u <= 186 k h2 P^(1/8), plus 0.567 from the beta-product replacement.  An earlier draft
 # printed 219 = (9/32)*720 + 16, opening the cap to 360 and the second constant to 8.
 def interpolant_error(P: float) -> float:
-    return 105.6 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
+    return 105.8 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
 
 
 def interpolant_error_superseded(P: float) -> float:

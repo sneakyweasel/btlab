@@ -204,6 +204,41 @@ At the new threshold \(V\) and \(E\) split the budget \(60{:}40\)
 and \(E\) splits \(54{:}46\) between its terms, so both halves of the
 interpolant error are now load-bearing --- they were not before.
 
+*Tier 2 formalisation (`formal/Problems/Juggler/PaperBAssembly.lean`,
+15 theorems; `ThresholdCertificate.lean`, 10).* The analytic inputs are
+hypotheses and the assembly is proved, which is where every error in this
+audit has lived. Four blocks, and two of them changed the manuscript.
+
+(a) **Lemma 4.3(i) has a closed form.** The manuscript proves it by
+second-order Taylor with an unspecified mean value \(\xi\). Writing
+\(a=\sqrt m\), \(b=\sqrt X=n^{3/4}\), the remainder is *identically*
+\(E=a^3-\tfrac32a^2b+\tfrac12b^3=\tfrac12(a-b)^2(2a+b)\). Both printed
+bounds follow with no analysis: \(E\ge0\) by inspection, and
+\(Ea\le\tfrac38\theta^2\) reduces to \((5a+3b)(a-b)\le0\). This is
+sharper than the printed bound at every \(n\), not just asymptotically,
+and it is now in the manuscript.
+
+(b) **A rounding slip caught by the formalisation.** Step (i) of Lemma 5.2b
+is \(\tfrac9{32}\cdot186=52.3125\), which the draft printed as
+\(52.3\); and with step (ii) printed as \(0.6\) the sum is
+\(52.9125\), past the \(52.9\) the next line uses. Corrected to
+\(52.3125\) and \(0.57\), sum \(52.8795\le52.9\). The probe was
+also carrying \(105.6\) for the combined constant where the honest value
+is \(2\times52.8795=105.759\) --- an *under*-estimate; now \(105.8\).
+\(P_0\) moves from \(8.929\cdot10^{13}\) to \(8.946\cdot10^{13}\),
+so no printed figure changes.
+
+(c) **Lemma 4.3(ii)** is a pure floor identity,
+\(\lfloor x+\delta\rfloor-\lfloor x\rfloor-\lfloor\delta\rfloor
+=[\,\{x\}+\{\delta\}\ge1\,]\), proved outright.
+
+(d) **Lemma 3.9's two length bounds.** The \(r=3\) case is proved from
+the mean value theorem (used, not assumed): any two points of
+\(\{|f''|\le V\}\) lie within \(2V/c\). The \(r=4\) case is proved
+from strong convexity in midpoint form, giving diameter
+\(4\sqrt{V/c}\) --- the \((V/S)^{1/2}\) that produces \(89/96\).
+The step from \(f''''\ge c\) to convexity is a hypothesis.
+
 *Correction to the previous entry.* The \(P_1\) recorded above as
 \(3.2\cdot10^{37}\) was wrong. It collected the three middle-band
 costs into a single coefficient of \(P^{89/96}\), but the \(r=3\)

@@ -65,36 +65,41 @@ function RegimeBlock({
 }
 
 function RatioBar({ odds, length }: { odds: number; length: number }) {
-  const leftLog = Math.max(odds, 0) * Math.log(3);
-  const rightLog = Math.max(length, 0) * Math.log(2);
-  const total = leftLog + rightLog;
-  const leftPct = total === 0 ? 50 : (100 * leftLog) / total;
+  const upLog = Math.max(odds, 0) * Math.log(3);
+  const downLog = Math.max(length, 0) * Math.log(2);
+  const total = upLog + downLog;
+  const upPct = total === 0 ? 50 : (100 * upLog) / total;
   const numer = 3n ** BigInt(Math.max(odds, 0));
   const denom = 2n ** BigInt(Math.max(length, 0));
   const approx = length === 0 ? 1 : idealExponentApprox(odds, length);
   return (
-    <div className="border-y border-line bg-paper px-2.5 py-2">
-      <div className="flex items-baseline justify-between gap-2 font-mono text-[11px] leading-tight">
-        <span style={{ color: EMBER }}>{powerLine(3, odds, numer)}</span>
-        <span style={{ color: SEA }}>{powerLine(2, length, denom)}</span>
-      </div>
+    <div className="flex min-h-[7.5rem] flex-1 flex-col items-center justify-center gap-1 border-y border-line bg-paper px-2 py-2">
+      <p className="font-mono text-[11px] leading-tight" style={{ color: EMBER }}>
+        {powerLine(3, odds, numer)}
+      </p>
       <div
-        className="relative mt-1.5 h-3 overflow-hidden rounded-full"
+        className="relative w-3 min-h-[4.5rem] flex-1 overflow-hidden rounded-full"
         role="img"
         aria-label={`Ideal ratio 3^${odds} / 2^${length} is ${formatRatio(approx)}`}
       >
-        <div className="absolute inset-0 flex">
-          <div style={{ width: `${leftPct}%`, background: EMBER }} />
-          <div style={{ width: `${100 - leftPct}%`, background: SEA }} />
-        </div>
         <div
-          className="absolute top-0 bottom-0 w-px bg-ink/70"
-          style={{ left: "50%" }}
+          className="absolute inset-x-0 top-0"
+          style={{ height: `${upPct}%`, background: EMBER }}
+        />
+        <div
+          className="absolute inset-x-0 bottom-0"
+          style={{ height: `${100 - upPct}%`, background: SEA }}
+        />
+        <div
+          className="absolute inset-x-0 top-1/2 h-px bg-ink/70"
           aria-hidden
         />
       </div>
-      <p className="mt-1.5 text-center font-mono text-[11px] text-muted">
+      <p className="text-center font-mono text-[11px] leading-tight text-muted">
         3<sup>o</sup>/2<sup>L</sup> ≈ {formatRatio(approx)}
+      </p>
+      <p className="font-mono text-[11px] leading-tight" style={{ color: SEA }}>
+        {powerLine(2, length, denom)}
       </p>
     </div>
   );

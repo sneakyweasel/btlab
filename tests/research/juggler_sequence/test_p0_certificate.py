@@ -131,13 +131,19 @@ def test_raising_c2_still_moves_cost_from_P0_to_P1() -> None:
 
 
 def test_interpolant_error_is_106_not_219() -> None:
-    """52.9 k(h1+h2) P^-9/8 with k(h1+h2) <= 2 P^(1/12); 52.3 from (i) plus 0.567 from (ii)."""
-    assert abs((9 / 32) * 186 - 52.3) < 0.1        # (i): middle-band cap 186
-    assert abs((135 / 1024) * 4.3 - 0.567) < 0.01  # (ii): printed as 0.6, was 8
-    assert abs(2 * ((9 / 32) * 186 + 0.6) - 105.6) < 0.3
-    # the factor 2.07 is on the P^(-25/24) coefficient, not on the total: the second term
+    """52.89 k(h1+h2) P^-9/8 with k(h1+h2) <= 2 P^(1/12): 52.3125 from (i) plus 0.567 from (ii)."""
+    # (i) is exactly (9/32)*186 = 52.3125 -- so it prints as 52.32, not 52.3
+    assert abs((9 / 32) * 186 - 52.3125) < 1e-9
+    # (ii) is (135/1024)*4.3 = 0.567, printed 0.57; 0.6 would push the sum past 52.9
+    assert abs((135 / 1024) * 4.3 - 0.5669) < 1e-3
+    assert (9 / 32) * 186 + 0.6 > 52.9
+    assert (9 / 32) * 186 + 0.57 <= 52.9
+    # 2 * 52.8795 = 105.759, printed 105.8 <= 106
+    assert abs(2 * ((9 / 32) * 186 + (135 / 1024) * 4.3) - 105.759) < 1e-2
+    assert 2 * ((9 / 32) * 186 + (135 / 1024) * 4.3) <= 105.8 <= 106
+    # the factor ~2.07 is on the P^(-25/24) coefficient, not on the total: the second term
     # 0.11 P^(-5/6) is untouched and is co-dominant near P_0, so the total gains only ~1.6 there.
-    assert abs(219 / 105.6 - 2.07) < 0.01
+    assert 2.0 < 219 / 105.8 < 2.1
     for P in (1e14, 1e16, 1e20):
         assert C.interpolant_error(P) < C.interpolant_error_superseded(P)
     assert 1.5 < C.interpolant_error_superseded(8.93e13) / C.interpolant_error(8.93e13) < 1.7
