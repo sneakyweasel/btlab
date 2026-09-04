@@ -54,9 +54,9 @@ Ostrowski blocks, census-free on the window
 laboratory floor: any nontrivial cycle has period at least
 \(176251\). The same
 certified kill criterion at a second certified floor,
-\(N_0=162849448\), on the surviving lengths — including those
-beyond the census-free window — gives period at least
-\(478245\). The main numerical result evaluates it once more at
+\(N_0=162849448\), on the surviving lengths — all inside the
+census-free window, which reaches the end of the fan — gives
+period at least \(478245\). The main numerical result evaluates it once more at
 the third certified floor \(N_0=350000000\): any nontrivial
 Juggler cycle has period at least \(780239\). We
 also prove that every nontrivial cycle contains at least four
@@ -210,15 +210,16 @@ walk-charge envelope of Section 5 amplifies it to
 \(L\ge 176251\) (Theorem 5.9). Corollary 5.10 evaluates the
 same kill criterion at the second certified floor
 \(N_0=162849448\), every survivor lying inside the
-\([50508,16785921)\) window of Theorem 5.8, and gives
-\(L\ge 478245\). The main numerical result is
+\([50508,16785921)\) window of Theorem 5.8, whose envelope
+therefore covers their charge, and gives \(L\ge 478245\). The main numerical result is
 Corollary 5.11: at the third certified floor
 \(N_0=350000000\) the same comparison gives \(L\ge 780239\).
 The census-free window theorem covers
 \([50508,16785921)\) --- the whole semiconvergent fan of
-Proposition 5.12 --- so the later-floor kills are instances of
-it, with the per-length lattice program run only as a
-cross-check. The architecture is
+Proposition 5.12 --- so the charge side of the later-floor kills
+needs no per-length dynamic program. The kill comparison itself
+stays per-length, because its left-hand side \(\theta(L)\) is a
+Diophantine quantity the envelope does not control. The architecture is
 \[
 \text{envelope}
 \to
@@ -325,8 +326,8 @@ below \(2\cdot 10^5\): any nontrivial cycle has period at least
 second-floor evaluation is Corollary 5.10: at
 \(N_0=162849448\) the same kill criterion,
 evaluated on the additional survivors --- all inside the
-window --- leaves only the semiconvergent fan member
-\(478245\). The
+window, so all with a census-free charge bound --- leaves only the
+semiconvergent fan member \(478245\). The
 main numerical result is Corollary 5.11: at the third
 certified floor \(N_0=350000000\) that comparison leaves only
 the next fan member \(780239\): any nontrivial cycle has
@@ -2131,25 +2132,43 @@ window maximum \(9.38\cdot10^{-4}\) that leaves a factor between
 \(4.1\) and \(5.5\) at every floor in this paper, and the window
 theorem survives floors up to \(n'\approx2.8\cdot10^{18}\).
 
-Two consequences. First, \(q_{14}=16785921\) is exactly \(L_{55}\),
-the last member of the semiconvergent fan of Proposition 5.12, so the
-window now covers the entire fan: every kill in Corollaries 5.10 and
-5.11, and every kill a further floor could produce along the fan, is an
-instance of the window theorem rather than a per-length computation.
-Second, the window theorem is not what limits the walk charge. That is
-the next remark.
+Two consequences, and one thing that is *not* a consequence. First,
+\(q_{14}=16785921\) is exactly \(L_{55}\), the last member of the
+semiconvergent fan of Proposition 5.12, so the window now covers the
+entire fan. Second, the window theorem is not what limits the walk
+charge; that is Remark 5.8a.
+
+What does *not* follow is that the kill tables become census-free. The
+window theorem is a uniform upper bound on the **charge**, so no
+per-length dynamic program is needed to bound \(B(L)\) anywhere on
+\([50508,16785921)\). The kill decision is the comparison
+\(\theta(L)>\tfrac65B(L)\cdot\text{guard}\), and its left-hand side
+\(\theta(L)=1-2^L/3^{o_{\min}(L)}\) is a per-length Diophantine
+quantity that the envelope says nothing about. Corollaries 5.10 and
+5.11 identify exactly that quantity as the obstruction at the surviving
+fan members. So the extension removes the per-length *dynamic program*
+from the whole fan and leaves the per-length *arithmetic* in place.
+Eliminating the latter would need a lower bound on the Diophantine
+deficit that is uniform along the fan --- a genuinely different
+statement, and one this paper does not prove.
 
 **Remark 5.8a (what the walk charge can ever buy).**
 The charge of Theorem 5.3 prices a state at exponent \(u\) by
 \(f(u)=1/(x\ln x)\) with \(x=(n')^{2^{u}}\), so
-\(f(u)/f(0)=2^{-u}\exp(-(2^{u}-1)\ln n')\): the charge decays
-*doubly* exponentially in \(u\), and only the window
-\(u\in[0,\,O(1/(\ln 3\,\ln n')))\) contributes. That is the same
-quantity as in Theorem 5.8, and it fixes the walk charge's advantage
-over the length-only parity charge at
+\(f(u)/f(0)=2^{-u}\exp(-(2^{u}-1)\ln n')\). Since
+\(2^{u}-1=u\ln2+O(u^{2})\), the charge decays on the scale
+\(u\asymp1/\ln n'\): it is a Laplace-type boundary layer at \(u=0\),
+not a hard cutoff, and \(1/(\ln3\,\ln n')\) --- the same quantity
+Theorem 5.8 carries --- is the scale of its effective mass rather than
+the width of an interval. Integrating the layer against the walk gives
+an *empirical scaling law* for the advantage over the length-only
+parity charge,
 \[
-\frac{\text{parity}}{\text{walk}}\ \approx\ 0.44\,\ln n' .
+\frac{\text{parity}}{\text{walk}}\ \approx\ c\,\ln n',
+\qquad c\approx0.44 .
 \]
+The constant is fitted, not derived; only the \(\ln n'\) dependence is
+explained by the boundary layer.
 Measured at \(L=50508\) over ten orders of magnitude in the floor, the
 ratio \( (\text{improvement})/\ln n'\) runs
 \(0.461,\,0.451,\,0.446,\,0.445,\,0.439,\,0.432,\,0.427\) at
@@ -2157,15 +2176,31 @@ ratio \( (\text{improvement})/\ln n'\) runs
 10^{10},\,10^{13},\,10^{16}\): constant to \(8\%\) across the range.
 
 So the walk charge is neither exhausted nor cheap to improve. It is not
-limited by the envelope --- substituting the census-free envelope of
-Theorem 5.8 for the exact lattice program changes the margin at
-\(L=50508\) from \(1.1204\) to \(1.1196\), a difference of \(0.07\%\)
---- nor by certification depth, which the extension above just showed
-has room to spare. It is limited by the shape of \(f\): the advantage
-grows like \(\ln n'\), so **doubling the walk charge's efficiency
-requires squaring the descent floor**. Any real improvement must come
-from a charge that does not concentrate on the \(u\approx0\) window,
-not from a better envelope for this one.
+limited by certification depth, which the extension above showed has
+room to spare, and it is not limited by the envelope: substituting the
+census-free envelope of Theorem 5.8 for the exact lattice program
+changes the margin at \(L=50508\) from \(1.1204\) to \(1.1196\), a
+difference of \(0.07\%\). It is limited by the shape of \(f\). Since
+the advantage grows like \(\ln n'\), **doubling the walk charge's
+efficiency requires squaring the descent floor**.
+
+One caution about that cross-check, because it is easy to over-read.
+Both quantities compared there live on the *relaxed* class: the lattice
+program admits every binary word with \(o\) odds, \(e\) evens and
+\(u_k\ge0\), realizable or not. The agreement to \(0.07\%\) therefore
+says the envelope is tight against the relaxed optimum; it says nothing
+about how far the relaxed optimum sits above the true maximum over
+realizable cycle itineraries. That gap is unmeasured, and it is the one
+place in this construction where a constant factor could still be
+hiding.
+
+What the boundary layer does suggest is that improvement will not come
+from a better envelope for this charge. It raises a sharper question
+than "find a better charge": is *every* charge that depends only on the
+transported exponent \(u\), under the same one-step defect budget,
+subject to the same \(O(1/\ln n')\) concentration? A positive answer
+would turn the observation above into a limitation theorem for the
+whole class, and would be worth more than another constant.
 
 
 ### 5.7 Kill table and the period bound
@@ -2233,10 +2268,10 @@ charge of Theorem 5.3 kills the \(15\) below \(478245\)
 (margins \(1.198\) at \(176251\) and \(352502\), up to
 \(8.44\)); lengths \(L\le 176250\) stay excluded because both
 exclusions are monotone in the floor. Every survivor here lies
-inside the window \([50508,16785921)\) of Theorem 5.8, so each
-kill is an instance of the census-free envelope; the per-length
-lattice program is run as a cross-check and agrees to
-\(0.07\%\). The combined contiguous
+inside the window \([50508,16785921)\) of Theorem 5.8, so the
+*charge* side of each kill is census-free; the per-length lattice
+program is run as a cross-check and agrees to \(0.07\%\). The
+comparison against \(\theta(L)\) remains per-length. The combined contiguous
 excluded prefix is \(478244\): any nontrivial Juggler cycle has
 period at least \(478245\).
 
@@ -2265,9 +2300,10 @@ through \(L=8\cdot 10^5\); the five leftovers below
 in the floor, and the walk charge of Theorem 5.3 kills the
 \(10\) leftovers in \([478245,755512]\) (margins \(1.00555\)
 at \(478245\), up to \(7.824\) at \(504026\)). Every survivor here
-lies inside the window \([50508,16785921)\) of Theorem 5.8, so
-each kill is an instance of the census-free envelope; the
-per-length lattice program is run as a cross-check. The combined contiguous excluded prefix is
+lies inside the window \([50508,16785921)\) of Theorem 5.8, so the
+*charge* side of each kill is census-free and the per-length
+lattice program is only a cross-check; the comparison against
+\(\theta(L)\) remains per-length. The combined contiguous excluded prefix is
 \(780238\): any nontrivial Juggler cycle has period at least
 \(780239\). This is the main numerical result of the paper.
 

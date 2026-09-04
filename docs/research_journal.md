@@ -23947,9 +23947,19 @@ x5.5, x4.6, x4.3, x4.1 at the four floors, and the window survives floors to
 semiconvergent fan (Prop 5.12). So the window now covers the *whole fan*, and
 Corollaries 5.10 and 5.11's disclaimer --- "survivor lengths above 301994 lie
 beyond the window; each kill there is a direct certified evaluation, not an
-instance of the window theorem" --- is gone. Every kill along the fan is now
-census-free, with the per-length program kept only as a cross-check. No
-per-length computation remains in the argument up to \(L=16785921\).
+instance of the window theorem" --- is gone. The *charge* side of every kill along the fan is
+now census-free, with the per-length lattice program kept only as a
+cross-check.
+
+**Correction to the first draft of this entry.** I wrote "no per-length
+computation remains up to \(L=16785921\)". That is wrong, and the paper had
+the distinction right before I blurred it. The window theorem is a uniform
+upper bound on the *charge*; the kill decision is
+\(	heta(L)>	frac65B(L)\cdot	ext{guard}\), whose left-hand side
+\(	heta(L)=1-2^L/3^{o_{\min}(L)}\) is a per-length Diophantine quantity the
+envelope does not control --- and which Corollaries 5.10 and 5.11 name as the
+actual obstruction at the surviving fan members. What the extension removes is
+the per-length *dynamic program*, not the per-length *arithmetic*.
 
 New: Theorem 5.8 restated and reproved on the extended window; Remark 5.8a (the
 \(0.44\ln n'\) law); `theta_denominators`, `ostrowski_digit_sum`,
@@ -23976,6 +23986,11 @@ Branch status
 Why
 - one half was free, the other half is now known to be a dead end
 Best next question
-- a charge that does not concentrate on u ~ 0; without one, the walk
-  charge is finished as a lever
+- two, sharpened by review: (a) is EVERY charge depending only on the
+  transported exponent u, under the same one-step defect budget, subject
+  to the same O(1/log n') concentration?  that would be a limitation
+  theorem for the class, not one charge.  (b) the DP is itself over the
+  RELAXED class, so the 0.07% envelope-vs-DP agreement bounds the
+  envelope, not the realizability slack -- that slack is unmeasured and
+  is the one place a constant could still hide
 ```
