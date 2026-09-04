@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { evenPreimage, oddPreimageIntegers } from "../juggler/preimages";
 import {
   LIVE_STARTS,
   MONSTER_ROW_LIVE,
   RECORD_LENGTHS,
+  TOUR_EVEN_BLOCK_M,
+  TOUR_OE_FIBER_M,
   TRAJECTORY_STEPS_MAX,
 } from "../juggler/constants";
+import { evenBlockView, fiberView } from "../juggler/productions";
 import { usePlayState } from "../context/PlayState";
 import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
@@ -20,7 +22,9 @@ import {
   parseItinerary,
   regimeOf,
 } from "../juggler/itinerary";
-import { PreimageNumberLine } from "../visuals/PreimageNumberLine";
+import { EvenBlockStrip } from "../visuals/EvenBlockStrip";
+import { OeFiberStrip } from "../visuals/OeFiberStrip";
+import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
 import { FinanceBalance, FinanceHierarchy } from "../visuals/FinanceBalance";
@@ -532,22 +536,26 @@ export function EnvelopeWidget() {
 }
 
 export function PreimagesWidget() {
-  const even = evenPreimage(6);
-  const odds = oddPreimageIntegers(11);
+  const block = evenBlockView(TOUR_EVEN_BLOCK_M);
+  const fiber = fiberView(TOUR_OE_FIBER_M);
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="space-y-6">
       <div>
-        <h3 className="mb-2 font-serif text-lg">Even one-step preimage of 6</h3>
-        <PreimageNumberLine lo={even.lo} hi={even.hi} marks={[36, 38, 40]} label="Even parents of 6" />
+        <h3 className="mb-2 font-serif text-lg">Even block of 12</h3>
+        <EvenBlockStrip view={block} />
         <p className="text-sm text-muted">
-          Even n in [{even.lo}, {even.hi}) all map to 6.
+          The even integers of [144, 169) all map to 12. If 12 is in a
+          backward-closed set A, so is this block.
         </p>
       </div>
       <div>
-        <h3 className="mb-2 font-serif text-lg">Odd one-step preimage of 11</h3>
-        <PreimageNumberLine lo={4} hi={7} marks={odds} label="Odd parent of 11" />
+        <h3 className="mb-2 font-serif text-lg">OE fiber of 100,000</h3>
+        <OeFiberStrip view={fiber} />
+        <SweepLane points={fiber.points} />
         <p className="text-sm text-muted">
-          At most one integer: here {odds[0] ?? "none"}.
+          H = {fiber.H} odd n, G = {fiber.G} with even image. Each sea bead
+          has J(J(n)) = 100000. Ember beads are on the fiber but not this
+          production. An odd image still has at most one odd parent.
         </p>
       </div>
     </div>

@@ -47,7 +47,11 @@ the package-local `vercel.json` does the same rewrite.
 
 - `src/research/juggler_sequence/power_itineraries.py`
 - `src/research/juggler_sequence/floor_preimages.py`
+- `src/research/juggler_sequence/fate_contagion.py`
 - `src/research/juggler_sequence/cycle_itinerary.py`
+
+The preimage playground shows Paper C’s two productions — the even block
+and the OE fiber with its parity sweep — not a halt-theorem demo.
 
 `n_max` is looked up from the shipped Theorem 4.6 snapshot. It is never
 recomputed with floating logarithms.

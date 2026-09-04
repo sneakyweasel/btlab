@@ -762,6 +762,20 @@ as a dynamical averaging problem for the low-even set
 \(P=\{m:G_m/H_m\le 0.40\}\) (even-share of the \(E{+}OE\) orbit of
 \(P\)), not as another pointwise fiber bound.
 
+The \(0.448\to 0.4927\) gap is only one of the two levers, and it is
+the smaller one. Reading the §4 recursion as a transfer matrix on the
+backward tree —
+[juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
+— recovers \(\lambda^*\), \(\lambda^{**}\) and the \(0.4927\) ceiling
+from a single equation, shows the method's ceiling is **exactly**
+\(\lambda=1\) (attained on the fair-coin backward path
+\(\theta=\tfrac12\)), and identifies the binding constraint as
+\(\eta_0\): the share available to an \(O\)-preimage step that follows
+another \(O\)-preimage step, which §§1–4 never use. With no such step
+\(\lambda\le 0.4927\) for entropic reasons; §7's \(OOEEE\) is the first
+use of it, and reaches only \(\nu_2=0.529\) of the share already
+available at run-length two.
+
 ## 6. The termination problem after contagion: an exact map
 
 This section records what the fate-contagion viewpoint says the

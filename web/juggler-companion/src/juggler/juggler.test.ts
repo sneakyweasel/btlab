@@ -5,6 +5,14 @@ import {
 } from "../content/idealDecisions";
 import { evenPreimage, oddPreimageIntegers } from "./preimages";
 import {
+  evenBlock,
+  evenMembersMapToSeed,
+  fiberBounds,
+  fiberStats,
+  oeFiber,
+  oeMembersMapToSeed,
+} from "./productions";
+import {
   NECKLACE_PRESETS,
   NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
@@ -486,6 +494,31 @@ describe("preimages", () => {
 
   it("gives the unique parent 5 of odd image 11", () => {
     expect(oddPreimageIntegers(11)).toEqual([5]);
+  });
+});
+
+describe("productions", () => {
+  it("gives the even block of 6 as the evens of [36, 49)", () => {
+    expect(evenBlock(6)).toEqual([36, 38, 40, 42, 44, 46, 48]);
+    expect(evenMembersMapToSeed(6)).toBe(true);
+  });
+
+  it("sends every OE member of 12 to 12 in two steps", () => {
+    const fiber = oeFiber(12);
+    expect(fiber.map((point) => point.n)).toEqual([29]);
+    expect(fiber[0]?.imageEven).toBe(true);
+    expect(oeMembersMapToSeed(12)).toBe(true);
+  });
+
+  it("matches the Paper C figure fiber of 100000", () => {
+    expect(fiberBounds(100000)).toEqual({ lo: 4_641_589, hi: 4_641_651 });
+    expect(fiberStats(100000)).toEqual({
+      m: 100000,
+      H: 31,
+      G: 19,
+      proportion: 19 / 31,
+    });
+    expect(oeMembersMapToSeed(100000)).toBe(true);
   });
 });
 

@@ -23,6 +23,14 @@ export const PRINTED_PERIOD = 478_245;
 export const WALK_WINDOW_LO = 50_508;
 export const WALK_WINDOW_HI = 301_994;
 
+/** Paper C production playground. Display fork of fate_contagion.py. */
+export const PRODUCTION_SEEDS = [6, 12, 100, 1_000, 10_000, 100_000] as const;
+export const EVEN_BLOCK_BEAD_MAX = 40;
+export const FIBER_BEAD_MAX = 80;
+export const PRODUCTION_M_MAX = 100_000;
+export const TOUR_EVEN_BLOCK_M = 12;
+export const TOUR_OE_FIBER_M = 100_000;
+
 export const NOTE_TRAJECTORY_3 = [3n, 5n, 11n, 36n, 6n, 2n, 1n] as const;
 export const NOTE_PEAK_37 = 24_906_114_455_136n;
 

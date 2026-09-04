@@ -19,11 +19,13 @@ export function PlaygroundPage() {
       <header>
         <h1 className="text-4xl">Playground</h1>
         <p className="prose-measure mt-3 text-muted">
-          Basic tests only: walk a start, follow a short itinerary, look at a
-          one-step preimage, rotate a necklace, or look up a length in the shipped
-          Theorem 4.6 table. Caps: 80 steps, 256 bits, itineraries of length at most
-          8 (cycles 16). The trajectory is the values; the itinerary is the O/E
-          parities of a prefix. A one-step preimage is the set J⁻¹(m).
+          Basic tests only: walk a start, follow a short itinerary, grow the two
+          Paper C productions of a seed, rotate a necklace, or look up a length
+          in the shipped Theorem 4.6 table. Caps: 80 steps, 256 bits, itineraries
+          of length at most 8 (cycles 16), production seeds at most 100,000. The
+          trajectory is the values; the itinerary is the O/E parities of a
+          prefix. The even block and the OE fiber are the two productions of
+          J⁻¹(m).
         </p>
       </header>
       <nav className="flex flex-wrap gap-2">

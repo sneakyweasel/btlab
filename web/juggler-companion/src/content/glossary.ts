@@ -74,10 +74,12 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     slug: "preimages",
     number: 6,
     term: "One-step preimages",
-    blurb: "J is not invertible. The one-step preimage of m is a set. Even parents fill a square interval. An odd image has at most one odd parent.",
+    blurb:
+      "J is not invertible. A backward-closed set swallows an even interval and a swept odd fiber from every member.",
     body:
-      "Work backwards. J is not invertible, so the one-step preimage of an image m is a set: J^{-1}(m) = {k : J(k) = m}. That is an exact integer interval in N, not an approximation. The even numbers that map to q are exactly the even integers in [q², (q+1)²). The odd numbers that map to m sit in a much thinner one-step preimage: there is at most one integer n with m² ≤ n³ < (m+1)². That asymmetry is how Paper A classifies short loop-shapes. Local leftover spellings are itineraries the easy one-step preimages did not kill — they are not open cycles.",
-    paper: "§1 one-step preimage; Lemma 3.1: odd one-step preimages are unique. Even one-step preimages are square intervals.",
+      "Work backwards. J is not invertible, so the one-step preimage of m is a set. Paper C uses that set as two productions of a backward-closed class A: if J(n) is in A then n is in A. The even block E(m) is every even n in the square interval from m squared to (m+1) squared; each has J(n) = m, so the whole block joins A. The OE fiber is the odd n with floor of n to the three-fourths equal to m; those whose image floor of n to the three-halves is even have J(J(n)) = m, so they join A too. Along that fiber the parity of the image sweeps a nearly constant step, and both colors appear. An odd image still has at most one odd parent. None of this excludes a fate.",
+    paper:
+      "Paper C Lemmas 3.1–3.2 and 4.1; Lean even_block_mem, oe_fiber_mem. Odd one-step uniqueness is Paper A Lemma 3.1.",
   },
   {
     slug: "descent-floor",
