@@ -507,27 +507,21 @@ export function PreimagesWidget() {
     <div className="space-y-6">
       <div>
         <h3 className="mb-2 font-serif text-lg">
-          One-step parents of {formatInt(m)}
+          One-step preimages of {formatInt(m)}
         </h3>
         <p className="text-sm text-muted">
-          Two number lines, one seed. Above, every even n in [
-          {formatInt(m)}², {formatInt(m + 1)}²) = [{formatInt(block.lo)},{" "}
-          {formatInt(block.hi)}) has <Tex>{String.raw`\lfloor\sqrt{n}\rfloor`}</Tex>{" "}
-          = {formatInt(m)}. Those teal arrows are the even block.
+          Same floor cut on both lines. Above, <Tex>{String.raw`\lfloor\sqrt{n}\rfloor`}</Tex>{" "}
+          = {formatInt(m)} exactly when n sits in [{formatInt(m)}²,{" "}
+          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}).
+          Every even bead in that interval sends a teal arrow.
         </p>
         <p className="mb-4 text-sm text-muted">
-          {oddParent === null ? (
-            <>
-              Below, the same integer spacing, but no ember bead: no odd n has{" "}
-              <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}.
-            </>
-          ) : (
-            <>
-              Below, at most one odd n has{" "}
-              <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}.
-              Here that unique precursor is {formatInt(oddParent)}.
-            </>
-          )}{" "}
+          Below, <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}{" "}
+          exactly when n sits in [∛({formatInt(m)}²), ∛({formatInt(m + 1)}²)).
+          That slot is shorter than 1, so it holds at most one integer.
+          {oddParent === null
+            ? " Here the slot is empty."
+            : ` Here that integer is ${formatInt(oddParent)}.`}{" "}
           If {formatInt(m)} is in a backward-closed set A, every bead with an
           arrow joins A.
         </p>

@@ -21,9 +21,9 @@ function formatShare(value: number | null): string {
 }
 
 export function PreimagesTab() {
-  const [m, setM] = useState(12);
+  const [m, setM] = useState(11);
   const [selected, setSelected] = useState<number | null>(() =>
-    randomEvenInBlock(evenBlockView(12)),
+    randomEvenInBlock(evenBlockView(11)),
   );
   const [hovered, setHovered] = useState<number | null>(null);
   const block = useMemo(() => evenBlockView(m), [m]);
@@ -94,11 +94,13 @@ export function PreimagesTab() {
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
         <h2 className="font-serif text-2xl">One-step parents of m</h2>
         <p className="text-sm text-muted">
-          Above: every even n in [{formatInt(m)}², {formatInt(m + 1)}²) = [
-          {formatInt(block.lo)}, {formatInt(block.hi)}) has{" "}
-          <Tex>{String.raw`\lfloor\sqrt{n}\rfloor=m`}</Tex>. Below: at most one
-          odd n has <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor=m`}</Tex>. If m is
-          in A, every bead with an arrow joins A.
+          Same floor cut on both lines. Above, n in [{formatInt(m)}²,{" "}
+          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)})
+          has <Tex>{String.raw`\lfloor\sqrt{n}\rfloor=m`}</Tex>. Below, n in [∛(
+          {formatInt(m)}²), ∛({formatInt(m + 1)}²)) has{" "}
+          <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor=m`}</Tex>. The odd slot is
+          shorter than 1, so it holds at most one integer. If m is in A, every
+          bead with an arrow joins A.
         </p>
         <div className="grid gap-3 sm:grid-cols-3">
           <Metric

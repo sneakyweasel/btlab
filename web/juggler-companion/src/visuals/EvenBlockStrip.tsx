@@ -101,6 +101,7 @@ type ParityLineProps = {
   showWedge: boolean;
   markerId: string;
   emptyText?: string;
+  hideActiveLabel?: boolean;
   onSelect?: (n: number) => void;
   onHover?: (n: number | null) => void;
 };
@@ -122,6 +123,7 @@ function ParityLine({
   showWedge,
   markerId,
   emptyText,
+  hideActiveLabel = false,
   onSelect,
   onHover,
 }: ParityLineProps) {
@@ -130,7 +132,7 @@ function ParityLine({
   const cutHi = xOf(washHi, winLo, winHi);
   const memberSet = new Set(members);
   const ns = integersOn(winLo, winHi);
-  const hasWash = members.length > 0 && washHi > washLo;
+  const hasWash = washHi > washLo;
   return (
     <g>
       {hasWash ? (
@@ -205,6 +207,7 @@ function ParityLine({
                   n={n}
                   color={memberColor}
                   active={selected === n}
+                  hideLabel={hideActiveLabel && selected === n}
                   labelBelow={outward === "below"}
                   onSelect={onSelect}
                   onHover={onHover}
@@ -233,16 +236,37 @@ function ParityLine({
                 color={GREY}
                 radius={3.5}
                 active={selected === n}
+                hideLabel={hideActiveLabel && selected === n}
                 labelBelow={outward === "below"}
                 onHover={hoverPads ? onHover : undefined}
               />
             );
           })
         : null}
+      <EndCaption
+        x={
+          cutHi - cutLo < 56
+            ? (cutLo + cutHi) / 2 - 28
+            : cutLo
+        }
+        lineY={y}
+        side={inward}
+        lines={captions[0]}
+      />
+      <EndCaption
+        x={
+          cutHi - cutLo < 56
+            ? (cutLo + cutHi) / 2 + 28
+            : cutHi
+        }
+        lineY={y}
+        side={inward}
+        lines={captions[1]}
+      />
       {emptyText ? (
         <text
-          x={TARGET_X}
-          y={inward === "below" ? y + 22 : y - 16}
+          x={(cutLo + cutHi) / 2}
+          y={inward === "below" ? y + 46 : y - 40}
           textAnchor="middle"
           fill="#5e574c"
           fontSize="10"
@@ -250,12 +274,7 @@ function ParityLine({
         >
           {emptyText}
         </text>
-      ) : (
-        <>
-          <EndCaption x={cutLo} lineY={y} side={inward} lines={captions[0]} />
-          <EndCaption x={cutHi} lineY={y} side={inward} lines={captions[1]} />
-        </>
-      )}
+      ) : null}
     </g>
   );
 }
@@ -286,18 +305,15 @@ export function EvenBlockStrip({
   const pad = 5;
   const evenLo = Math.max(0, lo - pad);
   const evenHi = hi + pad;
-  const oddLo =
-    oddParent === null
-      ? listed
-        ? evenLo
-        : Math.max(0, lo - pad)
-      : Math.max(0, oddParent - pad);
-  const oddHi =
-    oddParent === null
-      ? listed
-        ? evenHi
-        : lo + pad + 1
-      : oddParent + 1 + pad;
+  const evenSpan = evenHi - evenLo;
+  const oddSpan = listed ? evenSpan : 2 * pad + 1;
+  const oddWashLo = Math.cbrt(lo);
+  const oddWashHi = Math.cbrt(hi);
+  const oddCenter =
+    oddParent ??
+    Math.max(0, Math.round((oddWashLo + oddWashHi) / 2));
+  const oddLo = Math.max(0, oddCenter - Math.floor((oddSpan - 1) / 2));
+  const oddHi = oddLo + oddSpan;
   const evenMarkerId = `even-block-arrow-${m}`;
   const oddMarkerId = `odd-precursor-arrow-${m}`;
   return (
@@ -347,6 +363,7 @@ export function EvenBlockStrip({
             [formatInt(hi), `${formatInt(m + 1)}²`],
           ]}
           selected={liveEven}
+          hideActiveLabel
           hoverPads
           showBeads={listed}
           showWedge={!listed}
@@ -380,38 +397,44 @@ export function EvenBlockStrip({
           y={ODD_Y}
           winLo={oddLo}
           winHi={oddHi}
-          washLo={oddParent ?? 0}
-          washHi={oddParent === null ? 0 : oddParent + 1}
+          washLo={oddWashLo}
+          washHi={oddWashHi}
           members={oddParent === null ? [] : [oddParent]}
           memberColor={EMBER}
           colorByParity={false}
           outward="below"
-          captions={
-            oddParent === null
-              ? [[], []]
-              : [[formatInt(oddParent)], [formatInt(oddParent + 1)]]
-          }
+          captions={[
+            [oddWashLo.toFixed(3), `∛(${formatInt(m)}²)`],
+            [oddWashHi.toFixed(3), `∛(${formatInt(m + 1)}²)`],
+          ]}
           selected={oddParent}
+          hideActiveLabel
           hoverPads={false}
           showBeads
           showWedge={false}
           markerId={oddMarkerId}
-          emptyText={oddParent === null ? "no odd precursor" : undefined}
+          emptyText={oddParent === null ? "no integer in the slot" : undefined}
           onHover={handleOddHover}
         />
       </svg>
       <div
-        className="pointer-events-none absolute inset-x-0 flex -translate-y-full justify-center"
-        style={{ top: `${((LINE_Y - 18) / VIEW_H) * 100}%` }}
+        className="pointer-events-none absolute -translate-y-full"
+        style={{
+          left: `${(xOf(liveEven, evenLo, evenHi) / WIDTH) * 100}%`,
+          top: `${((LINE_Y - 16) / VIEW_H) * 100}%`,
+        }}
       >
-        <FloorCut compact n={BigInt(liveEven)} />
+        <FloorCut compact beadAnchor n={BigInt(liveEven)} />
       </div>
       {oddParent === null ? null : (
         <div
-          className="pointer-events-none absolute inset-x-0 flex justify-center"
-          style={{ top: `${((ODD_Y + 18) / VIEW_H) * 100}%` }}
+          className="pointer-events-none absolute"
+          style={{
+            left: `${(xOf(oddParent, oddLo, oddHi) / WIDTH) * 100}%`,
+            top: `${((ODD_Y + 16) / VIEW_H) * 100}%`,
+          }}
         >
-          <FloorCut compact n={BigInt(oddParent)} />
+          <FloorCut compact beadAnchor n={BigInt(oddParent)} />
         </div>
       )}
       </div>

@@ -1,11 +1,13 @@
 import type { ReactNode } from "react";
 import { Tex } from "../components/Tex";
+import { EMBER, SEA } from "../juggler/palette";
 import { bitLength, floorPower, letterOf } from "../juggler/map";
 
 type FloorCutProps = {
   n: bigint;
   result?: bigint | null;
   compact?: boolean;
+  beadAnchor?: boolean;
 };
 
 function shortDigits(
@@ -30,12 +32,18 @@ function threeDecimals(raw: number, integer: number): string {
 function Card({
   children,
   compact,
+  beadAnchor,
 }: {
   children: ReactNode;
   compact?: boolean;
+  beadAnchor?: boolean;
 }) {
   if (compact) {
-    return <div className="flex justify-center leading-none">{children}</div>;
+    return (
+      <div className={beadAnchor ? "leading-none" : "flex justify-center leading-none"}>
+        {children}
+      </div>
+    );
   }
   return (
     <div className="flex h-full flex-col rounded-2xl border border-line bg-paper/70 px-4 py-3">
@@ -47,10 +55,15 @@ function Card({
   );
 }
 
-export function FloorCut({ n, result, compact = false }: FloorCutProps) {
+export function FloorCut({
+  n,
+  result,
+  compact = false,
+  beadAnchor = false,
+}: FloorCutProps) {
   if (n < 1n) {
     return (
-      <Card compact={compact}>
+      <Card compact={compact} beadAnchor={beadAnchor}>
         <p className="text-sm text-muted">
           Floor still means: throw away the decimals and keep the integer part.
         </p>
@@ -63,7 +76,7 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
 
   if (bitLength(n) > 50) {
     return (
-      <Card compact={compact}>
+      <Card compact={compact} beadAnchor={beadAnchor}>
         {compact ? null : (
           <p className="mt-2 font-mono text-sm" style={{ color: odd ? "#c45c26" : "#1f6f6a" }}>
             {odd ? "Odd branch O" : "Even branch E"}
@@ -90,11 +103,18 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
   const maxFull = compact ? 6 : 9;
   const shownN = shortDigits(n, head, tail, maxFull);
   const shownInt = shortDigits(next, head, tail, maxFull);
-  const work = odd ? String.raw`\sqrt{${shownN}^{3}}` : String.raw`\sqrt{${shownN}}`;
+  const work = odd
+    ? String.raw`\sqrt{${shownN}^{3}}`
+    : String.raw`\sqrt{${shownN}}`;
+  const tintedWork = beadAnchor
+    ? odd
+      ? String.raw`\color{#c45c26}{\sqrt{${shownN}^{3}}}`
+      : String.raw`\color{#1f6f6a}{\sqrt{${shownN}}}`
+    : work;
   const root = odd ? Math.sqrt(x) : raw;
   const rootShown = root.toFixed(3);
   return (
-    <Card compact={compact}>
+    <Card compact={compact} beadAnchor={beadAnchor}>
       {compact ? null : (
         <p className="mt-1 font-mono text-sm" style={{ color: odd ? "#c45c26" : "#1f6f6a" }}>
           {odd ? "n odd → ⌊n√n⌋" : "n even → ⌊√n⌋"}
@@ -107,6 +127,32 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
         </p>
       ) : null}
       {compact ? (
+        beadAnchor ? (
+          <p
+            title={`${next.toString()}.${decimals}…`}
+            className="relative m-0 inline-block leading-none"
+          >
+            <span
+              className="inline-block -translate-x-1/2 text-xl leading-none [&_.katex]:text-[1.35em]"
+              style={{ color: odd ? EMBER : SEA }}
+            >
+              <Tex>{tintedWork}</Tex>
+            </span>
+            <span className="absolute top-1/2 left-1/2 ml-1 flex -translate-y-1/2 items-center gap-1 font-mono text-xs leading-none whitespace-nowrap text-ink">
+              <span>=</span>
+              <span className="flex items-center">
+                <span>{shownInt}</span>
+                <span className="relative text-odd">
+                  .{decimals}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 rotate-[-8deg] bg-warn"
+                  />
+                </span>
+              </span>
+            </span>
+          </p>
+        ) : (
         <p
           title={`${next.toString()}.${decimals}…`}
           className="m-0 flex items-center justify-center gap-1 text-xs leading-none font-mono"
@@ -124,6 +170,7 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
             </span>
           </span>
         </p>
+        )
       ) : (
         <>
           <p className="text-sm">

@@ -49,7 +49,7 @@ export const PRODUCTION_SEEDS = [
 export const EVEN_BLOCK_BEAD_MAX = 40;
 export const FIBER_BEAD_MAX = 80;
 export const PRODUCTION_M_MAX = 100_000;
-export const TOUR_EVEN_BLOCK_M = 12;
+export const TOUR_EVEN_BLOCK_M = 11;
 export const TOUR_OE_FIBER_M = 100_000;
 
 export const NOTE_TRAJECTORY_3 = [3n, 5n, 11n, 36n, 6n, 2n, 1n] as const;

@@ -11,6 +11,7 @@ type BeadMarkProps = {
   onSelect?: (n: number) => void;
   onHover?: (n: number | null) => void;
   labelBelow?: boolean;
+  hideLabel?: boolean;
 };
 
 export function BeadMark({
@@ -24,6 +25,7 @@ export function BeadMark({
   onSelect,
   onHover,
   labelBelow = false,
+  hideLabel = false,
 }: BeadMarkProps) {
   const labelX = Math.min(Math.max(x, 40), width - 40);
   const labelGap = 16;
@@ -47,6 +49,7 @@ export function BeadMark({
         stroke={active ? "#1d1914" : "none"}
         strokeWidth={active ? 2 : 0}
       />
+      {hideLabel ? null : (
       <text
         className={active ? undefined : "bead-label"}
         x={labelX}
@@ -62,6 +65,7 @@ export function BeadMark({
       >
         {formatInt(n)}
       </text>
+      )}
     </g>
   );
 }
