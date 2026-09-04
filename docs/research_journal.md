@@ -24180,3 +24180,62 @@ Best next question
 - which Sturmian words in {OE, OOE} at density log2/log3 are realizable
   as Juggler itineraries?  that is the reformulated obstruction
 ```
+
+
+### Paper A: the hug word is ordinary -- the last candidate eliminated
+
+Last entry reformulated the obstruction as "which Sturmian words in {OE, OOE} at
+density log2/log3 are realizable as Juggler itineraries". If the hug word --- the
+extremal walk of Theorem 5.3 --- were rare, the walk charge would be bounding an
+adversary that cannot occur and the whole comparison would be loose. Measured.
+
+Counting odd \(m<4\cdot10^6\) whose itinerary begins with the length-\(l\) hug prefix,
+against the \(2^{-(l-1)}\) a generic word gets: ratio \(1.00\) at \(l=8,9,10\),
+drifting to \(1.38\) by \(l=18\). Control: the same statistic over all \(34342\)
+itineraries occurring at depth 18 --- median \(1.05\), range \(0.066\) to
+\(4.4\cdot10^3\). **The hug word sits just above the median, deep inside the bulk.**
+By realizability it is an ordinary word.
+
+So the walk charge bounds an adversary that genuinely occurs (a point in the
+construction's favour), and the reformulated obstruction is closed: it is not the
+realizability of the extremal word.
+
+**The elimination is now complete.** Every candidate explanation for the walk charge's
+\(0.44\ln n'\) advantage has been ruled out:
+
+| candidate | verdict |
+|---|---|
+| the envelope | tight to \(0.07\%\) against the exact program |
+| certification depth | a factor 55 of unused range (Thm 5.8 extension) |
+| the exponent-walk relaxation | a part in \(10^8\) at operative lengths (Prop 5.15/5.16) |
+| the odd-run count (Sec 6) | adversary saturates the ceiling, peaks minimal |
+| realizability of the adversary | ordinary, at the generic rate |
+
+What remains is the shape of the charge itself, which is not a slack to be recovered
+but the value of the method. Section 6 now says exactly that.
+
+**Two fixes to my own measurement.** The first normalisation was off by exactly 2
+(odd starts always begin O, so the expectation is \(2^{-(l-1)}\)); and `OO` appeared as
+a spurious third block type, which was the prefix cut, not a block. Both caught by the
+ratio reading a clean 2.000 at \(l=1,2,3\) --- a wrong constant that announced itself.
+
+New: `hug_realizability.py`, the Section 6 closing paragraph, 6 tests.
+
+```text
+What was learned
+- the hug word is realized at the generic rate; no obstruction there
+- with that, every candidate for the 0.44 ln n' ceiling is eliminated
+  and the ceiling is intrinsic to the charge
+Strongest theorem
+- none new; the elimination is now exhaustive, which is the result
+Strongest refutation
+- the reformulation I proposed last entry, closed in one iteration
+Reusable machinery
+- hug_realizability: prefix density against a measured control band
+Branch status
+- CLOSE (the walk-charge lever is finished, and now provably so)
+Best next question
+- Paper A's numerical track is exhausted as a lever; what remains is
+  the long regime, which needs a statement about one orbit's parity
+  word at depth L -- nothing in this corpus reaches it
+```

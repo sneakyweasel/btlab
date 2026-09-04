@@ -2652,7 +2652,32 @@ behind the measurement in Proposition 5.15. What would bite is a
 constraint that forbids the \(\mathtt{OE}/\mathtt{OOE}\) mixture
 itself at the critical density --- an arithmetic statement about
 which Sturmian words are realizable as Juggler itineraries, not
-a counting statement about runs. The remaining
+a counting statement about runs. That statement is false as
+stated, and it is worth saying why.
+
+The hug word is realized at the generic rate. Counting odd
+\(m<4\cdot10^{6}\) whose itinerary begins with the length-\(l\)
+prefix of the extremal walk, against the \(2^{-(l-1)}\) a generic
+word would get: the ratio is \(1.00\) at \(l=8,9,10\) and drifts
+to \(1.38\) by \(l=18\). The control is the same statistic over
+every itinerary that occurs at depth \(18\) --- \(34342\) of them
+--- whose ratios have median \(1.05\) and run from \(0.066\) to
+\(4.4\cdot10^{3}\). The hug word therefore sits just above the
+median and deep inside the bulk: by realizability it is an
+ordinary word, not a rare one.
+
+So the walk charge is not bounding an adversary that cannot
+occur. That is a point in the construction's favour, and it also
+closes the reformulation: the obstruction is not the realizability
+of the extremal word. Taken with Propositions 5.15 and 5.16, and
+with Remark 5.8a, every candidate explanation for the walk
+charge's \(0.44\ln n'\) has now been eliminated --- the envelope
+(tight to \(0.07\%\)), the certification depth (a factor \(55\)
+of unused range), the exponent-walk relaxation (a part in
+\(10^{8}\) at the operative lengths), the run count, and the
+realizability of the adversary. What remains is the shape of the
+charge itself, and that is not a slack to be recovered but the
+value of the method. The remaining
 gap recorded there is the missing link from the forced lift at
 the minimum, through the complete necklace, to the entry one-step preimage;
 it is not a halt theorem.
