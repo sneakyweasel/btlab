@@ -24121,3 +24121,62 @@ Branch status
 Best next question
 - Lean and the companion app, both untouched by this loop so far
 ```
+
+
+### Paper A: Section 6's nominated direction, closed with data
+
+Section 6 nominated the odd-run count \(p\): "a genuine lower bound on \(p\), or a
+peak-height / peak-count tradeoff, would feed Theorem 4.7." A bound on \(p\) is only
+useful if it constrains the *adversary*, and the adversary for the walk charge is the
+extremal walk of Theorem 5.3 --- which nobody had looked at. Recovered it by storing
+the lattice program's decisions (validated: the recovered walk attains the known
+maximum at \(L=18\) to \(10^{-18}\)).
+
+| \(L\) | 84 | 1054 | 25781 | 50508 |
+|---|---|---|---|---|
+| \(p\) | 31 | 389 | 9515 | 18641 |
+| \(\min(e,o-1)\) | 31 | 389 | 9515 | 18641 |
+| longest odd run | 2 | 2 | 2 | 2 |
+
+**The adversary saturates both ceilings at once.** \(p=e\) exactly at every length:
+every even run has length one, and the walk is a word in the two blocks OE and OOE
+alone, mixed at density \(\log2/\log3\) --- the hug itinerary of Theorem 5.4 in
+Sturmian form. At \(L=84\): O²E O²E O²E OE O²E O²E OE …
+
+So **both halves of the direction are dead**. A lower bound on \(p\) cannot bite,
+because \(p\) is already at its combinatorial maximum. A peak-height/peak-count
+tradeoff cannot bite, because the longest odd run is 2 and the peaks are already as
+low as an expanding word allows. The extremal walk is the flattest word available and
+it is flat in both senses simultaneously.
+
+**A bonus check.** That walk begins OO and ends E, so it satisfies Theorem 3.2's
+minimum-based restrictions --- Section 3 does not cut the adversary down either. That
+is the qualitative reason behind Prop 5.15's measurement, which I had only observed
+numerically.
+
+**What would bite**, and this is the reformulation worth carrying: a constraint
+forbidding the OE/OOE mixture *itself* at the critical density. That is an arithmetic
+question about which Sturmian words are realizable as Juggler itineraries, not a
+counting question about runs. Section 6 now says so.
+
+New: `walk_runs.py`, the Section 6 rewrite, 9 tests.
+
+```text
+What was learned
+- the walk-charge adversary sits at p = e with longest odd run 2: it
+  saturates the odd-run ceiling and minimises peaks simultaneously
+- so Section 6's nominated direction is closed in both halves
+- and the adversary is legal under Theorem 3.2, which explains
+  Prop 5.15 qualitatively rather than numerically
+Strongest theorem
+- none new; a decisive negative that redirects the open problem
+Strongest refutation
+- Section 6's own "next concrete direction"
+Reusable machinery
+- walk_runs.extremal_walk: path recovery from the lattice program
+Branch status
+- ADVANCE (a dead end closed before anyone spent months in it)
+Best next question
+- which Sturmian words in {OE, OOE} at density log2/log3 are realizable
+  as Juggler itineraries?  that is the reformulated obstruction
+```

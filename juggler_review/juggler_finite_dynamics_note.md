@@ -2607,14 +2607,52 @@ consecutive expanding blocks occur already at
 \xrightarrow{OOE}887471.
 \]
 
-The next concrete direction is the number \(p\) of odd runs on a
-minimum-based cycle --- equivalently, the number of excursions
-on the necklace of Section 4. The run form already gives
-\(p\le e\) and, because the first odd run has length at least
-two, \(p\le o-1\), hence \(p\le\min(e,o-1)<0.3691\,L\) on an
-expanding itinerary. That is only the trivial ceiling. A genuine
-lower bound on \(p\), or a peak-height / peak-count tradeoff,
-would feed Theorem 4.7. Neither is proved here. The remaining
+The number \(p\) of odd runs on a minimum-based cycle ---
+equivalently, the number of excursions on the necklace of
+Section 4 --- looks like the next concrete direction. The run
+form gives \(p\le e\) and, because the first odd run has length
+at least two, \(p\le o-1\), hence \(p\le\min(e,o-1)<0.3691\,L\)
+on an expanding itinerary; that is only the trivial ceiling, and
+a genuine lower bound on \(p\), or a peak-height / peak-count
+tradeoff, would feed Theorem 4.7.
+
+It is worth recording why we do not pursue it. A bound on \(p\)
+is only useful if it constrains the *adversary*, and for the
+walk charge the adversary is the extremal walk of Theorem 5.3,
+which can be recovered from the lattice program by storing its
+decisions. That walk turns out to saturate both ceilings at
+once. Writing \(p\) for its odd-run count:
+
+| \(L\) | \(84\) | \(1054\) | \(25781\) | \(50508\) |
+|---|---|---|---|---|
+| \(p\) | \(31\) | \(389\) | \(9515\) | \(18641\) |
+| \(\min(e,o-1)\) | \(31\) | \(389\) | \(9515\) | \(18641\) |
+| longest odd run | \(2\) | \(2\) | \(2\) | \(2\) |
+
+So \(p=e\) exactly, at every length tested: every even run has
+length one, and the walk is a word in the two blocks
+\(\mathtt{OE}\) and \(\mathtt{OOE}\) alone, mixed at the density
+\(\log2/\log3\) --- the hug itinerary of Theorem 5.4, in its
+Sturmian form. At \(L=84\) it is
+\(\mathtt{O^2E\,O^2E\,O^2E\,OE\,O^2E\,O^2E\,OE\,\cdots}\).
+
+Both halves of the direction are therefore closed against this
+adversary. A *lower* bound on \(p\) cannot bite, because \(p\)
+is already at its combinatorial maximum. A peak-height /
+peak-count tradeoff cannot bite either, because the longest odd
+run is \(2\) and the peaks are already as low as an expanding
+word allows. The extremal walk is the flattest word available,
+and it is flat in both senses at once.
+
+One further check falls out. That walk begins \(\mathtt{OO}\)
+and ends \(\mathtt{E}\), so it satisfies the minimum-based
+structural restrictions of Theorem 3.2: Section 3 does not cut
+the adversary down either, which is the qualitative reason
+behind the measurement in Proposition 5.15. What would bite is a
+constraint that forbids the \(\mathtt{OE}/\mathtt{OOE}\) mixture
+itself at the critical density --- an arithmetic statement about
+which Sturmian words are realizable as Juggler itineraries, not
+a counting statement about runs. The remaining
 gap recorded there is the missing link from the forced lift at
 the minimum, through the complete necklace, to the entry one-step preimage;
 it is not a halt theorem.
