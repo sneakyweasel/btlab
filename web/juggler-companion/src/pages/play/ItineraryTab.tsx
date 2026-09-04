@@ -8,6 +8,7 @@ import { formatInt, parsePositiveInt } from "../../juggler/format";
 import { floorPower } from "../../juggler/map";
 import {
   compareImage,
+  envelopeSeries,
   envelopeSlack,
   firstFail,
   followsItinerary,
@@ -79,11 +80,7 @@ function ItineraryResult({ n, itinerary }: { n: bigint; itinerary: string }) {
       path.push(current);
     }
   }
-  const envelopePoints = path.map((value) => {
-    const bits = value.toString(2).length;
-    if (bits <= 53) return Number(value);
-    return 2 ** (bits - 1);
-  });
+  const series = follows ? envelopeSeries(n, path) : null;
   return (
     <>
       <div className="grid gap-3 sm:grid-cols-4">
@@ -127,7 +124,10 @@ function ItineraryResult({ n, itinerary }: { n: bigint; itinerary: string }) {
         </div>
         {follows ? (
           <div className="rounded-xl border border-line bg-card p-4">
-            <EnvelopeCeiling points={envelopePoints} />
+            <EnvelopeCeiling
+              points={series?.walk ?? []}
+              ceiling={series?.ceiling}
+            />
           </div>
         ) : null}
       </div>

@@ -23355,3 +23355,38 @@ Why
 Best next question
 - none in this direction; the remaining gate is human review of 5.2(i)
 ```
+
+## Paper B: Lemma 5.2(i) attacked (finding, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Adversarially audit the six-stage proof of Lemma 5.2(i) — the one part of Paper B that has stayed author-chain through the whole review.
+- **Stages 1–5 recompute clean.** Stage 1's \(A_h=-\tfrac{27}8h^2\nu^{1/4}\) is right (the \(h^2\) terms are \(-9/16\) and \(-45/16\); the \(\nu^{5/4}\) parts cancel exactly, both \(\tfrac94h\nu^{5/4}\)). Stage 4's \([0.35,1.20]\) and the constants \(1.096\), \(2.536\); Stage 5's band \([4.4,9.1]\), the sums \(3.1\), \(0.37\), \(0.47\), and \(37/48<7/8\) — all check from their stated inputs.
+- **Material finding, Stage 6 / class (D3).** (D3) was stated with \(|\varphi''|\le3kh_1h_2P^{-5/8}\), but Stage 6 never uses that budget — it dominates via \(2h|\varphi'''|\), which bounds \(|(\Delta_{2h}\varphi)''|\), not a general class-(D3) \(|\varphi''|\). Claim E actually delivers \(|(\Delta_{2h_3}\varphi)''|\le6kh_1h_2h_3P^{-13/8}\) and then *relaxes* it to the printed budget, throwing away a factor \(P/(2h_3)\ge\tfrac12P^{7/8}\). Inside the printed class the ratio to the Stage-4 curvature is \(8.6kh_1h_2P^{1/8}/(uh)\), reaching \(8.6P^{1/4}\) at \(uh=1\): such a \(\varphi''\) cancels the Stage-4 curvature outright and Lemma 3.3 at that scale does not apply. **(i) as stated admitted decorations its own Stage 6 cannot handle.**
+- **Fix.** Give (D3) the differenced budget \(|\varphi''|\le6kh_1h_2h\,P^{-13/8}\) — exactly what Claim E has in hand — giving Stage-6 ratio \(18P^{-3/4}\), matching the manuscript's own parenthetical. Decouple (ii)'s input \(\varphi\) from (D3) and state it by \(|\varphi'''|\le3kh_1h_2P^{-13/8}\). No constant downstream moves; both checked invocations (Claim F; Step 5b(3b), where \(|(\Delta_2c)''|\le0.19kh_2P^{-15/8}\)) sit inside the new budget with room.
+- **Two rounding slips:** Stage 3(s1) prints \(\min(2,2\pi|B|)\le14P^{-1/16}\) where \(2\pi\cdot2.25=14.14\); Stage 5 prints \((1/4.4)^{1/3}=0.62\) where it is \(0.611\) (with \(0.62\) the displayed chain gives \(0.477>0.47\), though the final \(0.47\) is right).
+- **Not claimed:** the exponent \(1-1/96\) is untouched, and this is still not a second *human* reading of Stages 1–5.
+- **Decision:** finding recorded, manuscript corrected. Paper B remains a working draft.
+
+```text
+What was learned
+- the (C5) pattern repeated exactly: a decoration class stated wider
+  than the proof supports, with every application inside the narrow one
+- Claim E had the sharp bound and threw it away to prove membership in
+  a class it did not need; the relaxation is what opened the gap
+- (D1) and (D2) are stated as differences and (D3) was not -- the
+  asymmetry was the tell
+Strongest theorem
+- none new
+Strongest refutation
+- none; (i) is probably true for the wide class too (a large phi''
+  gives its own curvature), but Stage 6 does not prove it
+Reusable machinery
+- stage6_D3_* in PaperBAssembly.lean
+Branch status
+- PARK (Stages 1-5 still author-chain; a human reading is still owed)
+Why
+- the one gap found is in the class bookkeeping, not in the analysis
+Best next question
+- whether (i) can be proved for the wide (D3) class at all, by treating
+  the phi''-dominant and cancellation regimes separately
+```

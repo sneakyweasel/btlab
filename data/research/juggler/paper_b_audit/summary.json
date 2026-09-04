@@ -359,7 +359,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "c7443a4880c2317bf6f267b660be2aafcc9ed396",
+  "git_commit": "6e1f7b3762ac1f2eec6452802ba7b168d18c5547",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -1462,5 +1462,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 35.28053116798401
+  "elapsed_seconds": 29.168686151504517
 }

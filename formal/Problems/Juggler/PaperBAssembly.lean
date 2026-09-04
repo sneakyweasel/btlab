@@ -200,6 +200,56 @@ theorem interpolant_gain : (2 : ℝ) < 219 / 106 := by norm_num
 
 end Interpolant
 
+/-! ## 3b. Lemma 5.2(i), Stage 6: the (D3) decoration budget
+
+Substitution `P = p^24`, so `P^(-13/8) = p^(-39)`, `P^(-3/4) = p^(-18)`,
+`P^(-5/8) = p^(-15)`, `P^(1/8) = p^3`.  Write `K = k h₁ h₂ ≤ p^3` by (C1).
+
+Stage 6 must dominate the (D3) decoration against the Stage-4 curvature
+`0.35 u h P^(-3/4)`.  What Claim E delivers is
+`|(Δ_{2h₃}φ)''| ≤ 6 k h₁h₂ h₃ P^(-13/8)` -- the *differenced* budget -- and that
+is dominated.  A budget of the undifferenced shape `3 k h₁h₂ P^(-5/8)` is larger
+by `P/(2h)` and is **not**. -/
+
+section Stage6D3
+
+/-- **The differenced (D3) budget is dominated**, at margin 4 and better:
+`6 K h P^(-13/8) ≤ ¼ · 0.35 u h P^(-3/4)` reduces, after multiplying by `p^39`,
+to `6K ≤ 0.0875 u p^21`, which holds by `K ≤ p^3` and `u ≥ 1`. -/
+theorem stage6_D3_differenced_dominated (K u p : ℝ)
+    (hK0 : 0 ≤ K) (hK : K ≤ p ^ 3) (hu : 1 ≤ u) (hp : 2 ≤ p) :
+    6 * K ≤ 0.0875 * u * p ^ 21 := by
+  have hp0 : (0:ℝ) < p := by linarith
+  have h18 : (262144:ℝ) ≤ p ^ 18 := by
+    have h : (2:ℝ) ^ 18 ≤ p ^ 18 := by gcongr
+    have : (262144:ℝ) ≤ (2:ℝ) ^ 18 := by norm_num
+    linarith
+  have h3 : (0:ℝ) < p ^ 3 := pow_pos hp0 3
+  have h21 : (0:ℝ) < p ^ 21 := pow_pos hp0 21
+  calc 6 * K ≤ 6 * p ^ 3 := by linarith
+    _ ≤ 0.0875 * (p ^ 3 * 262144) := by nlinarith [h3]
+    _ ≤ 0.0875 * (p ^ 3 * p ^ 18) := by nlinarith [h3, h18]
+    _ = 0.0875 * p ^ 21 := by ring
+    _ ≤ 0.0875 * u * p ^ 21 := by nlinarith [h21, hu]
+
+/-- **The undifferenced budget is not dominated.**  At the (C1) extreme
+`K = p^3` and `u = h = 1`, the ratio of `3 K P^(-5/8)` to the Stage-4 curvature
+`0.35 u h P^(-3/4)` is `(3/0.35) p^6 = 8.57 P^(1/4)` -- it exceeds the curvature
+by an unbounded factor, so Lemma 3.3 at that scale does not apply and the two can
+cancel outright. -/
+theorem stage6_D3_printed_not_dominated (p : ℝ) (hp : 2 ≤ p) :
+    8 * (0.35 * p ^ 6) ≤ 3 * p ^ 3 * p ^ 3 := by
+  have hp0 : (0:ℝ) < p := by linarith
+  nlinarith [pow_pos hp0 6]
+
+/-- **The size of the gap.**  The undifferenced budget exceeds the differenced one
+by exactly `P/(2h) = p^24/(2h)`; at `h ≤ P^(1/8)` that is at least `½P^(7/8)`. -/
+theorem stage6_D3_gap (K h p : ℝ) (hh : h ≠ 0) :
+    3 * K * p ^ 24 = (p ^ 24 / (2 * h)) * (6 * K * h) := by
+  field_simp; ring
+
+end Stage6D3
+
 /-! ## 4. Lemma 3.9: the two sublevel-length bounds -/
 
 section Sublevel

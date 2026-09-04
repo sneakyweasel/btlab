@@ -340,6 +340,48 @@ comes from `Real.hasDerivAt_sqrt` and no real-power machinery enters.
 Sampling puts \(\xi_2\) at \(0.32\)--\(0.52\) of
 \(\beta_1{+}\beta_2\), well inside the claimed \((0,\beta_1{+}\beta_2)\).
 
+*Lemma 5.2(i): the six stages, attacked.* Stages 1--5 recompute clean
+from their stated inputs. Stage 1's \(A_h=-\tfrac{27}8h^2\nu^{1/4}\)
+is right (the \(h^2\) terms are \(-\tfrac9{16}\) and
+\(-\tfrac{45}{16}\), and the \(\nu^{5/4}\) parts cancel exactly);
+Stage 4's \([0.35,1.20]\), Stage 5's \([4.4,9.1]\) band, \(3.1\),
+\(0.37\), \(0.47\) and \(37/48<7/8\) all check.
+
+**Material finding, in Stage 6 / the class (D3).** The decoration class
+(D3) was stated with \(|\varphi''|\le3kh_1h_2P^{-5/8}\), but Stage 6
+never uses that budget: it dominates via \(2h|\varphi'''|\), which
+bounds \(|(\Delta_{2h}\varphi)''|\) and *not* a general class-(D3)
+\(|\varphi''|\). Claim E in fact delivers
+\(|(\Delta_{2h_3}\varphi)''|\le6kh_1h_2h_3P^{-13/8}\) and then
+*relaxes* it to the printed budget --- which is larger by
+\(P/(2h_3)\), a factor \(\ge\tfrac12P^{7/8}\). Inside the printed
+class the ratio to the Stage-4 curvature is
+\(8.6\,kh_1h_2P^{1/8}/(uh)\), reaching \(8.6P^{1/4}\) at
+\(uh=1\); at any \(uh\le8.6P^{1/4}\) such a \(\varphi''\) cancels
+the Stage-4 curvature outright and Lemma 3.3 at that scale does not
+apply. So **(i) as stated admitted decorations its own Stage 6 cannot
+handle** --- the (C5) pattern again: statement wider than proof, every
+actual application inside the narrow class.
+
+Fixed by giving (D3) the differenced budget
+\(|\varphi''|\le6kh_1h_2h\,P^{-13/8}\) (with \(2h\) the shift of
+(i)), which is exactly what Claim E has in hand; the Stage-6 ratio is
+then \(18P^{-3/4}\), matching the manuscript's own parenthetical.
+Part (ii)'s input \(\varphi\) is decoupled from (D3) and stated
+directly by \(|\varphi'''|\le3kh_1h_2P^{-13/8}\), which is what
+Claim E says every application supplies. No constant downstream moves;
+the checked invocations --- Claim F, and Step 5b(3b) where
+\(|(\Delta_2c)''|\le0.19kh_2P^{-15/8}\) --- are both inside the new
+budget with room. Lean `stage6_D3_differenced_dominated`,
+`stage6_D3_printed_not_dominated`, `stage6_D3_gap`.
+
+Two rounding slips beside it: Stage 3(s1) prints
+\(\min(2,2\pi|B|)\le14P^{-1/16}\) where \(2\pi\cdot2.25=14.14\)
+(now \(14.2\)); Stage 5 prints the intermediate
+\((1/4.4)^{1/3}=0.62\) where it is \(0.611\) --- with \(0.62\) the
+displayed chain gives \(0.77\cdot0.62=0.477>0.47\), though the final
+\(0.47\) is correct from the exact value. Neither changes an estimate.
+
 *Correction to the previous entry.* The \(P_1\) recorded above as
 \(3.2\cdot10^{37}\) was wrong. It collected the three middle-band
 costs into a single coefficient of \(P^{89/96}\), but the \(r=3\)

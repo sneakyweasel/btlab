@@ -94,6 +94,81 @@ export function localDefect(n: bigint): bigint {
   return n * n * n - y * y;
 }
 
+function lnBig(n: bigint): number {
+  if (n <= 0n) return Number.NEGATIVE_INFINITY;
+  const bits = bitLength(n);
+  if (bits <= 53) return Math.log(Number(n));
+  const hex = n.toString(16);
+  const take = Math.min(hex.length, 13);
+  const lead = Number.parseInt(hex.slice(0, take), 16);
+  return Math.log(lead) + (hex.length - take) * 4 * Math.LN2;
+}
+
+/** Finite stand-in for SVG / Number display. Exact below 53 bits. */
+export function plotMagnitude(n: bigint): number {
+  const bits = bitLength(n);
+  if (bits <= 53) return Number(n);
+  return 2 ** Math.min(lnBig(n) / Math.LN2, 1023);
+}
+
+function plotFromLn(ln: number): number {
+  if (!Number.isFinite(ln)) return Number.NaN;
+  return Math.exp(Math.min(Math.max(ln, -700), 700));
+}
+
+/** Value-space ceiling n^{3^o / 2^L}. Length 0 is n itself. */
+export function envelopeCeilingApprox(n: bigint, odds: number, length: number): number {
+  if (n <= 0n) return 0;
+  if (length <= 0) return plotMagnitude(n);
+  return plotFromLn(idealExponentApprox(odds, length) * lnBig(n));
+}
+
+/** Log-slack 3^o ln n − 2^k ln image. */
+export function envelopeLogSlack(
+  n: bigint,
+  image: bigint,
+  k: number,
+  o: number,
+): number {
+  if (k < 0 || o < 0) {
+    throw new Error("envelopeLogSlack requires nonnegative exponents");
+  }
+  if (n <= 0n || image <= 0n) return Number.NaN;
+  return 3 ** o * lnBig(n) - 2 ** k * lnBig(image);
+}
+
+/** 1 − image^{2^k} / n^{3^o}, or NaN if the logs blow up. */
+export function envelopeRelativeRoom(
+  n: bigint,
+  image: bigint,
+  k: number,
+  o: number,
+): number {
+  const slack = envelopeLogSlack(n, image, k, o);
+  if (!Number.isFinite(slack)) return Number.NaN;
+  if (slack <= 0) return 0;
+  return -Math.expm1(-slack);
+}
+
+export type EnvelopeSeries = {
+  walk: number[];
+  ceiling: number[];
+};
+
+/** Per-step walk and ceiling n^{3^{o_k}/2^k} for the SVG. */
+export function envelopeSeries(n: bigint, states: readonly bigint[]): EnvelopeSeries {
+  const walk: number[] = [];
+  const ceiling: number[] = [];
+  let odds = 0;
+  for (let step = 0; step < states.length; step += 1) {
+    const state = states[step];
+    walk.push(plotMagnitude(state));
+    ceiling.push(envelopeCeilingApprox(n, odds, step));
+    if (state % 2n === 1n) odds += 1;
+  }
+  return { walk, ceiling };
+}
+
 /** Envelope slack Δ = n^{3^o} − image^{2^k}, or null if bits blow up. */
 export function envelopeSlack(
   n: bigint,

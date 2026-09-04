@@ -90,6 +90,10 @@ import {
   necklaceFillToRuns,
   oddEvenRuns,
   runsEqual,
+  envelopeCeilingApprox,
+  envelopeLogSlack,
+  envelopeRelativeRoom,
+  envelopeSeries,
   envelopeSlack,
   expanding,
   followsItinerary,
@@ -191,6 +195,29 @@ describe("itineraries", () => {
 
   it("computes one-letter envelope slack at n=3", () => {
     expect(envelopeSlack(3n, 5n, 1, 1)).toBe(2n);
+  });
+
+  it("computes the OOE envelope at n=5", () => {
+    expect(imageAfter(5n, "OOE")).toBe(6n);
+    expect(envelopeSlack(5n, 6n, 3, 2)).toBe(273509n);
+    expect(envelopeCeilingApprox(5n, 2, 3)).toBeCloseTo(5 ** (9 / 8), 8);
+    const logSlack = envelopeLogSlack(5n, 6n, 3, 2);
+    expect(logSlack).toBeCloseTo(9 * Math.log(5) - 8 * Math.log(6), 10);
+    expect(envelopeRelativeRoom(5n, 6n, 3, 2)).toBeCloseTo(273509 / 5 ** 9, 8);
+    const series = envelopeSeries(5n, [5n, 11n, 36n, 6n]);
+    expect(series.walk).toEqual([5, 11, 36, 6]);
+    expect(series.ceiling[0]).toBeCloseTo(5, 8);
+    expect(series.ceiling[3]).toBeCloseTo(5 ** (9 / 8), 8);
+  });
+
+  it("hugs the ceiling on the note walk of 37 after OOOOE", () => {
+    const path = resolveTrajectory(37n, 80).states.slice(0, 6);
+    expect(path[5]).toBe(9317n);
+    const series = envelopeSeries(37n, path);
+    expect(series.walk[5]).toBe(9317);
+    expect(series.ceiling[5]).toBeGreaterThan(9317);
+    expect(series.ceiling[5] - 9317).toBeLessThan(10);
+    expect(envelopeSlack(37n, 9317n, 5, 4)).toBeNull();
   });
 });
 

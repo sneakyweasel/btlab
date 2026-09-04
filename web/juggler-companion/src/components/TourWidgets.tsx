@@ -18,20 +18,13 @@ import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
 import { floorPower, letterOf } from "../juggler/map";
 import { monsterCatalog, resolveTrajectory } from "../juggler/monsters";
-import {
-  envelopeSlack,
-  expanding,
-  followsItinerary,
-  imageAfter,
-  oddCount,
-  regimeOf,
-} from "../juggler/itinerary";
+import { oddCount, regimeOf } from "../juggler/itinerary";
 import { EvenBlockStrip } from "../visuals/EvenBlockStrip";
 import { OeFiberStrip } from "../visuals/OeFiberStrip";
 import { ProductionWork } from "../visuals/ProductionWork";
 import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
-import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
+import { EnvelopePanel, EnvelopeSlack } from "../visuals/EnvelopeSlack";
 import { RegimeDoors } from "../visuals/RegimeDoors";
 import { FinanceBalance, FinanceHierarchy } from "../visuals/FinanceBalance";
 import { FloorLadder } from "../visuals/FloorLadder";
@@ -44,7 +37,6 @@ import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
 import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
 import { MediaControls, MediaPlayer, MediaScrubber } from "./MediaControls";
-import { Metric } from "./Metric";
 import { Tex } from "./Tex";
 
 const MAP_DEFAULT = 37n;
@@ -98,6 +90,9 @@ export type MapFrame = {
   length: number;
   regime: ReturnType<typeof regimeOf>;
   stepIndex: number;
+  seed: bigint;
+  image: bigint;
+  states: bigint[];
 };
 
 type StartChip = {
@@ -110,6 +105,7 @@ export function MapWidget({
   initial = MAP_DEFAULT,
   initialStep = 0,
   side,
+  below,
   liveStarts = LIVE_STARTS,
   monsterStarts,
   useChipLabels = false,
@@ -118,6 +114,7 @@ export function MapWidget({
   initial?: bigint;
   initialStep?: number;
   side?: (frame: MapFrame) => ReactNode;
+  below?: (frame: MapFrame) => ReactNode;
   liveStarts?: readonly StartChip[];
   monsterStarts?: readonly StartChip[];
   useChipLabels?: boolean;
@@ -235,6 +232,9 @@ export function MapWidget({
     length: prefix.length,
     regime: regimeOf(prefix.length, prefixOdds),
     stepIndex,
+    seed,
+    image: cursor,
+    states: trajectory.states.slice(0, Math.max(stepIndex, 0) + 1),
   };
 
   return (
@@ -386,7 +386,9 @@ export function MapWidget({
             />
           </div>
           <div className="rounded-2xl border border-line bg-paper/70 px-4 py-3">
-            {prefix.length === 0 ? (
+            {below ? (
+              below(frame)
+            ) : prefix.length === 0 ? (
               <>
                 <p className="text-xs uppercase tracking-wide text-muted">
                   Ideal exponent
@@ -460,38 +462,32 @@ export function ExpandingWidget() {
 }
 
 export function EnvelopeWidget() {
-  const n = 5n;
-  const word = "OOE";
-  const follows = followsItinerary(n, word);
-  const image = follows ? imageAfter(n, word) : null;
-  const slack =
-    image === null ? null : envelopeSlack(n, image, word.length, oddCount(word));
-  const points = useMemo(() => {
-    const path = [n];
-    let current = n;
-    for (let index = 0; index < word.length; index += 1) {
-      current = floorPower(current);
-      path.push(current);
-    }
-    return path.map((value) => Number(value));
-  }, []);
   return (
-    <div className="space-y-3">
-      <EnvelopeCeiling points={points} />
-      <div className="grid gap-3 sm:grid-cols-3">
-        <Metric label="Start" value="5" hint="follows OOE" />
-        <Metric label="Image" value={image === null ? "—" : image.toString()} />
-        <Metric
-          label="Slack Δ"
-          value={slack === null ? "too large" : formatInt(slack)}
-          hint="n^{9} − image^{8}"
+    <MapWidget
+      initial={37n}
+      initialStep={5}
+      liveStarts={EXPANDING_STARTS}
+      monsterStarts={EXPANDING_MONSTERS}
+      useChipLabels
+      presetHint="Same starts as Expanding. The ceiling is n to the 3^o / 2^L; slack is the room under it. Hitting 1 is not a theorem."
+      side={(frame) => (
+        <EnvelopeSlack
+          seed={frame.seed}
+          image={frame.image}
+          odds={frame.odds}
+          length={frame.length}
         />
-      </div>
-      <p className="text-sm text-muted">
-        {expanding(word) ? "OOE is expanding, so the ceiling sits above n." : ""}
-        The walk is 5 → 11 → 36 → 6.
-      </p>
-    </div>
+      )}
+      below={(frame) => (
+        <EnvelopePanel
+          seed={frame.seed}
+          image={frame.image}
+          odds={frame.odds}
+          length={frame.length}
+          states={frame.states}
+        />
+      )}
+    />
   );
 }
 

@@ -2067,8 +2067,10 @@ classes
   F_{\boldsymbol\kappa}(X)\rfloor\bigr)(n)\), with
   \(F_{\boldsymbol\kappa}\) a branch function of Lemma 5.1(iii),
   offset \(|j|\le3\);
-- (D3) a smooth \(\varphi\) with \(|\varphi''|\le3kh_1h_2P^{-5/8}\)
-  and \(|\varphi'''|\le6kh_1h_2P^{-13/8}\);
+- (D3) a smooth \(\varphi\) with
+  \(|\varphi''|\le6kh_1h_2h\,P^{-13/8}\) and
+  \(|\varphi'''|\le6kh_1h_2P^{-13/8}\), where \(2h\) is the shift
+  of part (i);
 
 here \(2h\) is the shift of part (i), and in part (ii) the
 decorations are read after the differencing there. Then, for sums
@@ -2088,7 +2090,8 @@ P^{\varepsilon};
 (ii) *(waves)* for all integer coefficients \((q_d)_{d\in\mathcal D}\)
 with \(|q_d|\le 4P^{1/24}\) and
 \(t:=\sum_{d\in\mathcal D}q_d\ne0\), all
-\(\varepsilon_0\in\{0,1\}\), and \(\varphi\) of class (D3),
+\(\varepsilon_0\in\{0,1\}\), and smooth \(\varphi\) with
+\(|\varphi'''|\le3kh_1h_2P^{-13/8}\),
 \[
 U:=\Bigl|\sum_n
 e\Bigl(\sum_{d\in\mathcal D}q_d\,Y(n{+}d)
@@ -2230,11 +2233,18 @@ type (D2), one of type (D3)), inside the budget of nine.
   \le2h_3\sup|\varphi'''|
   \le6kh_1h_2h_3P^{-13/8}.
   \]
-  The printed (D3) second-derivative budget is
-  \(3kh_1h_2P^{-5/8}\). The comparison
-  \(6h_3P^{-13/8}\le3P^{-5/8}\) is \(2h_3\le P\), and
-  \(h_3\le P^{1/8}\) gives \(2P^{1/8}\le P\) for \(P\ge4\).
-  The third derivative of the increment satisfies
+  This is *exactly* the (D3) second-derivative budget at the shift
+  \(h=h_3\) of this invocation, and it is the sharp form Stage 6
+  needs. It must not be relaxed to a budget of the shape
+  \(3kh_1h_2P^{-5/8}\): that is larger by a factor \(P/(2h_3)\)
+  --- at \(h_3\le P^{1/8}\), a factor \(\ge\tfrac12P^{7/8}\) ---
+  and Stage 6 cannot dominate it. Indeed
+  \(3kh_1h_2P^{-5/8}\big/\bigl(0.35uhP^{-3/4}\bigr)
+  =8.6\,kh_1h_2P^{1/8}/(uh)\), which by (C1) reaches
+  \(8.6P^{1/4}\) at \(uh=1\); at any \(uh\le8.6P^{1/4}\) such a
+  \(\varphi''\) could cancel the Stage-4 curvature outright, and
+  Lemma 3.3 at that scale would not apply. The third derivative of
+  the increment satisfies
   \(\bigl|(\Delta_{2h_3}\varphi)'''\bigr|
   \le2\sup|\varphi'''|
   \le6kh_1h_2P^{-13/8}\), which is the printed (D3)
@@ -2383,8 +2393,10 @@ expands
 \(e(-B_0\{\nu^{3/2}\}\dots)\) per window (here one window: the total
 drift of \(B\) is \(\le0.6uhP^{-1/4}\le0.6P^{-1/16}<1\)) into the
 same two mode families at coefficient factor
-\(\min(2,2\pi|B|)\le14P^{-1/16}\), mass \(O(\log P)\), flat cost
-\(\le12P^{1/2}\), majorant \(\le14P^{-1/16}\cdot4P^{3/4}\).
+\(\min(2,2\pi|B|)\le14.2P^{-1/16}\) (the constant is
+\(2\pi\cdot2.25=14.14\), not \(14\)), mass \(O(\log P)\), flat
+cost \(\le12P^{1/2}\), majorant
+\(\le14.2P^{-1/16}\cdot4P^{3/4}\).
 (s2) If \(P^{3/16}<uh\le P^{1/2}\) then \(|B|\le2.25P^{1/4}\) and
 \(B\) drifts by at most \(1\) on windows of length
 \(\ge P^{5/4}/(0.6uh)\ge1.2P^{3/4}\): at most \(0.6P^{1/4}+1\)
@@ -2484,7 +2496,7 @@ it sums — with the \(O(\log P)\) collision-band coefficient mass:
 \]
 \[
 \sum_w(P/M)^{1/3}
-\le0.77P^{1/4}\cdot0.62\,(uh)^{-1/3}P^{7/12}
+\le0.77P^{1/4}\cdot0.611\,(uh)^{-1/3}P^{7/12}
 =0.47\,(uh)^{-1/3}P^{5/6}\le0.47\,P^{5/6-1/16}=0.47\,P^{37/48},
 \]
 the windows numbering at most \(0.6P^{1/4}+1\le0.77P^{1/4}\)
@@ -2572,19 +2584,21 @@ margin against the Stage-4 curvature
   gives modes \(e(q''(F\circ X))\)-type of curvature
   \(\le P^{1/8}\cdot3|j|P^{-5/4}\le9P^{-9/8}\), ratio
   \(\le26P^{-3/8}\): dominated.
-- (D3). The printed third-derivative budget is
-  \(|\varphi'''|\le6kh_1h_2P^{-13/8}\). The ratio to the Stage-4
-  curvature is
+- (D3). The class budget is \(|\varphi''|\le6kh_1h_2h\,P^{-13/8}\),
+  which is what Claim E delivers for \(\Delta_{2h_3}\varphi\). The
+  ratio to the Stage-4 curvature is
   \[
-  \frac{2h\cdot6kh_1h_2P^{-13/8}}{0.35uhP^{-3/4}}
-  =\frac{35kh_1h_2P^{-7/8}}u
-  \le35P^{1/8-7/8}=35P^{-3/4},
+  \frac{6kh_1h_2h\,P^{-13/8}}{0.35uhP^{-3/4}}
+  =\frac{18\,kh_1h_2P^{-7/8}}u
+  \le18P^{1/8-7/8}=18P^{-3/4},
   \]
   using (C1) in the form \(kh_1h_2\le P^{1/8}\) and \(u\ge1\):
-  dominated. (If the decoration is an *input* (D3) of (ii) that
-  has not yet been differenced, the tighter
-  \(|\varphi'''|\le3kh_1h_2P^{-13/8}\) only improves the
-  constant \(35\) to \(18\).)
+  dominated. Only the second-derivative budget is used; the
+  third-derivative budget is carried so that (D3) is closed under one
+  further difference. It is essential that the budget be the
+  differenced one: a second derivative of size \(3kh_1h_2P^{-5/8}\)
+  --- the shape an *undifferenced* smooth remnant would have --- is
+  larger by \(P/(2h)\) and is *not* dominated (Claim E).
 
 *Totals.* Stages 1–6 bound \(V\) by
 \[
