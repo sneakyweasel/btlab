@@ -2,11 +2,11 @@
 
 Author: Philippe Cochin. Date: 4 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
-working draft (writeup repaired; length-5 harvest imported;
-certified density \(7/8\)); Paper C (fate contagion and the
-almost-all reformulation, 4 September 2026) is a complete draft
-whose main theorem is unconditional and whose Appendix C alone
-depends on Paper B.
+working draft (8-section journal form; Theorem 5.3 the monomial
+\(c=\tfrac{3k}4 n^{9/8}\); certified density \(7/8\)); Paper C
+(fate contagion and the almost-all reformulation, 4 September 2026)
+is a complete draft whose main theorem is unconditional and whose
+Appendix C alone depends on Paper B.
 
 This folder is a snapshot of the files to send for external review. It
 is not the laboratory. No termination theorem is claimed.
@@ -59,21 +59,18 @@ https://sneakyweasel.github.io/balanced_ternary/
    depth-4 parity equidistribution for odd-rooted itineraries, the
    length-5 contractors, and the certified-descent densities
    \(13/16\) (four steps) and \(7/8\) (five steps). Human proofs.
-   Revised 3 September 2026 after a first external review, and
-   repaired 4 September 2026 (frozen-shape interpolants): a full
-   audit of Sections 4–6 (Appendix A, one row per displayed
-   estimate; machine layer `research.juggler_sequence.paper_b_audit`
-   — exact identities at 60–120 digits, standing estimates on three
-   scales, 91 exponent checks) with five corrections that change no
-   statement (Lemma 4.3 proof coefficient, the norm named in
-   Lemma 3.9, two displayed remainders in Lemma 6.2, Lemma 5.2b,
-   Theorem 6.1 Step E composites \(243/512\) and \(1095/1024\)); new Section 4.5
-   proving Theorems 4.4 and 4.7 on sub-dyadic intervals of length
-   \(\ge P^{1/2}\) with a slow twist (Theorems 4.11–4.12, Corollary
-   4.13 — the \(OOEEE\) production that Paper C's Appendix C uses);
-   new Section 7.6 on what the kernel program buys for termination
-   and what it cannot; novelty and "certificate density" phrasing
-   tightened. Two more exact identities in Lean
+   Eight-section journal form, 4 September 2026. Theorem 5.3 is the
+   monomial \(c=\tfrac{3k}4 n^{9/8}\); the frozen zero-offset
+   coefficient is \(B=-\tfrac9{32}k\beta_1\beta_2\nu^{-9/8}\) with
+   \(\lvert B\rvert\le6\); \(\rho_0\) ratios are \(O(P^{-1/4})\).
+   Companion audit ledger
+   [paper_b_audit_ledger.md](paper_b_audit_ledger.md) and
+   `research.juggler_sequence.paper_b_audit` (98 exponent checks).
+   Section 3.5 proves Theorems 4.4 and 4.7 on sub-dyadic intervals of
+   length \(\ge P^{1/2}\) with a slow twist (Theorems 4.11–4.12,
+   Corollary 4.13 — the \(OOEEE\) production that Paper C's Appendix C
+   uses); Section 8 records what the kernel program buys for
+   termination and what it cannot. Two more exact identities in Lean
    (`carry_eq_fract_add_sub_fract`, `second_difference_product_rule`).
    Length 7/8 remain laboratory conjectures.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)
@@ -97,7 +94,7 @@ https://sneakyweasel.github.io/balanced_ternary/
    defined and the walk argument labelled a heuristic; a narrowly
    stated depth-uniformity budget. Appendix C (exponent \(0.5392\),
    \(C\ge 18\)) is conditional on the standalone Hypothesis L, the
-   only import from Paper B (now its Theorem 4.12, Section 4.5, still
+   only import from Paper B (now its Theorem 4.12, Section 3.5, still
    an unrefereed working draft), with the downstream derivations
    written out. Proposition 4.4 now carries the explicit constant
    \(C_0=250\). Three figures (dependency map, productions,
@@ -111,7 +108,7 @@ Markdown sources:
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md),
 [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
 and [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md).
-Paper B's Section 7 figure is
+Paper B's Section 8 figure is
 [figures/juggler_frontier.png](figures/juggler_frontier.png).
 
 ## Optional Lean map

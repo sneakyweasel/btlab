@@ -23,8 +23,8 @@ proof reorganizes the phase by an exact linearization —
 one-signed remainder, a Taylor rewrite that keeps the integer \(m\)
 linear with a smooth coefficient — and funnels the deeper patterns
 into a single *kernel*: the exponential sum of the level-2 floor
-defect \(\{\lfloor n^{3/2}\rfloor^{3/2}\}\) against smooth weights of
-scale \(n^{9/8}\). The fundamental obstruction inside that kernel is
+defect \(\{\lfloor n^{3/2}\rfloor^{3/2}\}\) against the monomial
+weight \(c=\tfrac{3k}4 n^{9/8}\). The fundamental obstruction inside that kernel is
 the exact level-2 wave \(e(q\lfloor n^{3/2}\rfloor^{3/2})\) riding a
 frozen floor; Lemma 5.2 bounds these mixed pieces by
 \(|q|^{-1/6}P^{23/24+\varepsilon}\), uniformly enough for depth four,
@@ -32,7 +32,7 @@ and the central result (Theorem 5.3), \(K_c\ll P^{1-1/96+\varepsilon}\),
 follows by double Weyl differencing over an exact carry-branch
 decomposition and master identity. Both theorems are stated and proved
 on sub-dyadic intervals of length \(\ge P^{1/2}\) as well, with a
-slowly varying twist attached (Section 4.5), which is the form a
+slowly varying twist attached (Section 3.5), which is the form a
 companion paper needs.
 
 The sequences arise as the itineraries of the Juggler map
@@ -81,7 +81,7 @@ The difficulty is genuinely one of composition. Writing
 sawtooth of *growing* amplitude \(n^{3/4}\) inside the phase. No
 estimate for exponential sums with smooth monomial phases applies; the
 phase is not smooth, and the sawtooth cannot be discarded. All results
-in the single-floor literature stop before this point (Section 2).
+in the single-floor literature stop before this point (Section 1.2).
 
 Two ideas carry the paper.
 
@@ -104,7 +104,7 @@ Two ideas carry the paper.
    \[
    K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
    e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr),
-   \qquad c\asymp kP^{9/8}.
+   \qquad c(n)=\tfrac{3k}4 n^{9/8}.
    \]
    After two Weyl differencings over an exact carry-branch
    decomposition, the master identity (Lemma 5.1) leaves no growing
@@ -115,12 +115,12 @@ Two ideas carry the paper.
    the result that overcomes it: a bound \(|q|^{-1/6}P^{23/24+\varepsilon}\)
    for these mixed pieces by a targeted third differencing, exactly
    depth-2 strength, which is what pins the kernel saving at
-   \(1/96\). We then prove \(K_c(P)\ll P^{1-1/96+\varepsilon}\),
-   uniformly for \(k\le P^{1/24}\) (Theorem 5.3). This is the hardest
-   result of the paper, and Section 5 is written at full length —
+   \(1/96\). We then prove \(K_c(P)\ll P^{1-1/96+\varepsilon}\) for
+   \(c=\tfrac{3k}4 n^{9/8}\), uniformly for \(1\le k\le P^{1/24}\)
+   (Theorem 5.3). This is the hardest
+   result of the paper, and Section 4 is written at full length —
    every estimate displayed with its constant — so that it can be
-   checked without reference to anything outside this manuscript;
-   Appendix A records a re-derivation of every displayed estimate.
+   checked without reference to anything outside this manuscript.
 
 With the kernel theorem, depth-4 parity equidistribution for
 odd-rooted itineraries is complete (Theorem 6.1): the eight
@@ -131,7 +131,7 @@ the two length-five contractors \(OOOEE\) and \(OOEOE\)
 \(7/8\) (Corollary 6.4). The leftover eighth is the expanding
 length-five tree \(OOEOO\cup OOOEO\cup OOOO*\): the first two of those
 itineraries are counted and do not contract, and \(OOOO*\) is the
-level-3 kernel. Section 4.5 proves the depth-\(\le3\) theorems on
+level-3 kernel. Section 3.5 proves the depth-\(\le3\) theorems on
 sub-dyadic intervals of length \(\ge P^{1/2}\) with a slowly varying
 twist attached, the form in which the companion paper [24] uses them.
 
@@ -164,7 +164,7 @@ touch the Juggler conjecture, whose analogue of Terras's almost-all
 theorem for Collatz [4, 5, 6] remains open; see Lagarias [3] for the
 Collatz survey. A second companion paper [24] shows what the
 termination problem needs from parity statistics — control at depth
-of order \(\log\log n\), not at any fixed depth — and Section 7.6
+of order \(\log\log n\), not at any fixed depth — and Section 8
 records what the fixed-depth results of this paper do and do not
 contribute to it.
 
@@ -182,41 +182,18 @@ deterministic shift; the deterministic instance (Conjecture 7.5) is
 open, and we record in three sentences why the obvious shortcuts
 fail.
 
-### 1.1 Verification and evidence conventions
+### 1.1 Verification
 
-Every theorem in this paper is an ordinary human proof from the stated
-classical inequalities; none is machine-checked, and no numerical
-computation is used as a step in any proof below. Every exact identity
-used — the parity bridge \(\lfloor x\rfloor\) odd iff
-\(\{x/2\}\ge1/2\), the gap-cell identity, the double-gap identity, the
-master identity of Lemma 5.1, and the fifth-letter identities of
-Lemma 6.2 — is printed in the text with its proof. A companion
-repository (Section 8) contains machine formalizations and numerical
-probes of several of these identities;
-nothing in this paper depends on it. Densities of certificate classes
-are never densities of starts that reach \(1\).
+Every theorem below is a human proof from the stated classical
+inequalities. No numerical computation is a proof step. A companion
+repository records machine checks of the exact identities and a
+row-by-row audit ledger
+([paper_b_audit_ledger.md](paper_b_audit_ledger.md)); nothing in this
+paper depends on it. Certificate densities are never densities of
+starts that reach \(1\). The reconstruction of Lemma 5.2 is the
+author's, not an independent verification.
 
-After a first external review, Sections 4–6 were re-derived estimate
-by estimate: every displayed constant of the kernel argument was
-recomputed by hand from its stated inputs, every exact identity
-(Lemmas 4.3, 5.1, 6.2) was evaluated at high precision on random
-starts, the standing estimates and inventories were compared with
-observed values on three scales, and every displayed \(P\)-power
-comparison of Section 5 was checked as an exact rational statement.
-Appendix A records the outcome, one row per estimate. Five items
-were corrected (a coefficient in the proof of Lemma 4.3, the norm
-named in Lemma 3.9, two absorbed remainders in Lemma 6.2, the
-zero-offset interpolant of Step 5b, which had differentiated the
-moving gaps instead of holding them frozen: Lemma 5.2b, and
-Theorem 6.1 Step E, which had differentiated the moving total
-phase \(\tfrac k2\nu^{27/8}\) instead of the frozen difference
-\(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\)); no
-statement of Theorem 5.3 or Theorem 6.1 changed. This is a
-re-derivation by the author with machine assistance, not an
-independent verification; the theorems remain human proofs and are
-labelled as such.
-
-## 2. Related work
+### 1.2 Related work
 
 **Single floors.** The distribution of \(\lfloor n^c\rfloor\)
 (\(c>1\), \(c\notin\mathbb N\)) in arithmetic progressions and among
@@ -257,7 +234,7 @@ complete distributional theory via nilmanifolds; but that theory is
 confined to maps generated by *polynomials*, and \(n^{3/2}\) is not
 one: no nilsystem models \(\{f(\lfloor g(n)\rfloor)\}\) for convex
 non-polynomial powers \(f,g\), and the growing-amplitude sawtooth that
-drives Sections 4–6 has no analogue there. We are unaware of a
+drives Sections 3–6 has no analogue there. We are unaware of a
 published power-saving estimate for
 \(\sum e(\xi\{f(\lfloor g(n)\rfloor)\})\)-type sums, or for the
 fractional parts \(\{f(\lfloor g(n)\rfloor)\}\), with \(f,g\) convex
@@ -281,7 +258,7 @@ convex case \(n^{3/2}\) does not.
 **What is not covered.** We are unaware of a published
 equidistribution or parity result for *nested* floor powers
 \(\lfloor\lfloor n^{c}\rfloor^{d}\rfloor\) with \(c,d>1\), or of a
-treatment of the level-2 defect sums \(K_c(P)\) of Section 5. We do
+treatment of the level-2 defect sums \(K_c(P)\) of Section 4. We do
 not make the novelty of this paper depend on that survey. What is new
 here, independently of the literature, is a specific object and a
 specific bound: the level-2 defect kernel
@@ -316,7 +293,7 @@ Ch. 8]. The indicator expansions use Vaaler's extremal functions [10],
 and the discrepancy bridge is the Erdős–Turán inequality in the form
 of Kuipers–Niederreiter [8].
 
-## 3. Preliminaries
+## 2. Exact linearization and the parity bridge
 
 Throughout, \(n\) denotes an odd integer, \(e(t)=e^{2\pi it}\),
 \(\{x\}\) the fractional part, and \(\psi(x)=(-1)^{\lfloor x\rfloor}\).
@@ -463,14 +440,14 @@ cylinder, the vanishing of an earlier factor kills the term, and on
 the cylinder every factor computes the true letter.
 
 The last three preliminaries are the remaining analytic tools of
-Section 5: a finite Fourier expansion for sawtooth phases whose
+Section 4: a finite Fourier expansion for sawtooth phases whose
 coefficient may exceed \(1\); a second-derivative test for two-term
 monomial phases in which the curvature transition — the short set
 where the two curvatures cancel — receives a trivial bound; and a
 sublevel splitting for three-term monomial phases, again with the
 transition set destined for a trivial bound. No third- or
 fourth-derivative exponential-sum test is used anywhere in this
-paper: on the short cells of Section 5 those tests do not sum, and
+paper: on the short cells of Section 4 those tests do not sum, and
 the transition sets are cheaper to measure than to oscillate over.
 A final remark fixes the parity reindexing once and for all.
 
@@ -627,9 +604,9 @@ is invertible — so the transition set where the second-derivative
 test fails is short, and *measuring* it costs less than any attempt
 to oscillate over it: crucially, the transition cost \((P/M)^{1/3}\)
 carries no factor \(|I|\), so it sums over many short cells. All
-applications in Section 5 use exponent pairs from
+applications in Section 4 use exponent pairs from
 \(E=\{\tfrac34,\tfrac54,\tfrac{11}8,\tfrac32,\tfrac{15}8\}\). One
-corner of Section 5 (three curvature scales meeting on a zero-offset
+corner of Section 4 (three curvature scales meeting on a zero-offset
 branch) needs the three-term analogue, which we state directly as a
 sublevel bound: there the transition set is measured once against a
 global smooth model, and only the second-derivative test is ever
@@ -744,11 +721,11 @@ the \(n\)-line, and a set of total length \(\Lambda\) contains at
 most \(\Lambda/2+C(E)\) odd integers, so trivial bounds displayed in
 \(n\)-length dominate.
 
-Every application of Lemmas 3.3 and 3.7–3.9 in Sections 4–6 is to be
+Every application of Lemmas 3.3 and 3.7–3.9 in Sections 3–6 is to be
 read through this substitution; no displayed constant below needs
 adjustment.
 
-## 4. Exact linearization and depths one to four
+## 3. Depths one to three
 
 For odd \(n\) write \(s(n)=\psi(n^{3/2})=(-1)^m\) and
 \(S_O(N)=\sum_{n\le N,\ n\ \mathrm{odd}}s(n)\). Let \(M(N)\) be the
@@ -1233,7 +1210,7 @@ drift-1 interval exists. Sections 5 and 6 close that split. The
 certified density remains \(13/16\); the next increment is the two
 length-five contractors of Theorem 6.3.
 
-### 4.5 Localization to sub-dyadic intervals and slow twists
+### 3.5 Localization to sub-dyadic intervals and slow twists
 
 Theorems 4.4 and 4.7 are stated on dyadic blocks. Two applications
 outside this paper need them on shorter intervals and with a slowly
@@ -1507,7 +1484,7 @@ and the recursion gains the term \(\tfrac19g(9t/32)\), raising the
 contagion exponent from \(0.4050\) to \(0.4922\). Nothing in this
 subsection is used in Sections 5–7.
 
-## 5. The level-2 wave and the kernel theorem
+## 4. The level-2 wave and the kernel theorem
 
 The reader should hold one object in mind through this section: the
 exact level-2 wave \(e(qY)\), \(Y=\lfloor n^{3/2}\rfloor^{3/2}\), a
@@ -1525,7 +1502,7 @@ kernel theorem proportionally, and no other part of the argument is
 close to its limit.
 
 Every reorganization of the \(OOO*\) phase funnels into one object:
-for smooth weights \(c\) of scale \(kP^{9/8}\) on \(n\sim P\),
+for the monomial weight \(c(n)=\tfrac{3k}4 n^{9/8}\) on \(n\sim P\),
 \[
 K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
 e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
@@ -1736,8 +1713,7 @@ mean value: for any shift \(2h\),
 \]
 so that every level-1 gap integer at shift \(2h\) is
 \(\asymp hP^{1/2}\) with the displayed constants. For the monomial
-weight \(c=\tfrac{3k}4n^{9/8}\) (the general \(c\) of Theorem 5.3
-changes only the absolute constants),
+weight \(c=\tfrac{3k}4n^{9/8}\) of Theorem 5.3,
 \[
 \text{(E3)}\quad
 c'=\tfrac{27}{32}kn^{1/8},\quad
@@ -2071,8 +2047,12 @@ margin against the Stage-4 curvature
   there).   The \(\theta\)-coefficient of the decoration is
   \(\le|q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
   \le24P^{1/24-1/4}+160P^{1/24+1/8+1/24-3/4}
-  =24P^{-5/24}+160P^{-13/24}<1\): sub-unit, expanded
-  in the Stage-2 families. Its smooth curvature has ratio
+  =24P^{-5/24}+160P^{-13/24}\).
+  This is \(O(P^{-5/24})\), hence \(\lvert B\rvert\le1\) for
+  \(P\ge P_0\); Lemma 3.7 at \(T=P^{1/2}\) applies either way
+  (even a constant-size leftover would satisfy
+  \(T\ge8(1+\lvert B\rvert)\)). The modes are expanded in the
+  Stage-2 families. Its smooth curvature has ratio
   \(\le|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)
   /(0.30uhP^{-3/4})\le80P^{1/24-1/2}+672P^{1/24+1/24-1}
   \le P^{-1/4}\): dominated.
@@ -2146,7 +2126,23 @@ all times \(P^{\varepsilon}\).
 | (D3) | dominated at \(P^{-3/4}\) | Stage 4 |
 
 No decoration class is used later unless it appears in this
-table. \(\square\)
+table.
+
+*Checklist (author reconstruction, not an independent
+verification).* The third-Weyl parameter is admissible:
+\(1\le h_3\le H_3=\lceil t^{1/3}P^{1/12}\rceil\le3P^{7/72}\le P^{1/4}\)
+at \(t\le16P^{1/24}\). After that differencing, (D1) is the
+telescoped \(q_d\Delta_{2h_3}\Delta_{|d-e_1|}Y\) with
+\(h'\le2P^{1/24}\); (D2) is \(-\varepsilon_0\Delta_{2h_3}(c\lfloor F\rfloor)\);
+(D3) is \(\Delta_{2h_3}\varphi\) with
+\(\lvert(\Delta_{2h_3}\varphi)''\rvert\le6kh_1h_2h_3P^{-13/8}
+\le3kh_1h_2P^{-5/8}\). Collision windows are only the band
+\(0.1\,uhP^{-1/4}\le\lvert w\rvert\le10.2\,uhP^{-1/4}\) of Stage 5,
+and only in regime (s2). On a cell the integer \(G=\lfloor\delta_h\rfloor\)
+is held frozen; the smooth remainder \(A_h\) does not differentiate
+a frozen gap. Lemma 3.9 is not used in (i) or (ii); it is used
+only on the global interpolant \(\Phi\) of Lemma 5.2b. Every
+\(k,h_1,h_2\) dependence passes through (C1)--(C3). \(\square\)
 
 The balance to keep in mind: with the trivial bound
 \(|V_{h_3}|\le P\), part (ii)'s differencing returns nothing beyond
@@ -2162,20 +2158,14 @@ run-boundary cost \((h/u)^{1/2}P^{7/8}\), summed against the
 
 The remaining object that Theorem 5.3 must not confuse with
 Lemma 5.2 is the *zero-offset anchor*: the phase
-\(c(G_F-J_F)\) on a branch with \(j=0\). Two second derivatives
-are available, and they are not equal. On a cell the integers
+\(c(G_F-J_F)\) on a branch with \(j=0\). On a cell the integers
 \(\beta_1,\beta_2,J_F\) are frozen, so
 \((cG_F)''=c''G_F+2c'G_F'+cG_F''\) is computed with those
-integers held constant while \(X(\nu)\) and \(c(\nu)\) move. Globally,
-to apply the three-term sublevel lemma, one needs a smooth model
-on the whole block. The only legitimate interpolant is the same
-frozen-shape formula with the smooth gap values \(\Delta_iX(\nu)\)
-*substituted as numbers*, not differentiated. Differentiating
-\(F_{\mathrm{sm}}(\nu)=\tfrac34(\Delta_1X)(\Delta_2X)X^{-1/2}\)
-instead produces \(\partial_\nu\beta\) terms that the local \(f''\)
-does not contain; that was the previous writeup of Step 5b, and it
-is withdrawn. The next lemma records the frozen-shape computation
-once, so that Step 5b is only a classification of scales.
+integers held constant while \(X(\nu)\) and \(c(\nu)\) move. The
+interpolant used on the whole block is the same frozen-shape
+formula with the smooth gap values \(\Delta_iX(\nu)\) substituted
+as numbers, not differentiated. The next lemma records that
+computation, so that Step 5b is only a classification of scales.
 
 **Lemma 5.2b (frozen-shape interpolant on a zero-offset piece).**
 Assume (C1)–(C3) and \(j=0\). Work on a common-refinement piece of
@@ -2333,10 +2323,31 @@ b\cdot\tfrac{11}8\cdot\tfrac38
 =-\tfrac{405}{176}\cdot\tfrac{33}{64}
 =-\tfrac{1215}{1024}.
 \]
-The window mode is exactly \(wX''=\tfrac34w\nu^{-1/2}\). The
-relative errors \(O(hP^{-1})\) and
-\(\lvert\tfrac12 c''\rvert/B_{\mathrm{lead}}=O(P^{-1/4})\)
-whenever \(kh_1h_2\ge1\) are the \(\rho_0(E)\) bounds.
+The window mode is exactly \(wX''=\tfrac34w\nu^{-1/2}\). Write
+\(r=\Lambda-\Phi''\), so that Lemma 3.9 is applied to
+\(\Phi+g\) with \(g''=r\). The remainder \(r\) is the sum of the
+mean-value errors \(O(hP^{-1})\) on the two leading monomials
+and the leftover \(\tfrac12 c''\). In the middle band of Step 5b
+one has \(S\ge0.35\,kh_1h_2P^{-5/8}\) (and \(S\ge0.35P^{-5/8}\)
+whenever \(kh_1h_2\ge1\)). The three ratios Lemma 3.9 needs are
+then, for \(P\ge P_0\),
+\[
+\frac{\lvert r\rvert}{S}
+\le C_1P^{-1/4},\qquad
+\frac{P\lvert r'\rvert}{S}
+\le C_2P^{-1/4},\qquad
+\frac{P^2\lvert r''\rvert}{S}
+\le C_3P^{-1/4},
+\]
+with absolute \(C_1,C_2,C_3\) coming from
+\(\lvert\tfrac12 c''\rvert\le0.053kP^{-7/8}\),
+\(\lvert\tfrac12 c'''\rvert\le0.047kP^{-15/8}\),
+\(\lvert\tfrac12 c''''\rvert\le0.044kP^{-23/8}\),
+and the wave remainders \(O(uh^2\nu^{-7/4})\) which are
+\(O(P^{-35/24})\) on the printed inventory. Each ratio is
+therefore \(\le\rho_0(E)=c_7/8=1/2304\) for \(P\ge P_0\).
+(The worst standing cell is \(kh_1h_2=1\); larger products
+only enlarge \(S\).)
 
 The range of \(\lambda_0\) is the same leading term against
 \(\beta_i\in(3h_iP^{1/2}-1,\,4.3h_iP^{1/2}+1)\) and
@@ -2357,13 +2368,13 @@ error of that model, which is the only comparison the sublevel
 argument uses.
 
 **Theorem 5.3 (kernel cancellation).**
-Let \(c\) be smooth on \((P,2P]\) with \(c^{(r)}\asymp kP^{9/8-r}\)
-for \(r=0,\ldots,4\), derivative signs following the monomial pattern
-(e.g. \(c=\tfrac{3k}4n^{9/8}\)), and \(1\le k\le P^{1/24}\). Then
+Let \(c(n)=\tfrac{3k}4 n^{9/8}\) with \(1\le k\le P^{1/24}\). Then
 \[
 K_c(P)\ll P^{1-1/96+\varepsilon},
 \]
-uniformly in \(k\).
+uniformly in \(k\). The cancellation in Step 5a uses the exact
+ratio of this monomial's derivatives; a two-sided scale
+\(c^{(r)}\asymp kP^{9/8-r}\) would not determine the composite.
 
 *Proof.* Work on a dyadic block \(n\sim P\), odd.
 
@@ -2514,8 +2525,8 @@ combination is an identity, not an approximation.
 *Step 5 (pieces without wave content: the anchor classes).*
 The remaining pieces carry the anchor, at most two differenced-wave
 modes \(u\,W\), \(u'W'\) (including the resonant remnants of
-Step 4, which by Lemma 5.1(iii) are smooth-per-branch with sub-unit
-\(\theta\)-coefficients), slow modes, and (D3)-smooth content.
+Step 4, which by Lemma 5.1(iii) are smooth-per-branch with
+\(\theta\)-coefficients \(O(P^{-5/24})\)), slow modes, and (D3)-smooth content.
 Split by the anchor branch type.
 
 **(5a) Offset branches (\(j\ne0\)).** The anchor curvature is,
@@ -2612,15 +2623,17 @@ differenced-wave scale present. Three regimes.
   \(\le22P^{5/16}\cdot3.4(uh_1)^{-1/2}P^{3/8}\le75P^{11/16}\); its
   smooth part is dominated at margin \(\ge20\) by hypothesis. On a
   zero-offset branch the anchor's \(\theta\)-coefficient is
-  \(c\,\partial_m F=\tfrac34 c\cdot\bigl(-\tfrac12\beta_1\beta_2
-  (m+\xi)^{-3/2}\bigr)\), hence
-  \(\lvert B\rvert\le1.2\,kh_1h_2P^{-1/8}\le1.2P^{-1/48}<1\) by
-  (C1): the sawtooth is sub-unit, Lemma 3.7 applies in a single
-  window at \(T=P^{1/2}\) (hypothesis \(T\ge8(1+|B|)\) is
-  immediate), and there is no large-\(B\) window inventory. (The
-  offset-scale amplitude \(kh_1h_2P^{3/8}\) does not occur at
-  \(j=0\).) Centre modes \(w\) are treated as in Lemma 5.2(i),
-  Stage 5. Total
+  \(B=c\,\partial_m F=-\tfrac38 c\,\beta_1\beta_2\,m^{-3/2}
+  =-\tfrac9{32}k\beta_1\beta_2\nu^{-9/8}\bigl(1+O(P^{-1/4})\bigr)\).
+  With \(\beta_i\in(3h_iP^{1/2}-1,\,4.3h_iP^{1/2}+1)\) this is
+  \(\lvert B\rvert\le5.3\,kh_1h_2P^{-1/8}\le5.3\) by (C1), opened
+  to \(\lvert B\rvert\le6\). The sawtooth is of constant size, not
+  sub-unit. Lemma 3.7 still applies in a single window at
+  \(T=P^{1/2}\), because \(T\ge8(1+\lvert B\rvert)\) is
+  \(P^{1/2}\ge56\) for \(P\ge P_0\); there is no large-\(B\)
+  window inventory. (The offset-scale amplitude
+  \(kh_1h_2P^{3/8}\) does not occur at \(j=0\).) Centre modes
+  \(w\) are treated as in Lemma 5.2(i), Stage 5. Total
   \(\ll\bigl((uh_1)^{1/2}P^{5/8}+(h_1/u)^{1/2}P^{7/8}
   +P^{7/8}\bigr)P^{\varepsilon}\).
 - *Middle band* (\(\tfrac1{60}\le\mu/\lambda_0\le60\); coefficient
@@ -2659,10 +2672,7 @@ differenced-wave scale present. Three regimes.
   \(a=-\tfrac{27}{10}(uh_1+u'h_2)\) and
   \(b=-\tfrac{405}{176}\,kh_1h_2\). The comparison
   \(V\ge10\lvert f''-\Lambda\rvert\) below is read from that
-  two-term majorant. The withdrawn model
-  \(2c'F_{\mathrm{sm}}'+cF_{\mathrm{sm}}''=\tfrac{243}{128}kh_1h_2\nu^{-5/8}\)
-  is the second derivative of the moving-gap composite and is
-  not used.
+  two-term majorant.
 
   The scale is
   \[
@@ -2750,7 +2760,7 @@ depth-2 strength \(P^{23/24}\) of the exact level-2 waves
 (Lemma 5.2(ii)); any improvement of the wave bound improves
 \(\delta\) proportionally.
 
-## 6. Application: complete depth-4 equidistribution for odd-rooted itineraries, and the length-five contractors
+## 5. Depth-four equidistribution
 
 **Theorem 6.1 (the OOO\* splits; complete depth-4 parity equidistribution for odd-rooted itineraries).**
 For \(w\in\{OOOE,OOOO\}\),
@@ -2893,9 +2903,7 @@ differenced total phase is therefore
 the Step D passengers. On a piece the integers
 \(\beta_i\), \(J_F\) are held frozen; \(X(\nu)\) and the smooth
 weights move; the values of \(\Delta_iX\) may be substituted for
-the \(\beta_i\) as *values only*. Differentiating the moving
-composite \(\tfrac k2\nu^{27/8}\) is the same error as the
-withdrawn interpolant of Step 5b, and it is not used.
+the \(\beta_i\) as *values only*.
 
 *Offset branches (\(j\ne0\)).* The frozen-shape offset content of
 \(\Delta\Delta(\tfrac k2 m^{9/4})\), with \(m=X\) as a value, is
@@ -2930,8 +2938,6 @@ mode therefore carries
 \]
 single-signed, with
 \(\lambda_a'\in[0.40,\,0.52]\,k|j|P^{-1/8}(1+O(P^{-1/8}))\).
-(The withdrawn composite \(\tfrac{405}{512}\) was
-\(\tfrac{945}{512}-\tfrac{540}{512}\), using the moving-gap \(B\).)
 The competitors of Step 5a, now read against
 \(\lambda_a'\ge0.40\,k|j|P^{-1/8}\ge0.40P^{-1/8}\), remain dominated
 for \(P\ge P_0\): differenced-wave modes
@@ -2955,8 +2961,7 @@ Summed over the eight branches and \(\lvert j\rvert\le3\) with the
 \(\ll k^{1/2}P^{15/16+\varepsilon}\le P^{1/48}P^{15/16+\varepsilon}
 =P^{23/24+\varepsilon}\) already at the kernel's \(k\le P^{1/24}\);
 the actual range \(k\le2P^{1/96}\) sits strictly inside.
-The inverse-power term grows by \(\sqrt{405/243}=\sqrt{5/3}\)
-against the withdrawn composite and remains \(P^{13/16}\).
+The inverse-power term remains \(P^{13/16}\).
 
 *Zero-offset branches (\(j=0\)).* The same frozen-shape difference,
 after \(\beta_1\beta_2\sim9h_1h_2\nu\), has leading curvature
@@ -2965,22 +2970,18 @@ after \(\beta_1\beta_2\sim9h_1h_2\nu\), has leading curvature
 =\tfrac{1095}{1024}\,kh_1h_2\,\nu^{-5/8}
 \in[0.60,\,1.25]\,kh_1h_2P^{-5/8}.
 \]
-(The coefficient is
-\(\tfrac{2190}{16929}\) of the moving monomial
-\(4h_1h_2\cdot\tfrac k2\cdot\partial_\nu^4(\nu^{27/8})
-=\tfrac{16929}{2048}kh_1h_2\nu^{-5/8}\); the audit records the
-ratio at \(P=10^6,10^7,10^8\). The withdrawn \(8.27\) is that
-moving monomial itself.) The three-regime split of Step 5b is
+The three-regime split of Step 5b is
 read at this scale. The thresholds (factor \(60\)) are
 scale-free. In the anchor-dominant regime, Lemma 3.3 per run gives
 \(\le2.0(kh_1h_2)^{1/2}P^{11/16}
 +30\,(h_1h_2/k)^{1/2}P^{9/16}\).
 In the mode-dominant regime the undifferenced-anchor decoration
 is the same as in Step 5b. The \(j=0\) \(\theta\)-coefficient of
-the *total* phase is \(O(1)\), typically in \([0.5,1.6]\):
+the *total* phase is \(O(1)\), of the same species as the
+kernel's zero-offset \(B\) (constant size, \(\lvert B\rvert\le6\)):
 Lemma 3.7 applies in a single window at \(T=P^{1/2}\)
 (hypothesis \(T\ge8(1+\lvert B\rvert)\) holds for
-\(\lvert B\rvert\le2\)). In the middle band the frozen-shape
+\(\lvert B\rvert\le6\)). In the middle band the frozen-shape
 interpolant of Lemma 5.2b is reused with the kernel-anchor
 leading \(-\tfrac{1215}{1024}kh_1h_2\nu^{-5/8}\) replaced by
 \(-\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\), so
@@ -3031,6 +3032,8 @@ layer. After \(OOOE\) the fifth letter is a decaying nest plus one
 slow sawtooth of coefficient \(n^{3/16}<n\); after \(OOEO\) it is
 a single growing sawtooth of coefficient \(n^{9/16}<n\), of the
 same species as Theorem 4.8. Theorem 6.3 counts both cylinders.
+
+## 6. Depth-five contractors
 
 **Lemma 6.2 (fifth-letter identities).**
 Let \(n\ge5\) be odd, and write \(z=\lfloor v^{3/2}\rfloor\),
@@ -3101,7 +3104,7 @@ coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 \]
 Of these four words only \(OOOEE\) and \(OOEOE\) contract. All
 estimates below are for \(P\ge P_0\), with the same ineffective
-\(P_0\) as in Section 5.
+\(P_0\) as in Section 4.
 
 *Proof.* \(OOOE*\). By Lemma 3.6 the class indicators are the
 \(OOOE\) indicator of Theorem 6.1 times
@@ -3322,7 +3325,7 @@ hypothesis; summing gives the count. The density-one statement
 follows by letting \(d\to\infty\) slowly with \(N\) (any
 \(d(N)\to\infty\) with \(2^dE_d(N)/N\to0\)). \(\square\)
 
-Sections 4–6 prove the hypothesis at every depth \(d\le4\), so the
+Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.
 Corollary 6.4 raises the certified class to certificate density \(7/8\) without
 counting every depth-5 word. The first open counting case is the
@@ -3478,7 +3481,7 @@ The open question, stated once:
 > counting case is the \(OOOO*\) kernel of Conjecture 7.3, whose
 > deterministic model instance is Conjecture 7.5.
 
-### 7.6 What the kernel program buys, and what it cannot
+## 8. Relation to the Juggler map
 
 The companion paper [24] reduces the termination problem to one
 statement about parity words and makes precise which statistics it
@@ -3490,7 +3493,7 @@ contagion recursion of [24] as a production: a word \(w\) of fair
 probability \(P_w\) landing at scale \(x^{e_w}\) contributes
 \((P_w/e_w)\,g(e_wt)\), provided its cylinder is counted on the
 preimage intervals of the landing points — intervals of length
-\(x^{1-e_w}\), which is why Section 4.5 localizes Theorems 4.4 and 4.7
+\(x^{1-e_w}\), which is why Section 3.5 localizes Theorems 4.4 and 4.7
 to sub-dyadic intervals. Through Corollary 4.13 the \(OOEEE\)
 production on even blocks raises the contagion exponent from
 \(\lambda^{**}=0.4480\) to \(\lambda^{***}=0.5392\), the rate threshold
@@ -3523,7 +3526,7 @@ per-cylinder route, an analytic method whose saving exponent loses a
 factor \(2^{c}\) per depth reaches the required depth only if
 \(cC<1\), i.e. \(c<1/19\), whereas Weyl differencing loses \(c\ge1\)
 (this paper's chain \(\tfrac1{24}\to\tfrac1{96}\) from depth three to
-four is \(c=2\)). The differencing machinery of Sections 4–6 cannot
+four is \(c=2\)). The differencing machinery of Sections 3–6 cannot
 therefore be iterated to the termination frontier, however far the
 kernel program is pushed; what would be needed is a saving uniform in
 the depth up to a factor \(2^{d/19}\), or a direct treatment of the
@@ -3540,86 +3543,14 @@ that the termination question is.
 
 ![The theorem flow of the paper. The exact finite-itinerary calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
 
-## 8. Software note
-
-A repository accompanies the paper:
-[https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
-It is not required to read or check any proof above. It contains Lean
-formalizations of the exact floor identities cited in Section 1.1 and
-of the companion manuscript's finite-itinerary theorems, scaled-integer
-validations of the linearization identities of Lemmas 4.3, 4.6, 5.1,
-6.2, and 7.2, and exact-phase numerical probes of the sums \(K_c\),
-\(K_3\), and the differenced sums of Lemma 5.2 and Theorem 5.3, all
-of which exhibit cancellation at square-root scale — stronger than
-the theorems claim and stronger than they need. The same companion
-records scaled-integer gates for the exact identities of
-Section 1.1 and the named numerical margins of Section 5
-(Lemma 3.7 / Lemma 5.2 window hypotheses, the Lemma 5.2b
-frozen-shape interpolant and its two-term majorant, and the
-Lemma 5.2 coefficient budget). Probes and
-validations are checks, not proofs, and no statement in this paper
-depends on them. In particular they are not evidence for
-Conjecture 7.3 or Conjecture 7.5. The audit of Appendix A is the
-module `research.juggler_sequence.paper_b_audit`, with its artifact
-`data/research/juggler/paper_b_audit/summary.json`.
-
-## Appendix A. Audit ledger
-
-This appendix records a re-derivation of Sections 4–6, made after a
-first external review, in the form a referee can use: one row per
-displayed estimate of the kernel argument, with the check performed
-and its outcome. Two kinds of check appear. *Hand*: the estimate was
-re-derived from its stated inputs, with the constant recomputed.
-*Script*: the exact identities were evaluated at \(60\)–\(120\)
-digits on \(360\) random odd starts across \(10^4\le n\le 2\cdot10^{14}\),
-the standing estimates and inventories on the blocks
-\(P=10^6,10^8,10^{10}\) (and, for cell counts, exhaustively at
-\(P=10^5\)), and every displayed \(P\)-power comparison of Section 5
-as an exact rational statement
-(`research.juggler_sequence.paper_b_audit`, \(91\) exponent checks;
-artifact `data/research/juggler/paper_b_audit/summary.json`). A
-script check confirms consistency of what is printed; it is not a
-proof, and this appendix is not an independent human verification.
-Five items were corrected; none changes a statement of
-Theorem 5.3 or of Theorem 6.1.
-
-| Item | Check | Outcome |
-|---|---|---|
-| Lemma 4.3(i), one-signed remainder \(0\le E\le\tfrac38(X-1)^{-1/2}\) | hand; script (360 samples) | **corrected proof text**: \(f''=\tfrac34(X-t)^{-1/2}\), so the Lagrange term is \(\tfrac38(X-\xi)^{-1/2}\theta^2\) directly; the statement was already right and the former "missing factor of 2" sentence is removed |
-| Lemma 4.3(ii), gap identity \(g=\lfloor\delta\rfloor+\kappa\) | hand; script; Lean `floor_gap_eq_carry` | consistent |
-| Lemma 5.1(i), \(0\le R\le\tfrac3{16}v^{-1/2}\) | hand (Taylor of \((v+\theta_2)^{3/2}\)); script | consistent |
-| Lemma 5.1(ii), double-gap identity and carry as sawtooth difference | hand (two applications of the gap identity); script; Lean `seq_floor_gap_second`, `carry_eq_fract_add_sub_fract` | consistent |
-| Lemma 5.1(iii), \(\Delta\Delta Y=F_{\boldsymbol\kappa}(m)\), \(\lvert j\rvert\le3\), split into offset and second-difference brackets with bounds \([1.5,2.6]\lvert j\rvert P^{3/4}\), \([1.4,15]h_1h_2P^{1/4}\), \(\lvert G'\rvert\), \(\lvert G''\rvert\), run count \(22(\lvert j\rvert{+}1)P^{3/4}\) | hand (mean values: \([1.5,2.52]\), \([4.0,13.5]\), \(\lvert G'\rvert\le1.6\lvert j\rvert P^{-1/4}+14.4h_1h_2P^{-3/4}\)); script (all samples in range; \(\lvert G'\rvert\) at most \(0.56\) of the bound; runs \(\le\) bound at \(P=10^5\)) | consistent |
-| Lemma 5.1(iv), master identity, brackets \(\le2\), product rule over four base points | hand (four-point expansion); script (exact on 360 samples); Lean `second_difference_product_rule` (the algebraic skeleton) | consistent |
-| Standing estimates (E1)–(E6) | hand ((E5) speed constant \(\tfrac{27}8h_1n^{1/4}\in(3.4,4.0]h_1P^{1/4}\); (E6) constant \(\tfrac98\cdot\tfrac{15}8\cdot\tfrac78=\tfrac{945}{512}\)); script (observed ranges inside every printed interval at three scales; (E6) ratio within \(10^{-3}\) of \(1\)) | consistent |
-| Cell inventory \(1.5hP^{1/2}+1\), lengths \([\tfrac23,0.95]P^{1/2}/h\) | hand (\(\delta_h'\in(1.06,1.5]hP^{-1/2}\)); script (exhaustive at \(P=10^5\), \(h\le3\): \(394\), \(787\), \(1179\) cells against \(475\), \(950\), \(1424\)) | consistent |
-| Lemma 5.2(ii) from (i): \(H_3=\lceil t^{1/3}P^{1/12}\rceil\), the four terms, \(t\le16P^{1/24}\), \(H_3\le P^{1/4}\), (D3) after differencing | hand (all four exponent identities and constants \(6,\ 96,\ 11\)); script | consistent |
-| Lemma 5.2(i) Stage 1: \(A_h=-\tfrac{27}8h^2\nu^{1/4}(1+O(hP^{-1}))\), \(B\in(1.89,2.25]uhP^{-1/4}\) | hand (second-order Taylor; the two \(\nu^{5/4}\) terms cancel exactly) | consistent |
-| Stage 2: cells, majorant \(4P^{3/4}\), exact shift device | hand (cells, majorant); the shift device is the Theorem 4.4 Step 4 argument, cited not re-derived | consistent |
-| Stage 3: (s1) \(\lvert B\rvert\le2.25P^{-1/16}\), \(T\ge8(1+\lvert B\rvert)\); (s2) windows \(0.6P^{1/4}+1\), boundary \(2.1P^{17/32}\), flat \(27P^{3/4}\) | hand (boundary recomputed as \(2.0P^{17/32}\)) | consistent |
-| Stage 4: curvature \([0.30,1.35]uhP^{-3/4}\), sums \(2.3(uh)^{1/2}P^{5/8}+2.8(h/u)^{1/2}P^{7/8}\) | hand (\([0.354,1.21]\); \(1.16\), \(2.74\)) | consistent |
-| Stage 5: thresholds \(10.2\), \(0.1\); collision sums \(3.4\), \(4.5\), \(2.5\); exponent \(37/48\) | hand (\(3.3\), \(3.5\), \(1.9\)) | consistent |
-| Stage 6: (D1) coefficients \(24P^{-5/24}\), \(160P^{-13/24}\), ratios \(80P^{1/24-1/2}\), \(672P^{1/12-1}\); (D2)(a) flat \(23P^{19/24}\); (D2)(b) drift \(13hP^{-1/4}\); (D3) \(20P^{-3/4}\) | hand (\(667\) for \(672\)) | consistent |
-| Theorem 5.3 Step 1: (C1)–(C3) room \(P^{-1/48}\); balance \(23/24\to1-1/48\to1-1/96\) | hand; script | consistent |
-| Step 2: \(\lvert M_1\rvert\le0.43kh_1h_2P^{-7/8}\), deletion cost \(2.7P^{1/4}\) | hand; script (\(M_1\) bound on all samples) | consistent |
-| Step 3a: windows \(2kh_2P^{1/4}+1\), hypothesis \(T\ge8(1+\lvert B\rvert)\), flat \(46P^{3/4}\), modes \(uh_1\le P^{1/2}\), boundaries \(7P^{17/24}\); 3b: \(\lvert(\Delta_2c)''\rvert\le0.19kh_2P^{-15/8}\), majorant \(4P^{23/24}\) | hand (window count \(0.22kh_2P^{1/4}+1\)) | consistent |
-| Step 4: weight sum \(\sum_t t^{-7/6}\log^2t<\infty\); \(\lvert t\rvert\) inside the Lemma 5.2 budget | hand | consistent |
-| Step 5a: \(\lambda_a\) constant \(\tfrac{945}{512}-\tfrac{27}{64}=\tfrac{729}{512}\), range \([1.2,1.5]k\lvert j\rvert P^{-1/8}\); competitor ratios; windows \(1.2k\lvert j\rvert P^{3/8}+1\); boundary \(1.1(k\lvert j\rvert)^{1/2}P^{7/16}\); collision sums \(2.5\), \(2.2\), \(1.8\); run sums \(1.3\), \(21\); total \(1.8P^{23/24}\) | hand (range \([1.31,1.42]\); windows \(0.17k\lvert j\rvert P^{3/8}+1\); sums \(2.45\), \(2.2\), \(1.8\); runs \(1.22\), \(20.2\)) | consistent |
-| Step 5b / Lemma 5.2b: local frozen \((cG)''=-\tfrac{135}{1024}k\beta_1\beta_2\nu^{-13/8}\) (three chain-rule terms \(81-972+756\)); \(\lambda_0\in[0.35,2.6]kh_1h_2P^{-5/8}\); interpolant is frozen-shape (values of \(\Delta_iX\) substituted, not differentiated); \(a=-\tfrac{27}{10}\), \(b=-\tfrac{405}{176}\); error \(219P^{-25/24}+0.11P^{-5/6}\); \(S\in[0.35P^{-5/8},300P^{-1/2}]\); \(V=3S^{1/2}P^{-11/24}\), \(V/S\le5.1P^{-7/48}\), \(V\ge1.7P^{-37/48}\); transition \(2.3P^{89/96}\) | hand; script (frozen \((cF)''\) matches \(135/1024\) on \(j=0\) samples; the moving-gap \((cF_{\mathrm{sm}})''\) matches \(243/128\) and is *not* the local curvature) | **corrected architecture**: the previous interpolant differentiated the moving gaps and used the wrong leading coefficient \(\tfrac{243}{128}\) and the wrong range \([1.0,5.0]\); Theorem 5.3's exponent is unchanged |
-| Lemma 3.9 constant for the triple \((\tfrac54,\tfrac{11}8,\tfrac32)\) | hand and exact inverse | **corrected**: the inverse's \(\ell^\infty\) operator norm is \(232\); the printed \(288\) is its \(\ell^1\) norm; \(c_7=1/288\le1/232\) remains valid, so Step 5b is unchanged |
-| Step 6 assembly | hand; script | consistent |
-| Theorem 6.1 Step E: frozen-shape total phase \(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\); offset leftover \(\tfrac{81}{512}\), window-centre \(\tfrac{81}{128}\), composite \(\tfrac{243}{512}\); \(B=\tfrac{27}{32}kj\nu^{3/8}\); zero-offset \(\lambda_0'=\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\); interpolant \(b'=-\tfrac{365}{176}\) | hand; script (offset tot/81 and \(B/(kj\nu^{3/8})\) near \(1\) and \(27/32\); zero-offset tot against \(16929/2048\) near \(2190/16929\)) | **corrected architecture**: the previous composites \(405/512\) and \(8.27\) differentiated the moving total phase \(\tfrac k2\nu^{27/8}\); the \(1-1/96\) exponent is unchanged |
-| Lemma 6.2, remainder bounds | hand | **corrected**: the two Lagrange remainders (orders \(n^{-45/16}\), \(n^{-81/16}\)) are now displayed instead of being absorbed into coefficients that have no slack when \(\theta_2\) or \(\theta_z\) is close to \(1\); Theorem 6.3 uses only the order of magnitude |
-| Kernel sum \(K_c(P)\), \(k=1\), \(P\le3\cdot10^5\), and the wave \(\sum e(Y(n))\) | script, OBSERVATION | \(\lvert K_c\rvert\) between \(0.4\) and \(1.2\) times \(\sqrt{P/2}\): square-root scale, far below \(P^{1-1/96}\); the wave likewise; neither is evidence for the theorem's exponent, only consistent with it |
-
-*What was not re-derived.* The constants \(C(E)\), \(\rho_0(E)\) of
-Lemmas 3.8–3.9 are structural and were checked for form, not
-recomputed; the exact shift device of Theorem 4.4, Step 4, and the
-\(O(\log^3P)\) coefficient-mass bookkeeping were read and accepted,
-not re-derived; Lemma 3.7 was re-read and found consistent. The
-ineffective threshold \(P_0\) is not estimated. A second human
-reading of Lemma 5.2 and Steps 5a–5b remains the most valuable check
-this paper can receive.
+A repository accompanies the paper
+([https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/)).
+It is not required to read or check any proof. Lean certificates cover
+the exact floor identities; the module
+`research.juggler_sequence.paper_b_audit` and the companion
+[paper_b_audit_ledger.md](paper_b_audit_ledger.md) record numerical
+and exponent checks. Those are not proofs and are not an independent
+verification of Lemma 5.2.
 
 ## Acknowledgments
 

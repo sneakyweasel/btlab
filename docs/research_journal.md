@@ -22928,3 +22928,38 @@ Best next question
 - none on this line
 ```
 
+## Paper B referee-safe repair (not a numbered milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Make Theorem 5.3 a statement the proof supports, remove the false Step 5b |B|<1 line, write explicit rho_0 bounds, reconstruct the 5.2 chain on the manuscript, and reshape Paper B into the eight-section journal form with theorem numbers held fixed.
+- **Triage:** certification of an existing theorem, not a new attack. Falsifier: frozen |B| samples exceed the new constant; a rho_0 ratio exceeds the Lemma 3.9 budget; a decoration class is not preserved; a sign-critical composite changes sign. Stop if the exponent dies.
+- **What changed:**
+  - Theorem 5.3 is the monomial c = (3k/4) n^{9/8} with 1 <= k <= P^{1/24}. The Step 5a cancellation 945/512 - 27/64 = 729/512 is not implied by a two-sided scale.
+  - Zero-offset frozen B = -(9/32) k beta1 beta2 nu^{-9/8} has constant size |B| <= 6 (the printed |B|<1 dropped h1 h2 from (C1)). Lemma 3.7 at T = P^{1/2} still applies. Exponent 1-1/96 unchanged.
+  - Lemma 5.2b displays the three rho_0 ratios |r|/S, P|r'|/S, P^2|r''|/S = O(P^{-1/4}) <= 1/2304.
+  - Author reconstruction of 5.1 to 5.2(i)-(ii) to 5.2b to 5.3 on the manuscript (admissible H3, D1/D2/D3 after the third Weyl step, collision band, frozen/global substitution). No hole that kills 23/24 or 1-1/96. This pass is not an independent second human.
+  - Eight-section journal form; localization is Section 3.5; kernel is Section 4; depth-4/5 are Sections 5-6; relation to Juggler is Section 8. Audit table moved to [paper_b_audit_ledger.md](theory/paper_b_audit_ledger.md).
+  - Ledger: J-kernel-cancellation (monomial + |B| repair), J-parity-paper-b-audit (98 checks; printed |B|<1 withdrawn), J-parity-triple-discrepancy-localized (Section 3.5).
+- **What did not change:** the exponent 1-1/96; Theorems 4.1, 4.4, 4.7, 4.11, 4.12, 6.1, 6.3, 6.4; Paper C Hypothesis L (still Theorem 4.12); J-w-family-thirty-three-thirty-seconds; N0; Paper A; K3.
+- **Decision:** PROMOTE the write-up repair. Claim set frozen except the monomial restriction of Theorem 5.3. Not a halt theorem.
+
+```text
+What was learned
+- printed |B|<1 dropped h1 h2 from (C1); frozen B is constant-size, at most 6
+- Step 5a cancellation is monomial-specific; two-sided c^{(r)} does not keep it
+- rho_0 ratios of Lambda - Phi'' sit under 1/2304
+- D1 decoration B is O(P^{-5/24}), not uniformly <1 at small P; Lemma 3.7 still applies
+- no hole in the 5.2 checklist kills 23/24 or 1-1/96
+Strongest theorem
+- Theorem 5.3 for c = (3k/4) n^{9/8}, K_c << P^{1-1/96+eps}, |B| <= 6
+Strongest refutation
+- the printed |B|<1 package (dropped h1 h2; understated frozen theta-coefficient)
+Reusable machinery
+- frozen_theta_coeff_samples; 98 exponent checks; companion paper_b_audit_ledger.md
+Branch status
+- PROMOTE (write-up)
+Why
+- every printed false line is gone; Theorem 5.3 is the monomial; rho_0 is displayed; the 5.2 checklist has no open hole that changes the exponent
+Best next question
+- none on this line — the remaining check is an independent human, which this pass cannot be
+```

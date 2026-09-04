@@ -2,7 +2,8 @@
 
 Author: Philippe Cochin. Date: 4 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
-working draft (writeup repaired 4 September 2026; certified density
+working draft (8-section journal form, 4 September 2026; Theorem 5.3
+is the monomial \(c=\tfrac{3k}4 n^{9/8}\); certified density
 \(7/8\)); Paper C (fate contagion, 4 September 2026) is a complete
 draft — see its claim map below.
 
@@ -67,10 +68,13 @@ evaluations of the kill criterion beyond the
 \([50508,301994)\) window, not as extensions of Theorem 5.8?
 For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
-double Weyl differencing over the carry-branch decomposition and
-master identity of Lemma 5.1, with the level-2 wave Lemma 5.2,
-\(\delta=1/96\), and the Step-5b sublevel splitting of Lemma 3.9) a
-complete proof a stranger can check; is Theorem 6.1's passenger
+the monomial \(c=\tfrac{3k}4 n^{9/8}\), double Weyl differencing
+over the carry-branch decomposition and master identity of
+Lemma 5.1, with the level-2 wave Lemma 5.2, \(\delta=1/96\),
+frozen \(B\) of constant size at most \(6\), and the Step-5b
+sublevel splitting of Lemma 3.9) a complete proof a stranger can
+check — the manuscript reconstruction is the author's, not an
+independent second reading; is Theorem 6.1's passenger
 inventory (explicit mode ranges, frozen-shape composites \(243/512\)
 and \(\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\)) correctly reduced to it; is Theorem 6.3's length-5 passenger slot (Stage-2 \(X\)-modes, not
 (D1) decorations) correctly reduced to Theorem 6.1; and are the
@@ -201,7 +205,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Certified-descent density \(13/16\) (Corollary 4.9) | **EXACT — HUMAN PROOF** | only the three classes \(E\), \(OE\), \(OOEE\); four-step ceiling; not an \(E\)-rooted census |
 | Level-2 wave bound \(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2) | **EXACT — HUMAN PROOF** | targeted third differencing; standalone statement; coefficient budget \(\lvert q_d\rvert\le 4P^{1/24}\); at most nine decorations |
 | Frozen-shape interpolant on a zero-offset piece (Lemma 5.2b) | **EXACT — HUMAN PROOF** | local \((cG)''=-\tfrac{135}{1024}k\beta_1\beta_2\nu^{-13/8}\) with \(\beta\) frozen; \(\Lambda\) substitutes \(\Delta_iX\) as values only; \(\Phi\) has \(b=-\tfrac{405}{176}kh_1h_2\); moving-gap \(\tfrac{243}{128}\) is a different object |
-| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | \(W\)-shaped family at \(\alpha=9/8\), \(k\le P^{1/24}\); Lemma 5.2b frozen-shape interpolant (local leading \(-\tfrac{135}{1024}\), \(b=-\tfrac{405}{176}\), \(\lambda_0\in[0.35,2.6]\)); two-term majorant \(219P^{-25/24}+0.11P^{-5/6}\); moving-gap \(\tfrac{243}{128}\) withdrawn; \(c_7=1/288\); \(P_0\) named and ineffective |
+| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | monomial \(c=\tfrac{3k}4 n^{9/8}\), \(1\le k\le P^{1/24}\); Lemma 5.2b frozen-shape interpolant (local leading \(-\tfrac{135}{1024}\), \(b=-\tfrac{405}{176}\), \(\lambda_0\in[0.35,2.6]\), \(\rho_0=O(P^{-1/4})\)); zero-offset \(B=-\tfrac9{32}k\beta_1\beta_2\nu^{-9/8}\) with \(\lvert B\rvert\le6\); \(c_7=1/288\); \(P_0\) named and ineffective |
 | OOO\(*\) splits; depth 4 complete over odd starts (Theorem 6.1) | **EXACT — HUMAN PROOF** | eight O-rooted length-4 classes; Step D \(Y\)-passenger inside \(\lvert q_d\rvert\le 4P^{1/24}\); Step E estimates the decorated phase at \(\lambda_a'\) and \(\lambda_0'\), not by slogan |
 | Length-5 identities (Lemma 6.2) | **EXACT — HUMAN PROOF** | \(OOOE*\) smoothing and \(OOEO*\) linearization; one-signed remainders |
 | Length-5 splits (Theorem 6.3) | **EXACT — HUMAN PROOF** | \(OOOE*\) rides Theorem 6.1 at \(N^{1-1/96+\varepsilon}\); \(OOEO*\) uses the shifted-window method of Theorem 4.8 at the \(v\)-level, error \(N^{43/48+\varepsilon}\); \(X\)-modes sit in the Lemma 5.2(i) budget, not (D1); \(k=0\) on \(OOEO*\) is Theorem 4.7 |
@@ -214,9 +218,9 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Pure amplitude-product model (Conjecture 7.5) | **CONJECTURE** | not claimed; Exp(1) censuses at \(P=10^6\)–\(10^{10}\) |
 | Nested and triple parity discrepancy on sub-dyadic intervals \(Y\ge P^{1/2}\) with a slow twist \(e(\tfrac\ell2n^{9/16})\), \(\lvert\ell\rvert\le P^{1/24}\) (Lemma 4.10, Theorems 4.11–4.12) | **EXACT — HUMAN PROOF** | Steps 1–7 of Theorems 4.4/4.7 with \(Y\) for the number of summands; three absolute terms \(\le P^{7/16}\); twist removed by partial summation after differencing (total variation \(\le0.26P^{-5/16}\)) |
 | \(OOEEE\) production on even blocks, \(\lvert\mathcal O(m')\rvert=\tfrac1{16}\lvert I(m')_{\rm odd}\rvert+O(\lvert I(m')\rvert m'^{-4/27+\varepsilon})\) (Corollary 4.13) | **EXACT — HUMAN PROOF** | nesting bound \(0\le n^{9/16}-v^{1/4}\le n^{-15/16}\); exceptional set \(\ll YP^{-1/16}\) by Erdős–Turán + Kusmin–Landau; Vaaler expansion of the fifth letter; discharges Paper C's Hypothesis L |
-| Audit of Sections 4–6 (Appendix A; `paper_b_audit`) | **COMPUTATIONALLY VERIFIED** (machine layer) + hand re-derivation | exact identities on 360 starts at 60–120 digits; standing estimates on \(P=10^6,10^8,10^{10}\); 77 exponent checks; four corrections changing no theorem statement (Lemma 4.3 proof coefficient \(3/4\); Lemma 3.9 norm \(232\) vs printed \(288\), \(c_7\) unchanged; Lemma 6.2 remainders displayed; Lemma 5.2b frozen-shape vs withdrawn moving-gap \(\tfrac{243}{128}\)); not an independent verification |
+| Companion audit ledger (`paper_b_audit_ledger.md`; `paper_b_audit`) | **COMPUTATIONALLY VERIFIED** (machine layer) + author re-derivation | exact identities on 360 starts at 60–120 digits; standing estimates on \(P=10^6,10^8,10^{10}\); 98 exponent checks; monomial Theorem 5.3; frozen \(\lvert B\rvert\le6\); \(\rho_0\) ratios \(O(P^{-1/4})\); not an independent verification |
 | Carry as sawtooth difference; second-difference product rule | **EXACT — LEAN VERIFIED** | `GapCells.lean`: `carry_eq_fract_add_sub_fract`, `second_difference_product_rule` |
-| What the kernel program buys and cannot (Section 7.6) | prose, cites Paper C | fixed-depth results improve constants (\(\lambda^{***}\), certificate densities, Tao constants) and cannot reach the termination frontier (per-depth loss budget \(2^{1/19}\)) |
+| What the kernel program buys and cannot (Section 8) | prose, cites Paper C | fixed-depth results improve constants (\(\lambda^{***}\), certificate densities, Tao constants) and cannot reach the termination frontier (per-depth loss budget \(2^{1/19}\)) |
 
 ## Claim map — Paper C
 
@@ -249,7 +253,7 @@ Paper B's type, imported as the explicit standalone Hypothesis L.
 | What the weakest form does not need; bounded-depth barrier (Section 9.3) | **EXACT — HUMAN PROOF** | fair-to-depth-\(k\)-then-all-\(O\) measure; intermediate forms are **REPARAMETERIZATION** |
 | Free term = infinite-depth live mass; duality; critical exponent \(0.5073\) (Proposition 10.1, Corollary 10.2; Theorem 5) | **EXACT — HUMAN PROOF** / **REPARAMETERIZATION** | exact map cannot replace contagion |
 | Depth-uniformity budget \(cC<1\) (Proposition 10.3) | **EXACT — HUMAN PROOF** | narrow by design: methods whose only error term decays like \(2^{-cd}\), used through the per-cylinder count |
-| Hypothesis L (localized twisted triple discrepancy), Appendix C | hypothesis in Paper C; **EXACT — HUMAN PROOF** in Paper B (Theorem 4.12) | Paper C relies only on the statement; Paper B remains a working draft |
+| Hypothesis L (localized twisted triple discrepancy), Appendix C | hypothesis in Paper C; **EXACT — HUMAN PROOF** in Paper B (Theorem 4.12, now Section 3.5) | Paper C relies only on the statement and still prints “Section 4.5 of the working draft”; the theorem number is unchanged; Paper B remains a working draft |
 | \(OOEEE\) production and \(\lambda^{***}=0.5392\) from Hypothesis L (Lemmas C.1–C.3, Proposition C.4, Theorem C.5) | **EXACT — HUMAN PROOF**, conditional on Hypothesis L | nesting, exceptional set (Erdős–Turán + Kusmin–Landau), Vaaler expansion written out; pairing rest coefficient \(2/9\) |
 | Fiber/block/closure, survival and pressure experiments (Section 11) | **OBSERVATION** / **COMPUTATIONALLY VERIFIED** (closure to \(10^9\)) | prove nothing; one table, one paragraph |
 
