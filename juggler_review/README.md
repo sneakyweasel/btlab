@@ -1,11 +1,11 @@
 # Juggler reviewer bundle (three manuscripts)
 
-Author: Philippe Cochin. Date: 3 September 2026.
+Author: Philippe Cochin. Date: 4 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
 working draft (writeup repaired; length-5 harvest imported;
 certified density \(7/8\)); Paper C (fate contagion and the
-almost-all reformulation, 3 September 2026) is a first complete
-draft whose main theorem is unconditional and whose Section 10 alone
+almost-all reformulation, 4 September 2026) is a complete draft
+whose main theorem is unconditional and whose Appendix C alone
 depends on Paper B.
 
 This folder is a snapshot of the files to send for external review. It
@@ -45,7 +45,7 @@ https://sneakyweasel.github.io/balanced_ternary/
    the companion context (new Section 6.1; references [16], [17]):
    the power envelope of Theorem 2.2 is Paper C's descent step and
    the certified floor is its bounded target; the basin of any
-   nontrivial cycle has logarithmic count \(\gg(\log x)^{0.405}\)
+   nontrivial cycle has logarithmic count \(\gg(\log x)^{0.448}\)
    (Paper C, Theorem 1) while this paper bounds the cycle's states —
    the two constraints do not meet; a cycle's word sits at the
    critical odd share \(\log 2/\log 3\) of Paper C's no-momentum
@@ -78,28 +78,31 @@ https://sneakyweasel.github.io/balanced_ternary/
    Length 7/8 remain laboratory conjectures.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)
    — **Paper C**: *Fate Contagion in the Juggler Map and the
-   Almost-All Reduction of Termination* (revised 3 September 2026
-   after a first external review). Theorem 1: every nonempty
-   backward-closed set (every realized fate class: reaching \(1\), a
-   cycle basin, divergence) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\)
-   for \(\lambda<0.4050\) (elementary: even blocks are intervals,
-   \(OE\) fibers sweep parity; abstract recursion lemma). Theorem 2:
-   odd generation (Lean). Theorem 3: the conjecture is equivalent to
-   a Tao-type almost-all bound with bounded target and rate
-   \((\log y)^{-e}\), \(e>0.595\). Theorem 4: that bound follows from
-   parity control on itinerary cylinders of depth \(C\log_2\log y\),
-   in a hierarchy of forms down to a single exponential moment of the
-   odd count on live starts (\(C\ge 21\) unconditionally). Theorem 5:
-   the exact first-letter decomposition has one free term, the
-   infinite-depth live mass; \(S\)-fairness is defined and the walk
-   argument labelled a heuristic; a narrowly stated depth-uniformity
-   budget. Appendix C (exponent \(0.4922\), \(C\ge 19\)) is
-   conditional on the standalone Hypothesis L, the only import from
-   Paper B (now its Theorem 4.12, Section 4.5, still an unrefereed
-   working draft), with the downstream derivations written out. Three
-   figures (dependency map, productions, decomposition). Lean exact
-   layer; one numerical section, labelled observation. Excludes no
-   fate.
+   Almost-All Reduction of Termination* (4 September 2026; first
+   complete draft 3 September, revised the same day after a first
+   external review; pairing and consistency pass 4 September).
+   Theorem 1: every nonempty backward-closed set (every realized fate
+   class: reaching \(1\), a cycle basin, divergence) has
+   \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for
+   \(\lambda<0.4480\) (elementary: even blocks are intervals,
+   \(OE\) fibers have monotone pairing \(H_m/3-2\); abstract recursion
+   lemma). Theorem 2: odd generation (Lean). Theorem 3: the
+   conjecture is equivalent to a Tao-type almost-all bound with
+   bounded target and rate \((\log y)^{-e}\), \(e>0.552\). Theorem 4:
+   that bound follows from parity control on itinerary cylinders of
+   depth \(C\log_2\log y\), in a hierarchy of forms down to a single
+   exponential moment of the odd count on live starts (\(C\ge 20\)
+   unconditionally). Theorem 5: the exact first-letter decomposition
+   has one free term, the infinite-depth live mass; \(S\)-fairness is
+   defined and the walk argument labelled a heuristic; a narrowly
+   stated depth-uniformity budget. Appendix C (exponent \(0.5392\),
+   \(C\ge 18\)) is conditional on the standalone Hypothesis L, the
+   only import from Paper B (now its Theorem 4.12, Section 4.5, still
+   an unrefereed working draft), with the downstream derivations
+   written out. Proposition 4.4 now carries the explicit constant
+   \(C_0=250\). Three figures (dependency map, productions,
+   decomposition). Lean exact layer; one numerical section, labelled
+   observation. Excludes no fate.
 4. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
    — claim map and falsifiers for the three papers. Optional for the
    proofs.

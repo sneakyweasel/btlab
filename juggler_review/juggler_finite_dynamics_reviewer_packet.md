@@ -1,10 +1,10 @@
 # Juggler reviewer packet (three manuscripts)
 
-Author: Philippe Cochin. Date: 3 September 2026.
+Author: Philippe Cochin. Date: 4 September 2026.
 Status: Paper A is a submission candidate; Paper B is a revised
-working draft (2 September 2026; certified density \(7/8\));
-Paper C (fate contagion, 3 September 2026) is a first complete draft
-— see its claim map below.
+working draft (writeup repaired 4 September 2026; certified density
+\(7/8\)); Paper C (fate contagion, 4 September 2026) is a complete
+draft — see its claim map below.
 
 The former single note has been split into two manuscripts:
 
@@ -223,19 +223,20 @@ Proposition 7.4 says nothing about the deterministic shift).
 Paper C is
 [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md):
 *Fate Contagion in the Juggler Map and the Almost-All Reduction of
-Termination* (3 September 2026; revised the same day after a first
-external review). It cites Papers A and B and reproves nothing from
-them; only its Appendix C depends on a statement of Paper B's type,
-imported as the explicit standalone Hypothesis L.
+Termination* (4 September 2026; first complete draft 3 September,
+revised the same day after a first external review; pairing and
+consistency pass 4 September). It cites Papers A and B and reproves
+nothing from them; only its Appendix C depends on a statement of
+Paper B's type, imported as the explicit standalone Hypothesis L.
 
 | Claim | Evidence | Scope |
 |---|---|---|
 | Fate classes closed, trichotomy, exclusion (Lemma 2.1) | **EXACT — LEAN VERIFIED** | `FateContagion.lean` |
 | Even block and \(OE\) fiber are exact intervals; cell identity (Lemmas 3.1, 3.2) | **EXACT — LEAN VERIFIED** | `even_block_mem`, `oe_fiber_mem`, `sqrt_sqrt_eq_iff`, `oe_fiber_disjoint` |
-| Sweep lemma, fiber parity \(\ge 1/7\), thin bad fibers (Lemmas 4.1–4.3) | **EXACT — HUMAN PROOF** | elementary; constants explicit; \(m\ge 10^6\) |
-| Block average \(|U(m')|=\tfrac14|I(m')_{\rm odd}|+O(m'^{11/9}\log m')\) (Proposition 4.4) | **EXACT — HUMAN PROOF** | Vaaler + second-derivative test + Kusmin–Landau; not sharp |
+| Sweep lemma \(\ge H/7\); monotone pairing \(\ge H/3-2\); thin bad fibers (Lemmas 4.1, 4.1', 4.2–4.3) | **EXACT — HUMAN PROOF** | elementary; pairing written in full; \(m\ge 10^6\) |
+| Block average \(|U(m')|\ge\tfrac14|I(m')_{\rm odd}|-250\,m'^{11/9}\log(m'+1)\) (Proposition 4.4) | **EXACT — HUMAN PROOF** | Vaaler + second-derivative test + Kusmin–Landau; \(C_0=250\) explicit; not sharp |
 | Recursion lemma (Lemma 5.1) | **EXACT — HUMAN PROOF** | abstract: functional inequality with vanishing errors gives \(g\gg t^{\lambda}\) |
-| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<0.4050\) (Theorem 5.3; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; excludes no fate |
+| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<0.4480\) (Theorem 5.3; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; pairing recursion; excludes no fate |
 | Fate contagion, natural density infinitely often (Corollaries 5.4, 5.5) | **EXACT — HUMAN PROOF** | \((\log y)^{\lambda-1}\) on infinitely many dyadic blocks, not all |
 | Odd generation; \(F\) is the \(E\)-forest over odd preimages of \(F\cap S\) (Theorem 6.1; Theorem 2) | **EXACT — LEAN VERIFIED** | `odd_mem_iff`, `nonempty_iff_odd_image_mem` |
 | Exact first-letter decomposition (6.1); free term \(\psi_F\); \(\psi_F\equiv0\iff F=\emptyset\) (Proposition 6.3) | **EXACT — HUMAN PROOF** | \(S\)-fairness defined (Def. 6.2); the walk argument is Remark 6.4, labelled heuristic, not a theorem |
@@ -243,20 +244,22 @@ imported as the explicit standalone Hypothesis L.
 | Tao-type bound with \(e>1-\lambda^{**}\) \(\Rightarrow\) conjecture; equivalence (Theorems 7.2, 7.3; Theorem 3) | **EXACT — HUMAN PROOF** | via contagion and odd generation; Collatz comparison stated as a structural analogy of growth scales |
 | Envelope descent into the floor (Lemma 8.1) | **EXACT — LEAN VERIFIED** | `reachesOne_of_itinerary_envelope`; uses Paper A's `power_bound_word` |
 | Chernoff count of bad words, odd-start share (Lemma 8.2) | **EXACT — HUMAN PROOF** | \(e(19)=0.527\), \(e(21)=0.621\) |
-| \(\mathrm H(C,A)\Rightarrow\) Tao-type bound; \(C\ge 21\) unconditional, \(C\ge 19\) under Appendix C (Theorem 8.3, Corollary 8.4) | **EXACT — HUMAN PROOF** | conditional; fair share \(2^{-(d-1)}y/2\) |
+| \(\mathrm H(C,A)\Rightarrow\) Tao-type bound; \(C\ge 20\) unconditional, \(C\ge 18\) under Appendix C (Theorem 8.3, Corollary 8.4) | **EXACT — HUMAN PROOF** | conditional; fair share \(2^{-(d-1)}y/2\) |
 | One-sided form (Theorem 9.1), pressure and no-momentum forms (Theorem 9.2, Proposition 9.3) | **EXACT — HUMAN PROOF** | conditional; Azuma / exponential Markov; stopping at the floor essential |
 | What the weakest form does not need; bounded-depth barrier (Section 9.3) | **EXACT — HUMAN PROOF** | fair-to-depth-\(k\)-then-all-\(O\) measure; intermediate forms are **REPARAMETERIZATION** |
 | Free term = infinite-depth live mass; duality; critical exponent \(0.5073\) (Proposition 10.1, Corollary 10.2; Theorem 5) | **EXACT — HUMAN PROOF** / **REPARAMETERIZATION** | exact map cannot replace contagion |
 | Depth-uniformity budget \(cC<1\) (Proposition 10.3) | **EXACT — HUMAN PROOF** | narrow by design: methods whose only error term decays like \(2^{-cd}\), used through the per-cylinder count |
 | Hypothesis L (localized twisted triple discrepancy), Appendix C | hypothesis in Paper C; **EXACT — HUMAN PROOF** in Paper B (Theorem 4.12) | Paper C relies only on the statement; Paper B remains a working draft |
-| \(OOEEE\) production and \(\lambda^{***}=0.4922\) from Hypothesis L (Lemmas C.1–C.3, Proposition C.4, Theorem C.5) | **EXACT — HUMAN PROOF**, conditional on Hypothesis L | nesting, exceptional set (Erdős–Turán + Kusmin–Landau), Vaaler expansion written out |
+| \(OOEEE\) production and \(\lambda^{***}=0.5392\) from Hypothesis L (Lemmas C.1–C.3, Proposition C.4, Theorem C.5) | **EXACT — HUMAN PROOF**, conditional on Hypothesis L | nesting, exceptional set (Erdős–Turán + Kusmin–Landau), Vaaler expansion written out; pairing rest coefficient \(2/9\) |
 | Fiber/block/closure, survival and pressure experiments (Section 11) | **OBSERVATION** / **COMPUTATIONALLY VERIFIED** (closure to \(10^9\)) | prove nothing; one table, one paragraph |
 
 Falsifiers for Paper C: a nonempty backward-closed set with
-\(\sum_{n\in A,n\le x}1/n=o((\log x)^{0.40})\); a good fiber
-(\(m\ge 10^6\)) with fewer than \(H_m/7\) even images; an even block
+\(\sum_{n\in A,n\le x}1/n=o((\log x)^{0.448})\); a good fiber
+(\(m\ge 10^6\)) with fewer than \(H_m/3-2\) even images (or an
+adversarial monotone sequence under Lemma 4.1' with scarcer count
+below \(H/3-2\)); an even block
 \(I(m')\) with \(|U(m')|\) below the main term by more than
-\(C_0m'^{11/9}\log m'\); an odd \(n\ge 3\) with
+\(250\,m'^{11/9}\log(m'+1)\); an odd \(n\ge 3\) with
 \(n\in F\not\ni\lfloor n^{3/2}\rfloor\); a start whose word reaches
 \(u_t\le -L(y)\) without entering \([1,N_0]\); a word measure fair to
 depth \(k\) and all-\(O\) afterwards for which the reduction's

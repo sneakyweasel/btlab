@@ -11,7 +11,7 @@ The *bad* words of length ``d`` are those whose walk never drops to ``-L``.
   word is at most ``(log(2y)/log N0)^{-e(C)}``, ``e(C) = C D(p_C || 1/2)/ln 2``,
   ``p_C = (1 - 1/C)/log2(3)``.  The contagion exponent ``lambda** = 0.4480``
   (monotone pairing, ``block_average_plus_third``) requires
-  ``e > 1 - lambda** = 0.5520``; ``C = 21`` still exceeds it.
+  ``e > 1 - lambda** = 0.5520``; ``C = 20`` is the least such integer.
 * ``bad_word_probability(L, d)``: the exact fair-coin probability by dynamic
   programming (the Chernoff bound is loose).
 * ``required_depth(y, N0, e)``: the least ``d`` with exact bad probability
@@ -461,11 +461,15 @@ def summary() -> dict[str, Any]:
         row: dict[str, Any] = {"log10_y": exp10}
         for N0, tag in ((N0_CERTIFIED, "N0_3.5e8"), (N0_LEAN, "N0_260")):
             L = scale_L(log_y, N0)
+            d20 = math.ceil(20 * L)
             d21 = math.ceil(21 * L)
             row[tag] = {
                 "L": L,
+                "depth_C20": d20,
                 "depth_C21": d21,
+                "chernoff_bound_C20": (2.0**L) ** (-chernoff_exponent(20)),
                 "chernoff_bound_C21": (2.0**L) ** (-chernoff_exponent(21)),
+                "exact_bad_probability_C20": bad_word_probability(L, d20),
                 "exact_bad_probability_C21": bad_word_probability(L, d21),
                 "target_log_y_pow_minus_0.6": log_y ** (-0.6),
                 "required_depth_e0.6": required_depth(log_y, N0, 0.6),

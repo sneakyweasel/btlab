@@ -104,7 +104,7 @@ Two ideas carry the paper.
    \[
    K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
    e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr),
-   \qquad c\asymp kP^{9/8}.
+   \qquad c(n)=\tfrac{3k}4 n^{9/8}.
    \]
    After two Weyl differencings over an exact carry-branch
    decomposition, the master identity (Lemma 5.1) leaves no growing
@@ -1525,7 +1525,7 @@ kernel theorem proportionally, and no other part of the argument is
 close to its limit.
 
 Every reorganization of the \(OOO*\) phase funnels into one object:
-for smooth weights \(c\) of scale \(kP^{9/8}\) on \(n\sim P\),
+for the monomial weight \(c(n)=\tfrac{3k}4 n^{9/8}\) on \(n\sim P\),
 \[
 K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
 e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
@@ -1736,8 +1736,7 @@ mean value: for any shift \(2h\),
 \]
 so that every level-1 gap integer at shift \(2h\) is
 \(\asymp hP^{1/2}\) with the displayed constants. For the monomial
-weight \(c=\tfrac{3k}4n^{9/8}\) (the general \(c\) of Theorem 5.3
-changes only the absolute constants),
+weight \(c=\tfrac{3k}4n^{9/8}\) of Theorem 5.3,
 \[
 \text{(E3)}\quad
 c'=\tfrac{27}{32}kn^{1/8},\quad
@@ -2071,8 +2070,12 @@ margin against the Stage-4 curvature
   there).   The \(\theta\)-coefficient of the decoration is
   \(\le|q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
   \le24P^{1/24-1/4}+160P^{1/24+1/8+1/24-3/4}
-  =24P^{-5/24}+160P^{-13/24}<1\): sub-unit, expanded
-  in the Stage-2 families. Its smooth curvature has ratio
+  =24P^{-5/24}+160P^{-13/24}\).
+  This is \(O(P^{-5/24})\), hence \(\lvert B\rvert\le1\) for
+  \(P\ge P_0\); Lemma 3.7 at \(T=P^{1/2}\) applies either way
+  (even a constant-size leftover would satisfy
+  \(T\ge8(1+\lvert B\rvert)\)). The modes are expanded in the
+  Stage-2 families. Its smooth curvature has ratio
   \(\le|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)
   /(0.30uhP^{-3/4})\le80P^{1/24-1/2}+672P^{1/24+1/24-1}
   \le P^{-1/4}\): dominated.
@@ -2146,7 +2149,23 @@ all times \(P^{\varepsilon}\).
 | (D3) | dominated at \(P^{-3/4}\) | Stage 4 |
 
 No decoration class is used later unless it appears in this
-table. \(\square\)
+table.
+
+*Checklist (author reconstruction, not an independent
+verification).* The third-Weyl parameter is admissible:
+\(1\le h_3\le H_3=\lceil t^{1/3}P^{1/12}\rceil\le3P^{7/72}\le P^{1/4}\)
+at \(t\le16P^{1/24}\). After that differencing, (D1) is the
+telescoped \(q_d\Delta_{2h_3}\Delta_{|d-e_1|}Y\) with
+\(h'\le2P^{1/24}\); (D2) is \(-\varepsilon_0\Delta_{2h_3}(c\lfloor F\rfloor)\);
+(D3) is \(\Delta_{2h_3}\varphi\) with
+\(\lvert(\Delta_{2h_3}\varphi)''\rvert\le6kh_1h_2h_3P^{-13/8}
+\le3kh_1h_2P^{-5/8}\). Collision windows are only the band
+\(0.1\,uhP^{-1/4}\le\lvert w\rvert\le10.2\,uhP^{-1/4}\) of Stage 5,
+and only in regime (s2). On a cell the integer \(G=\lfloor\delta_h\rfloor\)
+is held frozen; the smooth remainder \(A_h\) does not differentiate
+a frozen gap. Lemma 3.9 is not used in (i) or (ii); it is used
+only on the global interpolant \(\Phi\) of Lemma 5.2b. Every
+\(k,h_1,h_2\) dependence passes through (C1)--(C3). \(\square\)
 
 The balance to keep in mind: with the trivial bound
 \(|V_{h_3}|\le P\), part (ii)'s differencing returns nothing beyond
@@ -2162,20 +2181,14 @@ run-boundary cost \((h/u)^{1/2}P^{7/8}\), summed against the
 
 The remaining object that Theorem 5.3 must not confuse with
 Lemma 5.2 is the *zero-offset anchor*: the phase
-\(c(G_F-J_F)\) on a branch with \(j=0\). Two second derivatives
-are available, and they are not equal. On a cell the integers
+\(c(G_F-J_F)\) on a branch with \(j=0\). On a cell the integers
 \(\beta_1,\beta_2,J_F\) are frozen, so
 \((cG_F)''=c''G_F+2c'G_F'+cG_F''\) is computed with those
-integers held constant while \(X(\nu)\) and \(c(\nu)\) move. Globally,
-to apply the three-term sublevel lemma, one needs a smooth model
-on the whole block. The only legitimate interpolant is the same
-frozen-shape formula with the smooth gap values \(\Delta_iX(\nu)\)
-*substituted as numbers*, not differentiated. Differentiating
-\(F_{\mathrm{sm}}(\nu)=\tfrac34(\Delta_1X)(\Delta_2X)X^{-1/2}\)
-instead produces \(\partial_\nu\beta\) terms that the local \(f''\)
-does not contain; that was the previous writeup of Step 5b, and it
-is withdrawn. The next lemma records the frozen-shape computation
-once, so that Step 5b is only a classification of scales.
+integers held constant while \(X(\nu)\) and \(c(\nu)\) move. The
+interpolant used on the whole block is the same frozen-shape
+formula with the smooth gap values \(\Delta_iX(\nu)\) substituted
+as numbers, not differentiated. The next lemma records that
+computation, so that Step 5b is only a classification of scales.
 
 **Lemma 5.2b (frozen-shape interpolant on a zero-offset piece).**
 Assume (C1)–(C3) and \(j=0\). Work on a common-refinement piece of
@@ -2333,10 +2346,31 @@ b\cdot\tfrac{11}8\cdot\tfrac38
 =-\tfrac{405}{176}\cdot\tfrac{33}{64}
 =-\tfrac{1215}{1024}.
 \]
-The window mode is exactly \(wX''=\tfrac34w\nu^{-1/2}\). The
-relative errors \(O(hP^{-1})\) and
-\(\lvert\tfrac12 c''\rvert/B_{\mathrm{lead}}=O(P^{-1/4})\)
-whenever \(kh_1h_2\ge1\) are the \(\rho_0(E)\) bounds.
+The window mode is exactly \(wX''=\tfrac34w\nu^{-1/2}\). Write
+\(r=\Lambda-\Phi''\), so that Lemma 3.9 is applied to
+\(\Phi+g\) with \(g''=r\). The remainder \(r\) is the sum of the
+mean-value errors \(O(hP^{-1})\) on the two leading monomials
+and the leftover \(\tfrac12 c''\). In the middle band of Step 5b
+one has \(S\ge0.35\,kh_1h_2P^{-5/8}\) (and \(S\ge0.35P^{-5/8}\)
+whenever \(kh_1h_2\ge1\)). The three ratios Lemma 3.9 needs are
+then, for \(P\ge P_0\),
+\[
+\frac{\lvert r\rvert}{S}
+\le C_1P^{-1/4},\qquad
+\frac{P\lvert r'\rvert}{S}
+\le C_2P^{-1/4},\qquad
+\frac{P^2\lvert r''\rvert}{S}
+\le C_3P^{-1/4},
+\]
+with absolute \(C_1,C_2,C_3\) coming from
+\(\lvert\tfrac12 c''\rvert\le0.053kP^{-7/8}\),
+\(\lvert\tfrac12 c'''\rvert\le0.047kP^{-15/8}\),
+\(\lvert\tfrac12 c''''\rvert\le0.044kP^{-23/8}\),
+and the wave remainders \(O(uh^2\nu^{-7/4})\) which are
+\(O(P^{-35/24})\) on the printed inventory. Each ratio is
+therefore \(\le\rho_0(E)=c_7/8=1/2304\) for \(P\ge P_0\).
+(The worst standing cell is \(kh_1h_2=1\); larger products
+only enlarge \(S\).)
 
 The range of \(\lambda_0\) is the same leading term against
 \(\beta_i\in(3h_iP^{1/2}-1,\,4.3h_iP^{1/2}+1)\) and
@@ -2357,13 +2391,13 @@ error of that model, which is the only comparison the sublevel
 argument uses.
 
 **Theorem 5.3 (kernel cancellation).**
-Let \(c\) be smooth on \((P,2P]\) with \(c^{(r)}\asymp kP^{9/8-r}\)
-for \(r=0,\ldots,4\), derivative signs following the monomial pattern
-(e.g. \(c=\tfrac{3k}4n^{9/8}\)), and \(1\le k\le P^{1/24}\). Then
+Let \(c(n)=\tfrac{3k}4 n^{9/8}\) with \(1\le k\le P^{1/24}\). Then
 \[
 K_c(P)\ll P^{1-1/96+\varepsilon},
 \]
-uniformly in \(k\).
+uniformly in \(k\). The cancellation in Step 5a uses the exact
+ratio of this monomial's derivatives; a two-sided scale
+\(c^{(r)}\asymp kP^{9/8-r}\) would not determine the composite.
 
 *Proof.* Work on a dyadic block \(n\sim P\), odd.
 
@@ -2612,15 +2646,17 @@ differenced-wave scale present. Three regimes.
   \(\le22P^{5/16}\cdot3.4(uh_1)^{-1/2}P^{3/8}\le75P^{11/16}\); its
   smooth part is dominated at margin \(\ge20\) by hypothesis. On a
   zero-offset branch the anchor's \(\theta\)-coefficient is
-  \(c\,\partial_m F=\tfrac34 c\cdot\bigl(-\tfrac12\beta_1\beta_2
-  (m+\xi)^{-3/2}\bigr)\), hence
-  \(\lvert B\rvert\le1.2\,kh_1h_2P^{-1/8}\le1.2P^{-1/48}<1\) by
-  (C1): the sawtooth is sub-unit, Lemma 3.7 applies in a single
-  window at \(T=P^{1/2}\) (hypothesis \(T\ge8(1+|B|)\) is
-  immediate), and there is no large-\(B\) window inventory. (The
-  offset-scale amplitude \(kh_1h_2P^{3/8}\) does not occur at
-  \(j=0\).) Centre modes \(w\) are treated as in Lemma 5.2(i),
-  Stage 5. Total
+  \(B=c\,\partial_m F=-\tfrac38 c\,\beta_1\beta_2\,m^{-3/2}
+  =-\tfrac9{32}k\beta_1\beta_2\nu^{-9/8}\bigl(1+O(P^{-1/4})\bigr)\).
+  With \(\beta_i\in(3h_iP^{1/2}-1,\,4.3h_iP^{1/2}+1)\) this is
+  \(\lvert B\rvert\le5.3\,kh_1h_2P^{-1/8}\le5.3\) by (C1), opened
+  to \(\lvert B\rvert\le6\). The sawtooth is of constant size, not
+  sub-unit. Lemma 3.7 still applies in a single window at
+  \(T=P^{1/2}\), because \(T\ge8(1+\lvert B\rvert)\) is
+  \(P^{1/2}\ge56\) for \(P\ge P_0\); there is no large-\(B\)
+  window inventory. (The offset-scale amplitude
+  \(kh_1h_2P^{3/8}\) does not occur at \(j=0\).) Centre modes
+  \(w\) are treated as in Lemma 5.2(i), Stage 5. Total
   \(\ll\bigl((uh_1)^{1/2}P^{5/8}+(h_1/u)^{1/2}P^{7/8}
   +P^{7/8}\bigr)P^{\varepsilon}\).
 - *Middle band* (\(\tfrac1{60}\le\mu/\lambda_0\le60\); coefficient
@@ -2977,10 +3013,11 @@ scale-free. In the anchor-dominant regime, Lemma 3.3 per run gives
 +30\,(h_1h_2/k)^{1/2}P^{9/16}\).
 In the mode-dominant regime the undifferenced-anchor decoration
 is the same as in Step 5b. The \(j=0\) \(\theta\)-coefficient of
-the *total* phase is \(O(1)\), typically in \([0.5,1.6]\):
+the *total* phase is \(O(1)\), of the same species as the
+kernel's zero-offset \(B\) (constant size, \(\lvert B\rvert\le6\)):
 Lemma 3.7 applies in a single window at \(T=P^{1/2}\)
 (hypothesis \(T\ge8(1+\lvert B\rvert)\) holds for
-\(\lvert B\rvert\le2\)). In the middle band the frozen-shape
+\(\lvert B\rvert\le6\)). In the middle band the frozen-shape
 interpolant of Lemma 5.2b is reused with the kernel-anchor
 leading \(-\tfrac{1215}{1024}kh_1h_2\nu^{-5/8}\) replaced by
 \(-\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\), so

@@ -34,7 +34,7 @@ def test_lemma_3_9_constant() -> None:
 
 def test_exponent_bookkeeping_all_pass() -> None:
     checks = A.exponent_checks()
-    assert len(checks) >= 91
+    assert len(checks) >= 98
     assert all(c["ok"] for c in checks), [c["check"] for c in checks if not c["ok"]]
 
 
@@ -53,6 +53,13 @@ def test_frozen_zero_offset_curvature_is_135_over_1024() -> None:
     assert r["samples"] >= 8, r
     assert r["frozen_near_one"], r
     assert r["moving_gap_is_wrong_model"], r
+
+
+def test_frozen_theta_coeff_is_9_over_32_and_at_most_six() -> None:
+    r = A.frozen_theta_coeff_samples(P=10**6, seed=9, trials=8)
+    assert r["samples"] >= 6, r
+    assert r["ratio_near_one"], r
+    assert r["abs_B_at_most_six"], r
 
 
 def test_frozen_total_phase_matches_81_over_512_and_1095_over_1024() -> None:

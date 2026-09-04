@@ -562,6 +562,56 @@ def frozen_anchor_curvature_samples(P: int = 10**8, seed: int = 3, trials: int =
     }
 
 
+def frozen_theta_coeff_samples(P: int = 10**6, seed: int = 9, trials: int = 12) -> dict[str, Any]:
+    """Step 5b j=0: frozen B = c F'(X) against (9/32) k β1 β2 ν^{-9/8}; |B| ≤ 6."""
+
+    rng = random.Random(seed)
+    H1 = max(1, int(P ** (1 / 48)))
+    H2 = max(1, int(P ** (1 / 24)))
+    K = max(1, int(P ** (1 / 24)))
+    k_c1 = max(1, int(P ** 0.125))
+    ratios: list[float] = []
+    abs_B: list[float] = []
+    attempts = 0
+    forced: list[tuple[int, int, int]] = [(1, 1, 1)]
+    if k_c1 * 1 * 1 <= P ** 0.125 * (1.0 + 1e-12):
+        forced.append((1, 1, k_c1))
+    while len(ratios) < trials and attempts < 4000:
+        attempts += 1
+        n = rng.randrange(P + 80, 2 * P - 80) | 1
+        if forced:
+            h1, h2, k = forced.pop(0)
+        else:
+            h1, h2, k = rng.randint(1, H1), rng.randint(1, H2), rng.randint(1, K)
+        if k * h1 * h2 > P ** 0.125 * (1.0 + 1e-12):
+            continue
+        beta1, _, _ = level1_data(n, 2 * h1)
+        beta2, _, _ = level1_data(n, 2 * h2)
+        beta12, _, _ = level1_data(n, 2 * h1 + 2 * h2)
+        if beta12 - beta1 - beta2 != 0:
+            continue
+        nm = mp.mpf(n)
+        m = mp.mpf(m_of(n))
+        # exact frozen F' at the integer m, j = 0
+        fp = mp.mpf(3) / 2 * (
+            mp.sqrt(m + beta12) - mp.sqrt(m + beta1) - mp.sqrt(m + beta2) + mp.sqrt(m)
+        )
+        B = c_of(n, k) * fp
+        lead = -mp.mpf(9) / 32 * k * beta1 * beta2 * mp.power(nm, -mp.mpf(9) / 8)
+        if lead == 0:
+            continue
+        ratios.append(float(B / lead))
+        abs_B.append(float(abs(B)))
+    return {
+        "P": P,
+        "samples": len(ratios),
+        "ratio_range": (min(ratios), max(ratios)) if ratios else None,
+        "abs_B_range": (min(abs_B), max(abs_B)) if abs_B else None,
+        "ratio_near_one": bool(ratios) and all(abs(x - 1) <= 0.08 for x in ratios),
+        "abs_B_at_most_six": bool(abs_B) and max(abs_B) <= 6.0,
+    }
+
+
 def _frozen_total_d2(n: int, h1: int, h2: int, k: int) -> tuple[mp.mpf, int, mp.mpf]:
     """Second nu-derivative of DeltaDelta(k/2 m^{9/4}) - c(G_F - J_F), betas frozen."""
 
@@ -739,7 +789,14 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("5b total P^{89/96} log P <= P^{15/16} = P^{90/96}", F(89, 96) < F(15, 16)),
         ("5b anchor-dominant: (k h1 h2)^{1/2} P^{11/16}: P * (P^{-5/8})^{1/2} = P^{11/16}", 1 - F(5, 16) == F(11, 16)),
         ("5b mode-dominant run boundaries: 22 h1 h2 P^{1/4} <= 22 P^{5/16}; times 3.4 (uh1)^{-1/2} P^{3/8} <= 75 P^{11/16}", F(1, 48) + F(1, 24) + F(1, 4) == F(5, 16) and F(5, 16) + F(3, 8) == F(11, 16)),
-        ("5b mode-dominant: |B| <= 1.2 k h1 h2 P^{-1/8} <= 1.2 P^{-1/48} < 1", F(1, 8) - F(1, 8) == 0 and F(5, 48) - F(1, 8) == -F(1, 48)),
+        ("5b mode-dominant B scale: k h1 h2 P^{-1/8} <= 1 by (C1)", F(1, 24) + F(1, 48) + F(1, 24) - F(1, 8) <= 0),
+        ("5b frozen B: (3/8)*(3/4) = 9/32", F(3, 8) * F(3, 4) == F(9, 32)),
+        ("5b |B| <= 6: (9/32)*18.5 < 5.3, opened to 6", F(9, 32) * F(37, 2) < F(53, 10)),
+        ("5b Lemma 3.7 room: T = P^{1/2} vs 8(1+6)=56, exponent 1/2 > 0", F(1, 2) > 0),
+        ("5b rho0: |c''|/S ~ P^{-7/8+5/8} = P^{-1/4}", -F(7, 8) + F(5, 8) == -F(1, 4)),
+        ("5b rho0: P|c'''|/S ~ P^{1-15/8+5/8} = P^{-1/4}", 1 - F(15, 8) + F(5, 8) == -F(1, 4)),
+        ("5b rho0: P^2|c''''|/S ~ P^{2-23/8+5/8} = P^{-1/4}", 2 - F(23, 8) + F(5, 8) == -F(1, 4)),
+        ("5b rho0 budget: 1/2304 = (1/288)/8", F(1, 2304) == F(1, 288) / 8),
         ("5b totals P^{15/16} << P^{23/24}", F(15, 16) < F(23, 24)),
         # Step 6 assembly
         ("Step 6: additive costs 4P^{23/24}, 8P^{3/4}, 46P^{3/4}, 7P^{7/8} all <= P^{23/24}", F(3, 4) < F(23, 24) and F(7, 8) < F(23, 24)),

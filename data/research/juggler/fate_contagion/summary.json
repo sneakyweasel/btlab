@@ -599,6 +599,10 @@
     "elementary_sweep_only": 0.13847141509104782,
     "block_average_only": 0.3774401681534122,
     "block_average_plus_sweep": 0.40505943427374547,
+    "block_average_plus_third": 0.44801700122730537,
+    "block_third_plus_ooeee": 0.5391796859705966,
+    "block_sweep_plus_ooeee": 0.492251926122687,
+    "hypothetical_kernel_localized": 0.5561134063533786,
     "depth_two_ideal": 0.4926579801153874
   },
   "elapsed_seconds": 146.80179476737976

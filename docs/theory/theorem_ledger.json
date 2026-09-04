@@ -3758,7 +3758,8 @@
   "source": "docs/research/juggler_two_step_parity_lemma.md",
   "lean": "",
   "tests": [
-   "tests/research/juggler_sequence/test_two_step_parity.py"
+   "tests/research/juggler_sequence/test_two_step_parity.py",
+   "tests/research/juggler_sequence/test_paper_b_audit.py"
   ],
   "related_conjectures": []
  },
@@ -6346,7 +6347,7 @@
  {
   "id": "J-fate-block-average",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Block average (fate-contagion note, Proposition 3.4). For m' ≥ 2 let I(m') = [m'^{8/3}, (m'+1)^{8/3}) and U(m') = {n odd in I(m') : ⌊n^{3/4}⌋ even and ⌊n^{3/2}⌋ even}, the union over the even block of m' of the good OE fibers. Then |U(m')| = (1/4)·#{odd n ∈ I(m')} + O(m'^{11/9} log m'), by Vaaler's expansion of the parity wave, the second-derivative test for the phases (q_1 n^{3/4} + q_2 n^{3/2})/2 with q_2 ≠ 0 (curvature ≍ |q_2| m'^{−4/3} on I(m')), Kusmin–Landau for the slow modes q_1 n^{3/4}/2, and exact run counting for Σ(−1)^{⌊n^{3/4}⌋}; truncation J = m'^{4/9}. The classical inputs are Paper B Lemmas 3.3 and 3.5 and the first-derivative test. Census m' ∈ [20,60) ∪ [200,230) ∪ [1000,1010) ∪ {3000, 5000}: deviation at most 0.9·√|I_odd| and at most 0.078·m'^{11/9} log m'. The constant is not made explicit.",
+  "statement": "Block average (fate-contagion note, Proposition 3.4; Paper C, Proposition 4.4). For m' ≥ 2 let I(m') = [m'^{8/3}, (m'+1)^{8/3}) and U(m') = {n odd in I(m') : ⌊n^{3/4}⌋ even and ⌊n^{3/2}⌋ even}, the union over the even block of m' of the good OE fibers. Then |U(m')| ≥ (1/4)·#{odd n ∈ I(m')} − 250 m'^{11/9} log(m'+1), by Vaaler's expansion of the parity wave with |a_q| ≤ 2/|q|, the second-derivative test |∑ e(f)| ≤ 8√α (M λ^{1/2} + λ^{−1/2}) for the phases (q_1 n^{3/4} + q_2 n^{3/2})/2 with q_2 ≠ 0 and α = 2^{4/3}, Kusmin–Landau |∑ e(f)| ≤ 1/λ for the slow modes q_1 n^{3/4}/2, and exact run counting for Σ(−1)^{⌊n^{3/4}⌋}; truncation J = max(1, ⌊m'^{4/9}⌋). The majorant ratio against m'^{11/9} log(m'+1) is 217 at m' = 2 and smaller thereafter; C_0 = 250. The classical inputs are Paper B Lemmas 3.3 and 3.5 and Graham–Kolesnik Theorems 2.1–2.2. Census m' ∈ [20,60) ∪ [200,230) ∪ [1000,1010) ∪ {3000, 5000}: deviation at most 0.9·√|I_odd| and at most 0.078·m'^{11/9} log m'.",
   "source": "docs/theory/juggler_fate_contagion_note.md",
   "lean": "",
   "tests": [

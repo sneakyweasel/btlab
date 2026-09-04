@@ -7,6 +7,7 @@ from math import isqrt
 import numpy as np
 
 from research.juggler_sequence.fate_contagion import (
+    BLOCK_AVERAGE_C0,
     RECURSIONS,
     block_stats,
     certified_closure,
@@ -50,6 +51,10 @@ def test_block_average_is_one_quarter_at_square_root_scale() -> None:
         row = block_stats(mp)
         assert abs(row["deviation_over_sqrt"]) < 3.0
         assert abs(row["deviation_over_proved_scale"]) < 1.0
+
+
+def test_block_average_c0_is_two_hundred_fifty() -> None:
+    assert BLOCK_AVERAGE_C0 == 250
 
 
 def test_recursion_roots() -> None:

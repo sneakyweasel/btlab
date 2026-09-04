@@ -22782,7 +22782,7 @@ esearch.juggler_sequence.oe_fiber_constant (pairing check, adversarial lock, \(\
 - **Records:** dossier docs/problems/juggler_oe_fiber_constant.md; probe src/research/juggler_sequence/oe_fiber_constant.py; artifact data/research/juggler/oe_fiber_constant/summary.json; tests 	ests/research/juggler_sequence/test_oe_fiber_constant.py; ledger rows J-fate-log-density, J-fate-fiber-sweep, J-fate-ooeee-production, J-tao-rate-implies-conjecture updated; parent dossier and branch-ledger row updated.
 - **Decision:** PROMOTE. The remaining depth-two gap \(0.448\to 0.4927\) is \(1/3\) vs \(1/2\), not a uniform per-fiber statement. Not a halt theorem. Not a new production.
 
-`	ext
+```text
 What was learned
 - Lemma 3.1 stays H/7; monotone pairing is the 1/3 statement
 - OE-fiber steps are monotone, so Lemma 3.2 upgrades to H/3-2
@@ -22823,7 +22823,7 @@ Best next question
 - **Records:** dossier docs/problems/juggler_oe_rest_average.md; artifact data/research/juggler/oe_rest_average/summary.json.
 - **Decision:** PARK. Not a halt theorem. Not a new production.
 
-`	ext
+```text
 What was learned
 - P has positive log-mass fraction; it is not a Lemma 3.3 error
 - a fixed low-even seed set mixes to even-share 1/2
@@ -22895,6 +22895,35 @@ Branch status
 Why
 - the architecture matches Lemma 5.2b, the samples match the new
   coefficients, and the printed exponent does not move
+Best next question
+- none on this line
+```
+
+## Paper C consistency pass (not a numbered milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Close the leftovers of the pairing cascade so Paper C is internally consistent and the review bundle matches the source.
+- **What changed:** Theorem 5.3 now applies Lemma 5.1 with the pairing coefficients \((\tfrac38,\tfrac19),(\tfrac34,\tfrac29)\); introduction slogans print \(0.448\) and \((\log y)^{-0.55}\); Lemma 4.1′ is written in full (1–2 assignment; consecutive-cell pairing; \(G\le 6\) and \(G\ge 7\)); Proposition 4.4 carries the explicit constant \(C_0=250\) from Vaaler \(2/\lvert q\rvert\), van der Corput \(8\sqrt{\alpha}\), and Kusmin–Landau \(1/\lambda\); Azuma / pressure / depth tables use \(C=20\) (depths \(25,72,138,204\)); Appendix B hashes refreshed; reviewer packet and `juggler_review/` README retargeted; PDF rebuilt.
+- **What did not change:** \(\lambda^{**}=0.4480\), \(\lambda^{***}=0.5392\), Hypothesis L scaffolding (Paper B remains a working draft), no Lean of the pairing, dynamical averaging of \(P\) not opened.
+- **Decision:** editorial PROMOTE of the write-up. Not a halt theorem. Not a new branch.
+
+```text
+What was learned
+- the Apply-line of Theorem 5.3 still had the sweep coefficients
+- Lemma 4.1' can be written without pointing at the laboratory note
+- C_0 = 250 is a proved majorant, about 3000 times the census
+- least C = 20 is now the displayed depth convention
+Strongest theorem
+- unchanged: Theorem 1 with lambda** = 0.4480
+Strongest refutation
+- none
+Reusable machinery
+- BLOCK_AVERAGE_C0 = 250
+Branch status
+- PROMOTE (write-up)
+Why
+- every leftover named in the consistency list is a paper-internal
+  repair; no new mathematical claim
 Best next question
 - none on this line
 ```

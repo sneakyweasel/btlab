@@ -1,18 +1,20 @@
 {
   "git_commit": "590ab8b258762d0789fea8a25923d679a4567861",
-  "lambda_starstar": 0.40505943427374547,
-  "required_rate": 0.5949405657262545,
-  "least_C": 21,
-  "lambda_star3_with_ooeee": 0.492251926122687,
-  "required_rate_star3": 0.507748073877313,
-  "least_C_star3": 19,
+  "lambda_starstar": 0.44801700122730537,
+  "required_rate": 0.5519829987726946,
+  "least_C": 20,
+  "lambda_star3_with_ooeee": 0.5391796859705966,
+  "required_rate_star3": 0.4608203140294034,
+  "least_C_star3": 18,
   "biased_split_least_C_star3": {
-    "0.5": 19,
-    "0.55": 41,
-    "0.6": 223,
-    "0.62": 1587
+    "0.5": 18,
+    "0.55": 39,
+    "0.6": 206,
+    "0.62": 1451
   },
   "chernoff_exponent": {
+    "18": 0.4804066215192821,
+    "19": 0.526926549109147,
     "20": 0.5737956448546405,
     "21": 0.6209644372577928,
     "22": 0.6683923845726047,
@@ -23,23 +25,23 @@
   "biased_split": {
     "0.5": {
       "mu": 0.20751874963942196,
-      "least_C": 21,
-      "azuma_exponent_at_least_C": 0.6167102336604117
+      "least_C": 20,
+      "azuma_exponent_at_least_C": 0.5699818922472906
     },
     "0.55": {
       "mu": 0.12827062460336414,
-      "least_C": 46,
-      "azuma_exponent_at_least_C": 0.5996259504550215
+      "least_C": 44,
+      "azuma_exponent_at_least_C": 0.5629644786804165
     },
     "0.6": {
       "mu": 0.04902249956730642,
-      "least_C": 255,
-      "azuma_exponent_at_least_C": 0.5957687848282701
+      "least_C": 240,
+      "azuma_exponent_at_least_C": 0.5546456915338968
     },
     "0.62": {
       "mu": 0.017323249552883224,
-      "least_C": 1840,
-      "azuma_exponent_at_least_C": 0.5950540957649936
+      "least_C": 1715,
+      "azuma_exponent_at_least_C": 0.5520136822111622
     },
     "0.63": {
       "mu": 0.0014736245456716812,
@@ -990,20 +992,20 @@
   },
   "pressure_form_least_C": {
     "0.5": {
-      "least_C_star3": 19,
-      "least_C_starstar": 21
+      "least_C_star3": 18,
+      "least_C_starstar": 20
     },
     "0.55": {
-      "least_C_star3": 41,
-      "least_C_starstar": 46
+      "least_C_star3": 38,
+      "least_C_starstar": 43
     },
     "0.6": {
-      "least_C_star3": 214,
-      "least_C_starstar": 245
+      "least_C_star3": 198,
+      "least_C_starstar": 230
     },
     "0.62": {
-      "least_C_star3": 1497,
-      "least_C_starstar": 1735
+      "least_C_star3": 1369,
+      "least_C_starstar": 1618
     }
   }
 }

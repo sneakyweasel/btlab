@@ -242,36 +242,64 @@ or nonincreasing). Then
 \qquad\text{and}\qquad
 \#\{j:\{x_j\}\ge\tfrac12\}\ \ge\ \tfrac H3-2.
 \]
+The same holds with the cells \((k/2,(k+1)/2]\) in place of
+\([k/2,(k+1)/2)\).
 
-*Proof.* Every traversed half-cell contains at least one point
-(\(b\le\tfrac12\)), so the labels form alternating runs. Write
-\(\rho_1,\dots,\rho_T\) for the interior run lengths, \(T\ge 22\).
-The actual maximum in a half-open cell of length \(\tfrac12\) with
-min-gap \(a\) is the largest \(n\) with \((n-1)a<\tfrac12\); in
-particular it is \(2\) when \(a\ge\tfrac14\) (the fencepost
-\(\lfloor 1/(2a)\rfloor+1=3\) at \(a=\tfrac14\) would need both
-endpoints). The nonincreasing case is the reflection
-\(z_j=c-x_j\), which swaps the two halves.
+*Proof.* The nonincreasing case is the reflection \(z_j=c-x_j\), which
+reverses the steps and swaps the two halves. Assume the steps are
+nondecreasing.
 
-(i) *If \(a\ge\tfrac14\).* Every run has length \(1\) or \(2\). In
-the worst assignment every run of one colour has length \(1\) and
-every run of the other has length \(2\). If those colours have
-\(n_1\) and \(n_2\) runs, \(\lvert n_1-n_2\rvert\le 1\) and
-\(H=n_1+2n_2\) (or \(2n_1+n_2\)). The three sub-cases give scarcer
-count \(n_2+1\), \(n_2\), or \(n_2-1\), hence at least
-\(\tfrac H3-\tfrac23\).
+Cut \(\mathbb R\) into cells \(C_k=[k/2,(k+1)/2)\) as in Lemma 3.1.
+An *occupied* cell contains at least one of the points. Occupied cells
+are consecutive; write \(\rho_1,\dots,\rho_{T^*}\) for their
+occupancies in order, so \(\sum\rho_i=H\). Every traversed cell is
+occupied (\(b\le\tfrac12\)), hence \(T^*\ge T\ge 22\). Odd-indexed
+cells are one colour and even-indexed cells the other.
 
-(ii) *If \(a<\tfrac14\).* Monotonicity makes the sojourn
-\(1/(2\delta)\) monotone, so the run lengths are a decreasing
-(or increasing) sequence up to a phase error of \(1\): a block of
-\(3\)-runs, then \(2\)-runs, then \(1\)-runs (or the reverse), each
-block internally alternating colours. A \(3+1\) lock on opposite
-colours cannot persist — that pattern needs the step to jump up and
-down each revolution. Each block is balanced between colours up to
-one run; the junctions and the two end cells cost at most two extra
-points. For \(a\le\tfrac5{21}\) every interior run has length at
-least \(2\), and the occupancy ratio is at least \(\tfrac25\). In
-all, the scarcer count is at least \(\tfrac H3-2\). \(\square\)
+A traversed cell of local step-scale \(\delta\) has occupancy within
+\(1\) of \(1/(2\delta)\). Because the steps lie in \([a,b]\) with
+\(b\le\tfrac{21}{20}a\), the values \(1/(2\delta)\) vary by a factor
+at most \(\tfrac{21}{20}\). Because the steps are monotone, the
+occupancies are a monotone sequence up to a phase error of \(1\).
+
+(i) *If \(a\ge\tfrac14\).* Then \(X=1/(2a)\le 2\). Three points in a
+half-open cell of length \(\tfrac12\) would require two gaps of size
+at least \(a\ge\tfrac14\), hence a span of at least \(\tfrac12\),
+which cannot fit in \([c,c+\tfrac12)\). Thus every occupied cell has
+\(\rho\in\{1,2\}\). In the worst assignment every run of one colour
+has length \(1\) and every run of the other has length \(2\). If those
+colours have \(n_1\) and \(n_2\) runs, \(\lvert n_1-n_2\rvert\le 1\)
+and \(H=n_1+2n_2\) (or \(2n_1+n_2\)). Three sub-cases: \(n_1=n_2=n\)
+gives \(H=3n\) and scarcer count \(n=H/3\); \(n_1=n+1\), \(n_2=n\)
+gives \(H=3n+1\) and scarcer count \(n+1>H/3\); \(n_1=n\),
+\(n_2=n+1\) gives \(H=3n+2\) and scarcer count \(n=H/3-\tfrac23\).
+Hence at least \(\tfrac H3-\tfrac23\).
+
+(ii) *If \(a<\tfrac14\).* Pair consecutive occupied cells
+\((\rho_{2i-1},\rho_{2i})\). Every such pair satisfies
+\(\min(\rho,\rho')\ge(\rho+\rho')/3\). The global drop of
+\(L(\delta)=1/(2\delta)\) is at most \(X/21\), spread over
+\(T^*\ge 22\) cells, so consecutive occupancies differ by at most
+\(1+X/441\) after the phase error. If some occupied cell has
+\(\rho=1\), then \(g=1\), hence \(X<2.1\); consecutive occupancies
+differ by at most \(1\), and the pairs are \((1,1)\), \((1,2)\) or
+\((2,2)\), each with \(\min\ge(\mathrm{sum})/3\). If every occupancy
+is at least \(2\), a consecutive pair is \((k,k)\), \((k,k+1)\), or
+\((k,k+d)\) with \(k\ge 2\) and \(d\le 1+X/441\), and
+\(\min/\mathrm{sum}\ge\tfrac13\).
+
+Thus each pair contributes at least one-third of its points to each
+colour. If \(T^*\) is odd the leftover cell has at most \(G\) points,
+so the scarcer colour has at least \((H-G)/3\) points.
+
+- If \(G\le 6\), this is at least \(\tfrac H3-2\).
+- If \(G\ge 7\), then \(X\ge 6\) and \(g\ge 5\). Every pair then has
+  \(\min/\mathrm{sum}\ge\tfrac25\), so the scarcer count is at least
+  \(\tfrac25(H-G)\). The hypothesis \((H-1)a\ge 12\) gives
+  \(H\ge 24X+1\ge 24(G-1)+1\), and \(\tfrac25(H-G)\ge\tfrac H3-2\).
+
+In all cases the scarcer count is at least \(\tfrac H3-2\). The
+left-open form is identical. \(\square\)
 
 **Lemma 3.2 (fiber parity).** For \(m\ge 10^6\) put
 \(\alpha_m=\{\tfrac32m^{2/3}\}\) and call \(m\) *good* if
@@ -366,13 +394,13 @@ exactly \(\tfrac12\) by a classical exponential-sum estimate.
 U(m')=\{n\ \text{odd in}\ I(m'):\ \lfloor n^{3/4}\rfloor\ \text{even},\ \lfloor n^{3/2}\rfloor\ \text{even}\}
 =\bigsqcup_{\substack{m\in E(m')}}\{n\in\Phi(m):\lfloor n^{3/2}\rfloor\ \text{even}\}.
 \]
-There is an absolute constant \(C_0\) with
+With the explicit constant \(C_0=250\),
 \[
-|U(m')|\ \ge\ \tfrac14\,\#\{n\ \text{odd in}\ I(m')\}-C_0\,m'^{11/9}\log(m'+1).
+|U(m')|\ \ge\ \tfrac14\,\#\{n\ \text{odd in}\ I(m')\}-250\,m'^{11/9}\log(m'+1).
 \]
 Since \(\#\{n\ \text{odd in}\ I(m')\}\ge\tfrac43m'^{5/3}-1\), this
 reads \(|U(m')|\ge\tfrac13m'^{5/3}\bigl(1-\varepsilon_B(m')\bigr)\)
-with \(\varepsilon_B(m')=\tfrac34m'^{-5/3}+3C_0m'^{-4/9}\log(m'+1)\to 0\).
+with \(\varepsilon_B(m')=\tfrac34m'^{-5/3}+750\,m'^{-4/9}\log(m'+1)\to 0\).
 
 *Proof.* Write \(\psi(y)=(-1)^{\lfloor y\rfloor}\), so that
 \([\lfloor y\rfloor\ \text{even}]=\tfrac12(1+\psi(y))\), and
@@ -434,14 +462,21 @@ test bounds the sum by \(\ll m'^{2/3}/|q_1|\); the modes contribute
 of the two previous sums. Altogether Term 4 is
 \(\ll m'^{11/9}\log m'\).
 
-Collecting, \(|U(m')|=\tfrac14\#\{n\ \text{odd in}\ I(m')\}+O(m'^{11/9}\log(m'+1))\).
-\(\square\)
+Collecting, \(\lvert U(m')-\tfrac14\#\{n\text{ odd in }I(m')\}\rvert\)
+is at most one-quarter of the four term-bounds. The explicit majorant
+uses Vaaler coefficients \(\lvert a_q\rvert\le 2/\lvert q\rvert\), the
+van der Corput display \(\lvert\sum e(f)\rvert\le 8\sqrt{\alpha}(M\lambda^{1/2}+\lambda^{-1/2})\)
+with \(\alpha=2^{4/3}\), and Kusmin--Landau \(\lvert\sum e(f)\rvert\le 1/\lambda\).
+Divided by \(m'^{11/9}\log(m'+1)\) the majorant equals \(217\) at
+\(m'=2\) and is smaller for every larger \(m'\) (large-\(m'\) limit
+\(<90\)). We take \(C_0=250\). \(\square\)
 
 *Numerical check.* On the census \(m'\in[20,60)\cup[200,230)\cup[1000,1010)\cup\{3000,5000\}\)
 the deviation from the main term is at most \(0.9\sqrt{|I(m')_{\rm odd}|}\),
 i.e. square-root scale, and at most \(0.078\,m'^{11/9}\log m'\)
 (`block_census` in `summary.json`). The proposition is not sharp; it
-is all the recursion needs.
+is all the recursion needs. The constant \(C_0=250\) is proved, not
+observed.
 
 ## 4. The recursion and the theorem
 

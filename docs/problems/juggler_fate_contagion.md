@@ -234,6 +234,7 @@ program, not a Phase 0, and is not opened here.
 ## Publication assessment
 
 Status: `THEOREM` (human proof with classical inputs; Lean exact
-layer). The fiber constant is now \(\tfrac13H_m-2\). A short standalone note
-is plausible after the Proposition 3.4 constant is made explicit;
-Paper C Theorem 1 already carries the pairing.
+layer). The fiber constant is \(\tfrac13H_m-2\). Proposition 3.4 now
+carries the explicit constant \(C_0=250\). Paper C Theorem 1 carries
+the pairing; the 4 September 2026 consistency pass writes Lemma 4.1′
+in full and rebuilds the review PDF.

@@ -45,8 +45,11 @@ LEAN_SEED = 260
 CLASS_CONSISTENT = "FATE_CONTAGION_RECURSION_CONSISTENT"
 CLASS_FALSIFIED = "FATE_CONTAGION_FALSIFIED"
 
-# proved constants (see the note): sweep proportion 1/7, block average 1/4
+# proved constants (see the note): sweep proportion 1/7, pairing slack 2,
+# block average 1/4 with explicit C_0 = 250 (Paper C Proposition 4.4)
 SWEEP_PROPORTION = 1.0 / 7.0
+BLOCK_AVERAGE_C0 = 250
+PAIRING_SLACK = 2.0
 GOOD_ALPHA_ZERO = 22.0  # |alpha| >= 22 m^{-1/3}
 GOOD_ALPHA_HALF = 2.0  # |alpha - 1/2| >= 2 m^{-1/3}
 SWEEP_M0 = 10**6
