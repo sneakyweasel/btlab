@@ -17,7 +17,6 @@ export function PreimagesTab() {
   const [selected, setSelected] = useState<number | null>(() =>
     randomEvenInBlock(evenBlockView(11)),
   );
-  const [hovered, setHovered] = useState<number | null>(null);
   const block = useMemo(() => evenBlockView(m), [m]);
   const odds = useMemo(() => oddPreimageIntegers(m), [m]);
 
@@ -47,7 +46,6 @@ export function PreimagesTab() {
                 ) {
                   setM(value);
                   setSelected(randomEvenInBlock(evenBlockView(value)));
-                  setHovered(null);
                 }
               }}
             />
@@ -66,7 +64,6 @@ export function PreimagesTab() {
                 onClick={() => {
                   setM(preset.value);
                   setSelected(randomEvenInBlock(evenBlockView(preset.value)));
-                  setHovered(null);
                 }}
               >
                 {preset.value.toLocaleString("en-US")}
@@ -103,7 +100,6 @@ export function PreimagesTab() {
           view={block}
           selected={selected}
           onSelect={setSelected}
-          onHover={setHovered}
         />
         {block.listed && block.evens.length <= 16 ? (
           <p className="font-mono text-sm">{block.evens.join(", ")}</p>
