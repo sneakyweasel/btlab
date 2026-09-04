@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { usePlayState } from "../context/PlayState";
-import { NECKLACE_PRESETS, NECKLACE_WORD_MAX } from "../juggler/constants";
-import { formatInt, parsePositiveInt } from "../juggler/format";
+import { useNecklaceState } from "../context/PlayState";
+import { LIVE_NECKLACE_BITS, NECKLACE_PRESETS, NECKLACE_WORD_MAX } from "../juggler/constants";
+import { parsePositiveInt } from "../juggler/format";
 import { cycleMinShape, parseItinerary } from "../juggler/itinerary";
-import { necklaceView } from "../juggler/necklace";
+import { necklaceFigure, resolveNecklace } from "../juggler/necklace";
 import { ExcursionTiles, ExcursionWave } from "../visuals/ExcursionWave";
 import { Metric } from "./Metric";
 
@@ -23,13 +23,14 @@ function verdict(value: boolean | null): string {
  * tour show the same wave.
  */
 export function NecklaceExplorer({ compact = false }: NecklaceExplorerProps) {
-  const { necklaceNText, setNecklaceNText, necklaceWord, setNecklaceWord } = usePlayState();
+  const { necklaceNText, setNecklaceNText, necklaceWord, setNecklaceWord } = useNecklaceState();
   const n = parsePositiveInt(necklaceNText);
   const word = parseItinerary(necklaceWord, NECKLACE_WORD_MAX);
   const view = useMemo(
-    () => (n === null || word === null || word.length === 0 ? null : necklaceView(n, word)),
+    () => (n === null || word === null || word.length === 0 ? null : resolveNecklace(n, word)),
     [n, word],
   );
+  const figure = useMemo(() => (view === null ? null : necklaceFigure(view)), [view]);
   const shape = word ? cycleMinShape(word) : null;
   const activePreset = NECKLACE_PRESETS.find(
     (preset) => preset.n.toString() === necklaceNText.trim() && preset.word === word,
@@ -49,8 +50,8 @@ export function NecklaceExplorer({ compact = false }: NecklaceExplorerProps) {
                 active ? "border-deep bg-deep text-card" : "border-line bg-card text-muted hover:bg-paper"
               }`}
               onClick={() => {
-                setNecklaceNText(preset.n.toString());
                 setNecklaceWord(preset.word);
+                setNecklaceNText(preset.n.toString());
               }}
             >
               {preset.label}
@@ -84,47 +85,51 @@ export function NecklaceExplorer({ compact = false }: NecklaceExplorerProps) {
           ) : null}
         </div>
       )}
-      {view ? (
+      {figure ? (
         <>
-          <ExcursionWave view={view} compact={compact} />
-          <ExcursionTiles view={view} />
+          <ExcursionWave figure={figure} compact={compact} />
+          <ExcursionTiles figure={figure} />
           {activePreset ? <p className="text-sm text-muted">{activePreset.hint}</p> : null}
           {compact ? null : (
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
               <Metric
                 label="follows the word?"
-                value={view.follows ? "yes" : view.failIndex === null ? "stopped" : `no, at letter ${view.failIndex + 1}`}
-                hint={`realized ${view.realized || "—"}`}
+                value={figure.follows ? "yes" : figure.failIndex === null ? "stopped" : `no, at letter ${figure.failIndex + 1}`}
+                hint={`realized ${figure.realized || "—"}`}
               />
               <Metric
                 label="stays ≥ n?"
-                value={view.belowMinimumIndex === null ? "yes" : `no, step ${view.belowMinimumIndex}`}
+                value={figure.belowMinimumIndex === null ? "yes" : `no, step ${figure.belowMinimumIndex}`}
                 hint="a cycle minimum never dips"
               />
               <Metric
                 label="first peak ≥ (n+1)²?"
-                value={verdict(view.firstPeakOvershoots)}
-                hint={view.firstPeak === null ? "no peak yet" : `p₀ = ${formatInt(view.firstPeak)}`}
+                value={verdict(figure.firstPeakOvershoots)}
+                hint={figure.firstPeakLabel === null ? "no peak yet" : `p₀ = ${figure.firstPeakLabel}`}
               />
               <Metric
                 label="last peak lands?"
-                value={verdict(view.lastPeakLands)}
+                value={verdict(figure.lastPeakLands)}
                 hint={
-                  view.lastPeak === null
+                  figure.lastPeakLabel === null
                     ? "no peak yet"
-                    : `needs ${formatInt(view.nSquared + 1n)} ≤ p < ${formatInt(view.nPlusOneSquared)}`
+                    : `needs ${figure.bandLoLabel} ≤ p < ${figure.bandHiLabel}`
                 }
               />
               <Metric
                 label="returns to n?"
-                value={view.image === null ? "—" : view.returns ? "yes" : "no"}
+                value={figure.imageLabel === null ? "—" : figure.returns ? "yes" : "no"}
                 hint={shape?.cycleMinShaped ? "word is CycleMin-shaped" : "word is not CycleMin-shaped"}
               />
             </div>
           )}
         </>
       ) : (
-        <p className="text-sm text-muted">Choose a start and a nonempty O/E word.</p>
+        <p className="text-sm text-muted">
+          {n !== null && word
+            ? `Start is above the live ${LIVE_NECKLACE_BITS}-bit necklace cap. Pick a preset.`
+            : "Choose a start and a nonempty O/E word."}
+        </p>
       )}
     </div>
   );

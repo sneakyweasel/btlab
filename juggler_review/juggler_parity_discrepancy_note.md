@@ -2956,7 +2956,7 @@ Split by the anchor branch type.
 by (E6) and the window-centre composite,
 \[
 \lambda_a=\tfrac{729}{512}\,k|j|\,n^{-1/8}\,(1+O(P^{-1/8}))
-\ \in\ [1.2,\,1.5]\,k|j|P^{-1/8},
+\ \in\ [1.30,\,1.43]\,k|j|P^{-1/8},
 \]
 where \(\tfrac{729}{512}=\tfrac{945}{512}-\tfrac{27}{64}\), by the
 following algebra. The smooth part of the anchor on an offset
@@ -2978,45 +2978,48 @@ term of \(cF(X-\theta)\)), so its curvature contribution is
 single-signed at the displayed scale. Every competitor is dominated at a displayed
 margin: differenced-wave modes
 \(\le0.84\,uh_1P^{-3/4}\le0.51P^{-1/4}\) (since \(uh_1\le0.6P^{1/2}\)),
-ratio \(\le0.43P^{-1/8}\) against \(\lambda_a\ge1.2P^{-1/8}\);
+ratio \(\le0.34P^{-1/8}\) against \(\lambda_a\ge1.30P^{-1/8}\);
 resonant (D1) content \(\le6\,|q'|P^{-5/4}\) with
 \(|q'|\le4P^{1/24}\), ratio \(\le20P^{1/24-5/4+1/8}=20P^{-13/12}\);
 slow modes
 \(\le3J_2|j|P^{-5/4}\), ratio \(\le8P^{1/24-9/8}\); (D3) content,
 ratio \(\le3h_1h_2P^{-1/2}\le P^{-1/4}\). The \(\theta\)-sawtooth of
 the anchor has coefficient \(\tfrac9{16}k|j|P^{3/8}\)-scale with
-per-step drift \(\le0.2k|j|P^{-5/8}<1\): at most
-\(1.2k|j|P^{3/8}{+}1\) windows of length \(\ge0.8P^{5/8}/(k|j|)\),
+per-step drift \(\tfrac{27}{128}k|j|\nu^{-5/8}\le0.22k|j|P^{-5/8}<1\).
+Its total drift over the block is
+\(\tfrac9{16}(2^{3/8}{-}1)k|j|P^{3/8}\le0.17k|j|P^{3/8}\), so there are at
+most \(0.17k|j|P^{3/8}{+}1\) windows, each of length at least
+\(1/B'(P)=\tfrac{128}{27}P^{5/8}/(k|j|)\ge4.7P^{5/8}/(k|j|)\), at
 window-boundary cost
-\(\le1.2k|j|P^{3/8}\cdot0.92(k|j|)^{-1/2}P^{1/16}
-\le1.1(k|j|)^{1/2}P^{7/16}\). Off the collision band, window modes
+\(\le0.17k|j|P^{3/8}\cdot0.88(k|j|)^{-1/2}P^{1/16}
+\le0.15(k|j|)^{1/2}P^{7/16}\). Off the collision band, window modes
 \(w\) are dominated at margin \(\ge4\) either way and ride along or
 are estimated by Lemma 3.3 at their own scale with \(1/|w{+}B_0|\)
 weights (\(\ll P^{7/8}\log P\) in total); on the collision band
 \(|wX''|\in[\tfrac14,4]\lambda_a\), Lemma 3.8 with
 \((\alpha,\beta)=(\tfrac{15}8,\tfrac32)\) and
-\(M\in[0.3,\,6]\,k|j|P^{-1/8}\) gives
+\(M\in[1.30,\,5.75]\,k|j|P^{-1/8}\) gives
 \(\le C_E(|I_w|M^{1/2}+M^{-1/2}+(P/M)^{1/3})\) per window; summed
-over the at most \(1.2k|j|P^{3/8}{+}1\) windows with the
+over the at most \(0.17k|j|P^{3/8}{+}1\) windows with the
 \(O(\log P)\) band mass,
 \[
-\sum_w|I_w|M^{1/2}\le2.5\,(k|j|)^{1/2}P^{15/16},\qquad
-\sum_wM^{-1/2}\le2.2\,(k|j|)^{1/2}P^{7/16},
+\sum_w|I_w|M^{1/2}=P\,M^{1/2}\le2.4\,(k|j|)^{1/2}P^{15/16},\qquad
+\sum_wM^{-1/2}\le0.15\,(k|j|)^{1/2}P^{7/16},
 \]
 \[
 \sum_w(P/M)^{1/3}
-\le1.2k|j|P^{3/8}\cdot1.5\,(k|j|)^{-1/3}P^{3/8}
-=1.8\,(k|j|)^{2/3}P^{3/4}\le3.8\,P^{1/36+3/4},
+\le0.17k|j|P^{3/8}\cdot0.92\,(k|j|)^{-1/3}P^{3/8}
+=0.16\,(k|j|)^{2/3}P^{3/4}\le0.33\,P^{1/36+3/4},
 \]
 so the band total is \(\ll(k|j|)^{1/2}P^{15/16}\log P\).
 The main estimate is Lemma 3.3 per frozen run at scale
 \(\lambda_a\): run lengths \(\ge\tfrac1{22}P^{1/4}/(|j|{+}1)\)
 (Lemma 5.1(iii)), and
-\(\lambda_a^{-1/2}\le0.92(k|j|)^{-1/2}P^{1/16}\ll\) run length, so
+\(\lambda_a^{-1/2}\le0.88(k|j|)^{-1/2}P^{1/16}\ll\) run length, so
 \[
 \sum_{\text{runs}}\bigl(\ell\lambda_a^{1/2}+\lambda_a^{-1/2}\bigr)
-\le1.3\,(k|j|)^{1/2}P^{15/16}
-+21\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
+\le1.2\,(k|j|)^{1/2}P^{15/16}
++20\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
 \]
 Summed over the eight carry branches and \(|j|\le3\) with the
 \(O(\log^3P)\) piece masses:

@@ -1,6 +1,6 @@
 # Paper B audit ledger
 
-Companion to [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md). This is a research-discipline record, not an independent verification and not part of the journal text. Probe: `research.juggler_sequence.paper_b_audit`. Theorem 5.3 is the monomial `c = (3k/4) n^{9/8}`. The printed Step 5b `|B|<1` claim is withdrawn: frozen `B = (9/32) k β1 β2 ν^{-9/8}` has constant size `|B| ≤ 6`; Lemma 3.7 at `T = P^{1/2}` still applies. The `ρ₀` ratios of Lemma 5.2b are `O(P^{-1/4})` and sit under `1/2304` for `P ≥ P₀`. Exponent checks: 141.
+Companion to [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md). This is a research-discipline record, not an independent verification and not part of the journal text. Probe: `research.juggler_sequence.paper_b_audit`. Theorem 5.3 is the monomial `c = (3k/4) n^{9/8}`. The printed Step 5b `|B|<1` claim is withdrawn: frozen `B = (9/32) k β1 β2 ν^{-9/8}` has constant size `|B| ≤ 6`; Lemma 3.7 at `T = P^{1/2}` still applies. The `ρ₀` ratios of Lemma 5.2b are `O(P^{-1/4})` and sit under `1/2304` for `P ≥ P₀`. Exponent checks: 150.
 
 
 This file records a re-derivation of the kernel argument, in the form
@@ -12,7 +12,7 @@ the standing estimates and inventories on the blocks
 \(P=10^6,10^8,10^{10}\) (and, for cell counts, exhaustively at
 \(P=10^5\)), and every displayed \(P\)-power comparison
 as an exact rational statement
-(`research.juggler_sequence.paper_b_audit`, \(141\) exponent checks;
+(`research.juggler_sequence.paper_b_audit`, \(150\) exponent checks;
 artifact `data/research/juggler/paper_b_audit/summary.json`). A
 script check confirms consistency of what is printed; it is not a
 proof, and this file is not an independent human verification.
@@ -42,7 +42,7 @@ the exponent \(1-1/96\) and the statements of Theorem 6.1 are unchanged.
 | Step 2: \(\lvert M_1\rvert\le0.43kh_1h_2P^{-7/8}\), deletion cost \(2.7P^{1/4}\) | hand; script (\(M_1\) bound on all samples) | consistent |
 | Step 3a: windows \(2kh_2P^{1/4}+1\), hypothesis \(T\ge8(1+\lvert B\rvert)\), flat \(46P^{3/4}\), modes \(uh_1\le P^{1/2}\), boundaries \(7P^{17/24}\); 3b: \(\lvert(\Delta_2c)''\rvert\le0.19kh_2P^{-15/8}\), majorant \(4P^{23/24}\) | hand (window count \(0.22kh_2P^{1/4}+1\)) | consistent |
 | Step 4: weight sum \(\sum_t t^{-7/6}\log^2t<\infty\); \(\lvert t\rvert\le3P^{1/24}\) inside the Lemma 5.2 budget; leftover \(uW,u'W'\) are large-\(\lvert q'\rvert\) (D1); good \(h_3\) with \(th_3h'\ge72\) dominate at margin \(\ge4\); bad union \(\le144\) integers, trivial \(\lvert V\rvert\le P\), A-process \(576\,t^{-1/3}P^{23/12}\) | hand; script | **tightened**: this split keys off the same Stage-4 curvature, so \(6/0.35\le18\) and \(25/0.35\le71.5\) replace \(20\) and \(83.4\); the good-set threshold falls \(80\to72\), the bad union \(160\to144\), the \(A\)-process constant \(640\to576\) |
-| Step 5a: \(\lambda_a\) constant \(\tfrac{945}{512}-\tfrac{27}{64}=\tfrac{729}{512}\), range \([1.2,1.5]k\lvert j\rvert P^{-1/8}\); competitor ratios; windows \(1.2k\lvert j\rvert P^{3/8}+1\); boundary \(1.1(k\lvert j\rvert)^{1/2}P^{7/16}\); collision sums \(2.5\), \(2.2\), \(1.8\); run sums \(1.3\), \(21\); total \(1.8P^{23/24}\) | hand (range \([1.31,1.42]\); windows \(0.17k\lvert j\rvert P^{3/8}+1\); sums \(2.45\), \(2.2\), \(1.8\); runs \(1.22\), \(20.2\)) | consistent |
+| Step 5a: \(\lambda_a\) constant \(\tfrac{945}{512}-\tfrac{27}{64}=\tfrac{729}{512}\), range \([1.30,1.43]k\lvert j\rvert P^{-1/8}\); windows \(0.17k\lvert j\rvert P^{3/8}+1\) of length \(\ge4.7P^{5/8}/(k\lvert j\rvert)\); boundary \(0.15(k\lvert j\rvert)^{1/2}P^{7/16}\); collision \(M\in[1.30,5.75]\), sums \(2.4\), \(0.15\), \(0.16\); run sums \(1.2\), \(20\) | **second reading** (4 Sep 2026); script (9 new rows) | **corrected**: the printed per-step drift of the anchor \(\theta\)-sawtooth was \(0.2k\lvert j\rvert P^{-5/8}\), but \(B'=\tfrac{27}{128}k\lvert j\rvert\nu^{-5/8}\) and \(\tfrac{27}{128}=0.2109>0.2\) — understated by \(5\%\), now \(0.22\). **Tightened**: the window count is the *total* drift \(\tfrac9{16}(2^{3/8}{-}1)=0.167\), not \(1.2\) (a \(7\times\) overcount that multiplied the boundary cost and both window-summed collision terms); the window length \(1/B'(P)=\tfrac{128}{27}=4.74\), not \(0.8\); \(\lambda_a\) range \([1.2,1.5]\to[1.30,1.43]\) exactly; collision \(M\in[0.3,6]\to[1.30,5.75]\). Downstream: boundary \(1.1\to0.15\), collision sums \(2.5,2.2,1.8\to2.4,0.15,0.16\) (and \(3.8\to0.33\)), run sums \(1.3,21\to1.2,20\). The \(1.8P^{23/24}\) total is unchanged and now has large margin |
 | Step 5b / Lemma 5.2b: local frozen \((cG)''=-\tfrac{135}{1024}k\beta_1\beta_2\nu^{-13/8}\); \(\lambda_0\in[0.35,2.6]kh_1h_2P^{-5/8}\); interpolant is frozen-shape; \(a=-\tfrac{27}{10}\), \(b=-\tfrac{405}{176}\); \(\rho_0\) ratios \(O(P^{-1/4})\le1/2304\); zero-offset \(B=-\tfrac9{32}k\beta_1\beta_2\nu^{-9/8}\) with \(\lvert B\rvert\le6\) | hand; script (frozen \((cF)''\) matches \(135/1024\); frozen \(B\) matches \(9/32\) and \(\lvert B\rvert\le6\)) | **corrected**: the printed \(\lvert B\rvert<1\) dropped \(h_1h_2\) from (C1); the sawtooth is constant-size; Lemma 3.7 at \(T=P^{1/2}\) still applies. Theorem 5.3 is the monomial \(c=\tfrac{3k}4n^{9/8}\) |
 | Lemma 3.9 constant for the triple \((\tfrac54,\tfrac{11}8,\tfrac32)\) | hand and exact inverse | **corrected**: the inverse's \(\ell^\infty\) operator norm is \(232\); the printed \(288\) is its \(\ell^1\) norm; \(c_7=1/288\le1/232\) remains valid, so Step 5b is unchanged |
 | Lemma 5.2(ii)\(\to\)(i), Claim G identity list | **second reading** (4 Sep 2026); script | **corrected**: the list printed \(1/12+13/8=5/3\) and \(1/12+15/8=23/12\); the exponent \(H_3^{1/2}\) contributes is \(1/24\), and \(1/12\) closes neither identity. The four *displayed* bounds \(S_1\)–\(S_4\) were already right (the probe had \(1/24\) throughout), so no estimate changes. The balance is now printed explicitly: only \(2P^2/H_3\) and \(S_2\) survive with \(O(1)\) prefactors, constants \(2\) and \(4\sqrt2\le6\), giving \(\lvert U\rvert\le(2.83+o(1))t^{-1/6}P^{23/24+\varepsilon}\), and \(H_3=\lceil t^{1/3}P^{1/12}\rceil\) is exactly the balancing choice |
@@ -75,9 +75,12 @@ The *six-stage proof of Lemma 5.2(i)* has now also been read
 inputs, one further misprint was found and corrected, and sixteen new
 exponent rows pin the stages in the probe.
 
+*Theorem 5.3, Step 5a* has now been read as well, with one further
+misprint corrected and its window count tightened by \(7\times\).
+
 **Still outstanding:** a second human reading of *Theorem 5.3,
-Steps 5a–5b*. That is now the only part of the kernel argument that
-has not had an independent second pass.
+Step 5b* (and Lemma 5.2b). That is now the only part of the kernel
+argument without an independent second pass.
 
 *What was not re-derived.* The \(\rho_0\) ratios
 of Lemma 5.2b are now displayed and sit under \(1/2304\). The exact

@@ -55,8 +55,10 @@ import {
 import {
   blockExponent,
   financeBudgetConstantOne,
+  necklaceFigure,
   necklaceView,
   oMinExact,
+  resolveNecklace,
   thetaExact,
 } from "./necklace";
 import { idealJoinConfig, stemBeadsForJoin, stemTerminalLetter } from "./joinConfig";
@@ -656,9 +658,24 @@ describe("excursion necklace", () => {
     expect(blockExponent(3).approx).toBeCloseTo(27 / 16);
   });
 
+  it("ships the four Movement-1 presets and does not rewalk them", () => {
+    for (const preset of NECKLACE_PRESETS) {
+      const view = resolveNecklace(preset.n, preset.word);
+      expect(view?.source).toBe("shipped");
+      expect(view?.n).toBe(preset.n);
+      expect(view?.word).toBe(preset.word);
+    }
+    const note = resolveNecklace(37n, "OOOOEOOOEEOOEEEEE");
+    expect(note?.states).toContain(NOTE_PEAK_37);
+    expect(resolveNecklace(12n, "OOE")?.source).toBe("live");
+    const figure = necklaceFigure(note!);
+    expect(JSON.stringify(figure).includes("note peak") || figure.labels.includes("24906114455136")).toBe(true);
+    expect(() => JSON.stringify(figure)).not.toThrow();
+  });
+
   it("reads the walk of 365 as six excursions that fall through n", () => {
     const preset = NECKLACE_PRESETS[0];
-    const view = necklaceView(preset.n, preset.word);
+    const view = resolveNecklace(preset.n, preset.word)!;
     expect(view.follows).toBe(true);
     expect(view.realized).toBe(preset.word);
     expect(view.excursions.map((block) => block.odds)).toEqual([2, 2, 2, 2, 1, 0, 0, 2, 0, 0]);

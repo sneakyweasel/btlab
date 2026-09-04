@@ -5,6 +5,8 @@
 
 export const TRAJECTORY_STEPS_MAX = 80;
 export const DISPLAY_BITS_MAX = 256;
+/** Custom necklace starts above this walk in the browser; presets are shipped. */
+export const LIVE_NECKLACE_BITS = 64;
 export const WORD_MAX = 8;
 export const CYCLE_WORD_MAX = 16;
 /** Tour strings may be longer than a leftover necklace (365 is 21 letters). */
@@ -449,9 +451,9 @@ export const RECORD_LENGTHS = [1, 3, 11, 19, 84, 569, 1054, 25781, 50508] as con
 export const LIVE_FINANCE_L_MAX = 1054;
 
 /**
- * Starts for the excursion necklace of §4. The browser walks each start
- * for |word| realized steps and reads the wave; whether the word is
- * followed is reported, never assumed. None of these is a cycle.
+ * Starts for the excursion necklace of §4. Walks are shipped in
+ * necklace_presets.json. Whether the word is followed is reported,
+ * never assumed. None of these is a cycle.
  */
 export const NECKLACE_PRESETS = [
   {

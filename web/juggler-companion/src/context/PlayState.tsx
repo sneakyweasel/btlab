@@ -14,6 +14,9 @@ type PlayState = {
   setSteps: (value: number) => void;
   financeL: number;
   setFinanceL: (value: number) => void;
+};
+
+type NecklaceState = {
   necklaceNText: string;
   setNecklaceNText: (value: string) => void;
   necklaceWord: string;
@@ -21,6 +24,7 @@ type PlayState = {
 };
 
 const PlayContext = createContext<PlayState | null>(null);
+const NecklaceContext = createContext<NecklaceState | null>(null);
 
 export function PlayStateProvider({ children }: { children: ReactNode }) {
   const [nText, setNText] = useState("3");
@@ -45,20 +49,37 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
       setSteps,
       financeL,
       setFinanceL,
+    }),
+    [nText, itinerary, cycleItinerary, cycleShift, steps, financeL],
+  );
+  const necklace = useMemo(
+    () => ({
       necklaceNText,
       setNecklaceNText,
       necklaceWord,
       setNecklaceWord,
     }),
-    [nText, itinerary, cycleItinerary, cycleShift, steps, financeL, necklaceNText, necklaceWord],
+    [necklaceNText, necklaceWord],
   );
-  return <PlayContext.Provider value={value}>{children}</PlayContext.Provider>;
+  return (
+    <PlayContext.Provider value={value}>
+      <NecklaceContext.Provider value={necklace}>{children}</NecklaceContext.Provider>
+    </PlayContext.Provider>
+  );
 }
 
 export function usePlayState(): PlayState {
   const state = useContext(PlayContext);
   if (!state) {
     throw new Error("usePlayState must be used inside PlayStateProvider");
+  }
+  return state;
+}
+
+export function useNecklaceState(): NecklaceState {
+  const state = useContext(NecklaceContext);
+  if (!state) {
+    throw new Error("useNecklaceState must be used inside PlayStateProvider");
   }
   return state;
 }

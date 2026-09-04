@@ -1,0 +1,106 @@
+{
+ "note": "Shipped Movement-1 necklace walks. The browser does not recompute these.",
+ "presets": [
+  {
+   "id": "365",
+   "n": "365",
+   "word": "OOEOOEOOEOOEOEEEOOEEE",
+   "states": [
+    "365",
+    "6973",
+    "582276",
+    "763",
+    "21075",
+    "3059506",
+    "1749",
+    "73145",
+    "19782308",
+    "4447",
+    "296551",
+    "161491284",
+    "12707",
+    "1432400",
+    "1196",
+    "34",
+    "5",
+    "11",
+    "36",
+    "6",
+    "2",
+    "1"
+   ],
+   "label": "365 \u00b7 six excursions",
+   "hint": "The finance-leftover shape: four OOE climbs, then the wave falls through n. Not a cycle minimum."
+  },
+  {
+   "id": "1999",
+   "n": "1999",
+   "word": "OOEOOOOEEOOE",
+   "states": [
+    "1999",
+    "89375",
+    "26719238",
+    "5169",
+    "371629",
+    "226550171",
+    "3409938854447",
+    "6296799823595550754",
+    "2509342508",
+    "50093",
+    "11211547",
+    "37540349606",
+    "193753"
+   ],
+   "label": "1999 \u00b7 rising valleys",
+   "hint": "Valleys 1999 \u2192 5169 \u2192 50093 \u2192 193753: the four consecutive expanding blocks of \u00a76. The first peak overshoots; nothing lands."
+  },
+  {
+   "id": "o7eeee-5",
+   "n": "5",
+   "word": "OOOOOOOEEEE",
+   "states": [
+    "5",
+    "11",
+    "36",
+    "6",
+    "2",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1"
+   ],
+   "label": "O\u2077EEEE at 5",
+   "hint": "The CycleMin-shaped survivor tried on a real start: the walk leaves the word at the third letter."
+  },
+  {
+   "id": "37",
+   "n": "37",
+   "word": "OOOOEOOOEEOOEEEEE",
+   "states": [
+    "37",
+    "225",
+    "3375",
+    "196069",
+    "86818724",
+    "9317",
+    "899319",
+    "852846071",
+    "24906114455136",
+    "4990602",
+    "2233",
+    "105519",
+    "34276462",
+    "5854",
+    "76",
+    "8",
+    "2",
+    "1"
+   ],
+   "label": "37 \u00b7 the note peak",
+   "hint": "Three blocks, then a tower of evens. The second peak is the printed 24,906,114,455,136, far above (n+1)\u00b2."
+  }
+ ]
+}

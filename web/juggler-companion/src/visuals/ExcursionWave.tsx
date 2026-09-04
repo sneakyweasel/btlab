@@ -1,5 +1,4 @@
-import type { Excursion, NecklaceView } from "../juggler/necklace";
-import { formatInt, log10Of } from "../juggler/format";
+import type { NecklaceFigure } from "../juggler/necklace";
 
 const ODD = "#c45c26";
 const EVEN = "#1f6f6a";
@@ -31,7 +30,7 @@ function TenPow({ exp }: { exp: number }) {
 }
 
 type ExcursionWaveProps = {
-  view: NecklaceView;
+  figure: NecklaceFigure;
   /** Hide the step labels and verdicts for a tour-sized figure. */
   compact?: boolean;
 };
@@ -45,13 +44,9 @@ type ExcursionWaveProps = {
  * peak must clear it; the last peak must land in the thin band just
  * under it, so that one square root returns to n).
  */
-export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
-  const { states, n, nSquared, nPlusOneSquared, word } = view;
+export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
+  const { word, logs, logN, logSq, logSq1 } = figure;
   const turn = Math.max(word.length, 1);
-  const logs = states.map(log10Of);
-  const logN = log10Of(n);
-  const logSq = log10Of(nSquared);
-  const logSq1 = log10Of(nPlusOneSquared);
   const dataLo = Math.min(...logs, logN);
   const dataHi = Math.max(...logs, logSq1);
   const pad = Math.max(0.35, (dataHi - dataLo) * 0.08);
@@ -63,30 +58,39 @@ export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
   const angle = (step: number) => -Math.PI / 2 + (2 * Math.PI * step) / turn;
   const polar = (r: number, a: number) => ({ x: CX + r * Math.cos(a), y: CY + r * Math.sin(a) });
 
-  const points = states.map((state, index) => {
-    const { x, y } = polar(radius(logs[index]), angle(index));
-    return { x, y, state, letter: view.realized[index] ?? null, below: state < n, r: radius(logs[index]), a: angle(index) };
+  const points = logs.map((log, index) => {
+    const { x, y } = polar(radius(log), angle(index));
+    return {
+      x,
+      y,
+      letter: figure.realized[index] ?? null,
+      below: figure.below[index],
+      odd: figure.odd[index],
+      label: figure.labels[index],
+      r: radius(log),
+      a: angle(index),
+    };
   });
 
   const rN = radius(logN);
   const rSq = radius(logSq);
   const rSq1 = radius(logSq1);
 
-  const complete = view.excursions.filter((block) => block.complete);
-  const firstPeakStep = complete[0] ? complete[0].states.length - 1 : null;
-  const lastPeakStep =
-    complete.length > 0
-      ? view.excursions.slice(0, complete.length).reduce((sum, block) => sum + block.states.length, 0) - 1
-      : null;
+  const firstPeakStep = figure.firstPeakStep;
+  const lastPeakStep = figure.lastPeakStep;
 
   const decades: number[] = [];
   const span = hi - lo;
   /* keep decade labels at least ~22px apart along the radius */
   const stride = Math.max(1, Math.ceil((22 * span) / (R_MAX - R_MIN)));
-  for (let exp = Math.ceil(lo); exp <= Math.floor(hi); exp += stride) decades.push(exp);
+  if (Number.isFinite(lo) && Number.isFinite(hi) && Number.isFinite(stride)) {
+    for (let exp = Math.ceil(lo); exp <= Math.floor(hi) && decades.length < 24; exp += stride) {
+      decades.push(exp);
+    }
+  }
 
   const height = compact ? HEIGHT - 14 : HEIGHT;
-  const closed = states.length === word.length + 1;
+  const closed = figure.closed;
   const end = closed ? points[points.length - 1] : null;
   const start = points[0];
 
@@ -159,7 +163,7 @@ export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
       {/* the itinerary as a ring of letters */}
       {[...word].map((letter, index) => {
         const { x, y } = polar(R_LETTERS, angle(index + 0.5));
-        const realized = view.realized[index];
+        const realized = figure.realized[index];
         const mismatch = realized !== undefined && realized !== letter;
         const missing = realized === undefined;
         return (
@@ -212,7 +216,7 @@ export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
       })}
 
       {/* the closure gap: J^L(n) against n at the same angle */}
-      {end && !view.returns ? (
+      {end && !figure.returns ? (
         <line
           x1={start.x}
           y1={start.y}
@@ -225,16 +229,16 @@ export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
       ) : null}
 
       {points.map((point, index) => {
-        const odd = point.state % 2n === 1n;
+        const odd = point.odd;
         const isFirstPeak = index === firstPeakStep;
         const isLastPeak = index === lastPeakStep;
         const isPeak = point.letter === "E";
-        const isFail = view.failIndex === index;
+        const isFail = figure.failIndex === index;
         const isEnd = closed && index === points.length - 1;
         const fill = point.below ? WARN : odd ? ODD : EVEN;
         const ring = isFirstPeak || isLastPeak || index === 0 || isEnd;
         const showLabel =
-          !compact && (states.length <= 14 || index === 0 || isFirstPeak || isLastPeak || isFail || isEnd);
+          !compact && (logs.length <= 14 || index === 0 || isFirstPeak || isLastPeak || isFail || isEnd);
         const out = polar(point.r + 13, point.a);
         return (
           <g key={index}>
@@ -242,8 +246,8 @@ export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
               cx={point.x}
               cy={point.y}
               r={ring ? 7 : isPeak ? 5.5 : 4.5}
-              fill={isEnd && !view.returns ? "#fffdf7" : fill}
-              stroke={ring ? (isEnd && !view.returns ? WARN : INK) : "none"}
+              fill={isEnd && !figure.returns ? "#fffdf7" : fill}
+              stroke={ring ? (isEnd && !figure.returns ? WARN : INK) : "none"}
               strokeWidth={ring ? 1.8 : 0}
             />
             {showLabel ? (
@@ -258,7 +262,7 @@ export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
                 stroke="#fffdf7"
                 strokeWidth="3"
               >
-                {formatInt(point.state)}
+                {point.label}
               </text>
             ) : null}
           </g>
@@ -267,31 +271,31 @@ export function ExcursionWave({ view, compact = false }: ExcursionWaveProps) {
 
       {/* verdicts */}
       {!compact && firstPeakStep !== null ? (
-        <text x={12} y={height - 44} fill={view.firstPeakOvershoots ? OK : WARN} fontSize="11">
-          first peak {view.firstPeakOvershoots ? "clears (n+1)²" : "does not clear (n+1)²"}
+        <text x={12} y={height - 44} fill={figure.firstPeakOvershoots ? OK : WARN} fontSize="11">
+          first peak {figure.firstPeakOvershoots ? "clears (n+1)²" : "does not clear (n+1)²"}
         </text>
       ) : null}
       {!compact && lastPeakStep !== null && lastPeakStep !== firstPeakStep ? (
-        <text x={12} y={height - 28} fill={view.lastPeakLands ? OK : WARN} fontSize="11">
-          last peak {view.lastPeakLands ? "lands in the band" : "misses the band"}
+        <text x={12} y={height - 28} fill={figure.lastPeakLands ? OK : WARN} fontSize="11">
+          last peak {figure.lastPeakLands ? "lands in the band" : "misses the band"}
         </text>
       ) : null}
-      {!compact && view.failIndex !== null ? (
+      {!compact && figure.failIndex !== null ? (
         <text x={WIDTH - 12} y={height - 44} textAnchor="end" fill={WARN} fontSize="11">
-          letter {view.failIndex + 1}: word says {word[view.failIndex]}, walk is {view.realized[view.failIndex] ?? "—"}
+          letter {figure.failIndex + 1}: word says {word[figure.failIndex]}, walk is {figure.realized[figure.failIndex] ?? "—"}
         </text>
       ) : null}
       <text x={12} y={height - 10} fill={MUTED} fontSize="11">
-        {view.belowMinimumIndex === null
+        {figure.belowMinimumIndex === null
           ? "the walk stays at or above n"
-          : `step ${view.belowMinimumIndex}: below n — this start is not a cycle minimum`}
+          : `step ${figure.belowMinimumIndex}: below n — this start is not a cycle minimum`}
       </text>
-      <text x={WIDTH - 12} y={height - 10} textAnchor="end" fill={view.returns ? OK : MUTED} fontSize="11">
-        {view.returns
+      <text x={WIDTH - 12} y={height - 10} textAnchor="end" fill={figure.returns ? OK : MUTED} fontSize="11">
+        {figure.returns
           ? "closes: returns to n"
-          : view.image === null
+          : figure.imageLabel === null
             ? "walk stopped before the turn"
-            : `does not close: J^${word.length}(n) = ${formatInt(view.image)} ≠ n`}
+            : `does not close: J^${word.length}(n) = ${figure.imageLabel} ≠ n`}
       </text>
     </svg>
   );
@@ -308,23 +312,22 @@ function Tile({ letter }: { letter: "O" | "E" }) {
   );
 }
 
-function regimeWord(block: Excursion): string {
-  if (block.mu.regime === "expanding") return "expands";
-  if (block.mu.regime === "contracting") return "contracts";
+function regimeWord(regime: NecklaceFigure["tiles"][number]["regime"]): string {
+  if (regime === "expanding") return "expands";
+  if (regime === "contracting") return "contracts";
   return "critical";
 }
 
 /** One tile per block O^{a_i}E: its ideal exponent μ(a_i) and its valley → peak. */
-export function ExcursionTiles({ view }: { view: NecklaceView }) {
-  if (view.excursions.length === 0) {
+export function ExcursionTiles({ figure }: { figure: NecklaceFigure }) {
+  if (figure.tiles.length === 0) {
     return <p className="text-sm text-muted">No step yet: a necklace needs at least one E.</p>;
   }
   return (
     <div className="flex flex-wrap items-stretch gap-2">
-      {view.excursions.map((block) => {
-        const last = block.index === view.excursions.length - 1;
+      {figure.tiles.map((block) => {
         const oddsShown = Math.min(block.odds, 5);
-        const color = block.mu.regime === "expanding" ? ODD : block.mu.regime === "contracting" ? EVEN : MUTED;
+        const color = block.regime === "expanding" ? ODD : block.regime === "contracting" ? EVEN : MUTED;
         return (
           <div
             key={block.index}
@@ -346,13 +349,13 @@ export function ExcursionTiles({ view }: { view: NecklaceView }) {
               {block.complete ? <Tile letter="E" /> : <span className="font-mono text-xs text-muted">…</span>}
             </span>
             <span className="font-mono text-xs" style={{ color }}>
-              μ({block.odds}) = {block.mu.num.toString()}/{block.mu.den.toString()} · {regimeWord(block)}
+              μ({block.odds}) = {block.mu} · {regimeWord(block.regime)}
             </span>
             <span className="font-mono text-[11px] text-muted">
-              {formatInt(block.valley)} → {block.peak === null ? "…" : formatInt(block.peak)}
+              {block.valley} → {block.peak === null ? "…" : block.peak}
             </span>
             <span className="text-[10px] uppercase tracking-wide text-muted">
-              {block.index === 0 ? "launch a₁" : last && block.complete ? "last aₑ" : `a${block.index + 1}`}
+              {block.index === 0 ? "launch a₁" : block.last && block.complete ? "last aₑ" : `a${block.index + 1}`}
             </span>
           </div>
         );

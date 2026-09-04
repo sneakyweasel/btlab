@@ -7,7 +7,9 @@
  * LIVE_FINANCE_L_MAX; larger lengths and every n_max are finance.json.
  */
 
-import { DISPLAY_BITS_MAX, LIVE_FINANCE_L_MAX } from "./constants";
+import snapshot from "../data/necklace_presets.json";
+import { DISPLAY_BITS_MAX, LIVE_FINANCE_L_MAX, LIVE_NECKLACE_BITS } from "./constants";
+import { formatInt, log10Of } from "./format";
 import { bitLength, floorPower, letterOf, powInt } from "./map";
 
 export type BlockRegime = "contracting" | "expanding" | "critical";
@@ -71,26 +73,18 @@ export type NecklaceView = {
 };
 
 /**
- * Walk n for |word| realized steps and read the wave as a necklace of
- * excursions O^{a_i}E. The picture is of the actual trajectory: whether
- * it follows `word` is reported, not assumed.
+ * Read a finished walk as a necklace of excursions O^{a_i}E.
+ * No Juggler step is computed here.
  */
-export function necklaceView(
+export function necklaceFromStates(
   n: bigint,
   word: string,
-  bitCap = DISPLAY_BITS_MAX,
+  states: readonly bigint[],
+  bitCapped = false,
 ): NecklaceView {
-  if (n < 1n) throw new Error("necklaceView requires a positive start");
-  const states: bigint[] = [n];
-  let current = n;
-  let bitCapped = false;
-  for (let step = 0; step < word.length; step += 1) {
-    if (bitLength(current) > bitCap) {
-      bitCapped = true;
-      break;
-    }
-    current = floorPower(current);
-    states.push(current);
+  if (n < 1n) throw new Error("necklaceFromStates requires a positive start");
+  if (states.length === 0 || states[0] !== n) {
+    throw new Error("necklaceFromStates requires states to start at n");
   }
   const realized = states
     .slice(0, -1)
@@ -160,7 +154,7 @@ export function necklaceView(
     n,
     word,
     realized,
-    states,
+    states: [...states],
     follows,
     failIndex,
     bitCapped,
@@ -176,6 +170,139 @@ export function necklaceView(
     returns: image !== null && image === n,
     belowMinimumIndex,
   };
+}
+
+/**
+ * Walk n for |word| realized steps. Live only for small starts;
+ * Movement-1 presets use resolveNecklace.
+ */
+export function necklaceView(
+  n: bigint,
+  word: string,
+  bitCap = DISPLAY_BITS_MAX,
+): NecklaceView {
+  if (n < 1n) throw new Error("necklaceView requires a positive start");
+  const states: bigint[] = [n];
+  let current = n;
+  let bitCapped = false;
+  for (let step = 0; step < word.length; step += 1) {
+    if (bitLength(current) > bitCap) {
+      bitCapped = true;
+      break;
+    }
+    current = floorPower(current);
+    states.push(current);
+  }
+  return necklaceFromStates(n, word, states, bitCapped);
+}
+
+const shippedByKey = new Map(
+  snapshot.presets.map((row) => [`${row.n}:${row.word}`, row] as const),
+);
+
+export function shippedNecklaceView(n: bigint, word: string): NecklaceView | null {
+  const row = shippedByKey.get(`${n.toString()}:${word}`);
+  if (!row) return null;
+  return necklaceFromStates(
+    n,
+    word,
+    row.states.map((text) => BigInt(text)),
+  );
+}
+
+export type NecklaceSource = "live" | "shipped";
+
+export type ResolvedNecklace = NecklaceView & { source: NecklaceSource };
+
+/** JSON-safe picture of a necklace. No bigint — React 19 cannot serialize those. */
+export type NecklaceFigure = {
+  word: string;
+  realized: string;
+  follows: boolean;
+  failIndex: number | null;
+  bitCapped: boolean;
+  returns: boolean;
+  belowMinimumIndex: number | null;
+  firstPeakOvershoots: boolean | null;
+  lastPeakLands: boolean | null;
+  firstPeakLabel: string | null;
+  lastPeakLabel: string | null;
+  imageLabel: string | null;
+  bandLoLabel: string;
+  bandHiLabel: string;
+  logs: number[];
+  labels: string[];
+  odd: boolean[];
+  below: boolean[];
+  logN: number;
+  logSq: number;
+  logSq1: number;
+  firstPeakStep: number | null;
+  lastPeakStep: number | null;
+  closed: boolean;
+  tiles: Array<{
+    index: number;
+    odds: number;
+    complete: boolean;
+    last: boolean;
+    regime: BlockRegime;
+    mu: string;
+    valley: string;
+    peak: string | null;
+  }>;
+};
+
+export function necklaceFigure(view: NecklaceView): NecklaceFigure {
+  const complete = view.excursions.filter((block) => block.complete);
+  const firstPeakStep = complete[0] ? complete[0].states.length - 1 : null;
+  const lastPeakStep =
+    complete.length > 0
+      ? view.excursions.slice(0, complete.length).reduce((sum, block) => sum + block.states.length, 0) - 1
+      : null;
+  return {
+    word: view.word,
+    realized: view.realized,
+    follows: view.follows,
+    failIndex: view.failIndex,
+    bitCapped: view.bitCapped,
+    returns: view.returns,
+    belowMinimumIndex: view.belowMinimumIndex,
+    firstPeakOvershoots: view.firstPeakOvershoots,
+    lastPeakLands: view.lastPeakLands,
+    firstPeakLabel: view.firstPeak === null ? null : formatInt(view.firstPeak),
+    lastPeakLabel: view.lastPeak === null ? null : formatInt(view.lastPeak),
+    imageLabel: view.image === null ? null : formatInt(view.image),
+    bandLoLabel: formatInt(view.nSquared + 1n),
+    bandHiLabel: formatInt(view.nPlusOneSquared),
+    logs: view.states.map(log10Of),
+    labels: view.states.map(formatInt),
+    odd: view.states.map((state) => state % 2n === 1n),
+    below: view.states.map((state) => state < view.n),
+    logN: log10Of(view.n),
+    logSq: log10Of(view.nSquared),
+    logSq1: log10Of(view.nPlusOneSquared),
+    firstPeakStep,
+    lastPeakStep,
+    closed: view.states.length === view.word.length + 1,
+    tiles: view.excursions.map((block) => ({
+      index: block.index,
+      odds: block.odds,
+      complete: block.complete,
+      last: block.index === view.excursions.length - 1,
+      regime: block.mu.regime,
+      mu: `${block.mu.num.toString()}/${block.mu.den.toString()}`,
+      valley: formatInt(block.valley),
+      peak: block.peak === null ? null : formatInt(block.peak),
+    })),
+  };
+}
+
+/** Presets are shipped. Other starts walk only under LIVE_NECKLACE_BITS. */
+export function resolveNecklace(n: bigint, word: string): ResolvedNecklace | null {
+  const shipped = shippedNecklaceView(n, word);
+  if (shipped) return { ...shipped, source: "shipped" };
+  if (bitLength(n) > LIVE_NECKLACE_BITS) return null;
+  return { ...necklaceView(n, word, LIVE_NECKLACE_BITS), source: "live" };
 }
 
 /**
