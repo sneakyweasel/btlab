@@ -23157,3 +23157,38 @@ Why
 Best next question
 - the 219 in |f'' - Lambda| <= 219 P^{-25/24}, and the safety factor 10
 ```
+
+## Paper B: the interpolant error, and the comparison beside it (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Attack the \(219\) in \(\lvert f''-\Lambda\rvert\le219P^{-25/24}+0.11P^{-5/6}\), the constant that binds \(P_0\) once \(c_7\) is shown to be near its floor.
+- **The constant: \(219\to106\), a factor \(2.07\).** \(219=202.5+16\). The \(202.5\) is \((9/32)\cdot720\) from (C5) \(u,u'\le360P^{5/24}\) — but the middle band \(\mu\le60\lambda_0\) gives \(\max(uh_1,u'h_2)\le\frac{60\cdot2.6}{0.84}kh_1h_2P^{1/8}=185.7\,kh_1h_2P^{1/8}\), so \(360\) is that rounded to \(200\) and then opened again. And the \(16\) is \(8k(h_1{+}h_2)P^{-9/8}\) where step (ii) actually gives \(\frac{135}{1024}\cdot4.3=0.567\). Restating (C5) as \(u\le186kh_2P^{1/8}\), \(u'\le186kh_1P^{1/8}\) keeps the shifts visible, so both terms carry the shape \(k(h_1{+}h_2)P^{-9/8}\) and combine to \(52.9\,k(h_1{+}h_2)P^{-9/8}\le106P^{-25/24}\).
+- **The comparison beside it mattered more.** \(V\ge10\lvert f''-\Lambda\rvert\) exists only to move the sublevel structure from \(\Lambda\) to \(f''\). Running Lemma 3.9 at the raised threshold \(W=V+E\) does that directly — off \(\Omega_W\), \(\lvert f''\rvert\ge W-E=V\) — under the single hypothesis \(W\le c_7S/2\). The factor \(10\) was not just margin: it forced \(V\) *up* exactly where \(c_7\) wanted it down, so the two comparisons fought and pinned \(\kappa\) near \(1/3\).
+- **Result.** With them no longer fighting, \(\kappa\) falls to \(1/12\) and both thresholds improve together: \(P_0:\ 3.8\cdot10^{16}\to8.9\cdot10^{13}\) (422x), \(P_1:\ 2.1\cdot10^{21}\to5.0\cdot10^{19}\) (42x). At the new threshold \(V\!:\!E=60\!:\!40\) and \(E\) splits \(54\!:\!46\), so both halves of the interpolant error are now load-bearing.
+- **Correction.** The \(P_1=3.2\cdot10^{37}\) recorded in the previous entry was wrong: it collected the three middle-band costs into one coefficient of \(P^{89/96}\), but the \(r=3\) transition is \(\asymp P^{41/48}\), so that over-counted it by \(P^{7/96}\). Honest value at the old operating point: \(2.1\cdot10^{21}\). The direction of the \(c_7\) trade is unchanged.
+- **Not claimed:** no estimate changes; the exponent \(1-1/96\) is untouched.
+- **Decision:** consolidation. Paper B remains a working draft.
+
+```text
+What was learned
+- a safety factor can be worse than margin: V >= 10E pushed V up where
+  the Lemma 3.9 hypothesis pushed it down, and the two pinned kappa
+- raising the threshold to W = V + E removes the comparison entirely
+- (C5) had been opened twice from the band condition that implies it
+- keeping k, h1, h2 visible let two error terms combine that had been
+  bounded separately and converted separately
+- P_1 must be computed from three different exponents, not one
+Strongest theorem
+- none new
+Strongest refutation
+- none; constants and one unnecessary comparison
+Reusable machinery
+- middle_band_cost / log10_P1 in p0_certificate.py
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- both thresholds are now an order of magnitude better and the binding
+  inequality has no obvious slack left except the band half-width 60
+Best next question
+- the middle-band half-width 60 against the margin-20 domination claims
+```

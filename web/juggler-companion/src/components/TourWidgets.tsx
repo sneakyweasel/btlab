@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
+  EXPANDING_MONSTERS,
+  EXPANDING_STARTS,
   LIVE_STARTS,
   MONSTER_ROW_LIVE,
   PRODUCTION_M_MAX,
@@ -22,7 +24,6 @@ import {
   followsItinerary,
   imageAfter,
   oddCount,
-  parseItinerary,
   regimeOf,
 } from "../juggler/itinerary";
 import { EvenBlockStrip } from "../visuals/EvenBlockStrip";
@@ -31,6 +32,7 @@ import { ProductionWork } from "../visuals/ProductionWork";
 import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
+import { RegimeDoors } from "../visuals/RegimeDoors";
 import { FinanceBalance, FinanceHierarchy } from "../visuals/FinanceBalance";
 import { FloorLadder } from "../visuals/FloorLadder";
 import { NmaxStaircase } from "../visuals/NmaxStaircase";
@@ -38,7 +40,6 @@ import { NecklaceExplorer } from "./NecklaceExplorer";
 import { FloorCut } from "../visuals/FloorCut";
 import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
-import { SurplusScale } from "../visuals/SurplusScale";
 import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
 import { MediaControls, MediaPlayer, MediaScrubber } from "./MediaControls";
 import { Metric } from "./Metric";
@@ -78,9 +79,37 @@ function Chip({
   );
 }
 
-export function MapWidget() {
-  const [startText, setStartText] = useState(MAP_DEFAULT.toString());
-  const [cursor, setCursor] = useState(MAP_DEFAULT);
+export type MapFrame = {
+  prefix: string;
+  odds: number;
+  length: number;
+  regime: ReturnType<typeof regimeOf>;
+  stepIndex: number;
+};
+
+type StartChip = {
+  value: bigint;
+  note: string;
+  label?: string;
+};
+
+export function MapWidget({
+  initial = MAP_DEFAULT,
+  side,
+  liveStarts = LIVE_STARTS,
+  monsterStarts,
+  useChipLabels = false,
+  presetHint = "Ideas the browser can walk, and shipped monsters that outgrow that walker. Pictures only: hitting 1 is not a theorem.",
+}: {
+  initial?: bigint;
+  side?: (frame: MapFrame) => ReactNode;
+  liveStarts?: readonly StartChip[];
+  monsterStarts?: readonly StartChip[];
+  useChipLabels?: boolean;
+  presetHint?: string;
+} = {}) {
+  const [startText, setStartText] = useState(initial.toString());
+  const [cursor, setCursor] = useState(initial);
   const [playing, setPlaying] = useState(false);
   const start = parsePositiveInt(startText);
   const seed = start ?? MAP_DEFAULT;
@@ -179,14 +208,25 @@ export function MapWidget() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  const prefix = trajectory.itinerary.slice(0, Math.max(stepIndex, 0));
+  const prefixOdds = oddCount(prefix);
+  const frame: MapFrame = {
+    prefix,
+    odds: prefixOdds,
+    length: prefix.length,
+    regime: regimeOf(prefix.length, prefixOdds),
+    stepIndex,
+  };
+
   return (
     <div className="min-w-0 space-y-4">
       <MapDoors
         states={trajectory.states}
-        highlight={letter === "O" ? "odd" : "even"}
+        highlight={side ? null : letter === "O" ? "odd" : "even"}
         active={active >= 0 ? active : undefined}
         sparseScale={trajectory.source === "monster"}
-        stepComputation={<FloorCut compact n={cursor} result={next} />}
+        stepComputation={side ? undefined : <FloorCut compact n={cursor} result={next} />}
+        side={side?.(frame)}
         controls={
           <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
             <label className="grid gap-1">
@@ -211,7 +251,7 @@ export function MapWidget() {
             <div className="grid min-w-0 flex-1 gap-1.5">
               <p
                 className="text-xs uppercase tracking-wide text-muted"
-                title="Ideas the browser can walk, and shipped monsters that outgrow that walker. Pictures only: hitting 1 is not a theorem."
+                title={presetHint}
               >
                 Interesting presets
               </p>
@@ -223,17 +263,18 @@ export function MapWidget() {
                 >
                   ⚡
                 </span>
-                {LIVE_STARTS.map((preset) => (
+                {liveStarts.map((preset) => (
                   <Chip
                     key={preset.value.toString()}
                     selected={seed === preset.value}
                     title={preset.note}
                     onClick={() => chooseStart(preset.value)}
                   >
-                    {preset.value.toString()}
+                    {useChipLabels ? (preset.label ?? preset.value.toString()) : preset.value.toString()}
                   </Chip>
                 ))}
               </div>
+              {monsterStarts !== undefined && monsterStarts.length === 0 ? null : (
               <div className="flex flex-wrap items-center gap-1.5">
                 <span
                   className="w-6 text-center text-base leading-none"
@@ -242,7 +283,18 @@ export function MapWidget() {
                 >
                   👹
                 </span>
-                {MONSTER_ROW_LIVE.map((preset) => (
+                {(monsterStarts ?? [
+                  ...MONSTER_ROW_LIVE.map((preset) => ({
+                    value: preset.value,
+                    note: preset.note,
+                    label: preset.label,
+                  })),
+                  ...monsterCatalog().map((preset) => ({
+                    value: preset.n,
+                    note: preset.blurb,
+                    label: preset.n.toString(),
+                  })),
+                ]).map((preset) => (
                   <Chip
                     key={preset.value.toString()}
                     selected={seed === preset.value}
@@ -250,21 +302,11 @@ export function MapWidget() {
                     title={preset.note}
                     onClick={() => chooseStart(preset.value)}
                   >
-                    {preset.label}
-                  </Chip>
-                ))}
-                {monsterCatalog().map((preset) => (
-                  <Chip
-                    key={preset.n.toString()}
-                    selected={seed === preset.n}
-                    tone="monster"
-                    title={preset.blurb}
-                    onClick={() => chooseStart(preset.n)}
-                  >
-                    {preset.n.toString()}
+                    {preset.label ?? preset.value.toString()}
                   </Chip>
                 ))}
               </div>
+              )}
             </div>
           </div>
         }
@@ -339,26 +381,22 @@ export function LeftoversWidget() {
 }
 
 export function ExpandingWidget() {
-  const [text, setText] = useState("OOE");
-  const word = parseItinerary(text, 16) ?? "";
-  const odds = oddCount(word);
   return (
-    <div className="space-y-3">
-      <SurplusScale odds={odds} length={word.length} />
-      <label className="block text-sm text-muted">
-        Short O/E itinerary
-        <input
-          className="mt-1 block w-full max-w-xs rounded border border-line bg-card px-2 py-1 font-mono"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
+    <MapWidget
+      initial={3n}
+      liveStarts={EXPANDING_STARTS}
+      monsterStarts={EXPANDING_MONSTERS}
+      useChipLabels
+      presetHint="Starts chosen to show 3^o against 2^L. Hitting 1 is not a theorem."
+      side={(frame) => (
+        <RegimeDoors
+          prefix={frame.prefix}
+          odds={frame.odds}
+          length={frame.length}
+          regime={frame.regime}
         />
-      </label>
-      <p className="text-sm text-muted">
-        {word
-          ? `${word} is ${regimeOf(word.length, odds)}. Surplus 3^${odds} − 2^${word.length} = ${3 ** odds - 2 ** word.length}.`
-          : "Type only O and E."}
-      </p>
-    </div>
+      )}
+    />
   );
 }
 

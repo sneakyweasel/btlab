@@ -71,7 +71,10 @@ export const NOTE_PEAK_37 = 24_906_114_455_136n;
 
 export const N_PRESETS = [
   { label: "3 — note trajectory", value: 3n },
+  { label: "5 — first OE", value: 5n },
   { label: "37 — note peak", value: 37n },
+  { label: "173 — 272-bit peak", value: 173n },
+  { label: "365 — leftover", value: 365n },
   { label: "1999 — four-block", value: 1999n },
 ] as const;
 
@@ -126,6 +129,58 @@ export const LIVE_STARTS = [
     label: "1999",
     value: 1999n,
     note: "A four-block start from the playground list. Still live, under 256 bits.",
+  },
+] as const;
+
+/** Expanding chapter: 0, 1, 2, 3, then many odd letters. */
+export const EXPANDING_STARTS = [
+  {
+    label: "3",
+    value: 3n,
+    note: "OOOEEE. Three odds keep 3^o ahead of 2^L, then the evens pull under. A loop must expand.",
+  },
+  {
+    label: "7",
+    value: 7n,
+    note: "OEEE. One odd is not enough: 3>2, then 3<4. A contracting prefix cannot close a nontrivial cycle.",
+  },
+  {
+    label: "16",
+    value: 16n,
+    note: "EEE. An even tower: no O letters, so 1 < 2^L from the first step.",
+  },
+  {
+    label: "O⁷EEEE at 5",
+    value: 5n,
+    note: "The CycleMin-shaped survivor tried on a real start: the walk leaves the word at the third letter. Two odds stay expanding through OOE (9>8), then the evens win.",
+  },
+  {
+    label: "37 · the note peak",
+    value: 37n,
+    note: "Three blocks, then a tower of evens. Many O letters keep the prefix expanding while it climbs; the evens still cut it down.",
+  },
+  {
+    label: "1999 · rising valleys",
+    value: 1999n,
+    note: "Four consecutive expanding blocks. Valleys rise 1999 → 5169 → 50093 → 193753. The first peak overshoots; nothing lands.",
+  },
+] as const;
+
+export const EXPANDING_MONSTERS = [
+  {
+    label: "173 · peak",
+    value: 173n,
+    note: "Classical high peak: 272 bits, then it falls to 1. Long odd runs keep 3^o ahead of 2^L. One trajectory, not a theorem.",
+  },
+  {
+    label: "2183 · peak bits",
+    value: 2183n,
+    note: "Five expanding blocks. Peak 19,694 bits — the largest peak that still ships. Not a cycle.",
+  },
+  {
+    label: "3889 · delay",
+    value: 3889n,
+    note: "Longest shipped drop to 1: 80 steps. The n≤4000 delay record. Not a cycle.",
   },
 ] as const;
 

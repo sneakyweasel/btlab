@@ -29,11 +29,18 @@ C7_SUPERSEDED = 1.0 / 288.0
 RHO0 = C7 / 8.0
 
 # Normalisation of the balanced sublevel parameter V = KAPPA * S^(1/2) * P^(-11/24).
-KAPPA = 1.0 / 3.0
-KAPPA_SUPERSEDED = 3.0
+KAPPA = 1.0 / 12.0
+KAPPA_SUPERSEDED = 1.0 / 3.0
 
-# Lemma 5.2b interpolant majorant |f'' - Lambda| <= 219 P^(-25/24) + 0.11 P^(-5/6).
+# Lemma 5.2b interpolant majorant.  |f'' - Lambda| <= 52.9 k(h1+h2) P^(-9/8) + |c''|, and
+# k(h1+h2) <= 2 P^(1/12) by (C3),(C4).  The 52.9 is (9/32)*186 from the middle-band cap
+# u <= 186 k h2 P^(1/8), plus 0.567 from the beta-product replacement.  An earlier draft
+# printed 219 = (9/32)*720 + 16, opening the cap to 360 and the second constant to 8.
 def interpolant_error(P: float) -> float:
+    return 105.6 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
+
+
+def interpolant_error_superseded(P: float) -> float:
     return 219.0 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
 
 
@@ -126,17 +133,17 @@ def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
          lambda P: (1.187 * 0.68 / 0.35) * P**-0.5 <= rho0),
         ("39-wave", "Thm 5.3 St.5b", "wave remainder 200 P^(-35/24) vs S: 571 P^(-5/6) <= rho_0",
          lambda P: (200 / 0.35) * P ** (-5 / 6) <= rho0),
-        # --- Theorem 5.3, the two Lemma 3.9 balance comparisons ---
+        # --- Theorem 5.3, the Lemma 3.9 balance comparison ---
+        # Lemma 3.9 is applied at the raised threshold W = V + E, so its single hypothesis
+        # W <= c_7 S/2 replaces the former pair (V <= c_7 S/2, V >= 10|f''-Lambda|).
         ("5a-competitors", "Thm 5.3 St.5a", "every competitor ratio <= 1/4 (margin 4)",
          lambda P: max(1.3 * P**-0.125, 13 * P ** (-9 / 16), 9 * P ** (-13 / 12), 3 * P**-0.125) <= 0.25),
-        ("5a-V>=10err", "Thm 5.3 St.5a", "V >= 10 |f'' - Lambda|",
-         lambda P: _V(S5a(P), P, kappa) >= 10 * interpolant_error(P)),
-        ("5a-V<=c7S", "Thm 5.3 St.5a", "V <= c_7 S/2 at S >= 0.60 P^(-5/8)",
-         lambda P: _V(S5a(P), P, kappa) <= c7 * S5a(P) / 2),
-        ("5b-V>=10err", "Thm 5.3 St.5b", "V >= 10 |f'' - Lambda|",
-         lambda P: _V(S5b(P), P, kappa) >= 10 * interpolant_error(P)),
-        ("5b-V<=c7S", "Thm 5.3 St.5b", "V <= c_7 S/2 at S >= 0.35 P^(-5/8)",
-         lambda P: _V(S5b(P), P, kappa) <= c7 * S5b(P) / 2),
+        ("5a-W<=c7S", "Thm 5.3 St.5a", "W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8)",
+         lambda P: _V(S5a(P), P, kappa) + interpolant_error(P) <= c7 * S5a(P) / 2),
+        ("5b-W<=c7S", "Thm 5.3 St.5b", "W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8)",
+         lambda P: _V(S5b(P), P, kappa) + interpolant_error(P) <= c7 * S5b(P) / 2),
+        ("5b-E<=c7S", "Thm 5.3 St.5b", "E alone <= c_7 S/2 (the floor as kappa -> 0)",
+         lambda P: interpolant_error(P) <= c7 * S5b(P) / 2),
         # --- Section 6 ---
         ("thm63-rem", "Thm 6.3", "linearization remainder P^(43/96) <= P^(1-1/96)",
          lambda P: P ** (43 / 96) <= P ** (1 - 1 / 96)),
@@ -150,20 +157,19 @@ def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
 
 
 def kappa_tradeoff(kappa: float, c7: float = C7, S_lo: float = 0.35, N: float = 3.5) -> dict[str, Any]:
-    """Threshold and P^(89/96) coefficient as functions of the normalisation of V.
+    """Threshold ``P_0`` and non-vacuity point ``P_1`` as functions of the normalisation of V.
 
-    The transition cost carries ``kappa^(1/2)`` and the piece-boundary cost ``kappa^(-1/2)``, so the
-    coefficient is minimised near ``kappa = 3.69`` while the threshold falls monotonically as
-    ``kappa`` decreases until the two Lemma 3.9 comparisons collide.
+    Under the raised threshold ``W = V + E`` the two no longer conflict: both fall as ``kappa``
+    decreases, until the piece-boundary term (which carries ``kappa^(-1/2)``) turns ``P_1`` around
+    near ``kappa = 1/12``.  Under the superseded pair of comparisons they pulled against each other
+    and pinned ``kappa`` near 1/3.
     """
     S = lambda P: S_lo * P**-0.625  # noqa: E731
-    lg = least_P(lambda P: _V(S(P), P, kappa) <= c7 * S(P) / 2
-                 and _V(S(P), P, kappa) >= 10 * interpolant_error(P))
-    transition = (kappa * S_lo**-0.5) ** 0.5
-    boundaries = N * (0.9 * kappa * S_lo**0.5) ** -0.5
+    lg = least_P(lambda P: _V(S(P), P, kappa) + interpolant_error(P) <= c7 * S(P) / 2)
     return {"kappa": kappa, "log10_P_min": lg, "P_min": None if lg is None else 10.0**lg,
-            "coeff_transition": transition, "coeff_boundaries": boundaries,
-            "coeff_total": transition + boundaries}
+            "log10_P1": log10_P1(kappa, c7, c7, S_lo, N),
+            "P1": 10 ** log10_P1(kappa, c7, c7, S_lo, N),
+            "coeff_boundaries": N * (kappa * S_lo**0.5) ** -0.5}
 
 
 def log_absorption_thresholds() -> list[dict[str, Any]]:
@@ -264,24 +270,32 @@ def max_c2(c3: float = 0.0, c4: float = 0.0) -> float:
     return min((1 - r[1] * c3 - r[2] * c4) / r[0] for r in MINV_ABS)
 
 
-def lemma_3_9_CE(kappa: float, c3: float, c4: float, S_lo: float = 0.35, N: float = 3.5) -> float:
-    """The constant in |Omega_V| <= C P^(89/96), plus the piece-boundary constant.
+def middle_band_cost(kappa: float, P: float, c3: float = C7, c4: float = C7,
+                     S_lo: float = 0.35, N: float = 3.5) -> tuple[float, float, float]:
+    """The three middle-band costs at ``P``: r=3 transition, r=4 transition, piece boundaries.
 
-    The r=3 piece contributes a length 2 P V/(c3 S) and the r=4 piece P (V/(c4 S))^(1/2), so c3 and
-    c4 sit in C(E) exactly where c2 does not.  This is why raising c2 is not free.
+    Their exponents differ -- 41/48, 89/96 and 89/96 -- so they cannot be collected into a single
+    coefficient of P^(89/96).  Doing so over-counts the r=3 term by a factor P^(7/96), which is
+    what an earlier reading of this module did.
     """
-    vs = kappa * S_lo**-0.5  # V/S <= vs * P^(-7/48)
-    return 4 * vs / c3 + (vs / c4) ** 0.5 + N * (0.9 * kappa * S_lo**0.5) ** -0.5
+    S = S_lo * P**-0.625
+    V = _V(S, P, kappa)
+    W = V + interpolant_error(P)
+    return (4 * P * (W / S) / c3,
+            P * (W / (c4 * S)) ** 0.5,
+            N * P ** (13 / 24) * V**-0.5)
 
 
-def log10_P1(kappa: float, c3: float, c4: float) -> float:
-    """Least log10 P at which the Step 5b middle-band bound beats the trivial bound P.
+def log10_P1(kappa: float, c3: float = C7, c4: float = C7,
+             S_lo: float = 0.35, N: float = 3.5) -> float:
+    """Least log10 P at which the Step 5b middle band beats the trivial bound P.
 
-    Distinct from P_0, and much larger: it asks C(E) P^(89/96) <= P, i.e. P >= C(E)^(96/7).  Any
-    constant C needs P >= C^(96/7) to be absorbed into a P^(1/96) saving, so this floor is a
-    property of the exponent 1/96 rather than of this proof -- even C = 10 needs 10^13.7.
+    A different quantity from ``P_0``, and larger: ``P_0`` says the printed inequalities hold,
+    ``P_1`` says the resulting bound has content.  The two respond to ``kappa`` in the same
+    direction under the raised threshold ``W = V + E``, and in opposite directions under the
+    per-order refinement of ``c_7`` (which buys ``c_2`` out of ``c_3``, and ``c_3`` sits here).
     """
-    return math.log10(lemma_3_9_CE(kappa, c3, c4)) * 96 / 7
+    return least_P(lambda P: sum(middle_band_cost(kappa, P, c3, c4, S_lo, N)) <= P, lo=1.0)
 
 
 def p0_with_vector(kappa: float, c2: float, c3: float, c4: float) -> float | None:
@@ -290,13 +304,12 @@ def p0_with_vector(kappa: float, c2: float, c3: float, c4: float) -> float | Non
         return None
     rho0 = min(c2, c3, c4) / 8.0
     floor = max(r["log10_P_min"] for r in thresholds()
-                if r["tag"] not in {"5a-V<=c7S", "5b-V<=c7S", "5a-V>=10err", "5b-V>=10err",
+                if r["tag"] not in {"5a-W<=c7S", "5b-W<=c7S", "5b-E<=c7S",
                                     "39-c2", "39-c3", "39-c4", "39-beta", "39-wave"})
     out = [floor]
     for S_lo in (0.35, 0.60):
-        out.append(48 / 7 * math.log10(2 * kappa / (c2 * S_lo**0.5)))
         t = least_P(lambda P, s=S_lo: kappa * (s * P**-0.625) ** 0.5 * P ** (-11 / 24)
-                    >= 10 * interpolant_error(P))
+                    + interpolant_error(P) <= c2 * (s * P**-0.625) / 2)
         if t is None:
             return None
         out.append(t)
@@ -307,18 +320,17 @@ def p0_with_vector(kappa: float, c2: float, c3: float, c4: float) -> float | Non
 
 def c7_lever() -> dict[str, Any]:
     """Can c_7 be raised?  Not by the triple; by the vector, but not for free."""
-    cur = (KAPPA, C7, C7, C7)
-    p0_cur, p1_cur = p0_with_vector(*cur), log10_P1(KAPPA, C7, C7)
-    p0_opt = p0_with_vector(1.0, 1 / 27, 1 / 1872, 1 / 1872)
+    p0_cur, p1_cur = p0_with_vector(KAPPA, C7, C7, C7), log10_P1(KAPPA)
+    p0_opt = p0_with_vector(KAPPA, 1 / 27, 1 / 1872, 1 / 1872)
     return {
         "triple_scan": c7_triple_scan(),
         "uniform_saturates_middle_row": sum(MINV_ABS[1]) == 232,
         "max_c2_at_c3_c4_zero": max_c2(),
         "max_c2_gain_factor": max_c2() / C7,
         "current": {"kappa": KAPPA, "c": [C7] * 3, "P0": 10**p0_cur, "P1": 10**p1_cur},
-        "P0_optimal": {"kappa": 1.0, "c": [1 / 27, 1 / 1872, 1 / 1872],
-                       "P0": 10**p0_opt, "P1": 10 ** log10_P1(1.0, 1 / 1872, 1 / 1872)},
-        "P1_floor_examples": {str(C): 10 ** (math.log10(C) * 96 / 7) for C in (10, 100, 542)},
+        "c2_raised": {"kappa": KAPPA, "c": [1 / 27, 1 / 1872, 1 / 1872],
+                      "P0": 10**p0_opt,
+                      "P1": 10 ** log10_P1(KAPPA, 1 / 1872, 1 / 1872)},
     }
 
 
@@ -326,10 +338,10 @@ def certificate() -> dict[str, Any]:
     rows = thresholds()
     solved = [r for r in rows if r["log10_P_min"] is not None]
     binding = max(solved, key=lambda r: r["log10_P_min"])
-    balance = {"5a-V<=c7S", "5b-V<=c7S", "5a-V>=10err", "5b-V>=10err"}
+    balance = {"5a-W<=c7S", "5b-W<=c7S", "5b-E<=c7S"}
     others = [r for r in solved if r["tag"] not in balance]
     without_balance = max(others, key=lambda r: r["log10_P_min"])
-    superseded = thresholds(kappa=KAPPA_SUPERSEDED, c7=C7_SUPERSEDED)
+    superseded = thresholds(kappa=KAPPA_SUPERSEDED, c7=C7)
     sup_binding = max((r for r in superseded if r["log10_P_min"] is not None),
                       key=lambda r: r["log10_P_min"])
     return {
@@ -343,11 +355,11 @@ def certificate() -> dict[str, Any]:
         "binding": binding,
         "P0_excluding_lemma_3_9_balance": without_balance["P_min"],
         "binding_excluding_balance": without_balance,
-        "P0_at_superseded_kappa3_c7_288": sup_binding["P_min"],
-        "kappa_tradeoff": [kappa_tradeoff(k) for k in (3.69, 3.0, 1.0, 0.5, 1 / 3, 0.312, 0.25)],
+        "P0_at_superseded_kappa": sup_binding["P_min"],
+        "kappa_tradeoff": [kappa_tradeoff(k) for k in (1 / 3, 1 / 8, 1 / 10, 1 / 12, 1 / 16, 1 / 20)],
         "log_absorption_not_required": log_absorption_thresholds(),
-        "log10_P1_nontrivial": log10_P1(KAPPA, C7, C7),
-        "P1_nontrivial": 10 ** log10_P1(KAPPA, C7, C7),
+        "log10_P1_nontrivial": log10_P1(KAPPA),
+        "P1_nontrivial": 10 ** log10_P1(KAPPA),
         "c7_lever": c7_lever(),
     }
 

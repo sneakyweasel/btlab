@@ -13,6 +13,7 @@ type MapDoorsProps = {
   player?: ReactNode;
   sparseScale?: boolean;
   stepComputation?: ReactNode;
+  side?: ReactNode;
 };
 
 const PLOT_LEFT = 64;
@@ -122,7 +123,7 @@ function BranchCard({
           <p className="text-xs text-muted">
             {odd ? (
               <>
-                n odd → ⌊√(n<sup>3</sup>)⌋
+                n odd → ⌊n√n⌋
               </>
             ) : (
               <>
@@ -279,6 +280,7 @@ export function MapDoors({
   player,
   sparseScale = false,
   stepComputation,
+  side,
 }: MapDoorsProps) {
   const evenActive = highlight !== "odd";
   const oddActive = highlight !== "even";
@@ -289,7 +291,7 @@ export function MapDoors({
       {controls ? (
         <div className="rounded-2xl border border-line bg-paper px-4 py-2.5">{controls}</div>
       ) : null}
-      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_8.5rem] lg:items-stretch">
+      <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-stretch">
         <div className="rounded-2xl border border-line bg-card px-3 py-3">
           <h3 className="px-1 text-center font-serif text-lg">{heading}</h3>
           <TrajectoryPlot states={states} active={active} sparseScale={sparseScale} />
@@ -306,17 +308,21 @@ export function MapDoors({
           ) : null}
           {player ? <div className="pt-2">{player}</div> : null}
         </div>
-        <div className="flex min-w-0 flex-col gap-3">
-          <BranchCard
-            kind="odd"
-            active={oddActive}
-            computation={highlight === "odd" ? stepComputation : undefined}
-          />
-          <BranchCard
-            kind="even"
-            active={evenActive}
-            computation={highlight === "even" ? stepComputation : undefined}
-          />
+        <div className="flex h-full min-w-0 flex-col justify-center gap-3 sm:w-[15rem]">
+          {side ?? (
+            <>
+              <BranchCard
+                kind="odd"
+                active={oddActive}
+                computation={highlight === "odd" ? stepComputation : undefined}
+              />
+              <BranchCard
+                kind="even"
+                active={evenActive}
+                computation={highlight === "even" ? stepComputation : undefined}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>

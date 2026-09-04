@@ -1,9 +1,11 @@
 import { Metric } from "../../components/Metric";
 import { StartControl } from "../../components/StartControl";
+import { EnvelopeCeiling } from "../../visuals/EnvelopeCeiling";
 import { SurplusScale } from "../../visuals/SurplusScale";
 import { usePlayState } from "../../context/PlayState";
 import { ITINERARY_PRESETS } from "../../juggler/constants";
 import { formatInt, parsePositiveInt } from "../../juggler/format";
+import { floorPower } from "../../juggler/map";
 import {
   compareImage,
   envelopeSlack,
@@ -24,7 +26,9 @@ export function ItineraryTab() {
       <p className="text-sm text-muted">
         An itinerary is a finite string of O and E. It is realized at the start
         only when the trajectory actually follows those parities. The ideal
-        exponent 3<sup>o</sup>/2<sup>k</sup> ignores floors.
+        exponent 3<sup>o</sup>/2<sup>k</sup> ignores floors: compare 3<sup>o</sup>{" "}
+        with 2<sup>k</sup> for expanding versus contracting, then read the slack
+        under the power envelope when the word is followed.
       </p>
       <StartControl />
       <div className="flex flex-wrap items-end gap-3">
@@ -67,6 +71,19 @@ function ItineraryResult({ n, itinerary }: { n: bigint; itinerary: string }) {
   const image = follows ? imageAfter(n, itinerary) : null;
   const slack =
     image === null ? null : envelopeSlack(n, image, itinerary.length, odds);
+  const path = [n];
+  if (follows) {
+    let current = n;
+    for (let index = 0; index < itinerary.length; index += 1) {
+      current = floorPower(current);
+      path.push(current);
+    }
+  }
+  const envelopePoints = path.map((value) => {
+    const bits = value.toString(2).length;
+    if (bits <= 53) return Number(value);
+    return 2 ** (bits - 1);
+  });
   return (
     <>
       <div className="grid gap-3 sm:grid-cols-4">
@@ -104,8 +121,15 @@ function ItineraryResult({ n, itinerary }: { n: bigint; itinerary: string }) {
           value={image === null ? "—" : compareImage(image, n)}
         />
       </div>
-      <div className="rounded-xl border border-line bg-card p-4">
-        <SurplusScale odds={odds} length={itinerary.length} />
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="rounded-xl border border-line bg-card p-4">
+          <SurplusScale odds={odds} length={itinerary.length} />
+        </div>
+        {follows ? (
+          <div className="rounded-xl border border-line bg-card p-4">
+            <EnvelopeCeiling points={envelopePoints} />
+          </div>
+        ) : null}
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-"""Effective threshold certificate for Paper B: P_0 = 3.8e16, binding at Step 5b's V <= c_7 S/2."""
+"""Effective threshold certificate for Paper B: P_0 = 8.9e13, binding at Step 5b's W <= c_7 S/2."""
 
 from __future__ import annotations
 
@@ -7,54 +7,13 @@ import math
 from research.juggler_sequence import p0_certificate as C
 
 
-def test_every_printed_threshold_is_solvable() -> None:
-    rows = C.thresholds()
-    assert len(rows) == 31
-    assert all(r["log10_P_min"] is not None for r in rows), [
-        r["tag"] for r in rows if r["log10_P_min"] is None
-    ]
-
-
-def test_p0_is_38e16_and_binds_at_the_lemma_3_9_hypothesis() -> None:
-    cert = C.certificate()
-    assert cert["binding"]["tag"] == "5b-V<=c7S"
-    assert 3.7e16 < cert["P0"] < 3.9e16
-    # the paper prints 3.8e16
-    assert round(cert["P0"] / 1e16, 1) == 3.8
-
-
-def test_each_threshold_is_sharp_at_its_own_crossing() -> None:
-    """Just below the reported value the inequality fails; just above it holds."""
-    for r in C.thresholds():
-        lg = r["log10_P_min"]
-        if lg <= 0.0:  # holds for every P >= 1; nothing to straddle
-            continue
-        pred = dict(
-            (t, p) for t, _s, _c, p in _rows()
-        )[r["tag"]]
-        assert pred(10.0 ** (lg + 0.01)), r["tag"]
-        assert not pred(10.0 ** (lg - 0.01)), r["tag"]
-
-
-def _rows():
-    """The predicate list, re-derived so the test does not trust the cached thresholds."""
-    import inspect
-
-    src = inspect.getsource(C.thresholds)
-    assert "5b-V<=c7S" in src
-    # rebuild by calling thresholds() with instrumentation is overkill; use the module's own list
-    out = []
-    for r in C.thresholds():
-        out.append((r["tag"], r["site"], r["claim"], _pred_for(r["tag"])))
-    return out
-
-
 def _pred_for(tag: str):
+    """The printed inequalities, transcribed independently of the module's own list."""
     S5b = lambda P: 0.35 * P**-0.625  # noqa: E731
     S5a = lambda P: 0.60 * P**-0.625  # noqa: E731
     k, c7, rho0 = C.KAPPA, C.C7, C.C7 / 8.0
-    V = C._V
-    table = {
+    V, E = C._V, C.interpolant_error
+    return {
         "s3s1-window": lambda P: P**0.5 >= 12,
         "s3s1-Bsmall": lambda P: 2.25 * P ** (-1 / 16) < 0.5,
         "s3s2-window": lambda P: P**0.5 >= 8 * (1 + 2.25 * P**0.25),
@@ -85,73 +44,55 @@ def _pred_for(tag: str):
         "39-wave": lambda P: (200 / 0.35) * P ** (-5 / 6) <= rho0,
         "5a-competitors": lambda P: max(1.3 * P**-0.125, 13 * P ** (-9 / 16),
                                         9 * P ** (-13 / 12), 3 * P**-0.125) <= 0.25,
-        "5a-V>=10err": lambda P: V(S5a(P), P, k) >= 10 * C.interpolant_error(P),
-        "5a-V<=c7S": lambda P: V(S5a(P), P, k) <= c7 * S5a(P) / 2,
-        "5b-V>=10err": lambda P: V(S5b(P), P, k) >= 10 * C.interpolant_error(P),
-        "5b-V<=c7S": lambda P: V(S5b(P), P, k) <= c7 * S5b(P) / 2,
+        "5a-W<=c7S": lambda P: V(S5a(P), P, k) + E(P) <= c7 * S5a(P) / 2,
+        "5b-W<=c7S": lambda P: V(S5b(P), P, k) + E(P) <= c7 * S5b(P) / 2,
+        "5b-E<=c7S": lambda P: E(P) <= c7 * S5b(P) / 2,
         "thm63-rem": lambda P: P ** (43 / 96) <= P ** (1 - 1 / 96),
-    }
-    return table[tag]
+    }[tag]
+
+
+def test_every_printed_threshold_is_solvable() -> None:
+    rows = C.thresholds()
+    assert len(rows) == 30
+    assert all(r["log10_P_min"] is not None for r in rows), [
+        r["tag"] for r in rows if r["log10_P_min"] is None
+    ]
+
+
+def test_p0_is_89e13_and_binds_at_the_lemma_3_9_hypothesis() -> None:
+    cert = C.certificate()
+    assert cert["binding"]["tag"] == "5b-W<=c7S"
+    assert 8.8e13 < cert["P0"] < 9.0e13
+    assert round(cert["P0"] / 1e13, 1) == 8.9  # the paper prints 8.9e13
+
+
+def test_each_threshold_is_sharp_at_its_own_crossing() -> None:
+    """Just below the reported value the inequality fails; just above it holds."""
+    for r in C.thresholds():
+        lg = r["log10_P_min"]
+        if lg <= 0.0:  # holds for every P >= 1; nothing to straddle
+            continue
+        pred = _pred_for(r["tag"])
+        assert pred(10.0 ** (lg + 0.01)), r["tag"]
+        assert not pred(10.0 ** (lg - 0.01)), r["tag"]
 
 
 def test_the_balance_comparisons_carry_the_threshold_alone() -> None:
     cert = C.certificate()
-    # everything except the four Lemma 3.9 balance comparisons is satisfied six orders earlier
+    # everything except the three Lemma 3.9 balance comparisons is satisfied far earlier
     assert 2.5e10 < cert["P0_excluding_lemma_3_9_balance"] < 3.5e10
     assert cert["binding_excluding_balance"]["tag"] == "s3s1-Bsmall"
-    assert cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] > 10**6
+    assert cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] > 10**3
 
 
-def test_kappa_trades_threshold_against_an_absorbed_coefficient() -> None:
-    """Lowering kappa lowers P_0 fast and raises the P^{89/96} coefficient slowly."""
-    at3 = C.kappa_tradeoff(3.0)
-    at13 = C.kappa_tradeoff(1 / 3)
-    assert at3["P_min"] / at13["P_min"] > 10**6
-    assert at13["coeff_total"] / at3["coeff_total"] < 2.0
-    # kappa = 3 is near the coefficient optimum, which is why the draft chose it
-    assert C.kappa_tradeoff(3.69)["coeff_total"] < at3["coeff_total"] < at13["coeff_total"]
-    # and 0.312 is the floor: below it the two comparisons collide
-    assert C.kappa_tradeoff(0.312)["P_min"] < C.kappa_tradeoff(0.25)["P_min"]
-
-
-def test_superseded_normalisation_reproduces_the_earlier_1e24() -> None:
+def test_superseded_normalisation_is_recovered() -> None:
+    """kappa = 1/3 (the previous operating point) still gives 5.8e16."""
     cert = C.certificate()
-    assert 5.0e23 < cert["P0_at_superseded_kappa3_c7_288"] < 6.5e23
-
-
-def test_log_absorption_is_astronomically_larger_and_excluded() -> None:
-    """The eps-absorption thresholds are not part of P_0; Sections 4-6 carry P^eps."""
-    cert = C.certificate()
-    for row in cert["log_absorption_not_required"]:
-        assert row["P_min"] is None or row["P_min"] > 1e100
-    assert cert["P0"] < 1e17
-
-
-def test_c7_is_the_exact_linf_inverse_norm_proved_in_lean() -> None:
-    """c_7 = 1/||M^{-1}||_inf with rows 110, 232, 123 (formal/.../MonomialSplitting.lean)."""
-    rows = [(10, 68, 32), (-24, -144, -64), (15, 76, 32)]
-    assert max(sum(abs(x) for x in r) for r in rows) == 232
-    assert abs(C.C7 - 1 / 232) < 1e-15
-
-
-def test_weyl_steps_halve_the_log_power_twice() -> None:
-    """Mode mass log^3 becomes log^{3/4} in K_c after two differencings."""
-    assert 3.0 / 2 / 2 == 0.75
-    powers = [r["log_power"] for r in C.log_absorption_thresholds()]
-    assert 0.75 in powers and 3.75 in powers
-
-
-def test_certificate_table_renders_every_row() -> None:
-    cert = C.certificate()
-    md = C.markdown_table(cert["thresholds"])
-    # header + rule + one line per row, joined: rows + 2 lines, hence rows + 1 newlines
-    assert md.count("\n") == len(cert["thresholds"]) + 1
-    assert "always" in md  # the three unconditional rows
-    assert math.isclose(cert["log10_P0"], math.log10(cert["P0"]))
+    assert 5.5e16 < cert["P0_at_superseded_kappa"] < 6.1e16
 
 
 # ----------------------------------------------------------------------------------------------
-# Appendix A.5: can c_7 be raised?
+# The two constants: c_7 (Appendix A.5) and the interpolant error E
 # ----------------------------------------------------------------------------------------------
 
 
@@ -159,12 +100,10 @@ def test_step5b_triple_gives_exactly_1_over_232() -> None:
     from fractions import Fraction as Fr
 
     assert C.c7_of_triple(C.STEP5B_TRIPLE) == Fr(1, 232)
-    rows = C.minv_abs(C.STEP5B_TRIPLE)
-    assert [sum(r) for r in rows] == [110, 232, 123]
+    assert [sum(r) for r in C.minv_abs(C.STEP5B_TRIPLE)] == [110, 232, 123]
 
 
 def test_c7_scales_as_the_square_of_the_exponent_gap() -> None:
-    """delta^2 / c_7 stays in a narrow band while c_7 itself moves by a factor 64."""
     from fractions import Fraction as Fr
 
     ratios = []
@@ -178,36 +117,94 @@ def test_c7_scales_as_the_square_of_the_exponent_gap() -> None:
 def test_the_uniform_choice_saturates_the_middle_row_so_c7_is_not_free() -> None:
     assert sum(C.MINV_ABS[1]) == 232
     assert C.vector_feasible(C.C7, C.C7, C.C7)
-    # nothing above 1/232 is feasible while holding c3 = c4 = 1/232
     assert not C.vector_feasible(C.C7 * 1.01, C.C7, C.C7)
-
-
-def test_c2_ceiling_is_one_twentyfourth() -> None:
     assert abs(C.max_c2(0.0, 0.0) - 1 / 24) < 1e-12
     assert C.max_c2() / C.C7 < 10  # the whole available gain is under a factor ten
 
 
-def test_p0_optimal_vector_is_feasible_and_tight() -> None:
-    c2, c3, c4 = 1 / 27, 1 / 1872, 1 / 1872
-    assert C.vector_feasible(c2, c3, c4)
-    assert abs(24 * c2 + 144 * c3 + 64 * c4 - 1) < 1e-12  # 8/9 + 1/9
-    assert C.p0_with_vector(1.0, c2, c3, c4) < C.p0_with_vector(C.KAPPA, C.C7, C.C7, C.C7)
-
-
-def test_raising_c2_moves_cost_from_P0_to_P1() -> None:
-    """The lever exists but does not remove cost: P_0 falls and P_1 rises."""
+def test_raising_c2_still_moves_cost_from_P0_to_P1() -> None:
     lever = C.c7_lever()
-    cur, opt = lever["current"], lever["P0_optimal"]
-    assert opt["P0"] < cur["P0"] / 100      # P_0 improves by more than two orders
-    assert opt["P1"] > cur["P1"] * 1e10     # P_1 degrades by more than ten
-    assert cur["P1"] > cur["P0"]            # P_1 is the larger threshold either way
+    cur, raised = lever["current"], lever["c2_raised"]
+    assert raised["P0"] < cur["P0"]          # P_0 improves
+    assert raised["P1"] > cur["P1"] * 1e3    # P_1 degrades by more than three orders
+    assert cur["P1"] > cur["P0"]             # P_1 is the larger threshold either way
 
 
-def test_P1_floor_is_intrinsic_to_a_1_over_96_saving() -> None:
-    """Absorbing any constant C into P^(1/96) needs P >= C^(96/7); even C=10 costs 1e13.7."""
-    import math
+def test_interpolant_error_is_106_not_219() -> None:
+    """52.9 k(h1+h2) P^-9/8 with k(h1+h2) <= 2 P^(1/12); 52.3 from (i) plus 0.567 from (ii)."""
+    assert abs((9 / 32) * 186 - 52.3) < 0.1        # (i): middle-band cap 186
+    assert abs((135 / 1024) * 4.3 - 0.567) < 0.01  # (ii): printed as 0.6, was 8
+    assert abs(2 * ((9 / 32) * 186 + 0.6) - 105.6) < 0.3
+    # the factor 2.07 is on the P^(-25/24) coefficient, not on the total: the second term
+    # 0.11 P^(-5/6) is untouched and is co-dominant near P_0, so the total gains only ~1.6 there.
+    assert abs(219 / 105.6 - 2.07) < 0.01
+    for P in (1e14, 1e16, 1e20):
+        assert C.interpolant_error(P) < C.interpolant_error_superseded(P)
+    assert 1.5 < C.interpolant_error_superseded(8.93e13) / C.interpolant_error(8.93e13) < 1.7
 
-    for Cc in (10, 100, 542):
-        assert abs(math.log10(C.c7_lever()["P1_floor_examples"][str(Cc)])
-                   - math.log10(Cc) * 96 / 7) < 1e-9
-    assert C.c7_lever()["P1_floor_examples"]["10"] > 1e13
+
+def test_the_middle_band_cap_is_the_band_condition_itself() -> None:
+    """mu <= 60 lambda_0 with mu = 0.84 max(u h1, u' h2)P^-3/4, lambda_0 <= 2.6 k h1 h2 P^-5/8."""
+    assert abs(60 * 2.6 / 0.84 - 185.7) < 0.1
+
+
+# ----------------------------------------------------------------------------------------------
+# P_1: the point at which the middle band beats the trivial bound
+# ----------------------------------------------------------------------------------------------
+
+
+def test_P1_is_computed_from_three_different_exponents() -> None:
+    """r=3 is P^(41/48), the other two P^(89/96); collecting them over-counts r=3 by P^(7/96)."""
+    # far above P_0, where V dominates W, the r=3 slope is 41/48 and the boundary slope 89/96
+    r3, _r4, bd = C.middle_band_cost(C.KAPPA, 1e40)
+    r3b, _r4b, bdb = C.middle_band_cost(C.KAPPA, 1e41)
+    assert math.isclose(math.log10(r3b / r3), 41 / 48, rel_tol=0.02)
+    assert math.isclose(math.log10(bdb / bd), 89 / 96, rel_tol=0.02)
+    # near P_0 the r=3 term is still E-dominated, so its slope sits between 19/24 and 41/48
+    lo, hi = C.middle_band_cost(C.KAPPA, 1e14)[0], C.middle_band_cost(C.KAPPA, 1e15)[0]
+    assert 19 / 24 < math.log10(hi / lo) < 41 / 48
+    assert 4.5e19 < 10 ** C.log10_P1(C.KAPPA) < 5.5e19
+
+
+def test_kappa_now_moves_P0_and_P1_together() -> None:
+    """Under the raised threshold W = V + E the two thresholds stop fighting."""
+    at13 = C.kappa_tradeoff(1 / 3)
+    at12 = C.kappa_tradeoff(1 / 12)
+    assert at12["P_min"] < at13["P_min"] / 100   # P_0 improves by more than two orders
+    assert at12["P1"] < at13["P1"] / 10          # and P_1 improves too
+    # 1/12 is the turning point: further down, P_1 rises again
+    assert C.kappa_tradeoff(1 / 20)["P1"] > at12["P1"]
+    assert C.kappa_tradeoff(1 / 20)["P_min"] < at12["P_min"]
+
+
+def test_P1_exceeds_P0_but_both_are_finite() -> None:
+    cert = C.certificate()
+    assert cert["P0"] < cert["P1_nontrivial"]
+    assert cert["P1_nontrivial"] < 1e21
+
+
+# ----------------------------------------------------------------------------------------------
+# epsilon and rendering
+# ----------------------------------------------------------------------------------------------
+
+
+def test_log_absorption_is_astronomically_larger_and_excluded() -> None:
+    cert = C.certificate()
+    for row in cert["log_absorption_not_required"]:
+        assert row["P_min"] is None or row["P_min"] > 1e100
+    assert cert["P0"] < 1e14
+
+
+def test_weyl_steps_halve_the_log_power_twice() -> None:
+    assert 3.0 / 2 / 2 == 0.75
+    powers = [r["log_power"] for r in C.log_absorption_thresholds()]
+    assert 0.75 in powers and 3.75 in powers
+
+
+def test_certificate_table_renders_every_row() -> None:
+    cert = C.certificate()
+    md = C.markdown_table(cert["thresholds"])
+    # header + rule + one line per row, joined: rows + 2 lines, hence rows + 1 newlines
+    assert md.count("\n") == len(cert["thresholds"]) + 1
+    assert "always" in md  # the three unconditional rows
+    assert math.isclose(cert["log10_P0"], math.log10(cert["P0"]))

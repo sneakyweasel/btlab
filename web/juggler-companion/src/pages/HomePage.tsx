@@ -5,7 +5,32 @@ import {
   PAPER_PERIOD,
   PRINTED_PERIOD,
 } from "../juggler/constants";
+import { resolveTrajectory } from "../juggler/monsters";
 import { MapDoors } from "../visuals/MapDoors";
+
+const HOME_WALK = resolveTrajectory(173n);
+
+const REPO = "https://github.com/sneakyweasel/balanced_ternary/blob/main/juggler_review";
+const PAPERS = [
+  {
+    letter: "A",
+    href: `${REPO}/juggler_finite_dynamics_note.pdf`,
+    title: "Cycles",
+    hint: "Finance and walk charge. Period lower bounds, not a halt theorem.",
+  },
+  {
+    letter: "B",
+    href: `${REPO}/juggler_parity_discrepancy_note.pdf`,
+    title: "Parity",
+    hint: "Nested floor powers. Certified descent density 7/8.",
+  },
+  {
+    letter: "C",
+    href: `${REPO}/juggler_fate_almost_all_note.pdf`,
+    title: "Fates",
+    hint: "Contagion and the almost-all reduction. No fate excluded.",
+  },
+] as const;
 
 export function HomePage() {
   return (
@@ -13,19 +38,17 @@ export function HomePage() {
       <section className="space-y-6">
         <div>
           <p className="text-sm uppercase tracking-[0.2em] text-muted">
-            Paper A companion
+            After Pickover’s Mathematics of Oz
           </p>
-          <h1 className="mt-2 max-w-xl text-4xl sm:text-5xl">
-            A picture dictionary for the Juggler cycle paper
+          <h1 className="mt-2 max-w-2xl text-4xl sm:text-5xl">
+            Two rules. Complex consequences.
           </h1>
           <p className="prose-measure mt-4 text-lg text-muted">
-            Pickover introduced the map in 1991 as a Collatz variation.
-            Even n goes to the square root and odd n to n to the
-            three-halves — that is n√n, not the cube root — then floor:
-            throw away the decimals and keep the integer part. That floor
-            is applied after every step. Paper A does not prove that every
-            start reaches 1. It proves period lower bounds for a
-            hypothetical cycle, once a verified descent floor N₀ is given.
+            Pickover’s yellow-brick juggler: even n takes a square root,
+            odd n takes n√n, then throw the decimals away. Two cuts,
+            million-bit flights, a loop still open. Paper A does not send
+            every start home — it only bounds how long a hypothetical
+            cycle would have to be, given a certified floor N₀.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
@@ -41,18 +64,42 @@ export function HomePage() {
               Open the playground
             </Link>
           </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {PAPERS.map((paper) => (
+              <a
+                key={paper.letter}
+                href={paper.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-line bg-card p-4 no-underline"
+              >
+                <div className="text-xs uppercase tracking-wide text-muted">
+                  Paper {paper.letter}
+                </div>
+                <div className="mt-2 font-serif text-2xl text-ink">{paper.title}</div>
+                <p className="mt-1 text-sm text-muted">{paper.hint}</p>
+              </a>
+            ))}
+          </div>
         </div>
         <div className="rounded-2xl border border-line bg-card p-4">
-          <MapDoors />
-          <div className="mt-3 text-center">
-            <Tex display>{String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n^{3/2}\rfloor,&n\text{ odd.}\end{cases}`}</Tex>
-            <p className="mt-2 text-sm text-muted">
-              Trajectory of 3: the values 3, 5, 11, 36, 6, 2, 1. Itinerary: OOOEEE —
-              the parities, not the values. Floor: the brackets ⌊ ⌋ throw
-              away the decimals. Example: ⌊3√3⌋ = ⌊5.196…⌋ = 5. Hitting 1
-              here is one trajectory, not a theorem.
-            </p>
-          </div>
+          <MapDoors
+            states={HOME_WALK.states}
+            sparseScale
+            side={
+              <div className="flex h-full items-center justify-center rounded-2xl border border-line bg-card px-3 py-4">
+                <Tex display>
+                  {String.raw`J(n)=\begin{cases}\lfloor\sqrt n\rfloor,&n\text{ even}\\\lfloor n\sqrt n\rfloor,&n\text{ odd.}\end{cases}`}
+                </Tex>
+              </div>
+            }
+          />
+          <p className="mt-3 text-sm text-muted">
+            Start 173: thirty-two steps, then 1. The peak is 272 bits — a
+            larger digit than the atoms in the universe — and the evens
+            still cut it down. Floor: the brackets ⌊ ⌋ throw the decimals
+            away. One trajectory, not a theorem.
+          </p>
         </div>
       </section>
       <section className="space-y-3">
@@ -83,16 +130,11 @@ export function HomePage() {
       <section className="prose-measure space-y-3 text-muted">
         <p>
           Use the tour if the itineraries are new. Use the playground to try the
-          trajectory of 3, a short O/E itinerary, a one-step preimage, a necklace rotation,
+          trajectory of 173, a cycle word, a CycleMin survivor, a short O/E
+          itinerary, a one-step preimage, a necklace rotation,
           or a finance length from the shipped table.
         </p>
-        <p>
-          Manuscript:{" "}
-          <a href="https://github.com/sneakyweasel/balanced_ternary/blob/main/juggler_review/juggler_finite_dynamics_note.pdf">
-            Paper A PDF
-          </a>
-          . This site is a glossary, not the laboratory Streamlit app.
-        </p>
+        <p>This site is a glossary, not the laboratory Streamlit app.</p>
       </section>
     </div>
   );

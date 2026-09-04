@@ -8,6 +8,9 @@ import { TourIndexPage, TourPage } from "./pages/TourPage";
 import { PreimagesTab } from "./pages/play/PreimagesTab";
 import { OeFiberTab } from "./pages/play/OeFiberTab";
 import { CycleTab } from "./pages/play/CycleTab";
+import { SurvivorsTab } from "./pages/play/SurvivorsTab";
+import { FloorTab } from "./pages/play/FloorTab";
+import { WalkTab } from "./pages/play/WalkTab";
 import { FinanceTab } from "./pages/play/FinanceTab";
 import { TrajectoryTab } from "./pages/play/TrajectoryTab";
 import { ItineraryTab } from "./pages/play/ItineraryTab";
@@ -29,11 +32,19 @@ export default function App() {
               <Route path="orbit" element={<Navigate to="/play/trajectory" replace />} />
               <Route path="itinerary" element={<ItineraryTab />} />
               <Route path="word" element={<Navigate to="/play/itinerary" replace />} />
+              <Route path="envelope" element={<Navigate to="/play/itinerary" replace />} />
+              <Route path="expanding" element={<Navigate to="/play/itinerary" replace />} />
               <Route path="preimages" element={<PreimagesTab />} />
               <Route path="cells" element={<Navigate to="/play/preimages" replace />} />
               <Route path="oe-fiber" element={<OeFiberTab />} />
               <Route path="cycle" element={<CycleTab />} />
+              <Route path="survivors" element={<SurvivorsTab />} />
+              <Route path="leftovers" element={<Navigate to="/play/survivors" replace />} />
+              <Route path="floor" element={<FloorTab />} />
+              <Route path="descent-floor" element={<Navigate to="/play/floor" replace />} />
               <Route path="finance" element={<FinanceTab />} />
+              <Route path="walk" element={<WalkTab />} />
+              <Route path="walk-charge" element={<Navigate to="/play/walk" replace />} />
             </Route>
             <Route path="claims" element={<ClaimsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />

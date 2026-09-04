@@ -97,11 +97,11 @@ conclusion-breaking error was found**, and the \(1-1/96\) exponent is
 untouched throughout.
 
 **\(P_0\) is now effective and homogeneous.** The threshold has been
-computed: each of the thirty-one printed threshold inequalities of
+computed: each of the thirty printed threshold inequalities of
 Sections 4--6 was transcribed as a predicate in \(P\) and solved
 separately, and the maximum is
 \[
-P_0=3.8\cdot10^{16},
+P_0=8.9\cdot10^{13},
 \]
 attained at the Lemma 3.9 hypothesis \(V\le c_7S/2\) of Step 5b. The
 computation is in `src/research/juggler_sequence/p0_certificate.py`,
@@ -131,7 +131,7 @@ a fact about \(\varepsilon\), not about the proof, and is excluded
 from \(P_0\) — as is the \(10^{274}\) of the \(P^{15/16}\)
 reading, which Step 6 does not use.
 
-*\(c_7\) is not the place to push (Appendix A.5).* Since \(P_0\) is
+*\(c_7\) itself is not the place to push (Appendix A.5).* Since \(P_0\) is
 carried entirely by \(V\le c_7S/2\), the constant was attacked
 directly. Two results. (a) **Not by the exponent triple.**
 \(c_7=1/\lVert M^{-1}\rVert_\infty\) depends only on the exponents,
@@ -172,7 +172,50 @@ comparison is no longer the curvature inverse but
 error \(219P^{-25/24}\), and its safety factor \(10\). Those are the
 next targets.
 
-*The thresholds stratify.* Twenty-seven of the thirty-one hold from
+*The interpolant error, and the comparison beside it (Appendix A.5).*
+The \(219\) of Lemma 5.2b was attacked next, and the comparison it
+feeds turned out to matter more than the constant. Three results.
+(a) **\(219\to106\), a factor \(2.07\).** The printed
+\(219=202.5+16\) opened the middle-band cap \(\tfrac{60\cdot2.6}{0.84}
+=185.7\) first to \(200\) and then, in (C5), to \(360\); and step (ii)
+carried \(8\) where the computation gives
+\(\tfrac{135}{1024}\cdot4.3=0.567\). Restating (C5) in its native
+form \(u\le186kh_2P^{1/8}\), \(u'\le186kh_1P^{1/8}\) keeps the
+shifts visible, so the two error terms share the shape
+\(k(h_1{+}h_2)P^{-9/8}\) and combine: \(52.9\,k(h_1{+}h_2)P^{-9/8}
+\le106P^{-25/24}\). (b) **The factor \(10\) is not needed at all.**
+The comparison \(V\ge10\lvert f''-\Lambda\rvert\) exists only to
+transfer the sublevel structure from \(\Lambda\) to \(f''\); running
+Lemma 3.9 at the *raised* threshold \(W=V+E\) does that directly,
+since \(\lvert\Lambda\rvert\ge W\) off \(\Omega_W\) gives
+\(\lvert f''\rvert\ge W-E=V\). Its single hypothesis
+\(W\le c_7S/2\) replaces the former pair. The factor \(10\) was not
+merely margin, it was harmful: it forced \(V\) *up* exactly where
+\(c_7\) wanted it down, so the two comparisons fought and pinned
+\(\kappa\) near \(\tfrac13\). (c) **With them no longer fighting,
+\(\kappa\) falls to \(\tfrac1{12}\)** and \(P_0\) and \(P_1\)
+improve *together*:
+\[
+P_0:\ 3.8\cdot10^{16}\to8.9\cdot10^{13},
+\qquad
+P_1:\ 2.1\cdot10^{21}\to5.0\cdot10^{19}.
+\]
+At the new threshold \(V\) and \(E\) split the budget \(60{:}40\)
+and \(E\) splits \(54{:}46\) between its terms, so both halves of the
+interpolant error are now load-bearing --- they were not before.
+
+*Correction to the previous entry.* The \(P_1\) recorded above as
+\(3.2\cdot10^{37}\) was wrong. It collected the three middle-band
+costs into a single coefficient of \(P^{89/96}\), but the \(r=3\)
+transition is \(\asymp P^{41/48}=P^{82/96}\); collecting it
+over-counts by \(P^{7/96}\). Computed honestly --- least \(P\) with
+\(4PW/(c_7S)+P(W/(c_7S))^{1/2}+3.5P^{13/24}V^{-1/2}\le P\) --- the
+value at the old operating point was \(2.1\cdot10^{21}\). The
+direction of the \(c_7\) trade is unchanged (raising \(c_2\) still
+sends \(P_1\) from \(5.0\cdot10^{19}\) to \(5.3\cdot10^{23}\)),
+so the decision to keep the uniform constant stands.
+
+*The thresholds stratify.* Twenty-seven of the thirty hold from
 \(2.9\cdot10^{10}\) on, and that value is set by a soft
 regime-naming inequality (\(2.25P^{-1/16}<\tfrac12\), Stage 3(s1)).
 The four Lemma 3.9 balance comparisons of Steps 5a and 5b carry the

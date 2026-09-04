@@ -3,11 +3,14 @@ import { Disclaimer } from "../components/Disclaimer";
 
 const TABS = [
   { to: "/play/trajectory", label: "Trajectory" },
+  { to: "/play/cycle", label: "Cycle" },
+  { to: "/play/survivors", label: "Survivors" },
   { to: "/play/itinerary", label: "Itinerary" },
   { to: "/play/preimages", label: "Preimages" },
   { to: "/play/oe-fiber", label: "OE fiber" },
-  { to: "/play/cycle", label: "Cycle" },
+  { to: "/play/floor", label: "Floor" },
   { to: "/play/finance", label: "Finance" },
+  { to: "/play/walk", label: "Walk charge" },
 ];
 
 export function PlaygroundIndexPage() {
@@ -20,13 +23,13 @@ export function PlaygroundPage() {
       <header>
         <h1 className="text-4xl">Playground</h1>
         <p className="prose-measure mt-3 text-muted">
-          Basic tests only: walk a start, follow a short itinerary, grow the two
-          Paper C productions of a seed, rotate a necklace, or look up a length
-          in the shipped Theorem 4.6 table. Caps: 80 steps, 256 bits, itineraries
-          of length at most 8 (cycles 16), production seeds at most 100,000. The
-          trajectory is the values; the itinerary is the O/E parities of a
-          prefix. The even block is the one-step production of m. The OE fiber
-          of 100,000 is the printed two-step production.
+          Walk a start — including the shipped peaks — follow a short itinerary,
+          rotate a cycle word, inspect a CycleMin survivor, grow the two Paper C
+          productions, look up a certified floor, look up a length in the shipped
+          Theorem 4.6 table, or read the walk-charge pipeline. Caps: 80 steps,
+          256 bits live, itineraries of length at most 8 (cycles 16, tour words
+          24), production seeds at most 100,000. Shipped monsters are pictures,
+          not a live walk. Hitting 1 is not a theorem.
         </p>
       </header>
       <nav className="flex flex-wrap gap-2">
