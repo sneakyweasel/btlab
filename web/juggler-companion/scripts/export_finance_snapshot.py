@@ -21,6 +21,9 @@ from pathlib import Path
 
 from research.juggler_sequence.cycle_finance import parity_finance_rows
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from export_finance_ledgers import attach_ledgers
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "src" / "data" / "finance.json"
 REPO = ROOT.parents[1]
@@ -99,6 +102,7 @@ def main() -> None:
         raise SystemExit(f"lattice slices {slice_counts} differ from Proposition 4.9")
 
     snapshot["survivors"] = payload_rows
+    attach_ledgers(snapshot)
     snapshot["lattice"] = {
         "vStar": list(V_STAR),
         "v1054": list(V_1054),

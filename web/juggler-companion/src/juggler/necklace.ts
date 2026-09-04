@@ -3,11 +3,11 @@
  *
  * Display fork of the necklace geometry in
  * docs/theory/juggler_finite_dynamics_note.md ("The excursion necklace").
- * Everything here is exact bigint on a realized walk. No n_max is
- * computed: the certified parity table lives in finance.json.
+ * Walks stay under DISPLAY_BITS_MAX. θ(L) is live only through
+ * LIVE_FINANCE_L_MAX; larger lengths and every n_max are finance.json.
  */
 
-import { DISPLAY_BITS_MAX } from "./constants";
+import { DISPLAY_BITS_MAX, LIVE_FINANCE_L_MAX } from "./constants";
 import { bitLength, floorPower, letterOf, powInt } from "./map";
 
 export type BlockRegime = "contracting" | "expanding" | "critical";
@@ -178,10 +178,16 @@ export function necklaceView(
   };
 }
 
-/** Exact o_min(L) = min{ o : 3^o > 2^L }. Float seed, bigint correction. */
+/**
+ * Exact o_min(L) = min{ o : 3^o > 2^L }. Live only through
+ * LIVE_FINANCE_L_MAX; larger lengths use shippedLedger.
+ */
 export function oMinExact(length: number): number {
   if (!Number.isInteger(length) || length < 1) {
     throw new Error("oMinExact requires a positive integer length");
+  }
+  if (length > LIVE_FINANCE_L_MAX) {
+    throw new Error(`oMinExact is live only through L=${LIVE_FINANCE_L_MAX}`);
   }
   const pow2 = 1n << BigInt(length);
   let o = Math.max(1, Math.floor((length * Math.LN2) / Math.log(3)));
@@ -209,7 +215,9 @@ export type ExactTheta = {
   approx: number;
 };
 
-/** θ(L) = 1 − 2^L / 3^{o_min(L)}, the formal surplus a cycle must pay. */
+/**
+ * θ(L) = 1 − 2^L / 3^{o_min(L)}. Live only through LIVE_FINANCE_L_MAX.
+ */
 export function thetaExact(length: number, digits = 12): ExactTheta {
   const o = oMinExact(length);
   const den = powInt(3n, o);

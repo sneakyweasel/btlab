@@ -3,7 +3,7 @@ import { Metric } from "../../components/Metric";
 import { NecklaceExplorer } from "../../components/NecklaceExplorer";
 import { Tex } from "../../components/Tex";
 import { usePlayState } from "../../context/PlayState";
-import { PAPER_FLOOR, PAPER_L_CAP, RECORD_LENGTHS } from "../../juggler/constants";
+import { LIVE_FINANCE_L_MAX, PAPER_FLOOR, PAPER_L_CAP, PAPER_PERIOD, RECORD_LENGTHS } from "../../juggler/constants";
 import { financeSnapshot, financeView, survivorOf } from "../../juggler/finance";
 import { formatGrouped } from "../../juggler/format";
 import { FinanceBalance, FinanceHierarchy } from "../../visuals/FinanceBalance";
@@ -39,10 +39,11 @@ export function FinanceTab() {
   return (
     <div className="space-y-6">
       <p className="prose-measure text-sm text-muted">
-        Section 4 of the paper in three pictures. The necklace and the exact surplus
-        θ(L) are computed live in exact integers. Every n_max is looked up from the
-        shipped Theorem 4.6 table at N₀ = {formatGrouped(PAPER_FLOOR)}; it is never
-        recomputed here.
+        Section 4 of the paper in three pictures. Necklace walks stay under the
+        256-bit display cap. Type any L through {formatGrouped(LIVE_FINANCE_L_MAX)}
+        and θ and the crossing are exact in the browser. From the first survivor{" "}
+        {formatGrouped(PAPER_PERIOD)} on, those values and every n_max come from the
+        shipped Theorem 4.6 table at N₀ = {formatGrouped(PAPER_FLOOR)}.
       </p>
 
       <Movement number={1} title="The necklace" question="a realized walk read as excursions">

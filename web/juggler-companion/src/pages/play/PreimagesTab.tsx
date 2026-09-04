@@ -159,7 +159,7 @@ export function PreimagesTab() {
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
         <h2 className="font-serif text-2xl">Parity sweep</h2>
         <p className="text-sm text-muted">
-          On the fiber the quantity <Tex>{String.raw`n^{3/2}/2`}</Tex> advances
+          On the fiber the quantity <Tex>{String.raw`\{n^{3/2}/2\}`}</Tex> advances
           by a nearly constant step. A walk with that step cannot hide in one
           half of the unit interval.
         </p>

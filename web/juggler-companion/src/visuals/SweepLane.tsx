@@ -1,3 +1,4 @@
+import { Tex } from "../components/Tex";
 import { EMBER, SEA } from "../juggler/palette";
 import type { FiberPoint } from "../juggler/productions";
 import { BeadMark } from "./BeadMark";
@@ -26,8 +27,9 @@ export function SweepLane({
 }: SweepLaneProps) {
   const mid = xOf(0.5);
   return (
-    <svg viewBox={`0 0 ${WIDTH} 118`} role="img" className="h-auto w-full">
-      <title>Sweep of floor(n^{3/2}) parity on the unit interval</title>
+    <div>
+    <svg viewBox={`0 0 ${WIDTH} 100`} role="img" className="h-auto w-full">
+      <title>Sweep of the fractional part of n to the three-halves over 2</title>
       <rect x={LEFT} y="38" width={mid - LEFT} height="24" fill={SEA} opacity="0.18" />
       <rect x={mid} y="38" width={RIGHT - mid} height="24" fill={EMBER} opacity="0.18" />
       <line x1={LEFT} y1={Y} x2={RIGHT} y2={Y} stroke="#1d1914" strokeWidth="2" />
@@ -74,15 +76,11 @@ export function SweepLane({
       <text x={mid + 8} y="28" fill={EMBER} fontSize="11">
         odd image
       </text>
-      <text
-        x={WIDTH / 2}
-        y="110"
-        textAnchor="middle"
-        fill="#5e574c"
-        fontSize="12"
-      >
-        {`{n^{3/2}/2} walks a nearly constant step — both halves appear`}
-      </text>
     </svg>
+      <p className="text-center text-sm text-muted">
+        <Tex>{String.raw`\{n^{3/2}/2\}`}</Tex> walks a nearly constant step —
+        both halves appear
+      </p>
+    </div>
   );
 }

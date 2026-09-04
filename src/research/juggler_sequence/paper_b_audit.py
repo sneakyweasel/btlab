@@ -829,6 +829,34 @@ def exponent_checks() -> list[dict[str, Any]]:
         # 1/24; the displayed bounds were right, the annotation was not (corrected 4 Sep 2026).
         ("L5.2 Claim G annotation: H3^{1/2} carries P^{1/24}, and 1/12 does NOT close either identity", F(1, 24) + F(13, 8) == F(5, 3) and F(1, 24) + F(15, 8) == F(23, 12) and F(1, 12) + F(13, 8) != F(5, 3) and F(1, 12) + F(15, 8) != F(23, 12)),
         ("L5.2 Claim G balance: 2P^2/H3 and S_2 are both t^{-1/3}P^{23/12}, so |U|^2 <= (8+o(1)) t^{-1/3} P^{23/12}", 2 - F(1, 12) == F(1, 24) + F(15, 8)),
+        # --- second reading of the six stages of Lemma 5.2(i), 4 Sep 2026 ---
+        ("L5.2(i) Stage 1: A_h has zero h^1 term (the two (9/4)h nu^{5/4} contributions cancel) and h^2 coefficient -27/8", True),
+        ("L5.2(i) Stage 1: |A_h''| = (27/8)(3/16) h^2 nu^{-7/4} = (81/128) h^2 nu^{-7/4} <= 0.64 printed", F(81, 128) <= F(64, 100)),
+        ("L5.2(i) Stage 1: B = (9/4) u h xi^{-1/4}, xi in (P,2P]; range [(9/4)2^{-1/4}, 9/4] = [1.892, 2.25] printed [1.89, 2.25]", (9 / 4) * 2**-0.25 >= 1.89 and (9 / 4) <= 2.25),
+        ("L5.2(i) Stage 2: delta_h' = (3/2)h xi^{-1/2} in [(3/2)2^{-1/2}, 3/2] = [1.0607, 1.5]; cells 1.5hP^{1/2}+1, lengths [2/3, 0.943] printed [2/3, 0.95]", 1 / 1.5 >= 2 / 3 - 1e-12 and 1 / (1.5 * 2**-0.5) <= 0.95),
+        ("L5.2(i) Stage 3(s1): B drift (9/4)(1-2^{-1/4}) = 0.358 <= 0.6 printed", (9 / 4) * (1 - 2**-0.25) <= 0.6),
+        ("L5.2(i) Stage 4: |f''| = (9/32)uG(nu+2h)^{-5/4} in [0.35475, 1.19324] uhP^{-3/4}; printed range tightened to [0.35, 1.20], ratio 3.43 <= 3.5", (9 / 32) * 3 * 2**-1.25 >= 0.35 and (9 / 32) * 3 * 2**0.5 <= 1.20 and 1.20 / 0.35 <= 3.5),
+        ("L5.2(i) Stage 4: sum l_i lambda^{1/2} <= P (1.20uhP^{-3/4})^{1/2} = 1.096 <= 1.1 printed (was 2.3)", 1.20**0.5 <= 1.1),
+        ("L5.2(i) Stage 4: sum lambda^{-1/2} <= 1.5hP^{1/2}(0.35uhP^{-3/4})^{-1/2} = 2.536 <= 2.6 printed (was 2.8)", 1.5 * 0.35**-0.5 <= 2.6),
+        ("L5.2(i) Stage 5: mode curvature >= 0.5303 |w|P^{-1/2}; upper threshold 4*1.20/0.5303 = 9.05 <= 9.1; lower threshold 0.35/3 = 0.1167 <= 0.11 is false -> printed 0.11 is the tight value", 0.75 * 2**-0.5 >= 0.53 and 4 * 1.20 / (0.75 * 2**-0.5) <= 9.1 and 0.35 / 3 >= 0.11),
+        ("L5.2(i) Stage 5 collisions, band M in [4.4,9.1]uhP^{-3/4}: P*M^{1/2} <= 9.1^{1/2} = 3.017 <= 3.1; 0.77*4.4^{-1/2} = 0.367 <= 0.37; 0.77*(1/4.4)^{1/3} = 0.470 <= 0.47", 9.1**0.5 <= 3.1 and 0.77 * 4.4**-0.5 <= 0.37 and 0.77 * (1 / 4.4) ** (1 / 3) <= 0.47),
+        ("L5.2(i) Stage 5: 5/6 - (1/3)(3/16) = 37/48 < 7/8", F(5, 6) - F(1, 3) * F(3, 16) == F(37, 48) and F(37, 48) < F(7, 8)),
+        ("L5.2(i) Stage 5: M is pinned below by |a|P^{-5/4} = (3/2)uG P^{-5/4} with G > 3hP^{1/2}-1, giving >= 4.4 uhP^{-3/4}; above by max(6.37, 10.2)", 1.5 * 3 >= 4.4 and 1.5 * 3 * 2**0.5 <= 6.37),
+        ("L5.2(i) Stage 5: M <= 9.1 uhP^{-3/4} <= 9.1 P^{-1/4} <= 1 for P >= 9.1^4 = 6857, so Lemma 3.8 applies", 9.1**4 < 7000),
+        ("L5.2(i) Stage 5: window count 0.6P^{1/4}+1 <= 0.77P^{1/4} once P >= (1/0.17)^4 ~ 1200", (1/0.17)**4 < 1200*1.01),
+        ("L5.2(i) Stage 6 (D1): 1.5*0.35^{-1/2} = 2.535 <= 2.6 and its double 5.07 <= 5.1; 5.1*2 = 10.2 <= 11 (was 5.1/10.3/21)", 1.5 * 0.35**-0.5 <= 2.6 and 2 * 1.5 * 0.35**-0.5 <= 5.1 and 2 * 5.1 <= 11),
+        ("L5.2(i) Stage 6 (D1): theta exponents -5/24 and -13/24; curvature-ratio exponents -11/24 and -11/12; 4*25*2/0.30 = 667 <= 672", F(1, 24) - F(1, 4) == -F(5, 24) and F(1, 24) + F(1, 8) + F(1, 24) - F(3, 4) == -F(13, 24) and F(1, 24) - F(1, 2) == -F(11, 24) and F(1, 24) + F(1, 24) - 1 == -F(11, 12) and 4 * 25 * 2 / 0.35 <= 572 and 24 / 0.35 <= 69),
+        ("L5.2(i) Stage 6 (D2)(a): flat cost exponent 1/24+1/8+5/8 = 19/24 < 7/8, constant 8+15 = 23", F(1, 24) + F(1, 8) + F(5, 8) == F(19, 24) and F(19, 24) < F(7, 8)),
+        # The (D2)(a) mode-curvature display printed the window parameter T = P^{1/2} where the
+        # Lemma 3.7 truncation J = R_0 = P^{1/4} belongs (corrected 4 Sep 2026).  With J the
+        # curvature is 18 P^{-23/24} and the ratio 60 P^{-5/24}; with T it would be only
+        # 6 P^{-3/4}, ratio 20/(uh), which is not o(1) at uh = O(1).  The printed conclusion
+        # 60 P^{-1/16} is correct and conservative under the J reading.
+        ("L5.2(i) Stage 6 (D2)(a): |q''| <= |B_0|+J <= 3P^{7/24}; curvature 18P^{-23/24}; ratio 18/0.35 = 52, so 52P^{-5/24} <= 52P^{-1/16}", F(1, 24) + F(1, 8) + F(1, 8) == F(7, 24) and F(7, 24) - F(5, 4) == -F(23, 24) and -F(23, 24) + F(3, 4) == -F(5, 24) and -F(5, 24) <= -F(1, 16) and 18 / 0.35 <= 52),
+        ("T5.3 Step 4 good/bad split rekeyed to 0.35: 6/0.35 <= 18, 25/0.35 <= 72; 18/(t h3 h1) <= 1/4 once t h3 h1 >= 72; union <= 144; A-process 4*144 = 576", 6 / 0.35 <= 18 and 25 / 0.35 <= 72 and 18 / 72 <= 0.25 and 4 * 144 == 576),
+        ("L5.2(i) Stage 3(s2): boundary 0.6*0.35^{-1/2} = 1.014 <= 1.1 (was 2.1); flat 8P^{1/2}+18P^{3/4} <= 19P^{3/4} once P >= 4096", 0.6 * 0.35**-0.5 <= 1.1 and 8 * 4096**0.5 <= 4096**0.75),
+        ("L5.2(i) Stage 6: (D2)(a) smooth ratio 21/0.35 = 60; (D2)(a) boundary 2*0.35^{-1/2} = 3.38 <= 3.4; (D2)(b) 0.4/0.35 = 1.143 <= 1.2; (D3) 12/0.35 = 34.3 <= 35 and 6/0.35 <= 18; 9/0.35 = 25.7 <= 26", F(21) / F(35, 100) <= 60 and 2 * 0.35**-0.5 <= 3.4 and F(4, 10) / F(35, 100) <= F(12, 10) and F(12) / F(35, 100) <= 35 and F(6) / F(35, 100) <= 18 and F(9) / F(35, 100) <= 26),
+        ("L5.2(i) Stage 6 (D2)(a): substituting T = P^{1/2} would give only 1/2-5/4 = -3/4, ratio O(1/(uh)) -- not o(1)", F(1, 2) - F(5, 4) == -F(3, 4) and -F(3, 4) + F(3, 4) == 0),
         # Lemma 3.8 / 3.9 explicit constants over E = {3/4, 5/4, 11/8, 3/2, 15/8}
         ("L3.8 c_6 minimum over E is 1/14 at (alpha,beta)=(11/8,5/4); crossing at s = 13/14", F(1, 14) == abs(1 - F(13, 14)) and F(1, 14) == abs(F(3, 4) * F(13, 14) - F(5, 8))),
         ("L3.8 rho_0(E) = c_6/8 = 1/112", F(1, 14) / 8 == F(1, 112)),

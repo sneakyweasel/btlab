@@ -1,16 +1,19 @@
 /**
- * Lookup-only finance status at the Theorem 4.6 floor 10^6.
- * n_max is never recomputed in the browser.
+ * Finance status at the Theorem 4.6 floor 10^6.
+ * Lengths through LIVE_FINANCE_L_MAX compute θ live. Larger surplus
+ * values and every n_max are looked up from finance.json.
  */
 
 import snapshot from "../data/finance.json";
 import {
+  LIVE_FINANCE_L_MAX,
   PAPER_EXCEPTION_COUNT,
   PAPER_FLOOR,
   PAPER_L_CAP,
   PAPER_PERIOD,
 } from "./constants";
 import { oMinForLength } from "./itinerary";
+import { constantOneCrossing, thetaExact } from "./necklace";
 
 export type FinanceStatus = "excluded" | "admissible" | "beyond table" | "invalid";
 
@@ -62,6 +65,63 @@ const survivorByLength = new Map(financeSurvivors.map((row) => [row.L, row] as c
 
 export function survivorOf(length: number): FinanceSurvivor | undefined {
   return survivorByLength.get(length);
+}
+
+/** Shipped Theorem 4.4 surplus and crossing. Written by export_finance_ledgers.py. */
+export type FinanceLedger = {
+  L: number;
+  o: number;
+  theta: number;
+  thetaDecimal: string;
+  crossing: number;
+};
+
+export const financeLedgers: readonly FinanceLedger[] = snapshot.ledgers;
+
+if (financeLedgers.length === 0) {
+  throw new Error("finance snapshot has no ledgers");
+}
+
+const ledgerByLength = new Map(financeLedgers.map((row) => [row.L, row] as const));
+
+for (const row of snapshot.records) {
+  if (!ledgerByLength.has(row.L)) {
+    throw new Error(`finance snapshot is missing a ledger for record L=${row.L}`);
+  }
+}
+for (const row of financeSurvivors) {
+  if (!ledgerByLength.has(row.L)) {
+    throw new Error(`finance snapshot is missing a ledger for survivor L=${row.L}`);
+  }
+}
+
+export function shippedLedger(length: number): FinanceLedger | null {
+  return ledgerByLength.get(length) ?? null;
+}
+
+export type LedgerSource = "live" | "shipped";
+
+export type ResolvedLedger = FinanceLedger & { source: LedgerSource };
+
+/**
+ * Small L: exact θ in the browser. Large L: shipped row, or null.
+ * n_max is never computed here.
+ */
+export function resolveLedger(length: number): ResolvedLedger | null {
+  if (!Number.isInteger(length) || length < 1) return null;
+  if (length <= LIVE_FINANCE_L_MAX) {
+    const theta = thetaExact(length);
+    return {
+      L: length,
+      o: theta.o,
+      theta: theta.approx,
+      thetaDecimal: theta.decimal,
+      crossing: constantOneCrossing(length, theta.approx),
+      source: "live",
+    };
+  }
+  const row = shippedLedger(length);
+  return row === null ? null : { ...row, source: "shipped" };
 }
 
 /** Shipped parity n_max for a length: a record row or a survivor row, else null. */

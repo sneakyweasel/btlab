@@ -26,6 +26,26 @@ import pytest
 
 mp = pytest.importorskip("mpmath")
 
+
+def _bisect(f, lo: float = 1e-9, hi: float = 1.0, iters: int = 200) -> float:
+    """Root of a strictly decreasing f on [lo, hi].  Deterministic: unlike
+    mpmath.findroot from a fixed seed, this cannot fail to converge.  The
+    lower end is kept off 0 because the three-state residual has a 1/(1-x)
+    factor that is singular at lambda = 0."""
+    flo, fhi = f(lo), f(hi)
+    if flo < 0:
+        return lo
+    if fhi > 0:
+        return hi
+    for _ in range(iters):
+        mid = (lo + hi) / 2
+        if f(mid) > 0:
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2
+
+
 NOTE = "docs/theory/juggler_oeoee_production.md"
 
 RHO = F(9, 32)  # source scale of OEOEE
@@ -181,9 +201,7 @@ def test_net_gain_is_one_twenty_seventh():
 
 
 def root(terms) -> float:
-    return float(
-        mp.findroot(lambda L: sum(float(c) * float(e) ** L for c, e in terms) - 1, 0.5)
-    )
+    return _bisect(lambda L: sum(float(c) * float(e) ** L for c, e in terms) - 1)
 
 
 BASE = [(F(1), F(1, 2)), (F(1, 9), F(3, 8)), (F(2, 9), F(3, 4))]

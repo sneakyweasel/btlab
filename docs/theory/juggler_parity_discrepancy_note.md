@@ -2222,12 +2222,12 @@ same two mode families at coefficient factor
 windows. Per window Lemma 3.7 at the centre \(B_0\)
 (\(T=P^{1/2}\ge8(1+2.25P^{1/4})\) for \(P\ge P_0\), since
 \(P^{1/4}\ge19\); flat cost \(\le8(1{+}2.25P^{1/4})P^{1/2}
-\le27P^{3/4}\) in total) produces modes \(e(w\nu^{3/2})\) whose
+\le19P^{3/4}\) in total, once \(P\ge4096\)) produces modes \(e(w\nu^{3/2})\) whose
 coefficients decay as
 \(\min(2,\tfrac1{\pi|w+B_0|})+\min(2,\tfrac1{\pi|w|})\); the
 window-boundary cost is, using \(uh>P^{3/16}\),
-\(\le(0.6P^{1/4}{+}1)\cdot1.83\,(0.30\,uh)^{-1/2}P^{3/8}
-\le2.1\,P^{1/4-3/32+3/8}=2.1\,P^{17/32}\le P^{5/8}\). Modes with
+\(\le(0.6P^{1/4}{+}1)\,(0.35\,uh)^{-1/2}P^{3/8}
+\le1.1\,P^{1/4-3/32+3/8}=1.1\,P^{17/32}\le P^{5/8}\). Modes with
 \(|w|\) in the collision window are treated in Stage 5.
 
 *Stage 4 (the main curvature, \(r=w=0\)).* On a cell the remaining
@@ -2235,45 +2235,72 @@ phase is \(\tfrac{3u}2G(\nu{+}2h)^{3/4}+uA_h+(\text{smooth
 decorations})\), with second derivative
 \[
 -\tfrac9{32}\,uG\,(\nu{+}2h)^{-5/4}
-\in-[0.30,\,1.35]\,uh\,P^{-3/4}
+\in-[0.35,\,1.20]\,uh\,P^{-3/4}
 \qquad(\text{E2}),
 \]
-single-signed with in-cell ratio \(\sup/\inf\le4.5\): the second
+single-signed with in-cell ratio \(\sup/\inf\le3.5\): the second
 derivative of \(\tfrac{3u}2G(\nu{+}2h)^{3/4}\) is the single term
 \(\tfrac{3u}2G\cdot\tfrac34\cdot(-\tfrac14)(\nu{+}2h)^{-5/4}\), with
 \(G\) frozen and bounded by (E2). The competitor
 \(uA_h''\) has ratio
-\(\le0.64uh^2P^{-7/4}/(0.30uhP^{-3/4})\le2.2hP^{-1}\le2.2P^{-3/4}\);
+\(\le0.64uh^2P^{-7/4}/(0.35uhP^{-3/4})\le1.9hP^{-1}\le1.9P^{-7/8}\);
 decoration competitors are bounded in Stage 6. Lemma 3.3 per cell
 and summation give
 \[
 \sum_{\text{cells}}
 \Bigl(\ell_i\lambda^{1/2}+\lambda^{-1/2}\Bigr)
-\le2.3\,(uh)^{1/2}P^{5/8}
-+2.8\,(h/u)^{1/2}P^{7/8}.
+\le1.1\,(uh)^{1/2}P^{5/8}
++2.6\,(h/u)^{1/2}P^{7/8},
 \]
+the first because the cells partition the block, so
+\(\sum_i\ell_i\lambda_i^{1/2}\le P\lambda_{\max}^{1/2}
+=(1.20)^{1/2}(uh)^{1/2}P^{5/8}=1.096\,(uh)^{1/2}P^{5/8}\), and the
+second because there are at most \(1.5hP^{1/2}+1\) cells, giving
+\(1.5\cdot(0.35)^{-1/2}=2.536\) plus a lower-order term. These are the
+two main terms of (i).
 
 *Stage 5 (nonzero modes and collisions).* A mode \(w\ne0\) (or
 \(r\ne0\); identical treatment with weight \(1/|r|\)) adds the phase
 \(w\nu^{3/2}\) of curvature \(\ge0.53|w|P^{-1/2}\).
-If \(0.53|w|P^{-1/2}\ge4\cdot1.35uhP^{-3/4}\), i.e.
-\(|w|\ge10.2\,uhP^{-1/4}\), the mode curvature dominates at margin
+If \(0.53|w|P^{-1/2}\ge4\cdot1.20uhP^{-3/4}\), i.e.
+\(|w|\ge9.1\,uhP^{-1/4}\), the mode curvature dominates at margin
 \(\ge4\): Lemma 3.3 over the full block gives
 \(\le1.4|w|^{1/2}P^{3/4}+1.4|w|^{-1/2}P^{1/4}\), and the
 coefficient-weighted sums are
 \(\le3R_0^{1/2}P^{3/4}\log P=3P^{7/8}\log P\) (families of Stage 2,
 regime (s1)) and \(\le CP^{7/8}\log P\) (regime (s2) tails). If
-\(|w|\le0.1\,uhP^{-1/4}\) the main curvature dominates at margin
+\(|w|\le0.11\,uhP^{-1/4}\) the main curvature dominates at margin
 \(\ge4\) and the mode rides along at Stage 4's scale, weight
 summable to \(O(\log P)\). In the remaining collision window
-\(0.1\,uhP^{-1/4}\le|w|\le10.2\,uhP^{-1/4}\) (nonempty only in
+\(0.11\,uhP^{-1/4}\le|w|\le9.1\,uhP^{-1/4}\) (nonempty only in
 regime (s2)), the two curvatures can cancel: there the phase is the
 two-term monomial
 \(a\nu^{3/4}+w\nu^{3/2}\) with \(a=\tfrac{3u}2G\asymp uh P^{1/2}\)
 plus perturbations already shown \(\rho_0\)-small, and Lemma 3.8
-with \((\alpha,\beta)=(\tfrac34,\tfrac32)\) applies per window with
-\(M\in[0.03,\,11]\,uhP^{-3/4}\) (both curvature scales lie in this
-window on the collision band, and \(M\le11P^{-1/4}\)):
+with \((\alpha,\beta)=(\tfrac34,\tfrac32)\) applies per window. The
+range of \(M\) is pinned from below by the \(\nu^{3/4}\) scale alone,
+which never degenerates: by (E1),
+\(\delta_h=3h\xi^{1/2}\in(3hP^{1/2},\,4.25hP^{1/2}]\), so
+\(G=\lfloor\delta_h\rfloor>3hP^{1/2}-1\) and
+\[
+|a|P^{-5/4}=\tfrac32uG\,P^{-5/4}
+>uhP^{-3/4}\Bigl(4.5-\tfrac{1.5}{hP^{1/2}}\Bigr)
+\ge4.4\,uhP^{-3/4}
+\qquad(P\ge P_0),
+\]
+while \(|a|P^{-5/4}\le6.37\,uhP^{-3/4}\) and
+\(|w|P^{-1/2}\in[0.11,9.1]uhP^{-3/4}\) on the band. Hence
+\[
+M\in[4.4,\ 9.1]\,uhP^{-3/4},
+\qquad
+M\le9.1\,P^{-1/4}\le1
+\quad(P\ge7000),
+\]
+using \(uh\le P^{1/2}\) for the last two. (The \(\nu^{3/4}\) curvature
+carries a factor \(G\asymp hP^{1/2}\), so \(M\) cannot be small on
+this band; an earlier draft printed the far weaker
+\(M\in[0.03,11]uhP^{-3/4}\), which cost a factor \(12\) in the second
+sum below and \(5\) in the third.) Then:
 \[
 \le C_E\bigl(|I_w|M^{1/2}+M^{-1/2}+(P/M)^{1/3}\bigr)
 \quad\text{per window.}
@@ -2282,31 +2309,35 @@ Summing over the at most \(0.6P^{1/4}{+}1\) windows — the transition
 cost \((P/M)^{1/3}\) carries no window-length factor, which is why
 it sums — with the \(O(\log P)\) collision-band coefficient mass:
 \[
-\sum_w|I_w|M^{1/2}\le3.4\,(uh)^{1/2}P^{5/8},\qquad
-\sum_wM^{-1/2}\le4.5\,(uh)^{-1/2}P^{5/8}\le4.5\,P^{5/8},
+\sum_w|I_w|M^{1/2}=P\,M^{1/2}\le3.1\,(uh)^{1/2}P^{5/8},\qquad
+\sum_wM^{-1/2}\le0.77P^{1/4}\cdot0.48\,(uh)^{-1/2}P^{3/8}
+\le0.37\,(uh)^{-1/2}P^{5/8},
 \]
 \[
 \sum_w(P/M)^{1/3}
-\le0.77P^{1/4}\cdot3.3\,(uh)^{-1/3}P^{7/12}
-=2.5\,(uh)^{-1/3}P^{5/6}\le2.5\,P^{5/6-1/16}=2.5\,P^{37/48},
+\le0.77P^{1/4}\cdot0.62\,(uh)^{-1/3}P^{7/12}
+=0.47\,(uh)^{-1/3}P^{5/6}\le0.47\,P^{5/6-1/16}=0.47\,P^{37/48},
 \]
-the last using \(uh>P^{3/16}\) in regime (s2). The collision-band
-total is \(\le C\bigl((uh)^{1/2}P^{5/8}+P^{5/6}\bigr)\log P\le
-CP^{7/8}\log P\).
+the windows numbering at most \(0.6P^{1/4}+1\le0.77P^{1/4}\)
+(\(P\ge1200\)), the first sum using that the windows partition the
+block, and the last using \(uh>P^{3/16}\) in regime (s2). The
+collision-band total is
+\(\le C\bigl((uh)^{1/2}P^{5/8}+P^{37/48}\bigr)\log P\le
+CP^{7/8}\log P\), with \(\tfrac{37}{48}<\tfrac78\).
 
 *Stage 6 (decorations).* Each class is dominated at a displayed
 margin against the Stage-4 curvature
-\(\ge0.30uhP^{-3/4}\).
+\(\ge0.35uhP^{-3/4}\).
 
 - (D1). On the branch decomposition of Lemma 5.1(iii) at the shift
   pair \((h_3\text{-role }h,\,h')\): the arcs are absorbed by the
   shift device (log mass); the \(b\)-run boundaries add
   \(\le1.5(h{+}2h')P^{1/2}+2\) cells, at boundary cost
-  \(\le1.5(h{+}2h')P^{1/2}\cdot1.83(0.30uh)^{-1/2}P^{3/8}
-  \le5.1(h/u)^{1/2}P^{7/8}+10.3\,h'(uh)^{-1/2}P^{7/8}\).
+  \(\le1.5(h{+}2h')P^{1/2}(0.35uh)^{-1/2}P^{3/8}
+  \le2.6(h/u)^{1/2}P^{7/8}+5.1\,h'(uh)^{-1/2}P^{7/8}\).
   The second term is the printed fourth term of (i): since
   \(h'\le2P^{1/24}\), it is
-  \(\le21\,P^{1/24}(uh)^{-1/2}P^{7/8}\). When (i) is invoked from
+  \(\le11\,P^{1/24}(uh)^{-1/2}P^{7/8}\). When (i) is invoked from
   (ii), Claim G averages this term at the worst-case \(h_3=1\),
   giving \(S_4\le4t^{-1/6}\,t^{-1/3}P^{23/12}P^{\varepsilon}\).
   The \(\theta\)-coefficient of the decoration is
@@ -2319,7 +2350,7 @@ margin against the Stage-4 curvature
   \(T\ge8(1+\lvert B\rvert)\)). The modes are expanded in the
   Stage-2 families. Its smooth curvature has ratio
   \(\le|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)
-  /(0.30uhP^{-3/4})\le80P^{1/24-1/2}+672P^{1/24+1/24-1}
+  /(0.35uhP^{-3/4})\le69P^{1/24-1/2}+572P^{1/24+1/24-1}
   \le P^{-1/4}\): dominated.
 - (D2). Write
   \(\Delta(c\lfloor F\rfloor)
@@ -2329,17 +2360,29 @@ margin against the Stage-4 curvature
   the smooth part has curvature
   \(\le\bigl((\Delta c)F\bigr)''\le7kh|j|P^{-9/8}
   +28khh_1h_2P^{-13/8}\), ratio to the main curvature
-  \(\le24k|j|P^{-3/8}/u\le72P^{1/24-3/8}\): dominated. The sawtooth
+  \(\le20k|j|P^{-3/8}/u\le60P^{1/24-3/8}\): dominated. The sawtooth
   part has coefficient
   \(\Delta c\in(1.68,1.85)\,khP^{1/8}\), handled per windows of
   drift \(\le1\): at most \(2khP^{1/8}{+}1\) windows, at boundary
   cost
-  \(\le2khP^{1/8}\cdot1.83\,(0.30\,uh)^{-1/2}P^{3/8}
-  \le7k\,(h/u)^{1/2}P^{1/2}\). Per window, Lemma 3.7 at
-  \(T=P^{1/2}\) yields modes \(e(q''(F\circ X))\) of curvature
-  \(\le(2khP^{1/8}{+}P^{1/2})\cdot3|j|P^{-5/4}\le18P^{-3/4}
-  \cdot P^{-1/16}\), ratio to the main curvature
-  \(\le60P^{-1/16}\): dominated. The flat cost is, per point,
+  \(\le2khP^{1/8}(0.35\,uh)^{-1/2}P^{3/8}
+  \le3.4\,k\,(h/u)^{1/2}P^{1/2}\). Per window, Lemma 3.7 at
+  \(T=P^{1/2}\) yields modes \(e(q''(F\circ X))\) whose index obeys
+  \(|q''|\le|B_0|+J\) with the *truncation* \(J=R_0=P^{1/4}\) of
+  Stage 2 — not the window parameter \(T\) — so that
+  \(|q''|\le1.85khP^{1/8}+P^{1/4}\le3P^{7/24}\) by (C3) and
+  \(h\le P^{1/8}\), and the curvature is
+  \[
+  \le\bigl(1.85khP^{1/8}{+}R_0\bigr)\cdot3|j|P^{-5/4}
+  \le3P^{7/24}\cdot6P^{-5/4}
+  =18P^{-23/24},
+  \]
+  ratio to the main curvature
+  \(\le52P^{-5/24}\le52P^{-1/16}\): dominated. (Substituting \(T\)
+  for \(J\) here would give only \(9P^{-3/4}\), whose ratio
+  \(26/(uh)\) is not \(o(1)\) at \(uh=O(1)\); the
+  \(52P^{-1/16}\) conclusion is correct and conservative,
+  and \(18/0.35=52\) fixes the constant either way.) The flat cost is, per point,
   \(8(1{+}B_0)/T\), so in total
   \(\le8\bigl(1{+}1.85khP^{1/8}\bigr)P^{1/2}
   \le8P^{1/2}+15\,khP^{5/8}\le23\,P^{1/24+1/8+5/8}
@@ -2353,26 +2396,26 @@ margin against the Stage-4 curvature
   \(\lfloor\Delta F\rfloor\) takes at most two values, on at most
   two intervals; per value the phase \(-q_0c_+\) (\(|q_0|\le
   2{+}6hP^{-1/4}\le3\)) has curvature \(\le0.4kP^{-7/8}\), ratio
-  \(\le1.4kP^{-1/8}/(uh)\le1.4P^{1/24-1/8}\): dominated. The carry
+  \(\le1.2kP^{-1/8}/(uh)\le1.2P^{1/24-1/8}\): dominated. The carry
   \(\kappa_F=\{F\}+\{\Delta F\}-\{F{+}\Delta F\}\) is a sum of unit
   sawtooths in slow variables (all drifts \(<1\) per step): Lemma
   3.5 at truncation \(P^{1/8}\) (majorant \(\le3\cdot4P^{7/8}\))
   gives modes \(e(q''(F\circ X))\)-type of curvature
   \(\le P^{1/8}\cdot3|j|P^{-5/4}\le9P^{-9/8}\), ratio
-  \(\le30P^{-3/8}\): dominated.
+  \(\le26P^{-3/8}\): dominated.
 - (D3). The printed third-derivative budget is
   \(|\varphi'''|\le6kh_1h_2P^{-13/8}\). The ratio to the Stage-4
   curvature is
   \[
-  \frac{2h\cdot6kh_1h_2P^{-13/8}}{0.30uhP^{-3/4}}
-  =\frac{40kh_1h_2P^{-7/8}}u
-  \le40P^{1/8-7/8}=40P^{-3/4},
+  \frac{2h\cdot6kh_1h_2P^{-13/8}}{0.35uhP^{-3/4}}
+  =\frac{35kh_1h_2P^{-7/8}}u
+  \le35P^{1/8-7/8}=35P^{-3/4},
   \]
   using (C1) in the form \(kh_1h_2\le P^{1/8}\) and \(u\ge1\):
   dominated. (If the decoration is an *input* (D3) of (ii) that
   has not yet been differenced, the tighter
   \(|\varphi'''|\le3kh_1h_2P^{-13/8}\) only improves the
-  constant \(40\) to \(20\).)
+  constant \(35\) to \(18\).)
 
 *Totals.* Stages 1–6 bound \(V\) by
 \[
@@ -2416,7 +2459,7 @@ one difference from an input with \(|\varphi'''|\le3kh_1h_2P^{-13/8}\)
 (E); invoke the printed (i), fourth term included (F); average,
 five displayed comparisons, worst-case \(h_3=1\) on the (D1)
 remainder (G); square root (H). Collision windows of (i) are only
-the band \(0.1\,uhP^{-1/4}\le\lvert w\rvert\le10.2\,uhP^{-1/4}\) of
+the band \(0.11\,uhP^{-1/4}\le\lvert w\rvert\le9.1\,uhP^{-1/4}\) of
 Stage 5, and only in regime (s2). On a cell the integer
 \(G=\lfloor\delta_h\rfloor\) is held frozen; the smooth remainder
 \(A_h\) does not differentiate a frozen gap. Lemma 3.9 is not used
@@ -2832,22 +2875,22 @@ is invoked unchanged.
 The Stage-6 curvature ratio of a leftover mode against the main
 term \(t\Delta_{2h_3}Y\) is
 \[
-\frac{|u|\bigl(2|j'|P^{-5/4}+25h_3h_1P^{-7/4}\bigr)}{0.30\,th_3P^{-3/4}}.
+\frac{|u|\bigl(2|j'|P^{-5/4}+25h_3h_1P^{-7/4}\bigr)}{0.35\,th_3P^{-3/4}}.
 \]
 The first summand is
-\(\le20\,|u|/(th_3)\,P^{-1/2}\)
-(using \(2|j'|\le6\) and \(6/0.30=20\)). The product
+\(\le18\,|u|/(th_3)\,P^{-1/2}\)
+(using \(2|j'|\le6\) and \(6/0.35\le18\)). The product
 \(|u|h_1\le P^{1/2}\) rewrites this as
-\(\le20/(th_3h_1)\). The second summand is
-\(\le83\,|u|h_1\,t^{-1}P^{-1}\)
-(using \(25/0.30\le83.4\)), hence
-\(\le83\,t^{-1}P^{-1/2}\) by the same product bound. Thus the
+\(\le18/(th_3h_1)\). The second summand is
+\(\le72\,|u|h_1\,t^{-1}P^{-1}\)
+(using \(25/0.35\le71.5\)), hence
+\(\le72\,t^{-1}P^{-1/2}\) by the same product bound. Thus the
 ratio is
 \[
-\le\frac{20}{th_3h_1}+\frac{83}{t}\,P^{-1/2}.
+\le\frac{18}{th_3h_1}+\frac{72}{t}\,P^{-1/2}.
 \]
 The second summand is \(o(1)\) for \(P\ge P_0\). The first is
-\(\le1/4\) once \(th_3h_1\ge80\). On that *good* set of
+\(\le1/4\) once \(th_3h_1\ge72\). On that *good* set of
 \(h_3\), Stage-6 domination applies at margin \(\ge4\). The
 \(\theta\)-coefficient of the leftover (D1) is
 \[
@@ -2865,16 +2908,16 @@ two comparisons hold with \((u,h_1)\) replaced by
 \((u',h_2)\).
 
 The *bad* set for the \(u\)-mode is
-\(h_3<80/(th_1)\). It contains at most \(80\) positive
+\(h_3<72/(th_1)\). It contains at most \(72\) positive
 integers (since \(t\ge1\) and \(h_1\ge1\)). The bad set for
-the \(u'\)-mode likewise contains at most \(80\) integers.
-Their union has at most \(160\) elements. On those \(h_3\)
+the \(u'\)-mode likewise contains at most \(72\) integers.
+Their union has at most \(144\) elements. On those \(h_3\)
 use the trivial bound \(|V_{h_3}|\le P\). The recorded
 \(A\)-process charges
 \[
-\frac{4P}{H_3}\cdot160\cdot P
-=640\,\frac{P^2}{H_3}
-\le640\,t^{-1/3}P^{23/12},
+\frac{4P}{H_3}\cdot144\cdot P
+=576\,\frac{P^2}{H_3}
+\le576\,t^{-1/3}P^{23/12},
 \]
 which is a constant multiple of the target of Claim G (the
 same first-term comparison \(P^2/H_3\le t^{-1/3}P^{23/12}\)).

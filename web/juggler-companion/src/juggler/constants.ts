@@ -441,6 +441,12 @@ export const STRING_TOUR_PRESETS = [
   },
 ] as const;
 export const RECORD_LENGTHS = [1, 3, 11, 19, 84, 569, 1054, 25781, 50508] as const;
+/**
+ * Last length the browser may build 3^{o_min} for. That is the last
+ * record before the first survivor 25781. Larger θ and crossings are
+ * shipped in finance.json.
+ */
+export const LIVE_FINANCE_L_MAX = 1054;
 
 /**
  * Starts for the excursion necklace of §4. The browser walks each start

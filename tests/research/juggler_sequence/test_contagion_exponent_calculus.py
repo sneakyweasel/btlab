@@ -34,6 +34,26 @@ import pytest
 
 mp = pytest.importorskip("mpmath")
 
+
+def _bisect(f, lo: float = 1e-9, hi: float = 1.0, iters: int = 200) -> float:
+    """Root of a strictly decreasing f on [lo, hi].  Deterministic: unlike
+    mpmath.findroot from a fixed seed, this cannot fail to converge.  The
+    lower end is kept off 0 because the three-state residual has a 1/(1-x)
+    factor that is singular at lambda = 0."""
+    flo, fhi = f(lo), f(hi)
+    if flo < 0:
+        return lo
+    if fhi > 0:
+        return hi
+    for _ in range(iters):
+        mid = (lo + hi) / 2
+        if f(mid) > 0:
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2
+
+
 NOTE = "docs/theory/juggler_contagion_exponent_calculus.md"
 
 LAMBDA_STAR = 0.3774  # items 1+2 only
@@ -56,7 +76,7 @@ def residual(lam: float, eta0: float, eta1: float, eta2: float) -> float:
 def exponent(eta0: float, eta1: float, eta2: float) -> float:
     if residual(1 - 1e-12, eta0, eta1, eta2) > 0:
         return 1.0
-    return float(mp.findroot(lambda L: residual(L, eta0, eta1, eta2), 0.45))
+    return _bisect(lambda L: residual(L, eta0, eta1, eta2))
 
 
 def note_lambda_2_equation(lam: float) -> float:
@@ -174,7 +194,7 @@ def run_exponent(r: int, eta1: float = 1.0, eta2: float = 1.0, nu: float = 1.0) 
 
     if rho(1 - 1e-9) > 1:
         return 1.0
-    return float(mp.findroot(lambda L: rho(L) - 1.0, 0.45))
+    return _bisect(lambda L: rho(L) - 1.0)
 
 
 def test_run_length_one_is_the_no_oo_case():

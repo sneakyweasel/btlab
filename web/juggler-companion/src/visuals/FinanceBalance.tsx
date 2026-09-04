@@ -1,9 +1,9 @@
-import { useMemo } from "react";
 import { Tex } from "../components/Tex";
-import { PAPER_FLOOR } from "../juggler/constants";
-import { shippedNMax } from "../juggler/finance";
+import { LIVE_FINANCE_L_MAX, PAPER_FLOOR } from "../juggler/constants";
+import { financeView, resolveLedger, shippedNMax } from "../juggler/finance";
 import { formatGrouped } from "../juggler/format";
-import { constantOneCrossing, financeBudgetConstantOne, thetaExact } from "../juggler/necklace";
+import { oMinForLength } from "../juggler/itinerary";
+import { financeBudgetConstantOne } from "../juggler/necklace";
 
 const ODD = "#c45c26";
 const EVEN = "#1f6f6a";
@@ -18,6 +18,17 @@ const LEFT = 64;
 const RIGHT = 596;
 const TOP = 26;
 const BOTTOM = 236;
+
+function finiteTicks(lo: number, hi: number, stride: number, cap = 48): number[] {
+  if (!Number.isFinite(lo) || !Number.isFinite(hi) || !Number.isFinite(stride) || stride <= 0) {
+    return [];
+  }
+  const out: number[] = [];
+  for (let exp = Math.ceil(lo); exp <= Math.floor(hi) && out.length < cap; exp += stride) {
+    out.push(exp);
+  }
+  return out;
+}
 
 function TenPow({ exp }: { exp: number }) {
   return (
@@ -37,23 +48,30 @@ type FinanceBalanceProps = {
 };
 
 /**
- * Theorem 4.4 as a balance. The surplus θ(L) = 1 − 2^L/3^{o_min} is
- * exact (bigint); the budget L/(n ln n) is the constant-1 right-hand
- * side drawn as a curve in the cycle minimum n. Where the budget drops
- * under the surplus no cycle minimum can live. The certified parity
- * n_max(L) is a shipped marker, never recomputed here.
+ * Theorem 4.4 as a balance. Through LIVE_FINANCE_L_MAX the surplus is
+ * exact in the browser. Larger lengths look up finance.json. The budget
+ * curve is L/(n ln n) in ordinary floats. n_max is always shipped.
  */
 export function FinanceBalance({ length, compact = false }: FinanceBalanceProps) {
-  const theta = useMemo(() => thetaExact(length), [length]);
-  const crossing = useMemo(() => constantOneCrossing(length, theta.approx), [length, theta]);
+  const ledger = resolveLedger(length);
+  const o = ledger?.o ?? financeView(length).oMin ?? oMinForLength(length) ?? 1;
+  const ready = ledger !== null;
+  const theta = ledger?.theta ?? Math.max(1e-18, -Math.expm1(length * Math.LN2 - o * Math.log(3)));
+  const crossing = ledger?.crossing ?? Number.NaN;
   const nMax = shippedNMax(length);
+  const sourceLabel = ledger?.source === "live" ? "live" : ledger?.source === "shipped" ? "shipped" : "preset only";
 
   const xLo = 0.3;
-  const xHi =
-    Math.max(Math.log10(crossing), Math.log10(PAPER_FLOOR), nMax === null ? 0 : Math.log10(nMax)) + 0.6;
+  const rawXHi =
+    Math.max(
+      Number.isFinite(crossing) ? Math.log10(crossing) : 0,
+      Math.log10(PAPER_FLOOR),
+      nMax === null ? 0 : Math.log10(nMax),
+    ) + 0.6;
+  const xHi = Number.isFinite(rawXHi) ? Math.min(rawXHi, 40) : 8;
   const budgetAtLeft = financeBudgetConstantOne(length, 10 ** xLo);
-  const yHi = Math.log10(Math.max(budgetAtLeft, theta.approx * 10));
-  const yLo = Math.log10(theta.approx) - 1.2;
+  const yHi = Math.log10(Math.max(budgetAtLeft, theta * 10));
+  const yLo = Math.log10(theta) - 1.2;
 
   const xOf = (log10n: number) => LEFT + ((log10n - xLo) / (xHi - xLo)) * (RIGHT - LEFT);
   const yOf = (log10v: number) => BOTTOM - ((log10v - yLo) / (yHi - yLo)) * (BOTTOM - TOP);
@@ -67,17 +85,15 @@ export function FinanceBalance({ length, compact = false }: FinanceBalanceProps)
   }
   const budgetPath = budgetParts.join(" ");
 
-  const yTheta = yOf(Math.log10(theta.approx));
-  const xCross = xOf(Math.log10(crossing));
+  const yTheta = yOf(Math.log10(theta));
+  const xCross = Number.isFinite(crossing) ? xOf(Math.log10(crossing)) : RIGHT;
   const xFloor = xOf(Math.log10(PAPER_FLOOR));
   const xNMax = nMax === null ? null : xOf(Math.log10(nMax));
   const dead = nMax !== null && nMax <= PAPER_FLOOR;
 
-  const xTicks: number[] = [];
-  for (let exp = Math.ceil(xLo); exp <= Math.floor(xHi); exp += xHi - xLo > 12 ? 2 : 1) xTicks.push(exp);
-  const yTicks: number[] = [];
-  const yStride = yHi - yLo > 12 ? 3 : yHi - yLo > 6 ? 2 : 1;
-  for (let exp = Math.ceil(yLo); exp <= Math.floor(yHi); exp += yStride) yTicks.push(exp);
+  const xTicks = finiteTicks(xLo, xHi, xHi - xLo > 12 ? 2 : 1);
+  const yStride = !Number.isFinite(yHi - yLo) ? 1 : yHi - yLo > 12 ? 3 : yHi - yLo > 6 ? 2 : 1;
+  const yTicks = finiteTicks(yLo, yHi, yStride);
 
   return (
     <div className="space-y-3">
@@ -115,15 +131,16 @@ export function FinanceBalance({ length, compact = false }: FinanceBalanceProps)
           cycle minimum n
         </text>
 
-        {/* where the budget is under the surplus: no cycle minimum */}
-        <rect
-          x={Math.min(xCross, RIGHT)}
-          y={TOP}
-          width={Math.max(0, RIGHT - Math.min(xCross, RIGHT))}
-          height={BOTTOM - TOP}
-          fill={OK}
-          opacity="0.07"
-        />
+        {ready ? (
+          <rect
+            x={Math.min(xCross, RIGHT)}
+            y={TOP}
+            width={Math.max(0, RIGHT - Math.min(xCross, RIGHT))}
+            height={BOTTOM - TOP}
+            fill={OK}
+            opacity="0.07"
+          />
+        ) : null}
 
         <line x1={LEFT} y1={TOP} x2={LEFT} y2={BOTTOM} stroke="#d4cbb8" />
         <line x1={LEFT} y1={BOTTOM} x2={RIGHT} y2={BOTTOM} stroke="#d4cbb8" />
@@ -132,32 +149,33 @@ export function FinanceBalance({ length, compact = false }: FinanceBalanceProps)
         <line x1={LEFT} y1={yTheta} x2={RIGHT} y2={yTheta} stroke={ODD} strokeWidth="2.5" />
 
         <text x={LEFT + 8} y={yTheta - 8} fill={ODD} fontSize="11" fontFamily="Source Sans 3, sans-serif">
-          surplus θ(L) = 1 − 2^L / 3^o — exact
+          surplus θ(L) = 1 − 2^L / 3^o — {sourceLabel}
         </text>
         <text x={LEFT + 8} y={TOP + 14} fill={EVEN} fontSize="11" fontFamily="Source Sans 3, sans-serif">
           budget L / (n ln n) — Theorem 4.4, constant 1
         </text>
 
-        {/* constant-1 crossing */}
-        <circle cx={Math.min(xCross, RIGHT)} cy={yTheta} r="5" fill="#fffdf7" stroke={INK} strokeWidth="1.6" />
-        <text
-          x={Math.min(xCross, RIGHT - 40)}
-          y={yTheta - 12}
-          textAnchor="middle"
-          fill={INK}
-          fontSize="10"
-          fontFamily="Source Sans 3, sans-serif"
-        >
-          budget = surplus
-        </text>
+        {ready ? (
+          <>
+            <circle cx={Math.min(xCross, RIGHT)} cy={yTheta} r="5" fill="#fffdf7" stroke={INK} strokeWidth="1.6" />
+            <text
+              x={Math.min(xCross, RIGHT - 40)}
+              y={yTheta - 12}
+              textAnchor="middle"
+              fill={INK}
+              fontSize="10"
+              fontFamily="Source Sans 3, sans-serif"
+            >
+              budget = surplus
+            </text>
+          </>
+        ) : null}
 
-        {/* floor */}
         <line x1={xFloor} y1={TOP} x2={xFloor} y2={BOTTOM} stroke={INK} strokeWidth="1.2" strokeDasharray="4 3" />
         <text x={xFloor} y={TOP - 8} textAnchor="middle" fill={INK} fontSize="11">
           N₀ = 10⁶
         </text>
 
-        {/* shipped parity n_max */}
         {xNMax !== null ? (
           <g>
             <path
@@ -180,7 +198,9 @@ export function FinanceBalance({ length, compact = false }: FinanceBalanceProps)
         ) : null}
 
         <text x={LEFT} y={HEIGHT - 6} fill={MUTED} fontSize="11">
-          right of the crossing the budget cannot pay: no cycle minimum lives there
+          {ready
+            ? "right of the crossing the budget cannot pay: no cycle minimum lives there"
+            : `θ is live through ${formatGrouped(LIVE_FINANCE_L_MAX)}; larger lengths need a shipped row`}
         </text>
         <text x={RIGHT} y={HEIGHT - 6} textAnchor="end" fill={dead ? OK : MUTED} fontSize="11">
           {nMax === null
@@ -193,11 +213,31 @@ export function FinanceBalance({ length, compact = false }: FinanceBalanceProps)
 
       {compact ? null : (
         <div className="grid gap-2 sm:grid-cols-4">
-          <Cell label="L" value={formatGrouped(length)} hint={`o_min = ${formatGrouped(theta.o)}`} />
-          <Cell label="θ(L) exact" value={theta.decimal.replace(/0+$/, "").replace(/\.$/, ".0")} hint="1 − 2^L / 3^o, bigint" />
+          <Cell label="L" value={formatGrouped(length)} hint={`o_min = ${formatGrouped(o)}`} />
+          <Cell
+            label="θ(L)"
+            value={
+              ready
+                ? ledger.thetaDecimal.replace(/0+$/, "").replace(/\.$/, ".0")
+                : "—"
+            }
+            hint={
+              ledger?.source === "live"
+                ? "1 − 2^L / 3^o, exact in the browser"
+                : ledger?.source === "shipped"
+                  ? "1 − 2^L / 3^o, shipped"
+                  : `live through ${formatGrouped(LIVE_FINANCE_L_MAX)}`
+            }
+          />
           <Cell
             label="constant-1 crossing"
-            value={`≈ ${crossing >= 1e15 ? crossing.toExponential(2) : formatGrouped(Math.round(crossing))}`}
+            value={
+              !ready
+                ? "—"
+                : crossing >= 1e15
+                  ? crossing.toExponential(2)
+                  : `≈ ${formatGrouped(Math.round(crossing))}`
+            }
             hint="n log n = L/θ · Theorem 4.4 alone"
           />
           <Cell

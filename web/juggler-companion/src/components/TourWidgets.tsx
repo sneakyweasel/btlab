@@ -506,27 +506,6 @@ export function PreimagesWidget() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="mb-2 font-serif text-lg">
-          One-step preimages of {formatInt(m)}
-        </h3>
-        <p className="text-sm text-muted">
-          Same floor cut on both lines. Above, <Tex>{String.raw`\lfloor\sqrt{n}\rfloor`}</Tex>{" "}
-          = {formatInt(m)} exactly when n sits in [{formatInt(m)}²,{" "}
-          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}).
-          Every even bead in that interval sends a teal arrow.
-        </p>
-        <p className="mb-4 text-sm text-muted">
-          Below, <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}{" "}
-          exactly when n sits in [∛({formatInt(m)}²), ∛({formatInt(m + 1)}²)).
-          That slot is shorter than 1, so it holds at most one integer.
-          {slotInteger === null
-            ? " Here the slot is empty."
-            : slotInteger % 2 === 0
-              ? ` Here that integer is ${formatInt(slotInteger)}, not odd, so J does not use this cut.`
-              : ` Here that integer is ${formatInt(slotInteger)}.`}{" "}
-          If {formatInt(m)} is in a backward-closed set A, every bead with an
-          arrow joins A.
-        </p>
         <div className="mb-4 rounded-2xl border border-line bg-paper px-4 py-2.5">
           <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
             <label className="grid gap-1">
@@ -598,6 +577,27 @@ export function PreimagesWidget() {
             onPlay={playCurrent}
           />
         </div>
+        <h3 className="mt-4 mb-2 font-serif text-lg">
+          One-step preimages of {formatInt(m)}
+        </h3>
+        <p className="text-sm text-muted">
+          Same floor cut on both lines. Above, <Tex>{String.raw`\lfloor\sqrt{n}\rfloor`}</Tex>{" "}
+          = {formatInt(m)} exactly when n sits in [{formatInt(m)}²,{" "}
+          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}).
+          Every even bead in that interval sends a teal arrow.
+        </p>
+        <p className="text-sm text-muted">
+          Below, <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}{" "}
+          exactly when n sits in [∛({formatInt(m)}²), ∛({formatInt(m + 1)}²)).
+          That slot is shorter than 1, so it holds at most one integer.
+          {slotInteger === null
+            ? " Here the slot is empty."
+            : slotInteger % 2 === 0
+              ? ` Here that integer is ${formatInt(slotInteger)}, not odd, so J does not use this cut.`
+              : ` Here that integer is ${formatInt(slotInteger)}.`}{" "}
+          If {formatInt(m)} is in a backward-closed set A, every bead with an
+          arrow joins A.
+        </p>
       </div>
       <div>
         <h3 className="mb-2 font-serif text-lg">OE fiber of 100,000</h3>

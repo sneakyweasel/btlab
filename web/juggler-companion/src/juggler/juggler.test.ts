@@ -16,6 +16,7 @@ import {
   oeMembersMapToSeed,
 } from "./productions";
 import {
+  LIVE_FINANCE_L_MAX,
   NECKLACE_PRESETS,
   NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
@@ -46,12 +47,13 @@ import {
   financeSnapshot,
   financeSurvivors,
   financeView,
+  resolveLedger,
+  shippedLedger,
   shippedNMax,
   survivorOf,
 } from "./finance";
 import {
   blockExponent,
-  constantOneCrossing,
   financeBudgetConstantOne,
   necklaceView,
   oMinExact,
@@ -631,7 +633,7 @@ describe("finance lookup", () => {
     for (const row of financeSurvivors) {
       expect(row.a * vStarL + row.b * v1054L).toBe(row.L);
       expect(row.a * vStarO + row.b * v1054O).toBe(row.o);
-      expect(row.o).toBe(oMinExact(row.L));
+      expect(shippedLedger(row.L)?.o).toBe(row.o);
     }
     const deaths = financeSurvivors.filter((row) => row.packingDeath);
     expect(deaths).toHaveLength(42);
@@ -689,30 +691,34 @@ describe("excursion necklace", () => {
     expect(view.lastPeakLands).toBeNull();
   });
 
-  it("computes θ(L) exactly and agrees with the shipped records", () => {
-    expect(oMinExact(1)).toBe(1);
-    expect(oMinExact(11)).toBe(7);
-    expect(oMinExact(1054)).toBe(665);
-    expect(oMinExact(25781)).toBe(16266);
-    expect(oMinExact(50508)).toBe(31867);
+  it("computes θ live through the last small record and ships the rest", () => {
+    expect(LIVE_FINANCE_L_MAX).toBe(1054);
+    const live = resolveLedger(12);
+    expect(live?.source).toBe("live");
+    expect(live?.o).toBe(oMinExact(12));
+    expect(live?.thetaDecimal).toBe(thetaExact(12).decimal);
+    expect(resolveLedger(1054)?.source).toBe("live");
+    expect(resolveLedger(1054)?.o).toBe(665);
+    expect(resolveLedger(1055)).toBeNull();
+    const shipped = resolveLedger(25781);
+    expect(shipped?.source).toBe("shipped");
+    expect(shipped?.o).toBe(16266);
+    expect(shipped?.thetaDecimal.startsWith("0.0000254591")).toBe(true);
+    expect(() => thetaExact(25781)).toThrow(/live only through/);
+    expect(shippedLedger(12)).toBeNull();
     for (const row of financeSnapshot.records) {
-      expect(oMinExact(row.L)).toBe(row.o);
+      expect(shippedLedger(row.L)?.o).toBe(row.o);
     }
-    const theta = thetaExact(25781);
-    expect(theta.o).toBe(16266);
-    expect(theta.den).toBe(3n ** 16266n);
-    expect(theta.num).toBe(3n ** 16266n - 2n ** 25781n);
-    expect(theta.approx).toBeCloseTo(2.5459198127264017e-5, 12);
-    expect(theta.decimal.startsWith("0.0000254591")).toBe(true);
-    expect(thetaExact(1)).toMatchObject({ o: 1, num: 1n, den: 3n });
-    expect(thetaExact(1).decimal).toBe("0.333333333333");
+    for (const row of financeSurvivors) {
+      expect(shippedLedger(row.L)?.o).toBe(row.o);
+    }
   });
 
-  it("solves the constant-1 crossing of Theorem 4.4", () => {
-    const theta = thetaExact(25781);
-    const n = constantOneCrossing(25781, theta.approx);
-    expect(n * Math.log(n)).toBeCloseTo(25781 / theta.approx, -2);
-    expect(financeBudgetConstantOne(25781, n)).toBeCloseTo(theta.approx, 12);
+  it("ships the constant-1 crossing of Theorem 4.4", () => {
+    const ledger = shippedLedger(25781)!;
+    const n = ledger.crossing;
+    expect(n * Math.log(n)).toBeCloseTo(25781 / ledger.theta, -2);
+    expect(financeBudgetConstantOne(25781, n)).toBeCloseTo(ledger.theta, 12);
     expect(n).toBeGreaterThan(shippedNMax(25781)!);
   });
 });
