@@ -65,7 +65,9 @@ https://sneakyweasel.github.io/balanced_ternary/
    \(\lvert B\rvert\le6\); \(\rho_0\) ratios are \(O(P^{-1/4})\).
    Companion audit ledger
    [paper_b_audit_ledger.md](paper_b_audit_ledger.md) and
-   `research.juggler_sequence.paper_b_audit` (104 exponent checks).
+   `research.juggler_sequence.paper_b_audit` (114 exponent checks).
+   Lemma 5.2(ii) from (i) is Claims A–H; Stages 1–5 of (i) remain
+   author-chain.
    Section 3.5 proves the depth-\(\le3\) Theorems 4.4 and 4.7 on
    sub-dyadic intervals of length \(\ge P^{1/2}\) with a slow twist
    (Theorems 4.11–4.12, Corollary 4.13 — the \(OOEEE\) production

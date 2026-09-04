@@ -6,6 +6,7 @@ import {
 import { evenPreimage, oddPreimageIntegers } from "./preimages";
 import {
   evenBlock,
+  evenBlockView,
   evenMembersMapToSeed,
   fiberBounds,
   fiberStats,
@@ -501,6 +502,13 @@ describe("productions", () => {
   it("gives the even block of 6 as the evens of [36, 49)", () => {
     expect(evenBlock(6)).toEqual([36, 38, 40, 42, 44, 46, 48]);
     expect(evenMembersMapToSeed(6)).toBe(true);
+  });
+
+  it("lists every even only when the block fits on the strip", () => {
+    expect(evenBlockView(12).evens).toEqual(evenBlock(12));
+    expect(evenBlockView(100).listed).toBe(false);
+    expect(evenBlockView(100).evens).toEqual([]);
+    expect(evenBlockView(100).count).toBe(101);
   });
 
   it("sends every OE member of 12 to 12 in two steps", () => {

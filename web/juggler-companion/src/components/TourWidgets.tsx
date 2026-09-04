@@ -2,6 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import {
   LIVE_STARTS,
   MONSTER_ROW_LIVE,
+  PRODUCTION_M_MAX,
+  PRODUCTION_SEEDS,
   RECORD_LENGTHS,
   TOUR_EVEN_BLOCK_M,
   TOUR_OE_FIBER_M,
@@ -537,30 +539,71 @@ export function EnvelopeWidget() {
 }
 
 export function PreimagesWidget() {
-  const block = evenBlockView(TOUR_EVEN_BLOCK_M);
+  const [m, setM] = useState(TOUR_EVEN_BLOCK_M);
+  const block = useMemo(() => evenBlockView(m), [m]);
   const fiber = fiberView(TOUR_OE_FIBER_M);
   const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
-  const [blockN, setBlockN] = useState(block.evens[0] ?? 144);
-  const [blockHover, setBlockHover] = useState<number | null>(null);
+  const [blockN, setBlockN] = useState<number | null>(block.evens[0] ?? block.lo);
   const [fiberN, setFiberN] = useState(firstSea);
   const [fiberHover, setFiberHover] = useState<number | null>(null);
-  const blockInspect = blockHover ?? blockN;
   const fiberInspect = fiberHover ?? fiberN;
+  const chooseM = (value: number) => {
+    setM(value);
+    const next = evenBlockView(value);
+    setBlockN(next.evens[0] ?? next.lo);
+  };
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="mb-2 font-serif text-lg">Even block of 12</h3>
+        <h3 className="mb-2 font-serif text-lg">Even block of {formatInt(m)}</h3>
+        <div className="mb-3 flex flex-wrap items-end gap-3">
+          <label className="text-sm text-muted">
+            m
+            <input
+              className="ml-2 w-28 rounded border border-line bg-paper px-2 py-1 font-mono"
+              type="number"
+              min={1}
+              max={PRODUCTION_M_MAX}
+              value={m}
+              onChange={(event) => {
+                const value = Number(event.target.value);
+                if (
+                  Number.isInteger(value) &&
+                  value >= 1 &&
+                  value <= PRODUCTION_M_MAX
+                ) {
+                  chooseM(value);
+                }
+              }}
+            />
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {PRODUCTION_SEEDS.map((seed) => (
+              <button
+                key={seed}
+                type="button"
+                className={`rounded-full px-3 py-1 text-sm ${
+                  m === seed
+                    ? "bg-deep text-card"
+                    : "border border-line text-muted"
+                }`}
+                onClick={() => chooseM(seed)}
+              >
+                {seed.toLocaleString("en-US")}
+              </button>
+            ))}
+          </div>
+        </div>
         <EvenBlockStrip
           view={block}
           selected={blockN}
           onSelect={setBlockN}
-          onHover={setBlockHover}
         />
-        <ProductionWork n={blockInspect} />
         <p className="mt-3 text-sm text-muted">
-          The even integers of [144, 169) all map to 12. Hover a sea bead to
-          see the square root and the floor cut. If 12 is in a backward-closed
-          set A, so is this block.
+          The even block of {formatInt(m)} is the set of even one-step
+          preimages of {formatInt(m)}: every even n in [{formatInt(block.lo)},{" "}
+          {formatInt(block.hi)}). If {formatInt(m)} is in a backward-closed set
+          A, so is this block.
         </p>
       </div>
       <div>

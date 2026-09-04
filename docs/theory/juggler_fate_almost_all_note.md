@@ -183,7 +183,13 @@ available only for \(\rho_w\le\tfrac12\), because the fiber has length
 \(P^{1-\rho_w}\) (Proposition 5.13), and a run of \(r\) consecutive
 \(O\)'s needs Paper B at depth \(r+1\), which the parked kernel
 \(K_3\) blocks at \(r=4\). The last rung before that wall is
-\(\lambda\le0.8414\).
+\(\lambda\le0.8414\). The \(r=1\) words — those with no two consecutive
+\(O\)'s — cost no Paper B estimate at all, because an isolated \(O\) is
+absorbed by the \(E\) after it into an exact
+\(\lfloor\cdot^{3/4}\rfloor\); the first of them, \(OEOEE\), would raise
+\(0.4480\) to \(0.4801\) unconditionally and \(0.5392\) to \(0.5665\),
+and the family \((OE)^{k-1}OEE\) telescopes exactly onto the ideal
+depth-two recursion, closing the gap to \(0.4927\).
 
 **Theorem 2 (odd generation).** Let \(A\) be forward- and
 backward-closed with \(1\notin A\). Every \(n\in A\) descends by even
@@ -995,7 +1001,10 @@ is lacunary at the dyadic scale.
 \(0.448\to 0.4927\) is a dynamical averaging problem for the
 low-even set \(P=\{m:G_m/H_m\le 0.40\}\), not another pointwise
 fiber bound. By Proposition 5.13 it is not a separate problem either:
-it is exactly the short-fiber regime \(\rho_w>\tfrac12\).
+it is exactly the short-fiber regime \(\rho_w>\tfrac12\). Section 5.7
+identifies it further, and more sharply: the gap is closed **exactly**
+by an infinite family of elementary productions, so it need not be read
+as a dynamical averaging problem at all.
 
 *What is excluded.* Nothing. Corollary 5.5 does not say that a cycle
 or a divergent orbit is impossible; it says that either would be
@@ -1090,6 +1099,90 @@ intervals — and not a better estimate for the word already used.
 \(\lambda=1\) needs \(r\to\infty\): **the contagion side of the problem
 is guarded by \(K_3\) as well**, at \(r=4\), and approaches the same
 wall from the other direction rather than going around it.
+
+**The \(r=1\) words cost nothing.** The table over-charges every word
+with no two consecutive \(O\)'s. In such a word each isolated \(O\) is
+absorbed by the \(E\) after it: the transparent nesting of Lemma 3.2
+makes \(J^2(n)=\lfloor n^{3/4}\rfloor\) an *exact* function of \(n\), so
+every later parity is a function of that one integer \(w\), on whose
+level sets — intervals \([w^{4/3},(w+1)^{4/3})\) of length
+\(\asymp P^{1/4}\) — those parities are constant, and in which the
+surviving \(\psi\)'s are \(\psi\) of smooth monomials rather than of
+nested floors. Only \(\psi(n^{3/2})\) varies inside a block. For
+\(OEOEE\) (\(\rho=\tfrac9{32}\), the same fiber length as Appendix C's
+\(OOEEE\)) this splits the fifteen sign sums into eight that are
+one-variable sums in \(w\), handled by the second-derivative test and
+the Proposition 4.4 pairing, and seven that are
+\(\sum_w|T(w)|\le\mathcal N^{1/2}(\sum_w|T(w)|^2)^{1/2}\) with
+\(T(w)=\sum_{n\in I_w}\psi(n^{3/2})\), handled by Kusmin–Landau per
+block against a monotone slowly-stepping frequency. The savings are
+\(P^{-3/32}\) and \(P^{-1/16}\); no Paper B estimate, no localization,
+and — unlike \(OOEEE\), where
+\(\lfloor v^{1/4}\rfloor=\lfloor n^{9/16}\rfloor\) fails on a set needing
+Erdős–Turán — no exceptional set: the fiber
+\(J^5(n)=m'\iff\lfloor n^{3/4}\rfloor\in[m'^{8/3},(m'+1)^{8/3})\) is
+exact. Since an \(OEOEE\)-start lies in the \(OE\)-fiber of an *odd*
+\(J^2(n)\), the family sits inside family 3 and must be removed from it
+before being re-added at the ideal share, which by the two-sided form of
+Proposition 4.4 changes (5.2) by exactly
+\(+\tfrac1{27}g_A(9t/32)\): \(\lambda^{**}\) would rise to \(0.4801\)
+unconditionally and \(\lambda^{***}\) to \(0.5665\).
+
+The construction iterates. Write a no-\(OO\) word as \((OE)^KE^{\,j}\);
+its binding layer \(w_{K-1}\) has length \(1-\tfrac34\cdot2^{-j}\)
+relative to its own scale, **independent of \(K\)**, so the route needs
+\(j\ge1\). This rules out \(OEOEOE\) (\(j=0\), relative length
+\(\tfrac14\), where the phase is essentially linear and the measured
+worst-case cancellation is nil) and admits the family
+\(V_k=(OE)^{k-1}OEE\) — \(OEE\), \(OEOEE\), \(OEOEOEE\), … — every
+member at relative length \(\tfrac58\), with ideal coefficient
+\(c_k=3^{-k}\) and net gain \(\tfrac19c_k=3^{-(k+2)}\) at scale
+\((3/4)^k\tfrac38\). With \(x=2^{-\lambda}\), \(y=(3/4)^\lambda\) the
+family telescopes:
+\(x+\tfrac19xy+\tfrac29y+\sum_{k\ge1}3^{-(k+2)}xy^{k+1}=1
+\iff x+\tfrac13y=1\),
+since the family sum is \(\tfrac1{27}xy^2/(1-\tfrac13y)\), which at
+\(x=1-\tfrac y3\) is \(\tfrac1{27}y^2\), exactly cancelling the
+\(-\tfrac1{27}y^2\) from \(\tfrac19xy\). The right-hand equation is the
+ideal depth-two recursion, root \(0.4927\): **the elementary family
+closes the whole depth-two gap**, with finite truncations \(0.4801\),
+\(0.4891\), \(0.4916\), \(0.4924\), and \(0.5769\) alongside Appendix C.
+
+\(V_2\), \(V_3\) and \(V_4\) are worked out in full, and the pattern
+closes. For \(V_k\) the layers are \(n,w_1,\dots,w_{k-1}\), with \(w_i\)
+at scale \(P^{(3/4)^i}\) and block length \(\tfrac13(3/4)^i\); the
+binding layer is \(w_{k-1}\), **always at relative length \(\tfrac58\)**.
+The sign sums fall into \(k-1\) Cauchy–Schwarz cases — the one whose
+deepest varying factor sits at layer \(i-1\) is summed over layer \(i\),
+with the Vaaler truncation balanced at \(3S=H_i\) and saving
+\(H_i/3\) — plus pairing cases and one one-variable case at layer
+\(k-1\) of saving \(\tfrac18(3/4)^{k-1}\). Since \(\tfrac19<\tfrac18\)
+the deepest Cauchy–Schwarz case always binds, so
+
+\[
+\text{binding saving for }V_k=\tfrac19\bigl(\tfrac34\bigr)^{k-1}
+=\tfrac1{12},\ \tfrac1{16},\ \tfrac3{64},\ \tfrac9{256},\dots
+\]
+
+geometrically decaying but never zero: **every \(V_k\) carries a power
+saving, so every truncation of the family is a theorem.** The net gains
+are \(\tfrac19c_k=3^{-(k+2)}\) at \(\rho_{k+1}\), giving \(0.4801\),
+\(0.4891\), \(0.4916\) and, alongside Appendix C, \(0.5665\),
+\(0.5740\), \(0.5761\).
+
+The censuses confirm the exact identities and the block structure
+without a single failure at any layer, and every conditional share a
+single fiber can sample reads \(0.50\). They do **not** confirm the
+constants \(2^{-2k}\) for \(k\ge3\): the deepest layers of \(V_k\) are
+sampled at only \(P^{\rho_k}\)-ish many points — \(50\) and \(7\)
+distinct values at \(P=10^8\) for \(V_4\) — so those shares are noise,
+and reaching \(100\) samples at \(V_4\)'s deepest layer needs
+\(P\approx10^{12.7}\).
+The reduction, the telescoping identity and the census are complete;
+the explicit constants in the two half-estimates are not computed here,
+so this is recorded as a family in reserve rather than as a replacement
+for Theorem 1's exponent
+([juggler_oeoee_production.md](juggler_oeoee_production.md)).
 
 ## 6. Odd generation and the exact first-letter decomposition
 
@@ -1918,6 +2011,10 @@ analytic density estimates.
 | + \(OOEEE\) on even blocks (\(\lambda^{***}\), Appendix C, conditional) | \(\ldots,(\tfrac19,\tfrac9{32})\) | \(0.5392\) |
 | depth-two ideal | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
 | + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
+| \(+OEOEE\) (elementary, constants pending; Section 5.7) | \(\ldots,(\tfrac1{27},\tfrac9{32})\) | \(0.4801\) |
+| \(+OEOEE\) and \(OOEEE\) | \(\ldots,(\tfrac4{27},\tfrac9{32})\) | \(0.5665\) |
+| \(+\) the whole family \(V_k=(OE)^{k-1}OEE\) | \(\ldots,(3^{-(k+2)},(\tfrac34)^k\tfrac38)_{k\ge1}\) | \(0.4927\) |
+| \(+\) that family and \(OOEEE\) | | \(0.5769\) |
 | \(O\)-runs \(\le2\) controlled, present sweep (Section 5.7) | transfer matrix | \(0.6247\) |
 | \(O\)-runs \(\le2\), ideal fibers | transfer matrix | \(0.7180\) |
 | \(O\)-runs \(\le3\) (last rung before \(K_3\)), present sweep | transfer matrix | \(0.7095\) |

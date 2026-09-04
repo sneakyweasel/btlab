@@ -212,8 +212,11 @@ repository records machine checks of the exact identities and a
 row-by-row audit ledger
 ([paper_b_audit_ledger.md](paper_b_audit_ledger.md)); nothing in this
 paper depends on it. Certificate densities are never densities of
-starts that reach \(1\). The reconstruction of Lemma 5.2 is the
-author's, not an independent verification.
+starts that reach \(1\). The six-stage proof of Lemma 5.2(i) is the
+author's reconstruction. The reduction of Lemma 5.2(ii) from (i),
+and the preservation of the classes (D1), (D2), (D3) under the
+third differencing, are written as a self-contained argument
+(Claims A–H in the proof of Lemma 5.2).
 
 ### 1.2 Related work
 
@@ -1830,7 +1833,7 @@ floor — is the genuinely new difficulty. We isolate it as a
 standalone lemma with its own differencing, so that it can be
 checked independently. The checkable objects, in order, are:
 Lemma 5.1 (exact identities); Lemma 5.2(i) (differenced wave);
-Lemma 5.2(ii) from (i) (mixed pieces); Lemma 5.2b (frozen-shape
+Lemma 5.2(ii) from (i) (Claims A–H); Lemma 5.2b (frozen-shape
 interpolant: local \(f''\) versus global \(\Lambda\)); Theorem 5.3
 Step 5a (offset composite); Theorem 5.3 Step 5b (three regimes,
 the middle band citing Lemma 5.2b and Lemma 3.9); Theorem 6.1
@@ -1852,7 +1855,7 @@ classes
   \(F_{\boldsymbol\kappa}\) a branch function of Lemma 5.1(iii),
   offset \(|j|\le3\);
 - (D3) a smooth \(\varphi\) with \(|\varphi''|\le3kh_1h_2P^{-5/8}\)
-  and \(|\varphi'''|\le3kh_1h_2P^{-13/8}\);
+  and \(|\varphi'''|\le6kh_1h_2P^{-13/8}\);
 
 here \(2h\) is the shift of part (i), and in part (ii) the
 decorations are read after the differencing there. Then, for sums
@@ -1864,7 +1867,8 @@ over \(n\in(P,2P]\), \(n\) odd:
 V:=\Bigl|\sum_n
 e\bigl(u\,\Delta_{2h}Y(n{+}d)+\rho(n)\bigr)\Bigr|
 \;\ll\;
-\Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}\Bigr)
+\Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}
++P^{1/24}(uh)^{-1/2}P^{7/8}\Bigr)
 P^{\varepsilon};
 \]
 
@@ -1892,53 +1896,209 @@ would discard the sawtooth \(-\tfrac32tX^{1/2}\theta\) of amplitude
 \(\asymp tP^{3/4}\) inside \(tY=t(X-\theta)^{3/2}\); no such
 shortcut is taken anywhere below.
 
-*Proof of (ii) from (i).* Replacing the summand by its conjugate we
-may take \(t\ge1\). Fix \(e_1\in\mathcal D\) with
-\(q_{e_1}\ne0\) and write, exactly (telescoping onto the base
-\(e_1\)),
+*Proof of (ii) from (i).* Eight claims. No appeal is made to
+“the same treatment”, “absorbed”, or “inside the budget” except
+as a pointer to a displayed comparison in the claim that uses it.
+
+*Claim A (conjugate).* Replacing the summand by its conjugate
+replaces \((q_d)\) by \((-q_d)\) and \(t\) by \(-t\). Henceforth
+\(t\ge1\). The classes (D1)--(D3) are unchanged (they are
+absolute-value conditions).
+
+*Claim B (telescoping, with signs).* Fix \(e_1\in\mathcal D\) with
+\(q_{e_1}\ne0\). For each \(d\in\mathcal D\),
 \[
-\sum_{d\in\mathcal D}q_d\,Y(n{+}d)
-=t\,Y(n{+}e_1)+\sum_{d\ne e_1}q_d\,
+Y(n{+}d)=Y(n{+}e_1)+\sigma_{d,e_1}\,
 \Delta_{|d-e_1|}Y\bigl(n{+}\min(d,e_1)\bigr),
 \]
-and the second sum is a set of at most three decoration seeds with
-shifts \(|d-e_1|/2\le h_1{+}h_2\le2P^{1/24}\) by (C4). Weyl differencing at
-shift \(2h_3\), \(1\le h_3\le H_3:=\lceil t^{1/3}P^{1/12}\rceil\),
-by the \(A\)-process recorded after Lemma 3.3:
+where \(\sigma_{d,e_1}=+1\) if \(d>e_1\), \(\sigma_{d,e_1}=-1\) if
+\(d<e_1\), and \(\sigma_{e_1,e_1}=0\). (If \(d>e_1\) this is the
+definition of \(\Delta_{d-e_1}\); if \(d<e_1\) then
+\(Y(n{+}d)-Y(n{+}e_1)=-\bigl(Y(n{+}e_1)-Y(n{+}d)\bigr)
+=-\Delta_{e_1-d}Y(n{+}d)\).) Therefore, exactly,
 \[
-|U|^2\le\frac{P^2}{H_3}
-+\frac{2P}{H_3}\sum_{h_3=1}^{H_3}
+\sum_{d\in\mathcal D}q_d\,Y(n{+}d)
+=t\,Y(n{+}e_1)
++\sum_{d\ne e_1}q_d\sigma_{d,e_1}\,
+\Delta_{|d-e_1|}Y\bigl(n{+}\min(d,e_1)\bigr).
+\]
+Each difference of elements of \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\)
+lies in \(\{\pm d_1,\pm d_2,\pm(d_1{+}d_2)\}\), so
+\(|d-e_1|\in\{2h_1,2h_2,2(h_1{+}h_2)\}\) and
+\(h':=|d-e_1|/2\in\{h_1,h_2,h_1{+}h_2\}\). By (C4),
+\(h'\le h_1{+}h_2\le2P^{1/24}\). Each
+\(\min(d,e_1)\) lies in \(\mathcal D\). Each coefficient
+\(q':=q_d\sigma_{d,e_1}\) satisfies \(|q'|=|q_d|\le4P^{1/24}\).
+There are at most three nonzero seeds.
+
+*Claim C (the \(A\)-process).* Let \(H_3:=\lceil t^{1/3}P^{1/12}\rceil\).
+The recorded \(A\)-process after Lemma 3.3, applied to the
+unimodular sequence of odd \(n\in(P,2P]\) (at most \(P\) terms;
+using \(P\) in place of the true count \(P/2+O(1)\) only enlarges
+the right-hand side), gives
+\[
+|U|^2
+\le\frac{2P^2}{H_3}
++\frac{4P}{H_3}\sum_{1\le h_3<H_3}
 \bigl|V_{h_3}\bigr|,
-\qquad
-V_{h_3}
-=\sum_ne\bigl(t\,\Delta_{2h_3}Y(n{+}e_1)+\rho_{h_3}(n)\bigr),
 \]
-where \(\rho_{h_3}\) collects
-\(q_d\Delta_{2h_3}\Delta_{|d-e_1|}Y\) (class (D1) with
-\(h'=|d-e_1|/2\le2P^{1/24}\)),
-\(-\varepsilon_0\Delta_{2h_3}(c\lfloor F(X)\rfloor)\) (class (D2)),
-and \(\Delta_{2h_3}\varphi\) (class (D3):
-\(|(\Delta_{2h_3}\varphi)''|\le2h_3\sup|\varphi'''|
-\le6kh_1h_2h_3P^{-13/8}\le3kh_1h_2P^{-5/8}\) since
-\(h_3\le P^{1/4}\)). The hypothesis of (i) holds:
-\(th_3\le t\cdot2t^{1/3}P^{1/12}=2t^{4/3}P^{1/12}\).
-With \(|q_d|\le4P^{1/24}\) one has \(t\le16P^{1/24}\), so
-\(2t^{4/3}P^{1/12}\le81P^{5/36}\le P^{1/2}\) for
-\(P\ge P_0\), and \(H_3\le3P^{7/72}\le P^{1/4}\). Part (i) gives
+where
 \[
-|U|^2\le\frac{P^2}{H_3}
-+\Bigl(4t^{1/2}H_3^{1/2}P^{13/8}
-+4t^{-1/2}H_3^{1/2}P^{15/8}
-+4P^{15/8}\Bigr)P^{\varepsilon},
+V_{h_3}
+=\sum_n
+e\bigl(t\,\Delta_{2h_3}Y(n{+}e_1)+\rho_{h_3}(n)\bigr)
 \]
-and at \(H_3=\lceil t^{1/3}P^{1/12}\rceil\) the four terms are, in
-order, \(\le t^{-1/3}P^{23/12}\);
-\(\le6t^{2/3}P^{5/3}=6\,(tP^{-1/4})\,t^{-1/3}P^{23/12}
-\le96P^{1/24-1/4}\cdot t^{-1/3}P^{23/12}\);
-\(\le6t^{-1/3}P^{1/24}P^{15/8}=6t^{-1/3}P^{23/12}\); and
-\(\le4\,(t^{1/3}P^{-1/24})\,t^{-1/3}P^{23/12}
-\le11P^{1/72-1/24}\,t^{-1/3}P^{23/12}\). Hence
-\(|U|^2\ll t^{-1/3}P^{23/12+\varepsilon}\), which is (ii).
+and \(\rho_{h_3}\) is the increment of the remaining phase at
+shift \(2h_3\), written out in Claim E. (The recorded display
+sums \(1\le h<H\); we have renamed the index \(h_3\).)
+
+*Claim D (the parameters of (i) are admissible).* The input
+bounds \(|q_d|\le4P^{1/24}\) give \(t\le16P^{1/24}\). Write
+\(x:=t^{1/3}P^{1/12}\), so \(H_3=\lceil x\rceil\). Claim C sums
+over \(1\le h_3<H_3\), hence \(h_3\le\lceil x\rceil-1\le x\)
+(the integer \(\lceil x\rceil-1\) never exceeds \(x\)). In
+particular \(h_3\le t^{1/3}P^{1/12}\le16^{1/3}P^{7/72}\) with
+\(16^{1/3}<2.52\). Two comparisons for the shift range of (i):
+\[
+\frac7{72}<\frac18,
+\qquad
+2.52\,P^{7/72}\le P^{1/8}
+\quad\text{once}\quad
+P\ge2.52^{36}.
+\]
+The threshold \(2.52^{36}<10^{15}\) sits under the standing
+\(P_0\) of size \(10^{24}\). Thus every index in the Claim C
+sum satisfies \(1\le h_3\le P^{1/8}\). (The averaging length
+itself obeys \(H_3\le x+1\le3P^{7/72}\) once
+\(1\le0.48P^{7/72}\), i.e. once \(P^{7/72}\ge3\), which holds
+for \(P\ge3^{72/7}<10^6\); Claim G uses only
+\(H_3\le2x\), which follows from \(x\ge1\).) The product range
+of (i) is \(th_3\le tx=t^{4/3}P^{1/12}\). Substituting
+\(t\le16P^{1/24}\) gives
+\(t^{4/3}P^{1/12}\le16^{4/3}P^{1/18+1/12}
+=2^{16/3}P^{5/36}\le41P^{5/36}\), and
+\(41P^{5/36}\le P^{1/2}\) once \(41\le P^{13/36}\), i.e. once
+\(P\ge41^{36/13}<10^5\), again under \(P_0\). Hence every
+\(V_{h_3}\) in the Claim C sum is an instance of (i) with
+\((u,h)=(t,h_3)\), provided \(\rho_{h_3}\) is a legal
+decoration.
+
+*Claim E (class membership of \(\rho_{h_3}\)).* Expanding the
+increment of Claim B, the frozen-floor term, and \(\varphi\),
+\[
+\rho_{h_3}
+=
+\sum_{d\ne e_1}
+q_d\sigma_{d,e_1}\,
+\Delta_{2h_3}\Delta_{|d-e_1|}Y\bigl(n{+}\min(d,e_1)\bigr)
+-\varepsilon_0\,\Delta_{2h_3}\bigl(c\lfloor F_{\boldsymbol\kappa}(X)\rfloor\bigr)
++\Delta_{2h_3}\varphi.
+\]
+This is a sum of at most five terms (three of type (D1), one of
+type (D2), one of type (D3)), inside the budget of nine.
+
+- (D1). Each summand is \(q'\,\Delta_{2h}\Delta_{2h'}Y(n{+}d')\)
+  with \(2h=2h_3\) the shift of this invocation of (i),
+  \(q'=q_d\sigma_{d,e_1}\), \(|q'|\le4P^{1/24}\),
+  \(h'=|d-e_1|/2\le2P^{1/24}\), and \(d'=\min(d,e_1)\in\mathcal D\).
+  This is the printed class (D1).
+- (D2). The middle term is exactly the printed class (D2) at the
+  shift \(2h\) of (i), with the same branch function
+  \(F_{\boldsymbol\kappa}\) and the same offset \(|j|\le3\). If
+  \(\varepsilon_0=0\) the term is absent.
+- (D3). The input \(\varphi\) of (ii) is produced, in every
+  application in this paper, with
+  \(|\varphi'''|\le3kh_1h_2P^{-13/8}\) (the kernel's smooth
+  remnants satisfy \(|c''|\le0.11kP^{-7/8}\) and
+  \(|(\Delta_ic)''|\le0.19kh_iP^{-15/8}\), both far smaller).
+  Then
+  \[
+  \bigl|(\Delta_{2h_3}\varphi)''\bigr|
+  \le2h_3\sup|\varphi'''|
+  \le6kh_1h_2h_3P^{-13/8}.
+  \]
+  The printed (D3) second-derivative budget is
+  \(3kh_1h_2P^{-5/8}\). The comparison
+  \(6h_3P^{-13/8}\le3P^{-5/8}\) is \(2h_3\le P\), and
+  \(h_3\le P^{1/8}\) gives \(2P^{1/8}\le P\) for \(P\ge4\).
+  The third derivative of the increment satisfies
+  \(\bigl|(\Delta_{2h_3}\varphi)'''\bigr|
+  \le2\sup|\varphi'''|
+  \le6kh_1h_2P^{-13/8}\), which is the printed (D3)
+  third-derivative budget. (The printed \(6\) rather than \(3\)
+  is exactly this factor of two: (D3) is closed under one
+  difference of an input that starts at \(3\).) Thus
+  \(\Delta_{2h_3}\varphi\) is of class (D3).
+
+No other terms appear. In particular this reduction does not
+introduce a large-\(u\) first-differenced wave; those, when they
+sit on the same piece as a \(t\ne0\) wave in Theorem 5.3, are
+treated in Step 4 of that theorem, after this lemma.
+
+*Claim F (invoke (i)).* By Claims D and E, part (i) applies to
+each \(V_{h_3}\) and gives
+\[
+|V_{h_3}|
+\ll
+\Bigl(
+(th_3)^{1/2}P^{5/8}
++(h_3/t)^{1/2}P^{7/8}
++P^{7/8}
++P^{1/24}(th_3)^{-1/2}P^{7/8}
+\Bigr)P^{\varepsilon}.
+\]
+The fourth term is the (D1) run-boundary remainder of Stage 6; it
+is part of the printed bound of (i), not an extra cost smuggled
+through the average.
+
+*Claim G (the \(H_3\)-average).* Substitute Claim F into Claim C.
+Write \(S_1,S_2,S_3,S_4\) for the four contributions to
+\((4P/H_3)\sum_{h_3<H_3}|V_{h_3}|\), and use the crude bounds
+\(\sum_{h_3<H_3}h_3^{1/2}\le H_3\cdot H_3^{1/2}=H_3^{3/2}\) and
+\(\sum_{h_3<H_3}h_3^{-1/2}\le H_3\cdot1=H_3\) (the second is the
+worst case \(h_3=1\) on every term; a tighter integral
+\(2H_3^{1/2}\) is available and is not needed). Then, with
+\(H_3\le2t^{1/3}P^{1/12}\),
+\[
+\begin{aligned}
+\frac{2P^2}{H_3}
+&\le2t^{-1/3}P^{2-1/12}
+=2t^{-1/3}P^{23/12},\\
+S_1
+&\le4t^{1/2}H_3^{1/2}P^{13/8}\,P^{\varepsilon}
+\le6t^{2/3}P^{5/3}\,P^{\varepsilon}
+=6\,(tP^{-1/4})\,t^{-1/3}P^{23/12}\,P^{\varepsilon}\\
+&\le96P^{1/24-1/4}\,t^{-1/3}P^{23/12}\,P^{\varepsilon},\\
+S_2
+&\le4t^{-1/2}H_3^{1/2}P^{15/8}\,P^{\varepsilon}
+\le6t^{-1/3}P^{23/12}\,P^{\varepsilon},\\
+S_3
+&=4P^{15/8}\,P^{\varepsilon}
+=4\,(t^{1/3}P^{-1/24})\,t^{-1/3}P^{23/12}\,P^{\varepsilon}\\
+&\le11P^{1/72-1/24}\,t^{-1/3}P^{23/12}\,P^{\varepsilon},\\
+S_4
+&\le4P^{1/24}t^{-1/2}P^{15/8}\,P^{\varepsilon}
+=4t^{-1/2}P^{23/12}\,P^{\varepsilon}
+=4t^{-1/6}\cdot t^{-1/3}P^{23/12}\,P^{\varepsilon}.
+\end{aligned}
+\]
+The identities used here are
+\(1/12+13/8=5/3\), \(5/3-23/12=-1/4\),
+\(1/12+15/8=23/12\), \(15/8+1/24=23/12\),
+and \(1/24+15/8=23/12\). Each prefactor is \(O(1)\) on
+\(t\ge1\), \(P\ge P_0\): \(96P^{-5/24}\to0\),
+\(P^{1/72-1/24}=P^{-1/36}\to0\), and \(4t^{-1/6}\le4\).
+Hence
+\(|U|^2\ll t^{-1/3}P^{23/12+\varepsilon}\).
+
+*Claim H (square root).* Taking square roots,
+\(|U|\ll t^{-1/6}P^{23/24+\varepsilon}\), which is (ii).
+The implied constant depends on \(\varepsilon\) and on
+(C1)--(C4) only. \(\square\) of the reduction.
+
+The six stages below prove (i). They are used as a black box by
+Claims F--H; the only decoration information those claims need is
+Claim E together with the printed fourth term of (i).
 
 *Proof of (i).* Six stages; write \(\nu=n+d\) (a shift of the block
 by at most \(d_1{+}d_2\le P^{1/2}\), harmless in every estimate) and
@@ -2082,11 +2242,13 @@ margin against the Stage-4 curvature
   shift device (log mass); the \(b\)-run boundaries add
   \(\le1.5(h{+}2h')P^{1/2}+2\) cells, at boundary cost
   \(\le1.5(h{+}2h')P^{1/2}\cdot1.83(0.30uh)^{-1/2}P^{3/8}
-  \le5.1(h/u)^{1/2}P^{7/8}+10.3\,h'(uh)^{-1/2}P^{7/8}\)
-  (the second term is what the \(H_3\)-averaging of part (ii)
-  absorbs: it contributes
-  \(\le2h't^{-2/3}P^{43/24}\le P^{1/24-1/8}\,t^{-1/3}P^{23/12}\)
-  there).   The \(\theta\)-coefficient of the decoration is
+  \le5.1(h/u)^{1/2}P^{7/8}+10.3\,h'(uh)^{-1/2}P^{7/8}\).
+  The second term is the printed fourth term of (i): since
+  \(h'\le2P^{1/24}\), it is
+  \(\le21\,P^{1/24}(uh)^{-1/2}P^{7/8}\). When (i) is invoked from
+  (ii), Claim G averages this term at the worst-case \(h_3=1\),
+  giving \(S_4\le4t^{-1/6}\,t^{-1/3}P^{23/12}P^{\varepsilon}\).
+  The \(\theta\)-coefficient of the decoration is
   \(\le|q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
   \le24P^{1/24-1/4}+160P^{1/24+1/8+1/24-3/4}
   =24P^{-5/24}+160P^{-13/24}\).
@@ -2137,18 +2299,32 @@ margin against the Stage-4 curvature
   gives modes \(e(q''(F\circ X))\)-type of curvature
   \(\le P^{1/8}\cdot3|j|P^{-5/4}\le9P^{-9/8}\), ratio
   \(\le30P^{-3/8}\): dominated.
-- (D3). Ratio
-  \(\le2h\sup|\varphi'''|/(0.30uhP^{-3/4})
-  \le20kh_1h_2P^{-7/8}/u\le20P^{1/8-7/8}\): dominated.
+- (D3). The printed third-derivative budget is
+  \(|\varphi'''|\le6kh_1h_2P^{-13/8}\). The ratio to the Stage-4
+  curvature is
+  \[
+  \frac{2h\cdot6kh_1h_2P^{-13/8}}{0.30uhP^{-3/4}}
+  =\frac{40kh_1h_2P^{-7/8}}u
+  \le40P^{1/8-7/8}=40P^{-3/4},
+  \]
+  using (C1) in the form \(kh_1h_2\le P^{1/8}\) and \(u\ge1\):
+  dominated. (If the decoration is an *input* (D3) of (ii) that
+  has not yet been differenced, the tighter
+  \(|\varphi'''|\le3kh_1h_2P^{-13/8}\) only improves the
+  constant \(40\) to \(20\).)
 
 *Totals.* Stages 1–6 bound \(V\) by
 \[
 C\Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}
-+k\,(h/u)^{1/2}P^{1/2}\Bigr)\log^3P,
++P^{1/24}(uh)^{-1/2}P^{7/8}
++k\,(h/u)^{1/2}P^{1/2}\Bigr)\log^3P.
 \]
-and the fourth term is \(\le P^{1/24}\cdot(h/u)^{1/2}P^{1/2}\), 
-absorbed by the second. This is (i) up to the stated
-\(P^{\varepsilon}\).
+The last term is \(\le P^{1/24}(h/u)^{1/2}P^{1/2}\), and
+\(P^{1/24+1/2}=P^{13/24}<P^{7/8}=P^{21/24}\), so it is
+absorbed by the second printed term of (i). The (D1)
+run-boundary term \(P^{1/24}(uh)^{-1/2}P^{7/8}\) is kept in
+the printed bound of (i); it is \(\le P^{11/12}\) for
+\(uh\ge1\), and \(11/12<23/24\). This is (i).
 
 *Costs collected.* Each class contributes to \(V\) as follows,
 all times \(P^{\varepsilon}\).
@@ -2162,7 +2338,7 @@ all times \(P^{\varepsilon}\).
 | Stage 4, \(r=w=0\) | \((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}\) | (i) |
 | Stage 5, non-collision modes | \(P^{7/8}\) | (i) |
 | (D1) curvature | dominated at \(P^{-1/4}\) | Stage 4 |
-| (D1) run boundaries | \((h/u)^{1/2}P^{7/8}+h'(uh)^{-1/2}P^{7/8}\) | (i); \(H_3\)-average |
+| (D1) run boundaries | \((h/u)^{1/2}P^{7/8}+h'(uh)^{-1/2}P^{7/8}\) | printed (i); Claim G |
 | (D2)(a) smooth / sawtooth | dominated; \(P^{7/8}\) flat | Stage 4; (i) |
 | (D2)(b) gap / carry | dominated; \(P^{7/8}\) majorant | Stage 4; (i) |
 | (D3) | dominated at \(P^{-3/4}\) | Stage 4 |
@@ -2170,21 +2346,22 @@ all times \(P^{\varepsilon}\).
 No decoration class is used later unless it appears in this
 table.
 
-*Checklist (author reconstruction, not an independent
-verification).* The third-Weyl parameter is admissible:
-\(1\le h_3\le H_3=\lceil t^{1/3}P^{1/12}\rceil\le3P^{7/72}\le P^{1/4}\)
-at \(t\le16P^{1/24}\). After that differencing, (D1) is the
-telescoped \(q_d\Delta_{2h_3}\Delta_{|d-e_1|}Y\) with
-\(h'\le2P^{1/24}\); (D2) is \(-\varepsilon_0\Delta_{2h_3}(c\lfloor F\rfloor)\);
-(D3) is \(\Delta_{2h_3}\varphi\) with
-\(\lvert(\Delta_{2h_3}\varphi)''\rvert\le6kh_1h_2h_3P^{-13/8}
-\le3kh_1h_2P^{-5/8}\). Collision windows are only the band
-\(0.1\,uhP^{-1/4}\le\lvert w\rvert\le10.2\,uhP^{-1/4}\) of Stage 5,
-and only in regime (s2). On a cell the integer \(G=\lfloor\delta_h\rfloor\)
-is held frozen; the smooth remainder \(A_h\) does not differentiate
-a frozen gap. Lemma 3.9 is not used in (i) or (ii); it is used
-only on the global interpolant \(\Phi\) of Lemma 5.2b. Every
-\(k,h_1,h_2\) dependence passes through (C1)--(C4). \(\square\)
+*Checklist for (ii) from (i).* Claims A–H are the verification.
+In order: conjugate (A); telescoping with signs \(\sigma_{d,e_1}\)
+(B); the recorded \(A\)-process \(2P^2/H_3+4P/H_3\sum|V|\) (C);
+admissible range \(h_3\le P^{1/8}\) and \(th_3\le P^{1/2}\) (D);
+class membership of \(\rho_{h_3}\), five terms, (D3) closed under
+one difference from an input with \(|\varphi'''|\le3kh_1h_2P^{-13/8}\)
+(E); invoke the printed (i), fourth term included (F); average,
+five displayed comparisons, worst-case \(h_3=1\) on the (D1)
+remainder (G); square root (H). Collision windows of (i) are only
+the band \(0.1\,uhP^{-1/4}\le\lvert w\rvert\le10.2\,uhP^{-1/4}\) of
+Stage 5, and only in regime (s2). On a cell the integer
+\(G=\lfloor\delta_h\rfloor\) is held frozen; the smooth remainder
+\(A_h\) does not differentiate a frozen gap. Lemma 3.9 is not used
+in (i) or (ii); it is used only on the global interpolant \(\Phi\)
+of Lemma 5.2b. Every \(k,h_1,h_2\) dependence passes through
+(C1)--(C4). \(\square\)
 
 The balance to keep in mind: with the trivial bound
 \(|V_{h_3}|\le P\), part (ii)'s differencing returns nothing beyond
@@ -2550,16 +2727,103 @@ displayed majorant and flat costs.
 
 *Step 4 (pieces with wave content: Lemma 5.2(ii)).* Let
 \(t=\sum_iq_i\) be the total wave frequency,
-\(|t|\le3J_2\le12P^{1/24}\), inside the coefficient budget of
+\(|t|\le3J_2\le3P^{1/24}\), inside the coefficient budget of
 Lemma 5.2(ii).
 
-If \(t\ne0\): telescoping,
-\(\sum_iq_iY(n{+}e_i)=t\,Y(n{+}e_1)+\sum_{i\ge2}q_i\,
-\Delta_{e_i-e_1}Y(n{+}\min(e_1,e_i))\), and after the targeted
-differencing of Lemma 5.2(ii) the differenced-wave remainders and
-the \(u,u'\)-modes become (D1) decorations, the anchor becomes the
-(D2) decoration, and the smooth content is (D3): Lemma 5.2(ii)
-applies and gives \(\ll|t|^{-1/6}P^{23/24+\varepsilon}\) per piece.
+If \(t\ne0\): split the phase of the piece into the printed
+Lemma 5.2(ii) content and the leftover first-differenced modes.
+
+*Printed content.* The \(Y\)-wave, the frozen-floor anchor, and
+the (D3) content are exactly an instance of Lemma 5.2(ii).
+Claims A–H give \(\ll|t|^{-1/6}P^{23/24+\varepsilon}\) for a
+piece that carries only that content. The carry-expansion modes
+of (3b)–(3d) have \(|q|\le J_2=P^{1/24}\) and become printed
+(D1) decorations after the differencing of Claim C
+(\(|q'|\le P^{1/24}\le4P^{1/24}\), \(h'\in\{h_1,h_2\}\le P^{1/24}\)
+by (C4)); they are already covered by Claims E–H.
+
+*Leftover modes.* The same piece may also carry first-differenced
+modes \(uW\) and \(u'W'\) from Steps (3a) and (3c). Those modes
+are not in the printed statement of (ii), and their coefficients
+need not obey \(|q'|\le4P^{1/24}\). After the \(A\)-process of
+Claim C they become
+\[
+u\,\Delta_{2h_3}W
+=u\,\Delta_{2h_3}\Delta_{d_1}Y,
+\qquad
+u'\,\Delta_{2h_3}W'
+=u'\,\Delta_{2h_3}\Delta_{d_2}Y,
+\]
+which have the algebraic shape of (D1) decorations with
+coefficients \(q'=u,u'\) and second shifts \(h'=h_1,h_2\). From
+(3a),
+\(u\le1.85kh_2P^{1/8}+P^{1/2}/(2h_1)\) and
+\(uh_1\le P^{1/2}\); likewise \(u'h_2\le P^{1/2}\) from (3c).
+The second-shift bounds \(h_1,h_2\le P^{1/24}\) still hold, so
+the Stage-6 (D1) *run-boundary* cost (which depends on \(h'\),
+not on \(|q'|\)) remains the printed fourth term of (i). The
+only estimates in the six-stage proof of (i) that use the
+printed budget \(|q'|\le4P^{1/24}\) are the Stage-6 (D1)
+curvature ratio and the Stage-6 \(\theta\)-coefficient. Those
+two comparisons are re-done here, and the rest of Stages 1–6
+is invoked unchanged.
+
+The Stage-6 curvature ratio of a leftover mode against the main
+term \(t\Delta_{2h_3}Y\) is
+\[
+\frac{|u|\bigl(2|j'|P^{-5/4}+25h_3h_1P^{-7/4}\bigr)}{0.30\,th_3P^{-3/4}}.
+\]
+The first summand is
+\(\le20\,|u|/(th_3)\,P^{-1/2}\)
+(using \(2|j'|\le6\) and \(6/0.30=20\)). The product
+\(|u|h_1\le P^{1/2}\) rewrites this as
+\(\le20/(th_3h_1)\). The second summand is
+\(\le83\,|u|h_1\,t^{-1}P^{-1}\)
+(using \(25/0.30\le83.4\)), hence
+\(\le83\,t^{-1}P^{-1/2}\) by the same product bound. Thus the
+ratio is
+\[
+\le\frac{20}{th_3h_1}+\frac{83}{t}\,P^{-1/2}.
+\]
+The second summand is \(o(1)\) for \(P\ge P_0\). The first is
+\(\le1/4\) once \(th_3h_1\ge80\). On that *good* set of
+\(h_3\), Stage-6 domination applies at margin \(\ge4\). The
+\(\theta\)-coefficient of the leftover (D1) is
+\[
+|u|\bigl(2|j'|P^{-1/4}+20h_3h_1P^{-3/4}\bigr)
+\le\frac{P^{1/2}}{h_1}\cdot6P^{-1/4}
++\frac{P^{1/2}}{h_1}\cdot20h_3h_1P^{-3/4}
+=6P^{1/4}/h_1+20h_3P^{-1/4}.
+\]
+The first term is \(\le6P^{1/4}\); the second is
+\(\le20P^{1/8-1/4}=20P^{-1/8}\). Lemma 3.7 at \(T=P^{1/2}\)
+therefore satisfies \(T\ge8(1+|B|)\) for \(P\ge P_0\) (the
+large-\(B\) window treatment of Stage 3(s2):
+\(P^{1/2}\ge8(1+7P^{1/4})\) once \(P^{1/4}\ge56\)). The same
+two comparisons hold with \((u,h_1)\) replaced by
+\((u',h_2)\).
+
+The *bad* set for the \(u\)-mode is
+\(h_3<80/(th_1)\). It contains at most \(80\) positive
+integers (since \(t\ge1\) and \(h_1\ge1\)). The bad set for
+the \(u'\)-mode likewise contains at most \(80\) integers.
+Their union has at most \(160\) elements. On those \(h_3\)
+use the trivial bound \(|V_{h_3}|\le P\). The recorded
+\(A\)-process charges
+\[
+\frac{4P}{H_3}\cdot160\cdot P
+=640\,\frac{P^2}{H_3}
+\le640\,t^{-1/3}P^{23/12},
+\]
+which is a constant multiple of the target of Claim G (the
+same first-term comparison \(P^2/H_3\le t^{-1/3}P^{23/12}\)).
+On the complementary good set, the six-stage proof of (i)
+applies with the Stage-6 (D1) comparisons just displayed, and
+Claims F–H give the same average as for a printed decoration.
+
+Thus every \(t\ne0\) piece, with or without leftover
+first-differenced modes, is
+\(\ll|t|^{-1/6}P^{23/24+\varepsilon}\).
 The weight sum is
 \[
 \sum_{t\ne0}\ \sum_{q_1+q_2+q_3=t}

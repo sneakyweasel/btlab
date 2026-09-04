@@ -23061,3 +23061,33 @@ Why
 Best next question
 - a separate human attack on 5.2(i) to 5.2(ii) and D1/D2/D3
 ```
+
+## Paper B Lemma 5.2(ii) from (i) write-out (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Write the reduction of Lemma 5.2(ii) from (i), and the preservation of (D1)/(D2)/(D3) under the third differencing, so that a hostile referee can check every comparison. Not a second-person certification of the six-stage proof of (i). No new theorem, no \(N_0\), no Paper A/C edit, no ledger retag.
+- **Holes closed on the manuscript:** the recorded \(A\)-process \(2P^2/H_3+4P/H_3\sum|V|\) is used throughout (not the classical weighted form); telescoping carries the signs \(\sigma_{d,e_1}\); printed (D3) is \(|\varphi'''|\le6kh_1h_2P^{-13/8}\) so that one difference of an input-\(3\) decoration stays in class; (i) prints the (D1) run-boundary remainder \(P^{1/24}(uh)^{-1/2}P^{7/8}\), averaged in (ii) at worst-case \(h_3=1\); the range of (i) is \(h_3\le P^{1/8}\), and Claim D uses \(h_3<H_3\) so \(h_3\le t^{1/3}P^{1/12}\) (the bound \(\lceil x\rceil\le2x\) does not give \(H_3\le3P^{7/72}\)); Theorem 5.3 Step 4 no longer says leftover \(uW\) modes “become (D1)” inside printed (ii) — they are a good/bad \(h_3\) split (domination at \(th_3h'\ge80\); at most \(160\) bad integers; trivial \(|V|\le P\)).
+- **Not claimed:** independent verification of Lemma 5.2 as a whole. Stages 1–5 of (i) remain author-chain. The exponent \(1-1/96\) is unchanged.
+- **Decision:** consolidation. Paper B remains a working draft. The remaining gate is a second human reading of the six-stage proof of (i). Not a halt theorem.
+
+```text
+What was learned
+- printed (ii) never included large-u first-differenced waves
+- averaging the (D1) remainder at typical h3 ~ H3 is optimistic
+- (D3) as previously printed was not closed under one difference
+- the 2x bound on H3 does not give the constant 3 in 3 P^{7/72}
+- the A-process constants must match the recorded display after Lemma 3.3
+Strongest theorem
+- none new; J-kernel-cancellation stays the dyadic monomial
+Strongest refutation
+- none; these are missing factors and a scope gap, not counterexamples
+Reusable machinery
+- none
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- the reduction and the class-preservation are now checkable line by
+  line; the engine of (i) is not
+Best next question
+- a separate human reading of Stages 1-5 of Lemma 5.2(i)
+```

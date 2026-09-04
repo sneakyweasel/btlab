@@ -180,16 +180,42 @@ complete to depth \(4\), and to depth \(5\) except \(OOOO*\) — the
 | \(E\) | \(1/2\) | 0 | — | exact |
 | \(OEE\) | \(3/8\) | 1 | 2 | **proved** (Prop 3.4) |
 | \(OOEEE\) | \(9/32\) | 2 | 3 | **proved** (§7) |
-| \(OEOEE\) | \(9/32\) | 1 | 2 | needs localized depth 2 |
+| \(OEOEE\) | \(9/32\) | 1 | — | **elementary**, no nesting ([note](juggler_oeoee_production.md)) |
 | \(OOEOEE\), \(OOEEOE\), \(OEOOEE\) | \(27/64\) | 2 | 3 | needs localized depth 3 |
 | \(OOOEEE\) | \(27/64\) | 3 | 4 | needs localized depth 4 |
 | \(OOOOEEEE\) | \(81/256\) | 4 | 5 | **\(K_3\) wall** |
 
 §7's Proposition 7.2 attains the *ideal* share \(\tfrac1{16}\) for
 \(OOEEE\); its estimate is not lossy. The remaining ground is therefore
-**more words, not a better estimate for the word already used**, and
-each new word costs one localization of a Paper B theorem to sub-dyadic
-intervals — the same modification list §7 ran for Theorems 4.4/4.7.
+**more words, not a better estimate for the word already used**.
+
+**The \(r=1\) words are free.** The "Paper B depth" column above
+over-charges every word with no two consecutive \(O\)'s. In such a word
+each isolated \(O\) is absorbed by the \(E\) that follows it: the
+transparent nesting makes \(J^2(n)=\lfloor n^{3/4}\rfloor\) an *exact*
+function of \(n\), and every later parity becomes a function of that
+single integer, in which the remaining \(\psi\)'s are \(\psi\) of smooth
+monomials rather than of nested floors. \(OEOEE\) is worked out in
+[juggler_oeoee_production.md](juggler_oeoee_production.md): no Paper B
+estimate, no localization, and — unlike \(OOEEE\) — no exceptional set.
+It is worth \(+\tfrac1{27}\) on the \((9/32)^\lambda\) term, taking
+\(\lambda^{**}\) from \(0.4480\) to \(0.4801\) **unconditionally** and
+\(\lambda^{***}\) from \(0.5392\) to \(0.5665\).
+
+Not every no-\(OO\) word is usable, though. Writing such a word as
+\((OE)^KE^{\,j}\), its binding layer has length
+\(1-\tfrac34\cdot2^{-j}\) relative to its own scale — **independent of
+\(K\)** — so the elementary route needs \(j\ge1\). \(OEOEOE\)
+(\(j=0\)) has relative length \(\tfrac14\), where the phase
+\(\tfrac s2w^{3/2}\) is essentially linear and the measured worst-case
+cancellation is nil; it is not the next word. \(OEOEOEE\) is. The
+usable family is \(V_k=(OE)^{k-1}OEE\), every member at relative length
+\(\tfrac58\), and its net gains \(3^{-(k+2)}\) at scales
+\((3/4)^{k}\tfrac38\) **telescope exactly** onto
+\(2^{-\lambda}+\tfrac13(3/4)^{\lambda}=1\) — the \(r=1\) ceiling
+\(0.4927\). So the whole \(r=1\) rung is elementary and reachable by
+finite truncation (\(0.4801\), \(0.4891\), \(0.4916\), \(0.4924\), …);
+only \(r\ge2\) costs a localization of a Paper B theorem.
 
 ## 8. Price list
 

@@ -132,7 +132,7 @@ export type EvenBlockView = {
 export function evenBlockView(m: number): EvenBlockView {
   const { lo, hi } = evenPreimageInterval(m);
   const count = evenBlockCount(m);
-  const listed = m <= EVEN_BLOCK_BEAD_MAX;
+  const listed = count <= EVEN_BLOCK_BEAD_MAX;
   return {
     m,
     lo,

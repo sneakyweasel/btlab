@@ -99,29 +99,49 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
           <span className="ml-2">{letterOf(n)}</span>
         </p>
       )}
-      <p className={compact ? "text-xs" : "text-sm"}>
-        <Tex>{work}</Tex>
-      </p>
       {odd && !compact ? (
         <p className="mt-1 font-mono text-sm text-muted">
           {shownN} × √{shownN} = {shownN} × {rootShown}…
         </p>
       ) : null}
-      <div
-        title={`${next.toString()}.${decimals}…`}
-        className={`flex max-w-full items-center justify-center overflow-hidden font-mono leading-none ${
-          compact ? "gap-0.5 text-lg" : "mt-3 gap-1 text-4xl"
-        }`}
-      >
-        <span className="min-w-0 truncate">{shownInt}</span>
-        <span className="relative shrink-0 text-odd">
-          .{decimals}
-          <span
-            aria-hidden="true"
-            className="absolute inset-x-0 top-1/2 h-[3px] -translate-y-1/2 rotate-[-8deg] bg-warn"
-          />
-        </span>
-      </div>
+      {compact ? (
+        <p
+          title={`${next.toString()}.${decimals}…`}
+          className="flex items-center justify-center gap-1.5 text-xs font-mono"
+        >
+          <Tex>{work}</Tex>
+          <span>=</span>
+          <span className="flex items-center">
+            <span>{shownInt}</span>
+            <span className="relative text-odd">
+              .{decimals}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 rotate-[-8deg] bg-warn"
+              />
+            </span>
+          </span>
+        </p>
+      ) : (
+        <>
+          <p className="text-sm">
+            <Tex>{work}</Tex>
+          </p>
+          <div
+            title={`${next.toString()}.${decimals}…`}
+            className="mt-3 flex max-w-full items-center justify-center gap-1 overflow-hidden font-mono text-4xl leading-none"
+          >
+            <span className="min-w-0 truncate">{shownInt}</span>
+            <span className="relative shrink-0 text-odd">
+              .{decimals}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-1/2 h-[3px] -translate-y-1/2 rotate-[-8deg] bg-warn"
+              />
+            </span>
+          </div>
+        </>
+      )}
     </Card>
   );
 }
