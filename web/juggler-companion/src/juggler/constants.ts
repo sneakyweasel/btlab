@@ -484,7 +484,28 @@ export const NECKLACE_PRESETS = [
     label: "37 · the note peak",
     hint: "Three blocks, then a tower of evens. The second peak is the printed 24,906,114,455,136, far above (n+1)².",
   },
+  {
+    id: "173",
+    n: 173n,
+    word: "OOEOOOOOOOOEOOEOOEEOEEOEEEOEOEEE",
+    label: "173 · peak",
+    hint: "Classical high peak: 272 bits, then it falls to 1. One trajectory, not a theorem.",
+  },
+  {
+    id: "2183",
+    n: 2183n,
+    word: "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEEOOOOEEOEEOEEOOOEEE",
+    label: "2183 · peak bits",
+    hint: "Five expanding blocks. Peak 19,694 bits — the largest peak that still ships. Not a cycle.",
+  },
+  {
+    id: "3889",
+    n: 3889n,
+    word: "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEEEEE",
+    label: "3889 · delay",
+    hint: "Longest shipped drop to 1: 80 steps. The n≤4000 delay record. Not a cycle.",
+  },
 ] as const;
 
-/** Necklace words are capped like tour strings. */
-export const NECKLACE_WORD_MAX = 32;
+/** Custom necklace words. Shipped presets may be longer (3889 is 80). */
+export const NECKLACE_WORD_MAX = 80;

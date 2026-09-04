@@ -1,5 +1,330 @@
 {
-  "git_commit": "bdada7096ff0838cd0b1d6d135b33f4f3fbd9408",
+  "p0_certificate": {
+    "kappa": 0.3333333333333333,
+    "c7": 0.004310344827586207,
+    "thresholds": [
+      {
+        "tag": "s3s1-window",
+        "site": "Thm 4.1 St.3(s1)",
+        "claim": "P^(1/2) >= 8(1+|B|) with |B| < 1/2",
+        "log10_P_min": 2.1583624920952498,
+        "P_min": 144.00000000000003
+      },
+      {
+        "tag": "s3s1-Bsmall",
+        "site": "Thm 4.1 St.3(s1)",
+        "claim": "2.25 P^(-1/16) < 1/2",
+        "log10_P_min": 10.451400220405501,
+        "P_min": 28274844190.244324
+      },
+      {
+        "tag": "s3s2-window",
+        "site": "Thm 4.1 St.3(s2)",
+        "claim": "P^(1/2) >= 8(1 + 2.25 P^(1/4))",
+        "log10_P_min": 5.06247655454287,
+        "P_min": 115471.96452818658
+      },
+      {
+        "tag": "s3s2-flat",
+        "site": "Thm 4.1 St.3(s2)",
+        "claim": "8(1+2.25P^(1/4))P^(1/2) <= 19 P^(3/4)",
+        "log10_P_min": 3.6123599479677706,
+        "P_min": 4095.9999999999645
+      },
+      {
+        "tag": "s3s2-wincount",
+        "site": "Thm 4.1 St.3(s2)",
+        "claim": "0.6 P^(1/4) + 1 <= 0.65 P^(1/4)",
+        "log10_P_min": 5.204119982655922,
+        "P_min": 159999.9999999991
+      },
+      {
+        "tag": "s3s2-bdry",
+        "site": "Thm 4.1 St.3(s2)",
+        "claim": "window boundaries <= 1.1 P^(17/32) <= P^(5/8)",
+        "log10_P_min": 5.177613223209239,
+        "P_min": 150526.5899614935
+      },
+      {
+        "tag": "stage2-modecurv",
+        "site": "Thm 4.1 St.2",
+        "claim": "mode/cell curvature ratio 0.39 P^(1/8) >= 4",
+        "log10_P_min": 8.087963074411705,
+        "P_min": 122451208.1545055
+      },
+      {
+        "tag": "stage5-band",
+        "site": "Thm 4.1 St.5",
+        "claim": "4.5 - 1.5/(h P^(1/2)) >= 4.4 at h = 1",
+        "log10_P_min": 2.352182518111362,
+        "P_min": 224.99999999999966
+      },
+      {
+        "tag": "claimC-1",
+        "site": "Claim C",
+        "claim": "P^(7/72) >= 3",
+        "log10_P_min": 4.907532905687956,
+        "P_min": 80822.61645911535
+      },
+      {
+        "tag": "claimC-2",
+        "site": "Claim C",
+        "claim": "41 P^(5/36) <= P^(1/2)",
+        "log10_P_min": 4.46617068014696,
+        "P_min": 29253.01811844323
+      },
+      {
+        "tag": "claimG-pref",
+        "site": "Claim G",
+        "claim": "96 P^(-5/24) <= 1",
+        "log10_P_min": 9.514901918589928,
+        "P_min": 3272667763.4403768
+      },
+      {
+        "tag": "claimG-P36",
+        "site": "Claim G",
+        "claim": "P^(1/72-1/24) <= 1",
+        "log10_P_min": 0.0,
+        "P_min": 1.0
+      },
+      {
+        "tag": "st3a-window",
+        "site": "Thm 5.3 St.3(a)",
+        "claim": "P^(1/2)/(2h1) >= 8(1+|B|): 0.5 P^(23/48) >= 15 P^(10/48)",
+        "log10_P_min": 5.4539861712726,
+        "P_min": 284437.0536066867
+      },
+      {
+        "tag": "st3b-window",
+        "site": "Thm 5.3 St.3(b)",
+        "claim": "P^(1/2)/(2h2) >= 8(1+|B|): 0.5 P^(22/48) >= 15 P^(9/48)",
+        "log10_P_min": 5.453986171272601,
+        "P_min": 284437.0536066873
+      },
+      {
+        "tag": "st3a-flat",
+        "site": "Thm 5.3 St.3(a)",
+        "claim": "16 h1 P^(1/2) + 30 k h1 h2 P^(5/8) <= 46 P^(3/4)",
+        "log10_P_min": 0.0,
+        "P_min": 1.0
+      },
+      {
+        "tag": "st6D1-window",
+        "site": "Thm 5.3 St.6(D1)",
+        "claim": "P^(1/2) >= 8(1 + 7 P^(1/4))",
+        "log10_P_min": 6.997166822300469,
+        "P_min": 9934975.999587724
+      },
+      {
+        "tag": "st6D1-good",
+        "site": "Thm 5.3 St.6(D1)",
+        "claim": "72 t^(-1) P^(-1/2) <= 1/4 at t = 1",
+        "log10_P_min": 4.918784975518462,
+        "P_min": 82944.00000000007
+      },
+      {
+        "tag": "5b-j0-window",
+        "site": "Thm 5.3 St.5b (j=0)",
+        "claim": "P^(1/2) >= 8(1+6) = 56",
+        "log10_P_min": 3.496376054012401,
+        "P_min": 3136.0000000000005
+      },
+      {
+        "tag": "5b-Npieces",
+        "site": "Thm 5.3 St.5b",
+        "claim": "cells + anchor runs + windows <= 3.5 P^(13/24)",
+        "log10_P_min": 7.710948485418616,
+        "P_min": 51398268.10332695
+      },
+      {
+        "tag": "5b-lam0-range",
+        "site": "Lemma 5.2b",
+        "claim": "[0.38,2.44] with its corrections inside [0.35,2.6]",
+        "log10_P_min": 4.808729300224486,
+        "P_min": 64376.78739505019
+      },
+      {
+        "tag": "39-c2",
+        "site": "Thm 5.3 St.5b",
+        "claim": "|c''/2|/S <= rho_0: (0.053/0.35) P^(-1/4)",
+        "log10_P_min": 9.795143188533427,
+        "P_min": 6239405171.221336
+      },
+      {
+        "tag": "39-c3",
+        "site": "Thm 5.3 St.5b",
+        "claim": "P|c'''/2|/S <= rho_0: (0.047/0.35) P^(-1/4)",
+        "log10_P_min": 9.586431141873142,
+        "P_min": 3858612277.9220448
+      },
+      {
+        "tag": "39-c4",
+        "site": "Thm 5.3 St.5b",
+        "claim": "P^2|c''''/2|/S <= rho_0: (0.044/0.35) P^(-1/4)",
+        "log10_P_min": 9.471850416075021,
+        "P_min": 2963810389.3329287
+      },
+      {
+        "tag": "39-beta",
+        "site": "Thm 5.3 St.5b",
+        "claim": "beta-substitution error 2.31 P^(-1/2) <= rho_0",
+        "log10_P_min": 7.262939118386791,
+        "P_min": 18320575.77203173
+      },
+      {
+        "tag": "39-wave",
+        "site": "Thm 5.3 St.5b",
+        "claim": "wave remainder 200 P^(-35/24) vs S: 571 P^(-5/6) <= rho_0",
+        "log10_P_min": 7.230647907835858,
+        "P_min": 17007790.899959646
+      },
+      {
+        "tag": "5a-competitors",
+        "site": "Thm 5.3 St.5a",
+        "claim": "every competitor ratio <= 1/4 (margin 4)",
+        "log10_P_min": 8.633449968380999,
+        "P_min": 429981696.0000005
+      },
+      {
+        "tag": "5a-V>=10err",
+        "site": "Thm 5.3 St.5a",
+        "claim": "V >= 10 |f'' - Lambda|",
+        "log10_P_min": 15.488952649534388,
+        "P_min": 3082851813289687.0
+      },
+      {
+        "tag": "5a-V<=c7S",
+        "site": "Thm 5.3 St.5a",
+        "claim": "V <= c_7 S/2 at S >= 0.60 P^(-5/8)",
+        "log10_P_min": 15.773630404411865,
+        "P_min": 5937866161031890.0
+      },
+      {
+        "tag": "5b-V>=10err",
+        "site": "Thm 5.3 St.5b",
+        "claim": "V >= 10 |f'' - Lambda|",
+        "log10_P_min": 16.191715941647733,
+        "P_min": 1.5549482562084978e+16
+      },
+      {
+        "tag": "5b-V<=c7S",
+        "site": "Thm 5.3 St.5b",
+        "claim": "V <= c_7 S/2 at S >= 0.35 P^(-5/8)",
+        "log10_P_min": 16.576201396526272,
+        "P_min": 3.768785293417529e+16
+      },
+      {
+        "tag": "thm63-rem",
+        "site": "Thm 6.3",
+        "claim": "linearization remainder P^(43/96) <= P^(1-1/96)",
+        "log10_P_min": 0.0,
+        "P_min": 1.0
+      }
+    ],
+    "all_solved": true,
+    "n_thresholds": 31,
+    "P0": 3.768785293417529e+16,
+    "log10_P0": 16.576201396526272,
+    "binding": {
+      "tag": "5b-V<=c7S",
+      "site": "Thm 5.3 St.5b",
+      "claim": "V <= c_7 S/2 at S >= 0.35 P^(-5/8)",
+      "log10_P_min": 16.576201396526272,
+      "P_min": 3.768785293417529e+16
+    },
+    "P0_excluding_lemma_3_9_balance": 28274844190.244324,
+    "binding_excluding_balance": {
+      "tag": "s3s1-Bsmall",
+      "site": "Thm 4.1 St.3(s1)",
+      "claim": "2.25 P^(-1/16) < 1/2",
+      "log10_P_min": 10.451400220405501,
+      "P_min": 28274844190.244324
+    },
+    "P0_at_superseded_kappa3_c7_288": 5.8008975469671414e+23,
+    "kappa_tradeoff": [
+      {
+        "kappa": 3.69,
+        "log10_P_min": 23.736070796837513,
+        "P_min": 5.445914225820062e+23,
+        "coeff_transition": 2.497446375779959,
+        "coeff_boundaries": 2.496988806286456,
+        "coeff_total": 4.994435182066415
+      },
+      {
+        "kappa": 3.0,
+        "log10_P_min": 23.119578604110213,
+        "P_min": 1.3169782545393849e+23,
+        "coeff_transition": 2.2518715612510185,
+        "coeff_boundaries": 2.769294551221561,
+        "coeff_total": 5.02116611247258
+      },
+      {
+        "kappa": 1.0,
+        "log10_P_min": 19.84789000031824,
+        "P_min": 7.04514604352435e+19,
+        "coeff_transition": 1.3001186520687384,
+        "coeff_boundaries": 4.796558863839397,
+        "coeff_total": 6.0966775159081354
+      },
+      {
+        "kappa": 0.5,
+        "log10_P_min": 17.78368431576523,
+        "P_min": 6.07693114762172e+17,
+        "coeff_transition": 0.9193227152249185,
+        "coeff_boundaries": 6.783358597962558,
+        "coeff_total": 7.702681313187477
+      },
+      {
+        "kappa": 0.3333333333333333,
+        "log10_P_min": 16.576201396526272,
+        "P_min": 3.768785293417529e+16,
+        "coeff_transition": 0.7506238537503395,
+        "coeff_boundaries": 8.307883653664684,
+        "coeff_total": 9.058507507415023
+      },
+      {
+        "kappa": 0.312,
+        "log10_P_min": 16.379235787873277,
+        "P_min": 2.394615492121358e+16,
+        "coeff_transition": 0.7262067577147671,
+        "coeff_boundaries": 8.587217866502687,
+        "coeff_total": 9.313424624217454
+      },
+      {
+        "kappa": 0.25,
+        "log10_P_min": 17.038932919553858,
+        "P_min": 1.093787408532263e+17,
+        "coeff_transition": 0.6500593260343692,
+        "coeff_boundaries": 9.593117727678793,
+        "coeff_total": 10.243177053713163
+      }
+    ],
+    "log_absorption_not_required": [
+      {
+        "comparison": "Step 5b: C log P <= P^(1/96)",
+        "log_power": 1.0,
+        "delta": 0.010416666666666666,
+        "log10_P_min": 267.85036073319407,
+        "P_min": 7.08534061798608e+267
+      },
+      {
+        "comparison": "Thm 5.3: log^(3/4) P <= P^(1/96)",
+        "log_power": 0.75,
+        "delta": 0.010416666666666666,
+        "log10_P_min": 190.17927988624803,
+        "P_min": 1.5110536569521693e+190
+      },
+      {
+        "comparison": "Thm 6.3: log^(15/4) P <= P^(1/96)",
+        "log_power": 3.75,
+        "delta": 0.010416666666666666,
+        "log10_P_min": null,
+        "P_min": null
+      }
+    ]
+  },
+  "p0_certificate_ok": true,
+  "git_commit": "e2b7093c27bf4c01cbc41d55556b8f06fae90eb3",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -76,6 +401,10 @@
         "G1_over_bound": [
           0.15146102390303146,
           0.5569643413419153
+        ],
+        "frozen_j0_ratio": [
+          1.0000077156603855,
+          1.0000151476232615
         ]
       },
       "printed_ranges": {
@@ -117,6 +446,7 @@
         "W_over_h1P54": true,
         "Wcell_speed_over_h1P14": true,
         "E6_ratio_within_1pm_P^-1/4": true,
+        "frozen_j0_ratio_near_one": true,
         "G1_le_bound": true
       },
       "all_ok": true
@@ -159,6 +489,10 @@
         "G1_over_bound": [
           0.1505979330650472,
           0.5602081594736867
+        ],
+        "frozen_j0_ratio": [
+          1.0000000776818636,
+          1.0000002265892343
         ]
       },
       "printed_ranges": {
@@ -200,6 +534,7 @@
         "W_over_h1P54": true,
         "Wcell_speed_over_h1P14": true,
         "E6_ratio_within_1pm_P^-1/4": true,
+        "frozen_j0_ratio_near_one": true,
         "G1_le_bound": true
       },
       "all_ok": true
@@ -242,6 +577,10 @@
         "G1_over_bound": [
           0.15194013146904672,
           0.5617888653462026
+        ],
+        "frozen_j0_ratio": [
+          1.000000000778261,
+          1.0000000022471602
         ]
       },
       "printed_ranges": {
@@ -283,6 +622,7 @@
         "W_over_h1P54": true,
         "Wcell_speed_over_h1P14": true,
         "E6_ratio_within_1pm_P^-1/4": true,
+        "frozen_j0_ratio_near_one": true,
         "G1_le_bound": true
       },
       "all_ok": true
@@ -348,6 +688,30 @@
     },
     {
       "check": "(C2) h1 h2 <= P^{1/2}/3: 1/48+1/24 < 1/2",
+      "ok": true
+    },
+    {
+      "check": "(C4) H1 = P^{1/48}, H2 = P^{1/24}: both <= P^{1/24}",
+      "ok": true
+    },
+    {
+      "check": "(C4) implies h1+h2 <= 2 P^{1/24}: 1/48+1/24 <= 1/12",
+      "ok": true
+    },
+    {
+      "check": "3c window hypothesis: T = P^{1/2}/(2h2) >= P^{11/24}/2 since h2 <= P^{1/24}",
+      "ok": true
+    },
+    {
+      "check": "3c: 8(1+|B|) <= 15 k h1 P^{1/8} <= 15 P^{9/48}",
+      "ok": true
+    },
+    {
+      "check": "3c: 22/48 > 9/48 (hypothesis holds for large P)",
+      "ok": true
+    },
+    {
+      "check": "3c window boundaries: 2 k h1 P^{1/4} * 3.4 P^{3/8} <= 7 P^{1/24+1/48+1/4+3/8} = 7 P^{11/16}",
       "ok": true
     },
     {
@@ -451,15 +815,23 @@
       "ok": true
     },
     {
-      "check": "5b anchor curvature scale k h1 h2 P^{-5/8}: (cF_sm)'' leading 2673/1024 - 729/1024 = 243/128",
+      "check": "5b frozen (cG)'' leading: 81/1024 - 972/1024 + 756/1024 = -135/1024",
       "ok": true
     },
     {
-      "check": "5b interpolant b: b * 11/8 * 3/8 = 243/128 gives b = 81/22",
+      "check": "5b global monomial: 135/1024 * 9 = 1215/1024",
+      "ok": true
+    },
+    {
+      "check": "5b interpolant b: b * 11/8 * 3/8 = -1215/1024 gives b = -405/176",
       "ok": true
     },
     {
       "check": "5b interpolant a: a * 5/4 * 1/4 = -27/32 gives a = -27/10",
+      "ok": true
+    },
+    {
+      "check": "5b withdrawn moving-gap coefficient is a different object: 2673/1024 - 729/1024 = 243/128",
       "ok": true
     },
     {
@@ -491,11 +863,11 @@
       "ok": true
     },
     {
-      "check": "5b V/S with V = 3 S^{1/2} P^{-11/24}: 3 S^{-1/2} P^{-11/24} <= 3 P^{5/16-11/24} = 3 P^{-7/48}",
+      "check": "5b V/S exponent with V = 3 S^{1/2} P^{-11/24}: S^{-1/2} P^{-11/24} has P^{5/16-11/24} = P^{-7/48}",
       "ok": true
     },
     {
-      "check": "5b V >= 3 P^{-5/16-11/24} = 3 P^{-37/48}",
+      "check": "5b V at S = P^{-5/8}: 3 P^{-5/16-11/24} = 3 P^{-37/48}",
       "ok": true
     },
     {
@@ -527,7 +899,35 @@
       "ok": true
     },
     {
-      "check": "5b mode-dominant: |B| <= 1.2 k h1 h2 P^{-1/8} <= 1.2 P^{-1/48} < 1",
+      "check": "5b mode-dominant B scale: k h1 h2 P^{-1/8} <= 1 by (C1)",
+      "ok": true
+    },
+    {
+      "check": "5b frozen B: (3/8)*(3/4) = 9/32",
+      "ok": true
+    },
+    {
+      "check": "5b |B| <= 6: (9/32)*18.5 < 5.3, opened to 6",
+      "ok": true
+    },
+    {
+      "check": "5b Lemma 3.7 room: T = P^{1/2} vs 8(1+6)=56, exponent 1/2 > 0",
+      "ok": true
+    },
+    {
+      "check": "5b rho0: |c''|/S ~ P^{-7/8+5/8} = P^{-1/4}",
+      "ok": true
+    },
+    {
+      "check": "5b rho0: P|c'''|/S ~ P^{1-15/8+5/8} = P^{-1/4}",
+      "ok": true
+    },
+    {
+      "check": "5b rho0: P^2|c''''|/S ~ P^{2-23/8+5/8} = P^{-1/4}",
+      "ok": true
+    },
+    {
+      "check": "5b rho0 budget: 1/2304 = (1/288)/8",
       "ok": true
     },
     {
@@ -551,11 +951,51 @@
       "ok": true
     },
     {
-      "check": "L5.2 H3 = t^{1/3} P^{1/12} <= 3 P^{1/72+1/12} = 3P^{7/72} <= P^{1/4}",
+      "check": "L5.2 H3 = t^{1/3} P^{1/12} <= 3 P^{1/72+1/12} = 3P^{7/72} <= P^{1/8} (7/72 < 1/8)",
       "ok": true
     },
     {
-      "check": "L5.2 first term P^2/H3 <= t^{-1/3} P^{2-1/12} = t^{-1/3} P^{23/12}",
+      "check": "L5.2 recorded A-process first term 2P^2/H3 <= 2 t^{-1/3} P^{2-1/12} = 2 t^{-1/3} P^{23/12}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D1) remainder in (i): 1/24+7/8 = 11/12 < 23/24",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Claim G S4: 1/24+15/8 = 23/12",
+      "ok": true
+    },
+    {
+      "check": "L5.2 large-u bad set: 4P/H3 * P = 4 P^2/H3, exponent 2-1/12 = 23/12",
+      "ok": true
+    },
+    {
+      "check": "L5.2 (D3) closure: 2 * 3 = 6 for |phi'''| after one difference",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Claim D: th3 <= t^{4/3} P^{1/12} <= 16^{4/3} P^{5/36}; 5/36 < 1/2",
+      "ok": true
+    },
+    {
+      "check": "L5.2 large-u curvature first term: -5/4 + 3/4 = -1/2",
+      "ok": true
+    },
+    {
+      "check": "L5.2 large-u curvature second term: -7/4 + 3/4 = -1",
+      "ok": true
+    },
+    {
+      "check": "L5.2 large-u theta leading: 1/2 - 1/4 = 1/4",
+      "ok": true
+    },
+    {
+      "check": "L5.2 large-u theta secondary: 1/8 - 1/4 = -1/8",
+      "ok": true
+    },
+    {
+      "check": "L5.2 large-u bad-set A-process: 4P/H3 * P has exponent 2-1/12 = 23/12 (same as first term)",
       "ok": true
     },
     {
@@ -568,6 +1008,214 @@
     },
     {
       "check": "L5.2 fourth term P^{15/8} = t^{1/3} P^{-1/24} * t^{-1/3} P^{23/12}",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Claim G annotation: H3^{1/2} carries P^{1/24}, and 1/12 does NOT close either identity",
+      "ok": true
+    },
+    {
+      "check": "L5.2 Claim G balance: 2P^2/H3 and S_2 are both t^{-1/3}P^{23/12}, so |U|^2 <= (8+o(1)) t^{-1/3} P^{23/12}",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 1: A_h has zero h^1 term (the two (9/4)h nu^{5/4} contributions cancel) and h^2 coefficient -27/8",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 1: |A_h''| = (27/8)(3/16) h^2 nu^{-7/4} = (81/128) h^2 nu^{-7/4} <= 0.64 printed",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 1: B = (9/4) u h xi^{-1/4}, xi in (P,2P]; range [(9/4)2^{-1/4}, 9/4] = [1.892, 2.25] printed [1.89, 2.25]",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 2: delta_h' = (3/2)h xi^{-1/2} in [(3/2)2^{-1/2}, 3/2] = [1.0607, 1.5]; cells 1.5hP^{1/2}+1, lengths [2/3, 0.943] printed [2/3, 0.95]",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 3(s1): B drift (9/4)(1-2^{-1/4}) = 0.358 <= 0.6 printed",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 4: |f''| = (9/32)uG(nu+2h)^{-5/4} in [0.35475, 1.19324] uhP^{-3/4}; printed range tightened to [0.35, 1.20], ratio 3.43 <= 3.5",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 4: sum l_i lambda^{1/2} <= P (1.20uhP^{-3/4})^{1/2} = 1.096 <= 1.1 printed (was 2.3)",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 4: sum lambda^{-1/2} <= 1.5hP^{1/2}(0.35uhP^{-3/4})^{-1/2} = 2.536 <= 2.6 printed (was 2.8)",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 5: mode curvature >= 0.5303 |w|P^{-1/2}; upper threshold 4*1.20/0.5303 = 9.05 <= 9.1; lower threshold 0.35/3 = 0.1167 <= 0.11 is false -> printed 0.11 is the tight value",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 5 collisions, band M in [4.4,9.1]uhP^{-3/4}: P*M^{1/2} <= 9.1^{1/2} = 3.017 <= 3.1; 0.77*4.4^{-1/2} = 0.367 <= 0.37; 0.77*(1/4.4)^{1/3} = 0.470 <= 0.47",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 5: 5/6 - (1/3)(3/16) = 37/48 < 7/8",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 5: M is pinned below by |a|P^{-5/4} = (3/2)uG P^{-5/4} with G > 3hP^{1/2}-1, giving >= 4.4 uhP^{-3/4}; above by max(6.37, 10.2)",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 5: M <= 9.1 uhP^{-3/4} <= 9.1 P^{-1/4} <= 1 for P >= 9.1^4 = 6857, so Lemma 3.8 applies",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 5: window count 0.6P^{1/4}+1 <= 0.77P^{1/4} once P >= (1/0.17)^4 ~ 1200",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 6 (D1): 1.5*0.35^{-1/2} = 2.535 <= 2.6 and its double 5.07 <= 5.1; 5.1*2 = 10.2 <= 11 (was 5.1/10.3/21)",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 6 (D1): theta exponents -5/24 and -13/24; curvature-ratio exponents -11/24 and -11/12; 4*25*2/0.30 = 667 <= 672",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 6 (D2)(a): flat cost exponent 1/24+1/8+5/8 = 19/24 < 7/8, constant 8+15 = 23",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 6 (D2)(a): |q''| <= |B_0|+J <= 3P^{7/24}; curvature 18P^{-23/24}; ratio 18/0.35 = 52, so 52P^{-5/24} <= 52P^{-1/16}",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 4 good/bad split rekeyed to 0.35: 6/0.35 <= 18, 25/0.35 <= 72; 18/(t h3 h1) <= 1/4 once t h3 h1 >= 72; union <= 144; A-process 4*144 = 576",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 3(s2): boundary 0.6*0.35^{-1/2} = 1.014 <= 1.1 (was 2.1); flat 8P^{1/2}+18P^{3/4} <= 19P^{3/4} once P >= 4096",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 6: (D2)(a) smooth ratio 21/0.35 = 60; (D2)(a) boundary 2*0.35^{-1/2} = 3.38 <= 3.4; (D2)(b) 0.4/0.35 = 1.143 <= 1.2; (D3) 12/0.35 = 34.3 <= 35 and 6/0.35 <= 18; 9/0.35 = 25.7 <= 26",
+      "ok": true
+    },
+    {
+      "check": "L5.2(i) Stage 6 (D2)(a): substituting T = P^{1/2} would give only 1/2-5/4 = -3/4, ratio O(1/(uh)) -- not o(1)",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: lambda_a = (729/512)k|j|n^{-1/8} in [(729/512)2^{-1/8}, 729/512] = [1.3057, 1.4238], printed [1.30, 1.43] (was [1.2, 1.5])",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: B' = (27/128)k|j|nu^{-5/8}; 27/128 = 0.2109 EXCEEDS the printed 0.2 -- corrected to 0.22",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: windows = total drift (9/16)(2^{3/8}-1)k|j|P^{3/8} = 0.16697 <= 0.17 printed (was 1.2)",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: min window length 1/B'(P) = 128/27 = 4.741 >= 4.7 printed (was 0.8)",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: lambda_a^{-1/2} <= 1.3057^{-1/2} = 0.8752 <= 0.88 printed (was 0.92); boundary 0.17*0.88 = 0.150 <= 0.15",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: collision M = max(lambda_a, |wX''|) with |wX''| in [1/4,4]lambda_a -> [1.3057, 4*1.4238] = [1.30, 5.70] <= printed [1.30, 5.75] (was [0.3, 6])",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: collision sums P*M^{1/2} = 5.75^{1/2} = 2.398 <= 2.4; 0.17*1.30^{-1/2} = 0.149 <= 0.15; 0.17*(1/1.30)^{1/3} = 0.156 <= 0.16; times 3^{2/3} = 0.324 <= 0.33",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a: run sums P*lambda_a^{1/2} = 1.4238^{1/2} = 1.193 <= 1.2 (was 1.3); 22*0.8752 = 19.25 <= 20 (was 21)",
+      "ok": true
+    },
+    {
+      "check": "T5.3 Step 5a exponents: 3/8+1/16 = 7/16 ; 1-1/16 = 15/16 ; 3/8+3/8 = 3/4 ; (2/3)(1/24) = 1/36 ; 15/16+1/48 = 23/24",
+      "ok": true
+    },
+    {
+      "check": "L5.2b (i): gap identity gives |G_i - delta_i| = |kappa - {delta}| <= 1, NOT < 2; the printed bound (9/32)(u+u')P^{-5/4} needs <=1 (with <2 it would be (9/16))",
+      "ok": true
+    },
+    {
+      "check": "L5.2b (ii): |b1b2 - bt1bt2| <= 4.3(h1+h2)P^{1/2}+2, times 135/1024 gives 0.567 k(h1+h2)P^{-9/8} <= 8 printed",
+      "ok": true
+    },
+    {
+      "check": "L5.2b (iii): |c''| = (27/256)k nu^{-7/8} = 0.1055 <= 0.11 printed; and 0.11 kP^{-7/8} <= 0.11P^{-5/6} iff k <= P^{1/24} (C3)",
+      "ok": true
+    },
+    {
+      "check": "L5.2b total: (9/32)(720) = 202.5 and 8k(h1+h2)P^{-9/8} <= 16 P^{-25/24}; 202.5+16 = 218.5 <= 219 printed",
+      "ok": true
+    },
+    {
+      "check": "L5.2b: the 219 bound needs u,u' <= 360P^{5/24} (now hypothesis (C5)); (C1)-(C4) alone allow u <= P^{1/2}, giving (9/16)P^{-3/4} -- larger by P^{7/24}",
+      "ok": true
+    },
+    {
+      "check": "L5.2b (C5) is met in the band: Step 5b derives u <= 200 k h2 P^{1/8} <= 200 P^{5/24} from k h2 <= P^{1/12}, and (C3)+(C4) give exactly that",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: a = -(27/32)(16/5) = -27/10 and b = -(1215/1024)(64/33) = -405/176 match the printed Phi coefficients",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: lambda_0 = (135/1024)k b1b2 nu^{-13/8} in [0.385, 2.438] k h1h2 P^{-5/8}, inside printed [0.35, 2.6]",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: V/S = 3(0.35)^{-1/2}P^{5/16-11/24} = 5.07 P^{-7/48} <= 5.1 printed",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: V <= c_7 S/2 needs P >= 5.8e23 at c_7=1/288 (just inside P_0 ~ 1e24) and P >= 1.3e23 at the exact c_7=1/232",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: V >= 3(0.35)^{1/2}P^{-37/48} = 1.775 >= 1.7 printed; V >= 10|f''-Lambda| from P ~ 4e12",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: |Omega| <= P(V/S)^{1/2} = 5.07^{1/2} P^{89/96} = 2.252 <= 2.3 printed; 1-7/96 = 89/96",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: boundaries (0.9*1.7)^{-1/2} = 0.809 <= 0.91 printed; 3.5*0.91 = 3.185 <= 3.2; 13/24+37/96 = 89/96",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: S upper -- |uh1+u'h2| <= 2max = 2mu/0.84 and mu <= 60(2.6)kh1h2P^{-5/8} gives 372, NOT the printed 300; corrected to 380, good-pieces 18 -> 21",
+      "ok": true
+    },
+    {
+      "check": "Step 5b: C(E)P^{89/96}log P <= P^{15/16} needs ln P >= 96 ln ln P, i.e. P ~ 1e274; at P_0 = 1e24, ln P = 55.3 > P^{1/96} = 1.78 -- the sharp reading FAILS at P_0",
+      "ok": true
+    },
+    {
+      "check": "Step 5b mode-dominant: 22 h1h2 P^{1/4} <= 22 P^{5/16} uses H_1 = P^{1/48}, H_2 = P^{1/24} (h1h2 <= P^{1/16}), not (C4) alone (which gives P^{1/12} -> 22P^{1/3})",
+      "ok": true
+    },
+    {
+      "check": "L3.8 c_6 minimum over E is 1/14 at (alpha,beta)=(11/8,5/4); crossing at s = 13/14",
+      "ok": true
+    },
+    {
+      "check": "L3.8 rho_0(E) = c_6/8 = 1/112",
+      "ok": true
+    },
+    {
+      "check": "L3.9 c_7(E) = 1/232 uniformly: the Step 5b triple (5/4,11/8,3/2) is the extremal one",
       "ok": true
     },
     {
@@ -637,6 +1285,102 @@
     {
       "check": "Lemma 3.9: c7 = 1/288 (inverse l^inf norm 288) -- numeric check below",
       "ok": true
+    },
+    {
+      "check": "6.1 offset leftover: 945/512 - 864/512 = 81/512",
+      "ok": true
+    },
+    {
+      "check": "6.1 kernel frozen offset 27/16 = 864/512",
+      "ok": true
+    },
+    {
+      "check": "6.1 window-centre: 27/32 * 3/4 = 81/128 = 324/512",
+      "ok": true
+    },
+    {
+      "check": "6.1 composite: 81/512 - 324/512 = -243/512",
+      "ok": true
+    },
+    {
+      "check": "6.1 B ratio to kernel: (27/32) / (9/16) = 3/2",
+      "ok": true
+    },
+    {
+      "check": "6.1 withdrawn 405/512 = 945/512 - 540/512",
+      "ok": true
+    },
+    {
+      "check": "6.1 smooth 4th derivative: 2*(27/8)*(19/8)*(11/8)*(3/8) = 16929/2048",
+      "ok": true
+    },
+    {
+      "check": "6.1 lambda_0' / smooth = 1095/1024 over 16929/2048 = 2190/16929",
+      "ok": true
+    },
+    {
+      "check": "6.1 interpolant b': -365/176 * 11/8 * 3/8 = -1095/1024",
+      "ok": true
+    },
+    {
+      "check": "6.1 inverse-power growth 405/243 = 5/3",
+      "ok": true
+    },
+    {
+      "check": "6.1 offset wave ratio: -1/4 + 1/8 = -1/8",
+      "ok": true
+    },
+    {
+      "check": "6.1 S upper: 1/8 - 5/8 = -1/2",
+      "ok": true
+    },
+    {
+      "check": "6.1 V at S = P^{-5/8}: -5/16 - 11/24 = -37/48",
+      "ok": true
+    },
+    {
+      "check": "6.1 good pieces: 1 - 1/4 = 3/4",
+      "ok": true
+    },
+    {
+      "check": "A: V = kappa S^{1/2} P^{-11/24} at S = P^{-5/8} has V/S ~ P^{-7/48}: -5/16-11/24+5/8 = -7/48",
+      "ok": true
+    },
+    {
+      "check": "A: transition P (V/S)^{1/2} = P^{89/96}: 1 - 7/96 = 89/96",
+      "ok": true
+    },
+    {
+      "check": "A: piece boundaries N V^{-1/2} = P^{89/96}: 13/24 + 37/96 = 89/96",
+      "ok": true
+    },
+    {
+      "check": "A: the two P^{89/96} costs agree, so kappa^{1/2} and kappa^{-1/2} trade at fixed exponent",
+      "ok": true
+    },
+    {
+      "check": "A: V <= c7 S/2 forces P^{7/48} >= 2 kappa / (c7 S_lo^{1/2}), i.e. P >= (784 kappa)^{48/7} at c7=1/232, S_lo=0.35",
+      "ok": true
+    },
+    {
+      "check": "A: c7 = 1/232 is 1/||M^{-1}||_inf (Lean step5b_curvature_norm), rows 110, 232, 123",
+      "ok": true
+    },
+    {
+      "check": "A: 89/96 < 15/16 so Step 6 never needs the sharper reading",
+      "ok": true
+    },
+    {
+      "check": "A: Weyl halving of the log power: 3 -> 3/2 -> 3/4",
+      "ok": true
+    },
+    {
+      "check": "A: Thm 6.3 log power 3 + 3/4 = 15/4",
+      "ok": true
+    },
+    {
+      "check": "A: log absorption needs ln P >= 96 A ln ln P; not used, Step 6 carries P^eps",
+      "ok": true
     }
   ],
   "exponent_checks_all_ok": true,
@@ -683,5 +1427,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 27.51879119873047
+  "elapsed_seconds": 27.856791257858276
 }

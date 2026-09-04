@@ -136,51 +136,72 @@ export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
       <circle cx={CX} cy={CY} r={rSq} fill="none" stroke={EVEN} strokeWidth="1.2" strokeDasharray="5 4" />
       <circle cx={CX} cy={CY} r={rN} fill="none" stroke={INK} strokeWidth="1.4" />
 
-      {/* ring labels on the lower-right diagonal, haloed so the wave never hides them */}
-      {[
-        { r: rSq1, text: "(n+1)²", color: ODD, dy: -3 },
-        { r: rSq, text: "n² · landing band", color: EVEN, dy: 9 },
-        { r: rN, text: "n", color: INK, dy: 3 },
-      ].map((ring) => {
-        const at = polar(ring.r + 3, Math.PI / 4);
-        return (
-          <text
-            key={ring.text}
-            x={at.x}
-            y={at.y + ring.dy}
-            fill={ring.color}
-            fontSize="10"
-            fontFamily="Source Sans 3, sans-serif"
-            paintOrder="stroke"
-            stroke="#fffdf7"
-            strokeWidth="3"
-          >
-            {ring.text}
-          </text>
-        );
-      })}
+      {/* ring labels on the lower-right diagonal, haloed so the wave never hides them.
+          At small n the band [n²,(n+1)²) is a sliver on the log scale; split the ray. */}
+      {(() => {
+        const tightBand = Math.abs(rSq1 - rSq) < 22;
+        return [
+          {
+            r: rSq1,
+            text: "(n+1)²",
+            color: ODD,
+            dy: tightBand ? -8 : -3,
+            a: tightBand ? Math.PI / 4 - 0.38 : Math.PI / 4,
+          },
+          {
+            r: rSq,
+            text: "n² · landing band",
+            color: EVEN,
+            dy: tightBand ? 10 : 9,
+            a: Math.PI / 4,
+          },
+          { r: rN, text: "n", color: INK, dy: 3, a: Math.PI / 4 },
+        ].map((ring) => {
+          const at = polar(ring.r + 3, ring.a);
+          return (
+            <text
+              key={ring.text}
+              x={at.x}
+              y={at.y + ring.dy}
+              fill={ring.color}
+              fontSize="10"
+              fontFamily="Source Sans 3, sans-serif"
+              paintOrder="stroke"
+              stroke="#fffdf7"
+              strokeWidth="3"
+            >
+              {ring.text}
+            </text>
+          );
+        });
+      })()}
 
-      {/* the itinerary as a ring of letters */}
+      {/* Word colors stay. A strike through O reads as θ; recoloring hides O⁷EEEE. */}
       {[...word].map((letter, index) => {
-        const { x, y } = polar(R_LETTERS, angle(index + 0.5));
+        const a = angle(index + 0.5);
+        const { x, y } = polar(R_LETTERS, a);
+        const tick = polar(R_LETTERS + 11, a);
         const realized = figure.realized[index];
         const mismatch = realized !== undefined && realized !== letter;
         const missing = realized === undefined;
         return (
-          <text
-            key={`letter-${index}`}
-            x={x}
-            y={y + 3.5}
-            textAnchor="middle"
-            fill={mismatch ? WARN : letter === "O" ? ODD : EVEN}
-            opacity={missing ? 0.35 : 1}
-            fontFamily="IBM Plex Mono, monospace"
-            fontSize={word.length > 24 ? "9" : "11"}
-            fontWeight={mismatch ? 700 : 400}
-            textDecoration={mismatch ? "line-through" : "none"}
-          >
-            {letter}
-          </text>
+          <g key={`letter-${index}`}>
+            <text
+              x={x}
+              y={y}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill={letter === "O" ? ODD : EVEN}
+              opacity={missing ? 0.35 : 1}
+              fontFamily="IBM Plex Mono, monospace"
+              fontSize={word.length > 48 ? "8" : word.length > 24 ? "9" : "12"}
+            >
+              {letter}
+            </text>
+            {mismatch ? (
+              <circle cx={tick.x} cy={tick.y} r="2.2" fill={WARN} />
+            ) : null}
+          </g>
         );
       })}
       {/* closure seam at the top */}
@@ -209,7 +230,7 @@ export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
             x2={next.x}
             y2={next.y}
             stroke={next.below ? WARN : odd ? ODD : EVEN}
-            strokeWidth="2.4"
+            strokeWidth="1.7"
             opacity={next.below ? 0.7 : 1}
           />
         );
@@ -245,10 +266,10 @@ export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
             <circle
               cx={point.x}
               cy={point.y}
-              r={ring ? 7 : isPeak ? 5.5 : 4.5}
+              r={ring ? 4.6 : isPeak ? 3.4 : 2.6}
               fill={isEnd && !figure.returns ? "#fffdf7" : fill}
               stroke={ring ? (isEnd && !figure.returns ? WARN : INK) : "none"}
-              strokeWidth={ring ? 1.8 : 0}
+              strokeWidth={ring ? 1.3 : 0}
             />
             {showLabel ? (
               <text
@@ -301,14 +322,30 @@ export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
   );
 }
 
-function Tile({ letter }: { letter: "O" | "E" }) {
+const SLOT_SUB = "₁₂₃₄₅₆₇₈₉";
+
+function slotName(block: NecklaceFigure["tiles"][number]): string {
+  if (block.index === 0) return "a₁";
+  if (block.last && block.complete) return "aₑ";
+  const n = block.index + 1;
+  return n <= 9 ? `a${SLOT_SUB[n - 1]}` : `a${n}`;
+}
+
+function BlockWord({ block }: { block: NecklaceFigure["tiles"][number] }) {
+  const close = block.complete ? (
+    <span style={{ color: EVEN }}>E</span>
+  ) : (
+    <span className="text-muted">…</span>
+  );
+  if (block.odds === 0) return close;
   return (
-    <span
-      className="inline-flex h-6 min-w-6 items-center justify-center rounded-md font-mono text-xs text-card"
-      style={{ background: letter === "O" ? ODD : EVEN }}
-    >
-      {letter}
-    </span>
+    <>
+      <span style={{ color: ODD }}>
+        O
+        {block.odds > 1 ? <sup>{block.odds}</sup> : null}
+      </span>
+      {close}
+    </>
   );
 }
 
@@ -318,48 +355,48 @@ function regimeWord(regime: NecklaceFigure["tiles"][number]["regime"]): string {
   return "critical";
 }
 
-/** One tile per block O^{a_i}E: its ideal exponent μ(a_i) and its valley → peak. */
+/** One row per block O^{a_i}E: slot, μ(a_i), and valley → peak. */
 export function ExcursionTiles({ figure }: { figure: NecklaceFigure }) {
   if (figure.tiles.length === 0) {
     return <p className="text-sm text-muted">No step yet: a necklace needs at least one E.</p>;
   }
   return (
-    <div className="flex flex-wrap items-stretch gap-2">
-      {figure.tiles.map((block) => {
-        const oddsShown = Math.min(block.odds, 5);
-        const color = block.regime === "expanding" ? ODD : block.regime === "contracting" ? EVEN : MUTED;
-        return (
-          <div
-            key={block.index}
-            className={`grid min-w-[7.5rem] content-start gap-1 rounded-lg border border-line bg-card px-2 py-1.5 ${
-              block.complete ? "" : "border-dashed opacity-70"
-            }`}
-          >
-            <span className="flex items-center gap-0.5">
-              {block.odds === 0 ? (
-                <span className="inline-flex h-6 w-3 items-center justify-center font-mono text-xs text-muted">
-                  ·
-                </span>
-              ) : (
-                Array.from({ length: oddsShown }, (_, index) => <Tile key={index} letter="O" />)
-              )}
-              {block.odds > oddsShown ? (
-                <span className="font-mono text-xs text-muted">×{block.odds}</span>
-              ) : null}
-              {block.complete ? <Tile letter="E" /> : <span className="font-mono text-xs text-muted">…</span>}
-            </span>
-            <span className="font-mono text-xs" style={{ color }}>
-              μ({block.odds}) = {block.mu} · {regimeWord(block.regime)}
-            </span>
-            <span className="font-mono text-[11px] text-muted">
-              {block.valley} → {block.peak === null ? "…" : block.peak}
-            </span>
-            <span className="text-[10px] uppercase tracking-wide text-muted">
-              {block.index === 0 ? "launch a₁" : block.last && block.complete ? "last aₑ" : `a${block.index + 1}`}
-            </span>
-          </div>
-        );
-      })}
+    <div className="max-h-80 overflow-auto rounded-xl border border-line bg-card">
+      <table className="w-full min-w-[28rem] text-left text-sm">
+        <thead className="sticky top-0 border-b border-line bg-card text-muted">
+          <tr>
+            <th className="px-3 py-2 font-medium">slot</th>
+            <th className="px-3 py-2 font-medium">block</th>
+            <th className="px-3 py-2 font-medium">μ(a)</th>
+            <th className="px-3 py-2 font-medium">valley</th>
+            <th className="px-3 py-2 font-medium">peak</th>
+          </tr>
+        </thead>
+        <tbody>
+          {figure.tiles.map((block) => {
+            const color = block.regime === "expanding" ? ODD : block.regime === "contracting" ? EVEN : MUTED;
+            return (
+              <tr
+                key={block.index}
+                className={`border-b border-line/70 last:border-0 ${block.complete ? "" : "opacity-70"}`}
+              >
+                <td className="px-3 py-1.5 font-mono">
+                  {slotName(block)}
+                  {block.index === 0 ? <span className="text-muted"> · launch</span> : null}
+                </td>
+                <td className="px-3 py-1.5 font-mono">
+                  <BlockWord block={block} />
+                </td>
+                <td className="px-3 py-1.5 font-mono" style={{ color }}>
+                  {block.mu} {regimeWord(block.regime)}
+                </td>
+                <td className="px-3 py-1.5 font-mono">{block.valley}</td>
+                <td className="px-3 py-1.5 font-mono">{block.peak ?? "…"}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }

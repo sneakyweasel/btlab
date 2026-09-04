@@ -23091,3 +23091,35 @@ Why
 Best next question
 - a separate human reading of Stages 1-5 of Lemma 5.2(i)
 ```
+
+## Paper B: the threshold P_0 made effective (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Compute a single honest \(P_0\) for the whole kernel argument, replacing the standing "absolute but ineffective \(P_0\)". Not a new theorem, not a Paper A/C edit, not a ledger retag.
+- **Result:** \(P_0=3.8\cdot10^{16}\). Each of the thirty-one printed threshold inequalities of Sections 4--6 was transcribed as a predicate in \(P\), solved separately by bisection on \(\log_{10}P\), and the maximum taken. The computation is `src/research/juggler_sequence/p0_certificate.py`, which also generates the Appendix A table, so the paper and the probe cannot drift.
+- **Three findings.** (1) The normalisation of the sublevel parameter was carrying the entire threshold: with \(V=\kappa S^{1/2}P^{-11/24}\), the Lemma 3.9 hypothesis \(V\le c_7S/2\) needs \(P\ge(784\kappa)^{48/7}\), while \(\kappa\) controls only the coefficient of \(C(E)P^{89/96}\), which is absorbed into \(C(E)\). The draft's \(\kappa=3\) sits near the *coefficient* optimum (5.02 against the best possible 4.99) and put \(P_0\) at \(1.3\cdot10^{23}\); \(\kappa=\tfrac13\) costs a factor \(<2\) in that coefficient and buys six and a half orders. (2) \(P_0\) does not depend on \(\varepsilon\): no divisor sum, gcd sum or large-sieve average occurs anywhere in Sections 3--6, so every \(\ll_\varepsilon\) is a power of \(\log P\); the two Weyl steps halve the exponent twice and give \(K_c\ll P^{1-1/96}\log^{3/4}P\). (3) The thresholds stratify: twenty-seven of thirty-one hold from \(2.9\cdot10^{10}\) on, and that value is set by a soft regime-naming inequality; the four Lemma 3.9 balance comparisons carry the rest alone.
+- **Not claimed:** the certificate is not a proof. It certifies that the printed inequalities hold beyond the stated threshold, not that they are the right inequalities, and two of its inputs are conservative substitutes for statements the paper leaves in \(O(\cdot)\) form. The exponent \(1-1/96\) is unchanged.
+- **Decision:** consolidation. Paper B remains a working draft; the remaining gate is still a second human reading of the six-stage proof of Lemma 5.2(i). Not a halt theorem.
+
+```text
+What was learned
+- the whole ineffectivity was one free constant in one lemma hypothesis
+- kappa=3 optimised the coefficient, which was already absorbed, and
+  paid six orders of magnitude in the threshold for it
+- c7 = 1/232 is exactly 1/||M^{-1}||_inf, so not improvable at that triple
+- absorbing log^A P into P^eps is a fact about eps, not about the proof
+- with no divisor or gcd sums, every eps in Sections 3-6 is a log power
+Strongest theorem
+- none new; K_c << P^{1-1/96} log^{3/4} P is the eps-free reading
+Strongest refutation
+- none; a normalisation was suboptimal, no inequality was false
+Reusable machinery
+- p0_certificate.py: printed inequality -> predicate -> least admissible P
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- the threshold is now effective and its structure understood; the
+  engine of Lemma 5.2(i) is still not independently read
+Best next question
+- can c7 be raised by choosing a different exponent triple in Step 5b?
+```

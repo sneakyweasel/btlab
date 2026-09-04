@@ -1,6 +1,6 @@
 # Paper B audit ledger
 
-Companion to [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md). This is a research-discipline record, not an independent verification and not part of the journal text. Probe: `research.juggler_sequence.paper_b_audit`. Theorem 5.3 is the monomial `c = (3k/4) n^{9/8}`. The printed Step 5b `|B|<1` claim is withdrawn: frozen `B = (9/32) k β1 β2 ν^{-9/8}` has constant size `|B| ≤ 6`; Lemma 3.7 at `T = P^{1/2}` still applies. The `ρ₀` ratios of Lemma 5.2b are `O(P^{-1/4})` and sit under `1/2304` for `P ≥ P₀`. Exponent checks: 150.
+Companion to [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md). This is a research-discipline record, not an independent verification and not part of the journal text. Probe: `research.juggler_sequence.paper_b_audit`. Theorem 5.3 is the monomial `c = (3k/4) n^{9/8}`. The printed Step 5b `|B|<1` claim is withdrawn: frozen `B = (9/32) k β1 β2 ν^{-9/8}` has constant size `|B| ≤ 6`; Lemma 3.7 at `T = P^{1/2}` still applies. The `ρ₀` ratios of Lemma 5.2b are `O(P^{-1/4})` and sit under `1/2304` for `P ≥ P₀`. Exponent checks: 166.
 
 
 This file records a re-derivation of the kernel argument, in the form
@@ -12,7 +12,7 @@ the standing estimates and inventories on the blocks
 \(P=10^6,10^8,10^{10}\) (and, for cell counts, exhaustively at
 \(P=10^5\)), and every displayed \(P\)-power comparison
 as an exact rational statement
-(`research.juggler_sequence.paper_b_audit`, \(150\) exponent checks;
+(`research.juggler_sequence.paper_b_audit`, \(166\) exponent checks;
 artifact `data/research/juggler/paper_b_audit/summary.json`). A
 script check confirms consistency of what is printed; it is not a
 proof, and this file is not an independent human verification.
@@ -52,6 +52,11 @@ the exponent \(1-1/96\) and the statements of Theorem 6.1 are unchanged.
 | — Stages 4, 5 | second reading | consistent, constants recomputed. Stage 4 curvature \([0.3548,1.1932]uhP^{-3/4}\) inside printed \([0.30,1.35]\); **tightened**: the curvature range was printed \([0.30,1.35]\) against the exact \([0.3548,1.1932]\); rekeying to \([0.35,1.20]\) gives cell sums \(1.096\) and \(2.536\), printed \(1.1\) and \(2.6\) (were \(2.3\) and \(2.8\)), with the one-line reasons added (the cells partition the block; there are at most \(1.5hP^{1/2}+1\) of them). Stage 5 mode curvature \((\tfrac34)2^{-1/2}=0.5303\ge0.53\); thresholds \(9.1\) and \(0.11\); \(\tfrac56-\tfrac13\cdot\tfrac3{16}=\tfrac{37}{48}<\tfrac78\) |
 | — Stage 5, the collision band | second reading | **corrected**: \(M\) was printed as \([0.03,11]uhP^{-3/4}\), but it is pinned from below by the \(\nu^{3/4}\) scale alone, whose curvature carries \(G=\lfloor\delta_h\rfloor>3hP^{1/2}-1\): \(\lvert a\rvert P^{-5/4}>uhP^{-3/4}(4.5-1.5/(hP^{1/2}))\ge4.4uhP^{-3/4}\), and \(\le6.37uhP^{-3/4}\), against \(\lvert w\rvert P^{-1/2}\in[0.1,10.2]uhP^{-3/4}\). Hence \(M\in[4.4,9.1]uhP^{-3/4}\) — the low end was \(\sim150\times\) conservative. The three collision sums improve from \(3.4,4.5,2.5\) to \(\mathbf{3.1,0.37,0.47}\) (factors \(1.1\), \(12\), \(5.3\)), the collision-band total is now \(\le C((uh)^{1/2}P^{5/8}+P^{37/48})\log P\) — the sharper \(P^{37/48}\) replacing the printed \(P^{5/6}\), which the line above already derived — and \(M\le9.1P^{-1/4}\le1\) makes Lemma 3.8's hypothesis explicit, which the text had never checked |
 | — Stage 6 | second reading | (D1) consistent: boundary constants \(5.01\), \(10.02\) against printed \(5.1\), \(10.3\); exponents \(-\tfrac5{24},-\tfrac{13}{24},-\tfrac{11}{24},-\tfrac{11}{12}\); \(4\cdot25\cdot2/0.30=667\le672\). (D2)(a) flat cost \(\tfrac1{24}+\tfrac18+\tfrac58=\tfrac{19}{24}<\tfrac78\) with constant \(23\). **corrected**: the (D2)(a) mode-curvature display carried the *window parameter* \(T=P^{1/2}\) where the Lemma 3.7 *truncation* \(J=R_0=P^{1/4}\) belongs. With \(J\): \(\lvert q''\rvert\le\lvert B_0\rvert+J\le3P^{7/24}\), curvature \(\le18P^{-23/24}\), ratio \(\le60P^{-5/24}\le60P^{-1/16}\) — the printed conclusion, and conservative. With \(T\) the display yields only \(9P^{-3/4}\), whose ratio \(30/(uh)\) is **not** \(o(1)\) at \(uh=O(1)\). The constant \(18/0.30=60\) is unchanged either way, and no estimate downstream moves |
+| Lemma 5.2b / Step 5b — **adversarial audit**, target 1 (interpolation identity) | **second reading** (4 Sep 2026); script (16 new rows) | **corrected premise**: step (i) read \(\lvert G_i-\delta_{h_i}\rvert<2\), which yields \(\tfrac9{16}(u{+}u')P^{-5/4}\), twice the bound then used. The gap identity \(G_i=\lfloor\delta_{h_i}\rfloor+\kappa_i\), \(\kappa_i\in\{0,1\}\), gives \(\lvert G_i-\delta_{h_i}\rvert=\lvert\kappa_i-\{\delta_{h_i}\}\rvert\le1\), which is what the printed \(\tfrac9{32}\) needs. Steps (ii) and (iii) verified with margin (\(0.567\) against the printed \(8\); \(\lvert c''\rvert=\tfrac{27}{256}k\nu^{-7/8}=0.1055\le0.11\), and the true factor is \(\lvert c''\rvert/2\)). The total \(202.5+16=218.5\le219\) is exactly where \(219\) comes from |
+| Lemma 5.2b / Step 5b — target 2 (**uniformity**) | second reading | **corrected statement — the material finding**: the bound \(\lvert f''-\Lambda\rvert\le219P^{-25/24}+0.11P^{-5/6}\) was asserted under (C1)–(C4) and \(j=0\) alone, but its proof uses \(u,u'\le360P^{5/24}\), a *middle-band* fact. Under (C1)–(C4) Lemma 5.2(i) admits \(uh_1\le P^{1/2}\), hence \(u\) up to \(P^{1/2}\), where the first error term is \(\tfrac9{16}P^{-3/4}\) — larger by \(P^{7/24}\). **As stated the lemma was false outside the band.** It is invoked only inside it, so no estimate changes; the hypothesis is now printed as (C5), with the derivation \(u\le200kh_2P^{1/8}\le200P^{5/24}\) from \(kh_2\le P^{1/12}\) (exactly (C3)+(C4)) recorded alongside |
+| Lemma 5.2b / Step 5b — target 3 (three-term sublevel step) | second reading | consistent: \(a=-\tfrac{27}{32}\cdot\tfrac{16}5=-\tfrac{27}{10}\) and \(b=-\tfrac{1215}{1024}\cdot\tfrac{64}{33}=-\tfrac{405}{176}\) both match; \(\lambda_0\in[0.385,2.438]\) inside printed \([0.35,2.6]\); \(V/S=3(0.35)^{-1/2}P^{-7/48}=5.07\le5.1\); \(V\ge1.775P^{-37/48}\ge1.7\), and \(V\ge10\lvert f''-\Lambda\rvert\) from \(P\approx4\cdot10^{12}\). **Noted**: \(V\le c_7S/2\) needs \(P\ge5.8\cdot10^{23}\) at the printed \(c_7=\tfrac1{288}\) — inside \(P_0\approx10^{24}\) but only just; switched to the exact \(c_7=\tfrac1{232}\) (Lean `step5b_curvature_norm`), which relaxes it to \(1.3\cdot10^{23}\) |
+| Lemma 5.2b / Step 5b — target 4 (final partition) | second reading | \(\lvert\Omega\rvert\le2.252P^{89/96}\le2.3\), boundaries \(3.185\le3.2\), exponents \(1-\tfrac7{96}=\tfrac{89}{96}\) and \(\tfrac{13}{24}+\tfrac{37}{96}=\tfrac{89}{96}\): all consistent. **Two corrections**: (a) \(S\le300P^{-1/2}\) does not follow — \(\lvert uh_1{+}u'h_2\rvert\le2\mu P^{3/4}/0.84\) with \(\mu\le60\lambda_0\le156kh_1h_2P^{-5/8}\) gives \(372\), so the entry is now \(380\) and the good-pieces constant \(18\to21\) (it feeds only the \(P^{3/4}\) term); (b) "\(\le P^{15/16}\) for \(P\ge P_0\)" is **false at \(P_0\)**: absorbing \(C(E)\log P\) into \(P^{1/96}\) needs \(\ln P\ge96\ln\ln P\), i.e. \(P\approx10^{274}\), whereas at \(10^{24}\) one has \(\ln P=55.3\) against \(P^{1/96}=1.78\). Step 6 uses only the \(\varepsilon\)-form, so nothing downstream depends on it; the display is now \(O_E(P^{89/96+\varepsilon})\) |
+| Step 5b, implicit dependency | second reading | **made explicit**: the mode-dominant run-boundary count \(22h_1h_2P^{1/4}\le22P^{5/16}\) uses the Theorem 5.3 caps \(H_1=P^{1/48}\), \(H_2=P^{1/24}\) (so \(h_1h_2\le P^{1/16}\)), not (C4) alone — under (C4) \(h_1h_2\le P^{1/12}\) and the count is only \(22P^{1/3}>22P^{5/16}\). The \(N\le3.5P^{13/24}\) piece count does hold under (C4) alone |
 | Lemma 3.8, the constant \(c_6(E)\) | **hand, closed form**; Lean `c6_eleven_eighths_five_fourths`, `c6_eleven_eighths_five_fourths_attained` | **extended**: \(c_6\) is now tabulated over all twenty ordered pairs of \(E=\{\tfrac34,\tfrac54,\tfrac{11}8,\tfrac32,\tfrac{15}8\}\); the minimum is \(\tfrac1{14}\), attained only at \((\tfrac{11}8,\tfrac54)\) with crossing \(s=\tfrac{13}{14}\). Hence the explicit \(\rho_0(E)=\tfrac1{112}\) replaces "sufficiently small in terms of \(E\) alone" |
 | Lemma 3.9, the constant \(c_7(E)\) | **hand, exact inverses**; Lean `step5b_curvature_inverse`, `step5b_curvature_norm`, `step5b_c7_printed` | **extended**: \(\lVert M^{-1}\rVert_\infty\) computed for all ten triples of \(E\); the Step-5b triple \((\tfrac54,\tfrac{11}8,\tfrac32)\) is the **extremal** one at \(232\), so \(c_7(E)=\tfrac1{232}\) serves uniformly and \(\rho_0\le\tfrac1{1856}\). The \(\ell^\infty\)/\(\ell^1\) step where the earlier error arose is now machine-checked |
 | Step 6 assembly | hand; script | consistent |
@@ -76,18 +81,76 @@ inputs, one further misprint was found and corrected, and sixteen new
 exponent rows pin the stages in the probe.
 
 *Theorem 5.3, Step 5a* has now been read as well, with one further
-misprint corrected and its window count tightened by \(7\times\).
+misprint corrected and its window count tightened by \(7\times\); and
+*Lemma 5.2b / Step 5b* has had an adversarial pass against the four
+targets (interpolation identity, uniformity, three-term sublevel step,
+final partition), recorded in the five rows above.
 
-**Still outstanding:** a second human reading of *Theorem 5.3,
-Step 5b* (and Lemma 5.2b). That is now the only part of the kernel
-argument without an independent second pass.
+**Status.** Every stage of the kernel argument has now had an
+independent second pass. The one *material* finding is the missing
+hypothesis (C5) in Lemma 5.2b: as stated the lemma was false outside
+the middle band, though it is applied only inside it. Two further
+displays were false as printed (the \(<2\) premise, and
+"\(\le P^{15/16}\) for \(P\ge P_0\)"), and one constant did not follow
+(\(S\le300P^{-1/2}\)); none changes an estimate. **No
+conclusion-breaking error was found**, and the \(1-1/96\) exponent is
+untouched throughout.
+
+**\(P_0\) is now effective and homogeneous.** The threshold has been
+computed: each of the thirty-one printed threshold inequalities of
+Sections 4--6 was transcribed as a predicate in \(P\) and solved
+separately, and the maximum is
+\[
+P_0=3.8\cdot10^{16},
+\]
+attained at the Lemma 3.9 hypothesis \(V\le c_7S/2\) of Step 5b. The
+computation is in `src/research/juggler_sequence/p0_certificate.py`,
+which also generates the Appendix A table, so the paper and the probe
+cannot drift apart. Three findings came out of it.
+
+*The normalisation of \(V\) was carrying the whole threshold.* With
+\(V=\kappa S^{1/2}P^{-11/24}\), the comparison \(V\le c_7S/2\)
+needs \(P\ge(784\kappa)^{48/7}\), while \(\kappa\) controls only
+the coefficient of \(C(E)P^{89/96}\), which is absorbed into
+\(C(E)\). The draft's \(\kappa=3\) is near the coefficient optimum
+(\(5.02\) against the best possible \(4.99\)) and put \(P_0\) at
+\(1.3\cdot10^{23}\). Retuning to \(\kappa=\tfrac13\) costs a
+factor \(9.06/5.02<2\) in that coefficient and buys six and a half
+orders of magnitude. The exponent \(89/96\) is independent of
+\(\kappa\). Steps 5a and 5b were retuned accordingly.
+
+*\(P_0\) does not depend on \(\varepsilon\).* No divisor sum, gcd
+sum or large-sieve average occurs anywhere in Sections 3--6 (checked:
+zero occurrences), so every \(\ll_\varepsilon\) there is a power of
+\(\log P\). Counting them gives the \(\varepsilon\)-free forms
+\(K_c(P)\ll P^{1-1/96}\log^{3/4}P\) and
+\(\#\mathrm{OOOEE}(N)=\tfrac N{32}+O(N^{1-1/96}(\log N)^{15/4})\).
+The threshold for absorbing \(\log^AP\) into \(P^\varepsilon\)
+(\(1.5\cdot10^{190}\), and beyond \(10^{300}\) for \(A=15/4\)) is
+a fact about \(\varepsilon\), not about the proof, and is excluded
+from \(P_0\) — as is the \(10^{274}\) of the \(P^{15/16}\)
+reading, which Step 6 does not use.
+
+*The thresholds stratify.* Twenty-seven of the thirty-one hold from
+\(2.9\cdot10^{10}\) on, and that value is set by a soft
+regime-naming inequality (\(2.25P^{-1/16}<\tfrac12\), Stage 3(s1)).
+The four Lemma 3.9 balance comparisons of Steps 5a and 5b carry the
+remaining six orders alone. That is a statement about one lemma:
+\(V\le c_7S/2\) is a *hypothesis* of Lemma 3.9, and its size is
+fixed by \(c_7=1/\lVert M^{-1}\rVert_\infty=1/232\), exact at the
+Step 5b exponent triple and so not improvable there.
 
 *What was not re-derived.* The \(\rho_0\) ratios
 of Lemma 5.2b are now displayed and sit under \(1/2304\). The exact
 shift device of Theorem 4.4, Step 4, and the
 \(O(\log^3P)\) coefficient-mass bookkeeping were read and accepted,
 not re-derived; Lemma 3.7 was re-read and found consistent. The
-ineffective threshold \(P_0\) is not estimated. Claims A–H of Lemma 5.2(ii)\(\to\)(i), the (D3) closure
+\(P_0\) certificate transcribes each printed inequality into a
+predicate; it does not certify that they are the right inequalities,
+and two of its inputs (the \(\tilde\beta\)-substitution error and
+the wave remainder) are conservative substitutes for statements the
+paper leaves in \(O(\cdot)\) form, both clearing \(\rho_0\) by
+more than nine orders. Claims A–H of Lemma 5.2(ii)\(\to\)(i), the (D3) closure
 \(3\to6\), the printed (D1) remainder, and the Theorem 5.3
 Step 4 leftover-mode split are now written on the manuscript.
 A second human reading of the six-stage proof of Lemma 5.2(i)

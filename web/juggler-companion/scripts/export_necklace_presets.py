@@ -1,4 +1,4 @@
-"""Ship the four Movement-1 necklace walks. The browser looks them up.
+"""Ship Movement-1 necklace walks. The browser looks them up.
 
     python web/juggler-companion/scripts/export_necklace_presets.py
 """
@@ -6,7 +6,10 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
+
+sys.set_int_max_str_digits(0)
 
 from research.juggler_sequence.power_itineraries import floor_power
 
@@ -42,6 +45,27 @@ PRESETS = (
         "label": "37 · the note peak",
         "hint": "Three blocks, then a tower of evens. The second peak is the printed 24,906,114,455,136, far above (n+1)².",
     },
+    {
+        "id": "173",
+        "n": 173,
+        "word": "OOEOOOOOOOOEOOEOOEEOEEOEEEOEOEEE",
+        "label": "173 · peak",
+        "hint": "Classical high peak: 272 bits, then it falls to 1. One trajectory, not a theorem.",
+    },
+    {
+        "id": "2183",
+        "n": 2183,
+        "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEEOOOOEEOEEOEEOOOEEE",
+        "label": "2183 · peak bits",
+        "hint": "Five expanding blocks. Peak 19,694 bits — the largest peak that still ships. Not a cycle.",
+    },
+    {
+        "id": "3889",
+        "n": 3889,
+        "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEEEEE",
+        "label": "3889 · delay",
+        "hint": "Longest shipped drop to 1: 80 steps. The n≤4000 delay record. Not a cycle.",
+    },
 )
 
 
@@ -69,13 +93,13 @@ def main() -> int:
             }
         )
         peak = max(int(state) for state in states)
-        print(f"{spec['id']}: {len(states)} states, peak {peak} ({peak.bit_length()} bits)")
+        print(f"{spec['id']}: {len(states)} states, peak bits {peak.bit_length()}")
     payload = {
         "note": "Shipped Movement-1 necklace walks. The browser does not recompute these.",
         "presets": rows,
     }
     OUT.write_text(json.dumps(payload, indent=1) + "\n", encoding="utf-8")
-    print(f"wrote {OUT}")
+    print(f"wrote {OUT} ({OUT.stat().st_size} bytes)")
     return 0
 
 

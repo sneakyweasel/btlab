@@ -39,8 +39,8 @@ export function FinanceTab() {
   return (
     <div className="space-y-6">
       <p className="prose-measure text-sm text-muted">
-        Section 4 of the paper in three pictures. Necklace walks stay under the
-        256-bit display cap. Type any L through {formatGrouped(LIVE_FINANCE_L_MAX)}
+        Section 4 of the paper in three pictures. Necklace presets are shipped
+        walks; a custom start walks only under the live bit cap. Type any L through {formatGrouped(LIVE_FINANCE_L_MAX)}
         and θ and the crossing are exact in the browser. From the first survivor{" "}
         {formatGrouped(PAPER_PERIOD)} on, those values and every n_max come from the
         shipped Theorem 4.6 table at N₀ = {formatGrouped(PAPER_FLOOR)}.

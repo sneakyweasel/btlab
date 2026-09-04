@@ -30,7 +30,12 @@ frozen floor; Lemma 5.2 bounds these mixed pieces by
 \(|q|^{-1/6}P^{23/24+\varepsilon}\), uniformly enough for depth four,
 and the central result (Theorem 5.3), \(K_c\ll P^{1-1/96+\varepsilon}\),
 follows by double Weyl differencing over an exact carry-branch
-decomposition and master identity. The depth-\(\le3\) discrepancy
+decomposition and master identity. All thresholds are effective: no
+divisor or gcd average occurs anywhere in the argument, so every
+\(\varepsilon\) is a power of \(\log P\) --- Theorem 5.3 holds in
+the form \(K_c\ll P^{1-1/96}\log^{3/4}P\) --- and the thirty-one
+threshold inequalities of the proof are solved individually in
+Appendix A, giving \(P_0=3.8\cdot10^{16}\). The depth-\(\le3\) discrepancy
 estimates (Theorems 4.4 and 4.7) are also proved on sub-dyadic
 intervals of length \(\ge P^{1/2}\), with a slowly varying twist
 attached (Section 3.5), which is the form a companion paper needs.
@@ -1856,19 +1861,46 @@ whose depth would grow with \(P\). Implied constants in every
 independent of \(k,h_i,t\).
 
 Every numerical margin in this section is claimed only for
-\(P\ge P_0\), with an absolute but ineffective \(P_0\). The
-comparisons stratify. The Lemma 3.7 / Lemma 5.2 window
-hypotheses first hold together on the printed majorants at a
-moderate threshold (of size \(3\cdot 10^5\)). The interpolant
-error of Step 5b is \(O(P^{-5/6})\) with leading coefficient
-\(0.11\), and is not absorbed into a smaller constant. The
-comparison \(V\le c_7S/2\) at \(c_7=1/288\) for the printed
-triple of Step 5b forces \(P_0\) to be large (of size
-\(10^{24}\)): until then a three-term zero of \(\Phi''\) can
-keep the sublevel \(\Omega_V\) of length \(\Theta(P)\) on a
-dyadic block, and the printed length \(P^{89/96}\) is the bound
-of Lemma 3.9, not a claim that the sublevel is short at small
-\(P\). The constants are not asserted to be sharp.
+\(P\ge P_0\), and \(P_0\) is **effective**: Appendix A solves
+each of the thirty-one printed threshold inequalities of
+Sections 4--6 separately and takes the maximum,
+\[
+P_0=3.8\cdot10^{16},
+\]
+attained at the Lemma 3.9 hypothesis \(V\le c_7S/2\) in
+Theorem 5.3, Step 5b. Two features of that number should be said
+here. First, \(P_0\) does not depend on \(\varepsilon\).
+No divisor sum, gcd sum or large-sieve average occurs anywhere in
+Sections 3--6, so every \(\ll_\varepsilon\) in those sections is
+a power of \(\log P\) and nothing else; the mode masses are
+\(O(\log^3P)\) and the two Weyl steps halve the exponent twice,
+giving the \(\varepsilon\)-free form
+\(K_c(P)\ll P^{1-1/96}(\log P)^{3/4}\) of Theorem 5.3
+(Appendix A.3). The threshold at which \(\log^AP\) is absorbed
+into \(P^{\varepsilon}\) is a statement about \(\varepsilon\),
+not about the proof, and is not part of \(P_0\).
+
+Second, the comparisons stratify sharply, and one of them is the
+whole story. The Lemma 3.7 / Lemma 5.2 window hypotheses first
+hold together on the printed majorants at a moderate threshold (of
+size \(3\cdot10^5\)); every inequality in the paper except the four
+Lemma 3.9 balance comparisons of Steps 5a and 5b holds from
+\(2.9\cdot10^{10}\) on.
+The comparison \(V\le c_7S/2\) then adds more than six orders of
+magnitude on its own: until it holds, a three-term zero of
+\(\Phi''\) can keep the sublevel \(\Omega_V\) of length
+\(\Theta(P)\) on a dyadic block, and the printed length
+\(P^{89/96}\) is the bound of Lemma 3.9, not a claim that the
+sublevel is short at small \(P\). Its size is governed by
+\(c_7=1/232\), which is exactly \(1/\lVert M^{-1}\rVert_\infty\)
+for the Vandermonde-type matrix \(M\) of Lemma 3.9 at the
+exponent triple of Step 5b, hence not improvable at that triple;
+the earlier reading \(c_7=1/288\) and the earlier normalisation
+\(V=3S^{1/2}P^{-11/24}\) together put \(P_0\) at
+\(5.8\cdot10^{23}\). The interpolant error of Step 5b is
+\(O(P^{-5/6})\) with leading coefficient \(0.11\), and is not
+absorbed into a smaller constant. The constants are not asserted
+to be sharp.
 
 The proof of the kernel theorem classifies the differenced pieces
 into four classes; three are handled by standard tests, and the
@@ -2491,7 +2523,17 @@ as numbers, not differentiated. The next lemma records that
 computation, so that Step 5b is only a classification of scales.
 
 **Lemma 5.2b (frozen-shape interpolant on a zero-offset piece).**
-Assume (C1)–(C4) and \(j=0\). Work on a common-refinement piece of
+Assume (C1)–(C4), \(j=0\), and the *middle-band wave bound*
+\[
+u,\,u'\ \le\ 360\,P^{5/24}.
+\tag{C5}
+\]
+(C5) is not implied by (C1)–(C4): Lemma 5.2(i) admits \(uh_1\le P^{1/2}\),
+hence \(u\) as large as \(P^{1/2}\), and at that size the first error term
+below is \(\tfrac9{16}P^{-3/4}\), larger than the stated bound by a
+factor \(P^{7/24}\). The lemma is applied only in the middle band of
+Step 5b, whose inventory derives \(u\le200\,kh_2P^{1/8}\le200P^{5/24}\)
+from \(kh_2\le P^{1/12}\); (C5) is the opened form of that. Work on a common-refinement piece of
 the gap cells of both shifts, the frozen-floor runs of
 \(\lfloor F_{\boldsymbol\kappa}(X)\rfloor\), and the sawtooth windows
 already counted, so that the integers \(G_1\), \(G_2\),
@@ -2578,10 +2620,15 @@ on the standing range: the summand \(c''(G_F-J_F)\) is
 smooth gap of the same scale, and each moves its argument by at
 most \(1\).
 
-(i) \(\lvert G_i-\delta_{h_i}\rvert<2\), so the wave terms differ
-from \(\Lambda\) by at most \(\tfrac9{32}(u{+}u')P^{-5/4}\). In
-the middle band of Step 5b one has \(u,u'\le360P^{5/24}\), hence
-this is \(\le219P^{-25/24}\).
+(i) By the gap identity \(G_i=\lfloor\delta_{h_i}\rfloor+\kappa_i\)
+with \(\kappa_i\in\{0,1\}\), so
+\(\lvert G_i-\delta_{h_i}\rvert=\lvert\kappa_i-\{\delta_{h_i}\}\rvert\le1\)
+— *not* merely \(<2\), which would double the constant below. Hence
+the wave terms differ from \(\Lambda\) by at most
+\(\tfrac9{32}(u{+}u')P^{-5/4}\), and by (C5) this is
+\(\le\tfrac9{32}\cdot720\,P^{5/24-5/4}=202.5\,P^{-25/24}\). With the
+third term below, \(8k(h_1{+}h_2)P^{-9/8}\le16P^{-25/24}\) by (C3)
+and (C4), the two total \(218.5\le219\,P^{-25/24}\).
 
 (ii) \(\lvert\beta_i-\tilde\beta_i\rvert\le1\), so the product
 \(\beta_1\beta_2\) moves by
@@ -3045,7 +3092,10 @@ differenced-wave scale present. Three regimes.
 - *Mode-dominant* (\(\mu\ge60\lambda_0\), i.e.
   \(uh_1\ge60\,kh_1h_2P^{1/8}\)-form): Lemma 5.2(i) with the
   undifferenced anchor as decoration: its run boundaries number
-  \(\le22h_1h_2P^{1/4}\le22P^{5/16}\), cost
+  \(\le22h_1h_2P^{1/4}\le22P^{5/16}\), which uses the Theorem 5.3
+  shift caps \(h_1\le H_1=P^{1/48}\), \(h_2\le H_2=P^{1/24}\) (so
+  \(h_1h_2\le P^{1/16}\)) and *not* (C4) alone, under which
+  \(h_1h_2\le P^{1/12}\) would give only \(22P^{1/3}\), cost
   \(\le22P^{5/16}\cdot3.4(uh_1)^{-1/2}P^{3/8}\le75P^{11/16}\); its
   smooth part is dominated at margin \(\ge20\) by hypothesis. On a
   zero-offset branch the anchor's \(\theta\)-coefficient is
@@ -3107,49 +3157,81 @@ differenced-wave scale present. Three regimes.
   kh_1h_2P^{-5/8},\,\lvert w\rvert P^{-1/2}\bigr),
   \]
   and the middle-band constraints give
-  \(0.35P^{-5/8}\le S\le300\,P^{-1/2}\): the lower bound is
-  \(\lambda_0\) when \(kh_1h_2\ge1\), and the upper bound uses
-  \(kh_1h_2\le P^{1/8}\) from (C1) together with
-  \(\mu\le60\lambda_0\le160\,kh_1h_2P^{-5/8}\) (opened to
-  \(300\), which only helps) and the collision-band restriction
-  \(\lvert wX''\rvert\ll P^{-1/2}\). If \(w=0\), drop the third
+  \(0.35P^{-5/8}\le S\le380\,P^{-1/2}\): the lower bound is
+  \(\lambda_0\) when \(kh_1h_2\ge1\), and for the upper bound,
+  \(\lvert uh_1{+}u'h_2\rvert\le2\max(uh_1,u'h_2)=2\mu P^{3/4}/0.84\)
+  with \(\mu\le60\lambda_0\le60\cdot2.6\,kh_1h_2P^{-5/8}\), so the
+  first entry of \(S\) is at most
+  \(2\cdot156/0.84=372\,kh_1h_2P^{-5/8}\le372\,P^{-1/2}\) by
+  \(kh_1h_2\le P^{1/8}\) from (C1) (opened to \(380\)); the third
+  entry is the collision-band restriction \(\lvert wX''\rvert\ll
+  P^{-1/2}\). (The factor \(2\) from the sum and the \(1/0.84\) from
+  the definition of \(\mu\) are both needed: \(160\) alone would give
+  \(300\), which does not cover the sum.) If \(w=0\), drop the third
   term of \(\Phi\) and apply Lemma 3.8 (or Lemma 3.3 if only
   one of \(a,b\) is present).
 
-  *Splitting.* Choose \(V:=3S^{1/2}P^{-11/24}\), so that
-  \(V/S\le5.1P^{-7/48}\) (hence \(V\le c_7S/2\) at
-  \(c_7=1/288\) for \(P\ge P_0\); the constant \(5.1\) is
-  \(3\cdot(0.35)^{-1/2}\)) and
-  \(V\ge1.7P^{-37/48}\ge10\,|f''-\Lambda|\) against the
-  two-term interpolant majorant of Lemma 5.2b. The comparison
-  \(V\le c_7S/2\) is the large ineffective threshold of the
-  standing estimates: until it holds, a three-term zero of
+  *Splitting.* Choose \(V:=\tfrac13 S^{1/2}P^{-11/24}\), so that
+  \(V/S\le0.57P^{-7/48}\) (the constant is
+  \(\tfrac13(0.35)^{-1/2}=0.5635\)); hence \(V\le c_7S/2\) once
+  \(0.5635P^{-7/48}\le c_7/2\), i.e. \(P^{7/48}\ge261.5\), i.e.
+  \(P\ge3.8\cdot10^{16}\), at the exact \(c_7=1/232\) of Lemma 3.9
+  (the \(\ell^\infty\) operator norm, Lean `step5b_curvature_norm`).
+  At the lower end \(S\ge0.35P^{-5/8}\) this gives
+  \(V\ge0.19P^{-37/48}\), and
+  \(0.19P^{-37/48}\ge10\,\lvert f''-\Lambda\rvert
+  =2190P^{-25/24}+1.1P^{-5/6}\) from \(P\ge1.6\cdot10^{16}\), so
+  the two comparisons hold together from \(3.8\cdot10^{16}\) on.
+
+  The leading constant of \(V\) is chosen to minimise that
+  threshold, not the coefficient below; the two are in tension.
+  Writing \(V=\kappa S^{1/2}P^{-11/24}\), the transition cost
+  carries \(\kappa^{1/2}\) and the piece-boundary cost
+  \(\kappa^{-1/2}\), so the coefficient of \(C(E)P^{89/96}\) is
+  minimised at \(\kappa=3.69\) (value \(4.99\); the earlier
+  \(\kappa=3\) gives \(5.02\)), whereas \(V\le c_7S/2\) forces
+  \(P\ge(784\kappa)^{48/7}\), which at \(\kappa=3\) is
+  \(1.3\cdot10^{23}\). Lowering \(\kappa\) to \(\tfrac13\)
+  costs a factor \(9.2/5.0<2\) in a coefficient already absorbed
+  into \(C(E)\), and buys more than six orders of magnitude in
+  \(P_0\); the exponent \(89/96\) does not move. The floor is
+  \(\kappa=0.312\), where the two comparisons meet at
+  \(P=2.4\cdot10^{16}\); below that no \(V\) is admissible at
+  all. Even so this remains the largest threshold in the paper
+  (Appendix A): until \(V\le c_7S/2\) holds, a three-term zero of
   \(\Phi''\) can keep \(\Omega_V\) of length \(\Theta(P)\) on a
   dyadic block. The length bound below is that of Lemma 3.9,
   not a claim that the sublevel is short at small \(P\);
   interval counts remain \(O_E(1)\). By Lemma 3.9 the set
   \(\Omega=\{\nu:|\Lambda(\nu)|\le V\}\) is a union of at most
   \(C(E)\) intervals of total length
-  \(\le C(E)\,P(V/S)^{1/2}\le2.3\,C(E)\,P^{89/96}\), and on its
+  \(\le C(E)\,P(V/S)^{1/2}\le0.76\,C(E)\,P^{89/96}\), and on its
   complement \(f''\) is single-signed per interval with
   \(0.9V\le|f''|\le1.1\,C(E)S\). The three costs:
   \[
-  \text{transition (trivial):}\quad\le2.3\,C(E)\,P^{89/96};
+  \text{transition (trivial):}\quad\le0.76\,C(E)\,P^{89/96};
   \]
   \[
   \text{piece boundaries:}\quad
   \le(N{+}C(E))\,(0.9V)^{-1/2}
-  \le3.5P^{13/24}\cdot0.91P^{37/96}+O_E(P^{37/96})
-  \le3.2\,P^{89/96};
+  \le3.5P^{13/24}\cdot2.38P^{37/96}+O_E(P^{37/96})
+  \le8.4\,P^{89/96};
   \]
   \[
   \text{good pieces (Lemma 3.3):}\quad
   \sum\ell\,(1.1\,C(E)S)^{1/2}
-  \le C'(E)\,P\cdot(300)^{1/2}P^{-1/4}
-  \le18\,C'(E)\,P^{3/4}.
+  \le C'(E)\,P\cdot(380)^{1/2}P^{-1/4}
+  \le21\,C'(E)\,P^{3/4}.
   \]
   The middle band therefore totals
-  \(\le C(E)\,P^{89/96}\log P\le P^{15/16}\) for \(P\ge P_0\).
+  \(\le C(E)\,P^{89/96}\log P=O_E\bigl(P^{89/96+\varepsilon}\bigr)\),
+  which is the form Step 6 uses. The sharper reading
+  \(\le P^{15/16}\) would need \(C(E)\log P\le P^{1/96}\), i.e.
+  \(\ln P\ge96\ln\ln P\), which first holds near \(P=10^{274}\); at
+  \(P_0=3.8\cdot10^{16}\) one has \(\ln P=38.2\) against
+  \(P^{1/96}=1.49\), so that reading is **not** available at \(P_0\).
+  Nothing downstream depends on it: Step 6 carries \(P^{\varepsilon}\)
+  and \(\tfrac{89}{96}<\tfrac{15}{16}\).
 
 In all three regimes the \(j=0\) pieces total
 \(\ll P^{15/16+\varepsilon}\ll P^{23/24}\).
@@ -3419,13 +3501,14 @@ S
 \le\max\bigl(60\lambda_0',\,\lambda_0',\,\lvert w\rvert P^{-1/2}\bigr)
 \le80\,P^{-1/2}
 \]
-by (C1) and \(\lvert w\rvert\le2\). The balanced choice
-\(V=3S^{1/2}P^{-11/24}\) still satisfies \(V\le c_7S/2\) at
-\(c_7=1/288\) and \(V\ge10\lvert f''-\Lambda\rvert\) against
-the two-term interpolant majorant, for \(P\ge P_0\): at the
-lower end \(S\ge0.60P^{-5/8}\) one has
-\(V\ge2.3P^{-37/48}\) and the interpolant error is
-\(O(P^{-25/24})+O(P^{-5/6})\). Transition length and
+by (C1) and \(\lvert w\rvert\le2\). The same choice
+\(V=\tfrac13S^{1/2}P^{-11/24}\) satisfies \(V\le c_7S/2\) at
+\(c_7=1/232\) and \(V\ge10\lvert f''-\Lambda\rvert\) against
+the two-term interpolant majorant, from \(P\ge5.9\cdot10^{15}\)
+-- a lower threshold than Step 5b's, because \(S\) is larger here:
+at the lower end \(S\ge0.60P^{-5/8}\) one has
+\(V/S\le0.43P^{-7/48}\) and \(V\ge0.25P^{-37/48}\), against the
+interpolant error \(219P^{-25/24}+0.11P^{-5/6}\). Transition length and
 piece-boundary costs are as in Step 5b (the same exponents;
 the smaller \(S\) enlarges \(V/S\) by a constant, still
 \(O(P^{-7/48})\)). Good pieces cost
@@ -3530,7 +3613,8 @@ coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 Of these four words only \(OOOEE\) and \(OOEOE\) contract. The
 expanding tree \(OOOO*\) is not estimated: it is the level-3
 kernel of Conjecture 7.3. All estimates below are for
-\(P\ge P_0\), with the same ineffective \(P_0\) as in Section 4.
+\(P\ge P_0=3.8\cdot10^{16}\), the effective threshold of
+Appendix A.
 
 *Proof.* \(OOOE*\). By Lemma 3.6 the class indicators are the
 \(OOOE\) indicator of Theorem 6.1 times
@@ -3991,6 +4075,150 @@ the exact floor identities; the module
 [paper_b_audit_ledger.md](paper_b_audit_ledger.md) record numerical
 and exponent checks. Those are not proofs and are not an independent
 verification of Lemma 5.2.
+
+## Appendix A. The threshold \(P_0\)
+
+Every numerical margin of Sections 4--6 is claimed for
+\(P\ge P_0\). This appendix makes \(P_0\) effective. Each
+printed threshold inequality is solved separately for the least
+\(P\) beyond which it holds, and \(P_0\) is the maximum. The
+computation is machine-checked in
+`src/research/juggler_sequence/p0_certificate.py`, which also
+generates the table below; the probe and the paper therefore cannot
+drift apart.
+
+### A.1 The certificate
+
+| threshold | site | least $P$ |
+|---|---|---|
+| P^(1/72-1/24) <= 1 | Claim G | always |
+| 16 h1 P^(1/2) + 30 k h1 h2 P^(5/8) <= 46 P^(3/4) | Thm 5.3 St.3(a) | always |
+| linearization remainder P^(43/96) <= P^(1-1/96) | Thm 6.3 | always |
+| P^(1/2) >= 8(1+\|B\|) with \|B\| < 1/2 | Thm 4.1 St.3(s1) | $144$ |
+| 4.5 - 1.5/(h P^(1/2)) >= 4.4 at h = 1 | Thm 4.1 St.5 | $225$ |
+| P^(1/2) >= 8(1+6) = 56 | Thm 5.3 St.5b (j=0) | $3.1\cdot10^{3}$ |
+| 8(1+2.25P^(1/4))P^(1/2) <= 19 P^(3/4) | Thm 4.1 St.3(s2) | $4.1\cdot10^{3}$ |
+| 41 P^(5/36) <= P^(1/2) | Claim C | $2.9\cdot10^{4}$ |
+| [0.38,2.44] with its corrections inside [0.35,2.6] | Lemma 5.2b | $6.4\cdot10^{4}$ |
+| P^(7/72) >= 3 | Claim C | $8.1\cdot10^{4}$ |
+| 72 t^(-1) P^(-1/2) <= 1/4 at t = 1 | Thm 5.3 St.6(D1) | $8.3\cdot10^{4}$ |
+| P^(1/2) >= 8(1 + 2.25 P^(1/4)) | Thm 4.1 St.3(s2) | $1.2\cdot10^{5}$ |
+| window boundaries <= 1.1 P^(17/32) <= P^(5/8) | Thm 4.1 St.3(s2) | $1.5\cdot10^{5}$ |
+| 0.6 P^(1/4) + 1 <= 0.65 P^(1/4) | Thm 4.1 St.3(s2) | $1.6\cdot10^{5}$ |
+| P^(1/2)/(2h1) >= 8(1+\|B\|): 0.5 P^(23/48) >= 15 P^(10/48) | Thm 5.3 St.3(a) | $2.8\cdot10^{5}$ |
+| P^(1/2)/(2h2) >= 8(1+\|B\|): 0.5 P^(22/48) >= 15 P^(9/48) | Thm 5.3 St.3(b) | $2.8\cdot10^{5}$ |
+| P^(1/2) >= 8(1 + 7 P^(1/4)) | Thm 5.3 St.6(D1) | $9.9\cdot10^{6}$ |
+| wave remainder 200 P^(-35/24) vs S: 571 P^(-5/6) <= rho_0 | Thm 5.3 St.5b | $1.7\cdot10^{7}$ |
+| beta-substitution error 2.31 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.8\cdot10^{7}$ |
+| cells + anchor runs + windows <= 3.5 P^(13/24) | Thm 5.3 St.5b | $5.1\cdot10^{7}$ |
+| mode/cell curvature ratio 0.39 P^(1/8) >= 4 | Thm 4.1 St.2 | $1.2\cdot10^{8}$ |
+| every competitor ratio <= 1/4 (margin 4) | Thm 5.3 St.5a | $4.3\cdot10^{8}$ |
+| P^2\|c''''/2\|/S <= rho_0: (0.044/0.35) P^(-1/4) | Thm 5.3 St.5b | $3.0\cdot10^{9}$ |
+| 96 P^(-5/24) <= 1 | Claim G | $3.3\cdot10^{9}$ |
+| P\|c'''/2\|/S <= rho_0: (0.047/0.35) P^(-1/4) | Thm 5.3 St.5b | $3.9\cdot10^{9}$ |
+| \|c''/2\|/S <= rho_0: (0.053/0.35) P^(-1/4) | Thm 5.3 St.5b | $6.2\cdot10^{9}$ |
+| 2.25 P^(-1/16) < 1/2 | Thm 4.1 St.3(s1) | $2.8\cdot10^{10}$ |
+| V >= 10 \|f'' - Lambda\| | Thm 5.3 St.5a | $3.1\cdot10^{15}$ |
+| V <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $5.9\cdot10^{15}$ |
+| V >= 10 \|f'' - Lambda\| | Thm 5.3 St.5b | $1.6\cdot10^{16}$ |
+| V <= c_7 S/2 at S >= 0.35 P^(-5/8) | Thm 5.3 St.5b | $3.8\cdot10^{16}$ |
+
+\[
+P_0=3.8\cdot10^{16},
+\]
+attained at the Lemma 3.9 hypothesis \(V\le c_7S/2\) of
+Theorem 5.3, Step 5b. Three rows hold for every \(P\ge1\) and
+are listed for completeness rather than because they constrain
+anything.
+
+### A.2 The stratification
+
+The thresholds are not spread out; they cluster and then jump.
+Twenty-seven of the thirty-one hold from \(2.9\cdot10^{10}\) on,
+and that value is set by a single soft inequality
+(\(2.25P^{-1/16}<\tfrac12\) in Stage 3(s1) of Theorem 4.1,
+which merely names the regime). The remaining four are the balance
+comparisons \(V\le c_7S/2\) and \(V\ge10\lvert
+f''-\Lambda\rvert\) of Steps 5a and 5b, and they alone carry
+\(P_0\) up by six orders of magnitude.
+
+This is a statement about one lemma, not about the argument as a
+whole. \(V\le c_7S/2\) is a *hypothesis* of Lemma 3.9, not an
+optimisation: it is what makes \(\Omega_V\) empty on the
+\(r=2\) pieces. Its size is fixed by
+\(c_7=1/\lVert M^{-1}\rVert_\infty=1/232\) for the
+Vandermonde-type matrix \(M\) of Lemma 3.9 at the Step 5b
+exponent triple (Lean `step5b_curvature_norm`), which is exact and
+so not improvable at that triple, and by the normalisation
+\(\kappa\) of \(V=\kappa S^{1/2}P^{-11/24}\), which is
+free. Since \(V\le c_7S/2\) requires
+\(P\ge(784\kappa)^{48/7}\), the threshold is very sensitive
+to \(\kappa\), while the coefficient of \(C(E)P^{89/96}\)
+that \(\kappa\) controls is not:
+
+| \(\kappa\) | least \(P\) | coefficient of \(C(E)P^{89/96}\) |
+|---|---|---|
+| \(3.69\) (coefficient-optimal) | \(5.5\cdot10^{23}\) | \(4.99\) |
+| \(3\) (earlier draft) | \(1.3\cdot10^{23}\) | \(5.02\) |
+| \(1\) | \(7.1\cdot10^{19}\) | \(6.10\) |
+| \(\tfrac13\) (used here) | \(3.8\cdot10^{16}\) | \(9.06\) |
+| \(0.312\) (threshold-optimal) | \(2.4\cdot10^{16}\) | \(9.31\) |
+
+Below \(\kappa=0.312\) the two comparisons of Step 5b collide
+and no admissible \(V\) exists at any \(P\) near the
+threshold; the last row is the floor of the method as organised
+here. We take \(\kappa=\tfrac13\): the coefficient is
+absorbed into \(C(E)\) in any case, and the exponent
+\(89/96\) does not depend on \(\kappa\) at all. The
+earlier draft's \(\kappa=3\) together with the reading
+\(c_7=1/288\) gives \(P_0=5.8\cdot10^{23}\); nothing but
+the threshold changes between the two.
+
+### A.3 \(P_0\) does not depend on \(\varepsilon\)
+
+No divisor sum, gcd sum or large-sieve average occurs anywhere in
+Sections 3--6. Every \(\ll_\varepsilon\) in those sections is
+therefore a power of \(\log P\), and the powers can be counted.
+The mode masses are \(O(\log^3P)\) over at most three
+expansion layers, so \(\lvert T_2\rvert\ll
+P^{23/24}\log^3P\); the two Weyl steps of Theorem 5.3 each halve
+the exponent of the log,
+\[
+\lvert T_1\rvert\ll P^{1-1/48}\log^{3/2}P,
+\qquad
+K_c(P)\ll P^{1-1/96}\log^{3/4}P,
+\]
+and Theorem 6.3 costs a further \(\log^3P\) from its own
+truncations, giving
+\(\#\mathrm{OOOEE}(N)=\tfrac N{32}+O\bigl(N^{1-1/96}
+(\log N)^{15/4}\bigr)\). These forms carry no
+\(\varepsilon\), and \(P_0\) is the same for all of them.
+
+The threshold at which \(\log^AP\) would be *absorbed* into
+\(P^{\varepsilon}\) is a different quantity and is not part of
+\(P_0\): for \(\varepsilon=1/96\) it is
+\(1.5\cdot10^{190}\) at \(A=3/4\) and beyond
+\(10^{300}\) at \(A=15/4\). Sections 4--6 carry the
+\(P^{\varepsilon}\) rather than spending it, so those numbers
+never enter. The same remark disposes of the \(P^{15/16}\)
+reading in Step 5b: it would need \(C(E)\log P\le P^{1/96}\),
+first true near \(10^{274}\), and Step 6 uses only
+\(89/96<15/16\).
+
+### A.4 What the certificate is not
+
+It is not a proof. It certifies that the inequalities the paper
+prints are true beyond the stated threshold; it does not certify
+that they are the right inequalities, and it inherits every
+modelling choice made in reducing a displayed estimate to a
+predicate in \(P\). Two of its inputs are conservative
+substitutes for statements the paper leaves in \(O(\cdot)\)
+form -- the \(\tilde\beta\)-substitution error, bounded here
+by the \(\pm1\) of the gap floor at \(0.68P^{-1/2}\) rather
+than by the printed \(O(hP^{-1})\), and the wave remainder
+\(O(uh^2\nu^{-7/4})\), bounded at \(200P^{-35/24}\) on the
+printed inventory. Both clear \(\rho_0\) by more than nine
+orders of magnitude, so neither choice affects \(P_0\).
 
 ## Acknowledgments
 

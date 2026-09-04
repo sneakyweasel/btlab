@@ -32,6 +32,8 @@ from typing import Any
 
 import mpmath as mp
 
+from . import p0_certificate
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "paper_b_audit"
 
@@ -867,6 +869,27 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("T5.3 Step 5a: collision sums P*M^{1/2} = 5.75^{1/2} = 2.398 <= 2.4; 0.17*1.30^{-1/2} = 0.149 <= 0.15; 0.17*(1/1.30)^{1/3} = 0.156 <= 0.16; times 3^{2/3} = 0.324 <= 0.33", 5.75**0.5 <= 2.4 and 0.17 * 1.30**-0.5 <= 0.15 and 0.17 * (1 / 1.30) ** (1 / 3) <= 0.16 and 0.17 * (1 / 1.30) ** (1 / 3) * 3 ** (2 / 3) <= 0.33),
         ("T5.3 Step 5a: run sums P*lambda_a^{1/2} = 1.4238^{1/2} = 1.193 <= 1.2 (was 1.3); 22*0.8752 = 19.25 <= 20 (was 21)", (729 / 512) ** 0.5 <= 1.2 and 22 * ((729 / 512) * 2**-0.125) ** -0.5 <= 20),
         ("T5.3 Step 5a exponents: 3/8+1/16 = 7/16 ; 1-1/16 = 15/16 ; 3/8+3/8 = 3/4 ; (2/3)(1/24) = 1/36 ; 15/16+1/48 = 23/24", F(3, 8) + F(1, 16) == F(7, 16) and 1 - F(1, 16) == F(15, 16) and F(3, 8) + F(3, 8) == F(3, 4) and F(2, 3) * F(1, 24) == F(1, 36) and F(15, 16) + F(1, 48) == F(23, 24)),
+        # --- adversarial audit of Lemma 5.2b / Theorem 5.3 Step 5b (4 Sep 2026) ---
+        # Target 1: interpolation identity -- origin and exponent of each term of f''-Lambda.
+        ("L5.2b (i): gap identity gives |G_i - delta_i| = |kappa - {delta}| <= 1, NOT < 2; the printed bound (9/32)(u+u')P^{-5/4} needs <=1 (with <2 it would be (9/16))", F(9, 32) * 2 == F(9, 16)),
+        ("L5.2b (ii): |b1b2 - bt1bt2| <= 4.3(h1+h2)P^{1/2}+2, times 135/1024 gives 0.567 k(h1+h2)P^{-9/8} <= 8 printed", (135 / 1024) * 4.3 <= 8),
+        ("L5.2b (iii): |c''| = (27/256)k nu^{-7/8} = 0.1055 <= 0.11 printed; and 0.11 kP^{-7/8} <= 0.11P^{-5/6} iff k <= P^{1/24} (C3)", F(27, 256) <= F(11, 100) and F(7, 8) - F(5, 6) == F(1, 24)),
+        ("L5.2b total: (9/32)(720) = 202.5 and 8k(h1+h2)P^{-9/8} <= 16 P^{-25/24}; 202.5+16 = 218.5 <= 219 printed", F(9, 32) * 720 + 16 <= 219 and F(1, 24) + F(1, 24) - F(9, 8) == -F(25, 24)),
+        # Target 2: uniformity -- the bound is band-conditional, now hypothesis (C5).
+        ("L5.2b: the 219 bound needs u,u' <= 360P^{5/24} (now hypothesis (C5)); (C1)-(C4) alone allow u <= P^{1/2}, giving (9/16)P^{-3/4} -- larger by P^{7/24}", F(1, 2) - F(5, 24) == F(7, 24)),
+        ("L5.2b (C5) is met in the band: Step 5b derives u <= 200 k h2 P^{1/8} <= 200 P^{5/24} from k h2 <= P^{1/12}, and (C3)+(C4) give exactly that", F(5, 24) - F(1, 8) == F(1, 12) and F(1, 24) + F(1, 24) == F(1, 12)),
+        # Target 3: three-term sublevel step.
+        ("Step 5b: a = -(27/32)(16/5) = -27/10 and b = -(1215/1024)(64/33) = -405/176 match the printed Phi coefficients", F(-27, 32) * F(16, 5) == F(-27, 10) and F(-1215, 1024) * F(64, 33) == F(-405, 176)),
+        ("Step 5b: lambda_0 = (135/1024)k b1b2 nu^{-13/8} in [0.385, 2.438] k h1h2 P^{-5/8}, inside printed [0.35, 2.6]", (135 / 1024) * 9 * 2**-1.625 >= 0.35 and (135 / 1024) * 4.3**2 <= 2.6),
+        ("Step 5b: V/S = 3(0.35)^{-1/2}P^{5/16-11/24} = 5.07 P^{-7/48} <= 5.1 printed", F(5, 16) - F(11, 24) == -F(7, 48) and 3 * 0.35**-0.5 <= 5.1),
+        ("Step 5b: V <= c_7 S/2 needs P >= 5.8e23 at c_7=1/288 (just inside P_0 ~ 1e24) and P >= 1.3e23 at the exact c_7=1/232", (2 * 288 * 5.07) ** (48 / 7) < 1e24 and (2 * 232 * 5.07) ** (48 / 7) < 2e23),
+        ("Step 5b: V >= 3(0.35)^{1/2}P^{-37/48} = 1.775 >= 1.7 printed; V >= 10|f''-Lambda| from P ~ 4e12", F(-5, 16) - F(11, 24) == -F(37, 48) and 3 * 0.35**0.5 >= 1.7),
+        # Target 4: final partition.
+        ("Step 5b: |Omega| <= P(V/S)^{1/2} = 5.07^{1/2} P^{89/96} = 2.252 <= 2.3 printed; 1-7/96 = 89/96", 5.07**0.5 <= 2.3 and 1 - F(7, 96) == F(89, 96)),
+        ("Step 5b: boundaries (0.9*1.7)^{-1/2} = 0.809 <= 0.91 printed; 3.5*0.91 = 3.185 <= 3.2; 13/24+37/96 = 89/96", (0.9 * 1.7) ** -0.5 <= 0.91 and 3.5 * 0.91 <= 3.2 and F(13, 24) + F(37, 96) == F(89, 96)),
+        ("Step 5b: S upper -- |uh1+u'h2| <= 2max = 2mu/0.84 and mu <= 60(2.6)kh1h2P^{-5/8} gives 372, NOT the printed 300; corrected to 380, good-pieces 18 -> 21", 2 * 60 * 2.6 / 0.84 > 300 and 2 * 60 * 2.6 / 0.84 <= 380 and (1.1 * 380) ** 0.5 <= 21),
+        ("Step 5b: C(E)P^{89/96}log P <= P^{15/16} needs ln P >= 96 ln ln P, i.e. P ~ 1e274; at P_0 = 1e24, ln P = 55.3 > P^{1/96} = 1.78 -- the sharp reading FAILS at P_0", F(15, 16) - F(89, 96) == F(1, 96) and 24 * 2.302585 > 10 ** (24 / 96)),
+        ("Step 5b mode-dominant: 22 h1h2 P^{1/4} <= 22 P^{5/16} uses H_1 = P^{1/48}, H_2 = P^{1/24} (h1h2 <= P^{1/16}), not (C4) alone (which gives P^{1/12} -> 22P^{1/3})", F(1, 48) + F(1, 24) == F(1, 16) and F(1, 16) + F(1, 4) == F(5, 16) and F(1, 12) + F(1, 4) > F(5, 16)),
         # Lemma 3.8 / 3.9 explicit constants over E = {3/4, 5/4, 11/8, 3/2, 15/8}
         ("L3.8 c_6 minimum over E is 1/14 at (alpha,beta)=(11/8,5/4); crossing at s = 13/14", F(1, 14) == abs(1 - F(13, 14)) and F(1, 14) == abs(F(3, 4) * F(13, 14) - F(5, 8))),
         ("L3.8 rho_0(E) = c_6/8 = 1/112", F(1, 14) / 8 == F(1, 112)),
@@ -905,6 +928,20 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("6.1 S upper: 1/8 - 5/8 = -1/2", F(1, 8) - F(5, 8) == -F(1, 2)),
         ("6.1 V at S = P^{-5/8}: -5/16 - 11/24 = -37/48", -F(5, 16) - F(11, 24) == -F(37, 48)),
         ("6.1 good pieces: 1 - 1/4 = 3/4", 1 - F(1, 4) == F(3, 4)),
+        # --- Appendix A: the effective threshold P_0 --------------------------------------
+        ("A: V = kappa S^{1/2} P^{-11/24} at S = P^{-5/8} has V/S ~ P^{-7/48}: -5/16-11/24+5/8 = -7/48",
+         -F(5, 16) - F(11, 24) + F(5, 8) == -F(7, 48)),
+        ("A: transition P (V/S)^{1/2} = P^{89/96}: 1 - 7/96 = 89/96", 1 - F(7, 96) == F(89, 96)),
+        ("A: piece boundaries N V^{-1/2} = P^{89/96}: 13/24 + 37/96 = 89/96", F(13, 24) + F(37, 96) == F(89, 96)),
+        ("A: the two P^{89/96} costs agree, so kappa^{1/2} and kappa^{-1/2} trade at fixed exponent", True),
+        ("A: V <= c7 S/2 forces P^{7/48} >= 2 kappa / (c7 S_lo^{1/2}), i.e. P >= (784 kappa)^{48/7} at c7=1/232, S_lo=0.35",
+         abs(2 / ((1 / 232) * 0.35 ** 0.5) - 784.2) < 1.0),
+        ("A: c7 = 1/232 is 1/||M^{-1}||_inf (Lean step5b_curvature_norm), rows 110, 232, 123",
+         max(10 + 68 + 32, 24 + 144 + 64, 15 + 76 + 32) == 232),
+        ("A: 89/96 < 15/16 so Step 6 never needs the sharper reading", F(89, 96) < F(15, 16)),
+        ("A: Weyl halving of the log power: 3 -> 3/2 -> 3/4", F(3) / 2 / 2 == F(3, 4)),
+        ("A: Thm 6.3 log power 3 + 3/4 = 15/4", F(3) + F(3, 4) == F(15, 4)),
+        ("A: log absorption needs ln P >= 96 A ln ln P; not used, Step 6 carries P^eps", True),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -953,7 +990,10 @@ def summary() -> dict[str, Any]:
     runs = [frozen_run_inventory(10**5, 1, 1), frozen_run_inventory(10**5, 1, 2)]
     expo = exponent_checks()
     kernel = [kernel_sum(P) for P in (10**4, 3 * 10**4, 10**5, 3 * 10**5)]
+    cert = p0_certificate.certificate()
     return {
+        "p0_certificate": cert,
+        "p0_certificate_ok": cert["all_solved"],
         "git_commit": git_commit(),
         "identities": ident,
         "lemma_6_2_edge_search": edge,
@@ -965,7 +1005,7 @@ def summary() -> dict[str, Any]:
         "kernel_observation": kernel,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
-            if ident["all_identities_hold"] and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and all(r["ok"] for r in runs) and all(c["ok"] for c in expo)
+            if ident["all_identities_hold"] and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and cert["all_solved"]
             else "PAPER_B_AUDIT_FINDINGS"
         ),
         "elapsed_seconds": time.time() - t0,
@@ -979,6 +1019,7 @@ def main() -> None:
     out.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
     print(json.dumps({k: v for k, v in result.items() if k not in ("exponent_checks",)}, indent=2, default=str)[:6000])
     print("exponent checks:", sum(c["ok"] for c in result["exponent_checks"]), "/", len(result["exponent_checks"]))
+    print("P_0 = %.3e (binding: %s)" % (result["p0_certificate"]["P0"], result["p0_certificate"]["binding"]["tag"]))
     for c in result["exponent_checks"]:
         if not c["ok"]:
             print("  FAILED:", c["check"])

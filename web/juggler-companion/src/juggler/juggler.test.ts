@@ -658,7 +658,7 @@ describe("excursion necklace", () => {
     expect(blockExponent(3).approx).toBeCloseTo(27 / 16);
   });
 
-  it("ships the four Movement-1 presets and does not rewalk them", () => {
+  it("ships every Movement-1 preset and does not rewalk them", () => {
     for (const preset of NECKLACE_PRESETS) {
       const view = resolveNecklace(preset.n, preset.word);
       expect(view?.source).toBe("shipped");
@@ -667,6 +667,17 @@ describe("excursion necklace", () => {
     }
     const note = resolveNecklace(37n, "OOOOEOOOEEOOEEEEE");
     expect(note?.states).toContain(NOTE_PEAK_37);
+    const peak = resolveNecklace(173n, NECKLACE_PRESETS.find((row) => row.id === "173")!.word);
+    expect(peak?.source).toBe("shipped");
+    expect(peak?.states.at(-1)).toBe(1n);
+    const bits = resolveNecklace(2183n, NECKLACE_PRESETS.find((row) => row.id === "2183")!.word);
+    expect(bits?.source).toBe("shipped");
+    expect(bits?.states.at(-1)).toBe(1n);
+    expect(Math.max(...bits!.states.map((state) => state.toString().length))).toBeGreaterThan(4_000);
+    const delay = resolveNecklace(3889n, NECKLACE_PRESETS.find((row) => row.id === "3889")!.word);
+    expect(delay?.source).toBe("shipped");
+    expect(delay?.states).toHaveLength(81);
+    expect(delay?.states.at(-1)).toBe(1n);
     expect(resolveNecklace(12n, "OOE")?.source).toBe("live");
     const figure = necklaceFigure(note!);
     expect(JSON.stringify(figure).includes("note peak") || figure.labels.includes("24906114455136")).toBe(true);
