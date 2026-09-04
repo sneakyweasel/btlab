@@ -23902,3 +23902,80 @@ Best next question
 - back to Lemma 5.2(i) Stages 1-5, the human reading, which is still the
   gate on the strongest result in the corpus
 ```
+
+
+### Paper A #2: the walk charge's ceiling, and the window extended 55x
+
+Asked whether the walk charge's ~x8 advantage is a hard ceiling or an artifact
+of block-certification depth. It is neither, and the two halves of the question
+have opposite answers.
+
+**The x8 is intrinsic, and it is ~0.44 ln n'.** The charge prices a state at
+exponent \(u\) by \(f(u)=1/(x\ln x)\) with \(x=(n')^{2^u}\), so
+\(f(u)/f(0)=2^{-u}e^{-(2^u-1)\ln n'}\) --- doubly exponential decay in \(u\).
+Only the window \(u\in[0,O(1/(\ln3\ln n')))\) contributes, which is *the same
+quantity* Theorem 5.8 already has on its right-hand side. So the advantage over
+the length-only parity charge grows like \(\ln n'\). Measured at \(L=50508\) on
+the GPU lattice program over ten orders of magnitude in the floor, the ratio
+improvement/\(\ln n'\) runs 0.461, 0.451, 0.446, 0.445, 0.439, 0.432, 0.427 at
+\(n_0=10^6,2.6\cdot10^7,1.6\cdot10^8,3.5\cdot10^8,10^{10},10^{13},10^{16}\):
+**constant to 7.7%**. Practical content: **doubling the walk charge's efficiency
+requires squaring the descent floor.** A real improvement must come from a
+charge that does not concentrate on the \(u\approx0\) window.
+
+**It is not envelope- or certification-limited.** The census-free envelope and
+the exact lattice program differ by 0.07% at \(L=50508\) (1.1196 vs 1.1204,
+the paper's own cross-check), so the envelope is not lossy. And the
+certification depth has room to spare --- which is the second half.
+
+**Theorem 5.8's window extends from \([50508,301994)\) to
+\([50508,16785921)\), free.** The window ended at \(q_{13}\) because the printed
+quotient list did; but `OstrowskiSandwich.lean` already certifies
+\(2^{16785921}<3^{10590737}\) and \(3^{10781274}<2^{17087915}\), i.e. \(q_{14}\)
+and \(q_{15}\). And the criterion *gets easier* further out: a greedy Ostrowski
+digit \(b_j=c\) forces \(L\ge c\,q_j\), so a large digit sum cannot occur at a
+small \(L\). On \([q_{13},q_{14})\) that gives
+\(2s(L)/L\le2(b+47)/(b\,q_{13})\le3.18\cdot10^{-4}\), an order below the small
+end; an exhaustive scan puts the true maximum at \(9.3766\cdot10^{-4}\) at
+\(L=74654\) (\(s=35\)). Against the criterion, which I reconstructed in closed
+form as \((2\ln n'-6)/(\ln3(\ln n')^3)\) --- reproducing the paper's printed
+\(5.14\cdot10^{-3}\) at \(\ln n'=17.07\) to three digits --- the headroom is
+x5.5, x4.6, x4.3, x4.1 at the four floors, and the window survives floors to
+\(n'\approx2.8\cdot10^{18}\).
+
+**Why that matters:** \(q_{14}=16785921=L_{55}\) is exactly the end of the
+semiconvergent fan (Prop 5.12). So the window now covers the *whole fan*, and
+Corollaries 5.10 and 5.11's disclaimer --- "survivor lengths above 301994 lie
+beyond the window; each kill there is a direct certified evaluation, not an
+instance of the window theorem" --- is gone. Every kill along the fan is now
+census-free, with the per-length program kept only as a cross-check. No
+per-length computation remains in the argument up to \(L=16785921\).
+
+New: Theorem 5.8 restated and reproved on the extended window; Remark 5.8a (the
+\(0.44\ln n'\) law); `theta_denominators`, `ostrowski_digit_sum`,
+`window_criterion`, `window_scan`, `window_headroom`, `walk_improvement_law` in
+the audit; 7 tests (39 total in Paper A's file, 2410 overall).
+
+```text
+What was learned
+- the walk charge's advantage is 0.44 ln n', constant to 8% over ten
+  orders: doubling it means squaring the floor
+- the window theorem stopped at q_13 only because the printed quotient
+  list did; the sandwich already reaches q_14, and the digit criterion
+  is easier further out because a big digit forces a big L
+Strongest theorem
+- Theorem 5.8 on [50508, 16785921), covering the entire fan, with x4+
+  headroom at every certified floor
+Strongest refutation
+- "the window theorem needs deeper certified quotients beyond q_13" --
+  it does not; it needed the bound restated structurally
+Reusable machinery
+- window_criterion (closed form), window_scan, walk_improvement_law
+Branch status
+- ADVANCE (census-free across the whole fan; the x8 quantified and closed)
+Why
+- one half was free, the other half is now known to be a dead end
+Best next question
+- a charge that does not concentrate on u ~ 0; without one, the walk
+  charge is finished as a lever
+```

@@ -377,6 +377,90 @@ def predicted_kill_floor(L: int, floor: int, beta: float | None = None) -> float
     return hi
 
 
+# --- Section 5.6: the window theorem, extended, and what the walk charge can buy ---
+
+# Certified partial quotients of the rotation number (OstrowskiSandwich.lean reaches q_14, q_15).
+THETA_QUOTIENTS = (0, 2, 1, 2, 2, 3, 1, 5, 2, 23, 2, 2, 1, 1, 55, 1, 4)
+WINDOW_LO = 50508
+WINDOW_HI_OLD = 301994          # q_13, the range the draft proved
+WINDOW_HI = 16785921            # q_14, and L_55: the end of the fan
+
+
+def theta_denominators() -> list[int]:
+    q, prev = [1], 0
+    for a in THETA_QUOTIENTS[1:]:
+        nq = a * q[-1] + prev
+        prev = q[-1]
+        q.append(nq)
+    return q
+
+
+def ostrowski_digit_sum(L: int, qs: list[int] | None = None) -> int:
+    """Greedy Ostrowski digit sum of L over the certified denominators."""
+    qs = theta_denominators()[:15] if qs is None else qs
+    s, r = 0, L
+    for j in range(len(qs) - 1, -1, -1):
+        if qs[j] <= r:
+            b, r = divmod(r, qs[j])
+            s += b
+    return s
+
+
+def window_criterion(ln_n: float) -> float:
+    """The right-hand side of Theorem 5.8 in closed form.
+
+    1/(ln3 ln n') - C_*(n') = (2 ln n' - 6)/(ln3 (ln n')^3); reproduces the printed
+    5.14e-3 at ln n' = 17.07.
+    """
+    return (2 * ln_n - 6) / (math.log(3) * ln_n**3)
+
+
+def window_scan(lo: int = WINDOW_LO, hi: int = 2_000_000) -> dict[str, Any]:
+    """max 2 s(L)/L over an exhaustive range, plus the analytic bound above it.
+
+    The maximum sits at the *small* end: a digit b_j = c forces L >= c q_j, so a large digit
+    sum cannot occur at a small L.  On [q_13, q_14) that gives 2(b+47)/(b q_13) <= 3.18e-4.
+    """
+    qs = theta_denominators()[:15]
+    best, arg = 0.0, 0
+    for L in range(lo, hi):
+        v = 2 * ostrowski_digit_sum(L, qs) / L
+        if v > best:
+            best, arg = v, L
+    tail = max(2 * (b + 47) / (b * WINDOW_HI_OLD) for b in range(1, 56))
+    return {"scanned": (lo, hi), "max_2s_over_L": best, "argmax": arg,
+            "digit_sum_at_argmax": ostrowski_digit_sum(arg, qs),
+            "tail_bound_above_q13": tail, "window_max": max(best, tail)}
+
+
+def window_headroom() -> list[dict[str, Any]]:
+    """Theorem 5.8's headroom at each certified floor, on the extended window."""
+    m = 9.3766e-4                                    # window_scan()["window_max"], cached
+    out = []
+    for N0, _b, site in FLOORS:
+        ln = math.log(N0)
+        c = window_criterion(ln)
+        out.append({"N0": N0, "site": site, "ln_n": ln, "criterion": c,
+                    "window_max": m, "headroom": c / m, "holds": c > m})
+    return out
+
+
+def walk_improvement_law() -> dict[str, Any]:
+    """Remark 5.8a: the walk charge's advantage over parity is ~0.44 ln n'.
+
+    Measured at L = 50508 on the GPU lattice program over ten orders of magnitude in the
+    floor.  The charge f(u) = 1/(x ln x) at x = n'^(2^u) decays doubly exponentially in u,
+    so only u in [0, O(1/(ln3 ln n'))) contributes -- the same quantity as Theorem 5.8.
+    """
+    measured = {1e6: 6.3686, 26254995: 7.6983, 162849448: 8.4409, 350000000: 8.7521,
+                1e10: 10.1151, 1e13: 12.9210, 1e16: 15.7247}
+    rows = [{"n0": n, "ln_n": math.log(n), "improvement": v, "ratio": v / math.log(n)}
+            for n, v in sorted(measured.items())]
+    rs = [r["ratio"] for r in rows]
+    return {"rows": rows, "ratio_range": (min(rs), max(rs)),
+            "spread": (max(rs) - min(rs)) / (sum(rs) / len(rs))}
+
+
 def summary(Lmax: int = 200000) -> dict[str, Any]:
     rec = [{"L": L, "printed": v, "recomputed": (g := n_max(L)), "ok": g == v}
            for L, v in RECORD_NMAX]
@@ -409,6 +493,9 @@ def summary(Lmax: int = 200000) -> dict[str, Any]:
         "predicted_kill_floor_780239": predicted_kill_floor(780239, 350000000),
         "measured_kill_floor_780239": WALK_KILL_FLOOR_780239,
         "conditional_bound": {"floor": CONDITIONAL_FLOOR, "period": CONDITIONAL_BOUND},
+        "window": {"lo": WINDOW_LO, "hi": WINDOW_HI, "hi_superseded": WINDOW_HI_OLD,
+                   "headroom": window_headroom()},
+        "walk_improvement_law": walk_improvement_law(),
         "Lmax": Lmax,
     }
 

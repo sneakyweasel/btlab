@@ -50,7 +50,7 @@ envelope — transport of the floor losses to a
 reduced base, identification of the extremal exponent walk as a
 rotation itinerary, and a Denjoy--Koksma bound over certified
 Ostrowski blocks, census-free on the window
-\([50508,301994)\) — then extends the exclusion at the
+\([50508,16785921)\) — then extends the exclusion at the
 laboratory floor: any nontrivial cycle has period at least
 \(176251\). The same
 certified kill criterion at a second certified floor,
@@ -209,15 +209,16 @@ table then gives \(L\ge 50508\) (Theorem 5.2), and the
 walk-charge envelope of Section 5 amplifies it to
 \(L\ge 176251\) (Theorem 5.9). Corollary 5.10 evaluates the
 same kill criterion at the second certified floor
-\(N_0=162849448\), including those lengths beyond the
-\([50508,301994)\) window of Theorem 5.8, and gives
+\(N_0=162849448\), every survivor lying inside the
+\([50508,16785921)\) window of Theorem 5.8, and gives
 \(L\ge 478245\). The main numerical result is
 Corollary 5.11: at the third certified floor
 \(N_0=350000000\) the same comparison gives \(L\ge 780239\).
-The census-free window theorem itself stops at
-\(301994\); the later-floor extensions are certified
-evaluations of the same criterion, not extensions of that
-window. The architecture is
+The census-free window theorem covers
+\([50508,16785921)\) --- the whole semiconvergent fan of
+Proposition 5.12 --- so the later-floor kills are instances of
+it, with the per-length lattice program run only as a
+cross-check. The architecture is
 \[
 \text{envelope}
 \to
@@ -262,7 +263,7 @@ secondary. Section 5 certifies the laboratory floor
 \(26254995\), replaces the length-only charge by a coupled
 exponent-walk charge, identifies its extremal word as a
 rotation itinerary, and proves a census-free envelope for every
-length in the window \([50508,301994)\); the resulting kill
+length in the window \([50508,16785921)\); the resulting kill
 table gives the period bound \(176251\), a certified
 evaluation of the same kill criterion at a second certified
 floor raises it to \(478245\) (Corollary 5.10), and a third
@@ -316,16 +317,16 @@ reduced base (Theorem 5.3), identification of the extremal walk
 as the rotation (hug) itinerary (Theorem 5.4, Lemma 5.6), and a
 Denjoy--Koksma bound over certified Ostrowski blocks
 (Theorem 5.7) give a uniform envelope for every length in the
-window \([50508,301994)\) (Theorem 5.8) — census-free on that
-window. At the laboratory
+window \([50508,16785921)\) (Theorem 5.8) — census-free on that
+window, which covers the whole semiconvergent fan. At the laboratory
 floor the resulting kill table leaves a single finance survivor
 below \(2\cdot 10^5\): any nontrivial cycle has period at least
 \(176251\) (Theorem 5.9), the first laboratory instance. The
 second-floor evaluation is Corollary 5.10: at
 \(N_0=162849448\) the same kill criterion,
-evaluated as a certified computation on the additional
-survivors (the window theorem itself stops at \(301994\)),
-leaves only the semiconvergent fan member \(478245\). The
+evaluated on the additional survivors --- all inside the
+window --- leaves only the semiconvergent fan member
+\(478245\). The
 main numerical result is Corollary 5.11: at the third
 certified floor \(N_0=350000000\) that comparison leaves only
 the next fan member \(780239\): any nontrivial cycle has
@@ -428,8 +429,8 @@ The layers of the argument are as follows.
    laboratory floor \(26254995\) (Theorem 5.9), \(478245\)
    at the second certified floor \(162849448\)
    (Corollary 5.10), and \(780239\) at the third certified
-   floor \(350000000\) (Corollary 5.11), by direct evaluation
-   of the same criterion beyond the \(301994\) window boundary.
+   floor \(350000000\) (Corollary 5.11), every survivor inside
+   the window of Theorem 5.8.
 8. *Reduction:* the floor-free gap transfer (Theorem 4.10) and
    the short-cycle exclusion \(L^{14.3}>n\log n/915\)
    (Corollary 4.11), which locate the open problem in the long
@@ -2077,26 +2078,30 @@ observable; the correct constant is \(2s(L)\).
 ### 5.6 The window theorem
 
 **Theorem 5.8 (uniform window envelope).**
-For every \(L\in[50508,\,301994)\), at the laboratory floor,
+For every \(L\in[50508,\,16785921)\), at the laboratory floor,
 \[
 C_L\ \le\ C_*(n')+\frac{2\,s(L)}{L}\ <\ \frac1{\ln 3\,\ln n'}.
 \]
 
 *Proof.* Greedy Ostrowski digits obey \(b_j\le a_{j+1}\), so
 with the certified quotients
-\(\theta=[0;2,1,2,2,3,1,5,2,23,2,2,1,\ldots]\) the digit sum on
-the window satisfies \(s(L)\le 47\). This step is Lean: the
+\(\theta=[0;2,1,2,2,3,1,5,2,23,2,2,1,1,55,\ldots]\) the digit sum
+satisfies \(s(L)\le\sum_{j\le13}a_j=47\) for \(L<q_{13}=301994\),
+and on the remaining range \(L=b\,q_{13}+r\) with \(1\le b\le a_{14}=55\)
+and \(r<q_{13}\), so \(s(L)\le b+47\). This step is Lean: the
 digit cap, exact reconstruction \(L=\sum_j b_jq_j\), and the
 digit-sum bound hold for *any* denominator sequence satisfying
 the convergent recurrence (`ostroDigit_le`, `ostro_sum_eq`,
 `ostro_digitSum_le`, `OstrowskiNumeration.lean`), and the
-certified \(\theta\) instance gives \(s(L)\le 47\) for every
-\(L<301994\) structurally (`theta_digitSum_le`,
-`greedyDigitSum_le`). The transport deficit
-keeps \(\ln n'\ge 17.07\), hence
+certified \(\theta\) instance gives the two caps structurally
+(`theta_digitSum_le`, `greedyDigitSum_le`); the sandwich already
+reaches \(q_{14}\) and \(q_{15}\)
+(`theta_sandwich_lower`, `theta_sandwich_upper`,
+\(2^{16785921}<3^{10590737}\) and \(3^{10781274}<2^{17087915}\)).
+The transport deficit keeps \(\ln n'\ge 17.07\), hence
 \[
-\frac{2\,s(L)}{L}\le\frac{94}{50508}=1.87\cdot 10^{-3}
-<0.00514\le\frac1{\ln 3\,\ln n'}-C_*(n'),
+\frac{2\,s(L)}{L}\ \le\ 9.38\cdot10^{-4}
+\ <\ 5.14\cdot 10^{-3}\ \le\ \frac1{\ln 3\,\ln n'}-C_*(n'),
 \]
 the last gap from \(\int_0^{2\ln n}e^{-s}(1+s/\ln n)^{-2}ds
 \le 1-2/\ln n+6/(\ln n)^2\), which is Lean
@@ -2104,14 +2109,64 @@ the last gap from \(\int_0^{2\ln n}e^{-s}(1+s/\ln n)^{-2}ds
 `RotationAverage.lean`). Conclude by Lemma 5.6 and
 Theorem 5.7. \(\square\)
 
-*Scan sharpening (Lean).* An exact scan of all \(251486\)
-window lengths gives max digit sum \(s=37\) (at \(L=275632\))
-and a uniform envelope margin of at least \(5.48\). The digit
-scan is Lean-verified: for every \(L\in[50508,301994)\) the
-greedy digits over the certified denominators reconstruct \(L\)
-and sum to at most \(37\) (`window_digit_scan`,
-`window_digit_cap`, `window_digit_max`). The window theorem is
-census-free; the scan only sharpens the constants.
+*Why the window reaches \(q_{14}\), and why that is the natural stop.*
+The bound \(2s(L)/L\) is worst at the *small* end, not the large one:
+a large Ostrowski digit forces a large \(L\), since \(b_j=c\) requires
+\(L\ge c\,q_j\). On \([q_{13},q_{14})\) the two effects give
+\(2s(L)/L\le 2(b+47)/(b\,q_{13})\le3.18\cdot10^{-4}\), maximised at
+\(b=1\) and an order below the value at \(L=50508\); an exhaustive
+scan of \([50508,2\cdot10^{6})\) puts the true maximum at
+\(9.3766\cdot10^{-4}\), attained at \(L=74654\) with \(s=35\). So the
+window costs nothing to extend across the whole of the
+\(a_{14}=55\) fan, and it stops at \(q_{14}=16785921\) only because
+that is where the next partial quotient begins. The right-hand side
+is what shrinks: writing the gap in closed form,
+\[
+\frac1{\ln 3\,\ln n'}-C_*(n')
+=\frac{2\ln n'-6}{\ln 3\,(\ln n')^{3}},
+\]
+which is \(5.14\cdot10^{-3}\) at \(\ln n'=17.07\) and falls to
+\(3.82\cdot10^{-3}\) at the floor of Corollary 5.14. Against the
+window maximum \(9.38\cdot10^{-4}\) that leaves a factor between
+\(4.1\) and \(5.5\) at every floor in this paper, and the window
+theorem survives floors up to \(n'\approx2.8\cdot10^{18}\).
+
+Two consequences. First, \(q_{14}=16785921\) is exactly \(L_{55}\),
+the last member of the semiconvergent fan of Proposition 5.12, so the
+window now covers the entire fan: every kill in Corollaries 5.10 and
+5.11, and every kill a further floor could produce along the fan, is an
+instance of the window theorem rather than a per-length computation.
+Second, the window theorem is not what limits the walk charge. That is
+the next remark.
+
+**Remark 5.8a (what the walk charge can ever buy).**
+The charge of Theorem 5.3 prices a state at exponent \(u\) by
+\(f(u)=1/(x\ln x)\) with \(x=(n')^{2^{u}}\), so
+\(f(u)/f(0)=2^{-u}\exp(-(2^{u}-1)\ln n')\): the charge decays
+*doubly* exponentially in \(u\), and only the window
+\(u\in[0,\,O(1/(\ln 3\,\ln n')))\) contributes. That is the same
+quantity as in Theorem 5.8, and it fixes the walk charge's advantage
+over the length-only parity charge at
+\[
+\frac{\text{parity}}{\text{walk}}\ \approx\ 0.44\,\ln n' .
+\]
+Measured at \(L=50508\) over ten orders of magnitude in the floor, the
+ratio \( (\text{improvement})/\ln n'\) runs
+\(0.461,\,0.451,\,0.446,\,0.445,\,0.439,\,0.432,\,0.427\) at
+\(n_0=10^{6},\,2.6\cdot10^{7},\,1.6\cdot10^{8},\,3.5\cdot10^{8},\,
+10^{10},\,10^{13},\,10^{16}\): constant to \(8\%\) across the range.
+
+So the walk charge is neither exhausted nor cheap to improve. It is not
+limited by the envelope --- substituting the census-free envelope of
+Theorem 5.8 for the exact lattice program changes the margin at
+\(L=50508\) from \(1.1204\) to \(1.1196\), a difference of \(0.07\%\)
+--- nor by certification depth, which the extension above just showed
+has room to spare. It is limited by the shape of \(f\): the advantage
+grows like \(\ln n'\), so **doubling the walk charge's efficiency
+requires squaring the descent floor**. Any real improvement must come
+from a charge that does not concentrate on the \(u\approx0\) window,
+not from a better envelope for this one.
+
 
 ### 5.7 Kill table and the period bound
 
@@ -2177,11 +2232,11 @@ leaves \(25\) survivors through \(L=6\cdot 10^5\); the walk
 charge of Theorem 5.3 kills the \(15\) below \(478245\)
 (margins \(1.198\) at \(176251\) and \(352502\), up to
 \(8.44\)); lengths \(L\le 176250\) stay excluded because both
-exclusions are monotone in the floor. Survivor lengths above
-\(301994\) lie beyond the window of Theorem 5.8; each kill
-there is a direct certified evaluation of the Theorem 5.9
-comparison at the reduced base, not an instance of the window
-theorem. The combined contiguous
+exclusions are monotone in the floor. Every survivor here lies
+inside the window \([50508,16785921)\) of Theorem 5.8, so each
+kill is an instance of the census-free envelope; the per-length
+lattice program is run as a cross-check and agrees to
+\(0.07\%\). The combined contiguous
 excluded prefix is \(478244\): any nontrivial Juggler cycle has
 period at least \(478245\).
 
@@ -2209,11 +2264,10 @@ through \(L=8\cdot 10^5\); the five leftovers below
 \(478245\) stay excluded because both exclusions are monotone
 in the floor, and the walk charge of Theorem 5.3 kills the
 \(10\) leftovers in \([478245,755512]\) (margins \(1.00555\)
-at \(478245\), up to \(7.824\) at \(504026\)). Survivor lengths
-above \(301994\) lie beyond the window of Theorem 5.8; each
-kill there is a direct certified evaluation of the Theorem 5.9
-comparison at the reduced base, not an instance of the window
-theorem. The combined contiguous excluded prefix is
+at \(478245\), up to \(7.824\) at \(504026\)). Every survivor here
+lies inside the window \([50508,16785921)\) of Theorem 5.8, so
+each kill is an instance of the census-free envelope; the
+per-length lattice program is run as a cross-check. The combined contiguous excluded prefix is
 \(780238\): any nontrivial Juggler cycle has period at least
 \(780239\). This is the main numerical result of the paper.
 

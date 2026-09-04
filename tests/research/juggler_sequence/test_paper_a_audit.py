@@ -216,3 +216,65 @@ def test_the_new_bound_is_the_next_fan_member() -> None:
     assert A.CONDITIONAL_BOUND == A.fan_length(3)
     assert A.WALK_KILL_FLOOR_780239 < A.n_max(780239)
     assert A.CONDITIONAL_FLOOR / 350000000 < 1.6      # only 1.58x the present floor
+
+
+# --- Section 5.6: the extended window, and the walk charge's ceiling ---
+
+
+def test_certified_denominators_reach_q14() -> None:
+    """OstrowskiSandwich.lean pins theta between 6195184/16785921 and 6306641/17087915."""
+    q = A.theta_denominators()
+    assert q[:15] == [1, 2, 3, 8, 19, 65, 84, 485, 1054, 24727, 50508,
+                      125743, 176251, 301994, 16785921]
+    assert A.WINDOW_HI == q[14] == A.fan_length(55)      # the window ends where the fan does
+
+
+def test_digit_sum_cap_is_the_sum_of_quotients() -> None:
+    """s(L) <= sum(a_1..a_13) = 47 below q_13; the paper's printed cap."""
+    assert sum(A.THETA_QUOTIENTS[1:14]) == 47
+    for L in (50508, 176251, 301993):
+        assert A.ostrowski_digit_sum(L) <= 47
+
+
+def test_window_maximum_is_at_the_small_end() -> None:
+    """A large digit forces a large L, so 2 s(L)/L is worst near 50508, not near q_14."""
+    w = A.window_scan(hi=400_000)
+    assert w["argmax"] < 100_000
+    assert w["tail_bound_above_q13"] < w["max_2s_over_L"]     # the tail is an order lower
+    assert 9.3e-4 < w["max_2s_over_L"] < 9.4e-4
+
+
+def test_window_criterion_reproduces_the_printed_value() -> None:
+    """(2 ln n - 6)/(ln3 (ln n)^3) = 5.14e-3 at ln n = 17.07, as Theorem 5.8 prints."""
+    assert abs(A.window_criterion(17.07) - 0.00514) < 1e-4
+
+
+def test_extended_window_holds_at_every_certified_floor() -> None:
+    for h in A.window_headroom():
+        assert h["holds"], h
+        assert h["headroom"] > 4.0
+    # and it survives far beyond any floor contemplated
+    assert A.window_criterion(math.log(2.0e18)) > 9.3766e-4
+    assert A.window_criterion(math.log(1.0e19)) < 9.3766e-4
+
+
+def test_walk_improvement_is_proportional_to_log_floor() -> None:
+    """Remark 5.8a: parity/walk ~ 0.44 ln n', constant to 8% over ten orders."""
+    law = A.walk_improvement_law()
+    lo, hi = law["ratio_range"]
+    assert 0.42 < lo and hi < 0.47
+    assert law["spread"] < 0.10
+    # monotone decreasing: the lower-order term in the u-window integral
+    ratios = [r["ratio"] for r in law["rows"]]
+    assert ratios == sorted(ratios, reverse=True)
+
+
+def test_doubling_the_walk_charge_requires_squaring_the_floor() -> None:
+    """The practical content of Remark 5.8a."""
+    c = 0.44
+    at_floor = c * math.log(3.5e8)
+    at_square = c * math.log(3.5e8**2)
+    assert abs(at_square / at_floor - 2.0) < 1e-12       # exactly, since ln(n^2) = 2 ln n
+    # and the measured law agrees with the constant used here
+    rows = {r["n0"]: r for r in A.walk_improvement_law()["rows"]}
+    assert abs(rows[350000000]["improvement"] - c * math.log(350000000)) < 0.3
