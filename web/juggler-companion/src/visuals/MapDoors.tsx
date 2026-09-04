@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { NOTE_TRAJECTORY_3 } from "../juggler/constants";
 import { formatInt } from "../juggler/format";
 import { bitLength, letterOf } from "../juggler/map";
@@ -14,12 +14,16 @@ type MapDoorsProps = {
   sparseScale?: boolean;
   stepComputation?: ReactNode;
   side?: ReactNode;
+  fillPlot?: boolean;
   onSelect?: (index: number) => void;
 };
 
 const PLOT_LEFT = 64;
 const PLOT_RIGHT = 548;
 const PLOT_WIDTH = 572;
+const PLOT_HEIGHT = 272;
+const PLOT_TOP = 28;
+const PLOT_BOTTOM = 16;
 
 function log10Of(state: bigint): number {
   if (state <= 1n) return 0;
@@ -148,21 +152,43 @@ function TrajectoryPlot({
   states,
   active,
   sparseScale = false,
+  fill = false,
   onSelect,
 }: {
   states: readonly bigint[];
   active?: number;
   sparseScale?: boolean;
+  fill?: boolean;
   onSelect?: (index: number) => void;
 }) {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [viewH, setViewH] = useState(PLOT_HEIGHT);
+  useLayoutEffect(() => {
+    if (!fill) {
+      setViewH(PLOT_HEIGHT);
+      return;
+    }
+    const el = hostRef.current;
+    if (!el) return;
+    const sync = () => {
+      const width = el.clientWidth;
+      const height = el.clientHeight;
+      if (width <= 0 || height <= 0) return;
+      setViewH(Math.max(PLOT_HEIGHT, (height / width) * PLOT_WIDTH));
+    };
+    sync();
+    const observer = new ResizeObserver(sync);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [fill]);
   const logs = states.map((state) => log10Of(state));
   const dataMin = Math.min(...logs, 0);
   const dataMax = Math.max(...logs, 1);
   const { lo: min, hi: max } = niceLogExpDomain(dataMin, dataMax);
   const left = PLOT_LEFT;
   const right = PLOT_RIGHT;
-  const top = 28;
-  const height = 228;
+  const top = PLOT_TOP;
+  const height = viewH - PLOT_TOP - PLOT_BOTTOM;
   const ticks = sparseScale
     ? sparseExponents(min, max).map((exp) => ({ exp, major: true }))
     : logTicks(min, max);
@@ -179,8 +205,12 @@ function TrajectoryPlot({
   const shortTrajectory = states.length <= 10;
   const [hover, setHover] = useState<number | null>(null);
   const hoverPoint = hover === null ? null : points[hover];
-  return (
-    <svg viewBox={`0 0 ${PLOT_WIDTH} 272`} role="img" className="h-auto w-full">
+  const svg = (
+    <svg
+      viewBox={`0 0 ${PLOT_WIDTH} ${viewH}`}
+      role="img"
+      className={fill ? "h-full w-full" : "h-auto w-full"}
+    >
       <title>Juggler trajectory, logarithmic value scale</title>
       {ticks.map((tick) => {
         const y = plotYLog(tick.exp, min, max, top, height);
@@ -308,6 +338,12 @@ function TrajectoryPlot({
       ) : null}
     </svg>
   );
+  if (!fill) return svg;
+  return (
+    <div ref={hostRef} className="h-full min-h-0 w-full">
+      {svg}
+    </div>
+  );
 }
 
 export function MapDoors({
@@ -321,6 +357,7 @@ export function MapDoors({
   sparseScale = false,
   stepComputation,
   side,
+  fillPlot = false,
   onSelect,
 }: MapDoorsProps) {
   const evenActive = highlight !== "odd";
@@ -333,17 +370,24 @@ export function MapDoors({
         <div className="rounded-2xl border border-line bg-paper px-4 py-2.5">{controls}</div>
       ) : null}
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-stretch">
-        <div className="rounded-2xl border border-line bg-card px-3 py-3">
-          <h3 className="px-1 text-center font-serif text-lg">{heading}</h3>
-          <TrajectoryPlot
-            states={states}
-            active={active}
-            sparseScale={sparseScale}
-            onSelect={onSelect}
-          />
+        <div
+          className={`rounded-2xl border border-line bg-card px-3 py-3 ${
+            fillPlot ? "flex h-full min-h-[28rem] flex-col" : ""
+          }`}
+        >
+          <h3 className="shrink-0 px-1 text-center font-serif text-lg">{heading}</h3>
+          <div className={fillPlot ? "min-h-0 flex-1" : undefined}>
+            <TrajectoryPlot
+              states={states}
+              active={active}
+              sparseScale={sparseScale}
+              fill={fillPlot}
+              onSelect={onSelect}
+            />
+          </div>
           {axis ? (
             <div
-              className="-mt-1"
+              className="-mt-1 shrink-0"
               style={{
                 paddingLeft: `${(PLOT_LEFT / PLOT_WIDTH) * 100}%`,
                 paddingRight: `${((PLOT_WIDTH - PLOT_RIGHT) / PLOT_WIDTH) * 100}%`,
@@ -352,9 +396,13 @@ export function MapDoors({
               {axis}
             </div>
           ) : null}
-          {player ? <div className="pt-2">{player}</div> : null}
+          {player ? <div className="shrink-0 pt-2">{player}</div> : null}
         </div>
-        <div className="flex h-full min-w-0 flex-col justify-center gap-3 sm:w-[15rem]">
+        <div
+          className={`flex min-w-0 flex-col self-stretch ${
+            fillPlot ? "h-full sm:w-[18rem]" : side ? "sm:w-[18rem]" : "justify-center gap-3 sm:w-[15rem]"
+          }`}
+        >
           {side ?? (
             <>
               <BranchCard

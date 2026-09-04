@@ -23225,3 +23225,100 @@ Why
 Best next question
 - the remaining 25 threshold rows, then Lemma 5.1's master identity
 ```
+
+## Paper B: the Appendix A certificate proved (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Replace the floating-point bisection of the thirty Appendix A threshold rows by Lean proofs. Bisection in `Float` was the only inexact step in an otherwise exact chain.
+- **Result.** All thirty rows proved: `formal/Problems/Juggler/ThresholdCertificate.lean`, 32 row theorems (the window-boundary and \(\lambda_0\)-range rows split in two), 40 theorems in the file with the raised-threshold device and the \(|G-\delta|\le1\) sharpness. Certified \(P_0\le1.96^{48}=1.07\cdot10^{14}\) against the bisected \(8.9\cdot10^{13}\) — the rational thresholds cost under 20%.
+- **What made it cheap:** every exponent in the paper lies in \((1/96)\mathbb Z\), so \(P=t^n\) turns each row into a polynomial inequality in \(t\). No `Real.rpow` anywhere. Two irrational constants are replaced by recorded rational bounds: \(\sqrt{0.35}\ge0.5916\) and \(\tfrac1{12}\sqrt{0.35}\le0.04931\).
+- **Three things the writing-out caught.** (1) The draft's `row_5b_Npieces` used \(t\ge2.4\), certifying \(P\ge1.8\cdot10^{18}\) — above \(P_0\) itself, so as stated it would have *set* the threshold; tightened to \(t\ge1.46\). (2) \(1.89^7=86.1\), not the \(94\) I had used. (3) \(105.8/698896=1.51382\cdot10^{-4}\), just above the \(1.5138\cdot10^{-4}\) written. None changes a printed figure; all three surfaced only because the statements had to pass `linarith`.
+- **Drift protection:** a test pins each Lean row's \(t_0^n\) against the probe's bisected threshold, and checks the tag sets match exactly.
+- **Not claimed:** the transcription gap is irreducible — Lean certifies each row as transcribed, not that the transcription matches the manuscript. Closing that would mean formalising the manuscript's statements.
+- **Decision:** consolidation. Paper B remains a working draft.
+
+```text
+What was learned
+- exponents in (1/96)Z make the whole certificate polynomial; the rpow
+  barrier that made this look expensive was not there
+- a lossy row is not harmless in a max: 2.4^48 would have set P_0
+- three hand-arithmetic slips in one sitting, all caught by linarith,
+  none caught by reading
+Strongest theorem
+- none new; P_0 <= 1.07e14 is now certified rather than computed
+Strongest refutation
+- none
+Reusable machinery
+- ThresholdCertificate.lean (40 thm), and the P = t^n substitution table
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- the arithmetic tier of Paper B is now machine-checked end to end
+Best next question
+- Lemma 5.1's master identity, still only sampled at 60 digits
+```
+
+## Paper B: Lemma 5.1's master identity proved (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Replace the probe's 60-digit sampling of Lemma 5.1 by proof. This was the last place in Sections 4–6 where a claim rested on samples rather than argument.
+- **Result.** `formal/Problems/Juggler/MasterIdentity.lean`, 10 theorems, building against Mathlib `v4.33.0`.
+- **(iv) reduces to one substitution plus `ring`.** The four-point product rule \(\Delta\Delta(cf)=c_{11}\Delta\Delta f+(\Delta_2c)(n{+}d_1)\Delta_1f+(\Delta_1c)(n{+}d_2)\Delta_2f+(\Delta\Delta c)f\), which the manuscript verifies "by expanding both sides", is `ring` on eight reals. Every carry substitution in (iv) is the single lemma \(\{y{+}w\}-\{y\}=\{w\}-\kappa\), a corollary of the Lemma 4.3(ii) carry identity already proved. The bracket bound \(\le 2\) then follows from \(\{\cdot\}\in[0,1)\), \(\kappa\in\{0,1\}\).
+- **(i) has a closed form, like Lemma 4.3(i).** With \(a=\sqrt v\), \(b=\sqrt Y\): \(R=\tfrac14(b-a)^2(2b+a)\) exactly; \(R\ge0\) by inspection and \(Ra\le\tfrac3{16}\theta_2^2\) reduces to \((a+3b)(a-b)\le0\). Same pattern as 4.3(i) — the level-1 and level-2 defects share it, which is not a coincidence: both are \(x^{3/2}\) evaluated at a point and its floor.
+- **The printed \(3/16\) is nearly sharp:** sampling odd \(n\le10^7\) gives \(R\sqrt v\) up to \(0.1867\) against \(0.1875\).
+- **Not covered:** Lemma 5.1(iii)'s branch-freeze inventory is analytic (two mean value theorems, the numerical ranges of \(\beta_i\)) and stays outside, as does everything downstream.
+- **Decision:** consolidation. Paper B remains a working draft.
+
+```text
+What was learned
+- the master identity has almost no content beyond ring plus one
+  fract-substitution lemma; its difficulty was presentational
+- the level-1 and level-2 defect remainders have the same closed form,
+  (1/2)(b-a)^2(2b+a) up to a factor, for the same reason
+- 3/16 in Lemma 5.1(i) is nearly attained, so it is not slack
+Strongest theorem
+- none new; the identities move from sampled to proved
+Strongest refutation
+- none
+Reusable machinery
+- MasterIdentity.lean (10 thm); carry / carry_as_sawtooth / fract_diff_level2
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- Sections 4-6 now have no claim resting on numerical sampling
+Best next question
+- Lemma 5.1(iii): the beta_i ranges are numeric and might be provable
+  from the mean value bounds, leaving only the two MVTs as hypotheses
+```
+
+## Paper B: Lemma 5.1(iii), the branch-freeze inventory (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** The last analytic part of Lemma 5.1. Contract as before: the two mean value theorems producing \(\xi_1,\xi_2\) are hypotheses; everything built on them is proved. `formal/Problems/Juggler/BranchFreeze.lean`, 16 theorems.
+- **Finding — the printed \(|G''|\) bound is not valid term by term.** \(G''=F''(X)X'^2+F'(X)X''\), and the two \(\beta_1\beta_2\) contributions are \(+81/64\) and \(-9/32\), of *opposite sign*, leaving \(63/64\). With \(\beta_1\beta_2\le19h_1h_2P\) that gives \(18.7\le25\); bounding the two separately gives \((99/64)\cdot19=29.4>25\). The displayed bound is correct, its obvious derivation is not, and nothing in the manuscript pointed at the cancellation. The \(j\)-terms cancel the same way (\(-27/32+9/16=-9/32\), printed \(2\)).
+- **Also proved:** the exact regrouping (an identity for any \(f\), no property of \(x^{3/2}\) used); \(|j|\le3\) from the corner floors \(\lfloor A+B+\varepsilon\rfloor-\lfloor A\rfloor-\lfloor B\rfloor\in\{-1,0,1,2\}\) plus three carries in \(\{0,1\}\); the \(\beta\)-product bound; the four derivative estimates; and the run-length constant \(22=2+20\).
+- **Smaller correction:** the manuscript's \((3\sqrt2)^2=18\) for \(\beta_1\beta_2\) drops the \(+1\)s in \(\beta_i\le3\sqrt2h_iP^{1/2}+1\); carried honestly it is \(\le19h_1h_2P\) for \(P\ge100\), which every later constant absorbs.
+- **Sampling (300 points):** the printed offset range is nearly attained at the bottom — ratio to \(|j|P^{3/4}\) over \([1.510,2.514]\) against printed \([1.5,2.6]\) — while \([1.4,15]\) for the second difference is never tested below \(6.75\). \(|G'|\) reaches 56% of its bound, \(|G''|\) 35%.
+- **Not claimed:** the two MVTs remain hypotheses, as does everything downstream of Lemma 5.1.
+- **Decision:** consolidation. Paper B remains a working draft.
+
+```text
+What was learned
+- a printed bound can be true only through a sign cancellation the text
+  never mentions; term-by-term reading of G'' gives 29.4 against 25
+- the offset lower bound 1.5 is nearly attained (1.510 observed), so it
+  is not slack; the second-difference range is very loose by comparison
+- the regrouping in (iii) uses no property of x^{3/2} at all
+Strongest theorem
+- none new
+Strongest refutation
+- none; one derivation gap and one dropped +1, neither changing a figure
+Reusable machinery
+- BranchFreeze.lean (16 thm); the n = s^4 substitution for G', G''
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- Lemma 5.1 is now covered end to end except its two mean value theorems
+Best next question
+- discharge the two MVTs from Mathlib, leaving Lemma 5.1 unconditional
+```

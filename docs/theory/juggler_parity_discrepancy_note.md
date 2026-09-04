@@ -1748,7 +1748,24 @@ bounded by \(2\) in absolute value: no unbounded smooth part
 survives the differencing.
 
 *Proof.* (i) Taylor of \((v+\theta_2)^{3/2}\) at \(v\), with
-\(Y^{3/2}=m^{9/4}\). (ii) The gap identity of Lemma 4.3(ii) applied
+\(Y^{3/2}=m^{9/4}\); as in Lemma 4.3(i) the mean value is avoidable,
+and the remainder has a closed form. Write \(a=\sqrt v\),
+\(b=\sqrt Y\), so \(\theta_2=b^2-a^2\) and \(m^{9/4}=b^3\). Then
+\[
+\tfrac34 a\,(b^2-a^2)
+=\tfrac12\bigl(b^3-a^3\bigr)-R,
+\qquad
+R=\tfrac14(b-a)^2(2b+a),
+\]
+identically; \(R\ge0\) by inspection, and
+\(Ra\le\tfrac3{16}\theta_2^2\) reduces to
+\((a+3b)(a-b)\le0\), which holds because \(v\le Y\). At
+\(\theta_2<1\) that is the printed
+\(R\le\tfrac3{16}v^{-1/2}\), and it is nearly sharp: sampling odd
+\(n\le10^7\) gives \(R\sqrt v\) up to \(0.1867\) against
+\(\tfrac3{16}=0.1875\) (Lean `lemma51_i_closed_form`,
+`lemma51_i_nonneg`, `lemma51_i_upper`, `lemma51_i_identity`).
+(ii) The gap identity of Lemma 4.3(ii) applied
 twice — to \(Y\) at shift \(d_1\), then to the real sequence
 \(n\mapsto W(n)\) at shift \(d_2\), with \(\Delta_2W=\Delta\Delta Y\);
 the sawtooth form of the carry is the displayed elementary identity.
@@ -1768,6 +1785,40 @@ value theorem. The displayed numerical bounds use
 \(G'=F'(X)X'\), \(G''=F''(X)X'^2+F'(X)X''\) with
 \(F'=\tfrac34j(\cdot)^{-1/2}-\tfrac38\beta_1\beta_2(\cdot)^{-3/2}\),
 \(F''=-\tfrac38j(\cdot)^{-3/2}+\tfrac9{16}\beta_1\beta_2(\cdot)^{-5/2}\).
+
+*The bound on \(G''\) is not term by term.* Writing \(n=s^4\), so that
+\(X=s^6\), \(X'=\tfrac32s^2\), \(X''=\tfrac34s^{-2}\), the two
+\(\beta_1\beta_2\) contributions to
+\(G''=F''(X)X'^2+F'(X)X''\) are
+\[
+\tfrac9{16}\cdot\tfrac94=\tfrac{81}{64}
+\quad\text{and}\quad
+-\tfrac38\cdot\tfrac34=-\tfrac9{32},
+\qquad
+\tfrac{81}{64}-\tfrac9{32}=\tfrac{63}{64},
+\]
+of *opposite sign*. With \(\beta_1\beta_2\le19h_1h_2P\) the combined
+coefficient gives \(\tfrac{63}{64}\cdot19=18.7\le25\); bounding the
+two separately gives \(\tfrac{99}{64}\cdot19=29.4\), which exceeds
+the printed \(25\). The displayed bound is correct, but only through
+that cancellation, and the same happens for the \(j\)-terms
+(\(-\tfrac{27}{32}+\tfrac9{16}=-\tfrac9{32}\), against the printed
+\(2\)). Lean `Gsecond_beta_cancellation`,
+`Gsecond_naive_bound_fails`.
+
+The run-length constant is \(22=2+20\): with
+\(M=\max\bigl((|j|{+}1)P^{-1/4},h_1h_2P^{-3/4}\bigr)\) the two parts
+of the \(G'\) bound are \(\le2M\) and \(\le20M\), so
+\(|G'|\le22M\) and the level sets of \(\lfloor G\rfloor\) have
+length \(\ge1/(22M)\), which is the displayed minimum. The regrouping,
+the offset bound \(|j|\le3\), the \(\beta\)-product bound and all
+four derivative estimates are machine-checked in
+`formal/Problems/Juggler/BranchFreeze.lean`; the two mean value theorems
+that produce \(\xi_1\) and \(\xi_2\) are hypotheses there, not
+conclusions. On \(300\) sampled \((P,n,h_1,h_2)\) the printed ranges
+are comfortable except the offset lower bound, which is nearly attained:
+the ratio to \(|j|P^{3/4}\) runs over \([1.510,2.514]\) against the
+printed \([1.5,2.6]\).
 (iv) By (ii) and the definitions:
 \(\Delta_1\theta_2=\Delta_1Y-\Delta_1v=W-(\lfloor W\rfloor+\kappa_2)
 =\{W\}-\kappa_2\) (Lemma 4.3(ii) applied to \(Y\)), likewise
@@ -1782,7 +1833,19 @@ these into the exact product rule
 +(\Delta\Delta c)\,f,
 \]
 which is verified by expanding both sides over the four base points
-\(n\), \(n{+}d_1\), \(n{+}d_2\), \(n{+}d_1{+}d_2\). \(\square\)
+\(n\), \(n{+}d_1\), \(n{+}d_2\), \(n{+}d_1{+}d_2\).
+
+All of (i), (ii) and (iv) are machine-checked in
+`formal/Problems/Juggler/MasterIdentity.lean`: the carry sawtooth
+(`carry_as_sawtooth`), the substitution
+\(\{y{+}w\}-\{y\}=\{w\}-\kappa\) that drives every step of (iv)
+(`fract_diff_level2`), the double-gap identity of (ii)
+(`lemma51_double_gap`), the four-point product rule
+(`double_difference_product`), the master identity itself
+(`lemma51_master`), and the bracket bound
+(`lemma51_brackets_le_two`). These were previously supported only by the
+probe's 60-digit sampling on random odd \(n\); they are exact, so they
+are now proved rather than sampled. \(\square\)
 
 One warning, essential to the organization: \(\lfloor\Delta\Delta
 Y\rfloor\) itself is *not* frozen. The level-1 carry toggles at
@@ -4172,15 +4235,22 @@ machine-checked in `src/research/juggler_sequence/p0_certificate.py`,
 which also generates the table below; the probe and the paper therefore
 cannot drift apart.
 
-The probe solves each row by bisection in floating point. That is the
-weakest link in an otherwise exact chain, and it is removable: every
-exponent in the paper lies in \(\tfrac1{96}\mathbb Z\), so the
-substitution \(P=t^n\) turns each row into a *polynomial* inequality
-in \(t\), with no real powers at all. Five rows are proved that way in
-`formal/Problems/Juggler/ThresholdCertificate.lean`, including the
-binding one (`row_5b_binding`, at the rational threshold \(t=1.96\),
-i.e. \(P\ge1.07\cdot10^{14}\)); the remaining twenty-five are
-mechanical.
+The probe solves each row by bisection in floating point, which was the
+only inexact step in an otherwise exact chain. It is no longer a link in
+that chain. Every exponent in the paper lies in
+\(\tfrac1{96}\mathbb Z\), so the substitution \(P=t^n\) turns each
+row into a *polynomial* inequality in \(t\), with no real powers at
+all, and **all thirty rows are proved that way** in
+`formal/Problems/Juggler/ThresholdCertificate.lean` (32 theorems: the
+window-boundary and \(\lambda_0\)-range rows each split in two). Each
+carries its substitution and a rational threshold \(t_0\) at or just
+above the true crossing, so the certified thresholds are slightly
+conservative. The largest is the binding row --- `row_5b_binding`, at
+\(t=1.96\), i.e. \(P\ge1.96^{48}=1.07\cdot10^{14}\) against the
+bisected \(8.9\cdot10^{13}\), a loss of under \(20\%\). Two
+irrational constants are replaced by rational bounds, both recorded:
+\(\sqrt{0.35}\ge0.5916\) in the boundary row, and
+\(\tfrac1{12}\sqrt{0.35}\le0.04931\) in the binding one.
 
 ### A.1 The certificate
 

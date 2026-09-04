@@ -58,6 +58,8 @@ import Problems.Juggler.ItineraryLanguage
 import Problems.Juggler.GapCells
 import Problems.Juggler.MonomialSplitting
 import Problems.Juggler.PaperBAssembly
+import Problems.Juggler.MasterIdentity
+import Problems.Juggler.BranchFreeze
 import Problems.Juggler.ThresholdCertificate
 import Problems.Juggler.Escape
 import Problems.Juggler.CycleFinance

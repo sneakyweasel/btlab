@@ -239,6 +239,87 @@ from strong convexity in midpoint form, giving diameter
 \(4\sqrt{V/c}\) --- the \((V/S)^{1/2}\) that produces \(89/96\).
 The step from \(f''''\ge c\) to convexity is a hypothesis.
 
+*The Appendix A certificate is now proved, not bisected.* All thirty
+threshold rows are in
+`formal/Problems/Juggler/ThresholdCertificate.lean` (32 theorems; the
+window-boundary and \(\lambda_0\)-range rows split in two), together
+with the raised-threshold device and the sharpness of
+\(\lvert G-\delta\rvert\le1\) --- 40 theorems in the file. The
+enabling observation is that every exponent in the paper lies in
+\(\tfrac1{96}\mathbb Z\), so \(P=t^n\) makes each row polynomial in
+\(t\) and no `Real.rpow` is needed anywhere. Certified
+\(P_0\le1.96^{48}=1.07\cdot10^{14}\) against the bisected
+\(8.9\cdot10^{13}\) --- the rational thresholds cost under
+\(20\%\). A test pins each Lean row's \(t_0^n\) against the probe's
+bisected value, so the two artifacts cannot drift.
+
+Writing them out caught three things. The draft's `row_5b_Npieces` used
+\(t\ge2.4\), certifying \(P\ge1.8\cdot10^{18}\) --- above
+\(P_0\) itself, so as stated it would have *set* the threshold;
+tightened to \(t\ge1.46\), i.e. \(7.7\cdot10^7\). And two hand
+arithmetic slips: \(1.89^7=86.1\), not \(94\), and
+\(105.8/698896=1.51382\cdot10^{-4}\), just above the
+\(1.5138\cdot10^{-4}\) written. None changes a printed figure; all
+three were caught only because the statements had to pass `linarith`.
+
+*Lemma 5.1's master identity is proved, not sampled
+(`formal/Problems/Juggler/MasterIdentity.lean`, 10 theorems).* This was
+the last place in Sections 4--6 where a claim rested on the probe's
+60-digit sampling on random odd \(n\). The identities are exact, so
+they are now theorems. Three pieces.
+
+(a) **(iv) reduces to one substitution plus `ring`.** The four-point
+product rule
+\(\Delta\Delta(cf)=c_{11}\Delta\Delta f+(\Delta_2c)(n{+}d_1)\Delta_1f
++(\Delta_1c)(n{+}d_2)\Delta_2f+(\Delta\Delta c)f\), which the
+manuscript verifies "by expanding both sides", is `ring` on eight reals.
+Every carry substitution in (iv) is the single lemma
+\(\{y{+}w\}-\{y\}=\{w\}-\kappa\), itself a corollary of the
+Lemma 4.3(ii) carry identity proved earlier. The master identity is those
+two, and the bracket bound \(\le2\) follows from
+\(\{\cdot\}\in[0,1)\) and \(\kappa\in\{0,1\}\).
+
+(b) **(i) has a closed form, like Lemma 4.3(i).** With \(a=\sqrt v\),
+\(b=\sqrt Y\) the remainder is exactly
+\(R=\tfrac14(b-a)^2(2b+a)\); \(R\ge0\) by inspection and
+\(Ra\le\tfrac3{16}\theta_2^2\) reduces to \((a+3b)(a-b)\le0\). No
+Taylor expansion, no mean value. The printed \(\tfrac3{16}\) is nearly
+sharp --- sampling odd \(n\le10^7\) reaches \(0.1867\).
+
+(c) **What is still not covered.** Lemma 5.1(iii)'s branch-freeze
+inventory is analytic (two mean value theorems and the numerical ranges
+of \(\beta_i\)) and remains outside. So does everything downstream.
+
+*Lemma 5.1(iii) (`formal/Problems/Juggler/BranchFreeze.lean`, 16
+theorems).* The last analytic part of Lemma 5.1. The two mean value
+theorems producing \(\xi_1,\xi_2\) are hypotheses; everything on top
+of them is proved: the exact regrouping, the offset bound
+\(|j|\le3\), the \(\beta\)-product bound, all four printed
+derivative estimates, and the run-length conclusion. The substitution
+\(n=s^4\) again keeps everything polynomial.
+
+**Finding: the printed \(|G''|\le2|j|P^{-5/4}+25h_1h_2P^{-7/4}\) is
+not valid term by term.** The two \(\beta_1\beta_2\) contributions to
+\(G''=F''(X)X'^2+F'(X)X''\) are \(+\tfrac{81}{64}\) and
+\(-\tfrac9{32}\), of opposite sign, leaving \(\tfrac{63}{64}\).
+With \(\beta_1\beta_2\le19h_1h_2P\) that gives
+\(18.7\le25\); bounding the two separately gives
+\(\tfrac{99}{64}\cdot19=29.4>25\). The bound is correct, its obvious
+derivation is not, and nothing in the manuscript pointed at the
+cancellation. The same happens for the \(j\)-terms
+(\(-\tfrac{27}{32}+\tfrac9{16}=-\tfrac9{32}\), against a printed
+\(2\)). Now recorded in the manuscript and in Lean
+(`Gsecond_beta_cancellation`, `Gsecond_naive_bound_fails`).
+
+Two smaller things. The manuscript's \((3\sqrt2)^2=18\) for
+\(\beta_1\beta_2\) drops the \(+1\)s in
+\(\beta_i\le3\sqrt2h_iP^{1/2}+1\); carried honestly the product is
+\(\le19h_1h_2P\) for \(P\ge100\), which every later constant
+absorbs. And on \(300\) sampled \((P,n,h_1,h_2)\) the printed offset
+range is nearly attained at the bottom --- ratio to \(|j|P^{3/4}\) over
+\([1.510,2.514]\) against the printed \([1.5,2.6]\) --- while the
+second-difference range \([1.4,15]\) is never tested below \(6.75\).
+
 *Correction to the previous entry.* The \(P_1\) recorded above as
 \(3.2\cdot10^{37}\) was wrong. It collected the three middle-band
 costs into a single coefficient of \(P^{89/96}\), but the \(r=3\)

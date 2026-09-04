@@ -214,3 +214,82 @@ def test_certificate_table_renders_every_row() -> None:
     assert md.count("\n") == len(cert["thresholds"]) + 1
     assert "always" in md  # the three unconditional rows
     assert math.isclose(cert["log10_P0"], math.log10(cert["P0"]))
+
+
+# ----------------------------------------------------------------------------------------------
+# Cross-check against the Lean certificate (formal/Problems/Juggler/ThresholdCertificate.lean)
+# ----------------------------------------------------------------------------------------------
+
+# (probe tag, Lean theorem, substitution exponent n with P = t^n, rational threshold t0).
+# Every exponent in the paper lies in (1/96)Z, so each row is polynomial in t and needs no rpow.
+LEAN_ROWS = [
+    ("s3s1-window",    "row_s3s1_window",     2, 12),
+    ("s3s1-Bsmall",    "row_s3s1_Bsmall",    16, 4.6),
+    ("s3s2-window",    "row_s3s2_window",     4, 19),
+    ("s3s2-flat",      "row_s3s2_flat",       4, 8),
+    ("s3s2-wincount",  "row_s3s2_wincount",   4, 20),
+    ("s3s2-bdry",      "row_s3s2_bdry_a",    32, 1.46),
+    ("s3s2-bdry",      "row_s3s2_bdry_b",    32, 1.46),
+    ("stage2-modecurv","row_stage2_modecurv", 8, 10.26),
+    ("stage5-band",    "row_stage5_band",     2, 15),
+    ("claimC-1",       "row_claimC_1",       72, 1.17),
+    ("claimC-2",       "row_claimC_2",       36, 1.34),
+    ("claimG-pref",    "row_claimG_pref",    24, 2.5),
+    ("claimG-P36",     "row_claimG_P36",     36, 1),
+    ("st3a-window",    "row_st3a_window",    48, 1.3),
+    ("st3b-window",    "row_st3b_window",    48, 1.3),
+    ("st3a-flat",      "row_st3a_flat",      48, 1),
+    ("st6D1-window",   "row_st6D1_window",    4, 57),
+    ("st6D1-good",     "row_st6D1_good",      2, 288),
+    ("5b-j0-window",   "row_5b_j0_window",    2, 56),
+    ("5b-Npieces",     "row_5b_Npieces",     48, 1.46),
+    ("5b-lam0-range",  "row_5b_lam0_upper",   4, 17),
+    ("5b-lam0-range",  "row_5b_lam0_lower",   4, 17),
+    ("39-c2",          "row_39_c2",           4, 282),
+    ("39-c3",          "row_39_c3",           4, 250),
+    ("39-c4",          "row_39_c4",           4, 234),
+    ("39-beta",        "row_39_beta",         2, 4288),
+    ("39-wave",        "row_39_wave",         6, 16.1),
+    ("5a-competitors", "row_5a_competitors",  48, 1.52),
+    ("5a-W<=c7S",      "row_5a_binding",     48, 1.89),
+    ("5b-W<=c7S",      "row_5b_binding",     48, 1.96),
+    ("5b-E<=c7S",      "row_5b_E_only",      48, 1.85),
+    ("thm63-rem",      "row_thm63_rem",      96, 1),
+]
+
+_LEAN_FILE = "formal/Problems/Juggler/ThresholdCertificate.lean"
+
+
+def _lean_source() -> str:
+    import pathlib
+
+    root = pathlib.Path(__file__).resolve().parents[3]
+    return (root / _LEAN_FILE).read_text(encoding="utf-8")
+
+
+def test_every_probe_row_has_a_lean_theorem() -> None:
+    covered = {tag for tag, _thm, _n, _t0 in LEAN_ROWS}
+    probe = {r["tag"] for r in C.thresholds()}
+    assert covered == probe, (probe - covered, covered - probe)
+
+
+def test_lean_theorems_exist_by_name() -> None:
+    src = _lean_source()
+    for _tag, thm, _n, _t0 in LEAN_ROWS:
+        assert "theorem %s " % thm in src, thm
+
+
+def test_lean_thresholds_cover_the_probe_thresholds() -> None:
+    """Each Lean row's rational t0^n must be at or above the probe's bisected P."""
+    probe = {r["tag"]: r["P_min"] for r in C.thresholds()}
+    for tag, thm, n, t0 in LEAN_ROWS:
+        assert t0**n >= probe[tag] * (1 - 1e-9), (thm, t0**n, probe[tag])
+
+
+def test_the_lean_certified_P0_is_the_binding_row() -> None:
+    """max over the Lean rows is row_5b_binding at 1.96^48 = 1.07e14."""
+    worst = max(LEAN_ROWS, key=lambda r: r[3] ** r[2])
+    assert worst[1] == "row_5b_binding"
+    assert 1.0e14 < worst[3] ** worst[2] < 1.1e14
+    # conservative by under 20% against the probe's 8.95e13
+    assert 1.0 < (worst[3] ** worst[2]) / C.certificate()["P0"] < 1.25

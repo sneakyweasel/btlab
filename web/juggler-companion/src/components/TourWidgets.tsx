@@ -38,6 +38,7 @@ import { FloorLadder } from "../visuals/FloorLadder";
 import { NmaxStaircase } from "../visuals/NmaxStaircase";
 import { NecklaceExplorer } from "./NecklaceExplorer";
 import { FloorCut } from "../visuals/FloorCut";
+import { ItineraryBeads } from "../visuals/ItineraryBeads";
 import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
 import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
@@ -49,6 +50,17 @@ const MAP_DEFAULT = 37n;
 const AUTOPLAY_MS = 550;
 const EVEN_BLOCK_PLAY_LO = 1;
 const EVEN_BLOCK_PLAY_HI = 20;
+
+function chipHover(
+  label: string | undefined,
+  value: bigint,
+  note: string,
+  numbered: boolean,
+): string {
+  if (!numbered) return note;
+  const extra = label && label !== value.toString() ? label : "";
+  return extra ? `${extra} — ${note}` : note;
+}
 
 function Chip({
   selected,
@@ -95,6 +107,7 @@ type StartChip = {
 
 export function MapWidget({
   initial = MAP_DEFAULT,
+  initialStep = 0,
   side,
   liveStarts = LIVE_STARTS,
   monsterStarts,
@@ -102,14 +115,19 @@ export function MapWidget({
   presetHint = "Ideas the browser can walk, and shipped monsters that outgrow that walker. Pictures only: hitting 1 is not a theorem.",
 }: {
   initial?: bigint;
+  initialStep?: number;
   side?: (frame: MapFrame) => ReactNode;
   liveStarts?: readonly StartChip[];
   monsterStarts?: readonly StartChip[];
   useChipLabels?: boolean;
   presetHint?: string;
 } = {}) {
+  const opening = resolveTrajectory(initial, TRAJECTORY_STEPS_MAX);
+  const openingCursor =
+    opening.states[Math.min(Math.max(initialStep, 0), Math.max(opening.states.length - 1, 0))] ??
+    initial;
   const [startText, setStartText] = useState(initial.toString());
-  const [cursor, setCursor] = useState(initial);
+  const [cursor, setCursor] = useState(openingCursor);
   const [playing, setPlaying] = useState(false);
   const start = parsePositiveInt(startText);
   const seed = start ?? MAP_DEFAULT;
@@ -227,6 +245,7 @@ export function MapWidget({
         sparseScale={trajectory.source === "monster"}
         stepComputation={side ? undefined : <FloorCut compact n={cursor} result={next} />}
         side={side?.(frame)}
+        fillPlot={Boolean(side)}
         onSelect={(index) => {
           setPlaying(false);
           seekTo(index);
@@ -271,10 +290,10 @@ export function MapWidget({
                   <Chip
                     key={preset.value.toString()}
                     selected={seed === preset.value}
-                    title={preset.note}
+                    title={chipHover(preset.label, preset.value, preset.note, useChipLabels)}
                     onClick={() => chooseStart(preset.value)}
                   >
-                    {useChipLabels ? (preset.label ?? preset.value.toString()) : preset.value.toString()}
+                    {useChipLabels ? preset.value.toString() : (preset.label ?? preset.value.toString())}
                   </Chip>
                 ))}
               </div>
@@ -303,10 +322,10 @@ export function MapWidget({
                     key={preset.value.toString()}
                     selected={seed === preset.value}
                     tone="monster"
-                    title={preset.note}
+                    title={chipHover(preset.label, preset.value, preset.note, useChipLabels)}
                     onClick={() => chooseStart(preset.value)}
                   >
-                    {preset.label ?? preset.value.toString()}
+                    {useChipLabels ? preset.value.toString() : (preset.label ?? preset.value.toString())}
                   </Chip>
                 ))}
               </div>
@@ -354,24 +373,39 @@ export function MapWidget({
           />
         }
       />
-      <LinkedWalk
-        states={trajectory.states}
-        itinerary={trajectory.itinerary}
-        active={stepIndex}
-        onSeek={(index) => {
-          setPlaying(false);
-          seekTo(index);
-        }}
-        note={
-          trajectory.source === "monster"
-            ? `Shipped trajectory${trajectory.peakBits ? ` (peak ${trajectory.peakBits} bits)` : ""}. The browser did not walk this start. ${trajectory.blurb ?? ""} Hitting 1 is not a theorem.`
-            : trajectory.bitCapped
-              ? "A value exceeded the live 256-bit cap. Famous larger starts are under Monsters if we shipped them."
-              : trajectory.reachedOne && stepIndex >= trajectory.itinerary.length
-                ? "This walk hit 1, which is not a theorem."
-                : null
-        }
-      />
+      {side ? (
+        <div className="space-y-3">
+          <div className="rounded-2xl border border-line bg-card px-4 py-3">
+            <ItineraryBeads
+              word={prefix}
+              onSelect={(index) => {
+                setPlaying(false);
+                seekTo(index + 1);
+              }}
+            />
+          </div>
+          <FloorCut n={cursor} result={next} />
+        </div>
+      ) : (
+        <LinkedWalk
+          states={trajectory.states}
+          itinerary={trajectory.itinerary}
+          active={stepIndex}
+          onSeek={(index) => {
+            setPlaying(false);
+            seekTo(index);
+          }}
+          note={
+            trajectory.source === "monster"
+              ? `Shipped trajectory${trajectory.peakBits ? ` (peak ${trajectory.peakBits} bits)` : ""}. The browser did not walk this start. ${trajectory.blurb ?? ""} Hitting 1 is not a theorem.`
+              : trajectory.bitCapped
+                ? "A value exceeded the live 256-bit cap. Famous larger starts are under Monsters if we shipped them."
+                : trajectory.reachedOne && stepIndex >= trajectory.itinerary.length
+                  ? "This walk hit 1, which is not a theorem."
+                  : null
+          }
+        />
+      )}
     </div>
   );
 }
@@ -387,14 +421,14 @@ export function LeftoversWidget() {
 export function ExpandingWidget() {
   return (
     <MapWidget
-      initial={3n}
+      initial={173n}
+      initialStep={12}
       liveStarts={EXPANDING_STARTS}
       monsterStarts={EXPANDING_MONSTERS}
       useChipLabels
       presetHint="Starts chosen to show 3^o against 2^L. Hitting 1 is not a theorem."
       side={(frame) => (
         <RegimeDoors
-          prefix={frame.prefix}
           odds={frame.odds}
           length={frame.length}
           regime={frame.regime}
