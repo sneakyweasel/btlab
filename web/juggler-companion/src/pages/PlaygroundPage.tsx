@@ -10,6 +10,7 @@ const TABS = [
   { to: "/play/oe-fiber", label: "OE fiber" },
   { to: "/play/floor", label: "Floor" },
   { to: "/play/finance", label: "Finance" },
+  { to: "/play/fan", label: "Fan" },
   { to: "/play/walk", label: "Walk charge" },
 ];
 

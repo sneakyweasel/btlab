@@ -28,6 +28,7 @@ import Problems.Juggler.WalkChargeItineraries
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.RotationAverage
+import Problems.Juggler.FanLaw
 import Problems.Juggler.WalkTransport
 import Problems.Juggler.WalkChargeMax
 import Problems.Juggler.DefectFinance

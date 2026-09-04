@@ -15,6 +15,7 @@ import Problems.Juggler.DefectLowerBound
 import Problems.Juggler.Preimages
 import Problems.Juggler.Collapse
 import Problems.Juggler.Drift
+import Problems.Juggler.FanLaw
 import Problems.Juggler.FirstPassage
 import Problems.Juggler.Certificates
 import Problems.Juggler.Progress
