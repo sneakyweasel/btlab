@@ -22963,3 +22963,36 @@ Why
 Best next question
 - none on this line — the remaining check is an independent human, which this pass cannot be
 ```
+
+## Juggler Diophantine survivors past 780239 (export, not a numbered milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** After Baker is REFUTED and further \(N_0\) campaigns are PARK, decide whether “kill the near-convergents of \(\log 2/\log 3\) past the walk-charge blocker \(780239\)” is still a Juggler construction, or the already-named classical CF question plus a recorded per-orbit leftover. Export the leftover as a different paper. Do not touch \(\psi_F\).
+- **Triage:** distill only. Falsifier: an unused mechanism that excludes \(L=780239\) at \(N_0=3.5\cdot 10^8\) without a gap lower bound, a tighter \(B\), or a larger floor. No probe, no GPU, no Lean, no \(N_0\), no Baker re-run, no Paper A/B/C theorem edits.
+- **Major results:** Classification **NEAR_CONVERGENT_KILL_CLOSED**. The slogan hides a trichotomy. Instance: dominance plus hug-DP plus PARK floor exhaust the kill doors; stored non-kill margin \(0.6049\) at \(L=780239\). Family: already reduced to unbounded dangerous-position partial quotients of \(\log 2/\log 3\) (`juggler_walk_fan_minimum_law`, CONJECTURE; classical OPEN). Long cycles: Paper A §6 leftover, not a program; mechanical window stays CLOSE. Export [juggler_near_convergent_diophantine_note.md](theory/juggler_near_convergent_diophantine_note.md) (external leftover, not a fourth review object). Constrains cycle states, not \(\psi_F\). No new ledger row. Not a halt theorem.
+- **Refuted ideas:** that the laboratory will kill the near-convergents past \(780239\) without Baker, without a tighter envelope, and without raising \(N_0\)
+- **Literature:** `rhin-1987-pade-irrationality`; `simons-de-weger-2005-collatz-m-cycles`; `wu-wang-2014-irrationality-measure-log3`; `kuipers-niederreiter-1974-uniform-distribution`; `juggler_walk_fan_minimum_law`
+- **Open:** none in the laboratory. The classical question is whether the dangerous-position partial quotients of \(\log 2/\log 3\) are unbounded.
+- **Decision:** CLOSE the laboratory-kill slogan. The note is the exported leftover. No successor branch.
+
+```text
+What was learned
+- kill past 780239 is three inequivalent questions, not one
+- instance: exact theta, hug DP, and PARK floor exhaust the doors
+- family: already the fan-minimum CF reduction; classical OPEN
+- long cycles: Paper A §6 leftover, not a program
+- none of the three is psi_F
+Strongest theorem
+- trichotomy as an exhaustion (EXACT — HUMAN PROOF)
+Strongest refutation
+- laboratory kill of L=780239 at N0=3.5e8 without gap / B / floor
+Reusable machinery
+- docs/theory/juggler_near_convergent_diophantine_note.md
+Branch status
+- CLOSE
+Why
+- every proposed kill reduces to a closed wall member, the
+  CF-quotient question, or the recorded long-cycle leftover
+Best next question
+- none in the laboratory
+```

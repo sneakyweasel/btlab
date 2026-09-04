@@ -439,7 +439,8 @@ misses classical CF bounds by \(36\times\) at \(478245\); Hamming to
 monochrome grows; \(1+q=n^{3^o-2^L}\).
 Kind: `REFUTED` / `METHOD_OBSTRUCTION`.
 Do not reopen: Baker transfer; Paper A × Paper B merge; affine
-\(n\)-gap; inhomogeneous WW; p-adic coupling; fan multipoint.
+\(n\)-gap; inhomogeneous WW; p-adic coupling; fan multipoint;
+a laboratory kill of the near-convergents past \(780239\).
 
 Members: `juggler_baker_kills_near_convergents`,
 `juggler_cycle_paper_merge`, `juggler_affine_n_gap_escapes_dominance`,
@@ -462,6 +463,16 @@ finance-predicted count and a fair-coin realized parity depth
 two-copy Sturmian rigidity, or a longer band scan
 ([juggler_cycle_mechanical_window](problems/juggler_cycle_mechanical_window.md)).
 
+**Laboratory kill past \(780239\) (CLOSE).** After Baker and
+\(N_0\) are forbidden, excluding the fan member \(780239\) at the
+frozen floor is not a Juggler construction: gap lower bounds lose
+to dominance, the hug DP is \(C_L\), and the next floor
+\(5.54\cdot 10^8\) is PARK. The leftover splits into the
+already-named CF-quotient question (`juggler_walk_fan_minimum_law`)
+and the recorded long-cycle leftover of Paper A §6. Export:
+[juggler_near_convergent_diophantine_note.md](theory/juggler_near_convergent_diophantine_note.md).
+Do not reopen as a kill campaign.
+
 Dossiers: [juggler_cycle_gap_baker](problems/juggler_cycle_gap_baker.md),
 [juggler_cycle_affine_n_gap](problems/juggler_cycle_affine_n_gap.md),
 [juggler_cycle_inhomogeneous_log](problems/juggler_cycle_inhomogeneous_log.md),
@@ -469,7 +480,8 @@ Dossiers: [juggler_cycle_gap_baker](problems/juggler_cycle_gap_baker.md),
 [juggler_cycle_fan_multipoint](problems/juggler_cycle_fan_multipoint.md),
 [juggler_cycle_walk_fan_successor](problems/juggler_cycle_walk_fan_successor.md),
 [juggler_cycle_christoffel](problems/juggler_cycle_christoffel.md),
-[juggler_cycle_near_tight](problems/juggler_cycle_near_tight.md).
+[juggler_cycle_near_tight](problems/juggler_cycle_near_tight.md),
+[juggler_cycle_diophantine_survivors](problems/juggler_cycle_diophantine_survivors.md).
 
 ---
 
@@ -726,6 +738,7 @@ CLOSE) are included so the completeness gate cannot hide them.
 [juggler_cumulative_floor_loss](problems/juggler_cumulative_floor_loss.md),
 [juggler_cycle_budget_opt](problems/juggler_cycle_budget_opt.md),
 [juggler_cycle_diophantine](problems/juggler_cycle_diophantine.md),
+[juggler_cycle_diophantine_survivors](problems/juggler_cycle_diophantine_survivors.md),
 [juggler_cycle_extremal_composition](problems/juggler_cycle_extremal_composition.md),
 [juggler_cycle_lean_consolidate](problems/juggler_cycle_lean_consolidate.md),
 [juggler_cycle_walk_fan_growth](problems/juggler_cycle_walk_fan_growth.md),
