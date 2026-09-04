@@ -3,7 +3,7 @@ import {
   HARVESTED_LEMMA_NEEDLES,
   IDEAL_DECISIONS,
 } from "../content/idealDecisions";
-import { evenPreimage, oddPreimageIntegers } from "./preimages";
+import { evenPreimage, oddPreimageIntegers, oddPreimages } from "./preimages";
 import {
   evenBlock,
   evenBlockView,
@@ -496,6 +496,9 @@ describe("preimages", () => {
 
   it("gives the unique parent 5 of odd image 11", () => {
     expect(oddPreimageIntegers(11)).toEqual([5]);
+    expect(oddPreimages(11)).toEqual([5]);
+    expect(oddPreimages(5)).toEqual([3]);
+    expect(oddPreimages(12)).toEqual([]);
   });
 });
 

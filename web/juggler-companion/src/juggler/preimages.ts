@@ -60,3 +60,8 @@ export function oddPreimageIntegers(m: number): number[] {
   for (let n = nMin; n <= nMax; n += 1) out.push(n);
   return out;
 }
+
+/** Odd n with ⌊n^{3/2}⌋ = m. At most one (Paper A Lemma 3.1). */
+export function oddPreimages(m: number): number[] {
+  return oddPreimageIntegers(m).filter((n) => n % 2 === 1);
+}

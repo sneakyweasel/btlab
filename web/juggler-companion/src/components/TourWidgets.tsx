@@ -9,6 +9,7 @@ import {
   TOUR_OE_FIBER_M,
   TRAJECTORY_STEPS_MAX,
 } from "../juggler/constants";
+import { oddPreimages } from "../juggler/preimages";
 import { evenBlockView, fiberView, randomEvenInBlock } from "../juggler/productions";
 import { usePlayState } from "../context/PlayState";
 import { financeView } from "../juggler/finance";
@@ -402,6 +403,7 @@ export function PreimagesWidget() {
   const [m, setM] = useState(TOUR_EVEN_BLOCK_M);
   const [playing, setPlaying] = useState(false);
   const block = useMemo(() => evenBlockView(m), [m]);
+  const oddParent = useMemo(() => oddPreimages(m)[0] ?? null, [m]);
   const fiber = fiberView(TOUR_OE_FIBER_M);
   const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
   const [blockN, setBlockN] = useState<number | null>(() =>
@@ -505,6 +507,17 @@ export function PreimagesWidget() {
     <div className="space-y-6">
       <div>
         <h3 className="mb-2 font-serif text-lg">Even block of {formatInt(m)}</h3>
+        <p className="text-sm text-muted">
+          The even block of {formatInt(m)} is the set of even one-step
+          preimages of {formatInt(m)}: every even n in [{formatInt(m)}²,{" "}
+          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}
+          ). If {formatInt(m)} is in a backward-closed set A, so is this block.
+        </p>
+        <p className="mb-4 text-sm text-muted">
+          {oddParent === null
+            ? `${formatInt(m)} has no odd one-step precursor.`
+            : `The unique odd precursor of ${formatInt(m)} is ${formatInt(oddParent)}.`}
+        </p>
         <div className="mb-4 rounded-2xl border border-line bg-paper px-4 py-2.5">
           <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
             <label className="grid gap-1">
@@ -576,12 +589,6 @@ export function PreimagesWidget() {
             onPlay={playCurrent}
           />
         </div>
-        <p className="mt-3 text-sm text-muted">
-          The even block of {formatInt(m)} is the set of even one-step
-          preimages of {formatInt(m)}: every even n in [{formatInt(m)}²,{" "}
-          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}
-          ). If {formatInt(m)} is in a backward-closed set A, so is this block.
-        </p>
       </div>
       <div>
         <h3 className="mb-2 font-serif text-lg">OE fiber of 100,000</h3>
