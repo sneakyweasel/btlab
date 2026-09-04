@@ -22996,3 +22996,36 @@ Why
 Best next question
 - none in the laboratory
 ```
+
+## Paper D draft: near-convergents of log 2 / log 3 (write-up, not a numbered milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Distill the family leftover into a standalone working draft: near-convergents of \(\log 2/\log 3\) past \(780239\), reduced to dangerous-position partial quotients. Not a fourth review object. Do not touch \(\psi_F\).
+- **Triage:** write-up of an already-PROMOTED theorem (fan-minimum balance law). Falsifier: the draft claims a kill, a halt theorem, or new Diophantine mathematics that is not proved. No probe, no GPU, no Lean, no \(N_0\), no Baker, no `juggler_review/` snapshot.
+- **Major results:** Manuscript [juggler_near_convergent_diophantine_note.md](theory/juggler_near_convergent_diophantine_note.md) now has YAML, abstract, and seven sections. Theorem 1 is the first-order balance law \(\ln R_{\min}=4/(A+B)\); instances on both certified fans (fan A \(1.0735\) vs \(1.07353\), minimizer \(8632083\); fan B \(2.137\) vs \(2.163\), minimizer \(50961751\)). Corollary 3 is the family reduction to unbounded dangerous-position partial quotients of \(\log 2/\log 3\). Section 6 records what does not reach the family. Section 7 is the Paper C firewall. No new ledger row. Laboratory-kill slogan stays CLOSE. Not a halt theorem.
+- **Refuted ideas:** none new
+- **Literature:** `juggler_walk_fan_minimum_law`; `wu-wang-2014-irrationality-measure-log3`; `kuipers-niederreiter-1974-uniform-distribution`
+- **Open:** none in the laboratory. The classical question is whether the dangerous-position partial quotients of \(\log 2/\log 3\) are unbounded.
+- **Decision:** PROMOTE the write-up. The laboratory-kill slogan stays CLOSE. No successor branch. No review bundle.
+
+```text
+What was learned
+- the family leftover is one theorem: ln R_min = 4/(A+B)
+- sharpness along a subsequence iff unbounded dangerous PQs
+- Baker, envelope tightening, and N0 do not reach that leftover
+- the boxed question is classical, not a Juggler wrap
+- none of this is psi_F
+Strongest theorem
+- Theorem 1: ln R_min = 4/(A+B) (first-order human derivation;
+  instances COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- none new
+Reusable machinery
+- docs/theory/juggler_near_convergent_diophantine_note.md as Paper D draft
+Branch status
+- PROMOTE (write-up)
+Why
+- the family theorem was already proved; the manuscript is the paper
+Best next question
+- none in the laboratory
+```

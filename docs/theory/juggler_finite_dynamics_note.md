@@ -2198,8 +2198,11 @@ Beyond \(q_{13}=301994\) the window theorem needs deeper
 certified quotients of \(\theta\), and killing the remaining
 near-convergent survivors (starting with the fan member
 \(L=780239\)) is a Diophantine question about \(|3^o-2^L|\);
-neither is attempted here. The survivors are
-finance-survivors, not candidate cycles.
+neither is attempted here. The family leftover — the
+semiconvergent fans of \(\log 2/\log 3\) reduced to
+dangerous-position partial quotients — is the working draft
+[juggler_near_convergent_diophantine_note.md](juggler_near_convergent_diophantine_note.md).
+The survivors are finance-survivors, not candidate cycles.
 
 ## 6. Limitations and future directions
 

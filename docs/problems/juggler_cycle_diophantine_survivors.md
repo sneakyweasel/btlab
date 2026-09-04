@@ -224,17 +224,19 @@ Diophantine-wall member, to a tighter walk envelope that the hug
 DP already computes, to a PARK floor, to the already-named
 CF-quotient question, or to the recorded long-cycle leftover.
 The laboratory-kill slogan is a method obstruction. The remaining
-mathematics is exported at
+mathematics is the family leftover, written as the Paper D
+working draft
 [juggler_near_convergent_diophantine_note.md](../theory/juggler_near_convergent_diophantine_note.md)
-(external leftover, same role as
-[exponent_pair_two_monomial.md](../theory/exponent_pair_two_monomial.md)).
-That note is not a fourth review object and not a successor
-branch. Best next question: none in the laboratory. The classical
-question is whether the dangerous-position partial quotients of
+(not a fourth review object). The laboratory-kill slogan stays
+closed. The write-up of the already-proved family theorem is a
+**PROMOTE** of that manuscript, not a reopen of the kill. Best
+next question: none in the laboratory. The classical question is
+whether the dangerous-position partial quotients of
 \(\log 2/\log 3\) are unbounded.
 
 ## Publication assessment
 
-Status: `STRUCTURAL`. A trichotomy plus an export of an
-already-named classical question. Not a paper candidate, not a
-halt theorem, and not a Paper A, B, or C edit.
+Status: `STRUCTURAL`. The laboratory-kill slogan is closed. The
+family leftover is the Paper D working draft
+[juggler_near_convergent_diophantine_note.md](../theory/juggler_near_convergent_diophantine_note.md)
+(not a fourth review object). Not a halt theorem.

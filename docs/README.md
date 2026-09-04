@@ -128,7 +128,7 @@ record. That is a status line, not a ban on stating a later matching
 - [Flight extract](theory/juggler_flight_note.md) (descriptively terminal)
 - [Cycle finance note](theory/juggler_cycle_finance_note.md)
 - [Walk-charge note](theory/juggler_walk_charge_note.md)
-- [Diophantine survivors past 780239](theory/juggler_near_convergent_diophantine_note.md) (exported leftover; not a fourth review object)
+- [Paper D draft: near-convergents of log 2 / log 3](theory/juggler_near_convergent_diophantine_note.md) (family leftover; not a fourth review object)
 - [Itinerary-structure note](theory/juggler_cycle_itinerary_structure_note.md)
 - [Branch ledger](juggler_branch_ledger.md)
 - [Negative knowledge](negative_knowledge.md)

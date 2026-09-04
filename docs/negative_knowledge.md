@@ -469,7 +469,8 @@ frozen floor is not a Juggler construction: gap lower bounds lose
 to dominance, the hug DP is \(C_L\), and the next floor
 \(5.54\cdot 10^8\) is PARK. The leftover splits into the
 already-named CF-quotient question (`juggler_walk_fan_minimum_law`)
-and the recorded long-cycle leftover of Paper A §6. Export:
+and the recorded long-cycle leftover of Paper A §6. Paper D
+working draft (family leftover, not a review object):
 [juggler_near_convergent_diophantine_note.md](theory/juggler_near_convergent_diophantine_note.md).
 Do not reopen as a kill campaign.
 

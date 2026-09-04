@@ -18,7 +18,7 @@ bt.*                        problem-independent BT mathematics
 
 ## Juggler reading path
 
-1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (itinerary obstructions + finance + the §5 walk-charge envelope; lab extracts [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md) and [juggler_cycle_itinerary_structure_note.md](docs/theory/juggler_cycle_itinerary_structure_note.md) — word geometry for termination, cycles, and escape). §6.1 (3 Sep 2026) records the companion context — envelope as Paper C's descent step, floor as its target, cycle basins contagious, cycles at the critical odd share \(\log 2/\log 3\), floor stratifies the failure set — as imports; it proves nothing new about cycles. Exported leftover (not a fourth review object): [juggler_near_convergent_diophantine_note.md](docs/theory/juggler_near_convergent_diophantine_note.md) — instance / family / long-cycle trichotomy past the walk-charge blocker \(780239\); Baker REFUTED, further \(N_0\) PARK; constrains cycle states, not \(\psi_F\).
+1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds (itinerary obstructions + finance + the §5 walk-charge envelope; lab extracts [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md) and [juggler_cycle_itinerary_structure_note.md](docs/theory/juggler_cycle_itinerary_structure_note.md) — word geometry for termination, cycles, and escape). §6.1 (3 Sep 2026) records the companion context — envelope as Paper C's descent step, floor as its target, cycle basins contagious, cycles at the critical odd share \(\log 2/\log 3\), floor stratifies the failure set — as imports; it proves nothing new about cycles. Paper D draft (not a fourth review object): [juggler_near_convergent_diophantine_note.md](docs/theory/juggler_near_convergent_diophantine_note.md) — family leftover: near-convergents of \(\log 2/\log 3\) past \(780239\), reduced to dangerous-position partial quotients; Baker REFUTED, further \(N_0\) PARK; constrains cycle states, not \(\psi_F\).
 2. [docs/theory/juggler_parity_discrepancy_note.md](docs/theory/juggler_parity_discrepancy_note.md) — Paper B: parity discrepancy of nested floor powers (8-section journal form, 4 Sep 2026 referee-safe repair: Theorem 5.3 is the monomial \(c=\tfrac{3k}4 n^{9/8}\); frozen \(B=-\tfrac9{32}k\beta_1\beta_2\nu^{-9/8}\) with \(\lvert B\rvert\le6\); \(\rho_0\) ratios \(O(P^{-1/4})\); Lemma 5.2 reconstructed on the manuscript, author-chain only; audit ledger moved to [paper_b_audit_ledger.md](docs/theory/paper_b_audit_ledger.md) + `research.juggler_sequence.paper_b_audit`, 98 exponent checks; §3.5 localized/twisted Theorems 4.11–4.12 and the \(OOEEE\) Corollary 4.13 feeding Paper C; §8 what the kernel program buys and cannot)
 3. [docs/theory/juggler_flight_note.md](docs/theory/juggler_flight_note.md) — laboratory extract: descent-free flights (envelope, dichotomy, anchor-period, divergent structure, shared lattice). Not a paper; the flight program is descriptively terminal.
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
@@ -88,7 +88,7 @@ for external review.
  \(\log 2/\log 3\) — classical OPEN. Killing the
  remaining near-convergents (first \(780239\)) is Diophantine; the
  laboratory-kill slogan is **CLOSE**
- (`juggler_cycle_diophantine_survivors`; export
+ (`juggler_cycle_diophantine_survivors`; Paper D draft
  [juggler_near_convergent_diophantine_note.md](docs/theory/juggler_near_convergent_diophantine_note.md)).
  The direct Baker/SdW transfer is **REFUTED** (`juggler_cycle_gap_baker`),
  the Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`),
@@ -294,7 +294,7 @@ for external review.
 | Conjecture record | `conjectures/{active,refuted,proved,archived}/<id>.json` |
 | Journal entry | `docs/research_journal.md` (consolidations allowed; no auto-milestones) |
 | Named theorem metadata | `docs/theory/theorem_ledger.json`, then render |
-| External leftover (not a Juggler branch) | [docs/theory/exponent_pair_two_monomial.md](docs/theory/exponent_pair_two_monomial.md); Diophantine survivors past \(780239\): [docs/theory/juggler_near_convergent_diophantine_note.md](docs/theory/juggler_near_convergent_diophantine_note.md) |
+| External leftover (not a Juggler branch) | [docs/theory/exponent_pair_two_monomial.md](docs/theory/exponent_pair_two_monomial.md); Paper D draft (family leftover, not a review object): [docs/theory/juggler_near_convergent_diophantine_note.md](docs/theory/juggler_near_convergent_diophantine_note.md) |
 
 ## How a direction runs
 
