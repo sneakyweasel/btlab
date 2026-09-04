@@ -248,6 +248,56 @@ theorem stage6_D3_gap (K h p : ℝ) (hh : h ≠ 0) :
     3 * K * p ^ 24 = (p ^ 24 / (2 * h)) * (6 * K * h) := by
   field_simp; ring
 
+/-! ### The wide (D3) class: the regime split
+
+`P = p^24`, `K = k h₁ h₂ ≤ p^3` by (C1).  The undifferenced budget
+`Φ₂ = 3 K P^(-5/8)` is dominated exactly when `Φ₂ ≤ ¼ · 0.35 u h P^(-3/4)`,
+i.e. `u h ≥ 34.3 K P^(1/8)` (regime A).  Regime B is the complement, and there
+what replaces the derivative tests is the *frozen* `G`: it steps by exactly `1`
+at each cell boundary, so `f''` carries a sawtooth no continuous `φ''` can
+follow, and `f'` jumps at every boundary. -/
+
+/-- **Regime A: the undifferenced budget is dominated.**  `3 K P^(-5/8) ≤
+¼·0.35 u h P^(-3/4)` holds as soon as `u h ≥ (12/0.35) K P^(1/8)`, and
+`12/0.35 = 34.28…`.  Written at `P = p^24`, after multiplying by `p^15`. -/
+theorem wideD3_regimeA_dominated (K uh p : ℝ) (hp : 0 < p) (hK : 0 ≤ K)
+    (hA : (12 / 0.35) * K * p ^ 3 ≤ uh) :
+    3 * K * p ^ 9 ≤ (0.35 / 4) * uh * p ^ 6 := by
+  have h6 : (0:ℝ) < p ^ 6 := pow_pos hp 6
+  have e : p ^ 9 = p ^ 3 * p ^ 6 := by ring
+  nlinarith [h6, hA, hK, pow_pos hp 3]
+
+/-- **Regime B is a small-`uh` regime.**  By (C1), `K ≤ p^3`, so regime B forces
+`u h < 34.3 p^3 = 34.3 P^(1/8)`… and with `u h ≤ P^(1/2)` from the hypotheses of
+(i) this is the range where the Stage-4 curvature is weakest. -/
+theorem wideD3_regimeB_small (K uh p : ℝ) (hK : K ≤ p ^ 3) (hp : 0 < p)
+    (hB : uh < (12 / 0.35) * K * p ^ 3) : uh < 35 * p ^ 6 := by
+  have h3 : (0:ℝ) < p ^ 3 := pow_pos hp 3
+  nlinarith [h3, hK, hB]
+
+/-- **The frozen `G` steps by one, so `f'` jumps at every cell boundary.**  The
+jump is `(9/8) u (ν+2h)^(-1/4)`; the point is only that it is *bounded below*,
+which no choice of the continuous decoration can affect.  Over `N` cells the
+total sweep of `f'` is at least `N` times that. -/
+theorem wideD3_frequency_sweep (u nu2h N sweep : ℝ)
+    (hu : 0 < u) (hN : 0 ≤ N) (hj : (0.946 : ℝ) * u ≤ 9 / 8 * u * nu2h)
+    (hsweep : sweep = N * ((9:ℝ) / 8 * u * nu2h)) :
+    N * (0.946 * u) ≤ sweep := by
+  rw [hsweep]
+  nlinarith [hN, hj]
+
+/-- **The cells are flat in regime B.**  At the sawtooth curvature scale
+`0.282 u P^(-5/4)`, over a cell of length `ℓ ≤ 0.95 P^(1/2)/h` the phase departs
+from linear by `≤ 0.282 u P^(-5/4) ℓ² ≤ 0.26 u P^(-1/4) h^(-2)`, so the
+second-derivative test is the wrong tool and Kusmin–Landau is the right one. -/
+theorem wideD3_cells_flat (u h Q : ℝ) (hu : 0 < u) (hh : 3 ≤ h) (hQ : 0 < Q)
+    (hB : u * h ≤ 35 * Q) : 0.2545 * u < h ^ 2 * Q := by
+  have hh0 : (0:ℝ) < h := by linarith
+  have h3 : (27:ℝ) ≤ h ^ 3 := by
+    have h : (3:ℝ) ^ 3 ≤ h ^ 3 := by gcongr
+    norm_num at h; linarith
+  nlinarith [hB, hQ, hh0, h3, hu, mul_pos hQ hh0]
+
 end Stage6D3
 
 /-! ## 4. Lemma 3.9: the two sublevel-length bounds -/

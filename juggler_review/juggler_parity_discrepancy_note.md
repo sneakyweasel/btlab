@@ -2600,6 +2600,59 @@ margin against the Stage-4 curvature
   --- the shape an *undifferenced* smooth remnant would have --- is
   larger by \(P/(2h)\) and is *not* dominated (Claim E).
 
+*The wide (D3) class: what is and is not covered.* The narrowing of
+(D3) above is not cosmetic, and it is worth recording exactly where the
+wider class — \(|\varphi''|\le3kh_1h_2P^{-5/8}\), the shape an
+*undifferenced* smooth remnant would have — stands. Write
+\(\Phi_2=3kh_1h_2P^{-5/8}\).
+
+*Regime A: \(\Phi_2\le\tfrac14\cdot0.35uhP^{-3/4}\)*, i.e.
+\(uh\ge34.3\,kh_1h_2P^{1/8}\). Here the decoration is dominated and
+Stage 6 applies verbatim; nothing changes.
+
+*Regime B: \(uh<34.3\,kh_1h_2P^{1/8}\le34.3P^{1/4}\)* by (C1). Here
+\(\varphi''\) may cancel the Stage-4 curvature and \(\varphi'''\) may
+exceed \(\lambda_{\mathrm{main}}'\), so neither the second- nor the
+third-derivative test is available on a cell; and \(\Phi\) is not a
+monomial combination, so Lemmas 3.8–3.9 do not apply either. What
+replaces them is the *frozen* \(G\). Since \(\delta_h\) is continuous
+and increasing, \(G=\lfloor\delta_h\rfloor\) increases by exactly \(1\)
+at each cell boundary, so \(f''\) carries a sawtooth of amplitude
+\(\tfrac9{32}u(\nu{+}2h)^{-5/4}\in[0.118,0.282]\,uP^{-5/4}\) that no
+continuous \(\varphi''\) can follow, and \(f'\) jumps by
+\(\tfrac98u(\nu{+}2h)^{-1/4}\in[0.946,1.125]\,uP^{-1/4}\) at each
+boundary. Two consequences, both elementary:
+
+- the cells are *flat*: at the sawtooth curvature scale the phase
+  departs from linear by
+  \(\le0.282\,uP^{-5/4}\ell^2\le0.26\,uP^{-1/4}h^{-2}\), which is
+  \(<1\) throughout regime B once \(h\ge3\); so the second-derivative
+  test is the wrong tool there and Kusmin–Landau is the right one;
+- the cell frequencies are *spread*: across the \(\ge1.24hP^{1/2}\)
+  cells, \(f'\) sweeps at least \(1.17\,uhP^{1/4}\) full periods.
+
+If the \(\lVert f'_i\rVert\) inherit that spread, then
+\(\sum_i\min\bigl(\ell,(2\lVert f'_i\rVert)^{-1}\bigr)\ll
+hP^{1/2}\log P\le P^{5/8}\log P\) by \(h\le P^{1/8}\) — comfortably
+inside the third printed term \(P^{7/8}\) of (i). Numerically this is
+what happens. Taking \(\varphi=\tfrac{27}{10}\nu^{5/4}\), which lies in
+the wide class at \(u=h=k=h_1=h_2=1\) and cancels the smooth part of the
+Stage-4 curvature exactly, the block sums at
+\(P=2\cdot10^3,8\cdot10^3,3.2\cdot10^4,1.28\cdot10^5,5.12\cdot10^5\) are
+\(36,\,12,\,220,\,479,\,385\), against \(P^{1/2}=45,\dots,716\) and a
+\(P^{7/8}\) larger by a further factor \(P^{3/8}\); the cells are flat
+(\(\mathrm{amp}\cdot\ell^2\approx3\cdot10^{-3}\)) and \(f'\) sweeps
+\(19\) to \(37\) periods.
+
+**What is missing is the spacing input**: a bound on
+\(\#\{i:\lVert f'_i\rVert\le\varepsilon\}\) for the cell frequencies.
+That is a three-distance or Erdős–Turán statement about an approximate
+arithmetic progression of common difference \(\asymp uP^{-1/4}\), and it
+is *not* proved here. Until it is, (i) is established for the narrowed
+(D3) — which is what every application in this paper supplies
+(Claim E) — and regime B of the wide class is open. It is recorded so
+that the boundary is visible rather than implicit.
+
 *Totals.* Stages 1–6 bound \(V\) by
 \[
 C\Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}

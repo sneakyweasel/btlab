@@ -382,6 +382,49 @@ Two rounding slips beside it: Stage 3(s1) prints
 displayed chain gives \(0.77\cdot0.62=0.477>0.47\), though the final
 \(0.47\) is correct from the exact value. Neither changes an estimate.
 
+*The wide (D3) case: partially closed, and the remainder named.* Asked
+to close it properly, the honest outcome is: **not closed**, but the
+boundary is now exact and one earlier claim of mine was wrong.
+
+*Correction.* I suggested last entry that (i) might be *false* on the
+wide class. It is not, on the evidence: the natural counterexample
+\(\varphi=\tfrac{27}{10}\nu^{5/4}\) --- which lies in the wide class
+at \(u=h=k=h_1=h_2=1\) and cancels the smooth part of the Stage-4
+curvature exactly --- gives block sums \(36,12,220,479,385\) at
+\(P=2\cdot10^3\dots5\cdot10^5\), i.e. \(\approx P^{1/2}\), far
+inside \(P^{7/8}\). So (i) is *unproved* on the wide class, not false.
+
+*Why it survives.* Cancelling the curvature does not help the adversary,
+because it moves the problem into a regime where a *different* test
+applies. The frozen \(G=\lfloor\delta_h\rfloor\) steps by exactly
+\(1\) at each cell boundary, so \(f''\) carries a sawtooth of
+amplitude \(\tfrac9{32}u(\nu{+}2h)^{-5/4}\) that no continuous
+\(\varphi''\) can follow, and \(f'\) jumps by
+\(\tfrac98u(\nu{+}2h)^{-1/4}\) at every boundary. Consequently the
+cells are *flat* (\(\mathrm{amp}\cdot\ell^2\le0.26uP^{-1/4}h^{-2}<1\)
+in regime B once \(h\ge3\); measured \(\approx3\cdot10^{-3}\)), so
+Kusmin--Landau replaces van der Corput; and \(f'\) sweeps
+\(\ge1.17uhP^{1/4}\) full periods across the cells (measured: \(19\)
+to \(37\)), so the cell frequencies are spread.
+
+*What is proved.* Regime A, \(uh\ge34.3kh_1h_2P^{1/8}\): the
+undifferenced budget is dominated and Stage 6 applies verbatim (Lean
+`wideD3_regimeA_dominated`). Regime B is a small-\(uh\) regime,
+\(uh<34.3P^{1/4}\) by (C1) (`wideD3_regimeB_small`); there the cells
+are flat (`wideD3_cells_flat`) and the frequency sweep is bounded below
+(`wideD3_frequency_sweep`).
+
+*What is missing.* A bound on
+\(\#\{i:\lVert f'_i\rVert\le\varepsilon\}\) for the cell
+frequencies --- a three-distance or Erdős--Turán statement about an
+approximate arithmetic progression of common difference
+\(\asymp uP^{-1/4}\). With it, regime B gives
+\(\ll hP^{1/2}\log P\le P^{5/8}\log P\), well inside the printed
+\(P^{7/8}\). Without it, regime B is open. So (i) stands as proved for
+the narrowed (D3) --- which is what Claim E supplies in every
+application --- and the wide class is recorded in the manuscript with
+its boundary explicit rather than implicit.
+
 *Correction to the previous entry.* The \(P_1\) recorded above as
 \(3.2\cdot10^{37}\) was wrong. It collected the three middle-band
 costs into a single coefficient of \(P^{89/96}\), but the \(r=3\)

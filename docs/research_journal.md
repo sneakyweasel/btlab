@@ -23390,3 +23390,37 @@ Best next question
 - whether (i) can be proved for the wide (D3) class at all, by treating
   the phi''-dominant and cancellation regimes separately
 ```
+
+## Paper B: the wide (D3) case — partially closed, remainder named (finding)
+
+- **Date:** 2026-09-04
+- **Objective:** Close Lemma 5.2(i) for the *wide* (D3) class, \(|\varphi''|\le3kh_1h_2P^{-5/8}\), rather than narrowing the class. **Outcome: not closed. The boundary is now exact, and one claim from the previous entry was wrong.**
+- **Correction.** I suggested (i) might be *false* on the wide class. It is not, on the evidence. The natural counterexample \(\varphi=\tfrac{27}{10}\nu^{5/4}\) — in the wide class at \(u=h=k=h_1=h_2=1\), and cancelling the smooth part of the Stage-4 curvature exactly — gives block sums \(36,12,220,479,385\) at \(P=2\cdot10^3\dots5\cdot10^5\), i.e. \(\approx P^{1/2}\), far inside \(P^{7/8}\). (i) is *unproved* there, not false.
+- **Why it survives.** Cancelling the curvature moves the problem to a regime where a different test applies. The frozen \(G=\lfloor\delta_h\rfloor\) steps by exactly 1 at each cell boundary, so \(f''\) carries a sawtooth of amplitude \(\tfrac9{32}u(\nu{+}2h)^{-5/4}\) that no continuous \(\varphi''\) can follow, and \(f'\) jumps by \(\tfrac98u(\nu{+}2h)^{-1/4}\) at each boundary. So the cells are *flat* (\(\mathrm{amp}\cdot\ell^2\le0.26uP^{-1/4}h^{-2}<1\) in regime B once \(h\ge3\); measured \(\approx3\cdot10^{-3}\)) — Kusmin–Landau replaces van der Corput — and \(f'\) sweeps \(\ge1.17uhP^{1/4}\) periods across the cells (measured 19 to 37).
+- **Proved:** regime A (\(uh\ge34.3kh_1h_2P^{1/8}\)) is Stage 6 verbatim; regime B is small-\(uh\) by (C1); the cells are flat there; the frequency sweep is bounded below. Four Lean theorems.
+- **Missing:** a bound on \(\#\{i:\lVert f'_i\rVert\le\varepsilon\}\) for the cell frequencies — a three-distance / Erdős–Turán statement about an approximate AP of common difference \(\asymp uP^{-1/4}\). With it, regime B gives \(\ll hP^{1/2}\log P\le P^{5/8}\log P\). Without it, regime B is open.
+- **Decision:** (i) stands proved for the narrowed (D3), which is what Claim E supplies in every application. The wide class is recorded in the manuscript with its boundary explicit.
+
+```text
+What was learned
+- cancelling a curvature does not help an adversary if the cancellation
+  pushes the sum into a regime where a different test applies; here the
+  frozen G is what makes that happen
+- the sawtooth in f'' from floor(delta_h) is the structural feature no
+  continuous decoration can imitate -- it is the real content of Stage 4
+- my "might be false" was wrong; the counterexample construction works
+  as designed and the sum still does not grow
+Strongest theorem
+- none new
+Strongest refutation
+- self: the wide class is not a counterexample
+Reusable machinery
+- wideD3_* in PaperBAssembly.lean; the flat-cell / frequency-sweep pair
+Branch status
+- PARK (regime B of the wide class open; Stages 1-5 still author-chain)
+Why
+- the missing input is a standard-looking spacing statement, but it is
+  not proved here and should not be asserted
+Best next question
+- the three-distance bound for the cell frequencies f'_i
+```
