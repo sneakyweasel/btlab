@@ -10,6 +10,7 @@ type BeadMarkProps = {
   width?: number;
   onSelect?: (n: number) => void;
   onHover?: (n: number | null) => void;
+  labelBelow?: boolean;
 };
 
 export function BeadMark({
@@ -22,8 +23,10 @@ export function BeadMark({
   width = 640,
   onSelect,
   onHover,
+  labelBelow = false,
 }: BeadMarkProps) {
   const labelX = Math.min(Math.max(x, 40), width - 40);
+  const labelGap = 16;
   return (
     <g
       className="bead-mark"
@@ -47,7 +50,8 @@ export function BeadMark({
       <text
         className={active ? undefined : "bead-label"}
         x={labelX}
-        y={y - 16}
+        y={labelBelow ? y + labelGap : y - labelGap}
+        dominantBaseline={labelBelow ? "hanging" : "auto"}
         textAnchor="middle"
         fill={color}
         fontSize="12"

@@ -92,11 +92,13 @@ export function PreimagesTab() {
       </section>
 
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
-        <h2 className="font-serif text-2xl">Even block E(m)</h2>
+        <h2 className="font-serif text-2xl">One-step parents of m</h2>
         <p className="text-sm text-muted">
-          Every even n in [{formatInt(m)}², {formatInt(m + 1)}²) = [
+          Above: every even n in [{formatInt(m)}², {formatInt(m + 1)}²) = [
           {formatInt(block.lo)}, {formatInt(block.hi)}) has{" "}
-          <Tex>{String.raw`J(n)=m`}</Tex>. If m is in A, those evens are in A.
+          <Tex>{String.raw`\lfloor\sqrt{n}\rfloor=m`}</Tex>. Below: at most one
+          odd n has <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor=m`}</Tex>. If m is
+          in A, every bead with an arrow joins A.
         </p>
         <div className="grid gap-3 sm:grid-cols-3">
           <Metric

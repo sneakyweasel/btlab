@@ -34,7 +34,9 @@ function Card({
   children: ReactNode;
   compact?: boolean;
 }) {
-  if (compact) return <div className="grid gap-1 text-center">{children}</div>;
+  if (compact) {
+    return <div className="flex justify-center leading-none">{children}</div>;
+  }
   return (
     <div className="flex h-full flex-col rounded-2xl border border-line bg-paper/70 px-4 py-3">
       <p className="text-xs uppercase tracking-wide text-muted">
@@ -107,7 +109,7 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
       {compact ? (
         <p
           title={`${next.toString()}.${decimals}…`}
-          className="flex items-center justify-center gap-1.5 text-xs font-mono"
+          className="m-0 flex items-center justify-center gap-1 text-xs leading-none font-mono"
         >
           <Tex>{work}</Tex>
           <span>=</span>

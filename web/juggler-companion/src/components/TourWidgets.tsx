@@ -506,17 +506,30 @@ export function PreimagesWidget() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="mb-2 font-serif text-lg">Even block of {formatInt(m)}</h3>
+        <h3 className="mb-2 font-serif text-lg">
+          One-step parents of {formatInt(m)}
+        </h3>
         <p className="text-sm text-muted">
-          The even block of {formatInt(m)} is the set of even one-step
-          preimages of {formatInt(m)}: every even n in [{formatInt(m)}²,{" "}
-          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}
-          ). If {formatInt(m)} is in a backward-closed set A, so is this block.
+          Two number lines, one seed. Above, every even n in [
+          {formatInt(m)}², {formatInt(m + 1)}²) = [{formatInt(block.lo)},{" "}
+          {formatInt(block.hi)}) has <Tex>{String.raw`\lfloor\sqrt{n}\rfloor`}</Tex>{" "}
+          = {formatInt(m)}. Those teal arrows are the even block.
         </p>
         <p className="mb-4 text-sm text-muted">
-          {oddParent === null
-            ? `${formatInt(m)} has no odd one-step precursor.`
-            : `The unique odd precursor of ${formatInt(m)} is ${formatInt(oddParent)}.`}
+          {oddParent === null ? (
+            <>
+              Below, the same integer spacing, but no ember bead: no odd n has{" "}
+              <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}.
+            </>
+          ) : (
+            <>
+              Below, at most one odd n has{" "}
+              <Tex>{String.raw`\lfloor n\sqrt{n}\rfloor`}</Tex> = {formatInt(m)}.
+              Here that unique precursor is {formatInt(oddParent)}.
+            </>
+          )}{" "}
+          If {formatInt(m)} is in a backward-closed set A, every bead with an
+          arrow joins A.
         </p>
         <div className="mb-4 rounded-2xl border border-line bg-paper px-4 py-2.5">
           <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
