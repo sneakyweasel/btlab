@@ -1,10 +1,12 @@
 import { EMBER, SEA } from "../juggler/palette";
 import type { FiberPoint } from "../juggler/productions";
+import { BeadMark } from "./BeadMark";
 
 type SweepLaneProps = {
   points: FiberPoint[];
   selected?: number | null;
   onSelect?: (n: number) => void;
+  onHover?: (n: number | null) => void;
 };
 
 const LEFT = 36;
@@ -16,7 +18,12 @@ function xOf(phase: number): number {
   return LEFT + Math.min(Math.max(phase, 0), 0.999) * (RIGHT - LEFT);
 }
 
-export function SweepLane({ points, selected = null, onSelect }: SweepLaneProps) {
+export function SweepLane({
+  points,
+  selected = null,
+  onSelect,
+  onHover,
+}: SweepLaneProps) {
   const mid = xOf(0.5);
   return (
     <svg viewBox={`0 0 ${WIDTH} 118`} role="img" className="h-auto w-full">
@@ -48,25 +55,19 @@ export function SweepLane({ points, selected = null, onSelect }: SweepLaneProps)
       >
         1
       </text>
-      {points.map((point) => {
-        const active = selected === point.n;
-        const color = point.imageEven ? SEA : EMBER;
-        return (
-          <circle
-            key={point.n}
-            cx={xOf(point.sweep)}
-            cy={Y}
-            r={active ? 8 : 5.5}
-            fill={color}
-            stroke={active ? "#1d1914" : "#fffdf7"}
-            strokeWidth={active ? 2 : 1}
-            style={{ cursor: onSelect ? "pointer" : undefined }}
-            onClick={() => onSelect?.(point.n)}
-          >
-            <title>{`n = ${point.n}, phase ${point.sweep.toFixed(3)}`}</title>
-          </circle>
-        );
-      })}
+      {points.map((point) => (
+        <BeadMark
+          key={point.n}
+          x={xOf(point.sweep)}
+          y={Y}
+          n={point.n}
+          color={point.imageEven ? SEA : EMBER}
+          radius={5.5}
+          active={selected === point.n}
+          onSelect={onSelect}
+          onHover={onHover}
+        />
+      ))}
       <text x={LEFT + 8} y="28" fill={SEA} fontSize="11">
         even image
       </text>

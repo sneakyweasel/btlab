@@ -64,8 +64,14 @@ analytic cylinder bound would have to have. An exact first-letter
 decomposition of the failure set has a single free term, and that
 term is the infinite-depth live mass controlled by the same
 hypothesis: the termination problem has one frontier statement. The
-exact combinatorial layer is formalized in Lean 4; the counting is a
-human proof; numerical experiments are reported as observations only.
+We also determine the ceiling of the contagion recursion itself: with
+ideal fiber shares its exponent solves
+\(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\) and equals \(1\),
+attained on the fair-coin backward path, so the recursion is capped not
+by its own structure but by two named obstructions — a fiber-length
+threshold and the same parked kernel that blocks the analytic route.
+The exact combinatorial layer is formalized in Lean 4; the counting is
+a human proof; numerical experiments are reported as observations only.
 No fate is excluded.
 
 ## 1. Introduction
@@ -162,6 +168,22 @@ the basin of any existing nontrivial cycle, the divergent set —
 satisfies this bound, and on infinitely many dyadic blocks has natural
 density \(\gg(\log y)^{\lambda-1}\). (Theorem 5.3, Corollaries 5.4,
 5.5.)
+
+The exponent \(0.4480\) is not the method's ceiling. Section 5.7
+determines that ceiling exactly: writing \(\rho_w=2^{-a}(3/2)^b\) for
+the source scale of a production word with \(a\) letters \(E\) and
+\(b\) letters \(O\), the ideal coefficient is
+\(2^{-|w|}/\rho_w\) — a formula that returns every coefficient used
+here — and if every \(O\)-production realized the fair fiber share
+then \(\lambda\) would solve
+\(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\), whose root is
+\(\lambda=1\), attained on the fair-coin backward path (Proposition
+5.12). Two obstructions stop the list short: the ideal share is
+available only for \(\rho_w\le\tfrac12\), because the fiber has length
+\(P^{1-\rho_w}\) (Proposition 5.13), and a run of \(r\) consecutive
+\(O\)'s needs Paper B at depth \(r+1\), which the parked kernel
+\(K_3\) blocks at \(r=4\). The last rung before that wall is
+\(\lambda\le0.8414\).
 
 **Theorem 2 (odd generation).** Let \(A\) be forward- and
 backward-closed with \(1\notin A\). Every \(n\in A\) descends by even
@@ -953,18 +975,11 @@ Theorem 5.3 and Corollary 5.4. In particular:
 
 ### 5.6 Remarks
 
-*Why the exponent is not \(1\).* Positive logarithmic density
-(\(\lambda=1\)) would need the productions to account for all of the
-mass: in the ideal recursion \(g(t)\ge g(t/2)+\sum_w c_w\,g(e_wt)\)
-over descent certificates \(w\) with landing exponents \(e_w\), linear
-growth requires the certificate classes to carry the full odd mass.
-Depth two (\(E\), \(OE\)) carries \(\tfrac34\) of the integers and
-gives at best \(\lambda_{\rm ideal}=0.4927\); Paper B's depth-five
-classes (\(\tfrac78\)) would give about \(0.75\); the \(OO\)-rooted
-classes send their mass to *larger* scales (\(x^{3/2}\)), which a
-downward induction cannot use until a later descent certificate
-returns it. Positive density of \(R\) is therefore as hard as the
-full almost-all-descent statement with a rate, and is not claimed.
+*Why the exponent is not \(1\).* Not because the method is capped
+below \(1\) — Section 5.7 shows its ceiling is exactly \(1\) — but
+because two named obstructions stop the production list short of it.
+Positive density of \(R\) is therefore as hard as the full
+almost-all-descent statement with a rate, and is not claimed.
 
 *Pointwise natural density.* Theorem 5.3 is logarithmic and
 Corollary 5.4 holds infinitely often, not for every \(x\). A pointwise
@@ -979,11 +994,102 @@ is lacunary at the dyadic scale.
 \(\alpha_m\approx\tfrac13\) (Section 11). The remaining depth-two gap
 \(0.448\to 0.4927\) is a dynamical averaging problem for the
 low-even set \(P=\{m:G_m/H_m\le 0.40\}\), not another pointwise
-fiber bound.
+fiber bound. By Proposition 5.13 it is not a separate problem either:
+it is exactly the short-fiber regime \(\rho_w>\tfrac12\).
 
 *What is excluded.* Nothing. Corollary 5.5 does not say that a cycle
 or a divergent orbit is impossible; it says that either would be
 common.
+
+### 5.7 The ceiling of the production calculus
+
+Every production used above is a parity word \(w\) applied backwards.
+Write \(a=\#\{E\ \text{in}\ w\}\), \(b=\#\{O\ \text{in}\ w\}\). The
+source of a \(w\)-production sits at log-scale \(\rho_wt\) with
+
+\[
+\rho_w=2^{-a}\bigl(\tfrac32\bigr)^{b},
+\qquad
+c^{\rm ideal}_w=\frac{2^{-|w|}}{\rho_w},
+\tag{5.7}
+\]
+
+the second being the log-mass coefficient when the fiber realizes the
+fair share \(2^{-|w|}\). Formula (5.7) returns every coefficient in
+this section and in Appendix C: \(c_E=1\), \(c_{OE}=c_{OEE}=\tfrac13\),
+\(c_{OOEEE}=\tfrac19\).
+
+**Proposition 5.12 (the ceiling is \(1\)).** Let the \(E\)-production
+be exact and let every \(O\)-production realize a fraction \(\eta\) of
+the ideal fiber share. Then the recursion exponent is the root of
+
+\[
+2^{-\lambda}+\tfrac{\eta}{3}\bigl(\tfrac32\bigr)^{\lambda}=1 ,
+\tag{5.8}
+\]
+
+so \(\lambda=1\) exactly when \(\eta=1\), and
+\(d\lambda/d\eta|_{\eta=1}=1/\ln(4/3)=3.4761\ldots\).
+
+*Proof.* Summing the backward tree by path type — odd share \(\theta\),
+\(\binom{k}{\theta k}\) arrangements, mass \((\eta/3)^{\theta k}\),
+scale constraint \(k(1-\theta\log_23)\le u\) — gives
+\(\lambda(\eta)=\max_\theta[H(\theta)-\theta\log_2(3/\eta)]/[1-\theta\log_23]\),
+whose stationary point is \(\theta=\tfrac12\); there numerator and
+denominator are both \(1-\tfrac12\log_23\) when \(\eta=1\), so
+\(\lambda=1\). Equivalently \(\tfrac12+\tfrac13\cdot\tfrac32=1\) in
+(5.8). Differentiating (5.8) at \((\lambda,\eta)=(1,1)\) gives
+\(-\partial_\lambda=\tfrac12\ln\tfrac43\) and
+\(\partial_\eta=\tfrac12\). \(\square\)
+
+The extremal backward path is therefore the *fair-coin* one,
+\(\theta=\tfrac12\): the ceiling of the method is exactly the value the
+frontier statement of Section 12 needs, not less. Two obstructions keep
+the realized \(\eta\) below \(1\).
+
+**Proposition 5.13 (fiber-length criterion).** For a production word
+\(w\), the fiber over a source \(m'\) is
+\(I(m')=[m'^{1/\rho_w},(m'+1)^{1/\rho_w})\), so at scale \(P=n\)
+
+\[
+|I(m')|=\tfrac1{\rho_w}\,m'^{1/\rho_w-1}=\tfrac1{\rho_w}\,P^{\,1-\rho_w}.
+\]
+
+The localized parity estimate of Appendix C requires \(|I|\ge P^{1/2}\).
+Hence the ideal share is available **exactly when
+\(\rho_w\le\tfrac12\)**.
+
+This classifies every production: \(E\) (\(\rho=\tfrac12\), exact),
+\(OEE\) (\(\rho=\tfrac38\), \(|I|=P^{5/8}\), block average, ideal),
+\(OOEEE\) (\(\rho=\tfrac9{32}\), \(|I|=P^{23/32}\), Appendix C, ideal)
+— against \(OE\) (\(\rho=\tfrac34\), \(|I|=P^{1/4}\)), the one lossy
+production, and \(OOEE\) (\(\rho=\tfrac9{16}\), \(|I|=P^{7/16}\)),
+which is why Appendix C must reach \(OOEEE\): the extra \(E\)
+lengthens the fiber past the threshold.
+
+**The \(K_3\) cap.** Production words must be prefix-free, so the
+natural list is the first passage of \(\rho_w\) below \(\tfrac12\). A
+run of \(r\) consecutive \(O\)'s forces \(r\) nested \(3/2\)-powers
+plus the closing square root — Paper B at depth \(r+1\). Paper B is
+complete to depth \(4\), and to depth \(5\) except \(OOOO*\), which is
+the parked kernel \(K_3\). Hence \(r\le3\), and with \(\lambda(r)\) the
+exponent when \(O\)-runs up to length \(r\) are controlled:
+
+| \(r\) | Paper B depth | \(\lambda(r)\), present sweep | \(\lambda(r)\), ideal fibers |
+|---|---|---|---|
+| 1 | 2 | \(0.4480\) | \(0.4927\) |
+| 2 | 3 | \(0.6247\) | \(0.7180\) |
+| 3 | 4 | \(0.7095\) | \(0.8414\) |
+| 4 | 5 | \(0.7516\) | \(0.9121\) |
+
+Row \(r=4\) is behind \(K_3\). Appendix C uses one word of the \(r=2\)
+family and prints \(0.5392\); its Proposition C.2 attains the *ideal*
+share, so the ground between \(0.5392\) and \(0.7180\) is more words —
+each costing one localization of a Paper B theorem to sub-dyadic
+intervals — and not a better estimate for the word already used.
+\(\lambda=1\) needs \(r\to\infty\): **the contagion side of the problem
+is guarded by \(K_3\) as well**, at \(r=4\), and approaches the same
+wall from the other direction rather than going around it.
 
 ## 6. Odd generation and the exact first-letter decomposition
 
@@ -1754,7 +1860,16 @@ remaining problem to one statement:
 > \(C\log_2\log y\) steps is at most \(y(\log y)^{-e}\) for some
 > \(e>1-\lambda^{**}=0.552\) (\(0.461\) under Appendix C).
 
-By Theorem 3 this statement is equivalent to the conjecture. Its
+By Theorem 3 this statement is equivalent to the conjecture. The rate
+threshold \(1-\lambda^{**}\) can be lowered by raising \(\lambda\), and
+Section 5.7 prices that: the last rung reachable before \(K_3\) is
+\(\lambda\le0.7095\) with the present fiber sweep and \(\le0.8414\)
+with ideal fibers, i.e. \(e>0.2905\) and \(e>0.1586\), which move the
+least depth constant from \(C=18\) to \(C=14\) and \(C=11\). This
+lowers the frontier statement's constant; it does not remove its
+\(\log\log y\) depth, and by Proposition 5.12 driving \(\lambda\) to
+\(1\) — which would make any positive rate suffice — needs \(O\)-runs
+of every length, hence \(K_3\). Its
 weakest sufficient condition on the concentration route is the
 no-momentum hypothesis \(\mathrm M_{\theta,q}(C)\): the tilted odd
 share of live starts exceeds \(q<\log 2/\log 3\) by \(o(\log\log y)\) in
@@ -1803,6 +1918,11 @@ analytic density estimates.
 | + \(OOEEE\) on even blocks (\(\lambda^{***}\), Appendix C, conditional) | \(\ldots,(\tfrac19,\tfrac9{32})\) | \(0.5392\) |
 | depth-two ideal | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
 | + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
+| \(O\)-runs \(\le2\) controlled, present sweep (Section 5.7) | transfer matrix | \(0.6247\) |
+| \(O\)-runs \(\le2\), ideal fibers | transfer matrix | \(0.7180\) |
+| \(O\)-runs \(\le3\) (last rung before \(K_3\)), present sweep | transfer matrix | \(0.7095\) |
+| \(O\)-runs \(\le3\), ideal fibers | transfer matrix | \(0.8414\) |
+| ceiling, all \(O\)-runs at the ideal share (Proposition 5.12) | \(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\) | \(1\) |
 
 *Depth constants.* Chernoff exponent \(e(C)\): \(0.480\) (\(18\)),
 \(0.527\) (\(19\)), \(0.574\) (\(20\)), \(0.621\) (\(21\)), \(0.812\)

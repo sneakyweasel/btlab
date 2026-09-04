@@ -7,12 +7,12 @@ import {
   PRODUCTION_SEEDS,
 } from "../../juggler/constants";
 import { formatInt } from "../../juggler/format";
-import { floorPower } from "../../juggler/map";
 import { oddPreimageIntegers } from "../../juggler/preimages";
 import { evenBlockView, fiberView } from "../../juggler/productions";
 import { EvenBlockStrip } from "../../visuals/EvenBlockStrip";
 import { OeFiberStrip } from "../../visuals/OeFiberStrip";
 import { PreimageNumberLine } from "../../visuals/PreimageNumberLine";
+import { ProductionWork } from "../../visuals/ProductionWork";
 import { SweepLane } from "../../visuals/SweepLane";
 
 function formatShare(value: number | null): string {
@@ -22,18 +22,17 @@ function formatShare(value: number | null): string {
 
 export function PreimagesTab() {
   const [m, setM] = useState(12);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(144);
+  const [hovered, setHovered] = useState<number | null>(null);
   const block = useMemo(() => evenBlockView(m), [m]);
   const fiber = useMemo(() => fiberView(m), [m]);
   const odds = useMemo(() => oddPreimageIntegers(m), [m]);
-  const selectedPoint = fiber.points.find((point) => point.n === selected) ?? null;
-  const selectedIsEven = selected !== null && selected % 2 === 0;
-  const selectedImage =
-    selected === null ? null : selectedIsEven
-      ? floorPower(BigInt(selected))
-      : selectedPoint
-        ? floorPower(floorPower(BigInt(selected)))
-        : null;
+  const inspect =
+    hovered ??
+    selected ??
+    (block.listed ? block.evens[0] : null) ??
+    fiber.points[0]?.n ??
+    null;
 
   return (
     <div className="space-y-6">
@@ -61,6 +60,7 @@ export function PreimagesTab() {
                 ) {
                   setM(value);
                   setSelected(null);
+                  setHovered(null);
                 }
               }}
             />
@@ -78,6 +78,7 @@ export function PreimagesTab() {
                 onClick={() => {
                   setM(seed);
                   setSelected(null);
+                  setHovered(null);
                 }}
               >
                 {seed.toLocaleString("en-US")}
@@ -105,7 +106,12 @@ export function PreimagesTab() {
             hint="Lemma 3.1 bounds on the sum of 1/n"
           />
         </div>
-        <EvenBlockStrip view={block} selected={selected} onSelect={setSelected} />
+        <EvenBlockStrip
+          view={block}
+          selected={selected}
+          onSelect={setSelected}
+          onHover={setHovered}
+        />
         {block.listed && block.evens.length <= 16 ? (
           <p className="font-mono text-sm">{block.evens.join(", ")}</p>
         ) : null}
@@ -134,7 +140,12 @@ export function PreimagesTab() {
             hint="elementary and monotone"
           />
         </div>
-        <OeFiberStrip view={fiber} selected={selected} onSelect={setSelected} />
+        <OeFiberStrip
+          view={fiber}
+          selected={selected}
+          onSelect={setSelected}
+          onHover={setHovered}
+        />
       </section>
 
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
@@ -148,17 +159,12 @@ export function PreimagesTab() {
           points={fiber.points}
           selected={selected}
           onSelect={setSelected}
+          onHover={setHovered}
         />
-        {selected !== null ? (
-          <p className="font-mono text-sm">
-            {selectedIsEven
-              ? `${selected} even → J = ${selectedImage?.toString() ?? "—"}`
-              : selectedPoint
-                ? `${selected} odd, image ${selectedPoint.imageEven ? "even" : "odd"} → J² = ${selectedImage?.toString() ?? "—"}`
-                : `${selected} is not on this fiber`}
-          </p>
+        {inspect !== null ? (
+          <ProductionWork n={inspect} />
         ) : (
-          <p className="text-sm text-muted">Click a bead to inspect it.</p>
+          <p className="text-sm text-muted">Hover a bead to see the square root and the floor cut.</p>
         )}
       </section>
 

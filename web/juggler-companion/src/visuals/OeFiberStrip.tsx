@@ -1,11 +1,13 @@
 import { EMBER, SEA } from "../juggler/palette";
 import { formatInt } from "../juggler/format";
 import type { FiberView } from "../juggler/productions";
+import { BeadMark } from "./BeadMark";
 
 type OeFiberStripProps = {
   view: FiberView;
   selected?: number | null;
   onSelect?: (n: number) => void;
+  onHover?: (n: number | null) => void;
 };
 
 const LEFT = 36;
@@ -17,9 +19,13 @@ function xOf(n: number, lo: number, hi: number): number {
   return LEFT + ((n - lo) / span) * (RIGHT - LEFT);
 }
 
-export function OeFiberStrip({ view, selected = null, onSelect }: OeFiberStripProps) {
+export function OeFiberStrip({
+  view,
+  selected = null,
+  onSelect,
+  onHover,
+}: OeFiberStripProps) {
   const { m, lo, hi, points, listed } = view;
-  const labelPoints = points.length <= 8;
   const last = points[points.length - 1]?.n ?? hi - 1;
   return (
     <svg viewBox={`0 0 ${WIDTH} 118`} role="img" className="h-auto w-full">
@@ -46,55 +52,30 @@ export function OeFiberStrip({ view, selected = null, onSelect }: OeFiberStripPr
       >
         {formatInt(last + 2)}
       </text>
-      {listed
-        ? points.map((point) => {
-            const active = selected === point.n;
-            const color = point.imageEven ? SEA : EMBER;
-            return (
-              <g key={point.n}>
-                <circle
-                  cx={xOf(point.n, lo, hi)}
-                  cy="50"
-                  r={active ? 8 : 6}
-                  fill={color}
-                  stroke={active ? "#1d1914" : "none"}
-                  strokeWidth={active ? 2 : 0}
-                  style={{ cursor: onSelect ? "pointer" : undefined }}
-                  onClick={() => onSelect?.(point.n)}
-                >
-                  <title>
-                    {point.imageEven
-                      ? `${point.n} odd, even image → J(J(${point.n})) = ${m}`
-                      : `${point.n} odd, odd image — not this production`}
-                  </title>
-                </circle>
-                {labelPoints ? (
-                  <text
-                    x={xOf(point.n, lo, hi)}
-                    y="28"
-                    textAnchor="middle"
-                    fill={color}
-                    fontSize="11"
-                    fontFamily="IBM Plex Mono, monospace"
-                  >
-                    {point.n}
-                  </text>
-                ) : null}
-              </g>
-            );
-          })
-        : (
-          <text
-            x={WIDTH / 2}
-            y="54"
-            textAnchor="middle"
-            fill="#5e574c"
-            fontSize="12"
-            fontFamily="IBM Plex Mono, monospace"
-          >
-            fiber longer than the display cap
-          </text>
-        )}
+      {listed ? (
+        points.map((point) => (
+          <BeadMark
+            key={point.n}
+            x={xOf(point.n, lo, hi)}
+            n={point.n}
+            color={point.imageEven ? SEA : EMBER}
+            active={selected === point.n}
+            onSelect={onSelect}
+            onHover={onHover}
+          />
+        ))
+      ) : (
+        <text
+          x={WIDTH / 2}
+          y="54"
+          textAnchor="middle"
+          fill="#5e574c"
+          fontSize="12"
+          fontFamily="IBM Plex Mono, monospace"
+        >
+          fiber longer than the display cap
+        </text>
+      )}
       <text
         x={WIDTH / 2}
         y="110"

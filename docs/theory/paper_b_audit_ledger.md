@@ -1,6 +1,6 @@
 # Paper B audit ledger
 
-Companion to [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md). This is a research-discipline record, not an independent verification and not part of the journal text. Probe: `research.juggler_sequence.paper_b_audit`. Theorem 5.3 is the monomial `c = (3k/4) n^{9/8}`. The printed Step 5b `|B|<1` claim is withdrawn: frozen `B = (9/32) k β1 β2 ν^{-9/8}` has constant size `|B| ≤ 6`; Lemma 3.7 at `T = P^{1/2}` still applies. The `ρ₀` ratios of Lemma 5.2b are `O(P^{-1/4})` and sit under `1/2304` for `P ≥ P₀`. Exponent checks: 98.
+Companion to [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md). This is a research-discipline record, not an independent verification and not part of the journal text. Probe: `research.juggler_sequence.paper_b_audit`. Theorem 5.3 is the monomial `c = (3k/4) n^{9/8}`. The printed Step 5b `|B|<1` claim is withdrawn: frozen `B = (9/32) k β1 β2 ν^{-9/8}` has constant size `|B| ≤ 6`; Lemma 3.7 at `T = P^{1/2}` still applies. The `ρ₀` ratios of Lemma 5.2b are `O(P^{-1/4})` and sit under `1/2304` for `P ≥ P₀`. Exponent checks: 104.
 
 
 This file records a re-derivation of the kernel argument, in the form
@@ -12,7 +12,7 @@ the standing estimates and inventories on the blocks
 \(P=10^6,10^8,10^{10}\) (and, for cell counts, exhaustively at
 \(P=10^5\)), and every displayed \(P\)-power comparison
 as an exact rational statement
-(`research.juggler_sequence.paper_b_audit`, \(98\) exponent checks;
+(`research.juggler_sequence.paper_b_audit`, \(104\) exponent checks;
 artifact `data/research/juggler/paper_b_audit/summary.json`). A
 script check confirms consistency of what is printed; it is not a
 proof, and this file is not an independent human verification.
@@ -30,13 +30,15 @@ the exponent \(1-1/96\) and the statements of Theorem 6.1 are unchanged.
 | Standing estimates (E1)–(E6) | hand ((E5) speed constant \(\tfrac{27}8h_1n^{1/4}\in(3.4,4.0]h_1P^{1/4}\); (E6) constant \(\tfrac98\cdot\tfrac{15}8\cdot\tfrac78=\tfrac{945}{512}\)); script (observed ranges inside every printed interval at three scales; (E6) ratio within \(10^{-3}\) of \(1\)) | consistent |
 | Cell inventory \(1.5hP^{1/2}+1\), lengths \([\tfrac23,0.95]P^{1/2}/h\) | hand (\(\delta_h'\in(1.06,1.5]hP^{-1/2}\)); script (exhaustive at \(P=10^5\), \(h\le3\): \(394\), \(787\), \(1179\) cells against \(475\), \(950\), \(1424\)) | consistent |
 | Lemma 5.2(ii) from (i): \(H_3=\lceil t^{1/3}P^{1/12}\rceil\), the four terms, \(t\le16P^{1/24}\), \(H_3\le P^{1/4}\), (D3) after differencing | hand (all four exponent identities and constants \(6,\ 96,\ 11\)); script | consistent |
+| Standing constraint (C4): \(h_1,h_2\le P^{1/24}\), hence \(h_1+h_2\le 2P^{1/24}\) | hand (not implied by (C1)--(C3) alone; D1 class and the (ii)\(\to\)(i) telescoping need it); script | consistent; Theorem 5.3 has \(H_1=P^{1/48}\), \(H_2=P^{1/24}\) |
 | Lemma 5.2(i) Stage 1: \(A_h=-\tfrac{27}8h^2\nu^{1/4}(1+O(hP^{-1}))\), \(B\in(1.89,2.25]uhP^{-1/4}\) | hand (second-order Taylor; the two \(\nu^{5/4}\) terms cancel exactly) | consistent |
 | Stage 2: cells, majorant \(4P^{3/4}\), exact shift device | hand (cells, majorant); the shift device is the Theorem 4.4 Step 4 argument, cited not re-derived | consistent |
 | Stage 3: (s1) \(\lvert B\rvert\le2.25P^{-1/16}\), \(T\ge8(1+\lvert B\rvert)\); (s2) windows \(0.6P^{1/4}+1\), boundary \(2.1P^{17/32}\), flat \(27P^{3/4}\) | hand (boundary recomputed as \(2.0P^{17/32}\)) | consistent |
 | Stage 4: curvature \([0.30,1.35]uhP^{-3/4}\), sums \(2.3(uh)^{1/2}P^{5/8}+2.8(h/u)^{1/2}P^{7/8}\) | hand (\([0.354,1.21]\); \(1.16\), \(2.74\)) | consistent |
 | Stage 5: thresholds \(10.2\), \(0.1\); collision sums \(3.4\), \(4.5\), \(2.5\); exponent \(37/48\) | hand (\(3.3\), \(3.5\), \(1.9\)) | consistent |
 | Stage 6: (D1) coefficients \(24P^{-5/24}\), \(160P^{-13/24}\), ratios \(80P^{1/24-1/2}\), \(672P^{1/12-1}\); (D2)(a) flat \(23P^{19/24}\); (D2)(b) drift \(13hP^{-1/4}\); (D3) \(20P^{-3/4}\) | hand (\(667\) for \(672\)) | consistent |
-| Theorem 5.3 Step 1: (C1)–(C3) room \(P^{-1/48}\); balance \(23/24\to1-1/48\to1-1/96\) | hand; script | consistent |
+| Theorem 5.3 Step 1: (C1)–(C4) room \(P^{-1/48}\); balance \(23/24\to1-1/48\to1-1/96\) | hand; script | consistent |
+| Theorem 5.3 Step 3c: window \(T=P^{1/2}/(2h_2)\ge\tfrac12 P^{11/24}\) against \(15P^{9/48}\); boundaries \(\le7P^{11/16}\) | hand; script | consistent |
 | Step 2: \(\lvert M_1\rvert\le0.43kh_1h_2P^{-7/8}\), deletion cost \(2.7P^{1/4}\) | hand; script (\(M_1\) bound on all samples) | consistent |
 | Step 3a: windows \(2kh_2P^{1/4}+1\), hypothesis \(T\ge8(1+\lvert B\rvert)\), flat \(46P^{3/4}\), modes \(uh_1\le P^{1/2}\), boundaries \(7P^{17/24}\); 3b: \(\lvert(\Delta_2c)''\rvert\le0.19kh_2P^{-15/8}\), majorant \(4P^{23/24}\) | hand (window count \(0.22kh_2P^{1/4}+1\)) | consistent |
 | Step 4: weight sum \(\sum_t t^{-7/6}\log^2t<\infty\); \(\lvert t\rvert\) inside the Lemma 5.2 budget | hand | consistent |

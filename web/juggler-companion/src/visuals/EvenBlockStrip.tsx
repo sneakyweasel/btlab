@@ -1,11 +1,13 @@
 import { SEA } from "../juggler/palette";
 import { formatInt } from "../juggler/format";
 import type { EvenBlockView } from "../juggler/productions";
+import { BeadMark } from "./BeadMark";
 
 type EvenBlockStripProps = {
   view: EvenBlockView;
   selected?: number | null;
   onSelect?: (n: number) => void;
+  onHover?: (n: number | null) => void;
 };
 
 const LEFT = 36;
@@ -17,7 +19,12 @@ function xOf(n: number, lo: number, hi: number): number {
   return LEFT + ((n - lo) / span) * (RIGHT - LEFT);
 }
 
-export function EvenBlockStrip({ view, selected = null, onSelect }: EvenBlockStripProps) {
+export function EvenBlockStrip({
+  view,
+  selected = null,
+  onSelect,
+  onHover,
+}: EvenBlockStripProps) {
   const { m, lo, hi, evens, listed, count } = view;
   const odds: number[] = [];
   if (listed) {
@@ -25,7 +32,6 @@ export function EvenBlockStrip({ view, selected = null, onSelect }: EvenBlockStr
       if (n % 2 !== 0) odds.push(n);
     }
   }
-  const labelEvens = evens.length <= 8;
   return (
     <svg viewBox={`0 0 ${WIDTH} 132`} role="img" className="h-auto w-full">
       <title>{`Even block of ${m}: ${count} evens in [${lo}, ${hi}) map to ${m}`}</title>
@@ -53,41 +59,27 @@ export function EvenBlockStrip({ view, selected = null, onSelect }: EvenBlockStr
       </text>
       {listed
         ? odds.map((n) => (
-            <circle key={`o-${n}`} cx={xOf(n, lo, hi)} cy="50" r="3.5" fill="#cfc6b4" />
+            <BeadMark
+              key={`o-${n}`}
+              x={xOf(n, lo, hi)}
+              n={n}
+              color="#cfc6b4"
+              radius={3.5}
+            />
           ))
         : null}
       {listed
-        ? evens.map((n) => {
-            const active = selected === n;
-            return (
-              <g key={`e-${n}`}>
-                <circle
-                  cx={xOf(n, lo, hi)}
-                  cy="50"
-                  r={active ? 8 : 6}
-                  fill={SEA}
-                  stroke={active ? "#1d1914" : "none"}
-                  strokeWidth={active ? 2 : 0}
-                  style={{ cursor: onSelect ? "pointer" : undefined }}
-                  onClick={() => onSelect?.(n)}
-                >
-                  <title>{`${n} even → J(${n}) = ${m}`}</title>
-                </circle>
-                {labelEvens ? (
-                  <text
-                    x={xOf(n, lo, hi)}
-                    y="28"
-                    textAnchor="middle"
-                    fill={SEA}
-                    fontSize="11"
-                    fontFamily="IBM Plex Mono, monospace"
-                  >
-                    {n}
-                  </text>
-                ) : null}
-              </g>
-            );
-          })
+        ? evens.map((n) => (
+            <BeadMark
+              key={`e-${n}`}
+              x={xOf(n, lo, hi)}
+              n={n}
+              color={SEA}
+              active={selected === n}
+              onSelect={onSelect}
+              onHover={onHover}
+            />
+          ))
         : null}
       <path d={`M ${WIDTH / 2} 96 L ${WIDTH / 2} 112`} stroke={SEA} strokeWidth="1.5" />
       <path

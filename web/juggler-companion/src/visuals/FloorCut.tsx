@@ -89,6 +89,8 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
   const shownN = shortDigits(n, head, tail, maxFull);
   const shownInt = shortDigits(next, head, tail, maxFull);
   const work = odd ? String.raw`\sqrt{${shownN}^{3}}` : String.raw`\sqrt{${shownN}}`;
+  const root = odd ? Math.sqrt(x) : raw;
+  const rootShown = root.toFixed(3);
   return (
     <Card compact={compact}>
       {compact ? null : (
@@ -100,6 +102,11 @@ export function FloorCut({ n, result, compact = false }: FloorCutProps) {
       <p className={compact ? "text-xs" : "text-sm"}>
         <Tex>{work}</Tex>
       </p>
+      {odd && !compact ? (
+        <p className="mt-1 font-mono text-sm text-muted">
+          {shownN} × √{shownN} = {shownN} × {rootShown}…
+        </p>
+      ) : null}
       <div
         title={`${next.toString()}.${decimals}…`}
         className={`flex max-w-full items-center justify-center overflow-hidden font-mono leading-none ${

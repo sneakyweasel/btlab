@@ -65,12 +65,13 @@ https://sneakyweasel.github.io/balanced_ternary/
    \(\lvert B\rvert\le6\); \(\rho_0\) ratios are \(O(P^{-1/4})\).
    Companion audit ledger
    [paper_b_audit_ledger.md](paper_b_audit_ledger.md) and
-   `research.juggler_sequence.paper_b_audit` (98 exponent checks).
-   Section 3.5 proves Theorems 4.4 and 4.7 on sub-dyadic intervals of
-   length \(\ge P^{1/2}\) with a slow twist (Theorems 4.11–4.12,
-   Corollary 4.13 — the \(OOEEE\) production that Paper C's Appendix C
-   uses); Section 8 records what the kernel program buys for
-   termination and what it cannot. Two more exact identities in Lean
+   `research.juggler_sequence.paper_b_audit` (104 exponent checks).
+   Section 3.5 proves the depth-\(\le3\) Theorems 4.4 and 4.7 on
+   sub-dyadic intervals of length \(\ge P^{1/2}\) with a slow twist
+   (Theorems 4.11–4.12, Corollary 4.13 — the \(OOEEE\) production
+   that Paper C's Appendix C uses). Theorem 5.3 remains a
+   dyadic-block statement. Section 8 records what the kernel program
+   buys for termination and what it cannot. Two more exact identities in Lean
    (`carry_eq_fract_add_sub_fract`, `second_difference_product_rule`).
    Length 7/8 remain laboratory conjectures.
 3. [juggler_fate_almost_all_note.pdf](juggler_fate_almost_all_note.pdf)

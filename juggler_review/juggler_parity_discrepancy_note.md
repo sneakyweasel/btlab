@@ -30,10 +30,11 @@ frozen floor; Lemma 5.2 bounds these mixed pieces by
 \(|q|^{-1/6}P^{23/24+\varepsilon}\), uniformly enough for depth four,
 and the central result (Theorem 5.3), \(K_c\ll P^{1-1/96+\varepsilon}\),
 follows by double Weyl differencing over an exact carry-branch
-decomposition and master identity. Both theorems are stated and proved
-on sub-dyadic intervals of length \(\ge P^{1/2}\) as well, with a
-slowly varying twist attached (Section 3.5), which is the form a
-companion paper needs.
+decomposition and master identity. The depth-\(\le3\) discrepancy
+estimates (Theorems 4.4 and 4.7) are also proved on sub-dyadic
+intervals of length \(\ge P^{1/2}\), with a slowly varying twist
+attached (Section 3.5), which is the form a companion paper needs.
+The kernel theorem itself remains a dyadic-block statement.
 
 The sequences arise as the itineraries of the Juggler map
 \(J(n)=\lfloor\sqrt n\rfloor\) (\(n\) even), \(\lfloor n^{3/2}\rfloor\)
@@ -134,6 +135,27 @@ itineraries are counted and do not contract, and \(OOOO*\) is the
 level-3 kernel. Section 3.5 proves the depth-\(\le3\) theorems on
 sub-dyadic intervals of length \(\ge P^{1/2}\) with a slowly varying
 twist attached, the form in which the companion paper [24] uses them.
+Theorem 5.3 is not localized.
+
+The logical dependence of the counting theorems is
+\[
+\text{Lemma 5.2(i)}
+\;\Longrightarrow\;
+\text{Lemma 5.2(ii)}
+\;\Longrightarrow\;
+\text{Theorem 5.3}
+\;\Longrightarrow\;
+\text{Theorem 6.1}
+\;\Longrightarrow\;
+\text{Theorem 6.3 and Corollary 6.4}.
+\]
+The localization used by the companion [24] is a separate chain and
+does not include Theorem 5.3:
+\[
+\text{Theorems 4.11--4.12 and Corollary 4.13 (Section 3.5)}
+\;\Longrightarrow\;
+\text{companion [24]}.
+\]
 
 The chains are not chosen at random: they are the itineraries of the
 Juggler map
@@ -1685,8 +1707,15 @@ All estimates of this section take place on a dyadic block
 \text{(C2)}\quad h_1h_2\le P^{1/2}/3,
 \qquad
 \text{(C3)}\quad 1\le k\le P^{1/24},
+\qquad
+\text{(C4)}\quad h_1,\,h_2\le P^{1/24}.
 \]
-and every displayed constant below is valid for
+(C1)--(C3) do not by themselves bound the individual shifts: the
+product constraints permit one of \(h_1,h_2\) to be as large as
+\(\asymp P^{1/2}\). The decoration class (D1) and the third-differencing
+reduction of Lemma 5.2(ii) need \(h_1+h_2\le 2P^{1/24}\), which is
+(C4). Theorem 5.3 takes \(H_1=P^{1/48}\) and \(H_2=P^{1/24}\), so
+(C4) holds there. Every displayed constant below is valid for
 \(P\ge P_0\) with an absolute \(P_0\). All sums run over odd \(n\),
 and every derivative test below is read through the parity
 reindexing of Lemma 3.10: margins and signs are invariant, and each
@@ -1766,6 +1795,19 @@ the composite second derivative then keeps the sign and, up to the
 factor \(1+CP^{-\rho}\), the size of \(B\), so Lemma 3.3 applies at
 \(B\)'s scale.
 
+The symbol \(P^\varepsilon\) is used only for factors of the form
+\(C(\varepsilon)(\log P)^{O(1)}\). The number of Fourier/Vaaler
+expansion layers that produce those logarithms is three
+(the pieces \(M_2\), \(M_3\), \(M_4\) of the master identity),
+independent of \(P\) and of \(k,h_1,h_2,t\). Each layer contributes
+\(O(\log P)\) mode mass; there is no further nesting of expansions
+whose depth would grow with \(P\). Implied constants in every
+\(\ll_\varepsilon\) of Sections 4--6 depend on \(\varepsilon\) and on
+(C1)--(C4) only: on those ranges they do not grow with \(k\),
+\(h_i\), or \(t\). The threshold \(P_0\) depends on \(\varepsilon\)
+(and is large for the Lemma 3.9 comparison \(V\le c_7S/2\)) but is
+independent of \(k,h_i,t\).
+
 Every numerical margin in this section is claimed only for
 \(P\ge P_0\), with an absolute but ineffective \(P_0\). The
 comparisons stratify. The Lemma 3.7 / Lemma 5.2 window
@@ -1798,7 +1840,7 @@ composites \(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\)).
 No later section re-derives these.
 
 **Lemma 5.2 (level-2 waves: the mixed-piece bound).**
-Assume (C1)–(C3), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
+Assume (C1)–(C4), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
 call a *decoration* any sum \(\rho\) of at most nine terms of the
 classes
 
@@ -1860,7 +1902,7 @@ may take \(t\ge1\). Fix \(e_1\in\mathcal D\) with
 \Delta_{|d-e_1|}Y\bigl(n{+}\min(d,e_1)\bigr),
 \]
 and the second sum is a set of at most three decoration seeds with
-shifts \(|d-e_1|/2\le h_1{+}h_2\le2P^{1/24}\). Weyl differencing at
+shifts \(|d-e_1|/2\le h_1{+}h_2\le2P^{1/24}\) by (C4). Weyl differencing at
 shift \(2h_3\), \(1\le h_3\le H_3:=\lceil t^{1/3}P^{1/12}\rceil\),
 by the \(A\)-process recorded after Lemma 3.3:
 \[
@@ -2142,7 +2184,7 @@ and only in regime (s2). On a cell the integer \(G=\lfloor\delta_h\rfloor\)
 is held frozen; the smooth remainder \(A_h\) does not differentiate
 a frozen gap. Lemma 3.9 is not used in (i) or (ii); it is used
 only on the global interpolant \(\Phi\) of Lemma 5.2b. Every
-\(k,h_1,h_2\) dependence passes through (C1)--(C3). \(\square\)
+\(k,h_1,h_2\) dependence passes through (C1)--(C4). \(\square\)
 
 The balance to keep in mind: with the trivial bound
 \(|V_{h_3}|\le P\), part (ii)'s differencing returns nothing beyond
@@ -2168,7 +2210,7 @@ as numbers, not differentiated. The next lemma records that
 computation, so that Step 5b is only a classification of scales.
 
 **Lemma 5.2b (frozen-shape interpolant on a zero-offset piece).**
-Assume (C1)–(C3) and \(j=0\). Work on a common-refinement piece of
+Assume (C1)–(C4) and \(j=0\). Work on a common-refinement piece of
 the gap cells of both shifts, the frozen-floor runs of
 \(\lfloor F_{\boldsymbol\kappa}(X)\rfloor\), and the sawtooth windows
 already counted, so that the integers \(G_1\), \(G_2\),
@@ -2392,7 +2434,8 @@ with \(T_2=\sum_ne(\varphi_2)\),
 \(\varphi_2=\Delta\Delta(c\,\theta_2)\). For all
 \(h_1\le H_1\), \(h_2\le H_2\), \(k\le P^{1/24}\):
 \(kh_1h_2\le P^{1/24+1/48+1/24}=P^{5/48}\le P^{1/8}\), so
-(C1)–(C3) hold with room \(P^{-1/48}\). We prove
+(C1)–(C4) hold with room \(P^{-1/48}\) on (C1) (and (C4) is
+\(P^{1/48},P^{1/24}\le P^{1/24}\)). We prove
 \[
 |T_2|\ll P^{23/24+\varepsilon}
 \quad\text{uniformly in }h_1,h_2,k;
@@ -2456,8 +2499,20 @@ sawtooth by finite Fourier (Lemma 3.5) at truncation
 \(e(qY(n{+}d_1))\) — Lemma 5.2(ii) objects — and \(e(qW)\) —
 Lemma 5.2(i) objects.
 
-(3c) *\(M_3\).* The mirror of (3a)–(3b) with \(h_1\leftrightarrow
-h_2\), producing \(e(qY(n{+}d_2))\), \(e(qW')\)-modes.
+(3c) *\(M_3\), sawtooth and carry.* The same two expansions as
+(3a)–(3b), with the roles of the shifts exchanged:
+\(B(n)=\Delta_1c(n{+}d_2)\in(1.68,1.85)\,kh_1P^{1/8}\) and
+Lemma 3.7 at \(T=P^{1/2}/(2h_2)\). The window hypothesis is
+\(T\ge\tfrac12 P^{11/24}=\tfrac12 P^{22/48}\) (since
+\(h_2\le P^{1/24}\)) against
+\(8(1+|B|)\le15\,kh_1P^{1/8}\le15P^{9/48}\), so it holds for
+\(P\ge P_0\) with more room than (3a). Modes \(e(uW')\) satisfy
+\(uh_2\le1.85\,kh_1h_2P^{1/8}+P^{1/2}/2\le P^{1/2}\) by (C1) and
+are Lemma 5.2(i) objects at shift \(h_2\le P^{1/24}\). Window
+boundaries cost
+\(\le2kh_1P^{1/4}\cdot3.4P^{3/8}\le7P^{11/16}\). The carry
+expansion is identical to (3b) at truncation \(J_2=P^{1/24}\),
+and produces \(e(qY(n{+}d_2))\) and \(e(qW')\).
 
 (3d) *\(M_4\), carries.* \(\kappa''=\{W\}+\{\Delta\Delta Y\}
 -\{W{+}\Delta\Delta Y\}\) with \(W{+}\Delta\Delta Y=W(n{+}d_2)\)
@@ -2685,8 +2740,7 @@ differenced-wave scale present. Three regimes.
   \(\lambda_0\) when \(kh_1h_2\ge1\), and the upper bound uses
   \(kh_1h_2\le P^{1/8}\) from (C1) together with
   \(\mu\le60\lambda_0\le160\,kh_1h_2P^{-5/8}\) (opened to
-  \(300\) against the older \(\lambda_0\le5\) majorant, which
-  only helps) and the collision-band restriction
+  \(300\), which only helps) and the collision-band restriction
   \(\lvert wX''\rvert\ll P^{-1/2}\). If \(w=0\), drop the third
   term of \(\Phi\) and apply Lemma 3.8 (or Lemma 3.3 if only
   one of \(a,b\) is present).
@@ -2820,7 +2874,7 @@ decaying. The pure-\(m\) part is
 
 *Step C (double differencing; corner exactness).* Apply Step 1 of
 Theorem 5.3 (\(H_1=P^{1/48}\), \(H_2=P^{1/24}\); now
-\(kh_1h_2\le2P^{1/96+1/48+1/24}\le P^{1/8}\), so (C1)–(C3) hold) to
+\(kh_1h_2\le2P^{1/96+1/48+1/24}\le P^{1/8}\), so (C1)–(C4) hold) to
 the whole mode phase. On each level-1 carry branch of
 Lemma 5.1(iii), the four corner values obey the exact relations
 \[
@@ -3094,7 +3148,7 @@ and the bound follows term by term. Two sawtooths remain, of
 coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 \(\theta_w\). \(\square\)
 
-**Theorem 6.3 (the length-five splits).**
+**Theorem 6.3 (two length-five splits; not a census of depth five).**
 \[
 \#\mathrm{OOOEE}(N),\;\#\mathrm{OOOEO}(N)
 =\tfrac N{32}+O\bigl(N^{1-1/96+\varepsilon}\bigr),
@@ -3102,9 +3156,10 @@ coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 \#\mathrm{OOEOE}(N),\;\#\mathrm{OOEOO}(N)
 =\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
 \]
-Of these four words only \(OOOEE\) and \(OOEOE\) contract. All
-estimates below are for \(P\ge P_0\), with the same ineffective
-\(P_0\) as in Section 4.
+Of these four words only \(OOOEE\) and \(OOEOE\) contract. The
+expanding tree \(OOOO*\) is not estimated: it is the level-3
+kernel of Conjecture 7.3. All estimates below are for
+\(P\ge P_0\), with the same ineffective \(P_0\) as in Section 4.
 
 *Proof.* \(OOOE*\). By Lemma 3.6 the class indicators are the
 \(OOOE\) indicator of Theorem 6.1 times
@@ -3458,9 +3513,8 @@ everywhere, so \(S_\lambda\) decorrelates at shift scale
 \(\asymp\varepsilon A_{\max}\) exceptional cells among
 \(\asymp A_{\max}\) — no measure argument pins \(\lambda=0\). The
 deterministic content of Conjecture 7.5 is a
-specific-point-in-metric-theory problem, the same species as the
-normality of \(\sqrt2\): a class whose known successes all use
-special arithmetic.
+specific-point-in-metric-theory problem: a class whose known
+successes all use special arithmetic.
 
 Two analytic shortcuts around Conjecture 7.3 fail at recorded
 points, and we state them once: composing gap cells across two
@@ -3488,6 +3542,17 @@ statement about parity words and makes precise which statistics it
 needs. That paper's results bear on the program of this one in two
 opposite directions, and we record both.
 
+Two localization facts, stated so they cannot be confused.
+
+1. Section 3.5 proves the depth-\(\le3\) discrepancy estimates
+   (Theorems 4.11 and 4.12) on sub-dyadic intervals of length
+   \(\ge P^{1/2}\) with a slow twist. Corollary 4.13 is the only
+   localization this paper supplies to [24].
+2. Theorem 5.3 is a dyadic-block statement. A localized kernel
+   theorem on intervals of length \(P^{23/32}\) is not proved, and
+   the strongest even-block productions that would need it
+   (\(OOOEEE\), \(OOEOEE\)) remain unavailable.
+
 *What each new depth buys.* Every new certificate class enters the
 contagion recursion of [24] as a production: a word \(w\) of fair
 probability \(P_w\) landing at scale \(x^{e_w}\) contributes
@@ -3499,14 +3564,17 @@ production on even blocks raises the contagion exponent from
 \(\lambda^{**}=0.4480\) to \(\lambda^{***}=0.5392\), the rate threshold
 of the almost-all reformulation from \(0.552\) to \(0.461\), and the
 least depth constant of its conditional theorems from \(20\) to
-\(18\). A localized form of the kernel theorem (Theorem 5.3 on
-intervals of length \(P^{23/32}\), which we have not proved; the
-scaling architecture is the same, with per-window absolute costs at
-most \(P^{7/16}\)) would add the words \(OOOEEE\) and \(OOEOEE\) and
-give \(0.5561\); the level-3 kernel of Conjecture 7.3 would give more.
+\(18\). Those are the dividends of the depth-\(\le3\) localization.
+A localized form of the kernel theorem (Theorem 5.3 on intervals of
+length \(P^{23/32}\), which we have not proved; the scaling
+architecture is the same, with per-window absolute costs at most
+\(P^{7/16}\)) would add the words \(OOOEEE\) and \(OOEOEE\) and give
+\(0.5561\); the level-3 kernel of Conjecture 7.3 would give more.
 Each depth also raises the certificate density of Corollaries 4.9 and
 6.4 and the constants of the Tao-type reduction. These are the
-quantitative dividends of the program, and they are real.
+quantitative dividends of the program, and they are real. The
+strongest of them that this paper actually proves for [24] is the
+depth-\(\le3\) localization, not a localized Theorem 5.3.
 
 *What no depth can buy.* The frontier statement of [24] is that the
 odd starts in \((y,2y]\) whose orbit is still above a fixed floor after
@@ -3536,9 +3604,10 @@ The honest summary is the one the abstract gives: this paper solves
 the first genuinely nested layers of the parity process of nested
 floor powers — depth four completely, depth five for the two
 contractors — with a bound whose critical piece is the level-2 wave;
-it identifies the level-3 kernel as the next analytic object; and it
-supplies, through localization, constants to the termination
-reduction of [24]. It does not approach the infinite-depth problem
+it identifies the level-3 kernel as the next analytic object; and
+through the depth-\(\le3\) localization of Section 3.5 it supplies
+constants to the termination reduction of [24]. It does not localize
+Theorem 5.3, and it does not approach the infinite-depth problem
 that the termination question is.
 
 ![The theorem flow of the paper. The exact finite-itinerary calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}

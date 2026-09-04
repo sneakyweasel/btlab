@@ -24,6 +24,7 @@ import {
 } from "../juggler/itinerary";
 import { EvenBlockStrip } from "../visuals/EvenBlockStrip";
 import { OeFiberStrip } from "../visuals/OeFiberStrip";
+import { ProductionWork } from "../visuals/ProductionWork";
 import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { EnvelopeCeiling } from "../visuals/EnvelopeCeiling";
@@ -538,24 +539,50 @@ export function EnvelopeWidget() {
 export function PreimagesWidget() {
   const block = evenBlockView(TOUR_EVEN_BLOCK_M);
   const fiber = fiberView(TOUR_OE_FIBER_M);
+  const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
+  const [blockN, setBlockN] = useState(block.evens[0] ?? 144);
+  const [blockHover, setBlockHover] = useState<number | null>(null);
+  const [fiberN, setFiberN] = useState(firstSea);
+  const [fiberHover, setFiberHover] = useState<number | null>(null);
+  const blockInspect = blockHover ?? blockN;
+  const fiberInspect = fiberHover ?? fiberN;
   return (
     <div className="space-y-6">
       <div>
         <h3 className="mb-2 font-serif text-lg">Even block of 12</h3>
-        <EvenBlockStrip view={block} />
-        <p className="text-sm text-muted">
-          The even integers of [144, 169) all map to 12. If 12 is in a
-          backward-closed set A, so is this block.
+        <EvenBlockStrip
+          view={block}
+          selected={blockN}
+          onSelect={setBlockN}
+          onHover={setBlockHover}
+        />
+        <ProductionWork n={blockInspect} />
+        <p className="mt-3 text-sm text-muted">
+          The even integers of [144, 169) all map to 12. Hover a sea bead to
+          see the square root and the floor cut. If 12 is in a backward-closed
+          set A, so is this block.
         </p>
       </div>
       <div>
         <h3 className="mb-2 font-serif text-lg">OE fiber of 100,000</h3>
-        <OeFiberStrip view={fiber} />
-        <SweepLane points={fiber.points} />
-        <p className="text-sm text-muted">
-          H = {fiber.H} odd n, G = {fiber.G} with even image. Each sea bead
-          has J(J(n)) = 100000. Ember beads are on the fiber but not this
-          production. An odd image still has at most one odd parent.
+        <OeFiberStrip
+          view={fiber}
+          selected={fiberN}
+          onSelect={setFiberN}
+          onHover={setFiberHover}
+        />
+        <SweepLane
+          points={fiber.points}
+          selected={fiberN}
+          onSelect={setFiberN}
+          onHover={setFiberHover}
+        />
+        <ProductionWork n={fiberInspect} />
+        <p className="mt-3 text-sm text-muted">
+          H = {fiber.H} odd n, G = {fiber.G} with even image. The odd step
+          grows, the even step drops to 100000. Ember beads are on the fiber
+          but not this production. An odd image still has at most one odd
+          parent.
         </p>
       </div>
     </div>

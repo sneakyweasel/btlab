@@ -23029,3 +23029,35 @@ Why
 Best next question
 - none in the laboratory
 ```
+
+## Paper B second-review calibration (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Apply the second external review of the 4 September Paper B PDF: fix the abstract localization inconsistency, record the Lemma 5.2 range constraint the standalone statement was missing, write the \(\varepsilon\)-uniformity and the theorem-dependence graph, and stop. Not an independent verification of Lemma 5.2. No new theorem, no \(N_0\), no Paper A/C edit.
+- **Mandatory editorial:** the abstract said “Both theorems are stated and proved on sub-dyadic intervals”; Section 3.5 localizes only the depth-\(\le3\) Theorems 4.4/4.7 (now 4.11–4.12). The abstract, the introduction, and Section 8 now say that Theorem 5.3 remains dyadic, and that Corollary 4.13 is the only localization supplied to Paper C.
+- **Range gap in the standalone Lemma 5.2:** (C1)--(C3) constrain products, not individual shifts, and permit \(h_1+h_2\asymp P^{1/2}\). The (ii)\(\to\)(i) telescoping and the (D1) class need \(h_1+h_2\le 2P^{1/24}\). New standing constraint (C4): \(h_1,h_2\le P^{1/24}\). Theorem 5.3 already takes \(H_1=P^{1/48}\), \(H_2=P^{1/24}\), so the kernel application was inside the range; the lemma statement was not. Step 3c is written with its own window numbers (no “mirror”).
+- **Also:** dependence graph in §1 (kernel chain vs Section 3.5 \(\to\) Paper C); \(\varepsilon\)-uniformity paragraph (three expansion layers, independent of \(P,k,h_i,t\)); Theorem 6.3 titled as two splits, not a depth-five census; \(\sqrt2\) analogy cut. Six new rational identities in `paper_b_audit` for (C4) and (3c). Not a second computer audit of the six-stage proof.
+- **Not done, on purpose:** no claim that Lemma 5.2 is independently verified; the author’s-reconstruction disclaimer stays. No defensive-prose rewrite beyond the “older majorant” clause. No ledger retag.
+- **Decision:** consolidation. Paper B remains a working draft. The second review’s remaining gate is still an independent human attack on Lemma 5.2(i)\(\to\)(ii) and D1/D2/D3 preservation. Not a halt theorem.
+
+```text
+What was learned
+- the abstract localized Theorem 5.3; the body does not
+- (C1)--(C3) do not give h1+h2 <= 2 P^{1/24}
+- the kernel theorem already satisfies the missing (C4)
+- three expansion layers, not a P-dependent mode tower
+- depth-five counting is four words, not OOOO*
+Strongest theorem
+- none new; J-kernel-cancellation stays the dyadic monomial
+Strongest refutation
+- none; (C4) is a missing hypothesis, not a counterexample
+Reusable machinery
+- none
+Branch status
+- PARK (manuscript still awaiting independent Lemma 5.2)
+Why
+- the review’s fatal-gap risk is still Lemma 5.2; this pass
+  removes an inconsistency and a quantifier omission
+Best next question
+- a separate human attack on 5.2(i) to 5.2(ii) and D1/D2/D3
+```

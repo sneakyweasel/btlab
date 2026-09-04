@@ -67,6 +67,27 @@ button.bg-odd {
   font-size: 1.05em;
 }
 
+.bead-mark {
+  cursor: pointer;
+  outline: none;
+}
+
+.bead-label {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bead-mark:hover .bead-label,
+.bead-mark:focus .bead-label {
+  opacity: 1;
+}
+
+.bead-mark:hover .bead-dot,
+.bead-mark:focus .bead-dot {
+  stroke: #1d1914;
+  stroke-width: 2;
+}
+
 .stem-cycle {
   contain: layout style;
 }
