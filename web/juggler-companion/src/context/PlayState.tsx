@@ -10,8 +10,6 @@ type PlayState = {
   setCycleItinerary: (value: string) => void;
   cycleShift: number;
   setCycleShift: (value: number) => void;
-  steps: number;
-  setSteps: (value: number) => void;
   financeL: number;
   setFinanceL: (value: number) => void;
 };
@@ -31,7 +29,6 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
   const [itinerary, setItinerary] = useState("OOE");
   const [cycleItinerary, setCycleItinerary] = useState("OOOOOOOEEEE");
   const [cycleShift, setCycleShift] = useState(0);
-  const [steps, setSteps] = useState(20);
   const [financeL, setFinanceL] = useState(25781);
   const [necklaceNText, setNecklaceNText] = useState(NECKLACE_PRESETS[0].n.toString());
   const [necklaceWord, setNecklaceWord] = useState<string>(NECKLACE_PRESETS[0].word);
@@ -45,12 +42,10 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
       setCycleItinerary,
       cycleShift,
       setCycleShift,
-      steps,
-      setSteps,
       financeL,
       setFinanceL,
     }),
-    [nText, itinerary, cycleItinerary, cycleShift, steps, financeL],
+    [nText, itinerary, cycleItinerary, cycleShift, financeL],
   );
   const necklace = useMemo(
     () => ({

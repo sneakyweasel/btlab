@@ -23828,8 +23828,7 @@ moves \(P_0\), and \(\kappa=\tfrac1{12}\) is justified by \(P_1\) alone. The
 \(c_2\) lever likewise no longer improves \(P_0\).
 
 **The cheapest undo:** sharpening \(t\le16P^{1/24}\) to \(t\le cP^{1/24}\) puts
-\(P_0\) at \(c^{12}\); \(c=8\) gives \(6.9\cdot10^{10}\) and hands the
-threshold back to the balance row. Not attempted.
+\(P_0\) at \(c^{12}\). **Attempted, and it works --- see the next entry.**
 
 New: `paper_b_constants_sweep.py` promoted to the platform with `findings()`;
 5 regression tests; Lean `claimD_shift_range`, `claimD_shift_fails_below`,
@@ -23855,4 +23854,51 @@ Why
 Best next question
 - can t <= 16 P^(1/24) be sharpened? c = 8 would return P_0 to 6.9e10
   and make the Lemma 3.9 balance binding again
+```
+
+
+### Paper B: Claim D resolved -- the sharp t, and P_0 stays at 8.9e13
+
+Took the "cheapest undo" from the previous entry. It works, it is free, and
+\(P_0\) goes back to \(8.9458\cdot10^{13}\).
+
+- **The slack was in the hypothesis, not the analysis.** Claim D needs
+  \(h_3\le t^{1/3}P^{1/12}\le P^{1/8}\), and on a gap of \(\tfrac1{36}\) the
+  constant is paid at the 36th power: \(|t|\le16P^{1/24}\Rightarrow16^{12}
+  =2.8\cdot10^{14}\), while \(|t|\le3P^{1/24}\Rightarrow3^{12}=5.3\cdot10^{5}\).
+- **The 16 was never real.** It is the individual budget \(|q_d|\le4P^{1/24}\)
+  summed over the four elements of \(\mathcal D\) --- the worst case the *lemma
+  statement* permits. Lemma 5.2(ii) is invoked exactly once, and that
+  invocation (Theorem 5.3 Step 4) already prints \(|t|\le3J_2\le3P^{1/24}\),
+  because the wave modes arrive one per expansion layer from three layers at
+  \(J_2=P^{1/24}\). The total frequency is five times smaller than the sum of
+  the individual budgets and always was.
+- **Fix:** Lemma 5.2(ii) now carries \(0<|t|\le3P^{1/24}\) as a hypothesis.
+  Every invocation supplies it: Step 4 directly, and the Theorem 6.1/6.3
+  passengers because both explicitly leave \(t\) unchanged while growing the
+  individual \(q_d\).
+- **Result:** Claim D's row \(2.82\cdot10^{14}\to6.4\cdot10^{5}\);
+  \(P_0=8.9458\cdot10^{13}\), binding again at \(W\le c_7S/2\); the \(\kappa\)
+  table, the \(c_2\) lever and A.5 all revert. Claim D's product-range check
+  improves too, \(41P^{5/36}\to4.33P^{5/36}\) (threshold \(2.9\cdot10^4\to58\)).
+
+```text
+What was learned
+- the sweep's binding finding was a slack hypothesis, not a real constraint
+- a lemma used once should carry the bound its caller supplies, not the
+  loosest its statement admits; on a 1/36 gap that was worth 3.15x in P_0
+Strongest theorem
+- claimD_shift_range on the sharp t, plus claimD_loose_bound_fails_at_P0,
+  which certifies the finding was not spurious
+Strongest refutation
+- my own previous entry's P_0 = 2.82e14
+Reusable machinery
+- unchanged; the sweep now has both the finding and its resolution recorded
+Branch status
+- ADVANCE (P_0 restored, and the class of error closed by a test)
+Why
+- the fix cost nothing: the sharper bound was already printed one section away
+Best next question
+- back to Lemma 5.2(i) Stages 1-5, the human reading, which is still the
+  gate on the strongest result in the corpus
 ```

@@ -47,7 +47,7 @@ def _pred_for(tag: str):
         "5a-W<=c7S": lambda P: V(S5a(P), P, k) + E(P) <= c7 * S5a(P) / 2,
         "5b-W<=c7S": lambda P: V(S5b(P), P, k) + E(P) <= c7 * S5b(P) / 2,
         "5b-E<=c7S": lambda P: E(P) <= c7 * S5b(P) / 2,
-        "claimD-shift": lambda P: 2.52 * P ** (7 / 72) <= P ** (1 / 8),
+        "claimD-shift": lambda P: 1.45 * P ** (7 / 72) <= P ** (1 / 8),
         "st3a-flatcost": lambda P: 23 * P ** (19 / 24) <= P ** (23 / 24),
         "t61-stepB-discard": lambda P: 1.5 * math.pi * P ** (1 / 96 - 1 / 8) <= 1,
         "st2-collision": lambda P: 3 * P ** (5 / 16 / 2 + 3 / 4) <= P ** (23 / 24),
@@ -67,20 +67,11 @@ def test_every_printed_threshold_is_solvable() -> None:
     ]
 
 
-def test_p0_binds_at_claim_D_not_at_the_lemma_3_9_hypothesis() -> None:
-    """The constants sweep moved the binding row: Claim D's shift check, not the balance.
-
-    2.52 P^(7/72) <= P^(1/8) has exponent gap 1/36, so the constant costs 2.52^36 = 2.82e14.
-    An earlier draft checked it against a standing P_0 "of size 1e24" and passed it.
-    """
+def test_p0_is_89e13_and_binds_at_the_lemma_3_9_hypothesis() -> None:
     cert = C.certificate()
-    assert cert["binding"]["tag"] == "claimD-shift"
-    assert 2.8e14 < cert["P0"] < 2.9e14
-    assert round(cert["P0"] / 1e14, 1) == 2.8      # the paper prints 2.8e14
-    # the Lemma 3.9 balance is now second
-    balance = {r["tag"]: r["P_min"] for r in cert["thresholds"]}["5b-W<=c7S"]
-    assert 8.9e13 < balance < 9.0e13
-    assert cert["P0"] / balance > 3
+    assert cert["binding"]["tag"] == "5b-W<=c7S"
+    assert 8.8e13 < cert["P0"] < 9.0e13
+    assert round(cert["P0"] / 1e13, 1) == 8.9  # the paper prints 8.9e13
 
 
 def test_each_threshold_is_sharp_at_its_own_crossing() -> None:
@@ -99,15 +90,13 @@ def test_the_balance_comparisons_carry_the_threshold_alone() -> None:
     # Excluding the three Lemma 3.9 balance comparisons, the worst row is now the
     # q'' curvature ratio of Step 5b(a) at 3.0e11 -- the price of R_0 = P^(5/16).
     # Before that substitution it was s3s1-Bsmall at 2.9e10.
-    # Since the constants sweep, Claim D's shift check tops the Lemma 3.9 balance rows,
-    # so removing the balance does not lower P_0 at all.
-    assert cert["P0_excluding_lemma_3_9_balance"] == cert["P0"]
-    assert cert["binding_excluding_balance"]["tag"] == "claimD-shift"
+    assert 2.5e11 < cert["P0_excluding_lemma_3_9_balance"] < 3.5e11
+    assert cert["binding_excluding_balance"]["tag"] == "st5b-qpp"
+    assert cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] > 100
 
     # and the soft regime-naming inequality still sets the floor for the rest
     rest = [r for r in cert["thresholds"]
-            if r["tag"] not in {"5a-W<=c7S", "5b-W<=c7S", "5b-E<=c7S", "st5b-qpp",
-                                "claimD-shift"}]
+            if r["tag"] not in {"5a-W<=c7S", "5b-W<=c7S", "5b-E<=c7S", "st5b-qpp"}]
     assert max(rest, key=lambda r: r["log10_P_min"])["tag"] == "s3s1-Bsmall"
 
 
@@ -151,8 +140,7 @@ def test_the_uniform_choice_saturates_the_middle_row_so_c7_is_not_free() -> None
 def test_raising_c2_still_moves_cost_from_P0_to_P1() -> None:
     lever = C.c7_lever()
     cur, raised = lever["current"], lever["c2_raised"]
-    # P_0 no longer moves: it is floored by Claim D's row, which the c_2 lever cannot touch.
-    assert raised["P0"] == cur["P0"]
+    assert raised["P0"] < cur["P0"]          # P_0 improves
     assert raised["P1"] > cur["P1"] * 1e3    # P_1 still degrades by three orders
     assert cur["P1"] > cur["P0"]             # P_1 is the larger threshold either way
 
@@ -225,7 +213,7 @@ def test_log_absorption_is_astronomically_larger_and_excluded() -> None:
     cert = C.certificate()
     for row in cert["log_absorption_not_required"]:
         assert row["P_min"] is None or row["P_min"] > 1e100
-    assert cert["P0"] < 1e15
+    assert cert["P0"] < 1e14
 
 
 def test_weyl_steps_halve_the_log_power_twice() -> None:
@@ -282,7 +270,7 @@ LEAN_ROWS = [
     ("5b-W<=c7S",      "row_5b_binding",     48, 1.96),
     ("5b-E<=c7S",      "row_5b_E_only",      48, 1.85),
     ("thm63-rem",      "row_thm63_rem",      96, 1),
-    ("claimD-shift",    "claimD_shift_range", 72, 1.5875),
+    ("claimD-shift",    "claimD_shift_range", 72, 1.205),
     ("st3a-flatcost",   "st3a_flat_cost",     24, 2.19),
     ("t61-stepB-discard", "stepB_discard",    96, 1.16),
     ("st2-collision",   "row_st2_collision",  96, 1.25),
@@ -324,12 +312,11 @@ def test_lean_thresholds_cover_the_probe_thresholds() -> None:
 
 
 def test_the_lean_certified_P0_is_the_binding_row() -> None:
-    """max over the Lean rows is claimD_shift_range at 1.5875^72 = 2.83e14."""
+    """max over the Lean rows is row_5b_binding at 1.96^48 = 1.07e14."""
     worst = max(LEAN_ROWS, key=lambda r: r[3] ** r[2])
-    assert worst[1] == "claimD_shift_range"
-    assert 2.8e14 < worst[3] ** worst[2] < 2.9e14
-    # conservative by under 1% against the probe's 2.8211e14
-    assert 1.0 < (worst[3] ** worst[2]) / C.certificate()["P0"] < 1.01
+    assert worst[1] == "row_5b_binding"
+    assert 1.0e14 < worst[3] ** worst[2] < 1.1e14
+    assert 1.0 < (worst[3] ** worst[2]) / C.certificate()["P0"] < 1.25
 
 
 # --- Stage 2's truncation R_0, which decides four rows ---
@@ -369,12 +356,10 @@ def test_five_sixteenths_is_the_optimum_of_the_trade() -> None:
     assert by_a[round(1 / 3, 6)]["worst"] > best["worst"]    # collision/q'' too loose
 
 
-def test_R0_substitution_does_not_move_the_binding_row() -> None:
-    """R_0 = P^(5/16) costs 3.0e11 at st5b-qpp, well under the binding Claim D row."""
+def test_P0_is_unchanged_by_the_substitution() -> None:
     cert = C.certificate()
-    by = {r["tag"]: r["P_min"] for r in cert["thresholds"]}
-    assert by["st5b-qpp"] < cert["P0"] / 100
-    assert cert["binding"]["tag"] == "claimD-shift"
+    assert 8.9e13 < cert["P0"] < 9.0e13
+    assert cert["binding"]["tag"] == "5b-W<=c7S"
 
 
 def test_sharp_C_bound_is_inside_the_printed_one() -> None:

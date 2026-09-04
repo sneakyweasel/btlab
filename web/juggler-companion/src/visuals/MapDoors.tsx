@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { NOTE_TRAJECTORY_3 } from "../juggler/constants";
-import { formatInt } from "../juggler/format";
+import { formatInt, log10Of } from "../juggler/format";
 import { bitLength, letterOf } from "../juggler/map";
 import { EMBER } from "../juggler/palette";
 
@@ -26,13 +26,6 @@ const PLOT_WIDTH = 572;
 const PLOT_HEIGHT = 272;
 const PLOT_TOP = 28;
 const PLOT_BOTTOM = 16;
-
-function log10Of(state: bigint): number {
-  if (state <= 1n) return 0;
-  const bits = bitLength(state);
-  if (bits <= 53) return Math.log10(Number(state));
-  return (bits - 1) * Math.LOG10E * Math.LN2;
-}
 
 function plotYLog(log10v: number, lo: number, hi: number, top: number, height: number): number {
   const t = hi === lo ? 0.5 : (log10v - lo) / (hi - lo);

@@ -46,6 +46,23 @@ const AUTOPLAY_MS = 550;
 const EVEN_BLOCK_PLAY_LO = 1;
 const EVEN_BLOCK_PLAY_HI = 20;
 
+function fieldHasFocus(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false;
+  if (target.isContentEditable) return true;
+  const tag = target.tagName;
+  if (tag === "TEXTAREA" || tag === "SELECT") return true;
+  if (tag !== "INPUT") return false;
+  return (target as HTMLInputElement).type !== "range";
+}
+
+function useLatest<T>(value: T) {
+  const ref = useRef(value);
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref;
+}
+
 function chipHover(
   label: string | undefined,
   value: bigint,
@@ -187,19 +204,9 @@ export function MapWidget({
     [stepLast, trajectory.states],
   );
 
-  const keysRef = useRef({ playCurrent, seekTo, stepIndex, next });
-  keysRef.current = { playCurrent, seekTo, stepIndex, next };
+  const keysRef = useLatest({ playCurrent, seekTo, stepIndex, next });
 
   useEffect(() => {
-    function fieldHasFocus(target: EventTarget | null): boolean {
-      if (!(target instanceof HTMLElement)) return false;
-      if (target.isContentEditable) return true;
-      const tag = target.tagName;
-      if (tag === "TEXTAREA" || tag === "SELECT") return true;
-      if (tag !== "INPUT") return false;
-      return (target as HTMLInputElement).type !== "range";
-    }
-
     function onKey(event: KeyboardEvent) {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       if (fieldHasFocus(event.target)) return;
@@ -226,7 +233,7 @@ export function MapWidget({
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [keysRef]);
 
   const prefix = trajectory.itinerary.slice(0, Math.max(stepIndex, 0));
   const prefixOdds = oddCount(prefix);
@@ -472,7 +479,6 @@ export function EnvelopeWidget() {
       initial={3n}
       liveStarts={ENVELOPE_STARTS}
       monsterStarts={ENVELOPE_MONSTERS}
-      useChipLabels
       showEnvelope
       presetHint="Starts chosen to show the realized ceiling and slack. Hitting 1 is not a theorem."
       side={(frame) => (
@@ -562,17 +568,8 @@ export function PreimagesWidget() {
     }, AUTOPLAY_MS);
     return () => window.clearInterval(id);
   }, [playing]);
-  const keysRef = useRef({ playCurrent, seekPlay, playValue });
-  keysRef.current = { playCurrent, seekPlay, playValue };
+  const keysRef = useLatest({ playCurrent, seekPlay, playValue });
   useEffect(() => {
-    function fieldHasFocus(target: EventTarget | null): boolean {
-      if (!(target instanceof HTMLElement)) return false;
-      if (target.isContentEditable) return true;
-      const tag = target.tagName;
-      if (tag === "TEXTAREA" || tag === "SELECT") return true;
-      if (tag !== "INPUT") return false;
-      return (target as HTMLInputElement).type !== "range";
-    }
     function onKey(event: KeyboardEvent) {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       if (fieldHasFocus(event.target)) return;
@@ -594,7 +591,7 @@ export function PreimagesWidget() {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [keysRef]);
   return (
     <div className="space-y-6">
       <div>

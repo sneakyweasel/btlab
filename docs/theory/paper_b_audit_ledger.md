@@ -736,7 +736,9 @@ in two forms: a decaying term against a fixed margin, and a cost claimed
 *inside* a larger power. Twenty-five distinct comparisons; two above \(P_0\),
 both real.
 
-*The binding one: Claim D's shift range, and \(P_0=2.82\cdot10^{14}\).*
+*The binding one: Claim D's shift range --- found, then resolved.* (The entry
+below records the finding as it stood; the resolution is the section after
+it. Net effect on \(P_0\): none.)
 Claim D of Lemma 5.2(ii)\(\to\)(i) checks that every index of the Claim C sum
 is a legal shift for part (i), i.e. \(h_3\le P^{1/8}\). The available bound is
 \(h_3\le t^{1/3}P^{1/12}\le16^{1/3}P^{7/72}=2.52P^{7/72}\), so the requirement
@@ -791,3 +793,52 @@ Step 5b(a) \(q''\) ratio (\(1.7\cdot10^{12}\)). Shape A now flags nothing above
 \(P_0\); shape B flags only Claim D, which is \(P_0\) by definition. The sweep
 is a regression test (`test_paper_b_constants_sweep.py`), so a new comparison of
 this shape cannot enter the manuscript unnoticed.
+
+
+## Claim D resolved: the sharp \(t\), and \(P_0\) stays at \(8.9\cdot10^{13}\)
+
+The sweep's binding finding turned out to be a slack bound, not a real
+constraint, and removing the slack is free.
+
+Claim D bounds the Claim C index by \(h_3\le t^{1/3}P^{1/12}\) and needs it
+under \(P^{1/8}\). Which bound on \(t\) is carried decides the row, because the
+gap \(\tfrac18-\tfrac7{72}=\tfrac1{36}\) pays any constant at the thirty-sixth
+power:
+\[
+|t|\le16P^{1/24}\ \Rightarrow\ 16^{12}=2.8\cdot10^{14},
+\qquad
+|t|\le3P^{1/24}\ \Rightarrow\ 3^{12}=5.3\cdot10^{5}.
+\]
+The \(16\) is the *individual* hypothesis \(|q_d|\le4P^{1/24}\) summed over the
+four elements of \(\mathcal D\) --- the worst case the lemma's statement
+permits. But Lemma 5.2(ii) is invoked exactly once, in Step 4 of Theorem 5.3,
+and that invocation already prints its own bound: \(|t|\le3J_2\le3P^{1/24}\),
+because the wave modes arrive one per expansion layer from three layers at
+truncation \(J_2=P^{1/24}\). The total frequency is five times smaller than the
+sum of the individual budgets, and it always was.
+
+So the fix is to carry it: Lemma 5.2(ii) now has \(0<|t|\le3P^{1/24}\) among
+its hypotheses, alongside the unchanged \(|q_d|\le4P^{1/24}\). Every invocation
+supplies it --- Theorem 5.3 Step 4 directly, and the Theorem 6.1 and 6.3
+passengers because both explicitly leave \(t\) unchanged while growing the
+individual \(q_d\) to \(4P^{1/24}\). Claim D's row falls from
+\(2.82\cdot10^{14}\) to \(6.4\cdot10^{5}\), and:
+
+\[
+P_0=8.9458\cdot10^{13},
+\]
+unchanged, binding again at Step 5b's \(W\le c_7S/2\). The \(\kappa\) table,
+the \(c_2\) lever and A.5's "\(P_0\) is carried entirely by \(W\le c_7S/2\)"
+all revert to what they were. The product-range check of Claim D improves too,
+from \(41P^{5/36}\) (threshold \(2.9\cdot10^4\)) to \(4.33P^{5/36}\)
+(threshold \(58\)).
+
+*What was actually learned.* Nothing in the analysis changed; a hypothesis was
+stated more weakly than the only application requires, and on a gap of
+\(\tfrac1{36}\) that cost a factor \(3.15\) in the paper's headline constant.
+The general lesson for Appendix A is now printed in A.2: a constant is harmless
+only when the gap is wide, so a lemma used once should carry the bound its
+caller supplies, not the loosest bound its statement admits. Lean
+`claimD_shift_range` (sharp) and `claimD_loose_bound_fails_at_P0` (which
+certifies that the loose version really does fail at \(P_0\), so the finding was
+not spurious).

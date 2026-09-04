@@ -42,10 +42,6 @@ export function expanding(word: string): boolean {
   return 2 ** word.length < 3 ** oddCount(word);
 }
 
-export function surplus(word: string): number {
-  return 3 ** oddCount(word) - 2 ** word.length;
-}
-
 export function followsItinerary(n: bigint, word: string): boolean {
   let current = n;
   for (const letter of word) {
@@ -86,12 +82,6 @@ export function rotateItinerary(word: string, shift: number): string {
 
 export function parseCycleItinerary(text: string): string | null {
   return parseItinerary(text, CYCLE_WORD_MAX);
-}
-
-export function localDefect(n: bigint): bigint {
-  const y = floorPower(n);
-  if (n % 2n === 0n) return n - y * y;
-  return n * n * n - y * y;
 }
 
 function lnBig(n: bigint): number {

@@ -26,7 +26,6 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "The Juggler map",
     blurb:
       "Odds flap, evens fall, decimals shed—and still it flies.",
-    // "Even numbers shrink. Odd numbers grow. Decimals vanish. Do it forever?",
     body:
       "J is the one-step map; the sequence is the flight n, J(n), J²(n), … . Values are the trajectory; the O/E word is the itinerary. The paper does not prove that every start reaches 1.",
     paper: "§1: J, E, O, trajectory, itinerary, 3^o/2^k. Lemma 1.1: three fates.",

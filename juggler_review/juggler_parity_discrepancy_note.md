@@ -33,9 +33,9 @@ follows by double Weyl differencing over an exact carry-branch
 decomposition and master identity. All thresholds are effective: no
 divisor or gcd average occurs anywhere in the argument, so every
 \(\varepsilon\) is a power of \(\log P\) --- Theorem 5.3 holds in
-the form \(K_c\ll P^{1-1/96}\log^{3/4}P\) --- and the thirty-five
+the form \(K_c\ll P^{1-1/96}\log^{3/4}P\) --- and the thirty-seven
 threshold inequalities of the proof are solved individually in
-Appendix A, giving \(P_0=2.8\cdot10^{14}\). The depth-\(\le3\) discrepancy
+Appendix A, giving \(P_0=8.9\cdot10^{13}\). The depth-\(\le3\) discrepancy
 estimates (Theorems 4.4 and 4.7) are also proved on sub-dyadic
 intervals of length \(\ge P^{1/2}\), with a slowly varying twist
 attached (Section 3.5), which is the form a companion paper needs.
@@ -1998,12 +1998,13 @@ the Lemma 3.9 comparison \(W\le c_7S/2\).
 
 Every numerical margin in this section is claimed only for
 \(P\ge P_0\), and \(P_0\) is **effective**: Appendix A solves
-each of the thirty-five printed threshold inequalities of
+each of the thirty-seven printed threshold inequalities of
 Sections 4--6 separately and takes the maximum,
 \[
-P_0=2.8\cdot10^{14},
+P_0=8.9\cdot10^{13},
 \]
-attained at Claim D's shift check of Lemma 5.2(ii)→(i) (A.2). Two features of that number should be said
+attained at the Lemma 3.9 hypothesis \(W\le c_7S/2\) in
+Theorem 5.3, Step 5b. Two features of that number should be said
 here. First, \(P_0\) does not depend on \(\varepsilon\).
 No divisor sum, gcd sum or large-sieve average occurs anywhere in
 Sections 3--6, so every \(\ll_\varepsilon\) in those sections is
@@ -2087,8 +2088,8 @@ P^{\varepsilon};
 \]
 
 (ii) *(waves)* for all integer coefficients \((q_d)_{d\in\mathcal D}\)
-with \(|q_d|\le 4P^{1/24}\) and
-\(t:=\sum_{d\in\mathcal D}q_d\ne0\), all
+with \(|q_d|\le 4P^{1/24}\) and total frequency
+\(t:=\sum_{d\in\mathcal D}q_d\) obeying \(0<|t|\le3P^{1/24}\), all
 \(\varepsilon_0\in\{0,1\}\), and smooth \(\varphi\) with
 \(|\varphi'''|\le3kh_1h_2P^{-13/8}\),
 \[
@@ -2167,39 +2168,45 @@ and \(\rho_{h_3}\) is the increment of the remaining phase at
 shift \(2h_3\), written out in Claim E. (The recorded display
 sums \(1\le h<H\); we have renamed the index \(h_3\).)
 
-*Claim D (the parameters of (i) are admissible).* The input
-bounds \(|q_d|\le4P^{1/24}\) give \(t\le16P^{1/24}\). Write
+*Claim D (the parameters of (i) are admissible).* The hypothesis
+gives \(t\le3P^{1/24}\). (The individual bound \(|q_d|\le4P^{1/24}\)
+would give only \(16P^{1/24}\), and that is not a harmless slack: it
+would put the shift comparison below at \(16^{12}=2.8\cdot10^{14}\)
+and make it the largest threshold in the paper. The total-frequency
+bound is the one to carry, and Step 4 of Theorem 5.3 --- the only
+place (ii) is invoked --- supplies it, because the wave modes come
+one per expansion layer from three layers at truncation
+\(J_2=P^{1/24}\), so \(|t|\le3J_2\).) Write
 \(x:=t^{1/3}P^{1/12}\), so \(H_3=\lceil x\rceil\). Claim C sums
 over \(1\le h_3<H_3\), hence \(h_3\le\lceil x\rceil-1\le x\)
 (the integer \(\lceil x\rceil-1\) never exceeds \(x\)). In
-particular \(h_3\le t^{1/3}P^{1/12}\le16^{1/3}P^{7/72}\) with
-\(16^{1/3}<2.52\). Two comparisons for the shift range of (i):
+particular \(h_3\le t^{1/3}P^{1/12}\le3^{1/3}P^{7/72}\) with
+\(3^{1/3}<1.45\). Two comparisons for the shift range of (i):
 \[
 \frac7{72}<\frac18,
 \qquad
-2.52\,P^{7/72}\le P^{1/8}
+1.45\,P^{7/72}\le P^{1/8}
 \quad\text{once}\quad
-P\ge2.52^{36}.
+P\ge1.45^{36}.
 \]
-The threshold is \(2.52^{36}=2.8211\cdot10^{14}\), and it is the
-largest in the paper: this comparison *is* what fixes \(P_0\)
-(Appendix A). An earlier draft checked it against a standing
-\(P_0\) "of size \(10^{24}\)" and passed it without comment; at the
-present \(P_0\) it is the binding row, and the reason a constant as
-mild as \(2.52\) can set the threshold of the whole argument is the
-exponent gap: \(\tfrac18-\tfrac7{72}=\tfrac1{36}\), so the constant
-is paid at the thirty-sixth power. Thus every index in the Claim C
-sum satisfies \(1\le h_3\le P^{1/8}\) for \(P\ge P_0\). (The averaging length
+The threshold is \(1.45^{36}=1.1\cdot10^{6}\), comfortably under
+\(P_0\). The exponent gap here is \(\tfrac18-\tfrac7{72}=\tfrac1{36}\),
+so whatever constant stands in front of \(P^{7/72}\) is paid at the
+thirty-sixth power; that is why the sharp \(t\) matters and why an
+earlier draft, which used \(16^{1/3}\) and checked the result against
+a standing \(P_0\) "of size \(10^{24}\)", silently carried a threshold
+of \(2.8\cdot10^{14}\). Thus every index in the Claim C sum satisfies
+\(1\le h_3\le P^{1/8}\) for \(P\ge P_0\). (The averaging length
 itself obeys \(H_3\le x+1\le3P^{7/72}\) once
 \(1\le0.48P^{7/72}\), i.e. once \(P^{7/72}\ge3\), which holds
 for \(P\ge3^{72/7}<10^6\); Claim G uses only
 \(H_3\le2x\), which follows from \(x\ge1\).) The product range
 of (i) is \(th_3\le tx=t^{4/3}P^{1/12}\). Substituting
-\(t\le16P^{1/24}\) gives
-\(t^{4/3}P^{1/12}\le16^{4/3}P^{1/18+1/12}
-=2^{16/3}P^{5/36}\le41P^{5/36}\), and
-\(41P^{5/36}\le P^{1/2}\) once \(41\le P^{13/36}\), i.e. once
-\(P\ge41^{36/13}<10^5\), again under \(P_0\). Hence every
+\(t\le3P^{1/24}\) gives
+\(t^{4/3}P^{1/12}\le3^{4/3}P^{1/18+1/12}
+=4.33\,P^{5/36}\), and
+\(4.33P^{5/36}\le P^{1/2}\) once \(4.33\le P^{13/36}\), i.e. once
+\(P\ge58\), again far under \(P_0\). Hence every
 \(V_{h_3}\) in the Claim C sum is an instance of (i) with
 \((u,h)=(t,h_3)\), provided \(\rho_{h_3}\) is a legal
 decoration.
@@ -3575,7 +3582,7 @@ differenced-wave scale present. Three regimes.
   \(P_1\) of Appendix A.5 fall together as \(\kappa\) decreases,
   until near \(\kappa=\tfrac1{12}\) the boundary term turns
   \(P_1\) around. We take that value: it gives
-  \(P_0=2.8\cdot10^{14}\) and \(P_1=5.0\cdot10^{19}\), against
+  \(P_0=8.9\cdot10^{13}\) and \(P_1=5.0\cdot10^{19}\), against
   \(3.8\cdot10^{16}\) and \(2.1\cdot10^{21}\) for the earlier
   \(\kappa=\tfrac13\) with the factor \(10\), and
   \(1.3\cdot10^{23}\) for \(\kappa=3\). The exponent
@@ -3610,7 +3617,7 @@ differenced-wave scale present. Three regimes.
   which is the form Step 6 uses. The sharper reading
   \(\le P^{15/16}\) would need \(C(E)\log P\le P^{1/96}\), i.e.
   \(\ln P\ge96\ln\ln P\), which first holds near \(P=10^{274}\); at
-  \(P_0=2.8\cdot10^{14}\) one has \(\ln P=32.1\) against
+  \(P_0=8.9\cdot10^{13}\) one has \(\ln P=32.1\) against
   \(P^{1/96}=1.40\), so that reading is **not** available at \(P_0\).
   Nothing downstream depends on it: Step 6 carries \(P^{\varepsilon}\)
   and \(\tfrac{89}{96}<\tfrac{15}{16}\).
@@ -3998,7 +4005,7 @@ coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 Of these four words only \(OOOEE\) and \(OOEOE\) contract. The
 expanding tree \(OOOO*\) is not estimated: it is the level-3
 kernel of Conjecture 7.3. All estimates below are for
-\(P\ge P_0=2.8\cdot10^{14}\), the effective threshold of Appendix A
+\(P\ge P_0=8.9\cdot10^{13}\), the effective threshold of Appendix A
 --- but only because Stage 2 of Theorem 5.3 is run at
 \(R_0=P^{5/16}\). The fifth-letter window below is opened at
 \(T=R_0\) against a sawtooth coefficient
@@ -4493,17 +4500,14 @@ only inexact step in an otherwise exact chain. It is no longer a link in
 that chain. Every exponent in the paper lies in
 \(\tfrac1{96}\mathbb Z\), so the substitution \(P=t^n\) turns each
 row into a *polynomial* inequality in \(t\), with no real powers at
-all, and **all thirty-five rows are proved that way** in
+all, and **all thirty-seven rows are proved that way** in
 `formal/Problems/Juggler/ThresholdCertificate.lean` (32 theorems: the
 window-boundary and \(\lambda_0\)-range rows each split in two). Each
 carries its substitution and a rational threshold \(t_0\) at or just
 above the true crossing, so the certified thresholds are slightly
-conservative. The largest is the binding row --- `claimD_shift_range`, at
-\(t=1.5875\) in the substitution \(P=t^{72}\), i.e.
-\(P\ge1.5875^{72}=2.83\cdot10^{14}\) against the bisected
-\(2.8211\cdot10^{14}\), a loss of \(0.2\%\). (The Lemma 3.9 balance
-row `row_5b_binding` is second, at \(1.96^{48}=1.07\cdot10^{14}\)
-against a bisected \(8.9\cdot10^{13}\).) Two
+conservative. The largest is the binding row --- `row_5b_binding`, at
+\(t=1.96\), i.e. \(P\ge1.96^{48}=1.07\cdot10^{14}\) against the
+bisected \(8.9\cdot10^{13}\), a loss of under \(20\%\). Two
 irrational constants are replaced by rational bounds, both recorded:
 \(\sqrt{0.35}\ge0.5916\) in the boundary row, and
 \(\tfrac1{12}\sqrt{0.35}\le0.04931\) in the binding one.
@@ -4520,7 +4524,6 @@ irrational constants are replaced by rational bounds, both recorded:
 | P^(1/2) >= 8(1+6) = 56 | Thm 5.3 St.5b (j=0) | $3.1\cdot10^{3}$ |
 | 8(1+2.25P^(1/4))P^(1/2) <= 19 P^(3/4) | Thm 4.1 St.3(s2) | $4.1\cdot10^{3}$ |
 | 41 P^(5/36) <= P^(1/2) | Claim C | $2.9\cdot10^{4}$ |
-| 41 P^(5/36) <= P^(1/2): product range of (i) | Claim D | $2.9\cdot10^{4}$ |
 | [0.38,2.44] with its corrections inside [0.35,2.6] | Lemma 5.2b | $6.4\cdot10^{4}$ |
 | P^(7/72) >= 3 | Claim C | $8.1\cdot10^{4}$ |
 | 72 t^(-1) P^(-1/2) <= 1/4 at t = 1 | Thm 5.3 St.6(D1) | $8.3\cdot10^{4}$ |
@@ -4529,6 +4532,7 @@ irrational constants are replaced by rational bounds, both recorded:
 | 0.6 P^(1/4) + 1 <= 0.65 P^(1/4) | Thm 4.1 St.3(s2) | $1.6\cdot10^{5}$ |
 | P^(1/2)/(2h1) >= 8(1+\|B\|): 0.5 P^(23/48) >= 15 P^(10/48) | Thm 5.3 St.3(a) | $2.8\cdot10^{5}$ |
 | P^(1/2)/(2h2) >= 8(1+\|B\|): 0.5 P^(22/48) >= 15 P^(9/48) | Thm 5.3 St.3(b) | $2.8\cdot10^{5}$ |
+| 1.45 P^(7/72) <= P^(1/8): shift range of (i) | Claim D | $6.4\cdot10^{5}$ |
 | (3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96) | Thm 6.1 St.B | $7.5\cdot10^{5}$ |
 | P^(1/2) >= 8(1 + 7 P^(1/4)) | Thm 5.3 St.6(D1) | $9.9\cdot10^{6}$ |
 | wave remainder 200 P^(-35/24) vs S: 571 P^(-5/6) <= rho_0 | Thm 5.3 St.5b | $1.7\cdot10^{7}$ |
@@ -4549,64 +4553,73 @@ irrational constants are replaced by rational bounds, both recorded:
 | E alone <= c_7 S/2 (the floor as kappa -> 0) | Thm 5.3 St.5b | $5.7\cdot10^{12}$ |
 | W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $1.6\cdot10^{13}$ |
 | W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8) | Thm 5.3 St.5b | $8.9\cdot10^{13}$ |
-| 2.52 P^(7/72) <= P^(1/8): shift range of (i) | Claim D | $2.8\cdot10^{14}$ |
 
 \[
-P_0=2.8\cdot10^{14},
+P_0=8.9\cdot10^{13},
 \]
-attained at Claim D's shift range check \(2.52P^{7/72}\le P^{1/8}\)
-of Lemma 5.2(ii)→(i), whose exponent gap is \(\tfrac1{36}\) (A.2).
-The Lemma 3.9 balance \(W\le c_7S/2\) of Step 5b is second at
-\(8.9\cdot10^{13}\). Three rows hold for every \(P\ge1\) and are
-listed for completeness rather than because they constrain anything.
+attained at the Lemma 3.9 hypothesis \(W\le c_7S/2\) of Theorem 5.3,
+Step 5b. Three rows hold for every \(P\ge1\) and are listed for
+completeness rather than because they constrain anything.
 
 ### A.2 The stratification
 
 The thresholds are not spread out; they cluster and then jump.
-Thirty-three of the thirty-eight hold from \(2.9\cdot10^{10}\) on, and
+Thirty-three of the thirty-seven hold from \(2.9\cdot10^{10}\) on, and
 that value is set by a single soft inequality
 (\(2.25P^{-1/16}<\tfrac12\) in Stage 3(s1) of Theorem 4.1, which merely
-names the regime). The remaining five are, in order: the \(q''\)
-curvature ratio of Step 5b(a) at \(3.0\cdot10^{11}\) (the price of
-\(R_0=P^{5/16}\), A.6); the three Lemma 3.9 balance comparisons of
-Steps 5a and 5b, topping out at \(8.9\cdot10^{13}\); and, above them
-all, Claim D's shift check at \(2.8\cdot10^{14}\).
+names the regime). Of the remaining four, one is the \(q''\) curvature
+ratio of Step 5b(a) at \(3.0\cdot10^{11}\) --- the price of
+\(R_0=P^{5/16}\), and still two and a half orders below \(P_0\)
+(A.6) --- and the other three are the Lemma 3.9 balance comparisons of
+Steps 5a and 5b, which alone carry \(P_0\) up by three and a half
+orders of magnitude.
 
-That last row deserves a word, because it is not the one the argument
-was designed around. \(W\le c_7S/2\) is a *hypothesis* of Lemma 3.9 and
-its size is a genuine analytic constraint; Claim D's row is nothing but
-a comparison of two powers with a mild constant in front,
-\[
-2.52\,P^{7/72}\le P^{1/8},
-\]
-where \(2.52=16^{1/3}\) comes from \(t\le16P^{1/24}\) and the exponent
-gap is \(\tfrac1{36}\). A gap that small pays the constant at the
-thirty-sixth power: \(2.52^{36}=2.82\cdot10^{14}\). Nothing is wrong
-with the step --- it is true, and true by a comfortable margin
-asymptotically --- but it is the row that fixes \(P_0\), and it would
-be the first thing to attack if \(P_0\) mattered. Sharpening
-\(t\le16P^{1/24}\) to \(t\le cP^{1/24}\) would move \(P_0\) to
-\(c^{12}\); at \(c=8\) that is \(6.9\cdot10^{10}\), which would hand
-the threshold back to the Lemma 3.9 balance.
+\(W\le c_7S/2\) is a *hypothesis* of Lemma 3.9, not an optimisation: it
+is what makes \(\Omega_W\) empty on the \(r=2\) pieces. Its size is
+fixed by \(c_7=1/\lVert M^{-1}\rVert_\infty=1/232\) at the Step 5b
+exponent triple (Lean `step5b_curvature_norm`), which is exact and so
+not improvable there (A.5), and by the normalisation \(\kappa\) of
+\(V=\kappa S^{1/2}P^{-11/24}\), which is free:
 
-One consequence is worth recording. Because Claim D's row does not
-involve \(\kappa\), the normalisation of \(V=\kappa S^{1/2}P^{-11/24}\)
-can no longer buy anything below \(\kappa=\tfrac18\): the balance row
-falls but \(P_0\) does not.
+| \(\kappa\) | \(P_0\) | \(P_1\) (A.5) | boundary coefficient |
+|---|---|---|---|
+| \(\tfrac13\) | \(5.8\cdot10^{16}\) | \(1.4\cdot10^{21}\) | \(7.9\) |
+| \(\tfrac18\) | \(3.5\cdot10^{14}\) | \(6.6\cdot10^{19}\) | \(12.9\) |
+| \(\tfrac1{12}\) (used here) | \(8.9\cdot10^{13}\) | \(5.0\cdot10^{19}\) | \(15.8\) |
+| \(\tfrac1{16}\) | \(4.4\cdot10^{13}\) | \(6.3\cdot10^{19}\) | \(18.2\) |
+| \(\tfrac1{20}\) | \(2.9\cdot10^{13}\) | \(9.4\cdot10^{19}\) | \(20.4\) |
 
-| \(\kappa\) | balance row | \(P_0\) | \(P_1\) (A.5) | boundary coefficient |
-|---|---|---|---|---|
-| \(\tfrac13\) | \(5.8\cdot10^{16}\) | \(5.8\cdot10^{16}\) | \(1.4\cdot10^{21}\) | \(7.9\) |
-| \(\tfrac18\) | \(3.5\cdot10^{14}\) | \(3.5\cdot10^{14}\) | \(6.6\cdot10^{19}\) | \(12.9\) |
-| \(\tfrac1{12}\) (used here) | \(8.9\cdot10^{13}\) | \(2.8\cdot10^{14}\) | \(5.0\cdot10^{19}\) | \(15.8\) |
-| \(\tfrac1{16}\) | \(4.4\cdot10^{13}\) | \(2.8\cdot10^{14}\) | \(6.3\cdot10^{19}\) | \(18.2\) |
-| \(\tfrac1{20}\) | \(2.9\cdot10^{13}\) | \(2.8\cdot10^{14}\) | \(9.4\cdot10^{19}\) | \(20.4\) |
-
-The operating point \(\kappa=\tfrac1{12}\) is therefore chosen by
-\(P_1\), not by \(P_0\): both columns fall together until
-\(\kappa=\tfrac1{12}\), where the piece-boundary term turns \(P_1\)
-around, while \(P_0\) has already flattened at Claim D's row. The
+Both columns fall together until \(\kappa=\tfrac1{12}\), where the
+piece-boundary term turns \(P_1\) around; that is the operating point.
+As \(\kappa\to0\) the threshold tends to \(5.7\cdot10^{12}\), the point
+at which the interpolant error alone satisfies \(E\le c_7S/2\). The
 exponent \(89/96\) does not depend on \(\kappa\) at all.
+
+*A near miss, recorded because it nearly cost a factor three.* Claim D
+of Lemma 5.2(ii)\(\to\)(i) must place every index of the Claim C sum
+inside the shift range of (i), i.e. \(h_3\le P^{1/8}\), from
+\(h_3\le t^{1/3}P^{1/12}\). The exponent gap
+\(\tfrac18-\tfrac7{72}=\tfrac1{36}\) is small, so whatever constant
+stands in front is paid at the thirty-sixth power, and the choice of
+bound on \(t\) decides the row:
+\[
+|t|\le16P^{1/24}\ \Rightarrow\ 16^{12}=2.8\cdot10^{14},
+\qquad
+|t|\le3P^{1/24}\ \Rightarrow\ 3^{12}=5.3\cdot10^{5}.
+\]
+The first is what the individual bound \(|q_d|\le4P^{1/24}\) gives over
+the four elements of \(\mathcal D\); the second is the total-frequency
+bound that Theorem 5.3, Step 4 --- the only place (ii) is invoked ---
+actually supplies, since the wave modes arrive one per expansion layer
+from three layers at truncation \(J_2=P^{1/24}\). Lemma 5.2(ii)
+therefore carries \(|t|\le3P^{1/24}\) as a hypothesis, and the row is
+\(6\cdot10^{5}\) rather than \(2.8\cdot10^{14}\). Had it been the
+latter it would have been the binding row of the whole paper, and
+\(P_0\) would have been \(2.8\cdot10^{14}\) --- larger by \(3.15\) than
+the value above, for no analytic reason whatever. This is the sharpest
+illustration in the paper of the rule that governs Appendix A: on a gap
+of \(g\), a constant \(c\) costs \(c^{1/g}\), so a constant is only
+harmless when the gap is wide.
 
 
 ### A.3 \(P_0\) does not depend on \(\varepsilon\)
@@ -4664,9 +4677,7 @@ throughout. With it, every threshold in the paper is \(P_0\).
 
 ### A.5 The two constants that carry the threshold
 
-\(P_0\) itself is now carried by Claim D's shift check (A.2). What
-follows concerns the row that carried it before, and that still carries
-every threshold except that one comparison: \(W\le c_7S/2\), whose two ingredients
+\(P_0\) is carried entirely by \(W\le c_7S/2\), whose two ingredients
 are the curvature constant \(c_7\) and the interpolant error \(E\).
 Both were attacked; only one moved.
 
@@ -4787,10 +4798,9 @@ fifth-letter requirements are not merely inconvenient, they are the
 whole threshold of the depth-five theorem, and the binding one is the
 flat cost, which does not clear \(P^{1-1/96}\) until
 \(1.8\cdot10^{24}\) --- ten orders above \(P_0\). At \(a=9/32\) the
-worst site is \(7.4\cdot10^{13}\); it clears the present
-\(P_0=2.8\cdot10^{14}\) by a factor \(3.8\), but it clears the rest of
-the certificate --- everything below Claim D's row --- by only \(1.2\),
-which is too thin to rest the choice on. At \(a=5/16\) the worst site is \(3.0\cdot10^{11}\), a clear
+worst site is \(7.4\cdot10^{13}\), which sneaks under
+\(P_0=8.9\cdot10^{13}\) by less than a factor \(1.3\): too close to
+print. At \(a=5/16\) the worst site is \(3.0\cdot10^{11}\), a clear
 factor \(300\) below \(P_0\), and it is the minimum of the last column
 over the admissible range. That is the value carried.
 

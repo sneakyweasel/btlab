@@ -12,20 +12,28 @@ from research.juggler_sequence import p0_certificate as C
 from research.juggler_sequence import paper_b_constants_sweep as S
 
 
-def test_claim_D_is_the_binding_row() -> None:
-    """The sweep's headline finding: P_0 is set by Claim D, not by the Lemma 3.9 balance."""
+def test_claim_D_would_have_been_the_binding_row() -> None:
+    """The sweep found Claim D carrying 16 P^(1/24); the fix was to carry 3 P^(1/24).
+
+    With the loose bound the row is 16^12 = 2.8e14 and binds; with the sharp one it is
+    3^12 = 5.3e5 and the Lemma 3.9 balance binds again at 8.9e13.
+    """
     cert = C.certificate()
-    assert cert["binding"]["tag"] == "claimD-shift"
-    assert abs(cert["P0"] - 2.52**36) / cert["P0"] < 1e-6
-    assert 2.8e14 < cert["P0"] < 2.9e14
+    assert cert["binding"]["tag"] == "5b-W<=c7S"
+    assert 8.9e13 < cert["P0"] < 9.0e13
+    loose, sharp = 16.0**12, 3.0**12
+    assert loose > cert["P0"] * 3            # would have raised P_0 by over 3x
+    assert sharp < cert["P0"] / 1e7          # as carried, it is nowhere near binding
+    row = {r["tag"]: r["P_min"] for r in cert["thresholds"]}["claimD-shift"]
+    assert sharp <= row < 1e6
 
 
-def test_claim_D_fails_at_the_superseded_P0() -> None:
-    """It misses by 3% at 8.95e13 -- which is why an obsolete comparison hid it."""
-    old = 8.9458e13
-    assert 2.52 * old ** (7 / 72) > old ** (1 / 8)
-    assert old ** (1 / 36) < 2.52
-    assert 2.4 < old ** (1 / 36) < 2.45
+def test_the_loose_bound_fails_at_P0_and_the_sharp_one_holds() -> None:
+    """At 8.95e13 the loose constant misses by 3%; the sharp one clears by 60%."""
+    P0 = 8.9458e13
+    assert 2.52 * P0 ** (7 / 72) > P0 ** (1 / 8)      # loose: fails
+    assert 1.45 * P0 ** (7 / 72) <= P0 ** (1 / 8)     # sharp: holds
+    assert 2.4 < P0 ** (1 / 36) < 2.45                # the miss is only 3%
 
 
 def test_step_3a_flat_cost_is_inside_the_right_budget() -> None:
@@ -61,8 +69,13 @@ def test_sweep_finds_nothing_new_above_P0() -> None:
                 if c ** (1 / float(e2 - e)) > S.P0:
                     bad_b.append((i + 1, c, str(e), str(e2)))
                 break
-    assert sorted({b[1] for b in bad_a}) == [], bad_a
-    assert sorted({b[1] for b in bad_b}) == [2.52], bad_b   # Claim D only, and that row IS P_0
+    # Shape B is clean: since Claim D carries |t| <= 3 P^(1/24), no printed containment of one
+    # power in another hides a constant above P_0.
+    assert bad_b == [], bad_b
+    # Shape A flags exactly one term, and its target is not a margin: Theorem 6.3's per-point
+    # flat cost 11 P^(-11/96) is never compared to 1/4 -- it is multiplied by the block length
+    # and compared to P^(1-1/96), which is the probe's t63-flat row at 5.5e9.
+    assert sorted({b[1] for b in bad_a}) == [11.0], bad_a
 
 
 def test_findings_are_recorded() -> None:

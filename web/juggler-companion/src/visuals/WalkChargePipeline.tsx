@@ -1,10 +1,12 @@
+import { PRINTED_PERIOD } from "../juggler/constants";
+
 const STAGES = [
   "Transport",
   "Hug adversary",
   "Itinerary identity",
   "Denjoy–Koksma",
   "Window",
-  "L ≥ 478245",
+  `L ≥ ${PRINTED_PERIOD}`,
 ];
 
 export function WalkChargePipeline() {

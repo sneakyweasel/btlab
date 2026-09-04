@@ -209,9 +209,9 @@
       {
         "tag": "claimD-shift",
         "site": "Claim D",
-        "claim": "2.52 P^(7/72) <= P^(1/8): shift range of (i)",
-        "log10_P_min": 14.450419468135587,
-        "P_min": 282110641267561.3
+        "claim": "1.45 P^(7/72) <= P^(1/8): shift range of (i)",
+        "log10_P_min": 5.809248080459095,
+        "P_min": 644537.337100523
       },
       {
         "tag": "st3a-flatcost",
@@ -265,22 +265,22 @@
     ],
     "all_solved": true,
     "n_thresholds": 37,
-    "P0": 282110641267561.3,
-    "log10_P0": 14.450419468135587,
+    "P0": 89457691736825.03,
+    "log10_P0": 13.951617687946936,
     "binding": {
-      "tag": "claimD-shift",
-      "site": "Claim D",
-      "claim": "2.52 P^(7/72) <= P^(1/8): shift range of (i)",
-      "log10_P_min": 14.450419468135587,
-      "P_min": 282110641267561.3
+      "tag": "5b-W<=c7S",
+      "site": "Thm 5.3 St.5b",
+      "claim": "W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8)",
+      "log10_P_min": 13.951617687946936,
+      "P_min": 89457691736825.03
     },
-    "P0_excluding_lemma_3_9_balance": 282110641267561.3,
+    "P0_excluding_lemma_3_9_balance": 298166397427.1972,
     "binding_excluding_balance": {
-      "tag": "claimD-shift",
-      "site": "Claim D",
-      "claim": "2.52 P^(7/72) <= P^(1/8): shift range of (i)",
-      "log10_P_min": 14.450419468135587,
-      "P_min": 282110641267561.3
+      "tag": "st5b-qpp",
+      "site": "Thm 5.3 St.5b(a)",
+      "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+      "log10_P_min": 11.474458698022962,
+      "P_min": 298166397427.1972
     },
     "P0_at_superseded_kappa": 5.819938645207617e+16,
     "kappa_tradeoff": [
@@ -392,7 +392,7 @@
           0.004310344827586207,
           0.004310344827586207
         ],
-        "P0": 282110641267561.3,
+        "P0": 89457691736825.03,
         "P1": 5.031799856375874e+19
       },
       "c2_raised": {
@@ -402,7 +402,7 @@
           0.0005341880341880342,
           0.0005341880341880342
         ],
-        "P0": 282110641267561.3,
+        "P0": 26429370931451.99,
         "P1": 5.306055972098726e+23
       }
     },
@@ -459,7 +459,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "55fb88f988580a36c027fc23a405d9830f841bbd",
+  "git_commit": "f70b728e285a8c3bd77ab03dce05ffd527b8e680",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -1746,5 +1746,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 28.942545890808105
+  "elapsed_seconds": 31.29263138771057
 }

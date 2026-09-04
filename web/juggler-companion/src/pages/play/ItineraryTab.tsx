@@ -105,19 +105,13 @@ function ItineraryResult({ n, itinerary }: { n: bigint; itinerary: string }) {
           the wrong parity for that letter.
         </p>
       ) : null}
-      <div className="grid gap-3 sm:grid-cols-2">
-        <Metric
-          label="Envelope slack Δ"
-          value={
-            !follows ? "—" : slack === null ? "too large to show" : formatInt(slack)
-          }
-          hint="n^{3^o} − image^{2^k}, when the powers fit in 80 bits"
-        />
-        <Metric
-          label="Compared with n"
-          value={image === null ? "—" : compareImage(image, n)}
-        />
-      </div>
+      <Metric
+        label="Envelope slack Δ"
+        value={
+          !follows ? "—" : slack === null ? "too large to show" : formatInt(slack)
+        }
+        hint="n^{3^o} − image^{2^k}, when the powers fit in 80 bits"
+      />
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="rounded-xl border border-line bg-card p-4">
           <SurplusScale odds={odds} length={itinerary.length} />

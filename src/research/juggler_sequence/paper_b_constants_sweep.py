@@ -13,7 +13,7 @@ import re
 from fractions import Fraction as F
 
 PATH = "docs/theory/juggler_parity_discrepancy_note.md"
-P0 = 2.8211e14  # set by the Claim D row this sweep found
+P0 = 8.9458e13
 MARGIN = 0.25
 
 CMP = re.compile(r"\\le|\\ll|\\leq|\\subseteq|\\to0")
@@ -97,7 +97,9 @@ def findings() -> list[dict]:
     return [
         {"site": "Claim D", "printed": "2.52 P^(7/72) <= P^(1/8)", "gap": "1/36",
          "const": 2.52, "threshold": 2.52 ** 36,
-         "was": "checked against a standing P_0 of size 1e24", "now": "this row IS P_0"},
+         "was": "checked against a standing P_0 of size 1e24; would have been P_0 = 2.8e14",
+         "now": "resolved by carrying |t| <= 3 P^(1/24) instead of 16 P^(1/24): "
+                "the constant becomes 3^(1/3) < 1.45 and the row drops to 6.4e5"},
         {"site": "Thm 5.3 St.3(a)", "printed": "23 P^(19/24) <= P^(7/8)", "gap": "1/12",
          "const": 23.0, "threshold": 23.0 ** 12,
          "was": "false at P_0 by a factor 245",
