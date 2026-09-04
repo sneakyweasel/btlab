@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { NecklaceFigure } from "../juggler/necklace";
 
 const ODD = "#c45c26";
@@ -46,6 +47,7 @@ type ExcursionWaveProps = {
  */
 export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
   const { word, logs, logN, logSq, logSq1 } = figure;
+  const [hover, setHover] = useState<{ x: number; y: number; label: string } | null>(null);
   const turn = Math.max(word.length, 1);
   const dataLo = Math.min(...logs, logN);
   const dataHi = Math.max(...logs, logSq1);
@@ -261,12 +263,20 @@ export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
         const showLabel =
           !compact && (logs.length <= 14 || index === 0 || isFirstPeak || isLastPeak || isFail || isEnd);
         const out = polar(point.r + 13, point.a);
+        const beadR = ring ? 4.6 : isPeak ? 3.4 : 2.6;
         return (
-          <g key={index}>
+          <g
+            key={index}
+            onPointerEnter={() => setHover({ x: point.x, y: point.y, label: point.label })}
+            onPointerLeave={() => setHover(null)}
+            style={{ cursor: "pointer" }}
+          >
+            <title>{point.label}</title>
+            <circle cx={point.x} cy={point.y} r={Math.max(beadR, 8)} fill="transparent" />
             <circle
               cx={point.x}
               cy={point.y}
-              r={ring ? 4.6 : isPeak ? 3.4 : 2.6}
+              r={beadR}
               fill={isEnd && !figure.returns ? "#fffdf7" : fill}
               stroke={ring ? (isEnd && !figure.returns ? WARN : INK) : "none"}
               strokeWidth={ring ? 1.3 : 0}
@@ -289,6 +299,23 @@ export function ExcursionWave({ figure, compact = false }: ExcursionWaveProps) {
           </g>
         );
       })}
+
+      {hover ? (
+        <text
+          x={hover.x}
+          y={hover.y - 12}
+          textAnchor={hover.x > WIDTH - 80 ? "end" : hover.x < 80 ? "start" : "middle"}
+          fill={INK}
+          fontFamily="IBM Plex Mono, monospace"
+          fontSize="11"
+          paintOrder="stroke"
+          stroke="#fffdf7"
+          strokeWidth="4"
+          pointerEvents="none"
+        >
+          {hover.label}
+        </text>
+      ) : null}
 
       {/* verdicts */}
       {!compact && firstPeakStep !== null ? (

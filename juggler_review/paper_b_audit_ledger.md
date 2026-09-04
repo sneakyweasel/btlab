@@ -131,6 +131,47 @@ a fact about \(\varepsilon\), not about the proof, and is excluded
 from \(P_0\) — as is the \(10^{274}\) of the \(P^{15/16}\)
 reading, which Step 6 does not use.
 
+*\(c_7\) is not the place to push (Appendix A.5).* Since \(P_0\) is
+carried entirely by \(V\le c_7S/2\), the constant was attacked
+directly. Two results. (a) **Not by the exponent triple.**
+\(c_7=1/\lVert M^{-1}\rVert_\infty\) depends only on the exponents,
+through \(\det M=\prod_{i<j}(x_j-x_i)\), and scales as the *square* of
+their gap: for an equally spaced triple of gap \(\delta\) about
+\(x_0\), \(\delta^2/c_7=x_0^2-2x_0+c\) with \(c\in[1.75,2]\) on
+\(\delta\in[\tfrac18,\tfrac12]\). Step 5b's triple
+\((\tfrac54,\tfrac{11}8,\tfrac32)\) is \((10,11,12)/8\), adjacent
+on the lattice \(\tfrac18\mathbb Z\) the paper lives on, and each
+entry is forced (level-1 wave; frozen-shape model; differenced-wave
+monomial). Over all \(165\) triples of the paper's inventory \(c_7\)
+runs from \(1/259\) to \(144/287\). (b) **By dropping the uniform
+constant, at most a factor \(232/24<10\), and not for free.** Lemma
+3.9's proof needs only \(\lvert M^{-1}\rvert c\le1\) for a vector
+\(c=(c_2,c_3,c_4)\), and only \(c_2\) gates the hypothesis. But the
+uniform choice saturates the middle row *exactly*, \(24+144+64=232\),
+so every gain in \(c_2\) is paid out of \(c_3,c_4\) — which sit in
+\(C\), via the \(r=3\) length \(2PV/(c_3S)\) and the \(r=4\)
+length \(P(V/(c_4S))^{1/2}\). Three facts are Lean-checked
+(`step5b_vector_transfer`, `step5b_uniform_saturates`,
+`step5b_c2_ceiling`, `step5b_c2_optimum_feasible`).
+
+*A second threshold, and a correction of scope.* The trade is only
+visible against a quantity the first pass did not compute. \(P_0\)
+certifies that the printed inequalities hold; it does not say when the
+bound beats the trivial one. The middle band totals
+\(\le CP^{89/96}\log P\), which beats \(P\) only from
+\(P_1:=C^{96/7}\) on — at the present operating point
+\(C\approx542\) and \(P_1\approx3.2\cdot10^{37}\). Minimising
+\(P_0\) alone reaches \(4.6\cdot10^{13}\) (a factor \(820\)) but
+sends \(P_1\) to \(10^{56}\); holding \(P_1\) fixed buys only a
+factor \(1.9\) in \(P_0\). The uniform constant is therefore kept.
+The \(P_1\) floor is intrinsic: absorbing any constant \(C\) into a
+\(P^{1/96}\) saving needs \(P\ge C^{96/7}\), so even \(C=10\)
+costs \(10^{13.7}\). At the \(P_0\)-optimal point the binding
+comparison is no longer the curvature inverse but
+\(V\ge10\lvert f''-\Lambda\rvert\) — the Lemma 5.2b interpolant
+error \(219P^{-25/24}\), and its safety factor \(10\). Those are the
+next targets.
+
 *The thresholds stratify.* Twenty-seven of the thirty-one hold from
 \(2.9\cdot10^{10}\) on, and that value is set by a soft
 regime-naming inequality (\(2.25P^{-1/16}<\tfrac12\), Stage 3(s1)).

@@ -5,6 +5,7 @@ export type TourSlug =
   | "expanding"
   | "envelope"
   | "preimages"
+  | "oe-fiber"
   | "descent-floor"
   | "finance"
   | "walk-charge";
@@ -75,15 +76,26 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     number: 6,
     term: "One-step preimages",
     blurb:
-      "J is not invertible. A backward-closed set swallows an even interval and a swept odd fiber from every member.",
+      "J is not invertible. A backward-closed set swallows the even square interval of every member.",
     body:
-      "Work backwards. J is not invertible, so the one-step preimage of m is a set. Paper C uses that set as two productions of a backward-closed class A: if J(n) is in A then n is in A. The even block E(m) is every even n in the square interval from m squared to (m+1) squared; each has J(n) = m, so the whole block joins A. The OE fiber is the odd n with floor of n to the three-fourths equal to m; those whose image floor of n to the three-halves is even have J(J(n)) = m, so they join A too. Along that fiber the parity of the image sweeps a nearly constant step, and both colors appear. An odd image still has at most one odd parent. None of this excludes a fate.",
+      "Work backwards. J is not invertible, so the one-step preimage of m is a set. If J(n) is in a backward-closed class A then n is in A. The even block E(m) is every even n in the square interval from m squared to (m+1) squared; each has J(n) = m, so the whole block joins A. An odd image still has at most one odd parent. The OE fiber is a different production and lives on the next page. None of this excludes a fate.",
     paper:
-      "Paper C Lemmas 3.1–3.2 and 4.1; Lean even_block_mem, oe_fiber_mem. Odd one-step uniqueness is Paper A Lemma 3.1.",
+      "Paper C Lemma 3.1; Lean even_block_mem. Odd one-step uniqueness is Paper A Lemma 3.1.",
+  },
+  {
+    slug: "oe-fiber",
+    number: 7,
+    term: "OE fiber",
+    blurb:
+      "Odd n with floor of n to the three-fourths equal to m. Those whose next image is even join A in two steps.",
+    body:
+      "The OE fiber Φ(m) is every odd n with floor of n to the three-fourths equal to m. Sea beads have even floor of n to the three-halves, so J(J(n)) = m and they join a backward-closed A. Ember beads sit on the fiber but do not use this production. The printed figure is m = 100,000: H odd n on the interval, G of them with even image. Along the fiber the quantity {n^{3/2}/2} advances by a nearly constant step, and both colors appear. Shares on this m are an observation, not the sweep proof. None of this excludes a fate.",
+    paper:
+      "Paper C Lemmas 3.2 and 4.1; Lean oe_fiber_mem. The printed fiber is m = 10^5.",
   },
   {
     slug: "descent-floor",
-    number: 7,
+    number: 8,
     term: "Verified descent floor N₀",
     blurb: "Every start from 2 through N₀ has already been checked to reach 1. A floor is an input.",
     body:
@@ -92,7 +104,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "finance",
-    number: 8,
+    number: 9,
     term: "Finance",
     blurb:
       "Ideal dynamics expands, exact dynamics returns; the difference is paid in floor crumbs, and the crumbs run out.",
@@ -103,7 +115,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
   },
   {
     slug: "walk-charge",
-    number: 9,
+    number: 10,
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:

@@ -6,6 +6,7 @@ import { HomePage } from "./pages/HomePage";
 import { PlaygroundIndexPage, PlaygroundPage } from "./pages/PlaygroundPage";
 import { TourIndexPage, TourPage } from "./pages/TourPage";
 import { PreimagesTab } from "./pages/play/PreimagesTab";
+import { OeFiberTab } from "./pages/play/OeFiberTab";
 import { CycleTab } from "./pages/play/CycleTab";
 import { FinanceTab } from "./pages/play/FinanceTab";
 import { TrajectoryTab } from "./pages/play/TrajectoryTab";
@@ -30,6 +31,7 @@ export default function App() {
               <Route path="word" element={<Navigate to="/play/itinerary" replace />} />
               <Route path="preimages" element={<PreimagesTab />} />
               <Route path="cells" element={<Navigate to="/play/preimages" replace />} />
+              <Route path="oe-fiber" element={<OeFiberTab />} />
               <Route path="cycle" element={<CycleTab />} />
               <Route path="finance" element={<FinanceTab />} />
             </Route>

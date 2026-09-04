@@ -148,3 +148,66 @@ def test_certificate_table_renders_every_row() -> None:
     assert md.count("\n") == len(cert["thresholds"]) + 1
     assert "always" in md  # the three unconditional rows
     assert math.isclose(cert["log10_P0"], math.log10(cert["P0"]))
+
+
+# ----------------------------------------------------------------------------------------------
+# Appendix A.5: can c_7 be raised?
+# ----------------------------------------------------------------------------------------------
+
+
+def test_step5b_triple_gives_exactly_1_over_232() -> None:
+    from fractions import Fraction as Fr
+
+    assert C.c7_of_triple(C.STEP5B_TRIPLE) == Fr(1, 232)
+    rows = C.minv_abs(C.STEP5B_TRIPLE)
+    assert [sum(r) for r in rows] == [110, 232, 123]
+
+
+def test_c7_scales_as_the_square_of_the_exponent_gap() -> None:
+    """delta^2 / c_7 stays in a narrow band while c_7 itself moves by a factor 64."""
+    from fractions import Fraction as Fr
+
+    ratios = []
+    for d in (Fr(1, 8), Fr(1, 4), Fr(1, 2)):
+        t = (Fr(-5, 8) - d + 2, Fr(-5, 8) + 2, Fr(-5, 8) + d + 2)
+        ratios.append((d * d) / C.c7_of_triple(t))
+    assert all(Fr(33, 10) <= r <= Fr(39, 10) for r in ratios), ratios
+    assert ratios[0] == Fr(29, 8)  # exact at the Step 5b centre and gap
+
+
+def test_the_uniform_choice_saturates_the_middle_row_so_c7_is_not_free() -> None:
+    assert sum(C.MINV_ABS[1]) == 232
+    assert C.vector_feasible(C.C7, C.C7, C.C7)
+    # nothing above 1/232 is feasible while holding c3 = c4 = 1/232
+    assert not C.vector_feasible(C.C7 * 1.01, C.C7, C.C7)
+
+
+def test_c2_ceiling_is_one_twentyfourth() -> None:
+    assert abs(C.max_c2(0.0, 0.0) - 1 / 24) < 1e-12
+    assert C.max_c2() / C.C7 < 10  # the whole available gain is under a factor ten
+
+
+def test_p0_optimal_vector_is_feasible_and_tight() -> None:
+    c2, c3, c4 = 1 / 27, 1 / 1872, 1 / 1872
+    assert C.vector_feasible(c2, c3, c4)
+    assert abs(24 * c2 + 144 * c3 + 64 * c4 - 1) < 1e-12  # 8/9 + 1/9
+    assert C.p0_with_vector(1.0, c2, c3, c4) < C.p0_with_vector(C.KAPPA, C.C7, C.C7, C.C7)
+
+
+def test_raising_c2_moves_cost_from_P0_to_P1() -> None:
+    """The lever exists but does not remove cost: P_0 falls and P_1 rises."""
+    lever = C.c7_lever()
+    cur, opt = lever["current"], lever["P0_optimal"]
+    assert opt["P0"] < cur["P0"] / 100      # P_0 improves by more than two orders
+    assert opt["P1"] > cur["P1"] * 1e10     # P_1 degrades by more than ten
+    assert cur["P1"] > cur["P0"]            # P_1 is the larger threshold either way
+
+
+def test_P1_floor_is_intrinsic_to_a_1_over_96_saving() -> None:
+    """Absorbing any constant C into P^(1/96) needs P >= C^(96/7); even C=10 costs 1e13.7."""
+    import math
+
+    for Cc in (10, 100, 542):
+        assert abs(math.log10(C.c7_lever()["P1_floor_examples"][str(Cc)])
+                   - math.log10(Cc) * 96 / 7) < 1e-9
+    assert C.c7_lever()["P1_floor_examples"]["10"] > 1e13

@@ -404,14 +404,9 @@ export function PreimagesWidget() {
   const [playing, setPlaying] = useState(false);
   const block = useMemo(() => evenBlockView(m), [m]);
   const slotInteger = useMemo(() => oddPreimageIntegers(m)[0] ?? null, [m]);
-  const fiber = fiberView(TOUR_OE_FIBER_M);
-  const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
   const [blockN, setBlockN] = useState<number | null>(() =>
     randomEvenInBlock(evenBlockView(TOUR_EVEN_BLOCK_M)),
   );
-  const [fiberN, setFiberN] = useState(firstSea);
-  const [fiberHover, setFiberHover] = useState<number | null>(null);
-  const fiberInspect = fiberHover ?? fiberN;
   const parsed = parsePositiveInt(startText);
   const startError =
     startText.trim() === ""
@@ -596,31 +591,41 @@ export function PreimagesWidget() {
               ? ` Here that integer is ${formatInt(slotInteger)}, not odd, so J does not use this cut.`
               : ` Here that integer is ${formatInt(slotInteger)}.`}{" "}
           If {formatInt(m)} is in a backward-closed set A, every bead with an
-          arrow joins A.
+          arrow joins A. The OE fiber is the next chapter.
         </p>
       </div>
-      <div>
-        <h3 className="mb-2 font-serif text-lg">OE fiber of 100,000</h3>
-        <OeFiberStrip
-          view={fiber}
-          selected={fiberN}
-          onSelect={setFiberN}
-          onHover={setFiberHover}
-        />
-        <SweepLane
-          points={fiber.points}
-          selected={fiberN}
-          onSelect={setFiberN}
-          onHover={setFiberHover}
-        />
-        <ProductionWork n={fiberInspect} />
-        <p className="mt-3 text-sm text-muted">
-          H = {fiber.H} odd n, G = {fiber.G} with even image. The odd step
-          grows, the even step drops to 100000. Ember beads are on the fiber
-          but not this production. An odd image still has at most one odd
-          parent.
-        </p>
-      </div>
+    </div>
+  );
+}
+
+export function OeFiberWidget() {
+  const fiber = fiberView(TOUR_OE_FIBER_M);
+  const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
+  const [fiberN, setFiberN] = useState(firstSea);
+  const [fiberHover, setFiberHover] = useState<number | null>(null);
+  const fiberInspect = fiberHover ?? fiberN;
+  return (
+    <div>
+      <h3 className="mb-2 font-serif text-lg">OE fiber of 100,000</h3>
+      <OeFiberStrip
+        view={fiber}
+        selected={fiberN}
+        onSelect={setFiberN}
+        onHover={setFiberHover}
+      />
+      <SweepLane
+        points={fiber.points}
+        selected={fiberN}
+        onSelect={setFiberN}
+        onHover={setFiberHover}
+      />
+      <ProductionWork n={fiberInspect} />
+      <p className="mt-3 text-sm text-muted">
+        H = {fiber.H} odd n, G = {fiber.G} with even image. The odd step
+        grows, the even step drops to 100000. Ember beads are on the fiber
+        but not this production. An odd image still has at most one odd
+        parent.
+      </p>
     </div>
   );
 }

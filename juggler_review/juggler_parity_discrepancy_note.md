@@ -678,7 +678,8 @@ S:=\max\bigl(|a|P^{\alpha-2},|b|P^{\beta-2},|c|P^{\gamma-2}\bigr)>0,
 \]
 with \(g\) satisfying the analogues of the perturbation bounds of
 Lemma 3.8 for the second, third, *and fourth* derivatives, at some
-\(\rho\le\rho_0(E)\). There are constants \(c_7(E)>0\) and \(C(E)\)
+\(\rho\le\rho_0\). There are constants
+\(c_7=c_7(\alpha,\beta,\gamma)>0\) and \(C=C(\alpha,\beta,\gamma)\)
 such that for every \(V\) with \(0<V\le c_7S/2\):
 
 (i) the sublevel set
@@ -716,7 +717,27 @@ of \(E\): at every point of \(I\),
 \qquad\tilde S\asymp_ES,
 \]
 after absorbing \(g\) by \(\rho_0\le c_7/8\) (zero coefficients only
-shorten the argument). The ratios \(A/B\), \(B/C\), \(A/C\) are
+shorten the argument). The constant depends on the *triple*, not on the
+ambient set: \(c_7=1/\lVert M^{-1}\rVert_\infty\), and since
+\(\det M=\prod_{i<j}(x_j-x_i)\) with \(x=\alpha-2\) etc., it scales
+as the square of the exponent gap. For an equally spaced triple of gap
+\(\delta\) about \(x_0\),
+\(\delta^2/c_7=x_0^2-2x_0+c\) with \(c\in[1.75,2]\) for
+\(\delta\in[\tfrac18,\tfrac12]\). Writing \(c_7(E)\) for a
+*uniform* constant over all triples of \(E\) would be weaker: over the
+exponent inventory of this paper the minimum is \(1/259\), at
+\((\tfrac98,\tfrac54,\tfrac{11}8)\). Each application below uses its
+own triple's value.
+
+The proof needs less than a single scalar. What it actually uses is that
+the three tests are not *all* small, and that is a condition on a vector
+\(c=(c_2,c_3,c_4)\), one constant per derivative order: if
+\(\lvert T_j\rvert\le c_j\tilde S\) for \(j=2,3,4\) then
+\(\lvert A_i\rvert\le\tilde S\sum_j\lvert M^{-1}\rvert_{ij}c_j\),
+so any \(c\ge0\) with \(\lvert M^{-1}\rvert c\le1\) rowwise will do
+(Lean `step5b_vector_transfer`). Only \(c_2\) enters the hypothesis
+\(V\le c_2S/2\); \(c_3\) and \(c_4\) enter only through \(C\).
+Appendix A.5 records what that buys, and what it costs. The ratios \(A/B\), \(B/C\), \(A/C\) are
 monotone, so \(I\) splits into \(O_E(1)\) consecutive intervals on
 each of which one fixed derivative order \(r\in\{2,3,4\}\) is good at
 full scale throughout. On an \(r=2\) piece, \(\Omega_V\) is empty
@@ -4219,6 +4240,96 @@ than by the printed \(O(hP^{-1})\), and the wave remainder
 \(O(uh^2\nu^{-7/4})\), bounded at \(200P^{-35/24}\) on the
 printed inventory. Both clear \(\rho_0\) by more than nine
 orders of magnitude, so neither choice affects \(P_0\).
+
+Nor does \(P_0\) answer every question one might ask of a threshold.
+It is the point beyond which the proof's inequalities hold; it is not
+the point beyond which the resulting bound is better than the trivial
+one. That second threshold is \(P_1=C^{96/7}\approx3.2\cdot10^{37}\)
+and is computed in A.5. The two are different quantities, they respond
+to the constants in opposite directions, and only the first is what the
+phrase "for \(P\ge P_0\)" in Sections 4--6 asserts.
+
+### A.5 Can \(c_7\) be raised?
+
+\(P_0\) is carried entirely by the Lemma 3.9 comparison
+\(V\le c_7S/2\), so the question is worth asking directly. The answer
+has two halves.
+
+*Not by changing the triple.* \(c_7=1/\lVert M^{-1}\rVert_\infty\)
+depends only on the exponents, through
+\(\det M=\prod_{i<j}(x_j-x_i)\), and scales as the square of their
+gap. Step 5b's triple is \((\tfrac54,\tfrac{11}8,\tfrac32)\), and
+each entry is forced: \(\tfrac32\) is the level-1 wave
+\(X=\nu^{3/2}\); \(\tfrac{11}8\) is the frozen-shape global model,
+the second antiderivative of
+\(\tilde\beta_1\tilde\beta_2\nu^{-13/8}\); \(\tfrac54\) is the
+differenced-wave monomial \(uG(\nu{+}2h)^{-5/4}\) after the frozen gap
+\(G\sim3h\nu^{1/2}\). In eighths they are \(10,11,12\) --- adjacent
+on the lattice \(\tfrac18\mathbb Z\) that the whole paper lives on ---
+so \(\det M=\tfrac18\cdot\tfrac14\cdot\tfrac18=\tfrac1{256}\) and
+\(\lVert M^{-1}\rVert_\infty=232\). Across all \(165\) triples of
+the paper's exponent inventory \(c_7\) runs from \(1/259\) to
+\(144/287\), the good end being triples of gap \(\tfrac32\); to gain
+an order one would need exponents separated by \(\Theta(1)\), and
+these three lie within \(\tfrac14\) of each other by construction.
+
+*By dropping the uniform constant --- but not for free.* The proof needs
+only \(\lvert M^{-1}\rvert c\le1\) for a vector \(c\), and only
+\(c_2\) gates \(V\le c_2S/2\). The middle row of
+\(\lvert M^{-1}\rvert\) is \((24,144,64)\), so \(c_3,c_4\to0\)
+gives \(c_2\le\tfrac1{24}\) (Lean `step5b_c2_ceiling`), a factor
+\(232/24<10\). But the uniform choice **saturates that row exactly**,
+\(24+144+64=232\) (Lean `step5b_uniform_saturates`): every increase in
+\(c_2\) is paid for out of \(c_3\) and \(c_4\). And those are not
+idle. They sit in \(C\): the \(r=3\) piece of Lemma 3.9 has length
+\(\le2PV/(c_3S)\) and the \(r=4\) piece
+\(\le P(V/(c_4S))^{1/2}\), so
+\[
+C\;\approx\;\frac{4\kappa}{c_3}(0.35)^{-1/2}
++\Bigl(\frac{\kappa}{c_4}\Bigr)^{1/2}(0.35)^{-1/4}
++3.5\,(0.9\kappa)^{-1/2}(0.35)^{-1/4}.
+\]
+Buying \(c_2\) therefore trades \(P_0\) against \(C\), and \(C\)
+governs a second and much larger threshold.
+
+*The second threshold.* Appendix A.1 certifies that the printed
+inequalities are true beyond \(P_0\); it does not ask when the
+resulting bound is better than the trivial one. The middle band totals
+\(\le C\,P^{89/96}\log P\), which beats \(P\) only once
+\(C\le P^{7/96}\), i.e.
+\[
+P\;\ge\;P_1:=C^{96/7}.
+\]
+At the operating point of Appendix A.1 (\(\kappa=\tfrac13\), uniform
+\(c=1/232\)) one has \(C\approx542\) and
+\(P_1\approx3.2\cdot10^{37}\). This is not an artefact of the
+organisation: absorbing *any* constant \(C\) into a \(P^{1/96}\)
+saving needs \(P\ge C^{96/7}\), so even \(C=10\) costs
+\(10^{13.7}\). The exponent \(1/96\) is what makes \(P_1\) large,
+and no rearrangement of Lemma 3.9 avoids it. It is the same arithmetic
+that puts the \(P^{15/16}\) reading at \(10^{274}\) (A.3).
+
+*The trade, quantified.* Minimising \(P_0\) alone gives
+\(\kappa=1\), \(c=(\tfrac1{27},\tfrac1{1872},\tfrac1{1872})\)
+--- again exactly tight on the middle row, \(\tfrac89+\tfrac19=1\)
+(Lean `step5b_c2_optimum_feasible`) --- and
+\(P_0=4.6\cdot10^{13}\), a factor \(820\) better; but \(C\) grows
+to \(1.3\cdot10^4\) and \(P_1\) to \(10^{56}\), nineteen orders
+worse. Holding \(P_1\) at its present value, the best available
+\(P_0\) is \(2.0\cdot10^{16}\) (at \(\kappa=0.32\),
+\(c_2=\tfrac1{180}\), \(c_3=c_4=\tfrac1{240}\)) --- a factor
+\(1.9\), not worth the restatement. We therefore keep the uniform
+constant, and record that the lever exists, that it is bounded by
+\(232/24\), and that spending it moves cost from \(P_0\) to
+\(P_1\) rather than removing it.
+
+The conclusion is that \(c_7\) is not the place to push. The binding
+comparison at the \(P_0\)-optimal point is no longer the curvature
+inverse but \(V\ge10\lvert f''-\Lambda\rvert\), i.e. the Lemma 5.2b
+interpolant error \(219P^{-25/24}\); replacing \(219\) by \(50\)
+would move \(P_0\) to \(3.3\cdot10^{12}\), and the safety factor
+\(10\) is likewise unoptimised. Those, not the exponent triple, are the
+next targets.
 
 ## Acknowledgments
 

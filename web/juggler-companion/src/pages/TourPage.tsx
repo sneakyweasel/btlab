@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   PreimagesWidget,
+  OeFiberWidget,
   CycleWidget,
   LeftoversWidget,
   EnvelopeWidget,
@@ -26,6 +27,7 @@ const SHORT_TERM: Record<TourSlug, string> = {
   expanding: "Expand",
   envelope: "Envelope",
   preimages: "Preimages",
+  "oe-fiber": "OE fiber",
   "descent-floor": "Floor",
   finance: "Finance",
   "walk-charge": "Walk",
@@ -38,6 +40,7 @@ const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   expanding: ExpandingWidget,
   envelope: EnvelopeWidget,
   preimages: PreimagesWidget,
+  "oe-fiber": OeFiberWidget,
   "descent-floor": FloorWidget,
   finance: FinanceWidget,
   "walk-charge": WalkChargeWidget,

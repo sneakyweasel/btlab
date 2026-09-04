@@ -23123,3 +23123,37 @@ Why
 Best next question
 - can c7 be raised by choosing a different exponent triple in Step 5b?
 ```
+
+## Paper B: can c_7 be raised? (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** \(P_0\) is carried entirely by the Lemma 3.9 comparison \(V\le c_7S/2\), so attack the constant. Asked specifically whether a different exponent triple would do it.
+- **Answer, part 1 — not by the triple.** \(c_7=1/\lVert M^{-1}\rVert_\infty\) depends only on the exponents, through \(\det M=\prod_{i<j}(x_j-x_i)\), and scales as the *square* of their gap: for an equally spaced triple of gap \(\delta\) about \(x_0\), \(\delta^2/c_7=x_0^2-2x_0+c\) with \(c\in[1.75,2]\) on \(\delta\in[1/8,1/2]\). Step 5b's triple \((5/4,11/8,3/2)=(10,11,12)/8\) is adjacent on the lattice \((1/8)\mathbb Z\) the whole paper lives on, and each entry is forced: \(3/2\) is the level-1 wave, \(11/8\) the frozen-shape model, \(5/4\) the differenced-wave monomial. Over all 165 triples of the paper's inventory \(c_7\) runs \(1/259\) to \(144/287\); the good end needs gaps \(3/2\).
+- **Answer, part 2 — by dropping the uniform constant, under a factor 10, and not for free.** Lemma 3.9's proof needs only \(\lvert M^{-1}\rvert c\le1\) for a vector \(c=(c_2,c_3,c_4)\), one per derivative order, and only \(c_2\) gates the hypothesis. Ceiling \(c_2\le1/24\). But the uniform choice saturates the middle row exactly, \(24+144+64=232\): every gain in \(c_2\) is paid out of \(c_3,c_4\), which sit in \(C\).
+- **The finding that made this decidable.** A second threshold, not computed on the first pass: \(P_1=C^{96/7}\), the point where \(CP^{89/96}\log P\) beats \(P\). Presently \(C\approx542\), \(P_1\approx3.2\cdot10^{37}\). Minimising \(P_0\) alone gives \(4.6\cdot10^{13}\) (factor 820) but \(P_1=10^{56}\). Holding \(P_1\) fixed buys \(1.9\times\) in \(P_0\). Uniform constant kept.
+- **Not claimed:** no change to any estimate. The exponent \(1-1/96\) is unchanged; \(P_0=3.8\cdot10^{16}\) stands.
+- **Decision:** consolidation. Paper B remains a working draft.
+
+```text
+What was learned
+- c_7 is quadratic in the exponent gap, and the gap is 1/8 by construction
+- the scalar c_7 is a vector in disguise; the uniform choice sits exactly
+  on the constraint face, so no component is free
+- P_0 and P_1 respond to the constants in opposite directions
+- P_1 >= C^{96/7} is a property of the 1/96 saving, not of this proof:
+  even C = 10 costs 1e13.7
+Strongest theorem
+- none new
+Strongest refutation
+- none; the lever exists but is bounded by 232/24 and is not worth taking
+Reusable machinery
+- c7_of_triple / vector_feasible / log10_P1 in p0_certificate.py
+- four Lean facts in MonomialSplitting.lean
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- the constant that carries P_0 is now understood and shown to be near
+  its floor; the bottleneck has moved to the Lemma 5.2b interpolant
+Best next question
+- the 219 in |f'' - Lambda| <= 219 P^{-25/24}, and the safety factor 10
+```

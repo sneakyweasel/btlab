@@ -18,6 +18,7 @@ Run ``python -m research.juggler_sequence.p0_certificate``.
 from __future__ import annotations
 
 import math
+from fractions import Fraction as Fr
 from typing import Any, Callable
 
 # Lemma 3.9 curvature constant: 1 / ||M^{-1}||_inf for the Vandermonde-type matrix at the Step 5b
@@ -181,6 +182,146 @@ def log_absorption_thresholds() -> list[dict[str, Any]]:
     return out
 
 
+# ------------------------------------------------------------------------------------------------
+# The Lemma 3.9 curvature constant: where it comes from and how far it can move
+# ------------------------------------------------------------------------------------------------
+
+# |M^{-1}| for the Step 5b triple, rows indexed by derivative order 2, 3, 4.
+MINV_ABS = ((10, 68, 32), (24, 144, 64), (15, 76, 32))
+
+# The Step 5b phase exponents.  All three are forced: 3/2 is the level-1 wave X = nu^(3/2);
+# 11/8 is the frozen-shape global model (beta_1 beta_2 nu^(-13/8) integrated twice); 5/4 is the
+# differenced-wave monomial u G (nu + 2h)^(-5/4) after the frozen gap G ~ 3 h nu^(1/2).
+STEP5B_TRIPLE = (Fr(5, 4), Fr(11, 8), Fr(3, 2))
+
+
+def minv_abs(alphas: tuple[Fr, Fr, Fr]) -> list[list[Fr]]:
+    """Row sums of this are ||M^{-1}||_inf; M has rows 1, x, x(x-1) at x = alpha - 2.
+
+    Row i is the expansion of the Lagrange polynomial L_i in the falling-factorial basis, which is
+    what inverts the derivative-test matrix.
+    """
+    xs = [a - 2 for a in alphas]
+    rows = []
+    for i, xi in enumerate(xs):
+        o = [xs[k] for k in range(3) if k != i]
+        den = (xi - o[0]) * (xi - o[1])
+        ssum, sprod = o[0] + o[1], o[0] * o[1]
+        # L_i = (x^2 - ssum x + sprod)/den, and x^2 = x(x-1) + x in the falling basis
+        rows.append([abs(sprod / den), abs((1 - ssum) / den), abs(Fr(1) / den)])
+    return rows
+
+
+def c7_of_triple(alphas: tuple[Fr, Fr, Fr]) -> Fr:
+    """The uniform Lemma 3.9 constant for one exponent triple: 1/||M^{-1}||_inf."""
+    return Fr(1) / max(sum(r) for r in minv_abs(alphas))
+
+
+def c7_triple_scan(inventory: tuple[Fr, ...] | None = None) -> dict[str, Any]:
+    """c_7 over every triple of the paper's exponent inventory.
+
+    c_7 is a function of the triple, not of the ambient set E, and it scales as the SQUARE of the
+    exponent gap: for an equally spaced triple with gap delta and centre x0 = alpha_mid - 2,
+    delta^2 / c_7 = x0^2 - 2 x0 + c with c in [1.75, 2] over delta in [1/8, 1/2].  It is the
+    separation of the exponents that decides it.  The Step 5b triple has gaps 1/8 -- the paper's
+    whole exponent lattice is (1/8)Z -- and centre -5/8, giving delta^2/c_7 = 29/8 exactly, i.e.
+    c_7 = 1/232.
+    """
+    from itertools import combinations
+
+    if inventory is None:
+        inventory = (Fr(3, 8), Fr(9, 8), Fr(5, 4), Fr(11, 8), Fr(3, 2), Fr(13, 8),
+                     Fr(7, 4), Fr(15, 8), Fr(9, 4), Fr(19, 8), Fr(27, 8))
+    rows = [(t, c7_of_triple(t)) for t in combinations(sorted(inventory), 3)]
+    best = max(rows, key=lambda r: r[1])
+    worst = min(rows, key=lambda r: r[1])
+    return {
+        "n_triples": len(rows),
+        "step5b_triple": [str(a) for a in STEP5B_TRIPLE],
+        "step5b_c7": str(c7_of_triple(STEP5B_TRIPLE)),
+        "best_triple": [str(a) for a in best[0]], "best_c7": str(best[1]),
+        "worst_triple": [str(a) for a in worst[0]], "worst_c7": str(worst[1]),
+        # c_7 = Theta(delta^2): the ratio delta^2/c_7 stays in a narrow band as delta varies,
+        # and is exactly 29/8 at the Step 5b centre and gap.
+        "gap_law_quadratic": all(
+            Fr(33, 10) <= (d * d) / c7_of_triple((Fr(-5, 8) - d + 2, Fr(-5, 8) + 2, Fr(-5, 8) + d + 2)) <= Fr(39, 10)
+            for d in (Fr(1, 8), Fr(1, 4), Fr(1, 2))),
+        "gap_law_at_step5b": str((Fr(1, 8) ** 2) / c7_of_triple(STEP5B_TRIPLE)),
+    }
+
+
+def vector_feasible(c2: float, c3: float, c4: float, tol: float = 1e-12) -> bool:
+    """|M^{-1}| c <= 1 rowwise -- the exact hypothesis Lemma 3.9's proof needs.
+
+    The scalar c_7 is the special case c2 = c3 = c4, and it saturates the middle row exactly
+    (24 + 144 + 64 = 232), so no increase in c2 is free.
+    """
+    return all(r[0] * c2 + r[1] * c3 + r[2] * c4 <= 1 + tol for r in MINV_ABS)
+
+
+def max_c2(c3: float = 0.0, c4: float = 0.0) -> float:
+    """Largest admissible c2 given c3, c4.  At c3 = c4 = 0 this is 1/24 (Lean step5b_c2_ceiling)."""
+    return min((1 - r[1] * c3 - r[2] * c4) / r[0] for r in MINV_ABS)
+
+
+def lemma_3_9_CE(kappa: float, c3: float, c4: float, S_lo: float = 0.35, N: float = 3.5) -> float:
+    """The constant in |Omega_V| <= C P^(89/96), plus the piece-boundary constant.
+
+    The r=3 piece contributes a length 2 P V/(c3 S) and the r=4 piece P (V/(c4 S))^(1/2), so c3 and
+    c4 sit in C(E) exactly where c2 does not.  This is why raising c2 is not free.
+    """
+    vs = kappa * S_lo**-0.5  # V/S <= vs * P^(-7/48)
+    return 4 * vs / c3 + (vs / c4) ** 0.5 + N * (0.9 * kappa * S_lo**0.5) ** -0.5
+
+
+def log10_P1(kappa: float, c3: float, c4: float) -> float:
+    """Least log10 P at which the Step 5b middle-band bound beats the trivial bound P.
+
+    Distinct from P_0, and much larger: it asks C(E) P^(89/96) <= P, i.e. P >= C(E)^(96/7).  Any
+    constant C needs P >= C^(96/7) to be absorbed into a P^(1/96) saving, so this floor is a
+    property of the exponent 1/96 rather than of this proof -- even C = 10 needs 10^13.7.
+    """
+    return math.log10(lemma_3_9_CE(kappa, c3, c4)) * 96 / 7
+
+
+def p0_with_vector(kappa: float, c2: float, c3: float, c4: float) -> float | None:
+    """log10 P_0 when the scalar c_7 is replaced by the per-order vector (c2, c3, c4)."""
+    if not vector_feasible(c2, c3, c4):
+        return None
+    rho0 = min(c2, c3, c4) / 8.0
+    floor = max(r["log10_P_min"] for r in thresholds()
+                if r["tag"] not in {"5a-V<=c7S", "5b-V<=c7S", "5a-V>=10err", "5b-V>=10err",
+                                    "39-c2", "39-c3", "39-c4", "39-beta", "39-wave"})
+    out = [floor]
+    for S_lo in (0.35, 0.60):
+        out.append(48 / 7 * math.log10(2 * kappa / (c2 * S_lo**0.5)))
+        t = least_P(lambda P, s=S_lo: kappa * (s * P**-0.625) ** 0.5 * P ** (-11 / 24)
+                    >= 10 * interpolant_error(P))
+        if t is None:
+            return None
+        out.append(t)
+    for co, ex in ((0.1514, 0.25), (0.1343, 0.25), (0.1257, 0.25), (2.31, 0.5), (571.4, 5 / 6)):
+        out.append(math.log10(co / rho0) / ex)
+    return max(out)
+
+
+def c7_lever() -> dict[str, Any]:
+    """Can c_7 be raised?  Not by the triple; by the vector, but not for free."""
+    cur = (KAPPA, C7, C7, C7)
+    p0_cur, p1_cur = p0_with_vector(*cur), log10_P1(KAPPA, C7, C7)
+    p0_opt = p0_with_vector(1.0, 1 / 27, 1 / 1872, 1 / 1872)
+    return {
+        "triple_scan": c7_triple_scan(),
+        "uniform_saturates_middle_row": sum(MINV_ABS[1]) == 232,
+        "max_c2_at_c3_c4_zero": max_c2(),
+        "max_c2_gain_factor": max_c2() / C7,
+        "current": {"kappa": KAPPA, "c": [C7] * 3, "P0": 10**p0_cur, "P1": 10**p1_cur},
+        "P0_optimal": {"kappa": 1.0, "c": [1 / 27, 1 / 1872, 1 / 1872],
+                       "P0": 10**p0_opt, "P1": 10 ** log10_P1(1.0, 1 / 1872, 1 / 1872)},
+        "P1_floor_examples": {str(C): 10 ** (math.log10(C) * 96 / 7) for C in (10, 100, 542)},
+    }
+
+
 def certificate() -> dict[str, Any]:
     rows = thresholds()
     solved = [r for r in rows if r["log10_P_min"] is not None]
@@ -205,6 +346,9 @@ def certificate() -> dict[str, Any]:
         "P0_at_superseded_kappa3_c7_288": sup_binding["P_min"],
         "kappa_tradeoff": [kappa_tradeoff(k) for k in (3.69, 3.0, 1.0, 0.5, 1 / 3, 0.312, 0.25)],
         "log_absorption_not_required": log_absorption_thresholds(),
+        "log10_P1_nontrivial": log10_P1(KAPPA, C7, C7),
+        "P1_nontrivial": 10 ** log10_P1(KAPPA, C7, C7),
+        "c7_lever": c7_lever(),
     }
 
 

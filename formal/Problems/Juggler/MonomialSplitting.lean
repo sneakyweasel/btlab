@@ -90,6 +90,57 @@ theorem step5b_c7_printed (A B C u v w : ℝ)
     le_trans (abs_nonneg u) (le_max_left _ _)
   linarith
 
+/-! ### The per-order refinement of `c₇`
+
+Lemma 3.9 only ever needs "not all three derivative tests are small".
+Written out, that is a constraint on a *vector* `c = (c₂, c₃, c₄)`, one
+constant per derivative order, not on a single scalar: if every test `j`
+satisfies `|Tⱼ| ≤ cⱼ * S` then the inversion identity forces
+`|A|, |B|, |C| < S` as soon as `|M⁻¹| c ≤ 1` rowwise.  Only `c₂` gates the
+hypothesis `V ≤ c₂ S / 2` of the sublevel step; `c₃` and `c₄` scale
+interval-length constants only.  The rows of `|M⁻¹|` are
+`(10, 68, 32)`, `(24, 144, 64)`, `(15, 76, 32)`. -/
+
+/-- Soundness of the vector form: bounds on the three tests transfer to the
+three curvature terms through `|M⁻¹|`.  This is `step5b_curvature_inverse`
+read with the triangle inequality. -/
+theorem step5b_vector_transfer (A B C u v w S c₂ c₃ c₄ : ℝ)
+    (hA : A = 10 * u + 68 * v + 32 * w)
+    (hB : B = -24 * u - 144 * v - 64 * w)
+    (hC : C = 15 * u + 76 * v + 32 * w)
+    (hu : |u| ≤ c₂ * S) (hv : |v| ≤ c₃ * S) (hw : |w| ≤ c₄ * S) :
+    |A| ≤ (10 * c₂ + 68 * c₃ + 32 * c₄) * S ∧
+    |B| ≤ (24 * c₂ + 144 * c₃ + 64 * c₄) * S ∧
+    |C| ≤ (15 * c₂ + 76 * c₃ + 32 * c₄) * S := by
+  obtain ⟨hu1, hu2⟩ := abs_le.mp hu
+  obtain ⟨hv1, hv2⟩ := abs_le.mp hv
+  obtain ⟨hw1, hw2⟩ := abs_le.mp hw
+  refine ⟨abs_le.mpr ⟨by rw [hA]; linarith, by rw [hA]; linarith⟩,
+          abs_le.mpr ⟨by rw [hB]; linarith, by rw [hB]; linarith⟩,
+          abs_le.mpr ⟨by rw [hC]; linarith, by rw [hC]; linarith⟩⟩
+
+/-- The uniform choice `c₂ = c₃ = c₄ = 1/232` saturates the middle row
+exactly: `24 + 144 + 64 = 232`.  So there is no free improvement --- any
+increase in `c₂` must be paid for out of `c₃` and `c₄`. -/
+theorem step5b_uniform_saturates :
+    24 * (1/232 : ℝ) + 144 * (1/232) + 64 * (1/232) = 1 := by norm_num
+
+/-- The ceiling on `c₂`.  Feasibility of the middle row alone, with
+`c₃, c₄ ≥ 0`, gives `c₂ ≤ 1/24`: at most a factor `232/24 < 10` is
+available, and only in the limit `c₃, c₄ → 0`. -/
+theorem step5b_c2_ceiling (c₂ c₃ c₄ : ℝ) (h₃ : 0 ≤ c₃) (h₄ : 0 ≤ c₄)
+    (hrow : 24 * c₂ + 144 * c₃ + 64 * c₄ ≤ 1) :
+    c₂ ≤ 1/24 := by linarith
+
+/-- The operating point that minimises the threshold `P₀` alone:
+`c = (1/27, 1/1872, 1/1872)` is feasible, and again exactly tight on the
+middle row (`8/9 + 1/9 = 1`). -/
+theorem step5b_c2_optimum_feasible :
+    10 * (1/27 : ℝ) + 68 * (1/1872) + 32 * (1/1872) ≤ 1 ∧
+    24 * (1/27 : ℝ) + 144 * (1/1872) + 64 * (1/1872) = 1 ∧
+    15 * (1/27 : ℝ) + 76 * (1/1872) + 32 * (1/1872) ≤ 1 := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
 end Lemma39
 
 section Lemma38

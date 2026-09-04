@@ -5,6 +5,7 @@ const TABS = [
   { to: "/play/trajectory", label: "Trajectory" },
   { to: "/play/itinerary", label: "Itinerary" },
   { to: "/play/preimages", label: "Preimages" },
+  { to: "/play/oe-fiber", label: "OE fiber" },
   { to: "/play/cycle", label: "Cycle" },
   { to: "/play/finance", label: "Finance" },
 ];
@@ -24,8 +25,8 @@ export function PlaygroundPage() {
           in the shipped Theorem 4.6 table. Caps: 80 steps, 256 bits, itineraries
           of length at most 8 (cycles 16), production seeds at most 100,000. The
           trajectory is the values; the itinerary is the O/E parities of a
-          prefix. The even block and the OE fiber are the two productions of
-          J⁻¹(m).
+          prefix. The even block is the one-step production of m. The OE fiber
+          of 100,000 is the printed two-step production.
         </p>
       </header>
       <nav className="flex flex-wrap gap-2">

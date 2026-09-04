@@ -321,10 +321,65 @@
         "log10_P_min": null,
         "P_min": null
       }
-    ]
+    ],
+    "log10_P1_nontrivial": 37.50154480679556,
+    "P1_nontrivial": 3.173546066326059e+37,
+    "c7_lever": {
+      "triple_scan": {
+        "n_triples": 165,
+        "step5b_triple": [
+          "5/4",
+          "11/8",
+          "3/2"
+        ],
+        "step5b_c7": "1/232",
+        "best_triple": [
+          "3/8",
+          "15/8",
+          "27/8"
+        ],
+        "best_c7": "144/287",
+        "worst_triple": [
+          "9/8",
+          "5/4",
+          "11/8"
+        ],
+        "worst_c7": "1/259",
+        "gap_law_quadratic": true,
+        "gap_law_at_step5b": "29/8"
+      },
+      "uniform_saturates_middle_row": true,
+      "max_c2_at_c3_c4_zero": 0.041666666666666664,
+      "max_c2_gain_factor": 9.666666666666666,
+      "current": {
+        "kappa": 0.3333333333333333,
+        "c": [
+          0.004310344827586207,
+          0.004310344827586207,
+          0.004310344827586207
+        ],
+        "P0": 3.768785293417467e+16,
+        "P1": 3.173546066326059e+37
+      },
+      "P0_optimal": {
+        "kappa": 1.0,
+        "c": [
+          0.037037037037037035,
+          0.0005341880341880342,
+          0.0005341880341880342
+        ],
+        "P0": 45643625302534.25,
+        "P1": 1.94629702387114e+56
+      },
+      "P1_floor_examples": {
+        "10": 51794746792312.02,
+        "100": 2.682695795279716e+27,
+        "542": 3.124980835072042e+37
+      }
+    }
   },
   "p0_certificate_ok": true,
-  "git_commit": "e2b7093c27bf4c01cbc41d55556b8f06fae90eb3",
+  "git_commit": "80de128813b87b64019b55c48a0f6b599cf17ff5",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -1427,5 +1482,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 27.856791257858276
+  "elapsed_seconds": 31.063632011413574
 }
