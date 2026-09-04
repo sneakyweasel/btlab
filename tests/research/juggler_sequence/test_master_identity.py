@@ -10,6 +10,7 @@ paper, not that the paper is wrong.
 from __future__ import annotations
 
 import pathlib
+import math
 import random
 
 import mpmath as mp
@@ -237,3 +238,83 @@ def test_run_length_constant_is_two_plus_twenty() -> None:
         p = rng.uniform(1.1, 50)
         M = max((j + 1) / p, h / p**3)
         assert 2 * j / p + 20 * h / p**3 <= 22 * M + 1e-12
+
+
+# ----------------------------------------------------------------------------------------------
+# The two mean values of Lemma 5.1(iii), discharged
+# (formal/Problems/Juggler/MeanValues.lean)
+# ----------------------------------------------------------------------------------------------
+
+_MV = "formal/Problems/Juggler/MeanValues.lean"
+
+
+def _mv_source() -> str:
+    root = pathlib.Path(__file__).resolve().parents[3]
+    return (root / _MV).read_text(encoding="utf-8")
+
+
+def test_mean_value_theorems_exist_by_name() -> None:
+    src = _mv_source()
+    for thm in ("hasDerivAt_pow32", "mvt_cube_explicit", "mvt_sqrt_diff_explicit",
+                "hasDerivAt_gShift", "second_difference_two_sided",
+                "second_difference_exists_xi", "lemma51iii_mean_values_available"):
+        assert "theorem %s " % thm in src, thm
+    # x^(3/2) is written x * sqrt x throughout, so no rpow machinery is needed;
+    # the derivative comes from Real.hasDerivAt_sqrt
+    assert "def pow32 (x : ℝ) : ℝ := x * Real.sqrt x" in src
+    assert "Real.hasDerivAt_sqrt" in src
+
+
+def test_mvt_cube_has_an_explicit_witness() -> None:
+    """c = (2/3)(a^2+ab+b^2)/(a+b) satisfies b^3-a^3 = (3/2)(b^2-a^2)c and a <= c <= b."""
+    rng = random.Random(21)
+    for _ in range(4000):
+        a = rng.uniform(1e-3, 40)
+        b = a + rng.uniform(0, 40)
+        c = (2 / 3) * (a * a + a * b + b * b) / (a + b)
+        assert a - 1e-12 <= c <= b + 1e-12
+        assert abs((b**3 - a**3) - 1.5 * (b * b - a * a) * c) <= 1e-9 * max(1.0, b**3)
+
+
+def test_mvt_sqrt_diff_witness_is_the_arithmetic_mean() -> None:
+    """F'(A+B) - F'(A) = B F''(eta) exactly, with sqrt(eta) = (sqrt A + sqrt(A+B))/2."""
+    rng = random.Random(22)
+    for _ in range(4000):
+        a = rng.uniform(1e-3, 40)
+        b = a + rng.uniform(0, 40)
+        mid = (a + b) / 2
+        assert a <= mid <= b
+        assert abs(1.5 * (b - a) * mid - 0.75 * (b * b - a * a)) <= 1e-9 * max(1.0, b * b)
+
+
+def test_second_difference_two_sided_bound() -> None:
+    """(3/4) b1 b2 (m+b1+b2)^(-1/2) <= D <= (3/4) b1 b2 m^(-1/2)."""
+    rng = random.Random(23)
+    f = lambda x: x * mp.sqrt(x)  # noqa: E731
+    for _ in range(3000):
+        m = mp.mpf(rng.uniform(0.5, 500))
+        b1 = mp.mpf(rng.uniform(1e-6, 60))
+        b2 = mp.mpf(rng.uniform(0, 60))
+        D = f(m + b1 + b2) - f(m + b1) - f(m + b2) + f(m)
+        assert mp.mpf("0.75") * b1 * b2 / mp.sqrt(m + b1 + b2) <= D + mp.mpf("1e-30")
+        assert D <= mp.mpf("0.75") * b1 * b2 / mp.sqrt(m) + mp.mpf("1e-30")
+
+
+def test_xi_two_exists_and_is_interior() -> None:
+    """The manuscript's own form: D = b1 b2 F''(xi) with xi in [m, m+b1+b2]."""
+    rng = random.Random(24)
+    f = lambda x: x * math.sqrt(x)  # noqa: E731
+    frac_lo, frac_hi = 1.0, 0.0
+    for _ in range(4000):
+        m = rng.uniform(0.5, 500)
+        b1 = rng.uniform(1e-6, 60)
+        b2 = rng.uniform(1e-6, 60)
+        D = f(m + b1 + b2) - f(m + b1) - f(m + b2) + f(m)
+        assert D > 0
+        xi = ((0.75 * b1 * b2) / D) ** 2
+        assert m - 1e-9 <= xi <= m + b1 + b2 + 1e-9
+        assert abs(D - b1 * b2 * (0.75 / math.sqrt(xi))) <= 1e-9 * max(1.0, D)
+        t = (xi - m) / (b1 + b2)
+        frac_lo, frac_hi = min(frac_lo, t), max(frac_hi, t)
+    # the manuscript claims xi_2 in (0, b1+b2); observed well inside
+    assert 0 < frac_lo and frac_hi < 1

@@ -1813,9 +1813,38 @@ of the \(G'\) bound are \(\le2M\) and \(\le20M\), so
 length \(\ge1/(22M)\), which is the displayed minimum. The regrouping,
 the offset bound \(|j|\le3\), the \(\beta\)-product bound and all
 four derivative estimates are machine-checked in
-`formal/Problems/Juggler/BranchFreeze.lean`; the two mean value theorems
-that produce \(\xi_1\) and \(\xi_2\) are hypotheses there, not
-conclusions. On \(300\) sampled \((P,n,h_1,h_2)\) the printed ranges
+`formal/Problems/Juggler/BranchFreeze.lean`, and the two mean values that
+produce \(\xi_1\) and \(\xi_2\) are supplied in
+`formal/Problems/Juggler/MeanValues.lean`, so (iii) is unconditional.
+
+Two of the three ingredients need no analysis at all, because
+\(x^{3/2}\) has *explicit* mean values in root coordinates. For the
+first, with \(a=\sqrt A\) and \(b=\sqrt{A+j}\),
+\[
+b^3-a^3=\tfrac32(b^2-a^2)\,c,
+\qquad
+c=\tfrac23\,\frac{a^2+ab+b^2}{a+b},
+\]
+and \(a\le c\le b\) reduces to \((2b+a)(b-a)\ge0\) and
+\((2a+b)(a-b)\le0\); so \(\xi_1=c^2-A\) is an exact witness
+(`mvt_cube_explicit`). The *inner* step of the second is the
+**arithmetic mean of the square roots**: \(F'(A{+}B)-F'(A)=BF''(\eta)\)
+holds identically with \(\sqrt\eta=\tfrac12(\sqrt A+\sqrt{A+B})\)
+(`mvt_sqrt_diff_explicit`). Only the outer step uses a genuine mean value
+theorem, applied to \(g(t)=F(t{+}\beta_2)-F(t)\); rationalising its
+increment gives the two-sided form the inventory actually uses,
+\[
+\tfrac34\,\frac{\beta_1\beta_2}{\sqrt{m{+}\beta_1{+}\beta_2}}
+\ \le\ \Delta\Delta\ \le\
+\tfrac34\,\frac{\beta_1\beta_2}{\sqrt m},
+\]
+and hence \(\xi_2\) itself, as
+\(\sqrt{m+\xi_2}=\tfrac34\beta_1\beta_2/\Delta\Delta\)
+(`second_difference_two_sided`, `second_difference_exists_xi`).
+Throughout, \(x^{3/2}\) is written \(x\sqrt x\), so no real-power
+machinery is needed. On \(20{,}000\) samples the witness \(\xi_2\)
+sits between \(0.32\) and \(0.52\) of \(\beta_1+\beta_2\),
+comfortably interior. On \(300\) sampled \((P,n,h_1,h_2)\) the printed ranges
 are comfortable except the offset lower bound, which is nearly attained:
 the ratio to \(|j|P^{3/4}\) runs over \([1.510,2.514]\) against the
 printed \([1.5,2.6]\).

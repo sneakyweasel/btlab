@@ -39,18 +39,17 @@ function Pole({
       <p className="font-serif text-xl leading-none" style={{ color }}>
         {title}
       </p>
-      <p className="font-serif text-base leading-none" style={{ color }}>
+      <div className="font-serif text-base leading-tight" style={{ color }}>
         {formula}
-      </p>
+      </div>
     </div>
   );
 }
 
 export function RegimeDoors({ odds, length, regime }: RegimeDoorsProps) {
-  const upLog = Math.max(odds, 0) * Math.log(3);
-  const downLog = Math.max(length, 0) * Math.log(2);
-  const total = upLog + downLog;
-  const upPct = total === 0 ? 50 : (100 * upLog) / total;
+  const logRatio =
+    Math.max(odds, 0) * Math.log(3) - Math.max(length, 0) * Math.log(2);
+  const upPct = 100 / (1 + Math.exp(-logRatio));
   const approx = length === 0 ? 1 : idealExponentApprox(odds, length);
   const expanding = regime === "expanding";
   const contracting = regime === "contracting";
@@ -62,7 +61,7 @@ export function RegimeDoors({ odds, length, regime }: RegimeDoorsProps) {
         title="Expanding"
         formula={
           <>
-            3<sup>x</sup>
+            3<sup>{odds}</sup> &gt; 2<sup>{length}</sup>
           </>
         }
         dimmed={!expanding}
@@ -111,7 +110,7 @@ export function RegimeDoors({ odds, length, regime }: RegimeDoorsProps) {
         title="Contracting"
         formula={
           <>
-            2<sup>L</sup>
+            2<sup>{length}</sup> &gt; 3<sup>{odds}</sup>
           </>
         }
         dimmed={!contracting}

@@ -23322,3 +23322,36 @@ Why
 Best next question
 - discharge the two MVTs from Mathlib, leaving Lemma 5.1 unconditional
 ```
+
+## Paper B: the two mean value theorems discharged (consolidation, not a milestone)
+
+- **Date:** 2026-09-04
+- **Objective:** Supply the two mean values \(\xi_1,\xi_2\) that `BranchFreeze.lean` took as hypotheses, making Lemma 5.1 unconditional. `formal/Problems/Juggler/MeanValues.lean`, 9 theorems.
+- **Two of the three need no analysis.** \(x^{3/2}\) has *explicit* mean values in root coordinates. First: with \(a=\sqrt A\), \(b=\sqrt{A+j}\), the witness is \(c=\tfrac23(a^2+ab+b^2)/(a+b)\), and \(a\le c\le b\) reduces to \((2b+a)(b-a)\ge0\) and \((2a+b)(a-b)\le0\). Inner step of the second: the witness is the **arithmetic mean of the square roots**, \(\sqrt\eta=\tfrac12(\sqrt A+\sqrt{A+B})\), and the identity \(F'(A{+}B)-F'(A)=BF''(\eta)\) is then `ring`.
+- **Only the outer step uses a real MVT** — Mathlib's, applied to \(g(t)=F(t+\beta_2)-F(t)\). Rationalising \(g'\) gives the two-sided bound the inventory uses, and then \(\xi_2\) itself as \(\sqrt{m+\xi_2}=\tfrac34\beta_1\beta_2/\Delta\Delta\).
+- **No `rpow`.** \(x^{3/2}\) is written \(x\sqrt x\), so the derivative comes from `Real.hasDerivAt_sqrt`. Same move as the \(P=t^n\) substitution in the threshold certificate: the real-power barrier that made these look expensive was never there.
+- **Sampling:** \(\xi_2\) sits at 0.32–0.52 of \(\beta_1+\beta_2\) over 20,000 samples, well inside the claimed open interval.
+- **Not claimed:** Lemma 5.2, Theorem 5.3, and the six-stage proof of Lemma 5.2(i) are untouched.
+- **Decision:** consolidation. Paper B remains a working draft.
+
+```text
+What was learned
+- x^{3/2} has closed-form mean values; the MVT was never needed for two
+  of the three appeals in Lemma 5.1(iii)
+- the arithmetic mean of the square roots is the exact mean value for
+  the second derivative of x^{3/2} -- a clean fact worth remembering
+- writing x^{3/2} as x*sqrt(x) removes rpow from the whole development
+Strongest theorem
+- none new; Lemma 5.1 is now unconditional in Lean
+Strongest refutation
+- none
+Reusable machinery
+- MeanValues.lean (9 thm): pow32, hasDerivAt_pow32, the two witnesses
+Branch status
+- PARK (six-stage proof of Lemma 5.2(i) still author-chain)
+Why
+- Lemma 5.1 is complete; the next object is Lemma 5.2, which is the
+  genuinely analytic one and out of reach
+Best next question
+- none in this direction; the remaining gate is human review of 5.2(i)
+```

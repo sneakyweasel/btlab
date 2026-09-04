@@ -60,6 +60,7 @@ import Problems.Juggler.MonomialSplitting
 import Problems.Juggler.PaperBAssembly
 import Problems.Juggler.MasterIdentity
 import Problems.Juggler.BranchFreeze
+import Problems.Juggler.MeanValues
 import Problems.Juggler.ThresholdCertificate
 import Problems.Juggler.Escape
 import Problems.Juggler.CycleFinance

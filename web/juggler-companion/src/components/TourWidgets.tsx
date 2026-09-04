@@ -38,6 +38,7 @@ import { FloorLadder } from "../visuals/FloorLadder";
 import { NmaxStaircase } from "../visuals/NmaxStaircase";
 import { NecklaceExplorer } from "./NecklaceExplorer";
 import { FloorCut } from "../visuals/FloorCut";
+import { IdealExponent } from "../visuals/IdealExponent";
 import { ItineraryBeads } from "../visuals/ItineraryBeads";
 import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
@@ -384,7 +385,27 @@ export function MapWidget({
               }}
             />
           </div>
-          <FloorCut n={cursor} result={next} />
+          <div className="rounded-2xl border border-line bg-paper/70 px-4 py-3">
+            {prefix.length === 0 ? (
+              <>
+                <p className="text-xs uppercase tracking-wide text-muted">
+                  Ideal exponent
+                </p>
+                <p className="mt-2 text-sm text-ink">
+                  Ignoring floors, o odd letters and length L multiply n by{" "}
+                  3<sup>o</sup>/2<sup>L</sup>. Floors only discard decimals, so a
+                  contracting prefix still cannot close. Play to write the word.
+                </p>
+              </>
+            ) : (
+              <IdealExponent
+                odds={prefixOdds}
+                length={prefix.length}
+                start={seed}
+                showScale={false}
+              />
+            )}
+          </div>
         </div>
       ) : (
         <LinkedWalk
@@ -421,8 +442,8 @@ export function LeftoversWidget() {
 export function ExpandingWidget() {
   return (
     <MapWidget
-      initial={173n}
-      initialStep={12}
+      initial={37n}
+      initialStep={5}
       liveStarts={EXPANDING_STARTS}
       monsterStarts={EXPANDING_MONSTERS}
       useChipLabels

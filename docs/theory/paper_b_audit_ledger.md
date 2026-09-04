@@ -320,6 +320,26 @@ range is nearly attained at the bottom --- ratio to \(|j|P^{3/4}\) over
 \([1.510,2.514]\) against the printed \([1.5,2.6]\) --- while the
 second-difference range \([1.4,15]\) is never tested below \(6.75\).
 
+*The two mean value theorems of Lemma 5.1(iii) are discharged
+(`formal/Problems/Juggler/MeanValues.lean`, 9 theorems). Lemma 5.1 is now
+unconditional.* Two of the three ingredients turn out to need no analysis:
+\(x^{3/2}\) has *explicit* mean values in root coordinates. With
+\(a=\sqrt A\), \(b=\sqrt{A+j}\), the first is
+\(c=\tfrac23(a^2{+}ab{+}b^2)/(a{+}b)\), and \(a\le c\le b\)
+reduces to \((2b{+}a)(b{-}a)\ge0\), \((2a{+}b)(a{-}b)\le0\). The
+inner step of the second is the **arithmetic mean of the square roots**:
+\(F'(A{+}B)-F'(A)=BF''(\eta)\) with
+\(\sqrt\eta=\tfrac12(\sqrt A+\sqrt{A{+}B})\), identically. Only the
+outer step uses a genuine mean value theorem (Mathlib's, applied to
+\(g(t)=F(t{+}\beta_2)-F(t)\)); rationalising its increment gives the
+two-sided bound the inventory uses, and \(\xi_2\) itself as
+\(\sqrt{m{+}\xi_2}=\tfrac34\beta_1\beta_2/\Delta\Delta\).
+
+Throughout, \(x^{3/2}\) is written \(x\sqrt x\), so the derivative
+comes from `Real.hasDerivAt_sqrt` and no real-power machinery enters.
+Sampling puts \(\xi_2\) at \(0.32\)--\(0.52\) of
+\(\beta_1{+}\beta_2\), well inside the claimed \((0,\beta_1{+}\beta_2)\).
+
 *Correction to the previous entry.* The \(P_1\) recorded above as
 \(3.2\cdot10^{37}\) was wrong. It collected the three middle-band
 costs into a single coefficient of \(P^{89/96}\), but the \(r=3\)

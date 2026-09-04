@@ -10,23 +10,22 @@ import { MapDoors } from "../visuals/MapDoors";
 
 const HOME_WALK = resolveTrajectory(173n);
 
-const REPO = "https://github.com/sneakyweasel/balanced_ternary/blob/main/juggler_review";
 const PAPERS = [
   {
     letter: "A",
-    href: `${REPO}/juggler_finite_dynamics_note.pdf`,
+    href: `${import.meta.env.BASE_URL}papers/juggler_finite_dynamics_note.pdf`,
     title: "Cycles",
     hint: "Finance and walk charge. Period lower bounds, not a halt theorem.",
   },
   {
     letter: "B",
-    href: `${REPO}/juggler_parity_discrepancy_note.pdf`,
+    href: `${import.meta.env.BASE_URL}papers/juggler_parity_discrepancy_note.pdf`,
     title: "Parity",
     hint: "Nested floor powers. Certified descent density 7/8.",
   },
   {
     letter: "C",
-    href: `${REPO}/juggler_fate_almost_all_note.pdf`,
+    href: `${import.meta.env.BASE_URL}papers/juggler_fate_almost_all_note.pdf`,
     title: "Fates",
     hint: "Contagion and the almost-all reduction. No fate excluded.",
   },

@@ -6,6 +6,7 @@ type IdealExponentProps = {
   odds: number;
   length: number;
   start?: bigint | null;
+  showScale?: boolean;
 };
 
 function formatApprox(value: number): string {
@@ -18,7 +19,7 @@ function formatApprox(value: number): string {
   return value.toFixed(3);
 }
 
-export function IdealExponent({ odds, length, start }: IdealExponentProps) {
+export function IdealExponent({ odds, length, start, showScale = true }: IdealExponentProps) {
   if (length <= 0) return null;
 
   const evens = length - odds;
@@ -42,7 +43,11 @@ export function IdealExponent({ odds, length, start }: IdealExponentProps) {
         : String.raw`${startShown}\cdot\dfrac{3^{${odds}}}{2^{${length}}}`;
 
   return (
-    <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_14rem] sm:items-center">
+    <div
+      className={`grid gap-3 sm:items-center ${
+        showScale ? "sm:grid-cols-[minmax(0,1fr)_14rem]" : ""
+      }`}
+    >
       <div>
         <p className="text-xs uppercase tracking-wide text-muted">
           Ideal exponent of this prefix
@@ -78,10 +83,13 @@ export function IdealExponent({ odds, length, start }: IdealExponentProps) {
         </p>
         <p className="mt-2 text-sm text-muted">
           {odds} O and {evens} E in {length} {length === 1 ? "step" : "steps"}.
-          Floors are not in this ratio.
+          Floors are not in this ratio: each step throws the decimals away, so
+          the real image is at most the ideal. They cannot turn a contracting
+          prefix into an expanding one. They can still cut an expanding walk
+          down.
         </p>
       </div>
-      <SurplusScale compact odds={odds} length={length} />
+      {showScale ? <SurplusScale compact odds={odds} length={length} /> : null}
     </div>
   );
 }
