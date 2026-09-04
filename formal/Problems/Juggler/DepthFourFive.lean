@@ -322,4 +322,55 @@ theorem row_t63_window_fails_at_quarter (t : ℝ) (ht0 : 0 ≤ t) (ht : t ≤ 1.
   have hsplit : t ^ 24 = t ^ 19 * t ^ 5 := by ring
   nlinarith [hpos, h5, hsplit]
 
+/-! ### 5. Claim D's shift range: the row that fixes `P_0` -/
+
+/-- **Claim D of Lemma 5.2(ii) → (i).**  Every index of the Claim C sum must be a legal
+shift for part (i), i.e. `h_3 <= P^(1/8)`.  The available bound is
+`h_3 <= t^(1/3) P^(1/12) <= 16^(1/3) P^(7/72) = 2.52 P^(7/72)`, so the requirement is
+`2.52 P^(7/72) <= P^(1/8)`.  The exponent gap is `1/8 - 7/72 = 1/36`, so the constant is
+paid at the thirty-sixth power: the comparison first holds at `2.52^36 = 2.82e14`.
+
+In `P = t^72` the two exponents become `7` and `9`, and the requirement collapses to
+`2.52 <= t^2`, which holds from `t >= 1.5875` (`P >= 2.83e14`).
+
+This is the binding row of the whole certificate: `P_0 = 2.82e14`, not the Lemma 3.9
+balance at `8.95e13`.  An earlier draft compared `2.52^36` against a standing `P_0` "of
+size `1e24`" and passed it without comment. -/
+theorem claimD_shift_range (t : ℝ) (ht : 1.5875 ≤ t) : (2.52 : ℝ) * t ^ 7 ≤ t ^ 9 := by
+  have ht0 : (0 : ℝ) < t := by linarith
+  have h2 : (2.52 : ℝ) ≤ t ^ 2 := by
+    have h : (1.5875 : ℝ) ^ 2 ≤ t ^ 2 := by gcongr
+    have h' : (2.52 : ℝ) ≤ (1.5875 : ℝ) ^ 2 := by norm_num
+    linarith
+  have hpos : (0 : ℝ) ≤ t ^ 7 := by positivity
+  have hsplit : t ^ 9 = t ^ 7 * t ^ 2 := by ring
+  nlinarith [mul_le_mul_of_nonneg_left h2 hpos, hsplit]
+
+/-- The comparison does **not** hold at the superseded `P_0 = 8.95e13`, where
+`t = P_0^(1/72) <= 1.58` and `t^2 <= 2.4964 < 2.52`. -/
+theorem claimD_shift_fails_below (t : ℝ) (ht0 : 0 ≤ t) (ht : t ≤ 1.58) :
+    t ^ 9 < 2.52 * t ^ 7 ∨ t = 0 := by
+  rcases eq_or_lt_of_le ht0 with h | h
+  · exact Or.inr h.symm
+  · refine Or.inl ?_
+    have h2 : t ^ 2 ≤ 2.4964 := by
+      have hh : t ^ 2 ≤ (1.58 : ℝ) ^ 2 := by gcongr
+      have h' : (1.58 : ℝ) ^ 2 ≤ 2.4964 := by norm_num
+      linarith
+    have hpos : (0 : ℝ) < t ^ 7 := by positivity
+    have hsplit : t ^ 9 = t ^ 7 * t ^ 2 := by ring
+    nlinarith [mul_le_mul_of_nonneg_left h2 (le_of_lt hpos), hsplit]
+
+/-- Step 3(a)'s flat cost is `23 P^(19/24)`, which sits inside the Step 6 budget
+`P^(23/24)` from `23^6 = 1.5e8`, but **not** inside `P^(7/8)`, which an earlier draft
+printed and which would need `23^12 = 2.2e16`.  In `P = t^24`: `23 t^19 <= t^23`. -/
+theorem st3a_flat_cost (t : ℝ) (ht : 2.19 ≤ t) : (23 : ℝ) * t ^ 19 ≤ t ^ 23 := by
+  have h4 : (23 : ℝ) ≤ t ^ 4 := by
+    have h : (2.19 : ℝ) ^ 4 ≤ t ^ 4 := by gcongr
+    have h' : (23 : ℝ) ≤ (2.19 : ℝ) ^ 4 := by norm_num
+    linarith
+  have hpos : (0 : ℝ) ≤ t ^ 19 := by positivity
+  have hsplit : t ^ 23 = t ^ 19 * t ^ 4 := by ring
+  nlinarith [mul_le_mul_of_nonneg_left h4 hpos, hsplit]
+
 end Juggler.DepthFourFive

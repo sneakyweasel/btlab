@@ -91,6 +91,7 @@ import {
   oddEvenRuns,
   runsEqual,
   envelopeCeilingApprox,
+  envelopeLog10Series,
   envelopeLogSlack,
   envelopeRelativeRoom,
   envelopeSeries,
@@ -208,6 +209,9 @@ describe("itineraries", () => {
     expect(series.walk).toEqual([5, 11, 36, 6]);
     expect(series.ceiling[0]).toBeCloseTo(5, 8);
     expect(series.ceiling[3]).toBeCloseTo(5 ** (9 / 8), 8);
+    const logs = envelopeLog10Series(5n, [5n, 11n, 36n, 6n]);
+    expect(logs[0]).toBeCloseTo(Math.log10(5), 8);
+    expect(logs[3]).toBeCloseTo((9 / 8) * Math.log10(5), 8);
   });
 
   it("hugs the ceiling on the note walk of 37 after OOOOE", () => {

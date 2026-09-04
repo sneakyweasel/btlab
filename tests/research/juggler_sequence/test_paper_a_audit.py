@@ -166,3 +166,53 @@ def test_summary_is_all_green() -> None:
     assert r["arithmetic_checks_all_ok"]
     assert r["rhin_checks_all_ok"]
     assert r["fan_law_all_ok"]
+
+
+# --- Lemma 5.13 and Corollary 5.14: the walk charge's efficiency, measured ---
+
+
+def test_margin_scaling_law_is_consistent_across_two_lengths() -> None:
+    """Lemma 5.13: beta = 1.047 from two independent same-L pairs."""
+    b = A.margin_beta()
+    assert len(b["betas"]) == 2
+    assert 1.04 < b["beta"] < 1.06
+    assert b["spread"] < 0.01                       # the two agree to under 1%
+
+
+def test_scaling_law_predicts_the_measured_kill_floor() -> None:
+    """It predicted 780239's kill floor to 0.3% before it was computed."""
+    pred = A.predicted_kill_floor(780239, 350000000)
+    err = abs(pred - A.WALK_KILL_FLOOR_780239) / A.WALK_KILL_FLOOR_780239
+    assert err < 0.01
+    # and the conclusion is robust to the fit: beta = 1 gives the same answer
+    pred1 = A.predicted_kill_floor(780239, 350000000, beta=1.0)
+    assert abs(pred1 - A.WALK_KILL_FLOOR_780239) / A.WALK_KILL_FLOOR_780239 < 0.03
+
+
+def test_walk_charge_factor_is_stable_near_eight() -> None:
+    """6.4, 7.9, 8.09 at the three successive frontiers -- it is not decaying."""
+    factors = [w["factor"] for w in A.walk_charge_value()]
+    factors.append(A.n_max(780239) / A.WALK_KILL_FLOOR_780239)
+    assert factors == sorted(factors)               # increasing, not decaying
+    assert 6.0 < min(factors) and max(factors) < 8.5
+    assert 8.0 < factors[-1] < 8.2
+
+
+def test_conditional_bound_chain_is_complete() -> None:
+    """Corollary 5.14: at floor 554000000 every parity survivor below 1082233 is killed."""
+    M = A.stored_margins()
+    floor = A.CONDITIONAL_FLOOR
+    parity = A.survivors(floor, A.CONDITIONAL_BOUND)
+    assert parity[-1] == A.CONDITIONAL_BOUND
+    above = [L for L in parity if 780239 < L < A.CONDITIONAL_BOUND]
+    assert len(above) == 9
+    for L in above:
+        assert M[(L, floor)] > 1.0, (L, M.get((L, floor)))
+    # and the next fan member is the one that survives
+    assert M[(A.CONDITIONAL_BOUND, floor)] < 1.0
+
+
+def test_the_new_bound_is_the_next_fan_member() -> None:
+    assert A.CONDITIONAL_BOUND == A.fan_length(3)
+    assert A.WALK_KILL_FLOOR_780239 < A.n_max(780239)
+    assert A.CONDITIONAL_FLOOR / 350000000 < 1.6      # only 1.58x the present floor

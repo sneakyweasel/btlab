@@ -23730,3 +23730,65 @@ Best next question
   price of the next step? that single ratio decides whether k=3 is
   reachable by computation at all
 ```
+
+
+### Paper A: the walk charge measured, and the next period bound priced at 1.58x
+
+Followed the open question from the previous entry --- *is the walk charge's
+factor ~8 stable, or is 4.48e9 really the price of the next step?* --- to a
+direct measurement. The factor is stable, and the next step is cheap.
+
+- **Lemma 5.13 (margin scaling).** At fixed \(L\) the certified kill margin
+  grows like \((N_0\log N_0)^\beta\) with \(\beta=1.047\). Fitted on the only
+  two lengths the committed records price at two floors each: \(L=176251\)
+  (0.158796 at 2.63e7 -> 1.198309 at 1.63e8) and \(L=478245\) (0.433383 at
+  1.63e8 -> 1.005552 at 3.5e8), giving 1.0491 and 1.0458 --- agreeing to
+  **0.31%**.
+- **It predicted the answer before I computed it.** The law puts 780239's kill
+  floor at \(5.53\cdot10^8\). Direct GPU evaluation of the certified criterion
+  bisects it to \(N_0=553906250\): the prediction was accurate to **0.21%**.
+  (Robust to the fit: \(\beta=1\) exactly gives \(5.65\cdot10^8\).)
+- **The factor is not decaying:** 6.4, 7.9, **8.09** at the three successive
+  frontiers. So the whole 56-step price list of Section 5.8 may be read divided
+  by ~8 whenever the walk charge is applied.
+- **Corollary 5.14 (conditional).** At \(N_0=554000000\) I computed the walk
+  margins for every parity survivor between 780239 and the next fan member:
+  806020 (8.076), 830747 (2.908), 881255 (4.596), 931763 (6.101), 956490
+  (1.663), 982271 (7.451), 1006998 (3.203), 1032779 (8.669), 1057506 (4.595)
+  --- **all killed** --- and \(L_3=1082233\) survives at 0.708. So *if* every
+  \(n\le554000000\) reaches 1, any nontrivial cycle has period at least
+  **1082233**.
+
+**The point.** The kill table for the next step is *already done*; the only
+missing input is the descent floor, and it is a **1.58x** extension of the
+existing one (~1.0e8 further odd starts, comparable to the run Corollary 5.11
+already performed) --- not the 12.8x that finance alone would demand. The
+previous entry's "next step costs a factor 12.8" was right about finance and
+wrong about what is actually reachable.
+
+New: Lemma 5.13 and Corollary 5.14 in Section 5.8; ten committed kill records
+under `N554000000_kills`; `margin_beta` / `predicted_kill_floor` /
+`stored_margins` in the audit; 5 more tests (32 total).
+
+```text
+What was learned
+- the walk charge's efficiency is stable at ~8x in descent floor, and
+  the margin scaling (N log N)^1.047 predicts kill floors to 0.2%
+- the next period bound 1082233 needs a floor of 5.54e8, only 1.58x the
+  present one; the kill table for it is complete
+Strongest theorem
+- Corollary 5.14, conditional on a floor that is a routine extension
+Strongest refutation
+- my own framing last entry: "the next step costs 12.8x" is true only
+  of finance alone, and misleads about reachability
+Reusable machinery
+- margin_beta / predicted_kill_floor: any future frontier can be priced
+  from two stored margins before spending GPU time on it
+Branch status
+- ADVANCE (next bound reduced from an open question to one certified run)
+Why
+- the expensive half of the next step is done and committed
+Best next question
+- run the descent floor from 3.5e8 to 5.54e8 and make Corollary 5.14
+  unconditional; that is the whole remaining cost of period >= 1082233
+```

@@ -35,7 +35,7 @@ divisor or gcd average occurs anywhere in the argument, so every
 \(\varepsilon\) is a power of \(\log P\) --- Theorem 5.3 holds in
 the form \(K_c\ll P^{1-1/96}\log^{3/4}P\) --- and the thirty-five
 threshold inequalities of the proof are solved individually in
-Appendix A, giving \(P_0=8.9\cdot10^{13}\). The depth-\(\le3\) discrepancy
+Appendix A, giving \(P_0=2.8\cdot10^{14}\). The depth-\(\le3\) discrepancy
 estimates (Theorems 4.4 and 4.7) are also proved on sub-dyadic
 intervals of length \(\ge P^{1/2}\), with a slowly varying twist
 attached (Section 3.5), which is the form a companion paper needs.
@@ -2001,10 +2001,9 @@ Every numerical margin in this section is claimed only for
 each of the thirty-five printed threshold inequalities of
 Sections 4--6 separately and takes the maximum,
 \[
-P_0=8.9\cdot10^{13},
+P_0=2.8\cdot10^{14},
 \]
-attained at the Lemma 3.9 hypothesis \(W\le c_7S/2\) in
-Theorem 5.3, Step 5b. Two features of that number should be said
+attained at Claim D's shift check of Lemma 5.2(ii)→(i) (A.2). Two features of that number should be said
 here. First, \(P_0\) does not depend on \(\varepsilon\).
 No divisor sum, gcd sum or large-sieve average occurs anywhere in
 Sections 3--6, so every \(\ll_\varepsilon\) in those sections is
@@ -2182,9 +2181,15 @@ particular \(h_3\le t^{1/3}P^{1/12}\le16^{1/3}P^{7/72}\) with
 \quad\text{once}\quad
 P\ge2.52^{36}.
 \]
-The threshold \(2.52^{36}<10^{15}\) sits under the standing
-\(P_0\) of size \(10^{24}\). Thus every index in the Claim C
-sum satisfies \(1\le h_3\le P^{1/8}\). (The averaging length
+The threshold is \(2.52^{36}=2.8211\cdot10^{14}\), and it is the
+largest in the paper: this comparison *is* what fixes \(P_0\)
+(Appendix A). An earlier draft checked it against a standing
+\(P_0\) "of size \(10^{24}\)" and passed it without comment; at the
+present \(P_0\) it is the binding row, and the reason a constant as
+mild as \(2.52\) can set the threshold of the whole argument is the
+exponent gap: \(\tfrac18-\tfrac7{72}=\tfrac1{36}\), so the constant
+is paid at the thirty-sixth power. Thus every index in the Claim C
+sum satisfies \(1\le h_3\le P^{1/8}\) for \(P\ge P_0\). (The averaging length
 itself obeys \(H_3\le x+1\le3P^{7/72}\) once
 \(1\le0.48P^{7/72}\), i.e. once \(P^{7/72}\ge3\), which holds
 for \(P\ge3^{72/7}<10^6\); Claim G uses only
@@ -2581,7 +2586,11 @@ margin against the Stage-4 curvature
   \(8(1{+}B_0)/T\), so in total
   \(\le8\bigl(1{+}1.85khP^{1/8}\bigr)P^{1/2}
   \le8P^{1/2}+15\,khP^{5/8}\le23\,P^{1/24+1/8+5/8}
-  =23\,P^{19/24}\le P^{7/8}\), using \(h\le P^{1/8}\) and (C3).
+  =23\,P^{19/24}\), using \(h\le P^{1/8}\) and (C3); this sits inside
+  the Step 6 budget \(P^{23/24}\) from \(P\ge23^{6}=1.5\cdot10^{8}\).
+  (It is *not* below \(P^{7/8}\), which an earlier draft printed:
+  the gap \(\tfrac78-\tfrac{19}{24}=\tfrac1{12}\) would make that
+  claim wait until \(23^{12}=2.2\cdot10^{16}\).)
   (b) \(c_+\Delta\lfloor F\rfloor\): by the gap identity applied to
   the sequence \(F\circ X\),
   \(\Delta\lfloor F\rfloor=\lfloor\Delta F\rfloor+\kappa_F\).
@@ -3563,7 +3572,7 @@ differenced-wave scale present. Three regimes.
   \(P_1\) of Appendix A.5 fall together as \(\kappa\) decreases,
   until near \(\kappa=\tfrac1{12}\) the boundary term turns
   \(P_1\) around. We take that value: it gives
-  \(P_0=8.9\cdot10^{13}\) and \(P_1=5.0\cdot10^{19}\), against
+  \(P_0=2.8\cdot10^{14}\) and \(P_1=5.0\cdot10^{19}\), against
   \(3.8\cdot10^{16}\) and \(2.1\cdot10^{21}\) for the earlier
   \(\kappa=\tfrac13\) with the factor \(10\), and
   \(1.3\cdot10^{23}\) for \(\kappa=3\). The exponent
@@ -3598,7 +3607,7 @@ differenced-wave scale present. Three regimes.
   which is the form Step 6 uses. The sharper reading
   \(\le P^{15/16}\) would need \(C(E)\log P\le P^{1/96}\), i.e.
   \(\ln P\ge96\ln\ln P\), which first holds near \(P=10^{274}\); at
-  \(P_0=8.9\cdot10^{13}\) one has \(\ln P=32.1\) against
+  \(P_0=2.8\cdot10^{14}\) one has \(\ln P=32.1\) against
   \(P^{1/96}=1.40\), so that reading is **not** available at \(P_0\).
   Nothing downstream depends on it: Step 6 carries \(P^{\varepsilon}\)
   and \(\tfrac{89}{96}<\tfrac{15}{16}\).
@@ -3986,7 +3995,7 @@ coefficients \(n^{3/16}\) on \(\theta\) and \(n^{9/16}\) on
 Of these four words only \(OOOEE\) and \(OOEOE\) contract. The
 expanding tree \(OOOO*\) is not estimated: it is the level-3
 kernel of Conjecture 7.3. All estimates below are for
-\(P\ge P_0=8.9\cdot10^{13}\), the effective threshold of Appendix A
+\(P\ge P_0=2.8\cdot10^{14}\), the effective threshold of Appendix A
 --- but only because Stage 2 of Theorem 5.3 is run at
 \(R_0=P^{5/16}\). The fifth-letter window below is opened at
 \(T=R_0\) against a sawtooth coefficient
@@ -4505,6 +4514,7 @@ irrational constants are replaced by rational bounds, both recorded:
 | P^(1/2) >= 8(1+6) = 56 | Thm 5.3 St.5b (j=0) | $3.1\cdot10^{3}$ |
 | 8(1+2.25P^(1/4))P^(1/2) <= 19 P^(3/4) | Thm 4.1 St.3(s2) | $4.1\cdot10^{3}$ |
 | 41 P^(5/36) <= P^(1/2) | Claim C | $2.9\cdot10^{4}$ |
+| 41 P^(5/36) <= P^(1/2): product range of (i) | Claim D | $2.9\cdot10^{4}$ |
 | [0.38,2.44] with its corrections inside [0.35,2.6] | Lemma 5.2b | $6.4\cdot10^{4}$ |
 | P^(7/72) >= 3 | Claim C | $8.1\cdot10^{4}$ |
 | 72 t^(-1) P^(-1/2) <= 1/4 at t = 1 | Thm 5.3 St.6(D1) | $8.3\cdot10^{4}$ |
@@ -4519,6 +4529,7 @@ irrational constants are replaced by rational bounds, both recorded:
 | beta-substitution error 2.31 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.8\cdot10^{7}$ |
 | cells + anchor runs + windows <= 3.5 P^(13/24) | Thm 5.3 St.5b | $5.1\cdot10^{7}$ |
 | mode/cell curvature ratio 0.39 P^(1/8) >= 4 | Thm 4.1 St.2 | $1.2\cdot10^{8}$ |
+| flat cost 23 P^(19/24) inside the P^(23/24) budget | Thm 5.3 St.3(a) | $1.5\cdot10^{8}$ |
 | every competitor ratio <= 1/4 (margin 4) | Thm 5.3 St.5a | $4.3\cdot10^{8}$ |
 | Lemma 3.7 window T = R_0 >= 8(1 + \|C\|) | Thm 6.3 | $7.4\cdot10^{8}$ |
 | 3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24) | Thm 5.3 St.5 | $1.4\cdot10^{9}$ |
@@ -4532,47 +4543,65 @@ irrational constants are replaced by rational bounds, both recorded:
 | E alone <= c_7 S/2 (the floor as kappa -> 0) | Thm 5.3 St.5b | $5.7\cdot10^{12}$ |
 | W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $1.6\cdot10^{13}$ |
 | W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8) | Thm 5.3 St.5b | $8.9\cdot10^{13}$ |
+| 2.52 P^(7/72) <= P^(1/8): shift range of (i) | Claim D | $2.8\cdot10^{14}$ |
 
 \[
-P_0=8.9\cdot10^{13},
+P_0=2.8\cdot10^{14},
 \]
-attained at the Lemma 3.9 hypothesis \(W\le c_7S/2\) of Theorem 5.3,
-Step 5b. Three rows hold for every \(P\ge1\) and are listed for
-completeness rather than because they constrain anything.
+attained at Claim D's shift range check \(2.52P^{7/72}\le P^{1/8}\)
+of Lemma 5.2(ii)→(i), whose exponent gap is \(\tfrac1{36}\) (A.2).
+The Lemma 3.9 balance \(W\le c_7S/2\) of Step 5b is second at
+\(8.9\cdot10^{13}\). Three rows hold for every \(P\ge1\) and are
+listed for completeness rather than because they constrain anything.
 
 ### A.2 The stratification
 
 The thresholds are not spread out; they cluster and then jump.
-Thirty-one of the thirty-five hold from \(2.9\cdot10^{10}\) on, and
+Thirty-three of the thirty-eight hold from \(2.9\cdot10^{10}\) on, and
 that value is set by a single soft inequality
-(\(2.25P^{-1/16}<	frac12\) in Stage 3(s1) of Theorem 4.1, which merely
-names the regime). Of the remaining four, one is the \(q''\) curvature
-ratio of Step 5b(a) at \(3.0\cdot10^{11}\) --- the price of
-\(R_0=P^{5/16}\), and still two and a half orders below \(P_0\)
-(A.6) --- and the other three are the Lemma 3.9 balance comparisons of
-Steps 5a and 5b, which alone carry \(P_0\) up by three and a half
-orders of magnitude.
+(\(2.25P^{-1/16}<\tfrac12\) in Stage 3(s1) of Theorem 4.1, which merely
+names the regime). The remaining five are, in order: the \(q''\)
+curvature ratio of Step 5b(a) at \(3.0\cdot10^{11}\) (the price of
+\(R_0=P^{5/16}\), A.6); the three Lemma 3.9 balance comparisons of
+Steps 5a and 5b, topping out at \(8.9\cdot10^{13}\); and, above them
+all, Claim D's shift check at \(2.8\cdot10^{14}\).
 
-\(W\le c_7S/2\) is a *hypothesis* of Lemma 3.9, not an optimisation: it
-is what makes \(\Omega_W\) empty on the \(r=2\) pieces. Its size is
-fixed by \(c_7=1/\lVert M^{-1}\rVert_\infty=1/232\) at the Step 5b
-exponent triple (Lean `step5b_curvature_norm`), which is exact and so
-not improvable there (A.5), and by the normalisation \(\kappa\) of
-\(V=\kappa S^{1/2}P^{-11/24}\), which is free:
+That last row deserves a word, because it is not the one the argument
+was designed around. \(W\le c_7S/2\) is a *hypothesis* of Lemma 3.9 and
+its size is a genuine analytic constraint; Claim D's row is nothing but
+a comparison of two powers with a mild constant in front,
+\[
+2.52\,P^{7/72}\le P^{1/8},
+\]
+where \(2.52=16^{1/3}\) comes from \(t\le16P^{1/24}\) and the exponent
+gap is \(\tfrac1{36}\). A gap that small pays the constant at the
+thirty-sixth power: \(2.52^{36}=2.82\cdot10^{14}\). Nothing is wrong
+with the step --- it is true, and true by a comfortable margin
+asymptotically --- but it is the row that fixes \(P_0\), and it would
+be the first thing to attack if \(P_0\) mattered. Sharpening
+\(t\le16P^{1/24}\) to \(t\le cP^{1/24}\) would move \(P_0\) to
+\(c^{12}\); at \(c=8\) that is \(6.9\cdot10^{10}\), which would hand
+the threshold back to the Lemma 3.9 balance.
 
-| \(\kappa\) | \(P_0\) | \(P_1\) (A.5) | boundary coefficient |
-|---|---|---|---|
-| \(\tfrac13\) | \(5.8\cdot10^{16}\) | \(1.4\cdot10^{21}\) | \(7.9\) |
-| \(\tfrac18\) | \(3.5\cdot10^{14}\) | \(6.6\cdot10^{19}\) | \(12.9\) |
-| \(\tfrac1{12}\) (used here) | \(8.9\cdot10^{13}\) | \(5.0\cdot10^{19}\) | \(15.8\) |
-| \(\tfrac1{16}\) | \(4.4\cdot10^{13}\) | \(6.3\cdot10^{19}\) | \(18.2\) |
-| \(\tfrac1{20}\) | \(2.9\cdot10^{13}\) | \(9.4\cdot10^{19}\) | \(20.4\) |
+One consequence is worth recording. Because Claim D's row does not
+involve \(\kappa\), the normalisation of \(V=\kappa S^{1/2}P^{-11/24}\)
+can no longer buy anything below \(\kappa=\tfrac18\): the balance row
+falls but \(P_0\) does not.
 
-Both columns fall together until \(\kappa=\tfrac1{12}\), where the
-piece-boundary term turns \(P_1\) around; that is the operating point.
-As \(\kappa\to0\) the threshold tends to \(5.7\cdot10^{12}\), the point
-at which the interpolant error alone satisfies \(E\le c_7S/2\). The
+| \(\kappa\) | balance row | \(P_0\) | \(P_1\) (A.5) | boundary coefficient |
+|---|---|---|---|---|
+| \(\tfrac13\) | \(5.8\cdot10^{16}\) | \(5.8\cdot10^{16}\) | \(1.4\cdot10^{21}\) | \(7.9\) |
+| \(\tfrac18\) | \(3.5\cdot10^{14}\) | \(3.5\cdot10^{14}\) | \(6.6\cdot10^{19}\) | \(12.9\) |
+| \(\tfrac1{12}\) (used here) | \(8.9\cdot10^{13}\) | \(2.8\cdot10^{14}\) | \(5.0\cdot10^{19}\) | \(15.8\) |
+| \(\tfrac1{16}\) | \(4.4\cdot10^{13}\) | \(2.8\cdot10^{14}\) | \(6.3\cdot10^{19}\) | \(18.2\) |
+| \(\tfrac1{20}\) | \(2.9\cdot10^{13}\) | \(2.8\cdot10^{14}\) | \(9.4\cdot10^{19}\) | \(20.4\) |
+
+The operating point \(\kappa=\tfrac1{12}\) is therefore chosen by
+\(P_1\), not by \(P_0\): both columns fall together until
+\(\kappa=\tfrac1{12}\), where the piece-boundary term turns \(P_1\)
+around, while \(P_0\) has already flattened at Claim D's row. The
 exponent \(89/96\) does not depend on \(\kappa\) at all.
+
 
 ### A.3 \(P_0\) does not depend on \(\varepsilon\)
 
@@ -4751,7 +4780,7 @@ whole threshold of the depth-five theorem, and the binding one is the
 flat cost, which does not clear \(P^{1-1/96}\) until
 \(1.8\cdot10^{24}\) --- ten orders above \(P_0\). At \(a=9/32\) the
 worst site is \(7.4\cdot10^{13}\), which sneaks under
-\(P_0=8.9\cdot10^{13}\) by less than a factor \(1.3\): too close to
+\(P_0=2.8\cdot10^{14}\) by less than a factor \(1.3\): too close to
 print. At \(a=5/16\) the worst site is \(3.0\cdot10^{11}\), a clear
 factor \(300\) below \(P_0\), and it is the minimum of the last column
 over the admissible range. That is the value carried.

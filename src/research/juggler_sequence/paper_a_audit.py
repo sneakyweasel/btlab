@@ -313,6 +313,70 @@ def walk_charge_value() -> list[dict[str, Any]]:
     ]
 
 
+# --- Section 5.8: Lemma 5.13 (margin scaling) and Corollary 5.14 ---
+
+WALK_KILL_FLOOR_780239 = 553906250
+CONDITIONAL_FLOOR = 554000000
+CONDITIONAL_BOUND = 1082233
+
+
+def stored_margins() -> dict[tuple[int, int], float]:
+    """Every committed certified kill margin, keyed by (length, floor)."""
+    import glob
+    import json
+    import os
+
+    root = os.path.join("data", "research", "juggler", "cycle_walk_charge")
+    out: dict[tuple[int, int], float] = {}
+    for f in glob.glob(os.path.join(root, "*_kills", "L*.json")):
+        j = json.load(open(f))
+        out[(j["length"], j["floor"])] = j["kill_margin"]
+    survey = os.path.join(root, "survey.json")
+    if os.path.exists(survey):
+        for row in json.load(open(survey))["rows"]:
+            out[(row["length"], row["floor"])] = row["kill_margin"]
+    for d in ("N350000000_kills", "N554000000_kills"):
+        f = os.path.join(root, d, "summary.json")
+        if os.path.exists(f):
+            j = json.load(open(f))
+            out[(j["first_survivor"], j["floor"])] = j["survivor_margin"]
+    return out
+
+
+def margin_beta() -> dict[str, Any]:
+    """Lemma 5.13: at fixed L the kill margin grows like (N log N)^beta.
+
+    Fitted on the two lengths the committed records price at two floors each.
+    """
+    M = stored_margins()
+    pairs = ((176251, 26254995, 162849448), (478245, 162849448, 350000000))
+    P = lambda N: N * math.log(N)  # noqa: E731
+    betas = []
+    for L, n1, n2 in pairs:
+        if (L, n1) in M and (L, n2) in M:
+            betas.append(math.log(M[(L, n2)] / M[(L, n1)]) / math.log(P(n2) / P(n1)))
+    beta = sum(betas) / len(betas) if betas else float("nan")
+    return {"betas": betas, "beta": beta,
+            "spread": (max(betas) - min(betas)) / beta if len(betas) > 1 else None}
+
+
+def predicted_kill_floor(L: int, floor: int, beta: float | None = None) -> float:
+    """The floor at which the walk charge reaches margin 1, from the scaling law."""
+    M = stored_margins()
+    m0 = M[(L, floor)]
+    b = margin_beta()["beta"] if beta is None else beta
+    P = lambda N: N * math.log(N)  # noqa: E731
+    need = (1 / m0) ** (1 / b) * P(floor)
+    lo, hi = 1e6, 1e13
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        if P(mid) >= need:
+            hi = mid
+        else:
+            lo = mid
+    return hi
+
+
 def summary(Lmax: int = 200000) -> dict[str, Any]:
     rec = [{"L": L, "printed": v, "recomputed": (g := n_max(L)), "ok": g == v}
            for L, v in RECORD_NMAX]
@@ -341,6 +405,10 @@ def summary(Lmax: int = 200000) -> dict[str, Any]:
         "fan_law_all_ok": all(c["ok"] for c in fl),
         "fan_prices": fan_prices(),
         "walk_charge_value": walk_charge_value(),
+        "margin_beta": margin_beta(),
+        "predicted_kill_floor_780239": predicted_kill_floor(780239, 350000000),
+        "measured_kill_floor_780239": WALK_KILL_FLOOR_780239,
+        "conditional_bound": {"floor": CONDITIONAL_FLOOR, "period": CONDITIONAL_BOUND},
         "Lmax": Lmax,
     }
 

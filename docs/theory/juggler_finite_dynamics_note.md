@@ -2320,18 +2320,83 @@ factor \(7.9\) in descent floor at the present frontier — and a factor
 \(L_3=1082233\) — no walk charge, no new idea, only a longer
 first-passage run — needs
 \(N_0\ge n_{\max}(780239)=4479642886\), a floor \(12.8\) times the
-present one. With the walk charge at its present efficiency the same
-step would need roughly \(5.7\cdot10^{8}\).
+present one. The walk charge does very much better, and by a factor
+that can be measured rather than guessed.
+
+**Lemma 5.13 (margin scaling).**
+At fixed \(L\), the certified kill margin
+\(\theta(L)/\bigl(\tfrac65 B(L,N_0)\bigr)\) of Theorem 5.9 grows like
+\((N_0\log N_0)^{\beta}\) with \(\beta=1.047\).
+
+*Evidence.* The committed kill records contain two lengths priced at
+two floors each. At \(L=176251\) the margin runs \(0.158796\) at
+\(N_0=26254995\) to \(1.198309\) at \(162849448\); at \(L=478245\) it
+runs \(0.433383\) at \(162849448\) to \(1.005552\) at \(350000000\).
+The implied exponents are \(1.0491\) and \(1.0458\), agreeing to
+\(0.31\%\). The excess over \(\beta=1\) is the secondary dependence of
+the reduced base on the floor; it is not needed for the conclusion
+below, which is unchanged at \(\beta=1\).
+
+Applied to the present survivor, \(L=780239\) at margin \(0.604888\),
+this predicts a kill at \(N_0=5.53\cdot10^{8}\). Evaluating the
+criterion directly gives
+
+\[
+\text{the walk charge kills } L=780239 \text{ from } N_0=553906250,
+\]
+
+so the prediction is accurate to \(0.2\%\), and the walk charge is
+worth a factor \(4479642886/553906250=8.09\) in descent floor here —
+against \(7.9\) at the previous frontier and \(6.4\) at the one before.
+The efficiency is stable, and the \(56\)-step price list above may be
+read divided by roughly \(8\) whenever the walk charge is applied.
+
+**Corollary 5.14 (conditional; the next period bound).**
+If every integer \(2\le n\le 554000000\) reaches \(1\), then any
+nontrivial Juggler cycle has period at least \(1082233\).
+
+*Proof, modulo the floor.* At \(N_0=554000000\) the parity table of
+Corollary 4.5 leaves twenty survivors below \(L_3=1082233\), and the
+walk charge of Theorem 5.3 kills all of them. Everything at or below
+\(780239\) is excluded because both exclusions are monotone in the
+floor and \(554000000>350000000\), except \(780239\) itself, which is
+killed here at margin \(1.000884\). The nine survivors above it are
+killed with margins
+\[
+\begin{array}{r|r@{\quad}r|r@{\quad}r|r}
+806020 & 8.076 & 830747 & 2.908 & 881255 & 4.596\\
+931763 & 6.101 & 956490 & 1.663 & 982271 & 7.451\\
+1006998 & 3.203 & 1032779 & 8.669 & 1057506 & 4.595
+\end{array}
+\]
+all by the certified evaluation of the Theorem 5.9 comparison at the
+reduced base. The next length, \(L_3=1082233\), survives at margin
+\(0.70815\). Hence the contiguous excluded prefix is \(1082232\).
+\(\square\)
+
+The kill table is therefore *already done*; the only missing input is
+the descent floor. Extending the certified floor from \(3.5\cdot10^{8}\)
+to \(5.54\cdot10^{8}\) is a first-passage run over roughly
+\(1.0\cdot10^{8}\) further odd starts — comparable in size to the
+extension Corollary 5.11 already performed, and a factor \(1.58\) in
+floor rather than the \(12.8\) that finance alone would demand. We do
+not carry out that run here; Corollary 5.14 is stated conditionally so
+that the computation and the criterion are separable, which is the
+architecture of Corollaries 5.10 and 5.11 as well.
 
 *Where computation ends.* Exhausting the fan, i.e. reaching
-\(L_{55}=16785921\), needs \(N_0\ge 2.20\cdot10^{12}\); passing the
-convergent itself needs \(4.87\cdot10^{12}\), after which the same
-structure repeats one scale up with \(q_{14}\) in the role of
-\(q_{12}\), at a cost that grows like \(a_{15}q_{14}^2/\log n\).
+\(L_{55}=16785921\), needs \(N_0\ge 2.20\cdot10^{12}\) by finance and
+about \(2.7\cdot10^{11}\) with the walk charge; passing the convergent
+itself needs \(4.87\cdot10^{12}\), respectively \(6.0\cdot10^{11}\),
+after which the same structure repeats one scale up with \(q_{14}\) in
+the role of \(q_{12}\), at a cost that grows like
+\(a_{15}q_{14}^2/\log n\).
 
 So the bound is not stuck against a wall; it is on a staircase whose
-steps are priced, whose next step costs a factor \(12.8\) in floor, and
-whose \(56\) steps together cost a factor \(4660\). What no floor buys
+steps are priced --- whose next step costs a factor \(1.58\) in floor
+with the walk charge (\(12.8\) without it), and whose \(56\) steps
+together cost a factor \(4660\) either way, since the walk charge
+divides the whole list by a constant. What no floor buys
 is the end of the staircase. The fans recur at every convergent, the
 required floor grows quadratically in the length, and a period bound
 obtained this way can never become a proof that no cycle exists. That

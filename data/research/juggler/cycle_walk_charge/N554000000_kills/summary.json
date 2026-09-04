@@ -1,0 +1,24 @@
+{
+  "floor": 554000000,
+  "kills": [
+    806020,
+    830747,
+    881255,
+    931763,
+    956490,
+    982271,
+    1006998,
+    1032779,
+    1057506
+  ],
+  "first_survivor": 1082233,
+  "survivor_margin": 0.70815,
+  "all_nine_exclude": true,
+  "target_780239": {
+    "kill_floor": 553906250,
+    "margin_at_554000000": 1.000884,
+    "margin_at_350000000": 0.6048881510063475
+  },
+  "walk_vs_finance_factor": 8.087366564287729,
+  "note": "Corollary 5.14: conditional on a certified descent floor of 554000000, the period bound becomes 1082233. The kill table is done; the floor is not."
+}

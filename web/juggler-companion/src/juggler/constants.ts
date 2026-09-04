@@ -184,6 +184,58 @@ export const EXPANDING_MONSTERS = [
   },
 ] as const;
 
+/** Envelope chapter: exact Δ, slack 0, hug, defect, floors that cut. */
+export const ENVELOPE_STARTS = [
+  {
+    label: "3",
+    value: 3n,
+    note: "Printed walk. First O has exact Δ=2. Then 36→6 is an exact square, so the power slack does not move. Hitting 1 is not a theorem.",
+  },
+  {
+    label: "5",
+    value: 5n,
+    note: "OOE: image 6, ceiling ≈6.11, exact Δ=273509. The textbook slack.",
+  },
+  {
+    label: "9",
+    value: 9n,
+    note: "9^{3/2}=27 exactly, so the first O has Δ=0. Then the walk joins 3 at 11.",
+  },
+  {
+    label: "16",
+    value: 16n,
+    note: "Even tower. 16→4→2 are exact squares, Δ=0, until 2→1 opens the slack. No O letters.",
+  },
+  {
+    label: "37",
+    value: 37n,
+    note: "After OOOOE the ceiling is ≈9322 and the image is 9317: about 5 of room. The hug.",
+  },
+  {
+    label: "122",
+    value: 122n,
+    note: "Even parent of 11. First-step slack is Δ=1=122−11²: the local even defect is the envelope slack. Pair with 5.",
+  },
+  {
+    label: "69",
+    value: 69n,
+    note: "An expanding prefix that still falls below the start. Floors can cut an expanding walk. Not a halt.",
+  },
+  {
+    label: "365",
+    value: 365n,
+    note: "Finance-leftover shape. Valleys hug the ceiling (first O: room 0.32). Still under the envelope. Not a cycle.",
+  },
+] as const;
+
+export const ENVELOPE_MONSTERS = [
+  {
+    label: "2^32",
+    value: 4294967296n,
+    note: "Even tower 2^32→2^16→…→1. Exact squares, Δ=0, until the last step. The browser can walk it. Not a theorem.",
+  },
+] as const;
+
 /** Live-walkable starts shown on the monster chip row. */
 export const MONSTER_ROW_LIVE = [
   {

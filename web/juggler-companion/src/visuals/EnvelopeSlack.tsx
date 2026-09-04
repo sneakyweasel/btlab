@@ -6,12 +6,10 @@ import {
   compareImage,
   envelopeCeilingApprox,
   envelopeRelativeRoom,
-  envelopeSeries,
   envelopeSlack,
   plotMagnitude,
 } from "../juggler/itinerary";
 import { EMBER, SEA } from "../juggler/palette";
-import { EnvelopeCeiling } from "./EnvelopeCeiling";
 
 type EnvelopeFrame = {
   seed: bigint;
@@ -92,7 +90,7 @@ export function EnvelopeSlack({ seed, image, odds, length }: EnvelopeFrame) {
     ceiling > 0 && Number.isFinite(ceiling) && Number.isFinite(pictured)
       ? Math.min(1, pictured / Math.max(ceiling, pictured))
       : 1;
-  const slackPct = room !== null && room > 0 ? Math.max((1 - fill) * 100, 4) : 0;
+  const slackPct = room !== null && room > 0 ? (1 - fill) * 100 : 0;
   const imagePct = 100 - slackPct;
   const mid =
     length === 0
@@ -162,14 +160,7 @@ export function EnvelopeSlack({ seed, image, odds, length }: EnvelopeFrame) {
   );
 }
 
-export function EnvelopePanel({
-  seed,
-  image,
-  odds,
-  length,
-  states,
-}: EnvelopeFrame & { states: bigint[] }) {
-  const series = envelopeSeries(seed, states);
+export function EnvelopePanel({ seed, image, odds, length }: EnvelopeFrame) {
   const exact = length === 0 ? 0n : envelopeSlack(seed, image, length, odds);
   const ceiling = envelopeCeilingApprox(seed, odds, length);
   const room = valueRoom(ceiling, image);
@@ -191,11 +182,6 @@ export function EnvelopePanel({
 
   return (
     <div className="space-y-3">
-      <EnvelopeCeiling
-        points={series.walk}
-        ceiling={series.ceiling}
-        active={Math.max(states.length - 1, 0)}
-      />
       <div className="grid gap-3 sm:grid-cols-2">
         <Metric
           label="Image vs n"

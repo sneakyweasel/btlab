@@ -169,6 +169,18 @@ export function envelopeSeries(n: bigint, states: readonly bigint[]): EnvelopeSe
   return { walk, ceiling };
 }
 
+/** log10 of the per-step ceiling, for the trajectory chart. */
+export function envelopeLog10Series(n: bigint, states: readonly bigint[]): number[] {
+  const logN = n <= 1n ? 0 : lnBig(n) / Math.LN10;
+  const logs: number[] = [];
+  let odds = 0;
+  for (let step = 0; step < states.length; step += 1) {
+    logs.push(step <= 0 ? logN : idealExponentApprox(odds, step) * logN);
+    if (states[step] % 2n === 1n) odds += 1;
+  }
+  return logs;
+}
+
 /** Envelope slack Δ = n^{3^o} − image^{2^k}, or null if bits blow up. */
 export function envelopeSlack(
   n: bigint,

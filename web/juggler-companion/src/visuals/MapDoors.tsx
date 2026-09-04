@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { NOTE_TRAJECTORY_3 } from "../juggler/constants";
 import { formatInt } from "../juggler/format";
 import { bitLength, letterOf } from "../juggler/map";
+import { EMBER } from "../juggler/palette";
 
 type MapDoorsProps = {
   highlight?: "even" | "odd" | null;
@@ -15,6 +16,7 @@ type MapDoorsProps = {
   stepComputation?: ReactNode;
   side?: ReactNode;
   fillPlot?: boolean;
+  envelopeLogs?: readonly number[];
   onSelect?: (index: number) => void;
 };
 
@@ -153,12 +155,14 @@ function TrajectoryPlot({
   active,
   sparseScale = false,
   fill = false,
+  envelopeLogs,
   onSelect,
 }: {
   states: readonly bigint[];
   active?: number;
   sparseScale?: boolean;
   fill?: boolean;
+  envelopeLogs?: readonly number[];
   onSelect?: (index: number) => void;
 }) {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -182,13 +186,19 @@ function TrajectoryPlot({
     return () => observer.disconnect();
   }, [fill]);
   const logs = states.map((state) => log10Of(state));
-  const dataMin = Math.min(...logs, 0);
-  const dataMax = Math.max(...logs, 1);
-  const { lo: min, hi: max } = niceLogExpDomain(dataMin, dataMax);
   const left = PLOT_LEFT;
   const right = PLOT_RIGHT;
   const top = PLOT_TOP;
   const height = viewH - PLOT_TOP - PLOT_BOTTOM;
+  const ceilingLogs =
+    envelopeLogs && envelopeLogs.length === logs.length
+      ? envelopeLogs.map((ceiling, index) =>
+          Number.isFinite(ceiling) ? Math.max(ceiling, logs[index]) : logs[index],
+        )
+      : null;
+  const dataMin = Math.min(...logs, 0);
+  const dataMax = Math.max(...logs, ...(ceilingLogs ?? []), 1);
+  const { lo: min, hi: max } = niceLogExpDomain(dataMin, dataMax);
   const ticks = sparseScale
     ? sparseExponents(min, max).map((exp) => ({ exp, major: true }))
     : logTicks(min, max);
@@ -246,6 +256,43 @@ function TrajectoryPlot({
       <text x={left - 8} y={top - 10} textAnchor="end" fill="#5e574c" fontSize="11">
         value
       </text>
+      {ceilingLogs
+        ? (() => {
+            const upper = ceilingLogs.map((ceiling, index) => ({
+              x: points[index].x,
+              y: plotYLog(ceiling, min, max, top, height),
+            }));
+            const band = [
+              ...upper.map((point) => `${point.x},${point.y}`),
+              ...points.toReversed().map((point) => `${point.x},${point.y}`),
+            ].join(" ");
+            const mark = active !== undefined && active >= 0 && active < upper.length ? active : upper.length - 1;
+            const tag = upper[mark];
+            return (
+              <g aria-hidden>
+                <polygon points={band} fill={EMBER} opacity="0.16" />
+                <polyline
+                  points={upper.map((point) => `${point.x},${point.y}`).join(" ")}
+                  fill="none"
+                  stroke={EMBER}
+                  strokeDasharray="7 6"
+                  strokeWidth="2"
+                />
+                {tag ? (
+                  <text
+                    x={tag.x}
+                    y={Math.max(tag.y - 10, top + 10)}
+                    textAnchor={tag.x > right - 50 ? "end" : "middle"}
+                    fill={EMBER}
+                    fontSize="11"
+                  >
+                    envelope
+                  </text>
+                ) : null}
+              </g>
+            );
+          })()
+        : null}
       {points.slice(0, -1).map((point, index) => {
         const next = points[index + 1];
         const odd = point.letter === "O";
@@ -358,6 +405,7 @@ export function MapDoors({
   stepComputation,
   side,
   fillPlot = false,
+  envelopeLogs,
   onSelect,
 }: MapDoorsProps) {
   const evenActive = highlight !== "odd";
@@ -382,6 +430,7 @@ export function MapDoors({
               active={active}
               sparseScale={sparseScale}
               fill={fillPlot}
+              envelopeLogs={envelopeLogs}
               onSelect={onSelect}
             />
           </div>

@@ -1,0 +1,8 @@
+{
+  "length": 1057506,
+  "floor": 554000000,
+  "kill_margin": 4.59533,
+  "certified_excludes": true,
+  "implementation": "research.juggler_sequence.cycle_walk_charge_gpu.gpu_certified_report",
+  "device": "NVIDIA GeForce RTX 5090"
+}

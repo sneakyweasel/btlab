@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
+  ENVELOPE_MONSTERS,
+  ENVELOPE_STARTS,
   EXPANDING_MONSTERS,
   EXPANDING_STARTS,
   LIVE_STARTS,
@@ -18,7 +20,7 @@ import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
 import { floorPower, letterOf } from "../juggler/map";
 import { monsterCatalog, resolveTrajectory } from "../juggler/monsters";
-import { oddCount, regimeOf } from "../juggler/itinerary";
+import { envelopeLog10Series, oddCount, regimeOf } from "../juggler/itinerary";
 import { EvenBlockStrip } from "../visuals/EvenBlockStrip";
 import { OeFiberStrip } from "../visuals/OeFiberStrip";
 import { ProductionWork } from "../visuals/ProductionWork";
@@ -106,6 +108,7 @@ export function MapWidget({
   initialStep = 0,
   side,
   below,
+  showEnvelope = false,
   liveStarts = LIVE_STARTS,
   monsterStarts,
   useChipLabels = false,
@@ -115,6 +118,7 @@ export function MapWidget({
   initialStep?: number;
   side?: (frame: MapFrame) => ReactNode;
   below?: (frame: MapFrame) => ReactNode;
+  showEnvelope?: boolean;
   liveStarts?: readonly StartChip[];
   monsterStarts?: readonly StartChip[];
   useChipLabels?: boolean;
@@ -247,6 +251,7 @@ export function MapWidget({
         stepComputation={side ? undefined : <FloorCut compact n={cursor} result={next} />}
         side={side?.(frame)}
         fillPlot={Boolean(side)}
+        envelopeLogs={showEnvelope ? envelopeLog10Series(seed, trajectory.states) : undefined}
         onSelect={(index) => {
           setPlaying(false);
           seekTo(index);
@@ -466,10 +471,11 @@ export function EnvelopeWidget() {
     <MapWidget
       initial={37n}
       initialStep={5}
-      liveStarts={EXPANDING_STARTS}
-      monsterStarts={EXPANDING_MONSTERS}
+      liveStarts={ENVELOPE_STARTS}
+      monsterStarts={ENVELOPE_MONSTERS}
       useChipLabels
-      presetHint="Same starts as Expanding. The ceiling is n to the 3^o / 2^L; slack is the room under it. Hitting 1 is not a theorem."
+      showEnvelope
+      presetHint="Starts chosen to show the realized ceiling and slack. Hitting 1 is not a theorem."
       side={(frame) => (
         <EnvelopeSlack
           seed={frame.seed}
@@ -484,7 +490,6 @@ export function EnvelopeWidget() {
           image={frame.image}
           odds={frame.odds}
           length={frame.length}
-          states={frame.states}
         />
       )}
     />
