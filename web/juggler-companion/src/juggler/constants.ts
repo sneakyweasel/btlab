@@ -24,7 +24,28 @@ export const WALK_WINDOW_LO = 50_508;
 export const WALK_WINDOW_HI = 301_994;
 
 /** Paper C production playground. Display fork of fate_contagion.py. */
-export const PRODUCTION_SEEDS = [6, 12, 100, 1_000, 10_000, 100_000] as const;
+export const PRODUCTION_SEEDS = [
+  {
+    value: 1,
+    note: "Smallest block: E(1) = {2}. The trivial cycle.",
+  },
+  {
+    value: 11,
+    note: "Odd seed, still drawable. The unique odd parent of 11 is 5.",
+  },
+  {
+    value: 12,
+    note: "Paper C figure (a): every even n in [144, 169) maps to 12.",
+  },
+  {
+    value: 100,
+    note: "First overflow: |E(100)| = 101, too many to draw one bead each.",
+  },
+  {
+    value: 100_000,
+    note: "Paper C figure (b): the OE fiber seed. The even block is too large to draw.",
+  },
+] as const;
 export const EVEN_BLOCK_BEAD_MAX = 40;
 export const FIBER_BEAD_MAX = 80;
 export const PRODUCTION_M_MAX = 100_000;

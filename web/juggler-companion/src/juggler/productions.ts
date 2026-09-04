@@ -129,6 +129,15 @@ export type EvenBlockView = {
   harmonicHi: number;
 };
 
+export function randomEvenInBlock(view: EvenBlockView): number {
+  if (view.evens.length > 0) {
+    return view.evens[Math.floor(Math.random() * view.evens.length)] ?? view.lo;
+  }
+  const first = view.lo % 2 === 0 ? view.lo : view.lo + 1;
+  if (view.count <= 0 || first >= view.hi) return first;
+  return first + 2 * Math.floor(Math.random() * view.count);
+}
+
 export function evenBlockView(m: number): EvenBlockView {
   const { lo, hi } = evenPreimageInterval(m);
   const count = evenBlockCount(m);

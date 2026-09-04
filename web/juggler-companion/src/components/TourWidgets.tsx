@@ -9,7 +9,7 @@ import {
   TOUR_OE_FIBER_M,
   TRAJECTORY_STEPS_MAX,
 } from "../juggler/constants";
-import { evenBlockView, fiberView } from "../juggler/productions";
+import { evenBlockView, fiberView, randomEvenInBlock } from "../juggler/productions";
 import { usePlayState } from "../context/PlayState";
 import { financeView } from "../juggler/finance";
 import { formatInt, parsePositiveInt } from "../juggler/format";
@@ -39,112 +39,14 @@ import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
 import { SurplusScale } from "../visuals/SurplusScale";
 import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
+import { MediaControls, MediaPlayer, MediaScrubber } from "./MediaControls";
 import { Metric } from "./Metric";
 import { Tex } from "./Tex";
 
 const MAP_DEFAULT = 37n;
 const AUTOPLAY_MS = 550;
-
-function FrameIcon({
-  children,
-  large,
-}: {
-  children: ReactNode;
-  large?: boolean;
-}) {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      className={large ? "h-4 w-4" : "h-3.5 w-3.5"}
-      fill="currentColor"
-      aria-hidden
-    >
-      {children}
-    </svg>
-  );
-}
-
-function IconFirst() {
-  return (
-    <FrameIcon>
-      <rect x="2" y="3" width="2" height="10" rx="0.4" />
-      <path d="M14 3.2v9.6L6.2 8z" />
-    </FrameIcon>
-  );
-}
-
-function IconPrevFrame() {
-  return (
-    <FrameIcon>
-      <path d="M12.4 3.2v9.6L4.2 8z" />
-    </FrameIcon>
-  );
-}
-
-function IconPlay() {
-  return (
-    <FrameIcon large>
-      <path d="M4 2.8v10.4L13.6 8z" />
-    </FrameIcon>
-  );
-}
-
-function IconPause() {
-  return (
-    <FrameIcon large>
-      <rect x="3.4" y="3" width="3" height="10" rx="0.5" />
-      <rect x="9.6" y="3" width="3" height="10" rx="0.5" />
-    </FrameIcon>
-  );
-}
-
-function IconNextFrame() {
-  return (
-    <FrameIcon>
-      <path d="M3.6 3.2v9.6L11.8 8z" />
-    </FrameIcon>
-  );
-}
-
-function IconLast() {
-  return (
-    <FrameIcon>
-      <path d="M2 3.2v9.6L9.8 8z" />
-      <rect x="12" y="3" width="2" height="10" rx="0.4" />
-    </FrameIcon>
-  );
-}
-
-function Transport({
-  label,
-  disabled,
-  primary,
-  onClick,
-  children,
-}: {
-  label: string;
-  disabled?: boolean;
-  primary?: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      disabled={disabled}
-      onClick={onClick}
-      className={
-        primary
-          ? "flex h-9 w-9 items-center justify-center rounded-full bg-deep text-card disabled:opacity-40"
-          : "flex h-8 w-8 items-center justify-center rounded-full text-ink disabled:opacity-35 hover:bg-line/50"
-      }
-    >
-      {children}
-    </button>
-  );
-}
+const EVEN_BLOCK_PLAY_LO = 1;
+const EVEN_BLOCK_PLAY_HI = 20;
 
 function Chip({
   selected,
@@ -192,7 +94,6 @@ export function MapWidget() {
   const next =
     nextFromPath ??
     (active < 0 && trajectory.source === "live" && cursor >= 1n ? floorPower(cursor) : null);
-  const progressPct = stepLast === 0 ? 0 : (100 * stepIndex) / stepLast;
   useEffect(() => {
     if (!playing) return;
     const path = resolveTrajectory(seed, TRAJECTORY_STEPS_MAX).states;
@@ -367,85 +268,43 @@ export function MapWidget() {
           </div>
         }
         axis={
-          <div className="relative flex h-4 items-center">
-            <div className="pointer-events-none absolute inset-x-0 h-1 rounded-full bg-line" />
-            <div
-              className="pointer-events-none absolute left-0 h-1 rounded-full bg-deep"
-              style={{ width: `${progressPct}%` }}
-            />
-            <input
-              className="trajectory-scrubber relative z-10"
-              type="range"
-              min={0}
-              max={stepLast}
-              step={1}
-              value={stepIndex}
-              aria-label="Frame"
-              aria-valuemin={0}
-              aria-valuemax={stepLast}
-              aria-valuenow={stepIndex}
-              onChange={(event) => seekTo(Number(event.target.value))}
-            />
-          </div>
+          <MediaScrubber
+            value={stepIndex}
+            min={0}
+            max={stepLast}
+            onSeek={(index) => {
+              setPlaying(false);
+              seekTo(index);
+            }}
+          />
         }
         player={
-          <div className="flex w-full items-center justify-center gap-3">
-            <p className="min-w-0 flex-1 text-right font-mono text-sm leading-tight break-all text-muted">
-              {prev === null ? "" : formatInt(prev)}
-            </p>
-            <div className="flex shrink-0 items-center gap-0.5">
-              <Transport
-                label="First frame"
-                disabled={stepIndex === 0}
-                onClick={() => {
-                  setPlaying(false);
-                  setCursor(seed);
-                }}
-              >
-                <IconFirst />
-              </Transport>
-              <Transport
-                label="Previous frame (←)"
-                disabled={stepIndex === 0}
-                onClick={() => {
-                  setPlaying(false);
-                  seekTo(stepIndex - 1);
-                }}
-              >
-                <IconPrevFrame />
-              </Transport>
-              <Transport
-                label={playing ? "Pause (space)" : "Play (space)"}
-                primary
-                onClick={playCurrent}
-              >
-                {playing ? <IconPause /> : <IconPlay />}
-              </Transport>
-              <Transport
-                label="Next frame (→)"
-                disabled={next === null}
-                onClick={() => {
-                  setPlaying(false);
-                  if (next !== null) setCursor(next);
-                }}
-              >
-                <IconNextFrame />
-              </Transport>
-              <Transport
-                label="Last frame"
-                disabled={stepIndex === stepLast}
-                onClick={() => {
-                  setPlaying(false);
-                  seekTo(stepLast);
-                }}
-              >
-                <IconLast />
-              </Transport>
-            </div>
-            <p className="min-w-0 flex-1 font-mono text-sm leading-tight break-all text-muted">
-              {next === null ? "" : formatInt(next)}
-            </p>
-          </div>
+          <MediaPlayer
+            playing={playing}
+            prevLabel={prev === null ? "" : formatInt(prev)}
+            nextLabel={next === null ? "" : formatInt(next)}
+            firstDisabled={stepIndex === 0}
+            prevDisabled={stepIndex === 0}
+            nextDisabled={next === null}
+            lastDisabled={stepIndex === stepLast}
+            onFirst={() => {
+              setPlaying(false);
+              setCursor(seed);
+            }}
+            onPrev={() => {
+              setPlaying(false);
+              seekTo(stepIndex - 1);
+            }}
+            onPlay={playCurrent}
+            onNext={() => {
+              setPlaying(false);
+              if (next !== null) setCursor(next);
+            }}
+            onLast={() => {
+              setPlaying(false);
+              seekTo(stepLast);
+            }}
+          />
         }
       />
       <LinkedWalk
@@ -539,59 +398,156 @@ export function EnvelopeWidget() {
 }
 
 export function PreimagesWidget() {
+  const [startText, setStartText] = useState(String(TOUR_EVEN_BLOCK_M));
   const [m, setM] = useState(TOUR_EVEN_BLOCK_M);
+  const [playing, setPlaying] = useState(false);
   const block = useMemo(() => evenBlockView(m), [m]);
   const fiber = fiberView(TOUR_OE_FIBER_M);
   const firstSea = fiber.points.find((point) => point.imageEven)?.n ?? fiber.points[0]?.n ?? 0;
-  const [blockN, setBlockN] = useState<number | null>(block.evens[0] ?? block.lo);
+  const [blockN, setBlockN] = useState<number | null>(() =>
+    randomEvenInBlock(evenBlockView(TOUR_EVEN_BLOCK_M)),
+  );
   const [fiberN, setFiberN] = useState(firstSea);
   const [fiberHover, setFiberHover] = useState<number | null>(null);
   const fiberInspect = fiberHover ?? fiberN;
-  const chooseM = (value: number) => {
+  const parsed = parsePositiveInt(startText);
+  const startError =
+    startText.trim() === ""
+      ? null
+      : parsed === null
+        ? "Enter a positive integer."
+        : parsed > BigInt(PRODUCTION_M_MAX)
+          ? `At most ${PRODUCTION_M_MAX.toLocaleString("en-US")} on this page.`
+          : null;
+  const inPlayRange = m >= EVEN_BLOCK_PLAY_LO && m <= EVEN_BLOCK_PLAY_HI;
+  const playValue = inPlayRange ? m : EVEN_BLOCK_PLAY_LO;
+  const chooseM = useCallback((value: number) => {
+    setPlaying(false);
+    setStartText(String(value));
     setM(value);
     const next = evenBlockView(value);
-    setBlockN(next.evens[0] ?? next.lo);
-  };
+    setBlockN(randomEvenInBlock(next));
+  }, []);
+  const seekPlay = useCallback((value: number) => {
+    setPlaying(false);
+    const span = EVEN_BLOCK_PLAY_HI - EVEN_BLOCK_PLAY_LO + 1;
+    const wrapped =
+      EVEN_BLOCK_PLAY_LO +
+      ((((value - EVEN_BLOCK_PLAY_LO) % span) + span) % span);
+    setStartText(String(wrapped));
+    setM(wrapped);
+    const next = evenBlockView(wrapped);
+    setBlockN(randomEvenInBlock(next));
+  }, []);
+  const playCurrent = useCallback(() => {
+    if (playing) {
+      setPlaying(false);
+      return;
+    }
+    if (!inPlayRange) {
+      setStartText(String(EVEN_BLOCK_PLAY_LO));
+      setM(EVEN_BLOCK_PLAY_LO);
+      const next = evenBlockView(EVEN_BLOCK_PLAY_LO);
+      setBlockN(randomEvenInBlock(next));
+    }
+    setPlaying(true);
+  }, [inPlayRange, playing]);
+  useEffect(() => {
+    if (!playing) return;
+    const id = window.setInterval(() => {
+      setM((current) => {
+        const next =
+          current >= EVEN_BLOCK_PLAY_HI || current < EVEN_BLOCK_PLAY_LO
+            ? EVEN_BLOCK_PLAY_LO
+            : current + 1;
+        setStartText(String(next));
+        const view = evenBlockView(next);
+        setBlockN(randomEvenInBlock(view));
+        return next;
+      });
+    }, AUTOPLAY_MS);
+    return () => window.clearInterval(id);
+  }, [playing]);
+  const keysRef = useRef({ playCurrent, seekPlay, playValue });
+  keysRef.current = { playCurrent, seekPlay, playValue };
+  useEffect(() => {
+    function fieldHasFocus(target: EventTarget | null): boolean {
+      if (!(target instanceof HTMLElement)) return false;
+      if (target.isContentEditable) return true;
+      const tag = target.tagName;
+      if (tag === "TEXTAREA" || tag === "SELECT") return true;
+      if (tag !== "INPUT") return false;
+      return (target as HTMLInputElement).type !== "range";
+    }
+    function onKey(event: KeyboardEvent) {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (fieldHasFocus(event.target)) return;
+      const frame = keysRef.current;
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        frame.seekPlay(frame.playValue - 1);
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        frame.seekPlay(frame.playValue + 1);
+        return;
+      }
+      if (event.key === " " || event.code === "Space") {
+        event.preventDefault();
+        frame.playCurrent();
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
   return (
     <div className="space-y-6">
       <div>
         <h3 className="mb-2 font-serif text-lg">Even block of {formatInt(m)}</h3>
-        <div className="mb-3 flex flex-wrap items-end gap-3">
-          <label className="text-sm text-muted">
-            m
-            <input
-              className="ml-2 w-28 rounded border border-line bg-paper px-2 py-1 font-mono"
-              type="number"
-              min={1}
-              max={PRODUCTION_M_MAX}
-              value={m}
-              onChange={(event) => {
-                const value = Number(event.target.value);
-                if (
-                  Number.isInteger(value) &&
-                  value >= 1 &&
-                  value <= PRODUCTION_M_MAX
-                ) {
-                  chooseM(value);
-                }
-              }}
-            />
-          </label>
-          <div className="flex flex-wrap gap-2">
-            {PRODUCTION_SEEDS.map((seed) => (
-              <button
-                key={seed}
-                type="button"
-                className={`rounded-full px-3 py-1 text-sm ${
-                  m === seed
-                    ? "bg-deep text-card"
-                    : "border border-line text-muted"
-                }`}
-                onClick={() => chooseM(seed)}
-              >
-                {seed.toLocaleString("en-US")}
-              </button>
-            ))}
+        <div className="mb-4 rounded-2xl border border-line bg-paper px-4 py-2.5">
+          <div className="flex flex-wrap items-start gap-x-12 gap-y-4">
+            <label className="grid gap-1">
+              <span className="text-xs uppercase tracking-wide text-muted">
+                Starting number
+              </span>
+              <input
+                className="start-input min-w-64 max-w-full rounded-xl border-2 border-ink bg-card px-3 py-2 font-mono text-3xl leading-none text-ink"
+                style={{ width: `calc(${Math.max(10, startText.length)}ch + 1.5rem)` }}
+                type="number"
+                min={1}
+                max={PRODUCTION_M_MAX}
+                value={startText}
+                onChange={(event) => {
+                  const text = event.target.value;
+                  setStartText(text);
+                  const value = parsePositiveInt(text);
+                  if (value !== null && value <= BigInt(PRODUCTION_M_MAX)) {
+                    chooseM(Number(value));
+                  }
+                }}
+              />
+              {startError ? (
+                <span className="text-sm text-warn">{startError}</span>
+              ) : null}
+            </label>
+            <div className="grid min-w-0 flex-1 gap-1.5">
+              <p className="text-xs uppercase tracking-wide text-muted">
+                Interesting presets
+              </p>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {PRODUCTION_SEEDS.map((preset) => (
+                  <Chip
+                    key={preset.value}
+                    selected={m === preset.value}
+                    title={preset.note}
+                    onClick={() => chooseM(preset.value)}
+                  >
+                    {preset.value.toString()}
+                  </Chip>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <EvenBlockStrip
@@ -599,11 +555,32 @@ export function PreimagesWidget() {
           selected={blockN}
           onSelect={setBlockN}
         />
+        <div className="mt-3">
+          <MediaControls
+            value={playValue}
+            min={EVEN_BLOCK_PLAY_LO}
+            max={EVEN_BLOCK_PLAY_HI}
+            playing={playing}
+            loop
+            prevLabel={formatInt(
+              playValue <= EVEN_BLOCK_PLAY_LO
+                ? EVEN_BLOCK_PLAY_HI
+                : playValue - 1,
+            )}
+            nextLabel={formatInt(
+              playValue >= EVEN_BLOCK_PLAY_HI
+                ? EVEN_BLOCK_PLAY_LO
+                : playValue + 1,
+            )}
+            onSeek={seekPlay}
+            onPlay={playCurrent}
+          />
+        </div>
         <p className="mt-3 text-sm text-muted">
           The even block of {formatInt(m)} is the set of even one-step
-          preimages of {formatInt(m)}: every even n in [{formatInt(block.lo)},{" "}
-          {formatInt(block.hi)}). If {formatInt(m)} is in a backward-closed set
-          A, so is this block.
+          preimages of {formatInt(m)}: every even n in [{formatInt(m)}²,{" "}
+          {formatInt(m + 1)}²) = [{formatInt(block.lo)}, {formatInt(block.hi)}
+          ). If {formatInt(m)} is in a backward-closed set A, so is this block.
         </p>
       </div>
       <div>

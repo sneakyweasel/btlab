@@ -8,6 +8,7 @@ import {
   evenBlock,
   evenBlockView,
   evenMembersMapToSeed,
+  randomEvenInBlock,
   fiberBounds,
   fiberStats,
   oeFiber,
@@ -509,6 +510,12 @@ describe("productions", () => {
     expect(evenBlockView(100).listed).toBe(false);
     expect(evenBlockView(100).evens).toEqual([]);
     expect(evenBlockView(100).count).toBe(101);
+  });
+
+  it("picks a random even inside the block", () => {
+    const view = evenBlockView(12);
+    const picked = randomEvenInBlock(view);
+    expect(view.evens).toContain(picked);
   });
 
   it("sends every OE member of 12 to 12 in two steps", () => {

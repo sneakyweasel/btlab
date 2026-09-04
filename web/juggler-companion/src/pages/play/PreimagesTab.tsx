@@ -8,7 +8,7 @@ import {
 } from "../../juggler/constants";
 import { formatInt } from "../../juggler/format";
 import { oddPreimageIntegers } from "../../juggler/preimages";
-import { evenBlockView, fiberView } from "../../juggler/productions";
+import { evenBlockView, fiberView, randomEvenInBlock } from "../../juggler/productions";
 import { EvenBlockStrip } from "../../visuals/EvenBlockStrip";
 import { OeFiberStrip } from "../../visuals/OeFiberStrip";
 import { PreimageNumberLine } from "../../visuals/PreimageNumberLine";
@@ -22,7 +22,9 @@ function formatShare(value: number | null): string {
 
 export function PreimagesTab() {
   const [m, setM] = useState(12);
-  const [selected, setSelected] = useState<number | null>(144);
+  const [selected, setSelected] = useState<number | null>(() =>
+    randomEvenInBlock(evenBlockView(12)),
+  );
   const [hovered, setHovered] = useState<number | null>(null);
   const block = useMemo(() => evenBlockView(m), [m]);
   const fiber = useMemo(() => fiberView(m), [m]);
@@ -59,29 +61,30 @@ export function PreimagesTab() {
                   value <= PRODUCTION_M_MAX
                 ) {
                   setM(value);
-                  setSelected(null);
+                  setSelected(randomEvenInBlock(evenBlockView(value)));
                   setHovered(null);
                 }
               }}
             />
           </label>
           <div className="flex flex-wrap gap-2">
-            {PRODUCTION_SEEDS.map((seed) => (
+            {PRODUCTION_SEEDS.map((preset) => (
               <button
-                key={seed}
+                key={preset.value}
                 type="button"
+                title={preset.note}
                 className={`rounded-full px-3 py-1 text-sm ${
-                  m === seed
+                  m === preset.value
                     ? "bg-deep text-card"
                     : "border border-line text-muted"
                 }`}
                 onClick={() => {
-                  setM(seed);
-                  setSelected(null);
+                  setM(preset.value);
+                  setSelected(randomEvenInBlock(evenBlockView(preset.value)));
                   setHovered(null);
                 }}
               >
-                {seed.toLocaleString("en-US")}
+                {preset.value.toLocaleString("en-US")}
               </button>
             ))}
           </div>
@@ -91,7 +94,8 @@ export function PreimagesTab() {
       <section className="space-y-3 rounded-xl border border-line bg-card p-4">
         <h2 className="font-serif text-2xl">Even block E(m)</h2>
         <p className="text-sm text-muted">
-          Every even n in [{formatInt(block.lo)}, {formatInt(block.hi)}) has{" "}
+          Every even n in [{formatInt(m)}², {formatInt(m + 1)}²) = [
+          {formatInt(block.lo)}, {formatInt(block.hi)}) has{" "}
           <Tex>{String.raw`J(n)=m`}</Tex>. If m is in A, those evens are in A.
         </p>
         <div className="grid gap-3 sm:grid-cols-3">

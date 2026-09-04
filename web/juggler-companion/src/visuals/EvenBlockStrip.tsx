@@ -57,12 +57,13 @@ export function EvenBlockStrip({
   const cutLo = xOf(lo, padLo, padHi);
   const cutHi = xOf(hi, padLo, padHi);
   const markerId = `even-block-arrow-${m}`;
-  const land = (index: number, total: number) => {
-    const t = total <= 1 ? 0.5 : index / (total - 1);
-    const angle = (2 / 3) * Math.PI - t * ((1 / 3) * Math.PI);
+  const tipToward = (x: number, y: number) => {
+    const dx = TARGET_X - x;
+    const dy = TARGET_Y - y;
+    const len = Math.hypot(dx, dy) || 1;
     return {
-      x: TARGET_X + TARGET_R * Math.cos(angle),
-      y: TARGET_Y - TARGET_R * Math.sin(angle),
+      x: TARGET_X - (dx / len) * TARGET_R,
+      y: TARGET_Y - (dy / len) * TARGET_R,
     };
   };
   return (
@@ -106,26 +107,6 @@ export function EvenBlockStrip({
         stroke={SEA}
         strokeWidth="1.5"
       />
-      <text
-        x={cutLo}
-        y="18"
-        textAnchor="middle"
-        fill="#5e574c"
-        fontSize="12"
-        fontFamily="IBM Plex Mono, monospace"
-      >
-        {formatInt(lo)}
-      </text>
-      <text
-        x={cutHi}
-        y="18"
-        textAnchor="middle"
-        fill="#5e574c"
-        fontSize="12"
-        fontFamily="IBM Plex Mono, monospace"
-      >
-        {formatInt(hi)}
-      </text>
       {listed
         ? outside.map((n) => (
             <BeadMark
@@ -167,9 +148,9 @@ export function EvenBlockStrip({
           ))
         : null}
       {listed
-        ? evens.map((n, index) => {
+        ? evens.map((n) => {
             const x = xOf(n, padLo, padHi);
-            const tip = land(index, evens.length);
+            const tip = tipToward(x, LINE_Y);
             const active = live === n;
             return (
               <line
@@ -193,6 +174,42 @@ export function EvenBlockStrip({
             opacity="0.28"
           />
         )}
+      <text
+        x={cutLo}
+        y={LINE_Y + 22}
+        textAnchor="middle"
+        fill="#5e574c"
+        fontSize="10"
+        fontFamily="IBM Plex Mono, monospace"
+        paintOrder="stroke"
+        stroke="#fffdf7"
+        strokeWidth="4"
+      >
+        <tspan x={cutLo} dy="0">
+          {formatInt(lo)}
+        </tspan>
+        <tspan x={cutLo} dy="12">
+          {`${formatInt(m)}²`}
+        </tspan>
+      </text>
+      <text
+        x={cutHi}
+        y={LINE_Y + 22}
+        textAnchor="middle"
+        fill="#5e574c"
+        fontSize="10"
+        fontFamily="IBM Plex Mono, monospace"
+        paintOrder="stroke"
+        stroke="#fffdf7"
+        strokeWidth="4"
+      >
+        <tspan x={cutHi} dy="0">
+          {formatInt(hi)}
+        </tspan>
+        <tspan x={cutHi} dy="12">
+          {`${formatInt(m + 1)}²`}
+        </tspan>
+      </text>
       <circle cx={TARGET_X} cy={TARGET_Y} r={TARGET_R} fill={targetColor} />
       <text
         x={TARGET_X}
