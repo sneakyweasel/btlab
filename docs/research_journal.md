@@ -23792,3 +23792,67 @@ Best next question
 - run the descent floor from 3.5e8 to 5.54e8 and make Corollary 5.14
   unconditional; that is the whole remaining cost of period >= 1082233
 ```
+
+
+### Paper B: the constants sweep -- P_0 was wrong by a factor 3.2
+
+Swept the manuscript for the shape both Theorem 6.3 defects had: a comparison
+of two powers, correct asymptotically, whose constant is not carried at the
+printed threshold. A gap \(g\) turns a constant \(c\) into a threshold
+\(c^{1/g}\). Two forms scanned (decay against a margin; a cost claimed inside a
+larger power), 25 distinct comparisons, **two above \(P_0\), both real**.
+
+- **Claim D's shift range is the binding row, and \(P_0=2.82\cdot10^{14}\).**
+  \(h_3\le16^{1/3}P^{7/72}=2.52P^{7/72}\) must sit under the (i) shift cap
+  \(P^{1/8}\). Gap \(\tfrac1{36}\), so the threshold is
+  \(2.52^{36}=2.8211\cdot10^{14}\). The paper stated that correctly, then wrote
+  it "sits under the standing \(P_0\) of size \(10^{24}\)" --- a \(P_0\) from a
+  much older draft. At the real \(P_0=8.9458\cdot10^{13}\) it **fails**, and
+  narrowly: \(P_0^{1/36}=2.441\) against \(2.52\), a 3% miss. **\(P_0\) rises
+  by a factor 3.15**, and the binding row is no longer an analytic balance but
+  a hypothesis check with a mild constant on a tiny gap.
+- **Step 3(a)'s flat cost `23 P^(19/24) <= P^(7/8)` is false at \(P_0\)** by a
+  factor 245 (gap \(\tfrac1{12}\) needs \(23^{12}=2.2\cdot10^{16}\)). But
+  \(P^{7/8}\) was never the operative budget --- Step 6 assembles against
+  \(P^{23/24}\), which it clears from \(23^6=1.5\cdot10^8\). Restated; no
+  threshold impact.
+- **Removed a trap:** Step 5b(a) printed \(\le48.9P^{-3/16}\le49P^{-1/16}\).
+  The weaker form is true but quoting it as the conclusion would need
+  \(10^{36}\) --- a fourth instance of the same error waiting to happen.
+
+**Three knock-ons, all now printed.** A.5's "\(P_0\) is carried entirely by
+\(W\le c_7S/2\)" is no longer true (the balance is second, at
+\(8.9\cdot10^{13}\)). The \(\kappa\)-optimisation **saturates**: Claim D's row
+does not involve \(\kappa\), so below \(\kappa=\tfrac18\) lowering it no longer
+moves \(P_0\), and \(\kappa=\tfrac1{12}\) is justified by \(P_1\) alone. The
+\(c_2\) lever likewise no longer improves \(P_0\).
+
+**The cheapest undo:** sharpening \(t\le16P^{1/24}\) to \(t\le cP^{1/24}\) puts
+\(P_0\) at \(c^{12}\); \(c=8\) gives \(6.9\cdot10^{10}\) and hands the
+threshold back to the balance row. Not attempted.
+
+New: `paper_b_constants_sweep.py` promoted to the platform with `findings()`;
+5 regression tests; Lean `claimD_shift_range`, `claimD_shift_fails_below`,
+`st3a_flat_cost`; probe rows `claimD-shift`, `st3a-flatcost` (35 -> 37);
+A.2 rewritten with the two-column \(\kappa\) table.
+
+```text
+What was learned
+- P_0 was understated by 3.15x for a reason no amount of re-reading the
+  analysis would surface: a stale cross-reference to an obsolete P_0
+- the binding constraint is not analytic at all, it is 2.52 on a 1/36 gap
+- lowering kappa below 1/8 buys nothing any more
+Strongest theorem
+- claimD_shift_range: the new binding row, certified to 0.2%
+Strongest refutation
+- the printed P_0 = 8.9e13, and "P_0 is carried entirely by W <= c_7 S/2"
+Reusable machinery
+- paper_b_constants_sweep: both shapes, as a regression test
+Branch status
+- ADVANCE (P_0 corrected; the class of error is now closed by a test)
+Why
+- the sweep was mechanical and it found the paper's headline constant wrong
+Best next question
+- can t <= 16 P^(1/24) be sharpened? c = 8 would return P_0 to 6.9e10
+  and make the Lemma 3.9 balance binding again
+```

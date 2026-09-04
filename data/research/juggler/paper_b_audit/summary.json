@@ -207,6 +207,20 @@
         "P_min": 5701364162414.874
       },
       {
+        "tag": "claimD-shift",
+        "site": "Claim D",
+        "claim": "2.52 P^(7/72) <= P^(1/8): shift range of (i)",
+        "log10_P_min": 14.450419468135587,
+        "P_min": 282110641267561.3
+      },
+      {
+        "tag": "st3a-flatcost",
+        "site": "Thm 5.3 St.3(a)",
+        "claim": "flat cost 23 P^(19/24) inside the P^(23/24) budget",
+        "log10_P_min": 8.170367016105555,
+        "P_min": 148035888.99999917
+      },
+      {
         "tag": "t61-stepB-discard",
         "site": "Thm 6.1 St.B",
         "claim": "(3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96)",
@@ -250,23 +264,23 @@
       }
     ],
     "all_solved": true,
-    "n_thresholds": 35,
-    "P0": 89457691736825.03,
-    "log10_P0": 13.951617687946936,
+    "n_thresholds": 37,
+    "P0": 282110641267561.3,
+    "log10_P0": 14.450419468135587,
     "binding": {
-      "tag": "5b-W<=c7S",
-      "site": "Thm 5.3 St.5b",
-      "claim": "W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8)",
-      "log10_P_min": 13.951617687946936,
-      "P_min": 89457691736825.03
+      "tag": "claimD-shift",
+      "site": "Claim D",
+      "claim": "2.52 P^(7/72) <= P^(1/8): shift range of (i)",
+      "log10_P_min": 14.450419468135587,
+      "P_min": 282110641267561.3
     },
-    "P0_excluding_lemma_3_9_balance": 298166397427.1972,
+    "P0_excluding_lemma_3_9_balance": 282110641267561.3,
     "binding_excluding_balance": {
-      "tag": "st5b-qpp",
-      "site": "Thm 5.3 St.5b(a)",
-      "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
-      "log10_P_min": 11.474458698022962,
-      "P_min": 298166397427.1972
+      "tag": "claimD-shift",
+      "site": "Claim D",
+      "claim": "2.52 P^(7/72) <= P^(1/8): shift range of (i)",
+      "log10_P_min": 14.450419468135587,
+      "P_min": 282110641267561.3
     },
     "P0_at_superseded_kappa": 5.819938645207617e+16,
     "kappa_tradeoff": [
@@ -378,7 +392,7 @@
           0.004310344827586207,
           0.004310344827586207
         ],
-        "P0": 89457691736825.03,
+        "P0": 282110641267561.3,
         "P1": 5.031799856375874e+19
       },
       "c2_raised": {
@@ -388,7 +402,7 @@
           0.0005341880341880342,
           0.0005341880341880342
         ],
-        "P0": 26429370931451.99,
+        "P0": 282110641267561.3,
         "P1": 5.306055972098726e+23
       }
     },
@@ -445,7 +459,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "e05c02ecc57a21cf6fad13fed8e9b5c956f2a182",
+  "git_commit": "55fb88f988580a36c027fc23a405d9830f841bbd",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -1732,5 +1746,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 27.63586115837097
+  "elapsed_seconds": 28.942545890808105
 }

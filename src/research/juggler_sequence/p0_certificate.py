@@ -174,13 +174,14 @@ def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
         # multiplied by the block length twice and needed k <= 7/(2 pi).
         # --- Lemma 5.2(ii) -> (i), Claims C and D: hypothesis admissibility ---
         # Claim D checks that every index of the Claim C sum is a legal shift for (i).
-        # h_3 <= t^(1/3) P^(1/12) <= 16^(1/3) P^(7/72) = 2.52 P^(7/72), which must sit under the
-        # (i) shift cap P^(1/8).  The gap is 1/36, so the constant 2.52 costs 2.52^36 = 2.82e14.
-        # An earlier draft checked this against a standing P_0 "of size 1e24" and passed it; at
-        # the present P_0 = 8.95e13 it FAILS (P^(1/36) = 2.441 against 2.52).  This row is why
-        # P_0 is 2.82e14 and not 8.95e13.
-        ("claimD-shift", "Claim D", "2.52 P^(7/72) <= P^(1/8): shift range of (i)",
-         lambda P: 2.52 * P ** (7 / 72) <= P ** (1 / 8)),
+        # h_3 <= t^(1/3) P^(1/12).  The gap 1/8 - 7/72 = 1/36 means the constant in front is paid
+        # at the 36th power, so which bound on t is carried decides the row: the individual
+        # |q_d| <= 4 P^(1/24) gives t <= 16 P^(1/24) and a threshold 16^12 = 2.8e14 (which an
+        # earlier draft carried, checking it against a standing P_0 "of size 1e24"), while the
+        # total-frequency bound |t| <= 3 P^(1/24) that Theorem 5.3 Step 4 actually supplies gives
+        # 3^(1/3) < 1.45 and a threshold 3^12 = 5.3e5.  Lemma 5.2(ii) now carries the latter.
+        ("claimD-shift", "Claim D", "1.45 P^(7/72) <= P^(1/8): shift range of (i)",
+         lambda P: 1.45 * P ** (7 / 72) <= P ** (1 / 8)),
         ("st3a-flatcost", "Thm 5.3 St.3(a)", "flat cost 23 P^(19/24) inside the P^(23/24) budget",
          lambda P: 23 * P ** (19 / 24) <= P ** (23 / 24)),
         ("t61-stepB-discard", "Thm 6.1 St.B", "(3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96)",

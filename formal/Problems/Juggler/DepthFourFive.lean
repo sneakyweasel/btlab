@@ -325,41 +325,42 @@ theorem row_t63_window_fails_at_quarter (t : ℝ) (ht0 : 0 ≤ t) (ht : t ≤ 1.
 /-! ### 5. Claim D's shift range: the row that fixes `P_0` -/
 
 /-- **Claim D of Lemma 5.2(ii) → (i).**  Every index of the Claim C sum must be a legal
-shift for part (i), i.e. `h_3 <= P^(1/8)`.  The available bound is
-`h_3 <= t^(1/3) P^(1/12) <= 16^(1/3) P^(7/72) = 2.52 P^(7/72)`, so the requirement is
-`2.52 P^(7/72) <= P^(1/8)`.  The exponent gap is `1/8 - 7/72 = 1/36`, so the constant is
-paid at the thirty-sixth power: the comparison first holds at `2.52^36 = 2.82e14`.
+shift for part (i), i.e. `h_3 <= P^(1/8)`, from `h_3 <= t^(1/3) P^(1/12)`.  The exponent
+gap is `1/8 - 7/72 = 1/36`, so whatever constant stands in front of `P^(7/72)` is paid at
+the thirty-sixth power, and which bound on `t` is carried decides the row entirely:
 
-In `P = t^72` the two exponents become `7` and `9`, and the requirement collapses to
-`2.52 <= t^2`, which holds from `t >= 1.5875` (`P >= 2.83e14`).
+* the individual `|q_d| <= 4 P^(1/24)` over the four elements of `D` gives
+  `|t| <= 16 P^(1/24)`, hence `16^(1/3) < 2.52` and a threshold `16^12 = 2.8e14` --- which
+  would be the binding row of the whole paper;
+* the total frequency bound `|t| <= 3 P^(1/24)`, which Theorem 5.3 Step 4 (the only place
+  (ii) is invoked) supplies because the wave modes arrive one per expansion layer from
+  three layers at truncation `J_2 = P^(1/24)`, gives `3^(1/3) < 1.45` and a threshold
+  `3^12 = 5.3e5`.
 
-This is the binding row of the whole certificate: `P_0 = 2.82e14`, not the Lemma 3.9
-balance at `8.95e13`.  An earlier draft compared `2.52^36` against a standing `P_0` "of
-size `1e24`" and passed it without comment. -/
-theorem claimD_shift_range (t : ℝ) (ht : 1.5875 ≤ t) : (2.52 : ℝ) * t ^ 7 ≤ t ^ 9 := by
-  have ht0 : (0 : ℝ) < t := by linarith
-  have h2 : (2.52 : ℝ) ≤ t ^ 2 := by
-    have h : (1.5875 : ℝ) ^ 2 ≤ t ^ 2 := by gcongr
-    have h' : (2.52 : ℝ) ≤ (1.5875 : ℝ) ^ 2 := by norm_num
+Lemma 5.2(ii) carries the second as a hypothesis.  In `P = t^72` the two exponents become
+`7` and `9`, so the requirement is `1.45 <= t^2`, holding from `t >= 1.205`
+(`P >= 6.8e5`). -/
+theorem claimD_shift_range (t : ℝ) (ht : 1.205 ≤ t) : (1.45 : ℝ) * t ^ 7 ≤ t ^ 9 := by
+  have h2 : (1.45 : ℝ) ≤ t ^ 2 := by
+    have h : (1.205 : ℝ) ^ 2 ≤ t ^ 2 := by gcongr
+    have h' : (1.45 : ℝ) ≤ (1.205 : ℝ) ^ 2 := by norm_num
     linarith
   have hpos : (0 : ℝ) ≤ t ^ 7 := by positivity
   have hsplit : t ^ 9 = t ^ 7 * t ^ 2 := by ring
   nlinarith [mul_le_mul_of_nonneg_left h2 hpos, hsplit]
 
-/-- The comparison does **not** hold at the superseded `P_0 = 8.95e13`, where
-`t = P_0^(1/72) <= 1.58` and `t^2 <= 2.4964 < 2.52`. -/
-theorem claimD_shift_fails_below (t : ℝ) (ht0 : 0 ≤ t) (ht : t ≤ 1.58) :
-    t ^ 9 < 2.52 * t ^ 7 ∨ t = 0 := by
-  rcases eq_or_lt_of_le ht0 with h | h
-  · exact Or.inr h.symm
-  · refine Or.inl ?_
-    have h2 : t ^ 2 ≤ 2.4964 := by
-      have hh : t ^ 2 ≤ (1.58 : ℝ) ^ 2 := by gcongr
-      have h' : (1.58 : ℝ) ^ 2 ≤ 2.4964 := by norm_num
-      linarith
-    have hpos : (0 : ℝ) < t ^ 7 := by positivity
-    have hsplit : t ^ 9 = t ^ 7 * t ^ 2 := by ring
-    nlinarith [mul_le_mul_of_nonneg_left h2 (le_of_lt hpos), hsplit]
+/-- The loose bound really would have cost a factor 3.15 in `P_0`: with `2.52` in front,
+the comparison fails at `P_0 = 8.95e13`, where `t = P_0^(1/72) <= 1.58` and
+`t^2 <= 2.4964 < 2.52`. -/
+theorem claimD_loose_bound_fails_at_P0 (t : ℝ) (ht0 : 0 < t) (ht : t ≤ 1.58) :
+    t ^ 9 < 2.52 * t ^ 7 := by
+  have h2 : t ^ 2 ≤ 2.4964 := by
+    have hh : t ^ 2 ≤ (1.58 : ℝ) ^ 2 := by gcongr
+    have h' : (1.58 : ℝ) ^ 2 ≤ 2.4964 := by norm_num
+    linarith
+  have hpos : (0 : ℝ) < t ^ 7 := by positivity
+  have hsplit : t ^ 9 = t ^ 7 * t ^ 2 := by ring
+  nlinarith [mul_le_mul_of_nonneg_left h2 (le_of_lt hpos), hsplit]
 
 /-- Step 3(a)'s flat cost is `23 P^(19/24)`, which sits inside the Step 6 budget
 `P^(23/24)` from `23^6 = 1.5e8`, but **not** inside `P^(7/8)`, which an earlier draft

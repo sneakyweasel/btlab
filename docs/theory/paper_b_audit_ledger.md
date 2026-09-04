@@ -703,7 +703,9 @@ it is still two and a half orders below \(P_0\).
 
 *What it buys.* Theorem 6.3 no longer carries a threshold of its own. Every
 threshold in the paper is \(P_0=8.9458\cdot10^{13}\), unchanged, still binding
-at Step 5b's \(W\le c_7S/2\). No exponent in any statement moves: \(1/96\),
+at Step 5b's \(W\le c_7S/2\). (**Superseded by the constants sweep below**,
+which found a larger row: \(P_0=2.82\cdot10^{14}\), binding at Claim D. The
+statement that Theorem 6.3 needs no threshold of its own still holds.) No exponent in any statement moves: \(1/96\),
 \(23/24\), \(43/48\) and \(7/8\) are all as printed.
 
 New: Appendix A.6; four probe rows (`st2-collision`, `st5b-qpp`,
@@ -721,3 +723,71 @@ whose gap is a small fraction needs its constant carried, because the crossing
 is the constant raised to the reciprocal of that gap. A gap of \(4/96\) turns
 a constant of \(10\) into \(10^{24}\). The probe now transcribes such lines
 with their constants rather than their exponents.
+
+
+## The constants sweep: P_0 was wrong by a factor 3.2
+
+The Theorem 6.3 defects were both of one shape --- a comparison of two powers,
+correct asymptotically, whose constant is not carried at the printed threshold.
+The general rule is that a gap \(g\) between two exponents turns a constant
+\(c\) into a threshold \(c^{1/g}\). This entry sweeps the manuscript for that
+shape systematically (`research.juggler_sequence.paper_b_constants_sweep`),
+in two forms: a decaying term against a fixed margin, and a cost claimed
+*inside* a larger power. Twenty-five distinct comparisons; two above \(P_0\),
+both real.
+
+*The binding one: Claim D's shift range, and \(P_0=2.82\cdot10^{14}\).*
+Claim D of Lemma 5.2(ii)\(\to\)(i) checks that every index of the Claim C sum
+is a legal shift for part (i), i.e. \(h_3\le P^{1/8}\). The available bound is
+\(h_3\le t^{1/3}P^{1/12}\le16^{1/3}P^{7/72}=2.52P^{7/72}\), so the requirement
+is
+\[
+2.52\,P^{7/72}\le P^{1/8},
+\qquad\text{gap}\ \tfrac18-\tfrac7{72}=\tfrac1{36},
+\qquad\text{threshold}\ 2.52^{36}=2.8211\cdot10^{14}.
+\]
+The manuscript stated the threshold correctly and then wrote that it "sits
+under the standing \(P_0\) of size \(10^{24}\)" --- a \(P_0\) from a much
+earlier draft. At the present \(P_0=8.9458\cdot10^{13}\) the comparison
+**fails**, and it fails narrowly: \(P_0^{1/36}=2.441\) against \(2.52\), a
+miss of \(3\%\). So \(P_0\) rises from \(8.9\cdot10^{13}\) to
+\(2.82\cdot10^{14}\), a factor \(3.15\), and the binding row is no longer the
+Lemma 3.9 balance but a hypothesis-admissibility check with a mild constant on
+a tiny gap.
+
+Three consequences, all now printed. The Lemma 3.9 balance
+\(W\le c_7S/2\) is second at \(8.9\cdot10^{13}\), so A.5's "\(P_0\) is carried
+entirely by \(W\le c_7S/2\)" is no longer true and is qualified. The
+\(\kappa\)-optimisation **saturates**: since Claim D's row does not involve
+\(\kappa\), lowering \(\kappa\) below \(\tfrac18\) no longer moves \(P_0\) at
+all (the A.2 table now shows both columns), and the operating point
+\(\kappa=\tfrac1{12}\) is justified by \(P_1\) alone. And the \(c_2\) lever of
+A.5 no longer improves \(P_0\) either --- only \(P_1\), which it worsens.
+
+The cheapest way to undo this would be to sharpen \(t\le16P^{1/24}\): a bound
+\(t\le cP^{1/24}\) moves \(P_0\) to \(c^{12}\), so \(c=8\) would give
+\(6.9\cdot10^{10}\) and hand the threshold back to the balance row. Not
+attempted here. Lean `claimD_shift_range`, `claimD_shift_fails_below`; probe
+row `claimD-shift`.
+
+*The second one: Step 3(a)'s flat cost.* The manuscript printed
+\(23P^{19/24}\le P^{7/8}\). The gap is \(\tfrac1{12}\), so that needs
+\(23^{12}=2.2\cdot10^{16}\) --- false at \(P_0\) by a factor \(245\). But
+\(P^{7/8}\) is not the operative budget: Step 6 assembles against
+\(P^{23/24}\), and \(23P^{19/24}\le P^{23/24}\) holds from
+\(23^{6}=1.5\cdot10^{8}\). Restated; no threshold impact. Lean
+`st3a_flat_cost`.
+
+*A third, cosmetic but worth removing.* Step 5b(a) printed its ratio as
+\(\le48.9P^{-3/16}\le49P^{-1/16}\). The weaker form is true and was meant as a
+"at least this small" remark, but a constant of \(49\) on a gap of
+\(\tfrac1{16}\) does not clear \(\tfrac14\) until \(10^{36}\): quoting it as
+the conclusion would be a fourth instance of exactly this error. Dropped, with
+the reason printed.
+
+*What the sweep did not find.* Everything else is clear of \(P_0\) with room:
+the next largest are \(96P^{-5/24}\) (Claim G, \(2.5\cdot10^{12}\)) and the
+Step 5b(a) \(q''\) ratio (\(1.7\cdot10^{12}\)). Shape A now flags nothing above
+\(P_0\); shape B flags only Claim D, which is \(P_0\) by definition. The sweep
+is a regression test (`test_paper_b_constants_sweep.py`), so a new comparison of
+this shape cannot enter the manuscript unnoticed.

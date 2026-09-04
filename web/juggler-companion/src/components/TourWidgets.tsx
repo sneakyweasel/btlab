@@ -469,8 +469,7 @@ export function ExpandingWidget() {
 export function EnvelopeWidget() {
   return (
     <MapWidget
-      initial={37n}
-      initialStep={5}
+      initial={3n}
       liveStarts={ENVELOPE_STARTS}
       monsterStarts={ENVELOPE_MONSTERS}
       useChipLabels
