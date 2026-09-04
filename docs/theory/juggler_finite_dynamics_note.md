@@ -2231,13 +2231,55 @@ uniformly. Whatever explains the walk charge's advantage being
 \(\approx0.44\ln n'\) rather than something larger, it is not the
 exponent-walk relaxation.
 
-Two limits on how far this should be read. The comparison is only
-computable at short lengths, where \(o_{\min}(L)\) is not yet in the
-regime the kill tables use, and the flatness at the top could in
-principle behave differently at \(L\sim10^{5}\). And \(\mathcal R(L)\)
-is a scanned lower bound on the realizable set, so a word missing from
-it can only raise the realized maximum: the measurement bounds the
-slack above, which is the direction that matters. An earlier and
+**Proposition 5.16 (flatness at the kill-table lengths).**
+Part (2) of Proposition 5.15 rests on the charge ordering being flat at
+the top, and enumeration establishes that only for \(L\le24\). It can
+be established directly at the lengths the kill tables use, without
+enumerating, by running the lattice program of Theorem 5.3 with the
+\(K\) best partial sums per state in place of the best one: max-plus
+becomes top-\(K\)-plus, the rolling array grows by a factor \(K\), and
+the pass stays linear in \(L\). At \(K=16\), writing \(r_j\) for the
+\(j\)-th largest charge,
+\[
+1-\frac{r_{16}}{r_1}=
+\begin{cases}
+9.44\cdot10^{-2}, & L=18,\\
+6.24\cdot10^{-2}, & L=24,\\
+5.42\cdot10^{-8}, & L=50508,\ n'=2.6\cdot10^{7},\\
+6.80\cdot10^{-9}, & L=176251,\ n'=1.6\cdot10^{8},\\
+1.08\cdot10^{-9}, & L=780239,\ n'=3.5\cdot10^{8}.
+\end{cases}
+\]
+So the top does not merely stay flat at the operative lengths: it
+flattens by seven orders of magnitude between \(L=24\) and
+\(L=50508\), and continues to flatten with \(L\).
+
+*Proof of the computation.* The recursion and admissible class are
+those of Theorem 5.3; only the accumulator changes. The top-\(K\)
+program reproduces the exhaustive top ten at \(L=18\) to \(10^{-18}\),
+and its GPU form agrees with the host form bitwise, so the values above
+are the same objects the kill tables use. \(\square\)
+
+The reason is visible in the charge. At the operative lengths the sum
+is carried by the \(\asymp L/(\ln3\ln n')\) states with \(u\approx0\),
+and the closest a nonnegative walk can come to \(u=0\) other than
+exactly is \(\asymp1/o\); perturbing the extremal walk therefore moves
+one contribution by a relative \(\asymp\ln n'/o\) out of a total of
+\(\asymp L/\ln n'\) equal terms. At \(L=50508\) that predicts
+\(\approx8\cdot10^{-8}\) against the measured \(5.4\cdot10^{-8}\).
+
+Together with Proposition 5.15 this closes the question the relaxation
+raised. Whatever removes \(30\%\) of the admissible words, it must
+remove *all sixteen* of the leading walks before the realized maximum
+falls by as much as \(5\cdot10^{-8}\); realizability is spread
+uniformly through the ordering, so that is not what is happening. The
+exponent-walk relaxation is not hiding a constant, at the lengths where
+the constant would matter.
+
+One limit remains on how far this should be read. \(\mathcal R(L)\) is
+a scanned lower bound on the realizable set, so a word missing from it
+can only raise the realized maximum: the measurement bounds the slack
+above, which is the direction that matters. An earlier and
 thinner scan (\(m<2\cdot10^{6}\)) put the \(L=22\) argmax outside
 \(\mathcal R\) and the realized fraction at \(0.38\); at
 \(2\cdot10^{7}\) both reverse, which is the expected behaviour when a

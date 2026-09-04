@@ -24059,3 +24059,65 @@ Best next question
 - does the flat top persist at L ~ 1e5?  the measurement is only
   computable to L=24, and the whole bound rests on that flatness
 ```
+
+
+### Paper A: Prop 5.16 -- flatness measured at the kill-table lengths
+
+Prop 5.15(2) rests on the charge ordering being flat at the top, and enumeration
+reaches only \(L=24\) while the kill tables run near \(10^5\). I flagged that as
+the bound's weak point last entry. It is measurable without enumerating: run the
+Theorem 5.3 lattice program carrying the \(K\) best partial sums per state instead
+of the best one. Max-plus becomes top-\(K\)-plus, the rolling array grows by \(K\),
+the pass stays linear in \(L\).
+
+Deficit \(1-r_{16}/r_1\) at \(K=16\):
+
+| \(L\) | 18 | 24 | 50508 | 176251 | 780239 |
+|---|---|---|---|---|---|
+| deficit | \(9.4\cdot10^{-2}\) | \(6.2\cdot10^{-2}\) | \(5.4\cdot10^{-8}\) | \(6.8\cdot10^{-9}\) | \(1.1\cdot10^{-9}\) |
+
+So the top does not merely stay flat at the operative lengths --- it flattens by
+**seven orders of magnitude** between \(L=24\) and \(L=50508\), and keeps
+flattening. Combined with Prop 5.15, closing the relaxation question at the scale
+where it matters: removing \(30\%\) of admissible words would have to remove *all
+sixteen* leading walks before the realized maximum falls by \(5\cdot10^{-8}\), and
+realizability is spread uniformly through the ordering.
+
+**Mechanism, and it checks.** The sum is carried by the \(\asymp L/(\ln3\ln n')\)
+states at \(u\approx0\); the closest a nonnegative walk comes to \(u=0\) otherwise
+is \(\asymp1/o\); so perturbing the extremal walk moves one contribution by a
+relative \(\asymp\ln n'/o\) out of \(\asymp L/\ln n'\) equal terms. At \(L=50508\)
+that predicts \(8\cdot10^{-8}\) against the measured \(5.4\cdot10^{-8}\).
+
+**Two self-corrections.** (i) My first print used `%.6f`, which rendered every
+operative-length ratio as "1.000000" and made a real result look like a saturation
+bug; the values are distinct to 10 significant figures and the deficit is the thing
+to print. (ii) I said the GPU matched the host "bit-for-bit". It does not --- host
+sums with numpy, device per thread, and CUDA's exp/log differ in the last place.
+The gap is \(10^{-19}\) absolute on values of size \(3\cdot10^{-4}\), a relative
+\(10^{-15}\), which is seven orders below the \(10^{-8}\) being measured; the test
+now asserts that rather than equality.
+
+New: `walk_kbest.py` (host), `walk_kbest_gpu.py` (CUDA kernel, one thread per
+lattice column, two-pointer merge), Prop 5.16, 8 tests. Validation chain:
+top-\(K\) reproduces exhaustive enumeration exactly at \(L=18\); GPU reproduces
+host to \(10^{-15}\) relative.
+
+```text
+What was learned
+- flatness improves with L by seven orders; the relaxation question is
+  closed at the operative scale, not merely at L <= 24
+- the mechanism (lattice approach to u=0 against the count of u~0 terms)
+  predicts the measured deficit to within 50%
+Strongest theorem
+- Prop 5.16: 1 - r_16/r_1 = 5.4e-8, 6.8e-9, 1.1e-9 at the three
+  kill-table lengths, by a program validated against enumeration
+Strongest refutation
+- none new; two self-corrections (display artifact, "bitwise" overclaim)
+Reusable machinery
+- walk_kbest_gpu: top-K on the lattice at any L, 76s at L=780239
+Branch status
+- ADVANCE (relaxation closed at scale; boundary layer stands alone)
+Best next question
+- Lean and the companion app, both untouched by this loop so far
+```
