@@ -28370,3 +28370,66 @@ Best next question
   "a different and easier problem" the paper does not treat; does the
   criterion say why, or does it just not apply?
 ```
+
+ ### The excluded starts are easier to enter and harder to finish
+
+Theorem 6.1 sets `E`-rooted words aside as "a different and easier
+problem", one square root having dropped the state to `√N`. The
+question was whether the criterion explains that or simply does not
+apply. It explains it, agrees at the depth the remark concerns, and
+then says something the remark does not.
+
+```text
+   depth   E-rooted blocked (of sqrt species)   O-rooted blocked (of sqrt)
+     4      0/8   (0)                            2/8   (0)
+     5      2/16  (2)                            4/16  (0)
+     6      4/32  (4)                           12/32  (2)
+     7     10/64 (10)                           24/64  (6)
+```
+
+At depth four — the depth the parenthetical is about — all eight
+`E`-rooted words are unblocked against two of eight `O`-rooted. The
+remark is right and now has a reason.
+
+**But every blocked `E`-rooted word is blocked on a square-root
+defect, at every depth.** Necessarily so: its first letter makes
+`θ_1 = {n^{1/2}}`. And that is the species for which this paper has no
+kernel at any level — the same thing that put `OOEOOEE` last in the
+depth-seven ranking. The first instance, `EOOOE` at letter five,
+carries `(27k/16) n^{19/16}` on `θ_1` with `E = 27/8`, so it fails the
+linearisation test too.
+
+So the frequency advantage is real and persists — roughly half as many
+blocked at each depth — while the *kind* of obstruction is uniformly
+worse. Easier to enter, harder to finish. That is a better reason to
+exclude the problem than the one given.
+
+```text
+What was learned
+- the criterion applies to the excluded half of the problem and
+  confirms the paper's remark exactly where the remark is made
+- and inverts it one depth later: E-rooted blockages are 100% of
+  square-root species at every depth, O-rooted ones are a minority
+- the same species that ranks OOEOOEE last is what the whole E-rooted
+  branch runs into immediately
+Strongest theorem
+- every blocked E-rooted word is blocked on a square-root defect, for
+  the structural reason that letter one makes theta_1 = {n^{1/2}}
+Strongest refutation
+- the reading that "easier" persists; it is easier only in how often,
+  never in what kind
+Reusable machinery
+- five tests over the E-rooted screen at depths four to seven
+Branch status
+- PROMOTE
+Why
+  The paper excludes half its own problem with one clause and no
+  reason beyond a scale remark. The criterion supplies the reason,
+  confirms the clause at the depth it is made, and shows the exclusion
+  is better justified than stated -- the excluded branch runs into the
+  square-root species immediately and has no theorem waiting for it.
+Best next question
+- square-root species now blocks OOEOOEE, the whole E-rooted branch,
+  and nothing the paper proves. Is there any word at any depth whose
+  deepest blocked defect is square-root and which the paper does prove?
+```

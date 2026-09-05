@@ -1154,3 +1154,55 @@ def test_paper_states_the_retrodiction() -> None:
     assert "not calibrated on depth seven" in text
     assert "for the drift reason and for no other" in text
     assert "sixteen words, three outcomes, no" in text
+
+
+# --- the starts the paper excludes ---
+
+
+def _blocked_stats(root: str, d: int):
+    from itertools import product
+    total = blocked = sqrt_kind = 0
+    for bits in product("EO", repeat=d - 1):
+        w = root + "".join(bits)
+        total += 1
+        hits = [B.deepest_blocked(w, t) for t in range(3, d + 1) if B.deepest_blocked(w, t)]
+        if hits:
+            blocked += 1
+            if any(h[3] == "sqrt" for h in hits):
+                sqrt_kind += 1
+    return total, blocked, sqrt_kind
+
+
+def test_every_E_rooted_word_is_unblocked_at_depth_four() -> None:
+    """Theorem 6.1 calls them easier; at the depth it means, the criterion agrees."""
+    assert _blocked_stats("E", 4) == (8, 0, 0)
+    assert _blocked_stats("O", 4)[:2] == (8, 2)
+
+
+@pytest.mark.parametrize("d,e_blocked,o_blocked", [(5, 2, 4), (6, 4, 12), (7, 10, 24)])
+def test_the_frequency_advantage_persists(d: int, e_blocked: int, o_blocked: int) -> None:
+    assert _blocked_stats("E", d)[1] == e_blocked, d
+    assert _blocked_stats("O", d)[1] == o_blocked, d
+
+
+@pytest.mark.parametrize("d", [5, 6, 7])
+def test_every_blocked_E_rooted_word_is_blocked_on_a_square_root(d: int) -> None:
+    """Its first letter makes theta_1 = {n^{1/2}}, the species with no kernel here."""
+    total, blocked, sqrt_kind = _blocked_stats("E", d)
+    assert blocked == sqrt_kind > 0, (d, blocked, sqrt_kind)
+    # and O-rooted words are not like that
+    assert _blocked_stats("O", d)[2] < _blocked_stats("O", d)[1]
+
+
+def test_the_first_blocked_E_rooted_word_also_fails_linearisation() -> None:
+    d5 = B.deepest_blocked("EOOOE", 5)
+    assert d5 == (1, Fraction(27, 16), Fraction(19, 16), "sqrt")
+    assert B.composed_map("EOOOE", 5, 1) == Fraction(27, 8)
+    assert not B.linearisation_safe("EOOOE", 5)
+
+
+def test_paper_states_the_E_rooted_reading() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "the starts this paper excludes" in text
+    assert "easier to enter and harder to finish" in text
+    assert r"\tfrac{27k}{16}n^{19/16}" in text

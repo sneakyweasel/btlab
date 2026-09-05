@@ -4714,6 +4714,31 @@ kernel should give. Two depths, sixteen words, three outcomes, no
 exceptions: that is the ground for reading the table above at depths
 where nothing is proved.
 
+*And it says something about the starts this paper excludes.* Theorem
+6.1 sets aside \(E\)-rooted words as "a different and easier problem",
+one square root having dropped the state to scale \(\sqrt N\). At depth
+four the criterion agrees without exception: all eight \(E\)-rooted
+words are unblocked, against two of the eight \(O\)-rooted ones. Deeper
+the advantage in frequency persists --- \(2\) of \(16\) blocked at
+depth five against \(4\), \(4\) of \(32\) against \(12\), \(10\) of
+\(64\) against \(24\) --- but its character changes completely:
+
+| depth | \(E\)-rooted blocked | of square-root species | \(O\)-rooted blocked | of square-root species |
+|---:|---:|---:|---:|---:|
+| \(4\) | \(0/8\) | \(0\) | \(2/8\) | \(0\) |
+| \(5\) | \(2/16\) | \(2\) | \(4/16\) | \(0\) |
+| \(6\) | \(4/32\) | \(4\) | \(12/32\) | \(2\) |
+| \(7\) | \(10/64\) | \(10\) | \(24/64\) | \(6\) |
+
+*Every* blocked \(E\)-rooted word is blocked on a square-root defect,
+at every depth --- necessarily, since its first letter makes
+\(\theta_1=\{n^{1/2}\}\) --- and that is the species for which this
+paper has no kernel at any level. The first of them, \(EOOOE\) at
+letter five, carries \(\tfrac{27k}{16}n^{19/16}\) on \(\theta_1\) with
+\(E=\tfrac{27}8\), so it fails the linearisation test as well. The
+excluded problem is easier to enter and harder to finish, which is a
+better reason to set it aside than the one the parenthetical gives.
+
 One more check, on the *form* of those monomials. Writing the kernel's
 coefficient as a power of \(n\) drops the floors kept exact beneath it,
 at a cost equal to its sensitivity to each, of exponent
