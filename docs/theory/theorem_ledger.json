@@ -6816,5 +6816,27 @@
   "related_conjectures": [
    "juggler_lachesis_basin_every_block"
   ]
+ },
+ {
+  "id": "J-clotho-threads-per-thread-contagion",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Call two starts cothread when their forward orbits eventually coincide; determinism makes this an equivalence and the divergent set is the union of the thread basins. Those basins are disjoint (a start in two would force the threads to coincide) and each is backward-closed and nonempty, so Theorem 4.2 of the fate-contagion note applies to a single thread, not merely to the divergent set: every divergent thread separately has basin log-count much greater than (log x)^0.448. Corollary 4.4 states this only for the union, so the per-thread form is strictly finer. It gives no bound on the number of threads: disjointness plus total log-count log x allows the sum of the constants to grow like (log x)^(1 - lambda), the constants are seed-dependent with no uniform floor (a thread of minimum n_i contributes only about (1/n_i) log log x from its E-forest, far below (log x)^lambda), and disjoint basins do not force disjoint burst intervals - two E-trees may interleave inside one interval with disjoint integer sets. One escaping thread and infinitely many are equally consistent with everything recorded. Not a halt theorem.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-free-term-is-fate-blind",
+  "tag": "OBSERVATION",
+  "statement": "The free term psi_F of the exact first-letter decomposition is the infinite-depth live mass of the OO cylinder (Tao note Prop. 11.1): it measures 'never descends' and nothing else. F is the disjoint union of the Lachesis and Clotho parts, so psi_F = psi_{F_L} + psi_{F_C} additively, but neither summand is distinguishable within psi_F - both consist of starts with tau = infinity, the only predicate the free term sees. That is why the Tao reduction settles termination without ever needing the trichotomy. The complement is J-fate-visibility-one-law: natural density on a dyadic block does separate the fates, through the seed set and the rotation. Two instruments with exactly opposite resolution; nothing here moves either, and the pressure form is untouched.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": []
  }
 ]

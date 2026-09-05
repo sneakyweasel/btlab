@@ -559,6 +559,40 @@ the floor and of the class's odd members.
   \((\log x)^{0.448}\), as it must be, but pinned to Paper A's
   \(\theta(L)\ln n\) rather than to an unnamed constant.
 
+**Threads: Theorem 4.2 applies to each one, and their number is
+unbounded.** Call two starts *cothread* when their forward orbits
+eventually coincide; determinism makes this an equivalence, and the
+divergent set is the union of the thread basins. Those basins are
+**disjoint** — a start in two of them would force the two threads to
+coincide — and each is backward-closed and nonempty, so **Theorem 4.2
+applies to a single thread**, not merely to the divergent set. Corollary
+4.4 states it only for the union, so this is strictly finer: *every*
+divergent thread, separately, has basin log-count \(\gg(\log
+x)^{0.448}\).
+
+It gives no bound on how many threads there are. Disjointness plus
+\(\sum_i\ell_{B_i}(x)\le\log x\) allows \(\sum_i c_i\le(\log
+x)^{1-\lambda}\to\infty\), and the constants \(c_i\) are seed-dependent
+with no uniform floor — the \(E\)-forest of a thread with minimum
+\(n_i\) contributes only \(\asymp(1/n_i)\log\log x\), far below
+\((\log x)^{\lambda}\). Nor do disjoint basins force disjoint burst
+*intervals*: two \(E\)-trees may interleave inside a common interval
+while their integer sets stay disjoint. So the machinery is silent on
+multiplicity, and a single escaping thread and infinitely many are
+equally consistent with everything recorded.
+
+**The free term is fate-blind; block density is not.** \(\psi_F\) is the
+infinite-depth live mass of the \(OO\) cylinder — it measures "never
+descends" and nothing else. Since \(F\) is the disjoint union of the
+Lachesis and Clotho parts, \(\psi_F=\psi_{F_L}+\psi_{F_C}\) additively,
+but neither summand is distinguishable *within* \(\psi_F\): both consist
+of starts with \(\tau=\infty\), which is the only predicate the free
+term sees. That is why the Tao reduction never needs the trichotomy —
+it settles termination without ever asking which fate. The one-law table
+above is the complement: natural density on a block *does* separate the
+fates, through the seed set and the rotation. Two instruments, and the
+resolution is exactly opposite. Nothing here moves either.
+
 **Termination itself.** Every statement of this branch is conditional
 on \(F\ne\emptyset\) and describes what \(F\) would look like: not
 lacunary above \(n^{2^{1+u_{\max}}}\) for a cycle, gated for an

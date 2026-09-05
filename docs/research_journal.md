@@ -26216,3 +26216,65 @@ Best next question
 - none I would open: "record gaps bounded" is a single-orbit statement,
   which is the species the laboratory has no method for
 ```
+
+## Threads, and why the free term cannot see a fate (two small findings; PARK stands)
+
+The last two named gaps on the escape side. Both are correct, both are
+sentences, and neither opens anything.
+
+**Per-thread contagion.** Call two starts *cothread* when their forward
+orbits eventually coincide. Determinism makes this an equivalence, and
+the divergent set is the union of the thread basins. Those basins are
+disjoint — a start lying in two would make the two threads coincide —
+and each is backward-closed and nonempty, so **Theorem 4.2 applies to a
+single thread**. Corollary 4.4 states it only for the union, so this is
+strictly finer: every divergent thread, separately, has basin log-count
+\(\gg(\log x)^{0.448}\).
+
+It bounds nothing. \(\sum_i\ell_{B_i}(x)\le\log x\) allows
+\(\sum_i c_i\le(\log x)^{1-\lambda}\to\infty\); the constants are
+seed-dependent with no uniform floor, since a thread of minimum \(n_i\)
+contributes only \(\asymp(1/n_i)\log\log x\) from its own \(E\)-forest;
+and disjoint basins do not force disjoint burst *intervals*, because
+two \(E\)-trees can interleave inside one interval with disjoint integer
+sets. **One escaping thread and infinitely many are equally consistent
+with everything on record.** That is worth knowing precisely because
+the phrase "a single escaping orbit" has been carrying an assumption
+nothing supports.
+
+**The free term is fate-blind.** \(\psi_F\) is the infinite-depth live
+mass of the \(OO\) cylinder: it measures \(\tau=\infty\) and nothing
+else. \(F\) splits disjointly into the Lachesis and Clotho parts, so
+\(\psi_F=\psi_{F_L}+\psi_{F_C}\) additively — but neither summand is
+distinguishable *inside* \(\psi_F\), because both are just "never
+descends". So the Tao reduction settles termination without ever
+needing the trichotomy, by construction rather than by luck.
+
+The complement is this branch's one-law table: natural density on a
+block *does* separate the fates, through the seed set and the rotation.
+Two instruments with exactly opposite resolution — the one that could
+settle termination cannot tell a cycle from an escape, and the one that
+can tell them apart cannot settle anything. That is a fair summary of
+why this branch bounds fate classes from below and never touches the
+pressure form.
+
+```text
+What was learned
+- Theorem 4.2 applies per thread, not just to the divergent set; Corollary
+  4.4 states only the union form
+- nothing bounds the number of divergent threads: the constants have no
+  uniform floor and disjoint basins may share burst intervals
+- psi_F cannot distinguish Lachesis from Clotho: it sees only tau = infinity,
+  which is why the Tao reduction never needs the trichotomy
+Strongest theorem
+- per-thread contagion (elementary, human proof)
+Strongest refutation
+- none; but "a single escaping orbit" is an assumption, not a consequence
+Reusable machinery
+- none new
+Branch status
+- PARK. The enumerated escape-side gaps are now all worked
+Best next question
+- none. The three gaps I listed are done: record density reduced the rate to
+  a bounded-gap hypothesis, threads are unbounded, the free term is blind
+```
