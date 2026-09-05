@@ -1,5 +1,7 @@
 import Problems.Juggler.NormalizedDefect
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -217,23 +219,23 @@ theorem four_block_pe_1999 :
       PersistentExpandingResidual 5169 50093 ∧
       PersistentExpandingResidual 50093 193753 ∧
       PersistentExpandingResidual 193753 887471 := by
-  have w1999 : itinerary 1999 3 = [.odd, .odd, .even] := by native_decide
+  have w1999 : itinerary 1999 3 = [.odd, .odd, .even] := by decide +kernel
   have w5169 : itinerary 5169 6 = [.odd, .odd, .odd, .odd, .even, .even] := by
-    native_decide
-  have w50093 : itinerary 50093 3 = [.odd, .odd, .even] := by native_decide
-  have w193753 : itinerary 193753 3 = [.odd, .odd, .even] := by native_decide
-  have i1999 : floorPower^[3] 1999 = 5169 := by native_decide
-  have i5169 : floorPower^[6] 5169 = 50093 := by native_decide
-  have i50093 : floorPower^[3] 50093 = 193753 := by native_decide
-  have i193753 : floorPower^[3] 193753 = 887471 := by native_decide
-  have h5169 : (5169 : ℕ) % 2 = 1 := by native_decide
-  have ht5169 : floorPower 5169 % 2 = 1 := by native_decide
-  have h50093 : (50093 : ℕ) % 2 = 1 := by native_decide
-  have ht50093 : floorPower 50093 % 2 = 1 := by native_decide
-  have h193753 : (193753 : ℕ) % 2 = 1 := by native_decide
-  have ht193753 : floorPower 193753 % 2 = 1 := by native_decide
-  have h887471 : (887471 : ℕ) % 2 = 1 := by native_decide
-  have ht887471 : floorPower 887471 % 2 = 1 := by native_decide
+    decide +kernel
+  have w50093 : itinerary 50093 3 = [.odd, .odd, .even] := by decide +kernel
+  have w193753 : itinerary 193753 3 = [.odd, .odd, .even] := by decide +kernel
+  have i1999 : floorPower^[3] 1999 = 5169 := by decide +kernel
+  have i5169 : floorPower^[6] 5169 = 50093 := by decide +kernel
+  have i50093 : floorPower^[3] 50093 = 193753 := by decide +kernel
+  have i193753 : floorPower^[3] 193753 = 887471 := by decide +kernel
+  have h5169 : (5169 : ℕ) % 2 = 1 := by decide +kernel
+  have ht5169 : floorPower 5169 % 2 = 1 := by decide +kernel
+  have h50093 : (50093 : ℕ) % 2 = 1 := by decide +kernel
+  have ht50093 : floorPower 50093 % 2 = 1 := by decide +kernel
+  have h193753 : (193753 : ℕ) % 2 = 1 := by decide +kernel
+  have ht193753 : floorPower 193753 % 2 = 1 := by decide +kernel
+  have h887471 : (887471 : ℕ) % 2 = 1 := by decide +kernel
+  have ht887471 : floorPower 887471 % 2 = 1 := by decide +kernel
   exact ⟨
     pe_ooe_of w1999 i1999 (by decide) h5169 ht5169,
     pe_ooooee_of w5169 i5169 (by decide) h50093 ht50093,

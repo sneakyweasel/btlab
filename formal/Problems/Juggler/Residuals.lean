@@ -3,6 +3,8 @@ import Problems.Juggler.MinimumRelative
 import Problems.Juggler.Minimal
 import Problems.Juggler.Scale
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -695,16 +697,16 @@ theorem image_oddEvenBlock_two_one {n y : ℕ}
 theorem two_block_ooe_365 :
     PersistentExpandingResidual 365 763 ∧
       PersistentExpandingResidual 763 1749 := by
-  have w365 : itinerary 365 3 = [.odd, .odd, .even] := by native_decide
-  have w763 : itinerary 763 3 = [.odd, .odd, .even] := by native_decide
-  have i365 : floorPower^[3] 365 = 763 := by native_decide
-  have i763 : floorPower^[3] 763 = 1749 := by native_decide
+  have w365 : itinerary 365 3 = [.odd, .odd, .even] := by decide +kernel
+  have w763 : itinerary 763 3 = [.odd, .odd, .even] := by decide +kernel
+  have i365 : floorPower^[3] 365 = 763 := by decide +kernel
+  have i763 : floorPower^[3] 763 = 1749 := by decide +kernel
   have h365 := follows_oddEvenBlock_two_one w365
   have h763 := follows_oddEvenBlock_two_one w763
-  have hy : (763 : ℕ) % 2 = 1 := by native_decide
-  have ht : floorPower 763 % 2 = 1 := by native_decide
-  have hz : (1749 : ℕ) % 2 = 1 := by native_decide
-  have htz : floorPower 1749 % 2 = 1 := by native_decide
+  have hy : (763 : ℕ) % 2 = 1 := by decide +kernel
+  have ht : floorPower 763 % 2 = 1 := by decide +kernel
+  have hz : (1749 : ℕ) % 2 = 1 := by decide +kernel
+  have htz : floorPower 1749 % 2 = 1 := by decide +kernel
   exact ⟨
     persistent_expanding_of (by decide) h365
       (image_oddEvenBlock_two_one i365) (by decide) hy ht ooe_is_expanding,

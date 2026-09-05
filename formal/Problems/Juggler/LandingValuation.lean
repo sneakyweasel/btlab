@@ -3,6 +3,8 @@ import Mathlib.NumberTheory.Padics.PadicVal.Basic
 import Problems.Juggler.SequentialMordell
 import Problems.Juggler.Residuals
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -167,13 +169,13 @@ theorem landing_valuation_classification {y : ℕ}
 /-- `y ≡ 1 (mod 16)` does not force `v₂ ≥ 4`. -/
 theorem landing_valuation_33 :
     oddOddLanding 33 ∧ (33 : ℕ) % 16 = 1 ∧ landingValuation 33 = 3 := by
-  native_decide
+  decide +kernel
 
 /-- A PE endpoint can have valuation 1. History does not force `v₂ ≥ 2`. -/
 theorem pe_endpoint_763_valuation :
     PersistentExpandingResidual 365 763 ∧ landingValuation 763 = 1 := by
   refine ⟨two_block_ooe_365.1, ?_⟩
-  have h : oddOddLanding 763 := by native_decide
+  have h : oddOddLanding 763 := by decide +kernel
   have h8 : (763 : ℕ) % 8 = 3 := by decide
   exact landing_valuation_three_or_seven h (Or.inl h8)
 

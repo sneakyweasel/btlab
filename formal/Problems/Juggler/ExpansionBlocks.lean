@@ -1,5 +1,7 @@
 import Problems.Juggler.NormalizedDefect
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -92,11 +94,11 @@ theorem expansion_run_365_len_three :
     PersistentExpandingResidual 365 763 ∧
       PersistentExpandingResidual 763 1749 ∧
         PersistentExpandingResidual 1749 4447 := by
-  have w1749 : itinerary 1749 3 = [.odd, .odd, .even] := by native_decide
-  have i1749 : floorPower^[3] 1749 = 4447 := by native_decide
+  have w1749 : itinerary 1749 3 = [.odd, .odd, .even] := by decide +kernel
+  have i1749 : floorPower^[3] 1749 = 4447 := by decide +kernel
   have h1749 := follows_oddEvenBlock_two_one w1749
-  have hz : (4447 : ℕ) % 2 = 1 := by native_decide
-  have htz : floorPower 4447 % 2 = 1 := by native_decide
+  have hz : (4447 : ℕ) % 2 = 1 := by decide +kernel
+  have htz : floorPower 4447 % 2 = 1 := by decide +kernel
   exact ⟨two_block_ooe_365.1, two_block_ooe_365.2,
     persistent_expanding_of (by decide) h1749
       (image_oddEvenBlock_two_one i1749) (by decide) hz htz ooe_is_expanding⟩

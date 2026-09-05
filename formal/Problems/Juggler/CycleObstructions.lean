@@ -1,6 +1,8 @@
 import Problems.Juggler.CycleCore
 import Problems.Juggler.FirstInternalOO
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -38,7 +40,7 @@ theorem no_cycleMin_ooeooe {n : ℕ} (hn : 2 ≤ n)
           follows_of_append_left (by simpa [itineraryOOEOOE] using h.1.1)
         have he : image 3 [.odd, .odd] % 2 = 0 :=
           (follows_of_append_right (u := [.odd, .odd]) hOOE).1
-        have himg : image 3 [.odd, .odd] = 11 := by native_decide
+        have himg : image 3 [.odd, .odd] = 11 := by decide +kernel
         rw [himg] at he
         exact absurd he (by decide : ¬(11 : ℕ) % 2 = 0)
     | inr hge => exact hge
@@ -108,7 +110,7 @@ theorem no_cycleMin_ooeoooe {n : ℕ} (hn : 2 ≤ n)
   simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
 
 theorem no_followsB_3_oooeooe : followsB 3 itineraryOOOEOOE = false := by
-  native_decide
+  decide +kernel
 
 theorem no_follows_3_oooeooe : ¬follows 3 itineraryOOOEOOE := by
   intro hf

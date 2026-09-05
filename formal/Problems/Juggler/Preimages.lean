@@ -1,5 +1,7 @@
 import Problems.Juggler.Defect
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -298,31 +300,31 @@ theorem length_itineraryOOE : itineraryOOE.length = 3 := by simp [itineraryOOE]
 theorem length_itineraryOEO : itineraryOEO.length = 3 := by simp [itineraryOEO]
 
 theorem follows_eoo_two : follows 2 itineraryEOO := by
-  rw [follows_itineraryEOO_iff]; native_decide
+  rw [follows_itineraryEOO_iff]; decide +kernel
 
 theorem follows_eoo_twelve : follows 12 itineraryEOO := by
-  rw [follows_itineraryEOO_iff]; native_decide
+  rw [follows_itineraryEOO_iff]; decide +kernel
 
 theorem follows_eoo_fourteen : follows 14 itineraryEOO := by
-  rw [follows_itineraryEOO_iff]; native_decide
+  rw [follows_itineraryEOO_iff]; decide +kernel
 
 theorem floorPower_eoo_two_contracts : floorPower^[3] 2 < 2 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eoo_twelve_contracts : floorPower^[3] 12 < 12 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eoo_fourteen_contracts : floorPower^[3] 14 < 14 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eoo_two_eq : floorPower^[3] 2 = 1 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eoo_twelve_eq : floorPower^[3] 12 = 11 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eoo_fourteen_eq : floorPower^[3] 14 = 11 := by
-  native_decide
+  decide +kernel
 
 theorem n_lt_formal_gap_three_two {n : ℕ} (hn : 2 ≤ n) :
     n < n ^ 9 - n ^ 8 := by
@@ -332,7 +334,7 @@ theorem n_lt_formal_gap_three_two {n : ℕ} (hn : 2 ≤ n) :
   cases eq_or_lt_of_le hn with
   | inl h2 =>
       subst h2
-      native_decide
+      decide +kernel
   | inr hlt =>
       have hn3 : 3 ≤ n := Nat.succ_le_of_lt hlt
       have hself : n ≤ n ^ 8 := Nat.le_self_pow (by decide : 8 ≠ 0) n
@@ -357,7 +359,7 @@ theorem eoo_first_defect_lt_formal_gap {n : ℕ} (hn : 2 ≤ n)
 theorem floorPower_eoo_two_deficit_gt_gap :
     2 ^ (3 ^ 2) - 2 ^ (2 ^ 3) <
       powerDeficit (floorPower^[3] 2) 2 3 2 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eoo_of_follows {n : ℕ} (hw : follows n itineraryEOO) :
     floorPower^[3] n = (((n.sqrt ^ 3).sqrt ^ 3).sqrt) := by
@@ -388,7 +390,7 @@ theorem eoo_n_ge_two {n : ℕ} (hw : follows n itineraryEOO) : 2 ≤ n := by
 
 theorem eoo_sqrt_cube_pow_of_small {q : ℕ} (hlo : 5 ≤ q) (hhi : q ≤ 24) :
     ((q ^ 3).sqrt) ^ 3 ≥ (q + 1) ^ 4 := by
-  interval_cases q <;> first | omega | native_decide
+  interval_cases q <;> first | omega | decide +kernel
 
 theorem succ_pow_eight_le_five_mul {s : ℕ} (hs : 5 ≤ s) :
     (s + 1) ^ 8 ≤ 5 * s ^ 8 := by
@@ -397,7 +399,7 @@ theorem succ_pow_eight_le_five_mul {s : ℕ} (hs : 5 ≤ s) :
     Nat.pow_le_pow_left h56 8
   have hmul : 5 ^ 8 * (s + 1) ^ 8 ≤ 6 ^ 8 * s ^ 8 := by
     simpa [mul_pow] using hpow
-  have h69 : (6 : ℕ) ^ 8 ≤ 5 ^ 9 := by native_decide
+  have h69 : (6 : ℕ) ^ 8 ≤ 5 ^ 9 := by decide +kernel
   have hR : 6 ^ 8 * s ^ 8 ≤ 5 ^ 9 * s ^ 8 :=
     Nat.mul_le_mul_right (s ^ 8) h69
   have hchain : 5 ^ 8 * (s + 1) ^ 8 ≤ 5 ^ 9 * s ^ 8 := le_trans hmul hR
@@ -526,7 +528,7 @@ theorem eoo_of_sqrt_three {n : ℕ} (hw : follows n itineraryEOO)
 theorem floorPower_eoo_image_of_sqrt_three {n : ℕ} (hw : follows n itineraryEOO)
     (h3 : n.sqrt = 3) : floorPower^[3] n = 11 := by
   have himg := floorPower_eoo_of_follows hw
-  have : ((((3 : ℕ) ^ 3).sqrt) ^ 3).sqrt = 11 := by native_decide
+  have : ((((3 : ℕ) ^ 3).sqrt) ^ 3).sqrt = 11 := by decide +kernel
   simpa [himg, h3] using this
 
 /-- `EOO` contracts if and only if `n ∈ {2, 12, 14}`. Not a halt theorem. -/
@@ -600,10 +602,10 @@ theorem eoo_contracts_on_preimage {n : ℕ} (hw : follows n itineraryEOO) :
   simp [eoo_output_eq_preimage hw]
 
 theorem eoo_preimage_output_one : eooPreimageOutput 1 = 1 := by
-  native_decide
+  decide +kernel
 
 theorem eoo_preimage_output_three : eooPreimageOutput 3 = 11 := by
-  native_decide
+  decide +kernel
 
 theorem eoo_preimage_output_ge_succ_sq {q : ℕ} (hq : 5 ≤ q) :
     (q + 1) ^ 2 ≤ eooPreimageOutput q := by
@@ -823,7 +825,7 @@ theorem follows_oo_of_ooo {q : ℕ}
   ⟨hw.1, hw.2.1, trivial⟩
 
 theorem ooo_three : floorPower^[3] 3 = 36 := by
-  native_decide
+  decide +kernel
 
 /-- For the suffix `OOO`, every `q ≥ 3` that realizes the itinerary sits at or
 above the next square. So `Q_{OOO}` is finite. -/
@@ -1148,7 +1150,7 @@ theorem oo_lower_growth_eventual :
     ∃ Q0, ∀ q, Q0 ≤ q → follows q [.odd, .odd] →
       (q + 1) ^ 2 ≤ image q [.odd, .odd] :=
   eventually_no_first_even_contraction
-    (by native_decide : 2 ^ (([.odd, .odd] : List Branch).length + 1) <
+    (by decide +kernel : 2 ^ (([.odd, .odd] : List Branch).length + 1) <
       3 ^ oddCount [.odd, .odd])
 
 end Problems.Juggler

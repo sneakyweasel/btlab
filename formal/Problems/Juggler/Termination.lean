@@ -1,6 +1,8 @@
 import Mathlib.Tactic
 import Problems.Juggler.Iteration
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -26,7 +28,7 @@ theorem reachesOne_of_iterate {n m k : ℕ}
 /-- Packet seed `13` reaches `1` in four steps. Not a map theorem. -/
 theorem floorPower_thirteen_reaches_one :
     (floorPower^[4] 13) = 1 := by
-  native_decide
+  decide +kernel
 
 theorem two_reachesOne : ReachesOne 2 :=
   ⟨1, by
@@ -49,24 +51,24 @@ theorem eight_reachesOne : ReachesOne 8 :=
     exact floorPower_eight) two_reachesOne
 
 theorem three_reachesOne : ReachesOne 3 :=
-  ⟨6, by native_decide⟩
+  ⟨6, by decide +kernel⟩
 
 theorem five_reachesOne : ReachesOne 5 :=
-  ⟨5, by native_decide⟩
+  ⟨5, by decide +kernel⟩
 
 theorem seven_reachesOne : ReachesOne 7 :=
-  ⟨4, by native_decide⟩
+  ⟨4, by decide +kernel⟩
 
 theorem nine_reachesOne : ReachesOne 9 :=
-  ⟨7, by native_decide⟩
+  ⟨7, by decide +kernel⟩
 
 theorem ten_reachesOne : ReachesOne 10 :=
   reachesOne_of_iterate (k := 1) (by
     change floorPower 10 = 3
-    native_decide) three_reachesOne
+    decide +kernel) three_reachesOne
 
 theorem eleven_reachesOne : ReachesOne 11 :=
-  ⟨4, by native_decide⟩
+  ⟨4, by decide +kernel⟩
 
 /-- Every positive residual strictly below `12` is `ReachesOne`.
 This is a finite certificate, not a halt theorem. -/
@@ -110,61 +112,61 @@ theorem thirteen_reachesOne : ReachesOne 13 :=
   ⟨4, floorPower_thirteen_reaches_one⟩
 
 theorem fifteen_reachesOne : ReachesOne 15 :=
-  ⟨6, by native_decide⟩
+  ⟨6, by decide +kernel⟩
 
 theorem seventeen_reachesOne : ReachesOne 17 :=
-  ⟨4, by native_decide⟩
+  ⟨4, by decide +kernel⟩
 
 theorem nineteen_reachesOne : ReachesOne 19 :=
-  ⟨9, by native_decide⟩
+  ⟨9, by decide +kernel⟩
 
 theorem twentyone_reachesOne : ReachesOne 21 :=
-  ⟨9, by native_decide⟩
+  ⟨9, by decide +kernel⟩
 
 theorem twentythree_reachesOne : ReachesOne 23 :=
-  ⟨9, by native_decide⟩
+  ⟨9, by decide +kernel⟩
 
 theorem twentyfive_reachesOne : ReachesOne 25 :=
-  ⟨11, by native_decide⟩
+  ⟨11, by decide +kernel⟩
 
 theorem twentyseven_reachesOne : ReachesOne 27 :=
-  ⟨6, by native_decide⟩
+  ⟨6, by decide +kernel⟩
 
 theorem twentynine_reachesOne : ReachesOne 29 :=
-  ⟨9, by native_decide⟩
+  ⟨9, by decide +kernel⟩
 
 theorem thirtyone_reachesOne : ReachesOne 31 :=
-  ⟨6, by native_decide⟩
+  ⟨6, by decide +kernel⟩
 
 theorem thirtythree_reachesOne : ReachesOne 33 :=
-  ⟨8, by native_decide⟩
+  ⟨8, by decide +kernel⟩
 
 theorem thirtyfive_reachesOne : ReachesOne 35 :=
-  ⟨8, by native_decide⟩
+  ⟨8, by decide +kernel⟩
 
 theorem thirtyseven_reachesOne : ReachesOne 37 :=
-  ⟨17, by native_decide⟩
+  ⟨17, by decide +kernel⟩
 
 theorem thirtynine_reachesOne : ReachesOne 39 :=
-  ⟨14, by native_decide⟩
+  ⟨14, by decide +kernel⟩
 
 theorem fortyone_reachesOne : ReachesOne 41 :=
-  ⟨5, by native_decide⟩
+  ⟨5, by decide +kernel⟩
 
 theorem fortythree_reachesOne : ReachesOne 43 :=
-  ⟨6, by native_decide⟩
+  ⟨6, by decide +kernel⟩
 
 theorem fortyfive_reachesOne : ReachesOne 45 :=
-  ⟨6, by native_decide⟩
+  ⟨6, by decide +kernel⟩
 
 theorem fortyseven_reachesOne : ReachesOne 47 :=
-  ⟨6, by native_decide⟩
+  ⟨6, by decide +kernel⟩
 
 theorem fortynine_reachesOne : ReachesOne 49 :=
-  ⟨11, by native_decide⟩
+  ⟨11, by decide +kernel⟩
 
 theorem fiftyone_reachesOne : ReachesOne 51 :=
-  ⟨11, by native_decide⟩
+  ⟨11, by decide +kernel⟩
 
 /-- Every positive residual strictly below `53` is `ReachesOne`.
 This is a finite certificate, not a halt theorem. Combined with

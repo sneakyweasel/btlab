@@ -644,7 +644,7 @@ theorem succ_pow_slack139_of_ge_30 {n A : ℕ} (hn : 30 ≤ n)
 
 theorem fudge_words_ready :
     fudgeWords.all fudgeReady = true := by
-  native_decide
+  decide +kernel
 
 theorem of_fudge_ready {w : List Branch} (hw : w ∈ fudgeWords) :
     fudgeReady w = true :=
@@ -948,19 +948,19 @@ theorem no_cycleMin_ooeooeoooee {n : ℕ} :
   no_cycleMin_of_fourEven (by decide)
 
 theorem unique_ooooooeoeee :
-    onlySelfCycleMinShape (fourEvenWord 6 1 0 0) = true := by native_decide
+    onlySelfCycleMinShape (fourEvenWord 6 1 0 0) = true := by decide +kernel
 theorem unique_ooooooeeeoe :
-    onlySelfCycleMinShape (fourEvenWord 6 0 0 1) = true := by native_decide
+    onlySelfCycleMinShape (fourEvenWord 6 0 0 1) = true := by decide +kernel
 theorem unique_oooooeoeeoe :
-    onlySelfCycleMinShape (fourEvenWord 5 1 0 1) = true := by native_decide
+    onlySelfCycleMinShape (fourEvenWord 5 1 0 1) = true := by decide +kernel
 theorem unique_ooooooeeoee :
-    onlySelfCycleMinShape (fourEvenWord 6 0 1 0) = true := by native_decide
+    onlySelfCycleMinShape (fourEvenWord 6 0 1 0) = true := by decide +kernel
 theorem unique_oooooeoeoee :
-    onlySelfCycleMinShape (fourEvenWord 5 1 1 0) = true := by native_decide
+    onlySelfCycleMinShape (fourEvenWord 5 1 1 0) = true := by decide +kernel
 theorem unique_oooooeeoeoe :
-    onlySelfCycleMinShape (fourEvenWord 5 0 1 1) = true := by native_decide
+    onlySelfCycleMinShape (fourEvenWord 5 0 1 1) = true := by decide +kernel
 theorem unique_ooooeoeoeoe :
-    onlySelfCycleMinShape (fourEvenWord 4 1 1 1) = true := by native_decide
+    onlySelfCycleMinShape (fourEvenWord 4 1 1 1) = true := by decide +kernel
 
 theorem no_cycle_itinerary_ooooooeoeee {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 6 1 0 0) :=

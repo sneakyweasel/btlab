@@ -477,7 +477,7 @@ theorem four_mul_two_pow_succ (a : ℕ) : 4 * 2 ^ (a + 1) = 2 ^ (a + 3) := by
   omega
 
 theorem denomBits_six : denomBits 6 = 1330 := by
-  native_decide
+  decide +kernel
 
 theorem three_pow_six : (3 : ℕ) ^ 6 = 729 := by
   decide
@@ -636,7 +636,7 @@ theorem denomBits_one : denomBits 1 = 2 := by
   decide
 
 theorem denomBits_five : denomBits 5 = 422 := by
-  native_decide
+  decide +kernel
 
 theorem three_pow_five : (3 : ℕ) ^ 5 = 243 := by
   decide
@@ -2796,7 +2796,7 @@ theorem gapped_eoe_rotate_succ_a {a b : ℕ} :
 
 theorem no_followsB_3_four_odds :
     followsB 3 (List.replicate 4 Branch.odd) = false := by
-  native_decide
+  decide +kernel
 
 theorem no_follows_three_four_odds :
     ¬follows 3 (List.replicate 4 Branch.odd) := by
@@ -2819,7 +2819,7 @@ theorem no_follows_three_long_odds {b : ℕ} (hb : 4 ≤ b) :
 
 theorem no_followsB_3_eoe_boot3 :
     followsB 3 (gappedEOEBootstrap 2 3) = false := by
-  native_decide
+  decide +kernel
 
 theorem no_follows_three_eoe_bootstrap {b : ℕ} (hb : 3 ≤ b) :
     ¬follows 3 (gappedEOEBootstrap 2 b) := by

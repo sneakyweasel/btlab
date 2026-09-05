@@ -1,5 +1,7 @@
 import Problems.Juggler.Preimages
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -90,7 +92,7 @@ theorem three_k_superquadratic {k : ℕ} (hk : 2 ≤ k) :
   have hk' : k = k - 2 + 2 := (Nat.sub_add_cancel hk).symm
   rw [hk']
   induction k - 2 with
-  | zero => native_decide
+  | zero => decide +kernel
   | succ m ih =>
       have hL : 2 ^ (4 * (m + 1 + 2) + 1) = 16 * 2 ^ (4 * (m + 2) + 1) := by
         have : 4 * (m + 1 + 2) + 1 = 4 + (4 * (m + 2) + 1) := by ring
@@ -252,7 +254,7 @@ theorem odd_even_tower_seven :
 
 theorem odd_even_tower_seven_superquadratic :
     2 ^ (itineraryOEEE9.length + 1) < 3 ^ oddCount itineraryOEEE9 := by
-  native_decide
+  decide +kernel
 
 /-!
 ## Internal even runs
@@ -284,13 +286,13 @@ def itineraryEE_OEEE12 : List Branch :=
   [.even, .even] ++ itineraryOEEE9 ++ [.odd, .odd, .odd]
 
 theorem floorPower_fifty : floorPower 50 = 7 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_2500 : floorPower 2500 = 50 := by
-  native_decide
+  decide +kernel
 
 theorem maxEvenRun_itineraryEE_OEEE12 : maxEvenRun itineraryEE_OEEE12 = 3 := by
-  native_decide
+  decide +kernel
 
 theorem nested_even_collapse_2500 :
     follows 2500 itineraryEE_OEEE12 ∧ image 2500 itineraryEE_OEEE12 = 1 ∧
@@ -307,6 +309,6 @@ theorem nested_even_collapse_2500 :
 
 theorem nested_even_collapse_2500_superquadratic :
     2 ^ (itineraryEE_OEEE12.length + 1) < 3 ^ oddCount itineraryEE_OEEE12 := by
-  native_decide
+  decide +kernel
 
 end Problems.Juggler

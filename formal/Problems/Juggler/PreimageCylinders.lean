@@ -1,5 +1,7 @@
 import Problems.Juggler.Residuals
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -87,12 +89,12 @@ theorem ooe_cylinder_both_next_parities :
       nextLanding 9585 % 2 = 0 ∧
     itineraryCylinder 3803 (oddEvenBlock 2 1) 10657 ∧
       nextLanding 10657 % 2 = 1 := by
-  have w3461 : itinerary 3461 3 = [.odd, .odd, .even] := by native_decide
-  have w3803 : itinerary 3803 3 = [.odd, .odd, .even] := by native_decide
-  have i3461 : floorPower^[3] 3461 = 9585 := by native_decide
-  have i3803 : floorPower^[3] 3803 = 10657 := by native_decide
-  have h9585 : nextLanding 9585 % 2 = 0 := by native_decide
-  have h10657 : nextLanding 10657 % 2 = 1 := by native_decide
+  have w3461 : itinerary 3461 3 = [.odd, .odd, .even] := by decide +kernel
+  have w3803 : itinerary 3803 3 = [.odd, .odd, .even] := by decide +kernel
+  have i3461 : floorPower^[3] 3461 = 9585 := by decide +kernel
+  have i3803 : floorPower^[3] 3803 = 10657 := by decide +kernel
+  have h9585 : nextLanding 9585 % 2 = 0 := by decide +kernel
+  have h10657 : nextLanding 10657 % 2 = 1 := by decide +kernel
   exact ⟨
     ⟨follows_oddEvenBlock_two_one w3461, image_oddEvenBlock_two_one i3461⟩,
     h9585,

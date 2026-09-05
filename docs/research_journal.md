@@ -26695,3 +26695,71 @@ Best next question
 - do the remaining 307 divide further? The itinerary tables over small
   finite ranges might take plain decide, which is also kernel-checked
 ```
+
+## The Juggler layer keeps two proofs on the compiled runtime, down from 327
+
+Asked to go as far as this would go. It goes almost all the way.
+
+**Plain `decide` is not the tool; `decide +kernel` is.** The elaborator's
+`decide` fails on `floorPower 50 = 7` — not slowly, but *stuck*:
+reduction "got stuck at the `Decidable` instance", because the
+elaborator's whnf will not unfold `Nat.sqrt`. The kernel will.
+`decide +kernel` proves the same goal in about two seconds over the
+import baseline, and it proves the class that matters:
+`floorPower^[73] 193 = 1`, the deepest certificate in the floor-257
+file, in about the same. That class — `ReachesOne n` with the witness
+supplied, so the goal is a closed orbit computation — is 104 sites in
+`TerminationFloor257.lean` and 26 more in `Termination.lean`.
+
+So all 307 remaining sites were converted and the barrel built. Two
+failed, both with `(kernel) deterministic timeout`, and both of the same
+shape: `window_digit_scan` scans `[50508, 301994)` and
+`greedy_eq_ostro_below_window` scans `[0, 301994)`, each running a
+thirteen-denominator greedy decomposition per length. A quarter of a
+million iterations of list arithmetic is past what kernel reduction
+will do, and those two are reverted.
+
+**Final state: 305 `decide +kernel`, 20 `norm_num`, 2 `native_decide`.**
+Before this pass and the two preceding it, 327.
+
+**Verified, not assumed.** `#print axioms` is the check that matters,
+and it is unambiguous:
+
+- `reachesOne_n193` → `[propext]`
+- `FanLaw.fan_step_pow` → `[propext, Classical.choice, Quot.sound]`
+- `window_digit_scan` → `[propext, window_digit_scan._native.native_decide.ax_1_1]`
+
+The converted proofs carry no compiler-trust assumption. Each holdout
+carries a named auto-generated one, visible in its own axiom list. That
+is the trust boundary, printed rather than described.
+
+**What the three passes together say.** The dividing line was never
+size. `fan_step_pow` compares six-hundred-thousand-bit numbers and
+`theta_sandwich_lower` five-million-digit ones, both under a second,
+because `Nat` literal arithmetic is GMP-backed in the kernel. A
+twenty-step orbit needed `decide +kernel` rather than `norm_num`
+because it unfolds a definition instead of evaluating literals. And the
+only genuine holdouts are the two quarter-million-length scans, where
+the cost is the iteration count, not the arithmetic. Three regimes,
+three tactics, and the boundary between them is what the goal *is*, not
+how big its numbers are.
+
+```text
+What was learned
+- the elaborator's decide gets stuck on Nat.sqrt; decide +kernel does not
+- the ReachesOne class -- 130 sites -- converts, deepest witness k = 73
+- only two proofs resist: 250k- and 300k-length scans, kernel timeout
+- 327 native_decide -> 2, verified by #print axioms rather than by counting
+Strongest theorem
+- none new; every statement is unchanged and no proof was weakened
+Strongest refutation
+- that plain decide would do: it is stuck, not slow, and the distinction
+  matters because a stuck tactic looks like a hard goal
+Reusable machinery
+- decide +kernel as the default for closed dynamics computations here
+Branch status
+- the Juggler layer's trust boundary is two declarations wide
+Best next question
+- can the two scans be split into blocks small enough for the kernel, or
+  replaced by a structural argument? They are the whole remaining surface
+```

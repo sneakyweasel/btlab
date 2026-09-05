@@ -3,6 +3,8 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NthRootLemmas
 import Mathlib.Data.Nat.Sqrt
 import Mathlib.Tactic
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -168,29 +170,29 @@ theorem floorPower_even_lt {n : ℕ} (hn : 2 ≤ n) (he : n % 2 = 0) :
   omega
 
 theorem floorPower_one : floorPower 1 = 1 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_two : floorPower 2 = 1 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_four : floorPower 4 = 2 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_six : floorPower 6 = 2 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_seven : floorPower 7 = 18 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eight : floorPower 8 = 2 := by
-  native_decide
+  decide +kernel
 
 /-- Packet seed: `T(13) = 46`. -/
 theorem floorPower_thirteen_step : floorPower 13 = 46 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_eighteen : floorPower 18 = 4 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_even_mono {n m : ℕ}
     (hn : n % 2 = 0) (hm : m % 2 = 0) (hle : n ≤ m) :

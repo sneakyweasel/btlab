@@ -114,22 +114,22 @@ def thetaQuotients : List ℕ := [2, 1, 2, 2, 3, 1, 5, 2, 23, 2, 2, 1]
 /-- The lower endpoint opens with the certified quotients. -/
 theorem cf_lower_prefix :
     (cfQuotients 64 16785921 6195184).take 12 = thetaQuotients := by
-  native_decide
+  decide +kernel
 
 /-- The upper endpoint opens with the certified quotients. -/
 theorem cf_upper_prefix :
     (cfQuotients 64 17087915 6306641).take 12 = thetaQuotients := by
-  native_decide
+  decide +kernel
 
 /-- The lower endpoint's expansion continues past the shared prefix. -/
 theorem cf_lower_continues :
     12 < (cfQuotients 64 16785921 6195184).length := by
-  native_decide
+  decide +kernel
 
 /-- The upper endpoint's expansion continues past the shared prefix. -/
 theorem cf_upper_continues :
     12 < (cfQuotients 64 17087915 6306641).length := by
-  native_decide
+  decide +kernel
 
 /-- Convergent denominators from a quotient list by the standard
 recurrence `q_n = a_n q_{n-1} + q_{n-2}`, with `q_{-1} = 0` and
@@ -147,7 +147,7 @@ Theorem 5.8. -/
 theorem theta_convergent_denominators :
     convergentDenoms thetaQuotients =
       [1, 2, 3, 8, 19, 65, 84, 485, 1054, 24727, 50508, 125743, 176251] := by
-  native_decide
+  decide +kernel
 
 /-- The window endpoint `q₁₃ = 301994 = 1·176251 + 125743`, the next
 denominator after the certified list. -/
@@ -193,7 +193,7 @@ theorem window_digit_scan :
   native_decide
 
 /-- The cap `37` is attained, at `L = 275632`. -/
-theorem window_digit_max : greedyDigitSum 275632 = 37 := by native_decide
+theorem window_digit_max : greedyDigitSum 275632 = 37 := by decide +kernel
 
 /-- Pointwise form of the scan: any window length decomposes
 greedily into certified blocks with digit sum at most `37`. -/
@@ -229,7 +229,7 @@ def convergentNums (as : List ℕ) : List ℕ :=
 theorem theta_convergent_numerators :
     convergentNums thetaQuotients =
       [0, 1, 1, 3, 7, 24, 31, 179, 389, 9126, 18641, 46408, 65049] := by
-  native_decide
+  decide +kernel
 
 /-- The certified convergent pairs `(p_j, q_j)` of `θ`. -/
 def thetaConvergents : List (ℕ × ℕ) :=
@@ -243,7 +243,7 @@ theorem thetaConvergents_eq_zip :
     thetaConvergents =
       (convergentNums thetaQuotients).zip
         (convergentDenoms thetaQuotients) := by
-  native_decide
+  decide +kernel
 
 /-- Unimodularity of consecutive certified pairs:
 `p_{j+1} q_j − p_j q_{j+1} = (−1)^j`. -/
@@ -252,7 +252,7 @@ theorem theta_convergents_unimodular :
       ((thetaConvergents[i + 1]!).1 * (thetaConvergents[i]!).2 : ℤ) -
         (thetaConvergents[i]!).1 * (thetaConvergents[i + 1]!).2 =
           (-1) ^ i := by
-  native_decide
+  decide +kernel
 
 /-- Every certified pair is coprime. -/
 theorem theta_convergents_coprime :

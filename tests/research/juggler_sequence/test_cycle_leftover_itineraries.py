@@ -74,7 +74,11 @@ def test_leftover_cycle_theorems_present():
     assert "admit" not in eval_src
     assert "sorry" not in cell
     assert "admit" not in cell
-    assert "native_decide" in eval_src
+    # the leftover cells are settled by a decision procedure, not by hand.  Which one is an
+    # implementation detail: they moved from `native_decide` to `decide +kernel` and `norm_num`
+    # when the layer's arithmetic certificates were brought inside the kernel's trust boundary,
+    # so assert the intent rather than the spelling.
+    assert any(t in eval_src for t in ("decide +kernel", "native_decide", "norm_num"))
     assert "theorem juggler_reaches_one" not in leftover
     assert "def CycleSearch" not in leftover
     assert "PowerHeight" not in leftover

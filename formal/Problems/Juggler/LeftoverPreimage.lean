@@ -1,6 +1,8 @@
 import Problems.Juggler.CycleCore
 import Problems.Juggler.LeftoverEval
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -188,7 +190,7 @@ theorem odd_run_lower_growth {n a : ℕ} (hn : 1 ≤ n)
     lowerDenom_replicate_odd] using hL
 
 theorem denomBits_four : denomBits 4 = 130 := by
-  native_decide
+  decide +kernel
 
 theorem three_pow_four : (3 : ℕ) ^ 4 = 81 := by
   decide

@@ -1,6 +1,8 @@
 import Problems.Juggler.LeftoverFamilies
 import Problems.Juggler.SmallCycleCensus
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -42,7 +44,7 @@ theorem itineraryOOEOOOOE_split :
   rfl
 
 theorem no_followsB_3_ooooeooe : followsB 3 itineraryOOOOEOOE = false := by
-  native_decide
+  decide +kernel
 
 theorem no_follows_3_ooooeooe : ¬follows 3 itineraryOOOOEOOE := by
   intro hf

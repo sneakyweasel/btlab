@@ -2,6 +2,8 @@ import Problems.Juggler.Preimages
 import Problems.Juggler.Envelope
 import Problems.Juggler.MinimumRelative
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -102,9 +104,9 @@ theorem cycle_le_lowerDenom {n : ℕ} {w : List Branch}
     le_trans (by simp : n ≤ n ^ 1) (Nat.pow_le_pow_right hn1 hge)
   exact le_trans hself hpow
 
-theorem lowerDenom_odd : lowerDenom [.odd] = 4 := by native_decide
+theorem lowerDenom_odd : lowerDenom [.odd] = 4 := by decide +kernel
 
-theorem lowerDenom_odd_odd : lowerDenom [.odd, .odd] = 1024 := by native_decide
+theorem lowerDenom_odd_odd : lowerDenom [.odd, .odd] = 1024 := by decide +kernel
 
 theorem no_cycle_itinerary_odd {n : ℕ} (hn : 2 ≤ n) : ¬CycleItinerary n [.odd] := by
   intro h
@@ -115,7 +117,7 @@ theorem no_cycle_itinerary_odd {n : ℕ} (hn : 2 ≤ n) : ¬CycleItinerary n [.o
   have hn3 : n = 3 := by
     interval_cases n <;> omega
   subst hn3
-  have : floorPower 3 = 5 := by native_decide
+  have : floorPower 3 = 5 := by decide +kernel
   exact (by decide : ¬(5 : ℕ) = 3) (this.symm.trans himg)
 
 theorem cycle_oo_le_four {n : ℕ} (hn : 2 ≤ n)
@@ -143,7 +145,7 @@ theorem no_cycle_itinerary_oo {n : ℕ} (hn : 2 ≤ n) :
     interval_cases n <;> omega
   subst hn3
   have himg : image 3 [.odd, .odd] = 3 := h.2.1
-  have : image 3 [.odd, .odd] = 11 := by native_decide
+  have : image 3 [.odd, .odd] = 11 := by decide +kernel
   exact (by decide : ¬(11 : ℕ) = 3) (this.symm.trans himg)
 
 theorem no_cycle_itinerary_eoo {n : ℕ} (hn : 2 ≤ n) : ¬CycleItinerary n itineraryEOO := by
@@ -168,7 +170,7 @@ theorem no_cycle_itinerary_eoo {n : ℕ} (hn : 2 ≤ n) : ¬CycleItinerary n iti
     · subst hn14; exact (by decide : ¬(11 : ℕ) = 14) himg
   · exact (ne_of_gt (eoo_expands_of_sqrt_ge_five hw h5)) himg
 
-theorem lowerDenom_itineraryOOE : lowerDenom itineraryOOE = 262144 := by native_decide
+theorem lowerDenom_itineraryOOE : lowerDenom itineraryOOE = 262144 := by decide +kernel
 
 theorem cycle_ooe_le_lowerDenom {n : ℕ} (hn : 2 ≤ n)
     (h : CycleItinerary n itineraryOOE) : n ≤ 262144 := by

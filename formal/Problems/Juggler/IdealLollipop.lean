@@ -3,6 +3,8 @@ import Problems.Juggler.CyclePosition
 import Problems.Juggler.Seam
 import Problems.Juggler.Progress
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -290,7 +292,7 @@ theorem assembleFill_thirdE_lt (f : NecklaceFill) :
 /-- Concrete bunched fill `OOEEEE`: third sure `E` is E-arrival. -/
 theorem assembleFill_empty_thirdE_eArrival :
     cycleArrival (assembleFill ⟨0, 0, 0, 0⟩) 4 (by decide) = .eArrival := by
-  native_decide
+  decide +kernel
 
 /-! ## Stem kinds (not the cartoon `OO?E`) -/
 
@@ -405,10 +407,10 @@ def itineraryWalkOf3 : List Branch :=
   [.odd, .odd, .odd, .even, .even, .even]
 
 theorem walkOf3_follows : follows 3 itineraryWalkOf3 :=
-  (followsB_iff 3 itineraryWalkOf3).mp (by native_decide)
+  (followsB_iff 3 itineraryWalkOf3).mp (by decide +kernel)
 
 theorem walkOf3_image : image 3 itineraryWalkOf3 = 1 := by
-  native_decide
+  decide +kernel
 
 theorem walkOf3_reachesOne : ReachesOne 3 :=
   capture_reachesOne walkOf3_follows walkOf3_image
@@ -445,7 +447,7 @@ def sink_collision_two_to_one : CollisionFactorization where
 
 theorem sink_collision_is_oArrival :
     sink_collision_two_to_one.arrival = .oArrival := by
-  native_decide
+  decide +kernel
 
 theorem sink_collision_stem_even :
     sink_collision_two_to_one.stemParent % 2 = 0 :=

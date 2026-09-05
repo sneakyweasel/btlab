@@ -3,6 +3,8 @@ import Problems.Juggler.O7EEEEGap
 import Problems.Juggler.CycleMinFudge
 import Problems.Juggler.WalkChargeItineraries
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -1214,6 +1216,6 @@ theorem necklace_pin_misses_not_CycleMinShape :
 
 theorem necklace_pin_misses_oddCount_seven :
     oddCount necklacePinMiss2005 = 7 ∧ oddCount necklacePinMiss3004 = 7 := by
-  native_decide
+  decide +kernel
 
 end Problems.Juggler

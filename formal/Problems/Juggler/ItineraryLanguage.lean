@@ -1,5 +1,7 @@
 import Problems.Juggler.ExpansionBlocks
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -69,9 +71,9 @@ theorem oddEvenBlock_one_one :
 
 theorem ooe_mem_expandingLanguage :
     expandingLanguage (oddEvenBlock 2 1) := by
-  refine ⟨5, follows_oddEvenBlock_two_one (by native_decide), ?_⟩
+  refine ⟨5, follows_oddEvenBlock_two_one (by decide +kernel), ?_⟩
   have : image 5 (oddEvenBlock 2 1) = 6 :=
-    image_oddEvenBlock_two_one (by native_decide)
+    image_oddEvenBlock_two_one (by decide +kernel)
   omega
 
 theorem oe_not_mem_expandingLanguage :
@@ -90,7 +92,7 @@ theorem oe_not_mem_expandingLanguage :
   have hn1 : n ≠ 1 := by
     intro h
     subst h
-    have : floorPower 1 = 1 := by native_decide
+    have : floorPower 1 = 1 := by decide +kernel
     omega
   have hn2 : 2 ≤ n := by omega
   have hlt :=
@@ -112,9 +114,9 @@ theorem expandingLanguage_not_factor_closed :
 
 theorem ooe_mem_persistentExpandingLanguage :
     persistentExpandingLanguage (oddEvenBlock 2 1) := by
-  refine ⟨365, follows_oddEvenBlock_two_one (by native_decide), ?_⟩
+  refine ⟨365, follows_oddEvenBlock_two_one (by decide +kernel), ?_⟩
   have himg : image 365 (oddEvenBlock 2 1) = 763 :=
-    image_oddEvenBlock_two_one (by native_decide)
+    image_oddEvenBlock_two_one (by decide +kernel)
   simpa [himg] using two_block_ooe_365.1
 
 end Problems.Juggler

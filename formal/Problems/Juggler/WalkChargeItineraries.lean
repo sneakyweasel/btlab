@@ -2,6 +2,8 @@ import Mathlib.Data.Nat.Basic
 import Mathlib.Tactic
 import Problems.Juggler.CycleCore
 
+set_option maxRecDepth 4000000
+
 namespace Problems.Juggler
 
 /-!
@@ -277,15 +279,15 @@ theorem budgetedWord_eq_hugWord (L : ℕ) :
 
 /-- Sanity instance: the record length `L = 84` has exact odd budget
 `53`, matching the finance table. -/
-theorem hugOdds_84 : hugOdds 84 = 53 := by native_decide
+theorem hugOdds_84 : hugOdds 84 = 53 := by decide +kernel
 
 /-- Sanity instance: the generator `L = 1054` has exact odd budget
 `665`, matching `three_pow_step_gt_two_pow_step`. -/
-theorem hugOdds_1054 : hugOdds 1054 = 665 := by native_decide
+theorem hugOdds_1054 : hugOdds 1054 = 665 := by decide +kernel
 
 /-- Sanity instance: the window seed `L = 50508` has exact odd
 budget `31867`, matching the finance table. -/
-theorem hugOdds_seed : hugOdds 50508 = 31867 := by native_decide
+theorem hugOdds_seed : hugOdds 50508 = 31867 := by decide +kernel
 
 /-- Lattice bridge: the survivor-lattice base point `(Lstar, Ostar) =
 (25781, 16266)` of `RunSurvivorLattice.lean` is a hug pair — its odd
@@ -294,13 +296,13 @@ count is the exact hug count at its length. Together with
 (the seed `(50508, 31867) = 2·(25781, 16266) − (1054, 665)`), all
 survivor-lattice generators lie on the hug diagonal
 `o = hugOdds L`. -/
-theorem hugOdds_lattice_base : hugOdds 25781 = 16266 := by native_decide
+theorem hugOdds_lattice_base : hugOdds 25781 = 16266 := by decide +kernel
 
 /-- The hug counts along the certified convergent denominators of
 `θ` (`theta_convergent_denominators` in `OstrowskiSandwich.lean`):
 these are the finance table's `o_min` values at each block length. -/
 theorem hugOdds_convergent_denoms :
     [1, 2, 3, 8, 19, 65, 84, 485, 1054].map hugOdds =
-      [1, 2, 2, 6, 12, 42, 53, 307, 665] := by native_decide
+      [1, 2, 2, 6, 12, 42, 53, 307, 665] := by decide +kernel
 
 end Problems.Juggler

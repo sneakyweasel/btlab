@@ -74,11 +74,11 @@ theorem cycleCircuitCount_nil : cycleCircuitCount [] = 0 := rfl
 
 theorem floorPower_two_hundred_sixty_one :
     floorPower 261 = 4216 := by
-  native_decide
+  decide +kernel
 
 theorem floorPower_four_thousand_two_hundred_seventeen :
     floorPower 4217 = 273845 := by
-  native_decide
+  decide +kernel
 
 theorem odd_two_hundred_sixty_one : (261 : ℕ) % 2 = 1 := by decide
 
@@ -116,7 +116,7 @@ theorem oddRunHeight_two_two_hundred_sixty_one :
     oddRunHeight_one_two_hundred_sixty_one
   unfold oddRunHeight nextOddHeight
   rw [h1, floorPower_four_thousand_two_hundred_seventeen]
-  native_decide
+  decide +kernel
 
 theorem floorPower_odd_ge_of_ge_two_hundred_sixty_one
     {n : ℕ} (hn : 261 ≤ n) (ho : n % 2 = 1) :
@@ -776,7 +776,7 @@ theorem l84_height_cap_eq :
 theorem l84_height_cap_lt_log :
     (700046369923 : ℝ) / 78666428148165 < (61 : ℝ) / 11 := by
   have h : (11 : ℕ) * 700046369923 < 61 * 78666428148165 := by
-    native_decide
+    decide +kernel
   have hR : (11 : ℝ) * 700046369923 < 61 * 78666428148165 := by
     exact_mod_cast h
   have hden : (0 : ℝ) < 78666428148165 := by norm_num
@@ -831,7 +831,7 @@ theorem no_cycleMin_length_eighty_four_of_circuit_le_two
   have ho : 53 ≤ oddCount w := by
     have hpred : (3 : ℕ) ^ 52 ≤ 2 ^ w.length := by
       rw [hL]
-      native_decide
+      decide +kernel
     exact Nat.succ_le_of_lt (cycle_oddCount_gt_of_three_pow_le hn h.1 hpred)
   have hn2 : 2 ≤ n := hn
   have hfin := cycleMin_finance_inv_sum hn2 h
@@ -856,7 +856,7 @@ theorem no_cycleMin_length_eighty_four_of_circuit_le_two
       Nat.pow_le_pow_right (by norm_num) ho
     exact_mod_cast this
   have hL2 : (2 : ℝ) ^ w.length = (2 : ℝ) ^ 84 := by simp [hL]
-  have hlePow : (2 : ℕ) ^ 84 ≤ 3 ^ 53 := by native_decide
+  have hlePow : (2 : ℕ) ^ 84 ≤ 3 ^ 53 := by decide +kernel
   have hsub : ((3 ^ 53 - 2 ^ 84 : ℕ) : ℝ) = (3 : ℝ) ^ 53 - (2 : ℝ) ^ 84 := by
     rw [Nat.cast_sub hlePow]
     norm_cast
