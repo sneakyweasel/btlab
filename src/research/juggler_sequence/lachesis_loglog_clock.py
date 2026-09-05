@@ -36,6 +36,8 @@ import random
 from pathlib import Path
 from typing import Any
 
+import mpmath as mp
+
 from research.juggler_sequence.cycle_finance import git_commit
 from research.juggler_sequence.tao_reduction import LOG2_3, N0_CERTIFIED, scale_L
 
@@ -239,10 +241,22 @@ OE_FACTOR_CAP = 1.0 / 3.0
 
 
 def theta_of_period(period: int) -> float:
-    """Paper A's gap ``theta(L) = 1 - 2^L / 3^o`` at the forced odd count."""
+    """Paper A's gap ``theta(L) = 1 - 2^L / 3^o`` at the forced odd count.
+
+    Evaluated in extended precision, as ``paper_a_audit.theta`` does.  The float form
+    ``1 - 2 ** -(o * log2(3) - L)`` loses the value to cancellation in ``o * log2(3) - L``:
+    ``o`` is of order ``L`` while the difference is of order ``1e-6``, so the relative error
+    is ``8e-6`` at ``L = 780239``, ``4e-4`` at the mid-fan minimum ``8632083`` and ``1.3e-2``
+    at the fan endpoint ``q_14 = 16785921``.  ``expm1`` does not help: the information is gone
+    before the exponential is taken, and it agrees with the naive form to the digit.
+
+    The precision is set locally.  ``mp.mp.dps`` is global state, so relying on another module
+    having raised it makes the value depend on import order -- which it silently did here until
+    a standalone run disagreed with a run that had imported ``paper_a_audit``."""
 
     o = odd_count_of_period(period)
-    return 1.0 - 2.0 ** (-(o * LOG2_3 - period))
+    with mp.workdps(40):
+        return float(1 - mp.e ** (mp.mpf(period) * mp.log(2) - mp.mpf(o) * mp.log(3)))
 
 
 def inverse_sum_bounds(n: float, period: int) -> dict[str, float]:

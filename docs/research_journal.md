@@ -26496,3 +26496,73 @@ Best next question
 - none outstanding; the three manuscripts now each have an audit module and
   the cross-quotation family is guarded
 ```
+
+## Would a series expansion buy anything? No — and asking found a bug of mine
+
+The question was whether Taylor expansions could solve issues in the
+laboratory's computations. Surveyed, measured, and the answer is no in
+both places it might have — but the measurement caught a real defect I
+introduced this session.
+
+**Where it looked promising: \(\theta(L)=1-2^L/3^o\).** Written as
+`1 - 2 ** -(o*log2(3) - L)` this stacks two cancellations. `expm1`
+repairs the second exactly. Measured against a 50-digit reference:
+
+| \(L\) | reference | naive | `expm1` |
+|---|---|---|---|
+| \(780239\) | \(3.4711921423\cdot10^{-6}\) | \(8.5\cdot10^{-6}\) | \(8.5\cdot10^{-6}\) |
+| \(8632083\) | \(1.7940014856\cdot10^{-6}\) | \(3.8\cdot10^{-4}\) | \(3.8\cdot10^{-4}\) |
+| \(16785921\) | \(5.2300518623\cdot10^{-8}\) | \(1.3\cdot10^{-2}\) | \(1.3\cdot10^{-2}\) |
+
+**`expm1` and naive agree to the digit at every \(L\).** The error is
+entirely the first subtraction — \(o\log_2 3\) is of order \(10^6\)
+while the difference is of order \(10^{-6}\), so the value is destroyed
+before any series can be applied. No expansion repairs information that
+is already gone; only extended precision or exact rationals do. That is
+why `paper_a_audit.theta` evaluates in 40 digits, and it is right.
+
+**Where else it could have helped: finance.** The only analytic input is
+\(\log(1+u)\le u\). Second order would replace \(u\) by
+\(u-u^2/2+u^3/3\), a relative gain of \(u/2\): \(1.4\cdot10^{-9}\) per
+step at the certified floor, against a required improvement factor of
+\(1.0735\). Short by eight orders of magnitude. The first-order bound is
+not what is costing anything.
+
+**The defect.** `theta_of_period` in the log-log clock branch was the
+one naive float instance in the repository, written by me this session,
+and `test_theta_matches_paper_a_gap` asserted agreement with the float
+form to \(10^{-15}\) — the test encoded the bug it should have caught.
+At \(L=780239\) the recorded digits are unaffected
+(\(\theta=3.471\cdot10^{-6}\), floor \(6.83\cdot10^{-5}\), and the
+finance kill still fires at \(n=10^{10}\)), so no published number
+moves; at the fan endpoint the function was \(1.3\%\) wrong.
+
+**And the trap under the trap.** My first fix used `mp.mpf`/`mp.log`
+without setting precision, and verified it by importing
+`paper_a_audit` — which sets `mp.mp.dps = 40` *globally* at import. The
+check passed for the wrong reason: run standalone at the default 15
+digits, the probe still wrote the damaged value, and only comparing the
+stored `summary.json` against a fresh call exposed it. The fix is
+`with mp.workdps(40)` inside the function, and the tests now pin
+hard-coded high-precision values rather than comparing against a module
+whose import mutates global state.
+
+```text
+What was learned
+- expm1 buys exactly nothing for theta: it agrees with the naive form to the
+  digit, because the loss is in the first subtraction, not the exponential
+- second-order log(1+u) buys u/2 = 1.4e-9 against a needed 7.35e-2
+- mpmath precision is global; verifying a fix by importing a module that
+  raises it makes the check pass for the wrong reason
+Strongest theorem
+- none; this is numerics
+Strongest refutation
+- the premise: series expansions do not help here, and the one measurement
+  that could have shown otherwise shows the opposite to the digit
+Reusable machinery
+- theta_of_period now precision-local; a test pinned to reference values
+Branch status
+- PARK unchanged; no recorded number moves
+Best next question
+- none from this; the survey found one defect and it is fixed
+```

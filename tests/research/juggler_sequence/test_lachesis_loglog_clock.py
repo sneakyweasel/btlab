@@ -107,12 +107,43 @@ def test_clock_is_monotone_in_the_state() -> None:
 
 
 def test_theta_matches_paper_a_gap() -> None:
-    """theta(780239) = 1 - 2^L/3^o with o = 492276: the walk-charge blocker's gap."""
+    """theta(780239) = 1 - 2^L/3^o with o = 492276: the walk-charge blocker's gap.
 
+    Pinned to the high-precision value, not to the float form: the earlier version of this
+    test asserted agreement with ``1 - 2 ** -(o * log2(3) - L)`` to 1e-15 and so encoded the
+    cancellation bug it was meant to guard."""
+
+    assert odd_count_of_period(780239) == 492276
     th = theta_of_period(780239)
-    o = odd_count_of_period(780239)
-    assert abs(th - (1.0 - 2.0 ** (-(o * LOG2_3 - 780239)))) < 1e-15
+    assert abs(th - 3.4711921423e-06) < 1e-16
     assert 3.4e-6 < th < 3.5e-6
+
+
+def test_theta_matches_paper_a_at_the_deep_fan() -> None:
+    """theta must be evaluated in extended precision, not as 1 - 2**-(o*log2(3) - L).
+
+    The float form loses the value to cancellation before any series can be applied:
+    relative error 8e-6 at L = 780239, 4e-4 at 8632083, 1.3e-2 at the fan endpoint
+    q_14 = 16785921.  expm1 does not repair it -- it agrees with the naive form to the
+    digit -- so the guard is against the float form generally, not against one spelling.
+
+    Values are hard-coded rather than taken from ``paper_a_audit``, because that module sets
+    ``mp.mp.dps`` globally at import: comparing against it would pass for the wrong reason,
+    which is exactly how the first attempt at this fix looked correct while the standalone
+    probe still wrote the damaged value."""
+
+    expected = {780239: 3.4711921423e-06, 8632083: 1.7940014856e-06, 16785921: 5.2300518623e-08}
+    for L, ref in expected.items():
+        o = odd_count_of_period(L)
+        assert abs(theta_of_period(L) - ref) <= 1e-9 * ref, L
+        naive = 1.0 - 2.0 ** (-(o * LOG2_3 - L))
+        if L == 16785921:  # the float form is 1.26% wrong here
+            assert abs(naive - ref) / ref > 1e-2
+
+    from research.juggler_sequence.paper_a_audit import theta as reference
+
+    for L, ref in expected.items():
+        assert abs(reference(L) - ref) <= 1e-9 * ref, L
 
 
 def test_inverse_sum_sandwich_and_finance_kill() -> None:
