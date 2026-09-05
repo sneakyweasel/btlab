@@ -24286,3 +24286,56 @@ Best next question
 - unchanged: the long regime needs a statement about one orbit's parity
   word at depth L, and nothing in this corpus reaches it
 ```
+
+
+### Paper A: the cost of an even-count of five, priced
+
+Theorem 3.22 (\(e\ge4\), hence \(L\ge11\)) is the paper's only *unconditional*
+exclusion, so raising it is the only route to a stronger floor-free statement. I had
+ranked this first twice without doing it. Done now --- not proved, but priced, which is
+what lets the author decide.
+
+**Only two of the three ingredients generalise.** The \(e\le3\) proof runs on the
+internal-even bootstrap (Lemma 3.4), the gapped-leftover Theorem 3.21, and the seven
+bunched families of Theorems 3.14-3.20. The bootstrap and expansion carry over to
+\(e=4\); the family theorems do not, because each is a statement about a *complete*
+itinerary, not a sub-word.
+
+**The residual list is infinite without new gap theorems.** Enumerating \(e=4\)
+canonical forms \(O^{a_1}EO^{a_2}EO^{a_3}EO^{a_4}E\) surviving canonical form,
+bootstrap (\(a_4\le1\)) and expansion: 764 forms at odd count \(\le14\), in 169 distinct
+tails, and the tail count grows with the odd count. So the program is **two**
+gapped-leftover theorems --- one each for \(a_2\), \(a_3\) --- and then a finite bunched
+set. At the Theorem 3.21 thresholds that set has **25** members against the **7** of
+3.14-3.20.
+
+**Payoff: \(L\ge11 \to L\ge14\).** Roughly four times the Appendix D work for three
+units of period. That is a judgement about what the floor-free statement is *for*, not
+a mathematical question, so Section 3 now records the accounting and leaves the choice.
+Nothing suggests the program would fail: the \(e=4\) forms show no structural
+obstruction and a direct search finds no cycle of any even count below \(2\cdot10^5\).
+
+**A bug of my own, caught by the output.** The first enumerator yielded at
+`idx == e` without requiring the run budget to be exhausted, so forms were duplicated
+across odd counts --- visible as `a in [7,7,7,7,7,7]` where the values should have been
+distinct. Fixed, and a regression test pins it.
+
+New: `even_count_five.py`, the Section 3 accounting remark, 7 tests.
+
+```text
+What was learned
+- e >= 5 is not blocked, it is priced: 2 gap theorems + 25 families for
+  three units of period, against 1 + 7 for the current bound
+- only the bootstrap and expansion generalise; the family theorems do
+  not, because they are statements about complete itineraries
+Strongest theorem
+- none; an accounting that makes a decision possible
+Strongest refutation
+- my own enumerator, caught by repeated values in its own output
+Reusable machinery
+- even_count_five: canonical forms, residual tails, program_size
+Branch status
+- PARK (the decision is the author's; the mathematics is mapped)
+Best next question
+- unchanged: the long regime; and Paper B's Lemma 5.2(i) reading
+```

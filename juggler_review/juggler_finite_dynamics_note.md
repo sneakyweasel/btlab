@@ -1059,6 +1059,38 @@ The comparison \(2^L<3^{L-4}\) first holds at \(L=11\).
 
 In particular there is no cycle of length eight, nine, or ten.
 
+*Why the even count stops at four.* Theorem 3.22 is the only
+unconditional exclusion in this paper, so raising it is the only
+route to a stronger floor-free statement, and it is worth
+recording what that would cost. The \(e\le3\) proof runs on three
+ingredients: the internal-even bootstrap of Lemma 3.4, which
+bounds the last odd run; the gapped-leftover Theorem 3.21, which
+kills a large middle run; and the seven bunched families of
+Theorems 3.14--3.20 for the small ones. Only the first two
+generalise unchanged --- each of the family theorems is a
+statement about a complete itinerary, not a sub-word, so none of
+them applies to a four-even form.
+
+Enumerating the \(e=4\) canonical forms
+\(O^{a_1}EO^{a_2}EO^{a_3}EO^{a_4}E\) that survive the canonical
+run form, the bootstrap (\(a_4\le1\)) and formal expansion:
+\(764\) forms with odd count at most \(14\), in \(169\) distinct
+tails \((a_2,a_3,a_4)\), and the tail list is *infinite* without a
+bound on the middle runs. So the program is two gapped-leftover
+theorems --- one for each of \(a_2\), \(a_3\) --- and then a finite
+set of bunched families. If the thresholds of Theorem 3.21
+transfer, that set has \(25\) members against the \(7\) of
+Theorems 3.14--3.20.
+
+The payoff is \(L\ge11	o L\ge14\). Whether roughly four times the
+Appendix D work is worth three units of period is a judgement
+about what the floor-free statement is for, not a mathematical
+question, and we record the accounting rather than make the
+choice. Nothing here suggests the program would fail; the
+\(e=4\) forms show no structural obstruction, and a direct search
+finds no cycle of any even count with minimum below
+\(2\cdot10^{5}\).
+
 ## 4. Cycle finance
 
 A cycle itinerary is formally expanding (Theorem 3.2), yet the trajectory
