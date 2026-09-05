@@ -1329,6 +1329,15 @@ phase is
 \varphi''=\tfrac{27k}{128}n^{-7/8}
 -\tfrac3{16}\bigl(t+\tfrac j2\bigr)n^{-5/4}+\tfrac{3i}8n^{-1/2}.
 \]
+(The first coefficient collects two terms, which is worth saying
+because differentiating \(\varphi_1\) alone does not produce it.
+\(\tfrac k2n^{9/8}\) contributes \(\tfrac9{128}k\); and the mode index
+is \(r=-B_0+t\), so the frozen \(-B_0n^{3/4}\) contributes
+\(\tfrac3{16}B_0n^{-5/4}\asymp\tfrac9{64}kn^{-7/8}\), landing on the
+same power because \(B_0\asymp n^{3/8}\). The sum is
+\(\tfrac9{128}+\tfrac{18}{128}=\tfrac{27}{128}\), and only the \(t\)
+part of \(r\) is left in the middle term.)
+
 For \(i\ne0\) the last term dominates and Lemma 3.3 gives
 \(\ll i^{1/2}P^{3/4}+i^{-1/2}kP^{5/8}\) after summing intervals. For
 \(i=0\), \((T+J_2)P^{-5/4}\ll kP^{-7/8}\) because

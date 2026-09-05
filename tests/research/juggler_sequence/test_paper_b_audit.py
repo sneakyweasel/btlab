@@ -175,3 +175,47 @@ def test_the_one_place_an_absorbed_constant_binds() -> None:
     assert r"C(E)\log P\le P^{1/96}" in text
     assert "Which constants carry numbers." in text
     assert "never assigned a value anywhere" in text
+
+
+# --- Theorem 4.8: the shifted-window device everything leans on ---
+
+
+def test_theorem_48_curvature_collects_two_terms() -> None:
+    """27k/128 is 9/128 from (k/2)n^{9/8} plus 9/64 from the frozen -B_0 n^{3/4}."""
+    from_k = Fr(1, 2) * Fr(9, 8) * Fr(1, 8)                  # (k/2) n^{9/8}
+    d2_n34 = Fr(3, 4) * (Fr(3, 4) - 1)                       # -3/16
+    from_B0 = -Fr(3, 4) * d2_n34                             # B_0 = (3k/4) n^{3/8}
+    assert from_k == Fr(9, 128) and from_B0 == Fr(9, 64)
+    assert from_k + from_B0 == Fr(27, 128)
+    # the other two displayed coefficients are plain derivatives
+    assert Fr(1, 2) * Fr(3, 2) * Fr(1, 2) == Fr(3, 8)        # (i/2) n^{3/2} -> 3i/8
+    assert d2_n34 == Fr(-3, 16)                              # t n^{3/4} -> -3/16
+
+
+def test_the_other_27_over_128_is_a_different_quantity() -> None:
+    """Theorem 6.3's is u_0 X'' with u_0 = (9k/32)n^{3/16}, landing at n^{-5/16}."""
+    assert Fr(9, 32) * Fr(3, 4) == Fr(27, 128)
+    assert Fr(3, 16) - Fr(1, 2) == Fr(-5, 16)
+
+
+def test_theorem_48s_sawtooth_matches_the_coefficient_rule() -> None:
+    """B = (3k/4) n^{3/8} is what the session's rule gives for theta_2 at letter 4 of OEO."""
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    const, exponent = PB.defect_coefficient("OEO", 4, 2)
+    assert (const, exponent) == (Fr(3, 4), Fr(3, 8))
+    assert exponent - 1 == Fr(-5, 8)                 # B' ~ k n^{-5/8}
+    assert 1 - exponent == Fr(5, 8)                  # drift-1 length L_0 = P^{5/8}/k
+    assert PB.linearisation_safe("OEO", 4)
+    assert PB.composed_map("OEO", 4, 2) == Fr(3, 2)  # one letter from defect to wave
+
+
+def test_the_underlying_integer_increments_at_the_printed_rate() -> None:
+    """U = m^{1/2} = n^{3/4}, so floor(U) moves once every (4/3) n^{1/4} steps."""
+    assert Fr(3, 4) - 1 == Fr(-1, 4)
+    assert 1 / Fr(3, 4) == Fr(4, 3)
+
+
+def test_paper_explains_the_collected_coefficient() -> None:
+    text = _paper()
+    assert "collects two terms" in text
+    assert r"\tfrac9{128}+\tfrac{18}{128}=\tfrac{27}{128}" in text

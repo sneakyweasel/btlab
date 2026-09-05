@@ -28242,3 +28242,70 @@ Best next question
 - Section 4's Theorem 4.8 is the shifted-window device everything else
   leans on. Does it have printed constants, and are they checked?
 ```
+
+ ### Theorem 4.8 checks out, and I nearly reported it as broken
+
+Section 4's shifted-window device is what the drift-1 machinery
+everywhere else rests on, so its constants are worth checking. They are
+all correct — including the one that reads like an error.
+
+Differentiating the displayed mode phase term by term:
+
+```text
+   (i/2) n^{3/2}   ->  3i/8  at n^{-1/2}      printed 3i/8       ok
+   (j/2) n^{3/4}   -> -3/32  at n^{-5/4}      printed -(3/16)(j/2)  ok
+        t n^{3/4}  -> -3/16  at n^{-5/4}      printed -(3/16) t   ok
+   (k/2) n^{9/8}   ->  9/128 at n^{-7/8}      printed 27k/128    ???
+```
+
+Three of four exact, the fourth off by a factor 3. I had the finding
+half-written before checking where the missing `18/128` could come
+from. It comes from the mode index: `r = -B_0 + t`, so the frozen
+`-B_0 n^{3/4}` contributes `(3/16) B_0 n^{-5/4}`, and since
+`B_0 ≍ (3k/4) n^{3/8}` that lands on `n^{-7/8}` too, at `9/64 = 18/128`.
+`9/128 + 18/128 = 27/128`. The display folds it in and leaves only the
+`t` part of `r` in the middle term.
+
+The other `27k/128` in the paper, in Theorem 6.3's `OOEO*` proof at
+`n^{-5/16}`, is a different quantity — `u_0 X''` with
+`u_0 = (9k/32)n^{3/16}` — and `(9/32)(3/4) = 27/128` there too. Both
+correct, by different routes, which is why the coincidence of constants
+is not evidence of a copied error.
+
+The rest of Theorem 4.8 also checks, and against this session's own
+rule: `B = (3k/4) n^{3/8}` is exactly `defect_coefficient("OEO", 4, 2)`
+— **a sixth stated constant the rule reproduces** — with `B' ~ k n^{-5/8}`,
+drift-1 length `L_0 = P^{5/8}/k = P^{1-3/8}/k`, `~ k P^{3/8}` intervals,
+`E = 3/2` so linearisation is safe, and `floor(U)` moving once every
+`(4/3) n^{1/4}` steps since `U = n^{3/4}`.
+
+The manuscript now says where the first coefficient comes from, because
+the next reader will differentiate the four printed terms and get
+`9k/128`, exactly as I did.
+
+```text
+What was learned
+- a display can be correct and still read as an error; this one folds a
+  frozen term into a coefficient without saying so
+- the same constant appearing twice is not evidence of a copied slip --
+  here 27k/128 arises two different ways, both right
+- Theorem 4.8's B is a sixth independent confirmation of the session's
+  coefficient rule, and its drift length is my window formula
+Strongest theorem
+- 27/128 = 9/128 + 18/128, the second half being the frozen -B_0 part
+  of the mode index
+Strongest refutation
+- my own draft finding that Theorem 4.8's curvature was wrong by 3
+Reusable machinery
+- five tests over Theorem 4.8's constants, including the decomposition
+Branch status
+- PARK
+Why
+  The device is sound and its constants agree with the apparatus built
+  this session from an independent direction. The only defect was
+  legibility, and that is now fixed in place. Nothing here needs
+  further work.
+Best next question
+- Theorem 4.8 leaves OOO* as the one depth-4 word it does not reach.
+  Is the reason it stops the same drift threshold, or a different one?
+```
