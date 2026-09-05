@@ -85,6 +85,7 @@ import Problems.Juggler.InverseBranches
 import Problems.Juggler.Seam
 import Problems.Juggler.CyclePosition
 import Problems.Juggler.FateContagion
+import Problems.Juggler.LogLogClock
 
 /-!
 # Juggler laboratory barrel

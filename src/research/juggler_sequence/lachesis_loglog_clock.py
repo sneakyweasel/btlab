@@ -273,9 +273,13 @@ def basin_block_density_bounds(n: float, period: int, log10_y: int) -> dict[str,
     lny = log10_y * math.log(10.0)
     k_low = E_BURST_LOW
     k_high = E_BURST_HIGH / (1.0 - OE_FACTOR_CAP)
+    # bursts begin at n^2; the full rotation is available once c(y) - c(n) >= 1 + u_max
+    clock_gap = math.log2(lny / math.log(n))
     return {
         "n": n, "period": period, "log10_y": log10_y,
         "K_low": k_low, "K_high": k_high,
+        "clock_gap_c_y_minus_c_n": clock_gap,
+        "above_threshold_if_u_max_le": clock_gap - 1.0,
         "density_low": k_low * inv["inv_sum_floor"] / lny,
         "density_high": k_high * inv["inv_sum_cap"] / lny,
         "single_seed_two_over_n": 2.0 / n,
@@ -330,10 +334,58 @@ def clotho_coverage_threshold(log10_y: int, n: float = N0_CERTIFIED,
         "window": w,
         "O_star": o_star,
         "u": u,
+        # the hug band [0, log2 3) is the minimal invariant band: below it O(y) <= 2 for every orbit
+        "gate_meaningful": u >= LOG2_3,
         "walk_gain_per_odd_step": gain,
         "s_star": s_star,
         "s_star_minus_q_star": s_star - math.log(2.0) / math.log(3.0),
     }
+
+
+#: the seven canonical high-flyers of the flight-envelope branch
+HIGH_FLYERS = (48443, 275485, 412027, 463157, 1122603, 1245741, 1267909)
+#: decades at which a flight's first passage is recorded
+GATE_DECADES = tuple(range(6, 21)) + (30, 50, 68, 100, 200, 300, 500, 1000, 2000, 5000)
+
+
+def flight_gate_passages(n: int, gaps: list[float], bit_cap: int = 2_000_000,
+                         decades: tuple[int, ...] = GATE_DECADES) -> list[dict[str, Any]]:
+    """Along the descent-free prefix from anchor ``n`` (states ``> n``), at the first passage of
+    each decade ``10^k``: the odd count ``O(y)``, the gate ``O*(y)``, and whether the gate is met.
+
+    The flight machinery bounds escape from *below* only (``a_k >= hugOdds(k)``, ``u_k >= 0``);
+    this measures how far above the gate realised flights actually run."""
+
+    x, t, o = n, 0, 0
+    out: list[dict[str, Any]] = []
+    next_k = int(math.log10(n)) + 1
+    lnn = math.log(n)
+    while True:
+        if x.bit_length() > bit_cap:
+            break
+        if x % 2 == 0:
+            x = math.isqrt(x)
+        else:
+            o += 1
+            x = math.isqrt(x * x * x)
+        t += 1
+        if x <= n:
+            break
+        while flog(x) >= next_k * math.log(10.0):
+            if next_k in decades:
+                lny = next_k * math.log(10.0)
+                o_star = next((O for O, g in enumerate(gaps, start=1) if g <= 1.0 / lny), None)
+                u = math.log2(lny / lnn)
+                out.append({
+                    "decade": next_k, "t": t, "O": o, "O_star": o_star, "u": u,
+                    "gain_per_odd": u / o if o else float("inf"),
+                    "gate_gain": (u / o_star) if o_star else None,
+                    "gate_met": bool(o_star is not None and o >= o_star),
+                })
+            next_k += 1
+            if next_k > max(decades):
+                return out
+    return out
 
 
 def summary() -> dict[str, Any]:
@@ -360,6 +412,9 @@ def summary() -> dict[str, Any]:
     ]
     gaps = gap_profile(20000)
     clotho = [clotho_coverage_threshold(e, gaps=gaps) for e in (12, 30, 50, 68, 100, 300, 1000)]
+    flights = {str(n): flight_gate_passages(n, gaps) for n in HIGH_FLYERS}
+    flight_passages = sum(len(v) for v in flights.values())
+    flight_gate_hits = sum(r["gate_met"] for v in flights.values() for r in v)
     worst_realised = max(row["max_abs_eps_u_units"] for row in clock_census)
     worst_cycle = max(row["abs_eps_u_units"] for row in cycle_bounds)
     widest_gap = max(row["largest_gap_mod_one"] for row in rotations)
@@ -376,6 +431,13 @@ def summary() -> dict[str, Any]:
         "inverse_sum_bounds": inverse_sums,
         "finance_linked_density": finance_linked,
         "clotho_coverage": clotho,
+        "high_flyer_gate": {
+            "passages": flight_passages,
+            "gate_met": flight_gate_hits,
+            "per_flight": {n: {"decades": len(v), "gate_met": sum(r["gate_met"] for r in v),
+                               "min_gain_per_odd": min((r["gain_per_odd"] for r in v), default=None)}
+                           for n, v in flights.items()},
+        },
         "classification": {
             "max_realised_eps_u_units": worst_realised,
             "max_cycle_eps_bound_u_units": worst_cycle,
@@ -404,6 +466,8 @@ def summary() -> dict[str, Any]:
                 (12 * LOG2_3 - 19) / 12 > r["walk_gain_per_odd_step"]
                 for r in clotho if r["O_star"] is not None and r["log10_y"] == 1000
             ),
+            "flight_machinery_bounds_escape_from_below_only": True,
+            "realised_flights_never_meet_the_gate": flight_gate_hits == 0,
             "hug84_rate_inside_window_everywhere": all(
                 (53 * LOG2_3 - 84) / 53 < r["walk_gain_per_odd_step"] for r in clotho if r["O_star"] is not None
             ),

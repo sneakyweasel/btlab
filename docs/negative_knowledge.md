@@ -734,8 +734,24 @@ second frontier.
   this suggests is `J-lachesis-census-dominated`: reaching cycle minima
   \(\le M\) costs \(M\) shallow orbits as a floor raise against \(M\)
   orbits at \(10^{100}\) to depth \(\approx 500\) as a census. Do not run
-  the census. Open: whether the rotation also locates Corollary 4.3's
-  amplified blocks.
+  the census. The amplified blocks are answered (none: the \(OE\)
+  detour costs \(1/3\) and lands elsewhere); the upper bound on the
+  basin is the free term (`J-lachesis-upper-bound-free-term`); a
+  Clotho basin gets the same statement only under slow escape, and slow
+  escape is neither forced by the flight laws (all lower bounds) nor
+  realised by any flight — the seven high-flyers run \(28\)–\(650\times\)
+  above the gate at every decade to \(10^{5000}\)
+  (`J-clotho-slow-escape-not-forced`). The rate that would make Clotho
+  basins provably lacunary is behind the wall: pigeonhole gives
+  \(n^{2^B}\) steps in a walk band, and anything better is a
+  single-orbit parity statement at depth \(\ln y\)
+  (`J-clotho-hug-excess-rate`). Do not open it as a branch. The
+  companion question — how long a flight can stay in the hug band — is
+  `J-hug-band-residence-is-prefix-realization`: the band word is forced
+  (Lean `band_successor_unique`), so residence is
+  [hug prefix realization](problems/juggler_hug_prefix_realization.md),
+  already CLOSE at \(2^{-L}\) with fill to depth \(28\). Reality is
+  \(\log_2 n\); the pigeonhole \(n^3\) is off by the whole scale.
 - **Hug-cylinder construction** depth \(\ge 2\); depth \(1\) is
   `J-hug-flow-window-depth-one`
   ([juggler_hug_cylinder_construction](problems/juggler_hug_cylinder_construction.md)).
@@ -764,7 +780,8 @@ CLOSE) are included so the completeness gate cannot hide them.
 
 `J-ceiling-finance-leftover-killer`, `J-equal-valleys-leftover-killer`,
 `J-kernel-localize`, `J-l84-m-ge-three-floor-261`,
-`J-lachesis-census-dominated`, `J-second-valley-leftover-killer`.
+`J-clotho-slow-escape-not-forced`, `J-lachesis-census-dominated`,
+`J-second-valley-leftover-killer`.
 
 ### Additional CLOSE / MIXED dossiers
 

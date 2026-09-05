@@ -195,7 +195,18 @@ for external review.
  \(\lfloor n^{3/2}\rfloor\) and average \(1/2\) over even blocks).
  The rest-average lift \(1/3\to 1/2\) is PARK
  (`juggler_oe_rest_average`): a fixed low-even seed mixes, infinite
- planting does not yield a coefficient. The gap \(0.448\to 0.4927\)
+ planting does not yield a coefficient. Log-log clock branch (5 Sep
+ 2026, PARK, [juggler_lachesis_loglog_clock.md](docs/problems/juggler_lachesis_loglog_clock.md),
+ Lean `LogLogClock.lean`): the walk mod 1 is the rotation by
+ \(\log_2(3/2)\) indexed by the odd count; a cycle basin is not
+ lacunary above \(n^{2^{1+u_{\max}}}\), with \(E\)-visible density
+ \(\approx\sum_C(1/x)/\ln y\) and \(\sum_C 1/x\) pinned by Lean finance;
+ the upper bound on any basin is the free term; a divergent orbit's
+ basin gets the same only under slow escape (odd share within
+ \(0.004\) of \(q^*\)), never realised; the hug band is the minimal
+ invariant band and its word is forced; failures with \(k\) leading
+ even steps are \(\ge 261^{2^k}\) (Lean) / \((N_0+1)^{2^k}\). The deep
+ census is dominated by a floor raise; do not run it. The gap \(0.448\to 0.4927\)
  is a dynamical averaging problem for the low-even set \(P\), not
  another pointwise fiber bound, and is not opened.
  Hence the conjecture \(\iff\) the failures have log-count

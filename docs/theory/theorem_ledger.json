@@ -6561,7 +6561,7 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "The exponent walk of any Juggler orbit satisfies u_t = o_t log2(3) - t ≡ o_t · alpha (mod 1), alpha = log2(3) - 1 = log2(3/2), because t and o_t are integers and log2(3) = 1 + alpha. Along a cycle of period L the odd count o_t takes every value 0..o, so the walk values mod 1 are exactly the rotation orbit {j·alpha}, j < o. Largest gap mod 1: 5.194e-6 at L = 478245 (o = 301739), 5.101e-6 at L = 780239 (o = 492276), 5.008e-6 at L = 1082233 (o = 682813). This is Paper A's Ostrowski layer read mod 1; it is not a period bound and not a halt theorem.",
   "source": "docs/problems/juggler_lachesis_loglog_clock.md",
-  "lean": "",
+  "lean": "Problems/Juggler/LogLogClock.lean",
   "tests": [
    "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
   ],
@@ -6587,7 +6587,7 @@
   "tag": "COMPUTATIONALLY VERIFIED",
   "statement": "The E-tree of a seed m occupies, at generation k, the integers from m^(2^k) to (m+1)^(2^k) with internal density 2^(-k), hence natural density about 1/m at that scale, for every k. Verified exactly: m = 101, k = 1 gives 101 members at scale 1.0404e4 (density 0.009708); k = 2 gives 1040603 members at scale 1.0824e8 (density 0.009614), against 1/m = 0.009901. The burst scales of a seed are m^(2^k), one per generation.",
   "source": "docs/problems/juggler_lachesis_loglog_clock.md",
-  "lean": "",
+  "lean": "Problems/Juggler/LogLogClock.lean",
   "tests": [
    "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
   ],
@@ -6598,9 +6598,9 @@
  {
   "id": "J-lachesis-basin-every-block",
   "tag": "CONJECTURE",
-  "statement": "Write c(x) = log2 log x. The scales carrying E-tree bursts of a backward-closed class are c(m) + k over its seeds m and k >= 0, so the covered scales mod 1 are {c(m) mod 1}. By J-lachesis-walk-rotation and J-lachesis-loglog-clock the cycle states of a Lachesis basin sit at c(n) + u_t, an equidistributed rotation orbit with largest gap 5.101e-6 at L = 780239, far finer than the 1.7e-4 clock defect and both far below 1. A dyadic block is a c-window of width about 1 / log y (1.46e-2 at y = 1e30, 4.34e-4 at y = 1e1000), so some cycle state's pure-E burst lands in every block out to log y = 1/5.101e-6, that is y < 1e85142; beyond that the alpha-gaps reopen. Hence a Lachesis basin is not lacunary on that range: it carries natural density about 2/n on every dyadic block, n the cycle minimum. This is the third case, missing from contagion note Sec.5.3, which treats only the single seed (lacunary) and the interval [1, N0] (uniform); for the Lachesis class it upgrades Corollary 4.3 from some y in a range to every dyadic block. No fate is excluded and no period bound moves; not a halt theorem.",
+  "statement": "Write c(x) = log2 log x. The scales carrying E-tree bursts of a backward-closed class are c(m) + k over its seeds m and k >= 0, so the covered scales mod 1 are {c(m) mod 1}. By J-lachesis-walk-rotation and J-lachesis-loglog-clock the cycle states of a Lachesis basin sit at c(n) + u_t, an equidistributed rotation orbit with largest gap 5.101e-6 at L = 780239, far finer than the 1.7e-4 clock defect and both far below 1. A dyadic block is a c-window of width about 1 / log y (1.46e-2 at y = 1e30, 4.34e-4 at y = 1e1000), so some cycle state's pure-E burst lands in every block out to log y = 1/5.101e-6, that is y < 1e85142; beyond that the alpha-gaps reopen. Bursts begin at n^2 (generation 1 of the minimum) and none exist below it; the full rotation is available only once c(y) - c(n) >= 1 + u_max, u_max = log2(ln M / ln n) >= 1 the cycle's walk height (Paper A: M >= (n+1)^2). Hence a Lachesis basin is not lacunary on the range n^(2^(1 + u_max)) <= y < 1e85142: it carries natural density at least about 1/n on every dyadic block there, n the cycle minimum; at n = 3.5e8 the threshold is 1e34 for u_max = 1, 1e69 for u_max = 2, 1e137 for 3. The first draft omitted the threshold. This is the third case, missing from contagion note Sec.5.3, which treats only the single seed (lacunary) and the interval [1, N0] (uniform); for the Lachesis class it upgrades Corollary 4.3 from some y in a range to every dyadic block. No fate is excluded and no period bound moves; not a halt theorem.",
   "source": "docs/problems/juggler_lachesis_loglog_clock.md",
-  "lean": "",
+  "lean": "Problems/Juggler/LogLogClock.lean",
   "tests": [
    "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
   ],
@@ -6648,7 +6648,7 @@
  {
   "id": "J-lachesis-basin-inverse-sum",
   "tag": "COMPUTATIONALLY VERIFIED",
-  "statement": "Per-block law of the E-closure of a finite seed set S: on the dyadic block B the density equals sum over x in S and k >= 1 of |[x^(2^k), (x+1)^(2^k)) meet B| times 2^(-k) / |B|; verified to 0.5 percent (measured/predicted 0.996..1.005) on a 40-seed closure to 4e7. One landing burst from x contributes S/(x B) in (1/x, 2/x], S = x^(2^k); OE bursts land at clock offset log2(4/3), in other blocks (six blocks of the test carry OE density with zero E density), adding 8..32 percent where both land. Hence for a Lachesis basin, whose cycle states land in every block by J-lachesis-basin-every-block, the E-visible density on a block at scale y is at least (1/ln y) sum_{x in C} 1/x and the E+OE part at most (3/ln y) sum_{x in C} 1/x. Finance's Lean inv-sum form (cycleMin_finance_inv_sum: (3^o - 2^L) ln n <= 3^o sum 1/x) gives sum 1/x >= theta(L) ln n, and every state >= n gives sum 1/x <= L/n; floor > cap is the finance kill of the pair (true at n = 1e10, L = 780239). At n = 3.5e8, L = 780239: sum 1/x in [6.83e-5, 2.23e-3], so the block density is in [2.47e-6, 2.42e-4] at y = 1e12 and [4.36e-7, 4.27e-5] at y = 1e68, against the single-seed 2/n = 5.7e-9. A cycle that barely survives finance has sum 1/x pinned, hence a basin whose contagion-visible density is pinned to within the constant factor. Not a halt theorem; the full basin's density is bounded above only by the free term.",
+  "statement": "Per-block law of the E-closure of a finite seed set S: on the dyadic block B the density equals sum over x in S and k >= 1 of |[x^(2^k), (x+1)^(2^k)) meet B| times 2^(-k) / |B|; verified to 0.5 percent (measured/predicted 0.996..1.005) on a 40-seed closure to 4e7. One landing burst from x contributes S/(x B) in (1/x, 2/x], S = x^(2^k); OE bursts land at clock offset log2(4/3), in other blocks (six blocks of the test carry OE density with zero E density), adding 8..32 percent where both land. Hence for a Lachesis basin, whose cycle states land in every block by J-lachesis-basin-every-block, the E-visible density on a block at scale y is at least (1/ln y) sum_{x in C} 1/x and the E+OE part at most (3/ln y) sum_{x in C} 1/x. Finance's Lean inv-sum form (cycleMin_finance_inv_sum: (3^o - 2^L) ln n <= 3^o sum 1/x) gives sum 1/x >= theta(L) ln n, and every state >= n gives sum 1/x <= L/n; floor > cap is the finance kill of the pair (true at n = 1e10, L = 780239). At n = 3.5e8, L = 780239: sum 1/x in [6.83e-5, 2.23e-3], so on the valid range y >= n^(2^(1 + u_max)) the block density is in [2.97e-7, 2.90e-5] at y = 1e100 and [9.89e-8, 9.68e-6] at y = 1e300, against the single-seed 2/n = 5.7e-9 (the first draft quoted 1e12 and 1e68, below the threshold for u_max >= 2; withdrawn). A cycle that barely survives finance has sum 1/x pinned, hence a basin whose contagion-visible density is pinned to within the constant factor. Not a halt theorem; the full basin's density is bounded above only by the free term.",
   "source": "docs/problems/juggler_lachesis_loglog_clock.md",
   "lean": "Problems/Juggler/CycleFinance.lean",
   "tests": [
@@ -6661,9 +6661,129 @@
  {
   "id": "J-clotho-basin-every-block-criterion",
   "tag": "CONJECTURE",
-  "statement": "J-lachesis-walk-rotation does not know whether the orbit closes: the clock positions of a divergent orbit's states below y are the rotation orbit {c(n) + j alpha : j <= O(y)}, O(y) the odd count before the walk first exceeds u(y) = log2(ln y / ln n). Its basin has an E-burst in the block at y iff a point of that orbit lies within 1/ln y of c(y) mod 1; sufficient is gap(O(y)) <= 1/ln y, gap(O) the largest gap of {j alpha mod 1 : j <= O}, non-increasing in O. Thresholds O*(y) = min{O : gap(O) <= 1/ln y}: 40 at 1e12, 146 at 1e30, 252 at 1e50, 305 at 1e68, 358 at 1e100, 1635 at 1e300, 12275 at 1e1000 (O gap(O) swings between 1.26 and 6.56 with the continued fraction of alpha, three-distance). Translated to the orbit: it must reach u(y) in at least O*(y) odd steps, so its odd share up to scale y must lie in the window (q*, s*(y)) with s* - q* = 0.0049 at 1e12, 0.0039 at 1e68, 0.0040 at 1e100, 0.0002 at 1e1000. The all-odd rate 0.585 is far outside the window at every scale. The p = 19 hug near-return rate, theta_19 / 12 = 0.00163 walk per odd step, is inside up to 1e300 but outside at 1e1000, where the gate is 0.00056; the p = 84 rate theta_84 / 53 = 5.7e-5 is inside everywhere tested (p = 1054 gives 9.5e-8). So the gate tightens with y and pushes a persistent escaper down the near-return spectrum 19, 84, 1054, ... - the cycle-period ladder of flight note Sec. 6. A Clotho basin is every-block at scale y exactly when the divergent orbit is a critical-share escaper up to that scale hugging a deep enough near-return - the kind the flight extract lets persist; a fast escaper has a lacunary basin, like a single seed. The density is then about (K / ln y) times the partial inverse sum over the states below y, K in [1, 3]; that partial sum is at least 1/n and, unlike the cycle's, is not pinned by finance. Excludes no fate; not a halt theorem.",
+  "statement": "J-lachesis-walk-rotation does not know whether the orbit closes: the clock positions of a divergent orbit's states below y are the rotation orbit {c(n) + j alpha : j <= O(y)}, O(y) the odd count before the walk first exceeds u(y) = log2(ln y / ln n). Its basin has an E-burst in the block at y iff a point of that orbit lies within 1/ln y of c(y) mod 1; sufficient is gap(O(y)) <= 1/ln y, gap(O) the largest gap of {j alpha mod 1 : j <= O}, non-increasing in O. Thresholds O*(y) = min{O : gap(O) <= 1/ln y}: 40 at 1e12, 146 at 1e30, 252 at 1e50, 305 at 1e68, 358 at 1e100, 1635 at 1e300, 12275 at 1e1000 (O gap(O) swings between 1.26 and 6.56 with the continued fraction of alpha, three-distance). The gate is meaningful only for u(y) >= log2 3, i.e. y >= n^3: the hug band [0, log2 3) is the minimal invariant band of the walk (Lean hug_band_step_exists, narrow_band_dead, dead_zone_nonempty), and below 1 no even step is possible and at most one odd step fits (no_even_step_below_one, odd_steps_below_one_le_one), so for y < n^3 every orbit has O(y) <= 2 < O*(y) and no basin is every-block there; at n = 3.5e8 the 1e12 row (u = 0.49) is vacuous. Translated to the orbit: it must reach u(y) in at least O*(y) odd steps, so its odd share up to scale y must lie in the window (q*, s*(y)) with s* - q* = 0.0049 at 1e12, 0.0039 at 1e68, 0.0040 at 1e100, 0.0002 at 1e1000. The all-odd rate 0.585 is far outside the window at every scale. The p = 19 hug near-return rate, theta_19 / 12 = 0.00163 walk per odd step, is inside up to 1e300 but outside at 1e1000, where the gate is 0.00056; the p = 84 rate theta_84 / 53 = 5.7e-5 is inside everywhere tested (p = 1054 gives 9.5e-8). So the gate tightens with y and pushes a persistent escaper down the near-return spectrum 19, 84, 1054, ... - the cycle-period ladder of flight note Sec. 6. A Clotho basin is every-block at scale y exactly when the divergent orbit is a critical-share escaper up to that scale hugging a deep enough near-return - the kind the flight extract lets persist; a fast escaper has a lacunary basin, like a single seed. The density is then about (K / ln y) times the partial inverse sum over the states below y, K in [1, 3]; that partial sum is at least 1/n and, unlike the cycle's, is not pinned by finance. Excludes no fate; not a halt theorem.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-clotho-slow-escape-not-forced",
+  "tag": "REFUTED",
+  "statement": "Hypothesis: recurrent hug domination (flight note Sec. 5.5) forces O(y) >= O*(y) at every scale for every persistent divergent orbit, so that every Clotho basin is every-block unconditionally. Refuted twice. Structurally: every flight-note law bounds escape from below - a_k >= hugOdds(k) (aboveAnchor_prefix_odds_ge_hug), u_k >= 0, u_k >= log2(log x_k / log n), hug excess to infinity, linear peak growth - and none bounds it from above; the gate O(y) >= O*(y) is an upper bound on escape speed and nothing in the laboratory supplies one. Empirically: on the seven canonical high-flyers, at the first passage of every recorded decade from 1e6 to 1e5000, the gate is never met; the walk gain per odd step at passage is 0.08..0.58 against gates of 0.0006..0.04, between 28 and 650 times too fast (slowest passage: 1122603 at 1e5000, O = 67 odd steps in 96, gain 0.145, 240 times the gate 0.0006; 48443 reaches 1e5000 in 31 steps with 26 odd). Random odd starts near 1e6 never meet it either. So the Clotho every-block statement (J-clotho-basin-every-block-criterion) stays conditional on slow escape, and slow escape is neither forced nor observed: a persistent thread whose basin is every-block would be unlike every flight ever realised. Excludes nothing; not a halt theorem.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/AboveAnchorWalk.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-loglog-clock-walk-rotation-lean",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "fract_mul_sub_nat_eq_fract_mul_sub_one: for every real x and naturals o, t, Int.fract (o x - t) = Int.fract (o (x - 1)). Instance fract_walk_eq_fract_rotation: the exponent walk walk o t = o log2 3 - t satisfies Int.fract (walk o t) = Int.fract (o alphaClock) with alphaClock = log2 3 - 1 = log2 (3/2); corollary fract_walk_depends_only_on_odd_count: two prefixes with the same odd count have the same walk mod 1 whatever their lengths. So along any orbit - cycle, divergent, or terminating - the walk values mod 1 are the rotation orbit {j alphaClock} indexed by the odd count. The exact half of J-lachesis-walk-rotation; the gap sizes of the rotation orbit remain a computation. No sorry.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-loglog-clock-even-chain-burst-lean",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "even_chain_mem_burst: if the first k states of the orbit of n are even and floorPower^[k] n = m, then m^(2^k) <= n < (m + 1)^(2^k); proved by induction from the one-step cell Nat.sqrt n ^ 2 <= n < (Nat.sqrt n + 1) ^ 2 (sqrt_cell) and floorPower_even_eq. Corollary even_chain_log_offset (1 <= m): 2^k log m <= log n < 2^k log (m + 1), i.e. in the clock c = log2 log the chain sits at offset exactly k above [c(m), c(m+1)). This is the interval half of J-lachesis-etree-density; the count of the chain (about m^(2^k - 1) even integers) is not formalized. No sorry.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-clotho-hug-excess-rate",
+  "tag": "CONJECTURE",
+  "statement": "Open statement with a recorded obstruction. A rate on the hug-excess divergence a_k - hugOdds(k) -> infinity (flight note Sec. 5.4) would bound O(y) from above and, by J-clotho-basin-every-block-criterion, make every Clotho basin provably lacunary - cycles every-block, escapes lacunary. The only rate the laboratory has is pigeonhole: a descent-free flight with walk in [0, B) has distinct states in [n, n^(2^B)), so it leaves the band or cycles within n^(2^B) steps; at the hug band B = log2 3 that is n^3, about 4e25 at n = 3.5e8, against a gate O*(y) of 40..12275. Linear peak growth (max x_j >= n + k) reaches walk log2(1 + log(1 + k/n)/log n), negligible for k << n. A usable rate would say that no descent-free flight keeps odd share <= s*(y) for about 1.6 O*(y) = 2..10 ln y steps: a single-orbit parity statement at depth about ln y, exponentially deeper than the depth log log y wall of the Tao reduction, on exactly the pointwise object averages are silent about. Not opened as a branch; the evidence (seven high-flyers 28..650x above the gate) says the statement is true and the method to prove it is not in the laboratory.",
   "source": "docs/problems/juggler_lachesis_loglog_clock.md",
   "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-loglog-clock-hug-band-lean",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "WalkStep u v := v = u + alphaClock or v = u - 1. hug_band_step_exists: from any u in [0, 1 + alphaClock) some step stays in the band. narrow_band_dead: if w - alphaClock <= u < 1 then no step from u stays in [0, w); dead_zone_nonempty: for 0 < w < 1 + alphaClock such a u exists in [0, w) - so the hug band [0, log2 3) is the minimal invariant band of the exponent walk. no_even_step_below_one and odd_steps_below_one_le_one (from half_lt_alphaClock, i.e. 9 > 8): below 1 no even step is possible and at most one odd step fits. Supporting bounds one_lt_logb_two_three, logb_two_three_lt_two. These are the exact reasons the Clotho every-block gate is vacuous for y < n^3 and the Lachesis bursts begin at n^2. No sorry.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-loglog-clock-band-word-forced-lean",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk has exactly one admissible successor at every point. So the walk of a band-confined orbit is the lift of the rotation by alphaClock and its parity word is the mechanical (Sturmian) word of that rotation - the hug itinerary - determined by the starting walk alone, with no freedom. No sorry.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-hug-band-residence-is-prefix-realization",
+  "tag": "REPARAMETERIZATION",
+  "statement": "How long a descent-free flight can stay in the hug band [0, log2 3) is the hug-prefix-realization question, already CLOSE (juggler_hug_prefix_realization). By J-loglog-clock-band-word-forced-lean the band word is forced, so staying in the band for L steps means realizing one specific prefix of length L - the mechanical word of the rotation by log2(3/2). The recorded census says the extremal hug cylinder tracks 2^(-L) on [3, 2e8] with fill to depth 28, and log2(2e8) = 27.6: band residence is exactly the fair-coin maximum log2 N over N starts, with no anomaly. The pigeonhole bound of J-clotho-hug-excess-rate (a flight with walk in [0, B) has distinct states in [n, n^(2^B)), hence leaves or cycles within n^(2^B) = n^3 steps at the hug band, about 4e25 at the floor) is therefore off by the whole scale: reality is log2 n, roughly 28. The residence question is not a new branch and must not be reopened as one; the missing object remains a rate, not a bound.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-floor-stratifies-even-cylinders-lean",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_burst). At the certified floor N0 = 3.5e8 the same argument gives (N0 + 1)^(2^k) (verified computation, not Lean): the failure set is purely odd on (N0, (N0+1)^2), and its E^k-cylinder is empty below (N0+1)^(2^k). The depth-k form of the fate note's 'min F is an OO-start'. Not a halt theorem; F is not shown empty.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-fate-visibility-one-law",
+  "tag": "OBSERVATION",
+  "statement": "One visibility law for the three fates: for a backward-closed class with seed set S0 (its minimal elements), the E-visible natural density on the block at scale y is about (K / ln y) times the sum of 1/x over the seeds whose bursts land there, K in [1, 2]. Atropos: S0 = [1, N0], bursts tile, sum about ln N0 = 19.7, density about 0.06 at 1e68 - contagion note Sec. 5.3's log N0 / (2 log y) recovered. Lachesis: S0 = the cycle, a rotation orbit with gaps 5e-6, sum in [theta(L) ln n, L/n] by Lean finance, density [4e-7, 4e-5] at 1e68 for y >= n^(2^(1 + u_max)). Clotho: S0 = the orbit's states below y, a rotation orbit of length O(y), every-block only under slow escape. The certified floor's own E-forest is therefore 1e4..1e5 times more visible than any finance-surviving cycle at every block: the quantitative reason the census sees R and nothing else. Everything here bounds fate classes from below; the upper bound is the free term (J-lachesis-upper-bound-free-term), and nothing moves the pressure form. A persistent slow escaper sits at odd share in (q*, q* + 0.004), on the pressure threshold from above, measure zero as a single thread.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "Problems/Juggler/LogLogClock.lean",
   "tests": [
    "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
   ],

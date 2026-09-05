@@ -11,6 +11,7 @@ from research.juggler_sequence.lachesis_loglog_clock import (
     basin_block_density_bounds,
     clock,
     clotho_coverage_threshold,
+    flight_gate_passages,
     gap_profile,
     cycle_clock_defect_bound,
     etree_density,
@@ -149,6 +150,36 @@ def test_clotho_threshold_is_a_narrow_window_above_q_star() -> None:
         assert 0.0 < row["s_star"] - q < 0.01
         # the hug near-return rate escapes slowly enough; the all-odd rate does not
         assert (12 * LOG2_3 - 19) / 12 < row["walk_gain_per_odd_step"] < LOG2_3 - 1.0
+
+
+def test_flight_gate_passages_shape_and_high_flyer_speed() -> None:
+    """A realised flight passes its decades far above the gate: the first high-flyer reaches
+    10^20 with a gain per odd step two orders of magnitude above u/O*."""
+
+    gaps = gap_profile(2000)
+    rows = flight_gate_passages(48443, gaps, decades=tuple(range(6, 21)))
+    assert rows and all(set(r) >= {"decade", "t", "O", "O_star", "gate_met", "gain_per_odd"} for r in rows)
+    assert [r["decade"] for r in rows] == sorted(r["decade"] for r in rows)
+    assert all(r["decade"] <= 20 for r in rows)
+    assert not any(r["gate_met"] for r in rows)
+    last = rows[-1]
+    assert last["gate_gain"] is not None and last["gain_per_odd"] > 10 * last["gate_gain"]
+
+
+def test_lean_layer_is_registered_and_names_its_theorems() -> None:
+    from research.juggler_sequence.lean_paths import LAYERS, has_named
+
+    path = LAYERS["LogLogClock"]
+    assert path.is_file()
+    text = path.read_text(encoding="utf-8")
+    for name in ("fract_walk_eq_fract_rotation", "fract_walk_depends_only_on_odd_count",
+                 "even_chain_mem_burst", "even_chain_log_offset",
+                 "hug_band_step_exists", "narrow_band_dead", "dead_zone_nonempty",
+                 "odd_steps_below_one_le_one", "half_lt_alphaClock",
+                 "band_step_forced_odd", "band_step_forced_even", "band_successor_unique",
+                 "not_reachesOne_ge", "not_reachesOne_even_chain_ge"):
+        assert has_named(text, name), name
+    assert "import Problems.Juggler.Dynamics" in text
 
 
 def test_dossier_and_summary_agree() -> None:

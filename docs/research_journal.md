@@ -25774,3 +25774,330 @@ Best next question
 - depth seven costs three classes at once; is there a joint estimate
   for OOEOOEE, OOOEOEE, OOOOEEE cheaper than three separate splits?
 ```
+
+## Lachesis log-log clock: slow escape is neither forced nor observed (answer; PARK stands)
+
+The question was whether recurrent hug domination forces
+\(O(y)\ge O^*(y)\) — whether every Clotho basin is every-block
+unconditionally, as every Lachesis basin is. No, twice over.
+
+**Structurally.** Every law in the flight extract bounds escape from
+*below*: \(a_k\ge\mathrm{hugOdds}(k)\) (Lean
+`aboveAnchor_prefix_odds_ge_hug`), \(u_k\ge 0\),
+\(u_k\ge\log_2(\log x_k/\log n)\), hug excess \(\to\infty\), linear
+peak growth. The gate \(O(y)\ge O^*(y)\) asks the orbit to escape
+*slowly* — an upper bound on speed — and nothing in the laboratory
+supplies one. Hug domination says the orbit is at least as odd as the
+hug word; it does not say it is at most anything.
+
+**Empirically.** On the seven canonical high-flyers, at the first
+passage of every recorded decade from \(10^6\) to \(10^{5000}\), the
+gate is never met. Gain per odd step at passage runs
+\(0.08\)–\(0.58\) against gates of \(0.0006\)–\(0.04\): between
+\(28\times\) and \(650\times\) too fast, at every decade, for every
+flight. The slowest passage anywhere is \(1122603\) at \(10^{5000}\),
+\(67\) odd steps in \(96\), gain \(0.145\), still \(240\times\) the
+gate; \(48443\) reaches \(10^{5000}\) in \(31\) steps with \(26\) odd.
+Random odd starts near \(10^6\) never meet it either.
+
+So Consequence 11 stays conditional on slow escape, and slow escape is
+neither forced nor observed. A persistent Clotho thread whose basin is
+every-block would be unlike every flight ever realised. The flights
+that exist are bursts, and — as the census has always said — bursts
+come back down. `J-clotho-slow-escape-not-forced`.
+
+The evidence points the other way, and that is the next question: if
+the hug-excess divergence of §5.4 could be given a *rate*, that rate
+would bound \(O(y)\) from above and make every Clotho basin provably
+lacunary — cycles every-block, escapes lacunary, a clean dichotomy in
+visibility between the two fates. No such rate is recorded.
+
+```text
+What was learned
+- the flight laws are all lower bounds on escape speed; the every-block
+  gate is an upper bound, and nothing supplies it
+- the seven high-flyers run 28..650x above the gate at every decade to
+  1e5000; random starts near 1e6 never meet it
+- a slow, every-block Clotho thread would be unlike every realised flight
+Strongest theorem
+- none new
+Strongest refutation
+- "hug domination forces slow escape" - structurally and on every flight
+Reusable machinery
+- flight_gate_passages in lachesis_loglog_clock; high-flyer gate table in
+  summary.json
+Branch status
+- PARK stands. The branch's question list is now exhausted on its own
+  terms: bridge delivered for both fates, upper bound identified as the
+  free term, Clotho gate stated and shown unforced
+Best next question
+- can the hug-excess divergence a_k - hugOdds(k) -> infinity be given a
+  rate? It would make every Clotho basin provably lacunary
+```
+
+## Lachesis log-log clock: the rate is behind the wall; the exact layer is Lean (verdict; PARK stands)
+
+Two things, one of each kind.
+
+**The rate question, answered by an obstruction.** A rate on the
+hug-excess divergence \(a_k-\mathrm{hugOdds}(k)\to\infty\) would bound
+\(O(y)\) from above and make every Clotho basin provably lacunary —
+cycles every-block, escapes lacunary. The laboratory has exactly one
+rate, and it is pigeonhole: a descent-free flight whose walk stays in
+\([0,B)\) has distinct states in \([n,n^{2^B})\), so it leaves the band
+or closes a cycle within \(n^{2^B}\) steps. At the hug band that is
+\(n^3\), about \(4\cdot 10^{25}\) at the floor, against a gate of
+\(40\)–\(12275\) odd steps. Linear peak growth is no better: after
+\(k\ll n\) steps it guarantees walk
+\(\log_2(1+\log(1+k/n)/\log n)\), which is nothing. A usable rate would
+say that no flight keeps odd share \(\le s^*(y)\) for
+\(2\)–\(10\ln y\) steps — a single-orbit parity statement at depth
+\(\ln y\), exponentially deeper than the depth-\(\log\log y\) wall of
+the Tao reduction, and about the one object (a single orbit) that
+every average is silent on. The seven high-flyers say the statement is
+true; nothing here can prove it. `J-clotho-hug-excess-rate`, CONJECTURE
+with obstruction, PARK, not opened.
+
+**The exact layer, in Lean.** `formal/Problems/Juggler/LogLogClock.lean`,
+imports `Dynamics` only, no `sorry`:
+
+- `fract_mul_sub_nat_eq_fract_mul_sub_one`: \(\{ox-t\}=\{o(x-1)\}\) for
+  real \(x\), natural \(o,t\) — one `push_cast; ring` and
+  `Int.fract_add_intCast`.
+- `fract_walk_eq_fract_rotation`: the exponent walk mod 1 is
+  \(\{o\cdot\alpha\}\), \(\alpha=\log_2 3-1\). Proposition 1.
+- `fract_walk_depends_only_on_odd_count`: the length drops out.
+- `sqrt_cell`, `even_chain_mem_burst`: an even chain of length \(k\)
+  from \(n\) to \(m\) forces \(m^{2^k}\le n<(m+1)^{2^k}\); induction on
+  \(k\) through `floorPower_even_eq` and `Function.iterate_succ_apply`.
+- `even_chain_log_offset`: \(2^k\log m\le\log n<2^k\log(m+1)\) — the
+  chain sits at clock offset exactly \(k\).
+
+Not formalized: the count of the chain, the rotation gaps, the clock
+defect, the finance link (its Lean half is the existing
+`cycleMin_finance_inv_sum`), and every density. The ledger rows
+`J-lachesis-walk-rotation`, `-etree-density`, `-basin-every-block`, and
+`J-clotho-basin-every-block-criterion` now point at the file; two new
+rows carry the Lean statements.
+
+One detail for the next person: the fractional-part lemma is
+`Int.fract_add_intCast` in this Mathlib, not `Int.fract_add_int`, and it
+lives in `Mathlib.Algebra.Order.Floor.Ring`, not `Floor.Defs`.
+
+```text
+What was learned
+- the only rate on a flight's stay in a walk band is pigeonhole n^(2^B):
+  n^3 at the hug band, 20 orders above the gate
+- a usable rate is a single-orbit parity statement at depth ln y, behind
+  the log log y wall by an exponential
+- Proposition 1 and the burst interval are exact and now Lean
+Strongest theorem
+- even_chain_mem_burst and fract_walk_eq_fract_rotation (Lean)
+Strongest refutation
+- none new; the rate is blocked, not refuted
+Reusable machinery
+- LogLogClock.lean, registered in the barrel and LAYERS
+Branch status
+- PARK stands; exact layer delivered, rate question parked with obstruction
+Best next question
+- can a descent-free flight stay in the hug band [0, log2 3) for more
+  than polylog(n) steps? Pigeonhole says n^3; anything better is the rate
+```
+
+## Lachesis log-log clock: the hug band is the minimal invariant band, and a threshold I had missed (correction; PARK stands)
+
+Working the hug-band question exactly produced a correction to my own
+tables before it produced anything else.
+
+**The band.** One walk step adds \(\alpha=\log_2 3-1\) or subtracts
+\(1\). The band \([0,1+\alpha)\) is invariant: from \(u<1\) take
+\(+\alpha\), from \(u\ge 1\) take \(-1\). Every narrower band \([0,w)\),
+\(w<1+\alpha\), has a nonempty dead zone \([w-\alpha,1)\): from there
+\(+\alpha\) exceeds \(w\) and \(-1\) goes negative. So the hug band is
+the *minimal* invariant band. Below \(1\) no even step is possible at
+all, and since \(\alpha>1/2\) (that is \(9>8\)) at most one odd step
+fits. All of this is now Lean: `WalkStep`, `hug_band_step_exists`,
+`narrow_band_dead`, `dead_zone_nonempty`, `no_even_step_below_one`,
+`odd_steps_below_one_le_one`, with `one_lt_logb_two_three`,
+`logb_two_three_lt_two`, `half_lt_alphaClock` behind them.
+
+**What it says about the gate.** \(u(y)=\log_2(\ln y/\ln n)\) is the
+walk at which an orbit from \(n\) passes scale \(y\). If
+\(u(y)<\log_2 3\) — that is \(y<n^3\) — the walk cannot stay below
+\(u(y)\) for more than one or two odd steps whatever the word, so
+\(O(y)\le 2\) and the Clotho gate \(O(y)\ge O^*(y)\ge 28\) is
+unmeetable by *every* orbit. The criterion is meaningful only from
+\(n^3\) up. At \(n=3.5\cdot 10^8\) the \(10^{12}\) row of Consequence
+11 (\(u=0.49\)) was vacuous; so were the low decades of the high-flyer
+calibration (below \(15\) for the \(10^5\) anchors, below \(19\) for
+the \(10^6\) ones). The genuine rows still never meet the gate.
+
+**What it says about the cycle.** The same arithmetic on the Lachesis
+side: bursts of a cycle state \(x_t\) sit at \(c(n)+u_t+k\), \(k\ge 1\),
+so the first burst of the basin is at \(n^2\) and there is nothing
+below it; and the full rotation — all \(o\) states, gaps
+\(5\cdot 10^{-6}\) — is only available once
+\(c(y)-c(n)\ge 1+u_{\max}\), i.e. \(y\ge n^{2^{1+u_{\max}}}\), with
+\(u_{\max}=\log_2(\ln M/\ln n)\ge 1\) by Paper A's
+\(M\ge(n+1)^2\). At the floor that is \(10^{34}\) for \(u_{\max}=1\),
+\(10^{69}\) for \(2\), \(10^{137}\) for \(3\). My every-block tables
+at \(10^{12}\) and \(10^{30}\) for \(n=3.5\cdot 10^8\) were below that
+threshold and are withdrawn; the finance-linked table now reads
+\([2.97\cdot 10^{-7},2.90\cdot 10^{-5}]\) at \(10^{100}\) and
+\([9.89\cdot 10^{-8},9.68\cdot 10^{-6}]\) at \(10^{300}\). The
+conjecture record, the three ledger rows, the branch ledger, and the
+dossier carry the threshold now.
+
+**What survives.** Everything structural: the rotation, the clock, the
+\(1/x\) law, the finance link, the free-term verdict, and the Clotho
+gate — each with a lower scale limit it always had and I had not
+written down. What changes is the range on which "every block" is
+claimed: from \(n^{2^{1+u_{\max}}}\) up, not from the floor up.
+
+```text
+What was learned
+- the hug band [0, log2 3) is the minimal invariant band of the walk; every
+  narrower band has a dead zone; below 1 at most one odd step - Lean
+- hence the Clotho gate is vacuous below n^3, and a Lachesis basin's bursts
+  begin at n^2 with full coverage only from n^(2^(1 + u_max))
+- my 1e12 and 1e30 rows were below that threshold; withdrawn
+Strongest theorem
+- narrow_band_dead + dead_zone_nonempty: minimality of the hug band (Lean)
+Strongest refutation
+- my own every-block tables below the threshold
+Reusable machinery
+- the band lemmas in LogLogClock.lean; threshold fields in the probe
+Branch status
+- PARK stands
+Best next question
+- the same wall, now sharper: for the full band [0, log2 3) - the unique
+  band with no dead zone - can a descent-free flight stay inside for more
+  than polylog(n) steps? Pigeonhole says n^3
+```
+
+## Lachesis log-log clock: the band word is forced, so the last question was not one (closure; PARK stands)
+
+The previous entry ended on "can a descent-free flight stay in the hug
+band for more than polylog(n) steps?". Working the band dynamics
+exactly answers it by showing it is an existing closed question.
+
+**Inside the band there is no freedom.** From \(u<1\) the even step
+goes negative, so the letter must be odd; from \(u\ge 1\) the odd step
+exceeds \(1+\alpha\), so the letter must be even. A band-confined walk
+therefore has exactly one admissible successor at every point — it is
+the lift of the rotation by \(\alpha\), and its parity word is the
+mechanical word of that rotation, the hug itinerary, fixed by the
+starting walk alone. Lean: `band_step_forced_odd`,
+`band_step_forced_even`, `band_successor_unique`.
+
+**So residence is prefix realization.** Staying in the band for \(L\)
+steps *is* realizing one specific prefix of length \(L\). That is the
+closed branch [hug prefix realization](problems/juggler_hug_prefix_realization.md):
+the extremal hug cylinder tracks \(2^{-L}\) on \([3,2\cdot 10^8]\) with
+fill to depth \(28\). And \(\log_2(2\cdot 10^8)=27.6\) — the observed
+depth is exactly the fair-coin maximum \(\log_2 N\) over \(N\) starts.
+No anomaly, nothing to explain, and nothing new to open.
+`J-hug-band-residence-is-prefix-realization`, REPARAMETERIZATION.
+
+That also prices the obstruction properly. The pigeonhole bound I
+recorded last entry — a flight with walk in \([0,B)\) has distinct
+states in \([n,n^{2^B})\), hence \(n^3\approx 4\cdot 10^{25}\) steps at
+the hug band — is not merely weak. Reality is \(\log_2 n\approx 28\).
+The bound is off by twenty-four orders of magnitude, which is the
+honest measure of how little the pigeonhole knows about this dynamic.
+
+**The branch is finished on its own terms.** Exact layer in Lean;
+quantitative layer measured; the one operational proposal (a deep
+natural-density census) refuted as dominated; the Clotho transfer
+stated with its gate and its scale threshold; the missing object named
+as a rate on escape speed, with the reason it is out of reach. It owns
+no open question. The nearest live target is the laboratory's existing
+one, unchanged by any of this: the pressure form.
+
+```text
+What was learned
+- inside the hug band the parity letter is forced and the successor is
+  unique: the band walk is the rotation, the word is the hug itinerary
+- hence band residence is hug-prefix realization, already CLOSE at 2^-L
+  with fill to depth 28 = log2(2e8): the fair-coin maximum, no anomaly
+- the pigeonhole n^3 is off by twenty-four orders against reality log2 n
+Strongest theorem
+- band_successor_unique (Lean): no freedom inside the band
+Strongest refutation
+- my own previous "best next question": it was a closed branch renamed
+Reusable machinery
+- the forcedness lemmas in LogLogClock.lean
+Branch status
+- PARK. The branch owns no open question
+Best next question
+- none from this branch; the nearest live target remains J-tao-pressure-form
+```
+
+## Lachesis log-log clock: how the findings sit against the fates and termination (synthesis; PARK stands)
+
+Asked to see how the branch interacts with the three Moirai and with
+termination. Four things, one of them exact.
+
+**One visibility law.** For a backward-closed class with seed set
+\(S_0\), the \(E\)-visible density on the block at scale \(y\) is
+\(\approx(K/\ln y)\sum_{x\in S_0}1/x\), \(K\in[1,2]\). The fates differ
+only in \(S_0\). Atropos: the interval \([1,N_0]\), bursts tile,
+\(\sum 1/x\approx\ln N_0=19.7\), density \(\approx 0.06\) at
+\(10^{68}\) — which is contagion note §5.3's
+\(\log N_0/(2\log y)\), recovered from the other side. Lachesis: the
+cycle, a rotation orbit with gaps \(5\cdot 10^{-6}\),
+\(\sum 1/x\in[\theta(L)\ln n,L/n]\) by Lean finance, density
+\([4\cdot 10^{-7},4\cdot 10^{-5}]\) at \(10^{68}\) above the threshold.
+Clotho: the orbit's states below \(y\), every-block only under slow
+escape. So the certified floor's own \(E\)-forest outweighs any
+finance-surviving cycle by \(10^4\)–\(10^5\) at every block — the
+number behind "the census sees \(R\) and nothing else", and behind
+Refutation 5.
+
+**The floor stratifies \(F\) at every depth — Lean.**
+`not_reachesOne_even_chain_ge`: a start \(\ge 1\) that does not reach
+\(1\) and whose first \(k\) states are even is \(\ge 261^{2^k}\). The
+\(k\)-th iterate is a failure (backward closure of \(R\)), hence
+\(\ge 261\) by the Lean floor, and the even chain multiplies exponents.
+At the certified floor: \(\ge(N_0+1)^{2^k}\), so \(F\) is purely odd on
+\((N_0,(N_0+1)^2)\) and its \(E^k\)-cylinder is empty below
+\((N_0+1)^{2^k}\). The depth-\(k\) form of "\(\min F\) is an
+\(OO\)-start", and Observation 3's burst interval read upward from the
+floor.
+
+**The reductions.** Contagion's log-count growth comes from \(OE\)
+steps reaching new scales, which a single block never sees — no
+tension, different integrals. The exact map's free term is the only
+upper bound, and it is the pressure hypothesis; this branch is entirely
+on the lower side. A persistent slow escaper sits at odd share in
+\((q^*,q^*+0.004)\): on the pressure threshold, from above, measure
+zero as a thread, a contradiction as a cloud. A cycle would give
+failure log-count \(\gg\ln\ln x\) from the \(E\)-forest alone —
+weaker than Theorem 1, as it must be, but pinned to \(\theta(L)\ln n\).
+
+**Termination.** Every statement here is conditional on
+\(F\ne\emptyset\) and says what \(F\) would look like. None excludes
+it. What the branch adds to the conjecture is negative and precise:
+the natural instrument is dominated by the floor, and the rate that
+would make escape basins lacunary is a single-orbit statement at depth
+\(\ln y\).
+
+```text
+What was learned
+- one law: E-visible density = (K / ln y) * sum over seeds of 1/x; the
+  fates differ only in the seed set - interval, cycle, gated orbit
+- the floor's E-forest beats any surviving cycle by 1e4..1e5 per block
+- F is parity-stratified by the floor at every depth: a failure with k
+  leading evens is >= 261^(2^k) (Lean), >= (N0+1)^(2^k) certified
+- a slow escaper sits exactly on the pressure threshold, from above
+Strongest theorem
+- not_reachesOne_even_chain_ge (Lean)
+Strongest refutation
+- none new
+Reusable machinery
+- the stratification corollary; the one-law table in the dossier
+Branch status
+- PARK stands; nothing here excludes a fate or moves the pressure form
+Best next question
+- none from this branch
+```

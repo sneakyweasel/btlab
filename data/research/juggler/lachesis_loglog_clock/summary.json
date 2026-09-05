@@ -1,5 +1,5 @@
 {
-  "git_commit": "408fa77b39be7b17a11af3b123654c86b0557ab7",
+  "git_commit": "6b05929a7a7909e11d6195f2908592fa811e030b",
   "N0": 350000000,
   "alpha": 0.5849625007211561,
   "walk_mod_one_is_rotation_orbit": true,
@@ -205,6 +205,8 @@
       "log10_y": 12,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 0.49003936412923316,
+      "above_threshold_if_u_max_le": -0.5099606358707669,
       "density_low": 2.4714875222636596e-06,
       "density_high": 0.0002420382087612223,
       "single_seed_two_over_n": 5.714285714285714e-09,
@@ -216,6 +218,8 @@
       "log10_y": 30,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 1.8119674590165955,
+      "above_threshold_if_u_max_le": 0.8119674590165955,
       "density_low": 9.885950089054637e-07,
       "density_high": 9.68152835044889e-05,
       "single_seed_two_over_n": 5.714285714285714e-09,
@@ -227,6 +231,8 @@
       "log10_y": 68,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 2.9925397046584163,
+      "above_threshold_if_u_max_le": 1.9925397046584163,
       "density_low": 4.3614485687005755e-07,
       "density_high": 4.271262507550982e-05,
       "single_seed_two_over_n": 5.714285714285714e-09,
@@ -238,6 +244,8 @@
       "log10_y": 12,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 0.415037499278844,
+      "above_threshold_if_u_max_le": -0.5849625007211561,
       "density_low": 2.603372021958705e-06,
       "density_high": 8.471337306642781e-05,
       "single_seed_two_over_n": 2e-09,
@@ -249,6 +257,8 @@
       "log10_y": 30,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 1.7369655941662063,
+      "above_threshold_if_u_max_le": 0.7369655941662063,
       "density_low": 1.0413488087834819e-06,
       "density_high": 3.3885349226571115e-05,
       "single_seed_two_over_n": 2e-09,
@@ -260,6 +270,8 @@
       "log10_y": 68,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 2.9175378398080274,
+      "above_threshold_if_u_max_le": 1.9175378398080274,
       "density_low": 4.5941859211035976e-07,
       "density_high": 1.4949418776428437e-05,
       "single_seed_two_over_n": 2e-09,
@@ -271,6 +283,8 @@
       "log10_y": 12,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 0.49003936412923316,
+      "above_threshold_if_u_max_le": -0.5099606358707669,
       "density_low": 2.4255820623935803e-06,
       "density_high": 0.0003357198714525727,
       "single_seed_two_over_n": 5.714285714285714e-09,
@@ -282,6 +296,8 @@
       "log10_y": 30,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 1.8119674590165955,
+      "above_threshold_if_u_max_le": 0.8119674590165955,
       "density_low": 9.702328249574322e-07,
       "density_high": 0.00013428794858102907,
       "single_seed_two_over_n": 5.714285714285714e-09,
@@ -293,6 +309,8 @@
       "log10_y": 68,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 2.9925397046584163,
+      "above_threshold_if_u_max_le": 1.9925397046584163,
       "density_low": 4.28043893363573e-07,
       "density_high": 5.9244683197512836e-05,
       "single_seed_two_over_n": 5.714285714285714e-09,
@@ -304,6 +322,8 @@
       "log10_y": 12,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 0.415037499278844,
+      "above_threshold_if_u_max_le": -0.5849625007211561,
       "density_low": 2.5550169366894693e-06,
       "density_high": 0.00011750195500840044,
       "single_seed_two_over_n": 2e-09,
@@ -315,6 +335,8 @@
       "log10_y": 30,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 1.7369655941662063,
+      "above_threshold_if_u_max_le": 0.7369655941662063,
       "density_low": 1.0220067746757876e-06,
       "density_high": 4.7000782003360176e-05,
       "single_seed_two_over_n": 2e-09,
@@ -326,6 +348,8 @@
       "log10_y": 68,
       "K_low": 1.0,
       "K_high": 2.9999999999999996,
+      "clock_gap_c_y_minus_c_n": 2.9175378398080274,
+      "above_threshold_if_u_max_le": 1.9175378398080274,
       "density_low": 4.5088534176872986e-07,
       "density_high": 2.073563911912949e-05,
       "single_seed_two_over_n": 2e-09,
@@ -338,6 +362,7 @@
       "window": 0.03619120682527098,
       "O_star": 40,
       "u": 0.49003936412923316,
+      "gate_meaningful": false,
       "walk_gain_per_odd_step": 0.01225098410323083,
       "s_star": 0.6358445203926997,
       "s_star_minus_q_star": 0.004914766821242256
@@ -347,6 +372,7 @@
       "window": 0.014476482730108391,
       "O_star": 146,
       "u": 1.8119674590165955,
+      "gate_meaningful": true,
       "walk_gain_per_odd_step": 0.012410736020661613,
       "s_star": 0.6359091143752957,
       "s_star_minus_q_star": 0.0049793608038383175
@@ -356,6 +382,7 @@
       "window": 0.008685889638065035,
       "O_star": 252,
       "u": 2.5489330531828016,
+      "gate_meaningful": true,
       "walk_gain_per_odd_step": 0.010114813703106356,
       "s_star": 0.6349820419100243,
       "s_star_minus_q_star": 0.004052288338566856
@@ -365,6 +392,7 @@
       "window": 0.006386683557400762,
       "O_star": 305,
       "u": 2.9925397046584163,
+      "gate_meaningful": true,
       "walk_gain_per_odd_step": 0.009811605589043988,
       "s_star": 0.6348598112666072,
       "s_star_minus_q_star": 0.003930057695149758
@@ -374,6 +402,7 @@
       "window": 0.004342944819032518,
       "O_star": 358,
       "u": 3.5489330531828016,
+      "gate_meaningful": true,
       "walk_gain_per_odd_step": 0.009913220818946373,
       "s_star": 0.6349007696204192,
       "s_star_minus_q_star": 0.003971016048961773
@@ -383,6 +412,7 @@
       "window": 0.0014476482730108391,
       "O_star": 1635,
       "u": 5.133895553903958,
+      "gate_meaningful": true,
       "walk_gain_per_odd_step": 0.003139997280675204,
       "s_star": 0.632182180886281,
       "s_star_minus_q_star": 0.0012524273148235565
@@ -392,11 +422,53 @@
       "window": 0.00043429448190325184,
       "O_star": 12275,
       "u": 6.870861148070164,
+      "gate_meaningful": true,
       "walk_gain_per_odd_step": 0.0005597442890484858,
       "s_star": 0.6311526510165161,
       "s_star_minus_q_star": 0.00022289744505865627
     }
   ],
+  "high_flyer_gate": {
+    "passages": 172,
+    "gate_met": 0,
+    "per_flight": {
+      "48443": {
+        "decades": 25,
+        "gate_met": 0,
+        "min_gain_per_odd": 0.3348463007674646
+      },
+      "275485": {
+        "decades": 25,
+        "gate_met": 0,
+        "min_gain_per_odd": 0.14132987122347476
+      },
+      "412027": {
+        "decades": 25,
+        "gate_met": 0,
+        "min_gain_per_odd": 0.09569557468729953
+      },
+      "463157": {
+        "decades": 25,
+        "gate_met": 0,
+        "min_gain_per_odd": 0.08270109904641074
+      },
+      "1122603": {
+        "decades": 24,
+        "gate_met": 0,
+        "min_gain_per_odd": 0.14463766117062113
+      },
+      "1245741": {
+        "decades": 24,
+        "gate_met": 0,
+        "min_gain_per_odd": 0.19962745378924288
+      },
+      "1267909": {
+        "decades": 24,
+        "gate_met": 0,
+        "min_gain_per_odd": 0.19781550937747727
+      }
+    }
+  },
   "classification": {
     "max_realised_eps_u_units": 2.0669332911893434e-10,
     "max_cycle_eps_bound_u_units": 0.00017165991704408445,
@@ -411,6 +483,8 @@
     "clotho_window_is_positive_and_narrow": true,
     "hug19_rate_inside_window_to_1e300": true,
     "hug19_rate_outside_window_at_1e1000": true,
+    "flight_machinery_bounds_escape_from_below_only": true,
+    "realised_flights_never_meet_the_gate": true,
     "hug84_rate_inside_window_everywhere": true,
     "decision": "PARK"
   }
