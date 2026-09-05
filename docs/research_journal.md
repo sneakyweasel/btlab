@@ -24388,3 +24388,55 @@ Branch status
 Best next question
 - unchanged: the long regime, and Paper B's Lemma 5.2(i)
 ```
+
+
+### Paper A: the drift is now a test, not a habit
+
+Three iterations running, every defect found was mine: a change to the manuscript that
+silently invalidated prose elsewhere. Extending Theorem 5.8's window falsified an
+Appendix A row, a glossary entry, six reviewer-packet passages, and a line in the app's
+NOT_CLAIMED list that asserted the opposite of the new text. None was covered by a test,
+because prose is not executable. This iteration makes the class checkable instead of
+sweeping it again.
+
+**One more instance first.** `WALK_WINDOW_HI = 301_994` was still in the app's
+*constants* --- not prose this time, a value. Unused elsewhere, so nothing rendered
+wrong, but it would have been the next silent trap.
+
+**`test_manuscript_consistency.py`, 17 tests.** Numbering in document order (regression
+for the 5.15/5.16 inversion); no number carrying two different titles; the window
+endpoint agreeing across paper, mirror, packet, README, formalization map and app
+constants; no document quoting `[50508, 301994)` as *the* window; the window's endpoint
+being exactly \(q_{14}=L_{55}\); seven app constants matching the certificate; the
+review mirror being byte-identical to the manuscript; and Appendix A naming every
+registered Lean module.
+
+**The tests were wrong twice before the paper was.** First I asserted global uniqueness
+of item numbers --- but Appendix D deliberately restates the Section 3 theorems above
+their proofs. Then I asserted every appendix item restates a body item --- but Appendix C
+*introduces* Theorems 2.4-2.7, continuing Section 2's numbering. The invariant that
+actually holds is narrower and better: one number, one title. Both corrections came from
+the paper pushing back on a test I had written too eagerly, which is the right direction
+for that argument to run.
+
+New: `test_manuscript_consistency.py` (17 tests), `WALK_WINDOW_HI` corrected.
+
+```text
+What was learned
+- the recurring failure mode is prose invalidated by a maths change, and
+  it is testable: numbers quoted in more than one document are exactly
+  the part that can be checked mechanically
+- two of my own test premises were wrong about the paper's conventions;
+  the surviving invariant (one number, one title) is the right one
+Strongest theorem
+- none; an invariant that will catch the next instance before a reviewer
+Strongest refutation
+- my own first two numbering invariants, refuted by Appendices C and D
+Reusable machinery
+- test_manuscript_consistency: extendable to Papers B and C unchanged
+Branch status
+- ADVANCE (the class of defect that dominated recent iterations is closed)
+Best next question
+- unchanged mathematically; the same consistency net should be pointed at
+  Paper B, whose window and P_0 changed just as much this session
+```

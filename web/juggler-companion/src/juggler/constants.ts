@@ -23,7 +23,7 @@ export const LAB_WALK_PERIOD = 176_251;
 export const PRINTED_FLOOR = 162_849_448;
 export const PRINTED_PERIOD = 478_245;
 export const WALK_WINDOW_LO = 50_508;
-export const WALK_WINDOW_HI = 301_994;
+export const WALK_WINDOW_HI = 16_785_921;
 
 /** Paper C production playground. Display fork of fate_contagion.py. */
 export const PRODUCTION_SEEDS = [
