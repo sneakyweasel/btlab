@@ -1309,3 +1309,60 @@ def test_paper_tempers_the_one_theorem_reading() -> None:
     assert r"level \(1\) never occurs either" in text
     assert "should not be read as one routine theorem" in text
     assert "Both are new" in text
+
+
+# --- the level-2 characterisation is the kernel's reach, not the depth's doing ---
+
+
+def _blocked_profile_of(word: str):
+    out = set()
+    for t in range(3, len(word) + 1):
+        d = B.deepest_blocked(word, t)
+        if d:
+            out.add((d[0], d[3]))
+    return tuple(sorted(out))
+
+
+def test_depths_four_and_five_sort_into_exactly_four_classes() -> None:
+    from itertools import product
+    proved = set(_proved_words())
+    counts = {}
+    for d in (4, 5):
+        for b in product("EO", repeat=d):
+            w = "".join(b)
+            key = _blocked_profile_of(w)
+            tot, pr = counts.get(key, (0, 0))
+            counts[key] = (tot + 1, pr + (w in proved))
+    assert counts[()] == (40, 16)
+    assert counts[((2, "3/2"),)] == (4, 4)
+    assert counts[((1, "sqrt"),)] == (2, 0)
+    assert counts[((2, "3/2"), (3, "3/2"))] == (2, 0)
+    assert len(counts) == 4
+
+
+def test_among_blocked_words_proved_means_level_two_only() -> None:
+    """Four words with that profile, all proved; four with any other, none proved."""
+    from itertools import product
+    proved = set(_proved_words())
+    for d in (4, 5):
+        for b in product("EO", repeat=d):
+            w = "".join(b)
+            prof = _blocked_profile_of(w)
+            if not prof:
+                continue
+            assert (w in proved) == (prof == ((2, "3/2"),)), (w, prof)
+
+
+def test_the_unproved_unblocked_depth_five_words_are_worth_nothing() -> None:
+    """Corollary 6.4 attains the depth-five ceiling, so no further class can add density."""
+    assert B.ceiling(5) == Fraction(7, 8)
+    assert B.ceiling(5) - B.ceiling(4) == Fraction(1, 16)
+    # depth six buys nothing either, so the 24 cannot be leveraged one step on
+    assert B.ceiling(6) == B.ceiling(5)
+
+
+def test_paper_states_the_four_class_sort() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "Is the level-2 reading forced by the depth?" in text
+    assert "it is the reach of the\nlevel-2 kernel" in text
+    assert "declining costs nothing" in text

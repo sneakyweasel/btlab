@@ -28548,3 +28548,68 @@ Best next question
 - proved territory is exactly level-2, 3/2-species. Is that a
   coincidence of the words chosen, or does depth <= 5 force it?
 ```
+
+ ### Four classes at depths four and five, and why twenty-four are skipped
+
+Neither forced nor accidental. Sorting every word of depths four and
+five by its blocked profile:
+
+```text
+   blocked (level, species)      words   proved here
+   none                            40        16
+   (2, 3/2)                         4         4
+   (1, sqrt)                        2         0
+   (2, 3/2) and (3, 3/2)            2         0
+```
+
+Four classes, and among the words blocked at all, "proved" and
+"blocked only at level 2 of `3/2` species" coincide exactly — four with
+that profile, all proved; four with any other, none. So the
+characterisation from the last entry is the **reach of the level-2
+kernel**, nothing more and nothing less. The depth does not force it;
+the theorem available does.
+
+The unblocked rows are the part worth saying out loud. **Twenty-four
+depth-five words carry no obstruction of any kind and are still not
+proved.** That is not an omission: Corollary 6.4 already attains the
+depth-five ceiling of `7/8`, and depth six is a stalling depth, so none
+of the twenty-four can raise the certified density by anything at all.
+Theorem 6.3 says in its own title that it is not a census of depth
+five. The twenty-four are what it declines to census, and declining is
+free.
+
+That is a pleasing place for the frontier analysis to land. The paper
+proves exactly the words its kernel reaches, and among the words its
+kernel would reach for nothing, it proves exactly the two that carry
+density.
+
+```text
+What was learned
+- the level-2 characterisation is a statement about the theorem
+  available, not about the depth; the words with other profiles are
+  precisely the unproved ones
+- twenty-four unobstructed depth-five words are skipped, correctly,
+  because the ceiling there is already attained -- the paper's
+  coverage stops exactly where the density stops improving
+Strongest theorem
+- among words of depths four and five that are blocked at all, proved
+  iff blocked only at level 2 of 3/2 species: four and four, no
+  exceptions
+Strongest refutation
+- both readings I offered myself: not forced by depth, not a
+  coincidence of the words chosen
+Reusable machinery
+- four tests over the four-class sort and the ceiling argument for the
+  twenty-four
+Branch status
+- PARK
+Why
+  The frontier is now described from both sides: which words the
+  kernel reaches, and which of the reachable ones are worth reaching.
+  Both answers are exact and tested, and there is no further structure
+  at these depths to extract.
+Best next question
+- the analysis has been word-by-word throughout. Is there a closed form
+  for the number of blocked words at depth d, or does it need the
+  enumeration?
+```

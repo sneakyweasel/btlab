@@ -4774,6 +4774,31 @@ Level 1's argument is \(n^{3/2}\), still smooth, and sits below that
 barrier; the level-3 square-root object sits above it. Both are new;
 one is new on the side the paper's machinery was built to reach.
 
+*Is the level-2 reading forced by the depth?* No, and it is not a
+coincidence either. Sorting every word of depths four and five by its
+blocked profile gives four classes:
+
+| blocked (level, species) | words | proved here |
+|---|---:|---:|
+| none | \(40\) | \(16\) |
+| \((2,\,3/2)\) | \(4\) | \(4\) |
+| \((1,\,\surd)\) | \(2\) | \(0\) |
+| \((2,\,3/2),\ (3,\,3/2)\) | \(2\) | \(0\) |
+
+Among the words blocked at all, "proved" and "blocked only at level 2
+of \(3/2\) species" coincide exactly --- four words with that profile,
+all proved; four with any other, none proved. So the characterisation
+is neither forced by the depth nor accidental: it is the reach of the
+level-2 kernel, and the proved set is exactly what that kernel covers.
+
+The unblocked rows deserve a plain word. Twenty-four words of depth
+five carry no obstruction of any kind and are still not proved here,
+and the reason is that they are worth nothing: Corollary 6.4 already
+attains the depth-five ceiling of \(7/8\), so no further depth-five
+class can raise the certified density at all. Theorem 6.3 says in its
+own title that it is not a census of depth five; the twenty-four are
+what it declines to census, and declining costs nothing.
+
 One more check, on the *form* of those monomials. Writing the kernel's
 coefficient as a power of \(n\) drops the floors kept exact beneath it,
 at a cost equal to its sensitivity to each, of exponent
