@@ -1,5 +1,5 @@
 {
-  "git_commit": "6b05929a7a7909e11d6195f2908592fa811e030b",
+  "git_commit": "468652e4054f94458b429ab83baa5fdcf439e4b8",
   "N0": 350000000,
   "alpha": 0.5849625007211561,
   "walk_mod_one_is_rotation_orbit": true,
@@ -428,6 +428,113 @@
       "s_star_minus_q_star": 0.00022289744505865627
     }
   ],
+  "record_structure": [
+    {
+      "n": 48443,
+      "prefix_length": 56,
+      "records": 30,
+      "record_density": 0.5357142857142857,
+      "max_gap": 9,
+      "mean_gap": 1.896551724137931,
+      "min_walk_gain": 0.1699250014423086
+    },
+    {
+      "n": 275485,
+      "prefix_length": 137,
+      "records": 28,
+      "record_density": 0.20437956204379562,
+      "max_gap": 90,
+      "mean_gap": 5.037037037037037,
+      "min_walk_gain": 0.16992500144231215
+    },
+    {
+      "n": 412027,
+      "prefix_length": 88,
+      "records": 33,
+      "record_density": 0.375,
+      "max_gap": 25,
+      "mean_gap": 2.71875,
+      "min_walk_gain": 0.0947375050480872
+    },
+    {
+      "n": 463157,
+      "prefix_length": 45,
+      "records": 29,
+      "record_density": 0.6444444444444445,
+      "max_gap": 6,
+      "mean_gap": 1.5714285714285714,
+      "min_walk_gain": 0.1699250014423086
+    },
+    {
+      "n": 1122603,
+      "prefix_length": 123,
+      "records": 32,
+      "record_density": 0.2601626016260163,
+      "max_gap": 52,
+      "mean_gap": 3.935483870967742,
+      "min_walk_gain": 0.1699250014423086
+    },
+    {
+      "n": 1245741,
+      "prefix_length": 104,
+      "records": 32,
+      "record_density": 0.3076923076923077,
+      "max_gap": 19,
+      "mean_gap": 3.3225806451612905,
+      "min_walk_gain": 0.019550008653872908
+    },
+    {
+      "n": 1267909,
+      "prefix_length": 80,
+      "records": 28,
+      "record_density": 0.35,
+      "max_gap": 28,
+      "mean_gap": 2.925925925925926,
+      "min_walk_gain": 0.09473750504809075
+    }
+  ],
+  "lacunarity_crossover": [
+    {
+      "log10_y": 1000,
+      "P": 90,
+      "theta_min": 0.019550008653872908,
+      "u": 6.870861148070164,
+      "O_upper_bound": 19956.654377772593,
+      "O_star_measured": 12275,
+      "O_star_lower_bound": 2302.5850929940457,
+      "gate_provably_fails": false
+    },
+    {
+      "log10_y": 10000,
+      "P": 90,
+      "theta_min": 0.019550008653872908,
+      "u": 10.192789242957526,
+      "O_upper_bound": 29605.30968149678,
+      "O_star_measured": null,
+      "O_star_lower_bound": 23025.850929940458,
+      "gate_provably_fails": false
+    },
+    {
+      "log10_y": 20000,
+      "P": 90,
+      "theta_min": 0.019550008653872908,
+      "u": 11.192789242957526,
+      "O_upper_bound": 32509.844345740123,
+      "O_star_measured": null,
+      "O_star_lower_bound": 46051.701859880915,
+      "gate_provably_fails": true
+    },
+    {
+      "log10_y": 100000,
+      "P": 90,
+      "theta_min": 0.019550008653872908,
+      "u": 13.514717337844889,
+      "O_upper_bound": 39253.96498522098,
+      "O_star_measured": null,
+      "O_star_lower_bound": 230258.5092994046,
+      "gate_provably_fails": true
+    }
+  ],
   "high_flyer_gate": {
     "passages": 172,
     "gate_met": 0,
@@ -483,6 +590,10 @@
     "clotho_window_is_positive_and_narrow": true,
     "hug19_rate_inside_window_to_1e300": true,
     "hug19_rate_outside_window_at_1e1000": true,
+    "observed_max_record_gap": 90,
+    "observed_min_walk_gain_per_record": 0.019550008653872908,
+    "gain_is_theta_19": true,
+    "bounded_gaps_would_force_lacunarity": true,
     "flight_machinery_bounds_escape_from_below_only": true,
     "realised_flights_never_meet_the_gate": true,
     "hug84_rate_inside_window_everywhere": true,

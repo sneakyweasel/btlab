@@ -182,6 +182,33 @@ def test_lean_layer_is_registered_and_names_its_theorems() -> None:
     assert "import Problems.Juggler.Dynamics" in text
 
 
+def test_record_gain_is_the_shortest_near_return() -> None:
+    """The minimum walk gain per record over the high-flyers is theta_19, not an artefact."""
+
+    from research.juggler_sequence.lachesis_loglog_clock import HIGH_FLYERS, record_structure
+
+    gains = [record_structure(n)["min_walk_gain"] for n in HIGH_FLYERS]
+    gains = [g for g in gains if g is not None]
+    assert len(gains) == len(HIGH_FLYERS)
+    assert abs(min(gains) - (12 * LOG2_3 - 19)) < 1e-9
+
+
+def test_bounded_record_gaps_force_the_gate_to_fail() -> None:
+    """O(y) = O(log log y) against O*(y) >= ln y: the gate fails past the crossover."""
+
+    from research.juggler_sequence.lachesis_loglog_clock import lacunarity_crossover
+
+    theta19 = 12 * LOG2_3 - 19
+    near = lacunarity_crossover(90, theta19, 1000)
+    far = lacunarity_crossover(90, theta19, 100000)
+    assert not near["gate_provably_fails"]
+    assert far["gate_provably_fails"]
+    assert far["O_upper_bound"] < far["O_star_lower_bound"]
+    # the bound grows like log log y, the gate at least like log y
+    assert far["O_upper_bound"] / near["O_upper_bound"] < 3.0
+    assert far["O_star_lower_bound"] / near["O_star_lower_bound"] > 90.0
+
+
 def test_dossier_and_summary_agree() -> None:
     assert DOSSIER.is_file()
     data = json.loads(SUMMARY.read_text(encoding="utf-8"))

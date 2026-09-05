@@ -26144,3 +26144,75 @@ Branch status
 Best next question
 - none from this branch
 ```
+
+## Record density: the escape rate reduces to a bound on record gaps (finding; PARK stands)
+
+Asked for the one escape-side gap with a mechanism behind it. It has
+one, and it converts the missing rate into a finite combinatorial
+quantity.
+
+**The measurement.** Along the descent-free prefix of the seven
+canonical high-flyers, record (tail-minimum) density is \(0.204\) to
+\(0.644\), mean gap \(1.57\) to \(5.04\), largest gap \(90\). The gap
+multiset over all seven is \(1\) (150 times), \(3\) (29), \(6\) (10),
+\(9\) (6), \(11\) (3), \(14\) (2), and \(19,25,28,52,90\) once each.
+Among \(2316\) random odd starts near \(10^6\) with prefix \(\ge 20\),
+the largest gap is \(128\).
+
+The number worth keeping: the minimum walk gain per record, over all
+seven flights, is exactly \(\theta_{19}=12\log_2 3-19=0.0195500\) — the
+shortest near-return of the \(\log_2 3\) lattice. §6's return
+quantization appears in the record structure rather than being put
+there.
+
+**The reduction.** Records have strictly increasing walk (they are tail
+minima, and the height law is two-sided there). So if record gaps are
+\(\le P\) and the gain per record is \(\ge\theta_{\min}\), reaching
+walk \(u(y)\) costs \(\le u(y)/\theta_{\min}\) records, hence
+\(\le P\,u(y)/\theta_{\min}\) steps, hence
+\(O(y)\le q^*P\,u(y)/\theta_{\min}=O(\log\log y)\). Against it, the
+every-block gate needs \(O(y)\ge O^*(y)\ge\ln y\), and that lower bound
+needs no computation at all: \(O\) points cut the circle into \(O\)
+gaps summing to \(1\), so \(\mathrm{gap}(O)\ge 1/O\), and
+\(\mathrm{gap}(O^*)\le 1/\ln y\) forces \(O^*\ge\ln y\). Since
+\(\log\log y=o(\log y)\), **bounded record gaps make that Clotho basin
+lacunary above an explicit scale** — with the observed constants,
+between \(10^{10000}\) and \(10^{20000}\) (measured: bound \(29605\) vs
+\(\ln y=23026\) at \(10^{10000}\), \(32510\) vs \(46052\) at
+\(10^{20000}\)).
+
+**The catch, stated plainly.** \(P\) and \(\theta_{\min}\) are coupled:
+a longer gap admits a smaller lattice value, and \(P/\theta_{\min}(P)\)
+runs \(972\to 27884\to 1.67\cdot 10^7\) at \(P=19,84,1054\), so the
+crossover explodes with \(P\). The reduction holds for every fixed
+\(P\), but the hypothesis "record gaps stay bounded" is not proved and
+is the same single-orbit species as the rate it replaces. Its only
+advantage is that it names a finite combinatorial quantity instead of
+an asymptotic rate — and the prefixes measured are \(45\) to \(137\)
+steps, which says nothing about gaps as flights lengthen.
+
+So the wall did not move. It changed shape: from "bound the growth of
+hug excess" to "bound the gaps between tail minima", with an explicit
+crossover attached. That is worth the two ledger rows and no more.
+
+```text
+What was learned
+- record density on realised flights is 0.20 to 0.64, gaps mostly 1 or 3
+- the minimum walk gain per record is exactly theta_19: the shortest
+  near-return, showing up in the record structure on its own
+- bounded gaps + gain bounded below => O(y) = O(log log y) against
+  O*(y) >= ln y, so the gate fails past 1e20000 and the basin is lacunary
+- O*(y) >= ln y is free: O points make O gaps summing to 1
+Strongest theorem
+- the reduction (elementary, human proof): bounded record gaps imply
+  lacunarity above an explicit scale
+Strongest refutation
+- none; the hypothesis is unproved, not false
+Reusable machinery
+- record_structure and lacunarity_crossover in lachesis_loglog_clock
+Branch status
+- PARK. The wall changed shape and did not move
+Best next question
+- none I would open: "record gaps bounded" is a single-orbit statement,
+  which is the species the laboratory has no method for
+```

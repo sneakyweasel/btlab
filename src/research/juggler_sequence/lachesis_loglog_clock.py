@@ -388,6 +388,73 @@ def flight_gate_passages(n: int, gaps: list[float], bit_cap: int = 2_000_000,
     return out
 
 
+def record_structure(n: int, bit_cap: int = 400_000, t_max: int = 100_000) -> dict[str, Any]:
+    """Record (tail-minimum) indices along the descent-free prefix from anchor ``n``.
+
+    A record is an index ``k`` with ``x_k`` minimal over the tail; flight note §5.5 makes them
+    cofinal, and from each the tail is again a descent-free flight.  Returns the record count,
+    the gap distribution, and the walk gain per record.  By §6 the gain is a positive lattice
+    value ``o*log2(3) - p`` up to the transport error, so it is at least ``theta(p)``."""
+
+    xs_log: list[float] = [flog(n)]
+    odds: list[int] = [0]
+    x, o = n, 0
+    for _ in range(t_max):
+        if x.bit_length() > bit_cap:
+            break
+        if x % 2 == 0:
+            x = math.isqrt(x)
+        else:
+            o += 1
+            x = math.isqrt(x * x * x)
+        if x < n:
+            break
+        xs_log.append(flog(x))
+        odds.append(o)
+    recs: list[int] = []
+    best = math.inf
+    for k in range(len(xs_log) - 1, -1, -1):
+        if xs_log[k] < best:
+            recs.append(k)
+            best = xs_log[k]
+    recs.reverse()
+    gaps = [recs[i + 1] - recs[i] for i in range(len(recs) - 1)]
+    walks = [odds[k] * LOG2_3 - k for k in recs]
+    gains = [g for g in (walks[i + 1] - walks[i] for i in range(len(walks) - 1)) if g > 1e-12]
+    return {
+        "n": n,
+        "prefix_length": len(xs_log),
+        "records": len(recs),
+        "record_density": len(recs) / max(1, len(xs_log)),
+        "max_gap": max(gaps) if gaps else None,
+        "mean_gap": (sum(gaps) / len(gaps)) if gaps else None,
+        "min_walk_gain": min(gains) if gains else None,
+    }
+
+
+def lacunarity_crossover(P: int, theta_min: float, log10_y: int,
+                         n: float = N0_CERTIFIED, gaps: list[float] | None = None) -> dict[str, Any]:
+    """If record gaps are at most ``P`` and the walk gain per record at least ``theta_min``,
+    then reaching walk ``u(y)`` costs at most ``P * u(y) / theta_min`` steps, so
+    ``O(y) <= q* * P * u(y) / theta_min = O(log log y)`` while the every-block gate
+    ``O*(y)`` grows like ``log y``.  Beyond the crossover the gate provably fails and that
+    Clotho basin is lacunary.
+
+    ``O*(y) >= ln y`` needs no computation: ``O`` points cut the circle into ``O`` gaps summing
+    to ``1``, so ``gap(O) >= 1/O``, and ``gap(O*) <= 1/ln y`` forces ``O* >= ln y``.  That is the
+    comparison used here; the measured ``O*`` is reported when the gap profile reaches it."""
+
+    lny = log10_y * math.log(10.0)
+    u = math.log2(lny / math.log(n))
+    bound = (math.log(2.0) / math.log(3.0)) * P * u / theta_min
+    o_star = clotho_coverage_threshold(log10_y, n=n, gaps=gaps)["O_star"]
+    return {
+        "log10_y": log10_y, "P": P, "theta_min": theta_min, "u": u,
+        "O_upper_bound": bound, "O_star_measured": o_star, "O_star_lower_bound": lny,
+        "gate_provably_fails": bound < lny,
+    }
+
+
 def summary() -> dict[str, Any]:
     clock_census = [clock_defect_census(e, 200) for e in (12, 18, 30, 50, 100)]
     cycle_bounds = [
@@ -412,6 +479,11 @@ def summary() -> dict[str, Any]:
     ]
     gaps = gap_profile(20000)
     clotho = [clotho_coverage_threshold(e, gaps=gaps) for e in (12, 30, 50, 68, 100, 300, 1000)]
+    recs = [record_structure(n) for n in HIGH_FLYERS]
+    p_obs = max(r["max_gap"] for r in recs if r["max_gap"])
+    theta_obs = min(r["min_walk_gain"] for r in recs if r["min_walk_gain"])
+    crossover = [lacunarity_crossover(p_obs, theta_obs, e, gaps=gaps)
+                 for e in (1000, 10000, 20000, 100000)]
     flights = {str(n): flight_gate_passages(n, gaps) for n in HIGH_FLYERS}
     flight_passages = sum(len(v) for v in flights.values())
     flight_gate_hits = sum(r["gate_met"] for v in flights.values() for r in v)
@@ -431,6 +503,8 @@ def summary() -> dict[str, Any]:
         "inverse_sum_bounds": inverse_sums,
         "finance_linked_density": finance_linked,
         "clotho_coverage": clotho,
+        "record_structure": recs,
+        "lacunarity_crossover": crossover,
         "high_flyer_gate": {
             "passages": flight_passages,
             "gate_met": flight_gate_hits,
@@ -466,6 +540,10 @@ def summary() -> dict[str, Any]:
                 (12 * LOG2_3 - 19) / 12 > r["walk_gain_per_odd_step"]
                 for r in clotho if r["O_star"] is not None and r["log10_y"] == 1000
             ),
+            "observed_max_record_gap": p_obs,
+            "observed_min_walk_gain_per_record": theta_obs,
+            "gain_is_theta_19": abs(theta_obs - (12 * LOG2_3 - 19)) < 1e-9,
+            "bounded_gaps_would_force_lacunarity": crossover[-1]["gate_provably_fails"],
             "flight_machinery_bounds_escape_from_below_only": True,
             "realised_flights_never_meet_the_gate": flight_gate_hits == 0,
             "hug84_rate_inside_window_everywhere": all(

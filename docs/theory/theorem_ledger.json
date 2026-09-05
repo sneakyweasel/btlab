@@ -6790,5 +6790,31 @@
   "related_conjectures": [
    "juggler_lachesis_basin_every_block"
   ]
+ },
+ {
+  "id": "J-clotho-record-gap-reduction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Reduction of the missing escape rate to a bound on record gaps. Let a divergent orbit from anchor n have record (tail-minimum) gaps at most P and walk gain per record at least theta_min. Records have strictly increasing walk - they are tail minima and the height law is two-sided there (flight note Sec. 6) - so reaching walk u(y) = log2(ln y / ln n) costs at most u(y)/theta_min records, hence at most P u(y)/theta_min steps, hence O(y) <= q* P u(y) / theta_min odd steps: a bound of order log log y. The every-block gate of J-clotho-basin-every-block-criterion needs O(y) >= O*(y), and O*(y) >= ln y with no computation (O points cut the circle into O gaps summing to 1, so gap(O) >= 1/O, and gap(O*) <= 1/ln y forces O* >= ln y). Since log log y = o(log y) the gate provably fails for all large y: bounded record gaps imply that Clotho basin is lacunary above an explicit scale. With the observed constants P = 90, theta_min = theta_19 = 0.0195500, n = 3.5e8, the crossover lies between 1e10000 and 1e20000. Caveat: P and theta_min are coupled, since a longer gap admits a smaller lattice value (theta_19 = 1.96e-2, theta_84 = 3.01e-3, theta_1054 = 6.30e-5), so P / theta_min(P) grows fast - 972 at P = 19, 27884 at P = 84, 1.67e7 at P = 1054 - and the crossover scale explodes with P. The reduction holds for every fixed P; the hypothesis is not proved.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
+ },
+ {
+  "id": "J-flight-record-structure",
+  "tag": "OBSERVATION",
+  "statement": "Record structure on the seven canonical high-flyers, along the descent-free prefix: record density 0.204..0.644 (mean gap 1.57..5.04), largest gap 90, and the minimum walk gain per record over all seven is exactly theta_19 = 12 log2 3 - 19 = 0.0195500, the shortest near-return of the log2 3 lattice - flight note Sec. 6's quantization appearing in the record structure rather than being put there. Gap multiset over all seven flights: 1 (150 times), 3 (29), 6 (10), 9 (6), 11 (3), 14 (2), and 19, 25, 28, 52, 90 once each. Among 2316 random odd starts near 1e6 with a descent-free prefix of length at least 20, the largest record gap is 128. So the hypothesis of J-clotho-record-gap-reduction holds on every flight observed; it is not proved, and it is the same single-orbit kind of statement as the rate it replaces. Prefixes are short (45 to 137 steps on the high-flyers), so nothing here says gaps stay bounded as flights lengthen.",
+  "source": "docs/problems/juggler_lachesis_loglog_clock.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
+  ],
+  "related_conjectures": [
+   "juggler_lachesis_basin_every_block"
+  ]
  }
 ]

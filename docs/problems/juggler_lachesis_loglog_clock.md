@@ -447,6 +447,55 @@ anomaly. The pigeonhole bound of Obstruction 13 (\(n^3\approx
 My "best next question" of the previous phase was therefore not a new
 question. Do not reopen it as a branch.
 
+**Observation 16 (record structure; OBSERVATION).** Along the
+descent-free prefix, the record (tail-minimum) indices of the seven
+canonical high-flyers:
+
+| \(n\) | prefix | records | density | max gap | mean gap | min walk gain |
+|---|---|---|---|---|---|---|
+| 48443 | 56 | 30 | 0.536 | 9 | 1.90 | \(1.70\cdot 10^{-1}\) |
+| 275485 | 137 | 28 | 0.204 | 90 | 5.04 | \(1.70\cdot 10^{-1}\) |
+| 412027 | 88 | 33 | 0.375 | 25 | 2.72 | \(9.47\cdot 10^{-2}\) |
+| 463157 | 45 | 29 | 0.644 | 6 | 1.57 | \(1.70\cdot 10^{-1}\) |
+| 1122603 | 123 | 32 | 0.260 | 52 | 3.94 | \(1.70\cdot 10^{-1}\) |
+| 1245741 | 104 | 32 | 0.308 | 19 | 3.32 | \(\mathbf{1.955\cdot 10^{-2}}\) |
+| 1267909 | 80 | 28 | 0.350 | 28 | 2.93 | \(9.47\cdot 10^{-2}\) |
+
+The minimum walk gain per record over all seven is exactly
+\(\theta_{19}=12\log_2 3-19=0.0195500\) — the shortest near-return of
+the lattice, appearing in the record structure rather than being put
+there. Gap multiset: \(1\) (150 times), \(3\) (29), \(6\) (10), \(9\)
+(6), \(11\) (3), \(14\) (2), and \(19,25,28,52,90\) once each. Among
+\(2316\) random odd starts near \(10^6\) with prefix \(\ge 20\), the
+largest gap is \(128\).
+
+**Consequence 17 (bounded gaps force lacunarity; EXACT — HUMAN
+PROOF `J-clotho-record-gap-reduction`).** Suppose a divergent orbit has
+record gaps \(\le P\) and walk gain per record \(\ge\theta_{\min}\).
+Records have strictly increasing walk (tail minima, with the two-sided
+height law of §6 there), so reaching \(u(y)\) costs
+\(\le u(y)/\theta_{\min}\) records, \(\le P\,u(y)/\theta_{\min}\) steps,
+and
+\[
+O(y)\ \le\ q^*\,P\,u(y)/\theta_{\min}\ =\ O(\log\log y).
+\]
+The gate needs \(O(y)\ge O^*(y)\), and \(O^*(y)\ge\ln y\) with no
+computation: \(O\) points cut the circle into \(O\) gaps summing to
+\(1\), so \(\mathrm{gap}(O)\ge 1/O\), and \(\mathrm{gap}(O^*)\le
+1/\ln y\) forces \(O^*\ge\ln y\). Since \(\log\log y=o(\log y)\), **the
+gate provably fails for all large \(y\)**: bounded record gaps make that
+Clotho basin lacunary above an explicit scale. With the observed
+constants the crossover lies between \(10^{10000}\) and \(10^{20000}\).
+
+*The catch.* \(P\) and \(\theta_{\min}\) are coupled: a longer gap
+admits a smaller lattice value (\(\theta_{19}=1.96\cdot 10^{-2}\),
+\(\theta_{84}=3.01\cdot 10^{-3}\), \(\theta_{1054}=6.30\cdot 10^{-5}\)),
+so \(P/\theta_{\min}(P)\) runs \(972\to 27884\to 1.67\cdot 10^{7}\) at
+\(P=19,84,1054\) and the crossover explodes with \(P\). The reduction
+holds for every fixed \(P\); the hypothesis is not proved, and it is the
+same single-orbit species as the rate it replaces — sharper only in
+naming a finite combinatorial quantity instead of an asymptotic rate.
+
 ## Interaction with the fates and with termination
 
 **One visibility law for the three Moirai.** For a backward-closed
