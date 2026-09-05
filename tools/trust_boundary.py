@@ -24,6 +24,7 @@ PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
 LEAN = ROOT / "formal" / "Problems" / "Juggler"
 UMBRELLA = ROOT / "formal" / "Problems" / "Juggler.lean"
 PAPER_A_ROOT = ROOT / "formal" / "Problems" / "JugglerPaper.lean"
+PAPER_B_ROOT = ROOT / "formal" / "Problems" / "JugglerParityPaper.lean"
 
 IDENT = re.compile(r"`([a-z][A-Za-z0-9_']*)`")
 SECTION = re.compile(r"^#{2,3}\s+(.*)$", re.MULTILINE)
@@ -60,8 +61,8 @@ def reachable_modules(root) -> set[str]:
     """Modules reachable from a root by transitive import.
 
     JugglerPaper.lean is *Paper A*'s root -- Dynamics, Cycles, LeftoverFamilies,
-    EvenCountThree.  Paper B has no root of its own, so its modules are reachable only from
-    the umbrella Juggler.lean, which imports everything that builds.
+    EvenCountThree.  JugglerParityPaper.lean is Paper B's, importing exactly the five modules
+    its prose cites.  The umbrella Juggler.lean imports everything that builds.
     """
     imports: dict[str, set[str]] = {}
     for path in LEAN.glob("*.lean"):
@@ -83,7 +84,7 @@ def audit() -> list[dict[str, object]]:
     text = io.open(PAPER, encoding="utf-8").read()
     heads = sections(text)
     decl = declared()
-    reach = reachable_modules(UMBRELLA)
+    reach = reachable_modules(PAPER_B_ROOT)
     reach_a = reachable_modules(PAPER_A_ROOT)
     rows: dict[str, dict[str, object]] = {}
     for m in IDENT.finditer(text):
@@ -107,7 +108,7 @@ def main() -> None:
     unreachable = [r for r in rows if r["declared"] and not r["reachable"]]
     print("identifiers cited in Paper B's prose: %d" % len(rows))
     print("   declared in formal/Problems/ : %d" % (len(rows) - len(missing)))
-    print("   of those, reachable from the umbrella Juggler.lean: %d"
+    print("   of those, reachable from Problems/JugglerParityPaper.lean: %d"
           % (len(rows) - len(missing) - len(unreachable)))
     print()
     if missing:

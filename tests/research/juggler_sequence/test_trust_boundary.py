@@ -52,9 +52,9 @@ def test_every_identifier_in_the_table_is_declared_in_lean() -> None:
 
 
 def test_every_identifier_in_the_table_is_reachable() -> None:
-    """Reachable from the umbrella root, which is the only root that covers this paper."""
+    """Reachable from Paper B's own barrel, which is what the table tells a reader to build."""
     decl = TB.declared()
-    reach = TB.reachable_modules(TB.UMBRELLA)
+    reach = TB.reachable_modules(TB.PAPER_B_ROOT)
     named = {m.group(1) for m in IDENT.finditer(table())} - {"ring"}
     unreachable = sorted(n for n in named if decl.get(n) not in reach)
     assert not unreachable, unreachable
@@ -99,18 +99,29 @@ def test_module_list_matches_what_the_citations_resolve_to() -> None:
     assert "five modules" in t
 
 
-def test_no_dedicated_lean_root_for_this_paper() -> None:
-    """The table says there is none; if one is ever added, the sentence must change.
+def test_paper_b_root_imports_exactly_its_own_modules() -> None:
+    """The barrel must import the five modules the citations resolve to, and nothing else.
 
-    JugglerPaper.lean is Paper A's root -- it imports Dynamics, Cycles, LeftoverFamilies,
-    EvenCountThree -- and the umbrella imports everything that builds.
+    An extra import would make the barrel claim more than the paper cites; a missing one would
+    make the table's build instruction wrong.
     """
-    roots = sorted(p.name for p in (ROOT / "formal" / "Problems").glob("*.lean"))
-    assert roots == ["Juggler.lean", "JugglerPaper.lean"], roots
-    paper_a = TB.reachable_modules(TB.PAPER_A_ROOT)
-    mods = {r["module"] for r in TB.audit() if r["declared"]}
-    assert not (mods & paper_a), "Paper A's root now reaches Paper B's modules"
-    assert "there is no root importing exactly this" in table()
+    src = io.open(TB.PAPER_B_ROOT, encoding="utf-8").read()
+    imported = sorted(re.findall(r"^import Problems\.Juggler\.(\w+)", src, re.MULTILINE))
+    cited = sorted({r["module"] for r in TB.audit() if r["declared"]})
+    assert imported == cited, (imported, cited)
+
+
+def test_the_two_paper_barrels_share_no_module() -> None:
+    """Paper A's barrel and Paper B's are disjoint, which is what makes each one a boundary."""
+    a = TB.reachable_modules(TB.PAPER_A_ROOT)
+    b = TB.reachable_modules(TB.PAPER_B_ROOT)
+    assert a and b and not (a & b), sorted(a & b)
+    assert "shares no module with Paper A" in table()
+
+
+def test_table_tells_the_reader_how_to_build_it() -> None:
+    assert "lake build Problems.JugglerParityPaper" in table()
+    assert (ROOT / "formal" / "Problems" / "JugglerParityPaper.lean").exists()
 
 
 @pytest.mark.parametrize("external,source", [

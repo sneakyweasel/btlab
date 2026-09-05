@@ -262,14 +262,13 @@ analysis will be misled. The remaining rows are stated so that this
 one is unmistakable.
 
 Two conventions in that column. Every identifier listed is declared
-under `formal/Problems/` and reachable from the umbrella root
-`Problems/Juggler.lean`; there is no root importing exactly this
-paper's modules, so the reader who wants to build only these must
-select them by hand from the five modules `MasterIdentity`,
+under `formal/Problems/` and reachable from `Problems/JugglerParityPaper.lean`,
+a barrel importing exactly this paper's five modules --- `MasterIdentity`,
 `MeanValues`, `MonomialSplitting`, `PaperBAssembly` and
-`ThresholdCertificate`. And `ring` appears once in
-the text as the tactic that discharges an inversion, not as the name of
-a theorem.
+`ThresholdCertificate` --- so the formal side can be built on its own with
+`lake build Problems.JugglerParityPaper`. It shares no module with Paper A's
+barrel. And `ring` appears once in the text as the tactic that discharges an
+inversion, not as the name of a theorem.
 
 ### 1.2 Related work
 

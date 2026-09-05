@@ -25017,3 +25017,47 @@ Best next question
   five modules. It is the artifact the table has to apologise for not
   having, and it is a file of imports
 ```
+
+
+### Paper B has a Lean root
+
+`Problems/JugglerParityPaper.lean`, importing exactly the five modules Paper B's prose cites --
+`MasterIdentity`, `MeanValues`, `MonomialSplitting`, `PaperBAssembly`, `ThresholdCertificate` --
+and nothing else. `lake build Problems.JugglerParityPaper` succeeds in 24s against the warm
+cache; the only output is pre-existing unused-variable lints. It shares no module with Paper A's
+barrel, which is what makes each of the two a boundary rather than a pile.
+
+The barrel's docstring carries the trust boundary in the place a reader will actually meet it.
+Building it does not corroborate the analysis: every declaration reachable from it is an
+identity, a constant or a threshold, none is an estimate, Lemma 5.2 has no machine check of any
+kind, Theorem 5.3 has two Step-5b constants and no part of its assembly, and Theorems 4.4, 4.7,
+4.8, 6.1, 6.3 and Corollaries 4.9, 6.4 have none. Section 1.1's table is the same statement
+from the other side, and the docstring says so.
+
+The table's apology is gone with it: it used to tell the reader to select five modules by hand
+out of the umbrella, and now gives a build command.
+
+**The test that said no such root exists was inverted rather than deleted.** It now asserts the
+barrel imports exactly the modules the citations resolve to -- an extra import would make the
+barrel claim more than the paper cites, a missing one would make the build instruction wrong --
+and that the two paper barrels stay disjoint.
+
+```text
+What was learned
+- the artifact the trust boundary needed was a file of five imports;
+  the reason it did not exist is that nobody had asked what Paper B's
+  formal side *is*, only what it contains
+Strongest theorem
+- none; a boundary that was described is now buildable
+Strongest refutation
+- none this iteration
+Reusable machinery
+- trust_boundary.py now audits against any of the three roots
+Branch status
+- ADVANCE (referee items 3, 4, 7, 15 done; the formal side of Paper B
+  is a single build command)
+Best next question
+- referee 16, the proof-critical vs bookkeeping constant split. The
+  data is already in p0_certificate: 36 of 37 inequalities hold from
+  2.9e10, one binds at 8.9e13
+```
