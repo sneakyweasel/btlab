@@ -347,6 +347,29 @@ def deepest_blocked(w: str, t: int) -> tuple[int, Fraction, Fraction, str] | Non
     return s, const, exponent, species
 
 
+def coefficient_sensitivity(w: str, t: int) -> list[tuple[int, Fraction]]:
+    """How much the kernel's own coefficient moves with the floors kept exact inside it.
+
+    The defects shallower than the kernel's are not expanded at all -- their floors stay exact in
+    the kernel's argument -- so the only question is whether the coefficient can still be written
+    as a monomial in ``n``.  Its sensitivity to ``theta_s`` has exponent ``(e_{t-1} - e_{s*}) - e_s``
+    for the deepest blocked ``s*``, and a negative value means the monomial is exact to within
+    ``o(1)``.  Theorem 5.3 returns ``-3/8``, which is why its statement can fix
+    ``c(n) = (3k/4)n^{9/8}``; the level-3 kernel of Conjecture 7.3 returns ``+3/16`` and cannot.
+    """
+    deep = deepest_blocked(w, t)
+    if deep is None:
+        return []
+    s_deep, _, coeff_exponent, _ = deep
+    e = iterate_exponents(w)
+    return [(s, coeff_exponent - e[s - 1]) for s in range(1, s_deep)]
+
+
+def coefficient_is_monomial(w: str, t: int) -> bool:
+    """Is every inner sensitivity negative, so the kernel weight is a clean monomial in ``n``?"""
+    return all(x < 0 for _, x in coefficient_sensitivity(w, t))
+
+
 def beyond_methods(w: str, t: int) -> list[Fraction]:
     """Defect coefficients above ``9/4``, the exponent past which Conjecture 7.3 says every
     method of the paper stops -- it names ``kn^{45/16}`` as the family that crosses it.

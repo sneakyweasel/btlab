@@ -4625,8 +4625,13 @@ Theorem 4.8's shifted window applies. Above \(9/4\) --- the figure
 Conjecture 7.3 names when it says the traded family at \(kn^{45/16}\)
 sits *above the threshold where every method of this paper stops* ---
 nothing applies. Between them lies kernel territory. And it is the
-*deepest* blocked defect that names the kernel, the shallower ones
-being what earlier theorems already resolve:
+*deepest* blocked defect that names the kernel. The shallower ones are
+not resolved elsewhere and not expanded either: their floors stay exact
+inside the kernel's argument, which is exactly why \(K_c\) is written
+over \(\{\lfloor n^{3/2}\rfloor^{3/2}\}\) with the inner floor intact.
+A defect is expanded when its coefficient drifts slowly enough to
+window, and otherwise becomes part of what the kernel is a kernel
+*of*:
 
 | split | deepest blocked | monomial | \(>9/4\) | status |
 |---|---|---|---|---|
@@ -4642,6 +4647,36 @@ and that proof uses none; it assigns \(OOO*\) the level-2 kernel and
 returns Theorem 5.3's monomial; it assigns \(OOOO*\) the level-3
 kernel and returns the weight Conjecture 7.3 describes. The last three
 are the reading.
+
+One more check, on the *form* of those monomials. Writing the kernel's
+coefficient as a power of \(n\) drops the floors kept exact beneath it,
+at a cost equal to its sensitivity to each, of exponent
+\((e_{t-1}-e_{s^*})-e_s\) for the deepest blocked \(s^*\). For
+Theorem 5.3 that is \(-3/8\): negative, so the coefficient really is
+the monomial \(\tfrac{3k}4n^{9/8}\) its statement fixes, to within
+\(o(1)\). For the level-3 kernel it is \(+3/16\), and the weight cannot
+be written as a monomial in \(n\) at all --- a structural difference
+between the two levels beyond the derivative count, and one more reason
+the level-3 case is not the level-2 case with larger exponents.
+\(OOEOOEE\)'s level-3 kernel, by contrast, has sensitivities
+\(-3/32\) and \(-27/32\), so its weight *is* a clean monomial: it is a
+tidier level-3 problem than Conjecture 7.3, though of the wrong
+species.
+
+And \(OOOEOEE\) has no inner floor at all. Its kernel is
+\(\sum_{n\sim P}e\bigl(\tfrac{27k}{32}n^{33/32}\{n^{3/2}\}\bigr)\),
+whose argument \(n^{3/2}\) is a smooth function of the summation
+variable. That is below the barrier this paper locates at level two ---
+*after one floor the argument of the second floor is an integer
+sequence, not a smooth function* --- and it is the barrier, not the
+exponent, that the whole apparatus of Sections 4 and 5 exists to cross.
+Note also that Theorem 4.7 does not cover this sum: it bounds products
+of sawtooths after Vaaler expansion at frequencies
+\(\lvert i\rvert,\lvert j\rvert,\lvert k\rvert\le P^{1/24}\), whereas
+here the sawtooth sits inside the exponential against an amplitude
+\(\asymp P^{33/32}\). The level-1 kernel is a smaller problem than the
+level-2 one, but it is still a kernel and this paper does not contain
+it.
 
 \(OOOOEEE\) repeats the \(OOOO*\) row exactly, so Conjecture 7.3 is
 necessary for that third of the depth-seven increment and not merely

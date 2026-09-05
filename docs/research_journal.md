@@ -27178,3 +27178,75 @@ Best next question
   theta_1 at depth <= 3; is 33/32 inside what Theorem 4.7 gives, or
   does the growing amplitude put it outside?
 ```
+
+ ### Level one is below the barrier, and Theorem 4.7 was never going to help
+
+The question was whether `33/32` sits inside Theorem 4.7. It does not,
+and the reason is instructive: Theorem 4.7 bounds *products* of
+sawtooths, `ψ(n^{3/2})^a ψ(m^{3/2})^b ψ(v^{1/2})^c`, which after Vaaler
+expansion have frequencies `|i|,|j|,|k| ≤ P^{1/24}`. The level-1 kernel
+has the sawtooth *inside* the exponential against an amplitude
+`≍ P^{33/32}`. Different animal.
+
+**A correction to the last entry first.** I justified ignoring the
+shallow defects by saying earlier theorems resolve them. They do not.
+They are simply never expanded: their floors stay exact inside the
+kernel's argument, which is precisely why `K_c` is written over
+`{⌊n^{3/2}⌋^{3/2}}` with the inner floor intact. A defect gets expanded
+when its coefficient drifts slowly enough to window; otherwise it
+becomes part of what the kernel is a kernel *of*. Same classification,
+right reason.
+
+**That raises a question the classification did not ask**: if the inner
+floors are kept exact, can the kernel's coefficient still be written as
+a monomial in `n`? Its sensitivity to `θ_s` has exponent
+`(e_{t-1} - e_{s*}) - e_s`, and negative means yes.
+
+```text
+   Thm 5.3   L2  th1: -3/8                  -> clean monomial
+   Conj 7.3  L3  th1: +3/16, th2: -9/16     -> NOT a monomial
+   OOEOOEE   L3  th1: -3/32, th2: -27/32    -> clean monomial
+   OOOEOEE   L1  (no inner floor)           -> clean monomial
+```
+
+The first row is a check that passes: Theorem 5.3's statement fixes
+`c(n) = (3k/4)n^{9/8}`, and it is entitled to because `-3/8 < 0`. The
+second is new — **the level-3 weight cannot be written as a monomial in
+`n` at all**, a structural gap between the levels beyond the derivative
+count the paper already gives. And `OOEOOEE`'s level-3 kernel *is*
+clean, so it is a tidier level-3 problem than Conjecture 7.3, just of
+the wrong species.
+
+**The finding.** `OOOEOEE` has no inner floor to keep exact. Its kernel
+is `Σ_n e((27k/32) n^{33/32} {n^{3/2}})`, whose argument `n^{3/2}` is a
+smooth function of the summation variable. The paper locates its own
+barrier one level up — *after one floor the argument of the second
+floor is an integer sequence, not a smooth function* — and it is that
+barrier, not the exponent, that Sections 4 and 5 exist to cross. So the
+remaining obstruction for the cheapest third of depth seven is a kernel
+strictly below the barrier the paper was built to get past.
+
+It is still a kernel, and this paper does not contain it.
+
+```text
+What was learned
+- "earlier theorems resolve the shallow defects" was wrong; they are
+  never formed, and the correct principle -- expand iff windowable,
+  else fold into the kernel argument -- gives the same classification
+- asking whether the weight is a monomial is a check the paper's own
+  statement had to pass, and it separates level 2 from level 3
+Strongest theorem
+- coefficient sensitivity (e_{t-1}-e_{s*})-e_s, negative iff the kernel
+  weight is a monomial in n; -3/8 for Theorem 5.3, +3/16 for level 3
+Strongest refutation
+- my own justification from the previous entry, and the hope that
+  Theorem 4.7 covers a growing-amplitude sawtooth
+Reusable machinery
+- coefficient_sensitivity / coefficient_is_monomial
+Branch status
+- ADVANCE
+Best next question
+- the level-1 kernel has a smooth argument, so Weyl differencing should
+  apply directly. Does two-fold differencing of (27k/32)n^{33/32}{n^{3/2}}
+  land inside 1 - 1/96, or does the amplitude eat the gain?
+```

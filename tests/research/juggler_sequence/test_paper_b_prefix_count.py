@@ -677,3 +677,45 @@ def test_paper_carries_the_deepest_blocked_table() -> None:
                  r"\varrho'\asymp kP^{11/16}", "where every method of this paper stops",
                  "one level *below*"):
         assert frag in text, frag
+
+
+# --- the form of the kernel weight, and the level-1 case ---
+
+
+def test_theorem_53s_weight_really_is_a_monomial() -> None:
+    """Its statement fixes c(n) = (3k/4)n^{9/8}; that is legitimate only if -3/8 < 0."""
+    assert B.coefficient_sensitivity("OOO", 4) == [(1, Fraction(-3, 8))]
+    assert B.coefficient_is_monomial("OOO", 4)
+
+
+def test_the_level_three_weight_is_not_a_monomial() -> None:
+    """A structural gap between the levels beyond the derivative count."""
+    assert B.coefficient_sensitivity("OOOO", 5) == [(1, Fraction(3, 16)), (2, Fraction(-9, 16))]
+    assert not B.coefficient_is_monomial("OOOO", 5)
+    assert not B.coefficient_is_monomial("OOOOEEE", 5)          # the same split
+
+
+def test_OOEOOEE_is_a_tidier_level_three_than_conjecture_73() -> None:
+    """Same level, clean weight -- but the wrong species, which is what blocks it."""
+    assert B.coefficient_sensitivity("OOEOOEE", 6) == [(1, Fraction(-3, 32)),
+                                                       (2, Fraction(-27, 32))]
+    assert B.coefficient_is_monomial("OOEOOEE", 6)
+    assert B.deepest_blocked("OOEOOEE", 6)[3] == "sqrt"
+    assert B.deepest_blocked("OOOO", 5)[3] == "3/2"
+
+
+def test_OOOEOEE_has_no_inner_floor_to_keep_exact() -> None:
+    """Level 1: the kernel's argument is n^{3/2}, still a smooth function of n."""
+    assert B.coefficient_sensitivity("OOOEOEE", 6) == []
+    assert B.deepest_blocked("OOOEOEE", 6)[0] == 1
+    assert B.coefficient_is_monomial("OOOEOEE", 6)
+
+
+def test_paper_states_the_level_one_reading_and_its_limit() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert r"\tfrac{27k}{32}n^{33/32}\{n^{3/2}\}" in text
+    assert "not a smooth function" in text
+    assert "Theorem 4.7 does not cover this sum" in text
+    assert "still a kernel and this paper does not contain" in text
+    # and the corrected justification for ignoring the shallower defects
+    assert "not resolved elsewhere and not expanded either" in text
