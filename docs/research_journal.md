@@ -27305,3 +27305,64 @@ Best next question
   smooth. Does the carry bookkeeping of Lemma 5.1 have a level-1 form,
   or is the smooth inner argument enough to make it unnecessary?
 ```
+
+ ### The branch decomposition has a threshold too, and level one is below it
+
+The question was whether Lemma 5.1's carry bookkeeping has a level-1
+form. It does, it is degenerate, and the reason generalises into a
+criterion the paper contains without stating.
+
+A level-`ℓ` kernel takes its branches from `⌊Δ₁ J^{ℓ-1}⌋`. If
+`J^{ℓ-1}` sits at scale exponent `e`, that difference has derivative
+`≍ h P^{e-1}`, so the floor is constant on runs of length `≍ P^{2-e}/h`
+and the decomposition exists exactly when `e < 2`:
+
+```text
+   level 1   base n                e = 1     runs of length P/h  (constant)
+   level 2   base X = n^{3/2}      e = 3/2   runs of length P^{1/2}/h
+   level 3   base v = ⌊n^{3/2}⌋^{3/2}  e = 9/4   NO runs
+```
+
+Both non-trivial rows are the paper's own numbers. Lemma 5.1(iii) says
+its `b`-runs have length `≍ P^{1/2}/h`; Conjecture 7.3 says `v` jumps
+by `≍ n^{5/4}` per step and that Lemma 5.1(iii) *has no analogue at the
+v-level*. So `e < 2` is a **third threshold** — alongside the drift-1
+condition on coefficients and the `9/4` stop — and it is the one that
+actually separates Theorem 5.3 from Conjecture 7.3.
+
+At level 1 the base is `n`, `Δ₁n = d₁` is constant outright, the runs
+fill the block, and the branch set is a single point. There is nothing
+to branch on.
+
+Read the other way round, and this is the sharper observation: **Lemma
+5.1(iii) is already a level-1 construction.** Its `b_i = ⌊Δ_i X⌋` are
+floors of differences of `X = n^{3/2}`, and it calls its own `κ` the
+*level-1 carries*. What a level-1 kernel would not need is the layer
+built on top of them — parts (i) and (ii), the level-2 defect identity
+and the double-gap carry algebra.
+
+So the machinery for the cheapest third of depth seven is not missing;
+it is the bottom half of a lemma the paper already proves, with the top
+half removed.
+
+```text
+What was learned
+- the level-2/level-3 boundary is a run-length condition e < 2, not a
+  derivative count, and the paper states both of its instances without
+  naming the criterion
+- Lemma 5.1(iii) is level-1 machinery being used to serve a level-2
+  kernel; at level 1 it degenerates rather than being absent
+Strongest theorem
+- branch runs have length P^{2-e}/h and exist iff e < 2; three
+  thresholds now, at 1 (drift), 2 (branching) and 9/4 (stop)
+Strongest refutation
+- the premise that level 1 would need new carry machinery
+Reusable machinery
+- branch_run_exponent / has_branch_runs
+Branch status
+- ADVANCE
+Best next question
+- with no branching and a smooth argument, the level-1 doubly-
+  differenced phase should be a plain two-term monomial sum. Does
+  Lemma 3.9 apply to it directly, and with which exponent triple?
+```

@@ -760,3 +760,40 @@ def test_paper_states_the_chain_and_its_consequence() -> None:
     assert r"H_2=H_1^2" in text
     assert "never sees the weight's exponent" in text
     assert "where it costs nothing" in text
+
+
+# --- the branch-run criterion, the third threshold ---
+
+
+def test_branch_runs_reproduce_lemma_51s_own_length() -> None:
+    """Level 2 takes its branches from X = n^{3/2}: runs of length P^{1/2}/h."""
+    assert B.branch_run_exponent(Fraction(3, 2)) == Fraction(1, 2)
+    assert B.has_branch_runs(Fraction(3, 2))
+
+
+def test_the_level_three_base_has_no_runs() -> None:
+    """v sits at 9/4 and jumps by n^{5/4} per step, so the floor is never constant."""
+    assert Fraction(9, 4) - 1 == Fraction(5, 4)              # the paper's stated jump
+    assert B.branch_run_exponent(Fraction(9, 4)) == Fraction(-1, 4)
+    assert not B.has_branch_runs(Fraction(9, 4))
+
+
+def test_the_threshold_is_two_and_separates_the_known_cases() -> None:
+    """e < 2 is what divides Theorem 5.3 from Conjecture 7.3."""
+    assert B.has_branch_runs(B.iterate_exponents("O")[0])            # e_1 = 3/2, level 2
+    assert not B.has_branch_runs(B.iterate_exponents("OO")[1])       # e_2 = 9/4, level 3
+    assert B.branch_run_exponent(2) == 0
+
+
+def test_level_one_branches_on_nothing() -> None:
+    """The base is n, Delta_1 n = d_1 is constant, and the runs fill the block."""
+    assert B.branch_run_exponent(Fraction(1)) == 1
+    assert B.has_branch_runs(Fraction(1))
+
+
+def test_paper_states_the_branch_criterion() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "Where the branch decomposition comes from." in text
+    assert r"\asymp P^{2-e}/h" in text
+    assert "a third threshold" in text
+    assert "level-1 form and it is degenerate" in text

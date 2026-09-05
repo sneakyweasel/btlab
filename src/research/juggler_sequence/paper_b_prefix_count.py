@@ -347,6 +347,24 @@ def deepest_blocked(w: str, t: int) -> tuple[int, Fraction, Fraction, str] | Non
     return s, const, exponent, species
 
 
+def branch_run_exponent(base_exponent: Fraction) -> Fraction:
+    """Length exponent of the runs on which the branch floor is constant: ``2 - e``.
+
+    A level-``L`` kernel takes its branch decomposition from ``floor(Delta_1 J^{L-1})``, whose
+    argument sits at scale exponent ``e = e_{L-1}``.  That difference has derivative ``~ h P^{e-1}``,
+    so the floor is constant on runs of length ``~ P^{2-e}/h``.  At level 2, ``e = 3/2`` gives the
+    ``P^{1/2}/h`` runs of Lemma 5.1(iii); at level 3, ``e = 9/4`` gives a negative exponent, which
+    is Conjecture 7.3's complaint that ``v`` jumps by ``~ n^{5/4}`` per step and the branch
+    decomposition has no analogue there.
+    """
+    return 2 - Fraction(base_exponent)
+
+
+def has_branch_runs(base_exponent: Fraction) -> bool:
+    """Do runs of length ``> 1`` exist?  Equivalently ``e < 2``."""
+    return branch_run_exponent(base_exponent) > 0
+
+
 def differencing_chain(saving: Fraction, rounds: int = 2) -> dict[str, Fraction]:
     """Step 1's accounting: a doubly-differenced bound ``P^(1-saving)`` gives ``P^(1-saving/4)``.
 

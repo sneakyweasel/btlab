@@ -4702,6 +4702,33 @@ saving. So the question left for \(OOOEOEE\) is not how much the
 amplitude costs in the bookkeeping, where it costs nothing, but
 whether the doubly-differenced level-1 sum admits any power saving.
 
+*Where the branch decomposition comes from.* That question has a
+structural answer, and it is one the paper already contains without
+stating it as a criterion. A level-\(\ell\) kernel takes its branches
+from \(\lfloor\Delta_1J^{\ell-1}\rfloor\); if \(J^{\ell-1}\) sits at
+scale exponent \(e\), that difference has derivative
+\(\asymp hP^{e-1}\), so the floor is constant on runs of length
+\(\asymp P^{2-e}/h\) and the decomposition exists exactly when
+\(e<2\). At \(\ell=2\) this is \(e=3/2\) and the runs have length
+\(P^{1/2}/h\) --- the \(b\)-runs of Lemma 5.1(iii), with that length.
+At \(\ell=3\) it is \(e=9/4\), the exponent is negative, and there are
+no runs at all: this is Conjecture 7.3's own complaint that \(v\) jumps
+by \(\asymp n^{5/4}\) per step and Lemma 5.1(iii) has no analogue at
+the \(v\)-level. So \(e<2\) is a third threshold, alongside the drift-1
+condition on coefficients and the \(9/4\) stop, and it is the one that
+separates Theorem 5.3 from Conjecture 7.3.
+
+At \(\ell=1\) the base is \(n\) itself, \(e=1\), and
+\(\Delta_1n=d_1\) is constant outright: the runs fill the block and the
+branch set is a single point. So the carry bookkeeping does have a
+level-1 form and it is degenerate --- there is nothing to branch on.
+Read the other way, Lemma 5.1(iii) is already a level-1 construction:
+its \(b_i=\lfloor\Delta_iX\rfloor\) are floors of differences of
+\(X=n^{3/2}\), and it calls its own \(\boldsymbol\kappa\) the *level-1
+carries*. What a level-1 kernel would not need is the layer built on
+top of them --- parts (i) and (ii) of that lemma, the level-2 defect
+identity and the double-gap carry algebra.
+
 \(OOOOEEE\) repeats the \(OOOO*\) row exactly, so Conjecture 7.3 is
 necessary for that third of the depth-seven increment and not merely
 sufficient --- and it is the only one of the three carrying anything
