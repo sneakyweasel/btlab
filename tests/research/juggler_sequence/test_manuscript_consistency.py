@@ -155,8 +155,46 @@ def test_no_mangled_latex_escapes(ms: Manuscript) -> None:
     check is exact rather than heuristic.
     """
     for doc in (ms.path, ms.mirror, *ms.satellites):
-        bad = [i for i, line in enumerate(read(doc).splitlines(), 1) if "\t" in line]
+        bad = [i for i, line in enumerate(read(doc).splitlines(), 1)
+               if any(c in line for c in MANGLED_ESCAPES)]
         assert not bad, (ms.name, doc.name, bad[:5])
+
+
+#: control characters a non-raw Python string produces from a LaTeX macro.  AGENTS.md lists
+#: the escape-initial letters as `a b f n r t v 0 x`; six of them land on a character that
+#: cannot legitimately appear in these documents:
+#:   \a -> BEL  (\approx, \alpha, \asymp)      \b -> BS   (\beta, \bigl)
+#:   \f -> FF   (\frac)                        \t -> TAB  (\theta, \text, \to)
+#:   \v -> VT   (\varepsilon, \varphi)         \0 -> NUL
+#: `\n` and `\r` are not detectable this way -- both become line breaks, and Python's
+#: universal-newline decoding erases the difference.  That gap is why the check is a floor
+#: and not a proof.
+MANGLED_ESCAPES = ("\a", "\b", "\f", "\t", "\v", "\0")
+
+#: documents outside the manuscript set that carry the same LaTeX and the same hazard
+OTHER_LATEX_DOCS = (
+    ROOT / "AGENTS.md",
+    ROOT / "docs" / "juggler_branch_ledger.md",
+    ROOT / "docs" / "negative_knowledge.md",
+    ROOT / "docs" / "theory" / "juggler_fate_contagion_note.md",
+    ROOT / "docs" / "theory" / "juggler_flight_note.md",
+    ROOT / "docs" / "theory" / "juggler_tao_reduction_note.md",
+)
+
+
+def test_no_mangled_latex_escapes_outside_the_manuscripts() -> None:
+    """The same hazard, in the documents the per-manuscript check does not reach.
+
+    AGENTS.md carried `L\\approx` as `L` + BEL for some time -- the very defect its own
+    "LaTeX and Python strings" section warns about -- because the existing guard tested
+    only for TAB and only on the three papers.
+    """
+    for doc in OTHER_LATEX_DOCS:
+        if not doc.is_file():
+            continue
+        bad = [i for i, line in enumerate(read(doc).splitlines(), 1)
+               if any(c in line for c in MANGLED_ESCAPES)]
+        assert not bad, (doc.name, bad[:5])
 
 
 # --- Paper A: the window, which is what actually drifted ---

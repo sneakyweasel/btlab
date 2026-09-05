@@ -18,7 +18,7 @@ bt.*                        problem-independent BT mathematics
 
 ## Juggler reading path
 
-1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds. Full numerical audit 4 Sep 2026 (`research.juggler_sequence.paper_a_audit`, 27 tests): the finance spine reproduces to the digit at all four floors; three printed constants corrected (\(n_{\max}(50508)\) 162848325→162848324, the convergent asymptotic \(/\log^2 n\)→\(/\log n\), \(Lpprox n^{0.64}\)→\(n^{0.59}\)); new §5.8 Proposition 5.12 prices the whole semiconvergent fan \(L_k=176251+301994k\), \(k\le55\), ending on \(q_{14}=16785921\) — next step needs floor \(4.48\cdot10^9\) (12.8×), full fan \(2.20\cdot10^{12}\); walk charge measured worth ×8.09 in floor (Lemma 5.13: margin scales as (N log N)^1.047, predicts kill floors to 0.2%); Corollary 5.14 conditional: floor 5.54e8 (only 1.58× the present) gives period ≥ 1082233, kill table already computed and committed under N554000000_kills (itinerary obstructions + finance + the §5 walk-charge envelope; lab extracts [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md) and [juggler_cycle_itinerary_structure_note.md](docs/theory/juggler_cycle_itinerary_structure_note.md) — word geometry for termination, cycles, and escape). §6.1 (3 Sep 2026) records the companion context — envelope as Paper C's descent step, floor as its target, cycle basins contagious, cycles at the critical odd share \(\log 2/\log 3\), floor stratifies the failure set — as imports; it proves nothing new about cycles. Consolidation 5 Sep
+1. [docs/theory/juggler_finite_dynamics_note.md](docs/theory/juggler_finite_dynamics_note.md) — Paper A: cycle-length lower bounds. Full numerical audit 4 Sep 2026 (`research.juggler_sequence.paper_a_audit`, 27 tests): the finance spine reproduces to the digit at all four floors; three printed constants corrected (\(n_{\max}(50508)\) 162848325→162848324, the convergent asymptotic \(/\log^2 n\)→\(/\log n\), \(L\approx n^{0.64}\)→\(n^{0.59}\)); new §5.8 Proposition 5.12 prices the whole semiconvergent fan \(L_k=176251+301994k\), \(k\le55\), ending on \(q_{14}=16785921\) — next step needs floor \(4.48\cdot10^9\) (12.8×), full fan \(2.20\cdot10^{12}\); walk charge measured worth ×8.09 in floor (Lemma 5.13: margin scales as (N log N)^1.047, predicts kill floors to 0.2%); Corollary 5.14 conditional: floor 5.54e8 (only 1.58× the present) gives period ≥ 1082233, kill table already computed and committed under N554000000_kills (itinerary obstructions + finance + the §5 walk-charge envelope; lab extracts [juggler_walk_charge_note.md](docs/theory/juggler_walk_charge_note.md) and [juggler_cycle_itinerary_structure_note.md](docs/theory/juggler_cycle_itinerary_structure_note.md) — word geometry for termination, cycles, and escape). §6.1 (3 Sep 2026) records the companion context — envelope as Paper C's descent step, floor as its target, cycle basins contagious, cycles at the critical odd share \(\log 2/\log 3\), floor stratifies the failure set — as imports; it proves nothing new about cycles. Consolidation 5 Sep
 2026: the quoted contagion exponent was the pre-sharpening pair
 (\(\lambda<0.4050\), \(e>0.595\)) in three places and is now
 \(\lambda^{**}=0.4480\), \(e>0.552\) — guarded by
@@ -389,6 +389,28 @@ cd formal; lake build                               # no sorry / admit
    `Seam.lean` already owns the name `OnCycle`.
 2. Compile one file with `lake env lean <file>` (≈ 40 s) before
    `lake build Problems.Juggler` (≈ 1 min when oleans are cached).
+   **Which decision tactic.** Three regimes, and the choice is what the
+   goal *is*, not how big its numbers are.
+   - *Literal `Nat`/`Int` arithmetic* → `norm_num`, whatever the size:
+     it is GMP-backed in the kernel, and \(2^{16785921}<3^{10590737}\)
+     costs under a second. Exponents above \(256\) need
+     `set_option exponentiation.threshold <n> in` — without it the power
+     is not evaluated and the goal reports *unsolved*, not slow.
+   - *A closed computation over a definition* (`floorPower^[k] n = 1`,
+     itinerary and cell tables, list folds) → `decide +kernel`. Plain
+     `decide` gets **stuck**, not slow: the elaborator's whnf will not
+     unfold `Nat.sqrt`, and it says so. `maxRecDepth` is irrelevant on
+     this route.
+   - *Scans over \(\gtrsim 10^5\) values* → `native_decide`, and only
+     these. Kernel reduction is memory-bound here: the full
+     `window_digit_scan` passed \(38\) GB resident before being killed,
+     and block-splitting it costs \(\approx 82\) min of build to remove
+     one axiom.
+   Prefer the first two: they leave no compiler-trust assumption, which
+   `#print axioms <thm>` will show — a converted proof lists only
+   `propext` and friends, a `native_decide` one names its own generated
+   axiom. The layer currently stands at 305 `decide +kernel`, 20
+   `norm_num`, 2 `native_decide`.
 3. New probe → `src/research/juggler_sequence/<branch>.py`, fast test,
    `data/research/juggler/<branch>/summary.json`, dossier with every
    TEMPLATE heading, ledger rows (JSON is `indent=1`, `ensure_ascii=False`;

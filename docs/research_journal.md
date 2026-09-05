@@ -26995,3 +26995,45 @@ docstring now says which option does what, instead of "the thresholds".
 Every `maxRecDepth` setting remaining in the Juggler layer is one the
 laboratory chose: `2048` seven times, `100000` three, `512` twice,
 `1024` and `4096` once each. None of mine survive.
+
+## The escape guard was one character wide, and widening it found two live defects
+
+AGENTS.md documents that a non-raw Python string eats any LaTeX macro
+beginning with `a b f n r t v 0 x`, and
+`test_no_mangled_latex_escapes` guards against it — but only against
+`\t`, and only on the three manuscripts. Six of those eight letters land
+on a control character that cannot legitimately appear in these
+documents. The guard now checks BEL, BS, FF, TAB, VT and NUL, and covers
+AGENTS.md, the branch ledger, negative knowledge, and the three
+laboratory notes as well.
+
+It found two defects on its first run, both mine.
+
+*AGENTS.md* carried `L\approx n^{0.64}` as `L` + BEL — in the very line
+that records correcting other constants, in the file whose "LaTeX and
+Python strings" section warns about exactly this. Repaired at the byte
+level, with the search pattern built numerically from character codes so
+that no Python string literal was involved in fixing a Python string
+literal bug.
+
+*The branch ledger* had an orphaned fragment. The original damaged
+insertion of the Lachesis row turned `\rvert` into a carriage return,
+which split the row in two. The repair script removed lines starting
+with `| Lachesis log-log clock |` — but the tail began `vert\le`, so it
+survived, and sat there through six later commits carrying superseded
+text and a mangled `\approx`. Deleted.
+
+Both were invisible to every check the repository had: the ledger
+fragment is not a table row, so the dossier and link tests ignored it,
+and neither file was in the escape guard's scope.
+
+```text
+What was learned
+- the guard covered 1 of 8 escape letters and 3 of the documents that carry LaTeX
+- a CR-mangled macro does not corrupt a line, it splits it, and the tail
+  survives any repair keyed to how the line starts
+- fixing an escape bug is itself an escape hazard: build the pattern from
+  character codes
+Branch status
+- guard widened to six control characters and nine documents; two live
+  defects found and repaired on its first run
