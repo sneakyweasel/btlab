@@ -4495,6 +4495,18 @@ depths therefore have density \(\beta_*\); they begin
 \(3,6,9,11,14,17,19,22,25,28,30,\ldots\) and are not eventually
 periodic.
 
+(iv) *(what carries a gain)* At a paying depth the words leaving the
+surviving set are exactly the length-\((d-1)\) survivors with the
+*least* odd count \(\lceil(d-1)\theta\rceil\) --- those sitting on the
+contraction line rather than comfortably above it. Hence
+\[
+\Bigl(1-\frac{N_{d}}{2^{d}}\Bigr)-\Bigl(1-\frac{N_{d-1}}{2^{d-1}}\Bigr)
+=\frac{L_{d-1}}{2^{d}},
+\]
+where \(L_t\) counts the length-\(t\) survivors with
+\(o_t=\lceil t\theta\rceil\): \(L_t=1,1,1,2,3,3,7,12,12,30\) for
+\(t\le10\).
+
 *Proof.* (i) A start whose word has no contracting prefix of length
 \(\le d\) satisfies \(3^{o_t}\ge2^{t}\) for every \(t\le d\), so
 Proposition 3.1's envelope certifies no descent at any of those steps,
@@ -4514,7 +4526,15 @@ The test \(3^{\lceil(d-1)\theta\rceil}\ge2^{d}\) reads
 \(\lceil(d-1)\theta\rceil=(d-1)\theta+1-\{(d-1)\theta\}\), and the test
 becomes \(\{(d-1)\theta\}\le1-\theta\). Weyl's theorem on the
 equidistribution of \((d\theta)\) gives the density \(1-\theta\), and
-irrationality forbids eventual periodicity. \(\square\)
+irrationality forbids eventual periodicity.
+
+(iv) By the same extension rule, the \(E\)-extension of a length-\((d-1)\)
+survivor with odd count \(o\) contracts exactly when \(3^{o}<2^{d}\),
+that is \(o\le\lceil d\theta\rceil-1\); survival already forces
+\(o\ge\lceil(d-1)\theta\rceil\). At a paying depth
+\(\lceil d\theta\rceil=\lceil(d-1)\theta\rceil+1\), so the two
+constraints pin \(o\) to the single value \(\lceil(d-1)\theta\rceil\),
+and the words removed are precisely the lean survivors. \(\square\)
 
 The constant is Proposition 7.7's. There \(\beta_*\) is the largest
 node-wise odd share still compatible with contraction; here it is the
@@ -4531,6 +4551,33 @@ requires the three contractors \(OOEOOEE\), \(OOOEOEE\) and
 --- \(OOEOO\), \(OOOEO\) and \(OOOOE\). So the \(OOOO*\) split of
 Conjecture 7.3 does not by itself unlock depth seven; all of depth five
 does.
+
+Part (iv) also says how that increment is priced. A run of \(k\)
+consecutive odd letters accumulates \(k\) nested \(3/2\)-powers and an
+even letter square-roots the scale back down, so the longest odd run of
+a word is the kernel level its split needs, plus one: \(OOOO*\) is
+run four, the level-3 kernel of Conjecture 7.3, while Theorem 6.1
+reaches run three. Sorting the removed words by that statistic prices
+each depth separately:
+
+| \(d\) | gain | run \(2\) | run \(3\) | run \(4\) | run \(5\) | run \(\ge6\) |
+|---:|---:|---:|---:|---:|---:|---:|
+| \(4\) | \(1/16\) | \(1/16\) | | | | |
+| \(5\) | \(1/16\) | \(1/32\) | \(1/32\) | | | |
+| \(7\) | \(3/128\) | \(1/128\) | \(1/128\) | \(1/128\) | | |
+| \(8\) | \(7/256\) | \(1/256\) | \(3/256\) | \(1/128\) | \(1/256\) | |
+| \(10\) | \(3/256\) | \(1/1024\) | \(1/256\) | \(1/256\) | \(1/512\) | \(1/1024\) |
+
+The \(d=5\) row is a check on the reading: its two halves are exactly
+Theorem 6.3's two contractors, \(OOEOE\) at run two and \(OOOEE\) at
+run three, and they are the two error exponents that theorem
+separates, \(N^{43/48}\) and \(N^{1-1/96}\). The \(d=7\) row is the
+usable one. Two of its three thirds --- \(OOEOOEE\) at run two and
+\(OOOEOEE\) at run three --- ask for no kernel level beyond the one
+Theorem 6.1 already works at. They would carry the certified density
+from \(7/8\) to \(57/64\) with Conjecture 7.3 still open, leaving the
+last \(1/128\) as the only part of depth seven that genuinely waits on
+the level-3 kernel.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.

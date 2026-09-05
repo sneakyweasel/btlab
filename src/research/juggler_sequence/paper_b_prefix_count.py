@@ -200,6 +200,54 @@ def stalling_depths(dmax: int) -> list[int]:
     return [d for d in range(2, dmax + 1) if not ceiling_improves(d)]
 
 
+def surviving_words(d: int) -> list[str]:
+    """The ``N_d`` words of length ``d`` with no contracting prefix, as strings over ``EO``."""
+    out = []
+    for bits in range(2 ** d):
+        w = "".join("O" if bits >> (d - 1 - i) & 1 else "E" for i in range(d))
+        o, ok = 0, True
+        for t, c in enumerate(w, 1):
+            o += c == "O"
+            if not survives(t, o):
+                ok = False
+                break
+        if ok:
+            out.append(w)
+    return out
+
+
+def lean_count(t: int) -> int:
+    """``L_t``: survivors of length ``t`` with the least possible odd count ``ceil(t*beta)``.
+
+    These are the words sitting on the contraction line rather than comfortably above it, and by
+    Proposition 7.1b(iv) they are what every increment of the ceiling is made of.
+    """
+    words = surviving_words(t)
+    least = min(w.count("O") for w in words)
+    return sum(1 for w in words if w.count("O") == least)
+
+
+def dying_words(d: int) -> list[str]:
+    """Length-``(d-1)`` survivors whose ``E``-extension contracts, i.e. what depth ``d`` buys.
+
+    Empty exactly at a stalling depth.
+    """
+    later = set(surviving_words(d))
+    return [w for w in surviving_words(d - 1) if w + "E" not in later]
+
+
+def longest_odd_run(w: str) -> int:
+    """The paper's kernel level plus one: ``k`` nested 3/2-powers accumulate over ``k`` odd steps,
+    and an even step square-roots the scale back down.  ``OOOO*`` -- run four -- is the level-3
+    kernel of Conjecture 7.3; Theorem 6.1 reaches run three.
+    """
+    best = cur = 0
+    for c in w:
+        cur = cur + 1 if c == "O" else 0
+        best = max(best, cur)
+    return best
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")
@@ -240,6 +288,19 @@ def main() -> None:
     print("   density of stalling depths %.5f against beta_* = %.5f"
           % (n / 200000, BIAS_THRESHOLD))
     print("   depth 7 is worth %s over Corollary 6.4" % (ceiling(7) - ceiling(6)))
+    print()
+    print("Proposition 7.1b(iv) -- each gain, priced by longest odd run:")
+    for d in (4, 5, 7, 8, 10):
+        die = dying_words(d)
+        by = {}
+        for w in die:
+            by.setdefault(longest_odd_run(w), []).append(w)
+        cost = " ".join("run%d:%s" % (r, Fraction(len(v), 2 ** d))
+                        for r, v in sorted(by.items()))
+        print("   d=%-3d gain %-8s %s" % (d, Fraction(len(die), 2 ** d), cost))
+    cheap = [w for w in dying_words(7) if longest_odd_run(w) <= 3]
+    print("   depth 7 below the level-3 kernel: %s, taking 7/8 to %s"
+          % (",".join(cheap), Fraction(7, 8) + Fraction(len(cheap), 128)))
 
     print()
     print("the error term of Proposition 7.1 improves in the same proportion:")

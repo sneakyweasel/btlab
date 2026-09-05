@@ -26763,3 +26763,78 @@ Best next question
 - can the two scans be split into blocks small enough for the kernel, or
   replaced by a structural argument? They are the whole remaining surface
 ```
+
+ ### Every gain sits on the contraction line, and each one has a price
+
+Proposition 7.1b said which depths can move the ceiling. The follow-up
+question was what a move consists of, and the answer is sharper than I
+expected: **at a paying depth the words removed are exactly the
+survivors of length `d-1` with the *least* possible odd count**
+`ceil((d-1)·θ)` — the ones on the contraction line, never the ones
+comfortably above it.
+
+The proof is two inequalities meeting. The `E`-extension of a survivor
+with odd count `o` contracts iff `3^o < 2^d`, i.e. `o <= ceil(dθ) - 1`;
+survival already forces `o >= ceil((d-1)θ)`. At a paying depth
+`ceil(dθ) = ceil((d-1)θ) + 1`, so the window holds exactly one value.
+Hence
+
+```text
+    ceiling(d) - ceiling(d-1) = L_{d-1} / 2^d,
+    L_t = #{survivors of length t with o_t = ceil(t·θ)}
+        = 1, 1, 1, 2, 3, 3, 7, 12, 12, 30, …
+```
+
+verified against the exact count for `d <= 14`.
+
+Then the useful part. A run of `k` consecutive odd letters accumulates
+`k` nested `3/2`-powers and an even letter square-roots the scale back
+down, so a word's longest odd run is the kernel level its split needs,
+plus one — `OOOO*` is run four, Conjecture 7.3's level-3 kernel, and
+Theorem 6.1 already works at run three. Sorting each depth's removed
+words by that statistic prices the depth:
+
+```text
+    d=5   gain 1/16   run2:1/32  run3:1/32
+    d=7   gain 3/128  run2:1/128 run3:1/128 run4:1/128
+    d=8   gain 7/256  run2:1/256 run3:3/256 run4:1/128 run5:1/256
+```
+
+The `d=5` row is the check: its two halves are Theorem 6.3's two
+contractors, `OOEOE` at run two and `OOOEE` at run three, and those are
+exactly the two error exponents that theorem separates, `N^{43/48}` and
+`N^{1-1/96}`. The statistic reproduces a distinction the paper already
+makes for independent reasons.
+
+The `d=7` row is the one to act on. Two of its three thirds —
+`OOEOOEE` at run two and `OOOEOEE` at run three — need **no kernel
+level beyond the one Theorem 6.1 reaches**. They would carry the
+certified density from `7/8` to `57/64` with Conjecture 7.3 still open,
+leaving `1/128` as the only piece of depth seven that genuinely waits
+on the level-3 kernel.
+
+That reframes the last entry's conclusion rather than contradicting it.
+`OOOO*` is still necessary for the *full* depth-seven increment; it is
+not necessary for two thirds of it.
+
+```text
+What was learned
+- the removed set is always the extremal one; a gain never comes from
+  the interior of the surviving tree
+- longest odd run is a usable price tag, and it reproduces Theorem
+  6.3's own split of its two error exponents
+Strongest theorem
+- Proposition 7.1b(iv): gain(d) = L_{d-1}/2^d, carried by the lean
+  survivors alone
+Strongest refutation
+- "depth seven waits on Conjecture 7.3" -- two thirds of it does not
+Reusable machinery
+- surviving_words / lean_count / dying_words / longest_odd_run, with
+  the run decomposition table checked row by row against the manuscript
+Branch status
+- ADVANCE
+Best next question
+- can OOEOOEE (run two, worth 1/128) be estimated with the depth-five
+  machinery run two letters longer, or does the extra length cost more
+  than the level saves?
+```

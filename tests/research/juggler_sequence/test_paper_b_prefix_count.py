@@ -479,3 +479,63 @@ def test_depth_seven_needs_three_different_depth_five_survivors() -> None:
     died = [w + "E" for w in surv(6) if w + "E" not in surv(7)]
     assert died == ["OOEOOEE", "OOOEOEE", "OOOOEEE"], died
     assert sorted({w[:5] for w in died}) == ["OOEOO", "OOOEO", "OOOOE"]
+
+
+# --- Proposition 7.1b(iv): the lean survivors carry every gain ---------------
+
+
+def test_every_gain_is_exactly_the_lean_survivors() -> None:
+    """(iv): the removed words are the length-(d-1) survivors of least odd count."""
+    for d in range(2, 15):
+        die = B.dying_words(d)
+        assert B.ceiling(d) - B.ceiling(d - 1) == Fraction(len(die), 2 ** d), d
+        if die:
+            assert len(die) == B.lean_count(d - 1), d
+            least = min(w.count("O") for w in B.surviving_words(d - 1))
+            assert {w.count("O") for w in die} == {least}, d
+
+
+def test_dying_words_are_empty_exactly_at_a_stalling_depth() -> None:
+    for d in range(2, 15):
+        assert (B.dying_words(d) == []) == B.stalls(d), d
+
+
+def test_the_lean_counts_the_paper_prints() -> None:
+    assert [B.lean_count(t) for t in range(1, 11)] == [1, 1, 1, 2, 3, 3, 7, 12, 12, 30]
+
+
+def test_longest_odd_run_places_the_known_kernels() -> None:
+    """OOOO* is the level-3 kernel of Conjecture 7.3; Theorem 6.1 reaches run three."""
+    assert B.longest_odd_run("OOOO") == 4
+    assert B.longest_odd_run("OOOEE") == 3
+    assert B.longest_odd_run("OOEOE") == 2
+    assert B.longest_odd_run("OOEOOE") == 2
+
+
+@pytest.mark.parametrize("d,expected", [
+    (4, {2: "1/16"}),
+    (5, {2: "1/32", 3: "1/32"}),
+    (7, {2: "1/128", 3: "1/128", 4: "1/128"}),
+    (8, {2: "1/256", 3: "3/256", 4: "1/128", 5: "1/256"}),
+    (10, {2: "1/1024", 3: "1/256", 4: "1/256", 5: "1/512", 6: "1/1024"}),
+])
+def test_the_run_decomposition_table(d: int, expected: dict[int, str]) -> None:
+    from collections import Counter
+    c = Counter(B.longest_odd_run(w) for w in B.dying_words(d))
+    assert {r: str(Fraction(n, 2 ** d)) for r, n in c.items()} == expected, d
+
+
+def test_two_thirds_of_depth_seven_needs_no_new_kernel_level() -> None:
+    """The claim that 7/8 -> 57/64 is available with Conjecture 7.3 still open."""
+    cheap = [w for w in B.dying_words(7) if B.longest_odd_run(w) <= 3]
+    assert len(cheap) == 2 and sorted(cheap) == ["OOEOOE", "OOOEOE"]
+    assert Fraction(7, 8) + Fraction(len(cheap), 128) == Fraction(57, 64)
+    assert B.ceiling(7) - (Fraction(7, 8) + Fraction(len(cheap), 128)) == Fraction(1, 128)
+
+
+def test_paper_states_part_iv_and_the_run_table() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "(iv) *(what carries a gain)*" in text
+    assert r"\frac{L_{d-1}}{2^{d}}" in text
+    assert "the level-3 kernel of Conjecture 7.3" in text
+    assert r"from \(7/8\) to \(57/64\)" in text
