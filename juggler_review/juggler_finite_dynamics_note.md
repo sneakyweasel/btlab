@@ -466,8 +466,14 @@ assistance. The core mathematical lemmas are mechanized in Lean 4;
 selected finite classifications and numerical tables are
 independently certified computations. Appendix A records the Lean
 names. The finite tables used by Lemmas 3.5, 3.7, 3.11 and
-Theorems 3.12--3.20 are `native_decide` evaluations in the modules
-named there.
+Theorems 3.12--3.20 are `decide +kernel` evaluations in the modules
+named there: the reduction is performed by the Lean kernel, so these
+tables add no trust assumption beyond it. That holds throughout the
+Juggler layer with two exceptions, both scans of a quarter of a million
+window lengths in Section 5's Ostrowski certification
+(`window_digit_scan`, `greedy_eq_ostro_below_window`), which use
+`native_decide` and so also trust the Lean compiler and runtime;
+`#print axioms` on any theorem displays which of the two it depends on.
 
 Every number printed in Sections 4 and 5 is additionally recomputed
 from the *printed* criterion, independently of the probes that
@@ -950,7 +956,7 @@ No integer \(n\) with \(2\le n<256\) realizes the itinerary \(O^7\).
 
 *Proof.* This is a table of \(254\) seven-step evaluations: at every
 such start, some letter fails to match the current parity. The same
-finite check is the Lean `native_decide` evaluation behind
+finite check is the Lean `decide +kernel` evaluation behind
 `no_follows_seven_odds_of_lt256` (Appendix A). \(\square\)
 
 **Theorem 3.12 (two-even leftover families).**
@@ -1243,7 +1249,7 @@ that floor Theorem 3.22 is Theorem 3.26 evaluated ten times.
 
 Two caveats keep the table from replacing Appendix D outright. The
 theorems it reproduces are stated for every \(n\ge 2\), and each closes
-its window below the threshold with a `native_decide` evaluation; the
+its window below the threshold with a `decide +kernel` evaluation; the
 law says nothing there. And Theorem 3.21 upgrades Theorem 3.13 from
 minimum-based itineraries to all cycle itineraries, which the law, being
 a statement about a minimum-based orientation, does not do on its own.
@@ -3187,7 +3193,7 @@ are Propositions 1.3 and 5.1.
 The core mathematical lemmas of Sections 2--4 are mechanized in
 Lean 4. The names below are the corresponding theorems in
 `formal/Problems/Juggler/`, imported by `Problems.JugglerPaper`.
-Selected finite classifications of Section 3 are `native_decide`
+Selected finite classifications of Section 3 are `decide +kernel`
 tables (Appendix D). Theorems 4.6 and 4.8 are independently
 certified computations. Proposition 4.9's arithmetic is Lean;
 its identification with \(\mathcal E_{\mathrm{run}}\) is
@@ -3326,7 +3332,7 @@ The first few survivors remain
 \]
 the last survivor is \(99477\). The three families and the
 unimodular basis are Proposition 4.9. The finite leftover tables
-of Section 3 are the Lean `native_decide` evaluations named in
+of Section 3 are the Lean `decide +kernel` evaluations named in
 Appendix A (`LeftoverEval.lean`, `LeftoverShort.lean`,
 `LeftoverFamilies.lean`). The lattice arithmetic of
 Proposition 4.9 is `RunSurvivorLattice.lean`.
@@ -3511,7 +3517,7 @@ For \(2\le n<256\), neither word returns to its start. This is a
 table of \(254\) evaluations of each word: at every start, either
 some letter fails to match the current parity, or the six-step image
 differs from the start. The same finite check is the Lean
-`native_decide` evaluation behind `no_cycle_itinerary_oooeoe` and
+`decide +kernel` evaluation behind `no_cycle_itinerary_oooeoe` and
 `no_cycle_itinerary_ooooee` (Appendix A).
 
 Now suppose \(OOOOEE\) is a cycle itinerary at \(n\ge 256\), and write
@@ -3601,7 +3607,7 @@ Indeed \(14(n+1)\le 15n\), so
 
 For \(2\le n<14\), neither word is realized: at every such start,
 some letter fails to match the current parity. The same finite check
-is the Lean `native_decide` evaluation behind
+is the Lean `decide +kernel` evaluation behind
 `no_cycle_itinerary_ooooeoe` and `no_cycle_itinerary_oooooee` (Appendix A).
 
 Now suppose \(OOOOOEE\) is a cycle itinerary at \(n\ge 14\), and write
@@ -3689,7 +3695,7 @@ recovers again \(n^{3^{k-2}}<2^{G_{k-2}}(n+1)^{2^k}\).
 For \(2\le n<256\), the cases \(k=6\) and \(k=7\) are Lemmas 3.5
 and 3.7. The remaining short words \(O^6EE\), \(O^5EOE\), and
 \(O^6EOE\) fail to return on the same \(254\)-start window; this is
-the Lean `native_decide` evaluation behind
+the Lean `decide +kernel` evaluation behind
 `no_cycle_itinerary_two_even_ee` and `no_cycle_itinerary_two_even_eoe`
 (Appendix A). Any longer leftover of either family begins with
 seven consecutive odd letters, which Lemma 3.11 forbids on this
@@ -3723,7 +3729,7 @@ length at least \(17\) has \(a\ge 7\) or \(b\ge 7\), so either the
 prefix or the remainder realizes seven consecutive odd letters,
 contradicting Lemma 3.11. The finitely many short-gap words with
 \(2\le a\le 6\) and \(b\le 6\) fail to be minimum-based cycle itineraries
-on the window \(2\le n<256\); this is the Lean `native_decide`
+on the window \(2\le n<256\); this is the Lean `decide +kernel`
 evaluation behind `no_cycleMin_gapped_three_even_ee` and
 `no_cycleMin_gapped_three_even_eoe` (Appendix A). \(\square\)
 
@@ -3750,7 +3756,7 @@ for every \(n\ge 128\).
 
 For \(2\le n<128\), the case \(a=6\) is a table of evaluations of
 \(OOOOOOEEE\): at every such start the itinerary fails to return. The
-same finite check is the Lean `native_decide` evaluation behind
+same finite check is the Lean `decide +kernel` evaluation behind
 `no_cycle_itinerary_ooooooeee` (Appendix A). For \(a\ge 7\) the prefix
 contains seven consecutive odd letters, which Lemma 3.11 forbids
 on this window. \(\square\)
@@ -3783,7 +3789,7 @@ every \(n\ge 16\).
 
 For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
 \(a=6\), the itinerary fails to return; these are the Lean
-`native_decide` evaluations behind `no_cycle_itinerary_three_even_eoee`
+`decide +kernel` evaluations behind `no_cycle_itinerary_three_even_eoee`
 (Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies. For
 \(a\ge 6\) and \(n\ge 16\), the tail of the previous paragraph
 applies. \(\square\)
@@ -3808,7 +3814,7 @@ For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
 shared tail of Theorem 3.12 at length \(k=a+2\).
 
 For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
-window; this is the Lean `native_decide` evaluation behind
+window; this is the Lean `decide +kernel` evaluation behind
 `no_cycle_itinerary_three_even_eooee` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
@@ -3854,7 +3860,7 @@ elementary comparison \(n(n+2)<(n+1)^2\) already used in
 Theorem 3.15.
 
 For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
-that window; this is the Lean `native_decide` evaluation behind
+that window; this is the Lean `decide +kernel` evaluation behind
 `no_cycle_itinerary_three_even_eoooee` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
@@ -3880,7 +3886,7 @@ and \(n\ge 16\).
 
 For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
 \(a=6\), the itinerary fails to return; these are the Lean
-`native_decide` evaluations behind `no_cycle_itinerary_three_even_eeoe`
+`decide +kernel` evaluations behind `no_cycle_itinerary_three_even_eeoe`
 (Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies.
 For \(a\ge 6\) and \(n\ge 16\), the tail of the previous
 paragraph applies. \(\square\)
@@ -3904,7 +3910,7 @@ For \(n\ge 256\) and \(a\ge 4\), this is the shared tail already
 used in Theorem 3.16.
 
 For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
-window; this is the Lean `native_decide` evaluation behind
+window; this is the Lean `decide +kernel` evaluation behind
 `no_cycle_itinerary_three_even_eoeoe` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
@@ -3934,7 +3940,7 @@ in the \(a=3\) case of Theorem 3.17, with \(u\) in place of
 \(y\), and the same small/large split applies.
 
 For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
-that window; this is the Lean `native_decide` evaluation behind
+that window; this is the Lean `decide +kernel` evaluation behind
 `no_cycle_itinerary_three_even_eooeoe` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 

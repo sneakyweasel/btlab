@@ -27366,3 +27366,36 @@ Best next question
   differenced phase should be a plain two-term monomial sum. Does
   Lemma 3.9 apply to it directly, and with which exponent triple?
 ```
+
+## Paper A described the tactic it no longer uses — drift I made myself
+
+The conversion moved 305 proofs to `decide +kernel`, and Paper A went on
+describing sixteen of them as `native_decide` evaluations: the Section 3
+finite tables of Lemmas 3.5, 3.7, 3.11, Theorems 3.12–3.20, and each
+itinerary window check in Appendix D. All sixteen updated; none of them
+referred to the two genuine holdouts, which live in Section 5.
+
+This is the same defect class I audited two days of commits ago and
+built a guard for — a manuscript describing verification it no longer
+performs — and I introduced a fresh instance of it while fixing the old
+one. The cross-quotation guard could not catch it, because the drift was
+not a constant and not a citation: it was a method name, and nothing
+ties prose about tactics to the tactics in the files.
+
+§1.2 now also states the trust boundary positively: kernel-checked
+throughout the layer except the two Ostrowski scans, with the note that
+`#print axioms` shows which of the two any theorem depends on. That is
+the fact a referee would want and it was not previously stated anywhere
+in the paper.
+
+```text
+What was learned
+- converting proofs silently invalidates prose about proofs; nothing in the
+  repository connects the two
+- I created this instance immediately after auditing for its class, which
+  is the honest measure of how easy it is
+Branch status
+- Paper A's verification prose matches the layer again
+Best next question
+- should the drift guard cover method names as well as constants? It would
+  have caught this, and the check is a grep
