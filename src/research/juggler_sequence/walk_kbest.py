@@ -1,6 +1,6 @@
 """Top-``K`` walk charges at operative lengths: does the charge ordering stay flat?
 
-Proposition 5.15 bounds the exponent-walk relaxation by two facts.  Realizability is uncorrelated
+Proposition 5.8b bounds the exponent-walk relaxation by two facts.  Realizability is uncorrelated
 with charge, and the charge ordering is *flat at the top* -- rank 2 within 1.5% of rank 1, rank 10
 within 8%.  Together they put the realizable optimum within about a percent of the relaxed one
 whatever the argmax does.
@@ -85,15 +85,17 @@ def main() -> None:
     from .paper_a_audit import o_min
 
     print("flatness of the charge ordering, by the top-K lattice program")
-    print("  %-9s %-8s %-13s %-8s %-13s %-13s %s"
-          % ("L", "o", "n", "ranks", "rank2/rank1", "rank10/rank1", "time"))
+    # print the deficit, not the ratio: at operative lengths the ratios are 1 to eight
+    # digits and "%.6f" renders them all as 1.000000, which reads as a saturation bug.
+    print("  %-9s %-8s %-13s %-8s %-12s %-12s %s"
+          % ("L", "o", "n", "ranks", "1-r2/r1", "1-rK/r1", "time"))
     cases = [(18, 1000), (24, 1000), (50508, 26254996), (176251, 162849449),
              (780239, 350000001)]
     for L, n in cases:
         f = flatness(L, o_min(L), n, K=10)
-        print("  %-9d %-8d %-13d %-8d %-13.6f %-13.6f %.1fs"
-              % (L, f["odd_count"], n, f["ranks"], f["rank2_over_rank1"],
-                 f["rankK_over_rank1"], f["elapsed_s"]))
+        print("  %-9d %-8d %-13d %-8d %-12.3e %-12.3e %.1fs"
+              % (L, f["odd_count"], n, f["ranks"], 1 - f["rank2_over_rank1"],
+                 1 - f["rankK_over_rank1"], f["elapsed_s"]))
 
 
 if __name__ == "__main__":

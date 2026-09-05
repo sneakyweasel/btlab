@@ -12,6 +12,7 @@ const TABS = [
   { to: "/play/finance", label: "Finance" },
   { to: "/play/fan", label: "Fan" },
   { to: "/play/walk", label: "Walk charge" },
+  { to: "/play/ceiling", label: "Ceiling" },
 ];
 
 export function PlaygroundIndexPage() {

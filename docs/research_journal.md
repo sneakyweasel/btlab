@@ -24239,3 +24239,50 @@ Best next question
   the long regime, which needs a statement about one orbit's parity
   word at depth L -- nothing in this corpus reaches it
 ```
+
+
+### Paper A: numbering repaired, and the elimination made visible
+
+Housekeeping and app work this iteration; no new mathematics.
+
+**A numbering inversion I introduced.** Section 5's numbered items ran
+5.1 … 5.8, **5.15, 5.16**, 5.9 … 5.14 in document order, because I attached the two
+relaxation propositions to Remark 5.8a in Section 5.6 while numbering them after the
+Section 5.8 material. Renumbered to **Proposition 5.8b** and **5.8c**, which puts the
+document back in order without touching 5.9-5.14. 15 references updated across the
+manuscript, the probe and the tests. (Journal entries above keep the old names; they
+are dated records.)
+
+**The same display artifact, in the host code.** `walk_kbest.main` still printed
+ratios with `%.6f`, which renders every operative-length value as 1.000000 -- the thing
+that made me chase a saturation bug two iterations ago. Fixed to print the deficit, as
+the GPU version already did.
+
+**New app tab: Ceiling.** The playground now shows what finance computes (Finance),
+what survives (Fan), what the walk charge does to it (Walk charge) --- and, new, why
+the walk charge stops where it does. Five candidate explanations for the
+\(0.44\ln n'\) advantage, each with its measurement and verdict, and one that remains:
+the shape of the charge. The closing panel states what the result does not say ---
+that the period bound can still rise with the floor, and that nothing here touches the
+long regime.
+
+That gives the reviewer the through-line the loop asked for: floor -> finance -> fan ->
+walk charge -> ceiling, with each tab answering the question the previous one raises.
+
+```text
+What was learned
+- nothing new mathematically; a numbering inversion of my own making,
+  and a display bug of the same species as one I had already fixed once
+Strongest theorem
+- none this iteration
+Strongest refutation
+- my own Section 5 numbering
+Reusable machinery
+- CeilingTab: the elimination scoreboard, which is now a real result
+Branch status
+- PARK for Paper A's numerical track; the five-candidate elimination is
+  complete and the app now tells that story end to end
+Best next question
+- unchanged: the long regime needs a statement about one orbit's parity
+  word at depth L, and nothing in this corpus reaches it
+```

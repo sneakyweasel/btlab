@@ -2194,7 +2194,7 @@ nothing about how far that optimum sits above the true maximum over
 place in this construction where a factor of the size in question could
 plausibly hide, so it is worth measuring rather than assuming.
 
-**Proposition 5.15 (the relaxation cannot hide a constant).**
+**Proposition 5.8b (the relaxation cannot hide a constant).**
 For \(14\le L\le24\) and \(o=o_{\min}(L)\), let \(\mathcal A(L)\) be the
 class the lattice program maximises over --- all masks with \(o\) odds
 whose exponent walk stays nonnegative --- and let
@@ -2231,8 +2231,8 @@ uniformly. Whatever explains the walk charge's advantage being
 \(\approx0.44\ln n'\) rather than something larger, it is not the
 exponent-walk relaxation.
 
-**Proposition 5.16 (flatness at the kill-table lengths).**
-Part (2) of Proposition 5.15 rests on the charge ordering being flat at
+**Proposition 5.8c (flatness at the kill-table lengths).**
+Part (2) of Proposition 5.8b rests on the charge ordering being flat at
 the top, and enumeration establishes that only for \(L\le24\). It can
 be established directly at the lengths the kill tables use, without
 enumerating, by running the lattice program of Theorem 5.3 with the
@@ -2268,7 +2268,7 @@ one contribution by a relative \(\asymp\ln n'/o\) out of a total of
 \(\asymp L/\ln n'\) equal terms. At \(L=50508\) that predicts
 \(\approx8\cdot10^{-8}\) against the measured \(5.4\cdot10^{-8}\).
 
-Together with Proposition 5.15 this closes the question the relaxation
+Together with Proposition 5.8b this closes the question the relaxation
 raised. Whatever removes \(30\%\) of the admissible words, it must
 remove *all sixteen* of the leading walks before the realized maximum
 falls by as much as \(5\cdot10^{-8}\); realizability is spread
@@ -2648,7 +2648,7 @@ One further check falls out. That walk begins \(\mathtt{OO}\)
 and ends \(\mathtt{E}\), so it satisfies the minimum-based
 structural restrictions of Theorem 3.2: Section 3 does not cut
 the adversary down either, which is the qualitative reason
-behind the measurement in Proposition 5.15. What would bite is a
+behind the measurement in Proposition 5.8b. What would bite is a
 constraint that forbids the \(\mathtt{OE}/\mathtt{OOE}\) mixture
 itself at the critical density --- an arithmetic statement about
 which Sturmian words are realizable as Juggler itineraries, not
@@ -2669,7 +2669,7 @@ ordinary word, not a rare one.
 So the walk charge is not bounding an adversary that cannot
 occur. That is a point in the construction's favour, and it also
 closes the reformulation: the obstruction is not the realizability
-of the extremal word. Taken with Propositions 5.15 and 5.16, and
+of the extremal word. Taken with Propositions 5.8b and 5.8c, and
 with Remark 5.8a, every candidate explanation for the walk
 charge's \(0.44\ln n'\) has now been eliminated --- the envelope
 (tight to \(0.07\%\)), the certification depth (a factor \(55\)

@@ -10,6 +10,7 @@ import { OeFiberTab } from "./pages/play/OeFiberTab";
 import { CycleTab } from "./pages/play/CycleTab";
 import { SurvivorsTab } from "./pages/play/SurvivorsTab";
 import { FloorTab } from "./pages/play/FloorTab";
+import { CeilingTab } from "./pages/play/CeilingTab";
 import { FanTab } from "./pages/play/FanTab";
 import { WalkTab } from "./pages/play/WalkTab";
 import { FinanceTab } from "./pages/play/FinanceTab";
@@ -46,6 +47,7 @@ export default function App() {
               <Route path="finance" element={<FinanceTab />} />
               <Route path="fan" element={<FanTab />} />
               <Route path="walk" element={<WalkTab />} />
+              <Route path="ceiling" element={<CeilingTab />} />
               <Route path="walk-charge" element={<Navigate to="/play/walk" replace />} />
             </Route>
             <Route path="claims" element={<ClaimsPage />} />

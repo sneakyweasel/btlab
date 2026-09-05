@@ -1,4 +1,4 @@
-"""Proposition 5.15: the exponent-walk relaxation cannot hide a constant.
+"""Proposition 5.8b: the exponent-walk relaxation cannot hide a constant.
 
 The lattice program of Theorem 5.3 maximises over every binary word with u_k >= 0, realizable or
 not.  The paper's envelope-vs-DP cross-check compares two quantities that both live on that
