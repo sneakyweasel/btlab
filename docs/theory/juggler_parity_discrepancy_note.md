@@ -4739,6 +4739,23 @@ letter five, carries \(\tfrac{27k}{16}n^{19/16}\) on \(\theta_1\) with
 excluded problem is easier to enter and harder to finish, which is a
 better reason to set it aside than the one the parenthetical gives.
 
+*The square-root species is untouched, not overlooked.* Screening
+everything this paper proves --- every word of depth at most four, and
+Theorem 6.3's four of depth five --- not one has a square-root defect
+at its deepest blocked position. Thirty-two words, none. The species
+first appears at depth five among \(E\)-rooted words, at \(EOOOE\) and
+\(EOOOO\), and at depth six among \(O\)-rooted ones, at \(OOEOOE\) and
+\(OOEOOO\) --- where it carries \(\tfrac{9k}8n^{45/32}\) on
+\(\theta_3\) with \(E=\tfrac94\), failing the linearisation test in the
+same breath.
+
+So the absence of a square-root kernel here is not a gap in the
+treatment: the treatment stops before the species occurs. And the first
+\(O\)-rooted instance of it is exactly \(OOEOOE\), the prefix of the
+depth-seven word this section ranks last. What blocks \(OOEOOEE\) is
+not an unhandled case of something familiar but the first appearance,
+anywhere in the problem, of a kind of defect this paper never meets.
+
 One more check, on the *form* of those monomials. Writing the kernel's
 coefficient as a power of \(n\) drops the floors kept exact beneath it,
 at a cost equal to its sensitivity to each, of exponent

@@ -1206,3 +1206,58 @@ def test_paper_states_the_E_rooted_reading() -> None:
     assert "the starts this paper excludes" in text
     assert "easier to enter and harder to finish" in text
     assert r"\tfrac{27k}{16}n^{19/16}" in text
+
+
+# --- the square-root species never occurs in proved territory ---
+
+
+def _proved_words() -> list[str]:
+    """Everything Paper B proves: all words of depth <= 4, plus Theorem 6.3's four."""
+    from itertools import product
+    out = ["".join(b) for d in (2, 3, 4) for b in product("EO", repeat=d)]
+    return out + ["OOOEE", "OOOEO", "OOEOE", "OOEOO"]
+
+
+def test_no_proved_word_has_a_square_root_blocked_defect() -> None:
+    words = _proved_words()
+    assert len(words) == 32
+    for w in words:
+        for t in range(3, len(w) + 1):
+            d = B.deepest_blocked(w, t)
+            assert not (d and d[3] == "sqrt"), (w, t, d)
+
+
+def test_the_species_first_appears_one_depth_past_the_frontier() -> None:
+    from itertools import product
+
+    def first(root: str) -> tuple[int, list[str]]:
+        for d in range(3, 8):
+            hits = []
+            for b in product("EO", repeat=d - 1):
+                w = root + "".join(b)
+                if any((x := B.deepest_blocked(w, t)) and x[3] == "sqrt"
+                       for t in range(3, d + 1)):
+                    hits.append(w)
+            if hits:
+                return d, sorted(hits)
+        raise AssertionError(root)
+
+    assert first("E") == (5, ["EOOOE", "EOOOO"])
+    assert first("O") == (6, ["OOEOOE", "OOEOOO"])
+
+
+def test_the_first_O_rooted_instance_is_OOEOOEEs_prefix() -> None:
+    """What blocks OOEOOEE is the species' first appearance among O-rooted words."""
+    assert "OOEOOEE"[:6] == "OOEOOE"
+    d = B.deepest_blocked("OOEOOE", 6)
+    assert d == (3, Fraction(9, 8), Fraction(45, 32), "sqrt")
+    assert B.composed_map("OOEOOE", 6, 3) == Fraction(9, 4)
+    assert not B.linearisation_safe("OOEOOE", 6)
+    assert B.deepest_blocked("OOEOOEE", 6) == d
+
+
+def test_paper_states_the_species_is_untouched() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "untouched, not overlooked" in text
+    assert "Thirty-two words, none." in text
+    assert "the treatment stops before the species occurs" in text

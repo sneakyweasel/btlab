@@ -28433,3 +28433,63 @@ Best next question
   and nothing the paper proves. Is there any word at any depth whose
   deepest blocked defect is square-root and which the paper does prove?
 ```
+
+ ### The square-root species is untouched, not overlooked
+
+The question was whether anything the paper proves has a square-root
+defect at its deepest blocked position. Nothing does.
+
+Screening the whole proved territory — every word of depth at most
+four, plus Theorem 6.3's four of depth five — gives thirty-two words
+and not one square-root blockage. The species first appears:
+
+```text
+   depth 5, E-rooted   EOOOE, EOOOO      theta_1, sqrt
+   depth 6, O-rooted   OOEOOE, OOEOOO    theta_3, (9k/8)n^{45/32}, E = 9/4
+```
+
+both of the O-rooted pair failing the linearisation test in the same
+breath.
+
+So the absence of a square-root kernel in this paper is not a gap in
+the treatment; **the treatment stops before the species occurs.** That
+reframes the whole depth-seven ranking. `OOEOOEE` is not blocked by an
+unhandled case of something familiar — its blocking defect, at the
+prefix `OOEOOE`, is the *first appearance anywhere in the problem* of a
+kind of defect the paper never meets. Everything it proves lives
+strictly on the `3/2` side.
+
+This closes the arc of the last several entries. The criterion was
+built to price depth seven; it then retrodicted the depth-four and
+depth-five frontier exactly, explained the excluded `E`-rooted half,
+and now locates the boundary of the proved territory in the species
+coordinate as well as the level one.
+
+```text
+What was learned
+- the proved territory is entirely 3/2-species at its blocked defects,
+  which no statement in the paper says and which explains why no
+  square-root kernel was ever needed
+- the depth-seven obstruction and the E-rooted exclusion are the same
+  boundary seen from two sides
+Strongest theorem
+- zero of the thirty-two proved words have a square-root deepest
+  blocked defect; first occurrences are at depth 5 (E-rooted) and
+  depth 6 (O-rooted, at OOEOOE)
+Strongest refutation
+- the reading of OOEOOEE as "a case needing more of the same"; it needs
+  something the paper has never done
+Reusable machinery
+- four tests over the proved set and the first occurrences
+Branch status
+- PROMOTE
+Why
+  This is the structural statement the depth-seven ranking was missing.
+  Saying OOEOOEE lacks a theorem is weak; saying its obstruction is the
+  first instance of a species the paper's proved territory never
+  contains is a boundary, and it is checkable in one screen.
+Best next question
+- the level-1 kernel for OOOEOEE is 3/2-species and below the barrier.
+  Is there a word whose deepest blocked defect is 3/2-species at
+  level 1 that the paper already proves -- i.e. is that object also new?
+```
