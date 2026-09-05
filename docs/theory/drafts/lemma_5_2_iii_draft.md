@@ -123,12 +123,61 @@ bounds exactly under the substitution \(t\to u\), \(h_3\to h\),
 Theorem 5.3's variable names. The good-shift threshold \(72\) and the
 bad-set count \(72\) per mode agree.
 
-*Not checked.* Whether Stages 1--5 depend on the budget *implicitly* ---
-through a quantity derived upstream using \(|q'|\le4P^{1/24}\) but not
-naming \(q'\). The one candidate I can see is Stage 6's remark that
-"the modes are expanded in the Stage-2 families": if a widened
-coefficient produced mode indices outside the range Stage 2 admits,
-(iii) would need a further hypothesis. Step 4 does not raise this, which
-suggests it is fine, but it is the single point on which this draft
-rests on the manuscript rather than on its own verification, and it
-should be confirmed before (iii) is promoted out of draft.
+### The Stage-2 point, now checked
+
+It splits in two, and only the first half is benign.
+
+*Index range: fine.* Lemma 3.7 produces modes of index
+\(\le|B|+J\) with \(J=R_0=P^{5/16}\). In the printed case
+\(|B|\le1\), so \(|w|\lesssim R_0\). Under (D1\('\)),
+\(|B|\le7P^{1/4}\), and \(7P^{1/4}\le P^{5/16}\) exactly when
+\(P\ge7^{16}=3.32\cdot10^{13}\), which \(P_0=8.95\cdot10^{13}\)
+clears. So \(|w|\le2R_0\) --- the same shape as the \(2.85R_0\) that
+(D2) already carries, and (D2)'s own curvature check is the template.
+This half of the worry is discharged.
+
+*Weights: not fine as drafted.* In the printed case \(|B|\le1\) puts
+the decoration's \(\theta\)-sawtooth in Stage 3's regime (s1), where
+the modes are handed the damping factor
+\(\min(2,2\pi|B|)\le14.2P^{-1/16}\). Under (D1\('\)) the coefficient
+is \(|B|\le7P^{1/4}\), which is regime (s2): the windowed treatment,
+with its own window inventory and boundary cost. Step 4 names this
+("the large-\(B\) window treatment of Stage 3(s2)") but does not cost
+it out --- no window count for the decoration's sawtooth, no boundary
+charge --- and the draft above inherits that omission. **Part (iii)
+needs a third paragraph** supplying them before it can be promoted.
+
+### A prior question this check raised
+
+While tracing the weights I could not reconcile the following, and it
+concerns the *printed* Lemma 5.2(i), not part (iii).
+
+Stage 5's dominant-mode branch gives, per mode,
+\(1.4|w|^{1/2}P^{3/4}+1.4|w|^{-1/2}P^{1/4}\). Weighting the Stage-2
+families by their \(1/|r|\) and summing over \(1\le|r|\le R_0\),
+\[
+1.4P^{3/4}\sum_{r\le R_0}r^{-1/2}
+\ \le\ 2.8\,R_0^{1/2}P^{3/4}
+\ =\ 2.8\,P^{29/32},
+\]
+which is the manuscript's printed \(3P^{29/32}\log P\). But
+\(\tfrac{29}{32}>\tfrac78\), and \(\tfrac78\) is the largest exponent
+in the conclusion of (i). At \(u=h=P^{3/32}\) --- admissible, since
+\(h\le P^{1/8}\) and \(uh=P^{3/16}\) is the top of regime (s1) --- the
+four printed terms are \(P^{23/32}\), \(P^{7/8}\), \(P^{7/8}\) and
+\(P^{79/96}\), all below \(P^{29/32}\) by at least \(P^{1/32}\). The
+term \((h/u)^{1/2}P^{7/8}\) does cover \(P^{29/32}\) when \(u\) is
+small (at \(u=1\), \(h=P^{1/8}\) it reaches \(P^{30/32}\)), but not
+when \(u\asymp h\).
+
+The \(P^{-1/16}\) damping of regime (s1) would close the gap
+(\(\tfrac{29}{32}-\tfrac2{32}=\tfrac{27}{32}<\tfrac78\)), but as far
+as I can read it that factor applies to Stage 3's
+\(\theta\)-sawtooth modes, not to the Stage-2 carry families, which
+carry only \(1/|r|\).
+
+I may be misreading the weight on the Stage-2 families, or the ceiling
+\(R_0\) on \(|r|\), or the regime in which that sum is invoked. But it
+should be resolved before (iii) is written, because (iii) sits
+downstream of exactly this accounting: it inherits whatever keeps the
+Stage-2 mode sum under \(P^{7/8}\).
