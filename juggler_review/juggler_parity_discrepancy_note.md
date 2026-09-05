@@ -3113,6 +3113,65 @@ tracks \(\Lambda\); the local \(f''\) stays within the interpolant
 error of that model, which is the only comparison the sublevel
 argument uses.
 
+### Architecture of the proof of Theorem 5.3
+
+The proof is long, and its length is bookkeeping rather than depth: one
+reduction, one identity, one hard lemma, and a classification. This
+table is the map. Nothing in it is proved here; every row points at the
+statement that does the work.
+
+| # | component | input | output | consumed by |
+|---|---|---|---|---|
+| — | Lemma 5.1(i) | exact Taylor of \(m^{9/4}\) at \(v\) | kernel phase \(=\) level-2 local floor defect, error \(kR\ll kP^{-9/8}\) | the definition of \(K_c\) |
+| — | Lemma 5.1(ii) | \(\lbrack\{A\}+\{B\}\ge1\rbrack=\{A\}+\{B\}-\{A+B\}\) | every carry is a difference of unit sawtooths | Step 3(3b), (3d) |
+| — | Lemma 5.1(iii) | branch functions \(F_{\boldsymbol\kappa}\), offset \(\lvert j\rvert\le3\) | branch decomposition; smooth-per-branch, frozen floor \(J_F\) | Steps 3(3e), 5 |
+| — | Lemma 5.1(iv) | (i)–(iii) | master identity \(\varphi_2=M_1+M_2+M_3+M_4\) | Step 2 |
+| 1 | Step 1 | \(A\)-process twice, \(H_1=P^{1/48}\), \(H_2=P^{1/24}\) | \(K_c\) reduced to \(T_2\); (C1)–(C4) hold with room \(P^{-1/48}\) | Steps 2–6 |
+| 2 | Step 2 | Lemma 5.1(iv), estimate (E4) | \(M_1\) deleted at cost \(2.7P^{1/4}\); \(M_2,M_3,M_4\) remain | Step 3 |
+| 3 | Step 3 | Lemma 3.7 (sawtooth windows), Lemma 3.5 at \(J_2=P^{1/24}\) (carries) | every piece \(=\) anchor \(+\) waves \(+\) differenced waves \(+\) (D3)-smooth | Steps 4–5 |
+| 4 | Step 4 | pieces with total wave frequency \(t\ne0\), \(\lvert t\rvert\le3P^{1/24}\) | \(\ll\lvert t\rvert^{-1/6}P^{23/24+\varepsilon}\); \(t=0\) collapses exactly to (D1) | Step 6; \(t=0\) to Step 5 |
+| — | Lemma 5.2(i) | \(u,h\ge1\), \(h\le P^{1/8}\), \(uh\le P^{1/2}\), decoration \(\rho\) | \(V\)-bound \(\ll((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+\cdots)P^{\varepsilon}\) | Lemma 5.2(ii); Steps 3(3a), 4, 5b |
+| — | Lemma 5.2(ii) | \(\lvert q_d\rvert\le4P^{1/24}\), \(0<\lvert t\rvert\le3P^{1/24}\) | \(\ll\lvert t\rvert^{-1/6}P^{23/24+\varepsilon}\) | Step 4 |
+| 5a | Step 5a | offset branches \(j\ne0\) | \(\le1.8P^{23/24+\varepsilon}\); anchor curvature \(\lambda_a\in[1.30,1.43]k\lvert j\rvert P^{-1/8}\) | Step 6 |
+| 5b | Step 5b | zero-offset branches \(j=0\) | \(\ll P^{15/16+\varepsilon}\) | Step 6 |
+| 6 | Step 6 | all of the above | \(\lvert T_2\rvert\ll P^{23/24+\varepsilon}\), hence \(\lvert K_c\rvert\ll P^{1-1/96+\varepsilon}\) | Theorem 6.1 |
+
+Two structural facts the table is meant to make visible.
+
+*Where the exponent comes from.* The saving \(\tfrac1{96}
+=\tfrac14\cdot\tfrac1{24}\) is inherited, not produced: it is the
+depth-2 strength \(P^{23/24}\) of Lemma 5.2(ii) passed back through
+the two differencings of Step 1. Every other estimate in the proof is
+arranged to reach that exponent and no further; improving the wave
+bound improves \(\delta\) proportionally, and improving anything else
+improves nothing.
+
+*Where the threshold comes from.* \(P_0\) is not distributed across
+the proof. Of the thirty-seven displayed inequalities, thirty-six hold
+from \(2.9\cdot10^{10}\) or below; the binding one is the comparison
+\(W\le c_7S/2\) inside Step 5b's middle band (Appendix A). That single
+row is why Lemma 3.9's constant \(c_7=1/232\) is proof-critical and
+why the middle band is the part of the argument to check first.
+
+**Step 5b in detail.** It is the only step that splits, and the only
+one where several curvature scales meet. Write
+\(\lambda_0\in[0.35,2.6]\,kh_1h_2P^{-5/8}\) for the frozen anchor
+curvature and \(\mu=0.84\max(uh_1,u'h_2)P^{-3/4}\) for the strongest
+differenced-wave scale present.
+
+| regime | condition | tool | output |
+|---|---|---|---|
+| anchor-dominant | \(60\mu\le\lambda_0\) | Lemma 3.3 per run at \(\lambda_0\) | \(\le1.7(kh_1h_2)^{1/2}P^{11/16}+40(h_1h_2/k)^{1/2}P^{9/16}\) |
+| mode-dominant | \(\mu\ge60\lambda_0\) | Lemma 5.2(i), anchor as decoration | \(\ll((uh_1)^{1/2}P^{5/8}+(h_1/u)^{1/2}P^{7/8}+P^{7/8})P^{\varepsilon}\) |
+| middle band | \(\tfrac1{60}\le\mu/\lambda_0\le60\) | Lemma 5.2b, then Lemma 3.9 | transition set measured once, trivial bound; **binds \(P_0\)** |
+
+The middle band is the only place in the paper where the composite
+second derivative can cross zero inside a cell, and the only consumer
+of the three-term form of Lemma 3.9. It is also where condition (C5)
+of Lemma 5.2b is discharged: (C5) does *not* follow from (C1)–(C4),
+and the middle-band inequality \(\mu\le60\lambda_0\) is exactly what
+supplies it.
+
 **Theorem 5.3 (kernel cancellation).**
 Let \(c(n)=\tfrac{3k}4 n^{9/8}\) with \(1\le k\le P^{1/24}\). Then
 \[

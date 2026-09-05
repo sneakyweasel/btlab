@@ -24754,3 +24754,64 @@ Best next question
   (interpolant error, exponent triple, class-count error) alongside
   e(x); that one needs a notation table, not a rename
 ```
+
+
+### The architecture table, and what writing it diagnosed
+
+The referee's first ask, and the cheapest: a one-page map before Theorem 5.3. Eleven rows for
+the components (Lemma 5.1(i)-(iv), Lemma 5.2(i)-(ii), the six steps), a sub-table for Step 5b's
+three regimes, and two structural notes -- where the exponent comes from and where the threshold
+comes from.
+
+Both notes are worth stating because both are counter-intuitive from inside the proof. The
+saving 1/96 = (1/4)(1/24) is *inherited*, not produced: it is Lemma 5.2(ii)'s depth-2 strength
+P^(23/24) passed back through Step 1's two differencings, so improving anything except the wave
+bound improves nothing. And P_0 is not distributed: thirty-six of the thirty-seven displayed
+inequalities hold from 2.9e10 or below, and the binding one is `W <= c_7 S/2` inside Step 5b's
+middle band. That is why c_7 = 1/232 is proof-critical and why the middle band is the part to
+check first.
+
+**The table was also the diagnostic**, and it found the one place where the organisation, not
+its visibility, is the problem. Step 4's leftover-mode argument does not use Lemma 5.2 as a
+black box. It reaches into the proof:
+
+> The only estimates in the six-stage proof of (i) that use the printed budget |q'| <= 4P^(1/24)
+> are the Stage-6 (D1) curvature ratio and the Stage-6 theta-coefficient. Those two comparisons
+> are re-done here, and the rest of Stages 1-6 is invoked unchanged.
+
+That is careful and, as far as I can see, correct -- but it means a referee cannot check Step 4
+from Lemma 5.2's *statement*; they must read its proof and locate Stage 6. No table can hide
+that, which is exactly what the diagnostic was for.
+
+The fix is contained: give Lemma 5.2 a part (iii) covering the leftover first-differenced modes
+under their own hypotheses (`q' = u`, `u h_1 <= P^(1/2)`, `h' <= P^(1/24)`), proved where the six
+stages are. Step 4 then cites (iii) and the interface closes. One new lemma part, not a section
+rewrite -- which is what the "revise, don't rewrite" judgement predicted the damage would be.
+
+New: `test_architecture_table.py` (30 tests). A map that has drifted is worse than no map, so
+every component the table names must exist as a statement, every exponent it quotes must appear
+in the step that produces it, the two curvature ranges must match Step 5a and Step 5b, and the
+binding-site claim must match `p0_certificate.certificate()['binding']`.
+
+```text
+What was learned
+- writing the architecture table is a cheap test of whether the
+  architecture is bad or merely hidden; here it was hidden, except at
+  one interface
+- Step 4 re-enters Lemma 5.2(i)'s Stage 6 rather than citing it, which
+  is the single genuine structural coupling in Theorem 5.3
+Strongest theorem
+- none; the proof's shape is now stated rather than reconstructible
+Strongest refutation
+- none this iteration
+Reusable machinery
+- test_architecture_table: pins a navigational aid to the thing it
+  navigates, which is the failure mode such aids have
+Branch status
+- ADVANCE (referee item 3 of 20, and the first of their four upgrade
+  conditions to be discharged)
+Best next question
+- Lemma 5.2(iii). It closes the one interface the table could not, and
+  it is the difference between a referee checking Step 4 from a
+  statement and checking it from a six-stage proof
+```
