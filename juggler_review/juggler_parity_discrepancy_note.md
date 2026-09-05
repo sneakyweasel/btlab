@@ -2670,12 +2670,24 @@ margin against the Stage-4 curvature
   =17.1P^{-15/16},
   \]
   ratio to the main curvature
-  \(\le48.9P^{-3/16}\): dominated for \(P\ge P_0\), with room
-  \(0.12\) against the margin \(\tfrac14\).  That is the sharp
-  statement, and it is the one to quote: weakening it to
-  \(49P^{-1/16}\), as an earlier draft did, is true but useless ---
-  a constant of \(49\) on a gap of \(\tfrac1{16}\) does not clear
-  \(\tfrac14\) until \(10^{36}\).
+  \(\le48.9P^{-3/16}\), which is \(0.12\) at \(P_0\) against the
+  margin \(\tfrac14\).  Weakening it to \(49P^{-1/16}\), as an
+  earlier draft did, is true but useless --- a constant of \(49\) on
+  a gap of \(\tfrac1{16}\) does not clear \(\tfrac14\) until
+  \(10^{36}\).  In the other direction \(48.9P^{-3/16}\) is itself
+  not the sharpest form available, because merging
+  \(1.85khP^{1/8}+R_0\) into \(2.85P^{5/16}\) raises \(P^{7/24}\) to
+  \(P^{5/16}\) and loses \(P^{1/48}\) --- a factor \(1.46\) at
+  \(P_0\).  Kept apart, the ratio is
+  \[
+  \frac{\bigl(1.85khP^{1/8}+R_0\bigr)\cdot6P^{-5/4}}
+       {0.35\,uh\,P^{-3/4}}
+  \le\frac{6\bigl(1.85P^{7/24}+P^{5/16}\bigr)}{0.35}P^{-1/2},
+  \]
+  which clears \(\tfrac14\) from \(2.98\cdot10^{11}\) rather than
+  from \(1.66\cdot10^{12}\).  Both are far below \(P_0\), so nothing
+  in Sections 4--6 changes; the two-term form matters only where this
+  site is itself the binding one, which is the floor of Appendix A.5.
   (Substituting \(T\) for \(J\) here would give only \(9P^{-3/4}\),
   whose ratio \(26/(uh)\) is not \(o(1)\) at \(uh=O(1)\);
   \(17.1/0.35=48.9\) fixes the constant either way.) The flat cost is, per point,

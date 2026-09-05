@@ -545,3 +545,53 @@ def test_paper_states_the_saturation() -> None:
     assert r"c_7=1/54" in text
     assert r"a factor of \(300\)" in text
     assert "needs a different site, not a better constant" in text
+
+
+# --- the q'' site: the certificate is sharper than the printed constant ---
+
+
+def test_the_printed_and_two_term_forms_differ_by_the_merge() -> None:
+    """48.9 P^{-3/16} folds 1.85 P^{7/24} into P^{5/16}, losing P^{1/48}."""
+    printed = 10 ** C.least_P(lambda P: 48.9 * P ** (-3 / 16) <= 0.25)
+    two = 10 ** C.least_P(lambda P: (1.85 * P ** (7 / 24) + C.R0(P)) * 6 * P ** -1.25
+                          / (0.35 * P ** -0.75) <= 0.25)
+    assert abs(printed / 1.662e12 - 1) < 0.01, printed
+    assert abs(two / 2.9817e11 - 1) < 0.01, two
+    assert 5.4 < printed / two < 5.8, printed / two
+
+
+def test_the_certificate_uses_the_two_term_form() -> None:
+    """The floor of A.5 is 2.98e11, which is the sharper reading, not the printed one."""
+    row = [r for r in C.thresholds() if r["tag"] == "st5b-qpp"][0]
+    assert abs(row["P_min"] / 2.9817e11 - 1) < 1e-3, row["P_min"]
+    assert abs(C.c7_saturation()["floor"] / row["P_min"] - 1) < 1e-9
+
+
+def test_the_printed_constant_is_right_at_P0() -> None:
+    """0.12 in the manuscript is 48.9 P^{-3/16} at P_0, and the merge costs 1.46 there."""
+    P = C.certificate()["P0"]
+    assert abs(48.9 * P ** (-3 / 16) - 0.12) < 0.005
+    merged, exact = 2.85 * P ** 0.3125, 1.85 * P ** (7 / 24) + P ** 0.3125
+    assert abs(merged / exact - 1.46) < 0.01
+
+
+@pytest.mark.parametrize("kw,want", [("A", 2.66), ("J", 5.04), ("F", -5.04), ("M", -5.04)])
+def test_no_constant_at_the_qpp_site_is_slack(kw: str, want: float) -> None:
+    """All four are forced by displayed derivations; the elasticities say which would matter."""
+    import math
+
+    def thr(A=1.85, J=6.0, F=0.35, M=0.25):
+        return C.least_P(lambda P: (A * P ** (7 / 24) + C.R0(P)) * J * P ** -1.25
+                         / (F * P ** -0.75) <= M)
+
+    base = thr()
+    got = (thr(**{kw: {"A": 1.85, "J": 6.0, "F": 0.35, "M": 0.25}[kw] * 1.1}) - base) \
+        / math.log10(1.1)
+    assert abs(got - want) < 0.05, (kw, got)
+
+
+def test_paper_carries_the_two_term_form() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "not the sharpest form available" in text
+    assert r"2.98\cdot10^{11}" in text and r"1.66\cdot10^{12}" in text
+    assert "the floor of Appendix A.5" in text

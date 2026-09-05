@@ -27618,3 +27618,74 @@ What was learned
 - a guard that passes on the fixed tree proves nothing; reintroduce the bug
 Branch status
 - three drift guards now: constants, escapes, and method names
+
+ ### The q'' site: no constant is slack, but the printed combination is
+
+Triage said: find which of the four constants at the Step 5b(a) `q''`
+site controls the `2.98e11` floor, and whether any is slack. The
+answer is that none is, and that the slack is somewhere else.
+
+Elasticities of the threshold, `d log10 P / d log c`:
+
+```text
+    1.85  (Delta c bound)     +2.66
+    6     (3|j|)              +5.05
+    0.35  (Stage-4 curvature) -5.04
+    0.25  (dominance margin)  -5.04
+```
+
+Highly sensitive — a 10% move in any of the last three shifts the
+threshold by about 60%. But each is forced by a displayed derivation:
+`1.85` is the top of `Δc ∈ (1.68, 1.85)khP^{1/8}`; `6 = 3|j|` at
+`|j| ≤ 2`; `0.35` is the low end of the Stage-4 curvature range; `1/4`
+is the dominance margin. No lever there.
+
+**The slack is in the merge, not the constants.** The manuscript prints
+the ratio as `48.9P^{-3/16}`, obtained by folding
+`1.85khP^{1/8} + R_0` into `2.85P^{5/16}` — which raises `P^{7/24}` to
+`P^{5/16}` and loses `P^{1/48}`, a factor `1.46` at `P_0`. Kept apart:
+
+```text
+   printed   48.9 P^{-3/16} <= 1/4        clears at 1.66e12
+   two-term  6(1.85 P^{7/24} + P^{5/16})/0.35 · P^{-1/2} <= 1/4
+                                          clears at 2.98e11
+   ratio 5.57
+```
+
+Both sit far below `P_0`, so nothing in Sections 4–6 moves. But the
+certificate — and the tests' independent transcription — were already
+evaluating the two-term form, so the `2.98e11` I quoted last entry as
+the floor of Appendix A.5 was the sharper reading while the manuscript
+printed the weaker one. The manuscript now carries both, with the
+merge's cost named. The paper's own principle at this very site ("that
+is the sharp statement, and it is the one to quote") argued for the
+change.
+
+```text
+What was learned
+- the four constants are individually forced but jointly very
+  sensitive; elasticity and slack are different questions
+- a printed bound can be weaker than the certificate that checks it,
+  and here the gap was 5.6x at the one site that sets a floor
+- the paper's stated 0.12 at P_0 is the printed form's value, so the
+  manuscript was internally consistent -- it was consistent with the
+  looser reading
+Strongest theorem
+- the q'' ratio clears 1/4 from 2.98e11 in two-term form and from
+  1.66e12 as printed; the difference is exactly the P^{1/48} merge
+Strongest refutation
+- the triage hypothesis that a constant carried slack; none does
+Reusable machinery
+- none new; this used least_P and the existing predicate list
+Branch status
+- PARK
+Why
+  The floor is hard in the sense the triage asked about: every constant
+  at the binding site is forced, so no arithmetic tightening moves it.
+  The one improvement available was bookkeeping, it is now taken, and
+  it changes no statement in Sections 4-6. Moving below 3e11 needs a
+  different site, which is a new branch and not this one.
+Best next question
+- s3s1-Bsmall at 2.83e10 is the next floor down. Is its 2.25 constant
+  forced in the same way, or is that site softer than this one?
+```
