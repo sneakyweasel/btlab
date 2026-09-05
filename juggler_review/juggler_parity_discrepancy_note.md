@@ -4756,6 +4756,24 @@ depth-seven word this section ranks last. What blocks \(OOEOOEE\) is
 not an unhandled case of something familiar but the first appearance,
 anywhere in the problem, of a kind of defect this paper never meets.
 
+*The same is true of the level, and it applies to the other target
+too.* All four blocked defects among those thirty-two proved words sit
+at level \(2\); level \(1\) never occurs either. The first level-1
+blockages are the \(E\)-rooted pair at depth five, and the first of
+\(3/2\) species are four words of depth six --- \(OOOEOE\),
+\(OOOEOO\), \(OOOOEE\), \(OOOOEO\) --- all carrying the same
+\(\tfrac{27k}{32}n^{33/32}\) with \(E=\tfrac{27}{16}\). So
+\(OOOEOEE\)'s kernel is a first appearance as well, of a level rather
+than a species, and "one theorem closes both depth seven and depth
+eight" should not be read as one routine theorem.
+
+What separates the two targets is not that one is precedented. It is
+the barrier this paper names for itself: after one floor the argument
+of the second is an integer sequence rather than a smooth function.
+Level 1's argument is \(n^{3/2}\), still smooth, and sits below that
+barrier; the level-3 square-root object sits above it. Both are new;
+one is new on the side the paper's machinery was built to reach.
+
 One more check, on the *form* of those monomials. Writing the kernel's
 coefficient as a power of \(n\) drops the floors kept exact beneath it,
 at a cost equal to its sensitivity to each, of exponent

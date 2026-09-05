@@ -1261,3 +1261,51 @@ def test_paper_states_the_species_is_untouched() -> None:
     assert "untouched, not overlooked" in text
     assert "Thirty-two words, none." in text
     assert "the treatment stops before the species occurs" in text
+
+
+# --- the level is unprecedented too, so both targets need something new ---
+
+
+def test_every_blocked_defect_in_proved_territory_is_level_two() -> None:
+    levels = set()
+    for w in _proved_words():
+        for t in range(3, len(w) + 1):
+            d = B.deepest_blocked(w, t)
+            if d:
+                levels.add(d[0])
+    assert levels == {2}
+
+
+def test_the_first_level_one_3_2_blockage_is_at_depth_six() -> None:
+    from itertools import product
+
+    def scan(d: int) -> list[str]:
+        out = []
+        for b in product("EO", repeat=d):
+            w = "".join(b)
+            if any((x := B.deepest_blocked(w, t)) and x[0] == 1 and x[3] == "3/2"
+                   for t in range(3, d + 1)):
+                out.append(w)
+        return sorted(out)
+
+    assert scan(4) == [] and scan(5) == []
+    assert scan(6) == ["OOOEOE", "OOOEOO", "OOOOEE", "OOOOEO"]
+    for w in scan(6):
+        assert B.deepest_blocked(w, 6)[1:3] == (Fraction(27, 32), Fraction(33, 32)), w
+        assert B.composed_map(w, 6, 1) == Fraction(27, 16), w
+
+
+def test_both_depth_seven_targets_need_something_unprecedented() -> None:
+    """OOOEOEE a new level, OOEOOEE a new species; neither occurs in proved territory."""
+    assert B.deepest_blocked("OOOEOEE", 6)[0] == 1          # level never proved
+    assert B.deepest_blocked("OOEOOEE", 6)[3] == "sqrt"     # species never proved
+    # but only one of them sits below the paper's own barrier
+    assert B.linearisation_safe("OOOEOEE", 6)
+    assert not B.linearisation_safe("OOEOOEE", 6)
+
+
+def test_paper_tempers_the_one_theorem_reading() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert r"level \(1\) never occurs either" in text
+    assert "should not be read as one routine theorem" in text
+    assert "Both are new" in text

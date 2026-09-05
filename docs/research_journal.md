@@ -28493,3 +28493,58 @@ Best next question
   Is there a word whose deepest blocked defect is 3/2-species at
   level 1 that the paper already proves -- i.e. is that object also new?
 ```
+
+ ### The level is unprecedented too, and that tempers a claim I made
+
+The mirror of the last entry, run on the other depth-seven target. It
+came back the same way, which corrects my framing rather than the
+ranking.
+
+All four blocked defects among the thirty-two proved words sit at
+**level 2**. Level 1 never occurs either. The first level-1 blockages
+are the `E`-rooted pair at depth five (square-root species), and the
+first of `3/2` species are four words of depth six — `OOOEOE`,
+`OOOEOO`, `OOOOEE`, `OOOOEO` — all carrying the same
+`(27k/32) n^{33/32}` with `E = 27/16`.
+
+So `OOOEOEE`'s kernel is a first appearance as well — of a *level*
+rather than a species. Three entries ago I wrote that "one theorem,
+about one monomial, closes both" depth seven and depth eight. That is
+true and it is not the same as *one routine theorem*, which is how it
+reads. Both depth-seven targets need something this paper has never
+done.
+
+**What separates them is not precedent.** It is the barrier the paper
+names for itself: after one floor the argument of the second is an
+integer sequence rather than a smooth function. Level 1's argument is
+`n^{3/2}`, still smooth, below the barrier. The level-3 square-root
+object is above it. Both new; one new on the side the machinery was
+built to reach.
+
+```text
+What was learned
+- running the same check on the favoured candidate as on the rejected
+  one was worth more than either result alone: the asymmetry I had been
+  reporting was partly an artefact of only auditing the loser
+- "one theorem closes both" survives; "only one routine step remains"
+  does not, and I had let the second reading stand
+Strongest theorem
+- proved territory is level-2, 3/2-species at every blocked defect;
+  level 1 first appears at depth 5 and level-1 3/2-species at depth 6
+Strongest refutation
+- my own implied reading that OOOEOEE needed only an application of
+  existing machinery
+Reusable machinery
+- four tests over levels in proved territory and first occurrences
+Branch status
+- PROMOTE
+Why
+  The depth-seven ranking is unchanged and now rests on the right
+  reason. Saying one target is precedented and the other is not was
+  wrong; saying one sits below the paper's own stated barrier and the
+  other above it is correct, checkable, and the distinction that
+  actually matters for whether either can be attacked.
+Best next question
+- proved territory is exactly level-2, 3/2-species. Is that a
+  coincidence of the words chosen, or does depth <= 5 force it?
+```
