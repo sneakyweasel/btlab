@@ -842,3 +842,57 @@ caller supplies, not the loosest bound its statement admits. Lean
 `claimD_shift_range` (sharp) and `claimD_loose_bound_fails_at_P0` (which
 certifies that the loose version really does fail at \(P_0\), so the finding was
 not spurious).
+
+
+## Proposition 7.1: the Hoeffding step replaced by the exact count
+
+Proposition 7.1 is the paper's reduction: depth-\(d\) equidistribution gives a bound
+on the starts with no contracting prefix of length \(\le d\). Its combinatorial
+input was Hoeffding applied to the endpoint,
+\[
+\#\{w:\text{no contracting prefix}\}\ \le\ 2^{d}e^{-cd},
+\qquad c=2\bigl(\tfrac{\log2}{\log3}-\tfrac12\bigr)^{2},
+\]
+and the conclusion carried \(2^{d}E_d(N)\) as its error term.
+
+Two things were given away. Hoeffding keeps only \(o_d\ge\beta d\) and drops the
+requirement that \(3^{o_t}\ge2^{t}\) hold at *every* \(t\le d\); and the exponential
+form drops the local-limit factor. But the constraint depends on nothing beyond
+\((t,o_t)\), so the count \(N_d\) is a two-line dynamic program, exact in integers at
+any depth the paper will use. Both terms improve: the density becomes \(N_d/2^d\) and
+the error term becomes \(N_dE_d(N)\).
+
+*How much.* The ratio \(e^{-cd}2^{d}/N_d\) is \(6.7\) at \(d=5\), \(43.6\) at
+\(d=40\), and \(1.3\cdot10^{4}\) at \(d=1600\); the error term carries \(4\) instead
+of \(32\) at \(d=5\) and \(2114\) instead of \(65536\) at \(d=16\).
+
+*Where the loss comes from, and where it does not.* Not from the rate. The sharp
+value \(\rho=\min_\theta\tfrac12((3/2)^\theta+2^{-\theta})=0.965907\) gives
+\(-\log\rho=0.034688\) against Hoeffding's \(0.034285\), one part in eighty. The whole
+loss is polynomial:
+\[
+\frac{N_d}{2^{d}}\ \sim\ C\rho^{d}d^{-3/2},\qquad C\approx11,
+\]
+with \(d^{-1/2}\) for staying nonnegative under the zero-drift tilt and a further
+\(d^{-1}\) because the tilted endpoint sits at height \(\asymp\sqrt d\). Over every
+depth a theorem could occupy that factor is the whole story: the observed per-letter
+rate is \(0.1696\) at \(d=24\), \(0.0635\) at \(d=200\) and still \(0.0401\) at
+\(d=1600\).
+
+*Consistency.* Two independent checks. The \(d=5\) row gives four surviving words ---
+\(OOOOO\), \(OOOOE\), \(OOOEO\), \(OOEOO\) --- hence certificate density \(1-4/32=7/8\),
+which is Corollary 6.4's figure reached by counting words instead of contractors. And
+\(N_{200}/2^{200}=3.06\cdot10^{-6}\) with observed rate \(0.0635\) reproduces the
+figures recorded independently in the theorem ledger row `J-rate-free-density-one`.
+
+*A second, smaller correction in the same section.* Proposition 7.4's off-diagonal
+integral was bounded using "at most three arcs". The two jump points do cut
+\([0,1)\) into three intervals, but the first and last carry the same linear branch ---
+their constants differ by exactly the slope --- so on the circle there are two arcs.
+The error term falls from \(\tfrac6\pi\) to \(\tfrac4\pi\), and the Markov consequence
+with it. Checked numerically: the worst of 120 random instances of
+\(|\int_0^1e(A\{x+\lambda\}-B\{y+\lambda\})d\lambda|\cdot|A-B|\) is \(0.612\), against
+\(2/\pi=0.6366\) and the old \(3/\pi=0.9549\).
+
+Regression: `test_paper_b_prefix_count.py`, 14 tests, including the two consistency
+checks above and the \(d^{-3/2}\) exponent.

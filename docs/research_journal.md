@@ -24520,3 +24520,69 @@ Best next question
   territory, but the criterion is a real inequality, so it needs the
   integer form B(u)^(2^a) (n+1)^Y_a <= n^X_a instead
 ```
+
+
+### Paper B: the reduction was paying Hoeffding for a count it can do exactly
+
+Proposition 7.1 turns depth-`d` equidistribution into a density statement, and its
+combinatorial step bounded the non-contracting words by Hoeffding on the endpoint. That step
+drops the prefix constraint --- the requirement is `3^(o_t) >= 2^t` at *every* `t <= d`, not just
+at `t = d` --- and the constraint depends on nothing but `(t, o_t)`, so the exact count `N_d` is a
+two-line dynamic program. Both terms of the proposition improve: the density becomes `N_d/2^d`
+and the error term `2^d E_d(N)` becomes `N_d E_d(N)`. At `d = 5` that is `4` in place of `32`;
+at `d = 16`, `2114` in place of `65536`.
+
+**Where the loss is, and where I first said it was.** My first write-up said the two losses
+"compound" and "neither touches the exponential rate", and left it there. Grepping for
+propagation turned up theorem-ledger row `J-rate-free-density-one`, which records this same
+count at `d = 200` with "empirical rate 0.0635/letter, Hoeffding majorizes at 0.0343" --- nearly
+double, which contradicted what I had just written. It does not: the asymptotic rate really is
+`0.034688` against Hoeffding's `0.034285`, one part in eighty. The gap is entirely polynomial,
+
+```text
+N_d / 2^d  ~  C rho^d d^(-3/2),   C ~ 11
+```
+
+`d^(-1/2)` for staying nonnegative under the zero-drift tilt, a further `d^(-1)` because the
+tilted endpoint sits at height `~sqrt(d)` rather than at the origin. Over every depth a theorem
+could occupy, that factor is the whole story --- observed rate `0.1696` at `d = 24`, `0.0635` at
+`d = 200`, still `0.0401` at `d = 1600`. My module reproduces the ledger's `3.06e-6` exactly,
+so the two records now agree and the reason is stated.
+
+**Two consistency checks fell out.** The `d = 5` row has four survivors --- `OOOOO`, `OOOOE`,
+`OOOEO`, `OOEOO` --- hence certificate density `7/8`, which is Corollary 6.4's figure reached by
+counting words instead of contractors. And `d = 6` is `7/8` again: all eight children survive,
+so depth six buys nothing until depth five is done. Two of the four survivors are the open
+`OOOO*` split, which is therefore half the obstruction at both depths.
+
+**A smaller correction in the same section.** Proposition 7.4 bounded its off-diagonal integral
+using "at most three arcs". The two jump points do cut `[0,1)` into three intervals, but the
+first and last carry the same linear branch --- their constants differ by exactly the slope ---
+so on the circle there are two. The constant falls from `6/pi` to `4/pi`. Worst of 120 random
+instances: `0.612`, against `2/pi = 0.6366`.
+
+New: `paper_b_prefix_count.py`, `test_paper_b_prefix_count.py` (14 tests), Proposition 7.1
+rewritten, Proposition 7.4's constant, an audit-ledger section.
+
+```text
+What was learned
+- the reduction's combinatorial step was a closed form standing in for
+  a computation that is free, and the substitution improves both terms
+- the discarded factor is polynomial of order 3/2, not exponential;
+  naming the exponent is what reconciles the ledger's 0.0635 with the
+  Cramer rate 0.0347
+Strongest theorem
+- Proposition 7.1 with N_d in place of 2^d e^(-cd) in both terms
+Strongest refutation
+- my own "neither loss touches the rate, and that is the end of it",
+  caught by a propagation grep against the theorem ledger
+Reusable machinery
+- paper_b_prefix_count: exact count, observed rate, meander constant
+Branch status
+- ADVANCE (both terms of the paper's reduction improve, no new hypothesis)
+Best next question
+- the d^(-3/2) is a survival exponent for the parity walk. Section 7's
+  Conjecture 7.1 chain never uses it beyond the count; whether the same
+  meander structure says anything about which words survive, rather
+  than how many, is untouched
+```

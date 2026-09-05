@@ -4216,13 +4216,14 @@ word \(w\) of length \(d\),
 \[
 \bigl|\#\{n\le N:\mathrm{word}_d(n)=w\}-2^{-d}N\bigr|\le E_d(N).
 \]
-Then the starts with no contracting prefix of length \(\le d\) number
-at most
+Let \(N_d\) be the number of length-\(d\) words with no contracting
+prefix. Then the starts with no contracting prefix of length \(\le d\)
+number at most
 \[
-e^{-cd}\,N+2^dE_d(N),
-\qquad
-c=2\Bigl(\tfrac{\log2}{\log3}-\tfrac12\Bigr)^2>0.0342 .
+\frac{N_d}{2^{d}}\,N+N_d\,E_d(N),
 \]
+and \(N_d\le 2^de^{-cd}\) with
+\(c=2\bigl(\tfrac{\log2}{\log3}-\tfrac12\bigr)^2>0.0342\).
 Every other start \(n\ge2\) satisfies \(J^t(n)<n\) for some
 \(t\le d\) with the uniform power-envelope certificate of
 Proposition 3.1. Consequently, if \(E_d(N)=O_d(N^{1-\delta_d})\) with
@@ -4231,18 +4232,71 @@ descent certificate has natural density \(1\).
 
 *Proof.* Every \(E\)-rooted word has a contracting prefix at length
 one (\(3^0<2\)), so the starts with no contracting prefix of length
-\(\le d\) all realize an \(O\)-rooted itinerary of length \(d\). An itinerary
-\(w\) of length \(d\) has a contracting prefix iff
+\(\le d\) all realize an \(O\)-rooted itinerary of length \(d\). An
+itinerary \(w\) of length \(d\) has a contracting prefix iff
 \(3^{o_t}<2^t\) for some \(t\le d\), where \(o_t\) counts odd letters
-among the first \(t\). If \(w\) has no contracting prefix then
-\(3^{o_d}\ge2^d\), i.e. \(o_d\ge\beta d\) with
-\(\beta=\log2/\log3=0.6309\ldots\) The number of such words is at
-most \(2^d\Pr[\mathrm{Bin}(d,\tfrac12)\ge\beta d]\le
-2^de^{-2(\beta-1/2)^2d}\) by Hoeffding's inequality. Each such class
-has at most \(2^{-d}N+E_d(N)\) members by the \(O\)-rooted
-hypothesis; summing gives the count. The density-one statement
-follows by letting \(d\to\infty\) slowly with \(N\) (any
-\(d(N)\to\infty\) with \(2^dE_d(N)/N\to0\)). \(\square\)
+among the first \(t\); so the words to be counted are exactly those
+whose lattice path \((t,o_t)\) satisfies \(3^{o_t}\ge2^{t}\)
+throughout. That condition depends on nothing but \((t,o_t)\), so
+\(N_d\) is a two-line dynamic program over the triangle
+\(0\le o\le t\le d\), exact in integers. Each surviving class has at
+most \(2^{-d}N+E_d(N)\) members by the \(O\)-rooted hypothesis, and
+multiplying by \(N_d\) gives the count. For the closed form, drop
+every constraint but \(t=d\): the endpoint condition is
+\(o_d\ge\beta d\) with \(\beta=\log2/\log3\), and Hoeffding's
+inequality gives
+\(\#\{o_d\ge\beta d\}\le2^{d}e^{-2(\beta-1/2)^2d}\). The
+density-one statement follows by letting \(d\to\infty\) slowly with
+\(N\) (any \(d(N)\to\infty\) with \(N_dE_d(N)/N\to0\)). \(\square\)
+
+The exact count is worth carrying rather than the closed form,
+because Hoeffding is lossy in exactly the range the paper certifies:
+
+| \(d\) | \(N_d\) | endpoint only | \(2^d\) | \(N_d/2^d\) | \(e^{-cd}\) | certificate density |
+|---:|---:|---:|---:|---:|---:|---:|
+| \(4\) | \(3\) | \(5\) | \(16\) | \(0.1875\) | \(0.8718\) | \(0.8125\) |
+| \(5\) | \(4\) | \(6\) | \(32\) | \(0.1250\) | \(0.8425\) | \(0.8750\) |
+| \(6\) | \(8\) | \(22\) | \(64\) | \(0.1250\) | \(0.8141\) | \(0.8750\) |
+| \(8\) | \(19\) | \(37\) | \(256\) | \(0.0742\) | \(0.7601\) | \(0.9258\) |
+| \(12\) | \(226\) | \(794\) | \(4096\) | \(0.0552\) | \(0.6627\) | \(0.9448\) |
+| \(16\) | \(2114\) | \(6885\) | \(65536\) | \(0.0323\) | \(0.5778\) | \(0.9677\) |
+| \(24\) | \(286581\) | \(1271626\) | \(16777216\) | \(0.0171\) | \(0.4392\) | \(0.9829\) |
+
+The ratio \(e^{-cd}2^{d}/N_d\) is \(6.7\) at \(d=5\), \(11.4\) at
+\(d=10\), \(43.6\) at \(d=40\) and \(1.3\cdot10^{4}\) at \(d=1600\).
+It grows without bound, and the reason is not the exponential rate.
+The rate is essentially untouched: the sharp value is
+\(\rho=\min_{\theta}\tfrac12\bigl((3/2)^{\theta}+2^{-\theta}\bigr)
+=0.965907\), i.e. \(-\log\rho=0.034688\) against Hoeffding's
+\(c=0.034285\), a difference of one part in eighty. What Hoeffding
+discards is a polynomial factor, and it is a large one:
+\[
+\frac{N_d}{2^{d}}\ \sim\ C\,\rho^{d}\,d^{-3/2},
+\qquad C\approx11 ,
+\]
+the \(d^{-1/2}\) being the cost of staying nonnegative under the
+zero-drift tilt and the further \(d^{-1}\) the cost of the tilted
+endpoint, which sits at height \(\asymp\sqrt d\) rather than at the
+origin. Over any range a depth-\(d\) theorem could occupy, that
+polynomial factor is the whole story: the *observed* per-letter rate
+\(-d^{-1}\log(N_d/2^d)\) is \(0.1696\) at \(d=24\), \(0.0635\) at
+\(d=200\) and still \(0.0401\) at \(d=1600\), against an asymptote of
+\(0.0347\) it approaches only logarithmically slowly. (The value at
+\(d=200\), \(N_{200}/2^{200}=3.06\cdot10^{-6}\), is the figure recorded
+independently in the theorem ledger.) What changes in
+Proposition 7.1 is therefore the operative constant, in both terms: at
+\(d=5\) the error term carries \(N_5=4\) rather than \(2^5=32\), and at
+\(d=16\) it carries \(2114\) rather than \(65536\).
+
+The \(d=5\) row is a cross-check rather than a new number. The four
+surviving words are \(OOOOO\), \(OOOOE\), \(OOOEO\) and \(OOEOO\), so
+the certificate density available at depth five is \(1-4/32=7/8\) ---
+which is Corollary 6.4's figure, reached here by counting words rather
+than by counting contractors. The \(d=6\) row is \(7/8\) again: all
+eight children of those four words survive, so depth six buys nothing
+without depth five first. The two words of the open \(OOOO*\) split
+are half of the depth-five obstruction and, by the same table, half of
+the depth-six one.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.
@@ -4320,14 +4374,14 @@ let \(x_1,\ldots,x_L\) be arbitrary reals. For
 \(S_\lambda=\sum_{t\le L}e\bigl(A_t\{x_t+\lambda\}\bigr)\),
 \[
 \Bigl|\int_0^1|S_\lambda|^2\,d\lambda-L\Bigr|
-\le\frac6\pi\,\frac L{A'_{\min}}\,(\log L+1).
+\le\frac4\pi\,\frac L{A'_{\min}}\,(\log L+1).
 \]
 Consequently, for any \(\varepsilon\in(0,1)\), Markov's inequality
 gives
 \[
 |S_\lambda|
 \le\sqrt{\frac L\varepsilon
-\Bigl(1+\frac6\pi\,\frac{\log L+1}{A'_{\min}}\Bigr)}
+\Bigl(1+\frac4\pi\,\frac{\log L+1}{A'_{\min}}\Bigr)}
 \]
 outside a shift set of measure at most \(\varepsilon\). This is
 square-root cancellation times \(\sqrt{\log L}\) in general, and
@@ -4337,15 +4391,18 @@ holds in the instance above, where \(A'_{\min}\asymp P^{11/16}\).
 *Proof.* Expand the square; the diagonal gives \(L\). For
 \(t\ne t'\), the function
 \(\varphi(\lambda)=A_t\{x_t+\lambda\}-A_{t'}\{x_{t'}+\lambda\}\) is
-piecewise linear on \([0,1)\) with *real* slope \(A_t-A_{t'}\) on at
-most three arcs (jumps at \(1-\{x_t\}\) and \(1-\{x_{t'}\}\)); on
-each arc \(|\int e(\varphi)\,d\lambda|\le1/(\pi|A_t-A_{t'}|)\).
+piecewise linear with *real* slope \(A_t-A_{t'}\), with jumps at
+\(1-\{x_t\}\) and \(1-\{x_{t'}\}\). Those two points cut \([0,1)\)
+into three intervals, but the first and the last carry the same linear
+branch --- their constants differ by exactly the slope --- so on the
+circle there are two arcs, not three, and on each
+\(|\int e(\varphi)\,d\lambda|\le1/(\pi|A_t-A_{t'}|)\).
 Summing,
-\(\sum_{t\ne t'}3/(\pi A'_{\min}|t-t'|)
-\le(6/\pi)(L/A'_{\min})(\log L+1)\). For the second display, the
+\(\sum_{t\ne t'}2/(\pi A'_{\min}|t-t'|)
+\le(4/\pi)(L/A'_{\min})(\log L+1)\). For the second display, the
 measure of \(\{|S_\lambda|^2>T\}\) is at most
-\(T^{-1}(L+(6/\pi)(L/A'_{\min})(\log L+1))\); take
-\(T=(L/\varepsilon)(1+(6/\pi)(\log L+1)/A'_{\min})\). \(\square\)
+\(T^{-1}(L+(4/\pi)(L/A'_{\min})(\log L+1))\); take
+\(T=(L/\varepsilon)(1+(4/\pi)(\log L+1)/A'_{\min})\). \(\square\)
 
 Two cautions. The amplitude separation \(A'\gg1\) — the very
 property that defeats every character expansion, since a Fourier
