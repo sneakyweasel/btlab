@@ -1,8 +1,6 @@
 import Problems.Juggler.PrefixTwoEvenEval
 import Problems.Juggler.LeftoverEval
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

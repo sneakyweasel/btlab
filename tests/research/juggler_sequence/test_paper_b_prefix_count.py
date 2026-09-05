@@ -538,4 +538,63 @@ def test_paper_states_part_iv_and_the_run_table() -> None:
     assert "(iv) *(what carries a gain)*" in text
     assert r"\frac{L_{d-1}}{2^{d}}" in text
     assert "the level-3 kernel of Conjecture 7.3" in text
-    assert r"from \(7/8\) to \(57/64\)" in text
+    assert r"the certified density reaches \(57/64\)" in text
+
+
+# --- the theta-coefficient criterion behind the run statistic ----------------
+
+
+def test_iterate_exponents_match_the_scales_the_paper_names() -> None:
+    assert B.iterate_exponents("OO")[-1] == Fraction(9, 4)          # the level-2 wave
+    assert B.iterate_exponents("OOOE")[-1] == Fraction(27, 16)      # OOOE* fifth-letter phase
+    assert B.phase_exponents("OOEOO") == [Fraction(3, 2), Fraction(9, 4),
+                                          Fraction(9, 8), Fraction(27, 16)]
+
+
+def test_the_coefficient_rule_reproduces_the_papers_own_constants() -> None:
+    """gamma_s = e_{t-1} - e_s against four constants displayed in Theorem 6.3 and Section 3.4."""
+    # OOEO*, letter 5: C = (9k/16) n^{3/16}, remainder P^{-9/16}, B = (3k/4)v^{1/4} ~ k n^{9/16}
+    assert B.theta_coefficients("OOEO", 5) == [Fraction(3, 16), Fraction(-9, 16), Fraction(9, 16)]
+    # OOOE*, letter 5: the same C, the same discarded remainder
+    assert B.theta_coefficients("OOOE", 5)[:2] == [Fraction(3, 16), Fraction(-9, 16)]
+    # OOO*, letter 4: W ~ k n^{9/8}, the coefficient with no drift-1 interval
+    assert B.theta_coefficients("OOO", 4) == [Fraction(15, 8), Fraction(9, 8)]
+
+
+@pytest.mark.parametrize("word,letter,alpha,blocked", [
+    ("OOEO", 5, "27/16", []),
+    ("OOEOO", 5, "27/16", []),
+    ("OOO", 4, "27/8", ["15/8", "9/8"]),
+    ("OOOO", 5, "81/16", ["57/16", "45/16", "27/16"]),
+    ("OOEOOEE", 6, "81/32", ["33/32", "45/32"]),
+    ("OOOEOEE", 6, "81/32", ["33/32"]),
+    ("OOOOEEE", 5, "81/16", ["57/16", "45/16", "27/16"]),
+])
+def test_the_drift_threshold_table(word: str, letter: int, alpha: str,
+                                   blocked: list[str]) -> None:
+    assert str(B.iterate_exponents(word)[letter - 2]) == alpha, word
+    assert [str(g) for g in B.drift_blocked(word, letter)] == blocked, word
+
+
+def test_OOOOEEE_is_the_open_split_coefficient_for_coefficient() -> None:
+    """Conjecture 7.3 is necessary for that third of depth seven, not merely sufficient."""
+    assert B.theta_coefficients("OOOOEEE", 5) == B.theta_coefficients("OOOO", 5)
+
+
+def test_the_two_pursuable_thirds_sit_inside_theorem_61s_profile() -> None:
+    """Fewer or smaller blocked coefficients than the split Theorem 6.1 already closes."""
+    benchmark = B.drift_blocked("OOO", 4)                 # Thm 6.1: two, largest 15/8
+    for word in ("OOEOOEE", "OOOEOEE"):
+        got = B.drift_blocked(word, 6)
+        assert len(got) <= len(benchmark), word
+        assert max(got) < max(benchmark), word
+    assert len(B.drift_blocked("OOOOEEE", 5)) > len(benchmark)
+
+
+def test_the_extra_cost_is_recorded_rather_than_hidden() -> None:
+    """Six waves against four is the honest price, and the paper says so."""
+    assert B.wave_count("OOEOOEE") == 6 and B.wave_count("OOOEE") == 4
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "That is an assessment and not an estimate." in text
+    assert "needs six waves where the proved rows need four" in text
+    assert r"\gamma_s=\alpha-e_s" in text

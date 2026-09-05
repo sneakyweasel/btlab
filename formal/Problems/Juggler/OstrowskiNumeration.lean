@@ -2,8 +2,6 @@ import Mathlib.Data.Nat.Basic
 import Mathlib.Tactic
 import Problems.Juggler.OstrowskiSandwich
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

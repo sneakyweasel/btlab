@@ -2,8 +2,6 @@ import Problems.Juggler.Preimages
 import Problems.Juggler.Envelope
 import Problems.Juggler.MinimumRelative
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

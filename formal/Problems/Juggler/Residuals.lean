@@ -3,8 +3,6 @@ import Problems.Juggler.MinimumRelative
 import Problems.Juggler.Minimal
 import Problems.Juggler.Scale
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

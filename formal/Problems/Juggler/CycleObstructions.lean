@@ -1,8 +1,6 @@
 import Problems.Juggler.CycleCore
 import Problems.Juggler.FirstInternalOO
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

@@ -1,7 +1,5 @@
 import Problems.Juggler.Itinerary
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-! Isolated `decide +kernel` facts for leftover cycle exclusion. -/

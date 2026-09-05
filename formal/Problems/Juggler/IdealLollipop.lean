@@ -3,8 +3,6 @@ import Problems.Juggler.CyclePosition
 import Problems.Juggler.Seam
 import Problems.Juggler.Progress
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

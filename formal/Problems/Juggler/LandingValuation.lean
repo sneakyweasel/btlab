@@ -3,8 +3,6 @@ import Mathlib.NumberTheory.Padics.PadicVal.Basic
 import Problems.Juggler.SequentialMordell
 import Problems.Juggler.Residuals
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

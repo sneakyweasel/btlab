@@ -3,8 +3,6 @@ import Problems.Juggler.O7EEEEGap
 import Problems.Juggler.CycleMinFudge
 import Problems.Juggler.WalkChargeItineraries
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

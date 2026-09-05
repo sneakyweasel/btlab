@@ -1,8 +1,6 @@
 import Mathlib.Tactic
 import Problems.Juggler.Iteration
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

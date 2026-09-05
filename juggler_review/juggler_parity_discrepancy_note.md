@@ -4568,16 +4568,66 @@ each depth separately:
 | \(8\) | \(7/256\) | \(1/256\) | \(3/256\) | \(1/128\) | \(1/256\) | |
 | \(10\) | \(3/256\) | \(1/1024\) | \(1/256\) | \(1/256\) | \(1/512\) | \(1/1024\) |
 
-The \(d=5\) row is a check on the reading: its two halves are exactly
-Theorem 6.3's two contractors, \(OOEOE\) at run two and \(OOOEE\) at
-run three, and they are the two error exponents that theorem
-separates, \(N^{43/48}\) and \(N^{1-1/96}\). The \(d=7\) row is the
-usable one. Two of its three thirds --- \(OOEOOEE\) at run two and
-\(OOOEOEE\) at run three --- ask for no kernel level beyond the one
-Theorem 6.1 already works at. They would carry the certified density
-from \(7/8\) to \(57/64\) with Conjecture 7.3 still open, leaving the
-last \(1/128\) as the only part of depth seven that genuinely waits on
-the level-3 kernel.
+The statistic has a mechanism under it, and the mechanism is the
+sharper object. Each iterate \(J^t(n)\) sits at a scale \(P\) raised to
+an exponent obtained from the previous one by \(x\mapsto\tfrac32x\) or
+\(x\mapsto\tfrac12x\), as letter \(t\) is \(O\) or \(E\); call it the
+*scale exponent* of that iterate. Let \(\theta_s\) be the \(s\)-th
+floor defect, so that \(J^{s}=(J^{s-1})^{3/2}-\theta_s\) or
+\((J^{s-1})^{1/2}-\theta_s\) according to letter \(s\) --- the
+\(\theta=\{n^{3/2}\}\) and \(\theta_w=\{v^{1/2}\}\) of Theorem 6.3 are
+\(\theta_1\) and \(\theta_3\). Letter \(t\) constrains the parity of
+\(J^{t-1}\), so its wave sits at that iterate's scale exponent, and
+linearizing the wave in an earlier defect \(\theta_s\) gives
+\(\theta_s\) a coefficient whose exponent is the *difference* of the
+two scale exponents, \(J^{t-1}\)'s less \(J^{s}\)'s.
+
+Those differences are the paper's own displayed constants. At the fifth
+letter of \(OOEO*\), where \(J^4\) has scale exponent \(27/16\), they
+are \(3/16\), \(-9/16\) and \(9/16\) for \(s=1,2,3\) --- which are, in
+that order, \(C=\tfrac{9k}{16}n^{3/16}\); the discarded remainder
+\(\lvert k\rvert P\cdot P^{-9/16}\); and
+\(B=\tfrac{3k}4v^{1/4}\asymp kn^{9/16}\). At the fifth letter of
+\(OOOE*\) they are \(3/16\) and \(-9/16\), the \(C\) and the remainder
+of that proof. At the fourth letter of \(OOO*\), where \(J^3\) has
+scale exponent \(27/8\), the \(s=2\) difference is \(9/8\): the
+coefficient \(W\asymp kn^{9/8}\) that Section 3.4 names as the reason
+no drift-1 interval exists.
+
+That last line is the criterion. A coefficient \(n^{c}\) has derivative
+\(\asymp n^{c-1}\), so it drifts by less than \(1\) between consecutive
+integers exactly when \(c<1\); above the threshold the shifted-window
+device of Theorem 4.8 has no interval to run on and the letter must go
+through a kernel theorem instead. Counting the differences above the
+threshold prices each split:
+
+| split | wave at | defect coefficients | \(>1\) | status |
+|---|---:|---|---:|---|
+| \(OOEO*\), letter 5 | \(27/16\) | \(3/16,\ -9/16,\ 9/16\) | \(0\) | \(N^{43/48}\) |
+| \(OOO*\), letter 4 | \(27/8\) | \(15/8,\ 9/8\) | \(2\) | Thm 6.1, via Thm 5.3 |
+| \(OOOO*\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | \(3\) | open (Conj. 7.3) |
+| \(OOEOOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ 45/32,\ 27/32\) | \(2\) | --- |
+| \(OOOEOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ -27/32,\ 27/32\) | \(1\) | --- |
+| \(OOOOEEE\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | \(3\) | --- |
+
+The last row is the cleanest reading in the table: \(OOOOEEE\)'s fifth
+letter *is* the \(OOOO*\) split, coefficient for coefficient, so
+Conjecture 7.3 is not merely sufficient for that third of the
+depth-seven increment but necessary. The two rows above it are the ones
+worth pursuing, and both sit strictly inside the profile Theorem 6.1
+already carries: two coefficients above the threshold with largest
+\(45/32\), against Theorem 6.1's two with largest \(15/8\), and
+\(OOOEOEE\) has a single one at \(33/32\).
+
+That is an assessment and not an estimate. Each of \(OOEOOEE\) and
+\(OOOEOEE\) needs six waves where the proved rows need four, and every
+extra wave brings its own Vaaler truncation, majorant and remainder
+into a balance that would have to be redone from the start. What the
+table does settle is which third of depth seven is blocked by an open
+problem and which two are blocked only by work: if those two go
+through, the certified density reaches \(57/64\) with Conjecture 7.3
+still open, and the remaining \(1/128\) is the only part of depth seven
+that waits on the level-3 kernel.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.

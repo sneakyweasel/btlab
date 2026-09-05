@@ -1,8 +1,6 @@
 import Problems.Juggler.LeftoverFamilies
 import Problems.Juggler.SmallCycleCensus
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

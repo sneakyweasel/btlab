@@ -3,8 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NthRootLemmas
 import Mathlib.Data.Nat.Sqrt
 import Mathlib.Tactic
 
-set_option maxRecDepth 4000000
-
 namespace Problems.Juggler
 
 /-!

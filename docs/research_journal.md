@@ -26874,3 +26874,30 @@ What was learned
 Branch status
 - trust boundary final at two declarations; the remaining route is priced
   and declined
+
+## The blanket recursion depth was never needed
+
+The bulk conversion inserted a bare `set_option maxRecDepth 4000000`
+into 23 files, next to the laboratory's own tuned values — `2048`,
+`512`, `1024`, `4096`, `100000` — which had been chosen per file. That
+blanket constant was mine and unexamined.
+
+Removed from all 23: the barrel builds, 3473 jobs, and the suites pass.
+None of them needed it. The elevated depth was only ever required by the
+*elaborator's* `decide`, which is the tactic that turned out to be stuck
+rather than slow; `decide +kernel` reduces in the kernel and does not
+consult `maxRecDepth` at all. So the option was cargo from the failed
+first approach, carried into 23 files by a script.
+
+Also collapsed the double blank line the removal left after each import
+block. Net: 46 lines gone, no behaviour change, and the only remaining
+`maxRecDepth` settings in the layer are the laboratory's original tuned
+ones plus the two scoped `... in` forms on the sandwich proofs.
+
+```text
+What was learned
+- decide +kernel does not need maxRecDepth; only the elaborator's decide did
+- a blanket option inserted by a script survives review precisely because
+  it looks like configuration rather than a claim
+Branch status
+- the layer carries no magic constants of mine

@@ -248,6 +248,57 @@ def longest_odd_run(w: str) -> int:
     return best
 
 
+def iterate_exponents(w: str) -> list[Fraction]:
+    """Exponents of ``J^1(n), ..., J^{|w|}(n)`` in ``P`` for a start ``n ~ P`` with word ``w``.
+
+    ``e_0 = 1`` and ``e_t = (3/2)e_{t-1}`` or ``(1/2)e_{t-1}`` as letter ``t`` is ``O`` or ``E``.
+    """
+    e, out = Fraction(1), []
+    for c in w:
+        e = e * (Fraction(3, 2) if c == "O" else Fraction(1, 2))
+        out.append(e)
+    return out
+
+
+def phase_exponents(w: str) -> list[Fraction]:
+    """The sawtooth phases a length-``|w|`` word needs: ``e_1, ..., e_{|w|-1}``.
+
+    Letter ``t`` constrains the parity of ``J^{t-1}``, so a word of length ``d`` needs the waves
+    at ``e_1`` through ``e_{d-1}``; the first letter is ``n`` itself, carried by ``n = 2r+1``.
+    """
+    return iterate_exponents(w)[:len(w) - 1]
+
+
+def theta_coefficients(w: str, t: int) -> list[Fraction]:
+    """Exponents ``gamma_s = e_{t-1} - e_s`` of the floor defects in letter ``t``'s linearized wave.
+
+    Letter ``t`` constrains the parity of ``J^{t-1}``, so its wave sits at ``alpha = e_{t-1}``;
+    linearizing in the earlier defects ``theta_s`` gives each a coefficient of size ``n^gamma_s``.
+    The formula reproduces the paper's own constants: at the fifth letter of ``OOEO*`` it returns
+    3/16, -9/16, 9/16 -- the ``C``, the discarded remainder, and the ``B`` of that proof -- and at
+    the fourth letter of ``OOO*`` it returns the ``W ~ k n^{9/8}`` of Section 3.4.
+    """
+    e = iterate_exponents(w)
+    alpha = e[t - 2]
+    return [alpha - e[s] for s in range(t - 2)]
+
+
+def drift_blocked(w: str, t: int) -> list[Fraction]:
+    """Defect coefficients of letter ``t`` that admit no drift-1 interval, i.e. ``gamma_s > 1``.
+
+    A coefficient ``n^gamma`` has derivative ``n^(gamma-1)``, so it moves by less than one between
+    consecutive integers exactly below the threshold.  Above it, Theorem 4.8's shifted window has
+    no interval to run on and the letter needs a kernel theorem: two such at ``OOO*``'s fourth
+    letter (closed by Theorem 5.3), three at ``OOOO*``'s fifth (open, Conjecture 7.3).
+    """
+    return [g for g in theta_coefficients(w, t) if g > 1]
+
+
+def wave_count(w: str) -> int:
+    """Sawtooth waves to expand: one per letter after the first."""
+    return len(w) - 1
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")
@@ -301,6 +352,18 @@ def main() -> None:
     cheap = [w for w in dying_words(7) if longest_odd_run(w) <= 3]
     print("   depth 7 below the level-3 kernel: %s, taking 7/8 to %s"
           % (",".join(cheap), Fraction(7, 8) + Fraction(len(cheap), 128)))
+
+    print()
+    print("the drift-1 threshold: gamma_s = e_{t-1} - e_s, blocked above 1")
+    for w, t, tag in ((("OOEO", 5, "Thm 6.3 N^{43/48}"), ("OOO", 4, "Thm 6.1 via Thm 5.3"),
+                       ("OOOO", 5, "open, Conjecture 7.3"),
+                       ("OOEOOEE", 6, "depth-7 target"),
+                       ("OOOEOEE", 6, "depth-7 target"),
+                       ("OOOOEEE", 5, "depth-7 target"))):
+        g = theta_coefficients(w, t)
+        bad = drift_blocked(w, t)
+        print("   %-8s L%d alpha=%-6s gamma %-32s blocked %d  %s"
+              % (w, t, iterate_exponents(w)[t - 2], ",".join(str(x) for x in g), len(bad), tag))
 
     print()
     print("the error term of Proposition 7.1 improves in the same proportion:")
