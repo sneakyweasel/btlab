@@ -27689,3 +27689,65 @@ Best next question
 - s3s1-Bsmall at 2.83e10 is the next floor down. Is its 2.25 constant
   forced in the same way, or is that site softer than this one?
 ```
+
+ ### The coefficient rule, checked against orbits at the depth it is used
+
+Everything this session says about depth seven rests on one formula:
+the coefficient of `θ_s` in letter `t`'s phase is
+`(k/2)·∏_{q=s+1}^{t-1} p_q` at exponent `e_{t-1} - e_s`. It had been
+validated against five constants the paper displays — Theorem 5.3's
+kernel monomial, Theorem 6.3's `B` and `C`, Conjecture 7.3's weight
+derivative and its traded family — **all at depth at most five**.
+Depth six and seven were extrapolation.
+
+So: perturb `θ_s` along real Juggler orbits and measure.
+
+```text
+   word      s   measured / (2·const·n^exponent)
+   OOOOOO    1-4       1.00000000
+   OOEOOE    1-4       1.00000000  (0.99999998 at s=3)
+   OOOEOO    1-4       1.00000000
+   OOOEEO    1-4       1.00000000
+```
+
+Constant and exponent together, to eight figures, at letter 7 — where
+the paper prints nothing to check against. The `OOEOOE` row at `s = 3`
+is the one that matters: it is the `(9k/8) n^{45/32}` square-root
+defect that put `OOEOOEE` behind `OOOEOEE` in the ranking, now measured
+on an actual orbit rather than derived.
+
+Also confirmed in passing, since it was cheap: the paper's claim that
+`(C2)` "is invoked nowhere below" is exact — three occurrences, all
+inside the paragraph that defines it.
+
+```text
+What was learned
+- a formula validated only where the source already has the answer is
+  not validated for the range you plan to use it in; five checks at
+  depth <= 5 said nothing about depth 7
+- the product form makes the check cheap: propagate with and without
+  theta_s and take the ratio, no theory needed
+Strongest theorem
+- coefficient = (k/2) prod p_q at exponent e_{t-1} - e_s, confirmed to
+  1e-8 on real orbits at depth six for four words including both
+  depth-seven prefixes of interest
+Strongest refutation
+- none; the falsifier did not fire
+Reusable machinery
+- orbit-level verification of defect_coefficient, with four witnesses
+  pinned so it stays checked
+Branch status
+- PROMOTE
+Why
+  The depth-seven analysis of the last several entries -- the levels,
+  the species, the three thresholds, the ranking that put OOOEOEE
+  first -- all read off this one formula, and it was previously
+  checked only in the range where the paper supplies the answer
+  independently. It now has an independent check in the range where it
+  is actually used, on real orbits, to eight figures. That converts
+  the frontier discussion from extrapolation to measurement.
+Best next question
+- the rule is verified for the linear term; at depth seven the second
+  order in theta_s was argued negligible by exponent count alone. Does
+  that survive the same orbit measurement?
+```

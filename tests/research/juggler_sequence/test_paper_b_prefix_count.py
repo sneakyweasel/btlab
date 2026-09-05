@@ -848,3 +848,63 @@ def test_paper_states_the_independence_and_the_revised_gain() -> None:
     assert "inherits, verbatim, the branching failure" in text
     assert r"7/8\to113/128" in text
     assert "cuts" in text and "back to the first of the two" in text
+
+
+# --- the coefficient rule against real orbits, at the depth it is used ---
+
+
+def _iterates(n: int, d: int):
+    """Actual Juggler iterates and the word n realises, at working precision."""
+    from mpmath import mpf, floor, power
+    it, w = [n], ""
+    for _ in range(d):
+        c = it[-1]
+        w += "O" if c % 2 else "E"
+        it.append(int(floor(power(mpf(c), mpf(3) / 2 if c % 2 else mpf(1) / 2))))
+    return w, it
+
+
+def _measured_coefficient(n: int, d: int, s: int):
+    """d(J^d)/d(theta_s) along the real orbit: prod p_q (J^{q-1})^{p_q - 1}."""
+    from mpmath import mpf, power
+    w, it = _iterates(n, d)
+    p = [mpf(3) / 2 if ch == "O" else mpf(1) / 2 for ch in w]
+    out, v = mpf(1), mpf(it[s])
+    for q in range(s + 1, d + 1):
+        out *= p[q - 1] * power(v, p[q - 1] - 1)
+        v = power(v, p[q - 1])
+    return w, out
+
+
+WITNESSES = [("OOEOOE", 1000057), ("OOOEEO", 1000091),
+             ("OOOEOO", 1000069), ("OOOOOO", 1000053)]
+
+
+@pytest.mark.parametrize("word,n", WITNESSES)
+@pytest.mark.parametrize("s", [1, 2, 3, 4])
+def test_coefficient_rule_holds_on_real_orbits_at_depth_six(word: str, n: int, s: int) -> None:
+    """Constant and exponent together, at letter 7 -- where the paper prints nothing.
+
+    Everything the frontier discussion says about depth seven rests on this formula, and until
+    now it was checked only against constants the paper displays, all at depth at most five.
+    """
+    from mpmath import mp, mpf, power
+    mp.dps = 100
+    got_word, measured = _measured_coefficient(n, 6, s)
+    assert got_word == word, (n, got_word)
+    const, exponent = B.defect_coefficient(word, 7, s)
+    predicted = (2 * mpf(const.numerator) / const.denominator
+                 * power(mpf(n), mpf(exponent.numerator) / exponent.denominator))
+    assert abs(measured / predicted - 1) < 1e-6, (word, s, float(measured / predicted))
+
+
+def test_the_square_root_defect_that_blocks_OOEOOEE_is_measured() -> None:
+    """theta_3 of OOEOOE at letter 6 is the (9k/8) n^{45/32} coefficient of the ranking."""
+    from mpmath import mp
+    mp.dps = 100
+    const, exponent = B.defect_coefficient("OOEOOE", 6, 3)
+    assert (const, exponent) == (Fraction(9, 8), Fraction(45, 32))
+    assert B.defect_species("OOEOOE", 3) == "sqrt"
+    word, measured = _measured_coefficient(1000057, 5, 3)
+    assert word == "OOEOO"
+    assert measured > 0
