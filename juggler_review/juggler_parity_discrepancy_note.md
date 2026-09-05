@@ -4316,18 +4316,18 @@ For odd \(n\ge5\),
 \]
 Consequently the fifth-letter phase is, up to \(kR_3\ll kn^{-27/16}\)
 per term, the exponential sum of the level-3 local floor defect, with
-coefficient \(c=\tfrac{3k}4z^{1/2}\asymp kn^{27/16}\): Lemma 5.1(i)
+coefficient \(\varrho=\tfrac{3k}4z^{1/2}\asymp kn^{27/16}\): Lemma 5.1(i)
 with \((m,v)\) replaced by \((v,z)\).
 
 *Proof.* Taylor of \((z+\theta_3)^{3/2}\) at \(z\), with
 \(Z^{3/2}=v^{9/4}\). \(\square\)
 
-For smooth \(c\) with \(c\asymp kP^{27/16}\) and
-\(c'\asymp kP^{11/16}\) on \(n\sim P\) (the \(z^{1/2}\)-shaped
+For smooth \(\varrho\) with \(\varrho\asymp kP^{27/16}\) and
+\(\varrho'\asymp kP^{11/16}\) on \(n\sim P\) (the \(z^{1/2}\)-shaped
 family), define
 \[
 K_3(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
-e\bigl(c(n)\,\{\lfloor\lfloor
+e\bigl(\varrho(n)\,\{\lfloor\lfloor
 n^{3/2}\rfloor^{3/2}\rfloor^{3/2}\}\bigr).
 \]
 
@@ -4341,7 +4341,7 @@ Theorem 5.3 used two Weyl differencings against
 \(Y''\asymp P^{1/4}\gg1>P^{-3/4}\asymp Y'''\), the level-3 model
 \(n^{27/8}\) has \(G'''\asymp P^{3/8}\gg1>P^{-5/8}\asymp G^{(4)}\)
 and predicts three. But the prediction does not descend to the nested
-floors. The kernel weight now has \(c'\asymp kP^{11/16}\gg1\), so no
+floors. The kernel weight now has \(\varrho'\asymp kP^{11/16}\gg1\), so no
 drift-1 interval exists for any expansion of the weight itself; the
 branch decomposition of Lemma 5.1(iii) has no analogue at the
 \(v\)-level, because \(v\) jumps by \(\asymp n^{5/4}\) per step and
@@ -4352,61 +4352,65 @@ for a sawtooth family at coefficient scale \(kn^{45/16}\), *above*
 the \(9/4\) threshold where every method of this paper stops.
 
 What survives at the frontier is a model problem and one theorem
-about it. Stripping every problem-specific structure (carries,
-defects, nesting) from \(K_3\) leaves the *amplitude-product* sums
+about it. Its objects carry script letters --- \(\mathcal S\) for the
+sum, \(\mathcal A\) for the amplitude, \(\mathcal B\) for the phase ---
+to keep them clear of the \(S\) of Lemma 3.9 and the curvature triple
+\(A,B,C\) of the same lemma, which are unrelated. Stripping every
+problem-specific structure (carries, defects, nesting) from \(K_3\)
+leaves the *amplitude-product* sums
 \[
-S=\sum_{t\le L}e\bigl(A(t)\,\{B(t)\}\bigr),
+\mathcal S=\sum_{t\le L}e\bigl(\mathcal A(t)\,\{\mathcal B(t)\}\bigr),
 \qquad
-1\ll A'\ll A,
+1\ll \mathcal A'\ll \mathcal A,
 \]
-with smooth monomial-type \(A,B\) (the instance above has
-\(A\asymp P^{27/16}\), \(A'\asymp P^{11/16}\)). For \(A'\ll1\)
+with smooth monomial-type \(\mathcal A,\mathcal B\) (the instance above has
+\(\mathcal A\asymp P^{27/16}\), \(\mathcal A'\asymp P^{11/16}\)). For \(\mathcal A'\ll1\)
 partial summation makes the amplitude a tame passenger and the
-classical single-floor machinery applies; for \(A'\gg1\) we
+classical single-floor machinery applies; for \(\mathcal A'\gg1\) we
 know of no nontrivial deterministic bound by any method. What can be
 proved is an \(L^2\) identity in the shift, a one-page computation
 that uses no harmonic analysis:
 
 **Proposition 7.4 (shift-averaged \(L^2\) bound).**
-Let \(A_1<\cdots<A_L\) be reals with
-\(|A_t-A_{t'}|\ge A'_{\min}|t-t'|\) for some \(A'_{\min}\ge1\), and
+Let \(\mathcal A_1<\cdots<\mathcal A_L\) be reals with
+\(|\mathcal A_t-\mathcal A_{t'}|\ge \mathcal A'_{\min}|t-t'|\) for some \(\mathcal A'_{\min}\ge1\), and
 let \(x_1,\ldots,x_L\) be arbitrary reals. For
-\(S_\lambda=\sum_{t\le L}e\bigl(A_t\{x_t+\lambda\}\bigr)\),
+\(\mathcal S_\lambda=\sum_{t\le L}e\bigl(\mathcal A_t\{x_t+\lambda\}\bigr)\),
 \[
-\Bigl|\int_0^1|S_\lambda|^2\,d\lambda-L\Bigr|
-\le\frac4\pi\,\frac L{A'_{\min}}\,(\log L+1).
+\Bigl|\int_0^1|\mathcal S_\lambda|^2\,d\lambda-L\Bigr|
+\le\frac4\pi\,\frac L{\mathcal A'_{\min}}\,(\log L+1).
 \]
-Consequently, for any \(\varepsilon\in(0,1)\), Markov's inequality
+Consequently, for any \(\eta\in(0,1)\), Markov's inequality
 gives
 \[
-|S_\lambda|
-\le\sqrt{\frac L\varepsilon
-\Bigl(1+\frac4\pi\,\frac{\log L+1}{A'_{\min}}\Bigr)}
+|\mathcal S_\lambda|
+\le\sqrt{\frac L\eta
+\Bigl(1+\frac4\pi\,\frac{\log L+1}{\mathcal A'_{\min}}\Bigr)}
 \]
-outside a shift set of measure at most \(\varepsilon\). This is
+outside a shift set of measure at most \(\eta\). This is
 square-root cancellation times \(\sqrt{\log L}\) in general, and
-genuine square-root cancellation when \(A'_{\min}\gg\log L\) — which
-holds in the instance above, where \(A'_{\min}\asymp P^{11/16}\).
+genuine square-root cancellation when \(\mathcal A'_{\min}\gg\log L\) — which
+holds in the instance above, where \(\mathcal A'_{\min}\asymp P^{11/16}\).
 
 *Proof.* Expand the square; the diagonal gives \(L\). For
 \(t\ne t'\), the function
-\(\varphi(\lambda)=A_t\{x_t+\lambda\}-A_{t'}\{x_{t'}+\lambda\}\) is
-piecewise linear with *real* slope \(A_t-A_{t'}\), with jumps at
+\(\varphi(\lambda)=\mathcal A_t\{x_t+\lambda\}-\mathcal A_{t'}\{x_{t'}+\lambda\}\) is
+piecewise linear with *real* slope \(\mathcal A_t-\mathcal A_{t'}\), with jumps at
 \(1-\{x_t\}\) and \(1-\{x_{t'}\}\). Those two points cut \([0,1)\)
 into three intervals, but the first and the last carry the same linear
 branch --- their constants differ by exactly the slope --- so on the
 circle there are two arcs, not three, and on each
-\(|\int e(\varphi)\,d\lambda|\le1/(\pi|A_t-A_{t'}|)\).
+\(|\int e(\varphi)\,d\lambda|\le1/(\pi|\mathcal A_t-\mathcal A_{t'}|)\).
 Summing,
-\(\sum_{t\ne t'}2/(\pi A'_{\min}|t-t'|)
-\le(4/\pi)(L/A'_{\min})(\log L+1)\). For the second display, the
-measure of \(\{|S_\lambda|^2>T\}\) is at most
-\(T^{-1}(L+(4/\pi)(L/A'_{\min})(\log L+1))\); take
-\(T=(L/\varepsilon)(1+(4/\pi)(\log L+1)/A'_{\min})\). \(\square\)
+\(\sum_{t\ne t'}2/(\pi \mathcal A'_{\min}|t-t'|)
+\le(4/\pi)(L/\mathcal A'_{\min})(\log L+1)\). For the second display, the
+measure of \(\{|\mathcal S_\lambda|^2>\tau\}\) is at most
+\(\tau^{-1}(L+(4/\pi)(L/\mathcal A'_{\min})(\log L+1))\); take
+\(\tau=(L/\eta)(1+(4/\pi)(\log L+1)/\mathcal A'_{\min})\). \(\square\)
 
-Two cautions. The amplitude separation \(A'\gg1\) — the very
+Two cautions. The amplitude separation \(\mathcal A'\gg1\) — the very
 property that defeats every character expansion, since a Fourier
-window centred at the amplitude drifts by \(A'\) harmonics per step
+window centred at the amplitude drifts by \(\mathcal A'\) harmonics per step
 — is what makes the shift *average* trivial; but an average over
 shifts says nothing about the single shift \(\lambda=0\), which is
 the deterministic sum. Proposition 7.4 does not make the level-3
@@ -4415,24 +4419,24 @@ Conjecture 7.3; it only locates the conjecture's difficulty as a
 specific-point problem inside a metric statement.
 
 **Conjecture 7.5 (the pure amplitude-product model).**
-\(|S|\le L^{1-\delta}\) for some \(\delta>0\), for smooth
-monomial-type \(A,B\) with \(1\ll A'\ll A\) as above.
+\(|\mathcal S|\le L^{1-\delta}\) for some \(\delta>0\), for smooth
+monomial-type \(\mathcal A,\mathcal B\) with \(1\ll \mathcal A'\ll \mathcal A\) as above.
 
 Three structural facts locate the difficulty of the
 de-randomization. No second averaging variable exists: amplitude
-separation forces any two sample points with \(|A(p)-A(q)|\le1\) to
+separation forces any two sample points with \(|\mathcal A(p)-\mathcal A(q)|\le1\) to
 coincide, and every family average available in the application
 re-enters either the differenced-kernel class or the
 amplitude-product class itself. The inverse theory is self-similar:
-any concentration or discrepancy inverse for \(A\{B\}\bmod1\) is a
-statement about \(\sum e(jA\{B\})\) — the same class with amplitude
-\(jA\) — so the class is closed under its own inverse theorems and
+any concentration or discrepancy inverse for \(\mathcal A\{\mathcal B\}\bmod1\) is a
+statement about \(\sum e(j\mathcal \mathcal A\{\mathcal \mathcal B\})\) — the same class with amplitude
+\(j\mathcal \mathcal A\) — so the class is closed under its own inverse theorems and
 no bootstrapping is possible. And the metric statement does not
-transfer: \(|dS_\lambda/d\lambda|\le2\pi A_{\max}L\) almost
-everywhere, so \(S_\lambda\) decorrelates at shift scale
-\(1/A_{\max}\), and an almost-all-\(\lambda\) theorem leaves
-\(\asymp\varepsilon A_{\max}\) exceptional cells among
-\(\asymp A_{\max}\) — no measure argument pins \(\lambda=0\). The
+transfer: \(|dS_\lambda/d\lambda|\le2\pi \mathcal A_{\max}L\) almost
+everywhere, so \(\mathcal S_\lambda\) decorrelates at shift scale
+\(1/\mathcal A_{\max}\), and an almost-all-\(\lambda\) theorem leaves
+\(\asymp\eta \mathcal A_{\max}\) exceptional cells among
+\(\asymp \mathcal A_{\max}\) — no measure argument pins \(\lambda=0\). The
 deterministic content of Conjecture 7.5 is a
 specific-point-in-metric-theory problem: a class whose known
 successes all use special arithmetic.

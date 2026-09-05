@@ -24693,3 +24693,64 @@ Best next question
 - Section 7 of Paper B reuses S, A, B and t from three earlier
   sections, in the one section a referee will read hardest
 ```
+
+
+### Paper B, Section 7: five collisions in the section a referee reads hardest
+
+Section 7 is the frontier -- the model problem, the one theorem about it, and the obstruction
+ladder. It reused four symbols from three earlier sections and bound two of its own twice:
+
+```text
+  S            the amplitude-product sum      vs  Lemma 3.9's size in W <= c_7 S/2   (83 elsewhere)
+  A, B         amplitude and phase            vs  the curvature triple |A|,|B|,|C|   (62, 123)
+  T            Markov's threshold             vs  Lemma 3.7's truncation T = P^(1/2) (76)
+  varepsilon   the exceptional-set measure    vs  Conjecture 7.3's own k <= P^eps    (same section)
+  c            Lemma 7.2's kernel weight      vs  Proposition 7.1's Hoeffding rate   (same section)
+```
+
+The last two are the worst kind: a reader holds both meanings at once, forty lines apart. And
+one half of the `c` collision was mine, introduced two commits ago when Proposition 7.1's exact
+count brought a Hoeffding constant into a section that already had a kernel weight called `c`.
+
+The model-problem objects took script letters --- `\mathcal S`, `\mathcal A`, `\mathcal B` ---
+which is the paper's own style (`\mathcal D` and `\mathcal O` were already there) and signals
+that they are the abstract model rather than the analysis. Markov's threshold became `	au` and
+the exceptional measure `\eta`, neither used in the section. The kernel weight became
+`arrho`, unused anywhere in the paper, which leaves `c` to the constants `c_2, c_3, c_4, c_7`
+and to Hoeffding's rate --- an unsubscripted `c` for a constant matches that family, an
+unsubscripted `c` for a function of `n` did not.
+
+**What was deliberately left alone.** `L` outside Section 7 is an interval length (`L_0`, `L_B`,
+`L/2`), which is the same idea as the length of the sum, so renaming it would invent a
+distinction that is not there. `t` is a bound summation index. And the branch ledger and the
+laboratory notes still write the model as `sum e(A{B})`; they are historical records of the
+phases that produced it, with their own local notation, and none of them is reviewer-facing.
+
+**Two checks had to be taught the difference between a symbol and an explanation of a symbol.**
+The residue check flagged `\mathcal S` because a space, not a letter, precedes the `S`; and the
+test flagged the new sentence that says the script letters exist "to keep them clear of the `S`
+of Lemma 3.9 and the curvature triple `A,B,C`" --- which names the very symbols it is
+distinguishing itself from. Both are the same lesson as Paper A's notation table: the prose that
+explains a rename is allowed to quote what was renamed.
+
+```text
+What was learned
+- the frontier section had the densest notation reuse in the corpus,
+  and half of one collision was introduced by my own edit two commits
+  earlier
+- script letters are the right instrument where no plain letter is
+  free: Paper B has none, and Section 7 needed three
+Strongest theorem
+- none; Section 7 now binds each of its symbols once
+Strongest refutation
+- my own residue check, which read \mathcal S as a bare S
+Reusable machinery
+- the section-scoped rename pattern: enumerate sites, rename inside
+  math spans only, re-census, refuse to write on non-empty residue
+Branch status
+- ADVANCE (Paper A complete, Paper B's frontier section complete)
+Best next question
+- Paper B outside Section 7 still has E carrying three meanings
+  (interpolant error, exponent triple, class-count error) alongside
+  e(x); that one needs a notation table, not a rename
+```

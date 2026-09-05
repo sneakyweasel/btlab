@@ -143,3 +143,87 @@ def test_no_new_letter_was_introduced_that_collides() -> None:
 
 def test_mirror_carries_the_renames() -> None:
     assert text() == io.open(MIRROR, encoding="utf-8").read()
+
+
+# --- Paper B, Section 7: the model problem has its own letters ---
+
+
+PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note.md"
+
+
+def section_7() -> str:
+    src = io.open(PAPER_B, encoding="utf-8").read()
+    return src[src.index("## 7. The Terras-style reduction"):
+               src.index("## 8. Relation to the Juggler map")]
+
+
+def section_7_body() -> str:
+    """Section 7 without the sentence that explains its letters.
+
+    That sentence names the symbols it is distinguishing itself from -- Lemma 3.9's `S` and its
+    curvature triple `A,B,C` -- so the "no bare letters" check must not read it, exactly as the
+    Paper A checks must not read the notation table.
+    """
+    sec = section_7()
+    start = sec.index("Its objects carry script letters")
+    return sec[:start] + sec[sec.index("Stripping every", start):]
+
+
+def test_model_problem_uses_script_letters() -> None:
+    """S, A and B in Section 7 were the sum, the amplitude and the phase, while elsewhere in
+    the paper they are Lemma 3.9's size and its curvature triple.  Section 7's are script."""
+    sec = section_7_body()
+    for sym, least in ((r"\mathcal S", 7), (r"\mathcal A", 40), (r"\mathcal B", 5)):
+        assert sec.count(sym) >= least, (sym, sec.count(sym))
+    bad = []
+    for m in MATH.finditer(sec):
+        span = " ".join(m.group(0).split())
+        stripped = span
+        for repl in (r"\mathcal S", r"\mathcal A", r"\mathcal B", r"\tau"):
+            stripped = stripped.replace(repl, "")
+        for letter in ("S", "A", "B", "T"):
+            if re.search(r"(?<![A-Za-z\\])" + letter + r"(?![A-Za-z])", stripped):
+                bad.append("%s in %s" % (letter, span[:70]))
+    assert not bad, bad[:5]
+
+
+def test_epsilon_means_one_thing_in_section_7() -> None:
+    """Conjecture 7.3 uses `P^varepsilon`; Proposition 7.4's exceptional measure is now eta.
+
+    Before, both were `varepsilon`, forty lines apart in the same section -- the worst kind of
+    collision, since a reader holds both at once.
+    """
+    sec = section_7()
+    assert sec.count(r"\varepsilon") == 1, sec.count(r"\varepsilon")
+    assert r"k\le P^{\varepsilon}" in sec
+    assert sec.count(r"\eta") >= 5
+
+
+def test_kernel_weight_and_hoeffding_constant_are_distinct() -> None:
+    """Both were `c` in Section 7: the weight of Lemma 7.2 and Proposition 7.1's rate.
+
+    The weight is now `varrho`, which leaves `c` to the constants -- c_2, c_3, c_4, c_7 and
+    Hoeffding's rate -- where an unsubscripted `c` for a constant matches the family and an
+    unsubscripted `c` for a function of n did not.
+    """
+    sec = section_7()
+    assert r"\varrho=\tfrac{3k}4z^{1/2}" in sec
+    assert r"\varrho(n)" in sec
+    assert r"c=2\bigl(\tfrac{\log2}{\log3}-\tfrac12\bigr)^2>0.0342" in sec
+    assert r"c=\tfrac{3k}4z^{1/2}" not in sec
+
+
+def test_section_7_says_why_its_letters_are_script() -> None:
+    assert "script letters" in section_7()
+
+
+def test_markov_threshold_is_not_the_truncation_T() -> None:
+    """Lemma 3.7 truncates at `T = P^{1/2}`; Proposition 7.4's Markov threshold is now tau."""
+    sec = section_7()
+    assert r"\tau=(L/\eta)" in sec
+    assert r"\{|\mathcal S_\lambda|^2>\tau\}" in sec
+
+
+def test_paper_b_mirror_carries_the_section_7_renames() -> None:
+    assert io.open(PAPER_B, encoding="utf-8").read() == io.open(MIRROR_B, encoding="utf-8").read()
