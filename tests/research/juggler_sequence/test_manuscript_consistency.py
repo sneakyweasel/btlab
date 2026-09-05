@@ -178,6 +178,35 @@ def test_no_document_still_quotes_the_old_window_as_the_window() -> None:
         assert not bad.search(read(doc)), doc.name
 
 
+def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
+    """Paper A quotes Paper C's exponent; it must be lambda**, not the superseded sweep root.
+
+    ``block_average_plus_sweep`` (0.4051) was lambda** before the OE-fiber constant was
+    sharpened from 1/7 to 1/3; ``block_average_plus_third`` (0.4480) replaced it, and the
+    Tao rate threshold moved from 0.595 to 1 - lambda** = 0.552."""
+
+    from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
+
+    lam = lambda_root(RECURSIONS["block_average_plus_third"])
+    assert abs(lam - 0.4480) < 1e-3
+    assert abs((1.0 - lam) - 0.5520) < 1e-3
+    text = read(PAPER)
+    assert "0.4480" in text and "0.448" in text
+    assert "0.552" in text
+    # the superseded pair must not appear as Paper C's exponent or as the rate threshold
+    assert "0.4050" not in text
+    assert re.search(r"\(\\log x\)\^\{0\.405\}", text) is None
+    assert re.search(r"e>0\.595", text.replace(" ", "")) is None
+
+
+def test_paper_a_pins_the_seed_sum_from_both_sides() -> None:
+    """Section 6.1 states Corollary 4.4c as the floor beside the trivial cap."""
+
+    text = read(PAPER)
+    assert "6.83\\cdot10^{-5}" in text and "2.23\\cdot10^{-3}" in text
+    assert "J-lachesis-basin-inverse-sum" in text
+
+
 def test_window_covers_the_whole_fan() -> None:
     """The window's endpoint is exactly the last fan member: q_14 = L_55."""
     assert A.WINDOW_HI == A.fan_length(A.FAN_LEN - 1) == 16785921

@@ -26278,3 +26278,77 @@ Best next question
 - none. The three gaps I listed are done: record density reduced the rate to
   a bounded-gap hypothesis, threads are unbounded, the free term is blind
 ```
+
+## Paper A consolidation: a stale exponent, and Corollary 4.4c read twice
+
+Two changes to Paper A, one a correction and one an import, plus the
+guard that stops the correction from being needed again.
+
+**The stale exponent.** Paper A quoted Paper C's contagion exponent as
+\(\lambda<0.4050\) with Tao rate threshold \(e>0.595\), in three
+places: the abstract paragraph, §1.0, and §6.1. That pair is the
+*pre-sharpening* value — \(0.4051\) is `block_average_plus_sweep`, which
+was \(\lambda^{**}\) until the OE-fiber constant went from \(1/7\) to
+\(1/3\) and `block_average_plus_third` \(=0.4480\) replaced it. Paper C
+has used \(0.4480\) and \(0.552\) throughout since; Paper A had not
+followed. Nothing was false — \(0.4050<0.4480\), so the weaker claim is
+implied, and \(e>0.595\) is a stronger hypothesis than needed — but the
+paper understated the companion's theorem in both directions. Fixed to
+\(\lambda^{**}=0.4480\), \(e>1-\lambda^{**}=0.552\), and the block
+density from \(\gg(\log y)^{-0.6}\) to \(\gg(\log y)^{-0.552}\).
+
+Two near misses worth recording. Paper A line 2064 also reads
+\(0.595\), but that is \(\log L/\log n_{\max}(L)\), the \(L\)-exponent
+of the finance survivors — a different quantity that happens to share
+the digits, and it must not be touched. Paper B says the contagion
+exponent rises "from \(0.4050\) to \(0.4922\)", which is correct as
+stated: it is the sweep base plus the \(OOEEE\) term
+(`block_sweep_plus_ooeee` \(=0.4923\)), not \(\lambda^{**}\). Paper B
+is right and was left alone.
+
+**Corollary 4.4c read twice.** §6.1 quoted only the trivial cap
+\(\sum_{x\in C}1/x\le L/\min C\) for the basin's seed. Paper A's own
+Corollary 4.4c is the matching floor: \(\theta\log n\le\sum 1/x\) with
+\(\theta=1-2^L/3^o\). Stating both makes visible that **Theorem 4.4 is
+exactly their composite** — a length dies when the floor passes the cap
+— and pins the seed sum at the certified floor to
+\(6.83\cdot10^{-5}\le\sum 1/x\le2.23\cdot10^{-3}\) at \(L=780239\).
+
+The import: that pinned quantity is the constant in the basin's
+per-block density, \(\asymp(\sum_{x\in C}1/x)/\log y\) with constant in
+\([1,3]\), because the cycle states' log-log clock positions are a
+rotation orbit by \(\log_2(3/2)\). So Corollary 4.4c prices the
+basin's *visibility*, not only the cycle's states. Flagged as an import
+with its every-block half conjectural, and as adding nothing to
+Sections 4 and 5.
+
+**The guard.** Two new tests in `test_manuscript_consistency.py`:
+`test_contagion_exponent_quoted_by_paper_a_is_the_current_one` ties the
+paper's quoted constants to `lambda_root(RECURSIONS[...])` and forbids
+the superseded pair as an exponent or a rate; and
+`test_paper_a_pins_the_seed_sum_from_both_sides`. AGENTS.md asks for
+cross-document drift to be a test rather than a recurring sweep, and
+this drift had survived because no test tied the manuscripts' quoted
+exponent to the code that computes it. The review mirror was stale
+after the edit and is synced.
+
+```text
+What was learned
+- Paper A carried the pre-sharpening contagion exponent in three places;
+  no test tied a manuscript's quoted lambda to the recursion that yields it
+- Theorem 4.4 is Corollary 4.4c composed with the trivial cap x_i >= n;
+  saying so pins the basin's seed sum from both sides
+- 0.595 appears in Paper A twice with two different meanings, and Paper B's
+  0.4050 is a correct statement about a different recursion pair
+Strongest theorem
+- none new; Corollary 4.4c and Theorem 4.4 are unchanged, only related
+Strongest refutation
+- the quoted exponent pair, superseded since the OE-fiber sharpening
+Reusable machinery
+- two drift guards in test_manuscript_consistency.py
+Branch status
+- consolidation, not a branch; Paper A's claim set is otherwise unchanged
+Best next question
+- do Papers B and C quote any other constant that no test ties to its
+  source? The lambda drift survived precisely because nothing checked it
+```
