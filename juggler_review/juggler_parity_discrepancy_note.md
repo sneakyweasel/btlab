@@ -4729,6 +4729,35 @@ carries*. What a level-1 kernel would not need is the layer built on
 top of them --- parts (i) and (ii) of that lemma, the level-2 defect
 identity and the double-gap carry algebra.
 
+*The three thresholds are independent, and they re-sort depth seven.*
+Applying all of them to the three targets at once:
+
+| split | kernel | branches on | runs? | \(>9/4\) |
+|---|---|---:|---|---|
+| \(OOO*\), letter 4 | level \(2\), \(3/2\) | \(3/2\) | yes | none |
+| \(OOOO*\), letter 5 | level \(3\), \(3/2\) | \(9/4\) | **no** | \(57/16,\ 45/16\) |
+| \(OOOEOEE\), letter 6 | level \(1\), \(3/2\) | \(1\) | yes | none |
+| \(OOEOOEE\), letter 6 | level \(3\), \(\surd\) | \(9/4\) | **no** | none |
+| \(OOOOEEE\), letter 5 | level \(3\), \(3/2\) | \(9/4\) | **no** | \(57/16,\ 45/16\) |
+
+The two conditions in the last two columns are genuinely independent:
+over the words of length at most nine all four combinations occur, so
+neither implies the other. \(OOEOOEE\) occupies the cell that is
+easiest to overlook --- nothing above \(9/4\), yet no branch runs ---
+and the reason is exact rather than analogous. Its deepest blocked
+defect is \(\theta_3\), so it would branch on \(J^2\), which is the
+same \(v\) whose jump of \(\asymp n^{5/4}\) per step is the obstruction
+Conjecture 7.3 names. It is not merely of a species the paper lacks a
+theorem for; it inherits, verbatim, the branching failure of the open
+conjecture.
+
+That leaves \(OOOEOEE\) as the only one of the three whose deepest
+blocked defect admits a branch decomposition at all. The near-term
+reading of depth seven is therefore \(1/128\) rather than \(2/128\):
+\(7/8\to113/128\) on \(OOOEOEE\) alone, with \(114/128=57/64\)
+available only if a square-root kernel is found for an object that
+branches no better than Conjecture 7.3's.
+
 \(OOOOEEE\) repeats the \(OOOO*\) row exactly, so Conjecture 7.3 is
 necessary for that third of the depth-seven increment and not merely
 sufficient --- and it is the only one of the three carrying anything
@@ -4754,7 +4783,8 @@ first, then \(OOEOOEE\) behind a square-root kernel that does not
 exist, then \(OOOOEEE\) behind Conjecture 7.3 --- and that the first
 two, unlike the third, stay inside the \(9/4\) threshold throughout.
 Together they would carry the certified density to \(57/64\) with
-Conjecture 7.3 still open.
+Conjecture 7.3 still open --- though the branch condition below cuts
+that expectation back to the first of the two.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.

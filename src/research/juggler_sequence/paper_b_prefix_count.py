@@ -365,6 +365,40 @@ def has_branch_runs(base_exponent: Fraction) -> bool:
     return branch_run_exponent(base_exponent) > 0
 
 
+def branch_base(w: str, t: int) -> Fraction | None:
+    """Scale exponent of the object letter ``t``'s kernel would branch on, or ``None`` if unblocked.
+
+    The kernel rides the deepest blocked defect ``theta_{s*}``, and its branches come from
+    ``floor(Delta_1 J^{s*-1})``, so the base sits at ``e_{s*-1}`` (and at ``1`` when ``s* = 1``,
+    where the base is ``n`` itself and the difference is constant).
+    """
+    deep = deepest_blocked(w, t)
+    if deep is None:
+        return None
+    s = deep[0]
+    return iterate_exponents(w)[s - 2] if s >= 2 else Fraction(1)
+
+
+def obstruction_profile(w: str, t: int) -> dict[str, object]:
+    """All three thresholds at once for letter ``t`` of ``w``.
+
+    ``level``/``species``/``monomial`` describe the kernel required; ``branch_runs`` is the
+    ``e < 2`` condition on the object it would branch on; ``beyond`` lists coefficients above the
+    ``9/4`` past which Conjecture 7.3 says every method stops.  The last two are independent --
+    all four combinations occur among words of length at most nine.
+    """
+    deep = deepest_blocked(w, t)
+    base = branch_base(w, t)
+    return {
+        "kernel": None if deep is None else {"level": deep[0], "constant": deep[1],
+                                             "exponent": deep[2], "species": deep[3]},
+        "branch_base": base,
+        "branch_runs": None if base is None else has_branch_runs(base),
+        "monomial": coefficient_is_monomial(w, t),
+        "beyond": beyond_methods(w, t),
+    }
+
+
 def differencing_chain(saving: Fraction, rounds: int = 2) -> dict[str, Fraction]:
     """Step 1's accounting: a doubly-differenced bound ``P^(1-saving)`` gives ``P^(1-saving/4)``.
 

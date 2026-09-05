@@ -797,3 +797,54 @@ def test_paper_states_the_branch_criterion() -> None:
     assert r"\asymp P^{2-e}/h" in text
     assert "a third threshold" in text
     assert "level-1 form and it is degenerate" in text
+
+
+# --- the three thresholds together ---
+
+
+def test_branch_base_is_the_object_the_kernel_would_branch_on() -> None:
+    assert B.branch_base("OOO", 4) == Fraction(3, 2)          # X = n^{3/2}
+    assert B.branch_base("OOOO", 5) == Fraction(9, 4)         # v
+    assert B.branch_base("OOOEOEE", 6) == Fraction(1)         # n itself
+    assert B.branch_base("OOEO", 5) is None                   # unblocked
+
+
+def test_OOEOOEE_inherits_conjecture_73s_branching_failure() -> None:
+    """Same base object v, same n^{5/4} jump -- not merely an analogous difficulty."""
+    assert B.branch_base("OOEOOEE", 6) == B.branch_base("OOOO", 5) == Fraction(9, 4)
+    assert not B.obstruction_profile("OOEOOEE", 6)["branch_runs"]
+    assert not B.obstruction_profile("OOOO", 5)["branch_runs"]
+    # but unlike Conjecture 7.3 it carries nothing above the stop threshold
+    assert B.obstruction_profile("OOEOOEE", 6)["beyond"] == []
+    assert B.obstruction_profile("OOOO", 5)["beyond"] != []
+
+
+def test_OOOEOEE_is_the_only_target_that_branches() -> None:
+    assert B.obstruction_profile("OOOEOEE", 6)["branch_runs"]
+    for word, letter in (("OOEOOEE", 6), ("OOOOEEE", 5)):
+        assert not B.obstruction_profile(word, letter)["branch_runs"], word
+
+
+def test_the_branch_and_stop_conditions_are_independent() -> None:
+    """All four combinations occur, so neither threshold implies the other."""
+    from itertools import product
+    seen = set()
+    for d in range(3, 9):
+        for bits in product("EO", repeat=d):
+            w = "".join(bits)
+            if not w.startswith("O"):
+                continue
+            for t in range(3, d + 1):
+                p = B.obstruction_profile(w, t)
+                if p["branch_runs"] is None:
+                    continue
+                seen.add((p["branch_runs"], bool(p["beyond"])))
+    assert seen == {(True, False), (True, True), (False, False), (False, True)}
+
+
+def test_paper_states_the_independence_and_the_revised_gain() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "genuinely independent" in text
+    assert "inherits, verbatim, the branching failure" in text
+    assert r"7/8\to113/128" in text
+    assert "cuts" in text and "back to the first of the two" in text

@@ -27399,3 +27399,63 @@ Branch status
 Best next question
 - should the drift guard cover method names as well as constants? It would
   have caught this, and the check is a grep
+
+ ### Three thresholds, independent, and depth seven loses a third
+
+Before deriving the level-1 exponent triple I checked whether the three
+thresholds I have been accumulating — drift at 1, branching at 2, the
+`9/4` stop — are actually distinct. Two of them are, decisively, and
+the answer changes the depth-seven arithmetic.
+
+Over every word of length at most nine, all four combinations of
+(branch runs exist) × (something above 9/4) occur. Neither implies the
+other. Applying all three to the targets:
+
+```text
+   OOO*    L4  level 2, 3/2   branches on 3/2  runs   nothing >9/4
+   OOOO*   L5  level 3, 3/2   branches on 9/4  NO     57/16, 45/16
+   OOOEOEE L6  level 1, 3/2   branches on 1    runs   nothing >9/4
+   OOEOOEE L6  level 3, sqrt  branches on 9/4  NO     nothing >9/4
+   OOOOEEE L5  level 3, 3/2   branches on 9/4  NO     57/16, 45/16
+```
+
+`OOEOOEE` sits in the cell easiest to miss: nothing above `9/4`, yet no
+branch runs. And the reason is exact, not analogous. Its deepest
+blocked defect is `θ₃`, so it would branch on `J²` — **the same `v`**
+whose `≍ n^{5/4}` jump per step is the obstruction Conjecture 7.3
+names. It does not merely lack a theorem for its species; it inherits
+the open conjecture's branching failure verbatim.
+
+So `OOOEOEE` is the only one of the three whose deepest blocked defect
+branches at all, and the near-term depth-seven gain is `1/128`, not
+`2/128`:
+
+```text
+    7/8 = 112/128  ->  113/128   on OOOEOEE alone
+                   ->  114/128 = 57/64  only with a square-root kernel
+                       for an object branching no better than Conj 7.3's
+```
+
+I have adjusted the earlier passage, which quoted `57/64` without that
+qualification, to point forward to it.
+
+```text
+What was learned
+- checking whether accumulated criteria are independent was worth more
+  than pushing on to the next derivation; two of the three separate,
+  and the separation moved a headline number
+- OOEOOEE's difficulty is not a species gap but the identical branch
+  failure as the open conjecture, on the identical object
+Strongest theorem
+- independence of the branching and stop conditions, witnessed in all
+  four cells over words of length <= 9
+Strongest refutation
+- my own "57/64 with Conjecture 7.3 still open", now 113/128
+Reusable machinery
+- branch_base / obstruction_profile, the three thresholds in one record
+Branch status
+- ADVANCE
+Best next question
+- the level-1 exponent triple for Lemma 3.9 is still underived, and it
+  is now the only thing standing between OOOEOEE and a proof sketch
+```
