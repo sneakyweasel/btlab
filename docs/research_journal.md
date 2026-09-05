@@ -28675,3 +28675,61 @@ Best next question
   exhaustively described; a fresh look at Section 5's Stage structure
   would be a change of subject rather than a continuation.
 ```
+
+ ### The numbering runs one ahead, and it had already cost me two references
+
+Went looking at Section 5's Stage structure and could not find it.
+Lemma 5.2 and Theorem 5.3 are in **Section 4**. The statement numbers
+run one ahead of the section headings from Section 2 through Section 5,
+and agree from Section 6 on:
+
+```text
+   §2 Exact linearization        carries Lemma 3.1 - 3.10
+   §3 Depths one to three        carries Theorem 4.1 - Corollary 4.13
+   §4 The level-2 wave           carries Lemma 5.1, 5.2, Theorem 5.3
+   §5 Depth-four equidistribution carries Theorem 6.1
+   §6, §7                        agree
+```
+
+Twenty-eight statements out of thirty-nine sit in a section whose
+number is one less than theirs. Subsection numbers are not offset.
+
+**It had already cost me two wrong cross-references**, both added this
+session:
+
+- "Section 3.4 names as the reason no drift-1 interval exists" — there
+  is no Section 3.4. The passage is in Section 3's body, just before
+  Section 3.5.
+- "the ordered pairs drawn from E that Section 3 calls exponent pairs"
+  — that remark is at Lemma 3.8, which is in Section **2**.
+
+Both corrected. Renumbering the statements would break every
+cross-reference, the Lean docstrings, the ledger and the tests for no
+mathematical gain, so the manuscript now says the offset out loud in
+§1.1 instead, and a test checks that every `Section N` and
+`Section N.M` reference resolves to a heading that exists.
+
+```text
+What was learned
+- I introduced two broken references by assuming statement numbers
+  track section numbers; they do not, and nothing said so
+- documenting a wart beats renumbering around it when the wart is
+  load-bearing for every existing reference
+Strongest theorem
+- none; this is navigation
+Strongest refutation
+- two of my own cross-references from earlier this session
+Reusable machinery
+- a test resolving every section reference against the actual headings,
+  plus one asserting the offset is real so the note is not decoration
+Branch status
+- PROMOTE
+Why
+  A referee following "Section 3.4" finds nothing, and one looking for
+  Theorem 5.3 in Section 5 finds the wrong section -- as I did, this
+  tick, on my own paper. The offset is now stated where a reader meets
+  it first, and broken references cannot be added silently again.
+Best next question
+- the reference test only covers Paper B. Do Papers A and C have the
+  same offset, and do their cross-references resolve?
+```

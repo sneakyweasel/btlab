@@ -481,3 +481,57 @@ def test_the_migrated_P0_figure_recomputes() -> None:
                   <= C.C7_SUPERSEDED * S5b(P) / 2)
     assert abs(10 ** t / 5.884e23 - 1) < 0.01
     assert round(10 ** t / 1e23, 1) == 5.9        # not 5.8
+
+
+# --- cross-references must resolve to headings that exist ---
+
+
+def _paper_b_text() -> str:
+    return io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
+                   encoding="utf-8").read()
+
+
+def test_every_section_reference_resolves() -> None:
+    """Section N and Section N.M must name a heading the paper actually has."""
+    import re
+    text = _paper_b_text()
+    tops = {m.group(1) for m in re.finditer(r"^## (\d+)\.", text, re.M)}
+    subs = {m.group(1) for m in re.finditer(r"^### (\d+\.\d+)", text, re.M)}
+    subs |= {m.group(1) for m in re.finditer(r"^### (A\.\d+)", text, re.M)}
+    bad = []
+    for m in re.finditer(r"Section (\d+(?:\.\d+)?)", text):
+        ref = m.group(1)
+        ok = (ref in subs) if "." in ref else (ref in tops)
+        if not ok:
+            bad.append(ref)
+    assert not bad, sorted(set(bad))
+
+
+def test_the_two_references_that_were_wrong_are_right() -> None:
+    """Section 3.4 did not exist; the exponent-pair remark is in Section 2, not 3."""
+    text = _paper_b_text()
+    assert "Section 3.4" not in text
+    assert "Section 3 names as the reason" in text
+    assert "Section 2 calls exponent pairs" in text
+
+
+def test_the_numbering_offset_is_documented() -> None:
+    """Statements run one ahead of headings through Section 5; a reader is told."""
+    import re
+    text = _paper_b_text()
+    assert "*Locating a statement.*" in text
+    assert "run one ahead of the" in text
+    # and the offset is real, so the note is not decoration
+    tops = [(m.start(), m.group(1)) for m in re.finditer(r"^## (\d+)\.", text, re.M)]
+    def sec_of(pos):
+        cur = None
+        for p, n in tops:
+            if p <= pos:
+                cur = n
+        return cur
+    off = 0
+    for m in re.finditer(r"^\*\*(?:Lemma|Theorem|Corollary) (\d+)\.\d+", text, re.M):
+        s = sec_of(m.start())
+        if s and int(m.group(1)) == int(s) + 1:
+            off += 1
+    assert off >= 25, off

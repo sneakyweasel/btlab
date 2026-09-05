@@ -270,6 +270,15 @@ a barrel importing exactly this paper's five modules --- `MasterIdentity`,
 barrel. And `ring` appears once in the text as the tactic that discharges an
 inversion, not as the name of a theorem.
 
+*Locating a statement.* Numbered statements run one ahead of the
+section headings until Section 6. Lemmas 3.x are in Section 2,
+Theorems 4.x in Section 3, Lemma 5.1, Lemma 5.2 and Theorem 5.3 in
+Section 4, and Theorem 6.1 in Section 5; from Section 6 onward the two
+agree. Subsection numbers are not offset --- Section 3.5 and
+Appendices A.1--A.6 are where they say they are --- and every
+cross-reference below is to a section heading, never to a statement's
+first digit.
+
 ### 1.2 Related work
 
 **Single floors.** The distribution of \(\lfloor n^c\rfloor\)
@@ -4634,7 +4643,7 @@ that order, the kept coefficient \(\tfrac{9k}{16}n^{3/16}\) of
 At the fifth letter of \(OOOE*\) they are \(3/16\) and \(-9/16\), the
 kept coefficient and the remainder of that proof. At the fourth letter of \(OOO*\), where \(J^3\) has
 scale exponent \(27/8\), the \(s=2\) difference is \(9/8\): the
-coefficient \(W\asymp kn^{9/8}\) that Section 3.4 names as the reason
+coefficient \(W\asymp kn^{9/8}\) that Section 3 names as the reason
 no drift-1 interval exists.
 
 That last line is the criterion. A coefficient \(n^{c}\) has derivative
@@ -4926,7 +4935,7 @@ their best value at \(\bigl(\tfrac1{11},\tfrac34\bigr)\):
 a saving of \(\tfrac{39}{352}\). The differencing chain quarters a
 saving, so it needs at least \(\tfrac1{24}\) to reach \(P^{1-1/96}\);
 this is \(2.66\) times that. (These are van der Corput pairs, not the
-ordered pairs drawn from \(E\) that Section 3 calls exponent pairs.)
+ordered pairs drawn from \(E\) that Section 2 calls exponent pairs.)
 
 The caveat is the whole of the difficulty, and it is the paragraph
 above. That bound is for one mode at one frequency. Assembling the
