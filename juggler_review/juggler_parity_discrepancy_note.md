@@ -5376,6 +5376,27 @@ moves \(P_0\) to \(2.6\cdot10^{13}\) but \(P_1\) below from
 \(5.0\cdot10^{19}\) to \(5.3\cdot10^{23}\). We keep the uniform
 constant.
 
+*\(c_7\): and it saturates, at a value \(R_0\) has already been tuned
+to.* The lever has a ceiling, because only the sites that mention
+\(c_7\) move when it does. Removing those, the largest threshold left
+is the Step 5b(a) \(q''\) curvature ratio at \(2.98\cdot10^{11}\), with
+the next below it an order down at \(2.83\cdot10^{10}\). Improving
+\(c_7\) drives \(P_0\) towards that value and no further: the Step 5b
+gate drops beneath it at \(c_7=1/54\), so the whole of the lever is
+spent by then, and what it buys in total is a factor of \(300\), from
+\(8.9\cdot10^{13}\) to \(2.98\cdot10^{11}\). The vector trade above
+realises \(3.4\) of that \(300\), the rest being paid out of \(c_3\)
+and \(c_4\).
+
+The floor is not an accident of this lever. \(2.98\cdot10^{11}\) is
+also the minimax over \(R_0\) of the \(R_0\)-dependent sites, attained
+at the \(R_0=P^{5/16}\) this paper runs (Appendix A.6: at
+\(P^{9/32}\) the flat cost rises to \(7.4\cdot10^{13}\), at
+\(P^{1/3}\) the \(q''\) ratio rises to \(1.6\cdot10^{12}\)). So the two
+levers of this appendix are already balanced against one another at the
+same number, and neither alone can move it. A threshold below
+\(3\cdot10^{11}\) needs a different site, not a better constant.
+
 *\(E\): yes, by a factor \(2.07\); and the factor \(10\) beside it, by
 removing it.* The earlier \(219=202.5+16\) opened the middle-band cap
 \(185.7\) to \(360\) and carried \(8\) where step (ii) gives

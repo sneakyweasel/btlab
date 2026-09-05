@@ -27523,3 +27523,60 @@ Best next question
 - with c_7 closed-form in the gap, which admissible triple maximises it,
   and how far would P_0 fall if Step 5b could be run on that triple?
 ```
+
+ ### The c_7 lever saturates, at exactly the number R_0 was tuned to
+
+The question was which triple maximises `c_7` and how far `P_0` would
+fall. The first half is already closed by the paper — A.5 says each
+entry of Step 5b's triple is forced — so the useful question is the
+quantitative one, and it has a sharper answer than expected.
+
+Only the sites mentioning `c_7` move when `c_7` does. Remove them and
+the largest threshold left is the Step 5b(a) `q''` curvature ratio at
+`2.98e11`, with the next an order below at `2.83e10`. So the lever has
+a ceiling:
+
+```text
+   P_0 = 8.95e13 at c_7 = 1/232
+       -> 2.98e11, and no further
+   the Step 5b gate drops below the floor at c_7 = 1/54
+   total worth of the lever: a factor of 300
+```
+
+A.5's vector trade `(1/27, 1/1872, 1/1872)` realises `3.4` of that
+`300` — it moves `P_0` to `2.6e13` — the rest being paid out of `c_3`
+and `c_4`. So the appendix's "under a factor ten" for the `c_2` gain is
+right about the constant and understates the ceiling: `c_2` only has to
+reach `1/54`, not `1/27`, and if `c_3`, `c_4` were free the payoff
+would be 300-fold rather than 3.4-fold.
+
+**The floor is not an accident of this lever.** `2.98e11` is also the
+minimax over `R_0` of the `R_0`-dependent sites, attained at the
+`R_0 = P^{5/16}` the paper runs: at `P^{9/32}` the flat cost rises to
+`7.4e13`, at `P^{1/3}` the `q''` ratio rises to `1.6e12`. So the two
+levers of Appendix A are already balanced against one another at the
+same number, and neither alone can move it.
+
+A threshold below `3e11` needs a different site, not a better constant.
+
+```text
+What was learned
+- a lever's ceiling is worth computing before its cost: c_7 was being
+  discussed as a constant to improve, and it saturates four times
+  short of the value A.5 examines
+- the q'' site turns up twice, as the c_7 floor and as the R_0 minimax,
+  which is why 5/16 was the right choice for reasons beyond A.6's table
+Strongest theorem
+- P_0 >= 2.98e11 under any improvement to c_7 or R_0 alone, both
+  levers bottoming out at the same site
+Strongest refutation
+- my own framing of the question: the maximising triple is irrelevant,
+  since the lever saturates well before the best triple would matter
+Reusable machinery
+- c7_saturation, with C7_DEPENDENT_TAGS naming the sites that move
+Branch status
+- ADVANCE
+Best next question
+- st5b-qpp is now the binding constraint on the whole appendix. What is
+  the inequality, and is its 0.35 curvature floor as tight as c_7 was?
+```

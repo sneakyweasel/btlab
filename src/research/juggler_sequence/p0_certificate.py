@@ -334,6 +334,36 @@ def c7_triple_scan(inventory: tuple[Fr, ...] | None = None) -> dict[str, Any]:
     }
 
 
+C7_DEPENDENT_TAGS = frozenset({"5a-W<=c7S", "5b-W<=c7S", "5b-E<=c7S",
+                               "39-c2", "39-c3", "39-c4", "39-beta", "39-wave"})
+
+
+def c7_saturation(hi_denom: float = 40.0) -> dict[str, Any]:
+    """How far ``P_0`` can be driven by improving ``c_7`` alone, and where it stops.
+
+    Every site that mentions ``c_7`` moves when ``c_7`` does; the rest do not.  So the scalar lever
+    bottoms out at the largest ``c_7``-free threshold, and the useful range of ``c_7`` ends at the
+    value where the Step 5b gate drops below it.  Both numbers are computed here rather than
+    assumed.  Note this is the *ceiling* of the lever: Appendix A.5's vector trade realises only
+    part of it, because raising ``c_2`` is paid for out of ``c_3`` and ``c_4``.
+    """
+    rows = sorted(((r["P_min"], r["tag"]) for r in thresholds()
+                   if r["tag"] not in C7_DEPENDENT_TAGS and r["P_min"]), reverse=True)
+    floor, floor_tag = rows[0]
+
+    def gate(c7: float) -> float:
+        return [x for x in thresholds(c7=c7) if x["tag"] == "5b-W<=c7S"][0]["P_min"]
+
+    lo, hi = C7, 1.0 / hi_denom
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if gate(mid) > floor else (lo, mid)
+    base = certificate()["P0"]
+    return {"floor": floor, "floor_tag": floor_tag, "crossover_c7": hi,
+            "crossover_denom": 1.0 / hi, "P0": base, "max_factor": base / floor,
+            "runner_up": rows[1]}
+
+
 def c7_equally_spaced(x0: Fr, delta: Fr) -> Fr:
     """Closed form for ``c_7`` at an equally spaced triple of gap ``delta`` about ``x0 = alpha_mid - 2``.
 

@@ -501,3 +501,47 @@ def test_paper_states_the_closed_form() -> None:
     assert r"c_7=\frac{\delta^2}{(x_0-1)^2+1-\delta^2}" in text
     assert r"exactly \(2-\delta^2\)" in text
     assert r"without reaching it" in text
+
+
+# --- the c_7 lever has a ceiling, and R_0 has already been tuned to it ---
+
+
+def test_the_floor_is_the_qpp_site() -> None:
+    """Remove every c_7-dependent threshold and the largest left is Step 5b(a)'s q'' ratio."""
+    r = C.c7_saturation()
+    assert r["floor_tag"] == "st5b-qpp"
+    assert abs(r["floor"] / 2.9817e11 - 1) < 1e-3, r["floor"]
+    assert r["runner_up"][1] == "s3s1-Bsmall"
+    assert r["floor"] / r["runner_up"][0] > 10          # an order below
+
+
+def test_the_lever_saturates_near_one_over_fifty_four() -> None:
+    r = C.c7_saturation()
+    assert 53 < r["crossover_denom"] < 55, r["crossover_denom"]
+    # past the crossover the gate no longer binds, so P_0 stops moving
+    pinned = [max(x["P_min"] for x in C.thresholds(c7=c) if x["P_min"])
+              for c in (1 / 50.0, 1 / 30.0, 1 / 20.0)]
+    assert all(abs(p / r["floor"] - 1) < 1e-6 for p in pinned), pinned
+
+
+def test_the_whole_lever_is_worth_a_factor_of_three_hundred() -> None:
+    r = C.c7_saturation()
+    assert abs(r["max_factor"] / 300.0 - 1) < 0.02, r["max_factor"]
+    # and A.5's vector trade realises only 3.4 of it
+    assert abs(r["P0"] / 2.6e13 - 3.44) < 0.05
+
+
+def test_the_floor_is_also_the_minimax_over_R0() -> None:
+    """5/16 is the R_0 that minimises the worst R_0-dependent site, and it lands on the floor."""
+    worsts = {a: C.r0_tradeoff(a)["worst"] for a in (0.25, 9 / 32, 5 / 16, 1 / 3)}
+    best_a = min(worsts, key=lambda a: worsts[a])
+    assert abs(best_a - 5 / 16) < 1e-9, best_a
+    assert abs(worsts[best_a] / C.c7_saturation()["floor"] - 1) < 1e-3
+
+
+def test_paper_states_the_saturation() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "and it saturates, at a value" in text
+    assert r"c_7=1/54" in text
+    assert r"a factor of \(300\)" in text
+    assert "needs a different site, not a better constant" in text
