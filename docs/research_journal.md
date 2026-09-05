@@ -28910,3 +28910,60 @@ Best next question
 - the headroom is set by H_1 = P^{1/48} and H_2 = P^{1/24}. Are those
   forced, or would larger shift ranges buy more room?
 ```
+
+ ### The shift ranges are forced, so last entry's factor of six is the wrong one
+
+Are `H_1 = P^{1/48}` and `H_2 = P^{1/24}` forced? Yes — the two
+balances of Step 1 fix them from Lemma 5.2(ii)'s own saving `δ_0`:
+`H_2 = P^{δ_0}`, `H_1 = P^{δ_0/2}`, kernel saving `δ_0/4`. They cannot
+be enlarged to buy room; choosing anything else worsens the bound.
+
+**And that undercuts the headroom I quoted last entry.** I computed
+`δ_kernel < 1/16` — a factor six — treating the kernel saving as free
+while holding the shift ranges at their printed values. That is the
+headroom for a kernel bound improved by *some other route*. It is not
+the headroom for improving Lemma 5.2(ii), which is the route that
+exists, because raising `δ_0` drags the shift ranges up with it:
+
+```text
+   per unit of delta_0:  shift load  3/2      kernel saving  1/4
+   the budget is spent six times faster than it is earned
+   check:  (7/4) delta_0 <= 1/8   ->   delta_0 <= 1/14
+   kernel exponent reaches 1/56, against 1/96: a factor 12/7, not 6
+```
+
+So the two numbers are both right and answer different questions. The
+one that matters for anyone attacking Lemma 5.2(ii) is `12/7` — under
+a doubling — and the manuscript now says which is which.
+
+The pleasing part is where the six went: it does not vanish, it
+reappears as the *rate*. Shift load accrues at `3/2` per unit `δ_0`
+and kernel saving at `1/4`, and `(3/2)/(1/4) = 6`. The same six, once
+a headroom under a false hypothesis and once the true exchange rate.
+
+```text
+What was learned
+- "hold everything else fixed" is a hypothesis, and last entry's
+  headroom silently assumed it; the shift ranges are not free
+  parameters but outputs of the same balance
+- the exchange rate is the durable quantity: six units of (C3)/(C4)
+  budget per unit of kernel saving, whatever the starting point
+Strongest theorem
+- via Lemma 5.2(ii), delta_0 <= 1/14 and the kernel exponent stops at
+  1/56, a factor 12/7 over 1/96
+Strongest refutation
+- my own factor of six from the previous entry, as a guide to what an
+  improvement is worth
+Reusable machinery
+- five tests separating the two scenarios
+Branch status
+- PROMOTE
+Why
+  The previous entry would have told a prover that Theorem 5.3 has a
+  sixfold improvement available through the obvious route. It has
+  12/7. That is the difference between a worthwhile attack and a
+  marginal one, and it turned on an assumption I did not notice making.
+Best next question
+- 1/8 is the (C3)/(C4) ceiling that binds this. Where does it come
+  from, and is it as forced as the shift ranges are?
+```

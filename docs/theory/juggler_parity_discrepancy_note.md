@@ -3966,13 +3966,26 @@ carry. Written for a general kernel saving \(\delta\), Step A truncates
 at \(J_3=P^{\delta}\) --- the majorant \(4P/J_3\) balancing
 \(P^{1-\delta}\) --- and the check here reads
 \(kh_1h_2\le2P^{\delta+1/16}\le P^{1/8}\), since
-\(\tfrac1{48}+\tfrac1{24}=\tfrac1{16}\). So (C3) and (C4) survive for
-every \(\delta<\tfrac1{16}\), which is six times the \(\tfrac1{96}\) in
-force: a sharper kernel bound would propagate through this proof
-untouched until then, and only past \(\tfrac1{16}\) would the shift
-ranges need revisiting. Nothing after this theorem consumes the value
-at all --- Corollary 6.4's density \(7/8\) needs the error to be
-\(o(N)\), and Proposition 7.1 asks only for \(\delta_d>0\).
+\(\tfrac1{48}+\tfrac1{24}=\tfrac1{16}\). So with the shift ranges left
+as they are, (C3) and (C4) survive for every \(\delta<\tfrac1{16}\),
+six times the \(\tfrac1{96}\) in force.
+
+That is the headroom for a kernel bound improved by some other route.
+It is not the headroom for improving Lemma 5.2(ii), because the shift
+ranges are not free: the two balances of Step 1 fix
+\(H_2=P^{\delta_0}\) and \(H_1=P^{\delta_0/2}\) from that lemma's own
+saving \(\delta_0\), and return \(\delta=\delta_0/4\). Raising
+\(\delta_0\) therefore adds \(\tfrac32\delta_0\) to the shift load while
+adding only \(\tfrac14\delta_0\) to the kernel --- the budget is spent
+six times faster than it is earned --- and the check reads
+\(\tfrac74\delta_0\le\tfrac18\), i.e. \(\delta_0\le\tfrac1{14}\)
+against the \(\tfrac1{24}\) in force. Along that route the kernel
+exponent can reach \(\tfrac1{56}\) and no further without new shift
+ranges: a factor \(\tfrac{12}7\), not six.
+
+Nothing after this theorem consumes the value at all --- Corollary
+6.4's density \(7/8\) needs the error to be \(o(N)\), and
+Proposition 7.1 asks only for \(\delta_d>0\).
 
 On each level-1 carry branch of
 Lemma 5.1(iii), the four corner values obey the exact relations

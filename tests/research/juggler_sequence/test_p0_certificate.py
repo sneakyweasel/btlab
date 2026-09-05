@@ -728,3 +728,50 @@ def test_paper_records_the_headroom_and_who_spends_the_value() -> None:
     assert "is where Theorem 5.3's" in text
     assert "six times the" in text
     assert "Nothing after this theorem consumes the value" in text
+
+
+# --- the shift ranges are forced, so the two headrooms differ ---
+
+
+def test_the_shift_ranges_are_determined_by_lemma_52ii() -> None:
+    """H_2 = P^{delta_0}, H_1 = P^{delta_0/2}, kernel saving delta_0/4."""
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    r = PB.differencing_chain(Fr(1, 24))
+    assert (r["H1"], r["H2"], r["saving"]) == (Fr(1, 48), Fr(1, 24), Fr(1, 96))
+
+
+def test_improving_lemma_52ii_spends_the_budget_six_times_faster() -> None:
+    """3/2 of shift load per unit delta_0 against 1/4 of kernel saving."""
+    shift_rate = Fr(1, 2) + Fr(1)        # H_1 then H_2, in units of delta_0
+    kernel_rate = Fr(1, 4)
+    assert shift_rate / kernel_rate == 6
+    assert kernel_rate + shift_rate == Fr(7, 4)
+
+
+def test_the_route_through_lemma_52ii_stops_at_one_fourteenth() -> None:
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    limit = Fr(1, 8) / Fr(7, 4)
+    assert limit == Fr(1, 14)
+    assert limit / Fr(1, 24) == Fr(12, 7)            # headroom in delta_0
+    assert (limit / 4) == Fr(1, 56)
+    assert (limit / 4) / Fr(1, 96) == Fr(12, 7)      # and in the kernel exponent
+    for d0 in (Fr(1, 24), Fr(1, 16), Fr(1, 14)):
+        r = PB.differencing_chain(d0)
+        assert r["saving"] + r["H1"] + r["H2"] <= Fr(1, 8), d0
+    r = PB.differencing_chain(Fr(1, 12))
+    assert r["saving"] + r["H1"] + r["H2"] > Fr(1, 8)
+
+
+def test_the_two_headrooms_are_different_scenarios() -> None:
+    """Six with the shift ranges fixed; 12/7 when they move with delta_0."""
+    fixed = Fr(1, 16) / Fr(1, 96)
+    moving = Fr(1, 56) / Fr(1, 96)
+    assert fixed == 6 and moving == Fr(12, 7)
+    assert moving < fixed
+
+
+def test_paper_distinguishes_the_two_routes() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "improved by some other route" in text
+    assert "six times faster than it is earned" in text
+    assert r"a factor \(\tfrac{12}7\), not six" in text
