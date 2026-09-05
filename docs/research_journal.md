@@ -28057,3 +28057,67 @@ Best next question
 - can the modes be collected by summing over r first, with the n-range
   split by the value of round(c(n)), rather than by windowing c?
 ```
+
+ ### Referee item 14, and a misrounding found on the way out
+
+The last item on the referee's list. Sections 3–6 carried a running
+account of what earlier drafts got wrong; it is useful and it does not
+belong in the statement of a theorem.
+
+Twelve passages, classified rather than swept:
+
+```text
+   migrated (pure history)   4   Claim C's 16^{1/3} and the hidden 2.8e14
+                                 the weak curvature range [0.03,11]uhP^{-3/4}
+                                 Lemma 5.2b's 8-for-0.567 and 219-for-106
+                                 where P_0 used to sit
+   reworded (kept the maths) 5   P^{7/8} at R_0 = P^{1/4}; 1/4 failing the
+                                 four-site test; 49P^{-1/16} useless;
+                                 23P^{19/24} not below P^{7/8}; and A.4's
+                                 R_0 = P^{1/4} needing 1.8e24
+   kept (warnings, not log)  2   "must not be relaxed to a budget of the
+                                 shape 3k h1 h2 P^{-5/8}" -- the hypotheses-
+                                 inherit-strength trap in reverse, with the
+                                 factor P/(2h_3) that follows
+                                 "the honest test is to maximise over it" --
+                                 a description of the right numerical test
+```
+
+`earlier draft` is now absent from the manuscript; the two surviving
+`an earlier` are `an earlier factor` and `an earlier defect`, both
+mathematical. The referee's protected sentence — *we keep the weaker
+value `c_7 = 1/288` used in Step 5b* — is untouched, and is a live
+statement rather than history.
+
+**And the triage's prediction paid off.** Every historical figure was
+recomputed on its way out, and one failed: the manuscript put the old
+`P_0` at `5.8e23`, and the two superseded constants (`c_7 = 1/288` with
+`V = 3S^{1/2}P^{-11/24}`) give `5.884e23`, which rounds to `5.9`. Same
+species as the `2.9`-for-`2.8` slip found in Section 4 earlier. The
+ledger records the computed value.
+
+```text
+What was learned
+- classifying beats sweeping: a third of the "development log" was
+  warnings, and deleting them would have re-armed the traps they name
+- recomputing a figure while moving it is nearly free and caught a
+  misrounding that had survived every reading
+Strongest theorem
+- none; this was presentation, with one arithmetic correction
+Strongest refutation
+- the printed 5.8e23, which is 5.884e23
+Reusable machinery
+- four tests: no draft history in the body, the ledger carrying what
+  left, the protected sentence and both warnings surviving, and the
+  migrated figure recomputing
+Branch status
+- PROMOTE
+Why
+  Referee item 14 is the last of the twenty and is now discharged. The
+  body states what is; the ledger states what was; and the two
+  passages that read like history but function as warnings stayed
+  where a reader will meet them. Nothing mathematical moved.
+Best next question
+- the referee's list is exhausted. What would a second referee, reading
+  only Sections 3-4, find that the first did not?
+```

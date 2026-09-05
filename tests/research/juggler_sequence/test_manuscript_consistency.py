@@ -439,3 +439,45 @@ def test_certificate_densities_agree_with_their_corollary_titles() -> None:
 
 def test_audit_ledger_mirror_matches() -> None:
     assert read(LEDGER_B) == read(LEDGER_B_MIRROR), "paper_b_audit_ledger mirror is stale"
+
+
+# --- referee item 14: the development log lives in the ledger, not the body ---
+
+
+def test_paper_b_body_carries_no_draft_history() -> None:
+    """"earlier draft" was the referee's marker for the development log."""
+    text = io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
+                   encoding="utf-8").read()
+    assert "earlier draft" not in text
+    # the two surviving "an earlier" are mathematical, not historical
+    import re
+    for m in re.finditer(r"an earlier (\w+)", text):
+        assert m.group(1) in {"factor", "defect"}, m.group(0)
+
+
+def test_the_ledger_carries_what_left_the_body() -> None:
+    led = io.open(ROOT / "docs" / "theory" / "paper_b_audit_ledger.md", encoding="utf-8").read()
+    assert "referee item 14" in led
+    for figure in ("16^{1/3}", r"2.8\cdot10^{14}", "[0.03,11]", r"5.9\cdot10^{23}",
+                   r"5.884\cdot10^{23}"):
+        assert figure in led, figure
+
+
+def test_the_protected_sentence_and_the_two_warnings_stayed() -> None:
+    """The referee singled out c_7 = 1/288 as load-bearing; two warnings are too."""
+    text = io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
+                   encoding="utf-8").read()
+    assert "we keep the" in text and r"weaker value \(c_7=1/288\) used in Step 5b" in text
+    assert "must not be relaxed" in text          # the Stage 6 budget warning
+    assert "the honest test" in text              # the right numerical test, not a past one
+
+
+def test_the_migrated_P0_figure_recomputes() -> None:
+    """5.884e23 from the two superseded constants; the body had printed 5.8e23."""
+    from research.juggler_sequence import p0_certificate as C
+    S5b = lambda P: 0.35 * P**-0.625  # noqa: E731
+    old_V = lambda P: 3.0 * S5b(P) ** 0.5 * P ** (-11 / 24)  # noqa: E731
+    t = C.least_P(lambda P: old_V(P) + C.interpolant_error_superseded(P)
+                  <= C.C7_SUPERSEDED * S5b(P) / 2)
+    assert abs(10 ** t / 5.884e23 - 1) < 0.01
+    assert round(10 ** t / 1e23, 1) == 5.9        # not 5.8

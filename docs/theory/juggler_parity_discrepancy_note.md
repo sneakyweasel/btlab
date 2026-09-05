@@ -2092,10 +2092,8 @@ sublevel is short at small \(P\). Its two ingredients are
 \(c_7=1/232\), exactly \(1/\lVert M^{-1}\rVert_\infty\) for the
 Vandermonde-type matrix \(M\) of Lemma 3.9 at the exponent triple of
 Step 5b and hence not improvable there, and the interpolant error
-\(E\) of Lemma 5.2b (Appendix A.5);
-the earlier reading \(c_7=1/288\) and the earlier normalisation
-\(V=3S^{1/2}P^{-11/24}\) together put \(P_0\) at
-\(5.8\cdot10^{23}\). The interpolant error of Step 5b is
+\(E\) of Lemma 5.2b (Appendix A.5).
+The interpolant error of Step 5b is
 \(O(P^{-5/6})\) with leading coefficient \(0.11\), and is not
 absorbed into a smaller constant. The constants are not asserted
 to be sharp.
@@ -2152,9 +2150,9 @@ The fifth term is Stage 5's dominant-mode sum over the Stage-2
 families, \(3R_0^{1/2}P^{3/4}\log P\); it is the only term carrying the
 Stage-2 truncation, which is why Appendix A.6 weighs \(R_0\) against
 \(P^{23/24}\) and not against the other four. At \(R_0=P^{5/16}\) it is
-\(P^{29/32}\); at the \(R_0=P^{1/4}\) of an earlier draft it read
-\(P^{7/8}\) and was absorbed by the third term, which is why it did not
-appear before.
+\(P^{29/32}\); at \(R_0=P^{1/4}\) it would read \(P^{7/8}\) and be
+absorbed by the third term, which is why the trade of Appendix A.6
+makes it visible.
 
 (ii) *(waves)* for all integer coefficients \((q_d)_{d\in\mathcal D}\)
 with \(|q_d|\le 4P^{1/24}\) and total frequency
@@ -2274,10 +2272,8 @@ P\ge1.45^{36}.
 The threshold is \(1.45^{36}=1.1\cdot10^{6}\), comfortably under
 \(P_0\). The exponent gap here is \(\tfrac18-\tfrac7{72}=\tfrac1{36}\),
 so whatever constant stands in front of \(P^{7/72}\) is paid at the
-thirty-sixth power; that is why the sharp \(t\) matters and why an
-earlier draft, which used \(16^{1/3}\) and checked the result against
-a standing \(P_0\) "of size \(10^{24}\)", silently carried a threshold
-of \(2.8\cdot10^{14}\). Thus every index in the Claim C sum satisfies
+thirty-sixth power; that is why the sharp \(t\) matters. Thus every
+index in the Claim C sum satisfies
 \(1\le h_3\le P^{1/8}\) for \(P\ge P_0\). (The averaging length
 itself obeys \(H_3\le x+1\le3P^{7/72}\) once
 \(1\le0.48P^{7/72}\), i.e. once \(P^{7/72}\ge3\), which holds
@@ -2478,8 +2474,7 @@ at truncation \(R_0=P^{5/16}\) (majorant cost
 Stage 5 below pays \(R_0^{1/2}\) for it and Step 5b(a) pays \(R_0\),
 while the fifth-letter window of Theorem 6.3 needs \(R_0\) *large*.
 Appendix A.6 solves the four competing sites; \(5/16\) is the value
-at which all four hold below \(P_0\), and \(1/4\) --- the exponent an
-earlier draft used --- is not. \(R_0\) is the truncation of *this*
+at which all four hold below \(P_0\), and \(1/4\) is not. \(R_0\) is the truncation of *this*
 expansion. It is reused as the Lemma 3.7 mode truncation \(J\) in
 Stage 3(s1) below, and again in Step 5b(a), where the modes counted
 are Stage 2's own and the identification \(J=R_0\) is deliberate; the
@@ -2589,9 +2584,7 @@ M\le9.1\,P^{-1/4}\le1
 \]
 using \(uh\le P^{1/2}\) for the last two. (The \(\nu^{3/4}\) curvature
 carries a factor \(G\asymp hP^{1/2}\), so \(M\) cannot be small on
-this band; an earlier draft printed the far weaker
-\(M\in[0.03,11]uhP^{-3/4}\), which cost a factor \(12\) in the second
-sum below and \(5\) in the third.) Then:
+this band.) Then:
 \[
 \le C_E\bigl(|I_w|M^{1/2}+M^{-1/2}+(P/M)^{1/3}\bigr)
 \quad\text{per window.}
@@ -2671,8 +2664,8 @@ margin against the Stage-4 curvature
   \]
   ratio to the main curvature
   \(\le48.9P^{-3/16}\), which is \(0.12\) at \(P_0\) against the
-  margin \(\tfrac14\).  Weakening it to \(49P^{-1/16}\), as an
-  earlier draft did, is true but useless --- a constant of \(49\) on
+  margin \(\tfrac14\).  Weakening it to \(49P^{-1/16}\) is true but
+  useless --- a constant of \(49\) on
   a gap of \(\tfrac1{16}\) does not clear \(\tfrac14\) until
   \(10^{36}\).  In the other direction \(48.9P^{-3/16}\) is itself
   not the sharpest form available, because merging
@@ -2696,9 +2689,9 @@ margin against the Stage-4 curvature
   \le8P^{1/2}+15\,khP^{5/8}\le23\,P^{1/24+1/8+5/8}
   =23\,P^{19/24}\), using \(h\le P^{1/8}\) and (C3); this sits inside
   the Step 6 budget \(P^{23/24}\) from \(P\ge23^{6}=1.5\cdot10^{8}\).
-  (It is *not* below \(P^{7/8}\), which an earlier draft printed:
-  the gap \(\tfrac78-\tfrac{19}{24}=\tfrac1{12}\) would make that
-  claim wait until \(23^{12}=2.2\cdot10^{16}\).)
+  (It is *not* below \(P^{7/8}\): the gap
+  \(\tfrac78-\tfrac{19}{24}=\tfrac1{12}\) would make that claim wait
+  until \(23^{12}=2.2\cdot10^{16}\).)
   (b) \(c_+\Delta\lfloor F\rfloor\): by the gap identity applied to
   the sequence \(F\circ X\),
   \(\Delta\lfloor F\rfloor=\lfloor\Delta F\rfloor+\kappa_F\).
@@ -3154,9 +3147,7 @@ linear in that product with coefficient
 \(\tfrac{135}{1024}\cdot4.3\;k(h_1{+}h_2)P^{1/2}P^{-13/8}
 =0.567\,k(h_1{+}h_2)P^{-9/8}\), printed as \(0.57\) --- not \(0.6\),
 which would push the sum in (i) past \(52.9\): this is the
-third displayed term. (An earlier draft carried \(8\) here ---
-fourteen times the true value --- and \(219\) in place of
-\(106\) above.)
+third displayed term.
 
 (iii) \(\lvert G_F-J_F\rvert<1\), and \(\Lambda\) replaces this
 fractional part by \(\tfrac12\) only in the already-expanded
@@ -5419,12 +5410,12 @@ is the point beyond which the proof's inequalities hold; it is not the
 point beyond which the resulting bound is better than the trivial one.
 That second threshold is computed in A.5.
 
-Nor was \(P_0\) always the threshold of the whole paper. In an earlier
-draft Stage 2 of Theorem 5.3 was run at \(R_0=P^{1/4}\), and with that
-truncation the depth-five Theorem 6.3 needed \(1.8\cdot10^{24}\), ten
-orders above \(P_0\). Section A.6 shows that \(R_0=P^{5/16}\) removes
-the gap at no cost that binds, and that is the value carried
-throughout. With it, every threshold in the paper is \(P_0\).
+Nor is \(P_0\) the threshold of the whole paper for every choice of
+\(R_0\). Run Stage 2 of Theorem 5.3 at \(R_0=P^{1/4}\) and the
+depth-five Theorem 6.3 needs \(1.8\cdot10^{24}\), ten orders above
+\(P_0\). Section A.6 shows that \(R_0=P^{5/16}\) removes the gap at no
+cost that binds, and that is the value carried throughout. With it,
+every threshold in the paper is \(P_0\).
 
 ### A.5 The two constants that carry the threshold
 

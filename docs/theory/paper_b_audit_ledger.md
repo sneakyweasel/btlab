@@ -896,3 +896,53 @@ with it. Checked numerically: the worst of 120 random instances of
 
 Regression: `test_paper_b_prefix_count.py`, 14 tests, including the two consistency
 checks above and the \(d^{-3/2}\) exponent.
+
+## The development log, moved out of the manuscript (referee item 14)
+
+Sections 3–6 carried a running account of what earlier drafts got
+wrong. It is useful, and it does not belong in the statement of a
+theorem. Four passages are recorded here and removed from the body;
+four kept their mathematics and lost the attribution; two stayed,
+because they warn rather than reminisce.
+
+**Claim C's constant, and the threshold it hid.** The Claim C index
+bound is paid at the thirty-sixth power, so the constant in front of
+\(P^{7/72}\) matters. A draft used \(16^{1/3}\) and checked the result
+against a standing \(P_0\) *"of size \(10^{24}\)"*, which silently
+carried a threshold of \(2.8\cdot10^{14}\). The manuscript keeps the
+reason — the thirty-sixth power — and drops the story.
+
+**The curvature range on the \(\nu^{3/4}\) band.** A draft printed
+\(M\in[0.03,11]\,uhP^{-3/4}\), far weaker than the truth, at a cost of
+a factor \(12\) in one sum and \(5\) in another. The current range is
+the one Lemma 3.8 is applied at; the weak one bought nothing.
+
+**Lemma 5.2b's third displayed term.** A draft carried \(8\) where the
+value is \(0.567\,k(h_1{+}h_2)P^{-9/8}\) — fourteen times the truth —
+and \(219\) in place of \(106\) in the term above it.
+
+**Where \(P_0\) used to sit.** The earlier reading \(c_7=1/288\)
+together with the earlier normalisation \(V=3S^{1/2}P^{-11/24}\) put
+\(P_0\) at \(5.9\cdot10^{23}\). The manuscript printed
+\(5.8\cdot10^{23}\); recomputing from the two superseded constants
+gives \(5.884\cdot10^{23}\), so the printed figure was a misrounding of
+the same species as the \(2.9/2.8\) slip in Section 4. Recorded here at
+the computed value. (This is not the \(c_7=1/288\) of Lemma 3.9, which
+is a live statement about what Step 5b uses and stays in the
+manuscript.)
+
+**Kept in the body, and why.** Two passages read as development log and
+are not. Stage 6's *"it must not be relaxed to a budget of the shape
+\(3kh_1h_2P^{-5/8}\)"* is a warning to anyone tempted to weaken the
+hypothesis, with the factor \(P/(2h_3)\) that would follow; it is the
+"hypotheses inherit strength" trap read in reverse, and a reader who
+loses it will re-derive the error. And *"the honest test is to maximise
+over it"* describes the right numerical test — the decoration carries a
+free linear term — rather than a past wrong one.
+
+**Reworded rather than moved.** Four passages kept their content and
+lost the draft: the \(P^{7/8}\) reading at \(R_0=P^{1/4}\) (now stated
+as the trade Appendix A.6 makes); \(1/4\) failing the four-site
+condition; the uselessness of \(49P^{-1/16}\); and the fact that
+\(23P^{19/24}\) is *not* below \(P^{7/8}\). In each the warning is the
+content and the attribution was not.
