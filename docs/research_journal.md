@@ -28791,3 +28791,61 @@ Best next question
 - Lemma 5.2(ii)'s bound is quoted as P^{23/24}; does it have the same
   property -- printed terms that never lead at the operating point?
 ```
+
+ ### The t-saving is load-bearing, and 1/6 of it is spent on nothing
+
+Part (ii) is a single term, so the previous entry's question does not
+apply to it directly. The transferable version does: is the
+`|t|^{-1/6}` decoration?
+
+No — it is the only thing holding Step 4 together. The inner weight sum
+over `q1 + q2 + q3 = t` is `≍ log²(2+t)/t`, measured at `17`–`25` times
+that shape for `t` up to 100, so the total wave-piece sum reads
+
+```text
+   with |t|^{-1/6}   sum log^2(2+t) / t^{7/6}   converges
+   with no saving    sum log^2(2+t) / t         diverges
+```
+
+Drop the `t`-dependence and Step 4 fails outright.
+
+**But the `1/6` is not consumed.** Any fixed `δ > 0` gives
+`sum log²(2+t) t^{-1-δ} < ∞`, so Step 4 goes through with
+`|t|^{-δ} P^{23/24+ε}` for any positive `δ`. A different route to the
+wave pieces need only produce *some* power saving in `t`, however
+small.
+
+The contrast with the other exponent is exact and worth having side by
+side. `P^{23/24}` is consumed in full — it is where
+`1/96 = (1/4)(1/24)` comes from, so every part of it reaches the final
+bound. `1/6` is spent on convergence and nothing else.
+
+That is the same pattern as the recurring one in this paper, seen on a
+conclusion rather than a hypothesis: the exponent the method happened
+to give, not the exponent the argument needs.
+
+```text
+What was learned
+- a single-term bound can still be over-strong, in a coordinate other
+  than the main one; here the t-exponent is barely used and the
+  P-exponent is used entirely
+- knowing which is which widens the search: a replacement for
+  Lemma 5.2(ii) may be far weaker in t and still suffice
+Strongest theorem
+- Step 4 converges with |t|^{-delta} for any delta > 0 and diverges at
+  delta = 0; the 1/6 is not needed and the 23/24 is
+Strongest refutation
+- the reading that the t-saving might be removable: it is not
+Reusable machinery
+- five tests, including the weight-sum shape and the divergence at
+  delta = 0
+Branch status
+- PROMOTE
+Why
+  Two exponents in one bound, one fully spent and one barely touched,
+  and the paper distinguished neither. Saying which is which tells a
+  prover exactly how much of Lemma 5.2(ii) a replacement has to match.
+Best next question
+- the same question for Theorem 5.3's own conclusion: P^{1-1/96} feeds
+  Corollary 6.4 and Proposition 7.1. Is any of that exponent unspent?
+```

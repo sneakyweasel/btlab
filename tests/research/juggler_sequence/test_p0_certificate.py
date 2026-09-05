@@ -647,3 +647,52 @@ def test_paper_states_the_three_term_reading() -> None:
     assert "The absorption runs both ways" in text
     assert "it is a three-term bound" in text
     assert r"P^{15/16}" in text and r"P^{11/12}" in text
+
+
+# --- Lemma 5.2(ii): how much of the t-saving Step 4 actually spends ---
+
+
+def _weight_sum(t: int, Q: int = 400) -> float:
+    """sum over q1+q2+q3 = t of 1/(max(1,|q1|) max(1,|q2|) max(1,|q3|))."""
+    total = 0.0
+    for q1 in range(-Q, Q + 1):
+        a = 1.0 / max(1, abs(q1))
+        for q2 in range(-Q, Q + 1):
+            q3 = t - q1 - q2
+            if abs(q3) <= Q:
+                total += a / max(1, abs(q2)) / max(1, abs(q3))
+    return total
+
+
+def test_the_inner_weight_sum_is_log_squared_over_t() -> None:
+    """The shape the displayed bound assumes."""
+    for t in (2, 5, 20, 50):
+        w = _weight_sum(t)
+        scaled = w * t / math.log(2 + t) ** 2
+        assert 10 < scaled < 40, (t, scaled)
+
+
+def test_without_a_t_saving_the_wave_piece_sum_diverges() -> None:
+    """sum log^2(2+t)/t has no limit; the |t|^{-1/6} is load-bearing."""
+    partial = [sum(math.log(2 + t) ** 2 / t for t in range(1, n)) for n in (10**4, 10**6)]
+    assert partial[1] > partial[0] * 1.5           # still growing fast
+
+
+def test_any_positive_saving_suffices() -> None:
+    """1/6 is not consumed: delta > 0 is enough for convergence."""
+    for delta in (1 / 6, 0.05, 0.01):
+        tail = sum(math.log(2 + t) ** 2 / t ** (1 + delta) for t in range(10**6, 2 * 10**6))
+        head = sum(math.log(2 + t) ** 2 / t ** (1 + delta) for t in range(1, 10**6))
+        assert tail < head * 0.5, delta          # the tail is a shrinking fraction
+
+
+def test_the_P_exponent_is_consumed_in_full() -> None:
+    """1/96 = (1/4)(1/24) traces straight to P^{23/24}, unlike the t-exponent."""
+    assert Fr(1, 4) * (1 - Fr(23, 24)) == Fr(1, 96)
+
+
+def test_paper_states_what_the_t_saving_buys() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert r"The exponent \(\tfrac16\) is not consumed" in text
+    assert r"some* power saving in \(t\)" in text
+    assert "spent on convergence and nothing else" in text

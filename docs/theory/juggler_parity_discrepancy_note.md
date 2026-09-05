@@ -3589,6 +3589,19 @@ The weight sum is
 so the total wave-piece contribution is
 \(\ll P^{23/24+\varepsilon}\).
 
+The saving in \(t\) is what makes that converge, and it is the only
+thing that does: the inner weight sum is \(\asymp\log^2(2{+}t)/t\), so
+with no \(t\)-saving at all the total reads \(\sum\log^2(2{+}t)/t\),
+which diverges. The exponent \(\tfrac16\) is not consumed, though. Any
+fixed \(\delta>0\) in its place leaves
+\(\sum_t\log^2(2{+}t)\,t^{-1-\delta}<\infty\), so this step goes
+through with \(\lvert t\rvert^{-\delta}P^{23/24+\varepsilon}\) for any
+positive \(\delta\), and a different route to the wave pieces need only
+produce *some* power saving in \(t\), however small. The contrast with
+the other exponent is exact: \(P^{23/24}\) is consumed in full, being
+where \(\tfrac1{96}=\tfrac14\cdot\tfrac1{24}\) comes from, while
+\(\tfrac16\) is spent on convergence and nothing else.
+
 If \(t=0\): the wave content collapses exactly to differenced
 waves — e.g. \(q(Y(n{+}d_2)-Y(n))=q\,W'(n)\) — i.e. to
 (D1)-type resonant decorations of the remaining piece; these are
