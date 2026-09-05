@@ -740,6 +740,39 @@ i.e. for \(\log x\ll N_0\log N_0\), which covers every \(x\) below
 closure numerics of 5.1 show what \(OE\) adds. The asymptotic
 statement is the logarithmic one.
 
+*A third case: a cycle basin.* The two cases above are a single point
+and an interval. The seed set of a Lachesis basin is neither — it is
+the cycle, a finite set of \(L\ge 780239\) states — and the lacunarity
+objection does not apply to it. Write \(c(x)=\log_2\log x\). A seed
+\(m\) contributes an \(E\)-tree burst at each scale \(m^{2^k}\), that
+is at clock position \(c(m)+k\) (exact: the even chain forces
+\(m^{2^k}\le n<(m+1)^{2^k}\), Lean `even_chain_mem_burst`), of natural
+density \(\approx 1/m\) there. So the scales a backward-closed class
+covers are \(\{c(m)\bmod 1\}\) over its seeds. For a cycle those
+positions are \(c(n)+u_t\) with \(u_t\) the exponent walk, and
+\(u_t\equiv o_t\log_2(3/2)\pmod 1\) because \(t\) and \(o_t\) are
+integers (Lean `fract_walk_eq_fract_rotation`): an orbit of the
+rotation by \(\log_2(3/2)\), of length the odd count, with largest gap
+\(5.10\cdot 10^{-6}\) at \(L=780239\) against a clock defect
+\(\le 1.72\cdot 10^{-4}\) and a dyadic block of clock width
+\(\approx 1/\log y\). Conjecturally, therefore, a cycle basin carries
+natural density \(\gtrsim 1/n\) on *every* dyadic block with
+\(n^{2^{1+u_{\max}}}\le y<10^{85142}\), \(n\) the cycle minimum and
+\(u_{\max}\ge 1\) its walk height; bursts begin at \(n^2\) and nothing
+below it, and the upper limit is where the rotation gaps exceed the
+block width. The \(OE\) production translates the same clock by
+\(\log_2(4/3)\) and costs a factor \(\approx 1/3\) in block density, so
+it adds scales rather than mass and cannot improve the bound at any
+single block: Corollary 4.3's amplification is in log-count, not in
+per-block density, and its implied constant carries the seed's
+\(1/n\). Recorded, with the measurements and the Lean layer, at
+[juggler_lachesis_loglog_clock](../problems/juggler_lachesis_loglog_clock.md)
+(`J-lachesis-basin-every-block`, CONJECTURE). It is not proved here,
+it is not used anywhere in §§1–4, and it excludes nothing: like
+Corollary 4.4 it says only that a cycle, if one exists, would be
+common — and now, on that range, common at every scale rather than
+infinitely often.
+
 **5.4 What is excluded.** Nothing. Corollary 4.4 does not say that a
 cycle or a divergent orbit is impossible; it says that either would
 be common. Corollary 4.5 does not prove the conjecture; it converts

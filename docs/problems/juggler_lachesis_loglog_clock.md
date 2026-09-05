@@ -89,7 +89,11 @@ strictly worse than the floor campaign already parked at
 - Contagion note Theorem 4.2 / Corollary 4.3 / §5.3 (`extended`): the
   log-count bound and its "infinitely many blocks" natural-density
   corollary; §5.3's single-seed lacunarity is the objection this branch
-  routes around for Lachesis.
+  routes around for Lachesis. Consolidated 5 Sep 2026: §5.3 now carries
+  the third seed-set case, labelled CONJECTURE there. Paper C is
+  untouched (a conjecture does not belong in a manuscript under
+  review), and Paper A is untouched (AGENTS.md forbids editing it from
+  a Phase-0 branch).
 - Paper A §5 Ostrowski / rotation layer (`reproduced`): the walk as a
   rotation is that machinery read mod 1.
 - Flight note §2 height law and §6 return quantization (`reproduced`):

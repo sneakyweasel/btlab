@@ -26101,3 +26101,46 @@ Branch status
 Best next question
 - none from this branch
 ```
+
+## Contagion note §5.3 gains its third case (consolidation, not a finding)
+
+§5.3 discussed two seed sets — a single point, whose \(E\)-tree is
+lacunary at the dyadic scale and which is the reason pointwise natural
+density fails, and the interval \([1,N_0]\), whose tree is uniform. A
+Lachesis basin is seeded by neither: its seeds are the \(L\ge 780239\)
+cycle states. The paragraph now records that case, with the exact half
+(the rotation identity and the burst interval, both Lean), the
+conjectural half (every-block density \(\gtrsim 1/n\) on
+\(n^{2^{1+u_{\max}}}\le y<10^{85142}\)), the \(OE\) translation by
+\(\log_2(4/3)\) at a factor \(1/3\), and the reading it forces on
+Corollary 4.3 — the amplification is in log-count, and the implied
+constant carries the seed's \(1/n\).
+
+Nothing is claimed beyond what the branch already carries, nothing in
+§§1–4 uses it, and it excludes nothing. Paper C is untouched: a
+conjecture does not belong in a manuscript under review, and the note
+is the source document, so it may be richer than the paper without
+drift.
+
+Paper A was *not* touched. The \(\sum_{x\in C}1/x\) link would give
+`cycleMin_finance_inv_sum` a second meaning — it prices the basin, not
+only the cycle — but AGENTS.md forbids editing Paper A from a Phase-0
+branch, and a parked child branch is exactly that. The pointer lives in
+the branch's ledger row instead. If that sentence is ever wanted in
+Paper A, it should be added from Paper A's own consolidation, not from
+here.
+
+```text
+What was learned
+- nothing new; this is the branch's one exportable paragraph, placed
+Strongest theorem
+- none new
+Strongest refutation
+- none
+Reusable machinery
+- none new
+Branch status
+- PARK. Consolidated; the branch is closed on its own terms
+Best next question
+- none from this branch
+```
