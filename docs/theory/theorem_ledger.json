@@ -6838,5 +6838,16 @@
    "tests/research/juggler_sequence/test_lachesis_loglog_clock.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-manuscript-crossquote-audit",
+  "tag": "OBSERVATION",
+  "statement": "Cross-quotation audit of the three manuscripts, 5 Sep 2026. Each paper's audit module checks that paper's own constants; a number one paper attributes to another is checked by nothing, which is how Paper A's contagion exponent stayed at the pre-sharpening 0.4050 / 0.595. Every sentence carrying both a reference marker and a numeric constant was enumerated - six in Paper A, four in Paper B, twelve in Paper C - and apart from the Paper A drift already fixed, all trace to their sources. In particular Paper B's frontier pair e > 0.508 with C >= 19, attributed to Paper C, is faithful: Paper C names 1 - lambda_ideal = 0.5073 as the rate threshold of Theorem 3 in the ideal-fiber case and uses C = 19 in the same cC < 1 argument (2^(1/19) = 1.037 per depth); the generous depth is also the correct choice for an a fortiori negative result, since Weyl differencing loses c >= 1 against the weakest requirement c < 1/19. Paper B's '0.4050 to 0.4922' is the sweep base plus the OOEEE term (block_sweep_plus_ooeee = 0.4923), not lambda**. Paper A drifted alone because its citation predated the OE-fiber sharpening 1/7 -> 1/3. Guard added: the three regimes the papers use - lambda** unconditional, lambda*** under Hypothesis L, and the depth-two ideal ceiling - each determine a pair (rate, depth), and every pair quoted anywhere satisfies least_C(rate) == depth, namely (0.5520, 20), (0.4608, 18) and (0.5073, 19). Open asymmetry, not closed: Papers A and B have audit modules and Paper C has none.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_manuscript_consistency.py"
+  ],
+  "related_conjectures": []
  }
 ]

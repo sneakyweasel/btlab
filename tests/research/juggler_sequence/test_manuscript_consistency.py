@@ -199,6 +199,32 @@ def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
     assert re.search(r"e>0\.595", text.replace(" ", "")) is None
 
 
+@pytest.mark.parametrize(
+    "regime,lam,rate,depth",
+    [
+        ("block_average_plus_third", 0.4480, 0.5520, 20),   # unconditional, lambda**
+        ("block_third_plus_ooeee", 0.5392, 0.4608, 18),     # with Hypothesis L, lambda***
+        ("depth_two_ideal", 0.4927, 0.5073, 19),            # the method's ideal ceiling
+    ],
+)
+def test_rate_and_depth_pairs_quoted_anywhere_are_the_computed_ones(
+    regime: str, lam: float, rate: float, depth: int
+) -> None:
+    """Any (rate, depth) pair a manuscript quotes must satisfy least_C(rate) == depth.
+
+    The three regimes are the only ones the papers use: lambda** unconditional, lambda***
+    under Hypothesis L, and the depth-two ideal ceiling.  Paper B's ``e>0.508, C>=19`` and
+    Paper C's ``0.4608, C>=18`` and ``0.5520, C=20`` all sit on this invariant; pairing a
+    rate from one regime with a depth from another would break it."""
+
+    from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
+    from research.juggler_sequence.tao_reduction import least_C
+
+    assert abs(lambda_root(RECURSIONS[regime]) - lam) < 1e-3
+    assert abs((1.0 - lam) - rate) < 1e-3
+    assert least_C(rate) == depth
+
+
 def test_paper_a_pins_the_seed_sum_from_both_sides() -> None:
     """Section 6.1 states Corollary 4.4c as the floor beside the trivial cap."""
 

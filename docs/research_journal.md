@@ -26352,3 +26352,78 @@ Best next question
 - do Papers B and C quote any other constant that no test ties to its
   source? The lambda drift survived precisely because nothing checked it
 ```
+
+## Cross-quotation audit: one drift, and it was the one already found
+
+The Paper A consolidation raised the structural question — the
+\(\lambda\) drift survived a full numerical audit because each paper's
+audit module checks that paper's *own* constants, and a number one
+paper attributes to another is checked by nothing. So: does any other
+cross-quotation drift?
+
+Enumerated every sentence in the three manuscripts that carries both a
+reference marker and a numeric constant. Six in Paper A, four in Paper
+B, twelve in Paper C. Verdict: **no second drift.** All of them trace.
+
+One looked wrong and was not. Paper B's §7 "what no depth can buy"
+attributes to [24] the frontier pair \(e>0.508\), \(C\ge19\), and
+neither number is Paper C's unconditional threshold
+\((0.5520,20)\) nor its conditional one \((0.4608,18)\). But Paper C
+line 248 names \(1-\lambda_{\rm ideal}=0.5073\) as the rate threshold of
+Theorem 3 in the ideal-fiber case, and Paper C's own depth-uniformity
+discussion uses \(C=19\) in exactly the \(cC<1\) argument Paper B is
+echoing ("\(2^{1/19}=1.037\) per depth"). So the pair is faithful to
+its source. It is also the right choice rhetorically: for a *negative*
+result one wants the constant most generous to the opponent, and
+\(C=19\) gives the weakest requirement \(c<1/19\), which Weyl
+differencing (\(c\ge1\)) still fails. Using the unconditional \(C=20\)
+would only strengthen the requirement. I had this flagged as a
+misattribution before checking Paper C line 248; it is not one.
+
+Everything else checks: Paper A's \(13/16\) and \(7/8\) are Paper B's
+printed densities; \(N_0^{4/3}=2.5\cdot10^{11}\),
+\(N_0^{2}=1.2\cdot10^{17}\), \(N_0^{3/2}=6.5\cdot10^{12}\) evaluate
+correctly at the certified floor; Paper B's "\(0.4050\) to \(0.4922\)"
+is the sweep base plus the \(OOEEE\) term
+(`block_sweep_plus_ooeee` \(=0.4923\)), not \(\lambda^{**}\); Paper C's
+\(\lambda(r)\) table is already tied to code through
+`test_contagion_exponent_calculus.py`.
+
+Why Paper A alone drifted: its \(\lambda\) quotation predated the
+OE-fiber sharpening \(1/7\to1/3\), and Papers B and C were written or
+revised after it. A single stale citation, not a systemic problem.
+
+**The guard.** The three regimes the papers use — \(\lambda^{**}\)
+unconditional, \(\lambda^{***}\) under Hypothesis L, and the depth-two
+ideal ceiling — each determine a pair (rate, depth), and every pair
+quoted anywhere satisfies `least_C(rate) == depth`:
+\((0.5520,20)\), \((0.4608,18)\), \((0.5073,19)\). That is now a
+parametrized test. It ties the whole family to the code that computes
+it and would catch a rate borrowed from one regime beside a depth from
+another — the failure mode a cross-quotation invites.
+
+**One structural gap left, not closed.** Papers A and B have audit
+modules (`paper_a_audit`, `paper_b_audit`); Paper C has none. Its
+constants are checked only where another test happens to touch them.
+That is a real asymmetry and a bigger job than this pass; recorded, not
+opened.
+
+```text
+What was learned
+- no second cross-quotation drift: all 22 cross-citing constant sentences
+  in the three papers trace to their sources
+- Paper B's (0.508, 19) is faithful to Paper C's ideal-fiber pair, and the
+  generous depth is correct for an a fortiori negative result
+- Paper A drifted alone because its citation predated the OE sharpening
+- the three (rate, depth) regimes obey least_C(rate) == depth, now a test
+Strongest theorem
+- none; this is an audit
+Strongest refutation
+- my own suspicion that Paper B misattributed its frontier pair
+Reusable machinery
+- the pairing invariant test; the cross-quotation enumeration is four lines
+Branch status
+- consolidation complete; no manuscript edited in this pass
+Best next question
+- Paper C has no audit module while A and B do. Worth building one?
+```
