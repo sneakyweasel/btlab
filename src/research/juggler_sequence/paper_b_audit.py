@@ -285,6 +285,39 @@ def lemma_3_9_l1_norm() -> float:
     return float(max(sum(abs(inv[i][j]) for i in range(3)) for j in range(3)))
 
 
+EXPONENT_SET_E = (Fr(3, 4), Fr(5, 4), Fr(11, 8), Fr(3, 2), Fr(15, 8))
+
+
+def c6_of_pair(alpha: Fr, beta: Fr, s_max: Fr | None = None) -> Fr:
+    """``min_{s>0} max(|1-s|, |p - q s|)`` with ``p = alpha-2``, ``q = beta-2``.
+
+    Lemma 3.8's constant.  The two V-shapes have distinct zeros, so the minimum sits at a crossing
+    and is rational; the candidates are the four sign-resolved crossings plus the two zeros.
+    Passing ``s_max = 1`` restricts to the normalisation the proof permits (relabel so that the
+    larger curvature is ``A``, whence ``s = -B/A`` has ``|s| <= 1``) -- which raises every ordering
+    with ``alpha < beta`` and none with ``alpha > beta``, so it leaves the uniform constant at 1/14.
+    """
+    p, q = alpha - 2, beta - 2
+    cands = set()
+    for e1 in (1, -1):
+        for e2 in (1, -1):
+            denom, numer = e2 * q - e1, e2 * p - e1
+            if denom != 0:
+                s = Fr(numer) / denom
+                if s > 0 and (s_max is None or s <= s_max):
+                    cands.add(s)
+    for s in (Fr(1), (p / q) if q else None, s_max):
+        if s is not None and s > 0 and (s_max is None or s <= s_max):
+            cands.add(s)
+    return min(max(abs(1 - s), abs(p - q * s)) for s in cands)
+
+
+def c6_table(s_max: Fr | None = None) -> dict[tuple[Fr, Fr], Fr]:
+    """``c_6`` over the twenty ordered pairs of ``E``, as Lemma 3.8 tabulates it."""
+    return {(a, b): c6_of_pair(a, b, s_max)
+            for a in EXPONENT_SET_E for b in EXPONENT_SET_E if a != b}
+
+
 def identity_census(seed: int = 20260903, samples_per_range: int = 60) -> dict[str, Any]:
     rng = random.Random(seed)
     ranges = [(10**4, 2 * 10**4), (10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10), (10**12, 2 * 10**12), (10**14, 2 * 10**14)]

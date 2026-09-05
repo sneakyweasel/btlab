@@ -698,6 +698,17 @@ is rational. Over the twenty ordered pairs of \(E\):
 | \(\tfrac32\) | \(\tfrac13\) | \(\tfrac17\) | \(\tfrac1{13}\) | — | \(\tfrac13\) |
 | \(\tfrac{15}8\) | \(\tfrac12\) | \(\tfrac5{14}\) | \(\tfrac4{13}\) | \(\tfrac14\) | — |
 
+The table is not symmetric, and one might hope to exploit that: the
+proof is free to relabel so that the larger curvature is \(A\), which
+makes \(s=-B/A\) satisfy \(\lvert s\rvert\le1\) and restricts the
+minimisation to \(s\in(0,1]\). That restriction does raise ten of the
+twenty entries --- exactly those with \(\alpha<\beta\), whose crossings
+lie beyond \(1\) --- but every entry with \(\alpha>\beta\) already has
+its crossing inside, and the minimum \(\tfrac1{14}\) is attained at
+\((\tfrac{11}8,\tfrac54)\), which is one of those. So the normalisation
+is available and buys nothing: \(c_6(E)=\tfrac1{14}\) and
+\(\rho_0(E)\le\tfrac1{112}\) either way.
+
 The minimum is \(c_6(E)=\tfrac1{14}\), attained only at
 \((\alpha,\beta)=(\tfrac{11}8,\tfrac54)\) — there \(p=-\tfrac58\),
 \(q=-\tfrac34\) and the crossing is at \(s=\tfrac{13}{14}\), where both

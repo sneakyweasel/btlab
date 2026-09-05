@@ -2,9 +2,17 @@
 
 from __future__ import annotations
 
+import io
 import random
+from fractions import Fraction as Fr
+from pathlib import Path
+
+import pytest
 
 from research.juggler_sequence import paper_b_audit as A
+
+ROOT = Path(__file__).resolve().parents[3]
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
 
 
 def test_exact_identities_hold_on_a_small_census() -> None:
@@ -70,3 +78,52 @@ def test_frozen_total_phase_matches_81_over_512_and_1095_over_1024() -> None:
     assert r["B_near_27_over_32"], r
     assert r["zero_near_one"], r
     assert r["moving_8_27_is_wrong_model"], r
+
+
+# --- Lemma 3.8's c_6 table: all twenty entries, not just the minimum ---
+
+
+C6_PRINTED = {
+    (Fr(3, 4), Fr(5, 4)): Fr(2, 7),   (Fr(3, 4), Fr(11, 8)): Fr(5, 13),
+    (Fr(3, 4), Fr(3, 2)): Fr(1, 2),   (Fr(3, 4), Fr(15, 8)): Fr(1),
+    (Fr(5, 4), Fr(3, 4)): Fr(2, 9),   (Fr(5, 4), Fr(11, 8)): Fr(1, 13),
+    (Fr(5, 4), Fr(3, 2)): Fr(1, 6),   (Fr(5, 4), Fr(15, 8)): Fr(5, 9),
+    (Fr(11, 8), Fr(3, 4)): Fr(5, 18), (Fr(11, 8), Fr(5, 4)): Fr(1, 14),
+    (Fr(11, 8), Fr(3, 2)): Fr(1, 12), (Fr(11, 8), Fr(15, 8)): Fr(4, 9),
+    (Fr(3, 2), Fr(3, 4)): Fr(1, 3),   (Fr(3, 2), Fr(5, 4)): Fr(1, 7),
+    (Fr(3, 2), Fr(11, 8)): Fr(1, 13), (Fr(3, 2), Fr(15, 8)): Fr(1, 3),
+    (Fr(15, 8), Fr(3, 4)): Fr(1, 2),  (Fr(15, 8), Fr(5, 4)): Fr(5, 14),
+    (Fr(15, 8), Fr(11, 8)): Fr(4, 13), (Fr(15, 8), Fr(3, 2)): Fr(1, 4),
+}
+
+
+@pytest.mark.parametrize("pair,printed", sorted(C6_PRINTED.items()))
+def test_every_c6_entry_matches_the_definition(pair, printed) -> None:
+    """min_{s>0} max(|1-s|, |p - q s|), computed exactly."""
+    assert A.c6_of_pair(*pair) == printed, pair
+
+
+def test_the_table_has_twenty_entries_and_its_minimum_is_one_fourteenth() -> None:
+    table = A.c6_table()
+    assert len(table) == 20 and table == C6_PRINTED
+    assert min(table.values()) == Fr(1, 14)
+    assert [k for k, v in table.items() if v == Fr(1, 14)] == [(Fr(11, 8), Fr(5, 4))]
+    assert Fr(1, 14) / 8 == Fr(1, 112)                       # rho_0(E)
+
+
+def test_the_s_normalisation_raises_only_the_alpha_less_than_beta_orderings() -> None:
+    """Relabelling gives |s| <= 1; it helps exactly where the crossing was beyond 1."""
+    free, restricted = A.c6_table(), A.c6_table(Fr(1))
+    raised = {k for k in free if restricted[k] != free[k]}
+    assert raised == {(a, b) for a, b in free if a < b}
+    assert len(raised) == 10
+    # and the binding entry is not among them, so the uniform constant is unchanged
+    assert (Fr(11, 8), Fr(5, 4)) not in raised
+    assert min(restricted.values()) == Fr(1, 14)
+
+
+def test_paper_records_that_the_normalisation_buys_nothing() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "The table is not symmetric" in text
+    assert "buys nothing" in text
+    assert r"\rho_0(E)\le\tfrac1{112}\) either way" in text

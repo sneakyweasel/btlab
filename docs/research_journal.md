@@ -28121,3 +28121,58 @@ Best next question
 - the referee's list is exhausted. What would a second referee, reading
   only Sections 3-4, find that the first did not?
 ```
+
+ ### Lemma 3.8's twenty constants, and an improvement that isn't one
+
+A second-referee pass at Section 3. The `c_6` table has twenty printed
+rationals; the audit module checked one of them.
+
+All twenty recompute from the definition
+`c_6 = min_{s>0} max(|1-s|, |p - q s|)`, and the bolded minimum `1/14`
+at `(11/8, 5/4)` is the minimum over the table. No discrepancy. The
+falsifier did not fire.
+
+The second probe was the interesting one. The table is not symmetric,
+and the proof is free to relabel so the larger curvature is `A` —
+making `s = -B/A` satisfy `|s| <= 1` and restricting the minimisation
+to `s ∈ (0,1]`. That looked like a free sharpening of `c_6`, and hence
+of `ρ_0(E) = c_6/8`.
+
+```text
+   restriction raises   10 of 20 entries -- exactly those with α < β
+   leaves unchanged     10 -- exactly those with α > β
+   minimum before       1/14 at (11/8, 5/4)
+   minimum after        1/14 at (11/8, 5/4)
+```
+
+It raises exactly the orderings whose crossing lay beyond 1, and the
+binding entry is not among them: `(11/8, 5/4)` has `α > β` and its
+crossing at `s = 13/14` was already inside. So the normalisation is
+available and buys nothing. The manuscript now says so, which spares
+the next reader the same computation.
+
+```text
+What was learned
+- nineteen of twenty printed rationals had never been recomputed; all
+  are right
+- the asymmetry of the table is real but not exploitable: the binding
+  ordering is already the restricted one
+Strongest theorem
+- c_6(E) = 1/14 and rho_0(E) <= 1/112 hold whether or not the
+  minimisation is restricted to s in (0,1]
+Strongest refutation
+- my own hypothesis that the s-normalisation would raise the uniform
+  constant
+Reusable machinery
+- c6_of_pair / c6_table, with all twenty entries pinned instead of one
+Branch status
+- PARK
+Why
+  Two checks on Section 3's largest block of computed claims, both
+  negative: the table is correct and the obvious sharpening is empty.
+  That is worth recording precisely because it forecloses a natural
+  referee suggestion, but there is nothing further to pull here.
+Best next question
+- Lemma 3.8's other constant is c_8(E), which the proof introduces and
+  never tabulates. Is it also computable in closed form over E?
+```
