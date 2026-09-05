@@ -26979,3 +26979,19 @@ Best next question
 - Theorem 5.3 closes OOO*'s (15/8, 9/8). Does it apply verbatim to
   OOEOOEE's (33/32, 45/32), or does the lower pair need its own kernel?
 ```
+
+## The sandwich needed one option, not two
+
+Same scrutiny applied to the two scoped options I had put on the
+`norm_num` sandwich proofs. Removing `maxRecDepth 4000000 in` from both
+and keeping only `exponentiation.threshold`: the file compiles and the
+barrel builds. `maxRecDepth` is not consulted on that route either.
+
+The exponent threshold *is* required — it gates whether the power is
+evaluated at all rather than merely warning, which is why the first
+attempt at these proofs reported the goal unsolved rather than slow. The
+docstring now says which option does what, instead of "the thresholds".
+
+Every `maxRecDepth` setting remaining in the Juggler layer is one the
+laboratory chose: `2048` seven times, `100000` three, `512` twice,
+`1024` and `4096` once each. None of mine survive.
