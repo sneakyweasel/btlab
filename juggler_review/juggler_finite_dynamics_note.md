@@ -554,6 +554,55 @@ The commit is the repository state that produced the finance
 tables. A later editorial commit of this text does not change
 those hashes.
 
+### 1.3 Notation
+
+Symbols that recur across sections are listed here with the one meaning
+each carries. Three letters were doing double duty in earlier drafts and
+have been separated: the constant of Lemma 3.3 is now \(G_a\) rather
+than \(e_a\), which freed \(e\) for the even count alone; the per-step
+exponent is \(h\) rather than \(e\), which also keeps it clear of
+\(\varepsilon_i\) in the same formula; and the backward exponent of a
+suffix is the named \(T(u)\) rather than a pair \(2^{s}/3^{l}\), which
+freed \(s\) for the digit sum of Section 5.
+
+| symbol | meaning | first used |
+|---|---|---|
+| \(J\) | the Juggler map | §1 |
+| \(n\) | a start; on a cycle, its minimum | throughout |
+| \(N_0\) | a verified descent floor: every start \(\le N_0\) reaches \(1\) | §1 |
+| \(x_k\) | the state after \(k\) steps | §4 |
+| \(w\), \(v\), \(u\) | an itinerary word, a prefix of it, a suffix of it | §1, §3.9 |
+| \(O\), \(E\) | the odd and the even letter | §1 |
+| \(L\) | the length of \(w\); on a cycle, the period | §3 |
+| \(o\), \(e\) | the odd and even letter counts, \(e=L-o\) | §3 |
+| \(a\), \(b\), \(c\) | the odd-run lengths of the canonical form \(O^aEO^bEO^cE\) | §3 |
+| \(a_i\), \(a_k\) | the \(i\)-th odd run; the odd count after \(k\) steps | §4, §5 |
+| \(r\) | the length of a trailing even run | §3.9 |
+| \(h\) | the per-step exponent: \(1\) on an even letter, \(3\) on an odd one | §4 |
+| \(d\) | the depth of an itinerary | §6 only |
+| \(G_a\) | \(2(3^a-2^a)\), the exponent of \(2\) in Lemma 3.3's constant | §3 |
+| \(X_a\), \(Y_a\) | \(3(3^a-2^a)\) and \(2\cdot3^a-3\cdot2^a\), the sharp envelope exponents | §3.9 |
+| \(B(u)\) | the backward envelope of a suffix (Lemma 3.25) | §3.9 |
+| \(T(u)\) | \(2^{|u|}/3^{\#O(u)}\), the backward exponent of a suffix | §3.9 |
+| \(\theta\) | \(1-2^L/3^o\), the expansion margin | §1, §4 |
+| \(\Lambda\) | \(o\log3-L\log2=-\log(1-\theta)\) | §3, §5 |
+| \(\mu\) | \(\log_2(3/2)\) | §5 |
+| \(u_k\) | \((1+\mu)a_k-k\), the exponent walk | §5 |
+| \(w_k\) | \(2^{u_k}=3^{a_k}/2^k\), the walk weight | §5 |
+| \(n'\) | \(n\,e^{-D}\), the reduced base, with \(D\) the deficit of §5.1 | §5 |
+| \(C_L\), \(C_*\) | the charge per letter of a word, and its limit | §5 |
+| \(g\) | the charge weight \(1/(e^{W\nu}W\nu)\) | §5 |
+| \(p_j/q_j\) | the continued-fraction convergents of \(\log_23\) | §5 |
+| \(b_j\), \(s(L)\) | the Ostrowski digits of \(L=\sum_jb_jq_j\), and their sum | §5 |
+| \(n_{\max}(L)\) | the largest cycle minimum the kill criterion admits at length \(L\) | §1, §5 |
+
+Two letters are used in more than one way, deliberately and locally.
+\(e\) is also Euler's number in the numerical estimates of §3 and §5,
+where it appears only as \(e^{x}\) and never with a subscript. And
+\(s\) is an integration variable inside the two displays of §5.4 that
+evaluate \(C_*\); the digit sum always carries its argument, \(s(L)\).
+No other symbol in the paper is bound twice.
+
 ## 2. Envelope
 
 Let \(\mathcal B=\{E,O\}\). A finite itinerary \(w\in\mathcal B^*\) is
@@ -862,7 +911,7 @@ Theorems 3.6 and 3.8 are supporting period statements. The
 structural claim is the even-count exclusion of Theorem 3.22.
 The same one-step preimages organise leftover itineraries by even-count. Write
 \[
-e_a=2\bigl(3^a-2^a\bigr)
+G_a=2\bigl(3^a-2^a\bigr)
 \]
 for \(a\ge 0\).
 
@@ -882,7 +931,7 @@ suffix \(E^r\) after the first of those even letters gives
 **Lemma 3.10 (odd-run lower envelope).**
 If \(n\ge 1\) realizes \(O^a\), then
 \[
-n^{3^a}\le 2^{e_a}\,J^a(n)^{2^a}.
+n^{3^a}\le 2^{G_a}\,J^a(n)^{2^a}.
 \]
 
 *Proof.* Lemma 3.3 supplies a multiplicative constant \(C_v\) along
@@ -891,9 +940,9 @@ any realized itinerary, with \(C_\varepsilon=1\),
 \(C\mapsto C^3\cdot 4^{2^j}\) on an odd letter, at step \(j\). On
 the pure odd word \(O^a\) every letter is odd, so
 \(C_{O^{a+1}}=C_{O^a}^3\cdot 4^{2^a}\). Writing
-\(C_{O^a}=2^{e_a}\) with \(e_0=0\) yields the recurrence
-\(e_{a+1}=3e_a+2^{a+1}\), because \(4^{2^a}=2^{2^{a+1}}\). The closed
-form \(e_a=2(3^a-2^a)\) satisfies the recurrence and the initial
+\(C_{O^a}=2^{G_a}\) with \(G_0=0\) yields the recurrence
+\(G_{a+1}=3G_a+2^{a+1}\), because \(4^{2^a}=2^{2^{a+1}}\). The closed
+form \(G_a=2(3^a-2^a)\) satisfies the recurrence and the initial
 value. \(\square\)
 
 **Lemma 3.11 (seven-odd window).**
@@ -1076,10 +1125,10 @@ If \(n\ge 1\) realizes \(O^a\), then
 J^a(n)\ \ge\ 4\left(\frac n4\right)^{(3/2)^a}.
 \]
 
-*Proof.* Lemma 3.10 is \(n^{3^a}\le 2^{e_a}J^a(n)^{2^a}\) with
-\(e_a=2(3^a-2^a)\). Taking \(2^a\)-th roots gives
-\(J^a(n)\ge n^{(3/2)^a}\,2^{-e_a/2^a}\), and
-\(e_a/2^a=2\bigl((3/2)^a-1\bigr)\), so the factor is
+*Proof.* Lemma 3.10 is \(n^{3^a}\le 2^{G_a}J^a(n)^{2^a}\) with
+\(G_a=2(3^a-2^a)\). Taking \(2^a\)-th roots gives
+\(J^a(n)\ge n^{(3/2)^a}\,2^{-G_a/2^a}\), and
+\(G_a/2^a=2\bigl((3/2)^a-1\bigr)\), so the factor is
 \(4^{\,1-(3/2)^a}\). \(\square\)
 
 One constant and one exponent. The constant \(4\) is the whole cost of
@@ -1108,10 +1157,15 @@ so \(x\) is below the least integer whose cube reaches \(B(u)^2\).
 \(\square\)
 
 Lemma 3.9 is the case \(u=E^r\), where no cube root is taken and
-\(B(E^r)=(n+1)^{2^r}\) exactly. In general, writing \(s=|u|\) and
-\(l\) for the number of odd letters in \(u\),
+\(B(E^r)=(n+1)^{2^r}\) exactly. In general, write
 \[
-B(u)\ \ge\ (n+1)^{2^{s}/3^{l}},
+T(u)\ =\ \frac{2^{|u|}}{3^{\#O(u)}}
+\]
+for the *backward exponent* of a suffix --- one factor \(2\) per even
+letter, one factor \(\tfrac23\) per odd letter, read from the return
+backwards. Then
+\[
+B(u)\ \ge\ (n+1)^{T(u)},
 \]
 with the excess coming only from rounding cube roots up. That excess
 is additive in the state and therefore invisible in the exponent at
@@ -1134,18 +1188,18 @@ The itinerary is minimum-based, so \(m\ge n\ge 4\), and \(m\) realizes
 entering \(u\), which Lemma 3.25 puts strictly below \(B(u)\).
 \(\square\)
 
-Read at leading order, with \(B(u)\approx(n+1)^{2^s/3^l}\), the law says
+Read at leading order, with \(B(u)\approx(n+1)^{T(u)}\), the law says
 \[
-\left(\tfrac32\right)^{a}\le \frac{2^{s}}{3^{l}},
+\left(\tfrac32\right)^{a}\le T(u),
 \qquad\text{equivalently}\qquad
-3^{\,a+l}\le 2^{\,a+s}.
+3^{\,\#O(O^au)}\le 2^{\,|O^au|}.
 \]
-The exponents \(a+l\) and \(a+s\) are the odd count and the length of
-the tail \(O^au\), so the law is the exact mirror of Theorem 3.2(i):
+That is, the tail \(O^au\) is not formally expanding, so the law is the
+exact mirror of Theorem 3.2(i):
 *the whole word must be formally expanding, and no tail of it beginning
 with an odd letter may be.* The two are not in conflict because the
 leading-order reading is only valid with room to spare. Writing
-\(\theta=1-2^{a+s}/3^{a+l}\) for the margin of the tail, the law fires
+\(\theta=1-2^{|O^au|}/3^{\#O(O^au)}\) for the margin of the tail, the law fires
 once
 \[
 \theta\ >\ \frac{\log 4}{\log n},
@@ -1159,11 +1213,11 @@ Theorem 4.4 gains the factor \(n\log n\) that Theorem 3.26 does not have.
 
 **Corollary 3.27 (the eleven exclusions are one table).**
 Each row below is Theorem 3.26 for one suffix. The column *least
-\(a\)* is the least odd-run length with \((3/2)^a>2^{s}/3^{l}\); the
+\(a\)* is the least odd-run length with \((3/2)^a>T(u)\); the
 column \(n_u\) is the least cycle minimum at which the law fires,
 computed against the exact envelope \(B(u)\) of Lemma 3.25.
 
-| suffix \(u\) | \(2^{s}/3^{l}\) | least \(a\) | \(n_u\) | printed in |
+| suffix \(u\) | \(T(u)\) | least \(a\) | \(n_u\) | printed in |
 |---|---:|---:|---:|---|
 | \(E\) | \(2\) | \(2\) | \(1032\) | Lemma 3.4(v), at \(a\ge3\) |
 | \(EE\) | \(4\) | \(4\) | \(205\) | Theorems 3.12, 3.21 |
@@ -1182,7 +1236,7 @@ is a strengthening: for \(u=E\) the law excludes \(a\ge 2\), so the word
 prints a threshold on \(n\), the law's is smaller --- \(205\) against
 the \(256\) of Theorem 3.12, \(73\) against the \(128\) of Theorem 3.14,
 \(45\) against the \(256\) of Theorem 3.16 --- because the backward
-exponent is carried exactly as \(2^{s}/3^{l}\) rather than rounded up to
+exponent is carried exactly as \(T(u)\) rather than rounded up to
 the next power of two. Every threshold in the table is below the
 certified descent floor by four orders of magnitude or more, so above
 that floor Theorem 3.22 is Theorem 3.26 evaluated ten times.
@@ -1244,8 +1298,8 @@ n^{X_a}\ <\ (n+1)^{Y_a}\,B(u)^{2^a}.
 bounds \(J^a(m)+1\le B(u)\) from above. \(\square\)
 
 Since \(X_a-Y_a=3^a\), the leading-order reading is unchanged: with
-\(B(u)\approx(n+1)^{2^s/3^l}\) the criterion is again the crossing
-\((3/2)^a>2^{s}/3^{l}\). What changes is the price. Theorem 3.26 has to
+\(B(u)\approx(n+1)^{T(u)}\) the criterion is again the crossing
+\((3/2)^a>T(u)\). What changes is the price. Theorem 3.26 has to
 buy the crossing against a factor \(4^{(3/2)^a}\), which costs a margin
 \(\log4/\log n\); Theorem 3.29 buys it against \((1+1/n)^{Y_a}\), which
 costs a margin of order \(1/(n\log n)\). The crude form needs a floor
@@ -1271,7 +1325,7 @@ cycle has period at least twenty-two.
 \(e\le 7\) even letters and canonical run form
 \(O^{a_0}E\cdots O^{a_{e-1}}E\). Apply Theorem 3.29 at run \(i\). Its
 suffix has \(e-i\) even letters and \(\sum_{j>i}a_j\) odd ones, so
-\(2^{s}/3^{l}\le 2^{\,e-i}\), with equality exactly when the later runs
+\(T(u)\le 2^{\,e-i}\), with equality exactly when the later runs
 are empty; and the criterion is monotone in \(B(u)\), so that empty case
 is the worst. Hence
 \[
@@ -1296,7 +1350,7 @@ without any descent input. Numerically the gain is of no consequence
 floor at all, and this is how far the same two envelopes carry it.
 
 **Remark 3.32 (where the law stops, and why Section 4 exists).**
-The reading \(B(u)\approx(n+1)^{2^{s}/3^{l}}\) is good only while the
+The reading \(B(u)\approx(n+1)^{T(u)}\) is good only while the
 backward exponent stays comfortably above \(1\), because the envelope of
 Lemma 3.25 rounds a cube root up at every odd letter. For short
 suffixes that rounding is invisible: over the ten suffixes of
@@ -1527,9 +1581,9 @@ Section 5; both denote the natural logarithm. The unique one-step fibres of
 Section 3 give, for every state \(x\ge 1\) with image
 \(y=J(x)\),
 \[
-y^2\le x^e<(y+1)^2,
+y^2\le x^h<(y+1)^2,
 \qquad
-e=\begin{cases}1,&x\text{ even},\\3,&x\text{ odd}.\end{cases}
+h=\begin{cases}1,&x\text{ even},\\3,&x\text{ odd}.\end{cases}
 \]
 
 **Lemma 4.1 (dyadic one-step-preimage logarithm).**
@@ -1696,11 +1750,11 @@ The computational table of Theorem 4.6 uses a weaker per-step
 bound, valid on every cycle because every start below \(12\)
 reaches \(1\) (so every cycle state is at least \(12\)). For a
 state \(x\) with image \(y=J(x)\ge 12\), the relative defect
-\(\delta=(x^e-y^2)/x^e\) satisfies \(\delta\le 2/y\le 1/6\).
+\(\delta=(x^h-y^2)/x^h\) satisfies \(\delta\le 2/y\le 1/6\).
 Writing \(\varepsilon=-\tfrac12\log(1-\delta)\) and using
 \(-\log(1-\delta)\le\tfrac65\delta\) on \([0,1/6]\) gives
 \(\varepsilon\le(6/5)/y\). Unrolling
-\(t_{i+1}=(e_i/2)\,t_i-\varepsilon_i\) around the cycle then yields
+\(t_{i+1}=(h_i/2)\,t_i-\varepsilon_i\) around the cycle then yields
 the conservative identity displayed in item 4 of the hierarchy.
 This chain is Lean end to end (`DefectFinance.lean`): the
 per-step losses in image form (`log_floorPower_even_ge_sub`,
@@ -2133,7 +2187,7 @@ floor and window lengths, \(D\le 4.6\cdot 10^{-3}\), so
 
 This consequence is itself Lean end to end
 (`WalkChargeMax.lean`): writing the charge through the rational
-weight, \(g=1/(e^{W\nu}W\nu)\) with \(W=2^u=3^a/2^k\) and
+weight, \(g=1/(e^{W\nu}W\nu)\) with \(W=2^{u_k}=3^{a_k}/2^k\) and
 \(\nu=\ln n'\), exponentiating the transport inequality gives
 \(\sum_k 1/(x_k\ln x_k)\le\sum_k g(w_k)\)
 (`cycleMin_defect_le_charge`), and the charge of the realized
@@ -3341,11 +3395,11 @@ for future work.
 
 For a single branch,
 \[
-x^e=J(x)^2+\rho(x),\qquad
-e=\begin{cases}1,&x\ \text{even},\\3,&x\ \text{odd},\end{cases}
+x^h=J(x)^2+\rho(x),\qquad
+h=\begin{cases}1,&x\ \text{even},\\3,&x\ \text{odd},\end{cases}
 \]
 with \(0\le\rho(x)<2J(x)+1\). Write
-\(\operatorname{gap}(a,\rho,e)=(a+\rho)^e-a^e\). The *global
+\(\operatorname{gap}(a,\rho,h)=(a+\rho)^h-a^h\). The *global
 defect* \(\Delta_w(n)\) is the terminal value of the resulting
 power-gap recurrence.
 
@@ -3576,16 +3630,16 @@ Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
 
 *Proof.* First, if \(n\ge 256\), then
 \[
-n^{3^{k-2}}>2^{e_{k-2}}(n+1)^{2^k}.
+n^{3^{k-2}}>2^{G_{k-2}}(n+1)^{2^k}.
 \]
 The case \(k=6\) is the tail inequality of Lemma 3.5. If the display
 holds at some \(k\ge 6\), cubing both sides produces
 \[
 n^{3^{k-1}}
 >
-2^{3e_{k-2}}(n+1)^{3\cdot 2^k}.
+2^{3G_{k-2}}(n+1)^{3\cdot 2^k}.
 \]
-The recurrence of Lemma 3.10 gives \(e_{k-1}=3e_{k-2}+2^{k-1}\), so
+The recurrence of Lemma 3.10 gives \(G_{k-1}=3G_{k-2}+2^{k-1}\), so
 the desired comparison at length \(k+1\) reduces to
 \(2^{2^{k-1}}<(n+1)^{2^k}\). Equivalently \(2<(n+1)^2\), which holds
 for every \(n\ge 256\).
@@ -3593,17 +3647,17 @@ for every \(n\ge 256\).
 Now suppose \(O^{k-2}EE\) is a cycle itinerary at such an \(n\). Write
 \(z=J^{k-2}(n)\). Lemma 3.9 with \(r=2\) gives \(z<(n+1)^4\).
 Lemma 3.10 on the prefix \(O^{k-2}\) gives
-\(n^{3^{k-2}}\le 2^{e_{k-2}}z^{2^{k-2}}\), hence
-\(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\), contradicting the tail.
+\(n^{3^{k-2}}\le 2^{G_{k-2}}z^{2^{k-2}}\), hence
+\(n^{3^{k-2}}<2^{G_{k-2}}(n+1)^{2^k}\), contradicting the tail.
 
 Finally suppose \(O^{k-3}EOE\) is a cycle itinerary at such an \(n\).
 Write \(z=J^{k-3}(n)\) and \(y=\lfloor\sqrt z\rfloor\), so
 \(z<(y+1)^2\). Lemma 3.10 on \(O^{k-3}\) and cubing produce
-\(n^{3^{k-2}}<2^{3e_{k-3}}(y+1)^{3\cdot 2^{k-2}}\). The last letters
+\(n^{3^{k-2}}<2^{3G_{k-3}}(y+1)^{3\cdot 2^{k-2}}\). The last letters
 \(OE\) give the odd-preimage bound \(y^3<(n+1)^4\). The comparison
 \((y+1)^3<2(n+1)^4\) of Lemma 3.5 applies at this scale. Raising it
-to the power \(2^{k-2}\) and using \(e_{k-2}=3e_{k-3}+2^{k-2}\)
-recovers again \(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\).
+to the power \(2^{k-2}\) and using \(G_{k-2}=3G_{k-3}+2^{k-2}\)
+recovers again \(n^{3^{k-2}}<2^{G_{k-2}}(n+1)^{2^k}\).
 
 For \(2\le n<256\), the cases \(k=6\) and \(k=7\) are Lemmas 3.5
 and 3.7. The remaining short words \(O^6EE\), \(O^5EOE\), and
@@ -3630,9 +3684,9 @@ the same algebra as in Theorem 3.12 produces
 \[
 y^{3^{\ell-2}}
 <
-2^{e_{\ell-2}}(n+1)^{2^\ell}
+2^{G_{\ell-2}}(n+1)^{2^\ell}
 \le
-2^{e_{\ell-2}}(y+1)^{2^\ell},
+2^{G_{\ell-2}}(y+1)^{2^\ell},
 \]
 where \(\ell\) is the remainder length. If \(y\ge 256\), the first
 paragraph of Theorem 3.12 supplies the opposite inequality at \(y\).
@@ -3653,10 +3707,10 @@ word at \(n\).
 
 *Proof.* Write \(z=J^a(n)\). Lemma 3.9 with \(r=3\) gives
 \(z<(n+1)^8\). Lemma 3.10 then yields
-\(n^{3^a}<2^{e_a}(n+1)^{2^{a+3}}\) on any such cycle itinerary. For
+\(n^{3^a}<2^{G_a}(n+1)^{2^{a+3}}\) on any such cycle itinerary. For
 \(n\ge 128\) the opposite comparison
 \[
-n^{3^a}>2^{e_a}(n+1)^{2^{a+3}}
+n^{3^a}>2^{G_a}(n+1)^{2^{a+3}}
 \]
 holds. The case \(a=6\) is
 \(n^{729}>2^{1330}(n+1)^{512}\). Indeed, for \(n\ge 128\) one has
@@ -3688,7 +3742,7 @@ after \(y\) is odd, so Lemma 3.10 at length one yields
 then gives \(z<(y+1)^2\le(n+1)^6\). Combined with Lemma 3.10,
 any such cycle itinerary would satisfy
 \[
-n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
+n^{3^a}<2^{G_a}(n+1)^{6\cdot 2^a}.
 \]
 
 For \(a=5\) and \(n\ge 314\), the opposite comparison
@@ -3721,7 +3775,7 @@ has \(2^{10}<(n+1)^2\), hence \(y<(n+1)^2\). The even one-step preimage at
 \(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
 Lemma 3.10, any such cycle itinerary would satisfy
 \[
-n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+n^{3^a}<2^{G_a}(n+1)^{2^{a+2}}.
 \]
 For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
 shared tail of Theorem 3.12 at length \(k=a+2\).
@@ -3746,7 +3800,7 @@ Lemma 3.10 at length three yields
 \(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
 Lemma 3.10, any such cycle itinerary would satisfy
 \[
-n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+n^{3^a}<2^{G_a}(n+1)^{2^{a+2}}.
 \]
 For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
 shared tail of Theorem 3.12 at length \(k=a+2\), already used in
@@ -3791,7 +3845,7 @@ even, so \(z<(y+1)^4\). For \(n\ge 4\) the successor comparison
 with Lemma 3.10, any such cycle itinerary would satisfy the same
 display as Theorem 3.15:
 \[
-n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
+n^{3^a}<2^{G_a}(n+1)^{6\cdot 2^a}.
 \]
 The opposite comparison is therefore the tail of Theorem 3.15:
 it holds for \(a=5\) and \(n\ge 314\), and already for \(a=6\)
@@ -3817,7 +3871,7 @@ image after \(O^aEO\). The last-odd one-step preimage and \(n\ge 32\) upgrade
 this to \(w<(n+1)^2\), hence \(z<(w+1)^2\le(n+1)^4\). Combined
 with Lemma 3.10, any such cycle itinerary would satisfy
 \[
-n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+n^{3^a}<2^{G_a}(n+1)^{2^{a+2}}.
 \]
 For \(n\ge 256\) and \(a\ge 4\), this is the shared tail already
 used in Theorem 3.16.

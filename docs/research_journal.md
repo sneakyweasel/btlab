@@ -24639,3 +24639,57 @@ Best next question
   unreachable from JugglerPaper.lean. O7EEEEGap was one of them and
   held a sharper tool than the prose used
 ```
+
+
+### Paper A: four meanings of `e`, and the two renames that took to get it right
+
+An exhaustive enumeration of every standalone `e` inside math in Paper A found six uses under
+four meanings: the even count `e = L - o` and the remaining even budget `e_left` (71 spans, one
+meaning); Euler's number (7); Lemma 3.3's constant `e_a = 2(3^a - 2^a)` (26); and the per-step
+exponent `x^e`, `e_i` (5). The last is the worst, because at Section 4's defect identity it
+sits in the same formula as the per-step loss, so a reader meets `e_i` and `varepsilon_i` side
+by side meaning different things.
+
+`e_a` is now `G_a` and the step exponent is `h`. Also `2^s/3^l` became the named `T(u)`, which
+frees `s` for the Ostrowski digit sum `s(L)` of Section 5 and retires `l` entirely; and Section
+5's `W = 2^u` became `W = 2^{u_k}`, matching its own neighbours and freeing bare `u` for the
+suffix of Section 3.9.
+
+**Two failed attempts, both instructive.** The first pass used `` before `e_`, which does not
+match between a digit and a letter, so `3e_a` in the recurrences was skipped and the manuscript
+was left half-renamed --- strictly worse than not starting. The second pass was complete but
+sent the step exponent to `d`, which is already the *depth* in Section 6 ("after `d <= 40`
+steps"): one collision swapped for another. The fix was to re-run the letter census after the
+rename and check the new letter's site list, which is now what the regression does.
+
+**Section 1.3 is a notation table**, thirty symbols with one meaning each, plus an explicit
+statement of the two deliberate reuses that remain: `e` is also Euler's number, always as
+`e^{...}` and never subscripted, and `s` is also the integration variable in the two displays
+that evaluate `C_*`, where the digit sum always carries its argument.
+
+**Paper B is a different order of risk and is not done.** Its colliding letters are used 84 to
+267 times each: `E` is the interpolant error, the exponent triple in `c_7(E)`, and the
+class-count error `E_d(N)`, alongside `e(x)` for the additive character; and Section 7 alone
+reuses `S`, `A`, `B` and `t` from Sections 2, 3 and 5. Section 7 is short and its symbols are
+model-problem names, so a rename confined to it is safe; a paper-wide one is not, and a notation
+table for Paper B needs each of forty symbols verified rather than guessed.
+
+```text
+What was learned
+- a partial rename is worse than none, and the way to know is to
+  re-census after renaming rather than to trust the pattern
+- `d` was free by count but not by meaning; a census counts letters,
+  it does not read them
+Strongest theorem
+- none; Paper A now binds each symbol once, and says so in a table
+Strongest refutation
+- my own two rename passes, one partial and one that collided with the
+  depth of Section 6
+Reusable machinery
+- notation_audit: letter census, per-letter site list, binding sites
+Branch status
+- ADVANCE for Paper A; Paper B's collisions are located, not fixed
+Best next question
+- Section 7 of Paper B reuses S, A, B and t from three earlier
+  sections, in the one section a referee will read hardest
+```

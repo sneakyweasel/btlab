@@ -309,9 +309,9 @@
     "stored_statistics": [
       "m_plus",
       "sign_h",
-      "h",
-      "h2",
       "sign_h2",
+      "h2",
+      "h",
       "m_minus"
     ],
     "forbidden_keys": [
