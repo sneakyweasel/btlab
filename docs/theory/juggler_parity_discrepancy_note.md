@@ -223,6 +223,54 @@ and the preservation of the classes (D1), (D2), (D3) under the
 third differencing, are written as a self-contained argument
 (Claims A–H in the proof of Lemma 5.2).
 
+The boundary between those three kinds of warrant is worth stating once
+rather than reconstructing from the citations. *Human proof* means a
+proof in this paper; *Lean* lists the identifiers the repository
+declares, which are checks of identities, constants and thresholds, not
+of any estimate; *classical* names the external result used as given.
+
+| statement | human proof | Lean | classical input |
+|---|---|---|---|
+| Prop. 3.1 power envelope | companion [22] | in the companion, not here | — |
+| Lem. 3.3 second-derivative test | quoted | — | van der Corput [11] |
+| Lem. 3.4 discrepancy | quoted | — | Erdős–Turán [8] |
+| Lem. 3.5 sawtooth expansion | quoted | — | Vaaler [10] |
+| Lem. 3.7 shifted window | this paper | — | Lem. 3.5 |
+| Lem. 3.8 two-term test | this paper | `c6_eleven_eighths_five_fourths`(+`_attained`) | Lem. 3.3 |
+| Lem. 3.9 three-term sublevel | this paper | `step5b_curvature_inverse`, `step5b_curvature_norm`, `step5b_vector_transfer`, `step5b_c7_printed` | Lem. 3.3, 3.8 |
+| Lem. 4.3 exact linearization | this paper | `lemma43_closed_form`, `lemma43_nonneg`, `lemma43_upper`, `lemma43_remainder_of_sqrt`, `carry_identity`, `carry_mem_zero_one` | Taylor |
+| Thm. 4.4 nested discrepancy | this paper | — | Lem. 3.3–3.5, 4.3 |
+| Thm. 4.7, 4.8 depth three | this paper | — | Thm. 4.4 |
+| Thm. 4.11–4.13 localization | this paper | — | Thm. 4.4, 4.7 |
+| Lem. 5.1 master identity | this paper | `lemma51_i_identity`, `lemma51_i_closed_form`, `lemma51_i_nonneg`, `lemma51_i_upper`, `lemma51_double_gap`, `lemma51_brackets_le_two`, `lemma51_master`, `carry_as_sawtooth`, `double_difference_product`, `fract_diff_level2`, `mvt_cube_explicit`, `mvt_sqrt_diff_explicit`, `second_difference_exists_xi`, `second_difference_two_sided` | mean value theorem |
+| **Lem. 5.2(i), (ii), (iii)** | **this paper** | **none** | Lem. 3.3, 3.5, 3.7, 3.8 |
+| Lem. 5.2b interpolant | this paper | `interpolant_assembly`, `interpolant_step_i`, `interpolant_step_ii_constant`, `gap_error_le_one`, `gap_error_one_attained`, `gap_error_not_halved_by_recentring` | — |
+| **Thm. 5.3 kernel cancellation** | **this paper** | `step5b_curvature_norm`, `sublevel_raised_threshold` (Step 5b constants only; **no part of the assembly**) | Lem. 5.1, 5.2, 5.2b, 3.9 |
+| Thm. 6.1 depth four | this paper | — | Thm. 5.3 |
+| Thm. 6.3, Cor. 6.4 depth five | this paper | — | Thm. 5.3 |
+| Threshold \(P_0\) (App. A) | computation, not a proof step | `row_5b_binding`, `step5b_c2_ceiling`, `step5b_c2_optimum_feasible`, `step5b_uniform_saturates` | rational arithmetic |
+| Prop. 7.1 reduction | this paper | — | Hoeffding |
+| Prop. 7.4 shift average | this paper | — | — |
+
+Two rows carry the paper and are the ones to read first. Lemma 5.2 is
+proved here and has **no** machine check of any kind; Theorem 5.3 has
+two, and both are constants inside Step 5b rather than any step of the
+assembly. Everything the repository verifies is an identity, a
+constant, or a threshold — it has checked no estimate in this paper,
+and a reader who treats the Lean column as corroboration of the
+analysis will be misled. The remaining rows are stated so that this
+one is unmistakable.
+
+Two conventions in that column. Every identifier listed is declared
+under `formal/Problems/` and reachable from the umbrella root
+`Problems/Juggler.lean`; there is no root importing exactly this
+paper's modules, so the reader who wants to build only these must
+select them by hand from the five modules `MasterIdentity`,
+`MeanValues`, `MonomialSplitting`, `PaperBAssembly` and
+`ThresholdCertificate`. And `ring` appears once in
+the text as the tactic that discharges an inversion, not as the name of
+a theorem.
+
 ### 1.2 Related work
 
 **Single floors.** The distribution of \(\lfloor n^c\rfloor\)

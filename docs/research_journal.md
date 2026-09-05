@@ -24958,3 +24958,62 @@ Best next question
   constant classification, and moving the development log to the
   audit ledger -- all additive or subtractive, none structural
 ```
+
+
+### The trust-boundary table, built from the repository rather than from memory
+
+Referee item 15. Guessing it would have defeated the purpose, so `tools/trust_boundary.py`
+extracts every backticked identifier in Paper B's prose, checks it is declared under
+`formal/Problems/`, checks its module is reachable from a named root, and reports by section.
+
+**First run said 0 of 37 reachable.** Too clean to be a defect, and it was not one:
+`JugglerPaper.lean` is *Paper A's* root -- Dynamics, Cycles, LeftoverFamilies, EvenCountThree.
+Paper B has no root of its own; its modules hang off the umbrella `Juggler.lean`. Measured
+against the right root, 37 of 37 are declared and reachable. The 38th is `ring`, which is a
+tactic, not a theorem, and the paper uses it correctly.
+
+**What the table shows.** Six statements have Lean behind them -- Lemmas 3.8, 3.9, 4.3, 5.1,
+5.2b and Appendix A's threshold -- and every one of those checks is an identity, a constant or a
+threshold. Two rows carry the paper:
+
+```text
+  Lemma 5.2 (i)(ii)(iii)   this paper   Lean: none
+  Theorem 5.3              this paper   Lean: step5b_curvature_norm, sublevel_raised_threshold
+                                              -- Step 5b constants, no part of the assembly
+```
+
+The referee's draft table guessed "selected bookkeeping" for 5.2 and "selected assembly" for
+5.3. The first overstates and the second is simply wrong: nothing of the assembly is
+formalized. The paper already said the repository is not an independent verification of Lemma
+5.2; the table makes it impossible to miss.
+
+**The test caught my own scope creep.** I had listed the companion's `power_bound_word` against
+Proposition 3.1, which pulled `Envelope` -- a Paper A module -- into Paper B's module set and
+falsified both the "five modules" sentence and the claim that Paper A's root does not reach
+Paper B's modules. Two tests failed on it. Prop 3.1's Lean cell now says "in the companion, not
+here", which is what the row means.
+
+New: `tools/trust_boundary.py`, `test_trust_boundary.py` (12 tests) pinning that every named
+identifier is declared and reachable, that Lemma 5.2's span still contains no Lean name, that
+Theorem 5.3's contains exactly those two, that the module list matches what the citations
+resolve to, and that no dedicated root exists -- if one is ever added, the sentence must change.
+
+```text
+What was learned
+- the audit's first answer was an artifact of the wrong root, and the
+  giveaway was that it was too clean: 0 of 37
+- Paper B has no Lean root of its own, which is the concrete reason a
+  referee cannot check its formalization boundary by building anything
+Strongest theorem
+- none; the boundary is now stated and machine-checked against the repo
+Strongest refutation
+- my own table row for Proposition 3.1, refuted by two of its own tests
+Reusable machinery
+- trust_boundary.py: cited-identifier audit against any root
+Branch status
+- ADVANCE (referee item 15 discharged; 3, 4, 7 and 15 now done)
+Best next question
+- give Paper B a root, JugglerParityPaper.lean, importing exactly the
+  five modules. It is the artifact the table has to apologise for not
+  having, and it is a file of imports
+```
