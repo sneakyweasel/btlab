@@ -147,10 +147,37 @@ it out --- no window count for the decoration's sawtooth, no boundary
 charge --- and the draft above inherits that omission. **Part (iii)
 needs a third paragraph** supplying them before it can be promoted.
 
-### A prior question this check raised
+### Does the (s1) damping reach the Stage-2 families? No
 
-While tracing the weights I could not reconcile the following, and it
-concerns the *printed* Lemma 5.2(i), not part (iii).
+Two sources feed the same pair of families \(e(r\nu^{3/2})\),
+\(e(r(\nu{+}2h)^{3/2})\), and only one of them is damped.
+
+- **Stage 2** Vaaler-expands the *carry* indicator
+  \(\kappa=[\theta_\nu\ge1-\{\delta_h\}]\) at truncation \(R_0\). Its
+  modes carry weight \(\le1/|r|\) and nothing else --- \(\kappa\) is a
+  \(0\)--\(1\) indicator, and no sawtooth coefficient enters.
+- **Stage 3(s1)** expands the *\(\theta\)-sawtooth* "into the same two
+  mode families", and it is *those* modes that pick up the factor
+  \(\min(2,2\pi|B|)\le14.2P^{-1/16}\).
+
+So the damping is a property of the second source, not of the families.
+The Stage-2 carry modes are undamped, and the sum below is the sum over
+them.
+
+### Where \(P^{29/32}\) is charged
+
+The number is real, and Appendix A.6 confirms it. Of the move from
+\(R_0=P^{1/4}\) to \(P^{5/16}\), A.6 says the term "moves from
+\(3P^{7/8}\log P\) to \(3P^{29/32}\log P\), still inside
+\(P^{23/24}\) with \(P^{5/96}\) to spare" ---
+and \(\tfrac{23}{24}-\tfrac{29}{32}=\tfrac5{96}\) exactly. So the term
+is verified against **Theorem 5.3's target \(P^{23/24}\)**, not against
+Lemma 5.2(i)'s own conclusion. At the earlier \(R_0=P^{1/4}\) it was
+\(R_0^{1/2}P^{3/4}=P^{7/8}\), which is exactly (i)'s printed largest
+term; raising \(R_0\) moved it to \(P^{29/32}\), and (i)'s conclusion
+did not move with it.
+
+The consequence is confined to the statement of (i):
 
 Stage 5's dominant-mode branch gives, per mode,
 \(1.4|w|^{1/2}P^{3/4}+1.4|w|^{-1/2}P^{1/4}\). Weighting the Stage-2
@@ -170,14 +197,29 @@ term \((h/u)^{1/2}P^{7/8}\) does cover \(P^{29/32}\) when \(u\) is
 small (at \(u=1\), \(h=P^{1/8}\) it reaches \(P^{30/32}\)), but not
 when \(u\asymp h\).
 
-The \(P^{-1/16}\) damping of regime (s1) would close the gap
-(\(\tfrac{29}{32}-\tfrac2{32}=\tfrac{27}{32}<\tfrac78\)), but as far
-as I can read it that factor applies to Stage 3's
-\(\theta\)-sawtooth modes, not to the Stage-2 carry families, which
-carry only \(1/|r|\).
+There are \(132\) admissible \((u,h)\) pairs in regime (s1) on the
+\(1/96\) grid where every printed term is smaller; the worst is
+\(u=h=P^{1/24}\), short by \(P^{1/32}\).
 
-I may be misreading the weight on the Stage-2 families, or the ceiling
-\(R_0\) on \(|r|\), or the regime in which that sum is invoked. But it
-should be resolved before (iii) is written, because (iii) sits
-downstream of exactly this accounting: it inherits whatever keeps the
-Stage-2 mode sum under \(P^{7/8}\).
+**Theorem 5.3 is unaffected**, and so is every other consumer: the
+assembly and part (ii) target \(P^{23/24}\), and Step 5b's
+mode-dominant regime targets \(P^{15/16}=P^{30/32}\), all of which
+exceed \(P^{29/32}\). So the repair is one line in the statement of
+(i) --- a fifth term \(R_0^{1/2}P^{3/4}\), or equivalently making the
+\(R_0\)-dependence explicit --- with nothing to propagate downstream.
+`stage2_mode_accounting.py` prints the comparison in exact rationals.
+
+*A smaller point in the same place.* A.6 calls
+\(3R_0^{1/2}P^{3/4}\log P\) "the collision-band sum of Stage 5", but
+Stage 5 puts that formula in the *dominant-mode* branch; its collision
+band is the middle case, totalling \(\le CP^{7/8}\log P\). Same number,
+two names --- worth aligning, since A.6 is where a referee will go to
+trace why \(R_0=P^{5/16}\).
+
+### What this leaves for part (iii)
+
+The prior question is settled and does not block (iii): once (i)
+carries the fifth term, (iii) inherits it. What still blocks (iii) is
+the second half of the Stage-2 check above --- the (s2) window
+inventory and boundary cost for a widened decoration's sawtooth, which
+Step 4 names and neither Step 4 nor this draft supplies.

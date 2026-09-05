@@ -1,58 +1,100 @@
-"""Stage-2 / Stage-5 mode accounting in Lemma 5.2(i), and what widening q' does to it.
+"""Stage-2 / Stage-5 mode accounting in Lemma 5.2(i), and where P^(29/32) is charged.
 
-Run as a script.  Every number printed is exact rational arithmetic on the exponents;
-nothing here is a numerical experiment.
+Every number here is exact rational arithmetic on the exponents; nothing is a numerical
+experiment.  The question this settles: Stage 5's dominant-mode sum over the Stage-2 families
+is 3 R_0^(1/2) P^(3/4) = 3 P^(29/32), and 29/32 > 7/8, which is the largest exponent in the
+conclusion of Lemma 5.2(i).  Does something bring it down?
 
-Two separate questions, which I had conflated in the draft:
+The candidate was Stage 3's regime-(s1) damping, min(2, 2 pi |B|) <= 14.2 P^(-1/16).  It does
+not apply: Stage 2 Vaaler-expands the *carry* indicator kappa at truncation R_0, giving modes
+with weight 1/|r| and no B-factor, while Stage 3(s1) expands the *theta-sawtooth* "into the
+same two mode families" and it is those modes that carry the damping.  Two sources, one pair of
+families, one damped.
 
-  (a) INDEX RANGE.  Lemma 3.7 produces modes of index <= |B| + J.  In the printed case
-      |B| <= 1 and J = R_0, so |w| <~ R_0.  Under (D1'), |B| <= 7 P^(1/4).  Is that still
-      within a constant multiple of R_0 = P^(5/16), the way (D2)'s 2.85 R_0 is?
-
-  (b) WEIGHTS.  Stage 3 splits on the size of the sawtooth coefficient B: regime (s1),
-      uh <= P^(3/16), has |B| <= 2.25 P^(-1/16) and hands the modes a damping factor
-      min(2, 2 pi |B|) <= 14.2 P^(-1/16).  Regime (s2) has large B and instead windows.
-      A widened q' has large B, so its decoration leaves (s1) for (s2).
+Appendix A.6 settles where the term is charged.  It states, of the move from R_0 = P^(1/4) to
+P^(5/16), that "the collision-band term moves from 3P^(7/8) log P to 3P^(29/32) log P, still
+inside P^(23/24) with P^(5/96) to spare".  So the term is verified against Theorem 5.3's target
+P^(23/24), not against Lemma 5.2(i)'s own printed conclusion -- and at R_0 = P^(1/4), the value
+an earlier draft used, it was exactly P^(7/8) and did fit.
 """
+
+from __future__ import annotations
 
 from fractions import Fraction as F
 
 P0 = 8.9458e13
+R0_EXPONENT = F(5, 16)
+R0_EARLIER = F(1, 4)
 
-print("(a) index range under (D1'):")
-print("    R_0 = P^5/16 = P^%s" % F(5, 16))
-print("    |B| <= 7 P^1/4; 7 P^(1/4) <= P^(5/16) iff P >= 7^16 = %.4g" % (7.0 ** 16))
-print("    P_0 = %.4g, so the comparison holds at P_0: %s" % (P0, 7.0 ** 16 <= P0))
-print("    hence |w| <= |B| + R_0 <= 2 R_0 -- the same shape as (D2)'s 2.85 R_0")
-print()
 
-print("(b) Stage 5's dominant-mode sum over the Stage-2 families:")
-print("    per mode  1.4 |w|^(1/2) P^(3/4), weight 1/|w|, summed over |w| <= R_0")
-print("    -> 2.8 R_0^(1/2) P^(3/4) = 2.8 P^(%s) = 2.8 P^(%s)"
-      % (F(5, 32) + F(3, 4), float(F(5, 32) + F(3, 4))))
-printed = F(7, 8)
-stage5 = F(5, 32) + F(3, 4)
-print("    printed in the manuscript: 3 P^(29/32); 29/32 = %s  [match: %s]"
-      % (float(F(29, 32)), stage5 == F(29, 32)))
-print("    largest exponent in Lemma 5.2(i)'s conclusion: 7/8 = %s" % float(printed))
-print("    29/32 - 7/8 = %s  -> the mode sum EXCEEDS the printed bound by P^(1/32)"
-      % (stage5 - printed))
-print()
+def stage5_family_sum(a: F) -> F:
+    """Exponent of Stage 5's dominant-mode sum over the Stage-2 families at R_0 = P^a.
 
-print("    unless a printed term reaches P^(29/32).  The four terms, at u = h:")
-for e in (F(1, 32), F(2, 32), F(3, 32), F(4, 32)):
-    uh = 2 * e
-    terms = {
-        "(uh)^1/2 P^5/8": uh / 2 + F(5, 8),
-        "(h/u)^1/2 P^7/8": F(0) + F(7, 8),          # h = u, so (h/u)^(1/2) = 1
+    Per mode Lemma 3.3 gives 1.4 |r|^(1/2) P^(3/4); the Stage-2 weight is 1/|r|; summing
+    r^(-1/2) over r <= R_0 gives 2 R_0^(1/2).
+    """
+    return a / 2 + F(3, 4)
+
+
+def lemma_52i_terms(u: F, h: F) -> dict[str, F]:
+    """The four printed terms of Lemma 5.2(i), as exponents of P, at u = P^u, h = P^h."""
+    return {
+        "(uh)^1/2 P^5/8": (u + h) / 2 + F(5, 8),
+        "(h/u)^1/2 P^7/8": (h - u) / 2 + F(7, 8),
         "P^7/8": F(7, 8),
-        "P^1/24 (uh)^-1/2 P^7/8": F(1, 24) - uh / 2 + F(7, 8),
+        "P^1/24 (uh)^-1/2 P^7/8": F(1, 24) - (u + h) / 2 + F(7, 8),
     }
-    best = max(terms.values())
-    print("      u = h = P^%-5s (uh = P^%-5s): max printed = P^%-8s vs mode sum P^%s  %s"
-          % (e, uh, float(best), float(stage5),
-             "OK" if best >= stage5 else "PRINTED BOUND IS SMALLER"))
-print()
-print("    (s1) requires uh <= P^3/16 = P^%s" % float(F(3, 16)))
-print("    with the (s1) damping factor 14.2 P^(-1/16): 29/32 - 2/32 = %s < 7/8 = %s"
-      % (float(F(27, 32)), float(F(7, 8))))
+
+
+def uncovered_corners() -> list[tuple[F, F, F, F]]:
+    """(u, h, best printed term, family sum) where the printed bound falls short.
+
+    Only regime (s1) matters: uh <= P^(3/16) makes every mode dominant, since the dominance
+    threshold 9.1 u h P^(-1/4) is then below 1.
+    """
+    out = []
+    fam = stage5_family_sum(R0_EXPONENT)
+    for un in range(0, 17):
+        for hn in range(0, 13):
+            u, h = F(un, 96), F(hn, 96)
+            if u + h > F(3, 16):          # outside regime (s1)
+                continue
+            if h > F(1, 8):               # outside the hypothesis of (i)
+                continue
+            best = max(lemma_52i_terms(u, h).values())
+            if best < fam:
+                out.append((u, h, best, fam))
+    return out
+
+
+def main() -> None:
+    fam = stage5_family_sum(R0_EXPONENT)
+    print("Stage-5 sum over the Stage-2 families:")
+    print("   at R_0 = P^%-5s : P^%-7s (= %s)  <- the manuscript's printed 3 P^(29/32)"
+          % (R0_EXPONENT, fam, float(fam)))
+    print("   at R_0 = P^%-5s : P^%-7s (= %s)  <- exactly Lemma 5.2(i)'s printed 7/8"
+          % (R0_EARLIER, stage5_family_sum(R0_EARLIER), float(stage5_family_sum(R0_EARLIER))))
+    print()
+    print("charged against Theorem 5.3's target P^(23/24), per Appendix A.6:")
+    print("   23/24 - 29/32 = %s  <- A.6's \"P^(5/96) to spare\": %s"
+          % (F(23, 24) - fam, F(23, 24) - fam == F(5, 96)))
+    print()
+    print("but against Lemma 5.2(i)'s own conclusion, in regime (s1):")
+    bad = uncovered_corners()
+    print("   %d admissible (u, h) where every printed term is smaller" % len(bad))
+    if bad:
+        worst = min(bad, key=lambda r: r[2])
+        print("   worst: u = P^%-5s h = P^%-5s -> printed P^%-7s vs family sum P^%s (short by P^%s)"
+              % (worst[0], worst[1], worst[2], worst[3], worst[3] - worst[2]))
+        print("   e.g.  u = h = P^3/32 (the top of regime (s1)):")
+        for k, v in lemma_52i_terms(F(3, 32), F(3, 32)).items():
+            print("        %-26s P^%s" % (k, v))
+    print()
+    print("downstream consumers all target more than P^(29/32), so a fifth term is free:")
+    for name, target in (("Theorem 5.3 assembly", F(23, 24)), ("Lemma 5.2(ii)", F(23, 24)),
+                         ("Step 5b mode-dominant", F(15, 16))):
+        print("   %-24s P^%-6s  covers P^%s: %s" % (name, target, fam, target > fam))
+
+
+if __name__ == "__main__":
+    main()
