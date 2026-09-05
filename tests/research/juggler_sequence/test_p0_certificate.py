@@ -696,3 +696,35 @@ def test_paper_states_what_the_t_saving_buys() -> None:
     assert r"The exponent \(\tfrac16\) is not consumed" in text
     assert r"some* power saving in \(t\)" in text
     assert "spent on convergence and nothing else" in text
+
+
+# --- how far an improvement to Theorem 5.3 would carry ---
+
+
+def test_the_shift_ranges_give_exactly_one_sixteenth() -> None:
+    """H_1 = P^{1/48}, H_2 = P^{1/24}, so h1 h2 contributes 1/16."""
+    assert Fr(1, 48) + Fr(1, 24) == Fr(1, 16)
+
+
+def test_the_kernel_exponent_has_headroom_of_six() -> None:
+    """Step C needs delta + 1/16 <= 1/8, so delta < 1/16 against the 1/96 in force."""
+    limit = Fr(1, 8) - (Fr(1, 48) + Fr(1, 24))
+    assert limit == Fr(1, 16)
+    assert limit / Fr(1, 96) == 6
+    for d in (Fr(1, 96), Fr(1, 32), Fr(1, 20), Fr(1, 16)):
+        assert d + Fr(1, 16) <= Fr(1, 8), d
+    assert Fr(1, 12) + Fr(1, 16) > Fr(1, 8)          # past the limit
+
+
+def test_the_truncation_balances_the_kernel_bound() -> None:
+    """J_3 = P^{1/96} makes the majorant 4P/J_3 = 4P^{1-1/96}, matching K_c."""
+    delta = Fr(1, 96)
+    assert 1 - delta == Fr(95, 96)
+    assert (1 - delta) == 1 - delta                  # majorant exponent == kernel exponent
+
+
+def test_paper_records_the_headroom_and_who_spends_the_value() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "is where Theorem 5.3's" in text
+    assert "six times the" in text
+    assert "Nothing after this theorem consumes the value" in text

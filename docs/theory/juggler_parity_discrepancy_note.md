@@ -3960,7 +3960,21 @@ decaying. The pure-\(m\) part is
 *Step C (double differencing; corner exactness).* Apply Step 1 of
 Theorem 5.3 (\(H_1=P^{1/48}\), \(H_2=P^{1/24}\); now
 \(kh_1h_2\le2P^{1/96+1/48+1/24}\le P^{1/8}\), so (C3) and (C4) hold) to
-the whole mode phase. On each level-1 carry branch of
+the whole mode phase. That last comparison is where Theorem 5.3's
+exponent is actually spent, and it says how far an improvement would
+carry. Written for a general kernel saving \(\delta\), Step A truncates
+at \(J_3=P^{\delta}\) --- the majorant \(4P/J_3\) balancing
+\(P^{1-\delta}\) --- and the check here reads
+\(kh_1h_2\le2P^{\delta+1/16}\le P^{1/8}\), since
+\(\tfrac1{48}+\tfrac1{24}=\tfrac1{16}\). So (C3) and (C4) survive for
+every \(\delta<\tfrac1{16}\), which is six times the \(\tfrac1{96}\) in
+force: a sharper kernel bound would propagate through this proof
+untouched until then, and only past \(\tfrac1{16}\) would the shift
+ranges need revisiting. Nothing after this theorem consumes the value
+at all --- Corollary 6.4's density \(7/8\) needs the error to be
+\(o(N)\), and Proposition 7.1 asks only for \(\delta_d>0\).
+
+On each level-1 carry branch of
 Lemma 5.1(iii), the four corner values obey the exact relations
 \[
 m(n{+}d)=m+\beta_d,

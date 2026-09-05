@@ -28849,3 +28849,64 @@ Best next question
 - the same question for Theorem 5.3's own conclusion: P^{1-1/96} feeds
   Corollary 6.4 and Proposition 7.1. Is any of that exponent unspent?
 ```
+
+ ### Where 1/96 is spent, and how far a better kernel would carry
+
+Theorem 5.3's exponent is spent in exactly one place, and it is not
+where I expected. Step A of Theorem 6.1 Vaaler-expands at truncation
+`J_3 = P^{1/96}`, whose majorant `4P/J_3 = 4P^{1-1/96}` balances the
+kernel bound exactly. That is the whole of the consumption.
+
+Written for a general kernel saving `δ`, the truncation is `J_3 = P^δ`
+and Step C's condition check becomes
+
+```text
+   k h1 h2 <= 2 P^{δ + 1/48 + 1/24} <= P^{1/8},   and 1/48 + 1/24 = 1/16
+   so (C3), (C4) survive for every δ < 1/16
+```
+
+**Six times the `1/96` in force.** A sharper kernel bound would
+propagate through Theorem 6.1 untouched up to `δ = 1/16`, and only past
+that would the shift ranges `H_1 = P^{1/48}`, `H_2 = P^{1/24}` need
+revisiting.
+
+And nothing after Theorem 6.1 consumes the value at all. Corollary
+6.4's density `7/8` needs only that the error be `o(N)`; Proposition
+7.1 asks in its own statement for `δ_d > 0`. So the exponent is spent
+once, at a truncation, with a factor of six in hand.
+
+Together with the previous entry this settles the accounting for both
+of Lemma 5.2(ii)'s exponents and Theorem 5.3's:
+
+```text
+   Lemma 5.2(ii)  P^{23/24}   fully consumed -> 1/96 = (1/4)(1/24)
+   Lemma 5.2(ii)  |t|^{-1/6}  any delta > 0 suffices
+   Theorem 5.3    P^{1-1/96}  spent at one truncation; headroom to 1/16
+```
+
+```text
+What was learned
+- the exponent is consumed at a truncation, not at any inequality, and
+  the truncation is the only place its value appears
+- headroom is quantifiable and worth quoting: a sixfold improvement
+  needs no other change, and a reader considering an attack on
+  Theorem 5.3 should know that before starting
+Strongest theorem
+- (C3), (C4) hold in Theorem 6.1 for every kernel saving delta < 1/16,
+  against the 1/96 in force
+Strongest refutation
+- none; the falsifier would have been a downstream consumer of the
+  value, and there is none
+Reusable machinery
+- four tests over the shift-range arithmetic and the headroom
+Branch status
+- PROMOTE
+Why
+  Three exponents in the paper's central chain are now each labelled
+  spent or unspent, with the headroom quantified where there is any.
+  That is what a prover needs before deciding which of them is worth
+  attacking, and none of it was written down.
+Best next question
+- the headroom is set by H_1 = P^{1/48} and H_2 = P^{1/24}. Are those
+  forced, or would larger shift ranges buy more room?
+```
