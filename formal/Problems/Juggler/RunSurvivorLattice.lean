@@ -1,6 +1,9 @@
 import Mathlib.Data.Int.Basic
 import Mathlib.Tactic
 
+set_option exponentiation.threshold 400000
+set_option maxRecDepth 100000
+
 namespace Problems.Juggler
 
 /-!
@@ -44,11 +47,11 @@ theorem run_survivor_unimodular :
 /-- The generator itself is formally expanding, at the least odd count. -/
 theorem three_pow_step_gt_two_pow_step :
     (3 : ℕ) ^ 665 > (2 : ℕ) ^ 1054 := by
-  native_decide
+  norm_num
 
 theorem three_pow_pred_step_le_two_pow_step :
     (3 : ℕ) ^ 664 ≤ (2 : ℕ) ^ 1054 := by
-  native_decide
+  norm_num
 
 /-- Next principal convergent: \(50508=2\cdot 25781-1054\). -/
 theorem run_survivor_seed_F2 :

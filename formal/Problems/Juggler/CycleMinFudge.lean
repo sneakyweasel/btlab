@@ -559,10 +559,10 @@ theorem plus_one_chain {n : ℕ} {pref : List Branch}
 /-! ## Comparison at n ≥ 30 -/
 
 theorem pow31_100_lt_pow30_101 : (31 : ℕ) ^ 100 < 30 ^ 101 := by
-  native_decide
+  norm_num
 
 theorem pow31_66_lt_pow30_68 : (31 : ℕ) ^ 66 < 30 ^ 68 := by
-  native_decide
+  norm_num
 
 theorem one_zero_one_mul_137 : (101 : ℕ) * 137 = 13837 := rfl
 

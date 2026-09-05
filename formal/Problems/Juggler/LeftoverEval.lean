@@ -18,7 +18,7 @@ def cycleItineraryB (n : ℕ) (w : List Branch) : Bool :=
 
 theorem two_mul_pow256_gt_pow257 :
     (257 : ℕ) ^ 64 < 2 * 256 ^ 64 := by
-  native_decide
+  norm_num
 
 theorem cycleItineraryB_oooeoe_lt256 :
     ∀ n : Fin 256, cycleItineraryB n.val itineraryOOOEOE' = false := by
@@ -39,7 +39,7 @@ def itineraryOOOOEOE : List Branch :=
 /-- Base comparison for the length-7 leftover tail: `n ≥ 14`. -/
 theorem pow14_243_gt_two_pow422_pow15_128 :
     (2 : ℕ) ^ 422 * 15 ^ 128 < 14 ^ 243 := by
-  native_decide
+  norm_num
 
 theorem cycleItineraryB_oooooee_lt14 :
     ∀ n : Fin 14, cycleItineraryB n.val itineraryOOOOOEE = false := by
@@ -56,7 +56,7 @@ def itineraryOOOOOOEEE : List Branch :=
 /-- `(1 + 1/128)^{512} < 64`, used by the `n ≥ 128` tail for `OOOOOOEEE`. -/
 theorem pow129_512_lt_64_mul_pow128_512 :
     (129 : ℕ) ^ 512 < 64 * 128 ^ 512 := by
-  native_decide
+  norm_num
 
 theorem cycleItineraryB_ooooooeee_lt128 :
     ∀ n : Fin 128, cycleItineraryB n.val itineraryOOOOOOEEE = false := by
@@ -134,11 +134,11 @@ theorem cycleItineraryB_oooooo_eoee_lt16 :
 
 theorem pow314_243_gt_two_pow422_succ_pow192 :
     (2 : ℕ) ^ 422 * 315 ^ 192 < 314 ^ 243 := by
-  native_decide
+  norm_num
 
 theorem pow16_729_gt_two_pow1330_succ_pow384 :
     (2 : ℕ) ^ 1330 * 17 ^ 384 < 16 ^ 729 := by
-  native_decide
+  norm_num
 
 /-!
 Isolated `native_decide` table for the bunched leftover `O^a EOOEE`
@@ -220,15 +220,15 @@ theorem cycleItineraryB_eoooee_prefix_lt256 :
 
 theorem pow40_27_lt_two_mul_pow39_27 :
     (40 : ℕ) ^ 27 < 2 * 39 ^ 27 := by
-  native_decide
+  norm_num
 
 theorem two_pow38_mul_pow39_16_lt_pow24_27 :
     (2 : ℕ) ^ 38 * 39 ^ 16 < 24 ^ 27 := by
-  native_decide
+  norm_num
 
 theorem pow197_729_gt_two_pow1650_succ_pow512 :
     (2 : ℕ) ^ 1650 * 198 ^ 512 < 197 ^ 729 := by
-  native_decide
+  norm_num
 
 /-!
 Isolated `native_decide` facts for the bunched leftover `O^a EOOEOE`.
@@ -251,10 +251,10 @@ theorem cycleItineraryB_eooeoe_prefix_lt256 :
 
 theorem pow40_9_lt_two_mul_pow39_9 :
     (40 : ℕ) ^ 9 < 2 * 39 ^ 9 := by
-  native_decide
+  norm_num
 
 theorem pow222_243_gt_two_pow560_succ_pow171 :
     (2 : ℕ) ^ 560 * 223 ^ 171 < 222 ^ 243 := by
-  native_decide
+  norm_num
 
 end Problems.Juggler

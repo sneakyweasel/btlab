@@ -146,7 +146,7 @@ theorem absorb_odd_step {n x A B t : ℕ} (hn : 1 ≤ n)
 
 theorem three_mul_pow256_gt_pow257 :
     (257 : ℕ) ^ 256 < 3 * 256 ^ 256 := by
-  native_decide
+  norm_num
 
 theorem three_pow24_lt_two_pow40 : (3 : ℕ) ^ 24 < 2 ^ 40 := by
   decide

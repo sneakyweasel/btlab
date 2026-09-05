@@ -2,6 +2,9 @@ import Problems.Juggler.CycleFinance
 import Problems.Juggler.CycleFinanceLeftovers
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
+set_option exponentiation.threshold 400000
+set_option maxRecDepth 100000
+
 namespace Problems.Juggler
 
 /-!
@@ -763,7 +766,7 @@ theorem cycleMin_inv_sum_le_pack {n : ℕ} {w : List Branch}
 theorem l84_height_cap_nat :
     61 * (3 ^ 53 - 2 ^ 84) * 78666428148165 >
       11 * 3 ^ 53 * 700046369923 := by
-  native_decide
+  norm_num
 
 theorem l84_height_cap_eq :
     (2 : ℝ) / 261 + (2 : ℝ) / 4217 + (84 : ℝ) / 273845 + (31 : ℝ) / 68121 =

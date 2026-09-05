@@ -28,6 +28,9 @@ import Mathlib.Tactic
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Problems.Juggler.OstrowskiSandwich
 
+set_option exponentiation.threshold 400000
+set_option maxRecDepth 100000
+
 namespace Juggler.FanLaw
 
 open Real
@@ -70,7 +73,7 @@ theorem fanLambda_affine (k : ℕ) :
 
 /-- `3^190537 < 2^301994`: consecutive convergents lie on opposite sides, so `Λ' < 0`. -/
 theorem fan_step_pow : (3 : ℕ) ^ 190537 < 2 ^ 301994 := by
-  native_decide
+  norm_num
 
 /-- Hence the affine step of `Λ` is strictly negative and `Λ` is strictly decreasing. -/
 theorem fanLambda_step_neg :
@@ -189,6 +192,6 @@ Both are integer comparisons, so they are exact and need no analytic input.  The
 is tight: `2^271` and `3^171` agree to four significant figures. -/
 theorem expansion_rate_lower : (3 : ℕ) ^ 17 < 2 ^ 27 := by norm_num
 
-theorem expansion_rate_upper : (2 : ℕ) ^ 271 < 3 ^ 171 := by native_decide
+theorem expansion_rate_upper : (2 : ℕ) ^ 271 < 3 ^ 171 := by norm_num
 
 end Juggler.FanLaw

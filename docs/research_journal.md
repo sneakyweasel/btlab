@@ -26634,3 +26634,64 @@ Best next question
 - do any other native_decide proofs in the Juggler layer reduce to Nat or
   Int literal arithmetic that norm_num would take?
 ```
+
+## Eighteen more proofs move inside the kernel
+
+Asked what other improvements of the Ostrowski-sandwich kind exist.
+Audited rather than guessed: 325 `native_decide` sites in the Juggler
+Lean layer, classified by the shape of the goal.
+
+- **302** run the dynamics or a structure — `floorPower` iteration,
+  itinerary lists, `List.all` over ranges, the floor-257 orbit tables.
+  These need the compiled runtime in practice and stay.
+- **23 sites, 18 distinct theorems**, are pure `Nat` literal
+  arithmetic. All eighteen convert to `norm_num` and build.
+
+The eighteen are not incidental. `FanLaw.fan_step_pow`
+(\(3^{190537}<2^{301994}\)) is the negativity of the affine step in
+Paper A Proposition 5.12 — the reason the semiconvergent fan has 56
+members. `RunSurvivorLattice.three_pow_step_gt_two_pow_step` and its
+predecessor (\(3^{665}>2^{1054}\), \(3^{664}\le 2^{1054}\)) are
+Proposition 4.9's survivor lattice. `CycleHeightFinance.l84_height_cap_nat`
+is the leftover-84 height cap, `O7EEEEGap.three_mul_pow256_gt_pow257`
+the \(O^7EEEE\) gap, and ten more are the leftover cell evaluations of
+`LeftoverEval`. With the two sandwich inequalities moved in the
+previous entry, twenty of the layer's arithmetic certificates now rest
+on the kernel rather than on the compiled runtime.
+
+Counts: 325 → 307. Barrel builds, 3473 jobs. `tools/trust_boundary.py`
+still reports every cited identifier declared and reachable.
+
+**What the classification actually says.** The split is not about size —
+`fan_step_pow` compares six-hundred-thousand-bit numbers and takes under
+a second, while a twenty-step `floorPower` orbit table does not convert
+at all. It is about whether the goal is *literal arithmetic*, which the
+kernel does natively with GMP, or a *computation over a definition*,
+which the kernel would have to unfold. That is the line, and it is
+sharper than I expected before measuring: no candidate failed to build,
+and no dynamics goal was worth attempting.
+
+Two shapes had to be handled: `:= by native_decide` inline on the
+declaration line, and the body on the following line. The first
+converter assumed the second shape and its assertion caught the
+mismatch rather than silently skipping — worth keeping, since a silent
+skip would have left the file looking converted.
+
+```text
+What was learned
+- 325 native_decide sites; 18 are literal arithmetic and all 18 convert
+- the line is goal shape, not size: 6e5-bit comparisons convert, 20-step
+  orbit tables do not
+- the converted set includes Paper A Propositions 4.9 and 5.12
+Strongest theorem
+- fan_step_pow, the fan-length step, now kernel-checked
+Strongest refutation
+- none; every candidate built
+Reusable machinery
+- the classifier, and the observation that goal shape decides
+Branch status
+- 20 arithmetic certificates moved off the compiled runtime in two passes
+Best next question
+- do the remaining 307 divide further? The itinerary tables over small
+  finite ranges might take plain decide, which is also kernel-checked
+```
