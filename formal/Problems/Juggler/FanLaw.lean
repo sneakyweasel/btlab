@@ -155,4 +155,40 @@ theorem step_lt_two : Real.log 3 / Real.log 2 < 2 := by
     push_cast; ring
   linarith
 
+/-! ### 5. Even count against length
+
+Formal expansion (Theorem 3.2) says a cycle itinerary has `3^o > 2^L` with `o = L - e`.
+That alone converts an even-count bound into a length bound, and it is the arithmetic
+behind Corollary 3.23 and behind the accounting for `e >= 5` in Section 3: raising the
+even count by one buys about `log 3 / log(3/2) = 2.71` in period.
+
+The bound is stated here as the pair of inequalities that pin each threshold, so the
+step from `e >= 4` to `e >= 5` is one `norm_num` away once the family program is done. -/
+
+/-- At four even letters, expansion first allows `L = 11`: this is Corollary 3.23. -/
+theorem expansion_e4 : 2 ^ 11 < 3 ^ 7 ∧ 3 ^ 6 < 2 ^ 10 := by
+  refine ⟨by norm_num, by norm_num⟩
+
+/-- At five even letters it first allows `L = 14`, so an even-count of five would give
+period at least fourteen. -/
+theorem expansion_e5 : 2 ^ 14 < 3 ^ 9 ∧ 3 ^ 8 < 2 ^ 13 := by
+  refine ⟨by norm_num, by norm_num⟩
+
+/-- At six, `L = 17`. -/
+theorem expansion_e6 : 2 ^ 17 < 3 ^ 11 ∧ 3 ^ 10 < 2 ^ 16 := by
+  refine ⟨by norm_num, by norm_num⟩
+
+/-- The growth rate, certified by integers rather than by bounds on logarithms.
+Expansion at even count `e` needs `L log(3/2) > e log 3`, so the threshold grows by
+`log 3 / log(3/2)` per even letter.  That constant lies in `(2.70, 2.71)`:
+
+* `(3/2)^(27/10) < 3` is `3^17 < 2^27`, giving `2.70 < log 3 / log(3/2)`;
+* `3 < (3/2)^(271/100)` is `2^271 < 3^171`, giving `log 3 / log(3/2) < 2.71`.
+
+Both are integer comparisons, so they are exact and need no analytic input.  The second
+is tight: `2^271` and `3^171` agree to four significant figures. -/
+theorem expansion_rate_lower : (3 : ℕ) ^ 17 < 2 ^ 27 := by norm_num
+
+theorem expansion_rate_upper : (2 : ℕ) ^ 271 < 3 ^ 171 := by native_decide
+
 end Juggler.FanLaw

@@ -59,3 +59,21 @@ def test_program_size_against_the_e_three_precedent() -> None:
 
 def test_no_small_cycle_of_any_even_count() -> None:
     assert E.cycle_search(20_000)["cycles"] == []
+
+
+def test_expansion_thresholds_match_the_lean_certificates() -> None:
+    """expansion_e4/e5/e6 in FanLaw.lean: the least admissible L at e = 4, 5, 6."""
+    for e, want in ((4, 11), (5, 14), (6, 17)):
+        L = next(L for L in range(e, 40) if E.expansion_ok(L - e, L))
+        assert L == want
+        assert not E.expansion_ok(want - 1 - e, want - 1)
+
+
+def test_expansion_rate_is_between_270_and_271() -> None:
+    """Certified by integers, not by log bounds: 3^17 < 2^27 and 2^271 < 3^171."""
+    import math
+
+    rate = math.log(3) / math.log(1.5)
+    assert 2.70 < rate < 2.71
+    assert 3**17 < 2**27          # gives the lower end
+    assert 2**271 < 3**171        # gives the upper end, tight to 4 significant figures

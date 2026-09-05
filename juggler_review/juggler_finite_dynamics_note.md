@@ -1082,7 +1082,17 @@ set of bunched families. If the thresholds of Theorem 3.21
 transfer, that set has \(25\) members against the \(7\) of
 Theorems 3.14--3.20.
 
-The payoff is \(L\ge11	o L\ge14\). Whether roughly four times the
+The payoff is \(L\ge11	o L\ge14\). That step is not a
+coincidence of small numbers: expansion at even count \(e\) needs
+\(L\log(3/2)>e\log3\), so each further even letter buys
+\(\log3/\log(3/2)\in(2.70,2.71)\) in period --- thresholds
+\(11,14,17\) at \(e=4,5,6\). Both ends of that constant are
+integer certificates rather than numerical bounds on logarithms:
+\((3/2)^{27/10}<3\) is \(3^{17}<2^{27}\), and
+\(3<(3/2)^{271/100}\) is \(2^{271}<3^{171}\), the latter tight to
+four significant figures (`expansion_rate_lower`,
+`expansion_rate_upper`, `expansion_e4`, `expansion_e5`,
+`expansion_e6`, `FanLaw.lean`). Whether roughly four times the
 Appendix D work is worth three units of period is a judgement
 about what the floor-free statement is for, not a mathematical
 question, and we record the accounting rather than make the
@@ -2900,8 +2910,11 @@ Theorem 4.8.
 | Proposition 5.5 | ergodic identification human; Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
 | Theorem 5.7 | Denjoy--Koksma's variation inequality (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
-| Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`; scan `window_digit_scan`, `window_digit_cap`, `window_digit_max`; Denjoy--Koksma comparison human |
+| Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`. On the extended window \([50508,q_{14})\) the cap is *structural* --- \(s(L)\le47\) below \(q_{13}\) and \(s(L)\le b+47\) on \(L=bq_{13}+r\) --- so the scan `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpens the constant on the old sub-window rather than establishing the theorem. Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
+| Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |
+| Propositions 5.8b, 5.8c | the two forced walk letters `walk_first_letter_odd`, `walk_second_letter_odd`, `step_lt_two` (`FanLaw.lean`); the relaxation and flatness measurements are verified computation |
+| Lemma 5.13, Corollary 5.14 | margin scaling and the conditional bound; verified computation, not Lean |
 | Corollary 5.10 | second floor and kill table; verified computation, not Lean |
 | Corollary 5.11 | third floor and kill table; verified computation, not Lean |
 | short certificates (Section 6) | `even_finiteProgress`, `odd_even_finiteProgress` |

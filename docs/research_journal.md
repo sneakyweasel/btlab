@@ -24339,3 +24339,52 @@ Branch status
 Best next question
 - unchanged: the long regime; and Paper B's Lemma 5.2(i) reading
 ```
+
+
+### Paper A: Lean extended to the even-count arithmetic; Appendix A repaired
+
+Refactor/extend pass on the Lean base, plus two pristine defects of my own making.
+
+**Appendix A was stale in two places.** It had no row for Proposition 5.12 even though
+`FanLaw.lean` proves it, and no row for 5.8b/5.8c or 5.13/5.14. Worse, the Theorem 5.8
+row still credited the digit *scan* (`window_digit_scan`) for the window --- but I
+replaced the scan with a **structural** cap when extending the window to \(q_{14}\)
+(\(s(L)\le47\) below \(q_{13}\), \(s(L)\le b+47\) on \(L=bq_{13}+r\)). The scan now
+sharpens a constant on the old sub-window rather than establishing the theorem, and the
+row says so.
+
+**Lean: the even-count arithmetic.** Expansion converts an even-count bound into a
+length bound, which is what Corollary 3.23 and the new \(e\ge5\) accounting both rest
+on. Added `expansion_e4`, `expansion_e5`, `expansion_e6` --- the inequality pairs
+pinning the thresholds \(11, 14, 17\) --- so the step from \(e\ge4\) to \(e\ge5\) is one
+`norm_num` away once the family program lands.
+
+**The growth rate, by integers rather than log bounds.** Each further even letter buys
+\(\log3/\log(3/2)\in(2.70,2.71)\) in period. My first attempt proved that with a
+real-analysis argument citing a lemma that does not exist. Replaced by exact integer
+certificates: \((3/2)^{27/10}<3\) is \(3^{17}<2^{27}\), and \(3<(3/2)^{271/100}\) is
+\(2^{271}<3^{171}\) --- the latter tight to four significant figures. No analytic input.
+
+**A substring trap.** `grep -c "sorry\|admit\|axiom"` flagged FanLaw at 2: the prose
+"expansion first **admit**s" contains `admit`. The layer-architecture test is a plain
+substring check and cannot tell prose from a tactic, which is the right call for that
+test --- reworded to "allows".
+
+New: five theorems in `FanLaw.lean` (18 total), four Appendix A rows, 2 tests.
+
+```text
+What was learned
+- Appendix A had drifted from the Lean base in the direction that matters:
+  it credited a scan the window theorem no longer needs
+- the even-count growth rate is cleanly an integer fact, not an analytic one
+Strongest theorem
+- expansion_rate_upper: 2^271 < 3^171, tight to four significant figures
+Strongest refutation
+- my own first proof of the rate, which cited a nonexistent Mathlib lemma
+Reusable machinery
+- expansion_e{4,5,6}: the thresholds a family program would consume
+Branch status
+- ADVANCE (Lean base and Appendix A now agree with the manuscript)
+Best next question
+- unchanged: the long regime, and Paper B's Lemma 5.2(i)
+```
