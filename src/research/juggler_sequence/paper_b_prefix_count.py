@@ -294,6 +294,29 @@ def drift_blocked(w: str, t: int) -> list[Fraction]:
     return [g for g in theta_coefficients(w, t) if g > 1]
 
 
+def defect_species(w: str, s: int) -> str:
+    """Which floor produced ``theta_s``: ``"3/2"`` after an odd letter, ``"sqrt"`` after an even.
+
+    Theorem 5.3's kernel is built for a 3/2-power defect -- its statement fixes the monomial
+    ``c(n) = (3k/4)n^{9/8}`` riding ``theta_2`` -- and the square-root defect ``theta_w = {v^{1/2}}``
+    of Theorem 6.3 is handled there only by drift-1 windows, never by a kernel.  So the species of
+    a blocked coefficient decides whether an existing theorem is even the right shape.
+    """
+    return "3/2" if w[s - 1] == "O" else "sqrt"
+
+
+def blocked_profile(w: str, t: int) -> list[tuple[int, Fraction, str]]:
+    """``(s, coefficient exponent, species)`` for each defect of letter ``t`` above the threshold.
+
+    ``OOO*``'s fourth letter and ``OOOO*``'s fifth are blocked only on 3/2-defects, which is why
+    Theorem 5.3 and Conjecture 7.3 are the right shapes for them.  ``OOOEOEE`` is blocked on one
+    3/2-defect at 33/32; ``OOEOOEE`` is blocked on a square-root defect at 45/32, for which the
+    paper has no kernel theorem of any level.
+    """
+    return [(s, c, defect_species(w, s))
+            for s, c in enumerate(theta_coefficients(w, t), start=1) if c > 1]
+
+
 def wave_count(w: str) -> int:
     """Sawtooth waves to expand: one per letter after the first."""
     return len(w) - 1

@@ -538,7 +538,7 @@ def test_paper_states_part_iv_and_the_run_table() -> None:
     assert "(iv) *(what carries a gain)*" in text
     assert r"\frac{L_{d-1}}{2^{d}}" in text
     assert "the level-3 kernel of Conjecture 7.3" in text
-    assert r"the certified density reaches \(57/64\)" in text
+    assert r"carry the certified density to \(57/64\)" in text
 
 
 # --- the theta-coefficient criterion behind the run statistic ----------------
@@ -591,10 +591,38 @@ def test_the_two_pursuable_thirds_sit_inside_theorem_61s_profile() -> None:
     assert len(B.drift_blocked("OOOOEEE", 5)) > len(benchmark)
 
 
+def test_theorem_53s_species_is_the_three_halves_defect() -> None:
+    """Every blocked coefficient of the proved and the open split rides a 3/2-power defect."""
+    for word, letter in (("OOO", 4), ("OOOO", 5), ("OOOOEEE", 5)):
+        assert {sp for _, _, sp in B.blocked_profile(word, letter)} == {"3/2"}, word
+    # theta_w = {v^{1/2}} of Theorem 6.3 is the square-root species, at s = 3 of OOEO*
+    assert B.defect_species("OOEOO", 3) == "sqrt"
+    assert B.defect_species("OOEOO", 1) == "3/2"
+
+
+def test_the_ranking_flips_against_the_run_statistic() -> None:
+    """Run put OOEOOEE first; species and count both put OOOEOEE first."""
+    assert B.longest_odd_run("OOEOOEE") < B.longest_odd_run("OOOEOEE")   # what run said
+    cheap, dear = B.blocked_profile("OOOEOEE", 6), B.blocked_profile("OOEOOEE", 6)
+    assert len(cheap) == 1 and cheap[0][1:] == (Fraction(33, 32), "3/2")
+    assert len(dear) == 2
+    assert ("sqrt" in {sp for _, _, sp in dear}) and ("sqrt" not in {sp for _, _, sp in cheap})
+    # and the single in-species one sits below both the pair Theorem 5.3 closes
+    assert cheap[0][1] < min(B.drift_blocked("OOO", 4))
+
+
+def test_the_paper_states_the_flip_and_the_single_monomial_caveat() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "It is the harder of the two, not the" in text
+    assert "none of the three is a corollary of what is proved" in text
+    assert "recomputed there and shown not to vanish" in text
+    assert r"a species for which this paper has no" in text
+
+
 def test_the_extra_cost_is_recorded_rather_than_hidden() -> None:
     """Six waves against four is the honest price, and the paper says so."""
     assert B.wave_count("OOEOOEE") == 6 and B.wave_count("OOOEE") == 4
     text = io.open(PAPER, encoding="utf-8").read()
-    assert "That is an assessment and not an estimate." in text
+    assert "none of the three is a corollary of what is proved" in text
     assert "needs six waves where the proved rows need four" in text
     assert "the *difference* of the\ntwo scale exponents" in text

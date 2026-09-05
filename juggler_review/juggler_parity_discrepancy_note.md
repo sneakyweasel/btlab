@@ -4602,33 +4602,53 @@ device of Theorem 4.8 has no interval to run on and the letter must go
 through a kernel theorem instead. Counting the differences above the
 threshold prices each split:
 
-| split | wave at | defect coefficients | \(>1\) | status |
-|---|---:|---|---:|---|
-| \(OOEO*\), letter 5 | \(27/16\) | \(3/16,\ -9/16,\ 9/16\) | \(0\) | \(N^{43/48}\) |
-| \(OOO*\), letter 4 | \(27/8\) | \(15/8,\ 9/8\) | \(2\) | Thm 6.1, via Thm 5.3 |
-| \(OOOO*\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | \(3\) | open (Conj. 7.3) |
-| \(OOEOOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ 45/32,\ 27/32\) | \(2\) | --- |
-| \(OOOEOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ -27/32,\ 27/32\) | \(1\) | --- |
-| \(OOOOEEE\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | \(3\) | --- |
+| split | wave at | defect coefficients | blocked, with species | status |
+|---|---:|---|---|---|
+| \(OOEO*\), letter 5 | \(27/16\) | \(3/16,\ -9/16,\ 9/16\) | none | \(N^{43/48}\) |
+| \(OOO*\), letter 4 | \(27/8\) | \(15/8,\ 9/8\) | \(15/8,\ 9/8\), both \(3/2\) | Thm 6.1, via Thm 5.3 |
+| \(OOOO*\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | all three, all \(3/2\) | open (Conj. 7.3) |
+| \(OOOEOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ -27/32,\ 27/32\) | \(33/32\), \(3/2\) | --- |
+| \(OOEOOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ 45/32,\ 27/32\) | \(33/32\) \(3/2\); \(45/32\) \(\surd\) | --- |
+| \(OOOOEEE\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | all three, all \(3/2\) | --- |
 
-The last row is the cleanest reading in the table: \(OOOOEEE\)'s fifth
-letter *is* the \(OOOO*\) split, coefficient for coefficient, so
-Conjecture 7.3 is not merely sufficient for that third of the
-depth-seven increment but necessary. The two rows above it are the ones
-worth pursuing, and both sit strictly inside the profile Theorem 6.1
-already carries: two coefficients above the threshold with largest
-\(45/32\), against Theorem 6.1's two with largest \(15/8\), and
-\(OOOEOEE\) has a single one at \(33/32\).
+The species column is the one that decides. A defect is of \(3/2\)
+species or square-root species according as the letter that produced it
+is \(O\) or \(E\), and Theorem 5.3 is built for the first: its
+statement fixes the monomial \(c(n)=\tfrac{3k}4n^{9/8}\) riding
+\(\theta_2\), and the square-root defect \(\theta_3=\{v^{1/2}\}\) of
+Theorem 6.3 is handled there by drift-1 windows and by nothing else.
+Every blocked coefficient of \(OOO*\) and of \(OOOO*\) is of \(3/2\)
+species, which is why Theorem 5.3 and Conjecture 7.3 are the right
+shapes for them.
 
-That is an assessment and not an estimate. Each of \(OOEOOEE\) and
-\(OOOEOEE\) needs six waves where the proved rows need four, and every
-extra wave brings its own Vaaler truncation, majorant and remainder
+So the three thirds of depth seven sort as follows, and not in the
+order the run statistic suggested. \(OOOOEEE\)'s fifth letter *is* the
+\(OOOO*\) split, coefficient for coefficient, so Conjecture 7.3 is
+necessary for that third and not merely sufficient. \(OOOEOEE\) is
+blocked on a single defect, of \(3/2\) species, at \(33/32\) --- below
+both of the pair Theorem 5.3 already closes. And \(OOEOOEE\), which the
+longest-odd-run reading put first, is blocked twice, once on a
+square-root defect at \(45/32\), a species for which this paper has no
+kernel theorem at any level. It is the harder of the two, not the
+easier.
+
+That said, none of the three is a corollary of what is proved.
+Theorem 5.3 is a statement about one monomial, and it says so: the
+cancellation of its Step 5a uses the exact ratio of that monomial's
+derivatives, and a two-sided scale \(c^{(r)}\asymp kP^{9/8-r}\) would
+not determine the composite. Re-running it at \(33/32\) is therefore
+work rather than a new idea --- the differencing and the six steps do
+not know the exponent --- but the two sign-critical composites
+\(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\) would have to be
+recomputed there and shown not to vanish. Each of \(OOEOOEE\) and
+\(OOOEOEE\) also needs six waves where the proved rows need four, every
+extra wave bringing its own Vaaler truncation, majorant and remainder
 into a balance that would have to be redone from the start. What the
-table does settle is which third of depth seven is blocked by an open
-problem and which two are blocked only by work: if those two go
-through, the certified density reaches \(57/64\) with Conjecture 7.3
-still open, and the remaining \(1/128\) is the only part of depth seven
-that waits on the level-3 kernel.
+table settles is the order of attack: \(OOOEOEE\) first, at
+\(1/128\); then \(OOEOOEE\), which needs a square-root kernel that does
+not yet exist; and \(OOOOEEE\) last, behind Conjecture 7.3. The first
+two together would carry the certified density to \(57/64\) with
+Conjecture 7.3 still open.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.

@@ -27037,3 +27037,65 @@ What was learned
 Branch status
 - guard widened to six control characters and nine documents; two live
   defects found and repaired on its first run
+
+ ### Species, not size: the depth-seven ranking was backwards
+
+The question was whether Theorem 5.3 transfers from `OOO*`'s blocked
+pair `(15/8, 9/8)` to `OOEOOEE`'s `(33/32, 45/32)`. Two answers, and
+the second one reverses a conclusion I drew twice.
+
+**Theorem 5.3 is a single-monomial theorem.** Its statement fixes
+`c(n) = (3k/4)n^{9/8}`, and it says outright that the cancellation of
+Step 5a uses the exact ratio of that monomial's derivatives — a
+two-sided scale `c^(r) ~ kP^{9/8-r}` would not determine the composite.
+So nothing transfers verbatim. Re-running it at another exponent is
+work rather than a new idea, the differencing and the six steps being
+exponent-blind, but the two sign-critical composites `243/512` and
+`1095/1024` would have to be recomputed and shown not to vanish.
+
+**And the blocked coefficients are not all the same species.** A defect
+`θ_s` comes from a 3/2-power or from a square root according as letter
+`s` is `O` or `E`. Theorem 5.3 is built for the first — its monomial
+rides `θ_2` after two odd letters — and the square-root defect
+`θ_w = {v^{1/2}}` of Theorem 6.3 is handled there by drift-1 windows
+and by nothing else. Sorting the blocked coefficients by species:
+
+```text
+   OOO*    L4  15/8 (3/2), 9/8 (3/2)                 proved via Thm 5.3
+   OOOO*   L5  57/16, 45/16, 27/16, all 3/2          OPEN (Conj 7.3)
+   OOOEOEE L6  33/32 (3/2)                           one, in species
+   OOEOOEE L6  33/32 (3/2), 45/32 (SQRT)             two, one out of species
+```
+
+`OOOEOEE` is blocked on a single 3/2-defect at `33/32`, **below both**
+of the pair Theorem 5.3 already closes. `OOEOOEE` is blocked twice, and
+its worse one rides a square-root defect at `45/32` — a species for
+which this paper has no kernel theorem at any level.
+
+So `OOEOOEE`, which the longest-odd-run reading put first and which I
+called the usable third in two consecutive entries, is the **harder**
+of the two. The order of attack is `OOOEOEE`, then `OOEOOEE` (needing a
+square-root kernel that does not exist), then `OOOOEEE` behind
+Conjecture 7.3.
+
+```text
+What was learned
+- size of a blocked coefficient says how hard; species says whether an
+  existing theorem is even the right shape, and only the second
+  distinguished the two depth-seven candidates
+- three statistics in a row (run, exponent-above-2, blocked count) all
+  ranked these two words, and the first two ranked them wrongly
+Strongest theorem
+- the species split: every blocked coefficient of the proved and the
+  open split is 3/2, and exactly one of OOEOOEE's is not
+Strongest refutation
+- my own ranking, twice stated: OOEOOEE is the harder third
+Reusable machinery
+- defect_species / blocked_profile
+Branch status
+- ADVANCE
+Best next question
+- OOOEOEE needs Theorem 5.3's Step 5a composite at 33/32 instead of
+  9/8. Is the composite a rational function of the exponent with an
+  isolated zero, or does it vanish identically off 9/8?
+```
