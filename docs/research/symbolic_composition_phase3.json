@@ -17,8 +17,8 @@
     "restricted_symbolic_composition"
   ],
   "not_in_default_order": [
-    "odd_even_two_step_decrease",
-    "restricted_symbolic_composition"
+    "restricted_symbolic_composition",
+    "odd_even_two_step_decrease"
   ],
   "targets": [
     {

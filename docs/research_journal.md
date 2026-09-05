@@ -24440,3 +24440,83 @@ Best next question
 - unchanged mathematically; the same consistency net should be pointed at
   Paper B, whose window and P_0 changed just as much this session
 ```
+
+
+### Paper A: Section 3's eleven exclusions are one inequality, and it was the wrong one
+
+Theorems 3.12--3.21 print eleven thresholds --- 3, 4, 3, 6, 5, 4, 3, 5, 4, 3 --- one per family,
+each proved by hand in Appendix D. They are not a list. Every one is the least `a` with
+`(3/2)^a > 2^s/3^l`, where `s` and `l` are the length and odd count of the suffix following the
+run. Nine of the ten match exactly; the tenth is a strengthening (for suffix `E` the law gives
+`a >= 2`, so `OOE` needs no census). The two envelopes are Lemma 3.10 in closed form,
+`J^a(n) >= 4 (n/4)^((3/2)^a)`, and Lemma 3.9 with the evenness deleted from its induction, which
+then runs backward through any suffix with no accumulated slop.
+
+**Then the Lean base refuted my framing.** `O7EEEEGap.lean` closes `O^7EEEE` at `n >= 256`. My
+law needed 828,484,409 for the same word, and I had just written a Proposition explaining that
+this gap is why Section 3 stops at three even letters. Reading `absorb_odd_step` showed why:
+minimum-basedness holds at *every* state of an odd run, not only at its start, so the
+successor's `+1` can be traded for `((n+1)/n)^e` instead of for a factor 4. The sharp chain is
+
+```text
+n^(3(3^a - 2^a))  <  (n+1)^(2*3^a - 3*2^a) * (J^a(n)+1)^(2^a)
+```
+
+whose `X_7 = 6177` and `Y_7 = 3990` are exactly that module's two constants. Verified against
+20052 real orbit pairs, no violations.
+
+**What it buys.** The crude law costs a margin `ln 4 / ln n`; the sharp one costs `~1/(n ln n)`.
+Exponential in the reciprocal margin becomes linear. Every one of Section 3's ten suffixes then
+closes at `n <= 7` rather than `n <= 1032`, and the enumeration of minimum-based canonical forms
+closes completely at `e = 3, 4, 5, 6, 7`: 353,044 forms, all dead at `n >= 64`, every `n <= 299`
+reaching 1. So **`e >= 8` and period `>= 22`**, against `e >= 4` and period `>= 11`. That is the
+paper's only bound needing no descent floor, and it doubles.
+
+**Where it stops, and why Section 4 exists.** The backward envelope reads as `(n+1)^(2^s/3^l)`
+only while that exponent stays above 1. For a cycle read as one long word the exponent is
+`2^L/3^o = 1 - theta`, just *below* one, so the envelope hovers at `n` and the `+1` rounded into
+each of `L` backward steps stops being negligible --- accumulated, it is precisely the factor `L`
+on the right of Theorem 4.4. The law is sharp on short tails and degenerates to the finance
+inequality on the whole cycle. I nearly published the opposite: my first reading of the sharp
+criterion gave `n log n * theta <= 3`, five orders better than Theorem 4.4, which would have made
+Sections 4 and 5 redundant. It was wrong for exactly this reason.
+
+The margins the law pays for are `theta(o,L)` at `(2,3), (4,6), (6,9), (7,11), (12,19)` --- ratios
+`3/2`, `11/7`, `19/12`, the convergents and semiconvergents of `log_2 3` at small denominator.
+The same arithmetic that leaves the semiconvergent fan standing in Section 5, at different
+denominators.
+
+**Three mangled LaTeX escapes found and repaired**, all the same species: a shell heredoc ate the
+backslash and left a literal tab. `\theta` in Section 5, `\to` in Section 3, `\theta(L)` in the
+reviewer packet. No legitimate tab exists in these documents, so
+`test_no_mangled_latex_escapes` is exact rather than heuristic.
+
+New: `run_suffix_law.py`, `test_run_suffix_law.py` (57 tests), Section 3.9 (Lemmas 3.24, 3.25,
+3.28; Theorems 3.26, 3.29, 3.31; Corollaries 3.27, 3.30; Remark 3.32), Appendix A rows, two app
+claims, one no-tab consistency test.
+
+```text
+What was learned
+- Section 3's case analysis is one inequality evaluated ten times, and
+  the inequality was being bought with a constant it does not need
+- the sharp envelope was already in the Lean base, in a module marked
+  "laboratory satellite, not imported by JugglerPaper"
+Strongest theorem
+- e >= 8, period >= 22, floor-free (Theorem 3.31), up from e >= 4, 11
+Strongest refutation
+- my own Proposition explaining why Section 3 stops at three even
+  letters, refuted by O7EEEEGap.lean twenty minutes after I wrote it;
+  and my first reading of the sharp criterion, which would have beaten
+  Theorem 4.4 by five orders of magnitude and was wrong
+Reusable machinery
+- run_suffix_law: envelopes, exact integer backward bound, closure
+  enumeration with proven run bounds
+Branch status
+- ADVANCE (the floor-free bound doubles; Section 3 shortens)
+Best next question
+- Theorem 3.31 is not in Lean. The pieces are: absorb_odd_step exists,
+  the backward envelope generalises cycle_trailing_evens_lt, and the
+  closure is a decidable enumeration of 353044 forms -- native_decide
+  territory, but the criterion is a real inequality, so it needs the
+  integer form B(u)^(2^a) (n+1)^Y_a <= n^X_a instead
+```

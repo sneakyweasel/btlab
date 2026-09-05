@@ -144,6 +144,19 @@ def test_fan_endpoints_quoted_in_the_paper() -> None:
     assert str(A.fan_length(55)) in read(PAPER)
 
 
+def test_no_mangled_latex_escapes() -> None:
+    """A tab in the manuscript is always a LaTeX escape eaten by a shell heredoc.
+
+    Two got in this way and survived several revisions: `\theta` in Section 5 and `\to` in
+    Section 3, each rendered as a literal tab plus the rest of the macro name.  No legitimate
+    tab exists in this document, so the check is exact rather than heuristic.
+    """
+    for doc in (PAPER, MIRROR, PACKET, README, FORMALIZATION):
+        text = read(doc)
+        bad = [i for i, line in enumerate(text.splitlines(), 1) if "	" in line]
+        assert not bad, (doc.name, bad[:5])
+
+
 # --- the mirror, which reviewers actually read ---
 
 

@@ -374,7 +374,7 @@ Reject or revise if:
 13. Theorem 5.8 is quoted for a length outside
     \([50508,16785921)\), or its census-free *charge* bound is read as
     making the kill tables census-free --- the comparison against
-    \(	heta(L)\) is per-length and is what blocks the surviving fan
+    \(\theta(L)\) is per-length and is what blocks the surviving fan
     members --- or the \(478245\) or \(780239\) bound is quoted as a
     Lean theorem.
 

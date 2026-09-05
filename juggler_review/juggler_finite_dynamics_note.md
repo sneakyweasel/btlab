@@ -480,7 +480,7 @@ be worth stating. The crossings that define \(n_{\max}(25781)\) and
 \(n_{\max}(50508)\) are sharp to a relative \(2\cdot10^{-8}\) and
 \(3\cdot10^{-10}\) respectively --- each is the *last* integer at which
 the parity comparison holds, and the next one fails --- so
-\(	heta=1-2^L/3^o\) must be evaluated in extended precision: a
+\(\theta=1-2^L/3^o\) must be evaluated in extended precision: a
 double-precision evaluation of the exponent \(L\log 2-o\log 3\) carries
 enough relative error to move \(n_{\max}(25781)\) to \(26254996\). The
 remaining terms may be evaluated in double precision, and are.
@@ -1059,47 +1059,306 @@ The comparison \(2^L<3^{L-4}\) first holds at \(L=11\).
 
 In particular there is no cycle of length eight, nine, or ten.
 
-*Why the even count stops at four.* Theorem 3.22 is the only
-unconditional exclusion in this paper, so raising it is the only
-route to a stronger floor-free statement, and it is worth
-recording what that would cost. The \(e\le3\) proof runs on three
-ingredients: the internal-even bootstrap of Lemma 3.4, which
-bounds the last odd run; the gapped-leftover Theorem 3.21, which
-kills a large middle run; and the seven bunched families of
-Theorems 3.14--3.20 for the small ones. Only the first two
-generalise unchanged --- each of the family theorems is a
-statement about a complete itinerary, not a sub-word, so none of
-them applies to a four-even form.
+### 3.9 One inequality behind the eleven exclusions
 
-Enumerating the \(e=4\) canonical forms
-\(O^{a_1}EO^{a_2}EO^{a_3}EO^{a_4}E\) that survive the canonical
-run form, the bootstrap (\(a_4\le1\)) and formal expansion:
-\(764\) forms with odd count at most \(14\), in \(169\) distinct
-tails \((a_2,a_3,a_4)\), and the tail list is *infinite* without a
-bound on the middle runs. So the program is two gapped-leftover
-theorems --- one for each of \(a_2\), \(a_3\) --- and then a finite
-set of bunched families. If the thresholds of Theorem 3.21
-transfer, that set has \(25\) members against the \(7\) of
-Theorems 3.14--3.20.
+Theorems 3.12--3.21 read as a list of eleven families with eleven
+thresholds \(3,4,3,6,5,4,3,5,4,3\). They are not a list. Every proof
+in Appendix D runs the same two envelopes against each other --- the
+odd-run lower envelope of Lemma 3.10 pushing the state up, and the
+one-step preimage of the trailing letters holding it down --- and the
+threshold is wherever the two exponents cross. Stating the crossing
+once makes the eleven proofs one theorem and the eleven thresholds one
+table.
 
-The payoff is \(L\ge11	o L\ge14\). That step is not a
-coincidence of small numbers: expansion at even count \(e\) needs
-\(L\log(3/2)>e\log3\), so each further even letter buys
-\(\log3/\log(3/2)\in(2.70,2.71)\) in period --- thresholds
-\(11,14,17\) at \(e=4,5,6\). Both ends of that constant are
+**Lemma 3.24 (odd-run envelope in closed form).**
+If \(n\ge 1\) realizes \(O^a\), then
+\[
+J^a(n)\ \ge\ 4\left(\frac n4\right)^{(3/2)^a}.
+\]
+
+*Proof.* Lemma 3.10 is \(n^{3^a}\le 2^{e_a}J^a(n)^{2^a}\) with
+\(e_a=2(3^a-2^a)\). Taking \(2^a\)-th roots gives
+\(J^a(n)\ge n^{(3/2)^a}\,2^{-e_a/2^a}\), and
+\(e_a/2^a=2\bigl((3/2)^a-1\bigr)\), so the factor is
+\(4^{\,1-(3/2)^a}\). \(\square\)
+
+One constant and one exponent. The constant \(4\) is the whole cost of
+Lemma 3.3's coarse step bound, paid once rather than \(a\) times, and
+the exponent \((3/2)^a\) is the formal expansion rate. The next lemma
+is the matching upper envelope, and it is Lemma 3.9 with the
+hypothesis that the run is even deleted from the induction.
+
+**Lemma 3.25 (backward envelope).**
+Let \(w\) be a cycle itinerary at \(n\). For each suffix \(u\) of
+\(w\), define an integer \(B(u)\) by
+\[
+B(\varepsilon)=n+1,\qquad
+B(Eu)=B(u)^2,\qquad
+B(Ou)=\min\{c\in\mathbb Z: c^3\ge B(u)^2\}.
+\]
+Then the state entering \(u\) is strictly less than \(B(u)\).
+
+*Proof.* Induction on \(|u|\), from the empty suffix. The state
+entering \(\varepsilon\) is the return \(n<n+1\). Let \(x\) be the
+state entering \(Eu\) or \(Ou\) and \(y=J(x)\) the state entering
+\(u\), so \(y<B(u)\) and, both being integers, \(y+1\le B(u)\). If
+\(x\) is even, the even one-step preimage gives \(x<(y+1)^2\le B(u)^2\).
+If \(x\) is odd, the odd one-step preimage gives \(x^3<(y+1)^2\le B(u)^2\),
+so \(x\) is below the least integer whose cube reaches \(B(u)^2\).
+\(\square\)
+
+Lemma 3.9 is the case \(u=E^r\), where no cube root is taken and
+\(B(E^r)=(n+1)^{2^r}\) exactly. In general, writing \(s=|u|\) and
+\(l\) for the number of odd letters in \(u\),
+\[
+B(u)\ \ge\ (n+1)^{2^{s}/3^{l}},
+\]
+with the excess coming only from rounding cube roots up. That excess
+is additive in the state and therefore invisible in the exponent at
+scale: for the ten suffixes below it is at most \(7\cdot 10^{-5}\) in
+\(\log_{n+1}B(u)\) at \(n=10^3\), and below \(10^{-15}\) by \(n=10^{12}\).
+
+**Theorem 3.26 (run--suffix law).**
+Let \(w\) be a minimum-based cycle itinerary at \(n\ge 4\), and write
+\(w=v\,O^a\,u\) where \(O^a\) is a maximal odd run, \(a\ge 1\), so that
+\(u\) is empty or begins with an even letter. If \(u\) is nonempty,
+then
+\[
+4\left(\frac n4\right)^{(3/2)^a}\ <\ B(u).
+\]
+
+*Proof.* Let \(m=J^{|v|}(n)\) be the state at the start of the run.
+The itinerary is minimum-based, so \(m\ge n\ge 4\), and \(m\) realizes
+\(O^a\). Lemma 3.24 at \(m\), with the right side increasing in
+\(m\), gives \(J^a(m)\ge 4(n/4)^{(3/2)^a}\). That state is the one
+entering \(u\), which Lemma 3.25 puts strictly below \(B(u)\).
+\(\square\)
+
+Read at leading order, with \(B(u)\approx(n+1)^{2^s/3^l}\), the law says
+\[
+\left(\tfrac32\right)^{a}\le \frac{2^{s}}{3^{l}},
+\qquad\text{equivalently}\qquad
+3^{\,a+l}\le 2^{\,a+s}.
+\]
+The exponents \(a+l\) and \(a+s\) are the odd count and the length of
+the tail \(O^au\), so the law is the exact mirror of Theorem 3.2(i):
+*the whole word must be formally expanding, and no tail of it beginning
+with an odd letter may be.* The two are not in conflict because the
+leading-order reading is only valid with room to spare. Writing
+\(\theta=1-2^{a+s}/3^{a+l}\) for the margin of the tail, the law fires
+once
+\[
+\theta\ >\ \frac{\log 4}{\log n},
+\]
+this being what the constant of Lemma 3.24 costs, and the whole word is
+precisely the tail whose margin is too thin to pay. Recovering that
+margin is what Section 4 does: financing the cycle globally replaces the
+flat factor \(4\) per step by a loss of relative size \(1/(x\log x)\) at
+a state \(x\), which is how the bound \(n\log n\,\theta\le L\) of
+Theorem 4.4 gains the factor \(n\log n\) that Theorem 3.26 does not have.
+
+**Corollary 3.27 (the eleven exclusions are one table).**
+Each row below is Theorem 3.26 for one suffix. The column *least
+\(a\)* is the least odd-run length with \((3/2)^a>2^{s}/3^{l}\); the
+column \(n_u\) is the least cycle minimum at which the law fires,
+computed against the exact envelope \(B(u)\) of Lemma 3.25.
+
+| suffix \(u\) | \(2^{s}/3^{l}\) | least \(a\) | \(n_u\) | printed in |
+|---|---:|---:|---:|---|
+| \(E\) | \(2\) | \(2\) | \(1032\) | Lemma 3.4(v), at \(a\ge3\) |
+| \(EE\) | \(4\) | \(4\) | \(205\) | Theorems 3.12, 3.21 |
+| \(EOE\) | \(8/3\) | \(3\) | \(109\) | Theorems 3.12, 3.21 |
+| \(EEE\) | \(8\) | \(6\) | \(73\) | Theorem 3.14 |
+| \(EOEE\) | \(16/3\) | \(5\) | \(60\) | Theorem 3.15 |
+| \(EOOEE\) | \(32/9\) | \(4\) | \(45\) | Theorem 3.16 |
+| \(EOOOEE\) | \(64/27\) | \(3\) | \(30\) | Theorem 3.17 |
+| \(EEOE\) | \(16/3\) | \(5\) | \(60\) | Theorem 3.18 |
+| \(EOEOE\) | \(32/9\) | \(4\) | \(45\) | Theorem 3.19 |
+| \(EOOEOE\) | \(64/27\) | \(3\) | \(30\) | Theorem 3.20 |
+
+Nine of the ten thresholds are the ones the theorems print. The tenth
+is a strengthening: for \(u=E\) the law excludes \(a\ge 2\), so the word
+\(OOE\) needs no appeal to the census of Theorem 3.6. Where a theorem
+prints a threshold on \(n\), the law's is smaller --- \(205\) against
+the \(256\) of Theorem 3.12, \(73\) against the \(128\) of Theorem 3.14,
+\(45\) against the \(256\) of Theorem 3.16 --- because the backward
+exponent is carried exactly as \(2^{s}/3^{l}\) rather than rounded up to
+the next power of two. Every threshold in the table is below the
+certified descent floor by four orders of magnitude or more, so above
+that floor Theorem 3.22 is Theorem 3.26 evaluated ten times.
+
+Two caveats keep the table from replacing Appendix D outright. The
+theorems it reproduces are stated for every \(n\ge 2\), and each closes
+its window below the threshold with a `native_decide` evaluation; the
+law says nothing there. And Theorem 3.21 upgrades Theorem 3.13 from
+minimum-based itineraries to all cycle itineraries, which the law, being
+a statement about a minimum-based orientation, does not do on its own.
+Above the certified floor neither caveat is active.
+
+**Lemma 3.28 (sharp odd-run envelope).**
+Let \(O^a\) be an odd run inside a minimum-based cycle itinerary at
+\(n\), starting at the state \(m\), and put
+\[
+X_a=3\bigl(3^a-2^a\bigr),\qquad Y_a=2\cdot 3^a-3\cdot 2^a .
+\]
+Then
+\[
+n^{X_a}\ <\ (n+1)^{Y_a}\bigl(J^a(m)+1\bigr)^{2^a}.
+\]
+
+*Proof.* Induction on \(a\). For \(a=1\) the odd one-step preimage gives
+\(m^3<(J(m)+1)^2\), and \(m\ge n\), which is the claim with
+\(X_1=3\), \(Y_1=0\). Suppose the display holds after \(k\) letters of
+the run, with the state \(x_k\ge n\). Cubing gives
+\[
+n^{3X_k}<(n+1)^{3Y_k}(x_k+1)^{3\cdot 2^{k}} .
+\]
+Because \(n\le x_k\) one has \(n(x_k+1)\le(n+1)x_k\), hence
+\((x_k+1)^{e}n^{e}\le(n+1)^{e}x_k^{e}\) for \(e=3\cdot2^{k}\);
+multiplying through by \(n^{e}\) and substituting turns the display into
+\[
+n^{3X_k+e}<(n+1)^{3Y_k+e}\,x_k^{\,e}.
+\]
+Finally \(x_k^{3\cdot2^k}=(x_k^3)^{2^k}<\bigl((x_{k+1}+1)^2\bigr)^{2^k}\).
+So \(X_{k+1}=3X_k+3\cdot2^{k}\) and \(Y_{k+1}=3Y_k+3\cdot2^{k}\), whose
+solutions from \(X_1=3,\ Y_1=0\) are the stated closed forms.
+\(\square\)
+
+The difference from Lemma 3.24 is where minimum-basedness is used.
+Lemma 3.24 uses it once, at the start of the run, and then pays
+Lemma 3.3's factor \(4\) at every step. Lemma 3.28 uses it at *every*
+step: the intermediate state is itself above the cycle minimum, so the
+successor's \(+1\) can be traded for a factor \((n+1)/n\) rather than
+for a factor \(4\). This is the chain already formalized at \(a=7\) in
+`Problems/Juggler/O7EEEEGap.lean`, whose constants \(6177\) and
+\(3990\) are \(X_7\) and \(Y_7\); `absorb_odd_step` there is the
+inductive step above.
+
+**Theorem 3.29 (run--suffix law, sharp form).**
+In the situation of Theorem 3.26,
+\[
+n^{X_a}\ <\ (n+1)^{Y_a}\,B(u)^{2^a}.
+\]
+
+*Proof.* Lemma 3.28 bounds \(J^a(m)+1\) from below and Lemma 3.25
+bounds \(J^a(m)+1\le B(u)\) from above. \(\square\)
+
+Since \(X_a-Y_a=3^a\), the leading-order reading is unchanged: with
+\(B(u)\approx(n+1)^{2^s/3^l}\) the criterion is again the crossing
+\((3/2)^a>2^{s}/3^{l}\). What changes is the price. Theorem 3.26 has to
+buy the crossing against a factor \(4^{(3/2)^a}\), which costs a margin
+\(\log4/\log n\); Theorem 3.29 buys it against \((1+1/n)^{Y_a}\), which
+costs a margin of order \(1/(n\log n)\). The crude form needs a floor
+exponential in the reciprocal margin, the sharp form one merely linear
+in it.
+
+**Corollary 3.30 (the same table, sharply).**
+For the ten suffixes of Corollary 3.27, the least cycle minimum at
+which Theorem 3.29 fires is
+\[
+7,\;6,\;6,\;5,\;5,\;5,\;5,\;5,\;5,\;5
+\]
+in the order printed there, against \(1032,205,109,73,60,45,30,60,45,30\)
+for Theorem 3.26 and \(256\) or \(128\) in the proofs of Appendix D.
+Every \(n\le 299\) reaches \(1\), so a cycle minimum is at least
+\(300\) and all ten are unconditional.
+
+**Theorem 3.31 (even count at least eight).**
+No cycle itinerary has fewer than eight even letters, and a nontrivial
+cycle has period at least twenty-two.
+
+*Proof.* Let a minimum-based cycle itinerary have
+\(e\le 7\) even letters and canonical run form
+\(O^{a_0}E\cdots O^{a_{e-1}}E\). Apply Theorem 3.29 at run \(i\). Its
+suffix has \(e-i\) even letters and \(\sum_{j>i}a_j\) odd ones, so
+\(2^{s}/3^{l}\le 2^{\,e-i}\), with equality exactly when the later runs
+are empty; and the criterion is monotone in \(B(u)\), so that empty case
+is the worst. Hence
+\[
+a_i\ \le\ \Bigl\lfloor (e-i)\,\tfrac{\log 2}{\log(3/2)}\Bigr\rfloor,
+\]
+and the thresholds of those bounding applications --- rows \(r\le 7\) of
+the table in Remark 3.32 --- are all at most \(55\). The run bounds are
+\((5,3,1)\), \((6,5,3,1)\), \((8,6,5,3,1)\), \((10,8,6,5,3,1)\) and
+\((11,10,8,6,5,3,1)\) for \(e=3,\dots,7\), leaving \(16\), \(186\),
+\(2037\), \(25353\) and \(325452\) canonical forms once formal expansion
+\(3^{o}>2^{o+e}\) is imposed. Theorem 3.29 closes every one of them, the
+first four at \(n\ge16\) and the last at \(n\ge64\). The cases
+\(e\le2\) are Theorem 3.22. A cycle minimum is at least \(300\), so
+\(n\ge64\) is free. Given \(e\ge8\), formal expansion
+\(2^{L}<3^{L-8}\) first holds at \(L=22\). \(\square\)
+
+This replaces \(e\ge4\) and period \(\ge11\) in Theorem 3.22 and
+Corollary 3.23 --- it doubles the floor-free period bound --- which remain the statements proved for every \(n\ge2\)
+without any descent input. Numerically the gain is of no consequence
+--- Theorem 4.6 already gives period \(\ge25781\) at a floor of
+\(10^{6}\) --- but Corollary 3.23 is the paper's only bound that needs no
+floor at all, and this is how far the same two envelopes carry it.
+
+**Remark 3.32 (where the law stops, and why Section 4 exists).**
+The reading \(B(u)\approx(n+1)^{2^{s}/3^{l}}\) is good only while the
+backward exponent stays comfortably above \(1\), because the envelope of
+Lemma 3.25 rounds a cube root up at every odd letter. For short
+suffixes that rounding is invisible: over the ten suffixes of
+Corollary 3.27 it moves \(\log_{n+1}B(u)\) by at most \(7\cdot10^{-5}\)
+at \(n=10^{3}\). For a cycle candidate read as one long word it is the
+whole story. There the exponent of the full word is
+\(2^{L}/3^{o}=1-\theta\), just *below* one, so the envelope hovers at
+\(n\) itself and the \(+1\) rounded into each of the \(L\) backward
+steps is no longer negligible; accumulated, it is exactly the factor
+\(L\) that Theorem 4.4 carries on its right-hand side. The
+run--suffix law is sharp on short tails and degenerates to the finance
+inequality on the whole cycle. That is the division of labour between
+this section and the next.
+
+The margins the law has to pay for are the same objects Section 5
+fights. For the pure trailing block \(O^{a_r}E^{r}\), writing \(a_r\)
+for the least \(a\) with \((3/2)^{a}>2^{r}\), the margin is
+\(\theta\) at \((o,L)=(a_r,a_r+r)\):
+
+| \(r\) | \((o,L)\) | \(L/o\) | \(\theta_r\) | \(n\) threshold |
+|---:|---|---|---:|---:|
+| \(1\) | \((2,3)\) | \(3/2\) | \(0.1111\) | \(7\) |
+| \(2\) | \((4,6)\) | \(3/2\) | \(0.2099\) | \(6\) |
+| \(3\) | \((6,9)\) | \(3/2\) | \(0.2977\) | \(5\) |
+| \(4\) | \((7,11)\) | \(11/7\) | \(0.0636\) | \(16\) |
+| \(5\) | \((9,14)\) | \(14/9\) | \(0.1676\) | \(8\) |
+| \(6\) | \((11,17)\) | \(17/11\) | \(0.2601\) | \(6\) |
+| \(7\) | \((12,19)\) | \(19/12\) | \(0.0135\) | \(55\) |
+| \(11\) | \((19,30)\) | \(30/19\) | \(0.0762\) | \(15\) |
+| \(14\) | \((24,38)\) | \(19/12\) | \(0.0267\) | \(32\) |
+
+The spikes sit at \(11/7\) and \(19/12\), the semiconvergent and the
+convergent of \(\log_2 3\) at smallest denominator, and the thresholds
+they carry grow like \(1/\theta_r\) rather than like
+\(\exp(1/\theta_r)\) --- which is why they stay in the tens. What
+limits Theorem 3.31 is therefore not any threshold but the enumeration:
+the number of canonical forms with \(e\) even letters grows faster than
+\(e!\). The obstruction that stops this section and the obstruction
+that leaves the semiconvergent fan of Section 5 standing are the same
+arithmetic; only the denominators differ.
+
+*What each further even letter is worth.* Expansion at even count
+\(e\) needs \(L\log(3/2)>e\log3\), so each further even letter buys
+\(\log3/\log(3/2)\in(2.70,2.71)\) in period: the thresholds are
+\(11,14,17,19,22\) at \(e=4,5,6,7,8\). Both ends of that constant are
 integer certificates rather than numerical bounds on logarithms:
-\((3/2)^{27/10}<3\) is \(3^{17}<2^{27}\), and
-\(3<(3/2)^{271/100}\) is \(2^{271}<3^{171}\), the latter tight to
-four significant figures (`expansion_rate_lower`,
-`expansion_rate_upper`, `expansion_e4`, `expansion_e5`,
-`expansion_e6`, `FanLaw.lean`). Whether roughly four times the
-Appendix D work is worth three units of period is a judgement
-about what the floor-free statement is for, not a mathematical
-question, and we record the accounting rather than make the
-choice. Nothing here suggests the program would fail; the
-\(e=4\) forms show no structural obstruction, and a direct search
-finds no cycle of any even count with minimum below
-\(2\cdot10^{5}\).
+\((3/2)^{27/10}<3\) is \(3^{17}<2^{27}\), and \(3<(3/2)^{271/100}\)
+is \(2^{271}<3^{171}\), the latter tight to four significant figures
+(`expansion_rate_lower`, `expansion_rate_upper`, `expansion_e4`,
+`expansion_e5`, `expansion_e6`, `FanLaw.lean`).
+
+An earlier draft of this section priced a fifth even letter as a
+family program in the style of Theorems 3.14--3.20: two further
+gapped-leftover theorems and some twenty-five bunched families, for
+three units of period. Theorem 3.31 makes that program unnecessary.
+The route it takes is not a longer case analysis but a cheaper
+envelope --- Lemma 3.28 in place of Lemma 3.24 --- and the case
+analysis it then needs is mechanical rather than hand-written. What
+the earlier accounting got right is that raising the even count is
+the only route to a stronger floor-free statement; what it got wrong
+is the assumption that the eleven exclusions had to be generalised
+one at a time.
 
 ## 4. Cycle finance
 
@@ -2889,6 +3148,12 @@ Theorem 4.8.
 | Theorem 3.21 | `no_cycle_itinerary_gapped_three_even_ee`, `no_cycle_itinerary_gapped_three_even_eoe` |
 | Theorem 3.22 | `no_cycle_itinerary_even_count_le_three` |
 | Corollary 3.23 | `cycle_itinerary_length_ge_eleven` |
+| Lemma 3.24 | closed form of Lemma 3.10; no separate Lean name |
+| Lemma 3.25 | generalizes `cycle_trailing_evens_lt` past pure even runs |
+| Theorem 3.26 | Corollary 3.27's ten rows are Theorems 3.12--3.21 above |
+| Lemma 3.28 | `absorb_odd_step`, `cross_mul_pow`, `odd_run_ge` (`O7EEEEGap.lean`); \(X_7,Y_7\) are that module's 6177 and 3990 |
+| Theorem 3.29 | `no_cycle_itinerary_oooooooeeee` is the row \(u=EEEE\), \(a=7\) |
+| Theorem 3.31 | enumeration in `run_suffix_law.closure`; not yet Lean |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
 | Lemma 4.1 | `log_le_two_log_add` |

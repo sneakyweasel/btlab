@@ -30,6 +30,18 @@ export const CLAIM_ROWS = [
     tag: "EXACT — LEAN VERIFIED",
   },
   {
+    plain:
+      "Section 3's eleven exclusions are one inequality: an odd run of length a followed by a suffix with s letters and l odd ones is dead once (3/2)^a exceeds 2^s/3^l. The eleven printed thresholds are ten evaluations of it.",
+    theorem: "Theorem 3.26 / Corollary 3.27 run-suffix law",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
+    plain:
+      "Using the cycle minimum at every step of an odd run, not only at its start, removes the constant entirely. That lifts the floor-free bound to eight even letters and period 22.",
+    theorem: "Lemma 3.28 / Theorem 3.31",
+    tag: "EXACT — ENUMERATION VERIFIED",
+  },
+  {
     plain: "At a cycle minimum, n log n times the surplus cannot exceed L · 3^o.",
     theorem: "Theorem 4.4 finance inequality",
     tag: "EXACT — LEAN VERIFIED",
@@ -138,6 +150,7 @@ export const NOT_CLAIMED = [
   "The census-free window of Theorem 5.8 bounds the charge, not the kill. The comparison against θ(L) is still per-length, so the kill tables are not census-free.",
   "Proposition 5.8b/5.8c bound the relaxation at the lengths where it can be measured. They do not prove the extremal walk is realizable at every length.",
   "Corollary 5.14 is conditional on a descent floor nobody has certified. It is a priced next step, not a theorem about periods.",
+  "Theorem 3.31 needs a cycle minimum above 64 and an enumeration of 353044 canonical forms. Theorem 3.22 remains the statement proved in Lean for every n at least 2, and the interactive checker implements that one.",
   "No independence-from-Peano-arithmetic claim is made. Goodstein is a different theorem.",
   "Paper B (parity discrepancy and descent densities) is a different manuscript.",
 ] as const;
