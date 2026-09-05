@@ -1,0 +1,5 @@
+# Search noise. The descent-floor resume cache: ~1,400 per-chunk JSONs whose
+# numbers are all present in certificate.json / chunks_index.json beside them.
+# They are load-bearing (resume state, certificate rebuild, sha256_chunks) --
+# ignored for search only, never delete them.
+chunks/
