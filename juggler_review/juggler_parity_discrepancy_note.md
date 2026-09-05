@@ -3966,22 +3966,28 @@ carry. Written for a general kernel saving \(\delta\), Step A truncates
 at \(J_3=P^{\delta}\) --- the majorant \(4P/J_3\) balancing
 \(P^{1-\delta}\) --- and the check here reads
 \(kh_1h_2\le2P^{\delta+1/16}\le P^{1/8}\), since
-\(\tfrac1{48}+\tfrac1{24}=\tfrac1{16}\). So with the shift ranges left
-as they are, (C3) and (C4) survive for every \(\delta<\tfrac1{16}\),
-six times the \(\tfrac1{96}\) in force.
+\(\tfrac1{48}+\tfrac1{24}=\tfrac1{16}\). That comparison has room ---
+\(\tfrac7{96}\) against a budget of \(\tfrac{12}{96}\) --- and it is
+not what pins the exponent.
 
-That is the headroom for a kernel bound improved by some other route.
-It is not the headroom for improving Lemma 5.2(ii), because the shift
-ranges are not free: the two balances of Step 1 fix
-\(H_2=P^{\delta_0}\) and \(H_1=P^{\delta_0/2}\) from that lemma's own
-saving \(\delta_0\), and return \(\delta=\delta_0/4\). Raising
-\(\delta_0\) therefore adds \(\tfrac32\delta_0\) to the shift load while
-adding only \(\tfrac14\delta_0\) to the kernel --- the budget is spent
-six times faster than it is earned --- and the check reads
-\(\tfrac74\delta_0\le\tfrac18\), i.e. \(\delta_0\le\tfrac1{14}\)
-against the \(\tfrac1{24}\) in force. Along that route the kernel
-exponent can reach \(\tfrac1{56}\) and no further without new shift
-ranges: a factor \(\tfrac{12}7\), not six.
+What pins it is (C4). The two balances of Step 1 fix
+\(H_2=P^{\delta_0}\) and \(H_1=P^{\delta_0/2}\) from Lemma 5.2(ii)'s
+own saving \(\delta_0\), returning the kernel saving
+\(\delta_0/4\); and (C4) caps \(h_2\) at \(P^{1/24}\). So
+\(H_2=P^{\delta_0}\) sits *exactly* at that cap, with no slack at all,
+and \(\delta_0\) cannot exceed \(\tfrac1{24}\) --- which is why the
+kernel saving is \(\tfrac1{96}\) and not something larger. The
+headroom along this route is zero.
+
+(C1) is tight, but only at the corner of its own hypothesis box: the
+equality \(k=h_1=h_2=P^{1/24}\) is never the configuration in force,
+because Theorem 6.1 enters with \(k\le2P^{1/96}\). Tight over the
+domain, slack at every invocation. And (C4) is not free either: the
+decoration class (D1) and the third-differencing reduction of
+Lemma 5.2(ii) are what require \(h_1{+}h_2\le2P^{1/24}\). So
+\(\tfrac1{96}\) traces back, without slack anywhere along the way, to
+the decoration budget --- and improving the kernel means re-deriving
+that, not re-balancing anything.
 
 Nothing after this theorem consumes the value at all --- Corollary
 6.4's density \(7/8\) needs the error to be \(o(N)\), and

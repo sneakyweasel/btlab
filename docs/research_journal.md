@@ -28967,3 +28967,66 @@ Best next question
 - 1/8 is the (C3)/(C4) ceiling that binds this. Where does it come
   from, and is it as forced as the shift ranges are?
 ```
+
+ ### (C4) binds, (C1) never does, and both my headrooms were fiction
+
+Third pass at the same question, and the first two answers were wrong
+in the same way: I located the constraint at (C1)'s `1/8`, and (C1)
+never binds.
+
+`1/8` is `3 × 1/24`, the product of the three caps. It is tight, but
+only at the corner `k = h1 = h2 = P^{1/24}` of its own hypothesis box —
+a configuration that never occurs, since Theorem 6.1 enters Step C with
+`k <= 2P^{1/96}`. At the operating point the load is `7/96` against a
+budget of `12/96`.
+
+**What binds is (C4).** The balances force `H_2 = P^{δ_0}`, and (C4)
+caps `h_2` at `P^{1/24}`. So `H_2` sits *exactly* at the cap:
+
+```text
+   H_1 = P^{1/48}   (C4) cap P^{1/24}   slack 1/48
+   H_2 = P^{1/24}   (C4) cap P^{1/24}   slack 0      <-- tight
+   Step C load 7/96  (C1) budget 12/96  slack 5/96   <-- never binds
+```
+
+`δ_0` cannot exceed `1/24` at all. **The headroom is zero**, not six
+and not `12/7`; both earlier figures were computed against a condition
+with slack to spare, and neither described what stops the exponent.
+
+And (C4) is not free either. The paper says what forces it: the (D1)
+decoration class and Lemma 5.2(ii)'s own third-differencing reduction
+need `h_1 + h_2 <= 2P^{1/24}`. So `1/96` traces back without slack
+anywhere to the decoration budget, and improving the kernel means
+re-deriving *that*, not re-balancing anything.
+
+Three entries, three answers, and the error was the same both times:
+computing headroom against whichever inequality I happened to be
+reading, without checking it was the one that was tight.
+
+```text
+What was learned
+- "is it tight?" must be asked at the configuration in force, not over
+  the hypothesis domain; (C1) is tight in the second sense and slack
+  in the first, and only the first matters
+- I twice quoted a headroom without checking which condition binds.
+  The fix is cheap -- compute every condition's slack at the operating
+  point, once -- and I should have done it the first time
+Strongest theorem
+- H_2 = P^{1/24} is exactly (C4)'s cap, so delta_0 <= 1/24 with zero
+  slack; (C1) carries 5/96 unused at the same point
+Strongest refutation
+- both my previous headrooms, factor 6 and factor 12/7
+Reusable machinery
+- five tests locating the binding condition and the slack at (C1)
+Branch status
+- PROMOTE
+Why
+  The chain from the decoration budget to 1/96 is now traced with the
+  slack measured at every link, and there is none. That is a stronger
+  and more useful statement than either headroom I offered, and it
+  says plainly that the kernel exponent cannot be improved by
+  rebalancing -- only by revisiting (D1).
+Best next question
+- (D1) requires h_1 + h_2 <= 2P^{1/24}. What in (D1) needs it, and is
+  that requirement tight in the sense that matters?
+```
