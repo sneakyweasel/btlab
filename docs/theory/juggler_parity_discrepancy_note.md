@@ -4353,13 +4353,13 @@ The depth-by-depth counting assembles into a conditional
 Terras-style statement, and the reduction is unconditional:
 
 **Proposition 7.1 (equidistribution implies density-one descent).**
-Let \(d\ge1\) and suppose that for every *\(O\)-rooted* itinerary
-word \(w\) of length \(d\),
+Let \(d\ge1\), let \(N_d\) be the number of length-\(d\) words with no
+contracting prefix, and suppose that each of *those* words satisfies
+the one-sided bound
 \[
-\bigl|\#\{n\le N:\mathrm{word}_d(n)=w\}-2^{-d}N\bigr|\le E_d(N).
+\#\{n\le N:\mathrm{word}_d(n)=w\}\ \le\ 2^{-d}N+E_d(N).
 \]
-Let \(N_d\) be the number of length-\(d\) words with no contracting
-prefix. Then the starts with no contracting prefix of length \(\le d\)
+Then the starts with no contracting prefix of length \(\le d\)
 number at most
 \[
 \frac{N_d}{2^{d}}\,N+N_d\,E_d(N),
@@ -4381,14 +4381,23 @@ among the first \(t\); so the words to be counted are exactly those
 whose lattice path \((t,o_t)\) satisfies \(3^{o_t}\ge2^{t}\)
 throughout. That condition depends on nothing but \((t,o_t)\), so
 \(N_d\) is a two-line dynamic program over the triangle
-\(0\le o\le t\le d\), exact in integers. Each surviving class has at
-most \(2^{-d}N+E_d(N)\) members by the \(O\)-rooted hypothesis, and
-multiplying by \(N_d\) gives the count. For the closed form, drop
+\(0\le o\le t\le d\), exact in integers. Each of them has at most
+\(2^{-d}N+E_d(N)\) members by hypothesis, and multiplying by \(N_d\)
+gives the count. For the closed form, drop
 every constraint but \(t=d\): the endpoint condition is
 \(o_d\ge d\log2/\log3\), and Hoeffding's inequality gives
 \(\#\{o_d\ge d\log2/\log3\}\le2^{d}e^{-cd}\) with \(c\) as above. The
 density-one statement follows by letting \(d\to\infty\) slowly with
 \(N\) (any \(d(N)\to\infty\) with \(N_dE_d(N)/N\to0\)). \(\square\)
+
+The name of the proposition is historical. Its proof consumes neither
+equidistribution nor two-sided control: an upper bound suffices, and
+only on the words that survive. At depth five that is four words ---
+\(OOOOO\), \(OOOOE\), \(OOOEO\), \(OOEOO\) --- against the sixteen
+\(O\)-rooted classes a full equidistribution statement covers, and the
+gap widens with depth: \(19\) against \(128\) at \(d=8\), \(2114\)
+against \(32768\) at \(d=16\), \(286581\) against \(8388608\) at
+\(d=24\). Whatever a prover establishes beyond that is not used here.
 
 The exact count is worth carrying rather than the closed form,
 because Hoeffding is lossy in exactly the range the paper certifies:
@@ -4597,16 +4606,20 @@ does not need one. Two weakenings of the hypothesis of
 Proposition 7.1 suffice, and both are elementary.
 
 **Proposition 7.6 (rate-free reduction).**
-Suppose that for **each fixed** depth \(d\), every parity class
-\(w\in\{O,E\}^d\) satisfies \(\#w(N)=2^{-d}N+o(N)\) as
-\(N\to\infty\) --- no rate, and no uniformity in \(d\). Then the set
-of starts admitting a finite descent certificate has natural
-density \(1\).
+Suppose that for **each fixed** depth \(d\), each of the \(N_d\)
+classes with no contracting prefix satisfies
+\[
+\limsup_{N\to\infty}\frac{\#\{n\le N:\mathrm{word}_d(n)=w\}}{N}
+\ \le\ 2^{-d}
+\]
+--- an upper bound only, with no rate and no uniformity in \(d\).
+Then the set of starts admitting a finite descent certificate has
+natural density \(1\).
 
 *Proof.* Fix \(d\) and let \(N\to\infty\) *before* \(d\to\infty\). The
-hypothesis gives \(N_dE_d(N)=o(N)\) for the \(N_d\)-term sum of
-Proposition 7.1, so the starts with no contracting prefix of length
-\(\le d\) have upper density at most \(N_d/2^{d}\). This holds for
+hypothesis is Proposition 7.1's with \(E_d(N)=o(N)\), so the starts
+with no contracting prefix of length \(\le d\) have upper density at
+most \(N_d/2^{d}\). This holds for
 every \(d\), and \(N_d/2^{d}\to0\). \(\square\)
 
 **Proposition 7.7 (biased-split reduction).**

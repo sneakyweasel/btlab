@@ -1,0 +1,162 @@
+{
+  "git_commit": "c42a385176c961c5f2a03ab0c7f122f54aec90f3",
+  "N0": 350000000,
+  "alpha": 0.5849625007211561,
+  "walk_mod_one_is_rotation_orbit": true,
+  "clock_defect_census": [
+    {
+      "log10_y": 12,
+      "orbits": 200,
+      "mean_steps_above_floor": 7.68,
+      "max_abs_eps_u_units": 2.0669332911893434e-10
+    },
+    {
+      "log10_y": 18,
+      "orbits": 200,
+      "mean_steps_above_floor": 9.295,
+      "max_abs_eps_u_units": 1.6218315579408227e-10
+    },
+    {
+      "log10_y": 30,
+      "orbits": 200,
+      "mean_steps_above_floor": 13.18,
+      "max_abs_eps_u_units": 1.7502799209978548e-10
+    },
+    {
+      "log10_y": 50,
+      "orbits": 200,
+      "mean_steps_above_floor": 16.775,
+      "max_abs_eps_u_units": 1.4728485098203237e-10
+    },
+    {
+      "log10_y": 100,
+      "orbits": 200,
+      "mean_steps_above_floor": 22.8,
+      "max_abs_eps_u_units": 6.935607643754338e-11
+    }
+  ],
+  "cycle_clock_defect_bounds": [
+    {
+      "n": 350000000.0,
+      "period": 780239,
+      "Delta_max": 0.0023407170000000004,
+      "abs_eps_u_units": 0.00017165991704408445
+    },
+    {
+      "n": 10000000000.0,
+      "period": 780239,
+      "Delta_max": 8.192509500000001e-05,
+      "abs_eps_u_units": 5.133062786938602e-06
+    },
+    {
+      "n": 1000000000000.0,
+      "period": 7800000,
+      "Delta_max": 8.19e-06,
+      "abs_eps_u_units": 4.2762350639180523e-07
+    }
+  ],
+  "rotation_coverage": [
+    {
+      "period": 478245,
+      "odd_steps": 301739,
+      "largest_gap_mod_one": 5.19401510246098e-06
+    },
+    {
+      "period": 780239,
+      "odd_steps": 492276,
+      "largest_gap_mod_one": 5.100941052660346e-06
+    },
+    {
+      "period": 1082233,
+      "odd_steps": 682813,
+      "largest_gap_mod_one": 5.0078597269020975e-06
+    }
+  ],
+  "etree_density": [
+    {
+      "m": 11,
+      "generation": 1,
+      "count": 11,
+      "scale": 144.0,
+      "density": 0.0763888888888889,
+      "one_over_m": 0.09090909090909091
+    },
+    {
+      "m": 11,
+      "generation": 2,
+      "count": 1463,
+      "scale": 20736.0,
+      "density": 0.07055362654320987,
+      "one_over_m": 0.09090909090909091
+    },
+    {
+      "m": 101,
+      "generation": 1,
+      "count": 101,
+      "scale": 10404.0,
+      "density": 0.009707804690503653,
+      "one_over_m": 0.009900990099009901
+    },
+    {
+      "m": 101,
+      "generation": 2,
+      "count": 1040603,
+      "scale": 108243216.0,
+      "density": 0.009613563218594688,
+      "one_over_m": 0.009900990099009901
+    }
+  ],
+  "census_price": [
+    {
+      "cycle_min": 350000000.0,
+      "density": 2.857142857142857e-09,
+      "hits": 10,
+      "samples_for_hits": 3500000000.0,
+      "evidence_depth": 508,
+      "log10_y": 100,
+      "cycle_minima_tested": 3500000000.0,
+      "dominated_by_floor_raise": true
+    },
+    {
+      "cycle_min": 1000000000.0,
+      "density": 1e-09,
+      "hits": 10,
+      "samples_for_hits": 10000000000.0,
+      "evidence_depth": 535,
+      "log10_y": 100,
+      "cycle_minima_tested": 10000000000.0,
+      "dominated_by_floor_raise": true
+    },
+    {
+      "cycle_min": 10000000000.0,
+      "density": 1e-10,
+      "hits": 10,
+      "samples_for_hits": 100000000000.0,
+      "evidence_depth": 597,
+      "log10_y": 100,
+      "cycle_minima_tested": 100000000000.0,
+      "dominated_by_floor_raise": true
+    },
+    {
+      "cycle_min": 1000000000000.0,
+      "density": 1e-12,
+      "hits": 10,
+      "samples_for_hits": 10000000000000.0,
+      "evidence_depth": 722,
+      "log10_y": 100,
+      "cycle_minima_tested": 10000000000000.0,
+      "dominated_by_floor_raise": true
+    }
+  ],
+  "classification": {
+    "max_realised_eps_u_units": 2.0669332911893434e-10,
+    "max_cycle_eps_bound_u_units": 0.00017165991704408445,
+    "widest_rotation_gap": 5.19401510246098e-06,
+    "clock_defect_is_negligible": true,
+    "cycle_defect_below_one": true,
+    "basin_covers_every_block": true,
+    "single_seed_density_is_one_over_m": true,
+    "deep_census_dominated_by_floor_raise": true,
+    "decision": "PARK"
+  }
+}

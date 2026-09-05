@@ -719,6 +719,8 @@ Lemma A again. Expected outcome: the OOO\* discrepancy at
 
 ### Proposition J (equidistribution implies density-one descent) — EXACT — HUMAN PROOF
 
+*Paper B carries a weaker hypothesis.* Proposition 7.1 there asks only for a one-sided bound, and only on the \(N_d\) classes with no contracting prefix; the two-sided statement below implies it and is kept here as the original form.
+
 Let \(d \ge 1\) and suppose that for every itinerary word \(w\) of
 length \(d\) (over all starts, first letter = parity of \(n\)),
 

@@ -25179,3 +25179,54 @@ Best next question
 - Proposition 7.6's rate-free hypothesis has no such slack to remove;
   the open target is the tower conjecture it reduces to
 ```
+
+
+### Propositions 7.1 and 7.6 asked for more than their proofs consume
+
+Third time this pattern has paid this session, so it is worth naming: a statement inherits its
+hypothesis from how it was first proved, not from what the proof needs. 7.7's strict inequality
+was one. These two are the same species.
+
+Both were stated with a **two-sided** bound on **every** O-rooted class. Both proofs use an
+**upper** bound, on the **N_d surviving** classes only -- the line "each surviving class has at
+most `2^{-d}N + E_d(N)` members" is the entire consumption. The gap is not small and widens with
+depth:
+
+```text
+  d      classes an equidistribution statement covers   classes the proof uses
+  5      16                                             4
+  8      128                                            19
+  16     32768                                          2114
+  24     8388608                                        286581
+```
+
+At depth five the four are `OOOOO`, `OOOOE`, `OOOEO`, `OOEOO`, and only an upper bound on each
+is needed. That is what a prover has to establish; anything beyond it is not used.
+
+Weakening changes no conclusion and nothing downstream, since the old hypothesis implies the new
+one -- which is also why it went unnoticed. The proposition keeps its name, which is now
+historical, and a remark says so.
+
+The source note keeps the two-sided form as the original and points at the paper's weaker one,
+so the record shows which direction the strengthening went.
+
+```text
+What was learned
+- the third instance of one pattern: hypotheses inherited from a
+  proof's first shape rather than from its needs. Worth checking the
+  remaining statements deliberately rather than stumbling on them
+- a hypothesis that is too strong is invisible to every test, because
+  everything downstream still holds
+Strongest theorem
+- 7.1 and 7.6 at one-sided bounds on N_d classes: at d = 24, 286581
+  upper bounds in place of 8388608 two-sided ones
+Strongest refutation
+- none; this was slack, not error
+Reusable machinery
+- none new
+Branch status
+- ADVANCE (the three reductions now state what they need)
+Best next question
+- audit the remaining hypotheses of Sections 4-6 the same way, rather
+  than waiting to trip over the next one
+```

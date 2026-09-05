@@ -310,3 +310,43 @@ def test_paper_states_the_non_strict_threshold_and_the_constants() -> None:
     assert r"2^{-1/2}" in sec and "0.6675" in sec
     assert "The threshold cannot be lowered" in sec
     assert "0.228" in sec
+
+
+# --- 7.1 and 7.6 ask only for what their proofs consume ---
+
+
+def test_proposition_7_1_hypothesis_is_one_sided() -> None:
+    """The two-sided form was never used: the proof bounds each surviving class from above."""
+    text = io.open(PAPER, encoding="utf-8").read()
+    body = text[text.index("**Proposition 7.1"):text.index("The name of the proposition")]
+    assert r"\#\{n\le N:\mathrm{word}_d(n)=w\}\ \le\ 2^{-d}N+E_d(N)" in body
+    assert r"\bigl|\#\{n\le N:\mathrm{word}_d(n)=w\}-2^{-d}N\bigr|\le E_d(N)" not in body
+    assert "each of *those* words" in body
+
+
+def test_proposition_7_6_hypothesis_is_one_sided() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    body = text[text.index("**Proposition 7.6"):text.index("**Proposition 7.7")]
+    assert r"\le\ 2^{-d}" in body
+    assert "an upper bound only" in body
+    assert r"\#w(N)=2^{-d}N+o(N)" not in body
+
+
+@pytest.mark.parametrize("d,o_rooted,surviving", [
+    (5, 16, 4), (8, 128, 19), (16, 32768, 2114), (24, 8388608, 286581),
+])
+def test_the_remark_quantifies_what_is_not_used(d: int, o_rooted: int, surviving: int) -> None:
+    """The proof needs N_d classes, not the 2^(d-1) an equidistribution statement covers."""
+    assert 2 ** (d - 1) == o_rooted
+    assert B.non_contracting(d) == surviving
+    text = io.open(PAPER, encoding="utf-8").read()
+    remark = text[text.index("The name of the proposition"):text.index("The exact count is worth")]
+    assert str(surviving) in remark, surviving
+    assert str(o_rooted) in remark, o_rooted
+
+
+def test_the_remark_names_the_four_depth_five_words() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    remark = text[text.index("The name of the proposition"):text.index("The exact count is worth")]
+    for w in surviving_words(5):
+        assert w in remark, w
