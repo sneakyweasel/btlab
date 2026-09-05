@@ -26566,3 +26566,71 @@ Branch status
 Best next question
 - none from this; the survey found one defect and it is fixed
 ```
+
+## The Ostrowski sandwich moves inside the kernel
+
+Following the numerics question: Mathlib has Taylor
+(`taylorWithin`, `taylor_mean_remainder_lagrange`, `_cauchy`,
+`_bound`), and this laboratory already uses the technique — Paper A
+Proposition 5.5's Laplace bound is proved in `RotationAverage.lean` by
+a quadratic majorant plus an explicit antiderivative, deliberately
+without quadrature. But `Real.log` and `Real.exp` are noncomputable in
+Lean, so "symbolic computation" there means proved inequalities, never
+evaluated values, and a series is only ever a device for handing
+`norm_num` a rational majorant.
+
+For the quantity that actually needed precision, \(\theta(L)\), no
+series is wanted at all: \(\theta(L)>0\) *is* \(2^L<3^o\), pure integer
+arithmetic. `Nat` literal arithmetic is GMP-backed in the Lean kernel,
+so `norm_num` decides these directly. Measured, against a bare
+`import Mathlib.Tactic` baseline of \(26.3\) s:
+
+- \(2^{780239}<3^{492276}\) (the walk-charge blocker) — under a second
+- \(2^{16785921}<3^{10590737}\) (the fan endpoint \(q_{14}\)) — under a second
+- control: \(3^{10590737}<2^{16785921}\) is reduced to `False` and
+  correctly refused, so the tactic is deciding and not no-opping
+
+Both need `exponentiation.threshold` and `maxRecDepth` raised; Lean
+names both in its own error messages.
+
+**The change.** `theta_sandwich_upper` and `theta_sandwich_lower` in
+`OstrowskiSandwich.lean` were `native_decide`, which trusts the Lean
+compiler and runtime in addition to the kernel. They are now `norm_num`
+with the two thresholds raised for those declarations only. The whole
+file elaborates in \(32\) s against the \(26\) s import baseline, and
+the barrel builds (3473 jobs). Paper A §5.5 and the review mirror now
+say the two power inequalities are kernel-checked.
+
+This matters because those two inequalities carry everything else in
+the module: the real bounds on \(\theta\), the shared quotient prefix,
+the convergent recurrence, the window digit cap, and through Theorem
+5.7 the Denjoy–Koksma application. They were the widest part of the
+trust boundary in Paper A §5, and they were the cheapest to move.
+
+The remaining `native_decide`s in the file are list computations
+(`cf_lower_prefix`, `cf_upper_prefix`, `window_digit_scan` and the
+rest), which `norm_num` does not decide; those stay as they are. Paper
+A §1.2's description of `native_decide` covers the Section 3 finite
+tables and never claimed these two, so no prose was contradicted.
+
+```text
+What was learned
+- Mathlib has Taylor and the lab already uses the majorant technique, but
+  Real is noncomputable: Lean gives proved inequalities, not values
+- theta needs no series at all; it is integer arithmetic the kernel can do
+- norm_num decides 5-million-digit power comparisons in under a second
+- the control matters: the false direction must be refused, or the test
+  proves nothing
+Strongest theorem
+- theta_sandwich_upper and theta_sandwich_lower, now kernel-checked
+Strongest refutation
+- the premise that a series was the missing tool; it was precision, and
+  then not even that but exact integers
+Reusable machinery
+- the two thresholds and the pattern for large Nat power comparisons
+Branch status
+- Paper A Section 5's trust boundary is narrower by two native_decide uses
+Best next question
+- do any other native_decide proofs in the Juggler layer reduce to Nat or
+  Int literal arithmetic that norm_num would take?
+```

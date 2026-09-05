@@ -16,7 +16,9 @@ This file certifies that arithmetic:
 
 * the two big-integer power inequalities
   `3^10781274 < 2^17087915` and `2^16785921 < 3^10590737`
-  (`theta_sandwich_upper`, `theta_sandwich_lower`);
+  (`theta_sandwich_upper`, `theta_sandwich_lower`), both checked by the
+  kernel through `norm_num` rather than by the compiled runtime, so the
+  sandwich that carries the whole certification rests on the kernel alone;
 * the resulting real sandwich
   `6195184/16785921 < θ < 6306641/17087915`
   (`lower_lt_walkTheta`, `walkTheta_lt_upper`);
@@ -49,15 +51,25 @@ laboratory-specific hypotheses (block quality and permutation) are
 certified above. Not a cycle obstruction and not a halt theorem.
 -/
 
+set_option exponentiation.threshold 20000000 in
+set_option maxRecDepth 4000000 in
 /-- Upper side of the sandwich: `3^10781274 < 2^17087915`,
-hence `log 2 / log 3 > 10781274 / 17087915`. -/
-theorem theta_sandwich_upper : (3 : ℕ) ^ 10781274 < 2 ^ 17087915 := by
-  native_decide
+hence `log 2 / log 3 > 10781274 / 17087915`.
 
+Proved by `norm_num`, so the comparison is checked by the kernel rather than by the
+compiled runtime: these two inequalities carry the whole Ostrowski certification, and
+`Nat` literal arithmetic is GMP-backed in the kernel, so the five-million-digit
+comparison costs well under a second. The thresholds are raised only for these two
+declarations. -/
+theorem theta_sandwich_upper : (3 : ℕ) ^ 10781274 < 2 ^ 17087915 := by
+  norm_num
+
+set_option exponentiation.threshold 20000000 in
+set_option maxRecDepth 4000000 in
 /-- Lower side of the sandwich: `2^16785921 < 3^10590737`,
-hence `log 2 / log 3 < 10590737 / 16785921`. -/
+hence `log 2 / log 3 < 10590737 / 16785921`.  Kernel-checked, as above. -/
 theorem theta_sandwich_lower : (2 : ℕ) ^ 16785921 < 3 ^ 10590737 := by
-  native_decide
+  norm_num
 
 /-- The rotation number of the hug walk in Paper A Section 5:
 `θ = log(3/2)/log 3`. -/

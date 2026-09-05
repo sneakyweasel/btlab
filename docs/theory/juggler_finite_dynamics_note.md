@@ -2415,8 +2415,11 @@ rational endpoints, and the convergent recurrence are Lean
 (`theta_sandwich_upper`, `theta_sandwich_lower`,
 `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`,
 `cf_upper_prefix`, `theta_convergent_denominators`,
-`OstrowskiSandwich.lean`); the cylinder-interval bridge from the
-endpoints to \(\theta\) itself is classical. The quantitative
+`OstrowskiSandwich.lean`); the two power inequalities are checked by
+the Lean kernel through `norm_num`, not by the compiled runtime, so the
+sandwich that carries this certification rests on the kernel alone.
+The cylinder-interval bridge from the endpoints to \(\theta\) itself is
+classical. The quantitative
 hypothesis Denjoy--Koksma needs per block is also Lean: with the
 matching numerators \(0,1,1,3,7,24,31,179,389,9126,18641,
 46408,65049\) (`theta_convergent_numerators`), consecutive
