@@ -28309,3 +28309,64 @@ Best next question
 - Theorem 4.8 leaves OOO* as the one depth-4 word it does not reach.
   Is the reason it stops the same drift threshold, or a different one?
 ```
+
+ ### The criterion retrodicts the paper's own frontier, exactly
+
+The question was whether Theorem 4.8 stops at `OOO*` for the drift
+reason or a different one. It is the drift reason, and checking that
+turned into the strongest validation the apparatus has.
+
+**Depth four.** Of the eight `O`-rooted words, six carry no blocked
+defect at any letter: `OEEE`, `OEEO`, `OEOE`, `OEOO`, `OOEE`, `OOEO`.
+Those are exactly the six that Theorems 4.4, 4.7 and 4.8 prove by
+drift-1 windows. The two that are blocked are `OOOE` and `OOOO` — the
+`OOO*` split, the one word of depth four that needed Sections 5 and 6.
+So Theorem 4.8 stops where it does for the drift reason and no other.
+
+**Depth five grades three ways, and so does the criterion.**
+
+```text
+   OOEOE, OOEOO   no blocked defect        Thm 6.3, N^{43/48}, windows only
+   OOOEE, OOOEO   letter 4, level 2        Thm 6.3, N^{1-1/96}, on Thm 6.1
+   OOOOE, OOOOO   letters 4 and 5, lvl 2,3 open
+```
+
+The unblocked pair even carries the *better* error exponent —
+`43/48 < 1 - 1/96` — which is what an argument that never needs a
+kernel should give.
+
+Two depths, sixteen words, three outcomes, no exceptions. Until now the
+criterion had been checked against a handful of constants the paper
+displays; this checks it against the paper's *conclusions*, which is a
+different and stronger thing. It is the ground for reading the
+depth-seven table at all, since nothing there is proved.
+
+```text
+What was learned
+- the criterion was built to price depth seven and it reproduces the
+  depth-four and depth-five frontier without being told either
+- the grading is three-way, not binary: unblocked / level-2 blocked /
+  level-3 blocked maps onto elementary / kernel / open, and the error
+  exponents track it
+Strongest theorem
+- over all sixteen O-rooted words of depths four and five, "has a
+  blocked defect" separates exactly the words needing a kernel, and
+  "blocked at level 3" separates exactly the open ones
+Strongest refutation
+- none; this was the confirmation the apparatus had been missing
+Reusable machinery
+- five tests pinning both retrodictions
+Branch status
+- PROMOTE
+Why
+  Everything the last several entries concluded about depth seven --
+  the ranking, the screen, the level-1 kernel as the single unproved
+  ingredient -- rests on a criterion whose only prior validation was
+  against displayed constants. It now reproduces the paper's own
+  frontier at both depths where that frontier is known, with no
+  exceptions and with the error exponents in the right order.
+Best next question
+- the retrodiction is over O-rooted words. E-rooted starts are
+  "a different and easier problem" the paper does not treat; does the
+  criterion say why, or does it just not apply?
+```

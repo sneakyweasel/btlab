@@ -1102,3 +1102,55 @@ def test_paper_states_the_mode_bound_and_its_caveat() -> None:
     assert r"P^{313/352}" in text and r"\tfrac{39}{352}" in text
     assert "van der Corput pairs, not the" in text
     assert "says nothing whatever" in text
+
+
+# --- the criterion retrodicts the paper's own frontier ---
+
+
+ELEMENTARY_D4 = ["OEEE", "OEEO", "OEOE", "OEOO", "OOEE", "OOEO"]
+KERNEL_D4 = ["OOOE", "OOOO"]
+
+
+def test_depth_four_separates_exactly_as_the_paper_does() -> None:
+    """Six words unblocked at every letter; those are the six proved by windows."""
+    from itertools import product
+    unblocked, blocked = [], []
+    for bits in product("EO", repeat=3):
+        w = "O" + "".join(bits)
+        hit = any(B.deepest_blocked(w, t) for t in (3, 4))
+        (blocked if hit else unblocked).append(w)
+    assert sorted(unblocked) == ELEMENTARY_D4
+    assert sorted(blocked) == KERNEL_D4
+
+
+def test_the_two_blocked_depth_four_words_are_the_OOO_split() -> None:
+    for w in KERNEL_D4:
+        d = B.deepest_blocked(w, 4)
+        assert d[0] == 2 and d[1:3] == (Fraction(3, 4), Fraction(9, 8))
+        assert d == B.deepest_blocked("OOO", 4)
+
+
+@pytest.mark.parametrize("word,letters", [
+    ("OOEOE", []), ("OOEOO", []),
+    ("OOOEE", [(4, 2)]), ("OOOEO", [(4, 2)]),
+    ("OOOOE", [(4, 2), (5, 3)]), ("OOOOO", [(4, 2), (5, 3)]),
+])
+def test_depth_five_grades_three_ways(word: str, letters: list) -> None:
+    """Windows only / level-2 kernel / open, matching Theorem 6.3 and Conjecture 7.3."""
+    got = [(t, B.deepest_blocked(word, t)[0]) for t in range(3, 6)
+           if B.deepest_blocked(word, t)]
+    assert got == letters, word
+
+
+def test_the_unblocked_depth_five_pair_has_the_better_exponent() -> None:
+    """43/48 beats 1 - 1/96, which is what a kernel-free argument should give."""
+    assert Fraction(43, 48) < 1 - Fraction(1, 96)
+    for w in ("OOEOE", "OOEOO"):
+        assert all(B.deepest_blocked(w, t) is None for t in range(3, 6)), w
+
+
+def test_paper_states_the_retrodiction() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "not calibrated on depth seven" in text
+    assert "for the drift reason and for no other" in text
+    assert "sixteen words, three outcomes, no" in text

@@ -4690,6 +4690,30 @@ returns Theorem 5.3's monomial; it assigns \(OOOO*\) the level-3
 kernel and returns the weight Conjecture 7.3 describes. The last three
 are the reading.
 
+*The criterion is not calibrated on depth seven.* It reproduces the
+frontier of this paper wherever that frontier is known, and does so
+without exception. Over the eight \(O\)-rooted words of depth four,
+six carry no blocked defect at any letter --- \(OEEE\), \(OEEO\),
+\(OEOE\), \(OEOO\), \(OOEE\), \(OOEO\) --- and those six are exactly
+the ones Theorems 4.4, 4.7 and 4.8 prove by drift-1 windows. The two
+that are blocked are \(OOOE\) and \(OOOO\), which is the \(OOO*\)
+split, the one word of depth four that needed Sections 5 and 6. So
+Theorem 4.8 stops where it does for the drift reason and for no other.
+
+Depth five grades three ways, and so does the criterion:
+
+| word | blocked | the paper |
+|---|---|---|
+| \(OOEOE,\ OOEOO\) | none | Theorem 6.3, \(N^{43/48}\), windows only |
+| \(OOOEE,\ OOOEO\) | letter 4, level \(2\) | Theorem 6.3, \(N^{1-1/96}\), on Theorem 6.1's kernel |
+| \(OOOOE,\ OOOOO\) | letters 4 and 5, levels \(2\) and \(3\) | open |
+
+The unblocked pair even carries the better error exponent, \(43/48\)
+against \(1-\tfrac1{96}\), which is what an argument that never needs a
+kernel should give. Two depths, sixteen words, three outcomes, no
+exceptions: that is the ground for reading the table above at depths
+where nothing is proved.
+
 One more check, on the *form* of those monomials. Writing the kernel's
 coefficient as a power of \(n\) drops the floors kept exact beneath it,
 at a cost equal to its sensitivity to each, of exponent
