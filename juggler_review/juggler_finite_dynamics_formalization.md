@@ -726,10 +726,14 @@ rational endpoints (`cf_lower_prefix`, `cf_upper_prefix`,
 `cf_lower_continues`, `cf_upper_continues`), and the convergent
 denominator list \(1,\ldots,176251\)
 (`theta_convergent_denominators`). The digit scan of Theorem 5.8 is
-also Lean: for every window length \(50508\le L<301994\) the greedy
-Ostrowski digits over the certified denominators reconstruct \(L\)
-and sum to at most \(37\) (`window_digit_scan`, pointwise
-`window_digit_cap`), attained at \(L=275632\) (`window_digit_max`).
+also Lean, on the sub-window it was written for: for every
+\(50508\le L<301994\) the greedy Ostrowski digits over the certified
+denominators reconstruct \(L\) and sum to at most \(37\)
+(`window_digit_scan`, pointwise `window_digit_cap`), attained at
+\(L=275632\) (`window_digit_max`). Since the window was extended to
+\(q_{14}\) that scan sharpens the constant rather than establishing
+the theorem; the extended statement rests on the structural cap
+below.
 The Denjoy–Koksma hypotheses are certified as well: the matching
 numerator list \(0,1,1,3,7,24,31,179,389,9126,18641,46408,65049\)
 (`theta_convergent_numerators`, `thetaConvergents_eq_zip`),
@@ -768,8 +772,10 @@ in general form: for any denominator sequence \(q\) with \(q_0>0\),
 structural cap \(b_j\le a_{j+1}\) (`ostroDigit_le`), exact
 reconstruction \(L=\sum_j b_jq_j\) when \(q_0=1\) (`ostro_sum_eq`),
 and the digit-sum cap (`ostro_digitSum_le`). The \(\theta\) instance
-closes the window at \(q_{13}=301994\) and gives \(s(L)\le 47\) for
-*every* \(L<301994\), structurally (`theta_digitSum_le`,
+gives \(s(L)\le 47\) for *every* \(L<q_{13}=301994\) structurally,
+and \(s(L)\le b+47\) on \(L=bq_{13}+r\) with \(b\le a_{14}=55\),
+which is what carries the window to \(q_{14}=16785921\)
+(`theta_digitSum_le`,
 `theta_sum_eq`); a `native_decide` bridge identifies the function
 form with the fold form `greedyDigitSum` below the window endpoint
 (`greedy_eq_ostro_below_window`, corollary `greedyDigitSum_le`).

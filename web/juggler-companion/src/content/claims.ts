@@ -54,6 +54,36 @@ export const CLAIM_ROWS = [
     theorem: "Corollary 5.10",
     tag: "COMPUTATIONALLY VERIFIED",
   },
+  {
+    plain:
+      "The surviving lengths are one arithmetic progression of 56 terms, 176251 + 301994k, ending on the next convergent.",
+    theorem: "Proposition 5.12 fan law",
+    tag: "EXACT — LEAN VERIFIED",
+  },
+  {
+    plain:
+      "The fan ends at k = 55 for the same reason the certified numeration range does: Λ₅₅ > 0 and Λ₅₆ < 0 are the two sandwich inequalities.",
+    theorem: "fanLambda_55_pos / fanLambda_56_neg (FanLaw.lean)",
+    tag: "EXACT — LEAN VERIFIED",
+  },
+  {
+    plain:
+      "The lattice program maximises over words that need not be realizable, but that costs under a part in 10⁸ at the kill-table lengths.",
+    theorem: "Propositions 5.8b, 5.8c",
+    tag: "COMPUTATIONALLY VERIFIED",
+  },
+  {
+    plain:
+      "The walk charge is worth about 0.44 ln n′ over the parity charge, so doubling its efficiency means squaring the descent floor.",
+    theorem: "Remark 5.8a margin scaling",
+    tag: "EMPIRICAL SCALING LAW",
+  },
+  {
+    plain:
+      "If every n ≤ 554,000,000 reaches 1, then the period is at least 1,082,233. The kill table is done; the floor is not.",
+    theorem: "Corollary 5.14",
+    tag: "CONDITIONAL — KILL TABLE VERIFIED",
+  },
 ] as const;
 
 export const DEFINITIONS = [
@@ -105,7 +135,9 @@ export const NOT_CLAIMED = [
   "This is not a termination proof and not progress toward the Juggler conjecture.",
   "Hitting 1 on a playground walk is one trajectory, not a theorem that every start reaches 1.",
   "A finance-survivor length is a length the inequality did not kill. It is not a candidate cycle.",
-  "The census-free window of Theorem 5.8 stops at 301,994. Corollary 5.10 is not an extension of that window.",
+  "The census-free window of Theorem 5.8 bounds the charge, not the kill. The comparison against θ(L) is still per-length, so the kill tables are not census-free.",
+  "Proposition 5.8b/5.8c bound the relaxation at the lengths where it can be measured. They do not prove the extremal walk is realizable at every length.",
+  "Corollary 5.14 is conditional on a descent floor nobody has certified. It is a priced next step, not a theorem about periods.",
   "No independence-from-Peano-arithmetic claim is made. Goodstein is a different theorem.",
   "Paper B (parity discrepancy and descent densities) is a different manuscript.",
 ] as const;

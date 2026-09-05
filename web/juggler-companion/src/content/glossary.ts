@@ -118,7 +118,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:
-      "Finance treats each step’s budget separately. Walk charge couples them: transport the losses to a reduced base, take the hug (rotation) itinerary as the adversary, identify that itinerary, and bound the average with Denjoy–Koksma over certified Ostrowski blocks. On the window [50508, 301994) this is census-free. The printed bound L ≥ 478245 is a certified evaluation of the same kill criterion at the second floor — not an extension of that window. This chapter is a picture only; the site does not recompute hug charge.",
+      "Finance treats each step’s budget separately. Walk charge couples them: transport the losses to a reduced base, take the hug (rotation) itinerary as the adversary, identify that itinerary, and bound the average with Denjoy–Koksma over certified Ostrowski blocks. On the window [50508, 16785921) — the whole semiconvergent fan — the charge bound is census-free. The kill itself is not: the comparison against θ(L) is a per-length Diophantine quantity the envelope does not control, and that is what blocks the surviving fan members. This chapter is a picture only; the site does not recompute hug charge.",
     paper: "§5: transport, hug, itinerary identity, Denjoy–Koksma, window, Corollary 5.10.",
   },
 ];

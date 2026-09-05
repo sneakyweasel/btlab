@@ -19,7 +19,10 @@ The former single note has been split into two manuscripts:
   reduced base (Theorem 5.3), hug adversary (Theorem 5.4), word
   identity (Lemma 5.6), Denjoy--Koksma over certified Ostrowski
   blocks (Theorem 5.7), and the census-free window theorem on
-  \([50508,301994)\) (Theorem 5.8). The kill table gives
+  \([50508,16785921)\) (Theorem 5.8), which covers the whole
+  semiconvergent fan and bounds the charge --- the kill
+  comparison against \(\theta(L)\) stays per-length. The kill
+  table gives
   \(L\ge 176251\) at the laboratory floor \(26254995\)
   (Theorem 5.9); Corollary 5.10 evaluates the same kill
   criterion at the second certified floor \(162849448\) and
@@ -63,9 +66,12 @@ not a Lean theorem? For Section 5: is the transport recursion of
 Theorem 5.3 correct with its stated constants; is the hug
 domination chain of Theorem 5.4 complete; is Denjoy--Koksma
 applied in the correct coordinate (\(\theta=\alpha/(1+\alpha)\),
-§5.5); and are Corollaries 5.10 and 5.11 read as certified
-evaluations of the kill criterion beyond the
-\([50508,301994)\) window, not as extensions of Theorem 5.8?
+§5.5); is the extension of Theorem 5.8's window to
+\([50508,16785921)\) --- which rests on the structural digit cap
+\(s(L)\le b+47\) on \(L=bq_{13}+r\), not on the scan --- correct;
+and is the distinction between the census-free *charge* bound and
+the still per-length *kill* comparison stated sharply enough in
+Corollaries 5.10 and 5.11?
 For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
 the monomial \(c=\tfrac{3k}4 n^{9/8}\), double Weyl differencing
@@ -120,7 +126,8 @@ not an artifact of that majorant.
 Section 5 couples the states through one closed exponent walk:
 transport to a reduced base, the hug adversary, the itinerary
 identity, and Denjoy--Koksma over certified Ostrowski blocks
-give a census-free envelope on \([50508,301994)\); the kill
+give a census-free envelope on \([50508,16785921)\), covering the
+whole semiconvergent fan; the kill
 table yields \(L\ge 176251\) at the laboratory floor, and a
 certified evaluation of the same criterion at the second floor
 \(162849448\) — beyond the window, not through it — yields
@@ -181,7 +188,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Rotation average \(C_*\) (Proposition 5.5) | **EXACT — HUMAN PROOF** | Laplace bound Lean (`rotationAverage_gap`); ergodic identification classical prose |
 | Itinerary identity (Lemma 5.6) | **EXACT — LEAN VERIFIED** | `budgetedWord_eq_hugWord` |
 | Denjoy--Koksma block envelope (Theorem 5.7) | **EXACT — HUMAN PROOF** | DK classical, stated in §5.5 with the \(\alpha\to\theta\) coordinate change; per-block hypotheses Lean (`theta_convergent_quality`, `theta_block_permutations`) |
-| Census-free window envelope on \([50508,301994)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | digit caps and scan Lean; valid on the window only — do not read beyond \(301994\) |
+| Census-free window envelope on \([50508,16785921)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | digit caps Lean and structural (\(s(L)\le47\) below \(q_{13}\), \(s(L)\le b+47\) above); the scan sharpens a constant on the old sub-window. Bounds the **charge** only — the kill comparison against \(\theta(L)\) remains per-length |
 | Kill table, period \(\ge 176251\) (Theorem 5.9) | **COMPUTATIONALLY VERIFIED** | kill template Lean (`cycleMin_hug_kill_criterion`); per-length evaluation certified computation |
 | Second floor \(162849448\), period \(\ge 478245\) (Corollary 5.10) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion beyond the window; **not** an extension of Theorem 5.8 |
 | Third floor \(350000000\), period \(\ge 780239\) (Corollary 5.11) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion beyond the window; **not** an extension of Theorem 5.8 |
@@ -365,10 +372,11 @@ Reject or revise if:
     new theorem, or the first CycleMin peak is identified with
     the last-even entry one-step preimage;
 13. Theorem 5.8 is quoted for a length outside
-    \([50508,301994)\), or Corollary 5.10 or 5.11 is described as an
-    extension of the census-free window rather than a certified
-    evaluation of the Theorem 5.9 kill criterion, or the
-    \(478245\) or \(780239\) bound is quoted as a Lean theorem.
+    \([50508,16785921)\), or its census-free *charge* bound is read as
+    making the kill tables census-free --- the comparison against
+    \(	heta(L)\) is per-length and is what blocks the surviving fan
+    members --- or the \(478245\) or \(780239\) bound is quoted as a
+    Lean theorem.
 
 ## Verification
 

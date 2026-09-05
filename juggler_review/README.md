@@ -31,7 +31,8 @@ https://sneakyweasel.github.io/balanced_ternary/
    \(L\ge 50508\) at the laboratory floor \(26254995\); the
    Section 5 walk-charge envelope (transport, hug adversary,
    Denjoy–Koksma over certified Ostrowski blocks, window
-   theorem on \([50508,301994)\)) raises the bound to
+   theorem on \([50508,16785921)\) — the whole semiconvergent
+   fan) raises the bound to
    \(L\ge 176251\) at that floor. Corollary 5.10 evaluates the
    same kill criterion at the second certified floor
    \(162849448\) and gives \(L\ge 478245\). The main numerical
