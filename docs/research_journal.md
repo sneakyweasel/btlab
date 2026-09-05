@@ -27995,3 +27995,65 @@ Best next question
 - what is the best available bound for sum_{n~P} e(r n^{3/2}) at
   r ~ P^{33/32}, and does a quarter of its saving clear 1 - 1/96?
 ```
+
+ ### One mode has 2.66x the saving the chain needs
+
+The branch the last entry declined to open, opened. The question was
+the best available bound for `Σ_{n~P} e(r n^{3/2})` at `r ≍ kP^{33/32}`,
+and whether a quarter of its saving clears `1/96`.
+
+That phase has size `P^{81/32}` — which is `e_5` of both winners, so
+the size is read off the word rather than assumed. Running the van der
+Corput processes from the trivial pair, the best value at that size is
+at `(1/11, 3/4)`:
+
+```text
+    sum_{n~P} e(r n^{3/2}) << P^{313/352},   saving 39/352 = 0.1108
+    the chain quarters a saving, so it needs 1/24 = 0.0417
+    39/352 exceeds that by a factor 2.66
+```
+
+So the answer is yes, comfortably.
+
+**And it settles nothing.** That bound is for one mode at one
+frequency. Assembling the modes means summing over `r` against
+coefficients that depend on `n` through `c(n)`, and the device for that
+is the shifted window — whose window here holds no integer. The
+arithmetic says the branch is not dead; it says nothing whatever about
+how to collect the modes.
+
+A terminology trap worth recording: the paper already uses "exponent
+pairs" for *ordered pairs drawn from the exponent set `E`* of Lemma
+3.8, which is a different object from the van der Corput `(κ, λ)`. The
+manuscript now says which is meant. And Section 7 reserves bare `A` and
+`B`, so the processes are named in words there rather than by letter —
+the notation guard caught that on the first run.
+
+```text
+What was learned
+- the frequency range that looked prohibitive costs only 39/352 of a
+  saving at a single mode, which is 2.66x what the differencing chain
+  needs
+- the difficulty is entirely in the assembly, not in the modes; that
+  is now demonstrated rather than asserted
+- two collisions in one paragraph: "exponent pair" already means
+  something else here, and A and B are reserved in Section 7
+Strongest theorem
+- best van der Corput value at phase size P^{81/32} is (1/11, 3/4),
+  giving P^{313/352} and a saving of 39/352
+Strongest refutation
+- none; the falsifier (every pair trivial) did not fire
+Reusable machinery
+- van_der_corput_pairs / best_monomial_bound
+Branch status
+- PARK
+Why
+  The feasibility question is answered and the answer is positive with
+  room, which is worth knowing before anyone spends effort here. But
+  the next step is not another exponent computation -- it is the
+  assembly, and that is the sub-unit window again. Nothing further in
+  this direction is arithmetic.
+Best next question
+- can the modes be collected by summing over r first, with the n-range
+  split by the value of round(c(n)), rather than by windowing c?
+```

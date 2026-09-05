@@ -454,6 +454,43 @@ def obstruction_profile(w: str, t: int) -> dict[str, object]:
     }
 
 
+def van_der_corput_pairs(depth: int = 9) -> set[tuple[Fraction, Fraction]]:
+    """Pairs generated from the trivial ``(0, 1)`` by the A and B processes.
+
+    ``A(k, l) = (k/(2k+2), (k+l+1)/(2k+2))`` and ``B(k, l) = (l - 1/2, k + 1/2)``.  These are the
+    van der Corput pairs of classical exponent-sum theory; the paper's own phrase "exponent pairs"
+    means something else entirely -- ordered pairs drawn from the exponent set ``E`` of Lemma 3.8 --
+    so the two must not be conflated.
+    """
+    seen = {(Fraction(0), Fraction(1))}
+    frontier = list(seen)
+    for _ in range(depth):
+        nxt = []
+        for k, l in frontier:
+            for q in ((k / (2 * k + 2), (k + l + 1) / (2 * k + 2)),
+                      (l - Fraction(1, 2), k + Fraction(1, 2))):
+                if q[0] >= 0 and q[1] >= 0 and q not in seen:
+                    seen.add(q)
+                    nxt.append(q)
+        frontier = nxt
+    return seen
+
+
+def best_monomial_bound(phase_exponent: Fraction, depth: int = 9):
+    """Least ``(F/P)^k P^l`` over the pairs, for a phase of size ``P^phase_exponent`` on ``n ~ P``.
+
+    Returns ``(pair, bound exponent, saving)``.  For the level-1 kernel's modes ``e(r n^{3/2})`` at
+    ``r ~ k P^{33/32}`` the phase has size ``P^{81/32}``, and this returns ``(1/11, 3/4)`` with
+    bound ``P^{313/352}``.  That is a bound on one Fourier mode, not on the kernel: assembling the
+    modes is the sub-unit-window problem and is untouched by it.
+    """
+    fp = Fraction(phase_exponent) - 1
+    pairs = van_der_corput_pairs(depth)
+    pair = min(pairs, key=lambda p: fp * p[0] + p[1])
+    value = fp * pair[0] + pair[1]
+    return pair, value, 1 - value
+
+
 def differencing_chain(saving: Fraction, rounds: int = 2) -> dict[str, Fraction]:
     """Step 1's accounting: a doubly-differenced bound ``P^(1-saving)`` gives ``P^(1-saving/4)``.
 

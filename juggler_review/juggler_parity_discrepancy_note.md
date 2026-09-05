@@ -4761,6 +4761,28 @@ all. A coefficient exponent above \(1\) is exactly the statement that
 the shifted window is finer than the lattice it is supposed to sit on,
 and that is why no amount of care with Lemma 3.7 recovers it.
 
+*What one mode is worth.* The modes themselves are not the difficulty.
+For a phase of size \(P^{81/32}\) on \(n\sim P\) --- which is what
+\(e(rn^{3/2})\) has at \(r\asymp kP^{33/32}\) --- the van der Corput
+differencing and reflection processes, run from the trivial pair, take
+their best value at \(\bigl(\tfrac1{11},\tfrac34\bigr)\):
+\[
+\sum_{n\sim P}e\bigl(rn^{3/2}\bigr)\ \ll\ P^{313/352},
+\]
+a saving of \(\tfrac{39}{352}\). The differencing chain quarters a
+saving, so it needs at least \(\tfrac1{24}\) to reach \(P^{1-1/96}\);
+this is \(2.66\) times that. (These are van der Corput pairs, not the
+ordered pairs drawn from \(E\) that Section 3 calls exponent pairs.)
+
+The caveat is the whole of the difficulty, and it is the paragraph
+above. That bound is for one mode at one frequency. Assembling the
+modes means summing over \(r\) against coefficients depending on \(n\)
+through \(c(n)\), and the device for that is the shifted window, whose
+window here holds no integer. So the arithmetic says the branch is not
+dead --- a single mode carries more saving than the chain needs, with
+a factor of two and a half to spare --- and says nothing whatever
+about how to collect the modes.
+
 *The three thresholds are independent, and they re-sort depth seven.*
 Applying all of them to the three targets at once:
 

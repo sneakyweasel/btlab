@@ -1056,3 +1056,49 @@ def test_paper_states_what_the_level_one_kernel_is() -> None:
     assert r"e(r\{x\})=e(rx)" in text
     assert r"a gap of \(P^{95/96}\)" in text
     assert "finer than the lattice it is supposed to sit on" in text
+
+
+# --- what one Fourier mode is worth ---
+
+
+def test_the_generator_reproduces_the_classical_pairs() -> None:
+    pairs = B.van_der_corput_pairs()
+    assert (Fraction(0), Fraction(1)) in pairs                 # trivial
+    assert (Fraction(1, 2), Fraction(1, 2)) in pairs           # B of trivial
+    assert (Fraction(1, 6), Fraction(2, 3)) in pairs           # AB of trivial
+    assert all(k >= 0 and l >= 0 for k, l in pairs)
+
+
+def test_the_best_pair_at_the_kernel_frequency() -> None:
+    """Phase size P^{81/32} is e(r n^{3/2}) at r ~ k P^{33/32}."""
+    pair, value, saving = B.best_monomial_bound(Fraction(81, 32))
+    assert pair == (Fraction(1, 11), Fraction(3, 4))
+    assert value == Fraction(313, 352)
+    assert saving == Fraction(39, 352)
+    assert value < 1                                            # nontrivial
+
+
+def test_a_quarter_of_the_mode_saving_clears_one_over_ninetysix() -> None:
+    """The chain quarters a saving, so it needs 1/24 to reach P^{1-1/96}."""
+    _, _, saving = B.best_monomial_bound(Fraction(81, 32))
+    assert saving / 4 > Fraction(1, 96)
+    assert saving > Fraction(1, 24)
+    assert abs(float(saving / 4 / Fraction(1, 96)) - 2.66) < 0.01
+    # and the chain's own arithmetic agrees
+    assert B.differencing_chain(saving)["saving"] == saving / 4
+
+
+def test_the_phase_size_is_the_wave_exponent() -> None:
+    """P^{81/32} is e_5 of both winners -- the size is not an extra assumption."""
+    for word in ("OOOEOEE", "OOOEOEOE"):
+        assert B.iterate_exponents(word)[4] == Fraction(81, 32), word
+        _, coeff_exp = B.defect_coefficient(word, 6, 1)
+        assert coeff_exp + Fraction(3, 2) == Fraction(81, 32), word
+
+
+def test_paper_states_the_mode_bound_and_its_caveat() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "What one mode is worth." in text
+    assert r"P^{313/352}" in text and r"\tfrac{39}{352}" in text
+    assert "van der Corput pairs, not the" in text
+    assert "says nothing whatever" in text
