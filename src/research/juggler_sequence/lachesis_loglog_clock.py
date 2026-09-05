@@ -228,11 +228,14 @@ def census_price(n: float, log10_y: int = 100, hits: int = 10) -> dict[str, Any]
     }
 
 
-#: block-density constant per (state, generation) whose burst lands in the block: E gives 2/x
-E_BURST = 2.0
-#: OE fiber constant: proved 2/9 on monotone fibers (pairing), mean 1/2 in the census;
-#: the OE-path density factor per step is then 2/9 .. 1/3 of the E value
-OE_FACTOR_LOW, OE_FACTOR_HIGH = 2.0 / 9.0, 1.0 / 3.0
+#: block-density contribution of one E-burst from seed x at scale S = x^(2^k), inside the dyadic
+#: block of length B that contains it: exactly S/(x B), which lies in (1/x, 2/x]; the per-block
+#: law (overlap times 2^-k) is verified to 0.5 percent on a 40-seed closure to 4e7.  The floor
+#: uses 1/x (burst at the top of its block), the cap 2/x (burst at the bottom).
+E_BURST_LOW, E_BURST_HIGH = 1.0, 2.0
+#: OE bursts land at clock offset log2(4/3), i.e. in other blocks than the E bursts, so they earn
+#: no per-block credit in the floor; the cap credits the aggregate geometric factor 1/(1 - 1/3).
+OE_FACTOR_CAP = 1.0 / 3.0
 
 
 def theta_of_period(period: int) -> float:
@@ -259,17 +262,17 @@ def inverse_sum_bounds(n: float, period: int) -> dict[str, float]:
 def basin_block_density_bounds(n: float, period: int, log10_y: int) -> dict[str, float]:
     """Contagion-visible block density of a Lachesis basin, sandwiched by finance.
 
-    Each cycle state ``x`` whose burst lands in the block contributes ``E_BURST / x``
-    through pure ``E`` and a geometric factor ``1 / (1 - f)`` through ``OE`` detours,
-    ``f`` in ``[OE_FACTOR_LOW, OE_FACTOR_HIGH]``; a fraction ``1 / ln y`` of the states land
-    in a given block (equidistribution of the clock).  So the density is
-    ``K * sum_{x in C} (1/x) / ln y`` with ``K`` in ``[2 * 9/7, 2 * 3/2] = [18/7, 3]``.
-    This bounds only the ``E``/``OE`` part; the full basin adds the free term."""
+    Each cycle state ``x`` whose pure-``E`` burst lands in the block contributes between
+    ``1/x`` and ``2/x``; a fraction ``1 / ln y`` of the states land in a given block
+    (equidistribution of the clock, J-lachesis-walk-rotation).  So the ``E``-visible density is
+    ``K * sum_{x in C} (1/x) / ln y`` with ``K = 1`` as a floor; the cap adds the ``OE`` aggregate
+    factor ``1 / (1 - 1/3)`` on top of ``2/x``, ``K = 3``.  This bounds only the ``E``/``OE``
+    part; the full basin adds the free term (J-lachesis-upper-bound-free-term)."""
 
     inv = inverse_sum_bounds(n, period)
     lny = log10_y * math.log(10.0)
-    k_low = E_BURST / (1.0 - OE_FACTOR_LOW)
-    k_high = E_BURST / (1.0 - OE_FACTOR_HIGH)
+    k_low = E_BURST_LOW
+    k_high = E_BURST_HIGH / (1.0 - OE_FACTOR_CAP)
     return {
         "n": n, "period": period, "log10_y": log10_y,
         "K_low": k_low, "K_high": k_high,
@@ -277,6 +280,59 @@ def basin_block_density_bounds(n: float, period: int, log10_y: int) -> dict[str,
         "density_high": k_high * inv["inv_sum_cap"] / lny,
         "single_seed_two_over_n": 2.0 / n,
         "finance_kills": inv["finance_kills"],
+    }
+
+
+def gap_profile(o_max: int) -> list[float]:
+    """``gap(O)`` for ``O = 1..o_max``: largest gap of ``{j * ALPHA mod 1 : j <= O}``.
+
+    Non-increasing in ``O``; incremental insertion, recomputing only when the split gap
+    was the maximum."""
+
+    import bisect
+
+    pts = [0.0, 1.0]
+    gaps: list[float] = []
+    max_gap = 1.0
+    for j in range(1, o_max + 1):
+        v = (j * ALPHA) % 1.0
+        i = bisect.bisect(pts, v)
+        pts.insert(i, v)
+        if pts[i + 1] - pts[i - 1] >= max_gap - 1e-15:
+            max_gap = max(pts[k + 1] - pts[k] for k in range(len(pts) - 1))
+        gaps.append(max_gap)
+    return gaps
+
+
+def clotho_coverage_threshold(log10_y: int, n: float = N0_CERTIFIED,
+                              gaps: list[float] | None = None) -> dict[str, float]:
+    """Least odd count ``O*(y)`` whose rotation orbit covers a clock window of width ``1/ln y``.
+
+    A divergent orbit's states below ``y`` sit at clock positions ``c(n) + j*ALPHA``,
+    ``j <= O(y)``, ``O(y)`` the odd count before the walk first exceeds
+    ``u(y) = log2(ln y / ln n)``.  Its basin has a burst in the block at ``y`` whenever
+    ``gap(O(y)) <= 1/ln y``.  Reaching ``u(y)`` in at least ``O*`` odd steps means a walk
+    gain of at most ``u/O*`` per odd step, i.e. an odd share at most
+    ``s* = 1 / (log2(3) - u/O*)``; the window ``(q*, s*)`` is the slow-escape regime."""
+
+    lny = log10_y * math.log(10.0)
+    w = 1.0 / lny
+    if gaps is None:
+        gaps = gap_profile(20000)
+    o_star = next((O for O, g in enumerate(gaps, start=1) if g <= w), None)
+    u = math.log2(lny / math.log(n))
+    if o_star is None:
+        return {"log10_y": log10_y, "window": w, "O_star": None, "u": u}
+    gain = u / o_star
+    s_star = 1.0 / (LOG2_3 - gain)
+    return {
+        "log10_y": log10_y,
+        "window": w,
+        "O_star": o_star,
+        "u": u,
+        "walk_gain_per_odd_step": gain,
+        "s_star": s_star,
+        "s_star_minus_q_star": s_star - math.log(2.0) / math.log(3.0),
     }
 
 
@@ -302,6 +358,8 @@ def summary() -> dict[str, Any]:
         basin_block_density_bounds(n, L, e)
         for L in (780239, 1082233) for n in (3.5e8, 1e9) for e in (12, 30, 68)
     ]
+    gaps = gap_profile(20000)
+    clotho = [clotho_coverage_threshold(e, gaps=gaps) for e in (12, 30, 50, 68, 100, 300, 1000)]
     worst_realised = max(row["max_abs_eps_u_units"] for row in clock_census)
     worst_cycle = max(row["abs_eps_u_units"] for row in cycle_bounds)
     widest_gap = max(row["largest_gap_mod_one"] for row in rotations)
@@ -317,6 +375,7 @@ def summary() -> dict[str, Any]:
         "census_price": prices,
         "inverse_sum_bounds": inverse_sums,
         "finance_linked_density": finance_linked,
+        "clotho_coverage": clotho,
         "classification": {
             "max_realised_eps_u_units": worst_realised,
             "max_cycle_eps_bound_u_units": worst_cycle,
@@ -333,6 +392,21 @@ def summary() -> dict[str, Any]:
                 r["density_low"] > r["single_seed_two_over_n"] for r in finance_linked if not r["finance_kills"]
             ),
             "upper_bound_is_free_term": True,
+            "clotho_window_is_positive_and_narrow": all(
+                0.0 < r["s_star_minus_q_star"] < 0.01 for r in clotho if r["O_star"] is not None
+            ),
+            # the p = 19 near-return gains theta_19 / 12 per odd step; p = 84 gains theta_84 / 53
+            "hug19_rate_inside_window_to_1e300": all(
+                (12 * LOG2_3 - 19) / 12 < r["walk_gain_per_odd_step"]
+                for r in clotho if r["O_star"] is not None and r["log10_y"] <= 300
+            ),
+            "hug19_rate_outside_window_at_1e1000": any(
+                (12 * LOG2_3 - 19) / 12 > r["walk_gain_per_odd_step"]
+                for r in clotho if r["O_star"] is not None and r["log10_y"] == 1000
+            ),
+            "hug84_rate_inside_window_everywhere": all(
+                (53 * LOG2_3 - 84) / 53 < r["walk_gain_per_odd_step"] for r in clotho if r["O_star"] is not None
+            ),
             "decision": "PARK",
         },
     }

@@ -375,3 +375,52 @@ def test_step_B_discard_costs_under_one_unit_at_P0() -> None:
     P0 = C.certificate()["P0"]
     assert 1.5 * math.pi * P0 ** (1 / 96 - 1 / 8) < 1
     assert 1.5 * math.pi * P0 ** (1 / 96 - 1 / 8) < 7 * P0**0.875
+
+
+# --- the stratification figures the manuscript prints ---
+
+
+def _paper() -> str:
+    import io
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[3]
+    return io.open(root / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
+                   encoding="utf-8").read()
+
+
+def test_stratification_counts_four_exceptions_not_three() -> None:
+    """Section 4 printed three exceptions and the four-exception figure.
+
+    Excluding only the three Lemma 3.9 balance comparisons, the largest remaining site is the
+    Step 5b(a) q'' curvature ratio at 2.98e11 -- far above the 2.9e10 the sentence claimed.
+    2.8e10 is what holds once that fourth site is set aside too.
+    """
+    from research.juggler_sequence import p0_certificate as C
+
+    th = C.certificate()["thresholds"]
+    balance = [t for t in th if "c7S" in t["tag"]]
+    assert len(balance) == 3, [t["tag"] for t in balance]
+
+    rest = [t for t in th if "c7S" not in t["tag"]]
+    worst = max(rest, key=lambda t: t["P_min"])
+    assert worst["tag"] == "st5b-qpp"
+    assert abs(worst["P_min"] / 2.9817e11 - 1) < 1e-3
+
+    rest4 = [t for t in rest if t["tag"] != "st5b-qpp"]
+    worst4 = max(rest4, key=lambda t: t["P_min"])
+    assert worst4["tag"] == "s3s1-Bsmall"
+    assert abs(worst4["P_min"] / 2.8275e10 - 1) < 1e-3
+
+    text = _paper()
+    assert "except four holds" in text
+    assert r"\(2.8\cdot10^{10}\)" in text
+    assert r"\(2.9\cdot10^{10}\)" not in text
+    assert "except the three\nLemma 3.9 balance comparisons" not in text
+
+
+def test_appendix_a_and_section_4_agree_on_the_four() -> None:
+    """Appendix A always had it right; the two passages must not drift apart again."""
+    text = _paper()
+    assert "Of the remaining four" in text
+    for figure in (r"3.0\cdot10^{11}", "two and a half orders"):
+        assert text.count(figure) >= 2, figure     # stated in both places now

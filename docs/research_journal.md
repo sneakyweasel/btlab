@@ -25499,3 +25499,209 @@ Best next question
   which of the thirty-seven bind, so it is presentation of computed
   fact rather than a new search
 ```
+
+## Lachesis log-log clock: finance meets the basin; the upper bound is the free term (answer; PARK stands)
+
+The open question was whether a Lachesis basin's every-block density
+\(2/n\) has a matching upper bound. Two results, one of each sign.
+
+**The lower bound is Paper A's inverse sum.** The per-block law of the
+\(E\)-closure of a finite seed set — density on \(B\) equals
+\(\sum_{x,k}\lvert[x^{2^k},(x+1)^{2^k})\cap B\rvert\,2^{-k}/\lvert B\rvert\)
+— holds to \(0.5\%\) on a \(40\)-seed closure to \(4\cdot 10^7\)
+(measured/predicted \(0.996\)–\(1.005\) on every block with a burst).
+One burst from \(x\) contributes \(S/(x\lvert B\rvert)\in(1/x,2/x]\),
+so the honest floor constant is \(1\), not the \(2\) of the earlier
+single-seed normalisation. \(OE\) bursts land at clock offset
+\(\log_2(4/3)\), in other blocks (six blocks of the test carry \(OE\)
+density and no \(E\) density); the aggregate \(9/7\)–\(3/2\) is not a
+per-block credit and goes in the cap.
+
+For a cycle the seeds are its states, which land in every block by the
+rotation, so the contagion-visible block density at scale \(y\) lies in
+\[
+\Bigl[\frac1{\ln y},\ \frac3{\ln y}\Bigr]\cdot\sum_{x\in C}\frac1x .
+\]
+And \(\sum_{x\in C}1/x\) is finance's object: the Lean inv-sum form
+`cycleMin_finance_inv_sum` gives \(\sum 1/x\ge\theta(L)\ln n\), every
+state \(\ge n\) gives \(\sum 1/x\le L/n\), and floor above cap is the
+finance kill (\(n=10^{10}\), \(L=780239\) dies exactly there). At
+\(n=3.5\cdot 10^8\), \(L=780239\): density in
+\([2.47\cdot 10^{-6},\,2.42\cdot 10^{-4}]\) at \(10^{12}\) and
+\([4.36\cdot 10^{-7},\,4.27\cdot 10^{-5}]\) at \(10^{68}\), against the
+single-seed \(5.7\cdot 10^{-9}\). A cycle that barely survives finance
+has \(\sum 1/x\) pinned, hence a basin whose visible density is pinned
+to within the constant. Paper A and Paper C in one inequality — the
+firewall of Paper D §7, crossed from below.
+
+**The upper bound is the free term.** The full basin's block density
+decomposes by first letter exactly as fate note (6.1): even members from
+\(\sqrt y\) through \(E\)-blocks, \(OE\)-type odd members from
+\(y^{3/4}\) through fibers (Paper B, unconditional), and \(OO\)-type odd
+members as the odd preimages of the odd images at \(y^{3/2}\) — the
+free term. Dropping \(\psi\le 1\) is the upper recursion for the failure
+density (Tao note §11.2), and \(\psi_F\) is the infinite-depth live mass
+of the \(OO\) cylinder (Prop. 11.1): the pressure hypothesis. So a
+nontrivial upper bound on a Lachesis basin is a REPARAMETERIZATION of
+the one open problem, `J-lachesis-upper-bound-free-term`. Unconditionally
+the only cap is \(1-\)density\((R)\), and the \(E\)-tree of \([1,N_0]\)
+gives density\((R)\ge\log N_0/(2\log y)\approx 0.06\) at \(10^{68}\); the
+two-sided constraint on the full basin is
+\(2.5\cdot 10^{-6}\lesssim\delta\le 0.94\) at \(10^{12}\). Not a
+contradiction and not close to one.
+
+**Refuted ideas.** My own constant: the \(2/n\) floor of the previous
+two entries used the \(S/2\) normalisation; in real dyadic blocks a
+burst gives between \(1/x\) and \(2/x\). Floors now use \(1\).
+
+A note on the day's arithmetic: the closure job sat silent for twenty
+minutes because a summary line evaluated \(x^{2^{k}}\) for \(k\) up to
+\(59\) inside a generator that could not short-circuit. Numbers with
+\(2^{59}\) bits do not finish. The closure itself had taken seconds.
+
+```text
+What was learned
+- the per-block E law is exact: overlap times 2^-k, to 0.5 percent
+- one burst gives S/(x|B|) in (1/x, 2/x]; OE bursts land in other blocks
+- a Lachesis basin's contagion-visible density is [1,3] sum_C 1/x / ln y,
+  and Lean finance pins sum_C 1/x between theta(L) ln n and L/n
+- the upper bound on the full basin is psi_F: the open problem, renamed
+Strongest theorem
+- none new; the finance half is the existing cycleMin_finance_inv_sum
+Strongest refutation
+- the 2/n floor constant (now 1/n), and the upper-bound question as a
+  new attack (it is the free term)
+Reusable machinery
+- inverse_sum_bounds, basin_block_density_bounds in lachesis_loglog_clock
+Branch status
+- PARK stands
+Best next question
+- Proposition 1 is orbit-agnostic: does a Clotho basin get the same
+  every-block statement with the divergent orbit's partial inverse sum
+  in place of the cycle's?
+```
+
+## Lachesis log-log clock: the escaping orbit gets the same law, gated by its speed (answer; PARK stands)
+
+Proposition 1 — \(u_t\equiv o_t\alpha\pmod 1\) — does not know whether
+the orbit closes. So the question was whether a divergent orbit's basin
+inherits the every-block density. It does, with one gate.
+
+The states of a divergent orbit below \(y\) sit at clock positions
+\(c(n)+j\alpha\), \(j\le O(y)\), where \(O(y)\) is the odd count before
+the walk first exceeds \(u(y)=\log_2(\ln y/\ln n)\). The basin has a
+burst in the block at \(y\) iff one of those points lies within
+\(1/\ln y\) of \(c(y)\) mod 1, and it suffices that
+\(\mathrm{gap}(O(y))\le 1/\ln y\), \(\mathrm{gap}\) the largest gap of
+\(\{j\alpha\}_{j\le O}\), non-increasing in \(O\). The threshold
+\(O^*(y)=\min\{O:\mathrm{gap}(O)\le 1/\ln y\}\) is \(40\) at
+\(10^{12}\), \(305\) at \(10^{68}\), \(358\) at \(10^{100}\), \(12275\)
+at \(10^{1000}\) — \(O\,\mathrm{gap}(O)\) swings between \(1.26\) and
+\(6.56\) with the continued fraction of \(\alpha\), as the three-distance
+theorem says it must.
+
+Turned around: the orbit must reach walk \(u(y)\) in at least \(O^*\)
+odd steps, so its odd share up to scale \(y\) must lie in
+\((q^*,s^*(y))\) with \(s^*-q^*=0.0049\) at \(10^{12}\), \(0.0039\) at
+\(10^{68}\), \(0.0040\) at \(10^{100}\), \(0.0002\) at \(10^{1000}\).
+The all-odd rate \(0.585\) is far outside at every scale. The \(p=19\)
+hug near-return rate, \(\theta_{19}/12=0.00163\) walk per odd step, is
+inside up to \(10^{300}\) and outside at \(10^{1000}\), where the gate
+is \(0.00056\); the \(p=84\) rate \(5.7\cdot 10^{-5}\) is inside
+everywhere tested. So the gate tightens with \(y\) and pushes a
+persistent escaper down the near-return spectrum
+\(19\to 84\to 1054\to\cdots\) — the cycle-period ladder again. A
+Clotho basin is every-block at scale \(y\) exactly when the divergent
+orbit is a critical-share escaper up to that scale, hugging a deep
+enough near-return — which is the only kind the flight extract lets
+persist. A fast escaper has a lacunary basin, like a single seed, and
+is also the kind the census watches come back down. (The probe caught
+this: my first draft said "far inside" without the scale.)
+
+So the two fates now share one visibility law: block density
+\(\approx(K/\ln y)\times\)(inverse sum of the landing seeds),
+\(K\in[1,3]\). For Lachesis the sum is fixed and pinned by Lean finance
+between \(\theta(L)\ln n\) and \(L/n\). For Clotho it is a partial sum
+over the states below \(y\), at least \(1/n\), gated by the escape rate
+and not pinned by anything. The single escaping orbit that opened this
+week's work is, at every scale it passes slowly, exactly as visible as a
+cycle would be — and exactly as invisible to a random odd-start census,
+for the same dominated-by-the-floor reason.
+
+`J-clotho-basin-every-block-criterion`; the conjecture record now
+covers both fates.
+
+```text
+What was learned
+- gap(O) for alpha = log2(3/2) is non-increasing with O gap(O) in [1.26, 6.56]
+- a Clotho basin covers block y iff the orbit laid down O*(y) odd steps
+  before its walk reached log2(ln y / ln n): 40 at 1e12, 358 at 1e100
+- that is an odd-share window (q*, q* + 0.004) up to 1e100: slow,
+  critical-share escape is every-block; fast escape is lacunary
+- both fates obey density ~ (K / ln y) * (inverse sum of landing seeds)
+Strongest theorem
+- none new; the rotation half is exact, the gap table is a computation
+Strongest refutation
+- none this entry
+Reusable machinery
+- gap_profile, clotho_coverage_threshold in lachesis_loglog_clock
+Branch status
+- PARK stands; the branch has now delivered the bridge for both fates
+Best next question
+- does recurrent hug domination (flight note 5.5) force O(y) >= O*(y)
+  at every scale for every persistent divergent orbit, making every
+  Clotho basin every-block unconditionally, as every Lachesis basin is?
+```
+
+
+### A false sentence in Section 4, and the copy of it I made
+
+Going after referee item 16 -- which constants are proof-critical -- meant sorting the
+certificate's thirty-seven sites. The sort disagreed with the manuscript.
+
+Section 4 said: "every inequality in the paper except **the three** Lemma 3.9 balance
+comparisons of Steps 5a and 5b holds from `2.9e10` on." The certificate says otherwise:
+
+```text
+  excluding the three balance comparisons : 2.9817e11   at st5b-qpp
+  excluding all four                      : 2.8275e10   at s3s1-Bsmall
+```
+
+So the sentence is **false as printed**: the Step 5b(a) `q''` curvature ratio at `2.98e11` also
+exceeds `2.9e10`. The figure quoted is the one that holds only after *four* sites are set aside,
+while the sentence names three. Appendix A.2 always had the count right -- "Thirty-three of the
+thirty-seven ... Of the remaining four" -- so the two passages had been inconsistent with each
+other, not merely with the certificate.
+
+**And I had copied the wrong one.** The architecture table I added three days ago says
+"thirty-six of the thirty-seven hold from 2.9e10 or below", which I wrote by paraphrasing
+Section 4. Two wrong counts, from one source, and the second is mine.
+
+The rounding was wrong everywhere too, including in the correct passage: the fifth site is
+`2.25 P^(-1/16) < 1/2`, i.e. `P > 4.5^16 = 2.8275e10`, which is `2.8`, not `2.9`.
+
+All three now agree with the certificate, and the architecture table states the classification
+referee item 16 asks for, in its sharp form: the other thirty-three constants are bookkeeping
+**in the exact sense that moving any of them leaves `P_0` where it is**.
+
+```text
+What was learned
+- the yield came from sorting a table, not from reading prose: the
+  inconsistency between Section 4 and Appendix A.2 had survived every
+  reading because both passages are individually plausible
+- a paraphrase inherits the error of its source, and mine did within
+  three days
+Strongest theorem
+- none; one false sentence removed and referee item 16 discharged as
+  computed fact
+Strongest refutation
+- Section 4's stratification claim, and my own copy of it
+Reusable machinery
+- test_p0_certificate now derives both stratification figures from the
+  threshold list rather than trusting either passage
+Branch status
+- ADVANCE (referee items 3, 4, 7, 15, 16 done)
+Best next question
+- referee item 14, the development-log migration, is the last of their
+  list and the only one left that is purely subtractive
+```

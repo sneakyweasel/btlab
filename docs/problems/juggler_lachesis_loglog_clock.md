@@ -166,6 +166,10 @@ file is added.
 | Single-seed \(E\)-tree density \(1/m\) at each burst scale | **COMPUTATIONALLY VERIFIED** |
 | A Lachesis basin is not lacunary; density \(\approx 2/n\) on every block, \(y<10^{85142}\) | **CONJECTURE** |
 | \(E\) contributes \(2/m\), \(OE\) contributes \(\approx 1/3\) of that; no special blocks | **COMPUTATIONALLY VERIFIED** |
+| Per-block \(E\) law exact to \(0.5\%\); one burst gives \(S/(x\lvert B\rvert)\in(1/x,2/x]\) | **COMPUTATIONALLY VERIFIED** |
+| Contagion-visible density \(\in[1,3]\cdot\sum_C 1/x/\ln y\), with \(\sum_C 1/x\ge\theta(L)\ln n\) by Lean finance | **COMPUTATIONALLY VERIFIED** (law) + **EXACT — LEAN VERIFIED** (finance half) |
+| Upper bound on the full basin is the free term \(\psi_F\) | **REPARAMETERIZATION** |
+| Clotho basin every-block at \(y\) iff \(O(y)\ge O^*(y)\); window \(s^*-q^*\approx 0.004\) to \(10^{100}\) | **CONJECTURE** (gaps **COMPUTATIONALLY VERIFIED**) |
 | The deep natural-density census is dominated by a floor raise | **REFUTED** |
 
 **Observation 6 (the OE detour costs; COMPUTATIONALLY VERIFIED).** The
@@ -201,13 +205,120 @@ logarithmic integral sees and a single block does not. Its constant
 carries the seed's \(1/n\), so the factor \((\log y)^{\lambda-1}\) is not
 an absolute density.
 
+**Observation 8 (per-block law; COMPUTATIONALLY VERIFIED).** On the
+dyadic block \(B\), the \(E\)-closure of a finite seed set \(S\) has
+density exactly
+\[
+\sum_{x\in S}\sum_{k\ge 1}\frac{\lvert[x^{2^k},(x+1)^{2^k})\cap B\rvert}{\lvert B\rvert}\,2^{-k},
+\]
+verified to \(0.5\%\) (measured/predicted \(0.996\)–\(1.005\)) on a
+\(40\)-seed closure to \(4\cdot 10^7\). One landing burst from \(x\) at
+scale \(S=x^{2^k}\) contributes \(S/(x\lvert B\rvert)\in(1/x,2/x]\),
+so the floor constant is \(1\), not the \(2\) of Observation 3 (which
+normalised by \(S/2\)). \(OE\) bursts land at clock offset \(\beta\), in
+*other* blocks — six blocks of the test carry \(OE\) density with zero
+\(E\) density — and add \(8\)–\(32\%\) where both land; the aggregate
+factor \(9/7\)–\(3/2\) is not a per-block credit.
+
+**Consequence 9 (the finance link).** For a Lachesis basin the seeds are
+the cycle states, which land in every block by Consequence 4, so the
+contagion-visible block density at scale \(y\) satisfies
+\[
+\frac{1}{\ln y}\sum_{x\in C}\frac1x\ \le\ \delta_{E{+}OE}(y)\ \le\ \frac{3}{\ln y}\sum_{x\in C}\frac1x .
+\]
+The inverse sum is a Paper A object. The Lean inv-sum form of finance,
+`cycleMin_finance_inv_sum`, gives \((3^o-2^L)\ln n\le 3^o\sum 1/x\),
+i.e. \(\sum_{x\in C}1/x\ge\theta(L)\ln n\); every state \(\ge n\) gives
+\(\sum 1/x\le L/n\); floor above cap is the finance kill of the pair
+(\(n=10^{10},\ L=780239\)). At \(n=3.5\cdot 10^8,\ L=780239\),
+\(\theta=3.471\cdot 10^{-6}\):
+
+| \(y\) | \(\sum 1/x\) floor \(\theta\ln n\) | cap \(L/n\) | density floor | density cap | \(2/n\) |
+|---|---|---|---|---|---|
+| \(10^{12}\) | \(6.83\cdot 10^{-5}\) | \(2.23\cdot 10^{-3}\) | \(2.47\cdot 10^{-6}\) | \(2.42\cdot 10^{-4}\) | \(5.7\cdot 10^{-9}\) |
+| \(10^{30}\) | | | \(9.89\cdot 10^{-7}\) | \(9.68\cdot 10^{-5}\) | |
+| \(10^{68}\) | | | \(4.36\cdot 10^{-7}\) | \(4.27\cdot 10^{-5}\) | |
+
+A cycle that barely survives finance has \(\sum 1/x\) pinned, hence a
+basin whose contagion-visible density is pinned to within the constant.
+This is the first statement in which Paper A's finance and Paper C's
+basin appear in one inequality. It bounds the \(E{+}OE\) part only.
+
+**Proposition 10 (the upper bound is the free term; REPARAMETERIZATION).**
+An upper bound on the *full* basin's block density is \(\psi_F\): the
+even members at scale \(y\) are the \(E\)-blocks of members at
+\(\sqrt y\), the \(OE\)-type odd members are fibers of members at
+\(y^{3/4}\) (Paper B, unconditional), and the \(OO\)-type odd members
+are the odd preimages of the odd images at \(y^{3/2}\) — the free term
+of fate note (6.1). Dropping \(\psi\le 1\) there is exactly the upper
+recursion for the failure density (Tao note §11.2), and \(\psi_F\) is
+the infinite-depth live mass of the \(OO\) cylinder (Prop. 11.1), i.e.
+the pressure hypothesis. Unconditionally the only upper bound is
+\(1-\)density\((R)\), and the \(E\)-tree of \([1,N_0]\) alone gives
+density\((R)\ge\log N_0/(2\log y)\approx 0.06\) at \(10^{68}\)
+(contagion note §5.3). So the two-sided constraint on the full basin is
+\(2.5\cdot 10^{-6}\lesssim\delta\le 0.94\) at \(10^{12}\); the firewall
+is crossed from below only.
+
+**Consequence 11 (Clotho criterion; CONJECTURE
+`J-clotho-basin-every-block-criterion`).** Proposition 1 does not know
+whether the orbit closes. For a divergent orbit the states below \(y\)
+sit at clock positions \(c(n)+j\alpha\), \(j\le O(y)\), where \(O(y)\)
+is the odd count before the walk first exceeds
+\(u(y)=\log_2(\ln y/\ln n)\). The basin has a burst in the block at
+\(y\) iff one of those points lies within \(1/\ln y\) of \(c(y)\) mod 1;
+sufficient is \(\mathrm{gap}(O(y))\le 1/\ln y\), with
+\(\mathrm{gap}(O)\) the largest gap of \(\{j\alpha\}_{j\le O}\),
+non-increasing in \(O\). Let \(O^*(y)=\min\{O:\mathrm{gap}(O)\le
+1/\ln y\}\). Reaching \(u(y)\) in at least \(O^*\) odd steps caps the
+walk gain per odd step at \(u/O^*\), i.e. the odd share at
+\(s^*=1/(\log_2 3-u/O^*)\):
+
+| \(y\) | \(1/\ln y\) | \(O^*(y)\) | \(u(y)\) | gain per odd step | \(s^*-q^*\) |
+|---|---|---|---|---|---|
+| \(10^{12}\) | 3.62e-2 | 40 | 0.490 | 0.01225 | 0.00491 |
+| \(10^{30}\) | 1.45e-2 | 146 | 1.812 | 0.01241 | 0.00498 |
+| \(10^{68}\) | 6.39e-3 | 305 | 2.993 | 0.00981 | 0.00393 |
+| \(10^{100}\) | 4.34e-3 | 358 | 3.549 | 0.00991 | 0.00397 |
+| \(10^{300}\) | 1.45e-3 | 1635 | 5.134 | 0.00314 | 0.00125 |
+| \(10^{1000}\) | 4.34e-4 | 12275 | 6.871 | 0.00056 | 0.00022 |
+
+(\(O\cdot\mathrm{gap}(O)\) swings between \(1.26\) and \(6.56\) with
+the continued fraction of \(\alpha\) — three-distance.) The all-odd
+rate \(0.585\) is far outside the window at every scale. The \(p=19\)
+hug near-return rate \(\theta_{19}/12=0.00163\) per odd step is inside
+up to \(10^{300}\) but *outside* at \(10^{1000}\), where the gate is
+\(0.00056\); the \(p=84\) rate \(\theta_{84}/53=5.7\cdot 10^{-5}\) is
+inside everywhere tested, and \(p=1054\) gives \(9.5\cdot 10^{-8}\). So
+the gate tightens with \(y\) and pushes a persistent escaper down the
+near-return spectrum \(19\to 84\to 1054\to\cdots\) — the same
+Diophantine ladder as the cycle periods (§6 of the flight note). A
+Clotho basin is every-block at scale \(y\) exactly when the divergent
+orbit is a critical-share escaper up to that scale, hugging a deep
+enough near-return; a fast escaper has a lacunary basin, like a single
+seed.
+The density is then \(\approx(K/\ln y)\sum_{x_t\le y}1/x_t\),
+\(K\in[1,3]\); the partial sum is \(\ge 1/n\) and, unlike the cycle's,
+is not pinned by finance.
+
+Both fates now share one visibility law: block density
+\(\approx(K/\ln y)\times\)(inverse sum of the landing seeds). For
+Lachesis the sum is fixed and finance-pinned; for Clotho it is a partial
+sum gated by the escape rate.
+
 ## Open questions
 
 Beyond \(y\approx 10^{85142}\) the \(\alpha\)-gaps exceed the block
-width and pure-\(E\) coverage lapses; there the \(OE\) offsets matter,
-at \(1/3\) density each, and the every-block statement is not claimed.
-Longer periods push the threshold out (gap \(2.68\cdot 10^{-6}\) at
-\(L=8632083\)). Nothing in this branch needs that range.
+width and pure-\(E\) coverage lapses for a cycle of period \(780239\);
+there the \(OE\) offsets matter and the every-block statement is not
+claimed. Longer periods push the threshold out (gap
+\(2.68\cdot 10^{-6}\) at \(L=8632083\)). Nothing in this branch needs
+that range.
+
+For Clotho the gate is \(O(y)\ge O^*(y)\). Flight note §5.5 (recurrent
+hug domination) says a divergent orbit re-enters hug-like phases from
+every record, but does not by itself bound \(O(y)\) from below at every
+scale. Whether it does is the open question.
 
 ## Decision
 
@@ -220,10 +331,17 @@ dominated by the floor campaign already parked at \(5.54\cdot 10^8\).
 Nothing here excludes a fate or moves a period bound. Recording it and
 stopping.
 
-Best next question: the every-block density \(2/n\) is a *lower* bound
-from the cycle states alone — is there a matching upper bound on a
-Lachesis basin's per-block density, which together with Theorem 1 would
-be the first two-sided constraint on the class?
+The upper-bound question is answered: it is the free term, so the
+firewall is crossed from below only, and the lower bound is now
+Paper A's inverse sum divided by \(\ln y\).
+
+The Clotho question is answered by Consequence 11: yes, gated by the
+escape rate, and the gate sits exactly on the critical-share regime.
+
+Best next question: does recurrent hug domination (flight note §5.5)
+force \(O(y)\ge O^*(y)\approx 1.3\)–\(6.6\,\ln y\) at every scale for
+every persistent divergent orbit — making every Clotho basin every-block
+unconditionally, as every Lachesis basin is?
 
 ## Publication assessment
 

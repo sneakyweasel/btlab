@@ -10,6 +10,8 @@ from research.juggler_sequence.lachesis_loglog_clock import (
     ALPHA,
     basin_block_density_bounds,
     clock,
+    clotho_coverage_threshold,
+    gap_profile,
     cycle_clock_defect_bound,
     etree_density,
     evidence_depth,
@@ -126,8 +128,27 @@ def test_finance_floor_beats_the_single_seed_bound() -> None:
     row = basin_block_density_bounds(3.5e8, 780239, 68)
     assert row["density_low"] > row["single_seed_two_over_n"]
     assert row["density_low"] < row["density_high"]
-    assert abs(row["K_low"] - 18.0 / 7.0) < 1e-12
+    assert abs(row["K_low"] - 1.0) < 1e-12
     assert abs(row["K_high"] - 3.0) < 1e-12
+
+
+def test_gap_profile_matches_rotation_gap_and_is_monotone() -> None:
+    gaps = gap_profile(600)
+    for O in (7, 53, 300, 600):
+        assert abs(gaps[O - 1] - rotation_gap(O)) < 1e-15
+    assert all(gaps[i + 1] <= gaps[i] + 1e-15 for i in range(len(gaps) - 1))
+
+
+def test_clotho_threshold_is_a_narrow_window_above_q_star() -> None:
+    gaps = gap_profile(2000)
+    q = math.log(2.0) / math.log(3.0)
+    row12 = clotho_coverage_threshold(12, gaps=gaps)
+    row100 = clotho_coverage_threshold(100, gaps=gaps)
+    assert row12["O_star"] == 40 and row100["O_star"] == 358
+    for row in (row12, row100):
+        assert 0.0 < row["s_star"] - q < 0.01
+        # the hug near-return rate escapes slowly enough; the all-odd rate does not
+        assert (12 * LOG2_3 - 19) / 12 < row["walk_gain_per_odd_step"] < LOG2_3 - 1.0
 
 
 def test_dossier_and_summary_agree() -> None:

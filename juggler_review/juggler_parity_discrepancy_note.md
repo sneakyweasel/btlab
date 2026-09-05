@@ -2077,9 +2077,12 @@ not about the proof, and is not part of \(P_0\).
 Second, the comparisons stratify sharply, and one of them is the
 whole story. The Lemma 3.7 / Lemma 5.2 window hypotheses first
 hold together on the printed majorants at a moderate threshold (of
-size \(3\cdot10^5\)); every inequality in the paper except the three
-Lemma 3.9 balance comparisons of Steps 5a and 5b holds from
-\(2.9\cdot10^{10}\) on.
+size \(3\cdot10^5\)); every inequality in the paper except four holds
+from \(2.8\cdot10^{10}\) on. The four are the three Lemma 3.9 balance
+comparisons of Steps 5a and 5b, and the Step 5b(a) \(q''\) curvature
+ratio, which alone sits at \(3.0\cdot10^{11}\) --- the price of
+\(R_0=P^{5/16}\), and still two and a half orders below \(P_0\)
+(Appendix A.6).
 The comparison \(W\le c_7S/2\) then adds three and a half orders of
 magnitude on its own: until it holds, a three-term zero of
 \(\Phi''\) can keep the sublevel \(\Omega_W\) of length
@@ -3282,11 +3285,16 @@ bound improves \(\delta\) proportionally, and improving anything else
 improves nothing.
 
 *Where the threshold comes from.* \(P_0\) is not distributed across
-the proof. Of the thirty-seven displayed inequalities, thirty-six hold
-from \(2.9\cdot10^{10}\) or below; the binding one is the comparison
-\(W\le c_7S/2\) inside Step 5b's middle band (Appendix A). That single
-row is why Lemma 3.9's constant \(c_7=1/232\) is proof-critical and
-why the middle band is the part of the argument to check first.
+the proof. Of the thirty-seven displayed inequalities, thirty-three
+hold from \(2.8\cdot10^{10}\) or below. Four do not: the Step 5b(a)
+\(q''\) curvature ratio at \(3.0\cdot10^{11}\), and the three Lemma 3.9
+balance comparisons of Steps 5a and 5b, the largest of which ---
+\(W\le c_7S/2\) inside Step 5b's middle band --- is \(P_0\) itself
+(Appendix A). That single row is why Lemma 3.9's constant
+\(c_7=1/232\) is proof-critical and why the middle band is the part of
+the argument to check first; the other thirty-three constants are
+bookkeeping, in the exact sense that moving any of them leaves \(P_0\)
+where it is.
 
 **Step 5b in detail.** It is the only step that splits, and the only
 one where several curvature scales meet. Write
@@ -4892,7 +4900,7 @@ completeness rather than because they constrain anything.
 ### A.2 The stratification
 
 The thresholds are not spread out; they cluster and then jump.
-Thirty-three of the thirty-seven hold from \(2.9\cdot10^{10}\) on, and
+Thirty-three of the thirty-seven hold from \(2.8\cdot10^{10}\) on, and
 that value is set by a single soft inequality
 (\(2.25P^{-1/16}<\tfrac12\) in Stage 3(s1) of Theorem 4.1, which merely
 names the regime). Of the remaining four, one is the \(q''\) curvature
