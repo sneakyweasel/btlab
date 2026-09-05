@@ -4385,9 +4385,8 @@ throughout. That condition depends on nothing but \((t,o_t)\), so
 most \(2^{-d}N+E_d(N)\) members by the \(O\)-rooted hypothesis, and
 multiplying by \(N_d\) gives the count. For the closed form, drop
 every constraint but \(t=d\): the endpoint condition is
-\(o_d\ge\beta d\) with \(\beta=\log2/\log3\), and Hoeffding's
-inequality gives
-\(\#\{o_d\ge\beta d\}\le2^{d}e^{-2(\beta-1/2)^2d}\). The
+\(o_d\ge d\log2/\log3\), and Hoeffding's inequality gives
+\(\#\{o_d\ge d\log2/\log3\}\le2^{d}e^{-cd}\) with \(c\) as above. The
 density-one statement follows by letting \(d\to\infty\) slowly with
 \(N\) (any \(d(N)\to\infty\) with \(N_dE_d(N)/N\to0\)). \(\square\)
 
@@ -4592,15 +4591,89 @@ point, so no usable sub-cell survives; and reindexing by the image
 density \(\asymp m^{-1/3}\), whose sawtooth requires savings beyond
 the exponent \(1/3\) while the engine saves only \(1/24\).
 
+The obstruction ladder above blocks routes to a kernel bound *with a
+power saving*. It is worth recording that the density-one conclusion
+does not need one. Two weakenings of the hypothesis of
+Proposition 7.1 suffice, and both are elementary.
+
+**Proposition 7.6 (rate-free reduction).**
+Suppose that for **each fixed** depth \(d\), every parity class
+\(w\in\{O,E\}^d\) satisfies \(\#w(N)=2^{-d}N+o(N)\) as
+\(N\to\infty\) --- no rate, and no uniformity in \(d\). Then the set
+of starts admitting a finite descent certificate has natural
+density \(1\).
+
+*Proof.* Fix \(d\) and let \(N\to\infty\) *before* \(d\to\infty\). The
+hypothesis gives \(N_dE_d(N)=o(N)\) for the \(N_d\)-term sum of
+Proposition 7.1, so the starts with no contracting prefix of length
+\(\le d\) have upper density at most \(N_d/2^{d}\). This holds for
+every \(d\), and \(N_d/2^{d}\to0\). \(\square\)
+
+**Proposition 7.7 (biased-split reduction).**
+Equidistribution is not needed either. Suppose that for each fixed
+\(d\) and every itinerary \(\sigma\) of length \(<d\),
+\[
+\limsup_{N\to\infty}\frac{\#(\sigma O)(N)}{\#\sigma(N)}
+\ \le\ 1-\beta
+\qquad\text{for a fixed }
+\beta>\beta_*:=1-\frac{\log2}{\log3}=0.36907\ldots
+\]
+Then the same conclusion holds.
+
+*Proof.* Write \(\mu_N(\sigma)=\#\sigma(N)/N\) and let \(\mu\) be a
+subsequential limit, which exists because each depth is finite; the
+hypothesis passes to \(\mu(\sigma O)\le(1-\beta)\mu(\sigma)\). For
+\(x\ge1\), induction on depth gives
+\[
+\sum_{|\sigma|=d}\mu(\sigma)\,x^{o(\sigma)}
+\ \le\ \bigl(\beta+(1-\beta)x\bigr)^{d},
+\]
+since each node contributes
+\(1+(x-1)\mu(\sigma O)/\mu(\sigma)\le1+(x-1)(1-\beta)\). Every
+never-contracting itinerary has \(o_d\ge d\log2/\log3\), and
+Chernoff bounds the \(\mu\)-measure of that event by
+\(e^{-D(\log2/\log3\,\|\,1-\beta)d}\). The relative entropy \(D\) is
+positive exactly when \(\log2/\log3>1-\beta\), i.e. when
+\(\beta>\beta_*\). Certificates as before; let \(d\to\infty\).
+\(\square\)
+
+The threshold is where it must be: \(\beta_*\) is the bias at which a
+node-wise \(O\)-share stops forcing the odd count below the contraction
+line \(d\log2/\log3\), so the two constants in Proposition 7.7 are the same
+constant read from opposite sides. What the proposition buys is a
+change of species rather than of strength. Proposition 7.1 wants an
+analytic input with a rate; 7.6 wants a qualitative one; 7.7 wants no
+equidistribution at all, only that no node is asymptotically more than
+\(63.09\%\) odd. The obstruction ladder of this section --- BB global,
+GG intra-block, JJ de-randomization --- is a statement about
+power-saving mechanisms, and none of the three formally blocks a
+rate-free or ergodic route.
+
+One caution, in the spirit of Section A.6. Just above \(\beta_*\) the
+Chernoff rate is useless and the finite-depth behaviour is entirely its
+prefactor. At \(\beta=0.37\), barely supercritical, the rate is
+\(1.85\cdot10^{-6}\) per letter, while the extremal measure --- the one
+saturating \(\mu(\sigma O)=(1-\beta)\mu(\sigma)\) at every node --- has
+observed decay \(0.0841\), \(0.0274\) and \(0.0154\) per letter at
+\(d=24,100,200\). The same dynamic program at \(\beta=\tfrac12\)
+returns \(N_d/2^{d}\) exactly, which is the check that the biased and
+unbiased accountings are one computation.
+
 The open question, stated once:
 
 > It is open whether almost every odd-to-odd start has a finite
 > descent certificate. By Proposition 7.1 that would follow from
 > all-depth parity equidistribution, which is now a theorem through
-> depth four for odd-rooted itineraries. The certified class through
-> length five has certificate density \(7/8\). The first open
-> counting case is the \(OOOO*\) kernel of Conjecture 7.3, whose
-> deterministic model instance is Conjecture 7.5.
+> depth four for odd-rooted itineraries; by Proposition 7.6 a
+> rate-free version of the same hypothesis suffices, and by
+> Proposition 7.7 no equidistribution at all is needed, only that no
+> node is asymptotically more than \(\log2/\log3\) odd. The certified
+> class through length five has certificate density \(7/8\). The
+> first open counting case is the \(OOOO*\) kernel of
+> Conjecture 7.3, whose deterministic model instance is
+> Conjecture 7.5 --- but that line is the *power-saving* route, and
+> Propositions 7.6 and 7.7 are what say the program does not require
+> it.
 
 ## 8. Relation to the Juggler map
 

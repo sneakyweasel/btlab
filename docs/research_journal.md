@@ -25061,3 +25061,67 @@ Best next question
   data is already in p0_certificate: 36 of 37 inequalities hold from
   2.9e10, one binds at 8.9e13
 ```
+
+
+### Paper B: the weakest sufficient hypothesis was in the repository, not the paper
+
+Section 7 stated Proposition 7.1 -- equidistribution with a power saving implies density one --
+and then the open question, giving the reader no reason to think the target is softer than it
+looks. It is. Two strictly weaker hypotheses were already proved in
+`docs/problems/juggler_k3_rate_free.md`, tagged EXACT -- HUMAN PROOF, and the manuscript
+mentioned neither: the string "rate-free" appeared zero times.
+
+**Proposition 7.6 (rate-free).** Per-fixed-depth *qualitative* equidistribution suffices --
+no rate, no uniformity in `d`. Take `N -> infinity` before `d -> infinity` and the upper
+density is `N_d/2^d` for every `d`.
+
+**Proposition 7.7 (biased split).** Equidistribution is not needed at all. It is enough that no
+node is asymptotically more than `log2/log3` odd: a cap `mu(sigma O) <= (1-beta) mu(sigma)` with
+`beta > beta_* = 1 - log2/log3 = 0.36907`, via generating-function domination and Chernoff.
+
+That changes what the frontier means. BB/GG/JJ is an obstruction ladder against *power-saving*
+mechanisms; neither 7.6 nor 7.7 asks for a power saving, so the K3 wall blocks one route to
+density one rather than density one itself. The closing open-question box now says so.
+
+**Verified, and one figure corrected.** `beta_*` and the Chernoff rate reproduce; the extremal
+measure -- the one saturating the cap at every node -- is the unbiased dynamic program with
+weights, and at `bias = 1/2` it returns `N_d/2^d` exactly, which is the check that the two
+accountings are one computation. At `beta = 0.37`, barely supercritical, the asymptotic rate is
+`1.85e-6` per letter while the observed decay is `0.0841`, `0.0274`, `0.0154` at `d = 24, 100,
+200` -- the finite-depth prefactor again, as with the unbiased count's `d^(-3/2)`. I had written
+0.0275; the value is 0.027356.
+
+**Importing Lemma B verbatim rebound `beta`.** Proposition 7.1's proof used `beta` for
+`log2/log3`; the imported lemma uses `beta` for the bias and `gamma` for `log2/log3`. That is
+two meanings in one section -- the exact collision class Section 7 was cleaned of two commits
+ago, reintroduced by me. Rather than pick a third letter, I dropped the name: `log2/log3` is
+written out in both places, so `beta` is the bias and nothing else, and `gamma` is gone from the
+section.
+
+**And the AGENTS.md rule caught me the same hour I wrote it.** The heredoc that appended these
+tests halved the backslashes, turning `"\beta=..."` into BACKSPACE + `"eta=..."`, so
+`assert "\beta=..." not in sec` would have passed vacuously -- a silently-green test asserting
+nothing. Fixed with Edit and raw strings, which is what the rule says to do.
+
+```text
+What was learned
+- the paper was strictly weaker than the repository: the weakest
+  sufficient hypothesis existed, proved, and was never imported
+- a vacuously-passing assertion is the worst outcome of the escape
+  bug, and the only reason I noticed was the SyntaxWarning
+Strongest theorem
+- Propositions 7.6 and 7.7: density one needs no power saving, and no
+  equidistribution -- only a 0.36907 node-wise bias
+Strongest refutation
+- my own import, which rebound beta in the section I had just
+  de-collided
+Reusable machinery
+- never_contracting_measure(d, bias): the biased DP, reducing to the
+  unbiased count at bias 1/2
+Branch status
+- ADVANCE (Section 7 now states what the program actually needs)
+Best next question
+- the tower target: for each fixed depth the parity classes carry
+  their Bernoulli densities, rate-free. That is the single active
+  conjecture 7.6 reduces to, and it is ergodic rather than analytic
+```

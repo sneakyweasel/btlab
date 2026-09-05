@@ -216,3 +216,60 @@ def test_both_ledger_rows_cite_this_regression() -> None:
     by_id = {r["id"]: r for r in rows}
     for rid in ("J-equidistribution-implies-density-one", "J-rate-free-density-one"):
         assert any("paper_b_prefix_count" in t for t in by_id[rid]["tests"]), rid
+
+
+# --- Propositions 7.6 and 7.7: the weakest sufficient hypotheses ---
+
+
+def test_bias_threshold_is_the_contraction_line_from_the_other_side() -> None:
+    """beta_* = 1 - log2/log3: the bias at which a node-wise O-share stops forcing the odd
+    count below the contraction line.  The two constants in Proposition 7.7 are one constant."""
+    assert abs(B.BIAS_THRESHOLD - 0.369070) < 1e-6
+    assert abs(B.BIAS_THRESHOLD + B.BETA - 1.0) < 1e-15
+
+
+def test_chernoff_rate_is_positive_exactly_above_the_threshold() -> None:
+    assert B.biased_chernoff_rate(B.BIAS_THRESHOLD) == 0.0
+    assert B.biased_chernoff_rate(0.36) == 0.0
+    for bias in (0.37, 0.40, 0.45, 0.50):
+        assert B.biased_chernoff_rate(bias) > 0, bias
+    rates = [B.biased_chernoff_rate(b) for b in (0.37, 0.40, 0.45, 0.50)]
+    assert rates == sorted(rates), rates
+
+
+def test_biased_dp_reduces_to_the_unbiased_count_at_one_half() -> None:
+    """The check that the two accountings are one computation."""
+    for d in (5, 10, 20, 30):
+        assert abs(B.never_contracting_measure(d, 0.5) - B.non_contracting(d) / 2 ** d) < 1e-12
+
+
+def test_just_above_the_threshold_the_rate_is_useless_at_any_feasible_depth() -> None:
+    """At bias 0.37 the asymptotic rate is 1.85e-6 per letter while the extremal measure
+    decays at 0.0841, 0.0274 and 0.0154 at d = 24, 100, 200 -- the finite-depth prefactor
+    again, as in the unbiased count's d^(-3/2)."""
+    assert abs(B.biased_chernoff_rate(0.37) - 1.85487e-06) < 1e-11
+    for d, want in ((24, 0.0841), (100, 0.0274), (200, 0.0154)):
+        assert abs(B.observed_biased_rate(d, 0.37) - want) < 5e-5, d
+    rates = [B.observed_biased_rate(d, 0.37) for d in (24, 50, 100, 200, 400)]
+    assert rates == sorted(rates, reverse=True)
+    assert rates[-1] > B.biased_chernoff_rate(0.37)
+
+
+def test_the_paper_states_both_weakenings_and_the_threshold() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "**Proposition 7.6 (rate-free reduction).**" in text
+    assert "**Proposition 7.7 (biased-split reduction).**" in text
+    assert "0.36907" in text
+    for figure in ("0.0841", "0.0274", "0.0154", r"1.85\cdot10^{-6}"):
+        assert figure in text, figure
+
+
+def test_section_7_binds_beta_only_as_the_bias() -> None:
+    """Proposition 7.1's proof used beta for log2/log3 before 7.7 arrived; importing 7.7
+    verbatim would have bound beta twice in one section, which is the collision the section
+    was cleaned of.  log2/log3 is now written out and gamma does not appear."""
+    text = io.open(PAPER, encoding="utf-8").read()
+    sec = text[text.index("## 7. The Terras"):text.index("## 8. Relation")]
+    assert r"\gamma" not in sec
+    assert r"\beta=\log2/\log3" not in sec
+    assert r"d\log2/\log3" in sec

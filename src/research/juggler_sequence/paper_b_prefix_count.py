@@ -103,6 +103,49 @@ def observed_rate(d: int) -> float:
     return -(math.log(non_contracting(d)) - d * LOG2) / d
 
 
+# --- the biased-split reduction of Proposition 7.7 ---
+
+BIAS_THRESHOLD = 1.0 - BETA             # 0.36907024..., written beta_* in the paper
+
+
+def relative_entropy(p: float, q: float) -> float:
+    """``D(p || q)`` in nats, for the Chernoff step of Proposition 7.7."""
+    return p * math.log(p / q) + (1 - p) * math.log((1 - p) / (1 - q))
+
+
+def biased_chernoff_rate(bias: float) -> float:
+    """``D(log2/log3 || 1-bias)``, positive exactly above ``BIAS_THRESHOLD``."""
+    if bias <= BIAS_THRESHOLD:
+        return 0.0
+    return relative_entropy(BETA, 1.0 - bias)
+
+
+def never_contracting_measure(d: int, bias: float) -> float:
+    """Extremal mu-measure at depth ``d`` of the words with no contracting prefix.
+
+    Proposition 7.7 caps the O-share at ``1 - bias`` at every node, so the measure maximising
+    the never-contracting mass saturates the cap.  The mass is the sum of
+    ``(1-bias)^o bias^(d-o)`` over the same lattice paths ``word_counts`` enumerates, which is
+    why ``bias = 1/2`` returns ``N_d / 2^d`` exactly -- the check that the biased and unbiased
+    accountings are one computation.
+    """
+    layer: dict[int, float] = {0: 1.0}
+    for t in range(1, d + 1):
+        nxt: dict[int, float] = {}
+        for o, mass in layer.items():
+            for step, weight in ((1, 1.0 - bias), (0, bias)):
+                o2 = o + step
+                if survives(t, o2):
+                    nxt[o2] = nxt.get(o2, 0.0) + mass * weight
+        layer = nxt
+    return sum(layer.values())
+
+
+def observed_biased_rate(d: int, bias: float) -> float:
+    """``-log(measure)/d``: the per-letter decay an experiment at depth ``d`` would report."""
+    return -math.log(never_contracting_measure(d, bias)) / d
+
+
 def table(d_max: int = 40) -> list[dict[str, Any]]:
     rows = []
     for d in range(1, d_max + 1):
