@@ -1,28 +1,40 @@
-"""Cross-document consistency for Paper A.
+"""Cross-document consistency for Papers A, B and C.
 
-Every defect found in the last three iterations of work on this paper was the same species:
-a change to the manuscript that silently invalidated prose elsewhere.  Extending Theorem 5.8's
-window to q_14 falsified an Appendix A row, a glossary entry, six passages in the reviewer
-packet, a constant in the companion app, and -- worst -- a line in the app's NOT_CLAIMED list,
-which asserted the opposite of the new text.  None of it was covered by a test, because prose
-is not executable.
+Every defect found in several iterations of work on these papers was the same species: a change
+to a manuscript that silently invalidated prose elsewhere.  Extending Theorem 5.8's window to
+q_14 falsified an Appendix A row, a glossary entry, six passages in the reviewer packet, a
+constant in the companion app, and -- worst -- a line in the app's NOT_CLAIMED list, which
+asserted the opposite of the new text.  Replacing Proposition 7.1's Hoeffding step left five
+documents restating the superseded bound.  None of it was covered by a test, because prose is
+not executable.
 
 These tests make that class checkable.  They do not verify mathematics; they verify that the
-manuscript, the certificate, the review materials and the app agree about the numbers they all
-quote, and that the manuscript's own numbering is in document order.
+manuscripts, the certificates, the review materials and the app agree about the numbers they
+all quote, and that each manuscript's own numbering is in document order.
+
+The invariants that hold for every paper are parametrized over ``MANUSCRIPTS``; anything that
+depends on one paper's content lives in its own section below.  Two lessons from earlier
+versions of this file are worth keeping in view, because both were cases of a test being wrong
+about the paper rather than the reverse.  Global uniqueness of item numbers fails, because
+Paper A's Appendix D deliberately restates the Section 3 theorems above their proofs.  And "one
+expression, one value" fails, because Paper B deliberately carries two readings of ``c_7``.
+The invariants below are the narrower ones that actually hold.
 """
 
 from __future__ import annotations
 
 import io
 import re
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import pytest
 
+from research.juggler_sequence import p0_certificate as P0
 from research.juggler_sequence import paper_a_audit as A
 
 ROOT = Path(__file__).resolve().parents[3]
+
 PAPER = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
 MIRROR = ROOT / "juggler_review" / "juggler_finite_dynamics_note.md"
 PACKET = ROOT / "juggler_review" / "juggler_finite_dynamics_reviewer_packet.md"
@@ -32,60 +44,122 @@ APP_CONSTANTS = ROOT / "web" / "juggler-companion" / "src" / "juggler" / "consta
 APP_CLAIMS = ROOT / "web" / "juggler-companion" / "src" / "content" / "claims.ts"
 APP_GLOSSARY = ROOT / "web" / "juggler-companion" / "src" / "content" / "glossary.ts"
 
+PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+MIRROR_B = ROOT / "juggler_review" / "juggler_parity_discrepancy_note.md"
+LEDGER_B = ROOT / "docs" / "theory" / "paper_b_audit_ledger.md"
+LEDGER_B_MIRROR = ROOT / "juggler_review" / "paper_b_audit_ledger.md"
+
+PAPER_C = ROOT / "docs" / "theory" / "juggler_fate_almost_all_note.md"
+MIRROR_C = ROOT / "juggler_review" / "juggler_fate_almost_all_note.md"
+
 REVIEW_DOCS = [PACKET, README, FORMALIZATION]
+
+ITEM = r"^\*\*(?:Theorem|Lemma|Corollary|Proposition|Conjecture|Remark|Claim) "
+
+
+@dataclass(frozen=True)
+class Manuscript:
+    """A paper and the documents that must agree with it."""
+
+    name: str
+    path: Path
+    mirror: Path
+    ordered_sections: tuple[str, ...]
+    """Sections whose items must appear in numeric order.
+
+    Paper A's Section 3 is deliberately not among them: Lemma 3.21b states the canonical run
+    form early, where it is used, and Lemma 3.21a states the case split late, next to
+    Theorem 3.22.  Both are out of numeric order on purpose.
+    """
+
+    satellites: tuple[Path, ...] = field(default_factory=tuple)
+
+
+MANUSCRIPTS = (
+    Manuscript("A", PAPER, MIRROR, ("5",), (PACKET, README, FORMALIZATION)),
+    Manuscript("B", PAPER_B, MIRROR_B, ("3", "4", "5", "6", "7"), (LEDGER_B,)),
+    Manuscript("C", PAPER_C, MIRROR_C, tuple(str(k) for k in range(2, 11))),
+)
+IDS = [m.name for m in MANUSCRIPTS]
 
 
 def read(p: Path) -> str:
     return io.open(p, encoding="utf-8").read()
 
 
-# --- the manuscript's own numbering ---
+SUFFIX = r"[a-z'′]?"
+"""Two conventions for a companion item, both sorting after the bare number: a letter
+(Paper B's Lemma 5.2b, Paper A's Remark 5.8a) and a prime (Paper C's Lemma 4.1')."""
 
 
-def test_section_5_items_are_in_document_order() -> None:
-    """Regression: Propositions 5.15/5.16 once sat between Theorems 5.8 and 5.9."""
-    text = read(PAPER)
-    found = re.findall(r"^\*\*(?:Theorem|Lemma|Corollary|Proposition) (5\.\d+[a-z]?)",
-                       text, re.MULTILINE)
-
-    def key(label: str) -> tuple[int, str]:
-        m = re.match(r"5\.(\d+)([a-z]?)", label)
-        return int(m.group(1)), m.group(2)
-
-    keys = [key(f) for f in found]
-    assert keys == sorted(keys), found
+def item_key(label: str) -> tuple[int, int, str]:
+    m = re.match(r"(\d+)\.(\d+)(" + SUFFIX + r")", label)
+    return int(m.group(1)), int(m.group(2)), m.group(3)
 
 
-def test_every_numbered_item_is_unique_in_the_body() -> None:
-    """Uniqueness holds in the body only: Appendix D deliberately restates the Section 3
-    theorems above their proofs, which is not a numbering defect."""
-    text = read(PAPER)
-    body = text[: text.index("## Appendix")]
-    found = re.findall(r"^\*\*(?:Theorem|Lemma|Corollary|Proposition) (\d+\.\d+[a-z]?)",
-                       body, re.MULTILINE)
-    assert len(found) == len(set(found)), [f for f in found if found.count(f) > 1]
+# --- invariants that hold for every manuscript ---
 
 
-def test_no_number_is_used_for_two_different_items() -> None:
+@pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
+def test_items_are_in_document_order(ms: Manuscript) -> None:
+    """Regression: Propositions 5.15/5.16 once sat between Theorems 5.8 and 5.9 of Paper A."""
+    text = read(ms.path)
+    for sec in ms.ordered_sections:
+        pat = ITEM + r"(" + re.escape(sec) + r"\.\d+" + SUFFIX + r")"
+        found = re.findall(pat, text, re.MULTILINE)
+        keys = [item_key(f) for f in found]
+        assert keys == sorted(keys), (ms.name, sec, found)
+
+
+@pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
+def test_every_numbered_item_is_unique_in_the_body(ms: Manuscript) -> None:
+    """Uniqueness holds in the body only: Paper A's Appendix D deliberately restates the
+    Section 3 theorems above their proofs, which is not a numbering defect."""
+    text = read(ms.path)
+    cut = text.find("## Appendix")
+    body = text if cut < 0 else text[:cut]
+    found = re.findall(ITEM + r"(\d+\.\d+" + SUFFIX + r")", body, re.MULTILINE)
+    assert len(found) == len(set(found)), (ms.name, [f for f in found if found.count(f) > 1])
+
+
+@pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
+def test_no_number_is_used_for_two_different_items(ms: Manuscript) -> None:
     """The real numbering invariant, given that appendices both restate and introduce.
 
-    Appendix D restates the Section 3 theorems above their proofs (same number, same title --
-    fine), and Appendix C introduces Theorems 2.4-2.7 continuing Section 2's numbering (new
-    number, not in the body -- also fine).  What must never happen is one number carrying two
-    different titles.
+    Paper A's Appendix D restates the Section 3 theorems above their proofs (same number, same
+    title -- fine), and its Appendix C introduces Theorems 2.4-2.7 continuing Section 2's
+    numbering (new number, not in the body -- also fine).  What must never happen is one number
+    carrying two different titles.
     """
-    text = read(PAPER)
-    pairs = re.findall(
-        r"^\*\*(?:Theorem|Lemma|Corollary|Proposition) (\d+\.\d+[a-z]?) \(([^)]*)\)",
-        text, re.MULTILINE)
+    pat = ITEM + r"(\d+\.\d+" + SUFFIX + r") \(([^)]*)\)"
+    pairs = re.findall(pat, read(ms.path), re.MULTILINE)
     titles: dict[str, set[str]] = {}
     for num, title in pairs:
         titles.setdefault(num, set()).add(title.strip().rstrip("."))
     clashes = {n: t for n, t in titles.items() if len(t) > 1}
-    assert not clashes, clashes
+    assert not clashes, (ms.name, clashes)
 
 
-# --- the window, which is what actually drifted ---
+@pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
+def test_review_mirror_matches_the_manuscript(ms: Manuscript) -> None:
+    assert read(ms.path) == read(ms.mirror), f"{ms.name}: juggler_review mirror is stale"
+
+
+@pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
+def test_no_mangled_latex_escapes(ms: Manuscript) -> None:
+    """A tab in a manuscript is always a LaTeX escape eaten by a shell heredoc.
+
+    Three got in this way and survived several revisions: `\\theta` in Paper A's Section 5,
+    `\\to` in its Section 3, and `\\theta(L)` in the reviewer packet, each rendered as a literal
+    tab plus the rest of the macro name.  No legitimate tab exists in these documents, so the
+    check is exact rather than heuristic.
+    """
+    for doc in (ms.path, ms.mirror, *ms.satellites):
+        bad = [i for i, line in enumerate(read(doc).splitlines(), 1) if "\t" in line]
+        assert not bad, (ms.name, doc.name, bad[:5])
+
+
+# --- Paper A: the window, which is what actually drifted ---
 
 
 def test_window_endpoint_agrees_everywhere() -> None:
@@ -107,9 +181,6 @@ def test_no_document_still_quotes_the_old_window_as_the_window() -> None:
 def test_window_covers_the_whole_fan() -> None:
     """The window's endpoint is exactly the last fan member: q_14 = L_55."""
     assert A.WINDOW_HI == A.fan_length(A.FAN_LEN - 1) == 16785921
-
-
-# --- constants shared by the manuscript, the certificate and the app ---
 
 
 @pytest.mark.parametrize("name,value", [
@@ -144,34 +215,71 @@ def test_fan_endpoints_quoted_in_the_paper() -> None:
     assert str(A.fan_length(55)) in read(PAPER)
 
 
-def test_no_mangled_latex_escapes() -> None:
-    """A tab in the manuscript is always a LaTeX escape eaten by a shell heredoc.
-
-    Two got in this way and survived several revisions: `\theta` in Section 5 and `\to` in
-    Section 3, each rendered as a literal tab plus the rest of the macro name.  No legitimate
-    tab exists in this document, so the check is exact rather than heuristic.
-    """
-    for doc in (PAPER, MIRROR, PACKET, README, FORMALIZATION):
-        text = read(doc)
-        bad = [i for i, line in enumerate(text.splitlines(), 1) if "	" in line]
-        assert not bad, (doc.name, bad[:5])
-
-
-# --- the mirror, which reviewers actually read ---
-
-
-def test_review_mirror_matches_the_manuscript() -> None:
-    assert read(PAPER) == read(MIRROR), "juggler_review mirror is stale; re-copy it"
-
-
-# --- Appendix A must mention every registered Lean module ---
-
-
 def test_appendix_A_mentions_the_fan_law_module() -> None:
     """Regression: FanLaw.lean was registered and built but absent from Appendix A."""
     text = read(PAPER)
-    idx = text.index("## Appendix A")
-    appendix = text[idx:]
+    appendix = text[text.index("## Appendix A"):]
     assert "FanLaw.lean" in appendix
     for name in ("fanLambda_affine", "fan_positive_iff", "fanLambda_55_pos"):
         assert name in appendix, name
+
+
+# --- Paper B: the threshold P_0, quoted at two precisions, and the two readings of c_7 ---
+
+
+def test_p0_agrees_between_the_certificate_the_manuscript_and_the_ledger() -> None:
+    """The manuscript rounds to two significant figures, the audit ledger keeps five.
+
+    Both must be roundings of what ``p0_certificate.certificate()`` actually computes; a change
+    to the certificate that moves either rounding has to move the prose with it.
+    """
+    p0 = P0.certificate()["P0"]
+    mantissa = p0 / 10 ** 13
+    assert 1 <= mantissa < 10, p0
+    assert f"P_0={mantissa:.1f}" + r"\cdot10^{13}" in read(PAPER_B)
+    assert f"P_0={mantissa:.4f}" + r"\cdot10^{13}" in read(LEDGER_B)
+
+
+def test_manuscript_quotes_p0_consistently_wherever_it_appears() -> None:
+    """Every numeric occurrence of P_0 in Paper B is the same two-figure value."""
+    quoted = set(re.findall(r"P_0\s*=\s*([\d.]+)\\cdot10\^\{(\d+)\}", read(PAPER_B)))
+    assert quoted == {("8.9", "13")}, quoted
+
+
+def test_binding_site_named_in_the_ledger_is_the_computed_one() -> None:
+    """The ledger says P_0 binds at Step 5b's W <= c_7 S/2; the certificate must agree."""
+    binding = P0.certificate()["binding"]
+    assert "5b" in binding["tag"] and "c7S" in binding["tag"], binding
+    assert r"W\le c_7S/2" in read(LEDGER_B)
+
+
+def test_both_readings_of_c7_are_present_with_the_sentence_that_explains_them() -> None:
+    """Paper B deliberately carries two values, so "one expression, one value" is not the
+    invariant here.  The sharp constant 1/232 is the l-infinity operator norm of the Step 5b
+    inverse and is what the P_0 appendix uses; 1/288 is the l-1 norm, a weaker value the proof
+    of Step 5b keeps.  Both appear, and so must the sentence saying why -- otherwise the
+    manuscript reads as self-contradictory.
+    """
+    text = read(PAPER_B)
+    assert abs(P0.certificate()["c7"] - 1 / 232) < 1e-15
+    assert r"c_7=1/232" in text and r"c_7=1/288" in text
+    assert "we keep the" in text and "which remains valid" in text
+    # the two consequent values of c_7/8, each with its own reading
+    assert r"\tfrac1{1856}" in text and "1/2304" in text
+
+
+def test_certificate_densities_agree_with_their_corollary_titles() -> None:
+    """13/16 at depth four and 7/8 at depth five, in the titles and in the prose.
+
+    Anchored on the corollary titles rather than on the bare fractions: Paper B also writes
+    ``c_7/8`` and ``P^{7/8}``, so a substring test on "7/8" is meaningless.
+    """
+    text = read(PAPER_B)
+    assert r"**Corollary 4.9 (certified-descent density \(13/16\)).**" in text
+    assert r"**Corollary 6.4 (certified-descent density \(7/8\)).**" in text
+    assert r"density \(13/16\) (Corollary 4.9)" in text
+    assert r"density \(7/8\) (Corollary 6.4)" in text
+
+
+def test_audit_ledger_mirror_matches() -> None:
+    assert read(LEDGER_B) == read(LEDGER_B_MIRROR), "paper_b_audit_ledger mirror is stale"

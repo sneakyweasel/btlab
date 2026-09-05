@@ -24586,3 +24586,56 @@ Best next question
   meander structure says anything about which words survive, rather
   than how many, is untouched
 ```
+
+
+### The consistency net now covers all three Juggler manuscripts
+
+`test_manuscript_consistency.py` was written for Paper A and covered it alone. Paper B's `P_0`,
+its window and its Proposition 7.1 table had all moved this session with nothing checking them,
+and the Proposition 7.1 propagation had to be found by grep. The shared invariants are now
+parametrized over a `MANUSCRIPTS` table --- numbering in document order, uniqueness in the body,
+one number one title, mirror byte-identical, no mangled LaTeX escapes --- and Papers B and C
+joined it. 34 tests, up from 18.
+
+**Paper B specifics.** `P_0` is quoted at two precisions --- `8.9e13` in the manuscript,
+`8.9458e13` in the audit ledger --- and both must be roundings of what
+`p0_certificate.certificate()` computes; the binding site named in the ledger must be the one
+the certificate reports; the certified-descent densities must match their corollary titles.
+That last one is anchored on the titles rather than the fractions, because Paper B also writes
+`c_7/8` and `P^{7/8}` and a substring test on "7/8" means nothing.
+
+**Two things that looked like defects and were not.** `c_7/8` appears as both `1/1856` and
+`1/2304`. That is deliberate: `1/232` is the l-infinity operator norm of the Step 5b inverse and
+is what the `P_0` appendix uses, `1/288` is the l-1 norm and is a weaker value the proof of Step
+5b keeps, and the manuscript says so in a sentence. The invariant encoded is that both readings
+*and that sentence* are present --- deleting the explanation is what would make the manuscript
+self-contradictory. Second, Paper C appeared to number `4.1` twice; it is `Lemma 4.1` and
+`Lemma 4.1'`, and my regex did not handle the prime. That was a latent false positive in the
+Paper A version too.
+
+**The net was mutation-tested rather than trusted.** All 34 passed on the first run, which for a
+drift net is as likely to mean it checks nothing as that the corpus is clean. Eleven mutations
+--- wrong `P_0` mantissa in either document, one stale `P_0` left behind, the `c_7` explanation
+deleted, a wrong density, an out-of-order item, a duplicate number, a title clash, a mangled
+escape, a stale mirror --- were each injected, run, and reverted. All eleven were caught and the
+tree was clean afterwards.
+
+```text
+What was learned
+- a green regression net proves nothing until it is mutation-tested;
+  this one was, eleven times
+- two apparent inconsistencies in Paper B and C were conventions the
+  test did not know about, which is the same lesson as Appendix C/D
+Strongest theorem
+- none; coverage went from one manuscript to three
+Strongest refutation
+- my own regex, which read Lemma 4.1' as a duplicate of Lemma 4.1
+Reusable machinery
+- MANUSCRIPTS table: a fourth paper is one row
+Branch status
+- ADVANCE (the drift class is now checked for the whole corpus)
+Best next question
+- consolidation item 3: 35 Lean modules, ~950 theorems, build but are
+  unreachable from JugglerPaper.lean. O7EEEEGap was one of them and
+  held a sharper tool than the prose used
+```
