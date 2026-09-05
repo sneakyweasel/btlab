@@ -307,6 +307,7 @@ for external review.
 
 | Artifact | Home |
 |----------|------|
+| Manuscript audits | `src/research/juggler_sequence/paper_{a,b,c}_audit.py` (Paper C added 5 Sep 2026: 45 checks, exponents, Tao depths, §8.4 table, stratification scales) |
 | Probes / censuses | `src/research/juggler_sequence/<branch>.py` |
 | Tests (fast suite) | `tests/research/juggler_sequence/test_<branch>.py` |
 | Data artifacts | `data/research/juggler/.../summary.json` |

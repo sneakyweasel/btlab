@@ -6849,5 +6849,16 @@
    "tests/research/juggler_sequence/test_manuscript_consistency.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-paper-c-audit",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Audit module for Paper C (paper_c_audit), closing the asymmetry that Papers A and B had one and Paper C did not. Four layers, 45 checks, 0 failures on first run: the contagion exponents (lambda* 0.3774, lambda** 0.4480, lambda*** 0.5392, ideal ceiling 0.4927, and the Section 5.7 ladder 0.4480/0.4927, 0.6247/0.7180, 0.7095/0.8414, 0.7516/0.9121) recomputed from both the three-state residual and the run-ladder transfer matrix; the Tao thresholds and depths (e(20) = 0.574, e(18) = 0.480, least depth 20 / 18 / 19 by regime, one-sided C(q)); the Section 8.4 constants table at 1e20, 1e100 and 1e1000, every cell reproducing (L = 1.25/3.55/6.87, d = 25/72/138, bad probability 0.0650/0.0167/0.0038, target 0.1005/0.0383/0.0096, least depth 19/56/117); and the stratification scales N0^(4/3) = 2.5e11, N0^(3/2) = 6.5e12, N0^2 = 1.2e17. Each check names its regime, because C(q) denotes different numbers under lambda** and lambda*** - C(0.55) is 44 in the first and 39 in the second, and Paper C quotes the second while AGENTS.md quotes the first, both correctly. The exponent calculus previously lived only inside test_contagion_exponent_calculus.py and is now in src. Paper C's arithmetic was already sound; what was missing was anything that would notice if it stopped being so.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_audit.py"
+  ],
+  "related_conjectures": []
  }
 ]

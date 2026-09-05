@@ -1,0 +1,336 @@
+{
+  "git_commit": "6001414898fdee06d691f6076bd3adb599aca2e0",
+  "paper": "docs/theory/juggler_fate_almost_all_note.md",
+  "N0": 350000000,
+  "checks": {
+    "contagion": [
+      {
+        "name": "lambda_star (block_average_only)",
+        "printed": 0.3774,
+        "computed": 0.3774401681534122,
+        "abs_error": 4.016815341217894e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda** (block_average_plus_third)",
+        "printed": 0.448,
+        "computed": 0.44801700122730537,
+        "abs_error": 1.700122730535769e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda*** (block_third_plus_ooeee)",
+        "printed": 0.5392,
+        "computed": 0.5391796859705966,
+        "abs_error": 2.0314029403389888e-05,
+        "ok": true
+      },
+      {
+        "name": "depth-two ideal ceiling",
+        "printed": 0.4927,
+        "computed": 0.4926579801153874,
+        "abs_error": 4.201988461260964e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda_star via residual",
+        "printed": 0.3774,
+        "computed": 0.3774401681534124,
+        "abs_error": 4.0168153412400986e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda** via residual",
+        "printed": 0.448,
+        "computed": 0.4480170012273056,
+        "abs_error": 1.7001227305579736e-05,
+        "ok": true
+      },
+      {
+        "name": "ideal via residual",
+        "printed": 0.4927,
+        "computed": 0.49265798011538753,
+        "abs_error": 4.2019884612498615e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(1) present sweep",
+        "printed": 0.448,
+        "computed": 0.4480170012273049,
+        "abs_error": 1.7001227304913602e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(1) ideal fibers",
+        "printed": 0.4927,
+        "computed": 0.49265798011538753,
+        "abs_error": 4.2019884612498615e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(2) present sweep",
+        "printed": 0.6247,
+        "computed": 0.6247277027196891,
+        "abs_error": 2.7702719689104427e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(2) ideal fibers",
+        "printed": 0.718,
+        "computed": 0.7179648798704841,
+        "abs_error": 3.51201295158976e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(3) present sweep",
+        "printed": 0.7095,
+        "computed": 0.7095331793097053,
+        "abs_error": 3.317930970525573e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(3) ideal fibers",
+        "printed": 0.8414,
+        "computed": 0.8413565367931324,
+        "abs_error": 4.346320686765548e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(4) present sweep",
+        "printed": 0.7516,
+        "computed": 0.7515815875589429,
+        "abs_error": 1.8412441057158446e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda(4) ideal fibers",
+        "printed": 0.9121,
+        "computed": 0.9121453502913082,
+        "abs_error": 4.535029130814383e-05,
+        "ok": true
+      }
+    ],
+    "tao": [
+      {
+        "name": "rate threshold 1 - lambda**",
+        "printed": 0.552,
+        "computed": 0.5519829987726946,
+        "abs_error": 1.7001227305413202e-05,
+        "ok": true
+      },
+      {
+        "name": "rate threshold 1 - lambda***",
+        "printed": 0.4608,
+        "computed": 0.4608203140294034,
+        "abs_error": 2.0314029403389888e-05,
+        "ok": true
+      },
+      {
+        "name": "rate threshold 1 - lambda_ideal",
+        "printed": 0.5073,
+        "computed": 0.5073420198846126,
+        "abs_error": 4.201988461260964e-05,
+        "ok": true
+      },
+      {
+        "name": "e(20)",
+        "printed": 0.574,
+        "computed": 0.5737956448546405,
+        "abs_error": 0.0002043551453594361,
+        "ok": true
+      },
+      {
+        "name": "e(18)",
+        "printed": 0.48,
+        "computed": 0.4804066215192821,
+        "abs_error": 0.0004066215192821132,
+        "ok": true
+      },
+      {
+        "name": "least depth, lambda** regime",
+        "printed": 20,
+        "computed": 20,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "least depth, lambda*** regime",
+        "printed": 18,
+        "computed": 18,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "least depth, ideal regime",
+        "printed": 19,
+        "computed": 19,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.5), lambda*** regime",
+        "printed": 18,
+        "computed": 18,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.55), lambda*** regime",
+        "printed": 39,
+        "computed": 39,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.5), lambda** regime",
+        "printed": 20,
+        "computed": 20,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.55), lambda** regime",
+        "printed": 44,
+        "computed": 44,
+        "abs_error": 0,
+        "ok": true
+      }
+    ],
+    "constants_table": [
+      {
+        "name": "L(1e20)",
+        "printed": 1.25,
+        "computed": 1.2485578843236127,
+        "abs_error": 0.001442115676387301,
+        "ok": true
+      },
+      {
+        "name": "d(1e20)",
+        "printed": 25,
+        "computed": 25,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "bad probability at 1e20",
+        "printed": 0.065,
+        "computed": 0.06495946645736694,
+        "abs_error": 4.053354263305886e-05,
+        "ok": true
+      },
+      {
+        "name": "(log y)^-0.6 at 1e20",
+        "printed": 0.1,
+        "computed": 0.10047374481040945,
+        "abs_error": 0.00047374481040944605,
+        "ok": true
+      },
+      {
+        "name": "least depth for rate 0.6 at 1e20",
+        "printed": 19,
+        "computed": 19,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "L(1e100)",
+        "printed": 3.55,
+        "computed": 3.55326947430744,
+        "abs_error": 0.003269474307439957,
+        "ok": true
+      },
+      {
+        "name": "d(1e100)",
+        "printed": 72,
+        "computed": 72,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "bad probability at 1e100",
+        "printed": 0.017,
+        "computed": 0.016717749048680224,
+        "abs_error": 0.0002822509513197777,
+        "ok": true
+      },
+      {
+        "name": "(log y)^-0.6 at 1e100",
+        "printed": 0.038,
+        "computed": 0.038253448009174004,
+        "abs_error": 0.0002534480091740052,
+        "ok": true
+      },
+      {
+        "name": "least depth for rate 0.6 at 1e100",
+        "printed": 56,
+        "computed": 56,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "L(1e1000)",
+        "printed": 6.87,
+        "computed": 6.87129537719735,
+        "abs_error": 0.001295377197349623,
+        "ok": true
+      },
+      {
+        "name": "d(1e1000)",
+        "printed": 138,
+        "computed": 138,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "bad probability at 1e1000",
+        "printed": 0.0038,
+        "computed": 0.003811408769345075,
+        "abs_error": 1.1408769345075138e-05,
+        "ok": true
+      },
+      {
+        "name": "(log y)^-0.6 at 1e1000",
+        "printed": 0.0096,
+        "computed": 0.009608831701270136,
+        "abs_error": 8.831701270136522e-06,
+        "ok": true
+      },
+      {
+        "name": "least depth for rate 0.6 at 1e1000",
+        "printed": 117,
+        "computed": 117,
+        "abs_error": 0,
+        "ok": true
+      }
+    ],
+    "stratification": [
+      {
+        "name": "N0^{4/3}",
+        "printed": 250000000000.0,
+        "computed": 246655455622.27084,
+        "abs_error": 3344544377.7291565,
+        "ok": true
+      },
+      {
+        "name": "N0^{3/2}",
+        "printed": 6500000000000.0,
+        "computed": 6547900426854.397,
+        "abs_error": 47900426854.39746,
+        "ok": true
+      },
+      {
+        "name": "N0^2",
+        "printed": 1.2e+17,
+        "computed": 1.225e+17,
+        "abs_error": 2500000000000000.0,
+        "ok": true
+      }
+    ]
+  },
+  "classification": {
+    "total_checks": 45,
+    "failures": 0,
+    "failing_names": [],
+    "all_printed_constants_reproduce": true
+  }
+}

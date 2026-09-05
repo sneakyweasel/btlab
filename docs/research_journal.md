@@ -26427,3 +26427,72 @@ Branch status
 Best next question
 - Paper C has no audit module while A and B do. Worth building one?
 ```
+
+## Paper C gets an audit module: 45 checks, no failures
+
+Papers A and B had audit modules; Paper C had none, so its printed
+constants were checked only where some other test happened to touch
+them. `paper_c_audit.py` closes that, in four layers.
+
+**Contagion exponents.** The three-state residual and the run-ladder
+transfer matrix, recomputed against every exponent the paper prints:
+\(\lambda^*=0.3774\), \(\lambda^{**}=0.4480\),
+\(\lambda^{***}=0.5392\), the depth-two ideal ceiling \(0.4927\), and
+the §5.7 ladder \(\lambda(r)\) — \(0.4480/0.4927\), \(0.6247/0.7180\),
+\(0.7095/0.8414\), \(0.7516/0.9121\) under the present sweep and ideal
+fibers. The residual and the recursion roots are checked to give the
+same three constants, which is how §5.7 derives them.
+
+**Tao thresholds and depths.** \(e(20)=0.574\), \(e(18)=0.480\), the
+least depth in each regime (\(20\), \(18\), \(19\)), and the one-sided
+\(C(q)\).
+
+**§8.4 constants table.** \(L(y)\), \(d(y)\), the exact fair-coin bad
+probability, the target \((\log y)^{-0.6}\) and the least depth for rate
+\(0.6\), at \(10^{20}\), \(10^{100}\), \(10^{1000}\). Every cell
+reproduces: \(L=1.25/3.55/6.87\), \(d=25/72/138\),
+bad \(=0.0650/0.0167/0.0038\), target \(=0.1005/0.0383/0.0096\), least
+depth \(=19/56/117\).
+
+**Stratification scales.** \(N_0^{4/3}=2.5\cdot10^{11}\),
+\(N_0^{3/2}=6.5\cdot10^{12}\), \(N_0^{2}=1.2\cdot10^{17}\).
+
+45 checks, 0 failures, first run. Paper C's arithmetic was already
+sound; what was missing was anything that would notice if it stopped
+being so.
+
+**The regime trap, made explicit.** \(C(q)\) denotes different numbers
+under \(\lambda^{**}\) and \(\lambda^{***}\): \(C(0.55)\) is \(44\) in
+the first and \(39\) in the second, \(C(0.5)\) is \(20\) and \(18\).
+Paper C quotes the second pair, AGENTS.md the first, and both are
+right. I read the paper's \(39\) as drift before checking the regime —
+`least_C_biased` defaults to the \(\lambda^{**}\) rate — so the audit
+carries both regimes as separate named checks. A value correct in one
+context looks exactly like a stale constant in the other, which is the
+trap this module exists to avoid.
+
+The exponent calculus itself lived only inside
+`test_contagion_exponent_calculus.py`; the residual, the bisection and
+the run-ladder are now in `src` where an audit can reuse them, and the
+new tests check the residual against the note's printed
+\(\lambda^{**}\) equation as the same curve rather than a curve with
+the same root.
+
+```text
+What was learned
+- Paper C's printed constants all reproduce: 45 checks, 0 failures
+- the exponent calculus was test-only; it now lives in src
+- C(q) means different numbers in the two regimes and both are quoted
+  correctly across the repository; the audit names the regime in every check
+Strongest theorem
+- none; this is an audit
+Strongest refutation
+- my own second false alarm: Paper C's C(0.55) = 39 is the lambda*** value
+Reusable machinery
+- paper_c_audit: residual, exponent, run_exponent, and four check groups
+Branch status
+- consolidation complete; the A/B/C audit asymmetry is closed
+Best next question
+- none outstanding; the three manuscripts now each have an audit module and
+  the cross-quotation family is guarded
+```
