@@ -27099,3 +27099,82 @@ Best next question
   9/8. Is the composite a rational function of the exponent with an
   isolated zero, or does it vanish identically off 9/8?
 ```
+
+ ### The coefficient rule gives the constants, and the deepest defect names the kernel
+
+Two upgrades, and the second reproduces the paper's own vocabulary on
+every case it already settles.
+
+**The rule was giving only exponents; it gives the constants too.**
+Letter `t`'s wave is `e(k J^{t-1}/2)`, and `J^{t-1}` feels `θ_s`
+through the chain, so the coefficient is `(k/2)·∏_{q=s+1}^{t-1} p_q`
+at exponent `e_{t-1} - e_s`. With no further input that returns:
+
+```text
+  (3k/4) n^{9/8}      Theorem 5.3's kernel monomial, verbatim
+  (9k/16) n^{3/16}    Theorem 6.3's C
+  (3k/4) v^{1/4}      Theorem 6.3's B
+  (3k/4) n^{27/16}    the level-3 weight -- derivative k n^{11/16},
+                      which is the varrho' ~ kP^{11/16} of Conjecture 7.3
+  (9k/8) n^{45/16}    the family that same paragraph says the forced
+                      inner linearization trades theta_3 for
+```
+
+Five stated quantities, none of which I put in.
+
+**And there are two thresholds, both the paper's.** Below 1, a
+coefficient drifts by less than one per step and Theorem 4.8's window
+applies. Above `9/4` — the figure Conjecture 7.3 names when it says the
+traded family at `kn^{45/16}` sits above where *every method of this
+paper stops* — nothing applies. Between them is kernel territory.
+
+The correction to last entry: I had been counting blocked coefficients.
+Wrong statistic. `K_c(P) = Σ_n e(c(n)·{⌊n^{3/2}⌋^{3/2}})` sums over `n`
+with `c` a smooth monomial, so `θ_1` is not a separate sawtooth to be
+windowed — it is resolved by the depth-≤3 theorems. It is the
+**deepest** blocked defect that names the kernel:
+
+```text
+   OOEO*   L5  none                       -> no kernel; and that proof uses none
+   OOO*    L4  level 2, (3k/4)n^{9/8}     -> Theorem 5.3, verbatim
+   OOOO*   L5  level 3, (3k/4)n^{27/16}   -> Conjecture 7.3's weight
+   OOOEOEE L6  level 1, (27k/32)n^{33/32}
+   OOEOOEE L6  level 3, (9k/8)n^{45/32}, SQRT species
+   OOOOEEE L5  level 3, (3k/4)n^{27/16}   -> the OOOO* row exactly
+```
+
+Three-for-three on the cases already settled, which is the reason to
+trust the other three rows.
+
+`OOOEOEE` is blocked no deeper than level 1 — the defect `{n^{3/2}}` of
+a *monomial* base, one level **below** Theorem 5.3 rather than above.
+`OOEOOEE` is blocked at level 3 on a square-root defect, a
+level-and-species pair with no theorem and no conjecture in the paper.
+And only `OOOOEEE` carries coefficients above `9/4` (`57/16`, `45/16`),
+which is precisely why it is the open one.
+
+A small bonus: both pursuable words share the identical level-1
+monomial `(27k/32)n^{33/32}`, so that work is not doubled.
+
+```text
+What was learned
+- the count of blocked coefficients was the wrong statistic; the
+  deepest one is right, and the difference is that shallow defects are
+  functions of the summation variable rather than free parameters
+- a rule worth trusting is one that returns constants you did not feed
+  it; this one returned five
+Strongest theorem
+- coefficient = (k/2) prod p_q at exponent e_{t-1} - e_s, and deepest
+  blocked defect = kernel level required
+Strongest refutation
+- my own blocked-count statistic from the previous entry
+Reusable machinery
+- defect_coefficient / deepest_blocked / beyond_methods, with
+  STOP_THRESHOLD = 9/4 quoted from Conjecture 7.3
+Branch status
+- ADVANCE
+Best next question
+- OOOEOEE needs a level-1 kernel at 33/32. Sections 3-4 already handle
+  theta_1 at depth <= 3; is 33/32 inside what Theorem 4.7 gives, or
+  does the growing amplitude put it outside?
+```

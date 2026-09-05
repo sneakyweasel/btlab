@@ -4602,52 +4602,72 @@ device of Theorem 4.8 has no interval to run on and the letter must go
 through a kernel theorem instead. Counting the differences above the
 threshold prices each split:
 
-| split | wave at | defect coefficients | blocked, with species | status |
-|---|---:|---|---|---|
-| \(OOEO*\), letter 5 | \(27/16\) | \(3/16,\ -9/16,\ 9/16\) | none | \(N^{43/48}\) |
-| \(OOO*\), letter 4 | \(27/8\) | \(15/8,\ 9/8\) | \(15/8,\ 9/8\), both \(3/2\) | Thm 6.1, via Thm 5.3 |
-| \(OOOO*\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | all three, all \(3/2\) | open (Conj. 7.3) |
-| \(OOOEOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ -27/32,\ 27/32\) | \(33/32\), \(3/2\) | --- |
-| \(OOEOOEE\), letter 6 | \(81/32\) | \(33/32,\ 9/32,\ 45/32,\ 27/32\) | \(33/32\) \(3/2\); \(45/32\) \(\surd\) | --- |
-| \(OOOOEEE\), letter 5 | \(81/16\) | \(57/16,\ 45/16,\ 27/16\) | all three, all \(3/2\) | --- |
+The rule gives the constants too, not only the exponents. Letter
+\(t\)'s wave is \(e(kJ^{t-1}/2)\), and \(J^{t-1}\) feels \(\theta_s\)
+through the chain, so the coefficient is
+\[
+\tfrac k2\prod_{q=s+1}^{t-1}p_q\quad\text{at exponent }e_{t-1}-e_s,
+\qquad p_q=\tfrac32\text{ or }\tfrac12 ,
+\]
+and this returns, with no further input, every such constant the paper
+names: \(\tfrac{3k}4n^{9/8}\), which is Theorem 5.3's kernel monomial
+verbatim; \(\tfrac{9k}{16}n^{3/16}\) and \(\tfrac{3k}4v^{1/4}\), the
+two kept coefficients of Theorem 6.3's \(OOEO*\) proof; the weight
+\(\tfrac{3k}4n^{27/16}\) of the level-3 kernel, whose derivative
+\(\asymp kn^{11/16}\) is the \(\varrho'\asymp kP^{11/16}\) that
+Conjecture 7.3 quotes; and \(\tfrac{9k}8n^{45/16}\), the family that
+same paragraph says the forced inner linearization trades \(\theta_3\)
+for.
 
-The species column is the one that decides. A defect is of \(3/2\)
-species or square-root species according as the letter that produced it
-is \(O\) or \(E\), and Theorem 5.3 is built for the first: its
-statement fixes the monomial \(c(n)=\tfrac{3k}4n^{9/8}\) riding
-\(\theta_2\), and the square-root defect \(\theta_3=\{v^{1/2}\}\) of
-Theorem 6.3 is handled there by drift-1 windows and by nothing else.
-Every blocked coefficient of \(OOO*\) and of \(OOOO*\) is of \(3/2\)
-species, which is why Theorem 5.3 and Conjecture 7.3 are the right
-shapes for them.
+There are two thresholds, and both are the paper's. Below \(1\) a
+coefficient drifts by less than one between consecutive integers and
+Theorem 4.8's shifted window applies. Above \(9/4\) --- the figure
+Conjecture 7.3 names when it says the traded family at \(kn^{45/16}\)
+sits *above the threshold where every method of this paper stops* ---
+nothing applies. Between them lies kernel territory. And it is the
+*deepest* blocked defect that names the kernel, the shallower ones
+being what earlier theorems already resolve:
 
-So the three thirds of depth seven sort as follows, and not in the
-order the run statistic suggested. \(OOOOEEE\)'s fifth letter *is* the
-\(OOOO*\) split, coefficient for coefficient, so Conjecture 7.3 is
-necessary for that third and not merely sufficient. \(OOOEOEE\) is
-blocked on a single defect, of \(3/2\) species, at \(33/32\) --- below
-both of the pair Theorem 5.3 already closes. And \(OOEOOEE\), which the
-longest-odd-run reading put first, is blocked twice, once on a
-square-root defect at \(45/32\), a species for which this paper has no
-kernel theorem at any level. It is the harder of the two, not the
-easier.
+| split | deepest blocked | monomial | \(>9/4\) | status |
+|---|---|---|---|---|
+| \(OOEO*\), letter 5 | none | --- | none | \(N^{43/48}\), windows only |
+| \(OOO*\), letter 4 | level \(2\), \(3/2\) | \(\tfrac{3k}4n^{9/8}\) | none | Thm 5.3 |
+| \(OOOO*\), letter 5 | level \(3\), \(3/2\) | \(\tfrac{3k}4n^{27/16}\) | \(57/16,\ 45/16\) | open (Conj. 7.3) |
+| \(OOOEOEE\), letter 6 | level \(1\), \(3/2\) | \(\tfrac{27k}{32}n^{33/32}\) | none | --- |
+| \(OOEOOEE\), letter 6 | level \(3\), \(\surd\) | \(\tfrac{9k}8n^{45/32}\) | none | --- |
+| \(OOOOEEE\), letter 5 | level \(3\), \(3/2\) | \(\tfrac{3k}4n^{27/16}\) | \(57/16,\ 45/16\) | --- |
 
-That said, none of the three is a corollary of what is proved.
-Theorem 5.3 is a statement about one monomial, and it says so: the
-cancellation of its Step 5a uses the exact ratio of that monomial's
-derivatives, and a two-sided scale \(c^{(r)}\asymp kP^{9/8-r}\) would
-not determine the composite. Re-running it at \(33/32\) is therefore
-work rather than a new idea --- the differencing and the six steps do
-not know the exponent --- but the two sign-critical composites
-\(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\) would have to be
-recomputed there and shown not to vanish. Each of \(OOEOOEE\) and
-\(OOOEOEE\) also needs six waves where the proved rows need four, every
-extra wave bringing its own Vaaler truncation, majorant and remainder
-into a balance that would have to be redone from the start. What the
-table settles is the order of attack: \(OOOEOEE\) first, at
-\(1/128\); then \(OOEOOEE\), which needs a square-root kernel that does
-not yet exist; and \(OOOOEEE\) last, behind Conjecture 7.3. The first
-two together would carry the certified density to \(57/64\) with
+The first three rows are checks: the rule assigns \(OOEO*\) no kernel
+and that proof uses none; it assigns \(OOO*\) the level-2 kernel and
+returns Theorem 5.3's monomial; it assigns \(OOOO*\) the level-3
+kernel and returns the weight Conjecture 7.3 describes. The last three
+are the reading.
+
+\(OOOOEEE\) repeats the \(OOOO*\) row exactly, so Conjecture 7.3 is
+necessary for that third of the depth-seven increment and not merely
+sufficient --- and it is the only one of the three carrying anything
+above \(9/4\). \(OOOEOEE\) is blocked no deeper than level \(1\), the
+defect \(\{n^{3/2}\}\) of a monomial base, which is one level *below*
+Theorem 5.3 rather than above it. \(OOEOOEE\) is blocked at level
+\(3\) on a square-root defect, a level-and-species combination for
+which this paper has no theorem and no conjecture; it is the harder of
+the two, not the easier, and the longest-odd-run reading had it the
+wrong way round.
+
+None of this makes any of the three a corollary. Theorem 5.3 is a
+statement about one monomial and says so --- its Step 5a cancellation
+uses the exact ratio of that monomial's derivatives, a two-sided scale
+\(c^{(r)}\asymp kP^{9/8-r}\) being insufficient to determine the
+composite --- so a kernel at \(33/32\) means recomputing the composites
+\(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\) there and showing they
+do not vanish. Each depth-seven word also needs six waves where the
+proved rows need four, every extra wave bringing its own Vaaler
+truncation, majorant and remainder into a balance that would have to be
+redone. What the table settles is the order of attack --- \(OOOEOEE\)
+first, then \(OOEOOEE\) behind a square-root kernel that does not
+exist, then \(OOOOEEE\) behind Conjecture 7.3 --- and that the first
+two, unlike the third, stay inside the \(9/4\) threshold throughout.
+Together they would carry the certified density to \(57/64\) with
 Conjecture 7.3 still open.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the

@@ -613,16 +613,67 @@ def test_the_ranking_flips_against_the_run_statistic() -> None:
 
 def test_the_paper_states_the_flip_and_the_single_monomial_caveat() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
-    assert "It is the harder of the two, not the" in text
-    assert "none of the three is a corollary of what is proved" in text
-    assert "recomputed there and shown not to vanish" in text
-    assert r"a species for which this paper has no" in text
+    assert "it is the harder of" in text
+    assert "None of this makes any of the three a corollary." in text
+    assert "showing they" in text and "do not vanish" in text
+    assert "no theorem and no conjecture" in text
 
 
 def test_the_extra_cost_is_recorded_rather_than_hidden() -> None:
     """Six waves against four is the honest price, and the paper says so."""
     assert B.wave_count("OOEOOEE") == 6 and B.wave_count("OOOEE") == 4
     text = io.open(PAPER, encoding="utf-8").read()
-    assert "none of the three is a corollary of what is proved" in text
-    assert "needs six waves where the proved rows need four" in text
-    assert "the *difference* of the\ntwo scale exponents" in text
+    assert "None of this makes any of the three a corollary." in text
+    assert "six waves where the" in text
+    assert "the *difference* of the" in text
+
+
+# --- the coefficient rule with its constants, and the deepest blocked defect ---
+
+
+def test_the_rule_returns_the_papers_named_constants_exactly() -> None:
+    """Constant and exponent together, against three monomials the paper writes out."""
+    assert B.defect_coefficient("OOO", 4, 2) == (Fraction(3, 4), Fraction(9, 8))
+    assert B.defect_coefficient("OOEO", 5, 1) == (Fraction(9, 16), Fraction(3, 16))
+    assert B.defect_coefficient("OOEO", 5, 3) == (Fraction(3, 4), Fraction(9, 16))
+
+
+def test_the_rule_predicts_conjecture_73s_two_stated_scales() -> None:
+    """Conjecture 7.3 quotes a weight derivative kP^{11/16} and a traded family kn^{45/16}."""
+    const, exponent = B.defect_coefficient("OOOO", 5, 3)
+    assert (const, exponent) == (Fraction(3, 4), Fraction(27, 16))
+    assert exponent - 1 == Fraction(11, 16)                 # varrho' ~ k P^{11/16}
+    assert B.defect_coefficient("OOOO", 5, 2) == (Fraction(9, 8), Fraction(45, 16))
+
+
+def test_deepest_blocked_reproduces_the_papers_own_kernel_naming() -> None:
+    """No kernel for OOEO*; the level-2 kernel for OOO*; the level-3 kernel for OOOO*."""
+    assert B.deepest_blocked("OOEO", 5) is None
+    assert B.deepest_blocked("OOO", 4) == (2, Fraction(3, 4), Fraction(9, 8), "3/2")
+    assert B.deepest_blocked("OOOO", 5) == (3, Fraction(3, 4), Fraction(27, 16), "3/2")
+
+
+def test_the_stop_threshold_is_the_one_conjecture_73_names() -> None:
+    """9/4 is where every method of the paper stops; kn^{45/16} is what crosses it."""
+    assert B.STOP_THRESHOLD == Fraction(9, 4)
+    assert Fraction(45, 16) > B.STOP_THRESHOLD
+    assert [str(c) for c in B.beyond_methods("OOOO", 5)] == ["57/16", "45/16"]
+    for word, letter in (("OOEO", 5), ("OOO", 4), ("OOOEOEE", 6), ("OOEOOEE", 6)):
+        assert B.beyond_methods(word, letter) == [], word
+
+
+def test_the_depth_seven_verdicts() -> None:
+    """OOOEOEE below Theorem 5.3's level; OOEOOEE at level 3 on a square root; OOOOEEE open."""
+    assert B.deepest_blocked("OOOEOEE", 6) == (1, Fraction(27, 32), Fraction(33, 32), "3/2")
+    assert B.deepest_blocked("OOEOOEE", 6) == (3, Fraction(9, 8), Fraction(45, 32), "sqrt")
+    assert B.deepest_blocked("OOOOEEE", 5) == B.deepest_blocked("OOOO", 5)
+    # the pursuable pair share the identical level-1 monomial, so that work is not doubled
+    assert B.defect_coefficient("OOOEOEE", 6, 1) == B.defect_coefficient("OOEOOEE", 6, 1)
+
+
+def test_paper_carries_the_deepest_blocked_table() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    for frag in (r"\tfrac{27k}{32}n^{33/32}", r"\tfrac{3k}4n^{27/16}", r"\tfrac{9k}8n^{45/32}",
+                 r"\varrho'\asymp kP^{11/16}", "where every method of this paper stops",
+                 "one level *below*"):
+        assert frag in text, frag

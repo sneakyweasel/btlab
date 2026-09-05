@@ -294,6 +294,66 @@ def drift_blocked(w: str, t: int) -> list[Fraction]:
     return [g for g in theta_coefficients(w, t) if g > 1]
 
 
+def step_exponents(w: str) -> list[Fraction]:
+    """The per-letter maps: ``3/2`` after an odd letter, ``1/2`` after an even."""
+    return [Fraction(3, 2) if c == "O" else Fraction(1, 2) for c in w]
+
+
+def defect_coefficient(w: str, t: int, s: int) -> tuple[Fraction, Fraction]:
+    """``(constant, exponent)`` of ``theta_s`` in letter ``t``'s phase, the constant in units of k.
+
+    Letter ``t``'s wave is ``e(k J^{t-1}/2)``, and ``J^{t-1}`` depends on ``theta_s`` through the
+    chain, so the coefficient is ``(k/2) * prod_{q=s+1}^{t-1} p_q`` at exponent ``e_{t-1} - e_s``.
+    That reproduces all three constants the paper names: Theorem 5.3's own kernel monomial
+    ``(3k/4)n^{9/8}``, and Theorem 6.3's ``C = (9k/16)n^{3/16}`` and ``B = (3k/4)v^{1/4}``.
+    """
+    p = step_exponents(w)
+    const = Fraction(1, 2)
+    for q in range(s + 1, t):
+        const *= p[q - 1]
+    e = iterate_exponents(w)
+    return const, e[t - 2] - e[s - 1]
+
+
+def defect_level(s: int) -> int:
+    """The paper's level for ``theta_s``: its argument carries ``s-1`` floors inside.
+
+    ``theta_2 = {floor(n^{3/2})^{3/2}}`` is the level-2 floor defect of Section 4, and the
+    ``OOOO*`` kernel of Conjecture 7.3 rides ``theta_3`` and is called level-3 there.
+    """
+    return s
+
+
+DRIFT_THRESHOLD = Fraction(1)            # above this, no drift-1 interval exists
+STOP_THRESHOLD = Fraction(9, 4)          # above this, Conjecture 7.3 says every method stops
+
+
+def deepest_blocked(w: str, t: int) -> tuple[int, Fraction, Fraction, str] | None:
+    """The deepest defect of letter ``t`` above the drift threshold: the kernel level required.
+
+    Returns ``(s, constant, exponent, species)`` or ``None``.  The shallower defects are not free,
+    but they are the ones earlier theorems already resolve, so it is the deepest that names the
+    kernel.  This reproduces the paper's own vocabulary on every case it settles: ``OOEO*``'s
+    fifth letter has none and is proved by drift-1 windows alone; ``OOO*``'s fourth returns level
+    2 with the monomial ``(3k/4)n^{9/8}``, which is Theorem 5.3's statement verbatim; ``OOOO*``'s
+    fifth returns level 3 with ``(3k/4)n^{27/16}``, whose derivative ``k n^{11/16}`` is the
+    ``varrho' ~ kP^{11/16}`` that Conjecture 7.3 quotes.
+    """
+    prof = blocked_profile(w, t)
+    if not prof:
+        return None
+    s, _, species = max(prof, key=lambda r: r[0])
+    const, exponent = defect_coefficient(w, t, s)
+    return s, const, exponent, species
+
+
+def beyond_methods(w: str, t: int) -> list[Fraction]:
+    """Defect coefficients above ``9/4``, the exponent past which Conjecture 7.3 says every
+    method of the paper stops -- it names ``kn^{45/16}`` as the family that crosses it.
+    """
+    return [c for c in theta_coefficients(w, t) if c > STOP_THRESHOLD]
+
+
 def defect_species(w: str, s: int) -> str:
     """Which floor produced ``theta_s``: ``"3/2"`` after an odd letter, ``"sqrt"`` after an even.
 
