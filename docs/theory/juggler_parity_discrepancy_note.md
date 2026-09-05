@@ -5335,9 +5335,20 @@ Both were attacked; only one moved.
 *\(c_7\): not by changing the exponent triple.*
 \(c_7=1/\lVert M^{-1}\rVert_\infty\) depends only on the exponents,
 through \(\det M=\prod_{i<j}(x_j-x_i)\), and scales as the square of
-their gap: for an equally spaced triple of gap \(\delta\) about
-\(x_0\), \(\delta^2/c_7=x_0^2-2x_0+c\) with \(c\in[1.75,2]\) for
-\(\delta\in[\tfrac18,\tfrac12]\). Step 5b's triple is
+their gap. For an equally spaced triple of gap \(\delta\) about
+\(x_0\) the middle Lagrange row has denominator \(-\delta^2\) and
+numerator entries \(\lvert x_0^2-\delta^2\rvert\),
+\(\lvert1-2x_0\rvert\) and \(1\); when \(\lvert x_0\rvert>\delta\) and
+\(x_0<\tfrac12\) that row is the largest and the absolute values open,
+so
+\[
+\frac{\delta^2}{c_7}=x_0^2-2x_0+\bigl(2-\delta^2\bigr),
+\qquad\text{i.e.}\qquad
+c_7=\frac{\delta^2}{(x_0-1)^2+1-\delta^2}.
+\]
+The additive constant is therefore exactly \(2-\delta^2\), attaining
+\(\tfrac74\) at \(\delta=\tfrac12\) and approaching \(2\) as
+\(\delta\to0\) without reaching it. Step 5b's triple is
 \((\tfrac54,\tfrac{11}8,\tfrac32)\), and each entry is forced:
 \(\tfrac32\) is the level-1 wave \(X=\nu^{3/2}\); \(\tfrac{11}8\) is the
 frozen-shape global model; \(\tfrac54\) is the differenced-wave

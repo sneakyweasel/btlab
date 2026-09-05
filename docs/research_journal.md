@@ -27459,3 +27459,67 @@ Best next question
 - the level-1 exponent triple for Lemma 3.9 is still underived, and it
   is now the only thing standing between OOOEOEE and a proof sketch
 ```
+
+ ### c_7 in closed form, and a tick spent re-deriving what existed
+
+Two things happened, and the first is a process failure worth writing
+down.
+
+I set out to compute `c_7` from Lemma 3.9's formula so I could evaluate
+it on candidate level-1 triples — and reproduced, by hand, machinery
+`p0_certificate` already contains: `minv_abs`, `c7_of_triple`,
+`c7_triple_scan`, `vector_feasible`, `max_c2`, and the 11-element
+inventory whose 165 triples run from `1/259` to `144/287`. I should
+have grepped the module before deriving. What the detour did buy is a
+genuine cross-check: my route was the plain 3×3 adjugate, the module's
+is Lagrange rows in the falling-factorial basis, and the two agree on
+every triple tested. That is now a test rather than a coincidence.
+
+Along the way ten of Appendix A.5's constants were verified from the
+formula rather than taken on trust: `c_7 = 1/232` at
+`(5/4, 11/8, 3/2)`; `det M = 1/256`; `‖M⁻¹‖_∞ = 232`; the middle row
+`(24, 144, 64)` and its exact saturation `24+144+64 = 232`; the ceiling
+`c_2 ≤ 1/24`; the tightness of `(1/27, 1/1872, 1/1872)`; the minimum
+`1/259` at `(9/8, 5/4, 11/8)`; and `144/287` attained by the gap-`3/2`
+triple `(3/8, 15/8, 27/8)`, which is indeed in the inventory.
+
+**And one thing was new.** The paper states the gap law as
+`δ²/c_7 = x₀² - 2x₀ + c` with `c ∈ [1.75, 2]` for `δ ∈ [1/8, 1/2]` —
+an empirical band. It is not a band. The middle Lagrange row has
+denominator `-δ²` and numerator entries `|x₀²-δ²|`, `|1-2x₀|`, `1`, and
+whenever `|x₀| > δ` and `x₀ < 1/2` that row is the largest and the
+absolute values open:
+
+```text
+    δ²/c_7 = x₀² - 2x₀ + (2 - δ²),    c_7 = δ² / ((x₀-1)² + 1 - δ²)
+```
+
+So the additive constant is exactly `2 - δ²`: it attains `7/4` at
+`δ = 1/2` and approaches `2` as `δ → 0` without reaching it. Checked
+against the matrix on every lattice triple in the regime, no
+mismatches. At `x₀ = -5/8`, `δ = 1/8` it returns `1/232`, and at
+`x₀ = -3/4` it returns `1/259`.
+
+That puts the paper's most proof-critical constant — the one that sets
+`P_0` — in closed form.
+
+```text
+What was learned
+- grep the module before deriving; a whole tick went into rebuilding
+  c7_of_triple
+- an empirical band in a paper is worth differentiating: this one was
+  a closed form with the endpoints attained and approached
+Strongest theorem
+- c_7 = δ²/((x₀-1)² + 1 - δ²) for equally spaced triples with
+  |x₀| > δ and x₀ < 1/2
+Strongest refutation
+- none mathematically; the process failure is the finding
+Reusable machinery
+- c7_equally_spaced / c7_equally_spaced_applies, plus an adjugate
+  cross-check of the existing Lagrange implementation
+Branch status
+- ADVANCE
+Best next question
+- with c_7 closed-form in the gap, which admissible triple maximises it,
+  and how far would P_0 fall if Step 5b could be run on that triple?
+```

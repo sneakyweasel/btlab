@@ -334,6 +334,27 @@ def c7_triple_scan(inventory: tuple[Fr, ...] | None = None) -> dict[str, Any]:
     }
 
 
+def c7_equally_spaced(x0: Fr, delta: Fr) -> Fr:
+    """Closed form for ``c_7`` at an equally spaced triple of gap ``delta`` about ``x0 = alpha_mid - 2``.
+
+    The middle Lagrange row has denominator ``-delta^2`` and numerator entries ``|x0^2 - delta^2|``,
+    ``|1 - 2 x0|`` and ``1``; whenever ``|x0| > delta`` and ``x0 < 1/2`` that row is the largest and
+    the absolute values open, giving
+
+        delta^2 / c_7 = x0^2 - 2 x0 + (2 - delta^2),   i.e.   c_7 = delta^2 / ((x0-1)^2 + 1 - delta^2).
+
+    So the paper's empirical ``c in [1.75, 2]`` is exactly ``2 - delta^2``: the lower end is attained
+    at ``delta = 1/2`` and the upper is approached but never reached as ``delta -> 0``.  At the Step 5b
+    triple (``x0 = -5/8``, ``delta = 1/8``) this returns ``1/232``.
+    """
+    return (delta * delta) / ((x0 - 1) ** 2 + 1 - delta * delta)
+
+
+def c7_equally_spaced_applies(x0: Fr, delta: Fr) -> bool:
+    """The regime in which the closed form is exact: ``|x0| > delta`` and ``x0 < 1/2``."""
+    return abs(x0) > delta and x0 < Fr(1, 2)
+
+
 def vector_feasible(c2: float, c3: float, c4: float, tol: float = 1e-12) -> bool:
     """|M^{-1}| c <= 1 rowwise -- the exact hypothesis Lemma 3.9's proof needs.
 

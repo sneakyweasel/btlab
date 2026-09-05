@@ -2,9 +2,17 @@
 
 from __future__ import annotations
 
+import io
 import math
+from fractions import Fraction as Fr
+from pathlib import Path
+
+import pytest
 
 from research.juggler_sequence import p0_certificate as C
+
+ROOT = Path(__file__).resolve().parents[3]
+PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
 
 
 def _pred_for(tag: str):
@@ -424,3 +432,72 @@ def test_appendix_a_and_section_4_agree_on_the_four() -> None:
     assert "Of the remaining four" in text
     for figure in (r"3.0\cdot10^{11}", "two and a half orders"):
         assert text.count(figure) >= 2, figure     # stated in both places now
+
+
+# --- c_7 in closed form, and a second implementation to check the first ---
+
+
+def _c7_by_adjugate(triple):
+    """Independent route: build M explicitly and invert by the adjugate.
+
+    p0_certificate builds |M^{-1}| from Lagrange rows in the falling-factorial basis.  This does
+    the plain 3x3 inverse instead, so agreement is a real cross-check rather than a restatement.
+    """
+    from fractions import Fraction as Fr
+    x = [Fr(t) - 2 for t in triple]
+    a, b, c = Fr(1), Fr(1), Fr(1)
+    d, e, f = x
+    g, h, i = [xi * (xi - 1) for xi in x]
+    det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
+    adj = [[(e * i - f * h), -(b * i - c * h), (b * f - c * e)],
+           [-(d * i - f * g), (a * i - c * g), -(a * f - c * d)],
+           [(d * h - e * g), -(a * h - b * g), (a * e - b * d)]]
+    rows = [[adj[r][s] / det for s in range(3)] for r in range(3)]
+    return Fr(1) / max(sum(abs(v) for v in row) for row in rows)
+
+
+@pytest.mark.parametrize("triple", [
+    (Fr(5, 4), Fr(11, 8), Fr(3, 2)),
+    (Fr(9, 8), Fr(5, 4), Fr(11, 8)),
+    (Fr(3, 8), Fr(15, 8), Fr(27, 8)),
+    (Fr(3, 8), Fr(9, 4), Fr(27, 8)),
+])
+def test_two_independent_inverses_agree(triple) -> None:
+    assert C.c7_of_triple(triple) == _c7_by_adjugate(triple), triple
+
+
+def test_the_closed_form_matches_the_matrix_wherever_it_applies() -> None:
+    """delta^2/c_7 = x0^2 - 2 x0 + (2 - delta^2) on |x0| > delta, x0 < 1/2."""
+    checked = 0
+    for dk in range(1, 9):
+        delta = Fr(dk, 8)
+        for x0k in range(-40, 5):
+            x0 = Fr(x0k, 8)
+            if not C.c7_equally_spaced_applies(x0, delta):
+                continue
+            triple = (x0 - delta + 2, x0 + 2, x0 + delta + 2)
+            if any(v in (0, 1, 2, 3) for v in triple) or not all(-4 <= v <= 4 for v in triple):
+                continue
+            assert C.c7_equally_spaced(x0, delta) == C.c7_of_triple(triple), (x0, delta)
+            checked += 1
+    assert checked > 100, checked
+
+
+def test_the_additive_constant_is_two_minus_delta_squared() -> None:
+    """The paper printed the band [1.75, 2]; it is exactly 2 - delta^2."""
+    for delta, want in ((Fr(1, 2), Fr(7, 4)), (Fr(1, 4), Fr(31, 16)), (Fr(1, 8), Fr(127, 64))):
+        assert 2 - delta * delta == want, delta
+    assert Fr(7, 4) == min(2 - Fr(k, 8) ** 2 for k in range(1, 5))     # attained at delta = 1/2
+    assert all(2 - Fr(k, 8) ** 2 < 2 for k in range(1, 9))             # never reaches 2
+
+
+def test_closed_form_returns_the_two_constants_the_paper_names() -> None:
+    assert C.c7_equally_spaced(Fr(-5, 8), Fr(1, 8)) == Fr(1, 232)     # Step 5b, proof-critical
+    assert C.c7_equally_spaced(Fr(-3, 4), Fr(1, 8)) == Fr(1, 259)     # the inventory minimum
+
+
+def test_paper_states_the_closed_form() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert r"c_7=\frac{\delta^2}{(x_0-1)^2+1-\delta^2}" in text
+    assert r"exactly \(2-\delta^2\)" in text
+    assert r"without reaching it" in text
