@@ -228,6 +228,58 @@ def census_price(n: float, log10_y: int = 100, hits: int = 10) -> dict[str, Any]
     }
 
 
+#: block-density constant per (state, generation) whose burst lands in the block: E gives 2/x
+E_BURST = 2.0
+#: OE fiber constant: proved 2/9 on monotone fibers (pairing), mean 1/2 in the census;
+#: the OE-path density factor per step is then 2/9 .. 1/3 of the E value
+OE_FACTOR_LOW, OE_FACTOR_HIGH = 2.0 / 9.0, 1.0 / 3.0
+
+
+def theta_of_period(period: int) -> float:
+    """Paper A's gap ``theta(L) = 1 - 2^L / 3^o`` at the forced odd count."""
+
+    o = odd_count_of_period(period)
+    return 1.0 - 2.0 ** (-(o * LOG2_3 - period))
+
+
+def inverse_sum_bounds(n: float, period: int) -> dict[str, float]:
+    """Sandwich on ``sum_{x in C} 1/x`` for a hypothetical cycle of minimum ``n`` and this period.
+
+    Floor: the Lean inv-sum form of finance, ``(3^o - 2^L) ln n <= 3^o sum 1/x``, i.e.
+    ``sum 1/x >= theta(L) ln n``.  Cap: every state is ``>= n``, so ``sum 1/x <= L/n``.
+    ``floor > cap`` is the finance kill of the pair."""
+
+    theta = theta_of_period(period)
+    floor = theta * math.log(n)
+    cap = period / n
+    return {"n": n, "period": period, "theta": theta, "inv_sum_floor": floor,
+            "inv_sum_cap": cap, "finance_kills": floor > cap}
+
+
+def basin_block_density_bounds(n: float, period: int, log10_y: int) -> dict[str, float]:
+    """Contagion-visible block density of a Lachesis basin, sandwiched by finance.
+
+    Each cycle state ``x`` whose burst lands in the block contributes ``E_BURST / x``
+    through pure ``E`` and a geometric factor ``1 / (1 - f)`` through ``OE`` detours,
+    ``f`` in ``[OE_FACTOR_LOW, OE_FACTOR_HIGH]``; a fraction ``1 / ln y`` of the states land
+    in a given block (equidistribution of the clock).  So the density is
+    ``K * sum_{x in C} (1/x) / ln y`` with ``K`` in ``[2 * 9/7, 2 * 3/2] = [18/7, 3]``.
+    This bounds only the ``E``/``OE`` part; the full basin adds the free term."""
+
+    inv = inverse_sum_bounds(n, period)
+    lny = log10_y * math.log(10.0)
+    k_low = E_BURST / (1.0 - OE_FACTOR_LOW)
+    k_high = E_BURST / (1.0 - OE_FACTOR_HIGH)
+    return {
+        "n": n, "period": period, "log10_y": log10_y,
+        "K_low": k_low, "K_high": k_high,
+        "density_low": k_low * inv["inv_sum_floor"] / lny,
+        "density_high": k_high * inv["inv_sum_cap"] / lny,
+        "single_seed_two_over_n": 2.0 / n,
+        "finance_kills": inv["finance_kills"],
+    }
+
+
 def summary() -> dict[str, Any]:
     clock_census = [clock_defect_census(e, 200) for e in (12, 18, 30, 50, 100)]
     cycle_bounds = [
@@ -245,6 +297,11 @@ def summary() -> dict[str, Any]:
     ]
     trees = [etree_density(m, k) for m in (11, 101) for k in (1, 2)]
     prices = [census_price(n) for n in (3.5e8, 1e9, 1e10, 1e12)]
+    inverse_sums = [inverse_sum_bounds(n, L) for L in (780239, 1082233) for n in (3.5e8, 1e9, 1e10)]
+    finance_linked = [
+        basin_block_density_bounds(n, L, e)
+        for L in (780239, 1082233) for n in (3.5e8, 1e9) for e in (12, 30, 68)
+    ]
     worst_realised = max(row["max_abs_eps_u_units"] for row in clock_census)
     worst_cycle = max(row["abs_eps_u_units"] for row in cycle_bounds)
     widest_gap = max(row["largest_gap_mod_one"] for row in rotations)
@@ -258,6 +315,8 @@ def summary() -> dict[str, Any]:
         "rotation_coverage": rotations,
         "etree_density": trees,
         "census_price": prices,
+        "inverse_sum_bounds": inverse_sums,
+        "finance_linked_density": finance_linked,
         "classification": {
             "max_realised_eps_u_units": worst_realised,
             "max_cycle_eps_bound_u_units": worst_cycle,
@@ -270,6 +329,10 @@ def summary() -> dict[str, Any]:
                 for t in trees if t["m"] >= 101
             ),
             "deep_census_dominated_by_floor_raise": True,
+            "finance_floor_beats_single_seed": all(
+                r["density_low"] > r["single_seed_two_over_n"] for r in finance_linked if not r["finance_kills"]
+            ),
+            "upper_bound_is_free_term": True,
             "decision": "PARK",
         },
     }

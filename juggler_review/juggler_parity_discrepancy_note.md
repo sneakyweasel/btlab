@@ -2302,7 +2302,11 @@ q_d\sigma_{d,e_1}\,
 +\Delta_{2h_3}\varphi.
 \]
 This is a sum of at most five terms (three of type (D1), one of
-type (D2), one of type (D3)), inside the budget of nine.
+type (D2), one of type (D3)). Step 4 of Theorem 5.3 adds at most two
+further (D1) terms, the leftover first-differenced modes of
+Lemma 5.2(iii), so seven is the largest decoration this paper forms;
+the budget of nine is a ceiling on the class, not a count that is
+reached, and no estimate below depends on its value.
 
 - (D1). Each summand is \(q'\,\Delta_{2h}\Delta_{2h'}Y(n{+}d')\)
   with \(2h=2h_3\) the shift of this invocation of (i),

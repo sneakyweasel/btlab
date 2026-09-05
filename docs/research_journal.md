@@ -25445,3 +25445,57 @@ Best next question
   three parameters and (D3) two derivative bounds, and Step 4 already
   showed one of the (D1) budgets was not what the proof needed
 ```
+
+
+### The decoration audit: mostly clean, and that is the result
+
+Second target of the hypothesis audit, and unlike the standing conditions it came back
+essentially negative. Worth recording, because a deliberate search that finds nothing is
+evidence, and because the next reader should not repeat it.
+
+**(D1)'s three parameters are each consumed, and one is tight.** Claim E sets
+`q' = q_d sigma`, `h' = |d - e_1|/2` and `d' = min(d, e_1)`. Since `d` and `e_1` range over
+`{0, d_1, d_2, d_1+d_2}`, the largest gap is `d_1 + d_2`, so `h' <= h_1 + h_2 <= 2P^(1/24)` --
+the printed bound with equality available, not slack. The coefficient budget `4P^(1/24)` looked
+like slack, since the Theorem 5.3 invocation supplies only `J_2 = P^(1/24)`; it is not, because
+Theorems 6.1 and 6.3 grow the individual `q_d` to the printed value while leaving `t` alone.
+That was the Claim D finding from an earlier audit, working in the other direction.
+
+**(D3) carries a third-derivative bound Stage 6 never uses, and the paper already says why:**
+"Only the second-derivative budget is used; the third-derivative budget is carried so that (D3)
+is closed under one further difference." Checked, justified, no change.
+
+**One thing was unstated.** The class allows nine terms; Claim E forms five, and Step 4's
+leftover modes add two, for seven. Nine is never reached and no estimate depends on it. The
+paper now records the true maximum, so a reader checking Claim E knows the ceiling is
+documentation rather than a count.
+
+**And a test premise was wrong again, the same way twice.** I asserted `count("nine") == 2` and
+got 3 -- the third is "nine orders of magnitude", a different subject entirely. Two commits ago
+the same shape: `count("(C2)") == 2` against 3. Counting occurrences of a short string in a
+50-page manuscript is not an invariant; the invariant is which *phrases* occur. Both are now
+phrase assertions.
+
+```text
+What was learned
+- a deliberate audit's second target returned almost nothing, which
+  is worth as much as the first returning a great deal: the
+  decoration classes are as tight as they look
+- twice now I have written count(short string) == n as an invariant
+  and been wrong; the phrase is the invariant, never the tally
+Strongest theorem
+- none; one unstated maximum recorded, two hypotheses confirmed tight
+Strongest refutation
+- my own test premise, for the second time in three commits
+Reusable machinery
+- none new
+Branch status
+- HOLD (the audit's yield has dropped; the remaining targets in
+  Sections 4-6 are the numeric constants, which Appendix A already
+  audits site by site)
+Best next question
+- stop auditing hypotheses and take referee item 16: the split of
+  proof-critical from bookkeeping constants. Appendix A already knows
+  which of the thirty-seven bind, so it is presentation of computed
+  fact rather than a new search
+```

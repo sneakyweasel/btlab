@@ -8,14 +8,17 @@ from pathlib import Path
 
 from research.juggler_sequence.lachesis_loglog_clock import (
     ALPHA,
+    basin_block_density_bounds,
     clock,
     cycle_clock_defect_bound,
     etree_density,
     evidence_depth,
+    inverse_sum_bounds,
     odd_count_of_period,
     orbit_clock_trace,
     rotation_gap,
     survival_log2_by_depth,
+    theta_of_period,
 )
 from research.juggler_sequence.tao_reduction import LOG2_3, N0_CERTIFIED, scale_L
 
@@ -98,6 +101,33 @@ def test_evidence_depth_grows_with_the_sample() -> None:
 
 def test_clock_is_monotone_in_the_state() -> None:
     assert clock(10**12) < clock(10**24) < clock(10**48)
+
+
+def test_theta_matches_paper_a_gap() -> None:
+    """theta(780239) = 1 - 2^L/3^o with o = 492276: the walk-charge blocker's gap."""
+
+    th = theta_of_period(780239)
+    o = odd_count_of_period(780239)
+    assert abs(th - (1.0 - 2.0 ** (-(o * LOG2_3 - 780239)))) < 1e-15
+    assert 3.4e-6 < th < 3.5e-6
+
+
+def test_inverse_sum_sandwich_and_finance_kill() -> None:
+    """Floor theta ln n from the Lean inv-sum form; cap L/n; floor > cap is the finance kill."""
+
+    live = inverse_sum_bounds(3.5e8, 780239)
+    assert live["inv_sum_floor"] < live["inv_sum_cap"]
+    assert not live["finance_kills"]
+    dead = inverse_sum_bounds(1e10, 780239)
+    assert dead["finance_kills"]
+
+
+def test_finance_floor_beats_the_single_seed_bound() -> None:
+    row = basin_block_density_bounds(3.5e8, 780239, 68)
+    assert row["density_low"] > row["single_seed_two_over_n"]
+    assert row["density_low"] < row["density_high"]
+    assert abs(row["K_low"] - 18.0 / 7.0) < 1e-12
+    assert abs(row["K_high"] - 3.0) < 1e-12
 
 
 def test_dossier_and_summary_agree() -> None:

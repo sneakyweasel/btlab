@@ -382,3 +382,36 @@ def test_c2_is_recorded_as_never_invoked() -> None:
     assert "by (C2)" not in text
     for cited in ("by (C1)", "by (C3)", "by (C4)"):
         assert cited in text, cited
+
+
+def test_decoration_budget_is_a_ceiling_not_a_count() -> None:
+    """Claim E forms five terms; Step 4's leftovers add two; the class allows nine.
+
+    The number is never used quantitatively -- it appears only in the class definition and in
+    the sentence that records the true maximum -- so the ceiling is documentation, not an
+    estimate anything depends on.
+    """
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "at most nine terms" in text                 # the class definition
+    assert "seven is the largest decoration this paper forms" in text
+    assert "not a count that is" in text
+    # the number is documentation: it occurs as the ceiling and as the note, nowhere else
+    # (the third "nine" in the paper is "nine orders of magnitude", a different subject)
+    assert text.count("budget of nine") == 1
+    assert text.count("at most nine terms") == 1
+
+
+def test_decoration_parameters_are_all_consumed() -> None:
+    """The audit's negative results, pinned so a later edit cannot quietly loosen them.
+
+    (D1)'s three parameters are each set by Claim E: q' = q_d sigma, h' = |d-e_1|/2, and
+    d' = min(d,e_1).  The bound h' <= 2P^(1/24) is tight, since d and e_1 range over
+    {0, d_1, d_2, d_1+d_2} and the largest gap is d_1+d_2 = 2(h_1+h_2).  (D3) carries a third
+    derivative it does not use in Stage 6, and the paper says why: closure under one more
+    difference.
+    """
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert r"h'=|d-e_1|/2\le2P^{1/24}" in text
+    assert r"d'=\min(d,e_1)\in\mathcal D" in text
+    assert "Only the second-derivative budget is used" in text
+    assert "closed under one" in text
