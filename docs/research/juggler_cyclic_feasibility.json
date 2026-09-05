@@ -17,7 +17,7 @@
     "n_max": 160,
     "k_pairs": 20,
     "scan_cap": 400,
-    "git": "35562f1db48698321a4845fd3d1adfcd72429b19",
+    "git": "ab26d3fc27b397108e60cdbc231be8dbd673b414",
     "census": [
       {
         "k": 1,

@@ -171,3 +171,48 @@ def test_paper_no_longer_states_the_old_constants() -> None:
     assert r"\frac6\pi" not in text
     assert r"most three arcs" not in text
     assert r"Neither loss touches the" not in text
+
+
+# --- the change has to reach every document that restates the proposition ---
+
+
+DEPENDENTS = {
+    "docs/theory/theorem_ledger.json": "the canonical row",
+    "docs/theory/theorem_ledger.md": "rendered from the JSON",
+    "docs/theory/juggler_cycle_itinerary_structure_note.md": "imports it as Proposition 6.1",
+    "docs/problems/juggler_k3_rate_free.md": "derives the rate-free reduction from it",
+    "docs/research/juggler_two_step_parity_lemma.md": "the source note",
+}
+
+
+@pytest.mark.parametrize("rel,role", sorted(DEPENDENTS.items()))
+def test_dependents_state_the_exact_count(rel: str, role: str) -> None:
+    """Five documents restate Proposition 7.1; the improvement has to reach all of them.
+
+    The old closed form is still true -- Hoeffding remains valid and is kept as the bound on
+    ``N_d`` -- so this is staleness, not error.  It is exactly the drift that a grep found once
+    and would find again, which is why it is a test.
+    """
+    text = io.open(ROOT / rel, encoding="utf-8").read()
+    assert "N_d" in text, (rel, role)
+    for stale in ("2^d E_d(N)", "2^dE_d(N)", r"2^d E_d(N)", r"2^dE_d(N)"):
+        assert stale not in text, (rel, stale)
+
+
+def test_rendered_ledger_is_not_stale() -> None:
+    """theorem_ledger.md is generated; the JSON edit has to be re-rendered."""
+    import subprocess
+    import sys
+
+    r = subprocess.run([sys.executable, str(ROOT / "tools" / "render_theorem_ledger.py"),
+                        "--check"], capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode == 0, r.stdout + r.stderr
+
+
+def test_both_ledger_rows_cite_this_regression() -> None:
+    import json
+
+    rows = json.load(io.open(ROOT / "docs" / "theory" / "theorem_ledger.json", encoding="utf-8"))
+    by_id = {r["id"]: r for r in rows}
+    for rid in ("J-equidistribution-implies-density-one", "J-rate-free-density-one"):
+        assert any("paper_b_prefix_count" in t for t in by_id[rid]["tests"]), rid

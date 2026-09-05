@@ -35,20 +35,26 @@ density one.
 Paper B Proposition 6.1) is the inequality
 \[
 \#\{n\le N:\ \text{no contracting prefix of length}\le d\}
-\ \le\ e^{-cd}N+2^dE_d(N),
-\qquad c=2\bigl(\tfrac{\log 2}{\log 3}-\tfrac12\bigr)^2>0.0342,
+\ \le\ \frac{N_d}{2^{d}}N+N_dE_d(N),
+\qquad N_d\le 2^{d}e^{-cd},
+\quad c=2\bigl(\tfrac{\log 2}{\log 3}-\tfrac12\bigr)^2>0.0342,
 \]
-where \(E_d(N)\) bounds the class-count errors at depth \(d\), and a
-word with no contracting prefix has \(o_d\ge d\log 2/\log 3\)
-(Hoeffding on the odd count); every start whose word has an
+where \(E_d(N)\) bounds the class-count errors at depth \(d\) and
+\(N_d\) is the exact number of length-\(d\) words with no contracting
+prefix --- a dynamic program over \((t,o_t)\), the closed form being
+Hoeffding applied to the endpoint alone; every start whose word has an
 exponent-negative prefix (\(3^{a_k}<2^k\)) descends below itself
 unconditionally, because floors only lose:
 \(x_k\le n^{3^{a_k}/2^k}<n\) (Lean `power_bound_word`,
 `J-power-envelope-contraction`). Fix \(d\) and let \(N\to\infty\)
-**first**: the hypothesis gives \(2^dE_d(N)=o(N)\) for the
-\(2^d\)-term sum, so the non-certified set has upper density
-\(\le e^{-cd}\). This holds for every \(d\); let \(d\to\infty\).
-\(\square\)
+**first**: the hypothesis gives \(N_dE_d(N)=o(N)\) for the
+\(N_d\)-term sum, so the non-certified set has upper density
+\(\le N_d/2^d\), and \(\le e^{-cd}\) via the closed form. This holds
+for every \(d\); let \(d\to\infty\). Carrying \(N_d\) rather than the
+closed form does not change the limit --- the rates agree to one part
+in eighty --- but it is what the sum actually has: \(4\) terms at
+\(d=5\) rather than \(32\), and \(2114\) at \(d=16\) rather than
+\(65536\). \(\square\)
 
 **Lemma B (biased-split reduction; EXACT — HUMAN PROOF).** Full
 equidistribution is not needed. Suppose for each fixed \(d\) and

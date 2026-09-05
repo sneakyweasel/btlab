@@ -727,11 +727,14 @@ length \(d\) (over all starts, first letter = parity of \(n\)),
 \;\le\; E_d(N).
 \]
 
-Then the starts with **no** contracting prefix of length \(\le d\)
-number at most
+Let \(N_d\) be the number of length-\(d\) words with no contracting
+prefix. Then the starts with **no** contracting prefix of length
+\(\le d\) number at most
 
 \[
-e^{-cd}\,N \;+\; 2^d E_d(N),
+\frac{N_d}{2^{d}}\,N \;+\; N_d\,E_d(N),
+\qquad
+N_d \;\le\; 2^{d}e^{-cd},
 \qquad
 c \;=\; 2\Bigl(\tfrac{\log 2}{\log 3} - \tfrac12\Bigr)^2
 \;>\; 0.0342 .
@@ -746,15 +749,29 @@ of starts admitting a finite descent certificate has natural density
 
 *Proof.* An itinerary \(w\) of length \(d\) has a contracting prefix iff
 \(3^{o_t} < 2^t\) for some \(t \le d\), where \(o_t\) counts odd
-letters among the first \(t\). If \(w\) has no contracting prefix
-then in particular \(3^{o_d} \ge 2^d\), i.e. \(o_d \ge \beta d\) with
-\(\beta = \log 2/\log 3 = 0.6309\ldots\) The number of such words is
+letters among the first \(t\). So the words to be counted are those
+whose lattice path \((t, o_t)\) satisfies \(3^{o_t} \ge 2^{t}\)
+throughout, a condition depending on nothing but \((t, o_t)\); hence
+\(N_d\) is a dynamic program over the triangle \(0 \le o \le t \le d\),
+exact in integers. Each word class has at most \(2^{-d}N + E_d(N)\)
+members; summing over the \(N_d\) non-contracting itineraries gives the
+count. The density-one statement follows by letting \(d \to \infty\)
+slowly with \(N\) (e.g. any \(d(N) \to \infty\) with
+\(N_dE_d(N)/N \to 0\)). \(\square\)
+
+*The closed form, and what it costs.* Keep only \(t = d\): then \(3^{o_d} \ge 2^d\),
+i.e. \(o_d \ge \beta d\) with \(\beta = \log 2/\log 3 = 0.6309\ldots\),
+and the number of such words is
 \(2^d\,\Pr[\mathrm{Bin}(d, \tfrac12) \ge \beta d] \le 2^d
-e^{-2(\beta - 1/2)^2 d}\) by Hoeffding's inequality. Each word class
-has at most \(2^{-d}N + E_d(N)\) members; summing over the
-non-contracting itineraries gives the count. The density-one statement
-follows by letting \(d \to \infty\) slowly with \(N\) (e.g. any
-\(d(N) \to \infty\) with \(2^{d}E_d(N)/N \to 0\)). \(\square\)
+e^{-2(\beta - 1/2)^2 d}\) by Hoeffding. The two words *in particular*
+are where the sharpness goes: dropping the prefix constraint costs a
+factor \(1.5\) at \(d = 5\) and \(4.4\) at \(d = 24\), and the
+exponential form costs the rest, for \(6.7\) at \(d = 5\) and \(43.6\)
+at \(d = 40\). Neither loss is in the rate --- the sharp value is
+\(-\log\rho = 0.034688\) against Hoeffding's \(0.034285\) --- but in a
+polynomial factor, \(N_d/2^d \sim C\rho^{d}d^{-3/2}\) with
+\(C \approx 11\). See Paper B Proposition 7.1 and
+`paper_b_prefix_count.py`.
 
 This is the Juggler analogue of the Terras program for Collatz:
 all-depth parity equidistribution (Conjecture K below) implies that

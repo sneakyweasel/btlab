@@ -185,7 +185,11 @@ not a Juggler word-census). Densities \(57/64\) and \(29/32\)
 Paper B Proposition 7.1 / Paper A Proposition 6.1).** If every
 length-\(d\) class has count \(2^{-d}N+E_d(N)\), the starts with
 no contracting prefix of length \(\le d\) number at most
-\(e^{-cd}N+2^d E_d(N)\) with \(c=2(\log 2/\log 3-1/2)^2>0.0342\).
+\((N_d/2^d)N+N_d E_d(N)\), where \(N_d\) is the exact number of
+length-\(d\) words with no contracting prefix; the closed form
+\(N_d\le 2^de^{-cd}\) with \(c=2(\log 2/\log 3-1/2)^2>0.0342\) is
+Hoeffding on the endpoint alone and is lossy by a factor \(6.7\) at
+\(d=5\), rising as \(d^{3/2}\).
 All-depth equidistribution with power savings would give
 density-one finite descent certificates. The implication is
 proved; the hypothesis is proved for every word of length
