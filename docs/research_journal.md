@@ -27800,3 +27800,72 @@ Branch status
 Best next question
 - do the other recent sections (c_7 closed form, the independent thresholds,
   the depth-seven third) have constants the audit likewise never sees?
+
+ ### E < 2: OOEOOEE is not a linear object
+
+The falsifier fired. The linearisation that every kernel in this paper
+rests on was justified, for the depth-seven targets, by an exponent
+count I never measured. One of the two fails it.
+
+Composing power maps composes to a single power, so letter `t`'s wave
+is `(J^s)^E` with `E = ∏_{q=s+1}^{t-1} p_q = e_{t-1}/e_s`, and the
+squared-defect term sits at `e_{t-1} - 2 e_s` — negligible exactly when
+`E < 2`.
+
+```text
+   Thm 5.3   OOO*    s=2   E = 3/2     2nd order -9/8     safe
+   Conj 7.3  OOOO*   s=3   E = 3/2     2nd order -27/16   safe
+   OOOEOEE           s=1   E = 27/16   2nd order -15/32   safe
+   OOEOOEE           s=3   E = 9/4     2nd order  +9/32   NOT SAFE
+```
+
+**Every kernel the paper forms has `E = 3/2`** — its defect sits exactly
+one letter below its wave, which is precisely the shape of Lemma
+5.1(i), `cθ = (k/2)(Z^{3/2} - ⌊Z⌋^{3/2})`. `OOOEOEE` is four steps from
+defect to wave but three `3/2`'s against a `1/2`, so still
+sub-quadratic. `OOEOOEE` is two steps, both `3/2`.
+
+Measured on the orbit of `n = 1000057`, which realises `OOEOO`: the
+squared term is **49.9**, against `5.5e-4` for `OOOEOEE`. The residual
+matches the quadratic prediction to `1e-8`. So it is not a correction
+to a kernel — it is a second wave beside it, of a shape the paper never
+has to form.
+
+One caution that cost me a wrong first measurement: positive
+second-order exponents at defects a kernel keeps *exact* are harmless,
+and both `OOO*` and `OOOO*` have one at `s = 1`. Only the defect
+actually expanded matters. (The wrong measurement came from aiming at
+`J^6` when letter 6's wave is at `J^5` — the ratio was still 1.000000,
+which is why an index slip inside a self-consistent check is worth
+distrusting.)
+
+```text
+What was learned
+- "negligible by exponent count" deserved a measurement; it was right
+  three times out of four and the fourth is the word already ranked
+  last
+- the paper's kernels are all one letter deep, which is why
+  linearisation has never needed justifying in it
+- a check that confirms its own prediction to 1e-8 can still be aimed
+  at the wrong object
+Strongest theorem
+- linearisation is safe iff E = prod p_q < 2 at the expanded defect;
+  E = 3/2 for every kernel the paper forms
+Strongest refutation
+- my own dismissal of the second-order term at OOEOOEE: it is ~50 at
+  P = 1e6, not negligible
+Reusable machinery
+- composed_map / linearisation_safe / second_order_exponent
+Branch status
+- PROMOTE
+Why
+  This is a fourth independent obstruction at OOEOOEE, after species,
+  branching, and the level, and it is the most serious: the other
+  three say the available theorems are the wrong shape, while this one
+  says the object itself is not of the form those theorems address.
+  The ranking is unchanged but its margin is much wider, and the
+  criterion E < 2 is cheap enough to apply to any future target.
+Best next question
+- E < 2 fails only when two 3/2-steps separate defect from wave. Which
+  depth-eight words avoid that, and do any of them contract?
+```

@@ -4763,6 +4763,24 @@ Conjecture 7.3 names. It is not merely of a species the paper lacks a
 theorem for; it inherits, verbatim, the branching failure of the open
 conjecture.
 
+*And one of the three is not a linear object at all.* Composing power
+maps composes to a single power, so letter \(t\)'s wave is
+\((J^{s})^{E}\) with \(E=\prod_{q=s+1}^{t-1}p_q=e_{t-1}/e_s\), and the
+squared-defect term sits at \(e_{t-1}-2e_s\) --- negligible exactly
+when \(E<2\). Every kernel this paper forms has \(E=\tfrac32\): its
+defect sits one letter below its wave, which is the shape of Lemma
+5.1(i), \(c\,\theta=\tfrac k2\bigl(Z^{3/2}-\lfloor Z\rfloor^{3/2}\bigr)\).
+\(OOOEOEE\) has \(E=\tfrac{27}{16}\) --- four steps, but three
+\(\tfrac32\)'s against a \(\tfrac12\) --- and is still sub-quadratic.
+\(OOEOOEE\) has \(E=\tfrac94\), two \(\tfrac32\)'s in succession, and
+its squared term sits at \(P^{9/32}\). Measured on the orbit of
+\(n=1000057\), which realizes \(OOEOO\), that term is \(49.9\) against
+\(5.5\cdot10^{-4}\) for \(OOOEOEE\)'s: not a correction to a kernel but
+a second wave beside it, of a shape the paper never has to form.
+(Positive second-order exponents at defects a kernel keeps *exact* are
+harmless, and \(OOO*\) and \(OOOO*\) both have them at \(s=1\); what
+matters is the defect actually expanded.)
+
 That leaves \(OOOEOEE\) as the only one of the three whose deepest
 blocked defect admits a branch decomposition at all. The near-term
 reading of depth seven is therefore \(1/128\) rather than \(2/128\):

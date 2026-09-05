@@ -908,3 +908,63 @@ def test_the_square_root_defect_that_blocks_OOEOOEE_is_measured() -> None:
     word, measured = _measured_coefficient(1000057, 5, 3)
     assert word == "OOEOO"
     assert measured > 0
+
+
+# --- linearisation: the composed map must be sub-quadratic ---
+
+
+def test_every_kernel_the_paper_forms_is_one_step_from_defect_to_wave() -> None:
+    """E = 3/2 for Theorem 5.3 and for Conjecture 7.3 -- the Lemma 5.1(i) shape."""
+    for word, letter in (("OOO", 4), ("OOOO", 5), ("OOOOEEE", 5)):
+        s = B.deepest_blocked(word, letter)[0]
+        assert B.composed_map(word, letter, s) == Fraction(3, 2), word
+        assert B.linearisation_safe(word, letter), word
+
+
+def test_OOOEOEE_is_sub_quadratic_and_OOEOOEE_is_not() -> None:
+    assert B.composed_map("OOOEOEE", 6, 1) == Fraction(27, 16)
+    assert B.composed_map("OOEOOEE", 6, 3) == Fraction(9, 4)
+    assert B.linearisation_safe("OOOEOEE", 6)
+    assert not B.linearisation_safe("OOEOOEE", 6)
+    assert B.second_order_exponent("OOEOOEE", 6, 3) == Fraction(9, 32)
+    assert B.second_order_exponent("OOOEOEE", 6, 1) == Fraction(-15, 32)
+
+
+def test_E_is_the_ratio_of_scale_exponents() -> None:
+    for word, letter in (("OOO", 4), ("OOOO", 5), ("OOEOOEE", 6), ("OOOEOEE", 6)):
+        e = B.iterate_exponents(word)
+        for s in range(1, letter - 1):
+            assert B.composed_map(word, letter, s) == e[letter - 2] / e[s - 1], (word, s)
+
+
+def test_a_positive_second_order_at_an_unexpanded_defect_is_harmless() -> None:
+    """OOO* and OOOO* both have one at s = 1, and both are proved or conjectured anyway."""
+    assert B.second_order_exponent("OOO", 4, 1) > 0
+    assert B.second_order_exponent("OOOO", 5, 1) > 0
+    assert B.deepest_blocked("OOO", 4)[0] == 2 and B.deepest_blocked("OOOO", 5)[0] == 3
+    assert B.linearisation_safe("OOO", 4) and B.linearisation_safe("OOOO", 5)
+
+
+def test_the_squared_term_is_measured_on_an_orbit() -> None:
+    """n = 1000057 realises OOEOO; its squared theta_3 term is ~50, not a correction."""
+    from mpmath import mp, mpf, power
+    mp.dps = 120
+    word, it = _iterates(1000057, 5)
+    assert word == "OOEOO"
+    p = [mpf(3) / 2 if c == "O" else mpf(1) / 2 for c in word]
+    E = p[3] * p[4]                                   # J^3 -> J^5, letter 6's wave
+    assert abs(float(E) - 2.25) < 1e-12
+    x = mpf(it[3])
+    theta = power(mpf(it[2]), p[2]) - x
+    resid = power(x + theta, E) - power(x, E) - E * power(x, E - 1) * theta
+    pred = E * (E - 1) / 2 * power(x, E - 2) * theta ** 2
+    assert abs(float(resid / pred) - 1) < 1e-6
+    assert 40 < float(pred) < 60, float(pred)          # ~50, i.e. not negligible
+
+
+def test_paper_states_the_linearisation_criterion() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "not a linear object at all" in text
+    assert r"E=\tfrac94" in text and r"E=\tfrac{27}{16}" in text
+    assert "49.9" in text
+    assert "keeps *exact* are\nharmless" in text or "keeps *exact*" in text

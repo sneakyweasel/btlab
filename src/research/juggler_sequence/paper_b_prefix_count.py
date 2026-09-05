@@ -365,6 +365,36 @@ def has_branch_runs(base_exponent: Fraction) -> bool:
     return branch_run_exponent(base_exponent) > 0
 
 
+def composed_map(w: str, t: int, s: int) -> Fraction:
+    """``E = prod_{q=s+1}^{t-1} p_q``: the power map carrying ``J^s`` to letter ``t``'s wave.
+
+    Composing power maps composes to a single power, so the wave is ``(J^s)^E`` before flooring.
+    Every kernel the paper forms has ``E = 3/2`` -- its defect sits exactly one letter below its
+    wave, which is the shape of Lemma 5.1(i), ``c theta = (k/2)(Z^{3/2} - floor(Z)^{3/2})``.
+    """
+    out = Fraction(1)
+    for q in range(s + 1, t):
+        out *= step_exponents(w)[q - 1]
+    return out
+
+
+def linearisation_safe(w: str, t: int) -> bool:
+    """Is the kernel's own defect safe to linearise, i.e. is ``E < 2``?
+
+    The second-order term sits at ``e_{t-1} - 2 e_s``, and ``E = e_{t-1}/e_s``, so it is negligible
+    exactly when ``E < 2``.  Positive second-order exponents at defects the kernel keeps *exact*
+    are harmless -- they are never expanded -- so only the deepest blocked one is tested here.
+    """
+    deep = deepest_blocked(w, t)
+    return True if deep is None else composed_map(w, t, deep[0]) < 2
+
+
+def second_order_exponent(w: str, t: int, s: int) -> Fraction:
+    """Exponent of the squared-defect term: ``e_{t-1} - 2 e_s``, negative when negligible."""
+    e = iterate_exponents(w)
+    return e[t - 2] - 2 * e[s - 1]
+
+
 def branch_base(w: str, t: int) -> Fraction | None:
     """Scale exponent of the object letter ``t``'s kernel would branch on, or ``None`` if unblocked.
 
