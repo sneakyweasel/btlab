@@ -4678,6 +4678,30 @@ here the sawtooth sits inside the exponential against an amplitude
 level-2 one, but it is still a kernel and this paper does not contain
 it.
 
+*What the two differencings cost.* How much smaller is settled by an
+accounting that never looks at the weight. Step 1 of Theorem 5.3
+balances
+\(\lvert K\rvert^2\le2P^2/H+(4P/H)\sum_{h\le H}\lvert\cdot\rvert\)
+twice; if the doubly-differenced sum is \(\ll P^{1-\delta}\), the two
+balances force \(H_2=P^{\delta}\) and \(H_1=P^{\delta/2}\) --- so that
+\(H_2=H_1^2\) --- and return \(K\ll P^{1-\delta/4}\). Each differencing
+halves the saving, and that is the whole content of the paper's
+\(\tfrac1{96}=\tfrac14\cdot\tfrac1{24}\): Lemma 5.2(ii) supplies
+\(\delta=\tfrac1{24}\) and the two differencings quarter it. At that
+value the formula returns \(H_1=P^{1/48}\) and \(H_2=P^{1/24}\), which
+are the ranges Step 1 uses.
+
+Since the chain never sees the weight's exponent, \(9/8\) and
+\(33/32\) enter it identically: a level-1 kernel matching
+\(P^{1-1/96}\) needs its doubly-differenced sum to reach the same
+\(P^{23/24}\), and no amplitude in the range considered here changes
+that arithmetic. What the amplitude can change is whether the
+differenced sum reaches the bar at all --- but any \(\delta>0\)
+whatever already gives a nontrivial kernel bound, at a quarter of the
+saving. So the question left for \(OOOEOEE\) is not how much the
+amplitude costs in the bookkeeping, where it costs nothing, but
+whether the doubly-differenced level-1 sum admits any power saving.
+
 \(OOOOEEE\) repeats the \(OOOO*\) row exactly, so Conjecture 7.3 is
 necessary for that third of the depth-seven increment and not merely
 sufficient --- and it is the only one of the three carrying anything

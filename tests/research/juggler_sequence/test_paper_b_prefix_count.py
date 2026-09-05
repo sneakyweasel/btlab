@@ -719,3 +719,44 @@ def test_paper_states_the_level_one_reading_and_its_limit() -> None:
     assert "still a kernel and this paper does not contain" in text
     # and the corrected justification for ignoring the shallower defects
     assert "not resolved elsewhere and not expanded either" in text
+
+
+# --- Step 1's accounting is exponent-blind ---
+
+
+def test_the_chain_returns_theorem_53s_own_parameters() -> None:
+    """delta = 1/24 must give H_1 = P^{1/48}, H_2 = P^{1/24} and P^{1-1/96}."""
+    r = B.differencing_chain(Fraction(1, 24))
+    assert r["H1"] == Fraction(1, 48)
+    assert r["H2"] == Fraction(1, 24)
+    assert r["exponent"] == 1 - Fraction(1, 96)
+    assert r["saving"] == Fraction(1, 96)
+
+
+def test_each_differencing_halves_the_saving() -> None:
+    """The paper's 1/96 = (1/4)(1/24): two differencings, two halvings."""
+    d = Fraction(1, 24)
+    assert B.differencing_chain(d, 1)["saving"] == d / 2
+    assert B.differencing_chain(d, 2)["saving"] == d / 4
+    assert B.differencing_chain(d, 3)["saving"] == d / 8
+
+
+def test_the_second_range_is_the_square_of_the_first() -> None:
+    for d in (Fraction(1, 24), Fraction(1, 12), Fraction(5, 48)):
+        r = B.differencing_chain(d)
+        assert r["H2"] == 2 * r["H1"], d          # exponents: H_2 = H_1^2
+
+
+def test_any_power_saving_survives_the_chain() -> None:
+    """No positive saving is lost entirely, and a trivial input gives a trivial output."""
+    assert B.differencing_chain(Fraction(0))["exponent"] == 1
+    for d in (Fraction(1, 1000), Fraction(1, 24), Fraction(1, 2)):
+        assert B.differencing_chain(d)["exponent"] < 1, d
+
+
+def test_paper_states_the_chain_and_its_consequence() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "What the two differencings cost." in text
+    assert r"H_2=H_1^2" in text
+    assert "never sees the weight's exponent" in text
+    assert "where it costs nothing" in text

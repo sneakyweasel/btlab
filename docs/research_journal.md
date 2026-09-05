@@ -27250,3 +27250,58 @@ Best next question
   apply directly. Does two-fold differencing of (27k/32)n^{33/32}{n^{3/2}}
   land inside 1 - 1/96, or does the amplitude eat the gain?
 ```
+
+ ### The differencing chain is blind to the weight, and quarters the saving
+
+The question was whether the amplitude eats the gain when Theorem 5.3's
+Step 1 is run on the level-1 kernel. It does not, and the reason is
+that the whole accounting never looks at the weight.
+
+Balancing `|K|² ≤ 2P²/H + (4P/H) Σ_{h≤H}|·|` twice: if the
+doubly-differenced sum is `≪ P^{1-δ}`, then
+
+```text
+    H_2 = P^δ,   H_1 = P^{δ/2}   (so H_2 = H_1²),   K ≪ P^{1-δ/4}
+```
+
+Each differencing halves the saving. At `δ = 1/24` that returns
+`H_1 = P^{1/48}`, `H_2 = P^{1/24}` and `P^{1-1/96}` — the three numbers
+Step 1 actually uses, and the paper's own `1/96 = (1/4)(1/24)` with the
+`1/4` now identified as *two halvings* rather than an opaque constant.
+`H_2 = H_1²` was not stated anywhere; it falls out of the two balances.
+
+Since the chain never sees the exponent, `9/8` and `33/32` enter it
+identically. So:
+
+- a level-1 kernel matching `P^{1-1/96}` needs its doubly-differenced
+  sum to reach the same `P^{23/24}` bar;
+- the amplitude costs *nothing* in the bookkeeping;
+- and any positive saving at all survives, at a quarter of its size.
+
+That last point reframes the target. `OOOEOEE` does not need a sharp
+level-1 kernel — it needs *any* power saving on the doubly-differenced
+level-1 sum, and gets a quarter of it. Whether the resulting exponent
+suffices for the density statement is a separate question, but the
+all-or-nothing framing was wrong.
+
+```text
+What was learned
+- three of Theorem 5.3's Step 1 constants are not choices; they are
+  forced by the target, and one relation among them (H_2 = H_1^2) had
+  not been written down
+- the 1/4 in 1/96 = (1/4)(1/24) is two halvings, one per differencing
+Strongest theorem
+- the chain: |T_2| << P^{1-δ} gives H_2 = P^δ, H_1 = P^{δ/2},
+  K << P^{1-δ/4}, independent of the weight's exponent
+Strongest refutation
+- the premise of my own question: the amplitude does not enter the
+  differencing accounting at all
+Reusable machinery
+- differencing_chain(saving, rounds)
+Branch status
+- ADVANCE
+Best next question
+- the doubly-differenced level-1 phase is DD(c(n){n^{3/2}}) with c
+  smooth. Does the carry bookkeeping of Lemma 5.1 have a level-1 form,
+  or is the smooth inner argument enough to make it unnecessary?
+```

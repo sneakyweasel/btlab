@@ -347,6 +347,27 @@ def deepest_blocked(w: str, t: int) -> tuple[int, Fraction, Fraction, str] | Non
     return s, const, exponent, species
 
 
+def differencing_chain(saving: Fraction, rounds: int = 2) -> dict[str, Fraction]:
+    """Step 1's accounting: a doubly-differenced bound ``P^(1-saving)`` gives ``P^(1-saving/4)``.
+
+    Balancing ``|K|^2 <= 2P^2/H + (4P/H) sum_{h<=H} |T(h)|`` forces ``H = P^saving`` and halves the
+    saving, once per differencing.  Nothing in the chain sees the weight's exponent, so the ranges
+    and the outcome depend only on what the differenced sum delivers.  At ``saving = 1/24`` this
+    returns Theorem 5.3's own ``H_1 = P^{1/48}``, ``H_2 = P^{1/24}`` and ``P^{1-1/96}`` -- the
+    paper's ``1/96 = (1/4)(1/24)``.
+    """
+    ranges, current = [], Fraction(saving)
+    for _ in range(rounds):
+        ranges.append(current)
+        current = current / 2
+    # ranges are listed outermost-first; Step 1 applies H_1 then H_2, so reverse
+    ranges.reverse()
+    return {"H%d" % (i + 1): r for i, r in enumerate(ranges)} | {
+        "saving": Fraction(saving) / 2 ** rounds,
+        "exponent": 1 - Fraction(saving) / 2 ** rounds,
+    }
+
+
 def coefficient_sensitivity(w: str, t: int) -> list[tuple[int, Fraction]]:
     """How much the kernel's own coefficient moves with the floors kept exact inside it.
 
