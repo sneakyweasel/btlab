@@ -384,6 +384,31 @@ cd formal; lake build                               # no sorry / admit
   multi-line scripts to a temp file. `rg` globs like `dir/*.lean`
   fail on Windows paths — use `rg -g "*.lean" dir`; parentheses in
   `rg` patterns must be escaped or avoided.
+- **LaTeX and Python strings.** The papers hold 2639 macros across 42
+  names that a *non-raw* Python string silently corrupts — `\tfrac`
+  (675), `\nu` (199), `\theta` (195), `\beta` (179), `\rfloor` (145),
+  `\varepsilon` (144), `\frac` (123), `\text`, `\asymp`, `\alpha`,
+  `\rho`, `\to`, `\bigl` … Any macro starting with `a b f n r t v 0 x`
+  is an escape: `"\theta"` is TAB + `heta`, `"\nu"` is NEWLINE + `u`,
+  `"\approx"` is BEL + `pprox`, `"\frac"` is FF + `rac`. **This is
+  Python, not the shell** — a quoted heredoc (`<<'PY'`) passes the text
+  through untouched; the damage happens in the string literal on the
+  far side, so blaming "heredoc mangling" sends you to the wrong fix.
+  Therefore:
+  1. To change a file containing LaTeX, use the Edit/Write tools.
+     There is no string layer, so there is nothing to escape.
+  2. If a script is genuinely needed, write it to a file with Write and
+     then run it. Not `python <<'PY'`, not `python -c "…"`.
+  3. If a Python string must carry LaTeX, make it raw: `r"\theta"`.
+  4. Symptoms: a literal tab or a stray line break inside a `.md`; a
+     regex that quietly stops matching; `SyntaxWarning: invalid escape
+     sequence`. Three real defects reached the manuscripts this way
+     (`\theta` in Paper A §5, `\to` in §3, `\theta(L)` in the reviewer
+     packet) and survived several revisions.
+  `test_manuscript_consistency.py::test_no_mangled_latex_escapes`
+  catches the tab case — no legitimate tab exists in these documents.
+  It cannot catch a stray *newline*, so prefer assertions whose target
+  string fits on one line.
 - Floats: `10.0**1000` overflows; work in `log y`.
 - The fast suite (`pytest`, xdist) takes ≈ 3.5 min; the research-control
   tests regenerate `docs/research/*.json` artifacts (harmless
