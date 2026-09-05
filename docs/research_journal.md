@@ -25125,3 +25125,57 @@ Best next question
   their Bernoulli densities, rate-free. That is the single active
   conjecture 7.6 reduces to, and it is ergodic rather than analytic
 ```
+
+
+### Proposition 7.7 is sharp, and its strictness was an artifact of Chernoff
+
+Yesterday's import stated the biased-split reduction for `beta > beta_*`. The strict inequality
+comes from the Chernoff step: the relative entropy `D(log2/log3 || 1-beta)` is positive exactly
+above the threshold and vanishes at it. But vanishing rate is not the same as failure.
+
+At `beta = beta_*` the extremal measure gives every letter O with probability exactly
+`1 - beta_* = log2/log3`, so `o_t - t log2/log3` is a walk whose mean step is
+
+```text
+  gamma(1-gamma) + (1-gamma)(-gamma) = 0     exactly, to machine precision
+```
+
+A zero-drift walk still fails to stay nonnegative -- with probability of order `d^(-1/2)`. The
+dynamic program shows it: mass `9.46e-2`, `2.36e-2`, `1.18e-2` at `d = 50, 800, 3200`, products
+with `sqrt(d)` of `0.6689`, `0.6675`, `0.6675`, and a ratio of `0.7071 = 2^(-1/2)` across each
+doubling, to four figures.
+
+So the hypothesis relaxes to `beta >= beta_*`, and the proof gets simpler rather than longer.
+Both cases now go through one argument: a node-wise cap on the conditional O-probability couples
+letter by letter, so the path is stochastically dominated by the i.i.d. Bernoulli(1-beta) walk;
+the never-contracting event is increasing, so its measure is at most the walk's; and the walk's
+mean step is `(1-beta) - log2/log3`, non-positive exactly when `beta >= beta_*`. Negative drift
+gives Chernoff, zero drift gives the classical fluctuation estimate.
+
+**And the threshold cannot be lowered.** Below it the drift is positive and the extremal measure
+keeps a fixed positive mass: at `beta = 0.30` it is `0.228` at `d = 200` and still `0.228` at
+`d = 3200`. So `beta >= beta_*` is exactly the right hypothesis in both directions -- what it
+asks is that no node be asymptotically more than `log2/log3` odd, which is the contraction line
+read as a branching rate instead of as an exponent.
+
+```text
+What was learned
+- a vanishing Chernoff rate marks where the method stops, not where
+  the conclusion stops; the critical case needed a different classical
+  estimate, not a different hypothesis
+- the same substitution that fixed the proof simplified it: pathwise
+  domination covers both regimes, where the generating function plus
+  Chernoff covered only one
+Strongest theorem
+- Proposition 7.7 at beta >= beta_*, with sharpness in both directions
+Strongest refutation
+- the strict inequality I imported unexamined one commit earlier
+Reusable machinery
+- never_contracting_measure at the critical bias is a clean numerical
+  probe of a zero-drift ballot estimate
+Branch status
+- ADVANCE (the reduction's hypothesis is now the weakest true one)
+Best next question
+- Proposition 7.6's rate-free hypothesis has no such slack to remove;
+  the open target is the tower conjecture it reduces to
+```

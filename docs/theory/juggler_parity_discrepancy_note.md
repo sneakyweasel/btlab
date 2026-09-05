@@ -4616,26 +4616,50 @@ Equidistribution is not needed either. Suppose that for each fixed
 \limsup_{N\to\infty}\frac{\#(\sigma O)(N)}{\#\sigma(N)}
 \ \le\ 1-\beta
 \qquad\text{for a fixed }
-\beta>\beta_*:=1-\frac{\log2}{\log3}=0.36907\ldots
+\beta\ \ge\ \beta_*:=1-\frac{\log2}{\log3}=0.36907\ldots
 \]
 Then the same conclusion holds.
 
 *Proof.* Write \(\mu_N(\sigma)=\#\sigma(N)/N\) and let \(\mu\) be a
 subsequential limit, which exists because each depth is finite; the
-hypothesis passes to \(\mu(\sigma O)\le(1-\beta)\mu(\sigma)\). For
-\(x\ge1\), induction on depth gives
-\[
-\sum_{|\sigma|=d}\mu(\sigma)\,x^{o(\sigma)}
-\ \le\ \bigl(\beta+(1-\beta)x\bigr)^{d},
-\]
-since each node contributes
-\(1+(x-1)\mu(\sigma O)/\mu(\sigma)\le1+(x-1)(1-\beta)\). Every
-never-contracting itinerary has \(o_d\ge d\log2/\log3\), and
-Chernoff bounds the \(\mu\)-measure of that event by
-\(e^{-D(\log2/\log3\,\|\,1-\beta)d}\). The relative entropy \(D\) is
-positive exactly when \(\log2/\log3>1-\beta\), i.e. when
-\(\beta>\beta_*\). Certificates as before; let \(d\to\infty\).
-\(\square\)
+hypothesis passes to \(\mu(\sigma O)\le(1-\beta)\mu(\sigma)\). A
+node-wise bound on the conditional \(O\)-probability couples letter by
+letter, so the path \((o_t)_{t\le d}\) is stochastically dominated
+under \(\mu\) by the i.i.d. \(\mathrm{Bernoulli}(1-\beta)\) walk.
+The never-contracting event
+\(\{o_t\ge t\log2/\log3\ \text{for all }t\le d\}\) is increasing ---
+turning an \(E\) into an \(O\) raises every later \(o_t\) and lowers
+none --- so its \(\mu\)-measure is at most its probability under that
+walk.
+
+Under it, \(o_t-t\log2/\log3\) is a random walk whose mean step is
+\((1-\beta)-\log2/\log3\), which is \(\le0\) exactly when
+\(\beta\ge\beta_*\). If \(\beta>\beta_*\) the drift is negative and
+the probability of staying nonnegative for \(d\) steps is
+\(\le e^{-D(\log2/\log3\,\|\,1-\beta)d}\) by Chernoff. If
+\(\beta=\beta_*\) the drift is exactly zero and Chernoff gives
+nothing, but the classical fluctuation estimate for a mean-zero walk
+still gives \(\asymp d^{-1/2}\). Either way the measure tends to
+\(0\); certificates as before; let \(d\to\infty\). \(\square\)
+
+The critical case is not a technicality, and the constant is visible.
+At \(\beta=\beta_*\) the extremal measure --- the one saturating
+\(\mu(\sigma O)=(1-\beta)\mu(\sigma)\) at every node --- makes each
+letter \(O\) with probability exactly \(\log2/\log3\), so
+\(o_t-t\log2/\log3\) has mean step \(0\) to machine precision, and the
+dynamic program gives never-contracting mass
+\(9.46\cdot10^{-2}\), \(2.36\cdot10^{-2}\), \(1.18\cdot10^{-2}\) at
+\(d=50,800,3200\): the products with \(\sqrt d\) are \(0.6689\),
+\(0.6675\), \(0.6675\), and the ratio across each doubling is
+\(0.7071=2^{-1/2}\) to four figures.
+
+The threshold cannot be lowered. Below \(\beta_*\) the drift is
+positive and the extremal measure keeps a fixed positive mass on
+never-contracting words: at \(\beta=0.30\) it is \(0.228\) at
+\(d=200\) and still \(0.228\) at \(d=3200\). What the hypothesis
+\(\beta\ge\beta_*\) asks is exactly that no node be asymptotically
+more than \(\log2/\log3\) odd, which is the contraction line read as a
+branching rate rather than as an exponent.
 
 The threshold is where it must be: \(\beta_*\) is the bias at which a
 node-wise \(O\)-share stops forcing the odd count below the contraction

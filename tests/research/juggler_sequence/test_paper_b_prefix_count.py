@@ -273,3 +273,40 @@ def test_section_7_binds_beta_only_as_the_bias() -> None:
     assert r"\gamma" not in sec
     assert r"\beta=\log2/\log3" not in sec
     assert r"d\log2/\log3" in sec
+
+
+def test_at_the_critical_bias_the_drift_is_exactly_zero() -> None:
+    """1 - beta_* = log2/log3, so o_t - t log2/log3 has mean step zero, not merely small."""
+    g = B.BETA
+    assert B.BIAS_THRESHOLD == 1.0 - g
+    assert g * (1 - g) + (1 - g) * (-g) == 0.0
+
+
+def test_critical_bias_decays_like_d_to_the_minus_half() -> None:
+    """Chernoff returns rate 0 at beta_*, but a zero-drift walk still fails to stay
+    nonnegative.  The measure times sqrt(d) settles, and each doubling multiplies by 2^(-1/2)."""
+    ds = (50, 100, 200, 400, 800, 1600, 3200)
+    ms = [B.never_contracting_measure(d, B.BIAS_THRESHOLD) for d in ds]
+    scaled = [m * math.sqrt(d) for m, d in zip(ms, ds)]
+    assert all(0.66 < s < 0.67 for s in scaled), scaled
+    assert abs(scaled[-1] - scaled[-2]) < 1e-4, scaled[-2:]
+    for a, b in zip(ms, ms[1:]):
+        assert abs(b / a - 2 ** -0.5) < 0.01, (a, b)
+    assert B.biased_chernoff_rate(B.BIAS_THRESHOLD) == 0.0    # and Chernoff says nothing
+
+
+def test_below_the_threshold_the_mass_does_not_vanish() -> None:
+    """The hypothesis cannot be weakened: at bias 0.30 the drift is positive and the extremal
+    measure keeps the same mass at d = 200 and d = 3200."""
+    a = B.never_contracting_measure(200, 0.30)
+    b = B.never_contracting_measure(3200, 0.30)
+    assert a > 0.2 and abs(a - b) < 1e-3, (a, b)
+
+
+def test_paper_states_the_non_strict_threshold_and_the_constants() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    sec = text[text.index("## 7. The Terras"):text.index("## 8. Relation")]
+    assert r"\beta\ \ge\ \beta_*" in sec          # not the strict inequality
+    assert r"2^{-1/2}" in sec and "0.6675" in sec
+    assert "The threshold cannot be lowered" in sec
+    assert "0.228" in sec
