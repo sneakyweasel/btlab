@@ -709,6 +709,25 @@ its crossing inside, and the minimum \(\tfrac1{14}\) is attained at
 is available and buys nothing: \(c_6(E)=\tfrac1{14}\) and
 \(\rho_0(E)\le\tfrac1{112}\) either way.
 
+*Which constants carry numbers.* Not all of them do, and it is worth
+saying which, so that a reader checking the paper knows where to spend
+the effort. Four are evaluated and used at their values:
+\(c_6(E)=\tfrac1{14}\) and the perturbation gate
+\(\rho_0(E)\le\tfrac1{112}\) here; \(c_7=\tfrac1{232}\) of Lemma 3.9,
+which alone sets \(P_0\); and the vector \((c_2,c_3,c_4)\) that
+Lemma 3.9's proof actually needs. Two are not. The \(c_8(E)\) of the
+proof above occurs three times, all within it, and is absorbed into the
+\(\ll_E\) of the conclusion: choosing \(V=(c_8M/P)^{2/3}\) equalizes
+two costs whatever its value, so no closed form is called for. And
+\(C(E)\) is never assigned a value anywhere in the paper.
+
+The one place that matters is Step 5b of Theorem 5.3, where reading
+\(C(E)P^{89/96}\log P\) against \(P^{15/16}\) requires
+\(C(E)\log P\le P^{1/96}\). That comparison is not decided by the
+\(O_E\) that carries \(C(E)\) everywhere else, which is exactly why
+Step 5b uses the \(\varepsilon\)-form rather than the sharp one, and
+why Appendix A.4 keeps the logarithmic thresholds out of \(P_0\).
+
 The minimum is \(c_6(E)=\tfrac1{14}\), attained only at
 \((\alpha,\beta)=(\tfrac{11}8,\tfrac54)\) — there \(p=-\tfrac58\),
 \(q=-\tfrac34\) and the crossing is at \(s=\tfrac{13}{14}\), where both

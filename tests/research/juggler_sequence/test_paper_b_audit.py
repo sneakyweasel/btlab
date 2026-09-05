@@ -127,3 +127,51 @@ def test_paper_records_that_the_normalisation_buys_nothing() -> None:
     assert "The table is not symmetric" in text
     assert "buys nothing" in text
     assert r"\rho_0(E)\le\tfrac1{112}\) either way" in text
+
+
+# --- which named constants carry numbers ---
+
+
+def _paper() -> str:
+    return io.open(PAPER, encoding="utf-8").read()
+
+
+def test_c8_never_leaves_lemma_38s_proof() -> None:
+    """Three uses, all inside the proof that introduces it, absorbed into <<_E."""
+    text = _paper()
+    start = text.index("**Lemma 3.8 (two-term monomial test")
+    end = text.index("**Lemma 3.9", start)
+    inside = text[start:end]
+    assert text.count("c_8") == inside.count("c_8") > 0
+
+
+def test_neither_c8_nor_CE_is_ever_evaluated() -> None:
+    """Neither name is ever followed by a relation to a number."""
+    text = _paper()
+    ops = ("=", chr(92) + "le", chr(92) + "ge")
+    fracs = (chr(92) + "tfrac", chr(92) + "frac")
+    for name in ("c_8", "C(E)"):
+        start = 0
+        while (i := text.find(name, start)) != -1:
+            tail = text[i + len(name):i + len(name) + 16].lstrip()
+            for op in ops:
+                if tail.startswith(op):
+                    rest = tail[len(op):].lstrip()
+                    assert not (rest[:1].isdigit() or rest.startswith(fracs)), (name, tail)
+            start = i + 1
+
+
+def test_the_evaluated_constants_are_the_four_the_paper_names() -> None:
+    text = _paper()
+    assert r"c_6(E)=\tfrac1{14}" in text
+    assert r"\rho_0(E)\le\tfrac1{112}" in text
+    assert "c_7=1/232" in text or r"c_7=\tfrac1{232}" in text
+    assert A.c6_of_pair(Fr(11, 8), Fr(5, 4)) == Fr(1, 14)
+
+
+def test_the_one_place_an_absorbed_constant_binds() -> None:
+    """C(E) log P <= P^{1/96} is not settled by the O_E that carries it elsewhere."""
+    text = _paper()
+    assert r"C(E)\log P\le P^{1/96}" in text
+    assert "Which constants carry numbers." in text
+    assert "never assigned a value anywhere" in text

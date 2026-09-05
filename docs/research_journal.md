@@ -28176,3 +28176,69 @@ Best next question
 - Lemma 3.8's other constant is c_8(E), which the proof introduces and
   never tabulates. Is it also computable in closed form over E?
 ```
+
+ ### Which constants carry numbers
+
+The question was whether `c_8(E)` has a closed form. The right answer
+is that it does not need one, and finding that out gave the census
+worth having.
+
+`c_8` occurs three times, all inside the proof of Lemma 3.8 that
+introduces it, and is absorbed into the `<<_E` of the conclusion:
+choosing `V = (c_8 M/P)^{2/3}` equalises two costs whatever its value.
+So no closed form is called for. `C(E)` is stronger still — it is
+never assigned a value anywhere in the paper.
+
+```text
+   evaluated and used at their values
+      c_6(E)   = 1/14     Lemma 3.8's table
+      rho_0(E) <= 1/112   the perturbation gate
+      c_7      = 1/232    Lemma 3.9; alone sets P_0
+      (c_2, c_3, c_4)     the vector Lemma 3.9's proof actually needs
+   absorbed
+      c_8(E)              three uses, one proof, folded into <<_E
+      C(E)                never evaluated
+```
+
+**And one place where an absorbed constant binds.** Step 5b reads
+`C(E) P^{89/96} log P` against `P^{15/16}`, which needs
+`C(E) log P <= P^{1/96}`. That comparison is not settled by the `O_E`
+carrying `C(E)` everywhere else — which is exactly why Step 5b uses the
+`ε`-form rather than the sharp one, and why Appendix A.4 keeps the
+logarithmic thresholds out of `P_0`. The audit module had already
+flagged this ("the sharp reading FAILS at P_0"); what was missing was
+the statement that this is the *only* such place.
+
+This completes the picture referee item 16 began. That item classified
+the thirty-seven numeric thresholds into four proof-critical and
+thirty-three bookkeeping. This does the same for the named symbolic
+constants: four carry numbers, two do not, and one of the two is
+load-bearing precisely because it does not.
+
+```text
+What was learned
+- "is it computable in closed form" was the wrong question; the right
+  one was "does it ever carry a number", and it does not
+- the symbolic constants split the same way the numeric thresholds do,
+  and the split had never been written down
+Strongest theorem
+- c_6, rho_0, c_7 and the Lemma 3.9 vector are the only named
+  constants evaluated in Paper B; c_8 and C(E) are absorbed
+Strongest refutation
+- the premise of the question I set myself last entry
+Reusable machinery
+- four tests: c_8 confined to its own proof, neither name ever related
+  to a number, the four evaluated constants present, and the single
+  binding comparison recorded
+Branch status
+- PARK
+Why
+  The census is complete and its consequence -- where a checker should
+  spend effort -- is now in the manuscript. The one open thread it
+  exposes, C(E) log P against P^{1/96}, is already handled by the
+  epsilon-form and recorded in Appendix A.4; chasing a value for C(E)
+  would change no statement.
+Best next question
+- Section 4's Theorem 4.8 is the shifted-window device everything else
+  leans on. Does it have printed constants, and are they checked?
+```
