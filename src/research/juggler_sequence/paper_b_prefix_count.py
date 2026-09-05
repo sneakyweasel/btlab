@@ -21,6 +21,7 @@ error term ``2^d E_d(N)`` becomes ``N_d E_d(N)``.
 from __future__ import annotations
 
 import math
+from fractions import Fraction
 from functools import lru_cache
 from typing import Any
 
@@ -162,6 +163,43 @@ def table(d_max: int = 40) -> list[dict[str, Any]]:
     return rows
 
 
+def ceiling(d: int) -> Fraction:
+    """The largest density any depth-``d`` power-envelope argument can certify.
+
+    A start realizing a word with no contracting prefix of length ``<= d`` has no Proposition 3.1
+    certificate at that depth, whatever else is known about it.  Those starts are the ``N_d``
+    surviving classes, so the certified set misses their total density; at Bernoulli densities
+    that is ``N_d/2^d``.
+    """
+    return Fraction(2 ** d - non_contracting(d), 2 ** d)
+
+
+def ceiling_improves(d: int) -> bool:
+    """Does depth ``d`` certify more than depth ``d-1``?"""
+    return d >= 1 and ceiling(d) > ceiling(d - 1)
+
+
+def stalls(d: int) -> bool:
+    """Weyl criterion for ``not ceiling_improves(d)``: ``frac((d-1)beta) <= 1 - beta``.
+
+    A surviving word extends by ``O`` always -- ``3^(o+1) >= 3.2^t > 2^(t+1)`` -- and by ``E``
+    exactly when ``3^o >= 2^(t+1)``.  So depth ``d`` gains nothing iff every surviving word of
+    length ``d-1`` has that slack, i.e. iff the leanest one does.  The minimum odd count over
+    surviving words of length ``t`` is ``ceil(t*beta)``, attained because ``t -> ceil(t*beta)``
+    itself steps by 0 or 1.  The condition ``ceil((d-1)beta) >= d*beta`` is then, beta being
+    irrational, exactly ``frac((d-1)beta) <= 1 - beta``.
+    """
+    return d >= 2 and ((d - 1) * BETA) % 1.0 <= BIAS_THRESHOLD
+
+
+def stalling_depths(dmax: int) -> list[int]:
+    """Depths ``2 <= d <= dmax`` at which the ceiling does not move.
+
+    Their density is ``1 - beta = BIAS_THRESHOLD`` by Weyl equidistribution of ``d*beta``.
+    """
+    return [d for d in range(2, dmax + 1) if not ceiling_improves(d)]
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")
@@ -191,6 +229,18 @@ def main() -> None:
              rows[9]["density_hoeffding"] / rows[9]["density_exact"],
              rows[39]["density_hoeffding"] / rows[39]["density_exact"]))
     print("worst loss over d <= 40: %.2f" % max(ratios))
+    print()
+    print("Proposition 7.1b -- the ceiling 1 - N_d/2^d, and the depths that move it:")
+    for d in range(2, 9):
+        print("   d=%-3d ceiling %-8s %s"
+              % (d, ceiling(d), "gain" if ceiling_improves(d) else "stalls"))
+    sd = stalling_depths(40)
+    print("   stalling depths <= 40: %s" % sd)
+    n = sum(1 for d in range(2, 200002) if stalls(d))
+    print("   density of stalling depths %.5f against beta_* = %.5f"
+          % (n / 200000, BIAS_THRESHOLD))
+    print("   depth 7 is worth %s over Corollary 6.4" % (ceiling(7) - ceiling(6)))
+
     print()
     print("the error term of Proposition 7.1 improves in the same proportion:")
     for d in (4, 5, 8, 16):

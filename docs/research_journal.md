@@ -25705,3 +25705,72 @@ Best next question
 - referee item 14, the development-log migration, is the last of their
   list and the only one left that is purely subtractive
 ```
+
+ ### The depth ceiling, and the depths that cannot pay
+
+Section 7's counting table prints `1 - N_d/2^d` in a column headed
+"certificate density", and the prose around it already observes that
+depth six buys nothing. Neither says the thing that column actually
+is: an **upper bound on what any depth-`d` argument built on
+Proposition 3.1 can reach**, whatever analytic input arrives. That is
+worth saying, because it turns two of the paper's corollaries from
+"what we could prove" into "all there is at that depth".
+
+Both are at the ceiling. `13/16` at `d = 4` is Theorem 6.1. `7/8` at
+`d = 5` is the one worth checking: the four survivors are `OOEOO`,
+`OOOEO`, `OOOOE`, `OOOOO`, and Theorem 6.3 estimates the first two
+outright while Theorem 6.1 supplies the last two **through their sum**.
+So Conjecture 7.3 — the open `OOOO*` split — is not needed for the
+ceiling at depth five, because the split it would resolve is one whose
+halves only ever appear added together.
+
+Then: which depths can move the ceiling at all? A survivor of length
+`t` with `o` odd letters always extends by `O` (`3^(o+1) >= 3·2^t >
+2^(t+1)`) and extends by `E` exactly when `3^o >= 2^(t+1)`. So depth
+`d` gains nothing iff the *leanest* survivor of length `d-1` already
+has that slack. The least odd count at length `t` is `ceil(t·θ)` with
+`θ = log2/log3`, so the test is `ceil((d-1)θ) >= dθ`, i.e.
+
+```text
+    depth d stalls  <=>  frac((d-1)·θ) <= 1 - θ = β* = 0.36907…
+```
+
+verified against the exact dynamic program with no mismatch for
+`d <= 240`. By Weyl the stalling depths have density exactly `β*` —
+measured `0.36907` over 200,000 depths — and by irrationality they are
+never eventually periodic; the gaps are only ever 2 or 3.
+
+The constant is the one Proposition 7.7 already turns on. There `β*`
+is the largest node-wise odd share still compatible with contraction;
+here it is how often one more letter of information is worth nothing.
+Same remark about `θ` — a step buys `log 3` against a cost of `log 2` —
+read once along the walk and once along the depth.
+
+The operational payoff is a correction to an assumption I had been
+carrying. Depth seven is worth `3/128` over Corollary 6.4, and it needs
+the three contractors `OOEOOEE`, `OOOEOEE`, `OOOOEEE` — which descend
+from three *different* depth-five survivors. **The `OOOO*` kernel does
+not by itself unlock the next depth.** All of depth five does.
+
+```text
+What was learned
+- a column already in the paper was stronger than its own caption; the
+  work was recognising the quantity, not computing it
+- the OOOO* split being needed "at depth five" was folklore I had not
+  tested: the ceiling there goes through on the sum alone
+Strongest theorem
+- Proposition 7.1b: the ceiling, its attainment at d = 4, 5, and
+  stalling depths of density β* with the Weyl criterion
+Strongest refutation
+- my own working assumption that Conjecture 7.3 was the cheapest next
+  step; it is necessary but not sufficient for depth seven
+Reusable machinery
+- ceiling / ceiling_improves / stalls / stalling_depths, with the float
+  criterion cross-checked against the exact DP so asymptotic tests stay
+  cheap
+Branch status
+- ADVANCE
+Best next question
+- depth seven costs three classes at once; is there a joint estimate
+  for OOEOOEE, OOOEOEE, OOOOEEE cheaper than three separate splits?
+```

@@ -4471,6 +4471,67 @@ without depth five first. The two words of the open \(OOOO*\) split
 are half of the depth-five obstruction and, by the same table, half of
 the depth-six one.
 
+**Proposition 7.1b (the depth ceiling, and which depths pay).**
+Write \(\theta=\log2/\log3\), so that \(\beta_*=1-\theta\).
+
+(i) *(ceiling)* Once the \(N_d\) surviving classes are known to carry
+at least their *total* Bernoulli density \(N_d/2^{d}\) --- no class
+needs to be resolved on its own --- no depth-\(d\) argument resting on
+Proposition 3.1 can certify a set of density above \(1-N_d/2^{d}\).
+
+(ii) *(attained at depths four and five)* Corollaries 4.9 and 6.4 attain
+it, unconditionally. At \(d=4\) the lower bounds are Theorem 6.1. At
+\(d=5\) the four survivors are \(OOEOO\), \(OOOEO\), \(OOOOE\) and
+\(OOOOO\); Theorem 6.3 estimates the first two at \(\tfrac1{32}\) each,
+and Theorem 6.1 gives the remaining pair --- the children of the open
+\(OOOO*\) split --- through their *sum*, \(\tfrac1{16}\). The total is
+\(\tfrac1{32}+\tfrac1{32}+\tfrac1{16}=\tfrac18\). Conjecture 7.3 is
+therefore not needed for the ceiling at depth five: the split it would
+resolve is one whose halves enter only added together.
+
+(iii) *(which depths pay)* The ceiling is unchanged from depth \(d-1\)
+to depth \(d\) exactly when \(\{(d-1)\theta\}\le\beta_*\). The stalling
+depths therefore have density \(\beta_*\); they begin
+\(3,6,9,11,14,17,19,22,25,28,30,\ldots\) and are not eventually
+periodic.
+
+*Proof.* (i) A start whose word has no contracting prefix of length
+\(\le d\) satisfies \(3^{o_t}\ge2^{t}\) for every \(t\le d\), so
+Proposition 3.1's envelope certifies no descent at any of those steps,
+whatever else is known about the start; the certified set omits the
+whole class. (ii) is the displayed arithmetic.
+
+(iii) A surviving word of length \(t\) with \(o\) odd letters extends by
+\(O\) to a surviving word always, since \(3^{o+1}\ge3\cdot2^{t}>2^{t+1}\),
+and by \(E\) exactly when \(3^{o}\ge2^{t+1}\). So \(N_d=2N_{d-1}\) iff
+every survivor of length \(d-1\) has that slack, and it suffices to test
+the leanest. The least odd count among survivors of length \(t\) is
+\(\lceil t\theta\rceil\): the inequality \(o_t\ge t\theta\) forces
+\(o_t\ge\lceil t\theta\rceil\), and since \(t\mapsto\lceil t\theta\rceil\)
+steps by \(0\) or \(1\) some word realizes it at every prefix at once.
+The test \(3^{\lceil(d-1)\theta\rceil}\ge2^{d}\) reads
+\(\lceil(d-1)\theta\rceil\ge d\theta\); as \(\theta\) is irrational,
+\(\lceil(d-1)\theta\rceil=(d-1)\theta+1-\{(d-1)\theta\}\), and the test
+becomes \(\{(d-1)\theta\}\le1-\theta\). Weyl's theorem on the
+equidistribution of \((d\theta)\) gives the density \(1-\theta\), and
+irrationality forbids eventual periodicity. \(\square\)
+
+The constant is Proposition 7.7's. There \(\beta_*\) is the largest
+node-wise odd share still compatible with contraction; here it is the
+frequency with which one more letter of information is worth nothing.
+Both are the same remark about \(\theta\) --- that a step of the lattice
+path buys \(\log3\) against a cost of \(\log2\) --- read once along the
+walk and once along the depth.
+
+For this paper the consequence is concrete. Depths four and five are
+exhausted, depth six is a stalling depth, and the next increment is
+\(115/128\) at depth seven, worth \(3/128\) over Corollary 6.4. It
+requires the three contractors \(OOEOOEE\), \(OOOEOEE\) and
+\(OOOOEEE\), which descend from three *different* depth-five survivors
+--- \(OOEOO\), \(OOOEO\) and \(OOOOE\). So the \(OOOO*\) split of
+Conjecture 7.3 does not by itself unlock depth seven; all of depth five
+does.
+
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.
 Corollary 6.4 raises the certified class to certificate density \(7/8\) without
