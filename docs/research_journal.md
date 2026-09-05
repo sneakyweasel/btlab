@@ -28733,3 +28733,61 @@ Best next question
 - the reference test only covers Paper B. Do Papers A and C have the
   same offset, and do their cross-references resolve?
 ```
+
+ ### Lemma 5.2(i) is a three-term bound at the truncation it is used at
+
+The lemma prints five terms. Over its own admissible range —
+`h <= P^{1/8}`, `uh <= P^{1/2}` — only three of them are ever the
+largest.
+
+```text
+   T1 (uh)^{1/2} P^{5/8}            peaks at P^{7/8}   never largest
+   T2 (h/u)^{1/2} P^{7/8}           peaks at P^{15/16} largest at u=1, h=P^{1/8}
+   T3 P^{7/8}                       constant P^{7/8}   never largest
+   T4 P^{1/24}(uh)^{-1/2} P^{7/8}   peaks at P^{11/12} largest at u=h=1
+   T5 R_0^{1/2} P^{3/4}             = P^{29/32}        largest on the rest
+```
+
+`T1` and `T3` both cap at `P^{7/8} = P^{28/32}`, strictly under `T5`'s
+`P^{29/32}`. So at `R_0 = P^{5/16}` the five-term bound is a three-term
+bound.
+
+The paper already knew half of this and said it: at `R_0 = P^{1/4}` the
+fifth term reads `P^{7/8}` and *is absorbed by the third*. What it does
+not say is the converse, which is the case that actually obtains —
+raise `R_0` to `P^{5/16}` and the third (and the first) are absorbed by
+the fifth instead. The absorption runs both ways and the paper only
+recorded the direction it moved away from.
+
+Not restated as three terms, deliberately: Stage 6 cites "the printed
+fourth term of (i)" by position, so renumbering would break a live
+reference for no gain. The remark tells a reader balancing the bound
+what it reduces to.
+
+```text
+What was learned
+- a five-term bound with two terms that never dominate is not wrong,
+  but it hides which trade-off is live; the paper had recorded the
+  absorption in the direction it abandoned and not the one it uses
+- term position can be load-bearing: Stage 6 refers to the fourth term
+  by index, so simplifying the statement would cost more than it saves
+Strongest theorem
+- over h <= P^{1/8}, uh <= P^{1/2}, at R_0 = P^{5/16}, the first and
+  third terms of Lemma 5.2(i) are strictly dominated by the fifth
+  everywhere; the bound is T2, T4, T5
+Strongest refutation
+- none; the falsifier would have been a region where T1 or T3 leads,
+  and there is none
+Reusable machinery
+- four tests over the term maxima and the two absorption directions
+Branch status
+- PROMOTE
+Why
+  This is the shape of the lemma a reader needs in order to see which
+  parameter matters where: T2 at small u and large h, T4 at u = h = 1,
+  T5 everywhere else. Two of the five printed terms were carrying no
+  information at the truncation in force, and nothing said so.
+Best next question
+- Lemma 5.2(ii)'s bound is quoted as P^{23/24}; does it have the same
+  property -- printed terms that never lead at the operating point?
+```

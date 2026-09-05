@@ -2202,6 +2202,18 @@ Stage-2 truncation, which is why Appendix A.6 weighs \(R_0\) against
 absorbed by the third term, which is why the trade of Appendix A.6
 makes it visible.
 
+The absorption runs both ways, and at the truncation this paper uses it
+runs the other way. Over the admissible range \(h\le P^{1/8}\),
+\(uh\le P^{1/2}\) the first term is largest at \(uh=P^{1/2}\), where it
+is \(P^{7/8}\), and the third is \(P^{7/8}\) throughout; both are
+therefore strictly below the fifth's \(P^{29/32}\) everywhere. Only
+three of the five are ever the largest: the second, at \(u=1\),
+\(h=P^{1/8}\), where it is \(P^{15/16}\); the fourth, at \(u=h=1\),
+where it is \(P^{11/12}\); and the fifth, on the rest of the range. All
+five are kept because Stage 6 cites the fourth by position and because
+the proof produces them separately, but a reader balancing the bound
+should know that at \(R_0=P^{5/16}\) it is a three-term bound.
+
 (ii) *(waves)* for all integer coefficients \((q_d)_{d\in\mathcal D}\)
 with \(|q_d|\le 4P^{1/24}\) and total frequency
 \(t:=\sum_{d\in\mathcal D}q_d\) obeying \(0<|t|\le3P^{1/24}\), all

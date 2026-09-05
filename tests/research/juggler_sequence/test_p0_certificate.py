@@ -595,3 +595,55 @@ def test_paper_carries_the_two_term_form() -> None:
     assert "not the sharpest form available" in text
     assert r"2.98\cdot10^{11}" in text and r"1.66\cdot10^{12}" in text
     assert "the floor of Appendix A.5" in text
+
+
+# --- Lemma 5.2(i): which of the five terms can ever be the largest ---
+
+
+def _lemma_52i_terms(a: Fr, b: Fr, r0: Fr = Fr(5, 16)) -> dict:
+    """Exponents of the five terms at u = P^a, h = P^b."""
+    return {
+        "T1": (a + b) / 2 + Fr(5, 8),
+        "T2": (b - a) / 2 + Fr(7, 8),
+        "T3": Fr(7, 8),
+        "T4": Fr(1, 24) - (a + b) / 2 + Fr(7, 8),
+        "T5": r0 / 2 + Fr(3, 4),
+    }
+
+
+def _admissible_vertices() -> list:
+    """h <= P^{1/8}, uh <= P^{1/2}, u, h >= 1: the region's corners."""
+    return [(Fr(0), Fr(0)), (Fr(0), Fr(1, 8)), (Fr(1, 2), Fr(0)), (Fr(3, 8), Fr(1, 8))]
+
+
+def test_the_first_and_third_terms_are_never_the_largest() -> None:
+    """Both peak at P^{7/8}, strictly under the fifth's P^{29/32}."""
+    fifth = Fr(5, 16) / 2 + Fr(3, 4)
+    assert fifth == Fr(29, 32)
+    for key in ("T1", "T3"):
+        peak = max(_lemma_52i_terms(a, b)[key] for a, b in _admissible_vertices())
+        assert peak == Fr(7, 8), (key, peak)
+        assert peak < fifth, key
+
+
+def test_the_other_three_each_dominate_somewhere() -> None:
+    assert _lemma_52i_terms(Fr(0), Fr(1, 8))["T2"] == Fr(15, 16)      # u = 1, h = P^{1/8}
+    assert _lemma_52i_terms(Fr(0), Fr(0))["T4"] == Fr(11, 12)         # u = h = 1
+    for key, at in (("T2", (Fr(0), Fr(1, 8))), ("T4", (Fr(0), Fr(0)))):
+        t = _lemma_52i_terms(*at)
+        assert t[key] == max(t.values()), key
+    mid = _lemma_52i_terms(Fr(1, 4), Fr(1, 16))
+    assert mid["T5"] == max(mid.values())
+
+
+def test_at_the_earlier_truncation_the_fifth_is_absorbed_instead() -> None:
+    """R_0 = P^{1/4} makes the fifth P^{7/8}, equal to the third -- the paper's own remark."""
+    assert Fr(1, 4) / 2 + Fr(3, 4) == Fr(7, 8)
+    assert _lemma_52i_terms(Fr(0), Fr(0), Fr(1, 4))["T5"] == Fr(7, 8)
+
+
+def test_paper_states_the_three_term_reading() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "The absorption runs both ways" in text
+    assert "it is a three-term bound" in text
+    assert r"P^{15/16}" in text and r"P^{11/12}" in text
