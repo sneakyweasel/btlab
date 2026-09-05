@@ -28613,3 +28613,65 @@ Best next question
   for the number of blocked words at depth d, or does it need the
   enumeration?
 ```
+
+ ### No closed form, but the enumeration was never needed
+
+Two conditions on the same lattice path `(t, o_t)` with
+`e_t = 3^{o_t}/2^t`, and they are not the same kind of condition.
+
+Contraction asks `3^{o_t} >= 2^t` — pointwise in `(t, o_t)` and nothing
+else, which is why `N_d` is a two-line DP with the closed asymptotic
+`C ρ^d d^{-3/2}`. Blocking asks `e_u - min_{s<u} e_s > 1`, which
+**couples two positions of the path**. No closed form for the count,
+and none should be expected from a condition of that shape.
+
+But the enumeration is unnecessary. Carrying the running minimum in the
+state restores a DP:
+
+```text
+   d        3  4  5  6   7   8    9   10   11    12    13    14
+   blocked  0  2  6 16  34  82  164  368  746  1494  3158  6320
+
+   d = 20   434976        0.41483 of all words   305 states
+   d = 28   116414536     0.43368                748 states
+```
+
+748 states at depth 28, against `2^28` words. Verified against brute
+force at every depth to 12.
+
+The concrete demonstration that the conditions differ in kind: `OOOE`
+and `OEOO` share `(t, o_t) = (4, 3)`, so no pointwise test can separate
+them — and one is blocked while the other is not.
+
+The blocked fraction is still climbing at depth 28 (`0.43`), with no
+sign of a limit in reach.
+
+```text
+What was learned
+- the right answer to "closed form or enumeration?" was neither: the
+  condition's shape rules out the first and a state variable removes
+  the need for the second
+- N_d's tractability comes from being pointwise, which is worth saying
+  because it is the reason the two frontiers of this paper look so
+  different
+Strongest theorem
+- blocked-word counts by a running-minimum DP, 748 states at depth 28,
+  matching enumeration at every depth to 12
+Strongest refutation
+- my own test premise: I asserted OOEO, OEOO, EOOO have differing
+  blocked profiles at depth 4; all three are empty there. Replaced
+  with OOOE against OEOO, which actually shows the point
+Reusable machinery
+- blocked_count(d) -> (count, states)
+Branch status
+- PARK
+Why
+  The counting question is settled in both directions and the artefact
+  is cheap. The blocked fraction's limit would be the next thing to
+  want, but it is a question about the walk rather than about this
+  paper, and nothing in Paper B depends on it.
+Best next question
+- none pressing in this direction. The frontier analysis has been
+  exhaustively described; a fresh look at Section 5's Stage structure
+  would be a change of subject rather than a continuation.
+```

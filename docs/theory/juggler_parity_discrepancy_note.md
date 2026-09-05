@@ -4799,6 +4799,21 @@ class can raise the certified density at all. Theorem 6.3 says in its
 own title that it is not a census of depth five; the twenty-four are
 what it declines to census, and declining costs nothing.
 
+*Why the two counts behave differently.* Blocking and contraction are
+conditions on the same lattice path \((t,o_t)\), with
+\(e_t=3^{o_t}/2^{t}\), but they are not the same kind of condition.
+Contraction asks \(3^{o_t}\ge2^{t}\), which depends on \((t,o_t)\) and
+nothing else --- a pointwise condition, which is why \(N_d\) is a
+two-line dynamic program with the closed asymptotic
+\(C\rho^dd^{-3/2}\) recorded above. Blocking asks
+\(e_u-\min_{s<u}e_s>1\), which couples two positions of the path. There
+is no closed form for the count, and none should be expected from a
+condition of that shape; but carrying the running minimum in the state
+restores a dynamic program, which counts \(0,2,6,16,34,82,164,368,\dots\)
+blocked words at depths \(3,4,5,\dots\) in a few hundred states rather
+than \(2^d\) words. The blocked fraction is
+\(0.40\) at depth \(16\) and \(0.43\) at depth \(28\), still climbing.
+
 One more check, on the *form* of those monomials. Writing the kernel's
 coefficient as a power of \(n\) drops the floors kept exact beneath it,
 at a cost equal to its sensitivity to each, of exponent

@@ -1366,3 +1366,58 @@ def test_paper_states_the_four_class_sort() -> None:
     assert "Is the level-2 reading forced by the depth?" in text
     assert "it is the reach of the\nlevel-2 kernel" in text
     assert "declining costs nothing" in text
+
+
+# --- counting blocked words without enumerating them ---
+
+
+def _blocked_bruteforce(d: int) -> int:
+    from itertools import product
+    total = 0
+    for bits in product("EO", repeat=d):
+        e, o = [], 0
+        for i, c in enumerate(bits, 1):
+            o += c == "O"
+            e.append(Fraction(3 ** o, 2 ** i))
+        lo = None
+        for t in range(3, d + 1):
+            lo = e[t - 3] if lo is None else min(lo, e[t - 3])
+            if e[t - 2] - lo > 1:
+                total += 1
+                break
+    return total
+
+
+@pytest.mark.parametrize("d", [3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+def test_the_dp_agrees_with_enumeration(d: int) -> None:
+    assert B.blocked_count(d)[0] == _blocked_bruteforce(d), d
+
+
+def test_the_blocked_sequence() -> None:
+    assert [B.blocked_count(d)[0] for d in range(3, 15)] == \
+        [0, 2, 6, 16, 34, 82, 164, 368, 746, 1494, 3158, 6320]
+
+
+def test_the_dp_reaches_depths_enumeration_cannot() -> None:
+    for d, want, frac in ((20, 434976, 0.41483), (28, 116414536, 0.43368)):
+        got, states = B.blocked_count(d)
+        assert got == want, d
+        assert abs(got / 2 ** d - frac) < 1e-5, d
+        assert states < 1000, (d, states)          # against 2^d words
+
+
+def test_blocking_couples_two_positions_and_contraction_does_not() -> None:
+    """The contraction test reads (t, o_t) alone; the blocking test needs a running minimum."""
+    # OOOE and OEOO share (t, o_t) = (4, 3), so contraction cannot tell them apart
+    assert "OOOE".count("O") == "OEOO".count("O") == 3
+    assert B.survives(4, 3)
+    # but one is blocked and the other is not, because the paths differ
+    assert B.deepest_blocked("OOOE", 4) is not None
+    assert all(B.deepest_blocked("OEOO", t) is None for t in (3, 4))
+
+
+def test_paper_states_why_the_two_counts_differ() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "Why the two counts behave differently." in text
+    assert "couples two positions of the path" in text
+    assert r"0,2,6,16,34,82,164,368,\dots" in text

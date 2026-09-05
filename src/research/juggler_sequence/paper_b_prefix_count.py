@@ -200,6 +200,35 @@ def stalling_depths(dmax: int) -> list[int]:
     return [d for d in range(2, dmax + 1) if not ceiling_improves(d)]
 
 
+def blocked_count(d: int) -> tuple[int, int]:
+    """``(blocked words of length d, DP states used)``, without enumerating ``2^d`` words.
+
+    A word is blocked when some letter's deepest defect exceeds the drift threshold, i.e. when
+    ``e_u - min(e_1..e_{u-1}) > 1`` for some ``2 <= u <= d-1``, with ``e_t = 3^{o_t}/2^t``.
+
+    That condition couples two positions of the lattice path, unlike the contraction condition
+    ``3^{o_t} >= 2^t`` behind ``non_contracting``, which depends on ``(t, o_t)`` alone -- which is
+    why one has a two-line dynamic program and a closed asymptotic and the other does not.  Adding
+    the running minimum to the state restores a dynamic program all the same: 748 states at depth
+    28, against 2^28 words.
+    """
+    states: dict[tuple[int, Fraction | None], int] = {(0, None): 1}
+    blocked = 0
+    for t in range(1, d + 1):
+        nxt: dict[tuple[int, Fraction | None], int] = {}
+        for (o, m_prev), cnt in states.items():
+            for step in (1, 0):                       # O then E
+                o2 = o + step
+                e_t = Fraction(3 ** o2, 2 ** t)
+                if t <= d - 1 and m_prev is not None and e_t - m_prev > 1:
+                    blocked += cnt * 2 ** (d - t)     # every completion is blocked
+                    continue
+                m2 = e_t if m_prev is None else min(m_prev, e_t)
+                nxt[(o2, m2)] = nxt.get((o2, m2), 0) + cnt
+        states = nxt
+    return blocked, len(states)
+
+
 def unobstructed(word: str) -> list[tuple[int, int]] | None:
     """``[(letter, kernel level)]`` if no letter of ``word`` carries a known obstruction, else None.
 
