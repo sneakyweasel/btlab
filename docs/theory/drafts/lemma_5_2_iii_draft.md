@@ -1,10 +1,15 @@
 ---
 title: "Draft: Lemma 5.2(iii), the widened decoration budget"
-status: DRAFT — not yet in the manuscript
+status: PROMOTED — in the manuscript as of 2026-09-05; kept as the working record
 purpose: close the one interface the architecture table could not
 ---
 
-# Draft: Lemma 5.2(iii)
+# Lemma 5.2(iii) — working record
+
+Promoted into the manuscript. Lemma 5.2(i) now carries the fifth term
+`R_0^(1/2) P^(3/4)`, part (iii) is stated and proved, Step 4 cites it instead of
+re-entering the six stages, and Appendix A.6's "no exponent in any statement moves"
+is corrected. This file is kept for the derivations and the checks behind them.
 
 ## Why
 

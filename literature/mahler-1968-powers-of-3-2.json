@@ -1,0 +1,22 @@
+{
+  "id": "mahler-1968-powers-of-3-2",
+  "title": "An unsolved problem on the powers of 3/2",
+  "authors": ["Kurt Mahler"],
+  "year": 1968,
+  "identifiers": {
+    "doi": "10.1017/S1446788700005371",
+    "zbl": "0155.09501"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1017/S1446788700005371"
+  },
+  "problem_area": "uniform-distribution",
+  "relevant_concepts": [
+    "Z-numbers",
+    "fractional parts of (3/2)^n",
+    "Mahler 3/2 problem"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "docs/problems/juggler_three_halves_mod_one.md, docs/problems/juggler_odd_tower_fragment.md. Journal of the Australian Mathematical Society 8 (1968) 313-321. Asks whether some xi > 0 has {xi (3/2)^n} < 1/2 for all n (Z-numbers). Distinct from uniform distribution of {(3/2)^n} itself. The odd-tower fragment cites only the flavor; no transfer is claimed."
+}

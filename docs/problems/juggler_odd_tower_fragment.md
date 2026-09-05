@@ -64,6 +64,9 @@ all-depth parity equidistribution?
   depths — is the same pointwise digit-extraction flavor as
   Mahler's \(Z\)-number problem for \((3/2)^n\) (open since 1968);
   no transfer in either direction is claimed, only the flavor.
+  The geometric sibling \(\{(3/2)^n\}\) itself is placed and
+  **CLOSE** in
+  [juggler_three_halves_mod_one](juggler_three_halves_mod_one.md).
 
 Project relationship: **extended** (placement of a named fragment;
 no new mathematics beyond two corollaries).
@@ -178,7 +181,9 @@ machinery for it.
   pointwise, incomparable to equidistribution, beyond current lab
   machinery. Any future attack needs a genuinely new pointwise
   handle on the parity of \(\mathrm{isqrt}\) along orbits, not a
-  density estimate.
+  density estimate. Do not reopen as a wrap of
+  \(\{(3/2)^n\}\)
+  ([juggler_three_halves_mod_one](juggler_three_halves_mod_one.md)).
 - The named next question (DK/Ostrowski pricing of recurrent hug
   tails) is answered by
   [juggler_flight_dk_pricing.md](juggler_flight_dk_pricing.md):

@@ -1,0 +1,21 @@
+{
+  "id": "vijayaraghavan-1940-fractional-parts-powers",
+  "title": "On the fractional parts of the powers of a number (I)",
+  "authors": ["Tirukkannapuram Vijayaraghavan"],
+  "year": 1940,
+  "identifiers": {
+    "doi": "10.1112/jlms/s1-15.2.159"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1112/jlms/s1-15.2.159"
+  },
+  "problem_area": "uniform-distribution",
+  "relevant_concepts": [
+    "fractional parts of (p/q)^n",
+    "infinitely many limit points",
+    "geometric sequences modulo one"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "docs/problems/juggler_three_halves_mod_one.md. Journal of the London Mathematical Society 15 (1940) 159-160. {(p/q)^n} has infinitely many limit points. Density and uniform distribution of {(3/2)^n} remain open; the oscillation > 1/2 question is also his."
+}

@@ -308,11 +308,11 @@
     "definitional_identity": "T(x)=sum_i s_i 3^i is not a candidate",
     "stored_statistics": [
       "m_minus",
-      "sign_h2",
+      "m_plus",
       "sign_h",
       "h",
       "h2",
-      "m_plus"
+      "sign_h2"
     ],
     "forbidden_keys": [
       "full_sum",

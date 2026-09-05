@@ -2083,9 +2083,17 @@ V:=\Bigl|\sum_n
 e\bigl(u\,\Delta_{2h}Y(n{+}d)+\rho(n)\bigr)\Bigr|
 \;\ll\;
 \Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}
-+P^{1/24}(uh)^{-1/2}P^{7/8}\Bigr)
++P^{1/24}(uh)^{-1/2}P^{7/8}+R_0^{1/2}P^{3/4}\Bigr)
 P^{\varepsilon};
 \]
+
+The fifth term is Stage 5's dominant-mode sum over the Stage-2
+families, \(3R_0^{1/2}P^{3/4}\log P\); it is the only term carrying the
+Stage-2 truncation, which is why Appendix A.6 weighs \(R_0\) against
+\(P^{23/24}\) and not against the other four. At \(R_0=P^{5/16}\) it is
+\(P^{29/32}\); at the \(R_0=P^{1/4}\) of an earlier draft it read
+\(P^{7/8}\) and was absorbed by the third term, which is why it did not
+appear before.
 
 (ii) *(waves)* for all integer coefficients \((q_d)_{d\in\mathcal D}\)
 with \(|q_d|\le 4P^{1/24}\) and total frequency
@@ -2099,6 +2107,19 @@ e\Bigl(\sum_{d\in\mathcal D}q_d\,Y(n{+}d)
 +\varphi(n)\Bigr)\Bigr|
 \;\ll\;|t|^{-1/6}\,P^{23/24+\varepsilon}.
 \]
+
+(iii) *(widened decoration budget)* the conclusion of (i) continues to
+hold when at most two of the (D1) terms of \(\rho\) carry, in place of
+\(|q'|\le4P^{1/24}\), the widened budget
+\[
+|q'|\,h'\ \le\ P^{1/2},
+\qquad
+h'\ \le\ P^{1/24},
+\tag{D1$'$}
+\]
+provided \(uhh'\ge72\) for each such term. For fixed \(u\) and \(h'\)
+the shifts violating that are \(h<72/(uh')\), at most \(72\) positive
+integers per widened term.
 
 Part (ii) is the mixed-piece bound proper: level-2 waves
 \(e(qY)\), possibly riding a frozen floor. Part (i) is the engine
@@ -2830,6 +2851,57 @@ all times \(P^{\varepsilon}\).
 No decoration class is used later unless it appears in this
 table.
 
+*Proof of (iii).* The budget \(|q'|\le4P^{1/24}\) enters Stages 1--6
+in exactly two places, both in Stage 6's (D1) bullet: the smooth
+curvature ratio and the \(\theta\)-coefficient. Everything else there
+depends on \(h'\) and not on \(|q'|\) --- in particular the
+run-boundary cost
+\(2.6(h/u)^{1/2}P^{7/8}+5.1h'(uh)^{-1/2}P^{7/8}\), whose second term is
+the fourth printed term of (i) and is unchanged because
+\(h'\le P^{1/24}\) still holds under (D1\('\)).
+
+*Curvature ratio.* Against the Stage-4 curvature \(0.35uhP^{-3/4}\),
+using \(2|j'|\le6\), \(6/0.35\le18\), \(25/0.35\le71.5\) and
+\(|q'|h'\le P^{1/2}\) in both summands,
+\[
+\frac{|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)}{0.35uhP^{-3/4}}
+\ \le\ \frac{18}{uhh'}+\frac{72}u\,P^{-1/2}.
+\]
+The second summand is \(o(1)\) for \(P\ge P_0\); the first is
+\(\le\tfrac14\) once \(uhh'\ge72\), which is the stated hypothesis.
+Stage 6 then dominates at margin \(\ge4\), as in the printed case.
+
+*\(\theta\)-coefficient, and the window inventory it forces.* By
+(D1\('\)), \(|j'|\le3\), \(h'\ge1\) and \(h\le P^{1/8}\),
+\[
+|q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
+\ \le\ \frac{6P^{1/4}}{h'}+20hP^{-1/4}\ \le\ 7P^{1/4}.
+\]
+This is not \(O(P^{-5/24})\), so the decoration's sawtooth is expanded
+by the large-\(B\) treatment of Stage 3(s2) and not by the small-\(B\)
+one of (s1). Each line below is that treatment's with \(2.25\)
+replaced by \(7\). The hypothesis \(T=P^{1/2}\ge8(1+|B|)\) reads
+\(P^{1/4}\ge56.14\), i.e. \(P\ge9.9\cdot10^{6}\). Since \(B\) is
+monotone on the dyadic block its drift is at most \(\sup|B|\), giving
+at most \(7P^{1/4}+1\) windows on which \(B\) moves by \(\le1\). The
+boundary charge at the Stage-4 curvature is
+\[
+(7P^{1/4}{+}1)(0.35uh)^{-1/2}P^{3/8}\ \le\ 13.5\,(uh)^{-1/2}P^{5/8},
+\]
+which needs no lower bound on \(uh\): Stage 3(s2) may simplify its own
+using \(uh>P^{3/16}\) because (s2) *is* that regime, whereas a widened
+decoration is large independently of the main mode and can occur while
+the main sawtooth sits in (s1). It is dominated by the fourth printed
+term of (i), since \(\tfrac58<\tfrac1{24}+\tfrac78\). The flat cost is
+\(8(1{+}|B|)P^{1/2}\le64P^{3/4}\) in total. The modes are the (s2)
+families, with weights
+\(\min(2,\tfrac1{\pi|w+B_0|})+\min(2,\tfrac1{\pi|w|})\) and index
+\(|w|\le|B_0|+R_0\le2R_0\) for \(P\ge P_0\), because
+\(7P^{1/4}\le P^{5/16}\) once \(P\ge7^{16}=3.3\cdot10^{13}\); Stage 5
+therefore pays at most \(\sqrt2\) more on its dominant sum and a factor
+\(7/0.6\le12\) on its (s2) tails, both absorbed by
+\(P^{\varepsilon}\). \(\square\)
+
 *Checklist for (ii) from (i).* Claims A–H are the verification.
 In order: conjugate (A); telescoping with signs \(\sigma_{d,e_1}\)
 (B); the recorded \(A\)-process \(2P^2/H_3+4P/H_3\sum|V|\) (C);
@@ -3132,6 +3204,7 @@ statement that does the work.
 | 4 | Step 4 | pieces with total wave frequency \(t\ne0\), \(\lvert t\rvert\le3P^{1/24}\) | \(\ll\lvert t\rvert^{-1/6}P^{23/24+\varepsilon}\); \(t=0\) collapses exactly to (D1) | Step 6; \(t=0\) to Step 5 |
 | — | Lemma 5.2(i) | \(u,h\ge1\), \(h\le P^{1/8}\), \(uh\le P^{1/2}\), decoration \(\rho\) | \(V\)-bound \(\ll((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+\cdots)P^{\varepsilon}\) | Lemma 5.2(ii); Steps 3(3a), 4, 5b |
 | — | Lemma 5.2(ii) | \(\lvert q_d\rvert\le4P^{1/24}\), \(0<\lvert t\rvert\le3P^{1/24}\) | \(\ll\lvert t\rvert^{-1/6}P^{23/24+\varepsilon}\) | Step 4 |
+| — | Lemma 5.2(iii) | up to two (D1) terms with \(\lvert q'\rvert h'\le P^{1/2}\), and \(uhh'\ge72\) | the bound of (i) at the widened budget | Step 4, leftover modes |
 | 5a | Step 5a | offset branches \(j\ne0\) | \(\le1.8P^{23/24+\varepsilon}\); anchor curvature \(\lambda_a\in[1.30,1.43]k\lvert j\rvert P^{-1/8}\) | Step 6 |
 | 5b | Step 5b | zero-offset branches \(j=0\) | \(\ll P^{15/16+\varepsilon}\) | Step 6 |
 | 6 | Step 6 | all of the above | \(\lvert T_2\rvert\ll P^{23/24+\varepsilon}\), hence \(\lvert K_c\rvert\ll P^{1-1/96+\varepsilon}\) | Theorem 6.1 |
@@ -3341,53 +3414,17 @@ u'\,\Delta_{2h_3}W'
 =u'\,\Delta_{2h_3}\Delta_{d_2}Y,
 \]
 which have the algebraic shape of (D1) decorations with
-coefficients \(q'=u,u'\) and second shifts \(h'=h_1,h_2\). From
+coefficients \(q'=u,u'\) and second shifts \(h'=h_1,h_2\), and which
+Lemma 5.2(iii) covers. From
 (3a),
 \(u\le1.85kh_2P^{1/8}+P^{1/2}/(2h_1)\) and
 \(uh_1\le P^{1/2}\); likewise \(u'h_2\le P^{1/2}\) from (3c).
-The second-shift bounds \(h_1,h_2\le P^{1/24}\) still hold, so
-the Stage-6 (D1) *run-boundary* cost (which depends on \(h'\),
-not on \(|q'|\)) remains the printed fourth term of (i). The
-only estimates in the six-stage proof of (i) that use the
-printed budget \(|q'|\le4P^{1/24}\) are the Stage-6 (D1)
-curvature ratio and the Stage-6 \(\theta\)-coefficient. Those
-two comparisons are re-done here, and the rest of Stages 1–6
-is invoked unchanged.
-
-The Stage-6 curvature ratio of a leftover mode against the main
-term \(t\Delta_{2h_3}Y\) is
-\[
-\frac{|u|\bigl(2|j'|P^{-5/4}+25h_3h_1P^{-7/4}\bigr)}{0.35\,th_3P^{-3/4}}.
-\]
-The first summand is
-\(\le18\,|u|/(th_3)\,P^{-1/2}\)
-(using \(2|j'|\le6\) and \(6/0.35\le18\)). The product
-\(|u|h_1\le P^{1/2}\) rewrites this as
-\(\le18/(th_3h_1)\). The second summand is
-\(\le72\,|u|h_1\,t^{-1}P^{-1}\)
-(using \(25/0.35\le71.5\)), hence
-\(\le72\,t^{-1}P^{-1/2}\) by the same product bound. Thus the
-ratio is
-\[
-\le\frac{18}{th_3h_1}+\frac{72}{t}\,P^{-1/2}.
-\]
-The second summand is \(o(1)\) for \(P\ge P_0\). The first is
-\(\le1/4\) once \(th_3h_1\ge72\). On that *good* set of
-\(h_3\), Stage-6 domination applies at margin \(\ge4\). The
-\(\theta\)-coefficient of the leftover (D1) is
-\[
-|u|\bigl(2|j'|P^{-1/4}+20h_3h_1P^{-3/4}\bigr)
-\le\frac{P^{1/2}}{h_1}\cdot6P^{-1/4}
-+\frac{P^{1/2}}{h_1}\cdot20h_3h_1P^{-3/4}
-=6P^{1/4}/h_1+20h_3P^{-1/4}.
-\]
-The first term is \(\le6P^{1/4}\); the second is
-\(\le20P^{1/8-1/4}=20P^{-1/8}\). Lemma 3.7 at \(T=P^{1/2}\)
-therefore satisfies \(T\ge8(1+|B|)\) for \(P\ge P_0\) (the
-large-\(B\) window treatment of Stage 3(s2):
-\(P^{1/2}\ge8(1+7P^{1/4})\) once \(P^{1/4}\ge56\)). The same
-two comparisons hold with \((u,h_1)\) replaced by
-\((u',h_2)\).
+The second-shift bounds \(h_1,h_2\le P^{1/24}\) still hold, so both
+satisfy (D1\('\)), and Lemma 5.2(iii) applies with
+main coefficient \(t\) and shift \(h_3\): its good-shift condition
+reads \(th_3h_i\ge72\), and it supplies the Stage-6 comparisons, the
+\((s2)\) window inventory for the enlarged sawtooth, and the mode
+accounting.
 
 The *bad* set for the \(u\)-mode is
 \(h_3<72/(th_1)\). It contains at most \(72\) positive
@@ -3403,9 +3440,8 @@ use the trivial bound \(|V_{h_3}|\le P\). The recorded
 \]
 which is a constant multiple of the target of Claim G (the
 same first-term comparison \(P^2/H_3\le t^{-1/3}P^{23/12}\)).
-On the complementary good set, the six-stage proof of (i)
-applies with the Stage-6 (D1) comparisons just displayed, and
-Claims F–H give the same average as for a printed decoration.
+On the complementary good set Lemma 5.2(iii) gives the bound of
+(i), and Claims F–H average it exactly as for a printed decoration.
 
 Thus every \(t\ne0\) piece, with or without leftover
 first-differenced modes, is
@@ -4929,8 +4965,11 @@ nothing that binds: the collision-band term moves from
 \(3P^{7/8}\log P\) to \(3P^{29/32}\log P\), still inside \(P^{23/24}\)
 with \(P^{5/96}\) to spare, and the \(q''\) ratio moves from
 \(52P^{-5/24}\) to \(48.9P^{-3/16}\), which at \(P_0\) is \(0.12\)
-against a margin of \(\tfrac14\). \(P_0\) itself is unchanged, and no
-exponent in any statement moves. Second, the window's margin is
+against a margin of \(\tfrac14\). \(P_0\) itself is unchanged. One
+exponent in a statement does move: the collision-band term is the fifth
+term of Lemma 5.2(i), which carries \(R_0^{1/2}P^{3/4}\) explicitly for
+this reason, and reads \(P^{7/8}\) at \(a=1/4\) and \(P^{29/32}\) at
+\(a=5/16\). Second, the window's margin is
 genuinely narrow --- \(P^{a-19/96}\) with a constant above \(10\) ---
 so this is a place where an asymptotic argument and an effective one
 diverge by twenty orders of magnitude, and the paper's claim of

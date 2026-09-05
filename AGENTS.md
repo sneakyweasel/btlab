@@ -118,6 +118,9 @@ for external review.
   recurrent hug domination and record jumps quantized to the
   \(\log_2 3\)-lattice (shortest near-return \(19\)).   Do not reopen
   composition (`REPARAMETERIZATION`), odd-tower placement, DK-as-kill,
+  \(\{(3/2)^n\}\) as a Juggler successor
+  ([juggler_three_halves_mod_one](docs/problems/juggler_three_halves_mod_one.md);
+  classical OPEN, flavor only),
   valley-composition exclusion (`CLOSE`: occupancy is the existing
   pigeonhole), or a bounded walk coboundary
   (`juggler_walk_phase_correction`: even-square tower kills every

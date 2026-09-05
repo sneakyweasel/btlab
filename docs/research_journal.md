@@ -24865,3 +24865,96 @@ Best next question
 - amend Lemma 5.2(i). Everything above waits on that one line, and the
   P^(29/32) it adds is required by the existing proof independently
 ```
+
+## Geometric \(\{(3/2)^n\}\) versus the Juggler laboratory (placement; CLOSE)
+
+- **Date:** 2026-09-05
+- **Objective:** Place the classical question whether \(\{(3/2)^n\}\) is uniformly distributed in \([0,1]\) relative to the laboratory's \(3/2\) layers, and decide whether any proved layer is a door.
+- **Hypotheses:** a Juggler theorem or probe yields a new constraint (oscillation, density, or Weyl sums). Falsifier: every candidate layer is linear-rotation, polynomial-floor, or an already-closed transfer.
+- **Major results:**
+  - **Placement (EXACT — HUMAN PROOF, recorded in the dossier):** the laboratory's \(3/2\) is the odd-branch exponent \(\lfloor n^{3/2}\rfloor\) and the walk rotation \(\{k\log_2(3/2)\}\). The sequence \(\{(3/2)^n\}=(3^n\bmod 2^n)/2^n\) is a third object. Tower heights \(\asymp n^{(3/2)^j}\) use \((3/2)^j\) as a real growth weight; the walk tracks the logarithm, not the fractional part.
+  - **No transfer:** Paper B / the two-monomial leftover are polynomial phases; walk charge / Ostrowski are isometric rotation; Baker/Rhin on \(\lvert 3^o-2^L\rvert\) is a two-term cycle form (already REFUTED as a cycle killer); fate/Tao and Collatz base-\(3/2\) numeration are silent. The odd-tower dossier already refused the Mahler flavor transfer.
+  - **Classical status (KNOWN, not claimed):** infinitely many limit points (Vijayaraghavan 1940); oscillation \(\ge 1/3\) (Flatto–Lagarias–Pollington 1995); metric almost-all (Koksma). OPEN: oscillation \(>1/2\), density, uniform distribution, and Mahler Z-numbers. Computational censuses to \(10^8\) are not theorems.
+- **Refuted ideas:** none new (the falsifier fired by classification; existing kills were cited, not re-tested).
+- **Literature:** `vijayaraghavan-1940-fractional-parts-powers`, `flatto-lagarias-pollington-1995-range-fractional-parts`, `mahler-1968-powers-of-3-2`, `kuipers-niederreiter-1974-uniform-distribution`.
+- **Open:** uniform distribution of \(\{(3/2)^n\}\) remains classical OPEN and is not a Juggler branch. The live nearby Juggler questions are unchanged: rate-free nested floor-power equidistribution, the Paper B level-3 kernel, Tao pressure, and the external two-monomial leftover.
+- **Decision:** CLOSE — dossier `docs/problems/juggler_three_halves_mod_one.md`; no probe, no Lean, no ledger row, no conjecture record, no `research/three_halves/`.
+
+```text
+What was learned
+- shared constants and a Mahler-style digit flavor are wallpaper,
+  not a transfer: {n^{3/2}}, {k log2(3/2)}, and {(3/2)^n} are
+  three different objects
+- every lab layer fails by index, by dynamics, or by a recorded
+  kill; the odd-tower CLOSE already said the Mahler half
+- a discrepancy census past 10^8 would be machinery gravity
+  behind existing literature
+Strongest theorem
+- none about {(3/2)^n}; placement only
+Strongest refutation
+- none new (recorded kills cited, not re-tested)
+Reusable machinery
+- none (by design; the branch produced a record, not code)
+Branch status
+- CLOSE
+Why
+- the stop criterion fired: no layer applies and the problem is
+  classical OPEN; a branch whose transferable statements are all
+  KNOWN is a CLOSE
+Best next question
+- none on this line. The live Juggler questions remain the
+  rate-free tower, the level-3 kernel, Tao pressure, and the
+  two-monomial leftover
+```
+
+
+### Lemma 5.2(iii) promoted, and (i) amended
+
+The editing pass. Four changes to Paper B, one of them a correction the others forced.
+
+1. **Lemma 5.2(i) gains a fifth term**, `R_0^(1/2) P^(3/4)`. It is Stage 5's dominant-mode sum
+   over the Stage-2 families, and it is the only term carrying the Stage-2 truncation -- which
+   is why Appendix A.6 weighs `R_0` against `P^(23/24)` rather than against the other four. At
+   `R_0 = P^(1/4)` it read `P^(7/8)` and was absorbed by the third term; that is why it never
+   appeared.
+2. **Part (iii) is stated and proved.** Statement: at most two (D1) terms may carry
+   `|q'| h' <= P^(1/2)` with `h' <= P^(1/24)` in place of `|q'| <= 4P^(1/24)`, and the
+   conclusion of (i) holds for every shift with `u h h' >= 72`, the violating shifts numbering
+   at most 72 per widened term. Proof: the curvature ratio, the theta-coefficient, and the (s2)
+   window inventory the enlarged coefficient forces.
+3. **Step 4 cites it.** The paragraph that used to say "the only estimates in the six-stage
+   proof of (i) that use the printed budget are ... Those two comparisons are re-done here" is
+   gone; the phrase "the six-stage proof of (i)" no longer occurs in the manuscript. Step 4 is
+   about fifteen lines shorter and checkable from a statement.
+4. **Appendix A.6 corrected.** It claimed of the `R_0` change that "`P_0` itself is unchanged,
+   and no exponent in any statement moves". `P_0` is indeed unchanged, but an exponent in a
+   statement now does move, and A.6 says which one and why.
+
+The fourth is the interesting one: it was true when written and became false because of a change
+made three steps later in the same session. Nothing detected it but reading A.6 while editing
+the thing it describes -- the propagation net covers numbers that appear in two documents, not a
+claim about what did not change.
+
+```text
+What was learned
+- amending (i) falsified a sentence in A.6 that was about the absence
+  of change; that class is invisible to a consistency net, which
+  compares values rather than claims about values
+- the referee's interface complaint dissolved into one lemma part;
+  the proof needed no reordering, which is what the architecture table
+  predicted
+Strongest theorem
+- Lemma 5.2(iii), and (i) now stating what its own proof delivers
+Strongest refutation
+- A.6's "no exponent in any statement moves", by my own edit
+Reusable machinery
+- test_architecture_table now pins (iii)'s statement, proof, citation,
+  and the absence of the phrase that marked the old coupling
+Branch status
+- ADVANCE (referee items 3 and part of 4 discharged; Theorem 5.3 is
+  checkable from statements throughout)
+Best next question
+- the remaining referee asks are the trust-boundary table, the
+  constant classification, and moving the development log to the
+  audit ledger -- all additive or subtractive, none structural
+```

@@ -46,7 +46,8 @@ def test_table_sits_immediately_before_the_theorem() -> None:
 
 @pytest.mark.parametrize("component", [
     "Lemma 5.1(i)", "Lemma 5.1(ii)", "Lemma 5.1(iii)", "Lemma 5.1(iv)",
-    "Lemma 5.2(i)", "Lemma 5.2(ii)", "Lemma 5.2b", "Lemma 3.9", "Lemma 3.7", "Lemma 3.3",
+    "Lemma 5.2(i)", "Lemma 5.2(ii)", "Lemma 5.2(iii)", "Lemma 5.2b", "Lemma 3.9",
+    "Lemma 3.7", "Lemma 3.3",
 ])
 def test_every_component_named_in_the_table_exists(component: str) -> None:
     """The table may only point at statements the paper actually makes."""
@@ -121,3 +122,22 @@ def test_c5_dependency_is_stated_in_the_table() -> None:
 
 def test_mirror_carries_the_table() -> None:
     assert text() == io.open(MIRROR, encoding="utf-8").read()
+
+
+def test_lemma_52_iii_is_stated_and_proved_and_cited() -> None:
+    """(iii) closes the interface where Step 4 used to re-enter the proof of (i)."""
+    src = text()
+    assert "(iii) *(widened decoration budget)*" in src
+    assert "*Proof of (iii).*" in src
+    assert "Lemma 5.2(iii) applies with" in src           # Step 4 cites it
+    assert "the six-stage proof of (i)" not in src        # and no longer reaches in
+
+
+def test_lemma_52_i_carries_the_stage_2_truncation() -> None:
+    """The fifth term is the Stage-2 family sum; without it (i) understates its own proof."""
+    src = text()
+    assert r"+R_0^{1/2}P^{3/4}\Bigr)" in src
+    assert "the only term carrying the" in src
+    # A.6 used to say no exponent in any statement moves; one now does, and it says so
+    assert "exponent in any statement moves" not in src
+    assert "exponent in a statement does move" in src
