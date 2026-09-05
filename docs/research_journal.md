@@ -27869,3 +27869,67 @@ Best next question
 - E < 2 fails only when two 3/2-steps separate defect from wave. Which
   depth-eight words avoid that, and do any of them contract?
 ```
+
+ ### One theorem, two depths, and then the screen goes dry
+
+The question was which depth-eight words avoid `E ≥ 2`. Running the
+full screen instead — every contractor at every paying depth, each
+letter tested for a blocked defect and each blocked defect for branch
+runs, the `9/4` stop, and `E < 2` — gives a sharper answer than the
+question asked.
+
+```text
+   depth  gain        unobstructed   word         profile
+     7    3/128       1 of 3         OOOEOEE      L4 lvl2, L6 lvl1
+     8    7/256       1 of 7         OOOEOEOE     L4 lvl2, L6 lvl1
+    10    3/256       0 of 12        --
+    12    15/2048     0 of 30        --
+    13    85/8192     0 of 85        --
+```
+
+**The two survivors share their first six letters**, so their profiles
+are not merely alike but identical. Letter 4 asks for `(3k/4)n^{9/8}`
+at level 2 — Theorem 5.3's own monomial, already proved. Letter 6 asks
+for `(27k/32)n^{33/32}` at level 1, which is not. So one theorem, about
+one monomial, closes both.
+
+What it buys is `1/128 + 1/256 = 3/256`, carrying the certified density
+from `7/8` to `227/256`. Then the screen is empty: across depths 10, 12
+and 13, not one of the 127 contractors is free of an obstruction.
+
+A methodological note. My first pass screened each word at its *last*
+letter and reported that all seven depth-eight contractors passed
+everything. That was nonsense — for `OOEOOEE` the hard letter is 6, at
+wave `e_5 = 81/32`, not 7. Screening every letter and taking the worst
+is the only correct reading, and it flipped the answer from "all pass"
+to "one passes".
+
+```text
+What was learned
+- the level-1 kernel is worth more than one depth: the same monomial
+  serves OOOEOEE and OOOEOEOE, because they share six letters
+- and worth no more than two: depths 10, 12, 13 are wholly obstructed,
+  so 227/256 is where this line ends
+- a word must be screened at every letter, not its last; the hard
+  letter is the one with the largest wave exponent
+Strongest theorem
+- one level-1 kernel at (27k/32)n^{33/32} plus Theorem 6.1 closes both
+  OOOEOEE and OOOEOEOE, worth 3/256, taking 7/8 to 227/256
+Strongest refutation
+- my own first screen, which passed all seven depth-eight contractors
+  by testing the wrong letter of each
+Reusable machinery
+- unobstructed / screen_depth, the four criteria applied per letter
+Branch status
+- PROMOTE
+Why
+  This converts the level-1 kernel from a one-word target into the
+  single unproved ingredient of a two-depth programme with a computed
+  payoff and a computed ceiling. It also bounds the programme: nothing
+  past depth eight survives the screen, so no further effort on this
+  line is worth spending before the kernel exists.
+Best next question
+- the screen is negative evidence. Is there a positive check -- does
+  OOOEOEE's letter-6 object satisfy the hypotheses of any lemma in
+  Section 3, or does it fail all of them for a nameable reason?
+```

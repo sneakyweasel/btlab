@@ -968,3 +968,51 @@ def test_paper_states_the_linearisation_criterion() -> None:
     assert r"E=\tfrac94" in text and r"E=\tfrac{27}{16}" in text
     assert "49.9" in text
     assert "keeps *exact* are\nharmless" in text or "keeps *exact*" in text
+
+
+# --- the screen over every contractor at every paying depth ---
+
+
+def test_only_one_contractor_survives_at_depth_seven_and_eight() -> None:
+    assert [w for w, _ in B.screen_depth(7)] == ["OOOEOEE"]
+    assert [w for w, _ in B.screen_depth(8)] == ["OOOEOEOE"]
+
+
+@pytest.mark.parametrize("d,total", [(10, 12), (12, 30), (13, 85)])
+def test_nothing_survives_beyond_depth_eight(d: int, total: int) -> None:
+    assert len(B.dying_words(d)) == total, d
+    assert B.screen_depth(d) == [], d
+
+
+def test_the_two_survivors_need_identical_machinery() -> None:
+    """Same first six letters, so the same two kernels -- one proved, one not."""
+    assert "OOOEOEE"[:6] == "OOOEOEOE"[:6] == "OOOEOE"
+    for word in ("OOOEOEE", "OOOEOEOE"):
+        assert B.unobstructed(word) == [(4, 2), (6, 1)], word
+        # letter 4 is Theorem 5.3's own monomial
+        assert B.deepest_blocked(word, 4) == B.deepest_blocked("OOO", 4)
+        assert B.deepest_blocked(word, 4)[1:3] == (Fraction(3, 4), Fraction(9, 8))
+        # letter 6 is the level-1 kernel, the single new ingredient
+        assert B.deepest_blocked(word, 6)[1:3] == (Fraction(27, 32), Fraction(33, 32))
+
+
+def test_the_level_one_kernel_is_worth_three_over_two_five_six() -> None:
+    total = sum(Fraction(len(B.screen_depth(d)), 2 ** d) for d in (7, 8, 10, 12, 13))
+    assert total == Fraction(3, 256)
+    assert Fraction(7, 8) + total == Fraction(227, 256)
+
+
+def test_the_screen_rejects_for_the_stated_reasons() -> None:
+    """OOEOOEE fails on E >= 2 and branch runs; OOOOEEE on the 9/4 stop."""
+    assert B.unobstructed("OOEOOEE") is None
+    assert not B.linearisation_safe("OOEOOEE", 6)
+    assert B.unobstructed("OOOOEEE") is None
+    assert B.beyond_methods("OOOOEEE", 5) != []
+
+
+def test_paper_carries_the_screen_table() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "What one theorem would buy." in text
+    assert r"\(227/256\)" in text
+    assert r"\(127\) contractors" in text
+    assert "negative evidence" in text

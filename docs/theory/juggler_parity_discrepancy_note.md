@@ -4788,6 +4788,34 @@ reading of depth seven is therefore \(1/128\) rather than \(2/128\):
 available only if a square-root kernel is found for an object that
 branches no better than Conjecture 7.3's.
 
+*What one theorem would buy.* Run the same screen over every contractor
+at every paying depth --- each letter tested for a blocked defect, and
+each blocked defect for branch runs, for the \(9/4\) stop, and for
+\(E<2\) --- and almost nothing survives:
+
+| depth | gain | unobstructed | word | profile |
+|---:|---:|---:|---|---|
+| \(7\) | \(3/128\) | \(1\) of \(3\) | \(OOOEOEE\) | letter 4 at level 2, letter 6 at level 1 |
+| \(8\) | \(7/256\) | \(1\) of \(7\) | \(OOOEOEOE\) | letter 4 at level 2, letter 6 at level 1 |
+| \(10\) | \(3/256\) | \(0\) of \(12\) | --- | --- |
+| \(12\) | \(15/2048\) | \(0\) of \(30\) | --- | --- |
+| \(13\) | \(85/8192\) | \(0\) of \(85\) | --- | --- |
+
+The two survivors share their first six letters, so their profiles are
+not merely alike but identical. Letter 4 asks for
+\(\tfrac{3k}4n^{9/8}\) at level 2 --- Theorem 5.3's own monomial,
+already proved. Letter 6 asks for \(\tfrac{27k}{32}n^{33/32}\) at level
+1, which is not. One theorem, about one monomial, closes both, and it
+is the level-1 kernel already identified above.
+
+What it buys is \(\tfrac1{128}+\tfrac1{256}=\tfrac3{256}\), carrying
+the certified density from \(7/8\) to \(227/256\). After that the
+screen is empty: across depths \(10\), \(12\) and \(13\) not one of the
+\(127\) contractors is free of an obstruction, so \(227/256\) is where
+this line ends without new machinery. The screen is negative evidence
+only --- it names the words carrying no obstruction this paper knows
+how to state, not the words that are provable.
+
 \(OOOOEEE\) repeats the \(OOOO*\) row exactly, so Conjecture 7.3 is
 necessary for that third of the depth-seven increment and not merely
 sufficient --- and it is the only one of the three carrying anything

@@ -200,6 +200,31 @@ def stalling_depths(dmax: int) -> list[int]:
     return [d for d in range(2, dmax + 1) if not ceiling_improves(d)]
 
 
+def unobstructed(word: str) -> list[tuple[int, int]] | None:
+    """``[(letter, kernel level)]`` if no letter of ``word`` carries a known obstruction, else None.
+
+    A letter is obstructed when its deepest blocked defect has no branch runs, or carries a
+    coefficient above ``9/4``, or fails ``E < 2``.  This is negative evidence: it names the words
+    with no obstruction this paper knows how to state, not the words that are provable.
+    """
+    out = []
+    for t in range(3, len(word) + 1):
+        deep = deepest_blocked(word, t)
+        if deep is None:
+            continue
+        if (not has_branch_runs(branch_base(word, t))
+                or beyond_methods(word, t) or not linearisation_safe(word, t)):
+            return None
+        out.append((t, deep[0]))
+    return out
+
+
+def screen_depth(d: int) -> list[tuple[str, list[tuple[int, int]]]]:
+    """Contractors at depth ``d`` that survive the screen, with their per-letter profiles."""
+    return [(w + "E", p) for w in dying_words(d)
+            if (p := unobstructed(w + "E")) is not None]
+
+
 def surviving_words(d: int) -> list[str]:
     """The ``N_d`` words of length ``d`` with no contracting prefix, as strings over ``EO``."""
     out = []
