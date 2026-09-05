@@ -26838,3 +26838,39 @@ Best next question
   machinery run two letters longer, or does the extra length cost more
   than the level saves?
 ```
+
+## The last two scans stay native, and now we know the price
+
+Attacked the two remaining `native_decide` proofs two ways.
+
+*Unbounded kernel reduction.* Setting `maxHeartbeats 0` and letting
+`decide +kernel` run the full `window_digit_scan` does not finish: the
+process reached **38.6 GB** resident and was still climbing when killed.
+The kernel builds a colossal term rather than streaming the scan, so the
+limit is memory, not the heartbeat counter. Route refuted.
+
+*Block splitting.* This does work — `List.range'_append` and
+`List.all_append` exist with exactly the right shapes, and chunks of
+`500` and `2000` lengths both go through `decide +kernel`. The cost is
+the objection: measured at \(49\) s of kernel time for \(2500\) lengths,
+or \(0.02\) s per length. So `window_digit_scan` (\(251486\) lengths)
+is \(\approx 82\) min and \(\approx 125\) chunk declarations, and
+`greedy_eq_ostro_below_window` (\(301994\)) is \(\approx 99\) min and
+\(\approx 150\). Together **181 minutes added to every clean build**, plus
+275 generated declarations, to remove two axioms.
+
+That is not worth it, and the trade is now measured rather than assumed.
+These two scans are exactly where `native_decide` earns its keep: the
+compiled runtime does in seconds what the kernel cannot do in hours. The
+Juggler layer's trust boundary is two declarations wide and stays there.
+
+```text
+What was learned
+- unbounded kernel reduction on the scan blows past 38 GB: memory-bound,
+  not heartbeat-bound
+- block splitting is available and correct but costs 181 min of build and
+  275 declarations to remove two axioms
+- native_decide is the right tool for exactly this shape and no other
+Branch status
+- trust boundary final at two declarations; the remaining route is priced
+  and declined
