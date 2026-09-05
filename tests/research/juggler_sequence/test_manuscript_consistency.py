@@ -182,6 +182,69 @@ OTHER_LATEX_DOCS = (
 )
 
 
+LEAN_LAYER = ROOT / "formal" / "Problems" / "Juggler"
+TACTICS = ("native_decide", "decide +kernel", "norm_num")
+_DECL = re.compile(r"^\s*(?:theorem|lemma|def)\s+([A-Za-z_][A-Za-z_0-9'.]*)", re.M)
+_IMPORT = re.compile(r"^import Problems\.Juggler\.(\w+)", re.M)
+
+
+def _lean_layer() -> tuple[dict[str, str], dict[str, str], dict[str, set[str]]]:
+    """Module text, identifier -> defining module, and the intra-layer import graph."""
+    text: dict[str, str] = {}
+    decls: dict[str, str] = {}
+    imports: dict[str, set[str]] = {}
+    for p in LEAN_LAYER.glob("*.lean"):
+        body = read(p)
+        text[p.stem] = body
+        imports[p.stem] = set(_IMPORT.findall(body))
+        for name in _DECL.findall(body):
+            decls.setdefault(name, p.stem)
+    return text, decls, imports
+
+
+def _import_closure(mod: str, imports: dict[str, set[str]]) -> set[str]:
+    seen: set[str] = set()
+    stack = [mod]
+    while stack:
+        for m in imports.get(stack.pop(), ()):
+            if m not in seen:
+                seen.add(m)
+                stack.append(m)
+    return seen
+
+
+def test_tactics_the_manuscripts_name_are_the_tactics_the_layer_uses() -> None:
+    """A sentence naming both a tactic and a Lean identifier must be telling the truth.
+
+    Converting 305 proofs from `native_decide` to `decide +kernel` silently invalidated
+    sixteen sentences of Paper A, which went on describing the Section 3 finite tables as
+    `native_decide` evaluations.  The cross-quotation guard could not see it: the drift was
+    a method name, not a constant.  The tactic is looked for in the identifier's own module
+    and in everything that module imports inside the layer, because the paper attributes an
+    evaluation to the theorem that consumes it (`no_cycle_itinerary_oooeoe` in
+    `LeftoverShort`) while the tactic sits in the module that performs it (`LeftoverEval`).
+    """
+    text, decls, imports = _lean_layer()
+    bad: list[tuple[str, str, str, str]] = []
+    checked = 0
+    for doc in (PAPER, PAPER_B, PAPER_C):
+        body = " ".join(read(doc).split())
+        for sentence in re.split(r"(?<=\.)\s+", body):
+            for tactic in TACTICS:
+                if f"`{tactic}`" not in sentence:
+                    continue
+                for ident in re.findall(r"`([A-Za-z_][A-Za-z_0-9'.]*)`", sentence):
+                    if ident in TACTICS or ident not in decls:
+                        continue
+                    mod = decls[ident]
+                    scope = {mod} | _import_closure(mod, imports)
+                    checked += 1
+                    if not any(tactic in text[m] for m in scope):
+                        bad.append((doc.name, tactic, ident, mod))
+    assert checked >= 20, f"guard went blind: only {checked} claims matched"
+    assert bad == [], bad[:8]
+
+
 def test_no_mangled_latex_escapes_outside_the_manuscripts() -> None:
     """The same hazard, in the documents the per-manuscript check does not reach.
 

@@ -27580,3 +27580,41 @@ Best next question
 - st5b-qpp is now the binding constraint on the whole appendix. What is
   the inequality, and is its 0.35 curvature floor as tight as c_7 was?
 ```
+
+## A guard for method names, validated by reintroducing the bug
+
+The cross-quotation guard ties constants to the code that computes them.
+It could not see the drift I made in the previous entry, because a
+tactic name is neither a constant nor a citation. This adds the missing
+check: a manuscript sentence naming both a tactic and a Lean identifier
+must be telling the truth.
+
+Resolution follows imports. Paper A attributes an evaluation to the
+theorem that *consumes* it — `no_cycle_itinerary_oooeoe` in
+`LeftoverShort`, which carries no tactic at all — while the tactic sits
+in the module that *performs* it, `LeftoverEval`. So the check looks in
+the identifier's own module and everything that module imports inside
+the layer.
+
+Validated the only way worth doing: the guard is clean on the fixed
+tree at 25 claims checked, and reintroducing the drift makes it name all
+sixteen identifiers. It also correctly *passes* §1.2's sentence about
+the two Ostrowski holdouts, which genuinely do use `native_decide` —
+so it distinguishes a true claim from a false one rather than banning
+the word. A `checked >= 20` assertion guards against the regex going
+blind and the test passing vacuously.
+
+One incident worth recording: a first run failed on Paper B's mirror
+while the diff was empty. The host was committing Paper B concurrently —
+three commits landed during this pass — and the test caught a file
+mid-write. Re-running was the right response; the mirror check is doing
+its job, just racing.
+
+```text
+What was learned
+- prose about method is drift the constant guard cannot see
+- attribution and implementation live in different modules, so the check
+  must follow imports or it false-positives on every delegated theorem
+- a guard that passes on the fixed tree proves nothing; reintroduce the bug
+Branch status
+- three drift guards now: constants, escapes, and method names
