@@ -1935,22 +1935,33 @@ produces sets on which the second difference is smooth.
 ### Standing estimates
 
 All estimates of this section take place on a dyadic block
-\(n\in(P,2P]\), \(n\) odd, under the standing constraints
+\(n\in(P,2P]\), \(n\) odd, under two standing constraints:
 \[
-\text{(C1)}\quad kh_1h_2\le P^{1/8},
-\qquad
-\text{(C2)}\quad h_1h_2\le P^{1/2}/3,
-\qquad
 \text{(C3)}\quad 1\le k\le P^{1/24},
 \qquad
 \text{(C4)}\quad h_1,\,h_2\le P^{1/24}.
 \]
-(C1)--(C3) do not by themselves bound the individual shifts: the
-product constraints permit one of \(h_1,h_2\) to be as large as
-\(\asymp P^{1/2}\). The decoration class (D1) and the third-differencing
-reduction of Lemma 5.2(ii) need \(h_1+h_2\le 2P^{1/24}\), which is
-(C4). Theorem 5.3 takes \(H_1=P^{1/48}\) and \(H_2=P^{1/24}\), so
-(C4) holds there. Every displayed constant below is valid for
+Two consequences are cited often enough below to carry names of their
+own:
+\[
+\text{(C1)}\quad kh_1h_2\le P^{1/8},
+\qquad
+\text{(C2)}\quad h_1h_2\le P^{1/2}/3.
+\]
+(C1) is the product of the three caps and is tight: equality at
+\(k=h_1=h_2=P^{1/24}\). (C2) follows with room to spare --- (C3) and
+(C4) give \(h_1h_2\le P^{1/12}\), and \(P^{1/12}\le P^{1/2}/3\) once
+\(P\ge3^{12/5}=14\) --- and is in fact invoked nowhere below; it is
+recorded because the differencing steps are easier to read against a
+named bound on the shift product. So verifying the standing setup at
+an invocation means checking two inequalities, not four.
+
+The individual caps are what the argument needs, not the products:
+(C1) and (C2) alone would permit one of \(h_1,h_2\) to be as large as
+\(\asymp P^{1/2}\), while the decoration class (D1) and the
+third-differencing reduction of Lemma 5.2(ii) need
+\(h_1+h_2\le2P^{1/24}\). Theorem 5.3 takes \(H_1=P^{1/48}\) and
+\(H_2=P^{1/24}\), inside (C4) with room on the first. Every displayed constant below is valid for
 \(P\ge P_0\) with an absolute \(P_0\). All sums run over odd \(n\),
 and every derivative test below is read through the parity
 reindexing of Lemma 3.10: margins and signs are invariant, and each
@@ -2038,7 +2049,7 @@ independent of \(P\) and of \(k,h_1,h_2,t\). Each layer contributes
 \(O(\log P)\) mode mass; there is no further nesting of expansions
 whose depth would grow with \(P\). Implied constants in every
 \(\ll_\varepsilon\) of Sections 4--6 depend on \(\varepsilon\) and on
-(C1)--(C4) only: on those ranges they do not grow with \(k\),
+(C3) and (C4) only: on those ranges they do not grow with \(k\),
 \(h_i\), or \(t\). The threshold \(P_0\) is independent of
 \(\varepsilon\) (Appendix A.3) and of \(k,h_i,t\); it is carried by
 the Lemma 3.9 comparison \(W\le c_7S/2\).
@@ -2103,7 +2114,7 @@ composites \(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\)).
 No later section re-derives these.
 
 **Lemma 5.2 (level-2 waves: the mixed-piece bound).**
-Assume (C1)–(C4), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
+Assume (C3) and (C4), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
 call a *decoration* any sum \(\rho\) of at most nine terms of the
 classes
 
@@ -2414,7 +2425,7 @@ one of them dominate and loses the \(23/24\).
 *Claim H (square root).* Taking square roots,
 \(|U|\ll t^{-1/6}P^{23/24+\varepsilon}\), which is (ii).
 The implied constant depends on \(\varepsilon\) and on
-(C1)--(C4) only. \(\square\) of the reduction.
+(C3) and (C4) only. \(\square\) of the reduction.
 
 The six stages below prove (i). They are used as a black box by
 Claims F--H; the only decoration information those claims need is
@@ -2964,7 +2975,7 @@ Stage 5, and only in regime (s2). On a cell the integer
 \(A_h\) does not differentiate a frozen gap. Lemma 3.9 is not used
 in (i) or (ii); it is used only on the global interpolant \(\Phi\)
 of Lemma 5.2b. Every \(k,h_1,h_2\) dependence passes through
-(C1)--(C4). \(\square\)
+(C3) and (C4). \(\square\)
 
 The balance to keep in mind: with the trivial bound
 \(|V_{h_3}|\le P\), part (ii)'s differencing returns nothing beyond
@@ -2990,14 +3001,14 @@ as numbers, not differentiated. The next lemma records that
 computation, so that Step 5b is only a classification of scales.
 
 **Lemma 5.2b (frozen-shape interpolant on a zero-offset piece).**
-Assume (C1)–(C4), \(j=0\), and the *middle-band wave bound*
+Assume (C3) and (C4), \(j=0\), and the *middle-band wave bound*
 \[
 u\ \le\ 186\,kh_2P^{1/8},
 \qquad
 u'\ \le\ 186\,kh_1P^{1/8}.
 \tag{C5}
 \]
-(C5) is not implied by (C1)–(C4): Lemma 5.2(i) admits \(uh_1\le P^{1/2}\),
+(C5) is not implied by (C3) and (C4): Lemma 5.2(i) admits \(uh_1\le P^{1/2}\),
 hence \(u\) as large as \(P^{1/2}\), and at that size the first error term
 below is \(\tfrac9{16}P^{-3/4}\), larger than the stated bound by a
 factor \(P^{7/24}\). It *is* the middle-band condition of Step 5b:
@@ -3245,7 +3256,7 @@ statement that does the work.
 | — | Lemma 5.1(ii) | \(\lbrack\{A\}+\{B\}\ge1\rbrack=\{A\}+\{B\}-\{A+B\}\) | every carry is a difference of unit sawtooths | Step 3(3b), (3d) |
 | — | Lemma 5.1(iii) | branch functions \(F_{\boldsymbol\kappa}\), offset \(\lvert j\rvert\le3\) | branch decomposition; smooth-per-branch, frozen floor \(J_F\) | Steps 3(3e), 5 |
 | — | Lemma 5.1(iv) | (i)–(iii) | master identity \(\varphi_2=M_1+M_2+M_3+M_4\) | Step 2 |
-| 1 | Step 1 | \(A\)-process twice, \(H_1=P^{1/48}\), \(H_2=P^{1/24}\) | \(K_c\) reduced to \(T_2\); (C1)–(C4) hold with room \(P^{-1/48}\) | Steps 2–6 |
+| 1 | Step 1 | \(A\)-process twice, \(H_1=P^{1/48}\), \(H_2=P^{1/24}\) | \(K_c\) reduced to \(T_2\); (C3), (C4) hold, so (C1) does with room \(P^{-1/48}\) | Steps 2–6 |
 | 2 | Step 2 | Lemma 5.1(iv), estimate (E4) | \(M_1\) deleted at cost \(2.7P^{1/4}\); \(M_2,M_3,M_4\) remain | Step 3 |
 | 3 | Step 3 | Lemma 3.7 (sawtooth windows), Lemma 3.5 at \(J_2=P^{1/24}\) (carries) | every piece \(=\) anchor \(+\) waves \(+\) differenced waves \(+\) (D3)-smooth | Steps 4–5 |
 | 4 | Step 4 | pieces with total wave frequency \(t\ne0\), \(\lvert t\rvert\le3P^{1/24}\) | \(\ll\lvert t\rvert^{-1/6}P^{23/24+\varepsilon}\); \(t=0\) collapses exactly to (D1) | Step 6; \(t=0\) to Step 5 |
@@ -3288,7 +3299,7 @@ differenced-wave scale present.
 The middle band is the only place in the paper where the composite
 second derivative can cross zero inside a cell, and the only consumer
 of the three-term form of Lemma 3.9. It is also where condition (C5)
-of Lemma 5.2b is discharged: (C5) does *not* follow from (C1)–(C4),
+of Lemma 5.2b is discharged: (C5) does *not* follow from (C3) and (C4),
 and the middle-band inequality \(\mu\le60\lambda_0\) is exactly what
 supplies it.
 
@@ -3317,7 +3328,7 @@ with \(T_2=\sum_ne(\varphi_2)\),
 \(\varphi_2=\Delta\Delta(c\,\theta_2)\). For all
 \(h_1\le H_1\), \(h_2\le H_2\), \(k\le P^{1/24}\):
 \(kh_1h_2\le P^{1/24+1/48+1/24}=P^{5/48}\le P^{1/8}\), so
-(C1)–(C4) hold with room \(P^{-1/48}\) on (C1) (and (C4) is
+(C3) and (C4) hold, so (C1) does too, with room \(P^{-1/48}\) on it (and (C4) is
 \(P^{1/48},P^{1/24}\le P^{1/24}\)). We prove
 \[
 |T_2|\ll P^{23/24+\varepsilon}
@@ -3860,7 +3871,7 @@ decaying. The pure-\(m\) part is
 
 *Step C (double differencing; corner exactness).* Apply Step 1 of
 Theorem 5.3 (\(H_1=P^{1/48}\), \(H_2=P^{1/24}\); now
-\(kh_1h_2\le2P^{1/96+1/48+1/24}\le P^{1/8}\), so (C1)–(C4) hold) to
+\(kh_1h_2\le2P^{1/96+1/48+1/24}\le P^{1/8}\), so (C3) and (C4) hold) to
 the whole mode phase. On each level-1 carry branch of
 Lemma 5.1(iii), the four corner values obey the exact relations
 \[

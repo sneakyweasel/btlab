@@ -74,7 +74,7 @@ def test_single_seed_etree_density_is_one_over_m() -> None:
 
 
 def test_survival_dp_matches_brute_force() -> None:
-    L = scale_L(12, N0_CERTIFIED)
+    L = scale_L(12 * math.log(10.0), N0_CERTIFIED)  # scale_L wants the natural log of y
     d = 12
     logp = survival_log2_by_depth(L, d)
     alive = 0

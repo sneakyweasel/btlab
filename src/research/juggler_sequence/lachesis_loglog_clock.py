@@ -192,9 +192,11 @@ def survival_log2_by_depth(L: float, d_max: int) -> list[float]:
 
 def evidence_depth(log10_y: int, samples: float, d_max: int = 4000,
                    N0: int = N0_CERTIFIED) -> int | None:
-    """Least depth at which fair coin expects fewer than one survivor among ``samples`` odd starts."""
+    """Least depth at which fair coin expects fewer than one survivor among ``samples`` odd starts.
 
-    logp = survival_log2_by_depth(scale_L(log10_y, N0), d_max)
+    ``scale_L`` takes the *natural* log of ``y``; ``log10_y`` is base ten."""
+
+    logp = survival_log2_by_depth(scale_L(log10_y * math.log(10.0), N0), d_max)
     target = math.log10(samples)
     for d in range(1, d_max + 1):
         if logp[d] == float("-inf"):

@@ -164,17 +164,50 @@ file is added.
 | Walk mod 1 is the rotation orbit by \(\log_2(3/2)\) | **EXACT — HUMAN PROOF** |
 | Clock defect \(2.07\cdot 10^{-10}\) realised, \(1.72\cdot 10^{-4}\) bounded on a cycle | **OBSERVATION** |
 | Single-seed \(E\)-tree density \(1/m\) at each burst scale | **COMPUTATIONALLY VERIFIED** |
-| A Lachesis basin is not lacunary; density \(\gtrsim 1/n\) on every block | **CONJECTURE** |
+| A Lachesis basin is not lacunary; density \(\approx 2/n\) on every block, \(y<10^{85142}\) | **CONJECTURE** |
+| \(E\) contributes \(2/m\), \(OE\) contributes \(\approx 1/3\) of that; no special blocks | **COMPUTATIONALLY VERIFIED** |
 | The deep natural-density census is dominated by a floor raise | **REFUTED** |
+
+**Observation 6 (the OE detour costs; COMPUTATIONALLY VERIFIED).** The
+two contagion productions are two translations of the same clock:
+\(E\) sends \(c\) to \(c+1\), and \(OE\) sends \(c\) to
+\(c+\beta\), \(\beta=\log_2(4/3)=0.415037\), via
+\(\lfloor\sqrt{\lfloor n^{3/2}\rfloor}\rfloor=\lfloor n^{3/4}\rfloor\)
+(checked on \([2,60000)\)). One production step from a single seed \(m\)
+contributes to the natural density of the block containing its image:
+
+| \(m\) | \(E\): \(m\times\)density | \(OE\): \(m\times\)density | \(OE/E\) |
+|---|---|---|---|
+| 101 | 1.9610 | 0.4235 | — |
+| 1001 | 1.9960 | 0.3993 | 0.200 |
+| 5001 | 1.9992 | 0.7015 | 0.351 |
+| 10001 | 1.9996 | 0.6497 | 0.325 |
+
+So \(E\) gives exactly \(2/m\) and every \(OE\) detour costs a factor
+\(\approx 1/3\) while buying only a new clock offset.
+
+**Consequence 7 (no special blocks).** A dyadic block is a \(c\)-window
+of width \(\approx 1/\log y\): \(1.46\cdot 10^{-2}\) at \(10^{30}\),
+\(4.34\cdot 10^{-4}\) at \(10^{1000}\) — always wider than the
+\(\alpha\)-gap \(5.101\cdot 10^{-6}\) out to
+\(\log y=1/5.101\cdot 10^{-6}\), i.e. \(y<10^{85142}\). So a cycle-state
+*pure-\(E\)* burst already lands in every block on that range, and by
+Observation 6 no \(OE\) path can improve on it. The basin's per-block
+density is \(\approx 2/n\) uniformly; there are no special blocks.
+
+Corollary 4.3's amplification is therefore in **log-count**, not in
+per-block natural density: the \(OE\) steps reach new scales, which the
+logarithmic integral sees and a single block does not. Its constant
+carries the seed's \(1/n\), so the factor \((\log y)^{\lambda-1}\) is not
+an absolute density.
 
 ## Open questions
 
-Consequence 4 pins only the cycle-states' own contribution, uniformly at
-\(1/n\). Corollary 4.3's amplified density
-\(\gg(\log y)^{\lambda-1}\) — about \(6\%\) at \(y=10^{68}\) — comes
-from the full backward closure and sits on blocks this branch does not
-locate. Whether the same rotation fixes those blocks, or only the
-\(1/n\) floor, is the one open question.
+Beyond \(y\approx 10^{85142}\) the \(\alpha\)-gaps exceed the block
+width and pure-\(E\) coverage lapses; there the \(OE\) offsets matter,
+at \(1/3\) density each, and the every-block statement is not claimed.
+Longer periods push the threshold out (gap \(2.68\cdot 10^{-6}\) at
+\(L=8632083\)). Nothing in this branch needs that range.
 
 ## Decision
 
@@ -187,9 +220,10 @@ dominated by the floor campaign already parked at \(5.54\cdot 10^8\).
 Nothing here excludes a fate or moves a period bound. Recording it and
 stopping.
 
-Best next question: does the rotation also fix which dyadic blocks
-carry Corollary 4.3's amplified density \(\gg(\log y)^{\lambda-1}\), or
-only the \(1/n\) cycle-state floor?
+Best next question: the every-block density \(2/n\) is a *lower* bound
+from the cycle states alone — is there a matching upper bound on a
+Lachesis basin's per-block density, which together with Theorem 1 would
+be the first two-sided constraint on the class?
 
 ## Publication assessment
 

@@ -116,7 +116,7 @@ def test_c5_dependency_is_stated_in_the_table() -> None:
     """(C5) is not implied by (C1)-(C4); the table says which step discharges it."""
     t = table()
     assert "(C5)" in t
-    assert "does *not* follow from (C1)–(C4)" in t or "not implied by (C1)" in t
+    assert "does *not* follow from (C3) and (C4)" in t
     assert r"\mu\le60\lambda_0" in t
 
 

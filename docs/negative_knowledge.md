@@ -724,6 +724,18 @@ second frontier.
   open \(N_0=5.54\cdot 10^8\).
 - **Residual floor \(1981\)/\(4756\)** for leftover \(84\)
   ([juggler_cycle_l84_residual_floor](problems/juggler_cycle_l84_residual_floor.md)).
+- **Lachesis log-log clock**
+  ([juggler_lachesis_loglog_clock](problems/juggler_lachesis_loglog_clock.md)).
+  The walk mod 1 is the rotation orbit by \(\log_2(3/2)\), and the walk
+  is the log-log clock to \(2\cdot 10^{-10}\) realised
+  (\(1.7\cdot 10^{-4}\) bounded on a cycle), so a Lachesis basin is not
+  lacunary and carries density \(\gtrsim 1/n\) on *every* dyadic block —
+  the third case of contagion note §5.3. The deep natural-density census
+  this suggests is `J-lachesis-census-dominated`: reaching cycle minima
+  \(\le M\) costs \(M\) shallow orbits as a floor raise against \(M\)
+  orbits at \(10^{100}\) to depth \(\approx 500\) as a census. Do not run
+  the census. Open: whether the rotation also locates Corollary 4.3's
+  amplified blocks.
 - **Hug-cylinder construction** depth \(\ge 2\); depth \(1\) is
   `J-hug-flow-window-depth-one`
   ([juggler_hug_cylinder_construction](problems/juggler_hug_cylinder_construction.md)).
@@ -752,7 +764,7 @@ CLOSE) are included so the completeness gate cannot hide them.
 
 `J-ceiling-finance-leftover-killer`, `J-equal-valleys-leftover-killer`,
 `J-kernel-localize`, `J-l84-m-ge-three-floor-261`,
-`J-second-valley-leftover-killer`.
+`J-lachesis-census-dominated`, `J-second-valley-leftover-killer`.
 
 ### Additional CLOSE / MIXED dossiers
 

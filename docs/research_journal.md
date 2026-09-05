@@ -25230,3 +25230,218 @@ Best next question
 - audit the remaining hypotheses of Sections 4-6 the same way, rather
   than waiting to trip over the next one
 ```
+
+## Lachesis log-log clock: the walk is the basin's scale spectrum (finding; PARK)
+
+Paper D's firewall names the gap in one sentence: Paper A constrains the
+*states* of a hypothetical cycle, Paper C Theorem 1 constrains the *basin*,
+and the two constraints do not meet. This entry is a partial crossing, on
+the basin side only.
+
+Two exact facts, both already here, that had not been put together.
+
+**The walk is a rotation orbit.** \(u_t=o_t\log_2 3-t\), and \(t,o_t\) are
+integers, so \(u_t\equiv o_t\alpha\pmod 1\) with
+\(\alpha=\log_2 3-1=\log_2(3/2)\). Along a cycle the odd count runs through
+\(0,\ldots,o\), so the walk values mod 1 are exactly \(\{j\alpha\}_{j<o}\).
+Largest gap: \(5.194\cdot 10^{-6}\) at \(L=478245\), \(5.101\cdot 10^{-6}\)
+at \(780239\), \(5.008\cdot 10^{-6}\) at \(1082233\). This is Paper A's
+Ostrowski layer read mod 1; nothing new in it by itself.
+
+**The walk is the log-log clock.**
+\(\log_2\log J^t(n)=\log_2\log n+u_t+\varepsilon_t\). The one-sided half is
+the Lean height law; the two-sided half is the flight note §6 transport
+bound. Measured on 200 odd starts per scale at \(10^{12}\)–\(10^{100}\)
+above \(N_0\): \(\max\lvert\varepsilon\rvert=2.07\cdot 10^{-10}\) in
+u-units. On a hypothetical cycle the transport bound gives
+\(1.72\cdot 10^{-4}\) at \(n=3.5\cdot 10^8,\ L=780239\).
+
+**Together.** A seed \(m\) puts an \(E\)-tree burst at every scale
+\(m^{2^k}\), of natural density \(\approx 1/m\) there — verified exactly at
+\(m=101,k=2\): \(1040603\) members at scale \(1.0824\cdot 10^8\), density
+\(0.009614\) against \(1/m=0.009901\). In the clock \(c=\log_2\log\) those
+bursts sit at \(c(m)+k\), so the scales a backward-closed class covers are
+\(\{c(m)\bmod 1\}\). For one seed that is a point, and the tree is lacunary
+— which is exactly contagion note §5.3's reason that pointwise natural
+density fails. For a Lachesis basin the seeds are the cycle states, whose
+clock positions are the equidistributed rotation orbit above, gaps
+\(5.1\cdot 10^{-6}\) against a clock defect \(1.7\cdot 10^{-4}\), both far
+below 1. So a Lachesis basin is **not** lacunary: density
+\(\gtrsim 1/n\) on every dyadic block.
+
+That is the third case, missing from §5.3 between the single seed
+(lacunary) and the interval \([1,N_0]\) (uniform), and for the Lachesis
+class it upgrades Corollary 4.3 from *some* \(y\) in a range to *every*
+dyadic block. It excludes no fate and moves no period bound.
+
+**Refuted ideas.** The census this suggests. At density \(\sim 1/n\), \(M\)
+samples give \(M/n\) expected basin members, so a census of \(M\) samples
+tests cycle minima only up to \(\sim M\); the depth needed to clear
+fair-coin survivors is \(508\) at \(M=3.5\cdot 10^9\) and \(722\) at
+\(M=10^{13}\) (scale \(10^{100}\), exact fair-coin DP). Certifying instead
+that every \(n\le M\) reaches 1 costs \(M\) *shallow* orbits rather than
+\(M\) orbits at \(10^{100}\), and returns a certificate rather than a
+statistic. `J-lachesis-census-dominated`. Do not run it.
+
+An escape-side companion measured the same week: conditioning fair-coin odd
+starts on survival to depth \(d\) already forces the odd share to
+\(q^*=\log 2/\log 3\) — at \(d=1280\), \(P(\lvert o/d-q^*\rvert\le 0.01)\)
+is \(0.996\) at \(10^{12}\) and \(0.9995\) at \(10^{1000}\). So "select the
+starts whose prefix odd share is closest to \(q^*\)" is the same selector as
+"select the starts that survived longest"; a witness search cannot be
+targeted that way.
+
+**Escape has no finite certificate.** Lachesis is certified by a repeated
+state and Atropos by reaching \(N_0\); divergence is a statement about the
+infinite tail, and the only proven rate (flight note §5, \(u_k\ge\log_2(\log
+x_k/\log n)\)) is log-log. No finite computation returns a positive for
+Clotho. That is why the Lachesis side is the one that admits an instrument
+at all — and why the instrument, here, turned out to be the floor campaign
+rather than a census.
+
+```text
+What was learned
+- u_t mod 1 is the rotation orbit by log2(3/2), indexed by the odd count.
+  Exact, one line, and it had not been used on the basin side
+- the walk is the log-log clock to 2e-10 realised, 1.7e-4 bounded on a
+  cycle: the two Lean halves already there are two-sided in practice
+- a single seed's E-tree has density 1/m at each burst scale m^(2^k)
+- hence a Lachesis basin is not lacunary; contagion note 5.3's single-seed
+  objection does not apply to it. Third case, now recorded
+- the deep natural-density census is dominated by a floor raise
+Strongest theorem
+- none proved. The rotation is exact algebra; the clock is a measurement
+  plus an existing Lean transport bound; every-block is a conjecture
+Strongest refutation
+- the census itself (J-lachesis-census-dominated), and the redundancy of
+  the critical-odd-share selector with the survival selector
+Reusable machinery
+- lachesis_loglog_clock: clock defect census, rotation gaps, exact
+  single-seed E-tree density, fair-coin evidence depth in log space
+Branch status
+- PARK
+Best next question
+- does the rotation also fix which dyadic blocks carry Corollary 4.3's
+  amplified density, or only the 1/n cycle-state floor?
+```
+
+## Lachesis log-log clock: the OE detour never pays (answer; PARK stands)
+
+The previous entry's open question — does the rotation also fix which
+dyadic blocks carry Corollary 4.3's amplified density, or only the
+cycle-state floor — is answered, and the question contained a mistake of
+mine that the answer removes.
+
+The two contagion productions are two translations of the same clock
+\(c=\log_2\log\): \(E\) sends \(c\mapsto c+1\), and \(OE\) sends
+\(c\mapsto c+\beta\) with \(\beta=\log_2(4/3)=0.415037\), through
+\(\lfloor\sqrt{\lfloor n^{3/2}\rfloor}\rfloor=\lfloor n^{3/4}\rfloor\)
+(checked on \([2,60000)\)). Measured contribution of one step from a
+single seed \(m\) to the natural density of the block containing its
+image: \(E\) gives exactly \(2/m\) (\(m\times\)density \(=1.9610,
+1.9920, 1.9960, 1.9992, 1.9996\) at \(m=101,501,1001,5001,10001\)),
+\(OE\) gives \(\approx 0.65/m\), ratio \(0.200,0.351,0.325\) — about
+\(1/3\).
+
+So every \(OE\) detour costs a factor \(1/3\) in block density and buys
+only a new clock offset. A dyadic block is a \(c\)-window of width
+\(\approx 1/\log y\) — \(1.46\cdot 10^{-2}\) at \(10^{30}\),
+\(4.34\cdot 10^{-4}\) at \(10^{1000}\) — always wider than the
+\(\alpha\)-gap \(5.101\cdot 10^{-6}\) until \(y\approx 10^{85142}\).
+Below that a cycle-state *pure-\(E\)* burst is already in every block,
+so no \(OE\) path is ever needed and none improves on \(2/n\).
+
+**There are no special blocks.** The basin's per-block density is
+\(\approx 2/n\), uniformly. Corollary 4.3's amplification lives in
+log-count, which integrates over the new scales the \(OE\) steps reach,
+and not in any single block.
+
+**Correction.** The previous entry read Corollary 4.3's
+\(\gg(\log y)^{\lambda-1}\) as an absolute density, "about \(6\%\) at
+\(y=10^{68}\)". That is wrong: the implied constant carries the seed's
+\(1/n\), so the corollary's density on its best block is
+\(\lesssim(1/n)(\log y)^{\lambda-1}\), which is *below* the every-block
+\(2/n\) proved here. The new statement is therefore stronger than
+Corollary 4.3 for this class in both respects — every block rather than
+some, and \(2/n\) rather than \((1/n)(\log y)^{\lambda-1}\).
+
+Also corrected: the census depths, which had used `scale_L` with a
+base-ten log where it wants the natural log. Read \(527\) at
+\(M=3.5\cdot 10^9\) and \(743\) at \(M=10^{13}\), not \(508\) and
+\(722\). The domination argument is unaffected — it never depended on
+the depth, only on the reach \(M\).
+
+```text
+What was learned
+- E and OE are two translations of one clock, by 1 and by log2(4/3)
+- E contributes exactly 2/m of block density, OE about a third of that,
+  so detours are never worth taking
+- the alpha-rotation already covers every block out to 1e85142, so the
+  pure-E floor is also the ceiling of this construction: no special blocks
+- Corollary 4.3's (log y)^(lambda-1) is not an absolute density; its
+  constant carries the 1/n. My previous "6 percent" reading was wrong
+Strongest theorem
+- none proved; Observation 6 and Consequence 7 are measurements plus the
+  clock geometry
+Strongest refutation
+- the "special blocks" reading of Corollary 4.3, including my own
+Reusable machinery
+- none new; the measurement is four lines against the existing productions
+Branch status
+- PARK stands. The open question is closed, not promoted
+Best next question
+- is there a matching UPPER bound on a Lachesis basin's per-block density?
+  With Theorem 1 that would be the first two-sided constraint on the class
+```
+
+
+### Two of the four standing conditions were consequences of the other two
+
+The audit I promised, applied to the constraints every lemma in Sections 4-6 assumes. The block
+listed four:
+
+```text
+  (C1) k h1 h2 <= P^(1/8)     (C2) h1 h2 <= P^(1/2)/3
+  (C3) 1 <= k <= P^(1/24)     (C4) h1, h2 <= P^(1/24)
+```
+
+(C3) and (C4) cap `k`, `h1`, `h2` each at `P^(1/24)`. Their product is `P^(3/24) = P^(1/8)`,
+which is (C1) **exactly** -- equality at the extremes, not an estimate. And `h1 h2 <= P^(1/12)`,
+which clears (C2) once `P >= 3^(12/5) = 14`. So the standing setup is two inequalities, and a
+referee checking an invocation was checking four.
+
+**(C2) is worse than redundant: it is cited nowhere.** Its only occurrence in the manuscript was
+its own definition. It stays, now labelled as a consequence and as never invoked, because the
+differencing steps read more easily against a named bound on the shift product -- but a reader
+no longer has to scan twenty proofs for a use that is not there.
+
+The labels are untouched, since seven proofs cite (C1) by name and Lemma 5.2b's extra condition
+is (C5); only their status changes, from hypothesis to consequence. Ten places that named the
+set as a hypothesis -- both lemma statements, the (C5) independence claim, three
+"the implied constant depends on ... only" sentences, and the verifications in Theorem 5.3 Step 1
+and Theorem 6.1 -- now name the two.
+
+Two spellings of the same reference nearly defeated this: `(C1)--(C4)` and `(C1)-(C4)` with an
+en dash, four of one and three of the other. The script refused to write until none survived,
+which is the only reason the three double-hyphen ones were found.
+
+```text
+What was learned
+- the deliberate audit paid on its first target, and differently from
+  the previous three: not a hypothesis too strong for its proof but
+  two hypotheses that were theorems
+- a redundant hypothesis is invisible in the same way an over-strong
+  one is; nothing downstream fails, so only reading finds it
+Strongest theorem
+- none; the standing setup is halved and one condition is shown inert
+Strongest refutation
+- none; this was redundancy, not error
+Reusable machinery
+- none new; the refuse-to-write-on-residue pattern earned its keep
+Branch status
+- ADVANCE (verifying the setup at an invocation costs two checks)
+Best next question
+- continue the audit into Lemma 5.2's decoration classes: (D1) has
+  three parameters and (D3) two derivative bounds, and Step 4 already
+  showed one of the (D1) budgets was not what the proof needed
+```

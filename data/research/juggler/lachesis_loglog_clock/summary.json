@@ -1,5 +1,5 @@
 {
-  "git_commit": "c42a385176c961c5f2a03ab0c7f122f54aec90f3",
+  "git_commit": "5862b4862bd0029d43eac0148adb8806c36e8bce",
   "N0": 350000000,
   "alpha": 0.5849625007211561,
   "walk_mod_one_is_rotation_orbit": true,
@@ -112,7 +112,7 @@
       "density": 2.857142857142857e-09,
       "hits": 10,
       "samples_for_hits": 3500000000.0,
-      "evidence_depth": 508,
+      "evidence_depth": 527,
       "log10_y": 100,
       "cycle_minima_tested": 3500000000.0,
       "dominated_by_floor_raise": true
@@ -122,7 +122,7 @@
       "density": 1e-09,
       "hits": 10,
       "samples_for_hits": 10000000000.0,
-      "evidence_depth": 535,
+      "evidence_depth": 554,
       "log10_y": 100,
       "cycle_minima_tested": 10000000000.0,
       "dominated_by_floor_raise": true
@@ -132,7 +132,7 @@
       "density": 1e-10,
       "hits": 10,
       "samples_for_hits": 100000000000.0,
-      "evidence_depth": 597,
+      "evidence_depth": 617,
       "log10_y": 100,
       "cycle_minima_tested": 100000000000.0,
       "dominated_by_floor_raise": true
@@ -142,7 +142,7 @@
       "density": 1e-12,
       "hits": 10,
       "samples_for_hits": 10000000000000.0,
-      "evidence_depth": 722,
+      "evidence_depth": 743,
       "log10_y": 100,
       "cycle_minima_tested": 10000000000000.0,
       "dominated_by_floor_raise": true

@@ -1,0 +1,15 @@
+{
+ "counterexamples": [],
+ "first_seen": "5 Sep 2026",
+ "id": "juggler_lachesis_basin_every_block",
+ "lean_reference": "",
+ "literature": [],
+ "mathematical_domain": "Juggler fate contagion; equidistribution mod 1",
+ "notes": "Third case of contagion note Sec.5.3, between the single seed (lacunary) and the interval [1, N0] (uniform). Ingredients are existing machinery: Paper A's rotation layer read mod 1 (J-lachesis-walk-rotation) and the flight-note height law plus transport bound (J-lachesis-loglog-clock). Excludes no fate; moves no period bound. The operational consequence, a deep natural-density census, is refuted as dominated (J-lachesis-census-dominated). Open: whether the same rotation also fixes which blocks carry Corollary 4.3's amplified density, or only the 1/n cycle-state floor.",
+ "origin": "docs/problems/juggler_lachesis_loglog_clock.md",
+ "proof_reference": "",
+ "statement": "If a nontrivial Juggler cycle of minimum n exists, its basin has natural density at least c/n on every dyadic block, not merely on infinitely many: the cycle states' log-log clock positions c(x) = log2 log x are an equidistributed orbit of the rotation by log2(3/2), with largest gap 5.1e-6 at period 780239, and each state contributes an E-tree burst of density about 1/m at every scale m^(2^k).",
+ "status": "ACTIVE",
+ "tested_range": "clock defect on 200 odd starts per scale at 1e12..1e100 above N0 = 3.5e8; rotation gaps for periods 478245, 780239, 1082233; E-tree density exact for m in {11, 101}, generations 1-2",
+ "title": "A Lachesis basin is not lacunary"
+}

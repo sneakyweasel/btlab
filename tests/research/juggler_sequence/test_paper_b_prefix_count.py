@@ -350,3 +350,35 @@ def test_the_remark_names_the_four_depth_five_words() -> None:
     remark = text[text.index("The name of the proposition"):text.index("The exact count is worth")]
     for w in surviving_words(5):
         assert w in remark, w
+
+
+def test_only_two_standing_conditions_are_hypotheses() -> None:
+    """(C3) and (C4) cap k, h_1, h_2 each at P^(1/24); (C1) and (C2) follow.
+
+    (C1) is exactly the product of the three caps, tight at k = h_1 = h_2 = P^(1/24).
+    (C2) needs only P >= 3^(12/5) = 14.  So an invocation verifies two inequalities, not four,
+    and the lemma statements say so.
+    """
+    from fractions import Fraction as F
+
+    cap = F(1, 24)
+    assert cap * 3 == F(1, 8)                      # (C1), with equality
+    assert cap * 2 == F(1, 12) and F(1, 12) < F(1, 2)
+    assert abs(3 ** (12 / 5) - 14.0) < 0.1         # where (C2) starts to hold
+
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "Assume (C3) and (C4), write" in text          # Lemma 5.2
+    assert r"Assume (C3) and (C4), \(j=0\)" in text       # Lemma 5.2b
+    assert "(C1)\u2013(C4)" not in text and "(C1)--(C4)" not in text
+    assert "checking two inequalities, not four" in text
+
+
+def test_c2_is_recorded_as_never_invoked() -> None:
+    """Its only other occurrence was its own definition; the paper now says so rather than
+    leaving a reader to check twenty proofs for a use that is not there."""
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "invoked nowhere below" in text
+    # the real invariant is not a count but that no proof cites it, unlike (C1), (C3), (C4)
+    assert "by (C2)" not in text
+    for cited in ("by (C1)", "by (C3)", "by (C4)"):
+        assert cited in text, cited
