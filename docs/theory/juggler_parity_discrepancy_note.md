@@ -4741,6 +4741,26 @@ carries*. What a level-1 kernel would not need is the layer built on
 top of them --- parts (i) and (ii) of that lemma, the level-2 defect
 identity and the double-gap carry algebra.
 
+*What the level-1 kernel actually is.* It is not a new species. For
+integer \(r\), \(e(r\{x\})=e(rx)\), since \(r\lfloor x\rfloor\) is an
+integer; so Fourier-expanding \(e(c(n)\{n^{3/2}\})\) in the sawtooth
+produces exactly the monomial waves \(e(rn^{3/2})\) that Theorems 4.4
+and 4.7 estimate, with coefficients
+\(\lvert a_r(c)\rvert\le\min\bigl(1,1/(\pi\lvert c-r\rvert)\bigr)\)
+concentrating the mass at \(r\approx c(n)\). The whole difference is
+the range: those theorems work at
+\(\lvert r\rvert\le P^{1/24}\), and the kernel needs
+\(\lvert r\rvert\lesssim kP^{33/32}\) --- a gap of \(P^{95/96}\), and
+nothing else.
+
+That also says what the drift threshold means, which is more than that
+an interval fails to exist. The window on which \(c\) moves by less
+than \(1\) has length \(\asymp1/c'\asymp P^{-1/32}/k\): shorter than
+the spacing of the summation variable, so it contains no integer at
+all. A coefficient exponent above \(1\) is exactly the statement that
+the shifted window is finer than the lattice it is supposed to sit on,
+and that is why no amount of care with Lemma 3.7 recovers it.
+
 *The three thresholds are independent, and they re-sort depth seven.*
 Applying all of them to the three targets at once:
 

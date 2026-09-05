@@ -1016,3 +1016,43 @@ def test_paper_carries_the_screen_table() -> None:
     assert r"\(227/256\)" in text
     assert r"\(127\) contractors" in text
     assert "negative evidence" in text
+
+
+# --- what the level-1 kernel is: the same waves, at a wider frequency range ---
+
+
+def test_the_sawtooth_fourier_modes_are_the_monomial_waves() -> None:
+    """e(r{x}) = e(rx) for integer r, since r*floor(x) is an integer."""
+    from mpmath import mp, mpf, pi, floor, power, exp
+    mp.dps = 40
+    for x in (mpf("3.7"), mpf("1234.56789"), power(mpf(1000003), mpf(3) / 2)):
+        for r in (1, 2, -5, 37):
+            lhs = exp(2j * pi * r * (x - floor(x)))
+            rhs = exp(2j * pi * r * x)
+            assert abs(lhs - rhs) < mpf(10) ** -25, (x, r)
+
+
+def test_the_gap_is_a_frequency_range_of_P_95_over_96() -> None:
+    """Theorems 4.4/4.7 reach P^{1/24}; the kernel's mass sits at P^{33/32}."""
+    _, exponent = B.defect_coefficient("OOOEOEE", 6, 1)
+    assert exponent == Fraction(33, 32)
+    assert exponent - Fraction(1, 24) == Fraction(95, 96)
+
+
+def test_the_drift_threshold_is_a_sub_lattice_window() -> None:
+    """Coefficient exponent c gives a window of length P^{1-c}; above 1 it holds no integer."""
+    _, exponent = B.defect_coefficient("OOOEOEE", 6, 1)
+    assert 1 - exponent == Fraction(-1, 32)
+    assert exponent > B.DRIFT_THRESHOLD
+    # and the unblocked coefficients of the same word do give windows of positive length
+    for s in (2, 4):
+        _, e2 = B.defect_coefficient("OOOEOEE", 6, s)
+        assert e2 < B.DRIFT_THRESHOLD and 1 - e2 > 0, s
+
+
+def test_paper_states_what_the_level_one_kernel_is() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "It is not a new species." in text
+    assert r"e(r\{x\})=e(rx)" in text
+    assert r"a gap of \(P^{95/96}\)" in text
+    assert "finer than the lattice it is supposed to sit on" in text

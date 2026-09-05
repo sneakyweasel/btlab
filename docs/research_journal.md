@@ -27933,3 +27933,65 @@ Best next question
   OOOEOEE's letter-6 object satisfy the hypotheses of any lemma in
   Section 3, or does it fail all of them for a nameable reason?
 ```
+
+ ### The level-1 kernel is the paper's own wave, one frequency range out
+
+The positive check. The screen said `OOOEOEE`'s letter-6 object carries
+no obstruction the paper can name; the question was whether it
+satisfies any Section 3 hypothesis, or fails all of them for a
+nameable reason. It is the second, and the reason is clean.
+
+**It is not a new species of object.** For integer `r`,
+`e(r{x}) = e(rx)`, since `r⌊x⌋` is an integer. So Fourier-expanding
+`e(c(n){n^{3/2}})` in the sawtooth produces exactly the monomial waves
+`e(r n^{3/2})` that Theorems 4.4 and 4.7 already estimate, with
+coefficients `|a_r(c)| ≤ min(1, 1/(π|c-r|))` putting the mass at
+`r ≈ c(n)`.
+
+```text
+    Theorems 4.4/4.7 estimate   |r| <= P^{1/24}
+    the kernel needs            |r| <~ k P^{33/32}
+    gap                         P^{95/96}
+```
+
+The whole difference is the frequency range. Nothing about the shape of
+the sum is new.
+
+**And the drift threshold gets a meaning.** The window on which `c`
+moves by less than 1 has length `≍ 1/c' ≍ P^{-1/32}/k` — *shorter than
+the spacing of the summation variable*. A coefficient exponent above 1
+is exactly the statement that the shifted window is finer than the
+lattice it is meant to sit on, so it contains no integer at all. That
+is why no amount of care with Lemma 3.7 recovers it, and it is a better
+gloss than "no drift-1 interval exists", which sounds like an
+inconvenience rather than a lattice obstruction.
+
+```text
+What was learned
+- e(r{x}) = e(rx) collapses the sawtooth's Fourier modes onto the
+  monomial waves the paper already handles, so the level-1 kernel is
+  a range problem and not a shape problem
+- the drift threshold is a statement about the window being finer than
+  the integers, which explains why it is absolute rather than technical
+Strongest theorem
+- the level-1 kernel's modes are the Theorem 4.4/4.7 waves at
+  |r| <~ k P^{33/32} instead of P^{1/24}, a gap of exactly P^{95/96}
+Strongest refutation
+- none; the check was positive in the sense of naming the obstruction
+  rather than removing it
+Reusable machinery
+- none new; three tests pinning the identity, the gap and the window
+Branch status
+- PARK
+Why
+  The object is now completely characterised: same waves, same
+  exponent 3/2, frequency range wider by P^{95/96}, and the reason the
+  window device cannot bridge it is that the window is sub-unit. That
+  is as far as classification goes. Closing the gap is an estimate for
+  e(r n^{3/2}) at large r, which is a different piece of work from
+  anything in this paper and should be opened as its own branch rather
+  than continued here.
+Best next question
+- what is the best available bound for sum_{n~P} e(r n^{3/2}) at
+  r ~ P^{33/32}, and does a quarter of its saving clear 1 - 1/96?
+```
