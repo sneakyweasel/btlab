@@ -597,4 +597,4 @@ def test_the_extra_cost_is_recorded_rather_than_hidden() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
     assert "That is an assessment and not an estimate." in text
     assert "needs six waves where the proved rows need four" in text
-    assert r"\gamma_s=\alpha-e_s" in text
+    assert "the *difference* of the\ntwo scale exponents" in text

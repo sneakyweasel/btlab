@@ -4585,11 +4585,12 @@ two scale exponents, \(J^{t-1}\)'s less \(J^{s}\)'s.
 Those differences are the paper's own displayed constants. At the fifth
 letter of \(OOEO*\), where \(J^4\) has scale exponent \(27/16\), they
 are \(3/16\), \(-9/16\) and \(9/16\) for \(s=1,2,3\) --- which are, in
-that order, \(C=\tfrac{9k}{16}n^{3/16}\); the discarded remainder
-\(\lvert k\rvert P\cdot P^{-9/16}\); and
-\(B=\tfrac{3k}4v^{1/4}\asymp kn^{9/16}\). At the fifth letter of
-\(OOOE*\) they are \(3/16\) and \(-9/16\), the \(C\) and the remainder
-of that proof. At the fourth letter of \(OOO*\), where \(J^3\) has
+that order, the kept coefficient \(\tfrac{9k}{16}n^{3/16}\) of
+\(\theta_1\); the discarded remainder
+\(\lvert k\rvert P\cdot P^{-9/16}\); and the coefficient
+\(\tfrac{3k}4v^{1/4}\asymp kn^{9/16}\) riding \(\theta_3=\{v^{1/2}\}\).
+At the fifth letter of \(OOOE*\) they are \(3/16\) and \(-9/16\), the
+kept coefficient and the remainder of that proof. At the fourth letter of \(OOO*\), where \(J^3\) has
 scale exponent \(27/8\), the \(s=2\) difference is \(9/8\): the
 coefficient \(W\asymp kn^{9/8}\) that Section 3.4 names as the reason
 no drift-1 interval exists.

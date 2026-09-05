@@ -52,20 +52,19 @@ certified above. Not a cycle obstruction and not a halt theorem.
 -/
 
 set_option exponentiation.threshold 20000000 in
-set_option maxRecDepth 4000000 in
 /-- Upper side of the sandwich: `3^10781274 < 2^17087915`,
 hence `log 2 / log 3 > 10781274 / 17087915`.
 
 Proved by `norm_num`, so the comparison is checked by the kernel rather than by the
 compiled runtime: these two inequalities carry the whole Ostrowski certification, and
 `Nat` literal arithmetic is GMP-backed in the kernel, so the five-million-digit
-comparison costs well under a second. The thresholds are raised only for these two
-declarations. -/
+comparison costs well under a second. Only the exponent threshold is raised, and only
+for this declaration: it gates whether the power is evaluated at all, whereas
+`maxRecDepth` is not consulted on this route. -/
 theorem theta_sandwich_upper : (3 : ℕ) ^ 10781274 < 2 ^ 17087915 := by
   norm_num
 
 set_option exponentiation.threshold 20000000 in
-set_option maxRecDepth 4000000 in
 /-- Lower side of the sandwich: `2^16785921 < 3^10590737`,
 hence `log 2 / log 3 < 10590737 / 16785921`.  Kernel-checked, as above. -/
 theorem theta_sandwich_lower : (2 : ℕ) ^ 16785921 < 3 ^ 10590737 := by

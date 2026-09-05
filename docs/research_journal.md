@@ -26901,3 +26901,81 @@ What was learned
   it looks like configuration rather than a claim
 Branch status
 - the layer carries no magic constants of mine
+
+ ### The drift-1 threshold prices depth seven, and settles which third is open
+
+The question left standing was whether `OOEOOEE` can be estimated with
+existing machinery. Two statistics said yes for weak reasons — longest
+odd run, and the count of waves above exponent 2 — and neither is the
+operative obstruction. The operative one turns out to be computable in
+closed form, and it validates the answer for a better reason.
+
+Each iterate's scale exponent follows `x -> 3x/2` or `x -> x/2` along
+the word. Letter `t` constrains the parity of `J^{t-1}`, so its wave
+sits at that iterate's scale exponent; linearizing the wave in an
+earlier floor defect `θ_s` gives `θ_s` a coefficient whose exponent is
+the **difference** of the two scale exponents. That is all it is — and
+it reproduces four constants the paper displays independently:
+
+```text
+OOEO* letter 5 (wave at 27/16):  3/16, -9/16, 9/16
+   = C = (9k/16)n^{3/16};  the discarded remainder |k|P·P^{-9/16};
+     B = (3k/4)v^{1/4} ~ k n^{9/16} riding θ_w = {v^{1/2}}
+OOOE* letter 5:                  3/16, -9/16   = that proof's C and remainder
+OOO*  letter 4 (wave at 27/8):   15/8, 9/8
+   = W ~ k n^{9/8}, which Section 3.4 names as the reason no drift-1
+     interval exists
+```
+
+That last one is the criterion. A coefficient `n^c` has derivative
+`n^{c-1}`, so it drifts by less than 1 between consecutive integers
+exactly when `c < 1`; above the threshold Theorem 4.8's shifted window
+has no interval to run on and the letter needs a kernel theorem.
+
+```text
+   OOEO*   L5  27/16   0 blocked          proved, N^{43/48}
+   OOO*    L4  27/8    2 blocked, max 15/8    proved (Thm 6.1 via Thm 5.3)
+   OOOO*   L5  81/16   3 blocked, max 57/16   OPEN (Conjecture 7.3)
+   OOEOOEE L6  81/32   2 blocked, max 45/32
+   OOOEOEE L6  81/32   1 blocked, max 33/32
+   OOOOEEE L5  81/16   3 blocked, max 57/16
+```
+
+`OOOOEEE`'s fifth letter **is** the `OOOO*` split, coefficient for
+coefficient — so Conjecture 7.3 is necessary for that third of depth
+seven, not merely sufficient. And the two pursuable thirds sit strictly
+inside the profile Theorem 6.1 already carries: two blocked
+coefficients with largest `45/32` against Theorem 6.1's two with
+largest `15/8`, and `OOOEOEE` has one at `33/32`. The honest cost is
+six waves against four.
+
+Two guards fired and both were right. The paper reserves `γ` for Lemma
+3.9's third trinomial exponent and for the partial-summation phase, and
+`α` is worse — Beatty multiplier, Lemma 3.3's curvature ratio, Lemma
+3.9's first exponent — so the rule is now stated with no symbol of its
+own. And quoting Theorem 6.3's `B` and `C` in Section 7 re-imported the
+exact collision that section was cleaned of; the constants are named
+descriptively instead.
+
+```text
+What was learned
+- the run statistic and the exponent-above-2 statistic were both
+  proxies; the coefficient difference is the thing itself, and it
+  reproduces four constants the paper derived separately
+- a right answer reached by a wrong route is still worth re-deriving:
+  the verdict on OOEOOEE survived, its justification did not
+Strongest theorem
+- the drift-1 threshold as a closed-form criterion: coefficient
+  exponent = difference of scale exponents, blocked above 1
+Strongest refutation
+- my own two earlier proxies, and the claim that OOOOEEE merely
+  "descends from" the OOOO* split -- it *is* that split
+Reusable machinery
+- theta_coefficients / drift_blocked, checked against B, C, W and the
+  discarded remainder; hard_phases removed as a misleading proxy
+Branch status
+- ADVANCE
+Best next question
+- Theorem 5.3 closes OOO*'s (15/8, 9/8). Does it apply verbatim to
+  OOEOOEE's (33/32, 45/32), or does the lower pair need its own kernel?
+```
