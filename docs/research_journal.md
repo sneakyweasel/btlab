@@ -27751,3 +27751,52 @@ Best next question
   order in theta_s was argued negligible by exponent count alone. Does
   that survive the same orbit measurement?
 ```
+
+## Appendix A.6's constants had no audit, which is how Paper A's exponent drifted
+
+First pass of the Paper B loop. The manuscript is the host's live
+section — four commits landed on it today — so this stays on the audit
+side and touches no prose.
+
+The gap: the constants of the recent `c_7` and `R_0` work are not
+covered. `2.98` appears four times in the paper, zero times in
+`paper_b_audit`, zero times in the audit ledger. That is exactly the
+shape of the Paper A defect: a constant enters the manuscript after the
+audit tables were written, and nothing afterwards recomputes it.
+
+Recomputed the appendix's arithmetic from the numbers it prints, and it
+holds throughout:
+
+- the \(c_7\) lever buys \(8.9\cdot10^{13}\to2.98\cdot10^{11}\), a
+  factor \(298.7\), printed as \(300\);
+- the next threshold down, \(2.83\cdot10^{10}\), is a factor \(10.5\)
+  below the floor — "an order down";
+- the floor is genuinely the minimax over \(R_0\): \(2.98\cdot10^{11}\)
+  at \(P^{5/16}\) is below \(1.6\cdot10^{12}\) at \(P^{1/3}\) and
+  \(7.4\cdot10^{13}\) at \(P^{9/32}\);
+- \(52.8795\le52.9\), doubling to \(105.8\), printed \(106\);
+- the earlier draft's \(8\) is \(14.1\times\) the true \(0.567\),
+  matching "fourteen times the true value".
+
+One aside is loose rather than wrong. The historical remark
+\(219=202.5+16\) is \(218.5\). The paper's own convention rounds a
+displayed upper bound up — it prints \(105.8\) as \(106\), and is
+careful enough to note that \(0.57\) rather than \(0.6\) is what keeps
+the sum under \(52.9\) — so \(219\) for \(218.5\) is safe by that same
+convention; it is the `=` that is loose. Encoded as a check rather than
+edited, since the section is live.
+
+`appendix_a6_checks` adds eight checks, wired into the summary and its
+classification. The audit now reports `PAPER_B_AUDIT_CONSISTENT` over
+222 exponent checks and 8 appendix ones.
+
+```text
+What was learned
+- the audit lags the manuscript by construction: constants arrive first
+- A.6's lever arithmetic is sound on every relation it prints
+- 219 = 202.5 + 16 is 218.5, safe under the paper's round-up convention
+Branch status
+- Paper B audit extended; no manuscript prose touched
+Best next question
+- do the other recent sections (c_7 closed form, the independent thresholds,
+  the depth-seven third) have constants the audit likewise never sees?

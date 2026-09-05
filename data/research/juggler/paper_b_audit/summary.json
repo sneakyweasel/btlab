@@ -459,7 +459,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "f70b728e285a8c3bd77ab03dce05ffd527b8e680",
+  "git_commit": "475a8bb9b2ccfba4e4276615a6922cb03635aeaf",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -1703,6 +1703,41 @@
     }
   ],
   "exponent_checks_all_ok": true,
+  "appendix_a6_checks": [
+    {
+      "check": "A.6 c_7 lever buys 8.9e13 -> 2.98e11, printed as a factor 300",
+      "ok": true
+    },
+    {
+      "check": "A.6 next threshold 2.83e10 is an order below the 2.98e11 floor",
+      "ok": true
+    },
+    {
+      "check": "A.6 the floor is the minimax over R_0, attained at P^{5/16}",
+      "ok": true
+    },
+    {
+      "check": "A.6 'a threshold below 3e11 needs a different site': the floor is below 3e11",
+      "ok": true
+    },
+    {
+      "check": "(i) 52.8795 <= 52.9 and the doubled bound 105.8 is printed 106",
+      "ok": true
+    },
+    {
+      "check": "the third displayed term 0.567 is printed 0.57, and 0.6 would pass 52.9",
+      "ok": true
+    },
+    {
+      "check": "the earlier draft's 8 is fourteen times the true 0.567",
+      "ok": true
+    },
+    {
+      "check": "earlier draft: 202.5 + 16 = 218.5, printed 219 by the same round-up as 105.8 -> 106",
+      "ok": true
+    }
+  ],
+  "appendix_a6_all_ok": true,
   "kernel_observation": [
     {
       "P": 10000,
@@ -1746,5 +1781,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 31.29263138771057
+  "elapsed_seconds": 27.46167278289795
 }

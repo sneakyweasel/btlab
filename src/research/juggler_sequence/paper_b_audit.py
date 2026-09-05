@@ -1013,6 +1013,47 @@ def exponent_checks() -> list[dict[str, Any]]:
     return [{"check": name, "ok": ok} for name, ok in checks]
 
 
+def appendix_a6_checks() -> list[dict[str, Any]]:
+    """Appendix A.6's lever arithmetic: the `c_7` ceiling and the `R_0` minimax.
+
+    These constants entered the manuscript after the exponent tables were written and had no
+    audit coverage, which is how the Paper A exponent drifted.  Each is a relation between
+    numbers the appendix prints, recomputed here from those numbers alone.
+    """
+
+    def approx(a: float, b: float, rel: float = 0.02) -> bool:
+        return abs(a - b) <= rel * abs(b)
+
+    # the c_7 lever: what it buys in total, and where it stops
+    gain = 8.9e13 / 2.98e11
+    # the R_0-dependent sites, at the three exponents the appendix quotes
+    sites = {"P^{5/16}": 2.98e11, "P^{9/32}": 7.4e13, "P^{1/3}": 1.6e12}
+    # Section 5's (i) sum and the bound it doubles to
+    sum_i_exact, sum_i_printed = 52.8795, 52.9
+
+    checks: list[tuple[str, bool]] = [
+        ("A.6 c_7 lever buys 8.9e13 -> 2.98e11, printed as a factor 300",
+         approx(gain, 300.0, 0.01)),
+        ("A.6 next threshold 2.83e10 is an order below the 2.98e11 floor",
+         5.0 <= 2.98e11 / 2.83e10 <= 20.0),
+        ("A.6 the floor is the minimax over R_0, attained at P^{5/16}",
+         min(sites, key=lambda k: sites[k]) == "P^{5/16}"),
+        ("A.6 'a threshold below 3e11 needs a different site': the floor is below 3e11",
+         2.98e11 < 3.0e11),
+        ("(i) 52.8795 <= 52.9 and the doubled bound 105.8 is printed 106",
+         sum_i_exact <= sum_i_printed and approx(2 * sum_i_printed, 105.8, 1e-9) and 105.8 <= 106.0),
+        ("the third displayed term 0.567 is printed 0.57, and 0.6 would pass 52.9",
+         round(0.567, 2) == 0.57 and sum_i_exact - 0.567 + 0.6 > 52.9),
+        ("the earlier draft's 8 is fourteen times the true 0.567",
+         approx(8.0 / 0.567, 14.0, 0.02)),
+        # the earlier draft's printed 219 is 202.5 + 16 = 218.5 rounded up, the same
+        # convention as 105.8 -> 106; recorded so the 0.5 is not read as an error
+        ("earlier draft: 202.5 + 16 = 218.5, printed 219 by the same round-up as 105.8 -> 106",
+         approx(202.5 + 16.0, 218.5, 1e-9) and 218.5 <= 219.0),
+    ]
+    return [{"check": name, "ok": ok} for name, ok in checks]
+
+
 # ----------------------------------------------------------------------------------------------
 # Layer 4: observation-only scaling of the kernel and a level-2 wave
 # ----------------------------------------------------------------------------------------------
@@ -1056,6 +1097,7 @@ def summary() -> dict[str, Any]:
     cells = [cell_inventory(10**5, h) for h in (1, 2, 3)]
     runs = [frozen_run_inventory(10**5, 1, 1), frozen_run_inventory(10**5, 1, 2)]
     expo = exponent_checks()
+    a6 = appendix_a6_checks()
     kernel = [kernel_sum(P) for P in (10**4, 3 * 10**4, 10**5, 3 * 10**5)]
     cert = p0_certificate.certificate()
     return {
@@ -1069,10 +1111,12 @@ def summary() -> dict[str, Any]:
         "frozen_run_inventory": runs,
         "exponent_checks": expo,
         "exponent_checks_all_ok": all(c["ok"] for c in expo),
+        "appendix_a6_checks": a6,
+        "appendix_a6_all_ok": all(c["ok"] for c in a6),
         "kernel_observation": kernel,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
-            if ident["all_identities_hold"] and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and cert["all_solved"]
+            if ident["all_identities_hold"] and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]
             else "PAPER_B_AUDIT_FINDINGS"
         ),
         "elapsed_seconds": time.time() - t0,
