@@ -24815,3 +24815,53 @@ Best next question
   it is the difference between a referee checking Step 4 from a
   statement and checking it from a six-stage proof
 ```
+
+
+### The (s2) window costing, and Lemma 5.2(iii) closed
+
+The last blocker on the draft part (iii). Under (D1') the decoration's theta-sawtooth has
+coefficient `|B| <= 7 P^(1/4)` rather than `<= 1`, which moves it out of Stage 3's small-B
+regime (s1) into the windowed regime (s2). Step 4 names that treatment; nobody had costed it.
+
+Every line is Stage 3(s2)'s own with `2.25` replaced by `7`:
+
+```text
+  hypothesis   P^(1/2) >= 8(1+7P^(1/4))  ->  P^(1/4) >= 56.14, P >= 9.9e6   (P_0 is 8.9e13)
+  windows      <= 7 P^(1/4) + 1  crude; 1.11 P^(1/4) by the degree -1/4 monomial refinement
+  boundary     <= 13.5 (uh)^(-1/2) P^(5/8)   vs (i)'s fourth term (uh)^(-1/2) P^(11/12)
+  flat         <= 64 P^(3/4)                 vs (i)'s P^(7/8)
+  modes        (s2) weights, |w| <= 2R_0, dominant sum x sqrt(2), tails x 12 -- into P^eps
+```
+
+**One point is not a copy of the template.** Stage 3(s2) simplifies its boundary cost using
+`uh > P^(3/16)`, which it may do because (s2) *is* that regime. A widened decoration is large
+independently of the main mode, so it can occur while the main sawtooth sits in (s1); the
+boundary bound above is therefore stated for every `uh >= 1`, and still lands under (i)'s fourth
+term, `5/8 < 11/12`.
+
+So (iii) is complete as drafted, resting on one thing outside itself: the amendment of (i) to
+carry `R_0^(1/2) P^(3/4) = P^(29/32)`, which the Stage-2 family sum requires whether or not
+(iii) exists. What remains is editorial -- amend (i), insert (iii), rewrite Step 4's "Leftover
+modes" paragraph, add a table row.
+
+```text
+What was learned
+- the whole (iii) question reduced to one regime change, (s1) -> (s2),
+  and the template for paying for it was already in the same proof
+- the one place the template does not transfer is its use of
+  uh > P^(3/16): the decoration's size is independent of the main
+  mode's regime, so the bound has to hold for all uh >= 1
+Strongest theorem
+- none; a lemma part drafted and its costs discharged
+Strongest refutation
+- none this iteration
+Reusable machinery
+- s2_window_costing, stage2_mode_accounting: exact-rational exponent
+  comparisons for the two accountings, rerunnable
+Branch status
+- ADVANCE (the interface the architecture table exposed is now closed
+  on paper; promotion is an editing pass)
+Best next question
+- amend Lemma 5.2(i). Everything above waits on that one line, and the
+  P^(29/32) it adds is required by the existing proof independently
+```

@@ -61,11 +61,49 @@ and \(h\le P^{1/8}\),
 \ \le\ 6P^{1/4}+20P^{-1/8}.
 \]
 Unlike the printed case this is not \(O(P^{-5/24})\): the sawtooth
-coefficient \(B\) has size \(\le7P^{1/4}\) rather than \(\le1\).
-Lemma 3.7 at \(T=P^{1/2}\) applies nonetheless, since
-\(T\ge8(1+|B|)\) reads \(P^{1/2}\ge8(1+7P^{1/4})\), which holds once
-\(P^{1/4}\ge56\). This is the large-\(B\) window treatment of
-Stage 3(s2), already used inside the proof of (i).
+coefficient \(B\) has size \(\le7P^{1/4}\) rather than \(\le1\), so
+the decoration's sawtooth is expanded by the large-\(B\) treatment of
+Stage 3(s2) rather than by the small-\(B\) one of (s1). The next
+paragraph pays for that.
+
+*The (s2) window inventory.* Every line here is the corresponding line
+of Stage 3(s2) with its \(2.25\) replaced by \(7\).
+
+- *Hypothesis.* \(T=P^{1/2}\ge8(1+|B|)\) reads
+  \(P^{1/2}\ge8(1{+}7P^{1/4})\), i.e. \(P^{1/4}\ge56.14\), i.e.
+  \(P\ge9.9\cdot10^{6}\) --- seven orders below \(P_0\). (The printed
+  case needs \(P^{1/4}\ge18.43\).)
+- *Windows.* \(B\) is monotone on the dyadic block, so its total drift
+  is at most \(\sup|B|\le7P^{1/4}\): at most \(7P^{1/4}+1\) windows on
+  which \(B\) moves by \(\le1\). This is the crude count; since \(B\)
+  is a degree \(-\tfrac14\) monomial in \(n\), the drift is in fact
+  \((1-2^{-1/4})|B(P)|\le1.11P^{1/4}\), but the crude count already
+  suffices below.
+- *Boundary cost.* Windows times the Lemma 3.3 boundary charge at the
+  Stage-4 curvature \(0.35uhP^{-3/4}\):
+  \[
+  (7P^{1/4}{+}1)\,(0.35uh)^{-1/2}P^{3/8}
+  \ \le\ 13.5\,(uh)^{-1/2}P^{5/8}.
+  \]
+  Note this needs no lower bound on \(uh\). Stage 3(s2) simplifies its
+  own boundary cost using \(uh>P^{3/16}\), which is available there
+  because (s2) *is* the regime \(uh>P^{3/16}\); here the decoration's
+  sawtooth is large independently of the main mode, so a widened
+  decoration can occur while the main sawtooth sits in (s1). The bound
+  above is stated for every \(uh\ge1\), and is dominated by the fourth
+  printed term of (i), which carries
+  \((uh)^{-1/2}P^{1/24+7/8}=(uh)^{-1/2}P^{11/12}\), since
+  \(\tfrac58<\tfrac{11}{12}\).
+- *Flat cost.* \(8(1{+}|B|)P^{1/2}\le64P^{3/4}\) in total, against the
+  printed \(19P^{3/4}\); \(\tfrac34<\tfrac78\).
+- *Modes.* Per window Lemma 3.7 at the centre \(B_0\) yields
+  \(e(w\nu^{3/2})\) with the (s2) weights
+  \(\min(2,\tfrac1{\pi|w+B_0|})+\min(2,\tfrac1{\pi|w|})\), which is
+  the shape Stage 5 already treats. Their index range is
+  \(|w|\le|B_0|+R_0\le2R_0\) at \(P\ge P_0\), so Stage 5's
+  dominant-mode sum grows by at most \(\sqrt2\) and its (s2)-tail
+  bound by the window ratio \(7/0.6\le12\); both are absorbed by
+  \(P^{\varepsilon}\).
 
 *The curvature ratio.* Against the Stage-4 curvature
 \(\ge0.35uhP^{-3/4}\), using \(2|j'|\le6\), \(6/0.35\le18\),
@@ -216,10 +254,20 @@ band is the middle case, totalling \(\le CP^{7/8}\log P\). Same number,
 two names --- worth aligning, since A.6 is where a referee will go to
 trace why \(R_0=P^{5/16}\).
 
-### What this leaves for part (iii)
+### Status
 
-The prior question is settled and does not block (iii): once (i)
-carries the fifth term, (iii) inherits it. What still blocks (iii) is
-the second half of the Stage-2 check above --- the (s2) window
-inventory and boundary cost for a widened decoration's sawtooth, which
-Step 4 names and neither Step 4 nor this draft supplies.
+Both halves of the Stage-2 check are now discharged. The index range
+was fine at \(P\ge P_0\); the weights needed the (s2) window inventory,
+which the proof above now supplies, and whose three costs ---
+\(13.5(uh)^{-1/2}P^{5/8}\) boundary, \(64P^{3/4}\) flat, and modes at
+the unchanged \(P^{29/32}\) --- all sit inside the conclusion of (i).
+
+Part (iii) therefore rests on one thing outside itself: the amendment
+of (i) to carry \(R_0^{1/2}P^{3/4}=P^{29/32}\), which the Stage-2
+family sum requires with or without (iii). With that amendment in
+place, (iii) is complete as stated. Without it, (iii) inherits an
+understated bound.
+
+The remaining work is editorial rather than mathematical: amend (i),
+insert (iii), rewrite Step 4's "*Leftover modes*" paragraph as drafted
+above, and extend the architecture table with a row for (iii).
