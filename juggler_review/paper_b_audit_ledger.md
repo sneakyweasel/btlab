@@ -6314,3 +6314,102 @@ and `1.0057`; five sites with costs `3.95`, `2.82`, `2.09`, `4.00`,
 Probe: `apart_charging_is_specific_to_beta`, `APART_CHARGED_SITES`,
 `PRODUCT_FACTORS`. Two tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0`
 unmoved at `3.5858e13`. No manuscript or certificate edit.
+
+## The certificate said one thing and checked another, in two rows
+
+*Mathematical target.* Every certificate row carries a sentence and a
+lambda. A.1 prints the sentence next to a threshold, and the threshold
+comes from the lambda. Nothing had ever checked that the two describe
+the same inequality.
+
+*Novelty hypothesis.* At least one row certifies something other than
+what it advertises, and the printed row is therefore false at its own
+printed threshold.
+
+*Falsifier.* Every parseable claim's crossing equals its row's.
+
+*Existing machinery.* `p0_certificate.thresholds`, `least_P`; the
+expression normaliser from `manuscript_self_audit`.
+
+*Prior art.* This ledger's `st5b-qpp` entry found exactly this defect
+in one row, by hand: text `48.9 P^(-3/16) <= 1/4` clearing at
+`1.662e12` against a predicate clearing at `2.982e11`, and noted that
+"anyone checking the printed claim against the printed threshold finds
+them inconsistent". It was recorded and left. Nothing systematic
+followed, and `docs/negative_knowledge.md` has nothing on claim-text
+faithfulness. The earlier finding is the control here: an instrument
+that cannot re-find it is not measuring anything.
+
+**Method.** Parse each claim sentence into a function of `P` --
+stripping leading prose token by token, taking either side of a colon,
+resolving `R_0 = P^(5/16)`, `rho_0 = 1/1856`, and trailing `at t = 1`
+clauses -- solve it with the same `least_P` the certificate uses, and
+compare crossings. Twenty-seven of the thirty-eight rows reduce to
+arithmetic in `P`; the other eleven have a side that is prose (`cells +
+anchor runs + windows`) or a symbol the parser will not invent (`|C|`,
+`c_7 S/2`), and are reported unparsed rather than guessed at.
+
+**The control came back.** `st5b-qpp`: predicate `2.98166e11`, claim
+text `1.66201e12`, ratio `5.574` -- the hand-found figure to four
+places.
+
+**And one that was new.** `39-beta`. The claim reads
+`2.31 P^(-1/2) <= rho_0`; the predicate was
+`(9 lam_lo / 2.656)(0.68 / lam_lo) P^(-1/2) <= rho_0`, whose constant
+is `9 * 0.68 / 2.656 = 2.30422`. One part in four hundred, and enough:
+A.1 printed `1.83e7`, and `2.31 (1.83e7)^(-1/2) = 5.400e-4` against
+`rho_0 = 5.388e-4`. The printed row was false at the printed threshold.
+`2.31` appears nowhere else in the paper --- it is a rounding with no
+independent provenance.
+
+**The contract this settles.** A row must hold *as written* at the `P`
+written beside it. Both rows failed it, in opposite spirits:
+`st5b-qpp`'s sentence was weaker than its predicate (safe for the
+theorem, false as a row), `39-beta`'s was stronger by a rounding. Both
+sentences now state the inequality their predicate checks:
+`(1.85 P^(7/24) + R_0) 6 P^(-5/4) / (0.35 P^(-3/4)) <= 1/4` and
+`2.3043 P^(-1/2) <= rho_0`. Thresholds are unchanged --- `3.0e11` and
+`1.83e7` --- because the predicates are unchanged. `P_0` stays
+`3.5858e13`, binding row `5b-W<=c7S`.
+
+**The fix I tried first was wrong, and the suite said so.** My first
+move was the opposite one: make the predicates match the printed
+sentences, on the reasoning that the certificate should check what the
+paper prints. That raised `st5b-qpp` to `1.662e12` and broke ten tests
+at once --- `test_the_certificate_uses_the_two_term_form`,
+`test_the_floor_is_the_qpp_site`, and the whole `c_7` lever chain. The
+unmerged form is not an incidental sharpening; it *is* A.5's floor
+(`c7_saturation()["floor"] = 2.98166e11`), and the lever results
+recorded three entries ago are measured against it. Certifying the
+merged bound would have thrown that away to fix a sentence. The
+sentence was the thing that was wrong.
+
+That is worth keeping as a rule: when text and machinery disagree, the
+question is which one the rest of the work depends on, and here ten
+tests answered it in one run.
+
+Tags. EXACT: `9 * 0.68 / 2.656 = 2.30422`; `48.9 = 17.1/0.35`.
+COMPUTATIONALLY VERIFIED: twenty-seven claims parsed, twenty-seven
+crossings now equal to their predicates'; the two ratios `5.574` and
+`1.005`; the sentences as they stood were false at their own
+thresholds, `48.9 (3.0e11)^(-3/16) = 0.345 > 1/4` and
+`2.31 (1.83e7)^(-1/2) = 5.400e-4 > rho_0 = 5.388e-4`; `P_0 =
+3.58576e13`, the floor `2.98166e11` and the binding row all unmoved.
+OBSERVATION: the eleven unparsed rows are unparsed because a side is
+prose or symbolic; none was skipped for convenience.
+
+*A parser note.* The restated `q''` sentence broke the parser, which
+strips leading prose token by token until something evaluates --- and
+what evaluated was the sentence's own tail,
+`P^(-5/4) / (0.35 P^(-3/4))`, crossing at `4702` instead of `2.98e11`.
+A truncation is now admissible only if its parentheses balance and it
+does not open with an operator. Without that guard the check would
+have reported agreement while comparing a sub-expression.
+
+Probe: `manuscript_self_audit.claim_predicate`,
+`claim_predicate_audit`, `claim_predicate_failures`; `failures()` gains
+a `claim_vs_predicate` key. Seven new tests, forty-two in the file ---
+including the contract itself, that every parsed claim holds at A.1's
+printed threshold. No certificate predicate changed. Manuscript: A.1's
+two sentences restated, A.2 records the drift and which side was
+wrong.

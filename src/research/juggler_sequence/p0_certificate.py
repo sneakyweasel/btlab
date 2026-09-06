@@ -190,7 +190,10 @@ def thresholds(kappa: float = KAPPA, c7: float = C7,
          lambda P: (0.047 / lam_lo) * P**-0.25 <= rho0),
         ("39-c4", "Thm 5.3 St.5b", "P^2|c''''/2|/S <= rho_0: (0.044/%.2f) P^(-1/4)" % lam_lo,
          lambda P: (0.044 / lam_lo) * P**-0.25 <= rho0),
-        ("39-beta", "Thm 5.3 St.5b", "beta-substitution error 2.31 P^(-1/2) <= rho_0",
+        # the claim used to print 2.31, a rounding with no provenance elsewhere in the paper,
+        # against the 9 * 0.68 / 2.656 = 2.30422 the derivation gives; at the printed threshold
+        # 1.83e7 the rounded constant fails, 5.400e-4 against rho_0 = 5.388e-4
+        ("39-beta", "Thm 5.3 St.5b", "beta-substitution error 2.3043 P^(-1/2) <= rho_0",
          lambda P: (9 * lam_lo / 2.656 * 0.68 / lam_lo) * P**-0.5 <= rho0),
         ("39-wave", "Thm 5.3 St.5b", "wave remainder %d P^(-35/24) vs S: %d P^(-5/6) <= rho_0" % (u_cap, round(u_cap / lam_lo)),
          lambda P: (u_cap / lam_lo) * P ** (-5 / 6) <= rho0),
@@ -231,8 +234,13 @@ def thresholds(kappa: float = KAPPA, c7: float = C7,
         ("st2-collision", "Thm 5.3 St.5", "3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24)",
          lambda P: 3 * R0(P) ** 0.5 * P**0.75 <= P ** (23 / 24)),
         # the 0.35 here is Theorem 4.1's Stage-4 curvature 0.35 uh P^(-3/4), not Lemma 5.2b's
-        # lambda_0 floor -- a different constant that happens to share the value
-        ("st5b-qpp", "Thm 5.3 St.5b(a)", "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+        # lambda_0 floor -- a different constant that happens to share the value.
+        # The claim states the unmerged form, which is what the lambda checks and what A.5's
+        # floor is measured at.  It used to read "48.9 P^(-3/16) <= 1/4", the merged bound the
+        # prose uses; that is weaker by P^(1/48) and clears at 1.662e12, so the row was false
+        # at its own printed threshold -- 48.9 (3.0e11)^(-3/16) = 0.345, not <= 1/4.
+        ("st5b-qpp", "Thm 5.3 St.5b(a)",
+         "|q''| curvature ratio (1.85 P^(7/24) + R_0) 6 P^(-5/4) / (0.35 P^(-3/4)) <= 1/4",
          lambda P: (1.85 * P ** (7 / 24) + R0(P)) * 6 * P ** (-5 / 4)
          / (0.35 * P**-0.75) <= 0.25),
         ("t63-window", "Thm 6.3", "Lemma 3.7 window T = R_0 >= 8(1 + |C|)",

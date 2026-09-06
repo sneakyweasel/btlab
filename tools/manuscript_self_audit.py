@@ -500,12 +500,146 @@ def a1_failures() -> list[dict[str, Any]]:
     return [r for r in a1_threshold_audit() if not r["ok"]]
 
 
+
+# --- the certificate's claim strings against its own predicates --------------------------------
+#
+# Each certificate row carries a sentence and a lambda.  A.1 prints the sentence and the
+# threshold; the threshold comes from the lambda.  Nothing had ever checked that the two describe
+# the same inequality, and two rows did not.  `st5b-qpp` printed the merged bound
+# 48.9 P^(-3/16) <= 1/4 while certifying the sharper unmerged form, a factor 5.574 apart, so
+# 48.9 (3.0e11)^(-3/16) = 0.345 at the row's own threshold.  `39-beta` printed 2.31 where the
+# derivation gives 2.30422, one part in four hundred, and failed the same way.
+#
+# The parser is deliberately narrow: it reads only claims that reduce to arithmetic in P, and
+# reports the rest as unparsed rather than guessing.
+
+_CLAIM_OPS = ("<=", ">=", "<", ">")
+_CLAIM_AT = re.compile(r"\bat\s+([A-Za-z_][A-Za-z0-9_]*)\s*(?:=|<=|>=)\s*(.+)$")
+
+
+def _claim_to_python(expr: str) -> str | None:
+    """A claim fragment in P (and R_0, rho_0, pi) as a Python expression, or None."""
+    s = expr.strip()
+    s = s.replace("R_0", "(P**(5/16))").replace("rho_0", "(1/1856)")
+    s = re.sub(r"(?<![A-Za-z0-9_])pi(?![A-Za-z0-9_])", "(3.141592653589793)", s)
+    s = re.sub(r"\^\(([^()]*)\)", r"**(\1)", s)
+    s = re.sub(r"\^(-?[0-9]+)", r"**(\1)", s)
+    s = re.sub(r"(?<=[0-9)])\s*(?=[A-Za-z(])", "*", s)
+    s = re.sub(r"(?<=[A-Za-z)])\s+(?=\()", "*", s)
+    s = re.sub(r"(?<=\))\s+(?=[0-9])", "*", s)        # ") 6" -- juxtaposition after a group
+    return None if re.search(r"[A-Za-z]", s.replace("P", "")) else s
+
+
+def _admissible(fragment: str) -> bool:
+    """A left-truncation is only a candidate if it could be a whole expression.
+
+    Without this the truncation loop keeps sliding until *something* evaluates, and what
+    evaluates is a sub-expression of the claim rather than the claim: the q'' row's
+    `(1.85 P^(7/24) + R_0) 6 P^(-5/4) / (0.35 P^(-3/4))` silently became its own tail
+    `P^(-5/4) / (0.35 P^(-3/4))`, crossing at 4702 instead of 2.98e11.
+    """
+    f = fragment.strip()
+    return bool(f) and f.count("(") == f.count(")") and f[0] not in "+*/^)"
+
+
+def _claim_sides(text: str) -> tuple[str, str, str] | None:
+    for op in _CLAIM_OPS:
+        i = text.find(op)
+        if i >= 0:
+            return text[:i].strip(), op, text[i + len(op):].strip()
+    return None
+
+
+def _claim_fragments(claim: str) -> list[tuple[str, str, str]]:
+    out: list[tuple[str, str, str]] = []
+    heads = [claim]
+    if ":" in claim:
+        head, tail = claim.split(":", 1)
+        heads = [tail.strip(), head.strip(), claim]
+    for h in heads:
+        parts = _claim_sides(h)
+        if parts is None:
+            # "|c''/2|/S <= rho_0: (0.053/0.56) P^(-1/4)" -- the tail is the quantity the head
+            # bounds, so it inherits the head's operator and right side
+            top = _claim_sides(claim.split(":", 1)[0]) if ":" in claim else None
+            if top is not None and h.strip():
+                out.append((h.strip(), top[1], top[2].split(":")[0].strip()))
+            continue
+        lhs, op, rhs = parts
+        deeper = _claim_sides(rhs)
+        out.append((lhs, op, deeper[0] if deeper else rhs))
+    return out
+
+
+def claim_predicate(claim: str) -> tuple[Any, str] | tuple[None, None]:
+    """The inequality a claim sentence states, as a function of P, plus its normalised text."""
+    subs: dict[str, str] = {}
+    m = _CLAIM_AT.search(claim)
+    if m:
+        subs[m.group(1)] = m.group(2).strip()
+        claim = claim[:m.start()].strip()
+    for lhs0, op, rhs0 in _claim_fragments(claim):
+        for lhs1 in (lhs0.split("=") if "=" in lhs0 else [lhs0]):
+            for rhs1 in (rhs0.split("=") if "=" in rhs0 else [rhs0]):
+                tokens = lhs1.split()
+                for i in range(len(tokens)):
+                    left, right = " ".join(tokens[i:]), rhs1.strip()
+                    if not _admissible(left) or not _admissible(right):
+                        continue
+                    for name, val in subs.items():
+                        pat = "(?<![A-Za-z0-9_])" + re.escape(name) + "(?![A-Za-z0-9_])"
+                        left = re.sub(pat, "(" + val + ")", left)
+                        right = re.sub(pat, "(" + val + ")", right)
+                    a, b = _claim_to_python(left), _claim_to_python(right)
+                    if a is None or b is None or "P" not in a + b:
+                        continue
+                    try:
+                        f = eval("lambda P: (%s) %s (%s)" % (a, op, b),   # noqa: S307
+                                 {"__builtins__": {}})
+                        f(1e10), f(1e2)
+                    except Exception:                                    # noqa: BLE001
+                        continue
+                    return f, "%s %s %s" % (a, op, b)
+    return None, None
+
+
+def claim_predicate_audit() -> list[dict[str, Any]]:
+    """Each row's claim sentence, solved independently, against the row's own crossing."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "p0_certificate", REPO_ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)                                    # type: ignore[union-attr]
+    out = []
+    for r in module.thresholds():
+        f, shown = claim_predicate(r["claim"])
+        if f is None:
+            out.append({"tag": r["tag"], "parsed": False, "agree": None,
+                        "predicate": r["P_min"], "claim": None, "reads": None})
+            continue
+        lp = module.least_P(f)
+        claim_p = None if lp is None else 10.0 ** lp
+        pred_p = r["P_min"]
+        if claim_p is None or pred_p is None:
+            agree = claim_p is None and pred_p is None
+        else:
+            agree = abs(claim_p - pred_p) <= 1e-3 * max(claim_p, pred_p)
+        out.append({"tag": r["tag"], "parsed": True, "agree": agree,
+                    "predicate": pred_p, "claim": claim_p, "reads": shown})
+    return out
+
+
+def claim_predicate_failures() -> list[dict[str, Any]]:
+    return [r for r in claim_predicate_audit() if r["parsed"] and not r["agree"]]
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
             "relations": wrong_relations(),
             "rounded_into_a_bound": rounding_directions()["down"],
-            "a1_thresholds": a1_failures()}
+            "a1_thresholds": a1_failures(),
+            "claim_vs_predicate": claim_predicate_failures()}
 
 
 def main() -> None:

@@ -36802,3 +36802,77 @@ Best next question
   powers of two once the rounding is divided out, or does the pattern
   break where the site is a single constant rather than a range?
 ```
+
+## Two rows that checked something other than what they said
+
+2026-09-06, later still. Last tick found A.1's threshold column drifting
+from the certificate. The obvious next question was whether the
+certificate's own two halves agree: each row carries a sentence and a
+lambda, A.1 prints the sentence beside a threshold, and the threshold
+comes from the lambda. Nobody had checked that they are the same
+inequality.
+
+I already knew of one case. Months of ledger ago I found by hand that
+`st5b-qpp` prints `48.9 P^(-3/16) <= 1/4` and certifies the sharper
+unmerged form, a factor 5.574 apart, and I wrote at the time that
+"anyone checking the printed claim against the printed threshold finds
+them inconsistent". Then I recorded it and moved on. That made it a
+good control: an instrument that cannot re-find it is not measuring
+anything.
+
+So: parse each claim sentence into a function of P, solve it with the
+same `least_P` the certificate uses, compare. Twenty-seven of the
+thirty-eight reduce to arithmetic in P. The rest have a side that is
+prose --- "cells + anchor runs + windows" --- or a symbol I would have
+to invent a value for, and those are reported unparsed rather than
+guessed.
+
+The control came back at 5.574, to four places. And one more came with
+it.
+
+`39-beta` says `2.31 P^(-1/2) <= rho_0`. The predicate was
+`(9 lam_lo / 2.656)(0.68 / lam_lo) P^(-1/2) <= rho_0`, and that
+constant is 9*0.68/2.656 = 2.30422. One part in four hundred. But A.1
+printed the threshold 1.83e7, and at 1.83e7 the claim as written gives
+5.400e-4 against rho_0 = 5.388e-4. The row was false at its own
+threshold, and 2.31 appears nowhere else in the paper --- it is a
+rounding with nothing behind it.
+
+Two rows, failing the same contract from opposite directions. One had a
+sentence weaker than its predicate, which is safe for the theorem and
+still a false row. The other had one stronger by a rounding. The
+contract is simple enough that writing it down is most of the work: a
+row must hold as written at the P written beside it.
+
+I fixed it the wrong way round first. My instinct was to make the
+predicates match the printed sentences --- the certificate should check
+what the paper prints --- so I set the q'' row to the merged
+48.9 P^(-3/16) <= 1/4 and watched ten tests fail in one run. The
+unmerged form is not an incidental sharpening. It *is* A.5's floor:
+`c7_saturation()["floor"]` is 2.98166e11 and the whole c_7 lever
+analysis from three entries ago is measured against it. I had been
+about to trade a recorded quantitative result for a tidier sentence.
+
+So the sentences changed instead. The q'' row now prints the two-term
+form it actually checks, and the beta row prints 2.3043 rather than the
+2.31 that appeared nowhere else in the paper. Thresholds unchanged,
+floor unchanged, P_0 unchanged at 3.5858e13.
+
+The rule I want to keep from this: when text and machinery disagree,
+the question is not which is prettier but which one the rest of the
+work depends on. Ten tests answered that in about four minutes, which
+is the entire argument for having them.
+
+There was a second-order trap in it too. Restating the q'' sentence
+broke my own parser, which strips leading prose token by token until
+something evaluates --- and what evaluated was the sentence's own tail,
+P^(-5/4) / (0.35 P^(-3/4)), crossing at 4702 rather than 2.98e11. It
+would have reported agreement while comparing a fragment. A truncation
+is now admissible only if its parentheses balance and it does not open
+with an operator. A checker that slides until it finds something it can
+read will always find something.
+
+The test I care about most is not the audit but the contract: for every
+parsed row, evaluate the claim at A.1's printed threshold and require
+it true. Twenty-three rows, and it would have caught both of these on
+the day they were written.

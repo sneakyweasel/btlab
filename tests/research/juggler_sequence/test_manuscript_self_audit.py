@@ -240,7 +240,7 @@ def test_the_manuscript_prints_the_corrected_threshold() -> None:
 def test_failures_now_covers_relations() -> None:
     f = M.failures()
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
-                      "a1_thresholds"}
+                      "a1_thresholds", "claim_vs_predicate"}
     assert all(v == [] for v in f.values())
 
 
@@ -317,10 +317,10 @@ def test_the_q_row_carries_the_constant_the_paper_derives() -> None:
     text = M.paper_text()
     assert text.count("30.5") == 1          # the errata paragraph, naming what it replaced
     assert "carried the constant " + chr(92) + "(30.5" + chr(92) + ")" in text
-    assert "curvature ratio 48.9" in text
+    assert "curvature ratio (1.85 P^(7/24) + R_0)" in text
     assert "17.1/0.35=48.9" in text
     row = next(r for r in M.a1_threshold_audit() if r["tag"] == "st5b-qpp")
-    assert row["printed"] == 3.0e11 and row["ok"]
+    assert row["printed"] == 3.0e11 and row["ok"]   # the predicate was always the sharp form
 
 
 def test_the_lemma_5_2b_row_matches_the_lemma() -> None:
@@ -351,3 +351,90 @@ def test_the_paper_states_the_column_convention_and_its_errata() -> None:
     assert "*Errata in this table.*" in text
     assert "an entry rounded to nearest can name a" in text
     assert "never that it equals it" in text
+
+
+# --- the claim a row states against the predicate it certifies ---------------------------------
+
+
+def test_no_row_states_one_inequality_and_certifies_another() -> None:
+    assert M.claim_predicate_failures() == []
+
+
+def test_the_parser_reaches_most_of_the_table_and_admits_the_rest() -> None:
+    rows = M.claim_predicate_audit()
+    assert len(rows) == 38
+    assert sum(r["parsed"] for r in rows) == 27
+    unparsed = {r["tag"] for r in rows if not r["parsed"]}
+    # every one of these has a side that is prose or a symbol the parser will not invent
+    assert "5b-W<=c7S" in unparsed and "t63-window" in unparsed and "5b-Npieces" in unparsed
+
+
+def test_the_printed_claim_holds_at_the_printed_threshold() -> None:
+    """The table's actual contract, and what both defects broke."""
+    printed = {r["tag"]: r["printed"] for r in M.a1_threshold_audit()}
+    checked = 0
+    for row in M.claim_predicate_audit():
+        if not row["parsed"] or row["claim"] is None:
+            continue
+        p = printed.get(row["tag"])
+        if not p:                                   # the three "always" rows
+            continue
+        f, _ = M.claim_predicate(_claim_of(row["tag"]))
+        assert f(p), (row["tag"], p, row["reads"])
+        checked += 1
+    assert checked >= 23
+
+
+def _claim_of(tag: str) -> str:
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "p0_certificate", ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return next(r["claim"] for r in mod.thresholds() if r["tag"] == tag)
+
+
+def test_the_guard_has_teeth_on_the_two_rows_it_found() -> None:
+    """Both defects reproduced from the claim text alone, against what used to be certified."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "p0_certificate", ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py")
+    C = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(C)
+
+    merged, _ = M.claim_predicate("|q''| curvature ratio 48.9 P^(-3/16) <= 1/4")
+    unmerged = 10 ** C.least_P(
+        lambda P: (1.85 * P ** (7 / 24) + P ** (5 / 16)) * 6 * P ** (-5 / 4)
+        / (0.35 * P**-0.75) <= 0.25)
+    assert abs(10 ** C.least_P(merged) / unmerged - 5.574) < 0.01
+
+    exact = 10 ** C.least_P(lambda P: (9 * 0.68 / 2.656) * P**-0.5 <= 1 / 1856)
+    stated, _ = M.claim_predicate("beta-substitution error 2.31 P^(-1/2) <= rho_0")
+    assert abs(10 ** C.least_P(stated) / exact - 1.005) < 0.001
+
+
+def test_the_old_thresholds_failed_their_own_claims() -> None:
+    assert 48.9 * (3.0e11) ** (-3 / 16) > 0.25          # the row A.1 used to print
+    assert 2.31 * (1.83e7) ** -0.5 > 1 / 1856
+    assert 48.9 * (1.67e12) ** (-3 / 16) <= 0.25        # where the merged claim would have to sit
+    assert 2.3043 * (1.83e7) ** -0.5 <= 1 / 1856       # what the row prints now
+
+
+def test_p0_and_the_binding_row_survive_the_two_corrections() -> None:
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "p0_certificate", ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py")
+    C = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(C)
+    worst = max((r["P_min"] or 0.0, r["tag"]) for r in C.thresholds())
+    assert worst[1] == "5b-W<=c7S"
+    assert abs(worst[0] - 3.58576e13) / 3.58576e13 < 1e-4
+
+
+def test_the_paper_records_the_drift_between_sentence_and_predicate() -> None:
+    text = M.paper_text()
+    assert "had drifted apart" in text
+    assert "P^{1/48}" in text
+    assert "must hold as written at the" in text
+    assert "1.66" + chr(92) + "cdot10^{12}" in text     # where the merged claim clears
+    assert "2.98" + chr(92) + "cdot10^{11}" in text     # where the sharp one does

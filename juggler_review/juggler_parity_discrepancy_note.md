@@ -6678,7 +6678,7 @@ and are recorded there as errata.
 | (3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96) | Thm 6.1 St.B | $7.51\cdot10^{5}$ |
 | P^(1/2) >= 8(1 + 5 P^(1/4)) | Thm 5.3 St.6(D1) | $2.62\cdot10^{6}$ |
 | wave remainder 300 P^(-35/24) vs S: 536 P^(-5/6) <= rho_0 | Thm 5.3 St.5b | $1.58\cdot10^{7}$ |
-| beta-substitution error 2.31 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.83\cdot10^{7}$ |
+| beta-substitution error 2.3043 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.83\cdot10^{7}$ |
 | cells + anchor runs + windows <= 3.5 P^(13/24) | Thm 5.3 St.5b | $5.14\cdot10^{7}$ |
 | mode/cell curvature ratio 0.39 P^(1/8) >= 4 | Thm 4.1 St.2 | $1.23\cdot10^{8}$ |
 | flat cost 23 P^(19/24) inside the P^(23/24) budget | Thm 5.3 St.3(a) | $1.49\cdot10^{8}$ |
@@ -6692,7 +6692,7 @@ and are recorded there as errata.
 | flat cost 8(1+\|C\|)/R_0 <= P^(-1/96) per point | Thm 6.3 | $5.51\cdot10^{9}$ |
 | 2.25 P^(-1/16) < 1/2 | Thm 4.1 St.3(s1) | $2.83\cdot10^{10}$ |
 | widened \|B_0\| <= R_0: 5 P^(1/4) <= P^(5/16) | Thm 5.3 St.6(D1) | $1.53\cdot10^{11}$ |
-| \|q''\| curvature ratio 48.9 P^(-3/16) <= 1/4 | Thm 5.3 St.5b(a) | $3.0\cdot10^{11}$ |
+| \|q''\| curvature ratio (1.85 P^(7/24) + R_0) 6 P^(-5/4) / (0.35 P^(-3/4)) <= 1/4 | Thm 5.3 St.5b(a) | $3.0\cdot10^{11}$ |
 | E alone <= c_7 S/2 (the floor as kappa -> 0) | Thm 5.3 St.5b | $4.11\cdot10^{12}$ |
 | W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $2.92\cdot10^{13}$ |
 | W = V + E <= c_7 S/2 at S >= 0.56 P^(-5/8) | Thm 5.3 St.5b | $3.6\cdot10^{13}$ |
@@ -6747,6 +6747,20 @@ magnitude. The erratum at Lemma 5.2b moved only those three: it left
 the \(q''\) row where it was, since that row divides by Theorem 4.1's
 Stage-4 curvature and not by \(\lambda_0\), and it left the mode index
 where it was, since that row mentions no curvature at all.
+
+The \(q''\) row is the one place where the table's sentence and the
+certificate's predicate had drifted apart. The sentence read
+\(48.9P^{-3/16}\le\tfrac14\), the merged bound the prose uses; the
+predicate is the unmerged \((1.85P^{7/24}+R_0)\) form, sharper by
+\(P^{1/48}\), and it is that form A.5's floor is measured at. The two
+clear at \(2.98\cdot10^{11}\) and \(1.66\cdot10^{12}\), so the row was
+false at its own printed threshold ---
+\(48.9\,(3.0\cdot10^{11})^{-3/16}=0.345\), not \(\le\tfrac14\). A row
+must hold as written at the \(P\) written beside it, so the sentence now
+states the form that is checked. The \(\tilde\beta\)-substitution row
+had the same defect at one part in four hundred: it printed \(2.31\)
+where the derivation gives \(9\cdot0.68/2.656=2.30422\), and \(2.31\)
+appears nowhere else in this paper. It now prints \(2.3043\).
 
 The mode-index row is also the only one in the table whose printed
 threshold is *exact* rather than conservative. Every other row is
