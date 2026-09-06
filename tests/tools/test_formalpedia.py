@@ -146,3 +146,40 @@ def test_every_proposed_candidate_lives_in_the_row_s_own_file() -> None:
         names = by_file.get("formal/" + lean, set())
         for c in r["candidates"]:
             assert c["decl"] in names, f"{r['id']}: {c['decl']} not in {lean}"
+
+
+PAPER_A_OFF_KERNEL = ["greedy_eq_ostro_below_window", "window_digit_scan"]
+"""Paper A's Section 1.2 states the trust boundary positively: kernel-checked throughout the
+layer except the two Ostrowski scans.  This is that sentence, as an assertion."""
+
+
+def test_paper_a_keeps_exactly_the_two_ostrowski_scans_off_the_kernel() -> None:
+    surface = fp.paper_surface(fp.build())["Paper A"]
+    assert surface["present"], "Problems.JugglerPaper is missing from the index"
+    assert surface["compiler_trusted"] == PAPER_A_OFF_KERNEL, surface["compiler_trusted"]
+
+
+def test_paper_b_is_kernel_checked_throughout() -> None:
+    surface = fp.paper_surface(fp.build())["Paper B"]
+    assert surface["present"], "Problems.JugglerParityPaper is missing from the index"
+    assert surface["compiler_trusted"] == [], surface["compiler_trusted"]
+
+
+def test_no_paper_reaches_a_sorry() -> None:
+    """A `sorry` anywhere under a paper root would make its verification claim false."""
+    for label, surface in fp.paper_surface(fp.build()).items():
+        if surface["present"]:
+            assert surface["open"] == [], f"{label}: {surface['open']}"
+
+
+def test_paper_reachability_is_not_the_same_set_as_the_directory() -> None:
+    """Why the paper roots matter: the Juggler directory holds modules no paper imports, so a
+    directory count answers a different question than a trust sentence does.  If these ever
+    coincided the distinction would be free, and the roots could be dropped."""
+    index = fp.build()
+    reach = fp.reachable(index)
+    root = fp.PAPER_ROOTS["Paper A"]
+    reached = reach.get(root, set()) | {root}
+    in_dir = {m for m in index["modules"] if m.startswith("Problems.Juggler")}
+    assert in_dir - reached, "every Juggler module is now reachable from Paper A"
+    assert reached & in_dir, "Paper A reaches no Juggler module at all"

@@ -11,6 +11,7 @@
         "BTC-D-add",
         "BTC-D-mul"
       ],
+      "papers": [],
       "trust": {
         "kernel": 9
       }
@@ -24,6 +25,7 @@
       "ledger": [
         "BTC-cmp3"
       ],
+      "papers": [],
       "trust": {
         "kernel": 9
       }
@@ -39,6 +41,7 @@
         "BTJ-comp",
         "BTJ-product"
       ],
+      "papers": [],
       "trust": {
         "kernel": 5
       }
@@ -52,6 +55,7 @@
       "ledger": [
         "BTN-confluence"
       ],
+      "papers": [],
       "trust": {
         "compiler": 2,
         "kernel": 39
@@ -68,6 +72,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
+      "papers": [],
       "trust": {
         "kernel": 28
       }
@@ -83,6 +88,7 @@
         "BTA-x3-def2-crit",
         "BTA-x3-vis"
       ],
+      "papers": [],
       "trust": {
         "kernel": 14
       }
@@ -101,6 +107,7 @@
         "BTA-x3-n3gate",
         "BTA-x3-sign"
       ],
+      "papers": [],
       "trust": {
         "kernel": 22
       }
@@ -116,6 +123,7 @@
         "BTA-x3-inter-crit",
         "BTA-x3-inter-lift"
       ],
+      "papers": [],
       "trust": {
         "kernel": 13
       }
@@ -132,6 +140,7 @@
         "BTA-x3-n0-sign",
         "BTA-x3-n0-vis"
       ],
+      "papers": [],
       "trust": {
         "kernel": 21
       }
@@ -150,6 +159,7 @@
         "BTA-x3-n1-unit",
         "BTA-x3-n1-val"
       ],
+      "papers": [],
       "trust": {
         "kernel": 16
       }
@@ -168,6 +178,7 @@
         "BTA-x3-raw",
         "BTA-x3-section"
       ],
+      "papers": [],
       "trust": {
         "kernel": 38
       }
@@ -182,6 +193,7 @@
       "ledger": [
         "BTC-decomp"
       ],
+      "papers": [],
       "trust": {
         "kernel": 15
       }
@@ -196,6 +208,7 @@
         "BTC-D-I",
         "BTC-P-band"
       ],
+      "papers": [],
       "trust": {
         "kernel": 14
       }
@@ -209,6 +222,7 @@
       "ledger": [
         "BTJ-jet"
       ],
+      "papers": [],
       "trust": {
         "kernel": 7
       }
@@ -224,6 +238,7 @@
         "BTA-x3-Q-inv-one",
         "BTA-x3-Q-inv-psi"
       ],
+      "papers": [],
       "trust": {
         "kernel": 10
       }
@@ -242,6 +257,7 @@
         "BTA-x3-Q-vis",
         "BTA-x3-Q-visible"
       ],
+      "papers": [],
       "trust": {
         "kernel": 27
       }
@@ -254,6 +270,7 @@
         "BTM-x3-depth",
         "BTM-x3-no-preserve"
       ],
+      "papers": [],
       "trust": {
         "kernel": 31
       }
@@ -267,6 +284,7 @@
       "ledger": [
         "BTA-Ik-newton"
       ],
+      "papers": [],
       "trust": {
         "kernel": 23
       }
@@ -280,6 +298,7 @@
       "ledger": [
         "BTA-x3-stratum"
       ],
+      "papers": [],
       "trust": {
         "kernel": 15
       }
@@ -297,6 +316,7 @@
         "BTN-nf",
         "BTN-step-value"
       ],
+      "papers": [],
       "trust": {
         "kernel": 46
       }
@@ -310,6 +330,7 @@
       "ledger": [
         "BTJ-hatD"
       ],
+      "papers": [],
       "trust": {
         "kernel": 20
       }
@@ -321,6 +342,7 @@
       "ledger": [
         "BTC-op-fragment-nd-nf"
       ],
+      "papers": [],
       "trust": {
         "kernel": 44
       }
@@ -335,6 +357,7 @@
       "ledger": [
         "BTC-op-fragment-nd-semantic"
       ],
+      "papers": [],
       "trust": {
         "kernel": 58
       }
@@ -350,6 +373,7 @@
         "BTL-trichotomy",
         "BTL-zero-output"
       ],
+      "papers": [],
       "trust": {
         "kernel": 22
       }
@@ -366,6 +390,7 @@
         "BTL-newton-path",
         "BTL-unit-scaling"
       ],
+      "papers": [],
       "trust": {
         "kernel": 23
       }
@@ -380,6 +405,7 @@
         "BTJ-degree",
         "BTJ-section"
       ],
+      "papers": [],
       "trust": {
         "kernel": 32
       }
@@ -399,6 +425,7 @@
         "BTA-x3-x",
         "BTA-x4-merge"
       ],
+      "papers": [],
       "trust": {
         "kernel": 40
       }
@@ -416,6 +443,7 @@
         "BTA-x2-quad-form",
         "BTA-x2-raw"
       ],
+      "papers": [],
       "trust": {
         "kernel": 49
       }
@@ -430,6 +458,7 @@
       "ledger": [
         "BTA-equiv"
       ],
+      "papers": [],
       "trust": {
         "kernel": 14
       }
@@ -443,6 +472,7 @@
       "ledger": [
         "BTA-eval-residualAlong"
       ],
+      "papers": [],
       "trust": {
         "kernel": 5
       }
@@ -456,6 +486,7 @@
       "ledger": [
         "BTC-op-fragment-semantic-nf"
       ],
+      "papers": [],
       "trust": {
         "kernel": 8
       }
@@ -472,6 +503,7 @@
         "BTC-constructor-sum-class",
         "BTC-push-in-S-peak"
       ],
+      "papers": [],
       "trust": {
         "kernel": 34
       }
@@ -485,6 +517,7 @@
       "ledger": [
         "BTC-select3"
       ],
+      "papers": [],
       "trust": {
         "kernel": 12
       }
@@ -498,6 +531,7 @@
       "ledger": [
         "BTA-cascade"
       ],
+      "papers": [],
       "trust": {
         "kernel": 2
       }
@@ -511,6 +545,7 @@
       "ledger": [
         "BTC-trit-kleene"
       ],
+      "papers": [],
       "trust": {
         "kernel": 20
       }
@@ -522,6 +557,7 @@
       "ledger": [
         "BTC-word-simp-nf"
       ],
+      "papers": [],
       "trust": {
         "kernel": 26
       }
@@ -546,6 +582,7 @@
         "BTA-x3-M-spine",
         "BTA-x3-Q-unit-im"
       ],
+      "papers": [],
       "trust": {
         "kernel": 20
       }
@@ -559,6 +596,7 @@
       "ledger": [
         "BT-W-not-involution"
       ],
+      "papers": [],
       "trust": {
         "kernel": 10
       }
@@ -572,6 +610,7 @@
       "ledger": [
         "BT-D-S"
       ],
+      "papers": [],
       "trust": {
         "kernel": 11
       }
@@ -585,6 +624,7 @@
       "ledger": [
         "BT-Pn3"
       ],
+      "papers": [],
       "trust": {
         "kernel": 7
       }
@@ -601,6 +641,7 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-repaired"
       ],
+      "papers": [],
       "trust": {
         "compiler": 4,
         "kernel": 8
@@ -626,6 +667,7 @@
         "BTN-expanding-right-inverse",
         "BTN-expanding-section"
       ],
+      "papers": [],
       "trust": {
         "compiler": 3,
         "kernel": 46
@@ -644,6 +686,7 @@
         "BTN-doubled-minimality",
         "BTN-doubled-sign"
       ],
+      "papers": [],
       "trust": {
         "compiler": 5,
         "kernel": 18
@@ -662,6 +705,7 @@
         "BTN-mr-product-closure",
         "BTN-mr-three-states"
       ],
+      "papers": [],
       "trust": {
         "compiler": 1,
         "kernel": 16
@@ -677,6 +721,7 @@
         "BTN-sdrc-any-word",
         "BTN-sdrc-lambda3-symmetry"
       ],
+      "papers": [],
       "trust": {
         "kernel": 3
       }
@@ -696,6 +741,7 @@
         "BTN-sdr-multi-trit",
         "BTN-sdr-scalar-lambda3"
       ],
+      "papers": [],
       "trust": {
         "compiler": 1,
         "kernel": 38
@@ -712,6 +758,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
+      "papers": [],
       "trust": {
         "compiler": 1,
         "kernel": 22
@@ -729,6 +776,7 @@
         "BTN-sdrm-mod3-merges",
         "BTN-sdrm-separation"
       ],
+      "papers": [],
       "trust": {
         "kernel": 22
       }
@@ -744,6 +792,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-truncated-mod"
       ],
+      "papers": [],
       "trust": {
         "kernel": 10
       }
@@ -755,6 +804,7 @@
       "ledger": [
         "C-T-welldefined"
       ],
+      "papers": [],
       "trust": {
         "kernel": 7
       }
@@ -768,6 +818,7 @@
       "ledger": [
         "C-R-direct"
       ],
+      "papers": [],
       "trust": {
         "kernel": 3
       }
@@ -781,6 +832,7 @@
       "ledger": [
         "C-center"
       ],
+      "papers": [],
       "trust": {
         "kernel": 4
       }
@@ -794,6 +846,7 @@
       "ledger": [
         "C-cycles"
       ],
+      "papers": [],
       "trust": {
         "kernel": 8
       }
@@ -807,6 +860,7 @@
       "ledger": [
         "C-endpoint"
       ],
+      "papers": [],
       "trust": {
         "kernel": 12
       }
@@ -821,6 +875,7 @@
         "C-gap",
         "C-nstar-le-n"
       ],
+      "papers": [],
       "trust": {
         "kernel": 12
       }
@@ -832,6 +887,7 @@
       "ledger": [
         "C-lift-zero"
       ],
+      "papers": [],
       "trust": {
         "kernel": 7
       }
@@ -845,6 +901,7 @@
         "C-shortcut-one-step-lyapunov",
         "C-shortcut-welldefined"
       ],
+      "papers": [],
       "trust": {
         "compiler": 2,
         "kernel": 10
@@ -860,6 +917,7 @@
         "J-above-anchor-hug-domination",
         "J-clotho-slow-escape-not-forced"
       ],
+      "papers": [],
       "trust": {
         "kernel": 2
       }
@@ -872,6 +930,9 @@
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "ledger": [
         "J-cycle-trailing-evens"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 71
@@ -886,6 +947,9 @@
       "ledger": [
         "J-cycle-finance-inequality",
         "J-lachesis-basin-inverse-sum"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 8
@@ -915,6 +979,9 @@
         "J-small-cycle-census-nineteen",
         "J-small-cycle-census-ten"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 58
       }
@@ -928,6 +995,7 @@
       "ledger": [
         "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five"
       ],
+      "papers": [],
       "trust": {
         "kernel": 58
       }
@@ -943,6 +1011,7 @@
         "J-cyclemin-fudge",
         "J-cyclemin-slack"
       ],
+      "papers": [],
       "trust": {
         "kernel": 120
       }
@@ -957,6 +1026,7 @@
         "J-cyclemin-transport-oo",
         "J-ooo-residual-cube"
       ],
+      "papers": [],
       "trust": {
         "kernel": 6
       }
@@ -970,6 +1040,9 @@
       "ledger": [
         "J-cycle-finite-structure"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {}
     },
     "Problems.Juggler.DefectFinance": {
@@ -980,6 +1053,9 @@
       "file": "formal/Problems/Juggler/DefectFinance.lean",
       "ledger": [
         "J-cyclemin-defect-finance-kill"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 11
@@ -994,6 +1070,9 @@
       "ledger": [
         "J-first-defect-amplification"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 69
       }
@@ -1007,6 +1086,9 @@
       "ledger": [
         "J-envelope-lt-pow",
         "J-power-envelope-contraction"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 48
@@ -1029,6 +1111,7 @@
         "J-no-cycle-no-bounded-nonterm",
         "J-trajectory-cycle-or-escape"
       ],
+      "papers": [],
       "trust": {
         "kernel": 70
       }
@@ -1046,6 +1129,9 @@
         "J-even-count-le-three",
         "J-first-even-overshoots"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 51
       }
@@ -1061,6 +1147,7 @@
         "J-expanding-grammar-obstruction",
         "J-persistent-implies-expanding"
       ],
+      "papers": [],
       "trust": {
         "kernel": 16
       }
@@ -1074,6 +1161,7 @@
       "ledger": [
         "J-expansion-block-grammar"
       ],
+      "papers": [],
       "trust": {
         "kernel": 11
       }
@@ -1089,6 +1177,9 @@
         "J-four-block-persistent-expanding",
         "J-weighted-slack-cocycle"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 25
       }
@@ -1101,6 +1192,9 @@
       "file": "formal/Problems/Juggler/FanLaw.lean",
       "ledger": [
         "J-lean-arithmetic-certificates-kernel-checked"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 20
@@ -1118,6 +1212,7 @@
         "J-fate-odd-generation",
         "J-fate-oe-fiber-cell"
       ],
+      "papers": [],
       "trust": {
         "kernel": 37
       }
@@ -1130,6 +1225,9 @@
       "file": "formal/Problems/Juggler/FirstInternalOO.lean",
       "ledger": [
         "J-cyclemin-first-oo-r-bound"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 26
@@ -1144,6 +1242,7 @@
         "J-nested-parity-discrepancy",
         "J-tier2-gap-and-shifted-forms"
       ],
+      "papers": [],
       "trust": {
         "kernel": 8
       }
@@ -1157,6 +1256,9 @@
       "ledger": [
         "J-cyclemin-gap-transfer"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 2
       }
@@ -1169,6 +1271,9 @@
       "file": "formal/Problems/Juggler/GlobalDefect.lean",
       "ledger": [
         "J-global-defect-identity"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 36
@@ -1184,6 +1289,9 @@
         "J-fixed-itinerary-image-monotone",
         "J-itinerary-semantics"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 33
       }
@@ -1196,6 +1304,9 @@
       "file": "formal/Problems/Juggler/ItineraryStats.lean",
       "ledger": [
         "J-exponent-expanding-append"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 31
@@ -1211,6 +1322,7 @@
         "J-landing-preimage-iff",
         "J-landing-theta-state"
       ],
+      "papers": [],
       "trust": {
         "kernel": 14
       }
@@ -1226,6 +1338,7 @@
         "J-odd-odd-remainder-mod-eight",
         "J-pe-history-valuation"
       ],
+      "papers": [],
       "trust": {
         "kernel": 18
       }
@@ -1252,6 +1365,9 @@
         "J-two-even-leftover-ee",
         "J-two-even-leftover-eoe"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 180
       }
@@ -1266,6 +1382,9 @@
         "J-leftover-length-seven-orientations",
         "J-leftover-length-six-orientations"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 38
       }
@@ -1279,6 +1398,9 @@
       "file": "formal/Problems/Juggler/LengthEightCensus.lean",
       "ledger": [
         "J-small-cycle-census-eight"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 21
@@ -1304,6 +1426,7 @@
         "J-loglog-clock-hug-band-lean",
         "J-loglog-clock-walk-rotation-lean"
       ],
+      "papers": [],
       "trust": {
         "kernel": 22
       }
@@ -1320,6 +1443,9 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 14
       }
@@ -1335,6 +1461,9 @@
         "J-near-tight-scale-bounds",
         "J-ooe-scale-decay"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 18
       }
@@ -1347,6 +1476,9 @@
       "file": "formal/Problems/Juggler/NormalizedDefect.lean",
       "ledger": [
         "J-normalized-relative-slack"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 38
@@ -1361,6 +1493,7 @@
       "ledger": [
         "J-o7eeee-gap"
       ],
+      "papers": [],
       "trust": {
         "kernel": 30
       }
@@ -1375,6 +1508,7 @@
         "J-odd-landing-set-structure",
         "J-odd-run-recursive"
       ],
+      "papers": [],
       "trust": {
         "kernel": 10
       }
@@ -1388,6 +1522,9 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-numeration"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "compiler": 1,
         "kernel": 14
@@ -1399,6 +1536,9 @@
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "compiler": 1,
@@ -1420,6 +1560,7 @@
         "J-cyclemin-prefix-bunched-eooeoe",
         "J-cyclemin-prefix-bunched-eoooee"
       ],
+      "papers": [],
       "trust": {
         "kernel": 40
       }
@@ -1434,6 +1575,7 @@
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
+      "papers": [],
       "trust": {
         "kernel": 17
       }
@@ -1448,6 +1590,7 @@
         "J-itinerary-cylinder-exact",
         "J-pe-cylinder-next-landing"
       ],
+      "papers": [],
       "trust": {
         "kernel": 13
       }
@@ -1461,6 +1604,9 @@
       "ledger": [
         "J-inverse-preimage-asymmetry"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 124
       }
@@ -1473,6 +1619,9 @@
       "file": "formal/Problems/Juggler/Progress.lean",
       "ledger": [
         "J-finite-progress-boundary"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 20
@@ -1488,6 +1637,9 @@
       "ledger": [
         "J-two-block-persistent-expanding"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 70
       }
@@ -1499,6 +1651,9 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 10
       }
@@ -1509,6 +1664,9 @@
       "file": "formal/Problems/Juggler/RunSurvivorLattice.lean",
       "ledger": [
         "J-run-survivor-lattice"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 29
@@ -1526,6 +1684,7 @@
         "J-peak-transports-to-oo",
         "J-sequential-defect-oo"
       ],
+      "papers": [],
       "trust": {
         "kernel": 14
       }
@@ -1540,6 +1699,9 @@
         "J-small-cycle-census",
         "J-small-cycle-census-seven"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 8
       }
@@ -1550,6 +1712,9 @@
       "file": "formal/Problems/Juggler/Termination.lean",
       "ledger": [
         "J-residual-floor-fifty-three"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 40
@@ -1564,6 +1729,9 @@
       "ledger": [
         "J-residual-floor-two-hundred-fifty-seven",
         "J-residual-floor-two-hundred-sixty-one"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 108
@@ -1580,6 +1748,9 @@
         "J-cyclemin-walk-word-identity",
         "J-lachesis-loglog-clock"
       ],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 31
       }
@@ -1593,6 +1764,9 @@
       "file": "formal/Problems/Juggler/WalkChargeMax.lean",
       "ledger": [
         "J-cyclemin-hug-charge-max"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 9
@@ -1608,6 +1782,9 @@
         "J-cyclemin-walk-transport-envelope",
         "J-flight-envelope-transport",
         "J-flight-height-law"
+      ],
+      "papers": [
+        "Paper A"
       ],
       "trust": {
         "kernel": 22
@@ -1636,6 +1813,7 @@
         "OST-np-same-energy-same-OnF",
         "OST-np-val-concat-energy"
       ],
+      "papers": [],
       "trust": {
         "kernel": 79
       }
@@ -1649,6 +1827,7 @@
       "ledger": [
         "OST-np-unique-predecessor"
       ],
+      "papers": [],
       "trust": {
         "kernel": 18
       }
@@ -1662,6 +1841,7 @@
       "ledger": [
         "OST-np-kernel-unreach"
       ],
+      "papers": [],
       "trust": {
         "compiler": 1,
         "kernel": 3
@@ -1674,6 +1854,7 @@
       "ledger": [
         "OST-np-recurrence-word-zero"
       ],
+      "papers": [],
       "trust": {
         "compiler": 3,
         "kernel": 18
@@ -1691,6 +1872,7 @@
         "PRC-sieve-mod-M",
         "PRC-sieve-prime-separator"
       ],
+      "papers": [],
       "trust": {
         "compiler": 2,
         "kernel": 4
@@ -1704,6 +1886,7 @@
         "BT-encode-unique",
         "C-append-plus"
       ],
+      "papers": [],
       "trust": {
         "kernel": 30
       }

@@ -214,6 +214,40 @@ def reachable(index: dict[str, Any]) -> dict[str, set[str]]:
     return out
 
 
+PAPER_ROOTS = {
+    "Paper A": "Problems.JugglerPaper",
+    "Paper B": "Problems.JugglerParityPaper",
+}
+"""The module each manuscript's formalization claims to track.
+
+Reachability from these roots is what a trust sentence in a paper is actually about.  A
+directory grep answers a different question -- `formal/Problems/Juggler/` holds modules no
+paper imports -- and would let a `native_decide` land inside a paper's surface while the
+count outside it stayed reassuring.
+"""
+
+
+def paper_surface(index: dict[str, Any]) -> dict[str, Any]:
+    """Per paper: the modules it reaches, and the proofs in them the kernel does not check."""
+    reach = reachable(index)
+    out: dict[str, Any] = {}
+    for label, root in PAPER_ROOTS.items():
+        if root not in index["modules"]:
+            out[label] = {"root": root, "present": False}
+            continue
+        mods = reach.get(root, set()) | {root}
+        inside = [d for d in index["declarations"] if d["module"] in mods]
+        out[label] = {
+            "root": root,
+            "present": True,
+            "modules": len(mods),
+            "declarations": len(inside),
+            "compiler_trusted": sorted(d["name"] for d in inside if d["trust"] == "compiler"),
+            "open": sorted(d["name"] for d in inside if d["trust"] == "open"),
+        }
+    return out
+
+
 def dag(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
     """The claim graph: modules that carry a ledger row, reduced to its essential edges.
 
@@ -242,6 +276,12 @@ def dag(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
             implied |= edges.get(d, set()) & ds
         reduced[m] = sorted(ds - implied)
 
+    reach = reachable(index)
+    serves = {
+        label: (reach.get(root, set()) | {root}) if root in index["modules"] else set()
+        for label, root in PAPER_ROOTS.items()
+    }
+
     nodes = {}
     for m in sorted(carriers):
         data = index["modules"][m]
@@ -254,6 +294,7 @@ def dag(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
             "ledger": sorted(rows[m]),
             "trust": dict(trust),
             "depends_on": reduced[m],
+            "papers": sorted(label for label, mods in serves.items() if m in mods),
         }
     return {
         "granularity": "module",
@@ -370,6 +411,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("target")
     sub.add_parser("dag", help="rebuild the claim graph over ledger-carrying modules")
     sub.add_parser("propose", help="rank declarations for rows that name none")
+    sub.add_parser("papers", help="each manuscript's reachable trust surface")
     args = ap.parse_args(argv)
 
     if args.cmd == "build":
@@ -380,6 +422,18 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{t['declarations']} declarations in {t['modules']} modules")
         print(f"  trust: {t['trust']}")
         print(f"  declarations under a ledger row: {t['declarations_with_a_ledger_row']}")
+        return 0
+
+    if args.cmd == "papers":
+        for label, s in paper_surface(load()).items():
+            if not s["present"]:
+                print(f"{label}: root {s['root']} is not in the index")
+                continue
+            print(f"{label} ({s['root']}): {s['modules']} modules, "
+                  f"{s['declarations']} declarations")
+            print(f"   off the kernel: {s['compiler_trusted'] or 'none'}")
+            if s["open"]:
+                print(f"   carrying sorry: {s['open']}")
         return 0
 
     if args.cmd == "propose":
