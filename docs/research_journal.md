@@ -29738,3 +29738,66 @@ Best next question
 - for the author: is P_w for a localized cylinder the fair 2^{-d}, or
   does localization cost a factor? A quarter would reconcile it.
 ```
+
+ ### The abstract is clean, and two quarterings are one
+
+Audited the abstract, the same treatment that found the `0.5561`
+mismatch in Section 8. It is clean. Every claim either verified earlier
+this session or now:
+
+```text
+   m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + O(n^{-3/4}), one-signed
+       LHS - RHS = (3/8) theta^2 X^{-1/2} > 0, and X^{-1/2} = n^{-3/4}
+       matching Lemma 4.3's 0 <= E <= (3/8)(X-1)^{-1/2}
+   c = (3k/4) n^{9/8}                verified (Theorem 5.3's monomial)
+   |q|^{-1/6} P^{23/24+eps}          verified
+   K_c << P^{1-1/96+eps}             verified
+   thirty-seven inequalities         verified (len(rows) == 37)
+   P_0 = 8.9e13                      verified
+   densities 7/8 and 13/16           verified, and shown to be ceilings
+   level-3 weight scale n^{27/16} > n  verified
+```
+
+**And the one item I had not traced, `log^{3/4}P`, is derived — at
+Appendix A.3, three and a half thousand lines from the abstract.** Mode
+masses are `O(log^3 P)` and "the two Weyl steps halve the exponent
+twice".
+
+That is worth connecting, because it is the *same* halving that takes
+Lemma 5.2(ii)'s `1/24` to the kernel's `1/96`. Each differencing
+squares the sum and takes a square root, which halves a saving
+exponent and a logarithmic exponent alike:
+
+```text
+   1/24 -> 1/48 -> 1/96        saving
+   3    -> 3/2  -> 3/4         log power
+```
+
+One quartering, not two coincidences. The paper states both and
+connects neither; `differencing_chain` now carries both.
+
+```text
+What was learned
+- the abstract's every claim is checkable and all of them check, which
+  is the right outcome for the most-read paragraph
+- two numbers I had treated as unrelated -- the kernel exponent and the
+  log power -- come out of the same square root, so anything that
+  changes one changes the other by the same factor
+Strongest theorem
+- each differencing round halves the saving and the log exponent
+  together; 1/24 -> 1/96 and log^3 -> log^{3/4} are one operation
+Strongest refutation
+- none; the abstract audits clean
+Reusable machinery
+- differencing_chain now returns log_exponent; four tests
+Branch status
+- PROMOTE
+Why
+  The abstract is the part a reader trusts most and checks least, and
+  it holds. The unification is small but load-bearing for anyone
+  improving Lemma 5.2(ii): the log power moves with the saving, so an
+  improved exponent also sharpens the epsilon-free form.
+Best next question
+- Section 1's summary makes claims the abstract does not. Does it
+  audit as clean?
+```

@@ -883,3 +883,35 @@ def test_paper_states_the_robustness_reading() -> None:
     assert "solves a transcendental equation" in text
     assert "the loss is steeply asymmetric" in text
     assert "the robust choice rather than the optimal one" in text
+
+
+# --- the chain quarters the saving and the log power by one mechanism ---
+
+
+def test_the_chain_carries_the_log_exponent() -> None:
+    """Mode masses O(log^3 P) leave as log^{3/4} P, alongside 1/24 -> 1/96."""
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    r = PB.differencing_chain(Fr(1, 24))
+    assert r["saving"] == Fr(1, 96)
+    assert r["log_exponent"] == Fr(3, 4)
+
+
+def test_both_are_the_same_quartering() -> None:
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    r = PB.differencing_chain(Fr(1, 24))
+    assert r["saving"] / Fr(1, 24) == r["log_exponent"] / Fr(3) == Fr(1, 4)
+
+
+@pytest.mark.parametrize("rounds,factor", [(1, Fr(1, 2)), (2, Fr(1, 4)), (3, Fr(1, 8))])
+def test_each_round_halves_both(rounds: int, factor: Fr) -> None:
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    r = PB.differencing_chain(Fr(1, 24), rounds)
+    assert r["saving"] == Fr(1, 24) * factor
+    assert r["log_exponent"] == Fr(3) * factor
+
+
+def test_the_abstract_and_A3_agree_on_the_log_form() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert r"K_c\ll P^{1-1/96}\log^{3/4}P" in text            # abstract
+    assert r"K_c(P)\ll P^{1-1/96}(\log P)^{3/4}" in text      # A.3
+    assert "one\nquartering, not two coincidences" in text or "not two coincidences" in text

@@ -2150,7 +2150,12 @@ a power of \(\log P\) and nothing else; the mode masses are
 \(O(\log^3P)\) and the two Weyl steps halve the exponent twice,
 giving the \(\varepsilon\)-free form
 \(K_c(P)\ll P^{1-1/96}(\log P)^{3/4}\) of Theorem 5.3
-(Appendix A.3). The threshold at which \(\log^AP\) is absorbed
+(Appendix A.3). That halving is the same one that takes Lemma
+5.2(ii)'s saving \(\tfrac1{24}\) to the kernel's \(\tfrac1{96}\): each
+differencing squares the sum and then takes a square root, which
+halves a saving exponent and a logarithmic exponent alike. So
+\(\tfrac1{24}\to\tfrac1{96}\) and \(\log^3\to\log^{3/4}\) are one
+quartering, not two coincidences. The threshold at which \(\log^AP\) is absorbed
 into \(P^{\varepsilon}\) is a statement about \(\varepsilon\),
 not about the proof, and is not part of \(P_0\).
 

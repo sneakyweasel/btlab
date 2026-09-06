@@ -520,7 +520,8 @@ def best_monomial_bound(phase_exponent: Fraction, depth: int = 9):
     return pair, value, 1 - value
 
 
-def differencing_chain(saving: Fraction, rounds: int = 2) -> dict[str, Fraction]:
+def differencing_chain(saving: Fraction, rounds: int = 2,
+                       log_power: Fraction = Fraction(3)) -> dict[str, Fraction]:
     """Step 1's accounting: a doubly-differenced bound ``P^(1-saving)`` gives ``P^(1-saving/4)``.
 
     Balancing ``|K|^2 <= 2P^2/H + (4P/H) sum_{h<=H} |T(h)|`` forces ``H = P^saving`` and halves the
@@ -538,6 +539,9 @@ def differencing_chain(saving: Fraction, rounds: int = 2) -> dict[str, Fraction]
     return {"H%d" % (i + 1): r for i, r in enumerate(ranges)} | {
         "saving": Fraction(saving) / 2 ** rounds,
         "exponent": 1 - Fraction(saving) / 2 ** rounds,
+        # each round takes a square root, so it halves the log power for the same reason
+        # it halves the saving: mode masses O(log^3 P) leave the chain as log^{3/4} P.
+        "log_exponent": Fraction(log_power) / 2 ** rounds,
     }
 
 
