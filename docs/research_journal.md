@@ -33882,3 +33882,72 @@ Best next question
   a lead and a term of lower order. Is either of them a max in disguise
   as well?
 ```
+
+## The answer was no twice, and the search found the fourth estimate
+
+Neither candidate hides a maximum. `2.25` is not a sum: `B(nu) =
+(9/4) u h xi^(-1/4)` is one mean value, and the printed range
+`(1.89, 2.25]` is that term at the two ends of the block, both
+attained. The widened `5` is a genuine sum of a lead `4` and a term of
+lower order, with `h` and `h'` independent so both can sit at their
+caps; the `+1` is rounding, worth `4.001` from `2.95e11`, already in
+the certificate.
+
+The search did turn up the last displayed estimate of Lemma 5.1(iii).
+`|G''| <= 2|j| P^(-5/4) + 25 h_1h_2 P^(-7/4)` is already known not to
+be term by term --- with `n = s^4` the two `beta_1beta_2` contributions
+are `81/64` and `-9/32`, and the `j` ones `-27/32` and `9/16` --- and
+the manuscript keeps that cancellation, reaching `(63/64)(19) = 18.7`.
+The `19` is `beta` at the block top against an `n^(-11/4)` at the block
+bottom. At the same point the coefficients are `9/32` and
+`(63/64)(9) = 567/64 = 8.859`, against the printed `2` and `25`: a
+factor `7.11` and `2.82`, of which `19/9` is the two ends alone.
+Measured, `|G''|` is at most `1.00013` of the model --- the same carry
+excess as for `G'` --- and at most `0.354` of the printed pair.
+
+So the pattern is not the `max` regrouping specifically. It is charging
+quantities that live at one point at two separate worst points; the
+`max` is one form of that and the block ends another, and the block
+ends are commoner.
+
+```text
+Phase-end report
+Question
+- is Stage 3(s2)'s 2.25 or the widened 5 a maximum in disguise, the way
+  22 = 2 + 20 is
+Instruments
+- second_derivative_constants: |G''| against (9/32, 567/64) and against
+  the printed (2, 25), 64 samples over four ranges
+- collected_constant_inventory: the seven collected constants of the
+  lemma and its neighbours, each with its route and its loss
+Ledger tags
+- EXACT: B(nu) is a single mean value and (1.89, 2.25] is its range, so
+  2.25 is sharp; the widened 5 is a lead plus a vanishing term; the G''
+  coefficients 9/32 and 567/64 with beta and n at the same point
+- COMPUTATIONALLY VERIFIED: |G''| at most 1.00013 of the model and
+  0.3544 of the printed pair; beta_1beta_2 is 19 h_1h_2 P at the block
+  top and 9 h_1h_2 n at the point
+- OBSERVATION: of seven collected constants, one is already sharp, one
+  is a max in disguise, two are the block ends apart, two are rounding
+Strongest theorem
+- the fourth displayed estimate's constants are 9/32 and 567/64, and
+  the residual 19/9 in the manuscript's own route is the two block ends
+Strongest refutation
+- the premise of my own question: the 22 pathology is not the general
+  one, and the two constants I nominated are both innocent
+Reusable machinery
+- second_derivative_constants, collected_constant_inventory,
+  COLLECTED_CONSTANT_INVENTORY; two tests; both wired into summary()
+Branch status
+- PARK
+Why
+  All four displayed estimates of Lemma 5.1(iii) and its run-length
+  constant are now recorded with sharp values and the argument for
+  each. Every one is a manuscript edit belonging to the other session.
+Best next question
+- beta_i in [3h_i P^(1/2) - 1, 3 sqrt2 h_i P^(1/2) + 1] is the block
+  bound the paper states, and every "block ends apart" loss traces to
+  it. Is there a place where the pointwise beta_i ~ 3 h_i n^(1/2) is
+  *not* available -- where the estimate really is over the whole block
+  at once -- or does the interval exist only for convenience?
+```

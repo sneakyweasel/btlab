@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "4e5819d868ab1d0abecf6775c2d301b651d72a45",
+  "git_commit": "520ab77b80466c13e5d6f258c677c3c69ff31f18",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -4908,6 +4908,105 @@
     "sharp_constant": 1.6875,
     "sharp_constant_is_within_a_factor_two_of_the_counts": true
   },
+  "second_derivative_constants": {
+    "offset_samples": 30,
+    "curvature_samples": 34,
+    "offset_constant_model": 0.28125,
+    "curvature_constant_model": 8.859375,
+    "offset_constant_printed": 2.0,
+    "curvature_constant_printed": 25.0,
+    "combined_model_worst_ratio": 1.0001299168802842,
+    "combined_model_holds_to_the_carry": true,
+    "combined_model_is_approached": true,
+    "printed_pair_worst_ratio": 0.35442103929445073,
+    "curvature_alone_measured": 8.860525982361269,
+    "offset_slack": 7.111111111111111,
+    "curvature_slack": 2.821869488536155,
+    "manuscript_curvature_coefficient": 18.703125,
+    "beta_product_block_top": 19.0,
+    "beta_product_at_the_point": 9.0,
+    "residual_factor_from_charging_beta_at_the_block_top": 2.111111111111111,
+    "naive_term_by_term_coefficient": 29.390625,
+    "naive_exceeds_the_printed_25": true
+  },
+  "collected_constant_inventory": {
+    "rows": [
+      {
+        "where": "Lem 5.1(iii) |G'| offset",
+        "printed": 2.0,
+        "true": 1.125,
+        "route": "single term at its endpoint",
+        "loss": "rounding",
+        "slack": 1.7777777777777777
+      },
+      {
+        "where": "Lem 5.1(iii) |G'| curvature",
+        "printed": 20.0,
+        "true": 5.0625,
+        "route": "beta at the block top against n at the block bottom",
+        "loss": "block ends apart",
+        "slack": 3.950617283950617
+      },
+      {
+        "where": "Lem 5.1(iii) |G''| offset",
+        "printed": 2.0,
+        "true": 0.28125,
+        "route": "two contributions of opposite sign, bounded separately",
+        "loss": "cancellation dropped",
+        "slack": 7.111111111111111
+      },
+      {
+        "where": "Lem 5.1(iii) |G''| curvature",
+        "printed": 25.0,
+        "true": 8.859375,
+        "route": "cancellation kept, beta at the block top",
+        "loss": "block ends apart",
+        "slack": 2.821869488536155
+      },
+      {
+        "where": "Lem 5.1(iii) run length",
+        "printed": 22.0,
+        "true": 1.6875,
+        "route": "a + b at a common max M, in place of max(a, b/3)",
+        "loss": "max in disguise",
+        "slack": 13.037037037037036
+      },
+      {
+        "where": "Thm 4.1 St.3(s2) |B|",
+        "printed": 2.25,
+        "true": 2.25,
+        "route": "single mean value at its endpoint",
+        "loss": "none",
+        "slack": 1.0
+      },
+      {
+        "where": "Lem 5.2(iii) widened",
+        "printed": 5.0,
+        "true": 4.001,
+        "route": "lead plus a term of lower order",
+        "loss": "rounding a vanishing term",
+        "slack": 1.2496875781054735
+      }
+    ],
+    "count": 7,
+    "by_loss": {
+      "rounding": 1,
+      "block ends apart": 2,
+      "cancellation dropped": 1,
+      "max in disguise": 1,
+      "none": 1,
+      "rounding a vanishing term": 1
+    },
+    "already_sharp": [
+      "Thm 4.1 St.3(s2) |B|"
+    ],
+    "worst_slack": 13.037037037037036,
+    "worst_row": "Lem 5.1(iii) run length",
+    "block_ends_apart_is_the_commonest_loss": true,
+    "the_s2_constant_is_a_sum": false,
+    "the_widened_constant_is_a_sum": true,
+    "neither_is_a_max_in_disguise": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -4975,5 +5074,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 112.69892621040344
+  "elapsed_seconds": 82.1880304813385
 }

@@ -4046,6 +4046,143 @@ def run_length_constant(P_table: int = 10**5, live: bool = True) -> dict[str, An
     }
 
 
+def second_derivative_constants(seed: int = 36, samples_per_range: int = 25) -> dict[str, Any]:
+    """|G''| <= 2|j|P^{-5/4} + 25 h_1h_2 P^{-7/4}, against what the same route gives.
+
+    The manuscript already shows this bound is not term by term: writing n = s^4, so X = s^6,
+    X' = (3/2)s^2, X'' = (3/4)s^{-2}, the two beta_1 beta_2 contributions to
+    G'' = F''(X) X'^2 + F'(X) X'' are (9/16)(9/4) = 81/64 and -(3/8)(3/4) = -9/32, of opposite
+    sign, and 81/64 - 9/32 = 63/64.  The same happens for the j terms: -27/32 + 9/16 = -9/32.
+
+    It then puts beta_1 beta_2 <= 19 h_1h_2 P and gets (63/64)(19) = 18.7 <= 25.  That 19 is the
+    block-top value of beta -- beta_i <= 3 sqrt2 h_i P^{1/2} + 1, attained at nu = 2P -- while the
+    n^{-11/4} it multiplies is charged at the block bottom, n = P.  The two factors are the same
+    point.  Charging them there, beta_i ~ 3 h_i n^{1/2} and beta_1 beta_2 n^{-11/4} ~
+    9 h_1h_2 n^{-7/4}, so the coefficient is (63/64)(9) = 567/64 = 8.859, and the j coefficient is
+    9/32 = 0.28125.  Against the printed 2 and 25 that is 7.111 and 2.822.
+
+    Measured: |G''| divided by (9/32)|j| n^{-5/4} + (567/64) h_1h_2 n^{-7/4} is at most 1.0002 --
+    the same 2e-4 level-1 carry excess that derivative_bound_certificate isolates for G' -- and
+    the printed pair is never above 0.355 of itself.  This is the fourth of the lemma's displayed
+    estimates and the last one carrying a constant of its own.
+    """
+
+    rng = random.Random(seed)
+    ranges = [(10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10), (10**14, 2 * 10**14)]
+    th = mp.mpf(3) / 2
+    worst_model = 0.0
+    worst_printed = 0.0
+    worst_offset_alone = 0.0
+    worst_curvature_alone = 0.0
+    offset_samples = 0
+    curvature_samples = 0
+    for lo, hi in ranges:
+        P = lo
+        with mp.workdps(working_dps_for(hi)):
+            H1 = max(1, int(P ** (1 / 48)))
+            H2 = max(1, int(P ** (1 / 24)))
+            for _ in range(samples_per_range):
+                n = rng.randrange(lo, hi) | 1
+                h1, h2 = rng.randint(1, H1), rng.randint(1, H2)
+                beta1, _, _ = level1_data(n, 2 * h1)
+                beta2, _, _ = level1_data(n, 2 * h2)
+                beta12, _, _ = level1_data(n, 2 * h1 + 2 * h2)
+                j = beta12 - beta1 - beta2
+
+                def G(nu: mp.mpf, b1: int = beta1, b2: int = beta2, b12: int = beta12) -> mp.mpf:
+                    Xn = mp.power(nu, th)
+                    return (mp.power(Xn + b12, th) - mp.power(Xn + b1, th)
+                            - mp.power(Xn + b2, th) + mp.power(Xn, th))
+
+                G2 = abs(mp.diff(G, mp.mpf(n), 2))
+                nm = mp.mpf(n)
+                model = (mp.mpf(9) / 32 * abs(j) * mp.power(nm, -mp.mpf(5) / 4)
+                         + mp.mpf(567) / 64 * h1 * h2 * mp.power(nm, -mp.mpf(7) / 4))
+                printed = (2 * abs(j) * mp.power(nm, -mp.mpf(5) / 4)
+                           + 25 * h1 * h2 * mp.power(nm, -mp.mpf(7) / 4))
+                worst_model = max(worst_model, float(G2 / model))
+                worst_printed = max(worst_printed, float(G2 / printed))
+                if j:
+                    offset_samples += 1
+                    worst_offset_alone = max(worst_offset_alone, float(G2 / (abs(j) * mp.power(nm, -mp.mpf(5) / 4))))
+                else:
+                    curvature_samples += 1
+                    worst_curvature_alone = max(worst_curvature_alone, float(G2 / (h1 * h2 * mp.power(nm, -mp.mpf(7) / 4))))
+    return {
+        "offset_samples": offset_samples,
+        "curvature_samples": curvature_samples,
+        "offset_constant_model": 9 / 32,
+        "curvature_constant_model": 567 / 64,
+        "offset_constant_printed": 2.0,
+        "curvature_constant_printed": 25.0,
+        "combined_model_worst_ratio": worst_model,
+        "combined_model_holds_to_the_carry": worst_model < 1.001,
+        "combined_model_is_approached": worst_model > 0.99,
+        "printed_pair_worst_ratio": worst_printed,
+        "curvature_alone_measured": worst_curvature_alone,
+        "offset_slack": 2.0 / (9 / 32),
+        "curvature_slack": 25.0 / (567 / 64),
+        # the manuscript's own route, and where the residual factor comes from
+        "manuscript_curvature_coefficient": 63 / 64 * 19,
+        "beta_product_block_top": 19.0,
+        "beta_product_at_the_point": 9.0,
+        "residual_factor_from_charging_beta_at_the_block_top": 19 / 9,
+        "naive_term_by_term_coefficient": 99 / 64 * 19,
+        "naive_exceeds_the_printed_25": 99 / 64 * 19 > 25,
+    }
+
+
+# The collected constants of Lemma 5.1(iii) and its neighbours, with what each one is made of.
+# "route" is how the two parts are put together; the losses all come from charging quantities that
+# live at one point at two separate worst points.
+COLLECTED_CONSTANT_INVENTORY = (
+    {"where": "Lem 5.1(iii) |G'| offset", "printed": 2.0, "true": 9 / 8,
+     "route": "single term at its endpoint", "loss": "rounding"},
+    {"where": "Lem 5.1(iii) |G'| curvature", "printed": 20.0, "true": 81 / 16,
+     "route": "beta at the block top against n at the block bottom", "loss": "block ends apart"},
+    {"where": "Lem 5.1(iii) |G''| offset", "printed": 2.0, "true": 9 / 32,
+     "route": "two contributions of opposite sign, bounded separately", "loss": "cancellation dropped"},
+    {"where": "Lem 5.1(iii) |G''| curvature", "printed": 25.0, "true": 567 / 64,
+     "route": "cancellation kept, beta at the block top", "loss": "block ends apart"},
+    {"where": "Lem 5.1(iii) run length", "printed": 22.0, "true": 27 / 16,
+     "route": "a + b at a common max M, in place of max(a, b/3)", "loss": "max in disguise"},
+    {"where": "Thm 4.1 St.3(s2) |B|", "printed": 2.25, "true": 9 / 4,
+     "route": "single mean value at its endpoint", "loss": "none"},
+    {"where": "Lem 5.2(iii) widened", "printed": 5.0, "true": 4.001,
+     "route": "lead plus a term of lower order", "loss": "rounding a vanishing term"},
+)
+
+
+def collected_constant_inventory() -> dict[str, Any]:
+    """Which printed constants are a maximum in disguise, and which are already what they say.
+
+    The question this answers is whether the 22 = 2 + 20 pathology is general.  It is not, but it
+    has a sibling that is more common: charging two factors of one product at opposite ends of the
+    block.  Stage 3(s2)'s 2.25 is neither -- it is a single mean value evaluated at its endpoint,
+    with the range (1.89, 2.25] attained at the two ends of the block, so it is already sharp.  The
+    widened 5 is a genuine sum, of a lead and a term that vanishes; the rounding is worth 4.001
+    from 2.95e11, which is what the certificate already records.
+    """
+
+    rows = [dict(r, slack=r["printed"] / r["true"]) for r in COLLECTED_CONSTANT_INVENTORY]
+    by_loss: dict[str, int] = {}
+    for r in rows:
+        by_loss[r["loss"]] = by_loss.get(r["loss"], 0) + 1
+    sharp = [r for r in rows if r["slack"] < 1.001]
+    return {
+        "rows": rows,
+        "count": len(rows),
+        "by_loss": by_loss,
+        "already_sharp": [r["where"] for r in sharp],
+        "worst_slack": max(r["slack"] for r in rows),
+        "worst_row": max(rows, key=lambda r: r["slack"])["where"],
+        "block_ends_apart_is_the_commonest_loss": by_loss.get("block ends apart", 0) >= 2,
+        "the_s2_constant_is_a_sum": False,
+        "the_widened_constant_is_a_sum": True,
+        "neither_is_a_max_in_disguise": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4112,6 +4249,8 @@ def summary() -> dict[str, Any]:
     run_shape = run_bound_shape()
     dcert = derivative_bound_certificate(samples_per_range=16)
     runconst = run_length_constant(live=False)
+    d2consts = second_derivative_constants(samples_per_range=16)
+    collected = collected_constant_inventory()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4166,6 +4305,8 @@ def summary() -> dict[str, Any]:
         "run_bound_shape": run_shape,
         "derivative_bound_certificate": dcert,
         "run_length_constant": runconst,
+        "second_derivative_constants": d2consts,
+        "collected_constant_inventory": collected,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

@@ -1386,3 +1386,33 @@ def test_the_hypothesis_route_beats_the_regrouping_before_any_constant_moves() -
     # and the sharp constant is not slack: the worst measured row is 62% of it
     assert r["sharp_constant_is_within_a_factor_two_of_the_counts"]
     assert r["worst_ratio_by_route"]["sharp_hypothesis"] <= 1.0
+
+
+# --- the fourth displayed estimate, and the inventory of collected constants ---
+
+
+def test_the_second_derivative_constants_keep_both_the_cancellation_and_the_point() -> None:
+    """9/32 and 567/64 against the printed 2 and 25; the model holds to the carry."""
+    r = A.second_derivative_constants(samples_per_range=16)
+    assert r["offset_constant_model"] == 9 / 32
+    assert r["curvature_constant_model"] == 567 / 64
+    assert r["combined_model_holds_to_the_carry"] and r["combined_model_is_approached"]
+    assert 1.0 < r["combined_model_worst_ratio"] < 1.001      # the level-1 carry, as for G'
+    assert r["printed_pair_worst_ratio"] < 0.36
+    assert abs(r["offset_slack"] - 64 / 9) < 1e-9
+    assert 2.8 < r["curvature_slack"] < 2.83
+    # the manuscript keeps the cancellation and still charges beta at the block top
+    assert r["naive_exceeds_the_printed_25"]
+    assert abs(r["residual_factor_from_charging_beta_at_the_block_top"] - 19 / 9) < 1e-9
+
+
+def test_neither_candidate_constant_is_a_maximum_in_disguise() -> None:
+    """2.25 is a single mean value at its endpoint; the widened 5 is a lead plus a vanishing term."""
+    r = A.collected_constant_inventory()
+    assert r["neither_is_a_max_in_disguise"]
+    assert not r["the_s2_constant_is_a_sum"] and r["the_widened_constant_is_a_sum"]
+    assert r["already_sharp"] == ["Thm 4.1 St.3(s2) |B|"]
+    assert r["worst_row"] == "Lem 5.1(iii) run length" and 13 < r["worst_slack"] < 13.1
+    assert r["block_ends_apart_is_the_commonest_loss"]
+    assert r["count"] == 7 and sum(r["by_loss"].values()) == 7
+    assert all(x["printed"] >= x["true"] for x in r["rows"])

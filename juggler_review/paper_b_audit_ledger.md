@@ -3545,3 +3545,82 @@ nothing about the boundary changes -- only what the table admits to.
 the second time in this audit that a pipeline has hidden a non-zero pytest exit
 (the first was `--timeout` on an uninstalled plugin). Re-run with the output
 redirected and the exit code read directly.
+
+## Neither candidate was a maximum in disguise; the commoner loss is charging one point twice
+
+The question was whether Stage 3(s2)'s `2.25` or the widened `5` hide
+a maximum the way `22 = 2 + 20` does. Neither does.
+
+**`2.25` is already sharp.** It is not a sum at all:
+`B(nu) = (3u/2) Delta(nu^(3/4)) = (9/4) u h xi^(-1/4)`, one mean value,
+and the printed range `(1.89, 2.25] u h P^(-1/4)` is that single term
+at the two ends of the block --- `2.25 = 9/4` at `xi = P` and
+`1.89 = (9/4) 2^(-1/4)` at `xi = 2P`. Both ends are attained. Nothing
+to sharpen.
+
+**The widened `5` is a genuine sum**, of a lead `2|j'| = 4` and a term
+of lower order, `20 h P^(-1/4) <= 20 P^(-1/8)`. The two parameters `h`
+and `h'` are independent, so both parts can sit at their caps at once;
+the `+1` is rounding a vanishing term, worth `4.001` from `2.95e11`,
+which the certificate already records as `WIDENED_B_CONST_SHARP`.
+
+**But the search turned up the sibling pathology, and it is commoner.**
+The fourth displayed estimate of Lemma 5.1(iii),
+`|G''| <= 2|j| P^(-5/4) + 25 h_1h_2 P^(-7/4)`, is already known not to
+be term by term: with `n = s^4` the two `beta_1beta_2` contributions to
+`G'' = F''(X) X'^2 + F'(X) X''` are `81/64` and `-9/32`, and
+`81/64 - 9/32 = 63/64`; the same for the `j` terms,
+`-27/32 + 9/16 = -9/32`. The manuscript keeps that cancellation and
+then puts `beta_1 beta_2 <= 19 h_1h_2 P`, reaching `(63/64)(19) = 18.7`.
+
+That `19` is `beta` at the **top** of the block --- `beta_i <= 3 sqrt2
+h_i P^(1/2) + 1`, attained at `nu = 2P` --- multiplying an `n^(-11/4)`
+charged at the **bottom**, `n = P`. They are the same point. Charged
+there, `beta_i ~ 3 h_i n^(1/2)` and `beta_1beta_2 n^(-11/4) ~ 9 h_1h_2
+n^(-7/4)`, so the coefficient is `(63/64)(9) = 567/64 = 8.859` and the
+`j` coefficient is `9/32 = 0.28125`.
+
+```text
+  |G''| / [ (9/32)|j| n^(-5/4) + (567/64) h_1h_2 n^(-7/4) ]   worst 1.00013
+  |G''| / [ 2|j| n^(-5/4) + 25 h_1h_2 n^(-7/4) ]              worst 0.35442
+```
+
+`1.00013` is the same level-1 carry excess `derivative_bound_certificate`
+isolates for `G'`; the model is otherwise exact. The printed pair is
+loose by `7.111` on the offset and `2.822` on the curvature, and of the
+latter a factor `19/9 = 2.11` is the two block ends alone.
+
+**The inventory.** Seven collected constants, with what each is made of:
+
+```text
+  where                          printed   true     slack  loss
+  Lem 5.1(iii) |G'| offset          2      9/8       1.78  rounding
+  Lem 5.1(iii) |G'| curvature      20      81/16     3.95  block ends apart
+  Lem 5.1(iii) |G''| offset         2      9/32      7.11  cancellation dropped
+  Lem 5.1(iii) |G''| curvature     25      567/64    2.82  block ends apart
+  Lem 5.1(iii) run length          22      27/16    13.04  max in disguise
+  Thm 4.1 St.3(s2) |B|              2.25   9/4       1.00  none
+  Lem 5.2(iii) widened              5      4.001     1.25  rounding a vanishing term
+```
+
+One row is already sharp, one is a maximum in disguise, two are the
+block ends apart, and two are rounding. The pattern is not the `max`
+regrouping specifically --- it is charging quantities that live at one
+point at two separate worst points, of which the `max` is one form and
+the block ends another.
+
+Tags. EXACT: `B(nu) = (9/4) u h xi^(-1/4)` is a single mean value and
+`(1.89, 2.25]` is its range over the block, so `2.25` is sharp; the
+widened `5` is a lead plus a vanishing term with `h`, `h'`
+independent; the `G''` coefficients `9/32` and `(63/64)(9) = 567/64`
+from the `n = s^4` regrouping with `beta` and `n` at the same point.
+COMPUTATIONALLY VERIFIED: `|G''|` against the model is at most
+`1.00013` on `64` samples over four ranges and against the printed pair
+at most `0.3544`; `beta_1beta_2` at the block top is `19 h_1h_2 P` and
+at the point `9 h_1h_2 n`, a factor `19/9`. OBSERVATION: of seven
+collected constants, `block ends apart` is the commonest loss.
+
+Probes: `second_derivative_constants`, `collected_constant_inventory`,
+`COLLECTED_CONSTANT_INVENTORY`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.
