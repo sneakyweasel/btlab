@@ -1589,3 +1589,49 @@ threshold was not recomputed. Harmless --- both numbers are eight orders
 below \(P_0\) --- but it is a printed statement that fails where it
 claims to hold. EXACT; `appendix_a_gaps`, three tests, two exponent
 checks (241 in the layer).
+
+## The full count of printed thresholds, and a correction to the entry above
+
+Scanning Sections 4--6 for displayed conditions of the form
+\(\cdots<1\) or \(\cdots\le1\) carrying a power of \(P\) gives twelve
+candidates. Eight are not thresholds: they hold for every \(P\ge1\)
+(\(0.6P^{-1/16}<1\), \(0.22k\lvert j\rvert P^{-5/8}<1\)), or they are a
+cited lemma's hypothesis rather than a condition on the regime
+(\(M\le1\) in Lemma 3.8), or conclusions rather than conditions
+(the window counts at "drift \(\le1\)"). Two are in Appendix A's
+table. Two are not:
+
+| site | condition | first true at |
+|---|---|---|
+| Lemma 5.1(iii) | \(\lvert G'\rvert\le2\lvert j\rvert P^{-1/4}+20h_1h_2P^{-3/4}<1\) | \(2.03\cdot10^{3}\) |
+| Lemma 5.2(b) | \(13hP^{-1/4}+50h\,h_1h_2P^{-3/4}<1\) | \(4.96\cdot10^{6}\) |
+
+**Nothing is near \(P_0\).** The larger of the two is close to seven orders
+below \(P_0\) as it currently stands, so the certificate's value is
+untouched and only its enumeration is short by two rows. EXACT. (The
+probe now reads \(P_0\) from the certificate rather than pinning
+\(8.9458\cdot10^{13}\): the Lemma 5.2b constants are under revision in
+a concurrent pass --- the middle-band cap \(186\to300\), the
+interpolant \(105.8\to170.6\), \(S_{5b}\) from \(0.35\) to
+\(0.56\) --- and a hardcoded threshold would have gone stale the
+moment they landed.)
+
+**Correction to the entry above.** It listed Theorem 6.1 Step B as a
+third missing row. It is not missing: the certificate carries it as
+`t61-stepB-discard`, "\((3\pi k/4)P^{-1/8}\le1\) at \(k\le2P^{1/96}\)",
+\(P_{\min}=7.5086\cdot10^{5}\). I had searched the rows' claim text for
+the string \(4.8\) and found nothing, and concluded the row was absent
+--- but the certificate states the *exact* form, \(3\pi k/4\), and never
+writes \(4.8\). A search on one field, read as a fact about two.
+
+What survives from that entry is the smaller half, and it is unchanged:
+with \(\lvert k\rvert\le2P^{1/96}\) the discard cost is exactly
+\(\tfrac{3\pi}2P^{-11/96}=4.7124\,P^{-11/96}\); the certificate uses
+that constant and gets \(7.51\cdot10^{5}\), which the manuscript prints
+as \(7.6\cdot10^{5}\). The manuscript also rounds the constant *up* to
+\(4.8\), for which the inequality first holds at \(8.82\cdot10^{5}\).
+So the displayed line, read with its own constant, is false on
+\([7.6\cdot10^{5},8.8\cdot10^{5}]\): the rounding moved and the
+threshold beside it did not. The appendix is right; the display is
+inconsistent with itself. EXACT, and harmless --- \(P_0\) is eight
+orders away.

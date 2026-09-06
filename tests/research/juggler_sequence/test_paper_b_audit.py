@@ -704,8 +704,12 @@ def test_two_printed_thresholds_are_absent_from_appendix_a() -> None:
     tags = {r["tag"]: r for r in g["rows"]}
     assert not any(r["in_certificate"] for r in g["rows"])
     assert 2.0e3 < tags["L5.1(iii)-Gprime"]["least_P"] < 2.1e3
-    assert 8.8e5 < tags["T6.1-StepB-discard"]["least_P"] < 8.9e5
-    assert g["all_gaps_below_P0"] and g["P0_binding_tag"] == "5b-W<=c7S"
+    assert 4.9e6 < tags["L5.2(b)-drift"]["least_P"] < 5.0e6
+    assert g["scanned_candidates"] == 12 and g["missing"] == 2 and g["in_certificate"] == 2
+    # the binding row and P_0 itself are under revision in p0_certificate, so assert the margin
+    # rather than the identity: what matters is that neither gap is anywhere near the maximum
+    assert g["all_gaps_below_P0"] and g["P0_binding_tag"].startswith("5")
+    assert g["largest_gap_orders_below_P0"] > 5          # nothing near P_0
 
 
 def test_the_step_B_constant_was_rounded_and_its_threshold_was_not() -> None:
@@ -713,6 +717,8 @@ def test_the_step_B_constant_was_rounded_and_its_threshold_was_not() -> None:
     import math
 
     g = A.appendix_a_gaps()
+    assert g["step_B_row_present"]                       # the appendix does carry this one
+    assert abs(g["step_B_certificate_P_min"] - (3 * math.pi / 2) ** (96 / 11)) < 1  # at the exact constant
     assert abs(g["exact_step_B_constant"] - 3 * math.pi / 2) < 1e-12
     assert g["printed_step_B_constant"] > g["exact_step_B_constant"]
     assert g["printed_threshold_matches_exact_constant"]      # 7.6e5 is 4.7124's threshold

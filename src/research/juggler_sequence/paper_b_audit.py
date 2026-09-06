@@ -419,62 +419,70 @@ CENSUS_POLICED_CONSTANTS = [
 
 
 def appendix_a_gaps() -> dict[str, Any]:
-    """Printed threshold inequalities of Sections 5-6 that Appendix A's table does not carry.
+    """Printed threshold conditions of Sections 4-6 that Appendix A's table does not carry.
 
-    Appendix A says each printed threshold inequality is solved separately for the least P beyond
-    which it holds, and P_0 is the maximum of those.  Two displayed conditions are not among its
-    rows.  Both are far below P_0 = 8.9e13, so the certificate's *value* stands; what does not
-    stand is the enumeration.
+    Scanning the manuscript for displayed conditions of the form "... < 1" or "... <= 1" carrying a
+    power of P gives twelve candidates.  Eight are not thresholds -- they hold for every P >= 1, or
+    they are hypotheses of a cited lemma, or conclusions rather than conditions.  Two are in the
+    certificate.  Two are not:
 
-    The Theorem 6.1 Step B site also carries a rounded constant whose threshold was not recomputed:
-    the discard cost is (3 pi k / 4) P^{-1/8} with |k| <= 2 P^{1/96}, i.e. exactly
-    (3 pi / 2) P^{-11/96} = 4.7124 P^{-11/96}, and the printed "P >= 7.6e5" is that constant's
-    threshold.  Printed as 4.8, the inequality first holds at 8.82e5, so as written it is false on
-    [7.6e5, 8.8e5].  EXACT, and harmless: both numbers are eight orders below P_0.
+      Lemma 5.1(iii)  |G'| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1        first true at 2.03e3
+      Lemma 5.2(b)    13 h P^{-1/4} + 50 h h1 h2 P^{-3/4} < 1              first true at 4.96e6
+
+    Both are far below P_0 = 8.9458e13 -- the larger by seven orders -- so the certificate's value
+    stands and only its enumeration is short.
+
+    A separate, smaller thing at Theorem 6.1 Step B, which *is* in the table: with |k| <= 2P^{1/96}
+    the discard cost (3 pi k/4) P^{-1/8} is exactly (3 pi/2) P^{-11/96} = 4.7124 P^{-11/96}, and the
+    certificate uses that exact form (7.5086e5, printed as "P >= 7.6e5").  The manuscript displays
+    the constant rounded up to 4.8, for which the inequality first holds at 8.82e5 -- so the printed
+    line, read with its own constant, is false on [7.6e5, 8.8e5].  The rounding went up and the
+    threshold beside it did not move.  EXACT, and harmless: P_0 is eight orders away.
     """
 
-    # |G'(n)| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1 at |j| <= 3, h1 h2 <= P^{1/48+1/24}
-    def g_prime(logP: float) -> float:
-        return 6 * 10 ** (-logP / 4) + 20 * 10 ** (logP * (Fr(1, 16) - Fr(3, 4))) - 1
-
     def solve(f, lo: float = 0.0, hi: float = 20.0) -> float:
-        for _ in range(200):
+        for _ in range(300):
             mid = (lo + hi) / 2
             lo, hi = (mid, hi) if f(mid) > 0 else (lo, mid)
         return hi
 
+    # |j| <= 3, h1 h2 <= P^{1/48+1/24} = P^{1/16}, h <= P^{1/12}
+    g_prime = lambda L: 6 * 10 ** (-L / 4) + 20 * 10 ** (L * (1 / 16 - 3 / 4)) - 1        # noqa: E731
+    l52_drift = lambda L: 13 * 10 ** (L * (1 / 12 - 1 / 4)) + 50 * 10 ** (L * (1 / 12 + 1 / 16 - 3 / 4)) - 1  # noqa: E731
+
     three_pi_half = 3 * math.pi / 2
+    cert = p0_certificate.certificate()
+    tags = {r["tag"] for r in cert["thresholds"]}
     rows = [
-        {
-            "tag": "L5.1(iii)-Gprime",
-            "site": "Lemma 5.1(iii)",
-            "claim": "|G'| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1",
-            "least_P": 10 ** solve(g_prime),
-            "in_certificate": False,
-        },
-        {
-            "tag": "T6.1-StepB-discard",
-            "site": "Theorem 6.1 Step B",
-            "claim": "(3 pi k / 4) P^{-1/8} <= 4.8 P^{-11/96} < 1, printed for P >= 7.6e5",
-            "least_P": 4.8 ** (96 / 11),
-            "least_P_at_exact_constant": three_pi_half ** (96 / 11),
-            "printed_threshold": 7.6e5,
-            "in_certificate": False,
-        },
+        {"tag": "L5.1(iii)-Gprime", "site": "Lemma 5.1(iii)",
+         "claim": "|G'| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1",
+         "least_P": 10 ** solve(g_prime), "in_certificate": False},
+        {"tag": "L5.2(b)-drift", "site": "Lemma 5.2(b)",
+         "claim": "13 h P^{-1/4} + 50 h h1 h2 P^{-3/4} < 1",
+         "least_P": 10 ** solve(l52_drift), "in_certificate": False},
     ]
+    step_b = next(r for r in cert["thresholds"] if r["tag"] == "t61-stepB-discard")
     return {
         "rows": rows,
+        "scanned_candidates": 12,
+        "not_thresholds": 8,
+        "in_certificate": 2,
+        "missing": len(rows),
+        "step_B_row_present": "t61-stepB-discard" in tags,
+        "step_B_certificate_P_min": step_b["P_min"],
         "exact_step_B_constant": three_pi_half,
         "printed_step_B_constant": 4.8,
         "printed_threshold_matches_exact_constant": abs(three_pi_half ** (96 / 11) / 7.6e5 - 1) < 0.02,
         "printed_threshold_too_small_for_printed_constant": 4.8 ** (96 / 11) > 7.6e5,
-        "all_gaps_below_P0": all(r["least_P"] < 8.9e13 for r in rows),
-        "P0_binding_tag": p0_certificate.certificate()["binding"]["tag"],
-        # the Lemma 5.1(iii) band feeds only G', G'' and the run-length constant; no row of the
-        # certificate mentions it, so sharpening 1.4 and 15 to the true 27/4 and (27/4)2^{1/4}
-        # cannot move P_0 and changes no exponent.
+        # P_0 is read from the certificate, not pinned here: the constants feeding it are under
+        # revision, and a hardcoded 8.9e13 would go stale the moment they move.
+        "P0": cert["P0"],
+        "all_gaps_below_P0": all(r["least_P"] < cert["P0"] for r in rows),
+        "largest_gap_orders_below_P0": math.log10(cert["P0"]) - math.log10(max(r["least_P"] for r in rows)),
+        "P0_binding_tag": cert["binding"]["tag"],
         "bracket_band_reaches_P0": False,
     }
+
 
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.

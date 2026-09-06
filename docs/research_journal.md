@@ -30733,3 +30733,81 @@ Best next question
   "< 1" conditions than that. How many more, and is any of them within
   an order of magnitude of P_0?
 ```
+
+## Twelve printed thresholds, two missing, none near P_0 -- and one I got wrong
+
+Following the last entry's question, which also turned up an error in
+the last entry.
+
+**The count.** Scanning Sections 4-6 for displayed conditions
+`... < 1` or `... <= 1` carrying a power of `P` gives twelve
+candidates. Eight are not thresholds: they hold for every `P >= 1`
+(`0.6 P^(-1/16) < 1`, `0.22 k|j| P^(-5/8) < 1`), or they are a cited
+lemma's hypothesis rather than a condition on the regime (`M <= 1` in
+Lemma 3.8), or they are conclusions (the window counts at "drift <= 1").
+Two are in Appendix A. Two are not:
+
+| site | condition | first true at |
+|---|---|---|
+| Lemma 5.1(iii) | `\|G'\| <= 2\|j\| P^(-1/4) + 20 h1 h2 P^(-3/4) < 1` | `2.03e3` |
+| Lemma 5.2(b) | `13 h P^(-1/4) + 50 h h1 h2 P^(-3/4) < 1` | `4.96e6` |
+
+The answer to the question is therefore no: the larger of the two sits
+`7.3` orders below `P_0`. The certificate's value is untouched; its
+enumeration is short by two rows. The probe reads `P_0` from the
+certificate rather than pinning `8.9458e13` -- the Lemma 5.2b constants
+are being revised in a concurrent pass (`186 -> 300`, `105.8 -> 170.6`,
+`S_5b` `0.35 -> 0.56`), and a hardcoded threshold would have gone stale
+the moment that landed.
+
+**And the correction.** The last entry listed Theorem 6.1 Step B as a
+third missing row. It is not missing -- the certificate carries it as
+`t61-stepB-discard`, `(3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96)`,
+`P_min = 7.5086e5`. I had searched the rows' *claim text* for `4.8`,
+found nothing, and concluded absence; but the certificate states the
+exact form and never writes `4.8`. One field searched, read as a fact
+about the whole table. That is the second false negative of this kind in
+two passes, and both were mine.
+
+What survives is the smaller half of that entry, unchanged: the discard
+cost is exactly `(3 pi/2) P^(-11/96) = 4.7124 P^(-11/96)`; the
+certificate uses it and gets `7.51e5`, printed as `7.6e5`. The
+manuscript rounds the constant up to `4.8`, for which the inequality
+first holds at `8.82e5`. So the displayed line, read with its own
+constant, is false on `[7.6e5, 8.8e5]`. The appendix is right and the
+display is inconsistent with itself.
+
+```text
+What was learned
+- twelve printed "< 1" conditions, of which only four are thresholds at
+  all; two of those four are outside the appendix and neither is near
+  P_0
+- the appendix's shortfall is real but its value is safe: 7.3 orders of
+  margin on the larger gap
+- a grep on one field is not a search of a table, and I have now made
+  that mistake twice running
+- and the LaTeX-escape hazard recurred in a new guise: doubled
+  backslashes in a heredoc'd Python string arrived single, so a printed
+  arrow became a tab. The guard built for exactly this caught it in the
+  ledger before the commit; the remedy is still to route the text
+  through a file, or to build the backslash with chr(92)
+Strongest theorem
+- none new; the two solved thresholds are arithmetic
+Strongest refutation
+- my own previous entry's third missing row, which was never missing
+Reusable machinery
+- appendix_a_gaps rewritten around the scan: candidate count, the
+  non-thresholds, the two real gaps, and the Step B row's presence
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  The question was a counting question and the count is reassuring.
+  The interesting part was that answering it properly required looking
+  at the table by tag as well as by claim, which is exactly what I had
+  failed to do the first time.
+Best next question
+- the two missing rows are harmless because they are small. Is the
+  certificate's *maximum* the only thing that matters, or does any step
+  of the paper need a threshold that Appendix A solves at a different
+  parameter setting than the step uses?
+```
