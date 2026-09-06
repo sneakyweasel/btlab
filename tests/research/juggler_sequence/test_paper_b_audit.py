@@ -856,9 +856,78 @@ def test_the_certified_descent_densities_check_by_direct_count() -> None:
     assert r["thirteen_sixteenths_plus_two_thirtyseconds_is_seven_eighths"]
 
 
-def test_section_four_still_has_five_results_with_no_probe() -> None:
+def test_section_four_still_has_four_results_with_no_probe() -> None:
+    """Lemma 4.6 is now probed; two of the four that remain are asymptotic and unreachable."""
     c = A.audit_coverage()
-    assert c["total"] == 21 and c["probed"] == 14
-    assert set(c["uncovered"]) == {"Lemma 4.6", "Lemma 4.10", "Theorem 4.11",
-                                   "Theorem 4.12", "Corollary 4.13"}
+    assert c["total"] == 21 and c["probed"] == 15
+    assert set(c["uncovered"]) == {"Lemma 4.10", "Theorem 4.11", "Theorem 4.12", "Corollary 4.13"}
     assert set(c["threshold_only"]) == {"Theorem 4.1", "Proposition 4.5"}
+
+
+def test_lemma_4_6_holds_at_both_ends_and_the_lower_one_saturates_at_theta() -> None:
+    """The sign claim has total census power; the lower constant has 1 - max theta."""
+    r = A.lemma_4_6_census(samples_per_range=15)
+    assert r["both_ends_hold"] and r["sign_failures"] == 0 and r["lower_bound_failures"] == 0
+    assert r["power_is_of_order_one_over_samples"]
+    assert r["residual_constant_is_three_thirtyseconds"]
+    for x in r["ranges"]:
+        assert abs(x["max_ratio_to_lower"] - x["max_theta"]) < 3e-3, x["lo"]
+    c = A.audit_coverage()
+    assert "Lemma 4.6" not in c["uncovered"] and c["probed"] == 15
+
+
+# --- the level-1 kernel of OOOEOEE, measured ---
+
+
+def test_the_level_one_kernel_cancels_at_square_root() -> None:
+    """K_1 = sum e((27k/32) n^{33/32} {n^{3/2}}): block sums grow like sqrt(L), not like L."""
+    r = A.level1_kernel_block_scaling(P=3 * 10**4, k=1)
+    assert r["weight"] == "(27k/32) n^{33/32}"
+    assert r["defect"] == "{n^{3/2}}"
+    fitted = [b for b in r["blocks"] if b["blocks"] >= A.BLOCK_FIT_MIN_SAMPLES]
+    ratios = [b["rms_K1_over_sqrtL"] for b in fitted]
+    # flat in L is the signature; the instrument's own 90% interval is [0.432, 0.575]
+    assert max(ratios) / min(ratios) < 1.15, ratios
+    assert 0.43 < r["level1_exponent"] < 0.58, r["level1_exponent"]
+
+
+def test_the_weight_is_what_makes_it_cancel() -> None:
+    """On the same pass the unweighted defect e(n^{3/2}) grows like L, the kernel like sqrt(L)."""
+    r = A.level1_kernel_block_scaling(P=10**5, k=1)
+    fitted = [b for b in r["blocks"] if b["blocks"] >= A.BLOCK_FIT_MIN_SAMPLES]
+    k1 = [b["rms_K1_over_sqrtL"] for b in fitted]
+    wave = [b["rms_wave_over_sqrtL"] for b in fitted]
+    # the kernel is flat, the control climbs: that contrast is the finding
+    assert max(k1) / min(k1) < 1.2, k1
+    assert wave[-1] / wave[0] > 1.5, wave
+    assert r["wave_exponent"] > r["level1_exponent"] + 0.15
+
+
+def test_the_drift_that_blocks_the_window_is_the_drift_that_decorrelates() -> None:
+    """c(n) = (27k/32) n^{33/32} has c' >> 1, which is both the obstruction and the mechanism."""
+    from research.juggler_sequence import paper_b_prefix_count as B
+
+    alpha = Fr(33, 32)
+    assert alpha > B.DRIFT_THRESHOLD                       # no shifted-window interval exists
+    assert (3, alpha, "3/2") in [(s, g, sp) for s, g, sp in B.blocked_profile("OOOEOEE", 6)]         or alpha in [g for _s, g, _sp in B.blocked_profile("OOOEOEE", 6)]
+    # c' ~ n^{1/32}: the window 1/c' is shorter than the lattice spacing at every P >= 1
+    assert float(alpha) - 1 > 0
+    # and the measurement says the sum cancels anyway
+    r = A.level1_kernel_block_scaling(P=3 * 10**4, k=2)
+    assert 0.43 < r["level1_exponent"] < 0.58, r["level1_exponent"]
+
+
+def test_the_reading_is_stable_in_k() -> None:
+    """The weight constant scales c but not the drift exponent, so the reading should not move."""
+    xs = [A.level1_kernel_block_scaling(P=2 * 10**4, k=k)["level1_exponent"] for k in (1, 2, 4)]
+    assert all(0.40 < x < 0.60 for x in xs), xs
+    assert max(xs) - min(xs) < 0.15, xs
+
+
+def test_paper_records_the_measurement_and_disclaims_it() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "And the same drift is what makes the sum cancel" in text
+    assert "paper_b_audit.level1_kernel_block_scaling" in text
+    assert "0.943,0.948,0.947,0.963,0.981" in text
+    assert "This is an observation and nothing" in text
+    assert "no bound on \\(K_1\\) is claimed anywhere in this paper" in text

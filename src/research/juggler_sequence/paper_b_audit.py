@@ -908,7 +908,7 @@ def reach_ladder() -> dict[str, Any]:
 # "threshold" means only a P_0 row; "none" means nothing at all.
 SECTION_4_TO_6_COVERAGE = {
     "Theorem 4.1": "threshold", "Corollary 4.2": "probe", "Lemma 4.3": "probe",
-    "Theorem 4.4": "probe", "Proposition 4.5": "threshold", "Lemma 4.6": "none",
+    "Theorem 4.4": "probe", "Proposition 4.5": "threshold", "Lemma 4.6": "probe",
     "Theorem 4.7": "probe", "Theorem 4.8": "probe", "Corollary 4.9": "probe",
     "Lemma 4.10": "none", "Theorem 4.11": "none", "Theorem 4.12": "none",
     "Corollary 4.13": "none", "Lemma 5.1": "probe", "Lemma 5.2": "probe",
@@ -985,6 +985,76 @@ def audit_coverage() -> dict[str, Any]:
         "threshold_only": sorted(tally.get("threshold", [])),
         "probed": len(tally.get("probe", [])),
         "total": len(SECTION_4_TO_6_COVERAGE),
+    }
+
+def check_lemma_4_6(n: int) -> dict[str, Any]:
+    """Lemma 4.6: v^{1/2} = n^{9/8} + D with -(3/4) n^{-3/8} - n^{-9/8} <= D <= 0.
+
+    The upper end is a sign claim and a census over it has total power.  The lower end is attained:
+    expanding twice gives D = -(3/4) theta n^{-3/8} - theta_2/(2 n^{9/8}) + O(n^{-15/8}), so the
+    ratio D/lower is theta + O(n^{-3/4}) -- the bound is sharp exactly where theta approaches 1,
+    and a random census can only get within 1/trials of it.
+    """
+
+    with mp.workdps(working_dps_for(n)):
+        m = m_of(n)
+        v = v_of(n)
+        D = mp.sqrt(mp.mpf(v)) - mp.power(mp.mpf(n), mp.mpf(9) / 8)
+        lower = -mp.mpf(3) / 4 * mp.power(mp.mpf(n), -mp.mpf(3) / 8) - mp.power(mp.mpf(n), -mp.mpf(9) / 8)
+        theta = X_of(n) - m
+        theta2 = Y_of(n) - v
+        model = -mp.mpf(3) / 4 * theta * mp.power(mp.mpf(n), -mp.mpf(3) / 8) - theta2 / (2 * mp.power(mp.mpf(n), mp.mpf(9) / 8))
+        residual = D - model
+        return {
+            "D_nonpositive": bool(D <= mp.mpf(10) ** (-40)),
+            "D_above_lower": bool(D >= lower - mp.mpf(10) ** (-40)),
+            "D": float(D),
+            "lower": float(lower),
+            "ratio_to_lower": float(D / lower),
+            "theta": float(theta),
+            "ratio_minus_theta": float(D / lower) - float(theta),
+            "residual_over_n^(-15/8)": float(abs(residual) / mp.power(mp.mpf(n), -mp.mpf(15) / 8)),
+        }
+
+
+def lemma_4_6_census(seed: int = 4611, samples_per_range: int = 60) -> dict[str, Any]:
+    """Lemma 4.6 over the identity census's own ranges, with the saturation measured.
+
+    Closes the last elementary gap in the audit's Section 4 coverage.  Reports both ends: the sign
+    claim, which no sample may violate, and the lower bound, whose saturation is theta and whose
+    census power is therefore 1 - max theta, of order 1/samples -- the Lemma 6.2 reading one level
+    down.  The residual constant of the two-term model comes out at 3/32.
+    """
+
+    rng = random.Random(seed)
+    ranges = [(10**4, 2 * 10**4), (10**6, 2 * 10**6), (10**8, 2 * 10**8),
+              (10**12, 2 * 10**12), (10**16, 2 * 10**16)]
+    rows = []
+    sign_failures = 0
+    lower_failures = 0
+    for lo, hi in ranges:
+        worst_ratio, worst_theta, worst_gap, worst_residual = 0.0, 0.0, 0.0, 0.0
+        for _ in range(samples_per_range):
+            r = check_lemma_4_6(rng.randrange(lo + 1, hi) | 1)
+            sign_failures += not r["D_nonpositive"]
+            lower_failures += not r["D_above_lower"]
+            worst_ratio = max(worst_ratio, r["ratio_to_lower"])
+            worst_theta = max(worst_theta, r["theta"])
+            worst_gap = max(worst_gap, abs(r["ratio_minus_theta"]))
+            worst_residual = max(worst_residual, r["residual_over_n^(-15/8)"])
+        rows.append({"lo": lo, "max_ratio_to_lower": worst_ratio, "max_theta": worst_theta,
+                     "max_ratio_minus_theta": worst_gap, "max_residual_scaled": worst_residual})
+    return {
+        "ranges": rows,
+        "samples": len(ranges) * samples_per_range,
+        "sign_failures": sign_failures,
+        "lower_bound_failures": lower_failures,
+        "both_ends_hold": sign_failures == 0 and lower_failures == 0,
+        # the saturation is theta, so the census's power over the printed 3/4 is 1 - max theta
+        "census_power_over_the_lower_constant": 1 - max(r["max_ratio_to_lower"] for r in rows),
+        "power_is_of_order_one_over_samples": (1 - max(r["max_ratio_to_lower"] for r in rows)) < 20 / (len(ranges) * samples_per_range),
+        "residual_constant": max(r["max_residual_scaled"] for r in rows),
+        "residual_constant_is_three_thirtyseconds": abs(max(r["max_residual_scaled"] for r in rows) - 3 / 32) < 0.01,
     }
 
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
@@ -2021,6 +2091,10 @@ def exponent_checks() -> list[dict[str, Any]]:
         # Corollary 4.9's density and its depth-five extension, which nothing had checked
         ("4.9: 1/2 + 1/4 + 1/16 = 13/16, the certified-descent density through depth four", F(1, 2) + F(1, 4) + F(1, 16) == F(13, 16)),
         ("4.9 with 6.3's two contractors: 13/16 + 1/32 + 1/32 = 7/8", F(13, 16) + F(1, 32) + F(1, 32) == F(7, 8)),
+        # Lemma 4.6's two-term expansion, and why its lower end is exactly theta
+        ("4.6: m^{3/4} = n^{9/8} - (3/4) theta n^{-3/8} + ..., from 9/8 - 3/2 = -3/8", F(9, 8) - F(3, 2) == -F(3, 8)),
+        ("4.6: the theta_2 term sits at -9/8 and the residual at -15/8 = -3/8 - 3/2", -F(3, 8) - F(3, 2) == -F(15, 8)),
+        ("4.6: so D/lower = theta + O(n^{-3/4}), the two ends differing by -9/8 + 3/8 = -3/4", -F(9, 8) + F(3, 8) == -F(3, 4)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -2507,6 +2581,7 @@ def summary() -> dict[str, Any]:
     ladder = reach_ladder()
     density = certified_descent_density()
     coverage = audit_coverage()
+    l46 = lemma_4_6_census(samples_per_range=20)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2543,6 +2618,7 @@ def summary() -> dict[str, Any]:
         "reach_ladder": ladder,
         "certified_descent_density": density,
         "audit_coverage": coverage,
+        "lemma_4_6_census": l46,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

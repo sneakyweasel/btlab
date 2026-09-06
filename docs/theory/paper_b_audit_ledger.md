@@ -2160,3 +2160,46 @@ and \(\tfrac{13}{16}+\tfrac1{32}+\tfrac1{32}=\tfrac78\) are EXACT.
 So three of the five remaining gaps are cheap and one pair is not
 checkable in principle. The audit reaches everything in Sections 5 and 6
 and has one Section 4 result left that is both uncovered and elementary.
+
+## Lemma 4.6's two ends, and what saturates the lower one
+
+The last elementary gap in the Section 4 coverage is closed, and the
+answer to the census-power question is the sharpest instance of it yet.
+
+**The upper end is a sign claim.** \(D\le0\) compares two exactly
+computed quantities, so a census over it has total power: any
+perturbation whatever is caught. Two hundred samples across
+\(10^4\ldots2\cdot10^{16}\) give \(D\le0\) every time.
+
+**The lower end is attained, and what attains it is \(\theta\).**
+Expanding twice,
+\[
+D=-\tfrac34\,\theta\,n^{-3/8}-\frac{\theta_2}{2n^{9/8}}+O(n^{-15/8}),
+\]
+so
+\[
+\frac{D}{-\tfrac34n^{-3/8}-n^{-9/8}}=\theta+O(n^{-3/4}).
+\]
+Measured, the two agree to the digit: at \(10^{16}\) the largest ratio
+is \(0.989292\) and the largest \(\theta\) is \(0.989292\), differing by
+\(9.9\cdot10^{-13}\); at \(10^8\) by \(1.2\cdot10^{-6}\), the
+\(n^{-3/4}\) exactly. The residual constant of the two-term model comes
+out at \(0.0929\) against \(\tfrac3{32}=0.09375\) --- approached from
+below because it carries \(\theta^2\).
+
+**So the census-power reading applies, and gives \(1-\max\theta\).**
+The printed \(\tfrac34\) could be cut to \(\tfrac34\max\theta\)
+undetected, and \(\max\theta\) over a random sample is
+\(1-O(1/\text{samples})\): at \(200\) samples the power is
+\(6.0\cdot10^{-3}\). This is the Lemma 6.2 pattern one level down ---
+the bound is sharp, the saturating configuration is a fractional part
+approaching \(1\), and a directed family (any \(n\) with \(n^{3/2}\)
+just below an integer) reaches it where random sampling cannot.
+COMPUTATIONALLY VERIFIED; the exponents \(-\tfrac38\), \(-\tfrac98\),
+\(-\tfrac{15}8\) and the \(-\tfrac34\) gap between the two ends are
+EXACT.
+
+Coverage after this entry: fifteen of the twenty-one results of Sections
+4--6 probed, two with a \(P_0\) row only, and four uncovered --- of
+which Lemma 4.10 and Corollary 4.13 are checkable and Theorems 4.11 and
+4.12 are asymptotic \(\varepsilon\)-statements with no finite check.
