@@ -278,3 +278,26 @@ def test_doubling_the_walk_charge_requires_squaring_the_floor() -> None:
     # and the measured law agrees with the constant used here
     rows = {r["n0"]: r for r in A.walk_improvement_law()["rows"]}
     assert abs(rows[350000000]["improvement"] - c * math.log(350000000)) < 0.3
+
+
+def test_stratification_scales_are_read_from_the_paper_and_reproduce():
+    """The three floor-derived scales, checked against the text that prints them.
+
+    These lived in ``paper_c_audit`` under a docstring naming Paper C's Section 6, but Paper C
+    prints none of them.  Reading the mantissa and exponent out of Paper A closes the gap the
+    laboratory named itself: the audit lags the manuscript because constants arrive first.
+    """
+    checks = A.stratification_checks()
+    assert len(checks) == 3
+    bad = [(c["name"], c["printed"], c["computed"]) for c in checks if not c["ok"]]
+    assert bad == [], bad
+    assert all(c["printed"] is not None for c in checks), "a scale vanished from the paper"
+
+
+def test_paper_c_does_not_print_the_stratification_scales():
+    """Guard the reason the checks moved: if Paper C ever prints them, revisit the split."""
+    text = (A.ROOT / "docs" / "theory" / "juggler_fate_almost_all_note.md").read_text(
+        encoding="utf-8"
+    )
+    for mantissa in (r"2.5\cdot10^{11}", r"6.5\cdot10^{12}", r"1.2\cdot10^{17}"):
+        assert mantissa not in text, f"Paper C now prints {mantissa}"

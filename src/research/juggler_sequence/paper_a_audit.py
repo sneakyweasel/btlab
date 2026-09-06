@@ -31,6 +31,8 @@ Run ``python -m research.juggler_sequence.paper_a_audit``.
 from __future__ import annotations
 
 import math
+import re
+from pathlib import Path
 from typing import Any, Callable
 
 from mpmath import exp, log, mp, mpf
@@ -39,6 +41,18 @@ mp.dps = 40
 
 LN2 = log(mpf(2))
 LN3 = log(mpf(3))
+
+ROOT = Path(__file__).resolve().parents[3]
+PAPER = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
+
+STRATIFICATION = re.compile(
+    r"N_0\^\{?(?P<exp>[0-9/]+)\}?\s*=\s*(?P<mant>[0-9.]+)\\cdot10\^\{(?P<pow>\d+)\}"
+)
+"""``N_0^{4/3}=2.5\\cdot10^{11}`` and its two siblings, read from the paper rather than
+copied into this module.  These three scales were audited by ``paper_c_audit`` under a
+docstring calling them "Section 6", but Paper C prints none of them -- Paper A does, once
+each, and cites Paper C only for the odd-generation result underneath.  Reading them from
+the text is what stops the same constant drifting apart from its check again."""
 
 # The four certified descent floors of the paper, with the period bound each one carries.
 FLOORS: tuple[tuple[int, int, str], ...] = (
@@ -461,6 +475,30 @@ def walk_improvement_law() -> dict[str, Any]:
             "spread": (max(rs) - min(rs)) / (sum(rs) / len(rs))}
 
 
+def stratification_checks(n0: int = 350000000) -> list[dict[str, Any]]:
+    """The scales at which each type of failure can first appear, read from the paper.
+
+    Backward closure puts the minimum of a nonempty failure set at an odd number with odd
+    image, so an odd failure with even image exceeds ``N_0^{4/3}``, an even one ``N_0^2``,
+    and one that is the image of an odd ``m`` exceeds ``N_0^{3/2}``.  The arithmetic is
+    Paper A's; the structure it rests on is Paper C's Theorem 6.1.
+    """
+    text = PAPER.read_text(encoding="utf-8")
+    found = {m.group("exp"): float(m.group("mant")) * 10 ** int(m.group("pow"))
+             for m in STRATIFICATION.finditer(text)}
+    out: list[dict[str, Any]] = []
+    for exp_str, power in (("4/3", 4 / 3), ("3/2", 1.5), ("2", 2.0)):
+        printed = found.get(exp_str)
+        computed = float(n0) ** power
+        out.append({
+            "name": f"N_0^{{{exp_str}}}",
+            "printed": printed,
+            "computed": computed,
+            "ok": printed is not None and abs(printed - computed) <= 0.05 * computed,
+        })
+    return out
+
+
 def summary(Lmax: int = 200000) -> dict[str, Any]:
     rec = [{"L": L, "printed": v, "recomputed": (g := n_max(L)), "ok": g == v}
            for L, v in RECORD_NMAX]
@@ -490,6 +528,8 @@ def summary(Lmax: int = 200000) -> dict[str, Any]:
         "fan_prices": fan_prices(),
         "walk_charge_value": walk_charge_value(),
         "margin_beta": margin_beta(),
+        "stratification": (st := stratification_checks()),
+        "stratification_all_ok": all(c["ok"] for c in st),
         "predicted_kill_floor_780239": predicted_kill_floor(780239, 350000000),
         "measured_kill_floor_780239": WALK_KILL_FLOOR_780239,
         "conditional_bound": {"floor": CONDITIONAL_FLOOR, "period": CONDITIONAL_BOUND},

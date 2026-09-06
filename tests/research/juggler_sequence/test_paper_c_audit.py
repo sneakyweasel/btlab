@@ -16,7 +16,6 @@ from research.juggler_sequence.paper_c_audit import (
     exponent,
     residual,
     run_exponent,
-    stratification_checks,
     summary,
     tao_checks,
 )
@@ -25,7 +24,6 @@ GROUPS = {
     "contagion": contagion_checks,
     "tao": tao_checks,
     "constants_table": constants_table_checks,
-    "stratification": stratification_checks,
 }
 
 

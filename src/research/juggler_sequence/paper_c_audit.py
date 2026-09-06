@@ -14,8 +14,10 @@ none of which is a proof:
    (``C(0.55)`` is ``44`` in the first and ``39`` in the second) and Paper C quotes the second.
 3. **The Section 8.4 constants table.**  ``L(y)``, ``d(y)``, the exact fair-coin bad probability,
    the target ``(log y)^-0.6`` and the least depth for rate ``0.6``, at the three printed scales.
-4. **Floor-derived stratification scales.**  ``N0^{4/3}``, ``N0^{3/2}`` and ``N0^2``, the scales
-   at which each type of failure can first appear.
+The floor-derived stratification scales ``N0^{4/3}``, ``N0^{3/2}`` and ``N0^2`` were audited
+here under a heading calling them "Section 6".  Paper C prints none of them; Paper A does, and
+cites Paper C only for the odd-generation result underneath.  They now live in
+``paper_a_audit.stratification_checks``, read from Paper A's own text.
 
 A check is a dict with ``printed``, ``computed`` and ``ok``.  Nothing here proves a theorem, and
 nothing here is a halt statement.  Run ``python -m research.juggler_sequence.paper_c_audit``.
@@ -190,23 +192,11 @@ def constants_table_checks() -> list[dict[str, Any]]:
     return out
 
 
-def stratification_checks() -> list[dict[str, Any]]:
-    """The scales at which each type of failure can first appear (Section 6)."""
-
-    n0 = float(N0_CERTIFIED)
-    return [
-        _check("N0^{4/3}", 2.5e11, n0 ** (4 / 3), 0.05e11),
-        _check("N0^{3/2}", 6.5e12, n0**1.5, 0.05e12),
-        _check("N0^2", 1.2e17, n0**2, 0.05e17),
-    ]
-
-
 def summary() -> dict[str, Any]:
     groups = {
         "contagion": contagion_checks(),
         "tao": tao_checks(),
         "constants_table": constants_table_checks(),
-        "stratification": stratification_checks(),
     }
     failures = [c for g in groups.values() for c in g if not c["ok"]]
     return {
