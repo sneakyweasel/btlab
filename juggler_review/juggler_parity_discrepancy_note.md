@@ -5187,6 +5187,69 @@ dead --- a single mode carries more saving than the chain needs, with
 a factor of two and a half to spare --- and says nothing whatever
 about how to collect the modes.
 
+*What one differencing does.* The device is not a better shifted
+window. It is Weyl differencing --- Step 1 of Theorem 5.3, applied once
+instead of twice --- and it works because it attacks the weight rather
+than the defect. Write \(\varphi(n)=c(n)\theta_1(n)\) with
+\(\theta_1=\{X\}\), \(X=n^{3/2}\). Since \(\lfloor X\rfloor\) is an
+integer, \(\theta_1(n{+}h)=\{\theta_1(n)+\{\Delta_hX\}\}\), and as both
+summands lie in \([0,1)\) this is \(\theta_1+\{\Delta_hX\}-\kappa\)
+with \(\kappa\in\{0,1\}\). Hence, exactly,
+\[
+\Delta_h\varphi
+=(\Delta_hc)\,\theta_1(n)
++c(n{+}h)\bigl(\{\Delta_hX\}-\kappa\bigr),
+\qquad
+\kappa=1\iff\theta_1(n)\ge1-\{\Delta_hX\}.
+\]
+Both are identities, not approximations: verified to fifty-five digits
+at \(n\sim10^6\), and the characterisation of \(\kappa\) over four
+thousand samples without a mismatch.
+
+Three terms, and each sits on the near side of a threshold this paper
+already crosses.
+
+- \((\Delta_hc)\theta_1\). The weight is
+  \(\Delta_hc\asymp\tfrac{891}{1024}khn^{1/32}\), of coefficient
+  exponent \(\tfrac1{32}\). That is *below* the drift threshold, where
+  \(\tfrac{33}{32}\) was above it. One differencing carries the weight
+  across the very threshold that made the shifted window unavailable,
+  and this term is no longer drift-blocked.
+- \(c(n{+}h)\{\Delta_hX\}\). The large weight survives,
+  \(\asymp kP^{33/32}\), but the defect is now \(\{\Delta_hX\}\), whose
+  \(n\)-derivative is \(\asymp hP^{-1/2}\): constant on runs of length
+  \(\asymp P^{1/2}/h\) --- measured, five wraps over four thousand
+  consecutive odd \(n\) at \(P=1.5\cdot10^6\), against five predicted.
+  On a run the phase is the monomial \(\tfrac{27k\beta}{32}n^{33/32}\)
+  with \(\beta\) frozen. These are the \(b\)-runs of Lemma 5.1(iii),
+  one level down.
+- \(-c(n{+}h)\kappa\). Since \(\kappa\in\{0,1\}\),
+  \(e(-c\kappa)=1-\kappa(1-e(-c))\), so the carry enters as an
+  indicator multiplying the other two; and on a run \(\beta\) is
+  frozen, so \(\kappa=\mathbf 1_{\theta_1\in[1-\beta,1)}\) is the
+  indicator of an equidistributing \(\theta_1\) in a *fixed* interval.
+  That is a Vaaler expansion --- Lemma 3.5 --- and not a shifted window
+  at all. It returns monomial waves \(e(jn^{3/2})\) against
+  \(e(-\tfrac{27k}{32}(n{+}h)^{33/32})\), which is the shape Theorems
+  4.4 and 4.7 estimate.
+
+So the reason the paragraph above finds no device is that it looks for
+one in the *undifferenced* sum, where the coefficient depends on \(n\)
+and the shifted window is the only tool available. After one
+differencing there is no coefficient problem left to solve: the
+exponent is \(\tfrac1{32}\).
+
+This is an accounting and not a proof, and the gap is the whole of
+Section 5's work at one level down. It does not choose the Vaaler
+truncation, bound the oscillation of the \(1-e(-c)\) weight, take the
+cell inventory, or balance \(H\) against the two error terms
+differencing produces. One differencing halves a saving, so matching
+\(P^{1-1/96}\) would need the differenced sum to reach
+\(P^{1-1/48}\), and nothing here says it does. What the identity
+settles is that the route is Step 1 followed by Lemma 3.5, not a
+sharper Lemma 3.7, and that every ingredient it needs is already in
+Sections 3 to 5.
+
 *The three thresholds are independent, and they re-sort depth seven.*
 Applying all of them to the three targets at once:
 

@@ -31737,3 +31737,159 @@ Best next question
   [m'^2, (m'+1)^2) and is even for every n in the OOEEE class of a
   block. Does it, and how large is the class at a reachable m'?
 ```
+
+ ### One differencing carries the weight across the drift threshold
+
+The question the last entry left: is there a device other than the
+shifted window for `n`-dependent coefficients? There is, and it is one
+the paper already owns.
+
+**The identity.** With `phi(n) = c(n) theta_1(n)`, `theta_1 = {X}`,
+`X = n^{3/2}`, `c(n) = (27k/32) n^{33/32}`: since `floor(X)` is an
+integer, `theta_1(n+h) = {theta_1(n) + {D}}` with `D = Delta_h X`, and
+both summands lie in `[0,1)`, so that is `theta_1 + {D} - kappa` with
+`kappa` in `{0,1}`. Hence, exactly,
+
+```text
+   Delta_h phi = (Delta_h c) theta_1(n) + c(n+h) ({D} - kappa),
+   kappa = 1  <=>  theta_1(n) >= 1 - {D}.
+```
+
+Verified to fifty-five digits at `n ~ 1e6`, and the characterisation of
+`kappa` over four thousand samples without a mismatch. `kappa = 1` in
+two thirds of the samples, so it is a live branch and not a degenerate
+one.
+
+**What it buys is the exponent.** `Delta_h c ~ (891/1024) k h n^{1/32}`
+has coefficient exponent `1/32`. The original had `33/32`. The drift
+threshold is `1`. So one differencing carries the weight on the
+`theta_1`-carrying term *across the very threshold* that made the
+shifted window unavailable — and that term is no longer drift-blocked.
+
+The large weight survives only against `{D}`, whose `n`-derivative is
+`~ h P^{-1/2}`: constant on runs of length `~ P^{1/2}/h`. Measured, five
+wraps over four thousand consecutive odd `n` at `P = 1.5e6`, against
+five predicted. On a run the phase is the monomial
+`(27 k beta / 32) n^{33/32}` with `beta` frozen — the b-runs of Lemma
+5.1(iii), one level down.
+
+And the carry is not a new species either. `kappa` is 0 or 1, so
+`e(-c kappa) = 1 - kappa(1 - e(-c))`; and on a run `beta` is frozen, so
+`kappa` is the indicator of an equidistributing `theta_1` in a *fixed*
+interval `[1-beta, 1)`. That is a Vaaler expansion — Lemma 3.5 — not a
+shifted window at all.
+
+**Why Section 7 did not see it.** It looked for a device in the
+*undifferenced* sum, where the coefficient depends on `n` and the
+shifted window is the only tool. After one differencing there is no
+coefficient problem left: the exponent is `1/32`.
+
+This is an accounting, not a proof, and the manuscript says so. It does
+not choose the Vaaler truncation, bound the oscillation of the
+`1 - e(-c)` weight, take the cell inventory, or balance `H`. One
+differencing halves a saving, so matching `P^{1-1/96}` needs the
+differenced sum to reach `P^{1-1/48}`, and nothing here says it does.
+What the identity settles is the route: Step 1 followed by Lemma 3.5,
+not a sharper Lemma 3.7.
+
+```text
+What was learned
+- the obstruction was a property of the weight, not of the defect, and
+  differencing acts on the weight: 33/32 -> 1/32 is the whole move
+- looking for a device inside the undifferenced sum was the mistake;
+  the paper's own Step 1 changes what device is needed
+- a 0/1 carry against a frozen interval is an indicator, and the paper
+  has had the expansion for it since Section 3
+- the previous entry's measurement and this one fit: the sum cancels
+  because the weight drifts, and the weight can be made to stop
+  drifting by differencing, at the usual cost of half the saving
+Strongest theorem
+- Delta_h(c theta_1) = (Delta_h c) theta_1 + c(n+h)({Delta_h X} - kappa)
+  with kappa = 1 iff theta_1 >= 1 - {Delta_h X}: exact, and it moves the
+  coefficient exponent from 33/32 to 1/32
+Strongest refutation
+- the reading that no device exists for n-dependent coefficients here;
+  the shifted window is not the only one, and is not the one needed
+Reusable machinery
+- level1_differencing_identity: the residual, the kappa fraction, the
+  two exponents; four tests
+Branch status
+- PARK
+Why
+  The route is identified and every ingredient it needs is already in
+  Sections 3 to 5. Executing it is a Section-5-sized proof at one level
+  down -- truncation, inventory, balance -- which is not a Phase-0 move
+  and should not be started as one.
+Best next question
+- the balance. One differencing gives K_1 << P^{1-delta/2} if the
+  differenced sum reaches P^{1-delta}; the b-run inventory gives
+  ~ h P^{1/2} cells of length P^{1/2}/h, and van der Corput on a cell
+  at curvature k P^{-31/32}. What delta does that accounting return,
+  and is it above or below 1/48?
+```
+
+## Corollary 4.13 holds, its nesting constant is 3/8, and its error term never arrives
+
+Following the last entry's question, and closing the second of the three
+remaining checkable gaps.
+
+**The structure holds.** On the even blocks `I(m') = [m'^(32/9),
+(m'+1)^(32/9))` at `m' = 60` and `100` -- `63573` and `232558` odd
+starts -- every `n` with first five letters `OOEEE` and `J^5(n) = m'`
+has `J^4(n)` even and inside `[m'^2, (m'+1)^2)`. No exceptions.
+
+**The density lands and its error term does not.** The class holds
+`3903` of `63573` at `m' = 60` (`0.061394`) and `14534` of `232558` at
+`m' = 100` (`0.062496`), against `1/16 = 0.0625`; at `m' = 200`,
+`0.062724`. But the printed `O(|I| m'^(-4/27+eps))` has `m'^(-4/27) =
+0.55` and `0.51` at those two -- the error term is half the block. It
+reaches 10% only at `m' = 10^(27/4) = 5.6e6`, where the block holds
+`2e17` integers. Four digits of agreement, and an untestable error
+term: the level-2 benchmark reading, one section earlier.
+
+**And claim (a)'s constant is 3/8.** The nesting `0 <= n^(9/16) -
+v^(1/4) <= n^(-15/16)` holds everywhere sampled, with the ratio to the
+printed bound topping out at `0.3742`-`0.3748` from `1e4` to `1e14`.
+Expanding twice, `n^(9/16) - v^(1/4) = (3/8) theta n^(-15/16) +
+(1/4) theta_2 n^(-27/16) + ...`, so the sharp constant is `3/8`, the
+saturation is `theta` again, and the printed `1` is loose by `8/3`.
+
+That is the third bound in two entries whose saturation is `theta`:
+Lemma 4.6's lower end at `3/4`, this one at `3/8`, and Lemma 6.2's
+`theta_2` end from further back.
+
+**A slip worth recording.** My first pass at (a) used `J^2(n)` for `v`,
+which is right only when the first two letters are `OO`; `v =
+floor(m^(3/2))` is defined for every odd `n`, and off that branch `J^2`
+is `floor(sqrt(m))`. The check reported a violation by ten orders of
+magnitude, which is what made it obvious -- a wrong answer loud enough
+to be unmissable is the cheap kind.
+
+```text
+What was learned
+- the OOEEE production's structural claim holds exactly on two blocks,
+  and its density lands within 4e-6 of 1/16 at m' = 100
+- the printed error term m'^(-4/27) is half the block at every
+  reachable m' and needs 5.6e6 to reach 10%
+- claim (a)'s sharp constant is 3/8 against a printed 1, saturating at
+  theta like the two before it
+Strongest theorem
+- n^(9/16) - v^(1/4) = (3/8) theta n^(-15/16) + (1/4) theta_2
+  n^(-27/16) + ..., from 9/16 - 3/2 = -15/16
+Strongest refutation
+- none against the paper; one against my own first indexing of v
+Reusable machinery
+- corollary_4_13_check and check_fifth_letter_nesting; one test, three
+  exact checks; the coverage count moved to 16 of 21
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Two of the three remaining gaps are now closed and both closings
+  produced a sharp constant the paper rounds. The pattern is worth more
+  than either: every one of these bounds saturates at a fractional
+  part, and none of the printed constants is the attained one.
+Best next question
+- Lemma 4.10 is the last checkable gap: an abstract summation-by-parts
+  inequality with a 1 + 2 pi TV(gamma) factor. Is that constant sharp,
+  or is it the fourth in a row that is not?
+```
