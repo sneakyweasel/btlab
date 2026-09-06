@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "ef46bab50d3c7e6c0ff48c175b6936db478dce65",
+  "git_commit": "35d1c4f5c6b5f8457b54e7d5d92437025367858d",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3883,7 +3883,7 @@
   "draft_history_markers": {
     "occurrences": [
       {
-        "line": 2119,
+        "line": 2129,
         "section": "4. The level-2 wave and the kernel theorem",
         "in_appendix": false,
         "mathematical": false,
@@ -3891,7 +3891,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 4085,
+        "line": 4095,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3899,7 +3899,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 5017,
+        "line": 5027,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3907,7 +3907,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5523,
+        "line": 5533,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3915,7 +3915,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6334,
+        "line": 6344,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6704,
+        "line": 6714,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6734,
+        "line": 6744,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6813,
+        "line": 6823,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3952,8 +3952,8 @@
     "in_body": 4,
     "body_mathematical": 2,
     "body_needing_a_look": [
-      2119,
-      4085
+      2129,
+      4095
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -5276,7 +5276,7 @@
       }
     ],
     "sites": 9,
-    "lines_still_matching": 3,
+    "lines_still_matching": 2,
     "line_numbers_have_drifted": true,
     "by_kind": {
       "danger sizing": 1,
@@ -5306,7 +5306,7 @@
     "no_certificate_row_moves_P0": true
   },
   "c2_occurrence_audit": {
-    "statement_line": 2146,
+    "statement_line": 2156,
     "occurrences": [
       {
         "line": 1860,
@@ -5321,13 +5321,13 @@
         "is_the_statement": false
       },
       {
-        "line": 2146,
+        "line": 2156,
         "form": "h_1h_2 <= P^{1/2}/3",
         "above_the_statement": false,
         "is_the_statement": true
       },
       {
-        "line": 3913,
+        "line": 3923,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": false,
         "is_the_statement": false
@@ -5337,7 +5337,7 @@
     "above_the_statement": 2,
     "below_the_statement": 1,
     "below_lines": [
-      3913
+      3923
     ],
     "below_needs_a_stronger_bound_than_C2": true,
     "below_bound_exponent": "1/4",
@@ -5663,6 +5663,139 @@
     "worst_ratio_to_the_operating_load": 1.2893475004183705,
     "census_over_covers_the_operating_range": true
   },
+  "identity_clauses_outside_the_caps": {
+    "rows": [
+      {
+        "h1": 1,
+        "h2": 1,
+        "k": 1,
+        "shift_product": 1,
+        "epsilon": 0.003,
+        "inside_C1": true,
+        "j_min": -1,
+        "j_max": 1,
+        "window_upper": 2,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": true,
+        "failing_clauses": {}
+      },
+      {
+        "h1": 2,
+        "h2": 2,
+        "k": 1,
+        "shift_product": 4,
+        "epsilon": 0.012,
+        "inside_C1": true,
+        "j_min": -1,
+        "j_max": 1,
+        "window_upper": 2,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": true,
+        "failing_clauses": {}
+      },
+      {
+        "h1": 5,
+        "h2": 5,
+        "k": 1,
+        "shift_product": 25,
+        "epsilon": 0.075,
+        "inside_C1": false,
+        "j_min": -1,
+        "j_max": 0,
+        "window_upper": 2,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": true,
+        "failing_clauses": {}
+      },
+      {
+        "h1": 10,
+        "h2": 10,
+        "k": 1,
+        "shift_product": 100,
+        "epsilon": 0.3,
+        "inside_C1": false,
+        "j_min": -1,
+        "j_max": 1,
+        "window_upper": 2,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": true,
+        "failing_clauses": {}
+      },
+      {
+        "h1": 30,
+        "h2": 30,
+        "k": 1,
+        "shift_product": 900,
+        "epsilon": 2.7,
+        "inside_C1": false,
+        "j_min": 1,
+        "j_max": 3,
+        "window_upper": 4,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": false,
+        "failing_clauses": {}
+      },
+      {
+        "h1": 100,
+        "h2": 100,
+        "k": 1,
+        "shift_product": 10000,
+        "epsilon": 30.0,
+        "inside_C1": false,
+        "j_min": 21,
+        "j_max": 29,
+        "window_upper": 32,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": false,
+        "failing_clauses": {}
+      },
+      {
+        "h1": 100,
+        "h2": 100,
+        "k": 1000,
+        "shift_product": 10000000,
+        "epsilon": 30.0,
+        "inside_C1": false,
+        "j_min": 21,
+        "j_max": 30,
+        "window_upper": 32,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": false,
+        "failing_clauses": {}
+      },
+      {
+        "h1": 500,
+        "h2": 500,
+        "k": 1,
+        "shift_product": 250000,
+        "epsilon": 750.0,
+        "inside_C1": false,
+        "j_min": 547,
+        "j_max": 730,
+        "window_upper": 752,
+        "inside_the_generalised_window": true,
+        "inside_the_printed_window": false,
+        "failing_clauses": {}
+      }
+    ],
+    "P": 1000000,
+    "families": 8,
+    "families_outside_C1": 6,
+    "largest_shift_product": 10000000,
+    "c1_cap": 5.623413251903491,
+    "times_outside_C1": 1778279.4100389227,
+    "clause_failures": {},
+    "every_clause_survives": true,
+    "clauses_checked": 9,
+    "generalised_window_holds_everywhere": true,
+    "families_inside_the_printed_window": 4,
+    "printed_window_fails_once_epsilon_exceeds_one": true,
+    "epsilon_range": [
+      0.003,
+      750.0
+    ],
+    "only_the_offset_window_needs_the_hypothesis": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -5730,5 +5863,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 81.62176418304443
+  "elapsed_seconds": 81.44409441947937
 }

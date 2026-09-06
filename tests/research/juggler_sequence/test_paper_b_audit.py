@@ -1589,3 +1589,30 @@ def test_the_census_over_covers_the_operating_range_at_its_top_two_ranges() -> N
     assert by_P[10**15]["max_product"] == 32 and by_P[10**14]["max_product"] == 9
     assert by_P[10**15]["ratio_to_c1"] < 0.5 < by_P[10**15]["ratio_to_the_operating_load"]
     assert len(r["rows"]) == 8
+
+
+# --- which clauses the hypothesis is protecting ---
+
+
+def test_every_identity_clause_survives_outside_the_caps() -> None:
+    """Nine clauses, six families up to 1.8e6 times (C1), no failures: the caps protect none of them."""
+    r = A.identity_clauses_outside_the_caps(samples_per_family=8)
+    assert r["clauses_checked"] == 9 and r["every_clause_survives"]
+    assert r["clause_failures"] == {}
+    assert r["families_outside_C1"] == 6 and r["families"] == 8
+    assert r["times_outside_C1"] > 1e6
+    assert r["only_the_offset_window_needs_the_hypothesis"]
+
+
+def test_the_printed_offset_window_holds_exactly_when_epsilon_is_under_one() -> None:
+    """[-1, 2] fails as soon as 3 h1h2 P^(-1/2) passes 1, which is (C2); [-1, floor(eps)+1] holds."""
+    r = A.identity_clauses_outside_the_caps(samples_per_family=8)
+    assert r["generalised_window_holds_everywhere"]
+    assert r["printed_window_fails_once_epsilon_exceeds_one"]
+    assert r["families_inside_the_printed_window"] == 4
+    lo, hi = r["epsilon_range"]
+    assert lo < 0.01 and hi == 750.0
+    by_eps = {round(x["epsilon"], 3): x for x in r["rows"]}
+    assert by_eps[0.3]["inside_the_printed_window"]
+    assert not by_eps[2.7]["inside_the_printed_window"]
+    assert by_eps[750.0]["j_max"] <= by_eps[750.0]["window_upper"]

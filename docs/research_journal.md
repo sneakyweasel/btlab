@@ -34716,3 +34716,68 @@ Best next question
   module, so the question is really whether to write it in decoration_budget
   instead and cite across, or leave the claim unanchored and say so.
 ```
+
+## The caps protect one clause out of nine
+
+Running `check_lemma_5_1_ii_iv` far outside its hypothesis settles which
+of its clauses the caps are for. At `P = 1e6`, where the caps admit
+`h_1 = h_2 = k = 1`, the families go to `h_1 = h_2 = 500`, `k = 1000` --
+a shift product `1.78e6` times `(C1)` -- and not one of the nine
+booleans fails, at 8, 12 or 30 samples per family.
+
+Five are identities and hold for all reals. `brackets_le_2` is
+structural. The surprise is the three bounds: the two bracket ranges and
+the `M_1` bound are all stated in the very parameters they bound, so
+they are scale-covariant. The caps do not make them true; they make the
+quantities they bound small.
+
+What the hypothesis protects is the offset window, and it moves exactly
+as the algebra says. With `e = Delta^2 X` and `u, alpha, gamma` the
+fractional parts, `u + alpha < 1` and `u + gamma < 1` give
+`u + alpha + gamma + e < 2 - u + e <= 2 + eps`, so
+`-1 <= j <= floor(2 + eps)` with `eps = 3 h_1h_2 P^(-1/2)`. That is
+`[-1, 2]` precisely while `eps < 1`, which is `(C2)`. Measured from
+`eps = 0.003` to `750`, the offset stays inside and leaves `[-1, 2]`
+exactly when `eps` does, reaching `4` at `eps = 2.7`.
+
+My first form of the window, `floor(eps) + 1`, was wrong -- `eps = 2.7`
+reaches `4` and that gives `3`. The eight-sample test caught it before
+it reached the ledger, which is the first time this session a wrong
+formula was stopped by a test rather than by a re-read.
+
+```text
+Phase-end report
+Question
+- which clauses of check_lemma_5_1_ii_iv would still hold outside (C1),
+  and which is the hypothesis protecting
+Instruments
+- identity_clauses_outside_the_caps: nine clauses over eight families
+  spanning eps from 0.003 to 750 and shift products to 1.78e6 times (C1)
+Ledger tags
+- EXACT: the five identities and brackets_le_2 hold for all parameters;
+  the three bounds are scale-covariant in the parameters they bound;
+  -1 <= j <= floor(2 + eps), which is [-1, 2] iff eps < 1
+- COMPUTATIONALLY VERIFIED: zero clause failures at 8, 12 and 30 samples
+  per family; the window holds everywhere and the printed one fails
+  exactly when eps passes 1; j reaches 4 at eps = 2.7 and 741 at 750
+- OBSERVATION: the caps protect one clause out of nine
+Strongest theorem
+- floor(2 + eps) is the offset window, and (C2) is exactly the condition
+  that makes it the printed [-1, 2]
+Strongest refutation
+- my own first window formula, floor(eps) + 1, refuted by a family at
+  eps = 2.7 where the offset reaches 4
+Reusable machinery
+- identity_clauses_outside_the_caps, IDENTITY_CLAUSES, two tests, wired
+  into summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change; it is the census learning what
+  its own booleans are worth.
+Best next question
+- the same question for check_lemma_6_2, whose printed bounds
+  lemma_6_2_margin_certificate shows hold at every odd n >= 5. If they
+  need no hypothesis either, then Lemma 6.2's stated range is doing what
+  (C2) does for 5.1(iii) -- nothing, or something not yet located.
+```

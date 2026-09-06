@@ -4637,6 +4637,91 @@ def census_admissibility(seed: int = 42, samples_per_range: int = 200) -> dict[s
     }
 
 
+IDENTITY_CLAUSES = ("double_gap", "carry_sawtooth", "F_equals_DDY", "split_exact",
+                    "first_bracket_in_range", "second_bracket_in_range", "master_identity",
+                    "brackets_le_2", "M1_bound")
+
+
+def identity_clauses_outside_the_caps(seed: int = 43, samples_per_family: int = 12,
+                                      P: int = 10**6) -> dict[str, Any]:
+    """Which clauses of check_lemma_5_1_ii_iv need the hypothesis, and which never did.
+
+    The census draws inside the caps and reports booleans, so it cannot say which of them the caps
+    are protecting.  Running the same check far outside answers it: at P = 1e6, where the caps
+    admit h_1 = h_2 = k = 1, the families below go to h_1 = h_2 = 500 and k = 1000, a shift product
+    2.5e5 times (C1)'s P^{1/8} = 5.6.
+
+    Every clause survives.  Not one of the nine fails at any family.  The identities -- the double
+    gap, the carry-as-sawtooth, F = Delta Delta Y, the exact split, the master identity -- are
+    algebra and hold for all reals.  What is less obvious is that the three *bounds* survive too:
+    the first bracket is between (3/2)|j| P^{3/4} and 2.6|j| (P/2)^{3/4}, the second between
+    1.4 h_1h_2 P^{1/4} and 15 h_1h_2 (P/2)^{1/4}, and M_1 is at most 0.43 k h_1h_2 P^{-7/8}.  All
+    three are stated in the very parameters they bound, so they are scale-covariant: the caps do
+    not make them true, they make the quantities they bound *small*.  And brackets_le_2 is
+    structural -- each bracket is a fractional part minus carries.
+
+    The one clause the hypothesis protects is the offset window, which the census gates separately.
+    It moves with eps = 3 h_1h_2 P^{-1/2} exactly as the algebra says.  From u + alpha < 1 and
+    u + gamma < 1, u + alpha + gamma + e < 2 - u + e <= 2 + eps, so the window is
+    [-1, floor(2 + eps)] -- and that is [-1, 2] precisely while eps < 1, which is (C2).  Measured
+    from eps = 0.003 to eps = 750 the offset stays inside it at every family, reaching 4 at
+    eps = 2.7 and 730 at eps = 750, and leaves [-1, 2] exactly when eps does.
+    """
+
+    rng = random.Random(seed)
+    families = ((1, 1, 1), (2, 2, 1), (5, 5, 1), (10, 10, 1), (30, 30, 1),
+                (100, 100, 1), (100, 100, 1000), (500, 500, 1))
+    rows = []
+    failures: dict[str, int] = {}
+    with mp.workdps(working_dps_for(2 * P)):
+        for h1, h2, k in families:
+            js = []
+            local: dict[str, int] = {}
+            for _ in range(samples_per_family):
+                n = rng.randrange(P, 2 * P) | 1
+                r = check_lemma_5_1_ii_iv(n, h1, h2, k)
+                js.append(r["j"])
+                for clause in IDENTITY_CLAUSES:
+                    if not r[clause]:
+                        local[clause] = local.get(clause, 0) + 1
+                        failures[clause] = failures.get(clause, 0) + 1
+            eps = 3.0 * h1 * h2 / math.sqrt(P)
+            # u + alpha < 1 and u + gamma < 1 give u+alpha+gamma+e < 2 - u + e <= 2 + eps, so the
+            # window is [-1, floor(2 + eps)] -- which is [-1, 2] exactly while eps < 1, i.e. (C2).
+            hi = int(2.0 + eps)
+            rows.append({
+                "h1": h1, "h2": h2, "k": k,
+                "shift_product": h1 * h2 * k,
+                "epsilon": eps,
+                "inside_C1": h1 * h2 * k <= P ** 0.125,
+                "j_min": min(js), "j_max": max(js),
+                "window_upper": hi,
+                "inside_the_generalised_window": min(js) >= -1 and max(js) <= hi,
+                "inside_the_printed_window": min(js) >= -1 and max(js) <= 2,
+                "failing_clauses": local,
+            })
+    outside = [r for r in rows if not r["inside_C1"]]
+    return {
+        "rows": rows,
+        "P": P,
+        "families": len(rows),
+        "families_outside_C1": len(outside),
+        "largest_shift_product": max(r["shift_product"] for r in rows),
+        "c1_cap": P ** 0.125,
+        "times_outside_C1": max(r["shift_product"] for r in rows) / P ** 0.125,
+        "clause_failures": failures,
+        "every_clause_survives": not failures,
+        "clauses_checked": len(IDENTITY_CLAUSES),
+        # the offset window is the one thing that moves
+        "generalised_window_holds_everywhere": all(r["inside_the_generalised_window"] for r in rows),
+        "families_inside_the_printed_window": sum(1 for r in rows if r["inside_the_printed_window"]),
+        "printed_window_fails_once_epsilon_exceeds_one": all(
+            r["inside_the_printed_window"] == (r["epsilon"] < 1) for r in rows),
+        "epsilon_range": (min(r["epsilon"] for r in rows), max(r["epsilon"] for r in rows)),
+        "only_the_offset_window_needs_the_hypothesis": not failures,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4711,6 +4796,7 @@ def summary() -> dict[str, Any]:
     krange = k_range_at_the_operating_point()
     shifts = shift_reach_in_the_audit()
     admissible = census_admissibility()
+    outside = identity_clauses_outside_the_caps()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4773,6 +4859,7 @@ def summary() -> dict[str, Any]:
         "k_range_at_the_operating_point": krange,
         "shift_reach_in_the_audit": shifts,
         "census_admissibility": admissible,
+        "identity_clauses_outside_the_caps": outside,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

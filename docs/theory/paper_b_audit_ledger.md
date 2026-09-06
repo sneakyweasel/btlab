@@ -4311,3 +4311,83 @@ three are the other session's to anchor if it wants them.
     4 printed ranges against the cited defaults                0 mismatched
     3 printed measurements citing no function
 ```
+
+## Nine clauses, none of them protected by the caps, and one window that is
+
+The census gates identities inside the caps, so it cannot say which of
+its clauses the caps are protecting. Running the same check far outside
+answers it. At `P = 1e6`, where the caps admit `h_1 = h_2 = k = 1`, the
+families below reach `h_1 = h_2 = 500` and `k = 1000` --- a shift
+product `1.78e6` times `(C1)`'s `P^(1/8) = 5.62`.
+
+**Every clause survives.** Not one of the nine fails at any family.
+
+```text
+  clause                     kind         needs the caps?
+  double_gap                 identity     no
+  carry_sawtooth             identity     no
+  F_equals_DDY               identity     no
+  split_exact                identity     no
+  master_identity            identity     no
+  brackets_le_2              structural   no
+  first_bracket_in_range     bound        no
+  second_bracket_in_range    bound        no
+  M1_bound                   bound        no
+```
+
+The five identities are algebra and hold for all reals. `brackets_le_2`
+is structural: each bracket is a fractional part minus carries. What is
+less obvious is that the three *bounds* survive too. The first bracket
+is between `(3/2)|j| P^(3/4)` and `2.6|j| (P/2)^(3/4)`, the second
+between `1.4 h_1h_2 P^(1/4)` and `15 h_1h_2 (P/2)^(1/4)`, and `M_1` is
+at most `0.43 k h_1h_2 P^(-7/8)` --- all three stated in the very
+parameters they bound, so they are scale-covariant. The caps do not make
+them true; they make the quantities they bound *small*.
+
+**The offset window is the one thing the hypothesis protects, and it
+moves exactly as the algebra says.** With `u = {X(n)}`, `alpha`,
+`gamma` the shifted fractional parts and `e = Delta^2 X`, the
+constraints `u + alpha < 1` and `u + gamma < 1` give
+`u + alpha + gamma + e < 2 - u + e <= 2 + eps`, so
+
+```text
+  -1 <= j <= floor(2 + eps),     eps = 3 h_1h_2 P^(-1/2),
+```
+
+which is `[-1, 2]` precisely while `eps < 1` --- that is `(C2)`.
+
+```text
+   h_1  h_2    k      eps      j observed     floor(2+eps)   [-1,2]?
+     1    1    1      0.003    [ -1,   1]           2         yes
+    10   10    1      0.300    [ -1,   1]           2         yes
+    30   30    1      2.700    [  1,   4]           4         no
+   100  100    1     30.000    [ 20,  29]          32         no
+   100  100 1000     30.000    [ 21,  29]          32         no
+   500  500    1    750.000    [531, 741]         752         no
+```
+
+Measured from `eps = 0.003` to `eps = 750`, the offset stays inside the
+window at every family and leaves `[-1, 2]` exactly when `eps` does.
+
+That is the whole answer: `(C2)` protects one clause, the identities
+protect themselves, and the three bounds never needed protecting.
+
+*Corrected in passing.* My first form of the window, `[-1, floor(eps) +
+1]`, is wrong: at `eps = 2.7` the offset reaches `4` and that formula
+gives `3`. `floor(2 + eps)` is what the algebra yields and it holds at
+every family; the error showed up as a test failure at eight samples
+before it reached the ledger.
+
+Tags. EXACT: the five identities and `brackets_le_2` hold for all
+parameters; the three bounds are stated in the parameters they bound and
+so are scale-covariant; `-1 <= j <= floor(2 + eps)` from
+`u + alpha + gamma + e < 2 - u + e`, and this is `[-1, 2]` iff
+`eps < 1`. COMPUTATIONALLY VERIFIED: nine clauses over eight families,
+six of them outside `(C1)` by up to `1.78e6`, zero failures at 8, 12 and
+30 samples each; the window holds at every family and the printed one
+fails exactly when `eps` passes `1`. OBSERVATION: `j` reaches `4` at
+`eps = 2.7` and `741` at `eps = 750`.
+
+Probe: `identity_clauses_outside_the_caps`, `IDENTITY_CLAUSES`. Two
+tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`.
+No manuscript or certificate edit.
