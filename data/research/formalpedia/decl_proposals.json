@@ -1909,47 +1909,6 @@
     {
       "candidates": [
         {
-          "decl": "unique_lift_of_nonsingular",
-          "line": 229,
-          "score": 0.12,
-          "trust": "kernel"
-        },
-        {
-          "decl": "isRootMod_lift_iff",
-          "line": 133,
-          "score": 0.091,
-          "trust": "kernel"
-        },
-        {
-          "decl": "isRootMod_succ_iff",
-          "line": 178,
-          "score": 0.091,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "IsRootMod",
-          "line": 31,
-          "score": 0.056
-        },
-        {
-          "decl": "LiftsFrom",
-          "line": 35,
-          "score": 0.053
-        }
-      ],
-      "id": "BTL-trichotomy",
-      "in_file": 18,
-      "lean": "BTCalculus/PadicLifting.lean",
-      "names_own": [],
-      "statement": "KNOWN, restated: for k >= 1 a level-k node has 1 child if 3 does not divide f'(n), 3 children if 3 divides f'(n) and v_3(f(n)) >= k+1, and none otherwise; the hypothesis k >= 1 is needed, since x^2 + x has two children at the root with a unit derivative"
-    },
-    {
-      "candidates": [
-        {
           "decl": "sectionDeriv_linState",
           "line": 156,
           "score": 0.185,
@@ -2964,47 +2923,6 @@
     {
       "candidates": [
         {
-          "decl": "powGap_eq_zero_iff",
-          "line": 40,
-          "score": 0.08,
-          "trust": "kernel"
-        },
-        {
-          "decl": "power_bound_of_global_defect",
-          "line": 190,
-          "score": 0.071,
-          "trust": "kernel"
-        },
-        {
-          "decl": "powGap_ge_pow",
-          "line": 30,
-          "score": 0.042,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "powGap",
-          "line": 17,
-          "score": 0.071
-        },
-        {
-          "decl": "accumulatedDefect",
-          "line": 69,
-          "score": 0.031
-        }
-      ],
-      "id": "J-global-defect-identity",
-      "in_file": 31,
-      "lean": "Problems/Juggler/GlobalDefect.lean",
-      "names_own": [],
-      "statement": "For every realized finite Juggler word w, n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + \u0394_w(n), where \u0394 is the recursively lifted accumulation of local floor remainders. \u0394 \u2265 0, so the power envelope is a corollary; \u0394 = 0 iff every local remainder vanishes; concatenation is the two-term power-gap lift, not an additive sum."
-    },
-    {
-      "candidates": [
-        {
           "decl": "expanding_defect_lower_bound",
           "line": 776,
           "score": 0.209,
@@ -3277,47 +3195,6 @@
       "lean": "Problems/Juggler/ExpandingGrammar.lean",
       "names_own": [],
       "statement": "For n\u22652, PersistentOddResidual x y if and only if PersistentExpandingResidual x y. A contracting residual cannot overshoot, and 2^k=3^o is impossible for a nonempty residual. The expanding qualifier of a persistent residual is therefore redundant."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "odd_odd_remainder_mod_eight",
-          "line": 56,
-          "score": 0.176,
-          "trust": "kernel"
-        },
-        {
-          "decl": "landing_remainder_mod_eight_cases",
-          "line": 71,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "odd_cube_minus_odd_square_mod_eight",
-          "line": 44,
-          "score": 0.158,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "landingRemainder",
-          "line": 29,
-          "score": 0.125
-        },
-        {
-          "decl": "oddOddLanding",
-          "line": 32,
-          "score": 0.125
-        }
-      ],
-      "id": "J-odd-odd-remainder-mod-eight",
-      "in_file": 15,
-      "lean": "Problems/Juggler/LandingValuation.lean",
-      "names_own": [],
-      "statement": "If y is odd and T(y) is odd, then the local remainder \u03c1=y\u00b3-T(y)\u00b2 satisfies \u03c1\u2261y-1 (mod 8). Consequently v\u2082(\u03c1)=1 when y\u22613 or 7 (mod 8), v\u2082(\u03c1)=2 when y\u22615 (mod 8), and v\u2082(\u03c1)\u22653 when y\u22611 (mod 8) and \u03c1\u22600. The same congruences hold for any odd square below y\u00b3; the floor T(y)=\u230ay^{3/2}\u230b is not used beyond selecting an odd landing."
     },
     {
       "candidates": [
@@ -3804,15 +3681,15 @@
           "trust": "kernel"
         },
         {
-          "decl": "no_nontrivial_cycle_no_bounded_nonterm",
-          "line": 118,
-          "score": 0.179,
-          "trust": "kernel"
-        },
-        {
           "decl": "reachesOne_implies_eventually_cycles",
           "line": 83,
           "score": 0.174,
+          "trust": "kernel"
+        },
+        {
+          "decl": "minimal_nonterm_cycles_or_escapes",
+          "line": 93,
+          "score": 0.125,
           "trust": "kernel"
         }
       ],
@@ -3831,7 +3708,7 @@
         }
       ],
       "id": "J-trajectory-cycle-or-escape",
-      "in_file": 61,
+      "in_file": 59,
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "Every n satisfies EventuallyCycles n or EscapesToInfinity n. A uniformly bounded trajectory repeats: if T^k(n) \u2264 M for every k, then some i < j have T^i(n) = T^j(n). ReachesOne n implies EventuallyCycles n because T(1) = 1. On MinimalNonTerm n a cycle value stays \u2265 n. This is not a proof that escape is impossible, not a cycle-exclusion theorem, and not a halt theorem."
@@ -3872,51 +3749,10 @@
         }
       ],
       "id": "J-minimal-ooeooe-escape-trap",
-      "in_file": 61,
+      "in_file": 59,
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOE, then T_OOEOOE(n) < n^2 because x^{64} \u2264 n^{81} forbids n^2 \u2264 x. If n follows OOEOOEO, then the next image is < n^2 because z^{128} \u2264 n^{243} forbids n^2 \u2264 z. On MinimalNonTerm n the OOEOOE landing is odd, and the forced next O is followed by another O: an even landing or an even next image below n^2 is descent. The argument does not use a CycleMin return image = n. This is"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "minimal_nonterm_prefix_noncontracting",
-          "line": 245,
-          "score": 0.5,
-          "trust": "kernel"
-        },
-        {
-          "decl": "minimal_nonterm_not_exponentGap",
-          "line": 233,
-          "score": 0.29,
-          "trust": "kernel"
-        },
-        {
-          "decl": "follows_ooeooeo_image_lt_sq",
-          "line": 155,
-          "score": 0.097,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "itineraryOOEOOEO",
-          "line": 32,
-          "score": 0.036
-        },
-        {
-          "decl": "itineraryOOEOOEOO",
-          "line": 252,
-          "score": 0.036
-        }
-      ],
-      "id": "J-minimal-prefix-noncontracting",
-      "in_file": 61,
-      "lean": "Problems/Juggler/Escape.lean",
-      "names_own": [],
-      "statement": "If MinimalNonTerm n and n follows w, then w is not an exponent-gap itinerary, and every prefix of w is noncontracting. Contrapositive of power_bound_contracts plus minimal_nonterm_no_descent. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a proof that escape is impossible and not a halt theorem."
     },
     {
       "candidates": [
@@ -3954,7 +3790,7 @@
         }
       ],
       "id": "J-ce-third-residual-preimages",
-      "in_file": 61,
+      "in_file": 59,
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} \u2264 n^{729} forbids n^3 \u2264 x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} \u2264 n^{729} forbids n^2 \u2264 y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 is descent. This is not a proof that the third residual is a"
@@ -3995,7 +3831,7 @@
         }
       ],
       "id": "J-ce-escaped-even-oe-preimage",
-      "in_file": 61,
+      "in_file": 59,
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOEOOEOE, then T_OOEOOEOOEOE(n) < n^2 because w^{2048} \u2264 n^{2187} forbids n^2 \u2264 w (4096 > 2187). A CE that follows OOEOOEOOE follows OOEOOEOOEO. On MinimalNonTerm an even OE landing after a third OOE is descent. This is not a length-11 cycle census, not a proof that every escaped even drops, and not a halt theorem."
@@ -4036,7 +3872,7 @@
         }
       ],
       "id": "J-ce-oe-next-oo",
-      "in_file": 61,
+      "in_file": 59,
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "If n \u2265 2 follows OOEOOEOOEOEO, then T_OOEOOEOOEOEO(n) < n^2 because q^{4096} \u2264 n^{6561} forbids n^2 \u2264 q (8192 > 6561). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEO, and that image is odd. Another escaped even is impossible on this step. This is not a length-11 cycle census and not a halt theorem."
@@ -4077,7 +3913,7 @@
         }
       ],
       "id": "J-ce-second-o-cube",
-      "in_file": 61,
+      "in_file": 59,
       "lean": "Problems/Juggler/Escape.lean",
       "names_own": [],
       "statement": "The itinerary OOEOOEOOEOEOO loses the square-cell gap (19683 > 16384). If n \u2265 2 follows that itinerary, then T(n) < n^3 because u^{8192} \u2264 n^{19683} forbids n^3 \u2264 u (24576 > 19683). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEOO. This is not a proof that the image stays below n^2, not a length-11 cycle census, and not a halt theorem."
@@ -4117,47 +3953,6 @@
       "lean": "Problems/Juggler/MinimumRelative.lean",
       "names_own": [],
       "statement": "AboveAnchor(n,w) means n follows w and every T^i(n) for i \u2264 |w| is at least n. CycleMin(n,w) implies AboveAnchor(n,w). MinimalNonTerm(n) implies AboveAnchor(n,w) for every realized finite prefix w. A realized image T_w(n) < n is FiniteProgress. If the image is even and below n^2, one more even letter is FiniteProgress (the k=1 case of T(x) < n^k when x is even and x < n^{2k}). An AboveAnchor prefi"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "no_nontrivial_cycle_no_bounded_nonterm",
-          "line": 118,
-          "score": 0.217,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycleItinerary_of_repeat",
-          "line": 102,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "not_escapes_iff_bounded",
-          "line": 35,
-          "score": 0.105,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "EscapesToInfinity",
-          "line": 26,
-          "score": 0.111
-        },
-        {
-          "decl": "itineraryOOEOOEO",
-          "line": 32,
-          "score": 0.053
-        }
-      ],
-      "id": "J-no-cycle-no-bounded-nonterm",
-      "in_file": 61,
-      "lean": "Problems/Juggler/Escape.lean",
-      "names_own": [],
-      "statement": "If every CycleItinerary at m \u2265 2 is impossible, then any n \u2265 2 that does not reach 1 escapes to infinity. Bounded nontermination is eventual cycling, and a repeat of period at least 1 is a CycleItinerary at the repeated state. This does not prove that every cycle is impossible, does not prove that escape is impossible, and is not a halt theorem."
     },
     {
       "candidates": [
@@ -5296,6 +5091,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 134,
-  "worth_reviewing": 20
+  "unresolved": 129,
+  "worth_reviewing": 19
 }

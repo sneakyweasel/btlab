@@ -2,10 +2,10 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 129 resolved rows the scorer gets
-52 of the 64 it fires on right, 81% precise, so roughly one in
+same thing.  Measured against all 134 resolved rows the scorer gets
+53 of the 65 it fires on right, 82% precise, so roughly one in
 5 below is wrong.
-20 rows below, of 134 unresolved.
+19 rows below, of 129 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -307,24 +307,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
 
-## 16. `J-minimal-prefix-noncontracting`
-
-**Row.** If MinimalNonTerm n and n follows w, then w is not an exponent-gap itinerary, and every prefix of w is noncontracting. Contrapositive of power_bound_contracts plus minimal_nonterm_no_descent. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a proof that escape is impossible and n
-
-**Candidate.** `minimal_nonterm_prefix_noncontracting` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:245`
-
-> Every realized prefix of a CE is prefix-noncontracting. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a halt theorem.
-
-```lean
-theorem minimal_nonterm_prefix_noncontracting {n : ℕ} {w : List Branch}
-    (h : MinimalNonTerm n) (hw : follows n w) : prefixNoncontracting w
-```
-
-*Runners-up: `minimal_nonterm_not_exponentGap` (0.29), `follows_ooeooeo_image_lt_sq` (0.097)*
-
-*If this row describes a definition rather than a theorem: `itineraryOOEOOEO`, `itineraryOOEOOEOO`*
-
-## 17. `J-ce-third-residual-preimages`
+## 16. `J-ce-third-residual-preimages`
 
 **Row.** If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 
 
@@ -342,7 +325,7 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
 
-## 18. `J-cube-odd-even-reset`
+## 17. `J-cube-odd-even-reset`
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
@@ -359,7 +342,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 
-## 19. `J-cyclemin-defect-finance-kill`
+## 18. `J-cyclemin-defect-finance-kill`
 
 **Row.** The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: pe
 
@@ -380,7 +363,7 @@ theorem cycleMin_hug_kill_criterion {n : ℕ} {w : List Branch}
 
 *Runners-up: `cycleMin_defect_finance` (0.134), `log_floorPower_even_ge_sub` (0.11)*
 
-## 20. `J-loglog-clock-band-word-forced-lean`
+## 19. `J-loglog-clock-band-word-forced-lean`
 
 **Row.** Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk ha
 

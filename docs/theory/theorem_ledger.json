@@ -1465,6 +1465,8 @@
   "statement": "KNOWN, restated: for k >= 1 a level-k node has 1 child if 3 does not divide f'(n), 3 children if 3 divides f'(n) and v_3(f(n)) >= k+1, and none otherwise; the hypothesis k >= 1 is needed, since x^2 + x has two children at the root with a unit derivative",
   "source": "docs/theory/padic_lifting_trees.md",
   "lean": "BTCalculus/PadicLifting.lean",
+  "decl": "lift_trichotomy",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_lifting.py",
    "tests/research/lifting/test_triage.py"
@@ -3036,6 +3038,8 @@
   "statement": "For every realized finite Juggler word w, n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n), where Δ is the recursively lifted accumulation of local floor remainders. Δ ≥ 0, so the power envelope is a corollary; Δ = 0 iff every local remainder vanishes; concatenation is the two-term power-gap lift, not an additive sum.",
   "source": "docs/problems/juggler_global_defect.md",
   "lean": "Problems/Juggler/GlobalDefect.lean",
+  "decl": "global_defect_identity",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_global_defect.py"
   ],
@@ -3247,6 +3251,8 @@
   "statement": "If y is odd and T(y) is odd, then the local remainder ρ=y³-T(y)² satisfies ρ≡y-1 (mod 8). Consequently v₂(ρ)=1 when y≡3 or 7 (mod 8), v₂(ρ)=2 when y≡5 (mod 8), and v₂(ρ)≥3 when y≡1 (mod 8) and ρ≠0. The same congruences hold for any odd square below y³; the floor T(y)=⌊y^{3/2}⌋ is not used beyond selecting an odd landing.",
   "source": "docs/problems/juggler_landing_valuation.md",
   "lean": "Problems/Juggler/LandingValuation.lean",
+  "decl": "odd_odd_remainder_mod_eight",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_landing_valuation.py"
   ],
@@ -4877,6 +4883,8 @@
   "statement": "If MinimalNonTerm n and n follows w, then w is not an exponent-gap itinerary, and every prefix of w is noncontracting. Contrapositive of power_bound_contracts plus minimal_nonterm_no_descent. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a proof that escape is impossible and not a halt theorem.",
   "source": "docs/problems/juggler_expanding_residual_concat.md",
   "lean": "Problems/Juggler/Escape.lean",
+  "decl": "minimal_nonterm_prefix_noncontracting",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_expanding_residual_concat.py"
   ],
@@ -5152,6 +5160,8 @@
   "statement": "If every CycleItinerary at m ≥ 2 is impossible, then any n ≥ 2 that does not reach 1 escapes to infinity. Bounded nontermination is eventual cycling, and a repeat of period at least 1 is a CycleItinerary at the repeated state. This does not prove that every cycle is impossible, does not prove that escape is impossible, and is not a halt theorem.",
   "source": "docs/problems/juggler_minimum_relative.md",
   "lean": "Problems/Juggler/Escape.lean",
+  "decl": "no_nontrivial_cycle_no_bounded_nonterm",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_minimum_relative.py"
   ],
