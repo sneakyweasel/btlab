@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "f0767c689206b9ebdc3405d8f1c677a20de4848b",
+  "git_commit": "e8f67935226e5e203901013f29a98f2b48c6d9f1",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -4585,6 +4585,115 @@
     "a6_four_site_minimax": 0.29919,
     "a6_minimax_feasible_at_the_provable_cap": true
   },
+  "branch_offset_extremes": {
+    "families": [
+      {
+        "P": 10000,
+        "h1": 3,
+        "h2": 3,
+        "samples": 500,
+        "epsilon": 0.27,
+        "histogram": {
+          "-1": 61,
+          "0": 253,
+          "1": 179,
+          "2": 7
+        },
+        "share_at_two": 0.014,
+        "first_j_equals_two": 10017,
+        "window_holds": true
+      },
+      {
+        "P": 100000,
+        "h1": 5,
+        "h2": 7,
+        "samples": 500,
+        "epsilon": 0.3320391543176798,
+        "histogram": {
+          "-1": 16,
+          "0": 301,
+          "1": 183
+        },
+        "share_at_two": 0.0,
+        "first_j_equals_two": null,
+        "window_holds": true
+      },
+      {
+        "P": 1000000,
+        "h1": 10,
+        "h2": 10,
+        "samples": 500,
+        "epsilon": 0.3,
+        "histogram": {
+          "-1": 64,
+          "0": 232,
+          "1": 192,
+          "2": 12
+        },
+        "share_at_two": 0.024,
+        "first_j_equals_two": 1000053,
+        "window_holds": true
+      },
+      {
+        "P": 1000000,
+        "h1": 16,
+        "h2": 20,
+        "samples": 500,
+        "epsilon": 0.96,
+        "histogram": {
+          "0": 94,
+          "1": 323,
+          "2": 83
+        },
+        "share_at_two": 0.166,
+        "first_j_equals_two": 1000003,
+        "window_holds": true
+      },
+      {
+        "P": 100000000,
+        "h1": 30,
+        "h2": 100,
+        "samples": 500,
+        "epsilon": 0.9,
+        "histogram": {
+          "0": 101,
+          "1": 334,
+          "2": 65
+        },
+        "share_at_two": 0.13,
+        "first_j_equals_two": 100000023,
+        "window_holds": true
+      }
+    ],
+    "histogram": {
+      "-1": 141,
+      "0": 981,
+      "1": 1211,
+      "2": 167
+    },
+    "window_holds_everywhere": true,
+    "printed_window": [
+      -3,
+      3
+    ],
+    "provable_window": [
+      -1,
+      2
+    ],
+    "upper_end_attained": true,
+    "lower_end_attained": true,
+    "three_never_seen": true,
+    "j_equals_two_instances": 167,
+    "u_below_epsilon_at_every_two": true,
+    "max_u_over_epsilon": 0.8838297286755853,
+    "epsilon_cap_admissible_box": 3.523626375863283e-06,
+    "epsilon_cap_stage6_decoration": 9.097580359484264e-05,
+    "top_value_density_at_P0": 9.097580359484264e-05,
+    "coefficient_off_the_exceptional_set": 2.001,
+    "row_off_the_exceptional_set": 66062.25867498362,
+    "row_at_the_worst_case": 4312179415.050242,
+    "worst_case_is_two_not_one": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -4652,5 +4761,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 75.96245217323303
+  "elapsed_seconds": 77.78715014457703
 }

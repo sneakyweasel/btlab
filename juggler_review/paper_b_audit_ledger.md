@@ -3015,3 +3015,89 @@ minimax `0.321848` at `5.785e11`, a factor `57` under `5/16`;
 
 Probes: `mode_index_row_sharpness`, `branch_offset_range`. Six tests.
 `P_0` unmoved at `3.5858e13`; no certificate row is edited.
+
+## The printed hypothesis of Lemma 5.1(iii) is exactly the one that gives a narrower window than the printed conclusion
+
+Last pass recorded `-1 <= j <= 2` against the printed `|j| <= 3` and
+left one question open: `j'` in the Lemma 5.2(iii) proof is the offset
+of the *widened* decoration, and the census measured the plain
+level-1 `j`. The manuscript answers it. `(D1')` widens `|q'| h' <=
+P^(1/2)`, `h' <= P^(1/24)` and nothing else; the offset bound `|j| <=
+3` belongs to class `(D2)` and to Lemma 5.1(iii), neither of which
+`(D1')` touches. The Stage-6 instance is the same net offset at the
+shift pair `(2h, 2h')` instead of `(d_1, d_2)`. The object does not
+change; only what it is quantified over does.
+
+**Which makes the hypothesis the whole story.** Write `u = {X(n)}`,
+`alpha = {Delta_1 X}`, `gamma = {Delta_2 X}`, `eps = Delta^2 X`. The
+integer parts cancel and
+
+```text
+  j = floor(u + alpha + gamma + eps) - floor(u + alpha) - floor(u + gamma)
+```
+
+exactly, with `u, alpha, gamma` in `[0,1)`. And `Delta^2 X = (3/4) d_1
+d_2 xi^(-1/2) <= 3 h_1 h_2 P^(-1/2)`, so the printed hypothesis
+`h_1 h_2 <= P^(1/2)/3` **is** `eps <= 1`. Under it, `j = 3` would need
+`u+alpha < 1` and `u+gamma < 1` with `u+alpha+gamma+eps >= 3`, and
+those cannot hold together. So `-1 <= j <= 2`: the hypothesis the
+lemma already assumes delivers a window one narrower than the
+conclusion it states, and an asymmetric one.
+
+**The top value has a support, and it is thin.** `j = 2` forces the
+floor pattern `(2, 0, 0)`; then `alpha + gamma < 2 - 2u` gives `2 <=
+u + alpha + gamma + eps < 2 - u + eps`, so
+
+```text
+  j = 2  ==>  {n^(3/2)} < Delta^2 X.
+```
+
+Verified on `167` instances found at `eps` of order one: `u < eps` at
+every one, worst ratio `0.884`. On the admissible box `eps <= 3
+P^(-7/16) = 3.5e-6` at `P_0`; on the Stage-6 `(D1)` instance, where
+the shifts are `2h` and `2h'` with `h <= P^(1/8)` and `h' <= P^(1/24)`,
+`eps <= 3 P^(-1/3) = 9.1e-5`.
+
+```text
+  family              eps      histogram of j              share at 2
+  P=1e4  h=(3,3)     0.270    -1:61  0:253  1:179  2:7        1.4%
+  P=1e5  h=(5,7)     0.332    -1:16  0:301  1:183             0
+  P=1e6  h=(10,10)   0.300    -1:64  0:232  1:192  2:12       2.4%
+  P=1e6  h=(16,20)   0.960           0:94   1:323  2:83      16.6%
+  P=1e8  h=(30,100)  0.900           0:101  1:334  2:65      13.0%
+```
+
+`2500` points, never `3` and never `-2`. The window is sharp at both
+ends once `eps` is of order one, so the worst-case coefficient really
+is `4` and not `2`: the pointwise row stays `4.001^16 = 4.31e9`.
+
+**But the pointwise worst case is not where the sum lives.** Off a set
+of `n` of density at most `3 P^(-1/3)`, the widened coefficient is
+`2 + 20 h h' P^(-3/4) <= 2.001` and the mode-index row is `2.001^16 =
+66062` --- not a certificate row at all. Splitting the `(D1)` sum at
+`{n^(3/2)} < 3P^(-1/3)` is the shape of the argument that would
+retire the row; the exceptional set is small enough to take
+trivially, and its density needs equidistribution of `{n^(3/2)}`,
+which is classical but is an input the paper does not currently use.
+
+```text
+  |j'| bound      coefficient   row        A.5 floor    c_7 lever
+  printed  3      7             3.32e13    3.32e13        1.079
+  provable 2      4.001         4.31e9     2.98e11      120.3
+  off the set 1   2.001         66062      2.98e11      120.3
+```
+
+Tags. EXACT: the three-floor identity for `j`; `eps <= 3 h_1 h_2
+P^(-1/2)`, so the printed hypothesis is `eps <= 1`; `-1 <= j <= 2`
+under it; `j = 2 ==> u < eps`; `(D1')` does not touch the offset, so
+all of this transfers to `j'`. COMPUTATIONALLY VERIFIED: `167`
+instances of `j = 2`, all with `u < eps`, max ratio `0.884`; `2500`
+points inside the window; the five family histograms. OBSERVATION: the
+density `3 P^(-1/3)` of the exceptional set, which is equidistribution
+of `{n^(3/2)}` and not proved here. HUMAN PROOF: whether the `(D1)`
+sum can be split on that set without disturbing the run structure the
+Stage-6 bullet depends on.
+
+Probe: `branch_offset_extremes`, two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`; no
+manuscript or certificate edit.

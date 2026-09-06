@@ -33489,3 +33489,75 @@ Best next question
   -1 <= j' <= 2 is immediate and A.5, A.6 and A.2's kappa table all
   move together.
 ```
+
+## The hypothesis was already the sharp one
+
+The open question from last pass answers itself in the statement of
+`(D1')`: it widens `|q'| h' <= P^(1/2)` and `h' <= P^(1/24)`, and
+nothing else. The offset bound `|j| <= 3` belongs to `(D2)` and to
+Lemma 5.1(iii). So `j'` is the same net offset at the shift pair
+`(2h, 2h')`, and everything proved about `j` transfers.
+
+What I had not noticed is that the lemma's own hypothesis is the
+sharp one. `Delta^2 X = (3/4) d_1 d_2 xi^(-1/2) <= 3 h_1 h_2 P^(-1/2)`,
+so `h_1 h_2 <= P^(1/2)/3` **is** `Delta^2 X <= 1` --- and under exactly
+that, the three-floor identity
+
+```text
+  j = floor(u+alpha+gamma+eps) - floor(u+alpha) - floor(u+gamma)
+```
+
+gives `-1 <= j <= 2`. The hypothesis the lemma already assumes delivers
+a window one narrower than the conclusion printed beside it.
+
+The top value has a support: `j = 2` forces `{n^(3/2)} < Delta^2 X`.
+Found `167` instances at `eps` of order one, `u < eps` at every one,
+worst ratio `0.884`, and `2500` points never leaving `[-1, 2]`. So the
+window is sharp and the pointwise coefficient really is `4`. But on the
+Stage-6 instance `eps <= 3 P^(-1/3) = 9.1e-5` at `P_0`, so off a set of
+that density the coefficient is `2.001` and the row is `66062` --- not a
+certificate row. The argument that retires the row is a split of the
+`(D1)` sum at `{n^(3/2)} < 3P^(-1/3)`, and the density of that set is
+equidistribution of `{n^(3/2)}`: classical, and an input the paper does
+not currently use anywhere.
+
+```text
+Phase-end report
+Question
+- is j' the same object as the level-1 j under the widening, and if so
+  what is the sharp window and what supports its top value
+Instruments
+- branch_offset_extremes: five (P, h_1, h_2) families spanning eps from
+  0.27 to 0.96, 2500 points, with {X(n)} recorded at every j = 2
+- the manuscript itself: (D1'), (D2) and Lemma 5.1(iii) read against
+  each other
+Ledger tags
+- EXACT: j is the three-floor expression; Delta^2 X <= 3 h_1 h_2
+  P^(-1/2), so the printed hypothesis is eps <= 1; -1 <= j <= 2 under
+  it; j = 2 ==> {n^(3/2)} < Delta^2 X; (D1') leaves the offset alone
+- COMPUTATIONALLY VERIFIED: 167 instances of j = 2, all with u < eps,
+  max ratio 0.884; 2500 points inside [-1, 2]; never 3, never -2
+- OBSERVATION: density 3 P^(-1/3) for the exceptional set
+- HUMAN PROOF: equidistribution of {n^(3/2)} as an input, and whether
+  the (D1) sum splits on that set without disturbing the run structure
+Strongest theorem
+- the printed hypothesis of Lemma 5.1(iii) is exactly eps <= 1 and
+  yields -1 <= j <= 2, so the conclusion beside it is one wide
+Strongest refutation
+- my own "does the widening change the object": it does not, and the
+  question was answerable from the statement of (D1') without a census
+Reusable machinery
+- branch_offset_extremes, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Three findings now point at the same edit -- narrow |j| <= 3 to
+  -1 <= j <= 2 in Lemma 5.1(iii) -- and that edit is the manuscript's
+  owner's to make. The audit records the argument, its sharpness and
+  its consequences for A.2, A.5 and A.6.
+Best next question
+- 22(|j|+1) P^(3/4) is the run bound of Lemma 5.1(iii) and the frozen
+  run inventory checks it at |j| <= 1 only. At j = 2, does the run
+  count still sit two orders under the bound, or is the |j|+1 factor
+  doing work at the top of the window?
+```

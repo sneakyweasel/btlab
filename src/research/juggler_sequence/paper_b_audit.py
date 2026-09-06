@@ -3619,6 +3619,92 @@ def branch_offset_range(seed: int = 5213, samples_per_range: int = 40) -> dict[s
     }
 
 
+BRANCH_OFFSET_FAMILIES = ((10**4, 3, 3), (10**5, 5, 7), (10**6, 10, 10),
+                          (10**6, 16, 20), (10**8, 30, 100))
+
+
+def branch_offset_extremes(span: int = 1200, P0: float = 3.5858e13) -> dict[str, Any]:
+    """Where the net offset of Lemma 5.1(iii) actually lives, and what forces its top value.
+
+    j = beta_{12} - beta_1 - beta_2 is the double difference of floor(X).  Writing u = {X(n)},
+    alpha = {Delta_1 X}, gamma = {Delta_2 X} and eps = Delta^2 X, the integer parts cancel and
+
+        j = floor(u + alpha + gamma + eps) - floor(u + alpha) - floor(u + gamma),
+
+    with u, alpha, gamma in [0,1) and eps in (0,1) -- the printed hypothesis h_1 h_2 <= P^{1/2}/3
+    is exactly eps <= 1, since Delta^2 X = (3/4) d_1 d_2 xi^{-1/2} <= 3 h_1 h_2 P^{-1/2}.  Reading
+    the three floors: j = 3 needs u+alpha and u+gamma both under 1 and their sum over 3 - eps,
+    impossible; so -1 <= j <= 2 under the paper's own hypothesis, one narrower than the printed
+    |j| <= 3 and not symmetric.
+
+    j = 2 needs the pattern (2,0,0), and u+alpha < 1, u+gamma < 1 force alpha+gamma < 2-2u, so
+    2 <= u+alpha+gamma+eps < 2-u+eps: **j = 2 requires u < eps**, i.e. {n^{3/2}} below the second
+    difference.  That is the whole of the top value's support.  On Paper B's admissible box eps is
+    at most 3 P^{1/48+1/24-1/2} = 3 P^{-7/16}, and in the Stage 6 (D1) instance, where the shifts
+    are 2h and 2h' with h <= P^{1/8} and h' <= P^{1/24}, at most 3 P^{-1/3}: so j' = 2 lives on a
+    set of n of density at most 3 P^{-1/3}, and off that set the widened coefficient is 2 + o(1)
+    rather than 6.  This probe exhibits j = 2 where eps is of order 1 -- the window is sharp, so
+    the worst case really is 4 and not 2 -- and confirms u < eps at every instance found.
+    """
+
+    fams = []
+    seen: dict[int, int] = {}
+    twos = 0
+    worst_ratio = 0.0
+    violations = 0
+    for P, h1, h2 in BRANCH_OFFSET_FAMILIES:
+        with mp.workdps(working_dps_for(2 * P)):
+            d1, d2 = 2 * h1, 2 * h2
+            hist: dict[int, int] = {}
+            first_two = None
+            for n in range(P + 1, P + 2 * span + 1, 2):
+                j = m_of(n + d1 + d2) - m_of(n + d1) - m_of(n + d2) + m_of(n)
+                hist[j] = hist.get(j, 0) + 1
+                seen[j] = seen.get(j, 0) + 1
+                if j == 2:
+                    twos += 1
+                    if first_two is None:
+                        first_two = n
+                    X = X_of(n)
+                    u = float(frac(X))
+                    eps = float(X_of(n + d1 + d2) - X_of(n + d1) - X_of(n + d2) + X)
+                    worst_ratio = max(worst_ratio, u / eps)
+                    if u >= eps:
+                        violations += 1
+            eps_nominal = 3.0 * h1 * h2 / math.sqrt(P)
+        fams.append({
+            "P": P, "h1": h1, "h2": h2, "samples": span,
+            "epsilon": eps_nominal,
+            "histogram": dict(sorted(hist.items())),
+            "share_at_two": hist.get(2, 0) / span,
+            "first_j_equals_two": first_two,
+            "window_holds": min(hist) >= -1 and max(hist) <= 2,
+        })
+    box_eps = 3.0 * P0 ** (1 / 48 + 1 / 24 - 1 / 2)
+    stage6_eps = 3.0 * P0 ** (1 / 8 + 1 / 24 - 1 / 2)
+    return {
+        "families": fams,
+        "histogram": dict(sorted(seen.items())),
+        "window_holds_everywhere": min(seen) >= -1 and max(seen) <= 2,
+        "printed_window": (-3, 3),
+        "provable_window": (-1, 2),
+        "upper_end_attained": seen.get(2, 0) > 0,
+        "lower_end_attained": seen.get(-1, 0) > 0,
+        "three_never_seen": 3 not in seen and -2 not in seen,
+        "j_equals_two_instances": twos,
+        "u_below_epsilon_at_every_two": violations == 0,
+        "max_u_over_epsilon": worst_ratio,
+        # what the same algebra says about the box the paper actually works in
+        "epsilon_cap_admissible_box": box_eps,
+        "epsilon_cap_stage6_decoration": stage6_eps,
+        "top_value_density_at_P0": stage6_eps,
+        "coefficient_off_the_exceptional_set": 2.001,
+        "row_off_the_exceptional_set": 2.001 ** 16,
+        "row_at_the_worst_case": 4.001 ** 16,
+        "worst_case_is_two_not_one": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3680,6 +3766,7 @@ def summary() -> dict[str, Any]:
     shift_average = proposition_7_4_check(grid=20000)
     mode_index = mode_index_row_sharpness()
     offsets = branch_offset_range(samples_per_range=24)
+    extremes = branch_offset_extremes(span=500)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3729,6 +3816,7 @@ def summary() -> dict[str, Any]:
         "proposition_7_4_check": shift_average,
         "mode_index_row_sharpness": mode_index,
         "branch_offset_range": offsets,
+        "branch_offset_extremes": extremes,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

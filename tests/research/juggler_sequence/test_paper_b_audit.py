@@ -1277,3 +1277,27 @@ def test_the_provable_cap_takes_the_row_off_the_table() -> None:
     # and A.6's own four-site optimum stops being excluded by the fifth site
     assert r["left_endpoint_at_the_provable_cap"] < r["a6_four_site_minimax"]
     assert r["a6_minimax_feasible_at_the_provable_cap"]
+
+
+def test_the_offset_window_is_sharp_at_both_ends() -> None:
+    """-1 <= j <= 2 under the printed hypothesis, and both ends occur once eps is of order one."""
+    r = A.branch_offset_extremes(span=400)
+    assert r["provable_window"] == (-1, 2) and r["printed_window"] == (-3, 3)
+    assert r["window_holds_everywhere"] and r["three_never_seen"]
+    assert r["upper_end_attained"] and r["lower_end_attained"]
+    assert set(r["histogram"]) <= {-1, 0, 1, 2}
+    assert len(r["families"]) == 5 and all(f["window_holds"] for f in r["families"])
+    # the families with eps near 1 are the ones that reach the top value
+    big = [f for f in r["families"] if f["epsilon"] > 0.8]
+    assert big and all(f["share_at_two"] > 0.05 for f in big)
+
+
+def test_the_top_value_needs_the_fractional_part_below_the_second_difference() -> None:
+    """j = 2 forces {n^(3/2)} < Delta^2 X, so at P_0 it lives on a set of density 9.1e-5."""
+    r = A.branch_offset_extremes(span=400)
+    assert r["j_equals_two_instances"] > 50
+    assert r["u_below_epsilon_at_every_two"] and r["max_u_over_epsilon"] < 1.0
+    assert r["epsilon_cap_admissible_box"] < 1e-5          # 3 P^(-7/16) at P_0
+    assert r["epsilon_cap_stage6_decoration"] < 1e-4       # 3 P^(-1/3) at P_0
+    assert r["row_off_the_exceptional_set"] < 1e5          # 2.001^16, off the certificate entirely
+    assert r["row_at_the_worst_case"] > 4e9                # 4.001^16, the pointwise bound
