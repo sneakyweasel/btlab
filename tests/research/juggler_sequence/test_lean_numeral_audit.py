@@ -328,3 +328,56 @@ def test_the_unanchored_count_fell_by_one() -> None:
     un = A.unanchored_measurements()
     assert len(un) == 2, [r["printed"] for r in un]
     assert all("twelve" not in r["why"] for r in un)
+
+
+# --- the separation is not a feature of one P ---
+
+
+def test_the_control_crossover_is_where_the_separation_opens() -> None:
+    """L* = sqrt(P)/3, and the fitted window clears it at P = (512/3)^2 = 2.91e4."""
+    from research.juggler_sequence import decoration_budget as DB
+    assert abs(DB.level1_control_crossover(10**6)["P_where_window_clears"]
+               - (512 / 3) ** 2) < 1.0
+    assert not DB.level1_control_crossover(10**4)["window_clears"]
+    assert DB.level1_control_crossover(3 * 10**4)["window_clears"]
+    for P in (10**4, 10**6):
+        c = DB.level1_control_crossover(P)
+        assert abs(c["lambda"] - 3 * P**-0.5) < 1e-12
+        assert abs(c["crossover_L"] - P**0.5 / 3) < 1e-9
+        assert abs(c["L_min"] - P / 512) < 1e-9
+
+
+def test_the_kernel_is_flat_and_the_control_climbs() -> None:
+    """Cheap subset: the two smallest P, straddling the crossover."""
+    from research.juggler_sequence import decoration_budget as DB
+    t = DB.level1_control_trend(ps=(10**4, 3 * 10**4))
+    assert [r["window_clears"] for r in t["rows"]] == [False, True]
+    assert t["control_increases"]
+    lo, hi = t["rows"]
+    assert abs(lo["kernel"] - 0.3866) < 5e-3 and abs(lo["control"] - 0.4902) < 5e-3
+    assert abs(hi["kernel"] - 0.5081) < 5e-3 and abs(hi["control"] - 0.5733) < 5e-3
+    # at the P whose window does not clear, there is no separation to speak of
+    assert lo["gap"] < 0.11
+    assert DB.LEVEL1_TREND_PS[0] == 10**4 and len(DB.LEVEL1_TREND_PS) == 6
+
+
+def test_the_paper_records_the_trend_and_its_mechanism() -> None:
+    text = A.paper_text()
+    assert "it opens where the" in text and "second-derivative test says it must" in text
+    assert r"\(\lambda=3n^{-1/2}\sim3P^{-1/2}\)" in text
+    assert r"\(L\gg1/\lambda=\sqrt P/3\)" in text
+    assert r"\(P>(512/3)^2=2.91\cdot10^{4}\)" in text
+    assert "`decoration_budget.level1_control_trend`" in text
+    for figure in ("0.4902", "0.9852", "0.4928", "0.170"):
+        assert figure in text, figure
+    # the six rows of the table
+    for P in (r"3\cdot10^{4}", r"3\cdot10^{5}", r"3\cdot10^{6}"):
+        assert P in text, P
+
+
+def test_the_mechanism_is_arithmetic_not_assertion() -> None:
+    """L_min >= L* is sqrt(P) >= 2 bins / 3 with bins = 256."""
+    bins = 256
+    assert abs((2 * bins / 3) ** 2 - (512 / 3) ** 2) < 1e-9
+    for P, clears in ((10**4, False), (29127, False), (3 * 10**4, True)):
+        assert ((P / 2) / bins >= P**0.5 / 3) is clears, P

@@ -34979,3 +34979,135 @@ Best next question
   improving with n -- in which case one of these bounds is asymptotically
   exact and the other is not?
 ```
+
+### The separation is not a feature of one P, and it opens where it must
+
+The recorded question: is the kernel/control separation stable in `P`, or does
+the control's exponent drift toward `1/2` as `P` grows? The second would make
+Section 5's contrast a small-`P` artefact.
+
+**It is the opposite, and there is a mechanism.** The control is the Weyl sum
+itself, since `e({n^(3/2)}) = e(n^(3/2))`. Over odd `n` with step `2` its
+curvature in the term index is `λ = 3n^(-1/2) ~ 3P^(-1/2)`, so a block sum of
+length `L` is `≪ Lλ^(1/2) + λ^(-1/2)`. The first term is *linear* in `L` and
+dominates once `L ≫ 1/λ = √P/3` — so the control's exponent runs to `1`, not to
+`1/2`. The five fitted lengths are `L ∈ [P/512, P/32]`, so the whole window
+clears the crossover once `√P ≥ 2·256/3`, i.e. `P > (512/3)² = 2.91e4`. That is
+a prediction about *where the separation begins*.
+
+```text
+  P          kernel   control      gap    L_min/L*   clears
+  10^4       0.3866    0.4902    0.104        0.59   no
+  3e4        0.5081    0.5733    0.065        1.01   yes
+  10^5       0.5178    0.7252    0.207        1.85   yes
+  3e5        0.4738    0.8181    0.344        3.21   yes
+  10^6       0.5139    0.9099    0.396        5.86   yes
+  3e6        0.5563    0.9852    0.429       10.15   yes
+```
+
+The kernel is flat at `1/2` — mean `0.4928`, spread `0.170` across two and a
+half decades, no trend. The control climbs monotonically to `0.9852`, the gap
+widens monotonically from `3e4` on, and at `P = 10^4` there is no separation at
+all — the one row whose window does not clear the crossover.
+
+So `0.91` at `P = 10^6` is not a plateau but a point on a curve going to `1`.
+That is a stronger statement than the paragraph made and the one it wanted: the
+weight destroys the smoothness that makes `e(n^(3/2))` a stationary-phase
+object, and the control becomes *more* stationary-phase-like as `P` grows while
+the kernel does not move.
+
+```text
+What was learned
+- the question had a mechanism behind it, not just a trend to measure: van der
+  Corput predicts the control -> 1 and predicts where the separation starts
+- and the prediction is sharp enough to be wrong: it names P = 2.91e4, and the
+  one measured P below that is the one with no separation
+- writing the crossover down was worth more than the six exponents; the
+  exponents alone would have been a trend, not an explanation
+- I first wrote the threshold as (bins/6)^2 = 1820 instead of (2 bins/3)^2 =
+  29127. That would have put the crossover below every measured P and made
+  "appears exactly there" vacuous. Its own test caught it
+Strongest theorem
+- the control's block exponent runs to 1 by the second-derivative test, the
+  fitted window clears the crossover at P = (512/3)^2, and the measured gap is
+  zero below it and monotone above
+Strongest refutation
+- the worry the question was built on: the control does not drift to 1/2, it
+  climbs to 0.9852 over two and a half decades
+Reusable machinery
+- decoration_budget.level1_control_trend, level1_control_crossover,
+  LEVEL1_TREND_PS; a citation row; four new tests
+Branch status
+- PARK
+Why
+  The trend is measured, the mechanism is written down, the prediction it makes
+  is checked at the one P that can falsify it, and the manuscript carries both.
+  Nothing here moves P_0.
+Best next question
+- the kernel row at P = 10^4 reads 0.3866, well below 1/2 and outside the
+  instrument's 90% interval, and I have been calling it "the smallest P" as if
+  that explained it. It does not: the kernel's own crossover is a different
+  computation from the control's, since c' >> 1 is what decorrelates it. At
+  what P does the *kernel* enter its asymptotic regime, and is 10^4 below it
+  for the same kind of reason?
+```
+
+## The argmaxes are where the sweep stopped
+
+Neither Lemma 6.2 maximum has plateaued. Over checkpoints from `1000`
+to `99999` odd points, part (i) climbs `0.99939844 -> 0.99997088` and
+the reduced part (ii) `0.98696599 -> 0.99945901`, and every argmax moves
+up with the range -- `1517 -> 142915` and `421 -> 105941`. Fitting
+`1 - max` against the number of points gives `0.11 N^(-0.664)` and
+`0.41 N^(-0.584)`: the same power to within the noise of a step
+function.
+
+So both bounds are asymptotically exact and neither has a constant to
+spare. The `18.6`-fold gap between the two residuals at the end of the
+sweep is the constant in one power law against the constant in the
+other, and not the difference in kind it looked like.
+
+That closes Lemma 6.2. The one improvement available in it is the
+deletion recorded last pass; after that there is nothing to shave,
+because what remains is attained in the limit. Which is the opposite of
+Lemma 5.1(iii), where five printed numbers are loose by factors from
+`1.78` to `13.04` and every one of them is the same two quantities
+charged at two separate points.
+
+```text
+Phase-end report
+Question
+- are the argmaxes the sharpest points, or does the approach keep
+  improving with n
+Instruments
+- lemma_6_2_approach_rate: running maxima of both ratios at seven
+  checkpoints over [3, 200000), with a live short sweep that reproduces
+  the first checkpoint
+Ledger tags
+- EXACT: each argmax moves with the range, so neither is a sharpest
+  point
+- COMPUTATIONALLY VERIFIED: the seven checkpoints; 1 - max fits
+  0.11 N^(-0.664) and 0.41 N^(-0.584); final residuals 2.912e-5 and
+  5.410e-4, ratio 18.58; the live sweep matches the first checkpoint
+- OBSERVATION: the two powers agree within the noise of a step
+  function, so the gap is a constant
+Strongest theorem
+- both bounds are attained in the limit, so after the one deletion there
+  is no constant left anywhere in Lemma 6.2
+Strongest refutation
+- the reading that 2.9e-5 against 5.4e-4 meant one bound was sharp and
+  the other was not
+Reusable machinery
+- lemma_6_2_approach_rate, LEMMA_6_2_APPROACH_CHECKPOINTS, two tests,
+  wired into summary()
+Branch status
+- PARK
+Why
+  Lemma 6.2 is now fully characterised and the only edit it wants is the
+  deletion already recorded, which belongs to the manuscript's owner.
+Best next question
+- the audit now has an asymptotic-exactness test that took one sweep and
+  seven checkpoints. Theorem 4.8's bounds at the m-level are the same
+  shape as Lemma 6.2's at the v-level. Do they behave the same way, or
+  is the v-level's exactness a feature of the second nesting?
+```

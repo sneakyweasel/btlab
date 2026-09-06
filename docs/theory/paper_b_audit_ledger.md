@@ -4560,3 +4560,113 @@ Probes: `lemma_6_2_part_ii_term_inventory`,
 `LEMMA_6_2_REDUCED_WIDE_SWEEP`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The separation is not a feature of one P, and it opens where it must
+
+Section 5 reads the level-1 kernel's cancellation off a contrast measured at one `P`: the
+kernel's `rms/sqrt(L)` stays flat while the unweighted control's climbs like `L^0.91`. The
+last entry asked whether that separation is stable in `P`, or whether the control's exponent
+drifts toward `1/2` as `P` grows -- which would make the contrast a small-`P` artefact and
+weaken the claim that the weight is what produces the cancellation.
+
+**It is the opposite, and there is a mechanism.** The control is the Weyl sum itself, since
+`e({n^(3/2)}) = e(n^(3/2))`. Over odd `n` with step `2` its curvature in the term index is
+`lambda = 3 n^(-1/2) ~ 3 P^(-1/2)`, so a block sum of length `L` is
+`<< L lambda^(1/2) + lambda^(-1/2)` by the second-derivative test. The first term is *linear*
+in `L`, and it dominates once `L >> 1/lambda = sqrt(P)/3`. So the control's fitted exponent
+runs to `1`, not to `1/2`.
+
+The five fitted block lengths are `L in [P/512, P/32]`, so the whole window clears the
+crossover once `sqrt(P) >= 2*256/3`, i.e. `P > (512/3)^2 = 2.91e4`. That is a prediction about
+*where the separation begins*, and it can be checked.
+
+```text
+  P          kernel   control      gap    L_min/L*   window clears
+  10^4       0.3866    0.4902    0.104        0.59   no
+  3e4        0.5081    0.5733    0.065        1.01   yes
+  10^5       0.5178    0.7252    0.207        1.85   yes
+  3e5        0.4738    0.8181    0.344        3.21   yes
+  10^6       0.5139    0.9099    0.396        5.86   yes
+  3e6        0.5563    0.9852    0.429       10.15   yes
+```
+
+The kernel is flat at `1/2` -- mean `0.4928`, spread `0.170` across two and a half decades,
+no trend. The control climbs monotonically to `0.9852`. The gap widens monotonically from
+`3e4` on. And at `P = 10^4` there is no separation to speak of: the control reads `0.4902`
+against the kernel's `0.3866`, and that is the one row whose window does not clear the
+crossover (`L in [20, 312]` against `1/lambda = 33`).
+
+So the contrast is absent below `2.91e4`, appears exactly there, and grows. `0.91` at `P = 10^6`
+is not a plateau but a point on a curve going to `1`. That is a stronger statement than the
+paragraph made, and it is the statement the paragraph wanted: the weight destroys the
+smoothness that makes `e(n^(3/2))` a stationary-phase object, and the measurement now shows the
+control becoming *more* stationary-phase-like as `P` grows while the kernel does not move.
+
+`decoration_budget.level1_control_trend` and `level1_control_crossover`; the passage is added
+to Section 5 beside the single-`P` contrast, and a citation row covers it.
+
+One slip caught by its own test: the crossover condition `(P/2)/bins >= sqrt(P)/3` is
+`sqrt(P) >= 2 bins/3`, so the threshold is `(2 bins/3)^2`. It was first written `(bins/6)^2`,
+which gives `1820` instead of `29127` -- an order and a half, and it would have put the
+crossover below every measured `P`, making the "appears exactly there" claim vacuous.
+
+## Both bounds are attained in the limit: the argmaxes are where the sweep stopped, not where the bound is sharp
+
+The two residuals at the end of the sweep --- `2.9e-5` for part (i) and
+`5.4e-4` for the reduced part (ii) --- looked like a difference in kind.
+They are not. Neither running maximum has plateaued.
+
+```text
+  points     max (i)      argmax     max (ii, reduced)   argmax
+    1000     0.99939844     1517     0.98696599            421
+    2500     0.99939844     1517     0.99707776           2833
+    5000     0.99939844     1517     0.99833797           7573
+   10000     0.99957657    10545     0.99833797           7573
+   25000     0.99982449    20833     0.99833797           7573
+   50000     0.99991806    89945     0.99931633          94851
+   99999     0.99997088   142915     0.99945901         105941
+```
+
+Both climb across a sweep a hundred times longer than the first, and
+every argmax moves up with the range. Fitting `1 - max` against the
+number of points:
+
+```text
+  part (i)        1 - max  ~  0.11 N^(-0.664)
+  part (ii) red.  1 - max  ~  0.41 N^(-0.584)
+```
+
+The same power to within the noise of a step function. So the two are
+the same kind of object: **both bounds are asymptotically exact**, their
+suprema tend to `1`, and neither has any constant to spare. The
+`18.6`-fold gap between the two residuals is the constant in one power
+law against the constant in the other.
+
+That closes Lemma 6.2. The only improvement available anywhere in it is
+the deletion of `(3/8)(U-1)^(-1/2)` from part (ii), recorded last pass;
+after that deletion there is nothing left to shave, because what remains
+is attained in the limit. The `n >= 5` threshold can go to `n >= 3` and
+that is a domain condition, not a saving.
+
+Set against the other half of this ledger's subject, the contrast is
+now complete:
+
+```text
+  Lemma 5.1(iii)   four displayed constants and a run-length constant,
+                   loose by 1.78, 3.95, 7.11, 2.82 and 13.04, all of
+                   them the same two quantities charged at two points
+  Lemma 6.2        one deletable term; the rest attained in the limit
+```
+
+Tags. EXACT: the argmax of each maximum moves with the range, so
+neither is a sharpest point. COMPUTATIONALLY VERIFIED: the seven
+checkpoints above over `[3, 200000)`; `1 - max` fits `0.11 N^(-0.664)`
+and `0.41 N^(-0.584)`, and the live short sweep reproduces the first
+checkpoint exactly; the final residuals are `2.912e-5` and `5.410e-4`,
+a ratio of `18.58`. OBSERVATION: the two powers agree to within the
+noise of a step function, so the residual gap is a constant and not a
+difference in kind.
+
+Probes: `lemma_6_2_approach_rate`, `LEMMA_6_2_APPROACH_CHECKPOINTS`.
+Two tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at
+`3.5858e13`. No manuscript or certificate edit.

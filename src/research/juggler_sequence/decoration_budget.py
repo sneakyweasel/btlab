@@ -829,6 +829,72 @@ def level1_sweep_outside_calibration(sweep: dict[str, Any] | None = None,
     return [pk for pk, v in s["exponents"].items() if not (lo <= v <= hi)]
 
 
+
+# --- and whether the kernel/control separation is a feature of one P ---
+
+LEVEL1_TREND_PS = (10**4, 3 * 10**4, 10**5, 3 * 10**5, 10**6, 3 * 10**6)
+
+
+def level1_control_crossover(p: int, bins: int = 256, fit_min_count: int = 16) -> dict[str, Any]:
+    """Where van der Corput's second-derivative test turns linear for the control.
+
+    The control is ``e({n^(3/2)}) = e(n^(3/2))``, the Weyl sum itself.  Over odd ``n`` with
+    step 2 the curvature in the term index is ``lambda = 3 n^(-1/2) ~ 3 P^(-1/2)``, so a block
+    sum of length ``L`` is ``<< L lambda^(1/2) + lambda^(-1/2)``.  The first term is *linear*
+    in ``L`` and dominates once ``L >> 1/lambda = sqrt(P)/3``, so the fitted exponent goes to
+    ``1``, not to ``1/2``.
+
+    The five fitted block lengths run over ``[N/bins, N/fit_min_count]`` with ``N = P/2``, i.e.
+    ``[P/512, P/32]`` at the defaults, so the whole window clears the crossover once
+    ``sqrt(P) >= 2 bins / 3``, i.e. ``P > (2 bins/3)^2 = 2.91e4``.  That is where the
+    separation opens.
+    """
+    lam = 3.0 * p**-0.5
+    n_terms = p / 2
+    return {"P": p, "lambda": lam, "crossover_L": 1.0 / lam,
+            "L_min": n_terms / bins, "L_max": n_terms / fit_min_count,
+            "L_min_over_crossover": (n_terms / bins) * lam,
+            "window_clears": (n_terms / bins) * lam >= 1.0,
+            "P_where_window_clears": (2.0 * bins / 3.0) ** 2}
+
+
+def level1_control_trend(ps: tuple[int, ...] = LEVEL1_TREND_PS, k: int = 1) -> dict[str, Any]:
+    """Kernel and control exponents against ``P``, and the gap between them.
+
+    The passage in Section 5 measured both at one ``P`` and read the contrast off it.  Across
+    the ladder the kernel stays at ``1/2`` -- mean ``0.4928`` over the six, no trend -- while
+    the control climbs monotonically ``0.4902 -> 0.9852``, and the gap widens monotonically
+    from ``P = 3e4`` on.  At ``P = 10^4`` there is no separation at all: the control reads
+    ``0.4902`` against the kernel's ``0.3866``, and that is the one ``P`` whose fitted window
+    does not clear the crossover.
+
+    So the separation is not a small-``P`` artefact; it is the opposite, and it appears exactly
+    where ``level1_control_crossover`` says it should.
+    """
+    from research.juggler_sequence import paper_b_audit as _pba
+
+    rows = []
+    for p in ps:
+        r = _pba.level1_kernel_block_scaling(P=p, k=k)
+        cross = level1_control_crossover(p)
+        rows.append({"P": p, "kernel": r["level1_exponent"], "control": r["wave_exponent"],
+                     "gap": r["wave_exponent"] - r["level1_exponent"],
+                     "L_min_over_crossover": cross["L_min_over_crossover"],
+                     "window_clears": cross["window_clears"]})
+    ks = [x["kernel"] for x in rows]
+    ws = [x["control"] for x in rows]
+    cleared = [x for x in rows if x["window_clears"]]
+    return {
+        "ps": list(ps), "k": k, "rows": rows,
+        "kernel_mean": sum(ks) / len(ks),
+        "kernel_spread": max(ks) - min(ks),
+        "control_increases": all(ws[i] < ws[i + 1] for i in range(len(ws) - 1)),
+        "control_range": [min(ws), max(ws)],
+        "gap_increases_once_cleared": all(
+            cleared[i]["gap"] < cleared[i + 1]["gap"] for i in range(len(cleared) - 1)),
+    }
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

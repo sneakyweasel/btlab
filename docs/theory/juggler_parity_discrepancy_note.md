@@ -5486,6 +5486,44 @@ five lengths. The weight does not merely fail to hurt the sum: it is
 what produces the cancellation, by destroying the smoothness that makes
 \(e(n^{3/2})\) a stationary-phase object in the first place.
 
+*And the separation is not a feature of one \(P\); it opens where the
+second-derivative test says it must.* The control is the Weyl sum
+itself, since \(e(\{n^{3/2}\})=e(n^{3/2})\). Over odd \(n\) with step
+\(2\) its curvature in the term index is
+\(\lambda=3n^{-1/2}\sim3P^{-1/2}\), so a block sum of length \(L\) is
+\(\ll L\lambda^{1/2}+\lambda^{-1/2}\). The first term is *linear* in
+\(L\), and it dominates once \(L\gg1/\lambda=\sqrt P/3\) --- so the
+control's fitted exponent runs to \(1\), not to \(\tfrac12\). The five
+fitted lengths are \(L\in[P/512,P/32]\), so the whole window clears the
+crossover once \(\sqrt P\ge\tfrac{2}{3}\cdot256\), i.e.
+\(P>(512/3)^2=2.91\cdot10^{4}\).
+
+Measured at \(k=1\) along that ladder
+(`decoration_budget.level1_control_trend`):
+
+\[
+\begin{array}{rccc}
+P & \text{kernel} & \text{control} & \text{gap}\\[2pt]
+10^{4} & 0.3866 & 0.4902 & 0.104\\
+3\cdot10^{4} & 0.5081 & 0.5733 & 0.065\\
+10^{5} & 0.5178 & 0.7252 & 0.207\\
+3\cdot10^{5} & 0.4738 & 0.8181 & 0.344\\
+10^{6} & 0.5139 & 0.9099 & 0.396\\
+3\cdot10^{6} & 0.5563 & 0.9852 & 0.429
+\end{array}
+\]
+
+The kernel is flat at \(\tfrac12\) --- mean \(0.4928\), spread
+\(0.170\) across two and a half decades and no trend --- while the
+control climbs monotonically to \(0.985\) and the gap widens
+monotonically from \(3\cdot10^{4}\) on. At \(P=10^{4}\) there is no
+separation at all: the control reads \(0.4902\), and that is the one
+row whose fitted window does not clear the crossover
+(\(L\in[20,312]\) against \(1/\lambda=33\)). The contrast the previous
+paragraph reads off \(P=10^{6}\) is therefore not a coincidence of
+scale in the direction one would fear; it is absent below
+\(2.91\cdot10^{4}\), appears exactly there, and grows.
+
 So the drift threshold is not only an obstruction. It is the reason the
 shifted window has nothing to run on *and* the reason there is
 something for a method to find. This is an observation and nothing

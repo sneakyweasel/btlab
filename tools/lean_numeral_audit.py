@@ -622,6 +622,18 @@ def _level1_sweep_ok(fn) -> bool:
             and DB.LEVEL1_SWEEP_KS == sig.parameters["ks"].default)
 
 
+def _control_trend_ok(fn) -> bool:
+    """The ladder printed beside the table is the function's own default."""
+    import inspect
+    from research.juggler_sequence import decoration_budget as DB
+    sig = inspect.signature(fn)
+    ps = sig.parameters["ps"].default
+    return (ps == (10**4, 3 * 10**4, 10**5, 3 * 10**5, 10**6, 3 * 10**6)
+            and DB.LEVEL1_TREND_PS == ps and len(ps) == 6
+            and abs(DB.level1_control_crossover(10**6)["P_where_window_clears"]
+                    - (512 / 3) ** 2) < 1.0)
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -651,6 +663,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`decoration_budget.level1_exponent_sweep`, which is that ladder)",
      "the level-1 exponent sweep, and that its ladder is the printed one",
      _level1_sweep_ok),
+    ("decoration_budget", "level1_control_trend",
+     "(`decoration_budget.level1_control_trend`)",
+     "the kernel/control trend against P, and its printed ladder",
+     _control_trend_ok),
 )
 
 
