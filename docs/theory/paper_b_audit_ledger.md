@@ -5779,3 +5779,75 @@ paper trades that `1.36` for a lever of `120` against a fixed floor.
 Probe: `opening_versus_lever`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The floor row's own constant is a third opened block range, and the lever is `739`
+
+The lever runs into `st5b-qpp`. Two things about that row.
+
+**Its text and its predicate are different bounds.** The claim reads
+`|q''| curvature ratio 48.9 P^(-3/16) <= 1/4`, which clears at
+`1.662e12`. The predicate is the two-term form
+
+```text
+  (1.85 P^(7/24) + R_0) * 6 P^(-5/4) / (0.35 P^(-3/4))  <=  1/4
+```
+
+which clears at `2.982e11`. Both are true, and the manuscript discusses
+the difference --- merging the two terms "loses `P^(1/48)`" --- but the
+row certifies the sharp form and describes the merged one, a factor
+`5.574` apart. Anyone checking the printed claim against the printed
+threshold finds them inconsistent, in the safe direction.
+
+**And the `0.35` in it is an opened block range.** The Stage-4 curvature
+is `-(9/32) u G (nu+2h)^(-5/4)` with `G ~ 3h nu^(1/2)`, so the
+coefficient is `(27/32) u h nu^(-3/4)`, and over a dyadic block
+`nu^(-3/4)` runs over `[2^(-3/4), 1]`:
+
+```text
+  true      (27/32)[2^(-3/4), 1]  =  [0.50170, 0.84375]
+  printed                            [0.35,    1.20   ]
+  opening                             1.4334    1.4222
+```
+
+Measured at `[0.50364, 0.82385]` over `80` samples --- the low end at
+once, the high end from below, since it is attained only as `nu -> P`.
+That is the third block range in the paper found rounded outward, after
+the two anchor ranges.
+
+**What it costs is larger here than anywhere else,** because the
+curvature sits in a denominator under a `P^(-1/2)`: a `1.43` on the
+constant is a `6.14` on the threshold.
+
+```text
+  curvature   qpp row clears at
+  0.35        2.982e11    as printed
+  0.5017      4.854e10    the block-range low end
+  0.84375     3.542e09    at nu = P
+```
+
+**So the floor of the `c_7` lever is `4.854e10`, not `2.982e11`, and the
+lever is `738.7` rather than `120.3`.** The previous section's relative
+arithmetic is unaffected --- the floor is fixed, so closing the anchor
+opening still costs exactly the factor it takes off `P_0` --- but the
+lever it was spending is six times larger than stated, and so is every
+figure in this ledger that used `120`.
+
+The pattern is now three for three: every constant that reaches `P_0`
+or its floor is a block range rounded outward. The cell count was the
+first, found by an out-of-sample test; the two anchor ranges were the
+second and third; this is the fourth, and the only one where the
+rounding is amplified rather than passed through.
+
+Tags. EXACT: the Stage-4 curvature coefficient is `(27/32) u h nu^(-3/4)`
+from `-(9/32) u G (nu+2h)^(-5/4)` with `G ~ 3h nu^(1/2)`, so its block
+range is `[0.50170, 0.84375]`; the row's claim text and predicate are
+different inequalities, clearing at `1.662e12` and `2.982e11`.
+COMPUTATIONALLY VERIFIED: measured range `[0.50364, 0.82385]` over `80`
+samples; the qpp row clears at `2.982e11`, `4.854e10` and `3.542e09` at
+curvature `0.35`, `0.5017` and `0.84375`; the floor moves by `6.143` and
+the lever from `120.26` to `738.73`. OBSERVATION: the amplification is
+the `P^(-1/2)` the ratio carries, which turns a `1.43` into a `6.14`.
+
+Probe: `qpp_row_and_the_floor`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

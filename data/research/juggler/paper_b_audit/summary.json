@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "16e3def1c39d2f2eb73ca54671554ff26ac94a6b",
+  "git_commit": "969c427fa074eafd38b5a37050ba5b23db3090b0",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -6797,6 +6797,39 @@
     "opening_buys_the_lever": true,
     "floor_is_fixed_until_the_cliff": true
   },
+  "qpp_row_and_the_floor": {
+    "samples": 80,
+    "model_range": [
+      0.501696751641773,
+      0.84375
+    ],
+    "measured_range": [
+      0.5036383789807332,
+      0.8238511106280618
+    ],
+    "model_matches_measurement": true,
+    "high_end_approached_from_below": true,
+    "printed_range": [
+      0.35,
+      1.2
+    ],
+    "opening_low": 1.4334192904050658,
+    "opening_high": 1.4222222222222223,
+    "is_an_opened_block_range": true,
+    "claim_text_constant": 48.9,
+    "claim_text_threshold": 1662010905263.2104,
+    "predicate_threshold": 298166397427.1972,
+    "text_and_predicate_differ": true,
+    "text_over_predicate": 5.574105330460723,
+    "floor_as_printed": 298166397427.1972,
+    "floor_at_the_block_low_end": 48539674405.15715,
+    "floor_moves": 6.142735835811832,
+    "amplified_by_the_exponent": true,
+    "lever_as_recorded": 120.26021879810862,
+    "lever_corrected": 738.7267556337135,
+    "lever_was_understated_by": 6.142735835811832,
+    "relative_arithmetic_unaffected": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6864,5 +6897,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 96.84561371803284
+  "elapsed_seconds": 95.83545517921448
 }

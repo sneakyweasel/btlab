@@ -36347,3 +36347,73 @@ Best next question
   have never measured. If that row is itself loose, the lever is larger
   than 120 and every price in this section is understated.
 ```
+
+## Six times, and the pattern is four for four
+
+The floor row's `0.35` is a block range rounded outward, like the two
+anchor ranges and the cell count. The Stage-4 curvature is
+`-(9/32) u G (nu+2h)^(-5/4)` with `G ~ 3h nu^(1/2)`, so the coefficient
+is `(27/32) u h nu^(-3/4)` and its block range is
+`(27/32)[2^(-3/4), 1] = [0.50170, 0.84375]`, measured
+`[0.50364, 0.82385]`. Printed `[0.35, 1.20]`: openings `1.4334` and
+`1.4222`.
+
+What is new is the amplification. Everywhere else a rounding passed
+through to the threshold unchanged; here the curvature sits in a
+denominator under a `P^(-1/2)`, so `1.43` on the constant becomes `6.14`
+on the row:
+
+```text
+  0.35      2.982e11    as printed
+  0.5017    4.854e10    the block-range low end
+  0.84375   3.542e09    at nu = P
+```
+
+So the `c_7` lever's floor is `4.854e10` and the lever is `738.7`, not
+`120.3`. The previous section's relative arithmetic survives -- the
+floor is fixed, so closing the anchor opening still costs exactly what
+it takes off `P_0` -- but every absolute figure in this ledger that used
+`120` is six times too small.
+
+The row also describes itself wrongly: its claim text is
+`48.9 P^(-3/16) <= 1/4`, clearing at `1.662e12`, while its predicate is
+the sharper two-term form clearing at `2.982e11`. The manuscript
+discusses the difference; the certificate row prints one and tests the
+other.
+
+```text
+Phase-end report
+Question
+- is st5b-qpp's 48.9 loose, and is the lever therefore larger than 120
+Instruments
+- qpp_row_and_the_floor: the Stage-4 curvature's block range measured
+  against its model, the row's text and predicate compared, and the
+  floor recomputed at three curvature values
+Ledger tags
+- EXACT: the curvature coefficient is (27/32) u h nu^(-3/4), block range
+  [0.50170, 0.84375]; the row's text and predicate are different
+  inequalities clearing at 1.662e12 and 2.982e11
+- COMPUTATIONALLY VERIFIED: measured range [0.50364, 0.82385] over 80
+  samples; the row clears at 2.982e11, 4.854e10, 3.542e09 at curvature
+  0.35, 0.5017, 0.84375; the lever moves 120.26 -> 738.73
+- OBSERVATION: the amplification is the P^(-1/2) in the ratio, which is
+  why this rounding costs six times its face value
+Strongest theorem
+- the floor of the c_7 lever is 4.854e10 and the lever is 738.7, so
+  every absolute lever figure in this ledger was six times too small
+Strongest refutation
+- my own recorded figure of 120.3 for the lever, carried through four
+  sections
+Reusable machinery
+- qpp_row_and_the_floor, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Both findings are the author's to act on: the row's text is a
+  certificate string and the curvature range is a manuscript constant.
+Best next question
+- four block ranges found, all rounded outward by 1.43 to 1.44 except
+  the cell count's 1.21. Is 1.43 a coincidence of three unrelated
+  derivations, or is it 2^(1/2) times something -- and would that make
+  the openings a single editorial habit with one number behind it?
+```

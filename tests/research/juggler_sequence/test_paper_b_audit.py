@@ -2010,3 +2010,31 @@ def test_closing_the_opening_spends_the_lever_and_then_falls_off_a_cliff() -> No
     # the range row's own threshold climbs steeply as the opening closes
     thresholds = {round(x["lam_5b"], 4): x["least_P"] for x in r["range_row_thresholds"]}
     assert thresholds[0.6] < 1e7 < thresholds[0.615] < thresholds[0.619] < thresholds[0.6197]
+
+
+# --- the floor row's own constant ---
+
+
+def test_the_stage_4_curvature_is_another_opened_block_range() -> None:
+    """(27/32)[2^(-3/4), 1] = [0.5017, 0.84375], printed [0.35, 1.20]: opened by 1.43."""
+    r = A.qpp_row_and_the_floor(samples_per_range=20)
+    assert abs(r["model_range"][1] - 27 / 32) < 1e-12
+    assert abs(r["model_range"][0] - 27 / 32 * 2 ** -0.75) < 1e-12
+    assert r["model_matches_measurement"] and r["high_end_approached_from_below"]
+    assert r["printed_range"] == (0.35, 1.20)
+    assert 1.42 < r["opening_low"] < 1.44 and 1.42 < r["opening_high"] < 1.43
+    assert r["is_an_opened_block_range"]
+
+
+def test_the_lever_was_understated_by_six() -> None:
+    """The curvature sits under a P^(-1/2), so 1.43 on the constant is 6.14 on the floor."""
+    r = A.qpp_row_and_the_floor(samples_per_range=20)
+    assert abs(r["floor_as_printed"] - 2.982e11) / 2.982e11 < 0.01
+    assert abs(r["floor_at_the_block_low_end"] - 4.854e10) / 4.854e10 < 0.01
+    assert 6.1 < r["floor_moves"] < 6.2 and r["amplified_by_the_exponent"]
+    assert 120 < r["lever_as_recorded"] < 121
+    assert 730 < r["lever_corrected"] < 745
+    assert abs(r["lever_was_understated_by"] - r["floor_moves"]) < 1e-9
+    assert r["relative_arithmetic_unaffected"]
+    # and the row's text names a different bound from the one it tests
+    assert r["text_and_predicate_differ"] and 5.5 < r["text_over_predicate"] < 5.6

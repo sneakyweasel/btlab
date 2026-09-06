@@ -6062,6 +6062,100 @@ def opening_versus_lever(lo5a: float = 0.6921) -> dict[str, Any]:
     }
 
 
+def qpp_row_and_the_floor(seed: int = 58, samples_per_range: int = 40) -> dict[str, Any]:
+    """The floor row's own constant is an opened block range, and the lever is 739, not 120.
+
+    Two things about `st5b-qpp`, the row the c_7 lever runs into.
+
+    **Its text and its predicate are different bounds.**  The claim reads "|q''| curvature ratio
+    48.9 P^{-3/16} <= 1/4", which clears at 1.662e12; the predicate is the two-term form
+    (1.85 P^{7/24} + R_0) 6 P^{-5/4} / (0.35 P^{-3/4}) <= 1/4, which clears at 2.982e11.  Both are
+    true and the manuscript discusses the difference -- merging the two terms "loses P^{1/48}" --
+    but the row certifies the sharp form and describes the merged one, a factor 5.57 apart.
+
+    **And the 0.35 in it is an opened block range.**  The Stage-4 curvature is
+    -(9/32) u G (nu+2h)^{-5/4} with G ~ 3h nu^{1/2}, so the coefficient is (27/32) u h nu^{-3/4},
+    and over a dyadic block nu^{-3/4} runs over [2^{-3/4}, 1]:
+
+        true    (27/32)[2^{-3/4}, 1]  =  [0.50170, 0.84375]
+        printed                          [0.35,    1.20   ]
+        opening                           1.4361    1.4300
+
+    measured over 160 samples at [0.50263, 0.83917].  The same outward rounding as the two anchor
+    ranges, and the third block range in the paper to be found opened.
+
+    What it costs is larger here than anywhere else, because the curvature sits in a denominator
+    under a P^{-1/2}: a 1.436 on the constant is a 6.14 on the threshold.
+
+        curvature   qpp row clears at
+        0.35        2.982e11    as printed
+        0.5017      4.854e10    the block-range low end
+        0.84375     3.542e09    at nu = P
+
+    So the floor of the c_7 lever is 4.854e10, not 2.982e11, and the lever is 738.8 rather than
+    120.3.  The previous section's *relative* arithmetic is unaffected -- the floor is fixed, so
+    closing the anchor opening still costs exactly the factor it takes off P_0 -- but the lever it
+    was spending was six times larger than stated.
+    """
+
+    from . import p0_certificate as cert
+
+    rng = random.Random(seed)
+    lo_seen, hi_seen = 9.0, 0.0
+    count = 0
+    for P in (10**5, 10**6, 10**8, 10**10):
+        with mp.workdps(working_dps_for(2 * P)):
+            for _ in range(samples_per_range):
+                nu = rng.randrange(P, 2 * P) | 1
+                h = rng.randint(1, max(1, int(P ** (1 / 8))))
+                u = rng.randint(1, 4)
+                _, G, _ = level1_data(nu, 2 * h)
+                val = mp.mpf(9) / 32 * u * G * mp.power(mp.mpf(nu + 2 * h), -mp.mpf(5) / 4)
+                r = float(val / (u * h * mp.power(mp.mpf(P), -mp.mpf(3) / 4)))
+                lo_seen = min(lo_seen, r)
+                hi_seen = max(hi_seen, r)
+                count += 1
+    model_hi = 27 / 32
+    model_lo = model_hi * 2 ** -0.75
+
+    def qpp_at(c: float) -> float:
+        lg = cert.least_P(lambda P: (1.85 * P ** (7 / 24) + cert.R0(P)) * 6 * P ** (-5 / 4) / (c * P ** -0.75) <= 0.25)
+        return 10.0 ** lg if lg is not None else float("inf")
+
+    merged = (4 * 48.9) ** (16 / 3)
+    printed_floor = qpp_at(0.35)
+    true_floor = qpp_at(model_lo)
+    P0 = cert.certificate()["P0"]
+    return {
+        "samples": count,
+        "model_range": (model_lo, model_hi),
+        "measured_range": (lo_seen, hi_seen),
+        "model_matches_measurement": abs(lo_seen - model_lo) < 5e-3 and abs(hi_seen - model_hi) < 3e-2,
+        # the high end is attained only as nu -> P, so a uniform sample approaches it slowly;
+        # the low end sits at nu -> 2P and is reached at once.
+        "high_end_approached_from_below": hi_seen <= model_hi,
+        "printed_range": (0.35, 1.20),
+        "opening_low": model_lo / 0.35,
+        "opening_high": 1.20 / model_hi,
+        "is_an_opened_block_range": model_lo / 0.35 > 1.4,
+        # text against predicate
+        "claim_text_constant": 48.9,
+        "claim_text_threshold": merged,
+        "predicate_threshold": printed_floor,
+        "text_and_predicate_differ": abs(merged - printed_floor) > 1e10,
+        "text_over_predicate": merged / printed_floor,
+        # what the opening costs in the floor
+        "floor_as_printed": printed_floor,
+        "floor_at_the_block_low_end": true_floor,
+        "floor_moves": printed_floor / true_floor,
+        "amplified_by_the_exponent": (printed_floor / true_floor) > (model_lo / 0.35),
+        "lever_as_recorded": P0 / printed_floor,
+        "lever_corrected": P0 / true_floor,
+        "lever_was_understated_by": printed_floor / true_floor,
+        "relative_arithmetic_unaffected": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6151,6 +6245,7 @@ def summary() -> dict[str, Any]:
     opening = anchor_opening_reach()
     opening5a = step_5a_opening_reach()
     lever = opening_versus_lever()
+    qpp = qpp_row_and_the_floor(samples_per_range=20)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6228,6 +6323,7 @@ def summary() -> dict[str, Any]:
         "anchor_opening_reach": opening,
         "step_5a_opening_reach": opening5a,
         "opening_versus_lever": lever,
+        "qpp_row_and_the_floor": qpp,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
