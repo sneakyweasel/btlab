@@ -32962,3 +32962,62 @@ Best next question
   sampled and are now proved. Does the trust-boundary table agree, and
   is anything else in that table still carried by sampling?
 ```
+
+## The trust table as data, and the column it does not have
+
+**The Section 4 sentence checks out, and I miscounted it.** It names
+five Lean statements, not three: `fract_diff_level2`,
+`lemma51_double_gap`, `double_difference_product`, `lemma51_master`,
+`lemma51_brackets_le_two`. All five are in the table's Lemma 5.1 row and
+all five are declared in `MasterIdentity.lean`.
+
+**Twenty rows, by warrant:** 7 carry a Lean identifier, 9 rest on this
+paper and nothing else, 4 are quoted from elsewhere. The largest Lean
+row is Lemma 5.1 with fourteen identifiers -- the master identity's
+whole chain -- and the four quoted are Proposition 3.1 (the companion)
+plus van der Corput, Erdos-Turan and Vaaler.
+
+**There is no "sampled" column.** The three warrants are a proof in this
+paper, a Lean identifier, and a classical result, and the preamble says
+the Lean layer checks identities, constants and thresholds and "not any
+estimate". So nothing in the table is carried by sampling by
+construction; what sampling carries is this module, which the paper
+calls not a proof and not an independent verification. The question had
+a false premise and the answer is the premise.
+
+**What the table does mark is where the proof stands alone.** Two rows
+are bolded: Lemma 5.2(i)-(iii) with no Lean at all, and Theorem 5.3 with
+"Step 5b constants only, no part of the assembly". Those are the two
+this journal has spent the most passes circling -- the middle band and
+the kernel theorem -- which is some evidence that the table is pointing
+at the right places.
+
+```text
+What was learned
+- the Section 4 claim is exactly right and names five statements; my
+  previous entry said three
+- the table partitions 20 rows into 7 Lean, 9 this-paper-only and 4
+  quoted, and Lemma 5.1 alone carries fourteen identifiers
+- it has no sampled warrant, so "still carried by sampling" was never
+  a category it could answer
+- the two rows it bolds are the two the ledger keeps returning to
+Strongest theorem
+- none; a table parsed and cross-checked
+Strongest refutation
+- my own "three Lean statements" from the last entry
+Reusable machinery
+- trust_boundary_rows, parsing the table into warrants and resolving
+  the Section 4 identifiers in both directions; two tests
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  A question with a false premise is still worth answering, because
+  the answer is where the premise came from: the audit samples, the
+  table does not, and the paper says so in the sentence that
+  introduces both.
+Best next question
+- nine rows rest on this paper and nothing else, and the audit reaches
+  every one of them with a probe. Which of the nine has the least
+  probe -- the one where a reader has the argument and the least
+  numerical company?
+```

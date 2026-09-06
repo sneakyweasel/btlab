@@ -1151,3 +1151,23 @@ def test_the_draft_history_family_is_where_it_belongs() -> None:
     assert r["in_body"] <= 4 and r["body_mathematical"] >= 2
     # two body sentences are status rather than mathematics; a third would want looking at
     assert len(r["body_needing_a_look"]) <= 2, r["body_needing_a_look"]
+
+
+# --- the trust-boundary table, read as data ---
+
+
+def test_section_four_and_the_trust_table_agree() -> None:
+    """Five identifiers, all in the Lemma 5.1 row and all declared in MasterIdentity.lean."""
+    r = A.trust_boundary_rows()
+    assert len(r["section4_identifiers"]) == 5
+    assert r["section4_all_in_the_table"] and r["section4_all_declared"]
+    assert r["largest_lean_row"].startswith("Lem. 5.1") and r["largest_lean_count"] >= 14
+
+
+def test_the_table_has_no_sampled_warrant_and_flags_where_the_proof_stands_alone() -> None:
+    r = A.trust_boundary_rows()
+    assert r["table_has_no_sampled_column"]          # its warrants are proof, Lean, classical
+    assert r["row_count"] == r["rows_with_lean"] + len(r["rows_on_the_human_proof_alone"]) + len(
+        r["rows_quoted_from_elsewhere"])
+    assert set(r["flagged_rows"]) == {"Lem. 5.2(i), (ii), (iii)", "Thm. 5.3 kernel cancellation"}
+    assert "Lem. 5.2(i), (ii), (iii)" in r["rows_on_the_human_proof_alone"]

@@ -3233,6 +3233,62 @@ def draft_history_markers() -> dict[str, Any]:
         "the_referees_phrase_is_gone": "earlier draft" not in text,
     }
 
+def trust_boundary_rows() -> dict[str, Any]:
+    """The Section 1.1 table, read as data, and the Section 4 sentence checked against it.
+
+    Section 4 says five Lean statements -- fract_diff_level2, lemma51_double_gap,
+    double_difference_product, lemma51_master, lemma51_brackets_le_two -- "were previously supported
+    only by the probe's 60-digit sampling ... they are exact, so they are now proved rather than
+    sampled".  All five appear in the table's Lemma 5.1 row and all five are declared in
+    formal/Problems/Juggler/MasterIdentity.lean, so the sentence and the table agree.
+
+    The table has no "sampled" column: its three warrants are a proof in this paper, a Lean
+    identifier, and a classical input, and its preamble says the Lean layer checks identities,
+    constants and thresholds and "not any estimate".  So nothing in it is carried by sampling by
+    construction -- what sampling carries is this module, which the paper's repository paragraph
+    calls not a proof.  What the table does mark is where the warrant is the human proof alone:
+    Lemma 5.2(i)-(iii) with no Lean at all, and Theorem 5.3 with Step 5b constants only and
+    explicitly "no part of the assembly".
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(encoding="utf-8")
+    start = text.index("The boundary between those three kinds of warrant")
+    table = text[start:text.index("### 1.2 Related work", start)]
+    rows = []
+    for line in table.splitlines():
+        if not line.startswith("|") or line.startswith("|---") or "human proof" in line:
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if len(cells) < 4:
+            continue
+        names = re.findall(r"`([A-Za-z_][A-Za-z_0-9']*)`", cells[2])
+        rows.append({"statement": cells[0].replace("**", ""), "human": cells[1].replace("**", ""),
+                     "lean_names": names, "lean_count": len(names),
+                     "classical": cells[3],
+                     # "quoted" and "companion [22]" are other people's warrants; only "this paper"
+                     # with no Lean identifier rests on an argument written here and nothing else
+                     "human_proof_alone": not names and cells[1].replace("**", "").startswith("this paper"),
+                     "quoted_elsewhere": not names and not cells[1].replace("**", "").startswith("this paper"),
+                     "flagged": line.count("**") >= 2})
+    section4 = ["fract_diff_level2", "lemma51_double_gap", "double_difference_product",
+                "lemma51_master", "lemma51_brackets_le_two"]
+    in_table = {n for r in rows for n in r["lean_names"]}
+    lean_src = (REPO_ROOT / "formal" / "Problems" / "Juggler" / "MasterIdentity.lean").read_text(encoding="utf-8")
+    return {
+        "rows": rows,
+        "row_count": len(rows),
+        "rows_with_lean": sum(1 for r in rows if r["lean_names"]),
+        "rows_on_the_human_proof_alone": [r["statement"] for r in rows if r["human_proof_alone"]],
+        "rows_quoted_from_elsewhere": [r["statement"] for r in rows if r["quoted_elsewhere"]],
+        "flagged_rows": [r["statement"] for r in rows if r["flagged"]],
+        "section4_identifiers": section4,
+        "section4_all_in_the_table": all(n in in_table for n in section4),
+        "section4_all_declared": all(re.search(r"^theorem %s\b" % n, lean_src, re.M) for n in section4),
+        "table_has_no_sampled_column": "sampled" not in table.lower(),
+        "largest_lean_row": max(rows, key=lambda r: r["lean_count"])["statement"],
+        "largest_lean_count": max(r["lean_count"] for r in rows),
+    }
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3289,6 +3345,7 @@ def summary() -> dict[str, Any]:
     admissible = lemma_3_9_admissible_search(trials=400, grid=1000)
     transcription = pointwise_bound_inventory()
     history = draft_history_markers()
+    warrants = trust_boundary_rows()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3333,6 +3390,7 @@ def summary() -> dict[str, Any]:
         "lemma_3_9_admissible_search": admissible,
         "pointwise_bound_inventory": transcription,
         "draft_history_markers": history,
+        "trust_boundary_rows": warrants,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

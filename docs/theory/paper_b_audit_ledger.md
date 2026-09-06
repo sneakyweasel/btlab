@@ -2640,3 +2640,45 @@ referee named is gone, and its family did not follow it out --- it moved
 to the appendix, where it belongs, except for two sentences that stayed.
 COMPUTATIONALLY VERIFIED by location; the classification of the four
 body occurrences is a judgement, recorded as one.
+
+## The trust table read as data, and what it does not have a column for
+
+**The \S4 sentence and the table agree.** Section 4 says five Lean
+statements --- `fract_diff_level2`, `lemma51_double_gap`,
+`double_difference_product`, `lemma51_master`, `lemma51_brackets_le_two`
+--- "were previously supported only by the probe's 60-digit sampling
+\ldots they are exact, so they are now proved rather than sampled". All
+five sit in the table's Lemma 5.1 row, and all five are declared in
+`formal/Problems/Juggler/MasterIdentity.lean`. (The entry above said
+three; it is five.)
+
+**The table's twenty rows, by warrant:**
+
+| warrant | rows |
+|---|---|
+| a Lean identifier | 7 |
+| this paper, and nothing else | 9 |
+| quoted from elsewhere | 4 |
+
+The largest Lean row is Lemma 5.1 with fourteen identifiers --- the
+master identity's whole chain --- and the four quoted rows are
+Proposition 3.1 (the companion) and the three classical inputs.
+
+**And it has no "sampled" column at all.** Its three warrants are a
+proof in this paper, a Lean identifier, and a classical result; the
+preamble says the Lean layer checks identities, constants and thresholds
+and "not any estimate". So nothing in the table is carried by sampling
+*by construction* --- what sampling carries is this module, which the
+paper's repository paragraph calls not a proof and not an independent
+verification. The question "is anything else in that table still carried
+by sampling" has the answer: nothing ever was, because the table does
+not record that kind of warrant.
+
+**What it does mark is where the proof stands alone.** Two rows are
+bolded: Lemma 5.2(i)--(iii), with no Lean at all, and Theorem 5.3, whose
+Lean is "Step 5b constants only, **no part of the assembly**". Those two
+are the paper's own statement of where a reader has nothing but the
+argument, and they are the two the ledger has spent the most passes
+circling --- the middle band and the kernel theorem. COMPUTATIONALLY
+VERIFIED: the table parses into 20 rows whose warrants partition, and
+the five \S4 identifiers resolve in both directions.
