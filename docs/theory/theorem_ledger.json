@@ -3314,6 +3314,8 @@
   "statement": "No itinerary of length at most six is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven (Paper A Theorem 3.6). Assembly: rotation invariance of cycle itineraries, exclusion of all-odd itineraries by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the next-square thresholds of Lemma 3.4, the leftover exclusions of OOOEOE and OOOOEE (Lemma 3.5; rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_itinerary_length_le_six. Strengthened by J-small-cycle-census-seven; this row is the length-≤6 statement only. This is not an exclusion of all cycles and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/SmallCycleCensus.lean",
+  "decl": "no_cycle_itinerary_length_le_six",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
   ],
@@ -3337,6 +3339,8 @@
   "statement": "No itinerary of length at most seven is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eight (Paper A Theorem 3.8). Assembly: the length-≤6 census, the formal-expansion filter on length seven, the odd-run exclusion of O^6E, the internal-E bootstrap exclusions of OOEOOOE and OOOEOOE, rotation of EOOOOOE and OEOOOOE onto the leftovers, and the leftover exclusions of OOOOEOE and OOOOOEE (Lemma 3.7). Lean theorem no_cycle_itinerary_length_le_seven. Strengthened by Paper A Theorem 3.22 / Corollary 3.23 (even-count at most three is impossible, so the period is at least eleven). This is not an exclusion of all cycles and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/SmallCycleCensus.lean",
+  "decl": "no_cycle_itinerary_length_le_seven",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py",
    "tests/research/juggler_sequence/test_cycle_length_seven.py"
@@ -3349,6 +3353,8 @@
   "statement": "No itinerary of length at most eight is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least nine. Assembly: the length-≤7 census, the formal-expansion filter on length eight, the odd-run exclusion of O^7E, Theorem 3.12 at k=8, rotation of EOOOOOOE and OEOOOOOE onto those leftovers, and the internal-E bootstrap exclusions of OOOOEOOE, OOOEOOOE, and OOEOOOOE. Lean theorem no_cycle_itinerary_length_le_eight in LengthEightCensus.lean. Implied by Paper A Corollary 3.23 (period at least eleven). Strengthened by J-small-cycle-census-ten. This is not a length-9 itinerary census and not a halt theorem.",
   "source": "docs/problems/juggler_length_eight_cycles.md",
   "lean": "Problems/Juggler/LengthEightCensus.lean",
+  "decl": "no_cycle_itinerary_length_le_eight",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_length_eight.py",
    "tests/unit/test_juggler_finite_dynamics.py"
@@ -3360,7 +3366,9 @@
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "If a Juggler cycle itinerary based at n ends with r ≥ 1 even letters, the state immediately before that trailing even run is strictly less than (n+1)^{2^r}. The case r = 1 is the last-even one-step preimage; r = 2 is the two-even bound of Paper A Lemma 3.5 on OOOOEE; r = 3 is the three-even bound for OOOOOOEEE. Lean theorem cycle_trailing_evens_lt. This is a one-step-preimage identity, not a leftover exclusion and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
-  "lean": "Problems/Juggler/Cycles.lean",
+  "lean": "Problems/Juggler/CycleCore.lean",
+  "decl": "cycle_trailing_evens_lt",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_length_nine.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3373,6 +3381,8 @@
   "statement": "OOOOOOEEE is not a Juggler cycle itinerary at any n ≥ 2. The argument is an exhaustive evaluation for n < 128 together with the three-even cell z < (n+1)^8 against the coarse lower envelope n^{729} > 2^{1330}(n+1)^{512} for n ≥ 128. The computational prefix-cell first fires at N0 = 73; 128 is the algebraic cutoff. This excludes that one three-even leftover only; it is not a length-9 census, not an exclusion of the remaining eight leftovers, and not a halt theorem. Lean theorem no_cycle_itinerary_ooooooeee.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_ooooooeee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_length_nine.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3385,6 +3395,8 @@
   "statement": "For every k ≥ 6 and every n ≥ 2, the even-terminating two-even leftover O^{k-2}EE is not a Juggler cycle itinerary. Large n uses the shared tail n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} at the uniform algebraic cutoff n ≥ 256, obtained by cubing the length-6 comparison; e_a = 2(3^a-2^a) = log2(lowerDenom(O^a)). Below 256 the argument is the existing k=6,7 leftovers, a Fin 256 table at k=8, and the fact that n ≥ 2 does not follow seven consecutive odds. Lean theorem no_cycle_itinerary_two_even_ee. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_two_even_ee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_uniform_two_even.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3397,6 +3409,8 @@
   "statement": "For every k ≥ 6 and every n ≥ 2, the leftover O^{k-3}EOE is not a Juggler cycle itinerary. The last-odd cube trick plus (y+1)^3 < 2(n+1)^4 reduces to the same shared tail as O^{k-2}EE. Large n is n ≥ 256; below 256 the argument is the existing k=6,7 leftovers, Fin 256 tables at k=8,9, and the seven-odd obstruction for k ≥ 10. Lean theorem no_cycle_itinerary_two_even_eoe. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_two_even_eoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_uniform_two_even.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3409,6 +3423,8 @@
   "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler CycleMin at n. CycleMin puts the remainder O^b EE at y = T_{O^a E}(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the shared two-even tail at y. Large y is the uniform cutoff y ≥ 256; below 256 the argument is seven consecutive odds on the prefix or the remainder, or a Fin 256 table on the short-gap window 2 ≤ a ≤ 6, 4 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_ee. This excludes gapped CycleMins only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycleMin_gapped_three_even_ee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_first_e_transport.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3421,6 +3437,8 @@
   "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler CycleMin at n. The same first-E transport applies: y ≥ n tightens the leftover cell against the shared two-even tail at y, using the last-odd cube reduction already used for O^{k-3}EOE. Large y is y ≥ 256; below 256 the argument is seven-odd or a Fin 256 table on 2 ≤ a ≤ 6, 3 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_eoe. This excludes gapped CycleMins only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycleMin_gapped_three_even_eoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_first_e_transport.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3433,6 +3451,8 @@
   "statement": "For every a ≥ 6 and every n ≥ 2, the bunched leftover O^a EEE is not a Juggler cycle itinerary. Large n uses the three-even cell z < (n+1)^8 against C_{O^a}, which is the tail n^{3^a} > 2^{e_a}(n+1)^{2^{a+3}} at the algebraic cutoff n ≥ 128, obtained by cubing the OOOOOOEEE comparison; e_a = 2(3^a-2^a) = log2(lowerDenom(O^a)). Below 128 the argument is the existing a=6 table and the fact that n ≥ 2 does not follow seven consecutive odds. Lean theorem no_cycle_itinerary_three_even_eee. This excludes that one bunched family only; it is not the other six bunched tails, not a length-8 or length-9 census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_bunched_last_cluster.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3445,6 +3465,8 @@
   "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EOEE is not a Juggler cycle itinerary. For n ≥ 4 the mixed cell is z < (n+1)^6: two trailing evens give p < (n+1)^4, the one-odd envelope gives y^3 ≤ 4p^2, and n ≥ 4 upgrades that to y < (n+1)^3. Large n at a = 5 uses the tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a} at the algebraic cutoff n ≥ 314, obtained by persisting the comparison at 314 and cubing in a; e_a = 2(3^a-2^a). At a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_itinerary_three_even_eoee. This excludes that one bunched family only; a uniform coarse (n+1)^K cell for all six remaining bunched families is false; it is not a length-8 or length-9 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eoee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_bunched_last_cluster.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3457,6 +3479,8 @@
   "statement": "For every a ≥ 4 and every n ≥ 2, the bunched leftover O^a EOOEE is not a Juggler cycle itinerary. For n ≥ 32 the mixed cell is z < (n+1)^4: two trailing evens give p < (n+1)^4, the two-odd envelope gives y^9 ≤ 1024 p^4, and n ≥ 32 upgrades that to y < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. Below 256 the argument is Fin 256 tables at a = 4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eooee. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eooee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_bunched_last_cluster.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3469,6 +3493,8 @@
   "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOOEE is not a Juggler cycle itinerary. For a ≥ 4 and n ≥ 3 the mixed cell is z < (n+1)^4: two trailing evens give p < (n+1)^4, the three-odd envelope gives y^{27} ≤ 2^{38} p^8, and n ≥ 3 upgrades that to y < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the tight cell z < (y+1)^2 against C_{O^3}: y < 39 contradicts n ≥ 24, and y ≥ 39 reduces to n^{729} > 2^{1650}(n+1)^{512} from n ≥ 197. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eoooee. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eoooee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_bunched_last_cluster.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3481,6 +3507,8 @@
   "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EEOE is not a Juggler cycle itinerary. For n ≥ 4 the mixed cell is z < (n+1)^6: the last-odd cube gives y^3 < (n+1)^4, two leading evens give z < (y+1)^4, and n ≥ 4 upgrades that to z < (n+1)^6. The resulting comparison is the EOEE tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a}, already proved for a ≥ 5. Large n at a = 5 is n ≥ 314; at a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_itinerary_three_even_eeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eeoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_bunched_last_cluster.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3493,6 +3521,8 @@
   "statement": "For every a ≥ 4 and every n ≥ 2, the bunched leftover O^a EOEOE is not a Juggler cycle itinerary. For n ≥ 32 the mixed cell is z < (n+1)^4: the last-odd cube gives y^3 < (n+1)^4, the one-odd envelope on the first gap upgrades to w < (n+1)^2, and the even cell at z then gives z < (n+1)^4. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. Below 256 the argument is Fin 256 tables at a = 4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eoeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eoeoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_bunched_last_cluster.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3505,6 +3535,8 @@
   "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOEOE is not a Juggler cycle itinerary. For a ≥ 4 and n ≥ 4 the mixed cell is z < (n+1)^4: last-odd plus two-odd give u^9 < 1024(y+1)^8 and (y+1)^3 < 2(n+1)^4, hence u^{27} < 2^{38}(n+1)^{32} and u < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the same tight split as O^3 EOOOEE applies with u in place of y. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eooeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eooeoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_bunched_last_cluster.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3517,6 +3549,8 @@
   "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler cycle itinerary. Every CycleItinerary has a CycleMin rotation. The k=0 rotation is the first-E CycleMin exclusion; the rotation at k=a+1 is the bootstrap itinerary O^b EE O^a E, excluded by last-gap ≥ 2 (OOO at N=3, or OO at N=5 with n=3 failing to follow four odds); the last even starts even; every other rotation ends odd. Lean theorem no_cycle_itinerary_gapped_three_even_ee. This upgrades the CycleMin theorem to CycleItinerary; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_gapped_three_even_ee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_gapped_cycle_itinerary.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -3529,6 +3563,8 @@
   "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler cycle itinerary. The same rotation classes apply: first-E CycleMin at k=0; bootstrap O^b EOE O^a E at k=a+1 (last-gap ≥ 2, with n=3 and b=3 failing after OOOE at 6); start OE at k=a+b+2; every other rotation ends odd. Lean theorem no_cycle_itinerary_gapped_three_even_eoe. This upgrades the CycleMin theorem to CycleItinerary; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_gapped_three_even_eoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_gapped_cycle_itinerary.py",
    "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
@@ -4260,6 +4296,8 @@
   "statement": "For every n ≥ 2, every k ≥ 6, and every prefix u, the itinerary u ++ O^{k-2}EE is not a Juggler CycleMin at n. CycleMin puts the leftover at y = T_u(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the shared two-even tail at y. Large y is y ≥ 256. Below 256, no start follows the leftover and lands in [2, y] (Fin 256 returnsIntoB tables at k = 6,7,8; seven consecutive odds on the remainder for k ≥ 9). The case y = n reduces to no_cycle_itinerary_two_even_ee. Lean theorem no_cycleMin_prefix_two_even_ee. First-E transport is the special case u = O^a E. This excludes that one last-cluster class only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_two_even.md",
   "lean": "Problems/Juggler/PrefixTwoEven.lean",
+  "decl": "no_cycleMin_prefix_two_even_ee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_two_even.py"
   ],
@@ -4271,6 +4309,8 @@
   "statement": "For every n ≥ 2, every k ≥ 6, and every prefix u, the itinerary u ++ O^{k-3}EOE is not a Juggler CycleMin at n. The same prefix transport applies: y ≥ n tightens the leftover cell against the shared two-even tail at y, using the last-odd cube reduction already used for O^{k-3}EOE. Large y is y ≥ 256. Below 256 the argument is returnsIntoB tables at k = 6,7,8,9 and seven-odd for k ≥ 10. The case y = n reduces to no_cycle_itinerary_two_even_eoe. Lean theorem no_cycleMin_prefix_two_even_eoe. This excludes that one last-cluster class only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_two_even.md",
   "lean": "Problems/Juggler/PrefixTwoEven.lean",
+  "decl": "no_cycleMin_prefix_two_even_eoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_two_even.py"
   ],
@@ -4282,6 +4322,8 @@
   "statement": "For every n ≥ 2, every a ≥ 6, and every prefix u, the itinerary u ++ O^a EEE is not a Juggler CycleMin at n. CycleMin puts the leftover at y = T_u(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the EEE tail at y. Large y is y ≥ 256. Below 256, no start follows the leftover and lands in [2, y] (Fin 256 returnsIntoB table at a = 6; seven consecutive odds on the remainder for a ≥ 7). The case y = n reduces to no_cycle_itinerary_three_even_eee. Lean theorem no_cycleMin_prefix_eee. This excludes that one last-cluster class only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_bunched.md",
   "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_bunched.py"
   ],
@@ -4293,6 +4335,8 @@
   "statement": "For every n ≥ 2, every a ≥ 5, and every prefix u, the itinerary u ++ O^a EOEE is not a Juggler CycleMin at n. The leftover cell lifts to y = T_u(n) ≥ n against the EOEE tail at y. Large y is y ≥ 314 at a = 5 and y ≥ 256 at a ≥ 6. Below those cutoffs the argument is returnsIntoB tables and seven-odd for a ≥ 7. The case y = n reduces to no_cycle_itinerary_three_even_eoee. Lean theorem no_cycleMin_prefix_eoee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_bunched.md",
   "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eoee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_bunched.py"
   ],
@@ -4304,6 +4348,8 @@
   "statement": "For every n ≥ 2, every a ≥ 4, and every prefix u, the itinerary u ++ O^a EOOEE is not a Juggler CycleMin at n. The leftover cell lifts to y ≥ n against the shared two-even tail at length a+2, which holds for y ≥ 256. Below 256 the argument is Fin 256 returnsIntoB tables at a = 4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eooee. Lean theorem no_cycleMin_prefix_eooee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_bunched.md",
   "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eooee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_bunched.py"
   ],
@@ -4315,6 +4361,8 @@
   "statement": "For every n ≥ 2, every a ≥ 3, and every prefix u, the itinerary u ++ O^a EOOOEE is not a Juggler CycleMin at n. For a ≥ 4 the leftover cell lifts to y ≥ n against the shared two-even tail at y ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the tight split already proved for CycleItinerary, measured at y: the internal landing after O^3 E is either below 39 or reduces to the large-y tight comparison at y. Below 256 the argument is Fin 256 returnsIntoB tables at a = 3,4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eoooee. Lean theorem no_cycleMin_prefix_eoooee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_bunched.md",
   "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eoooee",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_bunched.py"
   ],
@@ -4326,6 +4374,8 @@
   "statement": "For every n ≥ 2, every a ≥ 5, and every prefix u, the itinerary u ++ O^a EEOE is not a Juggler CycleMin at n. The leftover cell lifts to y ≥ n against the EOEE tail already used for O^a EEOE. Large y is y ≥ 314 at a = 5 and y ≥ 256 at a ≥ 6. Below those cutoffs the argument is returnsIntoB tables and seven-odd for a ≥ 7. The case y = n reduces to no_cycle_itinerary_three_even_eeoe. Lean theorem no_cycleMin_prefix_eeoe. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_bunched.md",
   "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eeoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_bunched.py"
   ],
@@ -4337,6 +4387,8 @@
   "statement": "For every n ≥ 2, every a ≥ 4, and every prefix u, the itinerary u ++ O^a EOEOE is not a Juggler CycleMin at n. The leftover cell lifts to y ≥ n against the shared two-even tail at length a+2, which holds for y ≥ 256. Below 256 the argument is Fin 256 returnsIntoB tables at a = 4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eoeoe. Lean theorem no_cycleMin_prefix_eoeoe. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_bunched.md",
   "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eoeoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_bunched.py"
   ],
@@ -4348,6 +4400,8 @@
   "statement": "For every n ≥ 2, every a ≥ 3, and every prefix u, the itinerary u ++ O^a EOOEOE is not a Juggler CycleMin at n. For a ≥ 4 the leftover cell lifts to y ≥ n against the shared two-even tail at y ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the same tight split as O^3 EOOOEE, measured at y. Below 256 the argument is Fin 256 returnsIntoB tables at a = 3,4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eooeoe. Lean theorem no_cycleMin_prefix_eooeoe. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_prefix_bunched.md",
   "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eooeoe",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_prefix_bunched.py"
   ],
@@ -5393,6 +5447,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 11 or at least 14. Lengths ≤ 10 are J-small-cycle-census-ten; lengths 12 and 13 are excluded by the same finance comparison (no_cycle_itinerary_length_twelve, no_cycle_itinerary_length_thirteen); length 16 is likewise excluded (no_cycle_itinerary_length_sixteen) but is absorbed into the ≥ 14 residual. Lean theorem cycle_itinerary_length_eleven_or_ge_fourteen. Strengthened by J-cycle-itinerary-length-ge-fourteen, which kills the length-11 disjunct. This is not a leftover-itinerary length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_eleven_or_ge_fourteen",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5426,6 +5482,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is at least 14. Strengthened through J-cycle-itinerary-length-eighty-four-or-ge-eighty-five: lengths 14–83 except the named leftovers along the way are excluded, so the laboratory leftover is period 84 or at least 85. Lean theorem cycle_itinerary_length_ge_fourteen. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_ge_fourteen",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5448,6 +5506,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 19 or at least 30. Lengths ≤ 18 are J-small-cycle-census-eighteen; lengths 20–29 are excluded by the same floor-53 finance comparison. Length 19 is the next near-convergent (2^19 < 3^12) and survives 371/2; length 30 also survives 371/2. Lean theorems cycle_itinerary_length_nineteen_or_ge_thirty and the weaker corollary cycle_itinerary_length_nineteen_or_ge_twenty. This row is the floor-53 leftover. Strengthened by J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine, which kills the length-19 disjunct at the residual floor 257. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_nineteen_or_ge_thirty",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5459,6 +5519,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 84, or belongs to that list, or is at least 10^5. Lean theorem cycle_itinerary_eliahou_leftover: bookkeeping on cycle_itinerary_length_eighty_four_or_ge_eighty_five plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period ≥ X, or a named convergent family) on the floor-power map. Paper A prints the floor-10^6 instance as Theorem 4.6; leftover 84 is Appendix A companion. This is not a proof of the finance table, not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_eliahou_leftover",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5558,6 +5620,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is at least 30. The floor-53 leftover J-cycle-itinerary-length-nineteen-or-ge-thirty plus finance_excludes_length_nineteen kills the length-19 disjunct. Strengthened by J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine and J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight. Lean theorem cycle_itinerary_length_ge_thirty. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_ge_thirty",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5569,6 +5633,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 38 or at least 39. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–29 remain excluded at the residual floor 53; lengths 30–37 are excluded by cycle_finance_min_two_hundred_fifty_seven. This row is the leftover before the 61/11 log certificate. Strengthened by J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight, which kills the length-38 disjunct. Lean theorems cycle_itinerary_length_thirty_eight_or_ge_thirty_nine and no_cycle_itinerary_length_lt_thirty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5591,6 +5657,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 57 or at least 58. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–56 are excluded at floor 257. This row is the leftover before the two extra odd seeds 257 and 259. Strengthened by J-cycle-itinerary-length-eighty-four-or-ge-eighty-five, which kills the length-57 disjunct at the residual floor 261. Lean theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5613,6 +5681,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 84 or at least 85. Lengths ≤ 56 are excluded at floor 257; lengths 57–83 are excluded by cycle_finance_min_two_hundred_sixty_one at 15921/11 (finance_excludes_length_fiftyseven, finance_excludes_length_seventysix, and companions, packaged as no_cycle_itinerary_length_lt_eighty_four). Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_itinerary_length_eighty_four_or_ge_eighty_five. Strengthened by J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five, which kills length 84 with at most two odd-runs, and by J-cycle-itinerary-eliahou-leftover, which rewrites the length leftover plus the finance table as period 84, a listed near-convergent, or at least 10^5. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_eighty_four_or_ge_eighty_five",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5624,6 +5694,8 @@
   "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 84 with at least three odd-runs on a CycleMin rotation, or at least 85. At residual floor 261 the inv-sum form of cycleMin_finance (constant 1) plus a uniform odd-run height cap excludes every length-84 CycleMin with cycleCircuitCount ≤ 2: valleys ≤ m/n, first odds ≤ m/4217, later odds ≤ o/273845, evens ≤ e/n², using floorPower 261 = 4216 and floorPower 4217 = 273845. Lean theorems no_cycleMin_length_eighty_four_of_circuit_le_two and cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five in CycleHeightFinance.lean. This is not the 6/5 greedy packing of J-cycle-position-finance, not an exclusion of length 84 at m ≥ 3, not a no-cycle-of-any-length theorem, and not a halt theorem.",
   "source": "docs/problems/juggler_cycle_position_finance.md",
   "lean": "Problems/Juggler/CycleHeightFinance.lean",
+  "decl": "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_position_finance.py",
    "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -6074,6 +6146,8 @@
   "statement": "The transport inequality of Paper A Theorem 5.3, Lean end to end in log form. On a CycleMin cycle with minimum n ≥ 400, every state satisfies walkWeight w k · (log n − D) ≤ log x_k with walkWeight w k = 3^(a_k)/2^k (the walk weight 2^(u_k), rational — no real exponentiation) and D = 1.05·e/n + 0.7·o/(n·√n) (cycleMin_transport, WalkTransport.lean); exponentiating gives x_k ≥ (n e^(−D))^(w_k). Ingredients all Lean: per-step floor losses log T(x) ≥ (3/2)·log x − 1.05/(x√x) (odd, x ≥ 9) and log T(x) ≥ (1/2)·log x − 1.05/√x (even, x ≥ 441) from the floor cells and −log(1−t) ≤ 1.05t on t ≤ 1/21 (log_floorPower_odd_ge, log_floorPower_even_ge, neg_log_one_sub_le); the exact weight recursion w_{k+1} = (3/2)w_k (odd), w_k/2 (even); odd injections priced at x_j ≥ n (cycleMin_iterate_ge) against w_{j+1} ≥ 3/2, even injections at x_j ≥ n² (cycleMin_even_ge_sq) against w_{j+1} ≥ 1 (cycleMin_prefix_pow_le via one_le_walkWeight). The walk-charge consequence — the DP over nonnegative closed walks at the reduced base and its feed into the 6/5 unroll — stays a human reduction (J-cyclemin-walk-transport keeps its tag). Not a cycle obstruction and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/WalkTransport.lean",
+  "decl": "cycleMin_transport",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_charge.py"
   ],
@@ -6087,6 +6161,8 @@
   "statement": "Hug charge maximality and the §5.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge ν W = 1/(e^{Wν}·W·ν) — the paper's g(u) = 1/(n'^{2^u}·2^u·log n') written through the rational weight W = 3^a/2^k — is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug itinerary carries the pointwise-least admissible odd count (hugOdds_le_of_admissible), the exact hug itinerary maximises the total walk charge over ALL admissible exponent walks (hug_charge_maximal), strengthening the paper's fixed-(L,o) statement. Chained with the transport inequality: on a CycleMin cycle with n ≥ 400 and positive reduced log-base ν = log n − D, the cyclic defect sum obeys Σ_k 1/(x_k log x_k) ≤ Σ_k g(w_k) ≤ Σ_k g(hugWeight k) (cycleMin_defect_le_charge, cycleMin_defect_le_hug_charge), exponentiating cycleMin_transport via exp monotonicity only — no charge integral. Of Section 5's chain only the rotation average (Prop 5.5), Denjoy–Koksma (Thm 5.7), the strict within-(L,o) uniqueness of the maximiser, and the final kill evaluations remain human/verified computation. Not a cycle obstruction and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/WalkChargeMax.lean",
+  "decl": "stateCharge_antitone",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_charge.py"
   ],

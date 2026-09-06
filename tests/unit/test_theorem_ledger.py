@@ -110,3 +110,43 @@ def test_lean_trust_is_recorded_wherever_a_declaration_is_named():
     for row in _entries():
         if row.get("decl"):
             assert row.get("lean_trust") in {"kernel", "compiler", "open"}, row["id"]
+
+
+def test_a_statement_naming_a_lean_theorem_names_one_that_exists():
+    """Rows say "Lean theorem `foo`" in prose; that is the join, and it must resolve.
+
+    This convention is how 34 rows were matched to their declaration. It only stays useful
+    if a rename cannot quietly leave the sentence pointing at nothing.
+    """
+    import re
+
+    named = re.compile(r"Lean theorem\s+([A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+)")
+    decl = re.compile(r"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+([A-Za-z_][A-Za-z0-9_'!?.]*)",
+                      re.MULTILINE)
+    broken = []
+    for row in _entries():
+        lean = str(row.get("lean") or "").strip()
+        if not lean.endswith(".lean"):
+            continue
+        path = ROOT / "formal" / lean
+        if not path.is_file():
+            continue
+        present = set(decl.findall(path.read_text(encoding="utf-8")))
+        for name in named.findall(row["statement"]):
+            if name not in present:
+                broken.append(f"{row['id']}: names {name}, absent from {lean}")
+    assert broken == [], broken
+
+
+def test_decl_agrees_with_the_theorem_the_statement_names():
+    """Where a row both names a theorem in prose and carries `decl`, they must be the same."""
+    import re
+
+    named = re.compile(r"Lean theorem\s+([A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+)")
+    for row in _entries():
+        decl = row.get("decl")
+        if not decl:
+            continue
+        names = named.findall(row["statement"])
+        if names:
+            assert decl in names, f"{row['id']}: decl={decl} but prose names {names}"

@@ -8772,7 +8772,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 42,
       "module": "Problems.Juggler.CycleCore",
       "name": "CycleItinerary",
@@ -8782,7 +8784,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 45,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_follows",
@@ -8792,7 +8796,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 49,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_image",
@@ -8802,7 +8808,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 53,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_nonempty",
@@ -8812,7 +8820,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 57,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_itinerary_formally_expanding",
@@ -8822,7 +8832,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 62,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_itinerary_not_contracting",
@@ -8832,7 +8844,9 @@
       "doc": "Cycle return plus lower growth: `n^{3^o} \u2264 D_w n^{2^k}`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 68,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_lower_growth",
@@ -8842,7 +8856,9 @@
       "doc": "The exact cycle size inequality.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 76,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_pow_le_lowerDenom",
@@ -8852,7 +8868,9 @@
       "doc": "Crude explicit bound. Not optimized.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 93,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_le_lowerDenom",
@@ -8862,7 +8880,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 105,
       "module": "Problems.Juggler.CycleCore",
       "name": "lowerDenom_odd",
@@ -8872,7 +8892,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 107,
       "module": "Problems.Juggler.CycleCore",
       "name": "lowerDenom_odd_odd",
@@ -8882,7 +8904,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 109,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_odd",
@@ -8892,7 +8916,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 121,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_oo_le_four",
@@ -8902,7 +8928,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 137,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_oo",
@@ -8912,7 +8940,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 149,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_eoo",
@@ -8922,7 +8952,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 171,
       "module": "Problems.Juggler.CycleCore",
       "name": "lowerDenom_itineraryOOE",
@@ -8932,7 +8964,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 173,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_ooe_le_lowerDenom",
@@ -8942,7 +8976,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 178,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_period",
@@ -8952,7 +8988,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 182,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_one_tail",
@@ -8962,7 +9000,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 189,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_iterate_ge_two",
@@ -8972,7 +9012,9 @@
       "doc": "Even states strictly descend. Last-even cycle return is therefore never a fixed point of `T`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 204,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_interval",
@@ -8982,7 +9024,9 @@
       "doc": "If a cycle itinerary ends with `r \u2265 1` even letters, the state before that even run satisfies `T_v(n) < (n+1)^{2^r}`. The case `r = 1` is the last-even one-step preimage; `r = 2` is the two-even bound used by Lemma 3.5 on `OOOOEE`; `r = 3` is the three-even bound for `OOOOOOEEE`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 219,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_trailing_evens_lt",
@@ -8992,7 +9036,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 262,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_ne_odd_sq",
@@ -9002,7 +9048,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 267,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_odd_interval",
@@ -9012,7 +9060,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 278,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_rotate_cons",
@@ -9022,7 +9072,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 291,
       "module": "Problems.Juggler.CycleCore",
       "name": "exists_iterate_min",
@@ -9032,7 +9084,9 @@
       "doc": "The minimum state of a nontrivial cycle is odd, because an even state strictly descends.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 322,
       "module": "Problems.Juggler.CycleCore",
       "name": "exists_cycle_min_odd",
@@ -9042,7 +9096,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 346,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_ooe",
@@ -9052,7 +9108,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 372,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_oeo",
@@ -9062,7 +9120,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 386,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_preimage",
@@ -9072,7 +9132,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 391,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_last_even_preimage_odd",
@@ -9082,7 +9144,9 @@
       "doc": "If a suffix sits at or above the next square, it cannot be the pre-final state of an E-terminating cycle.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 400,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_append_even_of_suffix_threshold",
@@ -9092,7 +9156,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 406,
       "module": "Problems.Juggler.CycleCore",
       "name": "itineraryOOOE",
@@ -9102,7 +9168,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 408,
       "module": "Problems.Juggler.CycleCore",
       "name": "itineraryOOOE_eq_append",
@@ -9112,7 +9180,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 412,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_oooe",
@@ -9122,7 +9192,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 424,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_length_four_ends_even",
@@ -9132,7 +9204,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 447,
       "module": "Problems.Juggler.CycleCore",
       "name": "threshold_inherits_odd_append",
@@ -9142,7 +9216,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 459,
       "module": "Problems.Juggler.CycleCore",
       "name": "replicate_odd_concat",
@@ -9152,7 +9228,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 468,
       "module": "Problems.Juggler.CycleCore",
       "name": "follows_replicate_odd_head",
@@ -9162,7 +9240,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 475,
       "module": "Problems.Juggler.CycleCore",
       "name": "odd_run_suffix_threshold_add",
@@ -9172,7 +9252,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 494,
       "module": "Problems.Juggler.CycleCore",
       "name": "odd_run_suffix_threshold",
@@ -9182,7 +9264,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 501,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_odd_run_append_even",
@@ -9192,7 +9276,9 @@
       "doc": "Coarse coverage: every expanding `vE` is excluded above a huge `Q0`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 513,
       "module": "Problems.Juggler.CycleCore",
       "name": "eventually_no_cycle_append_even",
@@ -9202,7 +9288,9 @@
       "doc": "Every length-5 E-terminating cycle itinerary is impossible: it is either formally contracting, or it is `OOOOE` and inherits the `OOO` threshold.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 521,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycle_itinerary_length_five_ends_even",
@@ -9212,7 +9300,9 @@
       "doc": "The start is a minimum of its realized cycle. Cycle-internal.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 545,
       "module": "Problems.Juggler.CycleCore",
       "name": "CycleMin",
@@ -9222,7 +9312,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 548,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_cycleItinerary",
@@ -9232,7 +9324,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 552,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_ge",
@@ -9242,7 +9336,9 @@
       "doc": "A cycle minimum is minimum-relative: interior states are `\u2265 n` by the ge-filter, and the endpoint is `n` by closure.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 558,
       "module": "Problems.Juggler.CycleCore",
       "name": "aboveAnchor_of_cycleMin",
@@ -9252,7 +9348,9 @@
       "doc": "On a `CycleMin`, every iterate through one period is at least the start (the boundary `j = L` returns to the start exactly). Instance of the `AboveAnchor` bridge.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 571,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_iterate_ge",
@@ -9262,7 +9360,9 @@
       "doc": "Prefix non-contraction on an `AboveAnchor` prefix: a walk-negative prefix would contract strictly below the anchor (`power_bound_contracts`), so a never-descending trajectory segment keeps `u_k \u2265 0` at every prefix length. The primitive form; a minimum-based cycle is the closed instance.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 580,
       "module": "Problems.Juggler.CycleCore",
       "name": "aboveAnchor_prefix_pow_le",
@@ -9272,7 +9372,9 @@
       "doc": "Prefix non-contraction on a `CycleMin`: an exponent-gap prefix would contract strictly below the cycle minimum. Closed instance of `aboveAnchor_prefix_pow_le`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 597,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_prefix_pow_le",
@@ -9282,7 +9384,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 602,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_mul_length",
@@ -9292,7 +9396,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 611,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_iterate_mod",
@@ -9302,7 +9408,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 620,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_succ_ge",
@@ -9312,7 +9420,9 @@
       "doc": "Even cycle states sit at or above `n^2`. The next-state lower bound is the shared `AboveAnchor` cell, including the closing return `T_w(n)=n`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 635,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_even_ge_sq",
@@ -9322,7 +9432,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 642,
       "module": "Problems.Juggler.CycleCore",
       "name": "floorPower_odd_lt_sq",
@@ -9332,7 +9444,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 646,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_start_odd",
@@ -9342,7 +9456,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 663,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_not_start_even",
@@ -9352,7 +9468,9 @@
       "doc": "A cycle minimum cannot start `OE`: the first even residual is `< n^2`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 670,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_not_odd_even",
@@ -9362,7 +9480,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 674,
       "module": "Problems.Juggler.CycleCore",
       "name": "rotateItinerary",
@@ -9372,7 +9492,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 679,
       "module": "Problems.Juggler.CycleCore",
       "name": "rotateItinerary_length",
@@ -9382,7 +9504,9 @@
       "doc": "`rotateItinerary` is the cyclic shift `drop k ++ take k` for `k` up to the length.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 688,
       "module": "Problems.Juggler.CycleCore",
       "name": "rotateItinerary_eq_drop_append_take",
@@ -9392,7 +9516,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 707,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_rotateItinerary",
@@ -9402,7 +9528,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 721,
       "module": "Problems.Juggler.CycleCore",
       "name": "exists_cycleMin",
@@ -9412,7 +9540,9 @@
       "doc": "A `CycleMin` rotation starts at a global minimum of the trajectory.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 736,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_le_cycle_state",
@@ -9422,7 +9552,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 764,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycle_min_value_unique",
@@ -9432,7 +9564,9 @@
       "doc": "A nontrivial cycle cannot reach 1.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 774,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_not_reachesOne",
@@ -9442,7 +9576,9 @@
       "doc": "Residual class `R = {1,\u2026,11}` is disjoint from a nontrivial cycle.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 787,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleItinerary_iterate_not_lt_twelve",
@@ -9452,7 +9588,9 @@
       "doc": "Internal `E` plus a next-square suffix contradicts the last-even one-step preimage on a cycle minimum. `y \u2265 n` is enough; `y > n` is not required.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 807,
       "module": "Problems.Juggler.CycleCore",
       "name": "no_cycleMin_internal_even_threshold",
@@ -9462,7 +9600,9 @@
       "doc": "A cycle minimum cannot end in `O`: the last-odd one-step preimage is `n^2 \u2264 x^3 < (n+1)^2`, while `x \u2265 n` forces `n^3 < (n+1)^2`.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 837,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_not_end_odd",
@@ -9472,7 +9612,9 @@
       "doc": "Prefix `OOO` plus an internal even step cannot land at the cycle minimum: `T^3(n) \u2265 (n+1)^2` and `isqrt(T^3(n)) = n` are incompatible.",
       "file": "formal/Problems/Juggler/CycleCore.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
       "line": 850,
       "module": "Problems.Juggler.CycleCore",
       "name": "cycleMin_prefix_ooo_even_sqrt_ne",
@@ -62668,7 +62810,13 @@
         "Problems.Juggler.MinimumRelative",
         "Problems.Juggler.Preimages"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-cycle-trailing-evens",
+          "statement": "If a Juggler cycle itinerary based at n ends with r \u2265 1 even letters, the state immediately before that trailing even run is strictly less than (n+1)^{2^r}. The case r = 1 is the last-even one-step preimage; r = 2 is the two-even bound of Paper A Lemma 3.5 on OOOOEE; r = 3 is the three-even bound for OOOOOOEEE. Lean theorem cycle_trailing_evens_lt. This is a one-step-preimage identity, not a leftover exclusion and not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.CycleDiophantine": {
       "declarations": 16,
@@ -62873,11 +63021,6 @@
         {
           "id": "J-cycle-finite-structure",
           "statement": "Every nontrivial Juggler cycle itinerary based at n \u2265 2 is formally expanding. Cycle extrema satisfy the certified parity, order, square-scale, and nested-cell constraints; a minimum-based cycle orientation cannot end in an odd letter. The path from a cycle minimum to any later even state is superquadratic. These are necessary cycle restrictions, not an exclusion of all cycles.",
-          "tag": "EXACT \u2014 LEAN VERIFIED"
-        },
-        {
-          "id": "J-cycle-trailing-evens",
-          "statement": "If a Juggler cycle itinerary based at n ends with r \u2265 1 even letters, the state immediately before that trailing even run is strictly less than (n+1)^{2^r}. The case r = 1 is the last-even one-step preimage; r = 2 is the two-even bound of Paper A Lemma 3.5 on OOOOEE; r = 3 is the three-even bound for OOOOOOEEE. Lean theorem cycle_trailing_evens_lt. This is a one-step-preimage identity, not a leftover exclusion and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -64323,7 +64466,7 @@
   },
   "totals": {
     "declarations": 4571,
-    "declarations_with_a_ledger_row": 3009,
+    "declarations_with_a_ledger_row": 3080,
     "ledger_rows_naming_a_file": 321,
     "modules": 189,
     "trust": {

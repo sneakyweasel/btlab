@@ -864,10 +864,23 @@
         "kernel": 2
       }
     },
+    "Problems.Juggler.CycleCore": {
+      "declarations": 71,
+      "depends_on": [
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/CycleCore.lean",
+      "ledger": [
+        "J-cycle-trailing-evens"
+      ],
+      "trust": {
+        "kernel": 71
+      }
+    },
     "Problems.Juggler.CycleFinance": {
       "declarations": 8,
       "depends_on": [
-        "Problems.Juggler.MinimumRelative"
+        "Problems.Juggler.CycleCore"
       ],
       "file": "formal/Problems/Juggler/CycleFinance.lean",
       "ledger": [
@@ -951,12 +964,11 @@
     "Problems.Juggler.Cycles": {
       "declarations": 0,
       "depends_on": [
-        "Problems.Juggler.MinimumRelative"
+        "Problems.Juggler.CycleCore"
       ],
       "file": "formal/Problems/Juggler/Cycles.lean",
       "ledger": [
-        "J-cycle-finite-structure",
-        "J-cycle-trailing-evens"
+        "J-cycle-finite-structure"
       ],
       "trust": {}
     },
@@ -1003,6 +1015,7 @@
     "Problems.Juggler.Escape": {
       "declarations": 70,
       "depends_on": [
+        "Problems.Juggler.CycleCore",
         "Problems.Juggler.Residuals"
       ],
       "file": "formal/Problems/Juggler/Escape.lean",
@@ -1246,7 +1259,7 @@
     "Problems.Juggler.LeftoverShort": {
       "declarations": 38,
       "depends_on": [
-        "Problems.Juggler.MinimumRelative"
+        "Problems.Juggler.CycleCore"
       ],
       "file": "formal/Problems/Juggler/LeftoverShort.lean",
       "ledger": [
@@ -1504,8 +1517,8 @@
     "Problems.Juggler.SequentialMordell": {
       "declarations": 14,
       "depends_on": [
-        "Problems.Juggler.GlobalDefect",
-        "Problems.Juggler.MinimumRelative"
+        "Problems.Juggler.CycleCore",
+        "Problems.Juggler.GlobalDefect"
       ],
       "file": "formal/Problems/Juggler/SequentialMordell.lean",
       "ledger": [
@@ -1559,7 +1572,7 @@
     "Problems.Juggler.WalkChargeItineraries": {
       "declarations": 31,
       "depends_on": [
-        "Problems.Juggler.MinimumRelative"
+        "Problems.Juggler.CycleCore"
       ],
       "file": "formal/Problems/Juggler/WalkChargeItineraries.lean",
       "ledger": [
@@ -1588,7 +1601,7 @@
     "Problems.Juggler.WalkTransport": {
       "declarations": 22,
       "depends_on": [
-        "Problems.Juggler.MinimumRelative"
+        "Problems.Juggler.CycleCore"
       ],
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "ledger": [
@@ -1682,9 +1695,9 @@
     }
   },
   "totals": {
-    "edges": 119,
-    "edges_before_reduction": 894,
+    "edges": 121,
+    "edges_before_reduction": 927,
     "ledger_rows_placed": 321,
-    "nodes": 113
+    "nodes": 114
   }
 }
