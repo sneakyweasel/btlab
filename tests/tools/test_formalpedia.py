@@ -8,6 +8,8 @@ prose: Paper A's Section 1.2 states the trust boundary positively, and a new
 
 from __future__ import annotations
 
+import io
+import json
 import sys
 from pathlib import Path
 
@@ -76,3 +78,42 @@ def test_impact_of_a_leaf_is_a_superset_of_its_direct_importers() -> None:
     rev = fp.dependents(index)
     for module in list(index["modules"])[:40]:
         assert set(rev.get(module, [])) <= set(fp.transitive(rev, module))
+
+
+def test_the_claim_graph_is_acyclic_and_reduced() -> None:
+    """A DAG is only useful if it is both: cycles make it unreadable, redundancy makes it long."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    g = fp.dag(index, ledger)
+    edges = {name: set(node["depends_on"]) for name, node in g["nodes"].items()}
+
+    # acyclic: a depth-first walk never revisits a node on its own stack
+    state: dict[str, int] = {}
+
+    def visit(n: str) -> None:
+        state[n] = 1
+        for d in edges.get(n, ()):
+            assert state.get(d) != 1, f"cycle through {n} -> {d}"
+            if state.get(d) is None:
+                visit(d)
+        state[n] = 2
+
+    for n in edges:
+        if state.get(n) is None:
+            visit(n)
+
+    # reduced: no edge is implied by a two-step path already in the graph
+    for n, ds in edges.items():
+        for d in ds:
+            assert not (edges.get(d, set()) & ds), f"{n} -> {d} is implied by another path"
+
+    assert g["totals"]["edges"] < g["totals"]["edges_before_reduction"]
+
+
+def test_every_graph_node_carries_at_least_one_ledger_row() -> None:
+    """The graph is over claims, not over the whole corpus; a node with no row is noise."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    g = fp.dag(index, ledger)
+    empty = [n for n, node in g["nodes"].items() if not node["ledger"]]
+    assert empty == [], empty

@@ -26,6 +26,7 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import collections
 import io
 import json
 import re
@@ -38,6 +39,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FORMAL = ROOT / "formal"
 LEDGER = ROOT / "docs" / "theory" / "theorem_ledger.json"
 INDEX = ROOT / "data" / "research" / "formalpedia" / "index.json"
+DAG = ROOT / "data" / "research" / "formalpedia" / "dag.json"
 
 DECL = re.compile(
     r"^(?P<kind>theorem|lemma|def|abbrev|instance|structure)\s+"
@@ -190,6 +192,80 @@ def transitive(rev: dict[str, list[str]], start: str) -> list[str]:
     return sorted(seen)
 
 
+def reachable(index: dict[str, Any]) -> dict[str, set[str]]:
+    """Every module each module can reach through imports."""
+    mods = index["modules"]
+    out: dict[str, set[str]] = {}
+
+    def walk(m: str) -> set[str]:
+        if m in out:
+            return out[m]
+        out[m] = set()
+        acc: set[str] = set()
+        for dep in mods.get(m, {}).get("imports", []):
+            acc.add(dep)
+            acc |= walk(dep)
+        out[m] = acc
+        return acc
+
+    for m in mods:
+        walk(m)
+    return out
+
+
+def dag(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
+    """The claim graph: modules that carry a ledger row, reduced to its essential edges.
+
+    Edges are kept at module granularity on purpose.  Only 27 of 263 verified rows name
+    their declaration, so a row-to-row edge would assert a dependency nobody has checked --
+    file A importing file B says some theorem there may rest on some theorem here, not which.
+    Transitive reduction is what makes the result readable: 894 edges carry the same
+    information as 119, and the 119 are the ones a person can follow.
+    """
+    file_to_mod = {m["file"]: name for name, m in index["modules"].items()}
+    rows: dict[str, list[str]] = defaultdict(list)
+    for row in ledger:
+        ref = row.get("lean")
+        if isinstance(ref, str) and ref.endswith(".lean"):
+            mod = file_to_mod.get("formal/" + ref)
+            if mod:
+                rows[mod].append(row["id"])
+
+    reach = reachable(index)
+    carriers = set(rows)
+    edges = {m: {d for d in reach.get(m, set()) if d in carriers} for m in carriers}
+    reduced: dict[str, list[str]] = {}
+    for m, ds in edges.items():
+        implied: set[str] = set()
+        for d in ds:
+            implied |= edges.get(d, set()) & ds
+        reduced[m] = sorted(ds - implied)
+
+    nodes = {}
+    for m in sorted(carriers):
+        data = index["modules"][m]
+        trust = collections.Counter(
+            d["trust"] for d in index["declarations"] if d["module"] == m
+        )
+        nodes[m] = {
+            "file": data["file"],
+            "declarations": data["declarations"],
+            "ledger": sorted(rows[m]),
+            "trust": dict(trust),
+            "depends_on": reduced[m],
+        }
+    return {
+        "granularity": "module",
+        "nodes": nodes,
+        "totals": {
+            "nodes": len(nodes),
+            "edges": sum(len(v) for v in reduced.values()),
+            "edges_before_reduction": sum(len(v) for v in edges.values()),
+            "ledger_rows_placed": sum(len(v) for v in rows.values()),
+        },
+    }
+
+
 def load() -> dict[str, Any]:
     if not INDEX.is_file():
         sys.exit("no index; run: python tools/formalpedia.py build")
@@ -218,6 +294,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("name")
     p = sub.add_parser("impact", help="modules rebuilt by a change to this module or file")
     p.add_argument("target")
+    sub.add_parser("dag", help="rebuild the claim graph over ledger-carrying modules")
     args = ap.parse_args(argv)
 
     if args.cmd == "build":
@@ -228,6 +305,17 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{t['declarations']} declarations in {t['modules']} modules")
         print(f"  trust: {t['trust']}")
         print(f"  declarations under a ledger row: {t['declarations_with_a_ledger_row']}")
+        return 0
+
+    if args.cmd == "dag":
+        index = load()
+        ledger = json.load(io.open(LEDGER, encoding="utf-8"))
+        graph = dag(index, ledger)
+        DAG.parent.mkdir(parents=True, exist_ok=True)
+        DAG.write_text(json.dumps(graph, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        g = graph["totals"]
+        print(f"{g['nodes']} modules carry {g['ledger_rows_placed']} ledger rows")
+        print(f"  {g['edges_before_reduction']} edges -> {g['edges']} after transitive reduction")
         return 0
 
     index = load()

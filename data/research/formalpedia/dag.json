@@ -1,0 +1,1690 @@
+{
+  "granularity": "module",
+  "nodes": {
+    "BTCalculus.Algebra": {
+      "declarations": 9,
+      "depends_on": [
+        "BTCalculus.Integral"
+      ],
+      "file": "formal/BTCalculus/Algebra.lean",
+      "ledger": [
+        "BTC-D-add",
+        "BTC-D-mul"
+      ],
+      "trust": {
+        "kernel": 9
+      }
+    },
+    "BTCalculus.Comparison": {
+      "declarations": 9,
+      "depends_on": [
+        "BTCalculus.Derivative"
+      ],
+      "file": "formal/BTCalculus/Comparison.lean",
+      "ledger": [
+        "BTC-cmp3"
+      ],
+      "trust": {
+        "kernel": 9
+      }
+    },
+    "BTCalculus.Composition": {
+      "declarations": 5,
+      "depends_on": [
+        "BTCalculus.Algebra",
+        "BTCalculus.Polynomial"
+      ],
+      "file": "formal/BTCalculus/Composition.lean",
+      "ledger": [
+        "BTJ-comp",
+        "BTJ-product"
+      ],
+      "trust": {
+        "kernel": 5
+      }
+    },
+    "BTCalculus.Confluence": {
+      "declarations": 41,
+      "depends_on": [
+        "BTCalculus.NormalizedDerivative"
+      ],
+      "file": "formal/BTCalculus/Confluence.lean",
+      "ledger": [
+        "BTN-confluence"
+      ],
+      "trust": {
+        "compiler": 2,
+        "kernel": 39
+      }
+    },
+    "BTCalculus.CubicDeepestLayer": {
+      "declarations": 28,
+      "depends_on": [
+        "BTCalculus.CubicFibres"
+      ],
+      "file": "formal/BTCalculus/CubicDeepestLayer.lean",
+      "ledger": [
+        "BTA-x3-deep-N",
+        "BTA-x3-deep-crit",
+        "BTA-x3-deep-zero"
+      ],
+      "trust": {
+        "kernel": 28
+      }
+    },
+    "BTCalculus.CubicDeficitTwo": {
+      "declarations": 14,
+      "depends_on": [
+        "BTCalculus.CubicDeepestLayer"
+      ],
+      "file": "formal/BTCalculus/CubicDeficitTwo.lean",
+      "ledger": [
+        "BTA-x3-def2-N",
+        "BTA-x3-def2-crit",
+        "BTA-x3-vis"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
+    "BTCalculus.CubicFibres": {
+      "declarations": 22,
+      "depends_on": [
+        "BTCalculus.CubicResidual",
+        "BTCalculus.Rewrite"
+      ],
+      "file": "formal/BTCalculus/CubicFibres.lean",
+      "ledger": [
+        "BTA-x3-Ckm",
+        "BTA-x3-n1fac",
+        "BTA-x3-n2",
+        "BTA-x3-n3gate",
+        "BTA-x3-sign"
+      ],
+      "trust": {
+        "kernel": 22
+      }
+    },
+    "BTCalculus.CubicIntermediateLayer": {
+      "declarations": 13,
+      "depends_on": [
+        "BTCalculus.CubicFibres"
+      ],
+      "file": "formal/BTCalculus/CubicIntermediateLayer.lean",
+      "ledger": [
+        "BTA-x3-inter-N",
+        "BTA-x3-inter-crit",
+        "BTA-x3-inter-lift"
+      ],
+      "trust": {
+        "kernel": 13
+      }
+    },
+    "BTCalculus.CubicN0Reduction": {
+      "declarations": 21,
+      "depends_on": [
+        "BTCalculus.CubicN1Valuation"
+      ],
+      "file": "formal/BTCalculus/CubicN0Reduction.lean",
+      "ledger": [
+        "BTA-x3-n0-recur",
+        "BTA-x3-n0-scale",
+        "BTA-x3-n0-sign",
+        "BTA-x3-n0-vis"
+      ],
+      "trust": {
+        "kernel": 21
+      }
+    },
+    "BTCalculus.CubicN1Valuation": {
+      "declarations": 16,
+      "depends_on": [
+        "BTCalculus.CubicDeficitTwo"
+      ],
+      "file": "formal/BTCalculus/CubicN1Valuation.lean",
+      "ledger": [
+        "BTA-x3-n1-diff",
+        "BTA-x3-n1-fibre",
+        "BTA-x3-n1-scale",
+        "BTA-x3-n1-sign",
+        "BTA-x3-n1-unit",
+        "BTA-x3-n1-val"
+      ],
+      "trust": {
+        "kernel": 16
+      }
+    },
+    "BTCalculus.CubicResidual": {
+      "declarations": 38,
+      "depends_on": [
+        "BTCalculus.PolynomialFunctionsMod"
+      ],
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "ledger": [
+        "BTA-x3-Fk",
+        "BTA-x3-equiv-N",
+        "BTA-x3-form",
+        "BTA-x3-newton",
+        "BTA-x3-raw",
+        "BTA-x3-section"
+      ],
+      "trust": {
+        "kernel": 38
+      }
+    },
+    "BTCalculus.Derivative": {
+      "declarations": 15,
+      "depends_on": [
+        "BTCalculus.Trit",
+        "Operators.DigitDerivative"
+      ],
+      "file": "formal/BTCalculus/Derivative.lean",
+      "ledger": [
+        "BTC-decomp"
+      ],
+      "trust": {
+        "kernel": 15
+      }
+    },
+    "BTCalculus.Integral": {
+      "declarations": 14,
+      "depends_on": [
+        "BTCalculus.Derivative"
+      ],
+      "file": "formal/BTCalculus/Integral.lean",
+      "ledger": [
+        "BTC-D-I",
+        "BTC-P-band"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
+    "BTCalculus.Jet": {
+      "declarations": 7,
+      "depends_on": [
+        "BTCalculus.Composition"
+      ],
+      "file": "formal/BTCalculus/Jet.lean",
+      "ledger": [
+        "BTJ-jet"
+      ],
+      "trust": {
+        "kernel": 7
+      }
+    },
+    "BTCalculus.MismatchedCubicInvariant": {
+      "declarations": 10,
+      "depends_on": [
+        "BTCalculus.MismatchedCubicQuotient"
+      ],
+      "file": "formal/BTCalculus/MismatchedCubicInvariant.lean",
+      "ledger": [
+        "BTA-x3-Q-inv-bal",
+        "BTA-x3-Q-inv-one",
+        "BTA-x3-Q-inv-psi"
+      ],
+      "trust": {
+        "kernel": 10
+      }
+    },
+    "BTCalculus.MismatchedCubicQuotient": {
+      "declarations": 27,
+      "depends_on": [
+        "BTCalculus.CubicN0Reduction"
+      ],
+      "file": "formal/BTCalculus/MismatchedCubicQuotient.lean",
+      "ledger": [
+        "BTA-x3-Q-def",
+        "BTA-x3-Q-eq",
+        "BTA-x3-Q-scale",
+        "BTA-x3-Q-shift",
+        "BTA-x3-Q-vis",
+        "BTA-x3-Q-visible"
+      ],
+      "trust": {
+        "kernel": 27
+      }
+    },
+    "BTCalculus.MonnaEndpointCube": {
+      "declarations": 31,
+      "depends_on": [],
+      "file": "formal/BTCalculus/MonnaEndpointCube.lean",
+      "ledger": [
+        "BTM-x3-depth",
+        "BTM-x3-no-preserve"
+      ],
+      "trust": {
+        "kernel": 31
+      }
+    },
+    "BTCalculus.NewtonKernel": {
+      "declarations": 23,
+      "depends_on": [
+        "BTCalculus.PolynomialFunctionsMod"
+      ],
+      "file": "formal/BTCalculus/NewtonKernel.lean",
+      "ledger": [
+        "BTA-Ik-newton"
+      ],
+      "trust": {
+        "kernel": 23
+      }
+    },
+    "BTCalculus.NewtonStratum": {
+      "declarations": 15,
+      "depends_on": [
+        "BTCalculus.XCubeStateComplexity"
+      ],
+      "file": "formal/BTCalculus/NewtonStratum.lean",
+      "ledger": [
+        "BTA-x3-stratum"
+      ],
+      "trust": {
+        "kernel": 15
+      }
+    },
+    "BTCalculus.Normalization": {
+      "declarations": 46,
+      "depends_on": [
+        "BTCalculus.Derivative"
+      ],
+      "file": "formal/BTCalculus/Normalization.lean",
+      "ledger": [
+        "BTN-carry-bound",
+        "BTN-divmod",
+        "BTN-lex",
+        "BTN-nf",
+        "BTN-step-value"
+      ],
+      "trust": {
+        "kernel": 46
+      }
+    },
+    "BTCalculus.NormalizedDerivative": {
+      "declarations": 20,
+      "depends_on": [
+        "BTCalculus.Normalization"
+      ],
+      "file": "formal/BTCalculus/NormalizedDerivative.lean",
+      "ledger": [
+        "BTJ-hatD"
+      ],
+      "trust": {
+        "kernel": 20
+      }
+    },
+    "BTCalculus.OpFragNewman": {
+      "declarations": 44,
+      "depends_on": [],
+      "file": "formal/BTCalculus/OpFragNewman.lean",
+      "ledger": [
+        "BTC-op-fragment-nd-nf"
+      ],
+      "trust": {
+        "kernel": 44
+      }
+    },
+    "BTCalculus.OpFragSemantic": {
+      "declarations": 58,
+      "depends_on": [
+        "BTCalculus.OpFragNewman",
+        "BTCalculus.Rewrite"
+      ],
+      "file": "formal/BTCalculus/OpFragSemantic.lean",
+      "ledger": [
+        "BTC-op-fragment-nd-semantic"
+      ],
+      "trust": {
+        "kernel": 58
+      }
+    },
+    "BTCalculus.PadicLifting": {
+      "declarations": 22,
+      "depends_on": [
+        "BTCalculus.Quadratic"
+      ],
+      "file": "formal/BTCalculus/PadicLifting.lean",
+      "ledger": [
+        "BTL-reconstruct",
+        "BTL-trichotomy",
+        "BTL-zero-output"
+      ],
+      "trust": {
+        "kernel": 22
+      }
+    },
+    "BTCalculus.PadicLiftingState": {
+      "declarations": 23,
+      "depends_on": [
+        "BTCalculus.PadicLifting"
+      ],
+      "file": "formal/BTCalculus/PadicLiftingState.lean",
+      "ledger": [
+        "BTL-block-shift",
+        "BTL-linear-transition",
+        "BTL-newton-path",
+        "BTL-unit-scaling"
+      ],
+      "trust": {
+        "kernel": 23
+      }
+    },
+    "BTCalculus.Polynomial": {
+      "declarations": 32,
+      "depends_on": [
+        "BTCalculus.Derivative"
+      ],
+      "file": "formal/BTCalculus/Polynomial.lean",
+      "ledger": [
+        "BTJ-degree",
+        "BTJ-section"
+      ],
+      "trust": {
+        "kernel": 32
+      }
+    },
+    "BTCalculus.PolynomialFunctionsMod": {
+      "declarations": 40,
+      "depends_on": [
+        "BTCalculus.Quadratic"
+      ],
+      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
+      "ledger": [
+        "BTA-coeffwise-nec",
+        "BTA-cubic-vanish",
+        "BTA-fn-congr",
+        "BTA-quad-vanish",
+        "BTA-x3-merge",
+        "BTA-x3-x",
+        "BTA-x4-merge"
+      ],
+      "trust": {
+        "kernel": 40
+      }
+    },
+    "BTCalculus.Quadratic": {
+      "declarations": 49,
+      "depends_on": [
+        "BTCalculus.NormalizedDerivative",
+        "BTCalculus.Residual"
+      ],
+      "file": "formal/BTCalculus/Quadratic.lean",
+      "ledger": [
+        "BTA-quad-mod",
+        "BTA-x2-mn",
+        "BTA-x2-quad-form",
+        "BTA-x2-raw"
+      ],
+      "trust": {
+        "kernel": 49
+      }
+    },
+    "BTCalculus.Residual": {
+      "declarations": 14,
+      "depends_on": [
+        "BTCalculus.Jet",
+        "BTCalculus.Normalization"
+      ],
+      "file": "formal/BTCalculus/Residual.lean",
+      "ledger": [
+        "BTA-equiv"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
+    "BTCalculus.ResidualShift": {
+      "declarations": 5,
+      "depends_on": [
+        "BTCalculus.PolynomialFunctionsMod"
+      ],
+      "file": "formal/BTCalculus/ResidualShift.lean",
+      "ledger": [
+        "BTA-eval-residualAlong"
+      ],
+      "trust": {
+        "kernel": 5
+      }
+    },
+    "BTCalculus.Rewrite": {
+      "declarations": 8,
+      "depends_on": [
+        "BTCalculus.Algebra"
+      ],
+      "file": "formal/BTCalculus/Rewrite.lean",
+      "ledger": [
+        "BTC-op-fragment-semantic-nf"
+      ],
+      "trust": {
+        "kernel": 8
+      }
+    },
+    "BTCalculus.RewriteAddBoundary": {
+      "declarations": 34,
+      "depends_on": [
+        "BTCalculus.Rewrite"
+      ],
+      "file": "formal/BTCalculus/RewriteAddBoundary.lean",
+      "ledger": [
+        "BTC-add-not-D-local",
+        "BTC-add-requires-carry-state",
+        "BTC-constructor-sum-class",
+        "BTC-push-in-S-peak"
+      ],
+      "trust": {
+        "kernel": 34
+      }
+    },
+    "BTCalculus.Select": {
+      "declarations": 12,
+      "depends_on": [
+        "BTCalculus.Comparison"
+      ],
+      "file": "formal/BTCalculus/Select.lean",
+      "ledger": [
+        "BTC-select3"
+      ],
+      "trust": {
+        "kernel": 12
+      }
+    },
+    "BTCalculus.TransducerComposition": {
+      "declarations": 2,
+      "depends_on": [
+        "BTCalculus.Residual"
+      ],
+      "file": "formal/BTCalculus/TransducerComposition.lean",
+      "ledger": [
+        "BTA-cascade"
+      ],
+      "trust": {
+        "kernel": 2
+      }
+    },
+    "BTCalculus.Trit": {
+      "declarations": 20,
+      "depends_on": [
+        "Representation.Words"
+      ],
+      "file": "formal/BTCalculus/Trit.lean",
+      "ledger": [
+        "BTC-trit-kleene"
+      ],
+      "trust": {
+        "kernel": 20
+      }
+    },
+    "BTCalculus.WordSimpNewman": {
+      "declarations": 26,
+      "depends_on": [],
+      "file": "formal/BTCalculus/WordSimpNewman.lean",
+      "ledger": [
+        "BTC-word-simp-nf"
+      ],
+      "trust": {
+        "kernel": 26
+      }
+    },
+    "BTCalculus.XCubeStateComplexity": {
+      "declarations": 20,
+      "depends_on": [
+        "BTCalculus.MismatchedCubicInvariant"
+      ],
+      "file": "formal/BTCalculus/XCubeStateComplexity.lean",
+      "ledger": [
+        "BTA-x3-C-core",
+        "BTA-x3-C-decomp",
+        "BTA-x3-C-easy",
+        "BTA-x3-C-unex",
+        "BTA-x3-H-A",
+        "BTA-x3-H-joint",
+        "BTA-x3-H-n0neg",
+        "BTA-x3-H-unit",
+        "BTA-x3-M-obstruct",
+        "BTA-x3-M-overlap",
+        "BTA-x3-M-spine",
+        "BTA-x3-Q-unit-im"
+      ],
+      "trust": {
+        "kernel": 20
+      }
+    },
+    "Operators.Algebra": {
+      "declarations": 10,
+      "depends_on": [
+        "Operators.DigitDerivative"
+      ],
+      "file": "formal/Operators/Algebra.lean",
+      "ledger": [
+        "BT-W-not-involution"
+      ],
+      "trust": {
+        "kernel": 10
+      }
+    },
+    "Operators.DigitDerivative": {
+      "declarations": 11,
+      "depends_on": [
+        "Representation.Words"
+      ],
+      "file": "formal/Operators/DigitDerivative.lean",
+      "ledger": [
+        "BT-D-S"
+      ],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Operators.Polynomial": {
+      "declarations": 7,
+      "depends_on": [
+        "Representation.Words"
+      ],
+      "file": "formal/Operators/Polynomial.lean",
+      "ledger": [
+        "BT-Pn3"
+      ],
+      "trust": {
+        "kernel": 7
+      }
+    },
+    "Problems.BalancedTernary.DAddResidual": {
+      "declarations": 12,
+      "depends_on": [
+        "BTCalculus.Algebra",
+        "BTCalculus.Normalization"
+      ],
+      "file": "formal/Problems/BalancedTernary/DAddResidual.lean",
+      "ledger": [
+        "BTN-dadd-closure",
+        "BTN-dadd-lsd-sum",
+        "BTN-dadd-repaired"
+      ],
+      "trust": {
+        "compiler": 4,
+        "kernel": 8
+      }
+    },
+    "Problems.BalancedTernary.ExpandingD": {
+      "declarations": 49,
+      "depends_on": [
+        "BTCalculus.Integral",
+        "BTCalculus.Normalization"
+      ],
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "ledger": [
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda",
+        "BTN-expanding-lambda",
+        "BTN-expanding-lsd",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section"
+      ],
+      "trust": {
+        "compiler": 3,
+        "kernel": 46
+      }
+    },
+    "Problems.BalancedTernary.FiniteStateDynamics": {
+      "declarations": 23,
+      "depends_on": [
+        "BTCalculus.Normalization"
+      ],
+      "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
+      "ledger": [
+        "BTN-carry-gain-3",
+        "BTN-doubled-closure",
+        "BTN-doubled-lyapunov",
+        "BTN-doubled-minimality",
+        "BTN-doubled-sign"
+      ],
+      "trust": {
+        "compiler": 5,
+        "kernel": 18
+      }
+    },
+    "Problems.BalancedTernary.MultiplicativeResidual": {
+      "declarations": 17,
+      "depends_on": [
+        "BTCalculus.Algebra",
+        "Problems.BalancedTernary.SignedDigitResidual"
+      ],
+      "file": "formal/Problems/BalancedTernary/MultiplicativeResidual.lean",
+      "ledger": [
+        "BTN-mr-factor-count",
+        "BTN-mr-factor-through-raw",
+        "BTN-mr-product-closure",
+        "BTN-mr-three-states"
+      ],
+      "trust": {
+        "compiler": 1,
+        "kernel": 16
+      }
+    },
+    "Problems.BalancedTernary.SignedDigitConstrainedControls": {
+      "declarations": 3,
+      "depends_on": [
+        "Problems.BalancedTernary.SignedDigitResidualMinimality"
+      ],
+      "file": "formal/Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
+      "ledger": [
+        "BTN-sdrc-any-word",
+        "BTN-sdrc-lambda3-symmetry"
+      ],
+      "trust": {
+        "kernel": 3
+      }
+    },
+    "Problems.BalancedTernary.SignedDigitResidual": {
+      "declarations": 39,
+      "depends_on": [
+        "Problems.BalancedTernary.FiniteStateDynamics"
+      ],
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "ledger": [
+        "BTN-sdr-escape-general",
+        "BTN-sdr-finite-condition",
+        "BTN-sdr-geometry-phase",
+        "BTN-sdr-lambda1-radius",
+        "BTN-sdr-lambda2-radius",
+        "BTN-sdr-multi-trit",
+        "BTN-sdr-scalar-lambda3"
+      ],
+      "trust": {
+        "compiler": 1,
+        "kernel": 38
+      }
+    },
+    "Problems.BalancedTernary.SignedDigitResidualGeometry": {
+      "declarations": 23,
+      "depends_on": [
+        "Problems.BalancedTernary.SignedDigitResidual"
+      ],
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
+      "ledger": [
+        "BTN-sdrg-lambda1-interval",
+        "BTN-sdrg-lambda2-evens",
+        "BTN-sdrg-lattice-all-U"
+      ],
+      "trust": {
+        "compiler": 1,
+        "kernel": 22
+      }
+    },
+    "Problems.BalancedTernary.SignedDigitResidualMinimality": {
+      "declarations": 22,
+      "depends_on": [
+        "BTCalculus.NormalizedDerivative",
+        "Problems.BalancedTernary.SignedDigitResidual"
+      ],
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
+      "ledger": [
+        "BTN-sdrm-lambda3-translate",
+        "BTN-sdrm-mod3-merges",
+        "BTN-sdrm-separation"
+      ],
+      "trust": {
+        "kernel": 22
+      }
+    },
+    "Problems.BalancedTernary.SignedDigitShortHorizon": {
+      "declarations": 10,
+      "depends_on": [
+        "Problems.BalancedTernary.SignedDigitConstrainedControls"
+      ],
+      "file": "formal/Problems/BalancedTernary/SignedDigitShortHorizon.lean",
+      "ledger": [
+        "BTN-sdsh-maxlen",
+        "BTN-sdsh-sep",
+        "BTN-sdsh-truncated-mod"
+      ],
+      "trust": {
+        "kernel": 10
+      }
+    },
+    "Problems.Collatz.Accelerated": {
+      "declarations": 7,
+      "depends_on": [],
+      "file": "formal/Problems/Collatz/Accelerated.lean",
+      "ledger": [
+        "C-T-welldefined"
+      ],
+      "trust": {
+        "kernel": 7
+      }
+    },
+    "Problems.Collatz.Arithmetic": {
+      "declarations": 3,
+      "depends_on": [
+        "Problems.Collatz.Lift"
+      ],
+      "file": "formal/Problems/Collatz/Arithmetic.lean",
+      "ledger": [
+        "C-R-direct"
+      ],
+      "trust": {
+        "kernel": 3
+      }
+    },
+    "Problems.Collatz.Center": {
+      "declarations": 4,
+      "depends_on": [
+        "Problems.Collatz.Endpoint"
+      ],
+      "file": "formal/Problems/Collatz/Center.lean",
+      "ledger": [
+        "C-center"
+      ],
+      "trust": {
+        "kernel": 4
+      }
+    },
+    "Problems.Collatz.Cycles": {
+      "declarations": 8,
+      "depends_on": [
+        "Problems.Collatz.FixedInteger"
+      ],
+      "file": "formal/Problems/Collatz/Cycles.lean",
+      "ledger": [
+        "C-cycles"
+      ],
+      "trust": {
+        "kernel": 8
+      }
+    },
+    "Problems.Collatz.Endpoint": {
+      "declarations": 12,
+      "depends_on": [
+        "Problems.Collatz.Arithmetic"
+      ],
+      "file": "formal/Problems/Collatz/Endpoint.lean",
+      "ledger": [
+        "C-endpoint"
+      ],
+      "trust": {
+        "kernel": 12
+      }
+    },
+    "Problems.Collatz.FixedInteger": {
+      "declarations": 12,
+      "depends_on": [
+        "Problems.Collatz.Center"
+      ],
+      "file": "formal/Problems/Collatz/FixedInteger.lean",
+      "ledger": [
+        "C-gap",
+        "C-nstar-le-n"
+      ],
+      "trust": {
+        "kernel": 12
+      }
+    },
+    "Problems.Collatz.Lift": {
+      "declarations": 7,
+      "depends_on": [],
+      "file": "formal/Problems/Collatz/Lift.lean",
+      "ledger": [
+        "C-lift-zero"
+      ],
+      "trust": {
+        "kernel": 7
+      }
+    },
+    "Problems.Collatz.Shortcut": {
+      "declarations": 12,
+      "depends_on": [],
+      "file": "formal/Problems/Collatz/Shortcut.lean",
+      "ledger": [
+        "C-no-uniform-L-descent",
+        "C-shortcut-one-step-lyapunov",
+        "C-shortcut-welldefined"
+      ],
+      "trust": {
+        "compiler": 2,
+        "kernel": 10
+      }
+    },
+    "Problems.Juggler.AboveAnchorWalk": {
+      "declarations": 2,
+      "depends_on": [
+        "Problems.Juggler.WalkChargeItineraries"
+      ],
+      "file": "formal/Problems/Juggler/AboveAnchorWalk.lean",
+      "ledger": [
+        "J-above-anchor-hug-domination",
+        "J-clotho-slow-escape-not-forced"
+      ],
+      "trust": {
+        "kernel": 2
+      }
+    },
+    "Problems.Juggler.CycleFinance": {
+      "declarations": 8,
+      "depends_on": [
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/CycleFinance.lean",
+      "ledger": [
+        "J-cycle-finance-inequality",
+        "J-lachesis-basin-inverse-sum"
+      ],
+      "trust": {
+        "kernel": 8
+      }
+    },
+    "Problems.Juggler.CycleFinanceLeftovers": {
+      "declarations": 58,
+      "depends_on": [
+        "Problems.Juggler.CycleFinance",
+        "Problems.Juggler.LengthEightCensus",
+        "Problems.Juggler.TerminationFloor257"
+      ],
+      "file": "formal/Problems/Juggler/CycleFinanceLeftovers.lean",
+      "ledger": [
+        "J-cycle-itinerary-eliahou-leftover",
+        "J-cycle-itinerary-eliahou-leftover-instance",
+        "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five",
+        "J-cycle-itinerary-length-eleven-or-ge-fourteen",
+        "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
+        "J-cycle-itinerary-length-ge-fourteen",
+        "J-cycle-itinerary-length-ge-thirty",
+        "J-cycle-itinerary-length-nineteen-or-ge-thirty",
+        "J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine",
+        "J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths",
+        "J-small-cycle-census-eighteen",
+        "J-small-cycle-census-eleven",
+        "J-small-cycle-census-nineteen",
+        "J-small-cycle-census-ten"
+      ],
+      "trust": {
+        "kernel": 58
+      }
+    },
+    "Problems.Juggler.CycleHeightFinance": {
+      "declarations": 58,
+      "depends_on": [
+        "Problems.Juggler.CycleFinanceLeftovers"
+      ],
+      "file": "formal/Problems/Juggler/CycleHeightFinance.lean",
+      "ledger": [
+        "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five"
+      ],
+      "trust": {
+        "kernel": 58
+      }
+    },
+    "Problems.Juggler.CycleMinFudge": {
+      "declarations": 120,
+      "depends_on": [
+        "Problems.Juggler.EvenCountThree",
+        "Problems.Juggler.O7EEEEGap"
+      ],
+      "file": "formal/Problems/Juggler/CycleMinFudge.lean",
+      "ledger": [
+        "J-cyclemin-fudge",
+        "J-cyclemin-slack"
+      ],
+      "trust": {
+        "kernel": 120
+      }
+    },
+    "Problems.Juggler.CycleMinObstruction": {
+      "declarations": 6,
+      "depends_on": [
+        "Problems.Juggler.EvenCountThree"
+      ],
+      "file": "formal/Problems/Juggler/CycleMinObstruction.lean",
+      "ledger": [
+        "J-cyclemin-transport-oo",
+        "J-ooo-residual-cube"
+      ],
+      "trust": {
+        "kernel": 6
+      }
+    },
+    "Problems.Juggler.Cycles": {
+      "declarations": 0,
+      "depends_on": [
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/Cycles.lean",
+      "ledger": [
+        "J-cycle-finite-structure",
+        "J-cycle-trailing-evens"
+      ],
+      "trust": {}
+    },
+    "Problems.Juggler.DefectFinance": {
+      "declarations": 11,
+      "depends_on": [
+        "Problems.Juggler.WalkChargeMax"
+      ],
+      "file": "formal/Problems/Juggler/DefectFinance.lean",
+      "ledger": [
+        "J-cyclemin-defect-finance-kill"
+      ],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Problems.Juggler.DefectLowerBound": {
+      "declarations": 69,
+      "depends_on": [
+        "Problems.Juggler.GlobalDefect"
+      ],
+      "file": "formal/Problems/Juggler/DefectLowerBound.lean",
+      "ledger": [
+        "J-first-defect-amplification"
+      ],
+      "trust": {
+        "kernel": 69
+      }
+    },
+    "Problems.Juggler.Envelope": {
+      "declarations": 48,
+      "depends_on": [
+        "Problems.Juggler.ItineraryStats"
+      ],
+      "file": "formal/Problems/Juggler/Envelope.lean",
+      "ledger": [
+        "J-envelope-lt-pow",
+        "J-power-envelope-contraction"
+      ],
+      "trust": {
+        "kernel": 48
+      }
+    },
+    "Problems.Juggler.Escape": {
+      "declarations": 70,
+      "depends_on": [
+        "Problems.Juggler.Residuals"
+      ],
+      "file": "formal/Problems/Juggler/Escape.lean",
+      "ledger": [
+        "J-ce-escaped-even-oe-preimage",
+        "J-ce-oe-next-oo",
+        "J-ce-second-o-cube",
+        "J-ce-third-residual-preimages",
+        "J-minimal-ooeooe-escape-trap",
+        "J-minimal-prefix-noncontracting",
+        "J-no-cycle-no-bounded-nonterm",
+        "J-trajectory-cycle-or-escape"
+      ],
+      "trust": {
+        "kernel": 70
+      }
+    },
+    "Problems.Juggler.EvenCountThree": {
+      "declarations": 51,
+      "depends_on": [
+        "Problems.Juggler.LeftoverFamilies",
+        "Problems.Juggler.Residuals"
+      ],
+      "file": "formal/Problems/Juggler/EvenCountThree.lean",
+      "ledger": [
+        "J-cyclemax-succ-sq",
+        "J-cyclemin-last-odd-run",
+        "J-even-count-le-three",
+        "J-first-even-overshoots"
+      ],
+      "trust": {
+        "kernel": 51
+      }
+    },
+    "Problems.Juggler.ExpandingGrammar": {
+      "declarations": 16,
+      "depends_on": [
+        "Problems.Juggler.Residuals"
+      ],
+      "file": "formal/Problems/Juggler/ExpandingGrammar.lean",
+      "ledger": [
+        "J-expanding-block-even-bound",
+        "J-expanding-grammar-obstruction",
+        "J-persistent-implies-expanding"
+      ],
+      "trust": {
+        "kernel": 16
+      }
+    },
+    "Problems.Juggler.ExpansionBlocks": {
+      "declarations": 11,
+      "depends_on": [
+        "Problems.Juggler.NormalizedDefect"
+      ],
+      "file": "formal/Problems/Juggler/ExpansionBlocks.lean",
+      "ledger": [
+        "J-expansion-block-grammar"
+      ],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Problems.Juggler.ExpansionSlack": {
+      "declarations": 25,
+      "depends_on": [
+        "Problems.Juggler.NormalizedDefect"
+      ],
+      "file": "formal/Problems/Juggler/ExpansionSlack.lean",
+      "ledger": [
+        "J-expansion-slack-uniform-tax",
+        "J-four-block-persistent-expanding",
+        "J-weighted-slack-cocycle"
+      ],
+      "trust": {
+        "kernel": 25
+      }
+    },
+    "Problems.Juggler.FanLaw": {
+      "declarations": 20,
+      "depends_on": [
+        "Problems.Juggler.OstrowskiSandwich"
+      ],
+      "file": "formal/Problems/Juggler/FanLaw.lean",
+      "ledger": [
+        "J-lean-arithmetic-certificates-kernel-checked"
+      ],
+      "trust": {
+        "kernel": 20
+      }
+    },
+    "Problems.Juggler.FateContagion": {
+      "declarations": 37,
+      "depends_on": [
+        "Problems.Juggler.Escape"
+      ],
+      "file": "formal/Problems/Juggler/FateContagion.lean",
+      "ledger": [
+        "J-fate-classes-backward-closed",
+        "J-fate-envelope-floor",
+        "J-fate-odd-generation",
+        "J-fate-oe-fiber-cell"
+      ],
+      "trust": {
+        "kernel": 37
+      }
+    },
+    "Problems.Juggler.FirstInternalOO": {
+      "declarations": 26,
+      "depends_on": [
+        "Problems.Juggler.Progress"
+      ],
+      "file": "formal/Problems/Juggler/FirstInternalOO.lean",
+      "ledger": [
+        "J-cyclemin-first-oo-r-bound"
+      ],
+      "trust": {
+        "kernel": 26
+      }
+    },
+    "Problems.Juggler.GapCells": {
+      "declarations": 8,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/GapCells.lean",
+      "ledger": [
+        "J-kernel-cancellation",
+        "J-nested-parity-discrepancy",
+        "J-tier2-gap-and-shifted-forms"
+      ],
+      "trust": {
+        "kernel": 8
+      }
+    },
+    "Problems.Juggler.GapTransfer": {
+      "declarations": 2,
+      "depends_on": [
+        "Problems.Juggler.CycleFinance"
+      ],
+      "file": "formal/Problems/Juggler/GapTransfer.lean",
+      "ledger": [
+        "J-cyclemin-gap-transfer"
+      ],
+      "trust": {
+        "kernel": 2
+      }
+    },
+    "Problems.Juggler.GlobalDefect": {
+      "declarations": 36,
+      "depends_on": [
+        "Problems.Juggler.Envelope"
+      ],
+      "file": "formal/Problems/Juggler/GlobalDefect.lean",
+      "ledger": [
+        "J-global-defect-identity"
+      ],
+      "trust": {
+        "kernel": 36
+      }
+    },
+    "Problems.Juggler.Itinerary": {
+      "declarations": 33,
+      "depends_on": [
+        "Problems.Juggler.Termination"
+      ],
+      "file": "formal/Problems/Juggler/Itinerary.lean",
+      "ledger": [
+        "J-fixed-itinerary-image-monotone",
+        "J-itinerary-semantics"
+      ],
+      "trust": {
+        "kernel": 33
+      }
+    },
+    "Problems.Juggler.ItineraryStats": {
+      "declarations": 31,
+      "depends_on": [
+        "Problems.Juggler.Itinerary"
+      ],
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "trust": {
+        "kernel": 31
+      }
+    },
+    "Problems.Juggler.LandingParity": {
+      "declarations": 14,
+      "depends_on": [
+        "Problems.Juggler.ExpandingGrammar"
+      ],
+      "file": "formal/Problems/Juggler/LandingParity.lean",
+      "ledger": [
+        "J-landing-preimage-iff",
+        "J-landing-theta-state"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
+    "Problems.Juggler.LandingValuation": {
+      "declarations": 18,
+      "depends_on": [
+        "Problems.Juggler.Residuals",
+        "Problems.Juggler.SequentialMordell"
+      ],
+      "file": "formal/Problems/Juggler/LandingValuation.lean",
+      "ledger": [
+        "J-odd-odd-remainder-mod-eight",
+        "J-pe-history-valuation"
+      ],
+      "trust": {
+        "kernel": 18
+      }
+    },
+    "Problems.Juggler.LeftoverFamilies": {
+      "declarations": 180,
+      "depends_on": [
+        "Problems.Juggler.LeftoverShort"
+      ],
+      "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
+      "ledger": [
+        "J-first-e-transport-ee",
+        "J-first-e-transport-eoe",
+        "J-gapped-cycle-itinerary-ee",
+        "J-gapped-cycle-itinerary-eoe",
+        "J-leftover-ooooooeee",
+        "J-three-even-eee",
+        "J-three-even-eeoe",
+        "J-three-even-eoee",
+        "J-three-even-eoeoe",
+        "J-three-even-eooee",
+        "J-three-even-eooeoe",
+        "J-three-even-eoooee",
+        "J-two-even-leftover-ee",
+        "J-two-even-leftover-eoe"
+      ],
+      "trust": {
+        "kernel": 180
+      }
+    },
+    "Problems.Juggler.LeftoverShort": {
+      "declarations": 38,
+      "depends_on": [
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/LeftoverShort.lean",
+      "ledger": [
+        "J-leftover-length-seven-orientations",
+        "J-leftover-length-six-orientations"
+      ],
+      "trust": {
+        "kernel": 38
+      }
+    },
+    "Problems.Juggler.LengthEightCensus": {
+      "declarations": 21,
+      "depends_on": [
+        "Problems.Juggler.LeftoverFamilies",
+        "Problems.Juggler.SmallCycleCensus"
+      ],
+      "file": "formal/Problems/Juggler/LengthEightCensus.lean",
+      "ledger": [
+        "J-small-cycle-census-eight"
+      ],
+      "trust": {
+        "kernel": 21
+      }
+    },
+    "Problems.Juggler.LogLogClock": {
+      "declarations": 22,
+      "depends_on": [
+        "Problems.Juggler.FateContagion",
+        "Problems.Juggler.TerminationFloor257"
+      ],
+      "file": "formal/Problems/Juggler/LogLogClock.lean",
+      "ledger": [
+        "J-clotho-basin-every-block-criterion",
+        "J-fate-visibility-one-law",
+        "J-floor-stratifies-even-cylinders-lean",
+        "J-hug-band-residence-is-prefix-realization",
+        "J-lachesis-basin-every-block",
+        "J-lachesis-etree-density",
+        "J-lachesis-walk-rotation",
+        "J-loglog-clock-band-word-forced-lean",
+        "J-loglog-clock-even-chain-burst-lean",
+        "J-loglog-clock-hug-band-lean",
+        "J-loglog-clock-walk-rotation-lean"
+      ],
+      "trust": {
+        "kernel": 22
+      }
+    },
+    "Problems.Juggler.MinimumRelative": {
+      "declarations": 14,
+      "depends_on": [
+        "Problems.Juggler.FirstInternalOO"
+      ],
+      "file": "formal/Problems/Juggler/MinimumRelative.lean",
+      "ledger": [
+        "J-above-anchor",
+        "J-cube-not-square-split",
+        "J-cube-odd-even-reset",
+        "J-mixed-oe-eighth"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
+    "Problems.Juggler.NearTightScale": {
+      "declarations": 18,
+      "depends_on": [
+        "Problems.Juggler.ExpansionSlack"
+      ],
+      "file": "formal/Problems/Juggler/NearTightScale.lean",
+      "ledger": [
+        "J-approx-equality-rigidity",
+        "J-near-tight-scale-bounds",
+        "J-ooe-scale-decay"
+      ],
+      "trust": {
+        "kernel": 18
+      }
+    },
+    "Problems.Juggler.NormalizedDefect": {
+      "declarations": 38,
+      "depends_on": [
+        "Problems.Juggler.Residuals"
+      ],
+      "file": "formal/Problems/Juggler/NormalizedDefect.lean",
+      "ledger": [
+        "J-normalized-relative-slack"
+      ],
+      "trust": {
+        "kernel": 38
+      }
+    },
+    "Problems.Juggler.O7EEEEGap": {
+      "declarations": 30,
+      "depends_on": [
+        "Problems.Juggler.LeftoverFamilies"
+      ],
+      "file": "formal/Problems/Juggler/O7EEEEGap.lean",
+      "ledger": [
+        "J-o7eeee-gap"
+      ],
+      "trust": {
+        "kernel": 30
+      }
+    },
+    "Problems.Juggler.OddLandingSets": {
+      "declarations": 10,
+      "depends_on": [
+        "Problems.Juggler.LandingParity"
+      ],
+      "file": "formal/Problems/Juggler/OddLandingSets.lean",
+      "ledger": [
+        "J-odd-landing-set-structure",
+        "J-odd-run-recursive"
+      ],
+      "trust": {
+        "kernel": 10
+      }
+    },
+    "Problems.Juggler.OstrowskiNumeration": {
+      "declarations": 15,
+      "depends_on": [
+        "Problems.Juggler.OstrowskiSandwich"
+      ],
+      "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-numeration"
+      ],
+      "trust": {
+        "compiler": 1,
+        "kernel": 14
+      }
+    },
+    "Problems.Juggler.OstrowskiSandwich": {
+      "declarations": 29,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "trust": {
+        "compiler": 1,
+        "kernel": 28
+      }
+    },
+    "Problems.Juggler.PrefixBunched": {
+      "declarations": 40,
+      "depends_on": [
+        "Problems.Juggler.PrefixTwoEven"
+      ],
+      "file": "formal/Problems/Juggler/PrefixBunched.lean",
+      "ledger": [
+        "J-cyclemin-prefix-bunched-eee",
+        "J-cyclemin-prefix-bunched-eeoe",
+        "J-cyclemin-prefix-bunched-eoee",
+        "J-cyclemin-prefix-bunched-eoeoe",
+        "J-cyclemin-prefix-bunched-eooee",
+        "J-cyclemin-prefix-bunched-eooeoe",
+        "J-cyclemin-prefix-bunched-eoooee"
+      ],
+      "trust": {
+        "kernel": 40
+      }
+    },
+    "Problems.Juggler.PrefixTwoEven": {
+      "declarations": 17,
+      "depends_on": [
+        "Problems.Juggler.LeftoverFamilies"
+      ],
+      "file": "formal/Problems/Juggler/PrefixTwoEven.lean",
+      "ledger": [
+        "J-cyclemin-prefix-two-even-ee",
+        "J-cyclemin-prefix-two-even-eoe"
+      ],
+      "trust": {
+        "kernel": 17
+      }
+    },
+    "Problems.Juggler.PreimageCylinders": {
+      "declarations": 13,
+      "depends_on": [
+        "Problems.Juggler.Residuals"
+      ],
+      "file": "formal/Problems/Juggler/PreimageCylinders.lean",
+      "ledger": [
+        "J-itinerary-cylinder-exact",
+        "J-pe-cylinder-next-landing"
+      ],
+      "trust": {
+        "kernel": 13
+      }
+    },
+    "Problems.Juggler.Preimages": {
+      "declarations": 124,
+      "depends_on": [
+        "Problems.Juggler.Envelope"
+      ],
+      "file": "formal/Problems/Juggler/Preimages.lean",
+      "ledger": [
+        "J-inverse-preimage-asymmetry"
+      ],
+      "trust": {
+        "kernel": 124
+      }
+    },
+    "Problems.Juggler.Progress": {
+      "declarations": 20,
+      "depends_on": [
+        "Problems.Juggler.Preimages"
+      ],
+      "file": "formal/Problems/Juggler/Progress.lean",
+      "ledger": [
+        "J-finite-progress-boundary"
+      ],
+      "trust": {
+        "kernel": 20
+      }
+    },
+    "Problems.Juggler.Residuals": {
+      "declarations": 70,
+      "depends_on": [
+        "Problems.Juggler.DefectLowerBound",
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/Residuals.lean",
+      "ledger": [
+        "J-two-block-persistent-expanding"
+      ],
+      "trust": {
+        "kernel": 70
+      }
+    },
+    "Problems.Juggler.RotationAverage": {
+      "declarations": 10,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/RotationAverage.lean",
+      "ledger": [
+        "J-cyclemin-rotation-average"
+      ],
+      "trust": {
+        "kernel": 10
+      }
+    },
+    "Problems.Juggler.RunSurvivorLattice": {
+      "declarations": 29,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/RunSurvivorLattice.lean",
+      "ledger": [
+        "J-run-survivor-lattice"
+      ],
+      "trust": {
+        "kernel": 29
+      }
+    },
+    "Problems.Juggler.SequentialMordell": {
+      "declarations": 14,
+      "depends_on": [
+        "Problems.Juggler.GlobalDefect",
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/SequentialMordell.lean",
+      "ledger": [
+        "J-odd-remainder-even",
+        "J-peak-transports-to-oo",
+        "J-sequential-defect-oo"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
+    "Problems.Juggler.SmallCycleCensus": {
+      "declarations": 8,
+      "depends_on": [
+        "Problems.Juggler.LeftoverShort"
+      ],
+      "file": "formal/Problems/Juggler/SmallCycleCensus.lean",
+      "ledger": [
+        "J-small-cycle-census",
+        "J-small-cycle-census-seven"
+      ],
+      "trust": {
+        "kernel": 8
+      }
+    },
+    "Problems.Juggler.Termination": {
+      "declarations": 40,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/Termination.lean",
+      "ledger": [
+        "J-residual-floor-fifty-three"
+      ],
+      "trust": {
+        "kernel": 40
+      }
+    },
+    "Problems.Juggler.TerminationFloor257": {
+      "declarations": 108,
+      "depends_on": [
+        "Problems.Juggler.Termination"
+      ],
+      "file": "formal/Problems/Juggler/TerminationFloor257.lean",
+      "ledger": [
+        "J-residual-floor-two-hundred-fifty-seven",
+        "J-residual-floor-two-hundred-sixty-one"
+      ],
+      "trust": {
+        "kernel": 108
+      }
+    },
+    "Problems.Juggler.WalkChargeItineraries": {
+      "declarations": 31,
+      "depends_on": [
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/WalkChargeItineraries.lean",
+      "ledger": [
+        "J-cyclemin-hug-prefix-bound",
+        "J-cyclemin-walk-word-identity",
+        "J-lachesis-loglog-clock"
+      ],
+      "trust": {
+        "kernel": 31
+      }
+    },
+    "Problems.Juggler.WalkChargeMax": {
+      "declarations": 9,
+      "depends_on": [
+        "Problems.Juggler.WalkChargeItineraries",
+        "Problems.Juggler.WalkTransport"
+      ],
+      "file": "formal/Problems/Juggler/WalkChargeMax.lean",
+      "ledger": [
+        "J-cyclemin-hug-charge-max"
+      ],
+      "trust": {
+        "kernel": 9
+      }
+    },
+    "Problems.Juggler.WalkTransport": {
+      "declarations": 22,
+      "depends_on": [
+        "Problems.Juggler.MinimumRelative"
+      ],
+      "file": "formal/Problems/Juggler/WalkTransport.lean",
+      "ledger": [
+        "J-cyclemin-walk-transport-envelope",
+        "J-flight-envelope-transport",
+        "J-flight-height-law"
+      ],
+      "trust": {
+        "kernel": 22
+      }
+    },
+    "Problems.Ostrowski.NP.Energy": {
+      "declarations": 79,
+      "depends_on": [],
+      "file": "formal/Problems/Ostrowski/NP/Energy.lean",
+      "ledger": [
+        "OST-np-adjoint-window-det",
+        "OST-np-complete-zero-monoid",
+        "OST-np-consumed-sum-append",
+        "OST-np-energy-ext-interval",
+        "OST-np-energy-homogeneous",
+        "OST-np-energy-step",
+        "OST-np-energy-telescope",
+        "OST-np-fold-s3",
+        "OST-np-impulse-place",
+        "OST-np-origin-particular",
+        "OST-np-particular-s3",
+        "OST-np-recurrence-word-zero",
+        "OST-np-reset-pow-then-hub",
+        "OST-np-reset-prefix",
+        "OST-np-same-energy-same-OnF",
+        "OST-np-val-concat-energy"
+      ],
+      "trust": {
+        "kernel": 79
+      }
+    },
+    "Problems.Ostrowski.NP.KernelFamily": {
+      "declarations": 18,
+      "depends_on": [],
+      "file": "formal/Problems/Ostrowski/NP/KernelFamily.lean",
+      "ledger": [
+        "OST-np-unique-predecessor"
+      ],
+      "trust": {
+        "kernel": 18
+      }
+    },
+    "Problems.Ostrowski.NP.Reachability": {
+      "declarations": 4,
+      "depends_on": [
+        "Problems.Ostrowski.NP.KernelFamily"
+      ],
+      "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
+      "ledger": [
+        "OST-np-kernel-unreach"
+      ],
+      "trust": {
+        "compiler": 1,
+        "kernel": 3
+      }
+    },
+    "Problems.Primes.Residual": {
+      "declarations": 6,
+      "depends_on": [
+        "BTCalculus.Integral"
+      ],
+      "file": "formal/Problems/Primes/Residual.lean",
+      "ledger": [
+        "PRC-jet-equals-prime",
+        "PRC-section-I0-composite",
+        "PRC-sieve-mod-M",
+        "PRC-sieve-prime-separator"
+      ],
+      "trust": {
+        "compiler": 2,
+        "kernel": 4
+      }
+    },
+    "Representation.Words": {
+      "declarations": 30,
+      "depends_on": [],
+      "file": "formal/Representation/Words.lean",
+      "ledger": [
+        "BT-encode-unique",
+        "C-append-plus"
+      ],
+      "trust": {
+        "kernel": 30
+      }
+    }
+  },
+  "totals": {
+    "edges": 119,
+    "edges_before_reduction": 894,
+    "ledger_rows_placed": 321,
+    "nodes": 113
+  }
+}
