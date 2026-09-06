@@ -4081,3 +4081,67 @@ not something the audit was designed for.
 Probe: `k_range_at_the_operating_point`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## `h_1` is not pinned the way `k` is, and the claim that it was is mine
+
+`k` is pinned at the operating point by Theorem 6.1's own cap:
+`2 P^(1/96)` is `2.7684` at `P_0` and does not reach `3` until
+`(3/2)^96 = 8.03e16`, a window of `2240` above the threshold. The first
+shift is nothing like that.
+
+**`h_1 = 1` holds on `[P_0, 2^48)`, and that is a window of `7.85`.**
+Both `(C4)` and Theorem 5.3 cap `h_1` at `P^(1/48)`, so the second value
+arrives at `2^48 = 2.815e14`. That is above `P_0 = 3.586e13`, so `h_1`
+is `1` *at* the threshold --- but the claimed regime is `P >= P_0` and
+does not stop there.
+
+`parameter_cap_reach` said `h_1 = 1` "holds throughout the regime the
+paper's own estimates are claimed in". That is my sentence and it is
+wrong. Corrected, and the corrected fact is now a returned field
+(`window_above_P0`) rather than prose, so it is checked rather than
+asserted:
+
+```text
+  cap                       least P for a second value   window above P_0
+  k    (C3)                 1.678e7                      --  (below P_0)
+  h_1  (C4), outer shift    2.815e14                     7.85
+  h_2  (C4), inner shift    1.678e7                      --  (below P_0)
+```
+
+**And the audit is not blind to it.** What each range actually draws,
+rather than what the caps permit:
+
+```text
+    P       H_1   H_2    h_1 drawn      h_2 drawn
+   1e4       1     1     [1]            [1]
+   1e6       1     1     [1]            [1]
+   1e8       1     2     [1]            [1, 2]
+  1e10       1     2     [1]            [1, 2]
+  1e12       1     3     [1]            [1, 2, 3]
+  1e14       1     3     [1]            [1, 2, 3]
+  1e15       2     4     [1, 2]         [1, 2, 3, 4]
+  1e16       2     4     [1, 2]         [1, 2, 3, 4]
+```
+
+So `h_1 = 2` is exercised at the top two census ranges, and `h_2`
+reaches `3` from `1e12` and `4` from `1e15`. At `P_0` itself the
+admissible values are `h_1 = 1` and `h_2 in {1, 2, 3}`.
+
+The contrast is the finding: the parameter the audit cannot exercise
+inside its hypothesis is `k`, and the reason is that its operating cap
+holds it at `{1, 2}` for `2240` times `P_0`. `h_1` is held at `1` for
+`7.85` times `P_0` and then moves, and the audit crosses that point
+twice.
+
+Tags. EXACT: `h_1`'s second value is at `2^48 = 2.815e14`, a factor
+`7.850` above `P_0`; at `P_0` the admissible sets are `h_1 = 1`,
+`h_2 in {1,2,3}`, `k in {1,2}` under Theorem 6.1; `k`'s window above
+`P_0` is `2240`, `285` times `h_1`'s. COMPUTATIONALLY VERIFIED: the
+eight-range draw table above; `h_1 = 2` drawn at `1e15` and `1e16` and
+nowhere below. OBSERVATION: the corrected claim is now a field of
+`parameter_cap_reach` and a test, not a docstring sentence.
+
+Probe: `shift_reach_in_the_audit`; `parameter_cap_reach` gains
+`window_above_P0` and loses an overclaim. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

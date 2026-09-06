@@ -34434,3 +34434,67 @@ Best next question
   those admit h_2 <= 3 and h_1 <= 1. Does any probe in the audit ever
   run with h_1 > 1, or is the first shift pinned everywhere the way k is?
 ```
+
+## Seven point eight five, not "throughout"
+
+The question was whether `h_1` is pinned everywhere the way `k` is. It
+is not, and the sentence that said otherwise was mine.
+`parameter_cap_reach` claimed `h_1 = 1` "holds throughout the regime the
+paper's own estimates are claimed in". Both `(C4)` and Theorem 5.3 cap
+`h_1` at `P^(1/48)`, so the second value arrives at `2^48 = 2.815e14`,
+which is above `P_0 = 3.586e13` --- by a factor of `7.85`. The claimed
+regime is `P >= P_0` and does not stop there, so the pinning holds on
+`[P_0, 2^48)` and nowhere above it.
+
+The audit crosses that point. Its top two census ranges, `1e15` and
+`1e16`, have `H_1 = 2` and draw `h_1 = 2`; `h_2` reaches `3` from `1e12`
+and `4` from `1e15`. At `P_0` the admissible sets are `h_1 = 1` and
+`h_2 in {1,2,3}`.
+
+The contrast with `k` is the point. `k`'s operating cap `2 P^(1/96)`
+holds it at `{1,2}` until `(3/2)^96 = 8.03e16`, a window of `2240` above
+`P_0`; `h_1`'s window is `7.85`, `285` times narrower. The parameter the
+audit genuinely cannot exercise inside its hypothesis is `k`, and only
+`k`.
+
+The correction is now a returned field, `window_above_P0`, and a test,
+rather than a docstring sentence -- which is where the wrong claim
+survived four passes of being read.
+
+```text
+Phase-end report
+Question
+- does any probe run with h_1 > 1, or is the first shift pinned
+  everywhere the way k is
+Instruments
+- shift_reach_in_the_audit: what each of the eight census ranges draws
+  for h_1 and h_2, against what the caps permit
+- parameter_cap_reach, corrected: window_above_P0 for every cap pinned
+  at the threshold
+Ledger tags
+- EXACT: h_1's second value is at 2^48 = 2.815e14, a factor 7.850 above
+  P_0; at P_0 the admissible sets are h_1 = 1, h_2 in {1,2,3}, k in
+  {1,2}; k's window above P_0 is 2240, 285 times h_1's
+- COMPUTATIONALLY VERIFIED: the eight-range draw table; h_1 = 2 drawn at
+  1e15 and 1e16 and nowhere below
+- OBSERVATION: the corrected claim is a field and a test now, not prose
+Strongest theorem
+- the only parameter the audit cannot exercise inside its own hypothesis
+  is k, and that is because of Theorem 6.1's cap rather than the audit
+Strongest refutation
+- my own parameter_cap_reach docstring, which turned "above P_0" into
+  "throughout the regime" and stood for four passes
+Reusable machinery
+- shift_reach_in_the_audit, window_above_P0, two tests, wired into
+  summary()
+Branch status
+- PARK
+Why
+  Nothing here touches the manuscript; it is the audit describing its
+  own reach correctly.
+Best next question
+- the identity census draws (h_1, h_2, k) independently and uniformly.
+  (C1) is k h_1h_2 <= P^(1/8), which at 1e16 admits products up to 10;
+  the census can draw 2*4*4 = 32. How many of its samples are outside
+  (C1), and does any probe gate on the product rather than the caps?
+```

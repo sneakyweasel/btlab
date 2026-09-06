@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "c7ae8d443e5337d0ad68a65c88825b4d3fd75a10",
+  "git_commit": "0b1d94c47796ba20894adfaf4ff18a4a70596c7a",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -2798,6 +2798,7 @@
       "cap_exponent": "1/24",
       "least_P_admitting_two_values": 16777216.0,
       "pinned_at_P0": false,
+      "window_above_P0": null,
       "pinned_at_ladder_top": true,
       "values_at_P0": 3
     },
@@ -2807,6 +2808,7 @@
       "cap_exponent": "1/48",
       "least_P_admitting_two_values": 281474976710656.0,
       "pinned_at_P0": true,
+      "window_above_P0": 7.8497121063822854,
       "pinned_at_ladder_top": true,
       "values_at_P0": 1
     },
@@ -2816,6 +2818,7 @@
       "cap_exponent": "1/24",
       "least_P_admitting_two_values": 16777216.0,
       "pinned_at_P0": false,
+      "window_above_P0": null,
       "pinned_at_ladder_top": true,
       "values_at_P0": 3
     },
@@ -2825,6 +2828,7 @@
       "cap_exponent": "1/24",
       "least_P_admitting_two_values": 16777216.0,
       "pinned_at_P0": false,
+      "window_above_P0": null,
       "pinned_at_ladder_top": true,
       "values_at_P0": 3
     },
@@ -2834,6 +2838,7 @@
       "cap_exponent": "1/12",
       "least_P_admitting_two_values": 4096.0,
       "pinned_at_P0": false,
+      "window_above_P0": null,
       "pinned_at_ladder_top": false,
       "values_at_P0": 13
     },
@@ -2843,6 +2848,7 @@
       "cap_exponent": "1/24",
       "least_P_admitting_two_values": 1.0,
       "pinned_at_P0": false,
+      "window_above_P0": null,
       "pinned_at_ladder_top": false,
       "values_at_P0": 7
     }
@@ -5162,7 +5168,7 @@
       }
     ],
     "sites": 9,
-    "lines_still_matching": 5,
+    "lines_still_matching": 3,
     "line_numbers_have_drifted": true,
     "by_kind": {
       "danger sizing": 1,
@@ -5192,7 +5198,7 @@
     "no_certificate_row_moves_P0": true
   },
   "c2_occurrence_audit": {
-    "statement_line": 2144,
+    "statement_line": 2146,
     "occurrences": [
       {
         "line": 1860,
@@ -5201,19 +5207,19 @@
         "is_the_statement": false
       },
       {
-        "line": 1977,
+        "line": 1979,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": true,
         "is_the_statement": false
       },
       {
-        "line": 2144,
+        "line": 2146,
         "form": "h_1h_2 <= P^{1/2}/3",
         "above_the_statement": false,
         "is_the_statement": true
       },
       {
-        "line": 3911,
+        "line": 3913,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": false,
         "is_the_statement": false
@@ -5223,7 +5229,7 @@
     "above_the_statement": 2,
     "below_the_statement": 1,
     "below_lines": [
-      3911
+      3913
     ],
     "below_needs_a_stronger_bound_than_C2": true,
     "below_bound_exponent": "1/4",
@@ -5286,6 +5292,144 @@
     "days_at_that_P": 134.04941193133592,
     "orders_beyond_the_audit": 4.22619021733635,
     "k3_is_out_of_reach": true
+  },
+  "shift_reach_in_the_audit": {
+    "rows": [
+      {
+        "P": 10000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "h1_values_drawn": [
+          1
+        ],
+        "h2_values_drawn": [
+          1
+        ],
+        "h1_above_one": false
+      },
+      {
+        "P": 1000000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "h1_values_drawn": [
+          1
+        ],
+        "h2_values_drawn": [
+          1
+        ],
+        "h1_above_one": false
+      },
+      {
+        "P": 100000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "h1_values_drawn": [
+          1
+        ],
+        "h2_values_drawn": [
+          1,
+          2
+        ],
+        "h1_above_one": false
+      },
+      {
+        "P": 10000000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "h1_values_drawn": [
+          1
+        ],
+        "h2_values_drawn": [
+          1,
+          2
+        ],
+        "h1_above_one": false
+      },
+      {
+        "P": 1000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "h1_values_drawn": [
+          1
+        ],
+        "h2_values_drawn": [
+          1,
+          2,
+          3
+        ],
+        "h1_above_one": false
+      },
+      {
+        "P": 100000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "h1_values_drawn": [
+          1
+        ],
+        "h2_values_drawn": [
+          1,
+          2,
+          3
+        ],
+        "h1_above_one": false
+      },
+      {
+        "P": 1000000000000000,
+        "H1": 2,
+        "H2": 4,
+        "K": 4,
+        "h1_values_drawn": [
+          1,
+          2
+        ],
+        "h2_values_drawn": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "h1_above_one": true
+      },
+      {
+        "P": 10000000000000000,
+        "H1": 2,
+        "H2": 4,
+        "K": 4,
+        "h1_values_drawn": [
+          1,
+          2
+        ],
+        "h2_values_drawn": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "h1_above_one": true
+      }
+    ],
+    "ranges_drawing_h1_above_one": [
+      1000000000000000,
+      10000000000000000
+    ],
+    "h1_is_drawn_above_one_somewhere": true,
+    "least_P_admitting_h1_two": 281474976710656.0,
+    "P0": 35858000000000.0,
+    "h1_pinned_at_P0": true,
+    "window_above_P0_where_h1_is_pinned": 7.8497121063822854,
+    "pinned_throughout_the_claimed_regime": false,
+    "h2_at_P0": 3,
+    "h1_at_P0": 1,
+    "k_operating_cap_at_P0": 2.7683665974150213,
+    "k_gains_a_value_at": 8.030838074769683e+16,
+    "k_window_above_P0": 2239.622420316159,
+    "h1_window_is_far_narrower_than_k_window": true
   },
   "kernel_k_uniformity": {
     "P": 10000,
@@ -5354,5 +5498,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 84.7625138759613
+  "elapsed_seconds": 81.97922420501709
 }

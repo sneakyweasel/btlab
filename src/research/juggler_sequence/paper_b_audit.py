@@ -2808,10 +2808,14 @@ def parameter_cap_reach(P0: float = 3.5858e13, ladder_top: int = 3 * 10**5) -> l
     """Which of the paper's parameter caps admit more than one value, and from what P.
 
     A cap 1 <= x <= C P^e pins x to 1 until P = (2/C)^(1/e).  For the two 1/24 caps that is
-    2^24 = 1.7e7; for h_1's 1/48 it is 2^48 = 2.8e14, which is above P_0 = 3.6e13, so h_1 = 1
-    holds throughout the regime the paper's own estimates are claimed in.  Anything checked below
-    those thresholds exercises the degenerate branch only -- which is what the identity census was
-    doing before it was widened, and what every kernel sum in the audit still does for k.
+    2^24 = 1.7e7; for h_1's 1/48 it is 2^48 = 2.815e14.  That is above P_0 = 3.586e13, so h_1 = 1
+    at the threshold -- but only by a factor 7.85, and the claimed regime is P >= P_0 and does not
+    stop there.  An earlier version of this docstring said h_1 = 1 "throughout the regime the
+    paper's own estimates are claimed in", which is wrong: the pinning holds on [P_0, 2^48), a
+    window one order wide, and shift_reach_in_the_audit shows h_1 = 2 drawn at the 1e15 and 1e16
+    ranges.  Anything checked below these thresholds exercises the degenerate branch only -- which
+    is what the identity census was doing before it was widened, and what every kernel sum in the
+    audit still does for k.
     """
 
     rows = []
@@ -2823,6 +2827,7 @@ def parameter_cap_reach(P0: float = 3.5858e13, ladder_top: int = 3 * 10**5) -> l
             "cap_exponent": str(expo),
             "least_P_admitting_two_values": least,
             "pinned_at_P0": least > P0,
+            "window_above_P0": (least / P0) if least > P0 else None,
             "pinned_at_ladder_top": least > ladder_top,
             "values_at_P0": int(float(const) * P0 ** float(expo)),
         })
@@ -4508,6 +4513,61 @@ def k_range_at_the_operating_point(P0: float = 3.5858e13) -> dict[str, Any]:
     }
 
 
+def shift_reach_in_the_audit(seed: int = 41, samples_per_range: int = 60) -> dict[str, Any]:
+    """Is h_1 pinned to 1 everywhere the way k is pinned to {1, 2}?  No, and not by much.
+
+    k is pinned at the operating point by Theorem 6.1's own cap: 2 P^{1/96} is 2.77 at P_0 and
+    reaches 3 only at (3/2)^96 = 8.03e16, 2240 times P_0 (k_range_at_the_operating_point).  The
+    first shift is a different story.  (C4) and Theorem 5.3 both cap h_1 at P^{1/48}, so h_1 = 1
+    until 2^48 = 2.815e14 -- which is above P_0, but only by a factor 7.85.  The claimed regime is
+    P >= P_0 and does not stop there, so "h_1 = 1 throughout the regime the estimates are claimed
+    in", which parameter_cap_reach used to say, is wrong: h_1 = 1 holds on [P_0, 2^48), a window
+    one order wide, and h_1 >= 2 above it.
+
+    The audit is not blind to that.  Its two highest census ranges, 1e15 and 1e16, have
+    H_1 = int(P^{1/48}) = 2, and standing_estimates runs at 1e16, so h_1 = 2 is drawn.  This probe
+    reports what is actually drawn per range rather than what the caps allow.
+    """
+
+    rng = random.Random(seed)
+    ranges = [10**4, 10**6, 10**8, 10**10, 10**12, 10**14, 10**15, 10**16]
+    rows = []
+    for P in ranges:
+        H1 = max(1, int(P ** (1 / 48)))
+        H2 = max(1, int(P ** (1 / 24)))
+        K = max(1, int(P ** (1 / 24)))
+        drawn_h1: set[int] = set()
+        drawn_h2: set[int] = set()
+        for _ in range(samples_per_range):
+            drawn_h1.add(rng.randint(1, H1))
+            drawn_h2.add(rng.randint(1, H2))
+        rows.append({
+            "P": P, "H1": H1, "H2": H2, "K": K,
+            "h1_values_drawn": sorted(drawn_h1),
+            "h2_values_drawn": sorted(drawn_h2),
+            "h1_above_one": max(drawn_h1) > 1,
+        })
+    P0 = 3.5858e13
+    least_h1 = 2.0 ** 48
+    return {
+        "rows": rows,
+        "ranges_drawing_h1_above_one": [r["P"] for r in rows if r["h1_above_one"]],
+        "h1_is_drawn_above_one_somewhere": any(r["h1_above_one"] for r in rows),
+        "least_P_admitting_h1_two": least_h1,
+        "P0": P0,
+        "h1_pinned_at_P0": least_h1 > P0,
+        "window_above_P0_where_h1_is_pinned": least_h1 / P0,
+        "pinned_throughout_the_claimed_regime": False,
+        "h2_at_P0": int(P0 ** (1 / 24)),
+        "h1_at_P0": int(P0 ** (1 / 48)),
+        # the contrast with k, which the operating cap really does pin
+        "k_operating_cap_at_P0": 2 * P0 ** (1 / 96),
+        "k_gains_a_value_at": (3 / 2.0) ** 96,
+        "k_window_above_P0": (3 / 2.0) ** 96 / P0,
+        "h1_window_is_far_narrower_than_k_window": (least_h1 / P0) < ((3 / 2.0) ** 96 / P0) / 100,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4580,6 +4640,7 @@ def summary() -> dict[str, Any]:
     c1sites = c1_invocation_inventory()
     c2sites = c2_occurrence_audit()
     krange = k_range_at_the_operating_point()
+    shifts = shift_reach_in_the_audit()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4640,6 +4701,7 @@ def summary() -> dict[str, Any]:
         "c1_invocation_inventory": c1sites,
         "c2_occurrence_audit": c2sites,
         "k_range_at_the_operating_point": krange,
+        "shift_reach_in_the_audit": shifts,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

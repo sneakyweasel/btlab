@@ -1531,3 +1531,34 @@ def test_an_admissible_k_of_three_is_four_orders_out_of_reach() -> None:
     rows = {x["k"]: x for x in r["rows"]}
     assert rows[3]["inside_C3_at_P0"] and not rows[3]["inside_theorem_6_1_at_P0"]
     assert not rows[4]["inside_C3_at_P0"]
+
+
+# --- whether the first shift is pinned the way k is ---
+
+
+def test_h1_is_pinned_only_one_order_above_P0() -> None:
+    """h1 = 1 on [P_0, 2^48), a window of 7.85 -- not throughout the claimed regime."""
+    r = A.shift_reach_in_the_audit()
+    assert r["h1_pinned_at_P0"] and r["h1_at_P0"] == 1 and r["h2_at_P0"] == 3
+    assert r["least_P_admitting_h1_two"] == 2.0 ** 48
+    assert 7.8 < r["window_above_P0_where_h1_is_pinned"] < 7.9
+    assert not r["pinned_throughout_the_claimed_regime"]
+    # k is pinned by three orders more room than h1 is
+    assert r["h1_window_is_far_narrower_than_k_window"]
+    assert r["k_window_above_P0"] / r["window_above_P0_where_h1_is_pinned"] > 250
+    # and the corrected fact is a returned field of parameter_cap_reach, not only prose
+    caps = {row["parameter"].split(",")[0]: row for row in A.parameter_cap_reach()}
+    assert caps["h_1"]["pinned_at_P0"] and 7.8 < caps["h_1"]["window_above_P0"] < 7.9
+    assert caps["h_2"]["window_above_P0"] is None
+
+
+def test_the_audit_draws_h1_above_one_at_its_top_two_ranges() -> None:
+    """1e15 and 1e16 have H1 = 2, so the first shift is exercised, not only permitted."""
+    r = A.shift_reach_in_the_audit()
+    assert r["h1_is_drawn_above_one_somewhere"]
+    assert r["ranges_drawing_h1_above_one"] == [10**15, 10**16]
+    by_P = {x["P"]: x for x in r["rows"]}
+    assert by_P[10**16]["h1_values_drawn"] == [1, 2]
+    assert by_P[10**14]["h1_values_drawn"] == [1]
+    assert by_P[10**12]["h2_values_drawn"] == [1, 2, 3]
+    assert len(r["rows"]) == 8
