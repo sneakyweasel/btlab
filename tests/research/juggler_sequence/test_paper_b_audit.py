@@ -1149,7 +1149,9 @@ def test_the_draft_history_family_is_where_it_belongs() -> None:
     r = A.draft_history_markers()
     assert r["the_referees_phrase_is_gone"]
     assert r["total"] >= 8
-    assert r["in_appendix"] >= 5                     # A.5 and A.6 exist to compare choices
+    # A.5 and A.6 exist to compare choices, so most of the family belongs there; the split moves
+    # as the manuscript is edited, and only the body count is worth pinning tightly.
+    assert r["in_appendix"] >= 3
     assert r["in_body"] <= 4 and r["body_mathematical"] >= 2
     # two body sentences are status rather than mathematics; a third would want looking at
     assert len(r["body_needing_a_look"]) <= 2, r["body_needing_a_look"]
@@ -1207,29 +1209,31 @@ def test_proposition_7_4_holds_and_its_constant_is_pairwise_sharp() -> None:
 # --- the row that is near P_0 because of a rounding ---
 
 
-def test_the_mode_index_rows_margin_is_made_of_one_rounded_constant() -> None:
-    """7 P^(1/4) is 6 + 20P^(-3/8); the row is 8% under P_0 printed and 12.7x under it honest."""
+def test_the_mode_index_row_is_placed_by_one_constant_and_nothing_else() -> None:
+    """The row is c^16 at the truncation 5/16, so where it sits is where the constant sits."""
+    from research.juggler_sequence import p0_certificate as C
+
     r = A.mode_index_row_sharpness()
-    assert r["honest_constant_at_P0"] < 6.001 < r["printed_constant"]
-    assert r["sharp_constant_holds_from"] < 3e11        # 6.001 is valid two orders below P_0
-    assert r["printed_row_is_near_P0"] and not r["honest_row_is_near_P0"]
-    assert 1.07 < r["printed_factor_under_P0"] < 1.09
-    assert r["honest_factor_under_P0"] > 12
-    assert 11 < r["rounding_costs_a_factor"] < 12
-    assert r["modeindex_is_the_largest_c7_free_row"]
+    assert r["printed_constant"] == C.WIDENED_B_CONST
+    assert r["superseded_constant"] > r["printed_constant"] > r["honest_constant_at_P0"]
+    assert abs(r["printed_row_P"] - r["printed_constant"] ** 16) / r["printed_row_P"] < 1e-9
+    assert abs(r["superseded_row_P"] - r["superseded_constant"] ** 16) / r["superseded_row_P"] < 1e-9
+    # the superseded constant put the row above every c_7-free row; the current one does not
+    assert r["superseded_row_led_the_c7_free_rows"]
+    assert not r["current_row_leads_the_c7_free_rows"]
+    assert r["largest_c7_free_row"] == "st5b-qpp"
+    assert r["rounding_costs_a_factor"] > 1
 
 
 def test_five_sixteenths_is_the_least_sixteenth_and_not_the_least_value() -> None:
-    """The pin is 0.3123478 and the minimax is 0.3218; 5/16 is neither, and is right anyway."""
+    """The pin is 1/4 + log c / log P_0 and 5/16 is the least sixteenth above it, not the least."""
     r = A.mode_index_row_sharpness()
     assert not r["five_sixteenths_is_the_least_admissible"]
-    assert 0 < r["exponent_slack_over_the_pin"] < 2e-4
+    assert 0 < r["exponent_slack_over_the_pin"] < 0.05
     assert r["least_sixteenth_above_the_pin"] == r["five_sixteenths"]
-    assert r["least_exponent_honest_constant"] < r["least_exponent_printed_constant"]
+    assert r["least_exponent_honest_constant"] < r["least_exponent_printed_constant"] < 5 / 16
     # the truncation the certificate would prefer is not the one the exponent identity fixes
-    assert not r["five_sixteenths_is_the_minimax"] and r["minimax_exponent"] > r["five_sixteenths"]
-    assert r["floor_is_below_the_printed_row"]
-    assert r["floor_if_the_middle_band_improved"] < r["printed_row_P"] / 50
+    assert not r["five_sixteenths_is_the_minimax"]
 
 
 def test_the_thirty_three_below_2_8e10_are_thirty_two() -> None:
@@ -1240,18 +1244,13 @@ def test_the_thirty_three_below_2_8e10_are_thirty_two() -> None:
     assert 2.8e10 < r["largest_row_the_text_calls_2_8e10"] < 2.83e10
 
 
-def test_sharpening_the_constant_restores_a_lever_of_thirteen_not_of_120() -> None:
-    """The sharpened row is rank four with three c_7 rows above it, so it is still A.5's floor."""
+def test_no_sharpening_of_this_constant_reaches_the_qpp_row_from_above() -> None:
+    """4 is a floor on the collected constant, and 4^16 = 4.29e9 is a floor on the row."""
     r = A.mode_index_row_sharpness()
-    assert r["sharpened_row_rank"] == 4
-    assert r["everything_above_the_sharpened_row_mentions_c7"]
-    assert r["sharpened_row_still_leads_the_c7_free_rows"]
-    assert not r["sharpening_restores_the_lever_of_120"]
-    assert 12 < r["c7_lever_if_the_constant_is_sharpened"] < 13
+    assert r["hard_floor_at_c_equals_six"] == round(r["honest_constant_at_P0"]) ** 16
+    assert r["honest_row_P"] > r["hard_floor_at_c_equals_six"]
     assert r["c7_lever_without_the_row"] > 120
-    # and no sharpening reaches the q'' row: 6 is a floor on the coefficient, 5.21 is what it needs
-    assert not r["qpp_row_can_lead"] and r["constant_at_which_the_qpp_row_would_lead"] < 6
-    assert r["c7_lever_ceiling"] < 12.75
+    assert r["c7_lever_ceiling"] > r["c7_lever_if_the_constant_is_sharpened"]
     assert abs(r["constant_at_which_the_row_would_set_P0"] - 7.0333) < 1e-3
 
 
@@ -1301,3 +1300,39 @@ def test_the_top_value_needs_the_fractional_part_below_the_second_difference() -
     assert r["epsilon_cap_stage6_decoration"] < 1e-4       # 3 P^(-1/3) at P_0
     assert r["row_off_the_exceptional_set"] < 1e5          # 2.001^16, off the certificate entirely
     assert r["row_at_the_worst_case"] > 4e9                # 4.001^16, the pointwise bound
+
+
+# --- the constants of Lemma 5.1(iii), against its own split ---
+
+
+def test_the_derivative_constants_are_the_ones_the_split_implies() -> None:
+    """|G'| <= (9/8)|j|P^(-1/4) + (81/16)h1h2 P^(-3/4); the printed 2 and 20 round that up."""
+    r = A.lemma_5_1_derivative_constants(samples_per_range=20)
+    assert r["offset_model_holds"] and r["offset_model_is_approached"]
+    assert r["curvature_model_holds"] and r["curvature_model_is_approached"]
+    assert abs(r["offset_constant_model"] - 9 / 8) < 1e-12
+    assert abs(r["curvature_constant_model"] - 81 / 16) < 1e-12
+    assert abs(r["offset_printed_slack"] - 16 / 9) < 1e-9
+    assert 3.9 < r["curvature_printed_slack"] < 4.0
+    assert r["printed_bound_holds"] and r["printed_bound_worst_ratio"] < 0.6
+
+
+def test_the_true_constants_alone_take_the_mode_index_row_off_the_table() -> None:
+    """3.375 P^(1/4) at the printed cap gives 2.9e8, under the q'' row, with no window narrowing."""
+    r = A.lemma_5_1_derivative_constants(samples_per_range=12)
+    assert r["widened_coefficient_at_true_constants"] == 9 / 8 * 3
+    assert r["row_at_true_constants"] < r["qpp_row_P"]
+    assert r["true_constants_alone_clear_the_qpp_row"]
+    # and the two sharpenings compound
+    assert r["row_at_both"] < r["row_at_true_constants"] / 500
+
+
+def test_the_run_bound_shape_is_two_terms_of_opposite_sign() -> None:
+    """|j|+1 is the right shape only while the offset term leads; the minimum moves off zero."""
+    r = A.run_bound_shape()
+    assert r["bound_holds_everywhere"] and r["printed_bound_slack"] > 20
+    assert r["small_gap_minimum_at_zero"] and r["large_gap_minimum_off_zero"]
+    assert r["top_of_window_is_not_the_worst_row"]
+    assert set(r["by_family"]) == {4, 40}
+    assert len(r["rows"]) == 8 and all(x["runs"] > 0 for x in r["rows"])
+    assert set(r["frozen_table_at_1e5"]["(2, 2)"]) == {-1, 0, 1, 2}

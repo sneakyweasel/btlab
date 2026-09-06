@@ -111,9 +111,9 @@
       {
         "tag": "st6D1-window",
         "site": "Thm 5.3 St.6(D1)",
-        "claim": "P^(1/2) >= 8(1 + 7 P^(1/4))",
-        "log10_P_min": 6.997166822300469,
-        "P_min": 9934975.999587724
+        "claim": "P^(1/2) >= 8(1 + 5 P^(1/4))",
+        "log10_P_min": 6.41686142523632,
+        "P_min": 2611327.998431453
       },
       {
         "tag": "st6D1-good",
@@ -125,9 +125,9 @@
       {
         "tag": "st6D1-modeindex",
         "site": "Thm 5.3 St.6(D1)",
-        "claim": "widened |B_0| <= R_0: 7 P^(1/4) <= P^(5/16)",
-        "log10_P_min": 13.521568640228109,
-        "P_min": 33232930569600.977
+        "claim": "widened |B_0| <= R_0: 5 P^(1/4) <= P^(5/16)",
+        "log10_P_min": 11.183520069376302,
+        "P_min": 152587890625.0003
       },
       {
         "tag": "5b-j0-window",
@@ -281,13 +281,13 @@
       "log10_P_min": 13.554580687676504,
       "P_min": 35857556192838.55
     },
-    "P0_excluding_lemma_3_9_balance": 33232930569600.977,
+    "P0_excluding_lemma_3_9_balance": 298166397427.1972,
     "binding_excluding_balance": {
-      "tag": "st6D1-modeindex",
-      "site": "Thm 5.3 St.6(D1)",
-      "claim": "widened |B_0| <= R_0: 7 P^(1/4) <= P^(5/16)",
-      "log10_P_min": 13.521568640228109,
-      "P_min": 33232930569600.977
+      "tag": "st5b-qpp",
+      "site": "Thm 5.3 St.5b(a)",
+      "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+      "log10_P_min": 11.474458698022962,
+      "P_min": 298166397427.1972
     },
     "P0_at_superseded_kappa": 1.2241758948436184e+16,
     "kappa_tradeoff": [
@@ -409,7 +409,7 @@
           0.0005341880341880342,
           0.0005341880341880342
         ],
-        "P0": 33232930569600.977,
+        "P0": 4028541771767.7676,
         "P1": 1.015798566727497e+23
       }
     },
@@ -432,8 +432,8 @@
         "window": 1394008931748.266,
         "flat": 73992850275952.14,
         "worst": 73992850275952.14,
-        "modeindex": 1.1044276742439192e+27,
-        "worst_all": 1.1044276742439192e+27
+        "modeindex": 2.3283064365387052e+22,
+        "worst_all": 2.3283064365387052e+22
       },
       {
         "a": 0.3125,
@@ -442,8 +442,8 @@
         "window": 744857758.4086101,
         "flat": 5505905905.109001,
         "worst": 298166397427.1972,
-        "modeindex": 33232930569600.977,
-        "worst_all": 33232930569600.977
+        "modeindex": 152587890625.0003,
+        "worst_all": 298166397427.1972
       },
       {
         "a": 0.3333333333333333,
@@ -452,7 +452,7 @@
         "window": 34914123.92307292,
         "flat": 141561334.55895782,
         "worst": 1580640553933.7385,
-        "modeindex": 13841287201.000092,
+        "modeindex": 244140625.0000006,
         "worst_all": 1580640553933.7385
       },
       {
@@ -462,7 +462,7 @@
         "window": 688222.5326710425,
         "flat": 1523647.098803368,
         "worst": 7.976644307686548e+22,
-        "modeindex": 5764800.999999998,
+        "modeindex": 390625.0000000004,
         "worst_all": 7.976644307686548e+22
       }
     ],
@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "e8f67935226e5e203901013f29a98f2b48c6d9f1",
+  "git_commit": "0da2ea0a95bb9ca9bf0bac2e99d1a390e36ea8c6",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -2999,10 +2999,10 @@
         "factor": 53.08379503915545
       }
     ],
-    "largest_untouched_row_P": 33232930569600.977,
+    "largest_untouched_row_P": 298166397427.1972,
     "certified_P0": 35857556192838.55,
-    "P0_with_the_pairing_fixed": 33232930569600.977,
-    "P0_over_estimate_factor": 1.0789766529238436,
+    "P0_with_the_pairing_fixed": 4889385953644.929,
+    "P0_over_estimate_factor": 7.333754490399256,
     "ratio_exponent_gap": "1/12",
     "direction_is_safe": true
   },
@@ -3075,8 +3075,8 @@
     "st5b_qpp_fixed": 8712655756.535175,
     "st5b_qpp_factor": 34.22221716995337,
     "certified_P0": 35857556192838.55,
-    "P0_with_every_pairing_fixed": 33232930569600.977,
-    "largest_untouched_row_P": 33232930569600.977
+    "P0_with_every_pairing_fixed": 4889385953644.929,
+    "largest_untouched_row_P": 152587890625.0003
   },
   "step5b_budget_split": {
     "as_printed": {
@@ -3769,7 +3769,7 @@
   "draft_history_markers": {
     "occurrences": [
       {
-        "line": 2005,
+        "line": 2045,
         "section": "4. The level-2 wave and the kernel theorem",
         "in_appendix": false,
         "mathematical": false,
@@ -3777,7 +3777,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 3947,
+        "line": 3991,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3785,7 +3785,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 4879,
+        "line": 4923,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3793,7 +3793,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5384,
+        "line": 5428,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3801,7 +3801,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6195,
+        "line": 6239,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3809,15 +3809,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6484,
-        "section": "A.5 The two constants that carry the threshold",
-        "in_appendix": true,
-        "mathematical": false,
-        "needs_a_look": false,
-        "text": "*The floor that used to be printed here was \\(2.98\\cdot10^{11}\\), a"
-      },
-      {
-        "line": 6567,
+        "line": 6609,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3825,7 +3817,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6601,
+        "line": 6638,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3833,7 +3825,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6680,
+        "line": 6717,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3841,13 +3833,13 @@
         "text": "worst site is \\(7.4\\cdot10^{13}\\), which no longer sneaks under the"
       }
     ],
-    "total": 9,
-    "in_appendix": 5,
+    "total": 8,
+    "in_appendix": 4,
     "in_body": 4,
     "body_mathematical": 2,
     "body_needing_a_look": [
-      2005,
-      3947
+      2045,
+      3991
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -4425,47 +4417,54 @@
     "constant_is_two_pieces_times_two_orderings_over_pi": true
   },
   "mode_index_row_sharpness": {
-    "printed_constant": 7.0,
-    "honest_constant_at_P0": 6.000165219088582,
+    "printed_constant": 5.0,
+    "superseded_constant": 7.0,
+    "superseded_row_P": 33232930569600.977,
+    "superseded_row_led_the_c7_free_rows": true,
+    "current_row_leads_the_c7_free_rows": false,
+    "honest_constant_at_P0": 4.000165219088582,
     "sharp_constant_holds_from": 294722519891.23047,
-    "printed_row_P": 33232930569600.977,
-    "honest_row_P": 2824335115808.879,
-    "rounding_costs_a_factor": 11.766638591710882,
-    "printed_factor_under_P0": 1.0789900073633663,
-    "honest_factor_under_P0": 12.696085460712194,
-    "printed_row_is_near_P0": true,
+    "printed_row_P": 152587890625.0003,
+    "honest_row_P": 4379007219.81777,
+    "rounding_costs_a_factor": 34.845316064893396,
+    "printed_factor_under_P0": 234.99898879999952,
+    "honest_factor_under_P0": 8188.614039666327,
+    "printed_row_is_near_P0": false,
     "honest_row_is_near_P0": false,
-    "least_exponent_printed_constant": 0.31234775714238516,
-    "least_exponent_honest_constant": 0.307409588575059,
+    "least_exponent_printed_constant": 0.301567049048438,
+    "least_exponent_honest_constant": 0.2944187617828303,
     "five_sixteenths": 0.3125,
     "five_sixteenths_is_the_least_admissible": false,
-    "exponent_slack_over_the_pin": 0.00015224285761483713,
+    "exponent_slack_over_the_pin": 0.010932950951561993,
     "least_sixteenth_above_the_pin": 0.3125,
-    "minimax_exponent": 0.32184809120250163,
-    "minimax_worst": 578481371881.6445,
+    "minimax_exponent": 0.3111185318274245,
+    "minimax_worst": 273087782508.96246,
     "five_sixteenths_is_the_minimax": false,
-    "floor_if_the_middle_band_improved": 578481371881.6445,
-    "floor_is_below_the_printed_row": true,
-    "largest_c7_free_row": "st6D1-modeindex",
-    "largest_c7_free_row_P": 33232930569600.977,
-    "modeindex_is_the_largest_c7_free_row": true,
-    "sharpened_row_rank": 4,
+    "floor_if_the_middle_band_improved": 273087782508.96246,
+    "floor_is_below_the_printed_row": false,
+    "largest_c7_free_row": "st5b-qpp",
+    "largest_c7_free_row_P": 298166397427.1972,
+    "modeindex_is_the_largest_c7_free_row": false,
+    "sharpened_row_rank": 7,
     "rows_above_the_sharpened_row": [
       "5a-W<=c7S",
       "5b-E<=c7S",
-      "5b-W<=c7S"
+      "5b-W<=c7S",
+      "s3s1-Bsmall",
+      "st5b-qpp",
+      "t63-flat"
     ],
-    "everything_above_the_sharpened_row_mentions_c7": true,
-    "sharpened_row_still_leads_the_c7_free_rows": true,
+    "everything_above_the_sharpened_row_mentions_c7": false,
+    "sharpened_row_still_leads_the_c7_free_rows": false,
     "qpp_row_P": 298166397427.1972,
     "constant_at_which_the_qpp_row_would_lead": 5.213791607122522,
-    "qpp_row_can_lead": false,
-    "hard_floor_at_c_equals_six": 2821109907456.0,
+    "qpp_row_can_lead": true,
+    "hard_floor_at_c_equals_six": 4294967296.0,
     "c7_lever_without_the_row": 120.26170725276107,
-    "c7_lever_with_the_printed_row": 1.0789900073633663,
-    "c7_lever_if_the_constant_is_sharpened": 12.696085460712194,
-    "c7_lever_ceiling": 12.710600145435583,
-    "sharpening_restores_the_lever_of_120": false,
+    "c7_lever_with_the_printed_row": 234.99898879999952,
+    "c7_lever_if_the_constant_is_sharpened": 8188.614039666327,
+    "c7_lever_ceiling": 8348.841220140457,
+    "sharpening_restores_the_lever_of_120": true,
     "constant_at_which_the_row_would_set_P0": 7.033340270436155,
     "rows_at_or_below_2_8e10": 32,
     "rows_above_2_8e10": 6,
@@ -4694,6 +4693,170 @@
     "row_at_the_worst_case": 4312179415.050242,
     "worst_case_is_two_not_one": true
   },
+  "lemma_5_1_derivative_constants": {
+    "offset_samples": 35,
+    "curvature_samples": 29,
+    "offset_constant_model": 1.125,
+    "offset_constant_measured": 1.1211597876075934,
+    "offset_constant_printed": 2.0,
+    "offset_model_holds": true,
+    "offset_model_is_approached": true,
+    "offset_printed_slack": 1.7777777777777777,
+    "curvature_constant_model": 5.0625,
+    "curvature_constant_measured": 4.924734770334844,
+    "curvature_constant_printed": 20.0,
+    "curvature_model_holds": true,
+    "curvature_model_is_approached": true,
+    "curvature_printed_slack": 3.950617283950617,
+    "printed_bound_holds": true,
+    "printed_bound_worst_ratio": 0.5594609718600766,
+    "widened_coefficient_printed": 7.0,
+    "widened_coefficient_at_true_constants": 3.375,
+    "widened_coefficient_at_true_constants_and_narrow_window": 2.25,
+    "row_at_true_constants": 284733788.9172359,
+    "row_at_both": 434518.14818652626,
+    "qpp_row_P": 298000000000.0,
+    "true_constants_alone_clear_the_qpp_row": true
+  },
+  "run_bound_shape": {
+    "P": 20000,
+    "rows": [
+      {
+        "h1": 10,
+        "h2": 4,
+        "h1h2": 40,
+        "j": -1,
+        "n0": 22651,
+        "runs": 3194,
+        "printed_bound": 73998.88454232688,
+        "ratio": 0.0431628127877124,
+        "epsilon": 0.848528137423857
+      },
+      {
+        "h1": 10,
+        "h2": 4,
+        "h1h2": 40,
+        "j": 0,
+        "n0": 20005,
+        "runs": 1303,
+        "printed_bound": 36999.44227116344,
+        "ratio": 0.03521674706473967,
+        "epsilon": 0.848528137423857
+      },
+      {
+        "h1": 10,
+        "h2": 4,
+        "h1h2": 40,
+        "j": 1,
+        "n0": 20001,
+        "runs": 501,
+        "printed_bound": 73998.88454232688,
+        "ratio": 0.006770372325185946,
+        "epsilon": 0.848528137423857
+      },
+      {
+        "h1": 10,
+        "h2": 4,
+        "h1h2": 40,
+        "j": 2,
+        "n0": 20029,
+        "runs": 2136,
+        "printed_bound": 110998.32681349032,
+        "ratio": 0.01924353331549858,
+        "epsilon": 0.848528137423857
+      },
+      {
+        "h1": 2,
+        "h2": 2,
+        "h1h2": 4,
+        "j": -1,
+        "n0": 20003,
+        "runs": 1850,
+        "printed_bound": 73998.88454232688,
+        "ratio": 0.025000376849489022,
+        "epsilon": 0.0848528137423857
+      },
+      {
+        "h1": 2,
+        "h2": 2,
+        "h1h2": 4,
+        "j": 0,
+        "n0": 20005,
+        "runs": 131,
+        "printed_bound": 36999.44227116344,
+        "ratio": 0.003540593910576283,
+        "epsilon": 0.0848528137423857
+      },
+      {
+        "h1": 2,
+        "h2": 2,
+        "h1h2": 4,
+        "j": 1,
+        "n0": 20001,
+        "runs": 1590,
+        "printed_bound": 73998.88454232688,
+        "ratio": 0.021486810373344618,
+        "epsilon": 0.0848528137423857
+      },
+      {
+        "h1": 2,
+        "h2": 2,
+        "h1h2": 4,
+        "j": 2,
+        "n0": 26295,
+        "runs": 3269,
+        "printed_bound": 110998.32681349032,
+        "ratio": 0.0294508943859386,
+        "epsilon": 0.0848528137423857
+      }
+    ],
+    "by_family": {
+      "40": {
+        "-1": 3194,
+        "0": 1303,
+        "1": 501,
+        "2": 2136
+      },
+      "4": {
+        "-1": 1850,
+        "0": 131,
+        "1": 1590,
+        "2": 3269
+      }
+    },
+    "bound_holds_everywhere": true,
+    "worst_ratio": 0.0431628127877124,
+    "printed_bound_slack": 23.168091591210672,
+    "small_gap_minimum_at_zero": true,
+    "large_gap_minimum_off_zero": true,
+    "top_of_window_is_not_the_worst_row": true,
+    "frozen_table_at_1e5": {
+      "(10, 10)": {
+        "-1": 10618,
+        "0": 4867,
+        "1": 1513,
+        "2": 6636
+      },
+      "(4, 25)": {
+        "-1": 11850,
+        "0": 4866,
+        "1": 1512,
+        "2": 6636
+      },
+      "(5, 5)": {
+        "-1": 6969,
+        "0": 1218,
+        "1": 4535,
+        "2": 10285
+      },
+      "(2, 2)": {
+        "-1": 5946,
+        "0": 195,
+        "1": 5557,
+        "2": 11306
+      }
+    }
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -4761,5 +4924,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 77.78715014457703
+  "elapsed_seconds": 71.54792881011963
 }

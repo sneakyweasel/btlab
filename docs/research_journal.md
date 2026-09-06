@@ -33561,3 +33561,84 @@ Best next question
   count still sit two orders under the bound, or is the |j|+1 factor
   doing work at the top of the window?
 ```
+
+## Differentiate the split and the constants fall out
+
+Two passes narrowing the offset window, and the coefficient beside it
+was never checked. Lemma 5.1(iii) prints the exact split of `F` into an
+offset term and a curvature term; differentiating it and composing with
+`X` gives `(9/8) j n^(-1/4)` and `(81/16) h_1h_2 n^(-3/4)`, both
+decreasing in `n`, so the block supremum is at `n = P`. The bound
+printed beside the split is `2|j| P^(-1/4) + 20 h_1h_2 P^(-3/4)`: the
+same two terms with the constants rounded up by `1.78` and `3.95`.
+Measured on `93` samples from `1e6` to `2e14`, both models are
+approached to `99.7%` from below, and the printed bound never exceeds
+`0.560` of itself at any `P`.
+
+That is enough to retire the mode-index row on its own. At the true
+constants and the *printed* cap `|j'| <= 3`, the widened coefficient is
+`3.375 P^(1/4)` rather than `7 P^(1/4)`, and the row is `2.85e8` --- two
+orders under the `q''` row. The window narrowing of the last two passes
+is a second, independent route to the same place; together they give
+`2.251` and a row of `4.35e5`.
+
+The run-bound question answers itself once the signs are visible. The
+two terms of `G'` are opposite in sign, so the run count is not
+monotone in `|j|`: at `h_1h_2 = 4` it is minimal at `j = 0` and
+near-linear, but at `h_1h_2 = 100` the curvature term cancels the offset
+term near `j = +1`, where the count is a third of its value at `j = 0`.
+And since `j = 2` requires `h_1h_2` of order `P^(1/2)`, the top of the
+window can only be seen in the cancelling regime --- so `|j|+1` is never
+tested at the top with the offset term alone. The bound holds by a
+factor of at least `23` everywhere, and the closest row is `j = -1`.
+
+Overtaken mid-pass: the concurrent session moved the certificate's
+widened constant to `5` on the window finding, so the row is `1.53e11`
+and the `q''` row leads the `c_7`-free group again. The derivative
+constants apply on top of that: `2.251` and a row of `4.35e5`. Two of
+my tests pinned the old placement and are re-aimed at the invariants;
+the probe now reads the constants from the certificate.
+
+```text
+Phase-end report
+Question
+- is 22(|j|+1) P^(3/4) doing work at the top of the offset window, and
+  is the coefficient beside it sharp
+Instruments
+- lemma_5_1_derivative_constants: |G'| by numerical differentiation
+  against the split's own constants, 93 samples over four ranges
+- run_bound_shape: run counts of floor(G) at four offsets and two gap
+  products, plus RUN_BOUND_TABLE_AT_1E5 measured out of band
+Ledger tags
+- EXACT: (9/8) and (81/16) from the printed split; the widened
+  coefficient 3.375 P^(1/4) at the printed cap and the row 2.85e8
+- COMPUTATIONALLY VERIFIED: both models hold and are approached to
+  99.7%; printed bound worst ratio 0.560, flat in P; the run tables at
+  1e5 and 2e4, bound holding with slack >= 23
+- OBSERVATION: the run count's minimum moves from j = 0 to j = +1 once
+  h_1h_2 is of order P^(1/2), and j = 2 only exists in that regime
+- HUMAN PROOF: xi_1 and xi_2 are mean-value points known only to lie in
+  intervals; 9/8 and 81/16 as stated bounds need them controlled
+Strongest theorem
+- the two constants of the derivative bound are the lemma's own split
+  rounded up by 1.78 and 3.95, and the sharper pair alone takes the
+  mode-index row from 3.32e13 to 2.85e8
+Strongest refutation
+- my own framing of the |j|+1 factor as a worst case in |j|: the two
+  terms have opposite signs, so the count is not monotone and the
+  factor's shape is only right where the offset term leads
+Reusable machinery
+- lemma_5_1_derivative_constants, run_bound_shape,
+  RUN_BOUND_TABLE_AT_1E5; three tests; both wired into summary()
+Branch status
+- PARK
+Why
+  Four findings now point at the same three printed numbers in one
+  lemma -- 3, 2 and 20 -- and every one of them is an edit to the
+  manuscript, which the concurrent session owns.
+Best next question
+- the split's mean-value points xi_1 in (0, j) and xi_2 in
+  (0, beta_1+beta_2) are what stands between the measured constants and
+  stated ones. Does the second one need controlling at all, or does
+  monotonicity of (m + xi)^(-1/2) in xi give 81/16 outright at
+  xi_2 = 0?

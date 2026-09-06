@@ -3101,3 +3101,131 @@ Stage-6 bullet depends on.
 Probe: `branch_offset_extremes`, two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`; no
 manuscript or certificate edit.
+
+## Both constants in the Lemma 5.1(iii) derivative bound are its own split, rounded up
+
+The last two passes narrowed the offset window and left the coefficient
+`6 = 2|j'|` alone. The `2` is not sharp either, and neither is the `20`
+beside it. Both follow from the exact split the lemma already prints.
+
+**The split, differentiated.** Lemma 5.1(iii) writes
+
+```text
+  F(m) = (3/2) j (m + beta_1 + beta_2 + xi_1)^(1/2)
+       + (3/4) beta_1 beta_2 (m + xi_2)^(-1/2)
+```
+
+exactly. Differentiate and compose with `X`, using `X'(n) = (3/2)
+n^(1/2)` and `m ~ X = n^(3/2)`:
+
+```text
+  offset term      (3/4) j m^(-1/2) . (3/2) n^(1/2)   =  (9/8) j n^(-1/4)
+  curvature term   (3/8) b_1 b_2 m^(-3/2) . (3/2) n^(1/2),  b_i ~ 3 h_i n^(1/2)
+                                                      =  (81/16) h_1h_2 n^(-3/4)
+```
+
+Both are decreasing in `n`, so the supremum over the block `(P, 2P]` is
+at `n = P` and the constants are `9/8 = 1.125` and `81/16 = 5.0625`.
+The printed bound is `2|j| P^(-1/4) + 20 h_1h_2 P^(-3/4)`.
+
+```text
+  term        printed   from the split   slack   measured sup   samples
+  offset        2         9/8  = 1.1250  1.778     1.1216         35
+  curvature    20        81/16 = 5.0625  3.951     5.0455         58
+```
+
+Measured on the admissible box across `1e6` to `2e14`: the offset
+model is approached to `99.7%` and the curvature model to `99.7%`,
+from below, at every range. The printed bound as a whole is never
+above `0.560` of itself, and the ratio is flat in `P` --- constant
+slack, not an asymptotic one.
+
+**What the slack does where the constants are certified.** The widened
+theta-coefficient of Lemma 5.2(iii) is
+`|q'|(2|j'| P^(-1/4) + 20 h h' P^(-3/4))`, collected as `7 P^(1/4)`.
+At the true constants, with `|q'| h' <= P^(1/2)`, `h' >= 1` and
+`h <= P^(1/8)`, it is
+`(9/8)|j'| P^(1/4)/h' + (81/16) h P^(-1/4) <= 3.375 P^(1/4)` at the
+*printed* cap `|j'| <= 3`.
+
+```text
+  what is sharpened            coefficient   row        A.5 floor   c_7 lever
+  nothing (printed)            7             3.32e13    3.32e13       1.079
+  window to -1 <= j <= 2       4.001         4.31e9     2.98e11     120.3
+  the two derivative constants 3.376         2.85e8     2.98e11     120.3
+  both                         2.251         4.35e5     2.98e11     120.3
+```
+
+Either sharpening alone retires the row; they are independent, and the
+constants one needs no new argument at all --- only the split the
+lemma already proves, differentiated.
+
+## And the run bound's `|j|+1` is the right shape only where the offset term leads
+
+The recorded question was whether `22(|j|+1) P^(3/4)` is doing work at
+the top of the window. It is not, and the reason is the sign structure
+of the two terms above: they are *opposite* in sign, so the run count
+is not monotone in `|j|`.
+
+```text
+  P = 1e5, runs of floor(G) over the half-block, betas frozen at n_0
+  h_1h_2     j=-1     j=0     j=1     j=2     minimum at
+     100    10618    4867    1513    6636      j = +1
+     100*   11850    4866    1512    6636      j = +1
+      25     6969    1218    4535   10285      j =  0
+       4     5946     195    5557   11306      j =  0
+  * the same product as (10,10), at (4,25)
+```
+
+At `h_1h_2 = 4` the offset term leads, the count is near-linear in
+`|j|` and minimal at `j = 0`: `|j|+1` is the right shape. At
+`h_1h_2 = 100` the curvature term is comparable and cancels the offset
+term near `j = +1`, where the count falls to a third of its value at
+`j = 0`. Reproduced at `P = 2e4`: minimum at `j = 0` for `h_1h_2 = 4`,
+at `j = +1` for `h_1h_2 = 40`.
+
+The two regimes are not independent. `j = 2` needs
+`{n^(3/2)} < Delta^2 X` and therefore `h_1h_2` of order `P^(1/2)`, so
+**the top of the window can only be observed where the curvature term
+is competing** --- `|j|+1` is never tested at the top with the offset
+term alone. The bound holds everywhere by a factor of at least `23`,
+and the row that comes closest is `j = -1`, not `j = 2`.
+
+**Overtaken mid-pass, in the direction of the first table.** While
+this was being measured the concurrent session acted on the window
+finding: `WIDENED_B_CONST` is `5`, the row reads `5 P^(1/4) <=
+P^(5/16)` at `1.53e11`, and it now sits *below* the `q''` row, which
+is again the largest `c_7`-free one. So the second line of the ladder
+is the certificate's present state and the first is history. The
+derivative constants are independent of that move and still apply on
+top of it: with `|j'| <= 2` and `(9/8)`, the lead is `2.25` and the
+collected constant `2.251` from `7.6e9`, for a row of `4.35e5`.
+
+Two of my tests pinned the old placement and are re-aimed at what does
+not move: the row is `c^16` at the truncation `5/16`, the superseded
+constant put it above every `c_7`-free row and the current one does
+not, and `4` is a floor on the collected constant so `4^16 = 4.29e9`
+is a floor on the row. `mode_index_row_sharpness` now reads
+`WIDENED_B_CONST`, `WIDENED_B_CONST_SUPERSEDED` and
+`WIDENED_B_CONST_SHARP` from the certificate rather than carrying a
+constant of its own; a third test that pinned how the draft-history
+family splits between body and appendices is loosened for the same
+reason.
+
+Tags. EXACT: the two constants `9/8` and `81/16` from the printed
+split; the coefficient `3.375 P^(1/4)` at the printed cap and the row
+`2.85e8` it gives. COMPUTATIONALLY VERIFIED: the models hold and are
+approached to `99.7%` on `93` samples over four ranges; the printed
+bound's worst ratio `0.560`, flat in `P`; the run-count tables at
+`P = 1e5` and `P = 2e4`, `bound_holds_everywhere`, slack `>= 23`.
+OBSERVATION: the minimum of the run count sits at `j = +1` once
+`h_1h_2` is of order `P^(1/2)`. HUMAN PROOF: the `xi_1`, `xi_2` of the
+split are only known to lie in intervals, so `9/8` and `81/16` as
+*stated bounds* need the mean-value points controlled --- which the
+measurements say is where they already are, but the lemma does not say
+so.
+
+Probes: `lemma_5_1_derivative_constants`, `run_bound_shape`,
+`RUN_BOUND_TABLE_AT_1E5`. Three tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`; no
+manuscript or certificate edit.

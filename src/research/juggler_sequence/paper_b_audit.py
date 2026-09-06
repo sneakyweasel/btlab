@@ -3458,16 +3458,23 @@ def mode_index_row_sharpness(P0: float = 3.5858e13) -> dict[str, Any]:
 
     a = 5 / 16
     least = p0_certificate.least_P
+    # The certificate's widened constant is not frozen: it was 7 while the offset cap read |j| <= 3
+    # and is 5 now that the cap reads 2.  Everything below follows the module rather than a moment.
+    current = float(p0_certificate.WIDENED_B_CONST)
+    superseded = float(getattr(p0_certificate, "WIDENED_B_CONST_SUPERSEDED", 7.0))
+    sharp = float(p0_certificate.WIDENED_B_CONST_SHARP)
+    lead = round(sharp)
 
     def row_P(const: float) -> float:
         lg = least(lambda P: const * P ** 0.25 <= P ** a)
         return float("inf") if lg is None else 10.0 ** lg
 
-    honest_lg = least(lambda P: (6.0 + 20.0 * P ** -0.375) * P ** 0.25 <= P ** a)
+    honest_lg = least(lambda P: (lead + 20.0 * P ** -0.375) * P ** 0.25 <= P ** a)
     honest_P = float("inf") if honest_lg is None else 10.0 ** honest_lg
-    printed_P = row_P(7.0)
-    pin_printed = 0.25 + math.log(7.0) / math.log(P0)
-    pin_honest = 0.25 + math.log(6.0 + 20.0 * P0 ** -0.375) / math.log(P0)
+    printed_P = row_P(current)
+    superseded_P = row_P(superseded)
+    pin_printed = 0.25 + math.log(current) / math.log(P0)
+    pin_honest = 0.25 + math.log(lead + 20.0 * P0 ** -0.375) / math.log(P0)
     minimax = p0_certificate.r0_minimax()
     rows = p0_certificate.thresholds()
     free = [r for r in rows if "c_7" not in r["claim"] and "S" not in r["claim"]]
@@ -3480,8 +3487,16 @@ def mode_index_row_sharpness(P0: float = 3.5858e13) -> dict[str, Any]:
                         if r["tag"] not in ("st6D1-modeindex", "st5b-qpp", "t63-flat")
                         and "c7S" not in r["tag"])
     return {
-        "printed_constant": 7.0,
-        "honest_constant_at_P0": 6.0 + 20.0 * P0 ** -0.375,
+        "printed_constant": current,
+        "superseded_constant": superseded,
+        "superseded_row_P": superseded_P,
+        "superseded_row_led_the_c7_free_rows": all(
+            r["P_min"] < superseded_P for r in rows
+            if r["tag"] != "st6D1-modeindex" and "c7S" not in r["tag"]),
+        "current_row_leads_the_c7_free_rows": all(
+            r["P_min"] < printed_P for r in rows
+            if r["tag"] != "st6D1-modeindex" and "c7S" not in r["tag"]),
+        "honest_constant_at_P0": lead + 20.0 * P0 ** -0.375,
         "sharp_constant_holds_from": p0_certificate.widened_b_constant_threshold(0.001),
         "printed_row_P": printed_P,
         "honest_row_P": honest_P,
@@ -3516,12 +3531,12 @@ def mode_index_row_sharpness(P0: float = 3.5858e13) -> dict[str, Any]:
             if r["tag"] != "st6D1-modeindex" and "c7S" not in r["tag"]),
         "qpp_row_P": qpp,
         "constant_at_which_the_qpp_row_would_lead": qpp ** (1 / 16),
-        "qpp_row_can_lead": qpp ** (1 / 16) > 6.0,
-        "hard_floor_at_c_equals_six": 6.0 ** 16,
+        "qpp_row_can_lead": qpp ** (1 / 16) > float(lead),
+        "hard_floor_at_c_equals_six": float(lead) ** 16,
         "c7_lever_without_the_row": P0 / qpp,
         "c7_lever_with_the_printed_row": P0 / printed_P,
         "c7_lever_if_the_constant_is_sharpened": P0 / honest_P,
-        "c7_lever_ceiling": P0 / 6.0 ** 16,
+        "c7_lever_ceiling": P0 / float(lead) ** 16,
         "sharpening_restores_the_lever_of_120": P0 / honest_P > 60,
         "constant_at_which_the_row_would_set_P0": P0 ** (1 / 16),
         "rows_at_or_below_2_8e10": sum(1 for r in rows if r["P_min"] <= 2.8e10),
@@ -3705,6 +3720,167 @@ def branch_offset_extremes(span: int = 1200, P0: float = 3.5858e13) -> dict[str,
     }
 
 
+# The run-count table at P = 1e5, four gap products and all four offsets, measured once out of
+# band: 16 sweeps of the half-block at dps 40, about 30 s.  Kept as a record because the shape is
+# the point and the shape does not change with P.  Only the frozen betas differ between the rows
+# of a family; the base point n_0 is the first in the block realising that offset.
+RUN_BOUND_TABLE_AT_1E5 = {
+    "(10, 10)": {-1: 10618, 0: 4867, 1: 1513, 2: 6636},
+    "(4, 25)": {-1: 11850, 0: 4866, 1: 1512, 2: 6636},
+    "(5, 5)": {-1: 6969, 0: 1218, 1: 4535, 2: 10285},
+    "(2, 2)": {-1: 5946, 0: 195, 1: 5557, 2: 11306},
+}
+
+
+def lemma_5_1_derivative_constants(seed: int = 918, samples_per_range: int = 30) -> dict[str, Any]:
+    """The printed |G'| <= 2|j|P^{-1/4} + 20 h_1h_2 P^{-3/4}, against what the lemma's split says.
+
+    Lemma 5.1(iii) splits F exactly into (3/2) j (m+beta_1+beta_2+xi_1)^{1/2} and
+    (3/4) beta_1 beta_2 (m+xi_2)^{-1/2}.  Differentiating that split and composing with X gives the
+    two constants directly.  With m ~ X = n^{3/2} and X'(n) = (3/2) n^{1/2}:
+
+        offset term     (3/4) j m^{-1/2} . (3/2) n^{1/2}  =  (9/8) j n^{-1/4},
+        curvature term  (3/8) beta_1 beta_2 m^{-3/2} . (3/2) n^{1/2}, and beta_i ~ 3 h_i n^{1/2},
+                        so it is (81/16) h_1 h_2 n^{-3/4}.
+
+    Both are decreasing in n, so the sup over the block (P, 2P] is at n = P, and the constants are
+    9/8 = 1.125 and 81/16 = 5.0625.  The printed 2 and 20 are those rounded up by 1.78 and 3.95.
+
+    That matters where the constants are certified rather than used.  The widened theta-coefficient
+    of Lemma 5.2(iii) is |q'|(2|j'|P^{-1/4} + 20 h h' P^{-3/4}), collected as 7 P^{1/4}; at the true
+    constants it is (9/8)|j'| P^{1/4}/h' + (81/16) h P^{-1/4} <= 3.375 P^{1/4} at the printed cap
+    |j'| <= 3 -- and 3.376^16 = 2.9e8, below the Step 5b(a) q'' row at 2.98e11.  Tightening either
+    constant alone takes the mode-index row out of the leading group; no narrowing of the window is
+    needed for that, though the two compound (2.25 P^{1/4} at |j'| <= 2, and a row of 4.4e5).
+    """
+
+    rng = random.Random(seed)
+    ranges = [(10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10), (10**14, 2 * 10**14)]
+    offset_ratios: list[float] = []
+    curvature_ratios: list[float] = []
+    printed_ratios: list[float] = []
+    for lo, hi in ranges:
+        P = lo
+        with mp.workdps(working_dps_for(hi)):
+            H1 = max(1, int(P ** (1 / 48)))
+            H2 = max(1, int(P ** (1 / 24)))
+            Pm = mp.mpf(P)
+            for _ in range(samples_per_range):
+                n = rng.randrange(lo, hi) | 1
+                h1, h2 = rng.randint(1, H1), rng.randint(1, H2)
+                beta1, _, _ = level1_data(n, 2 * h1)
+                beta2, _, _ = level1_data(n, 2 * h2)
+                beta12, _, _ = level1_data(n, 2 * h1 + 2 * h2)
+                j = beta12 - beta1 - beta2
+
+                def G(nu: mp.mpf, b1: int = beta1, b2: int = beta2, b12: int = beta12) -> mp.mpf:
+                    Xn = mp.power(nu, mp.mpf(3) / 2)
+                    return (mp.power(Xn + b12, mp.mpf(3) / 2) - mp.power(Xn + b1, mp.mpf(3) / 2)
+                            - mp.power(Xn + b2, mp.mpf(3) / 2) + mp.power(Xn, mp.mpf(3) / 2))
+
+                G1 = abs(mp.diff(G, mp.mpf(n), 1))
+                printed = (2 * abs(j) * mp.power(Pm, -mp.mpf(1) / 4)
+                           + 20 * h1 * h2 * mp.power(Pm, -mp.mpf(3) / 4))
+                printed_ratios.append(float(G1 / printed))
+                if j == 0:
+                    curvature_ratios.append(float(G1 / (h1 * h2 * mp.power(Pm, -mp.mpf(3) / 4))))
+                else:
+                    offset_ratios.append(float(G1 / (abs(j) * mp.power(Pm, -mp.mpf(1) / 4))))
+    worst_offset = max(offset_ratios)
+    worst_curv = max(curvature_ratios)
+    coeff_printed_cap = 9 / 8 * 3
+    coeff_provable_cap = 9 / 8 * 2
+    return {
+        "offset_samples": len(offset_ratios),
+        "curvature_samples": len(curvature_ratios),
+        "offset_constant_model": 9 / 8,
+        "offset_constant_measured": worst_offset,
+        "offset_constant_printed": 2.0,
+        "offset_model_holds": worst_offset <= 9 / 8,
+        "offset_model_is_approached": worst_offset > 0.98 * 9 / 8,
+        "offset_printed_slack": 2.0 / (9 / 8),
+        "curvature_constant_model": 81 / 16,
+        "curvature_constant_measured": worst_curv,
+        "curvature_constant_printed": 20.0,
+        "curvature_model_holds": worst_curv <= 81 / 16,
+        "curvature_model_is_approached": worst_curv > 0.95 * 81 / 16,
+        "curvature_printed_slack": 20.0 / (81 / 16),
+        "printed_bound_holds": max(printed_ratios) <= 1.0,
+        "printed_bound_worst_ratio": max(printed_ratios),
+        "widened_coefficient_printed": 7.0,
+        "widened_coefficient_at_true_constants": coeff_printed_cap,
+        "widened_coefficient_at_true_constants_and_narrow_window": coeff_provable_cap,
+        "row_at_true_constants": (coeff_printed_cap + 0.001) ** 16,
+        "row_at_both": (coeff_provable_cap + 0.001) ** 16,
+        "qpp_row_P": 2.98e11,
+        "true_constants_alone_clear_the_qpp_row": (coeff_printed_cap + 0.001) ** 16 < 2.98e11,
+    }
+
+
+def run_bound_shape(P: int = 2 * 10**4, families: tuple[tuple[int, int], ...] = ((10, 4), (2, 2)),
+                    search: int = 40000) -> dict[str, Any]:
+    """The run count of floor(G) as the offset moves across its window, at fixed gaps.
+
+    Lemma 5.1(iii) makes floor(G) constant on runs of length >= (1/22) min(P^{1/4}/(|j|+1),
+    P^{3/4}/(h_1h_2)), so a block carries at most 22 (|j|+1) P^{3/4} runs when the first branch
+    leads.  The question is not whether that holds -- it holds by a factor of twenty -- but whether
+    |j|+1 is the right shape.  It is, in the admissible box: the two terms of G' have *opposite*
+    signs, and when h_1h_2 is small the offset term leads, so the count is near-linear in |j| and
+    minimal at j = 0.  When h_1h_2 is large enough for the curvature term to compete, the minimum
+    moves off zero -- at P = 1e5 with h_1h_2 = 100 it sits at j = +1, where the count is a third of
+    its value at j = 0.  Since j = 2 needs {n^{3/2}} < Delta^2 X and so h_1h_2 of order P^{1/2},
+    the top of the window and the cancelling regime are the same regime: |j|+1 is never tested at
+    the top of the window with the offset term alone.  RUN_BOUND_TABLE_AT_1E5 has the fuller table.
+    """
+
+    rows = []
+    with mp.workdps(40):
+        th = mp.mpf(3) / 2
+        for h1, h2 in families:
+            found: dict[int, tuple[int, int, int, int]] = {}
+            for n0 in range(P + 1, P + search, 2):
+                b1, _, _ = level1_data(n0, 2 * h1)
+                b2, _, _ = level1_data(n0, 2 * h2)
+                b12, _, _ = level1_data(n0, 2 * h1 + 2 * h2)
+                j = b12 - b1 - b2
+                if j not in found:
+                    found[j] = (n0, b1, b2, b12)
+                if len(found) >= 4:
+                    break
+            for j in sorted(found):
+                n0, b1, b2, b12 = found[j]
+                runs, prev = 0, None
+                for n in range(P + 1, 2 * P + 1, 2):
+                    Xn = mp.power(mp.mpf(n), th)
+                    G = (mp.power(Xn + b12, th) - mp.power(Xn + b1, th)
+                         - mp.power(Xn + b2, th) + mp.power(Xn, th))
+                    fl = int(mp.floor(G))
+                    if fl != prev:
+                        runs, prev = runs + 1, fl
+                printed = 22 * (abs(j) + 1) * P ** 0.75
+                rows.append({"h1": h1, "h2": h2, "h1h2": h1 * h2, "j": j, "n0": n0, "runs": runs,
+                             "printed_bound": printed, "ratio": runs / printed,
+                             "epsilon": 3.0 * h1 * h2 / math.sqrt(P)})
+    by_fam: dict[int, dict[int, int]] = {}
+    for r in rows:
+        by_fam.setdefault(r["h1h2"], {})[r["j"]] = r["runs"]
+    small = min(by_fam)
+    large = max(by_fam)
+    worst = max(r["ratio"] for r in rows)
+    return {
+        "P": P,
+        "rows": rows,
+        "by_family": by_fam,
+        "bound_holds_everywhere": all(r["runs"] <= r["printed_bound"] for r in rows),
+        "worst_ratio": worst,
+        "printed_bound_slack": 1 / worst,
+        "small_gap_minimum_at_zero": min(by_fam[small], key=lambda j: by_fam[small][j]) == 0,
+        "large_gap_minimum_off_zero": min(by_fam[large], key=lambda j: by_fam[large][j]) != 0,
+        "top_of_window_is_not_the_worst_row": max(rows, key=lambda r: r["ratio"])["j"] != 2,
+        "frozen_table_at_1e5": RUN_BOUND_TABLE_AT_1E5,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3767,6 +3943,8 @@ def summary() -> dict[str, Any]:
     mode_index = mode_index_row_sharpness()
     offsets = branch_offset_range(samples_per_range=24)
     extremes = branch_offset_extremes(span=500)
+    dconsts = lemma_5_1_derivative_constants(samples_per_range=16)
+    run_shape = run_bound_shape()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3817,6 +3995,8 @@ def summary() -> dict[str, Any]:
         "mode_index_row_sharpness": mode_index,
         "branch_offset_range": offsets,
         "branch_offset_extremes": extremes,
+        "lemma_5_1_derivative_constants": dconsts,
+        "run_bound_shape": run_shape,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
