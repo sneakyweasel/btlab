@@ -232,3 +232,19 @@ def test_review_digest_warns_that_composite_rows_are_unscored() -> None:
     text = fp.review_digest(index, ledger)
     assert "composite" in text
     assert "BTC-select3" in text
+
+
+def test_proposals_never_offer_a_declaration_another_row_already_claims() -> None:
+    """Two rows on one declaration is rejected by the ledger's own collision test, so a queue
+    that offers a taken declaration spends a reviewer's judgement on a foregone answer.
+    Two of the 43 confident entries did exactly that before this filter."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    taken = {(r["lean"], r["decl"]) for r in ledger if r.get("decl")}
+    offered = [
+        f"{row['id']} -> {c['decl']}"
+        for row in fp.propose(index, ledger)["rows"]
+        for c in row["candidates"]
+        if (row["lean"], c["decl"]) in taken
+    ]
+    assert offered == [], offered

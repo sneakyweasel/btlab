@@ -323,7 +323,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-divmod",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "unique trit residue c = 3q + r"
@@ -352,7 +352,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-step-value",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "value(P \u2192 P') = value(P)"
@@ -381,7 +381,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-nf",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "normalize_LSD(P) = encodeZ(value(P)); result is all trits"
@@ -410,7 +410,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-lex",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "LSD step strictly decreases the abs-lex rank"
@@ -700,7 +700,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-merge",
-      "in_file": 37,
+      "in_file": 33,
       "lean": "BTCalculus/PolynomialFunctionsMod.lean",
       "names_own": [],
       "statement": "first x^3 residual merge at k=2 is delayed distinction: equiv_2 and not equiv_3"
@@ -729,7 +729,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x4-merge",
-      "in_file": 37,
+      "in_file": 33,
       "lean": "BTCalculus/PolynomialFunctionsMod.lean",
       "names_own": [],
       "statement": "first x^4 residual merge at k=3 is delayed distinction: equiv_3 and not equiv_4"
@@ -766,12 +766,6 @@
     {
       "candidates": [
         {
-          "decl": "eval_cubicResid",
-          "line": 28,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
           "decl": "X_pow_three_eq_cubic",
           "line": 36,
           "score": 0.0,
@@ -782,12 +776,18 @@
           "line": 41,
           "score": 0.0,
           "trust": "kernel"
+        },
+        {
+          "decl": "coeff_cubic_zero",
+          "line": 46,
+          "score": 0.0,
+          "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-raw",
-      "in_file": 36,
+      "in_file": 34,
       "lean": "BTCalculus/CubicResidual.lean",
       "names_own": [],
       "statement": "R_k(x^3)=(3^k-1)/2"
@@ -801,22 +801,22 @@
           "trust": "kernel"
         },
         {
-          "decl": "eval_cubicResid",
-          "line": 28,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
           "decl": "eval_cubicResid_iter",
           "line": 131,
           "score": 0.3,
+          "trust": "kernel"
+        },
+        {
+          "decl": "residualAlong_cubic_family",
+          "line": 221,
+          "score": 0.25,
           "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "review",
       "id": "BTA-x3-newton",
-      "in_file": 36,
+      "in_file": 34,
       "lean": "BTCalculus/CubicResidual.lean",
       "names_own": [],
       "statement": "Newton coordinates of a cubic and of the residual family of x^3"
@@ -845,7 +845,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-section",
-      "in_file": 36,
+      "in_file": 34,
       "lean": "BTCalculus/CubicResidual.lean",
       "names_own": [],
       "statement": "cubic Newton section step N3'=9 N3, N2'=3 N2+3(a+2)N3"
@@ -990,7 +990,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-deep-crit",
-      "in_file": 26,
+      "in_file": 25,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest fibres iff p^2\u2261q^2 (mod 3^{k-1}) and N0 agrees"
@@ -1019,7 +1019,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-deep-zero",
-      "in_file": 26,
+      "in_file": 25,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p"
@@ -1048,7 +1048,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-inter-N",
-      "in_file": 11,
+      "in_file": 10,
       "lean": "BTCalculus/CubicIntermediateLayer.lean",
       "names_own": [],
       "statement": "m=k-2: N3=0, N2\u22612\u00b73^{k-1}p (k\u22653), N1\u22613p^2+3^{k-1}p (k\u22654)"
@@ -1077,7 +1077,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-inter-crit",
-      "in_file": 11,
+      "in_file": 10,
       "lean": "BTCalculus/CubicIntermediateLayer.lean",
       "names_own": [],
       "statement": "m=k-2 fibres iff p\u2261q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees"
@@ -1172,28 +1172,28 @@
     {
       "candidates": [
         {
-          "decl": "n1_after_n2_iff",
-          "line": 44,
-          "score": 0.154,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n21_fibre_in_pow",
-          "line": 257,
-          "score": 0.083,
-          "trust": "kernel"
-        },
-        {
           "decl": "pow3_split",
           "line": 17,
+          "score": 0.0,
+          "trust": "kernel"
+        },
+        {
+          "decl": "deficit_n1_iff",
+          "line": 21,
+          "score": 0.0,
+          "trust": "kernel"
+        },
+        {
+          "decl": "three_pow_dvd_of_two_mul_pow",
+          "line": 62,
           "score": 0.0,
           "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "id": "BTA-x3-n1-val",
-      "in_file": 16,
+      "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
       "names_own": [],
       "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r\u22651, r+1\u2264k)"
@@ -1222,7 +1222,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-n1-unit",
-      "in_file": 16,
+      "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
       "names_own": [],
       "statement": "N2+N1 is injective on units of P_m for every r\u22651"
@@ -1251,19 +1251,13 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-n1-sign",
-      "in_file": 16,
+      "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
       "names_own": [],
       "statement": "p ~ -p after N2+N1 iff 3^r | p"
     },
     {
       "candidates": [
-        {
-          "decl": "n1_after_n2_iff",
-          "line": 44,
-          "score": 0.067,
-          "trust": "kernel"
-        },
         {
           "decl": "pow3_split",
           "line": 17,
@@ -1275,12 +1269,18 @@
           "line": 21,
           "score": 0.0,
           "trust": "kernel"
+        },
+        {
+          "decl": "three_pow_dvd_of_two_mul_pow",
+          "line": 62,
+          "score": 0.0,
+          "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-n1-scale",
-      "in_file": 16,
+      "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
       "names_own": [],
       "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k\u22652r+2"
@@ -1381,14 +1381,14 @@
           "trust": "kernel"
         },
         {
-          "decl": "q_visible_mod",
-          "line": 63,
-          "score": 0.1,
+          "decl": "qCubic_def",
+          "line": 23,
+          "score": 0.0,
           "trust": "kernel"
         },
         {
-          "decl": "qCubic_def",
-          "line": 23,
+          "decl": "q_recon",
+          "line": 27,
           "score": 0.0,
           "trust": "kernel"
         }
@@ -1396,7 +1396,7 @@
       "composite": false,
       "confidence": "review",
       "id": "BTA-x3-Q-def",
-      "in_file": 25,
+      "in_file": 23,
       "lean": "BTCalculus/MismatchedCubicQuotient.lean",
       "names_own": [],
       "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u\u2208P_W"
@@ -1425,7 +1425,7 @@
       "composite": false,
       "confidence": "review",
       "id": "BTA-x3-Q-eq",
-      "in_file": 25,
+      "in_file": 23,
       "lean": "BTCalculus/MismatchedCubicQuotient.lean",
       "names_own": [],
       "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-\u0394bal_t"
@@ -1454,7 +1454,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-Q-scale",
-      "in_file": 25,
+      "in_file": 23,
       "lean": "BTCalculus/MismatchedCubicQuotient.lean",
       "names_own": [],
       "statement": "Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w)"
@@ -1512,7 +1512,7 @@
       "composite": false,
       "confidence": "review",
       "id": "BTA-x3-Q-inv-one",
-      "in_file": 10,
+      "in_file": 9,
       "lean": "BTCalculus/MismatchedCubicInvariant.lean",
       "names_own": [],
       "statement": "for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c"
@@ -1532,16 +1532,16 @@
           "trust": "kernel"
         },
         {
-          "decl": "n0_eq_of_neg",
-          "line": 343,
-          "score": 0.125,
+          "decl": "balWidth_mul_pow",
+          "line": 20,
+          "score": 0.0,
           "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-C-core",
-      "in_file": 20,
+      "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "3^r u in P_m iff u in P_{m-r} when r<=m; r>m forces u=0"
@@ -1570,7 +1570,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-Q-unit-im",
-      "in_file": 20,
+      "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "for 3 not dividing a and t>=1, G_a(b)=G_a(c) iff 3^{K-1} divides b-c"
@@ -1599,7 +1599,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-M-spine",
-      "in_file": 20,
+      "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "p=0 at depths 2m>=k is a single Newton class (the zero spine)"
@@ -1628,39 +1628,10 @@
       "composite": false,
       "confidence": "low",
       "id": "BTA-x3-H-A",
-      "in_file": 20,
+      "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "on the core, N1 agrees iff u^2 agrees modulo 3^{k-2r-1}, and that exponent equals the core width W"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lift_iff_outputs_zero",
-          "line": 82,
-          "score": 0.176,
-          "trust": "kernel"
-        },
-        {
-          "decl": "isRootMod_zero",
-          "line": 113,
-          "score": 0.095,
-          "trust": "kernel"
-        },
-        {
-          "decl": "packWord_eq_zero_iff_replicate",
-          "line": 67,
-          "score": 0.087,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "id": "BTL-zero-output",
-      "in_file": 20,
-      "lean": "BTCalculus/PadicLifting.lean",
-      "names_own": [],
-      "statement": "3^k divides f(n_w) iff every output trit of the residual machine along w is 0, so the solution tree of f(x) = 0 mod 3^k is the zero-output subtree; balanced digits are what force the partial sum below the modulus"
     },
     {
       "candidates": [
@@ -1686,7 +1657,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTL-trichotomy",
-      "in_file": 20,
+      "in_file": 18,
       "lean": "BTCalculus/PadicLifting.lean",
       "names_own": [],
       "statement": "KNOWN, restated: for k >= 1 a level-k node has 1 child if 3 does not divide f'(n), 3 children if 3 divides f'(n) and v_3(f(n)) >= k+1, and none otherwise; the hypothesis k >= 1 is needed, since x^2 + x has two children at the root with a unit derivative"
@@ -1918,7 +1889,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTC-constructor-sum-class",
-      "in_file": 28,
+      "in_file": 27,
       "lean": "BTCalculus/RewriteAddBoundary.lean",
       "names_own": [],
       "statement": "for U,V,W in {S,I+,I-,N}, the identity U(x)+V(y)=W(x+y) holds for all integers iff it is one of the eight concrete triples (S,S,S), (N,N,N), (I+,S,I+), (S,I+,I+), (I-,S,I-), (S,I-,I-), (I+,I-,S), (I-,I+,S); same-sign I+ or I- and mixed N+S are not constructor identities"
@@ -1947,7 +1918,7 @@
       "composite": false,
       "confidence": "review",
       "id": "BTC-push-in-S-peak",
-      "in_file": 28,
+      "in_file": 27,
       "lean": "BTCalculus/RewriteAddBoundary.lean",
       "names_own": [],
       "statement": "the named carry-free push-in system (unary D(S(t))\u2192t plus S(Add(t,u))\u2192Add(S(t),S(u)) and congruence, no D-through-Add) is not locally confluent: D(S(Add(X,Y))) has two distinct irreducibles Add(X,Y) and D(Add(S(X),S(Y))); both evaluate to X+Y"
@@ -1976,7 +1947,7 @@
       "composite": false,
       "confidence": "review",
       "id": "BTC-add-requires-carry-state",
-      "in_file": 28,
+      "in_file": 27,
       "lean": "BTCalculus/RewriteAddBoundary.lean",
       "names_own": [],
       "statement": "the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence"
@@ -1996,20 +1967,18 @@
           "trust": "kernel"
         },
         {
-          "decl": "energy_telescope",
-          "line": 167,
-          "score": 0.13,
+          "decl": "adjointDet_eq",
+          "line": 335,
+          "score": 0.095,
           "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "review",
       "id": "OST-np-energy-ext-interval",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "energy_step"
-      ],
+      "names_own": [],
       "statement": "for \u0393_NP, the set of integer controls w such that E_{n-1}(T_w s) lies in a fixed integer interval [lo, hi] is consecutive: if w1 and w2 satisfy the bounds and w1 \u2264 w \u2264 w2 then w does too; this is energy_step plus q>0, not a bound on L_0"
     },
     {
@@ -2021,26 +1990,24 @@
           "trust": "kernel"
         },
         {
-          "decl": "energy_telescope",
-          "line": 167,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
           "decl": "energy_zero",
           "line": 89,
           "score": 0.167,
+          "trust": "kernel"
+        },
+        {
+          "decl": "recurrence_word_zero",
+          "line": 189,
+          "score": 0.154,
           "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "review",
       "id": "OST-np-energy-homogeneous",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "energy_telescope"
-      ],
+      "names_own": [],
       "statement": "for \u0393_NP, homogeneous residual motion is energy-neutral in the sliding index: E_n(A^k s) = E_{n+k}(s), equivalently energy_telescope on the zero word; this is not a bound on L_0"
     },
     {
@@ -2067,7 +2034,7 @@
       "composite": false,
       "confidence": "review",
       "id": "OST-np-adjoint-window-det",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
       "names_own": [],
       "statement": "for \u0393_NP and n\u22652, the determinant of consecutive adjoints (u_n, u_{n-1}, u_{n-2}) equals 3^{n-2}, so neighboring energies invert s over Q; this is not a bound on L_0"
@@ -2096,11 +2063,9 @@
       "composite": false,
       "confidence": "review",
       "id": "OST-np-impulse-place",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "origin_particular"
-      ],
+      "names_own": [],
       "statement": "for \u0393_NP, the origin impulse A^r e3 equals (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) with q_j=0 for j<0; this is the place-value dictionary for origin_particular, not a bound on L_0"
     },
     {
@@ -2112,26 +2077,24 @@
           "trust": "kernel"
         },
         {
-          "decl": "consumedSum_append",
-          "line": 635,
-          "score": 0.19,
+          "decl": "fold_s3",
+          "line": 565,
+          "score": 0.136,
           "trust": "kernel"
         },
         {
-          "decl": "fold_on_F_iff",
-          "line": 575,
-          "score": 0.179,
+          "decl": "energy_homogeneous",
+          "line": 236,
+          "score": 0.125,
           "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "id": "OST-np-particular-s3",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "energy_telescope"
-      ],
+      "names_own": [],
       "statement": "for \u0393_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0"
     },
     {
@@ -2158,7 +2121,7 @@
       "composite": true,
       "confidence": "low",
       "id": "OST-np-val-concat-energy",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
       "names_own": [
         "particular_concat",
@@ -2168,12 +2131,6 @@
     },
     {
       "candidates": [
-        {
-          "decl": "energy_telescope",
-          "line": 167,
-          "score": 0.438,
-          "trust": "kernel"
-        },
         {
           "decl": "fold_s3",
           "line": 565,
@@ -2185,16 +2142,20 @@
           "line": 236,
           "score": 0.235,
           "trust": "kernel"
+        },
+        {
+          "decl": "val_concat_zero_iff",
+          "line": 685,
+          "score": 0.154,
+          "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "id": "OST-np-fold-s3",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "energy_telescope"
-      ],
+      "names_own": [],
       "statement": "for \u0393_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0"
     },
     {
@@ -2206,22 +2167,22 @@
           "trust": "kernel"
         },
         {
-          "decl": "origin_particular",
-          "line": 537,
-          "score": 0.235,
-          "trust": "kernel"
-        },
-        {
           "decl": "reset_prefix",
           "line": 609,
           "score": 0.176,
           "trust": "kernel"
+        },
+        {
+          "decl": "hub_nonreset",
+          "line": 702,
+          "score": 0.154,
+          "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "id": "OST-np-reset-pow-then-hub",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
       "names_own": [
         "hub_nonreset"
@@ -2281,7 +2242,7 @@
       "composite": false,
       "confidence": "low",
       "id": "OST-np-reset-prefix",
-      "in_file": 62,
+      "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
       "names_own": [
         "particular_concat"
@@ -2312,7 +2273,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-doubled-closure",
-      "in_file": 17,
+      "in_file": 14,
       "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
       "names_own": [],
       "statement": "The LSD carry of normalizing the doubled trit stream 2 d_i, d_i in {-1,0,1}, stays in {-1,0,1}; 1 and -1 are reachable from 0."
@@ -2341,7 +2302,7 @@
       "composite": false,
       "confidence": "review",
       "id": "BTN-carry-gain-3",
-      "in_file": 17,
+      "in_file": 14,
       "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
       "names_own": [],
       "statement": "The synthetic map T_3(c,d)=3 DZ(c+2d) satisfies c_n=3n along the all-+1 word, so the residual set is unbounded. This is not value-preserving normalization."
@@ -2602,7 +2563,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-dadd-closure",
-      "in_file": 9,
+      "in_file": 8,
       "lean": "Problems/BalancedTernary/DAddResidual.lean",
       "names_own": [],
       "statement": "If s,a,b are trits then D(s+a+b) is a trit. The streaming residual of trit addition is exactly {-1,0,1}. Three values occur on D(x)=D(y)=0, so the residual is minimal."
@@ -2689,7 +2650,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-sdr-finite-condition",
-      "in_file": 36,
+      "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
       "names_own": [],
       "statement": "For F_{\u03bb,U_m}(s,u)=\u03bb\u00b7D(s+u) and every integer \u03bb\u22650, a finite invariant box containing 0 exists if and only if \u03bb\u22642 or m\u22641."
@@ -2718,7 +2679,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-sdr-multi-trit",
-      "in_file": 36,
+      "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
       "names_own": [],
       "statement": "r-way trit addition s'=D(s+a_1+\u22ef+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the \u03bb=1 box |s|\u2264\u230ar/2\u230b is invariant. The count 2\u230ar/2\u230b+1 equals 1,3,3,5 for r=1,2,3,4."
@@ -2747,7 +2708,7 @@
       "composite": false,
       "confidence": "review",
       "id": "BTN-sdr-escape-general",
-      "in_file": 36,
+      "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
       "names_own": [],
       "statement": "If \u03bb\u22653 and |u|\u22652 then the constant-control orbit of F_{\u03bb,U} from 0 is unbounded: at \u03bb=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at \u03bb\u22654 the step is strictly expanding on the matching ray."
@@ -2761,22 +2722,22 @@
           "trust": "kernel"
         },
         {
-          "decl": "lambda1_radius_div",
-          "line": 39,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
           "decl": "lambda2_box_invariant",
           "line": 69,
           "score": 0.222,
+          "trust": "kernel"
+        },
+        {
+          "decl": "lambda1_lyapunov",
+          "line": 58,
+          "score": 0.1,
           "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "review",
       "id": "BTN-sdr-lambda2-radius",
-      "in_file": 36,
+      "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
       "names_own": [],
       "statement": "For \u03bb=2 and |u|\u2264m, if |s|\u22642 m.pred then |2 D(s+u)|\u22642 m.pred. This is the sharp invariant radius 2(m-1)_+."
@@ -2863,7 +2824,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-sdrm-lambda3-translate",
-      "in_file": 19,
+      "in_file": 18,
       "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
       "names_own": [],
       "statement": "At \u03bb=3, translation by 3k preserves every output stream: signedTrace 3 (s+3k) w = signedTrace 3 s w. This symmetry is not origin-reachable when max|u|\u22641."
@@ -2871,28 +2832,28 @@
     {
       "candidates": [
         {
-          "decl": "control_language_separation",
-          "line": 100,
-          "score": 0.138,
-          "trust": "kernel"
-        },
-        {
-          "decl": "truncated_3adic_agree",
-          "line": 28,
-          "score": 0.115,
-          "trust": "kernel"
-        },
-        {
           "decl": "short_horizon_equiv",
           "line": 76,
           "score": 0.059,
+          "trust": "kernel"
+        },
+        {
+          "decl": "short_horizon_separation",
+          "line": 81,
+          "score": 0.059,
+          "trust": "kernel"
+        },
+        {
+          "decl": "lambda3_short_horizon_symmetry",
+          "line": 106,
+          "score": 0.056,
           "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "low",
       "id": "BTN-sdsh-sep",
-      "in_file": 10,
+      "in_file": 8,
       "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
       "names_own": [],
       "statement": "If \u03bb is not divisible by 3, s\u2260t, and |w|\u2265v_3(s-t)+1, then the lsd streams differ on w. Finite horizon preserves residual distinguishability exactly when a legal word of that length exists."
@@ -3514,10 +3475,9 @@
       "composite": true,
       "confidence": "review",
       "id": "J-first-even-overshoots",
-      "in_file": 50,
+      "in_file": 49,
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
-        "no_cycle_itinerary_even_count_le_three",
         "minimal_first_even_overshoots",
         "cycleMin_first_even_overshoots"
       ],
@@ -3547,7 +3507,7 @@
       "composite": true,
       "confidence": "low",
       "id": "J-cyclemin-slack",
-      "in_file": 105,
+      "in_file": 104,
       "lean": "Problems/Juggler/CycleMinFudge.lean",
       "names_own": [
         "two_pow_add_four_le_three_pow",
@@ -3581,7 +3541,7 @@
       "composite": true,
       "confidence": "review",
       "id": "J-cyclemax-succ-sq",
-      "in_file": 50,
+      "in_file": 49,
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "cycle_distinguished_order_succ_sq",
@@ -3608,16 +3568,16 @@
           "trust": "kernel"
         },
         {
-          "decl": "cycleMin_ooo_residual_ge_cube",
-          "line": 41,
-          "score": 0.222,
+          "decl": "follows_replicate_odd_of_le",
+          "line": 19,
+          "score": 0.029,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "review",
       "id": "J-cyclemin-transport-oo",
-      "in_file": 6,
+      "in_file": 5,
       "lean": "Problems/Juggler/CycleMinObstruction.lean",
       "names_own": [
         "cycleMin_transport_second_oo",
@@ -4070,28 +4030,28 @@
     {
       "candidates": [
         {
-          "decl": "cycle_itinerary_length_ge_fourteen",
-          "line": 352,
-          "score": 0.367,
-          "trust": "kernel"
-        },
-        {
           "decl": "no_cycle_itinerary_length_le_eleven",
           "line": 342,
           "score": 0.345,
           "trust": "kernel"
         },
         {
-          "decl": "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
-          "line": 686,
-          "score": 0.323,
+          "decl": "no_cycle_itinerary_length_le_ten",
+          "line": 224,
+          "score": 0.321,
+          "trust": "kernel"
+        },
+        {
+          "decl": "finance_excludes_length_eleven",
+          "line": 319,
+          "score": 0.207,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "low",
       "id": "J-small-cycle-census-ten",
-      "in_file": 52,
+      "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "no_cycle_itinerary_length_nine",
@@ -4103,28 +4063,28 @@
     {
       "candidates": [
         {
-          "decl": "cycle_itinerary_length_nineteen_or_ge_thirty",
-          "line": 469,
-          "score": 0.341,
+          "decl": "no_cycle_itinerary_length_le_eleven",
+          "line": 342,
+          "score": 0.22,
           "trust": "kernel"
         },
         {
-          "decl": "cycle_itinerary_length_ge_fourteen",
-          "line": 352,
-          "score": 0.238,
+          "decl": "no_cycle_itinerary_length_le_eighteen",
+          "line": 436,
+          "score": 0.214,
           "trust": "kernel"
         },
         {
-          "decl": "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
-          "line": 713,
-          "score": 0.238,
+          "decl": "cycle_finance_min_fifty_three",
+          "line": 288,
+          "score": 0.182,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "low",
       "id": "J-small-cycle-census-eleven",
-      "in_file": 52,
+      "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "cycle_finance_min_fifty_three",
@@ -4148,16 +4108,16 @@
           "trust": "kernel"
         },
         {
-          "decl": "cycle_itinerary_length_ge_fourteen",
-          "line": 352,
-          "score": 0.222,
+          "decl": "no_cycle_itinerary_length_le_ten",
+          "line": 224,
+          "score": 0.212,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "low",
       "id": "J-small-cycle-census-eighteen",
-      "in_file": 52,
+      "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "cycle_finance_min_fifty_three",
@@ -4169,28 +4129,28 @@
     {
       "candidates": [
         {
-          "decl": "cycle_itinerary_length_nineteen_or_ge_thirty",
-          "line": 469,
-          "score": 0.351,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
-          "line": 713,
-          "score": 0.343,
-          "trust": "kernel"
-        },
-        {
           "decl": "no_cycle_itinerary_length_le_eighteen",
           "line": 436,
           "score": 0.278,
+          "trust": "kernel"
+        },
+        {
+          "decl": "no_cycle_itinerary_length_le_eleven",
+          "line": 342,
+          "score": 0.25,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cycle_finance_min_two_hundred_fifty_seven",
+          "line": 550,
+          "score": 0.231,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "low",
       "id": "J-small-cycle-census-nineteen",
-      "in_file": 52,
+      "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "cycle_finance_min_two_hundred_fifty_seven",
@@ -4258,7 +4218,7 @@
       "composite": true,
       "confidence": "low",
       "id": "J-cyclemin-last-odd-run",
-      "in_file": 50,
+      "in_file": 49,
       "lean": "Problems/Juggler/EvenCountThree.lean",
       "names_own": [
         "no_cycleMin_odd_run",
@@ -4520,22 +4480,21 @@
           "trust": "kernel"
         },
         {
-          "decl": "aboveAnchor_height_of_walk",
-          "line": 502,
-          "score": 0.125,
+          "decl": "aboveAnchor_transport_prefix",
+          "line": 325,
+          "score": 0.12,
           "trust": "kernel"
         }
       ],
       "composite": true,
       "confidence": "low",
       "id": "J-flight-envelope-transport",
-      "in_file": 22,
+      "in_file": 20,
       "lean": "Problems/Juggler/WalkTransport.lean",
       "names_own": [
         "aboveAnchor_transport",
         "aboveAnchor_flight_envelope",
         "follows_log_le_walkWeight",
-        "cycleMin_transport",
         "one_le_walkWeight_aboveAnchor"
       ],
       "statement": "Flight envelope on open descent-free prefixes: the Paper A Theorem 5.3 transport ported from minimum-based cycles to AboveAnchor, plus the anchor-free upper side. If AboveAnchor(n,w) with n >= 400 then for every k <= |w|, in log form, w_k (log n \u2212 \u0394) <= log x_k <= w_k log n, where w_k = 3^{a_k}/2^k is the walk weight and \u0394 = 1.05 e/n + 0.7 o/(n\u221an) is the transport deficit over the full itinerary ("
@@ -4861,6 +4820,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 162,
-  "worth_reviewing": 43
+  "unresolved": 161,
+  "worth_reviewing": 42
 }

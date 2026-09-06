@@ -360,6 +360,11 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
     mapping in twenty-five is fine for a queue a person reads and wrong for a ledger that
     exists to make claims checkable, which is why nothing here is written into the ledger.
     """
+    # A declaration already claimed by a resolved row cannot be the answer to another: one
+    # theorem backs one claim, which the ledger's own collision test enforces.  Offering a
+    # taken declaration wastes a reviewer's judgement on an answer that would be rejected.
+    taken = {(r["lean"], r["decl"]) for r in ledger if r.get("decl")}
+
     by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for d in index["declarations"]:
         if d["kind"] in ("theorem", "lemma"):
@@ -382,7 +387,8 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
             out.append({"id": row["id"], "lean": ref, "why": "lean field is not a file",
                         "confidence": "low", "candidates": []})
             continue
-        cands = by_file.get("formal/" + ref, [])
+        cands = [d for d in by_file.get("formal/" + ref, [])
+                 if (ref, d["name"]) not in taken]
         sw = words(row["statement"])
         ranked = sorted(cands, key=lambda d: similarity(sw, d), reverse=True)[:3]
         scores = [round(similarity(sw, d), 3) for d in ranked]

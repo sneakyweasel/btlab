@@ -1427,6 +1427,8 @@
   "statement": "3^k divides f(n_w) iff every output trit of the residual machine along w is 0, so the solution tree of f(x) = 0 mod 3^k is the zero-output subtree; balanced digits are what force the partial sum below the modulus",
   "source": "docs/theory/padic_lifting_trees.md",
   "lean": "BTCalculus/PadicLifting.lean",
+  "decl": "lift_iff_outputs_zero",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_lifting.py",
    "tests/research/lifting/test_triage.py"
