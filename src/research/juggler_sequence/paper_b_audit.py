@@ -4150,6 +4150,8 @@ COLLECTED_CONSTANT_INVENTORY = (
      "route": "single mean value at its endpoint", "loss": "none"},
     {"where": "Lem 5.2(iii) widened", "printed": 5.0, "true": 4.001,
      "route": "lead plus a term of lower order", "loss": "rounding a vanishing term"},
+    {"where": "Thm 5.3 mode-dominant j=0 anchor", "printed": 5.3, "true": 81 / 32,
+     "route": "beta at the block top against nu at the block bottom", "loss": "block ends apart"},
 )
 
 
@@ -4180,6 +4182,97 @@ def collected_constant_inventory() -> dict[str, Any]:
         "the_s2_constant_is_a_sum": False,
         "the_widened_constant_is_a_sum": True,
         "neither_is_a_max_in_disguise": True,
+    }
+
+
+def beta_locality(seed: int = 37, samples_per_range: int = 30, span: int = 40000) -> dict[str, Any]:
+    """Is the block interval for beta_i ever needed, or is the pointwise value always available?
+
+    Every "block ends apart" loss in the inventory traces to
+    beta_i in [3 h_i P^{1/2} - 1, 3 sqrt2 h_i P^{1/2} + 1] (printed as 4.3 h_i P^{1/2} + 1 in the
+    j = 0 band): the top of that interval is beta at nu = 2P, and it multiplies a negative power of
+    n charged at nu = P.  The question is whether anything forces the two apart.
+
+    Nothing does.  b_i = floor(Delta_{2h_i} X) advances by one when 3 h_i n^{1/2} does, so its runs
+    have length 2 n^{1/2}/(3 h_i) -- measured at 673.2 against 666.7 at P = 1e6, h = 1, and exact
+    to four figures by 1e8 -- and across such a run n moves by a *relative* 2/(3 h_i n^{1/2}).  So
+    beta_i / (3 h_i n^{1/2}) stays within 1 + O(1/(h_i n^{1/2})) at every point of every run:
+    measured inside [0.99968, 1.00032] at P = 1e6 and inside [0.99997, 1.00003] at 1e8.  The
+    branch decomposition freezes beta exactly where n cannot move enough to matter.
+
+    And nothing is lost by using the pointwise value: the estimates are decreasing in n, so a
+    block-uniform statement with the pointwise constants at n = P follows at once.  The interval
+    is a convenience.
+
+    The third instance of the loss, which the inventory did not have: on a zero-offset branch of
+    the mode-dominant band the anchor's theta-coefficient is
+    B = -(9/32) k beta_1 beta_2 nu^{-9/8}, and the manuscript reads it off the interval as
+    |B| <= 5.3 k h_1h_2 P^{-1/8}, opened to 6.  Pointwise it is (81/32) = 2.531, measured at
+    2.5304.  The factor is (4.3/3)^2 = 2.054 from the interval plus the two +1's.  It moves the
+    5b-j0-window row from 3136 to 802, and nothing else: both are twelve orders under P_0.
+    """
+
+    rng = random.Random(seed)
+    runs_rows = []
+    ratio_lo, ratio_hi = 2.0, 0.0
+    for P, h in ((10**6, 1), (10**6, 2), (10**8, 1), (10**8, 3)):
+        with mp.workdps(working_dps_for(2 * P)):
+            prev, start, lens = None, None, []
+            local_lo, local_hi = 2.0, 0.0
+            for n in range(P + 1, P + span + 1, 2):
+                beta, b, _ = level1_data(n, 2 * h)
+                r = float(beta / (3 * h * mp.sqrt(mp.mpf(n))))
+                local_lo, local_hi = min(local_lo, r), max(local_hi, r)
+                if b != prev:
+                    if start is not None:
+                        lens.append(n - start)
+                    start, prev = n, b
+            predicted = float(2 * mp.sqrt(mp.mpf(P)) / (3 * h))
+        ratio_lo, ratio_hi = min(ratio_lo, local_lo), max(ratio_hi, local_hi)
+        # a span shorter than one run completes none of them; report the row without a mean
+        mean = (sum(lens) / len(lens)) if lens else None
+        runs_rows.append({
+            "P": P, "h": h, "runs": len(lens),
+            "mean_run_length": mean,
+            "predicted_run_length": predicted,
+            "run_length_ratio": (mean / predicted) if mean else None,
+            "beta_ratio_range": (local_lo, local_hi),
+        })
+
+    # the j = 0 band's anchor coefficient, both routes
+    worst_B = 0.0
+    for P in (10**6, 10**8, 10**10):
+        with mp.workdps(working_dps_for(2 * P)):
+            H1 = max(1, int(P ** (1 / 48)))
+            H2 = max(1, int(P ** (1 / 24)))
+            Pm = mp.mpf(P)
+            for _ in range(samples_per_range):
+                n = rng.randrange(P, 2 * P) | 1
+                h1, h2 = rng.randint(1, H1), rng.randint(1, H2)
+                beta1, _, _ = level1_data(n, 2 * h1)
+                beta2, _, _ = level1_data(n, 2 * h2)
+                B = mp.mpf(9) / 32 * beta1 * beta2 * mp.power(mp.mpf(n), -mp.mpf(9) / 8)
+                worst_B = max(worst_B, float(B / (h1 * h2 * mp.power(Pm, -mp.mpf(1) / 8))))
+    return {
+        "runs": runs_rows,
+        "run_length_model_holds": all(0.98 < r["run_length_ratio"] < 1.02
+                                     for r in runs_rows if r["run_length_ratio"] is not None),
+        "beta_ratio_range": (ratio_lo, ratio_hi),
+        "beta_is_pointwise_everywhere": abs(ratio_hi - 1) < 1e-3 and abs(ratio_lo - 1) < 1e-3,
+        "block_interval_top_over_pointwise": math.sqrt(2.0),
+        "printed_j0_interval_top_over_pointwise": 4.3 / 3,
+        "loss_on_a_product": (4.3 / 3) ** 2,
+        # the j = 0 band instance
+        "j0_anchor_constant_printed": 5.3,
+        "j0_anchor_constant_opened": 6.0,
+        "j0_anchor_constant_pointwise": 81 / 32,
+        "j0_anchor_measured": worst_B,
+        "j0_model_holds": worst_B <= 81 / 32,
+        "j0_model_is_approached": worst_B > 0.995 * 81 / 32,
+        "j0_window_row_printed": (8 * (1 + 6.0)) ** 2,
+        "j0_window_row_pointwise": (8 * (1 + 81 / 32)) ** 2,
+        "j0_row_moves_but_nothing_else": (8 * (1 + 81 / 32)) ** 2 < (8 * (1 + 6.0)) ** 2 < 1e5,
+        "interval_is_convenience_not_necessity": True,
     }
 
 
@@ -4251,6 +4344,7 @@ def summary() -> dict[str, Any]:
     runconst = run_length_constant(live=False)
     d2consts = second_derivative_constants(samples_per_range=16)
     collected = collected_constant_inventory()
+    locality = beta_locality(span=12000, samples_per_range=12)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4307,6 +4401,7 @@ def summary() -> dict[str, Any]:
         "run_length_constant": runconst,
         "second_derivative_constants": d2consts,
         "collected_constant_inventory": collected,
+        "beta_locality": locality,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

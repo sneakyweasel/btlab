@@ -3624,3 +3624,154 @@ Probes: `second_derivative_constants`, `collected_constant_inventory`,
 `COLLECTED_CONSTANT_INVENTORY`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The interval exists for convenience: the decomposition freezes beta exactly where `n` cannot move
+
+Every "block ends apart" row of the inventory traces to
+`beta_i in [3 h_i P^(1/2) - 1, 3 sqrt2 h_i P^(1/2) + 1]` --- printed as
+`4.3 h_i P^(1/2) + 1` in the `j = 0` band. The top of that interval is
+`beta` at `nu = 2P`, and it multiplies a negative power of `n` charged
+at `nu = P`. The question was whether anything forces the two apart.
+
+**Nothing does, and the run structure is why.** `b_i = floor(Delta_{2h_i}
+X)` advances by one exactly when `3 h_i n^(1/2)` does, so its runs have
+length `2 n^(1/2)/(3 h_i)`:
+
+```text
+   P     h   runs   mean length   2 sqrt(n)/(3h)   ratio
+  1e6    1     17       668.5         666.7        1.0027
+  1e6    2     35       334.2         333.3        1.0027
+  1e8    1      1      6666.0        6666.7        0.9999
+  1e8    3      5      2221.6        2222.2        0.9997
+```
+
+Across such a run `n` moves by a *relative* `2/(3 h_i n^(1/2))`, so
+`beta_i / (3 h_i n^(1/2))` never leaves `1 + O(1/(h_i n^(1/2)))`:
+measured inside `[0.999678, 1.000323]` at `P = 1e6` and inside
+`[0.999967, 1.000033]` at `1e8`. The branch decomposition freezes
+`beta` precisely where `n` cannot move enough to matter, so the
+pointwise value is available wherever the lemma is used.
+
+**And nothing is lost by using it.** The estimates are decreasing in
+`n`, so any block-uniform statement follows from the pointwise one at
+`n = P`, with the pointwise constants. The interval is not a weaker
+hypothesis --- it is the same fact stated over a range where one of the
+factors has already moved.
+
+**A third instance, which the inventory did not have.** On a zero-offset
+branch of the mode-dominant band the anchor's `theta`-coefficient is
+`B = -(9/32) k beta_1 beta_2 nu^(-9/8)`, and the manuscript reads it
+off the interval: `|B| <= 5.3 k h_1h_2 P^(-1/8)`, opened to `6`.
+Pointwise it is `81/32 = 2.5313`, measured at `2.5304` over `90`
+samples --- `99.97%` of the model. The factor is `(4.3/3)^2 = 2.054`
+from the interval, plus the two `+1`s and the opening.
+
+Its one consequence: `5b-j0-window` reads `P^(1/2) >= 8(1+|B|)`, so the
+row falls from `3136` to `798`. Both are twelve orders under `P_0`, and
+the structural point the passage makes --- that the sawtooth is of
+constant size and not sub-unit --- survives at `2.53`, which is still
+above `1`. Nothing else moves.
+
+```text
+  the inventory, now eight rows
+  where                              printed   true      slack  loss
+  Lem 5.1(iii) |G'| offset              2       9/8       1.78  rounding
+  Lem 5.1(iii) |G'| curvature          20       81/16     3.95  block ends apart
+  Lem 5.1(iii) |G''| offset             2       9/32      7.11  cancellation dropped
+  Lem 5.1(iii) |G''| curvature         25       567/64    2.82  block ends apart
+  Lem 5.1(iii) run length              22       27/16    13.04  max in disguise
+  Thm 4.1 St.3(s2) |B|                  2.25    9/4       1.00  none
+  Lem 5.2(iii) widened                  5       4.001     1.25  rounding a vanishing term
+  Thm 5.3 mode-dominant j=0 anchor      5.3     81/32     2.09  block ends apart
+```
+
+Tags. EXACT: `b_i` advances with `3 h_i n^(1/2)`, so its runs have
+length `2 n^(1/2)/(3 h_i)` and `n` moves by a relative
+`2/(3 h_i n^(1/2))` across one; the estimates are decreasing in `n`, so
+the pointwise statement implies the block-uniform one at `n = P`;
+`|B| = (9/32) k beta_1beta_2 nu^(-9/8)` is `81/32` pointwise.
+COMPUTATIONALLY VERIFIED: the four run-length rows above;
+`beta_i/(3 h_i n^(1/2))` inside `[0.999678, 1.000323]`; the `j = 0`
+anchor measured at `2.5304` against `81/32 = 2.5313`; the window row
+`3136 -> 798`. OBSERVATION: three of the eight inventory rows are now
+this one loss, and all three would go together.
+
+Probe: `beta_locality`, two tests; the inventory gains a row. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.
+
+## What the machine check was checking, and where the offset pattern recurs
+
+The last entry ended by asking how many Lean theorems in this development take
+a hypothesis vector the manuscript supplies as a function. The scan found one
+thing of that kind and one worse thing of another.
+
+**The worse thing first: the Lean interpolant chain proved the superseded
+constants.** Lemma 5.2b's erratum lists its own consequences --- the (C5) cap
+`186 -> 300`, step (ii)'s `0.567 -> 0.907`, the sum `52.9 -> 85.3`, and `E`'s
+`106 -> 171`. `PaperBAssembly.lean` proved the left-hand column of every one:
+
+```text
+  interpolant_step_i           u <= 186 k h2 P^(1/8)   ->  52.32 k(h1+h2) P^(-9/8)
+  interpolant_step_ii_constant (135/1024) * 4.3 <= 0.57
+  interpolant_assembly         52.32 + 0.57 = 52.89    ->  106 P^(-25/24)
+  interpolant_gain             2 < 219/106
+```
+
+and the manuscript, three lines under the corrected display of (i) and (ii),
+said "Steps (i)-(iii) and the assembly are machine-checked in
+`PaperBAssembly.lean` (`interpolant_step_i`, `interpolant_step_ii_constant`,
+`interpolant_assembly`)". That sentence was true of a statement the erratum in
+the same lemma had already replaced. It is the exact failure the trust table of
+Section 1.1 exists to prevent, one section away from the table.
+
+Regenerated on the corrected anchor `27/128`: cap `300` (which is
+`60 * 4.2/0.84`, the band condition at the corrected `lambda_0` ceiling),
+`(9/32)*300 = 84.375` printed `84.38`, `(27/128)*4.3 = 0.9070` printed `0.91`,
+`(84.38 + 0.91) * 2 = 170.58 <= 170.6`. `interpolant_gain` now records
+`1.28 < 219/170.6 < 1.284`, which is the factor A.5 claims, beside the
+superseded `2 < 219/106`. The pre-correction chain is retained under
+`_precorrection` names, as `step5b_c7_printed` retains `c_7 = 1/288`, so that a
+reader checking the erratum's list finds both ends of it in Lean.
+`lake build Problems.Juggler.PaperBAssembly` green at 3080 jobs.
+
+`P_0` and `P_1` do not move: `p0_certificate.interpolant_error` was already
+`170.6 P^(-25/24) + 0.11 P^(-5/6)`. What was wrong was the corroboration.
+Two files were regenerated after the Lemma 5.2b erratum -- the threshold
+certificate and the probe -- and this one was not, which is the sort of thing
+that survives precisely because everything stays green.
+
+**And the offset pattern does recur, three times, harmlessly.** Measured
+exactly over `1 <= h1, h2 <= 7` (`decoration_budget.beta_inventory_attained`):
+
+```text
+  quantity                                         printed        attained
+  (3/4) b1 b2 (m+xi2)^(-1/2) / (h1 h2 P^(1/4))     [1.4, 15]      [27/4, (27/4)2^(1/4)]
+                                                                  = [6.750, 8.027]
+  beta-part of |G'|  / (h1 h2 P^(-3/4))            20             81/16  = 5.0625
+  beta-part of |G''| / (h1 h2 P^(-7/4))            25             567/64 = 8.8594
+```
+
+Same arithmetic in all three: `b1 b2 ~ 9 h1 h2 n` and the accompanying power of
+`n` move together, and the printed forms take one at each end of the block. The
+printed interval in the first row is `13.6` wide where the attained one is
+`1.28`; the two derivative constants are `3.95` and `2.82` times what they
+bound.
+
+**And one place it looked like it should recur and does not.**
+`beta_product_bound` hypothesises `beta_i <= 4.25 h_i q + 1` separately and
+concludes `beta1 beta2 <= 19 h1 h2 q^2`. That is not an over-quantification:
+both factors are extremal at the *same* `n = 2P`, `beta1 beta2/(h1 h2 P)`
+attains `18 = (3 sqrt 2)^2` exactly, and `4.25^2 = 18.0625` is the whole of the
+loss. Separate quantification costs nothing when the extremes coincide, which
+is the distinction the offset erratum turns on and is worth having on record in
+the affirmative as well.
+
+Not sharpened, and costed rather than waved at. The `20` reaches the widened
+`theta`-coefficient only through the lower-order `20 h P^(-1/4)`: at `81/16` the
+collected constant `4 + delta` becomes valid from `7.6e9` instead of `2.95e11`,
+and the collected constant itself is unchanged. The `25` reaches only
+`25/0.35 <= 71.5`, whose certificate row moves from `8.2e4` to `1.0e4`. Both
+are eight orders under `P_0`. A rigorous sharpening would also have to carry
+the `O(1)` corrections in `beta_i = floor(Delta_i X + theta)` that the printed
+constants currently absorb.

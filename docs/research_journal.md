@@ -33951,3 +33951,148 @@ Best next question
   *not* available -- where the estimate really is over the whole block
   at once -- or does the interval exist only for convenience?
 ```
+
+## Convenience, and the run structure says so
+
+`b_i = floor(Delta_{2h_i} X)` advances by one exactly when
+`3 h_i n^(1/2)` does, so its runs have length `2 n^(1/2)/(3 h_i)` ---
+`668.5` measured against `666.7` at `P = 1e6, h = 1`, and exact to four
+figures by `1e8`. Across one such run `n` moves by a relative
+`2/(3 h_i n^(1/2))`, so `beta_i/(3 h_i n^(1/2))` stays inside
+`[0.999678, 1.000323]` at `1e6` and `[0.999967, 1.000033]` at `1e8`.
+The branch decomposition freezes `beta` precisely where `n` cannot move
+enough to matter, so the pointwise value is available wherever the
+lemma is used, and the block interval
+`[3h_i P^(1/2) - 1, 3 sqrt2 h_i P^(1/2) + 1]` is convenience. Nor does
+using it cost anything: the estimates decrease in `n`, so the
+block-uniform statement follows from the pointwise one at `n = P`.
+
+The search for where the interval is needed turned up a third place
+where it is not. On a zero-offset branch of the mode-dominant band,
+`B = -(9/32) k beta_1beta_2 nu^(-9/8)` is read off the interval as
+`|B| <= 5.3 k h_1h_2 P^(-1/8)`, opened to `6`; pointwise it is
+`81/32 = 2.5313`, measured at `2.5304`. The factor is `(4.3/3)^2` plus
+two roundings. It moves `5b-j0-window` from `3136` to `798` and nothing
+else, and the passage's structural point --- the sawtooth is of
+constant size, not sub-unit --- holds at `2.53` as it did at `6`.
+
+Three of the eight inventoried constants are now this one loss, and all
+three would go together.
+
+```text
+Phase-end report
+Question
+- is there anywhere the pointwise beta_i ~ 3 h_i n^(1/2) is unavailable,
+  or does the block interval exist only for convenience
+Instruments
+- beta_locality: b-run lengths against 2 sqrt(n)/(3h) at four (P, h),
+  the pointwise ratio at every point of every run, and the j = 0 band's
+  anchor coefficient over 90 samples
+Ledger tags
+- EXACT: b_i advances with 3 h_i n^(1/2), so runs have length
+  2 n^(1/2)/(3 h_i) and n moves by a relative 2/(3 h_i n^(1/2)) across
+  one; the estimates decrease in n, so pointwise implies block-uniform
+  at n = P; the j = 0 anchor coefficient is 81/32
+- COMPUTATIONALLY VERIFIED: the four run-length rows; the ratio inside
+  [0.999678, 1.000323]; the anchor measured at 2.5304; 3136 -> 798
+- OBSERVATION: three of eight inventory rows are this single loss
+Strongest theorem
+- the decomposition freezes beta exactly on the scale where n is
+  constant to a relative O(P^(-1/2)), so no estimate in the lemma needs
+  the block interval
+Strongest refutation
+- the possibility my own question raised, that some step genuinely
+  needs beta and n decoupled: none does
+Reusable machinery
+- beta_locality, two tests, wired into summary(); an eighth inventory
+  row
+Branch status
+- PARK
+Why
+  The inventory is complete for Lemma 5.1(iii) and its neighbours, and
+  every row is a manuscript edit belonging to the other session.
+Best next question
+- (C1) enters the j = 0 band as k h_1h_2 P^(-1/8) <= 1 to turn 5.3 into
+  a pure constant. With 81/32 the same step needs only
+  k h_1h_2 <= 2.4 P^(1/8). Is (C1) doing anything else at that point,
+  or is it there for this bound alone?
+```
+
+### What the machine check was checking
+
+The recorded question was how many Lean theorems here take a hypothesis vector
+the manuscript supplies as a function. The scan found one of that kind, three
+times over, and one worse thing of another kind.
+
+**The Lean interpolant chain proved the superseded constants.** Lemma 5.2b's
+erratum lists its own consequences — the (C5) cap `186 → 300`, step (ii)'s
+`0.567 → 0.907`, the sum `52.9 → 85.3`, `E`'s `106 → 171`. `PaperBAssembly`
+proved the left column of every one, and the manuscript, three lines under the
+*corrected* display, said those three theorems machine-check it. True of a
+statement the erratum in the same lemma had already replaced — the exact
+failure the trust table exists to prevent, one section away from the table.
+
+Regenerated at `27/128`: cap `300 = 60·4.2/0.84`, `(9/32)·300 = 84.375` printed
+`84.38`, `(27/128)·4.3 = 0.9070` printed `0.91`, `(84.38+0.91)·2 = 170.58 ≤
+170.6`. `interpolant_gain` now records `1.28 < 219/170.6 < 1.284`, the factor
+A.5 claims, beside the superseded `2 < 219/106`. The pre-correction chain is
+kept under `_precorrection` names as `step5b_c7_printed` keeps `c_7 = 1/288`.
+`P_0` and `P_1` do not move — the certificate was already solved against
+`170.6`. What was wrong was the corroboration.
+
+**And the offset pattern recurs three times, harmlessly.** Measured exactly:
+
+```text
+  quantity                                       printed      attained
+  (3/4) b1b2 (m+xi2)^(-1/2) / (h1h2 P^(1/4))     [1.4, 15]    [27/4, (27/4)2^(1/4)]
+  beta-part of |G'|  / (h1h2 P^(-3/4))           20           81/16  = 5.0625
+  beta-part of |G''| / (h1h2 P^(-7/4))           25           567/64 = 8.8594
+```
+
+Same arithmetic each time: `b1b2 ~ 9h1h2 n` and the accompanying power of `n`
+move together, and the printed forms take one at each end of the block.
+
+**And one place it looked like it should recur and does not.**
+`beta_product_bound` hypothesises the two factors separately and gets `19`;
+that is not over-quantification, because both are extremal at the *same*
+`n = 2P`, the product attains `18 = (3√2)²` exactly, and `4.25² = 18.0625` is
+the whole loss. Separate quantification costs nothing when the extremes
+coincide — which is the distinction the offset erratum turns on, and is worth
+having on record in the affirmative too.
+
+```text
+What was learned
+- a Lean file can go stale against an erratum in the very lemma it checks, and
+  stay green, because nothing compares its constants to the manuscript's
+- two files were regenerated after the Lemma 5.2b erratum and a third was not
+- the over-quantification pattern is real and recurs, and every instance of it
+  here sits eight orders below where it could matter
+- the negative case is the informative one: separate hypotheses cost nothing
+  when the extremes coincide, which is exactly what fails for the offset
+Strongest theorem
+- the corrected interpolant chain, machine-checked: cap 300, (9/32)*300 =
+  84.375, (27/128)*4.3 = 0.9070, (84.38+0.91)*2 = 170.58 <= 170.6, and
+  1.28 < 219/170.6 < 1.284
+Strongest refutation
+- the manuscript's claim that interpolant_step_i, _step_ii_constant and
+  _assembly machine-check steps (i)-(iii) as displayed; they checked the
+  pre-correction chain
+Reusable machinery
+- decoration_budget.beta_inventory_attained; Lean interpolant_*_precorrection;
+  five new tests
+Branch status
+- PARK
+Why
+  The stale chain is regenerated and both ends of the erratum's list are in
+  Lean. The three loose constants are measured, costed and declined for a
+  stated reason, and the one clean site is recorded as clean. Nothing here
+  moves P_0.
+Best next question
+- the regeneration gap is the general problem, not this instance: the Lemma
+  5.2b erratum moved constants in the manuscript, the probe and the
+  certificate, and PaperBAssembly was missed because no check compares a Lean
+  numeral to the manuscript's. p0_certificate already transcribes 38 printed
+  inequalities and LEAN_ROWS already pairs each with a theorem and a rational
+  t_0. Is there a second such table to be written, for the numerals that are
+  not certificate rows?
+```

@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "520ab77b80466c13e5d6f258c677c3c69ff31f18",
+  "git_commit": "5d7cafb49fa5a70c480bb86604da950409e1827c",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3769,7 +3769,7 @@
   "draft_history_markers": {
     "occurrences": [
       {
-        "line": 2045,
+        "line": 2092,
         "section": "4. The level-2 wave and the kernel theorem",
         "in_appendix": false,
         "mathematical": false,
@@ -3777,7 +3777,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 3991,
+        "line": 4058,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3785,7 +3785,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 4923,
+        "line": 4990,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3793,7 +3793,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5428,
+        "line": 5495,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3801,7 +3801,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6239,
+        "line": 6306,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3809,7 +3809,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6609,
+        "line": 6676,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3817,7 +3817,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6639,
+        "line": 6706,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3825,7 +3825,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6718,
+        "line": 6785,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3838,8 +3838,8 @@
     "in_body": 4,
     "body_mathematical": 2,
     "body_needing_a_look": [
-      2045,
-      3991
+      2092,
+      4058
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -4986,12 +4986,20 @@
         "route": "lead plus a term of lower order",
         "loss": "rounding a vanishing term",
         "slack": 1.2496875781054735
+      },
+      {
+        "where": "Thm 5.3 mode-dominant j=0 anchor",
+        "printed": 5.3,
+        "true": 2.53125,
+        "route": "beta at the block top against nu at the block bottom",
+        "loss": "block ends apart",
+        "slack": 2.093827160493827
       }
     ],
-    "count": 7,
+    "count": 8,
     "by_loss": {
       "rounding": 1,
-      "block ends apart": 2,
+      "block ends apart": 3,
       "cancellation dropped": 1,
       "max in disguise": 1,
       "none": 1,
@@ -5006,6 +5014,77 @@
     "the_s2_constant_is_a_sum": false,
     "the_widened_constant_is_a_sum": true,
     "neither_is_a_max_in_disguise": true
+  },
+  "beta_locality": {
+    "runs": [
+      {
+        "P": 1000000,
+        "h": 1,
+        "runs": 17,
+        "mean_run_length": 668.4705882352941,
+        "predicted_run_length": 666.6666666666666,
+        "run_length_ratio": 1.0027058823529413,
+        "beta_ratio_range": [
+          0.9996782150813913,
+          1.0003232153747947
+        ]
+      },
+      {
+        "P": 1000000,
+        "h": 2,
+        "runs": 35,
+        "mean_run_length": 334.22857142857146,
+        "predicted_run_length": 333.3333333333333,
+        "run_length_ratio": 1.0026857142857144,
+        "beta_ratio_range": [
+          0.9998352007664172,
+          1.0001658222446728
+        ]
+      },
+      {
+        "P": 100000000,
+        "h": 1,
+        "runs": 1,
+        "mean_run_length": 6666.0,
+        "predicted_run_length": 6666.666666666667,
+        "run_length_ratio": 0.9998999999999999,
+        "beta_ratio_range": [
+          0.9999670266309363,
+          1.0000329811230368
+        ]
+      },
+      {
+        "P": 100000000,
+        "h": 3,
+        "runs": 5,
+        "mean_run_length": 2221.6,
+        "predicted_run_length": 2222.222222222222,
+        "run_length_ratio": 0.9997199999999999,
+        "beta_ratio_range": [
+          0.9999889798057626,
+          1.0000110510540428
+        ]
+      }
+    ],
+    "run_length_model_holds": true,
+    "beta_ratio_range": [
+      0.9996782150813913,
+      1.0003232153747947
+    ],
+    "beta_is_pointwise_everywhere": true,
+    "block_interval_top_over_pointwise": 1.4142135623730951,
+    "printed_j0_interval_top_over_pointwise": 1.4333333333333333,
+    "loss_on_a_product": 2.0544444444444445,
+    "j0_anchor_constant_printed": 5.3,
+    "j0_anchor_constant_opened": 6.0,
+    "j0_anchor_constant_pointwise": 2.53125,
+    "j0_anchor_measured": 2.5240005325541492,
+    "j0_model_holds": true,
+    "j0_model_is_approached": true,
+    "j0_window_row_printed": 3136.0,
+    "j0_window_row_pointwise": 798.0625,
+    "j0_row_moves_but_nothing_else": true,
+    "interval_is_convenience_not_necessity": true
   },
   "kernel_k_uniformity": {
     "P": 10000,
@@ -5074,5 +5153,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 82.1880304813385
+  "elapsed_seconds": 82.878830909729
 }

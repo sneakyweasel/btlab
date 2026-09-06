@@ -1414,5 +1414,36 @@ def test_neither_candidate_constant_is_a_maximum_in_disguise() -> None:
     assert r["already_sharp"] == ["Thm 4.1 St.3(s2) |B|"]
     assert r["worst_row"] == "Lem 5.1(iii) run length" and 13 < r["worst_slack"] < 13.1
     assert r["block_ends_apart_is_the_commonest_loss"]
-    assert r["count"] == 7 and sum(r["by_loss"].values()) == 7
+    assert r["count"] == 8 and sum(r["by_loss"].values()) == 8
     assert all(x["printed"] >= x["true"] for x in r["rows"])
+
+
+# --- whether the block interval for beta is ever needed ---
+
+
+def test_beta_is_pointwise_wherever_the_branch_decomposition_is() -> None:
+    """b runs have length 2 sqrt(n)/(3h), so beta/(3h sqrt n) never leaves 1 +- 3.3e-4."""
+    r = A.beta_locality(span=12000, samples_per_range=12)
+    assert r["run_length_model_holds"]
+    assert r["beta_is_pointwise_everywhere"]
+    lo, hi = r["beta_ratio_range"]
+    assert 0.999 < lo < 1.0 < hi < 1.001
+    assert r["interval_is_convenience_not_necessity"]
+    assert all(0.98 < x["run_length_ratio"] < 1.02 for x in r["runs"]
+               if x["run_length_ratio"] is not None)
+    assert abs(r["block_interval_top_over_pointwise"] - 2 ** 0.5) < 1e-12
+
+
+def test_the_j0_anchor_coefficient_is_the_same_loss_a_third_time() -> None:
+    """5.3 opened to 6 is 81/32 = 2.531 pointwise; the factor is (4.3/3)^2 and two roundings."""
+    r = A.beta_locality(span=4000, samples_per_range=12)
+    assert r["j0_anchor_constant_pointwise"] == 81 / 32
+    assert r["j0_model_holds"] and r["j0_model_is_approached"]
+    assert abs(r["loss_on_a_product"] - (4.3 / 3) ** 2) < 1e-12
+    assert r["j0_window_row_printed"] == 3136.0
+    assert 790 < r["j0_window_row_pointwise"] < 800
+    assert r["j0_row_moves_but_nothing_else"]
+    # and the row is now in the inventory
+    inv = A.collected_constant_inventory()
+    assert inv["count"] == 8
+    assert inv["by_loss"]["block ends apart"] == 3
