@@ -5795,13 +5795,18 @@ irrational constants are replaced by rational bounds, both recorded:
 \(\sqrt{0.56}\ge0.7483\) in the boundary row, and
 \(\tfrac1{12}\sqrt{0.56}\le0.06237\) in the binding one.
 
-The Lean file still carries the pre-correction constants of the erratum
-at Lemma 5.2b --- \(t=1.96\), \(\sqrt{0.35}\ge0.5916\),
-\(\tfrac1{12}\sqrt{0.35}\le0.04931\) --- so what it proves is the old
-table, whose rows remain true statements but are no longer the ones
-printed above. The table above is bisected numerically. Regenerating
-the certificate is pending, and until it lands this paragraph is the
-only place the two disagree.
+The file is regenerated against the corrected table of the erratum at
+Lemma 5.2b. Nine of the thirty-seven rows carry that anchor --- the
+\(\lambda_0\) range, the four \(\rho_0(E)\) ratios, the wave remainder
+and the three balance comparisons --- and every one of them still
+admits a rational witness, which was not guaranteed: the two balance
+rows are tight to four figures in the coefficient budget
+(\(6.4969+1.6177+3.6895=11.8041\) against \(7/5800=12.0690\), in units
+of \(10^{-4}\)), and two of them first failed on a rounding of
+\(1\) part in \(4\cdot10^{5}\). Two rows that look as though they carry
+the anchor do not: `row_s3s2_bdry_a` and the Step 5b(a) \(q''\) ratio
+divide by Theorem 4.1's Stage-4 curvature \(0.35\,uh\,P^{-3/4}\), so
+`sqrt_0_35_lower` stays and `sqrt_0_56_lower` is the new one beside it.
 
 ### A.1 The certificate
 

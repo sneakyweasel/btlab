@@ -1892,3 +1892,93 @@ An earlier draft of this entry claimed \(E\) does not enter \(P_1\) at
 all, from reading `log10_P1`'s signature rather than
 `middle_band_cost`, which it calls. It does enter; the conclusion
 survives because its *weight* is small, not because it is absent.
+
+### The Lean certificate is regenerated, and nine rows kept their witnesses
+
+`ThresholdCertificate.lean` now proves the corrected A.5 table. It builds
+green (`lake build Problems.Juggler.ThresholdCertificate`, 23 s), so the
+gap the previous entry recorded is closed rather than described.
+
+*What changed.* Nine of the thirty-seven rows carry Lemma 5.2b's anchor:
+
+```text
+   5b-lam0-range   2.44/23.4 -> 3.90/37.8 ; 0.38/3.15 -> 0.62/5.04   t >= 17 (unchanged)
+   39-c2           53/350 -> 53/560                                  t: 282 -> 176
+   39-c3           47/350 -> 47/560                                  t: 250 -> 156
+   39-c4           44/350 -> 44/560                                  t: 234 -> 146
+   39-wave         4000/7 -> 3750/7                                  t: 16.1 -> 15.9
+   5b-E<=c7S       105.8, 7/9280 -> 170.6, 7/5800                    t: 1.85 -> 1.84
+   5a-W<=c7S       105.8 -> 170.6                                    t: 1.89 -> 1.91
+   5b-W<=c7S       0.04931, 105.8, 7/9280 -> 0.06237, 170.6, 7/5800  t: 1.96 -> 1.92
+```
+
+plus the new `sqrt_0_56_lower : (0.7483)^2 <= 0.56`. `39-beta` is left at
+`2.31`, which is conservative for the corrected `2.3048`.
+
+*That every row kept a witness was not guaranteed.* The two balance rows
+are tight to four figures in the coefficient budget: `5b-W<=c7S` needs
+`6.4969 + 1.6177 + 3.6895 = 11.8041` against `7/5800 = 12.0690`, in units
+of \(10^{-4}\). Both first **failed** on a rounding of one part in
+\(4\cdot10^{5}\) --- `170.6/417316 = 4.08805\cdot10^{-4}` written as
+`4.0880` rather than `4.0881`. Lean caught it; the arithmetic that
+produced the coefficients had not.
+
+*And two rows that look as though they carry the anchor do not.*
+`row_s3s2_bdry_a` and the Step 5b(a) `q''` ratio divide by Theorem 4.1's
+Stage-4 curvature `0.35 uh P^(-3/4)`. `sqrt_0_35_lower` therefore stays,
+now beside `sqrt_0_56_lower`, and the file's header says which is which
+--- the same coincidence of value that cost a wrong turn in the
+propagation entry above, recorded now where a reader meets it.
+
+The binding row is `row_5b_binding` at `t = 1.92`, i.e.
+`P >= 1.92^48 = 4.0e13` against the probe's `3.5858e13`: a loss of under
+11 per cent, down from the 20 per cent the pre-correction `t = 1.96`
+carried. `LEAN_ROWS` in `test_p0_certificate.py` is updated and its
+covering test compares against the corrected table again. VERIFIED.
+
+## What binds \(P_1\), and what a 17% constant costs there
+
+**The piece-boundary term binds.** Of A.5's three middle-band costs,
+\(4PW/(c_7S)\) at \(P^{41/48}\), \(P(W/c_7S)^{1/2}\) at \(P^{89/96}\)
+and \(3.5\,P^{13/24}V^{-1/2}\) at \(P^{89/96}\), the third is \(30.6\%\)
+of the total at \(10^{13}\), \(57.8\%\) at \(P_1\), and \(63.5\%\) at
+\(10^{22}\): it takes over and keeps growing.
+
+**Its constant is \(3.5\) where the row itself gives \(3.0015\).** The
+constant comes from `5b-Npieces`, "cells + anchor runs + windows
+\(\le3.5P^{13/24}\)", whose left-hand side is
+\[
+3+2P^{-13/24}+22P^{-11/48}+5P^{-5/24},
+\]
+i.e. \(3.0329\) at \(10^{13}\), \(3.0015\) at \(P_1\) and \(3.0003\) at
+\(10^{22}\). The printed \(3.5\) is \(16.6\%\) above it at \(P_1\).
+
+**And 17% is worth a factor of two and a half.** The two \(P^{89/96}\)
+terms decide the crossing, so \(P_1\) solves \(CP^{89/96}=P\) and
+\[
+P_1=C^{96/7},
+\]
+amplifying every constant in the total by a \(13.71\)st power. Carrying
+\(3\) instead of \(3.5\) moves \(P_1\) from \(9.84\cdot10^{18}\) to
+\(3.91\cdot10^{18}\): **a factor of \(2.52\)**, against the \(1.06\)
+that the interpolant pairing repair is worth on the same number.
+COMPUTATIONALLY VERIFIED; the exponents \(89/96\), \(41/48\) and
+\(96/7\) are EXACT and in `exponent_checks`.
+
+**Where the paper looks instead.** A.5's closing paragraph --- "What is
+left" --- points at \(E\), the middle-band half-width \(60\) and the
+\(\lambda_0\) range \([0.35,2.6]\). That is the right target for
+\(P_0\), where \(E\) is \(45.5\%\) of \(W\). At \(P_1\), \(E\) is
+\(11.8\%\) of \(W\) and the binding cost is the boundary term, whose
+constant is loose by construction: \(3.5\) was chosen to dominate three
+lower-order terms that together contribute \(0.0015\) at \(P_1\). The
+sharp value is not an estimate to be improved --- it is the row's own
+left-hand side, evaluated where it is used.
+
+The two levers, side by side on the number that decides reach:
+
+| lever | \(P_1\) | factor |
+|---|---|---|
+| as printed | \(9.84\cdot10^{18}\) | --- |
+| interpolant pairing repaired | \(9.25\cdot10^{18}\) | \(1.06\) |
+| piece constant carried sharp | \(3.91\cdot10^{18}\) | \(2.52\) |

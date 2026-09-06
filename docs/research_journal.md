@@ -31185,3 +31185,146 @@ Best next question
   the three binds at 1e19, and is its constant as loose as the ones
   the census could not police?
 ```
+
+ ### The Lean certificate is regenerated, and Lean caught the rounding
+
+The recorded next question, closed. `ThresholdCertificate.lean` now
+proves the corrected A.5 table and builds green in 23 s, so the gap the
+last entry described is gone rather than documented.
+
+**Nine rows carry the anchor and all nine kept a rational witness.**
+
+```text
+   5b-lam0-range   2.44/23.4 -> 3.90/37.8 ; 0.38/3.15 -> 0.62/5.04   t 17 (same)
+   39-c2/c3/c4     x/350 -> x/560                    t 282/250/234 -> 176/156/146
+   39-wave         4000/7 -> 3750/7                            t 16.1 -> 15.9
+   5b-E<=c7S       105.8, 7/9280 -> 170.6, 7/5800              t 1.85 -> 1.84
+   5a-W<=c7S       105.8 -> 170.6                              t 1.89 -> 1.91
+   5b-W<=c7S       0.04931 -> 0.06237, and both above          t 1.96 -> 1.92
+```
+
+plus `sqrt_0_56_lower : 0.7483^2 <= 0.56` beside the old
+`sqrt_0_35_lower`, which stays because `row_s3s2_bdry_a` and the `q''`
+ratio divide by Theorem 4.1's Stage-4 curvature and not by `lambda_0` —
+the same coincidence of value that cost me a wrong turn two entries ago,
+now recorded in the file's header where a reader meets it.
+
+**Lean caught a rounding I had got wrong.** The two balance rows are
+tight to four figures: `5b-W<=c7S` needs
+`6.4969 + 1.6177 + 3.6895 = 11.8041` against `7/5800 = 12.0690` in units
+of `1e-4`. I wrote `170.6/417316 = 4.08805e-4` as `4.0880` rather than
+`4.0881`, in both balance rows, and `linarith` failed on exactly those
+two `have`s and nothing else. One part in `4e5`. The Python arithmetic
+that produced the coefficients had rounded the same way and said
+nothing, because it only ever checked the inequality at the witness
+rather than the chain of bounds the proof actually uses.
+
+That is the whole argument for having the certificate. The bisection
+tells you a crossing exists; the proof tells you the *displayed*
+decomposition of the budget is valid, and those are different claims.
+
+The binding row is `t = 1.92`, `P >= 1.92^48 = 4.0e13` against the
+probe's `3.5858e13`: a loss of under 11 per cent, down from the 20 per
+cent that `t = 1.96` carried before the correction. The certified
+threshold improved by more than the bisected one did.
+
+```text
+What was learned
+- a machine certificate earns its keep on the steps a numerical check
+  does not have: the bisection validates the inequality, the proof
+  validates the decomposition, and only the second caught a 1-in-4e5
+  rounding in two coefficient budgets
+- tightness is a property of the corrected constants, not of the
+  method: the balance rows now sit at 11.80 against 12.07 where they
+  had 7.28 against 7.54, so the same margin in relative terms
+- regenerating a certificate is where you find out whether "the rows
+  remain true" was doing any work; here all nine kept witnesses, and
+  three got cheaper ones
+Strongest theorem
+- ThresholdCertificate.lean proves the corrected table, binding at
+  row_5b_binding, t = 1.92, P >= 4.0e13 against a bisected 3.5858e13
+Strongest refutation
+- my own coefficient rounding in row_5a_binding and row_5b_binding,
+  found by linarith and by nothing else
+Reusable machinery
+- sqrt_0_56_lower beside sqrt_0_35_lower, with the header saying which
+  constant each belongs to; LEAN_ROWS and its covering test restored to
+  the corrected table
+Branch status
+- PROMOTE
+Why
+  The last inconsistency the propagation left is closed, and closed by
+  a build rather than by a note. The certified threshold improved by
+  more than the bisected one, so the formal layer is now tighter
+  relative to the probe than it was before the erratum.
+Best next question
+- paper_b_audit.py still asserts 135/1024, 1215/1024 and b = -405/176 in
+  its identity rows, and quotes P_0 = 8.9e13 in five places. They are
+  true arithmetic about (cG_F)'' but no longer describe the paper. It
+  is the last file the two errata have not reached.
+```
+
+## The boundary term binds P_1, and its constant is 17% loose
+
+Following the last entry's question. The answer is the third cost, and
+the size of the lever is the surprise.
+
+**Which binds.** Of A.5's three, `4 P W/(c_7 S)` at `P^(41/48)`,
+`P (W/(c_7 S))^(1/2)` at `P^(89/96)` and `3.5 P^(13/24) V^(-1/2)` at
+`P^(89/96)`, the third is `30.6%` of the total at `1e13`, `57.8%` at
+`P_1` and `63.5%` at `1e22`. It takes over and keeps growing.
+
+**How loose.** The `3.5` is the constant of `5b-Npieces`, "cells +
+anchor runs + windows `<= 3.5 P^(13/24)`", whose left-hand side is
+`3 + 2 P^(-13/24) + 22 P^(-11/48) + 5 P^(-5/24)` -- `3.0329` at `1e13`,
+`3.0015` at `P_1`, `3.0003` at `1e22`. So the printed constant is
+`16.6%` above what the row itself gives at the point where it is used.
+
+**And 17% is worth 2.5x.** The two `P^(89/96)` terms decide the
+crossing, so `P_1` solves `C P^(89/96) = P` and `P_1 = C^(96/7)`: every
+constant in the total is amplified by a `13.71`st power. Carrying `3`
+instead of `3.5` moves `P_1` from `9.84e18` to `3.91e18`.
+
+| lever | P_1 | factor |
+|---|---|---|
+| as printed | `9.84e18` | -- |
+| interpolant pairing repaired | `9.25e18` | `1.06` |
+| piece constant carried sharp | `3.91e18` | `2.52` |
+
+**Where the paper looks instead.** A.5's "what is left" paragraph points
+at `E`, the half-width `60` and the `lambda_0` range. That is right for
+`P_0`, where `E` is `45.5%` of `W`; at `P_1`, `E` is `11.8%` of `W` and
+the binding cost is the boundary term. Its constant is loose by
+construction -- `3.5` was chosen to dominate three lower-order terms
+that contribute `0.0015` at `P_1` -- so the sharp value is not an
+estimate to be improved but the row's own left-hand side, read where it
+is used.
+
+```text
+What was learned
+- the term that binds P_1 is not the one the paper's closing paragraph
+  proposes to improve, and the two differ because E's share of W falls
+  from 46% to 12% between P_0 and P_1
+- P_1 = C^(96/7), so a 17% constant is a factor of 2.5 and a 5% one is
+  still a third
+- the sharp constant is free: it is what the row's own left-hand side
+  evaluates to at P_1
+Strongest theorem
+- P_1 = C^(96/7) from the two costs sharing P^(89/96); 1 - 89/96 = 7/96
+Strongest refutation
+- none; every printed bound holds, this is slack rather than error
+Reusable machinery
+- p1_cost_split: the three costs at a ladder, which binds, the piece
+  count against its printed constant, and P_1 both ways; one test, four
+  exact checks (251 in the layer)
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Four passes chased P_0 and this one asks what P_1 costs. The lever
+  there is twice as long and sits in a constant chosen for a different
+  purpose.
+Best next question
+- the same amplification applies to the other two costs' constants: the
+  4 in 4P W/(c_7 S) and the 1 in P (W/(c_7 S))^(1/2). Where do those
+  come from, and is either of them a rounded-up cover like the 3.5?
+```

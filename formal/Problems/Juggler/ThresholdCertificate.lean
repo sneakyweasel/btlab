@@ -13,8 +13,16 @@ each row into a polynomial inequality in `t`, with no `Real.rpow` anywhere.
 
 All thirty rows are below, each with its substitution and a *rational* threshold
 `t₀` at or just above the true crossing.  The certified thresholds are therefore
-slightly conservative; the largest is `row_5b_binding` at `t = 1.96`, i.e.
-`P ≥ 1.96^48 = 1.07·10^14`, against the probe's `8.95·10^13`.  That row is `P₀`.
+slightly conservative; the largest is `row_5b_binding` at `t = 1.92`, i.e.
+`P ≥ 1.92^48 = 4.0·10^13`, against the probe's `3.59·10^13`.  That row is `P₀`.
+
+The nine rows that carry Lemma 5.2b's anchor use its **corrected** constant
+`27/128` (the erratum at that lemma): the middle-band floor is `S ≥ 0.56 P^(-5/8)`,
+the range is `[0.62, 3.90]` opened to `[0.56, 4.2]`, and `E`'s leading coefficient
+is `170.6`.  Two rows look as though they carry it and do not: `row_s3s2_bdry_a`
+and `row_39_c2`'s neighbours in Stage 3(s2) divide by Theorem 4.1's *Stage-4*
+curvature `0.35 uh P^(-3/4)`, a different constant that happens to share the old
+value.  `sqrt_0_35_lower` below is that one; `sqrt_0_56_lower` is Lemma 5.2b's.
 
 Also here: the **raised-threshold device** of Step 5b (Section 1), which
 replaced the comparison `V ≥ 10|f'' - Λ|`, and the **sharpness of `|G - δ| ≤ 1`**
@@ -107,6 +115,10 @@ theorem row_s3s2_wincount (t : ℝ) (ht : 20 ≤ t) : 0.6 * t + 1 ≤ 0.65 * t :
 /-- `0.5916 ≤ √0.35`, the rational substitute for the irrational constant in the
 window-boundary row. -/
 theorem sqrt_0_35_lower : (0.5916 : ℝ) ^ 2 ≤ 0.35 := by norm_num
+
+/-- `0.7483 ≤ √0.56`, the rational substitute in the two Step 5 balance rows.
+`0.56` is Lemma 5.2b's corrected `λ₀` floor; it is not the `0.35` above. -/
+theorem sqrt_0_56_lower : (0.7483 : ℝ) ^ 2 ≤ 0.56 := by norm_num
 
 /-- Row `s3s2-bdry`, first half.  Window-boundary cost
 `(0.6P^(1/4)+1)(0.35 uh)^(-1/2) P^(3/8) ≤ 1.1 P^(17/32)` at `uh > P^(3/16)`,
@@ -251,12 +263,12 @@ theorem row_5b_Npieces (t : ℝ) (ht : 1.46 ≤ t) :
   -- 22/64 + 5/44 + 2/18000 = 0.3438 + 0.1137 + 0.0001 < 0.5
   linarith
 
-/-- Row `5b-lam0-range`, upper half.  Lemma 5.2b's `λ₀ ∈ [0.38, 2.44]` opened to
-`[0.35, 2.6]`: the `O(P^(-1/4))` and the `±1` in the `β`-bounds must not push
-`2.44` past `2.6`.  Clearing denominators with `P = t⁴` gives
-`2.44(t+1)(3t²+1)² ≤ 23.4 t^5`; `t ≥ 17`, `P ≥ 8.4·10^4`. -/
+/-- Row `5b-lam0-range`, upper half.  Lemma 5.2b's `λ₀ ∈ [0.62, 3.90]` opened to
+`[0.56, 4.2]`: the `O(P^(-1/4))` and the `±1` in the `β`-bounds must not push
+`3.90` past `4.2`.  Clearing denominators with `P = t⁴` gives
+`3.90(t+1)(3t²+1)² ≤ 37.8 t^5`; `t ≥ 17`, `P ≥ 8.4·10^4`. -/
 theorem row_5b_lam0_upper (t : ℝ) (ht : 17 ≤ t) :
-    2.44 * (t + 1) * (3 * t ^ 2 + 1) ^ 2 ≤ 23.4 * t ^ 5 := by
+    3.90 * (t + 1) * (3 * t ^ 2 + 1) ^ 2 ≤ 37.8 * t ^ 5 := by
   have ht0 : (0:ℝ) < t := by linarith
   have h4 : 17 * t ^ 4 ≤ t ^ 5 := by
     have e : t ^ 5 = t ^ 4 * t := by ring
@@ -276,9 +288,9 @@ theorem row_5b_lam0_upper (t : ℝ) (ht : 17 ≤ t) :
     linarith
   nlinarith [h4, h3, h2, h1, h0]
 
-/-- Row `5b-lam0-range`, lower half: `0.38(t-1)(3t²-1)² ≥ 3.15 t^5`. -/
+/-- Row `5b-lam0-range`, lower half: `0.62(t-1)(3t²-1)² ≥ 5.04 t^5`. -/
 theorem row_5b_lam0_lower (t : ℝ) (ht : 17 ≤ t) :
-    3.15 * t ^ 5 ≤ 0.38 * (t - 1) * (3 * t ^ 2 - 1) ^ 2 := by
+    5.04 * t ^ 5 ≤ 0.62 * (t - 1) * (3 * t ^ 2 - 1) ^ 2 := by
   have ht0 : (0:ℝ) < t := by linarith
   have h4 : 17 * t ^ 4 ≤ t ^ 5 := by
     have e : t ^ 5 = t ^ 4 * t := by ring
@@ -296,17 +308,17 @@ theorem row_5b_lam0_lower (t : ℝ) (ht : 17 ≤ t) :
 
 `ρ₀ = c₇/8 = 1/1856` at the exact `c₇ = 1/232`. -/
 
-/-- Row `39-c2`.  `|c''/2|/S ≤ ρ₀`, i.e. `(53/350) P^(-1/4) ≤ 1/1856`;
-`P = t⁴`, `t ≥ 282`, `P ≥ 6.3·10^9`. -/
-theorem row_39_c2 (t : ℝ) (ht : 282 ≤ t) : (53 / 350 : ℝ) ≤ t / 1856 := by
+/-- Row `39-c2`.  `|c''/2|/S ≤ ρ₀`, i.e. `(53/560) P^(-1/4) ≤ 1/1856`;
+`P = t⁴`, `t ≥ 176`, `P ≥ 9.6·10^8`. -/
+theorem row_39_c2 (t : ℝ) (ht : 176 ≤ t) : (53 / 560 : ℝ) ≤ t / 1856 := by
   rw [le_div_iff₀ (by norm_num : (0:ℝ) < 1856)]; linarith
 
-/-- Row `39-c3`.  `P|c'''/2|/S ≤ ρ₀`: `(47/350) ≤ t/1856`; `t ≥ 250`. -/
-theorem row_39_c3 (t : ℝ) (ht : 250 ≤ t) : (47 / 350 : ℝ) ≤ t / 1856 := by
+/-- Row `39-c3`.  `P|c'''/2|/S ≤ ρ₀`: `(47/560) ≤ t/1856`; `t ≥ 156`. -/
+theorem row_39_c3 (t : ℝ) (ht : 156 ≤ t) : (47 / 560 : ℝ) ≤ t / 1856 := by
   rw [le_div_iff₀ (by norm_num : (0:ℝ) < 1856)]; linarith
 
-/-- Row `39-c4`.  `P²|c''''/2|/S ≤ ρ₀`: `(44/350) ≤ t/1856`; `t ≥ 234`. -/
-theorem row_39_c4 (t : ℝ) (ht : 234 ≤ t) : (44 / 350 : ℝ) ≤ t / 1856 := by
+/-- Row `39-c4`.  `P²|c''''/2|/S ≤ ρ₀`: `(44/560) ≤ t/1856`; `t ≥ 146`. -/
+theorem row_39_c4 (t : ℝ) (ht : 146 ≤ t) : (44 / 560 : ℝ) ≤ t / 1856 := by
   rw [le_div_iff₀ (by norm_num : (0:ℝ) < 1856)]; linarith
 
 /-- Row `39-beta`.  The `β̃`-substitution error `2.31 P^(-1/2) ≤ ρ₀`;
@@ -314,12 +326,13 @@ theorem row_39_c4 (t : ℝ) (ht : 234 ≤ t) : (44 / 350 : ℝ) ≤ t / 1856 := 
 theorem row_39_beta (t : ℝ) (ht : 4288 ≤ t) : (2.31 : ℝ) ≤ t / 1856 := by
   rw [le_div_iff₀ (by norm_num : (0:ℝ) < 1856)]; linarith
 
-/-- Row `39-wave`.  The wave remainder `(4000/7) P^(-5/6) ≤ ρ₀`; `P = t^6`,
-`t ≥ 16.1`, `P ≥ 1.7·10^7`. -/
-theorem row_39_wave (t : ℝ) (ht : 16.1 ≤ t) : (4000 / 7 : ℝ) ≤ t ^ 5 / 1856 := by
-  have h5 : (1060572:ℝ) ≤ t ^ 5 := by
-    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 16.1) ht 5
-    have : (1060572:ℝ) ≤ (16.1:ℝ) ^ 5 := by norm_num
+/-- Row `39-wave`.  The wave remainder `(3750/7) P^(-5/6) ≤ ρ₀`; `P = t^6`,
+`t ≥ 15.9`, `P ≥ 1.6·10^7`.  The `3750/7 = 300/0.56` carries both the corrected
+floor and the `u`-cap `300` that rose with it. -/
+theorem row_39_wave (t : ℝ) (ht : 15.9 ≤ t) : (3750 / 7 : ℝ) ≤ t ^ 5 / 1856 := by
+  have h5 : (1016000:ℝ) ≤ t ^ 5 := by
+    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 15.9) ht 5
+    have : (1016000:ℝ) ≤ (15.9:ℝ) ^ 5 := by norm_num
     linarith
   rw [le_div_iff₀ (by norm_num : (0:ℝ) < 1856)]; linarith
 
@@ -346,90 +359,93 @@ theorem row_5a_competitors (t : ℝ) (ht : 1.52 ≤ t) :
   exact ⟨by linarith, by linarith, by linarith⟩
 
 /-- Row `5b-E<=c7S`.  The interpolant error alone against the Lemma 3.9 budget:
-`E ≤ c₇S/2` at `S = 0.35 P^(-5/8)`.  Multiplying by `P^(5/8)` and substituting
-`P = t^48` gives `105.8 + 0.11 t^10 ≤ (7/9280) t^20`.  This is the floor of the
-method as `κ → 0`: `t ≥ 1.85`, `P ≥ 6.7·10^12`. -/
-theorem row_5b_E_only (t : ℝ) (ht : 1.85 ≤ t) :
-    105.8 + 0.11 * t ^ 10 ≤ (7 / 9280) * t ^ 20 := by
+`E ≤ c₇S/2` at `S = 0.56 P^(-5/8)`.  Multiplying by `P^(5/8)` and substituting
+`P = t^48` gives `170.6 + 0.11 t^10 ≤ (7/5800) t^20`.  This is the floor of the
+method as `κ → 0`: `t ≥ 1.84`, `P ≥ 4.1·10^12`. -/
+theorem row_5b_E_only (t : ℝ) (ht : 1.84 ≤ t) :
+    170.6 + 0.11 * t ^ 10 ≤ (7 / 5800) * t ^ 20 := by
   have ht0 : (0:ℝ) < t := by linarith
-  have h10 : (469:ℝ) ≤ t ^ 10 := by
-    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.85) ht 10
-    have : (469:ℝ) ≤ (1.85:ℝ) ^ 10 := by norm_num
+  have h10 : (444:ℝ) ≤ t ^ 10 := by
+    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.84) ht 10
+    have : (444:ℝ) ≤ (1.84:ℝ) ^ 10 := by norm_num
     linarith
-  have k2 : 469 * t ^ 10 ≤ t ^ 20 := by
+  have k2 : 444 * t ^ 10 ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 10 * t ^ 10 := by ring
     nlinarith [pow_pos ht0 10]
-  have k3 : (219961:ℝ) ≤ t ^ 20 := by
+  have k3 : (197136:ℝ) ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 10 * t ^ 10 := by ring
     nlinarith [pow_pos ht0 10]
-  -- 0.11/469 = 2.346e-4 and 105.8/219961 = 4.810e-4; sum 7.156e-4 < 7.543e-4
-  have b2 : 0.11 * t ^ 10 ≤ 0.00023455 * t ^ 20 := by linarith
-  have b3 : (105.8:ℝ) ≤ 0.000481 * t ^ 20 := by linarith
+  -- 0.11/444 = 2.4775e-4 and 170.6/197136 = 8.6540e-4; sum 1.1132e-3 < 1.2069e-3
+  have b2 : 0.11 * t ^ 10 ≤ 0.00024775 * t ^ 20 := by linarith
+  have b3 : (170.6:ℝ) ≤ 0.00086540 * t ^ 20 := by linarith
   linarith
 
 /-- Row `5a-W<=c7S`.  Step 5a's balance comparison at the larger scale
-`S ≥ 0.60 P^(-5/8)`: `(1/12)√0.6 t^13 + 0.11 t^10 + 105.8 ≤ (3/2320) t^20`,
-with `(1/12)√0.6 ≤ 0.06455`.  `t ≥ 1.89`, `P ≥ 1.9·10^13`. -/
-theorem row_5a_binding (t : ℝ) (ht : 1.89 ≤ t) :
-    0.06455 * t ^ 13 + 0.11 * t ^ 10 + 105.8 ≤ (3 / 2320) * t ^ 20 := by
+`S ≥ 0.60 P^(-5/8)`: `(1/12)√0.6 t^13 + 0.11 t^10 + 170.6 ≤ (3/2320) t^20`,
+with `(1/12)√0.6 ≤ 0.06455`.  The `0.60` is Step E's own floor and did not move
+with the erratum; only `E` did.  `t ≥ 1.91`, `P ≥ 2.9·10^13`. -/
+theorem row_5a_binding (t : ℝ) (ht : 1.91 ≤ t) :
+    0.06455 * t ^ 13 + 0.11 * t ^ 10 + 170.6 ≤ (3 / 2320) * t ^ 20 := by
   have ht0 : (0:ℝ) < t := by linarith
-  have h7 : (86:ℝ) ≤ t ^ 7 := by
-    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.89) ht 7
-    have : (86:ℝ) ≤ (1.89:ℝ) ^ 7 := by norm_num
+  have h7 : (92:ℝ) ≤ t ^ 7 := by
+    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.91) ht 7
+    have : (92:ℝ) ≤ (1.91:ℝ) ^ 7 := by norm_num
     linarith
-  have h10 : (580:ℝ) ≤ t ^ 10 := by
-    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.89) ht 10
-    have : (580:ℝ) ≤ (1.89:ℝ) ^ 10 := by norm_num
+  have h10 : (646:ℝ) ≤ t ^ 10 := by
+    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.91) ht 10
+    have : (646:ℝ) ≤ (1.91:ℝ) ^ 10 := by norm_num
     linarith
-  have k1 : 86 * t ^ 13 ≤ t ^ 20 := by
+  have k1 : 92 * t ^ 13 ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 13 * t ^ 7 := by ring
     nlinarith [pow_pos ht0 13]
-  have k2 : 580 * t ^ 10 ≤ t ^ 20 := by
+  have k2 : 646 * t ^ 10 ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 10 * t ^ 10 := by ring
     nlinarith [pow_pos ht0 10]
-  have k3 : (336400:ℝ) ≤ t ^ 20 := by
+  have k3 : (417316:ℝ) ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 10 * t ^ 10 := by ring
     nlinarith [pow_pos ht0 10]
-  -- 7.506 + 1.897 + 3.146 = 12.549e-4 < 12.931e-4 = 3/2320
-  have b1 : 0.06455 * t ^ 13 ≤ 0.0007506 * t ^ 20 := by linarith
-  have b2 : 0.11 * t ^ 10 ≤ 0.00018966 * t ^ 20 := by linarith
-  have b3 : (105.8:ℝ) ≤ 0.00031451 * t ^ 20 := by linarith
+  -- 7.017 + 1.703 + 4.0881 = 12.8073e-4 < 12.931e-4 = 3/2320
+  have b1 : 0.06455 * t ^ 13 ≤ 0.00070164 * t ^ 20 := by linarith
+  have b2 : 0.11 * t ^ 10 ≤ 0.00017028 * t ^ 20 := by linarith
+  have b3 : (170.6:ℝ) ≤ 0.00040881 * t ^ 20 := by linarith
   linarith
 
 /-- **Row `5b-W<=c7S`: this is `P₀`.**  Step 5b's balance comparison at the lower
-end `S = 0.35 P^(-5/8)`, with `V = (1/12)S^(1/2)P^(-11/24)`,
-`E = 105.8 P^(-25/24) + 0.11 P^(-5/6)` and `c₇ = 1/232`.  Multiplying by
+end `S = 0.56 P^(-5/8)`, with `V = (1/12)S^(1/2)P^(-11/24)`,
+`E = 170.6 P^(-25/24) + 0.11 P^(-5/6)` and `c₇ = 1/232`.  Multiplying by
 `P^(5/8)` and substituting `P = t^48` gives
-`a t^13 + 0.11 t^10 + 105.8 ≤ b t^20` with `a = (1/12)√0.35 ≤ 0.04931` and
-`b = 0.35/464 = 7/9280`.
+`a t^13 + 0.11 t^10 + 170.6 ≤ b t^20` with `a = (1/12)√0.56 ≤ 0.06237` and
+`b = 0.56/464 = 7/5800`.
 
-`t ≥ 1.96`, i.e. `P ≥ 1.07·10^14`; the probe's bisection reports `8.95·10^13`.
-This row is the maximum over all thirty, hence `P₀`. -/
-theorem row_5b_binding (t : ℝ) (ht : 1.96 ≤ t) :
-    0.04931 * t ^ 13 + 0.11 * t ^ 10 + 105.8 ≤ (7 / 9280) * t ^ 20 := by
+`t ≥ 1.92`, i.e. `P ≥ 4.0·10^13`; the probe's bisection reports `3.59·10^13`.
+This row is the maximum over all thirty, hence `P₀`.  Both `a` and `b` grew with
+the corrected anchor, `a` as a square root and `b` linearly, which is why the
+row closes earlier than it did at `0.35`. -/
+theorem row_5b_binding (t : ℝ) (ht : 1.92 ≤ t) :
+    0.06237 * t ^ 13 + 0.11 * t ^ 10 + 170.6 ≤ (7 / 5800) * t ^ 20 := by
   have ht0 : (0:ℝ) < t := by linarith
-  have h7 : (111:ℝ) ≤ t ^ 7 := by
-    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.96) ht 7
-    have : (111:ℝ) ≤ (1.96:ℝ) ^ 7 := by norm_num
+  have h7 : (96:ℝ) ≤ t ^ 7 := by
+    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.92) ht 7
+    have : (96:ℝ) ≤ (1.92:ℝ) ^ 7 := by norm_num
     linarith
-  have h10 : (836:ℝ) ≤ t ^ 10 := by
-    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.96) ht 10
-    have : (836:ℝ) ≤ (1.96:ℝ) ^ 10 := by norm_num
+  have h10 : (680:ℝ) ≤ t ^ 10 := by
+    have h := pow_mono_base (by norm_num : (0:ℝ) ≤ 1.92) ht 10
+    have : (680:ℝ) ≤ (1.92:ℝ) ^ 10 := by norm_num
     linarith
-  have k1 : 111 * t ^ 13 ≤ t ^ 20 := by
+  have k1 : 96 * t ^ 13 ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 13 * t ^ 7 := by ring
     nlinarith [pow_pos ht0 13]
-  have k2 : 836 * t ^ 10 ≤ t ^ 20 := by
+  have k2 : 680 * t ^ 10 ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 10 * t ^ 10 := by ring
     nlinarith [pow_pos ht0 10]
-  have k3 : (698896:ℝ) ≤ t ^ 20 := by
+  have k3 : (462400:ℝ) ≤ t ^ 20 := by
     have e : t ^ 20 = t ^ 10 * t ^ 10 := by ring
     nlinarith [pow_pos ht0 10]
-  -- 0.04931/111 = 4.4423e-4, so 4.45e-4 is safe; likewise 0.11/836 and 105.8/698896
-  have b1 : 0.04931 * t ^ 13 ≤ 0.000445 * t ^ 20 := by linarith
-  have b2 : 0.11 * t ^ 10 ≤ 0.00013158 * t ^ 20 := by linarith
-  have b3 : (105.8:ℝ) ≤ 0.0001514 * t ^ 20 := by linarith
-  -- 4.450 + 1.3158 + 1.5140 = 7.2798 < 7.5431 = 7/9280 (units of 1e-4)
+  -- 0.06237/96 = 6.4969e-4; 0.11/680 = 1.6176e-4; 170.6/462400 = 3.6893e-4
+  have b1 : 0.06237 * t ^ 13 ≤ 0.00064969 * t ^ 20 := by linarith
+  have b2 : 0.11 * t ^ 10 ≤ 0.00016177 * t ^ 20 := by linarith
+  have b3 : (170.6:ℝ) ≤ 0.00036895 * t ^ 20 := by linarith
+  -- 6.4969 + 1.6177 + 3.6895 = 11.8041 < 12.0690 = 7/5800 (units of 1e-4)
   linarith
 
 /-! ### Section 6 -/
@@ -445,7 +461,7 @@ section GapSharpness
 
 /-- **Lemma 5.2b, step (i).**  The frozen gap satisfies `G = ⌊δ⌋ + κ` with
 `κ ∈ {0,1}`, so `|G - δ| = |κ - Int.fract δ| ≤ 1`.  This is the bound that
-produces the `52.3125 k(h₁+h₂)P^(-9/8)` of the interpolant error. -/
+produces the `84.375 k(h₁+h₂)P^(-9/8)` of the interpolant error. -/
 theorem gap_error_le_one (δ : ℝ) (κ : ℤ) (hκ : κ = 0 ∨ κ = 1) :
     |((⌊δ⌋ + κ : ℤ) : ℝ) - δ| ≤ 1 := by
   have hf := Int.fract_nonneg δ

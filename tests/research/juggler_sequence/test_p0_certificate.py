@@ -274,15 +274,15 @@ LEAN_ROWS = [
     ("5b-Npieces",     "row_5b_Npieces",     48, 1.46),
     ("5b-lam0-range",  "row_5b_lam0_upper",   4, 17),
     ("5b-lam0-range",  "row_5b_lam0_lower",   4, 17),
-    ("39-c2",          "row_39_c2",           4, 282),
-    ("39-c3",          "row_39_c3",           4, 250),
-    ("39-c4",          "row_39_c4",           4, 234),
+    ("39-c2",          "row_39_c2",           4, 176),
+    ("39-c3",          "row_39_c3",           4, 156),
+    ("39-c4",          "row_39_c4",           4, 146),
     ("39-beta",        "row_39_beta",         2, 4288),
-    ("39-wave",        "row_39_wave",         6, 16.1),
+    ("39-wave",        "row_39_wave",         6, 15.9),
     ("5a-competitors", "row_5a_competitors",  48, 1.52),
-    ("5a-W<=c7S",      "row_5a_binding",     48, 1.89),
-    ("5b-W<=c7S",      "row_5b_binding",     48, 1.96),
-    ("5b-E<=c7S",      "row_5b_E_only",      48, 1.85),
+    ("5a-W<=c7S",      "row_5a_binding",     48, 1.91),
+    ("5b-W<=c7S",      "row_5b_binding",     48, 1.92),
+    ("5b-E<=c7S",      "row_5b_E_only",      48, 1.84),
     ("thm63-rem",      "row_thm63_rem",      96, 1),
     ("claimD-shift",    "claimD_shift_range", 72, 1.205),
     ("st3a-flatcost",   "st3a_flat_cost",     24, 2.19),
@@ -318,30 +318,27 @@ def test_lean_theorems_exist_by_name() -> None:
         assert "theorem %s " % thm in src, thm
 
 
-def test_lean_thresholds_cover_the_precorrection_probe_thresholds() -> None:
-    """The Lean file encodes the table before the erratum at Lemma 5.2b, and covers that one.
+def test_lean_thresholds_cover_the_probe_thresholds() -> None:
+    """Each Lean row's rational t0^n must be at or above the probe's bisected P.
 
-    It does not cover the corrected table -- row_5a_binding is 1.9e13 against a corrected probe
-    of 2.9e13 -- which is why the manuscript says so in A.1 rather than letting the two drift.
+    Regenerated against the corrected table of the erratum at Lemma 5.2b: nine rows carry
+    the anchor, and every one of them still admits a rational witness.
     """
-    pre = {r["tag"]: r["P_min"] for r in C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)}
+    probe = {r["tag"]: r["P_min"] for r in C.thresholds()}
     for tag, thm, n, t0 in LEAN_ROWS:
-        assert t0**n >= pre[tag] * (1 - 1e-9), (thm, t0**n, pre[tag])
-    now = {r["tag"]: r["P_min"] for r in C.thresholds()}
-    stale = [thm for tag, thm, n, t0 in LEAN_ROWS if t0**n < now[tag] * (1 - 1e-9)]
-    assert stale == ["row_5a_binding"], stale
-    assert "still carries the pre-correction constants" in _paper()
+        assert t0**n >= probe[tag] * (1 - 1e-9), (thm, t0**n, probe[tag])
 
 
 def test_the_lean_certified_P0_is_the_binding_row() -> None:
-    """max over the Lean rows is row_5b_binding at 1.96^48 = 1.07e14, the pre-correction value."""
+    """max over the Lean rows is row_5b_binding at 1.92^48 = 4.0e13."""
     worst = max(LEAN_ROWS, key=lambda r: r[3] ** r[2])
     assert worst[1] == "row_5b_binding"
-    assert 1.0e14 < worst[3] ** worst[2] < 1.1e14
+    assert 3.9e13 < worst[3] ** worst[2] < 4.1e13
+    assert 1.0 < (worst[3] ** worst[2]) / C.certificate()["P0"] < 1.15
+    # under the pre-correction anchor the same row read 1.96^48 = 1.07e14
     pre = C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)
     old_P0 = max(r["P_min"] for r in pre if r["P_min"])
-    assert 1.0 < (worst[3] ** worst[2]) / old_P0 < 1.25
-    assert 1.0 < 1.92**48 / C.certificate()["P0"] < 1.15
+    assert 1.0 < 1.96**48 / old_P0 < 1.25
 
 
 # --- Stage 2's truncation R_0, which decides four rows ---
