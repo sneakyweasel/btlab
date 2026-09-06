@@ -3449,8 +3449,8 @@ on the standing range: the summand \(c''(G_F-J_F)\) is
 > The correction *lowers* the threshold. \(S\) rises by \(\tfrac85\)
 > while \(V=\kappa S^{1/2}P^{-11/24}\) rises only by \(\sqrt{8/5}\),
 > which more than pays for \(E\): \(P_0\) falls from
-> \(8.9\cdot10^{13}\) to \(3.6\cdot10^{13}\) and the non-vacuity point
-> \(P_1\) from \(5.0\cdot10^{19}\) to \(9.8\cdot10^{18}\). The optimal
+> \(8.95\cdot10^{13}\) to \(3.6\cdot10^{13}\) and the non-vacuity point
+> \(P_1\) from \(5.04\cdot10^{19}\) to \(9.9\cdot10^{18}\). The optimal
 > \(\kappa\) is unchanged at \(\tfrac1{12}\), and so is the exponent
 > \(1-\tfrac1{96}\). Every figure below is the corrected one.
 
@@ -4139,7 +4139,7 @@ differenced-wave scale present. Three regimes.
   geometric reasons, not numerical ones: correcting \(\lambda_0\) by
   \(\tfrac85\) moved \(P_0\) and \(P_1\) but left the optimum at
   \(\tfrac1{12}\). We take that value: it gives
-  \(P_0=3.6\cdot10^{13}\) and \(P_1=9.8\cdot10^{18}\), against
+  \(P_0=3.6\cdot10^{13}\) and \(P_1=9.9\cdot10^{18}\), against
   \(1.2\cdot10^{16}\) and \(2.8\cdot10^{20}\) at \(\kappa=\tfrac13\),
   and \(2.7\cdot10^{22}\) at \(\kappa=3\). The exponent
   \(89/96\) does not depend on \(\kappa\). Until
@@ -6802,11 +6802,11 @@ not improvable there (A.5), and by the normalisation \(\kappa\) of
 
 | \(\kappa\) | \(P_0\) | \(P_1\) (A.5) | boundary coefficient |
 |---|---|---|---|
-| \(\tfrac13\) | \(1.2\cdot10^{16}\) | \(2.8\cdot10^{20}\) | \(7.0\) |
-| \(\tfrac18\) | \(1.1\cdot10^{14}\) | \(1.3\cdot10^{19}\) | \(11.4\) |
-| \(\tfrac1{12}\) (used here) | \(3.6\cdot10^{13}\) | \(9.8\cdot10^{18}\) | \(14.0\) |
-| \(\tfrac1{16}\) | \(2.0\cdot10^{13}\) | \(1.2\cdot10^{19}\) | \(16.2\) |
-| \(\tfrac1{20}\) | \(1.5\cdot10^{13}\) | \(1.8\cdot10^{19}\) | \(18.1\) |
+| \(\tfrac13\) | \(1.23\cdot10^{16}\) | \(2.82\cdot10^{20}\) | \(7.01\) |
+| \(\tfrac18\) | \(1.12\cdot10^{14}\) | \(1.3\cdot10^{19}\) | \(11.5\) |
+| \(\tfrac1{12}\) (used here) | \(3.6\cdot10^{13}\) | \(9.9\cdot10^{18}\) | \(14.1\) |
+| \(\tfrac1{16}\) | \(2.05\cdot10^{13}\) | \(1.23\cdot10^{19}\) | \(16.2\) |
+| \(\tfrac1{20}\) | \(1.47\cdot10^{13}\) | \(1.84\cdot10^{19}\) | \(18.1\) |
 
 Both columns fall together until \(\kappa=\tfrac1{12}\), where the
 piece-boundary term turns \(P_1\) around; that is the operating point.
@@ -6824,6 +6824,29 @@ satisfies \(E\le c_7S/2\), and \(P_0\) follows it: every row below
 that is \(\kappa\)-free and smaller, the largest being the \(q''\)
 ratio at \(3.0\cdot10^{11}\). The exponent \(89/96\) does not depend
 on \(\kappa\) at all.
+
+*This table rounds up, for the reason A.1 does.* Both columns are
+crossings --- the left the least \(P\) at which the printed
+inequalities hold, the right the least at which the middle band beats
+the trivial bound --- so an entry rounded to nearest can name a \(P\)
+at which the thing it promises has not happened yet. At
+\(\kappa=\tfrac1{12}\) the crossing is \(9.83914\cdot10^{18}\), and the
+nearest two-figure decimal, \(9.8\cdot10^{18}\), asserts non-vacuity
+over \([9.8\cdot10^{18},9.83914\cdot10^{18})\), where the middle-band
+estimate is still the weaker of the two. Eleven of the fifteen entries
+were nearest-rounded below their crossings and have been raised; the
+overshoot is under one per cent throughout. The boundary coefficient is
+\(3.5\,V^{-1/2}\) at \(S=\lambda_0P^{-5/8}\), i.e.
+\(3.5(\kappa\sqrt{0.56})^{-1/2}\), and rounds up for the same reason: it
+is a cost.
+
+\(P_1\) itself is recoverable from the display above it. Solving
+\(4PW/(c_7S)+P(W/(c_7S))^{1/2}+3.5P^{13/24}V^{-1/2}\le P\) with the
+five constants of A.1 --- \(170.6\), \(0.11\), \(\lambda_0=0.56\),
+\(\kappa=\tfrac1{12}\), \(c_7=\tfrac1{232}\) --- and the \(4\),
+\(3.5\) and \(13/24\) printed in the display gives
+\(9.83914\cdot10^{18}\). `tools/manuscript_self_audit.py` runs that
+solve, and the whole table, against the printed entries.
 
 *A near miss, recorded because it nearly cost a factor three.* Claim D
 of Lemma 5.2(ii)\(\to\)(i) must place every index of the Claim C sum
@@ -6970,8 +6993,8 @@ increase in \(c_2\) is paid out of \(c_3,c_4\), and those sit in
 \(P(V/(c_4S))^{1/2}\). Taking
 \(c=(\tfrac1{27},\tfrac1{1872},\tfrac1{1872})\) --- again exactly
 tight, \(\tfrac89+\tfrac19=1\) (Lean `step5b_c2_optimum_feasible`) ---
-moves \(P_0\) to \(4.0\cdot10^{12}\) but \(P_1\) below from
-\(9.8\cdot10^{18}\) to \(1.0\cdot10^{23}\). We keep the uniform
+moves \(P_0\) to \(4.03\cdot10^{12}\) but \(P_1\) below from
+\(9.9\cdot10^{18}\) to \(1.02\cdot10^{23}\). We keep the uniform
 constant.
 
 *\(c_7\): and it saturates, at a value \(R_0\) has already been tuned
@@ -7130,8 +7153,8 @@ and \(P_1\) is the least \(P\) at which that total is \(\le P\). The
 three exponents are not equal, so they cannot be collected into a
 single coefficient of \(P^{89/96}\); doing so over-counts the \(r=3\)
 term by \(P^{7/96}\). Honestly computed,
-\(P_1=9.8\cdot10^{18}\) at the operating point, against
-\(2.8\cdot10^{20}\) at \(\kappa=\tfrac13\).
+\(P_1=9.9\cdot10^{18}\) at the operating point, against
+\(2.82\cdot10^{20}\) at \(\kappa=\tfrac13\).
 Between \(P_0\) and \(P_1\) the middle-band estimate is true but weaker
 than the trivial bound; the theorem is asymptotic and its implied
 constant absorbs the difference.

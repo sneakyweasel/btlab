@@ -241,7 +241,7 @@ def test_failures_now_covers_relations() -> None:
     f = M.failures()
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
                       "a1_thresholds", "claim_vs_predicate",
-                      "p0_reproducible"}
+                      "p0_reproducible", "kappa_table"}
     assert all(v == [] for v in f.values())
 
 
@@ -500,3 +500,65 @@ def test_the_paper_states_the_reproducibility_check() -> None:
     assert "from the constants printed above" in text
     assert "should be" in text and "recoverable from the paper it appears in" in text
     assert "It was not, by one constant" in text
+
+
+# --- P_1 and the kappa table -------------------------------------------------------------------
+
+
+def test_the_kappa_table_rounds_up() -> None:
+    rows = M.kappa_table_audit()
+    assert len(rows) == 5
+    assert M.kappa_table_failures() == []
+
+
+def test_every_kappa_entry_is_tight() -> None:
+    """Raised, but not by much: the table is still readable as the numbers it names."""
+    for r in M.kappa_table_audit():
+        for key in ("P0", "P1", "coef"):
+            printed, true, ok = r[key]
+            assert ok
+            assert printed / true - 1 < 0.01, (r["kappa_den"], key, printed, true)
+
+
+def test_p1_is_reproducible_from_the_display() -> None:
+    c = M.printed_binding_constants()
+    p1 = M.p1_crossing(1 / 12, c["lambda_0"]["value"], c["E_lead"]["value"],
+                       c["E_tail"]["value"], 1 / c["c7_den"]["value"])
+    assert abs(p1 - 9.83914e18) / 9.83914e18 < 1e-4
+
+
+def test_the_nearest_rounding_would_understate_p1() -> None:
+    """P_1 is a crossing: below it the middle band is the weaker bound, so 9.8e18 is a claim."""
+    c = M.printed_binding_constants()
+    p1 = M.p1_crossing(1 / 12, c["lambda_0"]["value"], c["E_lead"]["value"],
+                       c["E_tail"]["value"], 1 / c["c7_den"]["value"])
+    assert float("%.1e" % p1) == 9.8e18        # what rounding to nearest gives
+    assert 9.8e18 < p1                          # and it names a P where the bound is trivial
+    row = next(r for r in M.kappa_table_audit() if r["kappa_den"] == 12)
+    assert row["P1"][0] == 9.9e18
+
+
+def test_the_boundary_coefficient_is_the_piece_boundary_cost() -> None:
+    """3.5 V^(-1/2) at S = lambda_0 P^(-5/8); the table never says so, the numbers do."""
+    c = M.printed_binding_constants()
+    lam = c["lambda_0"]["value"]
+    for r in M.kappa_table_audit():
+        kappa = 1.0 / r["kappa_den"]
+        assert abs(r["coef"][1] - 3.5 * (kappa * lam**0.5) ** -0.5) < 1e-9
+        assert abs(r["coef"][0] / r["coef"][1] - 1) < 0.01
+
+
+def test_the_erratum_figures_were_crossings_too() -> None:
+    text = M.paper_text()
+    BS = chr(92)
+    assert "8.95" + BS + "cdot10^{13}" in text and "5.04" + BS + "cdot10^{19}" in text
+    assert "4.03" + BS + "cdot10^{12}" in text and "1.02" + BS + "cdot10^{23}" in text
+    assert "P_1=9.9" + BS + "cdot10^{18}" in text
+    assert "P_1=9.8" + BS + "cdot10^{18}" not in text
+
+
+def test_the_paper_states_the_convention_for_this_table() -> None:
+    text = M.paper_text()
+    assert "This table rounds up, for the reason A.1 does" in text
+    assert "is still the weaker of the two" in text
+    assert "recoverable from the display above it" in text

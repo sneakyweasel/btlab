@@ -37073,3 +37073,49 @@ Best next question
   h1 <= P^(1/48). Bind each at its stated cap and see whether the 11
   become checkable, and whether any of them then fails.
 ```
+
+## The hypothesis was wrong and the tick was still worth it
+
+2026-09-07. P_0 became recoverable from the paper last night, so the
+obvious next one was P_1 = 9.839e18: cited nearly as often, and unlike
+P_0 it does not sit in a single display. It comes from the depth-five
+middle band, three terms with different exponents, and I expected at
+least one of its constants to be printed at a value other than the one
+used --- that is what happened to E.
+
+It reproduces. The display prints its own 4, its 3.5 and its 13/24, and
+everything else is A.1's five constants, all confirmed last night.
+Solving the middle-band comparison from those alone gives 9.83914e18,
+matching log10_P1 to ten figures. Nothing missing.
+
+The defect was one table over. The kappa table in A.5 has five rows and
+three columns, and every column is a cost or a crossing: the least P at
+which the printed inequalities hold, the least at which the middle band
+beats the trivial bound, and the piece-boundary coefficient. Eleven of
+the fifteen entries were nearest-rounded below their true values. At
+the operating point the table said 9.8e18 where the crossing is
+9.83914e18, which asserts non-vacuity over an interval where the
+middle-band estimate is still the weaker bound.
+
+This is exactly A.1's defect. I spent two ticks establishing that a
+threshold column rounds up, wrote the convention into A.1, and never
+looked at the other table. That is worth noticing about my own method:
+a convention stated in one appendix does not propagate itself.
+
+The erratum's figures had it too. It quotes the 8/5 correction as
+moving P_0 from 8.9e13 to 3.6e13 and P_1 from 5.0e19 to 9.8e18;
+recomputed with the pre-correction constants the true pair is 8.94577e13
+and 5.0318e19, so three of those four were printed below. Same for the
+vector trade's 4.0e12 and 1.0e23.
+
+One small thing I liked. The table's third column is headed "boundary
+coefficient" and defined nowhere in the paper. It is 3.5 V^(-1/2) at
+S = lambda_0 P^(-5/8) --- that is, 3.5 (kappa sqrt(0.56))^(-1/2) --- which
+reproduces all five entries to under 0.4%. I found it by guessing the
+formula and checking, which is a weak way to establish a definition,
+but five rows agreeing to three figures is not a coincidence. It is
+written down now, and the guard checks the formula rather than the
+numbers, so if the column ever means something else the test says so.
+
+P_0 and P_1 do not move. 9.83914e18 is what P_1 always was. What changed
+is the figure printed for it.

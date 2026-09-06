@@ -6649,3 +6649,80 @@ Probe: `claim_strings_against_their_thresholds`, with
 tests, aimed at the rule rather than the roster so that a repair does not
 break them. Audit `270 / 270`; `P_0` unmoved at `3.5858e13`. No
 manuscript or certificate edit.
+
+## `P_1` reproduces; the second threshold table does not round the way the first one does
+
+*Mathematical target.* `P_0` became recoverable from the paper last
+tick. `P_1 = 9.839e18` is cited nearly as often, rests on the depth-five
+middle band rather than one display, and had never been checked. Solve
+it from the printed constants and compare.
+
+*Novelty hypothesis.* `P_1`'s constants are spread across Theorem 6.3
+and A.5, so at least one is printed at a value other than the one used.
+
+*Falsifier.* An independent solve returns `9.83914e18`.
+
+*Existing machinery.* `log10_P1`, `printed_binding_constants`, the
+second-implementation pattern from the `P_0` guard.
+
+*Prior art.* The ledger names `P_1` in eight entries and computes it in
+none; `docs/negative_knowledge.md` has nothing. The `P_0` entry
+immediately before this one named `P_1` as the next question.
+
+**`P_1` reproduces.** The display prints all three of its own constants
+--- the `4`, the `3.5`, the `13/24` --- and the rest are A.1's five, all
+confirmed last tick. Solving
+`4PW/(c_7S) + P(W/(c_7S))^(1/2) + 3.5 P^(13/24) V^(-1/2) <= P` from
+those alone gives `9.83914e18`, matching `log10_P1` to ten figures. The
+hypothesis is refuted: nothing is missing from the text.
+
+**But the table it lives in rounds the wrong way.** The `kappa` table of
+A.5 has three columns and five rows, and all three columns are costs or
+crossings: the least `P` at which the printed inequalities hold, the
+least at which the middle band beats the trivial bound, and the
+piece-boundary coefficient. **Eleven of the fifteen entries were
+nearest-rounded below their true values.** At the operating point the
+crossing is `9.83914e18` and the table printed `9.8e18`, which asserts
+non-vacuity over `[9.8e18, 9.83914e18)` --- where the middle-band
+estimate is still the weaker of the two. This is A.1's defect exactly,
+in a table the convention had never been applied to.
+
+  kappa   P_0 printed/true            P_1 printed/true
+  1/3     1.2e16  / 1.22418e16  LOW   2.8e20  / 2.81302e20  LOW
+  1/8     1.1e14  / 1.11116e14  LOW   1.3e19  / 1.29103e19  ok
+  1/12    3.6e13  / 3.58576e13  ok    9.8e18  / 9.83914e18  LOW
+  1/16    2.0e13  / 2.04061e13  LOW   1.2e19  / 1.22534e19  LOW
+  1/20    1.5e13  / 1.46169e13  ok    1.8e19  / 1.83284e19  LOW
+
+and the boundary coefficient low in three of five. All raised, at the
+smallest precision keeping the overshoot under one per cent.
+
+**The erratum's figures too.** The Lemma 5.2b erratum quotes four
+crossings for the `8/5` correction --- `P_0` from `8.9e13` to `3.6e13`
+and `P_1` from `5.0e19` to `9.8e18`. Recomputed with
+`ANCHOR_CONSTANTS_PRECORRECTION`, the true pair is `8.94577e13` and
+`5.0318e19`: three of the four were printed below. Likewise A.5's
+vector trade, `P_0` to `4.0e12` against `4.02854e12` and `P_1` to
+`1.0e23` against `1.0158e23`. All raised.
+
+**A constant the table never names.** The third column is headed
+"boundary coefficient" and defined nowhere. It is `3.5 V^(-1/2)` at
+`S = lambda_0 P^(-5/8)`, i.e. `3.5 (kappa sqrt(0.56))^(-1/2)`, which
+reproduces all five printed entries to under `0.4%`. That is now
+written down, and the guard checks the formula rather than the numbers.
+
+Tags. EXACT: `3.5 (kappa sqrt(lambda_0))^(-1/2)` for the boundary
+column. COMPUTATIONALLY VERIFIED: `P_1 = 9.83914e18` from the printed
+constants alone, matching `log10_P1` to ten figures; all fifteen table
+entries and the six erratum/vector figures against independent solves;
+pre-correction `P_0 = 8.94577e13`, `P_1 = 5.0318e19`. OBSERVATION: the
+hypothesis was wrong --- `P_1`'s constants are all printed --- and the
+defect was one table over.
+
+Probe: `manuscript_self_audit.p1_crossing`, `kappa_table_audit`,
+`kappa_table_failures`; `failures()` gains a `kappa_table` key. Seven
+new tests, fifty-five in the file. Manuscript: eleven table entries and
+six other crossings raised, the convention stated for the second table,
+and the boundary coefficient defined. `P_0` and `P_1` themselves do not
+move --- `9.83914e18` is what they always were; what changed is the
+figure printed for them. No certificate edit.

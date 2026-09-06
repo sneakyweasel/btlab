@@ -49,7 +49,7 @@ CONSTANT_VALUES: tuple[tuple[str, str, str, dict[str, str]], ...] = (
     ("P_0", r"P_0\s*=\s*([0-9.]+" + BS + BS + r"cdot10\^\{[-0-9]+\})",
      r"3.6" + BS + r"cdot10^{13}", {}),
     ("P_1", r"P_1\s*=\s*([0-9.]+" + BS + BS + r"cdot10\^\{[-0-9]+\})",
-     r"9.8" + BS + r"cdot10^{18}", {}),
+     r"9.9" + BS + r"cdot10^{18}", {}),
     ("c_7", r"c_7\s*=\s*(" + BS + BS + r"tfrac1\{[0-9]+\}|1/[0-9]+)", "1/232", {
         r"" + BS + r"tfrac1{232}": "the same value, set as a fraction",
         "1/288": "the weaker value the manuscript quotes, which remains valid",
@@ -696,6 +696,82 @@ def p0_from_printed_constants() -> dict[str, Any]:
             "solved": solved, "printed": printed, "constants": {k: v["value"] for k, v in c.items()}}
 
 
+
+# --- P_1 and the kappa table --------------------------------------------------------------------
+#
+# P_1 is the least P at which the middle band beats the trivial bound, so it is a crossing and
+# rounds up for the same reason A.1's column does: printing 9.8e18 for 9.83914e18 names a P at
+# which the estimate is still the weaker one.  Eleven of the kappa table's fifteen entries were
+# nearest-rounded below their true values -- a second threshold table that A.1's convention had
+# never been applied to.
+#
+# The solver is again a second implementation, reading its constants out of the manuscript.
+
+KAPPA_TABLE_ANCHOR = r"| \(\kappa\) | \(P_0\) | \(P_1\) (A.5) | boundary coefficient |"
+_KAPPA_ROW = re.compile(
+    re.escape(BS) + r"tfrac1(?:" + re.escape(BS) + r"?\{?([0-9]+)\}?)"
+    r"[^|]*\|" + r"[^|]*?([0-9.]+)" + re.escape(BS) + r"cdot10\^\{([0-9]+)\}"
+    r"[^|]*\|" + r"[^|]*?([0-9.]+)" + re.escape(BS) + r"cdot10\^\{([0-9]+)\}"
+    r"[^|]*\|" + r"[^|]*?([0-9.]+)" + re.escape(BS) + r"\)")
+
+
+def p1_crossing(kappa: float, lam: float, e_lead: float, e_tail: float,
+                c7: float, N: float = 3.5) -> float:
+    """Least P with 4P W/(c_7 S) + P (W/(c_7 S))^(1/2) + N P^(13/24) V^(-1/2) <= P."""
+    def ok(P: float) -> bool:
+        S = lam * P**-0.625
+        V = kappa * S**0.5 * P ** (-11 / 24)
+        W = V + e_lead * P ** (-25 / 24) + e_tail * P ** (-5 / 6)
+        return 4 * P * W / (c7 * S) + P * (W / (c7 * S)) ** 0.5 + N * P ** (13 / 24) * V**-0.5 <= P
+    lo, hi = 1.0, 300.0
+    for _ in range(400):
+        mid = (lo + hi) / 2.0
+        lo, hi = (lo, mid) if ok(10.0**mid) else (mid, hi)
+    return 10.0**hi
+
+
+def kappa_table_audit() -> list[dict[str, Any]]:
+    """Every entry of the kappa table against a solve from the manuscript's own constants.
+
+    The P_0 column needs the certificate, since it is a maximum over all thirty-eight rows; the
+    P_1 column and the boundary coefficient are solved here from the printed constants alone.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "p0_certificate", REPO_ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py")
+    cert = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(cert)                                    # type: ignore[union-attr]
+
+    c = printed_binding_constants()
+    lam = c["lambda_0"]["value"]
+    e1, e2 = c["E_lead"]["value"], c["E_tail"]["value"]
+    c7 = 1.0 / c["c7_den"]["value"]
+
+    text = paper_text()
+    start = text.find(KAPPA_TABLE_ANCHOR)
+    block = text[start:text.find(chr(10) + chr(10), start)] if start >= 0 else ""
+    out = []
+    for m in _KAPPA_ROW.finditer(block):
+        den = int(m.group(1))
+        kappa = 1.0 / den
+        p0_printed = float(m.group(2)) * 10 ** int(m.group(3))
+        p1_printed = float(m.group(4)) * 10 ** int(m.group(5))
+        coef_printed = float(m.group(6))
+        p0_true = 10.0 ** max(r["log10_P_min"] for r in cert.thresholds(kappa=kappa))
+        p1_true = p1_crossing(kappa, lam, e1, e2, c7)
+        coef_true = 3.5 * (kappa * lam**0.5) ** -0.5
+        out.append({"kappa_den": den,
+                    "P0": (p0_printed, p0_true, p0_printed >= p0_true * (1 - 1e-9)),
+                    "P1": (p1_printed, p1_true, p1_printed >= p1_true * (1 - 1e-9)),
+                    "coef": (coef_printed, coef_true, coef_printed >= coef_true * (1 - 1e-9))})
+    return out
+
+
+def kappa_table_failures() -> list[dict[str, Any]]:
+    return [r for r in kappa_table_audit()
+            if not (r["P0"][2] and r["P1"][2] and r["coef"][2])]
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
@@ -704,7 +780,8 @@ def failures() -> dict[str, list[Any]]:
             "a1_thresholds": a1_failures(),
             "claim_vs_predicate": claim_predicate_failures(),
             "p0_reproducible": [] if p0_from_printed_constants()["ok"] else
-                               [p0_from_printed_constants()]}
+                               [p0_from_printed_constants()],
+            "kappa_table": kappa_table_failures()}
 
 
 def main() -> None:
