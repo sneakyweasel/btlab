@@ -29675,3 +29675,66 @@ Branch status
 Best next question
 - lemma_6_2_edge_search hunts for failures on (1e6, 2e6) only, where h1 and
   h2 are both pinned at 1; does the hunt mean anything at that range?
+
+ ### 0.5561 does not reconcile with the paper's own production rule
+
+Following the last entry's question about the localized-kernel
+dividend. The rule and the recursion both check; the number does not.
+
+**The rule checks.** Section 8 states it — a word `w` of fair
+probability `P_w` landing at scale `x^{e_w}` contributes
+`(P_w/e_w) g(e_w t)` — and against the one production written out in
+full it is exact. `OOEEE`: `d = 5`, `P_w = 2^-5 = 1/32`, landing scale
+`e_w = 9/32` (the word's final scale exponent, from the same
+recursion the frontier analysis uses), so `(P_w/e_w) = 1/9` at scale
+`9/32` — precisely the printed term.
+
+**The recursion checks.** `0.539180` against a printed `0.5392`, and
+`0.448017` against `0.4480` on dropping that term.
+
+**The dividend does not.** `OOOEEE` and `OOEOEE` both have `d = 6` and
+both land at `e_w = 27/64`, so the rule gives each `2^-6/(27/64) =
+1/27`. Re-solving with both added returns **0.606635**, against the
+printed **0.5561**, which would instead need an added coefficient of
+`0.01812` where the rule gives `2/27 = 0.07407` — a ratio of `0.245`,
+near a quarter.
+
+Three readings and I do not choose between them: stale figure; the
+localization recovering only part of each cylinder so `P_w` is not the
+fair `2^-6`; or `0.5561` already netting off a loss the sentence does
+not mention.
+
+Two things in mitigation, both worth stating. The discrepancy runs
+**conservative** — the rule gives a larger dividend than the paper
+claims, so nothing is overstated. And the quantity belongs to [24]:
+what weight a localized cylinder contributes is fixed there, not here.
+
+Recorded in the audit ledger with the arithmetic, and flagged in
+Section 8 so a reader who recomputes hits the wall knowingly. The
+number is left as printed.
+
+```text
+What was learned
+- a stated rule plus a stated example is enough to test a third
+  number, and here the third number is the one nobody could check
+- the same scale-exponent recursion that prices depth-seven kernels
+  also prices contagion productions; e_d is doing double duty
+Strongest theorem
+- the production rule reproduces the OOEEE term exactly, and applied
+  to the two localized words returns 0.606635 rather than 0.5561
+Strongest refutation
+- not mine this time: an unreconciled figure in Section 8
+Reusable machinery
+- five tests including the recursion root solver and the mismatch
+Branch status
+- PROMOTE
+Why
+  This is the first number in the paper this session's auditing has
+  failed to reproduce that is not my own error. It is conservative and
+  it belongs to the companion, so it is flagged rather than changed --
+  but a referee recomputing the dividend would have found it, and now
+  will find the note first.
+Best next question
+- for the author: is P_w for a localized cylinder the fair 2^{-d}, or
+  does localization cost a factor? A quarter would reconcile it.
+```

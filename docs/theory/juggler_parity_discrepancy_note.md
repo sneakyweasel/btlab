@@ -5462,7 +5462,16 @@ A localized form of the kernel theorem (Theorem 5.3 on intervals of
 length \(P^{23/32}\), which we have not proved; the scaling
 architecture is the same, with per-window absolute costs at most
 \(P^{7/16}\)) would add the words \(OOOEEE\) and \(OOEOEE\) and give
-\(0.5561\); the level-3 kernel of Conjecture 7.3 would give more.
+\(0.5561\); the level-3 kernel of Conjecture 7.3 would give more. (The
+\(0.5561\) is quoted from [24]. Applying the production rule stated
+above to those two words gives each fair probability \(2^{-6}\) at
+landing scale \(e_w=27/64\), hence a coefficient \(\tfrac1{27}\)
+apiece, and re-solving the recursion with both added returns
+\(0.6066\) rather than \(0.5561\); the printed figure corresponds to
+about a quarter of that added mass. The discrepancy is in the
+conservative direction and is recorded in the audit ledger rather than
+resolved here, since the weight a localized cylinder actually
+contributes is [24]'s to fix, not this paper's.)
 Each depth also raises the certificate density of Corollaries 4.9 and
 6.4 and the constants of the Tao-type reduction. These are the
 quantitative dividends of the program, and they are real. The

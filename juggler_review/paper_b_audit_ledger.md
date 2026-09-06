@@ -946,3 +946,42 @@ as the trade Appendix A.6 makes); \(1/4\) failing the four-site
 condition; the uselessness of \(49P^{-1/16}\); and the fact that
 \(23P^{19/24}\) is *not* below \(P^{7/8}\). In each the warning is the
 content and the attribution was not.
+
+## The localized-kernel dividend 0.5561 does not reconcile
+
+Section 8 states the production rule — a word \(w\) of fair
+probability \(P_w\) landing at scale \(x^{e_w}\) contributes
+\((P_w/e_w)\,g(e_wt)\) — and the rule checks against the one
+production the paper writes out in full. For \(OOEEE\): \(d=5\),
+\(P_w=2^{-5}=\tfrac1{32}\), landing scale \(e_w=\tfrac9{32}\) (the
+word's final scale exponent), so \((P_w/e_w)=\tfrac19\) at scale
+\(\tfrac9{32}\) — exactly the printed \(\tfrac19(\tfrac9{32})^{\lambda}\)
+term. Both halves of the rule confirmed.
+
+The recursion itself also checks. Solving
+\[
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}
++\tfrac29\bigl(\tfrac34\bigr)^{\lambda}
++\tfrac19\bigl(\tfrac9{32}\bigr)^{\lambda}=1
+\]
+gives \(0.539180\), against the printed \(\lambda^{***}=0.5392\); and
+dropping the last term gives \(0.448017\) against \(\lambda^{**}=0.4480\).
+
+**What does not reconcile is \(0.5561\).** The two words a localized
+Theorem 5.3 would add, \(OOOEEE\) and \(OOEOEE\), both have \(d=6\) and
+both land at \(e_w=27/64\), so the rule gives each a coefficient
+\(2^{-6}/(27/64)=\tfrac1{27}\). Re-solving with both added returns
+\(0.606635\). The printed \(0.5561\) instead requires an added
+coefficient of \(0.01812\) at that scale, against the rule's
+\(\tfrac2{27}=0.07407\) — a ratio of \(0.245\), near a quarter.
+
+Three readings, and this ledger does not choose between them: the
+figure may be stale; the localization may recover only part of each
+cylinder, so that \(P_w\) is not the fair \(2^{-6}\); or \(0.5561\) may
+already net off a loss the sentence does not mention. Two points in
+mitigation. The discrepancy runs in the conservative direction — the
+rule would give a *larger* dividend than the paper claims, so nothing
+is overstated. And the quantity is [24]'s, not this paper's: what
+weight a localized cylinder contributes is fixed there.
+
+Recorded so that a reader who recomputes hits the same wall knowingly.

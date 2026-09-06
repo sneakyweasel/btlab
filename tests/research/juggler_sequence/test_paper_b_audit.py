@@ -426,3 +426,55 @@ def test_paper_names_the_gap_and_the_summand() -> None:
     assert r"\(38\)" in text and "a factor of" in text
     assert "differ by exactly one term" in text
     assert "attributable to a single summand" in text
+
+
+# --- the 0.5561 dividend does not reconcile with the paper's own rule ---
+
+
+def _recursion_root(extra, guess):
+    from mpmath import mp, mpf, findroot, power
+    mp.dps = 30
+    base = [(Fr(1), Fr(1, 2)), (Fr(1, 9), Fr(3, 8)), (Fr(2, 9), Fr(3, 4)), (Fr(1, 9), Fr(9, 32))]
+    terms = base + list(extra)
+    f = lambda L: sum(mpf(c.numerator) / c.denominator                     # noqa: E731
+                      * power(mpf(e.numerator) / e.denominator, L) for c, e in terms) - 1
+    return findroot(f, mpf(guess))
+
+
+def test_the_production_rule_reproduces_the_OOEEE_term() -> None:
+    """(P_w/e_w) at scale e_w, with P_w = 2^-d and e_w the final scale exponent."""
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    e = PB.iterate_exponents("OOEEE")[-1]
+    assert e == Fr(9, 32)
+    assert Fr(1, 2 ** 5) / e == Fr(1, 9)
+
+
+def test_the_two_printed_contagion_exponents_solve_the_recursion() -> None:
+    from mpmath import mpf
+    assert abs(_recursion_root([], "0.54") - mpf("0.5392")) < 5e-5
+    base_minus = [(Fr(-1, 9), Fr(9, 32))]              # cancel the OOEEE term
+    assert abs(_recursion_root(base_minus, "0.45") - mpf("0.4480")) < 5e-5
+
+
+def test_the_localized_words_both_land_at_twentyseven_sixtyfourths() -> None:
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    for w in ("OOOEEE", "OOEOEE"):
+        assert len(w) == 6
+        assert PB.iterate_exponents(w)[-1] == Fr(27, 64), w
+        assert Fr(1, 64) / Fr(27, 64) == Fr(1, 27)
+
+
+def test_the_rule_gives_0_6066_not_the_printed_0_5561() -> None:
+    from mpmath import mpf
+    got = _recursion_root([(Fr(1, 27), Fr(27, 64))] * 2, "0.60")
+    assert abs(got - mpf("0.606635")) < 1e-5
+    assert abs(got - mpf("0.5561")) > 0.04
+
+
+def test_the_discrepancy_is_recorded_and_runs_conservative() -> None:
+    led = io.open(ROOT / "docs" / "theory" / "paper_b_audit_ledger.md", encoding="utf-8").read()
+    assert "does not reconcile" in led
+    assert "0.606635" in led and "0.01812" in led
+    assert "conservative direction" in led
+    text = _paper()
+    assert "recorded in the audit ledger rather than" in text
