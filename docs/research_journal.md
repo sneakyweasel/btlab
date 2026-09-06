@@ -32463,3 +32463,148 @@ Best next question
   place where a length is quoted at n = P rather than n <= 2P, and does
   the audit's own code make that slip anywhere?
 ```
+
+ ### The leftover two-monomial question is not this one, and this one is smaller
+
+The question: does `exponent_pair_two_monomial.md` cover
+`e(j n^{3/2} - (27k/32)(n+h)^{33/32})` at the ranges the budget needs,
+and if not, what is the gap?
+
+**It does not, and there is no gap — they are different problems.**
+
+Write the linear form a pair must satisfy. The note asks for
+`(5/4)p + q < 2/3 = 0.667` against a hull minimum of `0.861` over the
+closure under the two processes, or `95/112 = 0.848` once Huxley and
+Bourgain are admitted. Any solution lies *below* the classical hull:
+a subconvexity result, which is what the note says.
+
+Here the requirement `delta >= 1/48` rearranges to
+
+```text
+   25p + 48q <= 47      against a hull minimum of 34.5
+```
+
+a margin of 27 per cent, *inside* the hull. Of the fifty-six generated
+pairs three fail — the trivial `(0,1)` at 48, and two of its
+neighbours, all with `q >= 0.984` where every pair that clears has
+`q <= 0.973`. The failures are the trivial pair and what crawls back
+towards it. Everything else clears: van der Corput's `(1/6,2/3)` at
+36.17, Weyl's at 36.5, Bourgain's at 35.30.
+
+**Nor is the second monomial what separates them.** Both problems are
+led by one term: there `m^{9/4}` leads `j m^{2/3}` by `M^{71/60}`; here
+`j n^{3/2}` leads `(27k/32)(n+h)^{33/32}` by `P^{41/96}` at the worst
+corner `j = 1, k = P^{1/24}` and by `P^{691/1056}` at the top of the
+`j`-range. The resemblance is entirely superficial. What separates them
+is only where the target sits relative to the hull.
+
+So the missing ingredient for the level-1 kernel is not a new exponent
+pair. It is the verification that a pair's derivative hypotheses hold
+on the perturbed monomial uniformly in `j <= P^{5/22}`, `k <= P^{1/24}`,
+`h <= P^{1/48}` — routine by those margins, and unwritten. My previous
+entry said "this paper proves no such bound" and pointed at the
+leftover as the missing ingredient; the first half is right and the
+second was wrong.
+
+```text
+What was learned
+- two problems can share a shape -- two monomials, exponent pairs, one
+  term dominating -- and differ in the only thing that matters, which
+  is whether the target is inside the hull or below it
+- the requirement here is a line in (p,q) like the note's, so they can
+  be compared exactly rather than by impression, and should have been
+- I over-read the resemblance last entry and pointed at a leftover that
+  is a subconvexity problem; what is actually needed is a uniformity
+  check
+Strongest theorem
+- delta >= 1/48 is exactly 25p + 48q <= 47, whose hull minimum is 34.5:
+  the level-1 kernel's wave sums sit inside the classical hull with a
+  27 per cent margin, where the leftover note needs 0.667 against 0.861
+Strongest refutation
+- my own previous entry's reading that the leftover note is the missing
+  ingredient; and, on the way, the claim that only the trivial pair
+  fails -- three do, all in its neighbourhood
+Reusable machinery
+- two_monomial_requirement and two_monomial_domination, which put both
+  linear forms and both hull minima in one call; five tests
+Branch status
+- PARK
+Why
+  The route from the level-1 kernel to a bound is now priced end to end
+  with every step inside machinery that exists, and the one unwritten
+  step is a uniformity verification rather than a new theorem. That is
+  a proof to write, not a question to answer, and not a Phase-0 move.
+Best next question
+- none in this direction. The level-1 kernel's route is described,
+  priced and located; what remains is Section 5's work at one level
+  down. The open questions that pay are elsewhere: OOEOOEE needs a
+  square-root kernel of a species this paper has no theorem for, and
+  OOOOEEE needs Conjecture 7.3.
+```
+
+## The third P-versus-n slip was mine
+
+Following the last entry's question, and the answer is the least
+comfortable one available: the third place the dyadic factor appears is
+the checker I wrote to police it.
+
+**The slip.** The printed band is in the block start `P`, and one `n`
+pins `P` only to `[n/2, n)`. A check that cannot miss a violation takes
+the largest admissible `P` for a lower bound and the smallest for an
+upper one: `P = n` below, `P = n/2` above.
+`check_lemma_5_1_ii_iv` used `P = n` on both sides -- with a comment
+saying so, which is how it survived twenty-three entries -- and is loose
+by `2^(3/4)` in each direction. For a bound in a negative power `P = n`
+is already strict, so the `M_1` bound beside it needed no correction.
+
+**What it hid.** The census still holds at every sample under the strict
+transcription, and the four bracket ratios move:
+
+| | as checked | strict | meaning |
+|---|---|---|---|
+| first upper `2.6` | 0.5771 | `0.9705` | `3.0%` of room, not `42%` |
+| first lower `3/2` | 1.6818 | `1.0000` | exactly attained |
+| second upper `15` | 0.4515 | 0.5378 | `46%` |
+| second lower `1.4` | 5.7125 | 4.7991 | could be `4.8x` larger |
+
+Both now agree with the manuscript-side reading from three entries ago
+-- true band `[1.50, 2.52]` against a printed `[1.5, 2.6]` -- which the
+audit had been quietly contradicting.
+
+**And it corrects my own sensitivity table.** "What a 1% cut would set
+off" reported the first bracket as structurally loose with a smallest
+detectable cut of `42.3%`. The true figure is `2.9%`, and four constants
+rather than three detect a `1%` cut. The regime "does not move with
+sampling" splits in two: a constant fixed by the deterministic gap can
+be structurally sharp, as this one is, or structurally loose, as the
+second bracket is. The probe now says which.
+
+```text
+What was learned
+- the strict pointwise transcription of a band in P is P = n below and
+  P = n/2 above, and using n on both sides is loose by the dyadic
+  factor in both directions
+- the first bracket's printed 2.6 has 3% of room, not 42%, and its 3/2
+  is exactly attained
+- "does not move with sampling" is not the same as loose; the probe
+  now distinguishes structurally sharp from structurally loose
+Strongest theorem
+- none; a transcription rule and its consequences
+Strongest refutation
+- my own sensitivity table, off by a factor of fourteen on the first
+  bracket's detectable cut
+Reusable machinery
+- the corrected check_lemma_5_1_ii_iv and the sharp/loose split in
+  perturbation_sensitivity; two tests updated rather than left green
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Three entries have now turned on the same dyadic factor. Two were the
+  paper's and one was mine, and mine was the one that had a comment
+  explaining why it was right.
+Best next question
+- the same rule applies to every pointwise check in the census, not
+  just the brackets. Which other bounds are stated in P and checked at
+  n, and does the direction of each exponent make the transcription
+  strict or loose?
+```

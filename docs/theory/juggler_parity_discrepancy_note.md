@@ -5367,6 +5367,39 @@ in \(j\), \(k\) and \(h\): every phase above is
 proves no such bound. That, and not the assembly, is where a proof
 would start.
 
+*And it is a smaller thing than the leftover it resembles.* The
+repository carries an open two-monomial exponent-pair question
+(`exponent_pair_two_monomial.md`), and it is tempting to read the two as
+one. They are not. Write \(\psi(p,q)\) for the linear form a pair must
+satisfy. There the target is
+\(\tfrac54p+q<\tfrac23=0.667\) against a hull minimum of \(0.861\) over
+the closure under the two processes --- \(95/112=0.848\) once Huxley and
+Bourgain are admitted --- so any solution lies *below* the hull and is a
+subconvexity result. Here the requirement \(\delta\ge\tfrac1{48}\) reads
+\[
+25p+48q\ \le\ 47,
+\]
+against a hull minimum of \(34.5\): a margin of \(27\%\), *inside* the
+hull. Of the fifty-six pairs the two processes generate, three fail ---
+the trivial \((0,1)\) at \(48\) against \(47\), and two of its
+neighbours, all three with \(q\ge0.984\) where every pair that clears
+has \(q\le0.973\). The failures are the trivial pair and what crawls
+back towards it. Everything else clears: van der Corput's
+\((\tfrac16,\tfrac23)\) at \(36.17\), Weyl's \((\tfrac12,\tfrac12)\) at
+\(36.5\), Bourgain's at \(35.30\).
+
+Nor is what separates them the second monomial. Both problems are
+dominated by one term: there \(m^{9/4}\) leads \(jm^{2/3}\) by
+\(M^{71/60}\); here \(jn^{3/2}\) leads \(\tfrac{27k}{32}(n{+}h)^{33/32}\)
+by \(P^{41/96}\) at the worst corner \(j=1\), \(k=P^{1/24}\), and by
+\(P^{691/1056}\) at the top of the \(j\)-range. What separates them is
+only where the target sits relative to the hull.
+
+So the missing ingredient is not a new exponent pair. It is the
+verification that a pair's derivative hypotheses hold on the perturbed
+monomial uniformly in \(j\le P^{5/22}\), \(k\le P^{1/24}\),
+\(h\le P^{1/48}\) --- routine by the margins above, and unwritten.
+
 *The three thresholds are independent, and they re-sort depth seven.*
 Applying all of them to the three targets at once:
 

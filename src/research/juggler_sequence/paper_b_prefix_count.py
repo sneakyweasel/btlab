@@ -845,6 +845,79 @@ def window_assembly_is_trivial(J: Fraction = Fraction(5, 22),
     }
 
 
+
+def two_monomial_requirement(depth: int = 9) -> dict[str, Any]:
+    """Whether the level-1 kernel needs the repository's open two-monomial question.  It does not.
+
+    ``exponent_pair_two_monomial.md`` asks for a pair applicable to ``c m^{9/4} - j m^{2/3}`` with
+    ``(5/4)p + q < 2/3``, against a hull minimum of ``95/112`` once Huxley and Bourgain are
+    admitted: any solution is *below* the classical hull, hence a subconvexity result.
+
+    What the level-1 kernel needs is ``delta = (1 - p/2 - q)/(p+1) >= 1/48``, which rearranges to
+    ``25p + 48q <= 47`` -- a line *inside* the hull.  Three of the fifty-six generated pairs
+    fail: the trivial ``(0, 1)`` at 48 against 47, and two of its neighbours, all with
+    ``q >= 0.984`` where every pair that clears has ``q <= 0.973``.  The failures are the trivial
+    pair and what crawls back towards it.
+
+    Both problems are dominated by one monomial, so that is not what separates them; see
+    `two_monomial_domination`.  What separates them is where the target sits.
+    """
+
+    pairs = sorted(van_der_corput_pairs(depth))
+    psi = lambda p, q: 25 * p + 48 * q                       # noqa: E731  <= 47 is delta >= 1/48
+    phi = lambda p, q: Fraction(5, 4) * p + q                # noqa: E731  < 2/3 is the note's ask
+    best_psi = min(pairs, key=lambda pq: psi(*pq))
+    best_phi = min(pairs, key=lambda pq: phi(*pq))
+    named = {
+        "trivial": (Fraction(0), Fraction(1)),
+        "van der Corput": (Fraction(1, 6), Fraction(2, 3)),
+        "Weyl": (Fraction(1, 2), Fraction(1, 2)),
+        "Bourgain": (Fraction(13, 84), Fraction(55, 84)),
+    }
+    return {
+        "here_form": "25p + 48q",
+        "here_line": 47,
+        "here_hull_min": psi(*best_psi),
+        "here_hull_argmin": best_psi,
+        "here_margin": 1 - psi(*best_psi) / 47,
+        "here_is_inside_the_hull": psi(*best_psi) <= 47,
+        "note_form": "(5/4)p + q",
+        "note_line": Fraction(2, 3),
+        "note_hull_min": phi(*best_phi),
+        "note_is_inside_the_hull": phi(*best_phi) <= Fraction(2, 3),
+        "note_literature_min": Fraction(95, 112),
+        "named": {k: {"psi": psi(*v), "clears_here": psi(*v) <= 47,
+                      "phi": phi(*v), "clears_note": phi(*v) < Fraction(2, 3)}
+                  for k, v in named.items()},
+        "failing_pairs": [pq for pq in pairs if psi(*pq) > 47],
+        "failures_are_the_trivial_neighbourhood": (
+            max(q for p, q in pairs if psi(p, q) <= 47)
+            < min(q for p, q in pairs if psi(p, q) > 47)),
+    }
+
+
+def two_monomial_domination(j: Fraction = Fraction(5, 22), k: Fraction = Fraction(1, 24)
+                            ) -> dict[str, Any]:
+    """By how much the leading monomial leads, here and in the leftover note.
+
+    Here: ``j n^{3/2}`` against ``(27k/32)(n+h)^{33/32}``, so the ratio is
+    ``P^{j + 3/2 - k - 33/32}``, least at ``j = 0`` (that is, ``j = 1``) and ``k`` at its cap.
+    There: ``m^{9/4}`` against ``j m^{2/3}`` at ``|j| <= M^{2/5}``, ratio ``M^{71/60}``.
+    Both are single-monomial dominated; the resemblance stops there.
+    """
+
+    worst = Fraction(0) + Fraction(3, 2) - k - Fraction(33, 32)
+    top = j + Fraction(3, 2) - k - Fraction(33, 32)
+    return {
+        "here_worst_corner": worst,
+        "here_top_of_range": top,
+        "here_dominated": worst > 0,
+        "note_ratio": Fraction(9, 4) - (Fraction(2, 5) + Fraction(2, 3)),
+        "note_dominated": Fraction(9, 4) - (Fraction(2, 5) + Fraction(2, 3)) > 0,
+        "domination_is_not_what_separates_them": True,
+    }
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")

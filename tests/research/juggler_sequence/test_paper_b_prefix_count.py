@@ -1693,3 +1693,66 @@ def test_paper_records_that_the_window_is_avoidable() -> None:
     assert "two lines of algebra" in text
     assert "50.3" in text
     assert "the two-monomial estimate itself" in text
+
+
+# --- the leftover two-monomial question is not this one ---
+
+
+def test_this_requirement_is_inside_the_hull() -> None:
+    """delta >= 1/48 is 25p + 48q <= 47, against a hull minimum of 34.5."""
+    r = B.two_monomial_requirement()
+    assert r["here_line"] == 47
+    assert r["here_hull_min"] == Fraction(69, 2)
+    assert r["here_is_inside_the_hull"]
+    assert abs(float(r["here_margin"]) - 0.266) < 0.001
+    # the rearrangement itself: delta = (1 - p/2 - q)/(p+1) >= 1/48
+    for p, q in ((Fraction(1, 6), Fraction(2, 3)), (Fraction(13, 84), Fraction(55, 84))):
+        delta = (1 - p / 2 - q) / (p + 1)
+        assert (delta >= Fraction(1, 48)) == (25 * p + 48 * q <= 47)
+
+
+def test_the_notes_requirement_is_below_its_hull() -> None:
+    """(5/4)p + q < 2/3 against a hull minimum of 0.8606: a subconvexity ask."""
+    r = B.two_monomial_requirement()
+    assert r["note_line"] == Fraction(2, 3)
+    assert r["note_hull_min"] == Fraction(1673, 1944)
+    assert not r["note_is_inside_the_hull"]
+    assert r["note_literature_min"] == Fraction(95, 112)
+    assert Fraction(95, 112) > Fraction(2, 3)          # even with Huxley and Bourgain
+    for d in r["named"].values():
+        assert not d["clears_note"] or d["phi"] < Fraction(2, 3)
+    assert not r["named"]["Bourgain"]["clears_note"]
+    assert r["named"]["Bourgain"]["clears_here"]
+
+
+def test_only_the_trivial_neighbourhood_fails_here() -> None:
+    """Three of fifty-six fail, and they are the trivial pair and what crawls back to it."""
+    r = B.two_monomial_requirement()
+    assert len(r["failing_pairs"]) == 3
+    assert (Fraction(0), Fraction(1)) in r["failing_pairs"]
+    assert r["failures_are_the_trivial_neighbourhood"]
+    assert all(q >= Fraction(251, 255) for _p, q in r["failing_pairs"])
+    assert r["named"]["trivial"]["psi"] == 48 and not r["named"]["trivial"]["clears_here"]
+    for nm in ("van der Corput", "Weyl", "Bourgain"):
+        assert r["named"][nm]["clears_here"], nm
+
+
+def test_domination_is_not_what_separates_them() -> None:
+    """Both problems are led by one monomial; that resemblance is not the difference."""
+    d = B.two_monomial_domination()
+    assert d["here_worst_corner"] == Fraction(41, 96) > 0
+    assert d["here_top_of_range"] == Fraction(691, 1056)
+    assert d["note_ratio"] == Fraction(71, 60) > 0
+    assert d["here_dominated"] and d["note_dominated"]
+    # the worst corner is j = 1 with k at its cap
+    assert Fraction(3, 2) - Fraction(1, 24) - Fraction(33, 32) == Fraction(41, 96)
+
+
+def test_paper_separates_the_two_questions() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "it is a smaller thing than the leftover it resembles" in text
+    assert "25p+48q" in text
+    assert "subconvexity result" in text
+    assert "What separates them is" in text
+    assert "only where the target sits relative to the hull" in text
+    assert "the missing ingredient is not a new exponent pair" in text
