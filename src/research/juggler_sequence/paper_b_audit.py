@@ -1126,7 +1126,12 @@ def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
     edge = lemma_6_2_edge_search()
-    standing = [standing_estimates(P) for P in (10**6, 10**8, 10**10)]
+    # P_0 = 8.9e13 is the effective threshold of Appendix A, so the first three points all sit
+    # below the regime the standing estimates are claimed in; 1e14 and 1e16 straddle it.  The
+    # low points remain because the ratios are furthest from their limits there, which makes
+    # them the harder test -- but "harder" was an assumption until the claimed regime was
+    # actually evaluated.
+    standing = [standing_estimates(P) for P in (10**6, 10**8, 10**10, 10**14, 10**16)]
     cells = [cell_inventory(10**5, h) for h in (1, 2, 3)]
     runs = [frozen_run_inventory(10**5, 1, 1), frozen_run_inventory(10**5, 1, 2)]
     expo = exponent_checks()

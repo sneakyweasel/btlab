@@ -29422,3 +29422,48 @@ What was learned
   its role, never match a bare number
 Branch status
 - Paper B audit pass: one gap closed (A.6), one clean negative
+
+## The standing estimates were never evaluated in the regime they are claimed in
+
+Second Paper B pass, on the exponent bookkeeping and the standing
+estimates. The host is deep in Section 3 lemma coverage — Lemma 3.6's
+six uses, Lemma 3.10's hypotheses, Lemma 3.5's majorant — so this stays
+elsewhere and touches no prose.
+
+*Exponent bookkeeping: clean.* Paper B displays 113 distinct
+\(P\)-exponents; the audit's exponent layer mentions 91. The 22 it does
+not are intermediate quantities, and the three that looked irregular are
+deliberate common-denominator forms, each correct:
+\(P^{1/24+1/2}=P^{13/24}<P^{7/8}=P^{21/24}\) (\(13<21\) is the point of
+writing \(7/8\) over \(24\)); \(P^{-34/16}/P^{-26/16}=P^{-1/2}\); and
+\(4.33P^{5/36}\le P^{1/2}\) once \(4.33\le P^{13/36}\), with
+\(1/2-5/36=13/36\). No defect.
+
+*The standing estimates: a real gap, now closed.* Appendix A's effective
+threshold is \(P_0=8.9\cdot10^{13}\), and everything in Section 5 is
+claimed for \(P\ge P_0\). The audit evaluated (E1)–(E6) at \(10^6\),
+\(10^8\) and \(10^{10}\) — all below \(P_0\), by three to eight orders.
+So the estimates were never once checked in the regime the paper claims
+them.
+
+The likely reason it went unnoticed is that testing low looks like the
+harder test: the ratios sit furthest from their limits at small \(P\),
+and the sampled parameters collapse there (\(h_1=1\) throughout, and
+\(h_2,k\le2\)). That reasoning is probably right — but it was an
+assumption, and an audit that assumes the interesting direction is not
+auditing it. Evaluated at \(10^{14}\) and \(10^{16}\): every estimate
+holds. Both points are now in the audit, straddling \(P_0\), with the
+low points kept for the reason above stated rather than implied.
+
+```text
+What was learned
+- Paper B's exponent bookkeeping is sound where the audit does not reach;
+  the irregular-looking exponents are common denominators, deliberately
+- the standing estimates held only below their own threshold until now
+- "the low test is the harder test" was true and unverified, which is the
+  same species as a constant nobody recomputes
+Branch status
+- audit now straddles P_0; classification unchanged, PAPER_B_AUDIT_CONSISTENT
+Best next question
+- do the cell and frozen-run inventories have the same problem? They are
+  evaluated at P = 1e5 only
