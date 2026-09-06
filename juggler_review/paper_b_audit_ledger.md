@@ -2596,3 +2596,47 @@ what happens to be written next to them, which is the same reliance the
 tactic guard's author decided not to accept. COMPUTATIONALLY VERIFIED
 for the counts; the audit itself is EXACT --- either a collection is
 empty or it is not.
+
+## What the "an earlier" guard does not watch, and where the rest of it sits
+
+The guard polices the phrase the referee named --- "earlier draft",
+absent --- and whitelists two words after "an earlier". The family is
+wider: "previously", "in an earlier", "used to", "no longer", "the
+former". Nine occurrences survive, and *where* they sit decides what
+they are.
+
+| location | count | reading |
+|---|---|---|
+| Appendix A, A.5, A.6 | 5 | the appendix's own subject |
+| body, mathematical | 2 | earlier in a chain, not in a draft |
+| body, status | 2 | what the Lean layer covered before; a comparison the raised threshold retired |
+
+**The five in the appendix are not residue.** A.5 exists to say why
+\(\kappa=\tfrac1{12}\) rather than \(\tfrac13\), and A.6 why
+\(R_0=P^{5/16}\) rather than \(P^{1/4}\); a sentence like "a band that
+no longer contains \(9/32\), whose \(7.4\cdot10^{13}\) used to sit just
+under the old \(P_0\)" is the comparison those sections are for.
+Removing it would remove the argument.
+
+**Two of the four in the body are mathematics.** "Linearizing the wave
+in an earlier defect \(\theta_s\)" is earlier in the chain of defects,
+and a term that is "no longer drift-blocked" has just been differenced
+across the threshold. Neither is history.
+
+**Two are status.** \S4 records that three Lean statements "were
+previously supported only by the probe's 60-digit sampling", which is
+about the repository rather than the theorem; and the Theorem 5.3
+architecture note says the two comparisons "no longer conflict" under
+the raised threshold, which describes the superseded design. Both are
+defensible --- the first tells a reader what is proved and what is
+sampled --- but they are the two sentences in the body that a referee
+looking for the development log would stop at.
+
+`draft_history_markers` reports the nine with their sections and flags
+body occurrences that are neither mathematical nor in the appendix; the
+test allows the two that are there and fails on a third. So the answer
+to "did the lost phrases leave because they were fixed" is: the one the
+referee named is gone, and its family did not follow it out --- it moved
+to the appendix, where it belongs, except for two sentences that stayed.
+COMPUTATIONALLY VERIFIED by location; the classification of the four
+body occurrences is a judgement, recorded as one.

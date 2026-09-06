@@ -3178,6 +3178,61 @@ def pointwise_bound_inventory(seed: int = 2405, samples_per_range: int = 20) -> 
         "did_not_go_blind": inspected >= 100,
     }
 
+# Phrases that mark a "then versus now" comparison.  The referee's objection was to the development
+# log, and test_paper_b_body_carries_no_draft_history polices the exact phrase "earlier draft" plus
+# a whitelist of two words after "an earlier".  The family is wider, and where it appears matters:
+# in Appendix A.5 and A.6, whose job is to explain why one constant was chosen over another, a
+# comparison with the superseded choice is the content; in the body it is either mathematics or
+# residue.
+DRAFT_HISTORY_MARKERS = ("previously", "in an earlier", "used to", "no longer", "the former")
+BODY_MARKERS_THAT_ARE_MATHEMATICAL = ("in an earlier defect", "no longer drift-blocked")
+
+
+def draft_history_markers() -> dict[str, Any]:
+    """Where the paper still compares itself with its own past, and whether that is the appendix's job.
+
+    Nine occurrences: four in the body of Sections 4, 5 and 7, five in Appendix A.  Of the four in
+    the body, two are mathematical -- "an earlier defect theta_s" is earlier in the chain, and a
+    term that is "no longer drift-blocked" has just been differenced -- and two are status rather
+    than mathematics: a sentence on what the Lean layer covered before, and one on a comparison the
+    raised threshold made unnecessary.  The five in the appendix are the appendix's subject.
+
+    Reported so a new body occurrence has to be looked at.  The guard in test_manuscript_consistency
+    polices the phrase the referee named; this counts the family around it.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(encoding="utf-8")
+    lines = text.splitlines()
+    heads = [(i, ln) for i, ln in enumerate(lines) if re.match(r"^#{1,3} ", ln)]
+
+    def section_of(index: int) -> str:
+        prior = [h for h in heads if h[0] <= index]
+        return prior[-1][1].lstrip("# ").strip() if prior else "(front matter)"
+
+    pattern = re.compile("|".join(re.escape(m) for m in DRAFT_HISTORY_MARKERS), re.I)
+    rows = []
+    for i, line in enumerate(lines):
+        if not pattern.search(line):
+            continue
+        section = section_of(i)
+        in_appendix = section.startswith("Appendix") or section.startswith("A.")
+        joined = " ".join(lines[max(0, i - 1):i + 2])
+        mathematical = any(phrase in joined for phrase in BODY_MARKERS_THAT_ARE_MATHEMATICAL)
+        rows.append({"line": i + 1, "section": section, "in_appendix": in_appendix,
+                     "mathematical": mathematical,
+                     "needs_a_look": not in_appendix and not mathematical,
+                     "text": line.strip()[:90]})
+    body = [r for r in rows if not r["in_appendix"]]
+    return {
+        "occurrences": rows,
+        "total": len(rows),
+        "in_appendix": sum(r["in_appendix"] for r in rows),
+        "in_body": len(body),
+        "body_mathematical": sum(r["mathematical"] for r in body),
+        "body_needing_a_look": [r["line"] for r in body if r["needs_a_look"]],
+        "the_referees_phrase_is_gone": "earlier draft" not in text,
+    }
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3233,6 +3288,7 @@ def summary() -> dict[str, Any]:
     sensitivity = perturbation_sensitivity()
     admissible = lemma_3_9_admissible_search(trials=400, grid=1000)
     transcription = pointwise_bound_inventory()
+    history = draft_history_markers()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3276,6 +3332,7 @@ def summary() -> dict[str, Any]:
         "perturbation_sensitivity": sensitivity,
         "lemma_3_9_admissible_search": admissible,
         "pointwise_bound_inventory": transcription,
+        "draft_history_markers": history,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

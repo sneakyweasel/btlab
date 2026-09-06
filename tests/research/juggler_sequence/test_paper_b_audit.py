@@ -1137,3 +1137,17 @@ def test_every_P_stated_bound_uses_its_strict_transcription() -> None:
     assert by["L5.1(iii) second bracket, lower"]["extreme_ratio"] > 4
     assert by["L5.1(iv) M_1"]["strict_transcription"].startswith("P = n")
     assert by["L5.1(iv) M_1"]["exponent"] == "-7/8"
+
+
+# --- the draft-history family, and where each member sits ---
+
+
+def test_the_draft_history_family_is_where_it_belongs() -> None:
+    """The referee's phrase is gone; the family around it is mostly the appendix's own subject."""
+    r = A.draft_history_markers()
+    assert r["the_referees_phrase_is_gone"]
+    assert r["total"] >= 8
+    assert r["in_appendix"] >= 5                     # A.5 and A.6 exist to compare choices
+    assert r["in_body"] <= 4 and r["body_mathematical"] >= 2
+    # two body sentences are status rather than mathematics; a third would want looking at
+    assert len(r["body_needing_a_look"]) <= 2, r["body_needing_a_look"]

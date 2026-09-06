@@ -32822,3 +32822,143 @@ Best next question
   the manuscript had more of them; are the ones it lost still true, or
   did they leave because they were fixed?
 ```
+
+ ### The grading has a domain, and level three is run-less everywhere
+
+The question: `OOEOOEE` and Conjecture 7.3 both cost `2^-3` by the
+grading, yet the paper ranks them apart. Is the grading blind?
+
+**Not on the split that matters.** A cost of `2^-d` is payable only if
+the chain can be organised into runs at the level it passes through,
+which is `e < 2`. So `e < 2` is not a fourth axis beside the grading —
+it is the grading's precondition, and it makes the primary split:
+Theorem 5.3 and `OOOEOEE` have runs, `OOEOOEE` and Conjecture 7.3 do
+not. Inside the second pair the grading *is* blind, and species and the
+composite factor separate them, both isolating `OOEOOEE`, while the
+`9/4` stop isolates Conjecture 7.3 the other way.
+
+```text
+   axis                     partition of the four
+   differencing cost d      1: OOOEOEE | 2: Thm 5.3 | 3: the other two
+   branch runs e < 2        Thm 5.3, OOOEOEE | OOEOOEE, Conj 7.3
+   above 9/4                Conj 7.3 | the other three
+   species                  OOEOOEE | the other three
+   worst composite kappa    OOEOOEE | the other three
+```
+
+**And level three is run-less everywhere.** Section 7 makes that
+statement for the `OOOO*` split. It is forced. A contractor needs
+`3^{o_2} >= 4` at `t = 2`, and `3^1 = 3 < 4`, so `o_2 = 2`: **every
+contractor begins `OO`**, hence `e_2 = 9/4` for all of them, hence
+every level-3 defect on the frontier branches on `9/4`. All 3910
+level-three sites lack runs, without exception. Conjecture 7.3's
+complaint is not a fact about `OOOO*`; it is a theorem about the level.
+
+**But levels past three are not uniformly barred,** which the `9/4`
+reading does not suggest. The base at level `s` is `e_{s-1}`, and
+survival pins it only from below, so a prefix carrying an even letter
+early brings it back under 2: at level four the base is `9/8` for
+`OOE*` against `27/8` for `OOO*`, and 746 of the 3167 level-four sites
+have runs. Level five recovers 1156 of 2546, and runs reappear at seven,
+eight and ten while vanishing at six, nine and eleven. Over the whole
+frontier 51% of blocked sites have runs, and the pattern in the level is
+not monotone.
+
+```text
+What was learned
+- an obstruction I had been treating as a separate axis turned out to be
+  the domain of another one; the question "is the grading blind" had a
+  better answer than yes or no
+- the paper's level-three statement is stronger than it is phrased:
+  survival forces every contractor to begin OO, so 9/4 is universal at
+  that level and not a property of OOOO*
+- and the corollary nobody would guess from that phrasing: runs come
+  back at levels four, five, seven, eight and ten
+- five axes and four targets, and every pair is separated by at least
+  one -- the ranking the paper gives is recoverable rather than asserted
+Strongest theorem
+- every contractor begins OO, so every level-3 defect branches on
+  e_2 = 9/4 and no level-3 kernel anywhere on the frontier has branch
+  runs: 3910 sites, no exceptions
+Strongest refutation
+- the reading that levels three and above are uniformly run-less; 2561
+  sites at level four or deeper have them
+Reusable machinery
+- every_contractor_begins_oo, branch_runs_by_level; five tests
+Branch status
+- PARK
+Why
+  The five axes are now assembled and their logical relation is stated:
+  one is the domain of another, and the remaining three separate what is
+  left. There is nothing further to compute here without attacking a
+  specific word.
+Best next question
+- level four recovers runs on OOE* prefixes, and the paper has no
+  level-4 kernel of any kind. What is the shallowest blocked defect at
+  level four with runs -- OOEOOOE letter 7 theta_4 at alpha 135/64 --
+  and does the grading price it at anything payable?
+```
+
+## The family around the guarded phrase, and where it went
+
+Following the last entry's question. The guard polices "earlier draft"
+-- absent -- and whitelists two words after "an earlier". The family is
+wider: `previously`, `in an earlier`, `used to`, `no longer`, `the
+former`. Nine survive, and where they sit decides what they are.
+
+| location | count | reading |
+|---|---|---|
+| Appendix A, A.5, A.6 | 5 | the appendix's own subject |
+| body, mathematical | 2 | earlier in a chain, not in a draft |
+| body, status | 2 | what Lean covered before; a comparison the raised threshold retired |
+
+**The appendix five are not residue.** A.5 exists to say why
+`kappa = 1/12` and not `1/3`, A.6 why `R_0 = P^(5/16)` and not `P^(1/4)`;
+"a band that no longer contains `9/32`, whose `7.4e13` used to sit just
+under the old `P_0`" is the comparison those sections are for.
+
+**Two body ones are mathematics.** "Linearizing the wave in an earlier
+defect `theta_s`" is earlier in the chain; a term "no longer
+drift-blocked" has just been differenced.
+
+**Two are status.** Section 4 records that three Lean statements "were
+previously supported only by the probe's 60-digit sampling" -- about the
+repository, not the theorem -- and the Theorem 5.3 architecture note
+says two comparisons "no longer conflict" under the raised threshold,
+which describes the superseded design. Both defensible; both the
+sentences a referee hunting the development log would stop at.
+
+So the answer is: the phrase the referee named is gone, and its family
+did not follow it out. It moved to the appendix, where it belongs,
+except for two sentences that stayed.
+
+```text
+What was learned
+- the guarded phrase is one member of a five-phrase family, and five of
+  the nine survivors are in the two appendices whose subject is exactly
+  such comparisons
+- two body occurrences are mathematical and two are status; the
+  distinction is location plus a two-phrase whitelist, which is enough
+  to flag a third
+- "did the lost ones leave because they were fixed" has a third answer:
+  they were moved
+Strongest theorem
+- none; this is a classification
+Strongest refutation
+- none; the referee's phrase is absent and stays absent
+Reusable machinery
+- draft_history_markers, reporting the family by section and flagging
+  body occurrences that are neither mathematical nor appendix; one test
+  that allows the two that are there and fails on a third
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  A guard on one phrase invites the phrase to be reworded rather than
+  the habit to be dropped. Counting the family is how to tell which
+  happened, and here it was neither: the sentences moved to where they
+  are the argument.
+Best next question
+- Section 4's status sentence says three Lean statements were once only
+  sampled and are now proved. Does the trust-boundary table agree, and
+  is anything else in that table still carried by sampling?
+```
