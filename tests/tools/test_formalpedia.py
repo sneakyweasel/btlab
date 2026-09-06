@@ -117,3 +117,32 @@ def test_every_graph_node_carries_at_least_one_ledger_row() -> None:
     g = fp.dag(index, ledger)
     empty = [n for n, node in g["nodes"].items() if not node["ledger"]]
     assert empty == [], empty
+
+
+def test_proposals_are_never_written_into_the_ledger() -> None:
+    """The queue is advisory. Its own calibration is why: 96% precision is one wrong
+    mapping in twenty-five, fine for a list a person reads and wrong for a ledger whose
+    purpose is making a claim checkable."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    out = fp.propose(index, ledger)
+    proposed = {r["id"] for r in out["rows"]}
+    resolved = {r["id"] for r in ledger if r.get("decl")}
+    assert not (proposed & resolved), sorted(proposed & resolved)[:5]
+    for r in out["rows"]:
+        assert r["confidence"] in {"review", "low"}
+
+
+def test_every_proposed_candidate_lives_in_the_row_s_own_file() -> None:
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    by_file = {}
+    for d in index["declarations"]:
+        by_file.setdefault(d["file"], set()).add(d["name"])
+    for r in fp.propose(index, ledger)["rows"]:
+        lean = r.get("lean")
+        if not (isinstance(lean, str) and lean.endswith(".lean")):
+            continue
+        names = by_file.get("formal/" + lean, set())
+        for c in r["candidates"]:
+            assert c["decl"] in names, f"{r['id']}: {c['decl']} not in {lean}"
