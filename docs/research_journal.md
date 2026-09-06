@@ -31960,3 +31960,83 @@ Best next question
   -- van der Corput, Erdos-Turan, Vaaler -- hold at the constants the
   paper prints for them?
 ```
+
+ ### The balance has three times the room; it was the curvature that was wrong
+
+The question was: what saving does the accounting return — `~ h P^{1/2}`
+cells of length `P^{1/2}/h`, van der Corput at curvature `k P^{-31/32}`
+— and is it above or below the `1/48` one differencing needs?
+
+**As posed it returns `1/256`**, short by `16/3`. But the premise
+carries the wrong curvature, and that is the whole of the answer.
+
+**What a b-run freezes is the integer.** `b = floor(Delta_h X)`, not the
+fractional part. So the smooth phase on a run is
+`c(n+h)(Delta_h X - b)`, and all four terms of its second derivative —
+`c'' Delta_h X`, `2 c' (Delta_h X)'`, `c (Delta_h X)''`, `-c'' b` — are
+of one size:
+
+```text
+   lambda ~ k h P^(-15/32),   measured at 0.98877 times it, ten samples at n ~ 1e6
+```
+
+against `c'' ~ k P^(-31/32)`, which is smaller by `P^{1/2}/h` — exactly
+the run length, which is what the frozen integer is worth. The ratio to
+`c''` measures 1264 to 7060 over the same samples.
+
+**With it the accounting inverts.** Stationary points per cell go from
+`(k/h) P^(-15/32) << 1` to `k P^(1/32) >> 1`, so the second-derivative
+test is the right tool rather than a waste; the `lambda^(-1/2)` term
+stops charging for a stationary point the cell does not contain. Then
+
+```text
+   U(h) << (k h)^{1/2} P^{49/64}          (was h P^{63/64})
+   |K_1|^2 << P^2/H + k^{1/2} H^{1/2} P^{113/64},  optimum H = P^{5/32} k^{-1/3}
+   K_1 << P^{59/64} k^{1/6} << P^{59/64 + 1/144}   uniformly in k <= P^{1/24}
+```
+
+a saving of `41/576` against the `12/576` required — a factor `41/12`.
+
+**So the balance is not where this stands or falls.** It has three times
+the room it needs, on the one term it can price. Unpriced are
+`(Delta_h c) theta_1`, where the shifted window now applies but has to
+be run, and `-c(n+h) kappa`, where the Vaaler expansion has to be
+truncated against a weight of size `k P^{33/32}`. Those two are the
+problem; the arithmetic of `H` is not.
+
+```text
+What was learned
+- the question I wrote last entry carried a wrong curvature, and the
+  wrongness was a factor of the run length -- exactly the quantity the
+  frozen integer is worth, which is the thing a b-run is for
+- "van der Corput on a cell" is not one tool: whether the second- or
+  first-derivative test applies is decided by L*lambda, and getting
+  lambda wrong by P^{1/2}/h flips that decision
+- a balance that returns 1/256 and one that returns 41/576 differ in no
+  step except which lambda goes in, which is a good argument for
+  computing lambda rather than quoting it
+Strongest theorem
+- with lambda = k h P^{-15/32}, one differencing gives
+  K_1 << P^{59/64} k^{1/6}, a saving of 41/576 uniformly in k <= P^{1/24}
+  against the 1/48 required: a factor 41/12 of room on the smooth term
+Strongest refutation
+- my own previous entry's accounting: c'' is not the curvature of a
+  b-run, and with it the same machine returns 1/256 and fails
+Reusable machinery
+- level1_one_differencing_balance, parameterised by lambda so both
+  readings come out of one code path; level1_run_curvature, which
+  measures which one is right; four tests
+Branch status
+- PARK
+Why
+  The balance question is answered and answered favourably, and the
+  answer relocates the difficulty rather than removing it. What remains
+  is two non-smooth terms, each needing a Section-3-to-5 tool run in
+  full -- a proof, not an accounting.
+Best next question
+- of the two, -c(n+h)kappa is the one with the large weight. Vaaler at
+  truncation J costs a remainder ~ P/J and returns J waves e(j n^{3/2})
+  against e(-(27k/32)(n+h)^{33/32}). What J does the budget allow, and
+  does the resulting two-monomial phase have a van der Corput exponent
+  pair good enough at that range?
+```

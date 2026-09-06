@@ -1200,6 +1200,85 @@ def lemma_4_10_sharpness(lengths: tuple[int, ...] = (10, 100, 1000, 10000),
         "TV_exponent": Fr(1, 24) + Fr(1, 12) + 1 - Fr(23, 16),
     }
 
+def classical_inputs_check(P: int = 2000, H: int = 40, seed: int = 303) -> dict[str, Any]:
+    """The two Section 3 inputs with printed constants: the A-process display and Erdos-Turan.
+
+    Lemma 3.3's used form is the display |sum a_n|^2 <= 2P^2/H + (4P/H) sum_{1<=h<H}
+    |sum a_{n+2h} conj(a_n)|, said to come from the classical inequality with (P+2H)/H and the
+    weights 1 - |h|/H absorbed.  It does: on every family tried the display holds and dominates the
+    classical form.  At the extremal sequence a_n = 1 the looseness factorises exactly --
+    LHS/classical -> 1/2, printed/classical -> 4 (two from 2P^2/H against P^2/H, two from dropping
+    the weights), so LHS/printed -> 1/8.
+
+    Lemma 3.4 is printed as D << R/H + sum_{h<=H} |sum e(h x_j)|/h with no constant.  Over random,
+    Kronecker, clustered and arithmetic point sets the constant needed is at most 0.36, so the
+    printed form holds with an absolute constant below 1.
+    """
+
+    rng = random.Random(seed)
+    ns = list(range(P + 1, 2 * P + 1, 2))
+    N = len(ns)
+
+    def families() -> dict[str, list[complex]]:
+        alpha, beta = rng.random(), rng.random()
+        return {
+            "constant": [complex(1)] * N,
+            "random": [cmath.exp(2j * math.pi * rng.random()) for _ in range(N)],
+            "linear": [cmath.exp(2j * math.pi * alpha * n) for n in ns],
+            "quadratic": [cmath.exp(2j * math.pi * beta * n * n) for n in ns],
+        }
+
+    rows = []
+    for name, a in families().items():
+        lhs = abs(sum(a)) ** 2
+        corr = sum(abs(sum(a[i + h] * a[i].conjugate() for i in range(N - h))) for h in range(1, H))
+        printed = 2 * P * P / H + (4 * P / H) * corr
+        classical = ((P + 2 * H) / H) * sum(
+            (1 - abs(h) / H) * abs(sum(a[i + abs(h)] * a[i].conjugate() for i in range(N - abs(h))))
+            for h in range(-(H - 1), H))
+        rows.append({"family": name, "lhs_over_printed": lhs / printed,
+                     "lhs_over_classical": lhs / classical,
+                     "printed_over_classical": printed / classical,
+                     "display_holds": lhs <= printed,
+                     "display_dominates_classical": printed >= classical})
+
+    def discrepancy(xs: list[float]) -> float:
+        pts = sorted(u % 1.0 for u in xs)
+        R = len(pts)
+        best = 0.0
+        for i in range(R):
+            for j in range(i, R):
+                length = pts[j] - pts[i]
+                best = max(best, abs((j - i) - R * length), abs((j - i + 1) - R * length))
+        return best
+
+    et_rows = []
+    for name, R, Hd in (("random", 60, 8), ("kronecker", 120, 16), ("clustered", 120, 16), ("arithmetic", 200, 30)):
+        if name == "random":
+            xs = [rng.random() for _ in range(R)]
+        elif name == "kronecker":
+            xs = [(j * math.sqrt(2)) % 1 for j in range(R)]
+        elif name == "clustered":
+            xs = [0.3 + 1e-4 * rng.random() for _ in range(R)]
+        else:
+            xs = [(j / R + 0.1) % 1 for j in range(R)]
+        bound = R / Hd + sum(abs(sum(cmath.exp(2j * math.pi * h * x) for x in xs)) / h for h in range(1, Hd + 1))
+        et_rows.append({"points": name, "R": R, "H": Hd, "implied_constant": discrepancy(xs) / bound})
+
+    extremal = next(r for r in rows if r["family"] == "constant")
+    return {
+        "a_process": rows,
+        "a_process_holds_everywhere": all(r["display_holds"] for r in rows),
+        "a_process_dominates_the_classical_form": all(r["display_dominates_classical"] for r in rows),
+        "extremal_lhs_over_printed": extremal["lhs_over_printed"],
+        "extremal_lhs_over_classical": extremal["lhs_over_classical"],
+        "extremal_printed_over_classical": extremal["printed_over_classical"],
+        "looseness_factorises_as_two_times_four": abs(extremal["lhs_over_printed"] - 1 / 8) < 0.01,
+        "erdos_turan": et_rows,
+        "erdos_turan_worst_implied_constant": max(r["implied_constant"] for r in et_rows),
+        "erdos_turan_constant_below_one": max(r["implied_constant"] for r in et_rows) < 1.0,
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -2244,6 +2323,8 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("4.13: the printed error m'^{-4/27} reaches 10% only at m' = 10^{27/4}", F(4, 27) * F(27, 4) == 1),
         # Lemma 4.10's application: the twist's total variation in the regime it is used in
         ("4.10: TV <= 2h|I| sup|g''| <= 0.26 P^{1/24+1/12+1-23/16} = 0.26 P^{-5/16}", F(1, 24) + F(1, 12) + 1 - F(23, 16) == -F(5, 16)),
+        # Lemma 3.3's A-process display: where its 2 and 4 come from, and what they cost
+        ("3.3 A-process: (1/2) from the classical inequality times (1/4) from the simplification is 1/8", F(1, 2) * F(1, 4) == F(1, 8)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -2488,6 +2569,95 @@ def level1_differencing_identity(P: int = 10**6, seed: int = 5, trials: int = 24
         "drift_threshold": Fr(1),
         "differencing_crosses_the_threshold": Fr(33, 32) > 1 > Fr(1, 32),
         "cell_length": "P^(1/2)/h",
+    }
+
+
+def level1_one_differencing_balance(lam_P: Fr = Fr(-15, 32), lam_h: Fr = Fr(1),
+                                    k_cap: Fr = Fr(1, 24)) -> dict[str, Any]:
+    """What one differencing buys the level-1 kernel, in exact exponents.
+
+    On a `b`-run of `Lemma 5.1(iii)` the frozen object is the *integer*
+    ``b = floor(Delta_h X)``, not the fractional part, so the smooth phase is
+    ``c(n+h)(Delta_h X - b)`` and every term of its second derivative -- ``c'' Delta_h X``,
+    ``2 c' (Delta_h X)'``, ``c (Delta_h X)''`` and ``-c'' b`` -- is of size ``k h P^(-15/32)``.
+    That is larger than ``c'' ~ k P^(-31/32)`` by the run length ``P^(1/2)/h``, which is what the
+    frozen integer is worth; `level1_run_curvature` measures it.
+
+    Given ``lambda ~ k h^(lam_h) P^(lam_P)``, the accounting is: ``L lambda^(1/2) + lambda^(-1/2)``
+    per cell over ``~ h P^(1/2)`` cells of length ``P^(1/2)/h``, then the Weyl balance
+    ``|K_1|^2 << P^2/H + (P/H) sum_{h<=H} |U(h)|``.  Defaults return the corrected reading;
+    passing ``lam_P = -31/32, lam_h = 0`` returns the one that uses ``c''``.
+
+    One differencing halves a saving, so matching ``P^(1-1/96)`` needs ``1/48``.  Prices only the
+    smooth term: ``(Delta_h c) theta_1`` and ``-c(n+h) kappa`` are not in it.
+    """
+
+    cell = Fr(1, 2)
+    a_P, a_h = cell + lam_P / 2, -1 + lam_h / 2          # L lambda^(1/2)
+    b_P, b_h = -lam_P / 2, -lam_h / 2                    # lambda^(-1/2)
+    A_P, A_h = cell + a_P, 1 + a_h                       # times the cell count
+    B_P, B_h = cell + b_P, 1 + b_h
+    U_P, U_h = (A_P, A_h) if A_P >= B_P else (B_P, B_h)
+
+    # sum_{h<=H} h^{U_h} ~ H^{U_h+1}; |K|^2 << P^2/H + H^{U_h} P^{1+U_P}
+    e_H, e_P = U_h, 1 + U_P
+    H = (2 - e_P) / (e_H + 1)
+    sq = 2 - H                                           # exponent of |K_1|^2 at k = 1
+    saving = 1 - sq / 2
+    # k enters U(h) as k^{1/2}, hence H as k^{-1/(2(e_H+1))} and |K_1| as k^{1/(4(e_H+1))}
+    k_power = Fr(1, 4 * (e_H + 1))
+    return {
+        "lambda_P": lam_P,
+        "lambda_h": lam_h,
+        "stationary_points_per_cell": cell + lam_P,
+        "U_bound": (U_P, U_h),
+        "H_exponent": H,
+        "K1_exponent": sq / 2,
+        "saving_at_k_one": saving,
+        "k_exponent_in_K1": k_power,
+        "saving_uniform_in_k": saving - k_power * k_cap,
+        "required_after_one_differencing": Fr(1, 48),
+        "room": (saving - k_power * k_cap) / Fr(1, 48),
+        "reaches_the_requirement": saving - k_power * k_cap >= Fr(1, 48),
+    }
+
+
+def level1_run_curvature(P: int = 10**6, seed: int = 3, trials: int = 10) -> dict[str, Any]:
+    """Measure the second derivative of the smooth phase on a b-run, against both candidates.
+
+    The phase is ``c(n+h)(Delta_h X(n) - b)`` with ``b = floor(Delta_h X)`` frozen.  Its curvature
+    tracks ``k h P^(-15/32)``, not ``c'' ~ k P^(-31/32)``: the ratio to the first is 0.989 and to
+    the second is in the thousands, the difference being the run length ``P^(1/2)/h``.
+    """
+
+    rng = random.Random(seed)
+    ratio_a: list[float] = []
+    ratio_b: list[float] = []
+    with mp.workdps(50):
+        half = mp.mpf(3) / 2
+        for _ in range(trials):
+            n = rng.randrange(P, 2 * P) | 1
+            h = rng.randint(1, 6)
+            k = rng.randint(1, 4)
+
+            def g(x: mp.mpf, _h: int = h, _k: int = k) -> mp.mpf:
+                c = mp.mpf(27 * _k) / 32 * mp.power(x + _h, mp.mpf(33) / 32)
+                D = mp.power(x + _h, half) - mp.power(x, half)
+                return c * (D - b)
+
+            D0 = mp.power(mp.mpf(n + h), half) - mp.power(mp.mpf(n), half)
+            b = mp.floor(D0)
+            m = float(abs(mp.diff(g, mp.mpf(n), 2)))
+            ratio_a.append(m / (k * h * n ** (-15 / 32)))
+            ratio_b.append(m / (k * n ** (-31 / 32)))
+
+    return {
+        "P": P,
+        "trials": trials,
+        "ratio_to_kh_Pm15_32": (min(ratio_a), max(ratio_a)),
+        "ratio_to_k_Pm31_32": (min(ratio_b), max(ratio_b)),
+        "tracks_the_run_scale": all(0.9 < r < 1.1 for r in ratio_a),
+        "cpp_is_wrong_by_the_run_length": all(r > 100 for r in ratio_b),
     }
 
 # Block counts the rows report, and the subset the exponent is fitted over.  Calibrated on iid
@@ -2798,6 +2968,7 @@ def summary() -> dict[str, Any]:
     l46 = lemma_4_6_census(samples_per_range=20)
     c413 = corollary_4_13_check()
     l410 = lemma_4_10_sharpness(random_trials=200)
+    classical = classical_inputs_check()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2837,6 +3008,7 @@ def summary() -> dict[str, Any]:
         "lemma_4_6_census": l46,
         "corollary_4_13_check": c413,
         "lemma_4_10_sharpness": l410,
+        "classical_inputs_check": classical,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

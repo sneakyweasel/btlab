@@ -5241,14 +5241,55 @@ exponent is \(\tfrac1{32}\).
 
 This is an accounting and not a proof, and the gap is the whole of
 Section 5's work at one level down. It does not choose the Vaaler
-truncation, bound the oscillation of the \(1-e(-c)\) weight, take the
-cell inventory, or balance \(H\) against the two error terms
-differencing produces. One differencing halves a saving, so matching
-\(P^{1-1/96}\) would need the differenced sum to reach
-\(P^{1-1/48}\), and nothing here says it does. What the identity
+truncation, bound the oscillation of the \(1-e(-c)\) weight, or handle
+the two terms that are not smooth. What the identity
 settles is that the route is Step 1 followed by Lemma 3.5, not a
 sharper Lemma 3.7, and that every ingredient it needs is already in
 Sections 3 to 5.
+
+*What the balance returns.* One differencing halves a saving, so
+matching \(P^{1-1/96}\) needs the differenced sum to reach
+\(P^{1-1/48}\). The smooth term can be priced, and the price turns
+entirely on which curvature a \(b\)-run carries. It is not \(c''\).
+What a run freezes is the *integer* \(b=\lfloor\Delta_hX\rfloor\), not
+the fractional part, so the smooth phase on it is
+\(c(n{+}h)(\Delta_hX-b)\), and all four terms of that product's second
+derivative --- \(c''\Delta_hX\), \(2c'(\Delta_hX)'\),
+\(c(\Delta_hX)''\) and \(-c''b\) --- are of one size,
+\[
+\lambda\ \asymp\ kh\,P^{-15/32},
+\]
+measured at \(0.989\) times it over ten samples at \(n\sim10^6\).
+Against \(c''\asymp kP^{-31/32}\) that is larger by \(P^{1/2}/h\),
+which is exactly the run length: the factor the frozen integer is
+worth.
+
+With it the stationary-point count per cell is
+\(L\lambda\asymp kP^{1/32}\), comfortably above \(1\), so the
+second-derivative test is the right tool. Over
+\(\asymp hP^{1/2}\) cells of length \(P^{1/2}/h\) it gives
+\(U(h)\ll(kh)^{1/2}P^{49/64}\) for the differenced sum \(U(h)\), and
+the Weyl balance
+\(\lvert K_1\rvert^2\ll P^2/H+k^{1/2}H^{1/2}P^{113/64}\) is optimised
+at \(H=P^{5/32}k^{-1/3}\), returning
+\[
+K_1\ \ll\ P^{59/64}k^{1/6}\ \ll\ P^{59/64+1/144}
+\quad\text{uniformly in }k\le P^{1/24},
+\]
+a saving of \(\tfrac{41}{576}\) against the \(\tfrac1{48}=\tfrac{12}{576}\)
+required --- a factor \(\tfrac{41}{12}\) of room. Run instead with
+\(c''\) as the curvature, the same accounting returns \(\tfrac1{256}\),
+short by \(\tfrac{16}3\); the whole difference is the misidentified
+\(\lambda\), whose \(\lambda^{-1/2}\) term then charges for a
+stationary point the cell does not contain.
+
+So the balance is not where this stands or falls. It has three times
+the room it needs on the term it can price, and prices only that term.
+What is unpriced is \((\Delta_hc)\theta_1\), where the shifted window
+now applies but has still to be run, and \(-c(n{+}h)\kappa\), where the
+Vaaler expansion has still to be truncated against a weight of size
+\(kP^{33/32}\). Those two are the problem; the arithmetic of \(H\) is
+not.
 
 *The three thresholds are independent, and they re-sort depth seven.*
 Applying all of them to the three targets at once:

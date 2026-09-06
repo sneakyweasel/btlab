@@ -1001,3 +1001,69 @@ def test_lemma_4_10s_constant_is_sharp_and_free_where_it_is_used() -> None:
     assert r["TV_exponent"] == Fr(-5, 16)
     for x in r["adversarial"]:
         assert x["ratio"] <= 1 + 1e-9, x                     # and the lemma holds on every one
+
+
+# --- Section 3's classical inputs, at the constants the paper prints for them ---
+
+
+def test_the_two_classical_inputs_hold_at_their_printed_constants() -> None:
+    """The A-process display and Erdos-Turan, both used throughout Sections 4-6."""
+    r = A.classical_inputs_check(P=800, H=20)
+    assert r["a_process_holds_everywhere"]
+    assert r["a_process_dominates_the_classical_form"]
+    assert r["looseness_factorises_as_two_times_four"]          # 1/2 times 1/4 at a_n = 1
+    assert abs(r["extremal_lhs_over_classical"] - 0.5) < 0.06
+    assert abs(r["extremal_printed_over_classical"] - 4) < 0.6
+    assert r["erdos_turan_constant_below_one"]
+    assert r["erdos_turan_worst_implied_constant"] < 0.5
+
+
+# --- the one-differencing balance, and the curvature it turns on ---
+
+
+def test_the_run_carries_kh_not_c_double_prime() -> None:
+    """What a b-run freezes is the integer floor(Delta_h X), so lambda ~ k h P^(-15/32)."""
+    r = A.level1_run_curvature(P=10**6, trials=8)
+    assert r["tracks_the_run_scale"], r["ratio_to_kh_Pm15_32"]
+    assert r["cpp_is_wrong_by_the_run_length"], r["ratio_to_k_Pm31_32"]
+    lo, hi = r["ratio_to_kh_Pm15_32"]
+    assert 0.98 < lo <= hi < 1.0
+    # the gap between the two candidates is the run length P^{1/2}/h
+    assert Fr(-15, 32) - Fr(-31, 32) == Fr(1, 2)
+
+
+def test_the_balance_reaches_the_requirement() -> None:
+    """With the run curvature the smooth term has 41/12 times the room it needs."""
+    r = A.level1_one_differencing_balance()
+    assert r["stationary_points_per_cell"] == Fr(1, 32) > 0   # the test is the right one
+    assert r["U_bound"] == (Fr(49, 64), Fr(1, 2))
+    assert r["H_exponent"] == Fr(5, 32)
+    assert r["K1_exponent"] == Fr(59, 64)
+    assert r["saving_at_k_one"] == Fr(5, 64)
+    assert r["saving_uniform_in_k"] == Fr(41, 576)
+    assert r["required_after_one_differencing"] == Fr(1, 48) == Fr(12, 576)
+    assert r["room"] == Fr(41, 12)
+    assert r["reaches_the_requirement"]
+
+
+def test_the_posed_accounting_falls_short_and_why() -> None:
+    """With c'' as the curvature the same machine returns 1/256, short by 16/3."""
+    r = A.level1_one_differencing_balance(lam_P=Fr(-31, 32), lam_h=Fr(0))
+    assert r["saving_at_k_one"] == Fr(1, 256)
+    assert not r["reaches_the_requirement"]
+    assert Fr(1, 48) / Fr(1, 256) == Fr(16, 3)
+    # and the reason: fewer than one stationary point per cell, so lambda^(-1/2) is
+    # charging for a stationary point the cell does not contain
+    assert r["stationary_points_per_cell"] == Fr(-15, 32) < 0
+    assert r["U_bound"][0] == Fr(63, 64)                      # against 49/64 corrected
+
+
+def test_the_saving_is_not_where_this_stands_or_falls() -> None:
+    """The balance prices the smooth term only; the two non-smooth ones are the problem."""
+    r = A.level1_one_differencing_balance()
+    # one differencing halves the saving, so the differenced sum reaches P^{1-2*saving}
+    assert 2 * r["saving_at_k_one"] == Fr(5, 32)
+    assert r["saving_uniform_in_k"] > Fr(1, 48)
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "So the balance is not where this stands or falls" in text
+    assert "prices only that term" in text
