@@ -41,6 +41,7 @@ LEDGER = ROOT / "docs" / "theory" / "theorem_ledger.json"
 INDEX = ROOT / "data" / "research" / "formalpedia" / "index.json"
 DAG = ROOT / "data" / "research" / "formalpedia" / "dag.json"
 PROPOSALS = ROOT / "data" / "research" / "formalpedia" / "decl_proposals.json"
+REVIEW = ROOT / "docs" / "research" / "formalpedia_decl_review.md"
 
 DECL = re.compile(
     r"^(?P<kind>theorem|lemma|def|abbrev|instance|structure)\s+"
@@ -410,6 +411,60 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
     }
 
 
+def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
+    """The confident half of the proposal queue, laid out to be answered in one sitting.
+
+    The JSON queue has everything except the thing the decision needs: what the candidate
+    theorem actually says.  Deciding "is this row that declaration?" means reading the row's
+    statement beside the declaration's docstring, so this puts them adjacent and drops
+    everything else.
+    """
+    docs = {(d["file"], d["name"]): d for d in index["declarations"]}
+    out = [
+        "# Declaration review queue",
+        "",
+        "Rows where one candidate leads its file clearly.  Each entry is the ledger row's own",
+        "statement beside the candidate's docstring; the question is only whether they say the",
+        "same thing.  The scorer was measured at 96% precision on rows with a known answer, so",
+        "roughly one in twenty-five of these is wrong -- reading is the point, not rubber-stamping.",
+        "",
+        "A second failure mode is not scored at all: some rows are composite, and their top",
+        "candidate is only the headline theorem.  `BTC-select3` below reads \"select3 represents",
+        "every Trit->Z map; abs/min/max\" -- four theorems, of which `select3_represents` is one.",
+        "Accepting it would record a part as the whole.  If the row says \"and\", \";\" or lists",
+        "several claims, it belongs in neither column yet.",
+        "",
+        "Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledger.json`.",
+        "",
+    ]
+    proposals = propose(index, ledger)
+    shown = 0
+    for row in proposals["rows"]:
+        if row["confidence"] != "review" or not row["candidates"]:
+            continue
+        top = row["candidates"][0]
+        decl = docs.get(("formal/" + row["lean"], top["decl"]))
+        shown += 1
+        out.append(f"## {shown}. `{row['id']}`")
+        out.append("")
+        out.append(f"**Row.** {row['statement'][:340]}")
+        out.append("")
+        out.append(f"**Candidate.** `{top['decl']}` &mdash; {top['trust']}-checked, "
+                   f"`{row['lean']}:{top['line']}`")
+        out.append("")
+        out.append(f"> {(decl or {}).get('doc') or '(no docstring)'}")
+        out.append("")
+        if row.get("names_own"):
+            out.append(f"*Statement names: {', '.join('`' + n + '`' for n in row['names_own'])}*")
+            out.append("")
+        others = ", ".join(f"`{c['decl']}` ({c['score']})" for c in row["candidates"][1:])
+        if others:
+            out.append(f"*Runners-up: {others}*")
+            out.append("")
+    out.insert(7, f"{shown} rows below, of {proposals['unresolved']} unresolved.\n")
+    return "\n".join(out) + "\n"
+
+
 def load() -> dict[str, Any]:
     if not INDEX.is_file():
         sys.exit("no index; run: python tools/formalpedia.py build")
@@ -441,6 +496,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("dag", help="rebuild the claim graph over ledger-carrying modules")
     sub.add_parser("propose", help="rank declarations for rows that name none")
     sub.add_parser("papers", help="each manuscript's reachable trust surface")
+    sub.add_parser("review", help="write the confident proposals as a readable digest")
     args = ap.parse_args(argv)
 
     if args.cmd == "build":
@@ -451,6 +507,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{t['declarations']} declarations in {t['modules']} modules")
         print(f"  trust: {t['trust']}")
         print(f"  declarations under a ledger row: {t['declarations_with_a_ledger_row']}")
+        return 0
+
+    if args.cmd == "review":
+        index = load()
+        ledger = json.load(io.open(LEDGER, encoding="utf-8"))
+        REVIEW.parent.mkdir(parents=True, exist_ok=True)
+        REVIEW.write_text(review_digest(index, ledger), encoding="utf-8")
+        print(f"wrote {REVIEW.relative_to(ROOT)}")
         return 0
 
     if args.cmd == "papers":

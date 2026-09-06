@@ -208,3 +208,27 @@ def test_the_prefix_collision_surface_is_real_and_measured() -> None:
     names = {d["name"] for d in fp.build()["declarations"]}
     shadowed = {n for n in names if any(o != n and o.startswith(n) for o in names)}
     assert len(shadowed) > 100, len(shadowed)
+
+
+def test_review_digest_pairs_each_row_with_its_candidate_s_prose() -> None:
+    """The digest exists so a person can decide; deciding needs the docstring beside the row."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    text = fp.review_digest(index, ledger)
+    assert "# Declaration review queue" in text
+    assert "rows below, of" in text
+    # every entry carries a candidate line and a quoted docstring block
+    entries = text.count("\n## ")
+    assert entries > 0
+    assert text.count("**Candidate.**") == entries
+    assert text.count("**Row.**") == entries
+
+
+def test_review_digest_warns_that_composite_rows_are_unscored() -> None:
+    """A reviewer who accepts a composite row's headline theorem records a part as the whole,
+    and no score in the queue signals that -- so the digest has to say it in words."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    text = fp.review_digest(index, ledger)
+    assert "composite" in text
+    assert "BTC-select3" in text
