@@ -268,3 +268,16 @@ def test_every_digest_entry_shows_a_docstring_or_a_signature() -> None:
     entries = text.count("\n## ")
     assert text.count("> ") + text.count("```lean") >= entries
     assert "(no docstring)" not in text
+
+
+def test_definitions_are_ranked_apart_from_theorems() -> None:
+    """Merging them into one ranking displaces the true answer on rows already resolved --
+    measured at 3 of 103 -- so a row that means a `def` gets its own short list instead."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    kinds = {d["name"]: d["kind"] for d in index["declarations"]}
+    for row in fp.propose(index, ledger)["rows"]:
+        for c in row["candidates"]:
+            assert kinds.get(c["decl"]) in ("theorem", "lemma"), c["decl"]
+        for d in row.get("definitions", []):
+            assert kinds.get(d["decl"]) in ("def", "abbrev"), d["decl"]

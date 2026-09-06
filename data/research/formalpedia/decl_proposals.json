@@ -25,6 +25,13 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "dropLSD",
+          "line": 9,
+          "score": 0.0
+        }
+      ],
       "id": "BT-D-S",
       "in_file": 10,
       "lean": "Operators/DigitDerivative.lean",
@@ -54,6 +61,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evalPoly",
+          "line": 8,
+          "score": 0.0
+        },
+        {
+          "decl": "evalAt",
+          "line": 19,
+          "score": 0.0
+        }
+      ],
       "id": "BT-Pn3",
       "in_file": 5,
       "lean": "Operators/Polynomial.lean",
@@ -90,6 +109,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "C-lift-zero",
       "in_file": 6,
       "lean": "Problems/Collatz/Lift.lean",
@@ -119,6 +139,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "C-center",
       "in_file": 4,
       "lean": "Problems/Collatz/Center.lean",
@@ -148,6 +169,13 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "IsPrimitive",
+          "line": 11,
+          "score": 0.0
+        }
+      ],
       "id": "C-cycles",
       "in_file": 7,
       "lean": "Problems/Collatz/Cycles.lean",
@@ -177,6 +205,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "IZ",
+          "line": 8,
+          "score": 0.0
+        },
+        {
+          "decl": "PZ",
+          "line": 11,
+          "score": 0.0
+        }
+      ],
       "id": "BTC-D-I",
       "in_file": 11,
       "lean": "BTCalculus/Integral.lean",
@@ -206,6 +246,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "IZ",
+          "line": 8,
+          "score": 0.0
+        },
+        {
+          "decl": "PZ",
+          "line": 11,
+          "score": 0.0
+        }
+      ],
       "id": "BTC-P-band",
       "in_file": 11,
       "lean": "BTCalculus/Integral.lean",
@@ -235,6 +287,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "leT",
+          "line": 10,
+          "score": 0.125
+        },
+        {
+          "decl": "minT",
+          "line": 12,
+          "score": 0.0
+        }
+      ],
       "id": "BTC-trit-kleene",
       "in_file": 17,
       "lean": "BTCalculus/Trit.lean",
@@ -264,6 +328,13 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "cmp3",
+          "line": 7,
+          "score": 0.25
+        }
+      ],
       "id": "BTC-cmp3",
       "in_file": 8,
       "lean": "BTCalculus/Comparison.lean",
@@ -293,6 +364,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "select3",
+          "line": 7,
+          "score": 0.143
+        },
+        {
+          "decl": "absZ",
+          "line": 37,
+          "score": 0.143
+        }
+      ],
       "id": "BTC-select3",
       "in_file": 8,
       "lean": "BTCalculus/Select.lean",
@@ -322,6 +405,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "isTrit",
+          "line": 12,
+          "score": 0.333
+        },
+        {
+          "decl": "stepZero",
+          "line": 70,
+          "score": 0.1
+        }
+      ],
       "id": "BTN-divmod",
       "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
@@ -351,6 +446,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "coeffValue",
+          "line": 44,
+          "score": 0.5
+        },
+        {
+          "decl": "normalizeLSD",
+          "line": 211,
+          "score": 0.125
+        }
+      ],
       "id": "BTN-step-value",
       "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
@@ -380,6 +487,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "normalizeLSD",
+          "line": 211,
+          "score": 0.4
+        },
+        {
+          "decl": "encodeZ",
+          "line": 172,
+          "score": 0.167
+        }
+      ],
       "id": "BTN-nf",
       "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
@@ -409,6 +528,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "stepZero",
+          "line": 70,
+          "score": 0.154
+        },
+        {
+          "decl": "absList",
+          "line": 103,
+          "score": 0.125
+        }
+      ],
       "id": "BTN-lex",
       "in_file": 33,
       "lean": "BTCalculus/Normalization.lean",
@@ -438,6 +569,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "stripHigh",
+          "line": 26,
+          "score": 0.154
+        },
+        {
+          "decl": "rewriteAt",
+          "line": 275,
+          "score": 0.077
+        }
+      ],
       "id": "BTN-confluence",
       "in_file": 37,
       "lean": "BTCalculus/Confluence.lean",
@@ -467,6 +610,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "hatDRaw",
+          "line": 14,
+          "score": 0.333
+        },
+        {
+          "decl": "dCoeff",
+          "line": 9,
+          "score": 0.167
+        }
+      ],
       "id": "BTJ-hatD",
       "in_file": 16,
       "lean": "BTCalculus/NormalizedDerivative.lean",
@@ -496,6 +651,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "sectionDeriv",
+          "line": 31,
+          "score": 0.5
+        },
+        {
+          "decl": "powShift",
+          "line": 13,
+          "score": 0.0
+        }
+      ],
       "id": "BTJ-section",
       "in_file": 30,
       "lean": "BTCalculus/Polynomial.lean",
@@ -525,6 +692,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "sectionDeriv",
+          "line": 31,
+          "score": 0.5
+        },
+        {
+          "decl": "powShift",
+          "line": 13,
+          "score": 0.0
+        }
+      ],
       "id": "BTJ-degree",
       "in_file": 30,
       "lean": "BTCalculus/Polynomial.lean",
@@ -554,6 +733,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "equivK",
+          "line": 20,
+          "score": 0.125
+        },
+        {
+          "decl": "isTritList",
+          "line": 10,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-equiv",
       "in_file": 12,
       "lean": "BTCalculus/Residual.lean",
@@ -583,6 +774,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "quad",
+          "line": 23,
+          "score": 0.0
+        },
+        {
+          "decl": "packWord",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x2-raw",
       "in_file": 47,
       "lean": "BTCalculus/Quadratic.lean",
@@ -612,6 +815,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "quad",
+          "line": 23,
+          "score": 0.0
+        },
+        {
+          "decl": "packWord",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x2-mn",
       "in_file": 47,
       "lean": "BTCalculus/Quadratic.lean",
@@ -641,6 +856,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "quad",
+          "line": 23,
+          "score": 0.0
+        },
+        {
+          "decl": "packWord",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x2-quad-form",
       "in_file": 47,
       "lean": "BTCalculus/Quadratic.lean",
@@ -670,6 +897,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "quad",
+          "line": 23,
+          "score": 0.0
+        },
+        {
+          "decl": "packWord",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-quad-mod",
       "in_file": 47,
       "lean": "BTCalculus/Quadratic.lean",
@@ -699,6 +938,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "functionCongr",
+          "line": 24,
+          "score": 0.0
+        },
+        {
+          "decl": "vanishesMod",
+          "line": 28,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-merge",
       "in_file": 33,
       "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -728,6 +979,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "functionCongr",
+          "line": 24,
+          "score": 0.0
+        },
+        {
+          "decl": "vanishesMod",
+          "line": 28,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x4-merge",
       "in_file": 33,
       "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -757,6 +1020,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "newtonCoeff",
+          "line": 27,
+          "score": 0.143
+        },
+        {
+          "decl": "newtonKernel",
+          "line": 33,
+          "score": 0.143
+        }
+      ],
       "id": "BTA-Ik-newton",
       "in_file": 18,
       "lean": "BTCalculus/NewtonKernel.lean",
@@ -786,6 +1061,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "cubicResid",
+          "line": 21,
+          "score": 0.0
+        },
+        {
+          "decl": "newtonCoords",
+          "line": 24,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-raw",
       "in_file": 34,
       "lean": "BTCalculus/CubicResidual.lean",
@@ -815,6 +1102,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "cubicResid",
+          "line": 21,
+          "score": 0.167
+        },
+        {
+          "decl": "newtonCoords",
+          "line": 24,
+          "score": 0.167
+        }
+      ],
       "id": "BTA-x3-newton",
       "in_file": 34,
       "lean": "BTCalculus/CubicResidual.lean",
@@ -844,6 +1143,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "cubicResid",
+          "line": 21,
+          "score": 0.25
+        },
+        {
+          "decl": "newtonCoords",
+          "line": 24,
+          "score": 0.25
+        }
+      ],
       "id": "BTA-x3-section",
       "in_file": 34,
       "lean": "BTCalculus/CubicResidual.lean",
@@ -873,6 +1184,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "balWidth",
+          "line": 19,
+          "score": 0.0
+        },
+        {
+          "decl": "n2Resid",
+          "line": 22,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-n2",
       "in_file": 17,
       "lean": "BTCalculus/CubicFibres.lean",
@@ -902,6 +1225,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "balWidth",
+          "line": 19,
+          "score": 0.0
+        },
+        {
+          "decl": "n2Resid",
+          "line": 22,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-n1fac",
       "in_file": 17,
       "lean": "BTCalculus/CubicFibres.lean",
@@ -931,6 +1266,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "balWidth",
+          "line": 19,
+          "score": 0.0
+        },
+        {
+          "decl": "n2Resid",
+          "line": 22,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-n3gate",
       "in_file": 17,
       "lean": "BTCalculus/CubicFibres.lean",
@@ -960,6 +1307,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "balWidth",
+          "line": 19,
+          "score": 0.0
+        },
+        {
+          "decl": "n2Resid",
+          "line": 22,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-sign",
       "in_file": 17,
       "lean": "BTCalculus/CubicFibres.lean",
@@ -989,6 +1348,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "deepestN1",
+          "line": 17,
+          "score": 0.2
+        },
+        {
+          "decl": "zeroExp",
+          "line": 20,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-deep-crit",
       "in_file": 25,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
@@ -1018,6 +1389,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "deepestN1",
+          "line": 17,
+          "score": 0.333
+        },
+        {
+          "decl": "zeroExp",
+          "line": 20,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-deep-zero",
       "in_file": 25,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
@@ -1047,6 +1430,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "interN2",
+          "line": 18,
+          "score": 0.0
+        },
+        {
+          "decl": "interN1",
+          "line": 21,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-inter-N",
       "in_file": 10,
       "lean": "BTCalculus/CubicIntermediateLayer.lean",
@@ -1076,6 +1471,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "interN2",
+          "line": 18,
+          "score": 0.0
+        },
+        {
+          "decl": "interN1",
+          "line": 21,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-inter-crit",
       "in_file": 10,
       "lean": "BTCalculus/CubicIntermediateLayer.lean",
@@ -1105,6 +1512,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "deficitTwoN2",
+          "line": 18,
+          "score": 0.0
+        },
+        {
+          "decl": "deficitTwoN1",
+          "line": 21,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-vis",
       "in_file": 12,
       "lean": "BTCalculus/CubicDeficitTwo.lean",
@@ -1134,6 +1553,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "deficitTwoN2",
+          "line": 18,
+          "score": 0.0
+        },
+        {
+          "decl": "deficitTwoN1",
+          "line": 21,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-def2-N",
       "in_file": 12,
       "lean": "BTCalculus/CubicDeficitTwo.lean",
@@ -1163,6 +1594,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "deficitTwoN2",
+          "line": 18,
+          "score": 0.0
+        },
+        {
+          "decl": "deficitTwoN1",
+          "line": 21,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-def2-crit",
       "in_file": 12,
       "lean": "BTCalculus/CubicDeficitTwo.lean",
@@ -1192,6 +1635,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-n1-val",
       "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1221,6 +1665,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-n1-unit",
       "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1250,6 +1695,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-n1-sign",
       "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1279,6 +1725,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-n1-scale",
       "in_file": 14,
       "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1308,6 +1755,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-n0-scale",
       "in_file": 21,
       "lean": "BTCalculus/CubicN0Reduction.lean",
@@ -1337,6 +1785,7 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [],
       "id": "BTA-x3-n0-sign",
       "in_file": 21,
       "lean": "BTCalculus/CubicN0Reduction.lean",
@@ -1366,40 +1815,12 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-n0-vis",
       "in_file": 21,
       "lean": "BTCalculus/CubicN0Reduction.lean",
       "names_own": [],
       "statement": "D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "q_eq_of_cube_mod",
-          "line": 56,
-          "score": 0.5,
-          "trust": "kernel"
-        },
-        {
-          "decl": "qCubic_def",
-          "line": 23,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "q_recon",
-          "line": 27,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "id": "BTA-x3-Q-def",
-      "in_file": 23,
-      "lean": "BTCalculus/MismatchedCubicQuotient.lean",
-      "names_own": [],
-      "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u\u2208P_W"
     },
     {
       "candidates": [
@@ -1416,28 +1837,34 @@
           "trust": "kernel"
         },
         {
-          "decl": "qCubic_def",
-          "line": 23,
+          "decl": "q_recon",
+          "line": 27,
           "score": 0.0,
           "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "balCubic",
+          "line": 20,
+          "score": 0.25
+        },
+        {
+          "decl": "qCubic",
+          "line": 17,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-Q-eq",
-      "in_file": 23,
+      "in_file": 22,
       "lean": "BTCalculus/MismatchedCubicQuotient.lean",
       "names_own": [],
       "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-\u0394bal_t"
     },
     {
       "candidates": [
-        {
-          "decl": "qCubic_def",
-          "line": 23,
-          "score": 0.0,
-          "trust": "kernel"
-        },
         {
           "decl": "q_recon",
           "line": 27,
@@ -1449,12 +1876,30 @@
           "line": 31,
           "score": 0.0,
           "trust": "kernel"
+        },
+        {
+          "decl": "q_eq_iff",
+          "line": 39,
+          "score": 0.0,
+          "trust": "kernel"
         }
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "qCubic",
+          "line": 17,
+          "score": 0.0
+        },
+        {
+          "decl": "balCubic",
+          "line": 20,
+          "score": 0.0
+        }
+      ],
       "id": "BTA-x3-Q-scale",
-      "in_file": 23,
+      "in_file": 22,
       "lean": "BTCalculus/MismatchedCubicQuotient.lean",
       "names_own": [],
       "statement": "Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w)"
@@ -1482,6 +1927,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-stratum",
       "in_file": 15,
       "lean": "BTCalculus/NewtonStratum.lean",
@@ -1511,6 +1957,7 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [],
       "id": "BTA-x3-Q-inv-one",
       "in_file": 9,
       "lean": "BTCalculus/MismatchedCubicInvariant.lean",
@@ -1540,6 +1987,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-C-core",
       "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1569,6 +2017,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-Q-unit-im",
       "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1598,6 +2047,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-M-spine",
       "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1627,6 +2077,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTA-x3-H-A",
       "in_file": 18,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1656,6 +2107,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "IsRootMod",
+          "line": 31,
+          "score": 0.056
+        },
+        {
+          "decl": "LiftsFrom",
+          "line": 35,
+          "score": 0.053
+        }
+      ],
       "id": "BTL-trichotomy",
       "in_file": 18,
       "lean": "BTCalculus/PadicLifting.lean",
@@ -1685,6 +2148,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "henselTrit",
+          "line": 184,
+          "score": 0.1
+        },
+        {
+          "decl": "liftPath",
+          "line": 191,
+          "score": 0.091
+        }
+      ],
       "id": "BTL-unit-scaling",
       "in_file": 20,
       "lean": "BTCalculus/PadicLiftingState.lean",
@@ -1714,6 +2189,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "linState",
+          "line": 148,
+          "score": 0.1
+        },
+        {
+          "decl": "henselTrit",
+          "line": 184,
+          "score": 0.048
+        }
+      ],
       "id": "BTL-linear-transition",
       "in_file": 20,
       "lean": "BTCalculus/PadicLiftingState.lean",
@@ -1743,6 +2230,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "linState",
+          "line": 148,
+          "score": 0.029
+        },
+        {
+          "decl": "henselTrit",
+          "line": 184,
+          "score": 0.029
+        }
+      ],
       "id": "BTL-block-shift",
       "in_file": 20,
       "lean": "BTCalculus/PadicLiftingState.lean",
@@ -1772,6 +2271,7 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [],
       "id": "BTC-op-fragment-nd-nf",
       "in_file": 44,
       "lean": "BTCalculus/OpFragNewman.lean",
@@ -1801,6 +2301,7 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [],
       "id": "BTC-word-simp-nf",
       "in_file": 26,
       "lean": "BTCalculus/WordSimpNewman.lean",
@@ -1830,6 +2331,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "monnaEndpointU",
+          "line": 31,
+          "score": 0.125
+        },
+        {
+          "decl": "monnaEndpointV",
+          "line": 35,
+          "score": 0.125
+        }
+      ],
       "id": "BTM-x3-depth",
       "in_file": 28,
       "lean": "BTCalculus/MonnaEndpointCube.lean",
@@ -1859,6 +2372,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "monnaEndpointU",
+          "line": 31,
+          "score": 0.182
+        },
+        {
+          "decl": "monnaEndpointV",
+          "line": 35,
+          "score": 0.182
+        }
+      ],
       "id": "BTM-x3-no-preserve",
       "in_file": 28,
       "lean": "BTCalculus/MonnaEndpointCube.lean",
@@ -1888,6 +2413,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "exactTriple",
+          "line": 86,
+          "score": 0.125
+        },
+        {
+          "decl": "DLocal",
+          "line": 37,
+          "score": 0.0
+        }
+      ],
       "id": "BTC-constructor-sum-class",
       "in_file": 27,
       "lean": "BTCalculus/RewriteAddBoundary.lean",
@@ -1917,6 +2454,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "pushInPeak",
+          "line": 178,
+          "score": 0.062
+        },
+        {
+          "decl": "DLocal",
+          "line": 37,
+          "score": 0.043
+        }
+      ],
       "id": "BTC-push-in-S-peak",
       "in_file": 27,
       "lean": "BTCalculus/RewriteAddBoundary.lean",
@@ -1946,6 +2495,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "exactTriple",
+          "line": 86,
+          "score": 0.13
+        },
+        {
+          "decl": "DLocal",
+          "line": 37,
+          "score": 0.077
+        }
+      ],
       "id": "BTC-add-requires-carry-state",
       "in_file": 27,
       "lean": "BTCalculus/RewriteAddBoundary.lean",
@@ -1975,6 +2536,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "energy",
+          "line": 86,
+          "score": 0.071
+        },
+        {
+          "decl": "applyA",
+          "line": 364,
+          "score": 0.056
+        }
+      ],
       "id": "OST-np-energy-ext-interval",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2004,6 +2577,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "applyA",
+          "line": 364,
+          "score": 0.133
+        },
+        {
+          "decl": "energy",
+          "line": 86,
+          "score": 0.083
+        }
+      ],
       "id": "OST-np-energy-homogeneous",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2033,6 +2618,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "tripleDet",
+          "line": 242,
+          "score": 0.077
+        },
+        {
+          "decl": "qShift",
+          "line": 69,
+          "score": 0.0
+        }
+      ],
       "id": "OST-np-adjoint-window-det",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2062,6 +2659,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "impulsePlace",
+          "line": 745,
+          "score": 0.3
+        },
+        {
+          "decl": "particularSum",
+          "line": 530,
+          "score": 0.154
+        }
+      ],
       "id": "OST-np-impulse-place",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2091,6 +2700,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "particularSum",
+          "line": 530,
+          "score": 0.2
+        },
+        {
+          "decl": "consumedSum",
+          "line": 159,
+          "score": 0.1
+        }
+      ],
       "id": "OST-np-particular-s3",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2120,6 +2741,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "recurrenceWord",
+          "line": 186,
+          "score": 0.118
+        },
+        {
+          "decl": "energy",
+          "line": 86,
+          "score": 0.077
+        }
+      ],
       "id": "OST-np-val-concat-energy",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2152,6 +2785,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "recurrenceWord",
+          "line": 186,
+          "score": 0.214
+        },
+        {
+          "decl": "foldSteps",
+          "line": 148,
+          "score": 0.158
+        }
+      ],
       "id": "OST-np-fold-s3",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2181,6 +2826,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "recurrenceWord",
+          "line": 186,
+          "score": 0.133
+        },
+        {
+          "decl": "particularSum",
+          "line": 530,
+          "score": 0.125
+        }
+      ],
       "id": "OST-np-reset-pow-then-hub",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2212,6 +2869,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "explicitPredecessor",
+          "line": 56,
+          "score": 0.182
+        },
+        {
+          "decl": "kernelPredFst",
+          "line": 93,
+          "score": 0.077
+        }
+      ],
       "id": "OST-np-unique-predecessor",
       "in_file": 13,
       "lean": "Problems/Ostrowski/NP/KernelFamily.lean",
@@ -2241,6 +2910,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "particularSum",
+          "line": 530,
+          "score": 0.143
+        },
+        {
+          "decl": "qShift",
+          "line": 69,
+          "score": 0.0
+        }
+      ],
       "id": "OST-np-reset-prefix",
       "in_file": 57,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
@@ -2272,6 +2953,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "doubledNext",
+          "line": 13,
+          "score": 0.111
+        },
+        {
+          "decl": "doubledOut",
+          "line": 16,
+          "score": 0.111
+        }
+      ],
       "id": "BTN-doubled-closure",
       "in_file": 14,
       "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
@@ -2301,6 +2994,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "doubledNext",
+          "line": 13,
+          "score": 0.0
+        },
+        {
+          "decl": "doubledOut",
+          "line": 16,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-carry-gain-3",
       "in_file": 14,
       "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
@@ -2330,6 +3035,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "jet3",
+          "line": 221,
+          "score": 0.125
+        },
+        {
+          "decl": "expandingD",
+          "line": 15,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-expanding-lsd",
       "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2359,6 +3076,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "jet3",
+          "line": 221,
+          "score": 0.1
+        },
+        {
+          "decl": "expandingD",
+          "line": 15,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-expanding-right-inverse",
       "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2388,6 +3117,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "jet3",
+          "line": 221,
+          "score": 0.111
+        },
+        {
+          "decl": "expandingD",
+          "line": 15,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-expanding-section",
       "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2417,6 +3158,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "jet3",
+          "line": 221,
+          "score": 0.143
+        },
+        {
+          "decl": "expandingD",
+          "line": 15,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-expanding-lambda",
       "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2446,6 +3199,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "jet3",
+          "line": 221,
+          "score": 0.417
+        },
+        {
+          "decl": "jet2",
+          "line": 158,
+          "score": 0.083
+        }
+      ],
       "id": "BTN-expanding-j2",
       "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2475,6 +3240,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "jet3",
+          "line": 221,
+          "score": 0.091
+        },
+        {
+          "decl": "expandingD",
+          "line": 15,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-expanding-j2-lambda",
       "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2504,6 +3281,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "jet3",
+          "line": 221,
+          "score": 0.091
+        },
+        {
+          "decl": "expandingD",
+          "line": 15,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-expanding-j3-lambda",
       "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2533,6 +3322,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "dAddNext",
+          "line": 15,
+          "score": 0.0
+        },
+        {
+          "decl": "dAddOut",
+          "line": 18,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-dadd-closure",
       "in_file": 8,
       "lean": "Problems/BalancedTernary/DAddResidual.lean",
@@ -2562,6 +3363,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "shortcutC",
+          "line": 8,
+          "score": 0.4
+        },
+        {
+          "decl": "shortcutCIter",
+          "line": 52,
+          "score": 0.083
+        }
+      ],
       "id": "C-shortcut-welldefined",
       "in_file": 10,
       "lean": "Problems/Collatz/Shortcut.lean",
@@ -2591,6 +3404,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "shortcutC",
+          "line": 8,
+          "score": 0.133
+        },
+        {
+          "decl": "shortcutCIter",
+          "line": 52,
+          "score": 0.067
+        }
+      ],
       "id": "C-no-uniform-L-descent",
       "in_file": 10,
       "lean": "Problems/Collatz/Shortcut.lean",
@@ -2620,6 +3445,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "signedNext",
+          "line": 15,
+          "score": 0.0
+        },
+        {
+          "decl": "signedOut",
+          "line": 18,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-sdr-finite-condition",
       "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
@@ -2649,6 +3486,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "signedNext",
+          "line": 15,
+          "score": 0.0
+        },
+        {
+          "decl": "signedOut",
+          "line": 18,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-sdr-multi-trit",
       "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
@@ -2678,6 +3527,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "signedNext",
+          "line": 15,
+          "score": 0.0
+        },
+        {
+          "decl": "signedOut",
+          "line": 18,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-sdr-escape-general",
       "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
@@ -2707,6 +3568,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "signedNext",
+          "line": 15,
+          "score": 0.0
+        },
+        {
+          "decl": "signedOut",
+          "line": 18,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-sdr-lambda2-radius",
       "in_file": 35,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
@@ -2736,6 +3609,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "lambda1Word",
+          "line": 48,
+          "score": 0.143
+        },
+        {
+          "decl": "lambda2Word",
+          "line": 123,
+          "score": 0.143
+        }
+      ],
       "id": "BTN-sdrg-lambda1-interval",
       "in_file": 18,
       "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
@@ -2765,6 +3650,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "lambda1Word",
+          "line": 48,
+          "score": 0.1
+        },
+        {
+          "decl": "lambda2Word",
+          "line": 123,
+          "score": 0.1
+        }
+      ],
       "id": "BTN-sdrg-lambda2-evens",
       "in_file": 18,
       "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
@@ -2794,6 +3691,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "signedTrace",
+          "line": 13,
+          "score": 0.182
+        },
+        {
+          "decl": "natVal3",
+          "line": 78,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-sdrm-lambda3-translate",
       "in_file": 18,
       "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
@@ -2823,6 +3732,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "BTN-sdsh-sep",
       "in_file": 8,
       "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
@@ -2852,6 +3762,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "productRaw",
+          "line": 14,
+          "score": 0.286
+        },
+        {
+          "decl": "product3Raw",
+          "line": 61,
+          "score": 0.286
+        }
+      ],
       "id": "BTN-mr-factor-through-raw",
       "in_file": 11,
       "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
@@ -2881,6 +3803,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "doubledProductNext",
+          "line": 83,
+          "score": 0.167
+        },
+        {
+          "decl": "productRaw",
+          "line": 14,
+          "score": 0.1
+        }
+      ],
       "id": "BTN-mr-product-closure",
       "in_file": 11,
       "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
@@ -2910,6 +3844,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "powGap",
+          "line": 17,
+          "score": 0.071
+        },
+        {
+          "decl": "accumulatedDefect",
+          "line": 69,
+          "score": 0.031
+        }
+      ],
       "id": "J-global-defect-identity",
       "in_file": 31,
       "lean": "Problems/Juggler/GlobalDefect.lean",
@@ -2939,6 +3885,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "amplifyDefect",
+          "line": 378,
+          "score": 0.175
+        },
+        {
+          "decl": "firstDefectFrom",
+          "line": 16,
+          "score": 0.122
+        }
+      ],
       "id": "J-first-defect-amplification",
       "in_file": 61,
       "lean": "Problems/Juggler/DefectLowerBound.lean",
@@ -2968,6 +3926,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "relativeSlack",
+          "line": 28,
+          "score": 0.111
+        },
+        {
+          "decl": "formalSurplus",
+          "line": 37,
+          "score": 0.097
+        }
+      ],
       "id": "J-normalized-relative-slack",
       "in_file": 30,
       "lean": "Problems/Juggler/NormalizedDefect.lean",
@@ -2997,6 +3967,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "expansionSurplus",
+          "line": 19,
+          "score": 0.269
+        },
+        {
+          "decl": "logSlack",
+          "line": 36,
+          "score": 0.032
+        }
+      ],
       "id": "J-expansion-block-grammar",
       "in_file": 9,
       "lean": "Problems/Juggler/ExpansionBlocks.lean",
@@ -3026,6 +4008,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "expansionMargin",
+          "line": 27,
+          "score": 0.05
+        },
+        {
+          "decl": "blockMultiplier",
+          "line": 22,
+          "score": 0.0
+        }
+      ],
       "id": "J-four-block-persistent-expanding",
       "in_file": 19,
       "lean": "Problems/Juggler/ExpansionSlack.lean",
@@ -3055,6 +4049,7 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [],
       "id": "J-near-tight-scale-bounds",
       "in_file": 18,
       "lean": "Problems/Juggler/NearTightScale.lean",
@@ -3084,6 +4079,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "maxExpandingEvens",
+          "line": 45,
+          "score": 0.13
+        },
+        {
+          "decl": "expandingItinerary",
+          "line": 26,
+          "score": 0.059
+        }
+      ],
       "id": "J-expanding-block-even-bound",
       "in_file": 14,
       "lean": "Problems/Juggler/ExpandingGrammar.lean",
@@ -3113,6 +4120,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "expandingItinerary",
+          "line": 26,
+          "score": 0.077
+        },
+        {
+          "decl": "maxExpandingEvens",
+          "line": 45,
+          "score": 0.048
+        }
+      ],
       "id": "J-persistent-implies-expanding",
       "in_file": 14,
       "lean": "Problems/Juggler/ExpandingGrammar.lean",
@@ -3142,6 +4161,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "sequentialDefect",
+          "line": 27,
+          "score": 0.091
+        },
+        {
+          "decl": "oddMordellStep",
+          "line": 21,
+          "score": 0.083
+        }
+      ],
       "id": "J-odd-remainder-even",
       "in_file": 11,
       "lean": "Problems/Juggler/SequentialMordell.lean",
@@ -3171,6 +4202,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "landingRemainder",
+          "line": 29,
+          "score": 0.125
+        },
+        {
+          "decl": "oddOddLanding",
+          "line": 32,
+          "score": 0.125
+        }
+      ],
       "id": "J-odd-odd-remainder-mod-eight",
       "in_file": 15,
       "lean": "Problems/Juggler/LandingValuation.lean",
@@ -3200,6 +4243,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "follows",
+          "line": 30,
+          "score": 0.211
+        },
+        {
+          "decl": "followsB",
+          "line": 265,
+          "score": 0.143
+        }
+      ],
       "id": "J-itinerary-semantics",
       "in_file": 28,
       "lean": "Problems/Juggler/Itinerary.lean",
@@ -3229,6 +4284,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "image",
+          "line": 36,
+          "score": 0.182
+        },
+        {
+          "decl": "follows",
+          "line": 30,
+          "score": 0.083
+        }
+      ],
       "id": "J-fixed-itinerary-image-monotone",
       "in_file": 28,
       "lean": "Problems/Juggler/Itinerary.lean",
@@ -3258,6 +4325,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "EnvelopeState.map_letter",
+          "line": 212,
+          "score": 0.125
+        },
+        {
+          "decl": "EnvelopeState.map_itinerary",
+          "line": 219,
+          "score": 0.1
+        }
+      ],
       "id": "J-power-envelope-contraction",
       "in_file": 37,
       "lean": "Problems/Juggler/Envelope.lean",
@@ -3287,6 +4366,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "itineraryEOO",
+          "line": 268,
+          "score": 0.0
+        },
+        {
+          "decl": "itineraryOOE",
+          "line": 269,
+          "score": 0.0
+        }
+      ],
       "id": "J-inverse-preimage-asymmetry",
       "in_file": 117,
       "lean": "Problems/Juggler/Preimages.lean",
@@ -3297,6 +4388,7 @@
       "candidates": [],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "J-cycle-finite-structure",
       "in_file": 0,
       "lean": "Problems/Juggler/Cycles.lean",
@@ -3326,6 +4418,13 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "FiniteProgress",
+          "line": 18,
+          "score": 0.105
+        }
+      ],
       "id": "J-finite-progress-boundary",
       "in_file": 19,
       "lean": "Problems/Juggler/Progress.lean",
@@ -3355,6 +4454,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "J-leftover-length-six-orientations",
       "in_file": 38,
       "lean": "Problems/Juggler/LeftoverShort.lean",
@@ -3384,6 +4484,7 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [],
       "id": "J-leftover-length-seven-orientations",
       "in_file": 38,
       "lean": "Problems/Juggler/LeftoverShort.lean",
@@ -3413,6 +4514,13 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "itineraryO7EEEE",
+          "line": 21,
+          "score": 0.054
+        }
+      ],
       "id": "J-o7eeee-gap",
       "in_file": 29,
       "lean": "Problems/Juggler/O7EEEEGap.lean",
@@ -3445,6 +4553,13 @@
       ],
       "composite": true,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "evenCount",
+          "line": 24,
+          "score": 0.069
+        }
+      ],
       "id": "J-first-even-overshoots",
       "in_file": 49,
       "lean": "Problems/Juggler/EvenCountThree.lean",
@@ -3477,6 +4592,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "familySlack",
+          "line": 296,
+          "score": 0.207
+        },
+        {
+          "decl": "fourEvenWord",
+          "line": 62,
+          "score": 0.107
+        }
+      ],
       "id": "J-cyclemin-slack",
       "in_file": 104,
       "lean": "Problems/Juggler/CycleMinFudge.lean",
@@ -3511,6 +4638,13 @@
       ],
       "composite": true,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "evenCount",
+          "line": 24,
+          "score": 0.056
+        }
+      ],
       "id": "J-cyclemax-succ-sq",
       "in_file": 49,
       "lean": "Problems/Juggler/EvenCountThree.lean",
@@ -3547,6 +4681,7 @@
       ],
       "composite": true,
       "confidence": "review",
+      "definitions": [],
       "id": "J-cyclemin-transport-oo",
       "in_file": 5,
       "lean": "Problems/Juggler/CycleMinObstruction.lean",
@@ -3579,6 +4714,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "FirstInternalOO",
+          "line": 28,
+          "score": 0.056
+        },
+        {
+          "decl": "isolatedPrefix",
+          "line": 17,
+          "score": 0.041
+        }
+      ],
       "id": "J-cyclemin-first-oo-r-bound",
       "in_file": 21,
       "lean": "Problems/Juggler/FirstInternalOO.lean",
@@ -3613,6 +4760,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "EscapesToInfinity",
+          "line": 26,
+          "score": 0.087
+        },
+        {
+          "decl": "EventuallyCycles",
+          "line": 29,
+          "score": 0.087
+        }
+      ],
       "id": "J-trajectory-cycle-or-escape",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3642,6 +4801,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "itineraryOOEOOEO",
+          "line": 32,
+          "score": 0.033
+        },
+        {
+          "decl": "EscapesToInfinity",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "J-minimal-ooeooe-escape-trap",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3671,6 +4842,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "exponentGap",
+          "line": 87,
+          "score": 0.154
+        },
+        {
+          "decl": "exponentExpanding",
+          "line": 91,
+          "score": 0.105
+        }
+      ],
       "id": "J-exponent-expanding-append",
       "in_file": 23,
       "lean": "Problems/Juggler/ItineraryStats.lean",
@@ -3700,6 +4883,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "itineraryOOEOOEO",
+          "line": 32,
+          "score": 0.036
+        },
+        {
+          "decl": "itineraryOOEOOEOO",
+          "line": 252,
+          "score": 0.036
+        }
+      ],
       "id": "J-minimal-prefix-noncontracting",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3729,6 +4924,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "itineraryOOEOOEOO",
+          "line": 252,
+          "score": 0.045
+        },
+        {
+          "decl": "itineraryOOEOOEOOE",
+          "line": 255,
+          "score": 0.045
+        }
+      ],
       "id": "J-ce-third-residual-preimages",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3758,6 +4965,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "itineraryOOEOOEOOE",
+          "line": 255,
+          "score": 0.045
+        },
+        {
+          "decl": "itineraryOOEOOEOOEO",
+          "line": 322,
+          "score": 0.045
+        }
+      ],
       "id": "J-ce-escaped-even-oe-preimage",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3787,6 +5006,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "itineraryOOEOOEOOEOE",
+          "line": 325,
+          "score": 0.059
+        },
+        {
+          "decl": "itineraryOOEOOEOOEOEO",
+          "line": 389,
+          "score": 0.059
+        }
+      ],
       "id": "J-ce-oe-next-oo",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3816,6 +5047,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "itineraryOOEOOEOOEOE",
+          "line": 325,
+          "score": 0.118
+        },
+        {
+          "decl": "itineraryOOEOOEOOEOEOO",
+          "line": 449,
+          "score": 0.118
+        }
+      ],
       "id": "J-ce-second-o-cube",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3845,6 +5088,13 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "AboveAnchor",
+          "line": 26,
+          "score": 0.133
+        }
+      ],
       "id": "J-above-anchor",
       "in_file": 13,
       "lean": "Problems/Juggler/MinimumRelative.lean",
@@ -3874,6 +5124,18 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "EscapesToInfinity",
+          "line": 26,
+          "score": 0.111
+        },
+        {
+          "decl": "itineraryOOEOOEO",
+          "line": 32,
+          "score": 0.053
+        }
+      ],
       "id": "J-no-cycle-no-bounded-nonterm",
       "in_file": 61,
       "lean": "Problems/Juggler/Escape.lean",
@@ -3903,6 +5165,18 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "EnvelopeState.of_powerBound",
+          "line": 254,
+          "score": 0.148
+        },
+        {
+          "decl": "EnvelopeState.map_itinerary",
+          "line": 219,
+          "score": 0.133
+        }
+      ],
       "id": "J-envelope-lt-pow",
       "in_file": 37,
       "lean": "Problems/Juggler/Envelope.lean",
@@ -3934,6 +5208,13 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "AboveAnchor",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "J-cube-not-square-split",
       "in_file": 13,
       "lean": "Problems/Juggler/MinimumRelative.lean",
@@ -3963,6 +5244,13 @@
       ],
       "composite": false,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "AboveAnchor",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "J-cube-odd-even-reset",
       "in_file": 13,
       "lean": "Problems/Juggler/MinimumRelative.lean",
@@ -3992,6 +5280,13 @@
       ],
       "composite": false,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "AboveAnchor",
+          "line": 26,
+          "score": 0.0
+        }
+      ],
       "id": "J-mixed-oe-eighth",
       "in_file": 13,
       "lean": "Problems/Juggler/MinimumRelative.lean",
@@ -4021,6 +5316,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "financeRows53",
+          "line": 409,
+          "score": 0.167
+        },
+        {
+          "decl": "financeRows257",
+          "line": 639,
+          "score": 0.161
+        }
+      ],
       "id": "J-small-cycle-census-ten",
       "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
@@ -4054,6 +5361,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "EliahouLeftover",
+          "line": 861,
+          "score": 0.143
+        },
+        {
+          "decl": "financeRows53",
+          "line": 409,
+          "score": 0.07
+        }
+      ],
       "id": "J-small-cycle-census-eleven",
       "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
@@ -4087,6 +5406,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "financeRows53",
+          "line": 409,
+          "score": 0.152
+        },
+        {
+          "decl": "financeRows257",
+          "line": 639,
+          "score": 0.147
+        }
+      ],
       "id": "J-small-cycle-census-eighteen",
       "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
@@ -4120,6 +5451,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "EliahouLeftover",
+          "line": 861,
+          "score": 0.162
+        },
+        {
+          "decl": "financeRows53",
+          "line": 409,
+          "score": 0.108
+        }
+      ],
       "id": "J-small-cycle-census-nineteen",
       "in_file": 43,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
@@ -4153,6 +5496,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "runSurvivors",
+          "line": 83,
+          "score": 0.128
+        },
+        {
+          "decl": "latticePoint",
+          "line": 39,
+          "score": 0.025
+        }
+      ],
       "id": "J-run-survivor-lattice",
       "in_file": 19,
       "lean": "Problems/Juggler/RunSurvivorLattice.lean",
@@ -4188,6 +5543,13 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "evenCount",
+          "line": 24,
+          "score": 0.044
+        }
+      ],
       "id": "J-cyclemin-last-odd-run",
       "in_file": 49,
       "lean": "Problems/Juggler/EvenCountThree.lean",
@@ -4224,6 +5586,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "hugIsEven",
+          "line": 41,
+          "score": 0.175
+        },
+        {
+          "decl": "budgetedIsEven",
+          "line": 199,
+          "score": 0.141
+        }
+      ],
       "id": "J-cyclemin-walk-word-identity",
       "in_file": 24,
       "lean": "Problems/Juggler/WalkChargeItineraries.lean",
@@ -4259,6 +5633,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "hugOdds",
+          "line": 53,
+          "score": 0.086
+        },
+        {
+          "decl": "budgetedOdds",
+          "line": 206,
+          "score": 0.086
+        }
+      ],
       "id": "J-cyclemin-hug-prefix-bound",
       "in_file": 24,
       "lean": "Problems/Juggler/WalkChargeItineraries.lean",
@@ -4297,6 +5683,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "greedyDigits",
+          "line": 174,
+          "score": 0.059
+        },
+        {
+          "decl": "convergentDenoms",
+          "line": 136,
+          "score": 0.051
+        }
+      ],
       "id": "J-cyclemin-walk-ostrowski-arithmetic",
       "in_file": 20,
       "lean": "Problems/Juggler/OstrowskiSandwich.lean",
@@ -4345,6 +5743,7 @@
       ],
       "composite": true,
       "confidence": "review",
+      "definitions": [],
       "id": "J-cyclemin-defect-finance-kill",
       "in_file": 11,
       "lean": "Problems/Juggler/DefectFinance.lean",
@@ -4384,6 +5783,7 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [],
       "id": "J-cyclemin-rotation-average",
       "in_file": 10,
       "lean": "Problems/Juggler/RotationAverage.lean",
@@ -4421,6 +5821,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "thetaDenomFn",
+          "line": 135,
+          "score": 0.074
+        },
+        {
+          "decl": "thetaQuotFn",
+          "line": 142,
+          "score": 0.069
+        }
+      ],
       "id": "J-cyclemin-walk-ostrowski-numeration",
       "in_file": 11,
       "lean": "Problems/Juggler/OstrowskiNumeration.lean",
@@ -4459,6 +5871,7 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [],
       "id": "J-flight-envelope-transport",
       "in_file": 20,
       "lean": "Problems/Juggler/WalkTransport.lean",
@@ -4493,6 +5906,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "ForwardClosed",
+          "line": 224,
+          "score": 0.061
+        },
+        {
+          "decl": "BackwardClosed",
+          "line": 30,
+          "score": 0.057
+        }
+      ],
       "id": "J-fate-classes-backward-closed",
       "in_file": 34,
       "lean": "Problems/Juggler/FateContagion.lean",
@@ -4535,6 +5960,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "BackwardClosed",
+          "line": 30,
+          "score": 0.059
+        },
+        {
+          "decl": "ForwardClosed",
+          "line": 224,
+          "score": 0.03
+        }
+      ],
       "id": "J-fate-oe-fiber-cell",
       "in_file": 34,
       "lean": "Problems/Juggler/FateContagion.lean",
@@ -4572,6 +6009,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "BackwardClosed",
+          "line": 30,
+          "score": 0.048
+        },
+        {
+          "decl": "ForwardClosed",
+          "line": 224,
+          "score": 0.033
+        }
+      ],
       "id": "J-fate-odd-generation",
       "in_file": 34,
       "lean": "Problems/Juggler/FateContagion.lean",
@@ -4610,6 +6059,18 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "BackwardClosed",
+          "line": 30,
+          "score": 0.071
+        },
+        {
+          "decl": "ForwardClosed",
+          "line": 224,
+          "score": 0.049
+        }
+      ],
       "id": "J-fate-envelope-floor",
       "in_file": 34,
       "lean": "Problems/Juggler/FateContagion.lean",
@@ -4643,6 +6104,13 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "WalkStep",
+          "line": 74,
+          "score": 0.093
+        }
+      ],
       "id": "J-loglog-clock-walk-rotation-lean",
       "in_file": 21,
       "lean": "Problems/Juggler/LogLogClock.lean",
@@ -4676,6 +6144,13 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "WalkStep",
+          "line": 74,
+          "score": 0.081
+        }
+      ],
       "id": "J-loglog-clock-even-chain-burst-lean",
       "in_file": 21,
       "lean": "Problems/Juggler/LogLogClock.lean",
@@ -4709,6 +6184,13 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "WalkStep",
+          "line": 74,
+          "score": 0.14
+        }
+      ],
       "id": "J-loglog-clock-hug-band-lean",
       "in_file": 21,
       "lean": "Problems/Juggler/LogLogClock.lean",
@@ -4747,6 +6229,13 @@
       ],
       "composite": true,
       "confidence": "review",
+      "definitions": [
+        {
+          "decl": "WalkStep",
+          "line": 74,
+          "score": 0.189
+        }
+      ],
       "id": "J-loglog-clock-band-word-forced-lean",
       "in_file": 21,
       "lean": "Problems/Juggler/LogLogClock.lean",
@@ -4780,6 +6269,13 @@
       ],
       "composite": true,
       "confidence": "low",
+      "definitions": [
+        {
+          "decl": "WalkStep",
+          "line": 74,
+          "score": 0.042
+        }
+      ],
       "id": "J-floor-stratifies-even-cylinders-lean",
       "in_file": 21,
       "lean": "Problems/Juggler/LogLogClock.lean",
@@ -4791,6 +6287,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 160,
-  "worth_reviewing": 41
+  "unresolved": 159,
+  "worth_reviewing": 40
 }

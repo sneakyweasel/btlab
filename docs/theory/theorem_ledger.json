@@ -1162,6 +1162,8 @@
   "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u∈P_W",
   "source": "docs/theory/mismatched_cubic_quotient.md",
   "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+  "decl": "qCubic_def",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_mismatched_cubic.py"
   ],

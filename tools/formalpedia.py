@@ -366,9 +366,12 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
     taken = {(r["lean"], r["decl"]) for r in ledger if r.get("decl")}
 
     by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    defs_by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for d in index["declarations"]:
         if d["kind"] in ("theorem", "lemma"):
             by_file[d["file"]].append(d)
+        elif d["kind"] in ("def", "abbrev"):
+            defs_by_file[d["file"]].append(d)
 
     # ``composite`` counts only rows that *name* two or more of their own declarations, so it
     # is a lower bound and not the count.  Rows composite by content name nothing: "cmp3
@@ -394,6 +397,11 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
         scores = [round(similarity(sw, d), 3) for d in ranked]
         top = scores[0] if scores else 0.0
         second = scores[1] if len(scores) > 1 else 0.0
+        # Definitions are ranked separately, never merged into the theorem list: admitting
+        # them to one ranking displaces the true answer on 3 of the rows already resolved.
+        # A row like BTA-x3-Q-def describes a `def`, and until now had no candidate at all.
+        dcands = sorted(defs_by_file.get("formal/" + ref, []),
+                        key=lambda d: similarity(sw, d), reverse=True)[:2]
         named = [t for t in dict.fromkeys(IDENT.findall(row["statement"]))
                  if any(d["name"] == t for d in cands)]
         out.append({
@@ -406,6 +414,8 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
             "confidence": "review" if (top >= 0.10 and top >= 1.5 * max(second, 1e-9)) else "low",
             "candidates": [{"decl": d["name"], "score": s, "trust": d["trust"], "line": d["line"]}
                            for d, s in zip(ranked, scores)],
+            "definitions": [{"decl": d["name"], "score": round(similarity(sw, d), 3),
+                             "line": d["line"]} for d in dcands],
         })
     return {
         "note": "Proposals for human review. Calibration: 96% precision (23/24) on rows with a "
@@ -495,6 +505,10 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         others = ", ".join(f"`{c['decl']}` ({c['score']})" for c in row["candidates"][1:])
         if others:
             out.append(f"*Runners-up: {others}*")
+            out.append("")
+        if row.get("definitions"):
+            defs = ", ".join(f"`{d['decl']}`" for d in row["definitions"])
+            out.append(f"*If this row describes a definition rather than a theorem: {defs}*")
             out.append("")
     out.insert(7, f"{shown} rows below, of {proposals['unresolved']} unresolved.\n")
     return "\n".join(out) + "\n"
