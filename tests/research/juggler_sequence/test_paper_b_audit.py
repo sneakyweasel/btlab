@@ -1922,3 +1922,34 @@ def test_the_rule_misses_when_the_true_constant_is_irrational() -> None:
     assert r["out_of_sample_score"] == 1 and r["out_of_sample_total"] == 2
     assert r["overall_score"] == 19 and r["overall_total"] == 20
     assert "irrational" in r["failure_mode"] and r["rule_survives_as_triage"]
+
+
+# --- the one rounding that reaches P_0 ---
+
+
+def test_the_anchor_opening_is_ten_percent_beyond_what_the_correction_needs() -> None:
+    """[0.62, 3.90] is opened to [0.56, 4.2]; the finite-P corrections need 0.04% at P_0."""
+    r = A.anchor_opening_reach()
+    assert r["printed_range"] == (0.56, 4.2) and r["exact_range"] == (0.62, 3.9)
+    assert r["correction_costs_almost_nothing"] and r["correction_low"] > 0.999
+    assert abs(r["needed_low"] - 0.6197) < 1e-3 and abs(r["needed_high"] - 3.9016) < 1e-3
+    assert 1.10 < r["opening_beyond_need_low"] < 1.11
+    assert 1.07 < r["opening_beyond_need_high"] < 1.08
+    # only the low end reaches P_0
+    assert r["high_end_does_not_reach_P0"]
+
+
+def test_tightening_the_low_end_moves_P0_by_a_quarter() -> None:
+    """0.56 -> 0.60 takes P_0 from 3.5858e13 to 2.9117e13 and passes the binding row to Step 5a."""
+    r = A.anchor_opening_reach()
+    assert abs(r["P0_as_printed"] - 3.5858e13) / 3.5858e13 < 1e-3
+    assert abs(r["P0_tightened"] - 2.9117e13) / 2.9117e13 < 1e-3
+    assert 1.23 < r["threshold_moves"] < 1.24 and r["moves_by_more_than_a_fifth"]
+    assert r["binding_as_printed"] == "5b-W<=c7S" and r["binding_tightened"] == "5a-W<=c7S"
+    assert r["binding_row_changes"] and r["optimum_is_a_plateau"]
+    assert r["lam_lo_at_the_optimum"] == 0.60
+    assert r["this_is_the_first_rounding_that_moves_P0"]
+    # the certificate as it stands is untouched
+    from research.juggler_sequence import p0_certificate as C
+
+    assert C.ANCHOR_CONSTANTS[0] == 0.56 and abs(C.certificate()["P0"] - 3.5858e13) / 3.5858e13 < 1e-3

@@ -5525,3 +5525,76 @@ The tractable subset the question asked for turns out to be the second direction
 first. The first needs a hand-written exception for every legitimate multiplicity and catches
 only staleness; the second is a short closed list and catches the error that has actually
 happened here.
+
+## One opened constant reaches `P_0`, and it is worth a quarter of it
+
+The block-range constants of the last pass reach no row that matters:
+`1.5` for the cell count appears in no certificate row at all, `2.6` and
+`15` are bracket endpoints the certificate does not cite, and `4.3`
+feeds only `5b-j0-window` at `3136`. But the search for them turned up
+one that does reach `P_0`.
+
+**Lemma 5.2b's anchor range is `[0.62, 3.90]` and the proof opens it to
+`[0.56, 4.2]`.** The opening is not slack in principle: the row
+`5b-lam0-range` asks for
+
+```text
+  lam_exact_hi (1 + P^(-1/4))(1 + 1/(3 sqrt P))^2 <= lam_hi
+  lam_exact_lo (1 - P^(-1/4))(1 - 1/(3 sqrt P))^2 >= lam_lo
+```
+
+so the finite-`P` corrections need room at both ends. At `P_0` they need
+almost none:
+
+```text
+  high end   3.90 -> 3.901594    printed 4.2     opened 1.0765 beyond the need
+  low  end   0.62 -> 0.619747    printed 0.56    opened 1.1067 beyond the need
+```
+
+**The low end reaches `P_0`,** through `S_5b = lam_lo P^(-5/8)` in the
+binding row `5b-W<=c7S`:
+
+```text
+  lam_lo    P_0          binding row
+  0.5600    3.5858e13    5b-W<=c7S      as printed
+  0.5800    3.2251e13    5b-W<=c7S
+  0.5900    3.0630e13    5b-W<=c7S
+  0.6000    2.9117e13    5a-W<=c7S      the plateau begins
+  0.6100    2.9117e13    5a-W<=c7S
+  0.6197    2.9117e13    5a-W<=c7S      the correction's own limit
+```
+
+A factor **`1.2315`**, and then the binding row passes to Step 5a, whose
+own constant `S >= 0.60 P^(-5/8)` is the next opening in line --- and one
+whose exact value the certificate does not carry, so this is where the
+gain stops without more information.
+
+The high end does not reach `P_0` at all: `lam_hi` enters `V` and not
+the comparison that binds, and tightening it to `3.902` leaves the
+threshold where it was.
+
+So the answer to the question is yes, on the second attempt: there is a
+rounded constant where a factor of `1.2` matters, and it is the constant
+in the row that sets the threshold. Every other rounding this ledger has
+priced was worth nothing to `P_0`; this one is worth `23%` of it.
+
+*What this is and is not.* The opening is deliberate --- the manuscript
+records `[0.35, 2.6] -> [0.56, 4.2]` as an opening of
+`[0.38, 2.44] -> [0.62, 3.90]` --- and a proof is entitled to round its
+own constants for legibility. What the measurement says is only what the
+legibility costs: `23%` of `P_0`, against corrections that need `0.04%`.
+Whether to spend it is the author's call. The certificate is untouched
+and still reports `3.5858e13`.
+
+Tags. EXACT: the range row's two conditions, and the values they need at
+`P_0`, `0.619747` and `3.901594`, against the printed `0.56` and `4.2`;
+`lam_hi` does not enter the binding comparison. COMPUTATIONALLY
+VERIFIED: the `lam_lo` sweep above; `P_0` falls to `2.9117e13` for every
+`lam_lo` in `[0.60, 0.6197]`, a factor `1.2315`, with the binding row
+passing to `5a-W<=c7S`; tightening `lam_hi` to `3.902` moves nothing.
+OBSERVATION: the plateau means the gain is capped by Step 5a's own
+opened constant `0.60`, whose exact value is not in the certificate.
+
+Probe: `anchor_opening_reach`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13` --- nothing in
+the certificate is edited. No manuscript edit.

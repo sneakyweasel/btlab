@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "0a511e89d5d66a968f3a6282866724daac722da1",
+  "git_commit": "645354c3e846b8e7481fd67425f2fc0a62731bb6",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6913,
+        "line": 6945,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6943,
+        "line": 6975,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7022,
+        "line": 7054,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -6592,6 +6592,67 @@
     "blind_spot": "constants whose derivation crosses a dyadic block boundary",
     "rule_survives_as_triage": true
   },
+  "anchor_opening_reach": {
+    "printed_range": [
+      0.56,
+      4.2
+    ],
+    "exact_range": [
+      0.62,
+      3.9
+    ],
+    "correction_low": 0.9995912368505496,
+    "correction_high": 1.0004087632404477,
+    "needed_low": 0.6197465668473408,
+    "needed_high": 3.901594176637746,
+    "opening_beyond_need_low": 1.1066902979416797,
+    "opening_beyond_need_high": 1.0764830502231808,
+    "correction_costs_almost_nothing": true,
+    "sweep": [
+      {
+        "lam_lo": 0.56,
+        "P0": 35857556192838.55,
+        "binding": "5b-W<=c7S"
+      },
+      {
+        "lam_lo": 0.58,
+        "P0": 32250668608386.094,
+        "binding": "5b-W<=c7S"
+      },
+      {
+        "lam_lo": 0.59,
+        "P0": 30629748716830.883,
+        "binding": "5b-W<=c7S"
+      },
+      {
+        "lam_lo": 0.6,
+        "P0": 29116952310460.227,
+        "binding": "5a-W<=c7S"
+      },
+      {
+        "lam_lo": 0.61,
+        "P0": 29116952310460.227,
+        "binding": "5a-W<=c7S"
+      },
+      {
+        "lam_lo": 0.6197,
+        "P0": 29116952310460.227,
+        "binding": "5a-W<=c7S"
+      }
+    ],
+    "P0_as_printed": 35857556192838.55,
+    "binding_as_printed": "5b-W<=c7S",
+    "P0_tightened": 29116952310460.227,
+    "lam_lo_at_the_optimum": 0.6,
+    "optimum_is_a_plateau": true,
+    "binding_tightened": "5a-W<=c7S",
+    "threshold_moves": 1.2315010104940403,
+    "moves_by_more_than_a_fifth": true,
+    "binding_row_changes": true,
+    "next_constant_in_line": "5a's S >= 0.60 P^(-5/8)",
+    "high_end_does_not_reach_P0": true,
+    "this_is_the_first_rounding_that_moves_P0": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6659,5 +6720,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 95.76829814910889
+  "elapsed_seconds": 95.12910175323486
 }

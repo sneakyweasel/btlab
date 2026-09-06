@@ -5799,6 +5799,94 @@ def out_of_sample_constant_test(cell_points: tuple[int, ...] = (10**5, 3 * 10**5
     }
 
 
+def anchor_opening_reach(P0: float = 3.5858e13) -> dict[str, Any]:
+    """One over-opened constant does move a threshold row, and it is the binding one.
+
+    The block-range constants of the last pass -- 1.5 for the cell count, 2.6 and 15 for the
+    brackets, 4.3 for beta at the block top -- reach no certificate row that matters: the rows they
+    touch sit at 2.8e10 and below.  But the search turned up one that does.
+
+    Lemma 5.2b's frozen anchor lies in [0.62, 3.90] k h_1h_2 P^{-5/8}, and the proof opens that to
+    [0.56, 4.2].  The opening is not slack in principle -- the range row 5b-lam0-range asks for
+    lam_exact_hi (1+P^{-1/4})(1+1/(3 sqrt P))^2 <= lam_hi and lam_exact_lo (1-P^{-1/4})
+    (1-1/(3 sqrt P))^2 >= lam_lo, so the finite-P corrections need room at both ends.  At P_0 they
+    need very little:
+
+        high end   3.90 -> 3.901594   printed 4.2     opened 1.0765 beyond the need
+        low end    0.62 -> 0.619747   printed 0.56    opened 1.1067 beyond the need
+
+    The low end is the one that reaches P_0, through S5b = lam_lo P^{-5/8} in the binding row
+    5b-W<=c7S.  Tightening it to 0.6197 -- still legal, since that is what the correction leaves --
+    moves the threshold:
+
+        lam_lo    P_0          binding row
+        0.5600    3.5858e13    5b-W<=c7S
+        0.5800    3.2251e13    5b-W<=c7S
+        0.6000    2.9117e13    5a-W<=c7S
+        0.6197    2.9117e13    5a-W<=c7S
+
+    A factor 1.2315, and then the binding row passes to Step 5a, whose own constant is
+    S >= 0.60 P^{-5/8} -- the next opening in line, and one whose exact value the certificate does
+    not carry.  The high end does not reach P_0 at all: lam_hi enters V and not the comparison that
+    binds, so tightening it changes nothing.
+
+    So the answer to "is there a rounded constant where a factor 1.2 would matter" is yes, and it
+    is the row that sets P_0.  Whether to tighten it is the author's call -- the opening is
+    deliberate and recorded as such -- but it is worth 23% of the threshold, which is more than any
+    other single constant this ledger has priced.
+    """
+
+    from . import p0_certificate as cert
+
+    base = cert.ANCHOR_CONSTANTS
+    lam_lo, lam_hi = base[0], base[1]
+    exact_lo, exact_hi = base[4], base[5]
+    corr_lo = (1 - P0 ** -0.25) * (1 - 1 / (3 * P0 ** 0.5)) ** 2
+    corr_hi = (1 + P0 ** -0.25) * (1 + 1 / (3 * P0 ** 0.5)) ** 2
+    need_lo = exact_lo * corr_lo
+    need_hi = exact_hi * corr_hi
+
+    def p0_at(lo: float, hi: float) -> tuple[float, str]:
+        rows = cert.thresholds(anchor=(lo, hi) + tuple(base[2:]))
+        top = max(rows, key=lambda r: r["P_min"])
+        return top["P_min"], top["tag"]
+
+    # Choosing lam_lo at exactly the correction's value at P_0 is circular -- it makes the range
+    # row bind at P_0 itself.  Sweep instead and take the optimum, which is a plateau.
+    sweep = []
+    for lo in (lam_lo, 0.58, 0.59, 0.60, 0.61, 0.6197):
+        value, tag = p0_at(lo, lam_hi)
+        sweep.append({"lam_lo": lo, "P0": value, "binding": tag})
+    base_P0, base_tag = p0_at(lam_lo, lam_hi)
+    best = min(sweep, key=lambda r: r["P0"])
+    tight_P0, tight_tag, tight_lo = best["P0"], best["binding"], best["lam_lo"]
+    hi_P0, hi_tag = p0_at(lam_lo, need_hi + 1e-6)
+    return {
+        "printed_range": (lam_lo, lam_hi),
+        "exact_range": (exact_lo, exact_hi),
+        "correction_low": corr_lo,
+        "correction_high": corr_hi,
+        "needed_low": need_lo,
+        "needed_high": need_hi,
+        "opening_beyond_need_low": need_lo / lam_lo,
+        "opening_beyond_need_high": lam_hi / need_hi,
+        "correction_costs_almost_nothing": 1 - corr_lo < 1e-3,
+        "sweep": sweep,
+        "P0_as_printed": base_P0,
+        "binding_as_printed": base_tag,
+        "P0_tightened": tight_P0,
+        "lam_lo_at_the_optimum": tight_lo,
+        "optimum_is_a_plateau": sum(1 for r in sweep if abs(r["P0"] - tight_P0) < 1.0) >= 3,
+        "binding_tightened": tight_tag,
+        "threshold_moves": base_P0 / tight_P0,
+        "moves_by_more_than_a_fifth": base_P0 / tight_P0 > 1.2,
+        "binding_row_changes": tight_tag != base_tag,
+        "next_constant_in_line": "5a's S >= 0.60 P^(-5/8)",
+        "high_end_does_not_reach_P0": abs(hi_P0 - base_P0) < 1.0,
+        "this_is_the_first_rounding_that_moves_P0": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5885,6 +5973,7 @@ def summary() -> dict[str, Any]:
     remainders = remainder_constants_are_second_derivatives(sweep_to=6000)
     forms = constant_form_predicts_sharpness()
     oos = out_of_sample_constant_test(cell_points=(10**5, 3 * 10**5))
+    opening = anchor_opening_reach()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5959,6 +6048,7 @@ def summary() -> dict[str, Any]:
         "remainder_constants_are_second_derivatives": remainders,
         "constant_form_predicts_sharpness": forms,
         "out_of_sample_constant_test": oos,
+        "anchor_opening_reach": opening,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

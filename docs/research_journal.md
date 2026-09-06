@@ -36083,3 +36083,71 @@ Best next question
   numeral by the surrounding symbols and flagging any numeral whose contexts
   fall into more than one cluster?
 ```
+
+## The one that reaches the threshold
+
+The block-range constants reach nothing: `1.5` is in no certificate row,
+`2.6` and `15` are bracket endpoints nothing cites, `4.3` feeds only a
+row at `3136`. But looking for them turned up one that does.
+
+Lemma 5.2b's anchor range is `[0.62, 3.90]`, opened to `[0.56, 4.2]`.
+The opening is not slack in principle -- the range row needs room for
+`(1 +- P^(-1/4))(1 +- 1/(3 sqrt P))^2` at both ends -- but at `P_0` those
+corrections need `0.04%`, and the printed opening gives `10.7%` at the
+low end and `7.6%` at the high one.
+
+The low end is the one that reaches `P_0`, through `S_5b = lam_lo
+P^(-5/8)` in the binding row. Tightening it:
+
+```text
+  0.5600  ->  3.5858e13   5b-W<=c7S
+  0.5900  ->  3.0630e13   5b-W<=c7S
+  0.6000  ->  2.9117e13   5a-W<=c7S
+  0.6197  ->  2.9117e13   5a-W<=c7S
+```
+
+A factor `1.2315`, and then the binding row passes to Step 5a, whose own
+`0.60` is the next opening and whose exact value the certificate does
+not carry. The high end reaches nothing: `lam_hi` enters `V`, not the
+comparison that binds.
+
+So: yes, there is a rounding where `1.2` matters, and it is the one in
+the row that sets `P_0`. Every other rounding this ledger has priced was
+worth nothing to the threshold; this is worth `23%` of it. The opening
+is deliberate and a proof may round for legibility -- the measurement
+only says what the legibility costs.
+
+```text
+Phase-end report
+Question
+- are there other block-range constants rounded like the cell count, and
+  does any feed a threshold row where 1.2 would matter
+Instruments
+- anchor_opening_reach: the range row's two conditions against what the
+  corrections need at P_0, and a lam_lo sweep of the whole certificate
+Ledger tags
+- EXACT: the range row needs 0.619747 and 3.901594 at P_0 against the
+  printed 0.56 and 4.2; lam_hi does not enter the binding comparison
+- COMPUTATIONALLY VERIFIED: P_0 falls to 2.9117e13 for every lam_lo in
+  [0.60, 0.6197], a factor 1.2315, binding passing to 5a-W<=c7S;
+  tightening lam_hi to 3.902 moves nothing
+- OBSERVATION: the gain is capped by Step 5a's own opened 0.60, whose
+  exact value the certificate does not carry
+Strongest theorem
+- the binding row's constant is opened 1.107 beyond what its own range
+  row needs, and closing that is worth 23% of P_0
+Strongest refutation
+- my own expectation that no rounding reaches a threshold row: the first
+  fourteen did not, and the fifteenth is the binding one
+Reusable machinery
+- anchor_opening_reach, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Tightening a deliberate opening is the author's call, and the exact
+  value behind Step 5a's 0.60 would be needed to go further.
+Best next question
+- Step 5a's S >= 0.60 P^(-5/8) is now the binding constant under any
+  tightening, and the certificate carries no exact value for it. Does
+  the manuscript state one, and if so is 0.60 opened the same way?
+```
