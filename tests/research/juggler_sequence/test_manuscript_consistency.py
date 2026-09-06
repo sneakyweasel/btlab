@@ -285,16 +285,18 @@ def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
     ``block_average_plus_sweep`` (0.4051) was lambda** before the OE-fiber constant was
     sharpened from 1/7 to 1/3; pairing (0.4480) replaced it; the elementary OEOEE
     production then moved lambda** to 0.4801; the V_3 truncation moved it
-    to 0.4891 and the Tao rate from 0.5199 to 0.5109."""
+    to 0.4891; the V_4 truncation moved it to 0.4916; the V_5
+    truncation moved it to 0.4924 and the Tao rate from 0.5084 to
+    0.5076."""
 
     from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
 
-    lam = lambda_root(RECURSIONS["block_third_plus_oeoee_v3"])
-    assert abs(lam - 0.4891) < 1e-3
-    assert abs((1.0 - lam) - 0.5109) < 1e-3
+    lam = lambda_root(RECURSIONS["block_third_plus_oeoee_v5"])
+    assert abs(lam - 0.4924) < 1e-3
+    assert abs((1.0 - lam) - 0.5076) < 1e-3
     text = read(PAPER)
-    assert "0.4891" in text
-    assert "0.5109" in text or "0.511" in text or "0.510" in text
+    assert "0.4924" in text
+    assert "0.5076" in text or "0.508" in text
     # the superseded sweep pair must not appear as Paper C's exponent or as the rate threshold
     assert "0.4050" not in text
     assert re.search(r"\(\\log x\)\^\{0\.405\}", text) is None
@@ -304,7 +306,9 @@ def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
 @pytest.mark.parametrize(
     "regime,lam,rate,depth",
     [
-        ("block_third_plus_oeoee_v3", 0.4891, 0.5109, 19),  # unconditional, lambda**
+        ("block_third_plus_oeoee_v5", 0.4924, 0.5076, 19),  # unconditional, lambda**
+        ("block_third_plus_oeoee_v4", 0.4916, 0.5084, 19),  # V_4 truncation
+        ("block_third_plus_oeoee_v3", 0.4891, 0.5109, 19),  # V_3 truncation
         ("block_third_plus_oeoee", 0.4801, 0.5199, 19),     # OEOEE truncation
         ("block_average_plus_third", 0.4480, 0.5520, 20),   # pairing-only intermediate
         ("block_third_plus_ooeee", 0.5392, 0.4608, 18),     # with Hypothesis L, lambda***

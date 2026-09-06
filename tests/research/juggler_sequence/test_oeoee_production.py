@@ -50,7 +50,7 @@ NOTE = "docs/theory/juggler_oeoee_production.md"
 
 RHO = F(9, 32)  # source scale of OEOEE
 NET_GAIN = F(1, 27)  # what the family adds to (4.2)
-LAMBDA_2 = 0.4480  # pairing-only intermediate; official lambda** is 0.4891 with V_3
+LAMBDA_2 = 0.4480  # pairing-only intermediate; official lambda** is 0.4924 with V_5
 LAMBDA_3 = 0.5392  # lambda***, Appendix C
 
 
@@ -443,6 +443,7 @@ def test_saving_law():
     assert F(1, 6) * F(3, 4) == F(1, 8)  # V_2
     assert F(1, 6) * F(3, 4) ** 2 == F(3, 32)  # V_3
     assert F(1, 6) * F(3, 4) ** 3 == F(9, 128)  # V_4
+    assert F(1, 6) * F(3, 4) ** 4 == F(27, 512)  # V_5
     # strictly better than the earlier (1/9)(3/4)^{k-1}, by a factor 3/2
     for k in range(2, 8):
         assert F(1, 6) * F(3, 4) ** (k - 1) == F(3, 2) * F(1, 9) * F(3, 4) ** (k - 1)
@@ -576,10 +577,63 @@ def test_v4_census_cannot_reach_the_constant():
     assert 10 ** (12.7 * 81 / 512) > 90  # 100 needs P ~ 1e12.7
 
 
+def word11(n: int) -> str:
+    letters, x = [], n
+    for _ in range(11):
+        letters.append("O" if x % 2 else "E")
+        x = J(x)
+    return "".join(letters)
+
+
+def test_v5_scales():
+    rho, Y, lay = layers(5)
+    assert rho == F(243, 2048) and Y == F(1805, 2048)
+    assert [L for _, _, L in lay] == [
+        F(1293, 2048), F(909, 2048), F(621, 2048), F(405, 2048),
+    ]
+    assert [L / s for s, _, L in lay] == [F(431, 512), F(101, 128), F(23, 32), F(5, 8)]
+
+
+def test_v5_exact_chain_fiber_and_block_constancy():
+    tested = 0
+    seen: dict[int, tuple] = {}
+    for n in range(10**6 | 1, 10**6 + 400_001, 2):
+        w1 = f34(n)
+        w2 = f34(w1)
+        w3 = f34(w2)
+        w4 = f34(w3)
+        key = (
+            w1 % 2, isqrt(w1**3) % 2, w2 % 2, isqrt(w2**3) % 2,
+            w3 % 2, isqrt(w3**3) % 2, w4 % 2, isqrt(w4**3) % 2,
+            f34(w4) % 2,
+        )
+        if w1 in seen:
+            assert seen[w1] == key
+        seen[w1] = key
+        if word11(n) != "OEOEOEOEOEE":
+            continue
+        tested += 1
+        assert J(J(n)) == w1 and J(J(J(J(n)))) == w2
+        assert J(J(J(J(J(J(n)))))) == w3
+        assert J(J(J(J(J(J(J(J(n)))))))) == w4
+        w5 = f34(w4)
+        m = isqrt(w5)
+        assert m**8 <= w4**3 < (m + 1) ** 8
+    assert tested > 5
+
+
+def test_v5_gain_and_exponents():
+    assert (F(1, 3) - F(2, 9)) * F(1, 3) ** 4 == F(1, 729)
+    assert root(BASE + family(4)) == pytest.approx(0.4924, abs=5e-4)
+    assert root(BASE + family(4) + [(F(1, 9), RHO)]) == pytest.approx(0.5767, abs=5e-4)
+
+
 def test_family_ladder():
     ladder = [root(BASE + family(K)) for K in (1, 2, 3, 4)]
     assert ladder[0] == pytest.approx(0.4801, abs=5e-4)
     assert ladder[1] == pytest.approx(0.4891, abs=5e-4)
+    assert ladder[2] == pytest.approx(0.4916, abs=5e-4)
+    assert ladder[3] == pytest.approx(0.4924, abs=5e-4)
     assert all(a < b for a, b in zip(ladder, ladder[1:]))  # monotone
     assert ladder[-1] < 0.4927
     # with Appendix C's OOEEE as well

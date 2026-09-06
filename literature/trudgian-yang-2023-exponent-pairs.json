@@ -1,0 +1,20 @@
+{
+  "id": "trudgian-yang-2023-exponent-pairs",
+  "title": "Toward optimal exponent pairs",
+  "authors": ["Timothy S. Trudgian", "Andrew Yang"],
+  "year": 2023,
+  "identifiers": {
+    "arxiv": "2306.05599"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2306.05599"
+  },
+  "problem_area": "exponential-sums",
+  "relevant_concepts": [
+    "exponent pairs (715/10238, 7955/10238) and (4742/38463, 35731/51284)",
+    "piecewise-linear beta(alpha) tables"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "arXiv:2306.05599; to appear in Math. Comp. Lemma 1.1 supplies the two pairs used as 2023 seeds in docs/theory/exponent_pair_two_monomial.md. Their phi values are 35395/40952 and 130903/153852, both above Bourgain's 95/112."
+}

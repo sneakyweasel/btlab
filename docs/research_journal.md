@@ -37878,6 +37878,43 @@ Best next question
 - the V_3 truncation constants, later, not this branch
 ```
 
+## V_3 production audit and rate drop (not a numbered milestone)
+
+- **Date:** 2026-09-06
+- **Objective:** Audit the already-written Section 12 constants of the \(V_3=OEOEOEE\) production and, if they recompute, retarget official unconditional \(\lambda^{**}\) from the \(OEOEE\) root \(0.4801\) to \(0.4891\)
+- **Hypotheses:** the \(w_2\)-fiber equals the \(OEOEE\) \(w\)-fiber so Half A transfers; the new middle case saves \(P^{-1/8}\) by balanced \(\lvert S_q\rvert\); binding is the Section 11 law at \(k=3\) (\(P^{-3/32}\)); \(+1/81\) at scale \(27/128\) is a theorem
+- **Major results:** classification `V3_AUDIT_CONSISTENT`, 23 checks, 0 failures. Binding saving \(P^{-3/32}=m'^{-4/9}\) stands. Official \(\lambda^{**}=0.4891\), Tao rate \(e>0.5109\), least Chernoff \(C=19\) unchanged. \(OEOEE\) \(0.4801/0.5199/C=19\) and pairing \(0.4480/0.5520/C=20\) stay named intermediates. \(\lambda^{***}=0.5392\) unchanged
+- **Refuted ideas:** none that kill \(V_3\). T4's abstract short-step form was already recorded on \(OEOEE\)
+- **Literature:** Paper B Lemma 3.5 cited, not re-derived. Rest-average stays PARK. Kernel \(OOOEE/OOEOE\) stays CLOSE. \(V_4\) not opened
+- **Open:** none opened
+- **Decision:** PROMOTE. Stop. Do not write \(V_4\) constants in this branch
+
+```text
+What was learned
+- V_3 is elementary: exact fiber, w2-interval equals the OEOEE w-interval
+- Section 12 recomputes from T1-T5; Case 1/2 save P^{-1/8}; Case 4 binds at P^{-3/32}
+- Envelope 400 has room (measured ratio <= 0.35)
+- Official lambda** moves 0.4801 -> 0.4891; required Tao rate 0.5199 -> 0.5109; least C stays 19
+- Pairing remains the inequality (5.2)/(4.2), so Appendix C still adds OOEEE on top of it
+- The remaining depth-two gap 0.4891 -> 0.4927 is later V_k truncations, not rest-average
+- log log y depth is not removed
+Strongest theorem
+- every nonempty backward-closed set has log-count >> (log x)^lambda for lambda < 0.4891
+  (Paper C Theorem 1 / fate-contagion Theorem 4.2, J-fate-log-density, J-fate-v3-production)
+Strongest refutation
+- none that kill V_3; T4 as an abstract short-step form already recorded on OEOEE
+Reusable machinery
+- v3_audit.py, v3_audit_ledger.md, RECURSIONS[block_third_plus_oeoee_v3]
+Branch status
+- PROMOTE
+Why
+  The constants recompute and still save a positive power of P, so the printed
+  unconditional exponent is the five-term root. This is a rate drop of the same
+  object (contagion plus the pressure/Tao reduction), not a new object.
+Best next question
+- the V_4 truncation constants, later, not this branch
+```
+
 ## External averaging of \(M_{\theta,q}\) / \(P_\theta\) (not a numbered milestone)
 
 - **Date:** 2026-09-06
@@ -37918,4 +37955,196 @@ Why
   reparameterization; no third formulation was opened
 Best next question
 - none on this line; the no-momentum form stays the export
+```
+
+## Rate-free reductions: Lean packaging of the finite count, the floor wrapper, and domination
+
+- **Date:** 2026-09-06
+- **Objective:** Package the already-proved rate-free reductions in Lean without a density library, a halt theorem, or a CLOSE wrap.
+- **Major results:**
+  - `RateFreeDensity.lean` compiles kernel-only. `reachesOne_of_floor_and_certificates` is the parameterized residual-floor wrapper of the existing `Progress` induction; the hypothesis is universal certificates, not density one.
+  - Finite Proposition J is Lean (`propJ_count`, `lemmaA_finite`, row `J-rate-free-prop-j-finite`): one-sided class bounds lift to the uncertified count, and never-certified starts sit inside that set.
+  - Generating-function domination and the Markov tilt are Lean (`weightGen_domination`, `weight_markov`). The optimal Chernoff tilt at \(\beta>\beta_*\) stays prose.
+  - `fairThenAllOdd_live_mass`: a measure fair to depth \(k\) and all-odd afterwards keeps mass \(2^{-k}\) on a prefix-noncontracting ray.
+  - `J-rate-free-density-one` stays `EXACT — HUMAN PROOF` (the limit order is not covered). The live conjecture is untouched.
+- **Decision:** packaging of an existing PROMOTE branch; no new Phase-0.
+
+```text
+What was learned
+- the induction-plus-floor arrow was already Progress.lean; the
+  missing Lean was the finite count, not a density API
+- domination and Markov compile without naming KL
+- the fair-then-all-odd weights pin that this route does not
+  prove pressure
+Strongest theorem
+- finite Proposition J: class bounds lift to the uncertified
+  count (propJ_count, EXACT — LEAN VERIFIED)
+Strongest refutation
+- none; the density-one limit and the optimal Chernoff tilt
+  remain human
+Reusable machinery
+- RateFreeDensity.lean (allWords, classCount, neverNegWords,
+  weightGen, fairThenAllOdd)
+Branch status
+- PROMOTE (packaging of the existing K3 rate-free branch)
+Why
+- the English of the finite inequality and the floor wrapper is
+  now covered by sorry-free Lean; the published density-one
+  row is not overclaimed
+Best next question
+- unchanged and external: rate-free equidistribution of
+  f(floor(h(n))) for nonlinear Hardy f,h, or the boxed pair
+```
+
+## V_4 production audit and rate drop (not a numbered milestone)
+
+- **Date:** 2026-09-07
+- **Objective:** Audit the already-written Section 13 constants of the \(V_4=OEOEOEOEE\) production and, if they recompute, retarget official unconditional \(\lambda^{**}\) from the \(V_3\) root \(0.4891\) to \(0.4916\)
+- **Hypotheses:** the \(w_3\)-fiber equals the \(OEOEE\) \(w\)-fiber so Half A transfers; the \(w_2\)-interval equals the \(V_3\) \(w_1\)-interval so \(V_3\) Case 1/2 transfer; the new top case is Half B at \(w_1\) (\(P^{-1/8}\)); binding is the Section 11 law at \(k=4\) (\(P^{-9/128}\)); \(+1/243\) at scale \(81/512\) is a theorem
+- **Major results:** classification `V4_AUDIT_CONSISTENT`, 22 checks, 0 failures. Binding saving \(P^{-9/128}=m'^{-4/9}\) stands. Official \(\lambda^{**}=0.4916\), Tao rate \(e>0.5084\), least Chernoff \(C=19\) unchanged. \(V_3\) \(0.4891/0.5109/C=19\), \(OEOEE\) \(0.4801/0.5199/C=19\) and pairing \(0.4480/0.5520/C=20\) stay named intermediates. \(\lambda^{***}=0.5392\) unchanged
+- **Refuted ideas:** none that kill \(V_4\). T4's abstract short-step form was already recorded on \(OEOEE\)
+- **Literature:** Paper B Lemma 3.5 cited, not re-derived. Rest-average stays PARK. Kernel \(OOOEE/OOEOE\) stays CLOSE. \(V_5\) not opened
+- **Open:** none opened
+- **Decision:** PROMOTE. Stop. Do not write \(V_5\) constants in this branch
+
+```text
+What was learned
+- V_4 is elementary: exact fiber; w3 = OEOEE w-interval; w2 = V3 w1-interval
+- Section 13 recomputes from T1-T5; Case 1 saves P^{-1/8}; Case 2/3 save P^{-3/32}; Case 5 binds at P^{-9/128}
+- Envelope 1600 has room (measured ratio <= 1.64 at m'=4)
+- Official lambda** moves 0.4891 -> 0.4916; required Tao rate 0.5109 -> 0.5084; least C stays 19
+- Pairing remains the inequality (5.2)/(4.2), so Appendix C still adds OOEEE on top of it
+- The remaining depth-two gap 0.4916 -> 0.4927 is later V_k truncations, not rest-average
+- log log y depth is not removed
+Strongest theorem
+- every nonempty backward-closed set has log-count >> (log x)^lambda for lambda < 0.4916
+  (Paper C Theorem 1 / fate-contagion Theorem 4.2, J-fate-log-density, J-fate-v4-production)
+Strongest refutation
+- none that kill V_4; T4 as an abstract short-step form already recorded on OEOEE
+Reusable machinery
+- v4_audit.py, v4_audit_ledger.md, RECURSIONS[block_third_plus_oeoee_v4]
+Branch status
+- PROMOTE
+Why
+  The constants recompute and still save a positive power of P, so the printed
+  unconditional exponent is the six-term root. This is a rate drop of the same
+  object (contagion plus the pressure/Tao reduction), not a new object.
+Best next question
+- the V_5 truncation constants, later, not this branch
+```
+
+## Boxed pair: 2025 pairs and Sargos C/D do not move 95/112
+
+- **Date:** 2026-09-07
+- **Objective:** Check whether the Tao–Trudgian–Yang 2025 exponent pairs, the Trudgian–Yang 2023 pairs, or the Sargos \(C\)/\(D\) processes produce an applicable pair with \(\tfrac54 p+q<2/3\), or even beat the certified hull minimum \(95/112\). External mathematics; not a Juggler wrap.
+- **Hypotheses:** the laboratory hull froze at \(A\)/\(B\) of the 2017 seeds; \(C\), \(D\), and the 2023–2025 pairs are published and had not been evaluated on this functional.
+- **Major results:**
+  - Theorem 6: \(\phi(C(p,q))\ge 91/96\), equality only at \((1/2,1/2)\).
+  - Theorem 7: \(\phi(D(p,q))\ge 27/32\), equality only at the conjecture point \((0,1/2)\). Both floors sit above \(2/3\). The \(D\)-floor is \(1/224\) below Bourgain, but is not attained at a pair.
+  - Corollary 8: a solution of the boxed question is primitive for \(A\), \(C\), and \(D\).
+  - All six named 2023–2025 pairs, and the Sargos \(D\)-image of Bourgain, have \(\phi>95/112\). Smallest is the second 2023 pair at \(130903/153852\).
+- **Refuted ideas:** that a post-2017 published pair, or a Sargos letter, answers the boxed question or lowers the hull minimum.
+- **Literature:** `tao-trudgian-yang-2025-exponent-pairs`, `trudgian-yang-2023-exponent-pairs`.
+- **Open:** the boxed pair itself. Unchanged.
+- **Decision:** CLOSE as a check. The export stays external. No new dossier, no new ledger row, no Paper edit.
+
+```text
+What was learned
+- C and D have unconditional floors 91/96 and 27/32, both above 2/3
+- the 2023-2025 pairs improve other beta(alpha) ranges, not this linear functional
+- Bourgain 95/112 remains the published minimum
+- a solution must still be produced directly
+Strongest theorem
+- phi(C) >= 91/96 and phi(D) >= 27/32 for every exponent pair
+Strongest refutation
+- "a 2025 pair or a Sargos process answers the box": false
+Reusable machinery
+- C/D identities in test_exponent_pair_hull.py
+Branch status
+- CLOSE
+Why
+- the published enlargement of the hull does not move the line or the
+  minimum; the remaining object is still a primitive pair or a
+  specialized two-monomial bound
+Best next question
+- unchanged and external: a primitive pair with 5/4 p + q < 2/3, or
+  rate-free equidistribution of f(floor(h(n))) for nonlinear Hardy f,h,
+  or a route to beta > beta* that does not pass through that composition
+```
+
+## Leftover threshold: the floor-Hardy composition is elementary iff beta < 1
+
+- **Date:** 2026-09-07
+- **Objective:** Classify when \(\{f(\lfloor h(n)\rfloor)\}\) transfers from the smooth model by leftover size, and compute the hull minimum of the first superlinear functional \(p/2+q\). External mathematics; not a Juggler wrap.
+- **Hypotheses:** leftover \(\to 0\) uniformly iff the outer exponent is \(\beta<1\); Bourgain minimises every linear form of this type on the certified hull.
+- **Major results:**
+  - Theorem 9: mean-value leftover \(\lvert v^\beta-X^\beta\rvert=\beta\xi^{\beta-1}\{X\}\). For \(\beta<1\) this is \(O(n^{\alpha(\beta-1)})\to 0\) uniformly, so \(\{v^\beta\}\) and \(\{n^{\alpha\beta}\}\) stand or fall together. For \(\beta>1\) the leftover is \(o(1)\) only on the thin set \(\{X\}=o(n^{-\alpha(\beta-1)})\); \(\limsup=\infty\). The decaying laboratory axis \(\beta=3/4\) is elementary; the tame and boxed axes are not.
+  - The size \(\asymp n^{\alpha(\beta-1)}\) is a uniform bound, not a pointwise law: leftover is exactly \(0\) on perfect powers.
+  - Theorem 10: on the certified \(A\)/\(B\) hull, \(p/2+q\) is minimised at \(B(A(\mathrm{Bourgain}))=(55/194,55/97)\), value \(275/388\), gap \(49/1164\) to \(2/3\). Bourgain's own value \(41/56\) is strictly larger. The 2023–2025 pairs and Sargos \(C\)/\(D\) sit above \(275/388\).
+- **Refuted ideas:** that Bourgain minimises \(p/2+q\) on the hull; that leftover \(\asymp n^{\alpha(\beta-1)}\) holds for every \(n\) when \(\beta>1\).
+- **Literature:** none new; Fejér / MVT for the \(\beta<1\) half is KNOWN.
+- **Open:** the boxed pair, and rate-free equidistribution of \(\{f(\lfloor h(n)\rfloor)\}\) for \(\beta>1\). Unchanged.
+- **Decision:** CLOSE as a classification. The export stays external. No new dossier, no new ledger row, no Paper edit.
+
+```text
+What was learned
+- leftover transfer is elementary exactly for outer exponent beta < 1
+- the typical-size slogan is not pointwise: leftover vanishes on
+  perfect powers even when beta > 1
+- Bourgain minimises 5p/4+q, not p/2+q; BA(Bourgain) is 275/388
+- the first superlinear composition is the same door, gap 49/1164
+Strongest theorem
+- leftover -> 0 uniformly iff beta < 1 (Theorem 9); hull min of
+  p/2+q is 275/388 at BA(Bourgain) (Theorem 10)
+Strongest refutation
+- "Bourgain minimises the tame functional": false (41/56 > 275/388)
+Reusable machinery
+- leftover_exponent / phi_tame in test_exponent_pair_hull.py
+Branch status
+- CLOSE
+Why
+- the beta < 1 half is the mean-value theorem; the beta > 1 half
+  is the same PS-inversion door already exported; no wrap is opened
+Best next question
+- unchanged and external: a primitive pair with 5/4 p + q < 2/3, or
+  rate-free equidistribution of f(floor(h(n))) for beta > 1, or a
+  route to beta > beta* that does not pass through that composition
+```
+
+## V_5 production audit and rate drop (not a numbered milestone)
+
+- **Date:** 2026-09-07
+- **Objective:** Audit the already-written Section 14 constants of the \(V_5=OEOEOEOEOEE\) production and, if they recompute, retarget official unconditional \(\lambda^{**}\) from the \(V_4\) root \(0.4916\) to \(0.4924\)
+- **Hypotheses:** the \(w_4\)-fiber equals the \(OEOEE\) \(w\)-fiber so Half A transfers; the \(w_3\)-interval equals the \(V_3\) \(w_1\)-interval; the \(w_2\)-interval equals the \(V_4\) \(w_1\)-interval; the \(w_1\)-interval equals the \(V_4\) \(n\)-interval so \(V_4\) Cases 1–3 transfer; the new top case is Half B at \(w_1\) (\(P^{-1/8}\)); binding is the Section 11 law at \(k=5\) (\(P^{-27/512}\)); \(+1/729\) at scale \(243/2048\) is a theorem
+- **Major results:** classification `V5_AUDIT_CONSISTENT`, 24 checks, 0 failures. Binding saving \(P^{-27/512}=m'^{-4/9}\) stands. Official \(\lambda^{**}=0.4924\), Tao rate \(e>0.5076\), least Chernoff \(C=19\) unchanged. First movement of Azuma \(C(0.55)\): \(42\to 41\). \(V_4\) \(0.4916/0.5084/C=19\), \(V_3\) \(0.4891/0.5109/C=19\), \(OEOEE\) \(0.4801/0.5199/C=19\) and pairing \(0.4480/0.5520/C=20\) stay named intermediates. \(\lambda^{***}=0.5392\) unchanged
+- **Refuted ideas:** none that kill \(V_5\). T4's abstract short-step form was already recorded on \(OEOEE\)
+- **Literature:** Paper B Lemma 3.5 cited, not re-derived. Rest-average stays PARK. Kernel \(OOOEE/OOEOE\) stays CLOSE. \(V_6\) not opened
+- **Open:** none opened
+- **Decision:** PROMOTE. Stop. Do not write \(V_6\) constants in this branch
+
+```text
+What was learned
+- V_5 is elementary: exact fiber; w4 = OEOEE w-interval; w1 = V4 n-interval
+- Section 14 recomputes from T1-T5; Case 1 saves P^{-1/8}; Case 2 saves P^{-3/32}; Case 3/4 save P^{-9/128}; Case 6 binds at P^{-27/512}
+- Envelope 4000 has room (measured ratio <= 2.02 at m'=4)
+- Official lambda** moves 0.4916 -> 0.4924; required Tao rate 0.5084 -> 0.5076; least C stays 19
+- First movement of Azuma C(0.55): 42 -> 41
+- Pairing remains the inequality (5.2)/(4.2), so Appendix C still adds OOEEE on top of it
+- The remaining depth-two gap 0.4924 -> 0.4927 is later V_k truncations, not rest-average
+- log log y depth is not removed
+Strongest theorem
+- every nonempty backward-closed set has log-count >> (log x)^lambda for lambda < 0.4924
+  (Paper C Theorem 1 / fate-contagion Theorem 4.2, J-fate-log-density, J-fate-v5-production)
+Strongest refutation
+- none that kill V_5; T4 as an abstract short-step form already recorded on OEOEE
+Reusable machinery
+- v5_audit.py, v5_audit_ledger.md, RECURSIONS[block_third_plus_oeoee_v5]
+Branch status
+- PROMOTE
+Why
+  The constants recompute and still save a positive power of P, so the printed
+  unconditional exponent is the seven-term root. This is a rate drop of the same
+  object (contagion plus the pressure/Tao reduction), not a new object.
+Best next question
+- the V_6 truncation constants, later, not this branch
 ```

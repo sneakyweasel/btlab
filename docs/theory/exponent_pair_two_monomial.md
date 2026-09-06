@@ -8,8 +8,15 @@ two-monomial exponential sum and the classical exponent-pair hull.
 4 September 2026 adds the barrier half of the answer (§ *What is now
 settled*): the \(A\)/\(B\) process route is closed unconditionally, the
 hull minimum \(95/112\) is certified rather than recorded, and any pair
-below the line is a subconvexity result past \(1/12\). The question
-itself stays open and stays external.
+below the line is a subconvexity result past \(1/12\). 7 September 2026
+adds the Sargos \(C\)/\(D\) floors and the 2023–2025 published pairs:
+none of them moves \(95/112\), and neither extra process can reach
+\(\phi<2/3\). The same day records the leftover threshold (Theorem 9):
+the floor-Hardy composition is elementary if and only if the outer
+exponent is \(\beta<1\). The first superlinear axis still needs
+\(p/2+q<2/3\), whose hull minimum is \(275/388\) at
+\(B(A(\mathrm{Bourgain}))\) (Theorem 10). The question itself stays
+open and stays external.
 
 ## The question
 
@@ -51,17 +58,22 @@ ceilings (exact arithmetic):
 | van der Corput derivative tests | \((1/6,2/3)\), \((1/14,11/14)\); \(k=3,4,5\) tests | \(7/8\) |
 | Huxley 2005 | \((32/205,269/410)\) | \(349/410\approx 0.851\) |
 | Bourgain 2017 | \((13/84,55/84)\) | \(95/112\approx 0.848\) |
+| Trudgian–Yang 2023 | \((715/10238,7955/10238)\), \((4742/38463,35731/51284)\) | \(35395/40952\), \(130903/153852\) |
+| Tao–Trudgian–Yang 2025 | four new pairs (Theorem 20) | all \(\ge 4433/5128\approx 0.864\) |
+| Sargos \(D\) of Bourgain | \((18/199,593/796)\) | \(683/796\approx 0.858\) |
 | Bombieri–Iwaniec dream ceiling | \(p=3/20\) on \(q=p+\tfrac12\) | \(67/80=0.8375\) |
 | Needed for \(T_j=o(M^{2/3})\) | — | \(<2/3\) |
 | Exponent-pair conjecture | \((0,1/2)\) | \(1/2\) |
 
-Theorem 4 below upgrades this table: \(95/112\) is not merely the
-recorded minimum but the exact minimum of \(\phi\) over the entire
-\(A\)/\(B\)/convex closure of these pairs.
+Theorem 4 upgrades the 2017 sub-table: \(95/112\) is the exact minimum
+of \(\phi\) over the \(A\)/\(B\)/convex closure of the 2017 seeds.
+Theorems 6–8 and the 2023–2025 rows do not lower that minimum.
 
 Literature: `bourgain-2017-exponent-pair`, `huxley-2005-zeta-v`,
 `huxley-1996-area-lattice-points`,
-`kuipers-niederreiter-1974-uniform-distribution`.
+`kuipers-niederreiter-1974-uniform-distribution`,
+`trudgian-yang-2023-exponent-pairs`,
+`tao-trudgian-yang-2025-exponent-pairs`.
 
 ## What is already settled
 
@@ -102,18 +114,24 @@ change the resonance geometry. A native run of the method on
 
 ## What is now settled (4 September 2026)
 
-Five exact facts, all rational arithmetic; the verification is
+Exact facts, all rational arithmetic; the verification is
 [`tests/research/juggler_sequence/test_exponent_pair_hull.py`](../../tests/research/juggler_sequence/test_exponent_pair_hull.py).
 Throughout an exponent pair carries the standard normalisation
 \(0\le p\le\frac12\le q\le 1\), the processes are
 
 \[
-A(p,q)=\Bigl(\frac{p}{2p+2},\ \frac{p+q+1}{2p+2}\Bigr),\qquad
-B(p,q)=\Bigl(q-\tfrac12,\ p+\tfrac12\Bigr),\quad B^2=\mathrm{id},
+\begin{aligned}
+A(p,q)&=\Bigl(\frac{p}{2p+2},\ \frac{p+q+1}{2p+2}\Bigr),\qquad
+B(p,q)=\Bigl(q-\tfrac12,\ p+\tfrac12\Bigr),\quad B^2=\mathrm{id},\\
+C(p,q)&=\Bigl(\frac{p}{12(1+4p)},\ \frac{11(1+4p)+q}{12(1+4p)}\Bigr),\\
+D(p,q)&=\Bigl(\frac{5p+q+2}{8(5p+3q+2)},\ \frac{29p+21q+10}{8(5p+3q+2)}\Bigr).
+\end{aligned}
 \]
 
-and convex combinations of exponent pairs are exponent pairs, so the
-linear \(\phi\) is minimised over a hull at a generating point.
+The maps \(C\) and \(D\) are the Sargos processes (2003 / 1995; recorded
+as Lemmas 13–14 of Tao–Trudgian–Yang 2025). Convex combinations of
+exponent pairs are exponent pairs, so the linear \(\phi\) is minimised
+over a hull at a generating point.
 
 **Theorem 1 (the \(A\)-process can never approach the line).** For every
 exponent pair \((p,q)\),
@@ -208,6 +226,54 @@ stronger than the subconvexity record:
 Even \(\phi<3/4\) — merely what Theorem 1 forbids the \(A\)-process from
 reaching — would already break the record.
 
+**Theorem 6 (the \(C\)-process sits even higher).** For every exponent
+pair \((p,q)\),
+
+\[
+\phi\bigl(C(p,q)\bigr)=\frac{\tfrac{181}{4}p+q+11}{12(1+4p)}\ \ge\ \frac{91}{96},
+\]
+
+with equality only at \((p,q)=(\tfrac12,\tfrac12)\). *Proof.*
+\(\partial_q>0\), so the minimum over \(q\ge\tfrac12\) is at
+\(q=\tfrac12\). The comparison \(\phi(C)\ge 91/96\) rearranges to
+\(4q\ge\tfrac32+p\), which holds on the normalised region because
+\(4q\ge 2\) and \(p\le\tfrac12\), and both equalities fire together
+only at \((\tfrac12,\tfrac12)\). \(\square\)
+
+**Theorem 7 (nor the \(D\)-process).** For every exponent pair
+\((p,q)\),
+
+\[
+\phi\bigl(D(p,q)\bigr)=\frac{141p+89q+50}{32(5p+3q+2)}\ \ge\ \frac{27}{32},
+\]
+
+with equality only at \((p,q)=(0,\tfrac12)\). *Proof.* The difference
+against \(27/32\) is \((3p+4q-2)/(16(5p+3q+2))\). The denominator is
+positive and \(3p+4q-2\ge 4q-2\ge 0\), with equality only at
+\(p=0\), \(q=\tfrac12\). \(\square\)
+
+Both floors sit above the density line: \(91/96>27/32>2/3\). The
+\(D\)-floor \(27/32=189/224\) is one part in \(224\) *below* Bourgain's
+\(95/112=190/224\), but it is attained only at the conjecture point,
+which is not an exponent pair. On every actual pair the inequality is
+strict, and every named published pair evaluated in the verification
+has \(\phi(D)\ge 683/796>95/112\).
+
+**Corollary 8 (still primitive, now for three letters).** Let
+\((p,q)\) be an exponent pair answering the boxed question. Then it is
+not the \(A\)-, \(C\)-, or \(D\)-image of an exponent pair, nor the
+\(B\)-image of an \(A\)-image (Theorems 1, 2, 6, 7). A solution must
+still be produced directly.
+
+**The 2023–2025 pairs do not move the minimum (exact).** The two
+Trudgian–Yang 2023 pairs and the four Tao–Trudgian–Yang 2025 pairs
+(their Theorem 20), together with the Sargos \(D\)-image of Bourgain
+and the listed \(A\)/\(C\)/\(D\) images of those seeds, all have
+\(\phi>95/112\). The smallest among them is the second 2023 pair at
+\(130903/153852\approx 0.8508\). These pairs improve \(\beta(\alpha)\)
+in other ranges; they are not better for this linear functional. The
+verification is the same test file.
+
 **Modern derivative tests do not help (exact).** On this phase
 \(\lambda_k\asymp M^{9/4-k}\). The classical van der Corput \(k\)-th
 derivative test gives block exponent
@@ -231,15 +297,17 @@ The exponent-pair conjecture point \((0,1/2)\) would clear the line
 with a power saving. No currently published pair or BI-refinement
 does.
 
-Theorems 1–5 pin down the *shape* either object must have.
+Theorems 1–8 pin down the *shape* either object must have.
 
-- A new pair cannot be a processed one (Corollary 3): it has to come
-  from a method that produces exponent pairs directly. And if it is an
-  exponent pair at all, it is by Theorem 5 a subconvexity result past
-  \(1/12\) — past both the decoupling record \(13/84\) and the
-  Bombieri–Iwaniec ceiling \(3/20\). The line is not a technical gap in
-  the hull; it is a strictly stronger statement than anything known
-  about \(\zeta(\tfrac12+it)\).
+- A new pair cannot be a processed one (Corollaries 3 and 8): it has
+  to come from a method that produces exponent pairs directly. The
+  2023–2025 published pairs and the Sargos \(C\)/\(D\) processes do
+  not change that. And if it is an exponent pair at all, it is by
+  Theorem 5 a subconvexity result past \(1/12\) — past both the
+  decoupling record \(13/84\) and the Bombieri–Iwaniec ceiling
+  \(3/20\). The line is not a technical gap in the hull; it is a
+  strictly stronger statement than anything known about
+  \(\zeta(\tfrac12+it)\).
 - A specialized bound escapes Theorem 5 only by not being an exponent
   pair. Since a bound depending solely on the derivative sizes
   \(\lambda_k\asymp M^{9/4-k}\) is a statement about the whole class of
@@ -257,6 +325,67 @@ known hull.
 
 This is a question in the theory of exponent pairs. It is not a
 dynamical construction, and it should not be rewritten as one.
+
+## Companion: when the floor-Hardy composition is elementary
+
+The other external leftover is equidistribution of
+\(\{f(\lfloor h(n)\rfloor)\}\) for nonlinear Hardy \(f,h\). The
+naive transfer from \(\{f(h(n))\}\) dies or lives according to one
+exponent.
+
+**Theorem 9 (leftover threshold).** Let \(\alpha>0\) and
+\(X=n^\alpha\), \(v=\lfloor X\rfloor\). The mean-value identity
+\(\lvert v^\beta-X^\beta\rvert=\beta\,\xi^{\beta-1}\{X\}\) holds for
+some \(\xi\in[v,X]\). If \(0<\beta<1\), then once \(v\ge X/2\)
+
+\[
+\bigl\lvert v^\beta-X^\beta\bigr\rvert
+\le \beta\,2^{1-\beta}\,n^{\alpha(\beta-1)}
+\to 0
+\]
+
+uniformly in \(n\). Hence \(v^\beta=n^{\alpha\beta}+o(1)\) in
+\(\mathbb R\), so \(\{v^\beta\}\) and \(\{n^{\alpha\beta}\}\) are
+equidistributed together (or fail together). If \(\beta>1\), the
+leftover is \(o(1)\) only on the thin set
+\(\{X\}=o\bigl(n^{-\alpha(\beta-1)}\bigr)\). On the complementary
+set \(\{X\}\asymp 1\) one has leftover
+\(\asymp n^{\alpha(\beta-1)}\to\infty\), so
+\(\limsup\lvert v^\beta-X^\beta\rvert=\infty\) and the smooth model
+does not transfer. The size \(\asymp n^{\alpha(\beta-1)}\) is
+therefore a uniform upper bound (and a typical size), not a
+pointwise law: leftover vanishes on perfect powers even when
+\(\beta>1\).
+
+The laboratory axes sit on opposite sides of the threshold only in
+the outer exponent: the decaying axis \(\beta=3/4<1\) is elementary;
+the tame axis \(\beta=3/2\) and the boxed axis \(\beta=9/4\) are
+not. For the tame axis the quadratic remainder of
+`J-horizontal-axis-species` is still \(o(1)\), so
+
+\[
+\bigl\{\lfloor n^{3/2}\rfloor^{3/2}\bigr\}
+=\bigl\{n^{9/4}-\tfrac32 n^{3/4}\{n^{3/2}\}+o(1)\bigr\}.
+\]
+
+The PS inversion of that sequence is the monomial sum
+\(\sum e(m^{3/2})\) against the same indicator \(r(m)\in\{0,1\}\).
+An exponent pair then yields the block bound \(M^{p/2+q}\), and
+sub-density still needs \(p/2+q<2/3\).
+
+**Theorem 10 (tame functional on the hull).** On the certified
+\(A\)/\(B\) hull the linear form \(p/2+q\) is minimised at
+\(B(A(13/84,55/84))=(55/194,55/97)\), with value
+\(275/388\approx 0.7088>2/3\). The gap to the density line is
+\(49/1164\). Bourgain itself gives the strictly larger value
+\(41/56\); the 2023–2025 pairs and the Sargos \(C\)/\(D\) images
+all sit above \(275/388\). The first superlinear composition is the
+same door as the boxed axis, only closer: the gap is \(49/1164\)
+rather than \(61/336\).
+
+Do not reopen the closed floor-Hardy wraps. Theorem 9 classifies
+when the leftover argument works; it does not identify
+\(\{v^{9/4}\}\).
 
 ## Appendix: laboratory origin
 

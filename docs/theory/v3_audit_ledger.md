@@ -31,7 +31,8 @@ displayed constant in Section 12 is recomputed from T1–T5 at the
 | Envelope \(\lvert 64\lvert\mathcal O\rvert-Y\rvert\le 400\,Y\,m'^{-4/9}(1+\log m')^2\) | script \(m'=12,16,20\) | consistent; measured ratios \(0.13,0.35,0.26\) |
 | Five-term root \(0.4891\) | script | consistent; rate \(0.5109\); least \(C\) still \(19\) |
 
-The elementary route has a uniform power saving. Proposition 8 meets
-the ledger bar **EXACT — HUMAN PROOF**. The promotion of
+The elementary route has a uniform power saving \(P^{-3/32}\).
+Proposition 8 meets the ledger bar **EXACT — HUMAN PROOF**. Net
+bookkeeping is \(+1/81\) at scale \(27/128\). The promotion of
 \(\lambda^{**}\) from \(0.4801\) to \(0.4891\) is then bookkeeping.
 Later \(V_k\) are not opened here.

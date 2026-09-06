@@ -1,5 +1,5 @@
 {
-  "git_commit": "7e9b93f5e0df6addbc8d6f5f576f8a8867c978f9",
+  "git_commit": "0021b976f74e0cff26ea0633273845379db55d00",
   "paper": "docs/theory/juggler_fate_almost_all_note.md",
   "N0": 350000000,
   "checks": {
@@ -19,10 +19,31 @@
         "ok": true
       },
       {
-        "name": "lambda** (block_third_plus_oeoee)",
+        "name": "oeoee-only (block_third_plus_oeoee)",
         "printed": 0.4801,
         "computed": 0.4801145718496832,
         "abs_error": 1.457184968317593e-05,
+        "ok": true
+      },
+      {
+        "name": "v3-only (block_third_plus_oeoee_v3)",
+        "printed": 0.4891,
+        "computed": 0.4890678795095489,
+        "abs_error": 3.2120490451093e-05,
+        "ok": true
+      },
+      {
+        "name": "v4-only (block_third_plus_oeoee_v4)",
+        "printed": 0.4916,
+        "computed": 0.4916233334356801,
+        "abs_error": 2.3333435680117365e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda** (block_third_plus_oeoee_v5)",
+        "printed": 0.4924,
+        "computed": 0.49235906048881073,
+        "abs_error": 4.093951118927519e-05,
         "ok": true
       },
       {
@@ -126,10 +147,31 @@
         "ok": true
       },
       {
-        "name": "rate threshold 1 - lambda**",
+        "name": "rate threshold 1 - oeoee",
         "printed": 0.5199,
         "computed": 0.5198854281503168,
         "abs_error": 1.4571849683231441e-05,
+        "ok": true
+      },
+      {
+        "name": "rate threshold 1 - v3",
+        "printed": 0.5109,
+        "computed": 0.5109321204904511,
+        "abs_error": 3.2120490451093e-05,
+        "ok": true
+      },
+      {
+        "name": "rate threshold 1 - v4",
+        "printed": 0.5084,
+        "computed": 0.5083766665643199,
+        "abs_error": 2.3333435680061854e-05,
+        "ok": true
+      },
+      {
+        "name": "rate threshold 1 - lambda**",
+        "printed": 0.5076,
+        "computed": 0.5076409395111893,
+        "abs_error": 4.093951118921968e-05,
         "ok": true
       },
       {
@@ -171,6 +213,27 @@
         "name": "least depth, pairing regime",
         "printed": 20,
         "computed": 20,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "least depth, oeoee regime",
+        "printed": 19,
+        "computed": 19,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "least depth, v3 regime",
+        "printed": 19,
+        "computed": 19,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "least depth, v4 regime",
+        "printed": 19,
+        "computed": 19,
         "abs_error": 0,
         "ok": true
       },
@@ -218,8 +281,8 @@
       },
       {
         "name": "C(0.55), lambda** regime",
-        "printed": 42,
-        "computed": 42,
+        "printed": 41,
+        "computed": 41,
         "abs_error": 0,
         "ok": true
       },
@@ -347,7 +410,7 @@
     ]
   },
   "classification": {
-    "total_checks": 48,
+    "total_checks": 57,
     "failures": 0,
     "failing_names": [],
     "all_printed_constants_reproduce": true

@@ -35,8 +35,22 @@ HALF = F(1, 2)
 DENSITY = F(2, 3)  # the sub-density target for phi = (5/4)p + q
 A_FLOOR = F(3, 4)  # Theorem 1
 BA_FLOOR = F(13, 16)  # Theorem 2
+C_FLOOR = F(91, 96)  # Theorem 6
+D_FLOOR = F(27, 32)  # Theorem 7
 HULL_MIN = F(95, 112)  # Theorem 4
 RECORD_MU = F(13, 84)  # Bourgain's subconvexity exponent
+
+# 2023--2025 published pairs, and the Sargos D-image of Bourgain.
+# None of these is in the Theorem-4 seed list; all have phi > 95/112.
+NEW_PAIRS: dict[str, tuple[F, F]] = {
+    "trudgian_yang_2023_a": (F(715, 10238), F(7955, 10238)),
+    "trudgian_yang_2023_b": (F(4742, 38463), F(35731, 51284)),
+    "tao_trudgian_yang_2025_a": (F(89, 1282), F(997, 1282)),
+    "tao_trudgian_yang_2025_b": (F(652397, 9713986), F(7599781, 9713986)),
+    "tao_trudgian_yang_2025_c": (F(10769, 351096), F(609317, 702192)),
+    "tao_trudgian_yang_2025_d": (F(89, 3478), F(15327, 17390)),
+    "sargos_d_bourgain": (F(18, 199), F(593, 796)),
+}
 
 # The published pairs.  (0, 1) is the trivial seed; the other four are the
 # Bombieri-Iwaniec line, in the order of the achieved chain.
@@ -62,6 +76,16 @@ def transform_a(p: F, q: F) -> tuple[F, F]:
 
 def transform_b(p: F, q: F) -> tuple[F, F]:
     return q - HALF, p + HALF
+
+
+def transform_c(p: F, q: F) -> tuple[F, F]:
+    d = 12 * (1 + 4 * p)
+    return p / d, (11 * (1 + 4 * p) + q) / d
+
+
+def transform_d(p: F, q: F) -> tuple[F, F]:
+    d = 8 * (5 * p + 3 * q + 2)
+    return (5 * p + q + 2) / d, (29 * p + 21 * q + 10) / d
 
 
 def mu_half(p: F, q: F) -> F:
@@ -117,7 +141,45 @@ def test_ba_image_identity_and_floor():
 
 def test_both_floors_clear_the_density_line():
     # This is the whole point: no process image can reach phi < 2/3.
-    assert BA_FLOOR > A_FLOOR > DENSITY
+    assert C_FLOOR > D_FLOOR > BA_FLOOR > A_FLOOR > DENSITY
+    # The D-floor is one part in 224 below the hull minimum, but it is
+    # attained only at the conjecture point.
+    assert HULL_MIN - D_FLOOR == F(1, 224)
+
+
+def test_c_image_identity_and_floor():
+    for p, q in normalised_pairs():
+        cp, cq = transform_c(p, q)
+        assert phi(cp, cq) == (F(181, 4) * p + q + 11) / (12 * (1 + 4 * p))
+        assert phi(cp, cq) >= C_FLOOR
+    assert phi(*transform_c(HALF, HALF)) == C_FLOOR
+    # Equality only at the trivial pair (1/2, 1/2): any smaller p or
+    # larger q is strict.
+    for i in range(0, 24):
+        p = F(i, 48)
+        assert phi(*transform_c(p, HALF)) > C_FLOOR or p == HALF
+    for j in range(1, 25):
+        assert phi(*transform_c(HALF, HALF + F(j, 48))) > C_FLOOR
+
+
+def test_d_image_identity_and_floor():
+    for p, q in normalised_pairs():
+        dp, dq = transform_d(p, q)
+        assert phi(dp, dq) == (141 * p + 89 * q + 50) / (32 * (5 * p + 3 * q + 2))
+        assert phi(dp, dq) - D_FLOOR == (3 * p + 4 * q - 2) / (
+            16 * (5 * p + 3 * q + 2)
+        )
+        assert phi(dp, dq) >= D_FLOOR
+    assert phi(*transform_d(*CONJECTURE_POINT)) == D_FLOOR
+    for i in range(1, 25):
+        p = F(i, 48)
+        assert phi(*transform_d(p, HALF)) > D_FLOOR
+    for j in range(1, 25):
+        assert phi(*transform_d(F(0), HALF + F(j, 48))) > D_FLOOR
+
+
+def test_sargos_d_of_bourgain_matches_the_named_image():
+    assert transform_d(*SEEDS["bourgain_2017"]) == NEW_PAIRS["sargos_d_bourgain"]
 
 
 # --------------------------------------------------------------------------
@@ -266,3 +328,122 @@ def test_export_note_records_the_barrier():
     text = EXPORT_NOTE.read_text(encoding="utf-8")
     assert "95/112" in text
     assert "3/4" in text
+    assert "91/96" in text
+    assert "27/32" in text
+    assert "tao-trudgian-yang-2025-exponent-pairs" in text
+
+
+def test_2023_2025_pairs_do_not_beat_bourgain():
+    for name, pair in NEW_PAIRS.items():
+        value = phi(*pair)
+        assert value > HULL_MIN, name
+        assert value > DENSITY, name
+    assert phi(*NEW_PAIRS["trudgian_yang_2023_a"]) == F(35395, 40952)
+    assert phi(*NEW_PAIRS["trudgian_yang_2023_b"]) == F(130903, 153852)
+    assert phi(*NEW_PAIRS["tao_trudgian_yang_2025_a"]) == F(4433, 5128)
+    assert min(phi(*pair) for pair in NEW_PAIRS.values()) == F(130903, 153852)
+
+
+# --------------------------------------------------------------------------
+# Theorem 9 / tame companion: leftover threshold and p/2+q.
+# --------------------------------------------------------------------------
+
+TAME_HULL_MIN = F(275, 388)  # (1/2)p + q at B(A(Bourgain))
+TAME_BOURGAIN = F(41, 56)  # the same functional at the Bourgain seed
+TAME_GAP = F(49, 1164)  # TAME_HULL_MIN - 2/3
+
+
+def phi_tame(p: F, q: F) -> F:
+    """PS inversion of v^{3/2}: exponent pair (p, q) gives M^{p/2+q}."""
+    return p / 2 + q
+
+
+def leftover_exponent(alpha: F, beta: F) -> F:
+    """Exponent of the uniform leftover bound n^{alpha(beta-1)}."""
+    return alpha * (beta - 1)
+
+
+def ba_bourgain() -> tuple[F, F]:
+    return transform_b(*transform_a(*SEEDS["bourgain_2017"]))
+
+
+def test_leftover_threshold_is_outer_exponent_one():
+    # Theorem 9: leftover -> 0 iff beta < 1 (alpha > 0).
+    assert leftover_exponent(F(3, 2), F(3, 4)) == F(-3, 8)  # decaying axis
+    assert leftover_exponent(F(3, 2), F(3, 2)) == F(3, 4)  # tame axis
+    assert leftover_exponent(F(3, 2), F(9, 4)) == F(15, 8)  # boxed axis
+    assert leftover_exponent(F(3, 2), F(1)) == 0
+    for beta in (F(1, 4), F(1, 2), F(3, 4), F(99, 100)):
+        assert leftover_exponent(F(3, 2), beta) < 0
+    for beta in (F(101, 100), F(3, 2), F(9, 4), F(3)):
+        assert leftover_exponent(F(3, 2), beta) > 0
+
+
+def test_sublinear_leftover_vanishes_on_a_sample():
+    # alpha = 3/2, beta = 1/2: leftover is ≍ n^{-3/4}.
+    import math
+
+    for n in (10**4, 10**5, 10**6):
+        v = math.isqrt(n**3)  # floor(n^{3/2})
+        leftover = abs(math.sqrt(v) - n**0.75)
+        assert leftover < 2 * n ** (-0.75)
+
+
+def _frac_n32(n: int) -> float:
+    """Exact-identity float for {n^{3/2}} = (n^3 - v^2)/(n^{3/2} + v)."""
+    import math
+
+    v = math.isqrt(n**3)
+    return (n**3 - v * v) / (n**1.5 + v)
+
+
+def test_superlinear_leftover_vanishes_on_perfect_squares():
+    # Theorem 9 is a uniform threshold, not a pointwise size: n = 100^2
+    # makes n^{3/2} an integer, so leftover is exactly 0 even for beta = 3/2.
+    import math
+
+    n = 10**4
+    v = math.isqrt(n**3)
+    assert v * v == n**3
+    assert abs(v**1.5 - n**2.25) == 0.0
+
+
+def test_superlinear_leftover_grows_when_frac_is_bounded():
+    import math
+
+    samples = []
+    for start, stop in (
+        (10**4, 10**4 + 400),
+        (4 * 10**4, 4 * 10**4 + 400),
+        (10**5, 10**5 + 400),
+    ):
+        found = next((n for n in range(start, stop) if _frac_n32(n) > 0.25), None)
+        assert found is not None
+        samples.append(found)
+    leftovers = []
+    for n in samples:
+        v = math.isqrt(n**3)
+        leftover = abs(v**1.5 - n**2.25)
+        assert leftover > 0.2 * n**0.75
+        leftovers.append(leftover)
+    assert leftovers[-1] > leftovers[0]
+
+
+def test_tame_functional_hull_minimum_is_275_over_388():
+    vertices = certified_polytope()
+    smallest = min(phi_tame(*v) for v in vertices)
+    assert smallest == TAME_HULL_MIN
+    assert [v for v in vertices if phi_tame(*v) == smallest] == [ba_bourgain()]
+    assert TAME_HULL_MIN - DENSITY == TAME_GAP
+    assert phi_tame(*SEEDS["bourgain_2017"]) == TAME_BOURGAIN
+    assert TAME_BOURGAIN > TAME_HULL_MIN
+    for pair in NEW_PAIRS.values():
+        assert phi_tame(*pair) > TAME_HULL_MIN
+
+
+def test_export_note_records_the_leftover_threshold():
+    text = EXPORT_NOTE.read_text(encoding="utf-8")
+    assert "leftover threshold" in text
+    assert "275/388" in text
+    assert "49/1164" in text
+    assert "41/56" in text

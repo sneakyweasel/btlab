@@ -1,0 +1,21 @@
+{
+  "id": "tao-trudgian-yang-2025-exponent-pairs",
+  "title": "New exponent pairs, zero density estimates, and zero additive energy estimates: a systematic approach",
+  "authors": ["Terence Tao", "Timothy Trudgian", "Andrew Yang"],
+  "year": 2025,
+  "identifiers": {
+    "arxiv": "2501.16779"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2501.16779"
+  },
+  "problem_area": "exponential-sums",
+  "relevant_concepts": [
+    "four new exponent pairs (Theorem 20)",
+    "Sargos C and D processes recorded as Lemmas 13-14",
+    "Analytic Number Theory Exponent Database"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "arXiv:2501.16779 (25 January 2025). Four new exponent pairs: (89/1282, 997/1282), (652397/9713986, 7599781/9713986), (10769/351096, 609317/702192), (89/3478, 15327/17390). For the two-monomial functional phi = (5/4)p + q of docs/theory/exponent_pair_two_monomial.md the smallest of these is 4433/5128 ~ 0.864, above Bourgain's 95/112. The paper also records the Sargos C and D processes used in Theorems 6-8 of that note."
+}

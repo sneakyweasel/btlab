@@ -1,9 +1,11 @@
 # The \(OEOEE\) production, and the elementary \((OE)^{k-1}OEE\) family
 
 Status: **audited and promoted** (6 September 2026).
-Official unconditional \(\lambda^{**}=0.4891\) (\(V_2+V_3\)).
+Official unconditional \(\lambda^{**}=0.4924\) (\(V_2+\cdots+V_5\)).
 Audit ledgers: [oeoee_audit_ledger.md](oeoee_audit_ledger.md),
-[v3_audit_ledger.md](v3_audit_ledger.md).
+[v3_audit_ledger.md](v3_audit_ledger.md),
+[v4_audit_ledger.md](v4_audit_ledger.md),
+[v5_audit_ledger.md](v5_audit_ledger.md).
 The word \(OEOEE\) was listed in
 [juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
 as "needs localized Paper B depth 2". That label is **wrong**: the
@@ -320,8 +322,9 @@ The right-hand equation is the **ideal depth-two recursion**, root
 |---|---|
 | pairing (named intermediate) | \(0.4480\) |
 | \(+V_2\) (previous \(\lambda^{**}\)) | \(0.4801\) |
-| \(+V_2,V_3\) (current \(\lambda^{**}\)) | \(0.4891\) |
-| \(+V_2,\dots,V_5\) | \(0.4924\) |
+| \(+V_2,V_3\) (named intermediate) | \(0.4891\) |
+| \(+V_2,V_3,V_4\) (named intermediate) | \(0.4916\) |
+| \(+V_2,\dots,V_5\) (current \(\lambda^{**}\)) | \(0.4924\) |
 | whole family | \(0.4927\) |
 | whole family \(+OOEEE\) | \(0.5769\) |
 
@@ -471,7 +474,7 @@ Cauchy–Schwarz ones), \(P^{-9/128}\) (the one-variable case at
 \(V_4\)-start lies in the \(OE\)-fiber of a \(V_3\)-produced element, so
 the net gain is \(\tfrac19c_3=\tfrac1{243}\) at
 \(\rho_4=\tfrac{81}{512}\), giving \(\lambda=0.4916\) with \(V_2,V_3\)
-and \(0.5761\) alongside Appendix C.
+and \(0.5761\) alongside Appendix C. The case constants are Section 13.
 
 ### Census: structure yes, constant no
 
@@ -690,7 +693,214 @@ Measured ratios at \(m'=12,16,20\) are \(0.13,0.35,0.26\) against
 \(+\tfrac1{81}g_A(27t/128)\), root \(0.4891\).
 
 **Status.** Audited (6 September 2026). Classification
-`V3_AUDIT_CONSISTENT`. Official unconditional \(\lambda^{**}\) is now
-the five-term root \(0.4891\). Later \(V_k\) truncations are not
+`V3_AUDIT_CONSISTENT`. The five-term root \(0.4891\) is a named
+intermediate. Official unconditional \(\lambda^{**}\) is the six-term
+root \(0.4916\) of Section 13. The Tao depth stays \(C=19\).
+
+## 13. The \(V_4\) constants
+
+The toolkit is T1–T5 of §11.1. The fiber is
+\(J(m')=[m'^{512/81},(m'+1)^{512/81})\). Write \(Y\) for the number of
+odd \(n\) in \(J(m')\). The \(w_3\)-interval of the fiber is exactly
+the \(w\)-interval of \(OEOEE\):
+\([m'^{8/3},(m'+1)^{8/3})\). The \(w_2\)-interval is
+\([m'^{32/9},(m'+1)^{32/9})\) (the \(w_1\)-interval of \(V_3\)). The
+\(w_1\)-interval is \([m'^{128/27},(m'+1)^{128/27})\) (the \(n\)-interval
+of \(V_3\)).
+
+**Lemma 8 (EXACT — HUMAN PROOF).** For odd \(n\) with
+\(\mathrm{word}_9(n)=OEOEOEOEE\) and \(w_1=\lfloor n^{3/4}\rfloor\),
+\(w_2=\lfloor w_1^{3/4}\rfloor\), \(w_3=\lfloor w_2^{3/4}\rfloor\), the
+chain \(J^2=w_1\), \(J^4=w_2\), \(J^6=w_3\),
+\(J^9=\lfloor w_3^{3/8}\rfloor\) is exact, and
+\(J^9(n)=m'\iff n\in[m'^{512/81},(m'+1)^{512/81})\). No exceptional set.
+
+**Lemma 9 (EXACT — HUMAN PROOF).** The eight later letters split across
+four layers; each is \(\psi\) of a smooth monomial of its own layer.
+
+**Proposition 11 (EXACT — HUMAN PROOF).**
+\(|\mathcal O(m')|=\tfrac1{256}\#\{n\text{ odd}\in J(m')\}
++O(|J(m')|\,P^{-9/128+\varepsilon})\). The six cases below recompute
+from T1–T5; binding saving \(P^{-9/128}=m'^{-4/9}\) stands.
+
+**Proposition 12 (EXACT — HUMAN PROOF).** Adding the family changes
+the pairing-plus-\(OEOEE\)-plus-\(V_3\) recursion by exactly
+\(+\tfrac1{243}g_A(81t/512)\). The new root is \(0.4916\).
+
+### 13.2 Sizes
+
+\(Y\ge\tfrac{256}{81}m'^{431/81}-1\);
+\(\tfrac{128}{27}m'^{101/27}-1\le L_1\le\tfrac{128}{27}(m'+1)^{101/27}+1\);
+\(L_2\) is the §12.2 \(L_1\) envelope \(\tfrac{32}9 m'^{23/9}\);
+\(L_3\) is the §11.2 envelope \(\tfrac83 m'^{5/3}\pm 1\).
+
+### 13.3 Case 1 (\(\psi_1\) present)
+
+Half B at the \(w_1\) layer:
+\(\delta_q=q m'^{-128/81}\),
+\(V_q\le\tfrac{128q}{27}(m'+1)^{175/81}\). Then (T2)+(T4) give
+
+\[
+\sum_{w_1}|S_q|
+\le\tfrac{1024}{81}q\,m'^{101/27}+12.08\,m'^{101/27}\bigl(1+\tfrac{128}{81}\log m'\bigr).
+\]
+
+Both signs through (T1) with truncation \(R\), pad \(64\) (exact
+\(4096/81=50.57\)), and \(R=0.222\,m'^{64/81}\) yield
+\(\le 28.4\,m'^{367/81}=9.0\,Y\,m'^{-64/81}\). Note
+\(m'^{-64/81}=P^{-1/8}\).
+
+### 13.4 Case 2 (\(\Lambda_2\) present, \(\psi_1\) absent)
+
+Section 12 Case 1 transferred by the \(n\)-layer weight
+\(\tfrac43 m'^{128/81}\):
+\(\le 9.1\,Y\,m'^{-16/27}\). Note \(m'^{-16/27}=P^{-3/32}\).
+
+### 13.5 Case 3 (\(\Lambda_4\) present, \(\psi_1\) and \(\Lambda_2\) absent)
+
+Section 12 Case 2 transferred by the same weight:
+\(\le 6.3\,Y\,m'^{-16/27}\), again \(P^{-3/32}\).
+
+The two pairing cases (only \(\Lambda_1\), only \(\Lambda_3\)) are (T5)
+and save a higher power.
+
+### 13.6 Case 5 (only \(w_3\)-factors)
+
+Half A of §11.4, transferred twice (the \(V_3\) Case 4 weight, then
+one more \(OE\) layer):
+\(\le 6.3\,Y\,m'^{-4/9}\). Note \(m'^{-4/9}=P^{-9/128}\). This is
+the binding case; it matches the Section 11 law
+\(\tfrac16(\tfrac34)^{3}=\tfrac9{128}\).
+
+### 13.7 The bound
+
+One hundred twenty-eight Case-1 terms sit at \(P^{-1/8}\);
+sixty-four Case-2 and thirty-two Case-3 terms sit at \(P^{-3/32}\);
+eight Case-5 terms sit at the binding power.
+For \(m'\ge 16\) the extra factors \(m'^{-28/81}\) and \(m'^{-4/27}\)
+put the assembly at \(1008\le 1600\):
+
+\[
+\bigl|256|\mathcal O(m')|-Y\bigr|\ \le\ 1600\,Y\,m'^{-4/9}(1+\log m')^2,
+\qquad
+|\mathcal O(m')|=\tfrac{Y}{256}\bigl(1+\theta\bigr),\ \
+|\theta|\le 1600\,m'^{-4/9}(1+\log m')^2 .
+\]
+
+Measured ratios at \(m'=4,6,8\) are \(1.64,0.23,0.60\) against
+\(1600\). Combined with Proposition 12 this is
+\(+\tfrac1{243}g_A(81t/512)\), root \(0.4916\).
+
+**Status.** Audited (7 September 2026). Classification
+`V4_AUDIT_CONSISTENT`. The six-term root \(0.4916\) is a named
+intermediate. Official unconditional \(\lambda^{**}\) is the
+seven-term root \(0.4924\) of Section 14. The Tao depth stays \(C=19\).
+
+## 14. The \(V_5\) constants
+
+The toolkit is T1–T5 of §11.1. The fiber is
+\(J(m')=[m'^{2048/243},(m'+1)^{2048/243})\). Write \(Y\) for the number of
+odd \(n\) in \(J(m')\). The \(w_4\)-interval of the fiber is exactly
+the \(w\)-interval of \(OEOEE\):
+\([m'^{8/3},(m'+1)^{8/3})\). The \(w_3\)-interval is
+\([m'^{32/9},(m'+1)^{32/9})\) (the \(w_1\)-interval of \(V_3\)). The
+\(w_2\)-interval is \([m'^{128/27},(m'+1)^{128/27})\) (the \(w_1\)-interval
+of \(V_4\)). The \(w_1\)-interval is
+\([m'^{512/81},(m'+1)^{512/81})\) (the \(n\)-interval of \(V_4\)).
+
+**Lemma 10 (EXACT — HUMAN PROOF).** For odd \(n\) with
+\(\mathrm{word}_{11}(n)=OEOEOEOEOEE\) and \(w_1=\lfloor n^{3/4}\rfloor\),
+\(w_2=\lfloor w_1^{3/4}\rfloor\), \(w_3=\lfloor w_2^{3/4}\rfloor\),
+\(w_4=\lfloor w_3^{3/4}\rfloor\), the
+chain \(J^2=w_1\), \(J^4=w_2\), \(J^6=w_3\), \(J^8=w_4\),
+\(J^{11}=\lfloor w_4^{3/8}\rfloor\) is exact, and
+\(J^{11}(n)=m'\iff n\in[m'^{2048/243},(m'+1)^{2048/243})\). No exceptional set.
+
+**Lemma 11 (EXACT — HUMAN PROOF).** The ten later letters split across
+five layers; each is \(\psi\) of a smooth monomial of its own layer.
+
+**Proposition 13 (EXACT — HUMAN PROOF).**
+\(|\mathcal O(m')|=\tfrac1{1024}\#\{n\text{ odd}\in J(m')\}
++O(|J(m')|\,P^{-27/512+\varepsilon})\). The cases below recompute
+from T1–T5; binding saving \(P^{-27/512}=m'^{-4/9}\) stands.
+
+**Proposition 14 (EXACT — HUMAN PROOF).** Adding the family changes
+the pairing-plus-\(OEOEE\)-plus-\(V_3\)-plus-\(V_4\) recursion by exactly
+\(+\tfrac1{729}g_A(243t/2048)\). The new root is \(0.4924\).
+
+### 14.2 Sizes
+
+\(Y\ge\tfrac{1024}{243}m'^{1805/243}-1\);
+\(\tfrac{512}{81}m'^{431/81}-1\le L_1\le\tfrac{512}{81}(m'+1)^{431/81}+1\);
+\(L_2\) is the §13.2 \(L_1\) envelope \(\tfrac{128}{27}m'^{101/27}\);
+\(L_3\) is the §12.2 \(L_1\) envelope \(\tfrac{32}9 m'^{23/9}\);
+\(L_4\) is the §11.2 envelope \(\tfrac83 m'^{5/3}\pm 1\).
+
+### 14.3 Case 1 (\(\psi_1\) present)
+
+Half B at the \(w_1\) layer:
+\(\delta_q=q m'^{-512/243}\),
+\(V_q\le\tfrac{512q}{81}(m'+1)^{781/243}\). Then (T2)+(T4) give
+
+\[
+\sum_{w_1}|S_q|
+\le\tfrac{4096}{243}q\,m'^{431/81}+16.10\,m'^{431/81}\bigl(1+\tfrac{512}{243}\log m'\bigr).
+\]
+
+Both signs through (T1) with truncation \(R\), pad \(88\) (exact
+\(16384/243=67.42\)), and \(R=0.219\,m'^{256/243}\) yield
+\(\le 38.6\,m'^{1549/243}=9.2\,Y\,m'^{-256/243}\). Note
+\(m'^{-256/243}=P^{-1/8}\).
+
+### 14.4 Case 2 (\(\Lambda_2\) present, \(\psi_1\) absent)
+
+Section 13 Case 1 transferred by the \(n\)-layer weight
+\(\tfrac43 m'^{512/243}\):
+\(\le 9.0\,Y\,m'^{-64/81}\). Note \(m'^{-64/81}=P^{-3/32}\).
+
+### 14.5 Case 3 (\(\Lambda_4\) present, \(\psi_1\) and \(\Lambda_2\) absent)
+
+Section 13 Case 2 transferred by the same weight:
+\(\le 9.1\,Y\,m'^{-16/27}\). Note \(m'^{-16/27}=P^{-9/128}\).
+
+### 14.6 Case 4 (\(\Lambda_6\) present, \(\psi_1,\Lambda_2,\Lambda_4\) absent)
+
+Section 13 Case 3 transferred by the same weight:
+\(\le 6.3\,Y\,m'^{-16/27}\), again \(P^{-9/128}\).
+
+The pairing cases (only \(\Lambda_1\), only \(\Lambda_3\), only
+\(\Lambda_5\)) are (T5) and save a higher power.
+
+### 14.7 Case 6 (only \(w_4\)-factors)
+
+Half A of §11.4, transferred three times (the \(V_4\) Case 5 weight,
+then one more \(OE\) layer):
+\(\le 6.3\,Y\,m'^{-4/9}\). Note \(m'^{-4/9}=P^{-27/512}\). This is
+the binding case; it matches the Section 11 law
+\(\tfrac16(\tfrac34)^{4}=\tfrac{27}{512}\).
+
+### 14.8 The bound
+
+Five hundred twelve Case-1 terms sit at \(P^{-1/8}\);
+two hundred fifty-six Case-2 terms sit at \(P^{-3/32}\);
+one hundred twenty-eight Case-3 and sixty-four Case-4 terms sit at
+\(P^{-9/128}\); eight Case-6 terms sit at the binding power.
+For \(m'\ge16\) the extra factors \(m'^{-148/243}\), \(m'^{-28/81}\)
+and \(m'^{-4/27}\) put the assembly at \(2844\le 4000\):
+
+\[
+\bigl|1024|\mathcal O(m')|-Y\bigr|\ \le\ 4000\,Y\,m'^{-4/9}(1+\log m')^2,
+\qquad
+|\mathcal O(m')|=\tfrac{Y}{1024}\bigl(1+\theta\bigr),\ \
+|\theta|\le 4000\,m'^{-4/9}(1+\log m')^2 .
+\]
+
+Measured ratios at \(m'=2,3,4\) are \(1.38,0.70,2.02\) against
+\(4000\). Combined with Proposition 14 this is
+\(+\tfrac1{729}g_A(243t/2048)\), root \(0.4924\).
+
+**Status.** Audited (7 September 2026). Classification
+`V5_AUDIT_CONSISTENT`. Official unconditional \(\lambda^{**}\) is now
+the seven-term root \(0.4924\). Later \(V_k\) truncations are not
 opened here. The Tao depth stays \(C=19\)
-(\(e(19)=0.527>0.5109>e(18)=0.480\)).
+(\(e(19)=0.527>0.5076>e(18)=0.480\)).

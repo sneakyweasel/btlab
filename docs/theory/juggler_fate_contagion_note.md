@@ -17,7 +17,7 @@ at least like a fixed power of \(\log x\),
 \[
 \sum_{\substack{n\le x\\ \mathrm{fate}(n)=\varphi}}\frac1n
 \;\ge\; c_\varphi\,(\log x)^{\lambda}
-\qquad(\lambda<\lambda^{**}=0.4891\ldots),
+\qquad(\lambda<\lambda^{**}=0.4924\ldots),
 \]
 whereas the full set of integers has \(\sum_{n\le x}1/n\sim\log x\).
 (Section 7 raises the exponent to \(\lambda^{***}=0.5392\ldots\) by
@@ -583,11 +583,12 @@ let \(\lambda_{\mathrm{pair}}\) be the pairing-only root of
 \(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}+\tfrac29(\tfrac34)^{\lambda}=1\),
 and let \(\lambda^{**}\) be the root of
 \[
-2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}+\tfrac1{27}\bigl(\tfrac9{32}\bigr)^{\lambda}+\tfrac1{81}\bigl(\tfrac{27}{128}\bigr)^{\lambda}=1 .
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}+\tfrac1{27}\bigl(\tfrac9{32}\bigr)^{\lambda}+\tfrac1{81}\bigl(\tfrac{27}{128}\bigr)^{\lambda}+\tfrac1{243}\bigl(\tfrac{81}{512}\bigr)^{\lambda}+\tfrac1{729}\bigl(\tfrac{243}{2048}\bigr)^{\lambda}=1 .
 \]
 Numerically \(\lambda^*=0.3774\ldots\), \(\lambda_{\mathrm{pair}}=0.4480\ldots\),
-the \(OEOEE\) truncation is \(0.4801\ldots\),
-and \(\lambda^{**}=0.4891\ldots\).
+the \(OEOEE\) truncation is \(0.4801\ldots\), the \(V_3\) truncation is
+\(0.4891\ldots\), the \(V_4\) truncation is \(0.4916\ldots\), and
+\(\lambda^{**}=0.4924\ldots\).
 (The pairing inequality (4.2) is unchanged, so that §7 can still add
 \(OOEEE\) on top of it.)
 (For comparison: the adversarial sweep \(1/7\), without pairing, gave
@@ -609,29 +610,31 @@ The same conclusion for \(\lambda<\lambda^*\) uses only Proposition 3.4
 (no sweep lemma).
 
 *Proof.* Set
-\(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda+\tfrac1{81}(\tfrac{27}{128})^\lambda-1>0\).
+\(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda+\tfrac1{81}(\tfrac{27}{128})^\lambda+\tfrac1{243}(\tfrac{81}{512})^\lambda+\tfrac1{729}(\tfrac{243}{2048})^\lambda-1>0\).
 Inequality (4.2) is the pairing inequality; the elementary \(OEOEE\)
 production ([juggler_oeoee_production.md](juggler_oeoee_production.md),
-Proposition 4) adds \(+\tfrac1{27}g_A(9t/32)\), and the \(V_3\)
-production (Proposition 9) adds \(+\tfrac1{81}g_A(27t/128)\). By Lemma 4.1 and the
+Proposition 4) adds \(+\tfrac1{27}g_A(9t/32)\), the \(V_3\)
+production (Proposition 9) adds \(+\tfrac1{81}g_A(27t/128)\), the
+\(V_4\) production (Proposition 12) adds \(+\tfrac1{243}g_A(81t/512)\),
+and the \(V_5\) production (Proposition 14) adds \(+\tfrac1{729}g_A(243t/2048)\). By Lemma 4.1 and the
 decay of the errors, choose \(t_1\) with
-\(\tfrac{27}{128}t_1\ge 4\log(m+1)\) such that for all \(t\ge t_1\) the
+\(\tfrac{243}{2048}t_1\ge 4\log(m+1)\) such that for all \(t\ge t_1\) the
 weighted errors are at most \(\zeta/3\), the inhomogeneous error is at
 most \(\tfrac{2\zeta}3\,c_A\), and all coefficients are nonnegative.
 Put \(K=c_At_1^{-\lambda}\). Claim: \(g_A(t)\ge Kt^\lambda\) for all
-\(t\ge\tfrac{27}{128}t_1\). For \(t\in[\tfrac{27}{128}t_1,t_1]\) this is
+\(t\ge\tfrac{243}{2048}t_1\). For \(t\in[\tfrac{243}{2048}t_1,t_1]\) this is
 Lemma 4.1 (\(Kt^\lambda\le c_A\)). The first induction step covers up
 to \(t_1/(\tfrac34)=\tfrac43 t_1\), at which
-\(\tfrac{27}{128}t=\tfrac9{32}t_1\). Suppose the bound holds on
-\([\tfrac{27}{128}t_1,T]\) with \(T\ge t_1\) and let
+\(\tfrac{243}{2048}t=\tfrac{81}{512}t_1\). Suppose the bound holds on
+\([\tfrac{243}{2048}t_1,T]\) with \(T\ge t_1\) and let
 \(t\in(T,\tfrac43 T]\). Then
-\(t/2,\ 3t/8,\ 3t/4,\ 9t/32,\ 27t/128\in[\tfrac{27}{128}t_1,T]\), so
+\(t/2,\ 3t/8,\ 3t/4,\ 9t/32,\ 27t/128,\ 81t/512,\ 243t/2048\in[\tfrac{243}{2048}t_1,T]\), so
 \[
 g_A(t)\ \ge\ Kt^\lambda\Bigl[(1+\zeta)-\tfrac\zeta3\Bigr]-\varepsilon(t)
 \ \ge\ Kt^\lambda\Bigl(1+\tfrac{2\zeta}3\Bigr)-\tfrac{2\zeta}3c_A\ \ge\ Kt^\lambda ,
 \]
 using \(Kt^\lambda\ge Kt_1^\lambda=c_A\). Induction on the intervals
-\((\tfrac43)^NT\) covers all \(t\ge\tfrac{27}{128}t_1\). Finally
+\((\tfrac43)^NT\) covers all \(t\ge\tfrac{243}{2048}t_1\). Finally
 \(L_A(x)\ge g_A(\log x)\). For \(\lambda<\lambda^*\) run the same
 argument with (4.1). \(\square\)
 
@@ -797,14 +800,14 @@ starts down to a fixed bound.
 fibers \(0.328\) at \(m=1\,003\,635\) (\(\alpha_m\approx\tfrac13\), the
 three-cluster case), and every fiber with \(G_m/H_m<\tfrac17\) flagged
 bad by the \(\alpha\)-criterion. Lemma 3.1′ gives \(\tfrac13H_m-2\)
-on monotone fibers; the remaining depth-two gap \(0.4891\to 0.4927\)
+on monotone fibers; the remaining depth-two gap \(0.4924\to 0.4927\)
 is the later truncations of the elementary family
 \(V_k=(OE)^{k-1}OEE\) (the \(V_2=OEOEE\) rung is now Theorem 4.2).
 The rest-average attack stays PARK: a fixed low-even seed mixes,
 infinite planting does not yield a coefficient, and that reading is
 not this gap.
 
-The \(0.4801\to 0.4927\) gap is only one of the two levers, and it is
+The \(0.4924\to 0.4927\) gap is only one of the two levers, and it is
 the smaller one. Reading the §4 recursion as a transfer matrix on the
 backward tree —
 [juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
@@ -1146,7 +1149,7 @@ because \(OOEEE\) is a third-letter production. Further gains from
 \(OOOEE\) and \(OOEOE\) on even blocks are closed (§7.4): those
 fibers have length \(P^{5/32}\), below the threshold of Theorem 4.11,
 and the kernel theorem does not localize to them. The remaining
-depth-two gap \(0.4801\to 0.4927\) is the later \(V_k\) truncations
+depth-two gap \(0.4924\to 0.4927\) is the later \(V_k\) truncations
 of the elementary family; rest-average stays PARK.
 
 *What is unchanged.* Proposition 7.1 is a statement about consecutive

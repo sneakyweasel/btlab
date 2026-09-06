@@ -9,12 +9,13 @@ The *bad* words of length ``d`` are those whose walk never drops to ``-L``.
 
 * ``chernoff_exponent(C)``: with ``d = C L`` the fair-coin probability of a bad
   word is at most ``(log(2y)/log N0)^{-e(C)}``, ``e(C) = C D(p_C || 1/2)/ln 2``,
-  ``p_C = (1 - 1/C)/log2(3)``.  The contagion exponent ``lambda** = 0.4891``
-  (pairing plus OEOEE plus V_3, ``block_third_plus_oeoee_v3``)
-  requires ``e > 1 - lambda** = 0.5109``; ``C = 19`` is still the least
-  such integer.  The OEOEE truncation (``block_third_plus_oeoee``,
-  root 0.4801) needed ``e > 0.5199``; pairing alone needs ``e > 0.5520``
-  and ``C = 20``.
+  ``p_C = (1 - 1/C)/log2(3)``.  The contagion exponent ``lambda** = 0.4924``
+  (pairing plus OEOEE plus V_3 plus V_4 plus V_5, ``block_third_plus_oeoee_v5``)
+  requires ``e > 1 - lambda** = 0.5076``; ``C = 19`` is still the least
+  such integer.  The V_4 truncation (``block_third_plus_oeoee_v4``,
+  root 0.4916) needed ``e > 0.5084``; the V_3 truncation needed
+  ``e > 0.5109``; the OEOEE truncation needed ``e > 0.5199``; pairing
+  alone needs ``e > 0.5520`` and ``C = 20``.
 * ``bad_word_probability(L, d)``: the exact fair-coin probability by dynamic
   programming (the Chernoff bound is loose).
 * ``required_depth(y, N0, e)``: the least ``d`` with exact bad probability
@@ -37,8 +38,12 @@ from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
 DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "tao_reduction"
 
 LOG2_3 = math.log2(3.0)
-LAMBDA_STARSTAR = lambda_root(RECURSIONS["block_third_plus_oeoee_v3"])
+LAMBDA_STARSTAR = lambda_root(RECURSIONS["block_third_plus_oeoee_v5"])
 REQUIRED_RATE = 1.0 - LAMBDA_STARSTAR  # e must exceed this (elementary contagion exponent)
+LAMBDA_V4 = lambda_root(RECURSIONS["block_third_plus_oeoee_v4"])
+REQUIRED_RATE_V4 = 1.0 - LAMBDA_V4
+LAMBDA_V3 = lambda_root(RECURSIONS["block_third_plus_oeoee_v3"])
+REQUIRED_RATE_V3 = 1.0 - LAMBDA_V3
 LAMBDA_OEOEE = lambda_root(RECURSIONS["block_third_plus_oeoee"])
 REQUIRED_RATE_OEOEE = 1.0 - LAMBDA_OEOEE
 LAMBDA_PAIRING = lambda_root(RECURSIONS["block_average_plus_third"])

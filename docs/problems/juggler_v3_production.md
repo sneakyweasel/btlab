@@ -121,9 +121,11 @@ a named intermediate. \(\lambda^{***}=0.5392\) unchanged.
 
 ## Open questions
 
-Later truncations of \(V_k\) (\(V_4=OEOEOEOEE\) and after) are not
-opened here. Rest-average stays PARK. This branch does not remove
-\(\log\log y\) depth.
+The \(V_4=OEOEOEOEE\) truncation is now done
+([juggler_v4_production.md](juggler_v4_production.md)), and so is
+\(V_5\) ([juggler_v5_production.md](juggler_v5_production.md)). Later
+truncations (\(V_6\) and after) are not opened here. Rest-average
+stays PARK. This branch does not remove \(\log\log y\) depth.
 
 ## Decision
 
