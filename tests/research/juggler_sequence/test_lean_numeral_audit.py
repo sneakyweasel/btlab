@@ -431,3 +431,46 @@ def test_the_paper_says_one_exponent_does_both_jobs() -> None:
     assert "`decoration_budget.level1_kernel_k_spread`" in text
     for figure in ("0.4771", "0.584", "2.32", "2.77"):
         assert figure in text, figure
+
+
+# --- at most one, not none ---
+
+
+def test_the_drift_window_holds_at_most_one_and_the_density_is_measured() -> None:
+    """1/c' < 2 gives at most one odd integer, with density 1/(2c') -- never certainly none."""
+    from research.juggler_sequence import decoration_budget as DB
+    for P, want in ((10**4, 0.4309), (10**6, 0.3732)):
+        r = DB.level1_drift_window_occupancy(P)
+        assert r["holds_at_most_one"] and r["window_length"] < 2.0
+        assert abs(r["predicted_occupancy"] - want) < 5e-4
+        assert abs(r["counted_occupancy"] - r["predicted_occupancy"]) < 1e-3
+        assert r["predicted_occupancy"] > 0.0
+        assert r["ever_holds_none_for_certain"] is False
+    # the density is 1/(2c') and falls only like n^(-1/32)
+    a = DB.level1_drift_window_occupancy(10**4)["predicted_occupancy"]
+    b = DB.level1_drift_window_occupancy(10**8)["predicted_occupancy"]
+    assert 1.0 < a / b < 1.4
+
+
+def test_two_c_prime_at_P0_is_four_point_six_not_three_point_four() -> None:
+    """A figure I quoted from interpolation; the exponent is n^(1/32) and it is 4.615."""
+    from research.juggler_sequence import decoration_budget as DB
+    from research.juggler_sequence import p0_certificate as PC
+    P0 = PC.certificate()["P0"]
+    c = DB.level1_kernel_condition(P0)
+    assert abs(c["two_c_prime"] - 4.615) < 5e-3
+    assert abs(1.0 / c["two_c_prime"] - 0.2167) < 5e-4      # the occupancy at P_0
+    assert c["two_c_prime"] < 5.0                            # a factor under five, not ten
+
+
+def test_the_paper_records_the_erratum_and_answers_the_size_question() -> None:
+    text = A.paper_text()
+    assert "at most one, not none" in text
+    assert "so it contains no integer at all" not in text.split("> *Erratum")[0]
+    assert "it holds *at most one*" in text
+    assert "window with one term is not a sum" in text
+    assert "nothing printed depends on how much larger than" in text
+    assert "it exceeds it by a factor under five" in text
+    assert "`decoration_budget.level1_drift_window_occupancy`" in text
+    for figure in ("0.43", "0.37", "0.22", "4.62", "2.32"):
+        assert figure in text, figure

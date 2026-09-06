@@ -4961,3 +4961,17 @@ the same order, which is where the bound's same-order pair comes from.
 Probe: `lemma_6_2_part_ii_leading_term`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+### And the guard on that sentence fired
+
+Rewriting the drift-window sentence rewrapped it, and
+`test_paper_states_what_the_level_one_kernel_is` pins the phrase "finer than the lattice it is
+supposed to sit on" as a contiguous string. The rewrap put a line break inside it. Nothing was
+wrong with the prose; the guard was watching the line, not the sentence.
+
+Rewrapped so the phrase is contiguous again, rather than loosening the guard. A pinned phrase
+that survives only until someone reflows a paragraph is a weak guard, but the alternative --
+matching across line breaks -- makes every such test a regex, and the manuscript wraps at
+seventy-two columns by hand. The cheaper discipline is to keep pinned phrases off line
+boundaries, and this is the second time this session that a wrap has broken a check (the other
+was `coincidence of a feasible choice`, in A.6).

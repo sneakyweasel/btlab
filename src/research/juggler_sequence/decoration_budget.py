@@ -944,6 +944,43 @@ def level1_kernel_k_spread(p: int, ks: tuple[int, ...] = (1, 2, 3, 4, 5, 6, 7, 8
     }
 
 
+
+def level1_drift_window_occupancy(p: int, k: int = 1, span: float = 20000.0) -> dict[str, Any]:
+    """How many drift-1 windows actually hold a summand, against "none at all".
+
+    The window on which ``c`` moves by less than 1 has length ``1/c'``, and the manuscript
+    read that as "shorter than the spacing of the summation variable, so it contains no
+    integer at all".  Shorter than the spacing gives *at most one*, not none: over odd ``n``
+    the spacing is 2, so a window of length ``1/c' < 2`` holds one odd integer with density
+    ``(1/c')/2 = 1/(2c')`` and none otherwise.  That density is ``0.43`` at ``P = 10^4`` and
+    ``0.22`` at ``P_0``; it is never zero, and it falls only like ``n^(-1/32)``.
+
+    The conclusion the sentence supports is untouched.  What Lemma 3.7 needs is a window with
+    *several* summands to expand over; at most one is already fatal, and "finer than the
+    lattice" is the right description of that.  Only "no integer at all" is too strong.
+
+    Tiles the block with consecutive windows and counts, so the density is measured and not
+    assumed.
+    """
+    c_prime = (891.0 * k / 1024.0) * p ** (1.0 / 32.0)
+    length = 1.0 / c_prime
+    n_win = int(span / length)
+    hits = 0
+    x = float(p)
+    for _ in range(n_win):
+        lo, hi = x, x + length
+        m = 2 * int((lo - 1) // 2) + 1
+        while m < lo:
+            m += 2
+        hits += 1 if m < hi else 0
+        x = hi
+    return {"P": p, "k": k, "c_prime": c_prime, "two_c_prime": 2.0 * c_prime,
+            "window_length": length, "lattice_spacing": 2,
+            "predicted_occupancy": length / 2.0, "counted_occupancy": hits / n_win,
+            "windows": n_win, "holds_at_most_one": length < 2.0,
+            "ever_holds_none_for_certain": False}
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

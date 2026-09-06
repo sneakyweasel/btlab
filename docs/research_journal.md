@@ -35362,6 +35362,10 @@ What was learned
   density of occupied windows is 1/(2c') and never zero
 - an exponent of 1/32 is small enough that eyeballing a growth curve is unsafe,
   which is the second time this tick's arithmetic has caught me
+- and rewriting the sentence rewrapped it, breaking a guard that pins
+  "finer than the lattice it is supposed to sit on" as a contiguous string.
+  Second wrap-broken check this session; pinned phrases want to sit off line
+  boundaries, since the manuscript wraps at seventy-two columns by hand
 Strongest theorem
 - a drift-1 window has length 1/c' < 2 and holds at most one odd integer, with
   density exactly 1/(2c'), reproduced by direct count to four figures at three P

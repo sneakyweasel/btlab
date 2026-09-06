@@ -5441,11 +5441,38 @@ nothing else.
 
 That also says what the drift threshold means, which is more than that
 an interval fails to exist. The window on which \(c\) moves by less
-than \(1\) has length \(\asymp1/c'\asymp P^{-1/32}/k\): shorter than
-the spacing of the summation variable, so it contains no integer at
-all. A coefficient exponent above \(1\) is exactly the statement that
-the shifted window is finer than the lattice it is supposed to sit on,
-and that is why no amount of care with Lemma 3.7 recovers it.
+than \(1\) has length \(\asymp1/c'\asymp P^{-1/32}/k\), shorter than
+the spacing \(2\) of the summation variable, so it holds *at most one*
+odd integer. A coefficient exponent above \(1\) is exactly the
+statement that the shifted window is
+finer than the lattice it is supposed to sit on, and that is why no
+amount of care with Lemma 3.7 recovers it: what that lemma expands is
+a sum over a window, and a window with one term is not a sum.
+
+> *Erratum (at most one, not none).* This read "so it contains no
+> integer at all", which is stronger than the length gives and stronger
+> than the argument needs. A window of length \(1/c'<2\) laid on a
+> lattice of spacing \(2\) holds one point with density \(1/(2c')\) and
+> none otherwise --- \(0.43\) at \(P=10^{4}\), \(0.37\) at
+> \(10^{6}\), \(0.22\) at \(P_0\) --- and the density falls only like
+> \(n^{-1/32}\), so it is never zero. Tiling the block and counting
+> reproduces \(1/(2c')\) to four figures
+> (`decoration_budget.level1_drift_window_occupancy`). The conclusion
+> is unaffected: at most one summand per window is already fatal to
+> Lemma 3.7, and that is what "finer than the lattice" says.
+>
+> *And nothing printed depends on how much larger than \(1\) the drift
+> is.* The condition enters as the binary \(2c'>1\), which is
+> window-length against lattice-spacing; no constant anywhere in
+> Sections 4--7 carries \(c'\) beyond that. What grows with \(c'\) is
+> the occupancy \(1/(2c')\), which describes the situation rather than
+> bounding anything. Worth stating because the margin is thin and
+> slow: \(2c'=\tfrac{891k}{512}n^{1/32}\) is \(2.32\) at \(10^{4}\),
+> \(4.62\) at \(P_0\), and reaches \(10\) only near
+> \(2\cdot10^{24}\). A reader who assumed the drift condition was
+> comfortable at \(P_0\) because the exponent exceeds \(1\) would be
+> assuming the wrong thing; it exceeds it by a factor under five, and
+> the argument is built so that this does not matter.
 
 *And the same drift is what makes the sum cancel.* The two readings of
 \(c'\gg1\) point opposite ways, and only the first is stated above.

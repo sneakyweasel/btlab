@@ -646,6 +646,15 @@ def _kernel_spread_ok(fn) -> bool:
             and abs(c["two_c_prime"] - 2.321) < 5e-3)
 
 
+def _occupancy_ok(fn) -> bool:
+    """The counted occupancy is 1/(2c'), and a window holds at most one point."""
+    r = fn(10**4)
+    return (r["holds_at_most_one"] and r["window_length"] < 2.0
+            and abs(r["counted_occupancy"] - r["predicted_occupancy"]) < 1e-3
+            and abs(r["predicted_occupancy"] - 0.4309) < 5e-4
+            and r["ever_holds_none_for_certain"] is False)
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -683,6 +692,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`decoration_budget.level1_kernel_k_spread`)",
      "the kernel's k-spread, and that its condition has no crossover",
      _kernel_spread_ok),
+    ("decoration_budget", "level1_drift_window_occupancy",
+     "(`decoration_budget.level1_drift_window_occupancy`)",
+     "the drift-1 window holds at most one point, with density 1/(2c')",
+     _occupancy_ok),
 )
 
 
