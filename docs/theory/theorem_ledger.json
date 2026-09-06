@@ -2103,6 +2103,8 @@
   "statement": "for Γ_NP, the set of integer controls w such that E_{n-1}(T_w s) lies in a fixed integer interval [lo, hi] is consecutive: if w1 and w2 satisfy the bounds and w1 ≤ w ≤ w2 then w does too; this is energy_step plus q>0, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "energy_control_interval",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_ext_feasibility.py"
   ],
@@ -3324,6 +3326,8 @@
   "statement": "If n and m realize the same finite Juggler word w and n ≤ m, then the image of n after w is at most the image of m after w.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/Itinerary.lean",
+  "decl": "image_monotone_of_follows",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],

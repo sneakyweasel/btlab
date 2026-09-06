@@ -2196,47 +2196,6 @@
     {
       "candidates": [
         {
-          "decl": "energy_control_interval",
-          "line": 202,
-          "score": 0.667,
-          "trust": "kernel"
-        },
-        {
-          "decl": "energy_step_state",
-          "line": 142,
-          "score": 0.133,
-          "trust": "kernel"
-        },
-        {
-          "decl": "energy_zero",
-          "line": 89,
-          "score": 0.067,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "energy",
-          "line": 86,
-          "score": 0.071
-        },
-        {
-          "decl": "applyA",
-          "line": 364,
-          "score": 0.056
-        }
-      ],
-      "id": "OST-np-energy-ext-interval",
-      "in_file": 49,
-      "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [],
-      "statement": "for \u0393_NP, the set of integer controls w such that E_{n-1}(T_w s) lies in a fixed integer interval [lo, hi] is consecutive: if w1 and w2 satisfy the bounds and w1 \u2264 w \u2264 w2 then w does too; this is energy_step plus q>0, not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
           "decl": "doubledTrit_reach_one",
           "line": 76,
           "score": 0.4,
@@ -3396,51 +3355,10 @@
         }
       ],
       "id": "J-itinerary-semantics",
-      "in_file": 28,
+      "in_file": 27,
       "lean": "Problems/Juggler/Itinerary.lean",
       "names_own": [],
       "statement": "For every natural n and finite parity itinerary w, follows n w if and only if the actual length-|w| Juggler itinerary of n equals w. The itinerary image equals the |w|-fold iterate, and images and realization compose under word concatenation."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "image_word",
-          "line": 112,
-          "score": 0.286,
-          "trust": "kernel"
-        },
-        {
-          "decl": "image_eq_iterate",
-          "line": 105,
-          "score": 0.125,
-          "trust": "kernel"
-        },
-        {
-          "decl": "image_append",
-          "line": 115,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "image",
-          "line": 36,
-          "score": 0.182
-        },
-        {
-          "decl": "follows",
-          "line": 30,
-          "score": 0.083
-        }
-      ],
-      "id": "J-fixed-itinerary-image-monotone",
-      "in_file": 28,
-      "lean": "Problems/Juggler/Itinerary.lean",
-      "names_own": [],
-      "statement": "If n and m realize the same finite Juggler word w and n \u2264 m, then the image of n after w is at most the image of m after w."
     },
     {
       "candidates": [
@@ -5378,6 +5296,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 136,
-  "worth_reviewing": 22
+  "unresolved": 134,
+  "worth_reviewing": 20
 }
