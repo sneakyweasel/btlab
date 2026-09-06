@@ -29957,3 +29957,137 @@ Best next question
   shift. Which of the blocked coefficients in the table are covered
   by "almost every", and is the deterministic shift ever among them?
 ```
+
+## The last check outside the gate, and why its two ratios could not fail
+
+Following the last entry's question about the OBSERVATION label on the
+kernel layer. The label was doing its work; the two ratios underneath it
+were not.
+
+**Both are vacuous, one permanently.** `K_c(P)` and the level-2 wave are
+sums of `N = P/2` unit vectors, so both are at most `N` for any summand
+at all. A benchmark `P^(1-delta)` therefore says nothing until
+`P^delta > 2`. For the kernel's `delta = 1/96` that is `P > 2^96 =
+7.9e28`, and a factor-of-two saving only past `2^192`; for the wave's
+`1/24` it is `2^24 = 1.7e7`, with a factor of two at `2^48 = 2.8e14`.
+The ladder stops at `3e5`, where the trivial bound is `0.57` and `0.85`
+of the two benchmarks. So `abs_K_over_P^(1-1/96) < 1` is arithmetic, not
+a measurement, and for the kernel it will never be anything else --
+`2^96` terms will not be summed.
+
+**The paper is clean here.** Section 1 says no numerical computation is
+a proof step, and the repository paragraph says the audit is "not an
+independent verification of Lemma 5.2". The overclaim risk was entirely
+on the audit's side, where two ratios *looked* like a test. What the
+ledger said -- "far below `P^(1-1/96)`" -- was true and empty.
+
+**One number per P cannot measure the scale either.** Extending the
+ladder to `3e6`, the local slopes of `log|K_c|` against `log P` scatter
+from `-0.13` to `+1.56`. The printed band `0.4`--`1.2` times `sqrt(P/2)`
+was a statement about four draws; the fifth and sixth land at `1.44` and
+`0.83` for `K_c`, and at `2.11` and `1.51` for the wave.
+
+**A statistic with content, at the same cost.** Splitting the single
+pass into 256 consecutive blocks and aggregating to 256, 64, 16, 4 and 1
+gives five block lengths for free. `rms/sqrt(L)` stays in
+`[0.34, 1.27]`, and the fitted exponents over `P = 1e4 .. 3e5` are
+`0.38`--`0.52` for `K_c` and `0.29`--`0.47` for the wave, against `1/2`
+for square-root cancellation and `1` for none. The longest block is one
+sample, so the fit is not unbiased -- but it separates the two
+hypotheses by a factor of hundreds where the old statistic separated
+nothing.
+
+```text
+What was learned
+- a ratio can be below 1 by counting alone: P^(1-1/96) exceeds the
+  trivial bound P/2 for every P below 2^96
+- the label was honest and the numbers under it were not falsifiable;
+  "proves nothing" understated it
+- the paper's own disclaimers are stricter than the ledger's, so the
+  drift was audit-side only
+- 256 block samples out of the same pass turn an uninterpretable
+  number into an exponent
+Strongest theorem
+- for a sum of N = P/2 unit vectors, a benchmark P^(1-delta) is
+  informative only past 2^(1/delta) and gives a factor f only past
+  (2f)^(1/delta): 2^96 and 2^192 here
+Strongest refutation
+- the ledger's "far below P^(1-1/96)" and the band 0.4-1.2: the first
+  is vacuous, the second was four draws and is already exceeded at 1e6
+Reusable machinery
+- kernel_observation_reach, kernel_block_scaling, trivial_bound_crossover;
+  three tests; kernel_sum no longer clobbers mp.dps
+Branch status
+- PAPER_B_AUDIT_CONSISTENT, 37.9 s
+Why
+  The audit's last unguarded layer was the one whose disclaimer had
+  been read as sufficient. A disclaimer explains why a number is weak;
+  it does not make a number exist.
+Best next question
+- every layer of the audit now has a falsifiable statement in it. Which
+  of the paper's own claims still has none -- what does Conjecture 7.3,
+  the level-3 kernel, actually assert that could be tested at 1e5?
+```
+
+ ### What 7.4 gives: the quantifier is the whole deficit
+
+The question as I posed it last entry was malformed, and the paper
+already says why — an almost-everywhere statement locates no named
+shift. The answerable version is what 7.4 delivers, and the answer is
+worth having because "square-root cancellation for almost every shift"
+sounds marginal and is not.
+
+**The no-log-loss condition holds by a wide margin.** `A'_min ~ P^{11/16}`
+is `3.9e9` at `P_0` against a `log P_0` of `32` — a ratio of `1.2e8`.
+So 7.4 gives genuine square-root cancellation, not `sqrt(L log L)`.
+
+**And "almost every" has a rate.** Rearranging the display,
+`|S| <= P^{1-delta}` holds outside a shift set of measure
+`eta ~ P^{2 delta - 1}`:
+
+```text
+   delta = 1/96   (the level-2 kernel's own saving)   measure 2e-14 at P_0
+   delta = 1/24                                       measure 1.6e-13
+```
+
+**And the strength on the good side is excessive, not marginal.** Were
+the shift generic, the bound reads `P^{1/2}` — a saving of `1/2` where
+Conjecture 7.3 asks for *some* `delta > 0`, and 48 times the `1/96`
+the level-2 kernel actually achieves.
+
+So the deficit at the frontier is the quantifier alone. That is a
+sharper statement than "the average says nothing about the single
+shift", which is true but reads as though the average were also weak.
+It is not; it is 48 times stronger than needed, on a set whose
+complement has measure `2e-14`.
+
+None of which is evidence, and the passage says so twice. A single
+deterministic shift may lie in a set of any measure, and `2e-14` is a
+fact about Proposition 7.4, not about the Juggler map.
+
+```text
+What was learned
+- an "almost every" result deserves its rate quoted; without it a
+  reader cannot tell whether the gap is one of strength or of
+  quantifier, and here they are opposite
+- my own question was unanswerable as asked; the useful move was to
+  keep the object and change the question
+Strongest theorem
+- |S| <= P^{1-delta} outside measure P^{2delta-1}, which at the
+  level-2 saving is 2e-14, and a generic shift would overshoot
+  Conjecture 7.3's requirement by 48
+Strongest refutation
+- the reading that 7.4 is a weak result; it is a strong result behind
+  a quantifier
+Reusable machinery
+- five tests over the margin, the measure and the overshoot
+Branch status
+- PARK
+Why
+  Proposition 7.4 is now measured from both sides and the disclaimer
+  is explicit. Nothing further can be extracted without attacking the
+  deterministic shift, which is Conjecture 7.5 and not a Phase-0 move.
+Best next question
+- none in this direction. Section 7's frontier is described, priced,
+  retrodicted and now quantified at its one positive result.
+```

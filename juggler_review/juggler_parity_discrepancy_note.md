@@ -5277,6 +5277,25 @@ outside a shift set of measure at most \(\eta\). This is
 square-root cancellation times \(\sqrt{\log L}\) in general, and
 genuine square-root cancellation when \(\mathcal A'_{\min}\gg\log L\) — which
 holds in the instance above, where \(\mathcal A'_{\min}\asymp P^{11/16}\).
+By a wide margin: at \(P_0\) that is \(3.9\cdot10^9\) against a
+\(\log P_0\) of \(32\).
+
+It is worth measuring what this does and does not give, since the two
+are easily conflated. Rearranging the display, \(\lvert\mathcal
+S_\lambda\rvert\le P^{1-\delta}\) holds outside a shift set of measure
+\(\eta\asymp P^{2\delta-1}\) — at \(\delta=\tfrac1{96}\), the saving
+the level-2 kernel actually achieves, that is \(P^{-47/48}\), about
+\(2\cdot10^{-14}\) at \(P_0\). And were the deterministic shift
+generic, the bound would read \(P^{1/2}\), a saving of \(\tfrac12\)
+where Conjecture 7.3 asks only for some \(\delta>0\) — an overshoot of
+\(48\) over \(\tfrac1{96}\). So the deficit at the frontier is not
+strength: it is the quantifier alone, and the strength available on
+the good side of it is excessive rather than marginal.
+
+None of which is evidence. A single deterministic shift may lie in a
+set of any measure, including this one, and the smallness of
+\(2\cdot10^{-14}\) is a fact about the proposition and not about the
+Juggler map.
 
 *Proof.* Expand the square; the diagonal gives \(L\). For
 \(t\ne t'\), the function

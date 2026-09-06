@@ -915,3 +915,40 @@ def test_the_abstract_and_A3_agree_on_the_log_form() -> None:
     assert r"K_c\ll P^{1-1/96}\log^{3/4}P" in text            # abstract
     assert r"K_c(P)\ll P^{1-1/96}(\log P)^{3/4}" in text      # A.3
     assert "one\nquartering, not two coincidences" in text or "not two coincidences" in text
+
+
+# --- what Proposition 7.4 delivers, quantified ---
+
+
+def test_the_no_log_loss_condition_holds_by_a_wide_margin() -> None:
+    """A'_min ~ P^{11/16} against log P at P_0."""
+    P0 = C.certificate()["P0"]
+    amin = P0 ** (11 / 16)
+    assert abs(amin / 3.9e9 - 1) < 0.05
+    assert 30 < math.log(P0) < 34
+    assert amin / math.log(P0) > 1e7
+
+
+@pytest.mark.parametrize("delta,exponent", [(Fr(1, 96), Fr(-47, 48)), (Fr(1, 24), Fr(-11, 12))])
+def test_the_exceptional_shift_measure(delta: Fr, exponent: Fr) -> None:
+    """|S| <= P^{1-delta} outside a set of measure P^{2 delta - 1}."""
+    assert 2 * delta - 1 == exponent
+    P0 = C.certificate()["P0"]
+    assert P0 ** float(exponent) < 1e-12
+
+
+def test_the_measure_at_the_level_two_saving_is_two_times_ten_to_the_minus_fourteen() -> None:
+    P0 = C.certificate()["P0"]
+    assert abs(P0 ** float(Fr(-47, 48)) / 2.18e-14 - 1) < 0.05
+
+
+def test_a_generic_shift_would_overshoot_by_forty_eight() -> None:
+    """Square-root cancellation is delta = 1/2 against the kernel's own 1/96."""
+    assert Fr(1, 2) / Fr(1, 96) == 48
+
+
+def test_paper_states_the_measurement_and_disclaims_it() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "the quantifier alone" in text
+    assert "None of which is evidence." in text
+    assert "a fact about the proposition and not about the" in text
