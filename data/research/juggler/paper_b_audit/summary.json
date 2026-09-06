@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "35d1c4f5c6b5f8457b54e7d5d92437025367858d",
+  "git_commit": "2a2b5bc496d88547c84450c55584fca6a7e99a33",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -5796,6 +5796,50 @@
     ],
     "only_the_offset_window_needs_the_hypothesis": true
   },
+  "lemma_6_2_least_n": {
+    "printed_threshold": 5,
+    "honest_threshold": 3,
+    "holds_at_three": true,
+    "slack_at_three_i": 0.21895068136592918,
+    "slack_at_three_ii": 0.07698978961126166,
+    "denominators_at_one": {
+      "X_minus_one": 0.0,
+      "U_minus_one": 0.0,
+      "v_to_three_halves_minus_one": 0.0
+    },
+    "undefined_at_one": true,
+    "denominators_at_three": {
+      "X_minus_one": 4.196152422706632,
+      "U_minus_one": 2.3166247903554,
+      "v_to_three_halves_minus_one": 35.4828726939094
+    },
+    "defined_at_three": true,
+    "threshold_is_a_domain_condition": true,
+    "threshold_is_one_odd_value_wide": true,
+    "live_sweep_to": 2000,
+    "live_points": 999,
+    "live_violations": 0,
+    "live_max_slack_i": 0.9993984423871386,
+    "live_argmax_i": 1517,
+    "live_max_slack_ii": 0.6580759682302437,
+    "live_argmax_ii": 421,
+    "wide_sweep": {
+      "range": [
+        3,
+        200000
+      ],
+      "odd_points": 99999,
+      "violations": 0,
+      "max_slack_ratio_i": 0.99997088,
+      "argmax_i": 142915,
+      "max_slack_ratio_ii": 0.66630931,
+      "argmax_ii": 105941
+    },
+    "part_i_is_essentially_sharp": true,
+    "part_i_margin": 2.9119999999993595e-05,
+    "part_ii_keeps_a_factor": 1.500804483731437,
+    "unlike_lemma_5_1_iii_there_is_no_room": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -5863,5 +5907,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 81.44409441947937
+  "elapsed_seconds": 82.2098183631897
 }

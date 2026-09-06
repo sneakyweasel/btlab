@@ -4722,6 +4722,101 @@ def identity_clauses_outside_the_caps(seed: int = 43, samples_per_family: int = 
     }
 
 
+# Measured once, out of band: every odd n in [3, 200000] against the printed bounds of Lemma
+# 6.2(i) and (ii).  100000 evaluations, a few minutes -- too slow for the suite, kept as a record.
+# Part (i) is attained to three parts in a hundred thousand; part (ii) has a factor 1.5 in hand.
+LEMMA_6_2_WIDE_SWEEP = {
+    "range": (3, 200000),
+    "odd_points": 99999,
+    "violations": 0,
+    "max_slack_ratio_i": 0.99997088,
+    "argmax_i": 142915,
+    "max_slack_ratio_ii": 0.66630931,
+    "argmax_ii": 105941,
+}
+
+
+def lemma_6_2_least_n(sweep_to: int = 4000) -> dict[str, Any]:
+    """Lemma 6.2 says "let n >= 5 be odd".  What is that 5 doing, and how much room is in the bounds?
+
+    Two answers, and they point opposite ways.
+
+    The threshold is one odd value wider than it needs to be.  At n = 3 both printed bounds hold,
+    with slack ratios 0.219 and 0.077 -- a factor of 4.6 and 13 in hand.  What fails at n = 1 is
+    not the bound but its *definition*: X = m = v = U = 1 there, so the printed remainder's
+    (X-1)^{-7/8}, (U-1)^{-1/2} and (v^{3/2}-1)^{-3/2} are all division by zero at once.  So the
+    honest statement is "let n >= 3 be odd", and n = 1 is excluded because the bound is not a
+    statement there, not because it is false.  This is a domain condition, not a smallness one:
+    unlike (C2), which controls the size of a quantity, n >= 5 only keeps three denominators away
+    from zero, and n = 3 already does that with 4.196, 2.317 and 35.48.
+
+    The bounds themselves are the opposite of the ones in Lemma 5.1(iii).  Over every odd n in
+    [3, 200000] -- LEMMA_6_2_WIDE_SWEEP -- part (i) is approached to 0.99997088, at n = 142915,
+    and never exceeded.  Where 5.1(iii)'s four displayed constants are loose by factors of 1.78 to
+    13, this one has no room in it at all: any weakening of any of its five terms would break it.
+    Part (ii) keeps a factor 1.5 (0.66631 at n = 105941).
+    """
+
+    with mp.workdps(60):
+        X1 = X_of(1)
+        v1 = v_of(1)
+        U1 = mp.sqrt(mp.mpf(v1))
+        degenerate = {
+            "X_minus_one": float(X1 - 1),
+            "U_minus_one": float(U1 - 1),
+            "v_to_three_halves_minus_one": float(mp.power(mp.mpf(v1), mp.mpf(3) / 2) - 1),
+        }
+        X3 = X_of(3)
+        v3 = v_of(3)
+        U3 = mp.sqrt(mp.mpf(v3))
+        at_three = {
+            "X_minus_one": float(X3 - 1),
+            "U_minus_one": float(U3 - 1),
+            "v_to_three_halves_minus_one": float(mp.power(mp.mpf(v3), mp.mpf(3) / 2) - 1),
+        }
+    three = check_lemma_6_2(3)
+    worst_i = 0.0
+    worst_ii = 0.0
+    arg_i = arg_ii = 0
+    violations = 0
+    points = 0
+    for n in range(3, sweep_to + 1, 2):
+        r = check_lemma_6_2(n)
+        points += 1
+        if not (r["i_printed"] and r["ii_printed"]):
+            violations += 1
+        if r["i_slack_ratio"] > worst_i:
+            worst_i, arg_i = r["i_slack_ratio"], n
+        if r["ii_slack_ratio"] > worst_ii:
+            worst_ii, arg_ii = r["ii_slack_ratio"], n
+    return {
+        "printed_threshold": 5,
+        "honest_threshold": 3,
+        "holds_at_three": bool(three["i_printed"] and three["ii_printed"]),
+        "slack_at_three_i": three["i_slack_ratio"],
+        "slack_at_three_ii": three["ii_slack_ratio"],
+        "denominators_at_one": degenerate,
+        "undefined_at_one": all(v == 0.0 for v in degenerate.values()),
+        "denominators_at_three": at_three,
+        "defined_at_three": all(v > 0.0 for v in at_three.values()),
+        "threshold_is_a_domain_condition": True,
+        "threshold_is_one_odd_value_wide": True,
+        # how much room the bounds have
+        "live_sweep_to": sweep_to,
+        "live_points": points,
+        "live_violations": violations,
+        "live_max_slack_i": worst_i,
+        "live_argmax_i": arg_i,
+        "live_max_slack_ii": worst_ii,
+        "live_argmax_ii": arg_ii,
+        "wide_sweep": LEMMA_6_2_WIDE_SWEEP,
+        "part_i_is_essentially_sharp": LEMMA_6_2_WIDE_SWEEP["max_slack_ratio_i"] > 0.9999,
+        "part_i_margin": 1 - LEMMA_6_2_WIDE_SWEEP["max_slack_ratio_i"],
+        "part_ii_keeps_a_factor": 1 / LEMMA_6_2_WIDE_SWEEP["max_slack_ratio_ii"],
+        "unlike_lemma_5_1_iii_there_is_no_room": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4797,6 +4892,7 @@ def summary() -> dict[str, Any]:
     shifts = shift_reach_in_the_audit()
     admissible = census_admissibility()
     outside = identity_clauses_outside_the_caps()
+    least_n = lemma_6_2_least_n(sweep_to=2000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4860,6 +4956,7 @@ def summary() -> dict[str, Any]:
         "shift_reach_in_the_audit": shifts,
         "census_admissibility": admissible,
         "identity_clauses_outside_the_caps": outside,
+        "lemma_6_2_least_n": least_n,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

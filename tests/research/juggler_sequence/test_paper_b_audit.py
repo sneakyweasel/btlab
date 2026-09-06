@@ -1616,3 +1616,33 @@ def test_the_printed_offset_window_holds_exactly_when_epsilon_is_under_one() -> 
     assert by_eps[0.3]["inside_the_printed_window"]
     assert not by_eps[2.7]["inside_the_printed_window"]
     assert by_eps[750.0]["j_max"] <= by_eps[750.0]["window_upper"]
+
+
+# --- what "let n >= 5 be odd" is doing, and how much room the bounds have ---
+
+
+def test_lemma_6_2_holds_at_three_and_is_undefined_at_one() -> None:
+    """The threshold is a domain condition: at n = 1 three denominators vanish at once."""
+    r = A.lemma_6_2_least_n(sweep_to=400)
+    assert r["printed_threshold"] == 5 and r["honest_threshold"] == 3
+    assert r["holds_at_three"] and r["defined_at_three"]
+    assert r["slack_at_three_i"] < 0.25 and r["slack_at_three_ii"] < 0.1
+    assert r["undefined_at_one"]
+    assert set(r["denominators_at_one"].values()) == {0.0}
+    assert all(v > 2 for v in r["denominators_at_three"].values())
+    assert r["threshold_is_a_domain_condition"] and r["threshold_is_one_odd_value_wide"]
+    # n = 1 raises rather than returning False, which is the same fact from the other side
+    with pytest.raises(ZeroDivisionError):
+        A.check_lemma_6_2(1)
+
+
+def test_lemma_6_2_part_i_has_no_room_in_it() -> None:
+    """0.99997 at n = 142915 over 100000 odd points: sharp, unlike every constant in 5.1(iii)."""
+    r = A.lemma_6_2_least_n(sweep_to=2000)
+    assert r["live_violations"] == 0 and r["live_points"] == 999
+    assert 0.999 < r["live_max_slack_i"] < 1.0 and r["live_argmax_i"] == 1517
+    assert r["part_i_is_essentially_sharp"] and r["part_i_margin"] < 1e-4
+    assert 1.4 < r["part_ii_keeps_a_factor"] < 1.6
+    wide = r["wide_sweep"]
+    assert wide["violations"] == 0 and wide["odd_points"] == 99999
+    assert wide["max_slack_ratio_i"] < 1.0 and wide["argmax_i"] == 142915

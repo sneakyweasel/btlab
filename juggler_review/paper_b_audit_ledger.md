@@ -4391,3 +4391,58 @@ fails exactly when `eps` passes `1`. OBSERVATION: `j` reaches `4` at
 Probe: `identity_clauses_outside_the_caps`, `IDENTITY_CLAUSES`. Two
 tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`.
 No manuscript or certificate edit.
+
+## "Let `n >= 5` be odd" is a domain condition one value wide, and the bound under it is sharp
+
+Two answers, pointing opposite ways.
+
+**The threshold is one odd value wider than it needs to be.** At
+`n = 3` both printed bounds of Lemma 6.2 hold, with slack ratios
+`0.219` and `0.077` --- factors of `4.6` and `13` in hand. What fails at
+`n = 1` is not the bound but its definition: there `X = m = v = U = 1`,
+so the printed remainder's `(X-1)^(-7/8)`, `(U-1)^(-1/2)` and
+`(v^(3/2)-1)^(-3/2)` are three divisions by zero at once. At `n = 3`
+those denominators are `4.196`, `2.317` and `35.483`.
+
+So the honest statement is "let `n >= 3` be odd", and `n = 1` is
+excluded because the bound is not a statement there, not because it is
+false. That is a *domain* condition and not a smallness one: where
+`(C2)` controls the size of a quantity and is exactly the hypothesis
+that makes the offset window `[-1, 2]`, this threshold only keeps three
+denominators off zero, and `n = 3` already does that.
+
+**And the bound it carries is the opposite of the ones in Lemma
+5.1(iii).** Over every odd `n` in `[3, 200000]` --- `99999` points, no
+violations --- part (i) is approached to
+
+```text
+  max slack ratio (i)   0.99997088   at n = 142915
+  max slack ratio (ii)  0.66630931   at n = 105941
+```
+
+Part (i) has a margin of `2.9e-5`. Where the four displayed constants of
+Lemma 5.1(iii) are loose by `1.78`, `3.95`, `7.11` and `2.82`, and its
+run-length constant by `13.04`, this one has no room in it at all: any
+weakening of any of its five remainder terms would break it. Part (ii)
+keeps a factor `1.50`.
+
+That is worth recording against the run of the last several passes. The
+constants this ledger has been sharpening are the ones written for
+convenience in a proof; this one was written to be true and is tight to
+five figures. The two kinds are not distinguishable from the printed
+page, and the difference matters: sharpening 5.1(iii)'s constants costs
+nothing, and there is nothing to sharpen here.
+
+Tags. EXACT: at `n = 1` the three printed denominators `X-1`, `U-1` and
+`v^(3/2)-1` all vanish, so the bound is undefined and not false; at
+`n = 3` they are `4.196`, `2.317`, `35.483`, so the honest threshold is
+`n >= 3` odd. COMPUTATIONALLY VERIFIED: both bounds hold at `n = 3` with
+ratios `0.2190` and `0.0770`; `99999` odd points in `[3, 200000]` with
+zero violations; part (i) reaches `0.99997088` at `n = 142915` and part
+(ii) `0.66630931` at `n = 105941`; the live `[3, 2000]` sweep reaches
+`0.99940` at `n = 1517`. OBSERVATION: part (i) is sharp to `2.9e-5` and
+so is not of the same kind as any constant this ledger has sharpened.
+
+Probe: `lemma_6_2_least_n`, `LEMMA_6_2_WIDE_SWEEP`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

@@ -34781,3 +34781,65 @@ Best next question
   need no hypothesis either, then Lemma 6.2's stated range is doing what
   (C2) does for 5.1(iii) -- nothing, or something not yet located.
 ```
+
+## One threshold too wide, and one bound with nothing in it
+
+Lemma 6.2's "let `n >= 5` be odd" is a domain condition, not a
+smallness one. At `n = 3` both printed bounds hold, with slack `0.219`
+and `0.077`. What fails at `n = 1` is the definition: `X = m = v = U = 1`
+there, so `(X-1)^(-7/8)`, `(U-1)^(-1/2)` and `(v^(3/2)-1)^(-3/2)` are
+three divisions by zero at once, and at `n = 3` those denominators are
+`4.196`, `2.317` and `35.483`. So the honest threshold is `n >= 3` odd,
+and `n = 1` is excluded because the statement is not a statement there.
+
+The second half is the interesting one. Over every odd `n` in
+`[3, 200000]` --- `99999` points, no violations --- part (i) of the
+bound is approached to `0.99997088`, at `n = 142915`. A margin of
+`2.9e-5`. Where Lemma 5.1(iii)'s four displayed constants are loose by
+`1.78`, `3.95`, `7.11` and `2.82`, and its run-length constant by
+`13.04`, this bound has no room in it at all.
+
+That is a useful counterweight to the last several passes. The
+constants I have been sharpening were written for convenience inside a
+proof; this one was written to be true, and is tight to five figures.
+Nothing on the printed page distinguishes the two kinds.
+
+```text
+Phase-end report
+Question
+- does check_lemma_6_2 need its stated range, and is that range doing
+  what (C2) does for 5.1(iii)
+Instruments
+- lemma_6_2_least_n: the printed bounds at n = 1 and n = 3 with their
+  three denominators, plus a live [3, 2000] sweep
+- LEMMA_6_2_WIDE_SWEEP: every odd n in [3, 200000], measured out of band
+Ledger tags
+- EXACT: at n = 1 the three denominators X-1, U-1, v^(3/2)-1 all vanish,
+  so the bound is undefined and not false; at n = 3 they are 4.196,
+  2.317, 35.483, so the honest threshold is n >= 3 odd
+- COMPUTATIONALLY VERIFIED: both bounds at n = 3 with ratios 0.2190 and
+  0.0770; 99999 odd points, zero violations; part (i) reaches
+  0.99997088 at n = 142915, part (ii) 0.66630931 at n = 105941
+- OBSERVATION: part (i) is sharp to 2.9e-5 and is not of the same kind
+  as any constant this ledger has sharpened
+Strongest theorem
+- the threshold is a domain condition one odd value wide, and the bound
+  it guards is tight to five figures
+Strongest refutation
+- the working assumption of the last several passes, that a printed
+  constant is a rounded one: this one is not
+Reusable machinery
+- lemma_6_2_least_n, LEMMA_6_2_WIDE_SWEEP, two tests, wired into
+  summary()
+Branch status
+- PARK
+Why
+  The threshold is a one-word manuscript change belonging to the other
+  session; the sharpness measurement is a ledger record and needs
+  nothing from anyone.
+Best next question
+- part (i) is approached to 2.9e-5 at n = 142915 and part (ii) only to
+  0.666. Both are sums of the same kind of remainder terms. What does
+  (i) have that (ii) does not -- a term that goes to its own worst case
+  simultaneously with the others, or one that dominates?
+```
