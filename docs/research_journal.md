@@ -30886,3 +30886,74 @@ Best next question
   certificate for rows whose numerator and denominator are bounded at
   different settings of the same parameter.
 ```
+
+## One sentence covering two kinds of numerator, and a second row with an h on both sides
+
+Following the last entry's question. Sweeping the certificate finds one
+more mispaired row and, more usefully, the sentence both come from.
+
+**The sentence.** Section 5 justifies the pinning with a parenthesis:
+"(The worst standing cell is `k h1 h2 = 1`; larger products only enlarge
+`S`.)" It is right for one kind of numerator and not the other.
+
+- The `c`-derivative rows are right. `|c''/2| <= 0.053 k P^(-7/8)`
+  carries `k`, `S >= 0.56 k h1 h2 P^(-5/8)` carries `k h1 h2`, and the
+  ratio is `0.095 (h1 h2)^(-1) P^(-1/4)`: `k` cancels, the worst cell is
+  `h1 = h2 = 1` at any `k`, and the certificate does exactly that -- no
+  `P^(1/24)` rides along.
+- The interpolant row is not, as recorded last time. `k(h1+h2)` over
+  `k h1 h2` leaves `1/h1 + 1/h2 <= 2`; the row converts
+  `k(h1+h2) <= 2 P^(1/12)` first. The sentence says "products", and for
+  this numerator the product is not what matters.
+
+**A second row, plainer.** Step 5b(a)'s `q''` curvature ratio is
+`(1.85 k h P^(1/8) + R_0) 6 P^(-5/4) / (0.35 u h P^(-3/4))`, with `h` on
+both sides. In the first term it cancels --
+`1.85 k h P^(1/8)/(u h) = 1.85 k P^(1/8)/u` -- but the row sets
+`h = P^(1/8)` upstairs and `u h = 1` downstairs. Worst case is
+`k = P^(1/24)`, `u = h = 1`, i.e. `1.85 P^(1/6)`, and `7/24 - 1/6 = 1/8`
+is the over-charge. The threshold moves from `2.98e11` to `8.71e9`.
+
+| row | mismatch | as certified | paired | factor |
+|---|---|---|---|---|
+| `5b-W<=c7S` | `k(h1+h2)` vs `k h1 h2` | `3.59e13` | `4.89e12` | `7.33` |
+| `5a-W<=c7S` | same | `2.91e13` | `3.84e12` | `7.58` |
+| `5b-E<=c7S` | same | `4.10e12` | `7.72e10` | `53.1` |
+| `st5b-qpp` | `k h` vs `u h` | `2.98e11` | `8.71e9` | `34.2` |
+| `39-c2/c3/c4` | `k` vs `k h1 h2` | -- | correct | -- |
+
+With all four repaired `P_0` is `4.89e12`, still set by `5b-W<=c7S`, and
+the largest row untouched by any of this is `s3s1-Bsmall` at `2.83e10`:
+a clearance of `170x`.
+
+The manuscript is already alert to this site -- it notes that merging
+`1.85 k h P^(1/8) + R_0` into `2.85 P^(5/16)` "loses `P^(1/48)`" and
+keeps the terms apart for that reason. It took the first step and not
+the second: once the sum is split, the `h` in the first term cancels.
+
+```text
+What was learned
+- both mispairings descend from one parenthesis that is true for a
+  numerator carrying k and false for one carrying k(h1+h2)
+- the c-rows show the certificate can pair correctly, so this is a
+  local slip and not a habit
+- st5b-qpp has h on both sides of a ratio and fixes it at opposite ends
+Strongest theorem
+- 1.85 k h P^(1/8)/(u h) = 1.85 k P^(1/8)/u, so the worst case is
+  P^(1/6) and not P^(7/24): 7/24 - 1/6 = 1/8
+Strongest refutation
+- none; every row is safe, four are between 7 and 53 times cautious
+Reusable machinery
+- p0_pairing_sweep with a per-row verdict; one test, three exact checks
+  (247 in the layer)
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Finding the same defect twice is worth less than finding where it
+  comes from. The parenthesis is one line and it governs six rows.
+Best next question
+- the two repairs are arithmetic on the certificate. Does the
+  manuscript's own prose need changing too, or does Section 5 already
+  state the ratios in the cancelled form somewhere and only the
+  appendix takes the loose route?
+```

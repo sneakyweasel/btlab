@@ -1688,3 +1688,59 @@ move with them.
 pairing charges more than any cell can present, so every displayed
 margin holds at least as far down as claimed. What is lost is only
 sharpness --- and \(P_0\) is the number the paper leads with.
+
+## The sweep: one justification sentence, two kinds of numerator
+
+The last entry found the binding row charged at a cell that does not
+exist. Sweeping the rest of the certificate for the same shape gives one
+more, and locates the source of both.
+
+**The source.** Section 5's justification is a single parenthesis:
+"(The worst standing cell is \(kh_1h_2=1\); larger products only enlarge
+\(S\).)" It covers two kinds of numerator and is right about one.
+
+* **The \(c\)-derivative rows are right.** \(\lvert c''/2\rvert\le
+  0.053\,kP^{-7/8}\) carries \(k\); \(S\ge0.56\,kh_1h_2P^{-5/8}\)
+  carries \(kh_1h_2\); the ratio is
+  \(0.095\,(h_1h_2)^{-1}P^{-1/4}\) --- the \(k\) cancels, and the worst
+  cell is \(h_1=h_2=1\) at *any* \(k\). The certificate implements
+  exactly that: no \(P^{1/24}\) rides along, and \(-\tfrac78+\tfrac58
+  =-\tfrac14\) is the printed exponent. `39-c2`, `39-c3`, `39-c4`
+  correctly paired.
+* **The interpolant row is not**, as recorded above: \(k(h_1{+}h_2)\)
+  over \(kh_1h_2\) leaves \(1/h_1+1/h_2\le2\), but the row converts
+  \(k(h_1{+}h_2)\le2P^{1/12}\) before dividing. The sentence's word is
+  "products", and for this numerator the product is not what matters.
+
+**And a second row, for a plainer reason.** Step 5b(a)'s \(q''\)
+curvature ratio is
+\[
+\frac{\bigl(1.85\,khP^{1/8}+R_0\bigr)6P^{-5/4}}{0.35\,uh\,P^{-3/4}},
+\]
+with \(h\) on both sides. In the first term it cancels ---
+\(1.85\,khP^{1/8}/(uh)=1.85\,kP^{1/8}/u\) --- yet the row sets
+\(h=P^{1/8}\) upstairs (giving \(1.85P^{7/24}\)) and \(uh=1\)
+downstairs. The worst case is \(k=P^{1/24}\), \(u=h=1\), i.e.
+\(1.85P^{1/6}\): \(\tfrac7{24}-\tfrac16=\tfrac18\) of over-charge.
+EXACT.
+
+| row | mismatch | as certified | paired | factor |
+|---|---|---|---|---|
+| `5b-W<=c7S` | \(k(h_1{+}h_2)\) vs \(kh_1h_2\) | \(3.59\cdot10^{13}\) | \(4.89\cdot10^{12}\) | \(7.33\) |
+| `5a-W<=c7S` | same | \(2.91\cdot10^{13}\) | \(3.84\cdot10^{12}\) | \(7.58\) |
+| `5b-E<=c7S` | same | \(4.10\cdot10^{12}\) | \(7.72\cdot10^{10}\) | \(53.1\) |
+| `st5b-qpp` | \(kh\) vs \(uh\) | \(2.98\cdot10^{11}\) | \(8.71\cdot10^{9}\) | \(34.2\) |
+| `39-c2/c3/c4` | \(k\) vs \(kh_1h_2\) | --- | correctly paired | --- |
+
+With all four repaired, \(P_0\) is \(4.89\cdot10^{12}\), still set by
+`5b-W<=c7S`, and the largest row untouched by any of this is
+`s3s1-Bsmall` at \(2.83\cdot10^{10}\) --- a clearance of \(170\times\).
+COMPUTATIONALLY VERIFIED at the constants now in the tree, which are
+under revision; the two exponents, \(P^{1/12}\) and \(P^{1/8}\), are
+not.
+
+The manuscript is already alert to this site --- it notes that merging
+\(1.85khP^{1/8}+R_0\) into \(2.85P^{5/16}\) "loses \(P^{1/48}\)" and
+keeps the two terms apart for exactly that reason. It took the first
+step and not the second: having split the sum, the \(h\) in the first
+term still cancels.

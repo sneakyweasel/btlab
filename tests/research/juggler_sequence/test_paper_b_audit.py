@@ -763,3 +763,15 @@ def test_the_pairing_coefficients_are_read_from_the_certificate_not_copied() -> 
         rebuilt = a * P ** (-25 / 24) + b * P ** (-5 / 6)
         assert abs(rebuilt / p0_certificate.interpolant_error(P) - 1) < 1e-9, P
     assert r["ratio_exponent_gap"] == Fr(1, 12)
+
+
+def test_the_same_mismatch_appears_at_st5b_qpp_and_not_at_the_c_rows() -> None:
+    """h cancels between 1.85 k h P^(1/8) and 0.35 u h P^(-3/4); the c-rows cancel k correctly."""
+    r = A.p0_pairing_sweep()
+    assert set(r["mispaired"]) == {"5b-W<=c7S", "5a-W<=c7S", "5b-E<=c7S", "st5b-qpp"}
+    assert set(r["correctly_paired"]) == {"39-c2", "39-c3", "39-c4"}
+    assert r["st5b_qpp_factor"] > 20
+    assert r["st5b_qpp_fixed"] < r["st5b_qpp_certified"]
+    # fixing every pairing still leaves the maximum with the interpolant row, well clear of the rest
+    assert r["P0_with_every_pairing_fixed"] > 10 * r["largest_untouched_row_P"]
+    assert r["P0_with_every_pairing_fixed"] < r["certified_P0"]

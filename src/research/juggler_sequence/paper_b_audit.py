@@ -556,6 +556,74 @@ def p0_pairing_check() -> dict[str, Any]:
         "direction_is_safe": cert["P0"] >= fixed,
     }
 
+def p0_pairing_sweep() -> dict[str, Any]:
+    """Which certificate rows cancel their parameters against S, and which fix them at odds.
+
+    The manuscript's justification is one sentence -- "the worst standing cell is k h1 h2 = 1;
+    larger products only enlarge S" -- and it covers two kinds of numerator.
+
+      * The c-derivative rows are fine.  |c''/2| <= 0.053 k P^{-7/8} carries k, S >= 0.56 k h1 h2
+        P^{-5/8} carries k h1 h2, so the ratio is 0.095 (h1 h2)^{-1} P^{-1/4}: the k cancels and the
+        worst cell is h1 = h2 = 1 at any k.  The certificate implements exactly that -- no P^{1/24}
+        rides along -- so 39-c2, 39-c3 and 39-c4 are correctly paired.
+      * The interpolant row is not.  85.3 k(h1+h2) P^{-9/8} over S leaves (1/h1 + 1/h2) <= 2, but
+        the row converts k(h1+h2) <= 2 P^{1/12} first, and charges P^{1/12} that no cell presents.
+      * st5b-qpp is not either, and for a plainer reason: h appears on both sides.  The ratio
+        (1.85 k h P^{1/8} + R_0) 6 P^{-5/4} / (0.35 u h P^{-3/4}) has its first term equal to
+        1.85 k P^{1/8} / u -- the h cancels -- yet the row sets h = P^{1/8} upstairs and u h = 1
+        downstairs.  That is P^{1/8} of over-charge on the first term.
+
+    Both defective rows err in the safe direction.  Neither changes a proof; both change P_0.
+    """
+
+    cert = p0_certificate.certificate()
+    by_tag = {r["tag"]: r for r in cert["thresholds"]}
+
+    def solve(f: Any, lo: float = 0.0, hi: float = 30.0) -> float:
+        for _ in range(400):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if f(mid) > 0 else (lo, mid)
+        return 10.0**hi
+
+    # st5b-qpp, as certified and with the h cancelled
+    qpp_cert = solve(lambda L: (1.85 * 10 ** (7 * L / 24) + p0_certificate.R0(10**L)) * 6 * 10 ** (-5 * L / 4)
+                     / (0.35 * 10 ** (-0.75 * L)) - 0.25)
+    qpp_fix = solve(lambda L: (6 / 0.35) * (1.85 * 10 ** (L * (1 / 24 + 1 / 8)) + p0_certificate.R0(10**L))
+                    * 10 ** (-L / 2) - 0.25)
+
+    verdicts = [
+        {"tag": "5b-W<=c7S", "parameter": "k(h1+h2) against k h1 h2", "paired": False,
+         "over_charge": "P^{1/12}", "certified_least_P": by_tag["5b-W<=c7S"]["P_min"]},
+        {"tag": "5a-W<=c7S", "parameter": "k(h1+h2) against k h1 h2", "paired": False,
+         "over_charge": "P^{1/12}", "certified_least_P": by_tag["5a-W<=c7S"]["P_min"]},
+        {"tag": "5b-E<=c7S", "parameter": "k(h1+h2) against k h1 h2", "paired": False,
+         "over_charge": "P^{1/12}", "certified_least_P": by_tag["5b-E<=c7S"]["P_min"]},
+        {"tag": "st5b-qpp", "parameter": "k h against u h", "paired": False,
+         "over_charge": "P^{1/8}", "certified_least_P": qpp_cert, "fixed_least_P": qpp_fix,
+         "factor": qpp_cert / qpp_fix},
+        {"tag": "39-c2", "parameter": "k against k h1 h2", "paired": True, "over_charge": None,
+         "certified_least_P": by_tag["39-c2"]["P_min"]},
+        {"tag": "39-c3", "parameter": "k against k h1 h2", "paired": True, "over_charge": None,
+         "certified_least_P": by_tag["39-c3"]["P_min"]},
+        {"tag": "39-c4", "parameter": "k against k h1 h2", "paired": True, "over_charge": None,
+         "certified_least_P": by_tag["39-c4"]["P_min"]},
+    ]
+    interpolant = p0_pairing_check()
+    fixed_rows = {r["tag"]: r["same_cell_least_P"] for r in interpolant["rows"]}
+    fixed_rows["st5b-qpp"] = qpp_fix
+    untouched = max(r["P_min"] for r in cert["thresholds"] if r["tag"] not in fixed_rows)
+    return {
+        "verdicts": verdicts,
+        "mispaired": [v["tag"] for v in verdicts if not v["paired"]],
+        "correctly_paired": [v["tag"] for v in verdicts if v["paired"]],
+        "st5b_qpp_certified": qpp_cert,
+        "st5b_qpp_fixed": qpp_fix,
+        "st5b_qpp_factor": qpp_cert / qpp_fix,
+        "certified_P0": cert["P0"],
+        "P0_with_every_pairing_fixed": max(max(fixed_rows.values()), untouched),
+        "largest_untouched_row_P": untouched,
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -1546,6 +1614,10 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("5b pairing: E_first/S carries (h1+h2)/(h1 h2) = 1/h1 + 1/h2 <= 2, independent of k", F(1) + F(1) == 2),
         ("5b pairing: -25/24 + 5/8 = -5/12 charged where -9/8 + 5/8 = -1/2 is available, a gap of 1/12", -F(25, 24) + F(5, 8) == -F(5, 12) and -F(9, 8) + F(5, 8) == -F(1, 2) and -F(5, 12) + F(1, 2) == F(1, 12)),
         ("5b pairing: k h1 h2 = 1 over the integers forces k = h1 = h2 = 1, hence k(h1+h2) = 2", 1 * 1 * 1 == 1 and 1 * (1 + 1) == 2),
+        # st5b-qpp: the same mismatch in h, and the c-rows that get it right
+        ("st5b-qpp: h cancels in 1.85 k h P^{1/8}/(u h), leaving 1.85 k P^{1/8}/u with 1/24+1/8 = 1/6", F(1, 24) + F(1, 8) == F(1, 6)),
+        ("st5b-qpp: the charged 7/24 exceeds that 1/6 by exactly 1/8", F(7, 24) - F(1, 6) == F(1, 8)),
+        ("39-c rows pair correctly: |c''/2| ~ k P^{-7/8} over S ~ k h1 h2 P^{-5/8} cancels k, leaving -1/4", -F(7, 8) + F(5, 8) == -F(1, 4)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -1968,6 +2040,7 @@ def summary() -> dict[str, Any]:
     power = census_constant_power()
     gaps = appendix_a_gaps()
     pairing = p0_pairing_check()
+    pairing_sweep = p0_pairing_sweep()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -1996,6 +2069,7 @@ def summary() -> dict[str, Any]:
         "census_constant_power": power,
         "appendix_a_gaps": gaps,
         "p0_pairing_check": pairing,
+        "p0_pairing_sweep": pairing_sweep,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
