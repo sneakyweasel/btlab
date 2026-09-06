@@ -1982,3 +1982,54 @@ The two levers, side by side on the number that decides reach:
 | as printed | \(9.84\cdot10^{18}\) | --- |
 | interpolant pairing repaired | \(9.25\cdot10^{18}\) | \(1.06\) |
 | piece constant carried sharp | \(3.91\cdot10^{18}\) | \(2.52\) |
+
+## Three readings of the same two lengths, and they do not agree
+
+This one runs against the paper, so it is stated as an apparent
+inconsistency between three passages rather than as a verdict.
+
+**The lemma.** Lemma 3.9(i) bounds the sublevel set by
+\[
+\lvert\Omega_V\rvert\le C(E)\Bigl(\frac{PV}S+P\Bigl(\frac VS\Bigr)^{1/2}\Bigr),
+\]
+with a *single* \(C(E)\), which \S3 says explicitly is "never assigned a
+value anywhere in the paper".
+
+**A.5 assigns two.** Its \(P_1\) computation carries
+\(4P\,W/(c_7S)\) for the \(r=3\) term and \(P(W/(c_7S))^{1/2}\) for the
+\(r=4\) term. The first implies \(C(E)=4/c_7=928\); the second implies
+\(C(E)=c_7^{-1/2}=15.2\). No single \(C(E)\) gives both, so the display
+is not an instance of Lemma 3.9(i) as the lemma is stated.
+
+**The lemma's proof gives different numbers again.** On an \(r=3\)
+piece, a single interval of length \(\le4PV/(c_7S)\) --- which is A.5's
+coefficient. On an \(r=4\) piece, the second-difference identity forces
+\((y-x)^2\le64VP^2/(c_7S)\), i.e. \(y-x\le8P(V/(c_7S))^{1/2}\), and
+there may be *two* such intervals. So the proof's \(r=4\) constant is
+\(8\) or \(16\) where A.5 carries \(1\).
+
+**And A.6 gives a third.** It writes the \(r=3\) length as
+\(2PV/(c_3S)\), half of what the proof and A.5 both have.
+
+| reading | \((r{=}3,\,r{=}4)\) | \(P_1\) |
+|---|---|---|
+| Appendix A.5, as printed | \((4,1)\) | \(9.84\cdot10^{18}\) |
+| Appendix A.6, as printed | \((2,1)\) | \(2.83\cdot10^{18}\) |
+| Lemma 3.9's proof, one \(r{=}4\) interval | \((4,8)\) | \(1.42\cdot10^{24}\) |
+| Lemma 3.9's proof, two \(r{=}4\) intervals | \((4,16)\) | \(1.99\cdot10^{27}\) |
+
+**The direction matters.** Everything else this ledger has found ran the
+safe way --- bounds charged more heavily than any cell can present. This
+one runs the other way: on the paper's own proof constants, \(P_1\) is
+\(5.2\) orders *above* the printed \(9.8\cdot10^{18}\), which would mean
+the middle band beats the trivial bound far later than Appendix A.5
+states. \(P_0\) is untouched: the transition lengths do not enter it.
+
+**What would reconcile it.** A normalisation carried silently between
+\S3 and A.5 --- the \(r=4\) constant absorbed into \(c_4\), say, or the
+sublevel set measured against a rescaled \(V\) --- would close the gap,
+and this probe cannot see one. The three loci are §3's proof of
+Lemma 3.9(i), the display in A.5, and the sentence in A.6; a reader
+checking \(P_1\) has to pick one. COMPUTATIONALLY VERIFIED for the four
+\(P_1\) values; the algebra \((y-x)^2\le64VP^2/(c_7S)\Rightarrow8P\) is
+EXACT.

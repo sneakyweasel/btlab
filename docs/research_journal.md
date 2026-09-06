@@ -31328,3 +31328,75 @@ Best next question
   4 in 4P W/(c_7 S) and the 1 in P (W/(c_7 S))^(1/2). Where do those
   come from, and is either of them a rounded-up cover like the 3.5?
 ```
+
+## Three readings of the same two lengths, and the first one that runs against the paper
+
+Following the last entry's question about the `4` and the `1`. The
+answer is that they do not come from one place, and the readings differ
+by orders of magnitude.
+
+**The lemma has one constant.** Lemma 3.9(i) bounds the sublevel set by
+`C(E)(PV/S + P(V/S)^(1/2))` with a single `C(E)`, which Section 3 says
+explicitly is "never assigned a value anywhere in the paper".
+
+**A.5 assigns two.** `4 P W/(c_7 S)` implies `C(E) = 4/c_7 = 928`;
+`P (W/(c_7 S))^(1/2)` implies `C(E) = c_7^(-1/2) = 15.2`. No single
+`C(E)` gives both.
+
+**The proof gives different numbers again.** On an `r=3` piece, one
+interval of length `<= 4 P V/(c_7 S)` -- A.5's coefficient. On an `r=4`
+piece, `(y-x)^2 <= 64 V P^2/(c_7 S)`, i.e. `y-x <= 8 P (V/(c_7 S))^(1/2)`,
+and there may be two such intervals. So the proof's `r=4` constant is
+`8` or `16` where A.5 carries `1`. And A.6 writes the `r=3` length as
+`2 P V/(c_3 S)`, half of the other two.
+
+| reading | (r=3, r=4) | P_1 |
+|---|---|---|
+| A.5 as printed | `(4, 1)` | `9.84e18` |
+| A.6 as printed | `(2, 1)` | `2.83e18` |
+| proof, one r=4 interval | `(4, 8)` | `1.42e24` |
+| proof, two r=4 intervals | `(4, 16)` | `1.99e27` |
+
+**The direction is the point.** Everything this loop has found so far
+ran the safe way: bounds charged more heavily than any cell can present.
+This one runs the other way. On the paper's own proof constants `P_1` is
+`5.2` orders above the printed `9.8e18` -- the middle band would beat
+the trivial bound far later than A.5 states. `P_0` is untouched, since
+the transition lengths do not enter it.
+
+A normalisation carried silently between Section 3 and A.5 would
+reconcile the two, and this probe cannot see one. Recorded with the
+three loci so the author can pick.
+
+```text
+What was learned
+- Lemma 3.9(i) carries one C(E) and A.5's display needs two, 928 and
+  15.2, so the display is not an instance of the lemma as stated
+- the proof's own r=4 constant is 8 per interval with up to two
+  intervals, against A.5's 1
+- P_1 is not robust to which reading is taken: 2.8e18 to 2.0e27 across
+  the four
+Strongest theorem
+- (y-x)^2 <= 64 V P^2/(c_7 S) from the second-difference identity, so
+  the r=4 length is 8 P (V/(c_7 S))^(1/2)
+Strongest refutation
+- the first finding of this loop that runs against the paper rather
+  than for it
+Reusable machinery
+- p1_constant_provenance, the four readings and the C(E) each term
+  implies; one test, two exact checks (253 in the layer)
+Branch status
+- PAPER_B_AUDIT_CONSISTENT (the audit's own gate is unaffected: P_0 is
+  untouched and no printed inequality of Sections 4-6 fails)
+Why
+  A number the paper leads with in Appendix A.5 depends on which of
+  three passages a reader believes. That is worth surfacing even
+  though -- especially though -- it is the first thing here that makes
+  the paper look worse rather than better.
+Best next question
+- if the proof's constants are the right ones, does P_1 stay above the
+  point where Theorem 5.3's own P^(1-1/96) beats the trivial bound
+  (2^96 = 7.9e28)? At 1.4e24 it does not, and at 2.0e27 it still does
+  not -- so which of the two thresholds actually governs the theorem's
+  reach?
+```

@@ -788,6 +788,62 @@ def p1_cost_split(points: tuple[float, ...] = (13.0, 16.0, 19.0, 22.0)) -> dict[
         "interpolant_repair_gain_on_P1": 1.06,
     }
 
+def p1_constant_provenance() -> dict[str, Any]:
+    """Where A.5's two transition constants come from, and why they cannot both come from Lemma 3.9.
+
+    Lemma 3.9(i) bounds the sublevel set by C(E) (PV/S + P (V/S)^{1/2}) with a single C(E), which
+    Section 3 says explicitly is "never assigned a value anywhere in the paper".  Appendix A.5's
+    P_1 computation nevertheless carries explicit coefficients:
+
+        4 P W/(c_7 S)                 implies  C(E) = 4/c_7      = 928
+        P (W/(c_7 S))^{1/2}           implies  C(E) = 1/sqrt(c_7) = 15.2
+
+    No single C(E) gives both, so the display is not an instance of Lemma 3.9(i) as stated.  The
+    lemma's own proof gives the per-piece lengths directly -- 4 P V/(c_7 S) on an r=3 piece, and
+    8 P (V/(c_7 S))^{1/2} per interval on an r=4 piece with at most two such intervals -- so the
+    r=3 coefficient matches and the r=4 one is 8 to 16 times larger than A.5 carries.  Appendix
+    A.6 gives a third reading, writing the r=3 length as 2 P V/(c_3 S).
+
+    Substituting each reading into A.5's own shape moves P_1 by orders of magnitude, and the
+    direction is against the paper: the proof's constants put P_1 above 10^24 where A.5 prints
+    9.8e18.  Reported as an apparent inconsistency between three passages, not as a verdict --
+    a normalisation carried silently between them would reconcile it, and this probe cannot see one.
+    """
+
+    c7 = p0_certificate.C7
+    kappa, s_lo, N = p0_certificate.KAPPA, 0.56, 3.5
+
+    def p1(a3: float, a4: float) -> float:
+        def excess(L: float) -> float:
+            P = 10.0**L
+            S = s_lo * P ** (-5 / 8)
+            V = kappa * S**0.5 * P ** (-11 / 24)
+            W = V + p0_certificate.interpolant_error(P)
+            return (a3 * P * (W / (c7 * S)) + a4 * P * (W / (c7 * S)) ** 0.5
+                    + N * P ** (13 / 24) * V**-0.5 - P)
+        lo, hi = 1.0, 60.0
+        for _ in range(400):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if excess(mid) > 0 else (lo, mid)
+        return 10.0**hi
+
+    readings = [
+        {"source": "Appendix A.5, as printed", "r3": 4.0, "r4": 1.0, "P1": p1(4, 1)},
+        {"source": "Appendix A.6, as printed", "r3": 2.0, "r4": 1.0, "P1": p1(2, 1)},
+        {"source": "Lemma 3.9 proof, one r=4 interval", "r3": 4.0, "r4": 8.0, "P1": p1(4, 8)},
+        {"source": "Lemma 3.9 proof, two r=4 intervals", "r3": 4.0, "r4": 16.0, "P1": p1(4, 16)},
+    ]
+    return {
+        "readings": readings,
+        "C_of_E_implied_by_the_r3_term": 4 / c7,
+        "C_of_E_implied_by_the_r4_term": c7**-0.5,
+        "one_C_of_E_fits_both": abs(4 / c7 - c7**-0.5) < 1e-9,
+        "printed_P1": readings[0]["P1"],
+        "P1_at_the_proof_constants": readings[2]["P1"],
+        "orders_between_them": math.log10(readings[2]["P1"] / readings[0]["P1"]),
+        "direction_is_against_the_paper": readings[2]["P1"] > readings[0]["P1"],
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -1787,6 +1843,9 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("A.5: the r=3 term at 41/48 = 82/96 sits below the two that share 89/96", F(41, 48) == F(82, 96) and F(82, 96) < F(89, 96)),
         ("A.5: P_1 solves C P^{89/96} = P, so P_1 = C^{96/7} and a constant is amplified by 96/7", 1 - F(89, 96) == F(7, 96)),
         ("A.5: the piece count is 3 + 2P^{-13/24} + 22P^{-11/48} + 5P^{-5/24}, leading 3 from 1/24+1/2", F(1, 24) + F(1, 2) == F(13, 24) and F(5, 16) - F(13, 24) == -F(11, 48) and F(1, 3) - F(13, 24) == -F(5, 24)),
+        # Lemma 3.9's proof of the r=4 length, whose constant A.5 does not carry
+        ("3.9 proof: 4V >= (c_7 S/(4P^2))(y-x)^2/4 gives (y-x)^2 <= 64 V P^2/(c_7 S), i.e. 8P", 64 ** 0.5 == 8.0),
+        ("3.9 proof: the r=3 length 4PV/(c_7 S) and the r=4 length 8P(V/(c_7 S))^{1/2} differ in shape, so one C(E) scales them differently", F(1) != F(1, 2)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -2213,6 +2272,7 @@ def summary() -> dict[str, Any]:
     budget_split = step5b_budget_split()
     kappa_optimum = kappa_optimum_check()
     p1_split = p1_cost_split()
+    p1_provenance = p1_constant_provenance()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2245,6 +2305,7 @@ def summary() -> dict[str, Any]:
         "step5b_budget_split": budget_split,
         "kappa_optimum_check": kappa_optimum,
         "p1_cost_split": p1_split,
+        "p1_constant_provenance": p1_provenance,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

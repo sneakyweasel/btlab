@@ -816,3 +816,16 @@ def test_the_piece_boundary_term_binds_P1_and_its_constant_is_loose() -> None:
     # and it is worth more than the interpolant repair, on the number that decides reach
     assert r["P1_gain"] > 2 > r["interpolant_repair_gain_on_P1"]
     assert r"P^{13/24}V^{-1/2}" in _paper()
+
+
+def test_the_two_transition_constants_cannot_share_one_C_of_E() -> None:
+    """Lemma 3.9(i) has one C(E); A.5's two terms imply 928 and 15.2."""
+    r = A.p1_constant_provenance()
+    assert not r["one_C_of_E_fits_both"]
+    assert abs(r["C_of_E_implied_by_the_r3_term"] - 928) < 1
+    assert abs(r["C_of_E_implied_by_the_r4_term"] - 15.23) < 0.05
+    assert r["direction_is_against_the_paper"] and r["orders_between_them"] > 4
+    text = _paper()
+    assert "is never assigned a value anywhere in the paper" in text
+    assert r"\le8P\,(V/(c_7S))^{1/2}" in text          # the proof's r=4 constant
+    assert r"\le4PV/(c_7S)" in text                    # and its r=3 one, which A.5 does carry
