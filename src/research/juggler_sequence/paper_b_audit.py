@@ -1165,7 +1165,12 @@ def summary() -> dict[str, Any]:
     standing = [standing_estimates(P) for P in (10**6, 10**8, 10**10, 10**14, 10**16)]
     cells = [cell_inventory(10**5, h) for h in (1, 2, 3)]
     cell_scaling = cell_scaling_check()
-    runs = [frozen_run_inventory(10**5, 1, 1), frozen_run_inventory(10**5, 1, 2)]
+    # (1,1) and (1,2) both land on j = 0 at this P, where the frozen G barely moves and the run
+    # count is two orders below the bound (50 and 99 against 123715).  The |j|+1 factor is the
+    # whole shape of the bound and was never exercised.  (2,2) has j = -1 at the same P, with
+    # 5946 runs: same cost, and the branch the bound exists for.
+    runs = [frozen_run_inventory(10**5, 1, 1), frozen_run_inventory(10**5, 1, 2),
+            frozen_run_inventory(10**5, 2, 2)]
     expo = exponent_checks()
     a6 = appendix_a6_checks()
     kernel = [kernel_sum(P) for P in (10**4, 3 * 10**4, 10**5, 3 * 10**5)]

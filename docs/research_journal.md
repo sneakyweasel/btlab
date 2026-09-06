@@ -29572,3 +29572,53 @@ Best next question
 - the localized kernel would give 0.5561. Which productions does that
   add, and does the same single-summand attribution work there?
 ```
+
+## The frozen-run bound's whole shape was untested, and the fix was free
+
+Fourth Paper B pass, on `frozen_run_inventory` and its printed bound
+\(22(|j|+1)P^{3/4}\), where \(j=\beta_{12}-\beta_1-\beta_2\).
+
+The audit evaluated it at \(P=10^5\) for \((h_1,h_2)=(1,1)\) and
+\((1,2)\). Both have \(j=0\) — and at \(j=0\) the frozen \(G\) barely
+moves: \(50\) and \(99\) runs against a bound of \(123715\), four
+orders of headroom. So the \(|j|+1\) factor, which is the entire shape
+of the bound, had never been exercised.
+
+The behaviour is not a small correction. Scanning scales:
+
+| \(P\) | \(j\) | runs | runs\(/P^{3/4}\) |
+|---|---|---|---|
+| \(10^5\) | \(0\) | \(50,\ 99\) | \(0.009,\ 0.018\) |
+| \(3\cdot10^5\) | \(-1\) | \(13174,\ 13238\) | \(1.03,\ 1.03\) |
+| \(10^6\) | \(0\) | \(88,\ 174\) | \(0.003,\ 0.006\) |
+
+Two orders of magnitude between the branches, and \(j\) moves through
+\(\{-1,0,1\}\) unpredictably with \(P\) and the gap pair — over 25
+scales the triple \((j_{11},j_{12},j_{22})\) takes eleven distinct
+values. The audit's \(j=0\) was luck, not design.
+
+The fix costs nothing: at the *same* \(P=10^5\), \((2,2)\) has
+\(j=-1\), with \(5946\) runs against \(247430\). Added. The bound holds
+on both branches, at \(0.0008\) of it when \(j=0\) and \(0.024\) when
+\(j=-1\) — so it is generous either way, but now demonstrably on the
+branch it was written for.
+
+This is the fourth distinct shape in four passes: a constant nobody
+recomputed, an estimate never evaluated in its own regime, an
+extrapolation never tested, and now a case split where only the
+degenerate branch was ever run. The common thread is that each check
+passed, every time, while never touching what it was supposed to
+establish.
+
+```text
+What was learned
+- the |j|+1 bound had only ever seen j = 0, where the run count is four
+  orders below it; j = -1 is a hundredfold busier and still fits
+- j varies unpredictably with P and the gap pair, so the audit's j = 0 was
+  an accident of the chosen point
+- covering the other branch cost one extra pass at the same P
+Branch status
+- PAPER_B_AUDIT_CONSISTENT over both branches; runtime 31.2 -> 33.7 s
+Best next question
+- the same question for the identity census and the Lemma 6.2 edge search:
+  do they sample a case split, and if so does the sample reach both sides?

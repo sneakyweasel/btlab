@@ -459,7 +459,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "9036fb9bddadf1e02091d3ed95df0fdf3590f8ab",
+  "git_commit": "bc0cc6bc28a95743a07cc5a08f00aeb91150f56f",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -1009,6 +1009,15 @@
       "j": 0,
       "runs": 99,
       "printed_bound": 123715.0915418768,
+      "ok": true
+    },
+    {
+      "P": 100000,
+      "h1": 2,
+      "h2": 2,
+      "j": -1,
+      "runs": 5946,
+      "printed_bound": 247430.1830837536,
       "ok": true
     }
   ],
@@ -1981,5 +1990,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 31.158726930618286
+  "elapsed_seconds": 33.734530210494995
 }
