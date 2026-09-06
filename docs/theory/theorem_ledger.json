@@ -675,6 +675,8 @@
   "statement": "f_w(x)=3^{2m}x^3+3^{m+1}p x^2+3p^2 x+DZ^m(p^3)",
   "source": "docs/theory/cubic_residual_image.md",
   "lean": "BTCalculus/CubicResidual.lean",
+  "decl": "eval_cubicResid",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_cubic_residual.py"
   ],
@@ -719,6 +721,8 @@
   "statement": "cubics are finite-horizon equivalent iff their Newton residues agree modulo 3^k",
   "source": "docs/theory/cubic_residual_image.md",
   "lean": "BTCalculus/CubicResidual.lean",
+  "decl": "equivK_cubic_newton",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_cubic_residual.py"
   ],

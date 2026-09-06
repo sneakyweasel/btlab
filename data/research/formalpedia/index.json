@@ -50957,7 +50957,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The residual family in closed form: `eval x (cubicResid m p) = 3^(2m) x^3 + 3^(m+1) p x^2 + 3 p^2 x + D^m (p^3)`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -50968,13 +50968,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 27,
+      "line": 28,
       "module": "BTCalculus.CubicResidual",
       "name": "eval_cubicResid",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`X^3 = cubic 1 0 0 0`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -50985,13 +50985,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 34,
+      "line": 36,
       "module": "BTCalculus.CubicResidual",
       "name": "X_pow_three_eq_cubic",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`cubicResid 0 0 = X^3` -- the family starts at the cube.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51002,13 +51002,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 38,
+      "line": 41,
       "module": "BTCalculus.CubicResidual",
       "name": "cubicResid_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Constant coefficient of `cubic A B lin cst` is `cst`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51019,13 +51019,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 42,
+      "line": 46,
       "module": "BTCalculus.CubicResidual",
       "name": "coeff_cubic_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Linear coefficient of `cubic A B lin cst` is `lin`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51036,13 +51036,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 56,
+      "line": 61,
       "module": "BTCalculus.CubicResidual",
       "name": "coeff_cubic_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Quadratic coefficient of `cubic A B lin cst` is `B`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51053,13 +51053,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 70,
+      "line": 76,
       "module": "BTCalculus.CubicResidual",
       "name": "coeff_cubic_two",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Cubic coefficient of `cubic A B lin cst` is `A`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51070,13 +51070,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 84,
+      "line": 91,
       "module": "BTCalculus.CubicResidual",
       "name": "coeff_cubic_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`cubic` is injective in its four coefficients.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51087,13 +51087,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 98,
+      "line": 106,
       "module": "BTCalculus.CubicResidual",
       "name": "cubic_inj",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`cubic` subtracts coefficientwise.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51104,13 +51104,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 107,
+      "line": 116,
       "module": "BTCalculus.CubicResidual",
       "name": "cubic_sub",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Cube of a lifted point: `(p + 3^m a)^3` split into `p^3` plus a `3^m`-multiple.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51121,13 +51121,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 114,
+      "line": 124,
       "module": "BTCalculus.CubicResidual",
       "name": "cubic_cube_split",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`eval a (cubicResid m p) = D^m ((p + 3^m a)^3)` -- the family is the iterated residual of a cube.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51138,13 +51138,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 120,
+      "line": 131,
       "module": "BTCalculus.CubicResidual",
       "name": "eval_cubicResid_iter",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Pointwise section derivative of a cubic at `a`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51155,30 +51155,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 129,
+      "line": 141,
       "module": "BTCalculus.CubicResidual",
       "name": "eval_sectionDeriv_cubic",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 160,
-      "module": "BTCalculus.CubicResidual",
-      "name": "sectionDeriv_cubic",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "The section derivative of a cubic is again a cubic, with the stated coefficients.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51191,11 +51174,11 @@
       ],
       "line": 173,
       "module": "BTCalculus.CubicResidual",
-      "name": "C_step_cubic",
+      "name": "sectionDeriv_cubic",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "One more `D` on the family advances the iterate: `D (eval a (cubicResid m p)) = D^(m+1) ((p + 3^m a)^3)`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51206,13 +51189,30 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 178,
+      "line": 187,
+      "module": "BTCalculus.CubicResidual",
+      "name": "C_step_cubic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The family is closed under the section derivative: `sectionDeriv a (cubicResid m p) = cubicResid (m+1) (p + 3^m a)`.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 193,
       "module": "BTCalculus.CubicResidual",
       "name": "sectionDeriv_cubicResid",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Along any trit word, the family advances by the word's length and packed value.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51223,13 +51223,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 205,
+      "line": 221,
       "module": "BTCalculus.CubicResidual",
       "name": "residualAlong_cubic_family",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Residuals of `X^3` are exactly the family: `residualAlong w (X^3) = cubicResid |w| (packWord w)`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51240,13 +51240,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 220,
+      "line": 237,
       "module": "BTCalculus.CubicResidual",
       "name": "residualAlong_Xcube",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Distinct trit words give distinct residuals of `X^3`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51257,13 +51257,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 226,
+      "line": 244,
       "module": "BTCalculus.CubicResidual",
       "name": "residualAlong_Xcube_injective",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Newton coordinates of the residual family, written in terms of `m` and `p`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51274,13 +51274,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 250,
+      "line": 269,
       "module": "BTCalculus.CubicResidual",
       "name": "newton_cubicResid",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The section step scales the `N3` Newton coordinate by `9`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51291,13 +51291,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 260,
+      "line": 280,
       "module": "BTCalculus.CubicResidual",
       "name": "newton_section_N3",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The section step sends `N2` to `3 N2 + 3(a + 2) N3`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51308,7 +51308,7 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 267,
+      "line": 288,
       "module": "BTCalculus.CubicResidual",
       "name": "newton_section_N2",
       "trust": "kernel"
@@ -51325,13 +51325,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 277,
+      "line": 298,
       "module": "BTCalculus.CubicResidual",
       "name": "equivK_cubic",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Two cubics are equivalent at horizon `k` exactly when their Newton coordinates agree modulo `3^k`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51342,134 +51342,15 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 304,
+      "line": 326,
       "module": "BTCalculus.CubicResidual",
       "name": "equivK_cubic_newton",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`-1` is a trit.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "lemma",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 339,
-      "module": "BTCalculus.CubicResidual",
-      "name": "isTrit_neg_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "lemma",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 342,
-      "module": "BTCalculus.CubicResidual",
-      "name": "isTrit_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "lemma",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 345,
-      "module": "BTCalculus.CubicResidual",
-      "name": "isTritList_singleton_neg",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "lemma",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 348,
-      "module": "BTCalculus.CubicResidual",
-      "name": "isTritList_singleton_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 351,
-      "module": "BTCalculus.CubicResidual",
-      "name": "packWord_neg_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 354,
-      "module": "BTCalculus.CubicResidual",
-      "name": "packWord_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-form",
-        "BTA-x3-raw",
-        "BTA-x3-newton",
-        "BTA-x3-section",
-        "BTA-x3-equiv-N",
-        "BTA-x3-Fk"
-      ],
-      "line": 357,
-      "module": "BTCalculus.CubicResidual",
-      "name": "cubicResid_one_neg",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/CubicResidual.lean",
-      "kind": "theorem",
       "ledger": [
         "BTA-x3-form",
         "BTA-x3-raw",
@@ -51479,6 +51360,125 @@
         "BTA-x3-Fk"
       ],
       "line": 362,
+      "module": "BTCalculus.CubicResidual",
+      "name": "isTrit_neg_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`1` is a trit.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "lemma",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 366,
+      "module": "BTCalculus.CubicResidual",
+      "name": "isTrit_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`[-1]` is a trit word.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "lemma",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 370,
+      "module": "BTCalculus.CubicResidual",
+      "name": "isTritList_singleton_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`[1]` is a trit word.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "lemma",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 374,
+      "module": "BTCalculus.CubicResidual",
+      "name": "isTritList_singleton_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`packWord [-1] = -1`.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 378,
+      "module": "BTCalculus.CubicResidual",
+      "name": "packWord_neg_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`packWord [1] = 1`.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 382,
+      "module": "BTCalculus.CubicResidual",
+      "name": "packWord_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`cubicResid 1 (-1) = cubic 9 (-9) 3 0`.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 386,
+      "module": "BTCalculus.CubicResidual",
+      "name": "cubicResid_one_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`cubicResid 1 1 = cubic 9 9 3 0`.",
+      "file": "formal/BTCalculus/CubicResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-form",
+        "BTA-x3-raw",
+        "BTA-x3-newton",
+        "BTA-x3-section",
+        "BTA-x3-equiv-N",
+        "BTA-x3-Fk"
+      ],
+      "line": 392,
       "module": "BTCalculus.CubicResidual",
       "name": "cubicResid_one_pos",
       "trust": "kernel"
@@ -51495,13 +51495,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 369,
+      "line": 399,
       "module": "BTCalculus.CubicResidual",
       "name": "x3_first_merge_newton",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The two depth-one `X^3` residuals are not equivalent at horizon `3`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51512,13 +51512,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 375,
+      "line": 406,
       "module": "BTCalculus.CubicResidual",
       "name": "x3_first_merge_newton_not_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`residualAlong [-1] (X^3) = cubicResid 1 (-1)`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51529,13 +51529,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 383,
+      "line": 415,
       "module": "BTCalculus.CubicResidual",
       "name": "residualAlong_Xcube_neg",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`residualAlong [1] (X^3) = cubicResid 1 1`.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51546,13 +51546,13 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 387,
+      "line": 420,
       "module": "BTCalculus.CubicResidual",
       "name": "residualAlong_Xcube_pos",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `k = 2` merge of the two `X^3` residuals, obtained through the Newton coordinates.",
       "file": "formal/BTCalculus/CubicResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -51563,7 +51563,7 @@
         "BTA-x3-equiv-N",
         "BTA-x3-Fk"
       ],
-      "line": 391,
+      "line": 425,
       "module": "BTCalculus.CubicResidual",
       "name": "x3_first_merge_via_newton",
       "trust": "kernel"
