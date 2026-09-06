@@ -98,3 +98,53 @@ def test_stage4_curvature_is_named_separately_from_the_old_lambda0_floor() -> No
 def test_the_rounded_constants_round_the_right_way(theorem, numeral, expected) -> None:
     assert expected <= float(numeral)
     assert A.PAIRINGS[("PaperBAssembly", theorem)][numeral][2]()
+
+
+# --- the same failure, in prose ---
+
+
+def test_no_lean_prose_claim_about_the_manuscript_is_stale() -> None:
+    bad = A.stale_claims()
+    assert bad == [], [(r["module"], r["description"],
+                        "anchor gone" if not r["anchor_present"] else "manuscript disagrees")
+                       for r in bad]
+
+
+def test_every_claim_has_an_anchor_still_in_its_file() -> None:
+    """Rewording a sentence must retire its row loudly, not silently."""
+    for r in A.claim_audit():
+        assert r["anchor_present"], (r["module"], r["anchor"][:50])
+
+
+def test_the_predicates_discriminate() -> None:
+    """A claim that holds against an empty manuscript is not checking anything."""
+    for _mod, _anchor, desc, pred in A.MANUSCRIPT_CLAIMS:
+        assert pred("") is False, desc
+
+
+def test_the_claim_guard_fires_on_the_two_it_was_built_for(monkeypatch) -> None:
+    """Both BranchFreeze remarks had been adopted into the manuscript and said otherwise."""
+    text = A.paper_text()
+    # the cancellation: strip it from the manuscript and the row must go stale
+    doctored = text.replace(r"\tfrac{99}{64}\cdot19=29.4", "REMOVED")
+    monkeypatch.setattr(A, "paper_text", lambda: doctored)
+    stale = {r["description"] for r in A.stale_claims()}
+    assert "the cancellation is in the manuscript, with both Lean names cited" in stale
+    # the beta-product: the manuscript printing 18 instead of 19 must also fire
+    doctored2 = text.replace(r"\beta_1\beta_2\le19h_1h_2P", r"\beta_1\beta_2\le18h_1h_2P")
+    monkeypatch.setattr(A, "paper_text", lambda: doctored2)
+    stale2 = {r["description"] for r in A.stale_claims()}
+    assert "the manuscript carries 19 for the beta-product, not 18" in stale2
+
+
+def test_the_two_branchfreeze_headers_no_longer_claim_sole_custody() -> None:
+    src = A.statements  # keep the module import honest
+    assert src is not None
+    text = (A.LEAN_DIR / "BranchFreeze.lean").read_text(encoding="utf-8")
+    assert "One thing this file records that the manuscript does not" not in text
+    assert "A cancellation the printed `25` depends on" in text
+    assert "neither is the sole record" in text
+    # and the arithmetic in the header now matches the manuscript's 29.4, not 27.8
+    assert "29.4 h\u2081h\u2082P^(-7/4)" in text
+    assert "27.8" not in text
+    assert abs((81 / 64 + 9 / 32) * 19 - 29.390625) < 1e-9

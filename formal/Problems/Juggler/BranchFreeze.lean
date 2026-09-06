@@ -17,12 +17,14 @@ The substitution that keeps this polynomial: `n = s⁴` and `P = p⁴`, so that
 `X = n^(3/2) = s⁶`, `X' = (3/2)s²`, `X'' = (3/4)s⁻²` and every power of `X` is
 a power of `s`.  As in `ThresholdCertificate.lean`, no `Real.rpow` is needed.
 
-**One thing this file records that the manuscript does not.**  The printed
-bound `|G''| ≤ 2|j|P^(-5/4) + 25 h₁h₂P^(-7/4)` is true, but *not* term by term:
+**A cancellation the printed `25` depends on.**  The bound
+`|G''| ≤ 2|j|P^(-5/4) + 25 h₁h₂P^(-7/4)` is true, but *not* term by term:
 the two `β`-contributions to `G''` have opposite signs and partially cancel,
 `81/64 - 9/32 = 63/64`.  Bounding them separately gives `99/64`, i.e.
-`27.8 h₁h₂P^(-7/4)`, which exceeds the printed `25`.  See
-`Gsecond_beta_cancellation` and `Gsecond_naive_bound_fails`.
+`29.4 h₁h₂P^(-7/4)` at `β₁β₂ ≤ 19 h₁h₂P`, which exceeds the printed `25`.  See
+`Gsecond_beta_cancellation` and `Gsecond_naive_bound_fails`.  This file found
+it; the manuscript now carries the whole computation at Lemma 5.1(iii) and
+cites both theorems by name, so the two agree and neither is the sole record.
 
 **A second thing.**  The printed offset bound `|j| ≤ 3` is not sharp.  Its proof
 adds the corner floor range `[-1,2]` to a carry vector `κ ∈ {0,1}³` as if the
@@ -183,9 +185,14 @@ and `P < n ≤ 2P` becomes `p ≤ s`.  The manuscript's `β_i ∈ [3h_iP^(1/2) -
 section Derivatives
 
 /-- **The `β`-product bound.**  From `β_i ≤ 3√2 h_i q + 1` with `q = P^(1/2)`,
-`h_i ≥ 1` and `q ≥ 10`, the product satisfies `β₁β₂ ≤ 19 h₁h₂ q²`.  The
-manuscript's `(3√2)² = 18` becomes `19` once the `+1`s are carried honestly;
-`4.25 ≥ 3√2` is the rational substitute. -/
+`h_i ≥ 1` and `q ≥ 10`, the product satisfies `β₁β₂ ≤ 19 h₁h₂ q²`, which is what
+the manuscript carries: `(3√2)² = 18` is the product of the leading terms, and
+the `+1`s take it to `19`.  `4.25 ≥ 3√2` is the rational substitute.
+
+Not an over-quantification, though it separates two variables one `n` determines:
+both factors are extremal at the same `n = 2P`, `β₁β₂/(h₁h₂P)` attains `18`
+exactly, and `4.25² = 18.0625` is the whole of the loss.  See the note at
+Lemma 5.1(iii) and `decoration_budget.beta_inventory_attained`. -/
 theorem beta_product_bound (β₁ β₂ h₁ h₂ q : ℝ)
     (hq : 10 ≤ q) (hh₁ : 1 ≤ h₁) (hh₂ : 1 ≤ h₂)
     (hβ₁ : β₁ ≤ 4.25 * h₁ * q + 1) (hβ₂ : β₂ ≤ 4.25 * h₂ * q + 1)
@@ -233,7 +240,7 @@ theorem Gsecond_beta_cancellation (j β s : ℝ) (hs : s ≠ 0) :
 
 /-- **The printed `25` needs that cancellation.**  With `β₁β₂ ≤ 19 h₁h₂P`, the
 combined coefficient `63/64` gives `18.7 ≤ 25`; bounding the two `β`-terms
-separately gives `99/64`, i.e. `29.3`, which exceeds `25`.  The manuscript's
+separately gives `99/64`, i.e. `29.4`, which exceeds `25`.  The manuscript's
 bound is correct, but its naive derivation is not. -/
 theorem Gsecond_naive_bound_fails :
     (63 / 64 : ℝ) * 19 ≤ 25 ∧ 25 < (81 / 64 + 9 / 32 : ℝ) * 19 := by

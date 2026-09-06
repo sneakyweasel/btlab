@@ -19,6 +19,12 @@ non-certificate Paper B statement is one of:
 and anything else is **unclassified**, which is a failure.  A new numeral in a Paper B
 statement therefore has to be classified before the suite is green again.
 
+It also checks the Lean files' prose about the manuscript.  That goes stale the same way
+and usually in the opposite direction: `BranchFreeze` opened with "One thing this file
+records that the manuscript does not", about a cancellation the manuscript had since adopted
+in full, citing the two theorems by name.  A remark taken up by the paper falsifies its own
+framing.  See ``MANUSCRIPT_CLAIMS``.
+
 Run ``python tools/lean_numeral_audit.py``.
 """
 
@@ -453,6 +459,90 @@ def coverage() -> dict[str, Any]:
     }
 
 
+
+# --- prose claims about the manuscript -----------------------------------------------------
+#
+# The numeral table above catches a Lean *constant* that stops matching the manuscript.  It
+# does not catch a Lean *sentence* that stops matching it, and those go stale by the same
+# mechanism and for the same reason -- often the opposite one.  `BranchFreeze` opened with
+# "One thing this file records that the manuscript does not", about the `63/64` cancellation
+# the printed `25` depends on; the manuscript adopted the whole computation, cites the two
+# theorems by name, and the header went on claiming sole custody of it.  Its `β`-product
+# docstring said "the manuscript's (3√2)² = 18 becomes 19", after the manuscript had started
+# printing `19` itself.  A remark adopted into the paper falsifies its own framing, and nothing
+# was watching.
+#
+# Each row is (module, anchor, description, predicate).  The anchor must occur in the Lean
+# file, so rewording the sentence retires the row loudly instead of silently; the predicate is
+# checked against the manuscript.
+
+PAPER = REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+
+
+def paper_text() -> str:
+    return PAPER.read_text(encoding="utf-8")
+
+
+MANUSCRIPT_CLAIMS: tuple[tuple[str, str, str, Callable[[str], bool]], ...] = (
+    ("BranchFreeze",
+     "the manuscript now carries the whole computation at Lemma 5.1(iii) and",
+     "the cancellation is in the manuscript, with both Lean names cited",
+     lambda t: all(x in t for x in (r"\tfrac{81}{64}-\tfrac9{32}=\tfrac{63}{64}",
+                                    r"\tfrac{99}{64}\cdot19=29.4",
+                                    "`Gsecond_beta_cancellation`",
+                                    "`Gsecond_naive_bound_fails`"))),
+    ("BranchFreeze",
+     "which is what" + chr(10) + "the manuscript carries: `(3" + chr(0x221A) + "2)" + chr(0xB2) + " = 18` is the product of the leading terms",
+     "the manuscript carries 19 for the beta-product, not 18",
+     lambda t: r"\beta_1\beta_2\le19h_1h_2P" in t),
+    ("BranchFreeze",
+     "The manuscript's `" + chr(0x3B2) + "_i " + chr(0x2208) + " [3h_iP^(1/2) - 1,",
+     "the manuscript's beta range at Lemma 5.1(iii)",
+     lambda t: r"\beta_i\in[3h_iP^{1/2}{-}1,\,3\sqrt2\,h_iP^{1/2}{+}1]" in t),
+    ("BranchFreeze",
+     "The `22` of the manuscript is exactly",
+     "the manuscript's run-length constant is 22",
+     lambda t: r"\tfrac1{22}\min\bigl(P^{1/4}/(|j|{+}1)" in t),
+    ("BranchFreeze",
+     "condition is exactly the manuscript's `h" + chr(0x2081) + "h" + chr(0x2082) + " " + chr(0x2264) + " P^(1/2)/3`",
+     "the manuscript's hypothesis for the double difference",
+     lambda t: r"h_1h_2\le P^{1/2}/3" in t),
+    ("BranchFreeze",
+     "beside it because it is what the manuscript printed.",
+     "the manuscript prints |j| <= 2 and records 3 as the superseded reading",
+     lambda t: (r"-1\le j\le2\)" in t or r"\(-1\le j\le2\)" in t)
+     and "as though the two could be chosen" in t),
+    ("MonomialSplitting",
+     "The manuscript's weaker `c" + chr(0x2087) + " = 1/288` follows",
+     "the manuscript quotes the weaker c_7 = 1/288 and says it remains valid",
+     lambda t: r"weaker value \(c_7=1/288\) used in Step 5b" in t),
+    ("MeanValues",
+     "The two mean values the manuscript",
+     "the manuscript says (iii) is unconditional via MeanValues.lean",
+     lambda t: "`formal/Problems/Juggler/MeanValues.lean`, so (iii) is unconditional." in t),
+    ("PaperBAssembly",
+     "keeps the manuscript's weaker `1/288`",
+     "the superseded chain is retained beside the corrected one, as the erratum's list needs",
+     lambda t: r"186\to300\)" in t and r"106\to171\)" in t),
+)
+
+
+def claim_audit() -> list[dict[str, Any]]:
+    """One row per prose claim: is the anchor still in Lean, and does the manuscript agree?"""
+    text = paper_text()
+    out: list[dict[str, Any]] = []
+    for module, anchor, description, predicate in MANUSCRIPT_CLAIMS:
+        src = (LEAN_DIR / (module + ".lean")).read_text(encoding="utf-8")
+        present = anchor in src
+        out.append({"module": module, "anchor": anchor, "description": description,
+                    "anchor_present": present,
+                    "holds": bool(predicate(text)) if present else False})
+    return out
+
+
+def stale_claims() -> list[dict[str, Any]]:
+    return [r for r in claim_audit() if not (r["anchor_present"] and r["holds"])]
+
 def main() -> None:
     rows = audit()
     cov = coverage()
@@ -467,6 +557,14 @@ def main() -> None:
               % (r["module"], r["theorem"], r["numeral"], r["role"]))
     if not cov["unclassified"] and not cov["failing"]:
         print("  every numeral is classified and every pairing holds")
+    claims = claim_audit()
+    bad = stale_claims()
+    print("  prose claims about the manuscript: %d checked, %d stale"
+          % (len(claims), len(bad)))
+    for r in bad:
+        print("     STALE  %-18s %s (%s)"
+              % (r["module"], r["description"],
+                 "anchor gone" if not r["anchor_present"] else "manuscript disagrees"))
     print("  (the %d threshold rows are paired by p0_certificate.LEAN_ROWS)"
           % cov["certificate_rows_covered_elsewhere"])
 

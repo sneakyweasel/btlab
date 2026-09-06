@@ -291,6 +291,13 @@ display. A check that the numerals appear somewhere in the manuscript would not
 have found it --- both of them appear, inside the erratum's own list of what
 replaced them. Only a check by value does.
 
+The same table checks the Lean files' *prose* about this paper, which goes
+stale by the same mechanism and usually in the opposite direction: a remark a
+Lean file makes about a gap here, once the gap is closed, falsifies its own
+framing. Two of `BranchFreeze`'s did. Nine such claims are now anchored to a
+sentence in Lean and a predicate on this manuscript, and a reworded sentence
+retires its row rather than quietly passing.
+
 *Locating a statement.* Numbered statements run one ahead of the
 section headings until Section 6. Lemmas 3.x are in Section 2,
 Theorems 4.x in Section 3, Lemma 5.1, Lemma 5.2 and Theorem 5.3 in
