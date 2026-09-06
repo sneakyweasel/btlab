@@ -2233,3 +2233,30 @@ def test_the_existing_threshold_audit_cannot_see_this_one() -> None:
         assert per[3]["printed_claim_holds"] and not per[4]["printed_claim_holds"]
     if sharper:
         assert r["three_figures_is_what_saves_them"]
+
+
+# --- the fifth-letter coefficient of Theorem 6.3 ---
+
+
+def test_the_fifth_letter_coefficient_is_printed_at_more_than_one_value() -> None:
+    """|C| is printed at 2, 1.30 and 1.2812; only the last supports A.5's two thresholds."""
+    r = A.fifth_letter_coefficient_has_three_values()
+    assert abs(r["sharp_constant"] - 1.281137) < 1e-6
+    assert r["sharp_window_row"] < 7.5e8 and r["sharp_flat_row"] < 5.51e9   # A.5's own numbers
+    if r["every_site_is_still_there"]:
+        assert r["distinct_values"] == 3 and r["values_printed"] == [1.2812, 1.3, 2.0]
+        assert r["only_the_sharpest_supports_them"]
+        assert all(x > 1.12 for x in r["preamble_shortfall"])
+    assert r["everything_is_far_below_P0"]
+
+
+def test_the_eleven_goes_with_the_sharp_coefficient_not_the_printed_two() -> None:
+    """8(2) = 16, so the printed 11 is the sharp product 10.2491 rounded up, not the stated one."""
+    r = A.fifth_letter_coefficient_has_three_values()
+    assert r["eight_times_the_printed_two"] == 16.0 > r["the_printed_product"]
+    assert 10.2 < r["sharp_product"] < 10.25 and r["eleven_is_the_sharp_product_rounded_up"]
+    assert abs(r["eleven_below_one_from"] - 1.2261e9) / 1.2261e9 < 1e-3
+    assert r["the_sentence_cites_the_rows_threshold_not_its_own"]
+    for ch in r["chains"]:
+        if ch["present"]:
+            assert not ch["holds_at_the_stated_2"] and ch["holds_at_the_sharp_constant"]

@@ -6745,6 +6745,127 @@ def claim_strings_against_their_thresholds() -> dict[str, Any]:
     }
 
 
+# The fifth-letter sawtooth coefficient of Theorem 6.3, C = (9l/16) n^(3/16), as the manuscript
+# prints it.  Patterns are matched against the whitespace-stripped text, so they survive rewrapping.
+FIFTH_LETTER_C_SITES = (
+    {"where": "Section 2 coefficient table", "constant": 2.0,
+     "pattern": r"&2P^{19/96}&"},
+    {"where": "Thm 6.3 preamble", "constant": 1.30,
+     "pattern": r"\lvertC\rvert\le1.30\,P^{19/96}"},
+    {"where": "Thm 6.3 proof", "constant": 2.0,
+     "pattern": r"\lvertC\rvert\le2P^{19/96}"},
+    {"where": "A.6", "constant": 1.2812,
+     "pattern": r"\lvertC\rvert\le1.2812\,P^{19/96}"},
+)
+
+# The two places the paper multiplies that coefficient by 8 and prints the product's constant.
+FIFTH_LETTER_C_CHAINS = (
+    {"where": "Thm 6.3 proof", "printed": 11.0,
+     "pattern": r"8\lvertC\rvert/T\le11P^{-11/96}"},
+    {"where": "Thm 6.3 flat cost bullet", "printed": 11.0,
+     "pattern": r"8(1+\lvertC\rvert)/T\le11P^{19/96-5/16}=11P^{-11/96}"},
+)
+
+
+def fifth_letter_coefficient_has_three_values() -> dict[str, Any]:
+    """What does binding |C| at the cap the paper states do to the two Theorem 6.3 rows?  It moves
+    them, because the paper states three different caps.
+
+    The two rows are prose to any instrument -- their claim strings name |C| and stop -- so the
+    check has to import the bound from the paper.  The paper prints it four times, at three values:
+
+        where                       printed              window row    flat row
+        Section 2 coefficient table 2 P^(19/96)          3.3443e10     3.7173e11
+        Thm 6.3 preamble            1.30 P^(19/96)       8.4239e08     6.3127e09
+        Thm 6.3 proof               2 P^(19/96)          3.3443e10     3.7173e11
+        A.6                         1.2812 P^(19/96)     7.4516e08     5.5084e09
+        (sharp: (9/16) 2 (2)^(3/16) = 1.281137)          7.4486e08     5.5059e09
+
+    A.5 prints 7.5e8 and 5.51e9, which only the last line supports.  The preamble states 1.30 and
+    then quotes 7.5e8 and 5.5e9 in the next sentence, and under its own 1.30 those rows first hold
+    at 8.42e8 and 6.31e9 -- 1.13 and 1.15 times later.
+
+    The 2 does more than cost a factor.  The proof states |C| <= 2P^(19/96) and, two lines on,
+    8|C|/T <= 11P^(-11/96); but 8(2) = 16, so under the bound just stated that line is false.  The
+    11 is the sharp constant's 8(9/8)2^(3/16) = 10.25 rounded up, which A.6 derives and prints.  The
+    flat-cost bullet carries the same 11 against the same 2, and is false at every P under it.
+
+    And the sentence's own threshold does not go with its own expression: "8|C|/T <= 11P^(-11/96),
+    which is below 1 from P >= 7.5e8" -- 11P^(-11/96) reaches 1 at 11^(96/11) = 1.2261e9, not at
+    7.5e8.  What does hold from 7.4486e8 is the requirement itself, 8(1+|C|)/T <= 1, with the sharp
+    coefficient.  The printed threshold is the right one for the row and the wrong one for the
+    sentence that cites it.
+
+    Nothing here reaches P_0 = 3.5858e13: the largest of these, 3.7173e11, is a factor 96 below it,
+    so A.5, A.6 and the theorem's conclusion are unaffected.  It is Theorem 6.3's exposition that
+    carries one quantity at three values, and the arithmetic of two printed chains that does not
+    hold at the value printed beside it.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    compact = re.sub(r"\s+", "", text)
+    sharp = (9 / 16) * 2 * 2 ** (3 / 16)
+
+    def window_row(c: float) -> float:
+        lg = p0_certificate.least_P(
+            lambda P: p0_certificate.R0(P) >= 8 * (1 + c * P ** (19 / 96)))
+        return 10.0 ** lg if lg is not None else float("inf")
+
+    def flat_row(c: float) -> float:
+        lg = p0_certificate.least_P(
+            lambda P: 8 * (1 + c * P ** (19 / 96)) / p0_certificate.R0(P) <= P ** (-1 / 96))
+        return 10.0 ** lg if lg is not None else float("inf")
+
+    sites = []
+    for s in FIFTH_LETTER_C_SITES:
+        sites.append({**s, "present": compact.count(s["pattern"]) == 1,
+                      "window_row": window_row(s["constant"]),
+                      "flat_row": flat_row(s["constant"])})
+    chains = []
+    for ch in FIFTH_LETTER_C_CHAINS:
+        chains.append({**ch, "present": compact.count(ch["pattern"]) == 1,
+                       "needed_at_C_le_2": 8 * 2.0,
+                       "holds_at_the_stated_2": 8 * 2.0 <= ch["printed"],
+                       "holds_at_the_sharp_constant": 8 * sharp <= ch["printed"]})
+    printed_window, printed_flat = 7.5e8, 5.51e9
+    values = sorted({s["constant"] for s in FIFTH_LETTER_C_SITES})
+    covered = {s["constant"]: (s["window_row"] <= printed_window and s["flat_row"] <= printed_flat)
+               for s in sites}
+    eleven_below_one_from = 11.0 ** (96 / 11)
+    return {
+        "sites": sites,
+        "chains": chains,
+        "every_site_is_still_there": all(s["present"] for s in sites)
+        and all(c["present"] for c in chains),
+        "sharp_constant": sharp,
+        "values_printed": values,
+        "distinct_values": len(values),
+        "sharp_window_row": window_row(sharp),
+        "sharp_flat_row": flat_row(sharp),
+        "A5_prints": (printed_window, printed_flat),
+        "which_values_support_the_A5_thresholds": covered,
+        "only_the_sharpest_supports_them": (covered[1.2812] and not covered[1.30]
+                                            and not covered[2.0]),
+        "preamble_states": 1.30,
+        "preamble_rows": (window_row(1.30), flat_row(1.30)),
+        "preamble_shortfall": (window_row(1.30) / printed_window, flat_row(1.30) / printed_flat),
+        "eight_times_the_printed_two": 16.0,
+        "the_printed_product": 11.0,
+        "eleven_is_false_under_the_printed_two": 8 * 2.0 > 11.0,
+        "eleven_is_the_sharp_product_rounded_up": 8 * sharp <= 11.0 and 8 * sharp > 10.0,
+        "sharp_product": 8 * sharp,
+        "eleven_below_one_from": eleven_below_one_from,
+        "the_sentence_cites": printed_window,
+        "the_sentence_cites_the_rows_threshold_not_its_own": (
+            abs(window_row(sharp) / printed_window - 1) < 0.01
+            and eleven_below_one_from / printed_window > 1.5),
+        "largest_of_these": max(s["flat_row"] for s in sites),
+        "P0": p0_certificate.P0_VALUE if hasattr(p0_certificate, "P0_VALUE") else 3.5858e13,
+        "everything_is_far_below_P0": max(s["flat_row"] for s in sites) < 3.5858e13 / 50,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6841,6 +6962,7 @@ def summary() -> dict[str, Any]:
     apart = apart_charging_is_specific_to_beta()
     powers = apart_costs_are_powers_of_root_two()
     claims = claim_strings_against_their_thresholds()
+    fifth = fifth_letter_coefficient_has_three_values()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6925,6 +7047,7 @@ def summary() -> dict[str, Any]:
         "apart_charging_is_specific_to_beta": apart,
         "apart_costs_are_powers_of_root_two": powers,
         "claim_strings_against_their_thresholds": claims,
+        "fifth_letter_coefficient_has_three_values": fifth,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

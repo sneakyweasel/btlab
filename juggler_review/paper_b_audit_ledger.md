@@ -6726,3 +6726,70 @@ six other crossings raised, the convention stated for the second table,
 and the boundary coefficient defined. `P_0` and `P_1` themselves do not
 move --- `9.83914e18` is what they always were; what changed is the
 figure printed for them. No certificate edit.
+
+## One coefficient, three values --- and the product printed beside the wrong one
+
+The last section left `11` rows whose claim strings name a quantity the
+string never pins down, and the question was whether binding each at the
+cap the paper states elsewhere makes them checkable. For the two Theorem
+6.3 rows it does, and what it turns up is that the paper states that cap
+four times at three values:
+
+```text
+  where                       printed              window row    flat row
+  Section 2 coefficient table 2 P^(19/96)          3.3443e10     3.7173e11
+  Thm 6.3 preamble            1.30 P^(19/96)       8.4239e08     6.3127e09
+  Thm 6.3 proof               2 P^(19/96)          3.3443e10     3.7173e11
+  A.6                         1.2812 P^(19/96)     7.4516e08     5.5084e09
+  sharp: (9/16)(2)2^(3/16) = 1.281137              7.4486e08     5.5059e09
+```
+
+A.5 prints `7.5e8` and `5.51e9`, and only the last two lines support
+them. The preamble states `1.30` and then quotes `7.5\cdot10^{8}` and
+`5.5\cdot10^{9}` in its next sentence; under its own `1.30` those rows
+first hold at `8.42e8` and `6.31e9`, `1.123` and `1.146` times later.
+
+**The `2` does more than cost a factor.** The proof writes
+`|C| <= 2P^(19/96)` and, two lines on, `8|C|/T <= 11P^(-11/96)`. But
+`8(2) = 16`, so under the bound just stated that line is false. The `11`
+is the sharp constant's `8(9/8)2^(3/16) = 10.2491` rounded up --- which
+is exactly what A.6 derives and prints. The flat-cost bullet carries the
+same `11` against the same `2`, and under it is false at every `P`.
+
+**And the sentence's threshold is the row's, not its own.** "`8|C|/T <=
+11P^(-11/96)`, which is below `1` from `P >= 7.5\cdot10^{8}`" ---
+`11P^(-11/96)` reaches `1` at `11^(96/11) = 1.2261e9`, not at `7.5e8`.
+What holds from `7.4486e8` is the requirement itself,
+`8(1+|C|)/T <= 1`, with the sharp coefficient. The printed number is the
+right one for the row and the wrong one for the sentence citing it.
+
+Nothing here reaches `P_0`. The largest of these, `3.7173e11`, is a
+factor `96` below `3.5858e13`, so A.5, A.6 and the theorem's conclusion
+are untouched; the certificate uses the sharp coefficient throughout and
+is right to. What carries three values is Theorem 6.3's exposition, and
+what does not hold as printed is the arithmetic of two chains inside it.
+
+This is also the answer to the question the last section asked. Binding a
+prose row at the paper's own cap is what exposes this, and it could not
+have been exposed any other way: the claim string says `|C|` and stops,
+the certificate says `1.281137`, and the disagreement lives entirely in
+the prose between them.
+
+Tags. EXACT: `C = (9l/16)n^(3/16)` with `|l| <= 2P^(1/96)` and `n <= 2P`
+gives `|C| <= (9/16)(2)2^(3/16) P^(19/96) = 1.281137 P^(19/96)`, and
+`8(1.281137) = 10.2491 <= 11 < 16 = 8(2)`, so the printed `11` is
+compatible with the sharp coefficient and not with the printed `2`.
+COMPUTATIONALLY VERIFIED: the two rows under each printed value ---
+`3.3443e10`/`3.7173e11` at `2`, `8.4239e8`/`6.3127e9` at `1.30`,
+`7.4516e8`/`5.5084e9` at `1.2812`, `7.4486e8`/`5.5059e9` sharp; A.5's
+`7.5e8` and `5.51e9` cover only the last two; `11^(96/11) = 1.2261e9`;
+the largest of them is `96` times below `P_0`. OBSERVATION: all four
+printed values are valid upper bounds on the same quantity, so nothing
+here is false about `|C|` itself --- what fails is a product and a
+threshold quoted next to the wrong one of them.
+
+Probe: `fifth_letter_coefficient_has_three_values` with
+`FIFTH_LETTER_C_SITES` and `FIFTH_LETTER_C_CHAINS`, matched against the
+whitespace-stripped manuscript so they survive rewrapping and report
+their own absence once the text is repaired. Two tests. Audit `270 /
+270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate edit.

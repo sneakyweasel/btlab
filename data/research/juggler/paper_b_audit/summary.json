@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "10544d4d78d0dff6be254687bc2c5e7e0d363e81",
+  "git_commit": "f994fcf99e2364758ff6322e15d6c138de7d1692",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 7082,
+        "line": 7105,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7112,
+        "line": 7135,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7191,
+        "line": 7214,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -7641,6 +7641,102 @@
     },
     "three_figures_is_what_saves_them": true
   },
+  "fifth_letter_coefficient_has_three_values": {
+    "sites": [
+      {
+        "where": "Section 2 coefficient table",
+        "constant": 2.0,
+        "pattern": "&2P^{19/96}&",
+        "present": true,
+        "window_row": 33443199387.8701,
+        "flat_row": 371732697565.70044
+      },
+      {
+        "where": "Thm 6.3 preamble",
+        "constant": 1.3,
+        "pattern": "\\lvertC\\rvert\\le1.30\\,P^{19/96}",
+        "present": true,
+        "window_row": 842392092.5286986,
+        "flat_row": 6312658716.278864
+      },
+      {
+        "where": "Thm 6.3 proof",
+        "constant": 2.0,
+        "pattern": "\\lvertC\\rvert\\le2P^{19/96}",
+        "present": true,
+        "window_row": 33443199387.8701,
+        "flat_row": 371732697565.70044
+      },
+      {
+        "where": "A.6",
+        "constant": 1.2812,
+        "pattern": "\\lvertC\\rvert\\le1.2812\\,P^{19/96}",
+        "present": true,
+        "window_row": 745164926.5445689,
+        "flat_row": 5508429395.660605
+      }
+    ],
+    "chains": [
+      {
+        "where": "Thm 6.3 proof",
+        "printed": 11.0,
+        "pattern": "8\\lvertC\\rvert/T\\le11P^{-11/96}",
+        "present": true,
+        "needed_at_C_le_2": 16.0,
+        "holds_at_the_stated_2": false,
+        "holds_at_the_sharp_constant": true
+      },
+      {
+        "where": "Thm 6.3 flat cost bullet",
+        "printed": 11.0,
+        "pattern": "8(1+\\lvertC\\rvert)/T\\le11P^{19/96-5/16}=11P^{-11/96}",
+        "present": true,
+        "needed_at_C_le_2": 16.0,
+        "holds_at_the_stated_2": false,
+        "holds_at_the_sharp_constant": true
+      }
+    ],
+    "every_site_is_still_there": true,
+    "sharp_constant": 1.281137214101278,
+    "values_printed": [
+      1.2812,
+      1.3,
+      2.0
+    ],
+    "distinct_values": 3,
+    "sharp_window_row": 744857758.408607,
+    "sharp_flat_row": 5505905905.108978,
+    "A5_prints": [
+      750000000.0,
+      5510000000.0
+    ],
+    "which_values_support_the_A5_thresholds": {
+      "2.0": false,
+      "1.3": false,
+      "1.2812": true
+    },
+    "only_the_sharpest_supports_them": true,
+    "preamble_states": 1.3,
+    "preamble_rows": [
+      842392092.5286986,
+      6312658716.278864
+    ],
+    "preamble_shortfall": [
+      1.1231894567049314,
+      1.1456730882538773
+    ],
+    "eight_times_the_printed_two": 16.0,
+    "the_printed_product": 11.0,
+    "eleven_is_false_under_the_printed_two": true,
+    "eleven_is_the_sharp_product_rounded_up": true,
+    "sharp_product": 10.249097712810224,
+    "eleven_below_one_from": 1226077660.596283,
+    "the_sentence_cites": 750000000.0,
+    "the_sentence_cites_the_rows_threshold_not_its_own": true,
+    "largest_of_these": 371732697565.70044,
+    "P0": 35858000000000.0,
+    "everything_is_far_below_P0": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -7708,5 +7804,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 87.63408923149109
+  "elapsed_seconds": 89.32925248146057
 }

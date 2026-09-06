@@ -37119,3 +37119,75 @@ numbers, so if the column ever means something else the test says so.
 
 P_0 and P_1 do not move. 9.83914e18 is what P_1 always was. What changed
 is the figure printed for it.
+
+## One coefficient, three values
+
+Binding the prose rows at the cap the paper states elsewhere --- last
+section's question --- works for the two Theorem 6.3 rows, and shows the
+paper states that cap four times at three values:
+
+```text
+  where                       printed              window row    flat row
+  Section 2 coefficient table 2 P^(19/96)          3.3443e10     3.7173e11
+  Thm 6.3 preamble            1.30 P^(19/96)       8.4239e08     6.3127e09
+  Thm 6.3 proof               2 P^(19/96)          3.3443e10     3.7173e11
+  A.6                         1.2812 P^(19/96)     7.4516e08     5.5084e09
+  sharp: (9/16)(2)2^(3/16) = 1.281137              7.4486e08     5.5059e09
+```
+
+A.5 prints `7.5e8` and `5.51e9`, which only the sharp value supports. The
+preamble states `1.30` and quotes those two thresholds in its next
+sentence, though under `1.30` the rows first hold `1.123` and `1.146`
+times later.
+
+The `2` costs more than a factor: the proof states `|C| <= 2P^(19/96)`
+and two lines on `8|C|/T <= 11P^(-11/96)`, but `8(2) = 16`. The `11` is
+the sharp product `8(9/8)2^(3/16) = 10.2491` rounded up, which is what
+A.6 derives. And "below `1` from `P >= 7.5e8`" belongs to the row, not to
+the expression: `11P^(-11/96)` reaches `1` at `1.2261e9`.
+
+Nothing reaches `P_0` --- the largest, `3.7173e11`, is `96` times below
+it --- and the certificate uses the sharp coefficient throughout. It is
+the exposition that carries three values, and it could not have been
+caught any other way: the claim string says `|C|` and stops, and the
+disagreement lives in the prose between the string and the certificate.
+
+```text
+Phase-end report
+Question
+- the 11 unreadable rows name a quantity the paper caps elsewhere; bind
+  each at its stated cap and see whether any then fails
+Instruments
+- fifth_letter_coefficient_has_three_values: every printed statement of
+  |C| in the manuscript, each of the two Theorem 6.3 rows solved under
+  it, and the two chains that print 8|C| against the stated bound
+Ledger tags
+- EXACT: |C| <= (9/16)(2)2^(3/16) P^(19/96) = 1.281137 P^(19/96), and
+  8(1.281137) = 10.2491 <= 11 < 16 = 8(2)
+- COMPUTATIONALLY VERIFIED: the rows at 3.3443e10/3.7173e11 under 2,
+  8.4239e8/6.3127e9 under 1.30, 7.4516e8/5.5084e9 under 1.2812; A.5's
+  7.5e8 and 5.51e9 cover only the sharp values; 11^(96/11) = 1.2261e9;
+  the largest is 96 times below P_0
+- OBSERVATION: every printed value is a valid bound on |C|; what fails is
+  a product and a threshold quoted beside the wrong one
+Strongest theorem
+- the printed 11 is compatible with the sharp coefficient and with no
+  other value the paper prints, so the two chains fix which |C| the proof
+  is actually running on
+Strongest refutation
+- none; the certificate was right throughout, and P_0 does not move
+Reusable machinery
+- fifth_letter_coefficient_has_three_values, FIFTH_LETTER_C_SITES,
+  FIFTH_LETTER_C_CHAINS, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Every repair is a manuscript edit, and the manuscript belongs to the
+  other session; the probe reports its own obsolescence once made.
+Best next question
+- the same treatment for the rows still unbound: 5b-Npieces multiplies
+  out to 3 P^(13/24) + 2 + 22 P^(5/16) + 5 P^(1/3) against a printed
+  3.5 P^(13/24), and 5a-competitors to four ratios against a printed
+  margin of 4. Do the counts and the ratios the paper states in Step 5b
+  and Step 5a agree with the ones the certificate sums?
+```
