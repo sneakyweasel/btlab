@@ -4446,3 +4446,57 @@ so is not of the same kind as any constant this ledger has sharpened.
 Probe: `lemma_6_2_least_n`, `LEMMA_6_2_WIDE_SWEEP`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The twelve exponents, and the interval that belonged to one P
+
+The last entry left three printed measurements citing no function. The first of them is
+Section 5's evidence that the level-1 kernel cancels at square root, and it is worth anchoring
+rather than tolerating: "over `P in [10^4,10^6]` and `k in {1,2,4}`, twelve exponents with
+mean `0.49`".
+
+`decoration_budget.level1_exponent_sweep` is that ladder, stated:
+`P in {10^4, 3e4, 10^5, 10^6}` against `k in {1,2,4}`. It calls across to
+`paper_b_audit.level1_kernel_block_scaling` rather than adding to that module, which the other
+session owns.
+
+**The claim reproduces.** Twelve points, mean `0.4870`, which is the printed `0.49`.
+
+```text
+  P          k=1      k=2      k=4
+  10^4     0.3866   0.4638   0.4472
+  3e4      0.5081   0.5215   0.4461
+  10^5     0.5178   0.5216   0.4682
+  10^6     0.5139   0.5348   0.5144
+```
+
+Against square-root cancellation at `1/2` and no cancellation at `1`. The instrument's own 90%
+interval on data that is exactly `1/2` is `[0.4268, 0.5684]`, and exactly one of the twelve
+falls outside it -- `P = 10^4`, `k = 1`, at `0.3866` -- which is precisely what the sentence
+claimed ("none outside ... except the smallest `P`"). The other eleven run `[0.446, 0.535]`,
+and dropping the smallest `P` lifts the mean to `0.5052`.
+
+**And the sweep found the clause next to it to be wrong.** "At `P >= 10^5` the ratio
+`rms/sqrt(L)` sits in `[0.94, 1.12]`, flat in `L`." Over the thirty values that quantifier
+covers, the ratio runs `[0.874, 1.150]`: `0.874` at `P = 10^5`, `k = 4`, and `1.150` at
+`P = 10^5`, `k = 2`. `[0.94, 1.12]` is exactly -- to two decimals -- the range at `P = 10^6`
+alone, where it is `[0.943, 1.121]`.
+
+So the interval was right and its quantifier was not, in the same way and for the same reason
+as everything else in these last few entries: a figure measured in one scope, printed in
+another, with nothing comparing them. Corrected to say both, since both are informative: the
+narrow one is a statement about the top of the ladder, the wide one about the range the
+sentence quantifies over, and they agree about the object.
+
+Two other things in that passage were checked and are exactly right. The five-number sequences
+at `P = 10^6` -- the kernel's `0.943, 0.948, 0.947, 0.963, 0.981` and the unweighted defect's
+`0.99, 1.07, 1.48, 2.09, 2.94` over block lengths `1953` to `31250` -- reproduce to every
+printed digit, as does the control's `L^0.91` (measured `0.9099`). That contrast is the
+passage's actual argument, and it stands.
+
+```text
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+    9 prose claims about the manuscript                        0 stale
+    7 probe citations                                          0 broken
+    5 printed ranges against the cited defaults                0 mismatched
+    2 printed measurements citing no function
+```

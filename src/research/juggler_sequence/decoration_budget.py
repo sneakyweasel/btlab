@@ -773,6 +773,62 @@ def offset_term_attained(p: int, hmax: int = 7, stride: int | None = None) -> di
             "headroom_at_top": 2.6 / hi}
 
 
+
+# --- the level-1 kernel's cancellation exponent, swept ---
+#
+# Section 5 reports "over P in [10^4, 10^6] and k in {1,2,4}, twelve exponents with mean 0.49".
+# The measurement is `paper_b_audit.level1_kernel_block_scaling`, which takes one (P, k); no
+# sweep existed, and the four P values were nowhere stated, so the claim could not be re-run
+# from the text.  This is the ladder, stated.  Calling across modules rather than adding to
+# `paper_b_audit`, which the other session owns.
+
+LEVEL1_SWEEP_PS = (10**4, 3 * 10**4, 10**5, 10**6)
+LEVEL1_SWEEP_KS = (1, 2, 4)
+
+
+def level1_exponent_sweep(ps: tuple[int, ...] = LEVEL1_SWEEP_PS,
+                          ks: tuple[int, ...] = LEVEL1_SWEEP_KS) -> dict[str, Any]:
+    """Block-scaling exponent of ``K_1`` over the stated ladder, with the flatness ranges.
+
+    Twelve points at the default ladder, mean ``0.4870``.  Square-root cancellation is ``1/2``
+    and no cancellation is ``1``; the instrument's own 90% interval on data that is exactly
+    ``1/2`` is ``[0.4268, 0.5684]`` (``paper_b_audit.block_exponent_calibration``), and exactly
+    one of the twelve falls outside it -- ``P = 10^4``, ``k = 1``, at ``0.3866``.
+
+    ``ratio_range_by_P`` is ``rms/sqrt(L)`` over the five fitted block lengths.  It is what the
+    manuscript's ``[0.94, 1.12]`` reports, and that interval is the ``P = 10^6`` range: taking
+    ``P >= 10^5`` as the sentence says widens it to ``[0.874, 1.150]``.
+    """
+    from research.juggler_sequence import paper_b_audit as _pba
+
+    exponents: dict[tuple[int, int], float] = {}
+    ratios: dict[int, list[float]] = {}
+    for p in ps:
+        for k in ks:
+            r = _pba.level1_kernel_block_scaling(P=p, k=k)
+            exponents[(p, k)] = r["level1_exponent"]
+            ratios.setdefault(p, []).extend(
+                b["rms_K1_over_sqrtL"] for b in r["blocks"][:5])
+    xs = list(exponents.values())
+    mean = sum(xs) / len(xs)
+    return {
+        "ps": list(ps), "ks": list(ks), "n": len(xs),
+        "exponents": {"%d,%d" % pk: v for pk, v in exponents.items()},
+        "mean": mean, "min": min(xs), "max": max(xs),
+        "ratio_range_by_P": {p: [min(v), max(v)] for p, v in ratios.items()},
+        "square_root_exponent": 0.5, "no_cancellation_exponent": 1.0,
+    }
+
+
+def level1_sweep_outside_calibration(sweep: dict[str, Any] | None = None,
+                                     interval: tuple[float, float] = (0.4268, 0.5684),
+                                     ) -> list[str]:
+    """Which swept points fall outside the instrument's own 90% interval."""
+    s = sweep or level1_exponent_sweep()
+    lo, hi = interval
+    return [pk for pk, v in s["exponents"].items() if not (lo <= v <= hi)]
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

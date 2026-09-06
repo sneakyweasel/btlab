@@ -34843,3 +34843,75 @@ Best next question
   (i) have that (ii) does not -- a term that goes to its own worst case
   simultaneously with the others, or one that dominates?
 ```
+
+### The twelve exponents, and the interval that belonged to one P
+
+The recorded question was whether to write the missing sweep in
+`decoration_budget` and cite across, or leave the claim unanchored and say so.
+Written and cited across. The claim it anchors is Section 5's evidence that the
+level-1 kernel cancels at square root, which is worth more than a note.
+
+`decoration_budget.level1_exponent_sweep` is the ladder, stated:
+`P ∈ {10⁴, 3·10⁴, 10⁵, 10⁶}` against `k ∈ {1,2,4}`. It calls across to
+`paper_b_audit.level1_kernel_block_scaling` rather than adding to that module.
+
+**The claim reproduces.** Twelve points, mean `0.4870` — the printed `0.49`.
+
+```text
+  P          k=1      k=2      k=4
+  10^4     0.3866   0.4638   0.4472
+  3e4      0.5081   0.5215   0.4461
+  10^5     0.5178   0.5216   0.4682
+  10^6     0.5139   0.5348   0.5144
+```
+
+Square-root cancellation is `1/2`, no cancellation is `1`. The instrument's own
+90% interval on data that is exactly `1/2` is `[0.4268, 0.5684]`, and exactly
+one of the twelve falls outside it — `P = 10⁴`, `k = 1`, at `0.3866` — which is
+what the sentence claimed. The other eleven run `[0.446, 0.535]`.
+
+**And the sweep found the clause beside it wrong.** "At `P ≥ 10⁵` the ratio
+`rms/√L` sits in `[0.94, 1.12]`." Over the thirty values that quantifier
+covers, the ratio runs `[0.874, 1.150]`. `[0.94, 1.12]` is exactly, to two
+decimals, the `P = 10⁶` range, where it is `[0.943, 1.121]`. The interval was
+right and its quantifier was not — a figure measured in one scope, printed in
+another, with nothing comparing them.
+
+Two other things in the passage check exactly: the five-number sequences at
+`P = 10⁶` — the kernel's `0.943, 0.948, 0.947, 0.963, 0.981` and the unweighted
+defect's `0.99, 1.07, 1.48, 2.09, 2.94` over lengths `1953` to `31250` —
+reproduce to every printed digit, as does the control's `L^0.91` (measured
+`0.9099`). That contrast is the passage's actual argument, and it stands.
+
+```text
+What was learned
+- the printed 0.49 was right, and had been unreproducible only because no
+  ladder was stated; stating one confirmed it
+- the interval next to it was measured at P = 10^6 and printed for P >= 10^5,
+  which the sweep exposed the moment the scope was made explicit
+- anchoring a claim is not bookkeeping when the anchor re-runs the claim: this
+  one confirmed a mean and refuted a range in the same pass
+- a test I wrote last tick pinned "three unanchored"; anchoring one broke it,
+  which is the guard working as intended
+Strongest theorem
+- twelve exponents over a stated ladder, mean 0.4870, exactly one outside the
+  instrument's 90% interval and it is the smallest P
+Strongest refutation
+- "at P >= 10^5 the ratio sits in [0.94, 1.12]": over that range it is
+  [0.874, 1.150]; [0.94, 1.12] is the P = 10^6 range
+Reusable machinery
+- decoration_budget.level1_exponent_sweep, level1_sweep_outside_calibration,
+  LEVEL1_SWEEP_PS/KS; a citation row and a range row; four new tests
+Branch status
+- PARK
+Why
+  The sweep exists, the ladder is printed, the mean is confirmed and the range
+  corrected. Two measurements remain unanchored and both are in the other
+  session's module, named in the tool's output. Nothing here moves P_0.
+Best next question
+- the control in that passage is the sharper half of the argument and is
+  measured at one P. The kernel's rms/sqrt(L) stays flat while the unweighted
+  defect climbs like L^0.91 -- is that separation stable in P, or does the
+  control's exponent drift toward 1/2 as P grows? Three P values would say,
+  and the sweep function now makes it a two-line addition.
+```

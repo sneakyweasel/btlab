@@ -5458,10 +5458,23 @@ fitting the root-mean-square block sum against block length
 (`paper_b_audit.level1_kernel_block_scaling`; the instrument reads
 \(0.497\pm0.043\) at its default \(200\) trials
 on data whose exponent is exactly \(\tfrac12\)) gives, over
-\(P\in[10^4,10^6]\) and \(k\in\{1,2,4\}\), twelve exponents with mean
-\(0.49\), none outside the instrument's own \(90\%\) interval except
-the smallest \(P\); at \(P\ge10^5\) the ratio
-\(\mathrm{rms}/\sqrt L\) sits in \([0.94,1.12]\), flat in \(L\).
+\(P\in\{10^4,3\cdot10^4,10^5,10^6\}\) and \(k\in\{1,2,4\}\), twelve
+exponents with mean \(0.487\)
+(`decoration_budget.level1_exponent_sweep`, which is that ladder). The
+instrument's own \(90\%\) interval on data that is exactly
+\(\tfrac12\) is \([0.4268,0.5684]\), and exactly one of the twelve lies
+outside it: \(P=10^4\), \(k=1\), at \(0.3866\). The other eleven run
+over \([0.446,0.535]\), and dropping the smallest \(P\) alone lifts the
+mean to \(0.505\).
+
+The ratio \(\mathrm{rms}/\sqrt L\) over the five fitted block lengths
+is flat in \(L\) and sits in \([0.94,1.12]\) at \(P=10^6\). That is a
+statement about the top of the ladder and not about \(P\ge10^5\): at
+\(P=10^5\) the same ratio reaches \(0.874\) at \(k=4\) and \(1.150\) at
+\(k=2\), so over \(P\ge10^5\) the honest interval is
+\([0.87,1.15]\). Both readings say the same thing about the object ---
+the block sums grow like \(\sqrt L\) --- and only the narrower one is a
+statement about a single \(P\).
 
 The control on the same pass is the unweighted defect,
 \(e(\{n^{3/2}\})=e(n^{3/2})\). It behaves the other way. At \(P=10^6\)

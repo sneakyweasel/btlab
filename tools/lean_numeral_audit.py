@@ -611,6 +611,17 @@ def _offset_term_ok(fn) -> bool:
             and r["printed"] == [1.5, 2.6] and 1.02 < r["headroom_at_top"] < 1.04)
 
 
+def _level1_sweep_ok(fn) -> bool:
+    """The ladder the manuscript prints is the function's own default, and it is stated."""
+    import inspect
+    from research.juggler_sequence import decoration_budget as DB
+    sig = inspect.signature(fn)
+    return (sig.parameters["ps"].default == (10**4, 3 * 10**4, 10**5, 10**6)
+            and sig.parameters["ks"].default == (1, 2, 4)
+            and DB.LEVEL1_SWEEP_PS == sig.parameters["ps"].default
+            and DB.LEVEL1_SWEEP_KS == sig.parameters["ks"].default)
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -636,6 +647,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`decoration_budget.offset_term_attained`)",
      "the offset term's attained range against its printed one",
      _offset_term_ok),
+    ("decoration_budget", "level1_exponent_sweep",
+     "(`decoration_budget.level1_exponent_sweep`, which is that ladder)",
+     "the level-1 exponent sweep, and that its ladder is the printed one",
+     _level1_sweep_ok),
 )
 
 
@@ -689,15 +704,17 @@ RANGE_CLAIMS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("paper_b_audit", "block_exponent_calibration", r"at its default \(200\) trials",
      "the calibration's printed trial count is its default",
      lambda fn: __import__("inspect").signature(fn).parameters["trials"].default == 200),
+    ("decoration_budget", "level1_exponent_sweep",
+     r"\(P\in\{10^4,3\cdot10^4,10^5,10^6\}\)",
+     "the printed P-ladder is the sweep's default",
+     lambda fn: __import__("inspect").signature(fn).parameters["ps"].default
+     == (10**4, 3 * 10**4, 10**5, 10**6)),
 )
 
 # Printed measurements with no function named beside them.  Each is an honest number somebody
 # ran, and none can be re-run from the text: the reader is told the answer and not the query.
 # Listed rather than silently tolerated; two of the three are the other session's to anchor.
 UNANCHORED: tuple[tuple[str, str], ...] = (
-    ("twelve exponents with mean",
-     "P in [10^4,10^6] and k in {1,2,4} -- twelve points, but level1_kernel_block_scaling "
-     "takes one (P,k) and no sweep exists; the four P values are not stated"),
     (r"On \(20{,}000\) samples the witness",
      "no function produces the 20,000-sample range [0.32,0.52] for xi_2"),
     (r"measured at \(0.989\) times it over ten samples",

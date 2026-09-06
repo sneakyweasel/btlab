@@ -261,11 +261,16 @@ def test_the_offset_term_range_is_exact_and_the_lower_end_is_attained() -> None:
 
 
 def test_the_unanchored_measurements_are_named_not_assumed() -> None:
-    """Three printed numbers cite no function; the count is recorded rather than hidden."""
+    """Printed numbers citing no function; the count is recorded rather than hidden.
+
+    Three when this guard was written; the twelve-exponent sweep has since been given a
+    stated ladder in decoration_budget, so two remain, both in the other session's module.
+    """
     un = A.unanchored_measurements()
-    assert len(un) == 3, [r["printed"] for r in un]
+    assert len(un) == 2, [r["printed"] for r in un]
     why = " ".join(r["why"] for r in un)
-    assert "no sweep exists" in why and "20,000-sample" in why and "ten-sample" in why
+    assert "20,000-sample" in why and "ten-sample" in why
+    assert "no sweep exists" not in why
     # and the one that could be anchored, was
     assert all("offset" not in r["why"] for r in un)
 
@@ -278,3 +283,48 @@ def test_level1_block_scaling_really_has_no_sweep() -> None:
     assert set(sig.parameters) == {"P", "k", "bins"}
     assert sig.parameters["P"].default == 10**5      # one point, not a range
     assert not [n for n in dir(PB) if "level1_kernel_block" in n and n.endswith("sweep")]
+
+
+# --- the twelve exponents, now a stated ladder ---
+
+
+def test_the_level1_sweep_ladder_is_the_printed_one() -> None:
+    import inspect
+    from research.juggler_sequence import decoration_budget as DB
+    sig = inspect.signature(DB.level1_exponent_sweep)
+    assert sig.parameters["ps"].default == (10**4, 3 * 10**4, 10**5, 10**6)
+    assert sig.parameters["ks"].default == (1, 2, 4)
+    assert DB.LEVEL1_SWEEP_PS == sig.parameters["ps"].default
+    assert DB.LEVEL1_SWEEP_KS == sig.parameters["ks"].default
+    assert len(DB.LEVEL1_SWEEP_PS) * len(DB.LEVEL1_SWEEP_KS) == 12
+    text = A.paper_text()
+    assert r"\(P\in\{10^4,3\cdot10^4,10^5,10^6\}\)" in text
+    assert "`decoration_budget.level1_exponent_sweep`, which is that ladder" in text
+
+
+def test_the_sweep_runs_and_the_smallest_P_is_the_outlier() -> None:
+    """Cheap subset: the two smallest P, where the one calibration outlier lives."""
+    from research.juggler_sequence import decoration_budget as DB
+    s = DB.level1_exponent_sweep(ps=(10**4, 3 * 10**4))
+    assert s["n"] == 6 and s["ks"] == [1, 2, 4]
+    assert s["square_root_exponent"] == 0.5 and s["no_cancellation_exponent"] == 1.0
+    assert DB.level1_sweep_outside_calibration(s) == ["10000,1"]
+    assert abs(s["exponents"]["10000,1"] - 0.3866) < 5e-3
+
+
+def test_the_paper_now_states_which_figures_belong_to_which_scope() -> None:
+    """[0.94, 1.12] is the P = 10^6 range; over P >= 10^5 it is [0.87, 1.15]."""
+    text = A.paper_text()
+    assert r"sits in \([0.94,1.12]\) at \(P=10^6\)" in text
+    assert r"the honest interval is" in text and r"\([0.87,1.15]\)" in text
+    assert r"reaches \(0.874\) at \(k=4\) and \(1.150\) at" in text
+    # the mean and the outlier are printed at the precision the sweep gives
+    assert r"twelve" in text and r"exponents with mean \(0.487\)" in text
+    assert r"\(P=10^4\), \(k=1\), at \(0.3866\)" in text
+    assert r"\([0.4268,0.5684]\)" in text
+
+
+def test_the_unanchored_count_fell_by_one() -> None:
+    un = A.unanchored_measurements()
+    assert len(un) == 2, [r["printed"] for r in un]
+    assert all("twelve" not in r["why"] for r in un)
