@@ -14251,40 +14251,40 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "If `n` follows the all-odd word `O^a`, it follows `O^k` for every `k <= a`.",
       "file": "formal/Problems/Juggler/CycleMinObstruction.lean",
       "kind": "theorem",
       "ledger": [
         "J-ooo-residual-cube",
         "J-cyclemin-transport-oo"
       ],
-      "line": 18,
+      "line": 19,
       "module": "Problems.Juggler.CycleMinObstruction",
       "name": "follows_replicate_odd_of_le",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`List.replicate 3 Branch.odd` written out.",
       "file": "formal/Problems/Juggler/CycleMinObstruction.lean",
       "kind": "theorem",
       "ledger": [
         "J-ooo-residual-cube",
         "J-cyclemin-transport-oo"
       ],
-      "line": 28,
+      "line": 30,
       "module": "Problems.Juggler.CycleMinObstruction",
       "name": "replicate_odd_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`List.replicate 2 Branch.odd` written out.",
       "file": "formal/Problems/Juggler/CycleMinObstruction.lean",
       "kind": "theorem",
       "ledger": [
         "J-ooo-residual-cube",
         "J-cyclemin-transport-oo"
       ],
-      "line": 32,
+      "line": 35,
       "module": "Problems.Juggler.CycleMinObstruction",
       "name": "replicate_odd_two",
       "trust": "kernel"
@@ -14297,7 +14297,7 @@
         "J-ooo-residual-cube",
         "J-cyclemin-transport-oo"
       ],
-      "line": 38,
+      "line": 41,
       "module": "Problems.Juggler.CycleMinObstruction",
       "name": "cycleMin_ooo_residual_ge_cube",
       "trust": "kernel"
@@ -14310,7 +14310,7 @@
         "J-ooo-residual-cube",
         "J-cyclemin-transport-oo"
       ],
-      "line": 57,
+      "line": 60,
       "module": "Problems.Juggler.CycleMinObstruction",
       "name": "cycleMin_transport_second_oo",
       "trust": "kernel"
@@ -14323,7 +14323,7 @@
         "J-ooo-residual-cube",
         "J-cyclemin-transport-oo"
       ],
-      "line": 91,
+      "line": 94,
       "module": "Problems.Juggler.CycleMinObstruction",
       "name": "cycleMin_transport_second_oo_ge",
       "trust": "kernel"
@@ -36053,59 +36053,46 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`oddLanding y` holds exactly when `y` is odd and its image is odd.",
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
       "kind": "theorem",
       "ledger": [
         "J-odd-run-recursive",
         "J-odd-landing-set-structure"
       ],
-      "line": 38,
+      "line": 39,
       "module": "Problems.Juggler.OddLandingSets",
       "name": "oddLanding_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "For odd `y`, `oddLanding y` holds exactly when some odd `m` satisfies `m^2 <= y^3 < (m+1)^2` -- the odd landing cell of `y`.",
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
       "kind": "theorem",
       "ledger": [
         "J-odd-run-recursive",
         "J-odd-landing-set-structure"
       ],
-      "line": 42,
+      "line": 44,
       "module": "Problems.Juggler.OddLandingSets",
       "name": "oddLanding_preimage",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`oddRun 0` is `oddLanding`.",
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
       "kind": "theorem",
       "ledger": [
         "J-odd-run-recursive",
         "J-odd-landing-set-structure"
       ],
-      "line": 51,
+      "line": 54,
       "module": "Problems.Juggler.OddLandingSets",
       "name": "oddRun_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/OddLandingSets.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-odd-run-recursive",
-        "J-odd-landing-set-structure"
-      ],
-      "line": 55,
-      "module": "Problems.Juggler.OddLandingSets",
-      "name": "oddRun_succ",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "`oddRun (r+1) y` unfolds as `oddLanding y` together with `oddRun r (T y)`.",
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
       "kind": "theorem",
       "ledger": [
@@ -36113,6 +36100,19 @@
         "J-odd-landing-set-structure"
       ],
       "line": 59,
+      "module": "Problems.Juggler.OddLandingSets",
+      "name": "oddRun_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every `oddRun` starts at an odd number.",
+      "file": "formal/Problems/Juggler/OddLandingSets.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-run-recursive",
+        "J-odd-landing-set-structure"
+      ],
+      "line": 64,
       "module": "Problems.Juggler.OddLandingSets",
       "name": "oddRun_start_odd",
       "trust": "kernel"
@@ -36125,7 +36125,7 @@
         "J-odd-run-recursive",
         "J-odd-landing-set-structure"
       ],
-      "line": 65,
+      "line": 70,
       "module": "Problems.Juggler.OddLandingSets",
       "name": "oddRun_recursive",
       "trust": "kernel"
@@ -36138,7 +36138,7 @@
         "J-odd-run-recursive",
         "J-odd-landing-set-structure"
       ],
-      "line": 75,
+      "line": 80,
       "module": "Problems.Juggler.OddLandingSets",
       "name": "oddLanding_preimage_unique",
       "trust": "kernel"

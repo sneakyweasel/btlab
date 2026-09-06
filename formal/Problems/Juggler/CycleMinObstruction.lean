@@ -15,6 +15,7 @@ residual to `(y+1)^2` with `y > n`. This is not a halt theorem,
 not a four-even assembler, and not a last-cluster census.
 -/
 
+/-- If `n` follows the all-odd word `O^a`, it follows `O^k` for every `k <= a`. -/
 theorem follows_replicate_odd_of_le {n a k : ℕ} (hk : k ≤ a)
     (hw : follows n (List.replicate a Branch.odd)) :
     follows n (List.replicate k Branch.odd) := by
@@ -25,10 +26,12 @@ theorem follows_replicate_odd_of_le {n a k : ℕ} (hk : k ≤ a)
   exact follows_of_append_left (v := List.replicate (a - k) Branch.odd)
     (by simpa [hsplit] using hw)
 
+/-- `List.replicate 3 Branch.odd` written out. -/
 theorem replicate_odd_three :
     List.replicate 3 Branch.odd = [.odd, .odd, .odd] :=
   rfl
 
+/-- `List.replicate 2 Branch.odd` written out. -/
 theorem replicate_odd_two :
     List.replicate 2 Branch.odd = [.odd, .odd] :=
   rfl

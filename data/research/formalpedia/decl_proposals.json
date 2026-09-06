@@ -3386,33 +3386,6 @@
     {
       "candidates": [
         {
-          "decl": "oddLanding_preimage_unique",
-          "line": 75,
-          "score": 0.545,
-          "trust": "kernel"
-        },
-        {
-          "decl": "oddLanding_iff",
-          "line": 38,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "oddLanding_preimage",
-          "line": 42,
-          "score": 0.2,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "J-odd-run-recursive",
-      "in_file": 7,
-      "lean": "Problems/Juggler/OddLandingSets.lean",
-      "statement": "Write oddLanding y for y odd and T(y) odd, and oddRun 0 y = oddLanding y, oddRun (r+1) y = oddLanding y and oddRun r (T(y)). Then oddRun (r+1) y if and only if y is odd and oddRun r (T(y)). The odd-landing cylinder of a fixed m contains at most one integer."
-    },
-    {
-      "candidates": [
-        {
           "decl": "itinerary_length",
           "line": 57,
           "score": 0.118,
@@ -3719,19 +3692,19 @@
       "candidates": [
         {
           "decl": "cycleMin_transport_second_oo",
-          "line": 57,
+          "line": 60,
           "score": 0.469,
           "trust": "kernel"
         },
         {
           "decl": "cycleMin_transport_second_oo_ge",
-          "line": 91,
+          "line": 94,
           "score": 0.27,
           "trust": "kernel"
         },
         {
           "decl": "cycleMin_ooo_residual_ge_cube",
-          "line": 38,
+          "line": 41,
           "score": 0.222,
           "trust": "kernel"
         }
@@ -4146,33 +4119,6 @@
       "in_file": 13,
       "lean": "Problems/Juggler/MinimumRelative.lean",
       "statement": "If x is odd and T(x) is even, then T^2(x) < n^2 if and only if x^3 < n^8. This is the mixed odd-cube / even-square cell. It is strictly sharper than composing a cube-band bound x < n^3 into T^2(x)^4 < n^9. An eighth-cell even lift that returns even is FiniteProgress; on MinimalNonTerm that return is odd. This is not a claim that every leftover landing stays below n^8, not a defect restriction, and"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "cycleMin_log_envelope",
-          "line": 97,
-          "score": 0.149,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycleMin_finance",
-          "line": 210,
-          "score": 0.139,
-          "trust": "kernel"
-        },
-        {
-          "decl": "log_le_two_log_add",
-          "line": 42,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "low",
-      "id": "J-cycle-finance-inequality",
-      "in_file": 8,
-      "lean": "Problems/Juggler/CycleFinance.lean",
-      "statement": "On a Juggler CycleMin start n \u2265 2 with word w of length L and oddCount o, the dyadic-cell logarithm bound log z \u2264 2 log y + 2/y unrolls to n \u00b7 log n \u00b7 (3^o \u2212 2^L) \u2264 L \u00b7 3^o (Paper A Theorem 4.4; Lean cycleMin_finance). Every cycle state is at least 12 and the rotated minimum is odd, so the minimum is at least 13 and 13 log 13 > 65/2, hence (65/2)(3^o \u2212 2^L) \u2264 L \u00b7 3^o for every CycleItinerary (cycl"
     },
     {
       "candidates": [
@@ -4904,6 +4850,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 183,
-  "worth_reviewing": 54
+  "unresolved": 181,
+  "worth_reviewing": 53
 }

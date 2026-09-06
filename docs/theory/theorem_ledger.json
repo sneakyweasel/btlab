@@ -3211,6 +3211,8 @@
   "statement": "Write oddLanding y for y odd and T(y) odd, and oddRun 0 y = oddLanding y, oddRun (r+1) y = oddLanding y and oddRun r (T(y)). Then oddRun (r+1) y if and only if y is odd and oddRun r (T(y)). The odd-landing cylinder of a fixed m contains at most one integer.",
   "source": "docs/problems/juggler_odd_landing_sets.md",
   "lean": "Problems/Juggler/OddLandingSets.lean",
+  "decl": "oddRun_recursive",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_odd_landing_sets.py"
   ],
@@ -5451,6 +5453,8 @@
   "statement": "On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, the dyadic-cell logarithm bound log z ≤ 2 log y + 2/y unrolls to n · log n · (3^o − 2^L) ≤ L · 3^o (Paper A Theorem 4.4; Lean cycleMin_finance). Every cycle state is at least 12 and the rotated minimum is odd, so the minimum is at least 13 and 13 log 13 > 65/2, hence (65/2)(3^o − 2^L) ≤ L · 3^o for every CycleItinerary (cycle_finance_min_thirteen). This is the whole-cycle financing of the formal expansion 2^L < 3^o by relative floor defects. It is not a halt theorem, not an exclusion of every length, and not the computational 6/5 table used for L ≤ 10^5.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/CycleFinance.lean",
+  "decl": "cycleMin_finance",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],

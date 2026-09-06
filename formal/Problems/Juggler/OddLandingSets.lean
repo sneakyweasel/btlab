@@ -35,10 +35,12 @@ def oddRunLength : ℕ → ℕ → ℕ
         oddRunLength (floorPower y) cap + 1
       else 0
 
+/-- `oddLanding y` holds exactly when `y` is odd and its image is odd. -/
 theorem oddLanding_iff {y : ℕ} :
     oddLanding y ↔ y % 2 = 1 ∧ floorPower y % 2 = 1 :=
   Iff.rfl
 
+/-- For odd `y`, `oddLanding y` holds exactly when some odd `m` satisfies `m^2 <= y^3 < (m+1)^2` -- the odd landing cell of `y`. -/
 theorem oddLanding_preimage {y : ℕ} (hodd : y % 2 = 1) :
     oddLanding y ↔
       ∃ m, m % 2 = 1 ∧ m ^ 2 ≤ y ^ 3 ∧ y ^ 3 < (m + 1) ^ 2 := by
@@ -48,14 +50,17 @@ theorem oddLanding_preimage {y : ℕ} (hodd : y % 2 = 1) :
   · intro h
     exact ⟨hodd, (landingParity_odd_iff hodd).mpr h⟩
 
+/-- `oddRun 0` is `oddLanding`. -/
 theorem oddRun_zero (y : ℕ) :
     oddRun 0 y ↔ oddLanding y :=
   Iff.rfl
 
+/-- `oddRun (r+1) y` unfolds as `oddLanding y` together with `oddRun r (T y)`. -/
 theorem oddRun_succ (r y : ℕ) :
     oddRun (r + 1) y ↔ oddLanding y ∧ oddRun r (floorPower y) :=
   Iff.rfl
 
+/-- Every `oddRun` starts at an odd number. -/
 theorem oddRun_start_odd {r y : ℕ} (h : oddRun r y) : y % 2 = 1 := by
   cases r with
   | zero => exact h.1
