@@ -32040,3 +32040,64 @@ Best next question
   does the resulting two-monomial phase have a van der Corput exponent
   pair good enough at that range?
 ```
+
+## Section 3's two printed constants, and where the looseness sits
+
+Following the last entry's question. Of the ten Section 3 lemmas, two
+carry constants the rest of the paper uses directly; both hold, and the
+A-process one decomposes cleanly.
+
+**The A-process display.** `|sum a_n|^2 <= 2P^2/H + (4P/H) sum_{1<=h<H}
+|sum a_{n+2h} conj(a_n)|` holds on constant, random, linear-phase and
+quadratic-phase families, and dominates the classical inequality it is
+said to come from. At `a_n = 1` the looseness factorises:
+
+| ratio at `a_n = 1` | value | limit |
+|---|---|---|
+| LHS / classical | 0.4873 | `1/2` |
+| printed / classical | 3.8221 | `4` |
+| LHS / printed | 0.1275 | `1/8` |
+
+The `4` is two from `2P^2/H` against `P^2/H` and two from dropping the
+weights `1 - |h|/H` -- which the paper says it is doing. So the display
+is loose by `8` at its worst input and by four to six orders on the
+sequences it is applied to (random `4e-4`, linear `2e-6`). The constants
+are not where the argument's strength lives, and the paper does not
+claim they are.
+
+**Erdos-Turan.** Printed with no constant. Over random, Kronecker,
+clustered and arithmetic point sets, the constant the printed form needs
+is at most `0.38`: it holds with an absolute constant below 1 and the
+`<<` is honest.
+
+**Vaaler is left alone.** Checking it means constructing the
+Beurling-Selberg majorant rather than evaluating a printed inequality,
+and it is a cited classical result rather than a constant of this paper.
+
+```text
+What was learned
+- the A-process display holds and dominates its stated source, and its
+  factor of 8 at the extremal sequence splits exactly 2 x 4
+- on the sequences the paper actually feeds it, the display is loose by
+  four to six orders, so its constants carry no weight
+- Erdos-Turan as printed needs a constant below 0.4
+Strongest theorem
+- the 1/2 x 1/4 = 1/8 decomposition of the A-process looseness, each
+  factor traceable to a named step of the simplification
+Strongest refutation
+- none; both inputs hold everywhere tried
+Reusable machinery
+- classical_inputs_check covering both lemmas with four sequence
+  families and four point sets; one test, one exact check
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Twenty passes in, the machinery underneath Sections 4-6 had never
+  been evaluated at all. Two of its three printed inputs now have
+  numbers attached, and the third is somebody else's theorem.
+Best next question
+- the audit's own summary now runs eighteen probes in 45 seconds. Which
+  of them would still fail if the paper's constants were perturbed by
+  1%, and which would not notice -- the census-power reading applied to
+  the audit as a whole?
+```

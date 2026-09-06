@@ -2295,3 +2295,44 @@ probed, two carry a \(P_0\) row only, and the two that remain --- Theorems
 4.11 and 4.12 --- are asymptotic \(\varepsilon\)-statements of Theorem 5.3's
 class, which admit no finite check. Every checkable result in Sections 4
 to 6 now has one.
+
+## Section 3's two printed constants, checked
+
+Of the ten Section 3 lemmas, two carry constants the rest of the paper
+uses directly. Both hold.
+
+**The A-process display (Lemma 3.3's used form).**
+\(\lvert\sum a_n\rvert^2\le2P^2/H+(4P/H)\sum_{1\le h<H}\lvert\sum
+a_{n+2h}\overline{a_n}\rvert\) holds on every family tried --- constant,
+random, linear phase, quadratic phase --- and dominates the classical
+inequality \(\tfrac{P+2H}H\sum_{|h|<H}(1-\tfrac{|h|}H)\sum
+a_{n+h}\overline{a_n}\) it is said to come from. At the extremal
+sequence \(a_n\equiv1\) the looseness factorises exactly:
+
+| ratio at \(a_n\equiv1\) | value | limit |
+|---|---|---|
+| LHS / classical | 0.4873 | \(\tfrac12\) |
+| printed / classical | 3.8221 | \(4\) |
+| LHS / printed | 0.1275 | \(\tfrac18\) |
+
+The \(4\) is two from \(2P^2/H\) against \(P^2/H\) and two from dropping
+the weights \(1-\lvert h\rvert/H\) --- which the paper says it is doing.
+So the display is loose by \(8\) at its worst input and by four to six
+orders on the sequences it is actually applied to (random \(4\cdot
+10^{-4}\), linear \(2\cdot10^{-6}\)): the constants are not where the
+argument's strength lies, and the paper does not claim they are.
+COMPUTATIONALLY VERIFIED; \(\tfrac12\cdot\tfrac14=\tfrac18\) is EXACT.
+
+**Erdős--Turán (Lemma 3.4).** Printed as \(D\ll R/H+\sum_{h\le
+H}\tfrac1h\lvert\sum e(hx_j)\rvert\), with no constant. Over random,
+Kronecker, clustered and arithmetic point sets at three
+\((R,H)\) settings, the constant the printed form needs is at most
+\(0.38\) --- so it holds with an absolute constant below \(1\), and the
+\(\ll\) is honest. COMPUTATIONALLY VERIFIED.
+
+**Lemma 3.5 (Vaaler) is not checked here.** Its content is the existence
+of the polynomials with \(\lvert a_q\rvert\le\min(1,2/\lvert q\rvert)\)
+and \(\Delta_J\ge0\) of degree \(J\); verifying it means constructing the
+Beurling--Selberg majorant, which is a different kind of exercise from
+evaluating a printed inequality, and it is a cited classical result
+rather than a constant of this paper.
