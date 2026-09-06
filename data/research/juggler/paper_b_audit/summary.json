@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "881dfa49decba19c3af0fe64949d25cb8dd1a7e8",
+  "git_commit": "6af19a83fb6873bff6068d6be89670e58b8792bf",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -8046,6 +8046,167 @@
     "the_other_one_is_C_in_theorem_6_3": true,
     "nothing_reaches_P0": true
   },
+  "one_symbol_two_bounds": {
+    "symbol_bounds": {
+      "t": {
+        "3P^{1/24}": [
+          3634,
+          3636
+        ]
+      },
+      "C": {
+        "1.30P^{19/96}": [
+          4663
+        ],
+        "2P^{19/96}": [
+          4684
+        ],
+        "1.2812P^{19/96}": [
+          7210
+        ]
+      },
+      "l": {
+        "2P^{1/96}": [
+          4684,
+          4739
+        ]
+      },
+      "u": {
+        "P^{5/16}": [
+          4689,
+          4700,
+          4725
+        ]
+      },
+      "i": {
+        "2P^{1/96}": [
+          4699
+        ],
+        "2P^{5/16}": [
+          4707
+        ]
+      },
+      "k": {
+        "P^{1/24}": [
+          5346
+        ]
+      },
+      "r": {
+        "P^{1/24}": [
+          5499
+        ]
+      }
+    },
+    "symbols_with_more_than_one_bound": [
+      "C",
+      "i"
+    ],
+    "symbol_families": {
+      "C": [
+        "1.2812P^{19/96}",
+        "1.30P^{19/96}",
+        "2P^{19/96}"
+      ],
+      "i": [
+        "2P^{1/96}",
+        "2P^{5/16}"
+      ]
+    },
+    "cap_bounds": {
+      "k": {
+        "P^{1/24}": [
+          381,
+          1840,
+          3717,
+          4005,
+          4475,
+          5919
+        ],
+        "2P^{1/96}": [
+          4299,
+          4476
+        ],
+        "P^{\\varepsilon}": [
+          6169
+        ]
+      },
+      "h_1h_2": {
+        "P^{1/2}/3": [
+          1899
+        ],
+        "2P^{1/2}/3": [
+          2088
+        ],
+        "P^{1/12}": [
+          2199,
+          4028
+        ],
+        "P^{1/16}": [
+          4027,
+          4707
+        ]
+      },
+      "h_2": {
+        "P^{1/24}": [
+          2188,
+          3789,
+          3793,
+          3868,
+          4319
+        ]
+      },
+      "h_1+h_2": {
+        "2P^{1/24}": [
+          2209
+        ]
+      },
+      "kh_1h_2": {
+        "P^{1/8}": [
+          2997,
+          4095
+        ],
+        "P^{1/24+1/48+1/24}": [
+          3718
+        ],
+        "2P^{1/96+1/48+1/24}": [
+          4277
+        ],
+        "2P^{\\delta+1/16}": [
+          4283
+        ]
+      },
+      "h_1": {
+        "P^{1/48}": [
+          3766
+        ]
+      },
+      "h_1{+}h_2": {
+        "2P^{1/24}": [
+          4302
+        ]
+      }
+    },
+    "caps_with_more_than_one_value": [
+      "h_1h_2",
+      "k",
+      "kh_1h_2"
+    ],
+    "every_cap_restatement_names_its_hypothesis": true,
+    "the_multi_valued_thing_is_the_derived_term": true,
+    "printed_exponent": -2.125,
+    "exponent_with_I_tot": -2.125,
+    "exponent_with_i": -2.4270833333333335,
+    "the_bullet_computes_with_I_tot": true,
+    "and_not_with_i": true,
+    "i_bound": "2 P^(1/96)",
+    "I_tot_bound": "2 P^(5/16)",
+    "the_larger_is_the_one_used": true,
+    "inside_D3_at_the_bound_used": -0.5,
+    "inside_D3_at_the_tighter_bound": -0.8020833333333335,
+    "both_are_inside_D3": true,
+    "instances_of_one_quantity_two_values": 3,
+    "and_this_one_is_a_symbol": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -8113,5 +8274,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 90.97313690185547
+  "elapsed_seconds": 89.39358496665955
 }

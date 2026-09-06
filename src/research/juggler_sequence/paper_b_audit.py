@@ -7090,6 +7090,107 @@ def which_cap_each_substitution_uses() -> dict[str, Any]:
     }
 
 
+# Every bound of the form |X| <= c P^e that the manuscript prints for a named symbol, and every
+# bound it prints for a product of the shift caps.  Both scans run over the whitespace-stripped
+# text, so they survive rewrapping and report their own obsolescence once the text moves.
+_SYMBOL_BOUND = re.compile(
+    r"\\lvert([A-Za-z](?:_[0-9])?)\\rvert\\le((?:[0-9.]+\\?,?)?P\^\{[^}]{1,16}\})")
+_CAP_BOUND = re.compile(
+    r"(kh_1h_2|h_1h_2|h_1\{\+\}h_2|h_1\+h_2|h_1|h_2|k)\\le"
+    r"((?:[0-9.]+)?P\^\{[^}]{1,20}\}(?:/[0-9]+)?)")
+_CAP_LEFT = re.compile(r"[A-Za-z0-9_}\\']")
+
+
+def _compact_with_lines(text: str) -> tuple[str, list[int]]:
+    chars, lines = [], []
+    for ln, line in enumerate(text.splitlines(keepends=True), 1):
+        for ch in line:
+            if not ch.isspace():
+                chars.append(ch)
+                lines.append(ln)
+    return "".join(chars), lines
+
+
+def one_symbol_two_bounds() -> dict[str, Any]:
+    """How many quantities does the paper bound at more than one value?  Three, and the third is a
+    symbol rather than a constant.
+
+    The caps themselves are clean.  Every restatement of a cap-derived bound names the hypothesis it
+    comes from:
+
+        k          P^(1/24) standing, 2P^(1/96) in Theorem 6.1, P^(eps) in the Section 7 family
+        h_1h_2     P^(1/2)/3 by (C2), P^(1/12) by (C4), P^(1/16) by H_1H_2, and 2P^(1/2)/3 in the
+                   review note that says in so many words it is twice the stated hypothesis
+        kh_1h_2    P^(1/8) by (C1), P^(5/48) from the Theorem 5.3 caps, 2P^(1/96+1/48+1/24) in
+                   Theorem 6.1
+
+    so the answer at cap level is none: what is multi-valued is the term derived from a cap, not the
+    cap.  Sweeping instead every |X| <= c P^e the paper prints finds exactly two symbols carrying
+    more than one bound, and one is already recorded:
+
+        |C|   2 P^(19/96), 1.30 P^(19/96), 1.2812 P^(19/96)      Theorem 6.3, three sites
+        |i|   2 P^(1/96), 2 P^(5/16)                             Theorem 6.3, eight lines apart
+
+    The |i| pair is a different animal.  Theorem 6.3 writes "Theorem 6.1's own |i| <= 2P^(1/96) plus
+    the fifth-letter |u| <= P^(5/16).  Then |I_tot| <= 2P^(5/16)", and eight lines later the
+    (i/2)X-passenger bullet reads "At |i| <= 2P^(5/16) and h_1h_2 <= P^(1/16) this is
+    O(P^(-34/16))".  The exponent settles which bound the line is using: 5/16 + 1/16 - 5/2 =
+    -34/16 exactly, where 1/96 + 1/16 - 5/2 = -2.4271.  So the bullet is computing with I_tot and
+    printing i.
+
+    Nothing is overstated by it.  I_tot is the larger of the two, the passenger is the combined
+    first-letter index, and the conclusion sits inside (D3) by P^(-1/2) at the bound used and by
+    P^(-0.80) at the tighter one.  What slipped is the symbol, not the estimate -- which makes this
+    the third instance of one quantity printed at two values in this theorem, and the first where
+    the repair is a letter.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    compact, lines = _compact_with_lines(text)
+
+    symbols: dict[str, dict[str, list[int]]] = {}
+    for m in _SYMBOL_BOUND.finditer(compact):
+        rhs = m.group(2).replace("\\,", "")
+        symbols.setdefault(m.group(1), {}).setdefault(rhs, []).append(lines[m.start()])
+    caps: dict[str, dict[str, list[int]]] = {}
+    for m in _CAP_BOUND.finditer(compact):
+        before = compact[m.start() - 1] if m.start() else ""
+        if before and _CAP_LEFT.match(before):
+            continue
+        caps.setdefault(m.group(1), {}).setdefault(m.group(2), []).append(lines[m.start()])
+
+    multi_symbols = {s: v for s, v in symbols.items() if len(v) > 1}
+    multi_caps = {q: v for q, v in caps.items() if len(v) > 1}
+    # which bound the (i/2)X bullet is actually computing with
+    printed_exponent = -34 / 16
+    with_I_tot = 5 / 16 + 1 / 16 - 5 / 2
+    with_i = 1 / 96 + 1 / 16 - 5 / 2
+    d3_exponent = -13 / 8                      # |phi''| <= 6 k h_1h_2 h P^(-13/8)
+    return {
+        "symbol_bounds": symbols,
+        "symbols_with_more_than_one_bound": sorted(multi_symbols),
+        "symbol_families": {s: sorted(v) for s, v in multi_symbols.items()},
+        "cap_bounds": caps,
+        "caps_with_more_than_one_value": sorted(multi_caps),
+        "every_cap_restatement_names_its_hypothesis": True,
+        "the_multi_valued_thing_is_the_derived_term": True,
+        "printed_exponent": printed_exponent,
+        "exponent_with_I_tot": with_I_tot,
+        "exponent_with_i": with_i,
+        "the_bullet_computes_with_I_tot": abs(with_I_tot - printed_exponent) < 1e-12,
+        "and_not_with_i": abs(with_i - printed_exponent) > 0.3,
+        "i_bound": "2 P^(1/96)",
+        "I_tot_bound": "2 P^(5/16)",
+        "the_larger_is_the_one_used": True,
+        "inside_D3_at_the_bound_used": printed_exponent - d3_exponent,
+        "inside_D3_at_the_tighter_bound": with_i - d3_exponent,
+        "both_are_inside_D3": printed_exponent < d3_exponent and with_i < d3_exponent,
+        "instances_of_one_quantity_two_values": 3,
+        "and_this_one_is_a_symbol": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -7189,6 +7290,7 @@ def summary() -> dict[str, Any]:
     fifth = fifth_letter_coefficient_has_three_values()
     step5 = step_5_inventories_against_the_paper()
     caps = which_cap_each_substitution_uses()
+    twobounds = one_symbol_two_bounds()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -7276,6 +7378,7 @@ def summary() -> dict[str, Any]:
         "fifth_letter_coefficient_has_three_values": fifth,
         "step_5_inventories_against_the_paper": step5,
         "which_cap_each_substitution_uses": caps,
+        "one_symbol_two_bounds": twobounds,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

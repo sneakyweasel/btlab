@@ -7088,3 +7088,67 @@ Probe: `manuscript_self_audit.nd_counts`, `endpoint_only`,
 the file. Manuscript: the `d=1600` ratio corrected and a passage
 recording the recomputation. `P_0` and `P_1` unmoved. No certificate
 edit.
+
+## The caps are clean; the third instance is a letter
+
+The question was the same count one level up: how many of the bounds
+derived from the `(C1)`--`(C4)` block are restated elsewhere at a
+different value. At cap level the answer is none. Every restatement names
+the hypothesis it comes from:
+
+```text
+  k          P^(1/24) standing, 2P^(1/96) in Theorem 6.1, P^(eps) in the
+             Section 7 family
+  h_1h_2     P^(1/2)/3 by (C2), P^(1/12) by (C4), P^(1/16) by H_1H_2 ---
+             and 2P^(1/2)/3 in the review note that says in so many words
+             it is twice the stated hypothesis
+  kh_1h_2    P^(1/8) by (C1), P^(5/48) from the Theorem 5.3 caps,
+             2P^(1/96+1/48+1/24) in Theorem 6.1
+```
+
+Three quantities carry several values apiece and not one of them is loose
+--- each is a different hypothesis, named at the point of use. What is
+multi-valued is the *term derived from* a cap, not the cap.
+
+So the sweep was widened: every `|X| <= c P^e` the paper prints, grouped
+by symbol. Exactly two symbols carry more than one bound.
+
+```text
+  |C|   2 P^(19/96), 1.30 P^(19/96), 1.2812 P^(19/96)   Thm 6.3, three sites
+  |i|   2 P^(1/96), 2 P^(5/16)                          Thm 6.3, eight lines apart
+```
+
+`|C|` is the one recorded two sections ago. `|i|` is new, and it is a
+different animal. Theorem 6.3 writes
+
+> Theorem 6.1's own `|i| <= 2P^(1/96)` plus the fifth-letter
+> `|u| <= P^(5/16)`. Then `|I_tot| <= 2P^(5/16)`.
+
+and eight lines later the `(i/2)X`-passenger bullet reads "At
+`|i| <= 2P^(5/16)` and `h_1h_2 <= P^(1/16)` this is `O(P^(-34/16))`".
+
+The exponent settles which bound the line is using. `5/16 + 1/16 - 5/2 =
+-34/16` exactly, where `1/96 + 1/16 - 5/2 = -2.4271`. The bullet is
+computing with `I_tot` and printing `i`.
+
+Nothing is overstated by it: `I_tot` is the larger of the two, the
+passenger is the combined first-letter index, and the conclusion sits
+inside `(D3)`'s `P^(-13/8)` by `P^(-1/2)` at the bound used and by
+`P^(-0.80)` at the tighter one. What slipped is the symbol, not the
+estimate --- which makes this the third instance of one quantity printed
+at two values in this theorem, and the first whose repair is a letter.
+
+Tags. EXACT: `5/16 + 1/16 - 5/2 = -34/16`, so the printed exponent is the
+one `I_tot` gives and not the one `i` gives, which is `-2.4271`; both are
+below `(D3)`'s `-13/8`, by `P^(-1/2)` and `P^(-0.80)`.
+COMPUTATIONALLY VERIFIED: sweeping every printed `|X| <= cP^e`, exactly
+two symbols carry more than one bound, `C` with three and `i` with two;
+sweeping every printed bound on a shift-cap product, three quantities
+carry several, each named at its use. OBSERVATION: `I_tot` is the larger
+bound, so the passenger estimate is conservative as computed.
+
+Probe: `one_symbol_two_bounds`, with `_SYMBOL_BOUND` and `_CAP_BOUND`
+sweeping the whitespace-stripped manuscript, so the families are
+recomputed on every run rather than transcribed. Two tests. Audit
+`270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate
+edit.

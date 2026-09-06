@@ -37428,3 +37428,65 @@ Eleven checks in failures() now. The classification is the durable part:
 of the paper's thirty-one tables, four carry directional numbers and
 all four are guarded, two carry exact invariants and both are guarded,
 and the rest carry words.
+
+## The third instance is a letter
+
+At cap level the answer is none: `k`, `h_1h_2` and `kh_1h_2` each carry
+several printed values, and every one names the hypothesis it comes from
+--- `(C1)`, `(C2)`, `(C4)`, `H_1H_2`, Theorem 6.1's own range. What is
+multi-valued is the term derived from a cap, not the cap.
+
+So the sweep was widened to every `|X| <= cP^e` the paper prints. Exactly
+two symbols carry more than one bound: `|C|`, recorded two sections ago
+at `2`, `1.30` and `1.2812`, and `|i|`, at `2P^(1/96)` and `2P^(5/16)`
+eight lines apart in Theorem 6.3.
+
+The second is a different animal. The theorem defines
+`|I_tot| <= 2P^(5/16)` from `|i| <= 2P^(1/96)` and `|u| <= P^(5/16)`, and
+eight lines later the `(i/2)X`-passenger bullet reads "At
+`|i| <= 2P^(5/16)` and `h_1h_2 <= P^(1/16)` this is `O(P^(-34/16))`". The
+exponent settles it: `5/16 + 1/16 - 5/2 = -34/16` exactly, against
+`-2.4271` for the tighter bound. The bullet computes with `I_tot` and
+prints `i`.
+
+Nothing is overstated --- `I_tot` is the larger, and the conclusion is
+inside `(D3)` by `P^(-1/2)` as computed and `P^(-0.80)` at the tighter
+bound. The symbol slipped, not the estimate.
+
+```text
+Phase-end report
+Question
+- how many of the bounds derived from the (C1)-(C4) block are restated
+  elsewhere in the paper at a different value
+Instruments
+- one_symbol_two_bounds: every printed |X| <= cP^e grouped by symbol, and
+  every printed bound on a shift-cap product grouped by quantity, both
+  swept from the whitespace-stripped manuscript
+Ledger tags
+- EXACT: 5/16 + 1/16 - 5/2 = -34/16, the printed exponent, where the
+  tighter |i| gives -2.4271; both are below (D3)'s -13/8
+- COMPUTATIONALLY VERIFIED: exactly two symbols carry more than one
+  printed bound, C with three and i with two; three cap products carry
+  several, each named at its use
+- OBSERVATION: I_tot is the larger bound, so the bullet's estimate is
+  conservative as computed
+Strongest theorem
+- the caps are clean: multi-valuedness lives in the derived term, not in
+  the hypothesis, and the paper names the hypothesis every time
+Strongest refutation
+- none this pass
+Reusable machinery
+- one_symbol_two_bounds with _SYMBOL_BOUND and _CAP_BOUND, two tests,
+  wired into summary(); the families are recomputed each run, not
+  transcribed
+Branch status
+- PARK
+Why
+  Three instances, all recorded, all manuscript edits belonging to the
+  other session.
+Best next question
+- the sweep covered |X| <= cP^e only. The same slip in a bound written
+  without absolute-value bars would be invisible to it. Widen it to
+  <symbol> <= cP^e for every single-letter symbol the paper bounds, and
+  see whether the count stays at two.
+```

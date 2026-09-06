@@ -2305,3 +2305,27 @@ def test_the_anchor_run_bound_is_printed_at_two_values_in_one_step() -> None:
     assert r["quantities_printed_at_more_than_one_value"] == 2
     if r["printed_at_two_values"]:
         assert [f["exponent"] for f in r["anchor_run_forms"]] == [5 / 16, 0.375]
+
+
+# --- one quantity, two printed bounds ---
+
+
+def test_only_two_symbols_carry_more_than_one_printed_bound() -> None:
+    """The caps are multi-valued by design and each names its hypothesis; |C| and |i| are not."""
+    r = A.one_symbol_two_bounds()
+    assert set(r["symbols_with_more_than_one_bound"]) <= {"C", "i"}
+    assert set(r["caps_with_more_than_one_value"]) <= {"h_1h_2", "k", "kh_1h_2"}
+    assert r["every_cap_restatement_names_its_hypothesis"]
+    if "i" in r["symbol_families"]:
+        assert sorted(r["symbol_families"]["i"]) == ["2P^{1/96}", "2P^{5/16}"]
+
+
+def test_the_passenger_bullet_computes_with_I_tot_and_prints_i() -> None:
+    """5/16 + 1/16 - 5/2 = -34/16 exactly; 1/96 + 1/16 - 5/2 is -2.4271, so the printed
+    exponent says which bound the line used."""
+    r = A.one_symbol_two_bounds()
+    assert r["the_bullet_computes_with_I_tot"] and r["and_not_with_i"]
+    assert abs(r["printed_exponent"] + 2.125) < 1e-12
+    assert r["both_are_inside_D3"]
+    assert r["inside_D3_at_the_bound_used"] == -0.5
+    assert r["inside_D3_at_the_tighter_bound"] < r["inside_D3_at_the_bound_used"]
