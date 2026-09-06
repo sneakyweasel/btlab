@@ -1337,17 +1337,16 @@ def appendix_a6_checks() -> list[dict[str, Any]]:
 def kernel_sum(P: int, k: int = 1) -> dict[str, Any]:
     """|K_c(P)| = |sum_{n odd in (P,2P]} e(c(n) theta_2(n))| with c = 3k/4 n^{9/8}; and the level-2 wave |sum e(Y(n))|."""
 
-    mp.mp.dps = 40
     sK = mp.mpc(0)
     sY = mp.mpc(0)
-    for n in range(P + 1, 2 * P + 1, 2):
-        m = math.isqrt(n * n * n)
-        Y = mp.power(mp.mpf(m), mp.mpf(3) / 2)
-        th2 = Y - mp.floor(Y)
-        c = mp.mpf(3 * k) / 4 * mp.power(mp.mpf(n), mp.mpf(9) / 8)
-        sK += mp.expjpi(2 * frac(c * th2))
-        sY += mp.expjpi(2 * frac(Y))
-    mp.mp.dps = 60
+    with mp.workdps(40):
+        for n in range(P + 1, 2 * P + 1, 2):
+            m = math.isqrt(n * n * n)
+            Y = mp.power(mp.mpf(m), mp.mpf(3) / 2)
+            th2 = Y - mp.floor(Y)
+            c = mp.mpf(3 * k) / 4 * mp.power(mp.mpf(n), mp.mpf(9) / 8)
+            sK += mp.expjpi(2 * frac(c * th2))
+            sY += mp.expjpi(2 * frac(Y))
     N = P / 2
     return {
         "P": P,
@@ -1358,8 +1357,124 @@ def kernel_sum(P: int, k: int = 1) -> dict[str, Any]:
         "abs_wave_q1": float(abs(sY)),
         "abs_wave_over_P^(23/24)": float(abs(sY) / P ** (23 / 24)),
         "abs_wave_over_sqrtN": float(abs(sY) / N**0.5),
+        # both printed benchmarks are above the trivial bound N here, so the two ratios above
+        # cannot exceed 1 whatever the summand does; kernel_observation_reach says where they could
+        "abs_K_over_trivial": float(abs(sK) / N),
+        "abs_wave_over_trivial": float(abs(sY) / N),
+        "kernel_benchmark_informative": N > P ** (1 - 1 / 96),
+        "wave_benchmark_informative": N > P ** (23 / 24),
     }
 
+
+def kernel_block_scaling(P: int = 10**5, k: int = 1, bins: int = 256) -> dict[str, Any]:
+    """The cancellation exponent of K_c and of the wave, from 256 samples instead of one.
+
+    kernel_sum returns one number per P, and one number cannot separate square-root cancellation
+    from none: the local slopes of log|K_c| against log P over 10^4 .. 3*10^6 scatter from -0.13 to
+    +1.56, so the ladder as it stands measures nothing about the exponent.  Splitting the same
+    single pass into `bins` consecutive blocks and aggregating them into 256, 64, 16, 4 and 1 gives
+    five block lengths at no extra cost, and the root-mean-square block sum against block length is
+    a fit rather than a coin flip.  Not an unbiased estimator: the longest block length is one
+    sample, so it carries the same noise the ladder had, diluted by four better points.  Square-root cancellation puts the exponent at 1/2 and
+    rms/sqrt(L) near 1; no cancellation at all would put it at 1 and rms/sqrt(L) at sqrt(L).
+
+    OBSERVATION.  The paper claims only K_c << P^(1-1/96+eps), which at these P is weaker than
+    counting the terms (kernel_observation_reach), so nothing here bears on it either way.
+    """
+
+    ns = range(P + 1, 2 * P + 1, 2)
+    N = len(ns)
+    binK = [mp.mpc(0)] * bins
+    binY = [mp.mpc(0)] * bins
+    with mp.workdps(40):
+        for i, n in enumerate(ns):
+            m = math.isqrt(n * n * n)
+            Y = mp.power(mp.mpf(m), mp.mpf(3) / 2)
+            th2 = Y - mp.floor(Y)
+            c = mp.mpf(3 * k) / 4 * mp.power(mp.mpf(n), mp.mpf(9) / 8)
+            b = i * bins // N
+            binK[b] += mp.expjpi(2 * frac(c * th2))
+            binY[b] += mp.expjpi(2 * frac(Y))
+
+    counts = [c for c in (bins, bins // 4, bins // 16, bins // 64, 1) if c >= 1]
+    rows = []
+    for count in counts:
+        step = bins // count
+        rK = math.sqrt(sum(float(abs(sum(binK[i * step:(i + 1) * step], mp.mpc(0)))) ** 2 for i in range(count)) / count)
+        rY = math.sqrt(sum(float(abs(sum(binY[i * step:(i + 1) * step], mp.mpc(0)))) ** 2 for i in range(count)) / count)
+        L = N / count
+        rows.append({"blocks": count, "block_length": L, "rms_K": rK, "rms_wave": rY,
+                     "rms_K_over_sqrtL": rK / math.sqrt(L), "rms_wave_over_sqrtL": rY / math.sqrt(L)})
+
+    def _slope(key: str) -> float:
+        xs = [math.log(r["block_length"]) for r in rows]
+        ys = [math.log(r[key]) for r in rows]
+        mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+        return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)
+
+    return {
+        "P": P,
+        "k": k,
+        "terms": N,
+        "blocks": rows,
+        "kernel_exponent": _slope("rms_K"),
+        "wave_exponent": _slope("rms_wave"),
+        "square_root_exponent": 0.5,
+        "no_cancellation_exponent": 1.0,
+    }
+
+# The two printed exponents of the observation layer, as savings 1 - exponent.  |K_c| and the wave
+# are sums of at most P/2 unit vectors, so a benchmark P^(1-delta) says nothing until P^delta > 2.
+KERNEL_PRINTED_SAVING = Fr(1, 96)
+WAVE_PRINTED_SAVING = Fr(1, 24)
+
+
+def trivial_bound_crossover(saving: Fr, factor: int = 1) -> float:
+    """The P past which P^(1-saving) is a factor `factor` below the trivial bound P/2."""
+
+    return float(2 * factor) ** (1 / float(saving))
+
+
+def kernel_observation_reach(points: list[int] | None = None) -> dict[str, Any]:
+    """Where the printed exponents first say more than counting the terms does.
+
+    |K_c(P)| <= #{n} = P/2 for any summand at all, so P^(1-1/96) is above the trivial bound until
+    P = 2^96 = 7.9e28, and is a factor of two below it only past 2^192.  The kernel comparison is
+    therefore not weak evidence but no evidence, at every P that will ever be summed.  The wave's
+    P^(23/24) crosses at 2^24 = 1.7e7 -- reachable, though the ladder stops at 3e5 -- and reaches a
+    factor of two only at 2^48 = 2.8e14.
+
+    So the OBSERVATION label is right that the layer proves nothing, but the two printed ratios it
+    reports could not have come out any other way.  What is falsifiable here is the scale: both
+    sums sit within a small band of sqrt(P/2), and no-cancellation would exceed that band by a
+    factor of hundreds.
+    """
+
+    pts = list(points) if points is not None else [10**4, 3 * 10**4, 10**5, 3 * 10**5]
+    rows = []
+    for P in pts:
+        trivial = P / 2
+        kb = P ** (1 - float(KERNEL_PRINTED_SAVING))
+        wb = P ** (1 - float(WAVE_PRINTED_SAVING))
+        rows.append({
+            "P": P,
+            "trivial_bound": trivial,
+            "kernel_benchmark": kb,
+            "wave_benchmark": wb,
+            "trivial_over_kernel_benchmark": trivial / kb,
+            "trivial_over_wave_benchmark": trivial / wb,
+            "kernel_benchmark_informative": trivial > kb,
+            "wave_benchmark_informative": trivial > wb,
+        })
+    return {
+        "points": rows,
+        "kernel_crossover": trivial_bound_crossover(KERNEL_PRINTED_SAVING),
+        "kernel_crossover_factor_two": trivial_bound_crossover(KERNEL_PRINTED_SAVING, 2),
+        "wave_crossover": trivial_bound_crossover(WAVE_PRINTED_SAVING),
+        "wave_crossover_factor_two": trivial_bound_crossover(WAVE_PRINTED_SAVING, 2),
+        "any_benchmark_informative": any(r["kernel_benchmark_informative"] or r["wave_benchmark_informative"] for r in rows),
+        "largest_point": max(pts),
+    }
 
 # ----------------------------------------------------------------------------------------------
 
@@ -1390,6 +1505,11 @@ def summary() -> dict[str, Any]:
     expo = exponent_checks()
     a6 = appendix_a6_checks()
     kernel = [kernel_sum(P) for P in (10**4, 3 * 10**4, 10**5, 3 * 10**5)]
+    # Reported, not gated: the paper claims nothing about these sums beyond an asymptotic bound,
+    # so a band on them is the audit's own integrity check and lives in the tests.  What belongs in
+    # the record is how far the printed benchmarks are from saying anything at all.
+    reach = kernel_observation_reach([r["P"] for r in kernel])
+    block_scaling = kernel_block_scaling()
     cert = p0_certificate.certificate()
     return {
         "p0_certificate": cert,
@@ -1410,6 +1530,8 @@ def summary() -> dict[str, Any]:
         "appendix_a6_checks": a6,
         "appendix_a6_all_ok": all(c["ok"] for c in a6),
         "kernel_observation": kernel,
+        "kernel_observation_reach": reach,
+        "kernel_block_scaling": block_scaling,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
             if ident["all_identities_hold"] and all(c["ok"] for c in margins) and all(c["ok"] for c in directed) and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and cell_scaling["ok"] and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]

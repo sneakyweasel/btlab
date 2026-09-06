@@ -547,3 +547,48 @@ def test_the_lemma_6_2_checker_scales_its_own_precision() -> None:
     good = A.check_lemma_6_2(n)
     assert good["i_corrected"] and good["ii_corrected"] and 0 <= good["theta2"] <= 1
     assert mp.mp.dps == before                              # and the wrapper restores it
+
+
+# --- the observation layer's two printed ratios could not have come out otherwise ---
+
+
+def test_the_printed_benchmarks_sit_above_the_trivial_bound() -> None:
+    """|K_c| <= P/2 always, and P^(1-1/96) exceeds P/2 until P = 2^96."""
+    reach = A.kernel_observation_reach()
+    assert reach["kernel_crossover"] == 2.0**96
+    assert reach["kernel_crossover_factor_two"] == 2.0**192
+    assert reach["wave_crossover"] == 2.0**24
+    assert reach["wave_crossover_factor_two"] == 2.0**48
+    assert not reach["any_benchmark_informative"]
+    for row in reach["points"]:
+        assert row["trivial_over_kernel_benchmark"] < 1 and row["trivial_over_wave_benchmark"] < 1
+    # and the wave's crossover is reachable by summation where the kernel's never will be
+    assert reach["wave_crossover"] < 10**8 < reach["kernel_crossover"]
+
+
+def test_the_observation_layer_measures_the_square_root_scale() -> None:
+    """What is falsifiable here: both sums are three orders below trivial, not a hair below it."""
+    for P in (10**4, 3 * 10**4):
+        r = A.kernel_sum(P)
+        assert not r["kernel_benchmark_informative"] and not r["wave_benchmark_informative"]
+        assert r["abs_K_over_trivial"] < 0.05 and r["abs_wave_over_trivial"] < 0.05
+        assert 0.05 < r["abs_K_over_sqrtN"] < 8 and 0.05 < r["abs_wave_over_sqrtN"] < 8
+
+
+def test_the_kernel_sum_leaves_the_module_precision_alone() -> None:
+    import mpmath as mp
+
+    with mp.workdps(80):
+        A.kernel_sum(1000)
+        assert mp.mp.dps == 80
+
+
+def test_the_block_variance_measures_an_exponent_where_one_number_cannot() -> None:
+    """Square root is 0.5 and no cancellation is 1.0; the single-sample ladder scattered -0.13..1.56."""
+    r = A.kernel_block_scaling(P=3 * 10**4)
+    assert r["terms"] == 15000 and len(r["blocks"]) == 5
+    assert r["blocks"][0]["blocks"] == 256 and r["blocks"][-1]["blocks"] == 1
+    assert 0.15 < r["kernel_exponent"] < 0.75
+    assert 0.15 < r["wave_exponent"] < 0.75
+    for b in r["blocks"]:
+        assert 0.2 < b["rms_K_over_sqrtL"] < 3 and 0.2 < b["rms_wave_over_sqrtL"] < 3

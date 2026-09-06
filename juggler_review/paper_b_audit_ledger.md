@@ -62,7 +62,7 @@ the exponent \(1-1/96\) and the statements of Theorem 6.1 are unchanged.
 | Step 6 assembly | hand; script | consistent |
 | Theorem 6.1 Step E: frozen-shape total phase \(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\); offset leftover \(\tfrac{81}{512}\), window-centre \(\tfrac{81}{128}\), composite \(\tfrac{243}{512}\); \(B=\tfrac{27}{32}kj\nu^{3/8}\); zero-offset \(\lambda_0'=\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\); interpolant \(b'=-\tfrac{365}{176}\) | hand; script (offset tot/81 and \(B/(kj\nu^{3/8})\) near \(1\) and \(27/32\); zero-offset tot against \(16929/2048\) near \(2190/16929\)) | **corrected architecture**: the previous composites \(405/512\) and \(8.27\) differentiated the moving total phase \(\tfrac k2\nu^{27/8}\); the \(1-1/96\) exponent is unchanged |
 | Lemma 6.2, remainder bounds | hand; script `lemma_6_2_margin_certificate` | **corrected**: the two Lagrange remainders (orders \(n^{-45/16}\), \(n^{-81/16}\)) are now displayed instead of being absorbed into coefficients that have no slack when \(\theta_2\) or \(\theta_z\) is close to \(1\); Theorem 6.3 uses only the order of magnitude. **Extended**: the pre-correction form was true anyway -- the Lagrange term in the bound covers both omitted remainders from n = 5 up -- so the edge search cannot fail at any range; the six printed orders are confirmed |
-| Kernel sum \(K_c(P)\), \(k=1\), \(P\le3\cdot10^5\), and the wave \(\sum e(Y(n))\) | script, OBSERVATION | \(\lvert K_c\rvert\) between \(0.4\) and \(1.2\) times \(\sqrt{P/2}\): square-root scale, far below \(P^{1-1/96}\); the wave likewise; neither is evidence for the theorem's exponent, only consistent with it |
+| Kernel sum \(K_c(P)\), \(k=1\), \(P\le3\cdot10^6\), and the wave \(\sum e(Y(n))\) | script, OBSERVATION; `kernel_block_scaling`, `kernel_observation_reach` | **corrected reading**: "far below \(P^{1-1/96}\)" was vacuous --- that benchmark is *above* the trivial bound \(P/2\) until \(P=2^{96}\), so the ratio could not have exceeded \(1\). Both sums do sit at square-root scale, but one number per \(P\) cannot say so (local slopes scatter \(-0.13\) to \(+1.56\)); 256 block samples give exponents \(0.38\)--\(0.52\) and \(0.29\)--\(0.47\) against \(\tfrac12\) and \(1\). Still not evidence for the theorem's exponent |
 
 *Second reading, 4 September 2026.* The \((ii)\Rightarrow(i)\)
 reduction of Lemma 5.2 (Claims A–H) was read line by line against an
@@ -1068,3 +1068,58 @@ which is why no census ever hit this; `check_lemma_6_2` and
 `lemma_6_2_edge_search` now scale by the same
 \(60+4\log_{10}\) rule, so the protection no longer depends on the
 caller knowing about it. Results at every existing range are unchanged.
+
+## The observation layer's two printed ratios could not have come out otherwise
+
+`kernel_sum` reports \(\lvert K_c(P)\rvert/P^{1-1/96}\) and
+\(\lvert\sum e(Y(n))\rvert/P^{23/24}\). Both sums are over
+\(N=P/2\) unit vectors, so both are at most \(N\) whatever the summand
+does, and a benchmark \(P^{1-\delta}\) carries information only once
+\(P^{\delta}>2\).
+
+| benchmark | \(\delta\) | says anything past | a factor of two past |
+|---|---|---|---|
+| \(P^{1-1/96}\), Theorem 5.3 | \(1/96\) | \(2^{96}=7.9\cdot10^{28}\) | \(2^{192}=6.3\cdot10^{57}\) |
+| \(P^{23/24}\), the level-2 wave | \(1/24\) | \(2^{24}=1.7\cdot10^{7}\) | \(2^{48}=2.8\cdot10^{14}\) |
+
+The ladder stops at \(3\cdot10^5\). At every point on it the trivial
+bound is *below* both benchmarks --- \(0.55\) and \(0.73\) of them at
+\(10^4\), \(0.57\) and \(0.85\) at \(3\cdot10^5\) --- so the two printed
+ratios are under \(1\) by arithmetic and cannot fail. For the kernel
+that is permanent: \(2^{96}\) terms will not be summed. EXACT.
+
+The OBSERVATION label was doing its work --- it says the layer proves
+nothing --- and the manuscript is stricter still: \S1 states that no
+numerical computation is a proof step, and the repository paragraph
+that these checks "are not proofs and are not an independent
+verification of Lemma 5.2". The gap was only that the two ratios *look*
+like a test. `kernel_observation_reach` now records why they are not.
+
+**What is falsifiable is the scale, and one number per \(P\) could not
+measure it.** Extending the ladder to \(3\cdot10^6\):
+
+| \(P\) | \(10^4\) | \(3\cdot10^4\) | \(10^5\) | \(3\cdot10^5\) | \(10^6\) | \(3\cdot10^6\) |
+|---|---|---|---|---|---|---|
+| \(\lvert K_c\rvert/\sqrt N\) | 0.73 | 1.18 | 0.56 | 0.40 | 1.44 | 0.83 |
+| wave\(/\sqrt N\) | 0.34 | 0.74 | 0.86 | 0.50 | 2.11 | 1.51 |
+
+The local slopes of \(\log\lvert K_c\rvert\) against \(\log P\) scatter
+from \(-0.13\) to \(+1.56\): a single sample per \(P\) cannot separate
+\(1/2\) from \(1\), and the printed band \(0.4\)--\(1.2\) was a
+statement about four draws.
+
+`kernel_block_scaling` splits the same single pass into 256 consecutive
+blocks and aggregates them to 256, 64, 16, 4 and 1, giving five block
+lengths at no extra cost. Root-mean-square block sum against block
+length stays in \([0.34,1.27]\sqrt L\), and the fitted exponents over
+\(P=10^4\ldots3\cdot10^5\) are \(0.38\)--\(0.52\) for \(K_c\) and
+\(0.29\)--\(0.47\) for the wave, against \(\tfrac12\) for square-root
+cancellation and \(1\) for none. Not an unbiased estimator --- the
+longest block length is one sample --- but it discriminates the two
+hypotheses by a factor of hundreds where the old statistic discriminated
+nothing. OBSERVATION, and still no evidence for the theorem's exponent:
+the exponent it would need to test lives past \(2^{96}\).
+
+Also fixed: `kernel_sum` set `mp.mp.dps` to 40 and then to 60 rather
+than restoring it, so it silently lowered any caller working at higher
+precision. It now uses `mp.workdps`.
