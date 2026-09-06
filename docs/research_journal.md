@@ -31466,3 +31466,70 @@ Best next question
   still have none -- is there a step whose only check is that its
   exponents add up?
 ```
+
+ ### The audit module reaches the errata; the probe now measures both objects
+
+The last file the two errata had not reached, and the recorded next
+question. It is bookkeeping, and this entry says so.
+
+**The identity rows.** `81/1024 - 972/1024 + 756/1024 = -135/1024` stays
+— it is correct arithmetic about `(cG_F)''`, and the whole point of the
+erratum is that `(cG_F)''` is not the anchor. Five rows join it: the
+anchor `-972/1024 + 756/1024 = -27/128`; that the two differ by exactly
+`c'' G_F` and by exactly `8/5`; `243/128` beside the printed `1215/1024`;
+`b = -81/22`; Step E's `2187/2048 = 3^7/2^11` with
+`b' = -729/352 = (9/16) b`; and the moving-gap foil `2673/1024` with an
+explicit assertion that it is *not* `243/128`. 258 rows, none failing.
+
+**The probe now measures both objects.** This is the part worth keeping.
+`frozen_anchor_curvature_samples` built `c G_F` with no `J_F` subtracted,
+which is exactly why it confirmed the printed constant for as long as it
+did — a numerical check inherits its target's error. It now reports
+
+```text
+   frozen_ratio       |(c G_F)''|      / (135/1024 ...)   1.0000000 .. 1.0000002
+   anchor_ratio       |(c(G_F-J_F))''| / (216/1024 ...)   0.9997072 .. 0.9999985
+   anchor_over_bare   the quotient of the two             1.5995 .. 1.6000
+```
+
+The third line is the erratum in one number, measured at every sample.
+A probe that reports only its own ratio can never say it is aimed at the
+wrong function; a probe that reports two ratios and their quotient can.
+
+Ten `P_0` mentions updated to `3.6e13`, the `c_7` lever row from `300` to
+`120`, the interpolant rows from `52.9 / 105.8 / 0.567` to
+`85.3 / 170.6 / 0.9070`. The comment beside the certificate read "a
+hardcoded 8.9e13 would go stale the moment they move"; it now records
+that it did.
+
+```text
+What was learned
+- a probe with one ratio cannot detect that it is aimed at the wrong
+  object; a probe with two and their quotient reports the discrepancy
+  as a measurement rather than leaving it to be argued
+- keeping the wrong constant beside the right one, correctly labelled,
+  is better than deleting it: (cG_F)'' is a real function and the row
+  that computes it is the reason the slip survived an audit
+- three ticks of propagation from one arithmetic slip is the honest
+  cost of a constant that eleven files depended on
+Strongest theorem
+- none; this entry adds no mathematics
+Strongest refutation
+- none new; the probe now exhibits the 8/5 rather than asserting it
+Reusable machinery
+- frozen_anchor_curvature_samples reports frozen, anchor and their
+  quotient; five identity rows for the corrected constants and Step E
+Branch status
+- PARK
+Why
+  Every surface the two errata touch is now consistent: manuscript, both
+  mirrors, the certificate module, the audit module, the Lean
+  certificate and five test files. There is nothing left to propagate,
+  and this direction has no further mathematical content.
+Best next question
+- back to mathematics. The only open theorem that pays is the level-1
+  kernel for c(n) = (27k/32) n^{33/32}, worth 3/256 and taking the
+  certified density from 7/8 to 227/256. Its composites are computed and
+  non-degenerate; what is missing is a way to assemble the Fourier modes
+  when the shifted window holds no integer.
+```

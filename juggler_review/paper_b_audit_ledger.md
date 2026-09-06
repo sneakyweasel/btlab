@@ -2074,3 +2074,49 @@ exactly its job, and the four passes of this ledger that chased factors
 of \(7\) and \(2.5\) were sharpening a number that was never the reach.
 COMPUTATIONALLY VERIFIED; \(2^{96}\) and the exponent arithmetic are
 EXACT.
+
+### The audit module reaches the errata, and the probe now measures both objects
+
+The last file the two errata had not reached. `paper_b_audit.py` asserted
+`135/1024`, `1215/1024` and `b = -405/176` as the paper's constants, and
+quoted `P_0 = 8.9e13` in ten places.
+
+*The identity rows.* `81/1024 - 972/1024 + 756/1024 = -135/1024` is kept
+--- it is correct arithmetic about \((cG_F)''\), and the point of the
+erratum is that this is not the anchor --- and five rows are added beside
+it: the anchor `-972/1024 + 756/1024 = -27/128`, the statement that the
+two differ by \(c''G_F\) and by a factor \(8/5\) exactly, the global
+monomial \(243/128\) beside the printed \(1215/1024\), the corrected
+`b = -81/22`, Step E's \(2187/2048 = 3^7/2^{11}\) with
+`b' = -729/352 = (9/16) b`, and the moving-gap foil \(2673/1024\) with the
+assertion that it is *not* \(243/128\). The \(\Phi\)-coefficient row and
+the \(\lambda_0\)-range row are corrected in place. 258 rows, none
+failing.
+
+*The probe now measures both.* `frozen_anchor_curvature_samples` built
+\(cG_F\) with no \(J_F\) subtracted, which is why it confirmed the printed
+constant for as long as it did. It now reports three ratios rather than
+one:
+
+```text
+   frozen_ratio       |(c G_F)''|      / (135/1024 ...)   1.0000000 .. 1.0000002
+   anchor_ratio       |(c(G_F-J_F))''| / (216/1024 ...)   0.9997072 .. 0.9999985
+   anchor_over_bare   the quotient of the two             1.5995 .. 1.6000
+```
+
+The third is the erratum in one line: the anchor is \(8/5\) of what was
+printed, measured, at every sample. `moving_gap_ratio` is now taken
+against \(2673/1024\) and reads \(0.4545 = 1215/2673\), which is the
+statement that the frozen and moving models are different functions
+rather than a near miss.
+
+*The \(P_0\) mentions.* Ten, now \(3.6\cdot10^{13}\); the \(c_7\) lever
+row reads \(120\) instead of \(300\); the interpolant rows read
+\(85.2820 \le 85.3\), doubled to \(170.6\) printed \(171\), and the third
+displayed term \(0.9070\) printed \(0.91\). The comment beside the
+certificate read --- "a hardcoded 8.9e13 would go stale the moment they
+move" --- now records that it did.
+
+Every surface the two errata touch is consistent: manuscript, both
+mirrors, the certificate module, the audit module, the Lean certificate
+and five test files. COMPLETE.

@@ -1658,12 +1658,12 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("5b frozen (cG)'' leading: 81/1024 - 972/1024 + 756/1024 = -135/1024", F(81, 1024) - F(972, 1024) + F(756, 1024) == F(-135, 1024)),
         # ... but (cG)'' is not the anchor.  The phase is c(G - J_F) with J_F frozen, so the
         # c'' term multiplies a fractional part and is O(k P^{-7/8}): the erratum at Lemma 5.2b.
-        ("5b anchor 2cQG Q + c G'' = -972/1024 + 756/1024 = -216/1024 = -27/128", F(-972, 1024) + F(756, 1024) == F(-27, 128)),
+        ("5b anchor 2c'G' + c G'' = -972/1024 + 756/1024 = -216/1024 = -27/128", F(-972, 1024) + F(756, 1024) == F(-27, 128)),
         ("5b anchor is (cG)'' less c'' G, i.e. 8/5 of the printed constant", F(-135, 1024) - F(81, 1024) == F(-27, 128) and F(27, 128) / F(135, 1024) == F(8, 5)),
         ("5b global monomial: 27/128 * 9 = 243/128 (printed 135/1024 * 9 = 1215/1024)", F(27, 128) * 9 == F(243, 128) and F(135, 1024) * 9 == F(1215, 1024)),
         ("5b interpolant b: b * 11/8 * 3/8 = -243/128 gives b = -81/22", F(-81, 22) * F(11, 8) * F(3, 8) == F(-243, 128)),
         ("6.1 Step E zero-offset: -675/2048 + 432/2048 = 243/2048, times 9 = 2187/2048 = 3^7/2^11", F(-675, 2048) + F(432, 2048) == F(-243, 2048) and F(243, 2048) * 9 == F(3 ** 7, 2 ** 11)),
-        ("6.1 Step E interpolant bQ = -(2187/2048)(64/33) = -729/352 = 9/16 of b", F(-2187, 2048) * F(64, 33) == F(-729, 352) and F(729, 352) / F(81, 22) == F(9, 16)),
+        ("6.1 Step E interpolant b' = -(2187/2048)(64/33) = -729/352 = 9/16 of b", F(-2187, 2048) * F(64, 33) == F(-729, 352) and F(729, 352) / F(81, 22) == F(9, 16)),
         ("6.1 moving-gap foil (81/16)(11/8)(3/8) = 2673/1024, not the printed 243/128", F(81, 16) * F(11, 8) * F(3, 8) == F(2673, 1024) and F(2673, 1024) != F(243, 128)),
         ("5b interpolant a: a * 5/4 * 1/4 = -27/32 gives a = -27/10", F(-27, 10) * F(5, 4) * F(1, 4) == F(-27, 32)),
         ("5b withdrawn moving-gap coefficient is a different object: 2673/1024 - 729/1024 = 243/128", F(2673, 1024) - F(729, 1024) == F(243, 128)),
