@@ -34498,3 +34498,76 @@ Best next question
   the census can draw 2*4*4 = 32. How many of its samples are outside
   (C1), and does any probe gate on the product rather than the caps?
 ```
+
+### The probe citations, which nothing had ever checked
+
+The recorded question was whether the manuscript's citations of the probe
+modules still resolve and still say what the functions return. `trust_boundary`
+resolves *unqualified* backticked identifiers against Lean and skips qualified
+ones, so `decoration_budget.branch_offset_ladder` and its four companions had
+no check at all — not existence, not the name, not the figures beside them.
+
+**All five resolve**, which matters because one of those modules had a function
+renamed underneath the manuscript two ticks ago, when `branch_offset` was found
+to shadow an existing definition. **Two of the five claims were wrong**, both
+mine.
+
+**The measured exponent was quoted at the wrong setting.** "The instrument
+reads `0.500 ± 0.043` on data whose exponent is exactly `1/2`". The instrument
+is seeded and deterministic; at its default `trials = 200` it reads
+`0.4973 ± 0.0430`. `0.500` is what it gives at `trials = 120` — the setting the
+*test* beside it uses, not the function's own. The measurement was fine; the
+sentence quoted a number the reader running the cited function would not see.
+
+**A census was called exact when only half of it is.** "integer arithmetic
+throughout" for `beta_inventory_attained`: the `β_i` and their products are
+exact integers, but the ratios reported beside them divide by `m^(1/2)`,
+`n^(-7/4)` and `p^(1/4)` in floating point. The neighbouring citation of
+`branch_offset_ladder` makes the same-shaped claim and *is* true — that one only
+compares integers. Written a paragraph apart; one of them right.
+
+**One discrepancy is not mine.** `paper_b_audit`'s comment above `BLOCK_COUNTS`
+says the fitted estimator "returns `0.4965 ± 0.047`". At the current block
+counts it returns `0.4973 ± 0.0430`, and at the older counts `0.4970 ± 0.0429`;
+neither reproduces the `0.047`. No test pins it — the calibration test asserts
+only `|bias| < 0.03` and `sd < 0.07`. Reported in the ledger, not edited.
+
+```text
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+    9 prose claims about the manuscript                        0 stale
+    5 probe citations                                          0 broken
+```
+
+```text
+What was learned
+- a citation can resolve and still be false: the function exists, has that
+  name, and returns a different number than the sentence says
+- and the falsity can be a *setting*, not a value — 0.500 is real, at trials
+  120, which is the test's default and not the function's
+- two same-shaped claims a paragraph apart, one true and one not, is what an
+  unchecked convention looks like
+- the escape hazard cost three attempts again: heredocs mangled backslash-n in
+  the anchors twice before I went back to the Write tool, which AGENTS.md
+  prescribes and I keep not doing
+Strongest theorem
+- five probe citations, each anchored to a manuscript sentence, resolved to a
+  live function, and checked by running it; the rename case demonstrated
+Strongest refutation
+- my own "integer arithmetic throughout" and "0.500 +- 0.043"
+Reusable machinery
+- PROBE_CITATIONS, citation_audit, broken_citations; five new tests
+Branch status
+- PARK
+Why
+  Three audits now cover the three directions this drift runs: Lean's constants
+  against the manuscript, Lean's prose about the manuscript, the manuscript's
+  prose about the probes. Each was written after a failure of its own kind and
+  each has since found one more. Nothing here moves P_0.
+Best next question
+- the three audits all compare a claim to a thing. None checks a claim against
+  a *quantifier*: the manuscript says "measured exactly over 1 <= h1, h2 <= 7",
+  "over P in [10^4, 10^6] and k in {1,2,4}, twelve exponents", "on 300 sampled
+  (P, n, h1, h2)". Those ranges are arguments to functions that have defaults,
+  and a default that moves silently rescopes a printed claim. Do the printed
+  ranges match the defaults of the functions cited beside them?
+```

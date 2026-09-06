@@ -4145,3 +4145,55 @@ Probe: `shift_reach_in_the_audit`; `parameter_cap_reach` gains
 `window_above_P0` and loses an overclaim. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The probe citations, which nothing had ever checked
+
+The manuscript names probe functions in running text and says what they return.
+`trust_boundary` resolves *unqualified* backticked identifiers against Lean and skips
+qualified ones, so `decoration_budget.branch_offset_ladder` and its four companions had no
+check at all: not that the function exists, not that it still carries that name, and not that
+the figures quoted beside it are what it gives.
+
+All five resolve, which is the first thing worth recording, since one of them
+(`decoration_budget`) had a function renamed underneath the manuscript two entries ago when
+`branch_offset` was found to shadow an existing definition. Two of the five *claims* were
+wrong, both mine:
+
+**The measured exponent was quoted at the wrong setting.** The manuscript read "the instrument
+reads `0.500 +- 0.043` on data whose exponent is exactly `1/2`". The instrument is seeded and
+deterministic, and at its default `trials = 200` it reads `0.4973 +- 0.0430`. `0.500` is what
+it gives at `trials = 120` -- the setting the *test* beside it uses, not the function's own.
+Nothing was wrong with the measurement; the sentence quoted a number the reader running the
+cited function would not see. Now `0.497 +- 0.043`, with the setting named.
+
+**A census was called exact when only half of it is.** "Measured exactly over
+`1 <= h1, h2 <= 7` (`decoration_budget.beta_inventory_attained`, integer arithmetic
+throughout)". The `beta_i` and their products are exact integers through
+`floor(n^(3/2)) = isqrt(n^3)`; the ratios reported beside them divide by `m^(1/2)`,
+`n^(-7/4)` and `p^(1/4)` in floating point. The neighbouring citation of
+`branch_offset_ladder` says "integer arithmetic through `floor(n^(3/2))`" and *is* exact --
+that one only ever compares integers. The two sentences were written a paragraph apart and
+only one of them was true.
+
+**One discrepancy is not mine and is left for its owner.** The comment above `BLOCK_COUNTS` in
+`paper_b_audit.py` says the fitted estimator "returns `0.4965 +- 0.047`". At the current block
+counts it returns `0.4973 +- 0.0430`, and at the older `(256, 64, 16, 4, 1)` the same fit
+gives `0.4970 +- 0.0429`; neither reproduces the `0.047`. No test pins it -- the calibration
+test asserts only `|bias| < 0.03` and `sd < 0.07`, both of which hold. Reported, not edited;
+that module is the other session's.
+
+**The checker.** `PROBE_CITATIONS` in `tools/lean_numeral_audit.py`: five rows, each an anchor
+sentence that must occur in the manuscript, a module and function that must resolve, and a
+predicate that runs the function and checks what the sentence says about it. A test doctors
+`decoration_budget` into an empty object and asserts both its citations break while the other
+three do not -- the rename case, which is what motivated the row.
+
+```text
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+    9 prose claims about the manuscript                        0 stale
+    5 probe citations                                          0 broken
+```
+
+Three audits now, in the three directions the same drift can run: Lean's constants against the
+manuscript, Lean's prose about the manuscript, and the manuscript's prose about the probes.
+Each was written after a failure of exactly its own kind, and each has since found one more.

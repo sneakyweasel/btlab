@@ -543,6 +543,112 @@ def claim_audit() -> list[dict[str, Any]]:
 def stale_claims() -> list[dict[str, Any]]:
     return [r for r in claim_audit() if not (r["anchor_present"] and r["holds"])]
 
+
+# --- what the manuscript cites the probe modules for ---------------------------------------
+#
+# The manuscript names probe functions in running text -- `decoration_budget.branch_offset_ladder`
+# and the rest -- and says what they return.  `trust_boundary` resolves *unqualified* backticked
+# identifiers against Lean and skips these, so a qualified citation had no check at all: not that
+# the function exists, not that it still has that name, and not that the numbers beside it are
+# what it returns.  Two of them were wrong.  The measured exponent was quoted at `0.500`, which
+# the instrument gives at `trials=120` and not at its default `200`, where it gives `0.497`; and
+# a census was called "integer arithmetic throughout" when only its integers are exact and the
+# ratios reported beside them are floating point.
+#
+# Each row is (module, function, anchor, description, check).  The anchor must occur in the
+# manuscript, so rewording retires the row loudly; `check` receives the resolved function.
+
+PROBE_MODULE_PREFIX = "research.juggler_sequence."
+
+
+def _probe(module: str):
+    import importlib
+    return importlib.import_module(PROBE_MODULE_PREFIX + module)
+
+
+def _ladder_ok(fn) -> bool:
+    r = fn(10**6)
+    return (r["max_is_multiple_plus_one"] and r["min_is_always_minus_one"]
+            and [x["multiple"] for x in r["rows"]] == [1, 2, 3, 6]
+            and [x["max"] for x in r["rows"]] == [2, 3, 4, 7])
+
+
+def _inventory_ok(fn) -> bool:
+    import inspect
+    if inspect.signature(fn).parameters["hmax"].default != 7:
+        return False
+    r = fn(10**6)
+    lo, hi = r["second_difference_term"]["attained"]
+    return (abs(lo - 27 / 4) < 3e-3 and abs(hi - (27 / 4) * 2**0.25) < 3e-3
+            and abs(r["Gprime_beta"]["attained"] - 81 / 16) < 3e-3
+            and abs(r["Gsecond_beta"]["attained"] - 567 / 64) < 3e-3)
+
+
+def _interpolant_error_ok(fn) -> bool:
+    P = 1e13
+    return abs(fn(P) - (170.6 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6))) < 1e-30
+
+
+def _calibration_ok(fn) -> bool:
+    """The manuscript quotes 0.497 +- 0.043 at the function's own defaults."""
+    r = fn()["fitted"]
+    return abs(r["mean"] - 0.497) < 5e-4 and abs(r["sd"] - 0.043) < 5e-4
+
+
+def _block_scaling_ok(fn) -> bool:
+    r = fn(P=2 * 10**4, k=1)
+    return "level1_exponent" in r and r["square_root_exponent"] == 0.5
+
+
+PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
+    ("decoration_budget", "branch_offset_ladder",
+     r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
+     "the offset ladder's multiples and its two invariants",
+     _ladder_ok),
+    ("decoration_budget", "beta_inventory_attained",
+     r"the ratios to the\n> printed forms in floating point):",
+     "the beta inventory's default h-range and its four attained values",
+     _inventory_ok),
+    ("p0_certificate", "interpolant_error",
+     r"already solved against\n> \(170.6\) (`p0_certificate.interpolant_error`)",
+     "E's coefficient in the certificate's interpolant error",
+     _interpolant_error_ok),
+    ("paper_b_audit", "block_exponent_calibration",
+     r"the instrument reads\n\(0.497\pm0.043\) at its default \(200\) trials",
+     "the block-exponent estimator's calibration at its defaults",
+     _calibration_ok),
+    ("paper_b_audit", "level1_kernel_block_scaling",
+     "(`paper_b_audit.level1_kernel_block_scaling`; the instrument reads",
+     "the level-1 kernel's block-scaling probe",
+     _block_scaling_ok),
+)
+
+
+def citation_audit(run_checks: bool = True) -> list[dict[str, Any]]:
+    """One row per manuscript citation of a probe function."""
+    text = paper_text()
+    out: list[dict[str, Any]] = []
+    for module, function, anchor, description, check in PROBE_CITATIONS:
+        row = {"module": module, "function": function, "description": description,
+               # anchors are raw strings; the two-character "\n" marks a line break in the
+               # manuscript, which wraps at about 72 columns.
+               "anchor_present": anchor.replace(chr(92) + "n", chr(10)) in text,
+               "resolves": False, "holds": False}
+        try:
+            fn = getattr(_probe(module), function)
+            row["resolves"] = callable(fn)
+            if row["resolves"] and row["anchor_present"] and run_checks:
+                row["holds"] = bool(check(fn))
+        except (ImportError, AttributeError):
+            pass
+        out.append(row)
+    return out
+
+
+def broken_citations(run_checks: bool = True) -> list[dict[str, Any]]:
+    return [r for r in citation_audit(run_checks)
+            if not (r["anchor_present"] and r["resolves"] and r["holds"])]
+
 def main() -> None:
     rows = audit()
     cov = coverage()
@@ -565,6 +671,14 @@ def main() -> None:
         print("     STALE  %-18s %s (%s)"
               % (r["module"], r["description"],
                  "anchor gone" if not r["anchor_present"] else "manuscript disagrees"))
+    cites = citation_audit()
+    broken = broken_citations()
+    print("  probe citations in the manuscript: %d checked, %d broken"
+          % (len(cites), len(broken)))
+    for r in broken:
+        why = ("anchor gone" if not r["anchor_present"]
+               else "does not resolve" if not r["resolves"] else "returns something else")
+        print("     BROKEN %-18s %-30s %s" % (r["module"], r["function"], why))
     print("  (the %d threshold rows are paired by p0_certificate.LEAN_ROWS)"
           % cov["certificate_rows_covered_elsewhere"])
 

@@ -148,3 +148,66 @@ def test_the_two_branchfreeze_headers_no_longer_claim_sole_custody() -> None:
     assert "29.4 h\u2081h\u2082P^(-7/4)" in text
     assert "27.8" not in text
     assert abs((81 / 64 + 9 / 32) * 19 - 29.390625) < 1e-9
+
+
+# --- and the same failure, in the manuscript's citations of the probes ---
+
+
+def test_every_probe_citation_resolves_and_holds() -> None:
+    bad = A.broken_citations()
+    assert bad == [], [(r["module"], r["function"],
+                        "anchor gone" if not r["anchor_present"]
+                        else "does not resolve" if not r["resolves"]
+                        else "returns something else") for r in bad]
+
+
+def test_every_citation_anchor_is_still_in_the_manuscript() -> None:
+    """A reworded sentence must retire its row, not leave the check guarding nothing."""
+    for r in A.citation_audit(run_checks=False):
+        assert r["anchor_present"], (r["module"], r["function"])
+        assert r["resolves"], (r["module"], r["function"])
+
+
+def test_the_calibration_figure_is_the_one_at_the_stated_setting() -> None:
+    """0.500 is what the instrument gives at trials=120; its default 200 gives 0.497."""
+    from research.juggler_sequence import paper_b_audit as PB
+    default = PB.block_exponent_calibration()["fitted"]
+    at120 = PB.block_exponent_calibration(trials=120)["fitted"]
+    assert abs(default["mean"] - 0.497) < 5e-4
+    assert abs(at120["mean"] - 0.500) < 5e-4
+    assert abs(default["sd"] - 0.043) < 5e-4 and abs(at120["sd"] - 0.043) < 5e-4
+    # the manuscript now names the setting it quotes
+    text = A.paper_text()
+    assert r"\(0.497\pm0.043\) at its default \(200\) trials" in text
+    assert r"0.500\pm0.043" not in text
+
+
+def test_the_beta_census_no_longer_claims_to_be_exact_throughout() -> None:
+    """Its integers are exact; the ratios reported beside them are not."""
+    import inspect
+    from research.juggler_sequence import decoration_budget as DB
+    src = inspect.getsource(DB.beta_inventory_attained)
+    assert "**0.5" in src or "**-1.75" in src        # there are float operations
+    text = A.paper_text()
+    assert "integer arithmetic throughout" not in text
+    assert "the ratios to the" in text and "printed forms in floating point" in text
+    # while the ladder, which really is exact, still says so
+    assert r"integer arithmetic through" in text
+    assert r"\(\lfloor n^{3/2}\rfloor=\lfloor\sqrt{n^3}\rfloor\)) finds" in text
+
+
+def test_the_citation_guard_fires_when_a_probe_is_renamed(monkeypatch) -> None:
+    """The motivating case: branch_offset was renamed to offset_at under a live citation."""
+    real = A._probe
+
+    class Missing:
+        pass
+
+    def doctored(module: str):
+        return Missing() if module == "decoration_budget" else real(module)
+
+    monkeypatch.setattr(A, "_probe", doctored)
+    broken = {(r["module"], r["function"]) for r in A.broken_citations()}
+    assert ("decoration_budget", "branch_offset_ladder") in broken
+    assert ("decoration_budget", "beta_inventory_attained") in broken
+    assert ("p0_certificate", "interpolant_error") not in broken

@@ -1894,8 +1894,10 @@ so \(\lfloor G(n)\rfloor\) is constant on runs of length
 > The three bounds built on that product are another matter, because
 > each pairs the product with a power of \(\nu\) taken at the opposite
 > end of the block. Measured exactly over
-> \(1\le h_1,h_2\le7\) (`decoration_budget.beta_inventory_attained`,
-> integer arithmetic throughout):
+> \(1\le h_1,h_2\le7\) (`decoration_budget.beta_inventory_attained`; the
+> \(\beta_i\) and their products are exact integers through
+> \(\lfloor n^{3/2}\rfloor=\lfloor\sqrt{n^3}\rfloor\), the ratios to the
+> printed forms in floating point):
 >
 > \[
 > \begin{array}{lcc}
@@ -5443,7 +5445,8 @@ a shifted window is for, and what its absence therefore costs the
 method rather than the object. That is a claim about the sum, and it
 can be measured. Splitting one pass over \(n\sim P\) into blocks and
 fitting the root-mean-square block sum against block length
-(`paper_b_audit.level1_kernel_block_scaling`; the instrument reads \(0.500\pm0.043\)
+(`paper_b_audit.level1_kernel_block_scaling`; the instrument reads
+\(0.497\pm0.043\) at its default \(200\) trials
 on data whose exponent is exactly \(\tfrac12\)) gives, over
 \(P\in[10^4,10^6]\) and \(k\in\{1,2,4\}\), twelve exponents with mean
 \(0.49\), none outside the instrument's own \(90\%\) interval except
