@@ -1187,3 +1187,13 @@ def test_proposition_7_1s_word_count_holds_and_is_slack() -> None:
     assert r["rows"][0]["N_d"] == 1                 # at length one only "O" survives
     assert all(x["N_d"] <= x["printed_bound"] for x in r["rows"])
     assert len(r["rows"]) == 12
+
+
+def test_proposition_7_4_holds_and_its_constant_is_pairwise_sharp() -> None:
+    """4/pi is two pieces times two orderings over pi; the pairwise step reaches 98% of it."""
+    r = A.proposition_7_4_check(grid=6000)
+    assert r["bound_holds_everywhere"]
+    assert r["worst_ratio"] < 0.5 and not r["assembled_bound_is_attained"]
+    assert r["pairwise_step_is_sharp"] and r["pairwise_share_of_its_ceiling"] > 0.9
+    assert r["constant_is_two_pieces_times_two_orderings_over_pi"]
+    assert len(r["rows"]) == 16

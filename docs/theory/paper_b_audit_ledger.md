@@ -2725,3 +2725,41 @@ COMPUTATIONALLY VERIFIED to \(d=18\) (262144 words); \(c\) matches
 `HOEFFDING_C` in the prefix module to machine precision, so the paper,
 that module and this probe agree on the constant and now on what it
 bounds.
+
+## Proposition 7.4's \(\tfrac4\pi\): where it comes from, and how much of it is reachable
+
+**Where it comes from.** Write the cross term of a pair in
+\(u=\{x_t+\lambda\}\); the shift \(x_{t'}-x_t\) splits the integral at
+one point, so each pair contributes *two* geometric pieces, each of
+modulus at most \(1/(\pi\lvert\Delta\rvert)\). With
+\(\lvert\Delta\rvert\ge\mathcal A'_{\min}\lvert t-t'\rvert\) and both
+orderings counted, the sum over pairs is at most
+\[
+\frac{2\cdot2}\pi\,\frac L{\mathcal A'_{\min}}\sum_{k<L}\frac1k
+\le\frac4\pi\,\frac L{\mathcal A'_{\min}}(\log L+1).
+\]
+So \(\tfrac4\pi\) is two pieces times two orderings over \(\pi\) --- the
+constant is what the derivation produces, not a choice. EXACT.
+
+**The pairwise step is sharp.** At \(L=2\),
+\(\mathcal A'_{\min}=1\), searching over the gap and the two shifts, the
+largest off-diagonal found is \(1.2556\) against the pairwise ceiling
+\(4/\pi=1.2732\): \(98.6\%\) of it, at
+\(\Delta\approx1.01\) with the two shifts about \(0.5\) apart --- both
+pieces saturating their sine at once.
+
+**The assembled bound is not.** Its ratio to the printed right-hand side
+runs \(0.29\) at \(L=2\), \(0.10\) at \(L=4\ldots32\) across integer and
+jittered spacings at \(\mathcal A'_{\min}\in\{1,2\}\); integer spacing
+gives exactly \(0\), since every cross integral vanishes. The gap is the
+assembly: \((L-k)/k\le L/k\) overcounts, and the per-pair sines cannot
+all saturate together. So the constant is sharp where it is derived and
+loose where it is used, by a factor of about ten at the sizes tested.
+
+**And that is the fourth of these.** Lemma 4.10's \(1+2\pi\mathrm{TV}\)
+is sharp and attained; Lemma 4.6's \(\tfrac34\) and Corollary 4.13(a)'s
+\(1\) are loose with sharp values \(\tfrac34\theta\) and \(\tfrac38\);
+this one is sharp in its step and loose in its sum. The pattern across
+all four: a constant is attained exactly when the configuration that
+attains it is *choosable*, and here one pair is choosable while \(L\)
+pairs at once are not. COMPUTATIONALLY VERIFIED.

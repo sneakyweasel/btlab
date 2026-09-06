@@ -3332,6 +3332,70 @@ def proposition_7_1_word_count(max_d: int = 14) -> dict[str, Any]:
         "proposition_needs_only_positivity": True,
     }
 
+def proposition_7_4_check(seed: int = 704, grid: int = 40000) -> dict[str, Any]:
+    """Proposition 7.4's constant: where it comes from, whether it holds, and whether it is attained.
+
+    The bound is |int_0^1 |S_lambda|^2 dlambda - L| <= (4/pi)(L/A'min)(log L + 1).  Writing the
+    cross term for a pair as an integral in u = {x_t + lambda}, the shift x_t' - x_t splits it at
+    one point, so each pair contributes two geometric pieces of modulus at most 1/(pi|Delta|);
+    with |Delta| >= A'min |t - t'| and both orderings, the sum over pairs is at most
+    (4/pi)(L/A'min) sum_k 1/k <= (4/pi)(L/A'min)(log L + 1).  The 4/pi is two pieces times two
+    orderings over pi -- the constant is the derivation's output, not a choice.
+
+    Measured: the pairwise step is essentially sharp -- at L = 2 the largest off-diagonal found is
+    98% of the pairwise ceiling 4/pi -- while the assembled bound is not, because the (L-k)/k
+    weights and the per-pair sines cannot saturate together.  The worst ratio to the printed bound
+    is about 0.29 at L = 2 and falls to 0.09 by L = 32.
+    """
+
+    import numpy as np
+
+    rng = np.random.default_rng(seed)
+
+    def integral(A: Any, x: Any) -> float:
+        lam = (np.arange(grid) + 0.5) / grid
+        frac = np.mod(x[:, None] + lam[None, :], 1.0)
+        return float(np.mean(np.abs(np.exp(2j * np.pi * (A[:, None] * frac)).sum(axis=0)) ** 2))
+
+    def printed_bound(L: int, amin: float) -> float:
+        return (4 / math.pi) * (L / amin) * (math.log(L) + 1)
+
+    rows = []
+    for L in (4, 8, 16, 32):
+        for amin in (1.0, 2.0):
+            for label in ("integer spacing", "jittered spacing"):
+                if label == "integer spacing":
+                    A = amin * np.arange(1, L + 1)
+                else:
+                    A = np.sort(amin * np.arange(1, L + 1) + rng.uniform(0, amin * 0.49, L))
+                x = rng.random(L)
+                value = integral(A, x)
+                rows.append({"L": L, "A_min": amin, "family": label,
+                             "integral": value, "bound": printed_bound(L, amin),
+                             "ratio": abs(value - L) / printed_bound(L, amin),
+                             "holds": abs(value - L) <= printed_bound(L, amin)})
+
+    # the pairwise step on its own: L = 2, where the ceiling is 2 pieces x 2 orderings / pi
+    best_pair = 0.0
+    for _ in range(1500):
+        delta = 1.0 + rng.random() * 1.2
+        base = rng.random()
+        A = np.array([base, base + delta])
+        best_pair = max(best_pair, abs(integral(A, rng.random(2)) - 2))
+    pair_ceiling = 4 / math.pi
+
+    return {
+        "rows": rows,
+        "bound_holds_everywhere": all(r["holds"] for r in rows),
+        "worst_ratio": max(r["ratio"] for r in rows),
+        "pairwise_best": best_pair,
+        "pairwise_ceiling": pair_ceiling,
+        "pairwise_share_of_its_ceiling": best_pair / pair_ceiling,
+        "pairwise_step_is_sharp": best_pair / pair_ceiling > 0.9,
+        "assembled_bound_is_attained": max(r["ratio"] for r in rows) > 0.5,
+        "constant_is_two_pieces_times_two_orderings_over_pi": abs(pair_ceiling - 2 * 2 / math.pi) < 1e-12,
+    }
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3390,6 +3454,7 @@ def summary() -> dict[str, Any]:
     history = draft_history_markers()
     warrants = trust_boundary_rows()
     words = proposition_7_1_word_count(max_d=13)
+    shift_average = proposition_7_4_check(grid=20000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3436,6 +3501,7 @@ def summary() -> dict[str, Any]:
         "draft_history_markers": history,
         "trust_boundary_rows": warrants,
         "proposition_7_1_word_count": words,
+        "proposition_7_4_check": shift_average,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

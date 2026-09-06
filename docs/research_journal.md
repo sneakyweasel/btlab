@@ -33126,7 +33126,7 @@ its scale exponent falls below 1 -- which
 | `d` | 1 | 4 | 8 | 12 | 16 | 18 |
 |---|---|---|---|---|---|---|
 | `N_d` | 1 | 3 | 19 | 226 | 2114 | 7495 |
-| ratio to the bound | 0.517 | 0.215 | 0.098 | 0.083 | 0.056 | 0.053 |
+| ratio to the bound | 0.517 | 0.205 | 0.098 | 0.083 | 0.056 | 0.053 |
 
 The bound holds at every `d` and its slack grows: the observed rate is
 about `0.21`, some `6x` the printed `c = 0.0343`. Proposition 7.1 needs
@@ -33165,4 +33165,66 @@ Best next question
   probe, and its statement is an exact inequality with printed
   constants. Does the shift-averaged L^2 bound hold at its constant
   4/pi, and is that constant attained?
+```
+
+## 4/pi is sharp where it is derived and loose where it is used
+
+Following the last entry's ranking, Proposition 7.4 was next: two
+exponent checks, no probe, and an exact inequality with a printed
+constant.
+
+**Where the constant comes from.** Writing a pair's cross term in
+`u = {x_t + lambda}`, the shift `x_t' - x_t` splits the integral at one
+point, so each pair contributes two geometric pieces of modulus at most
+`1/(pi |Delta|)`. With `|Delta| >= A'min |t - t'|` and both orderings,
+the sum over pairs is at most `(2*2/pi)(L/A'min) sum_k 1/k <=
+(4/pi)(L/A'min)(log L + 1)`. The `4/pi` is two pieces times two
+orderings over `pi` -- the derivation's output, not a choice.
+
+**The pairwise step is sharp.** At `L = 2`, `A'min = 1`, searching the
+gap and the two shifts, the largest off-diagonal found is `1.2556`
+against the ceiling `4/pi = 1.2732`: `98.6%`, at `Delta ~ 1.01` with the
+shifts about half a turn apart, both pieces saturating their sine.
+
+**The assembled bound is not.** Its ratio to the printed right-hand side
+is `0.29` at `L = 2` and `0.10` for `L = 4..32`, across integer and
+jittered spacings; integer spacing gives exactly `0`, every cross
+integral vanishing. The gap is the assembly -- `(L-k)/k <= L/k`
+overcounts and the per-pair sines cannot all saturate at once.
+
+**Which completes a pattern across four constants.** Lemma 4.10's
+`1 + 2 pi TV` is sharp and attained; Lemma 4.6's `3/4` and Corollary
+4.13(a)'s `1` are loose, with sharp values `3/4 theta` and `3/8`; this
+one is sharp in its step and loose in its sum. A constant is attained
+exactly when the configuration attaining it is choosable -- one pair is
+choosable, `L` pairs at once are not.
+
+```text
+What was learned
+- 4/pi decomposes as two pieces times two orderings over pi, so the
+  constant is derived rather than chosen
+- the pairwise step reaches 98.6% of its ceiling; the assembled bound
+  reaches 29% at L = 2 and 10% by L = 32
+- integer spacing makes every cross integral vanish, so the bound's
+  worst case needs irrational gaps
+Strongest theorem
+- the two-piece split of the cross term, which is what puts the 2 in
+  2 x 2 / pi
+Strongest refutation
+- none; the bound holds on every configuration tried
+Reusable machinery
+- proposition_7_4_check with the family sweep and the L = 2 pairwise
+  search; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Two entries ago the ranking said which rows had the least numerical
+  company. Both of the top two turned out to be checkable in an
+  afternoon, which suggests the ranking was worth more than the
+  individual answers.
+Best next question
+- Lemma 3.7, the shifted window, is now the least-covered checkable
+  row: one exponent check, no probe. Its statement is a window count
+  with an explicit hypothesis. Does the count hold at the window sizes
+  Section 5 actually uses?
 ```
