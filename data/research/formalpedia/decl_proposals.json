@@ -1789,21 +1789,21 @@
     {
       "candidates": [
         {
-          "decl": "n1_core_square_iff",
-          "line": 247,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
           "decl": "balWidth_pow_iff",
-          "line": 58,
-          "score": 0.167,
+          "line": 61,
+          "score": 0.125,
           "trust": "kernel"
         },
         {
-          "decl": "balWidth_mul_pow",
-          "line": 20,
-          "score": 0.0,
+          "decl": "x3_crossDepth_n3",
+          "line": 246,
+          "score": 0.091,
+          "trust": "kernel"
+        },
+        {
+          "decl": "n1_core_square_iff",
+          "line": 265,
+          "score": 0.067,
           "trust": "kernel"
         }
       ],
@@ -1811,7 +1811,7 @@
       "confidence": "low",
       "definitions": [],
       "id": "BTA-x3-C-core",
-      "in_file": 18,
+      "in_file": 17,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "3^r u in P_m iff u in P_{m-r} when r<=m; r>m forces u=0"
@@ -1819,51 +1819,21 @@
     {
       "candidates": [
         {
-          "decl": "n1_core_square_iff",
-          "line": 247,
-          "score": 0.2,
+          "decl": "zero_spine_n0",
+          "line": 142,
+          "score": 0.286,
           "trust": "kernel"
         },
-        {
-          "decl": "balWidth_pow_iff",
-          "line": 58,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "balWidth_mul_pow",
-          "line": 20,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
-      "id": "BTA-x3-Q-unit-im",
-      "in_file": 18,
-      "lean": "BTCalculus/XCubeStateComplexity.lean",
-      "names_own": [],
-      "statement": "for 3 not dividing a and t>=1, G_a(b)=G_a(c) iff 3^{K-1} divides b-c"
-    },
-    {
-      "candidates": [
         {
           "decl": "zero_spine_n1",
-          "line": 122,
-          "score": 0.333,
+          "line": 130,
+          "score": 0.25,
           "trust": "kernel"
         },
         {
           "decl": "zero_spine_n2",
-          "line": 127,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "zero_spine_n0",
-          "line": 132,
-          "score": 0.333,
+          "line": 136,
+          "score": 0.25,
           "trust": "kernel"
         }
       ],
@@ -1871,7 +1841,7 @@
       "confidence": "low",
       "definitions": [],
       "id": "BTA-x3-M-spine",
-      "in_file": 18,
+      "in_file": 17,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "p=0 at depths 2m>=k is a single Newton class (the zero spine)"
@@ -1879,21 +1849,21 @@
     {
       "candidates": [
         {
-          "decl": "n1_core_square_iff",
-          "line": 247,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "balWidth_pow_iff",
-          "line": 58,
+          "decl": "n1_on_core_mod",
+          "line": 104,
           "score": 0.222,
           "trust": "kernel"
         },
         {
-          "decl": "n1_on_core",
-          "line": 80,
-          "score": 0.143,
+          "decl": "balWidth_pow_iff",
+          "line": 61,
+          "score": 0.182,
+          "trust": "kernel"
+        },
+        {
+          "decl": "n1_core_square_iff",
+          "line": 265,
+          "score": 0.176,
           "trust": "kernel"
         }
       ],
@@ -1901,7 +1871,7 @@
       "confidence": "low",
       "definitions": [],
       "id": "BTA-x3-H-A",
-      "in_file": 18,
+      "in_file": 17,
       "lean": "BTCalculus/XCubeStateComplexity.lean",
       "names_own": [],
       "statement": "on the core, N1 agrees iff u^2 agrees modulo 3^{k-2r-1}, and that exponent equals the core width W"
@@ -4869,6 +4839,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 124,
+  "unresolved": 123,
   "worth_reviewing": 21
 }

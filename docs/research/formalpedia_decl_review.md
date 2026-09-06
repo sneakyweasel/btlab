@@ -2,10 +2,10 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 141 resolved rows the scorer gets
+same thing.  Measured against all 142 resolved rows the scorer gets
 55 of the 67 it fires on right, 82% precise, so roughly one in
 6 below is wrong.
-21 rows below, of 124 unresolved.
+21 rows below, of 123 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.

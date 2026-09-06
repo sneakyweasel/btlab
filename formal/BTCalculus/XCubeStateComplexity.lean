@@ -17,6 +17,7 @@ collisions require the N3 gate. The zero spine is the common Newton
 class of p = 0 at depths 2m >= k.
 -/
 
+/-- Multiplying by `3^r` widens a balanced-width-`(m-r)` integer to width `m`, for `r <= m`. -/
 theorem balWidth_mul_pow {m r : Nat} (hr : r ≤ m) {u : Int}
     (hu : balWidth (m - r) u) :
     balWidth m ((3 : Int) ^ r * u) := by
@@ -38,6 +39,7 @@ theorem balWidth_mul_pow {m r : Nat} (hr : r ≤ m) {u : Int}
   rw [hshape]
   linarith
 
+/-- Converse of `balWidth_mul_pow`: if `3^r * u` has width `m` and `r <= m`, then `u` has width `m - r`. -/
 theorem balWidth_of_mul_pow {m r : Nat} (hr : r ≤ m) {u : Int}
     (hp : balWidth m ((3 : Int) ^ r * u)) :
     balWidth (m - r) u := by
@@ -55,10 +57,12 @@ theorem balWidth_of_mul_pow {m r : Nat} (hr : r ≤ m) {u : Int}
     nlinarith
   linarith
 
+/-- The two directions together: `balWidth m (3^r u)` iff `balWidth (m-r) u`, for `r <= m`. -/
 theorem balWidth_pow_iff {m r : Nat} (hr : r ≤ m) (u : Int) :
     balWidth m ((3 : Int) ^ r * u) ↔ balWidth (m - r) u :=
   ⟨balWidth_of_mul_pow hr, balWidth_mul_pow hr⟩
 
+/-- Past the width only zero survives: if `m < r` and `3^r u` has balanced width `m`, then `u = 0`. -/
 theorem balWidth_pow_of_lt {m r : Nat} (hr : m < r) {u : Int}
     (hp : balWidth m ((3 : Int) ^ r * u)) : u = 0 := by
   unfold balWidth at hp
@@ -77,6 +81,7 @@ theorem balWidth_pow_of_lt {m r : Nat} (hr : m < r) {u : Int}
   have hu0 : |u| = 0 := le_antisymm (by linarith) (abs_nonneg _)
   exact abs_eq_zero.mp hu0
 
+/-- Closed form of the `N1` residual on the core `3^r u`. -/
 theorem n1_on_core (k r : Nat) (u : Int) :
     n1Resid (k - 1 - r) ((3 : Int) ^ r * u) =
       (3 : Int) ^ (2 * (k - 1 - r)) +
@@ -95,6 +100,7 @@ theorem n1_on_core (k r : Nat) (u : Int) :
     rw [← mul_assoc, ← pow_add]
   rw [hsq, hlin]
 
+/-- The core `N1` residual modulo `3^k`, under `r + 1 <= k` and `2r + 2 <= k`. -/
 theorem n1_on_core_mod {k r : Nat} (hr : r + 1 ≤ k)
     (h2 : 2 * r + 2 ≤ k) (u : Int) :
     (3 : Int) ^ k ∣ n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
@@ -114,31 +120,37 @@ theorem n1_on_core_mod {k r : Nat} (hr : r + 1 ≤ k)
     ring
   simpa [heq] using this
 
+/-- `N2` at zero: `n2Resid m 0 = 2 * 3^(2m+1)`. -/
 theorem n2Resid_zero (m : Nat) :
     n2Resid m 0 = 2 * (3 : Int) ^ (2 * m + 1) := by
   unfold n2Resid
   ring
 
+/-- On the zero spine `3^k` divides `N1` whenever `k <= 2m`. -/
 theorem zero_spine_n1 {k m : Nat} (h : k ≤ 2 * m) :
     (3 : Int) ^ k ∣ n1Resid m 0 := by
   rw [n1Resid_zero]
   exact pow_dvd_pow _ h
 
+/-- On the zero spine `3^k` divides `N2` whenever `k <= 2m + 1`. -/
 theorem zero_spine_n2 {k m : Nat} (h : k ≤ 2 * m + 1) :
     (3 : Int) ^ k ∣ n2Resid m 0 := by
   rw [n2Resid_zero]
   exact (pow_dvd_pow (3 : Int) h).mul_left (2 : Int)
 
+/-- On the zero spine `3^k` divides `N0` for every `k`. -/
 theorem zero_spine_n0 (k m : Nat) :
     (3 : Int) ^ k ∣ n0Resid m 0 := by
   rw [n0Resid_zero]
   exact dvd_zero _
 
+/-- On the zero spine `3^k` divides `N3` whenever `k <= 2m + 1`. -/
 theorem zero_spine_n3 {k m : Nat} (h : k ≤ 2 * m + 1) :
     (3 : Int) ^ k ∣ n3Resid m := by
   unfold n3Resid
   exact (pow_dvd_pow (3 : Int) h).mul_left (2 : Int)
 
+/-- Difference of two `Q` values on the unit family `a + 3^t b`, factored as `3(b - c)` times a bracket. -/
 lemma q_unit_diff {t : Nat} (ht : 1 ≤ t) (a b c : Int) :
     qCubic t (a + (3 : Int) ^ t * b) - qCubic t (a + (3 : Int) ^ t * c) =
       (3 : Int) * (b - c) *
@@ -173,6 +185,7 @@ lemma q_unit_diff {t : Nat} (ht : 1 ≤ t) (a b c : Int) :
         rw [ht1, hpow]
         ring
 
+/-- The bracket appearing in `q_unit_diff` is prime to `3` whenever `a` is. -/
 lemma q_unit_bracket {t : Nat} (ht : 1 ≤ t) {a : Int}
     (ha : ¬ (3 : Int) ∣ a) (b c : Int) :
     ¬ (3 : Int) ∣ (a ^ 2 + (3 : Int) ^ t * a * (b + c) +
@@ -194,6 +207,7 @@ lemma q_unit_bracket {t : Nat} (ht : 1 ≤ t) {a : Int}
     exact h.sub (hA.add hB)
   exact ha (three_dvd_of_dvd_sq h1)
 
+/-- On the unit family `a + 3^t b` with `3` not dividing `a`, two `Q` values agree modulo `3^K` exactly when `3^(K-1)` divides `b - c`: one power is lost to the bracket. -/
 theorem q_unit_family_dvd {t K : Nat} (ht : 1 ≤ t) (hK : 1 ≤ K)
     {a : Int} (ha : ¬ (3 : Int) ∣ a) (b c : Int) :
     (3 : Int) ^ K ∣ qCubic t (a + (3 : Int) ^ t * b) -
@@ -228,15 +242,18 @@ theorem q_unit_family_dvd {t K : Nat} (ht : 1 ≤ t) (hK : 1 ≤ K)
       (three_pow_dvd_mul_iff (K - 1) hU).mpr h
     simpa [mul_assoc] using mul_dvd_mul_left (3 : Int) hm
 
+/-- `N3` residuals at depths `m <= n` agree modulo `3^k` exactly when `k <= 2m + 1` or the depths coincide. -/
 theorem x3_crossDepth_n3 {k m n : Nat} (hmn : m ≤ n) :
     (3 : Int) ^ k ∣ n3Resid m - n3Resid n ↔
       k ≤ 2 * m + 1 ∨ m = n :=
   n3_dvd_iff hmn
 
+/-- Index bookkeeping: `k - 2r - 1 = k - 1 - 2r`. -/
 theorem square_exp_eq_width {k r : Nat} :
     k - 2 * r - 1 = k - 1 - 2 * r := by
   omega
 
+/-- If `3` does not divide `a` then it does not divide `2a`. -/
 lemma not_three_dvd_two_mul {a : Int} (ha : ¬ (3 : Int) ∣ a) :
     ¬ (3 : Int) ∣ (2 : Int) * a := by
   intro h
@@ -244,6 +261,7 @@ lemma not_three_dvd_two_mul {a : Int} (ha : ¬ (3 : Int) ∣ a) :
   · exact (by decide : ¬ (3 : Int) ∣ 2) h2
   · exact ha ha'
 
+/-- Agreement of the core `N1` residuals modulo `3^k`, stated as a condition on `u` and `v`; the square factorisation is what the depth argument uses. -/
 theorem n1_core_square_iff {k r : Nat} (h2 : 2 * r + 2 ≤ k) (u v : Int) :
     (3 : Int) ^ k ∣ n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
         n1Resid (k - 1 - r) ((3 : Int) ^ r * v) ↔

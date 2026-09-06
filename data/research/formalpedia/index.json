@@ -61121,7 +61121,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Multiplying by `3^r` widens a balanced-width-`(m-r)` integer to width `m`, for `r <= m`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61138,13 +61138,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 20,
+      "line": 21,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "balWidth_mul_pow",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Converse of `balWidth_mul_pow`: if `3^r * u` has width `m` and `r <= m`, then `u` has width `m - r`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61161,13 +61161,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 41,
+      "line": 43,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "balWidth_of_mul_pow",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The two directions together: `balWidth m (3^r u)` iff `balWidth (m-r) u`, for `r <= m`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61184,13 +61184,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 58,
+      "line": 61,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "balWidth_pow_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Past the width only zero survives: if `m < r` and `3^r u` has balanced width `m`, then `u = 0`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61207,13 +61207,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 62,
+      "line": 66,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "balWidth_pow_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Closed form of the `N1` residual on the core `3^r u`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61230,13 +61230,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 80,
+      "line": 85,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "n1_on_core",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The core `N1` residual modulo `3^k`, under `r + 1 <= k` and `2r + 2 <= k`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61253,13 +61253,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 98,
+      "line": 104,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "n1_on_core_mod",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N2` at zero: `n2Resid m 0 = 2 * 3^(2m+1)`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61276,13 +61276,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 117,
+      "line": 124,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "n2Resid_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On the zero spine `3^k` divides `N1` whenever `k <= 2m`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61299,13 +61299,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 122,
+      "line": 130,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "zero_spine_n1",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On the zero spine `3^k` divides `N2` whenever `k <= 2m + 1`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61322,61 +61322,15 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 127,
+      "line": 136,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "zero_spine_n2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On the zero spine `3^k` divides `N0` for every `k`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
-      "ledger": [
-        "BTA-x3-C-easy",
-        "BTA-x3-C-core",
-        "BTA-x3-C-decomp",
-        "BTA-x3-C-unex",
-        "BTA-x3-Q-unit-im",
-        "BTA-x3-M-spine",
-        "BTA-x3-M-overlap",
-        "BTA-x3-H-A",
-        "BTA-x3-H-unit",
-        "BTA-x3-H-n0neg",
-        "BTA-x3-H-joint",
-        "BTA-x3-M-obstruct"
-      ],
-      "line": 132,
-      "module": "BTCalculus.XCubeStateComplexity",
-      "name": "zero_spine_n0",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/XCubeStateComplexity.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-C-easy",
-        "BTA-x3-C-core",
-        "BTA-x3-C-decomp",
-        "BTA-x3-C-unex",
-        "BTA-x3-Q-unit-im",
-        "BTA-x3-M-spine",
-        "BTA-x3-M-overlap",
-        "BTA-x3-H-A",
-        "BTA-x3-H-unit",
-        "BTA-x3-H-n0neg",
-        "BTA-x3-H-joint",
-        "BTA-x3-M-obstruct"
-      ],
-      "line": 137,
-      "module": "BTCalculus.XCubeStateComplexity",
-      "name": "zero_spine_n3",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/XCubeStateComplexity.lean",
-      "kind": "lemma",
       "ledger": [
         "BTA-x3-C-easy",
         "BTA-x3-C-core",
@@ -61393,11 +61347,34 @@
       ],
       "line": 142,
       "module": "BTCalculus.XCubeStateComplexity",
-      "name": "q_unit_diff",
+      "name": "zero_spine_n0",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On the zero spine `3^k` divides `N3` whenever `k <= 2m + 1`.",
+      "file": "formal/BTCalculus/XCubeStateComplexity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-C-easy",
+        "BTA-x3-C-core",
+        "BTA-x3-C-decomp",
+        "BTA-x3-C-unex",
+        "BTA-x3-Q-unit-im",
+        "BTA-x3-M-spine",
+        "BTA-x3-M-overlap",
+        "BTA-x3-H-A",
+        "BTA-x3-H-unit",
+        "BTA-x3-H-n0neg",
+        "BTA-x3-H-joint",
+        "BTA-x3-M-obstruct"
+      ],
+      "line": 148,
+      "module": "BTCalculus.XCubeStateComplexity",
+      "name": "zero_spine_n3",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Difference of two `Q` values on the unit family `a + 3^t b`, factored as `3(b - c)` times a bracket.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "lemma",
       "ledger": [
@@ -61414,13 +61391,36 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 176,
+      "line": 154,
+      "module": "BTCalculus.XCubeStateComplexity",
+      "name": "q_unit_diff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The bracket appearing in `q_unit_diff` is prime to `3` whenever `a` is.",
+      "file": "formal/BTCalculus/XCubeStateComplexity.lean",
+      "kind": "lemma",
+      "ledger": [
+        "BTA-x3-C-easy",
+        "BTA-x3-C-core",
+        "BTA-x3-C-decomp",
+        "BTA-x3-C-unex",
+        "BTA-x3-Q-unit-im",
+        "BTA-x3-M-spine",
+        "BTA-x3-M-overlap",
+        "BTA-x3-H-A",
+        "BTA-x3-H-unit",
+        "BTA-x3-H-n0neg",
+        "BTA-x3-H-joint",
+        "BTA-x3-M-obstruct"
+      ],
+      "line": 189,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "q_unit_bracket",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On the unit family `a + 3^t b` with `3` not dividing `a`, two `Q` values agree modulo `3^K` exactly when `3^(K-1)` divides `b - c`: one power is lost to the bracket.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61437,13 +61437,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 197,
+      "line": 211,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "q_unit_family_dvd",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N3` residuals at depths `m <= n` agree modulo `3^k` exactly when `k <= 2m + 1` or the depths coincide.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61460,13 +61460,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 231,
+      "line": 246,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "x3_crossDepth_n3",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Index bookkeeping: `k - 2r - 1 = k - 1 - 2r`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61483,13 +61483,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 236,
+      "line": 252,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "square_exp_eq_width",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "If `3` does not divide `a` then it does not divide `2a`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "lemma",
       "ledger": [
@@ -61506,13 +61506,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 240,
+      "line": 257,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "not_three_dvd_two_mul",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Agreement of the core `N1` residuals modulo `3^k`, stated as a condition on `u` and `v`; the square factorisation is what the depth argument uses.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -61529,7 +61529,7 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 247,
+      "line": 265,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "n1_core_square_iff",
       "trust": "kernel"
@@ -61552,7 +61552,7 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 305,
+      "line": 323,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "unit_square_pm",
       "trust": "kernel"
@@ -61575,7 +61575,7 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 343,
+      "line": 361,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "n0_eq_of_neg",
       "trust": "kernel"
