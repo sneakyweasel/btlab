@@ -603,6 +603,96 @@ def wave_count(w: str) -> int:
     return len(w) - 1
 
 
+# --- the sign-critical composites as functions of the weight exponent ---
+
+COMPOSITES = ("5a", "E", "0")
+
+
+def composite_terms(name: str, alpha: Fraction) -> list[Fraction]:
+    """The terms whose signed sum is one of the paper's sign-critical composites.
+
+    A kernel weight ``c(nu) = a nu^alpha`` rides the geometry the map fixes, ``X = nu^{3/2}`` and
+    ``F = (3/2) j m^{1/2}``, so each composite is a polynomial in ``alpha`` alone and the paper's
+    printed rationals are its value at ``9/8``.  ``"5a"`` is Theorem 5.3 Step 5a, anchor curvature
+    ``(cF)''`` against the window-centre mode ``u X''``; ``"E"`` is Theorem 6.1 Step E, the frozen
+    leftover ``J_F c''`` against a window-centre mode inflated by ``3/2``; ``"0"`` is Lemma 5.2b's
+    zero-offset ``c''G_F + 2c'G_F' + c G_F''``, in units of ``a * (3/4) * beta_1 beta_2``.
+
+    Times the weight constant these return ``729/512``, ``-243/512`` and ``-135/1024`` at
+    ``alpha = 9/8``, ``a = 3k/4`` -- the three constants as printed.
+    """
+    if name == "5a":
+        return [Fraction(3, 2) * (alpha + Fraction(3, 4)) * (alpha - Fraction(1, 4)),
+                -Fraction(9, 16)]
+    if name == "E":
+        return [Fraction(3, 2) * alpha * (alpha - 1), -Fraction(27, 32)]
+    if name == "0":
+        return [alpha * (alpha - 1), -Fraction(3, 2) * alpha, Fraction(21, 16)]
+    raise ValueError("unknown composite %r" % (name,))
+
+
+def composite(name: str, alpha: Fraction) -> Fraction:
+    """The composite itself.  ``"0"`` factors exactly as ``(alpha - 3/4)(alpha - 7/4)``."""
+    return sum(composite_terms(name, alpha), Fraction(0))
+
+
+def composite_roots(name: str) -> list[float]:
+    """Where a composite vanishes, and there the architecture has no leading curvature.
+
+    ``"5a"`` vanishes at ``(sqrt(10) - 1)/4 = 0.5406``, ``"E"`` at ``(2 + sqrt(13))/4 = 1.4014``,
+    ``"0"`` at the exact rationals ``3/4`` and ``7/4``.  Only the last two are attainable by a
+    coefficient exponent, which is a dyadic multiple of a power of three; none of the four is
+    attained on the frontier.
+    """
+    if name == "5a":
+        return [(-1 - 10 ** 0.5) / 4, (-1 + 10 ** 0.5) / 4]
+    if name == "E":
+        return [(2 - 13 ** 0.5) / 4, (2 + 13 ** 0.5) / 4]
+    if name == "0":
+        return [0.75, 1.75]
+    raise ValueError("unknown composite %r" % (name,))
+
+
+def cancellation_factor(name: str, alpha: Fraction) -> Fraction:
+    """``sum |terms| / |sum terms|``: how far a composite is from cancelling.
+
+    The size of a composite is not what decides its sign, because the terms carry relative errors
+    of their own.  A relative perturbation ``eps`` of the terms moves the composite by
+    ``kappa * eps``, so the sign is determined exactly while ``kappa * eps < 1``.  At ``9/8`` the
+    three factors are 1.59, 1.67, 13.4; at ``33/32`` -- the level-1 kernel ``OOOEOEE`` needs --
+    they are 1.74, 1.12, 14.3, so the unproved exponent is as healthy as the proved one.
+    """
+    terms = composite_terms(name, alpha)
+    total = sum(terms, Fraction(0))
+    if total == 0:
+        raise ZeroDivisionError("composite %r vanishes at alpha = %s" % (name, alpha))
+    return sum((abs(x) for x in terms), Fraction(0)) / abs(total)
+
+
+def composite_screen(dmax: int = 13) -> dict[str, tuple[Fraction, Fraction]]:
+    """Worst ``(exponent, cancellation factor)`` per composite over the frontier's blocked exponents.
+
+    Returns the extreme of each composite over every blocked coefficient exponent carried by a
+    contractor of depth at most ``dmax``.  At ``dmax = 13`` that is 222 distinct exponents and the
+    worst factors are 1.78 at ``4131/4096``, 129 at ``45/32`` and 539 at ``891/512`` -- against
+    ceilings of 3071 and 1.2e13 set by the relative errors the proofs already carry, so the
+    condition never binds.  ``45/32`` is ``OOEOOEE``'s blocked exponent, which makes this a fourth
+    reason that word is the hard one, independent of species, branching and the 9/4 stop.
+    """
+    worst: dict[str, tuple[Fraction, Fraction]] = {}
+    for d in range(4, dmax + 1):
+        for w in surviving_words(d):
+            if len(w) != d:
+                continue
+            for t in range(2, d + 1):
+                for s, g, _species in blocked_profile(w, t):
+                    for name in COMPOSITES:
+                        k = cancellation_factor(name, g)
+                        if name not in worst or k > worst[name][1]:
+                            worst[name] = (g, k)
+    return worst
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")

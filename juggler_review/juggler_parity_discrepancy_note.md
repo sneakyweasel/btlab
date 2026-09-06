@@ -5172,6 +5172,94 @@ Together they would carry the certified density to \(57/64\) with
 Conjecture 7.3 still open --- though the branch condition below cuts
 that expectation back to the first of the two.
 
+*What "recomputing the composites" comes to.* The requirement is
+discharged for \(33/32\), and how it is discharged says more than the
+answer. Each of the three sign-critical composites of Sections 5 and 6
+is a quadratic in the weight exponent alone. Put
+\(c(\nu)=a\nu^{\alpha}\) against the geometry the map fixes,
+\(X=\nu^{3/2}\) and \(F=\tfrac32jm^{1/2}\); the algebra of (E6), of
+Step E and of Lemma 5.2b then runs unchanged with \(\alpha\) for
+\(9/8\) and returns
+\[
+\begin{aligned}
+\lambda_a &= a\bigl[\tfrac32(\alpha{+}\tfrac34)(\alpha{-}\tfrac14)-\tfrac9{16}\bigr]\,j\nu^{\alpha-5/4},\\
+\lambda_a'&= a\bigl[\tfrac32\alpha(\alpha{-}1)-\tfrac{27}{32}\bigr]\,j\nu^{\alpha-5/4},\\
+\lambda_0 &= \tfrac34a\,(\alpha{-}\tfrac34)(\alpha{-}\tfrac74)\,\beta_1\beta_2\,\nu^{\alpha-11/4},
+\end{aligned}
+\]
+the first two anchor curvature minus window-centre mode --- with
+\(\tfrac32(\alpha{+}\tfrac34)(\alpha{-}\tfrac14)\) the \((cF)''\) and
+\(\tfrac32\alpha(\alpha{-}1)\) the \(J_Fc''\) --- and the third the sum
+\(c''G_F+2c'G_F'+cG_F''\). At \(\alpha=\tfrac98\), \(a=\tfrac{3k}4\)
+they return \(\tfrac{729}{512}\), \(-\tfrac{243}{512}\),
+\(-\tfrac{135}{1024}\), and \(-\tfrac{1215}{1024}\) after
+\(\beta_1\beta_2\to9h_1h_2\nu\): the printed constants, each of them.
+
+So the composites do have zeros, at
+\(\alpha=\tfrac{\sqrt{10}-1}4=0.5406\),
+\(\alpha=\tfrac{2+\sqrt{13}}4=1.4014\) and --- exactly ---
+\(\alpha=\tfrac34,\tfrac74\). The caveat is not a formality: there the
+architecture has no leading curvature for Lemma 3.3 to act on, whatever
+the rest of a proof does.
+
+*At \(33/32\) all three survive.* With \(a=\tfrac{27k}{32}\),
+\[
+\lambda_a=\tfrac{84321}{65536}kj\nu^{-7/32},\qquad
+\lambda_a'=-\tfrac{43983}{65536}kj\nu^{-7/32},\qquad
+\lambda_0=-\tfrac{150903}{131072}kh_1h_2\nu^{-23/32}.
+\]
+What decides survival is not a composite's size but its *cancellation
+factor* \(\kappa\), the sum of the absolute values of its terms over
+the absolute value of their sum: a relative perturbation of the terms
+inflates into a relative perturbation of the composite \(\kappa\) times
+as large, so the sign is determined exactly while that perturbation
+stays below \(1/\kappa\). At \(\tfrac98\) the three factors are
+\(1.59\), \(1.67\), \(13.4\); at \(\tfrac{33}{32}\) they are \(1.74\),
+\(1.12\), \(14.3\). The level-1 exponent is as healthy as the proved
+one, and on the Step E composite healthier.
+
+*And nothing the map produces is degenerate.* Run the same three
+quadratics over every blocked coefficient exponent carried by a
+contractor of depth at most thirteen --- \(222\) distinct values, from
+\(\tfrac{4131}{4096}\) to \(\tfrac{525297}{4096}\). Not one is a zero
+of any composite, and the extreme factors are
+
+| \(\alpha\) | arises at | \(\kappa_{5a}\) | \(\kappa_{E}\) | \(\kappa_0\) |
+|---|---|---:|---:|---:|
+| \(9/8\) | Theorem 5.3, proved | \(1.59\) | \(1.67\) | \(13.4\) |
+| \(33/32\) | \(OOOEOEE\), letter \(6\) | \(1.74\) | \(1.12\) | \(14.3\) |
+| \(27/16\) | Conjecture 7.3 | \(1.24\) | \(2.88\) | \(85.4\) |
+| \(45/32\) | \(OOEOOEE\), letter \(6\) | \(1.35\) | \(\mathbf{129}\) | \(17.7\) |
+| \(891/512\) | depth \(10\), letter \(10\) | \(1.23\) | \(2.55\) | \(\mathbf{539}\) |
+
+against ceilings the proofs already carry: the \((1+O(P^{-1/4}))\) of
+(E6) allows \(\kappa<3071\) at \(P_0\), and Lemma 5.2b's \(O(hP^{-1})\)
+with \(h\le P^{1/16}\) allows \(\kappa<1.2\cdot10^{13}\). Every
+frontier exponent clears both. The composite condition is therefore a
+genuine threshold with genuine zeros that the Juggler map never
+approaches --- a further one beside drift-\(1\), \(e<2\), the \(9/4\) stop
+and the linearisation bound \(E<2\), and the only one of them that
+never binds.
+
+It is not idle, because it ranks. By worst factor the three
+depth-seven targets order \(33/32\) beside the proved \(9/8\)
+(\(14.3\) against \(13.4\)), then \(27/16\) at \(85.4\), then
+\(45/32\) at \(129\) --- the largest Step E factor anywhere on the
+frontier, \(77\) times the proved exponent's. That is a fourth reason
+\(OOEOOEE\) is the hard one, independent of its species, its branching
+and the \(9/4\) stop, and it cuts against the order of attack above,
+which puts \(OOEOOEE\) second only because it stays inside \(9/4\). By
+composite health Conjecture 7.3's exponent is the easier of the two.
+
+Two limits on the last paragraph. \(45/32\) is a square-root defect, so
+its geometry is not the \(X=\nu^{3/2}\), \(F=\tfrac32jm^{1/2}\) of Step
+E: the \(129\) is what this paper's own recipe returns at that
+exponent, not a composite the paper has ever formed. And Step E's
+zero-offset \(\tfrac{1095}{1024}\) is absent from the three, because
+the manuscript displays the derivation of \(\tfrac{1215}{1024}\) but
+not of the \(\tfrac{120}{1024}\) separating them; that composite has no
+\(\alpha\)-form here.
+
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.
 Corollary 6.4 raises the certified class to certificate density \(7/8\) without

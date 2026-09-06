@@ -1170,3 +1170,101 @@ family at \(\varrho m^{3/4}=n^{45/16}\) and \(45/16>9/4\); the model
 dichotomy \(\mathcal A'\gg1\iff c>1\) and the table's \(3/16\), \(9/16\)
 against \(33/32\), \(45/32\); and \(\tfrac1{32}+\tfrac1{32}+\tfrac1{16}
 =\tfrac18\). All exact; the layer now stands at 232 checks. EXACT.
+
+### The three composites are quadratics in the weight exponent
+
+The Step 5a composite \(\tfrac{729}{512}\), the Step E composite
+\(-\tfrac{243}{512}\) and Lemma 5.2b's zero-offset \(-\tfrac{135}{1024}\)
+were each verified above as arithmetic at \(\alpha=\tfrac98\). They are
+not isolated rationals. Against the geometry the map fixes
+(\(X=\nu^{3/2}\), \(F=\tfrac32jm^{1/2}\)) a weight \(c=a\nu^{\alpha}\)
+gives
+\[
+\tfrac32(\alpha+\tfrac34)(\alpha-\tfrac14)-\tfrac9{16},\qquad
+\tfrac32\alpha(\alpha-1)-\tfrac{27}{32},\qquad
+(\alpha-\tfrac34)(\alpha-\tfrac74),
+\]
+which return \(\tfrac{243}{128}\), \(-\tfrac{81}{128}\),
+\(-\tfrac{15}{64}\) at \(\tfrac98\) --- and, times \(a=\tfrac{3k}4\) and
+(for the third) \(\tfrac34\beta_1\beta_2\), the three printed constants,
+plus \(-\tfrac{1215}{1024}\) after \(\beta_1\beta_2\to9h_1h_2\nu\). Also
+the printed two-way splits: \(\tfrac{945}{512}-\tfrac{27}{64}\) and
+\(\tfrac{81}{512}-\tfrac{81}{128}\). EXACT.
+
+Consequences recorded in Section 7: the composites vanish at
+\(\tfrac{\sqrt{10}-1}4\), \(\tfrac{2+\sqrt{13}}4\), \(\tfrac34\) and
+\(\tfrac74\), so the paper's "showing they do not vanish" is a real
+condition; at \(\tfrac{33}{32}\) none does, with cancellation factors
+\(1.74,1.12,14.3\) against the proved exponent's \(1.59,1.67,13.4\); and
+over the 222 blocked exponents carried by contractors of depth
+\(\le13\) the worst factors are \(1.78\), \(129\) and \(539\), inside
+ceilings of \(3071\) and \(1.2\cdot10^{13}\) set by the
+\((1+O(P^{-1/4}))\) of (E6) and Lemma 5.2b's \(O(hP^{-1})\). The
+condition never binds.
+
+**One gap.** Step E's zero-offset \(\tfrac{1095}{1024}\) has no
+displayed derivation. The manuscript derives \(\tfrac{1215}{1024}\) in
+full (three chain-rule terms, then \(\beta_1\beta_2\to9h_1h_2\nu\)) and
+then states \(\tfrac{1095}{1024}\) for the frozen-shape difference
+without showing the \(\tfrac{120}{1024}\) that separates them. The audit
+checks it only for consistency --- \(b'=-\tfrac{365}{176}\) is exactly
+\(405\cdot1095/1215\) --- which shows it was propagated, not that it is
+right. So the \(\alpha\)-form above covers three of the four Step 5/Step
+E composites and not that one. GAP (documentation).
+
+## Four of the six parameter caps pin their parameter to 1 wherever the audit runs
+
+A displayed cap \(1\le x\le CP^{e}\) lets \(x\) take a second value only
+once \(CP^{e}\ge2\), that is from \(P=(2/C)^{1/e}\). Tabulating every
+such cap in Sections 5--6:
+
+| parameter | cap | second value from | at \(P_0=8.9\cdot10^{13}\) |
+|---|---|---|---|
+| \(k\), (C3), Theorem 5.3's uniformity | \(P^{1/24}\) | \(2^{24}=1.7\cdot10^{7}\) | 3 values |
+| \(h_1\), (C4), outer differencing | \(P^{1/48}\) | \(2^{48}=2.8\cdot10^{14}\) | **1 value** |
+| \(h_2\), (C4), inner differencing | \(P^{1/24}\) | \(2^{24}\) | 3 values |
+| \(\lvert\ell\rvert\), Step 5a class | \(P^{1/24}\) | \(2^{24}\) | 3 values |
+| \(h\), Step 3 (\(h^{1/2}\le P^{1/24}\)) | \(P^{1/12}\) | \(2^{12}=4096\) | 14 values |
+| \(j\), Step 5b (\(j\le2P^{1/24}\)) | \(2P^{1/24}\) | \(P\ge1\) | 7 values |
+
+EXACT. Two readings follow, one about the audit and one about the paper.
+
+**The audit.** Its ladder tops out at \(3\cdot10^5\), below \(2^{24}\),
+so \(k\), \(h_1\), \(h_2\) and \(\lvert\ell\rvert\) are all pinned to
+\(1\) at every \(P\) it has ever run. The identity census was widened
+two passes ago for exactly this reason at \(h_1\); the same defect was
+still standing at \(k\), where every kernel sum in the module uses
+\(k=1\) and Theorem 5.3's "uniformly in \(k\)" had never been touched.
+
+**The paper.** \(h_1\) is the one cap whose threshold, \(2^{48}\), lies
+*above* the effective \(P_0=8.9\cdot10^{13}\) --- by a factor of
+\(3.16\). At \(P_0\) the Step-1 outer differencing therefore averages
+over \(\lfloor P_0^{1/48}\rfloor=1\) shift, and the inner over
+\(\lfloor P_0^{1/24}\rfloor=3\). Nothing is wrong: Weyl differencing is
+an inequality for any \(H_1\ge1\), and \(P_0\) certifies that the
+displayed margins hold, not that the conclusion is strong there --- the
+conclusion beats the trivial bound only past \(2^{96}\). But the
+threshold and the machinery it certifies do not meet: at \(P_0\) the
+outer average has one term. OBSERVATION.
+
+**Sweeping \(k\) past the cap.** Leaving the hypothesis is not a test of
+the theorem, but it is the only way to see whether the phenomenon
+depends on \(k\) at all. At \(P=10^5\), over \(k=1,2,3,4,7,8,16,32,64\):
+
+| | \(k=1\) | 2 | 3 | 4 | 7 | 8 | 16 | 32 | 64 |
+|---|---|---|---|---|---|---|---|---|---|
+| level 2, \(\lvert K_c\rvert/\sqrt N\) | 0.56 | 1.43 | 0.25 | 0.56 | 1.16 | 0.91 | 1.22 | 0.65 | 0.09 |
+| level 3, \(\lvert K_3\rvert/\sqrt N\) | 1.33 | 0.98 | 1.06 | 0.99 | 0.65 | 1.31 | 0.24 | 0.61 | 0.93 |
+
+and the block exponents stay in \([0.13,0.57]\) and \([0.31,0.56]\)
+against \(\tfrac12\) for square root and \(1\) for none. No \(k\) loses
+the cancellation at either level; nothing resonates. OBSERVATION.
+**The clause, exercised.** The least \(P\) at which (C3) admits
+\(k=2\) is exactly \(2^{24}=16777216\), where \(P^{1/24}=2\) on the
+nose. Summed there --- \(8388608\) terms, \(688\) s ---
+\(\lvert K_c\rvert/\sqrt N\) is \(1.036\) at \(k=1\) and \(1.082\) at
+\(k=2\), with block exponents \(0.5226\) and \(0.5202\) over 256 blocks
+of \(32768\) terms each: the sharpest statistics in this record, and the
+first evaluation ever made inside Theorem 5.3's own uniformity clause.
+Both values behave alike and at square-root scale. OBSERVATION --- one
+\(P\), and the theorem is asymptotic.

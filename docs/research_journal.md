@@ -30169,3 +30169,177 @@ Best next question
   over k <= P^eps. Does the cancellation survive k growing with P, and
   at what k does the block exponent start to move?
 ```
+
+ ### The composites are quadratics in the weight exponent
+
+Section 7 asks for something and does not do it: "a kernel at 33/32
+means recomputing the composites 243/512 and 1095/1024 there and
+showing they do not vanish". That is the last stated prerequisite for
+the only depth-seven word the screen leaves standing, so it is worth
+doing rather than restating.
+
+**All three are quadratics in the exponent alone.** A weight
+`c(nu) = a nu^alpha` rides a geometry the map fixes — `X = nu^{3/2}`,
+`F = (3/2) j m^{1/2}` — so the algebra of (E6), of Step E and of Lemma
+5.2b runs with `alpha` in place of `9/8` and returns
+
+```text
+   Step 5a       (3/2)(alpha+3/4)(alpha-1/4) - 9/16
+   Step E        (3/2) alpha (alpha-1)       - 27/32
+   zero-offset   (alpha - 3/4)(alpha - 7/4)
+```
+
+At `alpha = 9/8` these give `243/128`, `-81/128`, `-15/64`, and times
+the weight constant they are `729/512`, `-243/512`, `-135/1024` —
+`-1215/1024` after `beta1 beta2 -> 9 h1 h2 nu`. Four printed constants,
+and both printed two-way splits (`945/512 - 27/64`,
+`81/512 - 81/128`), out of three formulas.
+
+**So the caveat is real.** The composites vanish at
+`(sqrt10-1)/4 = 0.5406`, `(2+sqrt13)/4 = 1.4014`, and exactly at `3/4`
+and `7/4`. At those exponents there is no leading curvature for Lemma
+3.3 to act on, whatever the rest of a proof does.
+
+**And 33/32 clears it.** The three composites are `84321/65536`,
+`-43983/65536`, `-150903/131072`. Size is the wrong measure — what
+decides a sign is the cancellation factor `kappa`, sum of the terms'
+absolute values over the absolute value of their sum, since a relative
+perturbation `eps` moves the composite by `kappa eps`. At `9/8`:
+`1.59, 1.67, 13.4`. At `33/32`: `1.74, 1.12, 14.3`. The unproved
+exponent is as healthy as the proved one and on Step E healthier.
+
+**Nothing on the frontier is degenerate.** Over the 222 blocked
+coefficient exponents carried by contractors of depth at most 13 the
+worst factors are `1.78` at `4131/4096`, `129` at `45/32`, `539` at
+`891/512` — against ceilings of `3071` and `1.2e13` from the
+`(1+O(P^-1/4))` of (E6) and Lemma 5.2b's `O(h P^-1)`.
+
+But it ranks. Worst factor by target: `9/8` at 13.4, `33/32` at 14.3,
+`27/16` (Conjecture 7.3) at 85.4, `45/32` (OOEOOEE) at 129 — the
+largest Step E factor anywhere, 77 times the proved exponent's. A
+fourth reason OOEOOEE is the hard one, independent of species, of
+branching and of the 9/4 stop, and it disagrees with the order of
+attack, which puts OOEOOEE second only because it stays inside 9/4.
+
+Two limits, both stated in the passage. `45/32` is a square-root
+defect, so the `129` is what the paper's own recipe returns at that
+exponent and not a composite the paper has formed. And Step E's
+`1095/1024` is not one of the three: the manuscript derives
+`1215/1024` in full and then states `1095/1024` without showing the
+`120/1024` between them, so it has no alpha-form here. Logged as a
+documentation gap.
+
+```text
+What was learned
+- three constants printed as rationals were values of one-variable
+  quadratics; nobody had asked what variable
+- a composite's size does not decide its sign, its cancellation factor
+  does, and the two rank the frontier differently
+- the paper's "show they do not vanish" is a real condition with four
+  real zeros, and the Juggler map approaches none of them
+- the invariant reproduces the paper's ordering of the depth-seven
+  targets from arithmetic that never looks at a word
+Strongest theorem
+- lambda_a, lambda_a' and lambda_0 equal a[(3/2)(alpha+3/4)(alpha-1/4)
+  - 9/16], a[(3/2)alpha(alpha-1) - 27/32] and (3a/4)(alpha-3/4)
+  (alpha-7/4) times their scales, matching every printed constant at
+  9/8 and nonvanishing at 33/32
+Strongest refutation
+- the reading that "recomputing the composites" is bookkeeping: at
+  45/32 the Step E recipe returns 27/2048, a 129-fold cancellation
+Reusable machinery
+- composite_terms, composite, composite_roots, cancellation_factor,
+  composite_screen; seven tests
+Branch status
+- PARK
+Why
+  The prerequisite Section 7 stated for the level-1 kernel is
+  discharged, and favourably. What remains for OOOEOEE is the kernel
+  itself, which is a theorem and not a computation.
+Best next question
+- Step E's 1095/1024 has no displayed derivation and no alpha-form.
+  What are the three chain-rule terms of the frozen-shape zero-offset
+  anchor, and do they sum to 1095/1024?
+```
+
+## Four of six caps pin their parameter to 1, and one of them pins it past P_0
+
+Following the last entry's question about `k`. The answer turned out to
+be structural rather than numerical, and it generalises the `h_1`
+finding from three passes ago into a table.
+
+**The rule.** A displayed cap `1 <= x <= C P^e` lets `x` take a second
+value only from `P = (2/C)^(1/e)`.
+
+| parameter | cap | second value from | at P_0 = 8.9e13 |
+|---|---|---|---|
+| `k`, (C3), Theorem 5.3's uniformity | `P^(1/24)` | `2^24 = 1.7e7` | 3 values |
+| `h_1`, (C4), outer differencing | `P^(1/48)` | `2^48 = 2.8e14` | **1 value** |
+| `h_2`, (C4), inner differencing | `P^(1/24)` | `2^24` | 3 values |
+| `\|l\|`, Step 5a class | `P^(1/24)` | `2^24` | 3 values |
+| `h`, Step 3 (`h^(1/2) <= P^(1/24)`) | `P^(1/12)` | `2^12 = 4096` | 14 values |
+| `j`, Step 5b (`j <= 2P^(1/24)`) | `2P^(1/24)` | always | 7 values |
+
+**About the audit.** Its ladder stops at `3e5`, below `2^24`, so four of
+the six are pinned to 1 at every P it has ever run. The census was
+widened for `h_1` two passes ago; the same defect was still standing at
+`k`, where every kernel sum in the module uses `k = 1` while Theorem
+5.3 claims its bound "uniformly in `k`".
+
+**About the paper.** `h_1` is the one cap whose threshold sits above the
+effective `P_0`, by a factor of `3.16`. At `P_0` the Step-1 outer
+differencing averages over `floor(P_0^(1/48)) = 1` shift and the inner
+over `3`. Nothing is wrong -- Weyl differencing is an inequality for any
+`H_1 >= 1`, and `P_0` certifies that the displayed margins hold, not
+that the conclusion is strong there (it beats trivial only past `2^96`).
+But the certified threshold and the machinery it certifies do not meet,
+and that is worth a reader knowing.
+
+**Sweeping `k` anyway.** Past the cap the hypothesis is gone, so this
+tests nothing about the theorem; it tests whether the phenomenon depends
+on `k`. At `P = 1e5` over `k = 1..64`, level-2 `|K_c|/sqrt(N)` runs
+`0.09`--`1.43` and level-3 `|K_3|/sqrt(N)` runs `0.24`--`1.33`, with
+block exponents in `[0.13, 0.57]` and `[0.31, 0.56]`. No `k` loses the
+cancellation at either level; nothing resonates.
+
+**The clause, exercised.** The least P at which (C3) admits `k = 2` is
+exactly `2^24 = 16777216`, where `P^(1/24) = 2` on the nose. Summed
+there -- 8388608 terms, 688 s -- `|K_c|/sqrt(N)` is `1.036` at `k = 1`
+and `1.082` at `k = 2`, with block exponents `0.5226` and `0.5202` over
+256 blocks of 32768 terms each. The sharpest statistics in the record,
+and the first evaluation ever made inside Theorem 5.3's uniformity
+clause. Both values behave alike, at square-root scale.
+
+```text
+What was learned
+- a cap C P^e is a pinning statement in disguise, and the threshold
+  (2/C)^(1/e) is the number that says where the clause starts to mean
+  something
+- four of the paper's six caps are degenerate everywhere the audit
+  runs, and one of them is degenerate at P_0 itself
+- the k-uniformity clause of Theorem 5.3 had never been exercised, in
+  the same way and for the same reason as h_1
+- the phenomenon does not depend on k at either level, over a 64-fold
+  range outside the hypothesis
+- and inside it, at P = 2^24 where the clause first admits k = 2, both
+  values give a block exponent of 0.52 over 8.4 million terms
+Strongest theorem
+- (2/C)^(1/e) as the reach of a cap, and 2^48 > P_0 > 2^24: the outer
+  differencing has one shift at the certified threshold
+Strongest refutation
+- none; no k breaks the cancellation
+Reusable machinery
+- parameter_cap_reach, kernel_k_uniformity, four exact cap checks; the
+  exponent layer stands at 236
+Branch status
+- PAPER_B_AUDIT_CONSISTENT, 42.3 s
+Why
+  Three passes have now found the same shape: a clause that holds
+  vacuously in the tested range. The cap table turns that from a run
+  of individual discoveries into something a reader can check at a
+  glance, and it says which clause to widen next.
+Best next question
+- the block instrument uses 256 bins at every P, which at P = 1e4 is 20
+  terms a block. Is the shortest block below the correlation length of
+  the sequence, and if so what does that do to the fitted exponent?
+```
