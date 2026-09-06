@@ -3005,47 +3005,6 @@
     {
       "candidates": [
         {
-          "decl": "four_block_pe_1999",
-          "line": 215,
-          "score": 0.353,
-          "trust": "kernel"
-        },
-        {
-          "decl": "four_consecutive_persistent_expanding_exists",
-          "line": 243,
-          "score": 0.308,
-          "trust": "kernel"
-        },
-        {
-          "decl": "ooooee_is_expanding",
-          "line": 187,
-          "score": 0.167,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "expansionMargin",
-          "line": 27,
-          "score": 0.05
-        },
-        {
-          "decl": "blockMultiplier",
-          "line": 22,
-          "score": 0.0
-        }
-      ],
-      "id": "J-four-block-persistent-expanding",
-      "in_file": 19,
-      "lean": "Problems/Juggler/ExpansionSlack.lean",
-      "names_own": [],
-      "statement": "Four consecutive persistent expanding Juggler residual blocks exist: 1999 follows OOE to 5169, 5169 follows OOOOEE to 50093, 50093 follows OOE to 193753, and 193753 follows OOE to 887471. Each step is PersistentExpandingResidual."
-    },
-    {
-      "candidates": [
-        {
           "decl": "large_lambda_successor_q_bound",
           "line": 201,
           "score": 0.238,
@@ -4910,6 +4869,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 125,
+  "unresolved": 124,
   "worth_reviewing": 21
 }

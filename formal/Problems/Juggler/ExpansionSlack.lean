@@ -240,6 +240,9 @@ theorem four_block_pe_1999 :
     pe_ooe_of w50093 i50093 (by decide) h193753 ht193753,
     pe_ooe_of w193753 i193753 (by decide) h887471 ht887471⟩
 
+/-- Four consecutive persistent expanding residual blocks exist: `1999` to `5169` by
+`OOE`, `5169` to `50093` by `OOOOEE`, then `50093` to `193753` and `193753` to `887471`
+by `OOE`. Each step is a `PersistentExpandingResidual`. -/
 theorem four_consecutive_persistent_expanding_exists :
     ∃ x y z u v,
       PersistentExpandingResidual x y ∧

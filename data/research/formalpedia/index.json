@@ -21490,7 +21490,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Four consecutive persistent expanding residual blocks exist: `1999` to `5169` by `OOE`, `5169` to `50093` by `OOOOEE`, then `50093` to `193753` and `193753` to `887471` by `OOE`. Each step is a `PersistentExpandingResidual`.",
       "file": "formal/Problems/Juggler/ExpansionSlack.lean",
       "kind": "theorem",
       "ledger": [
@@ -21498,7 +21498,7 @@
         "J-four-block-persistent-expanding",
         "J-expansion-slack-uniform-tax"
       ],
-      "line": 243,
+      "line": 246,
       "module": "Problems.Juggler.ExpansionSlack",
       "name": "four_consecutive_persistent_expanding_exists",
       "trust": "kernel"
