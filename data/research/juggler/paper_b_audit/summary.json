@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "6af19a83fb6873bff6068d6be89670e58b8792bf",
+  "git_commit": "6565a57123520c686b1178e964090050b1f704c0",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3951,7 +3951,7 @@
   "draft_history_markers": {
     "occurrences": [
       {
-        "line": 2168,
+        "line": 2180,
         "section": "4. The level-2 wave and the kernel theorem",
         "in_appendix": false,
         "mathematical": false,
@@ -3959,7 +3959,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 4135,
+        "line": 4147,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3967,7 +3967,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 5088,
+        "line": 5100,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3975,7 +3975,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5736,
+        "line": 5748,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3983,7 +3983,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6547,
+        "line": 6559,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3991,7 +3991,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 7126,
+        "line": 7138,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3999,7 +3999,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7156,
+        "line": 7168,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -4007,7 +4007,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7235,
+        "line": 7247,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -4020,8 +4020,8 @@
     "in_body": 4,
     "body_mathematical": 2,
     "body_needing_a_look": [
-      2168,
-      4135
+      2180,
+      4147
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -5344,7 +5344,7 @@
       }
     ],
     "sites": 9,
-    "lines_still_matching": 4,
+    "lines_still_matching": 0,
     "line_numbers_have_drifted": true,
     "by_kind": {
       "danger sizing": 1,
@@ -5374,28 +5374,28 @@
     "no_certificate_row_moves_P0": true
   },
   "c2_occurrence_audit": {
-    "statement_line": 2195,
+    "statement_line": 2207,
     "occurrences": [
       {
-        "line": 1899,
+        "line": 1911,
         "form": "h_1h_2 <= P^{1/2}/3",
         "above_the_statement": true,
         "is_the_statement": false
       },
       {
-        "line": 2018,
+        "line": 2030,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": true,
         "is_the_statement": false
       },
       {
-        "line": 2195,
+        "line": 2207,
         "form": "h_1h_2 <= P^{1/2}/3",
         "above_the_statement": false,
         "is_the_statement": true
       },
       {
-        "line": 3963,
+        "line": 3975,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": false,
         "is_the_statement": false
@@ -5405,7 +5405,7 @@
     "above_the_statement": 2,
     "below_the_statement": 1,
     "below_lines": [
-      3963
+      3975
     ],
     "below_needs_a_stronger_bound_than_C2": true,
     "below_bound_exponent": "1/4",
@@ -8050,50 +8050,50 @@
     "symbol_bounds": {
       "t": {
         "3P^{1/24}": [
-          3634,
-          3636
+          3646,
+          3648
         ]
       },
       "C": {
         "1.30P^{19/96}": [
-          4663
+          4675
         ],
         "2P^{19/96}": [
-          4684
+          4696
         ],
         "1.2812P^{19/96}": [
-          7210
+          7222
         ]
       },
       "l": {
         "2P^{1/96}": [
-          4684,
-          4739
+          4696,
+          4751
         ]
       },
       "u": {
         "P^{5/16}": [
-          4689,
-          4700,
-          4725
+          4701,
+          4712,
+          4737
         ]
       },
       "i": {
         "2P^{1/96}": [
-          4699
+          4711
         ],
         "2P^{5/16}": [
-          4707
+          4719
         ]
       },
       "k": {
         "P^{1/24}": [
-          5346
+          5358
         ]
       },
       "r": {
         "P^{1/24}": [
-          5499
+          5511
         ]
       }
     },
@@ -8115,74 +8115,74 @@
     "cap_bounds": {
       "k": {
         "P^{1/24}": [
-          381,
-          1840,
-          3717,
-          4005,
-          4475,
-          5919
+          393,
+          1852,
+          3729,
+          4017,
+          4487,
+          5931
         ],
         "2P^{1/96}": [
-          4299,
-          4476
+          4311,
+          4488
         ],
         "P^{\\varepsilon}": [
-          6169
+          6181
         ]
       },
       "h_1h_2": {
         "P^{1/2}/3": [
-          1899
+          1911
         ],
         "2P^{1/2}/3": [
-          2088
+          2100
         ],
         "P^{1/12}": [
-          2199,
-          4028
+          2211,
+          4040
         ],
         "P^{1/16}": [
-          4027,
-          4707
+          4039,
+          4719
         ]
       },
       "h_2": {
         "P^{1/24}": [
-          2188,
-          3789,
-          3793,
-          3868,
-          4319
+          2200,
+          3801,
+          3805,
+          3880,
+          4331
         ]
       },
       "h_1+h_2": {
         "2P^{1/24}": [
-          2209
+          2221
         ]
       },
       "kh_1h_2": {
         "P^{1/8}": [
-          2997,
-          4095
+          3009,
+          4107
         ],
         "P^{1/24+1/48+1/24}": [
-          3718
+          3730
         ],
         "2P^{1/96+1/48+1/24}": [
-          4277
+          4289
         ],
         "2P^{\\delta+1/16}": [
-          4283
+          4295
         ]
       },
       "h_1": {
         "P^{1/48}": [
-          3766
+          3778
         ]
       },
       "h_1{+}h_2": {
         "2P^{1/24}": [
-          4302
+          4314
         ]
       }
     },
@@ -8206,6 +8206,56 @@
     "both_are_inside_D3": true,
     "instances_of_one_quantity_two_values": 3,
     "and_this_one_is_a_symbol": true
+  },
+  "survivors_of_the_E_constant_update": {
+    "sites": [
+      {
+        "where": "Step 5a, the threshold",
+        "carries": "P >= 1.6e13",
+        "pattern": "P\\ge1.6\\cdot10^{13}",
+        "present": true
+      },
+      {
+        "where": "Step 5a, the error it is measured against",
+        "carries": "106 P^(-25/24)",
+        "pattern": "106P^{-25/24}+0.11P^{-5/6}",
+        "present": true
+      },
+      {
+        "where": "A.6, what is left",
+        "carries": "60(2.6)/0.84, the pre-correction cap",
+        "pattern": "\\tfrac{60\\cdot2.6}{0.84}",
+        "present": true
+      },
+      {
+        "where": "A.6, the range quoted with it",
+        "carries": "[0.35, 2.6]",
+        "pattern": "therange\\([0.35,2.6]\\)for",
+        "present": true
+      }
+    ],
+    "all_four_survivors_present": true,
+    "V_over_S_at_0_60": 0.1075828707279838,
+    "V_over_S_at_0_56": 0.11135885079684349,
+    "printed_0_11_covers_the_5a_value": true,
+    "printed_0_12_covers_the_5b_value": true,
+    "printed_0_11_would_not_cover_5b": true,
+    "step5a_with_the_old_constant": 16116593977762.727,
+    "step5a_with_the_current_constant": 29116952310460.227,
+    "certificate_5a_row": 29116952310460.227,
+    "certificate_matches_the_current_constant": true,
+    "body_prints": 16000000000000.0,
+    "A5_prints": 29200000000000.0,
+    "body_matches_the_old_constant": true,
+    "body_and_A5_disagree_by": 1.80664427922147,
+    "u_cap_precorrection": 185.71428571428572,
+    "u_cap_current": 300.0,
+    "the_current_cap_is_exactly_300": true,
+    "P0": 35857556192838.55,
+    "step5a_is_not_the_binding_row": true,
+    "contrast_as_printed": 2.2248842554645174,
+    "contrast_corrected": 1.2315010104940403,
+    "P0_does_not_move": true
   },
   "kernel_k_uniformity": {
     "P": 10000,
@@ -8274,5 +8324,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 89.39358496665955
+  "elapsed_seconds": 90.27098178863525
 }

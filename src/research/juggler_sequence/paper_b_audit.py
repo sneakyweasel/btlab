@@ -7191,6 +7191,105 @@ def one_symbol_two_bounds() -> dict[str, Any]:
     }
 
 
+# The two live sites that still carry E's superseded constant, and the numbers that go with it.
+E_UPDATE_SURVIVORS = (
+    {"where": "Step 5a, the threshold", "carries": "P >= 1.6e13",
+     "pattern": r"P\ge1.6\cdot10^{13}"},
+    {"where": "Step 5a, the error it is measured against", "carries": "106 P^(-25/24)",
+     "pattern": r"106P^{-25/24}+0.11P^{-5/6}"},
+    {"where": "A.6, what is left", "carries": "60(2.6)/0.84, the pre-correction cap",
+     "pattern": r"\tfrac{60\cdot2.6}{0.84}"},
+    {"where": "A.6, the range quoted with it", "carries": "[0.35, 2.6]",
+     "pattern": r"therange\([0.35,2.6]\)for"},
+)
+
+
+def survivors_of_the_E_constant_update() -> dict[str, Any]:
+    """Widening the sweep to bare `symbol <= cP^e` turns up V/S at two values -- and that one is
+    clean.  What it turns up underneath is two live sites still running on E's old constant.
+
+    V/S first, since it is what the sweep flagged: 0.11 P^(-7/48) at two places and 0.12 P^(-7/48)
+    at a third.  V/S = (1/12) lam^(-1/2) P^(-7/48), so the coefficient is 0.107583 at lam = 0.60 and
+    0.111359 at lam = 0.56; the paper prints 0.11 at the Step 5a sites and 0.12 at the Step 5b one,
+    each rounded up, each labelled with its own S.  The inventory table names the 0.11 as "Step 5a's
+    ratio ... at S >= 0.60 P^(-5/8)".  Nothing wrong.
+
+    But the Step 5a paragraph that carries one of those 0.11s reads:
+
+        W = V + E satisfy W <= c_7 S/2 at c_7 = 1/232 from P >= 1.6e13 ... against the interpolant
+        error 106 P^(-25/24) + 0.11 P^(-5/6)
+
+    and 106 is E's superseded constant.  The paper says so itself, in three review notes: "E's
+    106 -> 170.6.  It was never cosmetic."  The threshold printed beside it is the one that constant
+    gives:
+
+        E's constant   Step 5a row first holds
+        106            1.6117e13      <- the body prints 1.6e13
+        170.6          2.9117e13      <- A.5 prints 2.92e13
+
+    So the body and A.5 disagree on this row by 1.807, and the disagreement is exactly the update.
+    The paragraph is internally consistent -- its threshold goes with its constant -- which is why
+    no cross-check has caught it: the instruments compare A.5 with the certificate, and this is the
+    body against A.5.
+
+    A.6's closing paragraph is the second survivor.  "The remaining slack is in E itself: the
+    middle-band half-width 60, which enters 106 linearly through the cap 60(2.6)/0.84, and the range
+    [0.35, 2.6] for lambda_0."  The formula is right and every number in it is pre-correction:
+    60(2.6)/0.84 = 185.71 is the old u_cap 186, [0.35, 2.6] is the old range, and 106 is the old
+    constant.  With the current range the same cap reads 60(4.2)/0.84 = 300 exactly, which is the
+    u_cap the certificate carries, and it enters 170.6.
+
+    Neither reaches P_0.  Step 5a is not the binding row -- Step 5b is, at 3.5858e13 -- and
+    2.9117e13 is below it either way.  What changes is the contrast the sentence draws: "a lower
+    threshold than Step 5b's, because S is larger here" is true at 1.2315 with the corrected number
+    where the printed pair implies 2.2249.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    compact = re.sub(r"\s+", "", text)
+
+    def least(pred) -> float:
+        lg = p0_certificate.least_P(pred)
+        return 10.0 ** lg if lg is not None else float("inf")
+
+    S5a = lambda P: 0.60 * P**-0.625                                   # noqa: E731
+    V = lambda P: (1 / 12) * S5a(P) ** 0.5 * P ** (-11 / 24)           # noqa: E731
+    rows = {r["tag"]: r for r in p0_certificate.thresholds()}
+    with_old = least(lambda P: V(P) + 106.0 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
+                     <= p0_certificate.C7 * S5a(P) / 2)
+    with_new = least(lambda P: V(P) + 170.6 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
+                     <= p0_certificate.C7 * S5a(P) / 2)
+    P0 = rows["5b-W<=c7S"]["P_min"]
+    sites = [{**s, "present": compact.count(s["pattern"]) == 1} for s in E_UPDATE_SURVIVORS]
+    return {
+        "sites": sites,
+        "all_four_survivors_present": all(s["present"] for s in sites),
+        "V_over_S_at_0_60": (1 / 12) * 0.60**-0.5,
+        "V_over_S_at_0_56": (1 / 12) * 0.56**-0.5,
+        "printed_0_11_covers_the_5a_value": (1 / 12) * 0.60**-0.5 <= 0.11,
+        "printed_0_12_covers_the_5b_value": (1 / 12) * 0.56**-0.5 <= 0.12,
+        "printed_0_11_would_not_cover_5b": (1 / 12) * 0.56**-0.5 > 0.11,
+        "step5a_with_the_old_constant": with_old,
+        "step5a_with_the_current_constant": with_new,
+        "certificate_5a_row": rows["5a-W<=c7S"]["P_min"],
+        "certificate_matches_the_current_constant": abs(
+            with_new / rows["5a-W<=c7S"]["P_min"] - 1) < 1e-3,
+        "body_prints": 1.6e13,
+        "A5_prints": 2.92e13,
+        "body_matches_the_old_constant": abs(with_old / 1.6e13 - 1) < 0.02,
+        "body_and_A5_disagree_by": with_new / with_old,
+        "u_cap_precorrection": 60 * 2.6 / 0.84,
+        "u_cap_current": 60 * 4.2 / 0.84,
+        "the_current_cap_is_exactly_300": abs(60 * 4.2 / 0.84 - 300.0) < 1e-9,
+        "P0": P0,
+        "step5a_is_not_the_binding_row": with_new < P0,
+        "contrast_as_printed": P0 / with_old,
+        "contrast_corrected": P0 / with_new,
+        "P0_does_not_move": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -7291,6 +7390,7 @@ def summary() -> dict[str, Any]:
     step5 = step_5_inventories_against_the_paper()
     caps = which_cap_each_substitution_uses()
     twobounds = one_symbol_two_bounds()
+    survivors = survivors_of_the_E_constant_update()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -7379,6 +7479,7 @@ def summary() -> dict[str, Any]:
         "step_5_inventories_against_the_paper": step5,
         "which_cap_each_substitution_uses": caps,
         "one_symbol_two_bounds": twobounds,
+        "survivors_of_the_E_constant_update": survivors,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

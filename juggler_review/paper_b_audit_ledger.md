@@ -7152,3 +7152,70 @@ sweeping the whitespace-stripped manuscript, so the families are
 recomputed on every run rather than transcribed. Two tests. Audit
 `270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate
 edit.
+
+## Two sites still running on E's old constant
+
+Widening the sweep to bare `symbol <= cP^e` flagged `V/S` at two values,
+and that one is clean. `V/S = (1/12)lam^(-1/2)P^(-7/48)`, so the
+coefficient is `0.107583` at `lam = 0.60` and `0.111359` at `lam = 0.56`;
+the paper prints `0.11` at the Step 5a sites and `0.12` at the Step 5b
+one, each rounded up, each labelled with its own `S`, and the constant
+inventory names the `0.11` as "Step 5a's ratio at `S >= 0.60P^(-5/8)`".
+The labels are load-bearing --- `0.11` would not cover the `0.56` end ---
+and they are all correct.
+
+**But the paragraph carrying one of those `0.11`s is not.** Step 5a
+reads:
+
+> `W = V + E` satisfy `W <= c_7S/2` at `c_7 = 1/232` from
+> `P >= 1.6\cdot10^{13}` --- a lower threshold than Step 5b's, because
+> `S` is larger here [...] against the interpolant error
+> `106P^{-25/24}+0.11P^{-5/6}`.
+
+`106` is `E`'s superseded constant. The paper says so itself, in three
+review notes: *"E's `106 -> 170.6`. It was never cosmetic."* And the
+threshold printed beside it is exactly the one that constant gives:
+
+```text
+  E's constant    Step 5a row first holds
+  106             1.6117e13     <- the body prints 1.6e13
+  170.6           2.9117e13     <- A.5 prints 2.92e13
+```
+
+So the body and A.5 disagree on this row by `1.807`, and the
+disagreement is precisely the update. The paragraph is internally
+consistent --- its threshold goes with its constant --- which is why
+nothing has caught it: every instrument built here compares A.5 with the
+certificate, and this is the body against A.5.
+
+**A.6's closing paragraph is the second survivor.** "The remaining slack
+is in `E` itself: the middle-band half-width `60`, which enters `106`
+linearly through the cap `60(2.6)/0.84`, and the range `[0.35,2.6]` for
+`lambda_0`." The formula is right and every number in it is
+pre-correction: `60(2.6)/0.84 = 185.71` is the old `u_cap` of `186`,
+`[0.35,2.6]` is the old range, `106` is the old constant. With the
+current range the same cap reads `60(4.2)/0.84 = 300` exactly --- the
+`u_cap` the certificate carries --- and it enters `170.6`.
+
+Neither reaches `P_0`. Step 5a is not the binding row; Step 5b is, at
+`3.5858e13`, and `2.9117e13` sits below it either way. What changes is
+the contrast the sentence draws: "a lower threshold than Step 5b's" is
+true at `1.2315` with the corrected number, where the printed pair
+implies `2.2249`.
+
+Tags. EXACT: `V/S = (1/12)lam^(-1/2)P^(-7/48)`, giving `0.107583` at
+`0.60` and `0.111359` at `0.56`, so the printed `0.11` and `0.12` are
+each the rounded-up value at their own site and the `0.11` would not
+serve at `0.56`; `60(4.2)/0.84 = 300` exactly, against the printed
+`60(2.6)/0.84 = 185.71`. COMPUTATIONALLY VERIFIED: Step 5a's row first
+holds at `1.6117e13` with `E = 106P^(-25/24)+0.11P^(-5/6)` and at
+`2.9117e13` with `170.6`, matching the body's `1.6e13` and A.5's
+`2.92e13` respectively; the ratio is `1.8066`; the certificate's row is
+`2.9117e13`; `P_0` is unmoved at `3.5858e13`. OBSERVATION: `106` appears
+five other times in the manuscript and every one of those is a review
+note *about* the update; these two are the only live uses left.
+
+Probe: `survivors_of_the_E_constant_update` with `E_UPDATE_SURVIVORS`,
+matched against the whitespace-stripped manuscript so the sites report
+their own repair. Two tests. Audit `270 / 270`; `P_0` unmoved. No
+manuscript or certificate edit.

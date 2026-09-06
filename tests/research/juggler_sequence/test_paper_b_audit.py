@@ -2329,3 +2329,26 @@ def test_the_passenger_bullet_computes_with_I_tot_and_prints_i() -> None:
     assert r["both_are_inside_D3"]
     assert r["inside_D3_at_the_bound_used"] == -0.5
     assert r["inside_D3_at_the_tighter_bound"] < r["inside_D3_at_the_bound_used"]
+
+
+# --- survivors of the 106 -> 170.6 update ---
+
+
+def test_the_step_5a_paragraph_still_runs_on_the_old_E_constant() -> None:
+    """1.6e13 is the threshold E's 106 gives; A.5 prints 2.92e13, which is 170.6's."""
+    r = A.survivors_of_the_E_constant_update()
+    assert r["certificate_matches_the_current_constant"]
+    assert abs(r["step5a_with_the_current_constant"] - 2.9117e13) / 2.9117e13 < 1e-3
+    if r["all_four_survivors_present"]:
+        assert r["body_matches_the_old_constant"]
+        assert 1.80 < r["body_and_A5_disagree_by"] < 1.81
+        assert r["contrast_as_printed"] > 2.2 > 1.24 > r["contrast_corrected"]
+    assert r["step5a_is_not_the_binding_row"] and r["P0_does_not_move"]
+
+
+def test_the_V_over_S_pair_is_two_lambdas_and_not_a_drift() -> None:
+    """0.11 and 0.12 are (1/12)lam^(-1/2) at 0.60 and 0.56, each rounded up at its own site."""
+    r = A.survivors_of_the_E_constant_update()
+    assert r["printed_0_11_covers_the_5a_value"] and r["printed_0_12_covers_the_5b_value"]
+    assert r["printed_0_11_would_not_cover_5b"]          # so the labels are load-bearing
+    assert abs(r["u_cap_precorrection"] - 185.714) < 1e-3 and r["the_current_cap_is_exactly_300"]
