@@ -36007,3 +36007,79 @@ Best next question
   rounded the same way, and do any of them feed a threshold row where
   1.2 would matter?
 ```
+
+### The manuscript against itself
+
+The recorded question: every audit here compares the manuscript with something
+outside it; what would a manuscript-against-itself check look like, and is
+there a tractable subset?
+
+**The obvious check has a 100% false-positive rate**, which shapes everything
+else. Named constants printed many times — do the printings agree?
+
+```text
+  P_0    3.6e13                        7 occurrences, one value
+  P_1    9.8e18                        2 occurrences, one value
+  c_7    1/232, 1/288, 1/61, 1/54     10 occurrences, four values
+  kappa  1/12, 1/16                    3 occurrences, two values
+  R_0    5/16, 1/4                    20 occurrences, two values
+```
+
+Every multiplicity is legitimate: `1/288` is the weaker `c_7` kept on purpose,
+`1/61` and `1/54` are the lever's saturation before and after the Lemma 5.2b
+erratum, `1/16` is a sweep row, `1/4` the superseded truncation. So the check
+must be *declared* — canonical value plus alternatives with reasons — and only
+an undeclared value fails. That is what a stale figure looks like.
+
+**The other direction is where the hazard lives.** A value naming more than one
+quantity:
+
+```text
+  0.35   Stage-4 curvature; Lemma 5.2b's pre-correction lambda_0 floor
+  0.11   the smooth remnant |c''| (hence E's second term);
+         the collision band's lower edge; Step 5a's ratio V/S
+  1.2    the Stage-4 curvature's upper end; the (s2) window length;
+         Step 5's cell sum
+  1.5    the cell count; the offset term's floor
+```
+
+`0.35` cost an afternoon and was the only one the manuscript distinguished, and
+only implicitly. `0.11` names three unrelated quantities with no warning at all;
+nor did `1.2` or `1.5`. None is an error and none is avoidable by renaming —
+each constant is what its derivation produces. What is avoidable is reading
+across them.
+
+```text
+What was learned
+- the tractable subset is the second direction, not the first: value -> names
+  is a short closed list and catches the error that has actually happened here;
+  name -> value needs an exception per legitimate multiplicity and catches only
+  staleness
+- 0.11 names three unrelated quantities and had no warning; 0.35 had one only
+  by implication, in a remark about two certificate rows
+- a check whose false-positive rate is 100% on the current text is not useless,
+  but it has to be rewritten as a declaration before it is a guard
+Strongest theorem
+- the four shared values and their nine roles, now printed in A.1 and guarded;
+  and every named constant's printings are canonical or declared
+Strongest refutation
+- the assumption that "do all printings agree" is the check; it agrees nowhere
+  interesting and disagrees everywhere legitimately
+Reusable machinery
+- tools/manuscript_self_audit.py: CONSTANT_VALUES, SHARED_VALUES,
+  constant_audit, shared_value_audit, failures; seven tests, two of which
+  demonstrate the guards firing
+Branch status
+- PARK
+Why
+  Both directions are implemented, the shared-value table is in the manuscript
+  where a reader meets the constants, and the guards are shown to fire. Nothing
+  here moves P_0.
+Best next question
+- the shared-value list was assembled by eye from the most frequent decimals.
+  Two or three significant figures is a small space and the paper has some two
+  hundred constants, so collisions are near-certain beyond the four found. Can
+  the list be generated rather than curated -- clustering occurrences of each
+  numeral by the surrounding symbols and flagging any numeral whose contexts
+  fall into more than one cluster?
+```

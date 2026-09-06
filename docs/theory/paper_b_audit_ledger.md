@@ -5470,3 +5470,58 @@ crosses a block boundary.
 Probe: `out_of_sample_constant_test`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The manuscript against itself
+
+Every audit built here compares the manuscript with something outside it. The last entry
+observed that three of this audit's findings were of a different kind -- the `0.35`
+conflation, the interpolant chain that kept the constants its own lemma's erratum had
+replaced, and a log count attributed to the wrong theorem -- and asked what a
+manuscript-against-itself check would look like, and whether a tractable subset exists.
+
+**The obvious check has a hundred percent false-positive rate**, which is the finding that
+shapes the rest. Named constants are printed many times; do the printings agree?
+
+```text
+  P_0    3.6e13                                    7 occurrences, one value
+  P_1    9.8e18                                    2 occurrences, one value
+  c_7    1/232, 1/288, 1/61, 1/54                 10 occurrences, four values
+  kappa  1/12, 1/16                                3 occurrences, two values
+  R_0    5/16, 1/4                                20 occurrences, two values
+```
+
+Every multiplicity is legitimate. `1/288` is the weaker `c_7` the manuscript keeps on purpose;
+`1/61` and `1/54` are where the lever saturates, before and after the Lemma 5.2b erratum;
+`1/16` is a row of the kappa sweep; `1/4` is the superseded truncation, discussed at length.
+So the check has to be a *declared* one: canonical value plus alternatives with reasons, and a
+value outside the list is the failure. That is what a figure left behind after a correction
+would look like, and it is what the guard now watches for.
+
+**The other direction is where the real hazard lives.** A value naming more than one quantity:
+
+```text
+  0.35   Thm 4.1's Stage-4 curvature; Lemma 5.2b's pre-correction lambda_0 floor
+  0.11   the smooth remnant |c''|, hence E's second term;
+         the collision band's lower edge 0.11 uh P^(-1/4);
+         Step 5a's ratio V/S <= 0.11 P^(-7/48) at S >= 0.60 P^(-5/8)
+  1.2    the Stage-4 curvature's upper end [0.35, 1.20];
+         the (s2) window length >= 1.2 P^(3/4); Step 5's cell sum 1.2 R^(1/2) Y' P^(-1/4)
+  1.5    the cell count 1.5 h P^(1/2) + 1; the offset term's floor (3/2)|j|P^(3/4)
+```
+
+`0.35` is the one that cost an afternoon, and it was the only one the manuscript distinguished
+-- implicitly, in Appendix A.1's remark that two certificate rows divide by the Stage-4
+curvature rather than by the anchor. `0.11` names three unrelated quantities and carried no
+warning at all; nor did `1.2` or `1.5`.
+
+None of them is an error and none is avoidable by renaming: each constant is what its own
+derivation produces. What is avoidable is reading across them. The table is now printed in
+Appendix A.1 beside the `sqrt_0_35_lower` remark, and `tools/manuscript_self_audit.py` keeps
+it current -- a numeral acquiring a new role has to be added, and a value leaving the table
+fails the suite. Two tests demonstrate both guards firing: one deletes the table, one stales
+`P_0` to its pre-erratum `8.9e13`.
+
+The tractable subset the question asked for turns out to be the second direction, not the
+first. The first needs a hand-written exception for every legitimate multiplicity and catches
+only staleness; the second is a short closed list and catches the error that has actually
+happened here.

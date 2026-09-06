@@ -6551,6 +6551,38 @@ the anchor do not: `row_s3s2_bdry_a` and the Step 5b(a) \(q''\) ratio
 divide by Theorem 4.1's Stage-4 curvature \(0.35\,uh\,P^{-3/4}\), so
 `sqrt_0_35_lower` stays and `sqrt_0_56_lower` is the new one beside it.
 
+*Constants that share a value.* That last remark is an instance of the
+one systematic hazard in a paper carrying this many explicit
+constants: a numeral that names more than one quantity. Two rows
+looked as though they carried Lemma 5.2b's anchor because its
+pre-correction floor was \(0.35\) and Theorem 4.1's Stage-4 curvature
+is also \(0.35\). Reading one for the other cost an afternoon once,
+and it is not the only such pair. The collisions, so that a reader
+meeting a familiar numeral knows to check which quantity it is:
+
+\[
+\begin{array}{ll}
+\text{value} & \text{quantities it names}\\[2pt]
+0.35 & \text{Thm 4.1's Stage-4 curvature } 0.35uhP^{-3/4}\\
+     & \text{Lemma 5.2b's pre-correction } \lambda_0 \text{ floor (now }0.56)\\[2pt]
+0.11 & \text{the smooth remnant } |c''|\le0.11kP^{-7/8}, \text{ hence } E\text{'s second term}\\
+     & \text{the collision band's lower edge } 0.11uhP^{-1/4}\\
+     & \text{Step 5a's ratio } V/S\le0.11P^{-7/48} \text{ at } S\ge0.60P^{-5/8}\\[2pt]
+1.2 & \text{the Stage-4 curvature's upper end, } [0.35,1.20]uhP^{-3/4}\\
+    & \text{the (s2) window length } \ge1.2P^{3/4}\\
+    & \text{Step 5's cell sum } 1.2R^{1/2}Y'P^{-1/4}\\[2pt]
+1.5 & \text{the cell count } 1.5hP^{1/2}+1\\
+    & \text{the offset term's floor } \tfrac32|j|P^{3/4}
+\end{array}
+\]
+
+None of these is an error and none is avoidable by renaming --- each
+constant is what its own derivation produces. What is avoidable is
+reading across them, and the two places this paper does distinguish
+them explicitly are this appendix's `sqrt_0_35_lower` and the erratum
+at Lemma 5.2b. `tools/manuscript_self_audit.py` keeps the list
+current: a numeral acquiring a new role has to be added to it.
+
 ### A.1 The certificate
 
 | threshold | site | least $P$ |
