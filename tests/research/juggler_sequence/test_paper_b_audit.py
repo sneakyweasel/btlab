@@ -219,3 +219,48 @@ def test_paper_explains_the_collected_coefficient() -> None:
     text = _paper()
     assert "collects two terms" in text
     assert r"\tfrac9{128}+\tfrac{18}{128}=\tfrac{27}{128}" in text
+
+
+# --- Lemma 3.10: the reindexing needs hypotheses as well as conclusions ---
+
+
+def test_the_reindexed_van_der_corput_bound_is_smaller() -> None:
+    """(L/2)(4L)^{1/2} + (4L)^{-1/2} = L lam^{1/2} + lam^{-1/2}/2."""
+    import math
+    for L, lam in ((1000.0, 1e-4), (10.0, 1.0), (1e6, 1e-9)):
+        reindexed = (L / 2) * (4 * lam) ** 0.5 + (4 * lam) ** -0.5
+        displayed = L * lam ** 0.5 + lam ** -0.5
+        assert reindexed <= displayed
+        assert abs(reindexed - (L * lam ** 0.5 + 0.5 * lam ** -0.5)) < 1e-9 * displayed
+
+
+@pytest.mark.parametrize("alpha,n_min", [(Fr(3, 4), 143), (Fr(5, 4), 87), (Fr(11, 8), 73),
+                                         (Fr(3, 2), 59), (Fr(15, 8), 17)])
+def test_the_binomial_correction_fits_rho_zero(alpha: Fr, n_min: int) -> None:
+    """a(2r+1)^alpha is not a monomial; the correction must fit inside g."""
+    rho0 = Fr(1, 112)
+    r = (n_min - 1) // 2
+    x = Fr(1, 2 * r)
+    assert abs(alpha - 2) * x / (1 - x) <= rho0                 # fits at n_min
+    x_prev = Fr(1, 2 * (r - 1))
+    assert abs(alpha - 2) * x_prev / (1 - x_prev) > rho0        # and not one step earlier
+
+
+def test_the_worst_exponent_is_three_quarters_and_it_clears_far_below_P0() -> None:
+    assert max(A.EXPONENT_SET_E, key=lambda a: abs(a - 2)) == Fr(3, 4)
+    assert 143 < 8.9e13
+
+
+def test_part_c_domination_needs_the_set_to_be_long() -> None:
+    """Lambda/2 + C <= Lambda iff Lambda >= 2C; below that both sides are O_E(1)."""
+    for C_E in (1, 5, 20):
+        assert C_E / 2 + C_E > C_E                     # short set: not dominated
+        assert (2 * C_E) / 2 + C_E <= 2 * C_E          # at the threshold: equality
+
+
+def test_paper_records_both_gaps() -> None:
+    text = _paper()
+    assert "(b) is about conclusions and these are about hypotheses" in text
+    assert r"n\ge143" in text
+    assert "by absorption, not for free" in text
+    assert "vacuous rather than false" in text

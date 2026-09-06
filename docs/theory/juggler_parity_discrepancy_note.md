@@ -902,6 +902,23 @@ the \(n\)-line, and a set of total length \(\Lambda\) contains at
 most \(\Lambda/2+C(E)\) odd integers, so trivial bounds displayed in
 \(n\)-length dominate.
 
+Two points the substitution needs, which (b) does not supply because
+(b) is about conclusions and these are about hypotheses. Lemma 3.8 asks
+for a two-term monomial, and \(a(2r{+}1)^{\alpha}\) is not one. Writing
+it as \(a2^{\alpha}r^{\alpha}\bigl(1+\tfrac1{2r}\bigr)^{\alpha}\), the
+correction has to be carried by that lemma's own perturbation \(g\),
+and its second-derivative ratio
+\[
+\Bigl|\bigl(1+\tfrac1{2r}\bigr)^{\alpha-2}-1\Bigr|
+\ \le\ \frac{|\alpha-2|}{2r}\Bigl(1-\tfrac1{2r}\Bigr)^{-1}
+\]
+clears \(\rho_0(E)=\tfrac1{112}\) from \(n\ge143\), the worst case
+being \(\alpha=\tfrac34\). So the hypothesis does survive everywhere
+this paper works --- but by absorption, not for free. And in (c) the
+domination \(\Lambda/2+C(E)\le\Lambda\) needs \(\Lambda\ge2C(E)\); on
+shorter sets both sides are \(O_E(1)\), so the comparison there is
+vacuous rather than false.
+
 Every application of Lemmas 3.3 and 3.7–3.9 in Sections 3–6 is to be
 read through this substitution; no displayed constant below needs
 adjustment.

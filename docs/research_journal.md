@@ -29214,3 +29214,63 @@ Why
 Best next question
 - none in this direction. The A.6 trade-off is fully characterised.
 ```
+
+ ### Lemma 3.10 checks its conclusions and not its hypotheses
+
+New direction: the blanket lemma. Every derivative test in Sections
+3–6 is "to be read through" the parity substitution `n = 2r+1`, and
+Lemma 3.10 closes with *no displayed constant below needs adjustment*.
+The conclusions check out exactly. Two hypotheses were not checked.
+
+**(b) is about conclusions.** The reindexed van der Corput bound is
+`(L/2)(4λ)^{1/2} + (4λ)^{-1/2} = L λ^{1/2} + λ^{-1/2}/2`, so the
+displayed bound dominates with the second term halved — correct, and
+the same for all three terms of Lemma 3.8, two of which halve.
+
+**But Lemma 3.8 asks for a two-term monomial, and `a(2r+1)^α` is not
+one.** Writing it `a 2^α r^α (1 + 1/(2r))^α`, the correction has to be
+carried by that lemma's own perturbation `g`, with
+
+```text
+   |(1 + 1/(2r))^{α-2} - 1| <= |α-2|/(2r) · (1 - 1/(2r))^{-1}
+```
+
+clearing `ρ_0(E) = 1/112` from `n >= 143`, worst at `α = 3/4`. So the
+hypothesis survives everywhere the paper works — by absorption, not
+for free, and the lemma did not say so.
+
+**And (c)'s domination has a range condition.** `Λ/2 + C(E) <= Λ`
+needs `Λ >= 2C(E)`; on shorter sets both sides are `O_E(1)`, so the
+comparison is vacuous rather than false.
+
+Neither gap changes a constant. Both are now stated, because a blanket
+that says "no adjustment needed" invites a reader to stop checking, and
+the reason no adjustment is needed is not the reason given.
+
+```text
+What was learned
+- a lemma can verify the right thing about the wrong side: (b) shows
+  the conclusion shrinks and says nothing about whether the hypothesis
+  still holds, which for Lemma 3.8 it does not, directly
+- the margin is enormous (n >= 143 against P_0 = 8.9e13), which is
+  why this survived; harmless gaps in blanket claims are the ones
+  that last
+Strongest theorem
+- the binomial correction fits rho_0 = 1/112 from n >= 143, worst case
+  alpha = 3/4, so Lemma 3.8's hypothesis survives the substitution by
+  absorption
+Strongest refutation
+- none; both conclusions stand, only their justification was partial
+Reusable machinery
+- five tests over the reindexed bounds, the per-exponent absorption
+  thresholds, and (c)'s range condition
+Branch status
+- PROMOTE
+Why
+  Sections 3 to 6 lean on this substitution at every derivative test,
+  and its closing sentence tells a reader nothing needs checking. Two
+  things did. Both are fine, and now both are visible.
+Best next question
+- the same question for Lemma 3.6, the other blanket: it expands class
+  indicators everywhere. Are its hypotheses re-verified at each use?
+```
