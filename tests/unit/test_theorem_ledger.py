@@ -193,3 +193,37 @@ def test_a_row_does_not_name_a_declaration_other_than_its_own():
         if named and decl not in named:
             flagged.append(f"{row['id']}: decl={decl} but statement names {named}")
     assert flagged == [], flagged
+
+
+def test_no_row_credits_native_decide_to_a_kernel_checked_declaration():
+    """Tactic names drift out of prose the way constants do.
+
+    ``J-cyclemin-walk-ostrowski-arithmetic`` credited ``theta_sandwich_upper/lower`` to
+    ``native_decide`` after both had been converted to ``norm_num``; their own docstrings
+    said "Kernel-checked". A row naming a declaration beside the words ``native_decide``
+    should be naming one that actually uses it.
+    """
+    import re
+
+    for row in _entries():
+        statement = row.get("statement", "")
+        if "native_decide" not in statement:
+            continue
+        lean = str(row.get("lean") or "").strip()
+        if not lean.endswith(".lean"):
+            continue
+        path = ROOT / "formal" / lean
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        # names appearing within 120 characters before the word native_decide
+        for m in re.finditer(r"native_decide", statement):
+            window = statement[max(0, m.start() - 120): m.start()]
+            for name in re.findall(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+", window):
+                block = re.search(
+                    r"(?:^|\n)\s*theorem\s+" + re.escape(name) + r"(?![A-Za-z0-9_'])(.*?)(?=\n\s*(?:theorem|lemma|def|/--)|\Z)",
+                    text, re.S)
+                if block is not None:
+                    assert "native_decide" in block.group(1), (
+                        f"{row['id']}: names {name} beside native_decide, but it does not use it"
+                    )

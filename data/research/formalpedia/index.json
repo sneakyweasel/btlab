@@ -7583,7 +7583,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 47,
+      "line": 49,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "lemma51iii_regroup",
       "trust": "kernel"
@@ -7593,7 +7593,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 63,
+      "line": 65,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "corner_floor_range",
       "trust": "kernel"
@@ -7603,7 +7603,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 93,
+      "line": 95,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "offset_abs_le_three",
       "trust": "kernel"
@@ -7613,7 +7613,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 110,
+      "line": 112,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "carry_eq_floor_shifted",
       "trust": "kernel"
@@ -7623,7 +7623,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 130,
+      "line": 132,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "offset_range_with_carries",
       "trust": "kernel"
@@ -7633,7 +7633,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 140,
+      "line": 142,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "offset_abs_le_two",
       "trust": "kernel"
@@ -7643,17 +7643,17 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 169,
+      "line": 171,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "double_difference_lt_one",
       "trust": "kernel"
     },
     {
-      "doc": "**The `\u03b2`-product bound.** From `\u03b2_i \u2264 3\u221a2 h_i q + 1` with `q = P^(1/2)`, `h_i \u2265 1` and `q \u2265 10`, the product satisfies `\u03b2\u2081\u03b2\u2082 \u2264 19 h\u2081h\u2082 q\u00b2`. The manuscript's `(3\u221a2)\u00b2 = 18` becomes `19` once the `+1`s are carried honestly; `4.25 \u2265 3\u221a2` is the rational substitute.",
+      "doc": "**The `\u03b2`-product bound.** From `\u03b2_i \u2264 3\u221a2 h_i q + 1` with `q = P^(1/2)`, `h_i \u2265 1` and `q \u2265 10`, the product satisfies `\u03b2\u2081\u03b2\u2082 \u2264 19 h\u2081h\u2082 q\u00b2`, which is what the manuscript carries: `(3\u221a2)\u00b2 = 18` is the product of the leading terms, and the `+1`s take it to `19`. `4.25 \u2265 3\u221a2` is the rational substitute. Not an over-quantification, though it separates two variables one `n` determines: both factors are extremal at the same `n = 2P`, `\u03b2\u2081\u03b2\u2082/(h\u2081h\u2082P)` attains `18` exactly, and `4.25\u00b2 = 18.0625` is the whole of the loss. See the note at Lemma 5.1(iii) and `decoration_budget.beta_inventory_attained`.",
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 189,
+      "line": 196,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "beta_product_bound",
       "trust": "kernel"
@@ -7663,7 +7663,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 200,
+      "line": 207,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "three_sqrt_two_le",
       "trust": "kernel"
@@ -7673,7 +7673,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 206,
+      "line": 213,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gprime_form",
       "trust": "kernel"
@@ -7683,7 +7683,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 213,
+      "line": 220,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gprime_j_bound",
       "trust": "kernel"
@@ -7693,7 +7693,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 219,
+      "line": 226,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gprime_beta_bound",
       "trust": "kernel"
@@ -7703,17 +7703,17 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 228,
+      "line": 235,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_beta_cancellation",
       "trust": "kernel"
     },
     {
-      "doc": "**The printed `25` needs that cancellation.** With `\u03b2\u2081\u03b2\u2082 \u2264 19 h\u2081h\u2082P`, the combined coefficient `63/64` gives `18.7 \u2264 25`; bounding the two `\u03b2`-terms separately gives `99/64`, i.e. `29.3`, which exceeds `25`. The manuscript's bound is correct, but its naive derivation is not.",
+      "doc": "**The printed `25` needs that cancellation.** With `\u03b2\u2081\u03b2\u2082 \u2264 19 h\u2081h\u2082P`, the combined coefficient `63/64` gives `18.7 \u2264 25`; bounding the two `\u03b2`-terms separately gives `99/64`, i.e. `29.4`, which exceeds `25`. The manuscript's bound is correct, but its naive derivation is not.",
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 238,
+      "line": 245,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_naive_bound_fails",
       "trust": "kernel"
@@ -7723,7 +7723,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 244,
+      "line": 251,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_beta_bound",
       "trust": "kernel"
@@ -7733,7 +7733,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 252,
+      "line": 259,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_j_bound",
       "trust": "kernel"
@@ -7743,7 +7743,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 267,
+      "line": 274,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "offset_term_bounds",
       "trust": "kernel"
@@ -7753,7 +7753,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 280,
+      "line": 287,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "second_difference_term_bounds",
       "trust": "kernel"
@@ -7763,7 +7763,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 294,
+      "line": 301,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "run_length_arithmetic",
       "trust": "kernel"
@@ -7773,7 +7773,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 312,
+      "line": 319,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "run_length_conclusion",
       "trust": "kernel"
@@ -63905,7 +63905,7 @@
       "ledger": [
         {
           "id": "J-cyclemin-walk-ostrowski-arithmetic",
-          "statement": "Certified quotient arithmetic behind the Denjoy\u2013Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, native_decide); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators); and the greedy Ostrowski digit scan of Theorem 5.8 \u2014 for every window length 50508 \u2264 L < 301994 the greedy digits over the certified denominators reconstruct L and sum to at most 37 (window_digit_scan, pointwise window_digit_cap), attained at L = 275632 (window_digit_max), replacing the previously computational scan of J-cyclemin-walk-window-envelope. Convergent quality (the DK hypothesis, 1 Sep 2026 extension): the numerator recurrence yields 0,1,1,3,7,24,31,179,389,9126,18641,46408,65049 (theta_convergent_numerators, thetaConvergents_eq_zip), consecutive pairs are unimodular with p_{j+1}q_j \u2212 p_jq_{j+1} = (\u22121)^j (theta_convergents_unimodular), every pair is coprime (theta_convergents_coprime), every certified convergent satisfies |\u03b8 \u2212 p/q| < 1/q\u00b2 against the sandwich bounds (theta_convergent_quality \u2014 the quantitative hypothesis Denjoy\u2013Koksma needs per block), and multiplication by p permutes ZMod q (residue_mul_bijective, theta_block_permutations \u2014 the one-orbit-point-per-grid-cell fact). The cylinder-interval bridge from the shared endpoint prefix to the continued fraction of \u03b8 itself, and Denjoy\u2013Koksma's variation-versus-integral inequality, are classical (KNOWN) and stay prose in Paper A; the analytic envelope row J-cyclemin-walk-dk-envelope keeps its tag. Not a cycle obstruction and not a halt theorem.",
+          "statement": "Certified quotient arithmetic behind the Denjoy\u2013Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, norm_num, kernel-checked); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators); and the greedy Ostrowski digit scan of Theorem 5.8 \u2014 for every window length 50508 \u2264 L < 301994 the greedy digits over the certified denominators reconstruct L and sum to at most 37 (window_digit_scan, pointwise window_digit_cap), attained at L = 275632 (window_digit_max), replacing the previously computational scan of J-cyclemin-walk-window-envelope. Convergent quality (the DK hypothesis, 1 Sep 2026 extension): the numerator recurrence yields 0,1,1,3,7,24,31,179,389,9126,18641,46408,65049 (theta_convergent_numerators, thetaConvergents_eq_zip), consecutive pairs are unimodular with p_{j+1}q_j \u2212 p_jq_{j+1} = (\u22121)^j (theta_convergents_unimodular), every pair is coprime (theta_convergents_coprime), every certified convergent satisfies |\u03b8 \u2212 p/q| < 1/q\u00b2 against the sandwich bounds (theta_convergent_quality \u2014 the quantitative hypothesis Denjoy\u2013Koksma needs per block), and multiplication by p permutes ZMod q (residue_mul_bijective, theta_block_permutations \u2014 the one-orbit-point-per-grid-cell fact). The cylinder-interval bridge from the shared endpoint prefix to the continued fraction of \u03b8 itself, and Denjoy\u2013Koksma's variation-versus-integral inequality, are classical (KNOWN) and stay prose in Paper A; the analytic envelope row J-cyclemin-walk-dk-envelope keeps its tag. Not a cycle obstruction and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]

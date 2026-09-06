@@ -4406,19 +4406,19 @@
         {
           "decl": "residue_mul_bijective",
           "line": 279,
-          "score": 0.119,
+          "score": 0.117,
           "trust": "kernel"
         },
         {
           "decl": "theta_convergent_denominators",
           "line": 146,
-          "score": 0.096,
+          "score": 0.094,
           "trust": "kernel"
         },
         {
           "decl": "theta_convergent_quality",
           "line": 264,
-          "score": 0.087,
+          "score": 0.085,
           "trust": "kernel"
         }
       ],
@@ -4447,7 +4447,7 @@
         "residue_mul_bijective",
         "theta_block_permutations"
       ],
-      "statement": "Certified quotient arithmetic behind the Denjoy\u2013Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, native_decide); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonic"
+      "statement": "Certified quotient arithmetic behind the Denjoy\u2013Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, norm_num, kernel-checked); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.lo"
     },
     {
       "candidates": [
