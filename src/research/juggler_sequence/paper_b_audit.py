@@ -1425,10 +1425,19 @@ def kernel_block_scaling(P: int = 10**5, k: int = 1, bins: int = 256) -> dict[st
         "no_cancellation_exponent": 1.0,
     }
 
-def _block_scaling_rows(series: dict[str, list[mp.mpc]], N: int, bins: int) -> tuple[list[dict[str, Any]], dict[str, float]]:
-    """Aggregate per-bin partial sums into 256, 64, 16, 4 and 1 blocks; fit log rms against log L."""
+# Block counts the rows report, and the subset the exponent is fitted over.  Calibrated on iid
+# unit phases, whose exponent is exactly 1/2: fitting all of them (the original 256/64/16/4/1)
+# returns 0.451 +- 0.112, because the one-block point is a single Rayleigh sample and log of one
+# sample is biased low.  Fitting only the counts with at least 16 samples returns 0.4965 +- 0.047 --
+# a seventh of the bias and less than half the spread.  block_exponent_calibration recomputes both.
+BLOCK_COUNTS = (256, 128, 64, 32, 16, 4, 1)
+BLOCK_FIT_MIN_SAMPLES = 16
 
-    counts = [c for c in (bins, bins // 4, bins // 16, bins // 64, 1) if c >= 1]
+
+def _block_scaling_rows(series: dict[str, list[mp.mpc]], N: int, bins: int) -> tuple[list[dict[str, Any]], dict[str, float]]:
+    """Aggregate per-bin partial sums into blocks; fit log rms against log L over the good counts."""
+
+    counts = [c for c in BLOCK_COUNTS if 1 <= c <= bins and bins % c == 0]
     rows: list[dict[str, Any]] = []
     for count in counts:
         step = bins // count
@@ -1440,15 +1449,46 @@ def _block_scaling_rows(series: dict[str, list[mp.mpc]], N: int, bins: int) -> t
             row["rms_%s_over_sqrtL" % name] = r / math.sqrt(L)
         rows.append(row)
 
-    xs = [math.log(r["block_length"]) for r in rows]
+    fit_rows = [r for r in rows if r["blocks"] >= BLOCK_FIT_MIN_SAMPLES] or rows
+    xs = [math.log(r["block_length"]) for r in fit_rows]
     mx = sum(xs) / len(xs)
     denom = sum((x - mx) ** 2 for x in xs)
     exponents = {}
     for name in series:
-        ys = [math.log(r["rms_" + name]) for r in rows]
+        ys = [math.log(r["rms_" + name]) for r in fit_rows]
         my = sum(ys) / len(ys)
         exponents[name] = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / denom
     return rows, exponents
+
+
+def block_exponent_calibration(N: int = 5000, trials: int = 200, bins: int = 256, seed: int = 11) -> dict[str, Any]:
+    """What the instrument reports on data whose exponent is exactly 1/2.
+
+    An exponent read off five block lengths is a statistic, and until it is calibrated a reading of
+    0.24 cannot be told from a reading of 0.50.  Summing iid unit phases -- square-root cancellation
+    by construction -- and running the same fit gives the bias and the spread directly.
+    """
+
+    import numpy as np
+
+    rng = np.random.default_rng(seed)
+    counts = [c for c in BLOCK_COUNTS if 1 <= c <= bins and bins % c == 0]
+    fit_counts = [c for c in counts if c >= BLOCK_FIT_MIN_SAMPLES] or counts
+    idx = (np.arange(N) * bins) // N
+    out = {}
+    for label, use in (("fitted", fit_counts), ("all_block_counts", counts)):
+        vals = []
+        for _ in range(trials):
+            b = np.zeros(bins, dtype=complex)
+            np.add.at(b, idx, np.exp(2j * np.pi * rng.random(N)))
+            Ls = [N / c for c in use]
+            rms = [float(np.sqrt(np.mean(np.abs(b.reshape(c, bins // c).sum(axis=1)) ** 2))) for c in use]
+            vals.append(float(np.polyfit(np.log(Ls), np.log(rms), 1)[0]))
+        arr = np.array(vals)
+        out[label] = {"mean": float(arr.mean()), "bias": float(arr.mean() - 0.5), "sd": float(arr.std()),
+                      "q05": float(np.quantile(arr, 0.05)), "q95": float(np.quantile(arr, 0.95))}
+    out.update({"N": N, "trials": trials, "block_counts": counts, "fit_counts": fit_counts, "true_exponent": 0.5})
+    return out
 
 
 def level3_kernel_block_scaling(P: int = 10**4, k: int = 1, bins: int = 256) -> dict[str, Any]:
@@ -1542,13 +1582,15 @@ def parameter_cap_reach(P0: float = 8.9e13, ladder_top: int = 3 * 10**5) -> list
 # Measured once, out of band: the level-2 kernel at the least P for which (C3) admits k = 2, which
 # is 2^24 exactly (P^{1/24} = 2 on the nose).  8388608 terms, 688 s, 256 blocks of 32768 -- too
 # slow for the suite, so it is kept as a record rather than recomputed.  Both k behave alike and
-# at square-root scale; it is the first evaluation inside Theorem 5.3's uniformity clause.
+# at square-root scale; it is the first evaluation inside Theorem 5.3's uniformity clause.  The
+# exponents are the calibrated estimator's; the run was repeated after block_exponent_calibration
+# moved the fit off the one-block point, which shifted them from 0.5226 and 0.5202.
 KERNEL_AT_C3_THRESHOLD = {
     "P": 2**24,
     "terms": 8388608,
     "seconds": 688,
-    "k1": {"abs_K": 3000.675, "abs_over_sqrtN": 1.0360, "block_exponent": 0.5226},
-    "k2": {"abs_K": 3134.640, "abs_over_sqrtN": 1.0823, "block_exponent": 0.5202},
+    "k1": {"abs_K": 3000.675, "abs_over_sqrtN": 1.0360, "block_exponent": 0.5195},
+    "k2": {"abs_K": 3134.640, "abs_over_sqrtN": 1.0823, "block_exponent": 0.5078},
 }
 
 def kernel_k_uniformity(P: int = 3 * 10**4, ks: tuple[int, ...] = (1, 2, 4, 8, 16, 32, 64), bins: int = 256) -> dict[str, Any]:

@@ -30343,3 +30343,73 @@ Best next question
   terms a block. Is the shortest block below the correlation length of
   the sequence, and if so what does that do to the fitted exponent?
 ```
+
+## The exponents were partly the instrument, and the long block was the culprit
+
+Following the last entry's question about block length. The short block
+was not the problem; the long one was.
+
+**Calibration.** Sums of iid unit phases have cancellation exponent
+exactly `1/2`, so running the same fit on them measures the instrument.
+Over 200 samples at `N = 50000`:
+
+| estimator | mean | bias | sd | 5-95% |
+|---|---|---|---|---|
+| counts `256,64,16,4,1` (as used in three entries) | 0.455 | `-0.045` | 0.109 | `[0.27, 0.60]` |
+| counts with >= 16 samples, `256,128,64,32,16` | 0.493 | `-0.007` | 0.048 | `[0.41, 0.56]` |
+
+The one-block point is a single Rayleigh sample at the far end of the
+lever arm, and `log` of one sample is biased low. Dropping it and the
+four-block point removes six sevenths of the bias and more than half the
+spread.
+
+**What that means for what I wrote.** The readings of `0.18`, `0.24`
+and `0.13` in the last three entries sat inside the noise of exact
+square-root behaviour -- the old estimator returns below `0.27` five
+times in a hundred on data that is exactly square root. I reported them
+as measurements of the sequence. They were measurements of the fit.
+
+**Re-measured.** With the calibrated estimator every reading lands in
+`[0.409, 0.552]`, mean `0.485` over sixteen: `K_c` at `0.449, 0.482,
+0.552, 0.460`; the wave at `0.439, 0.529, 0.409, 0.475`; `K_3` floor at
+`0.436, 0.464, 0.552, 0.540`; `K_3` smooth at `0.502, 0.439, 0.506,
+0.489`. The `k`-sweep tightens to `[0.36, 0.56]` and `[0.45, 0.55]`.
+
+Nothing in the conclusions moves -- both kernels cancel at square-root
+scale, no `k` breaks it, the frontier's deficit is still the method
+rather than the phenomenon. What moves is that the scatter was mine, and
+the corrected numbers make the point more sharply than the originals:
+nothing in this data is distinguishable from exact square root.
+
+The `2^24` run was repeated in full under the calibrated estimator:
+`k = 1` moves from `0.5226` to `0.5195`, `k = 2` from `0.5202` to
+`0.5078`. At 8.4 million terms the estimator barely matters -- which is
+the point, since the bias lives where the samples are few.
+
+```text
+What was learned
+- a statistic read off five points is not a measurement until it has
+  been run on data whose answer is known
+- the noisiest point was the one with the most leverage, and it was
+  also the only one with a single sample
+- three entries' outliers were the fit, not the sequence; the
+  conclusions survive, the numbers did not
+Strongest theorem
+- none; this is a calibration
+Strongest refutation
+- my own readings of 0.18, 0.24 and 0.13, all inside the 5th percentile
+  of an exactly-square-root sequence under the old estimator
+Reusable machinery
+- block_exponent_calibration, BLOCK_COUNTS and BLOCK_FIT_MIN_SAMPLES,
+  one test asserting the bias and the spread
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  The lab has spent five passes finding checks that pass without
+  touching their subject. This one was mine: an instrument reporting
+  its own noise as a property of the Juggler map.
+Best next question
+- every instrument in the audit is now calibrated except the identity
+  census. What is its power -- how large a perturbation of a printed
+  constant would 480 samples fail to catch?
+```

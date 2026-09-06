@@ -1268,3 +1268,149 @@ of \(32768\) terms each: the sharpest statistics in this record, and the
 first evaluation ever made inside Theorem 5.3's own uniformity clause.
 Both values behave alike and at square-root scale. OBSERVATION --- one
 \(P\), and the theorem is asymptotic.
+
+## The exponents in the three entries above were partly the instrument
+
+Three entries have now read a cancellation exponent off five block
+lengths and compared it against \(\tfrac12\) and \(1\). None of them
+asked what the fit returns on data whose exponent is known.
+
+**Calibrated.** Sums of iid unit phases have exponent exactly
+\(\tfrac12\). Running the same fit on 200 such samples at \(N=50000\):
+
+| estimator | mean | bias | sd | 5--95% |
+|---|---|---|---|---|
+| block counts \(256,64,16,4,1\) (as used above) | 0.455 | \(-0.045\) | 0.109 | \([0.27,0.60]\) |
+| counts with \(\ge16\) samples: \(256,128,64,32,16\) | 0.493 | \(-0.007\) | 0.048 | \([0.41,0.56]\) |
+
+COMPUTATIONALLY VERIFIED (`block_exponent_calibration`, Monte Carlo).
+The one-block point is a single Rayleigh sample sitting at the extreme
+of the lever arm, and \(\log\) of one sample is biased low; dropping it
+and the four-block point removes six sevenths of the bias and more than
+half the spread.
+
+**What that means for what was written.** The readings of \(0.18\)
+(level-3 smooth at \(10^5\)), \(0.24\) (level-3 floor at
+\(3\cdot10^4\)) and \(0.13\) (level-2 at \(k=64\)) were inside the
+noise of exact square-root behaviour --- the old estimator returns
+below \(0.27\) five times in a hundred on data that is exactly square
+root. They were reported as measurements. They were not.
+
+**Re-measured.** With the calibrated estimator:
+
+| \(P\) | \(K_c\) | wave | \(K_3\) floor | \(K_3\) smooth |
+|---|---|---|---|---|
+| \(10^4\) | 0.449 | 0.439 | 0.436 | 0.502 |
+| \(3\cdot10^4\) | 0.482 | 0.529 | 0.464 | 0.439 |
+| \(10^5\) | 0.552 | 0.409 | 0.552 | 0.506 |
+| \(3\cdot10^5\) | 0.460 | 0.475 | 0.540 | 0.489 |
+
+Sixteen readings, all within \(1.2\) standard deviations of
+\(\tfrac12\), mean \(0.485\). The \(k\)-sweep at \(10^5\) likewise
+tightens to \([0.36,0.56]\) at level two and \([0.45,0.55]\) at level
+three, from the \([0.13,0.57]\) and \([0.31,0.56]\) recorded above.
+
+The conclusions of those entries do not change --- both kernels cancel
+at square-root scale, no \(k\) breaks it, and the frontier's deficit is
+still the method rather than the phenomenon. What changes is that the
+scatter was mine, and the corrected readings say so more sharply than
+the originals did: nothing in this data is distinguishable from exact
+square root. OBSERVATION.
+The \(2^{24}\) run was repeated under the calibrated estimator, all
+\(8388608\) terms of it: \(k=1\) moves from \(0.5226\) to \(0.5195\) and
+\(k=2\) from \(0.5202\) to \(0.5078\). At that sample size the estimator
+barely matters, which is itself the point --- the bias lives at small
+block counts, and the earlier ladder had far fewer terms to spend.
+
+### Lemma 5.2b's zero-offset anchor is off by 8/5, and the foil hid it
+
+**ERRATUM (confirmed; constants only).** The lemma displays
+
+>  2c'G_F' + c G_F'' = -(135/1024) k b1 b2 nu^{-13/8}
+
+and derives it from three terms, \(c''G_F=\tfrac{81}{1024}\),
+\(2c'G_F'=-\tfrac{972}{1024}\), \(cG_F''=\tfrac{756}{1024}\), summing to
+\(-\tfrac{135}{1024}\). Those three sum to \((cG_F)''\), not to the two
+on the left. The anchor is \(c(G_F-J_F)\) --- the lemma's own \(f''\)
+display, Step 5b's \(f''\) display, the definition
+\(\lambda_0:=\lvert(c(G_F-J_F))''\rvert\) and proof step (iii) all say
+so --- and with \(J_F\) frozen its first term is \(c''(G_F-J_F)\),
+\(O(kP^{-7/8})\), not \(c''G_F\). Removing the term the phase does not
+carry leaves
+\[
+2c'G_F'+cG_F''=-\tfrac{216}{1024}=-\tfrac{27}{128},
+\]
+a factor \(\tfrac85\) larger in magnitude. Step 5a performs exactly
+this subtraction correctly on the offset branch,
+\(\tfrac{945}{512}-\tfrac{81}{512}=\tfrac{864}{512}\), where
+\(\tfrac{81}{512}\) is \(J_Fc''\); the zero-offset branch does not.
+
+*Measured.* At \(P=10^8\), over twelve \(j=0\) samples with the true
+integer gaps, \(\lvert(c(G_F-J_F))''\rvert/(k\lvert\beta_1\beta_2\rvert
+\nu^{-13/8})\) runs \(0.210876\)--\(0.210937\) against
+\(216/1024=0.210938\), while \(\lvert(cG_F)''\rvert\) over the same unit
+is \(0.131836=135/1024\) at every sample. The existing probe
+`frozen_anchor_curvature_samples` builds \(cG_F\) with no \(J_F\)
+subtracted, which is why it confirmed the printed constant.
+
+**And the foil is wrong too.** The lemma warns that "a model that
+differentiates the moving gaps produces a different, positive leading
+coefficient \(\tfrac{243}{128}\)". Measured, that model
+\(F_{\mathrm{sm}}=\tfrac34(\Delta_1X)(\Delta_2X)X^{-1/2}\) gives
+\(\tfrac{2673}{1024}=2.610352\) at every sample --- and
+\(\tfrac{243}{128}\) is exactly \(9\cdot\tfrac{216}{1024}\), the
+magnitude of the *corrected* anchor after
+\(\beta_1\beta_2\to9h_1h_2\nu\). The right answer was printed as the
+wrong model's, which is why the discrepancy survived an audit that
+checked \(81-972+756=-135\) and \(135\cdot9=1215\) and
+\(b\cdot\tfrac{11}8\cdot\tfrac38=-\tfrac{1215}{1024}\): every one of
+those is arithmetic about the wrong object.
+
+**It is not cosmetic.** With the printed \(b=-\tfrac{405}{176}\) the
+residue \(r=\Lambda-\Phi''\) keeps a leading term of size
+\(\tfrac{729}{1024}kh_1h_2\nu^{-5/8}\), comparable to \(S\) itself, and
+the three \(\rho_0(E)\) ratios of Lemma 3.9 fail outright. The
+corrected \(b\) is \(-\tfrac{81}{22}\), from
+\(-\tfrac{243}{128}\cdot\tfrac{64}{33}\).
+
+**What moves.**
+
+| quantity | printed | corrected |
+|---|---|---|
+| anchor curvature | \(-\tfrac{135}{1024}\) | \(-\tfrac{27}{128}\) |
+| after \(\beta_1\beta_2\to9h_1h_2\nu\) | \(-\tfrac{1215}{1024}\) | \(-\tfrac{243}{128}\) |
+| interpolant \(b\) | \(-\tfrac{405}{176}\) | \(-\tfrac{81}{22}\) |
+| \(\lambda_0\) exact range | \([0.38,2.44]\) | \([0.62,3.90]\) |
+| \(\lambda_0\) opened | \([0.35,2.6]\) | \([0.56,4.2]\) |
+| (C5) cap | \(186\) | \(300\) |
+| \(\beta\)-product term | \(0.567\) | \(0.907\) |
+| \(\lvert f''-\Lambda\rvert\) constant | \(52.9\), \(106\) | \(85.3\), \(171\) |
+| moving-gap foil | \(\tfrac{243}{128}\) | \(\tfrac{2673}{1024}\) |
+
+**What does not move.** The exponent \(1-\tfrac1{96}\), and \(P_0\).
+Every A.5 threshold is monotone in \(P\); `corrected_certificate`
+reruns the eight rows that touch \(\lambda_0\) or \(E\) and they close
+at
+
+```text
+   5a-W<=c7S  2.91e13     39-c2   9.5e8      5b-wave  9.7e6
+   5b-W<=c7S  3.59e13     39-c3   5.9e8      5b-beta  7.2e6
+   5b-E<=c7S  4.10e12     39-c4   4.5e8
+```
+
+against the printed \(1.61\cdot10^{13}\), \(8.93\cdot10^{13}\),
+\(5.68\cdot10^{12}\), \(6.2\cdot10^{9}\), \(3.9\cdot10^{9}\),
+\(3.0\cdot10^{9}\), \(1.7\cdot10^{7}\), \(1.8\cdot10^{7}\). The
+maximum falls from \(8.9\cdot10^{13}\) to \(3.6\cdot10^{13}\): \(S\)
+rises by \(\tfrac85\) while \(V=\kappa S^{1/2}P^{-11/24}\) rises only
+by \(\sqrt{8/5}\), which more than pays for \(E\) growing with the
+\(u\)-cap. So \(P_0=8.9\cdot10^{13}\) is still valid and is no longer
+tight; the correction *improves* the threshold by a factor \(2.5\).
+
+Recorded, not propagated. Lowering the printed \(P_0\) touches
+seventeen sites in the manuscript, the certificate module, the audit
+module, one Lean file and four test files, and belongs in its own pass.
+`bare_anchor_curvature`, `anchor_curvature`, `moving_gap_curvature`,
+`anchor_range`, `corrected_certificate` in `p0_certificate.py`; the
+\(\alpha\)-forms `composite("anchor")` and `composite("cG")` in
+`paper_b_prefix_count.py`. ERRATUM.

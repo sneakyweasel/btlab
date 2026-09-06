@@ -586,7 +586,7 @@ def test_the_kernel_sum_leaves_the_module_precision_alone() -> None:
 def test_the_block_variance_measures_an_exponent_where_one_number_cannot() -> None:
     """Square root is 0.5 and no cancellation is 1.0; the single-sample ladder scattered -0.13..1.56."""
     r = A.kernel_block_scaling(P=3 * 10**4)
-    assert r["terms"] == 15000 and len(r["blocks"]) == 5
+    assert r["terms"] == 15000 and len(r["blocks"]) == len(A.BLOCK_COUNTS)
     assert r["blocks"][0]["blocks"] == 256 and r["blocks"][-1]["blocks"] == 1
     assert 0.15 < r["kernel_exponent"] < 0.75
     assert 0.15 < r["wave_exponent"] < 0.75
@@ -655,3 +655,18 @@ def test_the_recorded_run_sits_exactly_at_the_C3_threshold() -> None:
     for k in ("k1", "k2"):
         assert 0.4 < rec[k]["block_exponent"] < 0.6
         assert 0.5 < rec[k]["abs_over_sqrtN"] < 2
+
+
+# --- the instrument, measured against data whose exponent is known ---
+
+
+def test_the_block_exponent_estimator_is_calibrated() -> None:
+    """On iid unit phases the true exponent is 1/2, so the fit's bias and spread are readable."""
+    cal = A.block_exponent_calibration(N=5000, trials=120)
+    assert cal["fit_counts"] == [256, 128, 64, 32, 16]
+    assert abs(cal["fitted"]["bias"]) < 0.03
+    assert cal["fitted"]["sd"] < 0.07
+    # and the estimator that fitted every block count, the one used before this calibration,
+    # was biased by an order of magnitude more and twice as noisy
+    assert cal["all_block_counts"]["bias"] < -0.02
+    assert cal["all_block_counts"]["sd"] > 1.7 * cal["fitted"]["sd"]
