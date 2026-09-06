@@ -36876,3 +36876,79 @@ The test I care about most is not the audit but the contract: for every
 parsed row, evaluate the claim at A.1's printed threshold and require
 it true. Twenty-three rows, and it would have caught both of these on
 the day they were written.
+
+## Three numbers that looked unrelated
+
+A factor going as `nu^(1/2)`, charged at the far end of a dyadic block,
+costs exactly `sqrt2`. So an apart-charging cost built only of such
+charges is `2^(k/2)`. All five sites obey it:
+
+```text
+  site                          cost      2^(k/2)   k    residual
+  Lem 5.1(iii) |G'| curvature   3.9506    4.0000    4    0.9877
+  Lem 5.1(iii) |G''| curvature  2.8219    2.8284    3    0.9977
+  Thm 5.3 j=0 anchor            2.0938    2.0000    2    1.0469
+  Lem 5.2b lambda_0 width       4.0788    4.0000    4    1.0197
+  Thm 4.1 curvature width       2.0386    2.0000    2    1.0193
+```
+
+The pattern does not break where the site is a single constant rather
+than a range: `3.95`, `2.82`, `2.09` are `2^2`, `2^(3/2)`, `2^1`. A
+`beta` product supplies two charges at every site; the rest come from
+charging the power of `nu` apart as well --- two more at `|G'|` and
+`lambda_0`, one at `|G''|`, none at the `j = 0` anchor or the Stage-4
+curvature. So `k` runs `2` to `4`, and the residuals `0.9877 ... 1.0469`,
+two of them below `1`, are the only part of these five constants that was
+ever a choice.
+
+Separately, and not my edit: `st5b-qpp` moved under me mid-pass to the
+merged `48.9 P^(-3/16)` form, which put it at `1.662e12` against
+Appendix A.5's four printed statements of `2.98e11` and dropped the
+`c_7` lever from `120.26` to `21.57`. Three pinned tests failed inside a
+minute. The other session settled it the right way: the lambda always
+checked the two-term bound, and it was the *claim string* that printed
+the merged one --- `48.9 (3.0e11)^(-3/16) = 0.3446`, false at its own
+threshold. `39-beta` got the same repair in the same edit (`2.31` printed
+against `2.30422` derived, failing at `1.83e7`). Two rows in one pass
+where the string beside the predicate had been rounded outward.
+
+```text
+Phase-end report
+Question
+- are the first three apart-charging costs powers of two once the
+  rounding is divided out, or does the pattern break where the site is a
+  single constant rather than a range
+Instruments
+- apart_costs_are_powers_of_root_two: each site's cost against the
+  nearest half-integer power of two, with the charge count and residual
+Ledger tags
+- EXACT: a nu^(1/2) factor charged at the far block end costs sqrt2, so a
+  cost of k such charges is 2^(k/2); a beta product supplies two of them
+- COMPUTATIONALLY VERIFIED: all five costs are half-integer powers of
+  two, worst residual 0.0469; charges [4, 3, 2, 4, 2]; the nu-power adds
+  [2, 1, 0, 2, 0]; residuals share nothing, ratio 1.0599
+- COMPUTATIONALLY VERIFIED: the merged qpp predicate clears at 1.6620e12
+  and takes the lever to 21.575; the two-term one clears at 2.9817e11
+  with lever 120.26; 48.9 (3.0e11)^(-3/16) = 0.3446
+- OBSERVATION: the residuals go both ways, so the rounding was per-site,
+  not a uniform margin
+Strongest theorem
+- the charge count, not the site, determines the cost: every apart-
+  charged constant in the paper is 2^(k/2) times a rounding
+Strongest refutation
+- none this pass; the qpp divergence I flagged was resolved in the
+  direction that keeps A.5
+Reusable machinery
+- apart_costs_are_powers_of_root_two, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  The apart-charging account is closed: five sites, one mechanism, and
+  now one formula for the size of the loss. Every repair is a manuscript
+  change belonging to the other session.
+Best next question
+- twice this pass a printed claim string was false at its own row's
+  threshold while the lambda beside it was right. Is that two rows or a
+  class? Substitute each threshold row's printed constants back into its
+  own predicate at its own P_min and see how many claim strings fail.
+```

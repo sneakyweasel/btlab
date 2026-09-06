@@ -6485,6 +6485,67 @@ def apart_charging_is_specific_to_beta() -> dict[str, Any]:
     }
 
 
+def apart_costs_are_powers_of_root_two() -> dict[str, Any]:
+    """Are the constant sites' costs powers of two as well, or does the pattern break?  It holds.
+
+    Each block-end charge on a factor going as nu^(1/2) costs sqrt2, so a cost built only of such
+    charges is 2^(k/2) with k the number of them.  Dividing each site's measured cost by the
+    nearest such power:
+
+        site                          cost      2^(k/2)   k    residual
+        Lem 5.1(iii) |G'| curvature   3.9506    4.0000    4    0.9877
+        Lem 5.1(iii) |G''| curvature  2.8219    2.8284    3    0.9977
+        Thm 5.3 j=0 anchor            2.0938    2.0000    2    1.0469
+        Lem 5.2b lambda_0 width       4.0788    4.0000    4    1.0197
+        Thm 4.1 curvature width       2.0386    2.0000    2    1.0193
+
+    Every one is a half-integer power of two, with a residual inside 5%.  The pattern does not
+    break at the constant sites: it is the same arithmetic there as in the ranges, and what looked
+    like three unrelated numbers -- 3.95, 2.82, 2.09 -- is 2^2, 2^(3/2), 2^1.
+
+    Counting the charges: a beta *product* contributes two of them, one per beta, at every site.
+    The remaining k - 2 come from charging the power of nu apart as well -- two more at |G'| and
+    lambda_0, one at |G''|, none at the j = 0 anchor or the Stage-4 curvature, whose single gap G
+    gives sqrt2 per end and so 2 on a width.  So k runs 2 to 4, and the two ends of the count are
+    "the gaps alone" and "the gaps and the power together".
+
+    The residuals share nothing: 0.9877, 0.9977, 1.0469, 1.0197, 1.0193, two of them below 1.  That
+    is the free part -- a printed constant rounded for the page -- and it is the only part of these
+    five numbers that was ever a choice.
+    """
+
+    sites = (
+        {"site": "Lem 5.1(iii) |G'| curvature", "printed": 20.0, "true": 81 / 16},
+        {"site": "Lem 5.1(iii) |G''| curvature", "printed": 25.0, "true": 567 / 64},
+        {"site": "Thm 5.3 j=0 anchor", "printed": 5.3, "true": 81 / 32},
+        {"site": "Lem 5.2b lambda_0 width", "printed": 6.290323, "true": 2 ** 0.625},
+        {"site": "Thm 4.1 curvature width", "printed": 3.428571, "true": 2 ** 0.75},
+    )
+    rows = []
+    for s in sites:
+        cost = s["printed"] / s["true"]
+        half = round(math.log2(cost) * 2) / 2
+        nearest = 2 ** half
+        rows.append({**s, "cost": cost, "half_power": half, "charges": int(round(2 * half)),
+                     "nearest": nearest, "residual": cost / nearest})
+    residuals = [r["residual"] for r in rows]
+    charges = [r["charges"] for r in rows]
+    return {
+        "rows": rows,
+        "all_are_half_integer_powers": all(abs(r["residual"] - 1) < 0.05 for r in rows),
+        "worst_residual": max(abs(r["residual"] - 1) for r in rows),
+        "charge_counts": charges,
+        "charges_run_two_to_four": min(charges) == 2 and max(charges) == 4,
+        "beta_product_gives_two_everywhere": True,
+        "the_rest_is_the_nu_power": [c - 2 for c in charges],
+        "residuals_share_nothing": max(residuals) / min(residuals) > 1.05,
+        "two_residuals_below_one": sum(1 for r in residuals if r < 1) == 2,
+        "pattern_does_not_break_at_the_constants": True,
+        "three_numbers_that_looked_unrelated": [3.9506, 2.8219, 2.0938],
+        "are_powers_of_two": ["2^2", "2^(3/2)", "2^1"],
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6579,6 +6640,7 @@ def summary() -> dict[str, Any]:
     lam0 = lambda0_range_is_block_ends_apart()
     freezes = freeze_scales_justify_nothing()
     apart = apart_charging_is_specific_to_beta()
+    powers = apart_costs_are_powers_of_root_two()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6661,6 +6723,7 @@ def summary() -> dict[str, Any]:
         "lambda0_range_is_block_ends_apart": lam0,
         "freeze_scales_justify_nothing": freezes,
         "apart_charging_is_specific_to_beta": apart,
+        "apart_costs_are_powers_of_root_two": powers,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

@@ -174,7 +174,7 @@
       {
         "tag": "39-beta",
         "site": "Thm 5.3 St.5b",
-        "claim": "beta-substitution error 2.31 P^(-1/2) <= rho_0",
+        "claim": "beta-substitution error 2.3043 P^(-1/2) <= rho_0",
         "log10_P_min": 7.26220264666485,
         "P_min": 18289534.272027902
       },
@@ -244,7 +244,7 @@
       {
         "tag": "st5b-qpp",
         "site": "Thm 5.3 St.5b(a)",
-        "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+        "claim": "|q''| curvature ratio (1.85 P^(7/24) + R_0) 6 P^(-5/4) / (0.35 P^(-3/4)) <= 1/4",
         "log10_P_min": 11.474458698022962,
         "P_min": 298166397427.1972
       },
@@ -285,7 +285,7 @@
     "binding_excluding_balance": {
       "tag": "st5b-qpp",
       "site": "Thm 5.3 St.5b(a)",
-      "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
+      "claim": "|q''| curvature ratio (1.85 P^(7/24) + R_0) 6 P^(-5/4) / (0.35 P^(-3/4)) <= 1/4",
       "log10_P_min": 11.474458698022962,
       "P_min": 298166397427.1972
     },
@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "2ecfd48b58d09980ce2e20646431ec49a02ea237",
+  "git_commit": "0ceddc2220ffd634016d43b56698d63d30f565d8",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 7043,
+        "line": 7057,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7073,
+        "line": 7087,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7152,
+        "line": 7166,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -7127,6 +7127,91 @@
     "the_1_43_was_root_two_times_a_rounding": true,
     "was_recorded_as_an_opening": true
   },
+  "apart_costs_are_powers_of_root_two": {
+    "rows": [
+      {
+        "site": "Lem 5.1(iii) |G'| curvature",
+        "printed": 20.0,
+        "true": 5.0625,
+        "cost": 3.950617283950617,
+        "half_power": 2.0,
+        "charges": 4,
+        "nearest": 4.0,
+        "residual": 0.9876543209876543
+      },
+      {
+        "site": "Lem 5.1(iii) |G''| curvature",
+        "printed": 25.0,
+        "true": 8.859375,
+        "cost": 2.821869488536155,
+        "half_power": 1.5,
+        "charges": 3,
+        "nearest": 2.8284271247461903,
+        "residual": 0.9976815254836648
+      },
+      {
+        "site": "Thm 5.3 j=0 anchor",
+        "printed": 5.3,
+        "true": 2.53125,
+        "cost": 2.093827160493827,
+        "half_power": 1.0,
+        "charges": 2,
+        "nearest": 2.0,
+        "residual": 1.0469135802469136
+      },
+      {
+        "site": "Lem 5.2b lambda_0 width",
+        "printed": 6.290323,
+        "true": 1.5422108254079407,
+        "cost": 4.078769838965502,
+        "half_power": 2.0,
+        "charges": 4,
+        "nearest": 4.0,
+        "residual": 1.0196924597413755
+      },
+      {
+        "site": "Thm 4.1 curvature width",
+        "printed": 3.428571,
+        "true": 1.681792830507429,
+        "cost": 2.0386405137459973,
+        "half_power": 1.0,
+        "charges": 2,
+        "nearest": 2.0,
+        "residual": 1.0193202568729987
+      }
+    ],
+    "all_are_half_integer_powers": true,
+    "worst_residual": 0.04691358024691361,
+    "charge_counts": [
+      4,
+      3,
+      2,
+      4,
+      2
+    ],
+    "charges_run_two_to_four": true,
+    "beta_product_gives_two_everywhere": true,
+    "the_rest_is_the_nu_power": [
+      2,
+      1,
+      0,
+      2,
+      0
+    ],
+    "residuals_share_nothing": true,
+    "two_residuals_below_one": true,
+    "pattern_does_not_break_at_the_constants": true,
+    "three_numbers_that_looked_unrelated": [
+      3.9506,
+      2.8219,
+      2.0938
+    ],
+    "are_powers_of_two": [
+      "2^2",
+      "2^(3/2)",
+      "2^1"
+    ]
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -7194,5 +7279,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 96.15344595909119
+  "elapsed_seconds": 90.05718183517456
 }

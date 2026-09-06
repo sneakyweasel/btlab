@@ -6413,3 +6413,89 @@ including the contract itself, that every parsed claim holds at A.1's
 printed threshold. No certificate predicate changed. Manuscript: A.1's
 two sentences restated, A.2 records the drift and which side was
 wrong.
+
+## Every apart-charge costs `sqrt2`, so every cost is `2^(k/2)`
+
+The last section left five apart-charged sites with costs `3.95`, `2.82`,
+`2.09`, `4.00`, `2.00`, and only the last two visibly powers of two ---
+those being width ratios, where the arithmetic is on the page. The other
+three are single constants, and the question was whether the pattern
+breaks there or is only hidden by the rounding. It does not break.
+
+A factor going as `nu^(1/2)` charged at the far end of a dyadic block
+costs exactly `sqrt2`. So a cost assembled only out of such charges is
+`2^(k/2)`, with `k` the number of them, and the printed constant should
+be that times a rounding:
+
+```text
+  site                          cost      2^(k/2)   k    residual
+  Lem 5.1(iii) |G'| curvature   3.9506    4.0000    4    0.9877
+  Lem 5.1(iii) |G''| curvature  2.8219    2.8284    3    0.9977
+  Thm 5.3 j=0 anchor            2.0938    2.0000    2    1.0469
+  Lem 5.2b lambda_0 width       4.0788    4.0000    4    1.0197
+  Thm 4.1 curvature width       2.0386    2.0000    2    1.0193
+```
+
+Every one is a half-integer power of two with a residual inside `5%`.
+What looked like three unrelated numbers --- `3.95`, `2.82`, `2.09` ---
+is `2^2`, `2^(3/2)`, `2^1`.
+
+**Where the count comes from.** A `beta` *product* contributes two
+charges, one per `beta`, at every site. The remaining `k - 2` come from
+charging the power of `nu` apart as well: two more at `|G'|` and at
+`lambda_0`, one at `|G''|`, none at the `j = 0` anchor or at the Stage-4
+curvature, whose single gap `G` gives `sqrt2` per end and so `2` on a
+width. So `k` runs `2` to `4`, and the two ends of that range are "the
+gaps alone" and "the gaps and the power together".
+
+**And the residuals are the only free part.** `0.9877`, `0.9977`,
+`1.0469`, `1.0197`, `1.0193` --- two of them below `1`, ratio `1.06`
+across the five, no shared value. Every other digit in these five
+constants is forced: the true value by the derivative, the cost by the
+charge count. The residual is a printed constant rounded for the page,
+and it is the only part of these numbers that was ever a choice.
+
+Tags. EXACT: a factor going as `nu^(1/2)` charged at the far end of a
+dyadic block costs `sqrt2`, so a cost built of `k` such charges is
+`2^(k/2)`; a `beta` product supplies two of them at every site.
+COMPUTATIONALLY VERIFIED: all five measured costs are half-integer
+powers of two with worst residual `0.0469`; charge counts `[4, 3, 2, 4,
+2]`; the `nu`-power contributes `[2, 1, 0, 2, 0]` beyond the two from the
+`beta` product; the residuals share nothing, ratio `1.0599`. OBSERVATION:
+the residuals go both ways, so the rounding was per-site and not a
+uniform safety margin.
+
+Probe: `apart_costs_are_powers_of_root_two`. Two tests. Audit `270 /
+270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate edit.
+
+### The qpp row: the claim string was the thing that was wrong
+
+Mid-pass the certificate's `st5b-qpp` predicate changed under me to the
+merged `48.9 P^(-3/16) <= 1/4`, moving the row from `2.982e11` to
+`1.662e12` and the `c_7` lever from `120.26` to `21.57`. Three of my
+pinned tests failed inside a minute, which is what they are for: the
+moved row contradicted Appendix A.5, which states the floor as `2.98e11`
+at four places and says the two-term form "matters only where this site
+is itself the binding one, which is the floor of Appendix A.5".
+
+The other session then settled it the other way, and correctly. The
+lambda always checked the two-term form; only the *claim string* printed
+the merged `48.9 P^(-3/16)`, and that string is false at the row's own
+threshold --- `48.9 (3.0e11)^(-3/16) = 0.3446`, not `<= 1/4`. The claim
+string now reads the unmerged bound, `A.5`'s floor stands, and the lever
+is back at `120.26`.
+
+The same repair landed on `39-beta` in the same edit: printed `2.31`,
+derived `9 (0.68) / 2.656 = 2.30422`, and at the printed threshold
+`1.83e7` the rounded constant fails, `5.4015e-4` against `rho_0 =
+5.3879e-4`. Two rows in one pass where a claim string rounded *outward*
+from the lambda beside it and so became false at its own printed
+threshold, while the certificate itself was right both times.
+
+Tags. COMPUTATIONALLY VERIFIED: with the merged predicate the row clears
+at `1.6620e12` and the lever falls to `21.575`; with the two-term one it
+clears at `2.9817e11` and the lever is `120.26`; `48.9 (3.0e11)^(-3/16)
+= 0.3446`. OBSERVATION: in both rows the error was in the printed claim
+string, not in the checked predicate --- the direction a rounding-for-
+the-page failure takes when the lambda is derived and the string is
+typed. No edit of mine to either file.

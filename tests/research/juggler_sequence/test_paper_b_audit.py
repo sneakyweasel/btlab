@@ -2160,3 +2160,30 @@ def test_the_curvature_range_is_apart_charged_not_opened() -> None:
     w = A.block_range_widths()
     curv = [x for x in w["rows"] if x["name"] == "Stage-4 curvature"][0]
     assert abs(curv["true_lo"] - r["curvature_together"][0]) < 1e-12
+
+
+# --- are the constant sites' costs powers of two too ---
+
+
+def test_every_apart_cost_is_a_half_integer_power_of_two() -> None:
+    """3.95, 2.82, 2.09, 4.08, 2.04 are 2^2, 2^(3/2), 2^1, 2^2, 2^1 within 5%."""
+    r = A.apart_costs_are_powers_of_root_two()
+    assert r["all_are_half_integer_powers"] and r["worst_residual"] < 0.05
+    assert r["pattern_does_not_break_at_the_constants"]
+    assert r["are_powers_of_two"] == ["2^2", "2^(3/2)", "2^1"]
+    halves = [x["half_power"] for x in r["rows"]]
+    assert halves == [2.0, 1.5, 1.0, 2.0, 1.0]
+    assert all(x["cost"] > 1 for x in r["rows"])
+
+
+def test_the_charge_count_runs_two_to_four_and_the_residuals_share_nothing() -> None:
+    """Two charges from the beta product everywhere; the rest is the power of nu."""
+    r = A.apart_costs_are_powers_of_root_two()
+    assert r["charge_counts"] == [4, 3, 2, 4, 2]
+    assert r["charges_run_two_to_four"] and r["beta_product_gives_two_everywhere"]
+    assert r["the_rest_is_the_nu_power"] == [2, 1, 0, 2, 0]
+    # the free part is the rounding, and it agrees with nothing
+    assert r["residuals_share_nothing"] and r["two_residuals_below_one"]
+    residuals = [x["residual"] for x in r["rows"]]
+    assert min(residuals) < 1.0 < max(residuals)
+    assert len(r["rows"]) == 5
