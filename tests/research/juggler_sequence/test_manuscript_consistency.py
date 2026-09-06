@@ -486,20 +486,53 @@ def test_the_migrated_P0_figure_recomputes() -> None:
 # --- cross-references must resolve to headings that exist ---
 
 
-def _paper_b_text() -> str:
-    return io.open(ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
-                   encoding="utf-8").read()
+SIBLING_TITLES = {
+    "A": "cycle financing and near-convergent",
+    "B": "parity equidistribution of nested floor powers",
+    "C": "fate contagion in the juggler map",
+}
+"""Distinctive title fragments, matched case-insensitively.  Paper B's entry for Paper A
+gives no repository path, so the filename alone would not find it."""
+
+BRACKETED = re.compile(r"\[(\d+)(?:,\s*|\s+)(?:Section|§)\s*(\d+(?:\.\d+)?)\]")
+"""``[17, Section 6]`` -- a section of the *cited* work, not of the citing paper."""
+
+ELSEWHERE = re.compile(r"\(Section\s+\d+(?:\.\d+)?\s+there\)")
+"""``(Section 4.5 there)`` -- likewise a section of the work just cited."""
 
 
-def test_every_section_reference_resolves() -> None:
-    """Section N and Section N.M must name a heading the paper actually has."""
-    import re
-    text = _paper_b_text()
+def _headings(text: str) -> tuple[set[str], set[str]]:
     tops = {m.group(1) for m in re.finditer(r"^## (\d+)\.", text, re.M)}
     subs = {m.group(1) for m in re.finditer(r"^### (\d+\.\d+)", text, re.M)}
     subs |= {m.group(1) for m in re.finditer(r"^### (A\.\d+)", text, re.M)}
+    return tops, subs
+
+
+def _reference_map(text: str) -> dict[str, str]:
+    """Reference number -> sibling paper, read from the paper's own reference list."""
+    refs = text.partition("## References")[2]
+    out: dict[str, str] = {}
+    for m in re.finditer(r"^(\d+)\.\s(.{0,400})", refs, re.M | re.S):
+        entry = " ".join(m.group(2).split()).lower()
+        for name, title in SIBLING_TITLES.items():
+            if title in entry:
+                out[m.group(1)] = name
+                break
+    return out
+
+
+@pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
+def test_every_section_reference_resolves(ms: Manuscript) -> None:
+    """Section N and Section N.M must name a heading the paper actually has.
+
+    References inside a bracketed citation belong to the cited work and are checked by
+    test_cross_paper_section_citations_resolve instead.
+    """
+    text = read(ms.path)
+    own = ELSEWHERE.sub("", BRACKETED.sub("", text))
+    tops, subs = _headings(text)
     bad = []
-    for m in re.finditer(r"Section (\d+(?:\.\d+)?)", text):
+    for m in re.finditer(r"Section (\d+(?:\.\d+)?)", own):
         ref = m.group(1)
         ok = (ref in subs) if "." in ref else (ref in tops)
         if not ok:
@@ -507,9 +540,63 @@ def test_every_section_reference_resolves() -> None:
     assert not bad, sorted(set(bad))
 
 
+def test_cross_paper_section_citations_resolve() -> None:
+    """``[17, Section 6]`` must name a section the cited companion actually has.
+
+    Paper B's statement numbers run one ahead of its headings, so a sibling quoting
+    "Theorem 4.12" and reaching for Section 4 lands nowhere -- which is exactly how
+    Paper C came to cite a Section 4.5 that does not exist.
+    """
+    by_name = {m.name: m for m in MANUSCRIPTS}
+    headings = {m.name: _headings(read(m.path)) for m in MANUSCRIPTS}
+    bad = []
+    for ms in MANUSCRIPTS:
+        text = read(ms.path)
+        refmap = _reference_map(text)
+        for m in BRACKETED.finditer(text):
+            target = refmap.get(m.group(1))
+            if target is None or target not in by_name:
+                continue
+            ref = m.group(2)
+            tops, subs = headings[target]
+            ok = (ref in subs) if "." in ref else (ref in tops)
+            if not ok:
+                bad.append(f"Paper {ms.name}: {m.group(0)} -> Paper {target} has no Section {ref}")
+    assert bad == [], bad
+
+
+def test_hypothesis_L_points_into_paper_B_section_three_five() -> None:
+    """Regression: Paper C cited "Section 4.5 there"; Theorem 4.12 sits in Paper B's 3.5."""
+    text = read(PAPER_C)
+    assert "(Section 3.5 there)" in text
+    assert "(Section 4.5 there)" not in text
+
+
+def _offset_counts(text: str) -> tuple[int, int]:
+    tops = [(m.start(), m.group(1)) for m in re.finditer(r"^## (\d+)\.", text, re.M)]
+
+    def sec_of(pos: int) -> str | None:
+        cur = None
+        for p, n in tops:
+            if p <= pos:
+                cur = n
+        return cur
+
+    ahead = aligned = 0
+    for m in re.finditer(r"^\*\*(?:Lemma|Theorem|Corollary|Proposition) (\d+)\.\d+", text, re.M):
+        s = sec_of(m.start())
+        if s is None:
+            continue
+        if int(m.group(1)) == int(s) + 1:
+            ahead += 1
+        elif int(m.group(1)) == int(s):
+            aligned += 1
+    return ahead, aligned
+
+
 def test_the_two_references_that_were_wrong_are_right() -> None:
     """Section 3.4 did not exist; the exponent-pair remark is in Section 2, not 3."""
-    text = _paper_b_text()
+    text = read(PAPER_B)
     assert "Section 3.4" not in text
     assert "Section 3 names as the reason" in text
     assert "Section 2 calls exponent pairs" in text
@@ -517,21 +604,20 @@ def test_the_two_references_that_were_wrong_are_right() -> None:
 
 def test_the_numbering_offset_is_documented() -> None:
     """Statements run one ahead of headings through Section 5; a reader is told."""
-    import re
-    text = _paper_b_text()
+    text = read(PAPER_B)
     assert "*Locating a statement.*" in text
     assert "run one ahead of the" in text
-    # and the offset is real, so the note is not decoration
-    tops = [(m.start(), m.group(1)) for m in re.finditer(r"^## (\d+)\.", text, re.M)]
-    def sec_of(pos):
-        cur = None
-        for p, n in tops:
-            if p <= pos:
-                cur = n
-        return cur
-    off = 0
-    for m in re.finditer(r"^\*\*(?:Lemma|Theorem|Corollary) (\d+)\.\d+", text, re.M):
-        s = sec_of(m.start())
-        if s and int(m.group(1)) == int(s) + 1:
-            off += 1
-    assert off >= 25, off
+    ahead, _ = _offset_counts(text)
+    assert ahead >= 25, ahead
+
+
+def test_the_offset_is_paper_b_only() -> None:
+    """Papers A and C number their statements by the section they sit in.
+
+    Recorded so a reader of Paper B's offset note does not assume the siblings share it,
+    and so that a future renumbering of A or C is visible here.
+    """
+    for name, path in (("A", PAPER), ("C", PAPER_C)):
+        ahead, aligned = _offset_counts(read(path))
+        assert ahead == 0, f"Paper {name} gained an offset: {ahead} items"
+        assert aligned >= 25, f"Paper {name}: only {aligned} aligned items"

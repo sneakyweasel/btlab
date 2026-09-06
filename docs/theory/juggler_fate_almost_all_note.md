@@ -2078,7 +2078,7 @@ every integer \(\ell\) with \(|\ell|\le P^{1/24}\),
 \]
 
 *Status.* Hypothesis L is Theorem 4.12 of the working draft [12]
-(Section 4.5 there), whose Lemma 4.10 removes the twist by partial
+(Section 3.5 there), whose Lemma 4.10 removes the twist by partial
 summation after the Weyl differencing and whose proof runs the
 seven-step argument of its Theorems 4.4 and 4.7 (exact linearization
 of the nested floors, differencing with \(H=P^{1/12}\), a cell
