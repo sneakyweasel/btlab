@@ -1171,3 +1171,19 @@ def test_the_table_has_no_sampled_warrant_and_flags_where_the_proof_stands_alone
         r["rows_quoted_from_elsewhere"])
     assert set(r["flagged_rows"]) == {"Lem. 5.2(i), (ii), (iii)", "Thm. 5.3 kernel cancellation"}
     assert "Lem. 5.2(i), (ii), (iii)" in r["rows_on_the_human_proof_alone"]
+
+
+# --- the row with the least numerical company ---
+
+
+def test_proposition_7_1s_word_count_holds_and_is_slack() -> None:
+    """N_d <= 2^d e^(-cd) at every d, with the observed rate several times c."""
+    from research.juggler_sequence import paper_b_prefix_count as PB
+
+    r = A.proposition_7_1_word_count(max_d=12)
+    assert r["c_exceeds_the_printed_floor"] and abs(r["c"] - PB.HOEFFDING_C) < 1e-12
+    assert r["bound_holds_everywhere"] and r["ratio_is_falling"]
+    assert r["observed_over_printed"] > 3
+    assert r["rows"][0]["N_d"] == 1                 # at length one only "O" survives
+    assert all(x["N_d"] <= x["printed_bound"] for x in r["rows"])
+    assert len(r["rows"]) == 12

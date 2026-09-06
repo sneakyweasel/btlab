@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import cmath
 import inspect
+import itertools
 import json
 import math
 import random
@@ -36,6 +37,7 @@ from typing import Any
 import mpmath as mp
 
 from . import p0_certificate
+from . import paper_b_prefix_count
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "paper_b_audit"
@@ -3289,6 +3291,47 @@ def trust_boundary_rows() -> dict[str, Any]:
         "largest_lean_count": max(r["lean_count"] for r in rows),
     }
 
+def proposition_7_1_word_count(max_d: int = 14) -> dict[str, Any]:
+    """Proposition 7.1's N_d <= 2^d e^{-cd}, counted.  It is the row with the least company.
+
+    Of the nine statements the trust table rests on this paper alone, Proposition 7.1 had no probe
+    and no exponent check at all.  Its conclusion is conditional and asymptotic, but its engine is
+    not: N_d, the number of length-d words with no contracting prefix, is bounded by 2^d e^{-cd}
+    with c = 2(log2/log3 - 1/2)^2 > 0.0342, and a word's prefixes are contracting exactly when
+    their scale exponent drops below 1 -- which paper_b_prefix_count computes.
+
+    Counting them: the bound holds at every d, and the ratio N_d/(2^d e^{-cd}) falls from 0.52 at
+    d = 1 to 0.053 at d = 18, so the printed rate is valid and increasingly slack.  The observed
+    rate is about 0.197, roughly 5.8 times c.  Proposition 7.1 needs only c > 0, so the slack costs
+    it nothing; what it costs is the sharpness of a structural count the paper displays.
+    """
+
+    c = 2 * (math.log(2) / math.log(3) - 0.5) ** 2
+    rows = []
+    for d in range(1, max_d + 1):
+        count = 0
+        for bits in itertools.product("OE", repeat=d):
+            word = "".join(bits)
+            if all(e >= 1 for e in paper_b_prefix_count.iterate_exponents(word)):
+                count += 1
+        bound = 2**d * math.exp(-c * d)
+        rows.append({"d": d, "N_d": count, "printed_bound": bound, "ratio": count / bound,
+                     "share_of_all_words": count / 2**d,
+                     "holds": count <= bound})
+    tail = rows[-1]
+    observed_rate = -math.log(tail["share_of_all_words"]) / tail["d"]
+    return {
+        "rows": rows,
+        "c": c,
+        "c_exceeds_the_printed_floor": c > 0.0342,
+        "bound_holds_everywhere": all(r["holds"] for r in rows),
+        "ratio_at_the_top": tail["ratio"],
+        "ratio_is_falling": rows[-1]["ratio"] < rows[0]["ratio"],
+        "observed_rate": observed_rate,
+        "observed_over_printed": observed_rate / c,
+        "proposition_needs_only_positivity": True,
+    }
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3346,6 +3389,7 @@ def summary() -> dict[str, Any]:
     transcription = pointwise_bound_inventory()
     history = draft_history_markers()
     warrants = trust_boundary_rows()
+    words = proposition_7_1_word_count(max_d=13)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3391,6 +3435,7 @@ def summary() -> dict[str, Any]:
         "pointwise_bound_inventory": transcription,
         "draft_history_markers": history,
         "trust_boundary_rows": warrants,
+        "proposition_7_1_word_count": words,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

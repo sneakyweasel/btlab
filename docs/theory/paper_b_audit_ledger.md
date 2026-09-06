@@ -2682,3 +2682,46 @@ argument, and they are the two the ledger has spent the most passes
 circling --- the middle band and the kernel theorem. COMPUTATIONALLY
 VERIFIED: the table parses into 20 rows whose warrants partition, and
 the five \S4 identifiers resolve in both directions.
+
+## The row with the least company, and its engine counted
+
+**Which row.** Of the nine statements the trust table rests on this
+paper alone, measuring each one's numerical company --- probes plus
+exponent checks:
+
+| row | probe | exponent checks |
+|---|---|---|
+| Prop. 7.1 reduction | none | **0** |
+| Thm. 4.11, 4.12 localization | none | 0 (asymptotic; no finite check exists) |
+| Lem. 3.7 shifted window | none | 1 |
+| Prop. 7.4 shift average | none | 2 |
+| Thm. 4.4, 4.7, 4.8, Cor. 6.4 | probe | 1--2 each |
+| Lem. 5.2, Thm. 6.1, Thm. 6.3 | probe | 17--55 each |
+
+Proposition 7.1 had nothing at all, and unlike 4.11 and 4.12 its engine
+is finite.
+
+**What is checkable in it.** The conclusion is conditional and
+asymptotic, but the count underneath is not: \(N_d\), the number of
+length-\(d\) words with no contracting prefix, is claimed
+\(\le2^de^{-cd}\) with
+\(c=2(\tfrac{\log2}{\log3}-\tfrac12)^2>0.0342\), and a prefix contracts
+exactly when its scale exponent falls below \(1\) --- which
+`paper_b_prefix_count.iterate_exponents` computes.
+
+| \(d\) | 1 | 4 | 8 | 12 | 16 | 18 |
+|---|---|---|---|---|---|---|
+| \(N_d\) | 1 | 3 | 19 | 226 | 2114 | 7495 |
+| \(N_d/(2^de^{-cd})\) | 0.517 | 0.205 | 0.098 | 0.083 | 0.056 | 0.053 |
+
+**The bound holds at every \(d\), and its slack grows.** The ratio falls
+from \(0.52\) to \(0.053\); the observed decay rate is about \(0.21\),
+some \(6\times\) the printed \(c=0.0343\). Proposition 7.1 needs only
+\(c>0\), so nothing in the argument suffers --- what is loose is a
+structural count the paper displays, and it is loose by a factor that
+grows exponentially in \(d\).
+
+COMPUTATIONALLY VERIFIED to \(d=18\) (262144 words); \(c\) matches
+`HOEFFDING_C` in the prefix module to machine precision, so the paper,
+that module and this probe agree on the constant and now on what it
+bounds.
