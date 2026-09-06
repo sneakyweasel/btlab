@@ -4259,3 +4259,55 @@ range.
 Probe: `census_admissibility`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The ranges, and the measurements that cite nothing at all
+
+The last entry asked whether the ranges printed beside a probe citation match the defaults of
+the function cited. Four do, and are now checked. The scan turned up a different problem on
+the way: **three printed measurements name no function at all.**
+
+```text
+  printed                                              what is behind it
+  "over P in [10^4,10^6] and k in {1,2,4}, twelve      level1_kernel_block_scaling takes one
+   exponents with mean 0.49"                           (P,k); no sweep exists, and the four P
+                                                       values are nowhere stated
+  "on 20,000 samples the witness xi_2 sits between     no function produces it
+   0.32 and 0.52 of beta_1 + beta_2"
+  "measured at 0.989 times it over ten samples at      no function produces it
+   n ~ 10^6"
+```
+
+Each is an honest number somebody ran. None can be re-run from the text: the reader is given
+the answer and not the query. That is a weaker failure than a wrong number and a more durable
+one, since nothing can go stale that nothing points at.
+
+**One of the four could be anchored, and was.** The manuscript reported the offset term of
+Lemma 5.1(iii) from a 300-point sample: "the ratio to `|j|P^(3/4)` runs over
+`[1.510, 2.514]` against the printed `[1.5, 2.6]`". It has closed forms. The ratio is
+`(3/2)(m + beta_1 + beta_2 + xi_1)^(1/2) P^(-3/4)`, and over `n` in `(P, 2P]` the bracket runs
+from `m ~ P^(3/2)` to `m ~ (2P)^(3/2)`, so
+
+```text
+  [3/2, (3/2) 2^(3/4)] = [1.5000, 2.5227]   against the printed [1.5, 2.6]
+```
+
+the lower end *attained* -- which the sampled `1.510` had missed, and which is the sharper
+statement -- and the upper carrying three percent. `decoration_budget.offset_term_attained`
+computes it; the sampled figures are kept beside it, labelled as what a grid missed rather
+than as the claim.
+
+**And the ranges themselves.** `RANGE_CLAIMS` checks four printed quantifiers against the
+signature defaults of the functions cited beside them: the beta inventory's
+`1 <= h1, h2 <= 7`, the offset term's dyadic block, the ladder's `r = 1,2,3,6`, and the
+calibration's `200` trials. A test doctors `branch_offset_ladder`'s default to `(1,2,3)` and
+asserts exactly its row fires. `UNANCHORED` names the three measurements above, so the count
+is visible in the audit's output rather than the claims being assumed reproducible; two of the
+three are the other session's to anchor if it wants them.
+
+```text
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+    9 prose claims about the manuscript                        0 stale
+    6 probe citations                                          0 broken
+    4 printed ranges against the cited defaults                0 mismatched
+    3 printed measurements citing no function
+```

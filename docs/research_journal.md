@@ -34631,3 +34631,88 @@ Best next question
   caps say. Which of its clauses would still be true outside (C1), and
   which are the ones the hypothesis is actually protecting?
 ```
+
+### The ranges, and the measurements that cite nothing at all
+
+The recorded question was whether the ranges printed beside a probe citation
+match the defaults of the function cited. Four do, and are now checked. The
+scan turned up a different problem on the way: **three printed measurements
+name no function at all.**
+
+```text
+  printed                                          what is behind it
+  "over P in [10^4,10^6] and k in {1,2,4},        level1_kernel_block_scaling
+   twelve exponents with mean 0.49"                takes one (P,k); no sweep
+                                                   exists, and the four P values
+                                                   are nowhere stated
+  "on 20,000 samples the witness xi_2 sits         no function produces it
+   between 0.32 and 0.52 of beta_1 + beta_2"
+  "measured at 0.989 times it over ten samples"    no function produces it
+```
+
+Each is an honest number somebody ran; none can be re-run from the text. The
+reader is given the answer and not the query. That is a weaker failure than a
+wrong number and a more durable one, since nothing that nothing points at can
+go stale.
+
+**One of the four could be anchored, and was.** The offset term of Lemma
+5.1(iii) was reported from a 300-point sample as `[1.510, 2.514]` against a
+printed `[1.5, 2.6]`. It has closed forms: the ratio is
+`(3/2)(m + b1 + b2 + xi1)^(1/2) P^(-3/4)`, and over `n` in `(P, 2P]` the
+bracket runs from `m ~ P^(3/2)` to `m ~ (2P)^(3/2)`, so
+
+```text
+  [3/2, (3/2) 2^(3/4)] = [1.5000, 2.5227]   against the printed [1.5, 2.6]
+```
+
+the lower end *attained* — which the sampled `1.510` had missed, and which is
+the sharper statement — and the upper carrying three percent.
+`decoration_budget.offset_term_attained` computes it; the sampled figures stay
+beside it, labelled as what a grid missed rather than as the claim.
+
+**And the ranges.** `RANGE_CLAIMS` checks four printed quantifiers against the
+signature defaults of the functions cited beside them. A test doctors
+`branch_offset_ladder`'s default to `(1,2,3)` and asserts exactly its row
+fires. `UNANCHORED` names the three above so the count shows in the audit's
+output.
+
+```text
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+    9 prose claims about the manuscript                        0 stale
+    6 probe citations                                          0 broken
+    4 printed ranges against the cited defaults                0 mismatched
+    3 printed measurements citing no function
+```
+
+```text
+What was learned
+- the question's own premise held for all four checkable cases, and the
+  interesting cases were the ones it could not reach: claims citing nothing
+- a sampled range can be strictly worse than the closed form it approximates:
+  [1.510, 2.514] misses that the lower end is exactly 3/2 and attained
+- naming an unfixable-by-me claim in the tool's output is better than a ledger
+  sentence nobody re-reads; the count is now printed on every run
+- heredocs mangled a regex once more before I switched to the Write tool
+Strongest theorem
+- the offset term's attained range is [3/2, (3/2)2^(3/4)] exactly, the lower
+  end attained, against a printed [1.5, 2.6]
+Strongest refutation
+- my own test assertion that the sampled figures had been removed; they are
+  deliberately kept and labelled, and the test was wrong, not the manuscript
+Reusable machinery
+- decoration_budget.offset_term_attained; RANGE_CLAIMS, range_audit,
+  mismatched_ranges, UNANCHORED, unanchored_measurements; five new tests
+Branch status
+- PARK
+Why
+  Four printed ranges are checked against defaults, the one unanchored claim I
+  own is now exact and citable, and the three I cannot anchor are named in the
+  tool's output. Nothing here moves P_0.
+Best next question
+- the twelve exponents want a sweep: four P values times k in {1,2,4}, with
+  the P values stated. That is a small function in paper_b_audit and the
+  claim it would anchor is Section 5's, about whether the level-1 kernel
+  cancels at square root. Worth writing -- but it is the other session's
+  module, so the question is really whether to write it in decoration_budget
+  instead and cite across, or leave the claim unanchored and say so.
+```

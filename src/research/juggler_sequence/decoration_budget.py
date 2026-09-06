@@ -743,6 +743,36 @@ def beta_inventory_attained(p: int, hmax: int = 7, stride: int | None = None) ->
     }
 
 
+
+def offset_term_attained(p: int, hmax: int = 7, stride: int | None = None) -> dict[str, Any]:
+    """The offset term of Lemma 5.1(iii) against its printed range ``[1.5, 2.6]``.
+
+    ``(3/2)|j|(m + beta_1 + beta_2 + xi_1)^(1/2)`` as a multiple of ``|j| P^(3/4)``.  The
+    manuscript reported this from a 300-point sample as ``[1.510, 2.514]``; it has closed
+    forms.  Over ``n`` in ``(P, 2P]`` the bracket runs from ``m ~ P^(3/2)`` to
+    ``m ~ (2P)^(3/2)``, so the ratio runs over ``[3/2, (3/2) 2^(3/4)]``, the lower end
+    attained and the upper ``2.5227`` against a printed ``2.6``: three percent of headroom,
+    and the *lower* bound is the one that is sharp.
+
+    ``xi_1`` lies between ``0`` and ``j``, which is ``O(1)`` beside ``m ~ P^(3/2)`` and moves
+    the ratio by ``O(P^(-3/2))``; it is dropped, as the manuscript's own display does.
+    """
+    step = stride or max(1, p // 400) | 1
+    lo, hi = float("inf"), 0.0
+    for n in range(p + 1, 2 * p + 1, step):
+        m = m_floor(n)
+        for h1 in range(1, hmax + 1):
+            for h2 in range(1, hmax + 1):
+                b1 = m_floor(n + 2 * h1) - m
+                b2 = m_floor(n + 2 * h2) - m
+                v = 1.5 * (m + b1 + b2) ** 0.5 / p**0.75
+                lo = min(lo, v)
+                hi = max(hi, v)
+    return {"P": p, "h_max": hmax, "attained": [lo, hi],
+            "closed_form": [1.5, 1.5 * 2**0.75], "printed": [1.5, 2.6],
+            "headroom_at_top": 2.6 / hi}
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

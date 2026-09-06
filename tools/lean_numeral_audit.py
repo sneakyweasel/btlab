@@ -600,6 +600,17 @@ def _block_scaling_ok(fn) -> bool:
     return "level1_exponent" in r and r["square_root_exponent"] == 0.5
 
 
+def _offset_term_ok(fn) -> bool:
+    """The manuscript prints the closed forms [3/2, (3/2)2^(3/4)] against [1.5, 2.6]."""
+    import inspect
+    if inspect.signature(fn).parameters["hmax"].default != 7:
+        return False
+    r = fn(10**5)
+    lo, hi = r["attained"]
+    return (abs(lo - 1.5) < 2e-3 and abs(hi - 1.5 * 2**0.75) < 3e-3
+            and r["printed"] == [1.5, 2.6] and 1.02 < r["headroom_at_top"] < 1.04)
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -621,6 +632,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`paper_b_audit.level1_kernel_block_scaling`; the instrument reads",
      "the level-1 kernel's block-scaling probe",
      _block_scaling_ok),
+    ("decoration_budget", "offset_term_attained",
+     "(`decoration_budget.offset_term_attained`)",
+     "the offset term's attained range against its printed one",
+     _offset_term_ok),
 )
 
 
@@ -648,6 +663,72 @@ def citation_audit(run_checks: bool = True) -> list[dict[str, Any]]:
 def broken_citations(run_checks: bool = True) -> list[dict[str, Any]]:
     return [r for r in citation_audit(run_checks)
             if not (r["anchor_present"] and r["resolves"] and r["holds"])]
+
+
+# --- printed ranges against the cited functions' defaults ----------------------------------
+#
+# A citation can resolve, name a live function, and still mislead if the *range* printed beside
+# it is not the range that function covers.  Those ranges are arguments with defaults, and a
+# default that moves rescopes a printed claim silently.  One row per printed quantifier.
+#
+# It also records the printed measurements that cite no function at all, which is the other
+# way this fails: `UNANCHORED` names them so that the count is visible rather than the claims
+# being quietly assumed reproducible.
+
+RANGE_CLAIMS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
+    ("decoration_budget", "beta_inventory_attained", r"\(1\le h_1,h_2\le7\)",
+     "the beta inventory's printed h-range is its default",
+     lambda fn: __import__("inspect").signature(fn).parameters["hmax"].default == 7),
+    ("decoration_budget", "offset_term_attained", r"\(n\in(P,2P]\)",
+     "the offset term is measured over the dyadic block, as printed",
+     lambda fn: __import__("inspect").signature(fn).parameters["hmax"].default == 7),
+    ("decoration_budget", "branch_offset_ladder", r"\(r=1,2,3,6\)",
+     "the ladder's printed multiples are its default",
+     lambda fn: __import__("inspect").signature(fn).parameters["multiples"].default
+     == (1, 2, 3, 6)),
+    ("paper_b_audit", "block_exponent_calibration", r"at its default \(200\) trials",
+     "the calibration's printed trial count is its default",
+     lambda fn: __import__("inspect").signature(fn).parameters["trials"].default == 200),
+)
+
+# Printed measurements with no function named beside them.  Each is an honest number somebody
+# ran, and none can be re-run from the text: the reader is told the answer and not the query.
+# Listed rather than silently tolerated; two of the three are the other session's to anchor.
+UNANCHORED: tuple[tuple[str, str], ...] = (
+    ("twelve exponents with mean",
+     "P in [10^4,10^6] and k in {1,2,4} -- twelve points, but level1_kernel_block_scaling "
+     "takes one (P,k) and no sweep exists; the four P values are not stated"),
+    (r"On \(20{,}000\) samples the witness",
+     "no function produces the 20,000-sample range [0.32,0.52] for xi_2"),
+    (r"measured at \(0.989\) times it over ten samples",
+     "no function produces the ten-sample figure 0.989"),
+)
+
+
+def range_audit() -> list[dict[str, Any]]:
+    text = paper_text()
+    out: list[dict[str, Any]] = []
+    for module, function, printed, description, check in RANGE_CLAIMS:
+        row = {"module": module, "function": function, "printed": printed,
+               "description": description, "printed_present": printed in text,
+               "matches_default": False}
+        try:
+            fn = getattr(_probe(module), function)
+            row["matches_default"] = bool(check(fn))
+        except (ImportError, AttributeError, KeyError):
+            pass
+        out.append(row)
+    return out
+
+
+def mismatched_ranges() -> list[dict[str, Any]]:
+    return [r for r in range_audit() if not (r["printed_present"] and r["matches_default"])]
+
+
+def unanchored_measurements() -> list[dict[str, str]]:
+    """Printed measurements still in the manuscript with no function named beside them."""
+    text = paper_text()
+    return [{"printed": p, "why": w} for p, w in UNANCHORED if p in text]
 
 def main() -> None:
     rows = audit()
@@ -679,6 +760,18 @@ def main() -> None:
         why = ("anchor gone" if not r["anchor_present"]
                else "does not resolve" if not r["resolves"] else "returns something else")
         print("     BROKEN %-18s %-30s %s" % (r["module"], r["function"], why))
+    rng = range_audit()
+    bad_rng = mismatched_ranges()
+    print("  printed ranges against the cited defaults: %d checked, %d mismatched"
+          % (len(rng), len(bad_rng)))
+    for r in bad_rng:
+        print("     MISMATCH %-18s %-30s %s"
+              % (r["module"], r["function"],
+                 "printed text gone" if not r["printed_present"] else "default moved"))
+    un = unanchored_measurements()
+    print("  printed measurements citing no function: %d" % len(un))
+    for r in un:
+        print("     UNANCHORED  %s" % r["why"])
     print("  (the %d threshold rows are paired by p0_certificate.LEAN_ROWS)"
           % cov["certificate_rows_covered_elsewhere"])
 

@@ -211,3 +211,70 @@ def test_the_citation_guard_fires_when_a_probe_is_renamed(monkeypatch) -> None:
     assert ("decoration_budget", "branch_offset_ladder") in broken
     assert ("decoration_budget", "beta_inventory_attained") in broken
     assert ("p0_certificate", "interpolant_error") not in broken
+
+
+# --- and the ranges, which are arguments with defaults ---
+
+
+def test_every_printed_range_is_the_cited_function_s_default() -> None:
+    bad = A.mismatched_ranges()
+    assert bad == [], [(r["module"], r["function"],
+                        "printed text gone" if not r["printed_present"] else "default moved")
+                       for r in bad]
+
+
+def test_the_range_guard_fires_when_a_default_moves(monkeypatch) -> None:
+    """A default that moves rescopes a printed claim silently; that is the whole point."""
+    import inspect
+    from research.juggler_sequence import decoration_budget as DB
+    real = inspect.signature
+
+    def doctored(fn):
+        s = real(fn)
+        if fn is DB.branch_offset_ladder:
+            p = dict(s.parameters)
+            p["multiples"] = p["multiples"].replace(default=(1, 2, 3))
+            return s.replace(parameters=list(p.values()))
+        return s
+
+    monkeypatch.setattr(inspect, "signature", doctored)
+    bad = {(r["module"], r["function"]) for r in A.mismatched_ranges()}
+    assert ("decoration_budget", "branch_offset_ladder") in bad
+    assert ("decoration_budget", "beta_inventory_attained") not in bad
+
+
+def test_the_offset_term_range_is_exact_and_the_lower_end_is_attained() -> None:
+    """[3/2, (3/2)2^(3/4)] against a printed [1.5, 2.6]: sharp below, 3% above."""
+    from research.juggler_sequence import decoration_budget as DB
+    r = DB.offset_term_attained(10**5)
+    lo, hi = r["attained"]
+    assert abs(lo - 1.5) < 2e-3                      # attained, not merely bounded
+    assert abs(hi - 1.5 * 2**0.75) < 3e-3
+    assert r["closed_form"] == [1.5, 1.5 * 2**0.75]
+    assert r["printed"] == [1.5, 2.6]
+    assert 1.02 < r["headroom_at_top"] < 1.04
+    text = A.paper_text()
+    assert r"\bigl[\tfrac32,\ \tfrac32\cdot2^{3/4}\bigr]=[1.5000,\,2.5227]" in text
+    # the sampled figures are kept, labelled as what a grid missed, not as the claim
+    assert "which is the same" + chr(10) + "statement with the endpoints missed by a sampling grid" in text
+    assert "the printed ranges" not in text.split("(iv) By (ii)")[0][-1200:]
+
+
+def test_the_unanchored_measurements_are_named_not_assumed() -> None:
+    """Three printed numbers cite no function; the count is recorded rather than hidden."""
+    un = A.unanchored_measurements()
+    assert len(un) == 3, [r["printed"] for r in un]
+    why = " ".join(r["why"] for r in un)
+    assert "no sweep exists" in why and "20,000-sample" in why and "ten-sample" in why
+    # and the one that could be anchored, was
+    assert all("offset" not in r["why"] for r in un)
+
+
+def test_level1_block_scaling_really_has_no_sweep() -> None:
+    """The twelve exponents are four P values times three k, and the P values are not stated."""
+    import inspect
+    from research.juggler_sequence import paper_b_audit as PB
+    sig = inspect.signature(PB.level1_kernel_block_scaling)
+    assert set(sig.parameters) == {"P", "k", "bins"}
+    assert sig.parameters["P"].default == 10**5      # one point, not a range
+    assert not [n for n in dir(PB) if "level1_kernel_block" in n and n.endswith("sweep")]

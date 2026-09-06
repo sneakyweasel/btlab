@@ -2088,10 +2088,20 @@ and hence \(\xi_2\) itself, as
 Throughout, \(x^{3/2}\) is written \(x\sqrt x\), so no real-power
 machinery is needed. On \(20{,}000\) samples the witness \(\xi_2\)
 sits between \(0.32\) and \(0.52\) of \(\beta_1+\beta_2\),
-comfortably interior. On \(300\) sampled \((P,n,h_1,h_2)\) the printed ranges
-are comfortable except the offset lower bound, which is nearly attained:
-the ratio to \(|j|P^{3/4}\) runs over \([1.510,2.514]\) against the
-printed \([1.5,2.6]\).
+comfortably interior. The printed ranges are comfortable except the
+offset lower bound, which is *exactly* attained: the ratio to
+\(|j|P^{3/4}\) is \(\tfrac32(m{+}\beta_1{+}\beta_2{+}\xi_1)^{1/2}P^{-3/4}\),
+and over \(n\in(P,2P]\) the bracket runs from \(m\sim P^{3/2}\) to
+\(m\sim(2P)^{3/2}\), so the ratio runs over
+\[
+\bigl[\tfrac32,\ \tfrac32\cdot2^{3/4}\bigr]=[1.5000,\,2.5227]
+\]
+against the printed \([1.5,2.6]\) --- the lower end attained and the
+upper carrying three percent
+(`decoration_budget.offset_term_attained`). An earlier printing gave
+this from a \(300\)-point sample as \([1.510,2.514]\), which is the same
+statement with the endpoints missed by a sampling grid; the closed forms
+are what the block gives.
 (iv) By (ii) and the definitions:
 \(\Delta_1\theta_2=\Delta_1Y-\Delta_1v=W-(\lfloor W\rfloor+\kappa_2)
 =\{W\}-\kappa_2\) (Lemma 4.3(ii) applied to \(Y\)), likewise
