@@ -655,6 +655,16 @@ def _occupancy_ok(fn) -> bool:
             and r["ever_holds_none_for_certain"] is False)
 
 
+def _lemma37_cost_ok(fn) -> bool:
+    """The mass is the price, and the flat term alone reaches the trivial bound."""
+    from research.juggler_sequence import p0_certificate as PC
+    r = fn(int(PC.certificate()["P0"]))
+    return (abs(r["b_mass"] - 76.4) < 0.2 and abs(r["v_mass"] - 41.3) < 0.2
+            and abs(r["total_mass"] - 117.7) < 0.4
+            and r["flat_alone_reaches_trivial"]
+            and r["total_mass"] > 100 * r["trivial_bound_on_one_term"])
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -696,6 +706,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`decoration_budget.level1_drift_window_occupancy`)",
      "the drift-1 window holds at most one point, with density 1/(2c')",
      _occupancy_ok),
+    ("decoration_budget", "lemma37_one_term_window_cost",
+     "(`decoration_budget.lemma37_one_term_window_cost`)",
+     "what Lemma 3.7 returns on a one-term window, against the trivial bound",
+     _lemma37_cost_ok),
 )
 
 

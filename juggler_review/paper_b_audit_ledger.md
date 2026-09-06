@@ -5042,3 +5042,52 @@ is decided by the exponent of the last nesting, not by the itinerary.
 Probe: `lemma_6_2_part_i_leading_term`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## What "fatal" costs, and why care does not help
+
+The last entry left "at most one summand per window is already fatal to Lemma 3.7" as a
+statement rather than a bound, and asked whether there is a sharper one and whether the paper
+needs it. There is; it does not; and the sharper one explains something the weaker one does
+not.
+
+**The loss is not the flat cost.** Lemma 3.7's pointwise error carries `8(1+c)/U`, and the
+lemma's own hypothesis is `U >= 8(1+c)`, so that term is at most `1` per point automatically.
+Looking there for the failure finds nothing.
+
+**The loss is the coefficient mass.** The expansion replaces one sum over a window by
+`sum |b_u| + sum |v_q| <= 8 + 2 log(2 + c + U) + 4 H_J` sums over the same window. It beats the
+trivial bound only if the individual mode sums do, and on a window of one term every mode sum
+is a single unimodular term, of modulus exactly `1`. So the expansion returns the whole mass
+against a trivial bound of `1`:
+
+```text
+  P          b-mass   v-mass    total
+  10^6         40.5     19.6     60.1
+  P_0          76.4     41.3    117.7
+  10^24       126.0     71.4    197.4
+```
+
+Two orders worse than not expanding, at the frozen `c ~ (27k/32) P^(33/32)` the kernel would
+need and `J = R_0`. So "no better than trivial" understates it.
+
+**Two edges, not one.** At the hypothesis boundary `U = 8(1+c)` the flat error is exactly `1`
+on its own -- the trivial bound, before a single mode is counted. Buying that term back means
+raising `U`, and the `b`-mass carries `log U`: at `U` a hundred times the boundary the flat
+term falls to `0.01` and the `b`-mass rises from `40.5` to `85.4`.
+
+**And the two failures have one cause**, which is the part worth having. The window is short
+because `c` is large, `1/c' ~ P^(-1/32)/k`; the mass is large because `c` is large,
+`2 log c ~ (33/16) log P`. There is no setting of `U` or `J` that trades one against the other,
+because both ends of the lemma are driven by the same quantity. That is what "no amount of care
+with Lemma 3.7 recovers it" means, and it was previously asserted rather than shown.
+
+The paper needs only the weaker statement and has it. `decoration_budget.lemma37_one_term_window_cost`;
+the price goes into the erratum block beside the occupancy, with a citation row.
+
+**The notation guard fired, correctly.** The passage sits in Section 7, where bare `A`, `B`,
+`S`, `T` are reserved for that section's script letters, and Lemma 3.7's statement uses `B` for
+the coefficient and `T` for the cutoff. Re-lettered to `c` and `U` -- which is truer to the
+application anyway, since the lemma's `B` *is* this section's `c`. Third time this session the
+notation scanner has caught a symbol imported from another section's statement; it is a good
+guard and the failure mode is always the same, quoting a lemma in a section that has spent its
+alphabet.

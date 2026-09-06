@@ -35525,3 +35525,73 @@ Best next question
   carry the same two-term structure, and if so is its bound also
   charging one order twice?
 ```
+
+### What "fatal" costs, and why care does not help
+
+The recorded question: is there a statement sharper than "at most one summand
+per window is no better than trivial", and does the paper need it? There is; it
+does not; and the sharper one explains something the weaker one does not.
+
+**The loss is not the flat cost.** Lemma 3.7's pointwise error carries
+`8(1+c)/U`, and the lemma's own hypothesis is `U ≥ 8(1+c)`, so that term is at
+most `1` per point automatically. Looking there finds nothing.
+
+**The loss is the coefficient mass.** The expansion replaces one sum over a
+window by `Σ|b_u| + Σ|v_q| ≤ 8 + 2log(2+c+U) + 4H_J` sums over the same window,
+and beats the trivial bound only if the individual mode sums do. On a window of
+one term every mode sum is a single unimodular term, of modulus exactly `1`, so
+the expansion returns the whole mass against a trivial bound of `1`:
+
+```text
+  P          b-mass   v-mass    total
+  10^6         40.5     19.6     60.1
+  P_0          76.4     41.3    117.7
+  10^24       126.0     71.4    197.4
+```
+
+Two orders worse than not expanding. "No better than trivial" understates it.
+
+**Two edges, not one.** At the hypothesis boundary `U = 8(1+c)` the flat error is
+exactly `1` on its own — the trivial bound, before a single mode. Buying it back
+means raising `U`, and the `b`-mass carries `log U`: at a hundred times the
+boundary the flat term falls to `0.01` and the `b`-mass rises `40.5 → 85.4`.
+
+**And the two failures have one cause.** The window is short because `c` is
+large, `1/c' ≍ P^(-1/32)/k`; the mass is large because `c` is large,
+`2log c ≍ (33/16)log P`. No setting of `U` or `J` trades one against the other,
+because both ends of the lemma are driven by the same quantity. That is what "no
+amount of care with Lemma 3.7 recovers it" means, and it had been asserted.
+
+```text
+What was learned
+- the obvious place to look for the loss (the flat cost) is closed off by the
+  lemma's own hypothesis; the loss is in the coefficient mass
+- and the two ways the lemma fails here are the same quantity twice, which is
+  why no parameter setting trades between them
+- the paper needs only the weaker statement, so this is an explanation added
+  rather than a gap closed -- worth saying which
+- the notation guard fired for the third time this session, always the same
+  way: quoting a lemma's letters into a section that has spent its alphabet.
+  Re-lettering B, T to c, U is truer to the application anyway
+Strongest theorem
+- on a one-term window Lemma 3.7 returns 8 + 2log(2+c+U) + 4H_J against a
+  trivial bound of 1: 117.7 at P_0, and the flat term alone already reaches 1
+  at the hypothesis boundary
+Strongest refutation
+- "no better than trivial", which understates by two orders
+Reusable machinery
+- decoration_budget.lemma37_one_term_window_cost; a citation row; four new tests
+Branch status
+- PARK
+Why
+  The price is computed, both edges are stated, the common cause is written
+  down, and the manuscript says the paper does not need any of it. Nothing here
+  moves P_0.
+Best next question
+- the mass 8 + 2log(2+c+U) + 4H_J is Lemma 3.7's, and the paper uses that lemma
+  in four other places where the window is genuinely long. There the mass is
+  absorbed into P^epsilon and never printed. Is it absorbed correctly -- that
+  is, is the mass at each of those four sites really O(log P) and not O(log P)
+  times something that grows, given that U is P^(1/2) at some sites and R_0 at
+  others?
+```

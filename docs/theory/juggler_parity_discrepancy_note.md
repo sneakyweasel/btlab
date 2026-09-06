@@ -5461,6 +5461,41 @@ a sum over a window, and a window with one term is not a sum.
 > is unaffected: at most one summand per window is already fatal to
 > Lemma 3.7, and that is what "finer than the lattice" says.
 >
+> *And "fatal" can be priced, which says why care does not help.*
+> Lemma 3.7 expands \(e(-c\{t\})\) into modes with total coefficient
+> mass \(\sum|b_u|+\sum|v_q|\le8+2\log(2{+}c{+}U)+4H_J\), under
+> \(U\ge8(1{+}c)\) --- the lemma's frozen coefficient is this section's
+> \(c\), and \(U\) is its mode cutoff. On a window of \(W\) terms the
+> trivial bound is
+> \(W\), and the expansion beats it only if the individual mode sums
+> do. At \(W=1\) every mode sum is a single unimodular term, of
+> modulus exactly \(1\), so the expansion returns the whole mass
+> against a trivial bound of \(1\). With the frozen
+> \(c\sim\tfrac{27k}{32}P^{33/32}\) the kernel would need, and
+> \(J=R_0\):
+> \[
+> \begin{array}{rccc}
+> P & b\text{-mass} & v\text{-mass} & \text{total}\\[2pt]
+> 10^{6} & 40.5 & 19.6 & 60.1\\
+> P_0 & 76.4 & 41.3 & 117.7\\
+> 10^{24} & 126.0 & 71.4 & 197.4
+> \end{array}
+> \]
+> so expanding is worse than not expanding by two orders, not merely no
+> better (`decoration_budget.lemma37_one_term_window_cost`). There are
+> two edges and not one: at the hypothesis boundary \(U=8(1{+}c)\)
+> the flat error \(8(1{+}c)/U\) is exactly \(1\) on its own, the
+> trivial bound, before a single mode is counted; taking \(U\) larger
+> kills that term and raises the \(b\)-mass, which carries \(\log U\).
+>
+> The two failures have one cause, which is the point. The window is
+> short because \(c\) is large, \(1/c'\asymp P^{-1/32}/k\); the mass is
+> large because \(c\) is large, \(2\log c\asymp\tfrac{33}{16}\log P\).
+> The paper needs only "no better than trivial" and has it; what the
+> price adds is that the two ends of the lemma are driven by the same
+> quantity, so there is no setting of \(U\) or \(J\) that trades one
+> against the other.
+>
 > *And nothing printed depends on how much larger than \(1\) the drift
 > is.* The condition enters as the binary \(2c'>1\), which is
 > window-length against lattice-spacing; no constant anywhere in

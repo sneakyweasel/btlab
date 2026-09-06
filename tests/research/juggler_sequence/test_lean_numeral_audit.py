@@ -474,3 +474,55 @@ def test_the_paper_records_the_erratum_and_answers_the_size_question() -> None:
     assert "`decoration_budget.level1_drift_window_occupancy`" in text
     for figure in ("0.43", "0.37", "0.22", "4.62", "2.32"):
         assert figure in text, figure
+
+
+# --- and what "fatal" costs ---
+
+
+def test_expanding_a_one_term_window_returns_the_whole_mass() -> None:
+    """Two orders worse than trivial, not merely no better."""
+    from research.juggler_sequence import decoration_budget as DB
+    from research.juggler_sequence import p0_certificate as PC
+    r = DB.lemma37_one_term_window_cost(int(PC.certificate()["P0"]))
+    assert abs(r["b_mass"] - 76.4) < 0.2
+    assert abs(r["v_mass"] - 41.3) < 0.2
+    assert abs(r["total_mass"] - 117.7) < 0.4
+    assert r["trivial_bound_on_one_term"] == 1.0
+    assert r["total_mass"] > 100                        # two orders
+    for P, want in ((10**6, 60.1), (10**24, 197.4)):
+        assert abs(DB.lemma37_one_term_window_cost(P)["total_mass"] - want) < 0.5, P
+
+
+def test_the_flat_term_alone_reaches_the_trivial_bound_at_the_boundary() -> None:
+    """8(1+c)/U is exactly 1 at U = 8(1+c): the second edge, before any mode."""
+    from research.juggler_sequence import decoration_budget as DB
+    r = DB.lemma37_one_term_window_cost(10**6)
+    assert abs(r["flat_per_point"] - 1.0) < 1e-12
+    assert r["flat_alone_reaches_trivial"]
+    # and buying that term back costs b-mass, which carries log U
+    slack = DB.lemma37_one_term_window_cost(10**6, t_slack=100.0)
+    assert slack["flat_per_point"] < 0.02
+    assert slack["b_mass"] > r["b_mass"]
+
+
+def test_both_failures_are_driven_by_c() -> None:
+    """The window is short because c is large; the mass is large because c is large."""
+    from research.juggler_sequence import decoration_budget as DB
+    small, big = DB.lemma37_one_term_window_cost(10**6), DB.lemma37_one_term_window_cost(10**24)
+    assert big["B"] > small["B"] and big["total_mass"] > small["total_mass"]
+    w_small = DB.level1_drift_window_occupancy(10**6)["window_length"]
+    w_big = DB.level1_drift_window_occupancy(10**8)["window_length"]
+    assert w_big < w_small                              # window shrinks as the mass grows
+
+
+def test_the_paper_prices_it_and_says_the_paper_does_not_need_it() -> None:
+    text = A.paper_text()
+    assert "can be priced, which says why care does not help" in text
+    assert "returns the whole mass" in text
+    assert "There are" in text and "two edges and not one" in text
+    assert "The paper needs only" in text and "no better than trivial" in text
+    assert "`decoration_budget.lemma37_one_term_window_cost`" in text
+    for figure in ("40.5", "76.4", "117.7", "197.4"):
+        assert figure in text, figure
+    # re-lettered for Section 7: the lemma's B and T are this section's c and U
+    assert r"e(-c\{t\})" in text and r"\(U\ge8(1{+}c)\)" in text

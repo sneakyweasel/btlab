@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from fractions import Fraction
+import math
 from math import ceil, isqrt
 from pathlib import Path
 from typing import Any
@@ -979,6 +980,47 @@ def level1_drift_window_occupancy(p: int, k: int = 1, span: float = 20000.0) -> 
             "predicted_occupancy": length / 2.0, "counted_occupancy": hits / n_win,
             "windows": n_win, "holds_at_most_one": length < 2.0,
             "ever_holds_none_for_certain": False}
+
+
+
+def lemma37_one_term_window_cost(p: int, k: int = 1, j_exponent: float = 5 / 16,
+                                 t_slack: float = 1.0) -> dict[str, Any]:
+    """What Lemma 3.7 returns on a window holding a single term, against the trivial bound.
+
+    "At most one summand per window is already fatal" is usually left there.  It can be priced,
+    and the price says why no amount of care recovers the level-1 kernel.
+
+    Lemma 3.7 expands ``e(-B{t})`` into ``|u| <= T`` and ``0 < |q| <= J`` modes with
+    ``sum |b_u| <= 8 + 2 log(2 + |B| + T)`` and ``|v_q| <= min(2, 2 pi |B|)/|q|``, under
+    ``T >= 8(1 + |B|)``, with a pointwise error ``min(2, 2 pi |B|) Delta_J(t) + 8(1+|B|)/T``.
+    On a window of ``W`` terms the trivial bound is ``W``.  The expansion beats it only if the
+    individual mode sums beat it, and at ``W = 1`` every mode sum is a single unimodular term,
+    of modulus exactly ``1``.  So the expansion returns the *whole coefficient mass* against a
+    trivial bound of ``1``.
+
+    Two edges, not one.  At the hypothesis boundary ``T = 8(1 + |B|)`` the flat error term
+    ``8(1+|B|)/T`` is exactly ``1`` on its own -- the trivial bound, before a single mode is
+    counted.  Taking ``T`` larger makes that term small and the ``b``-mass larger, since the
+    mass carries ``log T``.
+
+    And the two failures have one cause.  The window is short because ``c`` is large
+    (``1/c' ~ P^(-1/32)/k``), and the mass is large because ``c`` is large
+    (``2 log|B| ~ (33/16) log P``).  Pushing ``T`` up to satisfy the hypothesis only makes the
+    second worse.  That is the content of "no amount of care with Lemma 3.7 recovers it".
+    """
+    B = (27.0 * k / 32.0) * p ** (33.0 / 32.0)
+    T = t_slack * 8.0 * (1.0 + B)
+    J = p ** j_exponent
+    b_mass = 8.0 + 2.0 * math.log(2.0 + B + T)
+    # sum_{0 < |q| <= J} |v_q| <= 2 * sum_{q=1}^{J} 2/q = 4 H_J
+    v_mass = 4.0 * (math.log(J) + 0.5772156649)
+    flat_per_point = 8.0 * (1.0 + B) / T
+    return {"P": p, "k": k, "B": B, "T": T, "J": J,
+            "b_mass": b_mass, "v_mass": v_mass, "total_mass": b_mass + v_mass,
+            "flat_per_point": flat_per_point,
+            "trivial_bound_on_one_term": 1.0,
+            "expansion_worse_by": b_mass + v_mass,
+            "flat_alone_reaches_trivial": flat_per_point >= 1.0}
 
 
 def main() -> None:
