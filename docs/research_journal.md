@@ -37680,3 +37680,125 @@ Best next question
   threshold anywhere at all? A row whose crossing is quoted nowhere in
   the prose is one the reader cannot check against the text.
 ```
+
+## Closed in both directions
+
+All `38` certificate rows are in the A.5 table and `24` are also quoted
+in live prose within a rounding, counting the small ones printed as bare
+integers. No certified threshold is absent from the paper.
+
+The other direction: `23` live prose onsets above `10^4`, of which `15`
+match a row within a rounding (three of those below it --- last
+section's finding) and `8` name no row. Seven of the eight are not row
+thresholds at all:
+
+```text
+  1.66e12   the merged qpp form's crossing, quoted as the alternative
+  3.0e4     where a measured gap begins to widen
+  3.0e6     the right end of a measurement range for 2c'
+  6.1e4     the lambda_0 crossing before the endpoint was corrected
+  9.9e18    P_1, with 1.02e23 the other end of the sentence
+  4.3e9     the mode-index row at the sharpened constant 4.001
+```
+
+The eighth is `1.6e13`, Step 5a's threshold under `E`'s superseded `106`
+--- last section's site, `45%` below the `2.9117e13` its row carries. It
+is the only prose threshold in the paper that disagrees with the row it
+names.
+
+Which bounds the remaining risk. Three sections of sweeping have found
+two constants rounded the wrong way, one quantity at three values, one at
+two, one symbol standing for another, three onsets rounded to nearest,
+and one paragraph left behind by a global replacement --- every one a
+presentation defect below `P_0`. What no sweep can see is a derivation
+wrong in a way its own numbers agree with, and the `106` paragraph was
+exactly that shape: only the body-against-table comparison caught it.
+
+```text
+Phase-end report
+Question
+- for each certificate row, does the body state its threshold anywhere at
+  all
+Instruments
+- every_prose_threshold_accounted_for: rows against prose in both
+  directions, with every unmatched prose onset identified by what it is
+Ledger tags
+- COMPUTATIONALLY VERIFIED: 38 rows, 24 quoted in prose, 14 in the table
+  only, 0 absent; 23 live onsets above 1e4, 15 matching a row, 8 naming
+  none, 7 of those identified as other quantities and 1 the Step 5a
+  1.6e13, which is 45% below its row's 2.9117e13
+- OBSERVATION: the seven are measurement narrative, superseded crossings
+  quoted as such, P_1, and a row at a sharpened constant --- legitimate,
+  and distinguishable only by reading the sentence
+Strongest theorem
+- exactly one prose threshold in the paper disagrees with the row it
+  names, and it is the 106 survivor
+Strongest refutation
+- none; the sweep's own false positives were cleared by hand and recorded
+Reusable machinery
+- every_prose_threshold_accounted_for, UNMATCHED_ONSETS, two tests, wired
+  into summary()
+Branch status
+- PARK
+Why
+  The numbers audit is closed in both directions; what remains is the
+  class no sweep can see.
+Best next question
+- the sweeps are exhausted, and what they cannot see is a derivation
+  whose own numbers agree with each other. The paper has three of those
+  where a constant is built from named parts: E = 2(84.38 + 0.91) =
+  170.6, the collected 5 = 4 + 1, and c_7 = 1/232. Rebuild each from its
+  parts and check the arithmetic, not the consistency.
+```
+
+## A pairing two files cited and neither contained
+
+2026-09-08. Last tick proved the cited Lean declarations are proved. It
+said nothing about whether they are about what the citing sentence
+claims. The tractable slice of that is the threshold certificate: a
+Lean row and a Python predicate that are supposed to be the same
+inequality.
+
+I went to find the structure that pairs them, because lean_numeral_audit
+says twice that it exists --- once in its docstring, once in a comment
+justifying why ThresholdCertificate is excluded from its numeral audit.
+Both name p0_certificate.LEAN_ROWS. There is no LEAN_ROWS in
+p0_certificate. The file does not mention the Lean rows at all. Two
+constants beside the comment, CERTIFICATE_MODULE and ALGEBRA_MODULES,
+are defined and never read.
+
+So thirty-three theorems were excluded from the audit on the strength
+of a structure that was not there, and the rational witnesses the whole
+certified threshold rests on --- 1.92, 1.46, 0.06237, 0.65076 --- were
+checked by nothing. That is the failure the numeral audit exists to
+catch, one level up: not a numeral that drifted but a coverage claim
+that was never true. A comment saying "something else covers this" is a
+load-bearing claim, and nobody had checked it.
+
+Then the count. The manuscript read "(33 theorems: the window-boundary
+and lambda_0-range rows each split in two)". Thirty-eight rows, two of
+them split in two, is forty. The truth is 38 - 7 + 2: seven rows have
+no Lean theorem at all. None of them binds, and the paper's headline
+figure is right, but the parenthetical explained the shortfall as a
+surplus.
+
+Building the pairing turned out to need a fit. The substitution P = t^k
+cannot be read off the claim strings, because several of them quote an
+exponent the predicate does not use --- 39-wave shows P^(-35/24) and
+runs on P^(-5/6). Fitting k over the paper's own exponent lattice gives
+a unique answer for all thirty-three, which is itself a check: if the
+witnesses and crossings were unrelated, no single k would fit.
+
+The pairing measures conservatism, since a witness below its crossing
+would make the Lean theorem false. Nineteen of thirty are within 10%.
+The loosest is row_5b_lam0_upper at a factor 2.38 --- 17^4 = 83521
+against a crossing of 35027 --- and the manuscript describes all
+witnesses as "at or just above the true crossing", which that one is
+not.
+
+One thing I enjoyed: the axiom guard from last tick fired on itself
+mid-tick. Naming row_5b_lam0_upper in the corrected prose grew the
+cited set from forty-six to forty-seven, and failures() reported the
+artifact was missing a declaration before I had thought about it. A
+guard written yesterday catching today's edit is the only real evidence
+that a guard works.

@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "723380dc74c8fb8959c174459253dccbea6de718",
+  "git_commit": "41a0325263beec1edfe168bc7aecbf630fd68492",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3991,7 +3991,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 7138,
+        "line": 7149,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3999,7 +3999,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7168,
+        "line": 7179,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -4007,7 +4007,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7247,
+        "line": 7258,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -8062,7 +8062,7 @@
           4696
         ],
         "1.2812P^{19/96}": [
-          7222
+          7233
         ]
       },
       "l": {
@@ -8352,6 +8352,117 @@
     "below_P0_by": 120.26021879810862,
     "nothing_is_unsound": true
   },
+  "every_prose_threshold_accounted_for": {
+    "rows_total": 38,
+    "rows_quoted_in_prose": 25,
+    "rows_only_in_the_table": 13,
+    "no_row_is_absent_from_the_paper": true,
+    "live_onsets": 25,
+    "onsets_matching_a_row": 17,
+    "onsets_naming_no_row": 8,
+    "unmatched": [
+      {
+        "value": 1660000000000.0,
+        "line": 2967,
+        "row": null,
+        "offset": 4.5673610920738295
+      },
+      {
+        "value": 16000000000000.0,
+        "line": 4561,
+        "row": null,
+        "offset": 2.9022694742029946
+      },
+      {
+        "value": 30000.0,
+        "line": 5654,
+        "row": null,
+        "offset": 0.02553520729151093
+      },
+      {
+        "value": 3000000.0,
+        "line": 5672,
+        "row": null,
+        "offset": 0.14884074379090273
+      },
+      {
+        "value": 61000.0,
+        "line": 6774,
+        "row": null,
+        "offset": -0.24526076149913745
+      },
+      {
+        "value": 9.9e+18,
+        "line": 7041,
+        "row": null,
+        "offset": 276091.4349322284
+      },
+      {
+        "value": 1.02e+23,
+        "line": 7041,
+        "row": null,
+        "offset": 2844588722.5441713
+      },
+      {
+        "value": 4300000000.0,
+        "line": 7123,
+        "row": null,
+        "offset": 0.3139127802816273
+      }
+    ],
+    "accounted_for": [
+      {
+        "value": 1660000000000.0,
+        "is": "the merged qpp form's own crossing, quoted as the alternative",
+        "pattern": "ratherthanfrom\\(1.66\\cdot10^{12}\\)",
+        "present": true
+      },
+      {
+        "value": 16000000000000.0,
+        "is": "Step 5a's threshold under E's superseded 106",
+        "pattern": "from\\(P\\ge1.6\\cdot10^{13}\\)",
+        "present": true
+      },
+      {
+        "value": 30000.0,
+        "is": "where a measured gap starts widening, not a row",
+        "pattern": "widensmonotonicallyfrom\\(3\\cdot10^{4}\\)on",
+        "present": true
+      },
+      {
+        "value": 3000000.0,
+        "is": "the right end of a measurement range for 2c'",
+        "pattern": "to\\(2.77\\)at\\(3\\cdot10^{6}\\)",
+        "present": true
+      },
+      {
+        "value": 61000.0,
+        "is": "the lambda_0 crossing before the endpoint was corrected",
+        "pattern": "thecrossingfallsfrom\\(6.1\\cdot10^{4}\\)to\\(3.51\\cdot10^{4}\\)",
+        "present": true
+      },
+      {
+        "value": 9.9e+18,
+        "is": "P_1, with 1.02e23 the same sentence's other end",
+        "pattern": "from\\(9.9\\cdot10^{18}\\)to\\(1.02\\cdot10^{23}\\)",
+        "present": true
+      },
+      {
+        "value": 4300000000.0,
+        "is": "the mode-index row at the sharpened constant 4.001",
+        "pattern": "therowfallsfrom\\(1.53\\cdot10^{11}\\)to\\(4.3\\cdot10^{9}\\)",
+        "present": true
+      }
+    ],
+    "every_unmatched_value_is_accounted_for": true,
+    "all_patterns_present": true,
+    "the_one_that_disagrees": "Step 5a's threshold under E's superseded 106",
+    "its_nearest_row_offset": 2.9022694742029946,
+    "step5a_row": 29116952310460.227,
+    "prose_is_below_the_step5a_row_by": -0.45049193921810216,
+    "exactly_one_prose_threshold_disagrees_with_its_row": true,
+    "the_numbers_audit_closes_in_both_directions": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -8419,5 +8530,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 87.82614159584045
+  "elapsed_seconds": 94.80688524246216
 }

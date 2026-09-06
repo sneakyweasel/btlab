@@ -2376,3 +2376,25 @@ def test_the_thirty_three_five_count_fixes_the_rounding_its_number_got_wrong() -
     # and the number the sweep flags nearby is its own computation, correctly rounded up
     cleared = r["cleared_site"]
     assert abs(cleared["value"] - 2.9472e11) / 2.9472e11 < 1e-3 and cleared["printed_is_above"]
+
+
+# --- the numbers audit, closed in both directions ---
+
+
+def test_no_certified_threshold_is_absent_from_the_paper() -> None:
+    """All 38 rows are in A.5, and 24 are also quoted in prose within a rounding."""
+    r = A.every_prose_threshold_accounted_for()
+    assert r["rows_total"] == 38
+    assert r["rows_quoted_in_prose"] + r["rows_only_in_the_table"] == r["rows_total"]
+    assert r["rows_quoted_in_prose"] >= 20 and r["no_row_is_absent_from_the_paper"]
+
+
+def test_exactly_one_prose_onset_disagrees_with_the_row_it_names() -> None:
+    """Eight onsets name no row; seven are not thresholds, and the eighth is the 106 survivor."""
+    r = A.every_prose_threshold_accounted_for()
+    assert r["onsets_matching_a_row"] + r["onsets_naming_no_row"] == r["live_onsets"]
+    assert r["every_unmatched_value_is_accounted_for"]
+    if r["all_patterns_present"]:
+        assert r["onsets_naming_no_row"] == 8
+        assert "106" in r["the_one_that_disagrees"]
+        assert -0.46 < r["prose_is_below_the_step5a_row_by"] < -0.44

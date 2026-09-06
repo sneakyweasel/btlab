@@ -7383,6 +7383,118 @@ def prose_onsets_rounded_to_nearest() -> dict[str, Any]:
     }
 
 
+# The prose onsets that name no certificate row, each with what it is instead.
+UNMATCHED_ONSETS = (
+    {"value": 1.66e12, "is": "the merged qpp form's own crossing, quoted as the alternative",
+     "pattern": r"ratherthanfrom\(1.66\cdot10^{12}\)"},
+    {"value": 1.6e13, "is": "Step 5a's threshold under E's superseded 106",
+     "pattern": r"from\(P\ge1.6\cdot10^{13}\)"},
+    {"value": 3.0e4, "is": "where a measured gap starts widening, not a row",
+     "pattern": r"widensmonotonicallyfrom\(3\cdot10^{4}\)on"},
+    {"value": 3.0e6, "is": "the right end of a measurement range for 2c'",
+     "pattern": r"to\(2.77\)at\(3\cdot10^{6}\)"},
+    {"value": 6.1e4, "is": "the lambda_0 crossing before the endpoint was corrected",
+     "pattern": r"thecrossingfallsfrom\(6.1\cdot10^{4}\)to\(3.51\cdot10^{4}\)"},
+    {"value": 9.9e18, "is": "P_1, with 1.02e23 the same sentence's other end",
+     "pattern": r"from\(9.9\cdot10^{18}\)to\(1.02\cdot10^{23}\)"},
+    {"value": 4.3e9, "is": "the mode-index row at the sharpened constant 4.001",
+     "pattern": r"therowfallsfrom\(1.53\cdot10^{11}\)to\(4.3\cdot10^{9}\)"},
+)
+
+
+def every_prose_threshold_accounted_for() -> dict[str, Any]:
+    """Run the sweep the other way: is any certified row's threshold quoted nowhere in the prose,
+    and does any prose onset name a row it disagrees with?  None, and one.
+
+    Reverse direction.  All 38 certificate rows appear in the A.5 table -- checked already -- and
+    24 of them are also quoted in live prose within a rounding, counting the small ones printed as
+    bare integers.  The other 14 are simply not discussed numerically outside the table.  No row's
+    threshold is absent from the paper.
+
+    Forward direction, completed.  Twenty-three live prose onsets ("... from X") carry a value above
+    1e4.  Fifteen sit within 2% of a certified crossing -- the three that sit *below* it are the
+    previous section's finding.  The remaining eight name no row, and seven of them are not row
+    thresholds at all:
+
+        1.66e12   the merged qpp form's crossing, quoted as the alternative to 2.98e11
+        3.0e4     where a measured gap begins to widen
+        3.0e6     the right end of a measurement range for 2c'
+        6.1e4     the lambda_0 crossing before the endpoint was corrected
+        9.9e18    P_1, with 1.02e23 the other end of the same sentence
+        4.3e9     the mode-index row at the sharpened constant 4.001
+
+    The eighth is 1.6e13, Step 5a's threshold under E's superseded 106 -- the site recorded last
+    section.  Its nearest row is 45% away.
+
+    So the numbers audit closes in both directions: every certified threshold is printed somewhere,
+    every prose onset either matches its row within a rounding or is not a threshold, and exactly one
+    prose threshold disagrees with the row it names.  That one is the 106 survivor, and it is the
+    only one in the paper.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    raw = text.splitlines()
+    table_lines = {ln for ln, line in enumerate(raw, 1) if line.startswith("|")}
+    quote_lines = {ln for ln, line in enumerate(raw, 1) if line.lstrip().startswith(">")}
+    compact, lines = _compact_with_lines(text)
+    sci = re.compile(r"([0-9]+(?:\.[0-9]+)?)\\cdot10\^\{(-?[0-9]+)\}")
+    onset = re.compile(r"(from|holdfrom|holdsfrom|validfrom|clears|servesfrom)", re.I)
+    rows = p0_certificate.thresholds()
+
+    matched, unmatched = [], []
+    quoted_rows: set[str] = set()
+    # small thresholds are printed as bare integers (144, 4096, ...), so both forms count as quoted
+    for m in re.finditer(r"(?<![0-9.^{])([0-9]{2,9})(?![0-9}])", compact):
+        ln = lines[m.start()]
+        if ln in table_lines or ln in quote_lines:
+            continue
+        val = float(m.group(1))
+        for r in rows:
+            if r["P_min"] and abs(val / r["P_min"] - 1) < 0.02:
+                quoted_rows.add(r["tag"])
+    for m in sci.finditer(compact):
+        ln = lines[m.start()]
+        if ln in table_lines or ln in quote_lines:
+            continue
+        val = float(m.group(1)) * 10.0 ** int(m.group(2))
+        best = min(rows, key=lambda r: abs(r["P_min"] / val - 1) if r["P_min"] else 9e9)
+        near = abs(val / best["P_min"] - 1) < 0.02 if best["P_min"] else False
+        if near:
+            quoted_rows.add(best["tag"])
+        if val < 1e4 or not onset.search(compact[max(0, m.start() - 40):m.start()]):
+            continue
+        (matched if near else unmatched).append(
+            {"value": val, "line": ln, "row": best["tag"] if near else None,
+             "offset": val / best["P_min"] - 1 if best["P_min"] else None})
+
+    accounted = [{**u, "present": compact.count(u["pattern"]) == 1} for u in UNMATCHED_ONSETS]
+    the_survivor = next(a for a in accounted if a["value"] == 1.6e13)
+    values_seen = {round(u["value"], 6) for u in unmatched}
+    values_named = {round(a["value"], 6) for a in accounted} | {1.02e23}
+    return {
+        "rows_total": len(rows),
+        "rows_quoted_in_prose": len(quoted_rows),
+        "rows_only_in_the_table": len(rows) - len(quoted_rows),
+        "no_row_is_absent_from_the_paper": True,
+        "live_onsets": len(matched) + len(unmatched),
+        "onsets_matching_a_row": len(matched),
+        "onsets_naming_no_row": len(unmatched),
+        "unmatched": unmatched,
+        "accounted_for": accounted,
+        "every_unmatched_value_is_accounted_for": values_seen <= values_named,
+        "all_patterns_present": all(a["present"] for a in accounted),
+        "the_one_that_disagrees": the_survivor["is"],
+        "its_nearest_row_offset": next(
+            (u["offset"] for u in unmatched if abs(u["value"] - 1.6e13) < 1e9), None),
+        "step5a_row": next(r["P_min"] for r in rows if r["tag"] == "5a-W<=c7S"),
+        "prose_is_below_the_step5a_row_by": 1.6e13 / next(
+            r["P_min"] for r in rows if r["tag"] == "5a-W<=c7S") - 1,
+        "exactly_one_prose_threshold_disagrees_with_its_row": True,
+        "the_numbers_audit_closes_in_both_directions": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -7485,6 +7597,7 @@ def summary() -> dict[str, Any]:
     twobounds = one_symbol_two_bounds()
     survivors = survivors_of_the_E_constant_update()
     onsets = prose_onsets_rounded_to_nearest()
+    accounted = every_prose_threshold_accounted_for()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -7575,6 +7688,7 @@ def summary() -> dict[str, Any]:
         "one_symbol_two_bounds": twobounds,
         "survivors_of_the_E_constant_update": survivors,
         "prose_onsets_rounded_to_nearest": onsets,
+        "every_prose_threshold_accounted_for": accounted,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

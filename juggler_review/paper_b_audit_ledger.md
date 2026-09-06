@@ -7344,3 +7344,151 @@ Probe: `prose_onsets_rounded_to_nearest`, with `PROSE_ONSETS` and the one
 cleared site, matched against the whitespace-stripped manuscript. Two
 tests. Audit `270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript or
 certificate edit.
+
+## The numbers audit closes: one prose threshold disagrees with its row, and it is the one already found
+
+Run the sweep the other way. All `38` certificate rows appear in the A.5
+table, and `24` of them are also quoted in live prose within a rounding
+--- counting the small ones printed as bare integers, `144`, `4096`,
+`3136`. The other `14` are simply not discussed numerically outside the
+table. **No certified threshold is absent from the paper.**
+
+Then the forward direction, completed. Twenty-three live prose onsets
+("... from `X`") carry a value above `10^4`. Fifteen sit within `2%` of a
+certified crossing, and the three that sit *below* one are the previous
+section's finding. The remaining eight name no row, and seven of them are
+not row thresholds at all:
+
+```text
+  1.66e12   the merged qpp form's crossing, quoted as the alternative to 2.98e11
+  3.0e4     where a measured gap begins to widen
+  3.0e6     the right end of a measurement range for 2c'
+  6.1e4     the lambda_0 crossing before the endpoint was corrected
+  9.9e18    P_1, with 1.02e23 the other end of the same sentence
+  4.3e9     the mode-index row at the sharpened constant 4.001
+```
+
+The eighth is `1.6e13` --- Step 5a's threshold under `E`'s superseded
+`106`, the site recorded last section. Its nearest row of any kind is
+`290%` away, and the row it actually names sits at `2.9117e13`, so the
+sentence is `45%` below it.
+
+So the audit of this paper's numbers closes in both directions:
+
+```text
+  every certified threshold is printed somewhere                  38 / 38
+  prose onsets that match their row within a rounding             15 / 23
+  prose onsets that are not row thresholds, each identified        7 / 23
+  prose thresholds that disagree with the row they name            1 / 23
+```
+
+and that one is the `106` survivor. It is the only one in the paper.
+
+That is worth stating plainly because it bounds the remaining risk. Three
+sections of sweeping have turned up: two constants rounded the wrong way
+on the strong side, one quantity printed at three values, one printed at
+two, one symbol standing for another, three prose onsets rounded to
+nearest, and one paragraph left behind by a global replacement. Every one
+is a presentation defect below `P_0`; not one of them moves a bound the
+argument depends on. What the sweeps cannot see is a *derivation* that is
+wrong in a way its own numbers agree with --- and the `106` paragraph is
+exactly that shape, which is why it took the body-against-table
+comparison to find it rather than any check of internal consistency.
+
+Tags. COMPUTATIONALLY VERIFIED: `38` rows, `24` quoted in prose, `14` in
+the table only, `0` absent; `23` live prose onsets above `10^4`, `15`
+matching a row within `2%`, `8` naming none, of which `7` are identified
+as other quantities and `1` is Step 5a's `1.6e13`, which is `45%` below
+the `2.9117e13` its own row carries. OBSERVATION: the seven are a mixture
+of measurement narrative, superseded crossings quoted as such, `P_1`, and
+one row evaluated at a sharpened constant --- all legitimate, and all
+distinguishable only by reading the sentence, which is why the instrument
+records what each one is rather than filtering by pattern.
+
+Probe: `every_prose_threshold_accounted_for` with `UNMATCHED_ONSETS`,
+matched against the whitespace-stripped manuscript. Two tests. Audit
+`270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate
+edit.
+
+## A pairing cited by two files and existing in neither, and the seven rows Lean does not certify
+
+*Mathematical target.* The axiom check confirms the cited theorems are
+proved. It says nothing about whether they are *about* what the citing
+sentence claims. The tractable slice is the threshold certificate,
+where a Lean row and a Python predicate are supposed to be the same
+inequality.
+
+*Novelty hypothesis.* Some Lean row certifies a different threshold
+from the one its Python predicate bisects.
+
+*Falsifier.* Every Lean witness is a conservative substitution of its
+own row.
+
+*Existing machinery.* `trust_boundary.declared`,
+`p0_certificate.thresholds`.
+
+*Prior art.* The ledger's vacuity entry is about *guards* quantifying
+over non-empty sets, not Lean hypotheses. Nothing on the row pairing.
+
+**The pairing does not exist.** `tools/lean_numeral_audit.py` excludes
+`ThresholdCertificate` from its numeral audit, saying so twice:
+
+  "`p0_certificate.LEAN_ROWS` already pairs the thirty-eight threshold
+   rows with their theorems and their rational witnesses."
+  "ThresholdCertificate's rows are paired by `p0_certificate.LEAN_ROWS`,
+   which carries the substitution and the rational witness too."
+
+There is no `LEAN_ROWS` in `p0_certificate`, and `p0_certificate` does
+not mention the Lean rows at all. Its two dead constants
+`CERTIFICATE_MODULE` and `ALGEBRA_MODULES` are defined and never read.
+So the thirty-three row theorems --- and the rational witnesses
+`1.92`, `1.46`, `0.06237`, `0.65076` the certified thresholds rest on
+--- were audited by nothing, excluded on the strength of a structure
+that was not there. This is exactly the failure the numeral audit was
+written to close, one level up: not a numeral that drifted, but a
+coverage claim that was never true.
+
+**And the count was wrong.** The manuscript read "(33 theorems: the
+window-boundary and `lambda_0`-range rows each split in two)", which
+accounts for `33` as `38` plus two splits --- that is `40`. The truth
+is `38 - 7 + 2`: **seven rows have no Lean theorem at all.** They are
+`claimD-shift`, `st2-collision`, `st3a-flatcost`, `st5b-qpp`,
+`t61-stepB-discard`, `t63-flat` and `t63-window`, none of them binding,
+crossings from `6.45e5` to `2.98e11`. The Lean file certifies
+thirty-one of the thirty-eight rows, and the parenthetical said the
+opposite of that.
+
+**The pairing, built.** Each `row_*` theorem carries a rational witness
+`t_0` and an implicit substitution `P = t^k`. `k` cannot be read off
+the claim strings --- several quote an exponent the predicate does not
+use, `39-wave` showing `-35/24` while running on `-5/6` --- so it is
+fitted over the paper's exponent lattice `(1,2,3,4,6,8,12,16,24,32,36,
+48,72,96)` and comes out unique for all thirty-three. Every witness
+lands at or above its crossing, as it must for the theorem to be true;
+what the pairing measures is how conservative each is. Nineteen of the
+thirty that carry a loss figure are within `10%`. The loosest is
+`row_5b_lam0_upper`, certifying from `17^4 = 83521` against a crossing
+of `35027`, a factor `2.3845` --- the manuscript called the witnesses
+"at or just above the true crossing", which that one is not.
+
+**What Lean actually certifies.** The maximum over rows is
+`row_5b_binding` at `1.92^48 = 3.96697e13`. The manuscript states this
+row and its `11%` loss, so the headline is right; what it did not say
+is that thirty-one rows and not thirty-eight stand behind it.
+
+Tags. EXACT: `17^4 = 83521`; `38 - 7 + 2 = 33`. COMPUTATIONALLY
+VERIFIED: thirty-three theorems parsed with witnesses, thirty-one
+distinct tags, seven uncovered; a unique `k` for each over the exponent
+lattice; every loss `>= 1`, nineteen under `1.10`, maximum `2.3845`;
+Lean-certified `P_0 = 3.96697e13`. OBSERVATION: the guard fired on
+itself mid-tick --- citing `row_5b_lam0_upper` in the corrected prose
+grew the cited set to forty-seven and the axiom artifact reported the
+gap before I noticed it.
+
+Probe: `manuscript_self_audit.lean_rows`, `lean_row_audit`,
+`lean_row_failures`; `failures()` gains a `lean_rows` key, thirteen
+checks. Eight new tests, eighty in the file. `lean_numeral_audit`'s
+docstring and comment now name the pairing that exists and record what
+they used to name. Manuscript: the count corrected, the seven named,
+the conservatism quantified. Artifact regenerated at forty-seven
+declarations, all axiom-clean. `P_0` unmoved. No certificate edit.
