@@ -36284,3 +36284,66 @@ Best next question
   rationals printed as decimals, and is any decimal printed inconsistently with
   its own exact value?
 ```
+
+## The opening was buying something
+
+The floor of the `c_7` lever is the Step 5b(a) `q''` row at `2.98e11`,
+not `5b-E<=c7S` at `4.10e12` -- `5b-E` mentions `c_7`, so it vanishes as
+the lever is spent and was never a floor. That answers the question as
+asked. What it turned up is more useful.
+
+Closing the anchor opening raises the threshold of the row that licenses
+it, and that row is what the lever runs into. With the floor fixed at
+`2.98e11`, the lever falls by exactly the factor `P_0` falls by: the
+`1.3526` gain at `lam_lo = 0.619` costs `120.3 -> 88.9` of lever.
+Nothing is gained on one side that is not lost on the other.
+
+And then a cliff. The range row's own threshold runs `1.00e6`, `1.54e7`,
+`2.41e8`, `1.48e11`, `2.37e12`, `1.83e13` as `lam_lo` goes `0.600` to
+`0.6197`, crossing the `q''` row between `0.619` and `0.6195`. Past that
+the range row is the floor and the lever is `1.45`.
+
+Which is where I measured last pass. The `1.3573` is at `0.6197`, beyond
+the crossing. The usable figure is `1.3526`, and it is the lever, spent.
+
+So an opening is not slack in the threshold -- it is slack in the lever,
+room held for the paper's other constants to improve later. That is a
+different thing from a rounded constant, and I had been treating them
+alike for three passes.
+
+```text
+Phase-end report
+Question
+- does the saturated 2.6419e13 sit above 5b-E, and is the floor of the
+  c_7 lever 4.10e12
+Instruments
+- opening_versus_lever: P_0 and the c_7 -> 1 floor across the opening,
+  with the range row's own threshold traced alongside
+Ledger tags
+- EXACT: 5b-E mentions c_7 so it vanishes with the lever and cannot be
+  the floor; with the floor fixed the lever falls by exactly the factor
+  P_0 falls by
+- COMPUTATIONALLY VERIFIED: floor 2.9817e11 (st5b-qpp) for every
+  lam_lo <= 0.619 and 1.8266e13 (5b-lam0-range) at 0.6197; range-row
+  thresholds 1.00e6 to 1.83e13; safe_gain = lever_cost = 1.3526
+- OBSERVATION: the crossing is between 0.619 and 0.6195, so the last
+  thousandth of the opening carries the whole lever
+Strongest theorem
+- an opening is slack in the lever, not in the threshold: the floor is
+  fixed, so every factor taken off P_0 comes off the lever exactly
+Strongest refutation
+- my own previous section, which measured the gain at 0.6197, past the
+  crossing where the lever has already collapsed
+Reusable machinery
+- opening_versus_lever, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change; it is the price of a choice the
+  author already made, now stated correctly.
+Best next question
+- the lever is P_0 over a fixed floor, and the floor is st5b-qpp at
+  2.98e11 -- a row whose own constant 48.9 is an integer-free decimal I
+  have never measured. If that row is itself loose, the lever is larger
+  than 120 and every price in this section is understated.
+```

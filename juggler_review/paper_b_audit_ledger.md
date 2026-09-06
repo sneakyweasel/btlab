@@ -5707,3 +5707,75 @@ One process note. Writing the tool's comment through a heredoc turned `\tfrac32`
 tab, inside a sentence explaining that `1.5`'s second role is written as a fraction. Fourth
 time this session the escape hazard has bitten, and the first time it has corrupted the very
 example it was describing.
+
+## The opening is slack in the lever, not in the threshold --- and the `1.357` was measured past the cliff
+
+The previous section priced the two anchor openings at a factor `1.357`
+on `P_0` and left it there. The figure is right and the reading was
+incomplete. Closing the opening also raises the threshold of the row
+that licenses it, `5b-lam0-range`, and that row is what the `c_7` lever
+runs into.
+
+**The floor first.** Taking `c_7` to `1` --- the whole lever spent ---
+and asking what `P_0` remains:
+
+```text
+  lam_5b    P_0          floor at c_7 -> 1   lever    floor row
+  0.5600    3.5858e13    2.9817e11           120.26   st5b-qpp     as printed
+  0.5900    3.0630e13    2.9817e11           102.73   st5b-qpp
+  0.6000    2.9117e13    2.9817e11            97.65   st5b-qpp
+  0.6150    2.7031e13    2.9817e11            90.66   st5b-qpp
+  0.6190    2.6509e13    2.9817e11            88.91   st5b-qpp
+  0.6197    2.6419e13    1.8266e13             1.45   5b-lam0-range
+```
+
+So the floor is the Step 5b(a) `q''` row at `2.98e11`, not `5b-E<=c7S`
+at `4.10e12` --- `5b-E` mentions `c_7` and vanishes with the lever, so
+it was never a floor. That answers the question as asked.
+
+**And the floor is fixed, which makes the trade exact.** For every
+`lam_lo` up to about `0.619` the floor does not move, so the lever falls
+by *exactly* the factor `P_0` falls by: the safe gain `1.3526` costs
+`1.3526` of lever, `120.3` down to `88.9`. Nothing is gained on one side
+that is not lost on the other.
+
+**Then there is a cliff.** The range row's own threshold climbs steeply
+as the opening closes:
+
+```text
+  lam_lo   0.600     0.610     0.615     0.619     0.6195    0.6197
+  least P  1.00e6    1.54e7    2.41e8    1.48e11   2.37e12   1.83e13
+```
+
+crossing the `q''` row's `2.98e11` between `0.619` and `0.6195`. Past
+that the range row is the floor and the lever collapses to `1.45`.
+
+**Which is where the previous section measured.** Its `1.3573` is at
+`lam_lo = 0.6197`, beyond the crossing. The usable figure is `1.3526` at
+`0.619`, and it is not free: it is the lever, spent.
+
+So an opening is not slack in the threshold. It is slack in the
+*lever* --- room held for the paper's other constants to improve later.
+A proof that rounds its constants outward is buying that room, and the
+price of closing it is not `1.36` of `P_0` but `26%` of the lever, and
+then a cliff a thousandth of the way further on.
+
+Tags. EXACT: `5b-E<=c7S` mentions `c_7`, so it vanishes as the lever is
+spent and cannot be the floor; with the floor fixed, the lever falls by
+exactly the factor `P_0` falls by. COMPUTATIONALLY VERIFIED: the
+six-row table above; the floor is `2.9817e11` (`st5b-qpp`) for every
+`lam_lo <= 0.619` and `1.8266e13` (`5b-lam0-range`) at `0.6197`; the
+range row's thresholds `1.00e6` to `1.83e13` across the same range;
+`safe_gain = lever_cost = 1.3526`. OBSERVATION: the crossing sits
+between `0.619` and `0.6195`, so the last thousandth of the opening
+carries the entire lever.
+
+*Correction.* The previous section's `1.3573` is measured at
+`lam_lo = 0.6197`, past the crossing, where the lever is already gone.
+Its arithmetic stands; its conclusion --- that the reported `P_0` is
+`1.36` times what the exact constants support --- should read that the
+paper trades that `1.36` for a lever of `120` against a fixed floor.
+
+Probe: `opening_versus_lever`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

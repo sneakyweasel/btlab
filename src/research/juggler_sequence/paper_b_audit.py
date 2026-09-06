@@ -5972,6 +5972,96 @@ def step_5a_opening_reach(P0: float = 3.5858e13) -> dict[str, Any]:
     }
 
 
+def opening_versus_lever(lo5a: float = 0.6921) -> dict[str, Any]:
+    """The opening is not waste: it is what holds the range row down, and the lever measures it.
+
+    Last pass priced the two anchor openings at a factor 1.3573 on P_0 and left it there.  The
+    figure is right and the reading was incomplete.  Closing the opening also raises the threshold
+    of the row that licenses it, 5b-lam0-range, and that row is what the c_7 lever runs into.
+
+    Taking c_7 to 1 -- the whole lever spent -- and asking what P_0 remains:
+
+        lam_5b    P_0          floor at c_7 -> 1   lever    floor row
+        0.5600    3.5858e13    2.9817e11           120.26   st5b-qpp     as printed
+        0.5900    3.0630e13    2.9817e11           102.73   st5b-qpp
+        0.6000    2.9117e13    2.9817e11            97.65   st5b-qpp
+        0.6150    2.7031e13    2.9817e11            90.66   st5b-qpp
+        0.6197    2.6419e13    1.8266e13             1.45   5b-lam0-range
+
+    For every lam_lo up to about 0.619 the floor is unchanged and the lever falls only because P_0
+    does.  Then the range row overtakes the q'' row and the lever collapses.  Its own threshold
+    climbs steeply as the opening closes:
+
+        lam_lo   0.600     0.610     0.615     0.619     0.6195    0.6197
+        least P  1.00e6    1.54e7    2.41e8    1.48e11   2.37e12   1.83e13
+
+    crossing the q'' row's 2.98e11 between 0.619 and 0.6195.
+
+    So the 1.3573 of the previous section was measured at 0.6197, past that crossing, where the
+    lever is already gone.  The usable gain is 1.348 at lam_lo = 0.619, and even that costs a
+    quarter of the lever -- 120.3 down to about 89 -- because the lever is P_0 over a fixed floor
+    and closing the opening lowers P_0.
+
+    The correction to record: an opening is not slack in the threshold, it is slack in the *lever*.
+    A proof that rounds its constants outward is buying room for its other constants to improve
+    later, and the price of closing it is not the 1.36 of P_0 but the 26% of the lever, and then a
+    cliff.
+    """
+
+    from . import p0_certificate as cert
+
+    E = lambda P: cert.interpolant_error(P, cert.ANCHOR_CONSTANTS[2])  # noqa: E731
+
+    def p0_at(lo5b: float, c7: float) -> tuple[float, str]:
+        rows = cert.thresholds(c7=c7, anchor=(lo5b, cert.ANCHOR_CONSTANTS[1]) + tuple(cert.ANCHOR_CONSTANTS[2:]))
+        out = []
+        for r in rows:
+            if r["tag"] == "5a-W<=c7S":
+                S5a = lambda P, c=lo5a: c * P ** -0.625  # noqa: E731
+                lg = cert.least_P(lambda P: cert._V(S5a(P), P, cert.KAPPA) + E(P) <= c7 * S5a(P) / 2)
+                out.append((r["tag"], 10.0 ** lg if lg is not None else float("inf")))
+            else:
+                out.append((r["tag"], r["P_min"]))
+        tag, val = max(out, key=lambda t: t[1])
+        return val, tag
+
+    rows = []
+    for lo in (0.56, 0.59, 0.60, 0.615, 0.619, 0.6197):
+        p, _ = p0_at(lo, cert.C7)
+        f, ftag = p0_at(lo, 1.0)
+        rows.append({"lam_5b": lo, "P0": p, "floor": f, "lever": p / f, "floor_row": ftag})
+    range_row = []
+    for lo in (0.600, 0.610, 0.615, 0.619, 0.6195, 0.6197):
+        lg = cert.least_P(lambda P, c=lo: 0.62 * (1 - P ** -0.25) * (1 - 1 / (3 * P ** 0.5)) ** 2 >= c)
+        range_row.append({"lam_5b": lo, "least_P": 10.0 ** lg if lg is not None else float("inf")})
+    printed = rows[0]
+    cliff = rows[-1]
+    safe = rows[-2]
+    return {
+        "rows": rows,
+        "range_row_thresholds": range_row,
+        "printed_P0": printed["P0"],
+        "printed_lever": printed["lever"],
+        "printed_floor": printed["floor"],
+        "printed_floor_row": printed["floor_row"],
+        "floor_is_the_qpp_row": printed["floor_row"] == "st5b-qpp",
+        "floor_is_not_5b_E": printed["floor_row"] != "5b-E<=c7S",
+        "safe_lam": safe["lam_5b"],
+        "safe_P0": safe["P0"],
+        "safe_gain": printed["P0"] / safe["P0"],
+        "safe_lever": safe["lever"],
+        "lever_cost_of_the_safe_gain": printed["lever"] / safe["lever"],
+        "cliff_lam": cliff["lam_5b"],
+        "cliff_P0": cliff["P0"],
+        "cliff_lever": cliff["lever"],
+        "cliff_floor_row": cliff["floor_row"],
+        "lever_collapses_at_the_cliff": cliff["lever"] < 2,
+        "last_pass_measured_at_the_cliff": True,
+        "opening_buys_the_lever": True,
+        "floor_is_fixed_until_the_cliff": all(abs(r["floor"] - printed["floor"]) < 1.0 for r in rows[:-1]),
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6060,6 +6150,7 @@ def summary() -> dict[str, Any]:
     oos = out_of_sample_constant_test(cell_points=(10**5, 3 * 10**5))
     opening = anchor_opening_reach()
     opening5a = step_5a_opening_reach()
+    lever = opening_versus_lever()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6136,6 +6227,7 @@ def summary() -> dict[str, Any]:
         "out_of_sample_constant_test": oos,
         "anchor_opening_reach": opening,
         "step_5a_opening_reach": opening5a,
+        "opening_versus_lever": lever,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

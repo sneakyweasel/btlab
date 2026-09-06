@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "0c83e9e0768958947346778018a760b57b532cb8",
+  "git_commit": "16e3def1c39d2f2eb73ca54671554ff26ac94a6b",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -6706,6 +6706,97 @@
     "binding_alternates": true,
     "is_a_block_range_constant": true
   },
+  "opening_versus_lever": {
+    "rows": [
+      {
+        "lam_5b": 0.56,
+        "P0": 35857556192838.55,
+        "floor": 298166397427.1972,
+        "lever": 120.26021879810862,
+        "floor_row": "st5b-qpp"
+      },
+      {
+        "lam_5b": 0.59,
+        "P0": 30629748716830.883,
+        "floor": 298166397427.1972,
+        "lever": 102.72703088318227,
+        "floor_row": "st5b-qpp"
+      },
+      {
+        "lam_5b": 0.6,
+        "P0": 29116952310460.227,
+        "floor": 298166397427.1972,
+        "lever": 97.65336591146111,
+        "floor_row": "st5b-qpp"
+      },
+      {
+        "lam_5b": 0.615,
+        "P0": 27031235728910.293,
+        "floor": 298166397427.1972,
+        "lever": 90.65822293241634,
+        "floor_row": "st5b-qpp"
+      },
+      {
+        "lam_5b": 0.619,
+        "P0": 26509304717793.773,
+        "floor": 298166397427.1972,
+        "lever": 88.90775401432184,
+        "floor_row": "st5b-qpp"
+      },
+      {
+        "lam_5b": 0.6197,
+        "P0": 26419370158214.883,
+        "floor": 18265921097344.47,
+        "lever": 1.4463749195793787,
+        "floor_row": "5b-lam0-range"
+      }
+    ],
+    "range_row_thresholds": [
+      {
+        "lam_5b": 0.6,
+        "least_P": 1001240.0731963229
+      },
+      {
+        "lam_5b": 0.61,
+        "least_P": 15405014.552909534
+      },
+      {
+        "lam_5b": 0.615,
+        "least_P": 241478314.95652163
+      },
+      {
+        "lam_5b": 0.619,
+        "least_P": 148398217678.45285
+      },
+      {
+        "lam_5b": 0.6195,
+        "least_P": 2369295356603.556
+      },
+      {
+        "lam_5b": 0.6197,
+        "least_P": 18265921097344.47
+      }
+    ],
+    "printed_P0": 35857556192838.55,
+    "printed_lever": 120.26021879810862,
+    "printed_floor": 298166397427.1972,
+    "printed_floor_row": "st5b-qpp",
+    "floor_is_the_qpp_row": true,
+    "floor_is_not_5b_E": true,
+    "safe_lam": 0.619,
+    "safe_P0": 26509304717793.773,
+    "safe_gain": 1.3526403870098476,
+    "safe_lever": 88.90775401432184,
+    "lever_cost_of_the_safe_gain": 1.3526403870098476,
+    "cliff_lam": 0.6197,
+    "cliff_P0": 26419370158214.883,
+    "cliff_lever": 1.4463749195793787,
+    "cliff_floor_row": "5b-lam0-range",
+    "lever_collapses_at_the_cliff": true,
+    "last_pass_measured_at_the_cliff": true,
+    "opening_buys_the_lever": true,
+    "floor_is_fixed_until_the_cliff": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6773,5 +6864,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 96.7876296043396
+  "elapsed_seconds": 96.84561371803284
 }

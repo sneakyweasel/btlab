@@ -1982,3 +1982,31 @@ def test_the_two_openings_together_are_worth_a_third_of_P0() -> None:
     from research.juggler_sequence import p0_certificate as C
 
     assert abs(C.certificate()["P0"] - 3.5858e13) / 3.5858e13 < 1e-3
+
+
+# --- what the opening buys ---
+
+
+def test_the_floor_of_the_c7_lever_is_the_qpp_row() -> None:
+    """Taking c_7 to 1 leaves st5b-qpp at 2.98e11, not 5b-E, which is itself a c_7 row."""
+    r = A.opening_versus_lever()
+    assert r["floor_is_the_qpp_row"] and r["floor_is_not_5b_E"]
+    assert abs(r["printed_floor"] - 2.98e11) / 2.98e11 < 0.01
+    assert 120 < r["printed_lever"] < 121
+    assert r["floor_is_fixed_until_the_cliff"]
+    assert all(x["floor_row"] == "st5b-qpp" for x in r["rows"][:-1])
+
+
+def test_closing_the_opening_spends_the_lever_and_then_falls_off_a_cliff() -> None:
+    """The floor is fixed, so the lever falls exactly as P_0 does -- until the range row overtakes."""
+    r = A.opening_versus_lever()
+    assert 1.34 < r["safe_gain"] < 1.36 and r["safe_lam"] == 0.619
+    assert 88 < r["safe_lever"] < 90
+    # a fixed floor means the lever falls by exactly the gain
+    assert abs(r["lever_cost_of_the_safe_gain"] - r["safe_gain"]) < 1e-9
+    assert r["lever_collapses_at_the_cliff"] and r["cliff_lever"] < 2
+    assert r["cliff_floor_row"] == "5b-lam0-range"
+    assert r["last_pass_measured_at_the_cliff"] and r["opening_buys_the_lever"]
+    # the range row's own threshold climbs steeply as the opening closes
+    thresholds = {round(x["lam_5b"], 4): x["least_P"] for x in r["range_row_thresholds"]}
+    assert thresholds[0.6] < 1e7 < thresholds[0.615] < thresholds[0.619] < thresholds[0.6197]
