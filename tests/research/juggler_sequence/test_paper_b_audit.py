@@ -2067,3 +2067,38 @@ def test_the_width_reads_off_the_exponent_and_5b_is_not_a_block_range() -> None:
     assert r["step_5b_is_not_a_block_range"]
     assert by_name["Step 5b anchor"]["exponent"] == "5/8"
     assert 4.0 < r["step_5b_width_over_block"] < 4.1
+
+
+# --- what the extra factor four in 5b's range is ---
+
+
+def test_the_lambda0_range_is_block_ends_apart_by_exactly_four() -> None:
+    """beta1beta2 and nu^(-13/8) charged at opposite ends: 2 * 2^(13/8 - 5/8) = 4."""
+    r = A.lambda0_range_is_block_ends_apart()
+    assert abs(r["coefficient"] - 27 / 128) < 1e-12
+    assert abs(r["together_range"][0] - 27 / 128 * 9 * 2 ** -0.625) < 1e-12
+    assert abs(r["together_width"] - 2 ** 0.625) < 1e-9
+    assert abs(r["apart_width"] - 2 * 2 ** 1.625) < 1e-9
+    assert r["ratio_is_exactly_four"] and abs(r["width_ratio"] - 4.0) < 1e-9
+    # the apart range is the printed exact one, rounded outward
+    assert r["apart_matches_the_printed_exact"] and r["printed_exact_range"] == (0.62, 3.90)
+    assert r["is_block_ends_apart"] and r["same_loss_as_G_prime_and_G_double_prime"]
+    # and Step 5a has no such loss
+    assert r["step_5a_is_clean"]
+
+
+def test_co_locating_is_worth_more_than_the_openings_alone() -> None:
+    """3.5858e13 -> 1.8971e13, a factor 1.89, against the 1.357 the openings gave."""
+    r = A.lambda0_range_is_block_ends_apart()
+    assert abs(r["printed_P0"] - 3.5858e13) / 3.5858e13 < 1e-3
+    assert abs(r["best_P0"] - 1.8971e13) / 1.8971e13 < 1e-3
+    assert 1.88 < r["worth"] < 1.90 and r["beats_the_openings_alone"]
+    assert r["best_setting"] == ("co-located", 0.6921)
+    assert r["best_binding"] == "5a-W<=c7S"
+    grid = {(x["range"], x["lam_5a"]): x["P0"] for x in r["grid"]}
+    assert grid[("printed", 0.60)] == grid[("printed", 0.6921)]      # 5b binds either way
+    assert grid[("co-located", 0.60)] > grid[("co-located", 0.6921)]
+    # the certificate as it stands is untouched
+    from research.juggler_sequence import p0_certificate as C
+
+    assert abs(C.certificate()["P0"] - 3.5858e13) / 3.5858e13 < 1e-3

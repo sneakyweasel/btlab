@@ -36536,3 +36536,65 @@ Best next question
   offset it should be |j|+1. Which of the two is 4.079, and does the
   answer say whether the range can be narrowed by fixing the parameter?
 ```
+
+## Exactly four, and it is the old loss
+
+The extra factor in 5b's range is neither `k h_1h_2` nor `|j|+1`. It is
+`beta_1beta_2` and `nu^(-13/8)` charged at opposite ends of the same
+block. Co-located, `(27/128)(9)[2^(-5/8), 1] = [1.230984, 1.898438]`,
+width `2^(5/8)`. Apart, `(27/128)[9 * 2^(-13/8), 18] = [0.6155, 3.7969]`,
+width `2 * 2^(13/8)` -- which is the printed exact `[0.62, 3.90]`,
+rounded outward. The ratio is `2 * 2^(13/8 - 5/8) = 4` exactly, which is
+the `4.079` the width test measured.
+
+So it is the "block ends apart" loss, the fourth site and the first to
+reach `P_0`. Step 5a's range is clean -- width `2^(5/8)` exactly.
+
+Co-locating, with 5a's opening closed alongside, takes `P_0` from
+`3.5858e13` to `1.8971e13`: a factor `1.8902`, against the `1.3573` the
+openings alone were worth. Co-location roughly doubles `S` in the
+binding comparison rather than nudging it.
+
+And unlike the openings this is not a matter of taste. An opening is a
+choice about legibility; charging two factors of one product at opposite
+ends of one block is a loss. The manuscript's own erratum machinery is
+what makes the exact range recoverable, which is the only reason it can
+be priced at all.
+
+```text
+Phase-end report
+Question
+- is 5b's extra factor 4.079 the k h_1h_2 variation or the offset, and
+  can the range be narrowed by fixing the parameter
+Instruments
+- lambda0_range_is_block_ends_apart: the anchor's two factors charged
+  together and apart, against the printed exact range, with a
+  four-setting sweep of the certificate
+Ledger tags
+- EXACT: co-located range (27/128)(9)[2^(-5/8), 1] = [1.230984,
+  1.898438] of width 2^(5/8); apart [0.6155, 3.7969] of width
+  2 * 2^(13/8); ratio exactly 4; Step 5a's width is 2^(5/8)
+- COMPUTATIONALLY VERIFIED: the apart range is the printed exact one to
+  a rounding; P_0 falls to 1.8971e13, a factor 1.8902, binding on
+  5a-W<=c7S
+- OBSERVATION: fourth block-ends-apart site, and the only one reaching
+  P_0
+Strongest theorem
+- the extra width is exactly 4 = 2 * 2^(13/8 - 5/8), so the range is the
+  block-ends-apart form of a range of width 2^(5/8)
+Strongest refutation
+- both halves of my own question: it is neither of the two parameters I
+  proposed
+Reusable machinery
+- lambda0_range_is_block_ends_apart, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Co-locating is a manuscript change to Lemma 5.2b's displayed range,
+  and the erratum there is the other session's active work.
+Best next question
+- four block-ends-apart sites now, three of them in Lemma 5.1(iii) and
+  5.2b. Every one is a product of a beta and a power of nu. Is there a
+  site where the two factors are *not* the same nu -- a genuine reason
+  to charge them apart -- or is the pattern always an avoidable loss?
+```

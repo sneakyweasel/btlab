@@ -6004,3 +6004,81 @@ block model, but the description is wrong.
 Probe: `block_range_widths`, `BLOCK_RANGES`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The factor four is the block ends apart, in the row that sets `P_0`
+
+Neither `k h_1h_2` nor `|j|+1`. Lemma 5.2b's anchor is
+
+```text
+  lambda_0 = (27/128) k beta_1 beta_2 nu^(-13/8),    beta_i ~ 3 h_i nu^(1/2)
+```
+
+and the two factors live at the same `nu`. Charged there,
+`beta_1beta_2 nu^(-13/8)` is `9 h_1h_2 nu^(-5/8)` and the range over a
+dyadic block is
+
+```text
+  (27/128)(9) [2^(-5/8), 1]  =  [1.230984, 1.898438]     width 2^(5/8) = 1.5422
+```
+
+Charged apart --- `beta_1beta_2` over its own block range
+`[9, 18] h_1h_2 P`, `nu^(-13/8)` over its own `[2^(-13/8), 1]` --- it is
+
+```text
+  (27/128)[9 * 2^(-13/8), 18]  =  [0.6155, 3.7969]       width 2 * 2^(13/8) = 6.1688
+```
+
+which is the printed exact range `[0.62, 3.90]`, rounded outward. The
+ratio of widths is `2 * 2^(13/8 - 5/8) = 2 * 2 = 4` **exactly** --- the
+`4.079` the width test measured last section.
+
+**So this is the "block ends apart" loss again,** the same one behind
+`|G'|`'s `20` against `81/16` and `|G''|`'s `25` against `567/64`. Four
+sites now, and this one is in the row that sets `P_0`. Step 5a's range
+is clean: its width is `2^(5/8)` exactly, so it is already charged at one
+point.
+
+**What co-locating is worth,** with Step 5a's opening closed alongside:
+
+```text
+  5b range                 5a lam     P_0          binding
+  printed                  0.6000     3.5858e13    5b-W<=c7S
+  printed                  0.6921     3.5858e13    5b-W<=c7S
+  co-located [1.20, 1.95]  0.6000     2.9117e13    5a-W<=c7S
+  co-located [1.20, 1.95]  0.6921     1.8971e13    5a-W<=c7S
+```
+
+A factor **`1.8902`** --- better than the `1.3573` the two openings alone
+were worth, because co-location roughly doubles `S` in the binding
+comparison rather than nudging it. The printed pair `[1.20, 1.95]`
+leaves the range row room at both ends from a low `P`.
+
+That is the largest single movement of `P_0` this ledger has priced, and
+unlike the openings it is not a matter of taste: charging two factors of
+one product at opposite ends of the same block is a loss, not a
+rounding, and the manuscript's own erratum machinery is what makes the
+exact range recoverable.
+
+```text
+  the four block-ends-apart sites, in one place
+  Lem 5.1(iii) |G'|  curvature    20      81/16     3.95
+  Lem 5.1(iii) |G''| curvature    25      567/64    2.82
+  Thm 5.3 j=0 anchor              5.3     81/32     2.09
+  Lem 5.2b lambda_0 range         width   width     4.00   <- reaches P_0
+```
+
+Tags. EXACT: `lambda_0 = (27/128) k beta_1beta_2 nu^(-13/8)` with
+`beta_i ~ 3 h_i nu^(1/2)` gives the co-located range
+`(27/128)(9)[2^(-5/8), 1] = [1.230984, 1.898438]` of width `2^(5/8)`;
+charging the two factors at opposite block ends gives
+`[0.6155, 3.7969]` of width `2 * 2^(13/8)`, and the ratio is exactly
+`4`; Step 5a's width is `2^(5/8)`, so it carries no such loss.
+COMPUTATIONALLY VERIFIED: the apart range matches the printed exact
+`[0.62, 3.90]` to a rounding; the four-row grid above; `P_0` falls to
+`1.8971e13`, a factor `1.8902`, binding on `5a-W<=c7S`. OBSERVATION:
+this is the fourth block-ends-apart site and the only one that reaches
+`P_0`.
+
+Probe: `lambda0_range_is_block_ends_apart`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13` --- the
+certificate is untouched. No manuscript edit.

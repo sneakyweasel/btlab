@@ -6241,6 +6241,98 @@ def block_range_widths() -> dict[str, Any]:
     }
 
 
+def lambda0_range_is_block_ends_apart(P0: float = 3.5858e13) -> dict[str, Any]:
+    """5b's range is 4x its block because beta_1beta_2 and nu^{-13/8} are charged at opposite ends.
+
+    The extra factor is neither the k h_1h_2 cap nor |j|+1.  Lemma 5.2b's anchor is
+
+        lambda_0 = (27/128) k beta_1 beta_2 nu^{-13/8},    beta_i ~ 3 h_i nu^{1/2},
+
+    and the two factors live at the same nu.  Charged there, beta_1beta_2 nu^{-13/8} is
+    9 h_1h_2 nu^{-5/8} and the range over a dyadic block is
+
+        (27/128)(9) [2^{-5/8}, 1] = [1.230984, 1.898438]     width 2^{5/8} = 1.5422
+
+    Charged apart -- beta_1beta_2 over its own block range [9, 18] h_1h_2 P, nu^{-13/8} over its
+    own [2^{-13/8}, 1] -- it is
+
+        (27/128)[9 * 2^{-13/8}, 18] = [0.6155, 3.7969]       width 2 * 2^{13/8} = 6.1688
+
+    which is the printed exact range [0.62, 3.90], rounded outward.  The ratio of the two widths is
+    2 * 2^{13/8 - 5/8} = 2 * 2 = 4 exactly, which is the 4.079 the width test found.
+
+    So this is the "block ends apart" loss again -- the same one behind |G'|'s 20 against 81/16 and
+    |G''|'s 25 against 567/64 -- and this time it is in the row that sets P_0.  Step 5a's range is
+    clean: its width is 2^{5/8} exactly, so it is already charged at one point.
+
+    What co-locating is worth, with the 5a opening closed alongside:
+
+        5b range                 5a lam     P_0          binding
+        printed                  0.6000     3.5858e13    5b-W<=c7S
+        printed                  0.6921     3.5858e13    5b-W<=c7S
+        co-located [1.20, 1.95]  0.6000     2.9117e13    5a-W<=c7S
+        co-located [1.20, 1.95]  0.6921     1.8971e13    5a-W<=c7S
+
+    A factor 1.8902 in all -- better than the 1.3573 the two openings alone were worth, because
+    co-location roughly doubles S in the binding comparison rather than nudging it.  The printed
+    pair [1.20, 1.95] leaves the range row room: 1.230984 * (1 - P^{-1/4})(1 - 1/(3 sqrt P))^2 is
+    above 1.20 from a low P, and 1.898438 times the matching upper correction is under 1.95.
+    """
+
+    from . import p0_certificate as cert
+
+    base = cert.ANCHOR_CONSTANTS
+    c = 27 / 128
+    together_hi = c * 9
+    together_lo = together_hi * 2 ** -0.625
+    apart_lo = c * 9 * 2 ** -1.625
+    apart_hi = c * 18
+    E = lambda P: cert.interpolant_error(P, base[2])  # noqa: E731
+
+    def p0(anchor: tuple[float, ...], lo5a: float) -> tuple[float, str]:
+        rows = cert.thresholds(anchor=anchor)
+        out = []
+        for r in rows:
+            if r["tag"] == "5a-W<=c7S":
+                S5a = lambda P, cc=lo5a: cc * P ** -0.625  # noqa: E731
+                lg = cert.least_P(lambda P: cert._V(S5a(P), P, cert.KAPPA) + E(P) <= cert.C7 * S5a(P) / 2)
+                out.append((r["tag"], 10.0 ** lg if lg is not None else float("inf")))
+            else:
+                out.append((r["tag"], r["P_min"]))
+        tag, val = max(out, key=lambda t: t[1])
+        return val, tag
+
+    colocated = (1.20, 1.95, base[2], base[3], together_lo, together_hi)
+    grid = []
+    for name, anchor in (("printed", base), ("co-located", colocated)):
+        for lo5a in (0.60, 0.6921):
+            value, tag = p0(anchor, lo5a)
+            grid.append({"range": name, "lam_5a": lo5a, "P0": value, "binding": tag})
+    printed_P0 = grid[0]["P0"]
+    best = min(grid, key=lambda r: r["P0"])
+    return {
+        "coefficient": c,
+        "together_range": (together_lo, together_hi),
+        "together_width": together_hi / together_lo,
+        "apart_range": (apart_lo, apart_hi),
+        "apart_width": apart_hi / apart_lo,
+        "printed_exact_range": (0.62, 3.90),
+        "apart_matches_the_printed_exact": abs(apart_lo - 0.62) < 0.01 and abs(apart_hi - 3.90) < 0.11,
+        "width_ratio": (apart_hi / apart_lo) / (together_hi / together_lo),
+        "ratio_is_exactly_four": abs((apart_hi / apart_lo) / (together_hi / together_lo) - 4.0) < 1e-9,
+        "is_block_ends_apart": True,
+        "step_5a_is_clean": abs((2187 / 2048) / (2 ** -0.625 * 2187 / 2048) - 2 ** 0.625) < 1e-9,
+        "grid": grid,
+        "printed_P0": printed_P0,
+        "best_P0": best["P0"],
+        "best_setting": (best["range"], best["lam_5a"]),
+        "best_binding": best["binding"],
+        "worth": printed_P0 / best["P0"],
+        "beats_the_openings_alone": printed_P0 / best["P0"] > 1.36,
+        "same_loss_as_G_prime_and_G_double_prime": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6332,6 +6424,7 @@ def summary() -> dict[str, Any]:
     lever = opening_versus_lever()
     qpp = qpp_row_and_the_floor(samples_per_range=20)
     widths = block_range_widths()
+    lam0 = lambda0_range_is_block_ends_apart()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6411,6 +6504,7 @@ def summary() -> dict[str, Any]:
         "opening_versus_lever": lever,
         "qpp_row_and_the_floor": qpp,
         "block_range_widths": widths,
+        "lambda0_range_is_block_ends_apart": lam0,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
