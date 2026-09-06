@@ -3989,6 +3989,31 @@ Lemma 5.2(ii) are what require \(h_1{+}h_2\le2P^{1/24}\). So
 the decoration budget --- and improving the kernel means re-deriving
 that, not re-balancing anything.
 
+The chain closes at (D1), tightly. Stage 6 bounds that class's
+boundary cost by \(5.1\,h'(uh)^{-1/2}P^{7/8}\) and then puts \(h'\) at
+its cap \(2P^{1/24}\); that substitution is where the printed fourth
+term of Lemma 5.2(i) comes from. And the fourth term is one of the
+three that ever lead --- it is the largest at \(u=h=1\) --- so the cap
+is spent at a configuration that occurs, not merely at a corner of the
+hypothesis box. Collecting the slack at each link:
+
+| link | at the operating point | slack |
+|---|---|---|
+| (D1) \(h'\le2P^{1/24}\), used at the cap | makes term four | \(0\) |
+| term four against term five | leads at \(u=h=1\) | --- |
+| (C4) \(h_2\le P^{1/24}\) against \(H_2\) | equality | \(0\) |
+| (C1) \(P^{1/8}\) against Step C's load | \(7/96\) of \(12/96\) | \(5/96\) |
+
+One exact relation falls out, worth recording because its two sides are
+fixed by unrelated criteria. At \(u=h=1\) the fourth term is
+\(P^{11/12}\) and the fifth is \(P^{29/32}\), and
+\(\tfrac{11}{12}-\tfrac{29}{32}=\tfrac1{96}\): the fourth exceeds the
+fifth by exactly the kernel exponent. That is equivalent to
+\(R_0=2\bigl(\tfrac1{24}+\tfrac18-\tfrac1{96}\bigr)=\tfrac5{16}\), so
+the truncation Appendix A.6 selects by minimaxing four unrelated sites
+is also the one making that gap the kernel's own saving. We record the
+coincidence without claiming a mechanism for it.
+
 Nothing after this theorem consumes the value at all --- Corollary
 6.4's density \(7/8\) needs the error to be \(o(N)\), and
 Proposition 7.1 asks only for \(\delta_d>0\).

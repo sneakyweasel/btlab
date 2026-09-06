@@ -771,3 +771,41 @@ def test_paper_locates_the_binding_condition_at_C4() -> None:
     assert "Tight over the\ndomain, slack at every invocation." in text \
         or "slack at every invocation" in text
     assert "to\nthe decoration budget" in text or "the decoration budget" in text
+
+
+# --- the chain closes at (D1), and every link but (C1) is tight ---
+
+
+def test_D1s_cap_produces_lemma_52i_fourth_term() -> None:
+    """5.1 h' with h' <= 2P^{1/24} gives the printed 11 P^{1/24}; the cap is used."""
+    assert 5.1 * 2 <= 11                      # printed constant, rounded up from 10.2
+    assert _lemma_52i_terms(Fr(0), Fr(0))["T4"] == Fr(11, 12)
+
+
+def test_the_fourth_term_exceeds_the_fifth_by_the_kernel_exponent() -> None:
+    """11/12 - 29/32 = 1/96, at u = h = 1."""
+    t = _lemma_52i_terms(Fr(0), Fr(0))
+    assert t["T4"] - t["T5"] == Fr(1, 96)
+    assert t["T4"] == max(t.values())         # and it is the one that leads there
+
+
+def test_that_identity_is_R0_equals_five_sixteenths() -> None:
+    """Solving 1/24 + 1/8 - R/2 = 1/96 returns the truncation A.6 picks by minimax."""
+    assert 2 * (Fr(1, 24) + Fr(1, 8) - Fr(1, 96)) == Fr(5, 16)
+
+
+def test_every_link_but_C1_is_tight() -> None:
+    from research.juggler_sequence import paper_b_prefix_count as PB
+    r = PB.differencing_chain(Fr(1, 24))
+    assert Fr(1, 24) - r["H2"] == 0                              # (C4) exact
+    load = r["saving"] + r["H1"] + r["H2"]
+    assert Fr(1, 8) - load == Fr(5, 96)                          # (C1) alone has slack
+    t = _lemma_52i_terms(Fr(0), Fr(0))
+    assert t["T4"] > t["T5"]                                     # (D1)'s term leads
+
+
+def test_paper_records_the_closed_chain() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "The chain closes at (D1), tightly." in text
+    assert "not merely at a corner of the" in text
+    assert "without claiming a mechanism for it" in text

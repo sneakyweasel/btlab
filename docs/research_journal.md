@@ -29030,3 +29030,64 @@ Best next question
 - (D1) requires h_1 + h_2 <= 2P^{1/24}. What in (D1) needs it, and is
   that requirement tight in the sense that matters?
 ```
+
+ ### The chain closes at (D1), and one exact coincidence falls out
+
+Last link. Stage 6 bounds the (D1) boundary cost by
+`5.1 h' (uh)^{-1/2} P^{7/8}` and then puts `h'` at its cap `2P^{1/24}`
+— that substitution *is* the printed fourth term of Lemma 5.2(i). And
+the fourth term is one of the three that ever lead, largest at
+`u = h = 1`. So the cap is spent at a configuration that occurs, which
+is the sense that matters and the sense I failed to check twice before.
+
+Slack at every link, measured at the operating point:
+
+```text
+   (D1) h' <= 2P^{1/24}, used at the cap   ->  makes term four    0
+   term four against term five             ->  leads at u=h=1     --
+   (C4) h_2 <= P^{1/24} against H_2         ->  equality           0
+   (C1) P^{1/8} against Step C's load       ->  7/96 of 12/96      5/96
+```
+
+Every link tight except (C1) — the one my two previous entries kept
+measuring.
+
+**And an exact relation falls out.** At `u = h = 1` the fourth term is
+`P^{11/12}` and the fifth is `P^{29/32}`, and
+`11/12 - 29/32 = 1/96`: the fourth exceeds the fifth by exactly the
+kernel exponent. Equivalently `R_0 = 2(1/24 + 1/8 - 1/96) = 5/16`. So
+the truncation Appendix A.6 picks by minimaxing four unrelated sites is
+also the one that makes that gap the kernel's own saving. Two constants
+fixed by different criteria landing on an identity. Recorded as a
+coincidence; I have no mechanism for it and have not claimed one.
+
+Small note in passing: the printed `11` in that (D1) bound is `5.1 × 2
+= 10.2` rounded up, so it carries about 8% of slack. Safe, being an
+upper bound, and not worth changing.
+
+```text
+What was learned
+- the tightness question has a right place to be asked, and asking it
+  at the operating point three entries running would have saved two
+  wrong answers
+- an identity between constants chosen by unrelated criteria is worth
+  recording even without a mechanism, because the next person to move
+  R_0 should know what else moves
+Strongest theorem
+- every link from the decoration budget to 1/96 is tight at the
+  configuration in force except (C1), which carries 5/96 unused
+Strongest refutation
+- none new; this confirms the correction made last entry
+Reusable machinery
+- five tests over the closed chain and the R_0 identity
+Branch status
+- PROMOTE
+Why
+  The question "why is the kernel exponent 1/96" now has a complete
+  answer with the slack measured at each step: it is 1/96 because
+  (D1) caps the decoration shift at P^{1/24}, and nothing between
+  there and the conclusion has room.
+Best next question
+- the R_0 identity is unexplained. Does the A.6 minimax land on 5/16
+  for a reason connected to term four, or is the agreement numerical?
+```
