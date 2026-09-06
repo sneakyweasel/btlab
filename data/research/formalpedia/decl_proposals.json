@@ -4373,7 +4373,7 @@
         },
         {
           "decl": "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
-          "line": 685,
+          "line": 686,
           "score": 0.323,
           "trust": "kernel"
         }
@@ -4394,7 +4394,7 @@
       "candidates": [
         {
           "decl": "cycle_itinerary_length_nineteen_or_ge_thirty",
-          "line": 468,
+          "line": 469,
           "score": 0.341,
           "trust": "kernel"
         },
@@ -4406,7 +4406,7 @@
         },
         {
           "decl": "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
-          "line": 712,
+          "line": 713,
           "score": 0.238,
           "trust": "kernel"
         }
@@ -4460,19 +4460,19 @@
       "candidates": [
         {
           "decl": "cycle_itinerary_length_nineteen_or_ge_thirty",
-          "line": 468,
+          "line": 469,
           "score": 0.351,
           "trust": "kernel"
         },
         {
           "decl": "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
-          "line": 712,
+          "line": 713,
           "score": 0.343,
           "trust": "kernel"
         },
         {
           "decl": "no_cycle_itinerary_length_le_eighteen",
-          "line": 435,
+          "line": 436,
           "score": 0.278,
           "trust": "kernel"
         }
@@ -5050,19 +5050,19 @@
       "candidates": [
         {
           "decl": "even_chain_mem_burst",
-          "line": 176,
+          "line": 180,
           "score": 0.242,
           "trust": "kernel"
         },
         {
           "decl": "even_chain_log_offset",
-          "line": 214,
+          "line": 218,
           "score": 0.226,
           "trust": "kernel"
         },
         {
           "decl": "not_reachesOne_even_chain_ge",
-          "line": 246,
+          "line": 250,
           "score": 0.139,
           "trust": "kernel"
         }
@@ -5083,19 +5083,19 @@
       "candidates": [
         {
           "decl": "hug_band_step_exists",
-          "line": 105,
+          "line": 109,
           "score": 0.195,
           "trust": "kernel"
         },
         {
           "decl": "narrow_band_dead",
-          "line": 114,
+          "line": 118,
           "score": 0.195,
           "trust": "kernel"
         },
         {
           "decl": "odd_steps_below_one_le_one",
-          "line": 161,
+          "line": 165,
           "score": 0.195,
           "trust": "kernel"
         }
@@ -5121,19 +5121,19 @@
       "candidates": [
         {
           "decl": "band_successor_unique",
-          "line": 148,
+          "line": 152,
           "score": 0.475,
           "trust": "kernel"
         },
         {
           "decl": "band_step_forced_odd",
-          "line": 130,
+          "line": 134,
           "score": 0.263,
           "trust": "kernel"
         },
         {
           "decl": "band_step_forced_even",
-          "line": 138,
+          "line": 142,
           "score": 0.263,
           "trust": "kernel"
         }
@@ -5154,19 +5154,19 @@
       "candidates": [
         {
           "decl": "not_reachesOne_even_chain_ge",
-          "line": 246,
+          "line": 250,
           "score": 0.214,
           "trust": "kernel"
         },
         {
           "decl": "even_chain_mem_burst",
-          "line": 176,
+          "line": 180,
           "score": 0.159,
           "trust": "kernel"
         },
         {
           "decl": "not_reachesOne_ge",
-          "line": 239,
+          "line": 243,
           "score": 0.071,
           "trust": "kernel"
         }

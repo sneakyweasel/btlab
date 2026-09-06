@@ -425,6 +425,7 @@ theorem finance_excludes_mem53 {n : ℕ} {w : List Branch}
   obtain ⟨p, hp, hfst⟩ := List.mem_map.mp hmem
   exact finance_excludes_rows53 p hp hn hfst.symm
 
+/-- Finance alone excludes cycle itineraries of length exactly `14`. -/
 theorem finance_excludes_length_fourteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length = 14) : ¬CycleItinerary n w :=
   finance_excludes_mem53 hn (by rw [hlen]; decide)
@@ -752,6 +753,7 @@ theorem cycle_finance_min_two_hundred_sixty_one {n : ℕ} {w : List Branch}
         mul_le_mul_of_nonneg_right hmlog (by linarith)
     _ ≤ (w.length : ℝ) * (3 : ℝ) ^ oddCount w := hfin
 
+/-- At the residual floor `261`, a cycle itinerary of length `L < 15921/11` with odd count bounded by `o0` contradicts the finance inequality. -/
 theorem finance_contradicts_min_two_hundred_sixty_one
     {n : ℕ} {w : List Branch} {L o0 : ℕ}
     (hn : 2 ≤ n) (h : CycleItinerary n w)
@@ -776,6 +778,7 @@ theorem finance_contradicts_min_two_hundred_sixty_one
   rw [heq] at hfin'
   exact not_le_of_gt hnum' hfin'
 
+/-- The floor-261 form of the finance exclusion: for `L < 15921/11` with the stated exponent and numerator bounds, no `n >= 2` realizes the itinerary. -/
 theorem finance_excludes_at_two_hundred_sixty_one
     {n : ℕ} {w : List Branch} {L oPred : ℕ}
     (hn : 2 ≤ n) (hlen : w.length = L)

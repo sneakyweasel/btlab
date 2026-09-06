@@ -7583,7 +7583,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 40,
+      "line": 47,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "lemma51iii_regroup",
       "trust": "kernel"
@@ -7593,7 +7593,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 56,
+      "line": 63,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "corner_floor_range",
       "trust": "kernel"
@@ -7603,9 +7603,39 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 86,
+      "line": 93,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "offset_abs_le_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`\u03b2 = \u230a\u0394X\u230b + \u03ba = \u230a\u0394X + \u03b8\u230b`: the level-1 carry is `\u230a{\u0394X} + \u03b8\u230b`.",
+      "file": "formal/Problems/Juggler/BranchFreeze.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 110,
+      "module": "Problems.Juggler.BranchFreeze",
+      "name": "carry_eq_floor_shifted",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`-1 \u2264 j \u2264 2`.** `j = \u230aA+B+\u03b5+\u03b8\u230b - \u230aA+\u03b8\u230b - \u230aB+\u03b8\u230b` is `corner_floor_range` at `(A+\u03b8, B+\u03b8, \u03b5-\u03b8)`, and `|\u03b5 - \u03b8| < 1` whenever `0 < \u03b5 < 1` and `0 \u2264 \u03b8 < 1`.",
+      "file": "formal/Problems/Juggler/BranchFreeze.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 130,
+      "module": "Problems.Juggler.BranchFreeze",
+      "name": "offset_range_with_carries",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`|j| \u2264 2`**, replacing the printed `|j| \u2264 3`.",
+      "file": "formal/Problems/Juggler/BranchFreeze.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 140,
+      "module": "Problems.Juggler.BranchFreeze",
+      "name": "offset_abs_le_two",
       "trust": "kernel"
     },
     {
@@ -7613,7 +7643,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 97,
+      "line": 169,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "double_difference_lt_one",
       "trust": "kernel"
@@ -7623,7 +7653,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 117,
+      "line": 189,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "beta_product_bound",
       "trust": "kernel"
@@ -7633,7 +7663,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 128,
+      "line": 200,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "three_sqrt_two_le",
       "trust": "kernel"
@@ -7643,7 +7673,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 134,
+      "line": 206,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gprime_form",
       "trust": "kernel"
@@ -7653,7 +7683,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 141,
+      "line": 213,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gprime_j_bound",
       "trust": "kernel"
@@ -7663,7 +7693,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 147,
+      "line": 219,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gprime_beta_bound",
       "trust": "kernel"
@@ -7673,7 +7703,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 156,
+      "line": 228,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_beta_cancellation",
       "trust": "kernel"
@@ -7683,7 +7713,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 166,
+      "line": 238,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_naive_bound_fails",
       "trust": "kernel"
@@ -7693,7 +7723,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 172,
+      "line": 244,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_beta_bound",
       "trust": "kernel"
@@ -7703,7 +7733,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 180,
+      "line": 252,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "Gsecond_j_bound",
       "trust": "kernel"
@@ -7713,7 +7743,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 195,
+      "line": 267,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "offset_term_bounds",
       "trust": "kernel"
@@ -7723,7 +7753,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 208,
+      "line": 280,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "second_difference_term_bounds",
       "trust": "kernel"
@@ -7733,7 +7763,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 222,
+      "line": 294,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "run_length_arithmetic",
       "trust": "kernel"
@@ -7743,7 +7773,7 @@
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 240,
+      "line": 312,
       "module": "Problems.Juggler.BranchFreeze",
       "name": "run_length_conclusion",
       "trust": "kernel"
@@ -11095,7 +11125,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Finance alone excludes cycle itineraries of length exactly `14`.",
       "file": "formal/Problems/Juggler/CycleFinanceLeftovers.lean",
       "kind": "theorem",
       "ledger": [
@@ -11114,7 +11144,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 428,
+      "line": 429,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_length_fourteen",
       "trust": "kernel"
@@ -11139,7 +11169,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 435,
+      "line": 436,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "no_cycle_itinerary_length_le_eighteen",
       "trust": "kernel"
@@ -11164,7 +11194,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 453,
+      "line": 454,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "no_cycle_itinerary_length_lt_thirty_ne_nineteen",
       "trust": "kernel"
@@ -11189,7 +11219,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 468,
+      "line": 469,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_itinerary_length_nineteen_or_ge_thirty",
       "trust": "kernel"
@@ -11214,7 +11244,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 477,
+      "line": 478,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_itinerary_length_nineteen_or_ge_twenty",
       "trust": "kernel"
@@ -11239,7 +11269,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 485,
+      "line": 486,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven",
       "trust": "kernel"
@@ -11264,7 +11294,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 505,
+      "line": 506,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycleItinerary_iterate_not_lt_two_hundred_sixty_one",
       "trust": "kernel"
@@ -11289,7 +11319,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 526,
+      "line": 527,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "log_two_hundred_fifty_seven_gt",
       "trust": "kernel"
@@ -11314,7 +11344,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 549,
+      "line": 550,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_finance_min_two_hundred_fifty_seven",
       "trust": "kernel"
@@ -11339,7 +11369,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 581,
+      "line": 582,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_contradicts_min_two_hundred_fifty_seven",
       "trust": "kernel"
@@ -11364,7 +11394,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 606,
+      "line": 607,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_at_two_hundred_fifty_seven",
       "trust": "kernel"
@@ -11389,7 +11419,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 622,
+      "line": 623,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_length_nineteen",
       "trust": "kernel"
@@ -11414,7 +11444,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 628,
+      "line": 629,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "no_cycle_itinerary_length_le_nineteen",
       "trust": "kernel"
@@ -11439,7 +11469,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 638,
+      "line": 639,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "financeRows257",
       "trust": "kernel"
@@ -11464,7 +11494,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 645,
+      "line": 646,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_rows257",
       "trust": "kernel"
@@ -11489,7 +11519,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 654,
+      "line": 655,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_mem257",
       "trust": "kernel"
@@ -11514,7 +11544,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 661,
+      "line": 662,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "no_cycle_itinerary_length_lt_thirty_eight",
       "trust": "kernel"
@@ -11539,7 +11569,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 677,
+      "line": 678,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_itinerary_length_ge_thirty",
       "trust": "kernel"
@@ -11564,7 +11594,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 685,
+      "line": 686,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
       "trust": "kernel"
@@ -11589,7 +11619,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 696,
+      "line": 697,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_length_thirtyeight",
       "trust": "kernel"
@@ -11614,7 +11644,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 701,
+      "line": 702,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "no_cycle_itinerary_length_lt_fifty_seven",
       "trust": "kernel"
@@ -11639,7 +11669,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 712,
+      "line": 713,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
       "trust": "kernel"
@@ -11664,13 +11694,13 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 724,
+      "line": 725,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_finance_min_two_hundred_sixty_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At the residual floor `261`, a cycle itinerary of length `L < 15921/11` with odd count bounded by `o0` contradicts the finance inequality.",
       "file": "formal/Problems/Juggler/CycleFinanceLeftovers.lean",
       "kind": "theorem",
       "ledger": [
@@ -11689,13 +11719,13 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 755,
+      "line": 757,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_contradicts_min_two_hundred_sixty_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The floor-261 form of the finance exclusion: for `L < 15921/11` with the stated exponent and numerator bounds, no `n >= 2` realizes the itinerary.",
       "file": "formal/Problems/Juggler/CycleFinanceLeftovers.lean",
       "kind": "theorem",
       "ledger": [
@@ -11714,7 +11744,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 779,
+      "line": 782,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_at_two_hundred_sixty_one",
       "trust": "kernel"
@@ -11739,7 +11769,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 796,
+      "line": 799,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "financeRows261",
       "trust": "kernel"
@@ -11764,7 +11794,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 803,
+      "line": 806,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_rows261",
       "trust": "kernel"
@@ -11789,7 +11819,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 812,
+      "line": 815,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_mem261",
       "trust": "kernel"
@@ -11814,7 +11844,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 820,
+      "line": 823,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_length_fiftyseven",
       "trust": "kernel"
@@ -11839,7 +11869,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 826,
+      "line": 829,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "finance_excludes_length_seventysix",
       "trust": "kernel"
@@ -11864,7 +11894,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 831,
+      "line": 834,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "no_cycle_itinerary_length_lt_eighty_four",
       "trust": "kernel"
@@ -11889,7 +11919,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 844,
+      "line": 847,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_itinerary_length_eighty_four_or_ge_eighty_five",
       "trust": "kernel"
@@ -11914,7 +11944,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 854,
+      "line": 857,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "eliahouTableCutoff",
       "trust": "kernel"
@@ -11939,7 +11969,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 858,
+      "line": 861,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "EliahouLeftover",
       "trust": "kernel"
@@ -11964,7 +11994,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 863,
+      "line": 866,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "EliahouTable",
       "trust": "kernel"
@@ -11989,7 +12019,7 @@
         "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five"
       ],
-      "line": 870,
+      "line": 873,
       "module": "Problems.Juggler.CycleFinanceLeftovers",
       "name": "cycle_itinerary_eliahou_leftover",
       "trust": "kernel"
@@ -33410,7 +33440,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`1 < log_2 3`.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
       "ledger": [
@@ -33426,13 +33456,13 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 76,
+      "line": 77,
       "module": "Problems.Juggler.LogLogClock",
       "name": "one_lt_logb_two_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`log_2 3 < 2`.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
       "ledger": [
@@ -33448,13 +33478,13 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 80,
+      "line": 82,
       "module": "Problems.Juggler.LogLogClock",
       "name": "logb_two_three_lt_two",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The clock step `alphaClock = log_2 3 - 1` is positive.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
       "ledger": [
@@ -33470,13 +33500,13 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 84,
+      "line": 87,
       "module": "Problems.Juggler.LogLogClock",
       "name": "alphaClock_pos",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The clock step `alphaClock` is less than `1`, so it cannot cross the band in one move.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
       "ledger": [
@@ -33492,7 +33522,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 88,
+      "line": 92,
       "module": "Problems.Juggler.LogLogClock",
       "name": "alphaClock_lt_one",
       "trust": "kernel"
@@ -33514,7 +33544,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 93,
+      "line": 97,
       "module": "Problems.Juggler.LogLogClock",
       "name": "half_lt_alphaClock",
       "trust": "kernel"
@@ -33536,7 +33566,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 105,
+      "line": 109,
       "module": "Problems.Juggler.LogLogClock",
       "name": "hug_band_step_exists",
       "trust": "kernel"
@@ -33558,7 +33588,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 114,
+      "line": 118,
       "module": "Problems.Juggler.LogLogClock",
       "name": "narrow_band_dead",
       "trust": "kernel"
@@ -33580,7 +33610,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 122,
+      "line": 126,
       "module": "Problems.Juggler.LogLogClock",
       "name": "dead_zone_nonempty",
       "trust": "kernel"
@@ -33602,7 +33632,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 130,
+      "line": 134,
       "module": "Problems.Juggler.LogLogClock",
       "name": "band_step_forced_odd",
       "trust": "kernel"
@@ -33624,7 +33654,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 138,
+      "line": 142,
       "module": "Problems.Juggler.LogLogClock",
       "name": "band_step_forced_even",
       "trust": "kernel"
@@ -33646,7 +33676,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 148,
+      "line": 152,
       "module": "Problems.Juggler.LogLogClock",
       "name": "band_successor_unique",
       "trust": "kernel"
@@ -33668,7 +33698,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 157,
+      "line": 161,
       "module": "Problems.Juggler.LogLogClock",
       "name": "no_even_step_below_one",
       "trust": "kernel"
@@ -33690,7 +33720,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 161,
+      "line": 165,
       "module": "Problems.Juggler.LogLogClock",
       "name": "odd_steps_below_one_le_one",
       "trust": "kernel"
@@ -33712,7 +33742,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 169,
+      "line": 173,
       "module": "Problems.Juggler.LogLogClock",
       "name": "sqrt_cell",
       "trust": "kernel"
@@ -33734,7 +33764,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 176,
+      "line": 180,
       "module": "Problems.Juggler.LogLogClock",
       "name": "even_chain_mem_burst",
       "trust": "kernel"
@@ -33756,7 +33786,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 214,
+      "line": 218,
       "module": "Problems.Juggler.LogLogClock",
       "name": "even_chain_log_offset",
       "trust": "kernel"
@@ -33778,7 +33808,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 239,
+      "line": 243,
       "module": "Problems.Juggler.LogLogClock",
       "name": "not_reachesOne_ge",
       "trust": "kernel"
@@ -33800,7 +33830,7 @@
         "J-floor-stratifies-even-cylinders-lean",
         "J-fate-visibility-one-law"
       ],
-      "line": 246,
+      "line": 250,
       "module": "Problems.Juggler.LogLogClock",
       "name": "not_reachesOne_even_chain_ge",
       "trust": "kernel"
@@ -44532,11 +44562,11 @@
       "trust": "kernel"
     },
     {
-      "doc": "Row `st6D1-window`. Stage 6(D1) needs `P^(1/2) \u2265 8(1 + 7P^(1/4))`, i.e. `t\u00b2 \u2265 8 + 56t`; the paper prints `P^(1/4) \u2265 56`, and `t \u2265 57` certifies it.",
+      "doc": "Row `st6D1-window`. Stage 6(D1) needs `P^(1/2) \u2265 8(1 + 5P^(1/4))`, i.e. `t\u00b2 \u2265 8 + 40t`; the paper prints `P^(1/4) \u2265 40.20`, and `t \u2265 41` certifies it. The `5` is the collected widened `\u03b8`-coefficient at Lemma 5.1(iii)'s corrected offset bound `|j| \u2264 2`; at the printed `|j| \u2264 3` it was `7`, and `t \u2265 57`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 226,
+      "line": 228,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st6D1_window",
       "trust": "kernel"
@@ -44546,17 +44576,17 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 231,
+      "line": 233,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st6D1_good",
       "trust": "kernel"
     },
     {
-      "doc": "Row `st6D1-modeindex`. Lemma 5.2(iii) closes its mode accounting with `|w| \u2264 |B\u2080| + R\u2080 \u2264 2R\u2080`, which needs the widened `\u03b8`-coefficient under Stage 2's truncation: `7P^(1/4) \u2264 R\u2080 = P^(5/16)`. With `P = t^16` that is `7t\u2074 \u2264 t\u2075`, i.e. `t \u2265 7`, so `P \u2265 7^16 = 3.32\u00b710^13`. Alone among the rows this one is *exact* rather than conservative: `t\u2080 = 7` is the crossing. It is also the largest `c\u2087`-free row, and Appendix A.6 does not tabulate it.",
+      "doc": "Row `st6D1-modeindex`. Lemma 5.2(iii) closes its mode accounting with `|w| \u2264 |B\u2080| + R\u2080 \u2264 2R\u2080`, which needs the widened `\u03b8`-coefficient under Stage 2's truncation: `5P^(1/4) \u2264 R\u2080 = P^(5/16)`. With `P = t^16` that is `5t\u2074 \u2264 t\u2075`, i.e. `t \u2265 5`, so `P \u2265 5^16 = 1.53\u00b710^11`. Alone among the rows this one is *exact* rather than conservative: `t\u2080 = 5` is the crossing. Appendix A.6 does not tabulate it, and it is what pins `R\u2080` from below. At the printed offset bound `|j| \u2264 3` the constant is `7` and the row reads `P \u2265 7^16 = 3.32\u00b710^13`, which would make it the largest `c\u2087`-free row and cut A.5's lever from `120` to `1.08`. See `BranchFreeze.offset_abs_le_two`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 240,
+      "line": 246,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st6D1_modeindex",
       "trust": "kernel"
@@ -44566,7 +44596,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 246,
+      "line": 252,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_j0_window",
       "trust": "kernel"
@@ -44576,7 +44606,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 254,
+      "line": 260,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_Npieces",
       "trust": "kernel"
@@ -44586,7 +44616,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 282,
+      "line": 288,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_lam0_upper",
       "trust": "kernel"
@@ -44596,7 +44626,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 304,
+      "line": 310,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_lam0_lower",
       "trust": "kernel"
@@ -44606,7 +44636,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 325,
+      "line": 331,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c2",
       "trust": "kernel"
@@ -44616,7 +44646,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 329,
+      "line": 335,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c3",
       "trust": "kernel"
@@ -44626,7 +44656,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 333,
+      "line": 339,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c4",
       "trust": "kernel"
@@ -44636,7 +44666,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 338,
+      "line": 344,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_beta",
       "trust": "kernel"
@@ -44646,7 +44676,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 344,
+      "line": 350,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_wave",
       "trust": "kernel"
@@ -44656,7 +44686,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 357,
+      "line": 363,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5a_competitors",
       "trust": "kernel"
@@ -44666,7 +44696,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 377,
+      "line": 383,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_E_only",
       "trust": "kernel"
@@ -44676,7 +44706,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 399,
+      "line": 405,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5a_binding",
       "trust": "kernel"
@@ -44686,7 +44716,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 436,
+      "line": 442,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_binding",
       "trust": "kernel"
@@ -44696,7 +44726,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 467,
+      "line": 473,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_thm63_rem",
       "trust": "kernel"
@@ -44706,7 +44736,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 477,
+      "line": 483,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_le_one",
       "trust": "kernel"
@@ -44716,7 +44746,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 486,
+      "line": 492,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_one_attained",
       "trust": "kernel"
@@ -44726,7 +44756,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 492,
+      "line": 498,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_not_halved_by_recentring",
       "trust": "kernel"
@@ -62726,7 +62756,7 @@
       ]
     },
     "Problems.Juggler.BranchFreeze": {
-      "declarations": 17,
+      "declarations": 20,
       "file": "formal/Problems/Juggler/BranchFreeze.lean",
       "imports": [],
       "ledger": []
@@ -64439,13 +64469,13 @@
     }
   },
   "totals": {
-    "declarations": 4572,
+    "declarations": 4575,
     "declarations_with_a_ledger_row": 3101,
     "ledger_rows_naming_a_file": 321,
     "modules": 189,
     "trust": {
       "compiler": 55,
-      "kernel": 4517
+      "kernel": 4520
     }
   }
 }
