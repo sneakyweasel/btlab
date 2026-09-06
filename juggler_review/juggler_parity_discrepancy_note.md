@@ -5101,6 +5101,55 @@ the \(v\)-level. So \(e<2\) is a third threshold, alongside the drift-1
 condition on coefficients and the \(9/4\) stop, and it is the one that
 separates Theorem 5.3 from Conjecture 7.3.
 
+*The drift threshold is graded, and the grading is already in the
+paper's own \(\tfrac1{96}\).* Being above it is not a yes-or-no fact
+about a coefficient but a count. Weyl differencing lowers a weight's
+exponent by exactly one --- \(\Delta_hc\asymp\alpha\,khn^{\alpha-1}\)
+--- so a coefficient at \(\alpha\) is \(\lceil\alpha\rceil-1\)
+differencings from the near side of the threshold. And each
+differencing splits the phase in two: a branch that loses a *level*,
+because the defect's outermost floor is exposed, and a branch that
+keeps the level and loses an *exponent*. Both must bottom out, so a
+level-\(\ell\) defect at coefficient exponent \(\alpha\) costs
+\[
+d=\max\bigl(\ell,\ \lceil\alpha\rceil-1\bigr)
+\]
+differencings, and the chain halves a saving each time: a factor
+\(2^{-d}\).
+
+At level two with \(\alpha=\tfrac98\) that is \(d=\max(2,1)=2\), and
+the saving \(\tfrac1{24}\) of Lemma 5.2(ii) becomes
+\(\tfrac1{96}=\tfrac14\cdot\tfrac1{24}\) --- the paper's own headline
+constant, read off the grading. At level one with
+\(\alpha=\tfrac{33}{32}\) it is \(d=\max(1,1)=1\), a single halving,
+which is what the level-1 analysis below spends.
+
+The grading separates the frontier where the binary reading cannot.
+Over the \(26\,663\) blocked sites carried by contractors of depth at
+most thirteen, \(d\) runs from \(1\) to \(128\): \(7\%\) sit at
+\(d=1\), a fifth at \(d\le2\), under a third at \(d\le3\), and the tail
+reaches \(\alpha=\tfrac{525297}{4096}\), where \(2^{-128}\) is not a
+saving in any useful sense. Which count binds is close to even ---
+the level for \(40\%\) of sites, the drift depth for \(45\%\), and
+they tie for \(16\%\).
+
+Among the targets that matter the level binds, and only once do they
+tie:
+
+| target | \(\alpha\) | level | \(\lceil\alpha\rceil-1\) | \(d\) | cost |
+|---|---|---:|---:|---:|---|
+| Theorem 5.3 | \(9/8\) | \(2\) | \(1\) | \(2\) | \(\tfrac14\) |
+| \(OOOEOEE\), letter 6 | \(33/32\) | \(1\) | \(1\) | \(1\) | \(\tfrac12\) |
+| \(OOEOOEE\), letter 6 | \(45/32\) | \(3\) | \(1\) | \(3\) | \(\tfrac18\) |
+| Conjecture 7.3 | \(27/16\) | \(3\) | \(1\) | \(3\) | \(\tfrac18\) |
+
+So the drift threshold, which this section treats as the obstruction
+for these words, costs one differencing on all four; it is the level
+that costs two and three. And \(OOOEOEE\) is the tractable one for a
+sharper reason than being a level below Theorem 5.3: it is the only
+target where the two counts coincide, so one chain serves both purposes
+at once. That is exactly what the identity below exhibits.
+
 At \(\ell=1\) the base is \(n\) itself, \(e=1\), and
 \(\Delta_1n=d_1\) is constant outright: the runs fill the block and the
 branch set is a single point. So the carry bookkeeping does have a

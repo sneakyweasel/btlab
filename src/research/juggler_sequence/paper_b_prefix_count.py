@@ -918,6 +918,81 @@ def two_monomial_domination(j: Fraction = Fraction(5, 22), k: Fraction = Fractio
     }
 
 
+
+def drift_depth(alpha: Fraction) -> int:
+    """``ceil(alpha) - 1``: differencings needed to bring a weight below the drift threshold.
+
+    Weyl differencing lowers a weight's exponent by exactly one, since
+    ``Delta_h c ~ alpha k h n^{alpha - 1}``.  So being above the threshold is a count, not a
+    yes-or-no: ``33/32`` and ``525297/4096`` are both blocked and are 1 and 128 differencings
+    from the near side.
+    """
+    return math.ceil(alpha) - 1
+
+
+def differencing_cost(level: int, alpha: Fraction) -> int:
+    """``max(level, ceil(alpha) - 1)``: differencings a level-``level`` defect at ``alpha`` costs.
+
+    Each differencing splits the phase in two -- a branch that loses a level, because the
+    outermost floor is exposed, and a branch that keeps the level and loses an exponent -- so
+    both counts must bottom out and the cost is their maximum.  The chain halves a saving each
+    time, so the factor is ``2^-d``.
+
+    At level 2 with ``alpha = 9/8`` this is 2, and Lemma 5.2(ii)'s ``1/24`` becomes
+    ``1/96 = (1/4)(1/24)``: the paper's headline constant, read off the grading.  At level 1
+    with ``33/32`` it is 1, the single halving the level-1 analysis spends.
+    """
+    return max(level, drift_depth(alpha))
+
+
+def drift_grading(dmax: int = 13) -> dict[str, Any]:
+    """The grading over every blocked site a contractor of depth ``<= dmax`` carries.
+
+    Returns the distribution of ``d``, which count binds, and the four named targets.  At
+    ``dmax = 13``: 26663 sites, ``d`` from 1 to 128, 7 per cent at ``d = 1`` and under a third
+    at ``d <= 3``; the level binds for 40 per cent of sites, the drift depth for 45, and they
+    tie for 16.
+    """
+
+    sites: list[tuple[int, int]] = []
+    for d in range(4, dmax + 1):
+        for w in surviving_words(d):
+            if len(w) != d:
+                continue
+            for t in range(2, d + 1):
+                for s, g, _sp in blocked_profile(w, t):
+                    sites.append((s, drift_depth(g)))
+    total = len(sites)
+    dist: dict[int, int] = {}
+    binds = {"level": 0, "drift": 0, "equal": 0}
+    for lev, dd in sites:
+        m = max(lev, dd)
+        dist[m] = dist.get(m, 0) + 1
+        binds["level" if lev > dd else ("drift" if dd > lev else "equal")] += 1
+    named = {
+        "Theorem 5.3": (2, Fraction(9, 8)),
+        "OOOEOEE letter 6": (1, Fraction(33, 32)),
+        "OOEOOEE letter 6": (3, Fraction(45, 32)),
+        "Conjecture 7.3": (3, Fraction(27, 16)),
+    }
+    return {
+        "sites": total,
+        "distinct_exponents": len({g for d in range(4, dmax + 1)
+                                   for w in surviving_words(d) if len(w) == d
+                                   for t in range(2, d + 1)
+                                   for _s, g, _sp in blocked_profile(w, t)}),
+        "distribution": dict(sorted(dist.items())),
+        "max_depth": max(dist),
+        "binds": binds,
+        "named": {k: {"level": l, "drift_depth": drift_depth(a),
+                      "cost_exponent": differencing_cost(l, a),
+                      "factor": Fraction(1, 2 ** differencing_cost(l, a))}
+                  for k, (l, a) in named.items()},
+        "reproduces_one_over_96": (
+            Fraction(1, 24) / 2 ** differencing_cost(2, Fraction(9, 8)) == Fraction(1, 96)),
+    }
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")

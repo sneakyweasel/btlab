@@ -1756,3 +1756,77 @@ def test_paper_separates_the_two_questions() -> None:
     assert "What separates them is" in text
     assert "only where the target sits relative to the hull" in text
     assert "the missing ingredient is not a new exponent pair" in text
+
+
+# --- the drift threshold is graded, not binary ---
+
+
+def test_differencing_lowers_the_exponent_by_one() -> None:
+    """Delta_h c ~ alpha k h n^{alpha - 1}, so the drift depth is ceil(alpha) - 1."""
+    for alpha, want in ((Fraction(33, 32), 1), (Fraction(9, 8), 1), (Fraction(45, 32), 1),
+                        (Fraction(27, 16), 1), (Fraction(15, 8), 1), (Fraction(9, 4), 2),
+                        (Fraction(525297, 4096), 128)):
+        assert B.drift_depth(alpha) == want, (alpha, B.drift_depth(alpha))
+    # an integer exponent is a boundary case: alpha = 2 needs one, not two
+    assert B.drift_depth(Fraction(2)) == 1
+    # and below the threshold nothing is needed
+    assert B.drift_depth(Fraction(1, 32)) == 0
+
+
+def test_the_cost_is_the_max_of_the_two_counts() -> None:
+    """Each differencing peels a level off one branch and an exponent off the other."""
+    assert B.differencing_cost(2, Fraction(9, 8)) == 2        # level binds
+    assert B.differencing_cost(1, Fraction(33, 32)) == 1      # they tie
+    assert B.differencing_cost(3, Fraction(45, 32)) == 3      # level binds
+    assert B.differencing_cost(1, Fraction(9, 4)) == 2        # drift binds
+    for lev in (1, 2, 3):
+        for alpha in (Fraction(33, 32), Fraction(9, 4), Fraction(17, 2)):
+            assert B.differencing_cost(lev, alpha) == max(lev, B.drift_depth(alpha))
+
+
+def test_the_grading_reproduces_the_papers_own_constant() -> None:
+    """1/96 is Lemma 5.2(ii)'s 1/24 halved twice, and twice is what the grading says."""
+    d = B.differencing_cost(2, Fraction(9, 8))
+    assert d == 2
+    assert Fraction(1, 24) / 2 ** d == Fraction(1, 96)
+    assert B.drift_grading(9)["reproduces_one_over_96"]
+    # the level-1 kernel spends one halving, not two
+    assert B.differencing_cost(1, Fraction(33, 32)) == 1
+    assert Fraction(1, 24) / 2 ** 1 == Fraction(1, 48)        # the requirement met earlier
+
+
+def test_the_grading_separates_the_frontier() -> None:
+    """26663 sites, d from 1 to 128, and neither count dominates the other."""
+    r = B.drift_grading(13)
+    assert r["sites"] == 26663
+    assert r["distinct_exponents"] == 222
+    assert r["max_depth"] == 128
+    assert r["distribution"][1] == 1919
+    cum = sum(v for k, v in r["distribution"].items() if k <= 3)
+    assert 0.30 < cum / r["sites"] < 0.32
+    b = r["binds"]
+    assert b["level"] + b["drift"] + b["equal"] == r["sites"]
+    for key in ("level", "drift"):
+        assert 0.35 < b[key] / r["sites"] < 0.50, key
+
+
+def test_only_the_level_one_target_ties() -> None:
+    """The level binds for three of the four named targets; OOOEOEE is where they meet."""
+    named = B.drift_grading(9)["named"]
+    assert named["OOOEOEE letter 6"]["level"] == named["OOOEOEE letter 6"]["drift_depth"] == 1
+    for nm in ("Theorem 5.3", "OOEOOEE letter 6", "Conjecture 7.3"):
+        assert named[nm]["level"] > named[nm]["drift_depth"], nm
+    assert named["Theorem 5.3"]["factor"] == Fraction(1, 4)
+    assert named["OOOEOEE letter 6"]["factor"] == Fraction(1, 2)
+    assert named["Conjecture 7.3"]["factor"] == Fraction(1, 8)
+
+
+def test_paper_records_the_grading() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "The drift threshold is graded" in text
+    assert "26" + chr(92) + ",663" in text
+    bs = chr(92)
+    assert "d=" + bs + "max" + bs + "bigl(" + bs + "ell," in text
+    assert bs + "lceil" + bs + "alpha" + bs + "rceil-1" in text
+    assert "read off the grading" in text
+    assert "target where the two counts coincide" in text

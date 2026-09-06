@@ -32672,3 +32672,153 @@ Best next question
   Does any of the four now pin something stale -- a symbol or a name
   that no longer exists, so the guard passes without watching anything?
 ```
+
+ ### The drift threshold is graded, and the grading is already in 1/96
+
+Last entry said "none in this direction". This one is a step back rather
+than forward: the level-1 analysis used a mechanism that applies to
+every blocked defect, and Section 7 states the threshold it crosses as
+binary.
+
+**It is a count, not a yes-or-no.** Weyl differencing lowers a weight's
+exponent by exactly one, since `Delta_h c ~ alpha k h n^{alpha-1}`. So a
+coefficient at `alpha` is `ceil(alpha) - 1` differencings from the near
+side of the threshold. And each differencing splits the phase in two —
+a branch that loses a *level*, because the outermost floor is exposed,
+and a branch that keeps the level and loses an *exponent*. Both must
+bottom out, so a level-`l` defect at exponent `alpha` costs
+
+```text
+   d = max(l, ceil(alpha) - 1)   differencings,   a factor 2^-d
+```
+
+**And that is the paper's own headline constant.** At level 2 with
+`alpha = 9/8` the grading says `d = max(2,1) = 2`, and Lemma 5.2(ii)'s
+`1/24` halved twice is `1/96 = (1/4)(1/24)` — exactly what Theorem 5.3
+prints, read off the grading rather than assembled by hand. At level 1
+with `33/32` it says `d = 1`, the single halving the last several
+entries spent.
+
+**The grading separates what the binary reading cannot.** Over the
+26663 blocked sites carried by contractors of depth at most thirteen,
+`d` runs from 1 to 128: 7% at `d = 1`, a fifth at `d <= 2`, under a
+third at `d <= 3`, and the tail reaches `alpha = 525297/4096` where
+`2^-128` is not a saving in any sense. Which count binds is close to
+even — the level for 40% of sites, the drift depth for 45%, a tie for
+16%.
+
+Among the four targets that matter, the level binds three times and
+they tie once:
+
+```text
+   Theorem 5.3        alpha 9/8    level 2  drift 1  d 2   1/4
+   OOOEOEE letter 6   alpha 33/32  level 1  drift 1  d 1   1/2
+   OOEOOEE letter 6   alpha 45/32  level 3  drift 1  d 3   1/8
+   Conjecture 7.3     alpha 27/16  level 3  drift 1  d 3   1/8
+```
+
+So the drift threshold, which Section 7 treats as *the* obstruction for
+these words, costs one differencing on all four. It is the level that
+costs two and three. And `OOOEOEE` is the tractable one for a sharper
+reason than being a level below Theorem 5.3: it is the only target
+where the two counts coincide, so one chain serves both purposes at
+once — which is precisely what the identity two entries ago exhibits.
+
+```text
+What was learned
+- a threshold stated as a predicate was hiding a count, and the count
+  was already in the paper's arithmetic: 1/96 is 1/24 halved twice
+  because max(2, 1) = 2
+- the two counts are close to independent across the frontier -- 40 per
+  cent of sites are level-bound, 45 per cent drift-bound -- so neither
+  subsumes the other and the max is doing real work
+- the reason OOOEOEE is tractable is not that its level is low but that
+  its two counts are equal; that is a property no other target has
+- looking back at a mechanism after using it is worth a tick: the
+  differencing identity was written for one word and graded the whole
+  frontier
+Strongest theorem
+- d = max(level, ceil(alpha) - 1) differencings, cost 2^-d, reproducing
+  1/96 at level 2 with alpha = 9/8 and 1/2 at level 1 with 33/32
+Strongest refutation
+- the binary reading of the drift threshold: 33/32 and 525297/4096 are
+  both "blocked" and are 1 and 128 differencings from the near side
+Reusable machinery
+- drift_depth, differencing_cost, drift_grading; six tests
+Branch status
+- PARK
+Why
+  The grading is stated, derived, checked against the paper's own
+  constant and tabulated over the frontier. Using it to attack a
+  specific word means executing a chain, which is Section 5's work and
+  not a Phase-0 move.
+Best next question
+- the grading says OOEOOEE and Conjecture 7.3 both cost 2^-3, yet the
+  paper ranks them very differently -- OOEOOEE has no branch runs, no
+  theorem of its species, and the worst Step E cancellation factor on
+  the frontier. Does any of that show up in the grading, or is the
+  grading blind to exactly what separates them?
+```
+
+## Are the guards watching anything? Four audited, none blind
+
+A guard that quantifies over an empty collection passes while inspecting
+nothing. Counting what each of the four actually sees:
+
+| guard | quantifies over | size |
+|---|---|---|
+| escape, per manuscript | manuscript, mirror, satellites | `>= 2` each |
+| escape, outside the manuscripts | `OTHER_LATEX_DOCS` | 6 |
+| method names | tactic/identifier claims resolved through the import closure | counted in the test |
+| cross-references | 37 numbered results, 49 citations, 27 section refs, 11 numbered refs | non-empty |
+| "an earlier X" | phrase matches in Paper B | 2 |
+| pointwise transcription | P-stated bound sides, sampled | 5 bounds, 322 samples |
+
+None is vacuous, and the smallest is the two "an earlier X" phrases --
+small, but real.
+
+**One already defends itself.** The method-name guard carries
+`assert checked >= 20, "guard went blind: only {checked} claims
+matched"` -- it fails when the manuscript's wording drifts far enough
+that the guard stops matching, rather than passing quietly. That pattern
+is worth more than the guard it sits in.
+
+**So I copied it.** `pointwise_bound_inventory` now counts the ratio
+samples it inspects and reports `did_not_go_blind` at a floor of 100,
+asserted in its test. And the directed-family test, whose
+`all(r["ok"] for r in rows)` had no companion count, now asserts the
+ladder has at least five rungs -- an empty ladder would have satisfied
+every `all()` beneath it.
+
+Two of the six quantified assertions in the Paper B tests were relying
+on a neighbouring index or `max()` to raise on an empty collection
+rather than on an explicit count. That works, but by accident of what is
+written next to them.
+
+```text
+What was learned
+- none of the four guards is currently blind, and the smallest
+  collection any of them watches has two members
+- the tactic guard's "checked >= 20" is the right shape and was the
+  only instance of it; there are now two
+- two Paper B assertions were protected only by a neighbouring index
+  raising on an empty list, which is protection by coincidence
+Strongest theorem
+- none; this is an audit of the audit's guards
+Strongest refutation
+- none, which is the answer the question wanted: the guards are
+  watching
+Reusable machinery
+- the blindness counter in pointwise_bound_inventory and the ladder
+  count in the directed-family test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Every guard here was written after an error it would have caught.
+  Asking whether they still watch anything is the cheapest maintenance
+  available, and it took one pass.
+Best next question
+- the "an earlier X" guard watches two phrases. It was written when
+  the manuscript had more of them; are the ones it lost still true, or
+  did they leave because they were fixed?
+```
