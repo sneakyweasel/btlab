@@ -36992,3 +36992,84 @@ It reads 106->170.6 now.
 E carries 170.6 everywhere. P_0 does not move; it was always computed
 from 170.6. What changed is that the paper now prints the constant it
 used, which is the whole of it.
+
+## Rounded to nearest, on the strong side
+
+Reading all 38 of the certificate's claim strings back as inequalities
+--- `27` are self-contained enough to read, the other `11` name an `S`,
+`W`, `|C|` or `h1` the string never pins down --- every row of the
+certificate is in the A.5 table, every printed threshold is at or above
+the certified least `P`, and every one of the `27` is true at the
+threshold printed beside it. The paper is sound as printed.
+
+Against the certificate's unrounded `P_min`, two are not:
+
+```text
+  row       printed   derived     excess     needs         certified     short by
+  39-wave   536       535.71429   5.33e-4    1.575039e7    1.574032e7    1.000640
+  39-beta   2.3043    2.3042169   3.61e-5    1.829085e7    1.828953e7    1.000072
+```
+
+One defect, twice: a constant on the *strong* side of a `<=`, printed as
+the derived value rounded to nearest, and both times that went up. Such a
+constant has to be rounded toward the inequality; to nearest is wrong
+half the time.
+
+What saves both is a second rounding --- A.5 prints thresholds to two or
+three figures, upward, `1.58e7` and `1.83e7` --- which covers the deficit
+by `1.0032` and `1.00050`. Correct as printed, but by the gap between two
+roundings rather than by the derivation, and `1.00050` is thin. Rounding
+the constants inward, to `535` and `2.3042`, puts both requirements below
+the certified `P_min` and the dependency goes away. Neither row is near
+`P_0`, so nothing downstream moves.
+
+The existing check cannot see this one:
+`tools/manuscript_self_audit.a1_threshold_audit` compares the printed
+threshold with the crossing of the *predicate*, and the defect is in the
+*claim*. Print either threshold to one more figure --- `1.575e7` and
+`1.829e7` --- and it still passes that audit while the claim beside it is
+false there.
+
+```text
+Phase-end report
+Question
+- twice in one pass a printed claim string was false at its own row's
+  threshold while the predicate beside it was right; is that two rows or
+  a class
+Instruments
+- claim_strings_against_their_thresholds: all 38 claim strings read back
+  as inequalities and evaluated at both the certified least P and the
+  threshold A.5 prints, with _claim_as_predicate, _claim_holds and
+  _a5_printed_thresholds
+Ledger tags
+- EXACT: 536 > 300/0.56 and 2.3043 > 9(0.68)/2.656, so each printed
+  inequality implies the certified one and not conversely; a constant on
+  the strong side must be rounded toward the inequality
+- COMPUTATIONALLY VERIFIED: 27 of 38 readable; 38/38 printed thresholds
+  at or above the certified least P; 27/27 true at their printed
+  threshold; shortfalls 1.000640 and 1.000072; margins 1.0031 and
+  1.00050; inward roundings 535 and 2.3042 need 1.571513e7 and
+  1.828927e7, both certified; at four significant figures both printed
+  thresholds still pass a1_threshold_audit and still leave the claim false
+- OBSERVATION: both defects are in the same block of Step 5b rows, both
+  entered as rounding a derived number for the page
+Strongest theorem
+- the paper is sound as printed: no threshold it prints is below the one
+  certified for it, and every claim it prints is true there
+Strongest refutation
+- none; the class is two rows, and both are covered
+Reusable machinery
+- claim_strings_against_their_thresholds and its three helpers, two tests
+  aimed at the rule rather than the roster, wired into summary()
+Branch status
+- PARK
+Why
+  The instrument now re-reads every claim string on every audit run, so
+  the next drift of this kind is caught without a pass being spent on it.
+Best next question
+- the 11 unreadable rows are exactly the ones an instrument cannot check,
+  and so exactly where a stale constant can sit unseen. Each names a
+  quantity the paper does cap somewhere -- S >= 0.56 P^(-5/8), |C| < 1/2,
+  h1 <= P^(1/48). Bind each at its stated cap and see whether the 11
+  become checkable, and whether any of them then fails.
+```

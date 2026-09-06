@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "0ceddc2220ffd634016d43b56698d63d30f565d8",
+  "git_commit": "10544d4d78d0dff6be254687bc2c5e7e0d363e81",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 7057,
+        "line": 7082,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7087,
+        "line": 7112,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7166,
+        "line": 7191,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -7212,6 +7212,435 @@
       "2^1"
     ]
   },
+  "claim_strings_against_their_thresholds": {
+    "rows": [
+      {
+        "tag": "s3s1-window",
+        "claim": "P^(1/2) >= 8(1+|B|) with |B| < 1/2",
+        "cert_P_min": 144.00000000000003,
+        "paper_threshold": 144.0,
+        "expr": "P**(1/2) >= 8*(1+(1/2))",
+        "claim_needs": 144.00000000000003,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "s3s1-Bsmall",
+        "claim": "2.25 P^(-1/16) < 1/2",
+        "cert_P_min": 28274844190.244324,
+        "paper_threshold": 28300000000.0,
+        "expr": "2.25*P**(-1/16) < 1/2",
+        "claim_needs": 28274844190.244324,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "s3s2-window",
+        "claim": "P^(1/2) >= 8(1 + 2.25 P^(1/4))",
+        "cert_P_min": 115471.96452818658,
+        "paper_threshold": 115999.99999999999,
+        "expr": "P**(1/2) >= 8*(1 + 2.25*P**(1/4))",
+        "claim_needs": 115471.96452818658,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "s3s2-flat",
+        "claim": "8(1+2.25P^(1/4))P^(1/2) <= 19 P^(3/4)",
+        "cert_P_min": 4095.9999999999645,
+        "paper_threshold": 4100.0,
+        "expr": "8*(1+2.25*P**(1/4))*P**(1/2) <= 19*P**(3/4)",
+        "claim_needs": 4095.9999999999645,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "s3s2-wincount",
+        "claim": "0.6 P^(1/4) + 1 <= 0.65 P^(1/4)",
+        "cert_P_min": 159999.9999999991,
+        "paper_threshold": 160000.0,
+        "expr": "0.6*P**(1/4) + 1 <= 0.65*P**(1/4)",
+        "claim_needs": 159999.9999999991,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "s3s2-bdry",
+        "claim": "window boundaries <= 1.1 P^(17/32) <= P^(5/8)",
+        "cert_P_min": 150526.5899614935,
+        "paper_threshold": 151000.0,
+        "expr": null
+      },
+      {
+        "tag": "stage2-modecurv",
+        "claim": "mode/cell curvature ratio 0.39 P^(1/8) >= 4",
+        "cert_P_min": 122451208.1545055,
+        "paper_threshold": 123000000.0,
+        "expr": "0.39*P**(1/8) >= 4",
+        "claim_needs": 122451208.1545055,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "stage5-band",
+        "claim": "4.5 - 1.5/(h P^(1/2)) >= 4.4 at h = 1",
+        "cert_P_min": 224.99999999999966,
+        "paper_threshold": 225.0,
+        "expr": "4.5 - 1.5/((1)*P**(1/2)) >= 4.4",
+        "claim_needs": 224.99999999999966,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "claimC-1",
+        "claim": "P^(7/72) >= 3",
+        "cert_P_min": 80822.61645911535,
+        "paper_threshold": 81000.0,
+        "expr": "P**(7/72) >= 3",
+        "claim_needs": 80822.61645911535,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "claimC-2",
+        "claim": "41 P^(5/36) <= P^(1/2)",
+        "cert_P_min": 29253.01811844323,
+        "paper_threshold": 29300.0,
+        "expr": "41*P**(5/36) <= P**(1/2)",
+        "claim_needs": 29253.01811844323,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "claimG-pref",
+        "claim": "96 P^(-5/24) <= 1",
+        "cert_P_min": 3272667763.4403768,
+        "paper_threshold": 3300000000.0,
+        "expr": "96*P**(-5/24) <= 1",
+        "claim_needs": 3272667763.4403768,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "claimG-P36",
+        "claim": "P^(1/72-1/24) <= 1",
+        "cert_P_min": 1.0,
+        "paper_threshold": 1.0,
+        "expr": "P**(1/72-1/24) <= 1",
+        "claim_needs": 1.0,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st3a-window",
+        "claim": "P^(1/2)/(2h1) >= 8(1+|B|): 0.5 P^(23/48) >= 15 P^(10/48)",
+        "cert_P_min": 284437.0536066867,
+        "paper_threshold": 285000.0,
+        "expr": "0.5*P**(23/48) >= 15*P**(10/48)",
+        "claim_needs": 284437.0536066867,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st3b-window",
+        "claim": "P^(1/2)/(2h2) >= 8(1+|B|): 0.5 P^(22/48) >= 15 P^(9/48)",
+        "cert_P_min": 284437.0536066873,
+        "paper_threshold": 285000.0,
+        "expr": "0.5*P**(22/48) >= 15*P**(9/48)",
+        "claim_needs": 284437.0536066873,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st3a-flat",
+        "claim": "16 h1 P^(1/2) + 30 k h1 h2 P^(5/8) <= 46 P^(3/4)",
+        "cert_P_min": 1.0,
+        "paper_threshold": 1.0,
+        "expr": null
+      },
+      {
+        "tag": "st6D1-window",
+        "claim": "P^(1/2) >= 8(1 + 5 P^(1/4))",
+        "cert_P_min": 2611327.998431453,
+        "paper_threshold": 2620000.0,
+        "expr": "P**(1/2) >= 8*(1 + 5*P**(1/4))",
+        "claim_needs": 2611327.998431453,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st6D1-good",
+        "claim": "72 t^(-1) P^(-1/2) <= 1/4 at t = 1",
+        "cert_P_min": 82944.00000000007,
+        "paper_threshold": 83000.0,
+        "expr": "72*(1)**(-1)*P**(-1/2) <= 1/4",
+        "claim_needs": 82944.00000000007,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st6D1-modeindex",
+        "claim": "widened |B_0| <= R_0: 5 P^(1/4) <= P^(5/16)",
+        "cert_P_min": 152587890625.0003,
+        "paper_threshold": 153000000000.0,
+        "expr": "5*P**(1/4) <= P**(5/16)",
+        "claim_needs": 152587890625.0003,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "5b-j0-window",
+        "claim": "P^(1/2) >= 8(1+6) = 56",
+        "cert_P_min": 3136.0000000000005,
+        "paper_threshold": 3140.0,
+        "expr": "P**(1/2) >= 8*(1+6) = 56",
+        "claim_needs": 3136.0000000000005,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "5b-Npieces",
+        "claim": "cells + anchor runs + windows <= 3.5 P^(13/24)",
+        "cert_P_min": 51398268.10332695,
+        "paper_threshold": 51400000.0,
+        "expr": null
+      },
+      {
+        "tag": "5b-lam0-range",
+        "claim": "[0.62,3.90] with its corrections inside [0.56,4.20]",
+        "cert_P_min": 35026.59769162784,
+        "paper_threshold": 35100.0,
+        "expr": null
+      },
+      {
+        "tag": "39-c2",
+        "claim": "|c''/2|/S <= rho_0: (0.053/0.56) P^(-1/4)",
+        "cert_P_min": 952057673.8313825,
+        "paper_threshold": 960000000.0,
+        "expr": "(0.053/0.56)*P**(-1/4) <= rho0",
+        "claim_needs": 952057673.8313825,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "39-c3",
+        "claim": "P|c'''/2|/S <= rho_0: (0.047/0.56) P^(-1/4)",
+        "cert_P_min": 588777508.2278498,
+        "paper_threshold": 590000000.0,
+        "expr": "(0.047/0.56)*P**(-1/4) <= rho0",
+        "claim_needs": 588777508.2278498,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "39-c4",
+        "claim": "P^2|c''''/2|/S <= rho_0: (0.044/0.56) P^(-1/4)",
+        "cert_P_min": 452241575.5207706,
+        "paper_threshold": 453000000.0,
+        "expr": "(0.044/0.56)*P**(-1/4) <= rho0",
+        "claim_needs": 452241575.5207706,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "39-beta",
+        "claim": "beta-substitution error 2.3043 P^(-1/2) <= rho_0",
+        "cert_P_min": 18289534.272027902,
+        "paper_threshold": 18300000.0,
+        "expr": "2.3043*P**(-1/2) <= rho0",
+        "claim_needs": 18290854.011248663,
+        "holds_at_cert_P_min": false,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "39-wave",
+        "claim": "wave remainder 300 P^(-35/24) vs S: 536 P^(-5/6) <= rho_0",
+        "cert_P_min": 15740315.731083922,
+        "paper_threshold": 15800000.0,
+        "expr": "536*P**(-5/6) <= rho0",
+        "claim_needs": 15750390.070344886,
+        "holds_at_cert_P_min": false,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "5a-competitors",
+        "claim": "every competitor ratio <= 1/4 (margin 4)",
+        "cert_P_min": 429981696.0000005,
+        "paper_threshold": 430000000.0,
+        "expr": null
+      },
+      {
+        "tag": "5a-W<=c7S",
+        "claim": "W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8)",
+        "cert_P_min": 29116952310460.227,
+        "paper_threshold": 29200000000000.0,
+        "expr": null
+      },
+      {
+        "tag": "5b-W<=c7S",
+        "claim": "W = V + E <= c_7 S/2 at S >= 0.56 P^(-5/8)",
+        "cert_P_min": 35857556192838.55,
+        "paper_threshold": 36000000000000.0,
+        "expr": null
+      },
+      {
+        "tag": "5b-E<=c7S",
+        "claim": "E alone <= c_7 S/2 (the floor as kappa -> 0)",
+        "cert_P_min": 4100178141405.2305,
+        "paper_threshold": 4110000000000.0005,
+        "expr": null
+      },
+      {
+        "tag": "claimD-shift",
+        "claim": "1.45 P^(7/72) <= P^(1/8): shift range of (i)",
+        "cert_P_min": 644537.337100523,
+        "paper_threshold": 650000.0,
+        "expr": "1.45*P**(7/72) <= P**(1/8)",
+        "claim_needs": 644537.337100523,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st3a-flatcost",
+        "claim": "flat cost 23 P^(19/24) inside the P^(23/24) budget",
+        "cert_P_min": 148035888.99999917,
+        "paper_threshold": 149000000.0,
+        "expr": null
+      },
+      {
+        "tag": "t61-stepB-discard",
+        "claim": "(3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96)",
+        "cert_P_min": 750859.9980939378,
+        "paper_threshold": 751000.0,
+        "expr": "(3*math.pi*(2*P**(1/96))/4)*P**(-1/8) <= 1",
+        "claim_needs": 750859.9980939378,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st2-collision",
+        "claim": "3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24)",
+        "cert_P_min": 1447865069.364798,
+        "paper_threshold": 1450000000.0,
+        "expr": "3*(R0(P))**(1/2)*P**(3/4) = 3*P**(29/32) <= P**(23/24)",
+        "claim_needs": 1447865069.364798,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "st5b-qpp",
+        "claim": "|q''| curvature ratio (1.85 P^(7/24) + R_0) 6 P^(-5/4) / (0.35 P^(-3/4)) <= 1/4",
+        "cert_P_min": 298166397427.1972,
+        "paper_threshold": 300000000000.0,
+        "expr": "(1.85*P**(7/24) + (R0(P)))*6*P**(-5/4) / (0.35*P**(-3/4)) <= 1/4",
+        "claim_needs": 298166397427.1972,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      },
+      {
+        "tag": "t63-window",
+        "claim": "Lemma 3.7 window T = R_0 >= 8(1 + |C|)",
+        "cert_P_min": 744857758.4086101,
+        "paper_threshold": 750000000.0,
+        "expr": null
+      },
+      {
+        "tag": "t63-flat",
+        "claim": "flat cost 8(1+|C|)/R_0 <= P^(-1/96) per point",
+        "cert_P_min": 5505905905.109001,
+        "paper_threshold": 5510000000.0,
+        "expr": null
+      },
+      {
+        "tag": "thm63-rem",
+        "claim": "linearization remainder P^(43/96) <= P^(1-1/96)",
+        "cert_P_min": 1.0,
+        "paper_threshold": 1.0,
+        "expr": "P**(43/96) <= P**(1-1/96)",
+        "claim_needs": 1.0,
+        "holds_at_cert_P_min": true,
+        "holds_at_paper_threshold": true
+      }
+    ],
+    "row_count": 38,
+    "checkable": 27,
+    "prose": 11,
+    "every_row_is_in_the_A5_table": true,
+    "no_printed_threshold_is_below_the_certified_one": true,
+    "printed_thresholds_below_the_certified_one": [],
+    "all_checkable_claims_hold_at_the_printed_threshold": true,
+    "false_at_the_printed_threshold": [],
+    "false_at_the_certified_P_min": [
+      "39-beta",
+      "39-wave"
+    ],
+    "false_at_the_certified_P_min_count": 2,
+    "shortfalls": {
+      "39-beta": 1.0000721581643979,
+      "39-wave": 1.0006400341284811
+    },
+    "margins_at_the_printed_threshold": {
+      "39-beta": 1.0005000307118361,
+      "39-wave": 1.0031497587954041
+    },
+    "the_paper_is_sound_as_printed": true,
+    "saved_by_the_threshold_rounding": [
+      "39-beta",
+      "39-wave"
+    ],
+    "thinnest_margin": 1.0005000307118361,
+    "constants_rounded_to_nearest_went_up": {
+      "39-wave": [
+        536.0,
+        535.7142857142857
+      ],
+      "39-beta": [
+        2.3043,
+        2.3042168674698793
+      ]
+    },
+    "inward_roundings_that_would_close_it": {
+      "39-wave": 535.0,
+      "39-beta": 2.3042
+    },
+    "sharper_thresholds_that_still_pass_the_A1_audit": {
+      "39-beta": {
+        "3": {
+          "threshold": 18300000,
+          "passes_the_A1_audit": true,
+          "printed_claim_holds": true
+        },
+        "4": {
+          "threshold": 18290000,
+          "passes_the_A1_audit": true,
+          "printed_claim_holds": false
+        },
+        "5": {
+          "threshold": 18290000,
+          "passes_the_A1_audit": true,
+          "printed_claim_holds": false
+        }
+      },
+      "39-wave": {
+        "3": {
+          "threshold": 15800000,
+          "passes_the_A1_audit": true,
+          "printed_claim_holds": true
+        },
+        "4": {
+          "threshold": 15750000,
+          "passes_the_A1_audit": true,
+          "printed_claim_holds": false
+        },
+        "5": {
+          "threshold": 15741000,
+          "passes_the_A1_audit": true,
+          "printed_claim_holds": false
+        }
+      }
+    },
+    "three_figures_is_what_saves_them": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -7279,5 +7708,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 90.05718183517456
+  "elapsed_seconds": 87.63408923149109
 }

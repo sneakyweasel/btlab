@@ -6571,3 +6571,81 @@ made single-valued at four sites, the erratum list corrected, and a
 passage in A.1 stating that the headline number is recoverable from the
 paper and how. `tools/lean_numeral_audit.py`'s pin on the list updated.
 No certificate edit.
+
+## Not a class: two rows, and the paper is saved by its own rounding
+
+Twice in one pass a certificate row stated one inequality and certified
+another, so the question was whether that is a class. It is not. Reading
+all 38 claim strings back as inequalities --- `27` of them are
+self-contained enough to read; the other `11` name a quantity the string
+never pins down (`S`, `W`, `|C|`, `h1`) and are left alone --- gives
+
+```text
+  every row of the certificate appears in the A.5 table          38 / 38
+  printed thresholds at or above the certified least P           38 / 38
+  checkable claims true at the threshold printed beside them     27 / 27
+```
+
+so **the paper is sound as printed**. Against the certificate's own
+unrounded `P_min`, two are not:
+
+```text
+  row       printed   derived     excess     needs         certified     short by
+  39-wave   536       535.71429   5.33e-4    1.575039e7    1.574032e7    1.000640
+  39-beta   2.3043    2.3042169   3.61e-5    1.829085e7    1.828953e7    1.000072
+```
+
+Both are one defect. A constant on the *strong* side of a `<=` was
+printed as the derived value rounded **to nearest**, and both times that
+went up: `300/0.56 = 535.714` printed as `536`, and `9(0.68)/2.656 =
+2.3042169` printed as `2.3043`. The printed statement then implies the
+certified one and is not implied by it, so it needs more `P` than the row
+carries. A constant there has to be rounded *toward* the inequality; to
+nearest is wrong half the time, and here it was wrong both times.
+
+**What saves them is a second rounding, not the derivation.** A.5 prints
+thresholds to two or three significant figures and rounds them up ---
+`1.58e7` and `1.83e7` --- and that covers the deficit with `1.0032` and
+`1.00050` to spare. The rows are correct as printed, but correct by the
+gap between two independent roundings; `1.00050` is thin enough that a
+threshold printed to one more figure would expose it.
+
+**And the check that exists cannot see it.**
+`tools/manuscript_self_audit.a1_threshold_audit` already enforces
+`printed >= computed` on the threshold column, one-sided on purpose ---
+it is what caught twenty nearest-rounded entries earlier. But it compares
+the printed threshold with the crossing of the *predicate*, and this
+defect is in the *claim*. Print either threshold to one more figure ---
+`1.575e7` and `1.829e7`, both above the certified crossing, both still
+passing that audit --- and the claim beside it is false there. Three
+significant figures is what saves these two rows.
+
+Rounding the constants inward instead --- `535` and `2.3042` --- puts
+both requirements below the certified `P_min` (`1.571513e7` and
+`1.828927e7`) and the dependency goes away. Worth noting that `39-beta`
+was repaired this pass from `2.31`, which failed by `2.9e-3`: the repair
+cut the excess by a factor of `80` and kept its direction.
+
+Neither row is anywhere near `P_0` --- `1.6e7` and `1.8e7` against
+`3.586e13` --- so nothing downstream moves either way. This is a
+presentation defect with a rule attached, not a soundness one.
+
+Tags. EXACT: `536 > 300/0.56` and `2.3043 > 9(0.68)/2.656`, so each
+printed inequality implies the certified one and not conversely; a
+constant on the strong side of an inequality must be rounded toward it.
+COMPUTATIONALLY VERIFIED: `27` of `38` claim strings read back as
+inequalities; all `38` printed thresholds are at or above the certified
+least `P`; all `27` hold at the threshold printed beside them; the two
+shortfalls are `1.000640` and `1.000072`, the two margins `1.0031` and
+`1.00050`; the inward roundings `535` and `2.3042` need `1.571513e7` and
+`1.828927e7`, both at or below the certified `P_min`. At four significant
+figures both printed thresholds --- `1.575e7` and `1.829e7` --- still clear
+the certified crossing and still leave the printed claim false. OBSERVATION: both
+defects sit in the same block of Step 5b rows and both entered the same
+way, as rounding a derived number for the page.
+
+Probe: `claim_strings_against_their_thresholds`, with
+`_claim_as_predicate`, `_claim_holds` and `_a5_printed_thresholds`. Two
+tests, aimed at the rule rather than the roster so that a repair does not
+break them. Audit `270 / 270`; `P_0` unmoved at `3.5858e13`. No
+manuscript or certificate edit.

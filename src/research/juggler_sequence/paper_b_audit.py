@@ -6546,6 +6546,205 @@ def apart_costs_are_powers_of_root_two() -> dict[str, Any]:
     }
 
 
+_CLAIM_CMP = re.compile(r"<=|>=|<|>")
+_CLAIM_MATH = re.compile(r"[\d(]|P\b")
+
+
+def _claim_as_predicate(claim: str) -> str | None:
+    """The printed claim string as a python inequality in P, or None where it is prose.
+
+    Three readings, each the way a reader takes the string, and nothing guessed at beyond them:
+    "label: expression" is the expression when it carries its own comparison and otherwise the
+    label's comparison with the expression as its left side; a leading prose label is dropped only
+    when no comparison goes with it; and "at h = 1", "at k <= cap", "with |B| < 1/2" bind the free
+    symbol at the worst case the string itself states.  Anything still carrying a symbol the string
+    never pins down -- S, W, |C|, h1 -- is prose, and is left alone.
+    """
+
+    t = claim
+    if ":" in t:
+        head, tail = t.rsplit(":", 1)
+        if _CLAIM_CMP.search(tail):
+            t = tail
+        elif _CLAIM_CMP.search(head) and _CLAIM_MATH.match(tail.strip()):
+            op = _CLAIM_CMP.search(head).group(0)
+            t = tail.strip() + " " + op + " " + head.split(op, 1)[1].strip()
+        else:
+            t = head
+    binding = {}
+    m = re.search(r"\bat\s+([A-Za-z]\w*)\s*(<=|=)\s*(.+?)\s*$", t)
+    if m:
+        binding[m.group(1)] = m.group(3)
+        t = t[:m.start()]
+    m = re.search(r"\bwith\s+\|(\w+)\|\s*<\s*(\S+)\s*$", t)
+    if m:
+        binding["|" + m.group(1) + "|"] = m.group(2)
+        t = t[:m.start()]
+    for name, val in binding.items():
+        t = t.replace(name, "(" + val + ")")
+    m = _CLAIM_MATH.search(t)
+    if m and m.start() > 0 and not _CLAIM_CMP.search(t[:m.start()]):
+        t = t[m.start():]
+    t = t.replace("^", "**")
+    t = re.sub(r"\brho_0\b", "RHOZERO", t)
+    t = re.sub(r"\bR_0\b", "RZERO", t)
+    t = re.sub(r"\bc_7\b", "CSEVEN", t)
+    t = re.sub(r"\bpi\b", "PIVAL", t)
+    if re.search(r"[A-Za-z_|']", re.sub(r"RZERO|RHOZERO|CSEVEN|PIVAL|P", "", t)):
+        return None
+    t = re.sub(r"(\d)\s*\(", r"\g<1>*(", t)
+    t = re.sub(r"(\d)\s*([A-Za-z(])", r"\g<1>*\g<2>", t)
+    t = re.sub(r"\)\s*([A-Za-z0-9(])", r")*\g<1>", t)
+    t = re.sub(r"([A-Za-z0-9)])\s+\(", r"\g<1>*(", t)
+    t = t.replace("RZERO", "(R0(P))").replace("RHOZERO", "rho0")
+    t = t.replace("CSEVEN", "C7").replace("PIVAL", "math.pi")
+    return t.strip()
+
+
+def _claim_holds(expr: str, P: float) -> bool:
+    """Evaluate a translated claim at P.  `A = B <= C` is an identity and a bound; both are checked."""
+
+    env = {"P": P, "R0": p0_certificate.R0, "rho0": p0_certificate.C7 / 8,
+           "C7": p0_certificate.C7, "math": math}
+    parts = re.split(r"(<=|>=|<|>|=)", expr)
+    terms, ops = parts[::2], parts[1::2]
+    ok = True
+    for i, op in enumerate(ops):
+        a = eval(terms[i].strip(), {"__builtins__": {}}, env)  # noqa: S307
+        b = eval(terms[i + 1].strip(), {"__builtins__": {}}, env)  # noqa: S307
+        if op == "=":
+            ok = ok and abs(a - b) <= 1e-9 * max(1.0, abs(a), abs(b))
+        else:
+            ok = ok and {"<=": a <= b, ">=": a >= b, "<": a < b, ">": a > b}[op]
+    return ok
+
+
+def _a5_printed_thresholds() -> dict[str, float]:
+    """The A.5 table's printed threshold for each claim string, as the reader sees it."""
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    out: dict[str, float] = {}
+    for line in text.splitlines():
+        if not line.startswith("|") or line.startswith("|---"):
+            continue
+        cells = [c.strip() for c in re.split(r"(?<!\\)\|", line.strip("|"))]
+        if len(cells) != 3:
+            continue
+        claim, thr = cells[0].replace(r"\|", "|"), cells[2]
+        if thr == "always":
+            out[claim] = 1.0
+            continue
+        m = re.match(r"^\$([\d.]+)(?:\\cdot10\^\{(-?\d+)\})?\$$", thr)
+        if m:
+            out[claim] = float(m.group(1)) * (10.0 ** int(m.group(2)) if m.group(2) else 1.0)
+    return out
+
+
+def claim_strings_against_their_thresholds() -> dict[str, Any]:
+    """Is a printed claim true at its own printed threshold?  In A.5 yes; against the certificate,
+    two rows are not.
+
+    Twice in one pass a certificate row stated one inequality and certified another, so the question
+    is whether that is a class.  It is not: reading all 38 claim strings back as inequalities -- 27
+    of them are self-contained enough to read; the other 11 name a quantity (S, W, |C|, h1) the
+    string never pins down -- every printed threshold in A.5 is at or above the certified least P,
+    and every one of the 27 is true at the threshold the paper prints beside it.  The paper is sound
+    as printed.
+
+    Against the certificate's own unrounded P_min, two are not:
+
+        row       printed   derived     excess     P_min needed   certified     short by
+        39-wave   536       535.71429   5.33e-4    1.575039e7     1.574032e7    1.000640
+        39-beta   2.3043    2.3042169   3.61e-5    1.829085e7     1.828953e7    1.000072
+
+    Both are the same defect: a constant on the strong side of `<=` printed as the derived value
+    rounded to nearest, which went *up* -- 300/0.56 = 535.714 printed as 536, and 9(0.68)/2.656 =
+    2.3042169 printed as 2.3043.  A constant there has to be rounded toward the inequality, not to
+    nearest, or the printed statement is stronger than the one that was certified.
+
+    What saves both in the paper is a second rounding: A.5 prints thresholds to two or three
+    significant figures and rounds them up, to 1.58e7 and 1.83e7, which covers the deficit with
+    1.0032 and 1.00050 to spare.  So the rows are correct as printed, but correct by the margin
+    between two independent roundings rather than by the derivation -- and 1.00050 is thin.
+
+    Rounding the constants inward instead -- 535 and 2.3042 -- puts both requirements below the
+    certified P_min (1.571513e7 and 1.828927e7) and the dependency goes away.  Note the 39-beta row
+    was repaired this pass from 2.31, which failed by 2.9e-3; the repair cut the excess to 3.6e-5
+    but kept its direction.
+
+    The threshold column is already audited one-sidedly, printed >= computed, by
+    tools/manuscript_self_audit.a1_threshold_audit.  That check cannot see this: it compares the
+    printed threshold with the crossing of the *predicate*, and the defect is in the *claim*.  Print
+    either threshold to one more figure -- 1.575e7 and 1.829e7, both still above the certified
+    crossing, both still passing that audit -- and the claim beside it is false there.  Three
+    significant figures is what saves these two rows, not the derivation and not the existing check.
+    """
+
+    rows = p0_certificate.thresholds()
+    printed = _a5_printed_thresholds()
+    out = []
+    for r in rows:
+        expr = _claim_as_predicate(r["claim"])
+        rec = {"tag": r["tag"], "claim": r["claim"], "cert_P_min": r["P_min"],
+               "paper_threshold": printed.get(r["claim"]), "expr": expr}
+        if expr is not None:
+            try:
+                lg = p0_certificate.least_P(lambda P, e=expr: _claim_holds(e, P))
+                rec["claim_needs"] = 10.0 ** lg if lg is not None else float("inf")
+                rec["holds_at_cert_P_min"] = _claim_holds(expr, r["P_min"])
+                rec["holds_at_paper_threshold"] = (
+                    _claim_holds(expr, rec["paper_threshold"])
+                    if rec["paper_threshold"] is not None else None)
+            except Exception:  # a translation that does not evaluate is prose, not a finding
+                rec["expr"] = expr = None
+        out.append(rec)
+    checkable = [r for r in out if r["expr"] is not None]
+    false_at_cert = [r for r in checkable if not r["holds_at_cert_P_min"]]
+    false_at_paper = [r for r in checkable if r["holds_at_paper_threshold"] is False]
+    matched = [r for r in out if r["paper_threshold"] is not None]
+    below = [r for r in matched if r["paper_threshold"] < r["cert_P_min"] * (1 - 1e-12)]
+    # tools/manuscript_self_audit.a1_threshold_audit already enforces printed >= the certificate's
+    # least P, one-sided.  That does not cover the claim's own constant: a threshold printed to one
+    # more figure would still pass it and leave the printed claim false at the threshold beside it.
+    sharper: dict[str, Any] = {}
+    for r in false_at_cert:
+        per = {}
+        for sig in (3, 4, 5):
+            q = 10 ** (math.floor(math.log10(r["cert_P_min"])) - sig + 1)
+            thr = math.ceil(r["cert_P_min"] / q) * q
+            per[sig] = {"threshold": thr, "passes_the_A1_audit": thr >= r["cert_P_min"],
+                        "printed_claim_holds": thr >= r["claim_needs"]}
+        sharper[r["tag"]] = per
+    three_saves = all(v[3]["printed_claim_holds"] for v in sharper.values()) and bool(sharper)
+    four_saves = any(v[4]["printed_claim_holds"] for v in sharper.values())
+    return {
+        "rows": out,
+        "row_count": len(out),
+        "checkable": len(checkable),
+        "prose": len(out) - len(checkable),
+        "every_row_is_in_the_A5_table": len(matched) == len(out),
+        "no_printed_threshold_is_below_the_certified_one": not below,
+        "printed_thresholds_below_the_certified_one": [r["tag"] for r in below],
+        "all_checkable_claims_hold_at_the_printed_threshold": not false_at_paper,
+        "false_at_the_printed_threshold": [r["tag"] for r in false_at_paper],
+        "false_at_the_certified_P_min": [r["tag"] for r in false_at_cert],
+        "false_at_the_certified_P_min_count": len(false_at_cert),
+        "shortfalls": {r["tag"]: r["claim_needs"] / r["cert_P_min"] for r in false_at_cert},
+        "margins_at_the_printed_threshold": {
+            r["tag"]: r["paper_threshold"] / r["claim_needs"] for r in false_at_cert},
+        "the_paper_is_sound_as_printed": not false_at_paper and not below,
+        "saved_by_the_threshold_rounding": sorted(r["tag"] for r in false_at_cert),
+        "thinnest_margin": min((r["paper_threshold"] / r["claim_needs"] for r in false_at_cert),
+                               default=None),
+        "constants_rounded_to_nearest_went_up": {"39-wave": (536.0, 300 / 0.56),
+                                                 "39-beta": (2.3043, 9 * 0.68 / 2.656)},
+        "inward_roundings_that_would_close_it": {"39-wave": 535.0, "39-beta": 2.3042},
+        "sharper_thresholds_that_still_pass_the_A1_audit": sharper,
+        "three_figures_is_what_saves_them": three_saves and not four_saves,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6641,6 +6840,7 @@ def summary() -> dict[str, Any]:
     freezes = freeze_scales_justify_nothing()
     apart = apart_charging_is_specific_to_beta()
     powers = apart_costs_are_powers_of_root_two()
+    claims = claim_strings_against_their_thresholds()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6724,6 +6924,7 @@ def summary() -> dict[str, Any]:
         "freeze_scales_justify_nothing": freezes,
         "apart_charging_is_specific_to_beta": apart,
         "apart_costs_are_powers_of_root_two": powers,
+        "claim_strings_against_their_thresholds": claims,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

@@ -806,7 +806,7 @@ def test_the_kappa_optimum_does_not_move_under_the_pairing_repair() -> None:
     assert r["error_share_at_P0"] > 3 * r["error_share_at_P1"]
     assert r["P1_over_P0"] > 1e4                                    # P_1 is five orders above P_0
     text = _paper()
-    assert r"P_1=9.8\cdot10^{18}" in text                           # the paper quotes both
+    assert r"P_1=9.9\cdot10^{18}" in text                           # the paper quotes both
 
 
 def test_the_piece_boundary_term_binds_P1_and_its_constant_is_loose() -> None:
@@ -2187,3 +2187,49 @@ def test_the_charge_count_runs_two_to_four_and_the_residuals_share_nothing() -> 
     residuals = [x["residual"] for x in r["rows"]]
     assert min(residuals) < 1.0 < max(residuals)
     assert len(r["rows"]) == 5
+
+
+# --- the printed claim against the printed threshold ---
+
+
+def test_every_printed_claim_is_true_at_the_threshold_printed_beside_it() -> None:
+    """A.5 is sound as printed: every row is there, and no threshold is below the certified one."""
+    r = A.claim_strings_against_their_thresholds()
+    assert r["row_count"] == 38 and r["checkable"] >= 25
+    assert r["checkable"] + r["prose"] == r["row_count"]
+    assert r["every_row_is_in_the_A5_table"]
+    assert r["no_printed_threshold_is_below_the_certified_one"]
+    assert r["printed_thresholds_below_the_certified_one"] == []
+    assert r["all_checkable_claims_hold_at_the_printed_threshold"]
+    assert r["the_paper_is_sound_as_printed"]
+
+
+def test_a_constant_on_the_strong_side_rounded_to_nearest_can_go_the_wrong_way() -> None:
+    """Two rows print the derived constant rounded up, so they need more P than is certified.
+
+    The roster can only shrink -- a repair rounds the constant inward -- so the test asserts the
+    rule and the arithmetic, not the roster: whatever fails at the certified P_min fails by being
+    stronger than what was certified, and is covered by A.5's own upward rounding of the threshold.
+    """
+    r = A.claim_strings_against_their_thresholds()
+    assert set(r["false_at_the_certified_P_min"]) <= {"39-beta", "39-wave"}
+    for tag in r["false_at_the_certified_P_min"]:
+        printed, derived = r["constants_rounded_to_nearest_went_up"][tag]
+        assert printed > derived                      # rounded away from the inequality
+        assert r["shortfalls"][tag] > 1.0             # so the row needs more P than is certified
+        assert r["margins_at_the_printed_threshold"][tag] > 1.0   # and A.5's rounding covers it
+        assert r["inward_roundings_that_would_close_it"][tag] <= derived
+    if r["false_at_the_certified_P_min"]:
+        assert r["thinnest_margin"] < 1.01           # covered, but by a rounding, not a derivation
+
+
+def test_the_existing_threshold_audit_cannot_see_this_one() -> None:
+    """printed >= computed compares the threshold with the predicate's crossing, not the claim's."""
+    r = A.claim_strings_against_their_thresholds()
+    sharper = r["sharper_thresholds_that_still_pass_the_A1_audit"]
+    assert set(sharper) == set(r["false_at_the_certified_P_min"])
+    for per in sharper.values():
+        assert all(v["passes_the_A1_audit"] for v in per.values())
+        assert per[3]["printed_claim_holds"] and not per[4]["printed_claim_holds"]
+    if sharper:
+        assert r["three_figures_is_what_saves_them"]
