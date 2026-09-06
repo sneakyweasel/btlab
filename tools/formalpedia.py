@@ -95,6 +95,19 @@ def _trust(body: str) -> str:
     return "kernel"
 
 
+def declares(text: str, name: str, kind: str = "theorem") -> bool:
+    """Does `text` declare exactly `name` -- not merely something starting with it?
+
+    519 of the 4,528 declaration names in this corpus are a proper prefix of another, because
+    helper lemmas are named by extending their main theorem: `power_bound_compensated_contracts`
+    and `power_bound_compensated_contracts_follows`, `power_bound_word` and
+    `power_bound_word_strict`.  A guard written as ``f"theorem {name}" in text`` therefore still
+    passes after its theorem is deleted, as long as one of those neighbours survives -- which is
+    precisely the event such a guard exists to catch.
+    """
+    return re.search(rf"(?:^|\n)\s*{kind}\s+{re.escape(name)}(?![A-Za-z0-9_'])", text) is not None
+
+
 def declarations(path: Path) -> list[dict[str, Any]]:
     text = io.open(path, encoding="utf-8").read()
     hits = list(DECL.finditer(text))

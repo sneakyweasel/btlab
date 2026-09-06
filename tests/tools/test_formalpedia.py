@@ -183,3 +183,28 @@ def test_paper_reachability_is_not_the_same_set_as_the_directory() -> None:
     in_dir = {m for m in index["modules"] if m.startswith("Problems.Juggler")}
     assert in_dir - reached, "every Juggler module is now reachable from Paper A"
     assert reached & in_dir, "Paper A reaches no Juggler module at all"
+
+
+def test_declares_requires_the_name_to_end_at_the_match() -> None:
+    """The corpus names helper lemmas by extending their main theorem, so 519 of 4,528 names
+    are a proper prefix of another. A substring check cannot tell them apart; this one can."""
+    text = (
+        "theorem power_bound_compensated_contracts_follows (h : True) : True := trivial\n"
+    )
+    assert not fp.declares(text, "power_bound_compensated_contracts")
+    assert fp.declares(text, "power_bound_compensated_contracts_follows")
+
+
+def test_declares_finds_a_real_declaration_in_the_corpus() -> None:
+    path = fp.ROOT / "formal" / "Problems" / "Juggler" / "CycleFinance.lean"
+    text = path.read_text(encoding="utf-8")
+    assert fp.declares(text, "cycleMin_finance")
+    assert not fp.declares(text, "cycleMin_financ")
+    assert not fp.declares(text, "cycleMin_finance_extra_suffix")
+
+
+def test_the_prefix_collision_surface_is_real_and_measured() -> None:
+    """If this ever drops to zero the `declares` boundary stops mattering and can go."""
+    names = {d["name"] for d in fp.build()["declarations"]}
+    shadowed = {n for n in names if any(o != n and o.startswith(n) for o in names)}
+    assert len(shadowed) > 100, len(shadowed)
