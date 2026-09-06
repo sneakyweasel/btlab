@@ -29151,3 +29151,66 @@ Best next question
 - the crossing sits at a = 0.29919, suspiciously near 3/10. Is the
   flat/qpp crossing at a nice rational, or genuinely irrational?
 ```
+
+ ### The crossing is transcendental, and 5/16 is the robust choice
+
+Is the flat/qpp crossing at a nice rational? No — each threshold has
+the form `log(constant)` over a linear function of `a`, so
+`a* = 0.2991907844...` solves a transcendental equation. The nearest
+simple value is `3/10`, within `4%` of the optimum against `5/16`'s
+factor `2.13`.
+
+**But the loss is steeply asymmetric, and that is the real answer.**
+
+```text
+   2/7   = 0.2857   worst 1.18e13    84x the optimum   (below the crossing)
+   a*    = 0.29919  worst 1.40e11     1.00x
+   3/10  = 0.3      worst 1.46e11     1.04x
+   5/16  = 0.3125   worst 2.98e11     2.13x            (above)
+```
+
+Below the crossing the flat cost explodes; above it the `q''` ratio
+rises gently. And the crossing moves with the constants:
+
+```text
+   3/10 sits 8e-4 above a*   survives +-25% in either site,
+                             but not a doubling of the flat threshold
+   5/16 sits 1.3e-2 above    survives a factor of five
+```
+
+So `P^{5/16}` is the **robust** choice rather than the optimal one, and
+on a landscape this lopsided that is the better thing to be. Erring
+high costs a factor two; erring low costs two orders. The paper's
+choice is well made for a reason it does not give, and the reason is
+worth giving.
+
+That closes the `R_0` line. Over three entries it went: `5/16` is the
+minimax (wrong), `5/16` is merely feasible (right, and the identity is
+coincidence), `5/16` is feasible *and* robust while `3/10` is nearly
+optimal but exposed.
+
+```text
+What was learned
+- an optimum on an asymmetric landscape is the wrong target; the
+  distance to the cliff matters more than the distance to the minimum
+- quantifying that distance in units of the underlying constants --
+  3/10 survives 25%, 5/16 survives 5x -- makes the choice defensible
+  rather than merely traditional
+Strongest theorem
+- a* = 0.2991907844 is transcendental; the loss is 84x at 2/7 against
+  2.13x at 5/16, and 5/16's margin is ten times 3/10's
+Strongest refutation
+- none new; this completes rather than overturns the last entry
+Reusable machinery
+- the perturbed-crossing harness, four tests
+Branch status
+- PARK
+Why
+  The R_0 question is answered from every side I can reach: not the
+  minimax, feasible over a band, the identity coincidental, the
+  nearest clean value known, and the robustness quantified. There is
+  nothing further to extract without changing the constants, which is
+  the author's call and not a Phase-0 move.
+Best next question
+- none in this direction. The A.6 trade-off is fully characterised.
+```

@@ -836,3 +836,50 @@ def test_paper_no_longer_calls_five_sixteenths_the_minimax() -> None:
     assert "0.29919" in text
     assert "feasible rather than optimal" in text
     assert "coincidence of a feasible choice" in text
+
+
+# --- the crossing is transcendental, and the loss around it is lopsided ---
+
+
+def _crossing(scale_flat: float = 1.0, scale_qpp: float = 1.0) -> float:
+    lo, hi = 0.270, 0.330
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        r = C.r0_tradeoff(mid)
+        lo, hi = (mid, hi) if r["flat"] * scale_flat > r["qpp"] * scale_qpp else (lo, mid)
+    return hi
+
+
+def _worst(a: float) -> float:
+    return max(C.r0_tradeoff(a)[k] for k in ("collision", "qpp", "window", "flat"))
+
+
+def test_three_tenths_is_the_nearest_simple_value() -> None:
+    star = _crossing()
+    assert abs(star - 0.2991907844) < 1e-8
+    assert abs(0.3 - star) < 1e-3
+    assert _worst(0.3) / _worst(star) < 1.05           # within 4% of optimal
+    assert 2.0 < _worst(0.3125) / _worst(star) < 2.3   # 5/16 costs 2.13
+
+
+def test_the_loss_is_steeply_asymmetric_about_the_crossing() -> None:
+    """Below the crossing the flat cost explodes; above it the q'' ratio rises gently."""
+    star = _worst(_crossing())
+    assert _worst(2 / 7) / star > 50                   # 0.2857, far below
+    assert _worst(0.3125) / star < 3                   # 5/16, above
+    assert _worst(2 / 7) > _worst(0.3125) * 20
+
+
+def test_five_sixteenths_has_five_times_the_margin_of_three_tenths() -> None:
+    base = _crossing()
+    assert 0.3 > _crossing(scale_flat=1.25) and 0.3 > _crossing(scale_qpp=0.8)
+    assert 0.3 < _crossing(scale_flat=2.0)             # 3/10 falls below at a doubling
+    assert 0.3125 > _crossing(scale_flat=5.0)          # 5/16 survives it
+    assert (0.3125 - base) / (0.3 - base) > 10
+
+
+def test_paper_states_the_robustness_reading() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "solves a transcendental equation" in text
+    assert "the loss is steeply asymmetric" in text
+    assert "the robust choice rather than the optimal one" in text

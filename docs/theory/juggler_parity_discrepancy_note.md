@@ -5754,6 +5754,23 @@ that \(R_0=2(\tfrac1{24}+\tfrac18-\tfrac1{96})\) --- is therefore a
 coincidence of a feasible choice and not the output of an
 optimisation.
 
+The crossing itself is not at a nice exponent: each threshold has the
+form \(\log(\text{constant})\) over a linear function of \(a\), so
+\(a^\ast=0.29919\ldots\) solves a transcendental equation. The nearest
+simple value is \(\tfrac3{10}\), which lands within \(4\%\) of the
+optimum, against \(5/16\)'s factor \(2.13\).
+
+But the loss is steeply asymmetric, and that is what recommends
+staying high. Below the crossing the flat cost explodes ---
+\(\tfrac27\) is worse by a factor \(84\) --- while above it the
+\(q''\) ratio rises gently, \(5/16\) costing only \(2.13\). And the
+crossing itself moves with the constants: \(\tfrac3{10}\) sits
+\(8\cdot10^{-4}\) above \(a^\ast\), enough to survive a \(25\%\) shift
+in either site but not a doubling of the flat threshold, whereas
+\(5/16\) sits \(1.3\cdot10^{-2}\) above and survives a factor of five.
+So \(P^{5/16}\) is the robust choice rather than the optimal one, and
+on a landscape this lopsided that is the better thing to be.
+
 *\(E\): yes, by a factor \(2.07\); and the factor \(10\) beside it, by
 removing it.* The earlier \(219=202.5+16\) opened the middle-band cap
 \(185.7\) to \(360\) and carried \(8\) where step (ii) gives
