@@ -11,7 +11,7 @@ Fate contagion ([juggler_fate_contagion_note.md](juggler_fate_contagion_note.md)
 Corollary 4.5) turned the Juggler conjecture into an almost-all
 statement: every start reaches \(1\) **iff** the starts whose orbit
 never enters a certified interval \([1,N_0]\) have logarithmic count
-\(o((\log x)^{\lambda})\) for some \(\lambda<\lambda^{**}=0.4480\ldots\).
+\(o((\log x)^{\lambda})\) for some \(\lambda<\lambda^{**}=0.4801\ldots\).
 The question left open was whether a Tao-type theorem — "almost all
 orbits attain almost bounded values" — with the *bounded* target
 \([1,N_0]\) and the rate \((\log x)^{-0.6}\) is available for the
@@ -192,7 +192,7 @@ using \(2^{d-1}\le 2^{CL}\). The second term is
 ## 5. Contagion closes the loop
 
 **Theorem A (Tao-type bound with rate implies the conjecture).**
-Suppose that for some \(e>1-\lambda^{**}=0.5520\ldots\) and all
+Suppose that for some \(e>1-\lambda^{**}=0.5199\ldots\) and all
 sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}\ \le\ \frac{y}{(\log y)^{e}} .
@@ -227,23 +227,23 @@ unnecessary — or in logarithmic form
 \(\lambda<\lambda^{**}\) (Corollary 4.5 of the fate note).
 
 **Corollary C (the conjecture from a cylinder bound).** If
-\(\mathrm H(C,A)\) holds for some \(C\ge 20\) and \(A>C+e(C)\), then
+\(\mathrm H(C,A)\) holds for some \(C\ge 19\) and \(A>C+e(C)\), then
 every positive integer reaches \(1\).
 
 *Proof.* Theorem B gives Theorem A's hypothesis with
-\(e=e(C)\ge e(20)=0.574>0.5520\). \(\square\)
+\(e=e(C)\ge e(19)=0.527>0.5199\). The pairing-only intermediate still
+needed \(C\ge 20\) (\(e(20)=0.574>0.5520\)). \(\square\)
 
 The rate requirement is exactly the complement of the contagion
-exponent. If \(\lambda^{**}\) is improved toward the depth-two ceiling
-\(0.4927\) (uniform fiber share \(1/2\)), then \(e>0.5073\) suffices and
-the remaining gap is \(1/3\) versus \(1/2\); \(\lambda^{**}\to 1\) would make any positive rate
-suffice, but that improvement requires all descent certificates and is
-circular here.
+exponent. Later \(V_k\) truncations toward the depth-two ceiling
+\(0.4927\) would lower it toward \(e>0.5073\);
+\(\lambda^{**}\to 1\) would make any positive rate suffice, but that
+improvement requires all descent certificates and is circular here.
 
 ## 6. Constants and depth
 
 With the certified floor \(N_0=3.5\cdot 10^8\) and \(C=21\)
-(\(C=20\) now suffices; the table is a conservative illustration):
+(\(C=19\) now suffices; the table is a conservative illustration):
 
 | \(y\) | \(L(y)\) | \(d(y)=\lceil 21L\rceil\) | Chernoff bound | exact bad probability | \((\log y)^{-0.6}\) | least depth for rate \(0.6\) (exact walk) |
 |---|---|---|---|---|---|---|
@@ -389,16 +389,17 @@ The least \(C\) with \(e_q(C)>1-\lambda^{**}\) (`least_C_biased`):
 
 | \(q\) | \(\mu\) | least \(C\) | \(e_q(C)\) |
 |---|---|---|---|
-| \(0.50\) | \(0.2075\) | \(20\) | \(0.570\) |
-| \(0.55\) | \(0.1283\) | \(44\) | \(0.563\) |
-| \(0.60\) | \(0.0490\) | \(240\) | \(0.555\) |
-| \(0.62\) | \(0.0173\) | \(1715\) | \(0.552\) |
+| \(0.50\) | \(0.2075\) | \(19\) | \(0.524\) |
+| \(0.55\) | \(0.1283\) | \(42\) | \(0.526\) |
+| \(0.60\) | \(0.0490\) | \(228\) | \(0.522\) |
+| \(0.62\) | \(0.0173\) | \(1622\) | \(0.520\) |
 
-So: **if no cylinder of depth below \(44\log_2(\log 2y/\log N_0)\)
+So: **if no cylinder of depth below \(42\log_2(\log 2y/\log N_0)\)
 sends more than \(55\%\) of its members to an odd next state, every
 positive integer reaches \(1\).** At \(q=\tfrac12\) the one-sided
-hypothesis reproduces the constant \(C=20\) of the two-sided
+hypothesis reproduces the constant \(C=19\) of the two-sided
 Chernoff argument; as \(q\to\log 2/\log 3\), \(C\to\infty\).
+(The pairing-only intermediate was \(20,44,240,1715\).)
 
 ## 9. Anatomy of the bad words, and why the wall is unavoidable
 

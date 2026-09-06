@@ -1,6 +1,8 @@
 # The \(OEOEE\) production, and the elementary \((OE)^{k-1}OEE\) family
 
-Status: **reduction complete, constants pending** (4 September 2026).
+Status: **audited and promoted** (6 September 2026).
+Official unconditional \(\lambda^{**}=0.4801\). Audit ledger:
+[oeoee_audit_ledger.md](oeoee_audit_ledger.md).
 The word \(OEOEE\) was listed in
 [juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
 as "needs localized Paper B depth 2". That label is **wrong**: the
@@ -9,10 +11,11 @@ to classical one-variable exponential sums. No Paper B estimate, no
 localization of Theorems 4.4/4.7, and — unlike Appendix C's \(OOEEE\)
 — no exceptional-set argument are needed.
 
-Consequence, if the two half-estimates are written out with constants:
-\(\lambda^{**}\) rises from \(0.4480\) to \(0.4801\)
-**unconditionally**, and \(\lambda^{***}\) from \(0.5392\) to
-\(0.5665\). Section 8 iterates the same construction into a family
+Consequence, now that the two half-estimates are audited:
+\(\lambda^{**}\) rises from the pairing root \(0.4480\) to \(0.4801\)
+**unconditionally**, and alongside Appendix C would raise
+\(\lambda^{***}\) from \(0.5392\) to \(0.5665\) (a remark, not a new
+official exponent). Section 8 iterates the same construction into a family
 \(V_k=(OE)^{k-1}OEE\) whose geometry does not degrade with \(k\) and
 whose terms telescope **exactly** to the ideal depth-two recursion,
 root \(0.4927\) — closing the whole gap the fate note records as a
@@ -519,8 +522,9 @@ be positive powers.
   with \(|a_q|\le\min(1,2/|q|)\) and \(\Delta_J\ge0\) whose coefficients,
   constant term included, are \(\le 1/(J+1)\).
 - **(T2) Kusmin–Landau.** \(f'\) monotone with \(\lVert f'\rVert\ge\delta\):
-  \(|\sum e(f)|\le\cot(\pi\delta/2)\le 2/(\pi\delta)\). (Checked:
-  \(\max_{0<\delta\le1/2}[\cot(\pi\delta/2)-2/(\pi\delta)]=-5.2\cdot10^{-4}\).)
+  \(|\sum e(f)|\le\cot(\pi\delta/2)\le 2/(\pi\delta)\). The difference
+  \(\cot(\pi\delta/2)-2/(\pi\delta)\) is negative on \((0,1/2]\), tends
+  to \(0\) as \(\delta\to0\), and attains \(1-4/\pi\) at \(\delta=1/2\).
 - **(T3) Second-derivative test**, derived from (T2). If
   \(\lambda\le|f''|\le\alpha\lambda\) on an interval of length \(M\) and
   \(0<\lambda\le\pi/4\), then
@@ -611,10 +615,8 @@ ratio never above \(0.25\), so the constant \(100\) above is generous by
 some \(400\times\); Half B's bound is met with a factor \(8\) of slack
 and Half A's with \(30\)–\(500\).
 
-**Status.** The chain is explicit end to end and every step is
-numerically checked, but it is a single pass: the constants have not
-been audited the way Paper B's were, and (T3), the sizes in 11.2 and the
-assembly in 11.5 are mine rather than the corpus's. I would not move
-Theorem 1's printed exponent to \(0.4801\) on this alone — the right
-next step is an audit pass in the style of the Paper B ledger, after
-which the promotion is a bookkeeping change.
+**Status.** Audited (6 September 2026). Every displayed Section 11
+constant recomputes from T1–T5, or is tightened and still saves a
+positive power of \(P\). Classification `OEOEE_AUDIT_CONSISTENT`.
+Theorem 1's printed exponent is now \(0.4801\). Later \(V_k\)
+truncations are not opened here.

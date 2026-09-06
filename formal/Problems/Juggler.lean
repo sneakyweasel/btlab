@@ -19,6 +19,7 @@ import Problems.Juggler.FanLaw
 import Problems.Juggler.FirstPassage
 import Problems.Juggler.Certificates
 import Problems.Juggler.Progress
+import Problems.Juggler.RateFreeDensity
 import Problems.Juggler.Minimal
 import Problems.Juggler.MinimalClosure
 import Problems.Juggler.Scale

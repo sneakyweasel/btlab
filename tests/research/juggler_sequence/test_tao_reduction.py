@@ -16,13 +16,13 @@ from research.juggler_sequence.tao_reduction import (
 
 
 def test_required_rate_is_complement_of_contagion_exponent() -> None:
-    assert abs(REQUIRED_RATE - (1 - 0.44802)) < 1e-4
+    assert abs(REQUIRED_RATE - (1 - 0.48011)) < 1e-4
     assert REQUIRED_RATE < 0.6  # the user's rate (log x)^{-0.6} suffices
 
 
-def test_least_C_is_twenty() -> None:
-    assert least_C() == 20
-    assert chernoff_exponent(19) < REQUIRED_RATE < chernoff_exponent(20)
+def test_least_C_is_nineteen() -> None:
+    assert least_C() == 19
+    assert chernoff_exponent(18) < REQUIRED_RATE < chernoff_exponent(19)
     assert abs(chernoff_exponent(21) - 0.6210) < 1e-3
 
 
@@ -64,12 +64,12 @@ def test_improved_rate_with_ooeee_production() -> None:
 def test_biased_split_constants() -> None:
     from research.juggler_sequence.tao_reduction import azuma_exponent, least_C_biased
 
-    assert least_C_biased(0.5) == 20
-    assert least_C_biased(0.55) == 44
-    assert least_C_biased(0.6) == 240
+    assert least_C_biased(0.5) == 19
+    assert least_C_biased(0.55) == 42
+    assert least_C_biased(0.6) == 228
     assert least_C_biased(0.64) is None  # above log 2 / log 3
     assert abs(azuma_exponent(21, 0.5) - 0.6167) < 1e-3
-    assert azuma_exponent(19, 0.5) < REQUIRED_RATE < azuma_exponent(20, 0.5)
+    assert azuma_exponent(18, 0.5) < REQUIRED_RATE < azuma_exponent(19, 0.5)
 
 
 def test_bad_words_almost_all_contain_long_odd_runs() -> None:

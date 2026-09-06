@@ -6,8 +6,9 @@ none of which is a proof:
 
 1. **Contagion exponents.**  The three-state residual and the run-ladder transfer matrix of the
    exponent calculus, recomputed and compared with every exponent Paper C prints:
-   ``lambda* = 0.3774``, ``lambda** = 0.4480``, ``lambda*** = 0.5392``, the depth-two ideal
-   ceiling ``0.4927``, and the ``lambda(r)`` ladder of Section 5.7.
+   ``lambda* = 0.3774``, pairing-only ``0.4480``, ``lambda** = 0.4801`` (plus OEOEE),
+   ``lambda*** = 0.5392``, the depth-two ideal ceiling ``0.4927``, and the
+   ``lambda(r)`` ladder of Section 5.7.
 2. **Tao thresholds and depths.**  ``e(20) = 0.574``, ``e(18) = 0.480``, the least depth in each
    regime, and the one-sided ``C(q)`` values.  Every regime is carried explicitly, because the
    same symbol ``C(q)`` denotes different numbers under ``lambda**`` and ``lambda***``
@@ -129,12 +130,13 @@ def contagion_checks() -> list[dict[str, Any]]:
 
     out = [
         _check("lambda_star (block_average_only)", 0.3774, lambda_root(RECURSIONS["block_average_only"]), EXP_TOL),
-        _check("lambda** (block_average_plus_third)", 0.4480, lambda_root(RECURSIONS["block_average_plus_third"]), EXP_TOL),
+        _check("pairing-only (block_average_plus_third)", 0.4480, lambda_root(RECURSIONS["block_average_plus_third"]), EXP_TOL),
+        _check("lambda** (block_third_plus_oeoee)", 0.4801, lambda_root(RECURSIONS["block_third_plus_oeoee"]), EXP_TOL),
         _check("lambda*** (block_third_plus_ooeee)", 0.5392, lambda_root(RECURSIONS["block_third_plus_ooeee"]), EXP_TOL),
         _check("depth-two ideal ceiling", 0.4927, lambda_root(RECURSIONS["depth_two_ideal"]), EXP_TOL),
-        # the same three constants through the residual, which is how Section 5.7 derives them
+        # the same pairing/ideal constants through the residual, which is how Section 5.7 derives them
         _check("lambda_star via residual", 0.3774, exponent(0.0, 0.0, 1.0), EXP_TOL),
-        _check("lambda** via residual", 0.4480, exponent(0.0, 2 / 3, 1.0), EXP_TOL),
+        _check("pairing via residual", 0.4480, exponent(0.0, 2 / 3, 1.0), EXP_TOL),
         _check("ideal via residual", 0.4927, exponent(0.0, 1.0, 1.0), EXP_TOL),
     ]
     # Section 5.7 ladder: lambda(r) under the present sweep (eta1 = 2/3) and ideal fibers
@@ -148,24 +150,30 @@ def contagion_checks() -> list[dict[str, Any]]:
 def tao_checks() -> list[dict[str, Any]]:
     """Rate thresholds, the exponents ``e(C)``, and the one-sided ``C(q)`` in each regime."""
 
-    lam2 = lambda_root(RECURSIONS["block_average_plus_third"])
+    pairing = lambda_root(RECURSIONS["block_average_plus_third"])
+    lam2 = lambda_root(RECURSIONS["block_third_plus_oeoee"])
     lam3 = lambda_root(RECURSIONS["block_third_plus_ooeee"])
     ideal = lambda_root(RECURSIONS["depth_two_ideal"])
     out = [
-        _check("rate threshold 1 - lambda**", 0.5520, 1.0 - lam2, 1e-3),
+        _check("rate threshold 1 - pairing", 0.5520, 1.0 - pairing, 1e-3),
+        _check("rate threshold 1 - lambda**", 0.5199, 1.0 - lam2, 1e-3),
         _check("rate threshold 1 - lambda***", 0.4608, 1.0 - lam3, 1e-3),
         _check("rate threshold 1 - lambda_ideal", 0.5073, 1.0 - ideal, 1e-3),
         _check("e(20)", 0.574, chernoff_exponent(20), 1e-3),
+        _check("e(19)", 0.527, chernoff_exponent(19), 1e-3),
         _check("e(18)", 0.480, chernoff_exponent(18), 1e-3),
-        _check("least depth, lambda** regime", 20, least_C(REQUIRED_RATE), 0),
+        _check("least depth, pairing regime", 20, least_C(1.0 - pairing), 0),
+        _check("least depth, lambda** regime", 19, least_C(REQUIRED_RATE), 0),
         _check("least depth, lambda*** regime", 18, least_C(REQUIRED_RATE_STAR3), 0),
         _check("least depth, ideal regime", 19, least_C(1.0 - ideal), 0),
         # one-sided C(q): Paper C's Section 10 quotes the lambda*** regime
         _check("C(0.5), lambda*** regime", 18, least_C_biased(0.5, REQUIRED_RATE_STAR3), 0),
         _check("C(0.55), lambda*** regime", 39, least_C_biased(0.55, REQUIRED_RATE_STAR3), 0),
-        # the lambda** regime values, quoted in AGENTS.md and the Tao note
-        _check("C(0.5), lambda** regime", 20, least_C_biased(0.5, REQUIRED_RATE), 0),
-        _check("C(0.55), lambda** regime", 44, least_C_biased(0.55, REQUIRED_RATE), 0),
+        # the lambda** regime values (OEOEE), and pairing-only for the historical quotes
+        _check("C(0.5), lambda** regime", 19, least_C_biased(0.5, REQUIRED_RATE), 0),
+        _check("C(0.55), lambda** regime", 42, least_C_biased(0.55, REQUIRED_RATE), 0),
+        _check("C(0.5), pairing regime", 20, least_C_biased(0.5, 1.0 - pairing), 0),
+        _check("C(0.55), pairing regime", 44, least_C_biased(0.55, 1.0 - pairing), 0),
     ]
     return out
 

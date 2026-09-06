@@ -1,0 +1,277 @@
+{
+  "git_commit": "3ffbd154a5e903c2d3c22de0781bd3a0c4b9b05b",
+  "note": "docs/theory/juggler_oeoee_production.md",
+  "checks": [
+    {
+      "name": "T2 Kusmin gap",
+      "printed": -0.27323954473516276,
+      "computed": -0.27323954473516276,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "script",
+      "note": "inequality holds; printed -5.2e-4 corrected to min 1-4/pi at d=1/2"
+    },
+    {
+      "name": "T3 prefactor 4/sqrt(pi)",
+      "printed": 2.26,
+      "computed": 2.256758334191025,
+      "abs_error": 0.0032416658089746697,
+      "ok": true,
+      "kind": "hand",
+      "note": "bracket 4/sqrt(pi lambda)+1; 4/sqrt(pi) = 2.25675... <= 2.26"
+    },
+    {
+      "name": "T4 annulus factor 4(V+1)",
+      "printed": 4.0,
+      "computed": 4.029602362663871,
+      "abs_error": 0.029602362663871062,
+      "ok": true,
+      "kind": "hand",
+      "note": "step ratio at m'=60 is 1.01480; abstract T4 needs steps ~ d"
+    },
+    {
+      "name": "T4 annulus factor 4(V+1)",
+      "printed": 4.0,
+      "computed": 4.0886464307497095,
+      "abs_error": 0.08864643074970946,
+      "ok": true,
+      "kind": "hand",
+      "note": "step ratio at m'=20 is 1.04432; abstract T4 needs steps ~ d"
+    },
+    {
+      "name": "T5 pairing V Delta/2 + G",
+      "printed": 0.5,
+      "computed": 0.5,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "standard pairing"
+    },
+    {
+      "name": "11.2 L envelope",
+      "printed": 2.6666666666666665,
+      "computed": 2.6666666666666665,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "MVT: real length is (8/3) xi^{5/3}; integer L is that plus or minus 1"
+    },
+    {
+      "name": "11.2 omega slack 3/2",
+      "printed": 1.5,
+      "computed": 1.0000000000000018,
+      "abs_error": 0.4999999999999982,
+      "ok": true,
+      "kind": "script",
+      "note": "max |omega - (2/3) w^{1/3}| on w=2..4999 is 1.0000"
+    },
+    {
+      "name": "11.2 Y lower bound 16/9 m'^{23/9}-1",
+      "printed": 1.7777777777777777,
+      "computed": 1.7777777777777777,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "script",
+      "note": "odd count of [m'^{32/9}, (m'+1)^{32/9}) against the MVT lower bound"
+    },
+    {
+      "name": "Half B leading 64/9",
+      "printed": 7.111111111111111,
+      "computed": 7.111111111111111,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "4(V_q) omega_smooth with V_q <= (8q/3)(m'+1)^{7/9}, omega ~ (2/3)(m'+1)^{8/9}"
+    },
+    {
+      "name": "Half B log coefficient 6.79",
+      "printed": 6.79,
+      "computed": 6.790610905254201,
+      "abs_error": 0.0006109052542013771,
+      "ok": true,
+      "kind": "hand",
+      "note": "8/(pi d_q) * V_q = (8/pi) m'^{8/9}/q * (8q/3) m'^{7/9} = 64/(3 pi)"
+    },
+    {
+      "name": "Half B Vaaler R coefficient 35.5",
+      "printed": 35.5,
+      "computed": 28.444444444444443,
+      "abs_error": 7.055555555555557,
+      "ok": true,
+      "kind": "hand",
+      "note": "sum_{0<|q|<=R} (2/|q|) * (64/9)|q| = 4*(64/9) R = (256/9) R; 28.44 <= 35.5"
+    },
+    {
+      "name": "Half B Vaaler log coefficient 27.2",
+      "printed": 27.2,
+      "computed": 27.162443621016806,
+      "abs_error": 0.03755637898319364,
+      "ok": true,
+      "kind": "hand",
+      "note": "4 * 6.79 * H_R; 4*64/(3 pi) = 27.16 <= 27.2"
+    },
+    {
+      "name": "Half B R = 0.224 m'^{4/9}",
+      "printed": 0.224,
+      "computed": 0.22378169554578375,
+      "abs_error": 0.00021830445421625044,
+      "ok": true,
+      "kind": "hand",
+      "note": "sqrt((16/9)/35.5) = 0.2241..."
+    },
+    {
+      "name": "Half B assembled 15.9 m'^{19/9}",
+      "printed": 15.9,
+      "computed": 15.888500383750646,
+      "abs_error": 0.01149961624935436,
+      "ok": true,
+      "kind": "hand",
+      "note": "35.5 R + (16/9)/R at the printed R"
+    },
+    {
+      "name": "Half B over Y is 8.9",
+      "printed": 8.9,
+      "computed": 8.937281465859739,
+      "abs_error": 0.03728146585973846,
+      "ok": true,
+      "kind": "hand",
+      "note": "15.9 / (16/9) = 8.94375, printed 8.9 (slightly tight; 8.95 would be exact)"
+    },
+    {
+      "name": "Half B Delta oscillatory extra",
+      "printed": 1.59,
+      "computed": 1.5928888888888888,
+      "abs_error": 0.0028888888888887188,
+      "ok": true,
+      "kind": "hand",
+      "note": "printed Y/(R+1) is the constant term; modes add (64/9)R m'^{19/9} ~ 1.59"
+    },
+    {
+      "name": "Half A prefactor 9.85",
+      "printed": 9.85,
+      "computed": 9.841505455448855,
+      "abs_error": 0.0084945445511444,
+      "ok": true,
+      "kind": "hand",
+      "note": "(4/3)*2.26*sqrt(8/3)*2 from omega * T3 * Vaaler 2/s * harmonic 2 sqrt(S)"
+    },
+    {
+      "name": "Half A S = 0.318 m'^{4/9}",
+      "printed": 0.318,
+      "computed": 0.3193700320020659,
+      "abs_error": 0.0013700320020658685,
+      "ok": true,
+      "kind": "hand",
+      "note": "((16/9)/9.85)^{2/3} = 0.3196..."
+    },
+    {
+      "name": "Half A assembled 11.2 m'^{19/9}",
+      "printed": 11.2,
+      "computed": 11.133028146900633,
+      "abs_error": 0.06697185309936593,
+      "ok": true,
+      "kind": "hand",
+      "note": "9.85 sqrt(S) + (16/9)/S"
+    },
+    {
+      "name": "Half A over Y is 6.3",
+      "printed": 6.3,
+      "computed": 6.262328332631607,
+      "abs_error": 0.037671667368393,
+      "ok": true,
+      "kind": "hand",
+      "note": "11.2 / (16/9) = 6.30"
+    },
+    {
+      "name": "Half A pairing Lambda3 0.89 m'^{14/9}",
+      "printed": 0.89,
+      "computed": 0.89,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "T5 on consecutive v-levels; derived G ~ m'^{2/3} sits below m'^{14/9}"
+    },
+    {
+      "name": "Half A pairing Lambda1 Lambda3 1.33 m'^{17/9}",
+      "printed": 1.33,
+      "computed": 1.33,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "Kusmin on f' = 1/2 + (3u/8) w^{-1/4}; printed is a pad over O(m'^{17/9})"
+    },
+    {
+      "name": "Half A pairing Lambda1 2.67 m'^{5/3}",
+      "printed": 2.67,
+      "computed": 2.67,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "sum (-1)^w = O(1); times omega by partial summation is O(m'^{8/9})"
+    },
+    {
+      "name": "11.5 assembly 8*8.9 + 4*6.3 <= 100",
+      "printed": 100.0,
+      "computed": 96.4,
+      "abs_error": 3.5999999999999943,
+      "ok": true,
+      "kind": "hand",
+      "note": "96.4 plus logs and pairing, printed 100 (1+log m')^2"
+    },
+    {
+      "name": "binding saving P^{-1/8} = m'^{-4/9}",
+      "printed": 0.125,
+      "computed": 0.125,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "positive power; lambda does not depend on the constant in front"
+    },
+    {
+      "name": "Prop 4 net gain 1/27",
+      "printed": 0.037037037037037035,
+      "computed": 0.037037037037037035,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "ideal OE 1/3 minus sweep OE 2/9, times OEE mass 1/3"
+    },
+    {
+      "name": "envelope m'=60",
+      "printed": 100.0,
+      "computed": 0.21642865976518114,
+      "abs_error": 99.78357134023481,
+      "ok": true,
+      "kind": "script",
+      "note": "Y=63574 16|O|-Y=-2230 ratio=0.2164"
+    },
+    {
+      "name": "envelope m'=90",
+      "printed": 100.0,
+      "computed": 0.24763069172373775,
+      "abs_error": 99.75236930827626,
+      "ok": true,
+      "kind": "script",
+      "note": "Y=177915 16|O|-Y=-5963 ratio=0.2476"
+    },
+    {
+      "name": "envelope m'=120",
+      "printed": 100.0,
+      "computed": 0.24986738167815714,
+      "abs_error": 99.75013261832184,
+      "ok": true,
+      "kind": "script",
+      "note": "Y=369795 16|O|-Y=11005 ratio=0.2499"
+    }
+  ],
+  "classification": {
+    "name": "OEOEE_AUDIT_CONSISTENT",
+    "total_checks": 29,
+    "failures": 0,
+    "failing_names": [],
+    "all_printed_constants_recompute": true,
+    "power_saving": "P^{-1/8}",
+    "net_gain": "1/27",
+    "lambda_root_if_promoted": 0.4801
+  }
+}

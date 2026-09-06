@@ -283,18 +283,18 @@ def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
     """Paper A quotes Paper C's exponent; it must be lambda**, not the superseded sweep root.
 
     ``block_average_plus_sweep`` (0.4051) was lambda** before the OE-fiber constant was
-    sharpened from 1/7 to 1/3; ``block_average_plus_third`` (0.4480) replaced it, and the
-    Tao rate threshold moved from 0.595 to 1 - lambda** = 0.552."""
+    sharpened from 1/7 to 1/3; pairing (0.4480) replaced it; the elementary OEOEE
+    production then moved lambda** to 0.4801 and the Tao rate from 0.552 to 0.5199."""
 
     from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
 
-    lam = lambda_root(RECURSIONS["block_average_plus_third"])
-    assert abs(lam - 0.4480) < 1e-3
-    assert abs((1.0 - lam) - 0.5520) < 1e-3
+    lam = lambda_root(RECURSIONS["block_third_plus_oeoee"])
+    assert abs(lam - 0.4801) < 1e-3
+    assert abs((1.0 - lam) - 0.5199) < 1e-3
     text = read(PAPER)
-    assert "0.4480" in text and "0.448" in text
-    assert "0.552" in text
-    # the superseded pair must not appear as Paper C's exponent or as the rate threshold
+    assert "0.4801" in text
+    assert "0.5199" in text or "0.520" in text or "0.519" in text
+    # the superseded sweep pair must not appear as Paper C's exponent or as the rate threshold
     assert "0.4050" not in text
     assert re.search(r"\(\\log x\)\^\{0\.405\}", text) is None
     assert re.search(r"e>0\.595", text.replace(" ", "")) is None
@@ -303,7 +303,8 @@ def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
 @pytest.mark.parametrize(
     "regime,lam,rate,depth",
     [
-        ("block_average_plus_third", 0.4480, 0.5520, 20),   # unconditional, lambda**
+        ("block_third_plus_oeoee", 0.4801, 0.5199, 19),     # unconditional, lambda**
+        ("block_average_plus_third", 0.4480, 0.5520, 20),   # pairing-only intermediate
         ("block_third_plus_ooeee", 0.5392, 0.4608, 18),     # with Hypothesis L, lambda***
         ("depth_two_ideal", 0.4927, 0.5073, 19),            # the method's ideal ceiling
     ],

@@ -55,24 +55,26 @@ def test_ladder_is_monotone_and_the_sweep_sits_below_the_ideal() -> None:
 
 
 def test_the_two_C_of_q_regimes_are_different_and_both_are_covered() -> None:
-    """C(0.55) is 44 under lambda** and 39 under lambda***; Paper C quotes the second.
+    """C(0.55) is 42 under lambda** (OEOEE), 44 under pairing, 39 under lambda***.
 
     The regime must be carried explicitly, or a value correct in one context looks like
     drift in the other -- the trap this audit exists to avoid."""
 
     by_name = {c["name"]: c for c in tao_checks()}
     assert by_name["C(0.55), lambda*** regime"]["computed"] == 39
-    assert by_name["C(0.55), lambda** regime"]["computed"] == 44
+    assert by_name["C(0.55), lambda** regime"]["computed"] == 42
+    assert by_name["C(0.55), pairing regime"]["computed"] == 44
     assert by_name["C(0.5), lambda*** regime"]["computed"] == 18
-    assert by_name["C(0.5), lambda** regime"]["computed"] == 20
+    assert by_name["C(0.5), lambda** regime"]["computed"] == 19
+    assert by_name["C(0.5), pairing regime"]["computed"] == 20
 
 
 def test_paper_quotes_the_constants_the_audit_checks() -> None:
     """A guard against the audit drifting away from the manuscript it audits."""
 
     text = PAPER.read_text(encoding="utf-8")
-    for token in ("0.4480", "0.5392", "0.4927", "0.5520", "0.4608", "0.574", "0.480",
-                  "0.6247", "0.7180", "0.7095", "0.8414", "0.7516", "0.9121"):
+    for token in ("0.4480", "0.4801", "0.5392", "0.4927", "0.5520", "0.5199", "0.4608",
+                  "0.574", "0.480", "0.6247", "0.7180", "0.7095", "0.8414", "0.7516", "0.9121"):
         assert token in text, token
     assert "C(0.55)=39" in text.replace(" ", "").replace("\\(", "").replace("\\)", "")
 

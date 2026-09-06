@@ -67,6 +67,7 @@ LAYERS: dict[str, Path] = {
     "FirstPassage": JUGGLER_DIR / "FirstPassage.lean",
     "Certificates": JUGGLER_DIR / "Certificates.lean",
     "Progress": JUGGLER_DIR / "Progress.lean",
+    "RateFreeDensity": JUGGLER_DIR / "RateFreeDensity.lean",
     "FirstInternalOO": JUGGLER_DIR / "FirstInternalOO.lean",
     "MinimumRelative": JUGGLER_DIR / "MinimumRelative.lean",
     "Minimal": JUGGLER_DIR / "Minimal.lean",
@@ -143,6 +144,7 @@ DRIFT = LAYERS["Drift"]
 FIRST_PASSAGE = LAYERS["FirstPassage"]
 CERTIFICATES = LAYERS["Certificates"]
 PROGRESS = LAYERS["Progress"]
+RATE_FREE_DENSITY = LAYERS["RateFreeDensity"]
 MINIMAL = LAYERS["Minimal"]
 MINIMAL_CLOSURE = LAYERS["MinimalClosure"]
 SCALE = LAYERS["Scale"]

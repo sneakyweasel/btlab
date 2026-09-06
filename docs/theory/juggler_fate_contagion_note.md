@@ -17,7 +17,7 @@ at least like a fixed power of \(\log x\),
 \[
 \sum_{\substack{n\le x\\ \mathrm{fate}(n)=\varphi}}\frac1n
 \;\ge\; c_\varphi\,(\log x)^{\lambda}
-\qquad(\lambda<\lambda^{**}=0.448\ldots),
+\qquad(\lambda<\lambda^{**}=0.4801\ldots),
 \]
 whereas the full set of integers has \(\sum_{n\le x}1/n\sim\log x\).
 (Section 7 raises the exponent to \(\lambda^{***}=0.5392\ldots\) by
@@ -577,13 +577,18 @@ and \(c_A>0\) because \(0.375(m+1)\ge 1+0.375/(m+1)\) for \(m\ge 3\). \(\square\
 
 ### 4.4 The theorem
 
-Let \(\lambda^*\) and \(\lambda^{**}\) be the roots in \((0,1)\) of
+Let \(\lambda^*\) be the root in \((0,1)\) of
+\(2^{-\lambda}+\tfrac13(\tfrac38)^{\lambda}=1\),
+let \(\lambda_{\mathrm{pair}}\) be the pairing-only root of
+\(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}+\tfrac29(\tfrac34)^{\lambda}=1\),
+and let \(\lambda^{**}\) be the root of
 \[
-2^{-\lambda}+\tfrac13\bigl(\tfrac38\bigr)^{\lambda}=1,
-\qquad
-2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}=1 .
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}+\tfrac1{27}\bigl(\tfrac9{32}\bigr)^{\lambda}=1 .
 \]
-Numerically \(\lambda^*=0.3774\ldots\) and \(\lambda^{**}=0.4480\ldots\).
+Numerically \(\lambda^*=0.3774\ldots\), \(\lambda_{\mathrm{pair}}=0.4480\ldots\),
+and \(\lambda^{**}=0.4801\ldots\).
+(The pairing inequality (4.2) is unchanged, so that §7 can still add
+\(OOEEE\) on top of it.)
 (For comparison: the adversarial sweep \(1/7\), without pairing, gave
 \(2^{-\lambda}+\tfrac5{21}(\tfrac38)^\lambda+\tfrac2{21}(\tfrac34)^\lambda=1\),
 root \(0.4050\ldots\); the elementary sweep alone, without Proposition 3.4,
@@ -602,26 +607,29 @@ perfect fiber equidistribution at this depth would give
 The same conclusion for \(\lambda<\lambda^*\) uses only Proposition 3.4
 (no sweep lemma).
 
-*Proof.* Set \(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda-1>0\).
-By Lemma 4.1 and the decay of the \(\varepsilon_i\), choose \(t_1\)
-with \(\tfrac38t_1\ge 4\log(m+1)\) such that for all \(t\ge t_1\)
+*Proof.* Set
+\(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda-1>0\).
+Inequality (4.2) is the pairing inequality; the elementary \(OEOEE\)
+production ([juggler_oeoee_production.md](juggler_oeoee_production.md),
+Proposition 4) adds \(+\tfrac1{27}g_A(9t/32)\). By Lemma 4.1 and the
+decay of the errors, choose \(t_1\) with
+\(\tfrac9{32}t_1\ge 4\log(m+1)\) such that for all \(t\ge t_1\) the
+weighted errors are at most \(\zeta/3\), the inhomogeneous error is at
+most \(\tfrac{2\zeta}3\,c_A\), and all coefficients are nonnegative.
+Put \(K=c_At_1^{-\lambda}\). Claim: \(g_A(t)\ge Kt^\lambda\) for all
+\(t\ge\tfrac9{32}t_1\). For \(t\in[\tfrac9{32}t_1,t_1]\) this is
+Lemma 4.1 (\(Kt^\lambda\le c_A\)). The first induction step covers up
+to \(t_1/(\tfrac34)=\tfrac43 t_1\), at which
+\(\tfrac9{32}t\ge\tfrac38 t_1\). Suppose the bound holds on
+\([\tfrac9{32}t_1,T]\) with \(T\ge t_1\) and let
+\(t\in(T,\tfrac43 T]\). Then
+\(t/2,\ 3t/8,\ 3t/4,\ 9t/32\in[\tfrac9{32}t_1,T]\), so
 \[
-\varepsilon_1(t)2^{-\lambda}+\varepsilon_4(t)\bigl(\tfrac38\bigr)^\lambda+\varepsilon_5(t)\bigl(\tfrac34\bigr)^\lambda\le\tfrac\zeta3,
-\qquad
-\varepsilon_6(t)\le\tfrac{2\zeta}3\,c_A ,
-\]
-and all coefficients in (4.2) are nonnegative. Put \(K=c_At_1^{-\lambda}\).
-Claim: \(g_A(t)\ge Kt^\lambda\) for all \(t\ge\tfrac38t_1\). For
-\(t\in[\tfrac38t_1,t_1]\) this is Lemma 4.1 (\(Kt^\lambda\le c_A\)).
-Suppose it holds on \([\tfrac38t_1,T]\) with \(T\ge t_1\) and let
-\(t\in(T,\tfrac83T]\). Then \(t/2,\ 3t/8,\ 3t/4\in[\tfrac38t_1,T]\),
-so by (4.2)
-\[
-g_A(t)\ \ge\ Kt^\lambda\Bigl[(1+\zeta)-\tfrac\zeta3\Bigr]-\varepsilon_6(t)
+g_A(t)\ \ge\ Kt^\lambda\Bigl[(1+\zeta)-\tfrac\zeta3\Bigr]-\varepsilon(t)
 \ \ge\ Kt^\lambda\Bigl(1+\tfrac{2\zeta}3\Bigr)-\tfrac{2\zeta}3c_A\ \ge\ Kt^\lambda ,
 \]
 using \(Kt^\lambda\ge Kt_1^\lambda=c_A\). Induction on the intervals
-\((\tfrac83)^NT\) covers all \(t\ge\tfrac38t_1\). Finally
+\((\tfrac43)^NT\) covers all \(t\ge\tfrac9{32}t_1\). Finally
 \(L_A(x)\ge g_A(\log x)\). For \(\lambda<\lambda^*\) run the same
 argument with (4.1). \(\square\)
 
@@ -787,15 +795,14 @@ starts down to a fixed bound.
 fibers \(0.328\) at \(m=1\,003\,635\) (\(\alpha_m\approx\tfrac13\), the
 three-cluster case), and every fiber with \(G_m/H_m<\tfrac17\) flagged
 bad by the \(\alpha\)-criterion. Lemma 3.1′ gives \(\tfrac13H_m-2\)
-on monotone fibers; the remaining depth-two gap \(0.448\to 0.4927\)
-is the uniform \(1/3\) versus mean \(1/2\), not a missing pairing.
-The rest-average attack is PARK: a fixed low-even seed mixes,
-infinite planting does not yield a coefficient. The gap is now read
-as a dynamical averaging problem for the low-even set
-\(P=\{m:G_m/H_m\le 0.40\}\) (even-share of the \(E{+}OE\) orbit of
-\(P\)), not as another pointwise fiber bound.
+on monotone fibers; the remaining depth-two gap \(0.4801\to 0.4927\)
+is the later truncations of the elementary family
+\(V_k=(OE)^{k-1}OEE\) (the \(V_2=OEOEE\) rung is now Theorem 4.2).
+The rest-average attack stays PARK: a fixed low-even seed mixes,
+infinite planting does not yield a coefficient, and that reading is
+not this gap.
 
-The \(0.448\to 0.4927\) gap is only one of the two levers, and it is
+The \(0.4801\to 0.4927\) gap is only one of the two levers, and it is
 the smaller one. Reading the §4 recursion as a transfer matrix on the
 backward tree —
 [juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
@@ -923,7 +930,7 @@ walk charge bound the *states* of a hypothetical cycle
 (\(\min>3.5\cdot 10^8\), period \(\ge 780239\)). Contagion concerns
 the basin: if the cycle exists, its basin is a two-way closed class
 with the cycle's states as seeds and has log-count
-\(\gg(\log x)^{0.448}\) (Corollary 4.4). The two do not meet: finance
+\(\gg(\log x)^{0.480}\) (Corollary 4.4). The two do not meet: finance
 constrains the seed, contagion the growth from the seed, and no
 inequality bounds a basin from above. The floor-free gap transfer
 (Theorem 4.10) and the finance table are exactly the internal
@@ -1137,8 +1144,8 @@ because \(OOEEE\) is a third-letter production. Further gains from
 \(OOOEE\) and \(OOEOE\) on even blocks are closed (§7.4): those
 fibers have length \(P^{5/32}\), below the threshold of Theorem 4.11,
 and the kernel theorem does not localize to them. The remaining
-depth-two gap \(0.448\to 0.4927\) is a dynamical averaging problem
-for the low-even set \(P\), not a uniform-fiber gap.
+depth-two gap \(0.4801\to 0.4927\) is the later \(V_k\) truncations
+of the elementary family; rest-average stays PARK.
 
 *What is unchanged.* Proposition 7.1 is a statement about consecutive
 odd starts in an interval; it says nothing about the odd images

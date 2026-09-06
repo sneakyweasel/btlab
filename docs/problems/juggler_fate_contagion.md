@@ -8,7 +8,7 @@ termination proof would have to pass. This branch asks the
 quantitative question the trichotomy leaves open: how thin can a fate
 class be? Answer: not thin. Every fate that occurs at all occurs on a
 set whose logarithmic counting function is \(\gg(\log x)^{\lambda}\)
-for every \(\lambda<0.448\). Note:
+for every \(\lambda<0.4801\). Note:
 [juggler_fate_contagion_note.md](../theory/juggler_fate_contagion_note.md).
 Not a halt theorem, not a cycle exclusion, not a divergence exclusion,
 not a Paper A or Paper B edit.
@@ -24,8 +24,9 @@ of divergent starts.
 ## Exact statement
 
 **Theorem 4.2 (EXACT — HUMAN PROOF, `J-fate-log-density`).** Let
-\(\lambda^{**}=0.4480\ldots\) be the root of
-\(2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda=1\).
+\(\lambda^{**}=0.4801\ldots\) be the root of
+\(2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda=1\)
+(pairing-only root \(0.4480\)).
 For every nonempty backward-closed \(A\subseteq\mathbb N\) and every
 \(\lambda<\lambda^{**}\) there are \(c,x_0>0\) with
 \(\sum_{n\in A,\,n\le x}1/n\ge c(\log x)^\lambda\) for \(x\ge x_0\).
@@ -195,9 +196,10 @@ Theorem 4.2) is not formalized.
   ([juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md)).
   The rest-average lift \(1/3\to 1/2\) is PARK
   ([juggler_oe_rest_average.md](juggler_oe_rest_average.md));
-  the remaining depth-two gap \(0.448\to 0.4927\) is a dynamical
-  averaging problem for the low-even set \(P\), not a pointwise
-  fiber bound, and is not opened.
+  the remaining depth-two gap \(0.4801\to 0.4927\) is the later
+  \(V_k\) truncations of the elementary family
+  ([juggler_oeoee_production.md](juggler_oeoee_production.md));
+  rest-average stays PARK and is not opened.
 - Note §8: what the certified floor \(N_0=3.5\cdot 10^8\) and the
   period bound \(L\ge 780239\) say in this framework — the floor
   stratifies \(F\) (\(\min F\) is an \(OO\)-start; \(OE\)-failures

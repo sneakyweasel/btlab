@@ -57,7 +57,7 @@ def _bisect(f, lo: float = 1e-9, hi: float = 1.0, iters: int = 200) -> float:
 NOTE = "docs/theory/juggler_contagion_exponent_calculus.md"
 
 LAMBDA_STAR = 0.3774  # items 1+2 only
-LAMBDA_2 = 0.4480  # lambda**, all three items
+LAMBDA_2 = 0.4480  # pairing / r=1 residual; official lambda** is 0.4801 with OEOEE
 IDEAL_DEPTH_2 = 0.4927  # perfect fiber shares, no OO
 LAMBDA_3 = 0.5392  # lambda***, section 7 (the OOEEE production)
 
