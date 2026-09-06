@@ -178,7 +178,10 @@ finite-itinerary calculus of \(J\) — the power envelope
 \(J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\), the defect identity, and a
 small-cycle census — is a companion manuscript [22]; here we use
 only the contraction criterion (Proposition 3.1), whose short
-induction is written out below. The dynamical payoff
+induction is written out below. (The envelope's exponent,
+\(3^{\#O(w)}/2^{|w|}\), is the scale exponent of \(J^{|w|}\) that
+Section 7 uses to price the frontier: the envelope is the statement
+that flooring never raises an iterate above it.) The dynamical payoff
 of the counting theorems is a pair of *certified-descent densities*:
 the set of starts guaranteed to drop below their starting value
 within four steps has certificate density \(13/16\) (Corollary 4.9),
@@ -5238,7 +5241,19 @@ with smooth monomial-type \(\mathcal A,\mathcal B\) (the instance above has
 \(\mathcal A\asymp P^{27/16}\), \(\mathcal A'\asymp P^{11/16}\)). For \(\mathcal A'\ll1\)
 partial summation makes the amplitude a tame passenger and the
 classical single-floor machinery applies; for \(\mathcal A'\gg1\) we
-know of no nontrivial deterministic bound by any method. What can be
+know of no nontrivial deterministic bound by any method.
+
+That dichotomy is this section's drift threshold, written in the
+model's own notation. With \(\mathcal A\asymp n^{c}\) one has
+\(\mathcal A'\asymp n^{c-1}\), so \(\mathcal A'\ll1\) says \(c<1\) and
+\(\mathcal A'\gg1\) says \(c>1\) --- precisely the condition deciding
+whether a defect coefficient admits a drift-1 window. The instance
+quoted, \(\mathcal A\asymp P^{27/16}\), is Conjecture 7.3's own kernel
+weight \(\tfrac{3k}4n^{27/16}\), and its \(\mathcal A'\asymp P^{11/16}\)
+is that weight's derivative. Every coefficient in the table above
+sorts the same way: \(3/16\) and \(9/16\) windowed, \(33/32\) and
+\(45/32\) not. The model problem is the blocked case with the words
+taken out. What can be
 proved is an \(L^2\) identity in the shift, a one-page computation
 that uses no harmonic analysis:
 

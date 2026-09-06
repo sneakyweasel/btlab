@@ -1421,3 +1421,50 @@ def test_paper_states_why_the_two_counts_differ() -> None:
     assert "Why the two counts behave differently." in text
     assert "couples two positions of the path" in text
     assert r"0,2,6,16,34,82,164,368,\dots" in text
+
+
+# --- Section 1's claims, and two of them are the frontier apparatus ---
+
+
+def test_the_power_envelope_exponent_is_the_scale_exponent() -> None:
+    """3^{#O(w)}/2^{|w|} is e_{|w|}."""
+    for w in ("OOEOO", "OOOEOEE", "OOEOOEE", "OOOO", "OEE"):
+        assert Fraction(3 ** w.count("O"), 2 ** len(w)) == B.iterate_exponents(w)[-1], w
+
+
+def test_the_envelope_holds_on_real_orbits() -> None:
+    """Flooring never raises an iterate above n^{e}."""
+    from mpmath import mp, mpf, floor, power
+    mp.dps = 60
+    for n in range(1001, 1100, 2):
+        it, w = n, ""
+        for _ in range(6):
+            w += "O" if it % 2 else "E"
+            it = int(floor(power(mpf(it), mpf(3) / 2 if it % 2 else mpf(1) / 2)))
+            e = Fraction(3 ** w.count("O"), 2 ** len(w))
+            cap = power(mpf(n), mpf(e.numerator) / e.denominator)
+            assert mpf(it) <= cap * (1 + mpf(10) ** -40), (n, w)
+
+
+def test_the_leftover_eighth_is_the_three_named_pieces() -> None:
+    """OOEOO, OOOEO and OOOO* are exactly the four depth-five survivors."""
+    survivors = set(surviving_words(5))
+    assert survivors == {"OOEOO", "OOOEO", "OOOOE", "OOOOO"}
+    assert Fraction(len(survivors), 2 ** 5) == Fraction(1, 8)
+
+
+def test_the_model_problems_hypothesis_is_the_drift_threshold() -> None:
+    """A ~ n^c gives A' ~ n^{c-1}, so 1 << A' is exactly c > 1."""
+    for c, blocked in ((Fraction(3, 16), False), (Fraction(9, 16), False),
+                       (Fraction(33, 32), True), (Fraction(45, 32), True)):
+        assert (c - 1 > 0) == blocked == (c > B.DRIFT_THRESHOLD), c
+    # the instance the paper quotes is Conjecture 7.3's own weight
+    assert B.defect_coefficient("OOOO", 5, 3) == (Fraction(3, 4), Fraction(27, 16))
+    assert Fraction(27, 16) - 1 == Fraction(11, 16)
+
+
+def test_paper_connects_both() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "is the scale exponent of" in text
+    assert "this section's drift threshold, written in the" in text
+    assert "the blocked case with the words" in text

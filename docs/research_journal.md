@@ -29676,7 +29676,7 @@ Best next question
 - lemma_6_2_edge_search hunts for failures on (1e6, 2e6) only, where h1 and
   h2 are both pinned at 1; does the hunt mean anything at that range?
 
- ### 0.5561 does not reconcile with the paper's own production rule
+## 0.5561 does not reconcile with the paper's own production rule
 
 Following the last entry's question about the localized-kernel
 dividend. The rule and the recursion both check; the number does not.
@@ -29800,4 +29800,160 @@ Why
 Best next question
 - Section 1's summary makes claims the abstract does not. Does it
   audit as clean?
+```
+
+## The Lemma 6.2 edge search could not have failed, and now there is one that could
+
+Following the last entry's question. The hunt does not mean anything at
+`(1e6, 2e6)`, and would not mean anything at any other range either.
+
+**Why it cannot fire.** Write `A = (3/4) m^-3/8`, `B = (1/2) v^-3/4`,
+`C = (9/128)(X-1)^-7/8`, so `b_print = A + B + C`. The identity is
+`D_5 = (9/128) theta^2 (X-xi)^-7/8 - A theta_2 - E_2 - B theta_z - E_z`.
+`C` is in the bound for the *positive* side of `D_5` and is pure surplus
+on the negative side, whose supremum is `A + B + E_2 + E_z`. So the
+printed bound holds exactly when `C >= E_2 + E_z` — `n^-21/16` against
+`n^-45/16`, a ratio tending to `(3/4) n^3/2` and already `8.23` at the
+smallest admissible `n = 5`. Part (ii) is safe twice over. Hence
+`|D_5|/b_print` has the hard ceiling `1 - (3/32) n^-3/4`, which is
+`1 - 2.2e-6` in the middle of the search's own range.
+
+**What the number was measuring.** The search reported a worst ratio of
+`0.99973` at 4000 trials. Across 400, 4000, 8000 and 32000 trials,
+`(1 - worst) * trials` stays near `1`: the statistic is a reading of
+`max theta_2` over the sample, which is a property of the sample size.
+It also sat outside the classification gate, so its verdict never
+mattered in either direction.
+
+**What the correction did.** The absorption step the paper removed was
+genuinely invalid — `E_2` cannot be folded into `3/4` when `theta_2` is
+near `1`. But the inequality it was used to reach was true anyway. The
+correction repaired the derivation, not the statement; displaying the
+terms is still right, because the corrected constants are the sharp
+ones.
+
+**A search that can fail.** Random `n` buy nothing better than
+`theta_2` within `1/trials` of `1`. The family `n = 10^k + 1` with `k`
+divisible by 4 pins `1 - theta_2 = (27/128) n^-3/4` exactly — the same
+order as the ceiling deficit `3/32 = 12/128` — so the printed ratio sits
+at `1 - (39/128) n^-3/4`, at `4/13` of the ceiling, at every member and
+to twelve digits, independently of `theta_z`. The deficit splits
+exactly: `12/128` from the ceiling, `27/128` from `1 - theta_2` charged
+through `A/b_print`. Three fixed constants instead of a trial count.
+
+**And a false counterexample waiting.** `D_5` is a difference of terms
+of size `n^27/16` and is itself `n^-9/16`, so it needs `(9/4) log10 n`
+digits; `theta_z` needs `27/8`. At the module's 60 both run out near
+`n = 10^27`. At `n = 10^28 + 1` the checker returned `theta_2 = 5.0` — a
+fractional part of five — and declared the corrected bound violated with
+slack ratio `106`. `identity_census` had always scaled precision with
+its range, which is why no census hit it; `check_lemma_6_2` and the edge
+search now scale by the same `60 + 4 log10` rule.
+
+**And the suite was green by distribution.** Adding these tests moved
+the xdist assignment and broke `test_master_identity`, which asserts to
+`1e-42` against the 60 digits its import sets up. The cause was not the
+new tests: four test bodies set `mp.dps` to 30, 40 or 100 and leave it
+there, and whether that collides depends on which worker draws which
+test. An autouse fixture in `tests/conftest.py` now restores the setting
+after every test, which is the same lesson as the audit's own precision
+scaling one level up: global precision is shared state, and the caller
+should not have to know.
+
+```text
+What was learned
+- a check can be unfalsifiable by construction: the printed bound holds
+  at every odd n >= 5, so zero violations was never evidence
+- the surplus that saves it is the Lagrange term, which the bound
+  carries for the other sign of D_5 entirely
+- 1 - worst ratio scaled as 1/trials across a factor of 80 in sample
+  size; the headline number was the sample size
+- an explicit family reaches 4/13 of the ceiling where random n stall
+  at 1 - 1/trials
+Strongest theorem
+- |D_5|/b_print <= 1 - (3/32) n^(-3/4) for every odd n >= 5, and the
+  directed family attains 1 - (39/128) n^(-3/4) = 12/128 + 27/128
+Strongest refutation
+- at 60 digits the checker manufactures a violation at n = 10^28, with
+  a fractional part of 5.0; the only false counterexample the audit has
+  ever produced, and it was one caller away
+Reusable machinery
+- lemma_6_2_margin_certificate, lemma_6_2_directed_search,
+  lemma_6_2_ratio_ceiling, working_dps_for; five tests; the first two
+  are in the classification gate, which the edge search never was
+- an autouse fixture restoring mp.dps after every test: four bodies
+  leave it at 30, 40 or 100, and the suite was green by xdist
+  distribution rather than by construction
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Five passes found a check that passes without touching its subject;
+  this one could not have done anything else. The fix is not a better
+  random search but a deterministic family with known constants, which
+  is what a regression detector has to be.
+Best next question
+- the kernel observation is now the only part of the audit outside the
+  classification gate, and it is labelled OBSERVATION. Is the label
+  doing work, or is it an untested claim wearing a disclaimer?
+```
+
+ ### Section 1 is clean, and two of its statements are the apparatus in disguise
+
+Same audit, applied to the introduction. Clean — the leftover eighth
+decomposes exactly as claimed (`OOEOO ∪ OOOEO ∪ OOOO*` are the four
+depth-five survivors, `4/32 = 1/8`), the eight `O`-rooted depth-four
+words are right, the dependence chains match, and `n^{27/16} > n`
+holds.
+
+**And two of its statements turn out to be things I built this
+session, in other notation.**
+
+*The power envelope.* Section 1 quotes
+`J^{|w|}(n)^{2^{|w|}} <= n^{3^{#O(w)}}` from the companion. Taking
+logs, the exponent is `3^{#O(w)}/2^{|w|}` — which *is* the scale
+exponent `e_{|w|}`, identically, on every word tested. The envelope is
+the statement that flooring never raises an iterate above `n^{e}`, and
+it holds on 200 orbits at six depths with no violation. So the
+quantity pricing the depth-seven frontier is the companion's own
+envelope exponent.
+
+*The model problem.* Proposition 7.4 studies
+`S = sum e(A(t){B(t)})` with `1 << A' << A`, and the paper already says
+`A' << 1` is tame and `A' >> 1` is where no deterministic bound is
+known. What it does not say is that **this is the drift threshold**:
+with `A ~ n^c` one has `A' ~ n^{c-1}`, so `A' >> 1` is `c > 1`, exactly
+the condition deciding whether a defect coefficient admits a drift-1
+window. The instance the paper quotes, `A ~ P^{27/16}` with
+`A' ~ P^{11/16}`, is Conjecture 7.3's kernel weight `(3k/4)n^{27/16}`
+and its derivative. Every coefficient in the frontier table sorts the
+same way: `3/16` and `9/16` windowed, `33/32` and `45/32` not.
+
+The model problem is the blocked case with the words taken out. Both
+connections are now stated.
+
+```text
+What was learned
+- the paper had the same dichotomy twice, in the model's notation and
+  in the word classification, and never said they were one threshold
+- the scale exponent I introduced to price the frontier was already in
+  the paper as the companion's power-envelope exponent; I had rebuilt
+  a named object without recognising it
+Strongest theorem
+- 3^{#O(w)}/2^{|w|} = e_{|w|} identically, and 1 << A' is c > 1 is
+  blocked -- the same threshold in three notations
+Strongest refutation
+- none; Section 1 audits clean
+Reusable machinery
+- five tests, including the envelope on real orbits
+Branch status
+- PROMOTE
+Why
+  Proposition 7.4 is the paper's one positive result at the frontier,
+  and until now it read as a separate model. It is not: it is exactly
+  the class of objects the drift criterion isolates, so its L^2 result
+  speaks directly to the words the screen flags.
+Best next question
+- Proposition 7.4 gives square-root cancellation for almost every
+  shift. Which of the blocked coefficients in the table are covered
+  by "almost every", and is the deterministic shift ever among them?
 ```
