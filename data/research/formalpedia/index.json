@@ -45390,7 +45390,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "One more letter adds one to the odd count exactly when that letter is odd.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
       "ledger": [
@@ -45398,13 +45398,13 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 186,
+      "line": 187,
       "module": "Problems.Juggler.WalkTransport",
       "name": "oddCount_take_succ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An odd letter multiplies the walk weight by `3/2`.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
       "ledger": [
@@ -45412,13 +45412,13 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 192,
+      "line": 194,
       "module": "Problems.Juggler.WalkTransport",
       "name": "walkWeight_succ_odd",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An even letter halves the walk weight.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
       "ledger": [
@@ -45426,7 +45426,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 199,
+      "line": 202,
       "module": "Problems.Juggler.WalkTransport",
       "name": "walkWeight_succ_even",
       "trust": "kernel"
@@ -45440,7 +45440,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 208,
+      "line": 211,
       "module": "Problems.Juggler.WalkTransport",
       "name": "one_le_walkWeight_aboveAnchor",
       "trust": "kernel"
@@ -45454,13 +45454,13 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 217,
+      "line": 220,
       "module": "Problems.Juggler.WalkTransport",
       "name": "one_le_walkWeight",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The walk weight is never negative.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
       "ledger": [
@@ -45468,27 +45468,13 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 222,
+      "line": 226,
       "module": "Problems.Juggler.WalkTransport",
       "name": "walkWeight_nonneg",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/WalkTransport.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-cyclemin-walk-transport-envelope",
-        "J-flight-envelope-transport",
-        "J-flight-height-law"
-      ],
-      "line": 233,
-      "module": "Problems.Juggler.WalkTransport",
-      "name": "prefixDeficit_succ",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "One-step recurrence for the running prefix deficit.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
       "ledger": [
@@ -45497,6 +45483,20 @@
         "J-flight-height-law"
       ],
       "line": 238,
+      "module": "Problems.Juggler.WalkTransport",
+      "name": "prefixDeficit_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The prefix deficit is monotone in the prefix length.",
+      "file": "formal/Problems/Juggler/WalkTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-transport-envelope",
+        "J-flight-envelope-transport",
+        "J-flight-height-law"
+      ],
+      "line": 244,
       "module": "Problems.Juggler.WalkTransport",
       "name": "prefixDeficit_mono",
       "trust": "kernel"
@@ -45510,7 +45510,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 260,
+      "line": 266,
       "module": "Problems.Juggler.WalkTransport",
       "name": "prefixDeficit_eq",
       "trust": "kernel"
@@ -45524,7 +45524,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 276,
+      "line": 282,
       "module": "Problems.Juggler.WalkTransport",
       "name": "prefixDeficit_length",
       "trust": "kernel"
@@ -45538,7 +45538,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 287,
+      "line": 293,
       "module": "Problems.Juggler.WalkTransport",
       "name": "follows_log_le_walkWeight",
       "trust": "kernel"
@@ -45552,7 +45552,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 319,
+      "line": 325,
       "module": "Problems.Juggler.WalkTransport",
       "name": "aboveAnchor_transport_prefix",
       "trust": "kernel"
@@ -45566,7 +45566,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 419,
+      "line": 425,
       "module": "Problems.Juggler.WalkTransport",
       "name": "aboveAnchor_transport",
       "trust": "kernel"
@@ -45580,7 +45580,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 434,
+      "line": 440,
       "module": "Problems.Juggler.WalkTransport",
       "name": "cycleMin_transport_prefix",
       "trust": "kernel"
@@ -45594,7 +45594,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 447,
+      "line": 453,
       "module": "Problems.Juggler.WalkTransport",
       "name": "cycleMin_transport",
       "trust": "kernel"
@@ -45608,7 +45608,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 462,
+      "line": 468,
       "module": "Problems.Juggler.WalkTransport",
       "name": "aboveAnchor_flight_envelope",
       "trust": "kernel"
@@ -45622,7 +45622,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 477,
+      "line": 483,
       "module": "Problems.Juggler.WalkTransport",
       "name": "two_pow_le_walkWeight",
       "trust": "kernel"
@@ -45636,7 +45636,7 @@
         "J-flight-envelope-transport",
         "J-flight-height-law"
       ],
-      "line": 496,
+      "line": 502,
       "module": "Problems.Juggler.WalkTransport",
       "name": "aboveAnchor_height_of_walk",
       "trust": "kernel"
@@ -56346,7 +56346,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`eval x (linState c b) = c + b * x`.",
       "file": "formal/BTCalculus/PadicLiftingState.lean",
       "kind": "theorem",
       "ledger": [
@@ -56355,7 +56355,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 150,
+      "line": 151,
       "module": "BTCalculus.PadicLiftingState",
       "name": "eval_linState",
       "trust": "kernel"
@@ -56370,7 +56370,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 155,
+      "line": 156,
       "module": "BTCalculus.PadicLiftingState",
       "name": "sectionDeriv_linState",
       "trust": "kernel"
@@ -56385,7 +56385,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 167,
+      "line": 168,
       "module": "BTCalculus.PadicLiftingState",
       "name": "linState_root_iff",
       "trust": "kernel"
@@ -56400,13 +56400,13 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 183,
+      "line": 184,
       "module": "BTCalculus.PadicLiftingState",
       "name": "henselTrit",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The Hensel trit is a trit.",
       "file": "formal/BTCalculus/PadicLiftingState.lean",
       "kind": "theorem",
       "ledger": [
@@ -56415,7 +56415,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 185,
+      "line": 187,
       "module": "BTCalculus.PadicLiftingState",
       "name": "henselTrit_isTrit",
       "trust": "kernel"
@@ -56430,13 +56430,13 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 189,
+      "line": 191,
       "module": "BTCalculus.PadicLiftingState",
       "name": "liftPath",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`liftPath r c b` has length `r`.",
       "file": "formal/BTCalculus/PadicLiftingState.lean",
       "kind": "theorem",
       "ledger": [
@@ -56445,13 +56445,13 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 193,
+      "line": 196,
       "module": "BTCalculus.PadicLiftingState",
       "name": "liftPath_length",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "When `3` does not divide `b`, the Hensel trit solves `3 | c + t * b`.",
       "file": "formal/BTCalculus/PadicLiftingState.lean",
       "kind": "theorem",
       "ledger": [
@@ -56460,7 +56460,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 198,
+      "line": 202,
       "module": "BTCalculus.PadicLiftingState",
       "name": "henselTrit_dvd",
       "trust": "kernel"
@@ -56475,7 +56475,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 207,
+      "line": 211,
       "module": "BTCalculus.PadicLiftingState",
       "name": "outputAlong_liftPath",
       "trust": "kernel"
@@ -56490,7 +56490,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 220,
+      "line": 224,
       "module": "BTCalculus.PadicLiftingState",
       "name": "liftPath_unique",
       "trust": "kernel"
@@ -56505,13 +56505,13 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 249,
+      "line": 253,
       "module": "BTCalculus.PadicLiftingState",
       "name": "henselTrit_eq_newton",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`D (3n) = n`.",
       "file": "formal/BTCalculus/PadicLiftingState.lean",
       "kind": "theorem",
       "ledger": [
@@ -56520,7 +56520,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 266,
+      "line": 271,
       "module": "BTCalculus.PadicLiftingState",
       "name": "DZ_three_mul",
       "trust": "kernel"
@@ -56535,7 +56535,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 274,
+      "line": 279,
       "module": "BTCalculus.PadicLiftingState",
       "name": "linState_block_step",
       "trust": "kernel"
@@ -56550,7 +56550,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 297,
+      "line": 302,
       "module": "BTCalculus.PadicLiftingState",
       "name": "residualAlong_linState_pow",
       "trust": "kernel"
@@ -56565,7 +56565,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 314,
+      "line": 319,
       "module": "BTCalculus.PadicLiftingState",
       "name": "residualAlong_linState_leaf",
       "trust": "kernel"
@@ -56580,7 +56580,7 @@
         "BTL-newton-path",
         "BTL-block-shift"
       ],
-      "line": 323,
+      "line": 328,
       "module": "BTCalculus.PadicLiftingState",
       "name": "outputAlong_linState_pow",
       "trust": "kernel"

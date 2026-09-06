@@ -183,12 +183,14 @@ noncomputable def walkWeight (w : List Branch) (k : ℕ) : ℝ :=
 @[simp] theorem walkWeight_zero (w : List Branch) : walkWeight w 0 = 1 := by
   simp [walkWeight]
 
+/-- One more letter adds one to the odd count exactly when that letter is odd. -/
 theorem oddCount_take_succ {w : List Branch} {k : ℕ} (hk : k < w.length) :
     oddCount (w.take (k + 1)) =
       oddCount (w.take k) + if w[k] = .odd then 1 else 0 := by
   rw [List.take_add_one, List.getElem?_eq_getElem hk]
   cases h : w[k] <;> simp [oddCount_append]
 
+/-- An odd letter multiplies the walk weight by `3/2`. -/
 theorem walkWeight_succ_odd {w : List Branch} {k : ℕ} (hk : k < w.length)
     (h : w[k] = .odd) :
     walkWeight w (k + 1) = 3 / 2 * walkWeight w k := by
@@ -196,6 +198,7 @@ theorem walkWeight_succ_odd {w : List Branch} {k : ℕ} (hk : k < w.length)
   simp [pow_succ]
   ring
 
+/-- An even letter halves the walk weight. -/
 theorem walkWeight_succ_even {w : List Branch} {k : ℕ} (hk : k < w.length)
     (h : w[k] = .even) :
     walkWeight w (k + 1) = walkWeight w k / 2 := by
@@ -219,6 +222,7 @@ theorem one_le_walkWeight {n : ℕ} {w : List Branch} (hn : 2 ≤ n)
     1 ≤ walkWeight w k :=
   one_le_walkWeight_aboveAnchor hn (aboveAnchor_of_cycleMin h) hk
 
+/-- The walk weight is never negative. -/
 theorem walkWeight_nonneg (w : List Branch) (k : ℕ) :
     0 ≤ walkWeight w k := by
   rw [walkWeight]; positivity
@@ -230,11 +234,13 @@ noncomputable def prefixDeficit (n : ℕ) (w : List Branch) : ℕ → ℝ
   | k + 1 => prefixDeficit n w k +
       if w[k]? = some .odd then 0.7 / (n * Real.sqrt n) else 1.05 / n
 
+/-- One-step recurrence for the running prefix deficit. -/
 theorem prefixDeficit_succ (n : ℕ) (w : List Branch) (k : ℕ) :
     prefixDeficit n w (k + 1) = prefixDeficit n w k +
       if w[k]? = some .odd then 0.7 / (n * Real.sqrt n) else 1.05 / n :=
   rfl
 
+/-- The prefix deficit is monotone in the prefix length. -/
 theorem prefixDeficit_mono (n : ℕ) (w : List Branch) {j k : ℕ}
     (h : j ≤ k) : prefixDeficit n w j ≤ prefixDeficit n w k := by
   induction k with

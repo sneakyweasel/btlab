@@ -147,6 +147,7 @@ theorem isRootMod_smul_iff {lam : ℤ} (hlam : ¬ (3 : ℤ) ∣ lam) (w : List �
 /-- The deep-regime residual state `c + b x`. -/
 def linState (c b : ℤ) : ℤ[X] := C c + C b * X
 
+/-- `eval x (linState c b) = c + b * x`. -/
 theorem eval_linState (c b x : ℤ) : eval x (linState c b) = c + b * x := by
   simp [linState]
 
@@ -182,6 +183,7 @@ theorem linState_root_iff (c b a : ℤ) :
 /-- The Hensel trit at a nonsingular linear state. -/
 def henselTrit (c b : ℤ) : ℤ := lsdZ (-(c * b))
 
+/-- The Hensel trit is a trit. -/
 theorem henselTrit_isTrit (c b : ℤ) : isTrit (henselTrit c b) :=
   lsdZ_is_trit _
 
@@ -190,11 +192,13 @@ def liftPath : ℕ → ℤ → ℤ → List ℤ
   | 0, _, _ => []
   | r + 1, c, b => henselTrit c b :: liftPath r (DZ (c + henselTrit c b * b)) b
 
+/-- `liftPath r c b` has length `r`. -/
 theorem liftPath_length : ∀ (r : ℕ) (c b : ℤ), (liftPath r c b).length = r
   | 0, _, _ => rfl
   | r + 1, c, b => by
     rw [liftPath, List.length_cons, liftPath_length r _ b]
 
+/-- When `3` does not divide `b`, the Hensel trit solves `3 | c + t * b`. -/
 theorem henselTrit_dvd {b : ℤ} (hb : ¬ (3 : ℤ) ∣ b) (c : ℤ) :
     (3 : ℤ) ∣ c + henselTrit c b * b := by
   have h := dvd_add_mul_lsdZ (b := b) (c := c) hb
@@ -263,6 +267,7 @@ theorem henselTrit_eq_newton {b c v : ℤ} (hb : ¬ (3 : ℤ) ∣ b)
 
 /-! ## The singular block shift -/
 
+/-- `D (3n) = n`. -/
 theorem DZ_three_mul (n : ℤ) : DZ (3 * n) = n := by
   have hzero : DZ 0 = 0 := by decide
   have h : DZ (0 + 3 * n) = DZ 0 + n := DZ_add_mul3 0 n

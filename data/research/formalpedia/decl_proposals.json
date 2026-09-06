@@ -1,5 +1,5 @@
 {
-  "composite": 30,
+  "composite": 29,
   "note": "Proposals for human review. Calibration: 96% precision (23/24) on rows with a known answer. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -1695,7 +1695,7 @@
       "candidates": [
         {
           "decl": "sectionDeriv_linState",
-          "line": 155,
+          "line": 156,
           "score": 0.185,
           "trust": "kernel"
         },
@@ -1724,13 +1724,13 @@
       "candidates": [
         {
           "decl": "sectionDeriv_linState",
-          "line": 155,
+          "line": 156,
           "score": 0.143,
           "trust": "kernel"
         },
         {
           "decl": "linState_root_iff",
-          "line": 167,
+          "line": 168,
           "score": 0.13,
           "trust": "kernel"
         },
@@ -1753,19 +1753,19 @@
       "candidates": [
         {
           "decl": "residualAlong_linState_pow",
-          "line": 297,
+          "line": 302,
           "score": 0.31,
           "trust": "kernel"
         },
         {
           "decl": "outputAlong_linState_pow",
-          "line": 323,
+          "line": 328,
           "score": 0.109,
           "trust": "kernel"
         },
         {
           "decl": "linState_root_iff",
-          "line": 167,
+          "line": 168,
           "score": 0.083,
           "trust": "kernel"
         }
@@ -4509,19 +4509,19 @@
       "candidates": [
         {
           "decl": "follows_log_le_walkWeight",
-          "line": 287,
+          "line": 293,
           "score": 0.186,
           "trust": "kernel"
         },
         {
           "decl": "aboveAnchor_flight_envelope",
-          "line": 462,
+          "line": 468,
           "score": 0.18,
           "trust": "kernel"
         },
         {
           "decl": "aboveAnchor_height_of_walk",
-          "line": 496,
+          "line": 502,
           "score": 0.125,
           "trust": "kernel"
         }
@@ -4539,39 +4539,6 @@
         "one_le_walkWeight_aboveAnchor"
       ],
       "statement": "Flight envelope on open descent-free prefixes: the Paper A Theorem 5.3 transport ported from minimum-based cycles to AboveAnchor, plus the anchor-free upper side. If AboveAnchor(n,w) with n >= 400 then for every k <= |w|, in log form, w_k (log n \u2212 \u0394) <= log x_k <= w_k log n, where w_k = 3^{a_k}/2^k is the walk weight and \u0394 = 1.05 e/n + 0.7 o/(n\u221an) is the transport deficit over the full itinerary ("
-    },
-    {
-      "candidates": [
-        {
-          "decl": "aboveAnchor_height_of_walk",
-          "line": 496,
-          "score": 0.443,
-          "trust": "kernel"
-        },
-        {
-          "decl": "aboveAnchor_flight_envelope",
-          "line": 462,
-          "score": 0.206,
-          "trust": "kernel"
-        },
-        {
-          "decl": "aboveAnchor_transport_prefix",
-          "line": 319,
-          "score": 0.175,
-          "trust": "kernel"
-        }
-      ],
-      "composite": true,
-      "confidence": "review",
-      "id": "J-flight-height-law",
-      "in_file": 22,
-      "lean": "Problems/Juggler/WalkTransport.lean",
-      "names_own": [
-        "aboveAnchor_height_of_walk",
-        "two_pow_le_walkWeight",
-        "aboveAnchor_transport"
-      ],
-      "statement": "Walk-height law (divergence rate) on descent-free prefixes: if AboveAnchor(n,w) with n >= 400 and the exponent walk is at height >= B doublings at step k (2^(k+B) <= 3^{a_k} with a_k the odd count of the k-prefix), then 2^B (log n \u2212 D) <= log x_k with the transport deficit D = 1.05 e/n + 0.7 o/(n\u221an); exponentiating, x_k >= (n e^{\u2212D})^{2^B} \u2014 heights along a descent-free prefix are doubly exponenti"
     },
     {
       "candidates": [
@@ -4894,6 +4861,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 163,
-  "worth_reviewing": 44
+  "unresolved": 162,
+  "worth_reviewing": 43
 }
