@@ -616,3 +616,42 @@ def test_the_frontier_exponent_bookkeeping_is_exact() -> None:
     section7 = [c for c in checks if c["check"].startswith(("7.2", "7.3", "7.4"))]
     assert len(section7) == 10 and all(c["ok"] for c in section7)
     assert all(c["ok"] for c in checks)
+
+
+# --- the uniformity clauses, and the caps that pin their parameter to 1 ---
+
+
+def test_four_of_the_six_parameter_caps_pin_their_parameter_at_the_ladder() -> None:
+    """1 <= x <= C P^e takes a second value only past (2/C)^(1/e)."""
+    rows = {r["parameter"].split(",")[0]: r for r in A.parameter_cap_reach()}
+    assert abs(rows["k"]["least_P_admitting_two_values"] - 2.0**24) < 1
+    assert abs(rows["h_1"]["least_P_admitting_two_values"] - 2.0**48) < 2.0**24
+    assert rows["h_1"]["pinned_at_P0"] and rows["h_1"]["values_at_P0"] == 1
+    assert not rows["k"]["pinned_at_P0"] and rows["k"]["values_at_P0"] == 3
+    assert rows["j"]["least_P_admitting_two_values"] == 1.0            # never pinned
+    assert abs(rows["h"]["least_P_admitting_two_values"] - 4096) < 1
+    pinned = [r for r in A.parameter_cap_reach() if r["pinned_at_ladder_top"]]
+    assert len(pinned) == 4                                            # k, h_1, h_2, |l|
+
+
+def test_no_k_loses_the_cancellation_at_either_level() -> None:
+    """Sweeping k past (C3) leaves the hypothesis; it is the only way to see if k matters at all."""
+    r = A.kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
+    assert r["ks_inside_the_cap"] == [1]                               # (C3) admits nothing else
+    assert r["no_k_loses_cancellation"]
+    for level in (r["level2"], r["level3"]):
+        for row in level:
+            assert 0.1 < row["exponent"] < 0.8, row
+            assert row["abs_over_sqrtN"] < 8
+
+
+def test_the_recorded_run_sits_exactly_at_the_C3_threshold() -> None:
+    """2^24 is where P^(1/24) = 2, so it is the first P at which (C3) admits k = 2."""
+    rec = A.KERNEL_AT_C3_THRESHOLD
+    caps = {r["parameter"].split(",")[0]: r for r in A.parameter_cap_reach()}
+    assert rec["P"] == 2**24 == int(caps["k"]["least_P_admitting_two_values"])
+    assert abs(rec["P"] ** (1 / 24) - 2.0) < 1e-12
+    assert rec["terms"] == (rec["P"] // 2)
+    for k in ("k1", "k2"):
+        assert 0.4 < rec[k]["block_exponent"] < 0.6
+        assert 0.5 < rec[k]["abs_over_sqrtN"] < 2

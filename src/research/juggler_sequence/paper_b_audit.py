@@ -1295,6 +1295,11 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("7.4 model dichotomy: A ~ n^c gives A' ~ n^{c-1}, so A' >> 1 iff c > 1; the instance c = 27/16", F(27, 16) - 1 > 0),
         ("7.4 the table sorts by the same test: 3/16 and 9/16 windowed, 33/32 and 45/32 not", F(3, 16) < 1 and F(9, 16) < 1 and F(33, 32) > 1 and F(45, 32) > 1),
         ("7.3 density of the two length-five contractors plus OOOO*: 1/32+1/32+1/16 = 1/8", F(1, 32) + F(1, 32) + F(1, 16) == F(1, 8)),
+        # the caps themselves: a parameter capped at C P^e is pinned to 1 until P = (2/C)^(1/e)
+        ("caps: k, h_2, |l| at P^{1/24} admit a second value only from 2^24 = 16777216", 2**24 == 16777216),
+        ("caps: h_1 at P^{1/48} needs 2^48, which is above P_0 = 8.9e13 while 2^24 is below it", 2**48 > 8.9e13 > 2**24),
+        ("caps: h with h^{1/2} <= P^{1/24}, i.e. h <= P^{1/12}, needs only 2^12 = 4096", 2**12 == 4096),
+        ("caps: j <= 2P^{1/24} is never pinned, (2/2)^{24} = 1", (F(2, 2)) ** 24 == 1),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -1496,6 +1501,89 @@ def level3_kernel_block_scaling(P: int = 10**4, k: int = 1, bins: int = 256) -> 
         "no_cancellation_exponent": 1.0,
     }
 
+# Every displayed cap on an integer parameter of Sections 5-6, as (name, constant, exponent): the
+# parameter ranges over 1 <= x <= constant * P^exponent, so it takes a second value only once
+# constant * P^exponent >= 2, i.e. P >= (2/constant)^(1/exponent).
+DISPLAYED_PARAMETER_CAPS = [
+    ("k, (C3), Theorem 5.3 uniformity", Fr(1), Fr(1, 24)),
+    ("h_1, (C4), outer differencing shift", Fr(1), Fr(1, 48)),
+    ("h_2, (C4), inner differencing shift", Fr(1), Fr(1, 24)),
+    ("|l|, Step 5a monomial class", Fr(1), Fr(1, 24)),
+    ("h, Step 3 window (h^{1/2} <= P^{1/24})", Fr(1), Fr(1, 12)),
+    ("j, Step 5b run index (j <= 2P^{1/24})", Fr(2), Fr(1, 24)),
+]
+
+
+def parameter_cap_reach(P0: float = 8.9e13, ladder_top: int = 3 * 10**5) -> list[dict[str, Any]]:
+    """Which of the paper's parameter caps admit more than one value, and from what P.
+
+    A cap 1 <= x <= C P^e pins x to 1 until P = (2/C)^(1/e).  For the two 1/24 caps that is
+    2^24 = 1.7e7; for h_1's 1/48 it is 2^48 = 2.8e14, which is above P_0 = 8.9e13, so h_1 = 1
+    holds throughout the regime the paper's own estimates are claimed in.  Anything checked below
+    those thresholds exercises the degenerate branch only -- which is what the identity census was
+    doing before it was widened, and what every kernel sum in the audit still does for k.
+    """
+
+    rows = []
+    for name, const, expo in DISPLAYED_PARAMETER_CAPS:
+        least = float(2 / const) ** (1 / float(expo))
+        rows.append({
+            "parameter": name,
+            "cap_constant": str(const),
+            "cap_exponent": str(expo),
+            "least_P_admitting_two_values": least,
+            "pinned_at_P0": least > P0,
+            "pinned_at_ladder_top": least > ladder_top,
+            "values_at_P0": int(float(const) * P0 ** float(expo)),
+        })
+    return rows
+
+
+# Measured once, out of band: the level-2 kernel at the least P for which (C3) admits k = 2, which
+# is 2^24 exactly (P^{1/24} = 2 on the nose).  8388608 terms, 688 s, 256 blocks of 32768 -- too
+# slow for the suite, so it is kept as a record rather than recomputed.  Both k behave alike and
+# at square-root scale; it is the first evaluation inside Theorem 5.3's uniformity clause.
+KERNEL_AT_C3_THRESHOLD = {
+    "P": 2**24,
+    "terms": 8388608,
+    "seconds": 688,
+    "k1": {"abs_K": 3000.675, "abs_over_sqrtN": 1.0360, "block_exponent": 0.5226},
+    "k2": {"abs_K": 3134.640, "abs_over_sqrtN": 1.0823, "block_exponent": 0.5202},
+}
+
+def kernel_k_uniformity(P: int = 3 * 10**4, ks: tuple[int, ...] = (1, 2, 4, 8, 16, 32, 64), bins: int = 256) -> dict[str, Any]:
+    """Does the cancellation survive k growing?  Both levels, one pass each.
+
+    Theorem 5.3 claims its bound uniformly for 1 <= k <= P^(1/24), and Conjecture 7.3 uniformly for
+    k <= P^eps.  At every P this audit runs, the first clause admits k = 1 only (parameter_cap_reach),
+    so the uniformity it asserts has never been exercised and cannot be below P = 2^24.  Sweeping k
+    past the cap anyway is not a test of the theorem -- it leaves the hypothesis -- but it is the
+    only way to see whether the phenomenon the theorem describes depends on k at all.
+
+    OBSERVATION.  Reported: the block exponent at each k, against 1/2 for square-root cancellation
+    and 1 for none.
+    """
+
+    level2, level3 = [], []
+    for k in ks:
+        r2 = kernel_block_scaling(P=P, k=k, bins=bins)
+        r3 = level3_kernel_block_scaling(P=P, k=k, bins=bins)
+        level2.append({"k": k, "exponent": r2["kernel_exponent"], "abs_over_sqrtN": r2["blocks"][-1]["rms_K"] / math.sqrt(r2["terms"])})
+        level3.append({"k": k, "exponent": r3["K3_floor_exponent"], "abs_over_sqrtN": r3["abs_K3_floor_over_sqrtN"]})
+    exps2 = [r["exponent"] for r in level2]
+    exps3 = [r["exponent"] for r in level3]
+    return {
+        "P": P,
+        "ks": list(ks),
+        "cap_at_this_P": float(P) ** (1 / 24),
+        "ks_inside_the_cap": [k for k in ks if k <= float(P) ** (1 / 24)],
+        "level2": level2,
+        "level3": level3,
+        "level2_exponent_range": [min(exps2), max(exps2)],
+        "level3_exponent_range": [min(exps3), max(exps3)],
+        "no_k_loses_cancellation": max(exps2 + exps3) < 0.8,
+    }
+
 # The two printed exponents of the observation layer, as savings 1 - exponent.  |K_c| and the wave
 # are sums of at most P/2 unit vectors, so a benchmark P^(1-delta) says nothing until P^delta > 2.
 KERNEL_PRINTED_SAVING = Fr(1, 96)
@@ -1586,6 +1674,10 @@ def summary() -> dict[str, Any]:
     # The frontier sum itself, at the cheapest point of the ladder: Conjecture 7.3 is the one open
     # claim in the paper with a computable object attached, and nothing had ever evaluated it.
     level3 = level3_kernel_block_scaling()
+    # Four of the six displayed parameter caps pin their parameter to 1 at every P this ladder
+    # reaches, k among them, so the uniformity clauses have never been exercised here.
+    caps = parameter_cap_reach()
+    k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
         "p0_certificate": cert,
@@ -1609,6 +1701,8 @@ def summary() -> dict[str, Any]:
         "kernel_observation_reach": reach,
         "kernel_block_scaling": block_scaling,
         "level3_kernel_block_scaling": level3,
+        "parameter_cap_reach": caps,
+        "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
             if ident["all_identities_hold"] and all(c["ok"] for c in margins) and all(c["ok"] for c in directed) and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and cell_scaling["ok"] and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]
