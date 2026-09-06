@@ -241,7 +241,8 @@ def test_failures_now_covers_relations() -> None:
     f = M.failures()
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
                       "a1_thresholds", "claim_vs_predicate",
-                      "p0_reproducible", "kappa_table", "a6_table"}
+                      "p0_reproducible", "kappa_table", "a6_table",
+                      "prop71", "runlength"}
     assert all(v == [] for v in f.values())
 
 
@@ -613,3 +614,76 @@ def test_the_paper_records_the_disagreement_between_the_two_tables() -> None:
     assert "This table rounds up too, and its middle row is A.1's" in text
     assert "the two appendices must print the same four" in text
     assert "had been raised and this one had not" in text
+
+
+# --- Proposition 7.1's density table and the run-length gains -----------------------------------
+
+
+def test_the_density_table_recomputes_exactly() -> None:
+    a = M.prop71_audit()
+    assert len(a["rows"]) == 7
+    assert M.prop71_failures() == []
+    for r in a["rows"]:
+        assert r["N_d"][0] == r["N_d"][1]              # exact integers, not rounded
+        assert r["endpoint"][0] == r["endpoint"][1]
+        assert r["two_d"][0] == r["two_d"][1] == 2 ** r["d"]
+
+
+def test_the_dynamic_program_agrees_with_brute_enumeration() -> None:
+    """The table's algorithm is described in the proof; this is the algorithm, checked."""
+    import itertools
+    N = M.nd_counts(16)
+    for d in range(1, 15):
+        brute = 0
+        for bits in itertools.product((0, 1), repeat=d):
+            o, ok = 0, True
+            for t, b in enumerate(bits, 1):
+                o += b
+                if 3 ** o < 2 ** t:
+                    ok = False
+                    break
+            brute += ok
+        assert brute == N[d], (d, brute, N[d])
+    assert [N[d] for d in (4, 5, 6, 8, 12, 16)] == [3, 4, 8, 19, 226, 2114]
+
+
+def test_the_two_rates_are_what_the_paper_prints() -> None:
+    c, rho = M.hoeffding_c(), M.sharp_rate()
+    import math
+    assert abs(c - 0.03428520074) < 1e-10
+    assert abs(rho - 0.965906553) < 1e-8
+    assert abs(-math.log(rho) - 0.0346881852) < 1e-9
+    assert round(c, 6) == 0.034285 and c > 0.034285   # printed rounded down: safe for e^(-cd)
+    text = M.paper_text()
+    assert "0.965907" in text and "0.034688" in text and "c=0.034285" in text
+
+
+def test_the_loss_ratio_at_1600_was_overstated() -> None:
+    """1.3e4 for 1.13e4, where the three figures beside it are right to under a per cent."""
+    ratios = {r["d"]: r for r in M.prop71_audit()["ratios"]}
+    assert abs(ratios[1600]["computed"] - 11337) < 5
+    assert abs(1.3e4 / ratios[1600]["computed"] - 1) > 0.14      # what was printed
+    assert ratios[1600]["printed"] == 1.13e4                      # what is printed now
+    for d in (5, 10, 40):
+        assert abs(ratios[d]["computed"] / ratios[d]["printed"] - 1) < 0.01
+    BS = chr(92)
+    assert "1.13" + BS + "cdot10^{4}" in M.paper_text()
+    # it survives once, in the sentence recording the correction
+    assert M.paper_text().count("1.3" + BS + "cdot10^{4}") == 1
+
+
+def test_the_run_length_gains_are_their_own_row_sums() -> None:
+    """Exact dyadic entries: nothing rounds, so only the invariant can fail."""
+    rows = M.runlength_rows()
+    assert len(rows) == 5
+    assert M.runlength_failures() == []
+    from fractions import Fraction
+    assert [r["gain"] for r in rows] == [Fraction(1, 16), Fraction(1, 16), Fraction(3, 128),
+                                         Fraction(7, 256), Fraction(3, 256)]
+
+
+def test_the_paper_records_the_recomputation() -> None:
+    text = M.paper_text()
+    assert "The table is exact and has been re-run" in text
+    assert "One figure did not survive" in text
+    assert "brute enumeration of all" in text

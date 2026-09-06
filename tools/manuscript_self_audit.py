@@ -837,6 +837,152 @@ def a6_failures() -> list[dict[str, Any]]:
     return rows
 
 
+
+# --- Proposition 7.1's density table, from the dynamic program it describes ---------------------
+#
+# The one table in this paper whose entries are exact integers with a stated algorithm behind
+# them: N_d counts words of length d whose lattice path keeps 3^{o_t} >= 2^t throughout, "a
+# two-line dynamic program over the triangle, exact in integers".  Running it reproduces all seven
+# rows and all five columns.  What did not survive was a figure in the prose beside it: the
+# Hoeffding-loss ratio at d = 1600 was printed 1.3e4 and is 1.13e4, where the other three values
+# quoted with it are right to under a per cent.
+
+def nd_counts(depth: int) -> list[int]:
+    """N_d for every d <= depth, exactly.  N_d = #{w : 3^{o_t(w)} >= 2^t for all t <= d}."""
+    omin, o, p3, p2 = [0] * (depth + 1), 0, 1, 1
+    for t in range(depth + 1):
+        while p3 < p2:
+            o += 1
+            p3 *= 3
+        omin[t] = o
+        p2 *= 2
+    cur: dict[int, int] = {0: 1}
+    out = [1]
+    for t in range(1, depth + 1):
+        nxt: dict[int, int] = {}
+        for odd, count in cur.items():
+            for step in (0, 1):                       # E contributes no odd letter, O one
+                if odd + step >= omin[t]:
+                    nxt[odd + step] = nxt.get(odd + step, 0) + count
+        cur = nxt
+        out.append(sum(cur.values()))
+    return out
+
+
+def endpoint_only(d: int) -> int:
+    """The closed form's count: every constraint dropped but o_d >= d log2/log3."""
+    import math
+    thr = d * math.log(2) / math.log(3)
+    return sum(math.comb(d, o) for o in range(d + 1) if o >= thr - 1e-12)
+
+
+def hoeffding_c() -> float:
+    """c = 2(log2/log3 - 1/2)^2, the exponent of Hoeffding's bound on the endpoint count."""
+    import math
+    return 2.0 * (math.log(2) / math.log(3) - 0.5) ** 2
+
+
+def sharp_rate() -> float:
+    """rho = min_theta (1/2)((3/2)^theta + 2^(-theta)), the true per-letter rate."""
+    f = lambda t: 0.5 * (1.5**t + 2.0**-t)            # noqa: E731  strictly convex in theta
+    lo, hi = -50.0, 50.0
+    for _ in range(300):
+        a, b = lo + (hi - lo) / 3, hi - (hi - lo) / 3
+        lo, hi = (lo, b) if f(a) < f(b) else (a, hi)
+    return f((lo + hi) / 2)
+
+
+PROP71_ROWS = (4, 5, 6, 8, 12, 16, 24)
+PROP71_RATIOS = ((5, 6.7), (10, 11.4), (40, 43.6), (1600, 1.13e4))
+
+
+def prop71_audit() -> dict[str, Any]:
+    """The printed table and the four ratios beside it, against the program the paper describes."""
+    import math
+    text = paper_text()
+    start = text.find(r"| \(d\) | \(N_d\) | endpoint only |")
+    block = text[start:text.find(chr(10) + chr(10), start)] if start >= 0 else ""
+    printed = re.findall(r"^\|[^|]*?([0-9]+)[^|]*\|[^|]*?([0-9]+)[^|]*\|[^|]*?([0-9]+)[^|]*\|"
+                         r"[^|]*?([0-9]+)[^|]*\|[^|]*?([0-9.]+)[^|]*\|[^|]*?([0-9.]+)[^|]*\|"
+                         r"[^|]*?([0-9.]+)[^|]*\|$", block, re.M)
+    N = nd_counts(1600)
+    c, rho = hoeffding_c(), sharp_rate()
+    rows = []
+    for cells in printed:
+        d = int(cells[0])
+        rows.append({"d": d, "N_d": (int(cells[1]), N[d]), "endpoint": (int(cells[2]), endpoint_only(d)),
+                     "two_d": (int(cells[3]), 2**d),
+                     "ratio": (float(cells[4]), N[d] / 2**d),
+                     "hoeffding": (float(cells[5]), math.exp(-c * d)),
+                     "density": (float(cells[6]), 1 - N[d] / 2**d)})
+    ratios = [{"d": d, "printed": want,
+               "computed": math.exp(-c * d + d * math.log(2) - math.log(N[d]))}
+              for d, want in PROP71_RATIOS]
+    return {"rows": rows, "ratios": ratios, "c": c, "rho": rho}
+
+
+def prop71_failures() -> list[dict[str, Any]]:
+    a = prop71_audit()
+    bad: list[dict[str, Any]] = []
+    for r in a["rows"]:
+        for key in ("N_d", "endpoint", "two_d"):
+            if r[key][0] != r[key][1]:
+                bad.append({"d": r["d"], "column": key, **{"printed": r[key][0], "computed": r[key][1]}})
+        for key in ("ratio", "hoeffding", "density"):
+            printed, computed = r[key]
+            if abs(printed - computed) > 0.5 * 10 ** -_sig_decimals(printed):
+                bad.append({"d": r["d"], "column": key, "printed": printed, "computed": computed})
+    for r in a["ratios"]:
+        if abs(r["computed"] / r["printed"] - 1) > 0.02:
+            bad.append({"d": r["d"], "column": "loss ratio", "printed": r["printed"],
+                        "computed": r["computed"]})
+    return bad
+
+
+def _sig_decimals(x: float) -> int:
+    s = repr(x)
+    return len(s.split(".")[1]) if "." in s else 0
+
+
+
+# --- the run-length table's row sums -------------------------------------------------------------
+#
+# Not a threshold table: its entries are exact dyadic gains, so nothing rounds.  What it does have
+# is an invariant -- the gain column is the sum of the run columns beside it -- and an exact
+# invariant is worth a test precisely because no rounding convention protects it.
+
+RUNLENGTH_ANCHOR = r"| \(d\) | gain | run \(2\) | run \(3\) | run \(4\) | run \(5\) | run \(\ge6\) |"
+
+
+def runlength_rows() -> list[dict[str, Any]]:
+    text = paper_text()
+    start = text.find(RUNLENGTH_ANCHOR)
+    block = text[start:text.find(chr(10) + chr(10), start)] if start >= 0 else ""
+    out = []
+    for line in block.splitlines():
+        if not line.startswith("|") or set(line.rstrip()) <= set("|-: ") or "gain" in line:
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if len(cells) != 7:
+            continue
+        vals = [to_rational(c.replace(BS + "(", "").replace(BS + ")", "")) if c.strip() else Fraction(0)
+                for c in cells]
+        out.append({"d": vals[0], "gain": vals[1], "runs": vals[2:]})
+    return out
+
+
+def runlength_failures() -> list[dict[str, Any]]:
+    bad = []
+    for r in runlength_rows():
+        if any(v is None for v in [r["gain"]] + r["runs"]):
+            bad.append({"d": r["d"], "why": "unparsed cell"})
+            continue
+        total = sum(r["runs"], Fraction(0))
+        if total != r["gain"]:
+            bad.append({"d": r["d"], "gain": r["gain"], "sum_of_runs": total})
+    return bad
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
@@ -847,7 +993,9 @@ def failures() -> dict[str, list[Any]]:
             "p0_reproducible": [] if p0_from_printed_constants()["ok"] else
                                [p0_from_printed_constants()],
             "kappa_table": kappa_table_failures(),
-            "a6_table": a6_failures()}
+            "a6_table": a6_failures(),
+            "prop71": prop71_failures(),
+            "runlength": runlength_failures()}
 
 
 def main() -> None:

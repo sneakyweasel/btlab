@@ -4922,7 +4922,7 @@ because Hoeffding is lossy in exactly the range the paper certifies:
 | \(24\) | \(286581\) | \(1271626\) | \(16777216\) | \(0.0171\) | \(0.4392\) | \(0.9829\) |
 
 The ratio \(e^{-cd}2^{d}/N_d\) is \(6.7\) at \(d=5\), \(11.4\) at
-\(d=10\), \(43.6\) at \(d=40\) and \(1.3\cdot10^{4}\) at \(d=1600\).
+\(d=10\), \(43.6\) at \(d=40\) and \(1.13\cdot10^{4}\) at \(d=1600\).
 It grows without bound, and the reason is not the exponential rate.
 The rate is essentially untouched: the sharp value is
 \(\rho=\min_{\theta}\tfrac12\bigl((3/2)^{\theta}+2^{-\theta}\bigr)
@@ -4946,6 +4946,27 @@ independently in the theorem ledger.) What changes in
 Proposition 7.1 is therefore the operative constant, in both terms: at
 \(d=5\) the error term carries \(N_5=4\) rather than \(2^5=32\), and at
 \(d=16\) it carries \(2114\) rather than \(65536\).
+
+*The table is exact and has been re-run.* \(N_d\) is the two-line
+dynamic program described in the proof, so the whole table is
+recomputable: all seven rows agree, integers and decimals alike, and
+the program agrees with brute enumeration of all \(2^d\) words for
+every \(d\le18\). The two analytic constants beside it check as well:
+\(c=2(\log2/\log3-\tfrac12)^2=0.0342852\), printed \(0.034285\) ---
+rounded *down*, which is the safe direction for a rate appearing as
+\(e^{-cd}\) in an upper bound --- and
+\(\rho=0.9659066\), \(-\log\rho=0.0346882\). The constant \(C\approx11\)
+is approached from below: the fit gives \(10.45\) at \(d=800\) and
+\(10.76\) at \(d=1600\).
+
+One figure did not survive. The loss ratio at \(d=1600\) was printed
+\(1.3\cdot10^{4}\) and is \(1.13\cdot10^{4}\), a fifteen per cent
+overstatement, where the three values quoted beside it --- \(6.7\),
+\(11.4\), \(43.6\) --- are right to under one per cent. It overstated
+how lossy Hoeffding is, which is the direction that flatters the
+argument being made, and nothing downstream depends on it: the sentence
+it supports is that the ratio grows without bound, which either figure
+shows.
 
 The \(d=5\) row is a cross-check rather than a new number. The four
 surviving words are \(OOOOO\), \(OOOOE\), \(OOOEO\) and \(OOEOO\), so

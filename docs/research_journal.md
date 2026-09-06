@@ -37376,3 +37376,55 @@ Best next question
   same count one level up, and it is answerable by searching for each
   cap's derived products.
 ```
+
+## The table that was right and the sentence beside it that was not
+
+2026-09-07, evening. Three threshold tables audited, each found by
+following whatever the last tick happened to touch. That is not a
+method. So this time I classified the rest: twenty-eight tables, which
+of them carry a quantity whose rounding direction matters.
+
+Almost none. The Lemma 5.2(i) class table is symbolic exponents. The
+Section 7 target table is exact fractions with an invariant instead
+(cost = 2^-d, and the ceiling column is 1 in all four rows). The
+run-length table is exact dyadic gains, and its invariant is that the
+gain column is the row sum of the runs beside it --- five rows, all
+hold, including 1/1024 + 1/256 + 1/256 + 1/512 + 1/1024 = 3/256.
+
+The hypothesis was wrong: there was no fourth threshold table. But
+Proposition 7.1's density table turned out to be the most checkable
+object in the paper, because it is the one table whose entries are
+exact integers with an algorithm printed next to them. N_d counts words
+of length d whose lattice path keeps 3^{o_t} >= 2^t throughout --- "a
+two-line dynamic program over the triangle, exact in integers". I wrote
+the two lines. All seven rows and all six columns come back exactly,
+and the program agrees with brute enumeration of all 2^d words up to
+d = 18.
+
+The two analytic constants check as well. c = 2(log2/log3 - 1/2)^2 =
+0.03428520074, printed 0.034285 --- rounded down, which is the safe
+direction for a rate in e^{-cd}, and the first time this paper's
+rounding has come out right without my having changed it. rho, the
+sharp per-letter rate, is the minimum over theta of
+(1/2)((3/2)^theta + 2^-theta) = 0.965906553 at theta* = 0.488, and
+-log rho = 0.0346881852. Both printed correctly.
+
+Then the sentence beside the table. It quotes the Hoeffding-loss ratio
+at four depths: 6.7 at d=5, 11.4 at d=10, 43.6 at d=40, and 1.3e4 at
+d=1600. The first three are right to under one per cent --- 6.7397,
+11.3559, 43.5745. The fourth is 11337, and 1.3e4 overstates it by
+fifteen per cent.
+
+I like this one because of where it sits. The table is exact and
+correct in every cell; the error is in the prose that summarises it, at
+the one depth too large to check by hand. And it overstates how lossy
+Hoeffding is, which is the direction that flatters the point being
+made. Nothing depends on it --- the claim is that the ratio grows
+without bound, and 1.13e4 shows that as well as 1.3e4 --- but a figure
+that drifts toward the argument it supports is worth noticing about
+one's own writing.
+
+Eleven checks in failures() now. The classification is the durable part:
+of the paper's thirty-one tables, four carry directional numbers and
+all four are guarded, two carry exact invariants and both are guarded,
+and the rest carry words.
