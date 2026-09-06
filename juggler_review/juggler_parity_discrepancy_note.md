@@ -6696,10 +6696,28 @@ Theorem 5.3 each halve the exponent of the log,
 \qquad
 K_c(P)\ll P^{1-1/96}\log^{3/4}P,
 \]
-and Theorem 6.3 costs a further \(\log^3P\) from its own truncations,
-giving \(\#\mathrm{OOOEE}(N)=\tfrac N{32}
+and Theorem 6.3 costs a further \(\log^3P\), giving
+\(\#\mathrm{OOOEE}(N)=\tfrac N{32}
 +O\bigl(N^{1-1/96}(\log N)^{15/4}\bigr)\). These forms carry no
 \(\varepsilon\), and \(P_0\) is the same for all of them.
+
+The three logs in that last step are worth naming, because only two of
+them are Theorem 6.3's own. They are the Vaaler expansion of the fifth
+wave at \(J_5=2P^{1/96}\); the Lemma 3.7 window at \(T=R_0=P^{5/16}\)
+against \(|C|\le1.30P^{19/96}\); and the first-letter expansion at
+\(|i|\le2P^{1/96}\), which Theorem 6.3 inherits from Theorem 6.1 when
+it merges the two indices into
+\(|I_{\mathrm{tot}}|\le2P^{5/16}\). That third one is not inside the
+\(\log^{3/4}\) --- that power is \(K_c\)'s, and Theorem 6.1 is where
+\(K_c\) is applied rather than proved --- so counting it here is right,
+and \(15/4\) stands. Only the phrase "its own" would be loose.
+
+Either count is far outside the range where it could matter:
+\(\log^AP\le P^{1/96}\) first holds at \(10^{190}\) for \(A=3/4\),
+\(10^{268}\) for \(A=1\), \(10^{872}\) for \(A=11/4\) and
+\(10^{1245}\) for \(A=15/4\) (`decoration_budget.log_power_ledger`).
+A larger \(A\) is the weaker claim, so the generous count is the safe
+one.
 
 The threshold at which \(\log^AP\) would be *absorbed* into
 \(P^{\varepsilon}\) is a different quantity and is not part of

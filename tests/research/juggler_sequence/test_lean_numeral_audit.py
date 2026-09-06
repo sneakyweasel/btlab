@@ -578,3 +578,53 @@ def test_the_paper_carries_the_site_table() -> None:
     assert "worth reading twice" in text
     for frag in (r"\text{Thm 6.3 depth five}", r"\text{Lemma 5.2(iii)}", "47/24", "11/12"):
         assert frag in text, frag
+
+
+# --- where log^(15/4) comes from ---
+
+
+def test_the_log_chain_is_exact_arithmetic() -> None:
+    """3 -> 3/2 -> 3/4 by two Weyl square roots, then + 3 = 15/4."""
+    from fractions import Fraction as Fr
+    from research.juggler_sequence import decoration_budget as DB
+    r = DB.log_power_ledger()
+    assert r["halving_is_exact"] and r["sum_is_exact"]
+    assert Fr(3) / 2 / 2 == Fr(3, 4) and Fr(3, 4) + 3 == Fr(15, 4)
+    assert [x["log_power"] for x in r["chain"]] == [3.0, 1.5, 0.75, 3.75]
+    assert r["final_power"] == 3.75
+
+
+def test_only_two_of_the_three_are_theorem_63s_own() -> None:
+    from research.juggler_sequence import decoration_budget as DB
+    r = DB.log_power_ledger()
+    assert r["own_count"] == 2 and r["inherited_count"] == 1
+    own = [t["name"] for t in r["theorem63_truncations"] if t["own"]]
+    assert own == ["Vaaler, fifth wave", "Lemma 3.7 window"]
+    inherited = [t for t in r["theorem63_truncations"] if not t["own"]][0]
+    assert "Theorem 6.1" in inherited["parameter"]
+
+
+def test_absorption_is_nowhere_near_either_way() -> None:
+    """A larger A is the weaker claim, so the generous count is the safe one."""
+    from research.juggler_sequence import decoration_budget as DB
+    from research.juggler_sequence import p0_certificate as PC
+    a = DB.log_power_ledger()["absorption_log10"]
+    assert abs(a[0.75] - 190) < 1.5                       # the manuscript's 1.5e190
+    assert abs(a[1.0] - 268) < 1.5
+    assert a[2.75] > 800 and a[3.75] > 1200               # 11/4 and 15/4 both astronomical
+    assert a[3.75] > a[2.75] > a[1.0] > a[0.75]
+    # and the module's own diagnostic agrees where its search reaches
+    rows = {x["log_power"]: x["log10_P_min"] for x in PC.log_absorption_thresholds()}
+    assert abs(rows[0.75] - a[0.75]) < 1.5
+
+
+def test_the_paper_names_the_three_truncations() -> None:
+    text = A.paper_text()
+    assert "only two of" in text and "them are Theorem 6.3's own" in text
+    assert r"\(J_5=2P^{1/96}\)" in text
+    assert r"|I_{\mathrm{tot}}|\le2P^{5/16}" in text
+    assert "is where" in text and "is applied rather than proved" in text
+    assert "the generous count is the safe" in text
+    assert "`decoration_budget.log_power_ledger`" in text
+    for figure in ("10^{190}", "10^{268}", "10^{872}", "10^{1245}"):
+        assert figure in text, figure

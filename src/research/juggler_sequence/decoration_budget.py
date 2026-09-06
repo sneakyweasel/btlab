@@ -1072,6 +1072,64 @@ def lemma37_site_masses(p: float | None = None) -> dict[str, Any]:
             "fattest_sites": [r["site"] for r in rows if r["coefficient"] == max(coeffs)]}
 
 
+
+# The log powers Sections 4-6 carry, and where each comes from.
+LOG_POWER_CHAIN = (
+    ("T_2 mode masses", 3.0, "at most three expansion layers plus the shift devices"),
+    ("Weyl step 1 (T_1)", 1.5, "the A-process squares, so the square root halves the power"),
+    ("Weyl step 2 (K_c)", 0.75, "and again"),
+    ("Theorem 6.3", 3.75, "three further truncations, two of them its own"),
+)
+
+# The three truncations behind Theorem 6.3's further log^3.
+THEOREM63_TRUNCATIONS = (
+    ("Vaaler, fifth wave", "J_5 = 2 P^(1/96)", True),
+    ("Lemma 3.7 window", "T = R_0 = P^(5/16) against |C| <= 1.30 P^(19/96)", True),
+    ("first-letter index", "|i| <= 2 P^(1/96), inherited from Theorem 6.1", False),
+)
+
+
+def log_power_ledger(delta: float = 1 / 96) -> dict[str, Any]:
+    """Where each log power comes from, and when it would be absorbed into ``P^delta``.
+
+    ``|T_2| << P^(23/24) log^3 P`` from at most three expansion layers; the two Weyl steps of
+    Theorem 5.3 each halve the exponent, giving ``log^(3/2)`` and then ``K_c``'s ``log^(3/4)``;
+    Theorem 6.3 adds three more, for ``3/4 + 3 = 15/4``.
+
+    Only two of those three are Theorem 6.3's own -- the Vaaler expansion at ``J_5`` and the
+    Lemma 3.7 window at ``R_0``.  The third is the first-letter index it inherits from Theorem
+    6.1 when it merges the two into ``|I_tot| <= 2 P^(5/16)``, and that one is not inside the
+    ``log^(3/4)``, since that power is ``K_c``'s and Theorem 6.1 is where ``K_c`` is applied
+    rather than proved.  So the count of three is right and only "its own" is loose.
+
+    Absorption is nowhere near either way: a larger ``A`` is the weaker claim, so the generous
+    count is the safe one.
+    """
+    ln10 = math.log(10.0)
+
+    def least_log10(a: float) -> float:
+        lo, hi = 2.0, 5000.0
+        for _ in range(300):
+            mid = (lo + hi) / 2
+            if a * math.log(mid * ln10) - delta * mid * ln10 <= 0:
+                hi = mid
+            else:
+                lo = mid
+        return hi
+
+    return {
+        "chain": [{"stage": n, "log_power": a, "why": w} for n, a, w in LOG_POWER_CHAIN],
+        "theorem63_truncations": [{"name": n, "parameter": p, "own": o}
+                                  for n, p, o in THEOREM63_TRUNCATIONS],
+        "own_count": sum(1 for _, _, o in THEOREM63_TRUNCATIONS if o),
+        "inherited_count": sum(1 for _, _, o in THEOREM63_TRUNCATIONS if not o),
+        "absorption_log10": {a: least_log10(a) for a in (0.75, 1.0, 2.75, 3.75)},
+        "final_power": 3.75,
+        "halving_is_exact": 3.0 / 2 / 2 == 0.75,
+        "sum_is_exact": 0.75 + 3 == 3.75,
+    }
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

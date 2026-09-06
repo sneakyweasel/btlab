@@ -675,6 +675,15 @@ def _site_masses_ok(fn) -> bool:
             and len(r["fattest_sites"]) == 2)
 
 
+def _log_ledger_ok(fn) -> bool:
+    """3 -> 3/2 -> 3/4, then +3 = 15/4; two of the three are Theorem 6.3's own."""
+    r = fn()
+    return (r["halving_is_exact"] and r["sum_is_exact"] and r["final_power"] == 3.75
+            and r["own_count"] == 2 and r["inherited_count"] == 1
+            and abs(r["absorption_log10"][0.75] - 190) < 1.5
+            and abs(r["absorption_log10"][3.75] - 1245) < 2.0)
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -724,6 +733,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`decoration_budget.lemma37_site_masses`)",
      "Lemma 3.7's mass at all ten sites, and that each is O(log P)",
      _site_masses_ok),
+    ("decoration_budget", "log_power_ledger",
+     "(`decoration_budget.log_power_ledger`)",
+     "the log-power chain 3 -> 3/2 -> 3/4 -> 15/4 and its provenance",
+     _log_ledger_ok),
 )
 
 
