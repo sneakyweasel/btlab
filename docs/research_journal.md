@@ -35804,3 +35804,134 @@ Best next question
   is a derivative coefficient separate the sharp from the loose without
   measuring anything?
 ```
+
+## Eighteen for eighteen, and the rule is a proxy
+
+A printed constant in this paper is sharp exactly when its lowest-terms
+denominator exceeds `1`. Ten sharp constants with denominators `16`,
+`8`, `128`, `4`, `4`, `4`, `8`, `4`, `2`, `5`, slacks `1.000` to
+`1.031`; eight loose ones, all integers, slacks `1.25` to `13.04`. No
+exceptions in eighteen.
+
+The reason is editorial. A constant written as derived -- a Taylor
+coefficient `(1/2) a(a-1)`, a mean-value factor `3/2`, a product like
+`9/4` -- keeps its denominator. One that collects several terms and is
+rounded up for the page becomes an integer. The denominator detects
+which of those happened, and that is what separates tight from slack.
+
+Three cautions. The paper contains one counterexample and removes it
+itself: the `j = 0` anchor is derived as `5.3`, denominator `10`, loose
+by `2.09`, then "opened to `6`" -- the rule fails at `5.3` and holds at
+`6`. A dyadic refinement repairs that and breaks `13/5 = 2.6`, sharp to
+`1.031`. And the boundary is narrow: worst sharp `1.031` against best
+loose `1.250`.
+
+The third caution is the useful one. Sharpness is not necessity. Lemma
+6.2(ii)'s second term is `3/8`, denominator `8`, attained -- and
+deletable, because what it bounds is a difference the other term already
+covers. As triage the rule would have found every loose constant in the
+paper without a measurement, and it would also have flagged a term that
+is tight and unnecessary, which measuring that term alone never would.
+
+```text
+Phase-end report
+Question
+- would sorting every printed constant by whether it is a derivative
+  coefficient separate the sharp from the loose without measuring
+Instruments
+- constant_form_predicts_sharpness: eighteen measured constants against
+  two form rules, the lowest-terms denominator and its dyadic refinement
+Ledger tags
+- EXACT: the eighteen constants and their denominators; the plain rule
+  agrees with measured sharpness at all eighteen, the dyadic one at
+  seventeen, missing 13/5
+- COMPUTATIONALLY VERIFIED: the slacks, from six passes of sharpness
+  sweeps, plus 0.9703 and 0.5354 for the two bracket uppers over 160
+  samples
+- OBSERVATION: worst sharp 1.031 against best loose 1.250, a boundary
+  gap of 1.21; 5.3 before opening is the one counterexample in the paper
+Strongest theorem
+- the denominator sorts sharp from loose at eighteen for eighteen, and
+  it is a proxy for whether the number was written as derived
+Strongest refutation
+- the assumption that a sharp constant is a necessary one: 6.2(ii)'s
+  second term is both attained and deletable
+Reusable machinery
+- constant_form_predicts_sharpness, MEASURED_CONSTANTS, two tests, wired
+  into summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change; it is a triage rule for reading
+  one, and the edits it points at are already recorded.
+Best next question
+- the rule says every integer constant in the paper is loose. There are
+  integer constants I have never measured -- 8 in the window hypothesis
+  T >= 8(1+|B|), 22 in the run length, 4 in the majorant 4P/R_0. Does
+  the prediction hold on one I have not looked at, or does it only fit
+  the ones that got measured because they looked suspicious?
+```
+
+### Where log^(15/4) comes from, and whose truncations they are
+
+The recorded question asked where Theorem 6.3's `log^(15/4)` comes from and
+whether it matches the count of Lemma 3.7 and Lemma 3.5 applications. **The
+manuscript already derives it**, two lines after the sentence the question was
+reading:
+
+```text
+  |T_2| << P^(23/24) log^3 P    three expansion layers plus the shift devices
+  Weyl step 1: log^(3/2)        the A-process squares; the square root halves it
+  Weyl step 2: log^(3/4)        and again -- this is K_c's power
+  Theorem 6.3: + 3 = 15/4
+```
+
+`3/2/2 = 3/4` and `3/4 + 3 = 15/4`, both exact.
+
+**What is worth adding is whose the three are.** From Theorem 6.3's own proof:
+the Vaaler expansion at `J_5 = 2P^(1/96)` and the Lemma 3.7 window at
+`T = R_0 = P^(5/16)` are its own; the third is the first-letter index
+`|i| <= 2P^(1/96)` it inherits from Theorem 6.1 when it merges the two into
+`|I_tot| <= 2P^(5/16)`. Counting it is right — `log^(3/4)` is `K_c`'s power and
+Theorem 6.1 is where `K_c` is *applied* rather than proved, so its expansion
+sits on top. The count of three stands; "its own truncations" is what is loose.
+
+**It could not matter numerically either way.** Absorption of `log^A P` into
+`P^(1/96)`: `10^190` at `A=3/4`, `10^268` at `1`, `10^872` at `11/4`, `10^1245`
+at `15/4`. A larger `A` is the *weaker* claim, so the generous count is safe.
+
+```text
+What was learned
+- the manuscript derives 15/4 and the question assumed it did not; reading two
+  lines further would have reframed the tick before it started
+- the useful residue was whose truncations they are, not how many: two of the
+  three belong to Theorem 6.3 and the third is inherited from 6.1
+- and the inherited one is correctly counted, because log^(3/4) is K_c's and
+  6.1 is where K_c is applied rather than proved
+- a larger log power is the weaker claim, so an over-generous count is safe;
+  that is worth stating where a reader might take 15/4 as tight
+Strongest theorem
+- the chain 3 -> 3/2 -> 3/4 -> 15/4 is exact, and absorption sits at 10^190,
+  10^268, 10^872, 10^1245 for A = 3/4, 1, 11/4, 15/4
+Strongest refutation
+- the question's premise that 15/4 was underived
+Reusable machinery
+- decoration_budget.log_power_ledger, LOG_POWER_CHAIN,
+  THEOREM63_TRUNCATIONS; a citation row; four new tests
+Branch status
+- PARK
+Why
+  The derivation is confirmed exact, the provenance of the three logs is now in
+  the manuscript, and the absorption thresholds are computed at both candidate
+  counts. Nothing here moves P_0.
+Best next question
+- three entries running, the tick's value has come from something beside the
+  question rather than the question itself, and twice the question rested on a
+  premise a further two lines of reading would have removed. The audits I have
+  been building all check the manuscript against code. None checks the
+  manuscript against itself: whether a claim made in one section is consistent
+  with the same quantity described in another. The 0.35 conflation, the
+  interpolant chain and "its own truncations" were all of that kind. What would
+  such a check even look like, and is there a tractable subset -- quantities
+  named in two places with a number attached in both?
+```

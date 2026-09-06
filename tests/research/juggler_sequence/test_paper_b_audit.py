@@ -1870,3 +1870,30 @@ def test_every_remainder_constant_is_half_the_second_derivative() -> None:
     printed = {row["printed"] for row in r["table"]}
     assert printed == {"3/16", "3/8", "9/128"}
     assert r["ratio_is_theta_squared_when_a_exceeds_one"] and r["ratio_is_theta_when_a_is_below_one"]
+
+
+# --- can the form of a printed constant predict whether it is sharp ---
+
+
+def test_the_denominator_sorts_sharp_from_loose() -> None:
+    """Eighteen measured constants: sharp iff the lowest-terms denominator exceeds 1."""
+    r = A.constant_form_predicts_sharpness()
+    assert r["count"] == 18 and r["sharp_count"] == 10 and r["loose_count"] == 8
+    assert r["denominator_rule_is_perfect"] and r["denominator_rule_correct"] == 18
+    assert r["every_sharp_has_a_denominator"] and r["every_loose_is_an_integer"]
+    assert all(x["correct"] for x in r["rows"])
+    assert r["worst_sharp_slack"] < 1.05 < r["best_loose_slack"]
+
+
+def test_the_rule_is_a_proxy_with_known_failure_modes() -> None:
+    """The dyadic refinement breaks 13/5; the plain rule breaks on 5.3 before it is opened to 6."""
+    r = A.constant_form_predicts_sharpness()
+    assert not r["dyadic_rule_is_perfect"] and r["dyadic_rule_correct"] == 17
+    assert r["dyadic_rule_misses"] == ["Lem 5.1(iii) bracket 1 upper"]
+    assert "5.3" in r["counterexample_before_opening"]
+    # the two families are separated, but not by much at the boundary
+    assert 1.1 < r["gap_between_the_families"] < 1.3
+    # and sharpness is not the same as being needed
+    assert "deletable" in r["sharp_does_not_mean_needed"]
+    second = [x for x in r["rows"] if x["site"] == "Lem 6.2(ii) second"][0]
+    assert second["sharp"] and second["printed"] == "3/8"

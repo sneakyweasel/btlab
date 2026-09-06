@@ -5277,3 +5277,129 @@ according to whether the outer exponent is below or above one.
 Probes: `remainder_constants_are_second_derivatives`,
 `REMAINDER_CONSTANTS`. Two tests. Audit `PAPER_B_AUDIT_CONSISTENT`;
 `P_0` unmoved at `3.5858e13`. No manuscript or certificate edit.
+
+## Where log^(15/4) comes from, and whose truncations they are
+
+The last entry asked where Theorem 6.3's `log^(15/4)` comes from and whether it matches the
+count of Lemma 3.7 and Lemma 3.5 applications. The manuscript already derives it, which the
+question did not know:
+
+```text
+  |T_2| << P^(23/24) log^3 P     three expansion layers plus the shift devices
+  Weyl step 1: log^(3/2)         the A-process squares, so the square root halves it
+  Weyl step 2: log^(3/4)         and again -- this is K_c's power
+  Theorem 6.3: + 3 = 15/4
+```
+
+`3/4 + 3 = 15/4` exactly, and `3/2/2 = 3/4` exactly. The arithmetic is right.
+
+**What is worth adding is whose the three are.** From Theorem 6.3's own proof:
+
+```text
+  Vaaler, fifth wave     J_5 = 2 P^(1/96)                              its own
+  Lemma 3.7 window       T = R_0 = P^(5/16) vs |C| <= 1.30 P^(19/96)   its own
+  first-letter index     |i| <= 2 P^(1/96)                             Theorem 6.1's
+```
+
+Only two are Theorem 6.3's. The third is the first-letter expansion it inherits when it merges
+the two indices into `|I_tot| <= 2 P^(5/16)`. Counting it is nevertheless right: `log^(3/4)` is
+`K_c`'s power, and Theorem 6.1 is where `K_c` is *applied* rather than proved, so its own
+expansion sits on top and is not already inside. The count of three stands; the phrase "its own
+truncations" is what is loose, and the manuscript now names all three.
+
+**And it could not matter numerically either way.** Absorption of `log^A P` into `P^(1/96)`:
+
+```text
+  A = 3/4    P >= 10^190      (the manuscript's 1.5e190)
+  A = 1      P >= 10^268
+  A = 11/4   P >= 10^872      the count without the inherited layer
+  A = 15/4   P >= 10^1245     the count with it
+```
+
+A larger `A` is the *weaker* claim, so the generous count is the safe one, and both are
+astronomically outside anything the paper touches. Sections 4-6 carry the `P^epsilon` rather
+than spending it, so none of these numbers enters `P_0`.
+
+`decoration_budget.log_power_ledger`, `LOG_POWER_CHAIN`, `THEOREM63_TRUNCATIONS`.
+
+The question assumed the manuscript did not derive `15/4` and asked where it comes from. It
+does derive it, in Appendix A.3, two lines after the sentence the question was reading. Third
+entry running in which the useful work was not the thing asked for but a smaller thing beside
+it -- here, whose truncations they are rather than how many.
+
+## The denominator sorts them: eighteen constants, no exceptions
+
+The question was whether a printed constant can be sorted sharp or loose
+by its form alone. On everything this ledger has measured, one rule does
+it: **a printed constant is sharp exactly when its lowest-terms
+denominator exceeds `1`.**
+
+```text
+  site                          printed   den    slack    sharp
+  Lem 5.1(i) R                   3/16      16    1.000    yes
+  Thm 4.8 E                      3/8        8    1.000    yes
+  Lem 6.2 theta term             9/128    128    1.000    yes
+  Lem 6.2(i) lead                3/4        4    1.000    yes
+  Lem 6.2(ii) lead               3/4        4    1.000    yes
+  Lem 4.6 lead                   3/4        4    1.000    yes
+  Lem 6.2(ii) second             3/8        8    1.000    yes
+  Thm 4.1 St3(s2) B              9/4        4    1.000    yes
+  Lem 5.1(iii) bracket 1 lower   3/2        2    1.000    yes
+  Lem 5.1(iii) bracket 1 upper  13/5        5    1.031    yes
+  Lem 5.1(iii) bracket 2 upper   15         1    1.868    no
+  Lem 5.1(iii) G' offset          2         1    1.778    no
+  Lem 5.1(iii) G' curvature      20         1    3.951    no
+  Lem 5.1(iii) G'' offset         2         1    7.111    no
+  Lem 5.1(iii) G'' curvature     25         1    2.822    no
+  Lem 5.1(iii) run length        22         1   13.037    no
+  Lem 5.2(iii) widened            5         1    1.250    no
+  Thm 5.3 j=0 anchor              6         1    2.370    no
+```
+
+Eighteen for eighteen. The reason is editorial rather than
+arithmetical: a constant written *as derived* --- a Taylor coefficient
+`(1/2) a(a-1)`, a mean-value factor `3/2`, a product of them like `9/4`
+--- keeps its denominator; a constant that collects several terms and is
+then rounded up so the page reads cleanly becomes an integer. The
+denominator is a proxy for "written as derived or rounded for the
+reader", and that is what actually separates the two families.
+
+**Three cautions, all of them real.**
+
+The rule has a counterexample in the paper, which the paper itself
+removes. The `j = 0` anchor constant is derived as `5.3` --- denominator
+`10`, loose by `2.09` --- and then "opened to `6`". Read at `5.3` the
+rule fails; read at the constant the proof carries, `6`, it holds. A
+dyadic refinement (denominator a power of two above `1`) repairs that
+case and breaks the bracket's `13/5 = 2.6`, which has denominator `5`
+and is sharp to `1.031`. Neither refinement is free: `18/18` for the
+plain rule, `17/18` for the dyadic one.
+
+The two families are separated but not widely at the boundary: the
+worst sharp constant is `1.031` and the best loose one `1.250`, a gap of
+`1.21`. A constant rounded only slightly would land between them.
+
+And sharpness is not the same as being needed. Lemma 6.2(ii)'s second
+term is `3/8`, denominator `8`, attained --- and deletable, because what
+it bounds is a difference already covered by the other term. The rule
+sorts constants by whether they are tight, not by whether they earn
+their place.
+
+So the tell is real and it is a proxy. Used as a triage it would have
+found every loose constant in this paper without a single measurement,
+and it would also have flagged one term that is tight and unnecessary
+--- which no measurement of that term alone would have caught either.
+
+Tags. EXACT: the eighteen printed constants and their lowest-terms
+denominators; the plain rule agrees with measured sharpness at all
+eighteen, the dyadic refinement at seventeen, missing `13/5`.
+COMPUTATIONALLY VERIFIED: the slacks in the table, from the sharpness
+sweeps of the previous six passes and, for the two bracket constants,
+`0.9703` and `0.5354` of their printed uppers over `160` samples.
+OBSERVATION: worst sharp `1.031` against best loose `1.250`, a boundary
+gap of `1.21`; `5.3` before opening is the rule's one counterexample in
+the paper.
+
+Probes: `constant_form_predicts_sharpness`, `MEASURED_CONSTANTS`. Two
+tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`.
+No manuscript or certificate edit.

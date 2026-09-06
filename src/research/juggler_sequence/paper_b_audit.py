@@ -5618,6 +5618,97 @@ def remainder_constants_are_second_derivatives(sweep_to: int = 20000) -> dict[st
     }
 
 
+# Every printed constant this ledger has measured, with its measured slack (printed over true).
+# "slack 1.000" means the bound is attained; the sharpness sweeps are what these come from.
+MEASURED_CONSTANTS = (
+    {"site": "Lem 5.1(i) R", "printed": "3/16", "slack": 1.000},
+    {"site": "Thm 4.8 E", "printed": "3/8", "slack": 1.000},
+    {"site": "Lem 6.2 theta term", "printed": "9/128", "slack": 1.000},
+    {"site": "Lem 6.2(i) lead", "printed": "3/4", "slack": 1.000},
+    {"site": "Lem 6.2(ii) lead", "printed": "3/4", "slack": 1.000},
+    {"site": "Lem 4.6 lead", "printed": "3/4", "slack": 1.000},
+    {"site": "Lem 6.2(ii) second", "printed": "3/8", "slack": 1.000},
+    {"site": "Thm 4.1 St3(s2) B", "printed": "9/4", "slack": 1.000},
+    {"site": "Lem 5.1(iii) bracket 1 lower", "printed": "3/2", "slack": 1.000},
+    {"site": "Lem 5.1(iii) bracket 1 upper", "printed": "13/5", "slack": 1.031},
+    {"site": "Lem 5.1(iii) bracket 2 upper", "printed": "15", "slack": 1.868},
+    {"site": "Lem 5.1(iii) G' offset", "printed": "2", "slack": 1.778},
+    {"site": "Lem 5.1(iii) G' curvature", "printed": "20", "slack": 3.951},
+    {"site": "Lem 5.1(iii) G'' offset", "printed": "2", "slack": 7.111},
+    {"site": "Lem 5.1(iii) G'' curvature", "printed": "25", "slack": 2.822},
+    {"site": "Lem 5.1(iii) run length", "printed": "22", "slack": 13.037},
+    {"site": "Lem 5.2(iii) widened", "printed": "5", "slack": 1.250},
+    {"site": "Thm 5.3 j=0 anchor", "printed": "6", "slack": 2.370},
+)
+
+
+def constant_form_predicts_sharpness(threshold: float = 1.05) -> dict[str, Any]:
+    """Can a printed constant be sorted sharp or loose by its form, without measuring it?
+
+    On everything this ledger has measured, yes, by one rule: **a printed constant is sharp exactly
+    when its lowest-terms denominator exceeds 1**.  Eighteen constants, no exceptions:
+
+        sharp (slack 1.00 to 1.03)   3/16  3/8  9/128  3/4  3/4  3/4  3/8  9/4  3/2  13/5
+        loose (slack 1.25 to 13.0)   15  2  20  2  25  22  5  6
+
+    The reason is not arithmetic but editorial.  A constant that is written as derived -- a Taylor
+    coefficient (1/2) a(a-1), a mean-value factor 3/2, a product of them like 9/4 -- keeps its
+    denominator.  A constant that collects several terms and is then rounded up so the page reads
+    cleanly becomes an integer.  The denominator is a proxy for "was this number written as derived
+    or rounded for the reader", and that is what actually separates the two families.
+
+    Two things to keep with it.
+
+    The rule has a counterexample in the paper, and the paper itself removes it: the j = 0 anchor
+    constant is derived as 5.3, which has denominator 10 and is loose by 2.09, and is then "opened
+    to 6".  Read at 5.3 the rule fails; read at the constant the proof actually carries, 6, it
+    holds.  A dyadic refinement -- denominator a power of two above 1 -- repairs that case and
+    breaks the bracket's 13/5 = 2.6, which has denominator 5 and is sharp to 1.031.  Neither
+    refinement is free.
+
+    And a sharp constant is not automatically a needed one.  Lemma 6.2(ii)'s second term is 3/8,
+    denominator 8, attained -- and deletable, because what it bounds is a difference already
+    covered by the other term.  The rule sorts constants by whether they are tight, not by whether
+    they earn their place.
+    """
+
+    rows = []
+    correct = 0
+    dyadic_correct = 0
+    for row in MEASURED_CONSTANTS:
+        value = Fr(row["printed"])
+        sharp = row["slack"] <= threshold
+        predicted = value.denominator > 1
+        den = value.denominator
+        dyadic = den > 1 and (den & (den - 1)) == 0
+        rows.append({**row, "denominator": den, "sharp": sharp,
+                     "predicted_sharp": predicted, "correct": predicted == sharp,
+                     "dyadic_predicted": dyadic, "dyadic_correct": dyadic == sharp})
+        correct += int(predicted == sharp)
+        dyadic_correct += int(dyadic == sharp)
+    sharp_rows = [r for r in rows if r["sharp"]]
+    loose_rows = [r for r in rows if not r["sharp"]]
+    return {
+        "rows": rows,
+        "count": len(rows),
+        "sharp_count": len(sharp_rows),
+        "loose_count": len(loose_rows),
+        "denominator_rule_correct": correct,
+        "denominator_rule_is_perfect": correct == len(rows),
+        "dyadic_rule_correct": dyadic_correct,
+        "dyadic_rule_is_perfect": dyadic_correct == len(rows),
+        "dyadic_rule_misses": [r["site"] for r in rows if not r["dyadic_correct"]],
+        "every_sharp_has_a_denominator": all(r["denominator"] > 1 for r in sharp_rows),
+        "every_loose_is_an_integer": all(r["denominator"] == 1 for r in loose_rows),
+        "worst_sharp_slack": max(r["slack"] for r in sharp_rows),
+        "best_loose_slack": min(r["slack"] for r in loose_rows),
+        "gap_between_the_families": min(r["slack"] for r in loose_rows) / max(r["slack"] for r in sharp_rows),
+        # the counterexample the paper removes, and the caveat that survives
+        "counterexample_before_opening": "5.3, denominator 10, loose by 2.09, opened to 6",
+        "sharp_does_not_mean_needed": "Lem 6.2(ii) second is 3/8, attained, and deletable",
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5702,6 +5793,7 @@ def summary() -> dict[str, Any]:
     leading_i = lemma_6_2_part_i_leading_term(sweep_to=6000)
     nesting_rule = nesting_contribution_rule(sweep_to=6000)
     remainders = remainder_constants_are_second_derivatives(sweep_to=6000)
+    forms = constant_form_predicts_sharpness()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5774,6 +5866,7 @@ def summary() -> dict[str, Any]:
         "lemma_6_2_part_i_leading_term": leading_i,
         "nesting_contribution_rule": nesting_rule,
         "remainder_constants_are_second_derivatives": remainders,
+        "constant_form_predicts_sharpness": forms,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

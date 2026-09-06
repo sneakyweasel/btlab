@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "25f1b96e97332f4f8055907694c53ae33c57fbec",
+  "git_commit": "45fb1c6c0be9d52f31706e35440a0f6e473cb236",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6895,
+        "line": 6913,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6925,
+        "line": 6943,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7004,
+        "line": 7022,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -6283,6 +6283,225 @@
     "ratio_is_theta_squared_when_a_exceeds_one": true,
     "ratio_is_theta_when_a_is_below_one": true
   },
+  "constant_form_predicts_sharpness": {
+    "rows": [
+      {
+        "site": "Lem 5.1(i) R",
+        "printed": "3/16",
+        "slack": 1.0,
+        "denominator": 16,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Thm 4.8 E",
+        "printed": "3/8",
+        "slack": 1.0,
+        "denominator": 8,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 6.2 theta term",
+        "printed": "9/128",
+        "slack": 1.0,
+        "denominator": 128,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 6.2(i) lead",
+        "printed": "3/4",
+        "slack": 1.0,
+        "denominator": 4,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 6.2(ii) lead",
+        "printed": "3/4",
+        "slack": 1.0,
+        "denominator": 4,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 4.6 lead",
+        "printed": "3/4",
+        "slack": 1.0,
+        "denominator": 4,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 6.2(ii) second",
+        "printed": "3/8",
+        "slack": 1.0,
+        "denominator": 8,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Thm 4.1 St3(s2) B",
+        "printed": "9/4",
+        "slack": 1.0,
+        "denominator": 4,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.1(iii) bracket 1 lower",
+        "printed": "3/2",
+        "slack": 1.0,
+        "denominator": 2,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": true,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.1(iii) bracket 1 upper",
+        "printed": "13/5",
+        "slack": 1.031,
+        "denominator": 5,
+        "sharp": true,
+        "predicted_sharp": true,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": false
+      },
+      {
+        "site": "Lem 5.1(iii) bracket 2 upper",
+        "printed": "15",
+        "slack": 1.868,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.1(iii) G' offset",
+        "printed": "2",
+        "slack": 1.778,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.1(iii) G' curvature",
+        "printed": "20",
+        "slack": 3.951,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.1(iii) G'' offset",
+        "printed": "2",
+        "slack": 7.111,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.1(iii) G'' curvature",
+        "printed": "25",
+        "slack": 2.822,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.1(iii) run length",
+        "printed": "22",
+        "slack": 13.037,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Lem 5.2(iii) widened",
+        "printed": "5",
+        "slack": 1.25,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      },
+      {
+        "site": "Thm 5.3 j=0 anchor",
+        "printed": "6",
+        "slack": 2.37,
+        "denominator": 1,
+        "sharp": false,
+        "predicted_sharp": false,
+        "correct": true,
+        "dyadic_predicted": false,
+        "dyadic_correct": true
+      }
+    ],
+    "count": 18,
+    "sharp_count": 10,
+    "loose_count": 8,
+    "denominator_rule_correct": 18,
+    "denominator_rule_is_perfect": true,
+    "dyadic_rule_correct": 17,
+    "dyadic_rule_is_perfect": false,
+    "dyadic_rule_misses": [
+      "Lem 5.1(iii) bracket 1 upper"
+    ],
+    "every_sharp_has_a_denominator": true,
+    "every_loose_is_an_integer": true,
+    "worst_sharp_slack": 1.031,
+    "best_loose_slack": 1.25,
+    "gap_between_the_families": 1.2124151309408342,
+    "counterexample_before_opening": "5.3, denominator 10, loose by 2.09, opened to 6",
+    "sharp_does_not_mean_needed": "Lem 6.2(ii) second is 3/8, attained, and deletable"
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6350,5 +6569,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 88.70806956291199
+  "elapsed_seconds": 98.13579058647156
 }
