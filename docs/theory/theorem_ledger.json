@@ -874,8 +874,6 @@
   "statement": "deepest layer: N3=N2=0, N1≡3p^2 (k≥2)",
   "source": "docs/theory/cubic_deepest_layer.md",
   "lean": "BTCalculus/CubicDeepestLayer.lean",
-  "decl": "deepest_sq_of_n1",
-  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_deepest.py"
   ],

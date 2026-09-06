@@ -1212,6 +1212,47 @@
         {
           "decl": "deepest_n1_iff",
           "line": 34,
+          "score": 0.333,
+          "trust": "kernel"
+        },
+        {
+          "decl": "deepest_n1_mod",
+          "line": 62,
+          "score": 0.333,
+          "trust": "kernel"
+        },
+        {
+          "decl": "deepest_n2_zero",
+          "line": 78,
+          "score": 0.333,
+          "trust": "kernel"
+        }
+      ],
+      "composite": false,
+      "confidence": "low",
+      "definitions": [
+        {
+          "decl": "deepestN1",
+          "line": 17,
+          "score": 0.5
+        },
+        {
+          "decl": "zeroExp",
+          "line": 20,
+          "score": 0.0
+        }
+      ],
+      "id": "BTA-x3-deep-N",
+      "in_file": 26,
+      "lean": "BTCalculus/CubicDeepestLayer.lean",
+      "names_own": [],
+      "statement": "deepest layer: N3=N2=0, N1\u22613p^2 (k\u22652)"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "deepest_n1_iff",
+          "line": 34,
           "score": 0.4,
           "trust": "kernel"
         },
@@ -1243,7 +1284,7 @@
         }
       ],
       "id": "BTA-x3-deep-crit",
-      "in_file": 25,
+      "in_file": 26,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest fibres iff p^2\u2261q^2 (mod 3^{k-1}) and N0 agrees"
@@ -1284,7 +1325,7 @@
         }
       ],
       "id": "BTA-x3-deep-zero",
-      "in_file": 25,
+      "in_file": 26,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p"
@@ -5337,6 +5378,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 135,
+  "unresolved": 136,
   "worth_reviewing": 22
 }
