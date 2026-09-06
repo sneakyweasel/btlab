@@ -36212,3 +36212,75 @@ Best next question
   if so is the floor of the entire c_7 lever now 4.10e12 rather than
   anything I have recorded?
 ```
+
+### Generating the shared-value list, and the two rows it agrees with by luck
+
+The recorded question: can the shared-value list be generated rather than
+curated, by clustering each numeral's occurrences by surrounding symbols?
+
+**It can, partly, and the discriminator is what the numeral multiplies.**
+`0.11 k P^(-7/8)` and `0.11 uh P^(-1/4)` fall into different clusters. Restricting
+to math mode removes section numbers and prose cross-references, which the first
+prototype did not and which drowned it.
+
+Of 356 math-mode decimals, 14 flagged, three survive inspection:
+
+```text
+  0.11   uhP^(-1/4) | P^(-5/6) | kP^(-7/8)     three roles, already curated
+  1.1    P^(17/32)  | uP^(3/4) | C             three roles, NOT curated
+  1.2    Y'         | k                        a fourth role, NOT curated
+```
+
+**`1.1` names three constants** — the (s2) window-boundary cost `1.1 P^(17/32)`,
+which is `0.65/√0.35 = 1.0987`; Theorem 4.4's Lemma 3.3 sum `1.1 u P^(3/4)`; and
+Step 5b's good pieces `(1.1 C(E) S)^(1/2)`. Three independent derivations
+rounding to the same two figures, with no warning anywhere. **`1.2` has a fourth
+role**, the cross-coefficient bound `63/64 <= 1.2`. Both found by the generator,
+both missed by eye.
+
+**And it agrees with two curated rows by luck.** It flags `0.35` and `1.5`, but
+the clusters it splits are `0.35 uhP^(-3/4)` against `(0.35 uh)^(-1/2)`, and
+`1.5 hP^(1/2)` against `1.5 hY'` — two notations for one quantity, not two
+quantities. The roles that make them collisions are exactly what a check reading
+*what a numeral multiplies* cannot see: a bracket endpoint `[0.35, 2.6]`, and
+`3/2`.
+
+```text
+What was learned
+- the two methods miss opposite things: curation sees a role in any notation but
+  only where someone looked; clustering sees every occurrence but only where the
+  role multiplies something
+- so agreement between them is not corroboration, and on two of five rows it is
+  coincidence; cluster_coverage now reports genuinely_detected apart from flagged
+- 1.1 names three constants from three independent derivations, all rounding to
+  the same two figures. Two significant figures is a small space
+- restricting to math mode was the whole difference between a drowned prototype
+  and a usable filter
+- and writing the tool's comment through a heredoc turned \tfrac32 into a literal
+  tab, inside the sentence explaining that 1.5's second role is a fraction.
+  Fourth escape-hazard bite this session, first to corrupt its own example
+Strongest theorem
+- 1.1 names three unrelated constants and 1.2 four; 356 math-mode decimals give
+  14 candidates, of which three are genuine
+Strongest refutation
+- that the generator could replace the curated list; it cannot see a role that
+  multiplies nothing or one written in another notation
+Reusable machinery
+- cluster_numerals, cluster_coverage, _signature in manuscript_self_audit;
+  six new tests
+Branch status
+- PARK
+Why
+  The generator is built, its yield and its blind spots are measured, the two
+  new collisions are in the manuscript table, and the paper says which rows the
+  two methods agree on by coincidence. Nothing here moves P_0.
+Best next question
+- the blind spot is notation: 1.5 and 3/2 are the same number written two ways,
+  and the clusterer sees them as unrelated. The paper writes constants as
+  decimals, as \tfrac, and as bare fractions, and the same quantity appears in
+  more than one form. A normaliser mapping every numeric literal to a rational
+  would let the clusterer see across notations -- and would also answer a
+  question nobody has asked: how many of the paper's constants are exact
+  rationals printed as decimals, and is any decimal printed inconsistently with
+  its own exact value?
+```

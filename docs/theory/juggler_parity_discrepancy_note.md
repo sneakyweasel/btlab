@@ -6570,7 +6570,12 @@ meeting a familiar numeral knows to check which quantity it is:
      & \text{Step 5a's ratio } V/S\le0.11P^{-7/48} \text{ at } S\ge0.60P^{-5/8}\\[2pt]
 1.2 & \text{the Stage-4 curvature's upper end, } [0.35,1.20]uhP^{-3/4}\\
     & \text{the (s2) window length } \ge1.2P^{3/4}\\
-    & \text{Step 5's cell sum } 1.2R^{1/2}Y'P^{-1/4}\\[2pt]
+    & \text{Step 5's cell sum } 1.2R^{1/2}Y'P^{-1/4}\\
+    & \text{the cross-coefficient bound } \tfrac{63}{64}\le1.2, \text{ in } k\nu^{-3/8}\\[2pt]
+1.1 & \text{the (s2) window-boundary cost } 1.1P^{17/32}
+      (=0.65/\sqrt{0.35})\\
+    & \text{Theorem 4.4's Lemma 3.3 sum } 1.1uP^{3/4}\\
+    & \text{Step 5b's good pieces } (1.1C(E)S)^{1/2}\\[2pt]
 1.5 & \text{the cell count } 1.5hP^{1/2}+1\\
     & \text{the offset term's floor } \tfrac32|j|P^{3/4}
 \end{array}
@@ -6582,6 +6587,26 @@ reading across them, and the two places this paper does distinguish
 them explicitly are this appendix's `sqrt_0_35_lower` and the erratum
 at Lemma 5.2b. `tools/manuscript_self_audit.py` keeps the list
 current: a numeral acquiring a new role has to be added to it.
+
+The list is partly generated. Clustering every numeral that occurs in
+math mode by *what it multiplies* --- \(0.11kP^{-7/8}\) and
+\(0.11uhP^{-1/4}\) fall into different clusters, and a numeral with two
+clusters is a candidate --- flags fourteen of the
+three hundred and fifty-five numerals, of which \(0.11\), \(1.1\) and
+\(1.2\) survive inspection. That is how \(1.1\) and \(1.2\)'s fourth
+role were found; both had been missed by eye.
+
+It flags \(0.35\) and \(1.5\) as well, but for the wrong reason, and
+the distinction is worth keeping. Their clusters are
+\(0.35uhP^{-3/4}\) against \((0.35uh)^{-1/2}\), and \(1.5hP^{1/2}\)
+against \(1.5hY'\) --- two notations for one quantity in each case,
+not two quantities. The roles that make them collisions are exactly
+the ones a check reading *what a numeral multiplies* cannot see:
+\(0.35\)'s is the endpoint of a bracket, \([0.35,2.6]\), which
+multiplies nothing, and \(1.5\)'s is written \(\tfrac32\). So the
+agreement between the two methods on those two rows is a coincidence.
+Curation and clustering miss opposite things, and the list is kept by
+both.
 
 ### A.1 The certificate
 

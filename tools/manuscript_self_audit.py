@@ -26,6 +26,7 @@ Run ``python tools/manuscript_self_audit.py``.
 
 from __future__ import annotations
 
+import collections
 import re
 from pathlib import Path
 from typing import Any
@@ -88,7 +89,11 @@ SHARED_VALUES: dict[str, tuple[str, ...]] = {
              "Step 5a's ratio V/S at the lower end"),
     "1.2": ("the Stage-4 curvature's upper end",
             "the (s2) window length",
-            "Step 5's cell sum"),
+            "Step 5's cell sum",
+            "the cross-coefficient bound 63/64 <= 1.2"),
+    "1.1": ("the (s2) window-boundary cost, 0.65/sqrt(0.35)",
+            "Theorem 4.4's Lemma 3.3 sum",
+            "Step 5b's good pieces"),
     "1.5": ("the cell count", "the offset term's floor"),
 }
 
@@ -103,6 +108,80 @@ def shared_value_audit() -> list[dict[str, Any]]:
              "occurrences": len(re.findall(r"(?<![0-9.^{/])" + re.escape(v) + r"(?![0-9])", text))}
             for v, roles in sorted(SHARED_VALUES.items())]
 
+
+
+# --- generating the list rather than curating it -------------------------------------------
+#
+# A numeral's role is discriminated by what it multiplies: 0.11 k P^(-7/8) and
+# 0.11 uh P^(-1/4) fall into different clusters.  Restricting to math mode removes section
+# numbers and prose cross-references ("Theorem 4.7", "Section 1.2 Related work") at a stroke.
+#
+# It is a filter, not a replacement.  It cannot see a role that multiplies nothing -- 0.35's
+# second is the endpoint of a bracket [0.35, 2.6] -- nor one written in another notation for
+# the same number: 1.5's second role is printed as the fraction 3/2.  It found 1.1, and
+# 1.2's fourth role, both of which curation had missed.  And it flags 0.35 and 1.5 for the
+# wrong reason: the clusters it splits there are two notations for one quantity, while the
+# actual second roles stay invisible.  The list is kept by both methods.
+
+_MATH = re.compile(re.escape(BS + "(") + r"(.+?)" + re.escape(BS + ")")
+                   + "|" + re.escape(BS + "[") + r"(.+?)" + re.escape(BS + "]"), re.S)
+_DECIMAL = re.compile(r"(?<![0-9.^{/e-])([0-9]+\.[0-9]+)(?![0-9])")
+_MULTIPLICAND = re.compile(r"((?:" + BS + r"[a-zA-Z]+|[A-Za-z](?:_[0-9a-z]|_\{[^}]*\})?"
+                           r"|\^\{[^}]*\}|\^[0-9])+)")
+
+
+def _signature(after: str) -> str:
+    """What the numeral multiplies, normalised."""
+    s = after
+    for junk in (BS + ",", BS + "!", BS + ";", BS + " ", "{+}", "{-}", "~"):
+        s = s.replace(junk, "")
+    m = _MULTIPLICAND.match(s)
+    return (m.group(1) if m else "(bare)")[:24]
+
+
+def cluster_numerals(min_clusters: int = 2) -> list[dict[str, Any]]:
+    """Every math-mode decimal, clustered by what it multiplies.
+
+    The table this paper prints is excluded from the scan: it quotes the collisions it
+    documents, and counting those would make the generator agree with itself.
+    """
+    text = paper_text()
+    cut = text.find(SHARED_TABLE_ANCHOR)
+    if cut >= 0:
+        text = text[:cut] + text[cut + 1800:]
+    seen: dict[str, list[str]] = {}
+    for m in _MATH.finditer(text):
+        span = m.group(1) or m.group(2) or ""
+        for n in _DECIMAL.finditer(span):
+            seen.setdefault(n.group(1), []).append(_signature(span[n.end():n.end() + 40]))
+    out = []
+    for value, sigs in seen.items():
+        clusters = collections.Counter(s for s in sigs if s != "(bare)")
+        if len(clusters) >= min_clusters:
+            out.append({"value": value, "clusters": dict(clusters),
+                        "cluster_count": len(clusters), "occurrences": len(sigs)})
+    return sorted(out, key=lambda r: (-r["cluster_count"], -r["occurrences"]))
+
+
+def cluster_coverage() -> dict[str, Any]:
+    """What the generator sees of the curated list, and what it cannot see."""
+    flagged = {r["value"] for r in cluster_numerals()}
+    curated = set(SHARED_VALUES)
+    text = paper_text()
+    total = {n.group(1) for m in _MATH.finditer(text)
+             for n in _DECIMAL.finditer(m.group(1) or m.group(2) or "")}
+    return {"numerals_scanned": len(total),
+            "flagged": sorted(flagged), "curated": sorted(curated),
+            "found_by_both": sorted(flagged & curated),
+            "curated_only": sorted(curated - flagged),
+            # flagged, but the clusters it splits are two notations for one quantity; the
+            # actual second role is invisible to a check that reads what a numeral multiplies.
+            "flagged_for_the_wrong_reason": {
+                "0.35": "clusters uhP^(-3/4) and uh, both the Stage-4 curvature; the second "
+                        "role is the bracket endpoint [0.35, 2.6], which multiplies nothing",
+                "1.5": "clusters hP^(1/2) and hY', both the cell count; the second role is "
+                       "printed as the fraction 3/2"},
+            "genuinely_detected": ["0.11", "1.1", "1.2"]}
 
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
