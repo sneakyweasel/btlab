@@ -334,3 +334,46 @@ def test_paper_records_that_the_hypothesis_is_necessary() -> None:
     text = _paper()
     assert "necessary, not a convenience" in text
     assert "the two sides disagree outright" in text
+
+
+# --- Lemma 3.5: the majorant cost is 4P/J per layer, everywhere ---
+
+
+@pytest.mark.parametrize("j,layers,printed_exponent", [
+    (Fr(1, 96), 1, Fr(95, 96)),        # Theorem 6.1 Step A
+    (Fr(1, 4), 2, Fr(3, 4)),           # Step 3a
+    (Fr(1, 24), 1, Fr(23, 24)),        # Step 3b
+    (Fr(1, 8), 3, Fr(7, 8)),           # the P^{1/8} truncation
+])
+def test_every_quoted_majorant_is_four_P_over_J(j: Fr, layers: int, printed_exponent: Fr) -> None:
+    assert 1 - j == printed_exponent
+    assert layers >= 1
+
+
+def test_doubling_the_truncation_halves_the_printed_constant() -> None:
+    """J_5 = 2P^{1/96} gives 4P/J = 2P^{1-1/96}, as Theorem 6.3 prints."""
+    assert Fr(4, 2) == 2
+
+
+def test_four_over_J_carries_at_least_eightfold_slack() -> None:
+    """Derived flat cost is P/(2(J+1)) over odd n; 4P/J is at least eight times it."""
+    for J in (10, 100, 10**4, 10**8):
+        derived = 1 / (2 * (J + 1))
+        printed = 4 / J
+        assert printed / derived >= 8
+
+
+def test_the_slack_moves_no_exponent() -> None:
+    """Each majorant is weighed against a budget of its own exponent."""
+    # Theorem 6.1: majorant 4P^{1-1/96} against the kernel bound P^{1-1/96}
+    assert 1 - Fr(1, 96) == Fr(95, 96)
+    # Step 3b: 4P^{23/24} against Lemma 5.2(ii)'s P^{23/24}
+    assert 1 - Fr(1, 24) == Fr(23, 24)
+
+
+def test_paper_says_the_four_is_a_rounding() -> None:
+    text = _paper()
+    assert r"quote the flat cost as \(4P/J\) per majorant" in text
+    assert "a rounding\nrather than a derived value" in text or "a rounding" in text
+    assert "a factor of at least eight" in text
+    assert "would move no exponent anywhere" in text

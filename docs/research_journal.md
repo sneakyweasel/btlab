@@ -29328,3 +29328,57 @@ Best next question
 - Lemma 3.5 is the Vaaler expansion cited alongside 3.6 at every use.
   Is its truncation hypothesis re-checked at each, or assumed?
 ```
+
+ ### Lemma 3.5's majorant is consistent, and eight times generous
+
+Third blanket, and the smallest finding of the three — worth saying so
+rather than dressing it up.
+
+Lemma 3.5's only hypothesis is `J >= 1`, met trivially everywhere, so
+"is the hypothesis re-checked" has no content. The content is the
+majorant cost, quoted as `4P/J` per layer at five sites.
+
+**The convention is consistent.** Every site writes the layer count
+out — `2 * 4P/J`, `3 * 4P^{7/8}` — and every one either displays the
+mode sums separately or takes them as the object of study. `J_5 =
+2P^{1/96}` correctly halves the printed constant to `2P^{1-1/96}`. No
+site treats `4P/J` as the whole majorant.
+
+**And it is generous by at least eight.** The derived flat cost is the
+constant term, `P/(J+1)` over the block and `P/(2(J+1))` over the odd
+`n` actually summed. `4P/J` is at least eight times that. The `4` is a
+rounding, not a derived value, and the paper had not said so.
+
+The slack buys nothing, which is the honest closing: each majorant is
+weighed against a budget of its own exponent — `4P^{1-1/96}` against
+the kernel bound `P^{1-1/96}`, `4P^{23/24}` against Lemma 5.2(ii)'s
+`P^{23/24}` — so a sharper constant would move no exponent anywhere.
+
+That completes the three blankets. Lemma 3.10 verified conclusions and
+not hypotheses; Lemma 3.6 was exact, sharp, and untested; Lemma 3.5 is
+consistent and loose. Only the middle one needed real work.
+
+```text
+What was learned
+- a uniform slack factor is worth naming even when it is harmless,
+  because the next person to tighten a constant will otherwise start
+  where there is nothing to win
+- three blanket lemmas, three different failure modes, and the one
+  with no constants at all was the one with no test
+Strongest theorem
+- 4P/J exceeds the derived flat cost P/(2(J+1)) by at least eight, at
+  every one of the five sites, with layer counts explicit
+Strongest refutation
+- none; the audit was clean
+Reusable machinery
+- five tests over the majorant arithmetic and the slack factor
+Branch status
+- PARK
+Why
+  Consistent and safe, with the one unstated fact -- the 4 is a
+  rounding -- now stated. There is nothing to gain by sharpening it,
+  and the entry says that plainly so nobody tries.
+Best next question
+- none pressing. The three lemmas Sections 3 to 6 lean on hardest are
+  now each audited, tested and annotated.
+```

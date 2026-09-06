@@ -610,6 +610,16 @@ is \(P/(J+1)\) plus \(J\)-truncated mode sums of \(G\) with
 coefficients \(\le1/(J+1)\), and the flat term contributes
 \(8(1+|B|)P/T\). Both costs are displayed at each application below.
 
+Those applications quote the flat cost as \(4P/J\) per majorant layer,
+with the layer count written out and the mode sums always shown
+separately or taken as the object of study. The \(4\) is a rounding
+rather than a derived value: the constant term contributes
+\(P/(J+1)\) over the block, and \(P/\bigl(2(J+1)\bigr)\) over the odd
+\(n\) actually summed, so \(4P/J\) carries a factor of at least eight.
+The slack is uniform and costs nothing --- each of these majorants is
+weighed against a budget of the same exponent, so a sharper constant
+would move no exponent anywhere.
+
 **Lemma 3.8 (two-term monomial test with a trivial transition bound).**
 Let \(E\subset\mathbb Q\cap[-4,4]\) be a fixed finite set disjoint
 from \(\{0,1,2,3\}\), let \(\alpha\ne\beta\) lie in \(E\), let
