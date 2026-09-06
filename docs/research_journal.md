@@ -29622,3 +29622,56 @@ Branch status
 Best next question
 - the same question for the identity census and the Lemma 6.2 edge search:
   do they sample a case split, and if so does the sample reach both sides?
+
+## A whole parameter was pinned at 1 in every identity check ever run
+
+Fifth Paper B pass, on the identity census. It samples six ranges from
+\(10^4\) to \(10^{14}\), which already reaches past \(P_0\) — the
+regime problem of the standing estimates is not present here.
+
+The problem is the parameters. (C1) and (C4) cap the level-1 gaps at
+\(h_1\le P^{1/48}\) and \(h_2,k\le P^{1/24}\), so \(h_1\ge2\) requires
+\(P\ge2^{48}=2.8\cdot10^{14}\):
+
+| \(P\) | \(H_1\) | \(H_2=K\) |
+|---|---|---|
+| \(10^4\) – \(10^6\) | \(1\) | \(1\) |
+| \(10^8\) – \(10^{10}\) | \(1\) | \(2\) |
+| \(10^{12}\) – \(10^{14}\) | \(1\) | \(3\) |
+| \(10^{15}\) – \(10^{16}\) | \(2\) | \(4\) |
+
+\(H_1=1\) in every range the census used, so Lemma 4.3, Lemma 5.1(i)–(iv)
+and Lemma 6.2 had only ever been verified with \(h_1=1\). An error in a
+term carrying \((h_1-1)\) or \(h_1^2\) would have passed every one of the
+360 samples.
+
+Note this is not a mis-specified audit: \(h_1=1\) is *forced* by the
+paper's own constraints for every \(P\) below \(2.8\cdot10^{14}\),
+including at \(P_0=8.9\cdot10^{13}\) itself. The first scale where the
+constraint permits \(h_1=2\) is a factor \(3.2\) above the threshold the
+paper works at. So the pinning is a fact about the constraint geometry,
+and the audit inherited it silently.
+
+Checked at \(10^{15}\): every identity holds with \(h_1=2\). Added
+\(10^{15}\) and \(10^{16}\) to the census — the first scales where
+\(h_1\) moves at all, and where \(h_2,k\) reach \(4\). 360 samples
+become 480, elapsed \(33.7\to33.9\) s, because the identities are exact
+and cheap; it is the inventories that cost.
+
+That is five passes and five shapes, and the last three are one family:
+a parameter that never varied. The extrapolation was untested, then the
+\(j\) branch was never entered, now \(h_1\) was pinned at 1. Passing
+checks say nothing about the parameters they never moved.
+
+```text
+What was learned
+- h1 = 1 in all six census ranges; the paper's own (C1)/(C4) force it below
+  2.8e14, which is above P_0, so the pinning is structural not accidental
+- the identities hold at h1 = 2 once the scale permits it
+- adding two ranges cost 0.2 s: the identity layer is cheap, unlike the
+  inventories, so there was never a cost reason for the ceiling
+Branch status
+- PAPER_B_AUDIT_CONSISTENT over 480 identity samples
+Best next question
+- lemma_6_2_edge_search hunts for failures on (1e6, 2e6) only, where h1 and
+  h2 are both pinned at 1; does the hunt mean anything at that range?

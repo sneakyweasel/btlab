@@ -320,7 +320,13 @@ def c6_table(s_max: Fr | None = None) -> dict[tuple[Fr, Fr], Fr]:
 
 def identity_census(seed: int = 20260903, samples_per_range: int = 60) -> dict[str, Any]:
     rng = random.Random(seed)
-    ranges = [(10**4, 2 * 10**4), (10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10), (10**12, 2 * 10**12), (10**14, 2 * 10**14)]
+    # (C1)/(C4) cap the level-1 gaps at h1 <= P^{1/48} and h2, k <= P^{1/24}, so h1 = 1 for every
+    # P below 2^48 = 2.8e14 -- including P_0 = 8.9e13 and every range above.  Up to 1e14 the
+    # identities were therefore only ever checked at h1 = 1, with a whole parameter pinned.  1e15
+    # and 1e16 are the first scales where h1 reaches 2 (and h2, k reach 4); the identities are
+    # exact and cheap, so the extra ranges cost almost nothing.
+    ranges = [(10**4, 2 * 10**4), (10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10),
+              (10**12, 2 * 10**12), (10**14, 2 * 10**14), (10**15, 2 * 10**15), (10**16, 2 * 10**16)]
     out: dict[str, Any] = {"samples": 0, "failures": {}, "lemma_6_2_printed_violations": [], "lemma_6_2_max_slack": 0.0}
     counts: dict[str, int] = {}
 
