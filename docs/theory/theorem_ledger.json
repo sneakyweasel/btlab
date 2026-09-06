@@ -232,6 +232,8 @@
   "statement": "D(xy) = lsd(x)D(y)+lsd(y)D(x)+3 D(x)D(y)",
   "source": "docs/theory/digit_derivative.md",
   "lean": "BTCalculus/Algebra.lean",
+  "decl": "D_mul",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_calculus_identities.py"
   ],

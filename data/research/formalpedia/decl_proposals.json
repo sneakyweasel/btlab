@@ -244,35 +244,6 @@
     {
       "candidates": [
         {
-          "decl": "lsdZ_mul",
-          "line": 13,
-          "score": 0.5,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_mul_is_trit",
-          "line": 7,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "D_add",
-          "line": 63,
-          "score": 0.143,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "id": "BTC-D-mul",
-      "in_file": 8,
-      "lean": "BTCalculus/Algebra.lean",
-      "names_own": [],
-      "statement": "D(xy) = lsd(x)D(y)+lsd(y)D(x)+3 D(x)D(y)"
-    },
-    {
-      "candidates": [
-        {
           "decl": "kleene",
           "line": 68,
           "score": 0.286,
@@ -302,21 +273,21 @@
     {
       "candidates": [
         {
-          "decl": "cmp3_lt",
-          "line": 12,
-          "score": 0.25,
+          "decl": "cmp3_antisym",
+          "line": 27,
+          "score": 0.333,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cmp3_translate",
+          "line": 35,
+          "score": 0.333,
           "trust": "kernel"
         },
         {
           "decl": "cmp3_eq",
-          "line": 15,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cmp3_gt",
-          "line": 18,
-          "score": 0.25,
+          "line": 17,
+          "score": 0.167,
           "trust": "kernel"
         }
       ],
@@ -332,20 +303,20 @@
       "candidates": [
         {
           "decl": "select3_represents",
-          "line": 29,
+          "line": 33,
           "score": 0.3,
           "trust": "kernel"
         },
         {
-          "decl": "absZ_eq",
-          "line": 36,
-          "score": 0.143,
+          "decl": "select3_minus",
+          "line": 14,
+          "score": 0.182,
           "trust": "kernel"
         },
         {
-          "decl": "maxZ_eq",
-          "line": 46,
-          "score": 0.143,
+          "decl": "select3_zero",
+          "line": 18,
+          "score": 0.182,
           "trust": "kernel"
         }
       ],
@@ -5213,6 +5184,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 174,
-  "worth_reviewing": 49
+  "unresolved": 173,
+  "worth_reviewing": 48
 }

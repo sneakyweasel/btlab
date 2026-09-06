@@ -4,17 +4,20 @@ namespace BTCalculus
 
 open Representation.Words
 
+/-- The product of two least significant digits is again a trit: `-1`, `0` or `1`. -/
 theorem lsdZ_mul_is_trit (x y : ℤ) :
     lsdZ x * lsdZ y = -1 ∨ lsdZ x * lsdZ y = 0 ∨ lsdZ x * lsdZ y = 1 := by
   rcases lsdZ_is_trit x with hx | hx | hx <;>
     rcases lsdZ_is_trit y with hy | hy | hy <;>
     simp [hx, hy]
 
+/-- `lsd` is multiplicative: `lsd (x * y) = lsd x * lsd y`. -/
 theorem lsdZ_mul (x y : ℤ) : lsdZ (x * y) = lsdZ x * lsdZ y := by
   have hxy : x * y ≡ lsdZ x * lsdZ y [ZMOD 3] :=
     Int.ModEq.mul (lsdZ_mod x) (lsdZ_mod y)
   exact lsdZ_unique (lsdZ_mul_is_trit x y) hxy
 
+/-- Product expansion into digit and carry: `x * y = lsd x * lsd y + 3 * (lsd x * D y + lsd y * D x + 3 * D x * D y)`. -/
 theorem product_expansion (x y : ℤ) :
     x * y =
       lsdZ x * lsdZ y +
@@ -44,7 +47,9 @@ theorem D_mul (x y : ℤ) :
   rw [this]
   exact Int.mul_ediv_cancel_left _ (by decide : (3 : ℤ) ≠ 0)
 
+/-- The balanced-ternary rewrite of `2`: `2 = -1 + 3 * 1`. -/
 theorem rewrite_sum2 : (2 : ℤ) = (-1) + 3 * 1 := by decide
+/-- The balanced-ternary rewrite of `-2`: `-2 = 1 + 3 * (-1)`. -/
 theorem rewrite_sum_neg2 : (-2 : ℤ) = 1 + 3 * (-1) := by decide
 
 /-- LSD-only addition carry. This is the standard balanced-ternary table. -/
@@ -53,6 +58,7 @@ def addDigit (a b : ℤ) : ℤ × ℤ :=
   else if a + b ≤ -2 then (a + b + 3, -1)
   else (a + b, 0)
 
+/-- `addDigit` splits a sum into digit and carry: `a + b = (addDigit a b).1 + 3 * (addDigit a b).2`. -/
 theorem addDigit_eq (a b : ℤ) :
     a + b = (addDigit a b).1 + 3 * (addDigit a b).2 := by
   unfold addDigit
