@@ -91,6 +91,8 @@ theorem lambda1Word_neg_fold : ∀ n : ℕ,
     rw [lambda1Climb_eq n, lambda1_step_down]
     simp [lambda1Climb, lambda1Climb_eq n, lambda1_step_up]
 
+/-- Every nonpositive point of the `lambda=1` box is reached by an admissible word;
+the negative half of `lambda1_interval_reachable`. -/
 theorem lambda1_interval_reachable_neg (m n : ℕ) (h : n ≤ m / 2) :
     ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧
       foldSigned 1 word 0 = - (n : ℤ) := by

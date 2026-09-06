@@ -2592,6 +2592,8 @@
   "statement": "For every L≥1, n=2^L-1 realises L odd shortcut steps and C^L(n)=3^L-1>n. No residual n mod 2^L with blocks of length at most L certifies strict descent.",
   "source": "docs/problems/collatz_finite_descent.md",
   "lean": "Problems/Collatz/Shortcut.lean",
+  "decl": "shortcutC_no_uniform_L_descent",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/collatz_finite_descent/test_finite_descent.py"
   ],
@@ -2973,6 +2975,8 @@
   "statement": "For trit pairs (d1,d2) and any gain λ, λ·D(0+d1 d2)=0. Origin-reachable residual of two-trit product forcing is {0}, matching F_{λ,U_1}.",
   "source": "docs/problems/multiplicative_residual.md",
   "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
+  "decl": "product_residual_closure",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/multiplicative_residual/test_multiplicative_residual.py"
   ],

@@ -3105,51 +3105,10 @@
         }
       ],
       "id": "C-shortcut-welldefined",
-      "in_file": 10,
+      "in_file": 9,
       "lean": "Problems/Collatz/Shortcut.lean",
       "names_own": [],
       "statement": "The shortcut map C(n)=n/2 (even) or (3n+1)/2 (odd) is well-defined on positive integers, and {1,2} is a 2-cycle."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "shortcutC_no_uniform_L_descent",
-          "line": 110,
-          "score": 0.357,
-          "trust": "kernel"
-        },
-        {
-          "decl": "shortcutC_odd",
-          "line": 15,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "shortcutC_odd_increases",
-          "line": 40,
-          "score": 0.154,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "shortcutC",
-          "line": 8,
-          "score": 0.133
-        },
-        {
-          "decl": "shortcutCIter",
-          "line": 52,
-          "score": 0.067
-        }
-      ],
-      "id": "C-no-uniform-L-descent",
-      "in_file": 10,
-      "lean": "Problems/Collatz/Shortcut.lean",
-      "names_own": [],
-      "statement": "For every L\u22651, n=2^L-1 realises L odd shortcut steps and C^L(n)=3^L-1>n. No residual n mod 2^L with blocks of length at most L certifies strict descent."
     },
     {
       "candidates": [
@@ -3324,20 +3283,20 @@
           "trust": "kernel"
         },
         {
-          "decl": "lambda1Word_fold",
-          "line": 52,
-          "score": 0.125,
+          "decl": "lambda1_interval_reachable_neg",
+          "line": 96,
+          "score": 0.2,
           "trust": "kernel"
         },
         {
-          "decl": "lambda1Word_abs_le",
-          "line": 59,
+          "decl": "lambda1Word_fold",
+          "line": 52,
           "score": 0.125,
           "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "lambda1Word",
@@ -3346,7 +3305,7 @@
         },
         {
           "decl": "lambda2Word",
-          "line": 123,
+          "line": 125,
           "score": 0.143
         }
       ],
@@ -3366,13 +3325,13 @@
         },
         {
           "decl": "lambda2_even_reachable",
-          "line": 159,
+          "line": 161,
           "score": 0.214,
           "trust": "kernel"
         },
         {
-          "decl": "lambda2_step_up",
-          "line": 109,
+          "decl": "lambda1_interval_reachable_neg",
+          "line": 96,
           "score": 0.167,
           "trust": "kernel"
         }
@@ -3387,7 +3346,7 @@
         },
         {
           "decl": "lambda2Word",
-          "line": 123,
+          "line": 125,
           "score": 0.1
         }
       ],
@@ -3504,51 +3463,10 @@
         }
       ],
       "id": "BTN-mr-factor-through-raw",
-      "in_file": 11,
+      "in_file": 10,
       "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
       "names_own": [],
       "statement": "If F(s,c)=\u03bb\u00b7D(s+h(c)) then F(s,(d1,d2))=\u03bb\u00b7D(s+d1 d2). Two-trit product residual factors through the raw contribution."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "product_residual_closure",
-          "line": 44,
-          "score": 0.6,
-          "trust": "kernel"
-        },
-        {
-          "decl": "product_origin",
-          "line": 37,
-          "score": 0.222,
-          "trust": "kernel"
-        },
-        {
-          "decl": "product3_origin",
-          "line": 76,
-          "score": 0.222,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "doubledProductNext",
-          "line": 83,
-          "score": 0.167
-        },
-        {
-          "decl": "productRaw",
-          "line": 14,
-          "score": 0.1
-        }
-      ],
-      "id": "BTN-mr-product-closure",
-      "in_file": 11,
-      "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
-      "names_own": [],
-      "statement": "For trit pairs (d1,d2) and any gain \u03bb, \u03bb\u00b7D(0+d1 d2)=0. Origin-reachable residual of two-trit product forcing is {0}, matching F_{\u03bb,U_1}."
     },
     {
       "candidates": [
@@ -5975,6 +5893,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 151,
-  "worth_reviewing": 36
+  "unresolved": 149,
+  "worth_reviewing": 33
 }

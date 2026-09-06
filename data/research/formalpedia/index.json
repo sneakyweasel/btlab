@@ -3825,7 +3825,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every nonpositive point of the `lambda=1` box is reached by an admissible word; the negative half of `lambda1_interval_reachable`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
       "kind": "theorem",
       "ledger": [
@@ -3833,7 +3833,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 94,
+      "line": 96,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda1_interval_reachable_neg",
       "trust": "kernel"
@@ -3847,7 +3847,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 104,
+      "line": 106,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "reachable_subset_lattice",
       "trust": "kernel"
@@ -3861,7 +3861,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 109,
+      "line": 111,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda2_step_up",
       "trust": "kernel"
@@ -3875,7 +3875,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 114,
+      "line": 116,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda2Climb",
       "trust": "kernel"
@@ -3889,7 +3889,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 118,
+      "line": 120,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda2Climb_eq",
       "trust": "kernel"
@@ -3903,7 +3903,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 123,
+      "line": 125,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda2Word",
       "trust": "kernel"
@@ -3917,7 +3917,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 127,
+      "line": 129,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda2Word_fold",
       "trust": "kernel"
@@ -3931,7 +3931,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 134,
+      "line": 136,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda2Word_abs_le",
       "trust": "kernel"
@@ -3945,7 +3945,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 159,
+      "line": 161,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "lambda2_even_reachable",
       "trust": "kernel"
@@ -3959,7 +3959,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 166,
+      "line": 168,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "singleton_two_steps",
       "trust": "compiler"
@@ -3973,7 +3973,7 @@
         "BTN-sdrg-lambda2-evens",
         "BTN-sdrg-lattice-all-U"
       ],
-      "line": 170,
+      "line": 172,
       "module": "Problems.BalancedTernary.SignedDigitResidualGeometry",
       "name": "singleton_two_misses_neg_one",
       "trust": "kernel"
