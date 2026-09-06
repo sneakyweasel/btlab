@@ -33298,3 +33298,112 @@ Best next question
   row to matter. Where did it come from, and does it have the same
   pairing question as the rows beside it?
 ```
+
+### A row that was in a proof and never in the table
+
+The target was the two unaudited lines in the proof of Lemma 5.2(iii),
+the widened-decoration budget. Both are wrong in the same way: they
+state something true and give a reason that does not reach it.
+
+**The second one is a certificate row.** Closing the mode accounting
+needs `|w| <= |B_0| + R_0 <= 2 R_0`, and the proof says so with its
+number — "because `7 P^(1/4) <= P^(5/16)` once `P >= 7^16 = 3.3e13`".
+That is an inequality of the kind A.1 collects, and A.1 does not have
+it. Thirty-seven rows became thirty-eight; `P_0` does not move, because
+`7^16 = 33232930569601` sits under the binding row's `3.5858e13`. Rank
+two of thirty-eight, at `92.7%` of it.
+
+**Everything else about it moves.** The row mentions no `c_7`, so it is
+A.5's floor — and A.5 computed that floor from the table.
+
+```text
+                          printed        with the row
+  c_7 floor               2.98e11        3.32e13
+  the whole c_7 lever     factor 120     factor 1.079
+  lever spent at          c_7 = 1/61     c_7 = 1/228
+  vector trade realises   8.9 of it      nothing at all
+```
+
+The vector trade is the sharpest. `(1/27, 1/1872, 1/1872)` was recorded
+as buying `P_0 = 4.0e12` at a cost of four orders in `P_1`; `4.0e12` is
+the gate, and the mode index holds `P_0` at `3.32e13` whatever the gate
+does. The trade returns the `P_0` it started from.
+
+**And it is the constraint that pins `R_0` from below,** which is the
+question A.6 asks and answers with four sites. Its recorded four-site
+minimax `a* = 0.29919` is infeasible — the fifth needs `1.5e17` there.
+The bands: four sites leave `a` free across `[0.2829, 0.3463]`, five
+across `[0.3123, 0.3463]`, and `5/16 = 0.3125` clears the left endpoint
+by `1.52e-4`. No fraction of denominator `<= 32` lies in the gap, so
+`5/16` is the smallest simple truncation that closes by `P_0`.
+
+That is a stronger statement about `5/16` than A.6 was making and it
+carries the opposite moral. Against four sites `5/16` is the robust
+choice, well clear of the cliff. Against five it is the least robust
+admissible value: the row needs `7 <= P_0^(1/16) = 7.0333`, so a
+widened coefficient of `7.04` would carry it past the binding row and
+`R_0 = P^(5/16)` would be *setting* the paper's threshold. Half of one
+percent. The five-site minimax is `a* = 0.3218` at `5.79e11`; `5/16` is
+a factor `57` above it, not `2.13`, and `1/3` is `21` times better.
+
+Two smaller things. At `a = 1/4` the row reads `7 P^(1/4) <= P^(1/4)`,
+false at every `P` — the superseded truncation does not merely delay
+Theorem 6.3 by ten orders, it stops Lemma 5.2(iii) closing at all. And
+the row is `kappa`-free, so A.2's `kappa` table stops falling: `1/16`
+and `1/20` read `3.3e13`, not `2.0e13` and `1.5e13`, and the gate meets
+the row at `kappa = 1/12.42`. The operating point `1/12` was chosen
+because the piece-boundary term turns `P_1` around there; it is within
+`7.9%` of the last `kappa` at which `P_0` still moves.
+
+**The first unaudited line is the drift count.** "Since `B` is monotone
+on the dyadic block its drift is at most `sup|B|`" — the count
+`7 P^(1/4) + 1` is right and that argument does not give it. `B` is
+`q'(2 j' f_1 + h h' f_2)`; `j'` is Lemma 5.1(iii)'s branch offset,
+frozen per `b`-run and jumping between runs, so `B` is not monotone,
+and it takes both signs, so a monotone `B` would give `2 sup|B|`. Both
+halves fail. What holds needs no sign: `f_1` and `f_2` are monotone and
+single-signed, variation is additive over a partition, `|j'| <= 3`, so
+the within-run variation sums to `<= 7 P^(1/4)`, and the jumps across
+runs are `b`-run boundaries the first bullet already inventories. Had
+the failed argument been the only route, `2 sup|B|` would have given
+`14 P^(1/4) + 1` windows and a boundary charge of `23.7` in place of
+`13.5` — still dominated, since `5/8 < 1/24 + 7/8`. The factor two was
+never going to bind. The reason still has to be a reason.
+
+```text
+What was learned
+- an inequality can be stated with its threshold inside a proved proof
+  and never reach the certificate that claims to collect them all
+- and when it does not mention c_7, the appendix that measures how much
+  is left in c_7 measures it against a table missing its largest entry
+- two orders of headroom, believed; a factor of 1.08, in fact
+- A.6's own optimum is infeasible on a site A.6 does not have
+- I wrote the robustness margin in the wrong direction first: a *larger*
+  P_0 makes this row safer, a smaller one is what breaks it
+- the manuscript guard on "earlier draft" fired on my erratum wording;
+  the concurrent session's audit reported it before I ran the tests
+Strongest theorem
+- 7^16 is the largest c_7-free row of the certificate, so the c_7 lever
+  is worth 1.079 and the vector trade nothing; and it is the left
+  endpoint of R_0's admissible band, which 5/16 clears by 1.52e-4
+Strongest refutation
+- A.6's recorded minimax a* = 0.29919, infeasible by four orders on the
+  fifth site; and my own first statement of the margin's direction
+Reusable machinery
+- p0_certificate.st6D1-modeindex, r0_lower_pin, r0_minimax,
+  widened_b_constant_threshold, r0_tradeoff's fifth site;
+  row_st6D1_modeindex in Lean; nine new tests, ten re-aimed
+Branch status
+- PARK
+Why
+  The row is entered, proved in Lean, and propagated through A.1, A.2,
+  A.5, A.6 and the two proofs that state it. The sharpening to 6.001 is
+  costed and declined for a stated reason. What is left is a decision
+  about R_0 that belongs to whoever owns the constants.
+Best next question
+- the floor is 3.32e13 at 5/16 and 2.98e11 at 6.001, and 5.79e11 at the
+  five-site minimax a* = 0.3218. Three of the four numbers A.5 and A.6
+  argue over are now functions of one constant nobody has tried to make
+  sharp. Is 6 P^(1/4) itself sharp, or does the 2|j'| term have a mean
+  that beats the worst case |j'| = 3?
+```

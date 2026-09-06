@@ -81,8 +81,19 @@ def _V(S: float, P: float, kappa: float = KAPPA) -> float:
 # Lemma 3.7 hypothesis then first holds at 2.5e19 and whose flat cost first clears P^(1-1/96) at
 # 1.8e24 -- both far above P_0.  R_0 = P^(5/16) sends every site below P_0 at a cost of P^(1/32)
 # on the collision-band sum and P^(1/16) on the |q''| curvature ratio, neither of which binds.
+#
+# Those are the four sites Appendix A.6 tabulates, and they leave the exponent free from 0.283.
+# A fifth, which A.6 does not have, is what actually pins it: Lemma 5.2(iii) needs the widened
+# decoration's |B_0| <= R_0, i.e. 7 P^(1/4) <= P^a, which fails at *every* P when a = 1/4.
 R0_EXPONENT = 5 / 16
 R0_EXPONENT_SUPERSEDED = 1 / 4
+
+# The widened (D1) theta-coefficient of Lemma 5.2(iii): |q'| h' <= P^(1/2) and h' >= 1 give
+# 6 P^(1/4)/h', and h <= P^(1/8) gives 20 h P^(-1/4) <= 20 P^(-1/8); the paper collects the two
+# as 7 P^(1/4).  The second summand is not of the first's order, so any 6 + delta serves from
+# P >= (20/delta)^(8/3) on -- 6.001 from 2.95e11, below P_0.
+WIDENED_B_CONST = 7.0
+WIDENED_B_CONST_SHARP = 6.001
 
 
 def R0(P: float, a: float = R0_EXPONENT) -> float:
@@ -148,6 +159,11 @@ def thresholds(kappa: float = KAPPA, c7: float = C7,
          lambda P: P**0.5 >= 8 * (1 + 7 * P**0.25)),
         ("st6D1-good", "Thm 5.3 St.6(D1)", "72 t^(-1) P^(-1/2) <= 1/4 at t = 1",
          lambda P: 72 * P**-0.5 <= 0.25),
+        # Lemma 5.2(iii) closes its mode accounting with |w| <= |B_0| + R_0 <= 2 R_0, which needs
+        # the widened theta-coefficient 7 P^(1/4) to sit under the Stage-2 truncation.  The proof
+        # states the threshold 7^16 and A.1 never collected it; it is the largest c_7-free row.
+        ("st6D1-modeindex", "Thm 5.3 St.6(D1)", "widened |B_0| <= R_0: 7 P^(1/4) <= P^(5/16)",
+         lambda P: 7 * P**0.25 <= R0(P)),
         ("5b-j0-window", "Thm 5.3 St.5b (j=0)", "P^(1/2) >= 8(1+6) = 56",
          lambda P: P**0.5 >= 56),
         # --- Theorem 5.3, Step 5b geometry ---
@@ -227,10 +243,18 @@ def thresholds(kappa: float = KAPPA, c7: float = C7,
 
 
 def r0_tradeoff(a: float) -> dict[str, Any]:
-    """The four R_0-sensitive sites, as least-P thresholds, at truncation ``R_0 = P^a``.
+    """The R_0-sensitive sites, as least-P thresholds, at truncation ``R_0 = P^a``.
 
-    Two sites are paid for by raising ``a`` and two are bought.  ``a = 1/4`` (the superseded
-    choice) leaves Theorem 6.3 needing ``1.8e24``; ``a = 5/16`` puts every site under ``P_0``.
+    Two of the tabulated sites are paid for by raising ``a`` and two are bought.  ``a = 1/4`` (the
+    superseded choice) leaves Theorem 6.3 needing ``1.8e24``; ``a = 5/16`` puts all four under
+    ``P_0``.
+
+    ``modeindex`` is a fifth site, which Appendix A.6 does not tabulate: Lemma 5.2(iii) needs the
+    widened decoration's ``|B_0| <= R_0``, i.e. ``7 P^(1/4) <= P^a``, and that is the constraint
+    that pins ``a`` from below.  It is *unsatisfiable at every P* when ``a = 1/4``, so raising the
+    truncation is not merely convenient for Theorem 6.3 -- it is what lets Lemma 5.2(iii) close.
+    ``worst`` stays the maximum over the four A.6 tabulates, so the printed analysis is still
+    reproducible; ``worst_all`` is the honest maximum over all five.
     """
     T = lambda P: P**a  # noqa: E731
     sites = {
@@ -248,7 +272,42 @@ def r0_tradeoff(a: float) -> dict[str, Any]:
         if P is not None:
             worst = max(worst, P)
     out["worst"] = worst
+    lg = least_P(lambda P: WIDENED_B_CONST * P**0.25 <= T(P))
+    out["modeindex"] = None if lg is None else 10.0**lg
+    out["worst_all"] = float("inf") if out["modeindex"] is None else max(worst, out["modeindex"])
     return out
+
+
+def widened_b_constant_threshold(delta: float) -> float:
+    """Least ``P`` from which ``6 P^(1/4) + 20 P^(-1/8) <= (6 + delta) P^(1/4)``."""
+    return (20.0 / delta) ** (8.0 / 3.0)
+
+
+def r0_lower_pin(c: float = WIDENED_B_CONST, P0: float | None = None) -> float:
+    """Least truncation exponent ``a`` for which ``c P^(1/4) <= P^a`` holds by ``P_0``.
+
+    The four sites of Appendix A.6 leave ``a`` free from ``0.283``; this is what actually stops it.
+    """
+    if P0 is None:
+        P0 = certificate()["P0"]
+    return 0.25 + math.log(c) / math.log(P0)
+
+
+def r0_minimax(c: float = WIDENED_B_CONST, lo: float = 0.3125, hi: float = 0.34) -> dict[str, Any]:
+    """Where the fifth site crosses the worst of the four -- the minimax over all five.
+
+    Appendix A.6 records ``a* = 0.29919`` as the continuum optimum of the four.  With the fifth
+    site that point is infeasible by four orders, and the true optimum moves above ``5/16``.
+    """
+    for _ in range(300):
+        mid = (lo + hi) / 2
+        if c ** (1.0 / (mid - 0.25)) > r0_tradeoff(mid)["worst"]:
+            lo = mid
+        else:
+            hi = mid
+    r = r0_tradeoff(hi)
+    return {"a": hi, "worst": max(r["worst"], c ** (1.0 / (hi - 0.25))),
+            "at_five_sixteenths": r0_tradeoff(R0_EXPONENT)["worst_all"]}
 
 
 def kappa_tradeoff(kappa: float, c7: float = C7, S_lo: float = 0.56, N: float = 3.5) -> dict[str, Any]:

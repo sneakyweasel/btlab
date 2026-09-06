@@ -2811,3 +2811,119 @@ for a window count, which is the ledger's kind of material rather than
 the body's; the phrase is the referee's own marker, so it is worth
 seeing before it is committed. Reported, not edited --- the manuscript
 is the other session's, and the sentence is a minute old.
+
+## A row that was in a proof and never in the table, and the two appendices written around its absence
+
+**Lemma 5.2(iii) states a threshold that A.1 never collected.** Closing
+its mode accounting needs the widened decoration's index under Stage 2's
+truncation, `|w| <= |B_0| + R_0 <= 2 R_0`, and the proof says so with its
+number: "because 7 P^(1/4) <= P^(5/16) once P >= 7^16 = 3.3e13". That
+inequality is a certificate row. It was not in the thirty-seven. Added as
+`p0_certificate.st6D1-modeindex` and `row_st6D1_modeindex`; the table is
+thirty-eight rows and thirty-three theorems, and `lake build` is green.
+
+`P_0` does not move. `7^16 = 33232930569601` sits under the binding row's
+`3.5858e13` -- rank two of thirty-eight, at `92.7%` of it. Everything else
+about the row moves something.
+
+**It is the largest row that does not mention `c_7`, so it is A.5's
+floor.** A.5 computed that floor from the table, and the table was short
+one entry. The consequences, all of them arithmetic once the row is in:
+
+```text
+                          printed        with the row
+  c_7 floor               2.98e11        3.32e13
+  the whole c_7 lever     factor 120     factor 1.079
+  lever spent at          c_7 = 1/61     c_7 = 1/228
+  vector trade realises   8.9 of it      nothing at all
+```
+
+The vector trade is the sharpest of these. `(1/27, 1/1872, 1/1872)` was
+recorded as moving `P_0` to `4.0e12` at a cost of four orders in `P_1`;
+`4.0e12` is a statement about the gate, and the mode index holds `P_0` at
+`3.32e13` whatever the gate does. The trade returns the same `P_0` it
+started from. Keeping the uniform constant was right for a better reason
+than the one printed.
+
+**And it pins `R_0` from below, which is the question A.6 asks.** A.6
+tabulates four `R_0`-sensitive sites and reports that `5/16` is feasible
+but not optimal, the four-site minimax being `a* = 0.29919` at `1.40e11`.
+The fifth site makes `0.29919` infeasible by four orders: it needs
+`7^(1/(a-1/4)) = 1.5e17` there. The bands:
+
+```text
+  four sites   a in [0.2829, 0.3463]      5/16 clears the left end by 2.96e-2
+  five sites   a in [0.3123, 0.3463]      5/16 clears the left end by 1.52e-4
+```
+
+No fraction of denominator `<= 32` lies in `[0.31235, 0.3125)`, so `5/16`
+is the smallest simple truncation that closes by `P_0` -- which is a much
+stronger statement about it than A.6 was making, and it comes with the
+opposite moral. Against the four sites `5/16` is the robust choice, well
+clear of the cliff. Against five it is the least robust admissible value:
+the row needs `7 <= P_0^(1/16) = 7.0333`, so a widened coefficient of
+`7.04` would carry it past the binding row and `R_0 = P^(5/16)` would be
+*setting* the paper's threshold. Half of one percent.
+
+The five-site minimax is `a* = 0.3218` at `5.79e11`, where the mode index
+crosses the `q''` ratio. `5/16` is a factor `57` above that, not `2.13`;
+`1/3` is `1.58e12`, a factor `21` better than `5/16` and with room on both
+sides. Recorded, not taken.
+
+**Two smaller things fall out.** At `a = 1/4` the row reads
+`7 P^(1/4) <= P^(1/4)`, false at every `P` -- so the superseded truncation
+does not merely delay Theorem 6.3 by ten orders, it stops Lemma 5.2(iii)
+closing at all. And the row is `kappa`-free, so A.2's `kappa` table stops
+falling: the entries at `1/16` and `1/20` read `2.0e13` and `1.5e13` from
+the gate and `3.3e13` from the table, and `P_0` is the maximum. The gate
+meets the row at `kappa = 1/12.42`. The operating point `1/12`, chosen
+because the piece-boundary term turns `P_1` around there, is within
+`7.9%` of the last `kappa` at which `P_0` is still moving. Two unrelated
+mechanisms, one a piece boundary in `P_1` and one a Vaaler truncation in
+Lemma 5.2(iii), agreeing to a factor `1.079`.
+
+**The constant `7` is not sharp, and sharpening it would restore the
+factor of 120.** It collects `6 P^(1/4)/h'` and `20 h P^(-1/4)`, and the
+second is not of the first's order: `6 P^(1/4) + 20 P^(-1/8) <= (6+d)
+P^(1/4)` from `P >= (20/d)^(8/3)`, so `6.001` serves from `2.95e11`, below
+`P_0`. The row would fall to `2.83e12` -- a factor `12`, rank four, and
+the floor would drop back to the `q''` row's `2.98e11`. Not taken here:
+the downstream constants of that proof (`13.5`, `64`, `7/0.6`) are all
+stated at `7` and all sit in absorbed or dominated positions, so
+re-deriving them buys a floor and no theorem. The row is entered at `7`,
+which is what the manuscript proves.
+
+**One thing the row is, that no other row is: exact.** Every other
+threshold is certified at a rational `t_0` at or just above the true
+crossing. Substituting `P = t^16` turns this one into `7 t^4 <= t^5`,
+whose crossing is `t = 7` on the nose.
+
+## The drift sentence in the same proof, which does not follow
+
+Two lines above the mode index, the window count is got from "since `B`
+is monotone on the dyadic block its drift is at most `sup|B|`". The count
+`7 P^(1/4) + 1` is right. That argument does not give it.
+
+`B` is the widened `(D1)` theta-coefficient, `q'(2 j' f_1 + h h' f_2)`
+with `f_1 <= P^(-1/4)` and `f_2 <= 20 P^(-3/4)`. `j'` is the branch offset
+of Lemma 5.1(iii): frozen on each `b`-run and jumping between runs, so `B`
+is not monotone on the block; and it takes both signs, so even a monotone
+`B` would give `2 sup|B|` and not `sup|B|`. Both halves fail.
+
+What does hold needs no sign at all. `f_1` and `f_2` are monotone and
+single-signed on the whole block, total variation is additive over a
+partition, and `|j'| <= 3` on each run, so the within-run variation sums
+to `6|q'| Var(f_1) + |q'| h h' Var(f_2) <= 6|q'| sup f_1 + |q'| h h' sup
+f_2 <= 7 P^(1/4)`. The jumps across runs are the `b`-run boundaries the
+first bullet already inventories at the same Stage-4 curvature, so they
+cost nothing further. Same numeral, and this time a proof.
+
+Worth noting what the printed sentence would have cost had it been the
+only route: `2 sup|B|` gives `14 P^(1/4) + 1` windows, boundary charge
+`23.7 (uh)^(-1/2) P^(5/8)` instead of `13.5`, still dominated by the
+fourth printed term of (i) since `5/8 < 1/24 + 7/8`. The factor two was
+never going to bind. The reason still has to be a reason.
+
+Recorded in the manuscript as a blockquote at the site, phrased without
+the marker the referee named -- the guard the concurrent session's audit
+raised on the first wording is clear.

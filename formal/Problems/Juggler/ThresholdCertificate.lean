@@ -4,17 +4,19 @@
 The certificate of `docs/theory/juggler_parity_discrepancy_note.md`, Appendix A,
 proved rather than bisected.
 
-`src/research/juggler_sequence/p0_certificate.py` solves each of the thirty
+`src/research/juggler_sequence/p0_certificate.py` solves each of the thirty-eight
 printed threshold inequalities of Sections 4–6 by floating-point bisection and
 takes the maximum; that maximum is `P₀`.  Bisection in `Float` was the only
 inexact step in an otherwise exact chain.  It is removable: **every exponent in
 the paper lies in `(1/96)ℤ`**, so substituting `P = tⁿ` for a suitable `n` turns
 each row into a polynomial inequality in `t`, with no `Real.rpow` anywhere.
 
-All thirty rows are below, each with its substitution and a *rational* threshold
-`t₀` at or just above the true crossing.  The certified thresholds are therefore
-slightly conservative; the largest is `row_5b_binding` at `t = 1.92`, i.e.
-`P ≥ 1.92^48 = 4.0·10^13`, against the probe's `3.59·10^13`.  That row is `P₀`.
+All thirty-eight rows are below, each with its substitution and a *rational*
+threshold `t₀` at or just above the true crossing.  The certified thresholds are
+therefore slightly conservative; the largest is `row_5b_binding` at `t = 1.92`,
+i.e. `P ≥ 1.92^48 = 4.0·10^13`, against the probe's `3.59·10^13`.  That row is
+`P₀`.  The one exception to "conservative" is `row_st6D1_modeindex`, whose
+`t₀ = 7` is the crossing exactly.
 
 The nine rows that carry Lemma 5.2b's anchor use its **corrected** constant
 `27/128` (the erratum at that lemma): the middle-band floor is `S ≥ 0.56 P^(-5/8)`,
@@ -228,6 +230,16 @@ theorem row_st6D1_window (t : ℝ) (ht : 57 ≤ t) : 8 * (1 + 7 * t) ≤ t ^ 2 :
 `t ≥ 288`, `P ≥ 8.3·10^4`. -/
 theorem row_st6D1_good (t : ℝ) (ht : 288 ≤ t) : (72:ℝ) / t ≤ 1 / 4 := by
   rw [div_le_iff₀ (by linarith)]; linarith
+
+/-- Row `st6D1-modeindex`.  Lemma 5.2(iii) closes its mode accounting with
+`|w| ≤ |B₀| + R₀ ≤ 2R₀`, which needs the widened `θ`-coefficient under Stage 2's
+truncation: `7P^(1/4) ≤ R₀ = P^(5/16)`.  With `P = t^16` that is `7t⁴ ≤ t⁵`,
+i.e. `t ≥ 7`, so `P ≥ 7^16 = 3.32·10^13`.  Alone among the rows this one is
+*exact* rather than conservative: `t₀ = 7` is the crossing.  It is also the
+largest `c₇`-free row, and Appendix A.6 does not tabulate it. -/
+theorem row_st6D1_modeindex (t : ℝ) (ht : 7 ≤ t) : 7 * t ^ 4 ≤ t ^ 5 := by
+  have h4 : (0:ℝ) ≤ t ^ 4 := pow_nonneg (by linarith) 4
+  nlinarith [mul_le_mul_of_nonneg_left ht h4]
 
 /-- Row `5b-j0-window`.  At `j = 0` the sawtooth has `|B| ≤ 6`, so Lemma 3.7
 needs `P^(1/2) ≥ 8(1+6) = 56`; `P = t²`, `P ≥ 3136`. -/
