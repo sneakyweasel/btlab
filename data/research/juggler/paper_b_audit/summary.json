@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "f42985994f9f9d3220e1cbb061880a09d9392ef7",
+  "git_commit": "3d79b04a79fa1c856760fcc6ce39730d500c8d34",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -6039,6 +6039,84 @@
     "sharp_here_redundant_there": true,
     "exactness_is_the_term_not_the_nesting": true
   },
+  "bound_ratio_instruments": {
+    "rows": [
+      {
+        "points": 200,
+        "t48": {
+          "mean": 0.33492079809056463,
+          "max": 0.9807495834403599
+        },
+        "l62i": {
+          "mean": 0.4848338133371978,
+          "max": 0.9859453658300482
+        },
+        "l62ii_printed": {
+          "mean": 0.2453075545058309,
+          "max": 0.6293735807344714
+        },
+        "l62ii_reduced": {
+          "mean": 0.36809491932415805,
+          "max": 0.943907487692902
+        }
+      },
+      {
+        "points": 1000,
+        "t48": {
+          "mean": 0.3307768768097839,
+          "max": 0.9949353912385519
+        },
+        "l62i": {
+          "mean": 0.500559990110922,
+          "max": 0.9993984423871386
+        },
+        "l62ii_printed": {
+          "mean": 0.2568560901714062,
+          "max": 0.6580759682302437
+        },
+        "l62ii_reduced": {
+          "mean": 0.38527924079240317,
+          "max": 0.9869659901703912
+        }
+      },
+      {
+        "points": 2999,
+        "t48": {
+          "mean": 0.3349490057491012,
+          "max": 0.9979463967462622
+        },
+        "l62i": {
+          "mean": 0.4933330571846654,
+          "max": 0.9993984423871386
+        },
+        "l62ii_printed": {
+          "mean": 0.25074196303918295,
+          "max": 0.6647575161817791
+        },
+        "l62ii_reduced": {
+          "mean": 0.37609905473360095,
+          "max": 0.997077763792584
+        }
+      }
+    ],
+    "points": 2999,
+    "t48_mean": 0.3349490057491012,
+    "t48_mean_is_one_third": true,
+    "t48_mean_stable_from_two_hundred": true,
+    "t48_max": 0.9979463967462622,
+    "t48_max_still_short": true,
+    "mean_settles_before_the_max": true,
+    "l62i_mean": 0.4933330571846654,
+    "l62i_mean_is_not_one_third": true,
+    "mean_needs_a_model": true,
+    "max_is_model_free": true,
+    "ratio_of_means": 0.66669128753006,
+    "ratio_of_maxima": 0.6667057879750938,
+    "both_recover_two_thirds": true,
+    "instruments_agree_on_a_fixed_ratio": true,
+    "mean_cannot_separate_loose_from_rarely_attained": true,
+    "why_the_census_reports_maxima": "a sparse sharp bound has a small mean and a maximum at 1"
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6106,5 +6184,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 100.5825457572937
+  "elapsed_seconds": 87.23851943016052
 }

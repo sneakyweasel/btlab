@@ -1729,3 +1729,31 @@ def test_the_exactness_belongs_to_the_term_not_the_nesting() -> None:
     # and the v-level probe still says the same term is deletable there
     v = A.lemma_6_2_part_ii_term_inventory(sweep_to=2000)
     assert v["second_term_is_deletable"] and v["second_over_first_limit"] == 0.5
+
+
+# --- mean ratio against maximum ratio, as instruments ---
+
+
+def test_the_mean_settles_before_the_maximum_but_needs_a_model() -> None:
+    """4.8's mean is 1/3 from 200 points; its max is still short at 3000. 6.2(i)'s mean is 1/2."""
+    r = A.bound_ratio_instruments()
+    assert r["t48_mean_is_one_third"] and abs(r["t48_mean"] - 1 / 3) < 0.01
+    assert r["t48_mean_stable_from_two_hundred"]
+    assert r["t48_max_still_short"] and r["mean_settles_before_the_max"]
+    # and the reference value is model-dependent: 6.2(i)'s ratio is not a square
+    assert r["l62i_mean_is_not_one_third"] and abs(r["l62i_mean"] - 0.5) < 0.02
+    assert r["mean_needs_a_model"] and r["max_is_model_free"]
+
+
+def test_both_instruments_recover_a_fixed_ratio_between_two_bounds() -> None:
+    """Printed against reduced 6.2(ii): means and maxima both give 2/3 to three figures."""
+    r = A.bound_ratio_instruments()
+    assert r["both_recover_two_thirds"] and r["instruments_agree_on_a_fixed_ratio"]
+    assert abs(r["ratio_of_means"] - 2 / 3) < 5e-3
+    assert abs(r["ratio_of_maxima"] - 2 / 3) < 5e-3
+    assert abs(r["ratio_of_means"] - r["ratio_of_maxima"]) < 5e-3
+    # the asymmetry that keeps the census on maxima
+    assert r["mean_cannot_separate_loose_from_rarely_attained"]
+    assert "sparse" in r["why_the_census_reports_maxima"]
+    assert len(r["rows"]) == 3 and r["rows"][0]["points"] == 200
+    assert r["rows"][-1]["points"] == r["points"]

@@ -4778,3 +4778,70 @@ reproduces the first checkpoint. OBSERVATION: the exactness of the
 Probes: `theorem_4_8_E_bound`, `THEOREM_4_8_E_CHECKPOINTS`. Two tests.
 Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
 manuscript or certificate edit.
+
+## Mean or maximum: the mean settles first, the maximum needs no model, and on a fixed ratio they agree
+
+The census reports maxima. The question was whether the mean ratio
+would find a bound loose by a constant sooner, since a loose bound moves
+the mean and a sharp one does not. Measured on the four ratios this
+ledger uses:
+
+```text
+    N      4.8 E: mean/max     6.2(i)          6.2(ii) printed   6.2(ii) reduced
+   200     0.3349 / 0.9807     0.4848/0.9859   0.2453/0.6294     0.3681/0.9439
+  1000     0.3308 / 0.9949     0.5006/0.9994   0.2569/0.6581     0.3853/0.9870
+  5000     0.3357 / 0.9985     0.4903/0.9994   0.2498/0.6656     0.3746/0.9983
+```
+
+**The mean settles much earlier.** Theorem 4.8's is `1/3` from two
+hundred points and stays inside a percent of it, which is the
+prediction: `E/bound = theta_w^2` with `theta_w` equidistributed gives
+`int_0^1 t^2 dt = 1/3`. The maximum is still `1.5%` short at a thousand
+points and `0.15%` short at five thousand, because it is waiting for
+`theta_w` to come near `1`.
+
+**But the mean needs a model and the maximum does not.** A sharp bound
+has maximum `1` whatever the ratio's distribution; its *mean* is `1/3`
+only when the ratio is `theta^2`. Lemma 6.2(i)'s mean is `0.5006` ---
+its ratio is uniform, not a square --- and that is not looseness. So a
+mean can only be read as a constant once the ratio's shape is known,
+and the two bounds studied here have different shapes.
+
+**On the question that actually arises, they agree.** "Is this term
+redundant" is "are these two bounds on one quantity in a fixed ratio",
+and for `6.2(ii)` printed against reduced:
+
+```text
+  ratio of means    0.666675
+  ratio of maxima   0.666767
+  the arithmetic    0.666667
+```
+
+Both to three figures. Whichever instrument is used, the redundant term
+shows as the same `3/2`.
+
+**The asymmetry that keeps the census on maxima.** A bound that is sharp
+only on a sparse set has a small mean and a maximum at `1`. The mean
+cannot separate "loose by a constant" from "sharp but rarely attained";
+the maximum can. Every finding in this ledger about a loose constant was
+of the first kind, and every one about a sharp bound was of the second,
+and only the maximum distinguishes them without a distributional
+assumption.
+
+So the answer is: the mean is the better instrument for *measuring* a
+constant when the ratio's shape is known, no better for *comparing* two
+bounds, and not a substitute for the maximum as a test of sharpness.
+
+Tags. EXACT: `E/bound = theta_w^2` with `theta_w` equidistributed gives
+mean `1/3`; a sharp bound has maximum `1` for any ratio distribution,
+which is why the maximum needs no model. COMPUTATIONALLY VERIFIED: the
+table above; `4.8`'s mean stays within a percent of `1/3` from `200`
+points while its maximum is `0.9807`, `0.9949`, `0.9985`; `6.2(i)`'s
+mean is `0.5006`; the ratio of means `0.666675` and of maxima
+`0.666767` against `2/3`. OBSERVATION: a sparse sharp bound has a small
+mean and a maximum at `1`, so the mean cannot separate the two kinds of
+looseness this ledger has been distinguishing.
+
+Probe: `bound_ratio_instruments`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

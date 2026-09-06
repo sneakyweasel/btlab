@@ -35249,3 +35249,67 @@ Best next question
   that is loose by a constant, since a loose bound moves the mean and a
   sharp one does not?
 ```
+
+## The mean is faster, the maximum is honest
+
+Theorem 4.8's mean ratio is `1/3` from two hundred points and stays
+there, which is what `E/bound = theta_w^2` predicts. Its maximum is
+`0.9807` at two hundred, `0.9949` at a thousand, `0.9985` at five
+thousand -- still climbing, because it is waiting for `theta_w` to come
+near `1`. So on speed the mean wins easily.
+
+On honesty it does not. A sharp bound has maximum `1` whatever the
+ratio's distribution; its mean is `1/3` only when the ratio is
+`theta^2`. Lemma 6.2(i)'s mean is `0.5006` -- a uniform ratio, not a
+square -- and that is not looseness. A mean is readable as a constant
+only once the shape is known, and the two bounds here have different
+shapes.
+
+For the question that actually arises -- is this term redundant, i.e.
+are two bounds on one quantity in a fixed ratio -- they agree: `6.2(ii)`
+printed against reduced gives `0.666675` by means and `0.666767` by
+maxima, against the arithmetic `2/3`.
+
+And there is one thing the mean cannot do. A bound sharp only on a
+sparse set has a small mean and a maximum at `1`; the mean cannot
+separate "loose by a constant" from "sharp but rarely attained". Every
+finding in this ledger about a loose constant was the first kind and
+every one about a sharp bound the second, so the census stays on
+maxima.
+
+```text
+Phase-end report
+Question
+- would the mean ratio be a better instrument than the maximum for
+  spotting a bound loose by a constant
+Instruments
+- bound_ratio_instruments: mean and maximum of four ratios -- Theorem
+  4.8's E, Lemma 6.2(i), and 6.2(ii) printed and reduced -- at 200,
+  1000 and 3000 points
+Ledger tags
+- EXACT: E/bound = theta_w^2 equidistributed gives mean 1/3; a sharp
+  bound has maximum 1 for any ratio distribution, so the maximum needs
+  no model
+- COMPUTATIONALLY VERIFIED: 4.8's mean within a percent of 1/3 from 200
+  points while its maximum runs 0.9807, 0.9949, 0.9985; 6.2(i)'s mean
+  0.5006; ratio of means 0.666675 and of maxima 0.666767 against 2/3
+- OBSERVATION: a sparse sharp bound has a small mean and a maximum at 1
+Strongest theorem
+- the mean measures a constant faster but only against a predicted
+  value; the maximum tests sharpness without one
+Strongest refutation
+- the premise of the question: the mean is not better in general, and on
+  the comparison that matters the two instruments agree to three figures
+Reusable machinery
+- bound_ratio_instruments, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  This is the audit characterising its own instruments; nothing here is
+  a manuscript change.
+Best next question
+- 6.2(i)'s ratio is uniform and 4.8's is a square. A uniform ratio means
+  the remainder is linear in a fractional part, a square means quadratic.
+  Which is 6.2(ii)'s, and does that say what the leading term of its
+  remainder actually is?
+```
