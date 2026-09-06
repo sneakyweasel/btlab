@@ -128,35 +128,6 @@
     {
       "candidates": [
         {
-          "decl": "affineGap_succ",
-          "line": 28,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "affineGap_eq_twoPow_mul_start_minus_x",
-          "line": 16,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "affineGap_nonneg_iff_x_le_n",
-          "line": 76,
-          "score": 0.25,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "id": "C-gap",
-      "in_file": 10,
-      "lean": "Problems/Collatz/FixedInteger.lean",
-      "names_own": [],
-      "statement": "Affine gap recurrence"
-    },
-    {
-      "candidates": [
-        {
           "decl": "odd_sub_even",
           "line": 69,
           "score": 0.2,
@@ -2610,55 +2581,26 @@
     {
       "candidates": [
         {
-          "decl": "dAdd_not_lsd_sum_local",
-          "line": 62,
-          "score": 0.333,
-          "trust": "compiler"
-        },
-        {
-          "decl": "addDigit_snd_eq_DZ",
-          "line": 21,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "dAdd_eq_addDigit",
-          "line": 27,
-          "score": 0.133,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "id": "BTN-dadd-repaired",
-      "in_file": 9,
-      "lean": "Problems/BalancedTernary/DAddResidual.lean",
-      "names_own": [],
-      "statement": "D(x+y)=D(x)+D(y)+D(lsd(x)+lsd(y)). The missing state at the unary/Add boundary is D of the local digit sum."
-    },
-    {
-      "candidates": [
-        {
           "decl": "dAdd_minimal_residual",
-          "line": 51,
+          "line": 53,
           "score": 0.235,
           "trust": "compiler"
         },
         {
-          "decl": "dAdd_fiber_three",
-          "line": 40,
-          "score": 0.083,
+          "decl": "dAdd_residual_closure",
+          "line": 85,
+          "score": 0.231,
           "trust": "compiler"
         },
         {
-          "decl": "dAdd_residual_closure",
-          "line": 81,
-          "score": 0.083,
+          "decl": "dAdd_fiber_three",
+          "line": 42,
+          "score": 0.154,
           "trust": "compiler"
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "id": "BTN-dadd-closure",
       "in_file": 9,
       "lean": "Problems/BalancedTernary/DAddResidual.lean",
@@ -3433,19 +3375,19 @@
       "candidates": [
         {
           "decl": "odd_even_finiteProgress",
-          "line": 75,
+          "line": 78,
           "score": 0.368,
           "trust": "kernel"
         },
         {
-          "decl": "finiteProgress_of_not_odd_odd",
-          "line": 86,
-          "score": 0.2,
+          "decl": "finiteProgress_of_imageLt",
+          "line": 22,
+          "score": 0.208,
           "trust": "kernel"
         },
         {
-          "decl": "no_finiteProgress_implies_odd_odd",
-          "line": 95,
+          "decl": "finiteProgress_of_not_odd_odd",
+          "line": 89,
           "score": 0.2,
           "trust": "kernel"
         }
@@ -4453,13 +4395,13 @@
       "candidates": [
         {
           "decl": "cycleMin_hug_kill_criterion",
-          "line": 438,
+          "line": 439,
           "score": 0.284,
           "trust": "kernel"
         },
         {
           "decl": "cycleMin_defect_finance",
-          "line": 368,
+          "line": 369,
           "score": 0.134,
           "trust": "kernel"
         },
@@ -4492,19 +4434,19 @@
       "candidates": [
         {
           "decl": "rotationAverage_gap",
-          "line": 224,
+          "line": 229,
           "score": 0.14,
           "trust": "kernel"
         },
         {
           "decl": "rotation_average_le",
-          "line": 122,
+          "line": 123,
           "score": 0.135,
           "trust": "kernel"
         },
         {
           "decl": "integral_quad_exp_le",
-          "line": 90,
+          "line": 91,
           "score": 0.123,
           "trust": "kernel"
         }
@@ -4952,6 +4894,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 165,
-  "worth_reviewing": 46
+  "unresolved": 163,
+  "worth_reviewing": 44
 }

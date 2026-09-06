@@ -54,6 +54,7 @@ noncomputable def quadPrim (ν t : ℝ) : ℝ :=
     (((2 - 6 / ν) / ν - 1) / ν + (2 - 6 / ν) / ν * (t - 1) +
       -(3 / ν) * ((t - 1) * (t - 1)))
 
+/-- Derivative of the quadratic-majorant primitive, used for the FTC evaluation. -/
 theorem hasDerivAt_quadPrim {ν : ℝ} (hν : ν ≠ 0) (t : ℝ) :
     HasDerivAt (quadPrim ν)
       (Real.exp (-ν * (t - 1)) *
@@ -144,6 +145,7 @@ theorem rotation_average_le {ν : ℝ} (hν : 0 < ν) :
 noncomputable def expPrim (ν t : ℝ) : ℝ :=
   Real.exp (-ν * (t - 1)) * (-1 / ν)
 
+/-- Derivative of the exponential primitive, used for the display bound. -/
 theorem hasDerivAt_expPrim {ν : ℝ} (hν : ν ≠ 0) (t : ℝ) :
     HasDerivAt (expPrim ν) (Real.exp (-ν * (t - 1))) t := by
   have h1 : HasDerivAt (fun u : ℝ => u - 1) 1 t :=
@@ -158,6 +160,7 @@ theorem hasDerivAt_expPrim {ν : ℝ} (hν : ν ≠ 0) (t : ℝ) :
   rw [heq]
   exact hprod
 
+/-- `int_1^3 e^{-nu (t-1)} dt < 1/nu` for `nu > 0`. -/
 theorem integral_exp_lt {ν : ℝ} (hν : 0 < ν) :
     (∫ t in (1 : ℝ)..3, Real.exp (-ν * (t - 1))) < 1 / ν := by
   rw [intervalIntegral.integral_eq_sub_of_hasDerivAt
@@ -200,6 +203,7 @@ letter of the infinite hug itinerary at the reduced base. -/
 noncomputable def rotationAverage (ν : ℝ) : ℝ :=
   (∫ t in (1 : ℝ)..3, Real.exp (ν * (1 - t)) / t ^ 2) / Real.log 3
 
+/-- Display bound: `C*(nu) < 1 / (log 3 * nu)` for every `nu > 0`. -/
 theorem rotationAverage_lt {ν : ℝ} (hν : 0 < ν) :
     rotationAverage ν < 1 / (Real.log 3 * ν) := by
   have h3 : (0 : ℝ) < Real.log 3 := Real.log_pos (by norm_num)
@@ -208,6 +212,7 @@ theorem rotationAverage_lt {ν : ℝ} (hν : 0 < ν) :
   gcongr
   exact rotation_average_lt hν
 
+/-- Laplace bound: `C*(nu) <= (1 - 2/nu + 6/nu^2) / (log 3 * nu)` for every `nu > 0`. -/
 theorem rotationAverage_le {ν : ℝ} (hν : 0 < ν) :
     rotationAverage ν ≤
       (1 - 2 / ν + 6 / ν ^ 2) / (Real.log 3 * ν) := by

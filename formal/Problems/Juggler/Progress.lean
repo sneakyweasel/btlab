@@ -18,6 +18,7 @@ gaps) live here. They do not know `AboveAnchor`, `CycleMin`, or
 def FiniteProgress (n : ℕ) : Prop :=
   DescentCertificate n
 
+/-- A realized word whose image drops below the start is a finite-progress certificate. -/
 theorem finiteProgress_of_imageLt {n : ℕ} {w : List Branch}
     (hw : follows n w) (hlt : image n w < n) : FiniteProgress n :=
   DescentCertificate.imageLt w hw hlt
@@ -27,10 +28,12 @@ theorem finiteProgress_of_descent {n : ℕ} {w : List Branch}
     (hw : follows n w) (hlt : image n w < n) : FiniteProgress n :=
   finiteProgress_of_imageLt hw hlt
 
+/-- A realized word whose image is `1` is a finite-progress certificate. -/
 theorem finiteProgress_of_capture {n : ℕ} {w : List Branch}
     (hw : follows n w) (himg : image n w = 1) : FiniteProgress n :=
   DescentCertificate.capture w hw himg
 
+/-- A descent certificate at `n` gives `FiniteProgress n`. -/
 theorem finiteProgress_of_certificate {n : ℕ}
     (C : DescentCertificate n) : FiniteProgress n :=
   C

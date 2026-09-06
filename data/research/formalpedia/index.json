@@ -885,7 +885,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The carry of `addDigit a b` on trits is `D (a + b)`.",
       "file": "formal/Problems/BalancedTernary/DAddResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -893,7 +893,7 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 21,
+      "line": 22,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "addDigit_snd_eq_DZ",
       "trust": "kernel"
@@ -907,7 +907,7 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 27,
+      "line": 28,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_eq_addDigit",
       "trust": "kernel"
@@ -921,13 +921,13 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 34,
+      "line": 35,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_repaired",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The three fibre values `D(0+0) = 0`, `D(1+1) = 1`, `D(-1 + -1) = -1`.",
       "file": "formal/Problems/BalancedTernary/DAddResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -935,7 +935,7 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 40,
+      "line": 42,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_fiber_three",
       "trust": "compiler"
@@ -949,7 +949,7 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 51,
+      "line": 53,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_minimal_residual",
       "trust": "compiler"
@@ -963,7 +963,7 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 58,
+      "line": 60,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "DLocalLsdSum",
       "trust": "kernel"
@@ -977,13 +977,13 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 62,
+      "line": 64,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_not_lsd_sum_local",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "On the diagonal `a = b` the residual step is `D (s + 2a)`.",
       "file": "formal/Problems/BalancedTernary/DAddResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -991,13 +991,13 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 76,
+      "line": 79,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_diagonal",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Closure: if `s`, `a`, `b` are trits then `dAddNext s a b` is a trit.",
       "file": "formal/Problems/BalancedTernary/DAddResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -1005,13 +1005,13 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 81,
+      "line": 85,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_residual_closure",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "The emitted digit of the residual step is always a trit.",
       "file": "formal/Problems/BalancedTernary/DAddResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -1019,7 +1019,7 @@
         "BTN-dadd-lsd-sum",
         "BTN-dadd-closure"
       ],
-      "line": 88,
+      "line": 93,
       "module": "Problems.BalancedTernary.DAddResidual",
       "name": "dAdd_out_is_trit",
       "trust": "kernel"
@@ -15901,13 +15901,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "One-step recurrence for the running prefix charge.",
       "file": "formal/Problems/Juggler/DefectFinance.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-defect-finance-kill"
       ],
-      "line": 261,
+      "line": 262,
       "module": "Problems.Juggler.DefectFinance",
       "name": "prefixCharge_succ",
       "trust": "kernel"
@@ -15919,7 +15919,7 @@
       "ledger": [
         "J-cyclemin-defect-finance-kill"
       ],
-      "line": 268,
+      "line": 269,
       "module": "Problems.Juggler.DefectFinance",
       "name": "prefixCharge_eq",
       "trust": "kernel"
@@ -15931,7 +15931,7 @@
       "ledger": [
         "J-cyclemin-defect-finance-kill"
       ],
-      "line": 278,
+      "line": 279,
       "module": "Problems.Juggler.DefectFinance",
       "name": "cycleMin_charge_prefix",
       "trust": "kernel"
@@ -15943,7 +15943,7 @@
       "ledger": [
         "J-cyclemin-defect-finance-kill"
       ],
-      "line": 368,
+      "line": 369,
       "module": "Problems.Juggler.DefectFinance",
       "name": "cycleMin_defect_finance",
       "trust": "kernel"
@@ -15955,7 +15955,7 @@
       "ledger": [
         "J-cyclemin-defect-finance-kill"
       ],
-      "line": 438,
+      "line": 439,
       "module": "Problems.Juggler.DefectFinance",
       "name": "cycleMin_hug_kill_criterion",
       "trust": "kernel"
@@ -39792,13 +39792,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A realized word whose image drops below the start is a finite-progress certificate.",
       "file": "formal/Problems/Juggler/Progress.lean",
       "kind": "theorem",
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 21,
+      "line": 22,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_imageLt",
       "trust": "kernel"
@@ -39810,31 +39810,31 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 26,
+      "line": 27,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_descent",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A realized word whose image is `1` is a finite-progress certificate.",
       "file": "formal/Problems/Juggler/Progress.lean",
       "kind": "theorem",
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 30,
+      "line": 32,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_capture",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A descent certificate at `n` gives `FiniteProgress n`.",
       "file": "formal/Problems/Juggler/Progress.lean",
       "kind": "theorem",
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 34,
+      "line": 37,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_certificate",
       "trust": "kernel"
@@ -39846,7 +39846,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 40,
+      "line": 43,
       "module": "Problems.Juggler.Progress",
       "name": "reachesOne_of_finiteProgress",
       "trust": "kernel"
@@ -39858,7 +39858,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 54,
+      "line": 57,
       "module": "Problems.Juggler.Progress",
       "name": "reachesOne_of_all_finiteProgress",
       "trust": "kernel"
@@ -39870,7 +39870,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 68,
+      "line": 71,
       "module": "Problems.Juggler.Progress",
       "name": "even_finiteProgress",
       "trust": "kernel"
@@ -39882,7 +39882,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 75,
+      "line": 78,
       "module": "Problems.Juggler.Progress",
       "name": "odd_even_finiteProgress",
       "trust": "kernel"
@@ -39894,7 +39894,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 86,
+      "line": 89,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_not_odd_odd",
       "trust": "kernel"
@@ -39906,7 +39906,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 95,
+      "line": 98,
       "module": "Problems.Juggler.Progress",
       "name": "no_finiteProgress_implies_odd_odd",
       "trust": "kernel"
@@ -39918,7 +39918,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 102,
+      "line": 105,
       "module": "Problems.Juggler.Progress",
       "name": "unresolved_is_odd_odd",
       "trust": "kernel"
@@ -39930,7 +39930,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 108,
+      "line": 111,
       "module": "Problems.Juggler.Progress",
       "name": "odd_odd_image_gt",
       "trust": "kernel"
@@ -39942,7 +39942,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 114,
+      "line": 117,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_prefix_drop",
       "trust": "kernel"
@@ -39954,7 +39954,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 120,
+      "line": 123,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_even_below_square",
       "trust": "kernel"
@@ -39966,7 +39966,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 130,
+      "line": 133,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_power_bound_lt_pow",
       "trust": "kernel"
@@ -39978,7 +39978,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 139,
+      "line": 142,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_even_power_bound_square",
       "trust": "kernel"
@@ -39990,7 +39990,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 146,
+      "line": 149,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_odd_even_eighth",
       "trust": "kernel"
@@ -40002,7 +40002,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 167,
+      "line": 170,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_cube_odd_even_below_square",
       "trust": "kernel"
@@ -40014,7 +40014,7 @@
       "ledger": [
         "J-finite-progress-boundary"
       ],
-      "line": 186,
+      "line": 189,
       "module": "Problems.Juggler.Progress",
       "name": "finiteProgress_of_cube_even_even",
       "trust": "kernel"
@@ -40872,13 +40872,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Derivative of the quadratic-majorant primitive, used for the FTC evaluation.",
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 57,
+      "line": 58,
       "module": "Problems.Juggler.RotationAverage",
       "name": "hasDerivAt_quadPrim",
       "trust": "kernel"
@@ -40890,7 +40890,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 90,
+      "line": 91,
       "module": "Problems.Juggler.RotationAverage",
       "name": "integral_quad_exp_le",
       "trust": "kernel"
@@ -40902,31 +40902,31 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 122,
+      "line": 123,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotation_average_le",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Derivative of the exponential primitive, used for the display bound.",
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 147,
+      "line": 149,
       "module": "Problems.Juggler.RotationAverage",
       "name": "hasDerivAt_expPrim",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`int_1^3 e^{-nu (t-1)} dt < 1/nu` for `nu > 0`.",
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 161,
+      "line": 164,
       "module": "Problems.Juggler.RotationAverage",
       "name": "integral_exp_lt",
       "trust": "kernel"
@@ -40938,31 +40938,31 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 178,
+      "line": 181,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotation_average_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Display bound: `C*(nu) < 1 / (log 3 * nu)` for every `nu > 0`.",
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 203,
+      "line": 207,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotationAverage_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Laplace bound: `C*(nu) <= (1 - 2/nu + 6/nu^2) / (log 3 * nu)` for every `nu > 0`.",
       "file": "formal/Problems/Juggler/RotationAverage.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 211,
+      "line": 216,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotationAverage_le",
       "trust": "kernel"
@@ -40974,7 +40974,7 @@
       "ledger": [
         "J-cyclemin-rotation-average"
       ],
-      "line": 224,
+      "line": 229,
       "module": "Problems.Juggler.RotationAverage",
       "name": "rotationAverage_gap",
       "trust": "kernel"

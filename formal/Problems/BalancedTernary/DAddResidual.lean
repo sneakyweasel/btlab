@@ -18,6 +18,7 @@ def dAddNext (s a b : ℤ) : ℤ :=
 def dAddOut (s a b : ℤ) : ℤ :=
   lsdZ (s + a + b)
 
+/-- The carry of `addDigit a b` on trits is `D (a + b)`. -/
 theorem addDigit_snd_eq_DZ {a b : ℤ} (ha : isTrit a) (hb : isTrit b) :
     (addDigit a b).2 = DZ (a + b) := by
   rcases ha with ha | ha | ha <;> rcases hb with hb | hb | hb <;>
@@ -37,6 +38,7 @@ theorem dAdd_repaired (x y : ℤ) :
   exact congrArg (fun t => DZ x + DZ y + t)
     (addDigit_snd_eq_DZ (lsdZ_is_trit x) (lsdZ_is_trit y))
 
+/-- The three fibre values `D(0+0) = 0`, `D(1+1) = 1`, `D(-1 + -1) = -1`. -/
 theorem dAdd_fiber_three :
     DZ (0 + 0) = 0 ∧
       DZ (1 + 1) = 1 ∧
@@ -73,11 +75,13 @@ theorem dAdd_not_lsd_sum_local : ¬ DLocalLsdSum fun x y => DZ (x + y) := by
   simp [d1, d0, dm, l11, l0m, h2, hm1] at h11 h0m
   exact absurd (h11.trans h0m.symm) (by decide : (1 : ℤ) ≠ 0)
 
+/-- On the diagonal `a = b` the residual step is `D (s + 2a)`. -/
 theorem dAdd_diagonal (s a : ℤ) :
     dAddNext s a a = DZ (s + 2 * a) := by
   simp [dAddNext]
   ring_nf
 
+/-- Closure: if `s`, `a`, `b` are trits then `dAddNext s a b` is a trit. -/
 theorem dAdd_residual_closure {s a b : ℤ}
     (hs : isTrit s) (ha : isTrit a) (hb : isTrit b) :
     isTrit (dAddNext s a b) := by
@@ -85,6 +89,7 @@ theorem dAdd_residual_closure {s a b : ℤ}
     rcases hb with hb | hb | hb <;>
       (simp [dAddNext, hs, ha, hb, isTrit, DZ, lsdZ]; try native_decide)
 
+/-- The emitted digit of the residual step is always a trit. -/
 theorem dAdd_out_is_trit (s a b : ℤ) :
     isTrit (dAddOut s a b) :=
   lsdZ_is_trit (s + a + b)

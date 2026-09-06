@@ -258,6 +258,7 @@ noncomputable def prefixCharge (n : ℕ) : ℕ → ℝ
       1.2 * Real.log n /
         ((floorPower^[k + 1] n : ℝ) * Real.log (floorPower^[k + 1] n))
 
+/-- One-step recurrence for the running prefix charge. -/
 theorem prefixCharge_succ (n k : ℕ) :
     prefixCharge n (k + 1) = prefixCharge n k +
       1.2 * Real.log n /

@@ -149,6 +149,8 @@
   "statement": "Affine gap recurrence",
   "source": "docs/collatz_fixed_integer_asymptotics.md",
   "lean": "Problems/Collatz/FixedInteger.lean",
+  "decl": "affineGap_succ",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/collatz/test_fixed_integer.py"
   ],
@@ -2513,6 +2515,8 @@
   "statement": "D(x+y)=D(x)+D(y)+D(lsd(x)+lsd(y)). The missing state at the unary/Add boundary is D of the local digit sum.",
   "source": "docs/problems/d_add_residual.md",
   "lean": "Problems/BalancedTernary/DAddResidual.lean",
+  "decl": "dAdd_repaired",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/balanced_ternary/test_d_add.py"
   ],
