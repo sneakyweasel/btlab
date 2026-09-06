@@ -1088,3 +1088,17 @@ def test_the_audit_knows_what_a_one_percent_cut_would_set_off() -> None:
     # P_0 is a solved threshold, so every constant moves it past the two-figure boundary
     assert r["every_P0_constant_moves_it_past_the_boundary"]
     assert r["P0_two_figure_resolution_at_a_boundary"] < 0.02
+
+
+# --- the r=4 reading, settled on instances rather than passages ---
+
+
+def test_A5s_transition_bound_survives_on_admissible_instances() -> None:
+    """A.5's (4, 1) holds on every instance that satisfies Lemma 3.9's own hypothesis."""
+    r = A.lemma_3_9_admissible_search(trials=120, grid=400)
+    assert r["admissible"] > 0.8 * r["trials"]
+    assert r["nonempty_sublevel"] == r["admissible"]
+    assert r["A5_bound_holds_on_every_admissible_instance"]
+    assert r["worst_measure_over_A5_bound"] < 0.6
+    assert r["r4_branch_fires"]          # not surviving by the branch never firing
+    assert r["room_left"] > 1.5

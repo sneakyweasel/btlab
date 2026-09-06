@@ -2393,3 +2393,48 @@ in three printed constants, a few-percent error in \(P_0\), and nothing
 at all in the two bracket constants, whose looseness is structural and
 whose sharp values --- \(\tfrac32\) and \(\tfrac{27}4\) --- were found
 by expansion rather than by sampling.
+
+## The \(r=4\) reading, settled on instances: A.5 is right
+
+Two entries ago this ledger recorded three readings of the transition
+lengths --- A.5's \((4,1)\), A.6's \((2,1)\), Lemma 3.9's proof
+\((4,8\) per interval, up to two\()\) --- and said the direction ran
+against the paper, with \(P_1\) five orders higher on the proof's
+constants. That was a comparison of passages. This entry compares them
+against the objects.
+
+**The test.** Three-term monomials on the Step-5b triple
+\((\tfrac54,\tfrac{11}8,\tfrac32)\) with a zero of \(f''\) inside
+\((P,2P]\), kept only when Lemma 3.9's own hypothesis
+\(\max(\lvert f''\rvert,n\lvert f'''\rvert,n^2\lvert f''''\rvert)\ge
+c_7S\) holds across the block. On \(383\) admissible instances of
+\(400\), with \(V=c_7S/2\):
+
+| | value |
+|---|---|
+| instances with a nonempty sublevel set | \(383/383\) |
+| instances with a point served only by \(f''''\) | \(7\) (\(1.8\%\)) |
+| worst \(\lvert\Omega_V\rvert\) against A.5's bound | \(0.3699\) |
+
+**A.5's display holds on every one, with a factor of \(2.7\) to spare.**
+And the \(r=4\) branch is not vacuous --- it fires on about \(2\%\) of
+admissible instances --- so the smaller constant is not surviving
+because the case never arises. The proof's constants are what the
+derivation gives; A.5's are what the objects need.
+
+**What a violation requires.** Forcing a *double* zero of \(f''\) does
+break A.5's bound --- the sublevel set fills the whole block, a factor
+\(\sqrt2\) past it --- but every such instance fails the hypothesis:
+\(\max(\lvert f''\rvert,n\lvert f'''\rvert,n^2\lvert f''''\rvert)/S\)
+drops to \(0.002\)--\(0.004\) against \(c_7=0.0043\). That is what
+\(c_7\) is for, and it is the first time in this ledger that a
+constant's *purpose* has shown up in a measurement rather than in
+prose.
+
+**So the earlier entry stands corrected.** The three passages do differ,
+and a reader reconstructing Lemma 3.9's proof gets \(16\) where A.5
+carries \(1\); but A.5's number is not wrong, it is sharper than the
+derivation that precedes it, and \(P_1=9.8\cdot10^{18}\) stands.
+COMPUTATIONALLY VERIFIED on one family of instances --- three-term
+monomials with a simple zero --- and not a proof; what it removes is the
+suggestion that the paper's own proof contradicts its appendix.

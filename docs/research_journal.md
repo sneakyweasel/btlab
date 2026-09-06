@@ -32260,3 +32260,66 @@ Best next question
   function. Is any probe now redundant -- does any pair of them fail
   together on every perturbation, so that one could go?
 ```
+
+## The r=4 reading, settled against instances: A.5 is right and my entry was not
+
+Two entries ago I recorded three readings of the transition lengths and
+said the direction ran against the paper, with `P_1` five orders higher
+on Lemma 3.9's proof constants. That compared passages. This compares
+them against the objects, and the paper wins.
+
+**The test.** Three-term monomials on the Step-5b triple
+`(5/4, 11/8, 3/2)` with a zero of `f''` inside `(P, 2P]`, kept only when
+Lemma 3.9's own hypothesis `max(|f''|, n|f'''|, n^2|f''''|) >= c_7 S`
+holds across the block. On `383` admissible instances of `400`, at
+`V = c_7 S/2`: every one has a nonempty sublevel set, `7` of them
+(`1.8%`) have a point served only by the fourth derivative, and the
+worst `|Omega_V|` against A.5's bound is `0.3699`.
+
+So **A.5's `(4, 1)` holds on every admissible instance with a factor of
+`2.7` to spare**, and the `r=4` branch is not vacuous -- it fires on
+about `2%` -- so the smaller constant is not surviving by the case never
+arising.
+
+**What a violation needs.** Forcing a *double* zero of `f''` does break
+A.5's bound: the sublevel set fills the whole block, `sqrt(2)` past it.
+But every such instance fails the hypothesis --
+`max(|f''|, n|f'''|, n^2|f''''|)/S` falls to `0.002`-`0.004` against
+`c_7 = 0.0043`. That is exactly what `c_7` is for, and it is the first
+time in this journal that a constant's purpose has turned up in a
+measurement rather than in prose.
+
+**The correction.** The three passages do differ, and a reader
+reconstructing the proof gets `16` where A.5 carries `1`. But A.5's
+number is not wrong -- it is sharper than the derivation preceding it --
+and `P_1 = 9.8e18` stands. My earlier framing, "the direction is against
+the paper", was the framing of someone who had compared two texts and
+not the thing they describe.
+
+```text
+What was learned
+- A.5's transition constants hold on the objects with 2.7x of room,
+  while its proof's are worst-case and 16x looser
+- the r=4 branch fires on about 2% of admissible instances, so the
+  small constant is not surviving by vacuity
+- c_7 = 1/232 is precisely what excludes the double zero that would
+  break the bound: the hypothesis is doing visible work
+Strongest theorem
+- none; this is a measurement that settles a textual discrepancy
+Strongest refutation
+- my own entry from two passes ago, which read a five-order gap in P_1
+  off a comparison of passages
+Reusable machinery
+- lemma_3_9_admissible_search: admissible-instance sampling with the
+  hypothesis checked on a grid; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  A finding that runs against a paper deserves more scrutiny than one
+  that runs for it, and this one did not get enough at the time. The
+  instances were two hours of work and they answer it.
+Best next question
+- the same method applies to the other place where a proof's constant
+  and an appendix's differ: A.6's r=3 length of 2 P V/(c_3 S) against
+  the proof's 4. Does the measured transition set separate those two?
+```

@@ -3000,6 +3000,75 @@ def perturbation_sensitivity(cut: float = 0.01, samples_per_range: int = 12) -> 
         "some_P0_constant_moves_it_less_than_guaranteed": any(abs(v) < 0.1 / mantissa for v in moves.values()),
     }
 
+def lemma_3_9_admissible_search(trials: int = 400, grid: int = 800, P: int = 10**6,
+                                seed: int = 39) -> dict[str, Any]:
+    """Does A.5's transition bound survive on the objects it describes?  It does.
+
+    The entry above recorded three readings of the r=3 and r=4 lengths -- A.5's (4, 1), A.6's
+    (2, 1) and Lemma 3.9's proof (4, 8 per interval, up to two).  This tests them against instances
+    rather than passages: three-term monomials on the Step-5b triple (5/4, 11/8, 3/2) with a zero
+    of f'' inside the block, kept only when Lemma 3.9's own hypothesis
+    max(|f''|, n|f'''|, n^2|f''''|) >= c_7 S holds across the block.
+
+    On those, A.5's display holds every time, with the worst ratio about 0.37: the proof's constants
+    are what the derivation gives and A.5's are what the objects need.  The r=4 branch is not
+    vacuous -- about 3% of admissible instances have a sublevel point served only by the fourth
+    derivative -- so the smaller constant is not surviving by the branch never firing.
+
+    Constructions that do violate A.5's bound exist, but they fail the hypothesis: forcing a double
+    zero of f'' pushes max(|f''|, n|f'''|, n^2|f''''|)/S to 0.002-0.004, below c_7 = 0.0043.  That
+    is what c_7 is for.  COMPUTATIONALLY VERIFIED on one family; not a proof.
+    """
+
+    al, be, ga = 1.25, 1.375, 1.5
+    c7 = p0_certificate.C7
+    d2 = lambda e: e * (e - 1)                                    # noqa: E731
+    d3 = lambda e: e * (e - 1) * (e - 2)                          # noqa: E731
+    d4 = lambda e: e * (e - 1) * (e - 2) * (e - 3)                # noqa: E731
+    exps = (al, be, ga)
+    xs = [P + P * i / grid for i in range(grid + 1)]
+    rng = random.Random(seed)
+
+    admissible = nonempty = r4_points = 0
+    worst = 0.0
+    for _ in range(trials):
+        n0 = P * rng.uniform(1.05, 1.95)
+        a = rng.uniform(-1, 1) * P ** (2 - al)
+        b = rng.uniform(-1, 1) * P ** (2 - be)
+        c = -(a * d2(al) * n0 ** (al - 2) + b * d2(be) * n0 ** (be - 2)) / (d2(ga) * n0 ** (ga - 2))
+        co = (a, b, c)
+        S = max(abs(x) * P ** (e - 2) for x, e in zip(co, exps))
+        if S <= 0:
+            continue
+        vals = []
+        for n in xs:
+            v2 = sum(x * d2(e) * n ** (e - 2) for x, e in zip(co, exps))
+            v3 = sum(x * d3(e) * n ** (e - 3) for x, e in zip(co, exps))
+            v4 = sum(x * d4(e) * n ** (e - 4) for x, e in zip(co, exps))
+            vals.append((n, v2, v3, v4))
+        if min(max(abs(v2), n * abs(v3), n * n * abs(v4)) for n, v2, v3, v4 in vals) < c7 * S:
+            continue
+        admissible += 1
+        V = c7 * S / 2
+        sub = [(n, v2, v3, v4) for n, v2, v3, v4 in vals if abs(v2) <= V]
+        if not sub:
+            continue
+        nonempty += 1
+        if any(n * abs(v3) < c7 * S <= n * n * abs(v4) for n, v2, v3, v4 in sub):
+            r4_points += 1
+        measure = len(sub) * (P / grid)
+        bound = 4 * P * V / (c7 * S) + P * (V / (c7 * S)) ** 0.5
+        worst = max(worst, measure / bound)
+
+    return {
+        "P": P, "trials": trials, "admissible": admissible, "nonempty_sublevel": nonempty,
+        "instances_with_an_r4_only_point": r4_points,
+        "r4_branch_fires": r4_points > 0,
+        "worst_measure_over_A5_bound": worst,
+        "A5_bound_holds_on_every_admissible_instance": worst < 1.0,
+        "room_left": (1.0 / worst) if worst > 0 else None,
+    }
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3053,6 +3122,7 @@ def summary() -> dict[str, Any]:
     l410 = lemma_4_10_sharpness(random_trials=200)
     classical = classical_inputs_check()
     sensitivity = perturbation_sensitivity()
+    admissible = lemma_3_9_admissible_search(trials=150, grid=500)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3094,6 +3164,7 @@ def summary() -> dict[str, Any]:
         "lemma_4_10_sharpness": l410,
         "classical_inputs_check": classical,
         "perturbation_sensitivity": sensitivity,
+        "lemma_3_9_admissible_search": admissible,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
