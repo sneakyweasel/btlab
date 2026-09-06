@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "0da2ea0a95bb9ca9bf0bac2e99d1a390e36ea8c6",
+  "git_commit": "f08e94387877f721767c5234f5ec47e6e6a43810",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3817,7 +3817,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6638,
+        "line": 6639,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3825,7 +3825,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6717,
+        "line": 6718,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -4857,6 +4857,27 @@
       }
     }
   },
+  "derivative_bound_certificate": {
+    "samples": 64,
+    "offset_samples": 26,
+    "chain_holds_at_every_sample": true,
+    "mean_value_points_never_located": true,
+    "offset_ratio_to_nine_eighths": 0.9999999999999838,
+    "nine_eighths_is_statable": true,
+    "curvature_ratio_to_eighty_one_sixteenths": 1.0002470905479397,
+    "eighty_one_sixteenths_is_statable_as_is": false,
+    "curvature_excess": 0.000247090547939699,
+    "carry_model_holds_at_every_sample": true,
+    "carry_model_worst_ratio": 0.9999999919606631,
+    "worst_beta_over_the_smooth_value": 0.8588791148562454,
+    "excess_is_the_level_1_carry": true,
+    "statable_curvature_constant_from_1e6": 5.0658755625000005,
+    "statable_curvature_rounded": 5.07,
+    "printed_offset_constant": 2.0,
+    "printed_curvature_constant": 20.0,
+    "offset_slack": 1.7777777777777777,
+    "curvature_slack": 3.947984855382045
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -4924,5 +4945,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 71.54792881011963
+  "elapsed_seconds": 80.43517017364502
 }

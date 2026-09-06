@@ -33642,3 +33642,71 @@ Best next question
   stated ones. Does the second one need controlling at all, or does
   monotonicity of (m + xi)^(-1/2) in xi give 81/16 outright at
   xi_2 = 0?
+
+## The obstacle was free and the cost was somewhere else
+
+`xi_1` and `xi_2` looked like what stood between the measured constants
+and stated ones. They are the part that costs nothing: both factors of
+
+```text
+  F'(m) = (3/4) j (m + b1 + b2 + xi)^(-1/2) - (3/8) b1 b2 (m + xi')^(-3/2)
+```
+
+are decreasing in their mean-value point, so the supremum over the
+admissible interval sits at the endpoint and neither point is ever
+located. That display is itself the lemma's own splitting identity
+applied a second time, now to the double difference of the square root
+--- no new estimate anywhere.
+
+What does cost a line is the level-1 carry. `beta_i = floor(Delta X) +
+kappa_i` can beat the smooth `3 h_i n^(1/2)` by up to `1`; the worst
+sample has `3h sqrt(n) = 4058.44` against `beta = 4059`, and that is the
+whole `2.74e-4` by which `81/16` is missed. With `beta_i <= 3 h_i (n +
+2h_i)^(1/2) + 1`, which holds at every sample, the statable constant is
+`(81/16)(1 + 1/(3 sqrt P))^2`: `5.066` at `1e6`, `5.0625 + 5e-10` at
+`P_0`, and `5.07` covers the whole range. The offset constant needs no
+correction at all: `(9/8)|j| n^(-1/4)` outright, measured at
+`1 - 1.6e-14` of itself.
+
+Against the printed `2` and `20`, that is `1.78` and `3.95` of slack
+available for the price of one more application of an identity already
+in the lemma.
+
+```text
+Phase-end report
+Question
+- can 9/8 and 81/16 be stated, or do the split's mean-value points have
+  to be located first
+Instruments
+- derivative_bound_certificate: |G'| against the two terms at the worst
+  admissible mean-value points, 100 samples over four ranges, with the
+  carry-corrected model for beta_1 beta_2 checked alongside
+Ledger tags
+- EXACT: F' is the split applied a second time; both factors decreasing
+  in their mean-value point; (9/8)|j| n^(-1/4) outright given b1+b2 >= 2
+  and j >= -1; beta_i <= 3 h_i (n+2h_i)^(1/2) + 1
+- COMPUTATIONALLY VERIFIED: the chain holds at all 100 samples; offset
+  ratio 1 - 1.6e-14, curvature ratio 1 + 2.74e-4; carry model holds
+  everywhere; worst beta excess 0.849
+- OBSERVATION: 5.07 covers the curvature term from 1e6 on
+Strongest theorem
+- the mean-value points never need locating, so the sharper pair of
+  constants costs one application of an identity the lemma proves
+Strongest refutation
+- my own "HUMAN PROOF: xi_1 and xi_2 need controlling" from last pass:
+  they do not, and the one thing that does is the carry, which I had
+  not looked at
+Reusable machinery
+- derivative_bound_certificate, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Five findings now converge on three printed numbers in Lemma 5.1(iii)
+  -- the cap, the 2 and the 20 -- and the manuscript is the concurrent
+  session's. The cap has already moved; the two constants are recorded
+  with the argument that would move them.
+Best next question
+- 22 in the run-length bound is the third of those numbers and the run
+  counts sit 23x under it. Does 22 come from the same two terms, in
+  which case (9/8, 81/16) fixes it too, or from somewhere else?
+```

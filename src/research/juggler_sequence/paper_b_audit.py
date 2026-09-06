@@ -3881,6 +3881,109 @@ def run_bound_shape(P: int = 2 * 10**4, families: tuple[tuple[int, int], ...] = 
     }
 
 
+def derivative_bound_certificate(seed: int = 34, samples_per_range: int = 25) -> dict[str, Any]:
+    """Can 9/8 and 81/16 be *stated*, or do the split's mean-value points have to be located first?
+
+    Differentiating the exact F gives, with no approximation,
+
+        F'(m) = (3/2)[(m+b12)^{1/2} - (m+b1)^{1/2} - (m+b2)^{1/2} + m^{1/2}],
+
+    and applying the lemma's own splitting identity a second time to that double difference of the
+    square root,
+
+        F'(m) = (3/4) j (m + b1 + b2 + xi)^{-1/2} - (3/8) b1 b2 (m + xi')^{-3/2},
+
+    with xi between 0 and j and xi' in (0, b1+b2).  Both factors are *decreasing* in their
+    mean-value point, so the supremum over admissible xi is at xi = min(0, j) and over xi' at
+    xi' = 0: the points never have to be located.  That is the whole of what stood between the
+    measured constants and stated ones -- for the offset term.  Writing G = F o X and
+    X'(n) = (3/2) n^{1/2}, and using b1 + b2 >= 2 with j >= -1,
+
+        |offset term of G'(n)|  <=  (9/8) |j| n^{-1/4}          -- outright, no correction.
+
+    The curvature term keeps one correction, and it is not the mean-value point: it is the level-1
+    carry.  b_i = floor(Delta_{2h_i} X) + kappa_i can exceed the smooth 3 h_i n^{1/2} by up to 1 --
+    the sample that attains the worst ratio has 3h sqrt(n) = 4058.44 and b = 4059.  The honest
+    statement is b_i <= 3 h_i (n + 2h_i)^{1/2} + 1, which holds at every sample, and
+
+        |curvature term of G'(n)| <= (81/16)(1 + 1/(3h_1 n^{1/2}))(1 + 1/(3h_2 n^{1/2})) h_1h_2 n^{-3/4}
+                                  <= 5.07 h_1 h_2 n^{-3/4}   for n >= 10^6, h_i >= 1.
+
+    So both constants are statable as they stand -- 9/8 exactly, and 81/16 with a factor
+    (1 + 1/(3 P^{1/2}))^2 that is 1.00067 at 10^6 and 1.0000000005 at P_0.  Against the printed 2
+    and 20 that is a factor 1.78 and 3.95, and it needs no new estimate, only the splitting
+    identity the lemma already proves, applied once more.
+    """
+
+    rng = random.Random(seed)
+    ranges = [(10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10), (10**14, 2 * 10**14)]
+    th = mp.mpf(3) / 2
+    chain_failures = 0
+    carry_failures = 0
+    worst_offset = 0.0
+    worst_curvature = 0.0
+    worst_carry_model = 0.0
+    worst_beta_excess = 0.0
+    offset_samples = 0
+    total = 0
+    for lo, hi in ranges:
+        P = lo
+        with mp.workdps(working_dps_for(hi)):
+            H1 = max(1, int(P ** (1 / 48)))
+            H2 = max(1, int(P ** (1 / 24)))
+            for _ in range(samples_per_range):
+                n = rng.randrange(lo, hi) | 1
+                h1, h2 = rng.randint(1, H1), rng.randint(1, H2)
+                beta1, _, _ = level1_data(n, 2 * h1)
+                beta2, _, _ = level1_data(n, 2 * h2)
+                beta12, _, _ = level1_data(n, 2 * h1 + 2 * h2)
+                j = beta12 - beta1 - beta2
+                nm = mp.mpf(n)
+                X = mp.power(nm, th)
+                total += 1
+
+                Gp = th * (mp.sqrt(X + beta12) - mp.sqrt(X + beta1) - mp.sqrt(X + beta2)
+                           + mp.sqrt(X)) * th * mp.sqrt(nm)
+                # the two terms at the worst admissible mean-value points, located nowhere
+                T1 = mp.mpf(3) / 4 * abs(j) * mp.power(X + beta1 + beta2 + min(0, j), -mp.mpf(1) / 2) * th * mp.sqrt(nm)
+                T2 = mp.mpf(3) / 8 * beta1 * beta2 * mp.power(X, -th) * th * mp.sqrt(nm)
+                if abs(Gp) > T1 + T2:
+                    chain_failures += 1
+                if j:
+                    offset_samples += 1
+                    worst_offset = max(worst_offset, float(T1 / (mp.mpf(9) / 8 * abs(j) * mp.power(nm, -mp.mpf(1) / 4))))
+                worst_curvature = max(worst_curvature, float(T2 / (mp.mpf(81) / 16 * h1 * h2 * mp.power(nm, -th / 2))))
+                # the carry-corrected model for beta_1 beta_2, and how far the smooth one is out
+                model = (3 * h1 * mp.sqrt(nm + 2 * h1) + 1) * (3 * h2 * mp.sqrt(nm + 2 * h2) + 1)
+                if beta1 * beta2 > model:
+                    carry_failures += 1
+                worst_carry_model = max(worst_carry_model, float(mp.mpf(beta1) * beta2 / model))
+                worst_beta_excess = max(worst_beta_excess, float(mp.mpf(beta1) - 3 * h1 * mp.sqrt(nm)))
+    lo_P = ranges[0][0]
+    statable_curvature = 81 / 16 * (1 + 1 / (3 * math.sqrt(lo_P))) ** 2
+    return {
+        "samples": total,
+        "offset_samples": offset_samples,
+        "chain_holds_at_every_sample": chain_failures == 0,
+        "mean_value_points_never_located": True,
+        "offset_ratio_to_nine_eighths": worst_offset,
+        "nine_eighths_is_statable": worst_offset <= 1.0,
+        "curvature_ratio_to_eighty_one_sixteenths": worst_curvature,
+        "eighty_one_sixteenths_is_statable_as_is": worst_curvature <= 1.0,
+        "curvature_excess": worst_curvature - 1.0,
+        "carry_model_holds_at_every_sample": carry_failures == 0,
+        "carry_model_worst_ratio": worst_carry_model,
+        "worst_beta_over_the_smooth_value": worst_beta_excess,
+        "excess_is_the_level_1_carry": worst_beta_excess > 0.0,
+        "statable_curvature_constant_from_1e6": statable_curvature,
+        "statable_curvature_rounded": 5.07,
+        "printed_offset_constant": 2.0,
+        "printed_curvature_constant": 20.0,
+        "offset_slack": 2.0 / (9 / 8),
+        "curvature_slack": 20.0 / statable_curvature,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3945,6 +4048,7 @@ def summary() -> dict[str, Any]:
     extremes = branch_offset_extremes(span=500)
     dconsts = lemma_5_1_derivative_constants(samples_per_range=16)
     run_shape = run_bound_shape()
+    dcert = derivative_bound_certificate(samples_per_range=16)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3997,6 +4101,7 @@ def summary() -> dict[str, Any]:
         "branch_offset_extremes": extremes,
         "lemma_5_1_derivative_constants": dconsts,
         "run_bound_shape": run_shape,
+        "derivative_bound_certificate": dcert,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

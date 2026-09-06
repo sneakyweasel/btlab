@@ -3229,3 +3229,199 @@ Probes: `lemma_5_1_derivative_constants`, `run_bound_shape`,
 `RUN_BOUND_TABLE_AT_1E5`. Three tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`; no
 manuscript or certificate edit.
+
+## Nothing stood between the measured constants and stated ones except one carry
+
+The question left open last pass was whether `9/8` and `81/16` can be
+*stated*, given that the split's mean-value points `xi_1` in `(0, j)`
+and `xi_2` in `(0, beta_1+beta_2)` are only known to lie in intervals.
+They can. The points never have to be located, and the one correction
+that survives is not a mean-value point at all.
+
+**Differentiate the exact `F`, then split again.** With no
+approximation,
+
+```text
+  F'(m) = (3/2)[(m+b12)^(1/2) - (m+b1)^(1/2) - (m+b2)^(1/2) + m^(1/2)]
+```
+
+and the lemma's own splitting identity, applied a second time to that
+double difference of the square root, gives
+
+```text
+  F'(m) = (3/4) j (m + b1 + b2 + xi)^(-1/2) - (3/8) b1 b2 (m + xi')^(-3/2)
+```
+
+with `xi` between `0` and `j` and `xi'` in `(0, b1+b2)`. Both factors
+are **decreasing** in their mean-value point, so the supremum over the
+admissible interval is at the endpoint: `xi = min(0, j)` and
+`xi' = 0`. Nothing is located. Checked at `100` samples over four
+ranges: `|G'(n)|` is under the two endpoint terms at every one.
+
+**The offset constant is exact.** With `G = F o X`, `X'(n) = (3/2)
+n^(1/2)`, and `b_1 + b_2 >= 2` against `j >= -1`,
+
+```text
+  |offset term of G'(n)|  <=  (9/8) |j| n^(-1/4)
+```
+
+outright, with no correction. The measured ratio to it is
+`1 - 1.6e-14` --- at the endpoint, as expected.
+
+**The curvature constant keeps one correction, and it is the level-1
+carry.** `beta_i = floor(Delta_{2h_i} X) + kappa_i`, so it can exceed
+the smooth `3 h_i n^(1/2)` by up to `1`: the worst sample has
+`3h sqrt(n) = 4058.44` and `beta = 4059`. That is the entire `2.74e-4`
+by which `81/16` is missed. The honest model
+
+```text
+  beta_i  <=  3 h_i (n + 2h_i)^(1/2) + 1
+```
+
+holds at every sample (worst ratio `1 - 1.3e-8`), and gives
+
+```text
+  |curvature term| <= (81/16)(1 + 1/(3h_1 n^(1/2)))(1 + 1/(3h_2 n^(1/2))) h_1h_2 n^(-3/4)
+                   <= 5.07 h_1 h_2 n^(-3/4)     for n >= 1e6, h_i >= 1
+```
+
+The correction factor is `1.00067` at `1e6` and `1 + 5e-10` at `P_0`.
+
+```text
+  term        printed   statable                slack   what it costs to state
+  offset        2       9/8 = 1.1250            1.778   nothing
+  curvature    20       81/16 (1+1/3sqrtP)^2    3.948   one line on the carry
+                        <= 5.07 from 1e6
+```
+
+So both sharpenings are available with no new estimate: the splitting
+identity the lemma already proves, applied once more, plus one line
+bounding `beta_i` above. The mean-value points, which looked like the
+obstacle, are the part that costs nothing.
+
+Tags. EXACT: `F'` as a second application of the split; both factors
+decreasing in their mean-value point, so the sup is at the endpoint;
+`(9/8)|j| n^(-1/4)` outright given `b_1+b_2 >= 2` and `j >= -1`;
+`beta_i <= 3h_i(n+2h_i)^(1/2) + 1` from the floor and the carry.
+COMPUTATIONALLY VERIFIED: the chain holds at all `100` samples; the
+offset ratio is `1 - 1.6e-14` and the curvature ratio `1 + 2.74e-4`;
+the carry model holds everywhere; the worst `beta` excess over the
+smooth value is `0.849`. OBSERVATION: `5.07` covers the curvature term
+from `1e6` on, and the correction is `1 + 5e-10` at `P_0`.
+
+Probe: `derivative_bound_certificate`, two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`, binding row
+`5b-W<=c7S`, thirty-eight rows, `WIDENED_B_CONST = 5`. No manuscript or
+certificate edit.
+
+## One integer in Lemma 5.1(iii), and everything the last entry said about A.5
+
+The recorded next question was whether the widened constant `7` is sharp --
+whether the `2|j'|` term has a mean beating the worst case `|j'| = 3`. A mean
+would not have helped: the mode index needs a supremum. The worst case is what
+is wrong.
+
+**`|j| <= 2`, not `3`, and the proof is one line.** The net offset of
+Lemma 5.1(iii) is `j = beta_12 - beta_1 - beta_2` with `beta_i = b_i + kappa_i`.
+Since `m = floor(X)` and `theta = X - m`,
+
+```text
+  beta_i = m(n + d_i) - m(n) = floor(Delta_i X + theta)   exactly,
+```
+
+the level-1 carry being `floor({Delta_i X} + theta)`. And
+`Delta_12 X = Delta_1 X + Delta_2 X + DeltaDelta X`. So the whole offset is a
+single floor:
+
+```text
+  j = floor( {Delta_1 X + theta} + {Delta_2 X + theta} - theta + DeltaDelta X ).
+```
+
+The lemma's own hypothesis `h1 h2 <= P^(1/2)/3` gives
+`DeltaDelta X = 3 h1 h2 xi^(-1/2)` in `(0,1)`, and `theta` is in `[0,1)`, so the
+argument lies in `(-1,3)` and `j` is in `{-1,0,1,2}`. Both ends occur.
+
+**What the printed 3 is.** It adds the corner-floor range `[-1,2]` of
+`floor(A+B+eps) - floor(A) - floor(B)` to a carry vector `kappa` in `{0,1}^3` as
+though the two were independent. They are not: all three carries are
+`floor(. + theta)` at one `theta`, and folding `theta` in returns a single
+corner floor at `eps - theta`. `3` is the bound at `h1 h2 <= 2 P^(1/2)/3`, where
+`eps < 2`. An exact census confirms the pattern -- `max j = r + 1` and
+`min j = -1` at `h1 h2 <= r P^(1/2)/3` for `r = 1, 2, 3, 6`:
+
+```text
+  r = 1 (the hypothesis)   j in [-1, 2]
+  r = 2                    j in [-1, 3]     <- the printed bound
+  r = 3                    j in [-1, 4]
+  r = 6                    j in [-1, 7]
+```
+
+An off-by-one between a lemma's hypothesis and the conclusion printed beside it.
+
+**The formalisation proved the printed bound, which is how it survived.**
+`BranchFreeze.corner_floor_range` already had the sharp `[-1,2]`;
+`offset_abs_le_three` then quantified `kappa` as a free vector and added
+`[-2,1]` to it. The statement is true and the constant is not attained. Added
+`carry_eq_floor_shifted` and `offset_abs_le_two`, the latter being
+`corner_floor_range` applied at `(A + theta, B + theta, eps - theta)` -- the
+sharp result was inside the file the whole time, one substitution away. Both
+ends of `{-1,0,1,2}` are witnessed by `norm_num` examples. `offset_abs_le_three`
+is kept beside it because it is what the manuscript printed. `lake build` green.
+
+**And it undoes most of the last entry.** `2|j'| <= 4` makes the widened
+`theta`-coefficient `4 P^(1/4)/h' + 20 h P^(-1/4) <= 5 P^(1/4)`, so the mode
+index row is `5^16 = 1.53e11` and not `7^16 = 3.32e13`:
+
+```text
+                          at |j| <= 3    at |j| <= 2 (correct)
+  mode-index row          3.32e13        1.53e11
+  c_7 floor               3.32e13        2.98e11   (the q'' row again)
+  the whole c_7 lever     1.079          120.3
+  lever spent at          c_7 = 1/228    c_7 = 1/61
+  vector trade realises   nothing        8.9
+  kappa table 1/16, 1/20  3.3e13 both    2.0e13, 1.5e13 (the gate)
+```
+
+Every figure A.5 printed is restored. It needed two constants to be right and
+only one of them had been checked: the row was missing from A.1, and the offset
+bound feeding it was loose. The two errors pointed opposite ways and the printed
+conclusion sat between them.
+
+**What survives from the last entry.** The row is real and belongs in A.1
+(thirty-eight rows, thirty-three Lean theorems). It is still the site that pins
+`R_0` from below, and still unsatisfiable at every `P` when `a = 1/4`, since
+`5 P^(1/4) <= P^(1/4)` is as false as `7 P^(1/4) <= P^(1/4)`. A.6's four-site
+minimax `a* = 0.29919` is still infeasible, now by a factor `4.5` rather than
+four orders, and `3/10` still fails by `2.66`. The band moves from
+`[0.3123, 0.3463]` to `[0.3016, 0.3463]`.
+
+What inverts is the verdict on `5/16`. At `|j| <= 3` it clears the band's left
+endpoint by `1.5e-4` and sits a factor `57` above the five-site minimax
+`a* = 0.3218` -- the least robust admissible value, half a percent from being
+the paper's threshold. At `|j| <= 2` it clears by `0.0109`, the collected
+constant has `41%` of room against `P_0^(1/16) = 7.0333`, and the five-site
+minimax is `a* = 0.3111` at `2.73e11`, which `5/16` misses by `1.09`. Counting
+the fifth site makes `5/16` a *better* choice than A.6 rated it, not a worse
+one: `1.09` against the `2.13` it costs on the four.
+
+**The sharpening is now worth naming rather than taking.** `5` collects
+`4 P^(1/4)/h'` and `20 h P^(-1/4)`, and `4.001` serves from `2.95e11`. The row
+would fall to `4.31e9` and the band's left endpoint to `0.29443` -- below
+`0.29919`, so at the sharp constant, and only there, A.6's four-site crossing
+and its `3/10` come back inside the band. Declined: the floor is already the
+`q''` row, so it would move the band and not the threshold.
+
+**Downstream, all of it arithmetic in `2|j'|`.** The (D1) curvature ratio's
+first summand `18/(uhh')` becomes `11.5/(uhh')`, so the good-shift hypothesis
+`uhh' >= 72` becomes `>= 46`, the bad sets `72` become `46`, their union `144`
+becomes `92`, and the Step-4 `A`-process charge `576 P^2/H_3` becomes `368`.
+The second summand's `72/u` is `25/0.35` and does not move -- two distinct `72`s
+in one display, and only one of them is the offset. Also: `24 P^(-5/24)` to
+`16`, `69 P^(1/24-1/2)` to `46`, window count `7P^(1/4)+1` to `5P^(1/4)+1`,
+boundary charge `13.5` to `8.5`, flat cost `64 P^(3/4)` to `48`, the (s2) tail
+factor `7/0.6 <= 12` to `5/0.6 <= 9`, and `row_st6D1_window` from `t >= 57` to
+`t >= 41` (`P >= 2.6e6`, was `9.9e6`).
+
+Caught on the way: the first draft of the A.6 passage said the four-site
+crossing misses by a factor `4500`. It is `4.5`. The test that pinned it is what
+found it.

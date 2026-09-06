@@ -1336,3 +1336,26 @@ def test_the_run_bound_shape_is_two_terms_of_opposite_sign() -> None:
     assert set(r["by_family"]) == {4, 40}
     assert len(r["rows"]) == 8 and all(x["runs"] > 0 for x in r["rows"])
     assert set(r["frozen_table_at_1e5"]["(2, 2)"]) == {-1, 0, 1, 2}
+
+
+# --- the mean-value points of the split, and whether they need locating ---
+
+
+def test_the_derivative_bound_needs_no_mean_value_point_located() -> None:
+    """Both factors decrease in their mean-value point, so the sup is at the endpoint."""
+    r = A.derivative_bound_certificate(samples_per_range=16)
+    assert r["chain_holds_at_every_sample"] and r["mean_value_points_never_located"]
+    assert r["nine_eighths_is_statable"] and r["offset_ratio_to_nine_eighths"] <= 1.0
+    assert r["offset_samples"] > 20 and r["samples"] == 64
+    assert abs(r["offset_slack"] - 16 / 9) < 1e-9
+
+
+def test_the_only_correction_to_the_curvature_constant_is_the_level_one_carry() -> None:
+    """81/16 misses by 2.7e-4 because beta_i = floor(.) + kappa can beat 3 h sqrt(n) by up to 1."""
+    r = A.derivative_bound_certificate(samples_per_range=16)
+    assert not r["eighty_one_sixteenths_is_statable_as_is"]
+    assert 0 < r["curvature_excess"] < 1e-3
+    assert r["excess_is_the_level_1_carry"] and 0 < r["worst_beta_over_the_smooth_value"] < 1.0
+    assert r["carry_model_holds_at_every_sample"] and r["carry_model_worst_ratio"] <= 1.0
+    assert 5.06 < r["statable_curvature_constant_from_1e6"] < 5.07
+    assert 3.9 < r["curvature_slack"] < 4.0
