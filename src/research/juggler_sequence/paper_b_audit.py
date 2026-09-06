@@ -3984,6 +3984,68 @@ def derivative_bound_certificate(seed: int = 34, samples_per_range: int = 25) ->
     }
 
 
+def run_length_constant(P_table: int = 10**5, live: bool = True) -> dict[str, Any]:
+    """Where 22 comes from, and what it is once the two derivative constants are the sharp ones.
+
+    The manuscript derives it: with M = max((|j|+1) P^{-1/4}, h_1h_2 P^{-3/4}) the two parts of the
+    G' bound are <= 2M and <= 20M, so |G'| <= 22M and the level sets of floor(G) have length
+    >= 1/(22M), which is the displayed minimum.  So 22 = 2 + 20 -- the same two constants again.
+
+    Two things follow.  First, the minimum is decorative: the lemma assumes h_1h_2 <= P^{1/2}/3, so
+    P^{3/4}/(h_1h_2) >= 3 P^{1/4} > P^{1/4} >= P^{1/4}/(|j|+1), and the first argument is always the
+    smaller.  The bound is (1/22) P^{1/4}/(|j|+1) and nothing else.
+
+    Second, the M-regrouping is what costs the factor, not the constants.  M charges both parts at
+    the larger of the two; using the hypothesis instead bounds the second part by (b/3) P^{-1/4},
+    directly against the first, so |G'| <= (a|j| + b/3) P^{-1/4} <= max(a, b/3)(|j|+1) P^{-1/4}:
+
+        printed a = 2,   b = 20      ->  22   by regrouping,   20/3 = 6.667 by the hypothesis
+        sharp   a = 9/8, b = 81/16   ->  99/16 = 6.1875,       27/16 = 1.6875
+
+    So 22 falls to 20/3 with no change to any constant, and to 27/16 = 1.6875 with the sharp pair --
+    a factor 13.04.  Checked against the measured run counts: at 27/16 the worst row is 0.624 of the
+    bound, so the sharp constant is within 60% of what the counts actually do.
+    """
+
+    a_printed, b_printed = Fr(2), Fr(20)
+    a_sharp, b_sharp = Fr(9, 8), Fr(81, 16)
+    routes = {
+        "printed_regrouping": a_printed + b_printed,
+        "printed_hypothesis": max(a_printed, b_printed / 3),
+        "sharp_regrouping": a_sharp + b_sharp,
+        "sharp_hypothesis": max(a_sharp, b_sharp / 3),
+    }
+    rows = []
+    for gaps, hist in RUN_BOUND_TABLE_AT_1E5.items():
+        for j, runs in hist.items():
+            rows.append({"P": P_table, "gaps": gaps, "j": j, "runs": runs})
+    if live:
+        shape = run_bound_shape()
+        for r in shape["rows"]:
+            rows.append({"P": shape["P"], "gaps": (r["h1"], r["h2"]), "j": r["j"], "runs": r["runs"]})
+    worst = {name: 0.0 for name in routes}
+    for r in rows:
+        base = (abs(r["j"]) + 1) * r["P"] ** 0.75
+        for name, c in routes.items():
+            worst[name] = max(worst[name], r["runs"] / (float(c) * base))
+    return {
+        "rows": len(rows),
+        "twenty_two_is_two_plus_twenty": float(routes["printed_regrouping"]) == 22.0,
+        "routes": {k: str(v) for k, v in routes.items()},
+        "route_values": {k: float(v) for k, v in routes.items()},
+        "worst_ratio_by_route": worst,
+        "every_route_holds": all(v <= 1.0 for v in worst.values()),
+        # the minimum's second argument, under the lemma's own hypothesis h_1h_2 <= P^{1/2}/3
+        "second_argument_least_ratio_to_first": 3.0,
+        "second_argument_ever_binds": False,
+        "hypothesis_route_costs_nothing": float(routes["printed_hypothesis"]) < 22.0,
+        "printed_over_hypothesis": 22.0 / float(routes["printed_hypothesis"]),
+        "printed_over_sharp": 22.0 / float(routes["sharp_hypothesis"]),
+        "sharp_constant": float(routes["sharp_hypothesis"]),
+        "sharp_constant_is_within_a_factor_two_of_the_counts": worst["sharp_hypothesis"] > 0.5,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4049,6 +4111,7 @@ def summary() -> dict[str, Any]:
     dconsts = lemma_5_1_derivative_constants(samples_per_range=16)
     run_shape = run_bound_shape()
     dcert = derivative_bound_certificate(samples_per_range=16)
+    runconst = run_length_constant(live=False)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4102,6 +4165,7 @@ def summary() -> dict[str, Any]:
         "lemma_5_1_derivative_constants": dconsts,
         "run_bound_shape": run_shape,
         "derivative_bound_certificate": dcert,
+        "run_length_constant": runconst,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

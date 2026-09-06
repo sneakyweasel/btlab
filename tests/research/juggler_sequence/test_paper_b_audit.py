@@ -1359,3 +1359,30 @@ def test_the_only_correction_to_the_curvature_constant_is_the_level_one_carry() 
     assert r["carry_model_holds_at_every_sample"] and r["carry_model_worst_ratio"] <= 1.0
     assert 5.06 < r["statable_curvature_constant_from_1e6"] < 5.07
     assert 3.9 < r["curvature_slack"] < 4.0
+
+
+# --- the third printed number of Lemma 5.1(iii) ---
+
+
+def test_twenty_two_is_two_plus_twenty_and_the_minimum_never_binds() -> None:
+    """The manuscript's own derivation, and the second argument of the min is decorative."""
+    r = A.run_length_constant(live=False)
+    assert r["twenty_two_is_two_plus_twenty"]
+    assert r["routes"]["printed_regrouping"] == "22"
+    # h1h2 <= P^(1/2)/3 makes P^(3/4)/(h1h2) at least 3 P^(1/4), so the first argument always wins
+    assert not r["second_argument_ever_binds"]
+    assert r["second_argument_least_ratio_to_first"] >= 3.0
+    assert r["every_route_holds"] and r["rows"] == 16
+
+
+def test_the_hypothesis_route_beats_the_regrouping_before_any_constant_moves() -> None:
+    """22 -> 20/3 for free, and -> 27/16 with the sharp derivative pair: a factor 13."""
+    r = A.run_length_constant(live=False)
+    assert r["hypothesis_route_costs_nothing"]
+    assert r["routes"]["printed_hypothesis"] == "20/3"
+    assert r["routes"]["sharp_hypothesis"] == "27/16"
+    assert abs(r["printed_over_hypothesis"] - 3.3) < 1e-9
+    assert 13 < r["printed_over_sharp"] < 13.1
+    # and the sharp constant is not slack: the worst measured row is 62% of it
+    assert r["sharp_constant_is_within_a_factor_two_of_the_counts"]
+    assert r["worst_ratio_by_route"]["sharp_hypothesis"] <= 1.0

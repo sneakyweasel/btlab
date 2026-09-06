@@ -33710,3 +33710,171 @@ Best next question
   counts sit 23x under it. Does 22 come from the same two terms, in
   which case (9/8, 81/16) fixes it too, or from somewhere else?
 ```
+
+### One integer in Lemma 5.1(iii)
+
+The recorded question was whether the widened constant `7` is sharp — whether
+the `2|j'|` term has a mean beating the worst case `|j'| = 3`. A mean would
+not have helped; the mode index needs a supremum. The worst case is what is
+wrong.
+
+**`|j| <= 2`, not `3`.** The net offset is `j = beta_12 - beta_1 - beta_2`.
+Since `m = floor(X)` and `theta = X - m`, the shifted value is
+`beta_i = m(n+d_i) - m(n) = floor(Delta_i X + theta)` exactly — that is what
+the level-1 carry `floor({Delta_i X} + theta)` *is* — and
+`Delta_12 X = Delta_1 X + Delta_2 X + DeltaDelta X`. So the whole offset is one
+floor:
+
+```text
+  j = floor( {Delta_1 X + theta} + {Delta_2 X + theta} - theta + DeltaDelta X )
+```
+
+The lemma's own hypothesis gives `DeltaDelta X` in `(0,1)`, and `theta` in
+`[0,1)`, so the argument lies in `(-1,3)` and `j` is in `{-1,0,1,2}`. Both ends
+occur; an exact integer census over `floor(n^(3/2)) = isqrt(n^3)` finds nothing
+else at any `P`.
+
+**What the printed 3 is.** It adds the corner-floor range `[-1,2]` to a carry
+vector in `{0,1}^3` as though the two were free of each other. They are not:
+all three carries are `floor(. + theta)` at one `theta`. `3` is the bound at
+*twice* the stated hypothesis, where `DeltaDelta X < 2` — and the census walks
+it out exactly: `max j = r + 1` at `h1 h2 <= r P^(1/2)/3` for `r = 1,2,3,6`.
+An off-by-one between a hypothesis and the conclusion printed beside it.
+
+**The formalisation is how it survived.** `BranchFreeze.corner_floor_range`
+already had the sharp `[-1,2]`; `offset_abs_le_three` then quantified the
+carries as a free vector. `offset_abs_le_two` is that same lemma applied at
+`(A + theta, B + theta, eps - theta)` — the sharp result was one substitution
+away inside the file that proved the loose one. Proving what is printed is not
+the same as proving what is true.
+
+**And it undoes most of last tick.** `2|j'| <= 4` makes the widened
+`theta`-coefficient `<= 5 P^(1/4)`, so the mode-index row is `5^16 = 1.53e11`,
+not `7^16 = 3.32e13`:
+
+```text
+                          at |j| <= 3    at |j| <= 2 (correct)
+  mode-index row          3.32e13        1.53e11
+  c_7 floor               3.32e13        2.98e11   (the q'' row again)
+  the whole c_7 lever     1.079          120.3
+  lever spent at          c_7 = 1/228    c_7 = 1/61
+  vector trade realises   nothing        8.9
+```
+
+Every figure A.5 printed is restored. It needed two constants to be right and
+only one had been checked: the row was missing from A.1, the offset bound
+feeding it was loose, the two errors pointed opposite ways, and the printed
+conclusion sat between them.
+
+What survives: the row is real and belongs in A.1 (thirty-eight rows,
+thirty-three Lean theorems); it still pins `R_0` from below; it is still
+unsatisfiable at every `P` when `a = 1/4`. A.6's four-site minimax `0.29919`
+is still infeasible, now by `4.5` rather than four orders, and `3/10` by
+`2.66`. What inverts is the verdict on `5/16`: at `|j| <= 3` it clears the
+band's left endpoint by `1.5e-4` and is `57` times the five-site minimax; at
+`|j| <= 2` it clears by `0.0109` and is `1.09` times it. Counting the fifth
+site makes `5/16` a *better* choice than A.6 rated it, not a worse one.
+
+```text
+What was learned
+- a mean would not have answered the question; the sup was simply wrong
+- the census was already in the repo: orbit_j_census has always returned
+  live_j = [-1,0,1,2], and its test asserted <= 3 because that is what the
+  paper prints. A test written to a claim cannot find the claim loose
+- and my new branch_offset shadowed an existing one with the same name and
+  different argument units, silently doubling orbit_j_census's shifts, with
+  the suite still green. Read the module for prior art *before* adding to it
+- the carries are not free of the corner floors, and the whole offset is a
+  single floor of one argument in (-1,3)
+- a Lean file proving |j| <= 3 contained the proof of |j| <= 2, one
+  substitution away, and the loose statement is what got formalised
+- last tick's A.5 correction is reverted by this tick; the printed 120 was
+  right and both of its premises were not
+- I wrote "a factor 4500" for what is a factor 4.5; the test caught it
+Strongest theorem
+- j = floor({D1X+theta} + {D2X+theta} - theta + DDX), hence j in {-1,0,1,2}
+  under the lemma's own hypothesis, both ends attained; and max j = r+1 at
+  r times that hypothesis, which is where the printed 3 comes from
+Strongest refutation
+- the printed |j| <= 3, and with it my own last-tick claim that the c_7 lever
+  is worth 1.08 and that 5/16 is the least robust admissible truncation
+Reusable machinery
+- decoration_budget.branch_offset / _census / _ladder / _in_applied_range /
+  widened_theta_constant; Lean carry_eq_floor_shifted, offset_abs_le_two;
+  fourteen new tests, fourteen re-aimed
+Branch status
+- PARK
+Why
+  The offset bound is exact, sharp, machine-checked and propagated through
+  every downstream constant, both mirrors, the certificate and the Lean rows.
+  The remaining slack is the collected 5 against 4.001, which is costed and
+  declined because the floor is already elsewhere.
+Best next question
+- corner_floor_range was sharp and the theorem built on it was not, because
+  the statement quantified over data the problem determines. How many other
+  Lean theorems in this development take a hypothesis vector the manuscript
+  supplies as a function? That is a mechanical scan of the formal directory,
+  and it just found a factor of 120.
+```
+
+## Most of the factor was in the addition
+
+`22` is `2 + 20`, which the manuscript now says outright: with
+`M = max((|j|+1)P^(-1/4), h_1h_2 P^(-3/4))` the two parts of the `G'`
+bound are `<= 2M` and `<= 20M`. So the answer to the question I left is
+yes --- the third printed number is the first two added, and the sharp
+pair fixes it. But the interesting part is that most of the factor is
+not in the constants at all.
+
+`M` charges both parts at the larger of them. The lemma's own
+hypothesis `h_1h_2 <= P^(1/2)/3` bounds the second part directly
+against the first, `b h_1h_2 P^(-3/4) <= (b/3) P^(-1/4)`, so the
+constant is `max(a, b/3)` rather than `a + b`: `20/3 = 6.67` at the
+printed `2` and `20`, and `27/16 = 1.6875` at `9/8` and `81/16`. A
+factor `3.3` of the total `13.04` costs nothing but the route.
+
+The same hypothesis makes the displayed minimum decorative:
+`P^(3/4)/(h_1h_2) >= 3P^(1/4) > P^(1/4) >= P^(1/4)/(|j|+1)`, so the
+second argument is at least `3(|j|+1)` times the first and never binds.
+
+`27/16` is close to sharp: against `24` measured run counts at `P = 1e5`
+and `2e4`, the worst row reaches `62%` of it --- the corner where
+`h_1h_2` sits at the hypothesis cap and both terms of `G'` share a sign.
+
+```text
+Phase-end report
+Question
+- does 22 come from the same two terms, and does (9/8, 81/16) fix it
+Instruments
+- run_length_constant: the four routes (regrouping or hypothesis, at
+  the printed or the sharp pair) against 24 measured run counts from
+  RUN_BOUND_TABLE_AT_1E5 and run_bound_shape
+Ledger tags
+- EXACT: 22 = 2 + 20; the minimum's second argument exceeds the first
+  by at least 3(|j|+1) under the hypothesis, so it never binds; the
+  hypothesis route gives max(a, b/3) in place of a + b
+- COMPUTATIONALLY VERIFIED: all four routes hold on 24 rows; worst
+  ratios 0.048, 0.158, 0.170 and 0.624
+- OBSERVATION: the worst row is the corner h_1h_2 = P^(1/2)/3, j = -1,
+  where the two terms share a sign; the cancelling corner j = +1 is 8%
+  of the same bound
+Strongest theorem
+- the run-length constant is max(a, b/3) and not a + b, so 22 falls to
+  20/3 before any constant moves and to 27/16 with the sharp pair
+Strongest refutation
+- my own assumption that the factor of 23 in the counts was slack in
+  the constants: three tenths of it is, and the rest is the regrouping
+Reusable machinery
+- run_length_constant, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  All three printed numbers of Lemma 5.1(iii) are now recorded with the
+  argument that would move them, and every one of those is a manuscript
+  edit belonging to the concurrent session.
+Best next question
+- the same M-regrouping appears wherever two terms of different orders
+  are collected. Stage 3(s2)'s 2.25 and the widened 5 are both sums of
+  a lead and a term of lower order. Is either of them a max in disguise
+  as well?
+```

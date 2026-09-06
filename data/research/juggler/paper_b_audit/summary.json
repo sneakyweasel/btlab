@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "f08e94387877f721767c5234f5ec47e6e6a43810",
+  "git_commit": "4e5819d868ab1d0abecf6775c2d301b651d72a45",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -4878,6 +4878,36 @@
     "offset_slack": 1.7777777777777777,
     "curvature_slack": 3.947984855382045
   },
+  "run_length_constant": {
+    "rows": 16,
+    "twenty_two_is_two_plus_twenty": true,
+    "routes": {
+      "printed_regrouping": "22",
+      "printed_hypothesis": "20/3",
+      "sharp_regrouping": "99/16",
+      "sharp_hypothesis": "27/16"
+    },
+    "route_values": {
+      "printed_regrouping": 22.0,
+      "printed_hypothesis": 6.666666666666667,
+      "sharp_regrouping": 6.1875,
+      "sharp_hypothesis": 1.6875
+    },
+    "worst_ratio_by_route": {
+      "printed_regrouping": 0.04789229774763917,
+      "printed_hypothesis": 0.15804458256720924,
+      "sharp_regrouping": 0.17028372532493927,
+      "sharp_hypothesis": 0.6243736595247773
+    },
+    "every_route_holds": true,
+    "second_argument_least_ratio_to_first": 3.0,
+    "second_argument_ever_binds": false,
+    "hypothesis_route_costs_nothing": true,
+    "printed_over_hypothesis": 3.3,
+    "printed_over_sharp": 13.037037037037036,
+    "sharp_constant": 1.6875,
+    "sharp_constant_is_within_a_factor_two_of_the_counts": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -4945,5 +4975,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 80.43517017364502
+  "elapsed_seconds": 112.69892621040344
 }

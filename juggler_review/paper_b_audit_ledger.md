@@ -3425,3 +3425,104 @@ factor `7/0.6 <= 12` to `5/0.6 <= 9`, and `row_st6D1_window` from `t >= 57` to
 Caught on the way: the first draft of the A.6 passage said the four-site
 crossing misses by a factor `4500`. It is `4.5`. The test that pinned it is what
 found it.
+
+### The census was already in the repository
+
+`decoration_budget.orbit_j_census` has been computing exact `j` at the paper's
+`(H1, H2)` since it was written, and it has always returned
+`live_j = [-1, 0, 1, 2]`, `max_abs_j = 2`. The test beside it asserted
+`max_abs_j <= 3` and `all(abs(j) <= 3 for j in live_j)`, because that is what
+the manuscript prints. So a measurement that disagreed with the printed bound
+sat in a green test suite, agreeing with it.
+
+Nothing was hidden and nothing was wrong; the assertion was simply written to
+the claim rather than to the data. Tightened to `max_abs_j == 2` and
+`live_j == [-1, 0, 1, 2]`, with the reason in a comment. Worth the general
+note: a test that transcribes a printed bound cannot find that the bound is
+loose, and this development has a lot of tests that transcribe printed bounds.
+
+One collision found while adding the new functions: `branch_offset(n, d1, d2)`
+already existed in that module, taking full shifts, and the census added here
+was written against half-shifts. The new definition shadowed the old one and
+`orbit_j_census` silently began doubling its shifts -- with the test still
+green, since the offsets stay small. Renamed to `offset_at(n, h1, h2)`, a thin
+wrapper over the original. Caught by reading the module for prior art after the
+fact, which is the wrong order.
+
+## The third number is the first two added, and the addition is where the factor goes
+
+The manuscript now derives `22`, which settles half the question at
+once: with `M = max((|j|+1) P^(-1/4), h_1h_2 P^(-3/4))` the two parts
+of the `G'` bound are `<= 2M` and `<= 20M`, so `|G'| <= 22M` and the
+level sets of `floor(G)` have length `>= 1/(22M)`. So `22 = 2 + 20` --
+the same two constants a third time, and the sharper pair fixes this
+one too. But most of the factor is not in the constants.
+
+**The minimum is decorative.** The lemma assumes `h_1h_2 <=
+P^(1/2)/3`, so
+
+```text
+  P^(3/4)/(h_1h_2)  >=  3 P^(1/4)  >  P^(1/4)  >=  P^(1/4)/(|j|+1)
+```
+
+with room to spare: the second argument is at least `3(|j|+1)` times
+the first. It never binds, at any admissible `(j, h_1, h_2, P)`. The
+displayed bound is `(1/22) P^(1/4)/(|j|+1)` and nothing else.
+
+**The regrouping is what costs, not the constants.** `M` charges both
+parts at the larger of the two. Using the hypothesis instead bounds the
+second part directly against the first --- `b h_1h_2 P^(-3/4) <= (b/3)
+P^(-1/4)` --- so `|G'| <= (a|j| + b/3) P^(-1/4) <= max(a, b/3)(|j|+1)
+P^(-1/4)`, and the run-length constant is `max(a, b/3)`:
+
+```text
+  a, b            by regrouping (a+b)   by the hypothesis max(a, b/3)
+  2, 20            22                    20/3  = 6.6667
+  9/8, 81/16       99/16 = 6.1875        27/16 = 1.6875
+```
+
+So `22` falls to `20/3` with no change to any constant --- a factor
+`3.3` for a change of route --- and to `27/16` with the sharp pair, a
+factor `13.04` in all. Note the crossing: at the printed constants the
+regrouping costs more than the constants do, and at the sharp pair it
+is the other way round.
+
+**And `27/16` is not slack.** Against the run counts measured at
+`P = 1e5` and `P = 2e4`, `24` rows in all:
+
+```text
+  route                 constant   worst row / bound
+  printed regrouping    22           0.048
+  printed hypothesis    20/3         0.158
+  sharp regrouping      99/16        0.170
+  sharp hypothesis      27/16        0.624
+```
+
+The worst row is `h_1h_2 = 100`, `j = -1` at `P = 1e5` --- the corner
+where `h_1h_2` sits at the hypothesis cap and both terms have the same
+sign. `27/16` is within `60%` of what the counts do there, so it is
+close to the best constant of that shape.
+
+```text
+  the three printed numbers of Lemma 5.1(iii), as they now stand
+  where            printed   statable          factor
+  offset cap         3        2 (erratum in)     --
+  |G'| offset        2        9/8 = 1.125       1.778
+  |G'| curvature    20        81/16 <= 5.07     3.948
+  run length        22        27/16 = 1.6875   13.037
+```
+
+Tags. EXACT: `22 = 2 + 20` (the manuscript's own derivation); the
+second argument of the minimum exceeds the first by at least
+`3(|j|+1)` under the lemma's hypothesis, so it never binds; the
+hypothesis route gives `max(a, b/3)` in place of `a + b`, hence `20/3`
+at the printed constants and `27/16` at the sharp pair.
+COMPUTATIONALLY VERIFIED: all four routes hold on `24` measured rows;
+worst ratios `0.048`, `0.158`, `0.170`, `0.624`. OBSERVATION: the
+worst row is the corner `h_1h_2 = P^(1/2)/3`, `j = -1`, where the two
+terms of `G'` share a sign; the cancelling corner `j = +1` is `8%` of
+the same bound.
+
+Probe: `run_length_constant`, two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
+manuscript or certificate edit.
