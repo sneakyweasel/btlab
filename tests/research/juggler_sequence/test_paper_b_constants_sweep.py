@@ -16,11 +16,11 @@ def test_claim_D_would_have_been_the_binding_row() -> None:
     """The sweep found Claim D carrying 16 P^(1/24); the fix was to carry 3 P^(1/24).
 
     With the loose bound the row is 16^12 = 2.8e14 and binds; with the sharp one it is
-    3^12 = 5.3e5 and the Lemma 3.9 balance binds again at 8.9e13.
+    3^12 = 5.3e5 and the Lemma 3.9 balance binds again at 3.6e13.
     """
     cert = C.certificate()
     assert cert["binding"]["tag"] == "5b-W<=c7S"
-    assert 8.9e13 < cert["P0"] < 9.0e13
+    assert 3.5e13 < cert["P0"] < 3.7e13
     loose, sharp = 16.0**12, 3.0**12
     assert loose > cert["P0"] * 3            # would have raised P_0 by over 3x
     assert sharp < cert["P0"] / 1e7          # as carried, it is nowhere near binding

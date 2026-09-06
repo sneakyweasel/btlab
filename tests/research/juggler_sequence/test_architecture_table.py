@@ -80,10 +80,10 @@ def test_quantities_quoted_by_the_table_appear_in_the_proof(quantity: str, where
 def test_curvature_ranges_match_the_steps_they_come_from() -> None:
     """The two anchor curvature scales are the axis Step 5 classifies on."""
     t, pr = table(), proof()
-    for scale in (r"[1.30,1.43]k\lvert j\rvert P^{-1/8}", r"[0.35,2.6]\,kh_1h_2P^{-5/8}"):
+    for scale in (r"[1.30,1.43]k\lvert j\rvert P^{-1/8}", r"[0.56,4.2]\,kh_1h_2P^{-5/8}"):
         assert scale.replace(" ", "") in t.replace(" ", ""), scale
     assert r"[1.30,\,1.43]\,k|j|P^{-1/8}" in pr
-    assert r"[0.35,\,2.6]\,kh_1h_2P^{-5/8}" in pr
+    assert r"[0.56,\,4.2]\,kh_1h_2P^{-5/8}" in pr
 
 
 def test_step_5b_regimes_match_the_proof() -> None:

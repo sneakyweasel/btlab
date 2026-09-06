@@ -1796,3 +1796,99 @@ buys almost nothing once the pairing is fixed --- the next improvement
 has to come from \(\kappa\) and \(c_7\), which is where the prose
 already says the balance now lives. COMPUTATIONALLY VERIFIED at the
 constants in the tree; the pairing exponents are not constant-dependent.
+
+### The correction propagated: \(P_0=3.5858\cdot10^{13}\), \(P_1=9.8\cdot10^{18}\)
+
+The two errata above are now carried through the manuscript, the
+certificate module and the tests. Lemma 5.2b's constants are corrected
+in place and its erratum note reduced to a record; Step E's
+\(\tfrac{2187}{2048}\) and \(-\tfrac{729}{352}\) were already in place.
+
+*What the threshold does.* Nine of the thirty-seven A.5 rows depend on
+the anchor, through the middle-band floor \(S\ge\lambda_0^{\rm lo}\) and
+through \(E\). Corrected,
+
+```text
+   P_0   8.9458e13  ->  3.5858e13     factor 2.49
+   P_1   5.03e19    ->  9.84e18       factor 5.11
+```
+
+both binding where they did (\(W\le c_7S/2\) at Step 5b). The
+mechanism is that \(S\) rises by \(\tfrac85\) while
+\(V=\kappa S^{1/2}P^{-11/24}\) rises only by \(\sqrt{8/5}\), which more
+than pays for \(E\) growing from \(106\) to \(171\) with the
+\(u\)-cap. **\(\kappa=\tfrac1{12}\) is unchanged**: the \(P_1\) column
+is minimised there before and after, so the operating point is set by
+the geometry of the boundary term against the gate and not by the
+constants.
+
+*What else moved, and what did not.* The \(c_7\) lever's worth falls
+from \(300\) to \(120\) and its saturation eases from \(c_7=1/54\) to
+\(1/61\) --- both only because the base moved; the lever's floor is the
+\(q''\) row, which divides by Theorem 4.1's Stage-4 curvature
+\(0.35\,uh\,P^{-3/4}\) and not by \(\lambda_0\), and stays at
+\(2.98\cdot10^{11}\). **That coincidence of value cost a wrong turn
+here**: the two constants are both \(0.35\), and treating them as one
+dropped the \(q''\) row an order, moved the \(R_0\) crossing from
+\(0.29919\) to \(0.30667\) and rewrote A.6 around a conclusion that
+does not hold. Caught by reading the surrounding derivation, which
+names its denominator. The \(R_0\) analysis is unchanged in every
+figure except those measured against \(P_0\).
+
+One consequence at \(R_0\) is real: \(a=9/32\), whose worst site is
+\(7.4\cdot10^{13}\), used to sit just under \(P_0\) by a factor
+\(1.3\) --- "too close to print" --- and now sits a factor \(2.1\)
+*above* it. The feasibility band tightens to \(a\in[0.283,0.346]\) and
+no longer contains \(9/32\). \(5/16\) is unaffected at
+\(2.98\cdot10^{11}\), now \(120\) below \(P_0\) rather than \(300\).
+
+*The Lean certificate is now behind.* `ThresholdCertificate.lean`
+encodes the pre-correction table: \(t=1.96\) on the binding row,
+\(\sqrt{0.35}\ge0.5916\), \(\tfrac1{12}\sqrt{0.35}\le0.04931\). Those
+rows remain true statements about the old inequalities, and
+`test_lean_thresholds_cover_the_precorrection_probe_thresholds` pins
+them to the pre-correction probe so the drift is asserted rather than
+silent; exactly one row, `row_5a_binding`, fails to cover the corrected
+table. A.1 says so in the manuscript. Regenerating it is the open item.
+
+`thresholds` now takes an `anchor` tuple, so the pre-correction table
+is a first-class object rather than a comment: `ANCHOR_CONSTANTS` and
+`ANCHOR_CONSTANTS_PRECORRECTION`, and every row that carries the floor
+or \(E\) reads them. PROPAGATED.
+
+## The operating point does not move, and the repair is worth less than it looked
+
+**The answer is no.** \(\kappa\) is pinned by \(P_1\) --- the point at
+which the middle band beats the trivial bound --- whose piece-boundary
+term carries \(\kappa^{-1/2}\) and turns it around. Scanning
+\(1/\kappa\) over \([8,25]\), the minimum sits at \(1/11.50\) both with
+the printed interpolant error and with the repaired one; the paper
+operates at \(\tfrac1{12}\), within \(0.3\%\) of it. The optimum does
+not move. EXACT to the grid.
+
+**Why it does not.** The interpolant error does reach \(P_1\) --- it
+enters through \(W=V+E\) in the two transition costs --- but its weight
+there is small: \(E\) is \(45.5\%\) of \(W\) at \(P_0=3.59\cdot10^{13}\)
+and \(11.8\%\) at \(P_1=9.81\cdot10^{18}\). So the same repair that is
+worth a factor of \(7.33\) on \(P_0\) is worth \(1.06\) on \(P_1\).
+
+| | printed | repaired | factor |
+|---|---|---|---|
+| \(P_0\) (the certified threshold) | \(3.59\cdot10^{13}\) | \(4.89\cdot10^{12}\) | \(7.33\) |
+| \(P_1\) (where the band has content) | \(9.81\cdot10^{18}\) | \(9.25\cdot10^{18}\) | \(1.06\) |
+| optimal \(1/\kappa\) | \(11.50\) | \(11.50\) | --- |
+
+**And that is the honest reading of the four entries above.** The
+pairing repair improves the *certified* threshold, not the point at
+which Theorem 5.3's middle band says anything: \(P_1\) is five orders
+above \(P_0\) and stays there. The paper is not hiding this --- Appendix
+A.5 tabulates \(P_0\) and \(P_1\) side by side across \(\kappa\), and
+the prose quotes \(P_0=3.6\cdot10^{13}\) against
+\(P_1=9.8\cdot10^{18}\) at the operating point. A reader who takes
+\(P_0\) for the paper's reach has misread the paper, not been misled by
+it. COMPUTATIONALLY VERIFIED.
+
+An earlier draft of this entry claimed \(E\) does not enter \(P_1\) at
+all, from reading `log10_P1`'s signature rather than
+`middle_band_cost`, which it calls. It does enter; the conclusion
+survives because its *weight* is small, not because it is absent.

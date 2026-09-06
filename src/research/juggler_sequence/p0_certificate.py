@@ -32,12 +32,20 @@ RHO0 = C7 / 8.0
 KAPPA = 1.0 / 12.0
 KAPPA_SUPERSEDED = 1.0 / 3.0
 
-# Lemma 5.2b interpolant majorant.  |f'' - Lambda| <= 52.9 k(h1+h2) P^(-9/8) + |c''|, and
-# k(h1+h2) <= 2 P^(1/12) by (C3),(C4).  The 52.9 is (9/32)*186 from the middle-band cap
-# u <= 186 k h2 P^(1/8), plus 0.567 from the beta-product replacement.  An earlier draft
-# printed 219 = (9/32)*720 + 16, opening the cap to 360 and the second constant to 8.
-def interpolant_error(P: float) -> float:
-    return 105.8 * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
+# Lemma 5.2b interpolant majorant.  |f'' - Lambda| <= 85.3 k(h1+h2) P^(-9/8) + |c''|, and
+# k(h1+h2) <= 2 P^(1/12) by (C3),(C4).  The 85.3 is (9/32)*300 from the middle-band cap
+# u <= 300 k h2 P^(1/8), plus 0.907 from the beta-product replacement.  Both carry the corrected
+# anchor 27/128 of Lemma 5.2b: the cap is 60*4.2/0.84 and 0.907 is (27/128)*4.3.  Under the
+# printed -135/1024 these read 186, 0.567, 52.9 and 105.8.
+# The corrected Lemma 5.2b anchor 27/128 and, beside it, the pre-correction 135/1024 that the
+# Lean certificate still encodes.  (S floor, lambda_0 ceiling, E coefficient, u-cap, and the
+# exact bracket the printed pair opens.)
+ANCHOR_CONSTANTS = (0.56, 4.2, 170.6, 300.0, 0.62, 3.90)
+ANCHOR_CONSTANTS_PRECORRECTION = (0.35, 2.6, 105.8, 186.0, 0.38, 2.44)
+
+
+def interpolant_error(P: float, e_const: float = 170.6) -> float:
+    return e_const * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
 
 
 def interpolant_error_superseded(P: float) -> float:
@@ -91,10 +99,14 @@ def depth5_C_max(P: float) -> float:
     return (9 / 16) * 2 * P ** (1 / 96) * (2 * P) ** (3 / 16)
 
 
-def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
+def thresholds(kappa: float = KAPPA, c7: float = C7,
+               anchor: tuple[float, ...] = ANCHOR_CONSTANTS,
+               ) -> list[dict[str, Any]]:
     """Every printed threshold inequality of Sections 4-6, with its least admissible P."""
     rho0 = c7 / 8.0
-    S5b = lambda P: 0.35 * P**-0.625  # noqa: E731  middle band, worst standing cell k h1 h2 = 1
+    lam_lo, lam_hi, e_const, u_cap, lam_exact_lo, lam_exact_hi = anchor
+    E = lambda P: interpolant_error(P, e_const)  # noqa: E731
+    S5b = lambda P: lam_lo * P**-0.625  # noqa: E731  middle band, worst standing cell k h1h2 = 1
     S5a = lambda P: 0.60 * P**-0.625  # noqa: E731  offset composite
 
     rows: list[tuple[str, str, str, Callable[[float], bool]]] = [
@@ -142,31 +154,33 @@ def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
         ("5b-Npieces", "Thm 5.3 St.5b", "cells + anchor runs + windows <= 3.5 P^(13/24)",
          lambda P: 3 * P ** (1 / 24 + 0.5) + 2 + 22 * P ** (1 / 16 + 0.25) + 5 * P ** (1 / 3)
          <= 3.5 * P ** (13 / 24)),
-        ("5b-lam0-range", "Lemma 5.2b", "[0.38,2.44] with its corrections inside [0.35,2.6]",
-         lambda P: 2.44 * (1 + P**-0.25) * (1 + 1 / (3 * P**0.5)) ** 2 <= 2.6
-         and 0.38 * (1 - P**-0.25) * (1 - 1 / (3 * P**0.5)) ** 2 >= 0.35),
+        ("5b-lam0-range", "Lemma 5.2b",
+         "[%.2f,%.2f] with its corrections inside [%.2f,%.2f]"
+         % (lam_exact_lo, lam_exact_hi, lam_lo, lam_hi),
+         lambda P: lam_exact_hi * (1 + P**-0.25) * (1 + 1 / (3 * P**0.5)) ** 2 <= lam_hi
+         and lam_exact_lo * (1 - P**-0.25) * (1 - 1 / (3 * P**0.5)) ** 2 >= lam_lo),
         # --- Theorem 5.3, Lemma 3.9 perturbation hypothesis rho <= rho_0 ---
-        ("39-c2", "Thm 5.3 St.5b", "|c''/2|/S <= rho_0: (0.053/0.35) P^(-1/4)",
-         lambda P: (0.053 / 0.35) * P**-0.25 <= rho0),
-        ("39-c3", "Thm 5.3 St.5b", "P|c'''/2|/S <= rho_0: (0.047/0.35) P^(-1/4)",
-         lambda P: (0.047 / 0.35) * P**-0.25 <= rho0),
-        ("39-c4", "Thm 5.3 St.5b", "P^2|c''''/2|/S <= rho_0: (0.044/0.35) P^(-1/4)",
-         lambda P: (0.044 / 0.35) * P**-0.25 <= rho0),
+        ("39-c2", "Thm 5.3 St.5b", "|c''/2|/S <= rho_0: (0.053/%.2f) P^(-1/4)" % lam_lo,
+         lambda P: (0.053 / lam_lo) * P**-0.25 <= rho0),
+        ("39-c3", "Thm 5.3 St.5b", "P|c'''/2|/S <= rho_0: (0.047/%.2f) P^(-1/4)" % lam_lo,
+         lambda P: (0.047 / lam_lo) * P**-0.25 <= rho0),
+        ("39-c4", "Thm 5.3 St.5b", "P^2|c''''/2|/S <= rho_0: (0.044/%.2f) P^(-1/4)" % lam_lo,
+         lambda P: (0.044 / lam_lo) * P**-0.25 <= rho0),
         ("39-beta", "Thm 5.3 St.5b", "beta-substitution error 2.31 P^(-1/2) <= rho_0",
-         lambda P: (1.187 * 0.68 / 0.35) * P**-0.5 <= rho0),
-        ("39-wave", "Thm 5.3 St.5b", "wave remainder 200 P^(-35/24) vs S: 571 P^(-5/6) <= rho_0",
-         lambda P: (200 / 0.35) * P ** (-5 / 6) <= rho0),
+         lambda P: (9 * lam_lo / 2.656 * 0.68 / lam_lo) * P**-0.5 <= rho0),
+        ("39-wave", "Thm 5.3 St.5b", "wave remainder %d P^(-35/24) vs S: %d P^(-5/6) <= rho_0" % (u_cap, round(u_cap / lam_lo)),
+         lambda P: (u_cap / lam_lo) * P ** (-5 / 6) <= rho0),
         # --- Theorem 5.3, the Lemma 3.9 balance comparison ---
         # Lemma 3.9 is applied at the raised threshold W = V + E, so its single hypothesis
         # W <= c_7 S/2 replaces the former pair (V <= c_7 S/2, V >= 10|f''-Lambda|).
         ("5a-competitors", "Thm 5.3 St.5a", "every competitor ratio <= 1/4 (margin 4)",
          lambda P: max(1.3 * P**-0.125, 13 * P ** (-9 / 16), 9 * P ** (-13 / 12), 3 * P**-0.125) <= 0.25),
         ("5a-W<=c7S", "Thm 5.3 St.5a", "W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8)",
-         lambda P: _V(S5a(P), P, kappa) + interpolant_error(P) <= c7 * S5a(P) / 2),
-        ("5b-W<=c7S", "Thm 5.3 St.5b", "W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8)",
-         lambda P: _V(S5b(P), P, kappa) + interpolant_error(P) <= c7 * S5b(P) / 2),
+         lambda P: _V(S5a(P), P, kappa) + E(P) <= c7 * S5a(P) / 2),
+        ("5b-W<=c7S", "Thm 5.3 St.5b", "W = V + E <= c_7 S/2 at S >= %.2f P^(-5/8)" % lam_lo,
+         lambda P: _V(S5b(P), P, kappa) + E(P) <= c7 * S5b(P) / 2),
         ("5b-E<=c7S", "Thm 5.3 St.5b", "E alone <= c_7 S/2 (the floor as kappa -> 0)",
-         lambda P: interpolant_error(P) <= c7 * S5b(P) / 2),
+         lambda P: E(P) <= c7 * S5b(P) / 2),
         # --- Section 6 ---
         # Step B discards err with |err| <= (3/4) n^(-9/8) from the phase (k/2) v^(3/2).  Over a
         # block that costs 2*pi*(k/2)*(3/4)*P^(-9/8)*P = (3 pi k/4) P^(-1/8) <= 4.8 P^(-11/96),
@@ -192,8 +206,11 @@ def thresholds(kappa: float = KAPPA, c7: float = C7) -> list[dict[str, Any]]:
         # under P_0, so the substitution is free at the threshold.
         ("st2-collision", "Thm 5.3 St.5", "3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24)",
          lambda P: 3 * R0(P) ** 0.5 * P**0.75 <= P ** (23 / 24)),
+        # the 0.35 here is Theorem 4.1's Stage-4 curvature 0.35 uh P^(-3/4), not Lemma 5.2b's
+        # lambda_0 floor -- a different constant that happens to share the value
         ("st5b-qpp", "Thm 5.3 St.5b(a)", "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
-         lambda P: (1.85 * P ** (7 / 24) + R0(P)) * 6 * P ** (-5 / 4) / (0.35 * P**-0.75) <= 0.25),
+         lambda P: (1.85 * P ** (7 / 24) + R0(P)) * 6 * P ** (-5 / 4)
+         / (0.35 * P**-0.75) <= 0.25),
         ("t63-window", "Thm 6.3", "Lemma 3.7 window T = R_0 >= 8(1 + |C|)",
          lambda P: R0(P) >= 8 * (1 + depth5_C_max(P))),
         ("t63-flat", "Thm 6.3", "flat cost 8(1+|C|)/R_0 <= P^(-1/96) per point",
@@ -234,7 +251,7 @@ def r0_tradeoff(a: float) -> dict[str, Any]:
     return out
 
 
-def kappa_tradeoff(kappa: float, c7: float = C7, S_lo: float = 0.35, N: float = 3.5) -> dict[str, Any]:
+def kappa_tradeoff(kappa: float, c7: float = C7, S_lo: float = 0.56, N: float = 3.5) -> dict[str, Any]:
     """Threshold ``P_0`` and non-vacuity point ``P_1`` as functions of the normalisation of V.
 
     Under the raised threshold ``W = V + E`` the two no longer conflict: both fall as ``kappa``
@@ -346,6 +363,10 @@ def c7_saturation(hi_denom: float = 40.0) -> dict[str, Any]:
     value where the Step 5b gate drops below it.  Both numbers are computed here rather than
     assumed.  Note this is the *ceiling* of the lever: Appendix A.5's vector trade realises only
     part of it, because raising ``c_2`` is paid for out of ``c_3`` and ``c_4``.
+
+    The floor is Theorem 4.1's Stage-4 curvature and does not move with Lemma 5.2b's anchor, so
+    the crossover stays at ``1/54``; what the erratum changed is the base, and with it the
+    lever's total worth, from a factor 300 to 120.
     """
     rows = sorted(((r["P_min"], r["tag"]) for r in thresholds()
                    if r["tag"] not in C7_DEPENDENT_TAGS and r["P_min"]), reverse=True)
@@ -400,7 +421,7 @@ def max_c2(c3: float = 0.0, c4: float = 0.0) -> float:
 
 
 def middle_band_cost(kappa: float, P: float, c3: float = C7, c4: float = C7,
-                     S_lo: float = 0.35, N: float = 3.5) -> tuple[float, float, float]:
+                     S_lo: float = 0.56, N: float = 3.5) -> tuple[float, float, float]:
     """The three middle-band costs at ``P``: r=3 transition, r=4 transition, piece boundaries.
 
     Their exponents differ -- 41/48, 89/96 and 89/96 -- so they cannot be collected into a single
@@ -416,7 +437,7 @@ def middle_band_cost(kappa: float, P: float, c3: float = C7, c4: float = C7,
 
 
 def log10_P1(kappa: float, c3: float = C7, c4: float = C7,
-             S_lo: float = 0.35, N: float = 3.5) -> float:
+             S_lo: float = 0.56, N: float = 3.5) -> float:
     """Least log10 P at which the Step 5b middle band beats the trivial bound P.
 
     A different quantity from ``P_0``, and larger: ``P_0`` says the printed inequalities hold,
@@ -436,13 +457,13 @@ def p0_with_vector(kappa: float, c2: float, c3: float, c4: float) -> float | Non
                 if r["tag"] not in {"5a-W<=c7S", "5b-W<=c7S", "5b-E<=c7S",
                                     "39-c2", "39-c3", "39-c4", "39-beta", "39-wave"})
     out = [floor]
-    for S_lo in (0.35, 0.60):
+    for S_lo in (0.56, 0.60):
         t = least_P(lambda P, s=S_lo: kappa * (s * P**-0.625) ** 0.5 * P ** (-11 / 24)
                     + interpolant_error(P) <= c2 * (s * P**-0.625) / 2)
         if t is None:
             return None
         out.append(t)
-    for co, ex in ((0.1514, 0.25), (0.1343, 0.25), (0.1257, 0.25), (2.31, 0.5), (571.4, 5 / 6)):
+    for co, ex in ((0.0946, 0.25), (0.0839, 0.25), (0.0786, 0.25), (2.31, 0.5), (535.7, 5 / 6)):
         out.append(math.log10(co / rho0) / ex)
     return max(out)
 

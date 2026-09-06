@@ -1,4 +1,4 @@
-"""Effective threshold certificate for Paper B: P_0 = 8.9e13, binding at Step 5b's W <= c_7 S/2."""
+"""Effective threshold certificate for Paper B: P_0 = 3.6e13, binding at Step 5b's W <= c_7 S/2."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
 
 def _pred_for(tag: str):
     """The printed inequalities, transcribed independently of the module's own list."""
-    S5b = lambda P: 0.35 * P**-0.625  # noqa: E731
+    S5b = lambda P: 0.56 * P**-0.625  # noqa: E731  the corrected lambda_0 floor
     S5a = lambda P: 0.60 * P**-0.625  # noqa: E731
     k, c7, rho0 = C.KAPPA, C.C7, C.C7 / 8.0
     V, E = C._V, C.interpolant_error
@@ -44,13 +44,13 @@ def _pred_for(tag: str):
         "5b-j0-window": lambda P: P**0.5 >= 56,
         "5b-Npieces": lambda P: 3 * P ** (1 / 24 + 0.5) + 2 + 22 * P ** (1 / 16 + 0.25)
         + 5 * P ** (1 / 3) <= 3.5 * P ** (13 / 24),
-        "5b-lam0-range": lambda P: 2.44 * (1 + P**-0.25) * (1 + 1 / (3 * P**0.5)) ** 2 <= 2.6
-        and 0.38 * (1 - P**-0.25) * (1 - 1 / (3 * P**0.5)) ** 2 >= 0.35,
-        "39-c2": lambda P: (0.053 / 0.35) * P**-0.25 <= rho0,
-        "39-c3": lambda P: (0.047 / 0.35) * P**-0.25 <= rho0,
-        "39-c4": lambda P: (0.044 / 0.35) * P**-0.25 <= rho0,
-        "39-beta": lambda P: (1.187 * 0.68 / 0.35) * P**-0.5 <= rho0,
-        "39-wave": lambda P: (200 / 0.35) * P ** (-5 / 6) <= rho0,
+        "5b-lam0-range": lambda P: 3.90 * (1 + P**-0.25) * (1 + 1 / (3 * P**0.5)) ** 2 <= 4.2
+        and 0.62 * (1 - P**-0.25) * (1 - 1 / (3 * P**0.5)) ** 2 >= 0.56,
+        "39-c2": lambda P: (0.053 / 0.56) * P**-0.25 <= rho0,
+        "39-c3": lambda P: (0.047 / 0.56) * P**-0.25 <= rho0,
+        "39-c4": lambda P: (0.044 / 0.56) * P**-0.25 <= rho0,
+        "39-beta": lambda P: (1.898 * 0.68 / 0.56) * P**-0.5 <= rho0,
+        "39-wave": lambda P: (300 / 0.56) * P ** (-5 / 6) <= rho0,
         "5a-competitors": lambda P: max(1.3 * P**-0.125, 13 * P ** (-9 / 16),
                                         9 * P ** (-13 / 12), 3 * P**-0.125) <= 0.25,
         "5a-W<=c7S": lambda P: V(S5a(P), P, k) + E(P) <= c7 * S5a(P) / 2,
@@ -76,11 +76,15 @@ def test_every_printed_threshold_is_solvable() -> None:
     ]
 
 
-def test_p0_is_89e13_and_binds_at_the_lemma_3_9_hypothesis() -> None:
+def test_p0_is_36e13_and_binds_at_the_lemma_3_9_hypothesis() -> None:
     cert = C.certificate()
     assert cert["binding"]["tag"] == "5b-W<=c7S"
-    assert 8.8e13 < cert["P0"] < 9.0e13
-    assert round(cert["P0"] / 1e13, 1) == 8.9  # the paper prints 8.9e13
+    assert 3.5e13 < cert["P0"] < 3.7e13
+    assert round(cert["P0"] / 1e13, 1) == 3.6  # the paper prints 3.6e13
+    # under the pre-correction anchor of the erratum at Lemma 5.2b it was 8.9e13
+    pre = C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)
+    old = max(r["P_min"] for r in pre if r["P_min"])
+    assert 8.8e13 < old < 9.0e13
 
 
 def test_each_threshold_is_sharp_at_its_own_crossing() -> None:
@@ -96,9 +100,9 @@ def test_each_threshold_is_sharp_at_its_own_crossing() -> None:
 
 def test_the_balance_comparisons_carry_the_threshold_alone() -> None:
     cert = C.certificate()
-    # Excluding the three Lemma 3.9 balance comparisons, the worst row is now the
-    # q'' curvature ratio of Step 5b(a) at 3.0e11 -- the price of R_0 = P^(5/16).
-    # Before that substitution it was s3s1-Bsmall at 2.9e10.
+    # Excluding the three Lemma 3.9 balance comparisons, the two largest rows are level:
+    # s3s1-Bsmall at 2.83e10 and the q'' ratio of Step 5b(a) at 2.79e10.  Before the
+    # erratum at Lemma 5.2b the q'' row carried the 0.35 floor and stood at 3.0e11.
     assert 2.5e11 < cert["P0_excluding_lemma_3_9_balance"] < 3.5e11
     assert cert["binding_excluding_balance"]["tag"] == "st5b-qpp"
     assert cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] > 100
@@ -110,9 +114,9 @@ def test_the_balance_comparisons_carry_the_threshold_alone() -> None:
 
 
 def test_superseded_normalisation_is_recovered() -> None:
-    """kappa = 1/3 (the previous operating point) still gives 5.8e16."""
+    """kappa = 1/3 (the previous operating point) gives 1.2e16 under the corrected anchor."""
     cert = C.certificate()
-    assert 5.5e16 < cert["P0_at_superseded_kappa"] < 6.1e16
+    assert 1.1e16 < cert["P0_at_superseded_kappa"] < 1.3e16
 
 
 # ----------------------------------------------------------------------------------------------
@@ -167,10 +171,11 @@ def test_interpolant_error_is_106_not_219() -> None:
     assert 2 * ((9 / 32) * 186 + (135 / 1024) * 4.3) <= 105.8 <= 106
     # the factor ~2.07 is on the P^(-25/24) coefficient, not on the total: the second term
     # 0.11 P^(-5/6) is untouched and is co-dominant near P_0, so the total gains only ~1.6 there.
-    assert 2.0 < 219 / 105.8 < 2.1
+    assert 1.27 < 219 / 170.6 < 1.29
     for P in (1e14, 1e16, 1e20):
         assert C.interpolant_error(P) < C.interpolant_error_superseded(P)
-    assert 1.5 < C.interpolant_error_superseded(8.93e13) / C.interpolant_error(8.93e13) < 1.7
+    P0 = C.certificate()["P0"]
+    assert 1.15 < C.interpolant_error_superseded(P0) / C.interpolant_error(P0) < 1.25
 
 
 def test_the_middle_band_cap_is_the_band_condition_itself() -> None:
@@ -191,9 +196,9 @@ def test_P1_is_computed_from_three_different_exponents() -> None:
     assert math.isclose(math.log10(r3b / r3), 41 / 48, rel_tol=0.02)
     assert math.isclose(math.log10(bdb / bd), 89 / 96, rel_tol=0.02)
     # near P_0 the r=3 term is still E-dominated, so its slope sits between 19/24 and 41/48
-    lo, hi = C.middle_band_cost(C.KAPPA, 1e14)[0], C.middle_band_cost(C.KAPPA, 1e15)[0]
+    lo, hi = C.middle_band_cost(C.KAPPA, 1e15)[0], C.middle_band_cost(C.KAPPA, 1e16)[0]
     assert 19 / 24 < math.log10(hi / lo) < 41 / 48
-    assert 4.5e19 < 10 ** C.log10_P1(C.KAPPA) < 5.5e19
+    assert 9.5e18 < 10 ** C.log10_P1(C.KAPPA) < 1.05e19
 
 
 def test_kappa_now_moves_P0_and_P1_together() -> None:
@@ -313,19 +318,30 @@ def test_lean_theorems_exist_by_name() -> None:
         assert "theorem %s " % thm in src, thm
 
 
-def test_lean_thresholds_cover_the_probe_thresholds() -> None:
-    """Each Lean row's rational t0^n must be at or above the probe's bisected P."""
-    probe = {r["tag"]: r["P_min"] for r in C.thresholds()}
+def test_lean_thresholds_cover_the_precorrection_probe_thresholds() -> None:
+    """The Lean file encodes the table before the erratum at Lemma 5.2b, and covers that one.
+
+    It does not cover the corrected table -- row_5a_binding is 1.9e13 against a corrected probe
+    of 2.9e13 -- which is why the manuscript says so in A.1 rather than letting the two drift.
+    """
+    pre = {r["tag"]: r["P_min"] for r in C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)}
     for tag, thm, n, t0 in LEAN_ROWS:
-        assert t0**n >= probe[tag] * (1 - 1e-9), (thm, t0**n, probe[tag])
+        assert t0**n >= pre[tag] * (1 - 1e-9), (thm, t0**n, pre[tag])
+    now = {r["tag"]: r["P_min"] for r in C.thresholds()}
+    stale = [thm for tag, thm, n, t0 in LEAN_ROWS if t0**n < now[tag] * (1 - 1e-9)]
+    assert stale == ["row_5a_binding"], stale
+    assert "still carries the pre-correction constants" in _paper()
 
 
 def test_the_lean_certified_P0_is_the_binding_row() -> None:
-    """max over the Lean rows is row_5b_binding at 1.96^48 = 1.07e14."""
+    """max over the Lean rows is row_5b_binding at 1.96^48 = 1.07e14, the pre-correction value."""
     worst = max(LEAN_ROWS, key=lambda r: r[3] ** r[2])
     assert worst[1] == "row_5b_binding"
     assert 1.0e14 < worst[3] ** worst[2] < 1.1e14
-    assert 1.0 < (worst[3] ** worst[2]) / C.certificate()["P0"] < 1.25
+    pre = C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)
+    old_P0 = max(r["P_min"] for r in pre if r["P_min"])
+    assert 1.0 < (worst[3] ** worst[2]) / old_P0 < 1.25
+    assert 1.0 < 1.92**48 / C.certificate()["P0"] < 1.15
 
 
 # --- Stage 2's truncation R_0, which decides four rows ---
@@ -367,7 +383,7 @@ def test_five_sixteenths_is_the_optimum_of_the_trade() -> None:
 
 def test_P0_is_unchanged_by_the_substitution() -> None:
     cert = C.certificate()
-    assert 8.9e13 < cert["P0"] < 9.0e13
+    assert 3.5e13 < cert["P0"] < 3.7e13
     assert cert["binding"]["tag"] == "5b-W<=c7S"
 
 
@@ -431,7 +447,7 @@ def test_appendix_a_and_section_4_agree_on_the_four() -> None:
     """Appendix A always had it right; the two passages must not drift apart again."""
     text = _paper()
     assert "Of the remaining four" in text
-    for figure in (r"3.0\cdot10^{11}", "two and a half orders"):
+    for figure in (r"3.0\cdot10^{11}", "two orders"):
         assert text.count(figure) >= 2, figure     # stated in both places now
 
 
@@ -514,22 +530,31 @@ def test_the_floor_is_the_qpp_site() -> None:
     assert abs(r["floor"] / 2.9817e11 - 1) < 1e-3, r["floor"]
     assert r["runner_up"][1] == "s3s1-Bsmall"
     assert r["floor"] / r["runner_up"][0] > 10          # an order below
+    # the erratum at Lemma 5.2b did not move it: this row divides by Theorem 4.1's Stage-4
+    # curvature 0.35 uh P^(-3/4), a different constant that happens to share the value
+    pre = {x["tag"]: x["P_min"] for x in C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)}
+    assert abs(pre["st5b-qpp"] / r["floor"] - 1) < 1e-9
 
 
-def test_the_lever_saturates_near_one_over_fifty_four() -> None:
+def test_the_lever_saturates_near_one_over_sixty() -> None:
     r = C.c7_saturation()
-    assert 53 < r["crossover_denom"] < 55, r["crossover_denom"]
-    # past the crossover the gate no longer binds, so P_0 stops moving
+    assert 60 < r["crossover_denom"] < 62, r["crossover_denom"]
+    # the floor did not move with the erratum, but the gate sits lower at every c_7, so
+    # less of the lever is needed: the crossover eased from 1/54 to 1/61
     pinned = [max(x["P_min"] for x in C.thresholds(c7=c) if x["P_min"])
               for c in (1 / 50.0, 1 / 30.0, 1 / 20.0)]
     assert all(abs(p / r["floor"] - 1) < 1e-6 for p in pinned), pinned
 
 
-def test_the_whole_lever_is_worth_a_factor_of_three_hundred() -> None:
+def test_the_whole_lever_is_worth_a_factor_of_one_hundred_and_twenty() -> None:
     r = C.c7_saturation()
-    assert abs(r["max_factor"] / 300.0 - 1) < 0.02, r["max_factor"]
-    # and A.5's vector trade realises only 3.4 of it
-    assert abs(r["P0"] / 2.6e13 - 3.44) < 0.05
+    assert abs(r["max_factor"] / 120.3 - 1) < 0.02, r["max_factor"]
+    # and A.5's vector trade realises only 8.9 of it
+    assert abs(r["P0"] / C.c7_lever()["c2_raised"]["P0"] / 8.9 - 1) < 0.05
+    # it was 300 before the erratum, and fell only because P_0 did: the floor is unmoved
+    pre = C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)
+    old_P0 = max(x["P_min"] for x in pre if x["P_min"])
+    assert abs((old_P0 / r["floor"]) / 300.0 - 1) < 0.02
 
 
 def test_five_sixteenths_is_best_of_the_tabulated_four_but_not_the_minimax() -> None:
@@ -552,8 +577,8 @@ def test_five_sixteenths_is_best_of_the_tabulated_four_but_not_the_minimax() -> 
 def test_paper_states_the_saturation() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
     assert "and it saturates, at a value" in text
-    assert r"c_7=1/54" in text
-    assert r"a factor of \(300\)" in text
+    assert r"c_7=1/61" in text
+    assert r"a factor of \(120\)" in text
     assert "feasible rather than optimal" in text
 
 
@@ -578,11 +603,12 @@ def test_the_certificate_uses_the_two_term_form() -> None:
 
 
 def test_the_printed_constant_is_right_at_P0() -> None:
-    """0.12 in the manuscript is 48.9 P^{-3/16} at P_0, and the merge costs 1.46 there."""
+    """0.088 in the manuscript is 30.5 P^{-3/16} at P_0, and the merge costs 1.45 there."""
     P = C.certificate()["P0"]
-    assert abs(48.9 * P ** (-3 / 16) - 0.12) < 0.005
+    assert abs(48.9 * P ** (-3 / 16) - 0.14) < 0.005
+    assert abs(17.1 / 0.35 - 48.9) < 0.05   # Theorem 4.1's Stage-4 curvature, not lambda_0
     merged, exact = 2.85 * P ** 0.3125, 1.85 * P ** (7 / 24) + P ** 0.3125
-    assert abs(merged / exact - 1.46) < 0.01
+    assert abs(merged / exact - 1.45) < 0.01
 
 
 @pytest.mark.parametrize("kw,want", [("A", 2.66), ("J", 5.04), ("F", -5.04), ("M", -5.04)])
@@ -925,7 +951,7 @@ def test_the_no_log_loss_condition_holds_by_a_wide_margin() -> None:
     """A'_min ~ P^{11/16} against log P at P_0."""
     P0 = C.certificate()["P0"]
     amin = P0 ** (11 / 16)
-    assert abs(amin / 3.9e9 - 1) < 0.05
+    assert abs(amin / 2.08e9 - 1) < 0.05
     assert 30 < math.log(P0) < 34
     assert amin / math.log(P0) > 1e7
 
@@ -938,9 +964,9 @@ def test_the_exceptional_shift_measure(delta: Fr, exponent: Fr) -> None:
     assert P0 ** float(exponent) < 1e-12
 
 
-def test_the_measure_at_the_level_two_saving_is_two_times_ten_to_the_minus_fourteen() -> None:
+def test_the_measure_at_the_level_two_saving_is_five_times_ten_to_the_minus_fourteen() -> None:
     P0 = C.certificate()["P0"]
-    assert abs(P0 ** float(Fr(-47, 48)) / 2.18e-14 - 1) < 0.05
+    assert abs(P0 ** float(Fr(-47, 48)) / 5.34e-14 - 1) < 0.05
 
 
 def test_a_generic_shift_would_overshoot_by_forty_eight() -> None:

@@ -399,7 +399,7 @@ def test_p0_agrees_between_the_certificate_the_manuscript_and_the_ledger() -> No
 def test_manuscript_quotes_p0_consistently_wherever_it_appears() -> None:
     """Every numeric occurrence of P_0 in Paper B is the same two-figure value."""
     quoted = set(re.findall(r"P_0\s*=\s*([\d.]+)\\cdot10\^\{(\d+)\}", read(PAPER_B)))
-    assert quoted == {("8.9", "13")}, quoted
+    assert quoted == {("3.6", "13")}, quoted
 
 
 def test_binding_site_named_in_the_ledger_is_the_computed_one() -> None:

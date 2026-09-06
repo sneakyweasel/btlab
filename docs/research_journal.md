@@ -31027,3 +31027,161 @@ Best next question
   P^(-11/24). The certificate carries a kappa_tradeoff table. Does the
   optimal kappa move once E stops dominating, and by how much?
 ```
+
+ ### The correction propagated: P_0 falls to 3.6e13, P_1 to 9.8e18
+
+The deferred item. Two errata were established and priced; this carries
+them through the manuscript, the certificate module and the tests.
+
+**The threshold falls by 2.5 and the non-vacuity point by 5.1.**
+
+```text
+   P_0   8.9458e13  ->  3.5858e13     factor 2.49
+   P_1   5.03e19    ->  9.84e18       factor 5.11
+```
+
+both still binding at Step 5b's `W <= c_7 S/2`. `S` rises by `8/5`
+while `V = kappa S^{1/2} P^{-11/24}` rises only by `sqrt(8/5)`, which
+more than pays for `E` growing `106 -> 171` with the `u`-cap. `P_1`
+gains more than `P_0` because its `r=3` transition term carries `W/S`
+linearly where the gate carries it once.
+
+**And kappa = 1/12 is unchanged.** The `P_1` column is minimised there
+before and after the correction. That is worth stating: the operating
+point is fixed by the boundary term's `kappa^{-1/2}` against the gate's
+growth, and a factor `8/5` on the anchor moves every entry of both
+columns without moving the argmin. It was chosen for a reason and not
+fitted to the constants.
+
+**I got one thing wrong on the way.** The `q''` curvature ratio of Step
+5b(a) divides by `0.35 uh P^{-3/4}` — Theorem 4.1's *Stage-4*
+curvature — and I read that `0.35` as Lemma 5.2b's `lambda_0` floor,
+which is also `0.35`. On that reading the `q''` row fell an order to
+`2.79e10`, the `R_0` crossing moved from `0.29919` to `0.30667`, `3/10`
+went from within `4%` of optimal to `5.5` times worse, and I rewrote
+A.6 around it. All wrong: the two constants share a value and nothing
+else. Caught by reading the derivation, which names its denominator
+two lines above. Reverted, and the manuscript now says which `0.35` is
+which at both sites.
+
+So the `R_0` analysis is unchanged in every figure except those
+measured against `P_0` — except for one real consequence: `a = 9/32`,
+worst site `7.4e13`, used to sit just *under* `P_0` by a factor `1.3`
+("too close to print") and now sits `2.1` *above* it. The feasibility
+band tightens to `[0.283, 0.346]` and no longer contains `9/32`. A
+threshold that falls decides a question that was previously too close
+to call.
+
+**The Lean certificate is now behind, and says so.** It encodes the
+pre-correction table — `t = 1.96`, `sqrt(0.35) >= 0.5916` — whose rows
+remain true but are no longer the printed ones. Rather than leave that
+implicit, `thresholds` now takes an `anchor` tuple so the
+pre-correction table is a first-class object, the Lean covering test
+pins the Lean rows to *that* table, and asserts that exactly one row
+(`row_5a_binding`) fails to cover the corrected one. A.1 states the
+discrepancy in the manuscript.
+
+```text
+What was learned
+- two constants can share a value and nothing else; 0.35 was Lemma
+  5.2b's lambda_0 floor in one place and Theorem 4.1's Stage-4
+  curvature in another, and conflating them silently rewrote an
+  appendix around a false conclusion
+- the fix for that is not care, it is naming: both sites now say which
+  0.35 they mean, and the module comments do too
+- an operating point that survives a factor 8/5 on the quantity it
+  balances was chosen structurally, not fitted
+- propagating a correction is where you find out which conclusions were
+  resting on the margin: 9/32 was "too close to print" and is now
+  decided
+- a stale machine certificate is better asserted than mentioned; the
+  covering test now pins it to the table it actually proves
+Strongest theorem
+- P_0 = 3.5858e13 and P_1 = 9.84e18, both at kappa = 1/12, from the
+  corrected Lemma 5.2b anchor; the exponent 1 - 1/96 is untouched
+Strongest refutation
+- my own reading that the q'' row carries lambda_0: it carries the
+  Stage-4 curvature, and the R_0 analysis is unchanged
+Reusable machinery
+- thresholds(anchor=...) with ANCHOR_CONSTANTS and
+  ANCHOR_CONSTANTS_PRECORRECTION; the pre-correction table is now
+  computable rather than remembered
+Branch status
+- PROMOTE
+Why
+  The threshold improves by a factor 2.5 and the non-vacuity point by
+  5.1, with no exponent moving and no hypothesis weakened. That is a
+  strictly better effective theorem, and it is now consistent across
+  the manuscript, both mirrors, the module and four test files.
+Best next question
+- regenerate ThresholdCertificate.lean against the corrected table: 32
+  theorems, of which one (row_5a_binding) no longer covers, and two
+  rational bounds (sqrt(0.56) >= 0.7483, (1/12)sqrt(0.56) <= 0.06237)
+  to substitute.
+```
+
+## The operating point holds, and the repair is worth less than it looked
+
+Following the last entry's question about `kappa`. Two answers, and the
+second is a correction to my own enthusiasm.
+
+**The optimum does not move.** `kappa` is pinned by `P_1` -- the point
+at which the middle band beats the trivial bound -- whose piece-boundary
+term carries `kappa^(-1/2)` and turns it around. Scanning `1/kappa` over
+`[8, 25]`, the minimum is at `1/11.50` both with the printed interpolant
+error and with the repaired one. The paper operates at `1/12`, within
+`0.3%` of the true turning point.
+
+**Why not.** The error does reach `P_1`, through `W = V + E` in the two
+transition costs -- but weakly. `E` is `45.5%` of `W` at
+`P_0 = 3.59e13` and `11.8%` at `P_1 = 9.81e18`.
+
+| | printed | repaired | factor |
+|---|---|---|---|
+| `P_0`, the certified threshold | `3.59e13` | `4.89e12` | `7.33` |
+| `P_1`, where the band has content | `9.81e18` | `9.25e18` | `1.06` |
+| optimal `1/kappa` | `11.50` | `11.50` | -- |
+
+**So the four entries above are worth less than they read.** The pairing
+repair improves the certified threshold and not the point at which
+Theorem 5.3's middle band says anything; `P_1` is five orders above
+`P_0` and stays there. The paper is not hiding that -- Appendix A.5
+tabulates both across `kappa`, and the prose quotes `P_0 = 3.6e13`
+against `P_1 = 9.8e18`. A reader who takes `P_0` for the paper's reach
+has misread the paper rather than been misled by it.
+
+I also got the mechanism wrong first: I read `log10_P1`'s signature, saw
+no interpolant term, and concluded `E` was absent from `P_1`. It is in
+`middle_band_cost`, which `log10_P1` calls. The conclusion survives
+because `E`'s weight there is small, not because it is missing --
+different reason, same answer, and I would not have noticed if I had not
+gone to run the numbers.
+
+```text
+What was learned
+- kappa is pinned by P_1 and P_1 is five orders above P_0, so a factor
+  of 7 on P_0 is a factor of 1.06 on the number that matters
+- E is 46% of W at P_0 and 12% at P_1, which is the whole explanation
+- the paper tabulates both quantities and quotes both, so nothing here
+  is an overclaim on its part
+Strongest theorem
+- the P_1 optimum is at 1/11.50 with either interpolant form; the
+  operating 1/12 is 0.3% off it
+Strongest refutation
+- my own first mechanism, that E does not enter P_1 at all: it does,
+  through W = V + E in middle_band_cost
+Reusable machinery
+- kappa_optimum_check, scanning both forms over the kappa grid and
+  reporting the error's share of W at each threshold; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Four passes found a real improvement to P_0 and this one measures
+  what it buys. A factor of seven on the smaller of two numbers, five
+  orders apart, is worth recording accurately rather than loudly.
+Best next question
+- P_1 is the number that decides reach, and its three costs are
+  4P(W/S)/c_3, P(W/(c_4 S))^(1/2) and 3.5 P^(13/24) V^(-1/2). Which of
+  the three binds at 1e19, and is its constant as loose as the ones
+  the census could not police?
+```
