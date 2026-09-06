@@ -36772,41 +36772,71 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Step (i) of Lemma 5.2b.** The wave replacement, under the middle-band cap `u \u2264 186 k h\u2082 P^(1/8)` \u2014 which *is* the band condition `\u03bc \u2264 60 \u03bb\u2080`, since `60\u00b72.6/0.84 = 185.7`. Powers enter only through `p18 = P^(1/8)`, `p54 = P^(-5/4)`, `p98 = P^(-9/8)` and the relation `p18 \u00b7 p54 = p98`. The conclusion carries the shape `k(h\u2081+h\u2082)`, which is what lets it combine with step (ii) *before* conversion \u2014 the step the earlier draft skipped, bounding and converting the two terms separately and printing `202.5 + 16 = 219`. The constant is `(9/32)\u00b7186 = 52.3125`, so it must be printed as `52.32`, not `52.3`.",
+      "doc": "**Step (i) of Lemma 5.2b.** The wave replacement, under the middle-band cap `u \u2264 300 k h\u2082 P^(1/8)` \u2014 which *is* the band condition `\u03bc \u2264 60 \u03bb\u2080`, since `60\u00b74.2/0.84 = 300`. Powers enter only through `p18 = P^(1/8)`, `p54 = P^(-5/4)`, `p98 = P^(-9/8)` and the relation `p18 \u00b7 p54 = p98`. The conclusion carries the shape `k(h\u2081+h\u2082)`, which is what lets it combine with step (ii) *before* conversion \u2014 the step the earlier draft skipped, bounding and converting the two terms separately and printing `202.5 + 16 = 219`. The constant is `(9/32)\u00b7300 = 84.375`, printed as `84.38`. The cap is `300` and not `186` because of the erratum at Lemma 5.2b: the anchor curvature is `27/128`, not `135/1024`, and `\u03bb\u2080`'s ceiling `2.6` opens to `4.2`. The superseded chain is kept below under `_precorrection`, as `step5b_c7_printed` keeps the manuscript's weaker `1/288`.",
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 151,
+      "line": 154,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "interpolant_step_i",
       "trust": "kernel"
     },
     {
-      "doc": "**Step (ii) of Lemma 5.2b.** The `\u03b2`-product replacement contributes `(135/1024)\u00b74.3 = 0.567`, printed as `0.57`. An earlier draft carried `8` here \u2014 fourteen times the true value \u2014 and that `8` is the source of the `16` in the old `219 = 202.5 + 16`.",
+      "doc": "The same step under the pre-correction anchor `135/1024`, where the cap was `186 = 60\u00b72.6/0.84` and the constant `(9/32)\u00b7186 = 52.3125`. Retained because the manuscript's erratum lists `186 \u2192 300` and `52.9 \u2192 85.3` explicitly, and a reader checking that list should find both ends of it here.",
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 173,
+      "line": 176,
+      "module": "Problems.Juggler.PaperBAssembly",
+      "name": "interpolant_step_i_precorrection",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Step (ii) of Lemma 5.2b.** The `\u03b2`-product replacement contributes `(27/128)\u00b74.3 = 0.9070`, printed as `0.91`. The manuscript notes that `0.95` would not do, because it pushes the sum in (i) past `85.3`; both halves of that are recorded here.",
+      "file": "formal/Problems/Juggler/PaperBAssembly.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 198,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "interpolant_step_ii_constant",
       "trust": "kernel"
     },
     {
-      "doc": "**The assembly.** Steps (i) and (ii) share the shape `k(h\u2081+h\u2082)P^(-9/8)`, so they add before conversion: `52.32 + 0.57 = 52.89`. Then `k(h\u2081+h\u2082) \u2264 2 P^(1/12)` by (C3),(C4) gives `105.78 \u2264 106`, with `p112 = P^(1/12)`, `p2524 = P^(-25/24)` and `p112 \u00b7 p98 = p2524`.",
+      "doc": "The same constant under the pre-correction anchor, `(135/1024)\u00b74.3 = 0.567`, printed as `0.57`; the erratum's factor is exactly `8/5`. An earlier draft carried `8` here \u2014 fourteen times the pre-correction value \u2014 and that `8` is the source of the `16` in the old `219 = 202.5 + 16`.",
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 181,
+      "line": 208,
+      "module": "Problems.Juggler.PaperBAssembly",
+      "name": "interpolant_step_ii_precorrection",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The assembly.** Steps (i) and (ii) share the shape `k(h\u2081+h\u2082)P^(-9/8)`, so they add before conversion: `84.38 + 0.91 = 85.29`. Then `k(h\u2081+h\u2082) \u2264 2 P^(1/12)` by (C3),(C4) gives `170.58 \u2264 170.6`, with `p112 = P^(1/12)`, `p2524 = P^(-25/24)` and `p112 \u00b7 p98 = p2524`. The manuscript prints the rounder `171`; `170.6` is what `p0_certificate.interpolant_error` uses and is what the nine anchor rows of the threshold certificate are solved against.",
+      "file": "formal/Problems/Juggler/PaperBAssembly.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 220,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "interpolant_assembly",
       "trust": "kernel"
     },
     {
-      "doc": "The gain over the earlier `219`, on the `P^(-25/24)` coefficient. The second term `0.11 P^(-5/6)` of the interpolant error is untouched and is co-dominant at `P\u2080`, so the *total* error gains about `1.6` there, not `2.07`.",
+      "doc": "The same assembly under the pre-correction anchor: `52.32 + 0.57 = 52.89` and `105.78 \u2264 106`.",
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 199,
+      "line": 237,
+      "module": "Problems.Juggler.PaperBAssembly",
+      "name": "interpolant_assembly_precorrection",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The gain over the earlier `219`, on the `P^(-25/24)` coefficient: `1.28`, which is what Appendix A.5 claims. The pre-correction chain gave `106` and so a factor above `2`; the erratum at Lemma 5.2b spends most of that back, and `1.28` is what is left. The second term `0.11 P^(-5/6)` of the interpolant error is untouched and is co-dominant at `P\u2080`, so the *total* error gains less than either figure there.",
+      "file": "formal/Problems/Juggler/PaperBAssembly.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 258,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "interpolant_gain",
       "trust": "kernel"
@@ -36816,7 +36846,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 219,
+      "line": 281,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "stage6_D3_differenced_dominated",
       "trust": "kernel"
@@ -36826,7 +36856,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 240,
+      "line": 302,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "stage6_D3_printed_not_dominated",
       "trust": "kernel"
@@ -36836,7 +36866,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 247,
+      "line": 309,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "stage6_D3_gap",
       "trust": "kernel"
@@ -36846,7 +36876,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 263,
+      "line": 325,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_regimeA_dominated",
       "trust": "kernel"
@@ -36856,7 +36886,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 273,
+      "line": 335,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_regimeB_small",
       "trust": "kernel"
@@ -36866,7 +36896,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 282,
+      "line": 344,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_frequency_sweep",
       "trust": "kernel"
@@ -36876,7 +36906,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 293,
+      "line": 355,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_cells_flat",
       "trust": "kernel"
@@ -36886,7 +36916,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 306,
+      "line": 368,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseA_total",
       "trust": "kernel"
@@ -36896,7 +36926,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 318,
+      "line": 380,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_confined",
       "trust": "kernel"
@@ -36906,7 +36936,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 324,
+      "line": 386,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_closes",
       "trust": "kernel"
@@ -36916,7 +36946,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 334,
+      "line": 396,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_confines_phi",
       "trust": "kernel"
@@ -36926,7 +36956,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 342,
+      "line": 404,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_ratio",
       "trust": "kernel"
@@ -36936,7 +36966,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 349,
+      "line": 411,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "wideD3_caseB_gaps",
       "trust": "kernel"
@@ -36946,7 +36976,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 366,
+      "line": 428,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "sublevel_diam_of_deriv_lower",
       "trust": "kernel"
@@ -36956,7 +36986,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 389,
+      "line": 451,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "midpoint_defect_of_convexOn",
       "trust": "kernel"
@@ -36966,7 +36996,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 409,
+      "line": 471,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "sublevel_diam_of_strong_convexity",
       "trust": "kernel"
@@ -36976,7 +37006,7 @@
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 423,
+      "line": 485,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "sublevel_second_term_dominates",
       "trust": "kernel"
@@ -57008,7 +57038,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`f` and `g` agree as functions mod `3^k` exactly when `f - g` vanishes mod `3^k`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57020,13 +57050,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 31,
+      "line": 32,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "functionCongr_iff_vanishesMod",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Evaluation respects congruence: `a = b [ZMOD m]` gives `eval a f = eval b f [ZMOD m]`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "lemma",
       "ledger": [
@@ -57038,13 +57068,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 39,
+      "line": 41,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_modEq",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`n = packWord (integerJet k n) + 3^k * iterDZ k n` -- jet plus tail.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "lemma",
       "ledger": [
@@ -57056,13 +57086,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 45,
+      "line": 48,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "packWord_integerJet_decomp",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`n` is congruent to its packed jet modulo `3^k`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "lemma",
       "ledger": [
@@ -57074,7 +57104,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 51,
+      "line": 55,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "packWord_integerJet_modEq",
       "trust": "kernel"
@@ -57092,13 +57122,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 60,
+      "line": 64,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "equivK_iff_functionCongr",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The zero quadratic is the zero polynomial.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57110,7 +57140,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 91,
+      "line": 96,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "quad_zero",
       "trust": "kernel"
@@ -57128,7 +57158,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 98,
+      "line": 103,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "vanishesMod_quad_iff",
       "trust": "kernel"
@@ -57146,13 +57176,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 120,
+      "line": 125,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "cubic",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`eval x (cubic A B lin cst) = A x^3 + B x^2 + lin x + cst`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57164,33 +57194,15 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 123,
+      "line": 129,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_cubic",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Newton (falling-factorial) form of a cubic: `cst + (A+B+lin) x + (3A+B) x(x-1) + A x(x-1)(x-2)`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
-      "ledger": [
-        "BTA-x3-merge",
-        "BTA-x4-merge",
-        "BTA-fn-congr",
-        "BTA-quad-vanish",
-        "BTA-cubic-vanish",
-        "BTA-x3-x",
-        "BTA-coeffwise-nec"
-      ],
-      "line": 128,
-      "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "cubic_newton_eval",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
-      "kind": "lemma",
       "ledger": [
         "BTA-x3-merge",
         "BTA-x4-merge",
@@ -57202,11 +57214,11 @@
       ],
       "line": 135,
       "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "two_dvd_x_mul_pred",
+      "name": "cubic_newton_eval",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`2 | x (x - 1)`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "lemma",
       "ledger": [
@@ -57218,13 +57230,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 141,
+      "line": 143,
       "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "three_dvd_falling_three",
+      "name": "two_dvd_x_mul_pred",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`3 | x (x - 1)(x - 2)`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "lemma",
       "ledger": [
@@ -57237,6 +57249,24 @@
         "BTA-coeffwise-nec"
       ],
       "line": 150,
+      "module": "BTCalculus.PolynomialFunctionsMod",
+      "name": "three_dvd_falling_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`6 | x (x - 1)(x - 2)`.",
+      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
+      "kind": "lemma",
+      "ledger": [
+        "BTA-x3-merge",
+        "BTA-x4-merge",
+        "BTA-fn-congr",
+        "BTA-quad-vanish",
+        "BTA-cubic-vanish",
+        "BTA-x3-x",
+        "BTA-coeffwise-nec"
+      ],
+      "line": 160,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "six_dvd_falling_three",
       "trust": "kernel"
@@ -57254,13 +57284,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 160,
+      "line": 170,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "vanishesMod_cubic_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`3 | x^3 - x` (Fermat at `3`).",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57272,7 +57302,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 218,
+      "line": 229,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "three_dvd_x_pow_three_sub_x",
       "trust": "kernel"
@@ -57290,13 +57320,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 230,
+      "line": 241,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "X_pow_three_sub_X_vanishes_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`X^3 - X` vanishes as a function mod `3` while its degree-3 coefficient does not: vanishing is not coefficientwise.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57308,13 +57338,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 235,
+      "line": 247,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "not_three_dvd_coeff_X_pow_three_sub_X",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`X^3 - X = cubic 1 0 (-1) 0`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57326,13 +57356,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 242,
+      "line": 255,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "X_pow_three_sub_X_eq_cubic",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`X^3 - X` does not vanish mod `9`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57344,13 +57374,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 248,
+      "line": 262,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "X_pow_three_sub_X_not_vanishes_two",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`eval x (X^3) = x^3`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57362,13 +57392,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 256,
+      "line": 271,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_X_pow_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Pointwise section derivative of `X^3` at `a`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57380,67 +57410,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 259,
+      "line": 275,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_sectionDeriv_X_pow_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-merge",
-        "BTA-x4-merge",
-        "BTA-fn-congr",
-        "BTA-quad-vanish",
-        "BTA-cubic-vanish",
-        "BTA-x3-x",
-        "BTA-coeffwise-nec"
-      ],
-      "line": 276,
-      "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "sectionDeriv_X_pow_three",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-merge",
-        "BTA-x4-merge",
-        "BTA-fn-congr",
-        "BTA-quad-vanish",
-        "BTA-cubic-vanish",
-        "BTA-x3-x",
-        "BTA-coeffwise-nec"
-      ],
-      "line": 287,
-      "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "DZ_neg_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTA-x3-merge",
-        "BTA-x4-merge",
-        "BTA-fn-congr",
-        "BTA-quad-vanish",
-        "BTA-cubic-vanish",
-        "BTA-x3-x",
-        "BTA-coeffwise-nec"
-      ],
-      "line": 290,
-      "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "DZ_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "`sectionDeriv a (X^3)` as a polynomial in `X`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57454,11 +57430,11 @@
       ],
       "line": 293,
       "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "residual_X_pow_three_neg",
+      "name": "sectionDeriv_X_pow_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`D (-1) = 0`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57470,13 +57446,31 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 304,
+      "line": 305,
       "module": "BTCalculus.PolynomialFunctionsMod",
-      "name": "residual_X_pow_three_pos",
+      "name": "DZ_neg_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`D 1 = 0`.",
+      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-merge",
+        "BTA-x4-merge",
+        "BTA-fn-congr",
+        "BTA-quad-vanish",
+        "BTA-cubic-vanish",
+        "BTA-x3-x",
+        "BTA-coeffwise-nec"
+      ],
+      "line": 309,
+      "module": "BTCalculus.PolynomialFunctionsMod",
+      "name": "DZ_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Residual of `X^3` along the letter `-1`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57489,6 +57483,42 @@
         "BTA-coeffwise-nec"
       ],
       "line": 313,
+      "module": "BTCalculus.PolynomialFunctionsMod",
+      "name": "residual_X_pow_three_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Residual of `X^3` along the letter `1`.",
+      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-merge",
+        "BTA-x4-merge",
+        "BTA-fn-congr",
+        "BTA-quad-vanish",
+        "BTA-cubic-vanish",
+        "BTA-x3-x",
+        "BTA-coeffwise-nec"
+      ],
+      "line": 325,
+      "module": "BTCalculus.PolynomialFunctionsMod",
+      "name": "residual_X_pow_three_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The two `X^3` residuals differ by `-18 x^2`, which is why they merge at `k = 2` and not at `k = 3`.",
+      "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-x3-merge",
+        "BTA-x4-merge",
+        "BTA-fn-congr",
+        "BTA-quad-vanish",
+        "BTA-cubic-vanish",
+        "BTA-x3-x",
+        "BTA-coeffwise-nec"
+      ],
+      "line": 335,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x3_merge_eval_diff",
       "trust": "kernel"
@@ -57506,13 +57536,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 323,
+      "line": 345,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x3_first_merge_equiv_two",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The two `X^3` residuals are not equivalent at horizon `3`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57524,13 +57554,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 333,
+      "line": 356,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x3_first_merge_not_equiv_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`eval x (X^4) = x^4`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57542,13 +57572,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 349,
+      "line": 373,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_X_pow_four",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`lsd 0 = 0`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57560,13 +57590,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 352,
+      "line": 377,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "lsdZ_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`eval x (sectionDeriv 0 (X^4)) = 27 x^4`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57578,13 +57608,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 355,
+      "line": 381,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_sectionDeriv_X_pow_four_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Residual of `X^4` along `[0]` is `27 X^4`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57596,13 +57626,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 366,
+      "line": 393,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "residual_X_pow_four_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`eval x (sectionDeriv 0 (27 X^4)) = 729 x^4`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57614,13 +57644,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 376,
+      "line": 404,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "eval_sectionDeriv_27_X_pow_four_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Residual of `X^4` along `[0, 0]` is `729 X^4`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57632,13 +57662,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 389,
+      "line": 418,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "residual_X_pow_four_zero_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The two `X^4` residuals differ by `-702 x^4`, which places the merge at `k = 3`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57650,7 +57680,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 402,
+      "line": 432,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x4_merge_eval_diff",
       "trust": "kernel"
@@ -57668,13 +57698,13 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 412,
+      "line": 442,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x4_first_merge_equiv_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The two `X^4` residuals are not equivalent at horizon `4`.",
       "file": "formal/BTCalculus/PolynomialFunctionsMod.lean",
       "kind": "theorem",
       "ledger": [
@@ -57686,7 +57716,7 @@
         "BTA-x3-x",
         "BTA-coeffwise-nec"
       ],
-      "line": 422,
+      "line": 453,
       "module": "BTCalculus.PolynomialFunctionsMod",
       "name": "x4_first_merge_not_equiv_four",
       "trust": "kernel"
@@ -63881,7 +63911,7 @@
       ]
     },
     "Problems.Juggler.PaperBAssembly": {
-      "declarations": 28,
+      "declarations": 31,
       "file": "formal/Problems/Juggler/PaperBAssembly.lean",
       "imports": [],
       "ledger": []
@@ -64470,13 +64500,13 @@
     }
   },
   "totals": {
-    "declarations": 4575,
+    "declarations": 4578,
     "declarations_with_a_ledger_row": 3101,
     "ledger_rows_naming_a_file": 321,
     "modules": 189,
     "trust": {
       "compiler": 55,
-      "kernel": 4520
+      "kernel": 4523
     }
   }
 }

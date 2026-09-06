@@ -708,21 +708,21 @@
     {
       "candidates": [
         {
-          "decl": "x3_first_merge_not_equiv_three",
-          "line": 333,
-          "score": 0.429,
-          "trust": "kernel"
-        },
-        {
-          "decl": "x4_first_merge_not_equiv_four",
-          "line": 422,
-          "score": 0.429,
-          "trust": "kernel"
-        },
-        {
           "decl": "x4_first_merge_equiv_three",
-          "line": 412,
+          "line": 442,
           "score": 0.364,
+          "trust": "kernel"
+        },
+        {
+          "decl": "x3_first_merge_equiv_two",
+          "line": 345,
+          "score": 0.308,
+          "trust": "kernel"
+        },
+        {
+          "decl": "x3_first_merge_not_equiv_three",
+          "line": 356,
+          "score": 0.3,
           "trust": "kernel"
         }
       ],
@@ -737,21 +737,21 @@
     {
       "candidates": [
         {
-          "decl": "x3_first_merge_not_equiv_three",
-          "line": 333,
-          "score": 0.429,
-          "trust": "kernel"
-        },
-        {
-          "decl": "x4_first_merge_not_equiv_four",
-          "line": 422,
-          "score": 0.429,
-          "trust": "kernel"
-        },
-        {
           "decl": "x4_first_merge_equiv_three",
-          "line": 412,
+          "line": 442,
           "score": 0.364,
+          "trust": "kernel"
+        },
+        {
+          "decl": "x3_first_merge_equiv_two",
+          "line": 345,
+          "score": 0.308,
+          "trust": "kernel"
+        },
+        {
+          "decl": "x3_first_merge_not_equiv_three",
+          "line": 356,
+          "score": 0.3,
           "trust": "kernel"
         }
       ],
@@ -762,35 +762,6 @@
       "lean": "BTCalculus/PolynomialFunctionsMod.lean",
       "names_own": [],
       "statement": "first x^4 residual merge at k=3 is delayed distinction: equiv_3 and not equiv_4"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "x3_first_merge_not_equiv_three",
-          "line": 333,
-          "score": 0.143,
-          "trust": "kernel"
-        },
-        {
-          "decl": "x4_first_merge_not_equiv_four",
-          "line": 422,
-          "score": 0.143,
-          "trust": "kernel"
-        },
-        {
-          "decl": "functionCongr_iff_vanishesMod",
-          "line": 31,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "id": "BTA-fn-congr",
-      "in_file": 37,
-      "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-      "names_own": [],
-      "statement": "f equiv_k g iff 3^k divides (f-g)(n) for every integer n"
     },
     {
       "candidates": [
@@ -820,64 +791,6 @@
       "lean": "BTCalculus/NewtonKernel.lean",
       "names_own": [],
       "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "vanishesMod_quad_iff",
-          "line": 98,
-          "score": 0.211,
-          "trust": "kernel"
-        },
-        {
-          "decl": "vanishesMod_cubic_iff",
-          "line": 160,
-          "score": 0.105,
-          "trust": "kernel"
-        },
-        {
-          "decl": "equivK_iff_functionCongr",
-          "line": 60,
-          "score": 0.091,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "id": "BTA-quad-vanish",
-      "in_file": 37,
-      "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-      "names_own": [],
-      "statement": "degree <= 2 polynomials vanish as functions modulo 3^k iff all coefficients are divisible by 3^k"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "functionCongr_iff_vanishesMod",
-          "line": 31,
-          "score": 0.286,
-          "trust": "kernel"
-        },
-        {
-          "decl": "vanishesMod_quad_iff",
-          "line": 98,
-          "score": 0.188,
-          "trust": "kernel"
-        },
-        {
-          "decl": "X_pow_three_sub_X_vanishes_one",
-          "line": 230,
-          "score": 0.154,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "id": "BTA-cubic-vanish",
-      "in_file": 37,
-      "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-      "names_own": [],
-      "statement": "Ax^3+Bx^2+Cx+D vanishes modulo 3^k iff 3^k divides D, A+B+C, 3A+B, and 6A"
     },
     {
       "candidates": [
@@ -5097,6 +5010,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 170,
-  "worth_reviewing": 48
+  "unresolved": 167,
+  "worth_reviewing": 46
 }

@@ -28,6 +28,7 @@ def functionCongr (k : ℕ) (f g : ℤ[X]) : Prop :=
 def vanishesMod (k : ℕ) (h : ℤ[X]) : Prop :=
   ∀ n : ℤ, (3 : ℤ) ^ k ∣ eval n h
 
+/-- `f` and `g` agree as functions mod `3^k` exactly when `f - g` vanishes mod `3^k`. -/
 theorem functionCongr_iff_vanishesMod (k : ℕ) (f g : ℤ[X]) :
     functionCongr k f g ↔ vanishesMod k (f - g) := by
   constructor
@@ -36,18 +37,21 @@ theorem functionCongr_iff_vanishesMod (k : ℕ) (f g : ℤ[X]) :
   · intro h n
     simpa [eval_sub] using h n
 
+/-- Evaluation respects congruence: `a = b [ZMOD m]` gives `eval a f = eval b f [ZMOD m]`. -/
 lemma eval_modEq (f : ℤ[X]) {a b m : ℤ} (h : a ≡ b [ZMOD m]) :
     eval a f ≡ eval b f [ZMOD m] := by
   refine f.induction_on' (fun p q hp hq => ?_) (fun n c => ?_)
   · simpa [eval_add] using hp.add hq
   · simpa [eval_monomial] using (Int.ModEq.refl c).mul (h.pow n)
 
+/-- `n = packWord (integerJet k n) + 3^k * iterDZ k n` -- jet plus tail. -/
 lemma packWord_integerJet_decomp (k : ℕ) (n : ℤ) :
     n = packWord (integerJet k n) + (3 : ℤ) ^ k * iterDZ k n := by
   have h := packTrits_integerJet k n
   rw [packTrits_eq, integerJet_length] at h
   linarith
 
+/-- `n` is congruent to its packed jet modulo `3^k`. -/
 lemma packWord_integerJet_modEq (k : ℕ) (n : ℤ) :
     n ≡ packWord (integerJet k n) [ZMOD (3 : ℤ) ^ k] := by
   refine Int.modEq_iff_dvd.mpr ⟨-iterDZ k n, ?_⟩
@@ -88,6 +92,7 @@ theorem equivK_iff_functionCongr (k : ℕ) (f g : ℤ[X]) :
     rw [outputAlong_word f hw, outputAlong_word g hw, hlen]
     exact (integerJet_eq_iff_dvd k _ _).2 (h (packWord w))
 
+/-- The zero quadratic is the zero polynomial. -/
 theorem quad_zero : quad 0 0 0 = (0 : ℤ[X]) := by
   unfold quad
   simp
@@ -120,11 +125,13 @@ theorem vanishesMod_quad_iff (k : ℕ) (A B c0 : ℤ) :
 def cubic (A B lin cst : ℤ) : ℤ[X] :=
   C A * X ^ 3 + C B * X ^ 2 + C lin * X + C cst
 
+/-- `eval x (cubic A B lin cst) = A x^3 + B x^2 + lin x + cst`. -/
 theorem eval_cubic (A B lin cst x : ℤ) :
     eval x (cubic A B lin cst) = A * x ^ 3 + B * x ^ 2 + lin * x + cst := by
   unfold cubic
   simp [eval_add, eval_mul, eval_C, eval_pow, eval_X, mul_comm, mul_left_comm, mul_assoc]
 
+/-- Newton (falling-factorial) form of a cubic: `cst + (A+B+lin) x + (3A+B) x(x-1) + A x(x-1)(x-2)`. -/
 theorem cubic_newton_eval (A B lin cst x : ℤ) :
     eval x (cubic A B lin cst) =
       cst + (A + B + lin) * x + (3 * A + B) * x * (x - 1)
@@ -132,12 +139,14 @@ theorem cubic_newton_eval (A B lin cst x : ℤ) :
   rw [eval_cubic]
   ring
 
+/-- `2 | x (x - 1)`. -/
 lemma two_dvd_x_mul_pred (x : ℤ) : (2 : ℤ) ∣ x * (x - 1) := by
   rcases Int.emod_two_eq_zero_or_one x with hx | hx
   · exact dvd_mul_of_dvd_left (Int.dvd_iff_emod_eq_zero.mpr hx) _
   · have : (x - 1) % 2 = 0 := by omega
     exact dvd_mul_of_dvd_right (Int.dvd_iff_emod_eq_zero.mpr this) _
 
+/-- `3 | x (x - 1)(x - 2)`. -/
 lemma three_dvd_falling_three (x : ℤ) :
     (3 : ℤ) ∣ x * (x - 1) * (x - 2) := by
   rcases emod3_cases x with hx | hx | hx
@@ -147,6 +156,7 @@ lemma three_dvd_falling_three (x : ℤ) :
   · have : (x - 2) % 3 = 0 := by omega
     exact dvd_mul_of_dvd_right (Int.dvd_iff_emod_eq_zero.mpr this) _
 
+/-- `6 | x (x - 1)(x - 2)`. -/
 lemma six_dvd_falling_three (x : ℤ) :
     (6 : ℤ) ∣ x * (x - 1) * (x - 2) := by
   have h2 : (2 : ℤ) ∣ x * (x - 1) * (x - 2) :=
@@ -215,6 +225,7 @@ theorem vanishesMod_cubic_iff (k : ℕ) (A B lin cst : ℤ) :
     rw [cubic_newton_eval, hD, h1, h2, hfall, h6e]
     ring
 
+/-- `3 | x^3 - x` (Fermat at `3`). -/
 theorem three_dvd_x_pow_three_sub_x (x : ℤ) : (3 : ℤ) ∣ x ^ 3 - x := by
   have hexp : x ^ 3 - x = x * (x - 1) * (x + 1) := by ring
   rw [hexp]
@@ -232,6 +243,7 @@ theorem X_pow_three_sub_X_vanishes_one :
   intro n
   simpa [eval_sub, eval_pow, eval_X] using three_dvd_x_pow_three_sub_x n
 
+/-- `X^3 - X` vanishes as a function mod `3` while its degree-3 coefficient does not: vanishing is not coefficientwise. -/
 theorem not_three_dvd_coeff_X_pow_three_sub_X :
     ¬ (3 : ℤ) ∣ coeff ((X : ℤ[X]) ^ 3 - X) 3 := by
   have h : coeff ((X : ℤ[X]) ^ 3 - X) 3 = 1 := by
@@ -239,12 +251,14 @@ theorem not_three_dvd_coeff_X_pow_three_sub_X :
   rw [h]
   decide
 
+/-- `X^3 - X = cubic 1 0 (-1) 0`. -/
 theorem X_pow_three_sub_X_eq_cubic :
     (X : ℤ[X]) ^ 3 - X = cubic 1 0 (-1) 0 := by
   unfold cubic
   simp
   ring
 
+/-- `X^3 - X` does not vanish mod `9`. -/
 theorem X_pow_three_sub_X_not_vanishes_two :
     ¬ vanishesMod 2 ((X : ℤ[X]) ^ 3 - X) := by
   intro h
@@ -253,9 +267,11 @@ theorem X_pow_three_sub_X_not_vanishes_two :
   have : ¬ (9 : ℤ) ∣ (6 : ℤ) := by decide
   exact this hc.2.2.2
 
+/-- `eval x (X^3) = x^3`. -/
 theorem eval_X_pow_three (x : ℤ) : eval x ((X : ℤ[X]) ^ 3) = x ^ 3 := by
   simp [eval_pow, eval_X]
 
+/-- Pointwise section derivative of `X^3` at `a`. -/
 theorem eval_sectionDeriv_X_pow_three (a x : ℤ) :
     eval x (sectionDeriv a ((X : ℤ[X]) ^ 3)) =
       DZ (a ^ 3) + 3 * a ^ 2 * x + 9 * a * x ^ 2 + 9 * x ^ 3 := by
@@ -273,6 +289,7 @@ theorem eval_sectionDeriv_X_pow_three (a x : ℤ) :
     linarith [hrec, hexpand, hd]
   linarith
 
+/-- `sectionDeriv a (X^3)` as a polynomial in `X`. -/
 theorem sectionDeriv_X_pow_three (a : ℤ) :
     sectionDeriv a ((X : ℤ[X]) ^ 3) =
       C (DZ (a ^ 3)) + C (3 * a ^ 2) * X + C (9 * a) * X ^ 2 + C 9 * X ^ 3 := by
@@ -284,12 +301,15 @@ theorem sectionDeriv_X_pow_three (a : ℤ) :
     simp [eval_add, eval_mul, eval_C, eval_pow, eval_X]
   exact hL.trans hR.symm
 
+/-- `D (-1) = 0`. -/
 theorem DZ_neg_one : DZ (-1) = 0 := by
   decide
 
+/-- `D 1 = 0`. -/
 theorem DZ_one : DZ 1 = 0 := by
   decide
 
+/-- Residual of `X^3` along the letter `-1`. -/
 theorem residual_X_pow_three_neg :
     residualAlong [(-1 : ℤ)] ((X : ℤ[X]) ^ 3) =
       C 9 * X ^ 3 + C (-9) * X ^ 2 + C 3 * X := by
@@ -301,6 +321,7 @@ theorem residual_X_pow_three_neg :
   simp
   ring
 
+/-- Residual of `X^3` along the letter `1`. -/
 theorem residual_X_pow_three_pos :
     residualAlong [(1 : ℤ)] ((X : ℤ[X]) ^ 3) =
       C 9 * X ^ 3 + C 9 * X ^ 2 + C 3 * X := by
@@ -310,6 +331,7 @@ theorem residual_X_pow_three_pos :
   simp
   ring
 
+/-- The two `X^3` residuals differ by `-18 x^2`, which is why they merge at `k = 2` and not at `k = 3`. -/
 theorem x3_merge_eval_diff (x : ℤ) :
     eval x (residualAlong [(-1 : ℤ)] ((X : ℤ[X]) ^ 3))
       - eval x (residualAlong [(1 : ℤ)] ((X : ℤ[X]) ^ 3)) =
@@ -330,6 +352,7 @@ theorem x3_first_merge_equiv_two :
   have : (3 : ℤ) ^ 2 ∣ -18 * n ^ 2 := ⟨-2 * n ^ 2, by ring⟩
   simpa [h] using this
 
+/-- The two `X^3` residuals are not equivalent at horizon `3`. -/
 theorem x3_first_merge_not_equiv_three :
     ¬ equivK 3
         (residualAlong [(-1 : ℤ)] ((X : ℤ[X]) ^ 3))
@@ -346,12 +369,15 @@ theorem x3_first_merge_not_equiv_three :
   have : ¬ (27 : ℤ) ∣ (-18 : ℤ) := by decide
   exact this hf
 
+/-- `eval x (X^4) = x^4`. -/
 theorem eval_X_pow_four (x : ℤ) : eval x ((X : ℤ[X]) ^ 4) = x ^ 4 := by
   simp [eval_pow, eval_X]
 
+/-- `lsd 0 = 0`. -/
 theorem lsdZ_zero : lsdZ 0 = 0 := by
   simp [lsdZ]
 
+/-- `eval x (sectionDeriv 0 (X^4)) = 27 x^4`. -/
 theorem eval_sectionDeriv_X_pow_four_zero (x : ℤ) :
     eval x (sectionDeriv 0 ((X : ℤ[X]) ^ 4)) = 27 * x ^ 4 := by
   have hrec := section_reconstruction_eval ((X : ℤ[X]) ^ 4) 0 x
@@ -363,6 +389,7 @@ theorem eval_sectionDeriv_X_pow_four_zero (x : ℤ) :
     linarith [hrec, hexp]
   linarith
 
+/-- Residual of `X^4` along `[0]` is `27 X^4`. -/
 theorem residual_X_pow_four_zero :
     residualAlong [(0 : ℤ)] ((X : ℤ[X]) ^ 4) = C 27 * X ^ 4 := by
   refine Polynomial.funext (fun x => ?_)
@@ -373,6 +400,7 @@ theorem residual_X_pow_four_zero :
       sectionDeriv 0 ((X : ℤ[X]) ^ 4) := rfl
   rw [hrw, hL, hR]
 
+/-- `eval x (sectionDeriv 0 (27 X^4)) = 729 x^4`. -/
 theorem eval_sectionDeriv_27_X_pow_four_zero (x : ℤ) :
     eval x (sectionDeriv 0 (C (27 : ℤ) * X ^ 4)) = 729 * x ^ 4 := by
   have hrec := section_reconstruction_eval (C (27 : ℤ) * X ^ 4) 0 x
@@ -386,6 +414,7 @@ theorem eval_sectionDeriv_27_X_pow_four_zero (x : ℤ) :
     linarith [hrec, hexp]
   linarith
 
+/-- Residual of `X^4` along `[0, 0]` is `729 X^4`. -/
 theorem residual_X_pow_four_zero_zero :
     residualAlong [(0 : ℤ), 0] ((X : ℤ[X]) ^ 4) = C 729 * X ^ 4 := by
   refine Polynomial.funext (fun x => ?_)
@@ -399,6 +428,7 @@ theorem residual_X_pow_four_zero_zero :
     simp [eval_mul, eval_C, eval_pow, eval_X]
   rw [hsd, h27, hL, hR]
 
+/-- The two `X^4` residuals differ by `-702 x^4`, which places the merge at `k = 3`. -/
 theorem x4_merge_eval_diff (x : ℤ) :
     eval x (residualAlong [(0 : ℤ)] ((X : ℤ[X]) ^ 4))
       - eval x (residualAlong [(0 : ℤ), 0] ((X : ℤ[X]) ^ 4)) =
@@ -419,6 +449,7 @@ theorem x4_first_merge_equiv_three :
   have : (3 : ℤ) ^ 3 ∣ -702 * n ^ 4 := ⟨-26 * n ^ 4, by ring⟩
   simpa [h] using this
 
+/-- The two `X^4` residuals are not equivalent at horizon `4`. -/
 theorem x4_first_merge_not_equiv_four :
     ¬ equivK 4
         (residualAlong [(0 : ℤ)] ((X : ℤ[X]) ^ 4))

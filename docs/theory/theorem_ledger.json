@@ -509,6 +509,8 @@
   "statement": "f equiv_k g iff 3^k divides (f-g)(n) for every integer n",
   "source": "docs/theory/polynomial_function_congruence.md",
   "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+  "decl": "equivK_iff_functionCongr",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_poly_congruence.py"
   ],
@@ -544,6 +546,8 @@
   "statement": "degree <= 2 polynomials vanish as functions modulo 3^k iff all coefficients are divisible by 3^k",
   "source": "docs/theory/polynomial_function_congruence.md",
   "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+  "decl": "vanishesMod_quad_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_poly_congruence.py"
   ],
@@ -555,6 +559,8 @@
   "statement": "Ax^3+Bx^2+Cx+D vanishes modulo 3^k iff 3^k divides D, A+B+C, 3A+B, and 6A",
   "source": "docs/theory/polynomial_function_congruence.md",
   "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+  "decl": "vanishesMod_cubic_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_poly_congruence.py"
   ],
