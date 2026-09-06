@@ -523,6 +523,7 @@ def test_the_five_printed_remainder_orders_are_the_measured_ones() -> None:
 def test_the_directed_family_reaches_a_fixed_fraction_of_the_unreachable_ceiling() -> None:
     """n = 10^k + 1, k divisible by 4: 1 - theta_2 is (27/128) n^(-3/4), the ceiling's own order."""
     rows = A.lemma_6_2_directed_search()
+    assert len(rows) >= 5                       # an empty ladder would satisfy every all() below
     assert all(r["ok"] for r in rows), [r["k"] for r in rows if not r["ok"]]
     for r in rows:
         assert r["below_ceiling"]
@@ -1128,6 +1129,7 @@ def test_every_P_stated_bound_uses_its_strict_transcription() -> None:
     """Three bounds are stated in P; the brackets need n below and n/2 above, M_1 neither."""
     r = A.pointwise_bound_inventory(samples_per_range=8)
     assert r["count"] == 5 and r["all_respect_their_side"]
+    assert r["did_not_go_blind"] and r["samples_inspected"] >= 100
     assert r["surface_unchanged"]           # a new P-dependent bound has to update the table
     by = {x["bound"]: x for x in r["bounds"]}
     assert abs(by["L5.1(iii) first bracket, lower"]["extreme_ratio"] - 1.0) < 2e-3   # attained

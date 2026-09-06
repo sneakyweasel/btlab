@@ -2557,3 +2557,42 @@ method-name guard.
 Which closes the dyadic-factor thread: two errata in the paper's prose,
 one in the audit, a rule that decides all three, and a guard so the next
 occurrence has to be deliberate.
+
+## Are the guards watching anything?  Four audited, none blind
+
+A guard that quantifies over an empty collection passes while inspecting
+nothing. Counting what each of the four actually sees:
+
+| guard | what it quantifies over | size |
+|---|---|---|
+| escape, per manuscript | manuscript, mirror, satellites | \(\ge2\) each |
+| escape, outside the manuscripts | `OTHER_LATEX_DOCS` | 6 |
+| method names | tactic/identifier claims resolved through the import closure | **counted in the test** |
+| cross-references | numbered results 37, bracketed citations 49, \S-references 27, numbered refs 11 | non-empty |
+| "an earlier \(X\)" | phrase matches in Paper B | 2 |
+| pointwise transcription | \(P\)-stated bound sides, sampled | 5 bounds, 322 samples |
+
+**None is vacuous**, and the smallest collection is the two "an earlier
+\(X\)" phrases --- small, but real.
+
+**One of them already defends itself.** The method-name guard carries
+`assert checked >= 20, "guard went blind: only {checked} claims
+matched"`, which is exactly the right shape: it fails when the
+manuscript's wording drifts far enough that the guard stops matching,
+rather than passing quietly. That pattern is worth more than the guard
+it sits in.
+
+**So it has been copied.** `pointwise_bound_inventory` now counts the
+ratio samples it inspects and reports `did_not_go_blind` at a floor of
+100; the test asserts it. And the directed-family test, whose
+`all(r["ok"] for r in rows)` had no companion count, now asserts the
+ladder has at least five rungs --- an empty ladder would have satisfied
+every `all()` beneath it.
+
+Two of the six quantified assertions in the Paper B tests were relying
+on a neighbouring index or `max()` to raise on an empty collection
+rather than on an explicit count. That works, but only by accident of
+what happens to be written next to them, which is the same reliance the
+tactic guard's author decided not to accept. COMPUTATIONALLY VERIFIED
+for the counts; the audit itself is EXACT --- either a collection is
+empty or it is not.

@@ -3136,6 +3136,7 @@ def pointwise_bound_inventory(seed: int = 2405, samples_per_range: int = 20) -> 
             "L5.1(iii) second bracket, upper": ("second_ratio_upper", "upper"),
             "L5.1(iv) M_1": ("M1_ratio", "upper")}
     extremes: dict[str, float] = {}
+    inspected = 0                      # a guard that inspects nothing passes; count what it saw
     for lo, hi in ranges:
         mp.mp.dps = 60 + int(4 * math.log10(hi))
         H1, H2 = max(1, int(lo ** (1 / 48))), max(1, int(lo ** (1 / 24)))
@@ -3146,6 +3147,7 @@ def pointwise_bound_inventory(seed: int = 2405, samples_per_range: int = 20) -> 
                 val = r.get(key)
                 if val is None:
                     continue
+                inspected += 1
                 if side == "upper":
                     extremes[name] = max(extremes.get(name, 0.0), val)
                 else:
@@ -3170,6 +3172,10 @@ def pointwise_bound_inventory(seed: int = 2405, samples_per_range: int = 20) -> 
         "expected_surface": ["P14", "P14_lo", "P34", "P34_lo", "mp.power(P,"],
         "surface_unchanged": surface == ["P14", "P14_lo", "P34", "P34_lo", "mp.power(P,"],
         "no_other_pointwise_bound_is_stated_in_P": True,
+        # the tactic guard in test_manuscript_consistency carries "checked >= 20" for exactly this
+        # reason; without a count, a probe whose ratios all came back None would pass silently.
+        "samples_inspected": inspected,
+        "did_not_go_blind": inspected >= 100,
     }
 
 def summary() -> dict[str, Any]:
