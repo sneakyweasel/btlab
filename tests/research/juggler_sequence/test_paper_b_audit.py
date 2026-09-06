@@ -2260,3 +2260,27 @@ def test_the_eleven_goes_with_the_sharp_coefficient_not_the_printed_two() -> Non
     for ch in r["chains"]:
         if ch["present"]:
             assert not ch["holds_at_the_stated_2"] and ch["holds_at_the_sharp_constant"]
+
+
+# --- Step 5's two inventories against the paper ---
+
+
+def test_the_competitor_ratios_are_the_papers_own_and_the_harder_of_its_two_lists() -> None:
+    """1.3, 13, 9, 3 is the j-decorated list to the digit, and it clears 1/4 at 12^8."""
+    r = A.step_5_inventories_against_the_paper()
+    early, revised = r["competitor_lists"]
+    assert early["all_printed"] and revised["all_printed"]
+    assert r["certificate_takes_the_second_list"] and r["certificate_takes_the_harder_list"]
+    assert r["competitor_row_is_twelve_to_the_eighth"]
+    assert revised["least_P"] / early["least_P"] > 1e6
+
+
+def test_the_piece_inventory_needs_a_sharper_cap_than_the_sentence_prints() -> None:
+    """A.5's 5.14e7 is reachable with h_1h_2 <= P^(1/16), not with the printed P^(1/8)."""
+    r = A.step_5_inventories_against_the_paper()
+    assert r["certificate_matches_A5"]
+    if r["inventory_is_still_printed"]:
+        assert r["printed_inventory_is_later_by"] > 500        # and that drops the windows
+        assert r["with_the_windows_later_by"] > r["printed_inventory_is_later_by"]
+        assert r["one_clause_closes_it"]                       # the whole gap is 22 h_1h_2 P^(1/4)
+    assert r["nothing_reaches_P0"] and r["crudest_reading_below_P0_by"] > 50

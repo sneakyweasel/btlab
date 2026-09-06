@@ -6857,3 +6857,76 @@ carries the cross-table agreement check as well as the rounding one.
 Six new tests, sixty-one in the file. Manuscript: twelve entries and
 two prose figures raised, and A.6 records that its middle row is A.1's.
 `P_0` and `P_1` unmoved. No certificate edit.
+
+## The ratios are the paper's own; the counts need a cap the sentence does not use
+
+Two rows were left unbound. The competitors check out exactly. The piece
+count does not, and the reason is one clause.
+
+**The competitors.** The paper carries two lists, one read against
+`lambda_a >= 1.30 P^(-1/8)` and one against the j-decorated
+`lambda_a' >= 0.40 P^(-1/8)`, and the certificate's four entries ---
+`1.3 P^(-1/8)`, `13 P^(-9/16)`, `9 P^(-13/12)`, `3 P^(-1/8)` --- are the
+second list to the digit. That is the harder of the two: it clears `1/4`
+at `12^8 = 4.2998e8`, where the first clears at `256`. A.5 prints
+`4.3e8`. Nothing to fix, and worth saying so.
+
+**The pieces.** Step 5b's inventory prints three numbers:
+
+```text
+  gap cells     1.5(h_1+h_2)P^(1/2) + 2 <= 3.1 P^(13/24)
+  anchor runs   <= 22 h_1h_2 P^(1/4)    <= 22 P^(3/8)
+  total         N <= 3.5 P^(13/24)
+```
+
+and A.5 prints `5.14e7` for the total. Those two terms alone, as printed,
+first fit the budget at `2.7681e10` --- `539` times later, and that is
+with the windows dropped entirely, which the sentence does not do. Add
+the window count the same theorem prints, `1.8k|j|P^(3/8)+1` with
+`k <= P^(1/24)` and `|j| <= 2`, and it is `3.0603e11`, `5954` times
+later.
+
+**The whole gap is one clause.** `22 h_1h_2 P^(1/4) <= 22 P^(3/8)` reads
+`h_1h_2 <= P^(1/8)`, which is `(C1)` at `k = 1`; the standing caps
+`(C4)` give `h_1h_2 <= P^(1/48+1/24) = P^(1/16)` and so `22 P^(5/16)`,
+which is what the certificate sums. With that one substitution the
+printed inventory fits from `3.9293e7`, and the certificate's own form
+--- `3P^(13/24) + 2 + 22P^(5/16) + 5P^(1/3)` --- from `5.1398e7`, which
+is A.5's number.
+
+And the same sentence uses both caps. Its first clause bounds
+`1.5(h_1+h_2)P^(1/2)` by `3.1P^(13/24)`, which is `h_1 <= P^(1/48)` and
+`h_2 <= P^(1/24)` --- `(C4)`, sharp. Its second clause then bounds
+`h_1h_2` by `P^(1/8)`. Nothing is false: `P^(1/8)` is a true bound on
+`h_1h_2`. It is cruder than the caps the clause before it just used, and
+the row's printed threshold is only reachable with the sharper one.
+
+Nothing here reaches `P_0` either: the crudest reading, `3.0603e11`, is
+`117` times below `3.5858e13`.
+
+**Twice now.** This is the second site in two sections where A.5's
+threshold is computed from a binding sharper than the prose beside it
+prints --- the first was `|C|` in Theorem 6.3, at `1.281137` against a
+printed `2`. The shape is the same both times: the certificate takes the
+sharpest bound derivable from the paper's own standing constraints, the
+prose takes a rounder one, and the printed threshold silently belongs to
+the certificate. Neither is unsound, and both are invisible to any check
+that reads only the claim strings.
+
+Tags. EXACT: `(C4)` gives `h_1h_2 <= P^(1/48+1/24) = P^(1/16)`, so
+`22h_1h_2P^(1/4) <= 22P^(5/16)`, sharper than the printed `22P^(3/8)`,
+which is `(C1)` at `k = 1`; both are true bounds. The certificate's four
+competitor ratios are the j-decorated list of Step 5a verbatim.
+COMPUTATIONALLY VERIFIED: the piece inventory fits its budget from
+`2.7681e10` as printed, `3.0603e11` with the paper's own window count,
+`3.9293e7` with `(C4)` in the runs clause, and `5.1398e7` in the
+certificate's form, against A.5's printed `5.14e7`; the competitor row is
+`12^8 = 4.2998e8` on the second list and `256` on the first; the crudest
+reading is `117` times below `P_0`. OBSERVATION: the two caps appear in
+consecutive clauses of one sentence.
+
+Probe: `step_5_inventories_against_the_paper`, with `PIECE_INVENTORY` and
+`COMPETITOR_LISTS` matched against the whitespace-stripped manuscript so
+they report their own obsolescence once the text moves. Two tests. Audit
+`270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate
+edit.

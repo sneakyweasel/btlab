@@ -6866,6 +6866,120 @@ def fifth_letter_coefficient_has_three_values() -> dict[str, Any]:
     }
 
 
+# Step 5b's piece inventory and Step 5a's competitor list, as the manuscript prints them.  Patterns
+# are matched against the whitespace-stripped text, so they survive rewrapping.
+PIECE_INVENTORY = (
+    {"part": "gap cells", "printed": r"1.5(h_1{+}h_2)P^{1/2}+2\le3.1P^{13/24}",
+     "bound": "3.1 P^(13/24)"},
+    {"part": "anchor runs", "printed": r"\le22h_1h_2P^{1/4}\le22P^{3/8}", "bound": "22 P^(3/8)"},
+    {"part": "total", "printed": r"N\le3.5P^{13/24}", "bound": "3.5 P^(13/24)"},
+)
+
+COMPETITOR_LISTS = (
+    {"read_against": "lambda_a >= 1.30 P^(-1/8)", "where": "Step 5a",
+     "ratios": ((0.34, -0.125), (20.0, -13 / 12), (8.0, -13 / 12), (1.0, -0.25)),
+     "patterns": (r"\le0.34P^{-1/8}", r"20P^{1/24-5/4+1/8}=20P^{-13/12}", r"\le8P^{1/24-9/8}",
+                  r"\lambda_a\ge1.30P^{-1/8}")},
+    {"read_against": "lambda_a' >= 0.40 k|j| P^(-1/8)", "where": "the j-decorated Step 5a",
+     "ratios": ((1.3, -0.125), (13.0, -9 / 16), (9.0, -13 / 12), (3.0, -0.125)),
+     "patterns": (r"\le1.3P^{-1/8}", r"\le13P^{-9/16}", r"\le9P^{-13/12}", r"\le3P^{-1/8}",
+                  r"\lambda_a'\ge0.40\,k|j|P^{-1/8}\ge0.40P^{-1/8}")},
+)
+
+
+def step_5_inventories_against_the_paper() -> dict[str, Any]:
+    """Do the counts and ratios the paper states agree with the ones the certificate sums?  The
+    ratios do, exactly.  The counts do not, and the row's printed threshold needs the sharper cap.
+
+    *The competitors.*  The paper carries two lists, one read against lambda_a >= 1.30 P^(-1/8) and
+    one against the j-decorated lambda_a' >= 0.40 P^(-1/8), and the certificate's four entries --
+    1.3 P^(-1/8), 13 P^(-9/16), 9 P^(-13/12), 3 P^(-1/8) -- are the second list to the digit.  That
+    is the harder of the two: it clears 1/4 at 12^8 = 4.2998e8, where the first clears at 256.  The
+    certificate takes the conservative list, A.5 prints 4.3e8 for it, and there is nothing to fix.
+
+    *The pieces.*  Step 5b's inventory prints three numbers:
+
+        gap cells     1.5(h_1+h_2)P^(1/2) + 2 <= 3.1 P^(13/24)
+        anchor runs   <= 22 h_1h_2 P^(1/4)   <= 22 P^(3/8)
+        total         N <= 3.5 P^(13/24)
+
+    and A.5 prints 5.14e7 for the total.  But those two terms alone, as printed, first fit the
+    budget at 2.7681e10 -- 539 times later, and that is with the windows dropped entirely, which
+    the sentence does not do.  Add the window count the same theorem prints, 1.8 k|j| P^(3/8) + 1
+    with k <= P^(1/24) and |j| <= 2, and it is 3.0603e11.
+
+    The whole gap is one clause.  22 h_1h_2 P^(1/4) <= 22 P^(3/8) reads h_1h_2 <= P^(1/8), which is
+    (C1) with k = 1; the standing caps (C4) give h_1h_2 <= P^(1/48+1/24) = P^(1/16) and so
+    22 P^(5/16), which is what the certificate sums.  With that one substitution the printed
+    inventory fits from 3.9293e7, and the certificate's own form -- 3 P^(13/24) + 2 + 22 P^(5/16)
+    + 5 P^(1/3) -- from 5.1398e7, which is A.5's number.
+
+    The same sentence uses both caps.  Its first clause bounds 1.5(h_1+h_2)P^(1/2) by 3.1 P^(13/24),
+    which is h_1 <= P^(1/48) and h_2 <= P^(1/24) -- (C4), sharp; its second clause then bounds
+    h_1h_2 by P^(1/8).  Nothing is false: P^(1/8) is a true bound on h_1h_2.  It is cruder than the
+    caps the clause before it just used, and the row's printed threshold is only reachable with the
+    sharper one.
+
+    Nothing here reaches P_0 = 3.5858e13 either: the crudest reading, 3.0603e11, is a factor 117
+    below it.  This is the second site in two passes where A.5's threshold is computed from a
+    binding sharper than the prose beside it prints -- the first was |C| in Theorem 6.3.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    compact = re.sub(r"\s+", "", text)
+
+    def least(pred) -> float:
+        lg = p0_certificate.least_P(pred)
+        return 10.0 ** lg if lg is not None else float("inf")
+
+    budget = lambda P: 3.5 * P ** (13 / 24)  # noqa: E731
+    readings = {
+        "printed_two_terms": least(
+            lambda P: 3.1 * P ** (13 / 24) + 22 * P**0.375 <= budget(P)),
+        "printed_with_the_papers_windows": least(
+            lambda P: 3.1 * P ** (13 / 24) + 22 * P**0.375 + 3.6 * P ** (5 / 12) + 1 <= budget(P)),
+        "printed_cells_with_the_sharp_runs": least(
+            lambda P: 3.1 * P ** (13 / 24) + 22 * P ** (5 / 16) <= budget(P)),
+        "certificate": least(
+            lambda P: 3 * P ** (1 / 24 + 0.5) + 2 + 22 * P ** (1 / 16 + 0.25) + 5 * P ** (1 / 3)
+            <= budget(P)),
+    }
+    lists = []
+    for spec in COMPETITOR_LISTS:
+        ratios = spec["ratios"]
+        lists.append({
+            "where": spec["where"], "read_against": spec["read_against"], "ratios": ratios,
+            "all_printed": all(compact.count(p) >= 1 for p in spec["patterns"]),
+            "least_P": least(lambda P, rs=ratios: max(c * P**e for c, e in rs) <= 0.25),
+        })
+    cert_ratios = ((1.3, -0.125), (13.0, -9 / 16), (9.0, -13 / 12), (3.0, -0.125))
+    printed_row = 5.14e7
+    return {
+        "inventory": [{**s, "present": compact.count(s["printed"]) == 1} for s in PIECE_INVENTORY],
+        "inventory_is_still_printed": all(compact.count(s["printed"]) == 1
+                                          for s in PIECE_INVENTORY),
+        "readings": readings,
+        "A5_prints": printed_row,
+        "certificate_matches_A5": abs(readings["certificate"] / printed_row - 1) < 0.01,
+        "printed_inventory_is_later_by": readings["printed_two_terms"] / printed_row,
+        "with_the_windows_later_by": readings["printed_with_the_papers_windows"] / printed_row,
+        "one_clause_closes_it": (readings["printed_cells_with_the_sharp_runs"] < printed_row
+                                 < readings["printed_two_terms"]),
+        "printed_cap_on_h1h2": "P^(1/8)",
+        "cap_from_C4": "P^(1/16)",
+        "both_caps_are_true": True,
+        "the_sentence_uses_both": True,
+        "competitor_lists": lists,
+        "certificate_competitors": cert_ratios,
+        "certificate_takes_the_second_list": cert_ratios == lists[1]["ratios"],
+        "certificate_takes_the_harder_list": lists[1]["least_P"] > lists[0]["least_P"],
+        "competitor_row_is_twelve_to_the_eighth": abs(lists[1]["least_P"] - 12.0 ** 8) < 1e3,
+        "nothing_reaches_P0": max(readings.values()) < 3.5858e13 / 50,
+        "crudest_reading_below_P0_by": 3.5858e13 / readings["printed_with_the_papers_windows"],
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6963,6 +7077,7 @@ def summary() -> dict[str, Any]:
     powers = apart_costs_are_powers_of_root_two()
     claims = claim_strings_against_their_thresholds()
     fifth = fifth_letter_coefficient_has_three_values()
+    step5 = step_5_inventories_against_the_paper()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -7048,6 +7163,7 @@ def summary() -> dict[str, Any]:
         "apart_costs_are_powers_of_root_two": powers,
         "claim_strings_against_their_thresholds": claims,
         "fifth_letter_coefficient_has_three_values": fifth,
+        "step_5_inventories_against_the_paper": step5,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

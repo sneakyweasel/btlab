@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "f994fcf99e2364758ff6322e15d6c138de7d1692",
+  "git_commit": "dd80d14224fce99b5591e89da15940657641ae9b",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -7737,6 +7737,117 @@
     "P0": 35858000000000.0,
     "everything_is_far_below_P0": true
   },
+  "step_5_inventories_against_the_paper": {
+    "inventory": [
+      {
+        "part": "gap cells",
+        "printed": "1.5(h_1{+}h_2)P^{1/2}+2\\le3.1P^{13/24}",
+        "bound": "3.1 P^(13/24)",
+        "present": true
+      },
+      {
+        "part": "anchor runs",
+        "printed": "\\le22h_1h_2P^{1/4}\\le22P^{3/8}",
+        "bound": "22 P^(3/8)",
+        "present": true
+      },
+      {
+        "part": "total",
+        "printed": "N\\le3.5P^{13/24}",
+        "bound": "3.5 P^(13/24)",
+        "present": true
+      }
+    ],
+    "inventory_is_still_printed": true,
+    "readings": {
+      "printed_two_terms": 27680640625.000214,
+      "printed_with_the_papers_windows": 306026400349.91724,
+      "printed_cells_with_the_sharp_runs": 39292523.15721952,
+      "certificate": 51398268.10332695
+    },
+    "A5_prints": 51400000.0,
+    "certificate_matches_A5": true,
+    "printed_inventory_is_later_by": 538.5338642996151,
+    "with_the_windows_later_by": 5953.82101848088,
+    "one_clause_closes_it": true,
+    "printed_cap_on_h1h2": "P^(1/8)",
+    "cap_from_C4": "P^(1/16)",
+    "both_caps_are_true": true,
+    "the_sentence_uses_both": true,
+    "competitor_lists": [
+      {
+        "where": "Step 5a",
+        "read_against": "lambda_a >= 1.30 P^(-1/8)",
+        "ratios": [
+          [
+            0.34,
+            -0.125
+          ],
+          [
+            20.0,
+            -1.0833333333333333
+          ],
+          [
+            8.0,
+            -1.0833333333333333
+          ],
+          [
+            1.0,
+            -0.25
+          ]
+        ],
+        "all_printed": true,
+        "least_P": 256.0
+      },
+      {
+        "where": "the j-decorated Step 5a",
+        "read_against": "lambda_a' >= 0.40 k|j| P^(-1/8)",
+        "ratios": [
+          [
+            1.3,
+            -0.125
+          ],
+          [
+            13.0,
+            -0.5625
+          ],
+          [
+            9.0,
+            -1.0833333333333333
+          ],
+          [
+            3.0,
+            -0.125
+          ]
+        ],
+        "all_printed": true,
+        "least_P": 429981696.0000005
+      }
+    ],
+    "certificate_competitors": [
+      [
+        1.3,
+        -0.125
+      ],
+      [
+        13.0,
+        -0.5625
+      ],
+      [
+        9.0,
+        -1.0833333333333333
+      ],
+      [
+        3.0,
+        -0.125
+      ]
+    ],
+    "certificate_takes_the_second_list": true,
+    "certificate_takes_the_harder_list": true,
+    "competitor_row_is_twelve_to_the_eighth": true,
+    "nothing_reaches_P0": true,
+    "crudest_reading_below_P0_by": 117.17289736767542
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -7804,5 +7915,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 89.32925248146057
+  "elapsed_seconds": 88.32118105888367
 }

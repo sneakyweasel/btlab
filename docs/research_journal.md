@@ -37232,3 +37232,75 @@ alone; they are true as printed, including the "factor 120 below P_0"
 which is 120.261 and understates, which is the conservative direction
 for a separation. Only two prose figures moved, both of them thresholds
 quoted out of the table.
+
+## One sentence, two caps
+
+The competitor ratios check out exactly: the certificate's `1.3P^(-1/8)`,
+`13P^(-9/16)`, `9P^(-13/12)`, `3P^(-1/8)` are the j-decorated Step 5a
+list to the digit, and that is the harder of the paper's two lists ---
+`12^8 = 4.2998e8` against `256`. A.5 prints `4.3e8`.
+
+The piece count does not. Step 5b prints
+
+```text
+  gap cells     1.5(h_1+h_2)P^(1/2) + 2 <= 3.1 P^(13/24)
+  anchor runs   <= 22 h_1h_2 P^(1/4)    <= 22 P^(3/8)
+  total         N <= 3.5 P^(13/24)
+```
+
+and A.5 prints `5.14e7`. Those two terms alone fit the budget from
+`2.7681e10`, `539` times later, with the windows dropped; with the window
+count the same theorem prints it is `3.0603e11`.
+
+The whole gap is one clause. `22h_1h_2P^(1/4) <= 22P^(3/8)` reads
+`h_1h_2 <= P^(1/8)`, which is `(C1)` at `k=1`; `(C4)` gives
+`h_1h_2 <= P^(1/16)` and `22P^(5/16)`, which is what the certificate
+sums, and which fits from `3.9293e7`. The sentence uses both caps: its
+first clause is `(C4)`, sharp, and its second is not. Nothing is false,
+and nothing reaches `P_0` --- the crudest reading is `117` times below
+it.
+
+Twice in two sections now: A.5's threshold computed from a binding
+sharper than the prose beside it prints. The first was `|C|` at
+`1.281137` against a printed `2`.
+
+```text
+Phase-end report
+Question
+- do the counts of Step 5b and the ratios of Step 5a that the paper
+  states agree with the ones the certificate sums
+Instruments
+- step_5_inventories_against_the_paper: the printed inventory solved as
+  printed, with the paper's own window count, with (C4) in the runs
+  clause, and in the certificate's form; both competitor lists solved
+  against 1/4
+Ledger tags
+- EXACT: (C4) gives h_1h_2 <= P^(1/16), so 22h_1h_2P^(1/4) <= 22P^(5/16),
+  sharper than the printed 22P^(3/8), which is (C1) at k = 1; both are
+  true bounds
+- COMPUTATIONALLY VERIFIED: the inventory fits from 2.7681e10 as printed,
+  3.0603e11 with the windows, 3.9293e7 with (C4), 5.1398e7 in the
+  certificate's form, against A.5's 5.14e7; the competitor row is 12^8 on
+  the second list and 256 on the first; the crudest reading is 117 times
+  below P_0
+- OBSERVATION: the two caps appear in consecutive clauses of one sentence
+Strongest theorem
+- the printed threshold for the piece count is reachable only with (C4)
+  applied directly, and the difference is exactly one clause
+Strongest refutation
+- none; the competitor half of the question came back clean, and the
+  certificate takes the harder list
+Reusable machinery
+- step_5_inventories_against_the_paper, PIECE_INVENTORY,
+  COMPETITOR_LISTS, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Both halves are answered and the repairs are manuscript edits.
+Best next question
+- twice now A.5's threshold belongs to a sharper binding than the prose
+  prints. Both times the sharper one came from the standing caps. Is that
+  the whole pattern? Take every row whose predicate substitutes a cap and
+  compare the exponent it uses with the exponent the site's own sentence
+  prints -- the answer is a count, and the count is the thing to know.
+```
