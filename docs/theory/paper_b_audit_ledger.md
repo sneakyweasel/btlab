@@ -2438,3 +2438,41 @@ derivation that precedes it, and \(P_1=9.8\cdot10^{18}\) stands.
 COMPUTATIONALLY VERIFIED on one family of instances --- three-term
 monomials with a simple zero --- and not a proof; what it removes is the
 suggestion that the paper's own proof contradicts its appendix.
+
+## The \(r=3\) length: the measurement does separate the two constants
+
+The same instances settle A.6 against Lemma 3.9's proof, and this time
+the two are not equivalent.
+
+**The local bound is the real one.** Near a simple zero \(n_0\) of
+\(f''\), \(\lvert f''\rvert\approx\lvert f'''(n_0)\rvert\lvert
+n-n_0\rvert\), and the hypothesis gives \(n\lvert f'''\rvert\ge c_7S\),
+so the sublevel width is at most \(2Vn_0/(c_7S)\). Over \(1449\)
+admissible instances the measured width reaches \(0.949\) of that ---
+the local form is nearly attained.
+
+**Which separates the two printed constants exactly.** \(n_0\) ranges
+over \((P,2P]\), so the local bound ranges over
+\([2PV/(c_7S),\,4PV/(c_7S)]\):
+
+| constant | worst measured ratio | verdict |
+|---|---|---|
+| A.6's \(2PV/(c_3S)\) | \(1.0003\) | **exceeded** |
+| Lemma 3.9's proof, \(4PV/(c_7S)\) | \(0.5002\) | holds, factor \(2\) spare |
+
+A.6's constant is the \(n=P\) form. It is right at the bottom of a
+dyadic block and wrong at the top, by exactly the factor \(n_0/P\) --- the
+same \(P\)-versus-\(n\) slip this ledger has recorded three times in the
+paper and twice in itself. The proof's \(4\) is the \(n\le2P\) form and
+is safe. COMPUTATIONALLY VERIFIED; the ratio between the two verdicts is
+exactly \(2\) at every sample size, as it must be.
+
+**Nothing downstream moves.** A.6 uses its \(2PV/(c_3S)\) qualitatively,
+in the sentence weighing what the per-order vector \((c_2,c_3,c_4)\)
+buys and costs; \(P_1\) is computed in A.5, which carries the correct
+\(4\). So this is an erratum in one sentence, not a change to any
+number. Together with the entry above --- where A.5's \(r=4\) constant
+turned out sharper than its own proof --- the pair reads: the appendix
+that computes is right twice, and the two passages that describe it are
+off by a dyadic factor in one direction and a worst-case derivation in
+the other.

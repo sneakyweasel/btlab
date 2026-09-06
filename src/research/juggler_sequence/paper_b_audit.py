@@ -3030,7 +3030,7 @@ def lemma_3_9_admissible_search(trials: int = 400, grid: int = 800, P: int = 10*
     rng = random.Random(seed)
 
     admissible = nonempty = r4_points = 0
-    worst = 0.0
+    worst = worst_r3_local = worst_r3_A6 = worst_r3_proof = 0.0
     for _ in range(trials):
         n0 = P * rng.uniform(1.05, 1.95)
         a = rng.uniform(-1, 1) * P ** (2 - al)
@@ -3059,6 +3059,13 @@ def lemma_3_9_admissible_search(trials: int = 400, grid: int = 800, P: int = 10*
         measure = len(sub) * (P / grid)
         bound = 4 * P * V / (c7 * S) + P * (V / (c7 * S)) ** 0.5
         worst = max(worst, measure / bound)
+        # the r=3 length on its own, against the two constants that differ between passages:
+        # A.6 prints 2 P V/(c_3 S) and Lemma 3.9's proof gives 4 P V/(c_7 S).  The true local
+        # bound is 2 V n/(c_7 S), which is A.6's at the bottom of the block and the proof's at
+        # the top, so over a dyadic block only the 4 is safe.
+        worst_r3_local = max(worst_r3_local, measure / (2 * V * n0 / (c7 * S)))
+        worst_r3_A6 = max(worst_r3_A6, measure / (2 * P * V / (c7 * S)))
+        worst_r3_proof = max(worst_r3_proof, measure / (4 * P * V / (c7 * S)))
 
     return {
         "P": P, "trials": trials, "admissible": admissible, "nonempty_sublevel": nonempty,
@@ -3066,6 +3073,11 @@ def lemma_3_9_admissible_search(trials: int = 400, grid: int = 800, P: int = 10*
         "r4_branch_fires": r4_points > 0,
         "worst_measure_over_A5_bound": worst,
         "A5_bound_holds_on_every_admissible_instance": worst < 1.0,
+        "worst_over_the_local_r3_form": worst_r3_local,
+        "worst_over_A6_r3_constant": worst_r3_A6,
+        "worst_over_the_proof_r3_constant": worst_r3_proof,
+        "A6_r3_constant_is_exceeded": worst_r3_A6 > 1.0,
+        "proof_r3_constant_holds": worst_r3_proof < 1.0,
         "room_left": (1.0 / worst) if worst > 0 else None,
     }
 
@@ -3122,7 +3134,7 @@ def summary() -> dict[str, Any]:
     l410 = lemma_4_10_sharpness(random_trials=200)
     classical = classical_inputs_check()
     sensitivity = perturbation_sensitivity()
-    admissible = lemma_3_9_admissible_search(trials=150, grid=500)
+    admissible = lemma_3_9_admissible_search(trials=400, grid=1000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {

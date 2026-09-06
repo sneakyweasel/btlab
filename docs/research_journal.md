@@ -32404,3 +32404,62 @@ Best next question
   k <= P^{1/24}, h <= P^{1/48} -- and if not, what is the gap between
   what it proves and what this needs?
 ```
+
+## The r=3 length does separate them, and A.6's constant is the one that loses
+
+Following the last entry's question, on the same instances.
+
+**The local bound is the real one.** Near a simple zero `n0` of `f''`,
+`|f''| ~ |f'''(n0)| |n - n0|`, and the hypothesis gives
+`n |f'''| >= c_7 S`, so the width is at most `2 V n0/(c_7 S)`. Over
+`1449` admissible instances the measured width reaches `0.949` of it.
+
+**Which separates the two constants exactly**, because `n0` ranges over
+`(P, 2P]` and the local bound with it:
+
+| constant | worst measured ratio | verdict |
+|---|---|---|
+| A.6's `2 P V/(c_3 S)` | `1.0003` | exceeded |
+| the proof's `4 P V/(c_7 S)` | `0.5002` | holds, factor 2 spare |
+
+A.6's is the `n = P` form: right at the bottom of a dyadic block, wrong
+at the top by exactly `n0/P`. The same `P`-versus-`n` slip this journal
+has recorded three times in the paper and twice in itself. The proof's
+`4` is the `n <= 2P` form and is safe.
+
+**Nothing downstream moves.** A.6 uses its `2 P V/(c_3 S)` qualitatively,
+in the sentence weighing what the per-order vector buys and costs; `P_1`
+is computed in A.5, which carries the correct `4`. An erratum in one
+sentence, not a change to any number.
+
+Together with the last entry the pair reads: the appendix that computes
+is right twice, and the two passages that describe it are off in
+opposite directions -- A.6 by a dyadic factor, Lemma 3.9's proof by a
+worst-case derivation.
+
+```text
+What was learned
+- the true r=3 length is 2 V n/(c_7 S) and is nearly attained, so the
+  choice between 2 P and 4 P is not cosmetic
+- A.6's 2 P is exceeded on admissible instances; the proof's 4 P holds
+  with exactly a factor of two
+- the discrepancy is the dyadic factor, which is the same slip the
+  ledger keeps finding on both sides
+Strongest theorem
+- the local bound 2 V n0/(c_7 S), reached to 0.949, with A.6's and the
+  proof's constants its two endpoints over (P, 2P]
+Strongest refutation
+- A.6's 2 P V/(c_3 S), by 0.03% -- small, but the direction is decided
+Reusable machinery
+- the r=3 comparison inside lemma_3_9_admissible_search; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Two entries ago a passage-level discrepancy looked like a
+  five-order problem and was not one. This one is a factor of two and
+  is real. Measuring is what told them apart.
+Best next question
+- both appendix errata concern the same three lines. Is there a third
+  place where a length is quoted at n = P rather than n <= 2P, and does
+  the audit's own code make that slip anywhere?
+```

@@ -1102,3 +1102,13 @@ def test_A5s_transition_bound_survives_on_admissible_instances() -> None:
     assert r["worst_measure_over_A5_bound"] < 0.6
     assert r["r4_branch_fires"]          # not surviving by the branch never firing
     assert r["room_left"] > 1.5
+
+
+def test_the_r3_length_separates_A6s_constant_from_the_proofs() -> None:
+    """The local bound is 2 V n/(c_7 S): A.6's 2 P is the bottom of the block, the proof's 4 P the top."""
+    r = A.lemma_3_9_admissible_search(trials=400, grid=1000)
+    assert r["worst_over_the_local_r3_form"] < 1.05          # the local form is the real bound
+    assert r["worst_over_the_local_r3_form"] > 0.5           # 0.95 at 1500 trials; sampling-limited
+    assert r["A6_r3_constant_is_exceeded"]                   # 2 P V/(c_3 S) is not safe over (P, 2P]
+    assert r["proof_r3_constant_holds"]                      # 4 P V/(c_7 S) is, with a factor of two
+    assert abs(r["worst_over_the_proof_r3_constant"] - 0.5 * r["worst_over_A6_r3_constant"]) < 1e-6
