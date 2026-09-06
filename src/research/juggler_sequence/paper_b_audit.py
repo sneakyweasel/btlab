@@ -727,6 +727,67 @@ def kappa_optimum_check(grid: tuple[float, ...] = tuple(x / 4 for x in range(32,
         "P1_over_P0": best_printed[0] / p0_printed,
     }
 
+def p1_cost_split(points: tuple[float, ...] = (13.0, 16.0, 19.0, 22.0)) -> dict[str, Any]:
+    """Which of P_1's three costs binds, and what its constant is worth.
+
+    The middle band costs 4P W/(c_7 S) at P^{41/48}, P (W/(c_7 S))^{1/2} at P^{89/96}, and
+    3.5 P^{13/24} V^{-1/2} at P^{89/96}; P_1 is where the total first drops to P.  Two of the three
+    share the exponent 89/96, so asymptotically P_1 = C^{96/7} in their combined constant C: every
+    constant in the total is amplified by a 13.71st power in P_1.
+
+    At P_1 the piece-boundary term is 58% of the total and rising.  Its constant is the 3.5 of the
+    row "cells + anchor runs + windows <= 3.5 P^{13/24}", whose left-hand side is
+    3 + 2 P^{-13/24} + 22 P^{-11/48} + 5 P^{-5/24}: that is 3.0015 at P_1, so the printed 3.5 is
+    16.6% above what the row itself gives there.  Carrying 3 instead moves P_1 from 9.84e18 to
+    3.91e18 -- a factor of 2.52, against the 1.06 the interpolant pairing repair is worth.
+
+    Appendix A.5's "what is left" paragraph points at E and the middle-band half-width 60.  That is
+    the right target for P_0, where E is 45.5% of W; at P_1, E is 11.8% of W and the cheaper lever
+    is this constant.
+    """
+
+    c7 = p0_certificate.C7
+    kappa = p0_certificate.KAPPA
+    s_lo = 0.56
+
+    def costs(P: float, N: float) -> tuple[float, float, float]:
+        S = s_lo * P ** (-5 / 8)
+        V = kappa * S**0.5 * P ** (-11 / 24)
+        W = V + p0_certificate.interpolant_error(P)
+        return 4 * P * (W / S) / c7, P * (W / (c7 * S)) ** 0.5, N * P ** (13 / 24) * V**-0.5
+
+    def piece_count(P: float) -> float:
+        return 3 + 2 * P ** (-13 / 24) + 22 * P ** (5 / 16 - 13 / 24) + 5 * P ** (1 / 3 - 13 / 24)
+
+    def p1(N: float) -> float:
+        lo, hi = 1.0, 40.0
+        for _ in range(300):
+            mid = (lo + hi) / 2
+            total = sum(costs(10.0**mid, N))
+            lo, hi = (mid, hi) if total > 10.0**mid else (lo, mid)
+        return 10.0**hi
+
+    rows = []
+    for L in points:
+        P = 10.0**L
+        a, b, c = costs(P, 3.5)
+        total = a + b + c
+        rows.append({"log10_P": L, "r3": a, "r4": b, "boundaries": c,
+                     "boundary_share": c / total,
+                     "binding": max((("r3", a), ("r4", b), ("boundaries", c)), key=lambda t: t[1])[0],
+                     "piece_count": piece_count(P), "printed_piece_constant": 3.5,
+                     "piece_slack": 3.5 / piece_count(P) - 1})
+    printed, sharp = p1(3.5), p1(3.0)
+    return {
+        "points": rows,
+        "binds_at_P1": rows[2]["binding"] if len(rows) > 2 else rows[-1]["binding"],
+        "amplification_exponent": Fr(96, 7),
+        "P1_printed": printed,
+        "P1_with_the_sharp_piece_constant": sharp,
+        "P1_gain": printed / sharp,
+        "interpolant_repair_gain_on_P1": 1.06,
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -1721,6 +1782,11 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("st5b-qpp: h cancels in 1.85 k h P^{1/8}/(u h), leaving 1.85 k P^{1/8}/u with 1/24+1/8 = 1/6", F(1, 24) + F(1, 8) == F(1, 6)),
         ("st5b-qpp: the charged 7/24 exceeds that 1/6 by exactly 1/8", F(7, 24) - F(1, 6) == F(1, 8)),
         ("39-c rows pair correctly: |c''/2| ~ k P^{-7/8} over S ~ k h1 h2 P^{-5/8} cancels k, leaving -1/4", -F(7, 8) + F(5, 8) == -F(1, 4)),
+        # Appendix A.5: the three middle-band costs and the amplification of every constant in P_1
+        ("A.5: V ~ P^{-37/48} from S ~ P^{-5/8}, so the boundary term is P^{13/24+37/96} = P^{89/96}", F(13, 24) + F(37, 96) == F(89, 96)),
+        ("A.5: the r=3 term at 41/48 = 82/96 sits below the two that share 89/96", F(41, 48) == F(82, 96) and F(82, 96) < F(89, 96)),
+        ("A.5: P_1 solves C P^{89/96} = P, so P_1 = C^{96/7} and a constant is amplified by 96/7", 1 - F(89, 96) == F(7, 96)),
+        ("A.5: the piece count is 3 + 2P^{-13/24} + 22P^{-11/48} + 5P^{-5/24}, leading 3 from 1/24+1/2", F(1, 24) + F(1, 2) == F(13, 24) and F(5, 16) - F(13, 24) == -F(11, 48) and F(1, 3) - F(13, 24) == -F(5, 24)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -2146,6 +2212,7 @@ def summary() -> dict[str, Any]:
     pairing_sweep = p0_pairing_sweep()
     budget_split = step5b_budget_split()
     kappa_optimum = kappa_optimum_check()
+    p1_split = p1_cost_split()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2177,6 +2244,7 @@ def summary() -> dict[str, Any]:
         "p0_pairing_sweep": pairing_sweep,
         "step5b_budget_split": budget_split,
         "kappa_optimum_check": kappa_optimum,
+        "p1_cost_split": p1_split,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

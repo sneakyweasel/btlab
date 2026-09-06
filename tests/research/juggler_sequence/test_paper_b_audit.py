@@ -802,3 +802,17 @@ def test_the_kappa_optimum_does_not_move_under_the_pairing_repair() -> None:
     assert r["P1_over_P0"] > 1e4                                    # P_1 is five orders above P_0
     text = _paper()
     assert r"P_1=9.8\cdot10^{18}" in text                           # the paper quotes both
+
+
+def test_the_piece_boundary_term_binds_P1_and_its_constant_is_loose() -> None:
+    """3.5 against a piece count of 3.0015 at P_1, amplified by the 96/7 power."""
+    r = A.p1_cost_split()
+    assert r["binds_at_P1"] == "boundaries"
+    at19 = next(x for x in r["points"] if x["log10_P"] == 19.0)
+    assert at19["boundary_share"] > 0.5
+    assert abs(at19["piece_count"] - 3.0) < 0.01
+    assert 0.15 < at19["piece_slack"] < 0.2
+    assert r["amplification_exponent"] == Fr(96, 7)
+    # and it is worth more than the interpolant repair, on the number that decides reach
+    assert r["P1_gain"] > 2 > r["interpolant_repair_gain_on_P1"]
+    assert r"P^{13/24}V^{-1/2}" in _paper()
