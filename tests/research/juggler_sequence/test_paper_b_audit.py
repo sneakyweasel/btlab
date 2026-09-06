@@ -1067,3 +1067,24 @@ def test_the_saving_is_not_where_this_stands_or_falls() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
     assert "So the balance is not where this stands or falls" in text
     assert "prices only that term" in text
+
+
+# --- what the audit as a whole would and would not notice ---
+
+
+def test_the_audit_knows_what_a_one_percent_cut_would_set_off() -> None:
+    """Three regimes: total power on identities, 1/samples on saturating bounds, none on loose ones."""
+    r = A.perturbation_sensitivity(samples_per_range=8)
+    assert r["policed_total"] == 11
+    assert 1 <= r["policed_detecting"] <= 5
+    assert len(r["saturating"]) >= 2 and len(r["structurally_loose"]) >= 1
+    # the two bracket bands cannot be policed at any sample size: their extremes do not move
+    brackets = [x for x in r["policed_constants"]
+                if x["constant"].startswith("L5.1(iii)") and x["side"] == "upper"]
+    assert len(brackets) == 2
+    for x in brackets:
+        assert not x["moved_with_sampling"], x["constant"]
+        assert x["smallest_detectable_cut"] > 0.3, x["constant"]
+    # P_0 is a solved threshold, so every constant moves it past the two-figure boundary
+    assert r["every_P0_constant_moves_it_past_the_boundary"]
+    assert r["P0_two_figure_resolution_at_a_boundary"] < 0.02

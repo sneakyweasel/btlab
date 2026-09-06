@@ -2917,6 +2917,89 @@ def kernel_observation_reach(points: list[int] | None = None) -> dict[str, Any]:
 # ----------------------------------------------------------------------------------------------
 
 
+def perturbation_sensitivity(cut: float = 0.01, samples_per_range: int = 12) -> dict[str, Any]:
+    """What a 1% change in a printed constant would and would not set off.
+
+    Four layers, with quite different powers.
+
+      1. The exact identities compare integers or cancel to 10^-40.  Any perturbation at all is
+         caught -- total power, and the reason the identity census is worth running at 480 samples
+         rather than 4800.
+      2. The exponent layer is exact rational arithmetic.  A wrong exponent is caught outright; a
+         1% numeric perturbation is not expressible in it, so the layer neither catches nor misses.
+      3. The policed inequality constants are caught only if the observed extreme ratio exceeds
+         1/(1+cut): cutting a constant by 1% multiplies the ratio by 1.0101, which crosses 1 only
+         from 0.99 up.  census_constant_power measures those ratios, so this is a count.
+      4. P_0 is a solved threshold, so any change moves it; what matters is whether the move
+         survives the manuscript's two-significant-figure quote.  A 1% cut in c_7 moves the binding
+         row by 4.3%, in the interpolant error by 1.9%, in kappa by 2.3%, against a rounding that
+         resolves 1.4% at a boundary and 2.8% guaranteed.
+    """
+
+    small = {r["constant"]: r for r in census_constant_power(samples_per_range=samples_per_range)["constants"]
+             if "extreme_ratio" in r}
+    large = {r["constant"]: r for r in census_constant_power(samples_per_range=8 * samples_per_range)["constants"]
+             if "extreme_ratio" in r}
+    threshold = 1.0 / (1.0 + cut)
+    policed = []
+    for name, row in large.items():
+        extreme = row["extreme_ratio"]
+        detects = extreme > threshold if row["side"] == "upper" else extreme < 1.0 + cut
+        # does eight times the sampling move it?  a saturating bound creeps toward 1 and more
+        # samples buy power; a structurally loose one does not move at all, and no sample size
+        # detects a cut smaller than its gap.
+        moved = extreme - small[name]["extreme_ratio"]
+        policed.append({
+            "constant": name, "side": row["side"], "extreme_ratio": extreme,
+            "extreme_at_an_eighth_of_the_samples": small[name]["extreme_ratio"],
+            "moved_with_sampling": abs(moved) > 0.002,
+            "regime": ("saturating" if row["side"] == "upper" and extreme > 0.98
+                       else "lower-side" if row["side"] == "lower"
+                       else "creeping" if abs(moved) > 0.002 else "structurally loose"),
+            "smallest_detectable_cut": (1 - extreme) if row["side"] == "upper" else None,
+            "detects_a_one_percent_cut": bool(detects),
+        })
+
+    c7 = p0_certificate.C7
+    kappa = p0_certificate.KAPPA
+    s_lo = 0.56
+
+    def binding_row(c7_value: float, error_scale: float, kappa_value: float) -> float:
+        def excess(L: float) -> float:
+            P = 10.0**L
+            S = s_lo * P ** (-5 / 8)
+            return (kappa_value * S**0.5 * P ** (-11 / 24)
+                    + error_scale * p0_certificate.interpolant_error(P) - c7_value * S / 2)
+        lo, hi = 1.0, 40.0
+        for _ in range(300):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if excess(mid) > 0 else (lo, mid)
+        return 10.0**hi
+
+    base = binding_row(c7, 1.0, kappa)
+    moves = {
+        "c_7 cut by one percent": binding_row(c7 * (1 - cut), 1.0, kappa) / base - 1,
+        "interpolant error raised one percent": binding_row(c7, 1 + cut, kappa) / base - 1,
+        "kappa raised one percent": binding_row(c7, 1.0, kappa * (1 + cut)) / base - 1,
+    }
+    mantissa = base / 10 ** math.floor(math.log10(base))
+    return {
+        "cut": cut,
+        "exact_identities": "total power: any perturbation is caught",
+        "exponent_layer": "exact rationals: a wrong exponent is caught, a 1% change is not expressible",
+        "policed_constants": policed,
+        "policed_total": len(policed),
+        "saturating": [r["constant"] for r in policed if r["regime"] == "saturating"],
+        "structurally_loose": [r["constant"] for r in policed if r["regime"] == "structurally loose"],
+        "policed_detecting": sum(r["detects_a_one_percent_cut"] for r in policed),
+        "detection_needs_extreme_ratio_above": threshold,
+        "P0_moves": moves,
+        "P0_two_figure_resolution_at_a_boundary": 0.05 / mantissa,
+        "P0_two_figure_resolution_guaranteed": 0.1 / mantissa,
+        "every_P0_constant_moves_it_past_the_boundary": all(abs(v) > 0.05 / mantissa for v in moves.values()),
+        "some_P0_constant_moves_it_less_than_guaranteed": any(abs(v) < 0.1 / mantissa for v in moves.values()),
+    }
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -2969,6 +3052,7 @@ def summary() -> dict[str, Any]:
     c413 = corollary_4_13_check()
     l410 = lemma_4_10_sharpness(random_trials=200)
     classical = classical_inputs_check()
+    sensitivity = perturbation_sensitivity()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3009,6 +3093,7 @@ def summary() -> dict[str, Any]:
         "corollary_4_13_check": c413,
         "lemma_4_10_sharpness": l410,
         "classical_inputs_check": classical,
+        "perturbation_sensitivity": sensitivity,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

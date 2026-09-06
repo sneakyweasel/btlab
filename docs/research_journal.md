@@ -32101,3 +32101,162 @@ Best next question
   1%, and which would not notice -- the census-power reading applied to
   the audit as a whole?
 ```
+
+ ### The truncation is affordable, and the shifted window works on beta
+
+The question: Vaaler at `J` costs a remainder `~ P/J` and returns `J`
+waves against `e(-(27k/32)(n+h)^{33/32})`. What `J` does the budget
+allow, and is the exponent pair good enough?
+
+**It is a closed formula.** Since `3/2 > 33/32` the first monomial
+dominates the derivatives at every `j >= 1`, so a pair `(k, l)` prices
+each wave at `(j P^{1/2})^k P^l`; the `1/j` weights make the sum over
+`|j| <= J` of order `J^k P^{k/2+l}`; balancing against `P/J`,
+
+```text
+   J = P^delta,   delta = (1 - k/2 - l) / (k + 1)
+```
+
+Over the 55 pairs the two processes generate from the trivial one the
+best is `(2/9, 11/18)`, giving `J = P^{5/22}` and a saving of `5/22`.
+The classical `(1/2, 1/2)` already gives `1/6`. Against the `1/48` the
+differenced sum needs, those are `10.9` and `8` times over.
+
+**Both unpriced terms are one family.** `(Delta_h c) theta_1`,
+sawtooth-expanded in its turn, shifts `j` by at most `k h P^{1/32}`,
+which is `P^{11/96}` at the caps — and `P^{5/22}` dominates it by
+`P^{119/1056}`. So the two terms the balance could not price reduce to
+the same two-monomial sums over one range of `j`.
+
+**And the shifted window works here.** The interval endpoint `1 - beta`
+moves, so Vaaler cannot be applied globally with frozen coefficients.
+The window on which `beta` moves by less than `1/J` has length
+`~ P^{1/2}/(J h)`, and holds integers exactly when `J h <= P^{1/2}`. At
+`J = P^{5/22}` and `h <= P^{1/24}` that reads `P^{71/264}` against
+`P^{1/2}`, a margin of `P^{61/264}`.
+
+Which closes the arc. The shifted window was never useless — it was
+being asked of the wrong quantity. Applied to `c`, whose coefficient
+exponent is `+1/32` above the drift threshold, it has no interval.
+Applied after differencing to `beta`, whose exponent is `-1/2` and far
+below it, it has one with a quarter of an order to spare.
+
+What this does not do is price the wave sums at the window length
+rather than at `P`. That is where the accounting stops and a proof
+would start.
+
+```text
+What was learned
+- the budget is a formula in the exponent pair, not a number, so the
+  answer is a scan over 55 pairs rather than a guess
+- the two terms the balance could not price are the same family; the
+  Delta_h c expansion only shifts j, and by less than J
+- the shifted window is not refuted by Section 7's paragraph, only
+  misapplied there: after differencing the quantity that needs freezing
+  drifts at -1/2 instead of +1/32
+Strongest theorem
+- delta = (1 - k/2 - l)/(k+1) for the Vaaler balance, maximised at
+  (2/9, 11/18) with J = P^{5/22} and saving 5/22, eleven times the
+  1/48 required
+Strongest refutation
+- none this entry; the previous entry's curvature error stands corrected
+Reusable machinery
+- vaaler_truncation_budget in paper_b_prefix_count, beside the pair
+  generator it scans; five tests
+Branch status
+- PARK
+Why
+  Every step of the route now has a price and every price clears its
+  requirement with room. What is not priced is the wave sums at the
+  shifted-window length rather than at P, and that is a proof step, not
+  an accounting one.
+Best next question
+- the windows have length P^{1/2}/(J h) ~ P^{61/264} at the caps, and
+  there are ~ J h P^{1/2} of them. Does an exponent pair applied at that
+  length, summed over that many windows, still clear 1/48 -- or does the
+  window count eat the saving the way the cell count nearly did?
+```
+
+Note on the tree: `test_paper_b_audit.py` carries one failing test,
+`test_the_audit_knows_what_a_one_percent_cut_would_set_off`, which is a
+concurrent session's uncommitted work and is not touched by anything
+here. This entry's machinery went into `paper_b_prefix_count.py`, beside
+the exponent-pair generator it uses, to keep clear of it.
+
+## What a 1% cut would set off, and what it would not
+
+Following the last entry's question: the census-power reading applied to
+the audit itself. Four layers, four powers.
+
+**Exact identities: total.** They compare integers or cancel to
+`1e-40`. Any perturbation is caught -- which is why 480 samples suffice
+and 4800 would buy nothing.
+
+**The exponent layer: exact and orthogonal.** 268 rational statements. A
+wrong exponent is caught outright; a 1% numeric change is not
+expressible there, so the layer neither catches nor misses.
+
+**The eleven policed constants: three regimes.** A 1% cut multiplies the
+observed ratio by `1.0101`, so it is caught only from `0.9901` up.
+Sampling eight times harder separates them:
+
+| constant | extreme at 768 | regime | smallest cut caught |
+|---|---|---|---|
+| L4.3(i) fine `3/8` | 0.9995 | saturating | `0.05%` |
+| L6.2(i) corrected | 0.9966 | saturating | `0.3%` |
+| L5.1(i) `3/16` | 0.9933 | saturating | `0.7%` |
+| L5.1(iv) `M_1`, `0.43` | 0.9777 | creeping | `2.2%` |
+| L5.1(iv) brackets `<= 2` | 0.8558 | creeping | `14.4%` |
+| L4.3(i) coarse `1/2` | 0.7497 | creeping to `3/4` | `25%` |
+| L6.2(ii) corrected | 0.6626 | creeping | `33.7%` |
+| L5.1(iii) first bracket `2.6` | 0.5771 | structurally loose | `42.3%` |
+| L5.1(iii) second bracket `15` | 0.4523 | structurally loose | `54.8%` |
+
+The saturating three approach 1 as sampling grows, so their power is
+`1/samples` and catching a `p%` cut needs about `1/p` samples. The two
+structurally loose ones do not move at all under eight times the
+sampling -- `0.5771` at every size -- because their extremes are the
+deterministic gap between the printed constant and the true one, `3/2`
+against `2.6` and `27/4` against `15`. No sample size polices them. The
+coarse L4.3 bound creeps to exactly `3/4 = (3/8)/(1/2)`: structural too.
+
+**`P_0`: any change moves it; the question is the rounding.** `1%` cuts
+move the binding row `+4.3%` (`c_7`), `+1.9%` (`E`), `+2.3%` (`kappa`),
+against a two-figure quote that resolves `1.4%` at a boundary and `2.8%`
+guaranteed. All three are caught, two only because the current value
+sits near a boundary: the guard's real resolution is `2.8%`.
+
+**Twenty-one entries, in one line.** This audit catches any error in an
+identity, any error in an exponent, a sub-percent error in three printed
+constants, a few-percent error in `P_0`, and nothing at all in the two
+bracket constants -- whose sharp values, `3/2` and `27/4`, were found by
+expansion rather than by sampling.
+
+```text
+What was learned
+- the audit's power splits three ways, and the split is visible by
+  sampling eight times harder: saturating bounds creep toward 1,
+  structurally loose ones do not move at all
+- catching a p% cut on a saturating bound needs about 1/p samples
+- P_0's guard resolves 2.8%, not 1%, and the current value's nearness
+  to a rounding boundary flatters it
+Strongest theorem
+- none new; this is the audit measuring itself
+Strongest refutation
+- the implicit claim that more sampling is always worth something: on
+  the bracket constants it is worth exactly nothing
+Reusable machinery
+- perturbation_sensitivity, which runs the census at two sample sizes
+  and classifies each constant by whether the extreme moves; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Twenty passes of building checks, and this one says what they are
+  worth. The answer is specific enough to act on: the two bracket
+  constants will never be policed by sampling, so if they matter they
+  need the expansion, which is now recorded.
+Best next question
+- the audit runs eighteen probes in 46 seconds and the summary is one
+  function. Is any probe now redundant -- does any pair of them fail
+  together on every perturbation, so that one could go?
+```

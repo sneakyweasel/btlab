@@ -2336,3 +2336,60 @@ and \(\Delta_J\ge0\) of degree \(J\); verifying it means constructing the
 Beurling--Selberg majorant, which is a different kind of exercise from
 evaluating a printed inequality, and it is a cited classical result
 rather than a constant of this paper.
+
+## What a 1% cut would set off, and what it would not
+
+The census-power reading applied to the audit as a whole. Four layers,
+with quite different powers.
+
+**1. The exact identities: total.** They compare integers or cancel to
+\(10^{-40}\). Any perturbation whatever is caught, which is why 480
+samples is enough and 4800 would buy nothing.
+
+**2. The exponent layer: exact, and orthogonal.** 268 rational
+statements. A wrong exponent is caught outright; a \(1\%\) numeric
+change is not expressible in it, so the layer neither catches nor misses.
+
+**3. The eleven policed constants: three regimes.** A \(1\%\) cut
+multiplies the observed ratio by \(1.0101\), so it is caught only from
+an extreme ratio of \(0.9901\) up. Sampling eight times harder separates
+the constants sharply:
+
+| constant | extreme at 768 samples | regime | smallest cut it can catch |
+|---|---|---|---|
+| L4.3(i) fine, \(\tfrac38(X{-}1)^{-1/2}\) | 0.9995 | saturating | \(0.05\%\) |
+| L6.2(i) corrected | 0.9966 | saturating | \(0.3\%\) |
+| L5.1(i), \(\tfrac3{16}v^{-1/2}\) | 0.9933 | saturating | \(0.7\%\) |
+| L5.1(iv) \(M_1\), \(0.43\) | 0.9777 | creeping | \(2.2\%\) |
+| L5.1(iv) brackets \(\le2\) | 0.8558 | creeping | \(14.4\%\) |
+| L4.3(i) coarse, \(\tfrac12n^{-3/4}\) | 0.7497 | creeping to \(\tfrac34\) | \(25\%\) |
+| L6.2(ii) corrected | 0.6626 | creeping | \(33.7\%\) |
+| L5.1(iii) first bracket, \(2.6\) | 0.5771 | **structurally loose** | \(42.3\%\) |
+| L5.1(iii) second bracket, \(15\) | 0.4523 | **structurally loose** | \(54.8\%\) |
+
+The saturating three approach \(1\) as sampling grows --- their power is
+\(1-\max\theta\approx1/\text{samples}\), so detecting a \(p\%\) cut needs
+about \(1/p\) samples of the saturating configuration. The two
+structurally loose ones do not move at all under eight times the
+sampling (0.5771 at every size): their extremes are set by the
+deterministic gap between the printed constant and the true one ---
+\(\tfrac32\) against \(2.6\), \(\tfrac{27}4\) against \(15\) --- so no
+sample size ever policies them. The coarse L4.3 bound creeps to exactly
+\(\tfrac34\), which is \(\tfrac38/\tfrac12\): its \(25\%\) is structural
+too. COMPUTATIONALLY VERIFIED.
+
+**4. \(P_0\): any change moves it; the question is the rounding.** A
+\(1\%\) cut in \(c_7\) moves the binding row by \(+4.3\%\), a \(1\%\)
+rise in the interpolant error by \(+1.9\%\), in \(\kappa\) by
+\(+2.3\%\). The manuscript quotes \(P_0\) to two significant figures,
+which resolves \(1.4\%\) at a rounding boundary and \(2.8\%\)
+guaranteed. So all three are caught here, two of them only because the
+current value sits near a boundary --- the guard's real resolution is
+\(2.8\%\), not \(1\%\).
+
+**The summary of twenty-one entries, in one line.** This audit catches
+any error in an identity, any error in an exponent, a sub-percent error
+in three printed constants, a few-percent error in \(P_0\), and nothing
+at all in the two bracket constants, whose looseness is structural and
+whose sharp values --- \(\tfrac32\) and \(\tfrac{27}4\) --- were found
+by expansion rather than by sampling.
