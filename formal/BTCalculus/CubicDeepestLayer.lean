@@ -96,6 +96,9 @@ theorem sq_factor (p q : ℤ) :
     p ^ 2 - q ^ 2 = (p - q) * (p + q) := by
   ring
 
+/-- Agreement of the depth-`k-1` `N1` residuals to order `3^k` forces `3^(k-1)` to divide
+`(p - q) * (p + q)`.  It is the square factorisation, not the layer description, that
+this statement carries. -/
 theorem deepest_sq_of_n1 {k : ℕ} (hk : 1 ≤ k) {p q : ℤ}
     (h : (3 : ℤ) ^ k ∣ n1Resid (k - 1) p - n1Resid (k - 1) q) :
     (3 : ℤ) ^ (k - 1) ∣ (p - q) * (p + q) := by

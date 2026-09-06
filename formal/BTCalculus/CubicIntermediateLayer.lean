@@ -138,6 +138,8 @@ theorem inter_equiv_iff {k : ℕ} (hk : 2 ≤ k) (p q : ℤ) :
     exact ⟨(inter_n2_iff hk p q).2 h2,
       (inter_n1_iff (by omega) p q).2 h1, h0⟩
 
+/-- Horizon refinement at depth `k-2`: agreement of the `N2`, `N1` and `N0` residuals to
+order `3^k` carries down to order `3^(k-1)` for each of the three. -/
 theorem inter_horizon_refines {k : ℕ} (_hk : 1 ≤ k) (p q : ℤ)
     (h2 : (3 : ℤ) ^ k ∣ n2Resid (k - 2) p - n2Resid (k - 2) q)
     (h1 : (3 : ℤ) ^ k ∣ n1Resid (k - 2) p - n1Resid (k - 2) q)

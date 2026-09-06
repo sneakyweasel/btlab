@@ -23,6 +23,8 @@ theorem pow_three_succ (L : ℕ) :
     (3 : ℤ) ^ (L + 1) = (3 : ℤ) ^ L * 3 :=
   pow_succ _ _
 
+/-- A short horizon cannot see a deep congruence: if `3^L | s - t`, the signed traces from
+`s` and `t` agree on every word of length at most `L`. -/
 theorem truncated_3adic_agree {gain s t : ℤ} {L : ℕ} {w : List ℤ}
     (hdvd : (3 : ℤ) ^ L ∣ s - t) (hw : w.length ≤ L) :
     signedTrace gain s w = signedTrace gain t w := by
@@ -92,6 +94,9 @@ theorem short_horizon_separation {gain s t : ℤ} {w : List ℤ}
   exact hsep ((signedTrace_take gain s w n).symm.trans
     (hpref.trans (signedTrace_take gain t w n)))
 
+/-- The separating length is `v3 (s - t) + 1`: for `gain` not divisible by `3` and `s != t`,
+any word that long distinguishes the signed traces.  With `truncated_3adic_agree` this
+pins agreement to exactly `|w| <= v3 (s - t)`. -/
 theorem control_language_separation {gain s t : ℤ} {w : List ℤ}
     (hgain : ¬ (3 : ℤ) ∣ gain) (hne : s ≠ t)
     (hw : intVal3 (s - t) + 1 ≤ w.length) :

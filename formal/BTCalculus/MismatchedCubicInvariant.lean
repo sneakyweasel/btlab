@@ -153,6 +153,7 @@ theorem q_one_family_dvd {t K : Nat} (ht : 1 ≤ t) (hK : 1 ≤ K)
       (three_pow_dvd_mul_iff (K - 1) hU).mpr h
     simpa [mul_assoc] using mul_dvd_mul_left (3 : Int) hm
 
+/-- `balCubic t u` is determined by `u` modulo `3^s` whenever `1 <= s` and `t <= s + 1`. -/
 theorem balCubic_of_mod {t s : Nat} (hs : 1 ≤ s) (hst : t ≤ s + 1)
     {u v : Int} (h : (3 : Int) ^ s ∣ u - v) :
     balCubic t u = balCubic t v := by

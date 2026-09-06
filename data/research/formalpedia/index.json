@@ -4245,7 +4245,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Distinct residuals are Mealy-inequivalent. For `gain` not divisible by `3` and `s != t`, the constant word of length `v3 (s - t) + 1` already separates the signed traces from `s` and from `t`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
       "kind": "theorem",
       "ledger": [
@@ -4253,7 +4253,7 @@
         "BTN-sdrm-lambda3-translate",
         "BTN-sdrm-mod3-merges"
       ],
-      "line": 163,
+      "line": 166,
       "module": "Problems.BalancedTernary.SignedDigitResidualMinimality",
       "name": "residual_separation",
       "trust": "kernel"
@@ -4267,7 +4267,7 @@
         "BTN-sdrm-lambda3-translate",
         "BTN-sdrm-mod3-merges"
       ],
-      "line": 209,
+      "line": 212,
       "module": "Problems.BalancedTernary.SignedDigitResidualMinimality",
       "name": "lambda3_trace_translate",
       "trust": "kernel"
@@ -4281,7 +4281,7 @@
         "BTN-sdrm-lambda3-translate",
         "BTN-sdrm-mod3-merges"
       ],
-      "line": 229,
+      "line": 232,
       "module": "Problems.BalancedTernary.SignedDigitResidualMinimality",
       "name": "lambda3_translate_equiv",
       "trust": "kernel"
@@ -4315,7 +4315,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A short horizon cannot see a deep congruence: if `3^L | s - t`, the signed traces from `s` and `t` agree on every word of length at most `L`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitShortHorizon.lean",
       "kind": "theorem",
       "ledger": [
@@ -4323,7 +4323,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 26,
+      "line": 28,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "truncated_3adic_agree",
       "trust": "kernel"
@@ -4337,7 +4337,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 69,
+      "line": 71,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "truncated_3adic_equiv",
       "trust": "kernel"
@@ -4351,7 +4351,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 74,
+      "line": 76,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "short_horizon_equiv",
       "trust": "kernel"
@@ -4365,13 +4365,13 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 79,
+      "line": 81,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "short_horizon_separation",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The separating length is `v3 (s - t) + 1`: for `gain` not divisible by `3` and `s != t`, any word that long distinguishes the signed traces. With `truncated_3adic_agree` this pins agreement to exactly `|w| <= v3 (s - t)`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitShortHorizon.lean",
       "kind": "theorem",
       "ledger": [
@@ -4379,7 +4379,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 95,
+      "line": 100,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "control_language_separation",
       "trust": "kernel"
@@ -4393,7 +4393,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 101,
+      "line": 106,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "lambda3_short_horizon_symmetry",
       "trust": "kernel"
@@ -4407,7 +4407,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 105,
+      "line": 110,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "intVal3_ge_iff_pow_dvd",
       "trust": "kernel"
@@ -4421,7 +4421,7 @@
         "BTN-sdsh-sep",
         "BTN-sdsh-maxlen"
       ],
-      "line": 159,
+      "line": 164,
       "module": "Problems.BalancedTernary.SignedDigitShortHorizon",
       "name": "traces_eq_iff_len_le_val",
       "trust": "kernel"
@@ -5021,13 +5021,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Direct residue formula for `R`: when the affine relation `3^m R + C = 2^K` holds and `3^m` is invertible, `R` is `(2^K - C)` times that inverse -- no division, no case split.",
       "file": "formal/Problems/Collatz/Arithmetic.lean",
       "kind": "theorem",
       "ledger": [
         "C-R-direct"
       ],
-      "line": 5,
+      "line": 7,
       "module": "Problems.Collatz.Arithmetic",
       "name": "direct_realizer_residue",
       "trust": "kernel"
@@ -5039,7 +5039,7 @@
       "ledger": [
         "C-R-direct"
       ],
-      "line": 19,
+      "line": 21,
       "module": "Problems.Collatz.Arithmetic",
       "name": "liftDigit_residue",
       "trust": "kernel"
@@ -5051,7 +5051,7 @@
       "ledger": [
         "C-R-direct"
       ],
-      "line": 33,
+      "line": 35,
       "module": "Problems.Collatz.Arithmetic",
       "name": "endpoint_successor_identity",
       "trust": "kernel"
@@ -44184,7 +44184,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 44,
+      "line": 52,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "sublevel_raised_threshold",
       "trust": "kernel"
@@ -44194,7 +44194,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 67,
+      "line": 75,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "raised_threshold_admissible",
       "trust": "kernel"
@@ -44204,7 +44204,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 86,
+      "line": 94,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s1_window",
       "trust": "kernel"
@@ -44214,7 +44214,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 90,
+      "line": 98,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s1_Bsmall",
       "trust": "kernel"
@@ -44224,7 +44224,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 95,
+      "line": 103,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_window",
       "trust": "kernel"
@@ -44234,7 +44234,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 100,
+      "line": 108,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_flat",
       "trust": "kernel"
@@ -44244,7 +44244,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 105,
+      "line": 113,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_wincount",
       "trust": "kernel"
@@ -44254,9 +44254,19 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 109,
+      "line": 117,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "sqrt_0_35_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`0.7483 \u2264 \u221a0.56`, the rational substitute in the two Step 5 balance rows. `0.56` is Lemma 5.2b's corrected `\u03bb\u2080` floor; it is not the `0.35` above.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 121,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "sqrt_0_56_lower",
       "trust": "kernel"
     },
     {
@@ -44264,7 +44274,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 115,
+      "line": 127,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_bdry_a",
       "trust": "kernel"
@@ -44274,7 +44284,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 129,
+      "line": 141,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_bdry_b",
       "trust": "kernel"
@@ -44284,7 +44294,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 140,
+      "line": 152,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_stage2_modecurv",
       "trust": "kernel"
@@ -44294,7 +44304,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 144,
+      "line": 156,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_stage5_band",
       "trust": "kernel"
@@ -44304,7 +44314,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 150,
+      "line": 162,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimC_1",
       "trust": "kernel"
@@ -44314,7 +44324,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 157,
+      "line": 169,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimC_2",
       "trust": "kernel"
@@ -44324,7 +44334,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 168,
+      "line": 180,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimG_pref",
       "trust": "kernel"
@@ -44334,7 +44344,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 175,
+      "line": 187,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimG_P36",
       "trust": "kernel"
@@ -44344,7 +44354,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 177,
+      "line": 189,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "claimG_P36_exponent",
       "trust": "kernel"
@@ -44354,7 +44364,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 184,
+      "line": 196,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st3a_window",
       "trust": "kernel"
@@ -44364,7 +44374,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 194,
+      "line": 206,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st3b_window",
       "trust": "kernel"
@@ -44374,7 +44384,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 205,
+      "line": 217,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st3a_flat",
       "trust": "kernel"
@@ -44384,7 +44394,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 212,
+      "line": 224,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st6D1_window",
       "trust": "kernel"
@@ -44394,7 +44404,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 217,
+      "line": 229,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st6D1_good",
       "trust": "kernel"
@@ -44404,7 +44414,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 222,
+      "line": 234,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_j0_window",
       "trust": "kernel"
@@ -44414,57 +44424,57 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 230,
+      "line": 242,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_Npieces",
       "trust": "kernel"
     },
     {
-      "doc": "Row `5b-lam0-range`, upper half. Lemma 5.2b's `\u03bb\u2080 \u2208 [0.38, 2.44]` opened to `[0.35, 2.6]`: the `O(P^(-1/4))` and the `\u00b11` in the `\u03b2`-bounds must not push `2.44` past `2.6`. Clearing denominators with `P = t\u2074` gives `2.44(t+1)(3t\u00b2+1)\u00b2 \u2264 23.4 t^5`; `t \u2265 17`, `P \u2265 8.4\u00b710^4`.",
+      "doc": "Row `5b-lam0-range`, upper half. Lemma 5.2b's `\u03bb\u2080 \u2208 [0.62, 3.90]` opened to `[0.56, 4.2]`: the `O(P^(-1/4))` and the `\u00b11` in the `\u03b2`-bounds must not push `3.90` past `4.2`. Clearing denominators with `P = t\u2074` gives `3.90(t+1)(3t\u00b2+1)\u00b2 \u2264 37.8 t^5`; `t \u2265 17`, `P \u2265 8.4\u00b710^4`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 258,
+      "line": 270,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_lam0_upper",
       "trust": "kernel"
     },
     {
-      "doc": "Row `5b-lam0-range`, lower half: `0.38(t-1)(3t\u00b2-1)\u00b2 \u2265 3.15 t^5`.",
+      "doc": "Row `5b-lam0-range`, lower half: `0.62(t-1)(3t\u00b2-1)\u00b2 \u2265 5.04 t^5`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 280,
+      "line": 292,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_lam0_lower",
       "trust": "kernel"
     },
     {
-      "doc": "Row `39-c2`. `|c''/2|/S \u2264 \u03c1\u2080`, i.e. `(53/350) P^(-1/4) \u2264 1/1856`; `P = t\u2074`, `t \u2265 282`, `P \u2265 6.3\u00b710^9`.",
+      "doc": "Row `39-c2`. `|c''/2|/S \u2264 \u03c1\u2080`, i.e. `(53/560) P^(-1/4) \u2264 1/1856`; `P = t\u2074`, `t \u2265 176`, `P \u2265 9.6\u00b710^8`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 301,
+      "line": 313,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c2",
       "trust": "kernel"
     },
     {
-      "doc": "Row `39-c3`. `P|c'''/2|/S \u2264 \u03c1\u2080`: `(47/350) \u2264 t/1856`; `t \u2265 250`.",
+      "doc": "Row `39-c3`. `P|c'''/2|/S \u2264 \u03c1\u2080`: `(47/560) \u2264 t/1856`; `t \u2265 156`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 305,
+      "line": 317,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c3",
       "trust": "kernel"
     },
     {
-      "doc": "Row `39-c4`. `P\u00b2|c''''/2|/S \u2264 \u03c1\u2080`: `(44/350) \u2264 t/1856`; `t \u2265 234`.",
+      "doc": "Row `39-c4`. `P\u00b2|c''''/2|/S \u2264 \u03c1\u2080`: `(44/560) \u2264 t/1856`; `t \u2265 146`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 309,
+      "line": 321,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c4",
       "trust": "kernel"
@@ -44474,17 +44484,17 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 314,
+      "line": 326,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_beta",
       "trust": "kernel"
     },
     {
-      "doc": "Row `39-wave`. The wave remainder `(4000/7) P^(-5/6) \u2264 \u03c1\u2080`; `P = t^6`, `t \u2265 16.1`, `P \u2265 1.7\u00b710^7`.",
+      "doc": "Row `39-wave`. The wave remainder `(3750/7) P^(-5/6) \u2264 \u03c1\u2080`; `P = t^6`, `t \u2265 15.9`, `P \u2265 1.6\u00b710^7`. The `3750/7 = 300/0.56` carries both the corrected floor and the `u`-cap `300` that rose with it.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 319,
+      "line": 332,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_wave",
       "trust": "kernel"
@@ -44494,37 +44504,37 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 332,
+      "line": 345,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5a_competitors",
       "trust": "kernel"
     },
     {
-      "doc": "Row `5b-E<=c7S`. The interpolant error alone against the Lemma 3.9 budget: `E \u2264 c\u2087S/2` at `S = 0.35 P^(-5/8)`. Multiplying by `P^(5/8)` and substituting `P = t^48` gives `105.8 + 0.11 t^10 \u2264 (7/9280) t^20`. This is the floor of the method as `\u03ba \u2192 0`: `t \u2265 1.85`, `P \u2265 6.7\u00b710^12`.",
+      "doc": "Row `5b-E<=c7S`. The interpolant error alone against the Lemma 3.9 budget: `E \u2264 c\u2087S/2` at `S = 0.56 P^(-5/8)`. Multiplying by `P^(5/8)` and substituting `P = t^48` gives `170.6 + 0.11 t^10 \u2264 (7/5800) t^20`. This is the floor of the method as `\u03ba \u2192 0`: `t \u2265 1.84`, `P \u2265 4.1\u00b710^12`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 352,
+      "line": 365,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_E_only",
       "trust": "kernel"
     },
     {
-      "doc": "Row `5a-W<=c7S`. Step 5a's balance comparison at the larger scale `S \u2265 0.60 P^(-5/8)`: `(1/12)\u221a0.6 t^13 + 0.11 t^10 + 105.8 \u2264 (3/2320) t^20`, with `(1/12)\u221a0.6 \u2264 0.06455`. `t \u2265 1.89`, `P \u2265 1.9\u00b710^13`.",
+      "doc": "Row `5a-W<=c7S`. Step 5a's balance comparison at the larger scale `S \u2265 0.60 P^(-5/8)`: `(1/12)\u221a0.6 t^13 + 0.11 t^10 + 170.6 \u2264 (3/2320) t^20`, with `(1/12)\u221a0.6 \u2264 0.06455`. The `0.60` is Step E's own floor and did not move with the erratum; only `E` did. `t \u2265 1.91`, `P \u2265 2.9\u00b710^13`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 373,
+      "line": 387,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5a_binding",
       "trust": "kernel"
     },
     {
-      "doc": "**Row `5b-W<=c7S`: this is `P\u2080`.** Step 5b's balance comparison at the lower end `S = 0.35 P^(-5/8)`, with `V = (1/12)S^(1/2)P^(-11/24)`, `E = 105.8 P^(-25/24) + 0.11 P^(-5/6)` and `c\u2087 = 1/232`. Multiplying by `P^(5/8)` and substituting `P = t^48` gives `a t^13 + 0.11 t^10 + 105.8 \u2264 b t^20` with `a = (1/12)\u221a0.35 \u2264 0.04931` and `b = 0.35/464 = 7/9280`. `t \u2265 1.96`, i.e. `P \u2265 1.07\u00b710^14`; the probe's bisection reports `8.95\u00b710^13`. This row is the maximum over all thirty, hence `P\u2080`.",
+      "doc": "**Row `5b-W<=c7S`: this is `P\u2080`.** Step 5b's balance comparison at the lower end `S = 0.56 P^(-5/8)`, with `V = (1/12)S^(1/2)P^(-11/24)`, `E = 170.6 P^(-25/24) + 0.11 P^(-5/6)` and `c\u2087 = 1/232`. Multiplying by `P^(5/8)` and substituting `P = t^48` gives `a t^13 + 0.11 t^10 + 170.6 \u2264 b t^20` with `a = (1/12)\u221a0.56 \u2264 0.06237` and `b = 0.56/464 = 7/5800`. `t \u2265 1.92`, i.e. `P \u2265 4.0\u00b710^13`; the probe's bisection reports `3.59\u00b710^13`. This row is the maximum over all thirty, hence `P\u2080`. Both `a` and `b` grew with the corrected anchor, `a` as a square root and `b` linearly, which is why the row closes earlier than it did at `0.35`.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 408,
+      "line": 424,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_binding",
       "trust": "kernel"
@@ -44534,17 +44544,17 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 439,
+      "line": 455,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_thm63_rem",
       "trust": "kernel"
     },
     {
-      "doc": "**Lemma 5.2b, step (i).** The frozen gap satisfies `G = \u230a\u03b4\u230b + \u03ba` with `\u03ba \u2208 {0,1}`, so `|G - \u03b4| = |\u03ba - Int.fract \u03b4| \u2264 1`. This is the bound that produces the `52.3125 k(h\u2081+h\u2082)P^(-9/8)` of the interpolant error.",
+      "doc": "**Lemma 5.2b, step (i).** The frozen gap satisfies `G = \u230a\u03b4\u230b + \u03ba` with `\u03ba \u2208 {0,1}`, so `|G - \u03b4| = |\u03ba - Int.fract \u03b4| \u2264 1`. This is the bound that produces the `84.375 k(h\u2081+h\u2082)P^(-9/8)` of the interpolant error.",
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 449,
+      "line": 465,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_le_one",
       "trust": "kernel"
@@ -44554,7 +44564,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 458,
+      "line": 474,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_one_attained",
       "trust": "kernel"
@@ -44564,7 +44574,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 464,
+      "line": 480,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_not_halved_by_recentring",
       "trust": "kernel"
@@ -48351,14 +48361,14 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`D` is additive up to a single carry: `D (x + y) = D x + D y + c`, where `c` is the carry digit of `lsd x + lsd y`.",
       "file": "formal/BTCalculus/Algebra.lean",
       "kind": "theorem",
       "ledger": [
         "BTC-D-mul",
         "BTC-D-add"
       ],
-      "line": 61,
+      "line": 63,
       "module": "BTCalculus.Algebra",
       "name": "D_add",
       "trust": "kernel"
@@ -49141,7 +49151,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Agreement of the depth-`k-1` `N1` residuals to order `3^k` forces `3^(k-1)` to divide `(p - q) * (p + q)`. It is the square factorisation, not the layer description, that this statement carries.",
       "file": "formal/BTCalculus/CubicDeepestLayer.lean",
       "kind": "theorem",
       "ledger": [
@@ -49149,7 +49159,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 99,
+      "line": 102,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "deepest_sq_of_n1",
       "trust": "kernel"
@@ -49163,7 +49173,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 105,
+      "line": 108,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "balWidth_dvd_sub",
       "trust": "kernel"
@@ -49177,7 +49187,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 114,
+      "line": 117,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "balWidth_dvd_add",
       "trust": "kernel"
@@ -49191,7 +49201,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 122,
+      "line": 125,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "packWord_integerJet_balWidth",
       "trust": "kernel"
@@ -49205,7 +49215,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 127,
+      "line": 130,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "iterDZ_of_dvd",
       "trust": "kernel"
@@ -49219,7 +49229,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 146,
+      "line": 149,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "n0Resid_of_dvd",
       "trust": "kernel"
@@ -49233,7 +49243,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 154,
+      "line": 157,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "n0_congr_decomp",
       "trust": "kernel"
@@ -49247,7 +49257,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 166,
+      "line": 169,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "three_prime",
       "trust": "kernel"
@@ -49261,7 +49271,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 169,
+      "line": 172,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "three_dvd_of_dvd_sq",
       "trust": "kernel"
@@ -49275,7 +49285,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 172,
+      "line": 175,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "three_pow_dvd_sq",
       "trust": "kernel"
@@ -49289,7 +49299,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 200,
+      "line": 203,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "three_pow_dvd_cube",
       "trust": "kernel"
@@ -49303,7 +49313,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 232,
+      "line": 235,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "zeroExp_sq",
       "trust": "kernel"
@@ -49317,7 +49327,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 237,
+      "line": 240,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "zeroExp_cu",
       "trust": "kernel"
@@ -49331,7 +49341,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 242,
+      "line": 245,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "n1Resid_zero",
       "trust": "kernel"
@@ -49345,7 +49355,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 247,
+      "line": 250,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "n0Resid_zero",
       "trust": "kernel"
@@ -49359,7 +49369,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 256,
+      "line": 259,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "deepest_n1_zero",
       "trust": "kernel"
@@ -49373,7 +49383,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 262,
+      "line": 265,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "zero_fibre_of",
       "trust": "kernel"
@@ -49387,7 +49397,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 309,
+      "line": 312,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "zero_fibre_imp",
       "trust": "kernel"
@@ -49401,7 +49411,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 346,
+      "line": 349,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "deepest_equiv_iff",
       "trust": "kernel"
@@ -49415,7 +49425,7 @@
         "BTA-x3-deep-crit",
         "BTA-x3-deep-zero"
       ],
-      "line": 357,
+      "line": 360,
       "module": "BTCalculus.CubicDeepestLayer",
       "name": "sign_deepest",
       "trust": "kernel"
@@ -50123,7 +50133,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Horizon refinement at depth `k-2`: agreement of the `N2`, `N1` and `N0` residuals to order `3^k` carries down to order `3^(k-1)` for each of the three.",
       "file": "formal/BTCalculus/CubicIntermediateLayer.lean",
       "kind": "theorem",
       "ledger": [
@@ -50131,7 +50141,7 @@
         "BTA-x3-inter-crit",
         "BTA-x3-inter-lift"
       ],
-      "line": 141,
+      "line": 143,
       "module": "BTCalculus.CubicIntermediateLayer",
       "name": "inter_horizon_refines",
       "trust": "kernel"
@@ -50145,7 +50155,7 @@
         "BTA-x3-inter-crit",
         "BTA-x3-inter-lift"
       ],
-      "line": 152,
+      "line": 154,
       "module": "BTCalculus.CubicIntermediateLayer",
       "name": "unit_sign_n2_splits",
       "trust": "kernel"
@@ -50500,7 +50510,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Once `N2` is fixed, the depth-`k-1-r` `N1` residuals agree to order `3^k` exactly when `3^(k-1-r)` divides `d * (p + q + 3^(k-1-r))`, where `p - q = 3^r * d`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -50511,7 +50521,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 42,
+      "line": 44,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_after_n2_iff",
       "trust": "kernel"
@@ -50528,7 +50538,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 60,
+      "line": 62,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "three_pow_dvd_of_two_mul_pow",
       "trust": "kernel"
@@ -50545,7 +50555,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 85,
+      "line": 87,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "exists_val_lt",
       "trust": "kernel"
@@ -50562,7 +50572,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 97,
+      "line": 99,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "not_three_dvd_add_of_unit",
       "trust": "kernel"
@@ -50579,7 +50589,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 107,
+      "line": 109,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_unit_injective",
       "trust": "kernel"
@@ -50596,7 +50606,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 155,
+      "line": 157,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_low_val_injective",
       "trust": "kernel"
@@ -50613,13 +50623,13 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 243,
+      "line": 245,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_val_lt_injective",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every nontrivial `N2`-then-`N1` fibre lies in `3^r ZZ`: distinct `p != q` of balanced width `k-1-r` that agree in both layers force `3^r | p`.",
       "file": "formal/BTCalculus/CubicN1Valuation.lean",
       "kind": "theorem",
       "ledger": [
@@ -50630,7 +50640,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 253,
+      "line": 257,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_fibre_in_pow",
       "trust": "kernel"
@@ -50647,7 +50657,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 263,
+      "line": 267,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_sign_n2_iff",
       "trust": "kernel"
@@ -50664,7 +50674,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 278,
+      "line": 282,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_sign_n1_iff",
       "trust": "kernel"
@@ -50681,7 +50691,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 297,
+      "line": 301,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n21_sign_iff",
       "trust": "kernel"
@@ -50698,7 +50708,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 307,
+      "line": 311,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_high_val_scaled",
       "trust": "kernel"
@@ -50715,7 +50725,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 352,
+      "line": 356,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_unit_r1",
       "trust": "kernel"
@@ -50732,7 +50742,7 @@
         "BTA-x3-n1-sign",
         "BTA-x3-n1-scale"
       ],
-      "line": 361,
+      "line": 365,
       "module": "BTCalculus.CubicN1Valuation",
       "name": "n1_unit_r2",
       "trust": "kernel"
@@ -51942,7 +51952,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`balCubic t u` is determined by `u` modulo `3^s` whenever `1 <= s` and `t <= s + 1`.",
       "file": "formal/BTCalculus/MismatchedCubicInvariant.lean",
       "kind": "theorem",
       "ledger": [
@@ -51950,7 +51960,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 156,
+      "line": 157,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "balCubic_of_mod",
       "trust": "kernel"
@@ -51964,7 +51974,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 173,
+      "line": 174,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "q_high_zero",
       "trust": "kernel"
@@ -52089,7 +52099,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`qCubic t u` modulo `3^K` sees only `u` modulo `3^s` once `t + K - 1 <= s`: congruent inputs give congruent cubic quotients.",
       "file": "formal/BTCalculus/MismatchedCubicQuotient.lean",
       "kind": "theorem",
       "ledger": [
@@ -52100,7 +52110,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 61,
+      "line": 63,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_visible_mod",
       "trust": "kernel"
@@ -52117,7 +52127,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 67,
+      "line": 69,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_val_of_le",
       "trust": "kernel"
@@ -52134,7 +52144,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 71,
+      "line": 73,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_val_of_ge",
       "trust": "kernel"
@@ -52151,7 +52161,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 75,
+      "line": 77,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_zero",
       "trust": "kernel"
@@ -52168,7 +52178,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 78,
+      "line": 80,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_neg",
       "trust": "kernel"
@@ -52185,7 +52195,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 81,
+      "line": 83,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_sign",
       "trust": "kernel"
@@ -52202,7 +52212,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 86,
+      "line": 88,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_from_exhausted",
       "trust": "kernel"
@@ -52219,7 +52229,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 91,
+      "line": 93,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_from_unexhausted",
       "trust": "kernel"
@@ -52236,7 +52246,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 97,
+      "line": 99,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "cubic_q_width",
       "trust": "kernel"
@@ -52253,7 +52263,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 101,
+      "line": 103,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_of_deficit_one",
       "trust": "kernel"
@@ -52270,7 +52280,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 108,
+      "line": 110,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_of_deficit_two",
       "trust": "kernel"
@@ -52287,13 +52297,13 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 112,
+      "line": 114,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "cube_expand",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Cubic carry expansion. For `t <= s + 1` and `t <= 3s`, `qCubic t (a + 3^s x)` splits into `qCubic t a` plus explicit terms in `x`, `x^2` and `x^3`.",
       "file": "formal/BTCalculus/MismatchedCubicQuotient.lean",
       "kind": "theorem",
       "ledger": [
@@ -52304,7 +52314,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 118,
+      "line": 122,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_shift",
       "trust": "kernel"
@@ -52321,7 +52331,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 145,
+      "line": 149,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_split_high",
       "trust": "kernel"
@@ -52338,7 +52348,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 157,
+      "line": 161,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "cube_diff",
       "trust": "kernel"
@@ -52355,7 +52365,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 161,
+      "line": 165,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "sq_sum_sub_sq",
       "trust": "kernel"
@@ -52372,7 +52382,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 165,
+      "line": 169,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "not_three_dvd_sq_sum_of_opp",
       "trust": "kernel"
@@ -52389,7 +52399,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 177,
+      "line": 181,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_eq_iff_of_same_bal",
       "trust": "kernel"
@@ -52406,7 +52416,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 187,
+      "line": 191,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_zero_of_high",
       "trust": "kernel"
@@ -52423,7 +52433,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 193,
+      "line": 197,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_of_deficit_three",
       "trust": "kernel"
@@ -60790,7 +60800,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Units of balanced width `W` sharing a square modulo `3^W` are a sign pair: `u = v` or `u = -v`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -60807,13 +60817,13 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 303,
+      "line": 305,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "unit_square_pm",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N0 u` and `N0 (-u)` agree modulo `3^k` exactly when `N0 u` vanishes modulo `3^k`.",
       "file": "formal/BTCalculus/XCubeStateComplexity.lean",
       "kind": "theorem",
       "ledger": [
@@ -60830,7 +60840,7 @@
         "BTA-x3-H-joint",
         "BTA-x3-M-obstruct"
       ],
-      "line": 340,
+      "line": 343,
       "module": "BTCalculus.XCubeStateComplexity",
       "name": "n0_eq_of_neg",
       "trust": "kernel"
@@ -64000,7 +64010,7 @@
       ]
     },
     "Problems.Juggler.ThresholdCertificate": {
-      "declarations": 39,
+      "declarations": 40,
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "imports": [],
       "ledger": []
@@ -64312,13 +64322,13 @@
     }
   },
   "totals": {
-    "declarations": 4570,
+    "declarations": 4571,
     "declarations_with_a_ledger_row": 3009,
     "ledger_rows_naming_a_file": 321,
     "modules": 189,
     "trust": {
       "compiler": 55,
-      "kernel": 4515
+      "kernel": 4516
     }
   }
 }

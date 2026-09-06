@@ -58,6 +58,8 @@ theorem addDigit_eq (a b : ℤ) :
   unfold addDigit
   split_ifs <;> ring
 
+/-- `D` is additive up to a single carry:
+`D (x + y) = D x + D y + c`, where `c` is the carry digit of `lsd x + lsd y`. -/
 theorem D_add (x y : ℤ) :
     DZ (x + y) = DZ x + DZ y + (addDigit (lsdZ x) (lsdZ y)).2 := by
   have hx := decomp x

@@ -160,6 +160,9 @@ theorem intVal3_mul_not_dvd {a b : ℤ} (ha : ¬ (3 : ℤ) ∣ a) :
   simpa [intVal3, Int.natAbs_mul] using
     natVal3_mul_not_dvd (a := a.natAbs) (b := b.natAbs) han
 
+/-- Distinct residuals are Mealy-inequivalent.  For `gain` not divisible by `3` and
+`s != t`, the constant word of length `v3 (s - t) + 1` already separates the signed
+traces from `s` and from `t`. -/
 theorem residual_separation {gain s t u : ℤ}
     (hgain : ¬ (3 : ℤ) ∣ gain) (hne : s ≠ t) :
     signedTrace gain s (List.replicate (intVal3 (s - t) + 1) u) ≠

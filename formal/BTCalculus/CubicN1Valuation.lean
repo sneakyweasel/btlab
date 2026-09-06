@@ -39,6 +39,8 @@ theorem deficit_n1_iff {k r : Nat} (hk : 1 ≤ k) (p q : Int) :
       exact mul_dvd_mul_left _ h
     simpa [mul_assoc] using this
 
+/-- Once `N2` is fixed, the depth-`k-1-r` `N1` residuals agree to order `3^k` exactly when
+`3^(k-1-r)` divides `d * (p + q + 3^(k-1-r))`, where `p - q = 3^r * d`. -/
 theorem n1_after_n2_iff {k r : Nat} (hk : 1 ≤ k) (hr : r + 1 ≤ k)
     {p q d : Int} (hd : p - q = (3 : Int) ^ r * d) :
     (3 : Int) ^ k ∣ n1Resid (k - 1 - r) p - n1Resid (k - 1 - r) q ↔
@@ -250,6 +252,8 @@ theorem n1_val_lt_injective {k r : Nat} (hr : 1 ≤ r) (hk : r + 1 ≤ k)
   obtain ⟨s, hs, hs1, hs2⟩ := exists_val_lt hnp
   exact n1_low_val_injective hr hk hs hpw hqw hs1 hs2 hN2 hN1
 
+/-- Every nontrivial `N2`-then-`N1` fibre lies in `3^r ZZ`: distinct `p != q` of balanced
+width `k-1-r` that agree in both layers force `3^r | p`. -/
 theorem n21_fibre_in_pow {k r : Nat} (hr : 1 ≤ r) (hk : r + 1 ≤ k)
     {p q : Int}
     (hpw : balWidth (k - 1 - r) p) (hqw : balWidth (k - 1 - r) q)

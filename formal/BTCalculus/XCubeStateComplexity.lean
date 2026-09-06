@@ -300,6 +300,8 @@ theorem n1_core_square_iff {k r : Nat} (h2 : 2 * r + 2 ≤ k) (u v : Int) :
     rw [hdiff]
     exact hA.add hpow
 
+/-- Units of balanced width `W` sharing a square modulo `3^W` are a sign pair: `u = v` or
+`u = -v`. -/
 theorem unit_square_pm {W : Nat} {u v : Int}
     (hu : balWidth W u) (hv : balWidth W v)
     (hnu : ¬ (3 : Int) ∣ u) (_hnv : ¬ (3 : Int) ∣ v)
@@ -337,6 +339,7 @@ theorem unit_square_pm {W : Nat} {u v : Int}
     have : (3 : Int) ^ W ∣ u + v := (three_pow_dvd_mul_iff W hL).mp hswap
     exact Or.inr (balWidth_dvd_add hu hv this)
 
+/-- `N0 u` and `N0 (-u)` agree modulo `3^k` exactly when `N0 u` vanishes modulo `3^k`. -/
 theorem n0_eq_of_neg {k m : Nat} {u : Int} :
     (3 : Int) ^ k ∣ n0Resid m u - n0Resid m (-u) ↔
       (3 : Int) ^ k ∣ n0Resid m u := by

@@ -2,6 +2,8 @@ import Problems.Collatz.Cylinder
 
 namespace Problems.Collatz
 
+/-- Direct residue formula for `R`: when the affine relation `3^m R + C = 2^K` holds and
+`3^m` is invertible, `R` is `(2^K - C)` times that inverse -- no division, no case split. -/
 theorem direct_realizer_residue
     {A : Type} [CommRing A]
     (R C threePow twoPow inverse : A)

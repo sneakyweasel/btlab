@@ -58,6 +58,8 @@ theorem q_eq_of_cube_mod {t K : Nat} {u v : Int}
     (3 : Int) ^ K ∣ qCubic t u - qCubic t v :=
   n0_of_cube_mod h
 
+/-- `qCubic t u` modulo `3^K` sees only `u` modulo `3^s` once `t + K - 1 <= s`: congruent
+inputs give congruent cubic quotients. -/
 theorem q_visible_mod {t K s : Nat}
     (hs : t + K - 1 ≤ s) (hs1 : 1 ≤ s) {u v : Int}
     (h : (3 : Int) ^ s ∣ u - v) :
@@ -115,6 +117,8 @@ theorem cube_expand (a x : Int) {s : Nat} :
         (3 : Int) ^ (2 * s + 1) * a * x ^ 2 + (3 : Int) ^ (3 * s) * x ^ 3 := by
   ring
 
+/-- Cubic carry expansion.  For `t <= s + 1` and `t <= 3s`, `qCubic t (a + 3^s x)` splits
+into `qCubic t a` plus explicit terms in `x`, `x^2` and `x^3`. -/
 theorem q_shift {t s : Nat} (ht : t ≤ s + 1) (h3 : t ≤ 3 * s)
     (a x : Int) :
     qCubic t (a + (3 : Int) ^ s * x) =
