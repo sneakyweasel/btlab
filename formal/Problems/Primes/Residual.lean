@@ -11,6 +11,7 @@ open BTCalculus
 def I0 (x : ℤ) : ℤ :=
   IZ Trit.zero x
 
+/-- `I0 x = 3 * x`. -/
 theorem i0_eq_mul3 (x : ℤ) : I0 x = 3 * x := by
   simp [I0, IZ, Trit.toInt]
 
@@ -35,6 +36,8 @@ theorem sievePrime_I0_separator :
       I0 1 = 3 ∧ I0 211 = 633 := by
   native_decide
 
+/-- The jet-prime separator: `I0 1 = 3` is prime while `I0 4 = 12` is not, so the jet residual
+does not coincide with primality. -/
 theorem jetPrime_I0_separator :
     Nat.Prime 3 ∧ ¬ Nat.Prime 12 ∧
       I0 1 = 3 ∧ I0 4 = 12 := by

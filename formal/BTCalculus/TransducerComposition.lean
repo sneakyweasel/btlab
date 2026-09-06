@@ -7,6 +7,8 @@ namespace BTCalculus
 
 open Polynomial
 
+/-- Composition cascades on outputs: running `f.comp g` along `w` is running `g` along `w`
+and then `f` along the result. -/
 theorem outputAlong_comp :
     ∀ (w : List ℤ) (f g : ℤ[X]),
       outputAlong w (f.comp g) = outputAlong (outputAlong w g) f
@@ -20,6 +22,9 @@ theorem outputAlong_comp :
     rw [outputAlong_cons (f := g)]
     rw [outputAlong_cons]
 
+/-- The residual of a composite is the composite of the residuals, taken along the output of
+the inner map: `residualAlong w (f.comp g) = (residualAlong (outputAlong w g) f).comp
+(residualAlong w g)`. -/
 theorem residualAlong_comp :
     ∀ (w : List ℤ) (f g : ℤ[X]),
       residualAlong w (f.comp g) =

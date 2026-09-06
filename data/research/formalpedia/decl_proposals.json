@@ -902,27 +902,6 @@
     {
       "candidates": [
         {
-          "decl": "outputAlong_comp",
-          "line": 10,
-          "score": 1.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "residualAlong_comp",
-          "line": 23,
-          "score": 0.5,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "BTA-cascade",
-      "in_file": 2,
-      "lean": "BTCalculus/TransducerComposition.lean",
-      "statement": "outputAlong(w, f.comp g)=outputAlong(outputAlong(w,g), f)"
-    },
-    {
-      "candidates": [
-        {
           "decl": "eval_cubicResid",
           "line": 27,
           "score": 0.0,
@@ -2111,33 +2090,6 @@
     {
       "candidates": [
         {
-          "decl": "origin_reachable_pred",
-          "line": 20,
-          "score": 0.2,
-          "trust": "compiler"
-        },
-        {
-          "decl": "origin_reachable_fst_dvd_three",
-          "line": 11,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "kernel_unreachable_of_not_exceptional",
-          "line": 114,
-          "score": 0.091,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "low",
-      "id": "OST-np-kernel-unreach",
-      "in_file": 4,
-      "lean": "Problems/Ostrowski/NP/Reachability.lean",
-      "statement": "for \u0393_NP, if n > 0 and n is not 0 or 12 mod 24, then the kernel family state t_n = (q_{n-1}, -q_{n-2}, 0) is not origin-reachable under unrestricted integer steps T_w"
-    },
-    {
-      "candidates": [
-        {
           "decl": "adjoint_covariance",
           "line": 116,
           "score": 0.286,
@@ -2948,60 +2900,6 @@
     {
       "candidates": [
         {
-          "decl": "iz_mod_of_congruent",
-          "line": 18,
-          "score": 0.667,
-          "trust": "kernel"
-        },
-        {
-          "decl": "sievePrime_I0_separator",
-          "line": 32,
-          "score": 0.143,
-          "trust": "compiler"
-        },
-        {
-          "decl": "i0_eq_mul3",
-          "line": 14,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "PRC-sieve-mod-M",
-      "in_file": 5,
-      "lean": "Problems/Primes/Residual.lean",
-      "statement": "I_a(n) mod m depends only on n mod m."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "sievePrime_I0_separator",
-          "line": 32,
-          "score": 0.273,
-          "trust": "compiler"
-        },
-        {
-          "decl": "i0_not_prime_of_natAbs",
-          "line": 27,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "iz_mod_of_congruent",
-          "line": 18,
-          "score": 0.1,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "low",
-      "id": "PRC-sieve-prime-separator",
-      "in_file": 5,
-      "lean": "Problems/Primes/Residual.lean",
-      "statement": "The finite sieve residual gcd(n,210)=1 does not equal Prime: I_0(1)=3 is prime and I_0(211)=633 is composite, with 1\u2261211 (mod 210)."
-    },
-    {
-      "candidates": [
-        {
           "decl": "lambda2_sharp_box",
           "line": 81,
           "score": 0.2,
@@ -3187,60 +3085,6 @@
       "in_file": 19,
       "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
       "statement": "At \u03bb=3, translation by 3k preserves every output stream: signedTrace 3 (s+3k) w = signedTrace 3 s w. This symmetry is not origin-reachable when max|u|\u22641."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "common_word_separation",
-          "line": 69,
-          "score": 0.188,
-          "trust": "kernel"
-        },
-        {
-          "decl": "any_word_separation",
-          "line": 13,
-          "score": 0.083,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lambda3_constrained_symmetry",
-          "line": 76,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "BTN-sdrc-any-word",
-      "in_file": 3,
-      "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
-      "statement": "If \u03bb is not divisible by 3 and s\u2260t, every word of length v_3(s-t)+1 distinguishes the lsd output streams of F_{\u03bb,U}(s,u)=\u03bb\u00b7D(s+u). A common cyclic letter is not required."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "lambda3_constrained_symmetry",
-          "line": 76,
-          "score": 0.267,
-          "trust": "kernel"
-        },
-        {
-          "decl": "any_word_separation",
-          "line": 13,
-          "score": 0.083,
-          "trust": "kernel"
-        },
-        {
-          "decl": "common_word_separation",
-          "line": 69,
-          "score": 0.056,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "BTN-sdrc-lambda3-symmetry",
-      "in_file": 3,
-      "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
-      "statement": "At \u03bb=3, translation by 3k preserves the output stream of every word, so a control-language restriction cannot destroy that symmetry."
     },
     {
       "candidates": [
@@ -5156,6 +5000,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 193,
-  "worth_reviewing": 62
+  "unresolved": 187,
+  "worth_reviewing": 58
 }

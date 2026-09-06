@@ -617,6 +617,8 @@
   "statement": "outputAlong(w, f.comp g)=outputAlong(outputAlong(w,g), f)",
   "source": "docs/theory/residual_state_complexity.md",
   "lean": "BTCalculus/TransducerComposition.lean",
+  "decl": "outputAlong_comp",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_myhill_nerode.py"
   ],
@@ -2022,6 +2024,8 @@
   "statement": "for Γ_NP, if n > 0 and n is not 0 or 12 mod 24, then the kernel family state t_n = (q_{n-1}, -q_{n-2}, 0) is not origin-reachable under unrestricted integer steps T_w",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Reachability.lean",
+  "decl": "kernel_unreachable_of_not_exceptional",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_origin_live.py"
   ],
@@ -2560,6 +2564,8 @@
   "statement": "I_a(n) mod m depends only on n mod m.",
   "source": "docs/problems/prime_residual_complexity.md",
   "lean": "Problems/Primes/Residual.lean",
+  "decl": "iz_mod_of_congruent",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/prime_residual_complexity/test_prime_residual.py"
   ],
@@ -2571,6 +2577,8 @@
   "statement": "The finite sieve residual gcd(n,210)=1 does not equal Prime: I_0(1)=3 is prime and I_0(211)=633 is composite, with 1≡211 (mod 210).",
   "source": "docs/problems/prime_residual_complexity.md",
   "lean": "Problems/Primes/Residual.lean",
+  "decl": "sievePrime_I0_separator",
+  "lean_trust": "compiler",
   "tests": [
    "tests/research/prime_residual_complexity/test_prime_residual.py"
   ],
@@ -2784,6 +2792,8 @@
   "statement": "If λ is not divisible by 3 and s≠t, every word of length v_3(s-t)+1 distinguishes the lsd output streams of F_{λ,U}(s,u)=λ·D(s+u). A common cyclic letter is not required.",
   "source": "docs/problems/signed_digit_constrained_controls.md",
   "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
+  "decl": "any_word_separation",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/signed_digit_constrained_controls/test_signed_digit_constrained_controls.py"
   ],
@@ -2817,6 +2827,8 @@
   "statement": "At λ=3, translation by 3k preserves the output stream of every word, so a control-language restriction cannot destroy that symmetry.",
   "source": "docs/problems/signed_digit_constrained_controls.md",
   "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
+  "decl": "lambda3_constrained_symmetry",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/signed_digit_constrained_controls/test_signed_digit_constrained_controls.py"
   ],

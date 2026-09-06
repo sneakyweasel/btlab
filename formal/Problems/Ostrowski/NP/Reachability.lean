@@ -8,6 +8,7 @@ import Problems.Ostrowski.NP.KernelFamily
 
 namespace Ostrowski.NP
 
+/-- Every origin-reachable state has first coordinate divisible by `3`. -/
 theorem origin_reachable_fst_dvd_three {s : State} (h : OriginReachable s) :
     (3 : ℤ) ∣ s.1 := by
   induction h with
@@ -17,6 +18,8 @@ theorem origin_reachable_fst_dvd_three {s : State} (h : OriginReachable s) :
     rw [← hw]
     exact step_fst_dvd_three w _
 
+/-- Every origin-reachable state other than the origin has an origin-reachable predecessor:
+some `s` and letter `w` with `step w s = t`. -/
 theorem origin_reachable_pred {t : State} (h : OriginReachable t)
     (hne : t ≠ origin) :
     ∃ s w, OriginReachable s ∧ step w s = t := by
@@ -111,6 +114,8 @@ theorem not_exceptional_blocks (n : ℕ) (hn : 0 < n)
     exact h9 ((kernelPredFst_dvd_three_iff n hn hdiv).mp hk)
   · exact Or.inl hdiv
 
+/-- For `n > 0` outside the residues `0` and `12` modulo `24`, the kernel family target
+`kernelTarget n` is not origin-reachable under unrestricted integer steps. -/
 theorem kernel_unreachable_of_not_exceptional
     (n : ℕ) (hn : 0 < n)
     (hmod : ¬ (n % 24 = 0 ∨ n % 24 = 12)) :

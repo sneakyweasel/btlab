@@ -10,6 +10,9 @@ A constant/cyclic letter is not required. This file does not repeat
 the finite/infinite phase law.
 -/
 
+/-- For `gain` not divisible by `3` and `s != t`, *every* word of length `v3 (s - t) + 1`
+separates the signed traces. A common cyclic letter is not required, so a control-language
+restriction cannot rescue a pair that this length already tells apart. -/
 theorem any_word_separation {gain s t : ℤ} {w : List ℤ}
     (hgain : ¬ (3 : ℤ) ∣ gain) (hne : s ≠ t)
     (hw : w.length = intVal3 (s - t) + 1) :

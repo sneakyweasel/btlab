@@ -2916,14 +2916,14 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "For `gain` not divisible by `3` and `s != t`, *every* word of length `v3 (s - t) + 1` separates the signed traces. A common cyclic letter is not required, so a control-language restriction cannot rescue a pair that this length already tells apart.",
       "file": "formal/Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
       "kind": "theorem",
       "ledger": [
         "BTN-sdrc-any-word",
         "BTN-sdrc-lambda3-symmetry"
       ],
-      "line": 13,
+      "line": 16,
       "module": "Problems.BalancedTernary.SignedDigitConstrainedControls",
       "name": "any_word_separation",
       "trust": "kernel"
@@ -2936,7 +2936,7 @@
         "BTN-sdrc-any-word",
         "BTN-sdrc-lambda3-symmetry"
       ],
-      "line": 69,
+      "line": 72,
       "module": "Problems.BalancedTernary.SignedDigitConstrainedControls",
       "name": "common_word_separation",
       "trust": "kernel"
@@ -2949,7 +2949,7 @@
         "BTN-sdrc-any-word",
         "BTN-sdrc-lambda3-symmetry"
       ],
-      "line": 76,
+      "line": 79,
       "module": "Problems.BalancedTernary.SignedDigitConstrainedControls",
       "name": "lambda3_constrained_symmetry",
       "trust": "kernel"
@@ -47842,25 +47842,25 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every origin-reachable state has first coordinate divisible by `3`.",
       "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
       "kind": "theorem",
       "ledger": [
         "OST-np-kernel-unreach"
       ],
-      "line": 11,
+      "line": 12,
       "module": "Problems.Ostrowski.NP.Reachability",
       "name": "origin_reachable_fst_dvd_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every origin-reachable state other than the origin has an origin-reachable predecessor: some `s` and letter `w` with `step w s = t`.",
       "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
       "kind": "theorem",
       "ledger": [
         "OST-np-kernel-unreach"
       ],
-      "line": 20,
+      "line": 23,
       "module": "Problems.Ostrowski.NP.Reachability",
       "name": "origin_reachable_pred",
       "trust": "compiler"
@@ -47872,19 +47872,19 @@
       "ledger": [
         "OST-np-kernel-unreach"
       ],
-      "line": 91,
+      "line": 94,
       "module": "Problems.Ostrowski.NP.Reachability",
       "name": "not_exceptional_blocks",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "For `n > 0` outside the residues `0` and `12` modulo `24`, the kernel family target `kernelTarget n` is not origin-reachable under unrestricted integer steps.",
       "file": "formal/Problems/Ostrowski/NP/Reachability.lean",
       "kind": "theorem",
       "ledger": [
         "OST-np-kernel-unreach"
       ],
-      "line": 114,
+      "line": 119,
       "module": "Problems.Ostrowski.NP.Reachability",
       "name": "kernel_unreachable_of_not_exceptional",
       "trust": "kernel"
@@ -48287,7 +48287,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`I0 x = 3 * x`.",
       "file": "formal/Problems/Primes/Residual.lean",
       "kind": "theorem",
       "ledger": [
@@ -48296,7 +48296,7 @@
         "PRC-sieve-prime-separator",
         "PRC-jet-equals-prime"
       ],
-      "line": 14,
+      "line": 15,
       "module": "Problems.Primes.Residual",
       "name": "i0_eq_mul3",
       "trust": "kernel"
@@ -48311,7 +48311,7 @@
         "PRC-sieve-prime-separator",
         "PRC-jet-equals-prime"
       ],
-      "line": 18,
+      "line": 19,
       "module": "Problems.Primes.Residual",
       "name": "iz_mod_of_congruent",
       "trust": "kernel"
@@ -48326,7 +48326,7 @@
         "PRC-sieve-prime-separator",
         "PRC-jet-equals-prime"
       ],
-      "line": 27,
+      "line": 28,
       "module": "Problems.Primes.Residual",
       "name": "i0_not_prime_of_natAbs",
       "trust": "kernel"
@@ -48341,13 +48341,13 @@
         "PRC-sieve-prime-separator",
         "PRC-jet-equals-prime"
       ],
-      "line": 32,
+      "line": 33,
       "module": "Problems.Primes.Residual",
       "name": "sievePrime_I0_separator",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "The jet-prime separator: `I0 1 = 3` is prime while `I0 4 = 12` is not, so the jet residual does not coincide with primality.",
       "file": "formal/Problems/Primes/Residual.lean",
       "kind": "theorem",
       "ledger": [
@@ -48356,7 +48356,7 @@
         "PRC-sieve-prime-separator",
         "PRC-jet-equals-prime"
       ],
-      "line": 38,
+      "line": 41,
       "module": "Problems.Primes.Residual",
       "name": "jetPrime_I0_separator",
       "trust": "compiler"
@@ -59575,25 +59575,25 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Composition cascades on outputs: running `f.comp g` along `w` is running `g` along `w` and then `f` along the result.",
       "file": "formal/BTCalculus/TransducerComposition.lean",
       "kind": "theorem",
       "ledger": [
         "BTA-cascade"
       ],
-      "line": 10,
+      "line": 12,
       "module": "BTCalculus.TransducerComposition",
       "name": "outputAlong_comp",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The residual of a composite is the composite of the residuals, taken along the output of the inner map: `residualAlong w (f.comp g) = (residualAlong (outputAlong w g) f).comp (residualAlong w g)`.",
       "file": "formal/BTCalculus/TransducerComposition.lean",
       "kind": "theorem",
       "ledger": [
         "BTA-cascade"
       ],
-      "line": 23,
+      "line": 28,
       "module": "BTCalculus.TransducerComposition",
       "name": "residualAlong_comp",
       "trust": "kernel"
