@@ -165,6 +165,8 @@ theorem no_cycleMin_prefix_two_even_ee_of_lt {n k : ℕ} {u : List Branch}
   · exact no_follows_seven_odds_of_lt256 hy2 hylt
       (prefix_two_even_ee_follows_seven_odds hge hC)
 
+/-- No CycleMin word ends in the two-even leftover `twoEvenEE k`, `k >= 6`: the
+exclusion holds after an arbitrary prefix `u`, not only in isolation. -/
 theorem no_cycleMin_prefix_two_even_ee {n k : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hk : 6 ≤ k) :
     ¬CycleMin n (u ++ twoEvenEE k) := by
@@ -356,6 +358,8 @@ theorem no_cycleMin_prefix_two_even_eoe_of_lt {n k : ℕ} {u : List Branch}
   · exact no_follows_seven_odds_of_lt256 hy2 hylt
       (prefix_two_even_eoe_follows_seven_odds hge hC)
 
+/-- No CycleMin word ends in the two-even leftover `twoEvenEOE k`, `k >= 6`, after any
+prefix `u`. -/
 theorem no_cycleMin_prefix_two_even_eoe {n k : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (hk : 6 ≤ k) :
     ¬CycleMin n (u ++ twoEvenEOE k) := by

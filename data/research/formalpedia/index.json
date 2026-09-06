@@ -28191,7 +28191,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The two-even leftover `O^(k-2) E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `k >= 6`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -28210,13 +28210,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 259,
+      "line": 260,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_two_even_ee",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The two-even leftover `O^(k-3) E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `k >= 6`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -28235,7 +28235,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 267,
+      "line": 269,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_two_even_eoe",
       "trust": "kernel"
@@ -28260,7 +28260,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 287,
+      "line": 289,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_ooooooeee_of_lt",
       "trust": "kernel"
@@ -28285,7 +28285,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 295,
+      "line": 297,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "lowerDenom_oooooo",
       "trust": "kernel"
@@ -28310,7 +28310,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 323,
+      "line": 325,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "oddCount_oooooo",
       "trust": "kernel"
@@ -28335,7 +28335,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 329,
+      "line": 331,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "oooooo_lower_growth",
       "trust": "kernel"
@@ -28360,7 +28360,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 349,
+      "line": 351,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "two_pow_128",
       "trust": "kernel"
@@ -28385,7 +28385,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 352,
+      "line": 354,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "succ_pow512_lt",
       "trust": "kernel"
@@ -28410,7 +28410,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 374,
+      "line": 376,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "pow729_gt_two_pow1330_succ_pow512",
       "trust": "kernel"
@@ -28435,7 +28435,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 402,
+      "line": 404,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "itineraryOOOOOOEEE_split",
       "trust": "kernel"
@@ -28460,13 +28460,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 409,
+      "line": 411,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_ooooooeee_of_ge",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The leftover `OOOOOOEEE` is not a Juggler cycle itinerary at any `n >= 2`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -28485,7 +28485,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 438,
+      "line": 441,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_ooooooeee",
       "trust": "kernel"
@@ -28510,7 +28510,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 464,
+      "line": 467,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEE",
       "trust": "kernel"
@@ -28535,7 +28535,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 467,
+      "line": 470,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "eight_mul_two_pow",
       "trust": "kernel"
@@ -28560,7 +28560,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 473,
+      "line": 476,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "four_mul_two_pow_succ",
       "trust": "kernel"
@@ -28585,7 +28585,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 479,
+      "line": 482,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "denomBits_six",
       "trust": "kernel"
@@ -28610,7 +28610,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 482,
+      "line": 485,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_pow_six",
       "trust": "kernel"
@@ -28635,7 +28635,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 485,
+      "line": 488,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "two_pow_nine",
       "trust": "kernel"
@@ -28660,7 +28660,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 488,
+      "line": 491,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "two_pow_six_add_three",
       "trust": "kernel"
@@ -28685,7 +28685,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 491,
+      "line": 494,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEE_of_six",
       "trust": "kernel"
@@ -28710,7 +28710,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 494,
+      "line": 497,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_even_eee_tail_succ",
       "trust": "kernel"
@@ -28735,7 +28735,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 547,
+      "line": 550,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_even_eee_tail",
       "trust": "kernel"
@@ -28760,7 +28760,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 559,
+      "line": 562,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eee_of_ge",
       "trust": "kernel"
@@ -28785,7 +28785,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 572,
+      "line": 575,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEE_follows_seven_odds",
       "trust": "kernel"
@@ -28810,13 +28810,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 584,
+      "line": 587,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eee_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The bunched leftover `O^a E E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 6`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -28835,7 +28835,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 595,
+      "line": 599,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eee",
       "trust": "kernel"
@@ -28860,7 +28860,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 631,
+      "line": 635,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOEE",
       "trust": "kernel"
@@ -28885,7 +28885,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 635,
+      "line": 639,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "denomBits_one",
       "trust": "kernel"
@@ -28910,7 +28910,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 638,
+      "line": 642,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "denomBits_five",
       "trust": "kernel"
@@ -28935,7 +28935,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 641,
+      "line": 645,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_pow_five",
       "trust": "kernel"
@@ -28960,7 +28960,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 644,
+      "line": 648,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "six_mul_two_pow_five",
       "trust": "kernel"
@@ -28985,7 +28985,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 647,
+      "line": 651,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "six_mul_two_pow_six",
       "trust": "kernel"
@@ -29010,7 +29010,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 650,
+      "line": 654,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOEE_of_five",
       "trust": "kernel"
@@ -29035,7 +29035,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 653,
+      "line": 657,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOEE_of_six",
       "trust": "kernel"
@@ -29060,7 +29060,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 656,
+      "line": 660,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "eoee_tail_five_succ",
       "trust": "kernel"
@@ -29085,7 +29085,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 685,
+      "line": 689,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "eoee_tail_six_succ",
       "trust": "kernel"
@@ -29110,7 +29110,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 714,
+      "line": 718,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "eoee_tail_five_at",
       "trust": "kernel"
@@ -29135,7 +29135,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 725,
+      "line": 729,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "eoee_tail_six_at",
       "trust": "kernel"
@@ -29160,7 +29160,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 736,
+      "line": 740,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_even_eoee_tail_succ",
       "trust": "kernel"
@@ -29185,7 +29185,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 798,
+      "line": 802,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_even_eoee_tail_of_five",
       "trust": "kernel"
@@ -29210,7 +29210,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 812,
+      "line": 816,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_even_eoee_tail_of_six",
       "trust": "kernel"
@@ -29235,7 +29235,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 826,
+      "line": 830,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "four_mul_succ_pow8_lt_succ_pow9",
       "trust": "kernel"
@@ -29260,7 +29260,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 835,
+      "line": 839,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOEE_z_lt",
       "trust": "kernel"
@@ -29285,7 +29285,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 890,
+      "line": 894,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoee_of_ge_five",
       "trust": "kernel"
@@ -29310,7 +29310,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 906,
+      "line": 910,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoee_of_ge_six",
       "trust": "kernel"
@@ -29335,7 +29335,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 922,
+      "line": 926,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOEE_follows_seven_odds",
       "trust": "kernel"
@@ -29360,7 +29360,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 936,
+      "line": 940,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoee_of_lt_five",
       "trust": "kernel"
@@ -29385,13 +29385,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 946,
+      "line": 950,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoee_of_lt_six",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The bunched leftover `O^a E O E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 5`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -29410,7 +29410,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 956,
+      "line": 961,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoee",
       "trust": "kernel"
@@ -29435,7 +29435,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1007,
+      "line": 1012,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "four_mul_two_pow_a",
       "trust": "kernel"
@@ -29460,7 +29460,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1013,
+      "line": 1018,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "denomBits_two",
       "trust": "kernel"
@@ -29485,7 +29485,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1016,
+      "line": 1021,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_pow_two",
       "trust": "kernel"
@@ -29510,7 +29510,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1019,
+      "line": 1024,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "two_pow_ten",
       "trust": "kernel"
@@ -29535,7 +29535,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1022,
+      "line": 1027,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "two_pow10_lt_succ_sq",
       "trust": "kernel"
@@ -29560,7 +29560,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1028,
+      "line": 1033,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "two_pow10_succ_pow16_lt_succ_pow18",
       "trust": "kernel"
@@ -29585,7 +29585,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1036,
+      "line": 1041,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_even_eooee_tail",
       "trust": "kernel"
@@ -29610,7 +29610,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1043,
+      "line": 1048,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOEE_z_lt",
       "trust": "kernel"
@@ -29635,7 +29635,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1101,
+      "line": 1106,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooee_of_ge",
       "trust": "kernel"
@@ -29660,7 +29660,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1117,
+      "line": 1122,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOEE_follows_seven_odds",
       "trust": "kernel"
@@ -29685,13 +29685,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1131,
+      "line": 1136,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooee_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The bunched leftover `O^a E O O E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 4`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -29710,7 +29710,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1146,
+      "line": 1152,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooee",
       "trust": "kernel"
@@ -29735,7 +29735,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1188,
+      "line": 1194,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEOE",
       "trust": "kernel"
@@ -29760,7 +29760,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1192,
+      "line": 1198,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEOE_of_five",
       "trust": "kernel"
@@ -29785,7 +29785,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1195,
+      "line": 1201,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEOE_of_six",
       "trust": "kernel"
@@ -29810,7 +29810,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1198,
+      "line": 1204,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "two_mul_succ_cube_lt_succ_pow6",
       "trust": "kernel"
@@ -29835,7 +29835,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1235,
+      "line": 1241,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEOE_z_lt",
       "trust": "kernel"
@@ -29860,7 +29860,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1277,
+      "line": 1283,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eeoe_of_ge_five",
       "trust": "kernel"
@@ -29885,7 +29885,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1293,
+      "line": 1299,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eeoe_of_ge_six",
       "trust": "kernel"
@@ -29910,7 +29910,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1309,
+      "line": 1315,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEEOE_follows_seven_odds",
       "trust": "kernel"
@@ -29935,7 +29935,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1323,
+      "line": 1329,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eeoe_of_lt_five",
       "trust": "kernel"
@@ -29960,13 +29960,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1333,
+      "line": 1339,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eeoe_of_lt_six",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The bunched leftover `O^a E E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 5`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -29985,7 +29985,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1343,
+      "line": 1350,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eeoe",
       "trust": "kernel"
@@ -30010,7 +30010,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1390,
+      "line": 1397,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "eight_mul_succ_lt_succ_sq",
       "trust": "kernel"
@@ -30035,7 +30035,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1414,
+      "line": 1421,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOEOE_z_lt",
       "trust": "kernel"
@@ -30060,7 +30060,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1499,
+      "line": 1506,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoeoe_of_ge",
       "trust": "kernel"
@@ -30085,7 +30085,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1515,
+      "line": 1522,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOEOE_follows_seven_odds",
       "trust": "kernel"
@@ -30110,13 +30110,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1529,
+      "line": 1536,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoeoe_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The bunched leftover `O^a E O E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 4`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -30135,7 +30135,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1544,
+      "line": 1552,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoeoe",
       "trust": "kernel"
@@ -30160,7 +30160,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1579,
+      "line": 1587,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "denomBits_three",
       "trust": "kernel"
@@ -30185,7 +30185,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1582,
+      "line": 1590,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "three_pow_three",
       "trust": "kernel"
@@ -30210,7 +30210,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1585,
+      "line": 1593,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOOEE_z_lt",
       "trust": "kernel"
@@ -30235,7 +30235,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1636,
+      "line": 1644,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee_of_ge_four",
       "trust": "kernel"
@@ -30260,7 +30260,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1653,
+      "line": 1661,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee_of_ge_three",
       "trust": "kernel"
@@ -30285,7 +30285,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1721,
+      "line": 1729,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOOEE_follows_seven_odds",
       "trust": "kernel"
@@ -30310,13 +30310,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1736,
+      "line": 1744,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The bunched leftover `O^a E O O O E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 3`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -30335,7 +30335,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1751,
+      "line": 1760,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eoooee",
       "trust": "kernel"
@@ -30360,7 +30360,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1792,
+      "line": 1801,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOEOE_z_lt",
       "trust": "kernel"
@@ -30385,7 +30385,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1853,
+      "line": 1862,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe_of_ge_four",
       "trust": "kernel"
@@ -30410,7 +30410,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1870,
+      "line": 1879,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe_of_ge_three",
       "trust": "kernel"
@@ -30435,7 +30435,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1947,
+      "line": 1956,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "threeEvenEOOEOE_follows_seven_odds",
       "trust": "kernel"
@@ -30460,13 +30460,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1962,
+      "line": 1971,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The bunched leftover `O^a E O O E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 3`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -30485,7 +30485,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 1977,
+      "line": 1987,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe",
       "trust": "kernel"
@@ -30510,7 +30510,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2010,
+      "line": 2020,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "at",
       "trust": "kernel"
@@ -30535,7 +30535,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2015,
+      "line": 2025,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "four_mul_two_pow",
       "trust": "kernel"
@@ -30560,7 +30560,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2021,
+      "line": 2031,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_eq_twoEven",
       "trust": "kernel"
@@ -30585,7 +30585,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2026,
+      "line": 2036,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_eq_twoEven",
       "trust": "kernel"
@@ -30610,7 +30610,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2031,
+      "line": 2041,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_length",
       "trust": "kernel"
@@ -30635,7 +30635,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2036,
+      "line": 2046,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_length",
       "trust": "kernel"
@@ -30660,7 +30660,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2041,
+      "line": 2051,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_length",
       "trust": "kernel"
@@ -30685,7 +30685,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2044,
+      "line": 2054,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_image",
       "trust": "kernel"
@@ -30710,7 +30710,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2048,
+      "line": 2058,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_gapped_ee_y_ge",
       "trust": "kernel"
@@ -30735,7 +30735,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2056,
+      "line": 2066,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_gapped_eoe_y_ge",
       "trust": "kernel"
@@ -30760,7 +30760,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2064,
+      "line": 2074,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_ee_prefix",
       "trust": "kernel"
@@ -30785,7 +30785,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2070,
+      "line": 2080,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_eoe_prefix",
       "trust": "kernel"
@@ -30810,7 +30810,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2077,
+      "line": 2087,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_ee_remaining_odds",
       "trust": "kernel"
@@ -30835,7 +30835,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2084,
+      "line": 2094,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "follows_gapped_eoe_remaining_odds",
       "trust": "kernel"
@@ -30860,7 +30860,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2091,
+      "line": 2101,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_image_ge_two",
       "trust": "kernel"
@@ -30885,7 +30885,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2123,
+      "line": 2133,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_preimage",
       "trust": "kernel"
@@ -30910,7 +30910,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2154,
+      "line": 2164,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_preimage",
       "trust": "kernel"
@@ -30935,7 +30935,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2242,
+      "line": 2252,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_ee_of_y",
       "trust": "kernel"
@@ -30960,7 +30960,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2262,
+      "line": 2272,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_eoe_of_y",
       "trust": "kernel"
@@ -30985,7 +30985,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2284,
+      "line": 2294,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_prefix_seven_odds",
       "trust": "kernel"
@@ -31010,7 +31010,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2298,
+      "line": 2308,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_prefix_seven_odds",
       "trust": "kernel"
@@ -31035,7 +31035,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2312,
+      "line": 2322,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_remaining_seven_odds",
       "trust": "kernel"
@@ -31060,7 +31060,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2323,
+      "line": 2333,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_remaining_seven_odds",
       "trust": "kernel"
@@ -31085,7 +31085,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2334,
+      "line": 2344,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_ee_short_of_lt",
       "trust": "kernel"
@@ -31110,7 +31110,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2352,
+      "line": 2362,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_eoe_short_of_lt",
       "trust": "kernel"
@@ -31135,7 +31135,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2370,
+      "line": 2380,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_ee_of_lt",
       "trust": "kernel"
@@ -31160,13 +31160,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2395,
+      "line": 2405,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_eoe_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The gapped three-even leftover `O^a E O^b E E` is not a Juggler CycleMin word at any `n >= 2`, for `a >= 2` and `b >= 4`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -31185,13 +31185,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2420,
+      "line": 2431,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_ee",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The gapped three-even leftover `O^a E O^b E O E` is not a Juggler CycleMin word at any `n >= 2`, for `a >= 2` and `b >= 3`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -31210,7 +31210,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2439,
+      "line": 2451,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_three_even_eoe",
       "trust": "kernel"
@@ -31235,7 +31235,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2473,
+      "line": 2485,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "rotateItinerary_cons",
       "trust": "kernel"
@@ -31260,7 +31260,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2478,
+      "line": 2490,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "rotateItinerary_cons_cons",
       "trust": "kernel"
@@ -31285,7 +31285,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2485,
+      "line": 2497,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "take_snoc",
       "trust": "kernel"
@@ -31310,7 +31310,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2496,
+      "line": 2508,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "rotateItinerary_snoc",
       "trust": "kernel"
@@ -31335,7 +31335,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2504,
+      "line": 2516,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_of_rotate_ends_odd",
       "trust": "kernel"
@@ -31360,7 +31360,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2512,
+      "line": 2524,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_rotate_start_even",
       "trust": "kernel"
@@ -31385,7 +31385,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2519,
+      "line": 2531,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "cycleMin_rotate_start_OE",
       "trust": "kernel"
@@ -31410,7 +31410,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2526,
+      "line": 2538,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "getElem_of_list_eq",
       "trust": "kernel"
@@ -31435,7 +31435,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2531,
+      "line": 2543,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "getElem_nat_eq",
       "trust": "kernel"
@@ -31460,7 +31460,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2536,
+      "line": 2548,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_as_prefix",
       "trust": "kernel"
@@ -31485,7 +31485,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2542,
+      "line": 2554,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_as_prefix",
       "trust": "kernel"
@@ -31510,7 +31510,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2549,
+      "line": 2561,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_expanded",
       "trust": "kernel"
@@ -31535,7 +31535,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2555,
+      "line": 2567,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_expanded",
       "trust": "kernel"
@@ -31560,7 +31560,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2562,
+      "line": 2574,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_get_lt",
       "trust": "kernel"
@@ -31585,7 +31585,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2569,
+      "line": 2581,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "firstEPrefix_get_last",
       "trust": "kernel"
@@ -31610,7 +31610,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2575,
+      "line": 2587,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_lt_a",
       "trust": "kernel"
@@ -31635,7 +31635,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2587,
+      "line": 2599,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_a",
       "trust": "kernel"
@@ -31660,7 +31660,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2599,
+      "line": 2611,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_mid",
       "trust": "kernel"
@@ -31685,7 +31685,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2615,
+      "line": 2627,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_get_last",
       "trust": "kernel"
@@ -31710,7 +31710,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2635,
+      "line": 2647,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEE_pred_odd",
       "trust": "kernel"
@@ -31735,7 +31735,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2647,
+      "line": 2659,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_lt_a",
       "trust": "kernel"
@@ -31760,7 +31760,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2659,
+      "line": 2671,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_a",
       "trust": "kernel"
@@ -31785,7 +31785,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2671,
+      "line": 2683,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_mid",
       "trust": "kernel"
@@ -31810,7 +31810,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2687,
+      "line": 2699,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_o",
       "trust": "kernel"
@@ -31835,7 +31835,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2708,
+      "line": 2720,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_get_last",
       "trust": "kernel"
@@ -31860,7 +31860,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2729,
+      "line": 2741,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedThreeEvenEOE_pred_odd",
       "trust": "kernel"
@@ -31885,7 +31885,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2745,
+      "line": 2757,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEEBootstrap",
       "trust": "kernel"
@@ -31910,7 +31910,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2749,
+      "line": 2761,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEOEBootstrap",
       "trust": "kernel"
@@ -31935,7 +31935,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2753,
+      "line": 2765,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEEBootstrap_split",
       "trust": "kernel"
@@ -31960,7 +31960,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2759,
+      "line": 2771,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gappedEOEBootstrap_split",
       "trust": "kernel"
@@ -31985,7 +31985,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2765,
+      "line": 2777,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_ee_rotate_succ_a",
       "trust": "kernel"
@@ -32010,7 +32010,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2781,
+      "line": 2793,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "gapped_eoe_rotate_succ_a",
       "trust": "kernel"
@@ -32035,7 +32035,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2797,
+      "line": 2809,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_followsB_3_four_odds",
       "trust": "kernel"
@@ -32060,7 +32060,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2801,
+      "line": 2813,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_follows_three_four_odds",
       "trust": "kernel"
@@ -32085,7 +32085,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2809,
+      "line": 2821,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_follows_three_long_odds",
       "trust": "kernel"
@@ -32110,7 +32110,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2820,
+      "line": 2832,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_followsB_3_eoe_boot3",
       "trust": "kernel"
@@ -32135,7 +32135,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2824,
+      "line": 2836,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_follows_three_eoe_bootstrap",
       "trust": "kernel"
@@ -32160,7 +32160,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2842,
+      "line": 2854,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "oo_run_suffix_threshold",
       "trust": "kernel"
@@ -32185,7 +32185,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2850,
+      "line": 2862,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_ee_bootstrap",
       "trust": "kernel"
@@ -32210,13 +32210,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2876,
+      "line": 2888,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycleMin_gapped_eoe_bootstrap",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The gapped three-even leftover `gappedThreeEvenEE a b` is not a Juggler cycle itinerary at any `n >= 2`, for `a >= 2` and `b >= 4`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -32235,13 +32235,13 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2899,
+      "line": 2913,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_three_even_ee",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The gapped three-even leftover `gappedThreeEvenEOE a b` is not a Juggler cycle itinerary at any `n >= 2`, for `a >= 2` and `b >= 3`.",
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "kind": "theorem",
       "ledger": [
@@ -32260,7 +32260,7 @@
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
       ],
-      "line": 2925,
+      "line": 2941,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_gapped_three_even_eoe",
       "trust": "kernel"
@@ -37150,7 +37150,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the bunched leftover `threeEvenEEE a`, `a >= 6`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -37162,7 +37162,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 126,
+      "line": 128,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eee",
       "trust": "kernel"
@@ -37180,7 +37180,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 138,
+      "line": 140,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eoee_z_lt",
       "trust": "kernel"
@@ -37198,7 +37198,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 197,
+      "line": 199,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eoee_preimage",
       "trust": "kernel"
@@ -37216,7 +37216,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 222,
+      "line": 224,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoee_of_y_five",
       "trust": "kernel"
@@ -37234,13 +37234,13 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 236,
+      "line": 238,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoee_of_y_six",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the bunched leftover `threeEvenEOEE a`, `a >= 5`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -37252,7 +37252,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 250,
+      "line": 254,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoee",
       "trust": "kernel"
@@ -37270,7 +37270,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 297,
+      "line": 301,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eeoe_z_lt",
       "trust": "kernel"
@@ -37288,7 +37288,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 348,
+      "line": 352,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eeoe_preimage",
       "trust": "kernel"
@@ -37306,7 +37306,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 373,
+      "line": 377,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eeoe_of_y_five",
       "trust": "kernel"
@@ -37324,13 +37324,13 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 387,
+      "line": 391,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eeoe_of_y_six",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the bunched leftover `threeEvenEEOE a`, `a >= 5`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -37342,7 +37342,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 401,
+      "line": 407,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eeoe",
       "trust": "kernel"
@@ -37360,7 +37360,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 448,
+      "line": 454,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eooee_z_lt",
       "trust": "kernel"
@@ -37378,7 +37378,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 512,
+      "line": 518,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eooee_preimage",
       "trust": "kernel"
@@ -37396,13 +37396,13 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 537,
+      "line": 543,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eooee_of_y",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the bunched leftover `threeEvenEOOEE a`, `a >= 4`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -37414,7 +37414,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 551,
+      "line": 559,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eooee",
       "trust": "kernel"
@@ -37432,7 +37432,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 587,
+      "line": 595,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eoeoe_z_lt",
       "trust": "kernel"
@@ -37450,7 +37450,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 678,
+      "line": 686,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eoeoe_preimage",
       "trust": "kernel"
@@ -37468,13 +37468,13 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 703,
+      "line": 711,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoeoe_of_y",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the bunched leftover `threeEvenEOEOE a`, `a >= 4`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -37486,7 +37486,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 717,
+      "line": 727,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoeoe",
       "trust": "kernel"
@@ -37504,7 +37504,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 755,
+      "line": 765,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eoooee_z_lt",
       "trust": "kernel"
@@ -37522,7 +37522,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 812,
+      "line": 822,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eoooee_preimage",
       "trust": "kernel"
@@ -37540,7 +37540,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 838,
+      "line": 848,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoooee_of_y_four",
       "trust": "kernel"
@@ -37558,13 +37558,13 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 852,
+      "line": 862,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoooee_of_y_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the bunched leftover `threeEvenEOOOEE a`, `a >= 3`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -37576,7 +37576,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 930,
+      "line": 942,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eoooee",
       "trust": "kernel"
@@ -37594,7 +37594,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 973,
+      "line": 985,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eooeoe_z_lt",
       "trust": "kernel"
@@ -37612,7 +37612,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 1041,
+      "line": 1053,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "prefix_eooeoe_preimage",
       "trust": "kernel"
@@ -37630,7 +37630,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 1067,
+      "line": 1079,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eooeoe_of_y_four",
       "trust": "kernel"
@@ -37648,13 +37648,13 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 1081,
+      "line": 1093,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eooeoe_of_y_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the bunched leftover `threeEvenEOOEOE a`, `a >= 3`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -37666,7 +37666,7 @@
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
       ],
-      "line": 1169,
+      "line": 1183,
       "module": "Problems.Juggler.PrefixBunched",
       "name": "no_cycleMin_prefix_eooeoe",
       "trust": "kernel"
@@ -37892,14 +37892,14 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the two-even leftover `twoEvenEE k`, `k >= 6`: the exclusion holds after an arbitrary prefix `u`, not only in isolation.",
       "file": "formal/Problems/Juggler/PrefixTwoEven.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
-      "line": 168,
+      "line": 170,
       "module": "Problems.Juggler.PrefixTwoEven",
       "name": "no_cycleMin_prefix_two_even_ee",
       "trust": "kernel"
@@ -37912,7 +37912,7 @@
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
-      "line": 176,
+      "line": 178,
       "module": "Problems.Juggler.PrefixTwoEven",
       "name": "prefix_two_even_eoe_preimage",
       "trust": "kernel"
@@ -37925,7 +37925,7 @@
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
-      "line": 268,
+      "line": 270,
       "module": "Problems.Juggler.PrefixTwoEven",
       "name": "no_cycleMin_prefix_two_even_eoe_of_y",
       "trust": "kernel"
@@ -37938,7 +37938,7 @@
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
-      "line": 288,
+      "line": 290,
       "module": "Problems.Juggler.PrefixTwoEven",
       "name": "no_cycleMin_prefix_two_even_eoe_of_eq",
       "trust": "kernel"
@@ -37951,7 +37951,7 @@
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
-      "line": 304,
+      "line": 306,
       "module": "Problems.Juggler.PrefixTwoEven",
       "name": "prefix_two_even_eoe_follows_seven_odds",
       "trust": "kernel"
@@ -37964,20 +37964,20 @@
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
-      "line": 317,
+      "line": 319,
       "module": "Problems.Juggler.PrefixTwoEven",
       "name": "no_cycleMin_prefix_two_even_eoe_of_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "No CycleMin word ends in the two-even leftover `twoEvenEOE k`, `k >= 6`, after any prefix `u`.",
       "file": "formal/Problems/Juggler/PrefixTwoEven.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
       ],
-      "line": 359,
+      "line": 363,
       "module": "Problems.Juggler.PrefixTwoEven",
       "name": "no_cycleMin_prefix_two_even_eoe",
       "trust": "kernel"
@@ -47028,7 +47028,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Length-`n` suffix acceptance is classified by the energy, not by residual coordinates: `foldSteps ws s` lands on `F` exactly when `energy |ws| s` equals the consumed sum of `ws`.",
       "file": "formal/Problems/Ostrowski/NP/Energy.lean",
       "kind": "theorem",
       "ledger": [
@@ -47048,7 +47048,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 570,
+      "line": 573,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "fold_on_F_iff",
       "trust": "kernel"
@@ -47074,7 +47074,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 585,
+      "line": 588,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "same_energy_same_OnF",
       "trust": "kernel"
@@ -47100,7 +47100,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 590,
+      "line": 593,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "foldSteps_append",
       "trust": "kernel"
@@ -47126,7 +47126,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 595,
+      "line": 598,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "particular_concat",
       "trust": "kernel"
@@ -47152,7 +47152,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 604,
+      "line": 607,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_prefix",
       "trust": "kernel"
@@ -47178,7 +47178,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 608,
+      "line": 611,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "energy_add",
       "trust": "kernel"
@@ -47204,7 +47204,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 615,
+      "line": 618,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "iterateA_eq_fold_zero",
       "trust": "kernel"
@@ -47230,7 +47230,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 624,
+      "line": 627,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "energy_iterateA",
       "trust": "kernel"
@@ -47256,7 +47256,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 630,
+      "line": 633,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "consumedSum_append",
       "trust": "kernel"
@@ -47282,7 +47282,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 661,
+      "line": 664,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "val_concat_energy",
       "trust": "kernel"
@@ -47308,7 +47308,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 680,
+      "line": 683,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "val_concat_zero_iff",
       "trust": "kernel"
@@ -47334,7 +47334,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 686,
+      "line": 689,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "val_zero_on_F",
       "trust": "kernel"
@@ -47360,7 +47360,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 690,
+      "line": 693,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_val_zero",
       "trust": "kernel"
@@ -47386,7 +47386,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 697,
+      "line": 700,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "hub_nonreset",
       "trust": "kernel"
@@ -47412,7 +47412,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 707,
+      "line": 710,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "recurrence_word_reset",
       "trust": "kernel"
@@ -47438,7 +47438,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 712,
+      "line": 715,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_pow_origin",
       "trust": "kernel"
@@ -47464,7 +47464,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 722,
+      "line": 725,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_pow_then_hub",
       "trust": "kernel"
@@ -47490,7 +47490,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 729,
+      "line": 732,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "complete_zero_not_monoid",
       "trust": "kernel"
@@ -47516,7 +47516,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 740,
+      "line": 743,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "impulsePlace",
       "trust": "kernel"
@@ -47542,7 +47542,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 743,
+      "line": 746,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "qShift_succ_one",
       "trust": "kernel"
@@ -47568,7 +47568,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 747,
+      "line": 750,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "qShift_succ_two",
       "trust": "kernel"
@@ -47594,7 +47594,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 755,
+      "line": 758,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "q_succ_impulse",
       "trust": "kernel"
@@ -47620,7 +47620,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 771,
+      "line": 774,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "iterateA_e3",
       "trust": "kernel"

@@ -567,6 +567,9 @@ theorem fold_s3 (ws : List ℤ) (s : State) :
   rw [energy_zero_state] at tel
   simpa using tel
 
+/-- Length-`n` suffix acceptance is classified by the energy, not by residual
+coordinates: `foldSteps ws s` lands on `F` exactly when `energy |ws| s` equals the
+consumed sum of `ws`. -/
 theorem fold_on_F_iff (ws : List ℤ) (s : State) :
     OnF (foldSteps ws s) ↔
       energy ws.length s = consumedSum ws.length ws := by

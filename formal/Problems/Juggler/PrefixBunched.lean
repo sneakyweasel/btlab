@@ -123,6 +123,8 @@ theorem no_cycleMin_prefix_eee_of_lt {n a : ℕ} {u : List Branch}
       (prefix_odd_run_seven_odds hge
         (follows_of_append_right (u := u) (by simpa [threeEvenEEE] using hC.1)))
 
+/-- No CycleMin word ends in the bunched leftover `threeEvenEEE a`, `a >= 6`, after any
+prefix `u`. -/
 theorem no_cycleMin_prefix_eee {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 6 ≤ a) :
     ¬CycleMin n (u ++ threeEvenEEE a) := by
@@ -247,6 +249,8 @@ theorem no_cycleMin_prefix_eoee_of_y_six {n a : ℕ} {u : List Branch}
   have htail := three_even_eoee_tail_of_six (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
+/-- No CycleMin word ends in the bunched leftover `threeEvenEOEE a`, `a >= 5`, after any
+prefix `u`. -/
 theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 5 ≤ a) :
     ¬CycleMin n (u ++ threeEvenEOEE a) := by
@@ -398,6 +402,8 @@ theorem no_cycleMin_prefix_eeoe_of_y_six {n a : ℕ} {u : List Branch}
   have htail := three_even_eoee_tail_of_six (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
+/-- No CycleMin word ends in the bunched leftover `threeEvenEEOE a`, `a >= 5`, after any
+prefix `u`. -/
 theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 5 ≤ a) :
     ¬CycleMin n (u ++ threeEvenEEOE a) := by
@@ -548,6 +554,8 @@ theorem no_cycleMin_prefix_eooee_of_y {n a : ℕ} {u : List Branch}
   have htail := three_even_eooee_tail (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
+/-- No CycleMin word ends in the bunched leftover `threeEvenEOOEE a`, `a >= 4`, after any
+prefix `u`. -/
 theorem no_cycleMin_prefix_eooee {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 4 ≤ a) :
     ¬CycleMin n (u ++ threeEvenEOOEE a) := by
@@ -714,6 +722,8 @@ theorem no_cycleMin_prefix_eoeoe_of_y {n a : ℕ} {u : List Branch}
   have htail := three_even_eooee_tail (n := y) hy ha
   exact (not_lt_of_gt htail) hcell
 
+/-- No CycleMin word ends in the bunched leftover `threeEvenEOEOE a`, `a >= 4`, after any
+prefix `u`. -/
 theorem no_cycleMin_prefix_eoeoe {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 4 ≤ a) :
     ¬CycleMin n (u ++ threeEvenEOEOE a) := by
@@ -927,6 +937,8 @@ theorem no_cycleMin_prefix_eoooee_of_y_three {n : ℕ} {u : List Branch}
   | inl hlt => exact eoooee_small_y_false hn24 hlt h27
   | inr hge => exact eoooee_large_y_false hn197 hge hy27 h27
 
+/-- No CycleMin word ends in the bunched leftover `threeEvenEOOOEE a`, `a >= 3`, after
+any prefix `u`. -/
 theorem no_cycleMin_prefix_eoooee {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 3 ≤ a) :
     ¬CycleMin n (u ++ threeEvenEOOOEE a) := by
@@ -1166,6 +1178,8 @@ theorem no_cycleMin_prefix_eooeoe_of_y_three {n : ℕ} {u : List Branch}
   | inl hlt => exact eoooee_small_y_false hn24 hlt h27
   | inr hge => exact eoooee_large_y_false hn197 hge hu27 h27
 
+/-- No CycleMin word ends in the bunched leftover `threeEvenEOOEOE a`, `a >= 3`, after
+any prefix `u`. -/
 theorem no_cycleMin_prefix_eooeoe {n a : ℕ} {u : List Branch}
     (hn : 2 ≤ n) (ha : 3 ≤ a) :
     ¬CycleMin n (u ++ threeEvenEOOEOE a) := by

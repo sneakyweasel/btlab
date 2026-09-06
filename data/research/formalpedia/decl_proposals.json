@@ -2259,7 +2259,7 @@
         },
         {
           "decl": "reset_pow_then_hub",
-          "line": 722,
+          "line": 725,
           "score": 0.083,
           "trust": "kernel"
         }
@@ -2285,9 +2285,9 @@
           "trust": "kernel"
         },
         {
-          "decl": "foldSteps_nil",
-          "line": 151,
-          "score": 0.154,
+          "decl": "fold_on_F_iff",
+          "line": 573,
+          "score": 0.167,
           "trust": "kernel"
         }
       ],
@@ -2301,7 +2301,7 @@
       "candidates": [
         {
           "decl": "iterateA_e3",
-          "line": 771,
+          "line": 774,
           "score": 0.5,
           "trust": "kernel"
         },
@@ -2334,14 +2334,14 @@
         },
         {
           "decl": "consumedSum_append",
-          "line": 630,
+          "line": 633,
           "score": 0.19,
           "trust": "kernel"
         },
         {
-          "decl": "energy_telescope",
-          "line": 167,
-          "score": 0.16,
+          "decl": "fold_on_F_iff",
+          "line": 573,
+          "score": 0.179,
           "trust": "kernel"
         }
       ],
@@ -2355,13 +2355,13 @@
       "candidates": [
         {
           "decl": "particular_concat",
-          "line": 595,
+          "line": 598,
           "score": 0.214,
           "trust": "kernel"
         },
         {
           "decl": "val_concat_zero_iff",
-          "line": 680,
+          "line": 683,
           "score": 0.214,
           "trust": "kernel"
         },
@@ -2409,7 +2409,7 @@
       "candidates": [
         {
           "decl": "reset_pow_then_hub",
-          "line": 722,
+          "line": 725,
           "score": 0.333,
           "trust": "kernel"
         },
@@ -2421,7 +2421,7 @@
         },
         {
           "decl": "reset_prefix",
-          "line": 604,
+          "line": 607,
           "score": 0.176,
           "trust": "kernel"
         }
@@ -2463,13 +2463,13 @@
       "candidates": [
         {
           "decl": "reset_prefix",
-          "line": 604,
+          "line": 607,
           "score": 0.385,
           "trust": "kernel"
         },
         {
           "decl": "reset_pow_then_hub",
-          "line": 722,
+          "line": 725,
           "score": 0.273,
           "trust": "kernel"
         },

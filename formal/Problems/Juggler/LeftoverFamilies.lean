@@ -256,6 +256,7 @@ theorem no_cycle_itinerary_two_even_eoe_of_lt {n k : ℕ}
   · exact no_follows_seven_odds_of_lt256 hn2 hn
       (twoEvenEOE_follows_seven_odds hge h)
 
+/-- The two-even leftover `O^(k-2) E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `k >= 6`. -/
 theorem no_cycle_itinerary_two_even_ee {n k : ℕ} (hn : 2 ≤ n) (hk : 6 ≤ k) :
     ¬CycleItinerary n
       (List.replicate (k - 2) Branch.odd ++ List.replicate 2 Branch.even) := by
@@ -264,6 +265,7 @@ theorem no_cycle_itinerary_two_even_ee {n k : ℕ} (hn : 2 ≤ n) (hk : 6 ≤ k)
   | inl hlt => exact no_cycle_itinerary_two_even_ee_of_lt hn hlt hk h
   | inr hge => exact no_cycle_itinerary_two_even_ee_of_ge hge hk h
 
+/-- The two-even leftover `O^(k-3) E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `k >= 6`. -/
 theorem no_cycle_itinerary_two_even_eoe {n k : ℕ} (hn : 2 ≤ n) (hk : 6 ≤ k) :
     ¬CycleItinerary n
       (List.replicate (k - 3) Branch.odd ++
@@ -435,6 +437,7 @@ theorem no_cycle_itinerary_ooooooeee_of_ge {n : ℕ} (hn : 128 ≤ n)
       (pow_pos (by decide : (0 : ℕ) < 2) 1330))
   exact (not_lt_of_gt (pow729_gt_two_pow1330_succ_pow512 hn)) hlt
 
+/-- The leftover `OOOOOOEEE` is not a Juggler cycle itinerary at any `n >= 2`. -/
 theorem no_cycle_itinerary_ooooooeee {n : ℕ} (_hn : 2 ≤ n) :
     ¬CycleItinerary n itineraryOOOOOOEEE := by
   intro h
@@ -592,6 +595,7 @@ theorem no_cycle_itinerary_three_even_eee_of_lt {n a : ℕ}
       (lt_trans hn (by decide : (128 : ℕ) < 256))
       (threeEvenEEE_follows_seven_odds hge h)
 
+/-- The bunched leftover `O^a E E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 6`. -/
 theorem no_cycle_itinerary_three_even_eee {n a : ℕ} (hn : 2 ≤ n) (ha : 6 ≤ a) :
     ¬CycleItinerary n
       (List.replicate a Branch.odd ++ List.replicate 3 Branch.even) := by
@@ -953,6 +957,7 @@ theorem no_cycle_itinerary_three_even_eoee_of_lt_six {n : ℕ}
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
+/-- The bunched leftover `O^a E O E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 5`. -/
 theorem no_cycle_itinerary_three_even_eoee {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) :
     ¬CycleItinerary n
       (List.replicate a Branch.odd ++
@@ -1143,6 +1148,7 @@ theorem no_cycle_itinerary_three_even_eooee_of_lt {n a : ℕ}
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
+/-- The bunched leftover `O^a E O O E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 4`. -/
 theorem no_cycle_itinerary_three_even_eooee {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a) :
     ¬CycleItinerary n
       (List.replicate a Branch.odd ++
@@ -1340,6 +1346,7 @@ theorem no_cycle_itinerary_three_even_eeoe_of_lt_six {n : ℕ}
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
 
+/-- The bunched leftover `O^a E E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 5`. -/
 theorem no_cycle_itinerary_three_even_eeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 5 ≤ a) :
     ¬CycleItinerary n
       (List.replicate a Branch.odd ++
@@ -1541,6 +1548,7 @@ theorem no_cycle_itinerary_three_even_eoeoe_of_lt {n a : ℕ}
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
+/-- The bunched leftover `O^a E O E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 4`. -/
 theorem no_cycle_itinerary_three_even_eoeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 4 ≤ a) :
     ¬CycleItinerary n
       (List.replicate a Branch.odd ++
@@ -1748,6 +1756,7 @@ theorem no_cycle_itinerary_three_even_eoooee_of_lt {n a : ℕ}
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
+/-- The bunched leftover `O^a E O O O E E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 3`. -/
 theorem no_cycle_itinerary_three_even_eoooee {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a) :
     ¬CycleItinerary n
       (List.replicate a Branch.odd ++
@@ -1974,6 +1983,7 @@ theorem no_cycle_itinerary_three_even_eooeoe_of_lt {n a : ℕ}
   rw [hfalse'] at htrue
   exact Bool.false_ne_true htrue
 
+/-- The bunched leftover `O^a E O O E O E` is not a Juggler cycle itinerary at any `n >= 2`, for every `a >= 3`. -/
 theorem no_cycle_itinerary_three_even_eooeoe {n a : ℕ} (hn : 2 ≤ n) (ha : 3 ≤ a) :
     ¬CycleItinerary n
       (List.replicate a Branch.odd ++
@@ -2417,6 +2427,7 @@ theorem no_cycleMin_gapped_three_even_eoe_of_lt {n a b : ℕ}
               exact no_cycle_itinerary_gapped_eoe_short_of_lt hn hnlt ha
                 (Nat.le_of_lt_succ ha6) hb (Nat.le_of_lt_succ hb6) hC
 
+/-- The gapped three-even leftover `O^a E O^b E E` is not a Juggler CycleMin word at any `n >= 2`, for `a >= 2` and `b >= 4`. -/
 theorem no_cycleMin_gapped_three_even_ee {n a b : ℕ}
     (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 4 ≤ b) :
     ¬CycleMin n
@@ -2436,6 +2447,7 @@ theorem no_cycleMin_gapped_three_even_ee {n a b : ℕ}
         le_trans hge (cycleMin_gapped_ee_y_ge h')
       exact no_cycleMin_gapped_three_even_ee_of_y hb h' hy
 
+/-- The gapped three-even leftover `O^a E O^b E O E` is not a Juggler CycleMin word at any `n >= 2`, for `a >= 2` and `b >= 3`. -/
 theorem no_cycleMin_gapped_three_even_eoe {n a b : ℕ}
     (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 3 ≤ b) :
     ¬CycleMin n
@@ -2896,6 +2908,8 @@ theorem no_cycleMin_gapped_eoe_bootstrap {n a b : ℕ}
           exact no_follows_three_eoe_bootstrap hb
             (by simpa [gappedEOEBootstrap_split] using h.1.1)
 
+/-- The gapped three-even leftover `gappedThreeEvenEE a b` is not a Juggler cycle itinerary at any `n >= 2`, for `a >= 2`
+and `b >= 4`. -/
 theorem no_cycle_itinerary_gapped_three_even_ee {n a b : ℕ}
     (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 4 ≤ b) :
     ¬CycleItinerary n (gappedThreeEvenEE a b) := by
@@ -2922,6 +2936,8 @@ theorem no_cycle_itinerary_gapped_three_even_ee {n a b : ℕ}
       (by simpa [hlen] using Nat.le_of_lt hk)
       (gappedThreeEvenEE_pred_odd hmid.1 hk hmid.2.1 hmid.2.2) hm
 
+/-- The gapped three-even leftover `gappedThreeEvenEOE a b` is not a Juggler cycle itinerary at any `n >= 2`, for `a >= 2`
+and `b >= 3`. -/
 theorem no_cycle_itinerary_gapped_three_even_eoe {n a b : ℕ}
     (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 3 ≤ b) :
     ¬CycleItinerary n (gappedThreeEvenEOE a b) := by
