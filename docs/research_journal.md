@@ -31400,3 +31400,69 @@ Best next question
   not -- so which of the two thresholds actually governs the theorem's
   reach?
 ```
+
+## The whole ladder on one scale, and the rung that governs
+
+Following the last entry's question. Putting every threshold in Paper B
+on one axis answers it and closes the thread.
+
+| threshold | P | what it certifies |
+|---|---|---|
+| `P_0` | `1e13.6` | the printed inequalities hold |
+| `P_1`, as A.5 prints it | `1e19.0` | the middle band beats counting |
+| `P_1`, at Lemma 3.9's proof constants | `1e24.2` | same, one r=4 interval |
+| `P_1`, those constants, two intervals | `1e27.3` | same, worst reading |
+| `2^96` | `1e28.9` | bare `P^(1-1/96)` beats `P/2` |
+| sharp form vs `P/2` | `1e224.2` | `P^(1-1/96) log^(3/4) P <= P/2` |
+| Step 5b's log absorption | `1e267.9` | `C log P <= P^(1/96)` |
+| Theorem 6.3's | `1e1244.6` | `log^(15/4) P <= P^(1/96)` |
+
+**No internal rung governs.** `P_0` and all three readings of `P_1` sit
+below `2^96`; the worst leaves `1.6` orders of headroom. So the `r=4`
+discrepancy from the last entry, however it resolves, cannot move where
+Theorem 5.3 starts to say something -- `9.8e18` and `2.0e27` are on the
+same side of the line. That is the most useful thing to know about it,
+and it is a good deal more reassuring than the entry it qualifies.
+
+**What governs is the conclusion's own shape.** In the sharp form the
+crossover with `P/2` is `1e224`, `195` orders past every internal
+threshold; in the printed epsilon-form there is no finite crossover,
+because the epsilon absorbs the log by construction. Which is exactly
+why Section 3 uses the epsilon-form at Step 5b and why Appendix A's
+log-absorption table is labelled a diagnostic and kept out of `P_0`.
+
+**So what are `P_0` and `P_1` for?** Internal consistency, not practical
+content -- and the paper says so where it introduces `P_1`: "Between
+`P_0` and `P_1` the middle-band estimate is true but weaker than the
+trivial bound; the theorem is asymptotic and its implied constant
+absorbs the difference." Read that way the certificate is doing its job,
+and four passes of chasing factors of 7 and 2.5 were sharpening a number
+that was never the reach.
+
+```text
+What was learned
+- every internal threshold is below 2^96, on every reading, so the r=4
+  discrepancy cannot change the theorem's reach
+- the sharp form's crossover is 1e224 and the epsilon-form has none,
+  which is why the paper carries the epsilon
+- P_0 and P_1 certify consistency, not content, and the paper says so
+  in the sentence that introduces P_1
+Strongest theorem
+- none new; this is a synthesis of thresholds already computed
+Strongest refutation
+- my own last four entries' framing: the factors of 7.33 and 2.52 are
+  real and they move a number that does not govern anything
+Reusable machinery
+- reach_ladder, eight thresholds on one scale with internal and
+  external marked; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  A ledger that keeps finding levers should eventually ask what the
+  levers move. This one moves an internal certificate, and the answer
+  is worth having before anyone spends effort on the r=4 question.
+Best next question
+- the audit now carries fifteen probes. Which parts of Sections 4-6
+  still have none -- is there a step whose only check is that its
+  exponents add up?
+```

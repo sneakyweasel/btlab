@@ -351,7 +351,7 @@ def c6_table(s_max: Fr | None = None) -> dict[tuple[Fr, Fr], Fr]:
 def identity_census(seed: int = 20260903, samples_per_range: int = 60) -> dict[str, Any]:
     rng = random.Random(seed)
     # (C1)/(C4) cap the level-1 gaps at h1 <= P^{1/48} and h2, k <= P^{1/24}, so h1 = 1 for every
-    # P below 2^48 = 2.8e14 -- including P_0 = 8.9e13 and every range above.  Up to 1e14 the
+    # P below 2^48 = 2.8e14 -- including P_0 = 3.6e13 and every range above.  Up to 1e14 the
     # identities were therefore only ever checked at h1 = 1, with a whole parameter pinned.  1e15
     # and 1e16 are the first scales where h1 reaches 2 (and h2, k reach 4); the identities are
     # exact and cheap, so the extra ranges cost almost nothing.
@@ -430,7 +430,7 @@ def appendix_a_gaps() -> dict[str, Any]:
       Lemma 5.1(iii)  |G'| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1        first true at 2.03e3
       Lemma 5.2(b)    13 h P^{-1/4} + 50 h h1 h2 P^{-3/4} < 1              first true at 4.96e6
 
-    Both are far below P_0 = 8.9458e13 -- the larger by seven orders -- so the certificate's value
+    Both are far below P_0 = 3.5858e13 -- the larger by seven orders -- so the certificate's value
     stands and only its enumeration is short.
 
     A separate, smaller thing at Theorem 6.1 Step B, which *is* in the table: with |k| <= 2P^{1/96}
@@ -476,7 +476,8 @@ def appendix_a_gaps() -> dict[str, Any]:
         "printed_threshold_matches_exact_constant": abs(three_pi_half ** (96 / 11) / 7.6e5 - 1) < 0.02,
         "printed_threshold_too_small_for_printed_constant": 4.8 ** (96 / 11) > 7.6e5,
         # P_0 is read from the certificate, not pinned here: the constants feeding it are under
-        # revision, and a hardcoded 8.9e13 would go stale the moment they move.
+        # revision, and a hardcoded 3.6e13 would go stale the moment they move -- as 8.9e13 did,
+        # when the erratum at Lemma 5.2b moved the anchor.
         "P0": cert["P0"],
         "all_gaps_below_P0": all(r["least_P"] < cert["P0"] for r in rows),
         "largest_gap_orders_below_P0": math.log10(cert["P0"]) - math.log10(max(r["least_P"] for r in rows)),
@@ -842,6 +843,64 @@ def p1_constant_provenance() -> dict[str, Any]:
         "P1_at_the_proof_constants": readings[2]["P1"],
         "orders_between_them": math.log10(readings[2]["P1"] / readings[0]["P1"]),
         "direction_is_against_the_paper": readings[2]["P1"] > readings[0]["P1"],
+    }
+
+def reach_ladder() -> dict[str, Any]:
+    """Every threshold in Paper B on one scale, and which of them governs the theorem's reach.
+
+    The answer is none of the internal ones.  P_0 certifies that the printed inequalities hold and
+    P_1 that the middle band beats counting; both, and both readings of P_1 from
+    p1_constant_provenance, sit below 2^96, the point at which the bare P^(1-1/96) first beats the
+    trivial P/2.  Past that the shape of the conclusion decides: in the sharp form
+    K_c << P^(1-1/96) log^(3/4) P the crossover is 10^224, and in the printed epsilon-form there is
+    no finite crossover at all, because the epsilon absorbs the log by construction.
+
+    So last entry's discrepancy, however it resolves, cannot move where Theorem 5.3 starts to say
+    something: 9.8e18 and 2.0e27 are on the same side of 2^96.  What P_0 and P_1 certify is
+    internal consistency, not practical content, and the paper says so -- "the theorem is
+    asymptotic and its implied constant absorbs the difference".
+    """
+
+    ln10 = math.log(10)
+
+    def log_crossover(power: float, constant: float = 1.0) -> float:
+        """log10 of the least P with constant * (log P)^power <= P^(1/96)."""
+        lo, hi = 1.0, 1e6
+        for _ in range(600):
+            mid = (lo + hi) / 2
+            excess = math.log10(constant) + power * math.log10(mid * ln10) - mid / 96
+            lo, hi = (mid, hi) if excess > 0 else (lo, mid)
+        return hi
+
+    provenance = p1_constant_provenance()
+    cert = p0_certificate.certificate()
+    rungs = [
+        {"name": "P_0, the printed inequalities hold", "log10_P": math.log10(cert["P0"]), "internal": True},
+        {"name": "P_1 as A.5 prints it, middle band beats counting",
+         "log10_P": math.log10(provenance["printed_P1"]), "internal": True},
+        {"name": "P_1 at Lemma 3.9's own proof constants",
+         "log10_P": math.log10(provenance["P1_at_the_proof_constants"]), "internal": True},
+        {"name": "P_1 at those constants with two r=4 intervals, the worst reading",
+         "log10_P": math.log10(max(r["P1"] for r in provenance["readings"])), "internal": True},
+        {"name": "2^96, bare P^(1-1/96) beats the trivial P/2",
+         "log10_P": 96 * math.log10(2.0), "internal": False},
+        {"name": "sharp form P^(1-1/96) log^(3/4) P beats P/2",
+         "log10_P": log_crossover(0.75, 2.0), "internal": False},
+        {"name": "Step 5b's own log absorption, C log P <= P^(1/96)",
+         "log10_P": log_crossover(1.0), "internal": False},
+        {"name": "Theorem 6.3's log^(15/4) P <= P^(1/96)",
+         "log10_P": log_crossover(3.75), "internal": False},
+    ]
+    internal_max = max(r["log10_P"] for r in rungs if r["internal"])
+    bare = next(r["log10_P"] for r in rungs if r["name"].startswith("2^96"))
+    return {
+        "rungs": rungs,
+        "largest_internal_threshold_log10": internal_max,
+        "bare_exponent_crossover_log10": bare,
+        "every_internal_threshold_below_the_bare_crossover": internal_max < bare,
+        "orders_of_headroom": bare - internal_max,
+        "sharp_form_crossover_log10": next(r["log10_P"] for r in rungs if r["name"].startswith("sharp")),
+        "epsilon_form_has_no_finite_crossover": True,
     }
 
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
@@ -1261,7 +1320,7 @@ def cell_scaling_check(h: int = 1, lo: int = 10**5, hi: int = 3 * 10**5) -> dict
     """Is the cell inventory scale-invariant, or does the low-`P` evaluation only look safe?
 
     `cell_inventory` enumerates every odd `n` in `(P, 2P]`, so it cannot be run anywhere near
-    `P_0 = 8.9e13`; the standing estimates could be lifted into their claimed regime and this
+    `P_0 = 3.6e13`; the standing estimates could be lifted into their claimed regime and this
     cannot.  What can be tested is the property the extrapolation rests on: the quantities are
     normalised by `P^{1/2}/h`, so they should not move with `P`.  Measured over a 30x range
     they do not — the cell count stays at `0.828` of its printed bound, the long-cell ratio at
@@ -1310,10 +1369,17 @@ def frozen_run_inventory(P: int, h1: int, h2: int) -> dict[str, Any]:
 
 
 def frozen_anchor_curvature_samples(P: int = 10**8, seed: int = 3, trials: int = 40) -> dict[str, Any]:
-    """Lemma 5.2b: on j=0 branches, |(cF)''| / (135/1024 k |β1 β2| n^{-13/8}) ≈ 1.
+    """Lemma 5.2b on j=0 branches: the bare composite beside the anchor the phase carries.
 
-    The moving-gap model 243/128 k h1 h2 n^{-5/8} is a different number and is recorded
-    only to show it does *not* match the local second derivative.
+    ``frozen_ratio`` measures ``|(c G_F)''|`` against ``135/1024``, which is what the manuscript
+    printed.  ``anchor_ratio`` measures ``|(c(G_F - J_F))''|`` -- the object the lemma defines,
+    with ``J_F`` frozen -- against ``216/1024 = 27/128``.  Both come out at 1.  They are different
+    functions, differing by ``c'' J_F``, and the erratum at Lemma 5.2b is that the printed
+    constant belongs to the first while the proof uses the second.
+
+    The moving-gap model is recorded to show it matches neither.  Measured, it is ``2673/1024``,
+    not the ``243/128`` earlier printings gave it -- and ``243/128`` is exactly ``9 * 216/1024``,
+    the corrected anchor after ``β1 β2 -> 9 h1 h2 ν``, so the two errors concealed each other.
     """
 
     rng = random.Random(seed)
@@ -1321,6 +1387,8 @@ def frozen_anchor_curvature_samples(P: int = 10**8, seed: int = 3, trials: int =
     H2 = max(1, int(P ** (1 / 24)))
     K = max(1, int(P ** (1 / 24)))
     frozen_ratios: list[float] = []
+    anchor_ratios: list[float] = []
+    eight_fifths: list[float] = []
     moving_ratios: list[float] = []
     for _ in range(trials * 4):
         if len(frozen_ratios) >= trials:
@@ -1335,29 +1403,42 @@ def frozen_anchor_curvature_samples(P: int = 10**8, seed: int = 3, trials: int =
             continue
         nm = mp.mpf(n)
 
-        def cF(nu: mp.mpf) -> mp.mpf:
+        def GF(nu: mp.mpf) -> mp.mpf:
             Xn = mp.power(nu, mp.mpf(3) / 2)
-            Fm = (
+            return (
                 mp.power(Xn + beta12, mp.mpf(3) / 2)
                 - mp.power(Xn + beta1, mp.mpf(3) / 2)
                 - mp.power(Xn + beta2, mp.mpf(3) / 2)
                 + mp.power(Xn, mp.mpf(3) / 2)
             )
-            return mp.mpf(3 * k) / 4 * mp.power(nu, mp.mpf(9) / 8) * Fm
 
-        d2 = mp.diff(cF, nm, 2)
-        lead = mp.mpf(135) / 1024 * k * abs(beta1 * beta2) * mp.power(nm, -mp.mpf(13) / 8)
-        moving = mp.mpf(243) / 128 * k * h1 * h2 * mp.power(nm, -mp.mpf(5) / 8)
+        def c(nu: mp.mpf) -> mp.mpf:
+            return mp.mpf(3 * k) / 4 * mp.power(nu, mp.mpf(9) / 8)
+
+        JF = mp.floor(GF(nm))                       # frozen on the piece
+        d2 = mp.diff(lambda nu: c(nu) * GF(nu), nm, 2)
+        d2a = mp.diff(lambda nu: c(nu) * (GF(nu) - JF), nm, 2)
+        unit = k * abs(beta1 * beta2) * mp.power(nm, -mp.mpf(13) / 8)
+        lead = mp.mpf(135) / 1024 * unit
+        anchor = mp.mpf(216) / 1024 * unit
+        moving = mp.mpf(2673) / 1024 * k * h1 * h2 * mp.power(nm, -mp.mpf(5) / 8)
         if lead == 0:
             continue
         frozen_ratios.append(float(abs(d2) / lead))
+        anchor_ratios.append(float(abs(d2a) / anchor))
+        eight_fifths.append(float(abs(d2a) / abs(d2)))
         moving_ratios.append(float(abs(d2) / moving))
     return {
         "P": P,
         "samples": len(frozen_ratios),
         "frozen_ratio_range": (min(frozen_ratios), max(frozen_ratios)) if frozen_ratios else None,
+        "anchor_ratio_range": (min(anchor_ratios), max(anchor_ratios)) if anchor_ratios else None,
         "moving_gap_ratio_range": (min(moving_ratios), max(moving_ratios)) if moving_ratios else None,
         "frozen_near_one": bool(frozen_ratios) and all(abs(x - 1) <= 0.08 for x in frozen_ratios),
+        "anchor_near_one": bool(anchor_ratios) and all(abs(x - 1) <= 0.08 for x in anchor_ratios),
+        "anchor_over_bare_range": (min(eight_fifths), max(eight_fifths)) if eight_fifths else None,
+        "anchor_is_eight_fifths_of_bare": bool(eight_fifths)
+        and all(abs(r - 8 / 5) <= 0.02 for r in eight_fifths),
         "moving_gap_is_wrong_model": bool(moving_ratios) and all(abs(x - 1) > 0.2 for x in moving_ratios),
     }
 
@@ -1575,8 +1656,15 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("5a run length P^{1/4}/(|j|+1) vs lambda_a^{-1/2} <= (k|j|)^{-1/2} P^{1/16}: 1/16 < 1/4", F(1, 16) < F(1, 4)),
         # Step 5b / Lemma 5.2b (frozen-shape; the moving-gap 243/128 is not the local curvature)
         ("5b frozen (cG)'' leading: 81/1024 - 972/1024 + 756/1024 = -135/1024", F(81, 1024) - F(972, 1024) + F(756, 1024) == F(-135, 1024)),
-        ("5b global monomial: 135/1024 * 9 = 1215/1024", F(135, 1024) * 9 == F(1215, 1024)),
-        ("5b interpolant b: b * 11/8 * 3/8 = -1215/1024 gives b = -405/176", F(-405, 176) * F(11, 8) * F(3, 8) == F(-1215, 1024)),
+        # ... but (cG)'' is not the anchor.  The phase is c(G - J_F) with J_F frozen, so the
+        # c'' term multiplies a fractional part and is O(k P^{-7/8}): the erratum at Lemma 5.2b.
+        ("5b anchor 2cQG Q + c G'' = -972/1024 + 756/1024 = -216/1024 = -27/128", F(-972, 1024) + F(756, 1024) == F(-27, 128)),
+        ("5b anchor is (cG)'' less c'' G, i.e. 8/5 of the printed constant", F(-135, 1024) - F(81, 1024) == F(-27, 128) and F(27, 128) / F(135, 1024) == F(8, 5)),
+        ("5b global monomial: 27/128 * 9 = 243/128 (printed 135/1024 * 9 = 1215/1024)", F(27, 128) * 9 == F(243, 128) and F(135, 1024) * 9 == F(1215, 1024)),
+        ("5b interpolant b: b * 11/8 * 3/8 = -243/128 gives b = -81/22", F(-81, 22) * F(11, 8) * F(3, 8) == F(-243, 128)),
+        ("6.1 Step E zero-offset: -675/2048 + 432/2048 = 243/2048, times 9 = 2187/2048 = 3^7/2^11", F(-675, 2048) + F(432, 2048) == F(-243, 2048) and F(243, 2048) * 9 == F(3 ** 7, 2 ** 11)),
+        ("6.1 Step E interpolant bQ = -(2187/2048)(64/33) = -729/352 = 9/16 of b", F(-2187, 2048) * F(64, 33) == F(-729, 352) and F(729, 352) / F(81, 22) == F(9, 16)),
+        ("6.1 moving-gap foil (81/16)(11/8)(3/8) = 2673/1024, not the printed 243/128", F(81, 16) * F(11, 8) * F(3, 8) == F(2673, 1024) and F(2673, 1024) != F(243, 128)),
         ("5b interpolant a: a * 5/4 * 1/4 = -27/32 gives a = -27/10", F(-27, 10) * F(5, 4) * F(1, 4) == F(-27, 32)),
         ("5b withdrawn moving-gap coefficient is a different object: 2673/1024 - 729/1024 = 243/128", F(2673, 1024) - F(729, 1024) == F(243, 128)),
         ("5b inventory: u <= 360 k h2 P^{1/8} <= 360 P^{5/24}", F(1, 24) + F(1, 24) + F(1, 8) == F(5, 24)),
@@ -1677,8 +1765,8 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("L5.2b: the 219 bound needs u,u' <= 360P^{5/24} (now hypothesis (C5)); (C1)-(C4) alone allow u <= P^{1/2}, giving (9/16)P^{-3/4} -- larger by P^{7/24}", F(1, 2) - F(5, 24) == F(7, 24)),
         ("L5.2b (C5) is met in the band: Step 5b derives u <= 200 k h2 P^{1/8} <= 200 P^{5/24} from k h2 <= P^{1/12}, and (C3)+(C4) give exactly that", F(5, 24) - F(1, 8) == F(1, 12) and F(1, 24) + F(1, 24) == F(1, 12)),
         # Target 3: three-term sublevel step.
-        ("Step 5b: a = -(27/32)(16/5) = -27/10 and b = -(1215/1024)(64/33) = -405/176 match the printed Phi coefficients", F(-27, 32) * F(16, 5) == F(-27, 10) and F(-1215, 1024) * F(64, 33) == F(-405, 176)),
-        ("Step 5b: lambda_0 = (135/1024)k b1b2 nu^{-13/8} in [0.385, 2.438] k h1h2 P^{-5/8}, inside printed [0.35, 2.6]", (135 / 1024) * 9 * 2**-1.625 >= 0.35 and (135 / 1024) * 4.3**2 <= 2.6),
+        ("Step 5b: a = -(27/32)(16/5) = -27/10 and b = -(243/128)(64/33) = -81/22 match the printed Phi coefficients", F(-27, 32) * F(16, 5) == F(-27, 10) and F(-243, 128) * F(64, 33) == F(-81, 22)),
+        ("Step 5b: lambda_0 = (27/128)k b1b2 nu^{-13/8} in [0.615, 3.900] k h1h2 P^{-5/8}, inside printed [0.56, 4.2]", (27 / 128) * 9 * 2**-1.625 >= 0.56 and (27 / 128) * 4.3**2 <= 4.2),
         ("Step 5b: V/S = 3(0.35)^{-1/2}P^{5/16-11/24} = 5.07 P^{-7/48} <= 5.1 printed", F(5, 16) - F(11, 24) == -F(7, 48) and 3 * 0.35**-0.5 <= 5.1),
         ("Step 5b: V <= c_7 S/2 needs P >= 5.8e23 at c_7=1/288 (just inside P_0 ~ 1e24) and P >= 1.3e23 at the exact c_7=1/232", (2 * 288 * 5.07) ** (48 / 7) < 1e24 and (2 * 232 * 5.07) ** (48 / 7) < 2e23),
         ("Step 5b: V >= 3(0.35)^{1/2}P^{-37/48} = 1.775 >= 1.7 printed; V >= 10|f''-Lambda| from P ~ 4e12", F(-5, 16) - F(11, 24) == -F(37, 48) and 3 * 0.35**0.5 >= 1.7),
@@ -1820,7 +1908,7 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("7.3 density of the two length-five contractors plus OOOO*: 1/32+1/32+1/16 = 1/8", F(1, 32) + F(1, 32) + F(1, 16) == F(1, 8)),
         # the caps themselves: a parameter capped at C P^e is pinned to 1 until P = (2/C)^(1/e)
         ("caps: k, h_2, |l| at P^{1/24} admit a second value only from 2^24 = 16777216", 2**24 == 16777216),
-        ("caps: h_1 at P^{1/48} needs 2^48, which is above P_0 = 8.9e13 while 2^24 is below it", 2**48 > 8.9e13 > 2**24),
+        ("caps: h_1 at P^{1/48} needs 2^48, which is above P_0 = 3.6e13 while 2^24 is below it", 2**48 > 3.6e13 > 2**24),
         ("caps: h with h^{1/2} <= P^{1/24}, i.e. h <= P^{1/12}, needs only 2^12 = 4096", 2**12 == 4096),
         ("caps: j <= 2P^{1/24} is never pinned, (2/2)^{24} = 1", (F(2, 2)) ** 24 == 1),
         # the two Lemma 5.1(iii) bracket constants, which the census measures to seven digits
@@ -1862,30 +1950,30 @@ def appendix_a6_checks() -> list[dict[str, Any]]:
         return abs(a - b) <= rel * abs(b)
 
     # the c_7 lever: what it buys in total, and where it stops
-    gain = 8.9e13 / 2.98e11
+    gain = 3.5858e13 / 2.98e11
     # the R_0-dependent sites, at the three exponents the appendix quotes
     sites = {"P^{5/16}": 2.98e11, "P^{9/32}": 7.4e13, "P^{1/3}": 1.6e12}
     # Section 5's (i) sum and the bound it doubles to
-    sum_i_exact, sum_i_printed = 52.8795, 52.9
+    sum_i_exact, sum_i_printed = 85.2820, 85.3
 
     checks: list[tuple[str, bool]] = [
-        ("A.6 c_7 lever buys 8.9e13 -> 2.98e11, printed as a factor 300",
-         approx(gain, 300.0, 0.01)),
+        ("A.6 c_7 lever buys 3.6e13 -> 2.98e11, printed as a factor 120",
+         approx(gain, 120.3, 0.01)),
         ("A.6 next threshold 2.83e10 is an order below the 2.98e11 floor",
          5.0 <= 2.98e11 / 2.83e10 <= 20.0),
         ("A.6 the floor is the minimax over R_0, attained at P^{5/16}",
          min(sites, key=lambda k: sites[k]) == "P^{5/16}"),
         ("A.6 'a threshold below 3e11 needs a different site': the floor is below 3e11",
          2.98e11 < 3.0e11),
-        ("(i) 52.8795 <= 52.9 and the doubled bound 105.8 is printed 106",
-         sum_i_exact <= sum_i_printed and approx(2 * sum_i_printed, 105.8, 1e-9) and 105.8 <= 106.0),
-        ("the third displayed term 0.567 is printed 0.57, and 0.6 would pass 52.9",
-         round(0.567, 2) == 0.57 and sum_i_exact - 0.567 + 0.6 > 52.9),
-        ("the earlier draft's 8 is fourteen times the true 0.567",
-         approx(8.0 / 0.567, 14.0, 0.02)),
+        ("(i) 85.2820 <= 85.3 and the doubled bound 170.6 is printed 171",
+         sum_i_exact <= sum_i_printed and approx(2 * sum_i_printed, 170.6, 1e-9) and 170.6 <= 171.0),
+        ("the third displayed term 0.9070 is printed 0.91, and 0.95 would pass 85.3",
+         round(0.9070, 2) == 0.91 and sum_i_exact - 0.9070 + 0.95 > 85.3),
+        ("the earlier draft's 8 is nine times the true 0.9070",
+         approx(8.0 / 0.9070, 8.82, 0.02)),
         # the earlier draft's printed 219 is 202.5 + 16 = 218.5 rounded up, the same
         # convention as 105.8 -> 106; recorded so the 0.5 is not read as an error
-        ("earlier draft: 202.5 + 16 = 218.5, printed 219 by the same round-up as 105.8 -> 106",
+        ("earlier draft: 202.5 + 16 = 218.5, printed 219 by the same round-up as 170.6 -> 171",
          approx(202.5 + 16.0, 218.5, 1e-9) and 218.5 <= 219.0),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
@@ -2100,11 +2188,11 @@ DISPLAYED_PARAMETER_CAPS = [
 ]
 
 
-def parameter_cap_reach(P0: float = 8.9e13, ladder_top: int = 3 * 10**5) -> list[dict[str, Any]]:
+def parameter_cap_reach(P0: float = 3.5858e13, ladder_top: int = 3 * 10**5) -> list[dict[str, Any]]:
     """Which of the paper's parameter caps admit more than one value, and from what P.
 
     A cap 1 <= x <= C P^e pins x to 1 until P = (2/C)^(1/e).  For the two 1/24 caps that is
-    2^24 = 1.7e7; for h_1's 1/48 it is 2^48 = 2.8e14, which is above P_0 = 8.9e13, so h_1 = 1
+    2^24 = 1.7e7; for h_1's 1/48 it is 2^48 = 2.8e14, which is above P_0 = 3.6e13, so h_1 = 1
     holds throughout the regime the paper's own estimates are claimed in.  Anything checked below
     those thresholds exercises the degenerate branch only -- which is what the identity census was
     doing before it was widened, and what every kernel sum in the audit still does for k.
@@ -2237,7 +2325,7 @@ def summary() -> dict[str, Any]:
     edge = lemma_6_2_edge_search()
     margins = lemma_6_2_margin_certificate()
     directed = lemma_6_2_directed_search()
-    # P_0 = 8.9e13 is the effective threshold of Appendix A, so the first three points all sit
+    # P_0 = 3.6e13 is the effective threshold of Appendix A, so the first three points all sit
     # below the regime the standing estimates are claimed in; 1e14 and 1e16 straddle it.  The
     # low points remain because the ratios are furthest from their limits there, which makes
     # them the harder test -- but "harder" was an assumption until the claimed regime was
@@ -2273,6 +2361,7 @@ def summary() -> dict[str, Any]:
     kappa_optimum = kappa_optimum_check()
     p1_split = p1_cost_split()
     p1_provenance = p1_constant_provenance()
+    ladder = reach_ladder()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2306,6 +2395,7 @@ def summary() -> dict[str, Any]:
         "kappa_optimum_check": kappa_optimum,
         "p1_cost_split": p1_split,
         "p1_constant_provenance": p1_provenance,
+        "reach_ladder": ladder,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

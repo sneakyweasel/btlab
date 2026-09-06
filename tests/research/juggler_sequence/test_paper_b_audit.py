@@ -829,3 +829,16 @@ def test_the_two_transition_constants_cannot_share_one_C_of_E() -> None:
     assert "is never assigned a value anywhere in the paper" in text
     assert r"\le8P\,(V/(c_7S))^{1/2}" in text          # the proof's r=4 constant
     assert r"\le4PV/(c_7S)" in text                    # and its r=3 one, which A.5 does carry
+
+
+def test_no_internal_threshold_reaches_the_conclusions_own_crossover() -> None:
+    """P_0 and both readings of P_1 sit below 2^96, so last entry's discrepancy cannot move reach."""
+    import math
+
+    r = A.reach_ladder()
+    assert r["every_internal_threshold_below_the_bare_crossover"]
+    assert r["orders_of_headroom"] > 1
+    assert abs(r["bare_exponent_crossover_log10"] - 96 * math.log10(2)) < 1e-9
+    assert r["sharp_form_crossover_log10"] > 200          # the log form is 200 orders further out
+    internal = [x for x in r["rungs"] if x["internal"]]
+    assert len(internal) == 4 and max(x["log10_P"] for x in internal) < 28

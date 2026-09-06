@@ -2033,3 +2033,44 @@ Lemma 3.9(i), the display in A.5, and the sentence in A.6; a reader
 checking \(P_1\) has to pick one. COMPUTATIONALLY VERIFIED for the four
 \(P_1\) values; the algebra \((y-x)^2\le64VP^2/(c_7S)\Rightarrow8P\) is
 EXACT.
+
+## The whole ladder, and which rung governs
+
+| threshold | \(P\) | what it certifies |
+|---|---|---|
+| \(P_0\) | \(10^{13.6}\) | the printed inequalities hold |
+| \(P_1\), as A.5 prints it | \(10^{19.0}\) | the middle band beats counting |
+| \(P_1\), at Lemma 3.9's proof constants | \(10^{24.2}\) | the same, one \(r{=}4\) interval |
+| \(P_1\), those constants with two intervals | \(10^{27.3}\) | the same, worst reading |
+| \(2^{96}\) | \(10^{28.9}\) | bare \(P^{1-1/96}\) beats \(P/2\) |
+| sharp form vs \(P/2\) | \(10^{224.2}\) | \(P^{1-1/96}\log^{3/4}P\le P/2\) |
+| Step 5b's log absorption | \(10^{267.9}\) | \(C\log P\le P^{1/96}\) |
+| Theorem 6.3's | \(10^{1244.6}\) | \(\log^{15/4}P\le P^{1/96}\) |
+
+**None of the internal rungs governs.** Every one of them --- \(P_0\),
+and \(P_1\) on all three readings of the entry above --- sits below
+\(2^{96}\), the point at which the bare exponent first beats counting.
+The worst reading, \(10^{27.3}\), still leaves \(1.6\) orders of
+headroom. So the \(r{=}4\) discrepancy recorded above, however it
+resolves, cannot move where Theorem 5.3 starts to say something:
+\(9.8\cdot10^{18}\) and \(2.0\cdot10^{27}\) are on the same side of the
+line that matters. That is the most useful thing to know about it.
+
+**What governs is the shape of the conclusion.** In the sharp form
+\(K_c\ll P^{1-1/96}\log^{3/4}P\), the crossover with \(P/2\) is
+\(10^{224}\) --- \(195\) orders past every internal threshold. In the
+printed \(\varepsilon\)-form there is no finite crossover at all, since
+the \(\varepsilon\) absorbs the log by construction; that is precisely
+why \S3 says the \(\varepsilon\)-form is used at Step 5b rather than the
+sharp one, and why Appendix A's log-absorption table is labelled a
+diagnostic and kept out of \(P_0\).
+
+**So what are \(P_0\) and \(P_1\) for?** Internal consistency, not
+practical content, and the paper says so where it introduces \(P_1\):
+"Between \(P_0\) and \(P_1\) the middle-band estimate is true but weaker
+than the trivial bound; the theorem is asymptotic and its implied
+constant absorbs the difference." Read that way the certificate is doing
+exactly its job, and the four passes of this ledger that chased factors
+of \(7\) and \(2.5\) were sharpening a number that was never the reach.
+COMPUTATIONALLY VERIFIED; \(2^{96}\) and the exponent arithmetic are
+EXACT.
