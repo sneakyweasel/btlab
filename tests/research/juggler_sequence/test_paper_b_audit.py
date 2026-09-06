@@ -775,3 +775,17 @@ def test_the_same_mismatch_appears_at_st5b_qpp_and_not_at_the_c_rows() -> None:
     # fixing every pairing still leaves the maximum with the interpolant row, well clear of the rest
     assert r["P0_with_every_pairing_fixed"] > 10 * r["largest_untouched_row_P"]
     assert r["P0_with_every_pairing_fixed"] < r["certified_P0"]
+
+
+def test_the_prose_percentages_are_current_and_the_repair_inverts_them() -> None:
+    """Step 5b's "55% and 45% ... 70:30" holds under the constants now in the tree."""
+    r = A.step5b_budget_split()
+    assert r["prose_is_current"]
+    text = _paper()
+    assert r"\(55\%\)" in text and r"\(45\%\)" in text and r"\(70{:}30\)" in text
+    # and the repair moves both: V takes about three quarters, and inside E the parameter-free
+    # term overtakes the k(h1+h2) term, so the row stops being interpolant-dominated
+    assert r["repair_inverts_the_E_split"] and r["repair_makes_the_row_V_dominated"]
+    assert r["after_the_pairing_repair"]["P"] < r["as_printed"]["P"]
+    for d in (r["as_printed"], r["after_the_pairing_repair"]):
+        assert abs(d["W_over_budget"] - 1.0) < 1e-6      # both are evaluated at their thresholds

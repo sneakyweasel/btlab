@@ -1744,3 +1744,55 @@ The manuscript is already alert to this site --- it notes that merging
 keeps the two terms apart for exactly that reason. It took the first
 step and not the second: having split the sum, the \(h\) in the first
 term still cancels.
+
+## The loose route is in the prose, and the right form is three pages earlier
+
+The two mispairings above are not the appendix's doing. The manuscript
+takes the loose route itself, and it also states the correct form
+elsewhere --- the two are three pages apart.
+
+**The correct form, Step 5b's \(\rho\le\rho_0\) check.** "In the middle
+band of Step 5b one has \(S\ge0.56\,kh_1h_2P^{-5/8}\) (and
+\(S\ge0.56P^{-5/8}\) whenever \(kh_1h_2\ge1\))", and the three
+\(c\)-derivative numerators carry \(k\), so the \(k\) cancels and the
+ratios come out \(\le C_iP^{-1/4}\) with absolute \(C_i\). Symbolic on
+both sides, correctly paired.
+
+**The loose form, Step 5b's splitting.** Three pages later:
+\(E:=\sup\lvert f''-\Lambda\rvert\le171P^{-25/24}+0.11P^{-5/6}\), the
+converted form, and \(W\le c_7S/2\) is then checked "at the lower end
+\(S\ge0.56P^{-5/8}\)". Step 5a does the same at
+\(S\ge0.60P^{-5/8}\) against \(106P^{-25/24}+0.11P^{-5/6}\). The
+appendix transcribes these faithfully, so a repair is a change to the
+prose, not to the certificate.
+
+**What the repair reads.** Keeping \(E\) symbolic through the division:
+\[
+\frac ES
+\le\frac{85.3\,k(h_1{+}h_2)P^{-9/8}+0.11P^{-5/6}}{0.56\,kh_1h_2P^{-5/8}}
+=152.3\Bigl(\frac1{h_1}{+}\frac1{h_2}\Bigr)P^{-1/2}
++\frac{0.196}{kh_1h_2}P^{-5/24}
+\le304.6\,P^{-1/2}+0.196\,P^{-5/24},
+\]
+both maxima attained at the *same* cell \(k=h_1=h_2=1\), so the bound is
+sharp as a pair and not merely termwise. EXACT.
+
+**What it changes downstream.** The prose also reports the shape of the
+budget at the threshold --- "\(V\) and \(E\) take \(55\%\) and \(45\%\)
+of the budget \(c_7S/2\), and \(E\) itself splits \(70{:}30\) between
+its two terms". Both are current under the constants now in the tree
+(checked, `step5b_budget_split`). After the repair the threshold falls to
+\(4.89\cdot10^{12}\) and the shape inverts:
+
+| | \(V\) : \(E\) | \(E\)'s own split |
+|---|---|---|
+| as printed, at \(3.59\cdot10^{13}\) | \(55:45\) | \(70:30\) |
+| repaired, at \(4.89\cdot10^{12}\) | \(73:27\) | \(24:76\) |
+
+So after the repair the row is \(V\)-dominated, and inside \(E\) the
+parameter-free \(0.11P^{-5/6}\) term overtakes the \(k(h_1{+}h_2)\) term
+that used to carry it. The practical reading: sharpening \(E\) further
+buys almost nothing once the pairing is fixed --- the next improvement
+has to come from \(\kappa\) and \(c_7\), which is where the prose
+already says the balance now lives. COMPUTATIONALLY VERIFIED at the
+constants in the tree; the pairing exponents are not constant-dependent.

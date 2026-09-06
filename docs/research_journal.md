@@ -30957,3 +30957,73 @@ Best next question
   state the ratios in the cancelled form somewhere and only the
   appendix takes the loose route?
 ```
+
+## The paper contains both forms, three pages apart
+
+Following the last entry's question: is the loose route the appendix's
+or the paper's? The paper's -- and the paper also contains the right
+form, earlier in the same step.
+
+**Right, at the rho <= rho_0 check.** "In the middle band of Step 5b one
+has `S >= 0.56 k h1 h2 P^(-5/8)` (and `S >= 0.56 P^(-5/8)` whenever
+`k h1 h2 >= 1`)", with the three `c`-derivative numerators carrying `k`,
+so the `k` cancels and the ratios are `C_i P^(-1/4)` with absolute
+`C_i`. Symbolic on both sides.
+
+**Loose, at the splitting three pages later.**
+`E := sup|f'' - Lambda| <= 171 P^(-25/24) + 0.11 P^(-5/6)` -- already
+converted -- and then `W <= c_7 S/2` is checked "at the lower end
+`S >= 0.56 P^(-5/8)`". Step 5a does the same at `0.60 P^(-5/8)` against
+`106 P^(-25/24) + 0.11 P^(-5/6)`. The appendix transcribes both
+faithfully, so the repair is a change to the prose.
+
+**The repair.** Keeping `E` symbolic through the division,
+`E/S <= 152.3 (1/h1 + 1/h2) P^(-1/2) + 0.196 (k h1 h2)^(-1) P^(-5/24)
+     <= 304.6 P^(-1/2) + 0.196 P^(-5/24)`,
+and both maxima are attained at the *same* cell `k = h1 = h2 = 1`, so
+the pair is sharp and not just each term separately.
+
+**What it moves.** The prose reports the budget's shape at the
+threshold: "`V` and `E` take 55% and 45% of `c_7 S/2`, and `E` itself
+splits 70:30". Both are current under the revised constants -- checked.
+After the repair the threshold falls to `4.89e12` and the shape inverts:
+
+| | V : E | E's own split |
+|---|---|---|
+| as printed, at `3.59e13` | `55:45` | `70:30` |
+| repaired, at `4.89e12` | `73:27` | `24:76` |
+
+So the row becomes `V`-dominated and, inside `E`, the parameter-free
+`0.11 P^(-5/6)` term overtakes the `k(h1+h2)` term that used to carry
+it. Sharpening `E` further buys almost nothing once the pairing is
+fixed; the next improvement has to come from `kappa` and `c_7`, which is
+where the prose already says the balance lives.
+
+```text
+What was learned
+- the manuscript holds both forms of the same comparison, the correct
+  one at the rho check and the loose one at the splitting
+- the two E maxima coincide at k = h1 = h2 = 1, so the repaired bound
+  is sharp as a pair, not merely termwise
+- the printed 55:45 and 70:30 are current, so the concurrent constant
+  revision has kept them in step
+- after the repair the binding row stops being interpolant-dominated
+Strongest theorem
+- E/S <= 304.6 P^(-1/2) + 0.196 P^(-5/24), both maxima at one cell
+Strongest refutation
+- none; the paper is safe throughout, and its own earlier paragraph is
+  the model for the repair
+Reusable machinery
+- step5b_budget_split, which reads the shares off the certificate's
+  constants and checks the printed percentages against them; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  A repair is worth more when the paper already contains its own
+  precedent. This one is three pages up, in the same step, in the same
+  notation.
+Best next question
+- after the repair the row is V-dominated and V = kappa S^(1/2)
+  P^(-11/24). The certificate carries a kappa_tradeoff table. Does the
+  optimal kappa move once E stops dominating, and by how much?
+```

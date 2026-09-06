@@ -624,6 +624,49 @@ def p0_pairing_sweep() -> dict[str, Any]:
         "largest_untouched_row_P": untouched,
     }
 
+def step5b_budget_split() -> dict[str, Any]:
+    """How the c_7 S/2 budget divides at the threshold, as printed and after the pairing repair.
+
+    Step 5b's prose reads "At that threshold V and E take 55% and 45% of the budget c_7 S/2, and E
+    itself splits 70:30 between its two terms."  Both hold under the constants now in the tree, so
+    that sentence is current.  What moves them is the pairing: charging the interpolant error at
+    one cell instead of at k(h1+h2) = 2 P^{1/12} lowers the threshold, and at the lower threshold
+    the split inverts -- V takes about three quarters, and inside E the parameter-free 0.11 P^{-5/6}
+    term overtakes the k(h1+h2) term it used to dominate.
+
+    That is the useful consequence for the paper: after the repair the binding row is V-dominated,
+    so the next improvement comes from kappa and c_7, not from sharpening E.
+    """
+
+    c7 = p0_certificate.C7
+    kappa = p0_certificate.KAPPA
+    pairing = p0_pairing_check()
+    a = pairing["interpolant_first_coefficient"]
+    b = pairing["interpolant_second_coefficient"]
+    s0 = 0.56
+
+    def split(P: float, first_exponent: float) -> dict[str, float]:
+        S = s0 * P ** (-5 / 8)
+        V = kappa * S**0.5 * P ** (-11 / 24)
+        e1 = a * P**first_exponent
+        e2 = b * P ** (-5 / 6)
+        budget = c7 * S / 2
+        return {"P": P, "V_share": V / budget, "E_share": (e1 + e2) / budget,
+                "E_first_share_of_E": e1 / (e1 + e2), "E_second_share_of_E": e2 / (e1 + e2),
+                "W_over_budget": (V + e1 + e2) / budget}
+
+    printed = split(pairing["rows"][0]["certified_least_P"], -25 / 24)
+    repaired = split(pairing["rows"][0]["same_cell_least_P"], -9 / 8)
+    return {
+        "as_printed": printed,
+        "after_the_pairing_repair": repaired,
+        "prose_says_V_share": 0.55,
+        "prose_says_E_first_share": 0.70,
+        "prose_is_current": abs(printed["V_share"] - 0.55) < 0.01 and abs(printed["E_first_share_of_E"] - 0.70) < 0.01,
+        "repair_inverts_the_E_split": repaired["E_second_share_of_E"] > repaired["E_first_share_of_E"],
+        "repair_makes_the_row_V_dominated": repaired["V_share"] > 0.7,
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -2041,6 +2084,7 @@ def summary() -> dict[str, Any]:
     gaps = appendix_a_gaps()
     pairing = p0_pairing_check()
     pairing_sweep = p0_pairing_sweep()
+    budget_split = step5b_budget_split()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2070,6 +2114,7 @@ def summary() -> dict[str, Any]:
         "appendix_a_gaps": gaps,
         "p0_pairing_check": pairing,
         "p0_pairing_sweep": pairing_sweep,
+        "step5b_budget_split": budget_split,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
