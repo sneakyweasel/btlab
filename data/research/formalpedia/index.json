@@ -40020,6 +40020,566 @@
       "trust": "kernel"
     },
     {
+      "doc": "Every start above a residual floor carries a finite-progress certificate, and every positive start at most the floor already reaches `1`. Then every positive start reaches `1`. The certificate hypothesis is universal, not a density statement.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 33,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "reachesOne_of_floor_and_certificates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "instance",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "instDecidablePrefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "All parity words of length `d`, built by appending the next letter.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 60,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "allWords",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "mem_allWords",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 95,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "itinerary_mem_allWords",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Starts in `{1, \u2026, N}` whose length-`|w|` itinerary is `w`.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "classCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "classCount_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 106,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "classCount_fiber_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Length-`d` itineraries partition `{1, \u2026, N}`.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 117,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "classCount_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Prefix-noncontracting words of length `d`. This is `N_d` as a set.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 154,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "neverNegWords",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 157,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "neverNegCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 159,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "neverNegWords_subset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Starts in `{1, \u2026, N}` whose length-`d` itinerary is prefix-noncontracting.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 163,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "uncertifiedCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 166,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "prefixNoncontracting_iff_mem_neverNeg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 171,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "uncertifiedCount_eq_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Finite Proposition J. One-sided class bounds `#w(N) \u00b7 2^d \u2264 N + E \u00b7 2^d` lift to the uncertified count.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 216,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "propJ_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 232,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "itinerary_take",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 243,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "exponentGap_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A start with no coefficient stop has every finite itinerary prefix-noncontracting.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 248,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "not_coeffStop_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 263,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "neverCertified_subset_uncertified",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 269,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "neverCertifiedCount_le_uncertified",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Finite Lemma A: qualitative class bounds at a fixed depth control any finite set of never-certified starts in `{1, \u2026, N}`. The limit order `N \u2192 \u221e` before `d \u2192 \u221e` stays prose.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 277,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "lemmaA_finite",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 286,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "prefixNoncontracting_not_gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 291,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "neverNeg_endpoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Node partition: the two one-letter extensions do not exceed the parent.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 299,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "WeightSplit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Node-wise odd share at most `1 - \u03b2`.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 304,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "OddShareBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 310,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "allWords_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 315,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "weightGen_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 319,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "append_singleton_inj",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 325,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "weight_split_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 344,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "extend_fiber_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 360,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "weightGen_inner",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 370,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "weightGen_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Generating-function domination for a node-wise odd-share bound. This is the algebraic half of the biased-split reduction.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 388,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "weightGen_domination",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Markov tilt of a nonnegative word weight: the mass on `oddCount \u2265 k` is at most `weightGen / x^k`. Combined with `weightGen_domination` this is the Chernoff engine; the optimal tilt that fires exactly when `\u03b2` is strictly above `1 - log 2 / log 3` stays prose.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 438,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "weight_markov",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fair to depth `k`, then all-odd: Bernoulli on every word of length at most `k`, and after that the unique all-odd continuation of each length-`k` prefix.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 482,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "fairThenAllOdd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 490,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "fairThenAllOdd_bernoulli",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 495,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "fairThenAllOdd_allOdd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 502,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "allOdd_prefixNoncontracting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The all-odd ray keeps mass `2^{-k}` at every depth `d \u2265 k`. A word measure fair to depth `k` and all-odd afterwards therefore satisfies every depth-`\u2264 k` Bernoulli count and keeps a positive never-contracting mass, so no bounded-depth certificate statement can force the live mass to vanish.",
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ],
+      "line": 523,
+      "module": "Problems.Juggler.RateFreeDensity",
+      "name": "fairThenAllOdd_live_mass",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/Residuals.lean",
       "kind": "theorem",
@@ -62749,6 +63309,7 @@
         "Problems.Juggler.PreimageCylinders",
         "Problems.Juggler.Preimages",
         "Problems.Juggler.Progress",
+        "Problems.Juggler.RateFreeDensity",
         "Problems.Juggler.Residuals",
         "Problems.Juggler.RotationAverage",
         "Problems.Juggler.RunSurvivorLattice",
@@ -64046,6 +64607,30 @@
         }
       ]
     },
+    "Problems.Juggler.RateFreeDensity": {
+      "declarations": 40,
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "imports": [
+        "Problems.Juggler.Progress"
+      ],
+      "ledger": [
+        {
+          "id": "J-rate-free-density-one",
+          "statement": "Rate-free and biased-split reductions of the density-one hypothesis. (A) If for each FIXED depth d every parity class w of length d satisfies #w(N) = 2^{-d} N + o(N) as N -> infinity (qualitative, no rate, non-uniform in d), then the set of Juggler starts with a finite descent certificate has natural density one: Proposition J's inequality (row J-equidistribution-implies-density-one) #(no contracting prefix <= d) <= (N_d/2^d) N + N_d E_d(N), with N -> infinity taken BEFORE d -> infinity, gives upper density <= N_d/2^d for every d (and <= e^{-cd} via the closed form); certificates are the Lean power envelope (power_bound_word: an exponent-negative prefix 3^{a_k} < 2^k forces x_k <= n^{3^a/2^k} < n). (B) Full equidistribution is not needed: if for each fixed depth every surviving class sends O-share at most 1 - beta with beta > beta* = 1 - log2/log3 = 0.36907..., rate-free, then the never-contracting measure at depth d is <= exp(-D(gamma || 1-beta) d) by generating-function domination (sum over classes of mu(sigma) x^{o(sigma)} <= (beta + (1-beta)x)^d) and Chernoff at gamma = log2/log3 (a never-contracting itinerary has o_d >= gamma d), and density one follows the same way. Consequence for the K3 wall: the BB/GG/JJ obstruction ladder (rows J-k3-toolkit-obstruction, J-intra-block-harmonic-obstruction, J-derandomization-obstruction) blocks power-savings mechanisms only; the weakest sufficient kernel input is rate-free (or 0.37-biased) fixed-depth equidistribution - recorded as the active conjecture juggler_tower_rate_free_equidistribution, ergodic species (bracket-Hardy / nilmanifold), outside the toolkit the wall closes. Exact profiles: never-negative word count C_200/2^200 = 3.06e-6 (empirical rate 0.0635/letter, Hoeffding majorizes at 0.0343 -- the apparent factor of two is the d^{-3/2} of row J-equidistribution-implies-density-one, not a different exponential rate; the observed rate falls to 0.0401 by d = 1600 against an asymptote of 0.034688); biased adversary at beta = 0.37 decays at 0.0154/letter at d = 200. Not a K3 bound, not a density-one claim, not a halt theorem; Conjectures K/V/HH stay PARKED unchanged; Paper B untouched.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
+        {
+          "id": "J-rate-free-prop-j-finite",
+          "statement": "Finite Proposition J. If every length-d parity class w satisfies classCount w N * 2^d <= N + E * 2^d, then the number of starts in 1..N whose length-d itinerary is prefix-noncontracting obeys uncertifiedCount d N * 2^d <= neverNegCount d * (N + E * 2^d). Any finite set of starts in 1..N with no coefficient stop sits inside that uncertified set. Lean theorem propJ_count. Not a density-one claim and not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-rate-free-floor-certificates",
+          "statement": "If every positive m <= N0 reaches 1 and every n > N0 has FiniteProgress, then every positive n reaches 1. Lean theorem reachesOne_of_floor_and_certificates. The certificate hypothesis is universal, not a density statement. Not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
     "Problems.Juggler.Residuals": {
       "declarations": 70,
       "file": "formal/Problems/Juggler/Residuals.lean",
@@ -64500,13 +65085,13 @@
     }
   },
   "totals": {
-    "declarations": 4578,
-    "declarations_with_a_ledger_row": 3101,
-    "ledger_rows_naming_a_file": 321,
-    "modules": 189,
+    "declarations": 4618,
+    "declarations_with_a_ledger_row": 3141,
+    "ledger_rows_naming_a_file": 324,
+    "modules": 190,
     "trust": {
       "compiler": 55,
-      "kernel": 4523
+      "kernel": 4563
     }
   }
 }

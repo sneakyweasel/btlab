@@ -1,5 +1,5 @@
 {
-  "composite": 29,
+  "composite": 26,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -2606,56 +2606,9 @@
     {
       "candidates": [
         {
-          "decl": "lambda2_box_invariant",
-          "line": 69,
-          "score": 0.182,
-          "trust": "kernel"
-        },
-        {
-          "decl": "finite_residual_condition",
-          "line": 111,
-          "score": 0.176,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lambda1_reachable_box",
-          "line": 43,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "signedNext",
-          "line": 15,
-          "score": 0.0
-        },
-        {
-          "decl": "signedOut",
-          "line": 18,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-sdr-finite-condition",
-      "in_file": 34,
-      "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
-      "names_own": [],
-      "statement": "For F_{\u03bb,U_m}(s,u)=\u03bb\u00b7D(s+u) and every integer \u03bb\u22650, a finite invariant box containing 0 exists if and only if \u03bb\u22642 or m\u22641."
-    },
-    {
-      "candidates": [
-        {
           "decl": "multi_trit_carry_bound",
           "line": 373,
           "score": 0.188,
-          "trust": "kernel"
-        },
-        {
-          "decl": "finite_residual_condition",
-          "line": 111,
-          "score": 0.13,
           "trust": "kernel"
         },
         {
@@ -2663,45 +2616,10 @@
           "line": 69,
           "score": 0.118,
           "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "signedNext",
-          "line": 15,
-          "score": 0.0
         },
         {
-          "decl": "signedOut",
-          "line": 18,
-          "score": 0.0
-        }
-      ],
-      "id": "BTN-sdr-multi-trit",
-      "in_file": 34,
-      "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
-      "names_own": [],
-      "statement": "r-way trit addition s'=D(s+a_1+\u22ef+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the \u03bb=1 box |s|\u2264\u230ar/2\u230b is invariant. The count 2\u230ar/2\u230b+1 equals 1,3,3,5 for r=1,2,3,4."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "gain3_control2_unbounded",
-          "line": 105,
-          "score": 0.154,
-          "trust": "kernel"
-        },
-        {
-          "decl": "finite_residual_condition",
-          "line": 111,
-          "score": 0.083,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_le_one",
-          "line": 134,
+          "decl": "DZ_of_trit",
+          "line": 24,
           "score": 0.083,
           "trust": "kernel"
         }
@@ -2720,8 +2638,49 @@
           "score": 0.0
         }
       ],
+      "id": "BTN-sdr-multi-trit",
+      "in_file": 33,
+      "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
+      "names_own": [],
+      "statement": "r-way trit addition s'=D(s+a_1+\u22ef+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the \u03bb=1 box |s|\u2264\u230ar/2\u230b is invariant. The count 2\u230ar/2\u230b+1 equals 1,3,3,5 for r=1,2,3,4."
+    },
+    {
+      "candidates": [
+        {
+          "decl": "gain3_control2_unbounded",
+          "line": 105,
+          "score": 0.154,
+          "trust": "kernel"
+        },
+        {
+          "decl": "lsdZ_le_one",
+          "line": 134,
+          "score": 0.083,
+          "trust": "kernel"
+        },
+        {
+          "decl": "gain3_control2_eq",
+          "line": 102,
+          "score": 0.077,
+          "trust": "kernel"
+        }
+      ],
+      "composite": false,
+      "confidence": "review",
+      "definitions": [
+        {
+          "decl": "signedNext",
+          "line": 15,
+          "score": 0.0
+        },
+        {
+          "decl": "signedOut",
+          "line": 18,
+          "score": 0.0
+        }
+      ],
       "id": "BTN-sdr-escape-general",
-      "in_file": 34,
+      "in_file": 33,
       "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
       "names_own": [],
       "statement": "If \u03bb\u22653 and |u|\u22652 then the constant-control orbit of F_{\u03bb,U} from 0 is unbounded: at \u03bb=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at \u03bb\u22654 the step is strictly expanding on the matching ray."
@@ -4065,12 +4024,6 @@
     {
       "candidates": [
         {
-          "decl": "no_cycle_itinerary_length_le_eleven",
-          "line": 342,
-          "score": 0.345,
-          "trust": "kernel"
-        },
-        {
           "decl": "no_cycle_itinerary_length_le_ten",
           "line": 224,
           "score": 0.321,
@@ -4081,10 +4034,16 @@
           "line": 319,
           "score": 0.207,
           "trust": "kernel"
+        },
+        {
+          "decl": "finance_contradicts_min_two_hundred_sixty_one",
+          "line": 757,
+          "score": 0.206,
+          "trust": "kernel"
         }
       ],
       "composite": true,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "financeRows53",
@@ -4098,7 +4057,7 @@
         }
       ],
       "id": "J-small-cycle-census-ten",
-      "in_file": 43,
+      "in_file": 41,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "no_cycle_itinerary_length_nine",
@@ -4110,111 +4069,21 @@
     {
       "candidates": [
         {
-          "decl": "no_cycle_itinerary_length_le_eleven",
-          "line": 342,
-          "score": 0.22,
-          "trust": "kernel"
-        },
-        {
-          "decl": "no_cycle_itinerary_length_le_eighteen",
-          "line": 436,
-          "score": 0.214,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycle_finance_min_fifty_three",
-          "line": 288,
-          "score": 0.182,
-          "trust": "kernel"
-        }
-      ],
-      "composite": true,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "EliahouLeftover",
-          "line": 861,
-          "score": 0.143
-        },
-        {
-          "decl": "financeRows53",
-          "line": 409,
-          "score": 0.07
-        }
-      ],
-      "id": "J-small-cycle-census-eleven",
-      "in_file": 43,
-      "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
-      "names_own": [
-        "cycle_finance_min_fifty_three",
-        "finance_excludes_length_eleven",
-        "no_cycle_itinerary_length_le_eleven"
-      ],
-      "statement": "No itinerary of length at most eleven is a Juggler cycle itinerary at any n \u2265 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least twelve, and in fact at least fourteen by J-cycle-itinerary-length-ge-fourteen. Strengthened by J-small-cycle-census-eighteen. Length 11 is the first near-convergent (2^11 < 3^7); the residual floor 53 plus cycle_finance_min_fifty_three exclude"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "no_cycle_itinerary_length_le_eleven",
-          "line": 342,
-          "score": 0.312,
-          "trust": "kernel"
-        },
-        {
-          "decl": "finance_excludes_length_eleven",
-          "line": 319,
-          "score": 0.226,
-          "trust": "kernel"
-        },
-        {
-          "decl": "no_cycle_itinerary_length_le_ten",
-          "line": 224,
-          "score": 0.212,
-          "trust": "kernel"
-        }
-      ],
-      "composite": true,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "financeRows53",
-          "line": 409,
-          "score": 0.152
-        },
-        {
-          "decl": "financeRows257",
-          "line": 639,
-          "score": 0.147
-        }
-      ],
-      "id": "J-small-cycle-census-eighteen",
-      "in_file": 43,
-      "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
-      "names_own": [
-        "cycle_finance_min_fifty_three",
-        "finance_excludes_length_fourteen",
-        "no_cycle_itinerary_length_le_eighteen"
-      ],
-      "statement": "No itinerary of length at most 18 is a Juggler cycle itinerary at any n \u2265 2, except that length 19 is not excluded here. Lengths \u2264 11 are J-small-cycle-census-eleven; lengths 12, 13, and 16 remain excluded at the residual floor 12; lengths 14, 15, 17, and 18 are excluded by cycle_finance_min_fifty_three (finance_excludes_length_fourteen and companions, packaged as no_cycle_itinerary_length_le_eigh"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "no_cycle_itinerary_length_le_eighteen",
-          "line": 436,
-          "score": 0.278,
-          "trust": "kernel"
-        },
-        {
-          "decl": "no_cycle_itinerary_length_le_eleven",
-          "line": 342,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
           "decl": "cycle_finance_min_two_hundred_fifty_seven",
           "line": 550,
           "score": 0.231,
+          "trust": "kernel"
+        },
+        {
+          "decl": "finance_contradicts_min_two_hundred_sixty_one",
+          "line": 757,
+          "score": 0.205,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cycle_itinerary_length_nineteen_or_ge_twenty",
+          "line": 478,
+          "score": 0.2,
           "trust": "kernel"
         }
       ],
@@ -4233,7 +4102,7 @@
         }
       ],
       "id": "J-small-cycle-census-nineteen",
-      "in_file": 43,
+      "in_file": 41,
       "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
       "names_own": [
         "cycle_finance_min_two_hundred_fifty_seven",
@@ -4347,9 +4216,9 @@
           "trust": "kernel"
         },
         {
-          "decl": "cycleMin_prefix_odds_ge_hug",
-          "line": 154,
-          "score": 0.182,
+          "decl": "hugOdds_pow_gt",
+          "line": 133,
+          "score": 0.178,
           "trust": "kernel"
         }
       ],
@@ -4368,7 +4237,7 @@
         }
       ],
       "id": "J-cyclemin-walk-word-identity",
-      "in_file": 24,
+      "in_file": 23,
       "lean": "Problems/Juggler/WalkChargeItineraries.lean",
       "names_own": [
         "hugOdds_pow_ge",
@@ -4378,56 +4247,6 @@
         "budgetedWord_eq_hugWord"
       ],
       "statement": "Discrete side of the walk-charge itinerary identity (Paper A Lemma 5.6) and the combinatorial core of the hug exchange (Paper A Theorem 5.4). For the exact hug rule \u2014 the letter at position k with a odd letters used is even iff 2^(k+1) \u2264 3^a \u2014 the odd count hugOdds satisfies the unit-window invariant 2^k \u2264 3^(hugOdds k) < 3\u00b72^k at every prefix (hugOdds_pow_ge, hugOdds_pow_lt), is the least odd bud"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "cycleMin_prefix_odds_ge_hug",
-          "line": 154,
-          "score": 0.258,
-          "trust": "kernel"
-        },
-        {
-          "decl": "hugOdds_pow_gt",
-          "line": 133,
-          "score": 0.219,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycleMin_odds_ge_hug",
-          "line": 161,
-          "score": 0.218,
-          "trust": "kernel"
-        }
-      ],
-      "composite": true,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "hugOdds",
-          "line": 53,
-          "score": 0.086
-        },
-        {
-          "decl": "budgetedOdds",
-          "line": 206,
-          "score": 0.086
-        }
-      ],
-      "id": "J-cyclemin-hug-prefix-bound",
-      "in_file": 24,
-      "lean": "Problems/Juggler/WalkChargeItineraries.lean",
-      "names_own": [
-        "cycleMin_prefix_odds_ge_hug",
-        "cycleMin_odds_ge_hug",
-        "hugOdds_least",
-        "hugOdds_pow_gt",
-        "hugOdds_1054",
-        "hugOdds_lattice_base",
-        "hugOdds_seed",
-        "hugOdds_convergent_denoms"
-      ],
-      "statement": "Cycle itineraries dominate the hug itinerary (Paper A Section 5.3 remark). On any minimum-based cycle itinerary w at minimum n \u2265 2, every length-k prefix carries at least hugOdds k = o_min(k) odd letters (cycleMin_prefix_odds_ge_hug; full word cycleMin_odds_ge_hug), by composing the formalized cycle prefix envelope 2^k \u2264 3^(oddCount (w.take k)) (cycleMin_prefix_pow_le, CycleFinance) with hug minim"
     },
     {
       "candidates": [
@@ -5091,6 +4910,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 129,
-  "worth_reviewing": 19
+  "unresolved": 125,
+  "worth_reviewing": 21
 }

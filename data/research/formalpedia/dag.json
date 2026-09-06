@@ -1627,6 +1627,22 @@
         "kernel": 20
       }
     },
+    "Problems.Juggler.RateFreeDensity": {
+      "declarations": 40,
+      "depends_on": [
+        "Problems.Juggler.Progress"
+      ],
+      "file": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "ledger": [
+        "J-rate-free-density-one",
+        "J-rate-free-floor-certificates",
+        "J-rate-free-prop-j-finite"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 40
+      }
+    },
     "Problems.Juggler.Residuals": {
       "declarations": 70,
       "depends_on": [
@@ -1893,9 +1909,9 @@
     }
   },
   "totals": {
-    "edges": 123,
-    "edges_before_reduction": 930,
-    "ledger_rows_placed": 321,
-    "nodes": 115
+    "edges": 124,
+    "edges_before_reduction": 936,
+    "ledger_rows_placed": 324,
+    "nodes": 116
   }
 }
