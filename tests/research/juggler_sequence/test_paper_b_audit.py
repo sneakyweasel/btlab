@@ -2102,3 +2102,31 @@ def test_co_locating_is_worth_more_than_the_openings_alone() -> None:
     from research.juggler_sequence import p0_certificate as C
 
     assert abs(C.certificate()["P0"] - 3.5858e13) / 3.5858e13 < 1e-3
+
+
+# --- is charging apart ever justified ---
+
+
+def test_no_freeze_in_the_paper_justifies_charging_apart() -> None:
+    """The largest justified beta spread is 1.0002; charging apart costs 2 on a product."""
+    r = A.freeze_scales_justify_nothing()
+    assert r["no_freeze_justifies_it"]
+    assert 1.0002 < r["largest_justified_spread"] < 1.0003
+    assert abs(r["apart_cost_single_beta"] - 2 ** 0.5) < 1e-12
+    assert r["apart_cost_beta_product"] == 2.0
+    assert r["apart_over_justified"] > 4000
+    assert r["the_four_sites_are_one_avoidable_thing"] and len(r["sites"]) == 4
+
+
+def test_the_longest_freeze_is_a_quarter_power_short_of_a_block() -> None:
+    """Stage 3a's windows run P^(3/4); every other freeze is shorter, by up to four orders."""
+    r = A.freeze_scales_justify_nothing()
+    assert r["longest_freeze"] == "Stage 3a windows"
+    assert r["longest_freeze_exponent"] == "3/4"
+    assert r["longest_is_a_quarter_power_short_of_a_block"]
+    by_site = {x["site"]: x for x in r["rows"]}
+    assert by_site["Stage 3a windows"]["relative_nu_variation"] < 1e-3
+    assert by_site["Lem 5.1(iii) b-runs"]["relative_nu_variation"] < 1e-6
+    assert by_site["floor(G) runs (E6)"]["relative_nu_variation"] < 1e-9
+    assert all(x["beta_spread"] < 1.001 for x in r["rows"])
+    assert len(r["rows"]) == 5

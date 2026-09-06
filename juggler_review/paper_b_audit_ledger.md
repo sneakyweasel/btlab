@@ -6082,3 +6082,156 @@ this is the fourth block-ends-apart site and the only one that reaches
 Probe: `lambda0_range_is_block_ends_apart`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13` --- the
 certificate is untouched. No manuscript edit.
+
+## A threshold is not a measurement: A.1's column, three stale rows, and the direction rule I got backwards
+
+*Mathematical target.* For every decimal printed in place of an exact
+value, decide whether the rounding falls on the safe side of the
+inequality it serves. Last tick asked only whether a decimal was
+*nearest*, which is the wrong question: a nearest rounding can be
+downward, and a downward rounding inside an upper-bound chain makes the
+printed derivation bound a smaller quantity than the truth.
+
+*Novelty hypothesis.* Some of the twenty-three nearest-rounded decimals
+are rounded down inside upper chains, and every existing check passes
+them.
+
+*Falsifier.* All are up-or-exact, or the chains are `=`-only and
+direction is undeterminable.
+
+*Existing machinery.* `_split_top`, `classify_equality`,
+`leading_literal`, `numeric_relations`; `p0_certificate.thresholds`.
+
+*Prior art.* `docs/negative_knowledge.md` and `conjectures/refuted/`
+have nothing on rounding direction. The nearest neighbour is this
+ledger's own previous entry, which states the question and leaves it
+open.
+
+**The rule I had backwards.** The naive reading --- upper chains round
+up, lower chains round down --- is wrong, and the paper contains four
+cases that look like violations under it and are not. In a *conclusion*
+`X <= E = v` the delivered claim is `X <= v`, which follows from
+`X <= E` only if `v >= E`: round up. In a *threshold hypothesis*
+`P >= T = v` the delivered statement is "assume `P >= v`", which gives
+`P >= T` only if `v >= T`: round up as well. Both classes round up, for
+opposite reasons --- one weakens a conclusion, the other strengthens a
+hypothesis. Only a *derived* lower bound `S >= E = v` wants rounding
+down, and the paper writes those with `\ge` rather than `=` (`128/27
+\ge 4.7`), which is the honest form.
+
+**Slack, not direction.** Direction alone over-reports anyway.
+`\tfrac{63}{64}\cdot19=18.7\le25` rounds down in an upper chain, and is
+sound because the chain's slack to `25` is `6.297` against a rounding
+error of `0.003125`, a ratio of `2020`. Under exact substitution none
+of the paper's printed numeric inequalities is false; the tightest is
+`25/0.35 <= 71.5`, with `0.0999%` relative slack.
+
+**Where the question bites: A.1.** The least-`P` column names a `P`
+from which a row holds, so its entries are not measurements. Claim D's
+shift range crosses at `644537`; the nearest four-figure decimal
+`6.4e5` asserts the row over `[6.4e5, 644537)`, where it fails. Twenty
+of the thirty-eight entries were nearest-rounded below their crossings.
+The column is now the crossing rounded *up*, at the smallest precision
+keeping the overshoot under one per cent: at most `0.8475%`
+(`claimD-shift`), under `0.3%` in twenty-three of the thirty-five
+printed rows, under `0.1%` in eleven.
+
+**Three rows were not roundings.**
+
+- `s3s2-bdry` was listed at `403`; the crossing is `1.50527e5`, a
+  factor of `373`. The row is a conjunction, and `403` is neither
+  conjunct's crossing: the second alone crosses at `1.1^{32/3}=2.76`,
+  and the first has no crossing without the `0.35` factor. Provenance
+  unknown; corrected to `1.51e5`.
+- `st5b-qpp` carried the constant `30.5`, which appeared nowhere else
+  in the paper. The constant is `48.9 = 17.1/0.35`, derived in Step
+  5b(a) and used at three other sites. With it the crossing is
+  `2.98166e11`, not the listed `2.8e10` --- a factor of `10.7`.
+- `5b-lam0-range` carried `[0.62,3.94]` against Lemma 5.2b's own
+  `[0.62,3.90]` (and `ANCHOR_CONSTANTS`'s `3.90`). With the correct
+  endpoint the crossing falls from `6.1e4` to `35026.6`.
+
+**Consistency swept with it.** `5^{16}` was printed `1.5e11` at four
+prose sites and `1.53e11` at a fifth; all five now read `1.53e11`
+(the value is `1.52588e11`). A.2's stratification cut moves `2.8e10`
+to `2.83e10`, and the count it carries --- thirty-three of
+thirty-eight from there on --- is unchanged and verified.
+
+*Correction to the previous entry.* Last tick I changed the Claim D
+prose from `1.1e6` to `6.4e5` and wrote that it now matched A.1's row.
+It did match, and both were wrong in the same direction-blind way. The
+prose now prints the exact `644537` and A.1 rounds it up to `6.5e5`.
+
+Tags. EXACT: the direction rule for the three classes; `1.45^{36} =
+644537`; `48.9 = 17.1/0.35`. COMPUTATIONALLY VERIFIED: all thirty-eight
+A.1 entries at or above their crossings, max overshoot `0.8475%`; the
+three corrected crossings `1.50527e5`, `2.98166e11`, `35026.6`; no
+printed numeric inequality false under exact substitution; tightest
+relative slack `0.0999%`. OBSERVATION: `403`'s provenance is not
+recoverable from the row as stated.
+
+Probe: `manuscript_self_audit.a1_rows`, `a1_threshold_audit`,
+`a1_failures`; `failures()` gains an `a1_thresholds` key. Ten new
+tests, thirty-five in the file. Manuscript: the column rebuilt, three
+errata rows corrected and recorded in A.1, the convention stated, five
+`5^{16}` sites unified, A.2's cut updated. `P_0` unmoved at
+`3.5858e13`; the binding row `5b-W<=c7S` is untouched. No certificate
+edit --- the certificate was right in all three cases and the table was
+wrong.
+
+## No freeze in the paper justifies charging apart, by a factor of four thousand
+
+Charging a `beta` and a power of `nu` at opposite ends of a block would
+be right if the two lived at different points --- if `beta` were frozen
+over a range long enough for `nu` to move. So the question is how long
+the paper's freezes are. Every one of them:
+
+```text
+  freeze                      length              rel. nu-variation   beta spread at P_0
+  Lem 5.1(iii) b-runs         P^(1/2)/h           1.67e-07            1.00000008
+  gap cells (Stage 2)         P^(1/2)/h           1.67e-07            1.00000008
+  floor(G) runs (E6)          P^(1/4)/(|j|+1)     6.82e-11            1.00000000
+  Thm 4.8 drift-1 intervals   P^(5/8)/k           8.26e-06            1.00000413
+  Stage 3a windows            P^(3/4)/(2 k h_2)   4.09e-04            1.00020433
+```
+
+The longest is Stage 3a's windows, at `P^(3/4)`: across one of them `nu`
+moves by a relative `4.09e-4`, and `beta`, going as `nu^(1/2)`, by
+`2.04e-4`. Every other freeze is shorter, and the run structures that
+carry the branch decomposition are shorter by four orders.
+
+Against that, charging one `beta` at the two ends of a *block* costs
+`sqrt2`, and a `beta` product costs `2`. So the apart-charging is
+**`4894` times** the largest spread any freeze in the paper can justify.
+
+There is no site where it is genuine. The four instances --- `|G'|`'s
+`20` against `81/16`, `|G''|`'s `25` against `567/64`, the `j = 0`
+anchor's `5.3` against `81/32`, and `lambda_0`'s range at four times its
+block --- are four instances of one avoidable thing, not four different
+compromises with four different reasons.
+
+It closes the other way round too. A freeze long enough to justify the
+apart-charging would have to run for a constant fraction of a block, and
+nothing in Sections 4--6 does: the longest runs `P^(3/4)`, which is
+`P^(-1/4)` of a block. The paper's whole method is to freeze on short
+runs and difference across them, so the scales are structurally small,
+and the apart-charging is structurally unjustified.
+
+That completes the block-ends-apart account. The pattern was found in
+`|G'|`, then `|G''|`, then the `j = 0` anchor, then `lambda_0` where it
+reaches `P_0`; and now the question of whether any of them had a reason
+is answered no, uniformly, with the margin measured.
+
+Tags. EXACT: a freeze of length `P^e` lets `nu` vary by a relative
+`P^(e-1)` and `beta ~ nu^(1/2)` by half that; the five freeze scales
+above are the paper's, the longest at `e = 3/4`. COMPUTATIONALLY
+VERIFIED: the relative variations and `beta` spreads at `P_0`, the
+largest `1.000204`; the apart-charging costs `sqrt2` on one `beta` and
+`2` on a product, so it exceeds the largest justified spread by `4894`.
+OBSERVATION: the run structures carrying the branch decomposition are
+four orders shorter than the longest freeze, so the margin is larger
+still where the pattern actually appears.
+
+Probe: `freeze_scales_justify_nothing`, `FREEZE_SCALES`. Two tests.
+Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
+manuscript or certificate edit.

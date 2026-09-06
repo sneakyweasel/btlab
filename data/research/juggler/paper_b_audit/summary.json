@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "8f0e1e60461c60cec1381ef39c9fd9a914108fab",
+  "git_commit": "bbc55bff084a7516702f273413a814ce25590704",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3891,7 +3891,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 4134,
+        "line": 4135,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3899,7 +3899,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 5066,
+        "line": 5067,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3907,7 +3907,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5714,
+        "line": 5715,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3915,7 +3915,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6525,
+        "line": 6526,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 7005,
+        "line": 7043,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7035,
+        "line": 7073,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7114,
+        "line": 7152,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3953,7 +3953,7 @@
     "body_mathematical": 2,
     "body_needing_a_look": [
       2168,
-      4134
+      4135
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -5327,7 +5327,7 @@
         "is_the_statement": true
       },
       {
-        "line": 3962,
+        "line": 3963,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": false,
         "is_the_statement": false
@@ -5337,7 +5337,7 @@
     "above_the_statement": 2,
     "below_the_statement": 1,
     "below_lines": [
-      3962
+      3963
     ],
     "below_needs_a_stronger_bound_than_C2": true,
     "below_bound_exponent": "1/4",
@@ -6964,6 +6964,61 @@
     "beats_the_openings_alone": true,
     "same_loss_as_G_prime_and_G_double_prime": true
   },
+  "freeze_scales_justify_nothing": {
+    "rows": [
+      {
+        "site": "Lem 5.1(iii) b-runs",
+        "length": "P^(1/2)/h",
+        "exponent": "1/2",
+        "relative_nu_variation": 1.6699634599292956e-07,
+        "beta_spread": 1.000000083498173
+      },
+      {
+        "site": "gap cells (Stage 2)",
+        "length": "P^(1/2)/h",
+        "exponent": "1/2",
+        "relative_nu_variation": 1.6699634599292956e-07,
+        "beta_spread": 1.000000083498173
+      },
+      {
+        "site": "floor(G) runs (E6)",
+        "length": "P^(1/4)/(|j|+1)",
+        "exponent": "1/4",
+        "relative_nu_variation": 6.824336807983339e-11,
+        "beta_spread": 1.0000000000341216
+      },
+      {
+        "site": "Thm 4.8 drift-1 intervals",
+        "length": "P^(5/8)/k",
+        "exponent": "5/8",
+        "relative_nu_variation": 8.260954429110078e-06,
+        "beta_spread": 1.0000041304772145
+      },
+      {
+        "site": "Stage 3a windows",
+        "length": "P^(3/4)/(2 k h_2)",
+        "exponent": "3/4",
+        "relative_nu_variation": 0.0004086518640517006,
+        "beta_spread": 1.000204325932026
+      }
+    ],
+    "P0": 35858000000000.0,
+    "longest_freeze": "Stage 3a windows",
+    "longest_freeze_exponent": "3/4",
+    "largest_justified_spread": 1.000204325932026,
+    "apart_cost_single_beta": 1.4142135623730951,
+    "apart_cost_beta_product": 2.0,
+    "apart_over_justified": 4894.141385211995,
+    "no_freeze_justifies_it": true,
+    "longest_is_a_quarter_power_short_of_a_block": true,
+    "the_four_sites_are_one_avoidable_thing": true,
+    "sites": [
+      "Lem 5.1(iii) |G'| curvature",
+      "Lem 5.1(iii) |G''| curvature",
+      "Thm 5.3 j=0 anchor",
+      "Lem 5.2b lambda_0 range"
+    ]
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -7031,5 +7086,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 96.07301354408264
+  "elapsed_seconds": 117.94811034202576
 }

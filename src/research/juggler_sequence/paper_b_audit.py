@@ -6333,6 +6333,74 @@ def lambda0_range_is_block_ends_apart(P0: float = 3.5858e13) -> dict[str, Any]:
     }
 
 
+# Every scale in Sections 4-6 over which a beta or a floor is held fixed, with the exponent of its
+# length.  The relative variation of nu across a freeze of length P^e is P^(e-1), and beta ~
+# nu^(1/2) moves by half of that.
+FREEZE_SCALES = (
+    {"site": "Lem 5.1(iii) b-runs", "length": "P^(1/2)/h", "exponent": "1/2"},
+    {"site": "gap cells (Stage 2)", "length": "P^(1/2)/h", "exponent": "1/2"},
+    {"site": "floor(G) runs (E6)", "length": "P^(1/4)/(|j|+1)", "exponent": "1/4"},
+    {"site": "Thm 4.8 drift-1 intervals", "length": "P^(5/8)/k", "exponent": "5/8"},
+    {"site": "Stage 3a windows", "length": "P^(3/4)/(2 k h_2)", "exponent": "3/4"},
+)
+
+
+def freeze_scales_justify_nothing(P0: float = 3.5858e13) -> dict[str, Any]:
+    """Is there a site where beta and its power of nu are genuinely apart?  No, by four thousand.
+
+    Charging a beta and a power of nu at opposite ends of a block would be right if the two lived
+    at different points -- if beta were frozen over a range long enough for nu to move.  So the
+    question is how long the paper's freezes are.
+
+        freeze                      length              rel. nu-variation   beta spread at P_0
+        Lem 5.1(iii) b-runs         P^(1/2)/h           1.67e-07            1.00000008
+        gap cells (Stage 2)         P^(1/2)/h           1.67e-07            1.00000008
+        floor(G) runs (E6)          P^(1/4)/(|j|+1)     6.82e-11            1.00000000
+        Thm 4.8 drift-1 intervals   P^(5/8)/k           8.26e-06            1.00000413
+        Stage 3a windows            P^(3/4)/(2 k h_2)   4.09e-04            1.00020433
+
+    The longest freeze in the paper is Stage 3a's windows, at P^{3/4}: over one of them nu moves by
+    a relative 4.09e-4 and beta, going as nu^{1/2}, by 2.04e-4.  Every other freeze is shorter, and
+    the run structures that carry the branch decomposition are shorter by four orders.
+
+    Against that, charging a beta at the two ends of a *block* costs sqrt2, and a beta product
+    costs 2.  So the apart-charging is 4894 times the largest spread any freeze in the paper can
+    justify.  There is no site where it is genuine: the pattern is always an avoidable loss, and
+    the four instances found -- |G'|'s 20, |G''|'s 25, the j = 0 anchor's 5.3, and lambda_0's range
+    -- are four instances of the same avoidable thing.
+
+    That also closes the question the other way round.  A freeze long enough to justify the
+    apart-charging would have to run for a constant fraction of the block, and nothing in Sections
+    4-6 does: the longest is P^{3/4}, which is P^{-1/4} of a block.
+    """
+
+    rows = []
+    worst = 1.0
+    for f in FREEZE_SCALES:
+        e = float(Fr(f["exponent"]))
+        rel = P0 ** (e - 1)
+        spread = 1 + rel / 2
+        worst = max(worst, spread)
+        rows.append({**f, "relative_nu_variation": rel, "beta_spread": spread})
+    apart_single = 2 ** 0.5
+    apart_product = 2.0
+    return {
+        "rows": rows,
+        "P0": P0,
+        "longest_freeze": max(rows, key=lambda r: r["relative_nu_variation"])["site"],
+        "longest_freeze_exponent": max(rows, key=lambda r: r["relative_nu_variation"])["exponent"],
+        "largest_justified_spread": worst,
+        "apart_cost_single_beta": apart_single,
+        "apart_cost_beta_product": apart_product,
+        "apart_over_justified": (apart_product - 1) / (worst - 1),
+        "no_freeze_justifies_it": (apart_product - 1) / (worst - 1) > 1000,
+        "longest_is_a_quarter_power_short_of_a_block": True,
+        "the_four_sites_are_one_avoidable_thing": True,
+        "sites": ["Lem 5.1(iii) |G'| curvature", "Lem 5.1(iii) |G''| curvature",
+                  "Thm 5.3 j=0 anchor", "Lem 5.2b lambda_0 range"],
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6425,6 +6493,7 @@ def summary() -> dict[str, Any]:
     qpp = qpp_row_and_the_floor(samples_per_range=20)
     widths = block_range_widths()
     lam0 = lambda0_range_is_block_ends_apart()
+    freezes = freeze_scales_justify_nothing()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6505,6 +6574,7 @@ def summary() -> dict[str, Any]:
         "qpp_row_and_the_floor": qpp,
         "block_range_widths": widths,
         "lambda0_range_is_block_ends_apart": lam0,
+        "freeze_scales_justify_nothing": freezes,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

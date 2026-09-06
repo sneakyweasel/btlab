@@ -36598,3 +36598,139 @@ Best next question
   site where the two factors are *not* the same nu -- a genuine reason
   to charge them apart -- or is the pattern always an avoidable loss?
 ```
+
+## A threshold is not a measurement
+
+2026-09-06, later. Last entry ended on a question: the check only
+noticed decimals that were not nearest-rounded, and a nearest rounding
+can still point the wrong way. So I went looking for a nearest-rounded
+decimal sitting on the wrong side of the inequality it feeds.
+
+The first thing I found was that my rule was wrong. I had written
+"upper chains round up, lower chains round down", and four of the
+paper's decimals violate it while being perfectly sound. The reason is
+that `P >= 23^6 = 1.5e8` is not a bound being propagated, it is a
+hypothesis being assumed. Printing a threshold larger than the truth
+demands *more* of `P`, which is safe; printing one smaller demands
+less, which is not. So conclusions round up and hypotheses round up
+too, for opposite reasons, and only a derived lower bound wants
+rounding down. The paper writes those with an explicit `\ge` --- it has
+`128/27 \ge 4.7`, not `= 4.74` --- which is the honest form and which I
+had not noticed was a convention.
+
+Direction is also too crude on its own. `63/64 * 19 = 18.7 <= 25`
+rounds down inside an upper chain and is fine, because the slack to 25
+is 6.297 and the rounding error is 0.003125. Substituting exact values
+into every printed numeric inequality, none is false; the tightest is
+`25/0.35 <= 71.5`, with a tenth of a per cent to spare.
+
+Then the question found where it actually bites. Appendix A.1's last
+column is headed "least P". It is not a measurement --- it is the left
+endpoint of the range over which a row holds. Claim D's shift range
+crosses at 644537, and the nearest four-figure decimal, 6.4e5, asserts
+the row over an interval where it fails. Twenty of the thirty-eight
+entries were nearest-rounded below their crossings.
+
+Three were not roundings at all.
+
+The Stage 3(s2) window-boundary row said 403. Its crossing is 150527, a
+factor of 373. I could not reconstruct where 403 came from: the row is
+a conjunction, the second conjunct alone crosses at 1.1^(32/3) = 2.76,
+and the first has no crossing at all if the 0.35 is dropped. It is just
+wrong.
+
+The Step 5b(a) q'' row carried the constant 30.5. That number appears
+nowhere else in the paper. The constant is 48.9 = 17.1/0.35, derived in
+Step 5b(a) and used at three other sites, and with it the crossing is
+2.98e11 rather than 2.8e10.
+
+The Lemma 5.2b row carried [0.62,3.94] where Lemma 5.2b itself, and the
+certificate's anchor constants, say [0.62,3.90]. With the right
+endpoint the crossing falls from 6.1e4 to 35027.
+
+None of the three is the binding row and all sit far below P_0, which
+is unmoved at 3.5858e13. But this is a certificate. A wrong row in a
+certificate is precisely the thing the table exists to rule out, and
+two of the three were stale constants that the rest of the paper had
+already corrected --- the table had simply not been re-derived since.
+
+The column is now the crossing rounded up, at the smallest precision
+that keeps the overshoot under one per cent, and a test checks every
+entry against `p0_certificate` one-sidedly: printed at or above
+computed, never equal.
+
+One more correction, mine. Last tick I changed the Claim D prose from
+1.1e6 to 6.4e5 and wrote with some satisfaction that it now matched the
+row A.1 prints. It did match. Both were wrong in the same
+direction-blind way, and I had fixed the disagreement while preserving
+the error. The prose now carries the exact 644537 and lets the table do
+the rounding.
+
+## Four thousand times more than any freeze allows
+
+Charging a `beta` and a power of `nu` apart would be right if `beta`
+were frozen over a range long enough for `nu` to move. The paper's
+freezes:
+
+```text
+  Lem 5.1(iii) b-runs         P^(1/2)/h           rel 1.67e-07
+  gap cells (Stage 2)         P^(1/2)/h           rel 1.67e-07
+  floor(G) runs (E6)          P^(1/4)/(|j|+1)     rel 6.82e-11
+  Thm 4.8 drift-1 intervals   P^(5/8)/k           rel 8.26e-06
+  Stage 3a windows            P^(3/4)/(2 k h_2)   rel 4.09e-04
+```
+
+The longest is `P^(3/4)`, over which `beta` moves by `2.04e-4`. Charging
+apart costs `sqrt2` on one `beta` and `2` on a product -- `4894` times
+the largest spread any freeze can justify.
+
+So there is no genuine site. The four instances are one avoidable thing,
+not four compromises with four reasons. And it closes the other way too:
+a freeze long enough to justify it would have to run for a constant
+fraction of a block, and the paper's method is to freeze on short runs
+and difference across them, so the scales are structurally small.
+
+That completes the block-ends-apart account -- found in `|G'|`, then
+`|G''|`, then the `j = 0` anchor, then `lambda_0` where it reaches
+`P_0`; and now the question of whether any of them had a reason is
+answered no, uniformly, with the margin measured.
+
+```text
+Phase-end report
+Question
+- is there a site where beta and its power of nu are genuinely apart, or
+  is the pattern always an avoidable loss
+Instruments
+- freeze_scales_justify_nothing: every freeze scale in Sections 4-6 with
+  its length exponent, the relative nu-variation it permits and the beta
+  spread that follows, against the cost of charging apart
+Ledger tags
+- EXACT: a freeze of length P^e permits a relative nu-variation P^(e-1)
+  and a beta spread of half that; the paper's longest freeze is Stage
+  3a's windows at e = 3/4
+- COMPUTATIONALLY VERIFIED: the five spreads at P_0, largest 1.000204;
+  the apart-charging costs 2 on a beta product, exceeding it by 4894
+- OBSERVATION: the branch-decomposition runs are four orders shorter
+  than the longest freeze, so the margin is larger where the pattern
+  actually appears
+Strongest theorem
+- no freeze in Sections 4-6 justifies charging apart, by a factor of
+  4894, so all four instances are one avoidable loss
+Strongest refutation
+- the possibility my own question raised, that one of the four might
+  have had a reason
+Reusable machinery
+- freeze_scales_justify_nothing, FREEZE_SCALES, two tests, wired into
+  summary()
+Branch status
+- PARK
+Why
+  The account is complete and every repair in it is a manuscript change
+  belonging to the other session.
+Best next question
+- the four sites are all products of a beta with a power of nu. The
+  paper has other products -- k h_1h_2 with P^(1/8), q' with h', u with
+  h. Does the same apart-charging appear in any of those, or is it
+  specific to beta, whose block variation is the sqrt that makes it
+  visible?
+```
