@@ -5598,3 +5598,112 @@ opened constant `0.60`, whose exact value is not in the certificate.
 Probe: `anchor_opening_reach`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13` --- nothing in
 the certificate is edited. No manuscript edit.
+
+## Step 5a's constant is a block range too, opened wider than 5b's, and the pair is worth `1.357`
+
+The certificate carries no exact value for Step 5a's
+`S >= 0.60 P^(-5/8)`. The manuscript does. The offset composite is
+
+```text
+  lambda_0' = (2187/2048) k h_1h_2 nu^(-5/8),    2187/2048 = 3^7/2^11 = 1.067871
+```
+
+and over a dyadic block `nu^(-5/8)` runs from `P^(-5/8)` down to
+`2^(-5/8) P^(-5/8)`, so the coefficient lies in
+
+```text
+  [2^(-5/8), 1] * 2187/2048  =  [0.692429, 1.067871]
+```
+
+which is exactly the `(0.6924, 1.0679]` the erratum states. It is
+printed as `[0.60, 1.25]`.
+
+**So Step 5a's constant is a block-range constant, like the cell
+count's `1.5`, and it is opened wider than 5b's:**
+
+```text
+  low end    0.692429  printed 0.60    opening 1.1540   (5b's 1.1067)
+  high end   1.067871  printed 1.25    opening 1.1706
+```
+
+That is the family from two passes ago arriving at the threshold. Both
+constants that reach `P_0` are block ranges rounded outward, and the
+rounding is the whole of the gap.
+
+**Priced together, against the whole certificate:**
+
+```text
+  lam_5b   lam_5a    P_0          binding
+  0.5600   0.6000    3.5858e13    5b-W<=c7S     as printed
+  0.6000   0.6000    2.9117e13    5a-W<=c7S     5b closed
+  0.6000   0.6921    2.9117e13    5b-W<=c7S     they alternate
+  0.6197   0.6921    2.6419e13    5b-W<=c7S     both closed
+  0.6197   1.0000    2.6419e13    5b-W<=c7S     nothing further
+```
+
+A factor **`1.3573`**, from `3.5858e13` to `2.6419e13`. The two rows
+alternate as each is closed, and past `0.6921` the gain saturates ---
+raising 5a to `1.0` buys nothing --- which is what makes `2.6419e13` the
+floor of this lever rather than an arbitrary stopping point.
+
+So the `P_0` this paper reports is `1.36` times the one its own exact
+constants support, and the whole difference is two outward roundings of
+two block ranges. Neither is an error: the printed ranges contain the
+exact ones, every row still holds, and the certificate is untouched at
+`3.5858e13`. What the measurement adds is the price.
+
+Tags. EXACT: `lambda_0' = (2187/2048) k h_1h_2 nu^(-5/8)` gives the block
+range `[2^(-5/8), 1] * 2187/2048 = [0.692429, 1.067871]`, matching the
+manuscript's `(0.6924, 1.0679]`; the printed `[0.60, 1.25]` opens it by
+`1.1540` and `1.1706`. COMPUTATIONALLY VERIFIED: the five-row sweep
+above; `P_0` falls to `2.6419e13` with both closed, a factor `1.3573`;
+the gain saturates, since `lam_5a = 1.0` gives the same `P_0` as
+`0.6921`. OBSERVATION: the two constants that reach `P_0` are both block
+ranges rounded outward, which is the family the cell-count miss
+identified two passes ago.
+
+Probe: `step_5a_opening_reach`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.
+
+## Generating the shared-value list, and the two rows it agrees with by luck
+
+The last entry curated four shared values by eye and asked whether the list could be generated
+instead -- clustering each numeral's occurrences by the surrounding symbols.
+
+**It can, partly, and the discriminator is what the numeral multiplies.** `0.11 k P^(-7/8)`
+and `0.11 uh P^(-1/4)` fall into different clusters; a numeral with two clusters is a
+candidate. Restricting to math mode removes section numbers and prose cross-references
+("Theorem 4.7", "Section 1.2 Related work") at a stroke, which the first prototype did not and
+which drowned it.
+
+Of 356 math-mode decimals, 14 are flagged and three survive inspection:
+
+```text
+  0.11   uhP^(-1/4) | P^(-5/6) | kP^(-7/8)     three roles, already curated
+  1.1    P^(17/32)  | uP^(3/4) | C             three roles, NOT curated
+  1.2    Y'         | k                        a fourth role, NOT curated
+```
+
+**`1.1` names three constants** -- the (s2) window-boundary cost `1.1 P^(17/32)`, which is
+`0.65/sqrt(0.35) = 1.0987`; Theorem 4.4's Lemma 3.3 sum `1.1 u P^(3/4)`; and Step 5b's good
+pieces `(1.1 C(E) S)^(1/2)`. Three independent derivations rounding to the same two figures,
+and no warning anywhere. **`1.2` has a fourth role**, the cross-coefficient bound
+`45/64 + 9/32 = 63/64 <= 1.2`. Both found by the generator, both missed by eye.
+
+**And the generator agrees with two of the curated rows by luck.** It flags `0.35` and `1.5`,
+but the clusters it splits there are `0.35 uhP^(-3/4)` against `(0.35 uh)^(-1/2)`, and
+`1.5 hP^(1/2)` against `1.5 hY'` -- two notations for one quantity in each case, not two
+quantities. The roles that actually make them collisions are precisely what a check reading
+*what a numeral multiplies* cannot see: `0.35`'s second is the endpoint of a bracket,
+`[0.35, 2.6]`, which multiplies nothing, and `1.5`'s is written `3/2`.
+
+So the two methods miss opposite things and neither replaces the other. Curation sees a role in
+any notation but only where someone looked; clustering sees every occurrence but only where the
+role multiplies something. The list is now kept by both, the manuscript says which rows are
+coincidence, and `cluster_coverage` reports `genuinely_detected` separately from `flagged`.
+
+One process note. Writing the tool's comment through a heredoc turned `\tfrac32` into a literal
+tab, inside a sentence explaining that `1.5`'s second role is written as a fraction. Fourth
+time this session the escape hazard has bitten, and the first time it has corrupted the very
+example it was describing.

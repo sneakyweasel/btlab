@@ -5887,6 +5887,91 @@ def anchor_opening_reach(P0: float = 3.5858e13) -> dict[str, Any]:
     }
 
 
+def step_5a_opening_reach(P0: float = 3.5858e13) -> dict[str, Any]:
+    """Step 5a's 0.60 is opened too, and by more than 5b's.  Together they are worth 1.357.
+
+    The certificate carries no exact value for Step 5a's S >= 0.60 P^{-5/8}, but the manuscript
+    does.  The offset composite is
+
+        lambda_0' = (2187/2048) k h_1h_2 nu^{-5/8},   2187/2048 = 3^7/2^11 = 1.067871,
+
+    and over a dyadic block nu^{-5/8} runs from P^{-5/8} down to 2^{-5/8} P^{-5/8}, so the
+    coefficient lies in [2^{-5/8}, 1] * 2187/2048 = [0.692429, 1.067871] -- which is exactly the
+    "(0.6924, 1.0679]" the manuscript's erratum states.  It is printed as [0.60, 1.25].
+
+    So Step 5a's constant is a block-range constant, like the cell count's 1.5, and it is opened:
+
+        low end   0.692429 printed as 0.60    opening 1.1540   (5b's was 1.1067)
+        high end  1.067871 printed as 1.25    opening 1.1706
+
+    With the same finite-P corrections 5b's range row applies, the low end could be 0.692117 at
+    P_0.  Pricing both openings against the whole certificate:
+
+        lam_5b   lam_5a    P_0          binding
+        0.5600   0.6000    3.5858e13    5b-W<=c7S     as printed
+        0.6000   0.6000    2.9117e13    5a-W<=c7S     5b closed
+        0.6000   0.6921    2.9117e13    5b-W<=c7S     they alternate
+        0.6197   0.6921    2.6419e13    5b-W<=c7S     both closed
+        0.6197   1.0000    2.6419e13    5b-W<=c7S     no further gain
+
+    So the two openings together are worth a factor 1.3573 on P_0, from 3.5858e13 to 2.6419e13,
+    and after that 5b binds again with nothing left to close.  Raising 5a beyond 0.6921 buys
+    nothing, which is what makes 2.6419e13 the floor of this particular lever rather than an
+    arbitrary stopping point.
+    """
+
+    from . import p0_certificate as cert
+
+    exact_hi = 2187 / 2048
+    exact_lo = 2 ** -0.625 * exact_hi
+    corr = (1 - P0 ** -0.25) * (1 - 1 / (3 * P0 ** 0.5)) ** 2
+    need_lo = exact_lo * corr
+    E = lambda P: cert.interpolant_error(P, cert.ANCHOR_CONSTANTS[2])  # noqa: E731
+
+    def p0_with(lo5b: float, lo5a: float) -> tuple[float, str]:
+        rows = cert.thresholds(anchor=(lo5b, cert.ANCHOR_CONSTANTS[1]) + tuple(cert.ANCHOR_CONSTANTS[2:]))
+        out = []
+        for r in rows:
+            if r["tag"] == "5a-W<=c7S":
+                S5a = lambda P, c=lo5a: c * P ** -0.625  # noqa: E731
+                lg = cert.least_P(lambda P: cert._V(S5a(P), P, cert.KAPPA) + E(P) <= cert.C7 * S5a(P) / 2)
+                out.append((r["tag"], 10.0 ** lg if lg is not None else float("inf")))
+            else:
+                out.append((r["tag"], r["P_min"]))
+        tag, val = max(out, key=lambda t: t[1])
+        return val, tag
+
+    grid = ((0.56, 0.60), (0.60, 0.60), (0.60, need_lo), (0.6197, need_lo), (0.6197, 1.0))
+    sweep = []
+    for lo5b, lo5a in grid:
+        value, tag = p0_with(lo5b, lo5a)
+        sweep.append({"lam_5b": lo5b, "lam_5a": lo5a, "P0": value, "binding": tag})
+    printed = sweep[0]["P0"]
+    both = p0_with(0.6197, need_lo)[0]
+    return {
+        "exact_low": exact_lo,
+        "exact_high": exact_hi,
+        "exact_coefficient": exact_hi,
+        "coefficient_is_3_7_over_2_11": abs(exact_hi - 3 ** 7 / 2 ** 11) < 1e-12,
+        "block_factor": 2 ** -0.625,
+        "matches_the_manuscript_range": abs(exact_lo - 0.6924) < 1e-3 and abs(exact_hi - 1.0679) < 1e-3,
+        "printed_low": 0.60,
+        "printed_high": 1.25,
+        "opening_low": exact_lo / 0.60,
+        "opening_high": 1.25 / exact_hi,
+        "opening_exceeds_5b": exact_lo / 0.60 > 0.6197 / 0.56,
+        "needed_low_at_P0": need_lo,
+        "sweep": sweep,
+        "P0_printed": printed,
+        "P0_both_closed": both,
+        "both_openings_worth": printed / both,
+        "worth_more_than_a_third": printed / both > 1.33,
+        "gain_saturates": abs(p0_with(0.6197, 1.0)[0] - both) < 1.0,
+        "binding_alternates": len({r["binding"] for r in sweep}) > 1,
+        "is_a_block_range_constant": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5974,6 +6059,7 @@ def summary() -> dict[str, Any]:
     forms = constant_form_predicts_sharpness()
     oos = out_of_sample_constant_test(cell_points=(10**5, 3 * 10**5))
     opening = anchor_opening_reach()
+    opening5a = step_5a_opening_reach()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6049,6 +6135,7 @@ def summary() -> dict[str, Any]:
         "constant_form_predicts_sharpness": forms,
         "out_of_sample_constant_test": oos,
         "anchor_opening_reach": opening,
+        "step_5a_opening_reach": opening5a,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

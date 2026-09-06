@@ -1953,3 +1953,32 @@ def test_tightening_the_low_end_moves_P0_by_a_quarter() -> None:
     from research.juggler_sequence import p0_certificate as C
 
     assert C.ANCHOR_CONSTANTS[0] == 0.56 and abs(C.certificate()["P0"] - 3.5858e13) / 3.5858e13 < 1e-3
+
+
+# --- Step 5a's opening, and the two together ---
+
+
+def test_step_5a_constant_is_a_block_range_opened_by_more_than_5b() -> None:
+    """(2187/2048)[2^(-5/8), 1] = (0.6924, 1.0679], printed [0.60, 1.25]."""
+    r = A.step_5a_opening_reach()
+    assert r["coefficient_is_3_7_over_2_11"] and abs(r["exact_high"] - 2187 / 2048) < 1e-12
+    assert abs(r["exact_low"] - 2 ** -0.625 * 2187 / 2048) < 1e-12
+    assert r["matches_the_manuscript_range"] and r["is_a_block_range_constant"]
+    assert 1.15 < r["opening_low"] < 1.16 and 1.17 < r["opening_high"] < 1.18
+    assert r["opening_exceeds_5b"]
+
+
+def test_the_two_openings_together_are_worth_a_third_of_P0() -> None:
+    """3.5858e13 -> 2.6419e13, and raising 5a past its own limit buys nothing more."""
+    r = A.step_5a_opening_reach()
+    assert abs(r["P0_printed"] - 3.5858e13) / 3.5858e13 < 1e-3
+    assert abs(r["P0_both_closed"] - 2.6419e13) / 2.6419e13 < 1e-3
+    assert 1.35 < r["both_openings_worth"] < 1.36 and r["worth_more_than_a_third"]
+    assert r["gain_saturates"] and r["binding_alternates"]
+    bindings = [x["binding"] for x in r["sweep"]]
+    assert bindings[0] == "5b-W<=c7S" and bindings[1] == "5a-W<=c7S"
+    assert bindings[-1] == "5b-W<=c7S"
+    # the certificate as it stands is untouched
+    from research.juggler_sequence import p0_certificate as C
+
+    assert abs(C.certificate()["P0"] - 3.5858e13) / 3.5858e13 < 1e-3

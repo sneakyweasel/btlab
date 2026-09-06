@@ -36151,3 +36151,64 @@ Best next question
   tightening, and the certificate carries no exact value for it. Does
   the manuscript state one, and if so is 0.60 opened the same way?
 ```
+
+## Both of them are block ranges
+
+The manuscript does state Step 5a's exact constant, in the erratum:
+`lambda_0' = (2187/2048) k h_1h_2 nu^(-5/8)`, and over a dyadic block the
+coefficient runs `[2^(-5/8), 1] * 2187/2048 = [0.692429, 1.067871]` --
+the `(0.6924, 1.0679]` printed there. The proof carries `[0.60, 1.25]`,
+an opening of `1.1540` at the low end and `1.1706` at the high one,
+wider than 5b's `1.1067`.
+
+So both constants that reach `P_0` are block ranges rounded outward.
+That is the family the cell-count miss identified two passes ago,
+arriving at the threshold.
+
+Priced together: closing 5b takes `P_0` from `3.5858e13` to `2.9117e13`,
+closing 5a as well takes it to `2.6419e13`, and past `0.6921` the gain
+saturates -- raising 5a to `1.0` buys nothing. A factor `1.3573` in all,
+and the two rows alternate as each is closed.
+
+So the reported `P_0` is `1.36` times the one the paper's own exact
+constants support, and the whole difference is two outward roundings.
+Neither is an error -- the printed ranges contain the exact ones and
+every row still holds -- but the price is now known.
+
+```text
+Phase-end report
+Question
+- does the manuscript state an exact value behind Step 5a's 0.60, and is
+  it opened the same way as 5b's
+Instruments
+- step_5a_opening_reach: the erratum's exact coefficient against the
+  block range it implies, and a two-constant sweep of the certificate
+Ledger tags
+- EXACT: lambda_0' = (2187/2048) k h_1h_2 nu^(-5/8) gives the block range
+  [0.692429, 1.067871], matching the manuscript; printed [0.60, 1.25]
+  opens it by 1.1540 and 1.1706
+- COMPUTATIONALLY VERIFIED: P_0 falls to 2.6419e13 with both closed, a
+  factor 1.3573; the gain saturates, lam_5a = 1.0 giving the same P_0 as
+  0.6921
+- OBSERVATION: the two constants that reach P_0 are both block ranges
+  rounded outward
+Strongest theorem
+- the reported P_0 is 1.36 times the one the paper's own exact constants
+  support, and the whole difference is two outward roundings
+Strongest refutation
+- nothing of my own this pass; the block-range family predicted where to
+  look and the erratum supplied the exact value
+Reusable machinery
+- step_5a_opening_reach, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Closing a deliberate opening is the author's call; the measurement is
+  the deliverable and the certificate is untouched.
+Best next question
+- 1.3573 is the whole lever from these two constants, and it saturates.
+  The certificate's next rows down are 5b-E<=c7S at 4.10e12 and
+  st5b-qpp at 2.98e11. Does the saturated 2.6419e13 sit above 5b-E, and
+  if so is the floor of the entire c_7 lever now 4.10e12 rather than
+  anything I have recorded?
+```
