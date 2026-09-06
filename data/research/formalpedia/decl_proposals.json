@@ -2167,9 +2167,9 @@
           "trust": "kernel"
         },
         {
-          "decl": "energy_homogeneous",
-          "line": 236,
-          "score": 0.091,
+          "decl": "energy_zero",
+          "line": 89,
+          "score": 0.067,
           "trust": "kernel"
         }
       ],
@@ -2188,263 +2188,10 @@
         }
       ],
       "id": "OST-np-energy-ext-interval",
-      "in_file": 55,
+      "in_file": 49,
       "lean": "Problems/Ostrowski/NP/Energy.lean",
       "names_own": [],
       "statement": "for \u0393_NP, the set of integer controls w such that E_{n-1}(T_w s) lies in a fixed integer interval [lo, hi] is consecutive: if w1 and w2 satisfy the bounds and w1 \u2264 w \u2264 w2 then w does too; this is energy_step plus q>0, not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "energy_homogeneous",
-          "line": 236,
-          "score": 0.692,
-          "trust": "kernel"
-        },
-        {
-          "decl": "energy_zero",
-          "line": 89,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "recurrence_word_zero",
-          "line": 189,
-          "score": 0.154,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "applyA",
-          "line": 364,
-          "score": 0.133
-        },
-        {
-          "decl": "energy",
-          "line": 86,
-          "score": 0.083
-        }
-      ],
-      "id": "OST-np-energy-homogeneous",
-      "in_file": 55,
-      "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [],
-      "statement": "for \u0393_NP, homogeneous residual motion is energy-neutral in the sliding index: E_n(A^k s) = E_{n+k}(s), equivalently energy_telescope on the zero word; this is not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "particular_s3",
-          "line": 556,
-          "score": 0.222,
-          "trust": "kernel"
-        },
-        {
-          "decl": "fold_s3",
-          "line": 565,
-          "score": 0.136,
-          "trust": "kernel"
-        },
-        {
-          "decl": "energy_homogeneous",
-          "line": 236,
-          "score": 0.125,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "particularSum",
-          "line": 530,
-          "score": 0.2
-        },
-        {
-          "decl": "consumedSum",
-          "line": 159,
-          "score": 0.1
-        }
-      ],
-      "id": "OST-np-particular-s3",
-      "in_file": 55,
-      "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [],
-      "statement": "for \u0393_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "particular_concat",
-          "line": 600,
-          "score": 0.214,
-          "trust": "kernel"
-        },
-        {
-          "decl": "val_concat_zero_iff",
-          "line": 685,
-          "score": 0.214,
-          "trust": "kernel"
-        },
-        {
-          "decl": "energy_homogeneous",
-          "line": 236,
-          "score": 0.211,
-          "trust": "kernel"
-        }
-      ],
-      "composite": true,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "recurrenceWord",
-          "line": 186,
-          "score": 0.118
-        },
-        {
-          "decl": "energy",
-          "line": 86,
-          "score": 0.077
-        }
-      ],
-      "id": "OST-np-val-concat-energy",
-      "in_file": 55,
-      "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "particular_concat",
-        "energy_homogeneous"
-      ],
-      "statement": "for \u0393_NP, complete-word concatenation satisfies val(UV)=val(V)-E_|V|(c_U), equivalently val(UV)=0 iff E_|V|(c_U)=val(V); this is particular_concat plus energy_homogeneous, not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "fold_s3",
-          "line": 565,
-          "score": 0.267,
-          "trust": "kernel"
-        },
-        {
-          "decl": "energy_homogeneous",
-          "line": 236,
-          "score": 0.235,
-          "trust": "kernel"
-        },
-        {
-          "decl": "val_concat_zero_iff",
-          "line": 685,
-          "score": 0.154,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "recurrenceWord",
-          "line": 186,
-          "score": 0.214
-        },
-        {
-          "decl": "foldSteps",
-          "line": 148,
-          "score": 0.158
-        }
-      ],
-      "id": "OST-np-fold-s3",
-      "in_file": 55,
-      "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [],
-      "statement": "for \u0393_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "reset_pow_then_hub",
-          "line": 727,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "reset_prefix",
-          "line": 609,
-          "score": 0.176,
-          "trust": "kernel"
-        },
-        {
-          "decl": "hub_nonreset",
-          "line": 702,
-          "score": 0.154,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "recurrenceWord",
-          "line": 186,
-          "score": 0.133
-        },
-        {
-          "decl": "particularSum",
-          "line": 530,
-          "score": 0.125
-        }
-      ],
-      "id": "OST-np-reset-pow-then-hub",
-      "in_file": 55,
-      "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "hub_nonreset"
-      ],
-      "statement": "for \u0393_NP, the MSD word (B*)^k \u00b7 (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "reset_prefix",
-          "line": 609,
-          "score": 0.385,
-          "trust": "kernel"
-        },
-        {
-          "decl": "reset_pow_then_hub",
-          "line": 727,
-          "score": 0.273,
-          "trust": "kernel"
-        },
-        {
-          "decl": "particular_concat",
-          "line": 600,
-          "score": 0.182,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "particularSum",
-          "line": 530,
-          "score": 0.143
-        },
-        {
-          "decl": "qShift",
-          "line": 69,
-          "score": 0.0
-        }
-      ],
-      "id": "OST-np-reset-prefix",
-      "in_file": 55,
-      "lean": "Problems/Ostrowski/NP/Energy.lean",
-      "names_own": [
-        "particular_concat"
-      ],
-      "statement": "for \u0393_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0"
     },
     {
       "candidates": [
@@ -4991,6 +4738,41 @@
     {
       "candidates": [
         {
+          "decl": "cycleMin_defect_le_hug_charge",
+          "line": 172,
+          "score": 0.233,
+          "trust": "kernel"
+        },
+        {
+          "decl": "hug_charge_maximal",
+          "line": 115,
+          "score": 0.203,
+          "trust": "kernel"
+        },
+        {
+          "decl": "cycleMin_defect_le_charge",
+          "line": 133,
+          "score": 0.195,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-cyclemin-hug-charge-max",
+      "in_file": 9,
+      "lean": "Problems/Juggler/WalkChargeMax.lean",
+      "names_own": [
+        "stateCharge_antitone",
+        "hug_charge_maximal",
+        "cycleMin_defect_le_charge",
+        "cycleMin_defect_le_hug_charge"
+      ],
+      "statement": "Hug charge maximality and the \u00a75.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge \u03bd W = 1/(e^{W\u03bd}\u00b7W\u00b7\u03bd) \u2014 the paper's g(u) = 1/(n'^{2^u}\u00b72^u\u00b7log n') written through the rational weight W = 3^a/2^k \u2014 is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug itinerary carries the pointw"
+    },
+    {
+      "candidates": [
+        {
           "decl": "cycleMin_hug_kill_criterion",
           "line": 439,
           "score": 0.284,
@@ -5555,6 +5337,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 140,
-  "worth_reviewing": 25
+  "unresolved": 135,
+  "worth_reviewing": 22
 }

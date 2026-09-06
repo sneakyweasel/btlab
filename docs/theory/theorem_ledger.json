@@ -2116,6 +2116,8 @@
   "statement": "for Γ_NP, homogeneous residual motion is energy-neutral in the sliding index: E_n(A^k s) = E_{n+k}(s), equivalently energy_telescope on the zero word; this is not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "energy_homogeneous",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_energy_kernel.py"
   ],
@@ -2179,6 +2181,8 @@
   "statement": "for Γ_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "particular_s3",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_zero_value_kernel.py"
   ],
@@ -2203,6 +2207,8 @@
   "statement": "for Γ_NP, complete-word concatenation satisfies val(UV)=val(V)-E_|V|(c_U), equivalently val(UV)=0 iff E_|V|(c_U)=val(V); this is particular_concat plus energy_homogeneous, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "val_concat_energy",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_zero_value_kernel.py"
   ],
@@ -2225,6 +2231,8 @@
   "statement": "for Γ_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "fold_s3",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_zero_value_kernel.py"
   ],
@@ -2247,6 +2255,8 @@
   "statement": "for Γ_NP, the MSD word (B*)^k · (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "reset_pow_then_hub",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_recurrence_zero.py"
   ],
@@ -2293,6 +2303,8 @@
   "statement": "for Γ_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "reset_prefix",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_recurrence_zero.py"
   ],
@@ -6271,8 +6283,6 @@
   "statement": "Hug charge maximality and the §5.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge ν W = 1/(e^{Wν}·W·ν) — the paper's g(u) = 1/(n'^{2^u}·2^u·log n') written through the rational weight W = 3^a/2^k — is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug itinerary carries the pointwise-least admissible odd count (hugOdds_le_of_admissible), the exact hug itinerary maximises the total walk charge over ALL admissible exponent walks (hug_charge_maximal), strengthening the paper's fixed-(L,o) statement. Chained with the transport inequality: on a CycleMin cycle with n ≥ 400 and positive reduced log-base ν = log n − D, the cyclic defect sum obeys Σ_k 1/(x_k log x_k) ≤ Σ_k g(w_k) ≤ Σ_k g(hugWeight k) (cycleMin_defect_le_charge, cycleMin_defect_le_hug_charge), exponentiating cycleMin_transport via exp monotonicity only — no charge integral. Of Section 5's chain only the rotation average (Prop 5.5), Denjoy–Koksma (Thm 5.7), the strict within-(L,o) uniqueness of the maximiser, and the final kill evaluations remain human/verified computation. Not a cycle obstruction and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/WalkChargeMax.lean",
-  "decl": "stateCharge_antitone",
-  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_charge.py"
   ],

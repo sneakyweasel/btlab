@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -164,43 +165,47 @@ def test_no_two_rows_claim_the_same_declaration():
     assert shared == {}, shared
 
 
-def test_a_row_does_not_name_a_declaration_other_than_its_own():
-    """If a statement names exactly one declaration from its file and `decl` is a different
-    one, the join is probably wrong.
+def test_no_row_chose_a_declaration_far_worse_than_one_it_names():
+    """A row citing a sibling is normal prose, not a mis-join.
 
-    The exceptions are rows that cite a *related* theorem while being a different one, which
-    is normal prose and not a defect. Each is listed with its reason, because the point of the
-    list is that a new case has to be looked at rather than tolerated by a rule:
+    The earlier form of this guard flagged any row whose statement named a declaration other
+    than its `decl`. That fired seven times and caught nothing: "the dictionary *for*
+    origin_particular", "particular_concat at c_R = 0", "equivalently energy_telescope on the
+    zero word" are all correct joins with a citation.
 
-    * ``OST-np-energy-telescope`` is ``energy_telescope`` and cites ``energy_step`` as the
-      step form it accumulates.
-    * ``OST-np-impulse-place`` is ``iterateA_e3`` and calls itself the place-value dictionary
-      *for* ``origin_particular``.
-    * ``J-envelope-lt-pow`` is ``power_bound_lt_pow`` and notes that ``power_bound_contracts``
-      is its ``k = 1`` case.
+    What did catch a real error was the size of the gap. `J-cyclemin-hug-charge-max` had been
+    joined to `stateCharge_antitone`, a supporting lemma scoring 0.06, while naming
+    `hug_charge_maximal` at 0.233 -- and the row is composite, so no single `decl` was right.
+    Every correct join sits below 1.7x; that one was 3.9x. The threshold is set at 3x, which
+    is wide enough to stay quiet on citation and narrow enough to have caught the one mistake.
     """
-    import re
+    import sys
 
+    sys.path.insert(0, str(ROOT / "tools"))
+    import formalpedia as fp
+
+    index = fp.build()
+    byname = {(d["file"], d["name"]): d for d in index["declarations"]}
     ident = re.compile(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+")
-    decl_re = re.compile(
-        r"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+([A-Za-z_][A-Za-z0-9_'!?.]*)",
-        re.MULTILINE,
-    )
-    allowed = {"OST-np-energy-telescope", "OST-np-impulse-place", "J-envelope-lt-pow"}
-    flagged = []
+    bad = []
     for row in _entries():
         decl = row.get("decl")
-        if not decl or row["id"] in allowed:
+        if not decl:
             continue
-        path = ROOT / "formal" / str(row["lean"])
-        if not path.is_file():
+        path = "formal/" + str(row.get("lean"))
+        chosen = byname.get((path, decl))
+        if chosen is None:
             continue
-        present = set(decl_re.findall(path.read_text(encoding="utf-8")))
-        named = [t for t in dict.fromkeys(ident.findall(row["statement"])) if t in present]
-        if named and decl not in named:
-            flagged.append(f"{row['id']}: decl={decl} but statement names {named}")
-    assert flagged == [], flagged
-
+        words = fp.words(row["statement"])
+        mine = fp.similarity(words, chosen)
+        for name in dict.fromkeys(ident.findall(row["statement"])):
+            other = byname.get((path, name))
+            if other is None or name == decl:
+                continue
+            if fp.similarity(words, other) > 3.0 * max(mine, 1e-9):
+                bad.append(f"{row['id']}: chose {decl} ({mine:.3f}) over {name} "
+                           f"({fp.similarity(words, other):.3f})")
+    assert bad == [], bad
 
 def test_no_row_credits_native_decide_to_a_kernel_checked_declaration():
     """Tactic names drift out of prose the way constants do.
