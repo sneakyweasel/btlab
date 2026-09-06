@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import math
 from fractions import Fraction
+from fractions import Fraction as Fr
 from functools import lru_cache
 from typing import Any
 
@@ -701,6 +702,59 @@ def composite_screen(dmax: int = 13) -> dict[str, tuple[Fraction, Fraction]]:
                         if name not in worst or k > worst[name][1]:
                             worst[name] = (g, k)
     return worst
+
+
+
+def vaaler_truncation_budget(depth: int = 9) -> dict[str, Any]:
+    """What truncation the carry term of the differenced level-1 kernel can afford.
+
+    The carry is ``-c(n+h) kappa`` with ``kappa`` the indicator of ``theta_1`` in an interval.
+    Vaaler at truncation ``J`` leaves a remainder ``~ P/J`` and returns waves ``e(j n^{3/2})``
+    against ``e(-(27k/32)(n+h)^{33/32})`` with coefficients ``|a_j| << 1/|j|``.  Since ``3/2``
+    exceeds ``33/32`` the first monomial dominates the derivatives at every ``j >= 1``, so a pair
+    ``(kappa_e, ell)`` prices each at ``(j P^{1/2})^kappa_e P^ell``; the ``1/j`` weights make the
+    sum over ``|j| <= J`` of order ``J^kappa_e P^{kappa_e/2 + ell}``.  Balancing against ``P/J``,
+
+        J = P^delta,   delta = (1 - kappa_e/2 - ell) / (kappa_e + 1).
+
+    The requirement on the differenced sum is ``1/48`` -- one differencing halves a saving and
+    the kernel needs ``1/96``.  Prices the wave sums at length ``P``; pricing them at the
+    shifted-window length is the step this does not take.
+    """
+
+    best: tuple[Fr, Fr, Fr] | None = None
+    rows: list[dict[str, Any]] = []
+    for kap, ell in sorted(van_der_corput_pairs(depth)):
+        num = 1 - kap / 2 - ell
+        if num <= 0:
+            continue
+        d = num / (kap + 1)
+        rows.append({"pair": (kap, ell), "J_exponent": d})
+        if best is None or d > best[0]:
+            best = (d, kap, ell)
+    assert best is not None
+    d, kap, ell = best
+    classical = (1 - Fraction(1, 4) - Fraction(1, 2)) / Fraction(3, 2)
+    required = Fraction(1, 48)
+    # the (Delta_h c) theta_1 term shifts j by at most k h P^{1/32}, with k, h <= P^{1/24}
+    shift = Fraction(1, 24) + Fraction(1, 24) + Fraction(1, 32)
+    # the endpoint 1 - beta moves at h P^{-1/2}; the frozen window has length P^{1/2}/(J h)
+    reach = d + Fraction(1, 24)
+    return {
+        "pairs_scored": len(rows),
+        "best_pair": (kap, ell),
+        "J_exponent": d,
+        "saving": d,
+        "classical_pair_saving": classical,
+        "required": required,
+        "room": d / required,
+        "reaches_the_requirement": d >= required,
+        "shift_from_delta_h_c": shift,
+        "J_dominates_the_shift": d > shift,
+        "window_reach": reach,
+        "window_holds_integers": reach < Fraction(1, 2),
+        "window_margin": Fraction(1, 2) - reach,
+    }
 
 
 def main() -> None:

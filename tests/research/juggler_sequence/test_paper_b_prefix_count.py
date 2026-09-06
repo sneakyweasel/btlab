@@ -1575,3 +1575,58 @@ def test_paper_records_the_composite_screen() -> None:
     # Step E's zero-offset is now derived, and its first half has no alpha-form
     assert "is absent from the three for a" in text
     assert "not a function of the weight" in text
+
+
+# --- what truncation the carry term can afford ---
+
+
+def test_the_vaaler_budget_reaches_the_requirement() -> None:
+    """J = P^{5/22} and a saving of 5/22, against the 1/48 the differenced sum needs."""
+    r = B.vaaler_truncation_budget()
+    assert r["J_exponent"] == Fraction(5, 22)
+    assert r["saving"] == Fraction(5, 22)
+    assert r["required"] == Fraction(1, 48)
+    assert r["room"] == Fraction(120, 11)
+    assert r["reaches_the_requirement"]
+    # the classical pair alone already clears it eight times over
+    assert r["classical_pair_saving"] == Fraction(1, 6)
+    assert r["classical_pair_saving"] / r["required"] == 8
+
+
+def test_the_budget_formula_is_the_balance() -> None:
+    """delta = (1 - k/2 - l)/(k+1) is P/J against J^k P^{k/2+l}, and the trivial pair gives none."""
+    for kap, ell in B.van_der_corput_pairs(6):
+        num = 1 - kap / 2 - ell
+        if num <= 0:
+            continue
+        d = num / (kap + 1)
+        # at J = P^d the two sides of the balance agree
+        assert 1 - d == d * kap + kap / 2 + ell
+    assert 1 - Fraction(0) / 2 - Fraction(1) == 0          # trivial pair: no saving, as it must
+
+
+def test_both_unpriced_terms_are_one_family() -> None:
+    """(Delta_h c) theta_1 shifts j by at most k h P^{1/32}, which J dominates."""
+    r = B.vaaler_truncation_budget()
+    assert r["shift_from_delta_h_c"] == Fraction(11, 96) == Fraction(1, 24) * 2 + Fraction(1, 32)
+    assert r["J_dominates_the_shift"]
+    assert r["J_exponent"] - r["shift_from_delta_h_c"] == Fraction(119, 1056)
+
+
+def test_the_shifted_window_works_on_beta_where_it_failed_on_c() -> None:
+    """beta drifts at exponent -1/2, far below the threshold that 33/32 sat above."""
+    r = B.vaaler_truncation_budget()
+    assert r["window_reach"] == Fraction(71, 264) < Fraction(1, 2)
+    assert r["window_holds_integers"]
+    assert r["window_margin"] == Fraction(61, 264)
+    # the contrast: c has coefficient exponent 33/32, above the drift threshold; beta has -1/2
+    assert Fraction(33, 32) > B.DRIFT_THRESHOLD > Fraction(-1, 2)
+
+
+def test_paper_records_the_truncation_and_stops_where_it_stops() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "What the truncation costs" in text
+    assert "J=P^{5/22}" in text
+    assert "10.9" in text and "times over" in text
+    assert "it was being asked of the wrong quantity" in text
+    assert "price the wave sums at the window length" in text

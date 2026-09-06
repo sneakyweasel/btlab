@@ -5291,6 +5291,50 @@ Vaaler expansion has still to be truncated against a weight of size
 \(kP^{33/32}\). Those two are the problem; the arithmetic of \(H\) is
 not.
 
+*What the truncation costs.* The carry is the one carrying the large
+weight, and its budget is also a closed formula. Vaaler at truncation
+\(J\) leaves a remainder \(\asymp P/J\) and returns waves
+\(e(jn^{3/2})\) against \(e(-\tfrac{27k}{32}(n{+}h)^{33/32})\) with
+coefficients \(\lvert a_j\rvert\ll1/\lvert j\rvert\). Since
+\(\tfrac32>\tfrac{33}{32}\) the first monomial dominates the
+derivatives for every \(j\ge1\), so a van der Corput pair
+\((\varkappa,\ell)\) prices each at \((jP^{1/2})^{\varkappa}P^{\ell}\);
+the \(1/j\) weights make the sum over \(\lvert j\rvert\le J\) of order
+\(J^{\varkappa}P^{\varkappa/2+\ell}\), and balancing that against
+\(P/J\) gives
+\[
+J=P^{\delta},\qquad
+\delta=\frac{1-\varkappa/2-\ell}{\varkappa+1}.
+\]
+Over the pairs the two processes generate from the trivial one the best
+is \((\tfrac14,\tfrac{13}{22})\), returning \(J=P^{5/22}\) and a saving
+of \(\tfrac5{22}\); the classical \((\tfrac12,\tfrac12)\) already
+returns \(\tfrac16\). Against the \(\tfrac1{48}\) required these are
+\(10.9\) and \(8\) times over.
+
+Two checks that the range is the one it looks like. The
+\((\Delta_hc)\theta_1\) term, sawtooth-expanded in its turn, shifts
+\(j\) by at most \(\asymp khP^{1/32}\le P^{11/96}\), which \(P^{5/22}\)
+dominates --- so both unpriced terms reduce to the *same* family of
+two-monomial sums, over one range of \(j\). And the interval endpoint
+\(1-\beta\) moves, so Vaaler cannot be applied globally with frozen
+coefficients: the window on which \(\beta\) moves by less than
+\(1/J\) has length \(\asymp P^{1/2}/(Jh)\), and it holds integers
+exactly when \(Jh\le P^{1/2}\). At \(J=P^{5/22}\) and \(h\le P^{1/24}\)
+that reads \(P^{71/264}\) against \(P^{1/2}\), a margin of
+\(P^{61/264}\).
+
+That last is the arc closing. The shifted window is not useless here;
+it was being asked of the wrong quantity. Applied to \(c\), whose
+exponent is \(+\tfrac1{32}\) above the drift threshold, it has no
+interval. Applied after differencing to \(\beta\), whose exponent is
+\(-\tfrac12\) and far below it, it has one with a quarter of an order
+to spare.
+
+What this does not do is price the wave sums at the window length
+rather than at \(P\). That is the step the accounting stops at, and it
+is where a proof would start.
+
 *The three thresholds are independent, and they re-sort depth seven.*
 Applying all of them to the three targets at once:
 
