@@ -2332,6 +2332,8 @@
   "statement": "V(c)=|c| strictly decreases under c |-> DZ(c+2d) whenever |c|>=2 and d is a trit.",
   "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
   "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+  "decl": "doubledTrit_lyapunov",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/balanced_ternary/test_spec.py"
   ],
@@ -2343,6 +2345,8 @@
   "statement": "Doubled-trit carry and output are odd: T(-c,-d)=-T(c,d) and the emitted trit negates.",
   "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
   "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+  "decl": "doubledTrit_sign",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/balanced_ternary/test_spec.py"
   ],
@@ -2354,6 +2358,8 @@
   "statement": "The three carries -1,0,1 have pairwise distinct Mealy output signatures, so the 3-state machine is minimal.",
   "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
   "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+  "decl": "doubledTrit_outputSignatures_distinct",
+  "lean_trust": "compiler",
   "tests": [
    "tests/research/balanced_ternary/test_spec.py"
   ],

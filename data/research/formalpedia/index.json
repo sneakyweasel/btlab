@@ -2357,7 +2357,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Digit/carry decomposition of the doubled stream: `c + 2d = doubledOut c d + 3 * doubledNext c d`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2367,13 +2367,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 25,
+      "line": 26,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubled_decomp",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`|n| <= 1` exactly when `n` is `-1`, `0` or `1`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2383,29 +2383,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 29,
+      "line": 31,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "natAbs_le_one_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-doubled-closure",
-        "BTN-doubled-lyapunov",
-        "BTN-doubled-sign",
-        "BTN-doubled-minimality",
-        "BTN-carry-gain-3"
-      ],
-      "line": 43,
-      "module": "Problems.BalancedTernary.FiniteStateDynamics",
-      "name": "isTrit_natAbs",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "A trit has absolute value at most `1`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2417,11 +2401,11 @@
       ],
       "line": 46,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
-      "name": "lsdZ_neg",
+      "name": "isTrit_natAbs",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`lsd` is odd: `lsd (-n) = -lsd n`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2431,13 +2415,29 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 53,
+      "line": 50,
+      "module": "Problems.BalancedTernary.FiniteStateDynamics",
+      "name": "lsdZ_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`D` is odd: `D (-n) = -D n`.",
+      "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-doubled-closure",
+        "BTN-doubled-lyapunov",
+        "BTN-doubled-sign",
+        "BTN-doubled-minimality",
+        "BTN-carry-gain-3"
+      ],
+      "line": 58,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "DZ_neg",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Carry and output are both odd in their arguments: negating `c` and `d` negates `doubledNext` and negates the emitted trit.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2447,13 +2447,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 59,
+      "line": 65,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubledTrit_sign",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`1` is reachable from carry `0`: `doubledNext 0 1 = 1`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2463,13 +2463,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 69,
+      "line": 76,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubledTrit_reach_one",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "`-1` is reachable from carry `0`: `doubledNext 0 (-1) = -1`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2479,13 +2479,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 72,
+      "line": 80,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubledTrit_reach_neg",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "The carry stays in the box `{-1, 0, 1}` when it starts there and `d` is a trit.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2495,13 +2495,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 75,
+      "line": 84,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubledNext_abs_le_one",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "Closure: the doubled-trit carry never leaves `{-1, 0, 1}`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2511,13 +2511,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 82,
+      "line": 92,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubledTrit_closure",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`V(c) = |c|` strictly decreases under `c |-> doubledNext c d` whenever `|c| >= 2` and `d` is a trit -- the Lyapunov function that forces the carry back into the box.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2527,45 +2527,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 87,
+      "line": 98,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubledTrit_lyapunov",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-doubled-closure",
-        "BTN-doubled-lyapunov",
-        "BTN-doubled-sign",
-        "BTN-doubled-minimality",
-        "BTN-carry-gain-3"
-      ],
-      "line": 105,
-      "module": "Problems.BalancedTernary.FiniteStateDynamics",
-      "name": "doubledTrit_flush",
-      "trust": "compiler"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-doubled-closure",
-        "BTN-doubled-lyapunov",
-        "BTN-doubled-sign",
-        "BTN-doubled-minimality",
-        "BTN-carry-gain-3"
-      ],
-      "line": 110,
-      "module": "Problems.BalancedTernary.FiniteStateDynamics",
-      "name": "lsdZ_three_mul_add_two",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "Flushing with digit `0` from any in-box carry returns carry `0`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2576,6 +2544,38 @@
         "BTN-carry-gain-3"
       ],
       "line": 117,
+      "module": "Problems.BalancedTernary.FiniteStateDynamics",
+      "name": "doubledTrit_flush",
+      "trust": "compiler"
+    },
+    {
+      "doc": "`lsd (3n + 2) = -1`.",
+      "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-doubled-closure",
+        "BTN-doubled-lyapunov",
+        "BTN-doubled-sign",
+        "BTN-doubled-minimality",
+        "BTN-carry-gain-3"
+      ],
+      "line": 123,
+      "module": "Problems.BalancedTernary.FiniteStateDynamics",
+      "name": "lsdZ_three_mul_add_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`D (3n + 2) = n + 1`.",
+      "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-doubled-closure",
+        "BTN-doubled-lyapunov",
+        "BTN-doubled-sign",
+        "BTN-doubled-minimality",
+        "BTN-carry-gain-3"
+      ],
+      "line": 131,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "DZ_three_mul_add_two",
       "trust": "kernel"
@@ -2591,13 +2591,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 124,
+      "line": 138,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "carryGain3",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`carryGain3 n = 3n` along the all-`+1` word.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2607,13 +2607,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 128,
+      "line": 143,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "carryGain3_eq",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`carryGain3` is unbounded: no `B` bounds every `|carryGain3 n|`.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2623,7 +2623,7 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 134,
+      "line": 150,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "carryGain3_unbounded",
       "trust": "kernel"
@@ -2639,13 +2639,13 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 140,
+      "line": 156,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "outSig",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The three carries `-1`, `0` and `1` have pairwise distinct Mealy output signatures, so the three-state machine is minimal.",
       "file": "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
       "kind": "theorem",
       "ledger": [
@@ -2655,7 +2655,7 @@
         "BTN-doubled-minimality",
         "BTN-carry-gain-3"
       ],
-      "line": 143,
+      "line": 160,
       "module": "Problems.BalancedTernary.FiniteStateDynamics",
       "name": "doubledTrit_outputSignatures_distinct",
       "trust": "compiler"
@@ -64269,6 +64269,7 @@
       "declarations": 0,
       "file": "formal/Problems/JugglerParityPaper.lean",
       "imports": [
+        "Problems.Juggler.BranchFreeze",
         "Problems.Juggler.MasterIdentity",
         "Problems.Juggler.MeanValues",
         "Problems.Juggler.MonomialSplitting",
