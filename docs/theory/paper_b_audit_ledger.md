@@ -4975,3 +4975,70 @@ matching across line breaks -- makes every such test a regex, and the manuscript
 seventy-two columns by hand. The cheaper discipline is to keep pinned phrases off line
 boundaries, and this is the second time this session that a wrap has broken a check (the other
 was `coincidence of a feasible choice`, in A.6).
+
+## The exponent of the last step decides how many nestings reach the leading term
+
+The same two-step split on part (i). `z = v^(3/2) - theta_z`, so
+`z^(1/2) = v^(3/4) - (1/2) v^(-3/4) theta_z + ...`; then
+`v = Y - theta_2` with `Y = m^(3/2)` gives
+`v^(3/4) = m^(9/8) - (3/4) m^(-3/8) theta_2 + ...`; and `m = X - theta`
+gives `m^(9/8) = n^(27/16) - (9/8) n^(3/16) theta + ...`. So
+
+```text
+  D_5  =  -(3/4) theta_2 m^(-3/8)  +  lower order
+```
+
+linear in the *single* fractional part `theta_2 = {m^(3/2)}`, and the
+ratio `|D_5|/((3/4) m^(-3/8))` is `theta_2` itself: uniform, mean `1/2`,
+which is the `0.5006` measured last pass.
+
+**Why the last nesting drops out here and not in (ii).** Compare each
+last step's coefficient against the lead `(3/4) m^(-3/8)`:
+
+```text
+  (i)   z = floor(v^(3/2))   theta_z enters at (1/2) v^(-3/4)
+                             share of the lead = (2/3) m^(-3/4)  ->  0
+  (ii)  w = floor(v^(1/2))   theta_w's linear term is (3/2) v^(1/4),
+                             so large the identity subtracts it explicitly,
+                             leaving (3/8) v^(-1/4)
+                             share of the lead = 1/2, for every n
+```
+
+Taking a `3/2` power at the last step pushes its fractional part down to
+`v^(-3/4)`; taking a `1/2` power leaves the quadratic at `v^(-1/4)`,
+which is the lead's own order. At `n = 1e4` the shares are `2.108e-5`
+and `0.5000000001`.
+
+So the fifth-letter identity carries one nesting in (i) and two in (ii),
+and that is a fact about the exponent, not about the letters. It also
+finishes the account of the bound: `(i)` needs one leading term and four
+corrections of strictly lower order, `(ii)` needs two leading terms, and
+the second of them is the one the term inventory found deletable ---
+deletable because what it bounds is a *difference*, and the difference
+is bounded by the larger of the two.
+
+**Measured.** The ratio matches `theta_2` to `8.96e-5` on
+`[10000, 12000)` and `4.01e-5` on `[30000, 32000)`, the deviation
+falling as a lower-order term (worst `9.66e-2`, at `n = 3`). Over
+`[3, 6000)` the means are `0.493793` measured against `0.493682`
+modelled, a gap of `1.1e-4`.
+
+```text
+  the three ratios of this ledger, now all accounted for
+  Thm 4.8 E        theta_w^2                 mean 1/3     one nesting, quadratic
+  Lem 6.2(i)       theta_2                   mean 1/2     one nesting, linear
+  Lem 6.2(ii)      |theta_w^2/2 - theta_2|   mean 23/60   two nestings, both
+```
+
+Tags. EXACT: `D_5 = -(3/4) theta_2 m^(-3/8) + lower order` from the
+three-step split, so the ratio is `theta_2`; the last-nesting share of
+the lead is `(2/3) m^(-3/4)` in (i) and `1/2` in (ii), the latter
+independent of `n`. COMPUTATIONALLY VERIFIED: the shares `2.108e-5` and
+`0.5000000001` at `n = 1e4`; the ratio matches `theta_2` to `8.96e-5`
+and `4.01e-5` in the two tail windows; means `0.493793` against
+`0.493682`. OBSERVATION: which fractional parts reach the leading term
+is decided by the exponent of the last nesting, not by the itinerary.
+
+Probe: `lemma_6_2_part_i_leading_term`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

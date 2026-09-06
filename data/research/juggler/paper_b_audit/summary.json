@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "df4f3c1fceaf6aa67c0a0edb0cad7e6f9542a372",
+  "git_commit": "f217ce9426523672b0b93159fcee2e9f33bc2898",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3907,7 +3907,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5640,
+        "line": 5675,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3915,7 +3915,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6451,
+        "line": 6486,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6821,
+        "line": 6856,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6851,
+        "line": 6886,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6930,
+        "line": 6965,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -6139,6 +6139,30 @@
     "explains_the_two_thirds_cap": true,
     "two_fractional_parts_from_two_nestings": true
   },
+  "lemma_6_2_part_i_leading_term": {
+    "points": 2999,
+    "mean_measured": 0.49379310373799634,
+    "mean_model": 0.4936821540976034,
+    "mean_gap": 0.00011094964039290958,
+    "model_matches_the_mean": true,
+    "ratio_model": "theta_2",
+    "ratio_is_uniform": true,
+    "leading_term": "-(3/4) theta_2 m^(-3/8)",
+    "leading_term_is_linear_in_theta_2": true,
+    "worst_deviation": 0.09656994419648435,
+    "worst_deviation_at": 3,
+    "tail_worst_deviation": 0.00021550230130068515,
+    "deviation_falls_with_n": true,
+    "probe_n": 10001,
+    "last_nesting_share_part_i": 2.1079479677699795e-05,
+    "last_nesting_share_part_ii": 0.5000000000546488,
+    "part_i_last_nesting_vanishes": true,
+    "part_ii_last_nesting_is_half": true,
+    "part_i_share_law": "(2/3) m^(-3/4)",
+    "part_ii_share_law": "1/2, independent of n",
+    "one_nesting_in_i_two_in_ii": true,
+    "the_exponent_of_the_last_step_decides": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6206,5 +6230,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 88.96835565567017
+  "elapsed_seconds": 90.02695727348328
 }

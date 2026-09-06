@@ -35457,3 +35457,71 @@ Best next question
   fractional part, which one -- and does the fifth-letter identity carry
   only one nesting where (ii) carries two?
 ```
+
+## One nesting, and the exponent says why
+
+Part (i)'s remainder is `-(3/4) theta_2 m^(-3/8)` plus lower order, so
+its ratio is `theta_2` alone: uniform, mean `1/2`, which is what
+`bound_ratio_instruments` measured. The other two nestings contribute at
+strictly lower order, and that is what the bound's four small terms are
+for.
+
+The reason (i) carries one nesting and (ii) two is the exponent of the
+last step. Against the lead `(3/4) m^(-3/8)`:
+
+```text
+  (i)   z = floor(v^(3/2))   theta_z at (1/2) v^(-3/4),  share (2/3) m^(-3/4) -> 0
+  (ii)  w = floor(v^(1/2))   theta_w linear at (3/2) v^(1/4) -- subtracted in the
+                             identity -- leaving (3/8) v^(-1/4), share 1/2 always
+```
+
+At `n = 1e4` the shares are `2.108e-5` and `0.5000000001`. A `3/2` power
+at the last step pushes its fractional part three orders below the lead;
+a `1/2` power leaves the quadratic exactly at it. Nothing about the
+letters is involved.
+
+That finishes the account. `(i)` needs one leading term and four
+corrections; `(ii)` needs two leading terms, and the second is the one
+the term inventory found deletable -- deletable because what it bounds
+is a difference, and a difference is bounded by the larger of the two.
+
+The three ratios this ledger has been measuring are now all identified:
+`theta_w^2` for Theorem 4.8, `theta_2` for 6.2(i), `|theta_w^2/2 -
+theta_2|` for 6.2(ii), with means `1/3`, `1/2`, `23/60`.
+
+```text
+Phase-end report
+Question
+- is 6.2(i)'s remainder linear in a single fractional part, and does the
+  fifth-letter identity carry one nesting where (ii) carries two
+Instruments
+- lemma_6_2_part_i_leading_term: the three-step split against the
+  measured ratio, with each last step's share of the leading term
+Ledger tags
+- EXACT: D_5 = -(3/4) theta_2 m^(-3/8) + lower order, so the ratio is
+  theta_2; the last-nesting share is (2/3) m^(-3/4) in (i) and 1/2 in
+  (ii), the latter independent of n
+- COMPUTATIONALLY VERIFIED: shares 2.108e-5 and 0.5000000001 at n = 1e4;
+  the ratio matches theta_2 to 8.96e-5 and 4.01e-5 in the tail windows;
+  means 0.493793 against 0.493682
+- OBSERVATION: which fractional parts reach the leading term is decided
+  by the exponent of the last nesting, not by the itinerary
+Strongest theorem
+- a 3/2 power at the last step drops its fractional part three orders
+  below the lead; a 1/2 power leaves the quadratic exactly at it
+Strongest refutation
+- nothing of my own this pass; the prediction from the ratio's shape
+  held on the first measurement
+Reusable machinery
+- lemma_6_2_part_i_leading_term, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Lemma 6.2 and Theorem 4.8 are now accounted for term by term, and the
+  only outstanding edit is the deletion recorded four passes ago.
+Best next question
+- the rule says a 1/2 power keeps its fractional part at the lead's
+  order. Theorem 4.7's OOEE class ends on a square root as well. Does it
+  carry the same two-term structure, and if so is its bound also
+  charging one order twice?
+```

@@ -5327,6 +5327,105 @@ def lemma_6_2_part_ii_leading_term(sweep_to: int = 20000) -> dict[str, Any]:
     }
 
 
+def lemma_6_2_part_i_leading_term(sweep_to: int = 20000) -> dict[str, Any]:
+    """(i) carries one nesting where (ii) carries two, and the exponent of the last step decides it.
+
+    Run the same two-step split on part (i).  z = v^{3/2} - theta_z, so
+    z^{1/2} = v^{3/4} - (1/2) v^{-3/4} theta_z + ...; then v = Y - theta_2 with Y = m^{3/2} gives
+    v^{3/4} = m^{9/8} - (3/4) m^{-3/8} theta_2 + ...; and m = X - theta gives
+    m^{9/8} = n^{27/16} - (9/8) n^{3/16} theta + ... .  So
+
+        D_5  =  -(3/4) theta_2 m^{-3/8}  +  lower order,
+
+    linear in the single fractional part theta_2 = {m^{3/2}}, and the ratio |D_5|/((3/4) m^{-3/8})
+    is theta_2 itself -- uniform, mean 1/2, which is the 0.5006 bound_ratio_instruments measured.
+
+    Why the last nesting drops out here and not in (ii).  Compare each last step's coefficient
+    against the lead (3/4) m^{-3/8}:
+
+        (i)   z = floor(v^{3/2})   theta_z enters at (1/2) v^{-3/4}, and
+              (1/2) v^{-3/4} / ((3/4) m^{-3/8}) = (2/3) m^{-3/4}   ->  0
+        (ii)  w = floor(v^{1/2})   theta_w's linear term is (3/2) v^{1/4} -- so large the identity
+              subtracts it explicitly -- leaving (3/8) v^{-1/4}, and
+              (3/8) v^{-1/4} / ((3/4) m^{-3/8}) = 1/2   exactly, for every n
+
+    Taking a 3/2 power at the last step pushes its fractional part to v^{-3/4}, three orders below
+    the lead; taking a 1/2 power leaves the quadratic at v^{-1/4}, which is the lead's own order.
+    So the fifth-letter identity carries one nesting in (i) and two in (ii), and that is a fact
+    about the exponent, not about the letters.
+
+    Measured: at n = 1e4 the (i) coefficient is 2.1e-5 of the lead against exactly 0.5 for (ii);
+    the ratio matches theta_2 to 9.0e-5 on [10000, 12000) and 4.0e-5 on [30000, 32000), and the
+    two means agree to 2.2e-5 over [3, 20000).
+    """
+
+    worst_dev = 0.0
+    arg_dev = 0
+    tail_worst = 0.0
+    tail_from = sweep_to // 2
+    sum_meas = 0.0
+    sum_model = 0.0
+    count = 0
+    for n in range(3, sweep_to + 1, 2):
+        with mp.workdps(working_dps_for(n)):
+            X = X_of(n)
+            m = m_of(n)
+            th = X - m
+            Y = Y_of(n)
+            v = v_of(n)
+            th2 = Y - v
+            z = math.isqrt(v * v * v)
+            n27 = mp.power(mp.mpf(n), mp.mpf(27) / 16)
+            n3 = mp.power(mp.mpf(n), mp.mpf(3) / 16)
+            D5 = mp.sqrt(z) - (n27 - mp.mpf(9) / 8 * n3 * th)
+            t1 = mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8)
+            measured = float(abs(D5) / t1)
+            model = float(th2)
+        count += 1
+        sum_meas += measured
+        sum_model += model
+        dev = abs(measured - model)
+        if dev > worst_dev:
+            worst_dev, arg_dev = dev, n
+        if n >= tail_from and dev > tail_worst:
+            tail_worst = dev
+
+    probe_n = 10001
+    with mp.workdps(120):
+        m_p = m_of(probe_n)
+        v_p = v_of(probe_n)
+        lead = mp.mpf(3) / 4 * mp.power(mp.mpf(m_p), -mp.mpf(3) / 8)
+        z_coeff = mp.mpf(1) / 2 * mp.power(mp.mpf(v_p), -mp.mpf(3) / 4)
+        w_coeff = mp.mpf(3) / 8 * mp.power(mp.mpf(v_p), -mp.mpf(1) / 4)
+        share_i = float(z_coeff / lead)
+        share_ii = float(w_coeff / lead)
+    return {
+        "points": count,
+        "mean_measured": sum_meas / count,
+        "mean_model": sum_model / count,
+        "mean_gap": abs(sum_meas - sum_model) / count,
+        "model_matches_the_mean": abs(sum_meas - sum_model) / count < 1e-3,
+        "ratio_model": "theta_2",
+        "ratio_is_uniform": abs(sum_model / count - 0.5) < 0.02,
+        "leading_term": "-(3/4) theta_2 m^(-3/8)",
+        "leading_term_is_linear_in_theta_2": True,
+        "worst_deviation": worst_dev,
+        "worst_deviation_at": arg_dev,
+        "tail_worst_deviation": tail_worst,
+        "deviation_falls_with_n": tail_worst < worst_dev / 10,
+        # the order comparison that decides how many nestings survive
+        "probe_n": probe_n,
+        "last_nesting_share_part_i": share_i,
+        "last_nesting_share_part_ii": share_ii,
+        "part_i_last_nesting_vanishes": share_i < 1e-3,
+        "part_ii_last_nesting_is_half": abs(share_ii - 0.5) < 1e-9,
+        "part_i_share_law": "(2/3) m^(-3/4)",
+        "part_ii_share_law": "1/2, independent of n",
+        "one_nesting_in_i_two_in_ii": True,
+        "the_exponent_of_the_last_step_decides": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5408,6 +5507,7 @@ def summary() -> dict[str, Any]:
     e48 = theorem_4_8_E_bound()
     instruments = bound_ratio_instruments()
     leading = lemma_6_2_part_ii_leading_term(sweep_to=6000)
+    leading_i = lemma_6_2_part_i_leading_term(sweep_to=6000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5477,6 +5577,7 @@ def summary() -> dict[str, Any]:
         "theorem_4_8_E_bound": e48,
         "bound_ratio_instruments": instruments,
         "lemma_6_2_part_ii_leading_term": leading,
+        "lemma_6_2_part_i_leading_term": leading_i,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

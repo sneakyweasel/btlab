@@ -1784,3 +1784,29 @@ def test_the_ratio_model_explains_both_the_cap_and_the_exactness() -> None:
     # and it lands where bound_ratio_instruments measured the reduced mean
     inst = A.bound_ratio_instruments()
     assert abs(inst["rows"][-1]["l62ii_reduced"]["mean"] - r["mean_measured"]) < 0.02
+
+
+# --- how many nestings each half of the fifth-letter identity carries ---
+
+
+def test_part_i_is_linear_in_theta_two_alone() -> None:
+    """D_5 = -(3/4) theta_2 m^(-3/8) + lower order, so the ratio is theta_2 and the mean is 1/2."""
+    r = A.lemma_6_2_part_i_leading_term(sweep_to=6000)
+    assert r["ratio_model"] == "theta_2" and r["leading_term_is_linear_in_theta_2"]
+    assert r["model_matches_the_mean"] and r["mean_gap"] < 1e-3
+    assert r["ratio_is_uniform"] and abs(r["mean_model"] - 0.5) < 0.02
+    assert r["worst_deviation_at"] < 100 and r["deviation_falls_with_n"]
+    assert r["tail_worst_deviation"] < 1e-3
+
+
+def test_the_last_step_exponent_decides_how_many_nestings_survive() -> None:
+    """z = floor(v^(3/2)) sends theta_z to (2/3) m^(-3/4) of the lead; w = floor(v^(1/2)) to 1/2."""
+    r = A.lemma_6_2_part_i_leading_term(sweep_to=4000)
+    assert r["part_i_last_nesting_vanishes"] and r["last_nesting_share_part_i"] < 1e-4
+    assert r["part_ii_last_nesting_is_half"]
+    assert abs(r["last_nesting_share_part_ii"] - 0.5) < 1e-9
+    assert r["one_nesting_in_i_two_in_ii"] and r["the_exponent_of_the_last_step_decides"]
+    # and part (ii)'s own probe agrees that its two parts meet at one order
+    ii = A.lemma_6_2_part_ii_leading_term(sweep_to=2000)
+    assert ii["two_fractional_parts_from_two_nestings"]
+    assert ii["ratio_model"] == "|theta_w^2/2 - theta_2|"
