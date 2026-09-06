@@ -16,7 +16,7 @@ threshold `t₀` at or just above the true crossing.  The certified thresholds a
 therefore slightly conservative; the largest is `row_5b_binding` at `t = 1.92`,
 i.e. `P ≥ 1.92^48 = 4.0·10^13`, against the probe's `3.59·10^13`.  That row is
 `P₀`.  The one exception to "conservative" is `row_st6D1_modeindex`, whose
-`t₀ = 7` is the crossing exactly.
+`t₀ = 5` is the crossing exactly.
 
 The nine rows that carry Lemma 5.2b's anchor use its **corrected** constant
 `27/128` (the erratum at that lemma): the middle-band floor is `S ≥ 0.56 P^(-5/8)`,
@@ -81,7 +81,7 @@ theorem raised_threshold_admissible (E S c₇ : ℝ) (_hE : 0 ≤ E)
 
 end RaisedThreshold
 
-/-! ## The thirty rows -/
+/-! ## The thirty-eight rows -/
 
 section CertificateRows
 
@@ -221,10 +221,12 @@ theorem row_st3a_flat (t : ℝ) (ht : 1 ≤ t) :
   have h : t ^ 25 ≤ t ^ 36 := pow_le_pow_right₀ ht (by norm_num)
   linarith
 
-/-- Row `st6D1-window`.  Stage 6(D1) needs `P^(1/2) ≥ 8(1 + 7P^(1/4))`, i.e.
-`t² ≥ 8 + 56t`; the paper prints `P^(1/4) ≥ 56`, and `t ≥ 57` certifies it. -/
-theorem row_st6D1_window (t : ℝ) (ht : 57 ≤ t) : 8 * (1 + 7 * t) ≤ t ^ 2 := by
-  nlinarith [sq_nonneg (t - 57)]
+/-- Row `st6D1-window`.  Stage 6(D1) needs `P^(1/2) ≥ 8(1 + 5P^(1/4))`, i.e.
+`t² ≥ 8 + 40t`; the paper prints `P^(1/4) ≥ 40.20`, and `t ≥ 41` certifies it.
+The `5` is the collected widened `θ`-coefficient at Lemma 5.1(iii)'s corrected
+offset bound `|j| ≤ 2`; at the printed `|j| ≤ 3` it was `7`, and `t ≥ 57`. -/
+theorem row_st6D1_window (t : ℝ) (ht : 41 ≤ t) : 8 * (1 + 5 * t) ≤ t ^ 2 := by
+  nlinarith [sq_nonneg (t - 41)]
 
 /-- Row `st6D1-good`.  `72 t^(-1) P^(-1/2) ≤ 1/4` at `t = 1`; `P = t²`,
 `t ≥ 288`, `P ≥ 8.3·10^4`. -/
@@ -233,11 +235,15 @@ theorem row_st6D1_good (t : ℝ) (ht : 288 ≤ t) : (72:ℝ) / t ≤ 1 / 4 := by
 
 /-- Row `st6D1-modeindex`.  Lemma 5.2(iii) closes its mode accounting with
 `|w| ≤ |B₀| + R₀ ≤ 2R₀`, which needs the widened `θ`-coefficient under Stage 2's
-truncation: `7P^(1/4) ≤ R₀ = P^(5/16)`.  With `P = t^16` that is `7t⁴ ≤ t⁵`,
-i.e. `t ≥ 7`, so `P ≥ 7^16 = 3.32·10^13`.  Alone among the rows this one is
-*exact* rather than conservative: `t₀ = 7` is the crossing.  It is also the
-largest `c₇`-free row, and Appendix A.6 does not tabulate it. -/
-theorem row_st6D1_modeindex (t : ℝ) (ht : 7 ≤ t) : 7 * t ^ 4 ≤ t ^ 5 := by
+truncation: `5P^(1/4) ≤ R₀ = P^(5/16)`.  With `P = t^16` that is `5t⁴ ≤ t⁵`,
+i.e. `t ≥ 5`, so `P ≥ 5^16 = 1.53·10^11`.  Alone among the rows this one is
+*exact* rather than conservative: `t₀ = 5` is the crossing.  Appendix A.6 does
+not tabulate it, and it is what pins `R₀` from below.
+
+At the printed offset bound `|j| ≤ 3` the constant is `7` and the row reads
+`P ≥ 7^16 = 3.32·10^13`, which would make it the largest `c₇`-free row and cut
+A.5's lever from `120` to `1.08`.  See `BranchFreeze.offset_abs_le_two`. -/
+theorem row_st6D1_modeindex (t : ℝ) (ht : 5 ≤ t) : 5 * t ^ 4 ≤ t ^ 5 := by
   have h4 : (0:ℝ) ≤ t ^ 4 := pow_nonneg (by linarith) 4
   nlinarith [mul_le_mul_of_nonneg_left ht h4]
 

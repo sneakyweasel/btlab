@@ -3526,3 +3526,22 @@ the same bound.
 Probe: `run_length_constant`, two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
 manuscript or certificate edit.
+
+### Two more, both found by running the checks rather than by reading
+
+**`BranchFreeze` is now a cited module, and the barrel did not import it.** The
+manuscript had referenced that file by path for as long as Lemma 5.1(iii) has
+been written, but never named a declaration inside it, so the trust-boundary
+audit -- which resolves backticked declaration names -- counted five modules.
+Naming `carry_eq_floor_shifted` and `offset_abs_le_two` in the erratum makes it
+six. `Problems.JugglerParityPaper` now imports it directly, the table says six,
+and `lake build Problems.JugglerParityPaper` is green at 3101 jobs. It was
+already reachable transitively and is still disjoint from Paper A's barrel, so
+nothing about the boundary changes -- only what the table admits to.
+
+**And a false green.** The full-suite run was issued as
+`pytest tests/ -q 2>&1 | tail -10`, whose exit code is `tail`'s. It reported
+`0` while two trust-boundary tests were failing in the captured output. This is
+the second time in this audit that a pipeline has hidden a non-zero pytest exit
+(the first was `--timeout` on an uninstalled plugin). Re-run with the output
+redirected and the exit code read directly.

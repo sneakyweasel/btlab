@@ -1,3 +1,4 @@
+import Problems.Juggler.BranchFreeze
 import Problems.Juggler.MasterIdentity
 import Problems.Juggler.MeanValues
 import Problems.Juggler.MonomialSplitting
@@ -7,7 +8,7 @@ import Problems.Juggler.ThresholdCertificate
 /-!
 # Paper B barrel — everything the repository checks for the parity-discrepancy note
 
-`docs/theory/juggler_parity_discrepancy_note.md`. This file imports exactly the five modules
+`docs/theory/juggler_parity_discrepancy_note.md`. This file imports exactly the six modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper B on its
 own rather than selecting modules by hand out of the umbrella `Problems.Juggler`.
 
@@ -18,6 +19,10 @@ must be read together.
 
 ## What is here, by module
 
+* `BranchFreeze` — Lemma 5.1(iii): the exact regrouping (`lemma51iii_regroup`), the offset
+  bound (`corner_floor_range`, `carry_eq_floor_shifted`, `offset_abs_le_two`, beside the
+  manuscript's printed `offset_abs_le_three`), the double-difference hypothesis
+  (`double_difference_lt_one`), the `β`-product and the four derivative estimates.
 * `MasterIdentity` — Lemma 5.1: the level-2 defect identity and its closed form
   (`lemma51_i_identity`, `lemma51_i_closed_form`, `lemma51_i_nonneg`, `lemma51_i_upper`), the
   double gap (`lemma51_double_gap`), the bracket bound (`lemma51_brackets_le_two`), the master

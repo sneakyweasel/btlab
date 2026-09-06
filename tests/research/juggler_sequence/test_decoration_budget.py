@@ -80,10 +80,13 @@ def test_j_window_at_1e6() -> None:
     row = orbit_j_census(10**6, window=5_000, samples=2_000, boundary=200)
     assert row["h1"] == 2
     assert row["h2"] == 2
-    assert row["max_abs_j"] <= 3
+    # This census always reported live_j = [-1,0,1,2]; the assertion was written to the
+    # manuscript's printed |j| <= 3 and so never flagged that 3 is unattainable.  The bound
+    # is 2 (Lemma 5.1(iii) erratum, Lean `offset_abs_le_two`), and it is sharp.
+    assert row["max_abs_j"] == 2
     assert row["j_overflow"] is False
-    assert all(abs(j) <= 3 for j in row["live_j"])
-    assert abs(branch_offset(10**6 + 1, 4, 4)) <= 3
+    assert row["live_j"] == [-1, 0, 1, 2]
+    assert abs(branch_offset(10**6 + 1, 4, 4)) <= 2
 
 
 def test_decorated_composite_7_4() -> None:

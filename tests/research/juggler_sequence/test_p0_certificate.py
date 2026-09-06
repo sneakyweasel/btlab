@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pytest
 
+from research.juggler_sequence import decoration_budget as D
 from research.juggler_sequence import p0_certificate as C
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -39,9 +40,9 @@ def _pred_for(tag: str):
         "st3a-window": lambda P: 0.5 * P ** (23 / 48) >= 15 * P ** (10 / 48),
         "st3b-window": lambda P: 0.5 * P ** (22 / 48) >= 15 * P ** (9 / 48),
         "st3a-flat": lambda P: 16 * P ** (1 / 48 + 0.5) + 30 * P**0.75 <= 46 * P**0.75,
-        "st6D1-window": lambda P: P**0.5 >= 8 * (1 + 7 * P**0.25),
+        "st6D1-window": lambda P: P**0.5 >= 8 * (1 + 5 * P**0.25),
         "st6D1-good": lambda P: 72 * P**-0.5 <= 0.25,
-        "st6D1-modeindex": lambda P: 7 * P**0.25 <= P ** (5 / 16),
+        "st6D1-modeindex": lambda P: 5 * P**0.25 <= P ** (5 / 16),
         "5b-j0-window": lambda P: P**0.5 >= 56,
         "5b-Npieces": lambda P: 3 * P ** (1 / 24 + 0.5) + 2 + 22 * P ** (1 / 16 + 0.25)
         + 5 * P ** (1 / 3) <= 3.5 * P ** (13 / 24),
@@ -101,12 +102,13 @@ def test_each_threshold_is_sharp_at_its_own_crossing() -> None:
 
 def test_the_balance_comparisons_carry_the_threshold_alone() -> None:
     cert = C.certificate()
-    # They no longer carry it alone.  Excluding the three, the largest row left is the widened
-    # mode index of Lemma 5.2(iii) at 7^16, which the printed A.1 was missing; the q'' ratio of
-    # Step 5b(a) at 2.98e11 is the runner-up and used to be read as the answer here.
-    assert cert["binding_excluding_balance"]["tag"] == "st6D1-modeindex"
-    assert abs(cert["P0_excluding_lemma_3_9_balance"] / 7.0**16 - 1) < 1e-9
-    assert 1.07 < cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] < 1.09
+    # They do -- but only because Lemma 5.1(iii)'s offset bound is 2 and not the printed 3.
+    # At |j| <= 3 the widened mode index stands at 7^16 and takes this row; at |j| <= 2 it is
+    # 5^16, an order under the q'' ratio, and the balance comparisons carry P_0 alone again.
+    assert cert["binding_excluding_balance"]["tag"] == "st5b-qpp"
+    assert abs(cert["P0_excluding_lemma_3_9_balance"] / 2.9817e11 - 1) < 1e-3
+    assert cert["P0"] / cert["P0_excluding_lemma_3_9_balance"] > 100
+    assert 7.0**16 > cert["P0_excluding_lemma_3_9_balance"] > 5.0**16
 
     # and the soft regime-naming inequality still sets the floor for the rest
     rest = [r for r in cert["thresholds"]
@@ -270,9 +272,9 @@ LEAN_ROWS = [
     ("st3a-window",    "row_st3a_window",    48, 1.3),
     ("st3b-window",    "row_st3b_window",    48, 1.3),
     ("st3a-flat",      "row_st3a_flat",      48, 1),
-    ("st6D1-window",   "row_st6D1_window",    4, 57),
+    ("st6D1-window",   "row_st6D1_window",    4, 41),
     ("st6D1-good",     "row_st6D1_good",      2, 288),
-    ("st6D1-modeindex","row_st6D1_modeindex",16, 7),
+    ("st6D1-modeindex","row_st6D1_modeindex",16, 5),
     ("5b-j0-window",   "row_5b_j0_window",    2, 56),
     ("5b-Npieces",     "row_5b_Npieces",     48, 1.46),
     ("5b-lam0-range",  "row_5b_lam0_upper",   4, 17),
@@ -428,18 +430,18 @@ def test_stratification_counts_four_exceptions_not_three() -> None:
 
     rest = [t for t in th if "c7S" not in t["tag"]]
     worst = max(rest, key=lambda t: t["P_min"])
-    assert worst["tag"] == "st6D1-modeindex"
-    assert abs(worst["P_min"] / 7.0**16 - 1) < 1e-9
-
-    rest = [t for t in rest if t["tag"] != "st6D1-modeindex"]
-    worst = max(rest, key=lambda t: t["P_min"])
     assert worst["tag"] == "st5b-qpp"
     assert abs(worst["P_min"] / 2.9817e11 - 1) < 1e-3
 
     rest4 = [t for t in rest if t["tag"] != "st5b-qpp"]
     worst4 = max(rest4, key=lambda t: t["P_min"])
-    assert worst4["tag"] == "s3s1-Bsmall"
-    assert abs(worst4["P_min"] / 2.8275e10 - 1) < 1e-3
+    assert worst4["tag"] == "st6D1-modeindex"          # 5^16, the row A.1 was missing
+    assert abs(worst4["P_min"] / 5.0**16 - 1) < 1e-9
+
+    rest5 = [t for t in rest4 if t["tag"] != "st6D1-modeindex"]
+    worst5 = max(rest5, key=lambda t: t["P_min"])
+    assert worst5["tag"] == "s3s1-Bsmall"
+    assert abs(worst5["P_min"] / 2.8275e10 - 1) < 1e-3
 
     text = _paper()
     assert "except four holds" in text
@@ -531,49 +533,52 @@ def test_paper_states_the_closed_form() -> None:
 def test_the_floor_is_the_qpp_site() -> None:
     """Remove every c_7-dependent threshold and the largest left is Step 5b(a)'s q'' ratio."""
     r = C.c7_saturation()
-    assert r["floor_tag"] == "st6D1-modeindex"
-    assert abs(r["floor"] / 7.0**16 - 1) < 1e-9, r["floor"]
-    assert r["runner_up"][1] == "st5b-qpp"
-    assert r["floor"] / r["runner_up"][0] > 100         # two orders below
+    assert r["floor_tag"] == "st5b-qpp"
+    assert abs(r["floor"] / 2.9817e11 - 1) < 1e-3, r["floor"]
+    assert r["runner_up"][1] == "st6D1-modeindex"       # 5^16, and 7^16 would have taken it
+    assert 1.9 < r["floor"] / r["runner_up"][0] < 2.0
     # the erratum at Lemma 5.2b did not move it: this row divides by Theorem 4.1's Stage-4
     # curvature 0.35 uh P^(-3/4), a different constant that happens to share the value
     pre = {x["tag"]: x["P_min"] for x in C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)}
-    assert abs(pre["st6D1-modeindex"] / r["floor"] - 1) < 1e-9
-    assert abs(pre["st5b-qpp"] / r["runner_up"][0] - 1) < 1e-9
+    assert abs(pre["st5b-qpp"] / r["floor"] - 1) < 1e-9
+    assert abs(pre["st6D1-modeindex"] / r["runner_up"][0] - 1) < 1e-9
 
 
-def test_the_lever_saturates_almost_at_once() -> None:
-    """The floor is the mode index, and c_7 = 1/232 is already nearly at it."""
+def test_the_lever_saturates_near_one_over_sixty() -> None:
+    """1/61 -- but only at |j| <= 2; at the printed |j| <= 3 the floor is 7^16 and it is 1/228."""
     r = C.c7_saturation()
-    assert 225 < r["crossover_denom"] < 230, r["crossover_denom"]
-    # 1/228 against the 1/232 in force: the gate drops under the floor after 2% of the range
-    assert r["crossover_denom"] / 232.0 > 0.97
-    # the erratum at Lemma 5.2b did not move the floor either: 7^16 mentions no curvature
+    assert 60 < r["crossover_denom"] < 62, r["crossover_denom"]
+    gate = lambda c: [x for x in C.thresholds(c7=c) if x["tag"] == "5b-W<=c7S"][0]["P_min"]
+    lo, hi = C.C7, 1 / 40.0
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if gate(mid) > 7.0**16 else (lo, mid)
+    assert 225 < 1 / hi < 230, 1 / hi
+    # the erratum at Lemma 5.2b did not move the floor either
     pinned = [max(x["P_min"] for x in C.thresholds(c7=c) if x["P_min"])
               for c in (1 / 50.0, 1 / 30.0, 1 / 20.0)]
     assert all(abs(p / r["floor"] - 1) < 1e-6 for p in pinned), pinned
 
 
-def test_the_whole_lever_is_worth_eight_percent() -> None:
-    """A.5 printed 120, computed against a table missing its largest c_7-free row."""
+def test_the_whole_lever_is_worth_a_factor_of_one_hundred_and_twenty() -> None:
+    """The printed 120 is right -- and needed two constants, only one of which was checked."""
     r = C.c7_saturation()
-    assert abs(r["max_factor"] / 1.079 - 1) < 0.01, r["max_factor"]
-    # and A.5's vector trade now realises none of it: 4.0e12 is the gate, not P_0
-    assert abs(C.c7_lever()["c2_raised"]["P0"] / r["floor"] - 1) < 1e-9
-    # the printed 120 was P_0 over the *runner-up*; that arithmetic is still right, and it is
-    # the wrong row.  The erratum at Lemma 5.2b moved neither: 7^16 mentions no curvature.
-    assert abs(r["P0"] / r["runner_up"][0] / 120.3 - 1) < 0.02
+    assert abs(r["max_factor"] / 120.3 - 1) < 0.02, r["max_factor"]
+    # A.5's vector trade realises 8.9 of it
+    assert abs(r["P0"] / C.c7_lever()["c2_raised"]["P0"] / 8.9 - 1) < 0.05
+    # it was 300 before the erratum, and fell only because P_0 did: the floor is unmoved
     pre = C.thresholds(anchor=C.ANCHOR_CONSTANTS_PRECORRECTION)
     old_P0 = max(x["P_min"] for x in pre if x["P_min"])
-    assert abs((old_P0 / r["runner_up"][0]) / 300.0 - 1) < 0.02
-    assert abs(max(x["P_min"] for x in pre if x["tag"] == "st6D1-modeindex") / 7.0**16 - 1) < 1e-9
+    assert abs((old_P0 / r["floor"]) / 300.0 - 1) < 0.02
+    # at the printed offset bound the whole paragraph would read differently
+    assert 7.0**16 / r["P0"] > 0.9 and 7.0**16 < r["P0"]
 
 
 def test_five_sixteenths_is_best_of_the_tabulated_four_but_not_the_minimax() -> None:
     """A.6 tabulates four exponents and 5/16 wins among them; the continuum does better."""
     worsts = {a: C.r0_tradeoff(a)["worst"] for a in (0.25, 9 / 32, 5 / 16, 1 / 3)}
     assert min(worsts, key=lambda a: worsts[a]) == 5 / 16
-    assert abs(worsts[5 / 16] / C.c7_saturation()["runner_up"][0] - 1) < 1e-3
+    assert abs(worsts[5 / 16] / C.c7_saturation()["floor"] - 1) < 1e-3
     # but the flat/qpp crossing is lower and better
     lo, hi = 0.290, 0.310
     for _ in range(200):
@@ -588,10 +593,10 @@ def test_five_sixteenths_is_best_of_the_tabulated_four_but_not_the_minimax() -> 
 
 def test_paper_states_the_saturation() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
-    assert "and it saturates almost at once, on a row that has nothing" in text
-    assert r"c_7=1/228" in text
-    assert r"a factor of \(1.08\)" in text
-    assert "buys nothing at all" in text
+    assert "and it saturates, at a value" in text
+    assert r"c_7=1/61" in text
+    assert r"a factor of \(120\)" in text
+    assert "Two constants had to be right for that paragraph" in text
     assert "feasible rather than optimal" in text
 
 
@@ -612,7 +617,7 @@ def test_the_certificate_uses_the_two_term_form() -> None:
     """The floor of A.5 is 2.98e11, which is the sharper reading, not the printed one."""
     row = [r for r in C.thresholds() if r["tag"] == "st5b-qpp"][0]
     assert abs(row["P_min"] / 2.9817e11 - 1) < 1e-3, row["P_min"]
-    assert abs(C.c7_saturation()["runner_up"][0] / row["P_min"] - 1) < 1e-9
+    assert abs(C.c7_saturation()["floor"] / row["P_min"] - 1) < 1e-9
 
 
 def test_the_printed_constant_is_right_at_P0() -> None:
@@ -922,9 +927,8 @@ def test_paper_states_the_robustness_reading() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
     assert "solves a transcendental equation" in text
     assert "the loss is steeply asymmetric" in text
-    assert "robust admissible value" in text
-    assert "Against the four" in text
-    assert "The fifth site inverts the conclusion" in text
+    assert "the robust choice rather than the optimal one against all five sites," in text
+    assert "The fifth site does not overturn that reading, and came close to." in text
 
 
 # --- the chain quarters the saving and the log power by one mechanism ---
@@ -1206,123 +1210,169 @@ def test_paper_carries_the_step_e_derivation() -> None:
     assert paper.count("1095}{1024}") == 1 and paper.count("365}{176}") == 1
 
 
+# --- Lemma 5.1(iii)'s offset bound, and the row that turns on it ---
+
+
+def test_the_offset_is_two_not_three() -> None:
+    """j = floor({D1X+t} + {D2X+t} - t + DDX) lands in {-1,0,1,2}; the census agrees."""
+    for P in (10**5, 10**6):
+        c = D.branch_offset_census(P, hmax=30)
+        assert c["attained"] == (-1, 2), (P, c["attained"])
+        assert c["within_true_bound"] and c["within_printed_bound"]
+        assert set(c["counts"]) == {-1, 0, 1, 2}
+
+
+def test_the_printed_three_is_the_bound_at_twice_the_hypothesis() -> None:
+    """max j = r + 1 at h1 h2 <= r P^(1/2)/3: the printed 3 belongs to r = 2."""
+    lad = D.branch_offset_ladder(10**6, multiples=(1, 2, 3, 6), hmax=100)
+    assert lad["max_is_multiple_plus_one"]
+    assert lad["min_is_always_minus_one"]
+    by = {r["multiple"]: r["max"] for r in lad["rows"]}
+    assert by[1] == 2 and by[2] == 3
+
+
+def test_the_offset_is_exact_integer_arithmetic() -> None:
+    """beta_i = m(n+d_i) - m(n) with m = floor(n^(3/2)) = isqrt(n^3); no floats anywhere."""
+    from math import isqrt
+    for n, h1, h2 in ((10**6 + 1, 9, 36), (10**8 + 5, 39, 39), (10**10 + 23, 26, 26)):
+        d1, d2 = 2 * h1, 2 * h2
+        b1 = D.m_floor(n + d1) - D.m_floor(n)
+        b2 = D.m_floor(n + d2) - D.m_floor(n)
+        b12 = D.m_floor(n + d1 + d2) - D.m_floor(n)
+        assert b12 - b1 - b2 == D.offset_at(n, h1, h2)
+        assert D.m_floor(n) == isqrt(n**3)
+        assert abs(D.offset_at(n, h1, h2)) <= 2
+
+
+def test_two_is_attained_but_not_in_the_range_lemma_52_uses() -> None:
+    """h1, h2 <= P^(1/24) makes eps tiny and j = 2 needs {u}+{v} >= 2 - eps."""
+    hit = D.branch_offset_census(10**6, hmax=30)
+    assert hit["counts"][2] > 0
+    for P in (10**10, 10**12):
+        r = D.branch_offset_in_applied_range(P)
+        assert r["attained"] == (-1, 1), (P, r["attained"])
+        assert r["eps_max"] < 1e-3
+
+
+def test_the_collected_widened_constant_is_five() -> None:
+    """2|j'| <= 4, so |q'|(2|j'|P^(-1/4) + 20hh'P^(-3/4)) <= 4P^(1/4)/h' + 20P^(-1/8)."""
+    w = D.widened_theta_constant(2)
+    assert w["lead"] == 4 and w["collected"] == 5
+    assert w["mode_index_row"] == 5**16 == 152587890625
+    assert D.widened_theta_constant(3)["collected"] == 7          # the printed reading
+    assert D.widened_theta_constant(3)["mode_index_row"] == 7**16
+    assert C.WIDENED_B_CONST == 5.0 and C.WIDENED_B_CONST_SUPERSEDED == 7.0
+
+
 # --- the row that was in a proof and never in the table ---
 
 
 def test_the_widened_mode_index_is_a_row_and_it_is_exact() -> None:
-    """Lemma 5.2(iii) needs 7 P^(1/4) <= R_0, and says so with its number: 7^16."""
+    """Lemma 5.2(iii) needs 5 P^(1/4) <= R_0, and states its own threshold: 5^16."""
     row = [r for r in C.thresholds() if r["tag"] == "st6D1-modeindex"][0]
-    assert row["P_min"] == pytest.approx(float(7**16), rel=1e-12)
+    assert row["P_min"] == pytest.approx(float(5**16), rel=1e-12)
     assert row["site"] == "Thm 5.3 St.6(D1)"
-    # rank two of thirty-eight, and under the binding row: P_0 does not move
-    P0 = C.certificate()["P0"]
-    assert row["P_min"] < P0
-    assert sorted((r["P_min"] for r in C.thresholds()), reverse=True)[1] == row["P_min"]
-    assert 1.07 < P0 / row["P_min"] < 1.08
-    # alone among the rows the substitution P = t^16 gives an exact crossing, 7 t^4 <= t^5
-    assert 7 * 7.0**4 == 7.0**5
+    assert row["P_min"] < C.certificate()["P0"]
+    # alone among the rows the substitution P = t^16 gives an exact crossing, 5 t^4 <= t^5
+    assert 5 * 5.0**4 == 5.0**5
 
 
 def test_at_the_superseded_truncation_the_row_has_no_solution() -> None:
-    """7 P^(1/4) <= P^(1/4) is false at every P: R_0 = P^(1/4) does not merely delay."""
-    assert C.r0_tradeoff(C.R0_EXPONENT_SUPERSEDED)["modeindex"] is None
-    assert C.r0_tradeoff(C.R0_EXPONENT_SUPERSEDED)["worst_all"] == float("inf")
-    # while the four A.6 tabulates are all finite there, the largest being Theorem 6.3's flat cost
+    """5 P^(1/4) <= P^(1/4) is false at every P: R_0 = P^(1/4) does not merely delay."""
     old = C.r0_tradeoff(C.R0_EXPONENT_SUPERSEDED)
+    assert old["modeindex"] is None
+    assert old["worst_all"] == float("inf")
     assert all(old[k] is not None for k in ("collision", "qpp", "window", "flat"))
     assert 1.8e24 < old["worst"] < 1.9e24
 
 
-def test_it_is_the_floor_so_the_c7_lever_is_worth_eight_percent() -> None:
-    """The row mentions no c_7, and it is the largest that does not."""
-    r = C.c7_saturation()
-    assert r["floor_tag"] == "st6D1-modeindex"
-    assert r["runner_up"][1] == "st5b-qpp"                    # what A.5 printed as the floor
-    assert abs(r["floor"] / r["runner_up"][0] - 111.4) < 1.0   # two orders apart
-    assert abs(r["max_factor"] - 1.079) < 0.002
-    # and the vector trade, recorded as realising 8.9 of the lever, realises none of it
-    assert C.c7_lever()["c2_raised"]["P0"] == pytest.approx(r["floor"], rel=1e-9)
-
-
 def test_the_row_pins_R0_from_below_and_the_recorded_minimax_is_infeasible() -> None:
-    """A.6's a* = 0.29919 needs 1.5e17 on the fifth site."""
+    """A.6's a* = 0.29919 needs 1.6e14 on the fifth site even at the corrected constant."""
     P0 = C.certificate()["P0"]
-    assert 7.0 ** (1 / (0.29919 - 0.25)) > 1.0e17
-    assert C.r0_tradeoff(0.29919)["worst"] < P0            # the four are fine there
-    assert C.r0_tradeoff(0.29919)["worst_all"] > 4000 * P0  # the fifth is not
-    # the band's left endpoint, and how little 5/16 clears it by
-    assert abs(C.r0_lower_pin() - 0.312348) < 1e-5
-    assert 0 < C.R0_EXPONENT - C.r0_lower_pin() < 2.0e-4
-    # no fraction of denominator <= 32 lies in the gap
-    from fractions import Fraction as Fr
-    assert not [Fr(p, q) for q in range(1, 33) for p in range(1, q)
-                if C.r0_lower_pin() <= p / q < C.R0_EXPONENT]
+    assert 1.6e14 < 5.0 ** (1 / (0.29919 - 0.25)) < 1.7e14
+    assert C.r0_tradeoff(0.29919)["worst"] < P0             # the four are fine there
+    assert C.r0_tradeoff(0.29919)["worst_all"] > 4.5 * P0   # the fifth is not
+    assert 5.0**20 > P0                                     # nor is 3/10
+    assert abs(C.r0_lower_pin() - 0.301567) < 1e-5
+    assert 0.010 < C.R0_EXPONENT - C.r0_lower_pin() < 0.011
 
 
-def test_the_five_site_minimax_moves_the_other_way() -> None:
-    """0.29919 was the four-site optimum; with the fifth it is 0.3218, above 5/16."""
+def test_the_five_site_minimax_barely_moves_five_sixteenths() -> None:
+    """At |j| <= 2 the optimum is 0.3111 and 5/16 costs 1.09; at |j| <= 3 it was 57."""
     m = C.r0_minimax()
-    assert abs(m["a"] - 0.321848) < 1e-5
-    assert abs(m["worst"] / 5.785e11 - 1) < 0.01
-    assert 55 < m["at_five_sixteenths"] / m["worst"] < 60      # 5/16 costs 57, not 2.13
-    assert m["at_five_sixteenths"] == pytest.approx(float(7**16), rel=1e-9)
-    # and the nearest simple value is 1/3, a factor 21 better than 5/16
-    assert 20 < m["at_five_sixteenths"] / C.r0_tradeoff(1 / 3)["worst_all"] < 22
+    assert abs(m["a"] - 0.311119) < 1e-5
+    assert abs(m["worst"] / 2.731e11 - 1) < 0.01
+    assert 1.05 < m["at_five_sixteenths"] / m["worst"] < 1.15
+    old = C.r0_minimax(C.WIDENED_B_CONST_SUPERSEDED)
+    assert abs(old["a"] - 0.321848) < 1e-5
+    assert 55 < old["at_five_sixteenths"] / old["worst"] < 60
 
 
-def test_five_sixteenths_is_the_least_robust_admissible_value() -> None:
-    """It needs 7 <= P_0^(1/16) = 7.0333; 7.04 would carry the row past the binding one."""
+def test_five_sixteenths_is_robust_at_two_and_was_not_at_three() -> None:
+    """It needs the collected constant <= P_0^(1/16) = 7.0333: 41% of room at 5, 0.5% at 7."""
     P0 = C.certificate()["P0"]
     assert abs(P0 ** (1 / 16) - 7.0333) < 1e-3
-    assert 7.04**16 > P0
-    assert abs((P0 ** (1 / 16)) / 7.0 - 1) < 0.005            # half of one percent
+    assert P0 ** (1 / 16) / C.WIDENED_B_CONST > 1.40
+    assert P0 ** (1 / 16) / C.WIDENED_B_CONST_SUPERSEDED < 1.005
+    assert 7.04**16 > P0 > 7.0**16
 
 
 def test_the_widened_constant_is_not_sharp_and_what_that_would_buy() -> None:
-    """6 P^(1/4) + 20 P^(-1/8) <= 6.001 P^(1/4) from 2.95e11, below P_0."""
+    """4 P^(1/4) + 20 P^(-1/8) <= 4.001 P^(1/4) from 2.95e11, below P_0."""
     assert abs(C.widened_b_constant_threshold(0.001) / 2.95e11 - 1) < 0.02
     assert C.widened_b_constant_threshold(0.001) < C.certificate()["P0"]
     sharp = C.WIDENED_B_CONST_SHARP**16
-    assert abs(sharp / 2.829e12 - 1) < 0.01
-    assert 11 < 7.0**16 / sharp < 13                          # a factor 12
-    # the floor would fall back to the q'' row, restoring A.5's printed 120
-    assert sharp < C.c7_saturation()["runner_up"][0] * 10
-    assert abs(C.r0_lower_pin(C.WIDENED_B_CONST_SHARP) - 0.307414) < 1e-5
-    assert C.r0_lower_pin(C.WIDENED_B_CONST_SHARP) > 0.30     # 3/10 still does not close
+    assert abs(sharp / 4.312e9 - 1) < 0.01
+    assert 34 < 5.0**16 / sharp < 36
+    # only at the sharp constant does A.6's four-site crossing come back inside the band
+    assert C.r0_lower_pin(C.WIDENED_B_CONST_SHARP) < 0.29919 < C.r0_lower_pin()
+    assert abs(C.r0_lower_pin(C.WIDENED_B_CONST_SHARP) - 0.294425) < 1e-5
 
 
-def test_the_row_is_kappa_free_so_the_kappa_table_stops_falling() -> None:
-    """A.2's last two entries are the row, not the gate."""
+def test_it_is_no_longer_the_floor_but_at_the_printed_bound_it_would_be() -> None:
+    """The whole of A.5's lever turns on one integer in Lemma 5.1(iii)."""
+    r = C.c7_saturation()
+    assert r["floor_tag"] == "st5b-qpp"
+    assert abs(r["max_factor"] / 120.3 - 1) < 0.02
+    # at |j| <= 3 the row is 7^16, which is above the q'' floor and below P_0
+    assert r["runner_up"][0] < r["floor"] < 7.0**16 < r["P0"]
+    assert abs(r["P0"] / 7.0**16 - 1.079) < 0.002
+
+
+def test_the_row_is_kappa_free_so_it_would_have_stopped_the_kappa_table() -> None:
+    """A.2's last two entries are the gate at 5^16 and would have been the row at 7^16."""
     for k, gate in ((1 / 16, 2.041e13), (1 / 20, 1.462e13)):
         assert abs(C.kappa_tradeoff(k)["P_min"] / gate - 1) < 0.01
         allrows = max(x["P_min"] for x in C.thresholds(kappa=k) if x["P_min"])
-        assert allrows == pytest.approx(float(7**16), rel=1e-9)
-    # at the operating point the gate is still above the row, by the lever's own factor
+        assert abs(allrows / gate - 1) < 0.01           # the gate still wins at 5^16
+        assert gate < 7.0**16                           # and would not have at 7^16
     assert C.kappa_tradeoff(1 / 12)["P_min"] > 7.0**16
-    assert abs(C.kappa_tradeoff(1 / 12)["P_min"] / 7.0**16 - 1.079) < 0.002
 
 
 def test_paper_and_lean_carry_the_new_row() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
-    assert r"widened \|B_0\| <= R_0: 7 P^(1/4) <= P^(5/16)" in text
+    assert r"widened \|B_0\| <= R_0: 5 P^(1/4) <= P^(5/16)" in text
     assert "thirty-eight" in text and "thirty-seven" not in text
     assert "(33 theorems" in text
-    assert r"7^{16}=3.3\cdot10^{13}" in text
-    lean = io.open(Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Juggler"
-                   / "ThresholdCertificate.lean", encoding="utf-8").read()
-    assert "theorem row_st6D1_modeindex" in lean
-    assert "7 * t ^ 4 ≤ t ^ 5" in lean
+    assert r"5^{16}=1.5\cdot10^{11}" in text
+    root = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Juggler"
+    lean = io.open(root / "ThresholdCertificate.lean", encoding="utf-8").read()
+    assert "theorem row_st6D1_modeindex" in lean and "5 * t ^ 4" in lean
+    branch = io.open(root / "BranchFreeze.lean", encoding="utf-8").read()
+    assert "theorem offset_abs_le_two" in branch
+    assert "theorem carry_eq_floor_shifted" in branch
+    assert "theorem offset_abs_le_three" in branch      # kept beside it
 
 
-def test_paper_records_the_drift_erratum_at_lemma_52iii() -> None:
-    """The count 7 P^(1/4) + 1 is right; monotonicity of B is not why."""
+def test_paper_records_both_errata_at_their_sites() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
+    # Lemma 5.1(iii): the offset
+    assert "as though the two could be chosen" in text
+    assert r"j\in\{-1,0,1,2\}" in text
+    assert "twice the one stated beside it" in text
+    # Lemma 5.2(iii): the drift count
     assert "the count is right; one route to it is not" in text
-    assert "is not monotone on the" in text
-    assert r"\operatorname{Var}" in text
     assert "reached without knowing either sign" in text
-    # and the ledger prices what the failed argument would have cost
-    led = io.open(Path(__file__).resolve().parents[3] / "docs" / "theory"
-                  / "paper_b_audit_ledger.md", encoding="utf-8").read()
-    assert "23.7 (uh)^(-1/2) P^(5/8)" in led
-    assert "The factor two was" in led
+    # and the downstream constants moved together
+    for figure in (r"\frac{11.5}{uhh'}", r"uhh'\ge46", r"8.5\,(uh)^{-1/2}", r"\le48P^{3/4}"):
+        assert figure in text, figure

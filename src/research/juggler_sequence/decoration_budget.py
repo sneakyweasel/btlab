@@ -578,6 +578,123 @@ def write_json(payload: dict[str, Any], path: Path = JSON_PATH) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
+
+# --- Lemma 5.1(iii): the branch offset j, and how large it really gets ---
+#
+# beta_i = m(n + d_i) - m(n) with m = floor(n^{3/2}), so beta_i = floor(Delta_i X + theta)
+# exactly, theta = X - m.  Hence
+#
+#     j = beta_12 - beta_1 - beta_2
+#       = floor(A + B + eps + theta) - floor(A + theta) - floor(B + theta)
+#       = floor( {A + theta} + {B + theta} - theta + eps ),   eps = DeltaDelta X,
+#
+# one floor of an argument in (-1, 3) whenever 0 < eps < 1, so j is in {-1, 0, 1, 2}.
+# The manuscript prints |j| <= 3, which is what one gets by adding the corner floor
+# range [-1, 2] to a carry vector in {0,1}^3 as though the two were independent.  They
+# are not: all three carries are floor(. + theta) at the same theta.
+#
+# Everything below is exact integer arithmetic -- floor(n^{3/2}) = isqrt(n^3).
+
+OFFSET_RANGE = (-1, 2)          # attained, both ends
+OFFSET_RANGE_PRINTED = (-3, 3)  # the free-carry reading
+
+
+def m_floor(n: int) -> int:
+    """``floor(n^(3/2))``, exactly."""
+    return isqrt(n * n * n)
+
+
+def offset_at(n: int, h1: int, h2: int) -> int:
+    """``branch_offset`` addressed by half-shifts: ``d_i = 2 h_i``, as the lemma states them."""
+    return branch_offset(n, 2 * h1, 2 * h2)
+
+
+def hypothesis_limit(p: int) -> int:
+    """The lemma's ``h1 h2 <= P^(1/2)/3``, as an integer bound on the product."""
+    return isqrt(p) // 3
+
+
+def branch_offset_census(p: int, hmax: int = 40, stride: int | None = None) -> dict[str, Any]:
+    """Attained values of ``j`` over ``n in (P, 2P]`` under the lemma's own hypothesis."""
+    lim = hypothesis_limit(p)
+    step = stride or max(1, p // 400) | 1
+    counts: dict[int, int] = {}
+    extreme: tuple[int, int, int, int] | None = None
+    for n in range(p + 1, 2 * p + 1, step):
+        for h1 in range(1, hmax + 1):
+            for h2 in range(1, hmax + 1):
+                if h1 * h2 > lim:
+                    continue
+                j = offset_at(n, h1, h2)
+                counts[j] = counts.get(j, 0) + 1
+                if extreme is None or abs(j) > abs(extreme[0]):
+                    extreme = (j, n, h1, h2)
+    return {"P": p, "product_limit": lim, "samples": sum(counts.values()),
+            "counts": dict(sorted(counts.items())),
+            "attained": (min(counts), max(counts)) if counts else None,
+            "extreme": extreme, "within_printed_bound": all(abs(j) <= 3 for j in counts),
+            "within_true_bound": all(abs(j) <= 2 for j in counts)}
+
+
+def branch_offset_ladder(p: int, multiples: tuple[int, ...] = (1, 2, 3, 6),
+                         hmax: int = 120, stride: int | None = None) -> dict[str, Any]:
+    """``j``'s attained range as the product is allowed past the hypothesis.
+
+    The printed ``|j| <= 3`` is the bound at *twice* the stated hypothesis: the range grows
+    by one for each unit of ``eps = 3 h1 h2 / sqrt(xi)``, so ``m`` times the limit gives
+    ``j <= m + 1``.  Evidence that the printed 3 is an off-by-one between a lemma's
+    hypothesis and its conclusion rather than a different argument.
+    """
+    lim = hypothesis_limit(p)
+    step = stride or max(1, p // 250) | 1
+    rows = []
+    for mult in multiples:
+        seen: set[int] = set()
+        for n in range(p + 1, 2 * p + 1, step):
+            for h1 in range(1, hmax + 1):
+                for h2 in range(1, hmax + 1):
+                    if h1 * h2 > mult * lim:
+                        continue
+                    seen.add(offset_at(n, h1, h2))
+        rows.append({"multiple": mult, "product_limit": mult * lim,
+                     "attained": sorted(seen), "max": max(seen), "min": min(seen)})
+    return {"P": p, "rows": rows,
+            "max_is_multiple_plus_one": all(r["max"] == r["multiple"] + 1 for r in rows),
+            "min_is_always_minus_one": all(r["min"] == -1 for r in rows)}
+
+
+def branch_offset_in_applied_range(p: int) -> dict[str, Any]:
+    """Lemma 5.2 runs at ``h1, h2 <= P^(1/24)``, where ``eps`` is tiny and ``j = 2`` is not seen.
+
+    An observation, not a theorem: ``j = 2`` needs ``{A+theta} + {B+theta} >= 2 - eps + theta``,
+    a set of measure ``~eps^2/2``, and ``eps <= 3 P^(1/12 - 1/2)`` here.  The bound stated in
+    the lemma must still be the one for the lemma's own hypothesis.
+    """
+    hmax = max(2, round(p ** (1 / 24)))
+    counts: dict[int, int] = {}
+    for n in range(p + 1, min(2 * p, p + 400001) + 1, 4001):
+        for h1 in range(1, hmax + 1):
+            for h2 in range(1, hmax + 1):
+                j = offset_at(n, h1, h2)
+                counts[j] = counts.get(j, 0) + 1
+    return {"P": p, "h_max": hmax, "eps_max": 3.0 * hmax * hmax / p**0.5,
+            "counts": dict(sorted(counts.items())), "attained": (min(counts), max(counts))}
+
+
+# The widened (D1) theta-coefficient of Lemma 5.2(iii) is |q'|(2|j'| P^(-1/4) + 20 h h' P^(-3/4)).
+# At |j'| <= 2 the first summand is 4 P^(1/4)/h' and the collected constant is 5, not 7.
+WIDENED_THETA_CONST = 5
+WIDENED_THETA_CONST_PRINTED = 7
+
+
+def widened_theta_constant(j_max: int = 2) -> dict[str, Any]:
+    """The collected constant and the certificate row it sets, as a function of ``max |j|``."""
+    lead = 2 * j_max
+    return {"j_max": j_max, "lead": lead, "collected": lead + 1,
+            "valid_from": 20 ** (8 / 3),          # 20 P^(-1/8) <= P^(1/4)
+            "mode_index_row": (lead + 1) ** 16}   # (lead+1) P^(1/4) <= P^(5/16)
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

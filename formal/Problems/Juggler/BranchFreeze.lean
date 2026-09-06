@@ -10,7 +10,7 @@ runs.
 
 Same contract as elsewhere: the two mean value theorems that produce `ξ₁` and
 `ξ₂` are **hypotheses**; everything built on them is proved.  That covers the
-regrouping, the offset bound `|j| ≤ 3`, the `β`-product bound, all four printed
+regrouping, the offset bound, the `β`-product bound, all four printed
 derivative estimates, and the run-length conclusion.
 
 The substitution that keeps this polynomial: `n = s⁴` and `P = p⁴`, so that
@@ -23,6 +23,13 @@ the two `β`-contributions to `G''` have opposite signs and partially cancel,
 `81/64 - 9/32 = 63/64`.  Bounding them separately gives `99/64`, i.e.
 `27.8 h₁h₂P^(-7/4)`, which exceeds the printed `25`.  See
 `Gsecond_beta_cancellation` and `Gsecond_naive_bound_fails`.
+
+**A second thing.**  The printed offset bound `|j| ≤ 3` is not sharp.  Its proof
+adds the corner floor range `[-1,2]` to a carry vector `κ ∈ {0,1}³` as if the
+two were independent; all three carries are `⌊· + θ⌋` at the *same* `θ`, and
+folding `θ` in returns one corner floor.  The true range is `{-1,0,1,2}`:
+`offset_abs_le_two`, with both ends witnessed.  `offset_abs_le_three` is kept
+beside it because it is what the manuscript printed.
 -/
 
 import Mathlib.Tactic
@@ -46,7 +53,7 @@ theorem lemma51iii_regroup (f : ℝ → ℝ) (m β₁ β₂ j : ℝ) :
 
 end Regroup
 
-/-! ## 2. The offset bound `|j| ≤ 3` -/
+/-! ## 2. The offset bound: printed `|j| ≤ 3`, actually `|j| ≤ 2` -/
 
 section Offset
 
@@ -90,6 +97,71 @@ theorem offset_abs_le_three (A B ε : ℝ) (hε : |ε| < 1) (κ₁ κ₂ κ₁�
   rcases h₁ with h₁ | h₁ <;> rcases h₂ with h₂ | h₂ <;> rcases h₁₂ with h₁₂ | h₁₂ <;>
     subst h₁ <;> subst h₂ <;> subst h₁₂ <;> rw [abs_le] <;> omega
 
+/-! ### The carries are not free, and the bound is `2`
+
+`offset_abs_le_three` above adds `κ₁₂ - κ₁ - κ₂ ∈ [-2,1]` to the corner floor
+range `[-1,2]` as if the three carries were an arbitrary vector in `{0,1}³`.
+They are not.  All three are the *same* function of the *same* `θ = X(n) - m(n)`:
+`β = ⌊ΔX⌋ + κ = ⌊ΔX + θ⌋` (`carry_eq_floor_shifted`).  Folding `θ` in collapses
+the whole offset back to one corner floor, at `ε - θ` in place of `ε`, and the
+range is `{-1,0,1,2}` again — so `|j| ≤ 2`, and `3` is unattainable. -/
+
+/-- `β = ⌊ΔX⌋ + κ = ⌊ΔX + θ⌋`: the level-1 carry is `⌊{ΔX} + θ⌋`. -/
+theorem carry_eq_floor_shifted (A θ : ℝ) (hθ₀ : 0 ≤ θ) (hθ₁ : θ < 1) :
+    ⌊A⌋ + (if 1 ≤ Int.fract A + θ then (1:ℤ) else 0) = ⌊A + θ⌋ := by
+  have hsplit : A + θ = (Int.fract A + θ) + ((⌊A⌋ : ℤ) : ℝ) := by
+    have := Int.floor_add_fract A; push_cast; linarith
+  rw [hsplit, Int.floor_add_intCast]
+  have h0 : (0:ℝ) ≤ Int.fract A + θ := by have := Int.fract_nonneg A; linarith
+  have h2 : Int.fract A + θ < 2 := by have := Int.fract_lt_one A; linarith
+  by_cases h : 1 ≤ Int.fract A + θ
+  · rw [if_pos h]
+    have hf : ⌊Int.fract A + θ⌋ = 1 := by
+      rw [Int.floor_eq_iff]; constructor <;> push_cast <;> linarith
+    omega
+  · rw [if_neg h]
+    push_neg at h
+    have hf : ⌊Int.fract A + θ⌋ = 0 := by
+      rw [Int.floor_eq_iff]; constructor <;> push_cast <;> linarith
+    omega
+
+/-- **`-1 ≤ j ≤ 2`.**  `j = ⌊A+B+ε+θ⌋ - ⌊A+θ⌋ - ⌊B+θ⌋` is `corner_floor_range`
+at `(A+θ, B+θ, ε-θ)`, and `|ε - θ| < 1` whenever `0 < ε < 1` and `0 ≤ θ < 1`. -/
+theorem offset_range_with_carries (A B ε θ : ℝ) (hε₀ : 0 < ε) (hε₁ : ε < 1)
+    (hθ₀ : 0 ≤ θ) (hθ₁ : θ < 1) :
+    -1 ≤ ⌊A + B + ε + θ⌋ - ⌊A + θ⌋ - ⌊B + θ⌋ ∧
+      ⌊A + B + ε + θ⌋ - ⌊A + θ⌋ - ⌊B + θ⌋ ≤ 2 := by
+  have h : |ε - θ| < 1 := by rw [abs_lt]; constructor <;> linarith
+  have H := corner_floor_range (A + θ) (B + θ) (ε - θ) h
+  have hrw : A + θ + (B + θ) + (ε - θ) = A + B + ε + θ := by ring
+  rwa [hrw] at H
+
+/-- **`|j| ≤ 2`**, replacing the printed `|j| ≤ 3`. -/
+theorem offset_abs_le_two (A B ε θ : ℝ) (hε₀ : 0 < ε) (hε₁ : ε < 1)
+    (hθ₀ : 0 ≤ θ) (hθ₁ : θ < 1) :
+    |⌊A + B + ε + θ⌋ - ⌊A + θ⌋ - ⌊B + θ⌋| ≤ 2 := by
+  obtain ⟨h1, h2⟩ := offset_range_with_carries A B ε θ hε₀ hε₁ hθ₀ hθ₁
+  rw [abs_le]; omega
+
+/-- Both ends of `{-1,0,1,2}` occur, so `2` is sharp: `j = 2` at
+`A = B = 19/20`, `θ = 0`, `ε = 1/2`. -/
+example : ⌊(19/20 + 19/20 + (1:ℝ)/2 + 0)⌋ - ⌊(19/20 + (0:ℝ))⌋ - ⌊(19/20 + (0:ℝ))⌋ = 2 := by
+  norm_num
+
+/-- `j = -1` at `A = B = 1/5`, `θ = 9/10`, `ε = 1/10`. -/
+example : ⌊(1/5 + 1/5 + (1:ℝ)/10 + 9/10)⌋ - ⌊(1/5 + (9:ℝ)/10)⌋ - ⌊(1/5 + (9:ℝ)/10)⌋ = -1 := by
+  norm_num
+
+/-- What the free-carry reading buys that no `θ` supplies: the corner floor is
+already `2` at `A = B = 9/10`, `ε = 1/2`, and `offset_abs_le_three` then adds a
+carry vector `(κ₁,κ₂,κ₁₂) = (0,0,1)`.  `offset_abs_le_two` shows the two halves
+cannot be chosen independently. -/
+example : ⌊(9/10 + 9/10 + (1:ℝ)/2)⌋ - ⌊(9:ℝ)/10⌋ - ⌊(9:ℝ)/10⌋ = 2 := by norm_num
+
+end Offset
+
+section DoubleDifference
+
 /-- **`|ΔΔX| < 1`**, the hypothesis the offset bound needs.  With shifts
 `d₁ = 2h₁`, `d₂ = 2h₂`, `|ΔΔX| ≤ d₁d₂ sup|X''| = 4h₁h₂·(3/4)P^(-1/2)`, so the
 condition is exactly the manuscript's `h₁h₂ ≤ P^(1/2)/3` — stated here with
@@ -100,7 +172,7 @@ theorem double_difference_lt_one (h₁h₂ q : ℝ) (hq : 0 < q) (hh : 0 < h₁h
   rw [e, div_lt_one hq]
   exact hcond
 
-end Offset
+end DoubleDifference
 
 /-! ## 3. The `β`-product, and the four derivative bounds
 

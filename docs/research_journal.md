@@ -33784,6 +33784,10 @@ What was learned
 - and my new branch_offset shadowed an existing one with the same name and
   different argument units, silently doubling orbit_j_census's shifts, with
   the suite still green. Read the module for prior art *before* adding to it
+- naming two BranchFreeze declarations in the erratum made it the paper's
+  sixth cited module; the barrel imported five. Fixed, table and all
+- and `pytest ... | tail` reported exit 0 over two real failures. Second
+  false green of this audit from a pipeline swallowing pytest's exit code
 - the carries are not free of the corner floors, and the whole offset is a
   single floor of one argument in (-1,3)
 - a Lean file proving |j| <= 3 contained the proof of |j| <= 2, one

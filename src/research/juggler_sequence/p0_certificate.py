@@ -84,16 +84,22 @@ def _V(S: float, P: float, kappa: float = KAPPA) -> float:
 #
 # Those are the four sites Appendix A.6 tabulates, and they leave the exponent free from 0.283.
 # A fifth, which A.6 does not have, is what actually pins it: Lemma 5.2(iii) needs the widened
-# decoration's |B_0| <= R_0, i.e. 7 P^(1/4) <= P^a, which fails at *every* P when a = 1/4.
+# decoration's |B_0| <= R_0, i.e. c P^(1/4) <= P^a, which fails at *every* P when a = 1/4.
 R0_EXPONENT = 5 / 16
 R0_EXPONENT_SUPERSEDED = 1 / 4
 
 # The widened (D1) theta-coefficient of Lemma 5.2(iii): |q'| h' <= P^(1/2) and h' >= 1 give
-# 6 P^(1/4)/h', and h <= P^(1/8) gives 20 h P^(-1/4) <= 20 P^(-1/8); the paper collects the two
-# as 7 P^(1/4).  The second summand is not of the first's order, so any 6 + delta serves from
-# P >= (20/delta)^(8/3) on -- 6.001 from 2.95e11, below P_0.
-WIDENED_B_CONST = 7.0
-WIDENED_B_CONST_SHARP = 6.001
+# 2|j'| P^(1/4)/h', and h <= P^(1/8) gives 20 h P^(-1/4) <= 20 P^(-1/8).  With Lemma 5.1(iii)'s
+# corrected offset bound |j'| <= 2 the lead is 4 and the collected constant is 5; the printed 7
+# came from |j'| <= 3, which over-counts because it treats the three level-1 carries as a free
+# vector in {0,1}^3 when all three are floor(. + theta) at one theta.  See
+# decoration_budget.branch_offset_census and Lean `offset_abs_le_two`.
+#
+# The second summand is not of the first's order, so any 4 + delta serves from
+# P >= (20/delta)^(8/3) on -- 4.001 from 2.95e11, below P_0.
+WIDENED_B_CONST = 5.0
+WIDENED_B_CONST_SUPERSEDED = 7.0
+WIDENED_B_CONST_SHARP = 4.001
 
 
 def R0(P: float, a: float = R0_EXPONENT) -> float:
@@ -155,15 +161,17 @@ def thresholds(kappa: float = KAPPA, c7: float = C7,
          lambda P: 0.5 * P ** (22 / 48) >= 15 * P ** (9 / 48)),
         ("st3a-flat", "Thm 5.3 St.3(a)", "16 h1 P^(1/2) + 30 k h1 h2 P^(5/8) <= 46 P^(3/4)",
          lambda P: 16 * P ** (1 / 48 + 0.5) + 30 * P**0.75 <= 46 * P**0.75),
-        ("st6D1-window", "Thm 5.3 St.6(D1)", "P^(1/2) >= 8(1 + 7 P^(1/4))",
-         lambda P: P**0.5 >= 8 * (1 + 7 * P**0.25)),
+        ("st6D1-window", "Thm 5.3 St.6(D1)", "P^(1/2) >= 8(1 + 5 P^(1/4))",
+         lambda P: P**0.5 >= 8 * (1 + 5 * P**0.25)),
         ("st6D1-good", "Thm 5.3 St.6(D1)", "72 t^(-1) P^(-1/2) <= 1/4 at t = 1",
          lambda P: 72 * P**-0.5 <= 0.25),
         # Lemma 5.2(iii) closes its mode accounting with |w| <= |B_0| + R_0 <= 2 R_0, which needs
-        # the widened theta-coefficient 7 P^(1/4) to sit under the Stage-2 truncation.  The proof
-        # states the threshold 7^16 and A.1 never collected it; it is the largest c_7-free row.
-        ("st6D1-modeindex", "Thm 5.3 St.6(D1)", "widened |B_0| <= R_0: 7 P^(1/4) <= P^(5/16)",
-         lambda P: 7 * P**0.25 <= R0(P)),
+        # the widened theta-coefficient under the Stage-2 truncation.  The proof states the
+        # threshold and A.1 never collected it.  At the printed constant 7 the row is 7^16 =
+        # 3.32e13 and is the largest c_7-free one; at the corrected |j| <= 2 it is 5^16 = 1.53e11
+        # and falls back under the q'' row, which is what A.5's printed floor assumed.
+        ("st6D1-modeindex", "Thm 5.3 St.6(D1)", "widened |B_0| <= R_0: 5 P^(1/4) <= P^(5/16)",
+         lambda P: WIDENED_B_CONST * P**0.25 <= R0(P)),
         ("5b-j0-window", "Thm 5.3 St.5b (j=0)", "P^(1/2) >= 8(1+6) = 56",
          lambda P: P**0.5 >= 56),
         # --- Theorem 5.3, Step 5b geometry ---
@@ -279,7 +287,7 @@ def r0_tradeoff(a: float) -> dict[str, Any]:
 
 
 def widened_b_constant_threshold(delta: float) -> float:
-    """Least ``P`` from which ``6 P^(1/4) + 20 P^(-1/8) <= (6 + delta) P^(1/4)``."""
+    """Least ``P`` from which ``4 P^(1/4) + 20 P^(-1/8) <= (4 + delta) P^(1/4)``."""
     return (20.0 / delta) ** (8.0 / 3.0)
 
 
@@ -293,12 +301,16 @@ def r0_lower_pin(c: float = WIDENED_B_CONST, P0: float | None = None) -> float:
     return 0.25 + math.log(c) / math.log(P0)
 
 
-def r0_minimax(c: float = WIDENED_B_CONST, lo: float = 0.3125, hi: float = 0.34) -> dict[str, Any]:
+def r0_minimax(c: float = WIDENED_B_CONST, lo: float | None = None,
+               hi: float = 0.34) -> dict[str, Any]:
     """Where the fifth site crosses the worst of the four -- the minimax over all five.
 
-    Appendix A.6 records ``a* = 0.29919`` as the continuum optimum of the four.  With the fifth
-    site that point is infeasible by four orders, and the true optimum moves above ``5/16``.
+    Appendix A.6 records ``a* = 0.29919`` as the continuum optimum of the four.  The fifth site
+    is infeasible there whichever widened constant one uses, so the true optimum sits higher: at
+    ``c = 7`` it is ``0.3218``, above ``5/16``; at the corrected ``c = 5`` it is ``0.3068``, just
+    below ``5/16`` and worth little.  The search runs upward from the site's own lower pin.
     """
+    lo = r0_lower_pin(c) + 1e-9 if lo is None else lo
     for _ in range(300):
         mid = (lo + hi) / 2
         if c ** (1.0 / (mid - 0.25)) > r0_tradeoff(mid)["worst"]:
@@ -307,7 +319,7 @@ def r0_minimax(c: float = WIDENED_B_CONST, lo: float = 0.3125, hi: float = 0.34)
             hi = mid
     r = r0_tradeoff(hi)
     return {"a": hi, "worst": max(r["worst"], c ** (1.0 / (hi - 0.25))),
-            "at_five_sixteenths": r0_tradeoff(R0_EXPONENT)["worst_all"]}
+            "at_five_sixteenths": max(r0_tradeoff(R0_EXPONENT)["worst"], c**16)}
 
 
 def kappa_tradeoff(kappa: float, c7: float = C7, S_lo: float = 0.56, N: float = 3.5) -> dict[str, Any]:

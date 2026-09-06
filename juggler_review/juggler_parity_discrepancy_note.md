@@ -266,8 +266,8 @@ one is unmistakable.
 
 Two conventions in that column. Every identifier listed is declared
 under `formal/Problems/` and reachable from `Problems/JugglerParityPaper.lean`,
-a barrel importing exactly this paper's five modules --- `MasterIdentity`,
-`MeanValues`, `MonomialSplitting`, `PaperBAssembly` and
+a barrel importing exactly this paper's six modules --- `BranchFreeze`,
+`MasterIdentity`, `MeanValues`, `MonomialSplitting`, `PaperBAssembly` and
 `ThresholdCertificate` --- so the formal side can be built on its own with
 `lake build Problems.JugglerParityPaper`. It shares no module with Paper A's
 barrel. And `ring` appears once in the text as the tactic that discharges an
@@ -1831,7 +1831,8 @@ F_{\boldsymbol\kappa}(m)=(m{+}\beta_{12})^{3/2}
 \]
 exactly. The net offset
 \(j=\beta_{12}-\beta_1-\beta_2\)
-satisfies \(|j|\le3\) for \(h_1h_2\le P^{1/2}/3\), and \(F\) splits
+satisfies \(-1\le j\le2\), hence \(|j|\le2\), for
+\(h_1h_2\le P^{1/2}/3\), both ends occurring, and \(F\) splits
 exactly into an offset term and a genuine second difference: for
 some \(\xi_1\) between \(0\) and \(j\) and some
 \(\xi_2\in(0,\beta_1+\beta_2)\),
@@ -1941,11 +1942,50 @@ The run-length constant is \(22=2+20\): with
 of the \(G'\) bound are \(\le2M\) and \(\le20M\), so
 \(|G'|\le22M\) and the level sets of \(\lfloor G\rfloor\) have
 length \(\ge1/(22M)\), which is the displayed minimum. The regrouping,
-the offset bound \(|j|\le3\), the \(\beta\)-product bound and all
+the offset bound, the \(\beta\)-product bound and all
 four derivative estimates are machine-checked in
 `formal/Problems/Juggler/BranchFreeze.lean`, and the two mean values that
 produce \(\xi_1\) and \(\xi_2\) are supplied in
 `formal/Problems/Juggler/MeanValues.lean`, so (iii) is unconditional.
+
+> *Erratum (the offset is \(\le2\), not \(\le3\)).* The three level-1
+> carries are not free of the corner floors, and treating them as free
+> is what produces the \(3\). Since \(m=\lfloor X\rfloor\) and
+> \(\theta=X-m\), the shifted value is
+> \(\beta_i=m(n{+}d_i)-m(n)=\lfloor\Delta_iX+\theta\rfloor\) exactly ---
+> that is the content of \(\kappa_i=\lfloor\{\Delta_iX\}+\theta\rfloor\)
+> --- and \(\Delta_{12}X=\Delta_1X+\Delta_2X+\Delta\Delta X\), so the
+> whole offset is one floor:
+> \[
+> j=\bigl\lfloor\{\Delta_1X{+}\theta\}+\{\Delta_2X{+}\theta\}
+>   -\theta+\Delta\Delta X\bigr\rfloor .
+> \]
+> Under the stated hypothesis \(\Delta\Delta X=3h_1h_2\xi^{-1/2}\in(0,1)\)
+> for some \(\xi>n\), and \(\theta\in[0,1)\), so the argument lies in
+> \((-1,3)\) and \(j\in\{-1,0,1,2\}\).
+>
+> The printed \(3\) adds the corner-floor range \([-1,2]\) of
+> \(\lfloor\Delta_1X{+}\Delta_2X{+}\Delta\Delta X\rfloor
+> -\lfloor\Delta_1X\rfloor-\lfloor\Delta_2X\rfloor\) to a carry vector
+> \(\boldsymbol\kappa\in\{0,1\}^3\) as though the two could be chosen
+> independently. They cannot: all three carries are
+> \(\lfloor\cdot+\theta\rfloor\) at the same \(\theta\), and folding
+> \(\theta\) in returns a single corner floor, at
+> \(\Delta\Delta X-\theta\) in place of \(\Delta\Delta X\). What \(3\)
+> is, is the bound at \(h_1h_2\le2P^{1/2}/3\), where
+> \(\Delta\Delta X<2\): the range gains one for each unit of
+> \(\Delta\Delta X\), and an exact census
+> (`decoration_budget.branch_offset_ladder`, integer arithmetic through
+> \(\lfloor n^{3/2}\rfloor=\lfloor\sqrt{n^3}\rfloor\)) finds
+> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for
+> \(r=1,2,3,6\). So the printed bound is the conclusion of a hypothesis
+> twice the one stated beside it.
+>
+> Nothing in the lemma's displays changes: they are stated in \(|j|\),
+> and \(|G'|\le2|j|P^{-1/4}+20h_1h_2P^{-3/4}\) is unaffected. What
+> changes is every downstream use of \(2|j|\le6\), which becomes
+> \(2|j|\le4\). Lean carries `offset_abs_le_two` beside the printed
+> `offset_abs_le_three`, with both ends of \(\{-1,0,1,2\}\) witnessed.
 
 Two of the three ingredients need no analysis at all, because
 \(x^{3/2}\) has *explicit* mean values in root coordinates. For the
@@ -2221,7 +2261,7 @@ classes
 - (D2) \(-\Delta_{2h}\bigl(c\,\lfloor
   F_{\boldsymbol\kappa}(X)\rfloor\bigr)(n)\), with
   \(F_{\boldsymbol\kappa}\) a branch function of Lemma 5.1(iii),
-  offset \(|j|\le3\);
+  offset \(|j|\le2\);
 - (D3) a smooth \(\varphi\) with
   \(|\varphi''|\le6kh_1h_2h\,P^{-13/8}\) and
   \(|\varphi'''|\le6kh_1h_2P^{-13/8}\), where \(2h\) is the shift
@@ -2284,8 +2324,8 @@ hold when at most two of the (D1) terms of \(\rho\) carry, in place of
 h'\ \le\ P^{1/24},
 \tag{D1$'$}
 \]
-provided \(uhh'\ge72\) for each such term. For fixed \(u\) and \(h'\)
-the shifts violating that are \(h<72/(uh')\), at most \(72\) positive
+provided \(uhh'\ge46\) for each such term. For fixed \(u\) and \(h'\)
+the shifts violating that are \(h<46/(uh')\), at most \(46\) positive
 integers per widened term.
 
 Part (ii) is the mixed-piece bound proper: level-2 waves
@@ -2422,7 +2462,7 @@ reached, and no estimate below depends on its value.
   This is the printed class (D1).
 - (D2). The middle term is exactly the printed class (D2) at the
   shift \(2h\) of (i), with the same branch function
-  \(F_{\boldsymbol\kappa}\) and the same offset \(|j|\le3\). If
+  \(F_{\boldsymbol\kappa}\) and the same offset \(|j|\le2\). If
   \(\varepsilon_0=0\) the term is absent.
 - (D3). The input \(\varphi\) of (ii) is produced, in every
   application in this paper, with
@@ -2736,15 +2776,15 @@ margin against the Stage-4 curvature
   giving \(S_4\le4t^{-1/6}\,t^{-1/3}P^{23/12}P^{\varepsilon}\).
   The \(\theta\)-coefficient of the decoration is
   \(\le|q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
-  \le24P^{1/24-1/4}+160P^{1/24+1/8+1/24-3/4}
-  =24P^{-5/24}+160P^{-13/24}\).
+  \le16P^{1/24-1/4}+160P^{1/24+1/8+1/24-3/4}
+  =16P^{-5/24}+160P^{-13/24}\).
   This is \(O(P^{-5/24})\), hence \(\lvert B\rvert\le1\) for
   \(P\ge P_0\); Lemma 3.7 at \(T=P^{1/2}\) applies either way
   (even a constant-size leftover would satisfy
   \(T\ge8(1+\lvert B\rvert)\)). The modes are expanded in the
   Stage-2 families. Its smooth curvature has ratio
   \(\le|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)
-  /(0.35uhP^{-3/4})\le69P^{1/24-1/2}+572P^{1/24+1/24-1}
+  /(0.35uhP^{-3/4})\le46P^{1/24-1/2}+572P^{1/24+1/24-1}
   \le P^{-1/4}\): dominated.
 - (D2). Write
   \(\Delta(c\lfloor F\rfloor)
@@ -3045,28 +3085,28 @@ the fourth printed term of (i) and is unchanged because
 \(h'\le P^{1/24}\) still holds under (D1\('\)).
 
 *Curvature ratio.* Against the Stage-4 curvature \(0.35uhP^{-3/4}\),
-using \(2|j'|\le6\), \(6/0.35\le18\), \(25/0.35\le71.5\) and
+using \(2|j'|\le4\), \(4/0.35\le11.5\), \(25/0.35\le71.5\) and
 \(|q'|h'\le P^{1/2}\) in both summands,
 \[
 \frac{|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)}{0.35uhP^{-3/4}}
-\ \le\ \frac{18}{uhh'}+\frac{72}u\,P^{-1/2}.
+\ \le\ \frac{11.5}{uhh'}+\frac{72}u\,P^{-1/2}.
 \]
 The second summand is \(o(1)\) for \(P\ge P_0\); the first is
-\(\le\tfrac14\) once \(uhh'\ge72\), which is the stated hypothesis.
+\(\le\tfrac14\) once \(uhh'\ge46\), which is the stated hypothesis.
 Stage 6 then dominates at margin \(\ge4\), as in the printed case.
 
 *\(\theta\)-coefficient, and the window inventory it forces.* By
-(D1\('\)), \(|j'|\le3\), \(h'\ge1\) and \(h\le P^{1/8}\),
+(D1\('\)), \(|j'|\le2\), \(h'\ge1\) and \(h\le P^{1/8}\),
 \[
 |q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
-\ \le\ \frac{6P^{1/4}}{h'}+20hP^{-1/4}\ \le\ 7P^{1/4}.
+\ \le\ \frac{4P^{1/4}}{h'}+20hP^{-1/4}\ \le\ 5P^{1/4}.
 \]
 This is not \(O(P^{-5/24})\), so the decoration's sawtooth is expanded
 by the large-\(B\) treatment of Stage 3(s2) and not by the small-\(B\)
 one of (s1). Each line below is that treatment's with \(2.25\)
-replaced by \(7\). The hypothesis \(T=P^{1/2}\ge8(1+|B|)\) reads
-\(P^{1/4}\ge56.14\), i.e. \(P\ge9.9\cdot10^{6}\). There are at most
-\(7P^{1/4}+1\) windows on which \(B\) moves by \(\le1\).
+replaced by \(5\). The hypothesis \(T=P^{1/2}\ge8(1+|B|)\) reads
+\(P^{1/4}\ge40.20\), i.e. \(P\ge2.6\cdot10^{6}\). There are at most
+\(5P^{1/4}+1\) windows on which \(B\) moves by \(\le1\).
 
 > *Erratum (the count is right; one route to it is not).* The window
 > count does not follow from monotonicity. "\(B\) is monotone on the
@@ -3080,38 +3120,39 @@ replaced by \(7\). The hypothesis \(T=P^{1/2}\ge8(1+|B|)\) reads
 > block; and it takes both signs, so even a monotone \(B\) would give
 > \(2\sup|B|\) and not \(\sup|B|\). What is true is that \(f_1\) and
 > \(f_2\) are monotone and single-signed on the whole block, and total
-> variation is additive over a partition, so with \(|j'|\le3\) on each
+> variation is additive over a partition, so with \(|j'|\le2\) on each
 > run
 > \[
 > \sum_{\text{runs}}\operatorname{Var}(B)
-> \ \le\ 6|q'|\operatorname{Var}(f_1)+|q'|hh'\operatorname{Var}(f_2)
-> \ \le\ 6|q'|\sup f_1+|q'|hh'\sup f_2\ \le\ 7P^{1/4},
+> \ \le\ 4|q'|\operatorname{Var}(f_1)+|q'|hh'\operatorname{Var}(f_2)
+> \ \le\ 4|q'|\sup f_1+|q'|hh'\sup f_2\ \le\ 5P^{1/4},
 > \]
 > which is the printed bound, reached without knowing either sign. The
 > jumps across runs are the \(b\)-run boundaries already inventoried in
 > the first bullet, at the same Stage-4 curvature, so they cost nothing
-> further. Both readings give \(7P^{1/4}+1\); only one of them is a
+> further. Both readings give \(5P^{1/4}+1\); only one of them is a
 > proof.
 
 The boundary charge at the Stage-4 curvature is
 \[
-(7P^{1/4}{+}1)(0.35uh)^{-1/2}P^{3/8}\ \le\ 13.5\,(uh)^{-1/2}P^{5/8},
+(5P^{1/4}{+}1)(0.35uh)^{-1/2}P^{3/8}\ \le\ 8.5\,(uh)^{-1/2}P^{5/8},
 \]
 which needs no lower bound on \(uh\): Stage 3(s2) may simplify its own
 using \(uh>P^{3/16}\) because (s2) *is* that regime, whereas a widened
 decoration is large independently of the main mode and can occur while
 the main sawtooth sits in (s1). It is dominated by the fourth printed
 term of (i), since \(\tfrac58<\tfrac1{24}+\tfrac78\). The flat cost is
-\(8(1{+}|B|)P^{1/2}\le64P^{3/4}\) in total. The modes are the (s2)
+\(8(1{+}|B|)P^{1/2}\le48P^{3/4}\) in total. The modes are the (s2)
 families, with weights
 \(\min(2,\tfrac1{\pi|w+B_0|})+\min(2,\tfrac1{\pi|w|})\) and index
 \(|w|\le|B_0|+R_0\le2R_0\) for \(P\ge P_0\), because
-\(7P^{1/4}\le P^{5/16}\) once \(P\ge7^{16}=3.3\cdot10^{13}\) --- a
-certificate row in its own right, and the largest one that does not
-mention \(c_7\), which is why Appendix A.5's floor is where it is and
-why Appendix A.6 cannot lower \(R_0\); Stage 5
+\(5P^{1/4}\le P^{5/16}\) once \(P\ge5^{16}=1.5\cdot10^{11}\) --- a
+certificate row in its own right, and the one that pins \(R_0\) from
+below (A.6); at the printed offset bound it read \(7^{16}\) and was
+the largest row not mentioning \(c_7\), which is what A.5's floor
+turns on; Stage 5
 therefore pays at most \(\sqrt2\) more on its dominant sum and a factor
-\(7/0.6\le12\) on its (s2) tails, both absorbed by
+\(5/0.6\le9\) on its (s2) tails, both absorbed by
 \(P^{\varepsilon}\). \(\square\)
 
 *Checklist for (ii) from (i).* Claims A–H are the verification.
@@ -3441,7 +3482,7 @@ statement that does the work.
 |---|---|---|---|---|
 | — | Lemma 5.1(i) | exact Taylor of \(m^{9/4}\) at \(v\) | kernel phase \(=\) level-2 local floor defect, error \(kR\ll kP^{-9/8}\) | the definition of \(K_c\) |
 | — | Lemma 5.1(ii) | \(\lbrack\{A\}+\{B\}\ge1\rbrack=\{A\}+\{B\}-\{A+B\}\) | every carry is a difference of unit sawtooths | Step 3(3b), (3d) |
-| — | Lemma 5.1(iii) | branch functions \(F_{\boldsymbol\kappa}\), offset \(\lvert j\rvert\le3\) | branch decomposition; smooth-per-branch, frozen floor \(J_F\) | Steps 3(3e), 5 |
+| — | Lemma 5.1(iii) | branch functions \(F_{\boldsymbol\kappa}\), offset \(\lvert j\rvert\le2\) | branch decomposition; smooth-per-branch, frozen floor \(J_F\) | Steps 3(3e), 5 |
 | — | Lemma 5.1(iv) | (i)–(iii) | master identity \(\varphi_2=M_1+M_2+M_3+M_4\) | Step 2 |
 | 1 | Step 1 | \(A\)-process twice, \(H_1=P^{1/48}\), \(H_2=P^{1/24}\) | \(K_c\) reduced to \(T_2\); (C3), (C4) hold, so (C1) does with room \(P^{-1/48}\) | Steps 2–6 |
 | 2 | Step 2 | Lemma 5.1(iv), estimate (E4) | \(M_1\) deleted at cost \(2.7P^{1/4}\); \(M_2,M_3,M_4\) remain | Step 3 |
@@ -3449,7 +3490,7 @@ statement that does the work.
 | 4 | Step 4 | pieces with total wave frequency \(t\ne0\), \(\lvert t\rvert\le3P^{1/24}\) | \(\ll\lvert t\rvert^{-1/6}P^{23/24+\varepsilon}\); \(t=0\) collapses exactly to (D1) | Step 6; \(t=0\) to Step 5 |
 | — | Lemma 5.2(i) | \(u,h\ge1\), \(h\le P^{1/8}\), \(uh\le P^{1/2}\), decoration \(\rho\) | \(V\)-bound \(\ll((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+\cdots)P^{\varepsilon}\) | Lemma 5.2(ii); Steps 3(3a), 4, 5b |
 | — | Lemma 5.2(ii) | \(\lvert q_d\rvert\le4P^{1/24}\), \(0<\lvert t\rvert\le3P^{1/24}\) | \(\ll\lvert t\rvert^{-1/6}P^{23/24+\varepsilon}\) | Step 4 |
-| — | Lemma 5.2(iii) | up to two (D1) terms with \(\lvert q'\rvert h'\le P^{1/2}\), and \(uhh'\ge72\) | the bound of (i) at the widened budget | Step 4, leftover modes |
+| — | Lemma 5.2(iii) | up to two (D1) terms with \(\lvert q'\rvert h'\le P^{1/2}\), and \(uhh'\ge46\) | the bound of (i) at the widened budget | Step 4, leftover modes |
 | 5a | Step 5a | offset branches \(j\ne0\) | \(\le1.8P^{23/24+\varepsilon}\); anchor curvature \(\lambda_a\in[1.30,1.43]k\lvert j\rvert P^{-1/8}\) | Step 6 |
 | 5b | Step 5b | zero-offset branches \(j=0\) | \(\ll P^{15/16+\varepsilon}\) | Step 6 |
 | 6 | Step 6 | all of the above | \(\lvert T_2\rvert\ll P^{23/24+\varepsilon}\), hence \(\lvert K_c\rvert\ll P^{1-1/96+\varepsilon}\) | Theorem 6.1 |
@@ -3466,9 +3507,9 @@ improves nothing.
 
 *Where the threshold comes from.* \(P_0\) is not distributed across
 the proof. Of the thirty-eight displayed inequalities, thirty-three
-hold from \(2.8\cdot10^{10}\) or below. Five do not: the Step 5b(a)
-\(q''\) curvature ratio at \(3.0\cdot10^{11}\), the widened mode index
-of Lemma 5.2(iii) at \(3.3\cdot10^{13}\), and the three Lemma 3.9
+hold from \(2.8\cdot10^{10}\) or below. Five do not: the widened mode
+index of Lemma 5.2(iii) at \(1.5\cdot10^{11}\), the Step 5b(a)
+\(q''\) curvature ratio at \(3.0\cdot10^{11}\), and the three Lemma 3.9
 balance comparisons of Steps 5a and 5b, the largest of which ---
 \(W\le c_7S/2\) inside Step 5b's middle band --- is \(P_0\) itself
 (Appendix A). That single row is why Lemma 3.9's constant
@@ -3477,12 +3518,15 @@ the argument to check first; the other thirty-three constants are
 bookkeeping, in the exact sense that moving any of them leaves \(P_0\)
 where it is.
 
-The mode-index row is bookkeeping in that sense too --- it sits below
-\(P_0\), so moving it changes nothing --- and in no other. It sits
-\(8\%\) below, which is what makes it the row to know about: it is the
-largest one that does not mention \(c_7\), so it is where every
-improvement to the middle band runs out. Appendices A.5 and A.6 are
-written around that fact.
+The mode-index row is bookkeeping in that sense too, and it very nearly
+was not. Read with the printed offset bound \(|j'|\le3\) it stands at
+\(7^{16}=3.3\cdot10^{13}\), \(8\%\) under \(P_0\) and the largest row
+not mentioning \(c_7\) --- which would make it, and not the \(q''\)
+ratio, the ceiling on every improvement to the middle band. The
+erratum at Lemma 5.1(iii) takes it to \(5^{16}=1.5\cdot10^{11}\),
+back under the \(q''\) row, and A.5's floor is the \(q''\) ratio after
+all. Two constants had to be right for the printed \(120\) to be the
+right answer, and only one of them was.
 
 **Step 5b in detail.** It is the only step that splits, and the only
 one where several curvature scales meet. Write
@@ -3680,21 +3724,21 @@ Lemma 5.2(iii) covers. From
 The second-shift bounds \(h_1,h_2\le P^{1/24}\) still hold, so both
 satisfy (D1\('\)), and Lemma 5.2(iii) applies with
 main coefficient \(t\) and shift \(h_3\): its good-shift condition
-reads \(th_3h_i\ge72\), and it supplies the Stage-6 comparisons, the
+reads \(th_3h_i\ge46\), and it supplies the Stage-6 comparisons, the
 \((s2)\) window inventory for the enlarged sawtooth, and the mode
 accounting.
 
 The *bad* set for the \(u\)-mode is
-\(h_3<72/(th_1)\). It contains at most \(72\) positive
+\(h_3<46/(th_1)\). It contains at most \(46\) positive
 integers (since \(t\ge1\) and \(h_1\ge1\)). The bad set for
-the \(u'\)-mode likewise contains at most \(72\) integers.
-Their union has at most \(144\) elements. On those \(h_3\)
+the \(u'\)-mode likewise contains at most \(46\) integers.
+Their union has at most \(92\) elements. On those \(h_3\)
 use the trivial bound \(|V_{h_3}|\le P\). The recorded
 \(A\)-process charges
 \[
-\frac{4P}{H_3}\cdot144\cdot P
-=576\,\frac{P^2}{H_3}
-\le576\,t^{-1/3}P^{23/12},
+\frac{4P}{H_3}\cdot92\cdot P
+=368\,\frac{P^2}{H_3}
+\le368\,t^{-1/3}P^{23/12},
 \]
 which is a constant multiple of the target of Claim G (the
 same first-term comparison \(P^2/H_3\le t^{-1/3}P^{23/12}\)).
@@ -3810,7 +3854,7 @@ The main estimate is Lemma 3.3 per frozen run at scale
 \le1.2\,(k|j|)^{1/2}P^{15/16}
 +20\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
 \]
-Summed over the eight carry branches and \(|j|\le3\) with the
+Summed over the eight carry branches and \(|j|\le2\) with the
 \(O(\log^3P)\) piece masses:
 \(\ll(k)^{1/2}P^{15/16+\varepsilon}
 \le1.8\,P^{1/48}P^{15/16+\varepsilon}=1.8\,P^{23/24+\varepsilon}\)
@@ -4281,7 +4325,7 @@ unchanged, and
 \le1.4\,(k|j|)^{1/2}P^{15/16}
 +34\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
 \]
-Summed over the eight branches and \(\lvert j\rvert\le3\) with the
+Summed over the eight branches and \(\lvert j\rvert\le2\) with the
 \(O(\log^3P)\) piece masses:
 \(\ll k^{1/2}P^{15/16+\varepsilon}\le P^{1/48}P^{15/16+\varepsilon}
 =P^{23/24+\varepsilon}\) already at the kernel's \(k\le P^{1/24}\);
@@ -6243,7 +6287,7 @@ divide by Theorem 4.1's Stage-4 curvature \(0.35\,uh\,P^{-3/4}\), so
 | P^(1/2)/(2h2) >= 8(1+\|B\|): 0.5 P^(22/48) >= 15 P^(9/48) | Thm 5.3 St.3(b) | $2.8\cdot10^{5}$ |
 | 1.45 P^(7/72) <= P^(1/8): shift range of (i) | Claim D | $6.4\cdot10^{5}$ |
 | (3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96) | Thm 6.1 St.B | $7.5\cdot10^{5}$ |
-| P^(1/2) >= 8(1 + 7 P^(1/4)) | Thm 5.3 St.6(D1) | $9.9\cdot10^{6}$ |
+| P^(1/2) >= 8(1 + 5 P^(1/4)) | Thm 5.3 St.6(D1) | $2.6\cdot10^{6}$ |
 | wave remainder 300 P^(-35/24) vs S: 536 P^(-5/6) <= rho_0 | Thm 5.3 St.5b | $1.6\cdot10^{7}$ |
 | beta-substitution error 2.31 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.8\cdot10^{7}$ |
 | cells + anchor runs + windows <= 3.5 P^(13/24) | Thm 5.3 St.5b | $5.1\cdot10^{7}$ |
@@ -6259,9 +6303,9 @@ divide by Theorem 4.1's Stage-4 curvature \(0.35\,uh\,P^{-3/4}\), so
 | flat cost 8(1+\|C\|)/R_0 <= P^(-1/96) per point | Thm 6.3 | $5.5\cdot10^{9}$ |
 | \|q''\| curvature ratio 30.5 P^(-3/16) <= 1/4 | Thm 5.3 St.5b(a) | $2.8\cdot10^{10}$ |
 | 2.25 P^(-1/16) < 1/2 | Thm 4.1 St.3(s1) | $2.8\cdot10^{10}$ |
+| widened \|B_0\| <= R_0: 5 P^(1/4) <= P^(5/16) | Thm 5.3 St.6(D1) | $1.5\cdot10^{11}$ |
 | E alone <= c_7 S/2 (the floor as kappa -> 0) | Thm 5.3 St.5b | $4.1\cdot10^{12}$ |
 | W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $2.9\cdot10^{13}$ |
-| widened \|B_0\| <= R_0: 7 P^(1/4) <= P^(5/16) | Thm 5.3 St.6(D1) | $3.3\cdot10^{13}$ |
 | W = V + E <= c_7 S/2 at S >= 0.56 P^(-5/8) | Thm 5.3 St.5b | $3.6\cdot10^{13}$ |
 
 \[
@@ -6277,24 +6321,22 @@ The thresholds are not spread out; they cluster and then jump.
 Thirty-three of the thirty-eight hold from \(2.8\cdot10^{10}\) on, and
 that value is set by a single soft inequality
 (\(2.25P^{-1/16}<\tfrac12\) in Stage 3(s1) of Theorem 4.1, which merely
-names the regime). Of the remaining five, one is the \(q''\) curvature
-ratio of Step 5b(a) at \(3.0\cdot10^{11}\) --- the price of
-\(R_0=P^{5/16}\), and still two orders below \(P_0\) (A.6); one is the
-widened mode index of Lemma 5.2(iii) at \(7^{16}=3.3\cdot10^{13}\),
-which is the other price of that truncation and is *not* two orders
-below anything; and the other three are the Lemma 3.9 balance
-comparisons of Steps 5a and 5b, which alone carry \(P_0\) up by two
-orders of magnitude. The erratum at Lemma 5.2b moved only those three:
-it left the \(q''\) row where it was, since that row divides by
-Theorem 4.1's Stage-4 curvature and not by \(\lambda_0\), and it left
-the mode index where it was, since that row mentions no curvature at
-all.
+names the regime). Of the remaining five, two are the price of
+\(R_0=P^{5/16}\): the widened mode index of Lemma 5.2(iii) at
+\(5^{16}=1.5\cdot10^{11}\) and the \(q''\) curvature ratio of
+Step 5b(a) at \(3.0\cdot10^{11}\), both two orders below \(P_0\)
+(A.6). The other three are the Lemma 3.9 balance comparisons of
+Steps 5a and 5b, which alone carry \(P_0\) up by two orders of
+magnitude. The erratum at Lemma 5.2b moved only those three: it left
+the \(q''\) row where it was, since that row divides by Theorem 4.1's
+Stage-4 curvature and not by \(\lambda_0\), and it left the mode index
+where it was, since that row mentions no curvature at all.
 
 The mode-index row is also the only one in the table whose printed
 threshold is *exact* rather than conservative. Every other row is
 certified at a rational \(t_0\) at or just above the true crossing;
-this one substitutes \(P=t^{16}\) and reads \(7t^4\le t^5\), whose
-crossing is \(t=7\) on the nose.
+this one substitutes \(P=t^{16}\) and reads \(5t^4\le t^5\), whose
+crossing is \(t=5\) on the nose.
 
 \(W\le c_7S/2\) is a *hypothesis* of Lemma 3.9, not an optimisation: it
 is what makes \(\Omega_W\) empty on the \(r=2\) pieces. Its size is
@@ -6308,29 +6350,25 @@ not improvable there (A.5), and by the normalisation \(\kappa\) of
 | \(\tfrac13\) | \(1.2\cdot10^{16}\) | \(2.8\cdot10^{20}\) | \(7.0\) |
 | \(\tfrac18\) | \(1.1\cdot10^{14}\) | \(1.3\cdot10^{19}\) | \(11.4\) |
 | \(\tfrac1{12}\) (used here) | \(3.6\cdot10^{13}\) | \(9.8\cdot10^{18}\) | \(14.0\) |
-| \(\tfrac1{16}\) | \(3.3\cdot10^{13}\) | \(1.2\cdot10^{19}\) | \(16.2\) |
-| \(\tfrac1{20}\) | \(3.3\cdot10^{13}\) | \(1.8\cdot10^{19}\) | \(18.1\) |
-
-The last two entries are the mode-index row, not the gate: the gate
-alone reads \(2.0\cdot10^{13}\) and \(1.5\cdot10^{13}\) there, but
-\(P_0\) is a maximum, and \(7^{16}\) does not mention \(\kappa\). So
-the \(P_0\) column does not fall past \(3.3\cdot10^{13}\), and the
-value of \(\kappa\) at which it stops --- where the gate meets the row
---- is \(1/12.42\).
+| \(\tfrac1{16}\) | \(2.0\cdot10^{13}\) | \(1.2\cdot10^{19}\) | \(16.2\) |
+| \(\tfrac1{20}\) | \(1.5\cdot10^{13}\) | \(1.8\cdot10^{19}\) | \(18.1\) |
 
 Both columns fall together until \(\kappa=\tfrac1{12}\), where the
 piece-boundary term turns \(P_1\) around; that is the operating point.
-It is also, to within \(8\%\), the last \(\kappa\) at which the left
-column is still moving. The two facts are unrelated in origin --- one
-is a piece-boundary term in \(P_1\), the other a Vaaler truncation in
-Lemma 5.2(iii) --- and they agree to a factor \(1.079\).
+The left column keeps falling below it, but only to the largest
+\(\kappa\)-free row: at \(\kappa=\tfrac1{16}\) and below, \(P_0\) is
+the gate by a shrinking margin, and it would stop at
+\(5^{16}=1.5\cdot10^{11}\). Read with the printed offset bound
+\(|j'|\le3\) it would have stopped at \(3.3\cdot10^{13}\), i.e. one
+entry past the operating point.
 The turn is structural, not numerical: the \(\tfrac85\) correction to
 \(\lambda_0\) moved every entry of both columns and left the minimum
 where it was. As \(\kappa\to0\) the *gate* tends to
 \(4.1\cdot10^{12}\), the point at which the interpolant error alone
-satisfies \(E\le c_7S/2\); \(P_0\) does not follow it there, being
-held at \(3.3\cdot10^{13}\) by the mode index. The exponent \(89/96\)
-does not depend on \(\kappa\) at all.
+satisfies \(E\le c_7S/2\), and \(P_0\) follows it: every row below
+that is \(\kappa\)-free and smaller, the largest being the \(q''\)
+ratio at \(3.0\cdot10^{11}\). The exponent \(89/96\) does not depend
+on \(\kappa\) at all.
 
 *A near miss, recorded because it nearly cost a factor three.* Claim D
 of Lemma 5.2(ii)\(\to\)(i) must place every index of the Claim C sum
@@ -6408,7 +6446,7 @@ That second threshold is computed in A.5.
 Nor is \(P_0\) the threshold of the whole paper for every choice of
 \(R_0\). Run Stage 2 of Theorem 5.3 at \(R_0=P^{1/4}\) and the
 depth-five Theorem 6.3 needs \(1.8\cdot10^{24}\), ten orders above
-\(P_0\) --- and Lemma 5.2(iii) needs \(7P^{1/4}\le P^{1/4}\), which no
+\(P_0\) --- and Lemma 5.2(iii) needs \(5P^{1/4}\le P^{1/4}\), which no
 \(P\) supplies at all. Section A.6 shows that \(R_0=P^{5/16}\) removes
 both gaps at no cost that binds, and that is the value carried
 throughout. With it, every threshold in the paper is \(P_0\).
@@ -6463,40 +6501,39 @@ moves \(P_0\) to \(4.0\cdot10^{12}\) but \(P_1\) below from
 \(9.8\cdot10^{18}\) to \(1.0\cdot10^{23}\). We keep the uniform
 constant.
 
-*\(c_7\): and it saturates almost at once, on a row that has nothing
-to do with it.* The lever has a ceiling, because only the sites that
-mention \(c_7\) move when it does. Removing those, the largest
-threshold left is the widened mode index of Lemma 5.2(iii),
-\(7P^{1/4}\le R_0\), at \(7^{16}=3.32\cdot10^{13}\) --- and \(P_0\)
-itself is \(3.59\cdot10^{13}\). Improving \(c_7\) drives \(P_0\)
-towards that value and no further: the Step 5b gate drops beneath it
-already at \(c_7=1/228\), against the \(1/232\) in force, so the whole
-of the lever is spent almost immediately, and what it buys in total is
-a factor of \(1.08\).
+*\(c_7\): and it saturates, at a value \(R_0\) has already been tuned
+to.* The lever has a ceiling, because only the sites that mention
+\(c_7\) move when it does. Removing those, the largest threshold left
+is the Step 5b(a) \(q''\) curvature ratio at \(2.98\cdot10^{11}\), with
+the next below it the widened mode index of Lemma 5.2(iii) at
+\(5^{16}=1.53\cdot10^{11}\). Improving \(c_7\) drives \(P_0\) towards
+that value and no further: the Step 5b gate drops beneath it at
+\(c_7=1/61\), so the whole of the lever is spent by then, and what it
+buys in total is a factor of \(120\), from \(3.6\cdot10^{13}\) to
+\(2.98\cdot10^{11}\). The vector trade above realises \(8.9\) of that
+\(120\), the rest being paid out of \(c_3\) and \(c_4\).
 
-The vector trade above therefore buys nothing at all. Its
-\(4.0\cdot10^{12}\) is a statement about the gate; the mode index
-holds \(P_0\) at \(3.32\cdot10^{13}\) whatever the gate does, so
-\((\tfrac1{27},\tfrac1{1872},\tfrac1{1872})\) costs four orders in
-\(P_1\) and returns the same \(P_0\). Keeping the uniform constant was
-the right call for a reason better than the one given.
+*Two constants had to be right for that paragraph, and the second one
+was found late.* The mode-index row is stated inside the proof of
+Lemma 5.2(iii) and was never collected into A.1, so the floor above was
+for a while computed from a table missing an entry. It matters which
+value that entry has. At the offset bound \(|j'|\le3\) the manuscript
+printed, the row is \(7^{16}=3.32\cdot10^{13}\): it would then be the
+largest \(c_7\)-free threshold, \(8\%\) under \(P_0\), the lever would
+be worth \(1.08\) rather than \(120\), and the vector trade would
+return the \(P_0\) it started from. At the corrected \(|j'|\le2\) ---
+the erratum at Lemma 5.1(iii) --- the row is \(5^{16}\), an order below
+the \(q''\) ratio, and every figure in the paragraph above is the one
+printed. The conclusion was right; one of its two premises was not
+checked, and the other was not in the table.
 
-*The floor that used to be printed here was \(2.98\cdot10^{11}\), a
-factor of \(120\).* That figure --- the Step 5b(a) \(q''\) curvature
-ratio --- is now the *runner-up*, and it is two orders below the row
-that actually binds. The mode index was in the proof of Lemma 5.2(iii)
-all along, where it is stated with its threshold; it was simply never
-collected into A.1, and A.5 computed its floor from a table missing
-its largest \(c_7\)-free entry. Nothing about \(P_0\) changes. What
-changes is the answer to "how much is left in \(c_7\)": two orders,
-believed; a factor of \(1.08\), in fact.
-
-The erratum at Lemma 5.2b moved neither figure. The old floor divided
-by Theorem 4.1's Stage-4 curvature; the new one mentions no curvature
-at all, and \(7^{16}\) is a pure power. What that erratum changed was
-the base, which is why the lever's *printed* worth fell from \(300\)
-to \(120\) --- both of them computed against a floor two orders too
-low.
+The erratum at Lemma 5.2b moved neither figure: the floor divides by
+Theorem 4.1's Stage-4 curvature and is untouched, so the lever's worth
+fell from \(300\) to \(120\) simply because \(P_0\) fell, and its
+saturation point eased from \(c_7=1/54\) to \(1/61\) because the gate
+sits lower at every \(c_7\). The erratum at Lemma 5.1(iii) moves the
+mode-index row and nothing else here: \(5^{16}\) is a pure power and
+mentions no curvature at all.
 
 The floor is not an accident of this lever, and it is a function of
 \(R_0\). Among the four exponents Appendix A.6 tabulates,
@@ -6508,53 +6545,58 @@ where the worst of the four is \(1.40\cdot10^{11}\) --- a factor
 \(2.13\) below what \(P^{5/16}\) gives them.
 
 **That crossing is infeasible.** At \(a=0.29919\) the mode index of
-Lemma 5.2(iii) needs \(7^{1/(a-1/4)}=1.5\cdot10^{17}\), four orders
-above \(P_0\). The four sites alone leave \(a\) free across
+Lemma 5.2(iii) needs \(5^{1/(a-1/4)}=1.6\cdot10^{14}\), a factor
+\(4.5\) above \(P_0\). The four sites alone leave \(a\) free across
 \(\bigl[0.2829,\,0.3463\bigr]\); with the fifth the band is
-\(\bigl[0.3123,\,0.3463\bigr]\), and \(5/16=0.3125\) sits
-\(1.5\cdot10^{-4}\) above its left endpoint. No fraction of
-denominator \(\le32\) lies in the gap between them. So the truncation
-this paper carries is, to four decimal places, the smallest one at
-which Lemma 5.2(iii) closes by \(P_0\) --- which is not what A.6
-believed it was choosing, and is the sharper reason \(P^{1/4}\) will
-not do: at \(a=\tfrac14\) the mode index is not late, it is
-*unsatisfiable at every \(P\)*, since \(7P^{1/4}\le P^{1/4}\) is false.
+\(\bigl[0.3016,\,0.3463\bigr]\), and neither \(0.29919\) nor its
+nearest simple value \(\tfrac3{10}\) --- which needs
+\(5^{20}=9.5\cdot10^{13}\) --- lies in it. That is the sharper reason
+\(P^{1/4}\) will not do, too: at \(a=\tfrac14\) the mode index is not
+late, it is *unsatisfiable at every \(P\)*, since \(5P^{1/4}\le
+P^{1/4}\) is false.
 
-Read as a minimax over all five, the optimum moves the other way. The
-mode index falls in \(a\) while the \(q''\) ratio rises, and they cross
-at \(a^\ast=0.3218\), where the worst site is \(5.79\cdot10^{11}\).
-\(5/16\) is a factor \(57\) above that, not \(2.13\); the nearest
-simple value is \(\tfrac13\), at \(1.58\cdot10^{12}\), a factor
-\(21\) better than \(5/16\). None of this touches \(P_0\), which is
-carried by the balance comparisons; it is the *floor* that moves, and
-with it everything the \(c_7\) lever could ever be worth.
+Read as a minimax over all five, the optimum moves the other way and
+does not move far. The mode index falls in \(a\) while the \(q''\)
+ratio rises, and they cross at \(a^\ast=0.3111\), where the worst site
+is \(2.73\cdot10^{11}\) --- so \(5/16\) is a factor \(1.09\) above the
+five-site optimum, against the factor \(2.13\) it costs on the four.
+Counting the site that pins the band makes \(5/16\) a *better* choice
+than A.6 rated it, not a worse one. None of this touches \(P_0\),
+which is carried by the balance comparisons.
 
-So the \(c_7\) lever's floor is \(3.32\cdot10^{13}\) at the truncation
-in force and would be \(5.79\cdot10^{11}\) at the five-site crossing;
-the choice of \(R_0\) is feasible rather than optimal, and moving it is
-now the *only* real option, the scalar and vector \(c_7\) levers having
-been shown above to be spent. \(P_0\) itself is \(R_0\)-independent and
-stays \(3.6\cdot10^{13}\). And the coincidence recorded at Lemma 5.2(i)
---- that \(R_0=2(\tfrac1{24}+\tfrac18-\tfrac1{96})\) --- is therefore a
+So the \(c_7\) lever's floor is \(2.98\cdot10^{11}\) at the truncation
+in force and would be \(2.73\cdot10^{11}\) at the five-site crossing;
+the choice of \(R_0\) is feasible rather than optimal, and the margin
+is now small enough that moving it is not worth the constants. \(P_0\)
+itself is \(R_0\)-independent and stays \(3.6\cdot10^{13}\). And the
+coincidence recorded at Lemma 5.2(i) --- that
+\(R_0=2(\tfrac1{24}+\tfrac18-\tfrac1{96})\) --- is a
 coincidence of a feasible choice and not the output of an
-optimisation, though it is a narrower coincidence than it looked: the
-feasible band's left endpoint is \(0.31235\).
+optimisation, on a band whose left endpoint is \(0.30157\).
 
-*What it would take to widen that band.* The constant \(7\) is not
-sharp. It collects \(6P^{1/4}/h'\) and \(20hP^{-1/4}\), and the second
-is not of the first's order: \(6P^{1/4}+20P^{-1/8}\le(6+\delta)P^{1/4}\)
-from \(P\ge(20/\delta)^{8/3}\), so \(6.001\) serves from
-\(2.95\cdot10^{11}\) on, which is below \(P_0\). At \(6.001\) the row
-falls to \(2.83\cdot10^{12}\), a factor \(12\), and the band's left
-endpoint eases to \(0.3074\). It does not reach \(3/10\), which needs
-\(3.7\cdot10^{15}\) even then, so \(5/16\) remains the smallest
-sixteenth that closes either way. The gain is entirely in the floor,
-which would fall from \(3.32\cdot10^{13}\) to the \(q''\) row's
-\(2.98\cdot10^{11}\) --- restoring the factor of \(120\) that A.5 used
-to claim, this time from a complete table. We do not take it here: the
-downstream constants of Lemma 5.2(iii) (\(13.5\), \(64\), \(7/0.6\))
-are all stated at \(7\) and all sit in absorbed or dominated positions,
-so re-deriving them buys a floor and no theorem.
+*The band's width depends on a constant nobody sharpened.* The
+collected \(5\) is not tight. It gathers \(4P^{1/4}/h'\) and
+\(20hP^{-1/4}\), and the second is not of the first's order:
+\(4P^{1/4}+20P^{-1/8}\le(4+\delta)P^{1/4}\) from
+\(P\ge(20/\delta)^{8/3}\), so \(4.001\) serves from
+\(2.95\cdot10^{11}\) on, below \(P_0\). At \(4.001\) the row falls from
+\(1.53\cdot10^{11}\) to \(4.3\cdot10^{9}\) and the band's left endpoint
+eases from \(0.30157\) to \(0.29443\) --- which is below \(0.29919\),
+so at the sharp constant, and only there, A.6's four-site crossing and
+its nearest simple value \(\tfrac3{10}\) both come back inside the
+band. We do not take it: the downstream constants of Lemma 5.2(iii)
+(\(8.5\), \(48\), \(5/0.6\)) are all stated at \(5\) and all sit in
+absorbed or dominated positions, and the floor is already the \(q''\)
+row, so re-deriving them would move the band and not the threshold.
+
+For the record, what it costs to be wrong about the offset. At
+\(|j'|\le3\) the collected constant is \(7\), the row is
+\(3.32\cdot10^{13}\), the band is \(\bigl[0.3123,\,0.3463\bigr]\) with
+\(5/16\) clearing its left endpoint by \(1.5\cdot10^{-4}\), the
+five-site optimum is \(a^\ast=0.3218\) at \(5.79\cdot10^{11}\) and
+\(5/16\) is a factor \(57\) above it, and the \(c_7\) lever is worth
+\(1.08\) rather than \(120\). One integer in Lemma 5.1(iii) carries all
+of that.
 
 The crossing itself is not at a nice exponent: each threshold has the
 form \(\log(\text{constant})\) over a linear function of \(a\), so
@@ -6573,25 +6615,21 @@ the crossing moves with the constants: \(\tfrac3{10}\) sits
 in either site but not a doubling of the flat threshold, whereas
 \(5/16\) sits \(1.3\cdot10^{-2}\) above and survives a factor of five.
 
-The fifth site inverts the conclusion. Against the four, \(5/16\) is
-the robust choice, sitting well clear of the cliff on the safe side.
-Against all five it is the *least* robust admissible value. The band is
-defined, as A.6 defines it, by every \(R_0\)-sensitive site staying
-below the balance row; the mode index stays below it exactly when
-\(7\le P_0^{1/16}=7.0333\). A widened coefficient of \(7.04\) in place
-of \(7\) --- half of one percent --- would carry the row to
-\(3.64\cdot10^{13}\), past the balance row, and \(R_0=P^{5/16}\) would
-then be *setting* the paper's threshold rather than sitting under it.
-The room in the other direction is the same \(7.3\%\): that is how far
-\(P_0\) can be driven down before the mode index becomes \(P_0\), which
-is the same statement as the lever's factor \(1.08\) above. The right
-reading is not that \(5/16\) is safe,
-but that it is the smallest value that works and is being asked to
-work by a margin of \(1.5\cdot10^{-4}\) in the exponent. Anything that
-lifts the left endpoint --- a worse constant anywhere in the widened
-budget, a smaller \(P_0\) --- takes the truncation with it. That is a
-reason to move \(R_0\) up rather than a reason to leave it, and
-\(\tfrac13\) is the value with room on both sides.
+The fifth site does not overturn that reading, and came close to. The
+band is defined, as A.6 defines it, by every \(R_0\)-sensitive site
+staying below the balance row; the mode index stays below it exactly
+when the collected widened constant is at most \(P_0^{1/16}=7.0333\).
+At the corrected \(|j'|\le2\) that constant is \(5\), with \(41\%\) of
+room, and \(5/16\) clears the band's left endpoint by \(0.0109\) in the
+exponent --- comfortable on both counts. So \(P^{5/16}\) is
+the robust choice rather than the optimal one against all five sites,
+as it was against four. At the printed
+\(|j'|\le3\) the constant is \(7\), the room is half of one percent,
+and \(5/16\) clears the left endpoint by \(1.5\cdot10^{-4}\): a
+coefficient of \(7.04\) would have carried the row past the balance
+row and made \(R_0=P^{5/16}\) the paper's threshold. The margin that
+makes the truncation safe is the offset bound, and it was the one
+constant here nobody had checked.
 
 *\(E\): yes, by a factor \(1.28\); and the factor \(10\) beside it, by
 removing it.* The earlier \(219=202.5+16\) opened the middle-band cap
