@@ -911,7 +911,7 @@ SECTION_4_TO_6_COVERAGE = {
     "Theorem 4.4": "probe", "Proposition 4.5": "threshold", "Lemma 4.6": "probe",
     "Theorem 4.7": "probe", "Theorem 4.8": "probe", "Corollary 4.9": "probe",
     "Lemma 4.10": "none", "Theorem 4.11": "none", "Theorem 4.12": "none",
-    "Corollary 4.13": "none", "Lemma 5.1": "probe", "Lemma 5.2": "probe",
+    "Corollary 4.13": "probe", "Lemma 5.1": "probe", "Lemma 5.2": "probe",
     "Lemma 5.2b": "probe", "Theorem 5.3": "probe", "Theorem 6.1": "probe",
     "Lemma 6.2": "probe", "Theorem 6.3": "probe", "Corollary 6.4": "probe",
 }
@@ -1055,6 +1055,90 @@ def lemma_4_6_census(seed: int = 4611, samples_per_range: int = 60) -> dict[str,
         "power_is_of_order_one_over_samples": (1 - max(r["max_ratio_to_lower"] for r in rows)) < 20 / (len(ranges) * samples_per_range),
         "residual_constant": max(r["max_residual_scaled"] for r in rows),
         "residual_constant_is_three_thirtyseconds": abs(max(r["max_residual_scaled"] for r in rows) - 3 / 32) < 0.01,
+    }
+
+def check_fifth_letter_nesting(n: int) -> dict[str, Any]:
+    """Corollary 4.13(a): for odd n >= 3, 0 <= n^{9/16} - v^{1/4} <= n^{-15/16}.
+
+    Expanding twice gives n^{9/16} - v^{1/4} = (3/8) theta n^{-15/16} + (1/4) theta_2 n^{-27/16} +
+    ..., so the sharp constant is 3/8 and the saturation is theta, exactly as in Lemma 4.6.  The
+    printed 1 is loose by 8/3.
+    """
+
+    with mp.workdps(working_dps_for(n)):
+        v = v_of(n)
+        gap = mp.power(mp.mpf(n), mp.mpf(9) / 16) - mp.power(mp.mpf(v), mp.mpf(1) / 4)
+        bound = mp.power(mp.mpf(n), -mp.mpf(15) / 16)
+        eps = mp.mpf(10) ** (-40)
+        return {
+            "nonnegative": bool(gap >= -eps),
+            "under_printed_bound": bool(gap <= bound + eps),
+            "ratio_to_printed": float(gap / bound),
+            "theta": float(X_of(n) - m_of(n)),
+        }
+
+
+def corollary_4_13_check(m_prime: int = 60, nesting_samples: int = 400, seed: int = 413) -> dict[str, Any]:
+    """Corollary 4.13 on one even block: the structural claim, the density, and the nesting.
+
+    O(m') is the odd n in I(m') = [m'^{32/9}, (m'+1)^{32/9}) whose first five letters are OOEEE and
+    whose J^5 is m'.  The corollary claims every such n has J^4(n) in [m'^2, (m'+1)^2) and even, and
+    that |O(m')| is (1/16) of the odd starts up to O(|I| m'^{-4/27+eps}).
+
+    The structural claim is checkable and holds.  The density's error term is not: m'^{-4/27} is
+    0.51 at m' = 100 and reaches 10% only at m' = 5.6e6, where the block holds 2e17 integers.  So
+    the count can be compared with 1/16 but the printed error cannot be tested -- the same reach
+    reading as the level-2 kernel benchmark.
+    """
+
+    with mp.workdps(60):
+        lo = int(mp.floor(mp.power(mp.mpf(m_prime), mp.mpf(32) / 9)))
+        hi = int(mp.floor(mp.power(mp.mpf(m_prime + 1), mp.mpf(32) / 9)))
+    odd_count = 0
+    in_class = 0
+    structural_failures = 0
+    for n in range(lo | 1, hi, 2):
+        odd_count += 1
+        state = n
+        letters = []
+        fourth = None
+        for step in range(5):
+            letters.append("E" if state % 2 == 0 else "O")
+            if step == 4:
+                fourth = state
+            state = math.isqrt(state) if state % 2 == 0 else math.isqrt(state * state * state)
+        if "".join(letters) == "OOEEE" and state == m_prime:
+            in_class += 1
+            if not (m_prime**2 <= fourth < (m_prime + 1) ** 2 and fourth % 2 == 0):
+                structural_failures += 1
+
+    rng = random.Random(seed)
+    worst_ratio, nesting_failures = 0.0, 0
+    for _ in range(nesting_samples):
+        r = check_fifth_letter_nesting(rng.randrange(lo + 1, hi) | 1)
+        nesting_failures += not (r["nonnegative"] and r["under_printed_bound"])
+        worst_ratio = max(worst_ratio, r["ratio_to_printed"])
+
+    error_term = float(m_prime) ** (-4 / 27)
+    return {
+        "m_prime": m_prime,
+        "block": [lo, hi],
+        "odd_starts": odd_count,
+        "class_size": in_class,
+        "density": in_class / odd_count,
+        "target_density": float(Fr(1, 16)),
+        "density_error": in_class / odd_count - float(Fr(1, 16)),
+        "structural_failures": structural_failures,
+        "structural_claim_holds": structural_failures == 0,
+        "nesting_failures": nesting_failures,
+        "nesting_worst_ratio_to_printed": worst_ratio,
+        "nesting_sharp_constant": float(Fr(3, 8)),
+        "nesting_printed_is_loose_by": float(Fr(8, 3)),
+        # m'^{-4/27} is the printed error's own size, as a fraction of the block
+        "printed_error_term_as_a_fraction": error_term,
+        "printed_error_is_vacuous_here": error_term > 0.1,
+        # m'^{-4/27} = 0.1 needs m' = 0.1^{-27/4} = 10^{27/4}
+        "m_prime_for_a_ten_percent_error": 10.0 ** (27 / 4),
     }
 
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
@@ -2095,6 +2179,10 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("4.6: m^{3/4} = n^{9/8} - (3/4) theta n^{-3/8} + ..., from 9/8 - 3/2 = -3/8", F(9, 8) - F(3, 2) == -F(3, 8)),
         ("4.6: the theta_2 term sits at -9/8 and the residual at -15/8 = -3/8 - 3/2", -F(3, 8) - F(3, 2) == -F(15, 8)),
         ("4.6: so D/lower = theta + O(n^{-3/4}), the two ends differing by -9/8 + 3/8 = -3/4", -F(9, 8) + F(3, 8) == -F(3, 4)),
+        # Corollary 4.13(a)'s nesting, whose sharp constant is 3/8 where 1 is printed
+        ("4.13(a): n^{9/16} - v^{1/4} = (3/8) theta n^{-15/16} + (1/4) theta_2 n^{-27/16}, from 9/16 - 3/2 = -15/16", F(9, 16) - F(3, 2) == -F(15, 16)),
+        ("4.13(a): the second term sits at -27/16 = -15/16 - 3/4, so the ratio is (3/8) theta + O(n^{-3/4})", -F(15, 16) - F(3, 4) == -F(27, 16)),
+        ("4.13: the printed error m'^{-4/27} reaches 10% only at m' = 10^{27/4}", F(4, 27) * F(27, 4) == 1),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -2274,6 +2362,71 @@ def level1_kernel_block_scaling(P: int = 10**5, k: int = 1, bins: int = 256) -> 
         "wave_exponent": exponents["wave"],
         "square_root_exponent": 0.5,
         "no_cancellation_exponent": 1.0,
+    }
+
+
+def level1_differencing_identity(P: int = 10**6, seed: int = 5, trials: int = 24) -> dict[str, Any]:
+    """One Weyl differencing of the level-1 kernel phase, checked as an identity.
+
+    With `phi(n) = c(n) theta_1(n)`, `theta_1 = {X}`, `X = n^{3/2}` and `c(n) = (27k/32) n^{33/32}`,
+    the floor of `X` is an integer, so `theta_1(n+h) = {theta_1(n) + {D}}` with `D = Delta_h X`.
+    Both summands are in `[0,1)`, so that is `theta_1 + {D} - kappa` with `kappa` in `{0,1}`, and
+
+        Delta_h phi = (Delta_h c) theta_1(n) + c(n+h) ({D} - kappa),
+        kappa = 1  <=>  theta_1(n) >= 1 - {D}.
+
+    Both are exact.  What they buy is the exponent: `Delta_h c ~ (891/1024) k h n^{1/32}` has
+    coefficient exponent 1/32, *below* the drift threshold that `33/32` sits above, so the term
+    carrying `theta_1` is no longer drift-blocked.  The large weight survives only against `{D}`,
+    which is constant on runs of length `~ P^{1/2}/h`; and the carry is an indicator of an
+    equidistributing `theta_1` in an interval frozen on such a run, which is a Vaaler expansion.
+
+    Returns the worst residual, the fraction of samples with `kappa = 1`, and the two coefficient
+    exponents.  Not a proof of anything: an identity and its exponents.
+    """
+
+    rng = random.Random(seed)
+    worst = 0.0
+    kappas = 0
+    pred_bad = 0
+    with mp.workdps(50):
+        half = mp.mpf(3) / 2
+        for _ in range(trials):
+            n = rng.randrange(P, 2 * P) | 1
+            h = rng.randint(1, 8)
+            k = rng.randint(1, 4)
+
+            def c(x: int) -> mp.mpf:
+                return mp.mpf(27 * k) / 32 * mp.power(mp.mpf(x), mp.mpf(33) / 32)
+
+            def X(x: int) -> mp.mpf:
+                return mp.power(mp.mpf(x), half)
+
+            def th(x: int) -> mp.mpf:
+                v = X(x)
+                return v - mp.floor(v)
+
+            D = X(n + h) - X(n)
+            fracD = D - mp.floor(D)
+            kappa = 1 if th(n) + fracD >= 1 else 0
+            kappas += kappa
+            pred_bad += kappa != (1 if th(n) >= 1 - fracD else 0)
+            lhs = c(n + h) * th(n + h) - c(n) * th(n)
+            rhs = (c(n + h) - c(n)) * th(n) + c(n + h) * (fracD - kappa)
+            worst = max(worst, float(abs(lhs - rhs)))
+
+    return {
+        "P": P,
+        "trials": trials,
+        "worst_residual": worst,
+        "identity_exact": worst < 1e-40,
+        "kappa_one_fraction": kappas / trials,
+        "kappa_characterisation_mismatches": pred_bad,
+        "weight_exponent": Fr(33, 32),
+        "differenced_weight_exponent": Fr(1, 32),
+        "drift_threshold": Fr(1),
+        "differencing_crosses_the_threshold": Fr(33, 32) > 1 > Fr(1, 32),
+        "cell_length": "P^(1/2)/h",
     }
 
 # Block counts the rows report, and the subset the exponent is fitted over.  Calibrated on iid
@@ -2582,6 +2735,7 @@ def summary() -> dict[str, Any]:
     density = certified_descent_density()
     coverage = audit_coverage()
     l46 = lemma_4_6_census(samples_per_range=20)
+    c413 = corollary_4_13_check()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2619,6 +2773,7 @@ def summary() -> dict[str, Any]:
         "certified_descent_density": density,
         "audit_coverage": coverage,
         "lemma_4_6_census": l46,
+        "corollary_4_13_check": c413,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

@@ -2203,3 +2203,53 @@ Coverage after this entry: fifteen of the twenty-one results of Sections
 4--6 probed, two with a \(P_0\) row only, and four uncovered --- of
 which Lemma 4.10 and Corollary 4.13 are checkable and Theorems 4.11 and
 4.12 are asymptotic \(\varepsilon\)-statements with no finite check.
+
+## Corollary 4.13: the structure holds, the nesting constant is \(\tfrac38\), the error term does not reach
+
+**The structural claim holds.** On the even blocks
+\(I(m')=[m'^{32/9},(m'{+}1)^{32/9})\) at \(m'=60\) and \(m'=100\) ---
+\(63573\) and \(232558\) odd starts --- every \(n\) whose first five
+letters are \(OOEEE\) with \(J^5(n)=m'\) has \(J^4(n)\) even and inside
+\([m'^2,(m'{+}1)^2)\). No exceptions. COMPUTATIONALLY VERIFIED.
+
+**The density lands, and its printed error cannot be tested.** The class
+holds \(3903\) of \(63573\) at \(m'=60\) (\(0.061394\)) and \(14534\) of
+\(232558\) at \(m'=100\) (\(0.062496\)), against
+\(\tfrac1{16}=0.0625\); at \(m'=200\) it is \(0.062724\). But the
+printed error \(O(\lvert I\rvert m'^{-4/27+\varepsilon})\) has
+\(m'^{-4/27}=0.55\) at \(m'=60\) and \(0.51\) at \(m'=100\): the error
+term is half the block. It reaches \(10\%\) only at
+\(m'=10^{27/4}=5.6\cdot10^{6}\), where the block holds \(2\cdot10^{17}\)
+integers. So the count agrees with \(\tfrac1{16}\) to four digits and
+the printed error is untestable --- the same reach reading as the
+level-2 kernel benchmark, one section earlier.
+
+**And claim (a)'s constant is \(\tfrac38\), not \(1\).** The nesting
+\(0\le n^{9/16}-v^{1/4}\le n^{-15/16}\) holds at every sample, with the
+ratio to the printed bound topping out at \(0.3742\)--\(0.3748\) across
+four ranges from \(10^4\) to \(10^{14}\). Expanding twice,
+\[
+n^{9/16}-v^{1/4}
+=\tfrac38\,\theta\,n^{-15/16}+\tfrac14\,\theta_2\,n^{-27/16}+\cdots,
+\]
+so the sharp constant is \(\tfrac38\), the saturation is \(\theta\)
+again, and the printed \(1\) is loose by \(\tfrac83\). EXACT for the
+expansion; the exponents \(-\tfrac{15}{16}\) and \(-\tfrac{27}{16}\) are
+in `exponent_checks`.
+
+That is the third bound in two entries whose saturation turns out to be
+\(\theta\): Lemma 4.6's lower end at \(\tfrac34\), this one at
+\(\tfrac38\), and Lemma 6.2's \(\theta_2\) end from further back. The
+census-power reading is the same each time --- \(1-\max\theta\), of
+order \(1/\text{samples}\).
+
+**A slip worth recording.** My first pass at claim (a) used \(J^2(n)\)
+for \(v\), which is right only when the first two letters are \(OO\);
+\(v=\lfloor m^{3/2}\rfloor\) is defined for every odd \(n\), and off
+that branch \(J^2\) is \(\lfloor\sqrt m\rfloor\) instead. The check
+reported a violation by ten orders of magnitude, which is what made it
+obvious.
+
+Coverage after this entry: sixteen of twenty-one probed, two with a
+\(P_0\) row only, and three uncovered --- Lemma 4.10, which is
+checkable, and Theorems 4.11 and 4.12, which are not.

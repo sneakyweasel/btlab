@@ -856,11 +856,11 @@ def test_the_certified_descent_densities_check_by_direct_count() -> None:
     assert r["thirteen_sixteenths_plus_two_thirtyseconds_is_seven_eighths"]
 
 
-def test_section_four_still_has_four_results_with_no_probe() -> None:
-    """Lemma 4.6 is now probed; two of the four that remain are asymptotic and unreachable."""
+def test_section_four_has_three_results_with_no_probe() -> None:
+    """Two of the three that remain are asymptotic and admit no finite check."""
     c = A.audit_coverage()
-    assert c["total"] == 21 and c["probed"] == 15
-    assert set(c["uncovered"]) == {"Lemma 4.10", "Theorem 4.11", "Theorem 4.12", "Corollary 4.13"}
+    assert c["total"] == 21 and c["probed"] == 16
+    assert set(c["uncovered"]) == {"Lemma 4.10", "Theorem 4.11", "Theorem 4.12"}
     assert set(c["threshold_only"]) == {"Theorem 4.1", "Proposition 4.5"}
 
 
@@ -872,8 +872,7 @@ def test_lemma_4_6_holds_at_both_ends_and_the_lower_one_saturates_at_theta() -> 
     assert r["residual_constant_is_three_thirtyseconds"]
     for x in r["ranges"]:
         assert abs(x["max_ratio_to_lower"] - x["max_theta"]) < 3e-3, x["lo"]
-    c = A.audit_coverage()
-    assert "Lemma 4.6" not in c["uncovered"] and c["probed"] == 15
+    assert "Lemma 4.6" not in A.audit_coverage()["uncovered"]   # the count lives in the coverage test
 
 
 # --- the level-1 kernel of OOOEOEE, measured ---
@@ -931,3 +930,64 @@ def test_paper_records_the_measurement_and_disclaims_it() -> None:
     assert "0.943,0.948,0.947,0.963,0.981" in text
     assert "This is an observation and nothing" in text
     assert "no bound on \\(K_1\\) is claimed anywhere in this paper" in text
+
+
+def test_corollary_4_13_holds_structurally_and_its_error_term_does_not_reach() -> None:
+    """J^4 lands even in [m'^2, (m'+1)^2); the density's printed error is half the block here."""
+    r = A.corollary_4_13_check(m_prime=60, nesting_samples=120)
+    assert r["structural_claim_holds"] and r["structural_failures"] == 0
+    assert r["nesting_failures"] == 0
+    assert abs(r["nesting_worst_ratio_to_printed"] - 3 / 8) < 0.02      # the sharp constant
+    assert abs(r["density"] - 1 / 16) < 3e-3
+    assert r["printed_error_is_vacuous_here"]                            # m'^(-4/27) = 0.55
+    assert r["m_prime_for_a_ten_percent_error"] > 1e6
+    c = A.audit_coverage()
+    assert "Corollary 4.13" not in c["uncovered"] and c["probed"] == 16
+
+
+# --- one Weyl differencing carries the weight across the drift threshold ---
+
+
+def test_the_differencing_identity_is_exact() -> None:
+    """Delta_h phi = (Delta_h c) theta_1 + c(n+h)({Delta_h X} - kappa), kappa in {0,1}."""
+    r = A.level1_differencing_identity(P=10**6, trials=24)
+    assert r["identity_exact"], r["worst_residual"]
+    assert r["worst_residual"] < 1e-40
+    assert r["kappa_characterisation_mismatches"] == 0
+    # kappa is genuinely bimodal, not a degenerate branch
+    assert 0.1 < r["kappa_one_fraction"] < 0.9, r["kappa_one_fraction"]
+
+
+def test_differencing_crosses_the_drift_threshold() -> None:
+    """The weight goes from 33/32, above the threshold, to 1/32, below it."""
+    from research.juggler_sequence import paper_b_prefix_count as B
+
+    r = A.level1_differencing_identity(P=10**5, trials=8)
+    assert r["weight_exponent"] == Fr(33, 32) > B.DRIFT_THRESHOLD
+    assert r["differenced_weight_exponent"] == Fr(1, 32) < B.DRIFT_THRESHOLD
+    assert r["differencing_crosses_the_threshold"]
+    # the differenced weight is the derivative of the original, times h
+    assert Fr(27, 32) * Fr(33, 32) == Fr(891, 1024)
+    assert Fr(33, 32) - 1 == Fr(1, 32)
+
+
+def test_the_frozen_defect_is_slow_where_the_original_is_fast() -> None:
+    """{Delta_h X} moves at h P^{-1/2}; theta_1 wraps every step. That is the whole gain."""
+    P = 1.5 * 10**6
+    theta_drift = 3 * P**0.5                 # X'(n) * 2 over odd n
+    beta_drift = 0.75 * P**-0.5              # d/dn of Delta_1 X
+    assert theta_drift > 3000                # theta wraps thousands of times per step
+    assert beta_drift < 1e-3                 # beta is constant on runs of ~1/beta_drift
+    assert 1 / beta_drift > 1000
+    # the run length is the b-run of Lemma 5.1(iii), P^{1/2}/h
+    assert abs((1 / beta_drift) / (P**0.5 / 0.75) - 1) < 1e-9
+
+
+def test_paper_records_the_route_and_the_gap() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "What one differencing does" in text
+    assert "It is Weyl differencing" in text
+    assert "carries the weight" in text and "across the very threshold" in text
+    assert "This is an accounting and not a proof" in text
+    assert "P^{1-1/48}" in text                 # what one differencing would have to reach
+    assert "Step 1 followed by Lemma 3.5" in text
