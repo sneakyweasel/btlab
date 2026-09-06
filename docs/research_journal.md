@@ -31594,3 +31594,146 @@ Best next question
   -(3/4)n^(-3/8) - n^(-9/8). Both ends are attainable claims: does the
   census-power reading apply, and is either end ever approached?
 ```
+
+ ### The level-1 kernel cancels, and the drift that blocks the method is why
+
+Back to mathematics. Section 7 prices the level-1 kernel of `OOOEOEE`,
+screens the frontier for it, orders the attack around it and computes
+its composites — and never evaluates it. Its level-2 sibling has been
+measured; this had not.
+
+```text
+   K_1(P) = sum_{n ~ P odd} e( (27k/32) n^{33/32} {n^{3/2}} )
+```
+
+**It cancels at square root.** One pass, 256 bins, aggregated to seven
+block lengths, exponent fitted over the counts with at least 16 samples
+— the instrument built for `K_c` last week, which reads `0.500 ± 0.043`
+on data whose exponent is exactly 1/2. Over `P` in `[1e4, 1e6]` and
+`k` in `{1,2,4}`, twelve exponents:
+
+```text
+   1e4    0.387  0.464  0.447          rms/sqrtL in [0.76, 1.05]
+   1e5    0.518  0.522  0.468                     [0.87, 1.15]
+   3e5    0.474  0.497  0.551                     [0.94, 1.09]
+   1e6    0.514  0.535  0.514                     [0.94, 1.12]
+```
+
+Mean 0.49; only the smallest `P` falls outside the instrument's own 90%
+interval `[0.432, 0.575]`.
+
+**And the weight is what does it.** The control on the same pass is the
+unweighted defect `e({n^{3/2}}) = e(n^{3/2})`. At `P = 1e6` its
+`rms/sqrtL` climbs `0.99, 1.07, 1.48, 2.09, 2.94` as `L` runs 1953 to
+31250 — block sums growing like `L^0.91`, which is what a phase smooth
+on a block does — while the kernel's stays at
+`0.943, 0.948, 0.947, 0.963, 0.981` across the same five lengths.
+
+So the weight does not merely fail to hurt the sum. It destroys the
+smoothness that makes `e(n^{3/2})` a stationary-phase object and
+replaces it with decorrelation.
+
+**Which is the same fact as the obstruction.** `c(n) = (27k/32)n^{33/32}`
+has `c' ~ n^{1/32} >> 1`. Section 7 reads that one way: the window on
+which `c` moves by less than 1 is shorter than the lattice spacing, so
+Theorem 4.8's shifted window has no interval and "no amount of care
+with Lemma 3.7 recovers it". The other reading is that consecutive
+summands see values of `c θ_1` differing by more than a period, so they
+are decorrelated. Both are `c' >> 1`. The drift threshold is the reason
+the method has nothing to run on *and* the reason there is something for
+a method to find.
+
+The paper states the first and never the second. It does now.
+
+Observation only, and the passage says so: no bound on `K_1` is claimed
+anywhere, a block-scaling exponent is a statistic, and `1e6` is nowhere
+near a scale at which an asymptotic could be read. What it settles is
+which of the two the depth-seven deficit is, and it is the method.
+
+```text
+What was learned
+- the drift threshold has two readings and the paper had only one; the
+  condition that defeats the shifted window is the condition that makes
+  the sum random
+- a control with a known-different behaviour is worth more than a
+  benchmark: e(n^{3/2}) on the same pass climbs like L^0.91 where the
+  kernel stays at sqrt(L), and the contrast is the finding
+- an object the paper orders its whole depth-seven programme around had
+  never been evaluated; it took one pass
+Strongest theorem
+- none; this is a measurement
+Strongest refutation
+- the reading that the level-1 kernel's difficulty might be the sum
+  rather than the method: over twelve (P, k) pairs it cancels at square
+  root, flat in L
+Reusable machinery
+- level1_kernel_block_scaling, reporting the kernel and the unweighted
+  defect on one pass; five tests
+Branch status
+- PARK
+Why
+  The measurement is done and says what it can. Turning it into a
+  theorem means assembling the Fourier modes against n-dependent
+  coefficients with no shifted window available, which is the open
+  problem itself and not a Phase-0 move.
+Best next question
+- the modes are decorrelated and each carries 39/352 against the 1/24
+  the chain needs. Is there a device other than the shifted window for
+  n-dependent coefficients -- differencing in n first, as Step 1 does,
+  costs half the saving and there is a factor of 2.66 to spend?
+```
+
+## Lemma 4.6's lower end is theta, to twelve digits
+
+Following the last entry's question, and closing the last elementary gap
+in the Section 4 coverage.
+
+**The upper end has total power.** `D <= 0` compares two exactly
+computed quantities, so any perturbation is caught. Two hundred samples
+from `1e4` to `2e16`: `D <= 0` every time.
+
+**The lower end is attained, and `theta` is what attains it.** Expanding
+twice, `D = -(3/4) theta n^(-3/8) - theta_2/(2 n^(9/8)) + O(n^(-15/8))`,
+so `D / (-(3/4) n^(-3/8) - n^(-9/8)) = theta + O(n^(-3/4))`. Measured,
+the two agree to the digit: at `1e16` the largest ratio is `0.989292`
+and the largest `theta` is `0.989292`, differing by `9.9e-13`; at `1e8`
+by `1.2e-6`, which is the `n^(-3/4)` on the nose. The two-term model's
+residual constant comes out `0.0929` against `3/32 = 0.09375`,
+approached from below because it carries `theta^2`.
+
+**So the census power over the printed `3/4` is `1 - max theta`**, which
+is `6.0e-3` at 200 samples -- of order `1/samples`, exactly as for
+Lemma 6.2 one level up. The bound is sharp, the saturating
+configuration is a fractional part approaching 1, and a directed family
+(any `n` with `n^(3/2)` just below an integer) reaches what random
+sampling cannot.
+
+Coverage now: fifteen of twenty-one probed, two with a `P_0` row only,
+four uncovered -- Lemma 4.10 and Corollary 4.13 checkable, Theorems 4.11
+and 4.12 asymptotic and not.
+
+```text
+What was learned
+- the saturation of Lemma 4.6's lower bound is exactly theta, verified
+  to twelve digits at 1e16
+- the same census-power reading as Lemma 6.2 applies, and gives
+  1 - max theta of order 1/samples
+- the two-term model's residual constant is 3/32, approached from below
+  because it carries theta^2
+Strongest theorem
+- D/lower = theta + O(n^(-3/4)), from -9/8 + 3/8 = -3/4
+Strongest refutation
+- none; both ends hold on every sample
+Reusable machinery
+- check_lemma_4_6 and lemma_4_6_census; one test, three exact checks
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  The coverage map said this was the cheapest gap and it was: one
+  function, and the answer to the standing question about saturation
+  fell out of the same expansion.
+Best next question
+- two checkable gaps are left. Corollary 4.13 claims J^4(n) lands in
+  [m'^2, (m'+1)^2) and is even for every n in the OOEEE class of a
+  block. Does it, and how large is the class at a reachable m'?
+```

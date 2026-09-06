@@ -5132,6 +5132,39 @@ all. A coefficient exponent above \(1\) is exactly the statement that
 the shifted window is finer than the lattice it is supposed to sit on,
 and that is why no amount of care with Lemma 3.7 recovers it.
 
+*And the same drift is what makes the sum cancel.* The two readings of
+\(c'\gg1\) point opposite ways, and only the first is stated above.
+Consecutive summands of \(K_1\) see values of \(c\theta_1\) that differ
+by more than a whole period, so they are decorrelated --- which is what
+a shifted window is for, and what its absence therefore costs the
+method rather than the object. That is a claim about the sum, and it
+can be measured. Splitting one pass over \(n\sim P\) into blocks and
+fitting the root-mean-square block sum against block length
+(`paper_b_audit.level1_kernel_block_scaling`; the instrument reads \(0.500\pm0.043\)
+on data whose exponent is exactly \(\tfrac12\)) gives, over
+\(P\in[10^4,10^6]\) and \(k\in\{1,2,4\}\), twelve exponents with mean
+\(0.49\), none outside the instrument's own \(90\%\) interval except
+the smallest \(P\); at \(P\ge10^5\) the ratio
+\(\mathrm{rms}/\sqrt L\) sits in \([0.94,1.12]\), flat in \(L\).
+
+The control on the same pass is the unweighted defect,
+\(e(\{n^{3/2}\})=e(n^{3/2})\). It behaves the other way. At \(P=10^6\)
+its \(\mathrm{rms}/\sqrt L\) climbs \(0.99,1.07,1.48,2.09,2.94\) as
+\(L\) runs \(1953\) to \(31250\) --- block sums growing like \(L^{0.91}\),
+which is what a phase that is *smooth* on a block does --- while the
+kernel's stays at \(0.943,0.948,0.947,0.963,0.981\) across the same
+five lengths. The weight does not merely fail to hurt the sum: it is
+what produces the cancellation, by destroying the smoothness that makes
+\(e(n^{3/2})\) a stationary-phase object in the first place.
+
+So the drift threshold is not only an obstruction. It is the reason the
+shifted window has nothing to run on *and* the reason there is
+something for a method to find. This is an observation and nothing
+more: no bound on \(K_1\) is claimed anywhere in this paper, a
+block-scaling exponent is a statistic, and \(10^6\) is far below any
+scale at which an asymptotic could be read. What it settles is which of
+the two the depth-seven deficit is --- and it is the method.
+
 *What one mode is worth.* The modes themselves are not the difficulty.
 For a phase of size \(P^{81/32}\) on \(n\sim P\) --- which is what
 \(e(rn^{3/2})\) has at \(r\asymp kP^{33/32}\) --- the van der Corput
