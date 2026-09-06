@@ -667,6 +667,66 @@ def step5b_budget_split() -> dict[str, Any]:
         "repair_makes_the_row_V_dominated": repaired["V_share"] > 0.7,
     }
 
+def kappa_optimum_check(grid: tuple[float, ...] = tuple(x / 4 for x in range(32, 101))) -> dict[str, Any]:
+    """Does the operating point kappa = 1/12 move once the interpolant pairing is repaired?
+
+    It does not.  kappa is pinned by P_1 -- the point at which the middle band beats the trivial
+    bound -- whose piece-boundary term carries kappa^(-1/2) and turns it around; the interpolant
+    error enters P_1 only through W = V + E in the two transition costs, and at P_1 ~ 10^19 the
+    error is 12% of W where at P_0 ~ 10^13 it is 46%.  So the repair is worth a factor of 7.33 on
+    P_0 and 6% on P_1, and the turning point stays at 1/11.5 (the paper operates at 1/12, within
+    0.3% of it).
+
+    The honest reading of the last four entries: the pairing repair improves the *certified*
+    threshold, not the point at which Theorem 5.3's middle band has content.  The paper says as
+    much itself -- Appendix A.5 tabulates both and the prose quotes P_0 = 3.6e13 against
+    P_1 = 9.8e18.
+    """
+
+    c7 = p0_certificate.C7
+    s_lo, N = 0.56, 3.5
+    printed = p0_certificate.interpolant_error
+
+    def repaired(P: float) -> float:
+        parameter_free = 0.11 * P ** (-5 / 6)
+        return (printed(P) - parameter_free) * P ** (-1 / 12) + parameter_free
+
+    def p1(kappa: float, E: Any) -> float:
+        def excess(L: float) -> float:
+            P = 10.0**L
+            S = s_lo * P ** (-5 / 8)
+            V = kappa * S**0.5 * P ** (-11 / 24)
+            W = V + E(P)
+            return 4 * P * (W / S) / c7 + P * (W / (c7 * S)) ** 0.5 + N * P ** (13 / 24) * V**-0.5 - P
+        lo, hi = 1.0, 40.0
+        for _ in range(300):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if excess(mid) > 0 else (lo, mid)
+        return 10.0**hi
+
+    best_printed = min((p1(1 / d, printed), d) for d in grid)
+    best_repaired = min((p1(1 / d, repaired), d) for d in grid)
+    pairing = p0_pairing_check()
+    p0_printed = pairing["rows"][0]["certified_least_P"]
+    p0_repaired = pairing["rows"][0]["same_cell_least_P"]
+
+    def error_share(P: float) -> float:
+        S = s_lo * P ** (-5 / 8)
+        V = p0_certificate.KAPPA * S**0.5 * P ** (-11 / 24)
+        return printed(P) / (V + printed(P))
+
+    return {
+        "operating_kappa_denominator": 1 / p0_certificate.KAPPA,
+        "optimum_printed": {"P1": best_printed[0], "kappa_denominator": best_printed[1]},
+        "optimum_repaired": {"P1": best_repaired[0], "kappa_denominator": best_repaired[1]},
+        "optimum_moves": abs(best_printed[1] - best_repaired[1]) > 1e-9,
+        "P1_gain_factor": best_printed[0] / best_repaired[0],
+        "P0_gain_factor": p0_printed / p0_repaired,
+        "error_share_at_P0": error_share(p0_printed),
+        "error_share_at_P1": error_share(best_printed[0]),
+        "P1_over_P0": best_printed[0] / p0_printed,
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -2085,6 +2145,7 @@ def summary() -> dict[str, Any]:
     pairing = p0_pairing_check()
     pairing_sweep = p0_pairing_sweep()
     budget_split = step5b_budget_split()
+    kappa_optimum = kappa_optimum_check()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2115,6 +2176,7 @@ def summary() -> dict[str, Any]:
         "p0_pairing_check": pairing,
         "p0_pairing_sweep": pairing_sweep,
         "step5b_budget_split": budget_split,
+        "kappa_optimum_check": kappa_optimum,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

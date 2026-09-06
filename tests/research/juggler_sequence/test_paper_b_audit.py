@@ -789,3 +789,16 @@ def test_the_prose_percentages_are_current_and_the_repair_inverts_them() -> None
     assert r["after_the_pairing_repair"]["P"] < r["as_printed"]["P"]
     for d in (r["as_printed"], r["after_the_pairing_repair"]):
         assert abs(d["W_over_budget"] - 1.0) < 1e-6      # both are evaluated at their thresholds
+
+
+def test_the_kappa_optimum_does_not_move_under_the_pairing_repair() -> None:
+    """kappa is pinned by P_1, where the interpolant error is 12% of W rather than 46%."""
+    r = A.kappa_optimum_check()
+    assert not r["optimum_moves"]
+    assert abs(r["optimum_printed"]["kappa_denominator"] - 11.5) < 0.5
+    assert abs(r["operating_kappa_denominator"] - 12) < 1e-9        # the paper operates at 1/12
+    assert r["P0_gain_factor"] > 5 and r["P1_gain_factor"] < 1.2
+    assert r["error_share_at_P0"] > 3 * r["error_share_at_P1"]
+    assert r["P1_over_P0"] > 1e4                                    # P_1 is five orders above P_0
+    text = _paper()
+    assert r"P_1=9.8\cdot10^{18}" in text                           # the paper quotes both
