@@ -32608,3 +32608,67 @@ Best next question
   n, and does the direction of each exponent make the transcription
   strict or loose?
 ```
+
+## Three bounds are stated in P, and only they can carry the slip
+
+Answering the last entry's question mechanically. Scanning the pointwise
+checkers for a dependence on the block start:
+
+| bound | exponent | side | strict form | extreme |
+|---|---|---|---|---|
+| first bracket, lower | `3/4` | lower | `P = n` | `1.0000` |
+| first bracket, upper | `3/4` | upper | `P = n/2` | `0.9705` |
+| second bracket, lower | `1/4` | lower | `P = n` | `4.7974` |
+| second bracket, upper | `1/4` | upper | `P = n/2` | `0.5379` |
+| `M_1` | `-7/8` | upper | `P = n` | `0.9613` |
+
+Everything else in `check_lemma_4_3`, `check_lemma_5_1_i` and
+`check_lemma_6_2` is written in `n`, `m`, `v`, `X` or `Y`, which one `n`
+determines, so no other pointwise bound can carry it. Three bounds, five
+sides, all strict and all respecting their side at every sample.
+
+**The sign of the exponent decides the direction.** Positive: the ends
+differ, `n` below and `n/2` above. Negative: they swap, and `P = n` is
+already the smallest right-hand side -- which is why `M_1` at `-7/8`
+needed no correction while the brackets did.
+
+**And the surface is pinned.** The probe records which `P`-symbols the
+checker's source uses; a new `P`-dependent bound changes that set and
+fails the guard until the table is updated with its exponent and side.
+The fourth guard here built that way -- pin the surface, make the next
+author declare what was implicit -- after the constants guard, the
+escape guard and the method-name guard.
+
+Which closes the thread: two errata in the paper's prose, one in the
+audit, one rule that decides all three, and a guard so the next
+occurrence has to be deliberate.
+
+```text
+What was learned
+- exactly three pointwise bounds are stated in P and every other one is
+  in a quantity n determines, so the slip had a bounded surface all
+  along
+- the exponent's sign decides which end of the block a check must
+  assume, and it is the whole rule
+- the first bracket's lower constant is attained at 1.0000 and its
+  upper has 3% -- the band is tight at both ends, which no reading of
+  the audit could see before this week
+Strongest theorem
+- the transcription rule, and the observation that a negative exponent
+  makes P = n strict for an upper bound
+Strongest refutation
+- none new; this closes rather than opens
+Reusable machinery
+- pointwise_bound_inventory with the table, the per-side check and the
+  pinned source surface; one test, two exact checks
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Finding the same error three times is a signal to stop finding it and
+  start preventing it. The table is short because the surface is small,
+  which is the useful part of the answer.
+Best next question
+- the guard pins a source surface, which is the fourth of its kind.
+  Does any of the four now pin something stale -- a symbol or a name
+  that no longer exists, so the guard passes without watching anything?
+```

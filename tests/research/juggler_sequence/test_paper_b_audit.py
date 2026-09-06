@@ -1119,3 +1119,19 @@ def test_the_r3_length_separates_A6s_constant_from_the_proofs() -> None:
     assert r["A6_r3_constant_is_exceeded"]                   # 2 P V/(c_3 S) is not safe over (P, 2P]
     assert r["proof_r3_constant_holds"]                      # 4 P V/(c_7 S) is, with a factor of two
     assert abs(r["worst_over_the_proof_r3_constant"] - 0.5 * r["worst_over_A6_r3_constant"]) < 1e-6
+
+
+# --- every P-stated pointwise bound, and the end of the block it must assume ---
+
+
+def test_every_P_stated_bound_uses_its_strict_transcription() -> None:
+    """Three bounds are stated in P; the brackets need n below and n/2 above, M_1 neither."""
+    r = A.pointwise_bound_inventory(samples_per_range=8)
+    assert r["count"] == 5 and r["all_respect_their_side"]
+    assert r["surface_unchanged"]           # a new P-dependent bound has to update the table
+    by = {x["bound"]: x for x in r["bounds"]}
+    assert abs(by["L5.1(iii) first bracket, lower"]["extreme_ratio"] - 1.0) < 2e-3   # attained
+    assert by["L5.1(iii) first bracket, upper"]["extreme_ratio"] < 1.0
+    assert by["L5.1(iii) second bracket, lower"]["extreme_ratio"] > 4
+    assert by["L5.1(iv) M_1"]["strict_transcription"].startswith("P = n")
+    assert by["L5.1(iv) M_1"]["exponent"] == "-7/8"

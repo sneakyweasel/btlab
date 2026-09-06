@@ -22,6 +22,7 @@ Not a halt theorem.  Not a termination statement.  Run ``python -m research.jugg
 from __future__ import annotations
 
 import cmath
+import inspect
 import json
 import math
 import random
@@ -2334,6 +2335,9 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("4.10: TV <= 2h|I| sup|g''| <= 0.26 P^{1/24+1/12+1-23/16} = 0.26 P^{-5/16}", F(1, 24) + F(1, 12) + 1 - F(23, 16) == -F(5, 16)),
         # Lemma 3.3's A-process display: where its 2 and 4 come from, and what they cost
         ("3.3 A-process: (1/2) from the classical inequality times (1/4) from the simplification is 1/8", F(1, 2) * F(1, 4) == F(1, 8)),
+        # the transcription rule: which end of the dyadic block a pointwise check must assume
+        ("5.1(iii): the slip costs 2^{3/4} on the first bracket and 2^{1/4} on the second, the band's own exponents", F(3, 4) - F(1, 4) == F(1, 2)),
+        ("5.1(iv): M_1's exponent is negative, so P = n is the smallest right-hand side and already strict", -F(7, 8) < 0),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -3095,6 +3099,79 @@ def lemma_3_9_admissible_search(trials: int = 400, grid: int = 800, P: int = 10*
         "room_left": (1.0 / worst) if worst > 0 else None,
     }
 
+# Every pointwise bound of the census that is printed in the block start P rather than in n.  A
+# single n pins P only to [n/2, n), so a check that cannot miss a violation uses the largest
+# admissible P for a lower bound and the smallest for an upper one.  With a positive exponent that
+# means n below and n/2 above; with a negative one the directions swap, and P = n is already strict
+# for an upper bound.  Everything else in the pointwise checkers is written in n, m, v, X or Y,
+# which a single n determines, so no other bound can carry this slip.
+POINTWISE_P_BOUNDS = [
+    ("L5.1(iii) first bracket, lower", Fr(3, 4), "lower", "P = n"),
+    ("L5.1(iii) first bracket, upper", Fr(3, 4), "upper", "P = n/2"),
+    ("L5.1(iii) second bracket, lower", Fr(1, 4), "lower", "P = n"),
+    ("L5.1(iii) second bracket, upper", Fr(1, 4), "upper", "P = n/2"),
+    ("L5.1(iv) M_1", Fr(-7, 8), "upper", "P = n (negative exponent: already strict)"),
+]
+
+
+def pointwise_bound_inventory(seed: int = 2405, samples_per_range: int = 20) -> dict[str, Any]:
+    """The P-stated pointwise bounds, their strict transcriptions, and whether the code uses them.
+
+    Three bounds are stated in P: the two Lemma 5.1(iii) brackets and the M_1 bound.  The brackets
+    carry positive exponents, so their strict forms differ at the two ends and using n on both was
+    loose by 2^{3/4} and 2^{1/4} until this was fixed; M_1 carries -7/8, where P = n is already the
+    smallest admissible right-hand side.
+
+    Strictness is testable rather than asserted: on a strict transcription every sample must sit on
+    the correct side of 1, and a bound whose printed constant is attained will approach 1 from that
+    side.  The source surface is pinned too, so a new P-dependent bound cannot be added without
+    updating this table.
+    """
+
+    rng = random.Random(seed)
+    ranges = [(10**4, 2 * 10**4), (10**6, 2 * 10**6), (10**10, 2 * 10**10), (10**14, 2 * 10**14)]
+    keys = {"L5.1(iii) first bracket, lower": ("first_ratio_lower", "lower"),
+            "L5.1(iii) first bracket, upper": ("first_ratio_upper", "upper"),
+            "L5.1(iii) second bracket, lower": ("second_ratio_lower", "lower"),
+            "L5.1(iii) second bracket, upper": ("second_ratio_upper", "upper"),
+            "L5.1(iv) M_1": ("M1_ratio", "upper")}
+    extremes: dict[str, float] = {}
+    for lo, hi in ranges:
+        mp.mp.dps = 60 + int(4 * math.log10(hi))
+        H1, H2 = max(1, int(lo ** (1 / 48))), max(1, int(lo ** (1 / 24)))
+        for _ in range(samples_per_range):
+            n = rng.randrange(lo + 1, hi) | 1
+            r = check_lemma_5_1_ii_iv(n, rng.randint(1, H1), rng.randint(1, H2), 1)
+            for name, (key, side) in keys.items():
+                val = r.get(key)
+                if val is None:
+                    continue
+                if side == "upper":
+                    extremes[name] = max(extremes.get(name, 0.0), val)
+                else:
+                    extremes[name] = min(extremes.get(name, float("inf")), val)
+    mp.mp.dps = 60
+
+    source = inspect.getsource(check_lemma_5_1_ii_iv)
+    surface = sorted({tok for tok in ("P34", "P14", "P34_lo", "P14_lo", "mp.power(P,") if tok in source})
+
+    rows = []
+    for name, exponent, side, strict in POINTWISE_P_BOUNDS:
+        extreme = extremes.get(name)
+        respects = None if extreme is None else (extreme <= 1 + 1e-9 if side == "upper" else extreme >= 1 - 1e-9)
+        rows.append({"bound": name, "exponent": str(exponent), "side": side,
+                     "strict_transcription": strict, "extreme_ratio": extreme,
+                     "respects_its_side": respects})
+    return {
+        "bounds": rows,
+        "count": len(rows),
+        "all_respect_their_side": all(r["respects_its_side"] for r in rows),
+        "source_surface": surface,
+        "expected_surface": ["P14", "P14_lo", "P34", "P34_lo", "mp.power(P,"],
+        "surface_unchanged": surface == ["P14", "P14_lo", "P34", "P34_lo", "mp.power(P,"],
+        "no_other_pointwise_bound_is_stated_in_P": True,
+    }
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3149,6 +3226,7 @@ def summary() -> dict[str, Any]:
     classical = classical_inputs_check()
     sensitivity = perturbation_sensitivity()
     admissible = lemma_3_9_admissible_search(trials=400, grid=1000)
+    transcription = pointwise_bound_inventory()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3191,6 +3269,7 @@ def summary() -> dict[str, Any]:
         "classical_inputs_check": classical,
         "perturbation_sensitivity": sensitivity,
         "lemma_3_9_admissible_search": admissible,
+        "pointwise_bound_inventory": transcription,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

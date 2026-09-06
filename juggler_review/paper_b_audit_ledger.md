@@ -2518,3 +2518,42 @@ second bracket is at \(46\%\). The probe now says which.
 EXACT for the transcription rule; COMPUTATIONALLY VERIFIED for the
 ratios. Three slips of the same kind, two in the paper's prose and one
 in the checker written to police it.
+
+## The sweep: three bounds are stated in \(P\), and only they can carry the slip
+
+Answering the last entry's question mechanically rather than by eye.
+Scanning the pointwise checkers for a dependence on the block start:
+
+| bound | exponent | side | strict transcription | extreme ratio |
+|---|---|---|---|---|
+| L5.1(iii) first bracket, lower | \(3/4\) | lower | \(P=n\) | \(1.0000\) |
+| L5.1(iii) first bracket, upper | \(3/4\) | upper | \(P=n/2\) | \(0.9705\) |
+| L5.1(iii) second bracket, lower | \(1/4\) | lower | \(P=n\) | \(4.7974\) |
+| L5.1(iii) second bracket, upper | \(1/4\) | upper | \(P=n/2\) | \(0.5379\) |
+| L5.1(iv) \(M_1\) | \(-7/8\) | upper | \(P=n\) | \(0.9613\) |
+
+Everything else in `check_lemma_4_3`, `check_lemma_5_1_i` and
+`check_lemma_6_2` is written in \(n\), \(m\), \(v\), \(X\) or \(Y\) ---
+quantities a single \(n\) determines --- so no other pointwise bound can
+carry the slip. Three bounds, five sides, all now on the strict
+transcription and all respecting their side at every sample. EXACT for
+the rule, COMPUTATIONALLY VERIFIED for the ratios.
+
+**The sign of the exponent decides the direction.** With a positive
+power the two ends differ and the strict choice is \(n\) below,
+\(n/2\) above; with a negative power the ends swap, and \(P=n\) is
+already the smallest admissible right-hand side --- which is why
+\(M_1\), at \(-7/8\), needed no correction while the brackets did.
+
+**And the surface is pinned.** `pointwise_bound_inventory` records which
+\(P\)-symbols the checker's source uses (`P34`, `P34_lo`, `P14`,
+`P14_lo`, `mp.power(P,`); a new \(P\)-dependent bound changes that set
+and fails the guard until the table above is updated with its exponent
+and side. That is the fourth guard in this ledger built the same way ---
+pin the surface, force the next author to declare the thing that was
+implicit --- after the constants guard, the escape guard and the
+method-name guard.
+
+Which closes the dyadic-factor thread: two errata in the paper's prose,
+one in the audit, a rule that decides all three, and a guard so the next
+occurrence has to be deliberate.
