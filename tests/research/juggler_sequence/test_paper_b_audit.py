@@ -694,3 +694,38 @@ def test_the_two_bracket_constants_are_three_halves_and_twentyseven_quarters() -
             assert abs(r["second_ratio_upper"] * 15 - 27 / 4) < 1e-4, n
             if r["first_ratio_upper"] is not None:
                 assert abs(r["first_ratio_upper"] * 2.6 - 3 / 2) < 1e-4, n
+
+
+# --- Appendix A says it enumerates every printed threshold; two are missing ---
+
+
+def test_two_printed_thresholds_are_absent_from_appendix_a() -> None:
+    g = A.appendix_a_gaps()
+    tags = {r["tag"]: r for r in g["rows"]}
+    assert not any(r["in_certificate"] for r in g["rows"])
+    assert 2.0e3 < tags["L5.1(iii)-Gprime"]["least_P"] < 2.1e3
+    assert 8.8e5 < tags["T6.1-StepB-discard"]["least_P"] < 8.9e5
+    assert g["all_gaps_below_P0"] and g["P0_binding_tag"] == "5b-W<=c7S"
+
+
+def test_the_step_B_constant_was_rounded_and_its_threshold_was_not() -> None:
+    """(3 pi k/4) P^(-1/8) with |k| <= 2P^(1/96) is exactly (3 pi/2) P^(-11/96) = 4.7124 ..."""
+    import math
+
+    g = A.appendix_a_gaps()
+    assert abs(g["exact_step_B_constant"] - 3 * math.pi / 2) < 1e-12
+    assert g["printed_step_B_constant"] > g["exact_step_B_constant"]
+    assert g["printed_threshold_matches_exact_constant"]      # 7.6e5 is 4.7124's threshold
+    assert g["printed_threshold_too_small_for_printed_constant"]
+    text = _paper()
+    assert r"4.8\,P^{-11/96}<1" in text and r"7.6\cdot10^{5}" in text
+
+
+def test_the_bracket_band_does_not_reach_P0() -> None:
+    """Sharpening 1.4 and 15 to the true 27/4 and (27/4)2^(1/4) moves no threshold."""
+    g = A.appendix_a_gaps()
+    assert not g["bracket_band_reaches_P0"]
+    from research.juggler_sequence import p0_certificate
+
+    claims = " ".join(r["claim"] for r in p0_certificate.certificate()["thresholds"])
+    assert "h_1h_2P^{1/4}" not in claims and "bracket" not in claims.lower()

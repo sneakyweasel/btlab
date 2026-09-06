@@ -418,6 +418,64 @@ CENSUS_POLICED_CONSTANTS = [
 ]
 
 
+def appendix_a_gaps() -> dict[str, Any]:
+    """Printed threshold inequalities of Sections 5-6 that Appendix A's table does not carry.
+
+    Appendix A says each printed threshold inequality is solved separately for the least P beyond
+    which it holds, and P_0 is the maximum of those.  Two displayed conditions are not among its
+    rows.  Both are far below P_0 = 8.9e13, so the certificate's *value* stands; what does not
+    stand is the enumeration.
+
+    The Theorem 6.1 Step B site also carries a rounded constant whose threshold was not recomputed:
+    the discard cost is (3 pi k / 4) P^{-1/8} with |k| <= 2 P^{1/96}, i.e. exactly
+    (3 pi / 2) P^{-11/96} = 4.7124 P^{-11/96}, and the printed "P >= 7.6e5" is that constant's
+    threshold.  Printed as 4.8, the inequality first holds at 8.82e5, so as written it is false on
+    [7.6e5, 8.8e5].  EXACT, and harmless: both numbers are eight orders below P_0.
+    """
+
+    # |G'(n)| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1 at |j| <= 3, h1 h2 <= P^{1/48+1/24}
+    def g_prime(logP: float) -> float:
+        return 6 * 10 ** (-logP / 4) + 20 * 10 ** (logP * (Fr(1, 16) - Fr(3, 4))) - 1
+
+    def solve(f, lo: float = 0.0, hi: float = 20.0) -> float:
+        for _ in range(200):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if f(mid) > 0 else (lo, mid)
+        return hi
+
+    three_pi_half = 3 * math.pi / 2
+    rows = [
+        {
+            "tag": "L5.1(iii)-Gprime",
+            "site": "Lemma 5.1(iii)",
+            "claim": "|G'| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1",
+            "least_P": 10 ** solve(g_prime),
+            "in_certificate": False,
+        },
+        {
+            "tag": "T6.1-StepB-discard",
+            "site": "Theorem 6.1 Step B",
+            "claim": "(3 pi k / 4) P^{-1/8} <= 4.8 P^{-11/96} < 1, printed for P >= 7.6e5",
+            "least_P": 4.8 ** (96 / 11),
+            "least_P_at_exact_constant": three_pi_half ** (96 / 11),
+            "printed_threshold": 7.6e5,
+            "in_certificate": False,
+        },
+    ]
+    return {
+        "rows": rows,
+        "exact_step_B_constant": three_pi_half,
+        "printed_step_B_constant": 4.8,
+        "printed_threshold_matches_exact_constant": abs(three_pi_half ** (96 / 11) / 7.6e5 - 1) < 0.02,
+        "printed_threshold_too_small_for_printed_constant": 4.8 ** (96 / 11) > 7.6e5,
+        "all_gaps_below_P0": all(r["least_P"] < 8.9e13 for r in rows),
+        "P0_binding_tag": p0_certificate.certificate()["binding"]["tag"],
+        # the Lemma 5.1(iii) band feeds only G', G'' and the run-length constant; no row of the
+        # certificate mentions it, so sharpening 1.4 and 15 to the true 27/4 and (27/4)2^{1/4}
+        # cannot move P_0 and changes no exponent.
+        "bracket_band_reaches_P0": False,
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -1401,6 +1459,9 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("5.1(iii) first bracket: (3/2) m^{1/2} j with m ~ n^{3/2} gives (3/2) j n^{3/4}", F(3, 2) * F(3, 4) == F(9, 8) and F(3, 4) == 1 - F(1, 4)),
         ("5.1(iii) second bracket: (3/4) m^{-1/2} b1 b2 with b_i ~ 3 h_i n^{1/2} gives (27/4) h1 h2 n^{1/4}", F(3, 4) * 3 * 3 == F(27, 4)),
         ("5.1(iii) over a dyadic block the true bands are [3/2, (3/2)2^{3/4}] and [27/4, (27/4)2^{1/4}]", F(3, 2) < F(26, 10) and F(27, 4) < 15),
+        # Theorem 6.1 Step B, where the mode cap |k| <= 2P^{1/96} makes the discard cost exact
+        ("6.1 Step B: 1/96 - 1/8 = -11/96, so (3pi k/4)P^{-1/8} <= (3pi/2) P^{-11/96}", F(1, 96) - F(1, 8) == -F(11, 96)),
+        ("6.1 Step B: the printed 4.8 is above the exact 3pi/2 = 4.7124, so 7.6e5 is that constant's threshold, not 4.8's", 4.8 > 3 * math.pi / 2 and (3 * math.pi / 2) ** (96 / 11) < 7.6e5 < 4.8 ** (96 / 11)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -1821,6 +1882,7 @@ def summary() -> dict[str, Any]:
     # reaches, k among them, so the uniformity clauses have never been exercised here.
     caps = parameter_cap_reach()
     power = census_constant_power()
+    gaps = appendix_a_gaps()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -1847,6 +1909,7 @@ def summary() -> dict[str, Any]:
         "level3_kernel_block_scaling": level3,
         "parameter_cap_reach": caps,
         "census_constant_power": power,
+        "appendix_a_gaps": gaps,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

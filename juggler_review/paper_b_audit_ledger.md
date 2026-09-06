@@ -1533,3 +1533,59 @@ against the previous \((0.6934,1.0694]\), both inside the printed
 `smooth_double_difference_curvature`, `step_e_zero_offset`,
 `step_e_interpolant_b` in `p0_certificate.py`; six tests, one of them
 the direct measurement of both halves. ERRATUM (corrected in place).
+
+## The band does not reach \(P_0\), and two printed thresholds are not in Appendix A
+
+**The question answered.** The Lemma 5.1(iii) band feeds only
+\(G'\), \(G''\) and the run-length constant \(\tfrac1{22}\); no row of
+the \(P_0\) certificate mentions it, and the binding row is
+`5b-W<=c7S`, Step 5b's curvature condition at \(c_7=\tfrac1{232}\).
+Sharpening \(1.4\) and \(15\) to the true \(\tfrac{27}4\) and
+\(\tfrac{27}42^{1/4}\) would therefore change no exponent and no
+threshold: it would improve a constant inside Step 3's window counting
+and nothing else. EXACT.
+
+**A correction to the entry above.** That entry called the printed lower
+constants \(0.892\) and \(1.177\) and read them as \(1.68\times\) and
+\(5.74\times\) loose. The printed constants are \(\tfrac32\) and
+\(1.4\); the factors \(2^{-3/4}\) and \(2^{-1/4}\) are the *audit's*
+conversion of a band stated in the block start \(P\) into a pointwise
+check at \(n\in(P,2P]\), not slack in the paper. In the paper's own
+terms:
+
+| bracket | printed band | true band over the block | slack |
+|---|---|---|---|
+| first, \(\lvert j\rvert P^{3/4}\) | \([\tfrac32,\,2.6]\) | \([\tfrac32,\,\tfrac322^{3/4}]=[1.50,2.52]\) | lower **exact**, upper \(1.03\times\) |
+| second, \(h_1h_2P^{1/4}\) | \([1.4,\,15]\) | \([\tfrac{27}4,\,\tfrac{27}42^{1/4}]=[6.75,8.03]\) | lower \(4.82\times\), upper \(1.87\times\) |
+
+So the first bracket's band is essentially sharp --- its lower constant
+is attained exactly at \(n=P\) --- and only the second is loose. The
+earlier entry understated the first and overstated the second's lower
+end. The \(P\)-versus-\(n\) confusion is the same one this ledger keeps
+finding in the paper; this time it was mine.
+
+**Two printed thresholds Appendix A does not carry.** The appendix says
+each printed threshold inequality is solved there for the least \(P\)
+beyond which it holds. Its 37 rows omit:
+
+| site | condition | first holds at |
+|---|---|---|
+| Lemma 5.1(iii) | \(\lvert G'\rvert\le2\lvert j\rvert P^{-1/4}+20h_1h_2P^{-3/4}<1\) | \(2.03\cdot10^{3}\) |
+| Theorem 6.1 Step B | \(4.8\,P^{-11/96}<1\) | \(8.82\cdot10^{5}\) |
+
+Both are eight to eleven orders below \(P_0=8.9458\cdot10^{13}\), so the
+certificate's value stands; the enumeration does not. EXACT.
+
+**And the Step B threshold is stale by a rounding.** With the mode cap
+\(\lvert k\rvert\le2P^{1/96}\), the discard cost
+\(\tfrac{3\pi k}4P^{-1/8}\) is *exactly*
+\(\tfrac{3\pi}2P^{-11/96}=4.7124\,P^{-11/96}\), and the printed
+"\(P\ge7.6\cdot10^{5}\)" is that constant's threshold ---
+\(4.7124^{96/11}=7.51\cdot10^{5}\), and \(7.6\cdot10^{5}\) back-solves
+to \(4.7189\). Printed as \(4.8\), the inequality first holds at
+\(8.82\cdot10^{5}\), so as written the line is false on
+\([7.6\cdot10^{5},8.8\cdot10^{5}]\). The constant was rounded up and the
+threshold was not recomputed. Harmless --- both numbers are eight orders
+below \(P_0\) --- but it is a printed statement that fails where it
+claims to hold. EXACT; `appendix_a_gaps`, three tests, two exponent
+checks (241 in the layer).

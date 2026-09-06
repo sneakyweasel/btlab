@@ -30666,3 +30666,70 @@ Best next question
   seventeen manuscript sites, two modules, one Lean file and four test
   files.
 ```
+
+## The band stops short of P_0, and Appendix A stops short of two thresholds
+
+Following the last entry's question, which had a short answer and a
+longer consequence.
+
+**Short answer.** The Lemma 5.1(iii) band feeds `G'`, `G''` and the
+run-length constant `1/22`, nothing else. No row of the `P_0`
+certificate mentions it; the binding row is `5b-W<=c7S`, Step 5b's
+curvature condition at `c_7 = 1/232`. Sharpening `1.4` and `15` to the
+true `27/4` and `(27/4) 2^(1/4)` changes no exponent and no threshold.
+
+**And a correction to my own last entry.** It called the printed lower
+constants `0.892` and `1.177`. They are `3/2` and `1.4`: the factors
+`2^(-3/4)` and `2^(-1/4)` are the audit's conversion of a band stated in
+the block start `P` into a pointwise check at `n` in `(P, 2P]`, not
+slack in the paper. Correctly stated, the first bracket's band
+`[3/2, 2.6]` is essentially sharp -- its lower constant is attained
+exactly at `n = P`, its upper has 3% over the true `1.50 * 2^(3/4) =
+2.52` -- and only the second, `[1.4, 15]` against a true `[6.75, 8.03]`,
+is loose. The `P`-versus-`n` confusion this ledger keeps finding in the
+paper was mine this time.
+
+**The longer consequence.** Chasing where the band *could* reach meant
+reading Appendix A's 37 rows, which claim to enumerate every printed
+threshold inequality. Two displayed conditions are not among them:
+Lemma 5.1(iii)'s `|G'| < 1`, first true at `P = 2.03e3`, and Theorem
+6.1 Step B's `4.8 P^(-11/96) < 1`, first true at `8.82e5`. Both are
+orders below `P_0 = 8.9458e13`, so the value stands and the enumeration
+does not.
+
+**A stale rounding at the same site.** With `|k| <= 2P^(1/96)` the
+discard cost `(3 pi k/4) P^(-1/8)` is exactly `(3 pi/2) P^(-11/96) =
+4.7124 P^(-11/96)`, and the printed "P >= 7.6e5" is that constant's
+threshold: `4.7124^(96/11) = 7.51e5`, and `7.6e5` back-solves to
+`4.7189`. Printed as `4.8`, the inequality first holds at `8.82e5` --
+so as written the line is false on `[7.6e5, 8.8e5]`. The constant was
+rounded up and the threshold was not recomputed.
+
+```text
+What was learned
+- the band reaches only constants, never an exponent or a threshold,
+  so the sharp 27/4 is a refinement and not a repair
+- Appendix A's completeness claim is stronger than its table: two
+  printed thresholds are missing, both harmless
+- a constant rounded up without recomputing its threshold leaves a
+  printed line false on a real interval of P
+- and my own last entry read the audit's P-to-n conversion as slack in
+  the paper
+Strongest theorem
+- (3 pi k/4) P^(-1/8) with |k| <= 2P^(1/96) is exactly
+  (3 pi/2) P^(-11/96); 1/96 - 1/8 = -11/96
+Strongest refutation
+- 4.8 P^(-11/96) < 1 does not hold at P = 7.6e5 as printed
+Reusable machinery
+- appendix_a_gaps, three tests, two exponent checks (241 in the layer)
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  The question was about a band and the answer was "it does not
+  matter". Following why it does not matter is what found the two
+  missing rows -- the negative answers are worth chasing.
+Best next question
+- Appendix A's table has 37 rows and the manuscript has more printed
+  "< 1" conditions than that. How many more, and is any of them within
+  an order of magnitude of P_0?
+```
