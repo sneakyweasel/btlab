@@ -488,6 +488,11 @@ appeal to sampled verification.
 
 **Lemma 3.6 (branch consistency).**
 Let \(d\ge1\) and let \(w=w_1\cdots w_d\) be an itinerary with \(w_1=O\).
+(The hypothesis is necessary, not a convenience: the product below runs
+over \(t\le d-1\) and so tests letters \(2,\dots,d\) only, letter one
+being carried by the restriction to odd \(n\). For an \(E\)-rooted
+\(w\) at odd \(n\) the two sides disagree outright, which is one reason
+Section 5 sets those starts aside.)
 For odd \(n\), define the formal chain \(x_1=n\) and, for
 \(1\le t<d\),
 \[

@@ -29274,3 +29274,57 @@ Best next question
 - the same question for Lemma 3.6, the other blanket: it expands class
   indicators everywhere. Are its hypotheses re-verified at each use?
 ```
+
+ ### Lemma 3.6 had six uses and no test
+
+The other blanket. Unlike Lemma 3.10 it is an exact identity with no
+constants, so there is no conclusion-versus-hypothesis split — only
+two things to check: do all its uses satisfy `w_1 = O`, and is the
+identity true?
+
+**All six uses are O-rooted** — `OOEE` at the depth-four count, the
+`OOEEE` indicator, `OOO*` in Theorem 6.1 Step A, `OOOE*` and `OOEO*` in
+Theorem 6.3, and the branch-consistency remark in the localized
+theorems. No exceptions.
+
+**And the identity had no test anywhere.** It now does: 12,400 checks
+over every O-rooted word of depths two to six at odd `n`, no
+mismatches.
+
+**The hypothesis is necessary, not decorative.** The product runs over
+`t <= d-1`, so it tests letters `2..d` only — letter one is carried by
+the restriction to odd `n`. Take an `E`-rooted word at odd `n` and the
+two sides disagree outright: 100 mismatches in 100 tries. That is a
+pleasant change from the recurring pattern in this paper, where
+hypotheses have kept turning out stronger than their proofs need. Here
+the hypothesis is exactly what is needed and no more.
+
+It also explains, from a third direction, why Section 5 sets `E`-rooted
+starts aside: not only are their obstructions of the wrong species
+(that was two entries back), the class-indicator identity every
+expansion in the paper rests on does not hold for them at all.
+
+```text
+What was learned
+- an exact identity with no constants can still be the least-tested
+  thing in a paper, precisely because there is no number to check
+- the E-rooted exclusion now has three independent justifications:
+  scale, defect species, and the failure of Lemma 3.6 itself
+Strongest theorem
+- branch consistency verified on 12,400 O-rooted cases, and violated on
+  every E-rooted one tried, so w_1 = O is exactly the right hypothesis
+Strongest refutation
+- none; both the identity and its hypothesis stand
+Reusable machinery
+- five tests, including a use-site audit and the necessity check
+Branch status
+- PROMOTE
+Why
+  Every class-indicator expansion in Sections 3 to 6 factors through
+  this identity, and nothing was checking it. It is now checked, its
+  hypothesis is shown to be sharp, and the manuscript says why the
+  hypothesis cannot be dropped.
+Best next question
+- Lemma 3.5 is the Vaaler expansion cited alongside 3.6 at every use.
+  Is its truncation hypothesis re-checked at each, or assumed?
+```

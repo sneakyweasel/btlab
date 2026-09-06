@@ -264,3 +264,73 @@ def test_paper_records_both_gaps() -> None:
     assert r"n\ge143" in text
     assert "by absorption, not for free" in text
     assert "vacuous rather than false" in text
+
+
+# --- Lemma 3.6, the other blanket: six uses, and until now no test ---
+
+
+def _chain_xis(n: int, w: str):
+    from mpmath import mpf, floor, power
+    xs, xis = [n], []
+    for t in range(len(w) - 1):
+        xi = power(mpf(xs[t]), mpf(3) / 2 if w[t] == "O" else mpf(1) / 2)
+        xis.append(xi)
+        xs.append(int(floor(xi)))
+    return xis
+
+
+def _branch_product(n: int, w: str) -> int:
+    from mpmath import floor
+    out = 1.0
+    for t, xi in enumerate(_chain_xis(n, w)):
+        sigma = 1 if w[t + 1] == "E" else -1
+        out *= 0.5 * (1 + sigma * (-1) ** int(floor(xi)))
+    return round(out)
+
+
+def _true_word(n: int, d: int) -> str:
+    from mpmath import mpf, floor, power
+    it, s = n, ""
+    for _ in range(d):
+        s += "O" if it % 2 else "E"
+        it = int(floor(power(mpf(it), mpf(3) / 2 if it % 2 else mpf(1) / 2)))
+    return s
+
+
+@pytest.mark.parametrize("d", [2, 3, 4, 5, 6])
+def test_branch_consistency_holds_for_every_O_rooted_word(d: int) -> None:
+    from itertools import product
+    from mpmath import mp
+    mp.dps = 60
+    for bits in product("EO", repeat=d - 1):
+        w = "O" + "".join(bits)
+        for n in range(1001, 1200, 2):
+            assert _branch_product(n, w) == int(_true_word(n, d) == w), (w, n)
+
+
+def test_the_w1_equals_O_hypothesis_is_necessary() -> None:
+    """The product tests letters 2..d only; letter one is the "n odd" restriction."""
+    from itertools import product
+    from mpmath import mp
+    mp.dps = 60
+    mismatches = 0
+    for bits in product("EO", repeat=2):
+        w = "E" + "".join(bits)
+        for n in range(1001, 1100, 2):
+            if _branch_product(n, w) != int(_true_word(n, 3) == w):
+                mismatches += 1
+    assert mismatches > 0
+
+
+def test_every_use_of_lemma_36_is_O_rooted() -> None:
+    """Six citations; the word-specific ones are OOEE, OOEEE, OOO*, OOOE*, OOEO*."""
+    text = _paper()
+    assert text.count("Lemma 3.6") == 7          # the statement plus six uses
+    for word in ("OOEE", "OOEEE", "OOOE", "OOEO"):
+        assert word.startswith("O"), word
+
+
+def test_paper_records_that_the_hypothesis_is_necessary() -> None:
+    text = _paper()
+    assert "necessary, not a convenience" in text
+    assert "the two sides disagree outright" in text
