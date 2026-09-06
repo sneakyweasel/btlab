@@ -2331,7 +2331,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-expanding-lsd",
-      "in_file": 45,
+      "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
       "names_own": [],
       "statement": "For T(n)=3n-lsd(n), lsd(T(n))=-lsd(n) and lsd(T^k(n))=(-1)^k lsd(n). Future LSD observations depend only on lsd(n)."
@@ -2360,7 +2360,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-expanding-right-inverse",
-      "in_file": 45,
+      "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
       "names_own": [],
       "statement": "Laboratory DZ is a left inverse of T: DZ(T(n))=n. Canonical T is the section I_{-lsd(n)}(n), not a constant-section I_a."
@@ -2389,7 +2389,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-expanding-section",
-      "in_file": 45,
+      "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
       "names_own": [],
       "statement": "T(I_a(x))=9x+2a and lsd(T(I_a(x)))=-a, independent of the higher-digit residual x."
@@ -2418,7 +2418,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-expanding-lambda",
-      "in_file": 45,
+      "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
       "names_own": [],
       "statement": "For T_\u03bb(n)=3n-\u03bb lsd(n), lsd(T_2(n))=lsd(n) and lsd(T_3(n))=0. The observational residual remains a trit; \u03bb changes the residue map, not the need for the full integer."
@@ -2447,7 +2447,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-expanding-j2",
-      "in_file": 45,
+      "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
       "names_own": [],
       "statement": "For T(n)=3n-lsd(n), the length-2 integer jet satisfies J2(T(n))=(-lsd(n), lsd(n)). The map depends only on the first digit; every trit window (a,b) is sent to (-a,a)."
@@ -2476,39 +2476,10 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-expanding-j2-lambda",
-      "in_file": 45,
+      "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
       "names_own": [],
       "statement": "J2(T_2(n))=(lsd(n),0) and J2(T_3(n))=(0,0). Order-2 observation distinguishes T_2 from T, unlike the one-digit residual."
-    },
-    {
-      "candidates": [
-        {
-          "decl": "jet3_factors_through_jet2",
-          "line": 233,
-          "score": 0.214,
-          "trust": "kernel"
-        },
-        {
-          "decl": "jet2_IZ",
-          "line": 166,
-          "score": 0.071,
-          "trust": "kernel"
-        },
-        {
-          "decl": "jet3_IZ",
-          "line": 242,
-          "score": 0.071,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "id": "BTN-expanding-j3",
-      "in_file": 45,
-      "lean": "Problems/BalancedTernary/ExpandingD.lean",
-      "names_own": [],
-      "statement": "For T(n)=3n-lsd(n), the length-3 integer jet satisfies J3(T(n))=(-lsd(n), lsd(n), lsd(DZ(n))). Equivalently J3(T(n))=(-a,a,b) when J2(n)=(a,b). The third input digit is discarded. The map factors through J2."
     },
     {
       "candidates": [
@@ -2534,7 +2505,7 @@
       "composite": false,
       "confidence": "low",
       "id": "BTN-expanding-j3-lambda",
-      "in_file": 45,
+      "in_file": 44,
       "lean": "Problems/BalancedTernary/ExpandingD.lean",
       "names_own": [],
       "statement": "J3(T_2(n))=(lsd(n),0,lsd(DZ(n))) and J3(T_3(n))=(0,0,lsd(DZ(n))). T_3 collapses J1 and J2 but does not collapse J3: the second input digit survives."
@@ -4820,6 +4791,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 161,
-  "worth_reviewing": 42
+  "unresolved": 160,
+  "worth_reviewing": 41
 }

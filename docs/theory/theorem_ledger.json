@@ -2484,6 +2484,8 @@
   "statement": "For T(n)=3n-lsd(n), the length-3 integer jet satisfies J3(T(n))=(-lsd(n), lsd(n), lsd(DZ(n))). Equivalently J3(T(n))=(-a,a,b) when J2(n)=(a,b). The third input digit is discarded. The map factors through J2.",
   "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
   "lean": "Problems/BalancedTernary/ExpandingD.lean",
+  "decl": "jet3_factors_through_jet2",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/balanced_ternary/test_expanding_j3.py"
   ],

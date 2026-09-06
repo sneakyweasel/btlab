@@ -417,6 +417,26 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
     }
 
 
+def signature(decl: dict[str, Any], limit: int = 8) -> str:
+    """A declaration's statement, from its header down to the `:=` that starts the proof.
+
+    Nine of the queue's confident candidates carry no docstring, and an entry that offers
+    only a name is not answerable: deciding "is this row that theorem?" needs the theorem.
+    The signature is what the docstring would have paraphrased.
+    """
+    try:
+        lines = io.open(ROOT / decl["file"], encoding="utf-8").read().splitlines()
+    except OSError:
+        return ""
+    out: list[str] = []
+    for line in lines[decl["line"] - 1: decl["line"] - 1 + limit]:
+        out.append(line.rstrip())
+        if ":=" in line or line.rstrip().endswith("by"):
+            break
+    text = "\n".join(out)
+    return text.split(":=")[0].rstrip() if ":=" in text else text
+
+
 def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
     """The confident half of the proposal queue, laid out to be answered in one sitting.
 
@@ -458,7 +478,16 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         out.append(f"**Candidate.** `{top['decl']}` &mdash; {top['trust']}-checked, "
                    f"`{row['lean']}:{top['line']}`")
         out.append("")
-        out.append(f"> {(decl or {}).get('doc') or '(no docstring)'}")
+        doc = (decl or {}).get("doc")
+        if doc:
+            out.append(f"> {doc}")
+        else:
+            sig = signature(decl) if decl else ""
+            out.append("No docstring; the statement itself:")
+            out.append("")
+            out.append("```lean")
+            out.append(sig or "(could not read the declaration)")
+            out.append("```")
         out.append("")
         if row.get("names_own"):
             out.append(f"*Statement names: {', '.join('`' + n + '`' for n in row['names_own'])}*")

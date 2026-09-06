@@ -248,3 +248,23 @@ def test_proposals_never_offer_a_declaration_another_row_already_claims() -> Non
         if (row["lean"], c["decl"]) in taken
     ]
     assert offered == [], offered
+
+
+def test_signature_returns_the_statement_without_the_proof() -> None:
+    index = fp.build()
+    decl = next(d for d in index["declarations"] if d["name"] == "cycleMin_finance")
+    sig = fp.signature(decl)
+    assert sig.startswith("theorem cycleMin_finance")
+    assert ":=" not in sig and "by" not in sig.split("\n")[-1]
+
+
+def test_every_digest_entry_shows_a_docstring_or_a_signature() -> None:
+    """An entry offering only a name cannot be answered. Nine of the confident candidates
+    carry no docstring, so the digest falls back to the statement the docstring would have
+    paraphrased."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    text = fp.review_digest(index, ledger)
+    entries = text.count("\n## ")
+    assert text.count("> ") + text.count("```lean") >= entries
+    assert "(no docstring)" not in text
