@@ -240,7 +240,8 @@ def test_the_manuscript_prints_the_corrected_threshold() -> None:
 def test_failures_now_covers_relations() -> None:
     f = M.failures()
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
-                      "a1_thresholds", "claim_vs_predicate"}
+                      "a1_thresholds", "claim_vs_predicate",
+                      "p0_reproducible"}
     assert all(v == [] for v in f.values())
 
 
@@ -438,3 +439,64 @@ def test_the_paper_records_the_drift_between_sentence_and_predicate() -> None:
     assert "must hold as written at the" in text
     assert "1.66" + chr(92) + "cdot10^{12}" in text     # where the merged claim clears
     assert "2.98" + chr(92) + "cdot10^{11}" in text     # where the sharp one does
+
+
+# --- P_0 from the constants the paper prints ---------------------------------------------------
+
+
+def test_p0_is_reproducible_from_the_printed_constants() -> None:
+    r = M.p0_from_printed_constants()
+    assert r["ok"], r
+    assert abs(r["solved"] - 3.58576e13) / 3.58576e13 < 1e-4
+    assert r["printed"] == 3.5858e13
+
+
+def test_the_binding_row_reads_five_constants_off_the_text() -> None:
+    c = M.printed_binding_constants()
+    assert {k: v["value"] for k, v in c.items()} == {
+        "E_lead": 170.6, "E_tail": 0.11, "lambda_0": 0.56,
+        "kappa_den": 12.0, "c7_den": 232.0}
+
+
+def test_e_carries_one_coefficient() -> None:
+    """It had two: 170.6 in the derivation and Lean, 171 in E's own definition."""
+    text = M.paper_text()
+    assert "170.6P^{-25/24}" in text
+    assert "171P^{-25/24}" not in text
+    # it survives once, in the passage that records the correction
+    assert text.count("171" + chr(92) + ",P^{-25/24}") == 1
+
+
+def test_the_looser_coefficient_would_not_reproduce_p0() -> None:
+    """Why it matters: 171 is a true bound and still gives the wrong five figures."""
+    lam, kappa, c7 = 0.56, 1 / 12, 1 / 232
+
+    def cross(e: float) -> float:
+        lo, hi = 0.0, 300.0
+        for _ in range(400):
+            mid, = ((lo + hi) / 2,)
+            P = 10.0 ** mid
+            S = lam * P**-0.625
+            w = kappa * S**0.5 * P ** (-11 / 24) + e * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)
+            lo, hi = (lo, mid) if w <= c7 * S / 2 else (mid, hi)
+        return 10.0**hi
+
+    assert abs(cross(170.6) - 3.58576e13) / 3.58576e13 < 1e-4
+    assert abs(cross(171.0) - 3.59688e13) / 3.59688e13 < 1e-4
+    assert cross(171.0) > 3.5858e13          # past the figure the paper prints
+
+
+def test_the_erratum_list_names_the_end_lean_actually_proves() -> None:
+    text = M.paper_text()
+    lean = (ROOT / "formal" / "Problems" / "Juggler" / "PaperBAssembly.lean").read_text(
+        encoding="utf-8")
+    assert "170.6 * p2524" in lean and "106 * p2524" in lean
+    assert text.count("106" + chr(92) + "to170.6") == 2
+    assert text.count("106" + chr(92) + "to171" + chr(92) + ")") == 1
+
+
+def test_the_paper_states_the_reproducibility_check() -> None:
+    text = M.paper_text()
+    assert "from the constants printed above" in text
+    assert "should be" in text and "recoverable from the paper it appears in" in text
+    assert "It was not, by one constant" in text

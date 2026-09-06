@@ -36952,3 +36952,43 @@ Best next question
   class? Substitute each threshold row's printed constants back into its
   own predicate at its own P_min and see how many claim strings fail.
 ```
+
+## A number you cannot get from the paper it is printed in
+
+2026-09-06, last of the day. P_0 = 3.5858e13 appears everywhere in this
+paper, to five figures, and it comes from exactly one row: the Step 5b
+balance W = V + E <= c_7 S/2. Five constants go into that row and all
+five are printed somewhere. So: solve it from the printed constants and
+see whether you get the printed answer.
+
+You did not. Four of the five were printed at the value used --- the
+0.11 P^(-5/6) tail, the 0.56 P^(-5/8) floor on S, the 1/12 in
+V = (1/12) S^(1/2) P^(-11/24), and Lemma 3.9's c_7 = 1/232. The fifth
+was E's leading coefficient, printed as 171 P^(-25/24) at four sites,
+while the derivation two lines above gives 85.3 * 2 = 170.6, Lean
+proves 170.6, and the certificate solves with 170.6. With 171 the
+crossing is 3.59688e13. A reader recomputing from the paper lands 0.31%
+past the number the paper prints, and cannot get five figures at all.
+
+What I like about this one is that nothing was false. 171 > 170.6, and
+rounding a coefficient up in an upper bound is the safe direction --- it
+is the convention I spent two ticks establishing. Every check I have
+built passes it. The statement is true; it simply does not determine
+the number quoted from it. That is a different failure mode from
+anything the audits had a name for, and the only instrument that finds
+it is one that recomputes the headline number from the printed text and
+compares.
+
+I made the solver a second implementation rather than a call into
+p0_certificate. Two copies of the same function agreeing proves nothing,
+and the whole point is that the paper, read alone, determines P_0.
+
+There was a smaller one attached. The Lemma 5.2b erratum tells a reader
+to check its list 186->300, 0.567->0.907, 106->171 and says both ends
+are in Lean. Lean has 106 --- the precorrection assembly, collapsing
+105.78 --- but proves 170.6, not 171. One end of the list was not there.
+It reads 106->170.6 now.
+
+E carries 170.6 everywhere. P_0 does not move; it was always computed
+from 170.6. What changed is that the paper now prints the constant it
+used, which is the whole of it.

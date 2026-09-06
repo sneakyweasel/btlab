@@ -6499,3 +6499,75 @@ clears at `2.9817e11` and the lever is `120.26`; `48.9 (3.0e11)^(-3/16)
 string, not in the checked predicate --- the direction a rounding-for-
 the-page failure takes when the lambda is derived and the string is
 typed. No edit of mine to either file.
+
+## `P_0` was not recoverable from the paper: `E` had two coefficients and the number used the unprinted one
+
+*Mathematical target.* `P_0 = 3.5858e13` is quoted to five figures and
+comes from exactly one row, the Step 5b balance `W = V + E <= c_7 S/2`.
+Every constant in that row is printed somewhere in the manuscript.
+Re-derive the crossing from the printed constants alone and compare.
+
+*Novelty hypothesis.* The five figures are not reproducible from the
+paper, because at least one constant in that row is printed at a value
+other than the one used.
+
+*Falsifier.* The independent derivation returns `3.58576e13`.
+
+*Existing machinery.* `least_P`; `paper_text`; the constant-extraction
+patterns of `manuscript_self_audit`.
+
+*Prior art.* The ledger has the binding row named in a dozen entries
+but never re-derived; `docs/negative_knowledge.md` has nothing.
+Previous ticks checked A.1's thresholds against the certificate and the
+certificate's sentences against its predicates --- both text-versus-code.
+This is the first that asks whether the paper alone determines its own
+headline number. The last entry named it as the next question and noted
+that the binding row is precisely the one the claim parser cannot
+reach; reading the constants out of the *manuscript* rather than the
+claim string is the way past that.
+
+**Result: it did not.** The Step 5b balance needs five numbers, and
+four were printed at the values used --- the `E` tail `0.11P^{-5/6}`,
+the scale floor `0.56P^{-5/8} <= S`, the `1/12` of
+`V = (1/12) S^{1/2} P^{-11/24}`, and Lemma 3.9's `c_7 = 1/232`. The
+fifth was not. `E`'s definition printed `171 P^{-25/24}` at four sites
+while the derivation immediately above it gives `85.3 * 2 = 170.6`,
+Lean proves `170.6` (`interpolant_assembly`), and the certificate
+solves with `170.6`. With `171` the crossing is `3.59688e13`. A reader
+recomputing `P_0` from `E` as displayed lands `0.31%` past the figure
+printed for it, and cannot reach five figures at all.
+
+Both values are true --- `171 > 170.6`, and rounding a coefficient up
+in an upper bound is the safe direction, which is why nothing had ever
+flagged it. It is a *reproducibility* failure, not a false statement,
+and the only check that catches it is one that recomputes the headline
+number from the printed text.
+
+**A second end, in the same neighbourhood.** The Lemma 5.2b erratum
+says a reader checking its list `186->300`, `0.567->0.907`, `106->171`
+"finds both ends of it in Lean". Lean has `106` (the precorrection
+assembly, from `105.78`) but proves `170.6`, not `171`. One end of the
+list was not in Lean at all. The list now reads `106->170.6`.
+
+**Fix.** `E` carries `170.6` at every site. `P_0` is unchanged --- it
+was always computed from `170.6`; what changed is that the paper now
+prints the constant it used.
+
+Tags. EXACT: `85.3 * 2 = 170.6`; `1/232`, `1/12`, `0.56`, `0.11` all
+confirmed against the text. COMPUTATIONALLY VERIFIED: the crossing from
+the printed constants alone is `3.58576e13` against the printed
+`3.5858e13`; with `171` it is `3.59688e13`; Lean's
+`interpolant_assembly` gives `170.6 * p2524` and
+`interpolant_assembly_precorrection` gives `106 * p2524`. OBSERVATION:
+`171` was never wrong, only unusable --- the failure mode here is a
+true statement that does not determine the number quoted from it.
+
+Probe: `manuscript_self_audit.printed_binding_constants`,
+`p0_from_printed_constants`; `failures()` gains a `p0_reproducible`
+key, and the solver is deliberately a second implementation rather than
+a call into `p0_certificate`, since two copies of one function agreeing
+proves nothing. Six new tests, forty-eight in the file. Manuscript: `E`
+made single-valued at four sites, the erratum list corrected, and a
+passage in A.1 stating that the headline number is recoverable from the
+paper and how. `tools/lean_numeral_audit.py`'s pin on the list updated.
+No certificate edit.

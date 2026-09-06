@@ -3392,7 +3392,7 @@ evaluated at \(\tilde\beta_i\). Then, for \(P\ge P_0\),
 +\lvert c''\rvert
 +0.91\,k(h_1{+}h_2)P^{-9/8}
 \le85.3\,k(h_1{+}h_2)P^{-9/8}+0.11P^{-5/6}
-\le171\,P^{-25/24}+0.11P^{-5/6}.
+\le170.6\,P^{-25/24}+0.11P^{-5/6}.
 \]
 The second term is the leading interpolant error and is not
 absorbed into a smaller multiple of \(P^{-5/6}\). Moreover
@@ -3441,7 +3441,7 @@ on the standing range: the summand \(c''(G_F-J_F)\) is
 > \(b=-\tfrac{405}{176}\to-\tfrac{81}{22}\), the range
 > \([0.38,2.44]\to[0.62,3.90]\) (opened \([0.35,2.6]\to[0.56,4.2]\)),
 > the (C5) cap \(186\to300\), \(0.567\to0.907\), \(52.9\to85.3\) and
-> \(E\)'s \(106\to171\). It was never cosmetic: under the old \(b\) the
+> \(E\)'s \(106\to170.6\). It was never cosmetic: under the old \(b\) the
 > residue \(r\) keeps a leading term of size
 > \(\tfrac{729}{1024}kh_1h_2\nu^{-5/8}\), comparable to \(S\) itself,
 > and the \(\rho_0(E)\) ratios of Lemma 3.9 fail outright.
@@ -3473,9 +3473,9 @@ terms differ from \(\Lambda\) by at most
 \(\le\tfrac9{32}\cdot300\,k(h_1{+}h_2)P^{1/8-5/4}
 =84.375\,k(h_1{+}h_2)P^{-9/8}\) --- the *same shape* as the third
 term, which is why the two are added before converting. Together
-they are \(85.2820\le85.3\,k(h_1{+}h_2)P^{-9/8}\le170.6\), i.e.
-\(\le171\,P^{-25/24}\) by \(k(h_1{+}h_2)\le2P^{1/12}\) from
-(C3) and (C4).
+they are \(85.2820\le85.3\,k(h_1{+}h_2)P^{-9/8}\), i.e.
+\(\le170.6\,P^{-25/24}\) by \(k(h_1{+}h_2)\le2P^{1/12}\)
+from (C3) and (C4).
 
 (ii) \(\lvert\beta_i-\tilde\beta_i\rvert\le1\), so
 \(\lvert\beta_1\beta_2-\tilde\beta_1\tilde\beta_2\rvert
@@ -3514,7 +3514,7 @@ corrected figures above and not the ones the erratum replaced.
 > `interpolant_step_ii_precorrection` and
 > `interpolant_assembly_precorrection`, as `step5b_c7_printed` retains the
 > weaker \(c_7=1/288\), so that a reader checking the erratum's list
-> \(186\to300\), \(0.567\to0.907\), \(106\to171\) finds both ends of it in
+> \(186\to300\), \(0.567\to0.907\), \(106\to170.6\) finds both ends of it in
 > Lean. `interpolant_gain` now records \(219/170.6=1.2837\), the factor
 > Appendix A.5 claims, beside the \(219/106>2\) of the superseded chain.
 >
@@ -4073,7 +4073,7 @@ differenced-wave scale present. Three regimes.
   *Interpolant.* Invoke Lemma 5.2b: the frozen-shape interpolant
   \(\Lambda\) (values of \(\Delta_iX\) substituted, not
   differentiated) satisfies
-  \(\lvert f''-\Lambda\rvert\le171P^{-25/24}+0.11P^{-5/6}=:E\)
+  \(\lvert f''-\Lambda\rvert\le170.6P^{-25/24}+0.11P^{-5/6}=:E\)
   and \(\Lambda=\Phi''+r\) with
   \(a=-\tfrac{27}{10}(uh_1+u'h_2)\) and
   \(b=-\tfrac{81}{22}\,kh_1h_2\). The raised threshold
@@ -4106,7 +4106,7 @@ differenced-wave scale present. Three regimes.
   applied not at \(V\) but at the *raised* threshold
   \[
   W:=V+E,\qquad
-  E:=\sup\lvert f''-\Lambda\rvert\le171P^{-25/24}+0.11P^{-5/6},
+  E:=\sup\lvert f''-\Lambda\rvert\le170.6P^{-25/24}+0.11P^{-5/6},
   \]
   whose only hypothesis is \(W\le c_7S/2\). Off
   \(\Omega_W=\{\lvert\Lambda\rvert\le W\}\) one has
@@ -6731,6 +6731,31 @@ from \(6.1\cdot10^{4}\) to \(3.51\cdot10^{4}\). All three sit far below
 \(P_0\), and none is the binding row, so \(P_0\) is unchanged at
 \(3.5858\cdot10^{13}\).
 
+*\(P_0\) from the constants printed above.* The five figures of
+\(3.5858\cdot10^{13}\) come from one row and five numbers, all of them
+printed in this paper: the interpolant error's
+\(170.6\,P^{-25/24}+0.11P^{-5/6}\), the scale floor
+\(0.56P^{-5/8}\le S\), the \(\tfrac1{12}\) of
+\(V=\tfrac1{12}S^{1/2}P^{-11/24}\), and Lemma 3.9's
+\(c_7=\tfrac1{232}\). Solving \(V+E\le c_7S/2\) with those alone gives
+\(3.58576\cdot10^{13}\), and `tools/manuscript_self_audit.py` does
+exactly that, reading each constant out of the text rather than from
+the certificate. A headline number quoted to five figures should be
+recoverable from the paper it appears in.
+
+It was not, by one constant. \(E\)'s definition printed
+\(171\,P^{-25/24}\) while the derivation beside it gives
+\(85.3\cdot2=170.6\) and Lean proves \(170.6\)
+(`interpolant_assembly`). Both are true --- \(171\) is the rounder
+statement of a bound, and rounding a coefficient up in an upper bound
+is safe --- but the crossing at \(171\) is \(3.5969\cdot10^{13}\), so a
+reader recomputing \(P_0\) from \(E\) as displayed could not reach the
+figure printed for it. \(E\) now carries \(170.6\) at every site, which
+is the value the derivation produces, the value Lean proves, and the
+value \(P_0\) was always computed from. The erratum's list also read
+\(106\to171\) while claiming a reader finds both ends in Lean; the
+corrected end in Lean is \(170.6\), and the list now says so.
+
 ### A.2 The stratification
 
 The thresholds are not spread out; they cluster and then jump.
@@ -7083,7 +7108,7 @@ constant here nobody had checked.
 removing it.* The earlier \(219=202.5+16\) opened the middle-band cap
 to \(360\) and carried \(8\) where step (ii) gives \(0.907\). Keeping
 the shifts visible lets the two error terms combine into
-\(85.3\,k(h_1{+}h_2)P^{-9/8}\le171P^{-25/24}\). More consequential
+\(85.3\,k(h_1{+}h_2)P^{-9/8}\le170.6P^{-25/24}\). More consequential
 is the comparison beside it: the former
 \(V\ge10\lvert f''-\Lambda\rvert\) is not needed at all. Running
 Lemma 3.9 at the raised threshold \(W=V+E\) gives

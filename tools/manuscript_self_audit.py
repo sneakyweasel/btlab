@@ -633,13 +633,78 @@ def claim_predicate_failures() -> list[dict[str, Any]]:
     return [r for r in claim_predicate_audit() if r["parsed"] and not r["agree"]]
 
 
+
+# --- P_0 from the constants the paper prints ---------------------------------------------------
+#
+# P_0 is quoted to five figures and comes from one row, the Step 5b balance W = V + E <= c_7 S/2.
+# Every constant in that row is printed somewhere in the manuscript, so the headline number should
+# be reproducible from the paper alone.  It was not: E's definition printed 171 P^(-25/24) where
+# the derivation gives 85.3 * 2 = 170.6 and Lean proves 170.6, and with 171 the crossing is
+# 3.5969e13, not 3.5858e13.  Two values for one constant, and the one the paper displayed was not
+# the one the number was computed from.
+
+_BSX = re.escape(BS)
+_P0_PATTERNS = {
+    "E_lead": (_BSX + r"lvert f''-" + _BSX + r"Lambda" + _BSX + r"rvert" + _BSX
+               + r"le([0-9.]+)P\^\{-25/24\}", "E's leading coefficient"),
+    "E_tail": (r"le[0-9.]+P\^\{-25/24\}\+([0-9.]+)P\^\{-5/6\}=:E", "E's second term"),
+    "lambda_0": (r"([0-9.]+)P\^\{-5/8\}" + _BSX + r"le S", "the S floor"),
+    "kappa_den": (r"V:=" + _BSX + r"tfrac1\{([0-9]+)\}S\^\{1/2\}P\^\{-11/24\}", "kappa in V"),
+    "c7_den": (r"c_7=" + _BSX + r"tfrac1\{([0-9]+)\}", "c_7"),
+}
+
+
+def printed_binding_constants() -> dict[str, Any]:
+    """The five constants of the Step 5b balance, read off the manuscript."""
+    text = paper_text()
+    out: dict[str, Any] = {}
+    for key, (pattern, label) in _P0_PATTERNS.items():
+        m = re.search(pattern, text)
+        out[key] = {"value": float(m.group(1)) if m else None, "role": label}
+    return out
+
+
+def p0_from_printed_constants() -> dict[str, Any]:
+    """Re-solve the binding row from those constants alone, and compare with what is printed.
+
+    Deliberately independent of ``p0_certificate``: the point is that the paper reproduces its
+    own headline number, not that two copies of the same code agree.
+    """
+    c = printed_binding_constants()
+    if any(v["value"] is None for v in c.values()):
+        return {"ok": False, "missing": [k for k, v in c.items() if v["value"] is None]}
+    e_lead, e_tail = c["E_lead"]["value"], c["E_tail"]["value"]
+    lam, kappa, c7 = c["lambda_0"]["value"], 1.0 / c["kappa_den"]["value"], 1.0 / c["c7_den"]["value"]
+
+    def holds(P: float) -> bool:
+        S = lam * P**-0.625
+        W = kappa * S**0.5 * P ** (-11 / 24) + e_lead * P ** (-25 / 24) + e_tail * P ** (-5 / 6)
+        return W <= c7 * S / 2.0
+
+    lo, hi = 0.0, 300.0                      # bisection in log10 P, as the certificate does
+    for _ in range(400):
+        mid = (lo + hi) / 2.0
+        if holds(10.0**mid):
+            hi = mid
+        else:
+            lo = mid
+    solved = 10.0**hi
+    m = re.search(r"([0-9]\.[0-9]{4})"
+                  + re.escape(BS + "cdot10^{13}" + BS + ")."), paper_text())
+    printed = float(m.group(1)) * 1e13 if m else None
+    return {"ok": printed is not None and abs(solved / printed - 1.0) < 5e-5,
+            "solved": solved, "printed": printed, "constants": {k: v["value"] for k, v in c.items()}}
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
             "relations": wrong_relations(),
             "rounded_into_a_bound": rounding_directions()["down"],
             "a1_thresholds": a1_failures(),
-            "claim_vs_predicate": claim_predicate_failures()}
+            "claim_vs_predicate": claim_predicate_failures(),
+            "p0_reproducible": [] if p0_from_printed_constants()["ok"] else
+                               [p0_from_printed_constants()]}
 
 
 def main() -> None:

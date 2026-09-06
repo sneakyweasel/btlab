@@ -523,7 +523,7 @@ MANUSCRIPT_CLAIMS: tuple[tuple[str, str, str, Callable[[str], bool]], ...] = (
     ("PaperBAssembly",
      "keeps the manuscript's weaker `1/288`",
      "the superseded chain is retained beside the corrected one, as the erratum's list needs",
-     lambda t: r"186\to300\)" in t and r"106\to171\)" in t),
+     lambda t: r"186\to300\)" in t and r"106\to170.6\)" in t),
 )
 
 
