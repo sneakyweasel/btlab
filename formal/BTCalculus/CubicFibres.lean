@@ -31,22 +31,26 @@ def n3Resid (m : ℕ) : ℤ :=
 def n0Resid (m : ℕ) (p : ℤ) : ℤ :=
   iterDZ m (p ^ 3)
 
+/-- `N2(p) - N2(q) = 2 * 3^(m+1) * (p - q)`. -/
 theorem n2Resid_diff (m : ℕ) (p q : ℤ) :
     n2Resid m p - n2Resid m q = 2 * (3 : ℤ) ^ (m + 1) * (p - q) := by
   unfold n2Resid
   ring
 
+/-- `N1(p) - N1(q) = 3 (p - q)(p + q + 3^m)` -- the factorisation the fibre argument uses. -/
 theorem n1Resid_diff (m : ℕ) (p q : ℤ) :
     n1Resid m p - n1Resid m q = 3 * (p - q) * (p + q + (3 : ℤ) ^ m) := by
   unfold n1Resid
   ring
 
+/-- `N3(m) - N3(n) = 2 (3^(2m+1) - 3^(2n+1))`; `N3` does not depend on the point. -/
 theorem n3Resid_sub (m n : ℕ) :
     n3Resid m - n3Resid n =
       2 * ((3 : ℤ) ^ (2 * m + 1) - (3 : ℤ) ^ (2 * n + 1)) := by
   unfold n3Resid
   ring
 
+/-- The third Newton coordinate of the residual family is `N2`. -/
 theorem newton_n2_eq (m : ℕ) (p : ℤ) :
     (newtonCoords ((3 : ℤ) ^ (2 * m)) ((3 : ℤ) ^ (m + 1) * p)
         (3 * p ^ 2) (iterDZ m (p ^ 3))).2.2.1 =
@@ -54,6 +58,7 @@ theorem newton_n2_eq (m : ℕ) (p : ℤ) :
   have h := newton_cubicResid m p
   simpa [n2Resid] using congrArg (fun t => t.2.2.1) h
 
+/-- At one depth, `3^k` divides the `N2` difference exactly when it divides `3^(m+1)(p - q)`. -/
 theorem sameDepth_n2 (k m : ℕ) (p q : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m q ↔
       (3 : ℤ) ^ k ∣ (3 : ℤ) ^ (m + 1) * (p - q) := by
@@ -65,6 +70,7 @@ theorem sameDepth_n2 (k m : ℕ) (p q : ℤ) :
     have := h.mul_left (2 : ℤ)
     simpa [mul_assoc, mul_left_comm, mul_comm] using this
 
+/-- Below the depth, `k <= m + 1`, the `N2` difference is divisible outright. -/
 theorem sameDepth_n2_of_le {k m : ℕ} (hkm : k ≤ m + 1) (p q : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m q := by
   rw [sameDepth_n2]
@@ -72,6 +78,7 @@ theorem sameDepth_n2_of_le {k m : ℕ} (hkm : k ≤ m + 1) (p q : ℤ) :
     dvd_mul_right _ _
   exact dvd_trans (pow_dvd_pow (3 : ℤ) hkm) this
 
+/-- Above the depth, `m + 1 <= k`, the `N2` condition reduces to `3^(k-m-1) | p - q`. -/
 theorem sameDepth_n2_succ {k m : ℕ} (hkm : m + 1 ≤ k) (p q : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m q ↔
       (3 : ℤ) ^ (k - (m + 1)) ∣ (p - q) := by
@@ -87,6 +94,7 @@ theorem sameDepth_n2_succ {k m : ℕ} (hkm : m + 1 ≤ k) (p q : ℤ) :
     rw [hpow]
     exact mul_dvd_mul_left _ h
 
+/-- Two integers of balanced width `m` differ by at most `3^m - 1`. -/
 theorem balWidth_sub {m : ℕ} {p q : ℤ}
     (hp : balWidth m p) (hq : balWidth m q) :
     |p - q| ≤ (3 : ℤ) ^ m - 1 := by
@@ -98,6 +106,7 @@ theorem balWidth_sub {m : ℕ} {p q : ℤ}
   have : |p| + |q| ≤ (3 : ℤ) ^ m - 1 := by linarith
   linarith
 
+/-- `N2` separates points of `P_m` once `2m + 1 <= k`: agreement to that order forces `p = q`. The width bound is what closes it -- the difference cannot reach `3^(k-m-1)`. -/
 theorem sameDepth_n2_injective {k m : ℕ} {p q : ℤ}
     (hp : balWidth m p) (hq : balWidth m q)
     (hmk : 2 * m + 1 ≤ k)
@@ -114,6 +123,7 @@ theorem sameDepth_n2_injective {k m : ℕ} {p q : ℤ}
     linarith
   exact sub_eq_zero.mp (dvd_abs_lt_pow hpow hbound)
 
+/-- `N3` residuals agree modulo `3^k` when `k` is below both depths. -/
 theorem n3_dvd_of_deep {k m n : ℕ}
     (hm : k ≤ 2 * m + 1) (hn : k ≤ 2 * n + 1) :
     (3 : ℤ) ^ k ∣ n3Resid m - n3Resid n := by
@@ -125,6 +135,7 @@ theorem n3_dvd_of_deep {k m n : ℕ}
   have := hsub.mul_left (2 : ℤ)
   simpa [mul_comm, mul_left_comm, mul_assoc] using this
 
+/-- Cross-depth `N3` criterion: for `m <= n`, `3^k` divides `N3(m) - N3(n)` exactly when `k <= 2m + 1` or the depths coincide. -/
 theorem n3_dvd_iff {k m n : ℕ} (hmn : m ≤ n) :
     (3 : ℤ) ^ k ∣ n3Resid m - n3Resid n ↔
       k ≤ 2 * m + 1 ∨ m = n := by
@@ -163,6 +174,7 @@ theorem n3_dvd_iff {k m n : ℕ} (hmn : m ≤ n) :
     · exact n3_dvd_of_deep hk (le_trans hk (by omega))
     · simp [n3Resid]
 
+/-- The `N1` sign condition, reduced to divisibility of `2 * 3^(m+1) * p`. -/
 theorem sameDepth_n1_sign (k m : ℕ) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n1Resid m p - n1Resid m (-p) ↔
       (3 : ℤ) ^ k ∣ 2 * (3 : ℤ) ^ (m + 1) * p := by
@@ -177,6 +189,7 @@ theorem sameDepth_n1_sign (k m : ℕ) (p : ℤ) :
       ring
     simpa [heq] using h
 
+/-- The `N2` sign condition, reduced to divisibility of `3^(m+1) * p`. -/
 theorem sameDepth_n2_sign (k m : ℕ) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m (-p) ↔
       (3 : ℤ) ^ k ∣ (3 : ℤ) ^ (m + 1) * p := by
@@ -194,6 +207,7 @@ theorem sameDepth_n2_sign (k m : ℕ) (p : ℤ) :
       ring
     simpa [heq] using this
 
+/-- An `N1` sign agreement implies the `N2` one: the odd pair is governed by `N1`. -/
 theorem sign_n2_of_n1 {k m : ℕ} {p : ℤ}
     (h : (3 : ℤ) ^ k ∣ n1Resid m p - n1Resid m (-p)) :
     (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m (-p) := by
@@ -202,6 +216,7 @@ theorem sign_n2_of_n1 {k m : ℕ} {p : ℤ}
     three_pow_dvd_of_two_mul (by simpa [mul_assoc, mul_left_comm, mul_comm] using h1)
   exact (sameDepth_n2_sign k m p).2 h2
 
+/-- `D^m` is odd: `D^m (-n) = - D^m n`. -/
 theorem iterDZ_neg : ∀ (m : ℕ) (n : ℤ), iterDZ m (-n) = -iterDZ m n
   | 0, n => by simp [iterDZ]
   | m + 1, n => by
@@ -209,12 +224,14 @@ theorem iterDZ_neg : ∀ (m : ℕ) (n : ℤ), iterDZ m (-n) = -iterDZ m n
     change iterDZ m (DZ (-n)) = -iterDZ m (DZ n)
     rw [h, iterDZ_neg m]
 
+/-- `N0(-p) = -N0(p)`. -/
 theorem n0Resid_neg (m : ℕ) (p : ℤ) :
     n0Resid m (-p) = -n0Resid m p := by
   unfold n0Resid
   have : (-p) ^ 3 = -(p ^ 3) := by ring
   rw [this, iterDZ_neg]
 
+/-- `N0(p)` and `N0(-p)` agree modulo `3^k` exactly when `3^k` divides `N0(p)`; the sign survives only where the residual already vanishes. -/
 theorem sign_n0 {k m : ℕ} {p : ℤ} :
     (3 : ℤ) ^ k ∣ n0Resid m p - n0Resid m (-p) ↔
       (3 : ℤ) ^ k ∣ n0Resid m p := by

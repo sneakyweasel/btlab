@@ -50442,7 +50442,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N2(p) - N2(q) = 2 * 3^(m+1) * (p - q)`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50452,13 +50452,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 34,
+      "line": 35,
       "module": "BTCalculus.CubicFibres",
       "name": "n2Resid_diff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N1(p) - N1(q) = 3 (p - q)(p + q + 3^m)` -- the factorisation the fibre argument uses.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50468,13 +50468,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 39,
+      "line": 41,
       "module": "BTCalculus.CubicFibres",
       "name": "n1Resid_diff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N3(m) - N3(n) = 2 (3^(2m+1) - 3^(2n+1))`; `N3` does not depend on the point.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50484,13 +50484,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 44,
+      "line": 47,
       "module": "BTCalculus.CubicFibres",
       "name": "n3Resid_sub",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The third Newton coordinate of the residual family is `N2`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50500,13 +50500,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 50,
+      "line": 54,
       "module": "BTCalculus.CubicFibres",
       "name": "newton_n2_eq",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At one depth, `3^k` divides the `N2` difference exactly when it divides `3^(m+1)(p - q)`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50516,13 +50516,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 57,
+      "line": 62,
       "module": "BTCalculus.CubicFibres",
       "name": "sameDepth_n2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Below the depth, `k <= m + 1`, the `N2` difference is divisible outright.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50532,13 +50532,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 68,
+      "line": 74,
       "module": "BTCalculus.CubicFibres",
       "name": "sameDepth_n2_of_le",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Above the depth, `m + 1 <= k`, the `N2` condition reduces to `3^(k-m-1) | p - q`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50548,13 +50548,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 75,
+      "line": 82,
       "module": "BTCalculus.CubicFibres",
       "name": "sameDepth_n2_succ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Two integers of balanced width `m` differ by at most `3^m - 1`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50564,13 +50564,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 90,
+      "line": 98,
       "module": "BTCalculus.CubicFibres",
       "name": "balWidth_sub",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N2` separates points of `P_m` once `2m + 1 <= k`: agreement to that order forces `p = q`. The width bound is what closes it -- the difference cannot reach `3^(k-m-1)`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50580,13 +50580,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 101,
+      "line": 110,
       "module": "BTCalculus.CubicFibres",
       "name": "sameDepth_n2_injective",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N3` residuals agree modulo `3^k` when `k` is below both depths.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50596,13 +50596,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 117,
+      "line": 127,
       "module": "BTCalculus.CubicFibres",
       "name": "n3_dvd_of_deep",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Cross-depth `N3` criterion: for `m <= n`, `3^k` divides `N3(m) - N3(n)` exactly when `k <= 2m + 1` or the depths coincide.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50612,13 +50612,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 128,
+      "line": 139,
       "module": "BTCalculus.CubicFibres",
       "name": "n3_dvd_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `N1` sign condition, reduced to divisibility of `2 * 3^(m+1) * p`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50628,13 +50628,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 166,
+      "line": 178,
       "module": "BTCalculus.CubicFibres",
       "name": "sameDepth_n1_sign",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `N2` sign condition, reduced to divisibility of `3^(m+1) * p`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50644,13 +50644,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 180,
+      "line": 193,
       "module": "BTCalculus.CubicFibres",
       "name": "sameDepth_n2_sign",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An `N1` sign agreement implies the `N2` one: the odd pair is governed by `N1`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50660,13 +50660,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 197,
+      "line": 211,
       "module": "BTCalculus.CubicFibres",
       "name": "sign_n2_of_n1",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`D^m` is odd: `D^m (-n) = - D^m n`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50676,13 +50676,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 205,
+      "line": 220,
       "module": "BTCalculus.CubicFibres",
       "name": "iterDZ_neg",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N0(-p) = -N0(p)`.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50692,13 +50692,13 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 212,
+      "line": 228,
       "module": "BTCalculus.CubicFibres",
       "name": "n0Resid_neg",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N0(p)` and `N0(-p)` agree modulo `3^k` exactly when `3^k` divides `N0(p)`; the sign survives only where the residual already vanishes.",
       "file": "formal/BTCalculus/CubicFibres.lean",
       "kind": "theorem",
       "ledger": [
@@ -50708,7 +50708,7 @@
         "BTA-x3-sign",
         "BTA-x3-Ckm"
       ],
-      "line": 218,
+      "line": 235,
       "module": "BTCalculus.CubicFibres",
       "name": "sign_n0",
       "trust": "kernel"

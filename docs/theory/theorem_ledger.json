@@ -797,6 +797,8 @@
   "statement": "N1(p)-N1(q)=3(p-q)(p+q+3^m)",
   "source": "docs/theory/cubic_residual_fibres.md",
   "lean": "BTCalculus/CubicFibres.lean",
+  "decl": "n1Resid_diff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_fibres.py"
   ],
@@ -830,6 +832,8 @@
   "statement": "cross-depth N3 agrees iff k<=2 min(m,n)+1 or m=n",
   "source": "docs/theory/cubic_residual_fibres.md",
   "lean": "BTCalculus/CubicFibres.lean",
+  "decl": "n3_dvd_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_fibres.py"
   ],

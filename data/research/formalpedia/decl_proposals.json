@@ -1046,102 +1046,20 @@
     {
       "candidates": [
         {
-          "decl": "sameDepth_n2_injective",
-          "line": 101,
-          "score": 1.0,
-          "trust": "kernel"
-        },
-        {
           "decl": "sameDepth_n2",
-          "line": 57,
-          "score": 0.5,
+          "line": 62,
+          "score": 0.167,
           "trust": "kernel"
         },
         {
           "decl": "sameDepth_n2_of_le",
-          "line": 68,
-          "score": 0.5,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "balWidth",
-          "line": 19,
-          "score": 0.0
-        },
-        {
-          "decl": "n2Resid",
-          "line": 22,
-          "score": 0.0
-        }
-      ],
-      "id": "BTA-x3-n2",
-      "in_file": 17,
-      "lean": "BTCalculus/CubicFibres.lean",
-      "names_own": [],
-      "statement": "same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "n2Resid_diff",
-          "line": 34,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n1Resid_diff",
-          "line": 39,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n3Resid_sub",
-          "line": 44,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "balWidth",
-          "line": 19,
-          "score": 0.0
-        },
-        {
-          "decl": "n2Resid",
-          "line": 22,
-          "score": 0.0
-        }
-      ],
-      "id": "BTA-x3-n1fac",
-      "in_file": 17,
-      "lean": "BTCalculus/CubicFibres.lean",
-      "names_own": [],
-      "statement": "N1(p)-N1(q)=3(p-q)(p+q+3^m)"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "sameDepth_n2",
-          "line": 57,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "sameDepth_n2_of_le",
-          "line": 68,
-          "score": 0.2,
+          "line": 74,
+          "score": 0.167,
           "trust": "kernel"
         },
         {
           "decl": "sameDepth_n2_succ",
-          "line": 75,
+          "line": 82,
           "score": 0.167,
           "trust": "kernel"
         }
@@ -1160,35 +1078,35 @@
           "score": 0.0
         }
       ],
-      "id": "BTA-x3-n3gate",
-      "in_file": 17,
+      "id": "BTA-x3-n2",
+      "in_file": 15,
       "lean": "BTCalculus/CubicFibres.lean",
       "names_own": [],
-      "statement": "cross-depth N3 agrees iff k<=2 min(m,n)+1 or m=n"
+      "statement": "same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k"
     },
     {
       "candidates": [
         {
-          "decl": "n3_dvd_iff",
-          "line": 128,
-          "score": 0.2,
+          "decl": "sign_n2_of_n1",
+          "line": 211,
+          "score": 0.25,
           "trust": "kernel"
         },
         {
-          "decl": "n2Resid_diff",
-          "line": 34,
-          "score": 0.0,
+          "decl": "iterDZ_neg",
+          "line": 220,
+          "score": 0.167,
           "trust": "kernel"
         },
         {
-          "decl": "n1Resid_diff",
-          "line": 39,
-          "score": 0.0,
+          "decl": "sameDepth_n2",
+          "line": 62,
+          "score": 0.125,
           "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "review",
+      "confidence": "low",
       "definitions": [
         {
           "decl": "balWidth",
@@ -1202,7 +1120,7 @@
         }
       ],
       "id": "BTA-x3-sign",
-      "in_file": 17,
+      "in_file": 15,
       "lean": "BTCalculus/CubicFibres.lean",
       "names_own": [],
       "statement": "odd pair: N2 iff N1; N0 iff 3^k divides D^m(p^3)"
@@ -4839,6 +4757,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 123,
-  "worth_reviewing": 21
+  "unresolved": 121,
+  "worth_reviewing": 19
 }

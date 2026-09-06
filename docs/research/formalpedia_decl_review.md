@@ -2,10 +2,10 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 142 resolved rows the scorer gets
-55 of the 67 it fires on right, 82% precise, so roughly one in
+same thing.  Measured against all 144 resolved rows the scorer gets
+56 of the 68 it fires on right, 82% precise, so roughly one in
 6 below is wrong.
-21 rows below, of 123 unresolved.
+19 rows below, of 121 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -61,43 +61,7 @@ theorem newton_cubicResid (m : ℕ) (p : ℤ) :
 
 *If this row describes a definition rather than a theorem: `cubicResid`, `newtonCoords`*
 
-## 3. `BTA-x3-n2`
-
-**Row.** same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k
-
-**Candidate.** `sameDepth_n2_injective` &mdash; kernel-checked, `BTCalculus/CubicFibres.lean:101`
-
-```lean
-theorem sameDepth_n2_injective {k m : ℕ} {p q : ℤ}
-    (hp : balWidth m p) (hq : balWidth m q)
-    (hmk : 2 * m + 1 ≤ k)
-    (hN2 : (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m q) :
-    p = q
-```
-
-*Runners-up: `sameDepth_n2` (0.5), `sameDepth_n2_of_le` (0.5)*
-
-*Careful: `sameDepth_n2_injective` extends `sameDepth_n2`, and in this corpus a longer name is usually a special case of the shorter one. Twice the shorter name was the answer and the scorer ranked it second, because the specialisation happened to be the documented one.*
-
-*If this row describes a definition rather than a theorem: `balWidth`, `n2Resid`*
-
-## 4. `BTA-x3-sign`
-
-**Row.** odd pair: N2 iff N1; N0 iff 3^k divides D^m(p^3)
-
-**Candidate.** `n3_dvd_iff` &mdash; kernel-checked, `BTCalculus/CubicFibres.lean:128`
-
-```lean
-theorem n3_dvd_iff {k m n : ℕ} (hmn : m ≤ n) :
-    (3 : ℤ) ^ k ∣ n3Resid m - n3Resid n ↔
-      k ≤ 2 * m + 1 ∨ m = n
-```
-
-*Runners-up: `n2Resid_diff` (0.0), `n1Resid_diff` (0.0)*
-
-*If this row describes a definition rather than a theorem: `balWidth`, `n2Resid`*
-
-## 5. `BTA-x3-n0-vis`
+## 3. `BTA-x3-n0-vis`
 
 **Row.** D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}
 
@@ -111,7 +75,7 @@ theorem n0_of_cube_mod {t k : Nat} {u v : Int}
 
 *Runners-up: `n0_visible_mod` (0.111), `DZ_mul_three` (0.0)*
 
-## 6. `BTL-block-shift`
+## 4. `BTL-block-shift`
 
 **Row.** block shift law: for a word w of length j the section operators send the state (3^j d, 3^{j+i}) to (d + 3^i packWord(w), 3^{j+i}), every such word survives, and at i = 0, j = e the 3^e words of length e reach exactly the states d + t for t in the balanced window W_e = [-(3^e-1)/2, (3^e-1)/2]; the shift is the balanced value packWord(w) an
 
@@ -132,7 +96,7 @@ theorem residualAlong_linState_pow :
 
 *If this row describes a definition rather than a theorem: `linState`, `henselTrit`*
 
-## 7. `BTM-x3-depth`
+## 5. `BTM-x3-depth`
 
 **Row.** for every balanced-Monna endpoint pair u=zeta+2*3^n, v=zeta-2*3^n one has u^3-v^3=4*3^n(3 zeta^2+4*3^{2n}) and therefore t=v_3(u^3-v^3)=n+min(1+2 v_3(zeta), 2n), or t=3n when zeta=0; the two arguments of the minimum have opposite parity whenever zeta is nonzero
 
@@ -149,7 +113,7 @@ theorem monnaEndpoint_val_parity (n : ℕ) {ζ : ℚ} (_hζ : ζ ≠ 0) :
 
 *If this row describes a definition rather than a theorem: `monnaEndpointU`, `monnaEndpointV`*
 
-## 8. `BTC-constructor-sum-class`
+## 6. `BTC-constructor-sum-class`
 
 **Row.** for U,V,W in {S,I+,I-,N}, the identity U(x)+V(y)=W(x+y) holds for all integers iff it is one of the eight concrete triples (S,S,S), (N,N,N), (I+,S,I+), (S,I+,I+), (I-,S,I-), (S,I-,I-), (I+,I-,S), (I-,I+,S); same-sign I+ or I- and mixed N+S are not constructor identities
 
@@ -172,7 +136,7 @@ theorem exactTriple_characterization (U V W : AffineCtor) :
 
 *If this row describes a definition rather than a theorem: `exactTriple`, `DLocal`*
 
-## 9. `BTN-carry-gain-3`
+## 7. `BTN-carry-gain-3`
 
 **Row.** The synthetic map T_3(c,d)=3 DZ(c+2d) satisfies c_n=3n along the all-+1 word, so the residual set is unbounded. This is not value-preserving normalization.
 
@@ -188,7 +152,7 @@ theorem carryGain3_eq (n : ℕ) : carryGain3 n = 3 * (n : ℤ)
 
 *If this row describes a definition rather than a theorem: `doubledNext`, `doubledOut`*
 
-## 10. `BTN-sdr-multi-trit`
+## 8. `BTN-sdr-multi-trit`
 
 **Row.** r-way trit addition s'=D(s+a_1+⋯+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the λ=1 box |s|≤⌊r/2⌋ is invariant. The count 2⌊r/2⌋+1 equals 1,3,3,5 for r=1,2,3,4.
 
@@ -207,7 +171,7 @@ theorem multi_trit_carry_bound {s : ℤ} {inputs : List ℤ}
 
 *If this row describes a definition rather than a theorem: `signedNext`, `signedOut`*
 
-## 11. `BTN-sdr-escape-general`
+## 9. `BTN-sdr-escape-general`
 
 **Row.** If λ≥3 and |u|≥2 then the constant-control orbit of F_{λ,U} from 0 is unbounded: at λ=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at λ≥4 the step is strictly expanding on the matching ray.
 
@@ -222,7 +186,7 @@ theorem gain3_control2_unbounded (B : ℕ) :
 
 *If this row describes a definition rather than a theorem: `signedNext`, `signedOut`*
 
-## 12. `J-near-tight-scale-bounds`
+## 10. `J-near-tight-scale-bounds`
 
 **Row.** The local Juggler remainder satisfies 0≤ρ<2T+1, hence η=ρ/T^2 < 2/T + 1/T^2 and 1+η < ((T+1)/T)^2. For the mixed itinerary OOE, 1+q = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y.
 
@@ -243,7 +207,7 @@ theorem large_lambda_successor_q_bound {y : ℕ}
 
 *Runners-up: `ooe_one_plus_slack_lt_succ_ratio` (0.15), `even_remainder_bound` (0.118)*
 
-## 13. `J-finite-progress-boundary`
+## 11. `J-finite-progress-boundary`
 
 **Row.** Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n ≥ 2 and every odd start n ≥ 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal prog
 
@@ -261,7 +225,7 @@ theorem odd_even_finiteProgress {n : ℕ} (hn : 2 ≤ n)
 
 *If this row describes a definition rather than a theorem: `FiniteProgress`*
 
-## 14. `J-first-even-overshoots`
+## 12. `J-first-even-overshoots`
 
 **Row.** On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle itinerary, now excluded by no_cycle_itinerary_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycle
 
@@ -282,7 +246,7 @@ theorem minimal_first_even_overshoots {n a : ℕ}
 
 *If this row describes a definition rather than a theorem: `evenCount`*
 
-## 15. `J-cyclemax-succ-sq`
+## 13. `J-cyclemax-succ-sq`
 
 **Row.** On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: t
 
@@ -305,7 +269,7 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `evenCount`*
 
-## 16. `J-cyclemin-transport-oo`
+## 14. `J-cyclemin-transport-oo`
 
 **Row.** On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside t
 
@@ -326,7 +290,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
 
-## 17. `J-ce-third-residual-preimages`
+## 15. `J-ce-third-residual-preimages`
 
 **Row.** If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 
 
@@ -344,7 +308,7 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
 
-## 18. `J-cube-odd-even-reset`
+## 16. `J-cube-odd-even-reset`
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
@@ -361,7 +325,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 
-## 19. `J-small-cycle-census-ten`
+## 17. `J-small-cycle-census-ten`
 
 **Row.** No itinerary of length at most ten is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_itinerary_length_nine, no_cycle_
 
@@ -380,7 +344,7 @@ theorem no_cycle_itinerary_length_le_ten {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `financeRows53`, `financeRows257`*
 
-## 20. `J-cyclemin-defect-finance-kill`
+## 18. `J-cyclemin-defect-finance-kill`
 
 **Row.** The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: pe
 
@@ -401,7 +365,7 @@ theorem cycleMin_hug_kill_criterion {n : ℕ} {w : List Branch}
 
 *Runners-up: `cycleMin_defect_finance` (0.134), `log_floorPower_even_ge_sub` (0.11)*
 
-## 21. `J-loglog-clock-band-word-forced-lean`
+## 19. `J-loglog-clock-band-word-forced-lean`
 
 **Row.** Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk ha
 
