@@ -983,6 +983,62 @@ def runlength_failures() -> list[dict[str, Any]]:
     return bad
 
 
+
+# --- what the paper's machine-checked column actually rests on -----------------------------------
+#
+# `trust_boundary` checks that a cited Lean name is declared and that its module is reachable from
+# the Paper B root.  Neither says the declaration is *proved*.  A `sorry` anywhere in its
+# dependency graph, or a `native_decide`, leaves the name declared, the module reachable and the
+# build green while the paper's machine-checked column asserts something false.
+#
+# `formal/AxiomCheckPaperB.lean` prints the axiom dependencies of every cited declaration and
+# `AxiomCheckPaperB.expected` records the output.  All forty-six read
+# [propext, Classical.choice, Quot.sound] -- Mathlib's three and nothing else.
+
+AXIOM_CHECK = REPO_ROOT / "formal" / "AxiomCheckPaperB.lean"
+AXIOM_EXPECTED = REPO_ROOT / "formal" / "AxiomCheckPaperB.expected"
+MATHLIB_AXIOMS = "[propext, Classical.choice, Quot.sound]"
+
+
+def axiom_check_names() -> list[str]:
+    """The declarations the artifact interrogates."""
+    return re.findall(r"^#print axioms ([A-Za-z0-9_']+)$",
+                      AXIOM_CHECK.read_text(encoding="utf-8"), re.M)
+
+
+def axiom_check_results() -> dict[str, str]:
+    """Recorded output: declaration -> the axiom list it depends on."""
+    out = {}
+    for line in AXIOM_EXPECTED.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"^'Problems\.Juggler\.([A-Za-z0-9_']+)' depends on axioms: (\[.*\])$", line)
+        if m:
+            out[m.group(1)] = m.group(2)
+    return out
+
+
+def axiom_failures() -> list[dict[str, Any]]:
+    """A cited declaration missing from the artifact, unrecorded, or resting on more than the three."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("trust_boundary", REPO_ROOT / "tools" / "trust_boundary.py")
+    tb = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(spec and tb)                              # type: ignore[arg-type]
+    cited = sorted({r["name"] for r in tb.audit() if r["declared"]})
+    listed, results = axiom_check_names(), axiom_check_results()
+    bad: list[dict[str, Any]] = []
+    for name in cited:
+        if name not in listed:
+            bad.append({"name": name, "why": "cited and declared, but the artifact does not ask"})
+        elif name not in results:
+            bad.append({"name": name, "why": "asked, but no recorded result"})
+        elif results[name] != MATHLIB_AXIOMS:
+            bad.append({"name": name, "why": "rests on more than Mathlib's three",
+                        "axioms": results[name]})
+    for name in listed:
+        if name not in cited:
+            bad.append({"name": name, "why": "the artifact asks about a name the paper no longer cites"})
+    return bad
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
@@ -995,7 +1051,8 @@ def failures() -> dict[str, list[Any]]:
             "kappa_table": kappa_table_failures(),
             "a6_table": a6_failures(),
             "prop71": prop71_failures(),
-            "runlength": runlength_failures()}
+            "runlength": runlength_failures(),
+            "axioms": axiom_failures()}
 
 
 def main() -> None:

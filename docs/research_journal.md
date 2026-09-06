@@ -37566,3 +37566,47 @@ Best next question
   that? Take every numeric threshold the body prints in prose -- "from
   P >= X" -- and check it against the row A.5 prints for the same claim.
 ```
+
+## The check that came back clean, and why I kept it
+
+2026-09-07, night. Every audit so far reads the manuscript. The one
+claim in this paper a reader genuinely cannot check by reading is the
+Lean column: which statements are machine-checked. Two tools touch it.
+trust_boundary says each cited name is declared and its module reachable
+from the Paper B root. lean_numeral_audit checks the numerals inside the
+statements. Neither asks whether the declarations are proved.
+
+They can all be declared, all reachable, lake build green, and one of
+them resting on a sorry three imports away.
+
+There is a one-line answer to that in Lean and nobody had run it. Forty-
+six #print axioms, twenty-six seconds against the warm cache: every one
+comes back [propext, Classical.choice, Quot.sound]. Mathlib's three and
+nothing else. No sorry anywhere in the six modules, no native_decide, no
+declared axiom under formal/Problems/.
+
+So the falsifier was met on the first run and there is no finding. I
+kept it anyway, and I want to be honest about why. The value of a guard
+is not what it caught but what its failure would have meant, and here
+that is the paper's formalization claim entire. It is also the cheapest
+strong check in the repository: one generated file, one recorded
+output, one test that regenerates rather than trusts it.
+
+There is a nice side effect. Importing Problems.JugglerParityPaper and
+having all forty-six names resolve re-establishes reachability by a
+route completely independent of trust_boundary's own import walk. Two
+different mechanisms agreeing on the same set is worth more than either.
+
+Two small things did fall out. trust_boundary's docstring says
+reachability is measured from Problems/JugglerPaper.lean --- that is
+Paper A's root, and the code has always used the Paper B one. The
+docstring described a check the tool does not perform on a file it does
+not read.
+
+And the paper had carved out exactly one backticked name as
+not-a-theorem: ring, the tactic that discharges an inversion. To state
+the axiom convention I need two more, because sorry and native_decide
+are precisely the two ways a declaration is green without being proved,
+and you cannot exclude what you cannot name. Writing the convention
+made the excluded set grow, which is the sort of thing that happens
+when a paper starts describing its own guards.

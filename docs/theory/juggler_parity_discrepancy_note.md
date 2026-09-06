@@ -270,8 +270,20 @@ a barrel importing exactly this paper's six modules --- `BranchFreeze`,
 `MasterIdentity`, `MeanValues`, `MonomialSplitting`, `PaperBAssembly` and
 `ThresholdCertificate` --- so the formal side can be built on its own with
 `lake build Problems.JugglerParityPaper`. It shares no module with Paper A's
-barrel. And `ring` appears once in the text as the tactic that discharges an
-inversion, not as the name of a theorem.
+barrel. And three backticked names here are not theorems: `ring`, the tactic that
+discharges an inversion, and `sorry` and `native_decide`, named just below
+as the two ways a declaration can be green without being proved.
+
+Declared and reachable is still not proved. A `sorry` anywhere in a
+declaration's dependency graph, or a `native_decide`, leaves the name
+declared, the module reachable and `lake build` green while this column
+asserts something false. So the third convention is that every
+identifier listed depends on Mathlib's three axioms and nothing else.
+`formal/AxiomCheckPaperB.lean` prints the axiom dependencies of all
+forty-six, and every line of its output reads
+`[propext, Classical.choice, Quot.sound]`; the output is recorded
+beside it. That is what makes the column a claim about proofs rather
+than about names, and it is the check a reader should run first.
 
 A column of identifiers says which theorems exist; it does not say that they
 are about this paper's constants. Two tables now say that. Appendix A pairs

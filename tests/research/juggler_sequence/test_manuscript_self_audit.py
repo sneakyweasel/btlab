@@ -242,7 +242,7 @@ def test_failures_now_covers_relations() -> None:
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
                       "a1_thresholds", "claim_vs_predicate",
                       "p0_reproducible", "kappa_table", "a6_table",
-                      "prop71", "runlength"}
+                      "prop71", "runlength", "axioms"}
     assert all(v == [] for v in f.values())
 
 
@@ -687,3 +687,57 @@ def test_the_paper_records_the_recomputation() -> None:
     assert "The table is exact and has been re-run" in text
     assert "One figure did not survive" in text
     assert "brute enumeration of all" in text
+
+
+# --- what the machine-checked column rests on ----------------------------------------------------
+
+
+def test_every_cited_declaration_rests_on_mathlibs_three_axioms() -> None:
+    assert M.axiom_failures() == []
+    results = M.axiom_check_results()
+    assert len(results) == 46
+    assert set(results.values()) == {"[propext, Classical.choice, Quot.sound]"}
+
+
+def test_the_artifact_asks_about_exactly_the_cited_names() -> None:
+    """Neither more nor fewer: a name added to the paper must be added to the check."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "trust_boundary", ROOT / "tools" / "trust_boundary.py")
+    tb = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tb)
+    cited = sorted({r["name"] for r in tb.audit() if r["declared"]})
+    assert M.axiom_check_names() == cited
+    assert len(cited) == 46
+
+
+def test_no_sorry_in_the_paper_b_modules() -> None:
+    """The textual half; the axiom check is the one that sees through imports."""
+    import re as _re
+    for name in ("BranchFreeze", "MasterIdentity", "MeanValues", "MonomialSplitting",
+                 "PaperBAssembly", "ThresholdCertificate"):
+        src = (ROOT / "formal" / "Problems" / "Juggler" / (name + ".lean")).read_text(
+            encoding="utf-8")
+        assert not _re.search(r"(?<![A-Za-z0-9_])sorry(?![A-Za-z0-9_])", src), name
+        assert "native_decide" not in src, name
+
+
+def test_the_axiom_check_actually_runs() -> None:
+    """Slow but the point: the recorded output is regenerated, not trusted."""
+    import shutil
+    import subprocess
+    if shutil.which("lake") is None:
+        import pytest
+        pytest.skip("no lake on PATH")
+    out = subprocess.run(["lake", "env", "lean", "AxiomCheckPaperB.lean"],
+                         cwd=ROOT / "formal", capture_output=True, text=True, timeout=600)
+    assert out.returncode == 0, out.stderr[-2000:]
+    expected = (ROOT / "formal" / "AxiomCheckPaperB.expected").read_text(encoding="utf-8")
+    assert out.stdout.strip() == expected.strip()
+
+
+def test_the_paper_states_the_third_convention() -> None:
+    text = M.paper_text()
+    assert "Declared and reachable is still not proved" in text
+    assert "[propext, Classical.choice, Quot.sound]" in text
+    assert "AxiomCheckPaperB.lean" in text

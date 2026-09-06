@@ -42,10 +42,14 @@ def test_table_sits_in_the_verification_section() -> None:
         "The boundary between those three kinds of warrant") < src.index("### 1.2 Related work")
 
 
+# tactic-or-term names the table mentions on purpose, each carved out in the text
+NOT_THEOREMS = {"ring", "sorry", "native_decide"}
+
+
 def test_every_identifier_in_the_table_is_declared_in_lean() -> None:
     """The table may only name theorems the repository actually has."""
     decl = TB.declared()
-    named = {m.group(1) for m in IDENT.finditer(table())} - {"ring"}
+    named = {m.group(1) for m in IDENT.finditer(table())} - NOT_THEOREMS
     assert named, "table names no identifiers"
     missing = sorted(n for n in named if n not in decl)
     assert not missing, missing
@@ -55,7 +59,7 @@ def test_every_identifier_in_the_table_is_reachable() -> None:
     """Reachable from Paper B's own barrel, which is what the table tells a reader to build."""
     decl = TB.declared()
     reach = TB.reachable_modules(TB.PAPER_B_ROOT)
-    named = {m.group(1) for m in IDENT.finditer(table())} - {"ring"}
+    named = {m.group(1) for m in IDENT.finditer(table())} - NOT_THEOREMS
     unreachable = sorted(n for n in named if decl.get(n) not in reach)
     assert not unreachable, unreachable
 
@@ -63,8 +67,10 @@ def test_every_identifier_in_the_table_is_reachable() -> None:
 def test_the_paper_cites_nothing_lean_does_not_declare() -> None:
     """`ring` is the one backticked name that is a tactic, not a theorem, and the table says so."""
     undeclared = [r["name"] for r in TB.audit() if not r["declared"]]
-    assert undeclared == ["ring"], undeclared
-    assert "not as the name of" in table()
+    # three tactic-or-term names, each carved out in the text: ring discharges an inversion,
+    # and sorry / native_decide name the two ways a declaration is green without being proved
+    assert sorted(undeclared) == ["native_decide", "ring", "sorry"], undeclared
+    assert "are not theorems" in table()
 
 
 def test_lemma_5_2_still_has_no_machine_check() -> None:

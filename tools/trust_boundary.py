@@ -5,8 +5,8 @@ classical input.  Guessing it would defeat the purpose, so this builds it from e
 
   * every backticked identifier in Paper B's prose, with the section that cites it;
   * whether that identifier is actually declared somewhere under formal/Problems/;
-  * whether its module is reachable from Problems/JugglerPaper.lean, which is the root the
-    paper's formalization claims are supposed to track;
+  * whether its module is reachable from Problems/JugglerParityPaper.lean, which is the root
+    this paper's formalization claims are supposed to track (JugglerPaper.lean is Paper A's);
   * the theorem-ledger tag of the corresponding row, where one exists.
 
 A name cited by the paper but absent from the Lean sources, or present but unreachable from the

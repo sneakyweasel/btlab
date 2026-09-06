@@ -7219,3 +7219,70 @@ Probe: `survivors_of_the_E_constant_update` with `E_UPDATE_SURVIVORS`,
 matched against the whitespace-stripped manuscript so the sites report
 their own repair. Two tests. Audit `270 / 270`; `P_0` unmoved. No
 manuscript or certificate edit.
+
+## Declared, reachable, and now proved: the axiom dependencies of all forty-six cited declarations
+
+*Mathematical target.* The paper's central table separates human proof
+from machine check. `trust_boundary` verifies that each cited Lean name
+is declared and that its module is reachable from the Paper B root.
+Neither says the declaration is *proved*.
+
+*Novelty hypothesis.* A `sorry` somewhere in a dependency graph, or a
+`native_decide`, leaves a name declared, its module reachable and
+`lake build` green while the machine-checked column asserts something
+false.
+
+*Falsifier.* Every cited declaration rests on Mathlib's three axioms.
+
+*Existing machinery.* `trust_boundary.audit`; `lake env lean`.
+
+*Prior art.* `lean_numeral_audit` checks the numerals *inside*
+statements against `p0_certificate`; `trust_boundary` checks existence
+and reachability. Neither asks about proof. The ledger has nothing on
+`sorry` or axioms; `docs/negative_knowledge.md` nothing.
+
+**Falsifier met, and that is the result.** All forty-six cited
+declarations depend on `[propext, Classical.choice, Quot.sound]` and
+nothing else. No `sorry`, no `sorryAx`, no `native_decide`, no
+`Lean.ofReduceBool`, no declared axiom anywhere under
+`formal/Problems/`. The import of `Problems.JugglerParityPaper`
+resolving all forty-six also re-establishes reachability from the Paper
+B root as a byproduct, by a route independent of `trust_boundary`'s
+import walk.
+
+This is a guard rather than a finding, and it is the guard that matters
+most for the one claim in this paper a reader cannot check by reading:
+that the Lean column is about proofs and not about names.
+`formal/AxiomCheckPaperB.lean` is the artifact, `AxiomCheckPaperB.expected`
+the recorded output, and a test regenerates rather than trusts it ---
+`lake env lean` takes twenty-six seconds against the warm cache.
+
+**Two small things did fall out.**
+
+`trust_boundary`'s docstring said reachability was measured from
+`Problems/JugglerPaper.lean`. That is Paper A's root; the code has
+always used `PAPER_B_ROOT`. The docstring described a check the tool
+does not perform, on a file it does not read.
+
+The paper carved out one backticked name as not-a-theorem: `ring`, the
+tactic discharging an inversion. Stating the axiom convention needs two
+more --- `sorry` and `native_decide` are exactly the two ways a
+declaration is green without being proved, and they have to be nameable
+to be excluded. The carve-out now names all three and the guard's
+excluded set is factored out beside it.
+
+Tags. COMPUTATIONALLY VERIFIED: forty-six `#print axioms` results, one
+distinct value; zero textual `sorry` or `native_decide` in the six
+Paper B modules; the artifact's name list equal to
+`trust_boundary`'s cited-and-declared set, in both directions.
+OBSERVATION: a guard whose falsifier is met on the first run is worth
+keeping in proportion to what its failure would have meant, and here
+that is the paper's formalization claim entire.
+
+Probe: `manuscript_self_audit.axiom_check_names`,
+`axiom_check_results`, `axiom_failures`; `failures()` gains an `axioms`
+key, twelve checks in all. Five new tests, seventy-two in the file, one
+of which runs Lean. Manuscript: a third convention stated in the
+trust-boundary section and the not-a-theorem carve-out extended. New
+files `formal/AxiomCheckPaperB.lean` and `AxiomCheckPaperB.expected`.
+`P_0` and `P_1` unmoved. No certificate edit.
