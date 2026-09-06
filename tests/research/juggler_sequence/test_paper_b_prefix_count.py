@@ -1572,4 +1572,6 @@ def test_paper_records_the_composite_screen() -> None:
     assert "1.4014" in text and "0.5406" in text
     assert "the only one of them that\nnever binds" in text
     assert "not a composite the paper has ever formed" in text
-    assert r"should be re-derived with" in text and r"subtraction in view" in text
+    # Step E's zero-offset is now derived, and its first half has no alpha-form
+    assert "is absent from the three for a" in text
+    assert "not a function of the weight" in text

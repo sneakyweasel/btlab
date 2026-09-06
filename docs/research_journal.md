@@ -30576,3 +30576,93 @@ Best next question
   width, or would the sharp band [27/4, (27/4)2^{1/4}] change an
   exponent downstream?
 ```
+
+ ### Step E's zero-offset is 3^7/2^11, and it vindicates the anchor
+
+Last entry left `1095/1024` underived and suspect. It has a two-line
+derivation and it is not `1095/1024`.
+
+**Two halves.** The total phase is
+`DD((k/2) m^{9/4}) - DD(c theta_2)`. With gaps frozen the smooth double
+difference is `b1 b2 f''(X)`, and `f(Z) = (k/2) Z^{9/4}` has
+`f'' = (45k/32) Z^{1/4}`, so the first half is
+`(45k/32) b1b2 nu^{3/8}` with curvature
+`(45/32)(3/8)(-5/8) = -675/2048`. The second is the `(c(G-J))''` of
+Lemma 5.2b at its corrected value, `-432/2048`. So
+
+```text
+   lambda_0' = 243/2048 k b1b2 nu^{-13/8} = 2187/2048 k h1h2 nu^{-5/8}
+   b'        = -(2187/2048)(64/33) = -729/352
+```
+
+Measured at `P = 1e8` on real `j=0` branches: the first half is
+`-0.3295898 = -675/2048` at every sample to seven figures, the total
+times nine runs `-1.06787` to `-1.06843` against
+`-2187/2048 = -1.0678711`. The printed `-1.0693359` is outside that
+spread.
+
+**One slip, propagated.** `1095/1024 = 2190/2048` and
+`-365/176 = -730/352`: both are `729 -> 730`. The earlier audit entry
+had noticed that `b'` is "*exactly* `405*1095/1215`, so it scales with
+the anchor it is built from — a good sign that `1095/1024` was
+propagated and not guessed". Right about the propagation, wrong about
+what it certified. A constant carried faithfully from a wrong source is
+still wrong; internal consistency was the only thing being tested.
+
+**The exact values have the shape everything else here has.**
+`2187 = 3^7`, `729 = 3^6`, and `lambda_0' = (9/16) lambda_0` and
+`b' = (9/16) b` in lowest terms — against `1095 = 3*5*73`, `365 = 5*73`
+and the ratio `73/81`. A factor 73 has no business in this computation,
+and that is the tell I should have read off the printed numbers before
+computing anything.
+
+**And it vindicates the previous erratum.** `2190/2048` is already what
+the *corrected* anchor gives. With Lemma 5.2b's printed `-135/1024` the
+difference would be `-3645/2048`, too large by `5/3` and outside the
+printed bracket `[0.60, 1.25]`. So Theorem 6.1 took the `-J_F c''`
+subtraction — as its own offset branch does explicitly,
+`945/512 - 81/512 = 864/512` — and Lemma 5.2b's display did not. The
+correction was not a reinterpretation of an ambiguous passage; it is
+what the later section had already computed.
+
+Nothing downstream moves: the true range is `(0.6924, 1.0679]` against
+`(0.6934, 1.0694]`, both inside `[0.60, 1.25]`, and the lower end still
+clears the A.5 row reading `S >= 0.60 P^(-5/8)`. Corrected in place at
+all five sites rather than flagged, since no threshold depends on it.
+
+```text
+What was learned
+- "it was propagated, not guessed" certifies provenance, not value;
+  the audit had checked that and called it reassuring
+- number shape is evidence: 3^7/2^11 and 3^6/352 belong to this paper,
+  3*5*73 and 5*73 do not, and the factor 73 was visible before any
+  computation
+- two errata in adjacent sections can corroborate rather than compound
+  -- Step E's printed value only makes sense against the corrected
+  anchor, which is independent evidence the correction is right
+- a derivation absent from a manuscript is not thereby hard; this one
+  is two lines and had never been written down
+Strongest theorem
+- Step E's zero-offset curvature is 2187/2048 k h1h2 nu^{-5/8} with
+  b' = -729/352, exactly 9/16 of the kernel's own anchor and its
+  interpolant
+Strongest refutation
+- the printed 1095/1024 and -365/176, measured against the object they
+  name; the discrepancy is the single digit 729 -> 730
+Reusable machinery
+- smooth_double_difference_curvature, step_e_zero_offset,
+  step_e_interpolant_b; six tests, one measuring both halves
+Branch status
+- PARK
+Why
+  The question the last two entries left is closed, the constant is
+  derived in the manuscript where it had only been asserted, and the
+  correction confirms the previous erratum from an independent
+  direction. The composites of Sections 5 and 6 are now all derived,
+  all measured, and all in lowest terms.
+Best next question
+- the deferred one, unchanged: propagate the corrected Lemma 5.2b
+  constants and lower the printed P_0 from 8.9e13 to 3.6e13 across the
+  seventeen manuscript sites, two modules, one Lean file and four test
+  files.
+```

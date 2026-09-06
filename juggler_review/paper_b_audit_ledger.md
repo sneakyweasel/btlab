@@ -1468,3 +1468,68 @@ and a loose band is still a band. But the constants are known to seven
 digits, and anyone tightening Step 5b now knows exactly how much room
 each end has. OBSERVATION for the measurement, EXACT for the two
 derivative computations, which are in `exponent_checks`.
+
+### Step E's zero-offset is \(3^7/2^{11}\), and it vindicates the anchor correction
+
+The previous entry left \(\tfrac{1095}{1024}\) underived. It has a
+two-line derivation, and it is not \(\tfrac{1095}{1024}\).
+
+*The two halves.* The total phase is
+\(\Delta\Delta(\tfrac k2m^{9/4})-\Delta\Delta(c\theta_2)\). With the
+gaps frozen the smooth double difference is \(\beta_1\beta_2f''(X)\),
+and \(f(Z)=\tfrac k2Z^{9/4}\) gives \(f''=\tfrac{45k}{32}Z^{1/4}\), so
+the first half is \(\tfrac{45k}{32}\beta_1\beta_2\nu^{3/8}\) with
+\(\nu\)-curvature
+\(\tfrac{45}{32}\cdot\tfrac38\cdot(-\tfrac58)=-\tfrac{675}{2048}\) per
+\(k\beta_1\beta_2\nu^{-13/8}\). The second half is the
+\((c(G_F-J_F))''\) of Lemma 5.2b at its **corrected** value,
+\(-\tfrac{432}{2048}\). Subtracting,
+\[
+\lambda_0'=\tfrac{243}{2048}\,k\beta_1\beta_2\nu^{-13/8}
+=\tfrac{2187}{2048}\,kh_1h_2\nu^{-5/8},
+\qquad
+b'=-\tfrac{2187}{2048}\cdot\tfrac{64}{33}=-\tfrac{729}{352}.
+\]
+
+*Measured.* At \(P=10^8\) on real \(j=0\) branches with the true
+integer gaps, the first half is \(-0.3295898=-675/2048\) at every
+sample to seven figures, the second \(-0.2108\ldots\) against
+\(-216/1024\), and the total \(\times9\) runs \(-1.06787\) to
+\(-1.06843\) against \(-2187/2048=-1.0678711\). The printed
+\(-1095/1024=-1.0693359\) is outside that spread.
+
+*One slip, propagated.* \(\tfrac{1095}{1024}=\tfrac{2190}{2048}\) and
+\(b'=-\tfrac{365}{176}=-\tfrac{730}{352}\): both are \(729\to730\). The
+previous audit entry noted that \(b'\) "is *exactly* \(405\cdot
+1095/1215\), so it scales with the anchor it is built from --- a good
+sign that \(1095/1024\) was propagated and not guessed." That reading
+was right about the propagation and wrong about what it certified: a
+constant carried faithfully from a wrong source is still wrong, and
+internal consistency was the only thing being checked.
+
+*And the exact values are in the shape everything else in this paper
+has.* \(2187=3^7\) and \(729=3^6\), over powers of two, and
+\(\lambda_0'=\tfrac9{16}\lambda_0\) and
+\(b'=\tfrac9{16}b\) in lowest terms --- against \(1095=3\cdot5\cdot73\),
+\(365=5\cdot73\) and the ratio \(\tfrac{1095}{1215}=\tfrac{73}{81}\).
+A factor \(73\) has no business in this computation.
+
+*What this says about the previous erratum.* \(\tfrac{2190}{2048}\) is
+already what the *corrected* anchor produces. Had Step E used Lemma
+5.2b's printed \(-\tfrac{135}{1024}\), the difference would be
+\(-\tfrac{3645}{2048}\), too large by \(\tfrac53\) and far outside the
+printed bracket \([0.60,1.25]\). So Theorem 6.1 took the \(-J_Fc''\)
+subtraction --- as its own offset branch does explicitly,
+\(\tfrac{945}{512}-\tfrac{81}{512}=\tfrac{864}{512}\) --- and Lemma
+5.2b's display did not. The two errata corroborate each other: the
+correction was not a reinterpretation, it is what the later section
+already computed.
+
+*Nothing downstream moves.* The true range is \((0.6924,1.0679]\)
+against the previous \((0.6934,1.0694]\), both inside the printed
+\([0.60,1.25]\), and the lower end still clears the A.5 row that reads
+\(S\ge0.60P^{-5/8}\). No threshold, no appendix row, no \(P_0\).
+
+`smooth_double_difference_curvature`, `step_e_zero_offset`,
+`step_e_interpolant_b` in `p0_certificate.py`; six tests, one of them
+the direct measurement of both halves. ERRATUM (corrected in place).

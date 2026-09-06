@@ -499,6 +499,38 @@ def moving_gap_curvature() -> Fr:
     return Fr(81, 16) * Fr(11, 8) * Fr(3, 8)
 
 
+def smooth_double_difference_curvature() -> Fr:
+    """``DD((k/2) m^{9/4})''`` at ``j = 0``, in units of ``k b1 b2 nu^{-13/8}``.
+
+    With the gaps frozen the double difference is ``b1 b2 f''(X)`` up to the mean-value error, and
+    ``f(Z) = (k/2) Z^{9/4}`` has ``f'' = (45k/32) Z^{1/4}``, so the piece is
+    ``(45k/32) b1 b2 nu^{3/8}`` and its curvature ``(45/32)(3/8)(-5/8) = -675/2048``.
+    """
+    return Fr(45, 32) * Fr(3, 8) * Fr(-5, 8)
+
+
+def step_e_zero_offset() -> Fr:
+    """Theorem 6.1 Step E's ``lambda_0'`` at ``j = 0``: ``3^7 / 2^11`` in ``k h1 h2 nu^{-5/8}``.
+
+    The total phase is ``DD((k/2) m^{9/4}) - DD(c theta_2)``, and the second is the
+    ``(c(G_F - J_F))''`` of Lemma 5.2b -- the corrected anchor, as this step already takes it on
+    the offset branch (``945/512 - 81/512 = 864/512``).  So
+    ``-675/2048 + 432/2048 = -243/2048`` per ``k b1 b2 nu^{-13/8}``, and ``2187/2048`` after
+    ``b1 b2 -> 9 h1 h2 nu``.  Equivalently ``9/16`` of the kernel's own anchor.
+
+    The manuscript printed ``1095/1024 = 2190/2048`` and ``b' = -365/176 = -730/352``: one slip
+    ``729 -> 730``, propagated.  Note that ``2190`` is already what the *corrected* anchor gives;
+    Lemma 5.2b's printed ``-135/1024`` would give ``-3645/2048``, off by 5/3.  Step E computed the
+    anchor correctly and Lemma 5.2b displayed it wrongly.
+    """
+    return -9 * (smooth_double_difference_curvature() - anchor_curvature())
+
+
+def step_e_interpolant_b() -> Fr:
+    """``b' = -729/352``, from ``b' (11/8)(3/8) = -2187/2048``.  Printed ``-365/176``."""
+    return step_e_zero_offset() * Fr(64, 33) * -1
+
+
 def anchor_range(lead: Fr) -> tuple[float, float]:
     """``lambda_0`` in units of ``k h1 h2 P^{-5/8}`` from ``b1b2 nu^{-13/8}`` in ``[2.92, 18.49]``."""
     lo = 9.0 * 2.0 ** -1.625

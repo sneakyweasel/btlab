@@ -1059,3 +1059,107 @@ def test_ledger_and_paper_carry_the_erratum() -> None:
     assert "the two errors concealed" in paper
     assert "ERRATUM (confirmed; constants only)" in ledger
     assert "2673/1024" in ledger or "2673}{1024}" in ledger
+
+
+# --- Theorem 6.1 Step E: the zero-offset composite, derived ---
+
+
+def test_the_smooth_half_is_675_over_2048() -> None:
+    """DD((k/2) m^{9/4}) = b1b2 f''(X) with f'' = (45k/32) Z^{1/4}, curvature (45/32)(3/8)(-5/8)."""
+    assert C.smooth_double_difference_curvature() == Fr(-675, 2048)
+    assert Fr(1, 2) * Fr(9, 4) * Fr(5, 4) == Fr(45, 32)          # f''
+    assert Fr(3, 2) * Fr(1, 4) == Fr(3, 8)                       # X^{1/4} = nu^{3/8}
+    assert Fr(3, 8) * (Fr(3, 8) - 2) == Fr(-39, 64)              # not the curvature exponent pair
+    assert Fr(3, 8) * (Fr(3, 8) - 1) == Fr(-15, 64)              # (3/8)(-5/8)
+
+
+def test_step_e_zero_offset_is_three_to_the_seventh() -> None:
+    """2187/2048, not the printed 1095/1024; and b' = -729/352, not -365/176."""
+    assert C.step_e_zero_offset() == Fr(2187, 2048) == Fr(3 ** 7, 2 ** 11)
+    assert C.step_e_interpolant_b() == Fr(-729, 352) == Fr(-3 ** 6, 352)
+    assert C.step_e_interpolant_b() * Fr(11, 8) * Fr(3, 8) == -C.step_e_zero_offset()
+    # one slip, 729 -> 730, carried into b' by the propagation the ledger had noticed
+    assert Fr(1095, 1024) == Fr(2190, 2048)
+    assert Fr(-365, 176) == Fr(-730, 352)
+    assert Fr(2190, 2048) - Fr(2187, 2048) == Fr(3, 2048)
+
+
+def test_step_e_is_nine_sixteenths_of_the_kernel_anchor() -> None:
+    """A ratio in lowest terms, where the printed pair gave 1095/1215 = 73/81."""
+    kernel = -9 * C.anchor_curvature()                            # 243/128
+    assert kernel == Fr(243, 128)
+    assert C.step_e_zero_offset() / kernel == Fr(9, 16)
+    assert C.step_e_interpolant_b() / Fr(-81, 22) == Fr(9, 16)
+    assert Fr(1095, 1215) == Fr(73, 81)                           # the printed ratio, not in E
+
+
+def test_the_printed_value_needed_the_corrected_anchor() -> None:
+    """2190/2048 is near what the corrected anchor gives; the printed anchor is off by 5/3."""
+    with_printed = -9 * (C.smooth_double_difference_curvature() - C.bare_anchor_curvature())
+    assert with_printed == Fr(3645, 2048)
+    assert with_printed / C.step_e_zero_offset() == Fr(5, 3)
+    assert abs(float(C.step_e_zero_offset() / Fr(1095, 1024)) - 1) < 0.002
+
+
+def test_the_printed_bracket_still_holds() -> None:
+    """lambda_0' in [0.60, 1.25] survives, so no threshold and no appendix row moves."""
+    lead = float(C.step_e_zero_offset())
+    lo, hi = lead * 2 ** -0.625, lead
+    assert 0.60 <= lo and hi <= 1.25
+    assert round(lo, 4) == 0.6924 and round(hi, 4) == 1.0679
+    # and it clears the A.5 row that reads S >= 0.60 P^(-5/8)
+    assert lo > 0.60
+
+
+def test_step_e_zero_offset_is_measured() -> None:
+    """Both halves at P = 1e8 on real j=0 branches, against -675/2048 and -216/1024."""
+    from mpmath import mp
+    from research.juggler_sequence.paper_b_audit import level1_data
+
+    mp.dps = 50
+    P = 10 ** 8
+    rng = random.Random(3)
+    H1, H2, K = int(P ** (1 / 48)), int(P ** (1 / 24)), int(P ** (1 / 24))
+    half, nine4, nine8 = mp.mpf(3) / 2, mp.mpf(9) / 4, mp.mpf(9) / 8
+    totals = []
+    for _ in range(600):
+        if len(totals) >= 4:
+            break
+        n = rng.randrange(P + 1, 2 * P) | 1
+        h1, h2, k = rng.randint(1, max(1, H1)), rng.randint(1, max(1, H2)), rng.randint(1, max(1, K))
+        b1, _, _ = level1_data(n, 2 * h1)
+        b2, _, _ = level1_data(n, 2 * h2)
+        b12, _, _ = level1_data(n, 2 * h1 + 2 * h2)
+        if b12 - b1 - b2 != 0:
+            continue
+        nm = mp.mpf(n)
+
+        def shape(nu: object, p: object, _a: int = b1, _b: int = b2, _ab: int = b12) -> object:
+            Xn = mp.power(nu, half)
+            return (mp.power(Xn + _ab, p) - mp.power(Xn + _a, p)
+                    - mp.power(Xn + _b, p) + mp.power(Xn, p))
+
+        unit = k * abs(b1 * b2) * mp.power(nm, -mp.mpf(13) / 8)
+        Q = lambda nu, _k=k: mp.mpf(_k) / 2 * shape(nu, nine4)          # noqa: E731
+        GF = lambda nu: shape(nu, half)                                  # noqa: E731
+        cc = lambda nu, _k=k: mp.mpf(3 * _k) / 4 * mp.power(nu, nine8)   # noqa: E731
+        JF = mp.floor(GF(nm))
+        dQ = float(mp.diff(Q, nm, 2) / unit)
+        dA = float(mp.diff(lambda nu: cc(nu) * (GF(nu) - JF), nm, 2) / unit)
+        assert abs(dQ - (-675 / 2048)) < 1e-6, dQ
+        assert abs(dA - (-216 / 1024)) < 1e-4, dA
+        totals.append(9 * (dQ - dA))
+
+    assert len(totals) == 4
+    assert all(abs(t + 2187 / 2048) < 1e-3 for t in totals), totals
+    # and every sample is nearer 2187/2048 than the printed 2190/2048
+    assert all(abs(t + 2187 / 2048) < abs(t + 1095 / 1024) for t in totals), totals
+
+
+def test_paper_carries_the_step_e_derivation() -> None:
+    paper = io.open(PAPER, encoding="utf-8").read()
+    assert "2187}{2048}" in paper and "729}{352}" in paper
+    assert "675}{2048}" in paper and "432}{2048}" in paper
+    assert "1095}{1024}" in paper and "365}{176}" in paper   # only inside the erratum
+    assert "This step\n> computed the anchor correctly" in paper
+    assert paper.count("1095}{1024}") == 1 and paper.count("365}{176}") == 1

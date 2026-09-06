@@ -2207,7 +2207,7 @@ Step 5a (offset composite); Theorem 5.3 Step 5b (three regimes,
 the middle band citing Lemma 5.2b and Lemma 3.9); Theorem 6.1
 Step E (frozen-shape total phase
 \(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\),
-composites \(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\)).
+composites \(\tfrac{243}{512}\) and \(\tfrac{2187}{2048}\)).
 No later section re-derives these.
 
 **Lemma 5.2 (level-2 waves: the mixed-piece bound).**
@@ -4257,12 +4257,44 @@ the actual range \(k\le2P^{1/96}\) sits strictly inside.
 The inverse-power term remains \(P^{13/16}\).
 
 *Zero-offset branches (\(j=0\)).* The same frozen-shape difference,
-after \(\beta_1\beta_2\sim9h_1h_2\nu\), has leading curvature
+in two halves. With \(\beta_1,\beta_2\) frozen the smooth double
+difference is \(\Delta\Delta f(X)=\beta_1\beta_2f''(X)\) up to the
+mean-value error, so for \(f(Z)=\tfrac k2Z^{9/4}\),
+\(f''=\tfrac{45k}{32}Z^{1/4}\) and
+\(\Delta\Delta(\tfrac k2m^{9/4})=\tfrac{45k}{32}\beta_1\beta_2\nu^{3/8}\),
+whose \(\nu\)-curvature is
+\(\tfrac{45}{32}\cdot\tfrac38\cdot(-\tfrac58)
+=-\tfrac{675}{2048}\,k\beta_1\beta_2\nu^{-13/8}\). The anchor
+\(\Delta\Delta(c\theta_2)\) is the \((c(G_F-J_F))''\) of Lemma 5.2b,
+\(-\tfrac{216}{1024}=-\tfrac{432}{2048}\) in the same units --- the
+*corrected* value of the erratum there, with the \(-J_Fc''\) taken, as
+this step takes it at offset. Subtracting,
 \[
 \lambda_0'
-=\tfrac{1095}{1024}\,kh_1h_2\,\nu^{-5/8}
-\in[0.60,\,1.25]\,kh_1h_2P^{-5/8}.
+=\bigl(\tfrac{675}{2048}-\tfrac{432}{2048}\bigr)k\beta_1\beta_2\nu^{-13/8}
+=\tfrac{243}{2048}\,k\beta_1\beta_2\nu^{-13/8}
+=\tfrac{2187}{2048}\,kh_1h_2\,\nu^{-5/8}
+\in[0.60,\,1.25]\,kh_1h_2P^{-5/8}
 \]
+after \(\beta_1\beta_2\sim9h_1h_2\nu\), measured against the true
+integer gaps at \(P=10^8\) to seven figures on each half separately.
+Equivalently \(\lambda_0'=\tfrac9{16}\lambda_0\) exactly.
+
+> **Erratum (constants only; nothing downstream moves).** Earlier
+> printings gave \(\tfrac{1095}{1024}=\tfrac{2190}{2048}\) here and
+> \(b'=-\tfrac{365}{176}=-\tfrac{730}{352}\) below. The exact values are
+> \(\tfrac{2187}{2048}=\tfrac{3^7}{2^{11}}\) and
+> \(-\tfrac{729}{352}=-\tfrac{3^6}{352}\): a single slip
+> \(729\to730\), carried into \(b'\) by the propagation the audit
+> ledger had already noticed. The printed bracket
+> \([0.60,1.25]\) still holds --- the true range is
+> \((0.6924,1.0679]\) against \((0.6934,1.0694]\) --- so no threshold
+> and no appendix row moves. Note that \(\tfrac{2190}{2048}\) is
+> already the value the *corrected* Lemma 5.2b anchor produces: with
+> that lemma's printed \(-\tfrac{135}{1024}\) the difference would be
+> \(-\tfrac{3645}{2048}\), off by a factor \(\tfrac53\). This step
+> computed the anchor correctly and Lemma 5.2b displayed it wrongly.
+
 The three-regime split of Step 5b is
 read at this scale. The thresholds (factor \(60\)) are
 scale-free. In the anchor-dominant regime, Lemma 3.3 per run gives
@@ -4276,11 +4308,15 @@ Lemma 3.7 applies in a single window at \(T=P^{1/2}\)
 (hypothesis \(T\ge8(1+\lvert B\rvert)\) holds for
 \(\lvert B\rvert\le6\)). In the middle band the frozen-shape
 interpolant of Lemma 5.2b is reused with the kernel-anchor
-leading \(-\tfrac{1215}{1024}kh_1h_2\nu^{-5/8}\) replaced by
-\(-\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\), so
+leading \(-\tfrac{243}{128}kh_1h_2\nu^{-5/8}\) replaced by
+\(-\tfrac{2187}{2048}kh_1h_2\nu^{-5/8}\), so
 \(\Phi=a\nu^{5/4}+b'\nu^{11/8}+w\nu^{3/2}\) with
 \(a=-\tfrac{27}{10}(uh_1+u'h_2)\) and
-\(b'=-\tfrac{365}{176}\,kh_1h_2\). The \(\rho_0(E)\) bounds
+\(b'=-\tfrac{729}{352}\,kh_1h_2\), which is
+\(-\tfrac{2187}{2048}\cdot\tfrac{64}{33}\) and is \(\tfrac9{16}\) of
+the kernel's own \(b=-\tfrac{81}{22}\): the interpolant scales with
+the anchor it is built from, now by a ratio in lowest terms.
+The \(\rho_0(E)\) bounds
 are unchanged, and
 \[
 S
@@ -4462,7 +4498,7 @@ Steps D–E apply at this range.
 - *The sign-critical composites.* An \(X\)-mode is smooth, so it
   does not enter the frozen \(\theta\)-coefficient \(B\). The
   offset composite \(\tfrac{243}{512}\) and the zero-offset
-  curvature \(\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\) are therefore
+  curvature \(\tfrac{2187}{2048}kh_1h_2\nu^{-5/8}\) are therefore
   the values of Theorem 6.1 Step E. The (D3) curvature of the new
   modes is dominated at the ratios already displayed there
   (\(\le 3P^{-1/8}\) against \(\lambda_a'\ge0.40P^{-1/8}\)).
@@ -5216,7 +5252,7 @@ statement about one monomial and says so --- its Step 5a cancellation
 uses the exact ratio of that monomial's derivatives, a two-sided scale
 \(c^{(r)}\asymp kP^{9/8-r}\) being insufficient to determine the
 composite --- so a kernel at \(33/32\) means recomputing the composites
-\(\tfrac{243}{512}\) and \(\tfrac{1095}{1024}\) there and showing they
+\(\tfrac{243}{512}\) and \(\tfrac{2187}{2048}\) there and showing they
 do not vanish. Each depth-seven word also needs six waves where the
 proved rows need four, every extra wave bringing its own Vaaler
 truncation, majorant and remainder into a balance that would have to be
@@ -5327,12 +5363,15 @@ the *corrected* anchor of the erratum at Lemma 5.2b; read against the
 printed three-term form it would give \(13.4\), \(14.3\), \(85.4\),
 \(17.7\) and would rank the four differently --- which is the sharpest
 evidence that a composite's identity matters before its size. And Step
-E's zero-offset \(\tfrac{1095}{1024}\) is absent from the three: the
-manuscript displays the derivation of \(\tfrac{1215}{1024}\) but not of
-the \(\tfrac{120}{1024}\) separating them, and \(\tfrac{1215}{1024}\)
-is now known to be the wrong object, so that composite has no
-\(\alpha\)-form here and its printed value should be re-derived with
-the \(c''J_F\) subtraction in view.
+E's zero-offset \(\tfrac{2187}{2048}\) is absent from the three for a
+different reason. It is now derived, in two halves, at Step E itself
+--- \(\tfrac{675}{2048}\) from
+\(\Delta\Delta(\tfrac k2m^{9/4})\) less \(\tfrac{432}{2048}\) from the
+corrected anchor --- but the first half is not a function of the weight
+exponent at all: change \(\alpha\) and the identity of Lemma 5.1(i)
+that produced \(\tfrac k2m^{9/4}\) changes with it. Only the anchor
+half carries an \(\alpha\)-form, and that is the one already in the
+table.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.
