@@ -168,9 +168,16 @@ def test_a_row_does_not_name_a_declaration_other_than_its_own():
     """If a statement names exactly one declaration from its file and `decl` is a different
     one, the join is probably wrong.
 
-    ``OST-np-energy-telescope`` is the standing exception and is listed by name: it *is*
-    ``energy_telescope`` and cites ``energy_step`` as the step form it accumulates. An
-    exception list is the point -- a new one should have to be looked at.
+    The exceptions are rows that cite a *related* theorem while being a different one, which
+    is normal prose and not a defect. Each is listed with its reason, because the point of the
+    list is that a new case has to be looked at rather than tolerated by a rule:
+
+    * ``OST-np-energy-telescope`` is ``energy_telescope`` and cites ``energy_step`` as the
+      step form it accumulates.
+    * ``OST-np-impulse-place`` is ``iterateA_e3`` and calls itself the place-value dictionary
+      *for* ``origin_particular``.
+    * ``J-envelope-lt-pow`` is ``power_bound_lt_pow`` and notes that ``power_bound_contracts``
+      is its ``k = 1`` case.
     """
     import re
 
@@ -179,7 +186,7 @@ def test_a_row_does_not_name_a_declaration_other_than_its_own():
         r"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+([A-Za-z_][A-Za-z0-9_'!?.]*)",
         re.MULTILINE,
     )
-    allowed = {"OST-np-energy-telescope"}
+    allowed = {"OST-np-energy-telescope", "OST-np-impulse-place", "J-envelope-lt-pow"}
     flagged = []
     for row in _entries():
         decl = row.get("decl")

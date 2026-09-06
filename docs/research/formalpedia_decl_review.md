@@ -2,10 +2,10 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 120 resolved rows the scorer gets
-47 of the 57 it fires on right, 82% precise, so roughly one in
+same thing.  Measured against all 123 resolved rows the scorer gets
+50 of the 60 it fires on right, 83% precise, so roughly one in
 6 below is wrong.
-28 rows below, of 143 unresolved.
+25 rows below, of 140 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -210,23 +210,7 @@ theorem energy_homogeneous (n k : ℕ) (s : State) :
 
 *If this row describes a definition rather than a theorem: `applyA`, `energy`*
 
-## 11. `OST-np-impulse-place`
-
-**Row.** for Γ_NP, the origin impulse A^r e3 equals (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) with q_j=0 for j<0; this is the place-value dictionary for origin_particular, not a bound on L_0
-
-**Candidate.** `iterateA_e3` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:776`
-
-> `A^r e₃ = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r)`. KNOWN place-value dictionary for `origin_particular`, not `L₀`.
-
-```lean
-theorem iterateA_e3 (r : ℕ) : iterateA r e3 = impulsePlace r
-```
-
-*Runners-up: `particular_s3` (0.182), `reset_pow_then_hub` (0.182)*
-
-*If this row describes a definition rather than a theorem: `impulsePlace`, `particularSum`*
-
-## 12. `OST-np-particular-s3`
+## 11. `OST-np-particular-s3`
 
 **Row.** for Γ_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0
 
@@ -243,7 +227,7 @@ theorem particular_s3 (ws : List ℤ) :
 
 *If this row describes a definition rather than a theorem: `particularSum`, `consumedSum`*
 
-## 13. `OST-np-reset-pow-then-hub`
+## 12. `OST-np-reset-pow-then-hub`
 
 **Row.** for Γ_NP, the MSD word (B*)^k · (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0
 
@@ -263,7 +247,7 @@ theorem reset_pow_then_hub (k : ℕ) :
 
 *If this row describes a definition rather than a theorem: `recurrenceWord`, `particularSum`*
 
-## 14. `BTN-carry-gain-3`
+## 13. `BTN-carry-gain-3`
 
 **Row.** The synthetic map T_3(c,d)=3 DZ(c+2d) satisfies c_n=3n along the all-+1 word, so the residual set is unbounded. This is not value-preserving normalization.
 
@@ -279,7 +263,7 @@ theorem carryGain3_eq (n : ℕ) : carryGain3 n = 3 * (n : ℤ)
 
 *If this row describes a definition rather than a theorem: `doubledNext`, `doubledOut`*
 
-## 15. `BTN-sdr-escape-general`
+## 14. `BTN-sdr-escape-general`
 
 **Row.** If λ≥3 and |u|≥2 then the constant-control orbit of F_{λ,U} from 0 is unbounded: at λ=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at λ≥4 the step is strictly expanding on the matching ray.
 
@@ -294,7 +278,7 @@ theorem gain3_control2_unbounded (B : ℕ) :
 
 *If this row describes a definition rather than a theorem: `signedNext`, `signedOut`*
 
-## 16. `J-near-tight-scale-bounds`
+## 15. `J-near-tight-scale-bounds`
 
 **Row.** The local Juggler remainder satisfies 0≤ρ<2T+1, hence η=ρ/T^2 < 2/T + 1/T^2 and 1+η < ((T+1)/T)^2. For the mixed itinerary OOE, 1+q = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y.
 
@@ -315,24 +299,7 @@ theorem large_lambda_successor_q_bound {y : ℕ}
 
 *Runners-up: `ooe_one_plus_slack_lt_succ_ratio` (0.15), `even_remainder_bound` (0.118)*
 
-## 17. `J-odd-remainder-even`
-
-**Row.** If x is odd, T(x)=y is odd, and ρ=x³-y² is the local odd remainder, then ρ is even. This is the opposite parity of peakOddDefect_odd, which requires an even maximum.
-
-**Candidate.** `odd_remainder_even` &mdash; kernel-checked, `Problems/Juggler/SequentialMordell.lean:63`
-
-> On an odd-to-odd step the remainder is even. The peak law `peakOddDefect_odd` is the opposite parity, and needs an even max.
-
-```lean
-theorem odd_remainder_even {x y ρ : ℕ} (h : oddMordellStep x y ρ)
-    (hy : y % 2 = 1) : ρ % 2 = 0
-```
-
-*Runners-up: `peak_needs_even_max` (0.278), `two_odd_steps_not_peak_shape` (0.167)*
-
-*If this row describes a definition rather than a theorem: `sequentialDefect`, `oddMordellStep`*
-
-## 18. `J-fixed-itinerary-image-monotone`
+## 16. `J-fixed-itinerary-image-monotone`
 
 **Row.** If n and m realize the same finite Juggler word w and n ≤ m, then the image of n after w is at most the image of m after w.
 
@@ -346,7 +313,7 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 
 *If this row describes a definition rather than a theorem: `image`, `follows`*
 
-## 19. `J-finite-progress-boundary`
+## 17. `J-finite-progress-boundary`
 
 **Row.** Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n ≥ 2 and every odd start n ≥ 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal prog
 
@@ -364,7 +331,7 @@ theorem odd_even_finiteProgress {n : ℕ} (hn : 2 ≤ n)
 
 *If this row describes a definition rather than a theorem: `FiniteProgress`*
 
-## 20. `J-first-even-overshoots`
+## 18. `J-first-even-overshoots`
 
 **Row.** On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle itinerary, now excluded by no_cycle_itinerary_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycle
 
@@ -385,7 +352,7 @@ theorem minimal_first_even_overshoots {n a : ℕ}
 
 *If this row describes a definition rather than a theorem: `evenCount`*
 
-## 21. `J-cyclemax-succ-sq`
+## 19. `J-cyclemax-succ-sq`
 
 **Row.** On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: t
 
@@ -408,7 +375,7 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `evenCount`*
 
-## 22. `J-cyclemin-transport-oo`
+## 20. `J-cyclemin-transport-oo`
 
 **Row.** On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside t
 
@@ -429,7 +396,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
 
-## 23. `J-minimal-prefix-noncontracting`
+## 21. `J-minimal-prefix-noncontracting`
 
 **Row.** If MinimalNonTerm n and n follows w, then w is not an exponent-gap itinerary, and every prefix of w is noncontracting. Contrapositive of power_bound_contracts plus minimal_nonterm_no_descent. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a proof that escape is impossible and n
 
@@ -446,7 +413,7 @@ theorem minimal_nonterm_prefix_noncontracting {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEO`, `itineraryOOEOOEOO`*
 
-## 24. `J-ce-third-residual-preimages`
+## 22. `J-ce-third-residual-preimages`
 
 **Row.** If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 
 
@@ -464,28 +431,7 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
 
-## 25. `J-envelope-lt-pow`
-
-**Row.** If n ≥ 2, A > 0, x^A ≤ n^B, and B < k·A, then x < n^k. EnvelopeState n x packages the free inequality x^A ≤ n^B, with even (A,B)→(2A,B) and odd (A,B)→(2A,3B). PowerBound is the special case A=2^|w|, B=3^{oddCount w}. A realized itinerary with 3^{oddCount w} < k·2^{|w|} therefore has T_w(n) < n^k. power_bound_contracts is the k=1 case. Esc
-
-**Candidate.** `power_bound_lt_pow` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:312`
-
-> Word-stat form: `3^{oddCount w} < k · 2^{|w|}` yields `T_w(n) < n^k`. Implemented by `EnvelopeState.of_follows`. `power_bound_contracts` is the `k = 1` case.
-
-```lean
-theorem power_bound_lt_pow {n : ℕ} {w : List Branch} {k : ℕ}
-    (hn : 2 ≤ n) (hw : follows n w)
-    (hgap : 3 ^ oddCount w < k * 2 ^ w.length) :
-    image n w < n ^ k
-```
-
-*Statement names: `power_bound_contracts`*
-
-*Runners-up: `even_itinerary_contracts` (0.143), `pow_sq_le_cube` (0.129)*
-
-*If this row describes a definition rather than a theorem: `EnvelopeState.of_powerBound`, `EnvelopeState.map_itinerary`*
-
-## 26. `J-cube-odd-even-reset`
+## 23. `J-cube-odd-even-reset`
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
@@ -502,7 +448,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 
-## 27. `J-cyclemin-defect-finance-kill`
+## 24. `J-cyclemin-defect-finance-kill`
 
 **Row.** The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: pe
 
@@ -523,7 +469,7 @@ theorem cycleMin_hug_kill_criterion {n : ℕ} {w : List Branch}
 
 *Runners-up: `cycleMin_defect_finance` (0.134), `log_floorPower_even_ge_sub` (0.11)*
 
-## 28. `J-loglog-clock-band-word-forced-lean`
+## 25. `J-loglog-clock-band-word-forced-lean`
 
 **Row.** Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk ha
 
