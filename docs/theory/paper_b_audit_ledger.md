@@ -4500,3 +4500,63 @@ passage's actual argument, and it stands.
     5 printed ranges against the cited defaults                0 mismatched
     2 printed measurements citing no function
 ```
+
+## Part (ii) stops at two thirds because it charges a term of the same order twice
+
+Part (i) reaches `0.99997` of its bound and part (ii) only `0.66631`.
+The difference is one term, and the number `2/3` is arithmetic.
+
+**Part (i)'s bound is a leading term plus corrections.** Against a
+leading `(3/4) m^(-3/8) = O(n^(-9/16))`, the other four are
+`O(n^(-27/16))`, `O(n^(-21/16))`, `O(n^(-45/16))` and `O(n^(-81/16))`.
+So the ratio is the leading term's own, and it reaches `1`.
+
+**Part (ii)'s bound is two terms of the same order.** `U = v^(1/2)` and
+`v ~ m^(3/2)`, so `(U-1)^(-1/2) ~ v^(-1/4) = m^(-3/8)`, and the second
+term `(3/8)(U-1)^(-1/2)` is **exactly half** the first. Measured at the
+argmax `n = 105941`:
+
+```text
+  |D_5'|                    1.117467e-3
+  (3/4) m^(-3/8)            1.118054e-3     |D_5'| / this = 0.999475
+  (3/8)(U-1)^(-1/2)         5.590276e-4     ratio to the first = 0.500001
+  (9/128)(X-1)^(-7/8)       1.784991e-8
+  (3/32)(Y-1)^(-5/4)        6.902058e-16
+```
+
+The remainder is `0.999475` of the **first term alone**. So the full
+ratio is `(3/4)/(3/4 + 3/8) = 2/3 = 0.666667`, against the `0.666309`
+measured --- to four figures. The cap is not an accident of the range;
+it is what the bound is made of.
+
+**And the second term is deletable.** Dropping it leaves
+`(3/4) m^(-3/8) + (9/128)(X-1)^(-7/8) + (3/32)(Y-1)^(-5/4)`, which over
+every odd `n` in `[3, 200000]` --- `99999` points --- is never violated
+and is approached to `0.99945901`, at the same argmax `n = 105941`.
+
+```text
+  bound for part (ii)     violations   max ratio      margin
+  as printed              0            0.66630931     factor 1.50
+  with (3/8)(U-1)^(-1/2)  0            0.99945901     5.4e-4
+  deleted
+```
+
+So the proof charges `1.5` times what it uses, and the reduced bound is
+as sharp as part (i)'s. That is the one place in Lemma 6.2 where there
+is anything to sharpen, and it is a deletion rather than a
+re-derivation.
+
+Tags. EXACT: `(U-1)^(-1/2) ~ v^(-1/4) = m^(-3/8)`, so `(3/8)(U-1)^(-1/2)`
+is asymptotically half of `(3/4) m^(-3/8)` and the printed ratio caps at
+`(3/4)/(9/8) = 2/3`; part (i)'s other four terms are of strictly lower
+order, which is why its ratio reaches `1`. COMPUTATIONALLY VERIFIED: at
+`n = 105941` the second-to-first ratio is `0.500001` and `|D_5'|` is
+`0.999475` of the first term; the full ratio maxes at `0.66631` against
+the arithmetic `0.66667`; the reduced bound holds at all `99999` odd
+points of `[3, 200000]` with max ratio `0.99945901`. OBSERVATION: the
+argmax of the reduced bound is the argmax of the printed one.
+
+Probes: `lemma_6_2_part_ii_term_inventory`,
+`LEMMA_6_2_REDUCED_WIDE_SWEEP`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

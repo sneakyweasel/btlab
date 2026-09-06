@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "2a2b5bc496d88547c84450c55584fca6a7e99a33",
+  "git_commit": "a4cd22231b51468d9875a7f525094d4597bd6670",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3907,7 +3907,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5533,
+        "line": 5546,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3915,7 +3915,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6344,
+        "line": 6357,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6714,
+        "line": 6727,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6744,
+        "line": 6757,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6823,
+        "line": 6836,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -5840,6 +5840,60 @@
     "part_ii_keeps_a_factor": 1.500804483731437,
     "unlike_lemma_5_1_iii_there_is_no_room": true
   },
+  "lemma_6_2_part_ii_term_inventory": {
+    "rows": [
+      {
+        "n": 3,
+        "over_first_term": 0.12796800762347652,
+        "second_over_first": 0.6006976130686568,
+        "full_ratio": 0.07698978961126166,
+        "reduced_ratio": 0.12056019056717744
+      },
+      {
+        "n": 421,
+        "over_first_term": 0.9879617834315464,
+        "second_over_first": 0.5002794045023222,
+        "full_ratio": 0.6580759682302437,
+        "reduced_ratio": 0.9869659901703912
+      },
+      {
+        "n": 1517,
+        "over_first_term": 0.7355851957299983,
+        "second_over_first": 0.5000659895751578,
+        "full_ratio": 0.4902425060390102,
+        "reduced_ratio": 0.735301591042928
+      }
+    ],
+    "points": 3999,
+    "sweep_to": 8000,
+    "second_term_is_the_same_order": true,
+    "second_over_first_limit": 0.5,
+    "cap_from_the_arithmetic": 0.6666666666666666,
+    "measured_full_max": 0.665579467262462,
+    "argmax_full": 7573,
+    "full_max_matches_the_cap": true,
+    "reduced_bound_holds": true,
+    "reduced_violations": 0,
+    "measured_reduced_max": 0.9983379668913615,
+    "argmax_reduced": 7573,
+    "reduced_bound_is_sharp": true,
+    "second_term_is_deletable": true,
+    "proof_charges_a_factor": 1.5,
+    "part_i_terms_are_lower_order": true,
+    "part_i_max": 0.99997088,
+    "reduced_wide_sweep": {
+      "range": [
+        3,
+        200000
+      ],
+      "odd_points": 99999,
+      "violations": 0,
+      "max_ratio": 0.99945901,
+      "argmax": 105941
+    },
+    "reduced_holds_on_the_wide_sweep": true,
+    "reduced_wide_margin": 0.0005409899999999634
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -5907,5 +5961,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 82.2098183631897
+  "elapsed_seconds": 83.41813063621521
 }

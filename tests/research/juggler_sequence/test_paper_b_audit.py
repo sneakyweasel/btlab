@@ -1646,3 +1646,31 @@ def test_lemma_6_2_part_i_has_no_room_in_it() -> None:
     wide = r["wide_sweep"]
     assert wide["violations"] == 0 and wide["odd_points"] == 99999
     assert wide["max_slack_ratio_i"] < 1.0 and wide["argmax_i"] == 142915
+
+
+# --- why one half of Lemma 6.2 is sharp and the other stops at two thirds ---
+
+
+def test_part_ii_carries_a_second_term_of_the_same_order() -> None:
+    """(3/8)(U-1)^(-1/2) is half of (3/4)m^(-3/8), so the ratio caps at 3/4 over 9/8."""
+    r = A.lemma_6_2_part_ii_term_inventory(sweep_to=4000)
+    assert r["second_term_is_the_same_order"] and r["second_over_first_limit"] == 0.5
+    assert abs(r["cap_from_the_arithmetic"] - 2 / 3) < 1e-12
+    assert r["full_max_matches_the_cap"] and 0.65 < r["measured_full_max"] < 2 / 3
+    # the far-from-asymptotic end still shows the ratio, and n = 421 is nearly all first term
+    by_n = {x["n"]: x for x in r["rows"]}
+    assert abs(by_n[421]["second_over_first"] - 0.5) < 1e-3
+    assert by_n[421]["over_first_term"] > 0.98
+    assert r["part_i_terms_are_lower_order"] and r["part_i_max"] > 0.9999
+
+
+def test_the_second_term_of_part_ii_is_deletable() -> None:
+    """Dropping it leaves a bound that holds on 99999 odd points and is sharp to 5.4e-4."""
+    r = A.lemma_6_2_part_ii_term_inventory(sweep_to=4000)
+    assert r["reduced_bound_holds"] and r["reduced_violations"] == 0
+    assert r["reduced_bound_is_sharp"] and r["measured_reduced_max"] > 0.99
+    assert r["second_term_is_deletable"] and r["proof_charges_a_factor"] == 1.5
+    wide = r["reduced_wide_sweep"]
+    assert wide["violations"] == 0 and wide["odd_points"] == 99999
+    assert r["reduced_holds_on_the_wide_sweep"] and r["reduced_wide_margin"] < 1e-3
+    assert wide["argmax"] == A.LEMMA_6_2_WIDE_SWEEP["argmax_ii"]

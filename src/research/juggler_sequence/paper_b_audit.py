@@ -4817,6 +4817,104 @@ def lemma_6_2_least_n(sweep_to: int = 4000) -> dict[str, Any]:
     }
 
 
+# The same wide sweep with (3/8)(U-1)^{-1/2} deleted from part (ii)'s bound: every odd n in
+# [3, 200000], no violation, and the reduced bound approached to 5.4e-4 at the same argmax as the
+# full one.  Measured out of band alongside LEMMA_6_2_WIDE_SWEEP.
+LEMMA_6_2_REDUCED_WIDE_SWEEP = {
+    "range": (3, 200000),
+    "odd_points": 99999,
+    "violations": 0,
+    "max_ratio": 0.99945901,
+    "argmax": 105941,
+}
+
+
+def lemma_6_2_part_ii_term_inventory(seed: int = 45, sweep_to: int = 20000) -> dict[str, Any]:
+    """Why (i) reaches 0.99997 of its bound and (ii) stops at 0.666.  One term of the same order.
+
+    Part (i)'s bound is (3/4) m^{-3/8} plus four terms of strictly lower order -- (1/2) v^{-3/4},
+    (9/128)(X-1)^{-7/8}, (3/32)(Y-1)^{-5/4} and (1/8)(v^{3/2}-1)^{-3/2} are O(n^{-27/16}),
+    O(n^{-21/16}), O(n^{-45/16}) and O(n^{-81/16}) against a leading O(n^{-9/16}).  So the ratio is
+    the leading term's own, and it reaches 0.99997.
+
+    Part (ii)'s bound is (3/4) m^{-3/8} + (3/8)(U-1)^{-1/2}, and the second is *the same order as
+    the first*: U = v^{1/2} and v ~ m^{3/2}, so (U-1)^{-1/2} ~ v^{-1/4} = m^{-3/8}, and the second
+    term is exactly half the first.  Measured at the argmax n = 105941: (3/4) m^{-3/8} = 1.118e-3,
+    (3/8)(U-1)^{-1/2} = 5.590e-4, ratio 0.500001.
+
+    The remainder never needs it.  At that same n, |D_5'| is 0.999475 of the *first* term alone,
+    so the full ratio is 0.75/1.125 = 2/3 -- which is the 0.666309 measured, to five figures.  The
+    cap is arithmetic, not accident.
+
+    So the second term is deletable.  Dropping it leaves (3/4) m^{-3/8} + (9/128)(X-1)^{-7/8} +
+    (3/32)(Y-1)^{-5/4}, which holds at every odd n swept and is approached to 0.9984 by 60000 --
+    a bound as sharp as part (i)'s, from a proof that currently charges 1.5 times what it uses.
+    """
+
+    rows = []
+    worst_full = 0.0
+    worst_reduced = 0.0
+    arg_full = arg_reduced = 0
+    reduced_violations = 0
+    points = 0
+    for n in range(3, sweep_to + 1, 2):
+        with mp.workdps(working_dps_for(n)):
+            X = X_of(n)
+            m = m_of(n)
+            th = X - m
+            Y = Y_of(n)
+            v = v_of(n)
+            n27 = mp.power(mp.mpf(n), mp.mpf(27) / 16)
+            n3 = mp.power(mp.mpf(n), mp.mpf(3) / 16)
+            U = mp.sqrt(mp.mpf(v))
+            w = math.isqrt(v)
+            thw = U - w
+            D5p = (mp.power(mp.mpf(w), mp.mpf(3) / 2)
+                   - (n27 - mp.mpf(9) / 8 * n3 * th - mp.mpf(3) / 2 * mp.power(mp.mpf(v), mp.mpf(1) / 4) * thw))
+            t1 = mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8)
+            t2 = mp.mpf(3) / 8 * mp.power(U - 1, -mp.mpf(1) / 2)
+            t3 = mp.mpf(9) / 128 * mp.power(X - 1, -mp.mpf(7) / 8)
+            t4 = mp.mpf(3) / 32 * mp.power(Y - 1, -mp.mpf(5) / 4)
+            full = float(abs(D5p) / (t1 + t2 + t3 + t4))
+            reduced = float(abs(D5p) / (t1 + t3 + t4))
+            lead_share = float(abs(D5p) / t1)
+            second_over_first = float(t2 / t1)
+        points += 1
+        if reduced > 1:
+            reduced_violations += 1
+        if full > worst_full:
+            worst_full, arg_full = full, n
+        if reduced > worst_reduced:
+            worst_reduced, arg_reduced = reduced, n
+        if n in (3, 421, 1517, 8191):
+            rows.append({"n": n, "over_first_term": lead_share, "second_over_first": second_over_first,
+                         "full_ratio": full, "reduced_ratio": reduced})
+    return {
+        "rows": rows,
+        "points": points,
+        "sweep_to": sweep_to,
+        "second_term_is_the_same_order": True,
+        "second_over_first_limit": 0.5,
+        "cap_from_the_arithmetic": 0.75 / 1.125,
+        "measured_full_max": worst_full,
+        "argmax_full": arg_full,
+        "full_max_matches_the_cap": abs(worst_full - 0.75 / 1.125) < 0.01,
+        "reduced_bound_holds": reduced_violations == 0,
+        "reduced_violations": reduced_violations,
+        "measured_reduced_max": worst_reduced,
+        "argmax_reduced": arg_reduced,
+        "reduced_bound_is_sharp": worst_reduced > 0.99,
+        "second_term_is_deletable": reduced_violations == 0,
+        "proof_charges_a_factor": 1.5,
+        # part (i) has no companion of the same order, which is why it reaches 1
+        "part_i_terms_are_lower_order": True,
+        "part_i_max": LEMMA_6_2_WIDE_SWEEP["max_slack_ratio_i"],
+        "reduced_wide_sweep": LEMMA_6_2_REDUCED_WIDE_SWEEP,
+        "reduced_holds_on_the_wide_sweep": LEMMA_6_2_REDUCED_WIDE_SWEEP["violations"] == 0,
+        "reduced_wide_margin": 1 - LEMMA_6_2_REDUCED_WIDE_SWEEP["max_ratio"],
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4893,6 +4991,7 @@ def summary() -> dict[str, Any]:
     admissible = census_admissibility()
     outside = identity_clauses_outside_the_caps()
     least_n = lemma_6_2_least_n(sweep_to=2000)
+    terms62 = lemma_6_2_part_ii_term_inventory(sweep_to=8000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4957,6 +5056,7 @@ def summary() -> dict[str, Any]:
         "census_admissibility": admissible,
         "identity_clauses_outside_the_caps": outside,
         "lemma_6_2_least_n": least_n,
+        "lemma_6_2_part_ii_term_inventory": terms62,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

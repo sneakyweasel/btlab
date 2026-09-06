@@ -34915,3 +34915,67 @@ Best next question
   control's exponent drift toward 1/2 as P grows? Three P values would say,
   and the sweep function now makes it a two-line addition.
 ```
+
+## Two thirds is three quarters over nine eighths
+
+The gap between part (i) at `0.99997` and part (ii) at `0.66631` is one
+term. Part (i)'s bound is a leading `(3/4) m^(-3/8)` plus four terms of
+strictly lower order, so its ratio is the leading term's own and reaches
+`1`. Part (ii)'s bound is `(3/4) m^(-3/8) + (3/8)(U-1)^(-1/2)`, and the
+second is the same order as the first: `U = v^(1/2)`, `v ~ m^(3/2)`, so
+`(U-1)^(-1/2) ~ m^(-3/8)` and the second term is exactly half the first.
+At the argmax `n = 105941` the ratio of the two is `0.500001` and the
+remainder is `0.999475` of the first term alone, so the full ratio is
+`(3/4)/(9/8) = 2/3` -- `0.666309` measured against `0.666667`.
+
+The term is deletable. Without it the bound holds at every one of the
+`99999` odd points in `[3, 200000]` and is approached to `0.99945901`,
+at the same argmax. So the proof charges `1.5` times what it uses, and
+the reduced bound is as sharp as part (i)'s.
+
+That is the only thing in Lemma 6.2 there is to sharpen, and it is a
+deletion rather than a re-derivation -- a different kind of finding from
+the constants of 5.1(iii), which needed re-deriving, and from the
+threshold, which was a domain condition.
+
+```text
+Phase-end report
+Question
+- what does part (i) have that part (ii) does not, that lets one reach
+  its bound and caps the other at two thirds
+Instruments
+- lemma_6_2_part_ii_term_inventory: the four terms of (ii)'s bound
+  separately at the argmax and across a sweep, with the bound recomputed
+  without the second
+- LEMMA_6_2_REDUCED_WIDE_SWEEP: the reduced bound over every odd n in
+  [3, 200000], measured out of band
+Ledger tags
+- EXACT: (3/8)(U-1)^(-1/2) is asymptotically half of (3/4) m^(-3/8), so
+  the printed ratio caps at 2/3; part (i)'s other terms are of strictly
+  lower order
+- COMPUTATIONALLY VERIFIED: second-to-first 0.500001 and |D_5'| at
+  0.999475 of the first term, at n = 105941; full ratio maxes at
+  0.66631; the reduced bound holds at all 99999 points with max
+  0.99945901
+- OBSERVATION: the reduced bound's argmax is the printed one's
+Strongest theorem
+- the cap 2/3 is (3/4)/(3/4 + 3/8), so it is what the bound is made of
+  and not a fact about the range swept
+Strongest refutation
+- the framing of the question: (i) has nothing (ii) lacks; (ii) has
+  something (i) lacks, and it is redundant
+Reusable machinery
+- lemma_6_2_part_ii_term_inventory, LEMMA_6_2_REDUCED_WIDE_SWEEP, two
+  tests, wired into summary()
+Branch status
+- PARK
+Why
+  The deletion is a manuscript edit and Lemma 6.2 is the other session's
+  file; the measurement stands on its own.
+Best next question
+- the reduced bound is approached to 5.4e-4 at n = 105941 and part (i)
+  to 2.9e-5 at n = 142915. Both argmaxes are near the top of the swept
+  range. Are they the sharpest points, or does the approach keep
+  improving with n -- in which case one of these bounds is asymptotically
+  exact and the other is not?
+```
