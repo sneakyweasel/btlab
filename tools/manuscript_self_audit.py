@@ -421,11 +421,91 @@ def wrong_relations() -> list[dict[str, Any]]:
             if r["kind"] == "WRONG"
             and (r["lhs"], r["rhs"]) not in RELATION_EXCEPTIONS]
 
+
+# --- A.1's least-P column against the certificate ---------------------------------------------
+#
+# The column names a P from which each row holds, so its entries are not measurements and must
+# not be rounded to nearest.  Claim D's shift range crosses at 644537; printing 6.4e5 asserts
+# the row over [6.4e5, 644537), where it fails.  Twenty of the thirty-eight entries had been
+# nearest-rounded below their crossings, and three were not roundings at all -- a threshold off
+# by a factor of 373, a constant (30.5) that appears nowhere else in the paper, and an interval
+# endpoint (3.94) superseded by Lemma 5.2b's own 3.90.
+#
+# The check is one-sided on purpose: printed >= computed, never printed == computed.
+
+A1_ANCHOR = "### A.1 The certificate"
+_A1_SPLIT = re.compile("(?<!" + re.escape(BS) + ")" + re.escape("|"))
+_A1_SCI = re.compile(r"([0-9.]+)" + re.escape(BS) + r"cdot10\^\{([0-9]+)\}")
+
+
+def _certificate_rows() -> dict[str, Any]:
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "p0_certificate", REPO_ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)                                    # type: ignore[union-attr]
+    return {r["claim"].replace(" ", ""): r for r in module.thresholds()}
+
+
+def _a1_cell_value(cell: str) -> float | None:
+    c = cell.strip().strip("$")
+    if c == "always":
+        return 0.0
+    m = _A1_SCI.fullmatch(c)
+    if m:
+        return float(m.group(1)) * 10 ** int(m.group(2))
+    return float(c) if re.fullmatch(r"[0-9]+", c) else None
+
+
+def a1_rows() -> list[dict[str, Any]]:
+    """The parsed A.1 table: claim, site, printed least P."""
+    text = paper_text()
+    start = text.index(A1_ANCHOR)
+    table = text[start:text.index("###", start + len(A1_ANCHOR))]
+    out = []
+    for line in table.splitlines():
+        if not line.startswith("|") or set(line.rstrip()) <= set("|-: ") or "least $P$" in line:
+            continue
+        cells = [c.strip() for c in _A1_SPLIT.split(line)[1:-1]]
+        if len(cells) != 3:
+            continue
+        out.append({"claim": cells[0], "site": cells[1], "cell": cells[2],
+                    "printed": _a1_cell_value(cells[2])})
+    return out
+
+
+def a1_threshold_audit() -> list[dict[str, Any]]:
+    """Each A.1 entry against the crossing `p0_certificate` computes for the same claim."""
+    rows = _certificate_rows()
+    out = []
+    for r in a1_rows():
+        key = r["claim"].replace(BS, "").replace(" ", "")
+        cert = rows.get(key)
+        computed = None if cert is None else cert["P_min"]
+        printed = r["printed"]
+        if cert is None or printed is None:
+            ok = False
+        elif computed is None or computed <= 1.0:
+            ok = r["cell"].strip("$") == "always"
+        else:
+            ok = printed >= computed * (1 - 1e-9)
+        out.append({"claim": r["claim"][:60], "tag": None if cert is None else cert["tag"],
+                    "cell": r["cell"], "printed": printed, "computed": computed, "ok": ok,
+                    "overshoot": (None if not computed or not printed or computed <= 1.0
+                                  else printed / computed - 1)})
+    return out
+
+
+def a1_failures() -> list[dict[str, Any]]:
+    return [r for r in a1_threshold_audit() if not r["ok"]]
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
             "relations": wrong_relations(),
-            "rounded_into_a_bound": rounding_directions()["down"]}
+            "rounded_into_a_bound": rounding_directions()["down"],
+            "a1_thresholds": a1_failures()}
 
 
 def main() -> None:

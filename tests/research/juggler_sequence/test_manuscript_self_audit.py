@@ -229,15 +229,18 @@ def test_the_normaliser_would_have_caught_the_claim_D_slip() -> None:
 
 
 def test_the_manuscript_prints_the_corrected_threshold() -> None:
+    """The prose gives the exact crossing; only A.1's column rounds, and it rounds up."""
     BS = chr(92)
     text = M.paper_text()
-    assert "1.45^{36}=6.4" + BS + "cdot10^{5}" in text
+    assert "1.45^{36}=644537" in text
+    assert "1.45^{36}=6.4" + BS + "cdot10^{5}" not in text
     assert "1.45^{36}=1.1" + BS + "cdot10^{6}" not in text
 
 
 def test_failures_now_covers_relations() -> None:
     f = M.failures()
-    assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound"}
+    assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
+                      "a1_thresholds"}
     assert all(v == [] for v in f.values())
 
 
@@ -268,4 +271,83 @@ def test_the_paper_states_the_rounding_convention() -> None:
     text = M.paper_text()
     assert "rounded *away* from the inequality it serves" in text
     assert "A decimal rounded *into* its own bound" in text
-    assert "error with no consequence is exactly the kind that survives reading" in text
+    assert "with no consequence is exactly the kind that survives reading" in text
+
+
+# --- A.1's least-P column ----------------------------------------------------------------------
+
+
+def test_every_a1_entry_is_at_or_above_its_crossing() -> None:
+    assert M.a1_failures() == []
+
+
+def test_all_thirty_eight_rows_resolve_to_a_certificate_row() -> None:
+    rows = M.a1_threshold_audit()
+    assert len(rows) == 38
+    assert [r["claim"] for r in rows if r["tag"] is None] == []
+
+
+def test_the_column_rounds_up_and_stays_tight() -> None:
+    """One-sided by design: printed >= computed, never printed == computed."""
+    over = [r["overshoot"] for r in M.a1_threshold_audit() if r["overshoot"] is not None]
+    assert len(over) == 35                      # the other three are the "always" rows
+    assert min(over) >= -1e-9                   # exact matches land at zero
+    assert max(over) < 0.01                     # under one per cent everywhere
+    assert sum(1 for o in over if o < 0.003) == 23
+
+
+def test_a_nearest_rounded_column_would_fail() -> None:
+    """Claim D is the witness: its crossing rounds down at the precision the table prints."""
+    row = next(r for r in M.a1_threshold_audit() if r["tag"] == "claimD-shift")
+    assert abs(row["computed"] - 644537) < 1.0
+    assert row["printed"] == 6.5e5              # rounded up
+    nearest = float("%.1e" % row["computed"])   # 6.4e5, what "round to nearest" gives
+    assert nearest == 6.4e5
+    assert nearest < row["computed"]            # and so names a P where the row fails
+
+
+def test_the_three_always_rows_hold_from_one() -> None:
+    rows = [r for r in M.a1_threshold_audit() if r["cell"].strip("$") == "always"]
+    assert len(rows) == 3
+    assert all(r["computed"] == 1.0 and r["ok"] for r in rows)
+
+
+def test_the_q_row_carries_the_constant_the_paper_derives() -> None:
+    """30.5 appeared only in that cell; the paper derives 48.9 = 17.1/0.35 three times."""
+    text = M.paper_text()
+    assert text.count("30.5") == 1          # the errata paragraph, naming what it replaced
+    assert "carried the constant " + chr(92) + "(30.5" + chr(92) + ")" in text
+    assert "curvature ratio 48.9" in text
+    assert "17.1/0.35=48.9" in text
+    row = next(r for r in M.a1_threshold_audit() if r["tag"] == "st5b-qpp")
+    assert row["printed"] == 3.0e11 and row["ok"]
+
+
+def test_the_lemma_5_2b_row_matches_the_lemma() -> None:
+    text = M.paper_text()
+    assert text.count("[0.62,3.94]") == 1   # likewise: quoted only where it is corrected
+    assert "carried " + chr(92) + "([0.62,3.94]" in text
+    assert "[0.62,3.90]" in text
+    row = next(r for r in M.a1_threshold_audit() if r["tag"] == "5b-lam0-range")
+    assert row["printed"] == 3.51e4 and row["ok"]
+
+
+def test_the_window_boundary_row_is_no_longer_off_by_a_factor() -> None:
+    row = next(r for r in M.a1_threshold_audit() if r["tag"] == "s3s2-bdry")
+    assert abs(row["computed"] - 150527) < 1.0
+    assert row["printed"] == 1.51e5
+    assert row["printed"] / 403 > 300            # what the cell used to say
+
+
+def test_the_binding_row_and_p0_are_untouched() -> None:
+    row = next(r for r in M.a1_threshold_audit() if r["tag"] == "5b-W<=c7S")
+    assert abs(row["computed"] - 3.58576e13) / 3.58576e13 < 1e-4
+    assert "3.5858" in M.paper_text()
+
+
+def test_the_paper_states_the_column_convention_and_its_errata() -> None:
+    text = M.paper_text()
+    assert "*The last column rounds up.*" in text
+    assert "*Errata in this table.*" in text
+    assert "an entry rounded to nearest can name a" in text
+    assert "never that it equals it" in text

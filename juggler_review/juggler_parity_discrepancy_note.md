@@ -2540,8 +2540,9 @@ particular \(h_3\le t^{1/3}P^{1/12}\le3^{1/3}P^{7/72}\) with
 \quad\text{once}\quad
 P\ge1.45^{36}.
 \]
-The threshold is \(1.45^{36}=6.4\cdot10^{5}\), comfortably under
-\(P_0\) and matching the row A.1 prints for it. The exponent gap here is \(\tfrac18-\tfrac7{72}=\tfrac1{36}\),
+The threshold is \(1.45^{36}=644537\), comfortably under \(P_0\);
+A.1 rounds it up to \(6.5\cdot10^{5}\), which is the direction that
+column rounds in. The exponent gap here is \(\tfrac18-\tfrac7{72}=\tfrac1{36}\),
 so whatever constant stands in front of \(P^{7/72}\) is paid at the
 thirty-sixth power; that is why the sharp \(t\) matters. Thus every
 index in the Claim C sum satisfies
@@ -3269,7 +3270,7 @@ term of (i), since \(\tfrac58<\tfrac1{24}+\tfrac78\). The flat cost is
 families, with weights
 \(\min(2,\tfrac1{\pi|w+B_0|})+\min(2,\tfrac1{\pi|w|})\) and index
 \(|w|\le|B_0|+R_0\le2R_0\) for \(P\ge P_0\), because
-\(5P^{1/4}\le P^{5/16}\) once \(P\ge5^{16}=1.5\cdot10^{11}\) --- a
+\(5P^{1/4}\le P^{5/16}\) once \(P\ge5^{16}=1.53\cdot10^{11}\) --- a
 certificate row in its own right, and the one that pins \(R_0\) from
 below (A.6); at the printed offset bound it read \(7^{16}\) and was
 the largest row not mentioning \(c_7\), which is what A.5's floor
@@ -3666,7 +3667,7 @@ was not. Read with the printed offset bound \(|j'|\le3\) it stands at
 \(7^{16}=3.3\cdot10^{13}\), \(8\%\) under \(P_0\) and the largest row
 not mentioning \(c_7\) --- which would make it, and not the \(q''\)
 ratio, the ceiling on every improvement to the middle band. The
-erratum at Lemma 5.1(iii) takes it to \(5^{16}=1.5\cdot10^{11}\),
+erratum at Lemma 5.1(iii) takes it to \(5^{16}=1.53\cdot10^{11}\),
 back under the \(q''\) row, and A.5's floor is the \(q''\) ratio after
 all. Two constants had to be right for the printed \(120\) to be the
 right answer, and only one of them was.
@@ -6638,10 +6639,20 @@ cases by direction, and the list of downward roundings is empty.
 
 This check found one error. Claim D's shift range printed its
 threshold, \(1.45^{36}\), as \(1.1\cdot10^{6}\); the value is \(644537\), and
-A.1's own row for that comparison already read \(6.4\cdot10^{5}\). The
-prose contradicted the table it was summarising. Both figures sit far
-below \(P_0\), so nothing downstream moved, and that is the point: an
-error with no consequence is exactly the kind that survives reading.
+A.1's own row for that comparison read \(6.4\cdot10^{5}\). The prose
+contradicted the table it was summarising. Both figures sit far below
+\(P_0\), so nothing downstream moved, and that is the point: an error
+with no consequence is exactly the kind that survives reading.
+
+Both were wrong in the same way, which the check as stated here could
+not see. A threshold is not a measurement; it is the left endpoint of
+the range over which a row holds. Printing \(6.4\cdot10^{5}\) for
+\(644537\) is the nearest four-figure decimal and asserts the row over
+\([6.4\cdot10^{5},644537)\), where it fails. The rule for that column is
+therefore not "round to nearest" but "round up", and A.1 states it.
+Twenty of A.1's thirty-eight entries had been nearest-rounded below
+their crossings and have been raised; three were not roundings at all
+and are recorded there as errata.
 
 ### A.1 The certificate
 
@@ -6652,38 +6663,38 @@ error with no consequence is exactly the kind that survives reading.
 | linearization remainder P^(43/96) <= P^(1-1/96) | Thm 6.3 | always |
 | P^(1/2) >= 8(1+\|B\|) with \|B\| < 1/2 | Thm 4.1 St.3(s1) | $144$ |
 | 4.5 - 1.5/(h P^(1/2)) >= 4.4 at h = 1 | Thm 4.1 St.5 | $225$ |
-| window boundaries <= 1.1 P^(17/32) <= P^(5/8) | Thm 4.1 St.3(s2) | $403$ |
-| P^(1/2) >= 8(1+6) = 56 | Thm 5.3 St.5b (j=0) | $3.1\cdot10^{3}$ |
-| 8(1+2.25P^(1/4))P^(1/2) <= 19 P^(3/4) | Thm 4.1 St.3(s2) | $4.1\cdot10^{3}$ |
-| 41 P^(5/36) <= P^(1/2) | Claim C | $2.9\cdot10^{4}$ |
-| [0.62,3.94] with its corrections inside [0.56,4.20] | Lemma 5.2b | $6.1\cdot10^{4}$ |
+| P^(1/2) >= 8(1+6) = 56 | Thm 5.3 St.5b (j=0) | $3140$ |
+| 8(1+2.25P^(1/4))P^(1/2) <= 19 P^(3/4) | Thm 4.1 St.3(s2) | $4100$ |
+| 41 P^(5/36) <= P^(1/2) | Claim C | $2.93\cdot10^{4}$ |
+| [0.62,3.90] with its corrections inside [0.56,4.20] | Lemma 5.2b | $3.51\cdot10^{4}$ |
 | P^(7/72) >= 3 | Claim C | $8.1\cdot10^{4}$ |
 | 72 t^(-1) P^(-1/2) <= 1/4 at t = 1 | Thm 5.3 St.6(D1) | $8.3\cdot10^{4}$ |
-| P^(1/2) >= 8(1 + 2.25 P^(1/4)) | Thm 4.1 St.3(s2) | $1.2\cdot10^{5}$ |
+| P^(1/2) >= 8(1 + 2.25 P^(1/4)) | Thm 4.1 St.3(s2) | $1.16\cdot10^{5}$ |
+| window boundaries <= 1.1 P^(17/32) <= P^(5/8) | Thm 4.1 St.3(s2) | $1.51\cdot10^{5}$ |
 | 0.6 P^(1/4) + 1 <= 0.65 P^(1/4) | Thm 4.1 St.3(s2) | $1.6\cdot10^{5}$ |
-| P^(1/2)/(2h1) >= 8(1+\|B\|): 0.5 P^(23/48) >= 15 P^(10/48) | Thm 5.3 St.3(a) | $2.8\cdot10^{5}$ |
-| P^(1/2)/(2h2) >= 8(1+\|B\|): 0.5 P^(22/48) >= 15 P^(9/48) | Thm 5.3 St.3(b) | $2.8\cdot10^{5}$ |
-| 1.45 P^(7/72) <= P^(1/8): shift range of (i) | Claim D | $6.4\cdot10^{5}$ |
-| (3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96) | Thm 6.1 St.B | $7.5\cdot10^{5}$ |
-| P^(1/2) >= 8(1 + 5 P^(1/4)) | Thm 5.3 St.6(D1) | $2.6\cdot10^{6}$ |
-| wave remainder 300 P^(-35/24) vs S: 536 P^(-5/6) <= rho_0 | Thm 5.3 St.5b | $1.6\cdot10^{7}$ |
-| beta-substitution error 2.31 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.8\cdot10^{7}$ |
-| cells + anchor runs + windows <= 3.5 P^(13/24) | Thm 5.3 St.5b | $5.1\cdot10^{7}$ |
-| mode/cell curvature ratio 0.39 P^(1/8) >= 4 | Thm 4.1 St.2 | $1.2\cdot10^{8}$ |
-| flat cost 23 P^(19/24) inside the P^(23/24) budget | Thm 5.3 St.3(a) | $1.5\cdot10^{8}$ |
+| P^(1/2)/(2h1) >= 8(1+\|B\|): 0.5 P^(23/48) >= 15 P^(10/48) | Thm 5.3 St.3(a) | $2.85\cdot10^{5}$ |
+| P^(1/2)/(2h2) >= 8(1+\|B\|): 0.5 P^(22/48) >= 15 P^(9/48) | Thm 5.3 St.3(b) | $2.85\cdot10^{5}$ |
+| 1.45 P^(7/72) <= P^(1/8): shift range of (i) | Claim D | $6.5\cdot10^{5}$ |
+| (3 pi k/4) P^(-1/8) <= 1 at k <= 2 P^(1/96) | Thm 6.1 St.B | $7.51\cdot10^{5}$ |
+| P^(1/2) >= 8(1 + 5 P^(1/4)) | Thm 5.3 St.6(D1) | $2.62\cdot10^{6}$ |
+| wave remainder 300 P^(-35/24) vs S: 536 P^(-5/6) <= rho_0 | Thm 5.3 St.5b | $1.58\cdot10^{7}$ |
+| beta-substitution error 2.31 P^(-1/2) <= rho_0 | Thm 5.3 St.5b | $1.83\cdot10^{7}$ |
+| cells + anchor runs + windows <= 3.5 P^(13/24) | Thm 5.3 St.5b | $5.14\cdot10^{7}$ |
+| mode/cell curvature ratio 0.39 P^(1/8) >= 4 | Thm 4.1 St.2 | $1.23\cdot10^{8}$ |
+| flat cost 23 P^(19/24) inside the P^(23/24) budget | Thm 5.3 St.3(a) | $1.49\cdot10^{8}$ |
 | every competitor ratio <= 1/4 (margin 4) | Thm 5.3 St.5a | $4.3\cdot10^{8}$ |
-| P^2\|c''''/2\|/S <= rho_0: (0.044/0.56) P^(-1/4) | Thm 5.3 St.5b | $4.5\cdot10^{8}$ |
+| P^2\|c''''/2\|/S <= rho_0: (0.044/0.56) P^(-1/4) | Thm 5.3 St.5b | $4.53\cdot10^{8}$ |
 | P\|c'''/2\|/S <= rho_0: (0.047/0.56) P^(-1/4) | Thm 5.3 St.5b | $5.9\cdot10^{8}$ |
-| Lemma 3.7 window T = R_0 >= 8(1 + \|C\|) | Thm 6.3 | $7.4\cdot10^{8}$ |
-| \|c''/2\|/S <= rho_0: (0.053/0.56) P^(-1/4) | Thm 5.3 St.5b | $9.5\cdot10^{8}$ |
-| 3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24) | Thm 5.3 St.5 | $1.4\cdot10^{9}$ |
+| Lemma 3.7 window T = R_0 >= 8(1 + \|C\|) | Thm 6.3 | $7.5\cdot10^{8}$ |
+| \|c''/2\|/S <= rho_0: (0.053/0.56) P^(-1/4) | Thm 5.3 St.5b | $9.6\cdot10^{8}$ |
+| 3 R_0^(1/2) P^(3/4) = 3 P^(29/32) <= P^(23/24) | Thm 5.3 St.5 | $1.45\cdot10^{9}$ |
 | 96 P^(-5/24) <= 1 | Claim G | $3.3\cdot10^{9}$ |
-| flat cost 8(1+\|C\|)/R_0 <= P^(-1/96) per point | Thm 6.3 | $5.5\cdot10^{9}$ |
-| \|q''\| curvature ratio 30.5 P^(-3/16) <= 1/4 | Thm 5.3 St.5b(a) | $2.8\cdot10^{10}$ |
-| 2.25 P^(-1/16) < 1/2 | Thm 4.1 St.3(s1) | $2.8\cdot10^{10}$ |
-| widened \|B_0\| <= R_0: 5 P^(1/4) <= P^(5/16) | Thm 5.3 St.6(D1) | $1.5\cdot10^{11}$ |
-| E alone <= c_7 S/2 (the floor as kappa -> 0) | Thm 5.3 St.5b | $4.1\cdot10^{12}$ |
-| W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $2.9\cdot10^{13}$ |
+| flat cost 8(1+\|C\|)/R_0 <= P^(-1/96) per point | Thm 6.3 | $5.51\cdot10^{9}$ |
+| 2.25 P^(-1/16) < 1/2 | Thm 4.1 St.3(s1) | $2.83\cdot10^{10}$ |
+| widened \|B_0\| <= R_0: 5 P^(1/4) <= P^(5/16) | Thm 5.3 St.6(D1) | $1.53\cdot10^{11}$ |
+| \|q''\| curvature ratio 48.9 P^(-3/16) <= 1/4 | Thm 5.3 St.5b(a) | $3.0\cdot10^{11}$ |
+| E alone <= c_7 S/2 (the floor as kappa -> 0) | Thm 5.3 St.5b | $4.11\cdot10^{12}$ |
+| W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8) | Thm 5.3 St.5a | $2.92\cdot10^{13}$ |
 | W = V + E <= c_7 S/2 at S >= 0.56 P^(-5/8) | Thm 5.3 St.5b | $3.6\cdot10^{13}$ |
 
 \[
@@ -6693,15 +6704,42 @@ attained at the Lemma 3.9 hypothesis \(W\le c_7S/2\) of Theorem 5.3,
 Step 5b. Three rows hold for every \(P\ge1\) and are listed for
 completeness rather than because they constrain anything.
 
+*The last column rounds up.* It names a \(P\) from which the row holds,
+so an entry rounded to nearest can name a \(P\) at which it does not:
+Claim D's shift range crosses at \(644537\), and the nearest four-figure
+decimal, \(6.4\cdot10^{5}\), asserts the row over
+\([6.4\cdot10^{5},644537)\), where it fails. Every entry is therefore
+the crossing rounded up, to as many figures as keeps the overshoot
+under one per cent --- at most \(0.85\%\) anywhere in the column, and
+under \(0.3\%\) in twenty-three of the thirty-five printed rows. The
+other three hold for every \(P\ge1\) and are written *always*.
+`tools/manuscript_self_audit.py` checks each entry against
+`p0_certificate.thresholds`, and the check is that the printed value is
+at or above the computed crossing, never that it equals it.
+
+*Errata in this table.* Three entries were not roundings. The Stage
+3(s2) window-boundary row was listed at \(403\); its crossing is
+\(1.50527\cdot10^{5}\), a factor of \(373\), and the printed value
+matches no sub-condition of the row --- neither conjunct alone crosses
+above \(3\). The Step 5b(a) \(q''\) row carried the constant \(30.5\),
+which appears nowhere else in this paper; the constant is \(48.9\)
+(\(=17.1/0.35\), fixed in Step 5b(a)), and with it the crossing is
+\(2.98\cdot10^{11}\) rather than the listed \(2.8\cdot10^{10}\). The
+Lemma 5.2b row carried \([0.62,3.94]\) against the \([0.62,3.90]\) of
+Lemma 5.2b itself, and with the correct endpoint the crossing falls
+from \(6.1\cdot10^{4}\) to \(3.51\cdot10^{4}\). All three sit far below
+\(P_0\), and none is the binding row, so \(P_0\) is unchanged at
+\(3.5858\cdot10^{13}\).
+
 ### A.2 The stratification
 
 The thresholds are not spread out; they cluster and then jump.
-Thirty-three of the thirty-eight hold from \(2.8\cdot10^{10}\) on, and
+Thirty-three of the thirty-eight hold from \(2.83\cdot10^{10}\) on, and
 that value is set by a single soft inequality
 (\(2.25P^{-1/16}<\tfrac12\) in Stage 3(s1) of Theorem 4.1, which merely
 names the regime). Of the remaining five, two are the price of
 \(R_0=P^{5/16}\): the widened mode index of Lemma 5.2(iii) at
-\(5^{16}=1.5\cdot10^{11}\) and the \(q''\) curvature ratio of
+\(5^{16}=1.53\cdot10^{11}\) and the \(q''\) curvature ratio of
 Step 5b(a) at \(3.0\cdot10^{11}\), both two orders below \(P_0\)
 (A.6). The other three are the Lemma 3.9 balance comparisons of
 Steps 5a and 5b, which alone carry \(P_0\) up by two orders of
@@ -6736,7 +6774,7 @@ piece-boundary term turns \(P_1\) around; that is the operating point.
 The left column keeps falling below it, but only to the largest
 \(\kappa\)-free row: at \(\kappa=\tfrac1{16}\) and below, \(P_0\) is
 the gate by a shrinking margin, and it would stop at
-\(5^{16}=1.5\cdot10^{11}\). Read with the printed offset bound
+\(5^{16}=1.53\cdot10^{11}\). Read with the printed offset bound
 \(|j'|\le3\) it would have stopped at \(3.3\cdot10^{13}\), i.e. one
 entry past the operating point.
 The turn is structural, not numerical: the \(\tfrac85\) correction to

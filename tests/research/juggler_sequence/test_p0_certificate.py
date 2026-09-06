@@ -1354,7 +1354,9 @@ def test_paper_and_lean_carry_the_new_row() -> None:
     assert r"widened \|B_0\| <= R_0: 5 P^(1/4) <= P^(5/16)" in text
     assert "thirty-eight" in text and "thirty-seven" not in text
     assert "(33 theorems" in text
-    assert r"5^{16}=1.5\cdot10^{11}" in text
+    # all five sites now print the same three-figure value; 5^16 = 1.52588e11
+    assert r"5^{16}=1.53\cdot10^{11}" in text
+    assert r"5^{16}=1.5\cdot10^{11}" not in text
     root = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Juggler"
     lean = io.open(root / "ThresholdCertificate.lean", encoding="utf-8").read()
     assert "theorem row_st6D1_modeindex" in lean and "5 * t ^ 4" in lean
