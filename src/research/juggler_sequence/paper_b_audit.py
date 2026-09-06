@@ -21,6 +21,7 @@ Not a halt theorem.  Not a termination statement.  Run ``python -m research.jugg
 
 from __future__ import annotations
 
+import cmath
 import json
 import math
 import random
@@ -910,7 +911,7 @@ SECTION_4_TO_6_COVERAGE = {
     "Theorem 4.1": "threshold", "Corollary 4.2": "probe", "Lemma 4.3": "probe",
     "Theorem 4.4": "probe", "Proposition 4.5": "threshold", "Lemma 4.6": "probe",
     "Theorem 4.7": "probe", "Theorem 4.8": "probe", "Corollary 4.9": "probe",
-    "Lemma 4.10": "none", "Theorem 4.11": "none", "Theorem 4.12": "none",
+    "Lemma 4.10": "probe", "Theorem 4.11": "none", "Theorem 4.12": "none",
     "Corollary 4.13": "probe", "Lemma 5.1": "probe", "Lemma 5.2": "probe",
     "Lemma 5.2b": "probe", "Theorem 5.3": "probe", "Theorem 6.1": "probe",
     "Lemma 6.2": "probe", "Theorem 6.3": "probe", "Corollary 6.4": "probe",
@@ -1139,6 +1140,64 @@ def corollary_4_13_check(m_prime: int = 60, nesting_samples: int = 400, seed: in
         "printed_error_is_vacuous_here": error_term > 0.1,
         # m'^{-4/27} = 0.1 needs m' = 0.1^{-27/4} = 10^{27/4}
         "m_prime_for_a_ten_percent_error": 10.0 ** (27 / 4),
+    }
+
+def lemma_4_10_sharpness(lengths: tuple[int, ...] = (10, 100, 1000, 10000),
+                         variations: tuple[float, ...] = (0.5, 2.0),
+                         random_trials: int = 800, seed: int = 410) -> dict[str, Any]:
+    """Is 1 + 2 pi TV(gamma) sharp?  It is -- the first of these constants that is.
+
+    Abel summation gives |sum a_n w_n| <= max|A| (1 + sum|w(n) - w(n+1)|), and the proof then uses
+    |e(x) - e(y)| <= 2 pi |x - y|, which is sharp only as the step goes to zero.  Both steps
+    saturate together: take gamma linear with total variation T over L points and choose the
+    partial sums A_n aligned so that every term of the Abel expansion points the same way.  The
+    ratio to the printed bound then rises to 1 as L grows -- 0.9962 at L = 10, 1.000000 by L = 1000.
+
+    Random a_n and gamma reach only about 0.86, which is why sharpness here needs a construction
+    and not a census.  In the application the point is the other way round: TV <= 0.26 P^{-5/16},
+    so the factor is 1 + O(P^{-5/16}) and the twist is free -- 1 + 9.4e-5 at P_0.  The constant is
+    sharp and its sharpness does not matter where it is used.
+    """
+
+    def adversarial(L: int, T: float) -> float:
+        gam = [T * i / (L - 1) for i in range(L)]
+        w = [cmath.exp(2j * math.pi * g) for g in gam]
+        A = []
+        for n in range(L - 1):
+            d = w[n] - w[n + 1]
+            A.append(d.conjugate() / abs(d) if abs(d) > 0 else complex(1))
+        A.append(w[-1].conjugate() / abs(w[-1]))
+        a = [A[0]] + [A[i] - A[i - 1] for i in range(1, L)]
+        lhs = abs(sum(a[i] * w[i] for i in range(L)))
+        rhs = (1 + 2 * math.pi * T) * max(abs(sum(a[:k + 1])) for k in range(L))
+        return lhs / rhs
+
+    rows = [{"T": T, "L": L, "ratio": adversarial(L, T)} for T in variations for L in lengths]
+
+    rng = random.Random(seed)
+    worst_random = 0.0
+    for _ in range(random_trials):
+        L = rng.randint(5, 60)
+        T = rng.uniform(0.01, 3.0)
+        gam = sorted(rng.uniform(0, T) for _ in range(L))
+        w = [cmath.exp(2j * math.pi * g) for g in gam]
+        a = [complex(rng.gauss(0, 1), rng.gauss(0, 1)) for _ in range(L)]
+        lhs = abs(sum(a[i] * w[i] for i in range(L)))
+        rhs = (1 + 2 * math.pi * T) * max(abs(sum(a[:k + 1])) for k in range(L))
+        worst_random = max(worst_random, lhs / rhs)
+
+    p0 = p0_certificate.certificate()["P0"]
+    tv_at_p0 = 0.26 * p0 ** (-5 / 16)
+    return {
+        "adversarial": rows,
+        "best_adversarial_ratio": max(r["ratio"] for r in rows),
+        "worst_random_ratio": worst_random,
+        "constant_is_sharp": max(r["ratio"] for r in rows) > 0.999,
+        "random_search_would_miss_it": worst_random < 0.95,
+        "TV_bound_at_P0": tv_at_p0,
+        "factor_at_P0": 1 + 2 * math.pi * tv_at_p0,
+        "the_twist_is_free_in_application": 2 * math.pi * tv_at_p0 < 1e-3,
+        "TV_exponent": Fr(1, 24) + Fr(1, 12) + 1 - Fr(23, 16),
     }
 
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
@@ -2183,6 +2242,8 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("4.13(a): n^{9/16} - v^{1/4} = (3/8) theta n^{-15/16} + (1/4) theta_2 n^{-27/16}, from 9/16 - 3/2 = -15/16", F(9, 16) - F(3, 2) == -F(15, 16)),
         ("4.13(a): the second term sits at -27/16 = -15/16 - 3/4, so the ratio is (3/8) theta + O(n^{-3/4})", -F(15, 16) - F(3, 4) == -F(27, 16)),
         ("4.13: the printed error m'^{-4/27} reaches 10% only at m' = 10^{27/4}", F(4, 27) * F(27, 4) == 1),
+        # Lemma 4.10's application: the twist's total variation in the regime it is used in
+        ("4.10: TV <= 2h|I| sup|g''| <= 0.26 P^{1/24+1/12+1-23/16} = 0.26 P^{-5/16}", F(1, 24) + F(1, 12) + 1 - F(23, 16) == -F(5, 16)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -2736,6 +2797,7 @@ def summary() -> dict[str, Any]:
     coverage = audit_coverage()
     l46 = lemma_4_6_census(samples_per_range=20)
     c413 = corollary_4_13_check()
+    l410 = lemma_4_10_sharpness(random_trials=200)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2774,6 +2836,7 @@ def summary() -> dict[str, Any]:
         "audit_coverage": coverage,
         "lemma_4_6_census": l46,
         "corollary_4_13_check": c413,
+        "lemma_4_10_sharpness": l410,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

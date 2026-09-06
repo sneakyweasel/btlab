@@ -2253,3 +2253,45 @@ obvious.
 Coverage after this entry: sixteen of twenty-one probed, two with a
 \(P_0\) row only, and three uncovered --- Lemma 4.10, which is
 checkable, and Theorems 4.11 and 4.12, which are not.
+
+## Lemma 4.10's constant is sharp --- the first one that is --- and free where it is used
+
+**Sharp.** Abel summation gives
+\(\lvert\sum a_nw_n\rvert\le\max\lvert A\rvert\bigl(1+\sum\lvert
+w(n)-w(n+1)\rvert\bigr)\), and the proof then uses
+\(\lvert e(x)-e(y)\rvert\le2\pi\lvert x-y\rvert\), which is sharp only
+as the step goes to zero. Both steps saturate together: take \(\gamma\)
+linear with total variation \(T\) over \(L\) points and align the
+partial sums so every term of the Abel expansion points the same way.
+
+| | \(L=10\) | \(100\) | \(1000\) | \(10^4\) |
+|---|---|---|---|---|
+| \(T=0.5\) | 0.996155 | 0.999968 | 1.000000 | 1.000000 |
+| \(T=2.0\) | 0.926569 | 0.999378 | 0.999994 | 1.000000 |
+
+So \(1+2\pi\,\mathrm{TV}(\gamma)\) is attained in the limit. Random
+\(a_n\) and \(\gamma\) reach only \(0.924\) over eight hundred
+instances --- sharpness here needs a construction, not a census, which
+is the fourth time in this ledger that a random search would have
+reported a bound as loose when it is tight. COMPUTATIONALLY VERIFIED.
+
+**And free.** In the application \(\mathrm{TV}\le2h\lvert I\rvert
+\sup\lvert g''\rvert\le0.26P^{1/24+1/12+1-23/16}=0.26P^{-5/16}\), which
+is \(1.5\cdot10^{-5}\) at \(P_0\): the factor is \(1.0000949\). The
+constant is sharp and its sharpness does not matter where the lemma is
+used --- the twist costs one part in ten thousand. The exponent
+\(-\tfrac5{16}\) is EXACT and in `exponent_checks`.
+
+**Which settles the four-in-a-row question.** Lemma 4.6's \(\tfrac34\),
+Corollary 4.13(a)'s \(1\) against a sharp \(\tfrac38\), and Lemma 5.1(iii)'s
+band are all loose; this one is not. The distinction is structural: the
+first three bound a quantity whose saturating configuration is a
+fractional part, and the printed constant is the sup over a variable the
+proof then discards; Lemma 4.10 bounds a sum by a construction that can
+be chosen, so its constant is attained by choosing it.
+
+**Coverage.** Seventeen of the twenty-one results of Sections 4--6 are
+probed, two carry a \(P_0\) row only, and the two that remain --- Theorems
+4.11 and 4.12 --- are asymptotic \(\varepsilon\)-statements of Theorem 5.3's
+class, which admit no finite check. Every checkable result in Sections 4
+to 6 now has one.

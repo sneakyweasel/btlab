@@ -31893,3 +31893,70 @@ Best next question
   inequality with a 1 + 2 pi TV(gamma) factor. Is that constant sharp,
   or is it the fourth in a row that is not?
 ```
+
+## The fourth constant is sharp, and every checkable result now has a probe
+
+Following the last entry's question, and closing the last checkable gap
+in Sections 4-6.
+
+**Sharp.** Abel summation gives `|sum a_n w_n| <= max|A| (1 + sum|w(n) -
+w(n+1)|)`, and the proof then uses `|e(x) - e(y)| <= 2 pi |x - y|`,
+sharp only as the step goes to zero. Both saturate together: `gamma`
+linear with total variation `T` over `L` points, partial sums aligned so
+every Abel term points the same way.
+
+| | `L=10` | `100` | `1000` | `1e4` |
+|---|---|---|---|---|
+| `T=0.5` | 0.996155 | 0.999968 | 1.000000 | 1.000000 |
+| `T=2.0` | 0.926569 | 0.999378 | 0.999994 | 1.000000 |
+
+Random `a_n` and `gamma` reach only `0.924` over eight hundred
+instances. Sharpness here needs a construction, not a census -- the
+fourth time in this journal a random search would have called a tight
+bound loose.
+
+**And free.** In application `TV <= 2h|I| sup|g''| <= 0.26 P^(-5/16)`,
+which is `1.5e-5` at `P_0`: the factor is `1.0000949`. The constant is
+sharp and its sharpness is irrelevant where the lemma is used.
+
+**Which settles the four-in-a-row question.** Lemma 4.6's `3/4`,
+Corollary 4.13(a)'s `1` against a sharp `3/8`, and Lemma 5.1(iii)'s band
+are loose; this one is not. The distinction is structural: the first
+three bound a quantity whose saturating configuration is a fractional
+part, and the printed constant is a sup over a variable the proof then
+discards; Lemma 4.10 bounds a sum by a construction one can choose, so
+its constant is attained by choosing it.
+
+**Coverage.** Seventeen of twenty-one probed, two with a `P_0` row only,
+and the two left -- Theorems 4.11 and 4.12 -- are asymptotic
+epsilon-statements of Theorem 5.3's class with no finite check. Every
+checkable result in Sections 4 to 6 now has a probe.
+
+```text
+What was learned
+- 1 + 2 pi TV is attained: the adversarial family reaches 1.000000 by
+  L = 1000 where random instances stall at 0.92
+- the sharp constants and the loose ones divide structurally, by
+  whether the saturating variable survives into the statement
+- in application the factor is 1.0000949, so the sharpness is a fact
+  about the lemma and not about the paper's use of it
+Strongest theorem
+- the aligned-Abel construction saturating 1 + 2 pi TV, and
+  1/24 + 1/12 + 1 - 23/16 = -5/16 for the applied bound
+Strongest refutation
+- none; the lemma holds on every instance, adversarial included
+Reusable machinery
+- lemma_4_10_sharpness with both families; one test, one exact check.
+  Coverage of Sections 4-6 is complete but for two asymptotic theorems
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Nineteen passes of following one question to the next have arrived at
+  a stopping point: there is nothing checkable left in Sections 4-6
+  that has no check.
+Best next question
+- Section 3's ten lemmas are the machinery the rest is built on and
+  none has a probe here beyond the Lean files. Do the classical inputs
+  -- van der Corput, Erdos-Turan, Vaaler -- hold at the constants the
+  paper prints for them?
+```

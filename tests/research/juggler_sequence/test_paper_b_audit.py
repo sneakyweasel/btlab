@@ -856,11 +856,11 @@ def test_the_certified_descent_densities_check_by_direct_count() -> None:
     assert r["thirteen_sixteenths_plus_two_thirtyseconds_is_seven_eighths"]
 
 
-def test_section_four_has_three_results_with_no_probe() -> None:
-    """Two of the three that remain are asymptotic and admit no finite check."""
+def test_only_the_two_asymptotic_theorems_are_left_unprobed() -> None:
+    """Every checkable result of Sections 4-6 now has a probe."""
     c = A.audit_coverage()
-    assert c["total"] == 21 and c["probed"] == 16
-    assert set(c["uncovered"]) == {"Lemma 4.10", "Theorem 4.11", "Theorem 4.12"}
+    assert c["total"] == 21 and c["probed"] == 17
+    assert set(c["uncovered"]) == {"Theorem 4.11", "Theorem 4.12"}
     assert set(c["threshold_only"]) == {"Theorem 4.1", "Proposition 4.5"}
 
 
@@ -941,8 +941,7 @@ def test_corollary_4_13_holds_structurally_and_its_error_term_does_not_reach() -
     assert abs(r["density"] - 1 / 16) < 3e-3
     assert r["printed_error_is_vacuous_here"]                            # m'^(-4/27) = 0.55
     assert r["m_prime_for_a_ten_percent_error"] > 1e6
-    c = A.audit_coverage()
-    assert "Corollary 4.13" not in c["uncovered"] and c["probed"] == 16
+    assert "Corollary 4.13" not in A.audit_coverage()["uncovered"]   # count lives in the coverage test
 
 
 # --- one Weyl differencing carries the weight across the drift threshold ---
@@ -991,3 +990,14 @@ def test_paper_records_the_route_and_the_gap() -> None:
     assert "This is an accounting and not a proof" in text
     assert "P^{1-1/48}" in text                 # what one differencing would have to reach
     assert "Step 1 followed by Lemma 3.5" in text
+
+
+def test_lemma_4_10s_constant_is_sharp_and_free_where_it_is_used() -> None:
+    """1 + 2 pi TV is attained in the limit, and TV is 1.5e-5 at P_0."""
+    r = A.lemma_4_10_sharpness(random_trials=150)
+    assert r["constant_is_sharp"] and r["best_adversarial_ratio"] > 0.999
+    assert r["random_search_would_miss_it"]                  # random reaches about 0.92
+    assert r["the_twist_is_free_in_application"] and r["factor_at_P0"] < 1.001
+    assert r["TV_exponent"] == Fr(-5, 16)
+    for x in r["adversarial"]:
+        assert x["ratio"] <= 1 + 1e-9, x                     # and the lemma holds on every one
