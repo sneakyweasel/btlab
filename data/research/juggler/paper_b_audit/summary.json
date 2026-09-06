@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "dd80d14224fce99b5591e89da15940657641ae9b",
+  "git_commit": "881dfa49decba19c3af0fe64949d25cb8dd1a7e8",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -2791,68 +2791,136 @@
     "square_root_exponent": 0.5,
     "no_cancellation_exponent": 1.0
   },
-  "parameter_cap_reach": [
-    {
-      "parameter": "k, (C3), Theorem 5.3 uniformity",
-      "cap_constant": "1",
-      "cap_exponent": "1/24",
-      "least_P_admitting_two_values": 16777216.0,
-      "pinned_at_P0": false,
-      "window_above_P0": null,
-      "pinned_at_ladder_top": true,
-      "values_at_P0": 3
+  "parameter_cap_reach": {
+    "substitutions": [
+      {
+        "row": "st3a-window",
+        "term": "P^(1/2)/(2 h_1)",
+        "uses": "0.5 P^(23/48)",
+        "cap": "H_1",
+        "pattern": "15P^{10/48}",
+        "printed_here": true
+      },
+      {
+        "row": "st3b-window",
+        "term": "P^(1/2)/(2 h_2)",
+        "uses": "0.5 P^(22/48)",
+        "cap": "H_2",
+        "pattern": null,
+        "printed_here": null
+      },
+      {
+        "row": "st3a-flat",
+        "term": "16 h_1 P^(1/2)",
+        "uses": "16 P^(25/48)",
+        "cap": "H_1",
+        "pattern": "16h_1P^{1/2}",
+        "printed_here": true
+      },
+      {
+        "row": "st3a-flat",
+        "term": "30 k h_1h_2 P^(5/8)",
+        "uses": "30 P^(3/4)",
+        "cap": "(C1)",
+        "pattern": "46P^{3/4}",
+        "printed_here": true
+      },
+      {
+        "row": "5b-Npieces",
+        "term": "1.5(h_1+h_2) P^(1/2) + 2",
+        "uses": "3 P^(13/24) + 2",
+        "cap": "H_2",
+        "pattern": "1.5(h_1{+}h_2)P^{1/2}+2\\le3.1P^{13/24}",
+        "printed_here": true
+      },
+      {
+        "row": "5b-Npieces",
+        "term": "22 h_1h_2 P^(1/4)",
+        "uses": "22 P^(5/16)",
+        "cap": "H_1 H_2",
+        "pattern": "\\le22h_1h_2P^{1/4}\\le22P^{5/16}",
+        "printed_here": true
+      },
+      {
+        "row": "st5b-qpp",
+        "term": "1.85 k h P^(1/8)",
+        "uses": "1.85 P^(7/24)",
+        "cap": "k, h",
+        "pattern": "1.85P^{7/24}",
+        "printed_here": true
+      },
+      {
+        "row": "t61-stepB-discard",
+        "term": "(3 pi k/4) P^(-1/8)",
+        "uses": "1.5 pi P^(1/96-1/8)",
+        "cap": "k <= 2P^(1/96)",
+        "pattern": null,
+        "printed_here": null
+      },
+      {
+        "row": "t63-window, t63-flat",
+        "term": "|C| = (9l/16) n^(3/16)",
+        "uses": "1.281137 P^(19/96)",
+        "cap": "|l| <= 2P^(1/96)",
+        "pattern": "\\lvertC\\rvert\\le1.2812\\,P^{19/96}",
+        "printed_here": true
+      },
+      {
+        "row": "st6D1-window, st6D1-modeindex",
+        "term": "|B_0|",
+        "uses": "5 P^(1/4)",
+        "cap": "widened decoration",
+        "pattern": "5P^{1/4}",
+        "printed_here": true
+      }
+    ],
+    "substitution_count": 10,
+    "rows_touched": 8,
+    "caps_used": [
+      "(C1)",
+      "H_1",
+      "H_1 H_2",
+      "H_2",
+      "k <= 2P^(1/96)",
+      "k, h",
+      "widened decoration",
+      "|l| <= 2P^(1/96)"
+    ],
+    "every_pattern_still_printed": true,
+    "anchor_run_forms": [
+      {
+        "where": "mode-dominant bullet",
+        "bound": "22 P^(5/16)",
+        "exponent": 0.3125,
+        "pattern": "\\le22h_1h_2P^{1/4}\\le22P^{5/16}",
+        "present": true
+      },
+      {
+        "where": "the inventory sentence",
+        "bound": "22 P^(3/8)",
+        "exponent": 0.375,
+        "pattern": "\\le22h_1h_2P^{1/4}\\le22P^{3/8}",
+        "present": true
+      }
+    ],
+    "printed_at_two_values": true,
+    "readings": {
+      "H_1 H_2 -> 22 P^(5/16)": 39292523.15721952,
+      "(C4) alone -> 22 P^(1/3)": 225808824.30907822,
+      "(C1) -> 22 P^(3/8)": 27680640625.000214
     },
-    {
-      "parameter": "h_1, (C4), outer differencing shift",
-      "cap_constant": "1",
-      "cap_exponent": "1/48",
-      "least_P_admitting_two_values": 281474976710656.0,
-      "pinned_at_P0": true,
-      "window_above_P0": 7.8497121063822854,
-      "pinned_at_ladder_top": true,
-      "values_at_P0": 1
-    },
-    {
-      "parameter": "h_2, (C4), inner differencing shift",
-      "cap_constant": "1",
-      "cap_exponent": "1/24",
-      "least_P_admitting_two_values": 16777216.0,
-      "pinned_at_P0": false,
-      "window_above_P0": null,
-      "pinned_at_ladder_top": true,
-      "values_at_P0": 3
-    },
-    {
-      "parameter": "|l|, Step 5a monomial class",
-      "cap_constant": "1",
-      "cap_exponent": "1/24",
-      "least_P_admitting_two_values": 16777216.0,
-      "pinned_at_P0": false,
-      "window_above_P0": null,
-      "pinned_at_ladder_top": true,
-      "values_at_P0": 3
-    },
-    {
-      "parameter": "h, Step 3 window (h^{1/2} <= P^{1/24})",
-      "cap_constant": "1",
-      "cap_exponent": "1/12",
-      "least_P_admitting_two_values": 4096.0,
-      "pinned_at_P0": false,
-      "window_above_P0": null,
-      "pinned_at_ladder_top": false,
-      "values_at_P0": 13
-    },
-    {
-      "parameter": "j, Step 5b run index (j <= 2P^{1/24})",
-      "cap_constant": "2",
-      "cap_exponent": "1/24",
-      "least_P_admitting_two_values": 1.0,
-      "pinned_at_P0": false,
-      "window_above_P0": null,
-      "pinned_at_ladder_top": false,
-      "values_at_P0": 7
-    }
-  ],
+    "readings_are_ordered": true,
+    "A5_prints": 51400000.0,
+    "only_the_tightest_supports_A5": true,
+    "C4_is_h_le_P_1_24": true,
+    "C4_gives_h1h2_le_P_1_12": true,
+    "C4_alone_is_not_enough_by": 4.393167788114362,
+    "the_sharp_cap_is_theorem_5_3s_H1": true,
+    "the_last_section_called_it_C4": true,
+    "quantities_printed_at_more_than_one_value": 2,
+    "the_other_one_is_C_in_theorem_6_3": true,
+    "nothing_reaches_P0": true
+  },
   "census_constant_power": {
     "samples": 160,
     "samples_per_range": 20,
@@ -3899,7 +3967,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 5067,
+        "line": 5088,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3907,7 +3975,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5715,
+        "line": 5736,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3915,7 +3983,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6526,
+        "line": 6547,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3923,7 +3991,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 7105,
+        "line": 7126,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3999,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7135,
+        "line": 7156,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +4007,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7214,
+        "line": 7235,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -7848,6 +7916,136 @@
     "nothing_reaches_P0": true,
     "crudest_reading_below_P0_by": 117.17289736767542
   },
+  "which_cap_each_substitution_uses": {
+    "substitutions": [
+      {
+        "row": "st3a-window",
+        "term": "P^(1/2)/(2 h_1)",
+        "uses": "0.5 P^(23/48)",
+        "cap": "H_1",
+        "pattern": "15P^{10/48}",
+        "printed_here": true
+      },
+      {
+        "row": "st3b-window",
+        "term": "P^(1/2)/(2 h_2)",
+        "uses": "0.5 P^(22/48)",
+        "cap": "H_2",
+        "pattern": null,
+        "printed_here": null
+      },
+      {
+        "row": "st3a-flat",
+        "term": "16 h_1 P^(1/2)",
+        "uses": "16 P^(25/48)",
+        "cap": "H_1",
+        "pattern": "16h_1P^{1/2}",
+        "printed_here": true
+      },
+      {
+        "row": "st3a-flat",
+        "term": "30 k h_1h_2 P^(5/8)",
+        "uses": "30 P^(3/4)",
+        "cap": "(C1)",
+        "pattern": "46P^{3/4}",
+        "printed_here": true
+      },
+      {
+        "row": "5b-Npieces",
+        "term": "1.5(h_1+h_2) P^(1/2) + 2",
+        "uses": "3 P^(13/24) + 2",
+        "cap": "H_2",
+        "pattern": "1.5(h_1{+}h_2)P^{1/2}+2\\le3.1P^{13/24}",
+        "printed_here": true
+      },
+      {
+        "row": "5b-Npieces",
+        "term": "22 h_1h_2 P^(1/4)",
+        "uses": "22 P^(5/16)",
+        "cap": "H_1 H_2",
+        "pattern": "\\le22h_1h_2P^{1/4}\\le22P^{5/16}",
+        "printed_here": true
+      },
+      {
+        "row": "st5b-qpp",
+        "term": "1.85 k h P^(1/8)",
+        "uses": "1.85 P^(7/24)",
+        "cap": "k, h",
+        "pattern": "1.85P^{7/24}",
+        "printed_here": true
+      },
+      {
+        "row": "t61-stepB-discard",
+        "term": "(3 pi k/4) P^(-1/8)",
+        "uses": "1.5 pi P^(1/96-1/8)",
+        "cap": "k <= 2P^(1/96)",
+        "pattern": null,
+        "printed_here": null
+      },
+      {
+        "row": "t63-window, t63-flat",
+        "term": "|C| = (9l/16) n^(3/16)",
+        "uses": "1.281137 P^(19/96)",
+        "cap": "|l| <= 2P^(1/96)",
+        "pattern": "\\lvertC\\rvert\\le1.2812\\,P^{19/96}",
+        "printed_here": true
+      },
+      {
+        "row": "st6D1-window, st6D1-modeindex",
+        "term": "|B_0|",
+        "uses": "5 P^(1/4)",
+        "cap": "widened decoration",
+        "pattern": "5P^{1/4}",
+        "printed_here": true
+      }
+    ],
+    "substitution_count": 10,
+    "rows_touched": 8,
+    "caps_used": [
+      "(C1)",
+      "H_1",
+      "H_1 H_2",
+      "H_2",
+      "k <= 2P^(1/96)",
+      "k, h",
+      "widened decoration",
+      "|l| <= 2P^(1/96)"
+    ],
+    "every_pattern_still_printed": true,
+    "anchor_run_forms": [
+      {
+        "where": "mode-dominant bullet",
+        "bound": "22 P^(5/16)",
+        "exponent": 0.3125,
+        "pattern": "\\le22h_1h_2P^{1/4}\\le22P^{5/16}",
+        "present": true
+      },
+      {
+        "where": "the inventory sentence",
+        "bound": "22 P^(3/8)",
+        "exponent": 0.375,
+        "pattern": "\\le22h_1h_2P^{1/4}\\le22P^{3/8}",
+        "present": true
+      }
+    ],
+    "printed_at_two_values": true,
+    "readings": {
+      "H_1 H_2 -> 22 P^(5/16)": 39292523.15721952,
+      "(C4) alone -> 22 P^(1/3)": 225808824.30907822,
+      "(C1) -> 22 P^(3/8)": 27680640625.000214
+    },
+    "readings_are_ordered": true,
+    "A5_prints": 51400000.0,
+    "only_the_tightest_supports_A5": true,
+    "C4_is_h_le_P_1_24": true,
+    "C4_gives_h1h2_le_P_1_12": true,
+    "C4_alone_is_not_enough_by": 4.393167788114362,
+    "the_sharp_cap_is_theorem_5_3s_H1": true,
+    "the_last_section_called_it_C4": true,
+    "quantities_printed_at_more_than_one_value": 2,
+    "the_other_one_is_C_in_theorem_6_3": true,
+    "nothing_reaches_P0": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -7915,5 +8113,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 88.32118105888367
+  "elapsed_seconds": 90.97313690185547
 }

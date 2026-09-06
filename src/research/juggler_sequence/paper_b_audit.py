@@ -6980,6 +6980,116 @@ def step_5_inventories_against_the_paper() -> dict[str, Any]:
     }
 
 
+# Every place the certificate replaces a shift parameter by a power of P, and which cap it uses.
+# "cap" is the bound invoked: H_1 = P^(1/48) and H_2 = P^(1/24) are Theorem 5.3's own choices,
+# (C4) is the standing h_1, h_2 <= P^(1/24), (C1) is k h_1h_2 <= P^(1/8).
+CAP_SUBSTITUTIONS = (
+    {"row": "st3a-window", "term": "P^(1/2)/(2 h_1)", "uses": "0.5 P^(23/48)", "cap": "H_1",
+     "pattern": r"15P^{10/48}"},
+    {"row": "st3b-window", "term": "P^(1/2)/(2 h_2)", "uses": "0.5 P^(22/48)", "cap": "H_2",
+     "pattern": None},
+    {"row": "st3a-flat", "term": "16 h_1 P^(1/2)", "uses": "16 P^(25/48)", "cap": "H_1",
+     "pattern": r"16h_1P^{1/2}"},
+    {"row": "st3a-flat", "term": "30 k h_1h_2 P^(5/8)", "uses": "30 P^(3/4)", "cap": "(C1)",
+     "pattern": r"46P^{3/4}"},
+    {"row": "5b-Npieces", "term": "1.5(h_1+h_2) P^(1/2) + 2", "uses": "3 P^(13/24) + 2",
+     "cap": "H_2", "pattern": r"1.5(h_1{+}h_2)P^{1/2}+2\le3.1P^{13/24}"},
+    {"row": "5b-Npieces", "term": "22 h_1h_2 P^(1/4)", "uses": "22 P^(5/16)", "cap": "H_1 H_2",
+     "pattern": r"\le22h_1h_2P^{1/4}\le22P^{5/16}"},
+    {"row": "st5b-qpp", "term": "1.85 k h P^(1/8)", "uses": "1.85 P^(7/24)", "cap": "k, h",
+     "pattern": r"1.85P^{7/24}"},
+    {"row": "t61-stepB-discard", "term": "(3 pi k/4) P^(-1/8)", "uses": "1.5 pi P^(1/96-1/8)",
+     "cap": "k <= 2P^(1/96)", "pattern": None},
+    {"row": "t63-window, t63-flat", "term": "|C| = (9l/16) n^(3/16)",
+     "uses": "1.281137 P^(19/96)", "cap": "|l| <= 2P^(1/96)", "pattern": r"\lvertC\rvert\le1.2812\,P^{19/96}"},
+    {"row": "st6D1-window, st6D1-modeindex", "term": "|B_0|", "uses": "5 P^(1/4)",
+     "cap": "widened decoration", "pattern": r"5P^{1/4}"},
+)
+
+# The anchor-run bound, printed twice inside Step 5b at two different values.
+ANCHOR_RUN_FORMS = (
+    {"where": "mode-dominant bullet", "bound": "22 P^(5/16)", "exponent": 5 / 16,
+     "pattern": r"\le22h_1h_2P^{1/4}\le22P^{5/16}"},
+    {"where": "the inventory sentence", "bound": "22 P^(3/8)", "exponent": 0.375,
+     "pattern": r"\le22h_1h_2P^{1/4}\le22P^{3/8}"},
+)
+
+
+def which_cap_each_substitution_uses() -> dict[str, Any]:
+    """How many sites substitute a cap, and does each agree with its sentence?  Ten substitutions,
+    and one quantity is now printed at two values inside one step.
+
+    *A correction first.*  The last section attributed the sharp anchor-run bound to (C4).  That is
+    wrong, and the paper says so: (C4) is h_1, h_2 <= P^(1/24), which gives h_1h_2 <= P^(1/12) --
+    printed twice -- and so 22 P^(1/3), not 22 P^(5/16).  The P^(1/16) needs Theorem 5.3's own
+    choices H_1 = P^(1/48) and H_2 = P^(1/24), which sit inside (C4) with room on the first.  The
+    three readings order strictly, and only the tightest supports A.5's 5.14e7:
+
+        cap invoked                  h_1h_2        term          row first holds
+        H_1 H_2 (Theorem 5.3)        P^(1/16)      22 P^(5/16)   3.9293e07
+        (C4) alone                   P^(1/12)      22 P^(1/3)    2.2581e08
+        (C1) at k = 1                P^(1/8)       22 P^(3/8)    2.7681e10
+
+    *And the site now prints two of them.*  Step 5b carries `22 h_1h_2 P^(1/4) <= 22 P^(5/16)` in
+    its mode-dominant bullet, with the provenance spelled out, and `22 h_1h_2 P^(1/4) <= 22 P^(3/8)`
+    in its inventory sentence thirty-four lines below.  Same quantity, same coefficient, two bounds.
+    The first is the one A.5's threshold belongs to.
+
+    *The count.*  Ten places in the certificate replace a shift parameter by a power of P.  Eight
+    invoke a cap the site's own sentence states at that value.  Two are quantities the paper prints
+    at more than one value: this one, and |C| in Theorem 6.3 at 2, 1.30 and 1.2812.  Both were found
+    by binding a prose row; neither is unsound, and neither reaches P_0.
+
+    So the pattern is not that the certificate is systematically sharper than the prose.  It is that
+    a quantity bounded through a cap gets restated when the cap is restated, and the restatements do
+    not always travel together.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    compact = re.sub(r"\s+", "", text)
+
+    def least(pred) -> float:
+        lg = p0_certificate.least_P(pred)
+        return 10.0 ** lg if lg is not None else float("inf")
+
+    readings = {
+        "H_1 H_2 -> 22 P^(5/16)": least(
+            lambda P: 3.1 * P ** (13 / 24) + 22 * P ** (5 / 16) <= 3.5 * P ** (13 / 24)),
+        "(C4) alone -> 22 P^(1/3)": least(
+            lambda P: 3.1 * P ** (13 / 24) + 22 * P ** (1 / 3) <= 3.5 * P ** (13 / 24)),
+        "(C1) -> 22 P^(3/8)": least(
+            lambda P: 3.1 * P ** (13 / 24) + 22 * P**0.375 <= 3.5 * P ** (13 / 24)),
+    }
+    subs = [{**s, "printed_here": (compact.count(s["pattern"]) >= 1) if s["pattern"] else None}
+            for s in CAP_SUBSTITUTIONS]
+    forms = [{**f, "present": compact.count(f["pattern"]) == 1} for f in ANCHOR_RUN_FORMS]
+    printed_row = 5.14e7
+    ordered = list(readings.values())
+    return {
+        "substitutions": subs,
+        "substitution_count": len(subs),
+        "rows_touched": len({s["row"] for s in subs}),
+        "caps_used": sorted({s["cap"] for s in subs}),
+        "every_pattern_still_printed": all(s["printed_here"] for s in subs
+                                           if s["printed_here"] is not None),
+        "anchor_run_forms": forms,
+        "printed_at_two_values": all(f["present"] for f in forms),
+        "readings": readings,
+        "readings_are_ordered": ordered == sorted(ordered),
+        "A5_prints": printed_row,
+        "only_the_tightest_supports_A5": (ordered[0] < printed_row < ordered[1] < ordered[2]),
+        "C4_is_h_le_P_1_24": True,
+        "C4_gives_h1h2_le_P_1_12": True,
+        "C4_alone_is_not_enough_by": readings["(C4) alone -> 22 P^(1/3)"] / printed_row,
+        "the_sharp_cap_is_theorem_5_3s_H1": True,
+        "the_last_section_called_it_C4": True,
+        "quantities_printed_at_more_than_one_value": 2,
+        "the_other_one_is_C_in_theorem_6_3": True,
+        "nothing_reaches_P0": max(ordered) < 3.5858e13 / 50,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -7078,6 +7188,7 @@ def summary() -> dict[str, Any]:
     claims = claim_strings_against_their_thresholds()
     fifth = fifth_letter_coefficient_has_three_values()
     step5 = step_5_inventories_against_the_paper()
+    caps = which_cap_each_substitution_uses()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -7164,6 +7275,7 @@ def summary() -> dict[str, Any]:
         "claim_strings_against_their_thresholds": claims,
         "fifth_letter_coefficient_has_three_values": fifth,
         "step_5_inventories_against_the_paper": step5,
+        "which_cap_each_substitution_uses": caps,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

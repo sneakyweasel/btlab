@@ -6930,3 +6930,161 @@ Probe: `step_5_inventories_against_the_paper`, with `PIECE_INVENTORY` and
 they report their own obsolescence once the text moves. Two tests. Audit
 `270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate
 edit.
+
+## Which cap: a correction of mine, and the same bound now printed twice
+
+*The correction first.* The last section attributed the sharp anchor-run
+bound to `(C4)`. That is wrong, and the paper says so plainly: `(C4)` is
+`h_1, h_2 <= P^(1/24)`, which gives `h_1h_2 <= P^(1/12)` --- printed
+twice --- and so `22P^(1/3)`, not `22P^(5/16)`. The `P^(1/16)` needs
+Theorem 5.3's own choices `H_1 = P^(1/48)` and `H_2 = P^(1/24)`, which
+sit inside `(C4)` with room on the first. The measurements in that
+section stand; the name attached to them does not.
+
+The three readings order strictly, and only the tightest supports A.5's
+`5.14e7`:
+
+```text
+  cap invoked                  h_1h_2        term          row first holds
+  H_1 H_2 (Theorem 5.3)        P^(1/16)      22 P^(5/16)   3.9293e07
+  (C4) alone                   P^(1/12)      22 P^(1/3)    2.2581e08
+  (C1) at k = 1                P^(1/8)       22 P^(3/8)    2.7681e10
+```
+
+`(C4)` alone misses the printed threshold by `4.39`, which is the part I
+had wrong: the gap is not "standing caps versus (C1)" but "Theorem 5.3's
+own `H_1` versus everything else".
+
+*And the site now prints two of them.* Step 5b carries
+
+```text
+  mode-dominant bullet   22 h_1h_2 P^(1/4) <= 22 P^(5/16)
+  inventory sentence     22 h_1h_2 P^(1/4) <= 22 P^(3/8)
+```
+
+thirty-four lines apart --- same quantity, same coefficient, two bounds.
+The bullet spells out its provenance, naming `H_1`, `H_2` and the
+`P^(1/12)` that `(C4)` alone would give; the inventory sentence still
+carries the `3/8`. A.5's threshold belongs to the first.
+
+*The count, which is what the question asked for.* Ten places in the
+certificate replace a shift parameter by a power of `P`, across eight
+sites:
+
+```text
+  st3a-window        P^(1/2)/(2h_1)        0.5 P^(23/48)      H_1
+  st3b-window        P^(1/2)/(2h_2)        0.5 P^(22/48)      H_2
+  st3a-flat          16 h_1 P^(1/2)        16 P^(25/48)       H_1
+  st3a-flat          30 k h_1h_2 P^(5/8)   30 P^(3/4)         (C1)
+  5b-Npieces         1.5(h_1+h_2)P^(1/2)   3 P^(13/24) + 2    H_2
+  5b-Npieces         22 h_1h_2 P^(1/4)     22 P^(5/16)        H_1 H_2
+  st5b-qpp           1.85 k h P^(1/8)      1.85 P^(7/24)      k, h
+  t61-stepB-discard  (3 pi k/4) P^(-1/8)   1.5 pi P^(1/96-1/8) k <= 2P^(1/96)
+  t63-window, -flat  |C| = (9l/16)n^(3/16) 1.281137 P^(19/96) |l| <= 2P^(1/96)
+  st6D1-window, -mi  |B_0|                 5 P^(1/4)          widened decoration
+```
+
+Eight of the ten invoke a bound the site's own sentence states at that
+value. Two are quantities the paper prints at more than one: this one,
+and `|C|` in Theorem 6.3 at `2`, `1.30` and `1.2812`. Both surfaced by
+binding a prose row; neither is unsound; neither reaches `P_0`.
+
+So the pattern is not that the certificate runs systematically sharper
+than the prose --- `st3a-flat` uses `(C1)`, the crudest available, and
+still holds at every `P`. It is that a quantity bounded *through* a cap
+gets restated whenever the cap is restated, and the restatements do not
+always travel together.
+
+Tags. EXACT: `(C4)` is `h_1, h_2 <= P^(1/24)`, so `(C4)` alone gives
+`h_1h_2 <= P^(1/12)` and `22P^(1/3)`; `H_1 = P^(1/48)` with
+`H_2 = P^(1/24)` gives `P^(1/16)` and `22P^(5/16)`; `(C1)` at `k = 1`
+gives `P^(1/8)` and `22P^(3/8)`. COMPUTATIONALLY VERIFIED: the row first
+holds at `3.9293e7`, `2.2581e8` and `2.7681e10` under the three, against
+A.5's `5.14e7`, so only the first supports it and `(C4)` alone misses by
+`4.39`; both anchor-run forms are present in the manuscript; ten
+substitutions across eight sites; the crudest reading is `1295` times
+below `P_0`. OBSERVATION: the previous section's attribution to `(C4)`
+was mine and is corrected here.
+
+Probe: `which_cap_each_substitution_uses`, with `CAP_SUBSTITUTIONS` and
+`ANCHOR_RUN_FORMS` matched against the whitespace-stripped manuscript.
+Two tests. Audit `270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.
+
+## Classifying the rest of the tables: three carry nothing directional, one carries an exact program, and one figure beside it is wrong
+
+*Mathematical target.* Three threshold tables have been audited, each
+found by following whatever the previous tick touched. Twenty-eight
+others have never been classified. Decide which carry a quantity whose
+rounding direction matters, and check those.
+
+*Novelty hypothesis.* At least one more table carries a directional
+quantity.
+
+*Falsifier.* The remaining tables are combinatorial or symbolic and
+nothing rounds.
+
+*Existing machinery.* The three table audits; `to_rational`.
+
+*Prior art.* The three preceding ledger entries; nothing in
+`docs/negative_knowledge.md`.
+
+**The hypothesis was wrong, and the classification is the result.**
+Of the remaining candidates:
+
+- Lemma 5.2(i)'s class table (Section 5) is symbolic exponent
+  bookkeeping --- `P^{3/4}`, `(uh)^{1/2}P^{5/8}` --- with no decimals
+  and no direction.
+- The target/level/cost table of Section 7 is exact fractions, and
+  carries an invariant instead: `cost = 2^{-d}`, and
+  `ceil(alpha) - 1 = 1` in all four rows.
+- The run-length table is exact dyadic gains. Its invariant is that the
+  gain column is the row sum of the run columns; all five rows hold
+  (`1/16`; `1/32+1/32`; `3/128`; `1/256+3/256+1/128+1/256 = 7/256`;
+  `1/1024+1/256+1/256+1/512+1/1024 = 3/256`).
+- Proposition 7.1's density table is the interesting one. Its entries
+  are exact integers with a stated algorithm behind them.
+
+**Proposition 7.1's table recomputes exactly.** `N_d` counts words of
+length `d` whose lattice path keeps `3^{o_t} >= 2^t` throughout --- "a
+two-line dynamic program over the triangle, exact in integers". Running
+it reproduces all seven rows and all six columns: `N_d`, the endpoint
+count, `2^d`, `N_d/2^d`, `e^{-cd}` and the certificate density. The
+program was cross-checked against brute enumeration of all `2^d` words
+for every `d <= 18`.
+
+The analytic constants beside it check too. `c = 2(log2/log3 - 1/2)^2 =
+0.03428520074`, printed `0.034285` --- rounded *down*, which is the safe
+direction for a rate appearing as `e^{-cd}` in an upper bound. The
+sharp rate `rho = min_theta (1/2)((3/2)^theta + 2^{-theta})` is
+`0.965906553` at `theta* = 0.488077`, printed `0.965907`, and
+`-log rho = 0.0346881852`, printed `0.034688`. `C ~ 11` is approached
+from below: `8.92` at `d=200`, `10.45` at `d=800`, `10.76` at `d=1600`.
+
+**One figure beside it is wrong.** The Hoeffding-loss ratio
+`e^{-cd} 2^d / N_d` is quoted at four depths. Three are right to under
+one per cent --- `6.7397` printed `6.7`, `11.3559` printed `11.4`,
+`43.5745` printed `43.6`. The fourth, at `d=1600`, is `11337` and was
+printed `1.3e4`: **a fifteen per cent overstatement.** It overstates how
+lossy Hoeffding is, which is the direction that flatters the argument
+the sentence makes, and nothing downstream depends on it --- the claim
+is that the ratio grows without bound, which either figure shows.
+Corrected to `1.13e4`.
+
+Tags. EXACT: `c = 2(log2/log3 - 1/2)^2`; `N_d` for every `d`, by two
+independent algorithms agreeing to `d=18`; the five run-length row sums;
+`cost = 2^{-d}` in the Section 7 table. COMPUTATIONALLY VERIFIED: all
+forty-two entries of the density table; `rho = 0.965906553`;
+`-log rho = 0.0346881852`; the four loss ratios `6.7397`, `11.3559`,
+`43.5745`, `11337`. OBSERVATION: the ratio's growth is polynomial ---
+`(1/C) d^{3/2} e^{(|log rho| - c)d}` --- so the `d^{3/2}` and not the
+rate gap is what makes it grow over any range a theorem could occupy,
+which is what the paper says and now has numbers for.
+
+Probe: `manuscript_self_audit.nd_counts`, `endpoint_only`,
+`hoeffding_c`, `sharp_rate`, `prop71_audit`, `prop71_failures`,
+`runlength_rows`, `runlength_failures`; `failures()` gains `prop71` and
+`runlength` keys, eleven checks in all. Six new tests, sixty-seven in
+the file. Manuscript: the `d=1600` ratio corrected and a passage
+recording the recomputation. `P_0` and `P_1` unmoved. No certificate
+edit.

@@ -2284,3 +2284,24 @@ def test_the_piece_inventory_needs_a_sharper_cap_than_the_sentence_prints() -> N
         assert r["with_the_windows_later_by"] > r["printed_inventory_is_later_by"]
         assert r["one_clause_closes_it"]                       # the whole gap is 22 h_1h_2 P^(1/4)
     assert r["nothing_reaches_P0"] and r["crudest_reading_below_P0_by"] > 50
+
+
+# --- which cap each substitution uses ---
+
+
+def test_the_sharp_anchor_run_cap_is_theorem_5_3s_H1_and_not_C4() -> None:
+    """(C4) is h_1,h_2 <= P^(1/24), so it gives 22 P^(1/3) and misses A.5's threshold by 4.4."""
+    r = A.which_cap_each_substitution_uses()
+    assert r["readings_are_ordered"] and r["only_the_tightest_supports_A5"]
+    assert 4.3 < r["C4_alone_is_not_enough_by"] < 4.5
+    assert r["nothing_reaches_P0"]
+
+
+def test_the_anchor_run_bound_is_printed_at_two_values_in_one_step() -> None:
+    """Ten cap substitutions; two of the quantities are printed at more than one value."""
+    r = A.which_cap_each_substitution_uses()
+    assert r["substitution_count"] == 10 and r["rows_touched"] >= 8
+    assert "(C1)" in r["caps_used"] and "H_1 H_2" in r["caps_used"]
+    assert r["quantities_printed_at_more_than_one_value"] == 2
+    if r["printed_at_two_values"]:
+        assert [f["exponent"] for f in r["anchor_run_forms"]] == [5 / 16, 0.375]

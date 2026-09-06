@@ -37304,3 +37304,75 @@ Best next question
   compare the exponent it uses with the exponent the site's own sentence
   prints -- the answer is a count, and the count is the thing to know.
 ```
+
+## Which cap, and a name I had wrong
+
+The last section called the sharp anchor-run bound `(C4)`. It is not.
+`(C4)` is `h_1, h_2 <= P^(1/24)`, which gives `h_1h_2 <= P^(1/12)` and
+`22P^(1/3)`; the `P^(1/16)` needs Theorem 5.3's own `H_1 = P^(1/48)`,
+which sits inside `(C4)` with room. The measurements stand, the name does
+not.
+
+```text
+  cap invoked                  h_1h_2        term          row first holds
+  H_1 H_2 (Theorem 5.3)        P^(1/16)      22 P^(5/16)   3.9293e07
+  (C4) alone                   P^(1/12)      22 P^(1/3)    2.2581e08
+  (C1) at k = 1                P^(1/8)       22 P^(3/8)    2.7681e10
+```
+
+Only the tightest supports A.5's `5.14e7`; `(C4)` alone misses by `4.39`.
+
+And Step 5b now prints two of them --- `22 h_1h_2 P^(1/4) <= 22 P^(5/16)`
+in the mode-dominant bullet, with its provenance spelled out, and
+`<= 22 P^(3/8)` in the inventory sentence thirty-four lines below. Same
+quantity, two bounds.
+
+The count the question asked for: ten cap substitutions across eight
+sites; eight of them invoke a bound the site's own sentence states at
+that value; two are quantities printed at more than one --- this one and
+`|C|` in Theorem 6.3. So the pattern is not that the certificate runs
+sharper than the prose (`st3a-flat` uses `(C1)`, the crudest available,
+and still holds at every `P`); it is that a bound taken *through* a cap
+gets restated when the cap is, and the restatements do not always travel
+together.
+
+```text
+Phase-end report
+Question
+- take every row whose predicate substitutes a cap and compare the
+  exponent it uses with the exponent the site's own sentence prints; the
+  answer is a count
+Instruments
+- which_cap_each_substitution_uses: the ten substitutions with the cap
+  each invokes, the anchor-run bound solved under all three caps, and
+  both printed forms located in the manuscript
+Ledger tags
+- EXACT: (C4) gives h_1h_2 <= P^(1/12) and 22P^(1/3); H_1H_2 gives
+  P^(1/16) and 22P^(5/16); (C1) at k=1 gives P^(1/8) and 22P^(3/8)
+- COMPUTATIONALLY VERIFIED: the row holds from 3.9293e7, 2.2581e8 and
+  2.7681e10 under the three, against A.5's 5.14e7; (C4) alone misses by
+  4.39; both anchor-run forms are printed; ten substitutions, eight sites;
+  the crudest reading is 1295 times below P_0
+- OBSERVATION: the previous section's attribution to (C4) was mine, and
+  is corrected here
+Strongest theorem
+- the count: eight of ten substitutions agree with their sentence, and
+  the two that do not are quantities the paper prints at several values
+Strongest refutation
+- my own (C4) label from the previous section
+Reusable machinery
+- which_cap_each_substitution_uses, CAP_SUBSTITUTIONS, ANCHOR_RUN_FORMS,
+  two tests, wired into summary()
+Branch status
+- PARK
+Why
+  The count is the answer, and both outstanding items are manuscript
+  edits belonging to the other session.
+Best next question
+- both multi-valued quantities were bounded through a cap, and both were
+  restated once and not everywhere. The paper states its caps in one
+  block, (C1)-(C4). How many of the bounds derived from that block are
+  restated somewhere else in the paper at a different value? That is the
+  same count one level up, and it is answerable by searching for each
+  cap's derived products.
+```
