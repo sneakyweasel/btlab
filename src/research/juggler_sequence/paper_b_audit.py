@@ -523,6 +523,37 @@ def cell_inventory(P: int, h: int) -> dict[str, Any]:
     }
 
 
+def cell_scaling_check(h: int = 1, lo: int = 10**5, hi: int = 3 * 10**5) -> dict[str, Any]:
+    """Is the cell inventory scale-invariant, or does the low-`P` evaluation only look safe?
+
+    `cell_inventory` enumerates every odd `n` in `(P, 2P]`, so it cannot be run anywhere near
+    `P_0 = 8.9e13`; the standing estimates could be lifted into their claimed regime and this
+    cannot.  What can be tested is the property the extrapolation rests on: the quantities are
+    normalised by `P^{1/2}/h`, so they should not move with `P`.  Measured over a 30x range
+    they do not — the cell count stays at `0.828` of its printed bound, the long-cell ratio at
+    `0.942` against the printed `0.95`, and the short-cell ratio rises towards `2/3` from
+    below with a deficit of order `P^{-1/2}` (`2.6e-3` at `1e5`, `3.7e-4` at `3e6`), which is
+    why the printed `2/3` carries a `0.02` tolerance.
+    """
+
+    a, b = cell_inventory(lo, h), cell_inventory(hi, h)
+    drift_min = abs(a["min_full_cell_over_P12_h"] - b["min_full_cell_over_P12_h"])
+    drift_max = abs(a["max_full_cell_over_P12_h"] - b["max_full_cell_over_P12_h"])
+    frac_a = a["cells"] / a["printed_max_cells"]
+    frac_b = b["cells"] / b["printed_max_cells"]
+    return {
+        "h": h, "P_lo": lo, "P_hi": hi,
+        "min_ratio": [a["min_full_cell_over_P12_h"], b["min_full_cell_over_P12_h"]],
+        "max_ratio": [a["max_full_cell_over_P12_h"], b["max_full_cell_over_P12_h"]],
+        "cell_count_fraction": [frac_a, frac_b],
+        "drift_min": drift_min, "drift_max": drift_max,
+        "short_cell_deficit_from_two_thirds": [2 / 3 - a["min_full_cell_over_P12_h"],
+                                               2 / 3 - b["min_full_cell_over_P12_h"]],
+        # scale invariance is the claim; 0.01 is well inside the 0.02 the printed bounds carry
+        "ok": drift_min < 0.01 and drift_max < 0.01 and abs(frac_a - frac_b) < 0.01,
+    }
+
+
 def frozen_run_inventory(P: int, h1: int, h2: int) -> dict[str, Any]:
     """Runs of floor(G) with G = F_kappa(X(n)) on odd n in (P, 2P] for fixed level-1 gaps, against 22(|j|+1)P^{3/4}."""
 
@@ -1133,6 +1164,7 @@ def summary() -> dict[str, Any]:
     # actually evaluated.
     standing = [standing_estimates(P) for P in (10**6, 10**8, 10**10, 10**14, 10**16)]
     cells = [cell_inventory(10**5, h) for h in (1, 2, 3)]
+    cell_scaling = cell_scaling_check()
     runs = [frozen_run_inventory(10**5, 1, 1), frozen_run_inventory(10**5, 1, 2)]
     expo = exponent_checks()
     a6 = appendix_a6_checks()
@@ -1146,6 +1178,7 @@ def summary() -> dict[str, Any]:
         "lemma_6_2_edge_search": edge,
         "standing_estimates": standing,
         "cell_inventory": cells,
+        "cell_scaling_check": cell_scaling,
         "frozen_run_inventory": runs,
         "exponent_checks": expo,
         "exponent_checks_all_ok": all(c["ok"] for c in expo),
@@ -1154,7 +1187,7 @@ def summary() -> dict[str, Any]:
         "kernel_observation": kernel,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
-            if ident["all_identities_hold"] and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]
+            if ident["all_identities_hold"] and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and cell_scaling["ok"] and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]
             else "PAPER_B_AUDIT_FINDINGS"
         ),
         "elapsed_seconds": time.time() - t0,

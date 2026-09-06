@@ -29467,3 +29467,52 @@ Branch status
 Best next question
 - do the cell and frozen-run inventories have the same problem? They are
   evaluated at P = 1e5 only
+
+## The cell inventory cannot be lifted, so test the property the lift rests on
+
+Third Paper B pass, following the previous entry's question: do the cell
+and frozen-run inventories share the standing estimates' defect of being
+evaluated only far below \(P_0=8.9\cdot10^{13}\)?
+
+They are evaluated only at \(P=10^5\), but the defect is not the same,
+because the fix is not available. `cell_inventory` enumerates every odd
+\(n\in(P,2P]\); at \(P_0\) that is \(5\cdot10^{13}\) iterations. The
+standing estimates could be lifted into their claimed regime and were.
+This cannot be.
+
+What can be tested is the property the extrapolation rests on. The
+quantities are normalised by \(P^{1/2}/h\), so scale invariance is the
+claim, and it is checkable over whatever range does fit. Measured across
+a \(30\times\) range:
+
+| | \(10^5\) | \(3\cdot10^5\) | \(10^6\) | \(3\cdot10^6\) |
+|---|---|---|---|---|
+| short cell \(/P^{1/2}h\) | \(0.6641\) | \(0.6646\) | \(0.6660\) | \(0.6663\) |
+| long cell \(/P^{1/2}h\) | \(0.9424\) | \(0.9421\) | \(0.9440\) | \(0.9422\) |
+| cells \(/\) printed bound | \(0.829\) | \(0.827\) | \(0.828\) | \(0.828\) |
+
+Flat. The long-cell ratio sits at \(0.942\) against the printed
+\(0.95\), and the cell count is uniformly \(83\%\) of its bound. The
+short-cell ratio is the interesting one: it approaches \(2/3\) *from
+below*, with a deficit of order \(P^{-1/2}\) — \(2.6\cdot10^{-3}\) at
+\(10^5\) falling to \(3.7\cdot10^{-4}\) at \(3\cdot10^6\) — which is
+what the printed \(2/3\) needs its \(0.02\) tolerance for, and why the
+tolerance is not slack.
+
+`cell_scaling_check` makes this a permanent audit item at two scales,
+in the classification. Drift \(4.9\cdot10^{-4}\) and \(2.8\cdot10^{-4}\),
+against a \(0.01\) gate. Audit runtime \(27.6\to31.2\) s.
+
+```text
+What was learned
+- an exhaustive inventory cannot be lifted to its claimed regime, so the
+  auditable claim is scale invariance, not the value at P_0
+- the normalised ratios are flat over 30x; the short-cell deficit vanishes
+  like P^{-1/2}, which is exactly what the printed tolerance covers
+- three passes, three shapes: a constant nobody recomputed, an estimate
+  never evaluated in its own regime, and an extrapolation never tested
+Branch status
+- PAPER_B_AUDIT_CONSISTENT; no manuscript prose touched in any pass
+Best next question
+- frozen_run_inventory is also at 1e5 only, with the bound 22(|j|+1)P^{3/4};
+  does its normalised ratio hold up the same way?

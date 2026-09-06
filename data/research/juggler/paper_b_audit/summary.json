@@ -459,7 +459,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "44c2b4cde847c48e477293bc0e42acf9e49e15c0",
+  "git_commit": "9036fb9bddadf1e02091d3ed95df0fdf3590f8ab",
   "identities": {
     "samples": 360,
     "failures": {},
@@ -968,6 +968,30 @@
       "ok": true
     }
   ],
+  "cell_scaling_check": {
+    "h": 1,
+    "P_lo": 100000,
+    "P_hi": 300000,
+    "min_ratio": [
+      0.6640783086353595,
+      0.6645700364396016
+    ],
+    "max_ratio": [
+      0.942358742730177,
+      0.9420827989088857
+    ],
+    "cell_count_fraction": [
+      0.8288775048598047,
+      0.8278791412898792
+    ],
+    "drift_min": 0.0004917278042420037,
+    "drift_max": 0.00027594382129125794,
+    "short_cell_deficit_from_two_thirds": [
+      0.002588358031307081,
+      0.002096630227065077
+    ],
+    "ok": true
+  },
   "frozen_run_inventory": [
     {
       "P": 100000,
@@ -1957,5 +1981,5 @@
     }
   ],
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 27.552484273910522
+  "elapsed_seconds": 31.158726930618286
 }
