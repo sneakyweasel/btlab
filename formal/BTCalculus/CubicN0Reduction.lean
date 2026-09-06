@@ -98,6 +98,7 @@ theorem n0_scaled_exhausted {k r : Nat}
   have ht : k - 1 - r - 3 * r = k - 1 - 4 * r := by omega
   simpa [ht] using n0_scaled_of_ge (m := k - 1 - r) (r := r) hm u
 
+/-- The depth of the reduced `N0` residual. -/
 theorem n0_reduced_depth (k r : Nat) :
     k - 1 - r - 3 * r = k - 1 - 4 * r := by
   omega
@@ -113,6 +114,7 @@ theorem n0_width_ne_depth {k r : Nat} (hr : 1 ≤ r) (_hk : 4 * r + 1 ≤ k) :
     k - 1 - 2 * r ≠ k - 1 - 4 * r := by
   omega
 
+/-- `N0(p)` and `N0(-p)` agree modulo `3^k` exactly when `3^k` divides `N0(p)`: the sign survives the reduction only where the residual already vanishes. -/
 theorem n0_sign_survives {k m : Nat} {p : Int} :
     (3 : Int) ^ k ∣ n0Resid m p - n0Resid m (-p) ↔
       (3 : Int) ^ k ∣ n0Resid m p :=
@@ -161,6 +163,7 @@ theorem n0_of_cube_mod {t k : Nat} {u v : Int}
   rw [hiter]
   exact ⟨d, by ring⟩
 
+/-- `N0` modulo a power of three sees only the input modulo a power of three. -/
 theorem n0_visible_mod {t k s : Nat}
     (hs : t + k - 1 ≤ s) (hs1 : 1 ≤ s) {u v : Int}
     (h : (3 : Int) ^ s ∣ u - v) :

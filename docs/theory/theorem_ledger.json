@@ -1135,6 +1135,8 @@
   "statement": "N0(p)≡N0(-p) iff 3^k | N0(p)",
   "source": "docs/theory/cubic_n0_reduction.md",
   "lean": "BTCalculus/CubicN0Reduction.lean",
+  "decl": "n0_sign_survives",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_n0_reduction.py"
   ],
@@ -1253,6 +1255,8 @@
   "statement": "for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c",
   "source": "docs/theory/cubic_newton_stratum.md",
   "lean": "BTCalculus/MismatchedCubicInvariant.lean",
+  "decl": "q_one_family_dvd",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_mismatched_invariant.py"
   ],

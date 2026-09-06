@@ -25,12 +25,14 @@ theorem qCubic_one {t : Nat} (ht : 1 ≤ t) : qCubic t 1 = 0 := by
   unfold qCubic n0Resid
   simpa using iterDZ_one ht
 
+/-- Shift form of `Q` on the family `1 + 3^t b`. -/
 theorem q_one_shift {t : Nat} (ht : 1 ≤ t) (b : Int) :
     qCubic t (1 + (3 : Int) ^ t * b) =
       3 * b + (3 : Int) ^ (t + 1) * b ^ 2 + (3 : Int) ^ (2 * t) * b ^ 3 := by
   have h := q_split_high t 1 b
   simpa [qCubic_one ht] using h
 
+/-- Difference of two `Q` values on the family `1 + 3^t b`. -/
 lemma q_one_diff {t : Nat} (ht : 1 ≤ t) (b c : Int) :
     qCubic t (1 + (3 : Int) ^ t * b) - qCubic t (1 + (3 : Int) ^ t * c) =
       (3 : Int) * (b - c) *
@@ -119,6 +121,7 @@ lemma three_pow_dvd_mul_iff :
     · intro hx
       exact hx.mul_right U
 
+/-- On the family `1 + 3^t b` with `t >= 1` and `K >= 1`, `Q` values agree modulo `3^K` exactly when `3^(K-1)` divides `b - c`: one power of three is lost to the bracket unit. -/
 theorem q_one_family_dvd {t K : Nat} (ht : 1 ≤ t) (hK : 1 ≤ K)
     (b c : Int) :
     (3 : Int) ^ K ∣ qCubic t (1 + (3 : Int) ^ t * b) -

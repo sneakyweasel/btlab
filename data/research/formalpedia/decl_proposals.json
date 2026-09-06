@@ -1639,7 +1639,7 @@
       "confidence": "low",
       "definitions": [],
       "id": "BTA-x3-n0-scale",
-      "in_file": 21,
+      "in_file": 20,
       "lean": "BTCalculus/CubicN0Reduction.lean",
       "names_own": [],
       "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m\u22643r, else D^{m-3r}(u^3)"
@@ -1647,20 +1647,20 @@
     {
       "candidates": [
         {
-          "decl": "deficit_unexhausted_iff",
-          "line": 82,
-          "score": 0.333,
+          "decl": "n0_of_cube_mod",
+          "line": 148,
+          "score": 0.25,
+          "trust": "kernel"
+        },
+        {
+          "decl": "n0_visible_mod",
+          "line": 167,
+          "score": 0.111,
           "trust": "kernel"
         },
         {
           "decl": "DZ_mul_three",
           "line": 17,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "pow3_mul_cube",
-          "line": 20,
           "score": 0.0,
           "trust": "kernel"
         }
@@ -1668,38 +1668,8 @@
       "composite": false,
       "confidence": "review",
       "definitions": [],
-      "id": "BTA-x3-n0-sign",
-      "in_file": 21,
-      "lean": "BTCalculus/CubicN0Reduction.lean",
-      "names_own": [],
-      "statement": "N0(p)\u2261N0(-p) iff 3^k | N0(p)"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "n0_of_cube_mod",
-          "line": 146,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "n0_visible_mod",
-          "line": 164,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "DZ_mul_three",
-          "line": 17,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [],
       "id": "BTA-x3-n0-vis",
-      "in_file": 21,
+      "in_file": 20,
       "lean": "BTCalculus/CubicN0Reduction.lean",
       "names_own": [],
       "statement": "D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}"
@@ -1774,36 +1744,6 @@
       "lean": "BTCalculus/NewtonStratum.lean",
       "names_own": [],
       "statement": "At deficit r, N2 iff p = q (mod 3^r); N1 after N2 is the delta law; N0 is the mismatched Q on the 3^r locus"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "three_pow_dvd_mul_iff",
-          "line": 95,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "iterDZ_one",
-          "line": 17,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "qCubic_one",
-          "line": 24,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [],
-      "id": "BTA-x3-Q-inv-one",
-      "in_file": 9,
-      "lean": "BTCalculus/MismatchedCubicInvariant.lean",
-      "names_own": [],
-      "statement": "for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c"
     },
     {
       "candidates": [
@@ -5740,6 +5680,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 145,
-  "worth_reviewing": 29
+  "unresolved": 143,
+  "worth_reviewing": 28
 }

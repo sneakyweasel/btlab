@@ -50486,7 +50486,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The depth of the reduced `N0` residual.",
       "file": "formal/BTCalculus/CubicN0Reduction.lean",
       "kind": "theorem",
       "ledger": [
@@ -50495,7 +50495,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 101,
+      "line": 102,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_reduced_depth",
       "trust": "kernel"
@@ -50510,7 +50510,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 105,
+      "line": 106,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_depth_eq_n1_deepest",
       "trust": "kernel"
@@ -50525,13 +50525,13 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 112,
+      "line": 113,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_width_ne_depth",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N0(p)` and `N0(-p)` agree modulo `3^k` exactly when `3^k` divides `N0(p)`: the sign survives the reduction only where the residual already vanishes.",
       "file": "formal/BTCalculus/CubicN0Reduction.lean",
       "kind": "theorem",
       "ledger": [
@@ -50540,7 +50540,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 116,
+      "line": 118,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_sign_survives",
       "trust": "kernel"
@@ -50555,7 +50555,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 121,
+      "line": 123,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_sign_scaled_of_le",
       "trust": "kernel"
@@ -50570,7 +50570,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 128,
+      "line": 130,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "three_dvd_sq_sum",
       "trust": "kernel"
@@ -50585,7 +50585,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 136,
+      "line": 138,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "cube_val_succ",
       "trust": "kernel"
@@ -50600,13 +50600,13 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 146,
+      "line": 148,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_of_cube_mod",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`N0` modulo a power of three sees only the input modulo a power of three.",
       "file": "formal/BTCalculus/CubicN0Reduction.lean",
       "kind": "theorem",
       "ledger": [
@@ -50615,7 +50615,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 164,
+      "line": 167,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_visible_mod",
       "trust": "kernel"
@@ -50630,7 +50630,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 175,
+      "line": 178,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_val_stratum_le",
       "trust": "kernel"
@@ -50645,7 +50645,7 @@
         "BTA-x3-n0-vis",
         "BTA-x3-n0-recur"
       ],
-      "line": 179,
+      "line": 182,
       "module": "BTCalculus.CubicN0Reduction",
       "name": "n0_val_stratum_ge",
       "trust": "kernel"
@@ -52043,7 +52043,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Shift form of `Q` on the family `1 + 3^t b`.",
       "file": "formal/BTCalculus/MismatchedCubicInvariant.lean",
       "kind": "theorem",
       "ledger": [
@@ -52051,13 +52051,13 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 28,
+      "line": 29,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "q_one_shift",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Difference of two `Q` values on the family `1 + 3^t b`.",
       "file": "formal/BTCalculus/MismatchedCubicInvariant.lean",
       "kind": "lemma",
       "ledger": [
@@ -52065,7 +52065,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 34,
+      "line": 36,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "q_one_diff",
       "trust": "kernel"
@@ -52079,7 +52079,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 67,
+      "line": 69,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "q_one_bracket_unit",
       "trust": "kernel"
@@ -52093,7 +52093,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 88,
+      "line": 90,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "three_dvd_of_dvd_mul",
       "trust": "kernel"
@@ -52107,13 +52107,13 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 95,
+      "line": 97,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "three_pow_dvd_mul_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "On the family `1 + 3^t b` with `t >= 1` and `K >= 1`, `Q` values agree modulo `3^K` exactly when `3^(K-1)` divides `b - c`: one power of three is lost to the bracket unit.",
       "file": "formal/BTCalculus/MismatchedCubicInvariant.lean",
       "kind": "theorem",
       "ledger": [
@@ -52121,7 +52121,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 122,
+      "line": 125,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "q_one_family_dvd",
       "trust": "kernel"
@@ -52135,7 +52135,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 157,
+      "line": 160,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "balCubic_of_mod",
       "trust": "kernel"
@@ -52149,7 +52149,7 @@
         "BTA-x3-Q-inv-bal",
         "BTA-x3-Q-inv-psi"
       ],
-      "line": 174,
+      "line": 177,
       "module": "BTCalculus.MismatchedCubicInvariant",
       "name": "q_high_zero",
       "trust": "kernel"
