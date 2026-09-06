@@ -37191,3 +37191,44 @@ Best next question
   margin of 4. Do the counts and the ratios the paper states in Step 5b
   and Step 5a agree with the ones the certificate sums?
 ```
+
+## Three tables, three times the same mistake
+
+2026-09-07, later. Last tick ended on the observation that a convention
+stated in one appendix does not propagate itself. So I went looking for
+the remaining tables that carry crossings, and A.6 is the obvious one:
+four depth-five sites against five candidate Vaaler exponents,
+twenty-five entries, every one a least admissible P.
+
+Twelve were printed below their crossings. Third table, third time.
+
+The part worth writing down is not the rounding. It is that A.6's
+a = 5/16 row is not an independent computation at all --- it is A.1's
+collision, q'', window and flat-cost rows at the exponent the paper
+actually uses. Two appendices, one set of numbers. A.1 read 1.45e9,
+7.5e8, 5.51e9; A.6 read 1.4e9, 7.4e8, 5.5e9. Three of the four
+disagreed.
+
+And I caused it. A.1's column was raised two ticks ago, in the tick
+where I established the rounding convention and wrote it into A.1. The
+same edit that fixed one table broke the agreement with another, and
+nothing checked for it, because the check I wrote that day compared A.1
+against the certificate, not A.1 against A.6.
+
+That is the more useful lesson than the rounding one. A fix that
+touches shared numbers needs a test for the sharing, not just for the
+fix. The guard now does both: every A.6 entry against an independent
+solve, and the middle row against A.1 entry by entry.
+
+One small exact thing fell out. At a = 1/4 the collision row is
+3 P^(1/8+3/4) <= P^(23/24), which is just 3 <= P^(1/12), so the
+crossing is exactly 3^12 = 531441. The table had 5.3e5, which is below
+it by 1441. It is a pleasing kind of error --- the one row in the table
+whose answer is an exact integer, and it was rounded to nearest like
+everything else.
+
+I checked the four ratio claims around the table and left all four
+alone; they are true as printed, including the "factor 120 below P_0"
+which is 120.261 and understates, which is the conservative direction
+for a separation. Only two prose figures moved, both of them thresholds
+quoted out of the table.

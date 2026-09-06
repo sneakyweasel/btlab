@@ -772,6 +772,71 @@ def kappa_table_failures() -> list[dict[str, Any]]:
             if not (r["P0"][2] and r["P1"][2] and r["coef"][2])]
 
 
+
+# --- A.6's exponent table -----------------------------------------------------------------------
+#
+# The third threshold table, and the third to be nearest-rounded: twelve of its twenty-five
+# entries named a P below the crossing they stand for.  Its a = 5/16 row is four of A.1's rows at
+# the exponent actually used, so the two tables must agree there, and they did not -- A.1 had been
+# raised two ticks earlier and A.6 had not.  A convention stated in one appendix does not
+# propagate itself.
+
+A6_ANCHOR = r"| \(a\) | collision | \(q''\) | window | flat cost | worst |"
+A6_EXPONENTS = ((1, 4), (9, 32), (5, 16), (1, 3), (3, 8))
+A6_SITES = ("collision", "qpp", "window", "flat", "worst")
+# the four A.1 rows the a = 5/16 row duplicates, in the table's column order
+A6_SHARED_TAGS = ("st2-collision", "st5b-qpp", "t63-window", "t63-flat")
+
+
+def _depth5_C(P: float) -> float:
+    return (9 / 16) * 2 * P ** (1 / 96) * (2 * P) ** (3 / 16)
+
+
+def a6_site_crossings(a: float) -> list[float]:
+    """The four depth-five sites at Vaaler truncation R_0 = P^a, plus their maximum."""
+    def solve(f: Any) -> float:
+        lo, hi = 0.0, 300.0
+        for _ in range(400):
+            mid = (lo + hi) / 2.0
+            lo, hi = (lo, mid) if f(10.0**mid) else (mid, hi)
+        return 10.0**hi
+    out = [solve(lambda P: 3 * P ** (a / 2) * P**0.75 <= P ** (23 / 24)),
+           solve(lambda P: (1.85 * P ** (7 / 24) + P**a) * 6 * P ** (-5 / 4)
+                 / (0.35 * P**-0.75) <= 0.25),
+           solve(lambda P: P**a >= 8 * (1 + _depth5_C(P))),
+           solve(lambda P: 8 * (1 + _depth5_C(P)) / P**a <= P ** (-1 / 96))]
+    return out + [max(out)]
+
+
+def a6_table_audit() -> list[dict[str, Any]]:
+    text = paper_text()
+    start = text.find(A6_ANCHOR)
+    block = text[start:text.find(chr(10) + chr(10), start)] if start >= 0 else ""
+    cells = re.findall(r"([0-9.]+)" + re.escape(BS) + r"cdot10\^\{([0-9]+)\}", block)
+    out = []
+    for i, (num, den) in enumerate(A6_EXPONENTS):
+        row = cells[i * 5:(i + 1) * 5]
+        if len(row) != 5:
+            continue
+        true = a6_site_crossings(num / den)
+        for j, site in enumerate(A6_SITES):
+            printed = float(row[j][0]) * 10 ** int(row[j][1])
+            out.append({"a": "%d/%d" % (num, den), "site": site, "printed": printed,
+                        "computed": true[j], "ok": printed >= true[j] * (1 - 1e-9),
+                        "overshoot": printed / true[j] - 1})
+    return out
+
+
+def a6_failures() -> list[dict[str, Any]]:
+    rows = [r for r in a6_table_audit() if not r["ok"]]
+    a1 = {r["tag"]: r["printed"] for r in a1_threshold_audit()}
+    shared = [r for r in a6_table_audit() if r["a"] == "5/16" and r["site"] != "worst"]
+    for r, tag in zip(shared, A6_SHARED_TAGS):
+        if a1.get(tag) != r["printed"]:
+            rows.append({**r, "ok": False, "disagrees_with": tag, "a1": a1.get(tag)})
+    return rows
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
@@ -781,7 +846,8 @@ def failures() -> dict[str, list[Any]]:
             "claim_vs_predicate": claim_predicate_failures(),
             "p0_reproducible": [] if p0_from_printed_constants()["ok"] else
                                [p0_from_printed_constants()],
-            "kappa_table": kappa_table_failures()}
+            "kappa_table": kappa_table_failures(),
+            "a6_table": a6_failures()}
 
 
 def main() -> None:

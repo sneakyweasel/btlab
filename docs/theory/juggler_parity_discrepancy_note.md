@@ -7200,25 +7200,40 @@ Solving each site for its least admissible \(P\):
 
 | \(a\) | collision | \(q''\) | window | flat cost | worst |
 |---|---|---|---|---|---|
-| \(1/4\) | \(5.3\cdot10^{5}\) | \(3.0\cdot10^{10}\) | \(2.5\cdot10^{19}\) | \(1.8\cdot10^{24}\) | \(1.8\cdot10^{24}\) |
-| \(9/32\) | \(1.1\cdot10^{7}\) | \(6.6\cdot10^{10}\) | \(1.4\cdot10^{12}\) | \(7.4\cdot10^{13}\) | \(7.4\cdot10^{13}\) |
-| \(5/16\) | \(1.4\cdot10^{9}\) | \(3.0\cdot10^{11}\) | \(7.4\cdot10^{8}\) | \(5.5\cdot10^{9}\) | \(3.0\cdot10^{11}\) |
-| \(1/3\) | \(2.8\cdot10^{11}\) | \(1.6\cdot10^{12}\) | \(3.5\cdot10^{7}\) | \(1.4\cdot10^{8}\) | \(1.6\cdot10^{12}\) |
-| \(3/8\) | \(8.0\cdot10^{22}\) | \(1.1\cdot10^{15}\) | \(6.9\cdot10^{5}\) | \(1.5\cdot10^{6}\) | \(8.0\cdot10^{22}\) |
+| \(1/4\) | \(5.32\cdot10^{5}\) | \(2.97\cdot10^{10}\) | \(2.55\cdot10^{19}\) | \(1.81\cdot10^{24}\) | \(1.81\cdot10^{24}\) |
+| \(9/32\) | \(1.12\cdot10^{7}\) | \(6.7\cdot10^{10}\) | \(1.4\cdot10^{12}\) | \(7.4\cdot10^{13}\) | \(7.4\cdot10^{13}\) |
+| \(5/16\) | \(1.45\cdot10^{9}\) | \(3.0\cdot10^{11}\) | \(7.5\cdot10^{8}\) | \(5.51\cdot10^{9}\) | \(3.0\cdot10^{11}\) |
+| \(1/3\) | \(2.83\cdot10^{11}\) | \(1.59\cdot10^{12}\) | \(3.5\cdot10^{7}\) | \(1.42\cdot10^{8}\) | \(1.59\cdot10^{12}\) |
+| \(3/8\) | \(8.0\cdot10^{22}\) | \(1.08\cdot10^{15}\) | \(6.9\cdot10^{5}\) | \(1.53\cdot10^{6}\) | \(8.0\cdot10^{22}\) |
 
 The window is what makes the choice sharp. At \(a=1/4\) the two
 fifth-letter requirements are not merely inconvenient, they are the
 whole threshold of the depth-five theorem, and the binding one is the
 flat cost, which does not clear \(P^{1-1/96}\) until
-\(1.8\cdot10^{24}\) --- eleven orders above \(P_0\). At \(a=9/32\) the
+\(1.81\cdot10^{24}\) --- eleven orders above \(P_0\). At \(a=9/32\) the
 worst site is \(7.4\cdot10^{13}\), which no longer sneaks under the
 threshold at all: it is a factor \(2.1\) *above*
 \(P_0=3.6\cdot10^{13}\) and would set it. (Against the pre-correction
-\(8.9\cdot10^{13}\) it sat just below, by less than \(1.3\) --- too
+\(8.95\cdot10^{13}\) it sat just below, by less than \(1.3\) --- too
 close to print then, and decided now.) At \(a=5/16\) the worst site is
 \(3.0\cdot10^{11}\), a clear factor \(120\) below \(P_0\), and it is
 the minimum of the last column over the admissible range. That is the
 value carried.
+
+*This table rounds up too, and its middle row is A.1's.* Every entry is
+a least admissible \(P\), so the convention of A.1 and A.5 applies here
+as well; twelve of the twenty-five were nearest-rounded below their
+crossings and have been raised, with the overshoot under one per cent
+throughout. The \(a=5/16\) row is not an independent computation: it is
+the collision-band, \(q''\), window and flat-cost rows of A.1 at the
+exponent actually used, so the two appendices must print the same four
+numbers. They did not --- A.1 read \(1.45\cdot10^{9}\),
+\(7.5\cdot10^{8}\) and \(5.51\cdot10^{9}\) where this table read
+\(1.4\cdot10^{9}\), \(7.4\cdot10^{8}\) and \(5.5\cdot10^{9}\), because
+A.1's column had been raised and this one had not.
+`tools/manuscript_self_audit.py` now checks both the rounding and the
+agreement, which is the check that would have caught the drift the day
+it appeared.
 
 Two things this table settles. First, the choice costs the paper
 nothing that binds: the collision-band term moves from

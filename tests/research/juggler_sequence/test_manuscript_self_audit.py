@@ -241,7 +241,7 @@ def test_failures_now_covers_relations() -> None:
     f = M.failures()
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
                       "a1_thresholds", "claim_vs_predicate",
-                      "p0_reproducible", "kappa_table"}
+                      "p0_reproducible", "kappa_table", "a6_table"}
     assert all(v == [] for v in f.values())
 
 
@@ -562,3 +562,54 @@ def test_the_paper_states_the_convention_for_this_table() -> None:
     assert "This table rounds up, for the reason A.1 does" in text
     assert "is still the weaker of the two" in text
     assert "recoverable from the display above it" in text
+
+
+# --- A.6's exponent table ----------------------------------------------------------------------
+
+
+def test_the_a6_table_rounds_up() -> None:
+    rows = M.a6_table_audit()
+    assert len(rows) == 25
+    assert M.a6_failures() == []
+    assert max(r["overshoot"] for r in rows) < 0.01
+
+
+def test_the_a6_middle_row_is_a1s_four_rows() -> None:
+    """Not an independent computation: the same four sites at the exponent actually used."""
+    a1 = {r["tag"]: r["printed"] for r in M.a1_threshold_audit()}
+    shared = [r for r in M.a6_table_audit() if r["a"] == "5/16" and r["site"] != "worst"]
+    assert len(shared) == 4
+    for row, tag in zip(shared, M.A6_SHARED_TAGS):
+        assert row["printed"] == a1[tag], (tag, row["printed"], a1[tag])
+    assert [r["printed"] for r in shared] == [1.45e9, 3.0e11, 7.5e8, 5.51e9]
+
+
+def test_the_worst_column_is_the_row_maximum() -> None:
+    rows = M.a6_table_audit()
+    for a in ("1/4", "9/32", "5/16", "1/3", "3/8"):
+        row = {r["site"]: r for r in rows if r["a"] == a}
+        four = [row[s]["computed"] for s in ("collision", "qpp", "window", "flat")]
+        assert abs(row["worst"]["computed"] - max(four)) < 1e-6 * max(four)
+        assert row["worst"]["printed"] >= max(four)
+
+
+def test_the_operating_exponent_is_the_minimum_of_the_worst_column() -> None:
+    """Why 5/16 is chosen: it minimises the last column over the admissible range."""
+    worst = {r["a"]: r["computed"] for r in M.a6_table_audit() if r["site"] == "worst"}
+    assert min(worst, key=lambda k: worst[k]) == "5/16"
+    assert abs(worst["5/16"] - 2.98166e11) / 2.98166e11 < 1e-4
+
+
+def test_the_collision_row_at_a_quarter_is_three_to_the_twelfth() -> None:
+    """3 P^(1/8+3/4) <= P^(23/24) is 3 <= P^(1/12): the crossing is exactly 3^12."""
+    row = next(r for r in M.a6_table_audit() if r["a"] == "1/4" and r["site"] == "collision")
+    assert abs(row["computed"] - 531441) < 1.0
+    assert 3 ** 12 == 531441
+    assert row["printed"] == 5.32e5
+
+
+def test_the_paper_records_the_disagreement_between_the_two_tables() -> None:
+    text = M.paper_text()
+    assert "This table rounds up too, and its middle row is A.1's" in text
+    assert "the two appendices must print the same four" in text
+    assert "had been raised and this one had not" in text

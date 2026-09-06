@@ -6793,3 +6793,67 @@ Probe: `fifth_letter_coefficient_has_three_values` with
 whitespace-stripped manuscript so they survive rewrapping and report
 their own absence once the text is repaired. Two tests. Audit `270 /
 270`; `P_0` unmoved at `3.5858e13`. No manuscript or certificate edit.
+
+## The third threshold table, and the one place two appendices had to agree and did not
+
+*Mathematical target.* Two threshold tables have now been audited and
+both were nearest-rounded. Last tick's lesson was that a convention
+stated in one appendix does not propagate itself. Find the remaining
+tables that carry crossings and check them.
+
+*Novelty hypothesis.* A.6's exponent table is nearest-rounded like the
+other two, and because its \(a=5/16\) row duplicates four of A.1's rows
+at the exponent actually used, the two appendices disagree.
+
+*Falsifier.* A.6 rounds up already, or its middle row matches A.1.
+
+*Existing machinery.* `kappa_table_audit`'s parsing and
+second-implementation pattern; `least_P`; `a1_threshold_audit`.
+
+*Prior art.* The ledger's A.1 and A.5 entries are the two neighbours;
+neither looked at A.6. `docs/negative_knowledge.md` has nothing.
+
+**Both halves confirmed.** A.6 tabulates four depth-five sites ---
+collision band, `q''` curvature ratio, Lemma 3.7 window, flat cost ---
+against five candidate Vaaler exponents, twenty-five entries, every one
+a least admissible `P`. **Twelve were printed below their crossings.**
+All raised, overshoot under `0.85%` throughout.
+
+**And the two appendices disagreed.** The `a=5/16` row is not an
+independent computation; it is A.1's `st2-collision`, `st5b-qpp`,
+`t63-window` and `t63-flat` at the operating exponent. A.1 read
+
+  st2-collision  1.45e9   t63-window  7.5e8   t63-flat  5.51e9
+
+and A.6 read `1.4e9`, `7.4e8`, `5.5e9`. Three of four disagreed,
+because A.1's column was raised two ticks ago and A.6's was not. The
+drift was introduced by the fix, and nothing checked for it.
+
+**A small exact fact.** At `a=1/4` the collision row is
+`3 P^{1/8+3/4} <= P^{23/24}`, i.e. `3 <= P^{1/12}`, so its crossing is
+exactly `3^12 = 531441`. The table printed `5.3e5`, which is below it.
+
+*What did not need changing.* The four ratio claims around the table
+are all true as printed: `48.9 P_0^{-3/16} = 0.140548` against the
+margin `1/4`; the `a=5/16` worst site is `120.261` below `P_0`
+(printed `120`, understating, which is the conservative direction for a
+separation); `7.39929e13` is `2.06352` above `P_0` (printed `2.1`,
+correct to two figures); and the pre-correction gap is `1.209`
+(printed "less than `1.3`"). Two prose figures did move with the table:
+the `a=1/4` flat cost `1.8e24` to `1.81e24`, and the pre-correction
+`P_0` `8.9e13` to `8.95e13`.
+
+Tags. EXACT: `3^12 = 531441` as the `a=1/4` collision crossing.
+COMPUTATIONALLY VERIFIED: all twenty-five entries against independent
+solves, twelve of them previously low; the four shared values now equal
+across A.1 and A.6; the worst column equal to each row's maximum; the
+minimum of the worst column attained at `a=5/16` at `2.98166e11`.
+OBSERVATION: three tables audited, three nearest-rounded --- the
+convention had never propagated anywhere it was not written.
+
+Probe: `manuscript_self_audit.a6_site_crossings`, `a6_table_audit`,
+`a6_failures`; `failures()` gains an `a6_table` key, and `a6_failures`
+carries the cross-table agreement check as well as the rounding one.
+Six new tests, sixty-one in the file. Manuscript: twelve entries and
+two prose figures raised, and A.6 records that its middle row is A.1's.
+`P_0` and `P_1` unmoved. No certificate edit.
