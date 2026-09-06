@@ -895,6 +895,55 @@ def level1_control_trend(ps: tuple[int, ...] = LEVEL1_TREND_PS, k: int = 1) -> d
     }
 
 
+
+def level1_kernel_condition(p: int, k: int = 1) -> dict[str, Any]:
+    """The kernel's own decorrelation condition, and why it has no crossover in ``P``.
+
+    The control's exponent turns at a definite ``P`` because van der Corput's second-derivative
+    test turns linear at ``L = 1/lambda``.  The kernel's condition is not of that kind.  Its
+    coefficient is ``c(n) = (27k/32) n^(33/32)``, so ``c'(n) = (891k/1024) n^(1/32)`` and, over
+    odd ``n`` with step 2, the coefficient advances by ``2c' = (891k/512) n^(1/32)`` per
+    summand.  "More than a whole period per step" is ``2c' > 1``, which holds from
+    ``n = (512/(891k))^32 ~ 2e-8`` upward -- below every ``P`` anyone would run.
+
+    So there is no threshold to cross, and none should be looked for: ``2c'`` runs from
+    ``2.32`` at ``10^4`` to ``2.77`` at ``3e6`` and reaches ``10`` only near ``2e24``.  The
+    exponent is ``1/2`` throughout because the condition is met throughout.
+    """
+    two_c_prime = (891.0 * k / 512.0) * p ** (1 / 32)
+    return {"P": p, "k": k, "two_c_prime": two_c_prime, "condition_met": two_c_prime > 1.0,
+            "P_where_condition_starts": (512.0 / (891.0 * k)) ** 32,
+            "P_where_two_c_prime_reaches_ten": (10.0 * 512.0 / (891.0 * k)) ** 32}
+
+
+def level1_kernel_k_spread(p: int, ks: tuple[int, ...] = (1, 2, 3, 4, 5, 6, 7, 8),
+                           interval: tuple[float, float] = (0.4268, 0.5684)) -> dict[str, Any]:
+    """The kernel exponent across ``k`` at one ``P``: is a low reading systematic or a draw?
+
+    The single reading ``0.3866`` at ``P = 10^4``, ``k = 1`` sits outside the instrument's own
+    90% interval, and it is tempting to read a regime boundary into it.  There is none
+    (``level1_kernel_condition``).  Across eight ``k`` at that ``P`` the mean is ``0.4771`` and
+    the two excursions are one low *and one high* -- ``k = 8`` reads ``0.584`` -- which is what
+    a 90% interval predicts for eight draws.  What does change with ``P`` is the spread:
+    ``0.062``, ``0.035``, ``0.024`` at ``10^4``, ``3e4``, ``10^5``.  That is the estimator, not
+    the object: the calibration was run at ``N = 5000`` terms, which is exactly ``P = 10^4``'s.
+    """
+    from research.juggler_sequence import paper_b_audit as _pba
+
+    lo, hi = interval
+    xs = [_pba.level1_kernel_block_scaling(P=p, k=k)["level1_exponent"] for k in ks]
+    mean = sum(xs) / len(xs)
+    outside = [k for k, v in zip(ks, xs) if not (lo <= v <= hi)]
+    return {
+        "P": p, "ks": list(ks), "exponents": xs, "mean": mean,
+        "spread": (sum((x - mean) ** 2 for x in xs) / len(xs)) ** 0.5,
+        "outside_interval": outside,
+        "outside_low": [k for k, v in zip(ks, xs) if v < lo],
+        "outside_high": [k for k, v in zip(ks, xs) if v > hi],
+        "terms": p // 2,
+    }
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

@@ -5524,6 +5524,35 @@ paragraph reads off \(P=10^{6}\) is therefore not a coincidence of
 scale in the direction one would fear; it is absent below
 \(2.91\cdot10^{4}\), appears exactly there, and grows.
 
+*The kernel has no such threshold, and it is worth saying why not.* Its
+coefficient is \(c(n)=\tfrac{27k}{32}n^{33/32}\), so
+\(c'(n)=\tfrac{891k}{1024}n^{1/32}\) and, over odd \(n\) with step
+\(2\), the coefficient advances by
+\(2c'=\tfrac{891k}{512}n^{1/32}\) per summand. "More than a whole
+period per step" is \(2c'>1\), and that holds from
+\(n=(512/891k)^{32}\approx2\cdot10^{-8}\) upward --- below every
+\(P\) anyone would run. There is no threshold to cross, which is why
+the kernel column is flat where the control column is not. The
+condition is not comfortable, mind: \(2c'\) runs from \(2.32\) at
+\(10^{4}\) to \(2.77\) at \(3\cdot10^{6}\), and reaches \(10\) only
+near \(2\cdot10^{24}\). It grows like \(n^{1/32}\), which is the same
+\(\tfrac1{32}\) the drift threshold turns on. One exponent does both
+jobs: it is what puts \(c\) past the drift-\(1\) window and what
+decorrelates the summands, and it does the second from the start and
+the first only just.
+
+So the one kernel reading outside the instrument's interval ---
+\(0.3866\) at \(P=10^{4}\), \(k=1\) --- is not a regime boundary. It is
+the estimator. Across \(k=1,\dots,8\) at that \(P\) the mean is
+\(0.4771\) and there are two excursions, one low and one *high*
+(\(k=8\) reads \(0.584\)), which is what a \(90\%\) interval predicts
+for eight draws. What moves with \(P\) is the spread ---
+\(0.062\), \(0.035\), \(0.024\) at \(10^{4}\), \(3\cdot10^{4}\),
+\(10^{5}\) --- and that is a statement about the number of terms per
+block, not about the sum: the calibration was run at \(N=5000\), which
+is exactly the term count at \(P=10^{4}\)
+(`decoration_budget.level1_kernel_k_spread`).
+
 So the drift threshold is not only an obstruction. It is the reason the
 shifted window has nothing to run on *and* the reason there is
 something for a method to find. This is an observation and nothing

@@ -381,3 +381,53 @@ def test_the_mechanism_is_arithmetic_not_assertion() -> None:
     assert abs((2 * bins / 3) ** 2 - (512 / 3) ** 2) < 1e-9
     for P, clears in ((10**4, False), (29127, False), (3 * 10**4, True)):
         assert ((P / 2) / bins >= P**0.5 / 3) is clears, P
+
+
+# --- and the kernel, which has no crossover at all ---
+
+
+def test_the_kernel_condition_has_no_crossover_in_P() -> None:
+    """2c' = (891k/512) n^(1/32) > 1 from n ~ 2e-8; there is no threshold to look for."""
+    from research.juggler_sequence import decoration_budget as DB
+    for P in (10**4, 3 * 10**6):
+        c = DB.level1_kernel_condition(P)
+        assert c["condition_met"]
+        assert abs(c["two_c_prime"] - (891 / 512) * P ** (1 / 32)) < 1e-9
+    assert abs(DB.level1_kernel_condition(10**4)["two_c_prime"] - 2.321) < 5e-3
+    assert abs(DB.level1_kernel_condition(3 * 10**6)["two_c_prime"] - 2.773) < 5e-3
+    start = DB.level1_kernel_condition(10**4)["P_where_condition_starts"]
+    assert start < 1e-7                                  # below any P one would run
+    assert DB.level1_kernel_condition(10**4)["P_where_two_c_prime_reaches_ten"] > 1e23
+    # k scales it linearly, so k = 4 is already comfortable
+    assert DB.level1_kernel_condition(10**4, k=4)["two_c_prime"] > 9
+
+
+def test_the_low_reading_is_spread_and_comes_with_a_high_one() -> None:
+    """0.3866 at P = 10^4, k = 1 is a draw: k = 8 at the same P reads 0.584."""
+    from research.juggler_sequence import decoration_budget as DB
+    r = DB.level1_kernel_k_spread(10**4)
+    assert r["ks"] == [1, 2, 3, 4, 5, 6, 7, 8]
+    assert abs(r["mean"] - 0.4771) < 5e-3
+    assert r["outside_low"] == [1] and r["outside_high"] == [8]
+    assert len(r["outside_interval"]) == 2               # what 90% predicts for eight draws
+    assert r["terms"] == 5000                            # exactly the calibration's N
+
+
+def test_the_spread_falls_with_P_and_that_is_the_instrument() -> None:
+    from research.juggler_sequence import decoration_budget as DB
+    a = DB.level1_kernel_k_spread(10**4, ks=(1, 2, 3, 4))
+    b = DB.level1_kernel_k_spread(10**5, ks=(1, 2, 3, 4))
+    assert b["spread"] < a["spread"]
+    assert b["terms"] == 10 * a["terms"]
+
+
+def test_the_paper_says_one_exponent_does_both_jobs() -> None:
+    text = A.paper_text()
+    assert "The kernel has no such threshold" in text
+    assert r"\(2c'=\tfrac{891k}{512}n^{1/32}\)" in text
+    assert r"\approx2\cdot10^{-8}\)" in text
+    assert "One exponent does both" in text
+    assert "it does the second from the start and" in text
+    assert "`decoration_budget.level1_kernel_k_spread`" in text
+    for figure in ("0.4771", "0.584", "2.32", "2.77"):
+        assert figure in text, figure

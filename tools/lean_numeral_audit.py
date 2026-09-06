@@ -634,6 +634,18 @@ def _control_trend_ok(fn) -> bool:
                     - (512 / 3) ** 2) < 1.0)
 
 
+def _kernel_spread_ok(fn) -> bool:
+    """The kernel has no crossover, and the small-P reading is estimator spread."""
+    import inspect
+    from research.juggler_sequence import decoration_budget as DB
+    if inspect.signature(fn).parameters["ks"].default != (1, 2, 3, 4, 5, 6, 7, 8):
+        return False
+    c = DB.level1_kernel_condition(10**4)
+    return (c["condition_met"] and c["P_where_condition_starts"] < 1.0
+            and c["P_where_two_c_prime_reaches_ten"] > 1e23
+            and abs(c["two_c_prime"] - 2.321) < 5e-3)
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -667,6 +679,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`decoration_budget.level1_control_trend`)",
      "the kernel/control trend against P, and its printed ladder",
      _control_trend_ok),
+    ("decoration_budget", "level1_kernel_k_spread",
+     "(`decoration_budget.level1_kernel_k_spread`)",
+     "the kernel's k-spread, and that its condition has no crossover",
+     _kernel_spread_ok),
 )
 
 
