@@ -4670,3 +4670,111 @@ difference in kind.
 Probes: `lemma_6_2_approach_rate`, `LEMMA_6_2_APPROACH_CHECKPOINTS`.
 Two tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at
 `3.5858e13`. No manuscript or certificate edit.
+
+## The kernel has no crossover, and the reading I explained away was a draw
+
+The last entry ended by asking at what `P` the *kernel* enters its asymptotic regime, and
+whether `10^4` is below it for the same kind of reason the control is. The question carried an
+implication, and the implication is mine and is wrong: I had been calling `0.3866` "the
+smallest `P`" as though that named a mechanism.
+
+**There is no kernel crossover.** The coefficient is `c(n) = (27k/32) n^(33/32)`, so
+`c'(n) = (891k/1024) n^(1/32)` and over odd `n` with step 2 the coefficient advances by
+`2c' = (891k/512) n^(1/32)` per summand. "More than a whole period per step" is `2c' > 1`, and
+that holds from `n = (512/891k)^32 ~ 2e-8` upward -- below every `P` anyone would run. Nothing
+turns on at a threshold, which is exactly why the kernel column is flat where the control
+column is not.
+
+The condition is not comfortable, and that is worth printing. `2c'` runs `2.32` at `10^4` to
+`2.77` at `3e6` and reaches `10` only near `2e24`, because it grows like `n^(1/32)` -- the same
+`1/32` the drift threshold turns on. One exponent does both jobs: it is what puts `c` past the
+drift-`1` window and what decorrelates the summands, and it does the second from the start and
+the first only just. That is a sharper statement of the paragraph's "the same drift is what
+makes the sum cancel" than the paragraph had.
+
+**And the low reading is the estimator.** Across `k = 1..8` at `P = 10^4`:
+
+```text
+  0.387 0.464 0.511 0.447 0.551 0.439 0.436 0.584     mean 0.4771  sd 0.062
+```
+
+Two excursions from the instrument's 90% interval, one low (`k = 1`) and one *high*
+(`k = 8`, at `0.584`) -- which is what a 90% interval predicts for eight draws. The spread
+falls with `P`: `0.062`, `0.035`, `0.024` at `10^4`, `3e4`, `10^5`, and the means are `0.4771`,
+`0.4927`, `0.5014`. That is a statement about terms per block and not about the sum: the
+calibration was run at `N = 5000`, which is exactly the term count at `P = 10^4`.
+
+So the kernel is at `1/2` at every `P` measured, including the one whose single `k = 1` reading
+sits outside the interval. `decoration_budget.level1_kernel_condition` and
+`level1_kernel_k_spread`; the manuscript carries both, beside the control's crossover, and a
+citation row covers them.
+
+Worth naming the error rather than only the fix. A single reading outside an interval invites a
+mechanism, and the previous entry's own table -- where the control's outlier *did* have one --
+made that invitation harder to refuse. Eight draws at the same `P` cost forty seconds and
+settle it. The instrument had been calibrated two entries earlier precisely so that readings
+could be told apart from noise, and I did not use it that way until the question forced it.
+
+## The same term, sharp at the `m`-level and redundant at the `v`-level
+
+Theorem 4.8 states `w^(3/2) = m^(3/4) - (3/2) m^(1/4) theta_w + E` with
+`0 <= E <= (3/8)(U-1)^(-1/2)`, `U = m^(1/2)`, `w = floor(U)`. That upper
+bound is the *same* `(3/8)(U-1)^(-1/2)` Lemma 6.2(ii) carries at the
+`v`-level, and which the term inventory found redundant there. Here it
+stands alone, and it is sharp.
+
+**Where it comes from.** `w = U - theta_w`, so
+
+```text
+  w^(3/2) = U^(3/2) - (3/2) U^(1/2) theta_w + (3/8) U^(-1/2) theta_w^2 - ...
+```
+
+and `U^(3/2) = m^(3/4)`, `U^(1/2) = m^(1/4)`. So `E` is
+`(3/8) theta_w^2 U^(-1/2)` to leading order, and the printed bound is
+that with `theta_w^2 <= 1` and `U^(-1/2) <= (U-1)^(-1/2)`. The ratio
+`E/bound` is therefore `theta_w^2`.
+
+**Both ends are sharp, and in different ways.** The lower end is
+attained *exactly*, at every even square: `m = w^2` gives `theta_w = 0`
+and `E = w^(3/2) - (w^2)^(3/4) = 0`. The upper end is approached:
+
+```text
+  points     max E/bound     argmax     1 - max     ratio to the step before
+    1000     0.96917912       1848     3.082e-2       --
+   10000     0.99056142      19880     9.439e-3     3.265   (sqrt 10 = 3.162)
+  100000     0.99701892     199808     2.981e-3     3.166   (sqrt 10 = 3.162)
+  500000     0.99866569     998000     1.334e-3     2.234   (sqrt  5 = 2.236)
+```
+
+`1 - max` falls as `M^(-1/2)`, matching each step's own `sqrt` of the
+points ratio to within `3%`. That is what `E/bound = theta_w^2`
+predicts: consecutive `m^(1/2)` differ by about `1/(2 m^(1/2))`, so
+`max theta_w = 1 - Theta(M^(-1/2))`.
+
+**So the `v`-level's exactness is a property of the term, not of the
+second nesting.** The same bound is asymptotically exact at both levels.
+What differs is only the rate, and that is the spacing of the fractional
+part being maximised: `M^(-1/2)` here against about `N^(-0.6)` at the
+`v`-level. And the term is sharp where it is stated and superfluous only
+where it was carried: at the `v`-level `(3/4) m^(-3/8)` is already the
+same order and dominates, so the sum charges one order twice.
+
+*An artefact, recorded so the next reader does not chase it.* A sweep at
+`60` digits reports one `E < 0`, at `m = 256036 = 506^2`, of size
+`-1.3e-57`. That is the equality case: `theta_w = 0` there and the true
+`E` is exactly `0`, as a run at `200` digits confirms. The probe uses a
+tolerance and counts the even squares it passes.
+
+Tags. EXACT: `E = (3/8) theta_w^2 U^(-1/2) + ...` from `w = U -
+theta_w`, so `E/bound = theta_w^2`; `E = 0` exactly at every even
+square; `max theta_w = 1 - Theta(M^(-1/2))` from the spacing of
+`m^(1/2)`. COMPUTATIONALLY VERIFIED: the four checkpoints above over
+even `m` to `1e6`; the residual ratios `3.265`, `3.166`, `2.234`
+against `sqrt` of the points ratios `3.162`, `3.162`, `2.236`; no sign
+violation outside the round-off at `256036`; the live short sweep
+reproduces the first checkpoint. OBSERVATION: the exactness of the
+`v`-level bounds is not a feature of the second nesting.
+
+Probes: `theorem_4_8_E_bound`, `THEOREM_4_8_E_CHECKPOINTS`. Two tests.
+Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
+manuscript or certificate edit.

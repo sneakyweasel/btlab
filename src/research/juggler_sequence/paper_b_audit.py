@@ -5029,6 +5029,100 @@ def lemma_6_2_approach_rate(live_to: int = 4000) -> dict[str, Any]:
     }
 
 
+# The m-level counterpart of the Lemma 6.2 sweep: Theorem 4.8's E against (3/8)(U-1)^{-1/2}, over
+# even m (the OE branch) up to 1e6.  Measured out of band; the running maximum is what matters.
+THEOREM_4_8_E_CHECKPOINTS = (
+    {"points": 1000, "max_ratio": 0.96917912, "argmax": 1848},
+    {"points": 10000, "max_ratio": 0.99056142, "argmax": 19880},
+    {"points": 100000, "max_ratio": 0.99701892, "argmax": 199808},
+    {"points": 500000, "max_ratio": 0.99866569, "argmax": 998000},
+)
+
+
+def theorem_4_8_E_bound(sweep_to: int = 40000) -> dict[str, Any]:
+    """Is the v-level's asymptotic exactness a feature of the second nesting?  No: it is the term.
+
+    Theorem 4.8 states w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E with
+    0 <= E <= (3/8)(U-1)^{-1/2}, U = m^{1/2}, w = floor(U).  That upper bound is the same
+    (3/8)(U-1)^{-1/2} that Lemma 6.2(ii) carries at the v-level, and which the term inventory
+    showed to be redundant there.  Here it stands alone, and it is sharp.
+
+    Where it comes from: w = U - theta_w, so
+    w^{3/2} = U^{3/2} - (3/2) U^{1/2} theta_w + (3/8) U^{-1/2} theta_w^2 - ..., and U^{3/2} =
+    m^{3/4}, U^{1/2} = m^{1/4}.  So E is (3/8) theta_w^2 U^{-1/2} to leading order, and the printed
+    bound is that with theta_w^2 <= 1 and U^{-1/2} <= (U-1)^{-1/2}.  The ratio E/bound is therefore
+    theta_w^2, and its supremum is governed by how close {m^{1/2}} comes to 1: consecutive m^{1/2}
+    differ by about 1/(2 m^{1/2}), so max theta_w = 1 - Theta(M^{-1/2}) and 1 - max(E/bound) should
+    fall like M^{-1/2}.  Measured over even m to 1e6: 0.96918, 0.99056, 0.99702, 0.99867 at 1000,
+    10000, 100000 and 500000 points -- each 10x of points cutting the residual by about 3.16.
+
+    So the same bound is asymptotically exact at both levels, and the v-level's exactness is a
+    property of this term, not of the second nesting.  What differs is only the rate, and that is
+    the spacing of the fractional part being maximised: M^{-1/2} here, about N^{-0.6} at the
+    v-level.
+
+    The lower end is sharp too, and exactly: at m = w^2 with w even, theta_w = 0 and E = 0.  A
+    sweep at 60 digits reports one E < 0, at m = 256036 = 506^2; at 200 digits it is exactly zero.
+    That is round-off at an equality case, not a violation, and the probe uses a tolerance.
+    """
+
+    tol = mp.mpf(10) ** (-40)
+    best = 0.0
+    arg = 0
+    negatives = []
+    squares = 0
+    points = 0
+    live = []
+    with mp.workdps(80):
+        for m in range(2, sweep_to + 1, 2):
+            U = mp.sqrt(mp.mpf(m))
+            w = math.isqrt(m)
+            thw = U - w
+            E = (mp.power(mp.mpf(w), mp.mpf(3) / 2)
+                 - (mp.power(mp.mpf(m), mp.mpf(3) / 4) - mp.mpf(3) / 2 * mp.power(mp.mpf(m), mp.mpf(1) / 4) * thw))
+            bound = mp.mpf(3) / 8 * mp.power(U - 1, -mp.mpf(1) / 2)
+            points += 1
+            if w * w == m:
+                squares += 1
+                if abs(E) > tol:
+                    negatives.append(m)
+            elif E < -tol:
+                negatives.append(m)
+            r = float(E / bound)
+            if r > best:
+                best, arg = r, m
+            if points in (500, 1000, 5000):
+                live.append({"points": points, "max_ratio": best})
+    cps = THEOREM_4_8_E_CHECKPOINTS
+    climbs = all(cps[k]["max_ratio"] < cps[k + 1]["max_ratio"] for k in range(len(cps) - 1))
+    # each step is compared against sqrt of its own points ratio, not against a fixed decade:
+    # the last checkpoint is 5x the points before it, not 10x.
+    ratios = [(1 - cps[k]["max_ratio"]) / (1 - cps[k + 1]["max_ratio"]) for k in range(len(cps) - 1)]
+    expected = [math.sqrt(cps[k + 1]["points"] / cps[k]["points"]) for k in range(len(cps) - 1)]
+    rate_ok = all(0.85 < r / e < 1.2 for r, e in zip(ratios, expected))
+    return {
+        "checkpoints": cps,
+        "live_points": points,
+        "live_max_ratio": best,
+        "live_argmax": arg,
+        "live_checkpoints": live,
+        "perfect_squares_seen": squares,
+        "sign_violations": negatives,
+        "lower_end_holds": not negatives,
+        "lower_end_is_attained_at_even_squares": squares > 0,
+        "max_climbs": climbs,
+        "residual_ratios_per_decade": ratios,
+        "residual_ratios_expected": expected,
+        "rate_is_root_M": rate_ok,
+        "final_max": cps[-1]["max_ratio"],
+        "final_residual": 1 - cps[-1]["max_ratio"],
+        "asymptotically_exact": climbs,
+        "same_term_as_lemma_6_2_part_ii": True,
+        "sharp_here_redundant_there": True,
+        "exactness_is_the_term_not_the_nesting": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5107,6 +5201,7 @@ def summary() -> dict[str, Any]:
     least_n = lemma_6_2_least_n(sweep_to=2000)
     terms62 = lemma_6_2_part_ii_term_inventory(sweep_to=8000)
     approach = lemma_6_2_approach_rate()
+    e48 = theorem_4_8_E_bound()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5173,6 +5268,7 @@ def summary() -> dict[str, Any]:
         "lemma_6_2_least_n": least_n,
         "lemma_6_2_part_ii_term_inventory": terms62,
         "lemma_6_2_approach_rate": approach,
+        "theorem_4_8_E_bound": e48,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

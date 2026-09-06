@@ -35111,3 +35111,141 @@ Best next question
   shape as Lemma 6.2's at the v-level. Do they behave the same way, or
   is the v-level's exactness a feature of the second nesting?
 ```
+
+### The kernel has no crossover, and the reading I explained away was a draw
+
+The recorded question asked at what `P` the kernel enters its asymptotic
+regime, and whether `10^4` is below it for the same reason the control is. The
+question carried an implication, and the implication was mine and wrong: I had
+been calling `0.3866` "the smallest `P`" as though that named a mechanism.
+
+**There is no kernel crossover.** The coefficient is `c(n) = (27k/32)n^(33/32)`,
+so `c'(n) = (891k/1024)n^(1/32)` and over odd `n` with step `2` the coefficient
+advances by `2c' = (891k/512)n^(1/32)` per summand. "More than a whole period
+per step" is `2c' > 1`, which holds from `n = (512/891k)^32 ≈ 2e-8` upward —
+below every `P` anyone would run. Nothing turns on at a threshold, which is why
+the kernel column is flat where the control column is not.
+
+The condition is not comfortable, and that is worth printing. `2c'` runs `2.32`
+at `10^4` to `2.77` at `3e6` and reaches `10` only near `2e24`, growing like
+`n^(1/32)` — the same `1/32` the drift threshold turns on. **One exponent does
+both jobs**: it is what puts `c` past the drift-`1` window and what decorrelates
+the summands, and it does the second from the start and the first only just.
+That is a sharper form of the paragraph's "the same drift is what makes the sum
+cancel" than the paragraph had.
+
+**And the low reading is the estimator.** Across `k = 1..8` at `P = 10^4`:
+
+```text
+  0.387 0.464 0.511 0.447 0.551 0.439 0.436 0.584    mean 0.4771  sd 0.062
+```
+
+Two excursions from the 90% interval, one low (`k=1`) and one *high* (`k=8`, at
+`0.584`) — what a 90% interval predicts for eight draws. The spread falls with
+`P`: `0.062`, `0.035`, `0.024` at `10^4`, `3e4`, `10^5`, with means `0.4771`,
+`0.4927`, `0.5014`. That is about terms per block, not about the sum: the
+calibration was run at `N = 5000`, exactly the term count at `P = 10^4`.
+
+```text
+What was learned
+- the question's premise was mine and was wrong; there is no kernel threshold
+  because the condition is met from n ~ 2e-8
+- the 1/32 that blocks the method is the same 1/32 that decorrelates the sum,
+  and it does the second from the start and the first only just -- one exponent
+  doing both jobs is the sharpest form of the paragraph's claim
+- a single reading outside an interval invites a mechanism, and the previous
+  entry's table -- where the control's outlier did have one -- made that
+  invitation harder to refuse
+- eight draws at one P cost forty seconds and settle it; the instrument had
+  been calibrated two ticks earlier for exactly this and I did not use it that
+  way until the question forced it
+Strongest theorem
+- 2c' = (891k/512) n^(1/32) > 1 from n ~ 2e-8, so the kernel exponent is 1/2 at
+  every P with no crossover; measured mean 0.4771, 0.4927, 0.5014 at 10^4,
+  3e4, 10^5 with spread falling 0.062 -> 0.035 -> 0.024
+Strongest refutation
+- my own implication that 0.3866 was explained by P being small; at that P the
+  eight-k mean is 0.4771 and the excursions are one low and one high
+Reusable machinery
+- decoration_budget.level1_kernel_condition, level1_kernel_k_spread; a citation
+  row; four new tests
+Branch status
+- PARK
+Why
+  The kernel's condition is written down, its non-crossover is the explanation
+  for the flat column, and the one anomalous reading is settled as spread with
+  eight draws. The manuscript carries both sides of the contrast now. Nothing
+  here moves P_0.
+Best next question
+- 2c' reaches 10 only at 2e24, and P_0 is 3.6e13. So at the threshold the paper
+  actually claims, the kernel's decorrelation runs on 2c' ~ 3.4 -- a margin of
+  three, not of ten or of a hundred. Every other margin in Sections 4-6 is
+  checked against 4 or against 1/4. Is 2c' ~ 3.4 enough for the Kuzmin-Landau
+  step that uses it, and does any printed constant depend on how much bigger
+  than 1 it is?
+```
+
+## It is the term, not the nesting
+
+Theorem 4.8's `0 <= E <= (3/8)(U-1)^(-1/2)` is the same bound Lemma
+6.2(ii) carries at the `v`-level, and at the `m`-level it stands alone
+and is sharp at both ends.
+
+`w = U - theta_w` gives `E = (3/8) theta_w^2 U^(-1/2) + ...`, so
+`E/bound = theta_w^2`. The lower end is attained exactly at every even
+square, where `theta_w = 0`. The upper end climbs `0.96918 -> 0.99056 ->
+0.99702 -> 0.99867` over `1000` to `500000` even `m`, and `1 - max`
+falls as `M^(-1/2)` -- the residual ratios `3.265`, `3.166`, `2.234`
+against `sqrt` of the points ratios `3.162`, `3.162`, `2.236`, within
+`3%`. That is what `theta_w^2` predicts, since consecutive `m^(1/2)`
+differ by about `1/(2 m^(1/2))`.
+
+So the `v`-level's asymptotic exactness is a property of this term and
+not of the second nesting; the rate differs only because a different
+fractional part is being maximised. And the term is sharp where it is
+stated and redundant only where it was carried: at the `v`-level
+`(3/4) m^(-3/8)` is already its order and dominates.
+
+One artefact worth recording: at `60` digits the sweep reports a single
+`E < 0`, at `m = 256036 = 506^2`, of size `-1.3e-57`. It is the equality
+case, `theta_w = 0`, and at `200` digits `E` is exactly zero. The probe
+carries a tolerance and counts the even squares it passes, so the next
+reader does not chase it.
+
+```text
+Phase-end report
+Question
+- do Theorem 4.8's m-level bounds behave like Lemma 6.2's at the
+  v-level, or is the exactness a feature of the second nesting
+Instruments
+- theorem_4_8_E_bound: E against (3/8)(U-1)^(-1/2) over even m to 1e6,
+  four checkpoints, with the sign claim and the equality cases counted
+Ledger tags
+- EXACT: E = (3/8) theta_w^2 U^(-1/2) + ..., so E/bound = theta_w^2;
+  E = 0 exactly at every even square; max theta_w = 1 - Theta(M^(-1/2))
+- COMPUTATIONALLY VERIFIED: the four checkpoints; residual ratios 3.265,
+  3.166, 2.234 against sqrt of the points ratios, within 3%; no sign
+  violation outside round-off at 256036; the live sweep matches the
+  first checkpoint
+- OBSERVATION: the v-level exactness is not a feature of the nesting
+Strongest theorem
+- E/bound is theta_w^2, which fixes both the sharpness and the rate, and
+  makes the equality case exactly the even squares
+Strongest refutation
+- the hypothesis in my own question, that the second nesting was doing
+  the work
+Reusable machinery
+- theorem_4_8_E_bound, THEOREM_4_8_E_CHECKPOINTS, two tests, wired into
+  summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change: both ends of the 4.8 bound are
+  sharp as printed, and the 6.2 deletion was already recorded.
+Best next question
+- E/bound = theta_w^2 makes the ratio a square, so its distribution is
+  not uniform: the mean of theta_w^2 is 1/3. The census reports maxima
+  only. Would the mean ratio be a better instrument for spotting a bound
+  that is loose by a constant, since a loose bound moves the mean and a
+  sharp one does not?
+```

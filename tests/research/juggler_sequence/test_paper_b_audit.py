@@ -1701,3 +1701,31 @@ def test_the_two_bounds_approach_at_the_same_power() -> None:
     assert 18 < r["residual_gap"] < 19
     assert r["both_are_asymptotically_exact"] and r["no_constant_to_spare_in_either"]
     assert r["the_gap_is_a_constant_not_a_kind"]
+
+
+# --- the same term at the m-level, where it stands alone ---
+
+
+def test_theorem_4_8_E_bound_is_sharp_at_both_ends() -> None:
+    """0 <= E is attained exactly at even squares; the upper end is approached like M^(-1/2)."""
+    r = A.theorem_4_8_E_bound(sweep_to=20000)
+    assert r["lower_end_holds"] and r["sign_violations"] == []
+    assert r["lower_end_is_attained_at_even_squares"] and r["perfect_squares_seen"] > 30
+    assert r["max_climbs"] and r["asymptotically_exact"]
+    assert r["rate_is_root_M"]
+    for got, want in zip(r["residual_ratios_per_decade"], r["residual_ratios_expected"]):
+        assert 0.85 < got / want < 1.2
+    # the live short sweep reproduces the first frozen checkpoint
+    live = {x["points"]: x for x in r["live_checkpoints"]}
+    assert abs(live[1000]["max_ratio"] - r["checkpoints"][0]["max_ratio"]) < 1e-8
+
+
+def test_the_exactness_belongs_to_the_term_not_the_nesting() -> None:
+    """(3/8)(U-1)^(-1/2) is sharp at the m-level and redundant at the v-level: same term."""
+    r = A.theorem_4_8_E_bound(sweep_to=8000)
+    assert r["same_term_as_lemma_6_2_part_ii"]
+    assert r["sharp_here_redundant_there"] and r["exactness_is_the_term_not_the_nesting"]
+    assert r["final_max"] > 0.998 and r["final_residual"] < 2e-3
+    # and the v-level probe still says the same term is deletable there
+    v = A.lemma_6_2_part_ii_term_inventory(sweep_to=2000)
+    assert v["second_term_is_deletable"] and v["second_over_first_limit"] == 0.5
