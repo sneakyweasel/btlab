@@ -4442,6 +4442,72 @@ def c2_occurrence_audit() -> dict[str, Any]:
     }
 
 
+def k_range_at_the_operating_point(P0: float = 3.5858e13) -> dict[str, Any]:
+    """The uniformity clause is unexercised above k = 2 -- and at P_0 there is nothing to exercise.
+
+    Theorem 5.3 claims its bound uniformly for 1 <= k <= P^{1/24}, which is (C3); Theorem 6.1
+    applies it with k <= 2 P^{1/96}.  kernel_k_uniformity already records that no evaluation in
+    this audit is inside (C3) above k = 1, and that the first that could be is P = 2^24, where
+    KERNEL_AT_C3_THRESHOLD has k = 1 and 2.  The question left open was whether the clause is
+    exercised above k = 2 anywhere, or whether every kernel evaluation sits on the degenerate
+    branch.  It is not exercised, it cannot be, and at the threshold that is not a gap:
+
+        k    least P under (C3) = k^24     least P under Thm 6.1 = (k/2)^96
+        2    1.678e7                       1
+        3    2.824e11                      8.031e16
+        4    2.815e14                      7.923e28
+
+    At P_0 the two caps read 3.6709 and 2.7684, so (C3) admits k in {1, 2, 3} and Theorem 6.1
+    admits k in {1, 2} -- exactly the two the audit has evaluated.  The uniformity clause first
+    carries an integer the audit has not seen at (3/2)^96 = 8.03e16, which is 2240 times P_0.
+
+    Inside the lemmas the extra k = 3 is real from 2.82e11 on, and unreachable: at the measured
+    rate of KERNEL_AT_C3_THRESHOLD (8388608 terms in 688 s) a kernel sum at 3^24 is 1.41e11 odd
+    terms, about 134 days.  So the honest statement is not that the audit is blind to k > 2, but
+    that the operating range at the threshold has nothing above k = 2 in it, and that the lemma's
+    own wider range is 4.2 orders of compute away.
+    """
+
+    rows = []
+    for k in (2, 3, 4, 5):
+        c3 = float(k) ** 24
+        t61 = (k / 2.0) ** 96 if k > 2 else 1.0
+        rows.append({
+            "k": k,
+            "least_P_under_C3": c3,
+            "least_P_under_theorem_6_1": t61,
+            "inside_C3_at_P0": c3 <= P0,
+            "inside_theorem_6_1_at_P0": t61 <= P0,
+        })
+    c3_cap = P0 ** (1 / 24)
+    t61_cap = 2 * P0 ** (1 / 96)
+    terms_at_k3 = 3.0 ** 24 / 2
+    seconds = KERNEL_AT_C3_THRESHOLD["seconds"] * terms_at_k3 / KERNEL_AT_C3_THRESHOLD["terms"]
+    first_new_k = (3 / 2.0) ** 96
+    return {
+        "rows": rows,
+        "c3_cap_at_P0": c3_cap,
+        "theorem_6_1_cap_at_P0": t61_cap,
+        "c3_integers_at_P0": int(c3_cap),
+        "theorem_6_1_integers_at_P0": int(t61_cap),
+        "operating_range_at_P0_is_one_and_two": int(t61_cap) == 2,
+        "c3_admits_one_more_than_the_operating_range": int(c3_cap) == int(t61_cap) + 1,
+        "audit_reach_k": max(1, 2),
+        "audit_reach_P": KERNEL_AT_C3_THRESHOLD["P"],
+        "audit_reach_matches_the_operating_range": int(t61_cap) == 2,
+        "first_P_with_a_new_operating_k": first_new_k,
+        "first_new_k_over_P0": first_new_k / P0,
+        "clause_first_does_work_above_P0": first_new_k > P0,
+        # what an admissible k = 3 evaluation would cost
+        "least_P_admitting_k3_under_C3": 3.0 ** 24,
+        "terms_at_that_P": terms_at_k3,
+        "seconds_at_that_P": seconds,
+        "days_at_that_P": seconds / 86400,
+        "orders_beyond_the_audit": math.log10(terms_at_k3 / KERNEL_AT_C3_THRESHOLD["terms"]),
+        "k3_is_out_of_reach": seconds > 30 * 86400,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4513,6 +4579,7 @@ def summary() -> dict[str, Any]:
     locality = beta_locality(span=12000, samples_per_range=12)
     c1sites = c1_invocation_inventory()
     c2sites = c2_occurrence_audit()
+    krange = k_range_at_the_operating_point()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4572,6 +4639,7 @@ def summary() -> dict[str, Any]:
         "beta_locality": locality,
         "c1_invocation_inventory": c1sites,
         "c2_occurrence_audit": c2sites,
+        "k_range_at_the_operating_point": krange,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

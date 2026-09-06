@@ -3974,3 +3974,110 @@ hypothesis three of this ledger's findings depend on.
 Probe: `c2_occurrence_audit`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The remark that outlived its own truth
+
+The last entry asked whether "the manuscript does not state this" should be a third
+classification in the numeral table, and named `Gsecond_beta_cancellation`'s `63/64` as the
+case, on the strength of `BranchFreeze`'s header: "**One thing this file records that the
+manuscript does not.**"
+
+The header is wrong. The manuscript records the whole computation at Lemma 5.1(iii) --- the
+two contributions `81/64` and `-9/32`, their sum `63/64`, `63/64 * 19 = 18.7 <= 25`, the naive
+`99/64 * 19 = 29.4 > 25`, the phrase "of *opposite sign*" --- and cites
+`Gsecond_beta_cancellation` and `Gsecond_naive_bound_fails` by name. The Lean file found the
+cancellation, the manuscript adopted it, and the header went on claiming sole custody.
+
+(The first search for it here used `grep -F` with `@|` alternation, which `-F` takes
+literally, and reported zero hits in the manuscript. The premise survived one bad grep. It was
+the ledger's own earlier entry --- "Now recorded in the manuscript and in Lean" --- that
+contradicted it and forced the second look.)
+
+**So the answer to the question is no, and the interesting class is the opposite one.** Not "a
+Lean constant the manuscript does not state", but "a Lean *sentence* about the manuscript that
+the manuscript has since made false". Three of them in `BranchFreeze`, all created by the file
+being right:
+
+```text
+  claim                                              why it went stale
+  "one thing this file records that the             the manuscript adopted the whole
+   manuscript does not"                             computation and cites both theorems
+  "the manuscript's (3 sqrt 2)^2 = 18 becomes 19"   the manuscript now prints 19 itself
+  the naive coefficient is "27.8"                   that is 99/64 * 18; the file and the
+                                                    manuscript both use 19, giving 29.4
+```
+
+The third is an internal inconsistency rather than a claim about the manuscript: the header
+and the docstring of the theorem twelve lines below it gave two different values for the same
+quantity, `27.8` and `29.3`, against the manuscript's `29.4`. All three corrected;
+`lake build Problems.Juggler.BranchFreeze` green.
+
+**And a checker, because this is the third staleness of the same species in three entries.**
+`tools/lean_numeral_audit.py` now carries `MANUSCRIPT_CLAIMS`: nine rows, each an anchor
+sentence that must still be in the Lean file and a predicate that must hold on the manuscript.
+The anchor is the point --- rewording a sentence retires its row loudly instead of leaving a
+predicate quietly guarding text that no longer exists. A test asserts every predicate is false
+against an empty manuscript, so none of them is vacuous, and another doctors the manuscript
+back to its pre-adoption state and asserts the two `BranchFreeze` rows fire.
+
+```text
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+    9 prose claims about the manuscript                        0 stale
+```
+
+The pattern across the last three entries is worth naming. A Lean file and a manuscript drift
+apart in three ways: the constant moves and Lean keeps the old one (the interpolant chain);
+the constant is right and nothing says so (the numeral table's gap); and the *paper* moves to
+match Lean and Lean keeps describing the paper it corrected. The third is the one no amount of
+care in the manuscript can catch, because the error is not in the manuscript.
+
+## The uniformity clause is unexercised above `k = 2`, and at `P_0` there is nothing there to exercise
+
+`kernel_k_uniformity` already records that no evaluation in this audit
+sits inside `(C3)` above `k = 1`, and that the first that could is
+`P = 2^24`, where `KERNEL_AT_C3_THRESHOLD` has `k = 1` and `2`. The
+question was whether anything exercises the clause above `k = 2`. Nothing
+does. But the reason is not that the audit is short.
+
+**At the threshold the operating range is `{1, 2}`.**
+
+```text
+  k    least P under (C3) = k^24    least P under Thm 6.1 = (k/2)^96
+  2    1.678e7                      1
+  3    2.824e11                     8.031e16
+  4    2.815e14                     7.923e28
+  5    5.960e16                     1.593e38
+```
+
+At `P_0 = 3.5858e13` the two caps read `P^(1/24) = 3.6709` and
+`2P^(1/96) = 2.7684`. So `(C3)` admits `k in {1, 2, 3}` and Theorem 6.1
+admits `k in {1, 2}` --- exactly the two the audit has evaluated. The
+clause first has to carry an integer the audit has not seen at
+`(3/2)^96 = 8.03e16`, which is `2240` times `P_0`.
+
+**Inside the lemmas the third value is real, and 4.2 orders away.**
+`k = 3` enters `(C3)` at `3^24 = 2.82e11`, well below `P_0`, so the
+uniformity clause does have work to do there --- just not at any point
+where Theorem 6.1 applies it. Measuring it is out of reach: at the rate
+of `KERNEL_AT_C3_THRESHOLD` (`8388608` terms in `688` s), a kernel sum
+at `3^24` is `1.41e11` odd terms, about `134` days.
+
+So the honest statement of the blindness is narrower than the one on
+record. Not "the uniformity in `k` has never been exercised" full stop,
+but: at the operating point there is nothing above `k = 2` to exercise,
+the audit covers that range exactly, and the lemma's own wider range
+first differs at `2.82e11` and cannot be evaluated there.
+
+Tags. EXACT: least `P` admitting `k` is `k^24` under `(C3)` and
+`(k/2)^96` under Theorem 6.1; at `P_0` the caps are `3.6709` and
+`2.7684`, so the integer ranges are `{1,2,3}` and `{1,2}`; the first
+`P` at which the operating range gains a value is `(3/2)^96 = 8.03e16`.
+COMPUTATIONALLY VERIFIED: `2240 = 8.03e16 / P_0`; a `k = 3` kernel at
+`3^24` is `1.41e11` terms and `134` days at the measured rate, `4.23`
+orders beyond `KERNEL_AT_C3_THRESHOLD`. OBSERVATION: the audit's reach
+in `k` coincides with the operating range at the threshold, which is
+not something the audit was designed for.
+
+Probe: `k_range_at_the_operating_point`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

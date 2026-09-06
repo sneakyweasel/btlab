@@ -1503,3 +1503,31 @@ def test_the_one_occurrence_below_needs_more_than_c2_can_give() -> None:
     # and the hypothesis is nowhere near tight where it is used
     assert r["epsilon_under_theorem_5_3_caps"] < r["epsilon_under_C3_C4"] < 1e-5
     assert 13.9 < r["least_P_for_C2_from_the_caps"] < 14.0
+
+
+# --- what the k-uniformity clause has to carry at the threshold ---
+
+
+def test_the_operating_k_range_at_P0_is_one_and_two() -> None:
+    """(C3) reads 3.67 at P_0 and Theorem 6.1 reads 2.77: the audit's k = 1, 2 is the whole range."""
+    r = A.k_range_at_the_operating_point()
+    assert r["c3_integers_at_P0"] == 3 and r["theorem_6_1_integers_at_P0"] == 2
+    assert r["operating_range_at_P0_is_one_and_two"]
+    assert r["c3_admits_one_more_than_the_operating_range"]
+    assert r["audit_reach_matches_the_operating_range"]
+    assert r["audit_reach_P"] == 2 ** 24
+    # the clause first carries an integer the audit has not seen well above P_0
+    assert r["clause_first_does_work_above_P0"]
+    assert 2000 < r["first_new_k_over_P0"] < 2500
+
+
+def test_an_admissible_k_of_three_is_four_orders_out_of_reach() -> None:
+    """Inside the lemmas k = 3 is real from 2.82e11; a kernel sum there is 134 days."""
+    r = A.k_range_at_the_operating_point()
+    assert r["least_P_admitting_k3_under_C3"] == 3 ** 24
+    assert 130 < r["days_at_that_P"] < 140
+    assert 4.2 < r["orders_beyond_the_audit"] < 4.3
+    assert r["k3_is_out_of_reach"]
+    rows = {x["k"]: x for x in r["rows"]}
+    assert rows[3]["inside_C3_at_P0"] and not rows[3]["inside_theorem_6_1_at_P0"]
+    assert not rows[4]["inside_C3_at_P0"]

@@ -34290,3 +34290,147 @@ Best next question
   audit above k = 2, or is every kernel evaluation still on the
   degenerate branch?
 ```
+
+### The remark that outlived its own truth
+
+The recorded question was whether "the manuscript does not state this" should
+be a third classification in the numeral table, naming
+`Gsecond_beta_cancellation`'s `63/64` as the case, on the strength of
+`BranchFreeze`'s header: "One thing this file records that the manuscript does
+not."
+
+**The header is wrong.** The manuscript records the whole computation at
+Lemma 5.1(iii) — the contributions `81/64` and `-9/32`, their sum `63/64`,
+`63/64 * 19 = 18.7 <= 25`, the naive `99/64 * 19 = 29.4 > 25`, the phrase "of
+opposite sign" — and cites `Gsecond_beta_cancellation` and
+`Gsecond_naive_bound_fails` by name. The Lean file found the cancellation, the
+manuscript adopted it, and the header kept claiming sole custody.
+
+My first search for it used `grep -F` with `\|` alternation, which `-F` takes
+literally, and reported zero hits. The premise survived one bad grep; the
+ledger's own earlier entry, "Now recorded in the manuscript and in Lean", is
+what contradicted it.
+
+**So the answer is no, and the interesting class is the opposite one.** Not a
+Lean constant the manuscript omits, but a Lean *sentence* about the manuscript
+that the manuscript has since made false. Three in `BranchFreeze`, all created
+by the file being right:
+
+```text
+  claim                                            why it went stale
+  "one thing this file records that the           the manuscript adopted it and
+   manuscript does not"                           cites both theorems
+  "the manuscript's (3 sqrt 2)^2 = 18 becomes     the manuscript now prints 19
+   19"                                            itself
+  the naive coefficient is "27.8"                 that is 99/64 * 18; the file and
+                                                  the manuscript both use 19 -> 29.4
+```
+
+The third is internal: the header and a docstring twelve lines below it gave
+`27.8` and `29.3` for the same quantity, against the manuscript's `29.4`.
+
+**And a checker, since this is the third staleness of the species in three
+ticks.** `MANUSCRIPT_CLAIMS`: nine rows, each an anchor sentence that must
+still be in the Lean file and a predicate that must hold on the manuscript. The
+anchor is the point — rewording retires the row loudly rather than leaving a
+predicate guarding text that no longer exists. One test asserts every predicate
+is false against an empty manuscript; another doctors the manuscript back to
+its pre-adoption state and asserts the two rows fire.
+
+```text
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+    9 prose claims about the manuscript                        0 stale
+```
+
+```text
+What was learned
+- the premise of my own recorded question was false, and a broken grep is what
+  let it stand; -F does not do alternation
+- a Lean file and a manuscript drift apart three ways: the constant moves and
+  Lean keeps the old one; the constant is right and nothing says so; and the
+  *paper* moves to match Lean and Lean keeps describing the paper it corrected
+- the third is the one no care in the manuscript can catch, because the error
+  is not in the manuscript
+- a file can disagree with itself twelve lines apart (27.8 against 29.3) and
+  nothing notices, because neither number is load-bearing
+Strongest theorem
+- nine prose claims anchored and checked, every predicate demonstrably
+  non-vacuous, and the guard shown to fire on both historical cases
+Strongest refutation
+- BranchFreeze's header claim to sole custody of the 63/64 cancellation, and
+  its docstring claim that the manuscript prints 18 for the beta-product
+Reusable machinery
+- MANUSCRIPT_CLAIMS, claim_audit, stale_claims in tools/lean_numeral_audit.py;
+  five new tests
+Branch status
+- PARK
+Why
+  The three stale sentences are corrected, the class they belong to is named
+  and checked, and the check is demonstrated on the cases that motivated it.
+  No constant of the paper moves; P_0 and P_1 are untouched.
+Best next question
+- every one of the last three findings was Lean-versus-manuscript. The
+  manuscript also cites the probe modules by name -- decoration_budget,
+  p0_certificate, paper_b_prefix_count -- for measurements, and those citations
+  have had no check at all. Does a named probe function still exist, still
+  return what the sentence citing it says, and is any of those sentences
+  describing a function that was renamed underneath it?
+```
+
+## The blindness was narrower than I had it
+
+The audit has never evaluated the kernel inside `(C3)` above `k = 2`,
+and it cannot: `k = 3` needs `P >= 3^24 = 2.82e11`, which is `1.41e11`
+odd terms and about `134` days at the rate `KERNEL_AT_C3_THRESHOLD`
+measured. That much was on record. What was not is that at the
+threshold there is nothing there to miss.
+
+`(C3)` reads `P^(1/24) = 3.6709` at `P_0` and Theorem 6.1 reads
+`2P^(1/96) = 2.7684`, so the lemma's hypothesis admits `k in {1,2,3}`
+and the theorem that applies it admits `k in {1,2}` --- exactly the two
+`KERNEL_AT_C3_THRESHOLD` has. The operating range gains a third value
+only at `(3/2)^96 = 8.03e16`, which is `2240` times `P_0`.
+
+So the blindness is real inside the lemmas and empty at the operating
+point, and the audit's reach in `k` happens to coincide with the range
+that is actually in force at the threshold. That is a narrower and more
+useful statement than "the uniformity in `k` has never been exercised",
+which is what `kernel_k_uniformity` says now.
+
+```text
+Phase-end report
+Question
+- is the k-uniformity clause exercised anywhere above k = 2, or is every
+  kernel evaluation on the degenerate branch
+Instruments
+- k_range_at_the_operating_point: least admissible P for each k under
+  both caps, the integer ranges at P_0, and the cost of the first
+  admissible k = 3 kernel at the measured rate
+Ledger tags
+- EXACT: least P is k^24 under (C3) and (k/2)^96 under Theorem 6.1; at
+  P_0 the caps are 3.6709 and 2.7684, so the ranges are {1,2,3} and
+  {1,2}; the operating range gains a value at (3/2)^96 = 8.03e16
+- COMPUTATIONALLY VERIFIED: 2240 = 8.03e16/P_0; a k = 3 kernel at 3^24
+  is 1.41e11 terms and 134 days, 4.23 orders beyond the audit
+- OBSERVATION: the audit's reach in k coincides with the operating range
+  at the threshold
+Strongest theorem
+- at P_0 the theorem that applies the uniformity clause admits only
+  k = 1 and k = 2, which is exactly what has been evaluated
+Strongest refutation
+- the framing of my own question, and of kernel_k_uniformity's
+  docstring: "never exercised" is right about the lemma and wrong about
+  the operating point
+Reusable machinery
+- k_range_at_the_operating_point, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change; it is a sharper statement of what
+  the audit does and does not see, and it belongs in the ledger.
+Best next question
+- (C4) caps h_2 at P^(1/24) and Theorem 5.3 takes H_2 = P^(1/24)
+  exactly, with no room, while h_1 has P^(1/48) against P^(1/48). At P_0
+  those admit h_2 <= 3 and h_1 <= 1. Does any probe in the audit ever
+  run with h_1 > 1, or is the first shift pinned everywhere the way k is?
+```
