@@ -21,6 +21,9 @@ theorem q_zero : q 0 = 1 := rfl
 theorem q_one : q 1 = 2 := rfl
 theorem q_two : q 2 = 5 := rfl
 
+/-- The MSD recurrence of `Γ_NP`: `q (n+3) = 2 q (n+2) + q (n+1) + 3 q n`.
+Equivalently the word `B* = (1, -2, -1, -3)` has consumed sum zero at every start
+remaining `n + 4`. -/
 theorem q_rec (n : ℕ) : q (n + 3) = 2 * q (n + 2) + q (n + 1) + 3 * q n :=
   rfl
 

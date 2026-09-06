@@ -2109,7 +2109,9 @@
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "for Γ_NP, the MSD recurrence word B*=(1,-2,-1,-3) has consumed sum zero at every start remaining n+4: q_{n+3}-2q_{n+2}-q_{n+1}-3q_n=0; this is q_rec, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
-  "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "lean": "Problems/Ostrowski/NP/Recurrence.lean",
+  "decl": "q_rec",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_recurrence_zero.py"
   ],
@@ -2244,6 +2246,8 @@
   "statement": "for Γ_NP, if E_|v|(s)=E_|v|(t) then T_v(s) lands on F iff T_v(t) does; length-n suffix acceptance is classified by E_n, not by residual coordinates. This is fold_on_F_iff, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "fold_on_F_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_ext_feasibility.py"
   ],
@@ -3577,6 +3581,8 @@
   "statement": "No n ≥ 2 realizes a Juggler cycle itinerary with at most three even letters (Paper A Theorem 3.22). Every CycleItinerary has a CycleMin rotation that starts OO, ends E, and is formally expanding; those itineraries are the odd-run family, the two-even leftovers (Theorem 3.12), the internal-E bootstrap, the seven bunched leftovers (Theorems 3.14–3.20), or the gapped leftovers (Theorems 3.13 and 3.21). The corollary is that a nontrivial cycle itinerary has length at least eleven (Paper A Corollary 3.23). Lean theorems no_cycle_itinerary_even_count_le_three and cycle_itinerary_length_ge_eleven in EvenCountThree.lean. This is an even-count assembler, not a length-9 or length-10 itinerary census, and not a halt theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/EvenCountThree.lean",
+  "decl": "no_cycle_itinerary_even_count_le_three",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_even_count_three.py"
   ],
@@ -4207,6 +4213,8 @@
   "statement": "The thirty first-expanding four-even short-gap leftovers O^{a0} E O^{a1} E O^{a2} E O^{a3} E are not CycleMin words. On a CycleMin every later state is >= n, so the exact cells compose by absorb_odd_step and absorb_even_step: n^A < (n+1)^B (x+1)^γ implies n^{A+γ} < (n+1)^{B+γ} (isqrt(x)+1)^{2γ}. After the prefix, cycle_trailing_evens puts the image below (n+1)^{2^r}. Any 7-odd word that starts O keeps γ a power of two and raises on each later odd, so the slack is identically 3^7-2^{11}=139, independent of even placement. For n >= 30 and A <= 13905 the comparison is (n+1)^{A-139} < n^A; no n with 2 <= n < 30 follows any of the thirty prefixes. The eight leftovers whose only CycleMin-shaped rotation is themselves (OOOOOOOEEEE, OOOOOOEOEEE, OOOOOOEEEOE, OOOOOEOEEOE, OOOOOOEEOEE, OOOOOEOEOEE, OOOOOEEOEOE, OOOOEOEOEOE) are not cycle itineraries. Lean: absorb_even_step, family_slack139, no_cycleMin_cyclemin_fudge, and the named unique-rotation CycleItinerary theorems in CycleMinFudge.lean. This replaces leftover 2-fudge cutoffs 10^8 through 10^15. Not a length-11 census, not no_cycle_itinerary_four_even, not the a0>=8 tails, and not a halt theorem. Not imported by JugglerPaper.",
   "source": "docs/problems/juggler_cyclemin_fudge.md",
   "lean": "Problems/Juggler/CycleMinFudge.lean",
+  "decl": "no_cycleMin_cyclemin_fudge",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cyclemin_fudge.py"
   ],
@@ -4263,6 +4271,8 @@
   "statement": "An odd state z ≥ (n+1)^2 has odd-step image at least (n+1)^3. Consequently, on OOO at q ≥ 5 the residual is T^3(q) ≥ (q+1)^3, not merely the next-square bound of ooo_suffix_threshold. On a CycleMin whose first odd run has length at least three, the first three-odd residual is at least (n+1)^3. Lean: odd_ge_succ_sq_floorPower_ge_cube, ooo_residual_ge_cube in Preimages.lean; cycleMin_ooo_residual_ge_cube in CycleMinObstruction.lean. The smallest universal local-overshoot A on CycleMin is 2, not 3. Not a halt theorem and not a contained-run prohibition.",
   "source": "docs/problems/juggler_cyclemin_obstruction.md",
   "lean": "Problems/Juggler/CycleMinObstruction.lean",
+  "decl": "cycleMin_ooo_residual_ge_cube",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
   ],
