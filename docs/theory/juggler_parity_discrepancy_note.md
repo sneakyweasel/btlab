@@ -273,6 +273,24 @@ a barrel importing exactly this paper's six modules --- `BranchFreeze`,
 barrel. And `ring` appears once in the text as the tactic that discharges an
 inversion, not as the name of a theorem.
 
+A column of identifiers says which theorems exist; it does not say that they
+are about this paper's constants. Two tables now say that. Appendix A pairs
+each of the thirty-eight threshold rows with its theorem, its substitution and
+a rational witness. `tools/lean_numeral_audit.py` pairs every numeral in the
+statement of every *other* Paper B theorem --- three hundred and seventeen of
+them across `BranchFreeze`, `MonomialSplitting` and `PaperBAssembly` --- either
+with the quantity it implements, checked by value against the constant this
+paper carries, or with the algebra it is a coefficient of. Sixty-two are of
+the first kind and the rest of the second; none is unclassified, which is the
+condition the check enforces.
+
+The second table exists because of one failure it now prevents, recorded at the
+erratum in Lemma 5.2b: three theorems there proved that lemma's *superseded*
+chain, and the sentence citing them sat three lines under the corrected
+display. A check that the numerals appear somewhere in the manuscript would not
+have found it --- both of them appear, inside the erratum's own list of what
+replaced them. Only a check by value does.
+
 *Locating a statement.* Numbered statements run one ahead of the
 section headings until Section 6. Lemmas 3.x are in Section 2,
 Theorems 4.x in Section 3, Lemma 5.1, Lemma 5.2 and Theorem 5.3 in

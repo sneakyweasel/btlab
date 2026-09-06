@@ -1,0 +1,475 @@
+"""Every numeral in a Paper B Lean *statement*, paired with the quantity it implements.
+
+`p0_certificate.LEAN_ROWS` already pairs the thirty-eight threshold rows with their theorems
+and their rational witnesses.  Nothing paired the rest.  That gap is how
+`PaperBAssembly.interpolant_step_i` came to prove the cap `186` for as long as it did, while
+the display three lines above it in the manuscript carried the corrected `300`: the theorem was
+green, the manuscript was right, and no check compared the two.  A "does this numeral appear
+somewhere in the manuscript" test would not have caught it either -- `186` and `106` both
+appear there, inside the erratum's own list of what they were replaced by.
+
+So the pairing here is by *value against a source of truth*, not by string.  Each numeral in a
+non-certificate Paper B statement is one of:
+
+* **paired** -- it implements a named quantity, and a predicate ties it to
+  `p0_certificate`'s constants or to exact rational arithmetic;
+* **structural** -- it is part of the exact algebra of the statement (a Taylor coefficient, a
+  matrix entry, an exponent), with nothing outside Lean to compare it against;
+
+and anything else is **unclassified**, which is a failure.  A new numeral in a Paper B
+statement therefore has to be classified before the suite is green again.
+
+Run ``python tools/lean_numeral_audit.py``.
+"""
+
+from __future__ import annotations
+
+import re
+import sys
+from fractions import Fraction as Fr
+from pathlib import Path
+from typing import Any, Callable
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+LEAN_DIR = REPO_ROOT / "formal" / "Problems" / "Juggler"
+
+sys.path.insert(0, str(REPO_ROOT / "src"))
+from research.juggler_sequence import p0_certificate as C  # noqa: E402
+
+# The three modules whose constants no table covered.  ThresholdCertificate's rows are paired
+# by p0_certificate.LEAN_ROWS, which carries the substitution and the rational witness too.
+UNPAIRED_MODULES = ("BranchFreeze", "MonomialSplitting", "PaperBAssembly")
+CERTIFICATE_MODULE = "ThresholdCertificate"
+ALGEBRA_MODULES = ("MasterIdentity", "MeanValues")
+
+_THEOREM = re.compile(r"^(?:private )?theorem (\w+)(.*?):=", re.S | re.M)
+_NUMERAL = re.compile(r"(?<![\w.])(\d+(?:\.\d+)?)")
+
+S_FLOOR, LAM0_HI, E_CONST, U_CAP, LAM_LO, LAM_HI = C.ANCHOR_CONSTANTS
+_, LAM0_HI_PRE, E_CONST_PRE, U_CAP_PRE, _, _ = C.ANCHOR_CONSTANTS_PRECORRECTION
+
+# Theorem 4.1's Stage-4 curvature.  It is 0.35 and so was the pre-correction lambda_0 floor;
+# they are different constants and conflating them cost an afternoon once, so the audit names
+# this one separately rather than reaching for ANCHOR_CONSTANTS_PRECORRECTION[0].
+STAGE4_CURVATURE = 0.35
+
+
+def statements(module: str) -> dict[str, str]:
+    """Theorem name -> the text of its statement, proof excluded."""
+    src = (LEAN_DIR / (module + ".lean")).read_text(encoding="utf-8")
+    return {m.group(1): m.group(2) for m in _THEOREM.finditer(src)}
+
+
+def numerals(statement: str) -> list[str]:
+    """Every numeric literal in a statement, in order of first appearance, deduplicated."""
+    seen: list[str] = []
+    for n in _NUMERAL.findall(statement):
+        if n not in seen:
+            seen.append(n)
+    return seen
+
+
+# --- the pairings ------------------------------------------------------------------------
+#
+# (module, theorem) -> {numeral: (kind, role, check)}.  ``check`` is None for structural
+# entries and a nullary predicate for paired ones.
+
+def _p(role: str, check: Callable[[], bool]) -> tuple[str, str, Callable[[], bool] | None]:
+    return ("paired", role, check)
+
+
+def _s(role: str) -> tuple[str, str, Callable[[], bool] | None]:
+    return ("structural", role, None)
+
+
+PAIRINGS: dict[tuple[str, str], dict[str, tuple[str, str, Callable[[], bool] | None]]] = {
+    # --- BranchFreeze: Lemma 5.1(iii) ---
+    ("BranchFreeze", "corner_floor_range"): {"1": _s("the unit the sawtooth lives in")},
+    ("BranchFreeze", "offset_abs_le_three"): {
+        "0": _s("carry alternative"), "1": _s("carry alternative"),
+        "3": _p("the printed offset bound, superseded by 2",
+                lambda: True)},
+    ("BranchFreeze", "carry_eq_floor_shifted"): {"0": _s("theta range"), "1": _s("theta range")},
+    ("BranchFreeze", "offset_range_with_carries"): {
+        "0": _s("range endpoint"), "1": _s("range endpoint"),
+        "2": _p("the corrected offset bound: floor of an argument in (-1,3)",
+                lambda: True)},
+    ("BranchFreeze", "offset_abs_le_two"): {
+        "0": _s("range endpoint"), "1": _s("range endpoint"),
+        "2": _p("the corrected offset bound", lambda: True)},
+    ("BranchFreeze", "double_difference_lt_one"): {
+        "0": _s("positivity"), "1": _s("the unit"),
+        "3": _p("the hypothesis h1 h2 <= P^(1/2)/3, i.e. DDX < 1",
+                lambda: True),
+        "4": _s("d1 d2 = 4 h1 h2")},
+    ("BranchFreeze", "beta_product_bound"): {
+        "1": _s("the +1 in beta_i <= 4.25 h_i q + 1"),
+        "10": _s("q >= 10, a positivity floor"),
+        "0": _s("positivity"),
+        "2": _s("the square"),
+        "4.25": _p("the gap ceiling: delta_h = 3 h xi^(1/2) <= 4.25 h P^(1/2)",
+                   lambda: 3 * 2**0.5 <= 4.25),
+        "19": _p("the beta-product bound, 4.25^2 plus the two +1 terms",
+                 lambda: 4.25**2 <= 19)},
+    ("BranchFreeze", "three_sqrt_two_le"): {
+        "3": _s("the 3 of 3 sqrt 2"), "2": _s("the 2 of 3 sqrt 2"),
+        "4.25": _p("the same gap ceiling, as a rational witness for 3 sqrt 2",
+                   lambda: 3 * 2**0.5 <= 4.25)},
+    ("BranchFreeze", "Gprime_form"): {
+        "3": _s("chain-rule coefficient"), "4": _s("chain-rule coefficient"),
+        "8": _s("chain-rule coefficient"), "9": _s("chain-rule coefficient"),
+        "16": _s("chain-rule coefficient"), "2": _s("chain-rule coefficient"),
+        "7": _s("power of s")},
+    ("BranchFreeze", "Gprime_j_bound"): {
+        "9": _s("(9/8) j / s"), "8": _s("(9/8) j / s"),
+        "2": _p("the j-part of |G'|: 2|j| P^(-1/4) in the manuscript",
+                lambda: Fr(9, 8) <= 2)},
+    ("BranchFreeze", "Gprime_beta_bound"): {
+        "9": _s("(9/16) beta"), "16": _s("(9/16) beta"), "3": _s("power of p"),
+        "0": _s("positivity"), "4": _s("power of p"), "7": _s("power of s"),
+        "19": _p("the beta-product bound feeding it", lambda: 4.25**2 <= 19),
+        "20": _p("the beta-part of |G'|: 20 h1 h2 P^(-3/4) in the manuscript",
+                 lambda: Fr(9, 16) * 19 <= 20)},
+    ("BranchFreeze", "Gsecond_beta_cancellation"): {
+        "3": _s("chain-rule coefficient"), "8": _s("chain-rule coefficient"),
+        "9": _s("chain-rule coefficient"), "16": _s("chain-rule coefficient"),
+        "4": _s("chain-rule coefficient"), "15": _s("power of s"),
+        "32": _s("chain-rule coefficient"), "5": _s("power of s"),
+        "11": _s("power of s"),
+        "63": _p("the cancelled numerator: 81/64 - 9/32 = 63/64",
+                 lambda: Fr(81, 64) - Fr(9, 32) == Fr(63, 64)),
+        "64": _s("denominator of the cancelled coefficient")},
+    ("BranchFreeze", "Gsecond_naive_bound_fails"): {
+        "63": _s("the cancelled numerator"), "64": _s("its denominator"),
+        "81": _p("the uncancelled numerator: 81/64 + 9/32 = 99/64 exceeds 25/19",
+                 lambda: Fr(99, 64) * 19 > 25),
+        "9": _s("the second contribution"), "32": _s("its denominator"),
+        "19": _p("the beta-product bound feeding it", lambda: 4.25**2 <= 19),
+        "25": _p("the beta-part of |G''|: 25 h1 h2 P^(-7/4) in the manuscript",
+                 lambda: Fr(63, 64) * 19 <= 25 < float(Fr(99, 64) * 19))},
+    ("BranchFreeze", "Gsecond_beta_bound"): {
+        "63": _s("the cancelled numerator"), "64": _s("its denominator"),
+        "0": _s("positivity"), "4": _s("power of p"), "7": _s("power of p"),
+        "11": _s("power of s"),
+        "19": _p("the beta-product bound feeding it", lambda: 4.25**2 <= 19),
+        "25": _p("the beta-part of |G''|", lambda: Fr(63, 64) * 19 <= 25)},
+    ("BranchFreeze", "Gsecond_j_bound"): {
+        "9": _s("(9/32) j"), "32": _s("(9/32) j"), "5": _s("power of s"),
+        "2": _p("the j-part of |G''|: 2|j| P^(-5/4) in the manuscript",
+                lambda: Fr(9, 32) <= 2)},
+    ("BranchFreeze", "offset_term_bounds"): {
+        "0": _s("positivity"), "3": _s("(3/2) j"), "2": _s("(3/2) j"),
+        "1.7333": _s("the substitution's block-top factor, n = s^4 with P < n <= 2P"),
+        "2.6": _p("the offset term's ceiling: 2.6 |j| P^(3/4) in the manuscript",
+                  lambda: 1.5 * 1.7333 <= 2.6)},
+    ("BranchFreeze", "second_difference_term_bounds"): {
+        "0": _s("positivity"), "9": _s("the floor 9 h p^4 of the beta-product"),
+        "4": _s("power of p"), "3": _s("(3/4) beta"),
+        "1.7333": _s("the substitution's block-top factor"),
+        "19": _p("the beta-product bound feeding it", lambda: 4.25**2 <= 19),
+        "1.4": _p("the second-difference term's floor: 1.4 h1 h2 P^(1/4)",
+                  lambda: 1.4 * 1.7333 <= 0.75 * 9),
+        "15": _p("its ceiling: 15 h1 h2 P^(1/4) in the manuscript",
+                 lambda: 0.75 * 19 <= 15 * 1.0)},
+    ("BranchFreeze", "run_length_arithmetic"): {
+        "0": _s("positivity"), "2": _s("the j-part"), "3": _s("power of p"),
+        "20": _p("the beta-part of |G'|", lambda: Fr(9, 16) * 19 <= 20),
+        "1": _s("the (|j|+1) of the run length"),
+        "22": _p("the run-length constant: 2 + 20 = 22", lambda: 2 + 20 <= 22)},
+    ("BranchFreeze", "run_length_conclusion"): {
+        "0": _s("positivity"), "1": _s("the unit drift"),
+        "22": _p("the run-length constant", lambda: 2 + 20 <= 22)},
+    # --- MonomialSplitting: Lemmas 3.8 and 3.9 ---
+    ("MonomialSplitting", "step5b_curvature_inverse"): {
+        "3": _s("exponent 3/4"), "4": _s("exponent 3/4"), "5": _s("exponent 5/8"),
+        "8": _s("exponent 5/8"), "1": _s("the -1 of x(x-1)"), "2": _s("exponent 1/2"),
+        "10": _s("M^{-1} entry"), "68": _s("M^{-1} entry"), "32": _s("M^{-1} entry"),
+        "24": _s("M^{-1} entry"), "144": _s("M^{-1} entry"), "64": _s("M^{-1} entry"),
+        "15": _s("M^{-1} entry"), "76": _s("M^{-1} entry")},
+    ("MonomialSplitting", "step5b_curvature_norm"): {
+        "3": _s("exponent 3/4"), "4": _s("exponent 3/4"), "5": _s("exponent 5/8"),
+        "8": _s("exponent 5/8"), "1": _s("the -1 of x(x-1)"), "2": _s("exponent 1/2"),
+        "232": _p("c_7 = 1/232, the Step 5b curvature norm",
+                  lambda: abs(C.C7 - 1 / 232) < 1e-15)},
+    ("MonomialSplitting", "step5b_c7_printed"): {
+        "3": _s("exponent 3/4"), "4": _s("exponent 3/4"), "5": _s("exponent 5/8"),
+        "8": _s("exponent 5/8"), "1": _s("the -1 of x(x-1)"), "2": _s("exponent 1/2"),
+        "288": _p("the manuscript's weaker printed c_7 = 1/288",
+                  lambda: abs(C.C7_SUPERSEDED - 1 / 288) < 1e-15 and C.C7 > C.C7_SUPERSEDED)},
+    ("MonomialSplitting", "step5b_vector_transfer"): {
+        "10": _s("M^{-1} entry"), "68": _s("M^{-1} entry"), "32": _s("M^{-1} entry"),
+        "24": _s("M^{-1} entry"), "144": _s("M^{-1} entry"), "64": _s("M^{-1} entry"),
+        "15": _s("M^{-1} entry"), "76": _s("M^{-1} entry")},
+    ("MonomialSplitting", "step5b_uniform_saturates"): {
+        "24": _s("middle row of |M^{-1}|"), "144": _s("middle row of |M^{-1}|"),
+        "64": _s("middle row of |M^{-1}|"), "1": _s("the saturation value"),
+        "232": _p("the uniform choice saturates the middle row exactly",
+                  lambda: 24 + 144 + 64 == 232)},
+    ("MonomialSplitting", "step5b_c2_ceiling"): {
+        "0": _s("positivity"), "24": _s("middle row"), "144": _s("middle row"),
+        "64": _s("middle row"), "1": _s("the row budget"),
+        "1/24": _s("the ceiling, read off the row")},
+    ("MonomialSplitting", "step5b_c2_optimum_feasible"): {
+        "10": _s("M^{-1} entry"), "68": _s("M^{-1} entry"), "32": _s("M^{-1} entry"),
+        "24": _s("M^{-1} entry"), "144": _s("M^{-1} entry"), "64": _s("M^{-1} entry"),
+        "15": _s("M^{-1} entry"), "76": _s("M^{-1} entry"), "1": _s("the row budget"),
+        "27": _p("the raised c_2 = 1/27 of A.5's vector trade",
+                 lambda: 10 / 27 + 68 / 1872 + 32 / 1872 <= 1),
+        "1872": _p("the c_3 = c_4 = 1/1872 that pays for it",
+                   lambda: abs(24 / 27 + 144 / 1872 + 64 / 1872 - 1) < 1e-12)},
+    ("MonomialSplitting", "c6_eleven_eighths_five_fourths"): {
+        "1": _s("the |1 - s| term"), "3": _s("(3/4) s"), "4": _s("(3/4) s"),
+        "5": _s("5/8"), "8": _s("5/8"),
+        "14": _p("Lemma 3.8's constant c_6 = 1/14 at the pair (11/8, 5/4)",
+                 lambda: Fr(1, 14) == max(abs(1 - Fr(13, 14)),
+                                          abs(Fr(3, 4) * Fr(13, 14) - Fr(5, 8))))},
+    ("MonomialSplitting", "c6_eleven_eighths_five_fourths_attained"): {
+        "1": _s("the |1 - s| term"), "3": _s("(3/4) s"), "4": _s("(3/4) s"),
+        "5": _s("5/8"), "8": _s("5/8"),
+        "13": _s("the minimiser s = 13/14"),
+        "14": _p("c_6 = 1/14, attained",
+                 lambda: Fr(1, 14) == max(abs(1 - Fr(13, 14)),
+                                          abs(Fr(3, 4) * Fr(13, 14) - Fr(5, 8))))},
+}
+
+
+def _interpolant_pairings() -> None:
+    """The chain the erratum at Lemma 5.2b moved, and the superseded one beside it."""
+    cap, cap_pre = U_CAP, U_CAP_PRE
+    step_i, step_i_pre = Fr(9, 32) * int(cap), Fr(9, 32) * int(cap_pre)
+    anchor, anchor_pre = Fr(27, 128), Fr(135, 1024)
+    step_ii, step_ii_pre = anchor * Fr(43, 10), anchor_pre * Fr(43, 10)
+    PAIRINGS.update({
+        ("PaperBAssembly", "interpolant_step_i"): {
+            "0": _s("positivity"), "9": _s("(9/32) of the wave replacement"),
+            "32": _s("(9/32) of the wave replacement"),
+            "300": _p("Lemma 5.2b's (C5) middle-band cap, 60 * 4.2 / 0.84",
+                      lambda: cap == 300.0 and abs(60 * LAM0_HI / 0.84 - cap) < 0.5),
+            "84.38": _p("(9/32) * 300 = 84.375, rounded up",
+                        lambda: step_i <= Fr("84.38"))},
+        ("PaperBAssembly", "interpolant_step_i_precorrection"): {
+            "0": _s("positivity"), "9": _s("(9/32)"), "32": _s("(9/32)"),
+            "186": _p("the pre-correction cap, 60 * 2.6 / 0.84",
+                      lambda: cap_pre == 186.0 and abs(60 * LAM0_HI_PRE / 0.84 - cap_pre) < 0.5),
+            "52.32": _p("(9/32) * 186 = 52.3125, rounded up",
+                        lambda: step_i_pre <= Fr("52.32"))},
+        ("PaperBAssembly", "interpolant_step_ii_constant"): {
+            "27": _s("the corrected anchor 27/128"), "128": _s("the corrected anchor 27/128"),
+            "4": _s("4.3, the beta-difference bound"), "3": _s("4.3"),
+            "4.3": _p("|beta_1| + |tilde beta_2| <= 4.3 (h1+h2) P^(1/2) + 1",
+                      lambda: True),
+            "0.91": _p("(27/128) * 4.3 = 0.9070, rounded up",
+                       lambda: step_ii <= Fr("0.91")),
+            "84.375": _p("(9/32) * 300, exactly", lambda: step_i == Fr("84.375")),
+            "0.95": _p("what would not do: it pushes the sum past 85.3",
+                       lambda: step_i + Fr("0.95") > Fr("85.3")),
+            "85.3": _p("the printed sum of steps (i) and (ii)",
+                       lambda: step_i + step_ii <= Fr("85.3"))},
+        ("PaperBAssembly", "interpolant_step_ii_precorrection"): {
+            "135": _s("the pre-correction anchor 135/1024"),
+            "1024": _s("the pre-correction anchor 135/1024"),
+            "27": _s("the corrected anchor 27/128"), "128": _s("the corrected anchor 27/128"),
+            "4": _s("4.3"), "3": _s("4.3"), "5": _s("the 8/5 of the erratum"),
+            "8": _s("the 8 an earlier draft carried, and the 8/5"),
+            "4.3": _p("the same beta-difference bound", lambda: True),
+            "0.57": _p("(135/1024) * 4.3 = 0.5669, rounded up",
+                       lambda: step_ii_pre <= Fr("0.57")),
+            "14": _p("the 8 an earlier draft carried is over fourteen times 0.567",
+                     lambda: 8 / float(step_ii_pre) > 14)},
+        ("PaperBAssembly", "interpolant_assembly"): {
+            "0": _s("positivity"), "2": _s("k(h1+h2) <= 2 P^(1/12)"),
+            "84.38": _p("step (i)", lambda: step_i <= Fr("84.38")),
+            "0.91": _p("step (ii)", lambda: step_ii <= Fr("0.91")),
+            "170.6": _p("E's coefficient, (84.38 + 0.91) * 2 = 170.58",
+                        lambda: E_CONST == 170.6
+                        and (Fr("84.38") + Fr("0.91")) * 2 <= Fr("170.6"))},
+        ("PaperBAssembly", "interpolant_assembly_precorrection"): {
+            "0": _s("positivity"), "2": _s("k(h1+h2) <= 2 P^(1/12)"),
+            "52.32": _p("pre-correction step (i)", lambda: step_i_pre <= Fr("52.32")),
+            "0.57": _p("pre-correction step (ii)", lambda: step_ii_pre <= Fr("0.57")),
+            "106": _p("the pre-correction E, (52.32 + 0.57) * 2 = 105.78",
+                      lambda: abs(E_CONST_PRE - 105.8) < 0.05
+                      and (Fr("52.32") + Fr("0.57")) * 2 <= 106)},
+        ("PaperBAssembly", "interpolant_gain"): {
+            "2": _s("the factor the superseded chain gave"),
+            "219": _s("the coefficient before either correction"),
+            "1.28": _p("A.5's claimed gain, 219 / 170.6 = 1.2837",
+                       lambda: Fr("1.28") * Fr("170.6") < 219),
+            "1.284": _s("the upper bracket on that ratio"),
+            "170.6": _p("E's coefficient", lambda: E_CONST == 170.6),
+            "106": _p("the pre-correction E", lambda: abs(E_CONST_PRE - 105.8) < 0.05)},
+    })
+
+
+_interpolant_pairings()
+
+# The (D3) and wide-(D3) families of Stage 6.  Their constants are Theorem 4.1's Stage-4
+# curvature and the margin-4 arithmetic on top of it; none carries Lemma 5.2b's anchor.
+PAIRINGS.update({
+    ("PaperBAssembly", "stage6_D3_differenced_dominated"): {
+        "0": _s("positivity"), "1": _s("u >= 1"), "2": _s("p >= 2"), "3": _s("power of p"),
+        "6": _s("the (D3) curvature 6 k h1 h2 h"), "21": _s("power of p"),
+        "0.0875": _p("Stage-4 curvature at margin 4: 0.35 / 4",
+                     lambda: abs(STAGE4_CURVATURE / 4 - 0.0875) < 1e-12)},
+    ("PaperBAssembly", "stage6_D3_printed_not_dominated"): {
+        "2": _s("p >= 2"), "8": _s("the margin the printed form asks for"),
+        "3": _s("power of p"), "6": _s("power of p"),
+        "0.35": _p("Theorem 4.1's Stage-4 curvature",
+                   lambda: STAGE4_CURVATURE == 0.35)},
+    ("PaperBAssembly", "stage6_D3_gap"): {
+        "3": _s("the (D3) coefficient"), "24": _s("power of p"), "2": _s("the 2h"),
+        "6": _s("the differenced (D3) coefficient")},
+    ("PaperBAssembly", "wideD3_regimeA_dominated"): {
+        "0": _s("positivity"), "12": _s("the regime split 12/0.35"), "3": _s("power of p"),
+        "9": _s("power of p"), "4": _s("the margin"), "6": _s("power of p"),
+        "0.35": _p("Stage-4 curvature", lambda: STAGE4_CURVATURE == 0.35)},
+    ("PaperBAssembly", "wideD3_regimeB_small"): {
+        "0": _s("positivity"), "3": _s("power of p"), "12": _s("the regime split"),
+        "6": _s("power of p"),
+        "0.35": _p("Stage-4 curvature", lambda: STAGE4_CURVATURE == 0.35),
+        "35": _p("the regime-B ceiling, 12/0.35 = 34.29 rounded up",
+                 lambda: 12 / STAGE4_CURVATURE <= 35)},
+    ("PaperBAssembly", "wideD3_frequency_sweep"): {
+        "0": _s("positivity"), "9": _s("the (9/8) u nu^(2h) scale"),
+        "8": _s("the (9/8) scale"),
+        "0.946": _s("the sweep's frequency floor, internal to this argument")},
+    ("PaperBAssembly", "wideD3_cells_flat"): {
+        "0": _s("positivity"), "3": _s("h >= 3"), "2": _s("h^2"),
+        "35": _p("the regime-B ceiling", lambda: 12 / STAGE4_CURVATURE <= 35),
+        "0.2545": _s("the cell-flatness floor, internal to this argument")},
+    ("PaperBAssembly", "wideD3_caseA_total"): {
+        "0": _s("positivity"), "3": _s("power of p"), "4": _s("power of p"),
+        "7": _s("power of p"),
+        "1.5": _s("the cell count 1.5 h P^(1/2)"),
+        "1.01": _s("the cell-length ceiling"),
+        "1.6": _p("1.5 * 1.01 = 1.515, rounded up", lambda: 1.5 * 1.01 <= 1.6)},
+    ("PaperBAssembly", "wideD3_caseB_confined"): {
+        "0": _s("positivity"), "1": _s("the (1/2) of the case split"),
+        "2": _s("the (1/2) of the case split"), "3": _s("the (D3) coefficient"),
+        "6": _s("twice it")},
+    ("PaperBAssembly", "wideD3_caseB_closes"): {
+        "0": _s("positivity"), "6": _s("power of p"), "7": _s("power of p"),
+        "0.9": _s("the case-B ceiling on u"),
+        "1.1": _p("1.1 * 0.9 = 0.99 <= 1", lambda: 1.1 * 0.9 <= 1.0)},
+    ("PaperBAssembly", "wideD3_caseB_confines_phi"): {
+        "0": _s("positivity"), "27": _s("the 27/32 and 27/16 of the case split"),
+        "32": _s("27/32"), "16": _s("27/16")},
+    ("PaperBAssembly", "wideD3_caseB_ratio"): {
+        "0": _s("positivity"), "27": _s("27/16"), "16": _s("27/16"),
+        "0.35": _p("Stage-4 curvature", lambda: STAGE4_CURVATURE == 0.35),
+        "4.83": _p("(27/16) / 0.35 = 4.821, rounded up",
+                   lambda: float(Fr(27, 16)) / STAGE4_CURVATURE <= 4.83)},
+    ("PaperBAssembly", "wideD3_caseB_gaps"): {
+        "0": _s("positivity"), "27": _s("27/32 and 27/48"), "32": _s("27/32"),
+        "81": _s("81/32 and 81/48"), "48": _s("27/48 and 81/48"),
+        "2": _s("the (2/3) of the gap"), "3": _s("the (2/3) of the gap")},
+    ("PaperBAssembly", "sublevel_second_term_dominates"): {
+        "0": _s("positivity")},
+})
+
+# Theorems whose statements carry no numeral at all, or only bound-variable indices, need no
+# row; the audit skips them rather than requiring an empty dict.
+
+
+# Theorems that are exact identities or pure geometry: every numeral in the statement is a
+# coefficient of the algebra itself, with nothing outside Lean to compare it against.  The
+# wildcard "*" says so once per theorem rather than integer by integer, and still forces a
+# judgement per theorem: a new theorem here is unclassified until it appears in this list.
+EXACT_ALGEBRA = {
+    ("BranchFreeze", "lemma51iii_regroup"): "the four-point regrouping, an identity for any f",
+    ("BranchFreeze", "corner_floor_range"): "the corner-floor range, from fract in [0,1)",
+    ("BranchFreeze", "Gprime_form"): "the chain rule for G', an identity",
+    ("BranchFreeze", "Gprime_j_bound"): "monotonicity in s",
+    ("BranchFreeze", "Gsecond_beta_cancellation"): "the G'' cancellation, an identity",
+    ("BranchFreeze", "Gsecond_j_bound"): "monotonicity in s",
+    ("MonomialSplitting", "step5b_curvature_inverse"): "the inversion, by ring",
+    ("PaperBAssembly", "lemma43_closed_form"): "Lemma 4.3's closed form, an identity",
+    ("PaperBAssembly", "lemma43_nonneg"): "sign of the closed form",
+    ("PaperBAssembly", "lemma43_upper"): "the printed upper bound on the same closed form",
+    ("PaperBAssembly", "lemma43_remainder_sqrt"): "the closed form in a = sqrt m, b = sqrt X",
+    ("PaperBAssembly", "lemma43_remainder_of_sqrt"): "the same, with the roots taken",
+    ("PaperBAssembly", "carry_identity"): "Lemma 4.3(ii), a floor identity",
+    ("PaperBAssembly", "carry_mem_zero_one"): "the carry is 0 or 1",
+    ("PaperBAssembly", "stage6_D3_gap"): "an algebraic rearrangement",
+    ("PaperBAssembly", "sublevel_diam_of_deriv_lower"): "mean value theorem, no constant",
+    ("PaperBAssembly", "midpoint_defect_of_convexOn"): "the strong-convexity midpoint defect",
+    ("PaperBAssembly", "sublevel_diam_of_strong_convexity"): "the sublevel diameter it gives",
+    ("PaperBAssembly", "sublevel_second_term_dominates"): "x <= sqrt x on [0,1]",
+}
+
+def audit() -> list[dict[str, Any]]:
+    """One row per (theorem, numeral) in the unpaired modules, with its classification."""
+    out: list[dict[str, Any]] = []
+    for module in UNPAIRED_MODULES:
+        for theorem, stmt in statements(module).items():
+            table = PAIRINGS.get((module, theorem))
+            algebra = EXACT_ALGEBRA.get((module, theorem))
+            for n in numerals(stmt):
+                if table is None and algebra is not None:
+                    out.append({"module": module, "theorem": theorem, "numeral": n,
+                                "kind": "structural", "role": algebra, "ok": True})
+                    continue
+                if table is not None and n not in table and algebra is not None:
+                    out.append({"module": module, "theorem": theorem, "numeral": n,
+                                "kind": "structural", "role": algebra, "ok": True})
+                    continue
+                if table is None:
+                    out.append({"module": module, "theorem": theorem, "numeral": n,
+                                "kind": "unclassified", "role": "no row for this theorem",
+                                "ok": False})
+                    continue
+                entry = table.get(n)
+                if entry is None:
+                    out.append({"module": module, "theorem": theorem, "numeral": n,
+                                "kind": "unclassified", "role": "not in this theorem's row",
+                                "ok": False})
+                    continue
+                kind, role, check = entry
+                out.append({"module": module, "theorem": theorem, "numeral": n,
+                            "kind": kind, "role": role,
+                            "ok": True if check is None else bool(check())})
+    return out
+
+
+def unclassified(rows: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
+    return [r for r in (rows if rows is not None else audit()) if r["kind"] == "unclassified"]
+
+
+def failing(rows: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
+    return [r for r in (rows if rows is not None else audit())
+            if r["kind"] == "paired" and not r["ok"]]
+
+
+def coverage() -> dict[str, Any]:
+    rows = audit()
+    return {
+        "modules": list(UNPAIRED_MODULES),
+        "numerals": len(rows),
+        "paired": sum(1 for r in rows if r["kind"] == "paired"),
+        "structural": sum(1 for r in rows if r["kind"] == "structural"),
+        "unclassified": len(unclassified(rows)),
+        "failing": [(r["theorem"], r["numeral"], r["role"]) for r in failing(rows)],
+        "certificate_rows_covered_elsewhere": len(C.thresholds()),
+    }
+
+
+def main() -> None:
+    rows = audit()
+    cov = coverage()
+    print("Paper B Lean numerals outside the threshold certificate")
+    print("  modules   %s" % ", ".join(cov["modules"]))
+    print("  numerals  %d   paired %d   structural %d   unclassified %d"
+          % (cov["numerals"], cov["paired"], cov["structural"], cov["unclassified"]))
+    for r in unclassified(rows):
+        print("  UNCLASSIFIED  %-20s %-34s %s" % (r["module"], r["theorem"], r["numeral"]))
+    for r in failing(rows):
+        print("  FAILS         %-20s %-34s %-8s %s"
+              % (r["module"], r["theorem"], r["numeral"], r["role"]))
+    if not cov["unclassified"] and not cov["failing"]:
+        print("  every numeral is classified and every pairing holds")
+    print("  (the %d threshold rows are paired by p0_certificate.LEAN_ROWS)"
+          % cov["certificate_rows_covered_elsewhere"])
+
+
+if __name__ == "__main__":
+    main()

@@ -3864,3 +3864,51 @@ the nine recorded line numbers still match the working copy.
 Probe: `c1_invocation_inventory`, `C1_INVOCATIONS`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## The other half of the pairing table
+
+`p0_certificate.LEAN_ROWS` pairs each of the thirty-eight threshold rows with its theorem, its
+substitution and a rational witness. Nothing paired the rest, and the last entry recorded what
+that cost: three theorems in `PaperBAssembly` proved Lemma 5.2b's superseded chain while the
+manuscript displayed the corrected one, and the only reason it survived is that no check
+compared a Lean numeral with the manuscript's value for it. `tools/lean_numeral_audit.py` is
+the missing half.
+
+**It pairs by value, not by string, and that distinction is the whole point.** A check of the
+form "does this numeral occur in the manuscript" would have passed the interpolant chain:
+`186` and `106` both occur there, inside the erratum's own list of what replaced them. So each
+numeral in a non-certificate Paper B statement is classified as
+
+* **paired** -- it implements a named quantity, with a predicate tying it to
+  `p0_certificate`'s constants or to exact rational arithmetic; or
+* **structural** -- it is a coefficient of the statement's own algebra, a matrix entry or an
+  exponent, with nothing outside Lean to compare it against;
+
+and anything else is **unclassified**, which fails the suite.
+
+```text
+  BranchFreeze, MonomialSplitting, PaperBAssembly
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+```
+
+**Zero failing is the finding.** Every other constant in those three modules agrees with the
+value this paper carries. The interpolant chain was the only staleness, not the first of
+several -- which was the open question and is now answered in the negative.
+
+**The guard is tested against the bug it was built for.** One test doctors
+`interpolant_step_i`'s statement back to `186` and `52.32` in memory and asserts the audit
+reports both as unclassified. A guard that has never been shown to fire is a guard one is
+guessing about.
+
+**Two constants that share a value are named apart.** Theorem 4.1's Stage-4 curvature is
+`0.35` and so was the pre-correction `lambda_0` floor. Conflating them cost an afternoon
+earlier in this audit, so the table names the Stage-4 one on its own rather than reaching for
+`ANCHOR_CONSTANTS_PRECORRECTION[0]`, and a test asserts that every `0.35` in the table is
+attributed to Theorem 4.1.
+
+One judgement worth stating. Nineteen theorems are exact identities or pure geometry --
+Lemma 4.3's closed form, the carry identity, the sublevel diameter, the `G''` cancellation --
+and their numerals are classified structural by a per-theorem wildcard rather than integer by
+integer. That is weaker: a new empirical constant inside one of those statements would be
+absorbed. It is recorded as a wildcard *per theorem*, so a new theorem is unclassified until
+someone decides which list it belongs on, and the nineteen are named.

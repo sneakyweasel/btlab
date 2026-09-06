@@ -34157,3 +34157,72 @@ Best next question
   exactly. Is the lemma's hypothesis (C2) under another name, or a
   genuine second occurrence of the same inequality?
 ```
+
+### The other half of the pairing table
+
+The recorded question was whether there is a second table to be written, for
+the Lean numerals that are not certificate rows. There is, and writing it
+answers the question it was written to ask.
+
+`p0_certificate.LEAN_ROWS` pairs each of the thirty-eight threshold rows with
+its theorem, its substitution and a rational witness. Nothing paired the rest,
+which is how three theorems in `PaperBAssembly` came to prove Lemma 5.2b's
+superseded chain while the manuscript displayed the corrected one.
+`tools/lean_numeral_audit.py` is the missing half.
+
+**It pairs by value, not by string, and that is the whole point.** "Does this
+numeral occur in the manuscript" would have passed the interpolant chain:
+`186` and `106` both occur there, inside the erratum's own list of what
+replaced them. So each numeral in a non-certificate Paper B statement is
+*paired* — it implements a named quantity, with a predicate tying it to
+`p0_certificate`'s constants or to exact rational arithmetic — or *structural*,
+a coefficient of the statement's own algebra with nothing outside Lean to
+compare against. Anything else is unclassified and fails the suite.
+
+```text
+  BranchFreeze, MonomialSplitting, PaperBAssembly
+  317 numerals   62 paired   255 structural   0 unclassified   0 failing
+```
+
+**Zero failing is the finding.** Every other constant in those three modules
+agrees with the value the paper carries. The interpolant chain was the only
+staleness, not the first of several — which was the open question, answered in
+the negative.
+
+**And the guard is tested against the bug it was built for**: one test doctors
+`interpolant_step_i` back to `186` and `52.32` in memory and asserts the audit
+reports both unclassified. A guard never shown to fire is one you are guessing
+about.
+
+```text
+What was learned
+- the answer to the open question is no: one staleness, not a family
+- a string check would have passed the very bug that motivated the table,
+  because the erratum prints both the old value and the new one
+- 0.35 is two different constants and the table has to say which; that
+  conflation already cost an afternoon once in this audit
+- nineteen theorems are exact identities whose numerals I classified by a
+  per-theorem wildcard rather than one at a time — weaker, and named as such
+Strongest theorem
+- every numeral in every non-certificate Paper B Lean statement is classified,
+  and every value pairing holds: 317 numerals, 62 paired, 255 structural, 0
+  unclassified, 0 failing
+Strongest refutation
+- the hypothesis that the interpolant chain was the first of several stale
+  Lean constants; it was the only one
+Reusable machinery
+- tools/lean_numeral_audit.py (audit, unclassified, failing, coverage) and its
+  ten tests, one of which is a self-test that the guard fires
+Branch status
+- PARK
+Why
+  The table is complete, the check is by value, the guard is demonstrated to
+  fire, and the scan it enables returned nothing further. Nothing here moves
+  P_0 or any statement of the paper.
+Best next question
+- the wildcard is the soft spot. Nineteen theorems have their numerals waived
+  wholesale as "exact algebra", and one of them, Gsecond_beta_cancellation,
+  carries 63/64 — a constant the Lean header says the manuscript does not
+  have. Is "the manuscript does not state this" a third classification the
+  table should have, separate from "there is nothing to compare against"?
+```
