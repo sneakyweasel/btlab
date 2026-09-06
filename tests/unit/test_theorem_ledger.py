@@ -80,3 +80,33 @@ def test_ledger_markdown_is_generated():
         text=True,
     )
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_decl_when_present_names_a_declaration_in_the_rows_own_file():
+    """The ``decl`` field is the join the ``lean`` file pointer cannot make.
+
+    A row naming a declaration that is not in its file is worse than a row naming none:
+    it reads as a resolved claim while pointing somewhere else.
+    """
+    import re
+
+    for row in _entries():
+        decl = row.get("decl")
+        if not decl:
+            continue
+        lean = str(row.get("lean") or "").strip()
+        assert lean.endswith(".lean"), f"{row['id']}: decl needs a file, not {lean!r}"
+        text = (ROOT / "formal" / lean).read_text(encoding="utf-8")
+        pattern = rf"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+{re.escape(decl)}\b"
+        assert re.search(pattern, text, re.MULTILINE), f"{row['id']}: {decl} not in {lean}"
+
+
+def test_lean_trust_is_recorded_wherever_a_declaration_is_named():
+    """``EXACT — LEAN VERIFIED`` does not distinguish kernel from ``native_decide``.
+
+    Paper A's Section 1.2 states that boundary in prose; a row that names its declaration
+    can carry it as data, so the tag stops having two meanings.
+    """
+    for row in _entries():
+        if row.get("decl"):
+            assert row.get("lean_trust") in {"kernel", "compiler", "open"}, row["id"]
