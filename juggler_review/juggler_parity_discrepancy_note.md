@@ -2107,11 +2107,19 @@ The first summand is the offset monomial \(c\cdot\tfrac32j\,m^{1/2}
 =\tfrac98kj\,\nu^{15/8}\), differentiated in \(\nu\) with \(j\)
 frozen. The second is the zero-offset scale: on a cell the gaps
 \(\beta_i\) are frozen, and Lemma 5.2b computes the local curvature
-exactly as \(-\tfrac{135}{1024}\,k\beta_1\beta_2\nu^{-13/8}\), which
+exactly as \(-\tfrac{135}{1024}\,k\beta_1\beta_2\nu^{-13/8}\) --- read
+the erratum there: the anchor's value is \(-\tfrac{27}{128}\) --- which
 is \(\asymp kh_1h_2\nu^{-5/8}\) and *negative*. (A model that
 differentiates the moving gaps \(\Delta_iX(\nu)\) produces a
-different, positive leading coefficient \(\tfrac{243}{128}\) and is
-not the local \(f''\).) Finally, the
+different, positive leading coefficient and is not the local \(f''\):
+\(F_{\mathrm{sm}}=\tfrac{27}4h_1h_2\nu^{1/4}\) at leading order, so
+\(cF_{\mathrm{sm}}=\tfrac{81k}{16}h_1h_2\nu^{11/8}\) and the foil is
+\(\tfrac{81}{16}\cdot\tfrac{11}8\cdot\tfrac38=\tfrac{2673}{1024}\),
+measured at \(P=10^8\) to seven figures. Earlier printings gave
+\(\tfrac{243}{128}\) here, which is not this model's value --- and is,
+by an unlucky coincidence, exactly the magnitude of the *corrected*
+frozen anchor \(9\cdot\tfrac{216}{1024}\), so the two errors concealed
+each other.) Finally, the
 run and cell inventories: level-1 gap cells at shift \(2h\) number
 at most \(1.5hP^{1/2}+1\) with lengths in
 \([\tfrac23,\,0.95]\,P^{1/2}/h\), and the frozen-floor runs of
@@ -3215,6 +3223,49 @@ and therefore
 on the standing range: the summand \(c''(G_F-J_F)\) is
 \(O(kP^{-7/8})\) and sits in the \(O(P^{-1/4})\) relative error.
 
+> **Erratum (constants only; the exponent and \(P_0\) stand).** The
+> displayed value \(-\tfrac{135}{1024}\) is \((cG_F)''\), not
+> \(2c'G_F'+cG_F''\). The three chain-rule terms are
+> \(c''G_F=\tfrac{81}{1024}\), \(2c'G_F'=-\tfrac{972}{1024}\),
+> \(cG_F''=\tfrac{756}{1024}\) in units of
+> \(k\beta_1\beta_2\nu^{-13/8}\), and they sum to
+> \(-\tfrac{135}{1024}\); but the anchor is \(c(G_F-J_F)\), and with
+> \(J_F\) frozen its first term is \(c''(G_F-J_F)=O(kP^{-7/8})\), not
+> \(c''G_F\). Removing the term the phase does not carry leaves
+> \[
+> 2c'G_F'+c\,G_F''
+> =-\tfrac{216}{1024}\,k\beta_1\beta_2\nu^{-13/8}
+> =-\tfrac{27}{128}\,k\beta_1\beta_2\nu^{-13/8},
+> \]
+> confirmed against \((c(G_F-J_F))''\) at \(P=10^8\) to six figures
+> (\(0.210938\) against \(216/1024\); the printed constant is what
+> \((cG_F)''\) measures, \(0.131836\)). Step 5a makes the same
+> subtraction correctly on the offset branch,
+> \(\tfrac{945}{512}-\tfrac{81}{512}=\tfrac{864}{512}\); the
+> zero-offset branch does not.
+>
+> The correction is a factor \(\tfrac{216}{135}=\tfrac85\) and runs
+> through: \(-\tfrac{1215}{1024}\to-\tfrac{1944}{1024}=-\tfrac{243}{128}\),
+> \(b=-\tfrac{405}{176}\to-\tfrac{81}{22}\), the range
+> \([0.38,2.44]\to[0.62,3.90]\) (opened \([0.35,2.6]\to[0.56,4.2]\)),
+> the (C5) cap \(186\to300\), and \(E\)'s \(106\to171\). It is not
+> cosmetic: with the printed \(b\) the residue \(r\) would keep a
+> leading term of size \(\tfrac{729}{1024}kh_1h_2\nu^{-5/8}\),
+> comparable to \(S\), and the \(\rho_0(E)\) ratios of Lemma 3.9 would
+> fail outright.
+>
+> Nothing above \(P_0\) is affected. Every threshold in A.5 is
+> monotone in \(P\), and the corrected rows all close below the
+> printed ones' maximum, so \(P_0=8.9\cdot10^{13}\) remains valid; it
+> is no longer *tight*, since the corrected certificate first closes
+> at \(3.6\cdot10^{13}\) --- the middle-band scale \(S\) rises by
+> \(\tfrac85\) while \(V=\kappa S^{1/2}P^{-11/24}\) rises only by
+> \(\sqrt{8/5}\), which more than pays for \(E\). The exponent
+> \(1-\tfrac1{96}\) does not move. Propagating the constants and
+> lowering the printed \(P_0\) is deferred; the recomputation is
+> `p0_certificate.corrected_certificate`, and the audit ledger
+> carries the row-by-row table.
+
 *Proof.* There are three replacements of a frozen integer by a
 smooth gap of the same scale, and each moves its argument by at
 most \(1\).
@@ -3297,7 +3348,10 @@ c\,G_F''
 &=\tfrac{756}{1024}\,k\beta_1\beta_2\nu^{-13/8}.
 \end{aligned}
 \]
-The sum is \(-\tfrac{135}{1024}\,k\beta_1\beta_2\nu^{-13/8}\).
+The sum of the three is \(-\tfrac{135}{1024}\,k\beta_1\beta_2\nu^{-13/8}\),
+which is \((cG_F)''\); the anchor is \(c(G_F-J_F)\) and drops the first
+of them, leaving \(-\tfrac{216}{1024}=-\tfrac{27}{128}\) (erratum
+above).
 (The term \(\tfrac12 c''\) in \(\Lambda\) is \(O(kP^{-7/8})\) and
 is absorbed in \(r\).) Substituting the interpolating values
 \(\tilde\beta_i=3h_i\nu^{1/2}(1+O(hP^{-1}))\) converts the
@@ -3737,7 +3791,9 @@ local frozen curvature
 \(\lambda_0\in[0.35,\,2.6]\,kh_1h_2P^{-5/8}\)
 (leading coefficient \(\tfrac{135}{1024}\) in
 \(k\beta_1\beta_2\nu^{-13/8}\), converted by
-\(\beta_i\asymp h_iP^{1/2}\)). Runs of length
+\(\beta_i\asymp h_iP^{1/2}\); by the erratum at Lemma 5.2b the
+coefficient is \(\tfrac{27}{128}\) and the range
+\([0.56,\,4.2]\)). Runs of length
 \(\ge\tfrac1{22}P^{3/4}/(h_1h_2)\). Let
 \(\mu=0.84\max(uh_1,u'h_2)P^{-3/4}\) be the strongest
 differenced-wave scale present. Three regimes.
@@ -5184,29 +5240,40 @@ Step E and of Lemma 5.2b then runs unchanged with \(\alpha\) for
 \begin{aligned}
 \lambda_a &= a\bigl[\tfrac32(\alpha{+}\tfrac34)(\alpha{-}\tfrac14)-\tfrac9{16}\bigr]\,j\nu^{\alpha-5/4},\\
 \lambda_a'&= a\bigl[\tfrac32\alpha(\alpha{-}1)-\tfrac{27}{32}\bigr]\,j\nu^{\alpha-5/4},\\
-\lambda_0 &= \tfrac34a\,(\alpha{-}\tfrac34)(\alpha{-}\tfrac74)\,\beta_1\beta_2\,\nu^{\alpha-11/4},
+\lambda_0 &= \tfrac34a\,\bigl[\tfrac{21}{16}-\tfrac32\alpha\bigr]\,\beta_1\beta_2\,\nu^{\alpha-11/4},
 \end{aligned}
 \]
 the first two anchor curvature minus window-centre mode --- with
 \(\tfrac32(\alpha{+}\tfrac34)(\alpha{-}\tfrac14)\) the \((cF)''\) and
-\(\tfrac32\alpha(\alpha{-}1)\) the \(J_Fc''\) --- and the third the sum
-\(c''G_F+2c'G_F'+cG_F''\). At \(\alpha=\tfrac98\), \(a=\tfrac{3k}4\)
-they return \(\tfrac{729}{512}\), \(-\tfrac{243}{512}\),
-\(-\tfrac{135}{1024}\), and \(-\tfrac{1215}{1024}\) after
-\(\beta_1\beta_2\to9h_1h_2\nu\): the printed constants, each of them.
+\(\tfrac32\alpha(\alpha{-}1)\) the \(J_Fc''\) --- and the third the pair
+\(2c'G_F'+cG_F''\). At \(\alpha=\tfrac98\), \(a=\tfrac{3k}4\) they
+return \(\tfrac{729}{512}\), \(-\tfrac{243}{512}\) and
+\(-\tfrac{27}{128}\), the last becoming \(-\tfrac{243}{128}\) after
+\(\beta_1\beta_2\to9h_1h_2\nu\).
+
+The third is the corrected constant of the erratum at Lemma 5.2b, not
+the printed one. Restoring the \(c''G_F\) the anchor does not carry
+turns the linear form into the quadratic
+\((\alpha{-}\tfrac34)(\alpha{-}\tfrac74)\), whose value at \(\tfrac98\)
+is \(-\tfrac{15}{64}\) and which returns the manuscript's
+\(-\tfrac{135}{1024}\) and \(-\tfrac{1215}{1024}\) exactly --- so the
+\(\alpha\)-form identifies which object each printed rational belongs
+to, and that is how the slip was found.
 
 So the composites do have zeros, at
 \(\alpha=\tfrac{\sqrt{10}-1}4=0.5406\),
 \(\alpha=\tfrac{2+\sqrt{13}}4=1.4014\) and --- exactly ---
-\(\alpha=\tfrac34,\tfrac74\). The caveat is not a formality: there the
-architecture has no leading curvature for Lemma 3.3 to act on, whatever
-the rest of a proof does.
+\(\alpha=\tfrac78\) (and \(\tfrac34,\tfrac74\) for the three-term
+form). The caveat is not a formality: there the architecture has no
+leading curvature for Lemma 3.3 to act on, whatever the rest of a proof
+does.
 
 *At \(33/32\) all three survive.* With \(a=\tfrac{27k}{32}\),
 \[
 \lambda_a=\tfrac{84321}{65536}kj\nu^{-7/32},\qquad
 \lambda_a'=-\tfrac{43983}{65536}kj\nu^{-7/32},\qquad
-\lambda_0=-\tfrac{150903}{131072}kh_1h_2\nu^{-23/32}.
+\lambda_0=-\tfrac{1215}{8192}k\beta_1\beta_2\nu^{-55/32}
+=-\tfrac{10935}{8192}kh_1h_2\nu^{-23/32}.
 \]
 What decides survival is not a composite's size but its *cancellation
 factor* \(\kappa\), the sum of the absolute values of its terms over
@@ -5214,23 +5281,24 @@ the absolute value of their sum: a relative perturbation of the terms
 inflates into a relative perturbation of the composite \(\kappa\) times
 as large, so the sign is determined exactly while that perturbation
 stays below \(1/\kappa\). At \(\tfrac98\) the three factors are
-\(1.59\), \(1.67\), \(13.4\); at \(\tfrac{33}{32}\) they are \(1.74\),
-\(1.12\), \(14.3\). The level-1 exponent is as healthy as the proved
-one, and on the Step E composite healthier.
+\(1.59\), \(1.67\), \(8.00\); at \(\tfrac{33}{32}\) they are \(1.74\),
+\(1.12\), \(12.20\). The level-1 exponent is better than the proved one
+on the Step E composite and half again worse on the anchor; the two
+stay the same order, which is what the requirement asked.
 
-*And nothing the map produces is degenerate.* Run the same three
-quadratics over every blocked coefficient exponent carried by a
-contractor of depth at most thirteen --- \(222\) distinct values, from
+*And nothing the map produces is degenerate.* Run the same three forms
+over every blocked coefficient exponent carried by a contractor of
+depth at most thirteen --- \(222\) distinct values, from
 \(\tfrac{4131}{4096}\) to \(\tfrac{525297}{4096}\). Not one is a zero
 of any composite, and the extreme factors are
 
 | \(\alpha\) | arises at | \(\kappa_{5a}\) | \(\kappa_{E}\) | \(\kappa_0\) |
 |---|---|---:|---:|---:|
-| \(9/8\) | Theorem 5.3, proved | \(1.59\) | \(1.67\) | \(13.4\) |
-| \(33/32\) | \(OOOEOEE\), letter \(6\) | \(1.74\) | \(1.12\) | \(14.3\) |
-| \(27/16\) | Conjecture 7.3 | \(1.24\) | \(2.88\) | \(85.4\) |
-| \(45/32\) | \(OOEOOEE\), letter \(6\) | \(1.35\) | \(\mathbf{129}\) | \(17.7\) |
-| \(891/512\) | depth \(10\), letter \(10\) | \(1.23\) | \(2.55\) | \(\mathbf{539}\) |
+| \(9/8\) | Theorem 5.3, proved | \(1.59\) | \(1.67\) | \(8.00\) |
+| \(33/32\) | \(OOOEOEE\), letter \(6\) | \(1.74\) | \(1.12\) | \(12.20\) |
+| \(27/16\) | Conjecture 7.3 | \(1.24\) | \(2.88\) | \(3.15\) |
+| \(45/32\) | \(OOEOOEE\), letter \(6\) | \(1.35\) | \(\mathbf{129}\) | \(4.29\) |
+| \(4131/4096\) | depth \(13\), the least | \(\mathbf{1.78}\) | \(1.03\) | \(\mathbf{14.10}\) |
 
 against ceilings the proofs already carry: the \((1+O(P^{-1/4}))\) of
 (E6) allows \(\kappa<3071\) at \(P_0\), and Lemma 5.2b's \(O(hP^{-1})\)
@@ -5241,24 +5309,30 @@ approaches --- a further one beside drift-\(1\), \(e<2\), the \(9/4\) stop
 and the linearisation bound \(E<2\), and the only one of them that
 never binds.
 
-It is not idle, because it ranks. By worst factor the three
-depth-seven targets order \(33/32\) beside the proved \(9/8\)
-(\(14.3\) against \(13.4\)), then \(27/16\) at \(85.4\), then
+It is not idle, because it ranks, and it ranks on one axis only. By
+worst factor the depth-seven targets order \(27/16\) at \(3.15\),
+the proved \(9/8\) at \(8.00\), \(33/32\) at \(12.20\), and then
 \(45/32\) at \(129\) --- the largest Step E factor anywhere on the
-frontier, \(77\) times the proved exponent's. That is a fourth reason
-\(OOEOOEE\) is the hard one, independent of its species, its branching
-and the \(9/4\) stop, and it cuts against the order of attack above,
-which puts \(OOEOOEE\) second only because it stays inside \(9/4\). By
-composite health Conjecture 7.3's exponent is the easier of the two.
+frontier, \(77\) times the proved exponent's, and two orders clear of
+everything else in the column. The first three sit inside a factor of
+four of each other and say nothing; the fourth is the statement. It is
+a fourth reason \(OOEOOEE\) is the hard one, independent of its
+species, its branching and the \(9/4\) stop.
 
-Two limits on the last paragraph. \(45/32\) is a square-root defect, so
-its geometry is not the \(X=\nu^{3/2}\), \(F=\tfrac32jm^{1/2}\) of Step
-E: the \(129\) is what this paper's own recipe returns at that
-exponent, not a composite the paper has ever formed. And Step E's
-zero-offset \(\tfrac{1095}{1024}\) is absent from the three, because
-the manuscript displays the derivation of \(\tfrac{1215}{1024}\) but
-not of the \(\tfrac{120}{1024}\) separating them; that composite has no
-\(\alpha\)-form here.
+Three limits on that. \(45/32\) is a square-root defect, so its
+geometry is not the \(X=\nu^{3/2}\), \(F=\tfrac32jm^{1/2}\) of Step E:
+the \(129\) is what this paper's own recipe returns at that exponent,
+not a composite the paper has ever formed. The \(\kappa_0\) column is
+the *corrected* anchor of the erratum at Lemma 5.2b; read against the
+printed three-term form it would give \(13.4\), \(14.3\), \(85.4\),
+\(17.7\) and would rank the four differently --- which is the sharpest
+evidence that a composite's identity matters before its size. And Step
+E's zero-offset \(\tfrac{1095}{1024}\) is absent from the three: the
+manuscript displays the derivation of \(\tfrac{1215}{1024}\) but not of
+the \(\tfrac{120}{1024}\) separating them, and \(\tfrac{1215}{1024}\)
+is now known to be the wrong object, so that composite has no
+\(\alpha\)-form here and its printed value should be re-derived with
+the \(c''J_F\) subtraction in view.
 
 Sections 3–5 prove the hypothesis at every depth \(d\le4\), so the
 conclusion of Proposition 7.1 is unconditional for those depths.

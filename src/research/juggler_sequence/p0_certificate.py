@@ -463,6 +463,87 @@ def c7_lever() -> dict[str, Any]:
     }
 
 
+# --- Lemma 5.2b: the zero-offset anchor is c(G_F - J_F), not c G_F ---
+
+# The three chain-rule terms of (c G_F)'' at c = (3k/4) nu^{9/8}, G_F = (3/4) b1 b2 nu^{-3/4},
+# in units of k b1 b2 nu^{-13/8}: c'' G_F, 2 c' G_F', c G_F''.
+ANCHOR_TERMS = (Fr(81, 1024), Fr(-972, 1024), Fr(756, 1024))
+
+
+def bare_anchor_curvature() -> Fr:
+    """``(c G_F)'' = -135/1024`` in units of ``k b1 b2 nu^{-13/8}`` -- the printed constant."""
+    return sum(ANCHOR_TERMS, Fr(0))
+
+
+def anchor_curvature() -> Fr:
+    """``(c(G_F - J_F))'' = -216/1024 = -27/128``: the object Lemma 5.2b actually defines.
+
+    The anchor carries the fractional part.  ``J_F = floor(G_F)`` is frozen on a piece, so
+    ``(c(G_F - J_F))'' = c''(G_F - J_F) + 2c'G_F' + cG_F''`` -- the ``c''`` term multiplies a
+    quantity below 1 and is ``O(k P^{-7/8})``, while ``c'' G_F`` is ``81/1024 k b1 b2 nu^{-13/8}``
+    and is not present.  Dropping it leaves ``-972/1024 + 756/1024``.  The printed ``-135/1024``
+    is ``(c G_F)''`` and keeps a term the phase does not have; the offset branch of Step 5a makes
+    the same subtraction correctly, ``945/512 - 81/512 = 864/512``.
+    """
+    return sum(ANCHOR_TERMS[1:], Fr(0))
+
+
+def moving_gap_curvature() -> Fr:
+    """``(c F_sm)''`` for ``F_sm = (3/4)(D1 X)(D2 X) X^{-1/2}``, in units of ``k h1 h2 nu^{-5/8}``.
+
+    ``F_sm = (27/4) h1 h2 nu^{1/4}`` at leading order, so ``c F_sm = (81k/16) h1h2 nu^{11/8}`` and
+    the second derivative is ``(81/16)(11/8)(3/8) = 2673/1024``.  The manuscript prints ``243/128``
+    for this foil, which is not it -- and ``243/128`` is exactly the magnitude of the *corrected*
+    frozen anchor, ``9 * 216/1024``.  The two errors hide each other.
+    """
+    return Fr(81, 16) * Fr(11, 8) * Fr(3, 8)
+
+
+def anchor_range(lead: Fr) -> tuple[float, float]:
+    """``lambda_0`` in units of ``k h1 h2 P^{-5/8}`` from ``b1b2 nu^{-13/8}`` in ``[2.92, 18.49]``."""
+    lo = 9.0 * 2.0 ** -1.625
+    hi = 4.3 ** 2
+    return abs(float(lead)) * lo, abs(float(lead)) * hi
+
+
+def corrected_certificate(lead: Fr | None = None, opened: tuple[float, float] | None = None
+                          ) -> dict[str, Any]:
+    """The Lemma 3.9 rows of A.5 recomputed from a given anchor constant.
+
+    With the printed ``-135/1024`` and its opened range ``[0.35, 2.6]`` this reproduces
+    ``P_0 = 8.9e13``.  With the corrected ``-27/128`` and ``[0.56, 4.2]`` the same rows first
+    close at ``3.6e13``: the middle-band scale ``S`` rises by 8/5 while ``V`` rises only by its
+    square root, which more than pays for the interpolant error growing with the ``u``-cap.
+    """
+    lead = anchor_curvature() if lead is None else lead
+    lo, hi = opened if opened is not None else (0.56, 4.2)
+    u_cap = 60.0 * hi / 0.84
+    e_const = 2.0 * ((9.0 / 32.0) * u_cap + abs(float(lead)) * 4.3)
+    E = lambda P: e_const * P ** (-25 / 24) + 0.11 * P ** (-5 / 6)  # noqa: E731
+    Slo = lambda P: lo * P**-0.625                                   # noqa: E731
+    S5a = lambda P: 0.60 * P**-0.625                                 # noqa: E731
+    rows = {
+        "5a-W<=c7S": lambda P: _V(S5a(P), P) + E(P) <= C7 * S5a(P) / 2,
+        "5b-W<=c7S": lambda P: _V(Slo(P), P) + E(P) <= C7 * Slo(P) / 2,
+        "5b-E<=c7S": lambda P: E(P) <= C7 * Slo(P) / 2,
+        "39-c2": lambda P: (0.053 / lo) * P**-0.25 <= C7 / 8,
+        "39-c3": lambda P: (0.047 / lo) * P**-0.25 <= C7 / 8,
+        "39-c4": lambda P: (0.044 / lo) * P**-0.25 <= C7 / 8,
+        "5b-wave": lambda P: (200 / lo) * P ** (-5 / 6) <= C7 / 8,
+        "5b-beta": lambda P: (1.187 * 0.68 / lo) * P**-0.5 <= C7 / 8,
+    }
+    least = {tag: least_P(pred) for tag, pred in rows.items()}
+    worst = max(v for v in least.values() if v is not None)
+    return {
+        "lead": lead,
+        "opened": (lo, hi),
+        "u_cap": u_cap,
+        "E_const": e_const,
+        "rows": {tag: (10.0**v if v is not None else None) for tag, v in least.items()},
+        "P0": 10.0**worst,
+    }
+
+
 def certificate() -> dict[str, Any]:
     rows = thresholds()
     solved = [r for r in rows if r["log10_P_min"] is not None]

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import math
+import random
 from fractions import Fraction as Fr
 from pathlib import Path
 
@@ -952,3 +953,109 @@ def test_paper_states_the_measurement_and_disclaims_it() -> None:
     assert "the quantifier alone" in text
     assert "None of which is evidence." in text
     assert "a fact about the proposition and not about the" in text
+
+
+# --- Lemma 5.2b: the zero-offset anchor is c(G_F - J_F), not c G_F ---
+
+
+def test_the_three_terms_sum_to_the_printed_constant() -> None:
+    """81 - 972 + 756 = -135: correct arithmetic about (cG_F)''."""
+    assert sum(C.ANCHOR_TERMS) == Fr(-135, 1024)
+    assert C.bare_anchor_curvature() == Fr(-135, 1024)
+    assert C.ANCHOR_TERMS == (Fr(81, 1024), Fr(-972, 1024), Fr(756, 1024))
+
+
+def test_the_anchor_drops_the_c2_G_term() -> None:
+    """The phase is c(G_F - J_F) with J_F frozen, so c'' multiplies a quantity below 1."""
+    assert C.anchor_curvature() == Fr(-216, 1024) == Fr(-27, 128)
+    assert C.bare_anchor_curvature() - C.anchor_curvature() == C.ANCHOR_TERMS[0]
+    assert C.anchor_curvature() / C.bare_anchor_curvature() == Fr(8, 5)
+    # Step 5a makes the same subtraction correctly on the offset branch
+    assert Fr(945, 512) - Fr(81, 512) == Fr(864, 512)
+    # and after beta1 beta2 -> 9 h1 h2 nu
+    assert 9 * C.anchor_curvature() == Fr(-243, 128)
+    assert 9 * C.bare_anchor_curvature() == Fr(-1215, 1024)
+    # the corrected interpolant coefficient
+    assert Fr(-243, 128) * Fr(64, 33) == Fr(-81, 22)
+    assert Fr(-81, 22) * Fr(11, 8) * Fr(3, 8) == Fr(-243, 128)
+
+
+def test_the_moving_gap_foil_is_not_243_over_128() -> None:
+    """F_sm = (27/4) h1h2 nu^{1/4} gives 2673/1024; 243/128 is the corrected anchor's magnitude."""
+    assert C.moving_gap_curvature() == Fr(2673, 1024)
+    assert C.moving_gap_curvature() != Fr(243, 128)
+    assert 9 * abs(C.anchor_curvature()) == Fr(243, 128)
+
+
+def test_the_anchor_curvature_is_measured_not_asserted() -> None:
+    """(c(G_F-J_F))'' at P = 1e8 on real j=0 branches, against 216/1024."""
+    from mpmath import mp
+    from research.juggler_sequence.paper_b_audit import level1_data
+
+    mp.dps = 50
+    P = 10 ** 8
+    rng = random.Random(3)
+    H1, H2, K = int(P ** (1 / 48)), int(P ** (1 / 24)), int(P ** (1 / 24))
+    bare, anchor = [], []
+    for _ in range(400):
+        if len(anchor) >= 5:
+            break
+        n = rng.randrange(P + 1, 2 * P) | 1
+        h1, h2, k = rng.randint(1, max(1, H1)), rng.randint(1, max(1, H2)), rng.randint(1, max(1, K))
+        b1, _, _ = level1_data(n, 2 * h1)
+        b2, _, _ = level1_data(n, 2 * h2)
+        b12, _, _ = level1_data(n, 2 * h1 + 2 * h2)
+        if b12 - b1 - b2 != 0:
+            continue
+        nm, half = mp.mpf(n), mp.mpf(3) / 2
+
+        def GF(nu: object, _b1: int = b1, _b2: int = b2, _b12: int = b12) -> object:
+            Xn = mp.power(nu, half)
+            return (mp.power(Xn + _b12, half) - mp.power(Xn + _b1, half)
+                    - mp.power(Xn + _b2, half) + mp.power(Xn, half))
+
+        cc = lambda nu, _k=k: mp.mpf(3 * _k) / 4 * mp.power(nu, mp.mpf(9) / 8)  # noqa: E731
+        JF = mp.floor(GF(nm))
+        unit = k * abs(b1 * b2) * mp.power(nm, -mp.mpf(13) / 8)
+        bare.append(float(abs(mp.diff(lambda nu: cc(nu) * GF(nu), nm, 2)) / unit))
+        anchor.append(float(abs(mp.diff(lambda nu: cc(nu) * (GF(nu) - JF), nm, 2)) / unit))
+
+    assert len(anchor) == 5
+    assert all(abs(x - 135 / 1024) < 1e-5 for x in bare), bare
+    assert all(abs(x - 216 / 1024) < 1e-4 for x in anchor), anchor
+
+
+def test_the_correction_lowers_P0_and_leaves_it_valid() -> None:
+    """The printed rows reproduce 8.9e13; the corrected ones close at 3.6e13."""
+    printed = C.corrected_certificate(C.bare_anchor_curvature(), (0.35, 2.6))
+    assert abs(printed["P0"] / 8.9e13 - 1) < 0.02
+    assert abs(printed["E_const"] - 105.6) < 0.2
+    fixed = C.corrected_certificate()
+    assert abs(fixed["P0"] / 3.6e13 - 1) < 0.02
+    assert fixed["u_cap"] == 300.0
+    assert abs(fixed["E_const"] - 170.6) < 0.2
+    # lower, so the printed P_0 stays valid: every row is monotone in P
+    assert fixed["P0"] < printed["P0"]
+    assert fixed["P0"] < 8.9e13
+    assert 2.4 < printed["P0"] / fixed["P0"] < 2.6
+
+
+def test_the_lambda_0_range_moves_by_the_same_factor() -> None:
+    """[0.38, 2.44] -> [0.62, 3.90], the exact bracket before the paper's opening."""
+    lo, hi = C.anchor_range(C.bare_anchor_curvature())
+    assert round(lo, 2) == 0.38 and round(hi, 2) == 2.44
+    lo2, hi2 = C.anchor_range(C.anchor_curvature())
+    assert round(lo2, 2) == 0.62 and round(hi2, 2) == 3.90
+    assert abs((lo2 / lo) - 1.6) < 1e-9 and abs((hi2 / hi) - 1.6) < 1e-9
+
+
+def test_ledger_and_paper_carry_the_erratum() -> None:
+    paper = io.open(PAPER, encoding="utf-8").read()
+    ledger = io.open(ROOT / "docs" / "theory" / "paper_b_audit_ledger.md", encoding="utf-8").read()
+    assert "Erratum (constants only" in paper
+    assert "216}{1024}" in paper and "27}{128}" in paper
+    assert "2673}{1024}" in paper
+    assert r"3.6\cdot10^{13}" in paper
+    assert "the two errors concealed" in paper
+    assert "ERRATUM (confirmed; constants only)" in ledger
+    assert "2673/1024" in ledger or "2673}{1024}" in ledger

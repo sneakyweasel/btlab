@@ -30413,3 +30413,101 @@ Best next question
   census. What is its power -- how large a perturbation of a printed
   constant would 480 samples fail to catch?
 ```
+
+ ### Lemma 5.2b's anchor is off by 8/5, and the foil hid it
+
+The question was Step E's undocumented `1095/1024`. The falsifier
+fired one theorem earlier.
+
+**The identity as printed is false.** Lemma 5.2b displays
+`2c'G_F' + cG_F'' = -(135/1024) k b1b2 nu^{-13/8}` and derives it from
+three terms — `c''G_F = 81/1024`, `2c'G_F' = -972/1024`,
+`cG_F'' = 756/1024` — which sum to `-135/1024`. Those three are
+`(cG_F)''`, not the two on the left. The anchor is `c(G_F - J_F)`:
+the lemma's own `f''` display says so, Step 5b's `f''` display says so,
+the definition `lambda_0 := |(c(G_F-J_F))''|` says so, and proof step
+(iii) says so in words. With `J_F` frozen the first term is
+`c''(G_F-J_F) = O(k P^{-7/8})`, not `c''G_F`. Removing it leaves
+
+```text
+   2c'G_F' + cG_F''  =  -216/1024  =  -27/128
+```
+
+a factor `8/5`. Step 5a makes exactly this subtraction correctly on
+the offset branch, `945/512 - 81/512 = 864/512` with `81/512 = J_F c''`;
+the zero-offset branch does not.
+
+**Measured, not argued.** At `P = 1e8` over real `j=0` branches with
+the true integer gaps, `|(c(G_F-J_F))''|` over `k|b1b2|nu^{-13/8}` runs
+`0.210876`–`0.210937` against `216/1024 = 0.210938`, while `|(cG_F)''|`
+is `0.131836 = 135/1024` at every sample. The existing probe
+`frozen_anchor_curvature_samples` builds `cG_F` with no `J_F`
+subtracted, which is exactly why it confirmed the printed number.
+
+**And the foil is wrong too, which is why nobody looked.** The lemma
+warns that differentiating the moving gaps "produces a different,
+positive leading coefficient `243/128`". Measured, that model gives
+`2673/1024 = 2.610352`. And `243/128` is precisely `9 * 216/1024` — the
+magnitude of the *corrected* anchor. The right answer was sitting in
+the text labelled as the wrong model's answer. The audit had checked
+`81 - 972 + 756 = -135`, `135*9 = 1215` and `b*(11/8)(3/8) = -1215/1024`:
+all correct, all about the wrong object.
+
+**It is not cosmetic.** With the printed `b = -405/176` the residue
+`r = Lambda - Phi''` keeps a leading term of size
+`(729/1024) k h1h2 nu^{-5/8}`, comparable to `S`, and Lemma 3.9's three
+`rho_0(E)` ratios fail outright. Corrected, `b = -81/22`.
+
+**And it improves the theorem.** Rerunning the eight A.5 rows that
+touch `lambda_0` or `E`: the printed constants reproduce
+`P_0 = 8.93e13` exactly, and the corrected ones close at `3.59e13`. The
+middle-band scale `S` rises by `8/5` while `V = kappa S^{1/2} P^{-11/24}`
+rises only by `sqrt(8/5)`, which more than pays for `E` growing from
+`106` to `171` with the `u`-cap. Every row is monotone in `P`, so
+`P_0 = 8.9e13` stays valid — it is simply no longer tight.
+
+Recorded, not propagated: lowering the printed `P_0` touches seventeen
+manuscript sites, the certificate module, the audit module, a Lean file
+and four test files.
+
+Last tick's third composite also has to be relabelled. The quadratic
+`(alpha-3/4)(alpha-7/4)` is `(cG_F)''`; the anchor's alpha-form is the
+*linear* `21/16 - (3/2)alpha`, zero at `7/8`. Its cancellation factors
+are `8.00` at `9/8` and `12.20` at `33/32`, and they reorder the
+depth-seven targets — `27/16` best at `3.15`, `45/32` still worst at
+`129` by two orders. The headline survives; the ranking of the middle
+did not.
+
+```text
+What was learned
+- an audit can verify every arithmetic step of a derivation and still
+  miss that the derivation computes the wrong function
+- the probe that "confirmed" the constant built the same wrong object
+  the text did; a numerical check inherits its target's error
+- a wrong foil is worse than no foil: 243/128 was the right answer
+  filed under the wrong model, and that coincidence hid both
+- correcting a curvature upward can lower a threshold, because the
+  scale enters linearly and the splitting parameter as a square root
+Strongest theorem
+- (c(G_F - J_F))'' = -(27/128) k b1b2 nu^{-13/8}, giving -243/128 after
+  the gap substitution and b = -81/22, and lowering the certificate's
+  closing point from 8.9e13 to 3.6e13
+Strongest refutation
+- the printed -135/1024 and the printed foil 243/128, both measured
+  against the objects they name
+Reusable machinery
+- bare_anchor_curvature, anchor_curvature, moving_gap_curvature,
+  anchor_range, corrected_certificate; composite("anchor") and
+  composite("cG"); thirteen tests
+Branch status
+- PARK
+Why
+  The erratum is established, measured and priced, and the manuscript
+  carries it at the point of use. Propagating the constants and
+  lowering the printed P_0 is mechanical, large, and touches four test
+  files; it is its own branch, not a tail on this one.
+Best next question
+- Step E's 1095/1024 is still underived, and now suspect for the same
+  reason. What are the chain-rule terms of the frozen-shape zero-offset
+  anchor of Theorem 6.1, with the c''J_F subtraction taken?
+```

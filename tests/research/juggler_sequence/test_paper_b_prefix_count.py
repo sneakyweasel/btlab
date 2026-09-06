@@ -1474,32 +1474,40 @@ def test_paper_connects_both() -> None:
 
 
 def test_the_closed_forms_return_every_printed_constant() -> None:
-    """At alpha = 9/8 the three quadratics are the paper's own rationals, all four of them."""
+    """At alpha = 9/8 the forms are the paper's own rationals, corrected one included."""
     a = Fraction(3, 4)                                   # c(nu) = (3k/4) nu^{9/8}
     assert a * B.composite("5a", Fraction(9, 8)) == Fraction(729, 512)
     assert a * B.composite("E", Fraction(9, 8)) == Fraction(-243, 512)
-    assert a * Fraction(3, 4) * B.composite("0", Fraction(9, 8)) == Fraction(-135, 1024)
-    # and after beta_1 beta_2 -> 9 h_1 h_2 nu, Lemma 5.2b's interpolant anchor
-    assert 9 * a * Fraction(3, 4) * B.composite("0", Fraction(9, 8)) == Fraction(-1215, 1024)
-    # the individual terms are the paper's own two-way splits
+    # the anchor 2c'G' + cG'' -- the corrected constant of the erratum
+    assert a * Fraction(3, 4) * B.composite("anchor", Fraction(9, 8)) == Fraction(-27, 128)
+    assert 9 * a * Fraction(3, 4) * B.composite("anchor", Fraction(9, 8)) == Fraction(-243, 128)
+    # the three-term (cG_F)'' -- what the manuscript printed
+    assert a * Fraction(3, 4) * B.composite("cG", Fraction(9, 8)) == Fraction(-135, 1024)
+    assert 9 * a * Fraction(3, 4) * B.composite("cG", Fraction(9, 8)) == Fraction(-1215, 1024)
+    # the printed two-way splits
     assert [a * x for x in B.composite_terms("5a", Fraction(9, 8))] \
         == [Fraction(945, 512), -Fraction(27, 64)]
     assert [a * x for x in B.composite_terms("E", Fraction(9, 8))] \
         == [Fraction(81, 512), -Fraction(81, 128)]
 
 
-def test_the_zero_offset_composite_factors_over_the_rationals() -> None:
-    """(alpha - 3/4)(alpha - 7/4): the only composite whose zeros a coefficient could hit."""
-    for num in range(1, 60):
+def test_the_anchor_is_the_three_term_form_less_c2_G() -> None:
+    """(c(G-J))'' = (cG)'' - c''J_F, and c''G_F is the 81/1024 that separates them."""
+    for num in range(17, 60):
         alpha = Fraction(num, 16)
-        assert B.composite("0", alpha) == (alpha - Fraction(3, 4)) * (alpha - Fraction(7, 4))
-    assert B.composite("0", Fraction(3, 4)) == 0
-    assert B.composite("0", Fraction(7, 4)) == 0
-    assert B.composite_roots("0") == [0.75, 1.75]
+        assert B.composite("cG", alpha) - B.composite("anchor", alpha) == alpha * (alpha - 1)
+        assert B.composite("cG", alpha) == (alpha - Fraction(3, 4)) * (alpha - Fraction(7, 4))
+    a = Fraction(3, 4)
+    c2G = a * Fraction(3, 4) * Fraction(9, 8) * (Fraction(9, 8) - 1)
+    assert c2G == Fraction(81, 1024)
+    assert Fraction(-135, 1024) - c2G == Fraction(-216, 1024) == Fraction(-27, 128)
 
 
-def test_the_other_two_zeros_are_irrational() -> None:
-    """(sqrt10 - 1)/4 and (2 + sqrt13)/4, so no coefficient exponent can sit on them."""
+def test_the_zeros_separate_the_two_objects() -> None:
+    """The anchor is linear with the single zero 7/8; (cG)'' is the quadratic with 3/4 and 7/4."""
+    assert B.composite_roots("anchor") == [0.875]
+    assert B.composite("anchor", Fraction(7, 8)) == 0
+    assert B.composite_roots("cG") == [0.75, 1.75]
     for name in ("5a", "E"):
         for r in B.composite_roots(name):
             near = Fraction(r).limit_denominator(10 ** 7)
@@ -1507,20 +1515,24 @@ def test_the_other_two_zeros_are_irrational() -> None:
             assert abs(float(B.composite(name, near))) < 1e-5
     assert abs(B.composite_roots("5a")[1] - (10 ** 0.5 - 1) / 4) < 1e-12
     assert abs(B.composite_roots("E")[1] - (2 + 13 ** 0.5) / 4) < 1e-12
+    # every blocked exponent exceeds 1, so no zero is reachable
+    assert min(B.composite_screen(9)) is not None
+    assert all(g > 1 for d in range(4, 10) for w in B.surviving_words(d) if len(w) == d
+               for t in range(2, d + 1) for _s, g, _sp in B.blocked_profile(w, t))
 
 
-def test_the_level_one_exponent_is_as_healthy_as_the_proved_one() -> None:
-    """33/32 does not vanish on any composite, and on Step E it beats 9/8."""
+def test_the_level_one_exponent_stays_the_same_order() -> None:
+    """33/32 does not vanish on any composite: better on Step E, half again worse on the anchor."""
     a = Fraction(27, 32)                                 # c(nu) = (27k/32) nu^{33/32}
     assert a * B.composite("5a", Fraction(33, 32)) == Fraction(84321, 65536)
     assert a * B.composite("E", Fraction(33, 32)) == Fraction(-43983, 65536)
-    assert 9 * a * Fraction(3, 4) * B.composite("0", Fraction(33, 32)) == Fraction(-150903, 131072)
+    assert 9 * a * Fraction(3, 4) * B.composite("anchor", Fraction(33, 32)) == Fraction(-10935, 8192)
     proved = [B.cancellation_factor(n, Fraction(9, 8)) for n in B.COMPOSITES]
     level1 = [B.cancellation_factor(n, Fraction(33, 32)) for n in B.COMPOSITES]
+    assert [round(float(x), 2) for x in proved] == [1.59, 1.67, 8.00]
+    assert [round(float(x), 2) for x in level1] == [1.74, 1.12, 12.20]
     assert level1[1] < proved[1]                          # Step E: 1.12 against 1.67
-    assert max(level1) < 1.1 * max(proved)                # worst factor within 7 per cent
-    assert [round(float(x), 2) for x in proved] == [1.59, 1.67, 13.40]
-    assert [round(float(x), 2) for x in level1] == [1.74, 1.12, 14.30]
+    assert max(level1) < 1.6 * max(proved)                # same order, not the same number
 
 
 def test_no_frontier_exponent_is_composite_degenerate() -> None:
@@ -1528,15 +1540,14 @@ def test_no_frontier_exponent_is_composite_degenerate() -> None:
     worst = B.composite_screen(13)
     assert worst["5a"][0] == Fraction(4131, 4096)
     assert worst["E"][0] == Fraction(45, 32)             # OOEOOEE's blocked exponent
-    assert worst["0"][0] == Fraction(891, 512)
+    assert worst["anchor"][0] == Fraction(4131, 4096)
     assert round(float(worst["5a"][1]), 2) == 1.78
     assert float(worst["E"][1]) == 129.0
-    assert round(float(worst["0"][1]), 1) == 538.9
-    # ceilings: (E6) carries (1 + O(P^-1/4)); Lemma 5.2b carries O(h P^-1) with h <= P^{1/16}
+    assert round(float(worst["anchor"][1]), 2) == 14.10
     p0 = 8.9e13
     assert float(worst["5a"][1]) < p0 ** 0.25
     assert float(worst["E"][1]) < p0 ** 0.25 < 3072
-    assert float(worst["0"][1]) < p0 ** (15 / 16)
+    assert float(worst["anchor"][1]) < p0 ** (15 / 16)
 
 
 def test_the_hard_word_is_the_one_with_the_worst_composite() -> None:
@@ -1547,16 +1558,18 @@ def test_the_hard_word_is_the_one_with_the_worst_composite() -> None:
     worst = {a: max(B.cancellation_factor(n, a) for n in B.COMPOSITES)
              for a in (Fraction(9, 8), Fraction(33, 32), Fraction(27, 16), Fraction(45, 32))}
     order = sorted(worst, key=lambda a: worst[a])
-    assert order == [Fraction(9, 8), Fraction(33, 32), Fraction(27, 16), Fraction(45, 32)]
+    assert order == [Fraction(27, 16), Fraction(9, 8), Fraction(33, 32), Fraction(45, 32)]
+    # the first three are within a factor of four; the fourth is an order of magnitude out
+    assert float(worst[order[2]] / worst[order[0]]) < 4
+    assert float(worst[order[3]] / worst[order[2]]) > 10
 
 
 def test_paper_records_the_composite_screen() -> None:
     text = io.open(PAPER, encoding="utf-8").read()
     assert "recomputing the composites" in text
     assert "cancellation\nfactor" in text
-    assert "84321" in text and "43983" in text and "150903" in text
+    assert "84321" in text and "43983" in text and "10935" in text
     assert "1.4014" in text and "0.5406" in text
     assert "the only one of them that\nnever binds" in text
-    # the two limits are stated, not buried
     assert "not a composite the paper has ever formed" in text
-    assert "that composite has no" in text
+    assert r"should be re-derived with" in text and r"subtraction in view" in text

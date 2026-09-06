@@ -605,34 +605,42 @@ def wave_count(w: str) -> int:
 
 # --- the sign-critical composites as functions of the weight exponent ---
 
-COMPOSITES = ("5a", "E", "0")
+COMPOSITES = ("5a", "E", "anchor")
 
 
 def composite_terms(name: str, alpha: Fraction) -> list[Fraction]:
     """The terms whose signed sum is one of the paper's sign-critical composites.
 
     A kernel weight ``c(nu) = a nu^alpha`` rides the geometry the map fixes, ``X = nu^{3/2}`` and
-    ``F = (3/2) j m^{1/2}``, so each composite is a polynomial in ``alpha`` alone and the paper's
-    printed rationals are its value at ``9/8``.  ``"5a"`` is Theorem 5.3 Step 5a, anchor curvature
-    ``(cF)''`` against the window-centre mode ``u X''``; ``"E"`` is Theorem 6.1 Step E, the frozen
-    leftover ``J_F c''`` against a window-centre mode inflated by ``3/2``; ``"0"`` is Lemma 5.2b's
-    zero-offset ``c''G_F + 2c'G_F' + c G_F''``, in units of ``a * (3/4) * beta_1 beta_2``.
+    ``F = (3/2) j m^{1/2}``, so each composite is a polynomial in ``alpha`` alone.  ``"5a"`` is
+    Theorem 5.3 Step 5a, anchor curvature ``(cF)''`` against the window-centre mode ``u X''``;
+    ``"E"`` is Theorem 6.1 Step E, the frozen leftover ``J_F c''`` against a window-centre mode
+    inflated by ``3/2``; ``"anchor"`` is Lemma 5.2b's zero-offset ``2c'G_F' + c G_F''``, in units
+    of ``a * (3/4) * beta_1 beta_2``.
 
-    Times the weight constant these return ``729/512``, ``-243/512`` and ``-135/1024`` at
-    ``alpha = 9/8``, ``a = 3k/4`` -- the three constants as printed.
+    ``"cG"`` is the three-term ``c''G_F + 2c'G_F' + c G_F''``.  That is *not* the zero-offset
+    anchor -- the phase is ``c(G_F - J_F)`` with ``J_F`` frozen, so its ``c''`` term multiplies a
+    quantity below 1 -- but it is the object the manuscript's printed ``-135/1024`` measures, so
+    it is kept for the comparison.  See the erratum at Lemma 5.2b.
+
+    Times the weight constant, ``"5a"`` and ``"E"`` return ``729/512`` and ``-243/512`` at
+    ``alpha = 9/8``, ``a = 3k/4``; ``"anchor"`` returns ``-27/128`` and ``"cG"`` the printed
+    ``-135/1024``.
     """
     if name == "5a":
         return [Fraction(3, 2) * (alpha + Fraction(3, 4)) * (alpha - Fraction(1, 4)),
                 -Fraction(9, 16)]
     if name == "E":
         return [Fraction(3, 2) * alpha * (alpha - 1), -Fraction(27, 32)]
-    if name == "0":
+    if name == "anchor":
+        return [-Fraction(3, 2) * alpha, Fraction(21, 16)]
+    if name == "cG":
         return [alpha * (alpha - 1), -Fraction(3, 2) * alpha, Fraction(21, 16)]
     raise ValueError("unknown composite %r" % (name,))
 
 
 def composite(name: str, alpha: Fraction) -> Fraction:
-    """The composite itself.  ``"0"`` factors exactly as ``(alpha - 3/4)(alpha - 7/4)``."""
+    """The composite itself.  ``"cG"`` factors exactly as ``(alpha - 3/4)(alpha - 7/4)``."""
     return sum(composite_terms(name, alpha), Fraction(0))
 
 
@@ -640,15 +648,16 @@ def composite_roots(name: str) -> list[float]:
     """Where a composite vanishes, and there the architecture has no leading curvature.
 
     ``"5a"`` vanishes at ``(sqrt(10) - 1)/4 = 0.5406``, ``"E"`` at ``(2 + sqrt(13))/4 = 1.4014``,
-    ``"0"`` at the exact rationals ``3/4`` and ``7/4``.  Only the last two are attainable by a
-    coefficient exponent, which is a dyadic multiple of a power of three; none of the four is
-    attained on the frontier.
+    ``"anchor"`` at ``7/8``, and ``"cG"`` at the exact rationals ``3/4`` and ``7/4``.  Every
+    blocked coefficient exponent exceeds 1, so none of these is attained on the frontier.
     """
     if name == "5a":
         return [(-1 - 10 ** 0.5) / 4, (-1 + 10 ** 0.5) / 4]
     if name == "E":
         return [(2 - 13 ** 0.5) / 4, (2 + 13 ** 0.5) / 4]
-    if name == "0":
+    if name == "anchor":
+        return [0.875]
+    if name == "cG":
         return [0.75, 1.75]
     raise ValueError("unknown composite %r" % (name,))
 
@@ -659,8 +668,9 @@ def cancellation_factor(name: str, alpha: Fraction) -> Fraction:
     The size of a composite is not what decides its sign, because the terms carry relative errors
     of their own.  A relative perturbation ``eps`` of the terms moves the composite by
     ``kappa * eps``, so the sign is determined exactly while ``kappa * eps < 1``.  At ``9/8`` the
-    three factors are 1.59, 1.67, 13.4; at ``33/32`` -- the level-1 kernel ``OOOEOEE`` needs --
-    they are 1.74, 1.12, 14.3, so the unproved exponent is as healthy as the proved one.
+    three factors are 1.59, 1.67, 8.00; at ``33/32`` -- the level-1 kernel ``OOOEOEE`` needs --
+    they are 1.74, 1.12, 12.20.  The unproved exponent is better than the proved one on the Step E
+    composite and half again worse on the anchor, and the two stay the same order.
     """
     terms = composite_terms(name, alpha)
     total = sum(terms, Fraction(0))
@@ -674,7 +684,7 @@ def composite_screen(dmax: int = 13) -> dict[str, tuple[Fraction, Fraction]]:
 
     Returns the extreme of each composite over every blocked coefficient exponent carried by a
     contractor of depth at most ``dmax``.  At ``dmax = 13`` that is 222 distinct exponents and the
-    worst factors are 1.78 at ``4131/4096``, 129 at ``45/32`` and 539 at ``891/512`` -- against
+    worst factors are 1.78 and 14.10, both at ``4131/4096``, and 129 at ``45/32`` -- against
     ceilings of 3071 and 1.2e13 set by the relative errors the proofs already carry, so the
     condition never binds.  ``45/32`` is ``OOEOOEE``'s blocked exponent, which makes this a fourth
     reason that word is the hard one, independent of species, branching and the 9/4 stop.
