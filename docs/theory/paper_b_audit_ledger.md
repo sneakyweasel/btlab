@@ -5163,3 +5163,47 @@ instead.
 Probe: `nesting_contribution_rule`, `NESTING_CONTRIBUTIONS`. Two tests.
 Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
 manuscript or certificate edit.
+
+## Lemma 3.7's mass at all ten sites, and where the log powers actually come from
+
+The last entry asked whether Lemma 3.7's coefficient mass is absorbed correctly at the other
+places the lemma is used -- it guessed four; there are ten -- given that the window parameter
+is `P^(1/2)` at some and `R_0` at others.
+
+**It is, uniformly, and the coefficients are worth printing.** The mass is
+`8 + 2 log(2 + |B| + T) + 4 H_J`, so with `|B| = P^beta`, `T = P^tau`, `J = P^iota` the
+coefficient of `log P` is `2 max(beta, tau) + 4 iota`:
+
+```text
+  site                      |B|              T                J        coeff
+  Thm 4.1 St.3(s1)          2.25 P^(-1/16)   P^(1/2)          R_0       9/4
+  Thm 4.1 St.3(s2)          2.25 P^(1/4)     P^(1/2)          --          1
+  Thm 4.1 St.6(D1)          O(1)             P^(1/2)          --          1
+  Thm 4.1 St.6(D2)          1.85 k h P^(1/8) P^(1/2)          R_0       9/4
+  Thm 5.3 St.3(a)           (15/8) k h2 P^(1/8)  P^(1/2)/2h1  P^(1/4)  47/24
+  Thm 5.3 St.3(b)           1.85 k h1 P^(1/8)    P^(1/2)/2h2  --      11/12
+  Thm 5.3 St.5b (j=0)       <= 6             P^(1/2)          --          1
+  Thm 6.1 Step E            <= 6             P^(1/2)          --          1
+  Thm 6.3 depth five        2 P^(19/96)      R_0              --        5/8
+  Lemma 5.2(iii)            5 P^(1/4)        P^(1/2)          --          1
+```
+
+Every site is `O(log P)`; the largest coefficient is `9/4` and the smallest `5/8`. The two that
+reach `9/4` are exactly the two carrying Stage 2's truncation `J = R_0 = P^(5/16)`, where the
+`v`-mass `4*(5/16) = 5/4` outweighs the `b`-mass `1`. So the absorption into `P^epsilon` is
+sound and never close to failing.
+
+**And one row is worth reading twice.** Theorem 6.3 carries the paper's largest log power,
+`log^(15/4) P`, and has the *thinnest* Lemma 3.7 site of the ten, at `5/8` -- because its
+window parameter is `R_0 = P^(5/16)` and not `P^(1/2)`. That log power is therefore not a fat
+mass at one site; it is the count of applications at depth five. The two quantities are
+independent, and only the second grows with depth. A reader tracing `log^(15/4)` back to a
+single lemma invocation would be looking in the wrong place, and the thinnest site in the paper
+is the one they would land on.
+
+`decoration_budget.lemma37_site_masses`; the table goes into Section 3 beside the lemma, where
+`B` and `T` are the lemma's own letters and no re-lettering is needed.
+
+The count in the question was wrong -- four against ten -- and that is the second time in three
+entries that my own estimate of how many sites something touches has been low. Grepping the
+lemma's name takes a second and the estimate takes none, which is the wrong trade.

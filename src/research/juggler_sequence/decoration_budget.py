@@ -1023,6 +1023,55 @@ def lemma37_one_term_window_cost(p: int, k: int = 1, j_exponent: float = 5 / 16,
             "flat_alone_reaches_trivial": flat_per_point >= 1.0}
 
 
+
+# Every place Lemma 3.7 is invoked, with the parameters it is invoked at:
+# (site, |B| exponent, |B| constant, T exponent, T constant, J exponent or None).
+LEMMA37_SITES = (
+    ("Thm 4.1 St.3(s1)", -1 / 16, 2.25, 1 / 2, 1.0, 5 / 16),
+    ("Thm 4.1 St.3(s2)", 1 / 4, 2.25, 1 / 2, 1.0, None),
+    ("Thm 4.1 St.6(D1)", 0.0, 1.0, 1 / 2, 1.0, None),
+    ("Thm 4.1 St.6(D2)", 1 / 8, 1.85, 1 / 2, 1.0, 5 / 16),
+    ("Thm 5.3 St.3(a)", 1 / 8, 15 / 8, 23 / 48, 0.5, 1 / 4),
+    ("Thm 5.3 St.3(b)", 1 / 8, 1.85, 11 / 24, 0.5, None),
+    ("Thm 5.3 St.5b j=0", 0.0, 6.0, 1 / 2, 1.0, None),
+    ("Thm 6.1 Step E", 0.0, 6.0, 1 / 2, 1.0, None),
+    ("Thm 6.3 depth five", 19 / 96, 2.0, 5 / 16, 1.0, None),
+    ("Lemma 5.2(iii)", 1 / 4, 5.0, 1 / 2, 1.0, None),
+)
+
+
+def lemma37_site_masses(p: float | None = None) -> dict[str, Any]:
+    """Is Lemma 3.7's coefficient mass really ``O(log P)`` at every site it is used?
+
+    The lemma carries ``sum|b_u| + sum|v_q| <= 8 + 2 log(2 + |B| + T) + 4 H_J``, which the
+    paper absorbs into ``P^epsilon`` everywhere and prints nowhere.  Since ``|B|``, ``T`` and
+    ``J`` are powers of ``P`` at every site, it is ``O(log P)`` at every site, with coefficient
+    ``2 max(beta, tau) + 4 iota``.  The largest is ``9/4``, at the two sites carrying Stage 2's
+    truncation ``J = R_0 = P^(5/16)``, where the ``v``-mass ``5/4`` outweighs the ``b``-mass.
+
+    Theorem 6.3 carries the paper's largest log power, ``log^(15/4) P``, and has the *thinnest*
+    site of the ten at ``5/8``, because its window parameter is ``R_0`` rather than ``P^(1/2)``.
+    That log power is the count of applications at depth five, not the mass of any one of them.
+    """
+    if p is None:
+        from research.juggler_sequence import p0_certificate as _pc
+        p = _pc.certificate()["P0"]
+    rows = []
+    for name, be, bc, te, tc, je in LEMMA37_SITES:
+        B, T = bc * p**be, tc * p**te
+        b_mass = 8.0 + 2.0 * math.log(2.0 + B + T)
+        v_mass = 0.0 if je is None else 4.0 * (math.log(p**je) + 0.5772156649)
+        rows.append({"site": name, "B_exponent": be, "T_exponent": te, "J_exponent": je,
+                     "coefficient": 2.0 * max(be, te) + (0.0 if je is None else 4.0 * je),
+                     "mass": b_mass + v_mass})
+    coeffs = [r["coefficient"] for r in rows]
+    return {"P": p, "rows": rows, "max_coefficient": max(coeffs),
+            "min_coefficient": min(coeffs),
+            "all_logarithmic": all(c < 10.0 for c in coeffs),
+            "thinnest_site": min(rows, key=lambda r: r["coefficient"])["site"],
+            "fattest_sites": [r["site"] for r in rows if r["coefficient"] == max(coeffs)]}
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,

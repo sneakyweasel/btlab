@@ -35664,3 +35664,72 @@ Best next question
   that shape. Does any bound in Section 5 expand a floor under an
   exponent bigger than 2, and if so what carries the cubic?
 ```
+
+### Lemma 3.7's mass at all ten sites, and where the log powers come from
+
+The recorded question asked whether Lemma 3.7's coefficient mass is absorbed
+correctly at the other places the lemma is used — it guessed four; there are
+ten — given that the window parameter is `P^(1/2)` at some and `R_0` at others.
+
+**It is, uniformly.** The mass is `8 + 2log(2+|B|+T) + 4H_J`, so with
+`|B| = P^β`, `T = P^τ`, `J = P^ι` the coefficient of `log P` is
+`2 max(β,τ) + 4ι`:
+
+```text
+  site                      |B|              T                J        coeff
+  Thm 4.1 St.3(s1)          2.25 P^(-1/16)   P^(1/2)          R_0       9/4
+  Thm 4.1 St.3(s2)          2.25 P^(1/4)     P^(1/2)          --          1
+  Thm 4.1 St.6(D1)          O(1)             P^(1/2)          --          1
+  Thm 4.1 St.6(D2)          1.85 k h P^(1/8) P^(1/2)          R_0       9/4
+  Thm 5.3 St.3(a)           (15/8)k h2 P^(1/8)  P^(1/2)/2h1  P^(1/4)  47/24
+  Thm 5.3 St.3(b)           1.85 k h1 P^(1/8)   P^(1/2)/2h2  --      11/12
+  Thm 5.3 St.5b (j=0)       <= 6             P^(1/2)          --          1
+  Thm 6.1 Step E            <= 6             P^(1/2)          --          1
+  Thm 6.3 depth five        2 P^(19/96)      R_0              --        5/8
+  Lemma 5.2(iii)            5 P^(1/4)        P^(1/2)          --          1
+```
+
+Largest `9/4`, smallest `5/8`. The two reaching `9/4` are exactly the two
+carrying Stage 2's truncation `R_0 = P^(5/16)`, where the `v`-mass `5/4`
+outweighs the `b`-mass `1`.
+
+**And one row is worth reading twice.** Theorem 6.3 carries the paper's largest
+log power, `log^(15/4) P`, and has the *thinnest* site of the ten at `5/8` —
+its window parameter is `R_0`, not `P^(1/2)`. That log power is the count of
+applications at depth five, not the mass of any one of them. A reader tracing
+`log^(15/4)` back to a single invocation would land on the thinnest site in the
+paper.
+
+```text
+What was learned
+- the absorption is sound at every site and never close to failing; the answer
+  to the question is a clean yes with the constants made explicit
+- the coefficient is 2 max(beta, tau) + 4 iota, which makes "is it O(log P)" a
+  one-line check per site instead of a judgement
+- the largest log power in the paper sits on the thinnest Lemma 3.7 site,
+  because depth and mass are independent and only depth accumulates
+- my count was four against ten. Second time in three ticks that my estimate of
+  how many sites something touches has been low; grepping costs a second
+Strongest theorem
+- Lemma 3.7's mass is O(log P) at all ten invocation sites, coefficient in
+  [5/8, 9/4], with 9/4 exactly at the two sites carrying R_0
+Strongest refutation
+- the implicit worry that a site with T = R_0 might absorb badly; it is the
+  best-behaved of the ten
+Reusable machinery
+- decoration_budget.lemma37_site_masses, LEMMA37_SITES; a citation row; four
+  new tests
+Branch status
+- PARK
+Why
+  Every site is enumerated with its parameters, the coefficient is computed
+  rather than judged, and the table is in the manuscript beside the lemma.
+  Nothing here moves P_0.
+Best next question
+- the table says depth is what accumulates log powers, and Theorem 6.3 is
+  depth five with log^(15/4). Fifteen quarters is not an obvious count of
+  anything: 3.75 = 15/4 would be five applications at 3/4 each, or three at
+  5/4, or something else. Where does 15/4 actually come from, and does it
+  match the number of Lemma 3.7 and Lemma 3.5 applications the depth-five
+  argument makes?
+```

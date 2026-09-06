@@ -526,3 +526,55 @@ def test_the_paper_prices_it_and_says_the_paper_does_not_need_it() -> None:
         assert figure in text, figure
     # re-lettered for Section 7: the lemma's B and T are this section's c and U
     assert r"e(-c\{t\})" in text and r"\(U\ge8(1{+}c)\)" in text
+
+
+# --- and the mass at every site that uses the lemma ---
+
+
+def test_every_lemma37_site_is_logarithmic() -> None:
+    """coefficient = 2 max(beta, tau) + 4 iota, finite at all ten sites."""
+    from fractions import Fraction as Fr
+    from research.juggler_sequence import decoration_budget as DB
+    r = DB.lemma37_site_masses()
+    assert len(r["rows"]) == 10 and r["all_logarithmic"]
+    assert abs(r["max_coefficient"] - float(Fr(9, 4))) < 1e-9
+    assert abs(r["min_coefficient"] - float(Fr(5, 8))) < 1e-9
+    for row in r["rows"]:
+        assert 0.5 < row["coefficient"] <= 2.25, row["site"]
+        assert row["mass"] > 0
+
+
+def test_the_two_fattest_sites_are_the_two_carrying_R0() -> None:
+    from fractions import Fraction as Fr
+    from research.juggler_sequence import decoration_budget as DB
+    r = DB.lemma37_site_masses()
+    assert set(r["fattest_sites"]) == {"Thm 4.1 St.3(s1)", "Thm 4.1 St.6(D2)"}
+    for row in r["rows"]:
+        if row["site"] in r["fattest_sites"]:
+            assert abs(row["J_exponent"] - 5 / 16) < 1e-12     # Stage 2's truncation
+    # v-mass 4*(5/16) = 5/4 outweighs the b-mass 2*(1/2) = 1
+    assert Fr(4) * Fr(5, 16) == Fr(5, 4) and Fr(5, 4) > 1
+
+
+def test_the_paper_s_largest_log_power_sits_on_its_thinnest_site() -> None:
+    """Theorem 6.3 carries log^(15/4) and has the smallest mass coefficient, 5/8."""
+    from research.juggler_sequence import decoration_budget as DB
+    from research.juggler_sequence import p0_certificate as PC
+    r = DB.lemma37_site_masses()
+    assert r["thinnest_site"] == "Thm 6.3 depth five"
+    thin = [x for x in r["rows"] if x["site"] == "Thm 6.3 depth five"][0]
+    assert abs(thin["T_exponent"] - 5 / 16) < 1e-12            # R_0, not P^(1/2)
+    assert thin["J_exponent"] is None
+    powers = {x["log_power"] for x in PC.log_absorption_thresholds()}
+    assert 3.75 in powers                                       # log^(15/4) is Thm 6.3's
+    assert max(powers) == 3.75
+
+
+def test_the_paper_carries_the_site_table() -> None:
+    text = A.paper_text()
+    assert "The mass this lemma costs, at every site that uses it" in text
+    assert "`decoration_budget.lemma37_site_masses`" in text
+    assert "the coefficient never exceeds" in text
+    assert "worth reading twice" in text
+    for frag in (r"\text{Thm 6.3 depth five}", r"\text{Lemma 5.2(iii)}", "47/24", "11/12"):
+        assert frag in text, frag

@@ -665,6 +665,16 @@ def _lemma37_cost_ok(fn) -> bool:
             and r["total_mass"] > 100 * r["trivial_bound_on_one_term"])
 
 
+def _site_masses_ok(fn) -> bool:
+    """Ten sites, all logarithmic, largest 9/4 at the two carrying R_0."""
+    r = fn()
+    return (len(r["rows"]) == 10 and r["all_logarithmic"]
+            and abs(r["max_coefficient"] - 2.25) < 1e-9
+            and abs(r["min_coefficient"] - 0.625) < 1e-9
+            and r["thinnest_site"] == "Thm 6.3 depth five"
+            and len(r["fattest_sites"]) == 2)
+
+
 PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = (
     ("decoration_budget", "branch_offset_ladder",
      r"finds\n> \(\max j=r+1\) and \(\min j=-1\) at \(h_1h_2\le rP^{1/2}/3\) for\n> \(r=1,2,3,6\)",
@@ -710,6 +720,10 @@ PROBE_CITATIONS: tuple[tuple[str, str, str, str, Callable[[Any], bool]], ...] = 
      "(`decoration_budget.lemma37_one_term_window_cost`)",
      "what Lemma 3.7 returns on a one-term window, against the trivial bound",
      _lemma37_cost_ok),
+    ("decoration_budget", "lemma37_site_masses",
+     "(`decoration_budget.lemma37_site_masses`)",
+     "Lemma 3.7's mass at all ten sites, and that each is O(log P)",
+     _site_masses_ok),
 )
 
 

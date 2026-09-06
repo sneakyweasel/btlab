@@ -632,6 +632,45 @@ trigonometric polynomial
 \(|\sigma(t)-V^*_J(t)|\le\Delta_J(t)\) with \(\Delta_J\) as stated;
 multiply by \(1-e(-B)\) and set \(v_q=(1-e(-B))a^*_q\). \(\square\)
 
+*The mass this lemma costs, at every site that uses it.* The bound
+carries a coefficient mass
+\(\sum_u|b_u|+\sum_q|v_q|\le8+2\log(2{+}|B|{+}T)+4H_J\), which the
+paper absorbs into \(P^{\varepsilon}\) everywhere and prints nowhere.
+Since \(|B|\), \(T\) and \(J\) are powers of \(P\) at every site, that
+is \(O(\log P\)\) at every site; the coefficient is
+\(2\max(\beta,\tau)+4\iota\) where \(P^{\beta},P^{\tau},P^{\iota}\) are
+\(|B|,T,J\). Tabulated
+(`decoration_budget.lemma37_site_masses`):
+
+\[
+\begin{array}{lcccr}
+\text{site} & |B| & T & J & \text{coeff}\\[2pt]
+\text{Thm 4.1 St.3(s1)} & 2.25P^{-1/16} & P^{1/2} & R_0 & 9/4\\
+\text{Thm 4.1 St.3(s2)} & 2.25P^{1/4} & P^{1/2} & - & 1\\
+\text{Thm 4.1 St.6(D1)} & O(1) & P^{1/2} & - & 1\\
+\text{Thm 4.1 St.6(D2)} & 1.85khP^{1/8} & P^{1/2} & R_0 & 9/4\\
+\text{Thm 5.3 St.3(a)} & \tfrac{15}8kh_2P^{1/8} & P^{1/2}/(2h_1) & P^{1/4} & 47/24\\
+\text{Thm 5.3 St.3(b)} & 1.85kh_1P^{1/8} & P^{1/2}/(2h_2) & - & 11/12\\
+\text{Thm 5.3 St.5b } (j{=}0) & \le6 & P^{1/2} & - & 1\\
+\text{Thm 6.1 Step E} & \le6 & P^{1/2} & - & 1\\
+\text{Thm 6.3 depth five} & 2P^{19/96} & R_0 & - & 5/8\\
+\text{Lemma 5.2(iii)} & 5P^{1/4} & P^{1/2} & - & 1
+\end{array}
+\]
+
+so the absorption is sound, and the coefficient never exceeds
+\(\tfrac94\). The two sites that reach it are exactly the two carrying
+Stage 2's truncation \(J=R_0=P^{5/16}\), where the \(v\)-mass
+\(4\cdot\tfrac5{16}=\tfrac54\) outweighs the \(b\)-mass \(1\).
+
+One thing in that table is worth reading twice. Theorem 6.3 carries the
+largest log power in the paper's final bounds, \(\log^{15/4}P\), and it
+has the *thinnest* Lemma 3.7 site of the ten, at \(\tfrac58\) --- its
+window parameter is \(R_0=P^{5/16}\) rather than \(P^{1/2}\). So that
+log power is not a fat mass at one site; it is the count of
+applications at depth five. The two are independent, and only the
+second grows with depth.
+
 When the lemma is applied with \(t=G(n)\) along a block, the
 \(\Delta_J\)-term is a nonnegative majorant: its sum over the block
 is \(P/(J+1)\) plus \(J\)-truncated mode sums of \(G\) with
