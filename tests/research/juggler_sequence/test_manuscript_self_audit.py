@@ -149,3 +149,123 @@ def test_the_paper_says_which_rows_are_coincidence() -> None:
     assert "two notations for one quantity" in text
     assert "is a coincidence" in text
     assert "miss opposite things" in text
+
+
+# --- the normaliser: every printed relation, evaluated -----------------------------------------
+
+
+def test_the_normaliser_sees_across_notations() -> None:
+    """The clusterer's blind spot: it reads 1.5 and 3/2 as unrelated strings."""
+    from fractions import Fraction
+    BS = chr(92)
+    assert M.to_rational("1.5") == Fraction(3, 2)
+    assert M.to_rational("3/2") == Fraction(3, 2)
+    assert M.to_rational(BS + "tfrac32") == Fraction(3, 2)
+    assert M.to_rational(BS + "frac{3}{2}") == Fraction(3, 2)
+    assert M.to_rational(BS + "frac{-365}{176}") == Fraction(-365, 176)
+    assert M.to_rational("c_7") is None
+    assert M.to_rational("P^{5/16}") is None
+
+
+def test_every_printed_relation_is_true() -> None:
+    assert M.wrong_relations() == []
+
+
+def test_the_relation_census() -> None:
+    import collections
+    kinds = collections.Counter(r["kind"] for r in M.numeric_relations())
+    assert sum(kinds.values()) >= 78
+    assert kinds["exact"] >= 54          # the paper's fraction algebra, all of it
+    assert kinds["bounded_up"] == 2      # two bounds printed with an equals sign
+    assert kinds["bounded_down"] == 0    # none rounded into its own bound
+    assert kinds["WRONG"] == 1           # the declared units exception, below
+
+
+def test_the_two_non_nearest_decimals_are_both_rounded_outward() -> None:
+    """Both feed upper bounds, and both are rounded away from the inequality they serve."""
+    d = M.rounding_directions()
+    assert d["down"] == []
+    assert len(d["up"]) == 2
+    printed = sorted(r["right"] for r in d["up"])
+    assert printed == [1.096, 2.536]
+    exact = sorted(r["left"] for r in d["up"])
+    assert abs(exact[0] - 1.20 ** 0.5) < 1e-12
+    assert abs(exact[1] - 1.5 * 0.35 ** -0.5) < 1e-12
+    # each is within one unit of its last printed place, and above -- which is what makes a
+    # downward rounding dangerous: it would look identical to these
+    for r in d["up"]:
+        assert 0 < r["right"] - r["left"] < 10 ** -3
+
+
+def test_a_decimal_rounded_into_its_bound_would_be_caught() -> None:
+    """The case that matters: agreeing to the precision shown accepts both directions."""
+    assert M._sig_figures("1.095") == 4
+    assert M._last_place("1.095") == 10 ** -3
+    # one true value, its three neighbouring four-figure decimals, three verdicts
+    assert M.classify_equality(1.0956, 1.096, "1.096") == "rounded"
+    assert M.classify_equality(1.0956, 1.095, "1.095") == "bounded_down"
+    assert M.classify_equality(1.0954, 1.096, "1.096") == "bounded_up"
+    assert M.classify_equality(1.0954, 1.0954, "1.0954") == "exact"
+    assert M.classify_equality(1.0954, 1.2, "1.2") == "WRONG"
+    assert "rounded_into_a_bound" in M.failures()
+
+
+def test_the_only_declared_exception_is_the_units_one() -> None:
+    """`7/5800 = 12.0690` is true in units of 10^-4, and the units are stated in prose."""
+    assert list(M.RELATION_EXCEPTIONS) == [("7/5800", "12.0690")]
+    raw = [(r["lhs"], r["rhs"]) for r in M.numeric_relations() if r["kind"] == "WRONG"]
+    assert raw == [("7/5800", "12.0690")]
+    assert "10^{-4}" in M.paper_text()
+
+
+def test_the_normaliser_would_have_caught_the_claim_D_slip() -> None:
+    """The prose printed 1.45^36 as 1.1e6.  It is 644537, and A.1 already said 6.4e5."""
+    BS = chr(92)
+    value = eval(M.to_expression("1.45^{36}"), {"__builtins__": {}}, {})  # noqa: S307
+    assert round(value) == 644537
+    assert M._sig_figures("6.4" + BS + "cdot10^{5}") == 2
+    assert float("%.1e" % value) == 6.4e5
+    assert float("%.1e" % value) != 1.1e6
+
+
+def test_the_manuscript_prints_the_corrected_threshold() -> None:
+    BS = chr(92)
+    text = M.paper_text()
+    assert "1.45^{36}=6.4" + BS + "cdot10^{5}" in text
+    assert "1.45^{36}=1.1" + BS + "cdot10^{6}" not in text
+
+
+def test_failures_now_covers_relations() -> None:
+    f = M.failures()
+    assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound"}
+    assert all(v == [] for v in f.values())
+
+
+def test_a_shared_symbolic_factor_makes_a_relation_checkable() -> None:
+    """Most of the displayed algebra is a numeral times symbols; pure-number lines are few."""
+    BS = chr(92)
+    value, tail, head = M.leading_literal("(1.20)^{1/2}(uh)^{1/2}P^{5/8}")
+    assert abs(value - 1.20 ** 0.5) < 1e-12
+    assert tail == "(uh)^{1/2}P^{5/8}"
+    assert head == "(1.20)^{1/2}"          # precision is a property of the digits alone
+    assert M.leading_literal("c_7 P")[0] is None
+    assert M.leading_literal(BS + "tfrac{60" + BS + "cdot4.2}{0.84}kh_1h_2P^{1/8}")[0] == 300.0
+    shared = [r for r in M.numeric_relations() if r["shared"]]
+    assert len(shared) >= 8
+    assert all(r["kind"] != "WRONG" for r in shared)
+
+
+def test_the_relation_passage_is_excluded_from_its_own_scan() -> None:
+    """It quotes the relations it found; counting those is self-agreement."""
+    import collections
+    text = M.paper_text()
+    assert M.RELATION_PROSE_ANCHOR in text
+    kinds = collections.Counter(r["kind"] for r in M.numeric_relations())
+    assert kinds["bounded_up"] == 2        # not four, which is what re-reading the prose gives
+
+
+def test_the_paper_states_the_rounding_convention() -> None:
+    text = M.paper_text()
+    assert "rounded *away* from the inequality it serves" in text
+    assert "A decimal rounded *into* its own bound" in text
+    assert "error with no consequence is exactly the kind that survives reading" in text

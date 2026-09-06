@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import collections
 import re
+from fractions import Fraction
 from pathlib import Path
 from typing import Any
 
@@ -98,6 +99,10 @@ SHARED_VALUES: dict[str, tuple[str, ...]] = {
 }
 
 SHARED_TABLE_ANCHOR = "*Constants that share a value.*"
+
+# The passage documenting this check quotes the relations it found, so it is cut from the
+# scan for the same reason the shared-value table is: a checker must not read its own output.
+RELATION_PROSE_ANCHOR = "A third check reads the manuscript as arithmetic."
 
 
 def shared_value_audit() -> list[dict[str, Any]]:
@@ -183,9 +188,244 @@ def cluster_coverage() -> dict[str, Any]:
                        "printed as the fraction 3/2"},
             "genuinely_detected": ["0.11", "1.1", "1.2"]}
 
+
+# --- every printed numeric relation, evaluated -----------------------------------------------
+#
+# The clusterer's blind spot is notation: it reads 1.5 and 3/2 as unrelated.  Normalising every
+# literal to a rational removes that, and answers a question nobody had asked -- is any decimal
+# printed inconsistently with its own exact value?
+#
+# One was.  Claim D's shift comparison printed `1.45^36 = 1.1e6`; the value is 6.44537e5, and
+# Appendix A.1's own row for it already said 6.4e5.  The prose contradicted the table, and both
+# figures sit far under P_0, so nothing downstream moved.
+
+_FRACS = tuple(re.compile(p) for p in (
+    re.escape(BS) + r"t?frac\{(-?[0-9]+)\}\{([0-9]+)\}$",
+    re.escape(BS) + r"t?frac(-?[0-9])\{([0-9]+)\}$",
+    re.escape(BS) + r"t?frac(-?[0-9])([0-9])$"))
+
+_STRIP = (BS + ",", BS + "!", BS + ";", BS + " ", BS + "bigl", BS + "bigr",
+          BS + "Bigl", BS + "Bigr", BS + "left", BS + "right", "{+}", "{-}")
+
+
+def to_expression(side: str) -> str | None:
+    """A math side built only of numeric literals and arithmetic -> a Python expression."""
+    s = side.strip()
+    for junk in _STRIP:
+        s = s.replace(junk, "")
+    for _ in range(6):
+        new = re.sub(re.escape(BS) + r"t?frac\{([^{}]+)\}\{([^{}]+)\}", r"((\1)/(\2))", s)
+        new = re.sub(re.escape(BS) + r"t?frac([0-9])\{([^{}]+)\}", r"((\1)/(\2))", new)
+        new = re.sub(re.escape(BS) + r"t?frac([0-9])([0-9])(?![0-9])", r"((\1)/(\2))", new)
+        if new == s:
+            break
+        s = new
+    s = s.replace(BS + "cdot", "*").replace(BS + "times", "*")
+    s = re.sub(r"\^\{([^{}]+)\}", r"**(\1)", s)
+    s = re.sub(r"\^([0-9])", r"**\1", s)
+    if not re.fullmatch(r"[0-9.+\-*/() ]+", s):
+        return None
+    # juxtaposition is multiplication in print and a call in Python: reject it
+    return None if re.search(r"[0-9)]\s*\(", s) else s
+
+
+def to_rational(side: str) -> Fraction | None:
+    """The same, exactly, when the side is a single literal."""
+    s = side.strip()
+    for junk in _STRIP:
+        s = s.replace(junk, "")
+    s = s.strip()
+    for f in _FRACS:
+        m = f.fullmatch(s)
+        if m:
+            return Fraction(int(m.group(1)), int(m.group(2)))
+    if re.fullmatch(r"-?[0-9]+/[0-9]+", s):
+        a, b = s.split("/")
+        return Fraction(int(a), int(b))
+    if re.fullmatch(r"-?[0-9]+(\.[0-9]+)?", s):
+        return Fraction(s)
+    return None
+
+
+_LITERAL_HEAD = re.compile("^((?:" + re.escape(BS) + "cdot|" + re.escape(BS)
+                           + "t?frac|[0-9.()+*/^{}-])+)")
+
+
+def leading_literal(side: str) -> tuple[float | None, str, str]:
+    """Split a side into its leading numeric factor, the symbolic remainder, and the head text.
+
+    ``(1.20)^{1/2}(uh)^{1/2}P^{5/8}`` -> ``(1.0954..., "(uh)^{1/2}P^{5/8}", "(1.20)^{1/2}")``.
+    The head text is kept because the printed precision of a side is a property of its digits,
+    not of the symbols after them.  Relations whose
+    two sides carry the *same* remainder are then comparable, which is most of the paper's
+    displayed algebra; without this the checker only sees the handful of pure-number lines.
+    """
+    s = side.strip()
+    for junk in _STRIP:
+        s = s.replace(junk, "")
+    s = s.strip()
+    m = _LITERAL_HEAD.match(s)
+    if not m:
+        return None, s, ""
+    head, tail = m.group(1), s[m.end():]
+    while head and (head.count("{") != head.count("}")
+                    or head.count("(") != head.count(")")
+                    or head[-1] in "+-*/^"):
+        head, tail = head[:-1], head[-1] + tail
+    if not head:
+        return None, s, ""
+    expression = to_expression(head)
+    if expression is None:
+        return None, s, ""
+    try:
+        value = eval(expression, {"__builtins__": {}}, {})   # noqa: S307 - regex-gated literals
+    except (ArithmeticError, SyntaxError, ValueError, TypeError):
+        return None, s, ""
+    return float(value), tail.strip(), head
+
+
+def _split_top(span: str) -> tuple[list[str], list[str]]:
+    out: list[str] = []
+    ops: list[str] = []
+    cur: list[str] = []
+    depth = 0
+    i = 0
+    while i < len(span):
+        ch = span[i]
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+        if depth == 0:
+            if span.startswith(BS + "le", i) or span.startswith(BS + "ge", i):
+                out.append("".join(cur)); ops.append(span[i:i + 3]); cur = []; i += 3; continue
+            if ch == "=":
+                out.append("".join(cur)); ops.append("="); cur = []; i += 1; continue
+        cur.append(ch)
+        i += 1
+    out.append("".join(cur))
+    return out, ops
+
+
+def _mantissa(printed: str) -> str:
+    """The printed mantissa: `2.8` from `2.8\\cdot10^{14}`, `219` from `219`."""
+    s = printed.strip().split(BS + "cdot")[0].strip()
+    return s if re.fullmatch(r"-?[0-9]*\.?[0-9]+", s) else ""
+
+
+def _sig_figures(printed: str) -> int:
+    m = _mantissa(printed).lstrip("-").lstrip("0").lstrip(".").lstrip("0")
+    digits = re.sub(r"[^0-9]", "", m)
+    return max(1, len(digits))
+
+
+def _last_place(printed: str) -> float:
+    """One unit in the last printed decimal place of the mantissa, scaled by any power of ten."""
+    m = _mantissa(printed)
+    if not m:
+        return 0.0
+    decimals = len(m.split(".")[1]) if "." in m else 0
+    power = re.search(r"cdot10\^\{(-?[0-9]+)\}", printed)
+    return 10.0 ** (-decimals + (int(power.group(1)) if power else 0))
+
+
+def numeric_relations() -> list[dict[str, Any]]:
+    """Every relation whose two sides are literal arithmetic, evaluated and classified.
+
+    Two sides qualify either as pure numbers, or as one number times a symbolic factor that
+    both sides share -- most of the paper's displayed algebra is of the second kind.
+
+    ``exact`` when the two sides agree; ``rounded`` when the right side is the left correctly
+    rounded to its own printed precision; ``bounded_up`` / ``bounded_down`` when it is within
+    one unit of the last place but rounded away from nearest, in one direction or the other;
+    ``WRONG`` otherwise.
+    """
+    text = paper_text()
+    cut = text.find(RELATION_PROSE_ANCHOR)
+    if cut >= 0:
+        end = text.find("### ", cut)
+        text = text[:cut] + (text[end:] if end >= 0 else "")
+    rows: list[dict[str, Any]] = []
+    for m in _MATH.finditer(text):
+        span = m.group(1) or m.group(2) or ""
+        sides, ops = _split_top(span)
+        for k, op in enumerate(ops):
+            lhs, rhs = sides[k], sides[k + 1]
+            ea, eb = to_expression(lhs), to_expression(rhs)
+            shared = ""
+            printed = rhs.strip()
+            if ea is not None and eb is not None:
+                try:
+                    a = eval(ea, {"__builtins__": {}}, {})   # noqa: S307 - regex-gated
+                    b = eval(eb, {"__builtins__": {}}, {})   # noqa: S307
+                except (ArithmeticError, SyntaxError, ValueError, TypeError):
+                    continue
+            else:
+                a, ta, _ = leading_literal(lhs)
+                b, tb, printed = leading_literal(rhs)
+                if a is None or b is None or not ta or ta != tb:
+                    continue
+                shared = ta
+            if op == "=":
+                kind = classify_equality(a, b, printed)
+            else:
+                ok = a <= b + 1e-12 if op.endswith("le") else a >= b - 1e-12
+                kind = "exact" if ok else "WRONG"
+            rows.append({"lhs": lhs.strip()[:40], "op": op, "rhs": rhs.strip()[:40],
+                         "left": float(a), "right": float(b), "kind": kind,
+                         "shared": shared[:40]})
+    return rows
+
+
+# Relations whose two sides carry a factor stated in prose, outside the math span.
+RELATION_EXCEPTIONS: dict[tuple[str, str], str] = {
+    ("7/5800", "12.0690"): "the balance budget is quoted in units of 10^(-4), said in prose",
+}
+
+
+def classify_equality(a: float, b: float, printed: str) -> str:
+    """How the printed decimal ``b`` (as written in ``printed``) relates to the true value ``a``.
+
+    Separated out so the three near-miss cases can be exercised directly.  They are the whole
+    point of the check: ``bounded_up`` and ``bounded_down`` are indistinguishable to any test
+    that only asks whether two numbers agree to the precision shown.
+    """
+    if abs(a - b) < 1e-12 * max(1.0, abs(a)):
+        return "exact"
+    sig = _sig_figures(printed)
+    ulp = _last_place(printed)
+    if float("%.*e" % (sig - 1, a)) == float("%.*e" % (sig - 1, b)):
+        return "rounded"
+    if 0 <= b - a <= ulp:
+        return "bounded_up"
+    if -ulp <= b - a < 0:
+        return "bounded_down"
+    return "WRONG"
+
+
+def rounding_directions() -> dict[str, list[dict[str, Any]]]:
+    """The relations whose printed decimal is not the nearest one, split by direction.
+
+    Both of the paper's two such decimals feed upper bounds, and both are rounded up, i.e.
+    away from the inequality they serve.  A ``bounded_down`` row would be a decimal rounded
+    into its own bound -- arithmetically within a unit of the last place, and yet a weaker
+    claim than the paper states.  That list must stay empty.
+    """
+    rows = numeric_relations()
+    return {"up": [r for r in rows if r["kind"] == "bounded_up"],
+            "down": [r for r in rows if r["kind"] == "bounded_down"]}
+
+
+def wrong_relations() -> list[dict[str, Any]]:
+    return [r for r in numeric_relations()
+            if r["kind"] == "WRONG"
+            and (r["lhs"], r["rhs"]) not in RELATION_EXCEPTIONS]
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
-            "shared": [r for r in shared_value_audit() if not r["listed"]]}
+            "shared": [r for r in shared_value_audit() if not r["listed"]],
+            "relations": wrong_relations(),
+            "rounded_into_a_bound": rounding_directions()["down"]}
 
 
 def main() -> None:

@@ -2540,8 +2540,8 @@ particular \(h_3\le t^{1/3}P^{1/12}\le3^{1/3}P^{7/72}\) with
 \quad\text{once}\quad
 P\ge1.45^{36}.
 \]
-The threshold is \(1.45^{36}=1.1\cdot10^{6}\), comfortably under
-\(P_0\). The exponent gap here is \(\tfrac18-\tfrac7{72}=\tfrac1{36}\),
+The threshold is \(1.45^{36}=6.4\cdot10^{5}\), comfortably under
+\(P_0\) and matching the row A.1 prints for it. The exponent gap here is \(\tfrac18-\tfrac7{72}=\tfrac1{36}\),
 so whatever constant stands in front of \(P^{7/72}\) is paid at the
 thirty-sixth power; that is why the sharp \(t\) matters. Thus every
 index in the Claim C sum satisfies
@@ -6607,6 +6607,41 @@ multiplies nothing, and \(1.5\)'s is written \(\tfrac32\). So the
 agreement between the two methods on those two rows is a coincidence.
 Curation and clustering miss opposite things, and the list is kept by
 both.
+
+A third check reads the manuscript as arithmetic. Every relation whose
+two sides are numeric literals --- or a numeral times a symbolic factor
+that both sides carry, which is most of the displayed algebra --- is
+evaluated and compared. There are eighty. Fifty-four are exact
+identities, and they include all of the fraction arithmetic of Section
+5: \(\tfrac{945}{512}-\tfrac{81}{512}=\tfrac{864}{512}\),
+\(\tfrac{675}{2048}-\tfrac{432}{2048}=\tfrac{243}{2048}\),
+\(\tfrac{11}{12}-\tfrac{29}{32}=\tfrac1{96}\), and the rest.
+Not one of them
+is off.
+
+Twenty-three more are decimals correctly rounded to the precision they
+are printed at, and one is quoted in units of \(10^{-4}\). Two are
+neither: \((1.20)^{1/2}=1.096\) at Stage 4, whose nearest four-figure
+decimal is \(1.095\), and \(1.5\cdot(0.35)^{-1/2}=2.536\) in the same
+display, whose nearest is \(2.535\). Both are rounded up, and both feed
+an upper bound --- \(1.1\,(uh)^{1/2}P^{5/8}\) and
+\(2.6\,(h/u)^{1/2}P^{7/8}\) --- so in both the printed decimal is
+rounded *away* from the inequality it serves. That is the safe
+direction, and it is the paper's convention throughout.
+
+The distinction matters because the unsafe direction is invisible to
+every other check here. A decimal rounded *into* its own bound is
+within a unit of the last place, agrees with the constant it names to
+the precision anyone would compare at, and is nonetheless a claim the
+line does not support. `tools/manuscript_self_audit.py` separates the two
+cases by direction, and the list of downward roundings is empty.
+
+This check found one error. Claim D's shift range printed its
+threshold, \(1.45^{36}\), as \(1.1\cdot10^{6}\); the value is \(644537\), and
+A.1's own row for that comparison already read \(6.4\cdot10^{5}\). The
+prose contradicted the table it was summarising. Both figures sit far
+below \(P_0\), so nothing downstream moved, and that is the point: an
+error with no consequence is exactly the kind that survives reading.
 
 ### A.1 The certificate
 
