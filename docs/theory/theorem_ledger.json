@@ -1730,6 +1730,8 @@
   "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
   "source": "docs/theory/rewrite_calculus.md",
   "lean": "BTCalculus/OpFragNewman.lean",
+  "decl": "unique_normal_form",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_operator_fragment_nf.py"
   ],
@@ -2025,6 +2027,8 @@
   "statement": "the named carry-free push-in system (unary D(S(t))→t plus S(Add(t,u))→Add(S(t),S(u)) and congruence, no D-through-Add) is not locally confluent: D(S(Add(X,Y))) has two distinct irreducibles Add(X,Y) and D(Add(S(X),S(Y))); both evaluate to X+Y",
   "source": "docs/theory/rewrite_calculus_formalization.md",
   "lean": "BTCalculus/RewriteAddBoundary.lean",
+  "decl": "pushIn_not_locally_confluent",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_rewrite_signature_enlargement.py"
   ],
@@ -2038,6 +2042,8 @@
   "statement": "the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence",
   "source": "docs/theory/rewrite_calculus_formalization.md",
   "lean": "BTCalculus/RewriteAddBoundary.lean",
+  "decl": "add_requires_carry_state",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_rewrite_add_boundary.py"
   ],
@@ -2251,6 +2257,8 @@
   "statement": "for Γ_NP, if T_w(s)=t then s equals the integer reverse (t2-t1/3, t3+w-2 t1/3, t1/3); on F this is (b-a/3, w-2a/3, a/3). This is inversion of step, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/KernelFamily.lean",
+  "decl": "unique_predecessor",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_reverse_closure.py"
   ],
@@ -4822,6 +4830,8 @@
   "statement": "If u and v are expanding itineraries (2^{|u|} < 3^{#O(u)} and 2^{|v|} < 3^{#O(v)}), then u ++ v is expanding: 2^{|u|+|v|} = 2^{|u|} 2^{|v|} < 3^{#O(u)} 3^{#O(v)}. A concatenation of expanding residual blocks is never an exponent-gap certificate. This is not a finite PE-run bound and not a halt theorem.",
   "source": "docs/problems/juggler_expanding_residual_concat.md",
   "lean": "Problems/Juggler/ItineraryStats.lean",
+  "decl": "exponentExpanding_append",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_expanding_residual_concat.py"
   ],

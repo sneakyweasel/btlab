@@ -2134,36 +2134,6 @@
       "candidates": [
         {
           "decl": "unique_normal_form",
-          "line": 381,
-          "score": 0.538,
-          "trust": "kernel"
-        },
-        {
-          "decl": "locally_confluent",
-          "line": 198,
-          "score": 0.176,
-          "trust": "kernel"
-        },
-        {
-          "decl": "isNF_normal",
-          "line": 433,
-          "score": 0.077,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [],
-      "id": "BTC-op-fragment-nd-nf",
-      "in_file": 44,
-      "lean": "BTCalculus/OpFragNewman.lean",
-      "names_own": [],
-      "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))\u2192D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "unique_normal_form",
           "line": 330,
           "score": 0.35,
           "trust": "kernel"
@@ -2281,20 +2251,20 @@
           "trust": "kernel"
         },
         {
-          "decl": "add_requires_carry_state",
-          "line": 237,
-          "score": 0.125,
-          "trust": "kernel"
-        },
-        {
           "decl": "apply_add_eq_iff",
           "line": 89,
           "score": 0.077,
           "trust": "kernel"
+        },
+        {
+          "decl": "pushIn_peak_semantic",
+          "line": 223,
+          "score": 0.059,
+          "trust": "kernel"
         }
       ],
       "composite": false,
-      "confidence": "low",
+      "confidence": "review",
       "definitions": [
         {
           "decl": "exactTriple",
@@ -2308,92 +2278,10 @@
         }
       ],
       "id": "BTC-constructor-sum-class",
-      "in_file": 27,
+      "in_file": 25,
       "lean": "BTCalculus/RewriteAddBoundary.lean",
       "names_own": [],
       "statement": "for U,V,W in {S,I+,I-,N}, the identity U(x)+V(y)=W(x+y) holds for all integers iff it is one of the eight concrete triples (S,S,S), (N,N,N), (I+,S,I+), (S,I+,I+), (I-,S,I-), (S,I-,I-), (I+,I-,S), (I-,I+,S); same-sign I+ or I- and mixed N+S are not constructor identities"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "pushIn_not_locally_confluent",
-          "line": 212,
-          "score": 0.6,
-          "trust": "kernel"
-        },
-        {
-          "decl": "D_add_unsound",
-          "line": 30,
-          "score": 0.235,
-          "trust": "kernel"
-        },
-        {
-          "decl": "add_requires_carry_state",
-          "line": 237,
-          "score": 0.192,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "pushInPeak",
-          "line": 178,
-          "score": 0.062
-        },
-        {
-          "decl": "DLocal",
-          "line": 37,
-          "score": 0.043
-        }
-      ],
-      "id": "BTC-push-in-S-peak",
-      "in_file": 27,
-      "lean": "BTCalculus/RewriteAddBoundary.lean",
-      "names_own": [],
-      "statement": "the named carry-free push-in system (unary D(S(t))\u2192t plus S(Add(t,u))\u2192Add(S(t),S(u)) and congruence, no D-through-Add) is not locally confluent: D(S(Add(X,Y))) has two distinct irreducibles Add(X,Y) and D(Add(S(X),S(Y))); both evaluate to X+Y"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "add_requires_carry_state",
-          "line": 237,
-          "score": 0.667,
-          "trust": "kernel"
-        },
-        {
-          "decl": "D_add_unsound",
-          "line": 30,
-          "score": 0.19,
-          "trust": "kernel"
-        },
-        {
-          "decl": "pushIn_not_locally_confluent",
-          "line": 212,
-          "score": 0.167,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "exactTriple",
-          "line": 86,
-          "score": 0.13
-        },
-        {
-          "decl": "DLocal",
-          "line": 37,
-          "score": 0.077
-        }
-      ],
-      "id": "BTC-add-requires-carry-state",
-      "in_file": 27,
-      "lean": "BTCalculus/RewriteAddBoundary.lean",
-      "names_own": [],
-      "statement": "the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence"
     },
     {
       "candidates": [
@@ -2727,47 +2615,6 @@
         "hub_nonreset"
       ],
       "statement": "for \u0393_NP, the MSD word (B*)^k \u00b7 (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "predecessor_on_F",
-          "line": 87,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "step_s3",
-          "line": 59,
-          "score": 0.167,
-          "trust": "kernel"
-        },
-        {
-          "decl": "qPrev_zero",
-          "line": 21,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "explicitPredecessor",
-          "line": 56,
-          "score": 0.182
-        },
-        {
-          "decl": "kernelPredFst",
-          "line": 93,
-          "score": 0.077
-        }
-      ],
-      "id": "OST-np-unique-predecessor",
-      "in_file": 13,
-      "lean": "Problems/Ostrowski/NP/KernelFamily.lean",
-      "names_own": [],
-      "statement": "for \u0393_NP, if T_w(s)=t then s equals the integer reverse (t2-t1/3, t3+w-2 t1/3, t1/3); on F this is (b-a/3, w-2a/3, a/3). This is inversion of step, not a bound on L_0"
     },
     {
       "candidates": [
@@ -4704,47 +4551,6 @@
     {
       "candidates": [
         {
-          "decl": "exponentExpanding_append",
-          "line": 115,
-          "score": 0.6,
-          "trust": "kernel"
-        },
-        {
-          "decl": "exponentExpanding_not_gap",
-          "line": 105,
-          "score": 0.231,
-          "trust": "kernel"
-        },
-        {
-          "decl": "odd_run_even_residual",
-          "line": 207,
-          "score": 0.133,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "review",
-      "definitions": [
-        {
-          "decl": "exponentGap",
-          "line": 87,
-          "score": 0.154
-        },
-        {
-          "decl": "exponentExpanding",
-          "line": 91,
-          "score": 0.105
-        }
-      ],
-      "id": "J-exponent-expanding-append",
-      "in_file": 23,
-      "lean": "Problems/Juggler/ItineraryStats.lean",
-      "names_own": [],
-      "statement": "If u and v are expanding itineraries (2^{|u|} < 3^{#O(u)} and 2^{|v|} < 3^{#O(v)}), then u ++ v is expanding: 2^{|u|+|v|} = 2^{|u|} 2^{|v|} < 3^{#O(u)} 3^{#O(v)}. A concatenation of expanding residual blocks is never an exponent-gap certificate. This is not a finite PE-run bound and not a halt theorem."
-    },
-    {
-      "candidates": [
-        {
           "decl": "minimal_nonterm_prefix_noncontracting",
           "line": 245,
           "score": 0.5,
@@ -6169,6 +5975,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 156,
-  "worth_reviewing": 40
+  "unresolved": 151,
+  "worth_reviewing": 36
 }

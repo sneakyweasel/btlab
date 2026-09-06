@@ -47840,13 +47840,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "If `step w s = t` then `s` is the integer reverse `explicitPredecessor t w`: the step map is invertible over the integers. Inversion of `step`, not a bound on `L_0`.",
       "file": "formal/Problems/Ostrowski/NP/KernelFamily.lean",
       "kind": "theorem",
       "ledger": [
         "OST-np-unique-predecessor"
       ],
-      "line": 63,
+      "line": 65,
       "module": "Problems.Ostrowski.NP.KernelFamily",
       "name": "unique_predecessor",
       "trust": "kernel"
@@ -47858,7 +47858,7 @@
       "ledger": [
         "OST-np-unique-predecessor"
       ],
-      "line": 77,
+      "line": 79,
       "module": "Problems.Ostrowski.NP.KernelFamily",
       "name": "predecessor_fst",
       "trust": "kernel"
@@ -47870,7 +47870,7 @@
       "ledger": [
         "OST-np-unique-predecessor"
       ],
-      "line": 87,
+      "line": 89,
       "module": "Problems.Ostrowski.NP.KernelFamily",
       "name": "predecessor_on_F",
       "trust": "kernel"
@@ -47882,7 +47882,7 @@
       "ledger": [
         "OST-np-unique-predecessor"
       ],
-      "line": 93,
+      "line": 95,
       "module": "Problems.Ostrowski.NP.KernelFamily",
       "name": "kernelPredFst",
       "trust": "kernel"
@@ -47894,7 +47894,7 @@
       "ledger": [
         "OST-np-unique-predecessor"
       ],
-      "line": 96,
+      "line": 98,
       "module": "Problems.Ostrowski.NP.KernelFamily",
       "name": "kernel_pred_fst",
       "trust": "kernel"
@@ -47906,7 +47906,7 @@
       "ledger": [
         "OST-np-unique-predecessor"
       ],
-      "line": 103,
+      "line": 105,
       "module": "Problems.Ostrowski.NP.KernelFamily",
       "name": "kernelPredFst_dvd_three_iff",
       "trust": "kernel"

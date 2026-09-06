@@ -60,6 +60,8 @@ theorem step_s3 (w : ℤ) (s : State) : (step w s).1 = 3 * s.2.2 := by
   rcases s with ⟨_, _, _⟩
   rfl
 
+/-- If `step w s = t` then `s` is the integer reverse `explicitPredecessor t w`:
+the step map is invertible over the integers. Inversion of `step`, not a bound on `L_0`. -/
 theorem unique_predecessor (w : ℤ) (s t : State) (h : step w s = t) :
     s = explicitPredecessor t w := by
   rcases s with ⟨s1, s2, s3⟩
