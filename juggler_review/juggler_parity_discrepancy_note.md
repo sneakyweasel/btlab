@@ -4892,6 +4892,46 @@ A defect is expanded when its coefficient drifts slowly enough to
 window, and otherwise becomes part of what the kernel is a kernel
 *of*:
 
+> **An open question about which defects the \(9/4\) stop should
+> screen.** The two sentences above say that only the deepest blocked
+> defect names the kernel, and that shallower ones are not expanded but
+> stay exact inside its argument. The table below, and the screen built
+> from it, nevertheless apply the \(9/4\) test to *every* blocked
+> defect of a letter --- the \(OOOO*\) row lists \(57/16\) and
+> \(45/16\) while its deepest sits at \(27/16\). Both readings cannot
+> be right, and the difference is not academic.
+>
+> Exactly one contractor on the whole frontier is barred by the
+> \(9/4\) stop and by nothing else: \(OOOEOOEE\), at depth eight. Its
+> letters ask for \(\tfrac{3k}4n^{9/8}\) at level 2 --- Theorem 5.3's
+> own monomial --- and \(\tfrac{27k}{32}n^{33/32}\) at level 1, which
+> are precisely the two the surviving words \(OOOEOEE\) and
+> \(OOOEOEOE\) ask for and nothing more. Its letter 7 rides
+> \(\theta_5\) at \(81/64\), whose base \(27/16\) has runs and whose
+> \(E<2\) holds. What bars it is \(\theta_1\), the *shallowest* defect,
+> at \(\tfrac{81k}{64}n^{147/64}\) --- and \(\tfrac{147}{64}\) exceeds
+> \(\tfrac94=\tfrac{144}{64}\) by \(\tfrac3{64}\).
+>
+> Under the printed reading the screen stops at \(227/256\). Under the
+> deepest-only reading \(OOOEOOEE\) joins, worth \(\tfrac1{256}\), and
+> the screen stops at \(\tfrac{57}{64}\) --- the same figure this
+> section reaches only by way of a square-root level-3 kernel for
+> \(OOEOOEE\), a species with no theorem, no branch runs and the worst
+> composite factor on the frontier. Two routes to one number, and one
+> of them turns on whether a \(3/64\) excess in an unexpanded
+> coefficient is an obstruction.
+>
+> This paper does not settle it. The \(9/4\) is the figure Conjecture
+> 7.3 names when it places \(kn^{45/16}\) beyond where every method
+> here stops, and \(45/16=2.8125\) is far above the line where
+> \(147/64=2.2969\) sits just over it. Whether the stop is about
+> coefficients that must be handled --- in which case an unexpanded
+> \(\theta_1\) is not one --- or about the linearisation as a whole is
+> a question for the derivation of that threshold, which is not in
+> this paper. The screen is left as printed, and this is recorded as
+> the one place where a reading of a threshold, rather than a theorem,
+> stands between \(227/256\) and \(\tfrac{57}{64}\).
+
 | split | deepest blocked | monomial | \(>9/4\) | status |
 |---|---|---|---|---|
 | \(OOEO*\), letter 5 | none | --- | none | \(N^{43/48}\), windows only |

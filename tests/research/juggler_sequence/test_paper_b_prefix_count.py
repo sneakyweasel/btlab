@@ -1896,3 +1896,66 @@ def test_paper_records_the_domain_and_the_level_three_theorem() -> None:
     assert "every contractor begins" in text
     assert "a theorem about level three" in text
     assert "Levels beyond it are not uniformly barred" in text
+
+
+# --- which defects the 9/4 stop should screen ---
+
+
+def test_one_contractor_is_barred_by_the_stop_alone() -> None:
+    """OOOEOOEE at depth eight, and it misses by 3/64."""
+    r = B.stop_reading_gap()
+    assert [w for w, _e in r["stop_alone"]] == ["OOOEOOEE"]
+    assert r["stop_alone"][0][1] == Fraction(3, 64)
+    assert Fraction(147, 64) - Fraction(9, 4) == Fraction(3, 64)
+    # and the offending defect is theta_1, the shallowest, not the one the kernel rides
+    prof = B.blocked_profile("OOOEOOEE", 7)
+    over = [(s, g) for s, g, _sp in prof if g > B.STOP_THRESHOLD]
+    assert over == [(1, Fraction(147, 64))]
+    assert B.deepest_blocked("OOOEOOEE", 7)[0] == 5
+    assert B.deepest_blocked("OOOEOOEE", 7)[2] == Fraction(81, 64) < B.STOP_THRESHOLD
+
+
+def test_it_asks_for_exactly_the_two_kernels_already_named() -> None:
+    """Letter 4 at level 2 on 9/8, letter 6 at level 1 on 33/32 -- and nothing else new."""
+    for t, level, alpha in ((4, 2, Fraction(9, 8)), (6, 1, Fraction(33, 32)),
+                            (7, 5, Fraction(81, 64))):
+        deep = B.deepest_blocked("OOOEOOEE", t)
+        assert deep[0] == level and deep[2] == alpha, (t, deep)
+    # letter 7 is fine on both of the other axes
+    assert B.has_branch_runs(B.branch_base("OOOEOOEE", 7))
+    assert B.linearisation_safe("OOOEOOEE", 7)
+    # the same two kernels the printed screen's survivors ask for
+    assert B.unobstructed("OOOEOEE") == [(4, 2), (6, 1)]
+
+
+def test_the_two_readings_differ_by_one_over_256() -> None:
+    """227/256 as printed, 57/64 if the stop is tested on the deepest defect only."""
+    r = B.stop_reading_gap()
+    assert r["printed_ceiling"] == Fraction(227, 256)
+    assert r["deepest_only_ceiling"] == Fraction(57, 64) == Fraction(228, 256)
+    assert r["gap"] == Fraction(1, 256)
+    assert B.unobstructed("OOOEOOEE") is None
+    assert B.unobstructed_deepest_only("OOOEOOEE") is not None
+    # every other word is unmoved by the reading
+    for d, row in zip((7, 8, 10, 12, 13), r["rows"]):
+        extra = set(row["deepest_only"]) - set(row["printed"])
+        assert extra == ({"OOOEOOEE"} if d == 8 else set()), (d, extra)
+
+
+def test_the_paper_applies_the_stop_to_shallow_defects_too() -> None:
+    """The OOOO* row lists 57/16 and 45/16 while its deepest sits at 27/16."""
+    deep = B.deepest_blocked("OOOOE", 5)
+    assert deep[2] == Fraction(27, 16) < B.STOP_THRESHOLD
+    over = B.beyond_methods("OOOOE", 5)
+    assert sorted(over) == [Fraction(45, 16), Fraction(57, 16)]
+    # so the printed screen bars it on defects the kernel does not ride
+    assert B.unobstructed("OOOOEEE") is None
+
+
+def test_paper_records_the_question_without_settling_it() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "An open question about which defects" in text
+    assert "Both readings cannot" in text
+    assert "This paper does not settle it" in text
+    assert "The screen is left as printed" in text
+    assert "147" in text and "3/64" in text

@@ -1043,6 +1043,81 @@ def branch_runs_by_level(dmax: int = 13) -> dict[str, Any]:
     }
 
 
+
+def unobstructed_deepest_only(word: str) -> list[tuple[int, int]] | None:
+    """`unobstructed`, but with the 9/4 stop applied only to the defect the kernel rides.
+
+    Section 7 says the deepest blocked defect names the kernel and the shallower ones stay exact
+    inside its argument, unexpanded.  The printed screen nevertheless tests every blocked defect
+    of a letter against 9/4.  This is the other reading.  See `stop_reading_gap`.
+    """
+    out: list[tuple[int, int]] = []
+    for t in range(3, len(word) + 1):
+        deep = deepest_blocked(word, t)
+        if deep is None:
+            continue
+        if (not has_branch_runs(branch_base(word, t))
+                or deep[2] > STOP_THRESHOLD
+                or not linearisation_safe(word, t)):
+            return None
+        out.append((t, deep[0]))
+    return out
+
+
+def stop_reading_gap(depths: tuple[int, ...] = (7, 8, 10, 12, 13)) -> dict[str, Any]:
+    """What the two readings of the 9/4 stop cost, in certified density.
+
+    Exactly one contractor on the frontier is barred by the stop and by nothing else:
+    ``OOOEOOEE`` at depth eight.  Its letters ask for Theorem 5.3's own ``(3k/4) n^{9/8}`` at
+    level 2 and the level-1 ``(27k/32) n^{33/32}`` -- the same two the surviving words ask for --
+    and its letter 7 rides ``theta_5`` at ``81/64`` with runs and ``E < 2``.  What bars it is
+    ``theta_1``, the shallowest defect, at ``(81k/64) n^{147/64}``, exceeding ``9/4 = 144/64`` by
+    ``3/64``.
+
+    So the printed screen stops at ``227/256`` and the deepest-only reading at ``57/64`` -- the
+    figure Section 7 otherwise reaches only through a square-root level-3 kernel.  Not settled
+    here: ``9/4`` is the figure Conjecture 7.3 names, and its derivation is not in this paper.
+    """
+
+    printed = Fraction(0)
+    deepest = Fraction(0)
+    rows: list[dict[str, Any]] = []
+    stop_alone: list[tuple[str, Fraction]] = []
+    for d in depths:
+        cw = [w + "E" for w in dying_words(d)]
+        if not cw:
+            continue
+        each = (ceiling(d) - ceiling(d - 1)) / len(cw)
+        now = [w for w in cw if unobstructed(w)]
+        alt = [w for w in cw if unobstructed_deepest_only(w)]
+        printed += each * len(now)
+        deepest += each * len(alt)
+        rows.append({"depth": d, "each": each, "printed": now, "deepest_only": alt})
+        for w in cw:
+            if unobstructed(w):
+                continue
+            why = set()
+            for t in range(2, len(w) + 1):
+                if beyond_methods(w, t):
+                    why.add("stop")
+                base = branch_base(w, t)
+                if base is not None and not has_branch_runs(base):
+                    why.add("runs")
+                if not linearisation_safe(w, t):
+                    why.add("E")
+            if why == {"stop"}:
+                excess = min(g - STOP_THRESHOLD for t in range(2, len(w) + 1)
+                             for g in beyond_methods(w, t))
+                stop_alone.append((w, excess))
+    return {
+        "rows": rows,
+        "stop_alone": stop_alone,
+        "printed_ceiling": Fraction(7, 8) + printed,
+        "deepest_only_ceiling": Fraction(7, 8) + deepest,
+        "gap": deepest - printed,
+    }
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")

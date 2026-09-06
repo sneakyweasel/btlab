@@ -33021,3 +33021,148 @@ Best next question
   probe -- the one where a reader has the argument and the least
   numerical company?
 ```
+
+ ### One word, 3/64 over the stop, and a second route to 57/64
+
+The question was the level-four site `OOEOOOE` letter 7. It is moot —
+that word's kernel rides `theta_5`, not `theta_4`, and the screen
+rejects it. But the scan that established this found something else.
+
+**Exactly one contractor on the frontier is barred by the `9/4` stop
+and by nothing else:** `OOOEOOEE`, at depth eight, worth `1/256`. Its
+letters ask for `(3k/4) n^{9/8}` at level 2 — Theorem 5.3's own
+monomial — and `(27k/32) n^{33/32}` at level 1, which are exactly the
+two the surviving words `OOOEOEE` and `OOOEOEOE` ask for, and nothing
+more. Its letter 7 rides `theta_5` at `81/64`, base `27/16` with runs,
+`E < 2`. What bars it is `theta_1`, the **shallowest** defect, at
+`(81k/64) n^{147/64}` — and `147/64` exceeds `9/4 = 144/64` by `3/64`.
+
+**And the paper's own text is in two minds about whether that should
+bar it.** Section 7 says the deepest blocked defect names the kernel
+and the shallower ones "stay exact inside the kernel's argument",
+unexpanded. The table beside that sentence, and the screen built from
+it, apply the `9/4` test to every blocked defect — the `OOOO*` row
+lists `57/16` and `45/16` while its deepest sits at `27/16`. Both
+readings cannot be right.
+
+```text
+   printed reading (all defects)      227/256
+   deepest-only reading               57/64 = 228/256
+```
+
+`OOOEOOEE` is the only word that moves; every other contractor at every
+paying depth is unaffected by the reading.
+
+**And `57/64` is the figure Section 7 otherwise reaches only through a
+square-root level-3 kernel for `OOEOOEE`** — a species with no theorem,
+no branch runs, and the worst composite factor on the frontier (129).
+So there are two routes to the same number, and one of them turns on
+whether a `3/64` excess in an unexpanded coefficient is an obstruction.
+
+Not settled, and the manuscript says so. `9/4` is the figure Conjecture
+7.3 names when it places `k n^{45/16}` beyond where every method here
+stops; `45/16 = 2.8125` is far above the line where `147/64 = 2.2969`
+sits just over it. Whether the stop is about coefficients that must be
+*handled* — in which case an unexpanded `theta_1` is not one — or about
+the linearisation as a whole is a question for the derivation of that
+threshold, which is not in this paper. The screen is left as printed.
+
+```text
+What was learned
+- I nearly built this on surviving_words(7), which is the 13 words that
+  do NOT contract; the words that pay are the 3 that newly do. Caught
+  by the count not matching the screen's "1 of 3"
+- the recorded question was moot and the scan answering it was not
+- the paper applies the 9/4 stop to defects its own text says are never
+  expanded, and exactly one word's fate turns on that
+- 57/64 has two routes and the paper names only the expensive one
+Strongest theorem
+- OOOEOOEE is the unique frontier contractor barred by the 9/4 stop
+  alone, by 3/64, on its shallowest defect; the two readings of the
+  stop give 227/256 and 57/64 and differ on that word only
+Strongest refutation
+- my own first pass, which used the non-contracting words and would
+  have reported three such words at depth seven instead of one at
+  depth eight
+Reusable machinery
+- unobstructed_deepest_only, stop_reading_gap; five tests
+Branch status
+- PARK
+Why
+  The question is stated precisely, the arithmetic is exact, and the
+  resolution needs the derivation of the 9/4 threshold, which is in
+  Conjecture 7.3's source and not here. Nothing further to compute.
+Best next question
+- for the reader who has that derivation: is the 9/4 stop a statement
+  about coefficients the linearisation must handle, or about the
+  linearisation as a whole? If the former, OOOEOOEE is unobstructed and
+  the screen's ceiling is 57/64 without any square-root kernel.
+```
+
+## The row with the least company was Proposition 7.1, and its engine counts
+
+Following the last entry's question. Measuring each of the nine
+this-paper-only rows by probes plus exponent checks:
+
+| row | probe | checks |
+|---|---|---|
+| Prop. 7.1 reduction | none | `0` |
+| Thm. 4.11, 4.12 | none | `0` (asymptotic, no finite check exists) |
+| Lem. 3.7 shifted window | none | 1 |
+| Prop. 7.4 shift average | none | 2 |
+| Thm. 4.4, 4.7, 4.8, Cor. 6.4 | probe | 1-2 |
+| Lem. 5.2, Thm. 6.1, Thm. 6.3 | probe | 17-55 |
+
+Proposition 7.1 had nothing, and unlike 4.11 and 4.12 its engine is
+finite.
+
+**What is checkable.** The conclusion is conditional and asymptotic, but
+the count underneath is not: `N_d`, the number of length-`d` words with
+no contracting prefix, is claimed `<= 2^d e^(-cd)` with
+`c = 2(log2/log3 - 1/2)^2 > 0.0342`, and a prefix contracts exactly when
+its scale exponent falls below 1 -- which
+`paper_b_prefix_count.iterate_exponents` already computes.
+
+| `d` | 1 | 4 | 8 | 12 | 16 | 18 |
+|---|---|---|---|---|---|---|
+| `N_d` | 1 | 3 | 19 | 226 | 2114 | 7495 |
+| ratio to the bound | 0.517 | 0.215 | 0.098 | 0.083 | 0.056 | 0.053 |
+
+The bound holds at every `d` and its slack grows: the observed rate is
+about `0.21`, some `6x` the printed `c = 0.0343`. Proposition 7.1 needs
+only `c > 0`, so the argument loses nothing -- what is loose is a
+structural count the paper displays, by a factor growing exponentially
+in `d`.
+
+`c` matches `HOEFFDING_C` in the prefix module to machine precision, so
+the paper, that module and this probe agree on the constant and now on
+what it bounds.
+
+```text
+What was learned
+- the least-covered of the nine was Proposition 7.1 with no probe and
+  no exponent check, and its engine is a finite word count
+- N_d <= 2^d e^{-cd} holds to d = 18 and is loose by 19x there; the
+  observed rate is 6x the printed c
+- the Hoeffding constant is the same number in three places, which is
+  what made the count cheap to write
+Strongest theorem
+- none; a count against a printed bound
+Strongest refutation
+- none; the bound holds everywhere checked
+Reusable machinery
+- proposition_7_1_word_count, enumerating words to depth 18 and
+  reporting the ratio and the observed rate; one test
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Ranking the nine by company took one query and pointed at the one
+  row where a reader had the argument and nothing else. It turned out
+  to be checkable in twenty lines, which is the argument for ranking
+  rather than guessing.
+Best next question
+- Proposition 7.4 is next by that ranking, with two checks and no
+  probe, and its statement is an exact inequality with printed
+  constants. Does the shift-averaged L^2 bound hold at its constant
+  4/pi, and is that constant attained?
+```
