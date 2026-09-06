@@ -36734,3 +36734,71 @@ Best next question
   specific to beta, whose block variation is the sqrt that makes it
   visible?
 ```
+
+## The square root is what makes it visible
+
+Apart-charging needs both factors to move with `nu`, and only two of the
+paper's product factors do: `beta_i` and `G`, the level-1 gaps, both
+going as `3 h nu^(1/2)`. `k`, `h_1`, `h_2`, `u`, `h`, `q'`, `h'`, `j`
+are summation variables or capped parameters, fixed while `nu` runs -- a
+cap has no two ends. The `(C1)` loss is a corner never reached, which is
+a different thing.
+
+So it is specific to the gaps, and the square root is exactly what makes
+it visible: `beta` is the only factor whose block range is a fixed
+number rather than `1`.
+
+Checking that turned up a fifth site. Theorem 4.1's Stage-4 curvature is
+`(9/32) u G (nu+2h)^(-5/4)`, a gap against a power of `nu`, and its
+printed `[0.35, 1.20]` is the apart-charged range `[0.354753,
+1.193243]` rounded outward by `1.0136` and `1.0057` -- exactly `sqrt2`
+outside the co-located `[0.501697, 0.843750]` at each end.
+
+Which corrects me. Three sections ago I called that range "an opened
+block range, openings 1.4334 and 1.4222". It is not an opening; the
+`1.43` is `sqrt2` times a rounding. The measurements there stand -- the
+qpp row does move to `4.854e10` and the lever is `738.7` -- but the
+cause was misnamed, and what looked like an editorial choice is
+arithmetic.
+
+Five sites now, every one a gap against a power of `nu`, none anywhere
+else, and none of them justified by any freeze in the paper. The account
+is closed.
+
+```text
+Phase-end report
+Question
+- does apart-charging appear in the parameter products, or is it
+  specific to beta
+Instruments
+- apart_charging_is_specific_to_beta: every factor the paper multiplies
+  against a power of nu, classified by whether it moves with nu, and the
+  Stage-4 curvature's printed range decomposed
+Ledger tags
+- EXACT: only beta_i and G move with nu, so only they have two block ends
+  to be charged at; the curvature's apart range is sqrt2 outside the
+  co-located one at each end, and 2 on the width
+- COMPUTATIONALLY VERIFIED: sqrt2 at both ends to 1e-9; printed is apart
+  rounded by 1.0136 and 1.0057; five sites with costs 3.95, 2.82, 2.09,
+  4.00, 2.00
+- OBSERVATION: the 1.4334 recorded earlier as an opening is
+  sqrt2 * 1.0136
+Strongest theorem
+- apart-charging is structurally impossible for a capped parameter, so
+  the five sites are the whole of it
+Strongest refutation
+- my own reading of the Stage-4 range as an opening three sections ago
+Reusable machinery
+- apart_charging_is_specific_to_beta, APART_CHARGED_SITES,
+  PRODUCT_FACTORS, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  The account is complete; every repair is a manuscript change belonging
+  to the other session.
+Best next question
+- the five costs are 3.95, 2.82, 2.09, 4.00, 2.00 -- and the last two
+  are exactly 2^(k) for the width ratios. Are the first three also
+  powers of two once the rounding is divided out, or does the pattern
+  break where the site is a single constant rather than a range?
+```

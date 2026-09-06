@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "bbc55bff084a7516702f273413a814ce25590704",
+  "git_commit": "2ecfd48b58d09980ce2e20646431ec49a02ea237",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -7019,6 +7019,114 @@
       "Lem 5.2b lambda_0 range"
     ]
   },
+  "apart_charging_is_specific_to_beta": {
+    "sites": [
+      {
+        "site": "Lem 5.1(iii) |G'| curvature",
+        "printed": 20.0,
+        "true": 5.0625,
+        "cost": 3.95
+      },
+      {
+        "site": "Lem 5.1(iii) |G''| curvature",
+        "printed": 25.0,
+        "true": 8.859375,
+        "cost": 2.82
+      },
+      {
+        "site": "Thm 5.3 j=0 anchor",
+        "printed": 5.3,
+        "true": 2.53125,
+        "cost": 2.09
+      },
+      {
+        "site": "Lem 5.2b lambda_0 range",
+        "printed": 6.290323,
+        "true": 1.5422108254079407,
+        "cost": 4.0
+      },
+      {
+        "site": "Thm 4.1 Stage-4 curvature",
+        "printed": 3.428571,
+        "true": 1.681792830507429,
+        "cost": 2.0
+      }
+    ],
+    "site_count": 5,
+    "factors": [
+      {
+        "factor": "beta_i = floor(Delta_{2h_i} X) + kappa_i",
+        "depends_on_nu": true,
+        "scale": "3 h_i nu^(1/2)"
+      },
+      {
+        "factor": "G = floor(Delta_h X)",
+        "depends_on_nu": true,
+        "scale": "3 h nu^(1/2)"
+      },
+      {
+        "factor": "k",
+        "depends_on_nu": false,
+        "scale": "<= P^(1/24)"
+      },
+      {
+        "factor": "h_1, h_2",
+        "depends_on_nu": false,
+        "scale": "<= P^(1/48), P^(1/24)"
+      },
+      {
+        "factor": "u, h",
+        "depends_on_nu": false,
+        "scale": "summation variables"
+      },
+      {
+        "factor": "q', h'",
+        "depends_on_nu": false,
+        "scale": "|q'| h' <= P^(1/2)"
+      },
+      {
+        "factor": "j",
+        "depends_on_nu": false,
+        "scale": "frozen per branch"
+      }
+    ],
+    "nu_dependent_factors": [
+      "beta_i = floor(Delta_{2h_i} X) + kappa_i",
+      "G = floor(Delta_h X)"
+    ],
+    "parameter_factors": [
+      "k",
+      "h_1, h_2",
+      "u, h",
+      "q', h'",
+      "j"
+    ],
+    "only_the_gaps_depend_on_nu": true,
+    "a_parameter_has_no_block_range": true,
+    "c1_corner_is_a_different_loss": true,
+    "curvature_together": [
+      0.501696751641773,
+      0.84375
+    ],
+    "curvature_apart": [
+      0.3547531751851608,
+      1.193242693252299
+    ],
+    "curvature_printed": [
+      0.35,
+      1.2
+    ],
+    "apart_costs_root_two_low": 1.4142135623730951,
+    "apart_costs_root_two_high": 1.4142135623730951,
+    "root_two_at_both_ends": true,
+    "width_ratio": 2.0000000000000004,
+    "width_ratio_is_two": true,
+    "rounding_low": 1.013580500529031,
+    "rounding_high": 1.005662977687534,
+    "printed_is_apart_plus_a_rounding": true,
+    "the_1_43_was_root_two_times_a_rounding": true,
+    "was_recorded_as_an_opening": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -7086,5 +7194,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 117.94811034202576
+  "elapsed_seconds": 96.15344595909119
 }

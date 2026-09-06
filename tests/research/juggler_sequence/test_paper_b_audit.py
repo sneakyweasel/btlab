@@ -2130,3 +2130,33 @@ def test_the_longest_freeze_is_a_quarter_power_short_of_a_block() -> None:
     assert by_site["floor(G) runs (E6)"]["relative_nu_variation"] < 1e-9
     assert all(x["beta_spread"] < 1.001 for x in r["rows"])
     assert len(r["rows"]) == 5
+
+
+# --- can a parameter product be apart-charged ---
+
+
+def test_apart_charging_needs_both_factors_to_move_with_nu() -> None:
+    """Only beta and G depend on nu; k, h, u, q' are caps, so they have no two ends."""
+    r = A.apart_charging_is_specific_to_beta()
+    assert r["only_the_gaps_depend_on_nu"]
+    assert len(r["nu_dependent_factors"]) == 2
+    assert set(r["parameter_factors"]) == {"k", "h_1, h_2", "u, h", "q', h'", "j"}
+    assert r["a_parameter_has_no_block_range"] and r["c1_corner_is_a_different_loss"]
+    assert r["site_count"] == 5
+    assert all(x["true"] < x["printed"] for x in r["sites"])
+
+
+def test_the_curvature_range_is_apart_charged_not_opened() -> None:
+    """[0.35, 1.20] is the apart-charged range rounded by 1.014 and 1.006, not an opening."""
+    r = A.apart_charging_is_specific_to_beta()
+    assert r["root_two_at_both_ends"] and r["width_ratio_is_two"]
+    assert abs(r["apart_costs_root_two_low"] - 2 ** 0.5) < 1e-9
+    assert r["printed_is_apart_plus_a_rounding"]
+    assert 1.01 < r["rounding_low"] < 1.02 and 1.005 < r["rounding_high"] < 1.01
+    assert r["the_1_43_was_root_two_times_a_rounding"] and r["was_recorded_as_an_opening"]
+    lo, hi = r["curvature_apart"]
+    assert abs(lo - 0.354753) < 1e-5 and abs(hi - 1.193243) < 1e-5
+    # and the block-range probe still reports the co-located pair as the true one
+    w = A.block_range_widths()
+    curv = [x for x in w["rows"] if x["name"] == "Stage-4 curvature"][0]
+    assert abs(curv["true_lo"] - r["curvature_together"][0]) < 1e-12

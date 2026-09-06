@@ -6235,3 +6235,82 @@ still where the pattern actually appears.
 Probe: `freeze_scales_justify_nothing`, `FREEZE_SCALES`. Two tests.
 Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
 manuscript or certificate edit.
+
+## It is specific to the gaps --- and a fifth site, which I had recorded as an opening
+
+Apart-charging needs *both* factors to move with `nu`. Of everything the
+paper multiplies against a power of `nu`, only two do:
+
+```text
+  factor                                  moves with nu?   scale
+  beta_i = floor(Delta_{2h_i} X) + kappa   yes             3 h_i nu^(1/2)
+  G = floor(Delta_h X)                     yes             3 h nu^(1/2)
+  k                                        no              <= P^(1/24)
+  h_1, h_2                                 no              <= P^(1/48), P^(1/24)
+  u, h                                     no              summation variables
+  q', h'                                   no              |q'| h' <= P^(1/2)
+  j                                        no              frozen per branch
+```
+
+A parameter has a cap, not a block range, so there are no two ends to
+charge it at. The `(C1)` loss recorded earlier --- `k h_1h_2` taken at
+its corner `P^(1/8)` while the operating load is `2 P^(7/96)` --- is a
+different thing: a corner never reached, not two ends of one block. So
+the pattern is specific to the gaps, and the square root in
+`beta ~ nu^(1/2)` is exactly what makes it visible: it is the only
+factor whose block range is a fixed number rather than `1`.
+
+**And checking that turned up a fifth site.** Theorem 4.1's Stage-4
+curvature is `(9/32) u G (nu+2h)^(-5/4)` --- a gap times a power of
+`nu` --- and its printed range is not an opening of the block range but
+the apart-charged one:
+
+```text
+  co-located   (9/32)(3)[2^(-3/4), 1]  =  [0.501697, 0.843750]   width 2^(3/4)
+  apart                                   [0.354753, 1.193243]   width 2^(7/4)
+  printed                                 [0.35,     1.20    ]
+```
+
+The apart-charging costs exactly `sqrt2` at each end --- so `2` on the
+width --- and the printed pair is that rounded outward by `1.0136` and
+`1.0057`.
+
+*Correction.* Three sections ago I recorded this range as "an opened
+block range, openings `1.4334` and `1.4222`". It is not an opening: it
+is `sqrt2` of apart-charging times those roundings. The measurements
+there stand --- the qpp row does move from `2.982e11` to `4.854e10`, and
+the lever is `738.7` --- but the cause was misnamed, and the `1.43` that
+looked like an editorial choice is arithmetic.
+
+**Five sites, one shape.**
+
+```text
+  site                          printed     true       cost
+  Lem 5.1(iii) |G'| curvature    20          81/16      3.95
+  Lem 5.1(iii) |G''| curvature   25          567/64     2.82
+  Thm 5.3 j=0 anchor              5.3        81/32      2.09
+  Lem 5.2b lambda_0 range        width 6.29  2^(5/8)    4.00
+  Thm 4.1 Stage-4 curvature      width 3.43  2^(3/4)    2.00
+```
+
+Every one a gap against a power of `nu`; no site anywhere else. Together
+with the previous section --- no freeze in the paper justifies any of
+them, by a factor of `4894` --- the account is closed: one avoidable
+loss, five occurrences, all in the same kind of product, and none of
+them with a reason.
+
+Tags. EXACT: only `beta_i` and `G` among the paper's product factors are
+functions of `nu`, so only they have two block ends to be charged at; a
+capped parameter has none, and the `(C1)` corner is a different loss.
+The Stage-4 curvature's apart-charged range is
+`(9/32)(3)[2^(-5/4), 2^(1/2)] = [0.354753, 1.193243]`, exactly `sqrt2`
+outside the co-located `[0.501697, 0.843750]` at each end.
+COMPUTATIONALLY VERIFIED: `sqrt2` at both ends to `1e-9`; the width
+ratio exactly `2`; the printed pair is the apart one rounded by `1.0136`
+and `1.0057`; five sites with costs `3.95`, `2.82`, `2.09`, `4.00`,
+`2.00`. OBSERVATION: the `1.4334` recorded earlier as an opening is
+`sqrt2 * 1.0136`.
+
+Probe: `apart_charging_is_specific_to_beta`, `APART_CHARGED_SITES`,
+`PRODUCT_FACTORS`. Two tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0`
+unmoved at `3.5858e13`. No manuscript or certificate edit.

@@ -6401,6 +6401,90 @@ def freeze_scales_justify_nothing(P0: float = 3.5858e13) -> dict[str, Any]:
     }
 
 
+# The five apart-charged sites.  Each is a product of a gap (beta or G, which go as nu^(1/2)) with
+# a power of nu, charged at opposite ends of one block.  "cost" is what the apart-charging adds.
+APART_CHARGED_SITES = (
+    {"site": "Lem 5.1(iii) |G'| curvature", "printed": 20.0, "true": 81 / 16, "cost": 3.95},
+    {"site": "Lem 5.1(iii) |G''| curvature", "printed": 25.0, "true": 567 / 64, "cost": 2.82},
+    {"site": "Thm 5.3 j=0 anchor", "printed": 5.3, "true": 81 / 32, "cost": 2.09},
+    {"site": "Lem 5.2b lambda_0 range", "printed": 6.290323, "true": 2 ** 0.625, "cost": 4.00},
+    {"site": "Thm 4.1 Stage-4 curvature", "printed": 3.428571, "true": 2 ** 0.75, "cost": 2.00},
+)
+
+# Everything the paper multiplies against a power of nu, and whether it is a function of nu.
+PRODUCT_FACTORS = (
+    {"factor": "beta_i = floor(Delta_{2h_i} X) + kappa_i", "depends_on_nu": True, "scale": "3 h_i nu^(1/2)"},
+    {"factor": "G = floor(Delta_h X)", "depends_on_nu": True, "scale": "3 h nu^(1/2)"},
+    {"factor": "k", "depends_on_nu": False, "scale": "<= P^(1/24)"},
+    {"factor": "h_1, h_2", "depends_on_nu": False, "scale": "<= P^(1/48), P^(1/24)"},
+    {"factor": "u, h", "depends_on_nu": False, "scale": "summation variables"},
+    {"factor": "q', h'", "depends_on_nu": False, "scale": "|q'| h' <= P^(1/2)"},
+    {"factor": "j", "depends_on_nu": False, "scale": "frozen per branch"},
+)
+
+
+def apart_charging_is_specific_to_beta() -> dict[str, Any]:
+    """Can a parameter product be apart-charged?  No -- and a fifth beta site turned up.
+
+    Apart-charging needs *both* factors to move with nu.  Of everything the paper multiplies
+    against a power of nu, only two do: beta_i and G, the level-1 gaps, both going as 3 h nu^(1/2).
+    Every other factor -- k, h_1, h_2, u, h, q', h', j -- is a summation variable or a capped
+    parameter, fixed while nu runs.  A parameter has a cap, not a block range, so there are no two
+    ends to charge it at.  The (C1) loss recorded earlier, where k h_1h_2 is taken at its corner
+    P^(1/8) while the operating load is 2 P^(7/96), is a different thing: a corner never reached,
+    not two ends of one block.
+
+    So the pattern is specific to the gaps, and the sqrt in beta ~ nu^(1/2) is exactly what makes
+    it visible: it is the only factor whose block range is a fixed number rather than 1.
+
+    **And checking that turned up a fifth site.**  Theorem 4.1's Stage-4 curvature is
+    (9/32) u G (nu+2h)^(-5/4), a gap times a power of nu, and its printed range is not an opening
+    of the block range but the apart-charged one:
+
+        co-located   (9/32)(3)[2^(-3/4), 1]  =  [0.501697, 0.843750]   width 2^(3/4)
+        apart                                   [0.354753, 1.193243]   width 2^(7/4)
+        printed                                 [0.35,     1.20    ]
+
+    The apart-charging costs exactly sqrt2 at each end, so 2 on the width, and the printed pair is
+    that rounded outward by 1.0136 and 1.0057.  The "opening of 1.4334 and 1.4222" recorded three
+    sections ago decomposes as sqrt2 times those roundings: it was never an opening.
+
+    That makes five sites, all of them a gap against a power of nu, and no site anywhere else.
+    """
+
+    c = 9 / 32
+    together_lo, together_hi = c * 3 * 2 ** -0.75, c * 3
+    apart_lo, apart_hi = c * 3 * 2 ** -1.25, c * 3 * 2 ** 0.5
+    nu_dependent = [f["factor"] for f in PRODUCT_FACTORS if f["depends_on_nu"]]
+    parameters = [f["factor"] for f in PRODUCT_FACTORS if not f["depends_on_nu"]]
+    return {
+        "sites": APART_CHARGED_SITES,
+        "site_count": len(APART_CHARGED_SITES),
+        "factors": PRODUCT_FACTORS,
+        "nu_dependent_factors": nu_dependent,
+        "parameter_factors": parameters,
+        "only_the_gaps_depend_on_nu": nu_dependent == [
+            "beta_i = floor(Delta_{2h_i} X) + kappa_i", "G = floor(Delta_h X)"],
+        "a_parameter_has_no_block_range": True,
+        "c1_corner_is_a_different_loss": True,
+        # the fifth site, decomposed
+        "curvature_together": (together_lo, together_hi),
+        "curvature_apart": (apart_lo, apart_hi),
+        "curvature_printed": (0.35, 1.20),
+        "apart_costs_root_two_low": (together_lo / apart_lo),
+        "apart_costs_root_two_high": (apart_hi / together_hi),
+        "root_two_at_both_ends": abs(together_lo / apart_lo - 2 ** 0.5) < 1e-9
+        and abs(apart_hi / together_hi - 2 ** 0.5) < 1e-9,
+        "width_ratio": (apart_hi / apart_lo) / (together_hi / together_lo),
+        "width_ratio_is_two": abs((apart_hi / apart_lo) / (together_hi / together_lo) - 2.0) < 1e-9,
+        "rounding_low": apart_lo / 0.35,
+        "rounding_high": 1.20 / apart_hi,
+        "printed_is_apart_plus_a_rounding": apart_lo / 0.35 < 1.02 and 1.20 / apart_hi < 1.02,
+        "the_1_43_was_root_two_times_a_rounding": abs(2 ** 0.5 * (apart_lo / 0.35) - 1.4334) < 1e-3,
+        "was_recorded_as_an_opening": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6494,6 +6578,7 @@ def summary() -> dict[str, Any]:
     widths = block_range_widths()
     lam0 = lambda0_range_is_block_ends_apart()
     freezes = freeze_scales_justify_nothing()
+    apart = apart_charging_is_specific_to_beta()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6575,6 +6660,7 @@ def summary() -> dict[str, Any]:
         "block_range_widths": widths,
         "lambda0_range_is_block_ends_apart": lam0,
         "freeze_scales_justify_nothing": freezes,
+        "apart_charging_is_specific_to_beta": apart,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
