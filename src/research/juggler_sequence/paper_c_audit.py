@@ -12,7 +12,8 @@ none of which is a proof:
 2. **Tao thresholds and depths.**  ``e(20) = 0.574``, ``e(18) = 0.480``, the least depth in each
    regime, and the one-sided ``C(q)`` values.  Every regime is carried explicitly, because the
    same symbol ``C(q)`` denotes different numbers under ``lambda**`` and ``lambda***``
-   (``C(0.55)`` is ``44`` in the first and ``39`` in the second) and Paper C quotes the second.
+   (``C(0.55)`` is ``42`` under ``lambda**``, ``44`` under pairing, ``39`` under ``lambda***``)
+   and Paper C quotes the third.
 3. **The Section 8.4 constants table.**  ``L(y)``, ``d(y)``, the exact fair-coin bad probability,
    the target ``(log y)^-0.6`` and the least depth for rate ``0.6``, at the three printed scales.
 The floor-derived stratification scales ``N0^{4/3}``, ``N0^{3/2}`` and ``N0^2`` were audited
@@ -131,7 +132,8 @@ def contagion_checks() -> list[dict[str, Any]]:
     out = [
         _check("lambda_star (block_average_only)", 0.3774, lambda_root(RECURSIONS["block_average_only"]), EXP_TOL),
         _check("pairing-only (block_average_plus_third)", 0.4480, lambda_root(RECURSIONS["block_average_plus_third"]), EXP_TOL),
-        _check("lambda** (block_third_plus_oeoee)", 0.4801, lambda_root(RECURSIONS["block_third_plus_oeoee"]), EXP_TOL),
+        _check("oeoee-only (block_third_plus_oeoee)", 0.4801, lambda_root(RECURSIONS["block_third_plus_oeoee"]), EXP_TOL),
+        _check("lambda** (block_third_plus_oeoee_v3)", 0.4891, lambda_root(RECURSIONS["block_third_plus_oeoee_v3"]), EXP_TOL),
         _check("lambda*** (block_third_plus_ooeee)", 0.5392, lambda_root(RECURSIONS["block_third_plus_ooeee"]), EXP_TOL),
         _check("depth-two ideal ceiling", 0.4927, lambda_root(RECURSIONS["depth_two_ideal"]), EXP_TOL),
         # the same pairing/ideal constants through the residual, which is how Section 5.7 derives them
@@ -151,18 +153,21 @@ def tao_checks() -> list[dict[str, Any]]:
     """Rate thresholds, the exponents ``e(C)``, and the one-sided ``C(q)`` in each regime."""
 
     pairing = lambda_root(RECURSIONS["block_average_plus_third"])
-    lam2 = lambda_root(RECURSIONS["block_third_plus_oeoee"])
+    oeoee = lambda_root(RECURSIONS["block_third_plus_oeoee"])
+    lam2 = lambda_root(RECURSIONS["block_third_plus_oeoee_v3"])
     lam3 = lambda_root(RECURSIONS["block_third_plus_ooeee"])
     ideal = lambda_root(RECURSIONS["depth_two_ideal"])
     out = [
         _check("rate threshold 1 - pairing", 0.5520, 1.0 - pairing, 1e-3),
-        _check("rate threshold 1 - lambda**", 0.5199, 1.0 - lam2, 1e-3),
+        _check("rate threshold 1 - oeoee", 0.5199, 1.0 - oeoee, 1e-3),
+        _check("rate threshold 1 - lambda**", 0.5109, 1.0 - lam2, 1e-3),
         _check("rate threshold 1 - lambda***", 0.4608, 1.0 - lam3, 1e-3),
         _check("rate threshold 1 - lambda_ideal", 0.5073, 1.0 - ideal, 1e-3),
         _check("e(20)", 0.574, chernoff_exponent(20), 1e-3),
         _check("e(19)", 0.527, chernoff_exponent(19), 1e-3),
         _check("e(18)", 0.480, chernoff_exponent(18), 1e-3),
         _check("least depth, pairing regime", 20, least_C(1.0 - pairing), 0),
+        _check("least depth, oeoee regime", 19, least_C(1.0 - oeoee), 0),
         _check("least depth, lambda** regime", 19, least_C(REQUIRED_RATE), 0),
         _check("least depth, lambda*** regime", 18, least_C(REQUIRED_RATE_STAR3), 0),
         _check("least depth, ideal regime", 19, least_C(1.0 - ideal), 0),

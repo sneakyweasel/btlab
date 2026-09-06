@@ -35,7 +35,7 @@ of positive integers that is closed under taking preimages
 (\(J(n)\in A\Rightarrow n\in A\)) — in particular every fate class
 that occurs at all — satisfies
 \(\sum_{n\in A,\,n\le x}1/n\ge c\,(\log x)^{\lambda}\) for every
-\(\lambda<\lambda^{**}=0.4801\ldots\), whereas
+\(\lambda<\lambda^{**}=0.4891\ldots\), whereas
 \(\sum_{n\le x}1/n\sim\log x\). Fates are contagious. The mechanism is
 that the one-step preimages of the Juggler map are large and
 structured: the even preimages of \(m\) fill the interval
@@ -156,9 +156,9 @@ value is \(260\); the certified computational value is
 \(3.5\cdot 10^8\) [11]).
 
 **Theorem 1 (fate contagion).** Let \(A\subseteq\mathbb N\) be nonempty
-and backward-closed, and let \(\lambda<\lambda^{**}=0.4801\ldots\), the
-root of \(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}+\tfrac29(\tfrac34)^{\lambda}+\tfrac1{27}(\tfrac9{32})^{\lambda}=1\).
-(The pairing-only root of the first three terms is \(0.4480\).)
+and backward-closed, and let \(\lambda<\lambda^{**}=0.4891\ldots\), the
+root of \(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}+\tfrac29(\tfrac34)^{\lambda}+\tfrac1{27}(\tfrac9{32})^{\lambda}+\tfrac1{81}(\tfrac{27}{128})^{\lambda}=1\).
+(The \(OEOEE\) truncation of the first four terms is \(0.4801\); the pairing-only root of the first three is \(0.4480\).)
 There are \(c>0\) and \(x_0\), depending on \(A\) and \(\lambda\), with
 \[
 \sum_{\substack{n\in A\\ n\le x}}\frac1n\ \ge\ c\,(\log x)^{\lambda}
@@ -170,7 +170,7 @@ satisfies this bound, and on infinitely many dyadic blocks has natural
 density \(\gg(\log y)^{\lambda-1}\). (Theorem 5.3, Corollaries 5.4,
 5.5.)
 
-The exponent \(0.4801\) is not the method's ceiling. Section 5.7
+The exponent \(0.4891\) is not the method's ceiling. Section 5.7
 determines that ceiling exactly: writing \(\rho_w=2^{-a}(3/2)^b\) for
 the source scale of a production word with \(a\) letters \(E\) and
 \(b\) letters \(O\), the ideal coefficient is
@@ -188,8 +188,8 @@ available only for \(\rho_w\le\tfrac12\), because the fiber has length
 \(O\)'s — cost no Paper B estimate at all, because an isolated \(O\) is
 absorbed by the \(E\) after it into an exact
 \(\lfloor\cdot^{3/4}\rfloor\); the first of them, \(OEOEE\), raises
-the pairing root \(0.4480\) to \(\lambda^{**}=0.4801\) unconditionally
-(constants audited) and would raise \(0.5392\) to \(0.5665\) alongside
+the pairing root \(0.4480\) to \(0.4801\) (\(OEOEE\)) and then to
+\(\lambda^{**}=0.4891\) (\(V_3=OEOEOEE\); both audited) and would raise \(0.5392\) to \(0.5665\) alongside
 Appendix C, and the family \((OE)^{k-1}OEE\) telescopes exactly onto the
 ideal depth-two recursion, closing the gap to \(0.4927\).
 
@@ -205,7 +205,7 @@ odd image fails to. (Theorem 6.1; Lean.)
 following are equivalent: (i) every positive integer reaches \(1\);
 (ii) for some \(\lambda<\lambda^{**}\), the starts \(n\le x\) whose
 orbit never enters \([1,N_0]\) have logarithmic count
-\(o((\log x)^{\lambda})\); (iii) for some \(e>1-\lambda^{**}=0.5199\ldots\)
+\(o((\log x)^{\lambda})\); (iii) for some \(e>1-\lambda^{**}=0.5109\ldots\)
 and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\).
 (Corollary 7.1, Theorems 7.2, 7.3.)
 
@@ -917,10 +917,11 @@ let \(\lambda_{\mathrm{pair}}\) be the pairing-only root of
 \(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}+\tfrac29(\tfrac34)^{\lambda}=1\),
 and let \(\lambda^{**}\) be the root of
 \[
-2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}+\tfrac1{27}\bigl(\tfrac9{32}\bigr)^{\lambda}=1 .
+2^{-\lambda}+\tfrac19\bigl(\tfrac38\bigr)^{\lambda}+\tfrac29\bigl(\tfrac34\bigr)^{\lambda}+\tfrac1{27}\bigl(\tfrac9{32}\bigr)^{\lambda}+\tfrac1{81}\bigl(\tfrac{27}{128}\bigr)^{\lambda}=1 .
 \]
 Numerically \(\lambda^*=0.3774\ldots\), \(\lambda_{\mathrm{pair}}=0.4480\ldots\),
-and \(\lambda^{**}=0.4801\ldots\).
+the \(OEOEE\) truncation is \(0.4801\ldots\),
+and \(\lambda^{**}=0.4891\ldots\).
 For comparison: the elementary sweep alone, without Proposition 4.4,
 gives \(2^{-\lambda}+\tfrac2{21}(\tfrac34)^\lambda=1\), root
 \(0.138\ldots\); perfect fiber equidistribution at this depth would
@@ -940,24 +941,25 @@ The same conclusion for \(\lambda<\lambda^*\) uses only
 Proposition 4.4 (no sweep lemma).
 
 *Proof.* Apply Lemma 5.1 to \(g=g_A\) with
-\((e_i,c_i)=(\tfrac12,1),(\tfrac38,\tfrac19),(\tfrac34,\tfrac29),(\tfrac9{32},\tfrac1{27})\),
+\((e_i,c_i)=(\tfrac12,1),(\tfrac38,\tfrac19),(\tfrac34,\tfrac29),(\tfrac9{32},\tfrac1{27}),(\tfrac{27}{128},\tfrac1{81})\),
 so that
-\(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda-1>0\)
+\(\zeta=2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda+\tfrac1{81}(\tfrac{27}{128})^\lambda-1>0\)
 exactly when \(\lambda<\lambda^{**}\). Inequality (5.2) — which stays the
 pairing inequality, so that Appendix C can still add \(OOEEE\) on top of
-it — together with the \(OEOEE\) term \(+\tfrac1{27}g_A(9t/32)\) of
+it — together with the \(OEOEE\) term \(+\tfrac1{27}g_A(9t/32)\) and the
+\(V_3\) term \(+\tfrac1{81}g_A(27t/128)\) of
 Section 5.7, has the required form with \(\eta_1=\varepsilon_1\),
-\(\eta_2=\varepsilon_4\), \(\eta_3=\varepsilon_5\), and a fourth error
-from the production note, all tending to \(0\). Let \(m\ge 3\) be a
+\(\eta_2=\varepsilon_4\), \(\eta_3=\varepsilon_5\), and production-note
+errors, all tending to \(0\). Let \(m\ge 3\) be a
 member of \(A\) and \(c_0=c_A\) from Lemma 5.2. Choose \(t_1\) so large
-that \(\tfrac9{32}t_1\ge 4\log(m+1)\), that \(e^{9t_1/32}\ge 10^6\),
+that \(\tfrac{27}{128}t_1\ge 4\log(m+1)\), that \(e^{27t_1/128}\ge 10^6\),
 and that for all \(t\ge t_1\) the errors satisfy
 \(\sum_i\eta_i(t)e_i^\lambda\le\zeta/3\) and
 \(\eta_0(t)\le\tfrac{2\zeta}3c_A\). Lemma 5.2 gives \(g_A\ge c_A\) on
-\([\tfrac9{32}t_1,t_1]\). The first induction step of Lemma 5.1 covers
+\([\tfrac{27}{128}t_1,t_1]\). The first induction step of Lemma 5.1 covers
 up to \(t_1/(\tfrac34)=\tfrac43 t_1\), at which
-\(\tfrac9{32}t\ge\tfrac38 t_1\). Lemma 5.1 then gives
-\(g_A(t)\ge Kt^\lambda\) for all \(t\ge\tfrac9{32}t_1\), and
+\(\tfrac{27}{128}t=\tfrac9{32}t_1\). Lemma 5.1 then gives
+\(g_A(t)\ge Kt^\lambda\) for all \(t\ge\tfrac{27}{128}t_1\), and
 \(\sum_{n\in A,\,n\le x}1/n\ge g_A(\log x)\). For \(\lambda<\lambda^*\)
 use (5.1) with \((e_i,c_i)=(\tfrac12,1),(\tfrac38,\tfrac13)\). \(\square\)
 
@@ -1136,9 +1138,11 @@ exact. Since an \(OEOEE\)-start lies in the \(OE\)-fiber of an *odd*
 \(J^2(n)\), the family sits inside family 3 and must be removed from it
 before being re-added at the ideal share, which by the two-sided form of
 Proposition 4.4 changes (5.2) by exactly
-\(+\tfrac1{27}g_A(9t/32)\): this is now Theorem 1's exponent
-\(\lambda^{**}=0.4801\), and alongside Appendix C would give
-\(0.5665\) (a remark, not a new official exponent).
+\(+\tfrac1{27}g_A(9t/32)\): this is the \(OEOEE\) truncation
+\(0.4801\). Adding \(V_3=OEOEOEE\) at \(+\tfrac1{81}g_A(27t/128)\)
+gives Theorem 1's exponent \(\lambda^{**}=0.4891\), and alongside
+Appendix C would give \(0.5665\) from \(OEOEE\) alone (a remark, not
+a new official exponent).
 
 The construction iterates. Write a no-\(OO\) word as \((OE)^KE^{\,j}\);
 its binding layer \(w_{K-1}\) has length \(1-\tfrac34\cdot2^{-j}\)
@@ -1353,7 +1357,7 @@ in the set of (3). (2)\(\Rightarrow\)(1): \(F\) is backward-closed; if
 it were nonempty, Theorem 5.3 would contradict (2). \(\square\)
 
 **Theorem 7.2 (a Tao-type bound with rate implies the conjecture).**
-Suppose that for some \(e>1-\lambda^{**}=0.5199\ldots\) and all
+Suppose that for some \(e>1-\lambda^{**}=0.5109\ldots\) and all
 sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}\ \le\ \frac{y}{(\log y)^{e}} .
@@ -1540,7 +1544,7 @@ every positive integer reaches \(1\). Under the conditional exponent
 \(C\ge 18\).
 
 *Proof.* Theorem 8.3 gives the hypothesis of Theorem 7.2 with
-\(e=e(C)-\varepsilon\ge e(19)-\varepsilon=0.527-\varepsilon>0.5199\);
+\(e=e(C)-\varepsilon\ge e(19)-\varepsilon=0.527-\varepsilon>0.5109\);
 with \(\lambda^{***}\) the threshold is \(0.4608<e(18)=0.480\).
 The pairing-only intermediate still needed \(C\ge 20\)
 (\(e(20)=0.574>0.5520\)).
@@ -1548,7 +1552,7 @@ The pairing-only intermediate still needed \(C\ge 20\)
 
 ### 8.4 Constants
 
-The least unconditional depth is \(C=19\) (\(e(19)=0.527>0.5199\)).
+The least unconditional depth is \(C=19\) (\(e(19)=0.527>0.5109\)).
 With the certified floor \(N_0=3.5\cdot 10^8\), the table below keeps
 \(C=20\) as a conservative a-fortiori display:
 
@@ -1827,7 +1831,7 @@ which in log-mass form \(g=(t/2)\varphi\) is
 \(g(t)\ge g(t/2)+\tfrac13g^{\rm fib}(3t/4)\): the ideal depth-two
 contagion recursion of Section 5 with perfect fibers (the proved
 constants give the pairing root \(0.4480\) and, with the elementary
-\(OEOEE\) production, \(\lambda^{**}=0.4801\); the ideal ones
+\(OEOEE\) and \(V_3\) productions, \(\lambda^{**}=0.4891\); the ideal ones
 \(\lambda_{\rm ideal}=0.4927\)). Dropping \(\psi\le1\) instead gives
 the upper recursion for the failure density. Its homogeneous
 solutions \(\varphi=t^{-e}\) satisfy \(\tfrac12 2^{e}+c\,(4/3)^{e}=1\)
@@ -2026,7 +2030,8 @@ analytic density estimates.
 | block average only (\(\lambda^*\)) | \((\tfrac13,\tfrac38)\) | \(0.3774\) |
 | block average + sweep (adversarial \(1/7\)) | \((\tfrac5{21},\tfrac38),(\tfrac2{21},\tfrac34)\) | \(0.4051\) |
 | block average + pairing (named intermediate) | \((\tfrac19,\tfrac38),(\tfrac29,\tfrac34)\) | \(0.4480\) |
-| + \(OEOEE\) (\(\lambda^{**}\), Theorem 1; elementary, audited) | \(\ldots,(\tfrac1{27},\tfrac9{32})\) | \(0.4801\) |
+| + \(OEOEE\) (named intermediate; elementary, audited) | \(\ldots,(\tfrac1{27},\tfrac9{32})\) | \(0.4801\) |
+| + \(V_3=OEOEOEE\) (\(\lambda^{**}\), Theorem 1; elementary, audited) | \(\ldots,(\tfrac1{81},\tfrac{27}{128})\) | \(0.4891\) |
 | + \(OOEEE\) on even blocks (\(\lambda^{***}\), Appendix C, conditional) | \(\ldots,(\tfrac19,\tfrac9{32})\) | \(0.5392\) |
 | depth-two ideal | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
 | + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
@@ -2042,10 +2047,10 @@ analytic density estimates.
 *Depth constants.* Chernoff exponent \(e(C)\): \(0.480\) (\(18\)),
 \(0.527\) (\(19\)), \(0.574\) (\(20\)), \(0.621\) (\(21\)), \(0.812\)
 (\(25\)), \(1.054\) (\(30\)). Least \(C\) for the rate threshold
-\(1-\lambda^{**}=0.5199\) / pairing \(1-\lambda_{\mathrm{pair}}=0.5520\) /
+\(1-\lambda^{**}=0.5109\) / pairing \(1-\lambda_{\mathrm{pair}}=0.5520\) /
 conditional \(1-\lambda^{***}=0.4608\):
 fair Chernoff \(19\)/\(20\)/\(18\); one-sided Azuma at
-\(q=0.5,0.55,0.60,0.62\): \(19,42,228,1622\) / \(20,44,240,1715\) /
+\(q=0.5,0.55,0.60,0.62\): \(19,42,225,1596\) / \(20,44,240,1715\) /
 \(18,39,206,1451\);
 pressure (biased Chernoff) at the same \(q\): \(19,42,219,1530\) /
 \(20,43,230,1618\) / \(18,38,198,1369\). Depth \(d(y)=\lceil 20L(y)\rceil\)

@@ -73,8 +73,9 @@ def test_paper_quotes_the_constants_the_audit_checks() -> None:
     """A guard against the audit drifting away from the manuscript it audits."""
 
     text = PAPER.read_text(encoding="utf-8")
-    for token in ("0.4480", "0.4801", "0.5392", "0.4927", "0.5520", "0.5199", "0.4608",
-                  "0.574", "0.480", "0.6247", "0.7180", "0.7095", "0.8414", "0.7516", "0.9121"):
+    for token in ("0.4480", "0.4801", "0.4891", "0.5392", "0.4927", "0.5520", "0.5199",
+                  "0.5109", "0.4608", "0.574", "0.480", "0.6247", "0.7180", "0.7095",
+                  "0.8414", "0.7516", "0.9121"):
         assert token in text, token
     assert "C(0.55)=39" in text.replace(" ", "").replace("\\(", "").replace("\\)", "")
 

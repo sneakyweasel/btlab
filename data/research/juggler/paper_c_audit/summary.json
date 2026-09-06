@@ -1,5 +1,5 @@
 {
-  "git_commit": "6001414898fdee06d691f6076bd3adb599aca2e0",
+  "git_commit": "7e9b93f5e0df6addbc8d6f5f576f8a8867c978f9",
   "paper": "docs/theory/juggler_fate_almost_all_note.md",
   "N0": 350000000,
   "checks": {
@@ -12,10 +12,17 @@
         "ok": true
       },
       {
-        "name": "lambda** (block_average_plus_third)",
+        "name": "pairing-only (block_average_plus_third)",
         "printed": 0.448,
         "computed": 0.44801700122730537,
         "abs_error": 1.700122730535769e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda** (block_third_plus_oeoee)",
+        "printed": 0.4801,
+        "computed": 0.4801145718496832,
+        "abs_error": 1.457184968317593e-05,
         "ok": true
       },
       {
@@ -40,7 +47,7 @@
         "ok": true
       },
       {
-        "name": "lambda** via residual",
+        "name": "pairing via residual",
         "printed": 0.448,
         "computed": 0.4480170012273056,
         "abs_error": 1.7001227305579736e-05,
@@ -112,10 +119,17 @@
     ],
     "tao": [
       {
-        "name": "rate threshold 1 - lambda**",
+        "name": "rate threshold 1 - pairing",
         "printed": 0.552,
         "computed": 0.5519829987726946,
         "abs_error": 1.7001227305413202e-05,
+        "ok": true
+      },
+      {
+        "name": "rate threshold 1 - lambda**",
+        "printed": 0.5199,
+        "computed": 0.5198854281503168,
+        "abs_error": 1.4571849683231441e-05,
         "ok": true
       },
       {
@@ -140,6 +154,13 @@
         "ok": true
       },
       {
+        "name": "e(19)",
+        "printed": 0.527,
+        "computed": 0.526926549109147,
+        "abs_error": 7.34508908529774e-05,
+        "ok": true
+      },
+      {
         "name": "e(18)",
         "printed": 0.48,
         "computed": 0.4804066215192821,
@@ -147,9 +168,16 @@
         "ok": true
       },
       {
-        "name": "least depth, lambda** regime",
+        "name": "least depth, pairing regime",
         "printed": 20,
         "computed": 20,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "least depth, lambda** regime",
+        "printed": 19,
+        "computed": 19,
         "abs_error": 0,
         "ok": true
       },
@@ -183,13 +211,27 @@
       },
       {
         "name": "C(0.5), lambda** regime",
+        "printed": 19,
+        "computed": 19,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.55), lambda** regime",
+        "printed": 42,
+        "computed": 42,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "C(0.5), pairing regime",
         "printed": 20,
         "computed": 20,
         "abs_error": 0,
         "ok": true
       },
       {
-        "name": "C(0.55), lambda** regime",
+        "name": "C(0.55), pairing regime",
         "printed": 44,
         "computed": 44,
         "abs_error": 0,
@@ -302,33 +344,10 @@
         "abs_error": 0,
         "ok": true
       }
-    ],
-    "stratification": [
-      {
-        "name": "N0^{4/3}",
-        "printed": 250000000000.0,
-        "computed": 246655455622.27084,
-        "abs_error": 3344544377.7291565,
-        "ok": true
-      },
-      {
-        "name": "N0^{3/2}",
-        "printed": 6500000000000.0,
-        "computed": 6547900426854.397,
-        "abs_error": 47900426854.39746,
-        "ok": true
-      },
-      {
-        "name": "N0^2",
-        "printed": 1.2e+17,
-        "computed": 1.225e+17,
-        "abs_error": 2500000000000000.0,
-        "ok": true
-      }
     ]
   },
   "classification": {
-    "total_checks": 45,
+    "total_checks": 48,
     "failures": 0,
     "failing_names": [],
     "all_printed_constants_reproduce": true

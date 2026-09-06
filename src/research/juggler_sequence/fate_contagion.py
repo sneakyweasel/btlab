@@ -385,6 +385,15 @@ RECURSIONS = {
         (2.0 / 9.0, 0.75),
         (1.0 / 27.0, 9.0 / 32.0),
     ],
+    # + V_3 = OEOEOEE: net +1/81 at scale 27/128.  This is the
+    # unconditional lambda** after the Section 12 audit.
+    "block_third_plus_oeoee_v3": [
+        (1.0, 0.5),
+        (1.0 / 9.0, 3.0 / 8.0),
+        (2.0 / 9.0, 0.75),
+        (1.0 / 27.0, 9.0 / 32.0),
+        (1.0 / 81.0, 27.0 / 128.0),
+    ],
     "block_third_plus_ooeee": [
         (1.0, 0.5),
         (1.0 / 9.0, 3.0 / 8.0),

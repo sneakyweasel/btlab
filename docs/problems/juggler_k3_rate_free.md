@@ -206,12 +206,24 @@ OOOO-conditioned fifth-letter even share \(0.49835\pm 0.0060\)).
 
 ## Formalization
 
-None new, and none needed for the claim tags: the certificate side
-of both lemmas is already Lean (`power_bound_word`,
-`J-power-envelope-contraction`); the measure side (limit order,
-generating-function domination, Chernoff) is classical prose. The
-lab's finite-itinerary Lean idiom does not cover natural-density
-statements; packaging them would be machinery gravity.
+`formal/Problems/Juggler/RateFreeDensity.lean` (not a Paper A
+module). Certificate engine unchanged: `power_bound_word`,
+`J-power-envelope-contraction`. New Lean:
+
+- `reachesOne_of_floor_and_certificates` — parameterized residual
+  floor plus a *universal* certificate hypothesis (`J-rate-free-floor-certificates`).
+- `propJ_count` / `lemmaA_finite` — finite Proposition J and the
+  inclusion of never-certified starts (`J-rate-free-prop-j-finite`).
+- `weightGen_domination` / `weight_markov` — generating-function
+  domination and the Markov tilt; the optimal Chernoff rate at
+  \(\beta>\beta_*\) stays prose.
+- `fairThenAllOdd_live_mass` — a measure fair to depth \(k\) and
+  all-odd afterwards keeps mass \(2^{-k}\) on a prefix-noncontracting
+  ray, so no bounded-depth certificate statement forces the live
+  mass to vanish.
+
+The density-one limit order of `J-rate-free-density-one` stays
+`EXACT — HUMAN PROOF`. Not a halt theorem and not pressure.
 
 ## Results
 
@@ -221,12 +233,13 @@ Classification **K3_RATE_FREE_GREEN**.
   per-fixed-depth qualitative equidistribution implies density-one
   finite descent. Proposition J's inequality with \(N\to\infty\)
   taken before \(d\to\infty\); power savings is not consumed
-  anywhere.
+  anywhere. The finite count is Lean (`J-rate-free-prop-j-finite`).
 - **Lemma B (EXACT — HUMAN PROOF, same ledger row):** node-wise
-  E-share \(\ge\beta>\beta_*=1-\log 2/\log 3\), rate-free, also
+  E-share \(\beta>\beta_*=1-\log 2/\log 3\), rate-free, also
   suffices, by generating-function domination and Chernoff at
   \(\gamma=\log 2/\log 3\). The empirical split is \(0.5\); the
-  required one is \(0.37\).
+  required one is \(0.37\). Domination and the Markov tilt are Lean;
+  the optimal tilt stays prose.
 - **Species statement:** the BB/GG/JJ wall formally blocks rated
   methods only. The weakest sufficient kernel input is rate-free
   and lives in the ergodic (bracket-Hardy / nilmanifold)

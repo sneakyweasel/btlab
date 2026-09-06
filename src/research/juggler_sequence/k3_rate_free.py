@@ -24,7 +24,11 @@ The branch records two human lemmas and one re-aimed target:
 
 The certificate side is Lean (`power_bound_word`: a prefix with
 3^{a_k} < 2^k forces x_k <= n^{3^a/2^k} < n — descent below start,
-unconditionally).  The measure side is classical.
+unconditionally).  The finite Proposition J count, the floor-plus-
+certificate induction, generating-function domination, and the
+fair-then-all-odd live-mass obstruction are Lean in
+`RateFreeDensity.lean`.  The density-one limit order and the
+optimal Chernoff tilt stay classical.
 
 Exact contents of this probe:
 
@@ -92,6 +96,11 @@ ANTI = {
 REQUIRED_LEAN = (
     ("Envelope", "power_bound_word"),
     ("Envelope", "cycle_strict_envelope"),
+    ("RateFreeDensity", "propJ_count"),
+    ("RateFreeDensity", "lemmaA_finite"),
+    ("RateFreeDensity", "weightGen_domination"),
+    ("RateFreeDensity", "reachesOne_of_floor_and_certificates"),
+    ("RateFreeDensity", "fairThenAllOdd_live_mass"),
 )
 
 

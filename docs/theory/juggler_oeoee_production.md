@@ -1,8 +1,9 @@
 # The \(OEOEE\) production, and the elementary \((OE)^{k-1}OEE\) family
 
 Status: **audited and promoted** (6 September 2026).
-Official unconditional \(\lambda^{**}=0.4801\). Audit ledger:
-[oeoee_audit_ledger.md](oeoee_audit_ledger.md).
+Official unconditional \(\lambda^{**}=0.4891\) (\(V_2+V_3\)).
+Audit ledgers: [oeoee_audit_ledger.md](oeoee_audit_ledger.md),
+[v3_audit_ledger.md](v3_audit_ledger.md).
 The word \(OEOEE\) was listed in
 [juggler_contagion_exponent_calculus.md](juggler_contagion_exponent_calculus.md)
 as "needs localized Paper B depth 2". That label is **wrong**: the
@@ -174,13 +175,11 @@ The needed saving is any fixed power; both halves clear it, and they
 **tie** at \(P^{-1/8}\) (Section 11).
 
 **Status.** Lemmas 1 and 2 are exact and Lean-adjacent (they use only
-`sqrt_sqrt_eq_iff`). Proposition 3's proof is complete in structure and
-uses only the classical second-derivative test, Kusmin–Landau, the
-Proposition 3.4 pairing, and the standard monotone-sequence sum; **the
-explicit constants have not been computed**, so it does not yet meet
-the ledger's `EXACT — HUMAN PROOF` bar. It is not a conjecture about a
-new object: every ingredient is textbook, and the census of Section 6
-confirms each step.
+`sqrt_sqrt_eq_iff`). Proposition 3's proof is complete: the classical
+second-derivative test, Kusmin–Landau, the Proposition 3.4 pairing,
+the standard monotone-sequence sum, and the Section 11 constants,
+now audited ([oeoee_audit_ledger.md](oeoee_audit_ledger.md)). It meets
+the ledger's `EXACT — HUMAN PROOF` bar (`J-fate-oeoee-production`).
 
 ## 4. The production and its bookkeeping
 
@@ -319,9 +318,9 @@ The right-hand equation is the **ideal depth-two recursion**, root
 
 | productions | \(\lambda\) |
 |---|---|
-| \(\lambda^{**}\) | \(0.4480\) |
-| \(+V_2\) | \(0.4801\) |
-| \(+V_2,V_3\) | \(0.4891\) |
+| pairing (named intermediate) | \(0.4480\) |
+| \(+V_2\) (previous \(\lambda^{**}\)) | \(0.4801\) |
+| \(+V_2,V_3\) (current \(\lambda^{**}\)) | \(0.4891\) |
 | \(+V_2,\dots,V_5\) | \(0.4924\) |
 | whole family | \(0.4927\) |
 | whole family \(+OOEEE\) | \(0.5769\) |
@@ -618,5 +617,80 @@ and Half A's with \(30\)–\(500\).
 **Status.** Audited (6 September 2026). Every displayed Section 11
 constant recomputes from T1–T5, or is tightened and still saves a
 positive power of \(P\). Classification `OEOEE_AUDIT_CONSISTENT`.
-Theorem 1's printed exponent is now \(0.4801\). Later \(V_k\)
-truncations are not opened here.
+The \(V_2\) truncation is Theorem 1's previous exponent \(0.4801\).
+The \(V_3\) constants are Section 12.
+
+## 12. The \(V_3\) constants
+
+The toolkit is T1–T5 of §11.1. The fiber is
+\(J(m')=[m'^{128/27},(m'+1)^{128/27})\). Write \(Y\) for the number of
+odd \(n\) in \(J(m')\). The \(w_2\)-interval of the fiber is exactly
+the \(w\)-interval of \(OEOEE\):
+\([m'^{8/3},(m'+1)^{8/3})\). The \(w_1\)-interval is
+\([m'^{32/9},(m'+1)^{32/9})\).
+
+### 12.2 Sizes
+
+\(Y\ge\tfrac{64}{27}m'^{101/27}-1\);
+\(\tfrac{32}9m'^{23/9}-1\le L_1\le\tfrac{32}9(m'+1)^{23/9}+1\);
+\(L_2\) is the §11.2 envelope \(\tfrac83 m'^{5/3}\pm 1\);
+\(\lvert\omega_1-\tfrac23 w_1^{1/3}\rvert\le\tfrac32\).
+
+### 12.3 Case 1 (\(\psi_1\) present)
+
+Half B at the \(w_1\) layer:
+\(\delta_q=q m'^{-32/27}\),
+\(V_q\le\tfrac{32q}9(m'+1)^{37/27}\). Then (T2)+(T4) give
+
+\[
+\sum_{w_1}|S_q|
+\le\tfrac{256}{27}q\,m'^{23/9}+9.06\,m'^{23/9}\bigl(1+\tfrac{32}{27}\log m'\bigr).
+\]
+
+Both signs through (T1) with truncation \(R\), pad \(48\) (exact
+\(1024/27=37.93\)), and \(R=0.222\,m'^{16/27}\) yield
+\(\le 21.4\,m'^{85/27}=9.0\,Y\,m'^{-16/27}\). Note
+\(m'^{-16/27}=P^{-1/8}\).
+
+### 12.4 Case 2 (\(\Lambda_2\) present, \(\psi_1\) absent)
+
+Summing \(|S_q|\) directly on the \(w_1\)-blocks inside each \(w_2\)-block,
+with \(\lambda L=(s/2)m'^{-8/9}\), gives prefactor \(13.1\). Balancing
+at \(S=0.320\,m'^{16/27}\) yields
+\(\le 14.8\,m'^{85/27}=6.3\,Y\,m'^{-16/27}\), again \(P^{-1/8}\).
+(Proposition 8's Cauchy–Schwarz route with \(S=H_2^{1/3}\) is lossier
+and still saves \(P^{-3/32}\).)
+
+### 12.5 Case 4 (only \(w_2\)-factors)
+
+Half A of §11.4, verbatim on the same \(w_2\)-interval, times the
+smooth weight ratio \(\tfrac43 m'^{32/27}\):
+\(\le 6.3\,Y\,m'^{-4/9}\). Note \(m'^{-4/9}=P^{-3/32}\). This is
+the binding case; it matches the Section 11 law
+\(\tfrac16(\tfrac34)^{2}=\tfrac3{32}\).
+
+Case 3 (only \(\Lambda_1\)) is (T5) pairing and saves \(P^{-3/16}\).
+
+### 12.6 The bound
+
+Thirty-two Case-1 terms and sixteen Case-2 terms sit at the stronger
+power \(P^{-1/8}\); eight Case-4 terms sit at the binding power.
+For \(m'\ge 16\) the extra factor \(m'^{-4/27}\le 16^{-4/27}\) puts
+the assembly at \(308\le 400\):
+
+\[
+\bigl|64|\mathcal O(m')|-Y\bigr|\ \le\ 400\,Y\,m'^{-4/9}(1+\log m')^2,
+\qquad
+|\mathcal O(m')|=\tfrac{Y}{64}\bigl(1+\theta\bigr),\ \
+|\theta|\le 400\,m'^{-4/9}(1+\log m')^2 .
+\]
+
+Measured ratios at \(m'=12,16,20\) are \(0.13,0.35,0.26\) against
+\(400\). Combined with Proposition 9 this is
+\(+\tfrac1{81}g_A(27t/128)\), root \(0.4891\).
+
+**Status.** Audited (6 September 2026). Classification
+`V3_AUDIT_CONSISTENT`. Official unconditional \(\lambda^{**}\) is now
+the five-term root \(0.4891\). Later \(V_k\) truncations are not
+opened here. The Tao depth stays \(C=19\)
+(\(e(19)=0.527>0.5109>e(18)=0.480\)).

@@ -1,0 +1,225 @@
+{
+  "git_commit": "7e9b93f5e0df6addbc8d6f5f576f8a8867c978f9",
+  "note": "docs/theory/juggler_oeoee_production.md",
+  "checks": [
+    {
+      "name": "12.2 Y lower bound 64/27 m'^{101/27}-1",
+      "printed": 2.3703703703703702,
+      "computed": 2.3703703703703702,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "script",
+      "note": "odd count of [m'^{128/27}, (m'+1)^{128/27}) against the MVT lower bound"
+    },
+    {
+      "name": "12.2 L1 envelope 32/9 m'^{23/9}",
+      "printed": 3.5555555555555554,
+      "computed": 3.5555555555555554,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "MVT on [m'^{32/9}, (m'+1)^{32/9})"
+    },
+    {
+      "name": "12.2 L2 envelope 8/3 m'^{5/3} (same as V_2 L)",
+      "printed": 2.6666666666666665,
+      "computed": 2.6666666666666665,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "w2-fiber of V_3 is the w-fiber of V_2"
+    },
+    {
+      "name": "T4 Case 1 step ratio at m'=16",
+      "printed": 4.0,
+      "computed": 4.148991332098757,
+      "abs_error": 0.14899133209875703,
+      "ok": true,
+      "kind": "hand",
+      "note": "step ratio 1.07450; abstract T4 needs steps ~ d, pad covers 4->5"
+    },
+    {
+      "name": "T4 Case 1 step ratio at m'=60",
+      "printed": 4.0,
+      "computed": 4.039566865243912,
+      "abs_error": 0.03956686524391184,
+      "ok": true,
+      "kind": "hand",
+      "note": "step ratio 1.01978; abstract T4 needs steps ~ d, pad covers 4->5"
+    },
+    {
+      "name": "Case 1 leading 256/27",
+      "printed": 9.481481481481481,
+      "computed": 9.481481481481481,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "4 V_q omega_smooth, V_q <= (32q/9)(m'+1)^{37/27}, omega ~ (2/3) m'^{32/27}"
+    },
+    {
+      "name": "Case 1 log coefficient 9.06",
+      "printed": 9.06,
+      "computed": 9.05414787367227,
+      "abs_error": 0.005852126327731355,
+      "ok": true,
+      "kind": "hand",
+      "note": "8/(pi d_q) * V_q = (8/pi) m'^{32/27}/q * (32q/9) m'^{37/27}"
+    },
+    {
+      "name": "Case 1 Vaaler R coefficient 48",
+      "printed": 48.0,
+      "computed": 37.925925925925924,
+      "abs_error": 10.074074074074076,
+      "ok": true,
+      "kind": "hand",
+      "note": "sum_{0<|q|<=R} (2/|q|)*(256/27)|q| = (1024/27) R = 37.93 R; pad 48"
+    },
+    {
+      "name": "Case 1 R = 0.222 m'^{16/27}",
+      "printed": 0.222,
+      "computed": 0.2222222222222222,
+      "abs_error": 0.000222222222222207,
+      "ok": true,
+      "kind": "hand",
+      "note": "sqrt((64/27)/48) = 0.2222..."
+    },
+    {
+      "name": "Case 1 assembled 21.4 m'^{85/27}",
+      "printed": 21.4,
+      "computed": 21.333333333333332,
+      "abs_error": 0.06666666666666643,
+      "ok": true,
+      "kind": "hand",
+      "note": "48 R + (64/27)/R at the printed R"
+    },
+    {
+      "name": "Case 1 over Y is 9.0",
+      "printed": 9.0,
+      "computed": 9.0,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "21.34 / (64/27) = 9.00; saves m'^{-16/27} = P^{-1/8}"
+    },
+    {
+      "name": "Case 2 prefactor 13.1",
+      "printed": 13.1,
+      "computed": 13.122007273931809,
+      "abs_error": 0.022007273931809124,
+      "ok": true,
+      "kind": "hand",
+      "note": "T3 * omega * Vaaler 2/s * 2 sqrt(S) * L2; saves P^{-1/8} after balance"
+    },
+    {
+      "name": "Case 2 S = 0.320 m'^{16/27}",
+      "printed": 0.32,
+      "computed": 0.31991156676691807,
+      "abs_error": 8.843323308194151e-05,
+      "ok": true,
+      "kind": "hand",
+      "note": "((64/27)/13.1)^{2/3} = 0.320..."
+    },
+    {
+      "name": "Case 2 assembled 14.8 m'^{85/27}",
+      "printed": 14.8,
+      "computed": 14.8189100777177,
+      "abs_error": 0.018910077717698925,
+      "ok": true,
+      "kind": "hand",
+      "note": "13.1 sqrt(S) + (64/27)/S"
+    },
+    {
+      "name": "Case 2 over Y is 6.3",
+      "printed": 6.3,
+      "computed": 6.251727689037155,
+      "abs_error": 0.04827231096284468,
+      "ok": true,
+      "kind": "hand",
+      "note": "saves m'^{-16/27} = P^{-1/8}, not binding"
+    },
+    {
+      "name": "Case 4 over Y is 6.3 (Half A transferred)",
+      "printed": 6.3,
+      "computed": 6.3,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "w2-fiber is V_2's w-fiber; weight ratio (4/3) m'^{32/27}; binding P^{-3/32}"
+    },
+    {
+      "name": "binding saving P^{-3/32} = m'^{-4/9}",
+      "printed": 0.09375,
+      "computed": 0.09375,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "Section 11 law for k=3; a positive power"
+    },
+    {
+      "name": "Prop 9 net gain 1/81",
+      "printed": 0.012345679012345678,
+      "computed": 0.012345679012345678,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "(1/3 - 2/9) c_2 with c_2 = 1/9, at scale rho_3 = 27/128"
+    },
+    {
+      "name": "12.5 assembly 400 for m' >= 16",
+      "printed": 400.0,
+      "computed": 308.2327677675151,
+      "abs_error": 91.7672322324849,
+      "ok": true,
+      "kind": "hand",
+      "note": "crude all-at-binding 439.2; at m'>=16 with m'^{-4/27} factor 308.2 <= 400"
+    },
+    {
+      "name": "four-plus-V3 root 0.4891",
+      "printed": 0.4891,
+      "computed": 0.4890678795095489,
+      "abs_error": 3.2120490451093e-05,
+      "ok": true,
+      "kind": "script",
+      "note": "pairing + OEOEE + V_3; 1-lambda = 0.5109, least C still 19"
+    },
+    {
+      "name": "envelope m'=12",
+      "printed": 400.0,
+      "computed": 0.12771099165625013,
+      "abs_error": 399.8722890083437,
+      "ok": true,
+      "kind": "script",
+      "note": "Y=30148 64|O|-Y=1276 ratio=0.1277"
+    },
+    {
+      "name": "envelope m'=16",
+      "printed": 400.0,
+      "computed": 0.3450257896004468,
+      "abs_error": 399.65497421039953,
+      "ok": true,
+      "kind": "script",
+      "note": "Y=85072 64|O|-Y=8560 ratio=0.3450"
+    },
+    {
+      "name": "envelope m'=20",
+      "printed": 400.0,
+      "computed": 0.2577255057867773,
+      "abs_error": 399.74227449421323,
+      "ok": true,
+      "kind": "script",
+      "note": "Y=191509 64|O|-Y=13035 ratio=0.2577"
+    }
+  ],
+  "classification": {
+    "name": "V3_AUDIT_CONSISTENT",
+    "total_checks": 23,
+    "failures": 0,
+    "failing_names": [],
+    "all_printed_constants_recompute": true,
+    "power_saving": "P^{-3/32}",
+    "net_gain": "1/81",
+    "lambda_root_if_promoted": 0.4891,
+    "required_rate_if_promoted": 0.5109,
+    "least_C_if_promoted": 19
+  }
+}

@@ -579,6 +579,20 @@ campaign (fixed-order characters are \(e^{o(d)}\); the tail is
 reparameterization). Direct-attack dossier:
 [juggler_pressure_direct](problems/juggler_pressure_direct.md)
 (`J-pressure-direct-routes`).
+The two natural ANT readings of “external averaging” after that
+CLOSE are the same kills: completing the single live-tilted odd sum
+without a Walsh expansion of the tilt is a cylinder-weighted nested
+phase (Vaaler of \(1_{\mathrm{odd}}(J^t n)\); Walsh tail, two-monomial
+/ Weyl \(cC<1\), or §10.4(e)); a Cesàro mean of tilted moments does
+not suffice for contagion; the harmonic average of live counts is the
+finite-depth log-measure live mass (`J-tao-free-term-is-live-mass`);
+the odd step of a production recursion is tilted \(S\)-fairness.
+Parseval / large sieve is the pair-correlation form already named
+above. Do not reopen as a signed Walsh tail, a short-interval Paper B
+on the completed sum, a Tauberian upgrade of the Cesàro moment, or a
+third formulation. Dossier:
+[juggler_pressure_external_average](problems/juggler_pressure_external_average.md)
+(`J-pressure-external-average`).
 
 **Kernel localization to \(OOOEE\) / \(OOEOE\) even-block fibers.**
 Killed claim: Paper B Theorem 5.3 localizes to those fibers (fate

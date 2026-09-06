@@ -50,7 +50,7 @@ NOTE = "docs/theory/juggler_oeoee_production.md"
 
 RHO = F(9, 32)  # source scale of OEOEE
 NET_GAIN = F(1, 27)  # what the family adds to (4.2)
-LAMBDA_2 = 0.4480  # pairing-only intermediate; official lambda** is 0.4801
+LAMBDA_2 = 0.4480  # pairing-only intermediate; official lambda** is 0.4891 with V_3
 LAMBDA_3 = 0.5392  # lambda***, Appendix C
 
 

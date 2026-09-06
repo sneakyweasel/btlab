@@ -37802,3 +37802,120 @@ cited set from forty-six to forty-seven, and failures() reported the
 artifact was missing a declaration before I had thought about it. A
 guard written yesterday catching today's edit is the only real evidence
 that a guard works.
+
+## OEOEE production audit and rate drop (not a numbered milestone)
+
+- **Date:** 2026-09-06
+- **Objective:** Audit the already-written Section 11 constants of the OEOEE production and, if they recompute, retarget official unconditional \(\lambda^{**}\) from the pairing root \(0.4480\) to \(0.4801\)
+- **Hypotheses:** isolated-\(O\) words need no Paper B; \(J^2(n)=\lfloor n^{3/4}\rfloor\) is exact; the fifteen sign sums are classical one-variable estimates; \(+1/27\) at scale \(9/32\) is a theorem
+- **Major results:** classification `OEOEE_AUDIT_CONSISTENT`, 29 checks, 0 failures. Binding saving \(P^{-1/8}=m'^{-4/9}\) stands. Official \(\lambda^{**}=0.4801\), Tao rate \(e>0.5199\), least Chernoff \(C=19\). Pairing \(0.4480/0.5520/C=20\) stays a named intermediate. \(\lambda^{***}=0.5392\) unchanged. Combined \(0.5665\) is a remark
+- **Refuted ideas:** none that kill the production. T2's printed max gap \(-5.2\cdot10^{-4}\) was a sampling artifact (cotangent inequality holds). T4's abstract short-step form is false; Half B steps are \(\asymp\delta\) and the pad covers a \(4\to5\) retune
+- **Literature:** Paper B Lemma 3.5 cited, not re-derived. Rest-average stays PARK. Kernel \(OOOEE/OOEOE\) stays CLOSE. Later \(V_k\) not opened
+- **Open:** none opened
+- **Decision:** PROMOTE. Stop. Do not write \(V_3\) constants in this branch
+
+```text
+What was learned
+- Isolated-O OEOEE is elementary: exact fiber, no exceptional set, no Paper B
+- Section 11 recomputes from T1–T5; two displays tightened, envelope 100 still covers
+- The +1/27 bookkeeping at scale 9/32 is a theorem
+- Official lambda** moves 0.4480 -> 0.4801; required Tao rate 0.552 -> 0.5199; least C 20 -> 19
+- Pairing remains the inequality (5.2)/(4.2), so Appendix C still adds OOEEE on top of it
+- The remaining depth-two gap 0.4801 -> 0.4927 is later V_k truncations, not rest-average
+- log log y depth is not removed
+Strongest theorem
+- every nonempty backward-closed set has log-count >> (log x)^lambda for lambda < 0.4801
+  (Paper C Theorem 1 / fate-contagion Theorem 4.2, J-fate-log-density, J-fate-oeoee-production)
+Strongest refutation
+- T4 as an abstract statement about arbitrarily short steps is false; the Half B application stands
+Reusable machinery
+- oeoee_audit.py, oeoee_audit_ledger.md, RECURSIONS[block_third_plus_oeoee]
+Branch status
+- PROMOTE
+Why
+  The constants recompute and still save a positive power of P, so the printed
+  unconditional exponent is the four-term root. This is a rate drop of the same
+  object (contagion plus the pressure/Tao reduction), not a new object.
+Best next question
+- the V_3 truncation constants, later, not this branch
+```
+
+
+## OEOEE production audit and rate drop (not a numbered milestone)
+
+- **Date:** 2026-09-06
+- **Objective:** Audit the already-written Section 11 constants of the OEOEE production and, if they recompute, retarget official unconditional \(\lambda^{**}\) from the pairing root \(0.4480\) to \(0.4801\)
+- **Hypotheses:** isolated-\(O\) words need no Paper B; \(J^2(n)=\lfloor n^{3/4}\rfloor\) is exact; the fifteen sign sums are classical one-variable estimates; \(+1/27\) at scale \(9/32\) is a theorem
+- **Major results:** classification `OEOEE_AUDIT_CONSISTENT`, 29 checks, 0 failures. Binding saving \(P^{-1/8}=m'^{-4/9}\) stands. Official \(\lambda^{**}=0.4801\), Tao rate \(e>0.5199\), least Chernoff \(C=19\). Pairing \(0.4480/0.5520/C=20\) stays a named intermediate. \(\lambda^{***}=0.5392\) unchanged. Combined \(0.5665\) is a remark
+- **Refuted ideas:** none that kill the production. T2's printed max gap \(-5.2\cdot10^{-4}\) was a sampling artifact (cotangent inequality holds). T4's abstract short-step form is false; Half B steps are \(\asymp\delta\) and the pad covers a \(4\to5\) retune
+- **Literature:** Paper B Lemma 3.5 cited, not re-derived. Rest-average stays PARK. Kernel \(OOOEE/OOEOE\) stays CLOSE. Later \(V_k\) not opened
+- **Open:** none opened
+- **Decision:** PROMOTE. Stop. Do not write \(V_3\) constants in this branch
+
+```text
+What was learned
+- Isolated-O OEOEE is elementary: exact fiber, no exceptional set, no Paper B
+- Section 11 recomputes from T1–T5; two displays tightened, envelope 100 still covers
+- The +1/27 bookkeeping at scale 9/32 is a theorem
+- Official lambda** moves 0.4480 -> 0.4801; required Tao rate 0.552 -> 0.5199; least C 20 -> 19
+- Pairing remains the inequality (5.2)/(4.2), so Appendix C still adds OOEEE on top of it
+- The remaining depth-two gap 0.4801 -> 0.4927 is later V_k truncations, not rest-average
+- log log y depth is not removed
+Strongest theorem
+- every nonempty backward-closed set has log-count >> (log x)^lambda for lambda < 0.4801
+  (Paper C Theorem 1 / fate-contagion Theorem 4.2, J-fate-log-density, J-fate-oeoee-production)
+Strongest refutation
+- T4 as an abstract statement about arbitrarily short steps is false; the Half B application stands
+Reusable machinery
+- oeoee_audit.py, oeoee_audit_ledger.md, RECURSIONS[block_third_plus_oeoee]
+Branch status
+- PROMOTE
+Why
+  The constants recompute and still save a positive power of P, so the printed
+  unconditional exponent is the four-term root. This is a rate drop of the same
+  object (contagion plus the pressure/Tao reduction), not a new object.
+Best next question
+- the V_3 truncation constants, later, not this branch
+```
+
+## External averaging of \(M_{\theta,q}\) / \(P_\theta\) (not a numbered milestone)
+
+- **Date:** 2026-09-06
+- **Objective:** Classify the two natural ANT readings of “external averaging” for the existing hypotheses \(\mathrm P_\theta(C)\) and \(\mathrm M_{\theta,q}(C)\). Not a proof campaign, not a third formulation, not a Paper C rewrite, not a census.
+- **Hypotheses:** (A) completing the single live-tilted odd sum without a Walsh expansion of the tilt is a new sufficient inequality; (B) a harmonic / dyadic average of \(\mathrm P_\theta\) is either new and sufficient or already \(\psi_F\). Falsifier: each identity is pair-correlation, Walsh / Weyl / §10.4(e), tilted \(S\)-fairness, a Cesàro mean that does not suffice, or a third formulation.
+- **Major results:**
+  - **Parseval / large sieve:** already `J-tao-cylinder-forms-reparameterization`. Pointed at, not re-derived.
+  - **Identity A (REPARAMETERIZATION / recorded kill):** \(1_{\mathrm{odd}}(m)=(1-(-1)^m)/2\) plus Vaaler produces a cylinder-weighted nested phase, because the tilt amplitude is constant on depth-\(t\) cylinders. Inputs: Walsh tail (pressure-direct B2), van der Corput / Weyl on \(e(h J^t(n)/2)\) (two-monomial leftover or \(cC<1\)), or drop / truncate the amplitude (§10.4(e)).
+  - **Identity B, \(\Pi\) as written:** does not suffice. Markov is per-scale; a Cesàro spike of size \((\log Y)^{1+o(1)}\) contributes \((\log Y)^{1-e+o(1)}\) to the harmonic live sum, which grows for \(e\approx 0.55\).
+  - **Identity B, harmonic live counts (REPARAMETERIZATION):** the log-measure \(\mathbb P^{\log}_x(\tau>d)\) on \((\sqrt x,x]\) is the finite-depth form of Proposition 11.1 / `J-tao-free-term-is-live-mass`. Not named as a new hypothesis.
+  - **Identity B, productions:** odd step is tilted \(S\)-fairness (pressure-direct B1). Backward even-block / \(OE\) geometry does not intervalize \(J^t((y,2y])\).
+  - Ledger: `J-pressure-external-average`. Dossier: [juggler_pressure_external_average.md](problems/juggler_pressure_external_average.md). No probe.
+- **Refuted ideas:** external averaging as a laboratory method distinct from the recorded kills; completing \(1_{\mathrm{odd}}\) without Walsh as a new exponential sum; \(\Pi\) as a sufficient weakening of \(\mathrm P_\theta\).
+- **Literature:** Tao note §10–11, Paper C §§9–10 and §12, `J-pressure-direct-routes`.
+- **Open:** none in this laboratory. \(\mathrm M_{\theta,q}(C)\) stays the export.
+- **Decision:** CLOSE.
+
+```text
+What was learned
+- the notes' mean-over-characters sentence is pair-correlation, already classified
+- completing 1_odd without expanding the tilt still sees the cylinder partition:
+  the tilt is that partition
+- Cesaro of tilted moments does not feed contagion (Markov spike)
+- harmonic average of live counts is finite-depth psi_F, not a third formulation
+- a production recursion's odd step is tilted S-fairness
+Strongest theorem
+- none new; the completion identity 1_odd(m) = (1-(-1)^m)/2 is elementary
+Strongest refutation
+- "external averaging names a laboratory method": false; both readings land
+  on recorded kills or do not suffice
+Reusable machinery
+- none
+Branch status
+- CLOSE
+Why
+- both ANT readings are pair-correlation, a cylinder-weighted nested phase,
+  a Cesaro moment that does not suffice, or the free-term live-mass
+  reparameterization; no third formulation was opened
+Best next question
+- none on this line; the no-momentum form stays the export
+```
