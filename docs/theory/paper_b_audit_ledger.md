@@ -4197,3 +4197,65 @@ three do not -- the rename case, which is what motivated the row.
 Three audits now, in the three directions the same drift can run: Lean's constants against the
 manuscript, Lean's prose about the manuscript, and the manuscript's prose about the probes.
 Each was written after a failure of exactly its own kind, and each has since found one more.
+
+## No draw from the caps can leave `(C1)`, and at the top the census over-covers what is applied
+
+The question was how many census samples fall outside `(C1)` and
+whether any probe should gate on the product. None do, and none should.
+
+**`(C1)` is unviolatable by construction.** The census draws
+`h_1 <= P^(1/48)`, `h_2 <= P^(1/24)`, `k <= P^(1/24)` independently, and
+those three caps multiply to `P^(5/48)` against `(C1)`'s `P^(6/48)` ---
+a factor `P^(1/48)` of room, which is the "`room P^(-1/48)`" the
+manuscript records when it says `(C3)` and `(C4)` imply `(C1)`. Integer
+flooring adds more: at `P_0` the real product bound is `25.8` and the
+integer one is `1 * 3 * 3 = 9`. Even under `(C4)`'s own looser
+`h_1 <= P^(1/24)` the product would be exactly `P^(1/8)`: equality,
+never violation. `1600` draws, none outside, worst ratio `0.427`.
+
+(The premise of the question was also wrong: `P^(1/8)` at `1e16` is
+`100`, not `10`.)
+
+**The comparison worth having is the other one.** Theorem 6.1 hands the
+lemmas `k <= 2 P^(1/96)`, so the load it applies them at is
+`2 P^(7/96)`:
+
+```text
+    P       product   (C1) P^(1/8)   ratio    load 2P^(7/96)   ratio
+   1e4         1          3.162      0.316        3.915        0.255
+   1e8         4         10.000      0.400        7.662        0.522
+  1e12         9         31.623      0.285       14.998        0.600
+  1e14         9         56.234      0.160       20.983        0.429
+  1e15        32         74.989      0.427       24.819        1.289
+  1e16        32        100.000      0.320       29.356        1.090
+```
+
+At the top two ranges the census reaches `32` against a load of `24.8`
+and `29.4`. So it over-covers the operating range by `1.29` while
+sitting at `0.43` of the hypothesis: it tests more than Theorem 6.1
+needs and less than Lemma 5.2 permits, which is the right side of both.
+
+That completes the parameter-reach picture the last three passes have
+been assembling:
+
+```text
+  parameter   pinned at P_0 by        window above P_0   exercised by the audit
+  k           Thm 6.1, 2P^(1/96)      2240               k = 1, 2 only
+  h_1         P^(1/48)                7.85               h_1 = 2 at 1e15, 1e16
+  h_2         P^(1/24)                --                 h_2 = 4 at 1e15, 1e16
+  product     (C1) P^(1/8)            never binds        0.43 of it at worst
+```
+
+Tags. EXACT: the three caps multiply to `P^(5/48)` against `(C1)`'s
+`P^(6/48)`, so no draw from them can violate `(C1)`; under `(C4)`
+alone the product is exactly `P^(1/8)`, equality and not violation.
+COMPUTATIONALLY VERIFIED: `1600` draws over eight ranges, zero outside
+`(C1)`, worst ratio `0.4267` so the margin never falls below `2.343`;
+the census exceeds the operating load `2P^(7/96)` at `1e15` and `1e16`,
+by `1.289` and `1.090`. OBSERVATION: the audit tests strictly more than
+Theorem 6.1 applies and strictly less than Lemma 5.2 allows, at every
+range.
+
+Probe: `census_admissibility`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

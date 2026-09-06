@@ -34571,3 +34571,63 @@ Best next question
   and a default that moves silently rescopes a printed claim. Do the printed
   ranges match the defaults of the functions cited beside them?
 ```
+
+## Nothing to gate on, and the census sits between the two bounds
+
+`(C1)` cannot be violated by a draw from the caps. The census takes
+`h_1 <= P^(1/48)`, `h_2 <= P^(1/24)`, `k <= P^(1/24)`, whose product is
+`P^(5/48)` against `(C1)`'s `P^(6/48)` --- the `P^(-1/48)` of room the
+manuscript already records --- and integer flooring adds more: at `P_0`
+the real bound is `25.8` and the integer product `1*3*3 = 9`. Even under
+`(C4)`'s looser `h_1 <= P^(1/24)` the product is exactly `P^(1/8)`,
+equality and never violation. `1600` draws, none outside, worst ratio
+`0.427`. So no probe needs to gate on the product, and none does.
+
+The premise of my own question was wrong too: `P^(1/8)` at `1e16` is
+`100`, not `10`.
+
+What the measurement does show is the other side. Theorem 6.1 applies
+the lemmas at `k <= 2P^(1/96)`, a load of `2P^(7/96)`, and at the top
+two census ranges the integer product reaches `32` against loads of
+`24.8` and `29.4`. The census over-covers the operating range by `1.29`
+while sitting at `0.43` of the hypothesis: more than the theorem needs,
+less than the lemma allows.
+
+That closes the parameter-reach picture. `k` is held at `{1,2}` for
+`2240` times `P_0` and the audit covers exactly that; `h_1` is held at
+`1` for `7.85` and the audit crosses it; the product never binds at all.
+
+```text
+Phase-end report
+Question
+- how many census samples fall outside (C1), and does any probe need to
+  gate on the product rather than the caps
+Instruments
+- census_admissibility: 1600 draws over the eight ranges against both
+  (C1) and the operating load 2P^(7/96)
+Ledger tags
+- EXACT: the caps multiply to P^(5/48) against (C1)'s P^(6/48), so no
+  draw can violate it; under (C4) alone the product is exactly P^(1/8)
+- COMPUTATIONALLY VERIFIED: 1600 draws, zero outside, worst ratio
+  0.4267 so the margin never falls below 2.343; the census exceeds the
+  operating load at 1e15 and 1e16 by 1.289 and 1.090
+- OBSERVATION: at every range the audit tests strictly more than
+  Theorem 6.1 applies and strictly less than Lemma 5.2 allows
+Strongest theorem
+- (C1) is unviolatable by any draw from the individual caps, which is
+  what "the product of the three caps" means and why nothing gates on it
+Strongest refutation
+- my own question's arithmetic: P^(1/8) at 1e16 is 100, not 10
+Reusable machinery
+- census_admissibility, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Three passes of parameter-reach work are now recorded and none of it
+  is a manuscript change; the reach picture is complete.
+Best next question
+- the census gates identities, not estimates: check_lemma_5_1_ii_iv
+  returns booleans that hold for every (n, h_1, h_2, k) whatever the
+  caps say. Which of its clauses would still be true outside (C1), and
+  which are the ones the hypothesis is actually protecting?
+```

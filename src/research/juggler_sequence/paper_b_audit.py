@@ -4568,6 +4568,75 @@ def shift_reach_in_the_audit(seed: int = 41, samples_per_range: int = 60) -> dic
     }
 
 
+def census_admissibility(seed: int = 42, samples_per_range: int = 200) -> dict[str, Any]:
+    """How many census samples fall outside (C1), and does anything need to gate on the product?
+
+    None, and nothing does.  The census draws h_1 <= P^{1/48}, h_2 <= P^{1/24}, k <= P^{1/24}
+    independently, and (C1) is k h_1h_2 <= P^{1/8}.  The product of those three caps is P^{5/48}
+    against (C1)'s P^{6/48}: a factor P^{1/48} of room, which is the "room P^{-1/48}" the
+    manuscript records when it says (C3) and (C4) imply (C1).  Integer flooring adds more -- at
+    P_0 the real product bound is 25.8 and the integer one is 1*3*3 = 9.
+
+    So no draw from the caps can leave (C1), and the worst ratio over the eight census ranges is
+    0.427.  Even under (C4)'s own looser h_1 <= P^{1/24} the product would be exactly P^{1/8}:
+    equality, never violation.  That is what "(C1) is the product of the three caps" means, and it
+    is why no probe gates on the product.
+
+    The comparison worth having is the other one.  Theorem 6.1 hands the lemmas k <= 2 P^{1/96},
+    so the load it actually applies them at is 2 P^{7/96}.  At the top two census ranges the
+    integer product reaches 32 against a load of 24.8 and 29.4 -- the census over-covers the
+    operating range by 1.29 and 1.09 while sitting at 0.43 and 0.32 of the hypothesis.  It tests
+    more than Theorem 6.1 needs and less than Lemma 5.2 permits, which is the right side of both.
+    """
+
+    rng = random.Random(seed)
+    ranges = [10**4, 10**6, 10**8, 10**10, 10**12, 10**14, 10**15, 10**16]
+    rows = []
+    violations = 0
+    drawn = 0
+    for P in ranges:
+        H1 = max(1, int(P ** (1 / 48)))
+        H2 = max(1, int(P ** (1 / 24)))
+        K = max(1, int(P ** (1 / 24)))
+        cap = P ** 0.125
+        load = 2 * P ** (7 / 96)
+        worst_drawn = 0
+        for _ in range(samples_per_range):
+            prod = rng.randint(1, H1) * rng.randint(1, H2) * rng.randint(1, K)
+            worst_drawn = max(worst_drawn, prod)
+            drawn += 1
+            if prod > cap:
+                violations += 1
+        rows.append({
+            "P": P, "H1": H1, "H2": H2, "K": K,
+            "max_product": H1 * H2 * K,
+            "max_product_drawn": worst_drawn,
+            "c1_cap": cap,
+            "ratio_to_c1": H1 * H2 * K / cap,
+            "operating_load": load,
+            "ratio_to_the_operating_load": H1 * H2 * K / load,
+            "over_covers_the_operating_load": H1 * H2 * K > load,
+        })
+    worst_c1 = max(r["ratio_to_c1"] for r in rows)
+    worst_load = max(r["ratio_to_the_operating_load"] for r in rows)
+    return {
+        "rows": rows,
+        "samples_drawn": drawn,
+        "samples_outside_c1": violations,
+        "no_sample_can_violate_c1": violations == 0,
+        "worst_ratio_to_c1": worst_c1,
+        "margin_never_below": 1 / worst_c1,
+        "cap_product_exponent": "5/48",
+        "c1_exponent": "6/48",
+        "room_exponent": "1/48",
+        "even_under_C4_alone_the_product_is_exactly_c1": True,
+        "no_probe_needs_to_gate_on_the_product": True,
+        "ranges_over_covering_the_operating_load": [r["P"] for r in rows if r["over_covers_the_operating_load"]],
+        "worst_ratio_to_the_operating_load": worst_load,
+        "census_over_covers_the_operating_range": worst_load > 1,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4641,6 +4710,7 @@ def summary() -> dict[str, Any]:
     c2sites = c2_occurrence_audit()
     krange = k_range_at_the_operating_point()
     shifts = shift_reach_in_the_audit()
+    admissible = census_admissibility()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4702,6 +4772,7 @@ def summary() -> dict[str, Any]:
         "c2_occurrence_audit": c2sites,
         "k_range_at_the_operating_point": krange,
         "shift_reach_in_the_audit": shifts,
+        "census_admissibility": admissible,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

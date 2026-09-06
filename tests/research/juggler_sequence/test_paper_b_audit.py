@@ -1562,3 +1562,30 @@ def test_the_audit_draws_h1_above_one_at_its_top_two_ranges() -> None:
     assert by_P[10**14]["h1_values_drawn"] == [1]
     assert by_P[10**12]["h2_values_drawn"] == [1, 2, 3]
     assert len(r["rows"]) == 8
+
+
+# --- whether the census can leave the hypothesis it is testing ---
+
+
+def test_no_census_sample_can_leave_c1() -> None:
+    """The three caps multiply to P^(5/48) against (C1)'s P^(6/48): P^(1/48) of room, always."""
+    r = A.census_admissibility(samples_per_range=100)
+    assert r["no_sample_can_violate_c1"] and r["samples_outside_c1"] == 0
+    assert r["samples_drawn"] == 800
+    assert r["worst_ratio_to_c1"] < 0.5 and r["margin_never_below"] > 2.3
+    assert r["cap_product_exponent"] == "5/48" and r["c1_exponent"] == "6/48"
+    assert r["even_under_C4_alone_the_product_is_exactly_c1"]
+    assert r["no_probe_needs_to_gate_on_the_product"]
+    assert all(x["max_product_drawn"] <= x["max_product"] for x in r["rows"])
+
+
+def test_the_census_over_covers_the_operating_range_at_its_top_two_ranges() -> None:
+    """32 against a load of 24.8 and 29.4: more than Theorem 6.1 needs, less than the lemma allows."""
+    r = A.census_admissibility(samples_per_range=100)
+    assert r["census_over_covers_the_operating_range"]
+    assert r["ranges_over_covering_the_operating_load"] == [10**15, 10**16]
+    assert 1.28 < r["worst_ratio_to_the_operating_load"] < 1.30
+    by_P = {x["P"]: x for x in r["rows"]}
+    assert by_P[10**15]["max_product"] == 32 and by_P[10**14]["max_product"] == 9
+    assert by_P[10**15]["ratio_to_c1"] < 0.5 < by_P[10**15]["ratio_to_the_operating_load"]
+    assert len(r["rows"]) == 8

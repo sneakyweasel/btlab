@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "0b1d94c47796ba20894adfaf4ff18a4a70596c7a",
+  "git_commit": "ef46bab50d3c7e6c0ff48c175b6936db478dce65",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3693,20 +3693,128 @@
     "some_P0_constant_moves_it_less_than_guaranteed": true
   },
   "lemma_3_9_admissible_search": {
-    "P": 1000000,
-    "trials": 400,
-    "admissible": 383,
-    "nonempty_sublevel": 383,
-    "instances_with_an_r4_only_point": 7,
-    "r4_branch_fires": true,
-    "worst_measure_over_A5_bound": 0.3697674605806474,
-    "A5_bound_holds_on_every_admissible_instance": true,
-    "worst_over_the_local_r3_form": 0.6395377427921478,
-    "worst_over_A6_r3_constant": 1.001,
-    "worst_over_the_proof_r3_constant": 0.5005,
-    "A6_r3_constant_is_exceeded": true,
-    "proof_r3_constant_holds": true,
-    "room_left": 2.70440237880774
+    "rows": [
+      {
+        "P": 10000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "max_product": 1,
+        "max_product_drawn": 1,
+        "c1_cap": 3.1622776601683795,
+        "ratio_to_c1": 0.31622776601683794,
+        "operating_load": 3.9146835629753207,
+        "ratio_to_the_operating_load": 0.25544848872534637,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 1000000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "max_product": 1,
+        "max_product_drawn": 1,
+        "c1_cap": 5.623413251903491,
+        "ratio_to_c1": 0.17782794100389226,
+        "operating_load": 5.476839268528723,
+        "ratio_to_the_operating_load": 0.18258706362741883,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 100000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "max_product": 4,
+        "max_product_drawn": 4,
+        "c1_cap": 10.0,
+        "ratio_to_c1": 0.4,
+        "operating_load": 7.662373699114576,
+        "ratio_to_the_operating_load": 0.5220314431365073,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 10000000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "max_product": 4,
+        "max_product_drawn": 4,
+        "c1_cap": 17.78279410038923,
+        "ratio_to_c1": 0.22493653007613962,
+        "operating_load": 10.720046330783585,
+        "ratio_to_the_operating_load": 0.3731327157153824,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 1000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "max_product": 9,
+        "max_product_drawn": 9,
+        "c1_cap": 31.622776601683793,
+        "ratio_to_c1": 0.28460498941515416,
+        "operating_load": 14.997884186649118,
+        "ratio_to_the_operating_load": 0.6000846444734957,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 100000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "max_product": 9,
+        "max_product_drawn": 9,
+        "c1_cap": 56.23413251903491,
+        "ratio_to_c1": 0.16004514690350305,
+        "operating_load": 20.9827945827262,
+        "ratio_to_the_operating_load": 0.42892284745565434,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 1000000000000000,
+        "H1": 2,
+        "H2": 4,
+        "K": 4,
+        "max_product": 32,
+        "max_product_drawn": 32,
+        "c1_cap": 74.98942093324558,
+        "ratio_to_c1": 0.4267268582922637,
+        "operating_load": 24.818755215034397,
+        "ratio_to_the_operating_load": 1.2893475004183705,
+        "over_covers_the_operating_load": true
+      },
+      {
+        "P": 10000000000000000,
+        "H1": 2,
+        "H2": 4,
+        "K": 4,
+        "max_product": 32,
+        "max_product_drawn": 32,
+        "c1_cap": 100.0,
+        "ratio_to_c1": 0.32,
+        "operating_load": 29.355985352441397,
+        "ratio_to_the_operating_load": 1.0900673104927379,
+        "over_covers_the_operating_load": true
+      }
+    ],
+    "samples_drawn": 1600,
+    "samples_outside_c1": 0,
+    "no_sample_can_violate_c1": true,
+    "worst_ratio_to_c1": 0.4267268582922637,
+    "margin_never_below": 2.3434194041639245,
+    "cap_product_exponent": "5/48",
+    "c1_exponent": "6/48",
+    "room_exponent": "1/48",
+    "even_under_C4_alone_the_product_is_exactly_c1": true,
+    "no_probe_needs_to_gate_on_the_product": true,
+    "ranges_over_covering_the_operating_load": [
+      1000000000000000,
+      10000000000000000
+    ],
+    "worst_ratio_to_the_operating_load": 1.2893475004183705,
+    "census_over_covers_the_operating_range": true
   },
   "pointwise_bound_inventory": {
     "bounds": [
@@ -3775,7 +3883,7 @@
   "draft_history_markers": {
     "occurrences": [
       {
-        "line": 2117,
+        "line": 2119,
         "section": "4. The level-2 wave and the kernel theorem",
         "in_appendix": false,
         "mathematical": false,
@@ -3783,7 +3891,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 4083,
+        "line": 4085,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3791,7 +3899,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 5015,
+        "line": 5017,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3799,7 +3907,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5520,
+        "line": 5523,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3807,7 +3915,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6331,
+        "line": 6334,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3815,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6701,
+        "line": 6704,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3823,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6731,
+        "line": 6734,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3831,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6810,
+        "line": 6813,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3844,8 +3952,8 @@
     "in_body": 4,
     "body_mathematical": 2,
     "body_needing_a_look": [
-      2117,
-      4083
+      2119,
+      4085
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -5431,6 +5539,130 @@
     "k_window_above_P0": 2239.622420316159,
     "h1_window_is_far_narrower_than_k_window": true
   },
+  "census_admissibility": {
+    "rows": [
+      {
+        "P": 10000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "max_product": 1,
+        "max_product_drawn": 1,
+        "c1_cap": 3.1622776601683795,
+        "ratio_to_c1": 0.31622776601683794,
+        "operating_load": 3.9146835629753207,
+        "ratio_to_the_operating_load": 0.25544848872534637,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 1000000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "max_product": 1,
+        "max_product_drawn": 1,
+        "c1_cap": 5.623413251903491,
+        "ratio_to_c1": 0.17782794100389226,
+        "operating_load": 5.476839268528723,
+        "ratio_to_the_operating_load": 0.18258706362741883,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 100000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "max_product": 4,
+        "max_product_drawn": 4,
+        "c1_cap": 10.0,
+        "ratio_to_c1": 0.4,
+        "operating_load": 7.662373699114576,
+        "ratio_to_the_operating_load": 0.5220314431365073,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 10000000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "max_product": 4,
+        "max_product_drawn": 4,
+        "c1_cap": 17.78279410038923,
+        "ratio_to_c1": 0.22493653007613962,
+        "operating_load": 10.720046330783585,
+        "ratio_to_the_operating_load": 0.3731327157153824,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 1000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "max_product": 9,
+        "max_product_drawn": 9,
+        "c1_cap": 31.622776601683793,
+        "ratio_to_c1": 0.28460498941515416,
+        "operating_load": 14.997884186649118,
+        "ratio_to_the_operating_load": 0.6000846444734957,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 100000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "max_product": 9,
+        "max_product_drawn": 9,
+        "c1_cap": 56.23413251903491,
+        "ratio_to_c1": 0.16004514690350305,
+        "operating_load": 20.9827945827262,
+        "ratio_to_the_operating_load": 0.42892284745565434,
+        "over_covers_the_operating_load": false
+      },
+      {
+        "P": 1000000000000000,
+        "H1": 2,
+        "H2": 4,
+        "K": 4,
+        "max_product": 32,
+        "max_product_drawn": 32,
+        "c1_cap": 74.98942093324558,
+        "ratio_to_c1": 0.4267268582922637,
+        "operating_load": 24.818755215034397,
+        "ratio_to_the_operating_load": 1.2893475004183705,
+        "over_covers_the_operating_load": true
+      },
+      {
+        "P": 10000000000000000,
+        "H1": 2,
+        "H2": 4,
+        "K": 4,
+        "max_product": 32,
+        "max_product_drawn": 32,
+        "c1_cap": 100.0,
+        "ratio_to_c1": 0.32,
+        "operating_load": 29.355985352441397,
+        "ratio_to_the_operating_load": 1.0900673104927379,
+        "over_covers_the_operating_load": true
+      }
+    ],
+    "samples_drawn": 1600,
+    "samples_outside_c1": 0,
+    "no_sample_can_violate_c1": true,
+    "worst_ratio_to_c1": 0.4267268582922637,
+    "margin_never_below": 2.3434194041639245,
+    "cap_product_exponent": "5/48",
+    "c1_exponent": "6/48",
+    "room_exponent": "1/48",
+    "even_under_C4_alone_the_product_is_exactly_c1": true,
+    "no_probe_needs_to_gate_on_the_product": true,
+    "ranges_over_covering_the_operating_load": [
+      1000000000000000,
+      10000000000000000
+    ],
+    "worst_ratio_to_the_operating_load": 1.2893475004183705,
+    "census_over_covers_the_operating_range": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -5498,5 +5730,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 81.97922420501709
+  "elapsed_seconds": 81.62176418304443
 }
