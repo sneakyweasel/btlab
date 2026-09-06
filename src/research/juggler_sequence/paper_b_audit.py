@@ -3375,6 +3375,27 @@ def proposition_7_4_check(seed: int = 704, grid: int = 40000) -> dict[str, Any]:
                              "ratio": abs(value - L) / printed_bound(L, amin),
                              "holds": abs(value - L) <= printed_bound(L, amin)})
 
+    # the fixed families above do not search; a short hill climb on the gaps and the shifts finds
+    # two to three times more at small L.  Reported as a lower bound on what optimisation reaches:
+    # a longer run (300 restarts, 60 steps, grid 40000) gives 0.333, 0.279, 0.174 at L = 3, 4, 6.
+    searched = []
+    for L in (3, 4, 6):
+        best = 0.0
+        for _ in range(40):
+            gaps = 1 + rng.random(L - 1) * 1.5
+            A = np.concatenate([[rng.random()], np.cumsum(gaps) + rng.random()])
+            x = rng.random(L)
+            r = abs(integral(A, x) - L) / printed_bound(L, 1.0)
+            for _ in range(30):
+                g2 = np.clip(gaps + rng.normal(0, 0.12, L - 1), 1.0, None)
+                A2 = np.concatenate([[A[0]], np.cumsum(g2) + A[0]])
+                x2 = np.mod(x + rng.normal(0, 0.08, L), 1.0)
+                r2 = abs(integral(A2, x2) - L) / printed_bound(L, 1.0)
+                if r2 > r:
+                    r, gaps, A, x = r2, g2, A2, x2
+            best = max(best, r)
+        searched.append({"L": L, "best_ratio_found": best})
+
     # the pairwise step on its own: L = 2, where the ceiling is 2 pieces x 2 orderings / pi
     best_pair = 0.0
     for _ in range(1500):
@@ -3388,6 +3409,10 @@ def proposition_7_4_check(seed: int = 704, grid: int = 40000) -> dict[str, Any]:
         "rows": rows,
         "bound_holds_everywhere": all(r["holds"] for r in rows),
         "worst_ratio": max(r["ratio"] for r in rows),
+        "searched": searched,
+        "best_searched_ratio": max(r["best_ratio_found"] for r in searched),
+        "search_beats_the_fixed_families": max(r["best_ratio_found"] for r in searched) > max(r["ratio"] for r in rows),
+        "searched_ratio_falls_with_L": searched[0]["best_ratio_found"] > searched[-1]["best_ratio_found"],
         "pairwise_best": best_pair,
         "pairwise_ceiling": pair_ceiling,
         "pairwise_share_of_its_ceiling": best_pair / pair_ceiling,

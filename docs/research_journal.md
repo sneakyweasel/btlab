@@ -33228,3 +33228,73 @@ Best next question
   with an explicit hypothesis. Does the count hold at the window sizes
   Section 5 actually uses?
 ```
+
+**Correction, from a search rather than a sweep.** The families above do
+not optimise. A hill climb on the gaps and the shifts reaches
+\(0.333\), \(0.279\) and \(0.174\) at \(L=3,4,6\) --- two to three times
+what the fixed families give at the same \(L\), and the probe now
+carries a short version of it. The conclusion is unchanged and better
+supported: the ratio still falls with \(L\), from a third at \(L=3\) to
+a sixth by \(L=6\), so the assembled bound is approached at small \(L\)
+and lost as the harmonic overcount grows. What was wrong in the entry
+above was reporting \(0.10\) at \(L=4\) as *the* figure when it was only
+what an unsearched family happened to give; the searched figure there is
+\(0.279\).
+
+## What a repair is worth depends on what sits underneath it
+
+Three things the concurrent revision changed under me this pass.
+
+**The pairing repair now buys 8%, not a factor of seven.** The per-row
+arithmetic stands -- `7.33`, `7.58`, `53.1` on the three rows carrying
+the mis-pairing -- but a row added since, `st6D1-modeindex` (`7 P^(1/4)
+<= P^(5/16)`) at `3.32e13`, sits just under the binding row. Fix the
+pairing and it becomes the maximum: `P_0` falls from `3.59e13` only to
+`3.32e13`, a factor of `1.079`.
+
+Two of my tests pinned the old consequence -- `> 2` and `> 10x the
+largest untouched row` -- and are now aimed at what is invariant: every
+pairing row over-charges, and the direction is safe.
+
+**Proposition 7.4's bound is approached more closely than my sweep
+said.** `0.10` for `L = 4..32` was from fixed families; a hill climb
+reaches `0.333`, `0.279`, `0.174` at `L = 3, 4, 6`. Conclusion
+unchanged, figure corrected, search now in the probe.
+
+**And a guard fired.** At line 3070 of the working copy, inside an
+erratum block, "An earlier draft got the window count from ...". That is
+the referee's own marker, and both `draft_history_markers` and the
+manuscript guard report it. The erratum is a correction to the reason
+printed for a window count -- ledger material rather than body material
+-- but it is a minute old and belongs to the other session, so it is
+reported and not touched.
+
+```text
+What was learned
+- a repair's value is not a property of the repair: st6D1-modeindex
+  arrived and took 7.33x down to 1.08x without touching the rows the
+  repair fixes
+- a test that pins a consequence rather than an invariant goes stale
+  when someone else edits the neighbourhood; two of mine did
+- the "earlier draft" guard earns its place: the phrase came back in
+  an erratum within a day of the audit of the guards
+Strongest theorem
+- none; two corrections and a guard report
+Strongest refutation
+- my own P_0 consequence from six entries ago, and my own 0.10 from
+  the last one
+Reusable machinery
+- the search inside proposition_7_4_check; two tests re-aimed at
+  invariants rather than consequences
+Branch status
+- PAPER_B_AUDIT_CONSISTENT; two guards red on the other session's
+  uncommitted manuscript edit
+Why
+  Everything here was found because a test failed that had passed for
+  a week. That is what the tests are for, and it is worth saying that
+  none of the three was found by looking.
+Best next question
+- st6D1-modeindex was added at 3.32e13, close enough to the binding
+  row to matter. Where did it come from, and does it have the same
+  pairing question as the rows beside it?
+```

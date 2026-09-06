@@ -2763,3 +2763,51 @@ this one is sharp in its step and loose in its sum. The pattern across
 all four: a constant is attained exactly when the configuration that
 attains it is *choosable*, and here one pair is choosable while \(L\)
 pairs at once are not. COMPUTATIONALLY VERIFIED.
+
+**Correction, from a search rather than a sweep.** The families above do
+not optimise. A hill climb on the gaps and the shifts reaches
+\(0.333\), \(0.279\) and \(0.174\) at \(L=3,4,6\) --- two to three times
+what the fixed families give at the same \(L\), and the probe now
+carries a short version of it. The conclusion is unchanged and better
+supported: the ratio still falls with \(L\), from a third at \(L=3\) to
+a sixth by \(L=6\), so the assembled bound is approached at small \(L\)
+and lost as the harmonic overcount grows. What was wrong in the entry
+above was reporting \(0.10\) at \(L=4\) as *the* figure when it was only
+what an unsearched family happened to give; the searched figure there is
+\(0.279\).
+
+## Two updates the concurrent revision forced, and one guard firing
+
+**The pairing repair is now worth 8%, not a factor of seven.** The entry
+"\(P_0\)'s binding row is charged at a cell that does not exist" reported
+that repairing the interpolant pairing would drop \(P_0\) from
+\(3.59\cdot10^{13}\) to \(4.89\cdot10^{12}\). The per-row arithmetic
+still holds --- \(7.33\), \(7.58\) and \(53.1\) on the three rows that
+carry the error --- but the consequence does not. A row added since,
+`st6D1-modeindex` ("widened \(\lvert B_0\rvert\le R_0\):
+\(7P^{1/4}\le P^{5/16}\)"), sits at \(3.32\cdot10^{13}\), just under the
+binding row. With the pairing fixed it becomes the maximum, so \(P_0\)
+falls only to \(3.32\cdot10^{13}\): a factor of \(1.079\).
+
+The finding is unchanged and its value is not. Two tests that pinned the
+old consequence --- "\(>2\)" and "\(>10\times\) the largest untouched
+row" --- have been re-aimed at what is invariant: every pairing row
+over-charges, and the direction is safe. What a repair is worth depends
+on what sits underneath it, and something now does.
+
+**Proposition 7.4's assembled bound is approached more closely than the
+sweep said.** Reported at \(0.10\) for \(L=4\ldots32\) from fixed
+families; a hill climb on the gaps and shifts reaches \(0.333\),
+\(0.279\), \(0.174\) at \(L=3,4,6\). The conclusion is unchanged --- the
+ratio still falls with \(L\) --- but \(0.10\) was what an unsearched
+family happened to give.
+
+**And the guard fired.** The phrase the referee named is back: at line
+3070 of the working copy, inside an erratum block, "An earlier draft got
+the window count from …". Both `draft_history_markers` here and
+`test_paper_b_body_carries_no_draft_history` in the manuscript guards
+report it. The erratum's content is a correction to the reason printed
+for a window count, which is the ledger's kind of material rather than
+the body's; the phrase is the referee's own marker, so it is worth
+seeing before it is committed. Reported, not edited --- the manuscript
+is the other session's, and the sentence is a minute old.
