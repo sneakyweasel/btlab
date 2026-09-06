@@ -5851,3 +5851,156 @@ the `P^(-1/2)` the ratio carries, which turns a `1.43` into a `6.14`.
 Probe: `qpp_row_and_the_floor`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## Reading the paper as arithmetic: eighty relations, one wrong, and a rounding convention nobody had stated
+
+*Mathematical target.* Every previous audit here compares the
+manuscript with something outside it --- Lean, the probes, the
+certificate --- or with itself by *name*: a constant printed with two
+values, a value naming two constants. None had asked the blunt
+question. Take every relation the paper prints between numbers and
+evaluate both sides.
+
+*Novelty hypothesis.* The clusterer's blind spot is notation: it reads
+`1.5` and `\tfrac32` as unrelated strings. A normaliser sending every
+literal to a rational removes that, and answers a question nobody had
+asked --- how many of the paper's constants are exact rationals printed
+as decimals, and is any decimal printed inconsistently with its own
+exact value?
+
+*Falsifier.* Every relation checks out, in which case the normaliser is
+a guard and not a finding.
+
+*Existing machinery.* `_MATH`, `_split_top`, `paper_text` from
+`manuscript_self_audit`; the exclusion-anchor pattern from the
+shared-value table.
+
+*Prior art.* `docs/negative_knowledge.md` has nothing on numeral
+normalisation; `conjectures/refuted/` nothing; the ledger's own
+shared-value entry is the nearest neighbour and explicitly notes that
+the clusterer cannot see across notations.
+
+**Result.** Eighty relations. Fifty-four exact --- including all of
+Section 5's fraction algebra, `945/512-81/512=864/512`,
+`675/2048-432/2048=243/2048`, `11/12-29/32=1/96`, `-365/176=-730/352`,
+`27/16=864/512`. Not one arithmetic slip anywhere in it. Twenty-three
+correctly rounded. One quoted in units of `10^{-4}`
+(`7/5800=12.0690`), declared as an exception because the units are
+stated in prose, outside the math span.
+
+**The error.** Claim D's shift range printed its threshold `1.45^{36}`
+as `1.1e6`. The value is `644537`, and Appendix A.1's own row for that
+comparison already read `6.4e5`. The prose contradicted the table it
+was summarising. Both figures sit far under `P_0 = 3.5858e13`, so
+nothing downstream moves --- which is why it survived. Corrected in
+place to `6.4\cdot10^{5}`, with the row A.1 prints for it named.
+
+**The convention.** Two decimals are neither exact nor
+nearest-rounded: `(1.20)^{1/2}=1.096` (nearest `1.095`) and
+`1.5\cdot(0.35)^{-1/2}=2.536` (nearest `2.535`), both in the Stage 4
+cell-sum display. Both are rounded *up*, and both feed upper bounds
+(`1.1 (uh)^{1/2}P^{5/8}` and `2.6 (h/u)^{1/2}P^{7/8}`), so both are
+rounded away from the inequality they serve. That is the safe
+direction and it is the paper's practice throughout, but it had never
+been written down as a claim, and so had never been checked.
+
+It is worth checking because the unsafe direction is invisible to every
+other test here. A decimal rounded *into* its own bound sits within a
+unit of the last place, agrees with its constant to the precision
+anyone would compare at, and is still a claim the line does not
+support. `classify_equality` separates `bounded_up` from
+`bounded_down`; `failures()` now carries a `rounded_into_a_bound` key,
+and it is empty.
+
+*Coverage.* The pure-number lines are few. Most of the displayed
+algebra is a numeral times symbols, so `leading_literal` splits each
+side into its numeric head and symbolic tail and compares the heads
+when the tails agree: that is what raised the count from 72 to 80 and
+what exposed the `1.096`, whose precision the first version read off
+the whole side (four significant figures became one, and it passed as
+"rounded" for no reason at all).
+
+Tags. EXACT: the fifty-four identities, and `1.45^{36}=644537`.
+COMPUTATIONALLY VERIFIED: the eighty-row census, `54/23/2/1`; the two
+outward roundings and their gaps `+5.5e-4` and `+5.4e-4`, each under
+its `1e-3` last place. OBSERVATION: outward rounding is a convention,
+not a theorem --- two instances is not a proof that the paper never
+rounds inward, only that it has not yet.
+
+Probe: `manuscript_self_audit.to_expression`, `to_rational`,
+`leading_literal`, `classify_equality`, `numeric_relations`,
+`rounding_directions`, `wrong_relations`. Twelve new tests, twenty-five
+in the file. Manuscript edit: the Claim D correction, and a passage in
+the appendix stating the convention --- excluded from its own scan, as
+the shared-value table is. `P_0` unmoved at `3.5858e13`. No
+certificate edit.
+
+## No shared opening --- but the width reads off the exponent, and one of the three is not a block range
+
+**There is no single number behind the openings.** Across the three
+ranges and the cell count they run:
+
+```text
+  Stage-4 curvature   low 1.4334   high 1.4222
+  Step 5a anchor      low 1.1540   high 1.1706
+  Step 5b anchor      low 1.1071   high 1.0769
+  cell count          1.2071  (a count, not a range)
+```
+
+from `1.077` to `1.433`, with no shared value. The premise of the
+question --- that they were "all `1.43` except the cell count's `1.21`"
+--- is wrong: only the curvature sits at `1.43`, and the two anchors are
+near `1.1`. Whatever the openings are, they are not one editorial habit
+with one number behind it.
+
+**What is shared is the mechanism, and it leaves a signature.** A
+quantity carrying `nu^(-e)` has, over a dyadic block, a range of width
+exactly `2^e`:
+
+```text
+  Stage-4 curvature   nu^(-3/4)   width 1.681793 = 2^0.75000    exact
+  Step 5a anchor      nu^(-5/8)   width 1.542211 = 2^0.62500    exact
+  Step 5b anchor      nu^(-5/8)   width 6.290323 = 2^2.65313    not a block range
+```
+
+So the width reads the exponent off directly --- and it says **Step 5b's
+`[0.62, 3.90]` is not a block range.** Its quantity carries the same
+`nu^(-5/8)` as Step 5a's, so a block range would be `1.5422` wide; the
+printed exact range is `4.079` times that. Whatever else varies in it is
+not the block. This ledger has been calling it a block range for two
+sections; only two of the three are.
+
+**And one opening is inherited rather than chosen.** The erratum states
+the relation: `0.56 = 0.35 * 8/5` exactly. The 5b pair is the `8/5`
+rescaling of an older printed pair `[0.35, 2.6]`, with `2.6 * 8/5 = 4.16`
+rounded up again to `4.2`. So its openings are a superseded printing's,
+carried through a correction --- which is why they match nothing else.
+The `0.35` in that older pair is the same numeral as the Stage-4
+curvature's low end, and the manuscript flags it: "the two constants
+share a value and nothing else."
+
+So the answer is three negatives and one positive. No shared opening; no
+`sqrt2` behind them; `5b` is not the kind of object the last two
+sections took it for. What survives is that a printed range's width,
+divided by `2^e`, says whether it is a pure block range --- a one-line
+test that needs no measurement and that would have caught the `5b`
+misreading immediately.
+
+Tags. EXACT: a quantity carrying `nu^(-e)` has block-range width `2^e`;
+the Stage-4 curvature's width is `2^(3/4)` and Step 5a's `2^(5/8)`,
+both exactly; Step 5b's is `2^2.653`, so it is not a block range, and it
+is `4.079` times its block; `0.56 = 0.35 * 8/5` and `2.6 * 8/5 = 4.16`.
+COMPUTATIONALLY VERIFIED: the six openings `1.4334`, `1.4222`, `1.1540`,
+`1.1706`, `1.1071`, `1.0769`, and the cell count's `1.2071`; the widths
+above. OBSERVATION: `5b`'s openings are inherited from a superseded
+printing through the `8/5` correction, so they are not comparable with
+the others.
+
+*Correction.* The previous two sections call Step 5b's `[0.62, 3.90]` a
+block range. It is not; the openings priced there are unaffected, since
+they were measured against the stated exact endpoints and not against a
+block model, but the description is wrong.
+
+Probe: `block_range_widths`, `BLOCK_RANGES`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

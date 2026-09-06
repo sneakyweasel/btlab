@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "969c427fa074eafd38b5a37050ba5b23db3090b0",
+  "git_commit": "845b865a4f235cb6417dee3d80f2443a1361a7c8",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6970,
+        "line": 7005,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 7000,
+        "line": 7035,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 7079,
+        "line": 7114,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -6830,6 +6830,82 @@
     "lever_was_understated_by": 6.142735835811832,
     "relative_arithmetic_unaffected": true
   },
+  "block_range_widths": {
+    "rows": [
+      {
+        "name": "Stage-4 curvature",
+        "exponent": "3/4",
+        "true_lo": 0.501696751641773,
+        "true_hi": 0.84375,
+        "printed_lo": 0.35,
+        "printed_hi": 1.2,
+        "true_width": 1.681792830507429,
+        "expected_width": 1.681792830507429,
+        "log2_width": 0.7499999999999999,
+        "is_a_block_range": true,
+        "width_over_block": 1.0,
+        "printed_width": 3.428571428571429,
+        "opening_low": 1.4334192904050658,
+        "opening_high": 1.4222222222222223
+      },
+      {
+        "name": "Step 5a anchor",
+        "exponent": "5/8",
+        "true_lo": 0.6924287368217182,
+        "true_hi": 1.06787109375,
+        "printed_lo": 0.6,
+        "printed_hi": 1.25,
+        "true_width": 1.542210825407941,
+        "expected_width": 1.5422108254079407,
+        "log2_width": 0.6250000000000001,
+        "is_a_block_range": true,
+        "width_over_block": 1.0000000000000002,
+        "printed_width": 2.0833333333333335,
+        "opening_low": 1.1540478947028638,
+        "opening_high": 1.1705532693187015
+      },
+      {
+        "name": "Step 5b anchor",
+        "exponent": "5/8",
+        "true_lo": 0.62,
+        "true_hi": 3.9,
+        "printed_lo": 0.56,
+        "printed_hi": 4.2,
+        "true_width": 6.290322580645161,
+        "expected_width": 1.5422108254079407,
+        "log2_width": 2.6531340033627355,
+        "is_a_block_range": false,
+        "width_over_block": 4.07876956704753,
+        "printed_width": 7.5,
+        "opening_low": 1.107142857142857,
+        "opening_high": 1.076923076923077
+      }
+    ],
+    "openings": [
+      1.4334192904050658,
+      1.4222222222222223,
+      1.1540478947028638,
+      1.1705532693187015,
+      1.107142857142857,
+      1.076923076923077
+    ],
+    "cell_count_opening": 1.2071067811865472,
+    "opening_min": 1.076923076923077,
+    "opening_max": 1.4334192904050658,
+    "no_shared_opening": true,
+    "premise_that_they_were_all_1_43": false,
+    "pure_block_ranges": [
+      "Stage-4 curvature",
+      "Step 5a anchor"
+    ],
+    "step_5b_is_not_a_block_range": true,
+    "step_5b_width_over_block": 4.07876956704753,
+    "width_reads_off_the_exponent": true,
+    "erratum_relation_holds": true,
+    "high_end_rounded_again": true,
+    "one_opening_is_inherited": true,
+    "the_two_0_35s_are_a_coincidence": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6897,5 +6973,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 95.83545517921448
+  "elapsed_seconds": 107.67144632339478
 }

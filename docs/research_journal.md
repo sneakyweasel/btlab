@@ -36417,3 +36417,122 @@ Best next question
   derivations, or is it 2^(1/2) times something -- and would that make
   the openings a single editorial habit with one number behind it?
 ```
+
+## Eighty relations
+
+2026-09-06. The audits so far all compared the manuscript with
+something --- Lean, the probes, the certificate --- or with itself by
+name. None had just evaluated it. Take every relation the paper prints
+between numbers, normalise each literal to a rational so that `1.5`
+and `\tfrac32` stop being different objects, and check.
+
+Eighty relations. Fifty-four exact. Section 5's fraction algebra is
+clean end to end: `945/512-81/512=864/512`,
+`675/2048-432/2048=243/2048`, `11/12-29/32=1/96`,
+`-365/176=-730/352`. Twenty-three correctly rounded. One quoted in
+units of `10^{-4}`.
+
+One wrong. Claim D's shift range said its threshold `1.45^{36}` was
+`1.1e6`. It is `644537`. Appendix A.1's own row for that comparison
+already printed `6.4e5`, so the paper had both numbers and disagreed
+with itself in two places two hundred lines apart. Both are far under
+`P_0`, nothing downstream moves, and that is exactly why it lasted:
+an error with no consequence has nothing to catch it.
+
+The better finding is not the error. Two decimals are neither exact
+nor nearest: `(1.20)^{1/2}` is printed `1.096` when the nearest
+four-figure decimal is `1.095`, and `1.5(0.35)^{-1/2}` is printed
+`2.536` when the nearest is `2.535`. Both sit in the same Stage 4
+display, both feed upper bounds, and both are rounded *up* --- away
+from the inequality they serve.
+
+So the paper has a rounding convention: outward, always. It had never
+been stated, and an unstated convention is an unchecked one. The
+reason to care is that a decimal rounded the other way --- into its own
+bound --- looks the same to everything else. It is within a unit of the
+last place. It agrees with its constant at any precision one would
+compare at. And it is a claim the line does not support. Only the
+direction distinguishes them, so I made the direction a field:
+`bounded_up` and `bounded_down`, with `failures()` carrying a
+`rounded_into_a_bound` list. It is empty, and now it stays checked.
+
+Two instances is not a theorem about the paper's habits. It is two
+instances. But the guard costs nothing and the failure mode it covers
+is the one that reads as correct.
+
+A footnote on my own method. The first version read a side's precision
+off the whole side, so `1.096\,(uh)^{1/2}P^{5/8}` came back as one
+significant figure and the row passed as "rounded" --- correctly
+classified, for no reason. Precision belongs to the digits. Splitting
+each side into numeric head and symbolic tail fixed that and, as a
+side effect, raised coverage from 72 relations to 80, since most of
+the displayed algebra is a numeral times symbols rather than a bare
+number.
+
+## Three negatives and a one-line test
+
+No single number behind the openings: they run `1.077` to `1.433`, and
+only the curvature is near `1.43`. The premise of my own question --
+"all `1.43` except the cell count" -- was wrong.
+
+No `sqrt2` behind them either. What is shared is the mechanism, and it
+leaves a signature: a quantity carrying `nu^(-e)` has block-range width
+exactly `2^e`.
+
+```text
+  Stage-4 curvature   nu^(-3/4)   width 1.681793 = 2^0.75000   exact
+  Step 5a anchor      nu^(-5/8)   width 1.542211 = 2^0.62500   exact
+  Step 5b anchor      nu^(-5/8)   width 6.290323 = 2^2.65313   not a block range
+```
+
+So Step 5b's `[0.62, 3.90]` is not a block range at all -- same
+exponent, but `4.079` times the block's width. I have been calling it
+one for two sections. The openings priced there stand, since they were
+measured against the stated exact endpoints rather than a block model,
+but the description was wrong.
+
+And one opening is inherited rather than chosen: `0.56 = 0.35 * 8/5`
+exactly, the erratum's rescaling of an older `[0.35, 2.6]`, with
+`2.6 * 8/5 = 4.16` rounded up to `4.2`. Which is why 5b's openings match
+nothing else -- they are a superseded printing's, carried through a
+correction.
+
+What survives is a test worth keeping: divide a printed range's width by
+`2^e` and see whether it is `1`. It needs no measurement, and it would
+have caught the 5b misreading two sections ago.
+
+```text
+Phase-end report
+Question
+- is the 1.43 opening a coincidence of three derivations, or one number
+  behind a single editorial habit
+Instruments
+- block_range_widths: the three ranges with their exponents, true
+  widths, log2 widths and openings, against the cell count
+Ledger tags
+- EXACT: block-range width is 2^e for a quantity carrying nu^(-e); the
+  curvature's is 2^(3/4) and 5a's 2^(5/8) exactly, 5b's is 2^2.653 and
+  4.079 times its block; 0.56 = 0.35 * 8/5 and 2.6 * 8/5 = 4.16
+- COMPUTATIONALLY VERIFIED: openings 1.4334, 1.4222, 1.1540, 1.1706,
+  1.1071, 1.0769, and the cell count's 1.2071
+- OBSERVATION: 5b's openings are inherited from a superseded printing,
+  so they are not comparable with the others
+Strongest theorem
+- a printed range's width divided by 2^e says whether it is a pure block
+  range, with no measurement at all
+Strongest refutation
+- my own premise that the openings shared a number, and my own two
+  previous sections calling 5b's range a block range
+Reusable machinery
+- block_range_widths, BLOCK_RANGES, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change; the correction is to this
+  ledger's own descriptions, and it is made in place.
+Best next question
+- 5b's range is 4.079 times its block. If that factor is the k h_1h_2
+  variation it should be exactly the cap's range, and if it is the
+  offset it should be |j|+1. Which of the two is 4.079, and does the
+  answer say whether the range can be narrowed by fixing the parameter?
+```

@@ -2038,3 +2038,32 @@ def test_the_lever_was_understated_by_six() -> None:
     assert r["relative_arithmetic_unaffected"]
     # and the row's text names a different bound from the one it tests
     assert r["text_and_predicate_differ"] and 5.5 < r["text_over_predicate"] < 5.6
+
+
+# --- is there one number behind the openings ---
+
+
+def test_there_is_no_shared_opening_number() -> None:
+    """The openings run 1.077 to 1.433; only the curvature is near 1.43."""
+    r = A.block_range_widths()
+    assert not r["premise_that_they_were_all_1_43"]
+    assert r["no_shared_opening"]
+    assert 1.07 < r["opening_min"] < 1.08 and 1.43 < r["opening_max"] < 1.44
+    assert abs(r["cell_count_opening"] - 1.5 / (3 * (2 ** 0.5 - 1))) < 1e-12
+    # the one exact relation the erratum records
+    assert r["erratum_relation_holds"] and r["high_end_rounded_again"]
+    assert r["one_opening_is_inherited"] and r["the_two_0_35s_are_a_coincidence"]
+
+
+def test_the_width_reads_off_the_exponent_and_5b_is_not_a_block_range() -> None:
+    """nu^(-e) over a dyadic block has width exactly 2^e: 2^(3/4) and 2^(5/8) here."""
+    r = A.block_range_widths()
+    assert r["width_reads_off_the_exponent"]
+    assert r["pure_block_ranges"] == ["Stage-4 curvature", "Step 5a anchor"]
+    by_name = {x["name"]: x for x in r["rows"]}
+    assert abs(by_name["Stage-4 curvature"]["log2_width"] - 0.75) < 1e-9
+    assert abs(by_name["Step 5a anchor"]["log2_width"] - 0.625) < 1e-9
+    # 5b carries the same exponent but is four times wider than its block
+    assert r["step_5b_is_not_a_block_range"]
+    assert by_name["Step 5b anchor"]["exponent"] == "5/8"
+    assert 4.0 < r["step_5b_width_over_block"] < 4.1

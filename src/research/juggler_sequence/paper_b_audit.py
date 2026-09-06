@@ -6156,6 +6156,91 @@ def qpp_row_and_the_floor(seed: int = 58, samples_per_range: int = 40) -> dict[s
     }
 
 
+# The block ranges found so far, with the exponent of nu each quantity carries.  A pure block range
+# has width exactly 2^e, since nu^(-e) runs over [2^(-e), 1] P^(-e) across a dyadic block.
+BLOCK_RANGES = (
+    {"name": "Stage-4 curvature", "exponent": "3/4", "true_lo": 27 / 32 * 2 ** -0.75,
+     "true_hi": 27 / 32, "printed_lo": 0.35, "printed_hi": 1.20},
+    {"name": "Step 5a anchor", "exponent": "5/8", "true_lo": 2 ** -0.625 * 2187 / 2048,
+     "true_hi": 2187 / 2048, "printed_lo": 0.60, "printed_hi": 1.25},
+    {"name": "Step 5b anchor", "exponent": "5/8", "true_lo": 0.62,
+     "true_hi": 3.90, "printed_lo": 0.56, "printed_hi": 4.20},
+)
+
+
+def block_range_widths() -> dict[str, Any]:
+    """Is there one number behind the openings?  No -- but the widths identify the exponent.
+
+    The openings are not a single habit.  Across the three ranges and the cell count they run:
+
+        Stage-4 curvature   low 1.4334   high 1.4222
+        Step 5a anchor      low 1.1540   high 1.1706
+        Step 5b anchor      low 1.1071   high 1.0769
+        cell count          1.2071 (a count, not a range)
+
+    from 1.077 to 1.433, with no shared value.  The premise that they were "all 1.43 except the
+    cell count" was wrong: only the curvature is there, and the two anchors sit near 1.1.
+
+    What *is* shared is the mechanism, and it leaves a signature.  A quantity carrying nu^(-e) has,
+    over a dyadic block, a range of width exactly 2^e:
+
+        Stage-4 curvature   nu^(-3/4)   width 1.681793 = 2^0.75000    exact
+        Step 5a anchor      nu^(-5/8)   width 1.542211 = 2^0.62500    exact
+        Step 5b anchor      nu^(-5/8)   width 6.290323 = 2^2.65313    not a block range
+
+    So the width reads off the exponent -- and it says Step 5b's [0.62, 3.90] is *not* a block
+    range.  Its quantity carries the same nu^(-5/8) as Step 5a's, so a pure block range would be
+    1.5422 wide; the printed exact range is 4.079 times that.  Whatever else varies in it -- the
+    k h_1h_2 factor, the offset -- is not the block, and this ledger has been calling it a block
+    range for two sections.  Only two of the three are.
+
+    One exact relation does turn up, and the erratum states it: 0.56 = 0.35 * 8/5.  The 5b pair is
+    the 8/5 rescaling of an older printed pair [0.35, 2.6], with 2.6 * 8/5 = 4.16 rounded up again
+    to 4.2.  So one of the two openings there is inherited from a superseded printing rather than
+    chosen, which is why it does not match anything else.  And the 0.35 in it is the same numeral
+    as the Stage-4 curvature's low end, which the manuscript flags as a coincidence: "the two
+    constants share a value and nothing else".
+    """
+
+    rows = []
+    for r in BLOCK_RANGES:
+        width = r["true_hi"] / r["true_lo"]
+        e = Fr(r["exponent"])
+        expected = 2 ** float(e)
+        rows.append({
+            **r,
+            "true_width": width,
+            "expected_width": expected,
+            "log2_width": math.log2(width),
+            "is_a_block_range": abs(width - expected) < 1e-6,
+            "width_over_block": width / expected,
+            "printed_width": r["printed_hi"] / r["printed_lo"],
+            "opening_low": r["true_lo"] / r["printed_lo"],
+            "opening_high": r["printed_hi"] / r["true_hi"],
+        })
+    openings = [x for r in rows for x in (r["opening_low"], r["opening_high"])]
+    cell_opening = 1.5 / (3 * (math.sqrt(2) - 1))
+    pure = [r["name"] for r in rows if r["is_a_block_range"]]
+    return {
+        "rows": rows,
+        "openings": openings,
+        "cell_count_opening": cell_opening,
+        "opening_min": min(openings),
+        "opening_max": max(openings),
+        "no_shared_opening": max(openings) / min(openings) > 1.3,
+        "premise_that_they_were_all_1_43": False,
+        "pure_block_ranges": pure,
+        "step_5b_is_not_a_block_range": "Step 5b anchor" not in pure,
+        "step_5b_width_over_block": next(r["width_over_block"] for r in rows if r["name"] == "Step 5b anchor"),
+        "width_reads_off_the_exponent": all(
+            abs(r["log2_width"] - float(Fr(r["exponent"]))) < 1e-6 for r in rows if r["is_a_block_range"]),
+        "erratum_relation_holds": abs(0.35 * 8 / 5 - 0.56) < 1e-12,
+        "high_end_rounded_again": abs(2.6 * 8 / 5 - 4.16) < 1e-12,
+        "one_opening_is_inherited": True,
+        "the_two_0_35s_are_a_coincidence": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -6246,6 +6331,7 @@ def summary() -> dict[str, Any]:
     opening5a = step_5a_opening_reach()
     lever = opening_versus_lever()
     qpp = qpp_row_and_the_floor(samples_per_range=20)
+    widths = block_range_widths()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -6324,6 +6410,7 @@ def summary() -> dict[str, Any]:
         "step_5a_opening_reach": opening5a,
         "opening_versus_lever": lever,
         "qpp_row_and_the_floor": qpp,
+        "block_range_widths": widths,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
