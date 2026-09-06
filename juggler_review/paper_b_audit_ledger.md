@@ -7286,3 +7286,61 @@ of which runs Lean. Manuscript: a third convention stated in the
 trust-boundary section and the not-a-theorem carve-out extended. New
 files `formal/AxiomCheckPaperB.lean` and `AxiomCheckPaperB.expected`.
 `P_0` and `P_1` unmoved. No certificate edit.
+
+## The table was swept for this; the sentences were not
+
+A threshold names the left endpoint of the range over which a row holds,
+so it must be rounded up --- the paper's own review note says exactly
+that about A.1's column, where twenty nearest-rounded entries were
+repaired. Sweeping the *body* the same way --- every scientific-notation
+number in live prose, tables and review blockquotes excluded, within `2%`
+of a certified crossing and following a "from" --- leaves fifteen, of
+which three are below:
+
+```text
+  claim          prose      crossing        short by   A.5 prints
+  t63-flat       5.5e9      5.505906e9      0.107%     5.51e9
+  s3s1-Bsmall    2.8e10     2.827484e10     0.982%     2.83e10
+  st5b-qpp       2.98e11    2.981664e11     0.056%     3.0e11
+```
+
+Every A.5 entry is right. It is the sentences that are not, and each
+asserts its row over a small interval where the row fails: "they hold
+from `7.5e8` and `5.5e9`", "inside Theorem 6.1's budget from
+`P >= 5.5e9`", "every inequality in the paper except four holds from
+`2.8e10` on", "which clears `1/4` from `2.98e11`".
+
+**The second carries its own proof.** The sentence continues "thirty-three
+hold from `2.8e10` or below. Five do not" --- and at `2.8e10` the counts
+are thirty-two and six, while at `2.83e10` they are thirty-three and
+five, the five being exactly the rows the sentence then names: the
+widened mode index, the `q''` curvature ratio, and the three Lemma 3.9
+balance rows. The sentence's count fixes the rounding its number got
+wrong.
+
+**One flagged number is correct**, and is recorded so it is not flagged
+again: "so `4.001` serves from `2.95\cdot10^{11}` on" is
+`(20/0.001)^(8/3) = 2.9472e11`, rounded up. It lands within `2%` of the
+`q''` curvature row by coincidence and has nothing to do with it.
+
+Nothing here is unsound. The intervals are `0.05%` to `1%` wide, the
+largest of the three crossings is a factor `120` below `P_0`, and A.5 ---
+which is what the certificate checks, and what every instrument in this
+ledger reads --- has all three right. The gap is between the table and
+the prose, which is the same gap that hid the `106` last section.
+
+Tags. EXACT: a threshold is the left endpoint of a half-line, so printing
+it rounded to nearest asserts the row over `[printed, crossing)`, where
+it fails. COMPUTATIONALLY VERIFIED: of fifteen live prose onsets within
+`2%` of a crossing, three are below it, by `0.107%`, `0.982%` and
+`0.056%`; the counts at `2.8e10` are `32` and `6` and at `2.83e10` are
+`33` and `5`, matching the sentence's own "thirty-three ... five"; the
+five rows above `2.83e10` are `5a-W<=c7S`, `5b-E<=c7S`, `5b-W<=c7S`,
+`st5b-qpp`, `st6D1-modeindex`; `(20/0.001)^(8/3) = 2.9472e11 <= 2.95e11`.
+OBSERVATION: every corresponding A.5 entry is above its crossing, so the
+defect is confined to the prose.
+
+Probe: `prose_onsets_rounded_to_nearest`, with `PROSE_ONSETS` and the one
+cleared site, matched against the whitespace-stripped manuscript. Two
+tests. Audit `270 / 270`; `P_0` unmoved at `3.5858e13`. No manuscript or
+certificate edit.

@@ -2352,3 +2352,27 @@ def test_the_V_over_S_pair_is_two_lambdas_and_not_a_drift() -> None:
     assert r["printed_0_11_covers_the_5a_value"] and r["printed_0_12_covers_the_5b_value"]
     assert r["printed_0_11_would_not_cover_5b"]          # so the labels are load-bearing
     assert abs(r["u_cap_precorrection"] - 185.714) < 1e-3 and r["the_current_cap_is_exactly_300"]
+
+
+# --- prose thresholds against A.5's ---
+
+
+def test_three_prose_onsets_name_a_P_below_the_crossing() -> None:
+    """A.5's entries were swept for nearest-rounding; the sentences were not."""
+    r = A.prose_onsets_rounded_to_nearest()
+    assert r["distinct_claims"] == 3 and r["every_A5_value_is_above_it"]
+    if r["all_sites_present"]:
+        assert r["every_prose_value_is_below_its_crossing"]
+        assert 0.005 < r["worst_shortfall"] < 0.02
+    assert r["below_P0_by"] > 100 and r["nothing_is_unsound"]
+
+
+def test_the_thirty_three_five_count_fixes_the_rounding_its_number_got_wrong() -> None:
+    """At 2.8e10 the counts are 32 and six; at 2.83e10 they are 33 and five, as the text says."""
+    r = A.prose_onsets_rounded_to_nearest()
+    assert r["counts_at_2_8e10"] == 32 and r["counts_at_2_83e10"] == 33
+    assert r["the_count_holds_at_the_corrected_rounding"] and r["and_not_at_the_printed_one"]
+    assert r["the_sentence_says_five"] and len(r["rows_above_2_83e10"]) == 5
+    # and the number the sweep flags nearby is its own computation, correctly rounded up
+    cleared = r["cleared_site"]
+    assert abs(cleared["value"] - 2.9472e11) / 2.9472e11 < 1e-3 and cleared["printed_is_above"]

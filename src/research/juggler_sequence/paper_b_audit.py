@@ -7290,6 +7290,99 @@ def survivors_of_the_E_constant_update() -> dict[str, Any]:
     }
 
 
+# Prose statements of the form "holds from X", with the row each names and the value A.5 prints
+# for the same row.  Patterns are matched against the whitespace-stripped manuscript.
+PROSE_ONSETS = (
+    {"where": "Thm 6.3 preamble", "tag": "t63-flat", "printed": 5.5e9, "A5": 5.51e9,
+     "pattern": r"holdfrom\(7.5\cdot10^{8}\)and\(5.5\cdot10^{9}\)"},
+    {"where": "Thm 6.3 flat-cost bullet", "tag": "t63-flat", "printed": 5.5e9, "A5": 5.51e9,
+     "pattern": r"budgetfrom\(P\ge5.5\cdot10^{9}\)"},
+    {"where": "Section 2, the standing claim", "tag": "s3s1-Bsmall", "printed": 2.8e10,
+     "A5": 2.83e10, "pattern": r"holdsfrom\(2.8\cdot10^{10}\)on"},
+    {"where": "the thirty-three/five count", "tag": "s3s1-Bsmall", "printed": 2.8e10,
+     "A5": 2.83e10, "pattern": r"thirty-threeholdfrom\(2.8\cdot10^{10}\)orbelow"},
+    {"where": "Step 5b(a)", "tag": "st5b-qpp", "printed": 2.98e11, "A5": 3.0e11,
+     "pattern": r"clears\(\tfrac14\)from\(2.98\cdot10^{11}\)"},
+)
+
+# Checked and correct: the same sweep flags it by proximity, and it is its own computation.
+PROSE_ONSET_CLEARED = {
+    "where": "A.6, the delta argument", "printed": 2.95e11, "derivation": "(20/0.001)^(8/3)",
+    "pattern": r"so\(4.001\)servesfrom\(2.95\cdot10^{11}\)on",
+}
+
+
+def prose_onsets_rounded_to_nearest() -> dict[str, Any]:
+    """The table's entries were swept for this and the prose was not.  Three live "holds from X"
+    statements name a P below the crossing.
+
+    A threshold names the left endpoint of the range over which a row holds, so it has to be rounded
+    up; the paper's own review note says exactly that about A.1's column, where twenty entries had
+    been nearest-rounded and were repaired.  Sweeping the body instead -- every scientific-notation
+    number in live prose, excluding tables and review blockquotes, that sits within 2% of a
+    certified crossing and follows a "from" -- leaves fifteen, of which three are below:
+
+        claim          prose      crossing        short by   A.5 prints
+        t63-flat       5.5e9      5.505906e9      0.107%     5.51e9
+        s3s1-Bsmall    2.8e10     2.827484e10     0.982%     2.83e10
+        st5b-qpp       2.98e11    2.981664e11     0.056%     3.0e11
+
+    Every A.5 entry is right; it is the sentences that are not, and each asserts its row over a
+    little interval where the row fails.
+
+    The second one carries its own proof.  "Thirty-three hold from 2.8e10 or below.  Five do not"
+    -- and at 2.8e10 the counts are thirty-two and six, while at 2.83e10 they are thirty-three and
+    five, the five being exactly the rows the sentence goes on to name.  So the sentence's count
+    fixes the rounding its number got wrong.
+
+    One nearby number the sweep flags is correct and is recorded so it is not re-flagged: "4.001
+    serves from 2.95e11 on" is (20/0.001)^(8/3) = 2.9472e11, rounded up.  It sits within 2% of the
+    q'' curvature row and has nothing to do with it.
+
+    Nothing here is unsound.  The intervals are 0.05% to 1% wide, the largest of these numbers is
+    a factor 120 below P_0, and A.5 -- which is what the certificate checks -- has them all right.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8")
+    compact = re.sub(r"\s+", "", text)
+    rows = {r["tag"]: r for r in p0_certificate.thresholds()}
+
+    sites = []
+    for s in PROSE_ONSETS:
+        crossing = rows[s["tag"]]["P_min"]
+        sites.append({**s, "present": compact.count(s["pattern"]) == 1, "crossing": crossing,
+                      "short_by": crossing / s["printed"] - 1,
+                      "printed_is_below": s["printed"] < crossing,
+                      "A5_is_above": s["A5"] >= crossing})
+    counts = {cut: sum(1 for r in rows.values() if r["P_min"] <= cut)
+              for cut in (2.8e10, 2.83e10)}
+    above = sorted(t for t, r in rows.items() if r["P_min"] > 2.83e10)
+    delta_value = (20 / 0.001) ** (8 / 3)
+    return {
+        "sites": sites,
+        "site_count": len(sites),
+        "distinct_claims": len({s["tag"] for s in PROSE_ONSETS}),
+        "all_sites_present": all(s["present"] for s in sites),
+        "every_prose_value_is_below_its_crossing": all(s["printed_is_below"] for s in sites),
+        "every_A5_value_is_above_it": all(s["A5_is_above"] for s in sites),
+        "worst_shortfall": max(s["short_by"] for s in sites),
+        "counts_at_2_8e10": counts[2.8e10],
+        "counts_at_2_83e10": counts[2.83e10],
+        "the_sentence_says_thirty_three": 33,
+        "the_count_holds_at_the_corrected_rounding": counts[2.83e10] == 33,
+        "and_not_at_the_printed_one": counts[2.8e10] != 33,
+        "rows_above_2_83e10": above,
+        "the_sentence_says_five": len(above) == 5,
+        "cleared_site": {**PROSE_ONSET_CLEARED, "present": compact.count(
+            PROSE_ONSET_CLEARED["pattern"]) == 1, "value": delta_value,
+            "printed_is_above": 2.95e11 >= delta_value},
+        "largest_of_these": max(s["crossing"] for s in sites),
+        "below_P0_by": rows["5b-W<=c7S"]["P_min"] / max(s["crossing"] for s in sites),
+        "nothing_is_unsound": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -7391,6 +7484,7 @@ def summary() -> dict[str, Any]:
     caps = which_cap_each_substitution_uses()
     twobounds = one_symbol_two_bounds()
     survivors = survivors_of_the_E_constant_update()
+    onsets = prose_onsets_rounded_to_nearest()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -7480,6 +7574,7 @@ def summary() -> dict[str, Any]:
         "which_cap_each_substitution_uses": caps,
         "one_symbol_two_bounds": twobounds,
         "survivors_of_the_E_constant_update": survivors,
+        "prose_onsets_rounded_to_nearest": onsets,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

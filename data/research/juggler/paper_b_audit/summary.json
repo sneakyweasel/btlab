@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "6565a57123520c686b1178e964090050b1f704c0",
+  "git_commit": "723380dc74c8fb8959c174459253dccbea6de718",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -8257,6 +8257,101 @@
     "contrast_corrected": 1.2315010104940403,
     "P0_does_not_move": true
   },
+  "prose_onsets_rounded_to_nearest": {
+    "sites": [
+      {
+        "where": "Thm 6.3 preamble",
+        "tag": "t63-flat",
+        "printed": 5500000000.0,
+        "A5": 5510000000.0,
+        "pattern": "holdfrom\\(7.5\\cdot10^{8}\\)and\\(5.5\\cdot10^{9}\\)",
+        "present": true,
+        "crossing": 5505905905.109001,
+        "short_by": 0.0010738009289092965,
+        "printed_is_below": true,
+        "A5_is_above": true
+      },
+      {
+        "where": "Thm 6.3 flat-cost bullet",
+        "tag": "t63-flat",
+        "printed": 5500000000.0,
+        "A5": 5510000000.0,
+        "pattern": "budgetfrom\\(P\\ge5.5\\cdot10^{9}\\)",
+        "present": true,
+        "crossing": 5505905905.109001,
+        "short_by": 0.0010738009289092965,
+        "printed_is_below": true,
+        "A5_is_above": true
+      },
+      {
+        "where": "Section 2, the standing claim",
+        "tag": "s3s1-Bsmall",
+        "printed": 28000000000.0,
+        "A5": 28300000000.0,
+        "pattern": "holdsfrom\\(2.8\\cdot10^{10}\\)on",
+        "present": true,
+        "crossing": 28274844190.244324,
+        "short_by": 0.009815863937297387,
+        "printed_is_below": true,
+        "A5_is_above": true
+      },
+      {
+        "where": "the thirty-three/five count",
+        "tag": "s3s1-Bsmall",
+        "printed": 28000000000.0,
+        "A5": 28300000000.0,
+        "pattern": "thirty-threeholdfrom\\(2.8\\cdot10^{10}\\)orbelow",
+        "present": true,
+        "crossing": 28274844190.244324,
+        "short_by": 0.009815863937297387,
+        "printed_is_below": true,
+        "A5_is_above": true
+      },
+      {
+        "where": "Step 5b(a)",
+        "tag": "st5b-qpp",
+        "printed": 298000000000.0,
+        "A5": 300000000000.0,
+        "pattern": "clears\\(\\tfrac14\\)from\\(2.98\\cdot10^{11}\\)",
+        "present": true,
+        "crossing": 298166397427.1972,
+        "short_by": 0.0005583806281785897,
+        "printed_is_below": true,
+        "A5_is_above": true
+      }
+    ],
+    "site_count": 5,
+    "distinct_claims": 3,
+    "all_sites_present": true,
+    "every_prose_value_is_below_its_crossing": true,
+    "every_A5_value_is_above_it": true,
+    "worst_shortfall": 0.009815863937297387,
+    "counts_at_2_8e10": 32,
+    "counts_at_2_83e10": 33,
+    "the_sentence_says_thirty_three": 33,
+    "the_count_holds_at_the_corrected_rounding": true,
+    "and_not_at_the_printed_one": true,
+    "rows_above_2_83e10": [
+      "5a-W<=c7S",
+      "5b-E<=c7S",
+      "5b-W<=c7S",
+      "st5b-qpp",
+      "st6D1-modeindex"
+    ],
+    "the_sentence_says_five": true,
+    "cleared_site": {
+      "where": "A.6, the delta argument",
+      "printed": 295000000000.0,
+      "derivation": "(20/0.001)^(8/3)",
+      "pattern": "so\\(4.001\\)servesfrom\\(2.95\\cdot10^{11}\\)on",
+      "present": true,
+      "value": 294722519891.23047,
+      "printed_is_above": true
+    },
+    "largest_of_these": 298166397427.1972,
+    "below_P0_by": 120.26021879810862,
+    "nothing_is_unsound": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -8324,5 +8419,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 90.27098178863525
+  "elapsed_seconds": 87.82614159584045
 }

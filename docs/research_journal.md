@@ -37610,3 +37610,73 @@ are precisely the two ways a declaration is green without being proved,
 and you cannot exclude what you cannot name. Writing the convention
 made the excluded set grow, which is the sort of thing that happens
 when a paper starts describing its own guards.
+
+## The sentence's count fixes its own number
+
+A threshold is the left endpoint of a half-line, so it must be rounded
+up. A.1's column was swept for that and twenty entries repaired; the body
+was not. Sweeping it the same way --- live prose only, tables and review
+blockquotes excluded, within `2%` of a certified crossing, following a
+"from" --- leaves fifteen, three of them below:
+
+```text
+  claim          prose      crossing        short by   A.5 prints
+  t63-flat       5.5e9      5.505906e9      0.107%     5.51e9
+  s3s1-Bsmall    2.8e10     2.827484e10     0.982%     2.83e10
+  st5b-qpp       2.98e11    2.981664e11     0.056%     3.0e11
+```
+
+Every A.5 entry is right; the sentences are not, and each asserts its row
+over a little interval where it fails.
+
+The second carries its own proof: "thirty-three hold from `2.8e10` or
+below. Five do not" --- at `2.8e10` the counts are thirty-two and six, at
+`2.83e10` thirty-three and five, the five being exactly the rows the
+sentence names. The count fixes the rounding.
+
+One flagged number is correct and is recorded as cleared: "`4.001` serves
+from `2.95e11` on" is `(20/0.001)^(8/3) = 2.9472e11`, rounded up; it
+lands near the `q''` row by coincidence.
+
+Nothing is unsound --- intervals of `0.05%` to `1%`, all a factor `120`
+or more below `P_0`. The gap is between the table and the prose, the same
+gap that hid the `106`.
+
+```text
+Phase-end report
+Question
+- take every "from P >= X" the body prints in prose and check it against
+  the row A.5 prints for the same claim
+Instruments
+- prose_onsets_rounded_to_nearest: every scientific-notation number in
+  live prose within 2% of a certified crossing, classified by whether it
+  follows a "from" and whether it sits above or below
+Ledger tags
+- EXACT: printing a threshold rounded to nearest asserts the row over
+  [printed, crossing), where it fails
+- COMPUTATIONALLY VERIFIED: three of fifteen live onsets are below their
+  crossing, by 0.107%, 0.982% and 0.056%; counts 32/6 at 2.8e10 and 33/5
+  at 2.83e10, matching the sentence's own words; (20/0.001)^(8/3) =
+  2.9472e11 <= 2.95e11
+- OBSERVATION: every corresponding A.5 entry is above its crossing, so
+  the defect is confined to the prose
+Strongest theorem
+- the thirty-three/five sentence is self-correcting: its count is right
+  only at the rounding its number should have had
+Strongest refutation
+- the 2.95e11 the sweep flagged, which is its own computation and correct
+Reusable machinery
+- prose_onsets_rounded_to_nearest, PROSE_ONSETS, the cleared site, two
+  tests, wired into summary()
+Branch status
+- PARK
+Why
+  Three one-character manuscript edits, all belonging to the other
+  session; the probe reports its own obsolescence once made.
+Best next question
+- the sweep matched prose numbers to rows by proximity, which found the
+  three but also one false positive I had to clear by hand. The reverse
+  direction is unswept: for each certificate row, does the body state its
+  threshold anywhere at all? A row whose crossing is quoted nowhere in
+  the prose is one the reader cannot check against the text.
+```
