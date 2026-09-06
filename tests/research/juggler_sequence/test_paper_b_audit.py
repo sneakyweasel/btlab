@@ -670,3 +670,27 @@ def test_the_block_exponent_estimator_is_calibrated() -> None:
     # was biased by an order of magnitude more and twice as noisy
     assert cal["all_block_counts"]["bias"] < -0.02
     assert cal["all_block_counts"]["sd"] > 1.7 * cal["fitted"]["sd"]
+
+
+# --- what the census can and cannot police ---
+
+
+def test_the_census_has_power_over_four_constants_and_little_over_the_brackets() -> None:
+    r = A.census_constant_power(samples_per_range=12)
+    by = {row["ratio_key"]: row for row in r["constants"]}
+    for key in ("E_ratio_fine", "R_ratio", "M1_ratio", "i_slack_ratio"):
+        assert by[key]["extreme_ratio"] > 0.9, key          # attained: a 10% cut would be caught
+    assert by["second_ratio_upper"]["extreme_ratio"] < 0.6   # 15 could be 9 and nothing would notice
+    assert by["second_ratio_lower"]["extreme_ratio"] > 4     # and the lower constant is 4x loose
+
+
+def test_the_two_bracket_constants_are_three_halves_and_twentyseven_quarters() -> None:
+    """The census measures what the printed band only encloses."""
+    import mpmath as mp
+
+    with mp.workdps(120):
+        for n in (10**12 + 1, 10**14 + 1):
+            r = A.check_lemma_5_1_ii_iv(n, 1, 2, 1)
+            assert abs(r["second_ratio_upper"] * 15 - 27 / 4) < 1e-4, n
+            if r["first_ratio_upper"] is not None:
+                assert abs(r["first_ratio_upper"] * 2.6 - 3 / 2) < 1e-4, n

@@ -108,6 +108,10 @@ def check_lemma_4_3(n: int, h: int) -> dict[str, Any]:
         "E_le_bound": E <= bound_i + mp.mpf(10) ** (-40),
         "E_le_coarse": E <= bound_i_coarse + mp.mpf(10) ** (-40),
         "gap_identity": g == int(mp.floor(delta)) + kappa,
+        # how much of each printed bound the sample actually uses; census_constant_power reads the
+        # extremes off these, and a bound nobody approaches is a bound the census cannot police
+        "E_ratio_fine": float(E / bound_i),
+        "E_ratio_coarse": float(E / bound_i_coarse),
     }
 
 
@@ -117,7 +121,8 @@ def check_lemma_5_1_i(n: int) -> dict[str, Any]:
     th2 = theta2_of(n)
     R = mp.mpf(1) / 2 * (mp.power(mp.mpf(m), mp.mpf(9) / 4) - mp.power(mp.mpf(v), mp.mpf(3) / 2)) - mp.mpf(3) / 4 * mp.sqrt(v) * th2
     bound = mp.mpf(3) / 16 * mp.power(mp.mpf(v), -mp.mpf(1) / 2)
-    return {"R_nonneg": R >= -mp.mpf(10) ** (-40), "R_le_bound": R <= bound + mp.mpf(10) ** (-40)}
+    return {"R_nonneg": R >= -mp.mpf(10) ** (-40), "R_le_bound": R <= bound + mp.mpf(10) ** (-40),
+            "R_ratio": float(R / bound)}
 
 
 def level1_data(n: int, d: int) -> tuple[int, int, int]:
@@ -206,6 +211,12 @@ def check_lemma_5_1_ii_iv(n: int, h1: int, h2: int, k: int) -> dict[str, Any]:
         "master_identity": master,
         "brackets_le_2": brackets_le_2,
         "M1_bound": abs(DDc * br1) <= 0.43 * k * h1 * h2 * mp.power(P, -mp.mpf(7) / 8) + mp.mpf(10) ** (-40),
+        "first_ratio_upper": float(abs(first) / (mp.mpf("2.6") * abs(j) * P34)) if j else None,
+        "first_ratio_lower": float(abs(first) / (mp.mpf(3) / 2 * abs(j) * P34 / mp.mpf(2) ** (3 / 4))) if j else None,
+        "second_ratio_upper": float(second / (15 * h1 * h2 * P14)),
+        "second_ratio_lower": float(second / (mp.mpf("1.4") * h1 * h2 * P14 / mp.mpf(2) ** (1 / 4))),
+        "M1_ratio": float(abs(DDc * br1) / (mp.mpf("0.43") * k * h1 * h2 * mp.power(P, -mp.mpf(7) / 8))),
+        "brackets_ratio": float(max(abs(br1), abs(br2), abs(br3), abs(br4)) / 2),
     }
 
 
@@ -387,6 +398,92 @@ def identity_census(seed: int = 20260903, samples_per_range: int = 60) -> dict[s
     out["lemma_3_9_inverse_l1_norm"] = lemma_3_9_l1_norm()
     return out
 
+
+# Printed constants the census polices by inequality, and the direction each is tested in.  For an
+# upper bound the census can only catch a constant that has been made *smaller* than the observed
+# extreme, and for a lower bound only one made larger; a bound no sample approaches is a bound the
+# census has no power over at all.
+CENSUS_POLICED_CONSTANTS = [
+    ("L4.3(i) fine, 3/8 (X-1)^{-1/2}", "E_ratio_fine", "upper"),
+    ("L4.3(i) coarse, (1/2) n^{-3/4}", "E_ratio_coarse", "upper"),
+    ("L5.1(i), (3/16) v^{-1/2}", "R_ratio", "upper"),
+    ("L5.1(iii) first bracket, 2.6 |j| P^{3/4}", "first_ratio_upper", "upper"),
+    ("L5.1(iii) first bracket, (3/2) 2^{-3/4} |j| P^{3/4}", "first_ratio_lower", "lower"),
+    ("L5.1(iii) second bracket, 15 h1 h2 P^{1/4}", "second_ratio_upper", "upper"),
+    ("L5.1(iii) second bracket, 1.4 * 2^{-1/4} h1 h2 P^{1/4}", "second_ratio_lower", "lower"),
+    ("L5.1(iv) M1, 0.43 k h1 h2 P^{-7/8}", "M1_ratio", "upper"),
+    ("L5.1(iv) brackets <= 2", "brackets_ratio", "upper"),
+    ("L6.2(i) corrected bound", "i_slack_ratio", "upper"),
+    ("L6.2(ii) corrected bound", "ii_slack_ratio", "upper"),
+]
+
+
+def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
+    """How far each printed constant could move before the census would notice.
+
+    Every other instrument in this audit has been calibrated against a known answer; the identity
+    census had not.  Its exact identities have total power -- they compare integers, so any
+    perturbation whatever is caught.  Its *inequalities* have only the power the samples give them:
+    for an upper bound C f(n) the census sees a change only once the constant drops below the
+    largest observed value/f(n), so the reported ratio is exactly the fraction the printed constant
+    could be cut to and still pass.  A ratio of 10^-7 means seven orders of freedom nobody is
+    watching.
+
+    Reports, per constant, the extreme ratio over the census's own sampling and the factor by which
+    the constant could move undetected.  COMPUTATIONALLY VERIFIED at the sample size given.
+    """
+
+    rng = random.Random(seed)
+    ranges = [(10**4, 2 * 10**4), (10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10),
+              (10**12, 2 * 10**12), (10**14, 2 * 10**14), (10**15, 2 * 10**15), (10**16, 2 * 10**16)]
+    ups: dict[str, float] = {}
+    lows: dict[str, float] = {}
+    samples = 0
+    for lo, hi in ranges:
+        P = lo
+        mp.mp.dps = 60 + int(4 * math.log10(hi))
+        H1, H2, K = max(1, int(P ** (1 / 48))), max(1, int(P ** (1 / 24))), max(1, int(P ** (1 / 24)))
+        for _ in range(samples_per_range):
+            n = rng.randrange(lo + 1, hi) | 1
+            h = rng.randint(1, max(1, int(P ** (1 / 12))))
+            h1, h2, k = rng.randint(1, H1), rng.randint(1, H2), rng.randint(1, K)
+            seen = {}
+            seen.update(check_lemma_4_3(n, h))
+            seen.update(check_lemma_5_1_i(n))
+            seen.update(check_lemma_5_1_ii_iv(n, h1, h2, k))
+            seen.update(check_lemma_6_2(n))
+            for _label, key, _side in CENSUS_POLICED_CONSTANTS:
+                val = seen.get(key)
+                if val is None:
+                    continue
+                ups[key] = max(ups.get(key, 0.0), val)
+                lows[key] = min(lows.get(key, float("inf")), val)
+            samples += 1
+    mp.mp.dps = 60
+
+    rows = []
+    for label, key, side in CENSUS_POLICED_CONSTANTS:
+        if key not in ups:
+            rows.append({"constant": label, "ratio_key": key, "side": side, "samples_with_data": 0})
+            continue
+        extreme = ups[key] if side == "upper" else lows[key]
+        rows.append({
+            "constant": label,
+            "ratio_key": key,
+            "side": side,
+            "extreme_ratio": extreme,
+            # an upper-bound constant may be cut to this fraction of itself undetected; a
+            # lower-bound constant may be multiplied by this factor undetected
+            "undetected_move_factor": extreme,
+            "orders_of_freedom": -math.log10(extreme) if side == "upper" and extreme > 0 else math.log10(extreme) if extreme > 0 else float("inf"),
+        })
+    return {
+        "samples": samples,
+        "samples_per_range": samples_per_range,
+        "constants": rows,
+        "loosest": max((r for r in rows if "orders_of_freedom" in r), key=lambda r: r["orders_of_freedom"])["constant"],
+        "tightest": min((r for r in rows if "orders_of_freedom" in r), key=lambda r: r["orders_of_freedom"])["constant"],
+    }
 
 def lemma_6_2_edge_search(seed: int = 7, trials: int = 4000, lo: int = 10**6, hi: int = 2 * 10**6) -> dict[str, Any]:
     """Search for odd n on which the *printed* Lemma 6.2 bounds fail (theta_2 or theta close to 1).
@@ -1300,6 +1397,10 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("caps: h_1 at P^{1/48} needs 2^48, which is above P_0 = 8.9e13 while 2^24 is below it", 2**48 > 8.9e13 > 2**24),
         ("caps: h with h^{1/2} <= P^{1/24}, i.e. h <= P^{1/12}, needs only 2^12 = 4096", 2**12 == 4096),
         ("caps: j <= 2P^{1/24} is never pinned, (2/2)^{24} = 1", (F(2, 2)) ** 24 == 1),
+        # the two Lemma 5.1(iii) bracket constants, which the census measures to seven digits
+        ("5.1(iii) first bracket: (3/2) m^{1/2} j with m ~ n^{3/2} gives (3/2) j n^{3/4}", F(3, 2) * F(3, 4) == F(9, 8) and F(3, 4) == 1 - F(1, 4)),
+        ("5.1(iii) second bracket: (3/4) m^{-1/2} b1 b2 with b_i ~ 3 h_i n^{1/2} gives (27/4) h1 h2 n^{1/4}", F(3, 4) * 3 * 3 == F(27, 4)),
+        ("5.1(iii) over a dyadic block the true bands are [3/2, (3/2)2^{3/4}] and [27/4, (27/4)2^{1/4}]", F(3, 2) < F(26, 10) and F(27, 4) < 15),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -1719,6 +1820,7 @@ def summary() -> dict[str, Any]:
     # Four of the six displayed parameter caps pin their parameter to 1 at every P this ladder
     # reaches, k among them, so the uniformity clauses have never been exercised here.
     caps = parameter_cap_reach()
+    power = census_constant_power()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -1744,6 +1846,7 @@ def summary() -> dict[str, Any]:
         "kernel_block_scaling": block_scaling,
         "level3_kernel_block_scaling": level3,
         "parameter_cap_reach": caps,
+        "census_constant_power": power,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

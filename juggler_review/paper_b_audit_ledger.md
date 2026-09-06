@@ -1414,3 +1414,57 @@ module, one Lean file and four test files, and belongs in its own pass.
 `anchor_range`, `corrected_certificate` in `p0_certificate.py`; the
 \(\alpha\)-forms `composite("anchor")` and `composite("cG")` in
 `paper_b_prefix_count.py`. ERRATUM.
+
+## What the census can police, and the two constants it turned out to measure
+
+The identity census was the last instrument here with no calibration.
+Its *identities* have total power: they compare integers, so any
+perturbation whatever is caught. Its *inequalities* have only the power
+the samples give them --- for an upper bound \(Cf(n)\) the census sees a
+change only once \(C\) drops below the largest observed \(value/f(n)\).
+That extreme ratio is exactly the fraction the printed constant could be
+cut to and still pass, and `census_constant_power` reports it.
+
+| printed constant | side | extreme ratio | could move undetected by |
+|---|---|---|---|
+| L4.3(i) fine, \(\tfrac38(X-1)^{-1/2}\) | upper | 0.9992 | 0.1% |
+| L4.3(i) coarse, \(\tfrac12n^{-3/4}\) | upper | 0.7494 | \(1.33\times\) |
+| L5.1(i), \(\tfrac3{16}v^{-1/2}\) | upper | 0.9933 | 0.7% |
+| L5.1(iv) \(M_1\), \(0.43\,kh_1h_2P^{-7/8}\) | upper | 0.9777 | 2.3% |
+| L5.1(iv) brackets \(\le2\) | upper | 0.861 | \(1.16\times\) |
+| L6.2(i) corrected bound | upper | 0.9966 | 0.3% |
+| L6.2(ii) corrected bound | upper | 0.6429 | \(1.56\times\) |
+| L5.1(iii) first, \(2.6\lvert j\rvert P^{3/4}\) | upper | 0.5771 | \(1.73\times\) |
+| L5.1(iii) first, \(\tfrac32 2^{-3/4}\lvert j\rvert P^{3/4}\) | lower | 1.682 | \(1.68\times\) |
+| L5.1(iii) second, \(15h_1h_2P^{1/4}\) | upper | 0.4515 | \(2.22\times\) |
+| L5.1(iii) second, \(1.4\cdot2^{-1/4}h_1h_2P^{1/4}\) | lower | 5.712 | \(5.71\times\) |
+
+COMPUTATIONALLY VERIFIED at 160 samples. Four constants are attained to
+within a percent, so the census polices them tightly. The Lemma 5.1(iii)
+band is the one it barely polices at all.
+
+**And that band's two constants are exactly \(\tfrac32\) and
+\(\tfrac{27}4\).** Both brackets converge, pointwise in \(n\), to a
+single value:
+
+| \(P\) | \(10^4\) | \(10^6\) | \(10^8\) | \(10^{10}\) | \(10^{12}\) | \(10^{14}\) |
+|---|---|---|---|---|---|---|
+| \(\lvert\text{first}\rvert/(\lvert j\rvert P^{3/4})\) | 1.50022--1.50043 | 1.500002--4 | 1.5000000 | 1.5000000 | 1.5000000 | 1.5000000 |
+| second\(/(h_1h_2P^{1/4})\) | 6.7120--6.7811 | 6.7468--6.7526 | 6.74967--6.75027 | 6.74998--6.75003 | 6.750000 | 6.750000 |
+
+which is what the derivatives give:
+first \(\approx\tfrac32m^{1/2}j=\tfrac32jn^{3/4}\), and
+second \(\approx\tfrac34m^{-1/2}\beta_1\beta_2\) with
+\(\beta_i\approx3h_in^{1/2}\), i.e.
+\(\tfrac34\cdot9=\tfrac{27}4\). Over a dyadic block with \(P\) the
+start, \(n\in(P,2P]\) spreads these to \([\tfrac32,\tfrac32 2^{3/4}]
+=[1.50,2.52]\) and \([\tfrac{27}4,\tfrac{27}42^{1/4}]=[6.75,8.03]\).
+
+So the printed upper constants \(2.6\) and \(15\) sit \(1.03\times\) and
+\(1.87\times\) above the true tops, and the printed lower constants
+\(0.892\) and \(1.177\) sit \(1.68\times\) and \(5.74\times\) below the
+true bottoms. Nothing is wrong --- the lemma needs a band, not a limit,
+and a loose band is still a band. But the constants are known to seven
+digits, and anyone tightening Step 5b now knows exactly how much room
+each end has. OBSERVATION for the measurement, EXACT for the two
+derivative computations, which are in `exponent_checks`.

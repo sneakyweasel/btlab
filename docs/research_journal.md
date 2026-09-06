@@ -30511,3 +30511,68 @@ Best next question
   reason. What are the chain-rule terms of the frozen-shape zero-offset
   anchor of Theorem 6.1, with the c''J_F subtraction taken?
 ```
+
+## The census could not police the one band it was watching, and measuring it gave two constants
+
+Following the last entry's question. The identity census was the last
+instrument with no calibration, and calibrating it turned into a
+measurement of the paper.
+
+**Power.** The census's identities compare integers, so any perturbation
+at all is caught -- total power. Its inequalities have only the power
+the samples give: for an upper bound `C f(n)` the largest observed
+`value/f(n)` is exactly the fraction `C` could be cut to and still pass.
+
+| printed constant | extreme ratio | could move undetected by |
+|---|---|---|
+| L4.3(i) fine `3/8 (X-1)^(-1/2)` | 0.9992 | 0.1% |
+| L5.1(i) `3/16 v^(-1/2)` | 0.9933 | 0.7% |
+| L6.2(i) corrected | 0.9966 | 0.3% |
+| L5.1(iv) `M_1`, `0.43 k h1 h2 P^(-7/8)` | 0.9777 | 2.3% |
+| L5.1(iii) second bracket upper, `15` | 0.4515 | `2.22x` |
+| L5.1(iii) second bracket lower, `1.177` | 5.712 | `5.71x` |
+
+Four constants are attained to within a percent. The Lemma 5.1(iii)
+band is the one the census barely polices.
+
+**And measuring it gave the constants.** Both brackets converge
+pointwise to a single value: `|first|/(|j| P^(3/4)) -> 3/2` and
+`second/(h1 h2 P^(1/4)) -> 27/4`, to seven digits by `1e8` and to
+working precision by `1e14`. That is what the derivatives give --
+`first ~ (3/2) m^(1/2) j` and `second ~ (3/4) m^(-1/2) b1 b2` with
+`b_i ~ 3 h_i n^(1/2)`, so `(3/4)*9 = 27/4`. Over a dyadic block the
+spread is `[1.50, 2.52]` and `[6.75, 8.03]`.
+
+The printed uppers `2.6` and `15` sit `1.03x` and `1.87x` above those
+tops; the printed lowers `0.892` and `1.177` sit `1.68x` and `5.74x`
+below the bottoms. The lemma needs a band, not a limit, so nothing is
+wrong -- but the room at each end is now known.
+
+```text
+What was learned
+- an inequality check has exactly as much power as its extreme ratio,
+  and four of the census's constants are attained to within a percent
+- the one band it cannot police is the one whose constants nobody had
+  computed
+- those constants are 3/2 and 27/4, from the first and second
+  derivatives of m^{3/2}, confirmed to seven digits
+Strongest theorem
+- second bracket = (3/4) m^{-1/2} b1 b2 = (27/4) h1 h2 n^{1/4}, first
+  bracket = (3/2) j n^{3/4}; the printed band is a 1.68x/5.74x envelope
+Strongest refutation
+- none; every printed constant holds, two of them by a wide margin
+Reusable machinery
+- census_constant_power and the ratio keys the three checkers now
+  return; two tests; three exact checks
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Calibrating the last instrument was supposed to be housekeeping. It
+  found the one place where the audit was blind, and the blind spot
+  had two exact constants sitting in it.
+Best next question
+- the second bracket's printed lower constant is 5.74x below the truth
+  and its upper 1.87x above. Does any later step actually use the
+  width, or would the sharp band [27/4, (27/4)2^{1/4}] change an
+  exponent downstream?
+```
