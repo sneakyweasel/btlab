@@ -353,12 +353,13 @@ def similarity(statement_words: set[str], decl: dict[str, Any]) -> float:
 def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
     """Rank the declarations a still-unresolved row might mean.  Proposals, never answers.
 
-    Calibrated against the rows already resolved by an explicit naming construction, this
-    scorer peaks at 96% precision: of 24 rows where it fires confidently, 23 are right and
-    ``BTA-x3-Q-visible`` is not -- it prefers ``q_eq_of_cube_mod`` over ``q_visible_mod`` by
-    0.25 to 0.08, because the two theorems really are about the same objects.  One wrong
-    mapping in twenty-five is fine for a queue a person reads and wrong for a ledger that
-    exists to make claims checkable, which is why nothing here is written into the ledger.
+    Measured against every resolved row: it fires on 49 and gets 42 right, so **86%**, about
+    one wrong in seven.  An earlier figure of 96% came from a calibration set of 70 rows that
+    was dominated by the easiest cases -- rows naming their theorem outright -- and overstated
+    what the scorer does on the rows that are actually left.  The misses are sibling
+    confusions: ``lsdZ_mul`` for ``D_mul``, ``q_eq_of_cube_mod`` for both ``qCubic_def`` and
+    ``q_visible_mod``, ``cycleMin_length_of_gap`` for ``cycleMin_gap_transfer``.  One in seven
+    is a queue a person reads, never a ledger write, which is why nothing here is applied.
     """
     # A declaration already claimed by a resolved row cannot be the answer to another: one
     # theorem backs one claim, which the ledger's own collision test enforces.  Offering a
@@ -418,8 +419,8 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
                              "line": d["line"]} for d in dcands],
         })
     return {
-        "note": "Proposals for human review. Calibration: 96% precision (23/24) on rows with a "
-                "known answer. Nothing here has been written into the ledger.",
+        "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) "
+                "against all resolved rows. Nothing here has been written into the ledger.",
         "unresolved": len(out),
         "worth_reviewing": sum(1 for o in out if o["confidence"] == "review"),
         "composite": sum(1 for o in out if o.get("composite")),
@@ -461,8 +462,9 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         "",
         "Rows where one candidate leads its file clearly.  Each entry is the ledger row's own",
         "statement beside the candidate's docstring; the question is only whether they say the",
-        "same thing.  The scorer was measured at 96% precision on rows with a known answer, so",
-        "roughly one in twenty-five of these is wrong -- reading is the point, not rubber-stamping.",
+        "same thing.  Measured against all 112 resolved rows the scorer is 86% precise -- it",
+        "fires on 49 and gets 42 right -- so roughly one in seven below is wrong.  An earlier",
+        "figure of 96% came from a smaller, easier calibration set and overstated it.",
         "",
         "A second failure mode is not scored at all: some rows are composite, and their top",
         "candidate is only the headline theorem.  `BTC-select3` below reads \"select3 represents",

@@ -120,9 +120,9 @@ def test_every_graph_node_carries_at_least_one_ledger_row() -> None:
 
 
 def test_proposals_are_never_written_into_the_ledger() -> None:
-    """The queue is advisory. Its own calibration is why: 96% precision is one wrong
-    mapping in twenty-five, fine for a list a person reads and wrong for a ledger whose
-    purpose is making a claim checkable."""
+    """The queue is advisory. Its own calibration is why: 86% precision is one wrong mapping
+    in seven, fine for a list a person reads and wrong for a ledger whose purpose is making a
+    claim checkable."""
     index = fp.build()
     ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
     out = fp.propose(index, ledger)

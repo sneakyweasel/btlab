@@ -1,6 +1,6 @@
 {
   "composite": 29,
-  "note": "Proposals for human review. Calibration: 96% precision (23/24) on rows with a known answer. Nothing here has been written into the ledger.",
+  "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
       "candidates": [

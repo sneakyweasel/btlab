@@ -2,10 +2,11 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  The scorer was measured at 96% precision on rows with a known answer, so
-roughly one in twenty-five of these is wrong -- reading is the point, not rubber-stamping.
-
+same thing.  Measured against all 112 resolved rows the scorer is 86% precise -- it
+fires on 49 and gets 42 right -- so roughly one in seven below is wrong.  An earlier
+figure of 96% came from a smaller, easier calibration set and overstated it.
 36 rows below, of 151 unresolved.
+
 
 A second failure mode is not scored at all: some rows are composite, and their top
 candidate is only the headline theorem.  `BTC-select3` below reads "select3 represents
