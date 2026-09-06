@@ -52240,7 +52240,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`Q(u)` and `Q(v)` agree modulo `3^K` exactly when `3^(t+K)` divides `u^3 - v^3 - (bal_t u - bal_t v)`. The general form; `q_eq_iff_of_same_bal` is the case where the balanced parts already agree.",
       "file": "formal/BTCalculus/MismatchedCubicQuotient.lean",
       "kind": "theorem",
       "ledger": [
@@ -52251,7 +52251,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 39,
+      "line": 42,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_eq_iff",
       "trust": "kernel"
@@ -52268,7 +52268,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 56,
+      "line": 59,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_eq_of_cube_mod",
       "trust": "kernel"
@@ -52285,7 +52285,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 63,
+      "line": 66,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_visible_mod",
       "trust": "kernel"
@@ -52302,7 +52302,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 69,
+      "line": 72,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_val_of_le",
       "trust": "kernel"
@@ -52319,7 +52319,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 73,
+      "line": 76,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_val_of_ge",
       "trust": "kernel"
@@ -52336,7 +52336,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 77,
+      "line": 80,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_zero",
       "trust": "kernel"
@@ -52353,7 +52353,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 80,
+      "line": 83,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_neg",
       "trust": "kernel"
@@ -52370,7 +52370,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 83,
+      "line": 86,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_sign",
       "trust": "kernel"
@@ -52387,7 +52387,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 88,
+      "line": 91,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_from_exhausted",
       "trust": "kernel"
@@ -52404,7 +52404,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 93,
+      "line": 96,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_from_unexhausted",
       "trust": "kernel"
@@ -52421,7 +52421,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 99,
+      "line": 102,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "cubic_q_width",
       "trust": "kernel"
@@ -52438,7 +52438,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 103,
+      "line": 106,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_of_deficit_one",
       "trust": "kernel"
@@ -52455,7 +52455,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 110,
+      "line": 113,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_of_deficit_two",
       "trust": "kernel"
@@ -52472,7 +52472,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 114,
+      "line": 117,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "cube_expand",
       "trust": "kernel"
@@ -52489,7 +52489,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 122,
+      "line": 125,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_shift",
       "trust": "kernel"
@@ -52506,7 +52506,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 149,
+      "line": 152,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_split_high",
       "trust": "kernel"
@@ -52523,7 +52523,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 161,
+      "line": 164,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "cube_diff",
       "trust": "kernel"
@@ -52540,7 +52540,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 165,
+      "line": 168,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "sq_sum_sub_sq",
       "trust": "kernel"
@@ -52557,7 +52557,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 169,
+      "line": 172,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "not_three_dvd_sq_sum_of_opp",
       "trust": "kernel"
@@ -52574,7 +52574,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 181,
+      "line": 184,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_eq_iff_of_same_bal",
       "trust": "kernel"
@@ -52591,7 +52591,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 191,
+      "line": 194,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_zero_of_high",
       "trust": "kernel"
@@ -52608,7 +52608,7 @@
         "BTA-x3-Q-visible",
         "BTA-x3-Q-scale"
       ],
-      "line": 197,
+      "line": 200,
       "module": "BTCalculus.MismatchedCubicQuotient",
       "name": "q_of_deficit_three",
       "trust": "kernel"

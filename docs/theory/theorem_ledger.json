@@ -1181,6 +1181,8 @@
   "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-Δbal_t",
   "source": "docs/theory/mismatched_cubic_quotient.md",
   "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+  "decl": "q_eq_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_mismatched_cubic.py"
   ],
@@ -1897,6 +1899,8 @@
   "statement": "the simplifying-only fragment of WORD_REWRITE_RULES (the sixteen rules with simplifying=True: cancellations, the W/K3 stock, and I0→S) is terminating and locally confluent; every word has a unique syntactic normal form",
   "source": "docs/theory/rewrite_calculus.md",
   "lean": "BTCalculus/WordSimpNewman.lean",
+  "decl": "unique_normal_form",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_rewrite_word_fragments.py"
   ],
@@ -2119,6 +2123,8 @@
   "statement": "for Γ_NP and n≥2, the determinant of consecutive adjoints (u_n, u_{n-1}, u_{n-2}) equals 3^{n-2}, so neighboring energies invert s over Q; this is not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "adjointDet_eq",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_energy_kernel.py"
   ],
@@ -2723,6 +2729,8 @@
   "statement": "For λ=2 and |u|≤m, if |s|≤2 m.pred then |2 D(s+u)|≤2 m.pred. This is the sharp invariant radius 2(m-1)_+.",
   "source": "docs/problems/signed_digit_residual.md",
   "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
+  "decl": "lambda2_sharp_box",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/signed_digit_residual/test_signed_digit_residual.py"
   ],

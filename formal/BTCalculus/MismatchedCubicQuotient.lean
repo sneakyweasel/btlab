@@ -36,6 +36,9 @@ theorem q_recon_diff (t : Nat) (u v : Int) :
   unfold qCubic balCubic n0Resid
   linarith
 
+/-- `Q(u)` and `Q(v)` agree modulo `3^K` exactly when `3^(t+K)` divides
+`u^3 - v^3 - (bal_t u - bal_t v)`. The general form; `q_eq_iff_of_same_bal` is the
+case where the balanced parts already agree. -/
 theorem q_eq_iff {t K : Nat} (u v : Int) :
     (3 : Int) ^ K ∣ qCubic t u - qCubic t v ↔
       (3 : Int) ^ (t + K) ∣
