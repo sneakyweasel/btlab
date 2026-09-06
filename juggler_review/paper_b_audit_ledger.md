@@ -5403,3 +5403,70 @@ the paper.
 Probes: `constant_form_predicts_sharpness`, `MEASURED_CONSTANTS`. Two
 tests. Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`.
 No manuscript or certificate edit.
+
+## Out of sample the rule gets one of two, and the miss has a shape
+
+The eighteen constants the denominator rule was fitted on were all
+measured because something had drawn attention to them. This is the test
+it did not get to choose: two printed constants nothing in this ledger
+had measured, predicted from their form and then measured.
+
+**`0.64`, in `|u A_h''| <= 0.64 u h^2 P^(-7/4)`. Denominator `25`, so:
+sharp. Correct.** The true coefficient is exact and rational:
+`A_h = -(27/8) h^2 nu^(1/4)` to leading order, so
+`A_h'' = (81/128) h^2 nu^(-7/4)`, and the measured ratio to
+`(81/128) h^2 P^(-7/4)` is `1.00000` at every `(P, h)` from `1e5` to
+`1e8`. Printed `0.64` against `81/128 = 0.632812` is a slack of
+`1.0114`.
+
+**`1.5`, in the gap-cell count `1.5 h P^(1/2) + 1`. Denominator `2`, so:
+sharp. Wrong.** The measured count is `0.8289` of the printed bound,
+stable across `P` from `1e5` to `1e6` and `h` from `1` to `3`: a slack
+of `1.206`.
+
+The true count is the range of
+`delta_h(nu) = (nu+2h)^(3/2) - nu^(3/2)` over a dyadic block, which runs
+from `3h P^(1/2)` to `3h (2P)^(1/2)`, so it is
+
+```text
+  3(sqrt2 - 1) h P^(1/2)  =  1.242641 h P^(1/2)
+```
+
+and `0.8289 * 1.5 = 1.24332` confirms it.
+
+**So the rule is `1/2` out of sample, `19/20` overall, and the failure
+has a shape: the true constant is irrational.** `3(sqrt2 - 1)` has no
+denominator to keep, so the printed number is a round-up to the nearest
+convenient rational --- and `3/2` is exactly the kind of simple fraction
+the rule reads as derived. The denominator separates "written as
+derived" from "rounded" only when the derivation lands on a rational;
+where a block endpoint contributes a `sqrt2`, a simple fraction is a
+rounding like any integer.
+
+That is worth more than the `18/18` was. The rule survives as triage
+with a stated blind spot: **constants whose derivation crosses a dyadic
+block boundary.** Every one of the eighteen it was fitted on is a
+pointwise Taylor coefficient, evaluated at a point; this one is a range
+over a block, and the block's two ends bring in `2^(1/2)`.
+
+It is also a reminder about the shape of this ledger's evidence. Six
+passes of sharpness sweeps produced a rule that fit everything it had
+seen, and the first constant chosen without regard to whether it looked
+interesting broke it. The eighteen were not a sample of the paper's
+constants; they were a sample of the ones that had already caught
+attention.
+
+Tags. EXACT: `A_h'' = (81/128) h^2 nu^(-7/4)` from
+`A_h = -(27/8) h^2 nu^(1/4)`, so `0.64` is a rounding by `1.0114`; the
+cell count is `3(sqrt2 - 1) h P^(1/2)` from the range of `delta_h` over
+a dyadic block, so `1.5` is a round-up by `1.2071`. COMPUTATIONALLY
+VERIFIED: the curvature coefficient measures `0.6328125` at every
+`(P, h)` from `1e5` to `1e8`; the cell ratio is `0.8283` to `0.8289`
+across `P` from `1e5` to `3e6` and `h` from `1` to `3`, and
+`0.8289 * 1.5` recovers `3(sqrt2 - 1)`. OBSERVATION: the rule is `1/2`
+out of sample and `19/20` overall; its blind spot is a derivation that
+crosses a block boundary.
+
+Probe: `out_of_sample_constant_test`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "45fb1c6c0be9d52f31706e35440a0f6e473cb236",
+  "git_commit": "0a511e89d5d66a968f3a6282866724daac722da1",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -6502,6 +6502,96 @@
     "counterexample_before_opening": "5.3, denominator 10, loose by 2.09, opened to 6",
     "sharp_does_not_mean_needed": "Lem 6.2(ii) second is 3/8, attained, and deletable"
   },
+  "out_of_sample_constant_test": {
+    "cells_rows": [
+      {
+        "P": 100000,
+        "h": 1,
+        "cells": 394,
+        "printed_max": 475.34164902525697,
+        "ratio": 0.8288775048598047
+      },
+      {
+        "P": 100000,
+        "h": 2,
+        "cells": 787,
+        "printed_max": 949.6832980505139,
+        "ratio": 0.8286973158478557
+      },
+      {
+        "P": 300000,
+        "h": 1,
+        "cells": 681,
+        "printed_max": 822.5838362577492,
+        "ratio": 0.8278791412898792
+      },
+      {
+        "P": 300000,
+        "h": 2,
+        "cells": 1362,
+        "printed_max": 1644.1676725154985,
+        "ratio": 0.8283826660551017
+      }
+    ],
+    "curvature_rows": [
+      {
+        "P": 100000,
+        "h": 1,
+        "coefficient": 0.6328124998308163
+      },
+      {
+        "P": 100000,
+        "h": 2,
+        "coefficient": 0.6328124993232886
+      },
+      {
+        "P": 1000000,
+        "h": 1,
+        "coefficient": 0.6328124999983081
+      },
+      {
+        "P": 1000000,
+        "h": 2,
+        "coefficient": 0.6328124999932324
+      },
+      {
+        "P": 10000000,
+        "h": 1,
+        "coefficient": 0.6328124999999831
+      },
+      {
+        "P": 10000000,
+        "h": 2,
+        "coefficient": 0.6328124999999323
+      }
+    ],
+    "curvature_printed": 0.64,
+    "curvature_printed_denominator": 25,
+    "curvature_predicted_sharp": true,
+    "curvature_true_constant": 0.6328125,
+    "curvature_measured_coefficient": 0.6328124999999831,
+    "curvature_model_is_exact": true,
+    "curvature_slack": 1.011358024691385,
+    "curvature_is_sharp": true,
+    "curvature_prediction_correct": true,
+    "cells_printed": 1.5,
+    "cells_printed_denominator": 2,
+    "cells_predicted_sharp": true,
+    "cells_true_constant": 1.2426406871192854,
+    "cells_true_is_irrational": true,
+    "cells_measured_ratio": 0.8288775048598047,
+    "cells_slack": 1.206450885850906,
+    "cells_is_sharp": false,
+    "cells_prediction_correct": false,
+    "cells_true_matches_the_measurement": true,
+    "out_of_sample_score": 1,
+    "out_of_sample_total": 2,
+    "overall_score": 19,
+    "overall_total": 20,
+    "failure_mode": "the true constant is irrational, so the printed rational is a rounding",
+    "blind_spot": "constants whose derivation crosses a dyadic block boundary",
+    "rule_survives_as_triage": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6569,5 +6659,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 98.13579058647156
+  "elapsed_seconds": 95.76829814910889
 }

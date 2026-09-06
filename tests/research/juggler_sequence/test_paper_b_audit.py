@@ -1897,3 +1897,28 @@ def test_the_rule_is_a_proxy_with_known_failure_modes() -> None:
     assert "deletable" in r["sharp_does_not_mean_needed"]
     second = [x for x in r["rows"] if x["site"] == "Lem 6.2(ii) second"][0]
     assert second["sharp"] and second["printed"] == "3/8"
+
+
+# --- the denominator rule, tested on constants it had not seen ---
+
+
+def test_the_rule_gets_the_curvature_constant_right() -> None:
+    """0.64 is a rounding of 81/128, which is exact: predicted sharp, measured slack 1.011."""
+    r = A.out_of_sample_constant_test(cell_points=(10**5,))
+    assert r["curvature_predicted_sharp"] and r["curvature_prediction_correct"]
+    assert r["curvature_model_is_exact"]
+    assert abs(r["curvature_true_constant"] - 81 / 128) < 1e-12
+    assert abs(r["curvature_measured_coefficient"] - 81 / 128) < 1e-9
+    assert 1.01 < r["curvature_slack"] < 1.02 and r["curvature_is_sharp"]
+
+
+def test_the_rule_misses_when_the_true_constant_is_irrational() -> None:
+    """1.5 is a round-up of 3(sqrt2 - 1): predicted sharp, measured slack 1.206."""
+    r = A.out_of_sample_constant_test(cell_points=(10**5, 3 * 10**5))
+    assert r["cells_predicted_sharp"] and not r["cells_prediction_correct"]
+    assert not r["cells_is_sharp"] and 1.19 < r["cells_slack"] < 1.22
+    assert abs(r["cells_true_constant"] - 3 * (2 ** 0.5 - 1)) < 1e-12
+    assert r["cells_true_matches_the_measurement"] and r["cells_true_is_irrational"]
+    assert r["out_of_sample_score"] == 1 and r["out_of_sample_total"] == 2
+    assert r["overall_score"] == 19 and r["overall_total"] == 20
+    assert "irrational" in r["failure_mode"] and r["rule_survives_as_triage"]

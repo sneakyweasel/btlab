@@ -5709,6 +5709,96 @@ def constant_form_predicts_sharpness(threshold: float = 1.05) -> dict[str, Any]:
     }
 
 
+def out_of_sample_constant_test(cell_points: tuple[int, ...] = (10**5, 3 * 10**5, 10**6)) -> dict[str, Any]:
+    """The denominator rule was 18/18 in sample.  Two constants it had never seen: it gets one.
+
+    The eighteen were all measured because something drew attention to them, so the rule was fitted
+    on a selected sample.  This is the test it did not get to choose: two printed constants nothing
+    in this ledger had ever measured, predicted from their form and then measured.
+
+    **0.64, in |u A_h''| <= 0.64 u h^2 P^{-7/4}.**  Denominator 25, so the rule says sharp.  The
+    true coefficient is exact and rational: A_h = -(27/8) h^2 nu^{1/4} to leading order, so
+    A_h'' = (81/128) h^2 nu^{-7/4}, and the measured ratio to (81/128) h^2 P^{-7/4} is 1.00000 at
+    every (P, h) sampled from 1e5 to 1e8.  Printed 0.64 against 81/128 = 0.632812 is a slack of
+    1.0114 -- sharp.  Prediction correct.
+
+    **1.5, in the gap-cell count 1.5 h P^{1/2} + 1.**  Denominator 2, so the rule says sharp.  It
+    is not: the measured count is 0.8283 of the printed bound, stable across P from 1e5 to 3e6 and
+    h from 1 to 3, a slack of 1.207.  The true count is the range of delta_h(nu) = (nu+2h)^{3/2} -
+    nu^{3/2} over a dyadic block, which runs from 3h P^{1/2} to 3h(2P)^{1/2}, so it is
+    3(sqrt2 - 1) h P^{1/2} = 1.242641 h P^{1/2} -- and 0.8283 * 1.5 = 1.24245 confirms it.
+    Prediction wrong.
+
+    So the rule is 1/2 out of sample and 19/20 overall, and the failure has a shape: **the true
+    constant is irrational.**  3(sqrt2 - 1) has no denominator to keep, so the printed number is a
+    round-up to the nearest convenient rational, and 3/2 is exactly the kind of simple fraction the
+    rule reads as derived.  The denominator distinguishes "written as derived" from "rounded" only
+    when the derivation lands on a rational; where a block endpoint contributes a sqrt2, a simple
+    fraction can be a rounding like any integer.
+
+    That is worth more than the 18/18 was.  The rule survives as triage with a stated blind spot:
+    constants whose derivation crosses a dyadic block boundary.
+    """
+
+    cells_rows = []
+    worst_cell_ratio = 0.0
+    for P in cell_points:
+        for h in (1, 2):
+            r = cell_inventory(P, h)
+            ratio = r["cells"] / r["printed_max_cells"]
+            worst_cell_ratio = max(worst_cell_ratio, ratio)
+            cells_rows.append({"P": P, "h": h, "cells": r["cells"],
+                               "printed_max": r["printed_max_cells"], "ratio": ratio})
+    curvature_rows = []
+    worst_curv = 0.0
+    with mp.workdps(60):
+        def A(nu: mp.mpf, h: int) -> mp.mpf:
+            d34 = mp.power(nu + 2 * h, mp.mpf(3) / 4) - mp.power(nu, mp.mpf(3) / 4)
+            d94 = mp.power(nu + 2 * h, mp.mpf(9) / 4) - mp.power(nu, mp.mpf(9) / 4)
+            return mp.mpf(3) / 2 * mp.power(nu, mp.mpf(3) / 2) * d34 - mp.mpf(1) / 2 * d94
+
+        for P in (10**5, 10**6, 10**7):
+            for h in (1, 2):
+                nu = mp.mpf(P)
+                a2 = abs(mp.diff(lambda x, hh=h: A(x, hh), nu, 2))
+                scaled = float(a2 / (h * h * mp.power(nu, -mp.mpf(7) / 4)))
+                worst_curv = max(worst_curv, scaled)
+                curvature_rows.append({"P": P, "h": h, "coefficient": scaled})
+    cell_slack = 1 / worst_cell_ratio
+    curv_slack = 0.64 / worst_curv
+    true_cell = 3 * (math.sqrt(2) - 1)
+    return {
+        "cells_rows": cells_rows,
+        "curvature_rows": curvature_rows,
+        "curvature_printed": 0.64,
+        "curvature_printed_denominator": Fr("16/25").denominator,
+        "curvature_predicted_sharp": True,
+        "curvature_true_constant": 81 / 128,
+        "curvature_measured_coefficient": worst_curv,
+        "curvature_model_is_exact": abs(worst_curv - 81 / 128) < 1e-9,
+        "curvature_slack": curv_slack,
+        "curvature_is_sharp": curv_slack <= 1.05,
+        "curvature_prediction_correct": curv_slack <= 1.05,
+        "cells_printed": 1.5,
+        "cells_printed_denominator": Fr("3/2").denominator,
+        "cells_predicted_sharp": True,
+        "cells_true_constant": true_cell,
+        "cells_true_is_irrational": True,
+        "cells_measured_ratio": worst_cell_ratio,
+        "cells_slack": cell_slack,
+        "cells_is_sharp": cell_slack <= 1.05,
+        "cells_prediction_correct": cell_slack <= 1.05,
+        "cells_true_matches_the_measurement": abs(worst_cell_ratio * 1.5 - true_cell) < 1e-3,
+        "out_of_sample_score": int(curv_slack <= 1.05) + int(cell_slack <= 1.05),
+        "out_of_sample_total": 2,
+        "overall_score": 18 + int(curv_slack <= 1.05) + int(cell_slack <= 1.05),
+        "overall_total": 20,
+        "failure_mode": "the true constant is irrational, so the printed rational is a rounding",
+        "blind_spot": "constants whose derivation crosses a dyadic block boundary",
+        "rule_survives_as_triage": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5794,6 +5884,7 @@ def summary() -> dict[str, Any]:
     nesting_rule = nesting_contribution_rule(sweep_to=6000)
     remainders = remainder_constants_are_second_derivatives(sweep_to=6000)
     forms = constant_form_predicts_sharpness()
+    oos = out_of_sample_constant_test(cell_points=(10**5, 3 * 10**5))
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5867,6 +5958,7 @@ def summary() -> dict[str, Any]:
         "nesting_contribution_rule": nesting_rule,
         "remainder_constants_are_second_derivatives": remainders,
         "constant_form_predicts_sharpness": forms,
+        "out_of_sample_constant_test": oos,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

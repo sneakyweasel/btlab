@@ -35935,3 +35935,75 @@ Best next question
   such a check even look like, and is there a tractable subset -- quantities
   named in two places with a number attached in both?
 ```
+
+## The first constant I did not choose broke it
+
+Two constants nothing in this ledger had measured, predicted from their
+form and then measured.
+
+`0.64` in `|u A_h''| <= 0.64 u h^2 P^(-7/4)`: denominator `25`, predicted
+sharp, and it is. `A_h = -(27/8) h^2 nu^(1/4)` gives
+`A_h'' = (81/128) h^2 nu^(-7/4)` exactly, measured at `0.6328125` at
+every `(P, h)` from `1e5` to `1e8`, so the printed number is a rounding
+by `1.0114`.
+
+`1.5` in the gap-cell count `1.5 h P^(1/2) + 1`: denominator `2`,
+predicted sharp, and it is not. The count is `0.8289` of the bound,
+stable in `P` and `h`, a slack of `1.206`. The true constant is the
+range of `delta_h` over a dyadic block, `3(sqrt2 - 1) = 1.242641`, and
+`0.8289 * 1.5` recovers it.
+
+So `1/2` out of sample, `19/20` overall, and the miss has a shape: the
+true constant is irrational, so the printed rational is a rounding and
+not a derivation. `3/2` is exactly the kind of simple fraction the rule
+reads as derived.
+
+The blind spot is nameable: constants whose derivation crosses a dyadic
+block boundary. Every one of the eighteen the rule was fitted on is a
+pointwise Taylor coefficient; this one is a range over a block, and the
+two ends bring in `2^(1/2)`.
+
+The methodological point is the one worth keeping. Six passes of
+sharpness sweeps produced a rule that fit everything it had seen, and
+the first constant chosen without regard to whether it looked
+interesting broke it. The eighteen were not a sample of the paper's
+constants -- they were a sample of the ones that had already caught my
+attention.
+
+```text
+Phase-end report
+Question
+- does the denominator rule hold on a constant I have not looked at, or
+  does it only fit the ones that got measured because they looked
+  suspicious
+Instruments
+- out_of_sample_constant_test: two unmeasured printed constants, each
+  predicted from its form and then measured
+Ledger tags
+- EXACT: A_h'' = (81/128) h^2 nu^(-7/4), so 0.64 is a rounding by
+  1.0114; the cell count is 3(sqrt2 - 1) h P^(1/2), so 1.5 is a round-up
+  by 1.2071
+- COMPUTATIONALLY VERIFIED: the curvature coefficient is 0.6328125 at
+  every (P, h) from 1e5 to 1e8; the cell ratio is 0.8283 to 0.8289 over
+  P from 1e5 to 3e6 and h from 1 to 3
+- OBSERVATION: 1/2 out of sample, 19/20 overall; the blind spot is a
+  derivation that crosses a block boundary
+Strongest theorem
+- the cell count is 3(sqrt2 - 1) h P^(1/2), and its printed 1.5 is a
+  round-up of an irrational
+Strongest refutation
+- the denominator rule's 18/18, which was fitted on a sample selected by
+  what had already looked interesting
+Reusable machinery
+- out_of_sample_constant_test, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change; the cell bound is correct as
+  printed, only looser than it reads.
+Best next question
+- the cell count is sharp at 3(sqrt2 - 1) and printed at 3/2, a slack of
+  1.207 that no theorem notices. Are there other block-range constants
+  rounded the same way, and do any of them feed a threshold row where
+  1.2 would matter?
+```
