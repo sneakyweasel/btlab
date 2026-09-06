@@ -16,6 +16,8 @@
   "statement": "D ∘ S = id",
   "source": "docs/balanced_ternary_operators.md",
   "lean": "Operators/DigitDerivative.lean",
+  "decl": "D_after_S",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_operators.py"
   ],
@@ -212,6 +214,8 @@
   "statement": "D ∘ I_a = id",
   "source": "docs/theory/digit_derivative.md",
   "lean": "BTCalculus/Integral.lean",
+  "decl": "D_after_I",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_calculus_identities.py"
   ],
@@ -304,6 +308,8 @@
   "statement": "value(P → P') = value(P)",
   "source": "docs/theory/normalization_rewrite_system.md",
   "lean": "BTCalculus/Normalization.lean",
+  "decl": "step_value",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_normtheory_rewrite.py"
   ],

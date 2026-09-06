@@ -5,42 +5,6 @@
     {
       "candidates": [
         {
-          "decl": "dropLast_snoc",
-          "line": 12,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "eq_dropLast_append_getLast",
-          "line": 19,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "evalMSD_dropLSD",
-          "line": 31,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "dropLSD",
-          "line": 9,
-          "score": 0.0
-        }
-      ],
-      "id": "BT-D-S",
-      "in_file": 10,
-      "lean": "Operators/DigitDerivative.lean",
-      "names_own": [],
-      "statement": "D \u2218 S = id"
-    },
-    {
-      "candidates": [
-        {
           "decl": "evalPoly_nil",
           "line": 12,
           "score": 0.0,
@@ -217,49 +181,8 @@
           "score": 0.0
         }
       ],
-      "id": "BTC-D-I",
-      "in_file": 11,
-      "lean": "BTCalculus/Integral.lean",
-      "names_own": [],
-      "statement": "D \u2218 I_a = id"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "trit_toInt_is_trit",
-          "line": 14,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "IZ_mod",
-          "line": 18,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
-          "decl": "lsdZ_IZ",
-          "line": 24,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "IZ",
-          "line": 8,
-          "score": 0.0
-        },
-        {
-          "decl": "PZ",
-          "line": 11,
-          "score": 0.0
-        }
-      ],
       "id": "BTC-P-band",
-      "in_file": 11,
+      "in_file": 10,
       "lean": "BTCalculus/Integral.lean",
       "names_own": [],
       "statement": "P_a \u2218 P_b = P_a"
@@ -418,51 +341,10 @@
         }
       ],
       "id": "BTN-divmod",
-      "in_file": 33,
+      "in_file": 32,
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "unique trit residue c = 3q + r"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "step_value",
-          "line": 89,
-          "score": 0.5,
-          "trust": "kernel"
-        },
-        {
-          "decl": "encodeZ_value",
-          "line": 191,
-          "score": 0.5,
-          "trust": "kernel"
-        },
-        {
-          "decl": "addHead_value",
-          "line": 61,
-          "score": 0.333,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "coeffValue",
-          "line": 44,
-          "score": 0.5
-        },
-        {
-          "decl": "normalizeLSD",
-          "line": 211,
-          "score": 0.125
-        }
-      ],
-      "id": "BTN-step-value",
-      "in_file": 33,
-      "lean": "BTCalculus/Normalization.lean",
-      "names_own": [],
-      "statement": "value(P \u2192 P') = value(P)"
     },
     {
       "candidates": [
@@ -500,7 +382,7 @@
         }
       ],
       "id": "BTN-nf",
-      "in_file": 33,
+      "in_file": 32,
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "normalize_LSD(P) = encodeZ(value(P)); result is all trits"
@@ -541,7 +423,7 @@
         }
       ],
       "id": "BTN-lex",
-      "in_file": 33,
+      "in_file": 32,
       "lean": "BTCalculus/Normalization.lean",
       "names_own": [],
       "statement": "LSD step strictly decreases the abs-lex rank"
@@ -6287,6 +6169,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 159,
+  "unresolved": 156,
   "worth_reviewing": 40
 }

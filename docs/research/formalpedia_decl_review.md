@@ -5,7 +5,7 @@ statement beside the candidate's docstring; the question is only whether they sa
 same thing.  The scorer was measured at 96% precision on rows with a known answer, so
 roughly one in twenty-five of these is wrong -- reading is the point, not rubber-stamping.
 
-40 rows below, of 159 unresolved.
+40 rows below, of 156 unresolved.
 
 A second failure mode is not scored at all: some rows are composite, and their top
 candidate is only the headline theorem.  `BTC-select3` below reads "select3 represents
