@@ -5735,13 +5735,24 @@ realises \(3.4\) of that \(300\), the rest being paid out of \(c_3\)
 and \(c_4\).
 
 The floor is not an accident of this lever. \(2.98\cdot10^{11}\) is
-also the minimax over \(R_0\) of the \(R_0\)-dependent sites, attained
-at the \(R_0=P^{5/16}\) this paper runs (Appendix A.6: at
-\(P^{9/32}\) the flat cost rises to \(7.4\cdot10^{13}\), at
-\(P^{1/3}\) the \(q''\) ratio rises to \(1.6\cdot10^{12}\)). So the two
-levers of this appendix are already balanced against one another at the
-same number, and neither alone can move it. A threshold below
-\(3\cdot10^{11}\) needs a different site, not a better constant.
+the best of the four exponents Appendix A.6 tabulates: at \(P^{9/32}\)
+the flat cost rises to \(7.4\cdot10^{13}\) and at \(P^{1/3}\) the
+\(q''\) ratio rises to \(1.6\cdot10^{12}\). It is not the minimax over
+\(R_0\). Scanning the exponent continuously, the flat cost falls and
+the \(q''\) ratio rises, and they cross at \(a=0.29919\), where the
+worst site is \(1.40\cdot10^{11}\) --- a factor \(2.13\) below what
+\(P^{5/16}\) gives. What Appendix A.6 claims for \(5/16\) is
+feasibility, that all four sites sit below \(P_0\), and that is true
+across roughly \(a\in[0.283,0.34]\), a band containing both values.
+
+So the \(c_7\) lever's floor is \(2.98\cdot10^{11}\) at the truncation
+in force and would be \(1.40\cdot10^{11}\) at the crossing; the choice
+of \(R_0\) is feasible rather than optimal, and moving it is a real if
+modest option. Neither value affects \(P_0\) itself, which is
+\(R_0\)-independent. And the coincidence recorded at Lemma 5.2(i) ---
+that \(R_0=2(\tfrac1{24}+\tfrac18-\tfrac1{96})\) --- is therefore a
+coincidence of a feasible choice and not the output of an
+optimisation.
 
 *\(E\): yes, by a factor \(2.07\); and the factor \(10\) beside it, by
 removing it.* The earlier \(219=202.5+16\) opened the middle-band cap

@@ -531,12 +531,21 @@ def test_the_whole_lever_is_worth_a_factor_of_three_hundred() -> None:
     assert abs(r["P0"] / 2.6e13 - 3.44) < 0.05
 
 
-def test_the_floor_is_also_the_minimax_over_R0() -> None:
-    """5/16 is the R_0 that minimises the worst R_0-dependent site, and it lands on the floor."""
+def test_five_sixteenths_is_best_of_the_tabulated_four_but_not_the_minimax() -> None:
+    """A.6 tabulates four exponents and 5/16 wins among them; the continuum does better."""
     worsts = {a: C.r0_tradeoff(a)["worst"] for a in (0.25, 9 / 32, 5 / 16, 1 / 3)}
-    best_a = min(worsts, key=lambda a: worsts[a])
-    assert abs(best_a - 5 / 16) < 1e-9, best_a
-    assert abs(worsts[best_a] / C.c7_saturation()["floor"] - 1) < 1e-3
+    assert min(worsts, key=lambda a: worsts[a]) == 5 / 16
+    assert abs(worsts[5 / 16] / C.c7_saturation()["floor"] - 1) < 1e-3
+    # but the flat/qpp crossing is lower and better
+    lo, hi = 0.290, 0.310
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        r = C.r0_tradeoff(mid)
+        lo, hi = (mid, hi) if r["flat"] > r["qpp"] else (lo, mid)
+    assert abs(hi - 0.29919) < 1e-4, hi
+    crossing = max(C.r0_tradeoff(hi)[k] for k in ("collision", "qpp", "window", "flat"))
+    assert abs(crossing / 1.403e11 - 1) < 0.01, crossing
+    assert 2.0 < worsts[5 / 16] / crossing < 2.3
 
 
 def test_paper_states_the_saturation() -> None:
@@ -544,7 +553,7 @@ def test_paper_states_the_saturation() -> None:
     assert "and it saturates, at a value" in text
     assert r"c_7=1/54" in text
     assert r"a factor of \(300\)" in text
-    assert "needs a different site, not a better constant" in text
+    assert "feasible rather than optimal" in text
 
 
 # --- the q'' site: the certificate is sharper than the printed constant ---
@@ -809,3 +818,21 @@ def test_paper_records_the_closed_chain() -> None:
     assert "The chain closes at (D1), tightly." in text
     assert "not merely at a corner of the" in text
     assert "without claiming a mechanism for it" in text
+
+
+def test_A6s_actual_claim_is_feasibility_and_holds_over_a_band() -> None:
+    """All four sites below P_0 -- true across roughly a in [0.283, 0.34]."""
+    def worst(a):
+        return max(C.r0_tradeoff(a)[k] for k in ("collision", "qpp", "window", "flat"))
+    for a in (0.2825, 0.2850, 0.2996, 0.3125, 0.33):
+        assert worst(a) < 8.946e13, a
+    for a in (0.2750, 0.2800, 0.3500):
+        assert worst(a) > 8.946e13, a
+
+
+def test_paper_no_longer_calls_five_sixteenths_the_minimax() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "It is not the minimax over" in text
+    assert "0.29919" in text
+    assert "feasible rather than optimal" in text
+    assert "coincidence of a feasible choice" in text

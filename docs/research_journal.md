@@ -29091,3 +29091,63 @@ Best next question
 - the R_0 identity is unexplained. Does the A.6 minimax land on 5/16
   for a reason connected to term four, or is the agreement numerical?
 ```
+
+ ### 5/16 is feasible, not optimal — and I had called it the minimax
+
+The identity `R_0 = 2(1/24 + 1/8 - 1/96) = 5/16` was either structural
+or numerical. It is numerical, and finding that out caught an error of
+my own.
+
+Two entries ago I wrote that `2.98e11` "is also the minimax over `R_0`
+of the `R_0`-dependent sites, attained at `R_0 = P^{5/16}`". That came
+from evaluating A.6's four tabulated exponents — `1/4`, `9/32`,
+`5/16`, `1/3` — among which `5/16` does win. Over the continuum it
+does not:
+
+```text
+   flat falls with a, qpp rises; they cross at a = 0.29919
+   worst there            1.403e11
+   worst at 5/16 = 0.3125 2.982e11     a factor 2.13 worse
+```
+
+**A.6 never claimed the minimax.** Its claim is feasibility — all four
+sites below `P_0` — and that holds across roughly `a ∈ [0.283, 0.34]`,
+a band containing both `5/16` and the crossing. The appendix is
+correct; my paraphrase of it was not.
+
+So the identity is a coincidence of a feasible choice, not the output
+of an optimisation. Question answered.
+
+A real if modest option falls out. Moving `R_0` to the crossing would
+drop the `c_7` lever's floor from `2.98e11` to `1.40e11` at no cost to
+`P_0`, which is `R_0`-independent. I have not made the change: `5/16`
+is a clean dyadic, the crossing is not, the benefit only materialises
+if `c_7` improves, and the edit would ripple through Theorem 6.3's
+window and flat requirements. Recorded for the author to weigh.
+
+```text
+What was learned
+- "best of the tabulated values" is not "minimax", and I collapsed the
+  two while paraphrasing an appendix that had said neither
+- checking a claimed optimum against the continuum costs one scan and
+  should be automatic whenever a paper tabulates a handful of points
+Strongest theorem
+- the R_0-dependent minimax is at a = 0.29919 with worst 1.403e11, not
+  at 5/16 with 2.982e11; the feasible band is about [0.283, 0.34]
+Strongest refutation
+- my own "minimax over R_0" claim from two entries ago
+Reusable machinery
+- the crossing bisection and a feasibility-band test, replacing the
+  test that asserted the wrong optimum
+Branch status
+- PROMOTE
+Why
+  An error of mine is out of the manuscript, A.6's own weaker and
+  correct claim is stated as such, and the open question that
+  prompted this is closed: the identity is numerical. The available
+  factor of two is recorded rather than taken, since it is the
+  author's call.
+Best next question
+- the crossing sits at a = 0.29919, suspiciously near 3/10. Is the
+  flat/qpp crossing at a nice rational, or genuinely irrational?
+```
