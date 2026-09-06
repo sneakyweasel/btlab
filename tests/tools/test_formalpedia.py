@@ -224,14 +224,16 @@ def test_review_digest_pairs_each_row_with_its_candidate_s_prose() -> None:
     assert text.count("**Row.**") == entries
 
 
-def test_review_digest_warns_that_composite_rows_are_unscored() -> None:
-    """A reviewer who accepts a composite row's headline theorem records a part as the whole,
-    and no score in the queue signals that -- so the digest has to say it in words."""
+def test_review_digest_warns_about_both_part_for_whole_failures() -> None:
+    """Neither is scored, and both record a part as the whole: a row broader than its
+    candidate, and a candidate narrower than its row. The digest names a worked example of
+    each, because a reviewer cannot see either one in the numbers."""
     index = fp.build()
     ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
     text = fp.review_digest(index, ledger)
-    assert "composite" in text
-    assert "BTC-select3" in text
+    assert "record a part as the whole" in text
+    assert "BTC-select3" in text                      # row broader than candidate
+    assert "BTN-sdrg-lambda1-interval" in text        # candidate narrower than row
 
 
 def test_proposals_never_offer_a_declaration_another_row_already_claims() -> None:
@@ -281,3 +283,16 @@ def test_definitions_are_ranked_apart_from_theorems() -> None:
             assert kinds.get(c["decl"]) in ("theorem", "lemma"), c["decl"]
         for d in row.get("definitions", []):
             assert kinds.get(d["decl"]) in ("def", "abbrev"), d["decl"]
+
+
+def test_the_digest_computes_its_precision_rather_than_asserting_one() -> None:
+    """A hardcoded figure goes stale silently: 96% was quoted for twenty-five ticks after the
+    calibration set had outgrown the easy rows it was measured on. The real number was 86%."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    cal = fp.calibrate(index, ledger)
+    assert cal["resolved"] == sum(1 for r in ledger if r.get("decl"))
+    assert 0 < cal["correct"] <= cal["fires"]
+    text = fp.review_digest(index, ledger)
+    assert f"all {cal['resolved']} resolved rows" in text
+    assert "96%" not in text

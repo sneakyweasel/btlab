@@ -350,6 +350,32 @@ def similarity(statement_words: set[str], decl: dict[str, Any]) -> float:
     return len(statement_words & other) / len(both) if both else 0.0
 
 
+def calibrate(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, int]:
+    """Score the scorer against every row whose answer is already recorded.
+
+    Computed, never written down.  A hardcoded precision goes stale silently: this figure
+    was quoted as 96% for twenty-five ticks after the calibration set had grown past the
+    easy rows it was measured on, and it is now 86%.
+    """
+    by_file: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for d in index["declarations"]:
+        if d["kind"] in ("theorem", "lemma"):
+            by_file[d["file"]].append(d)
+    resolved = [r for r in ledger if r.get("decl")]
+    fires = correct = 0
+    for row in resolved:
+        cands = by_file.get("formal/" + str(row.get("lean")), [])
+        if len(cands) < 2:
+            continue
+        sw = words(row["statement"])
+        ranked = sorted(cands, key=lambda d: similarity(sw, d), reverse=True)
+        a, b = similarity(sw, ranked[0]), similarity(sw, ranked[1])
+        if a >= 0.10 and a >= 1.5 * max(b, 1e-9):
+            fires += 1
+            correct += ranked[0]["name"] == row["decl"]
+    return {"resolved": len(resolved), "fires": fires, "correct": correct}
+
+
 def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
     """Rank the declarations a still-unresolved row might mean.  Proposals, never answers.
 
@@ -457,20 +483,28 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
     everything else.
     """
     docs = {(d["file"], d["name"]): d for d in index["declarations"]}
+    cal = calibrate(index, ledger)
+    pct = round(100 * cal["correct"] / cal["fires"]) if cal["fires"] else 0
     out = [
         "# Declaration review queue",
         "",
         "Rows where one candidate leads its file clearly.  Each entry is the ledger row's own",
         "statement beside the candidate's docstring; the question is only whether they say the",
-        "same thing.  Measured against all 112 resolved rows the scorer is 86% precise -- it",
-        "fires on 49 and gets 42 right -- so roughly one in seven below is wrong.  An earlier",
-        "figure of 96% came from a smaller, easier calibration set and overstated it.",
+        f"same thing.  Measured against all {cal['resolved']} resolved rows the scorer gets",
+        f"{cal['correct']} of the {cal['fires']} it fires on right, {pct}% precise, so roughly one in",
+        f"{max(1, round(cal['fires'] / max(1, cal['fires'] - cal['correct'])))} below is wrong.",
         "",
-        "A second failure mode is not scored at all: some rows are composite, and their top",
-        "candidate is only the headline theorem.  `BTC-select3` below reads \"select3 represents",
-        "every Trit->Z map; abs/min/max\" -- four theorems, of which `select3_represents` is one.",
-        "Accepting it would record a part as the whole.  If the row says \"and\", \";\" or lists",
-        "several claims, it belongs in neither column yet.",
+        "Two failure modes are not scored at all, and both record a part as the whole.",
+        "",
+        "The row may be broader than the candidate: `BTC-select3` reads \"select3 represents",
+        "every Trit->Z map; abs/min/max\" -- four theorems, of which `select3_represents` is",
+        "one.  If a row says \"and\", \";\" or lists several claims, it belongs in neither column.",
+        "",
+        "Or the candidate may be narrower than the row, with nothing in the prose to say so.",
+        "`BTN-sdrg-lambda1-interval` claims every integer with |s| <= m/2 is reachable, and",
+        "`lambda1_interval_reachable` reads \"every nonnegative point\" -- true, and half of it;",
+        "its `n : ℕ` is the tell, and a sibling proves the rest.  That is why the statement is",
+        "printed below every candidate, docstring or not.",
         "",
         "Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledger.json`.",
         "",
@@ -493,13 +527,14 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         doc = (decl or {}).get("doc")
         if doc:
             out.append(f"> {doc}")
-        else:
-            sig = signature(decl) if decl else ""
-            out.append("No docstring; the statement itself:")
             out.append("")
-            out.append("```lean")
-            out.append(sig or "(could not read the declaration)")
-            out.append("```")
+        # The statement is always shown, not only when prose is missing.  A docstring can be
+        # true and still narrower than the row: `lambda1_interval_reachable` reads "every
+        # nonnegative point", and only the `n : ℕ` in its signature says the row's
+        # `|s| <= m/2` is half unproved by it.
+        out.append("```lean")
+        out.append((signature(decl) if decl else "") or "(could not read the declaration)")
+        out.append("```")
         out.append("")
         if row.get("names_own"):
             out.append(f"*Statement names: {', '.join('`' + n + '`' for n in row['names_own'])}*")

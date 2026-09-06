@@ -2,17 +2,23 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 112 resolved rows the scorer is 86% precise -- it
-fires on 49 and gets 42 right -- so roughly one in seven below is wrong.  An earlier
-figure of 96% came from a smaller, easier calibration set and overstated it.
+same thing.  Measured against all 114 resolved rows the scorer gets
+44 of the 51 it fires on right, 86% precise, so roughly one in
+7 below is wrong.
 33 rows below, of 149 unresolved.
 
 
-A second failure mode is not scored at all: some rows are composite, and their top
-candidate is only the headline theorem.  `BTC-select3` below reads "select3 represents
-every Trit->Z map; abs/min/max" -- four theorems, of which `select3_represents` is one.
-Accepting it would record a part as the whole.  If the row says "and", ";" or lists
-several claims, it belongs in neither column yet.
+Two failure modes are not scored at all, and both record a part as the whole.
+
+The row may be broader than the candidate: `BTC-select3` reads "select3 represents
+every Trit->Z map; abs/min/max" -- four theorems, of which `select3_represents` is
+one.  If a row says "and", ";" or lists several claims, it belongs in neither column.
+
+Or the candidate may be narrower than the row, with nothing in the prose to say so.
+`BTN-sdrg-lambda1-interval` claims every integer with |s| <= m/2 is reachable, and
+`lambda1_interval_reachable` reads "every nonnegative point" -- true, and half of it;
+its `n : ℕ` is the tell, and a sibling proves the rest.  That is why the statement is
+printed below every candidate, docstring or not.
 
 Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledger.json`.
 
@@ -23,6 +29,11 @@ Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledg
 **Candidate.** `select3_represents` &mdash; kernel-checked, `BTCalculus/Select.lean:33`
 
 > Every function ``Trit → ℤ`` is ``select3`` of its three values.
+
+```lean
+theorem select3_represents (f : Trit → ℤ) (c : Trit) :
+    f c = select3 c (f Trit.minus) (f Trit.zero) (f Trit.plus)
+```
 
 *Runners-up: `select3_minus` (0.182), `select3_zero` (0.182)*
 
@@ -36,6 +47,16 @@ Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledg
 
 > Newton coordinates of the residual family, written in terms of `m` and `p`.
 
+```lean
+theorem newton_cubicResid (m : ℕ) (p : ℤ) :
+    newtonCoords ((3 : ℤ) ^ (2 * m)) ((3 : ℤ) ^ (m + 1) * p)
+        (3 * p ^ 2) (iterDZ m (p ^ 3)) =
+      (iterDZ m (p ^ 3),
+        (3 : ℤ) ^ (2 * m) + (3 : ℤ) ^ (m + 1) * p + 3 * p ^ 2,
+        2 * (3 : ℤ) ^ (m + 1) * (p + (3 : ℤ) ^ m),
+        2 * (3 : ℤ) ^ (2 * m + 1))
+```
+
 *Runners-up: `eval_cubicResid_iter` (0.3), `residualAlong_cubic_family` (0.25)*
 
 *If this row describes a definition rather than a theorem: `cubicResid`, `newtonCoords`*
@@ -45,8 +66,6 @@ Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledg
 **Row.** same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k
 
 **Candidate.** `sameDepth_n2_injective` &mdash; kernel-checked, `BTCalculus/CubicFibres.lean:101`
-
-No docstring; the statement itself:
 
 ```lean
 theorem sameDepth_n2_injective {k m : ℕ} {p q : ℤ}
@@ -66,8 +85,6 @@ theorem sameDepth_n2_injective {k m : ℕ} {p q : ℤ}
 
 **Candidate.** `n3_dvd_iff` &mdash; kernel-checked, `BTCalculus/CubicFibres.lean:128`
 
-No docstring; the statement itself:
-
 ```lean
 theorem n3_dvd_iff {k m n : ℕ} (hmn : m ≤ n) :
     (3 : ℤ) ^ k ∣ n3Resid m - n3Resid n ↔
@@ -84,8 +101,6 @@ theorem n3_dvd_iff {k m n : ℕ} (hmn : m ≤ n) :
 
 **Candidate.** `deficit_unexhausted_iff` &mdash; kernel-checked, `BTCalculus/CubicN0Reduction.lean:82`
 
-No docstring; the statement itself:
-
 ```lean
 theorem deficit_unexhausted_iff {k r : Nat} (_hr : r + 1 ≤ k) :
     k - 1 - r ≤ 3 * r ↔ k ≤ 4 * r + 1
@@ -98,8 +113,6 @@ theorem deficit_unexhausted_iff {k r : Nat} (_hr : r + 1 ≤ k) :
 **Row.** Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-Δbal_t
 
 **Candidate.** `q_eq_iff_of_same_bal` &mdash; kernel-checked, `BTCalculus/MismatchedCubicQuotient.lean:181`
-
-No docstring; the statement itself:
 
 ```lean
 theorem q_eq_iff_of_same_bal {t K : Nat} {u v : Int}
@@ -117,8 +130,6 @@ theorem q_eq_iff_of_same_bal {t K : Nat} {u v : Int}
 **Row.** for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c
 
 **Candidate.** `three_pow_dvd_mul_iff` &mdash; kernel-checked, `BTCalculus/MismatchedCubicInvariant.lean:95`
-
-No docstring; the statement itself:
 
 ```lean
 lemma three_pow_dvd_mul_iff :
@@ -138,6 +149,15 @@ lemma three_pow_dvd_mul_iff :
 
 > **Target 4.** The block shift law. A singular branch with derivative valuation at least `w.length` is fully ternary along `w`, and the state it reaches is shifted by the *balanced value* of the word, scaled by the excess `3 ^ i`: 𝔇_w (3^j d + 3^(j+i) x) = (d + 3^i · packWord w) + 3^(j+i) x, j = |w|. At `i = 0` this is the leaf law: the `3 ^ e` words of length `e` reach the states `d + packWord w`, and `packWord` is injective on words of a fixed length, so those shifts run over a complete residue system modulo `3 ^ e`. That is what makes the shifted family separate residues; note the shift is the balanced value of the word and not its digit sum.
 
+```lean
+theorem residualAlong_linState_pow :
+    ∀ (w : List ℤ) (i : ℕ) (d : ℤ),
+      residualAlong w (linState (3 ^ w.length * d) (3 ^ (w.length + i)))
+        = linState (d + 3 ^ i * packWord w) (3 ^ (w.length + i))
+  | [], i, d => by simp [residualAlong, packWord_nil]
+  | a :: w, i, d => by
+```
+
 *Runners-up: `outputAlong_linState_pow` (0.109), `linState_root_iff` (0.083)*
 
 *If this row describes a definition rather than a theorem: `linState`, `henselTrit`*
@@ -150,6 +170,12 @@ lemma three_pow_dvd_mul_iff :
 
 > Unique syntactic normal form of a simplifying-fragment word. Semantic canonicity of that irreducible is not claimed.
 
+```lean
+theorem unique_normal_form (t : Word) :
+    ∃ n, Normal n ∧ ReflTransGen Step t n ∧
+      ∀ n', Normal n' → ReflTransGen Step t n' → n' = n
+```
+
 *Runners-up: `locally_confluent` (0.091), `normal_rtc` (0.059)*
 
 ## 10. `BTM-x3-depth`
@@ -159,6 +185,11 @@ lemma three_pow_dvd_mul_iff :
 **Candidate.** `monnaEndpoint_val_parity` &mdash; kernel-checked, `BTCalculus/MonnaEndpointCube.lean:93`
 
 > The two arguments of the depth minimum have opposite parity when `ζ ≠ 0`.
+
+```lean
+theorem monnaEndpoint_val_parity (n : ℕ) {ζ : ℚ} (_hζ : ζ ≠ 0) :
+    Odd (1 + 2 * padicValRat 3 ζ) ∧ Even (2 * (n : ℤ))
+```
 
 *Runners-up: `monnaEndpoint_cube_val_of_ne` (0.143), `monnaEndpoint_factor_ne` (0.133)*
 
@@ -172,6 +203,17 @@ lemma three_pow_dvd_mul_iff :
 
 > The six parameterized rows, written as the eight concrete triples (`I_a` is a parameter in the informal statement).
 
+```lean
+theorem exactTriple_characterization (U V W : AffineCtor) :
+    exactTriple U V W ↔
+      (U = S ∧ V = S ∧ W = S) ∨
+      (U = N ∧ V = N ∧ W = N) ∨
+      (U = Ip ∧ V = S ∧ W = Ip) ∨
+      (U = S ∧ V = Ip ∧ W = Ip) ∨
+      (U = Im ∧ V = S ∧ W = Im) ∨
+      (U = S ∧ V = Im ∧ W = Im) ∨
+```
+
 *Runners-up: `apply_add_eq_iff` (0.077), `pushIn_peak_semantic` (0.059)*
 
 *If this row describes a definition rather than a theorem: `exactTriple`, `DLocal`*
@@ -183,6 +225,15 @@ lemma three_pow_dvd_mul_iff :
 **Candidate.** `energy_control_interval` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:202`
 
 > The set of integer controls `w` with `E_{n-1}(T_w s)` in a fixed interval `[lo, hi]` is consecutive. This is `energy_step` plus `q > 0`, not a bound on `L₀`.
+
+```lean
+theorem energy_control_interval (n : ℕ) (hn : 0 < n) (lo hi w₁ w₂ w : ℤ)
+    (s : State)
+    (h1 : lo ≤ energy (n - 1) (step w₁ s) ∧ energy (n - 1) (step w₁ s) ≤ hi)
+    (h2 : lo ≤ energy (n - 1) (step w₂ s) ∧ energy (n - 1) (step w₂ s) ≤ hi)
+    (hw₁ : w₁ ≤ w) (hw₂ : w ≤ w₂) :
+    lo ≤ energy (n - 1) (step w s) ∧ energy (n - 1) (step w s) ≤ hi
+```
 
 *Runners-up: `energy_step_state` (0.133), `adjointDet_eq` (0.095)*
 
@@ -196,6 +247,11 @@ lemma three_pow_dvd_mul_iff :
 
 > Homogeneous motion `A^k = T_0^k` preserves energy in the sliding index: `E_n(A^k s) = E_{n+k}(s)`. This is `energy_telescope` on the zero word, not a bound on `L₀`.
 
+```lean
+theorem energy_homogeneous (n k : ℕ) (s : State) :
+    energy n (foldSteps (List.replicate k 0) s) = energy (n + k) s
+```
+
 *Runners-up: `energy_zero` (0.167), `recurrence_word_zero` (0.154)*
 
 *If this row describes a definition rather than a theorem: `applyA`, `energy`*
@@ -207,6 +263,11 @@ lemma three_pow_dvd_mul_iff :
 **Candidate.** `adjointDet_eq` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:335`
 
 > Consecutive adjoints are independent: `det = 3^{n-2}` for `n ≥ 2`. Neighboring energies invert `s` over `ℚ`. Not a bound on `L₀`.
+
+```lean
+theorem adjointDet_eq (n : ℕ) (hn : 2 ≤ n) :
+    adjointDet n = (3 : ℤ) ^ (n - 2)
+```
 
 *Runners-up: `energy_control_interval` (0.118), `reset_pow_then_hub` (0.083)*
 
@@ -220,6 +281,10 @@ lemma three_pow_dvd_mul_iff :
 
 > `A^r e₃ = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r)`. KNOWN place-value dictionary for `origin_particular`, not `L₀`.
 
+```lean
+theorem iterateA_e3 (r : ℕ) : iterateA r e3 = impulsePlace r
+```
+
 *Runners-up: `particular_s3` (0.182), `reset_pow_then_hub` (0.182)*
 
 *If this row describes a definition rather than a theorem: `impulsePlace`, `particularSum`*
@@ -232,6 +297,11 @@ lemma three_pow_dvd_mul_iff :
 
 > From the origin, `(c_B)₃ = -val(B)`. KNOWN energy at `n=0`, not `L₀`.
 
+```lean
+theorem particular_s3 (ws : List ℤ) :
+    (particularSum ws).2.2 = -consumedSum ws.length ws
+```
+
 *Runners-up: `fold_s3` (0.136), `energy_homogeneous` (0.125)*
 
 *If this row describes a definition rather than a theorem: `particularSum`, `consumedSum`*
@@ -243,6 +313,12 @@ lemma three_pow_dvd_mul_iff :
 **Candidate.** `reset_pow_then_hub` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:727`
 
 > `(B*)^k · (1,-2)` has particular the hub. Not a bound on `L₀`.
+
+```lean
+theorem reset_pow_then_hub (k : ℕ) :
+    particularSum ((List.replicate k recurrenceWord).flatten ++ [1, -2]) =
+      (-3, -1, 0)
+```
 
 *Statement names: `hub_nonreset`*
 
@@ -258,6 +334,10 @@ lemma three_pow_dvd_mul_iff :
 
 > `carryGain3 n = 3n` along the all-`+1` word.
 
+```lean
+theorem carryGain3_eq (n : ℕ) : carryGain3 n = 3 * (n : ℤ)
+```
+
 *Runners-up: `carryGain3_unbounded` (0.071), `isTrit_natAbs` (0.062)*
 
 *If this row describes a definition rather than a theorem: `doubledNext`, `doubledOut`*
@@ -267,8 +347,6 @@ lemma three_pow_dvd_mul_iff :
 **Row.** If λ≥3 and |u|≥2 then the constant-control orbit of F_{λ,U} from 0 is unbounded: at λ=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at λ≥4 the step is strictly expanding on the matching ray.
 
 **Candidate.** `gain3_control2_unbounded` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidual.lean:105`
-
-No docstring; the statement itself:
 
 ```lean
 theorem gain3_control2_unbounded (B : ℕ) :
@@ -287,6 +365,12 @@ theorem gain3_control2_unbounded (B : ℕ) :
 
 > Sharp ``λ=2`` invariant radius ``2 m.pred``.
 
+```lean
+theorem lambda2_sharp_box {s u : ℤ} {m : ℕ}
+    (hs : s.natAbs ≤ 2 * m.pred) (hu : u.natAbs ≤ m) :
+    (2 * DZ (s + u)).natAbs ≤ 2 * m.pred
+```
+
 *Runners-up: `lambda2_box_invariant` (0.222), `lambda1_lyapunov` (0.1)*
 
 *If this row describes a definition rather than a theorem: `signedNext`, `signedOut`*
@@ -299,6 +383,17 @@ theorem gain3_control2_unbounded (B : ℕ) :
 
 > The `OOE` successor bound depends only on the itinerary of `y`. A large-`λ` predecessor enters only by making `y` large.
 
+```lean
+theorem large_lambda_successor_q_bound {y : ℕ}
+    (hw : follows y ooeWord) :
+    slackNum y ooeWord *
+        floorPower y ^ 6 *
+        floorPower (floorPower y) ^ 4 *
+        floorPower (floorPower (floorPower y)) ^ 8 <
+      slackDen y ooeWord *
+        (floorPower y + 1) ^ 6 *
+```
+
 *Runners-up: `ooe_one_plus_slack_lt_succ_ratio` (0.15), `even_remainder_bound` (0.118)*
 
 ## 22. `J-odd-remainder-even`
@@ -309,6 +404,11 @@ theorem gain3_control2_unbounded (B : ℕ) :
 
 > On an odd-to-odd step the remainder is even. The peak law `peakOddDefect_odd` is the opposite parity, and needs an even max.
 
+```lean
+theorem odd_remainder_even {x y ρ : ℕ} (h : oddMordellStep x y ρ)
+    (hy : y % 2 = 1) : ρ % 2 = 0
+```
+
 *Runners-up: `peak_needs_even_max` (0.278), `two_odd_steps_not_peak_shape` (0.167)*
 
 *If this row describes a definition rather than a theorem: `sequentialDefect`, `oddMordellStep`*
@@ -318,8 +418,6 @@ theorem gain3_control2_unbounded (B : ℕ) :
 **Row.** If n and m realize the same finite Juggler word w and n ≤ m, then the image of n after w is at most the image of m after w.
 
 **Candidate.** `image_word` &mdash; kernel-checked, `Problems/Juggler/Itinerary.lean:112`
-
-No docstring; the statement itself:
 
 ```lean
 theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
@@ -337,6 +435,12 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 
 > Odd `n ≥ 2` whose first image is even has finite progress: `OE`.
 
+```lean
+theorem odd_even_finiteProgress {n : ℕ} (hn : 2 ≤ n)
+    (hodd : n % 2 = 1) (heven : floorPower n % 2 = 0) :
+    FiniteProgress n
+```
+
 *Runners-up: `finiteProgress_of_imageLt` (0.208), `finiteProgress_of_not_odd_odd` (0.2)*
 
 *If this row describes a definition rather than a theorem: `FiniteProgress`*
@@ -348,6 +452,13 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 **Candidate.** `minimal_first_even_overshoots` &mdash; kernel-checked, `Problems/Juggler/EvenCountThree.lean:649`
 
 > On a `MinimalNonTerm` start the first even residual always overshoots. The return cell is an even-count-1 cycle itinerary. This is not a halt theorem.
+
+```lean
+theorem minimal_first_even_overshoots {n a : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1)) :
+    (n + 1) ^ 2 ≤ image n (List.replicate a Branch.odd) ∧
+      n < image n (oddEvenBlock a 1)
+```
 
 *Statement names: `minimal_first_even_overshoots`, `cycleMin_first_even_overshoots`*
 
@@ -363,6 +474,15 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 
 > On a cycle minimum the maximum sits at or above `(n+1)^2`. The first even residual already overshoots, so the first-cell family `n^2 < M < (n+1)^2` is impossible. Not a halt theorem.
 
+```lean
+theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ i < w.length,
+      (∀ j < w.length, floorPower^[j] n ≤ floorPower^[i] n) ∧
+        floorPower^[i] n % 2 = 0 ∧
+          (n + 1) ^ 2 ≤ floorPower^[i] n
+```
+
 *Statement names: `cycle_distinguished_order_succ_sq`, `cycleMin_first_even_overshoots`, `cycleMin_max_ge_succ_sq`, `cycleMax_min_succ_sq_le`, `cycleMax_landing_gt_min`, `cycleMax_exists_min_succ_sq`*
 
 *Runners-up: `cycleMax_min_succ_sq_le` (0.222), `minimal_first_even_overshoots` (0.214)*
@@ -377,6 +497,15 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 
 > After the first `O^a E` on a `CycleMin`, an immediate odd run of length at least two overshoots the landing `y`: the next two-odd residual is at least `(y+1)^2`.
 
+```lean
+theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (_ha : 2 ≤ a) (hb : 2 ≤ b)
+    (h : CycleMin n
+      (oddEvenBlock a 1 ++ List.replicate b Branch.odd ++ v)) :
+    (image n (oddEvenBlock a 1) + 1) ^ 2 ≤
+      image (image n (oddEvenBlock a 1)) (List.replicate 2 Branch.odd)
+```
+
 *Statement names: `cycleMin_transport_second_oo`, `cycleMin_transport_second_oo_ge`*
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
@@ -388,6 +517,11 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 **Candidate.** `minimal_nonterm_prefix_noncontracting` &mdash; kernel-checked, `Problems/Juggler/Escape.lean:245`
 
 > Every realized prefix of a CE is prefix-noncontracting. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a halt theorem.
+
+```lean
+theorem minimal_nonterm_prefix_noncontracting {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w) : prefixNoncontracting w
+```
 
 *Runners-up: `minimal_nonterm_not_exponentGap` (0.29), `follows_ooeooeo_image_lt_sq` (0.097)*
 
@@ -401,6 +535,12 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 
 > On a CE, a completed third `OOE` cannot land even: the landing is below `n^2`, so an even landing is descent. This is not a PE theorem.
 
+```lean
+theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n itineraryOOEOOEOOE) :
+    image n itineraryOOEOOEOOE % 2 = 1
+```
+
 *Runners-up: `minimal_ooeooeooeoe_not_even_landing` (0.32), `minimal_ooeooeooeoeo_not_even` (0.222)*
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
@@ -412,6 +552,13 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 **Candidate.** `power_bound_lt_pow` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:312`
 
 > Word-stat form: `3^{oddCount w} < k · 2^{|w|}` yields `T_w(n) < n^k`. Implemented by `EnvelopeState.of_follows`. `power_bound_contracts` is the `k = 1` case.
+
+```lean
+theorem power_bound_lt_pow {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (hgap : 3 ^ oddCount w < k * 2 ^ w.length) :
+    image n w < n ^ k
+```
 
 *Statement names: `power_bound_contracts`*
 
@@ -427,6 +574,11 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 
 > An `OE` start cannot stay at or above the anchor: the first even residual is below `n^2`.
 
+```lean
+theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (h : AboveAnchor n (.odd :: .even :: v)) : False
+```
+
 *Runners-up: `aboveAnchor_isolatedOddSurvival` (0.037), `even_ge_sq_of_aboveAnchor` (0.032)*
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
@@ -439,6 +591,15 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 
 > **The walk-charge kill criterion** (Paper A Theorem 5.9 mechanism, Lean form): every minimum-based cycle at `n ≥ 400` with positive reduced log-base `ν = log n − D` must satisfy `1 − 2^L/3^o ≤ (6/5) · Σ_k g(hugWeight k)` with the charge evaluated at the reduced base. The kill tables verify the numeric failure of this inequality per surviving length; that evaluation stays verified computation, the implication is Lean.
 
+```lean
+theorem cycleMin_hug_kill_criterion {n : ℕ} {w : List Branch}
+    (hn : 400 ≤ n) (h : CycleMin n w)
+    (hν : 0 < Real.log n - transportDeficit n w) :
+    1 - (2 : ℝ) ^ w.length / 3 ^ oddCount w ≤
+      1.2 * ∑ k ∈ Finset.range w.length,
+        stateCharge (Real.log n - transportDeficit n w) (hugWeight k)
+```
+
 *Statement names: `cycleMin_defect_finance`, `neg_log_one_sub_le_sixth`, `log_floorPower_even_ge_sub`, `log_floorPower_odd_ge_sub`, `log_floorPower_even_le`, `log_floorPower_odd_le`, `cycleMin_log_le_weight`, `cycleMin_charge_prefix`, `cycleMin_hug_kill_criterion`*
 
 *Runners-up: `cycleMin_defect_finance` (0.134), `log_floorPower_even_ge_sub` (0.11)*
@@ -450,6 +611,12 @@ theorem image_word (n k : ℕ) : image n (itinerary n k) = floorPower^[k] n
 **Candidate.** `band_successor_unique` &mdash; kernel-checked, `Problems/Juggler/LogLogClock.lean:152`
 
 > **The band walk is the rotation by `alphaClock`.** A walk confined to the hug band has a single admissible successor at every point, given by the lift of the rotation: `u + alphaClock` below `1`, `u - 1` above. So the parity word of a band-confined orbit is determined by nothing but the starting walk — it is the mechanical word of the rotation, the hug itinerary.
+
+```lean
+theorem band_successor_unique {u v w : ℝ} (_h0 : 0 ≤ u) (_h1 : u < 1 + alphaClock)
+    (hv : WalkStep u v) (hvin : 0 ≤ v ∧ v < 1 + alphaClock)
+    (hw : WalkStep u w) (hwin : 0 ≤ w ∧ w < 1 + alphaClock) : v = w
+```
 
 *Statement names: `band_step_forced_odd`, `band_step_forced_even`, `band_successor_unique`*
 
