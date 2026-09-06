@@ -11,6 +11,7 @@ proof or disproof of the Collatz conjecture.
 def IsPrimitive {α : Type*} [DecidableEq α] (w : List α) : Prop :=
   w ≠ [] ∧ ∀ r, 1 < r → ∀ u : List α, (List.replicate r u).flatten ≠ w
 
+/-- A word repeated twice is not primitive. -/
 theorem replicate_two_not_primitive {α : Type*} [DecidableEq α]
     (u : List α) :
     ¬ IsPrimitive (u ++ u) := by

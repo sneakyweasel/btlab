@@ -715,25 +715,25 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The empty word evaluates to `0`.",
       "file": "formal/Operators/Polynomial.lean",
       "kind": "theorem",
       "ledger": [
         "BT-Pn3"
       ],
-      "line": 11,
+      "line": 12,
       "module": "Operators.Polynomial",
       "name": "evalPoly_nil",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Horner step: `evalPoly (d :: rest) x = d + x * evalPoly rest x`.",
       "file": "formal/Operators/Polynomial.lean",
       "kind": "theorem",
       "ledger": [
         "BT-Pn3"
       ],
-      "line": 13,
+      "line": 15,
       "module": "Operators.Polynomial",
       "name": "evalPoly_cons",
       "trust": "kernel"
@@ -745,19 +745,19 @@
       "ledger": [
         "BT-Pn3"
       ],
-      "line": 17,
+      "line": 19,
       "module": "Operators.Polynomial",
       "name": "evalAt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Evaluating a word at `3` returns its most-significant-digit value: `evalAt w 3 = evalMSD w`.",
       "file": "formal/Operators/Polynomial.lean",
       "kind": "theorem",
       "ledger": [
         "BT-Pn3"
       ],
-      "line": 20,
+      "line": 24,
       "module": "Operators.Polynomial",
       "name": "evalAt_three",
       "trust": "kernel"
@@ -769,19 +769,19 @@
       "ledger": [
         "BT-Pn3"
       ],
-      "line": 33,
+      "line": 37,
       "module": "Operators.Polynomial",
       "name": "evalPoly_reverse_three",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Evaluating the reversed word at `1` returns the digit sum.",
       "file": "formal/Operators/Polynomial.lean",
       "kind": "theorem",
       "ledger": [
         "BT-Pn3"
       ],
-      "line": 45,
+      "line": 50,
       "module": "Operators.Polynomial",
       "name": "evalPoly_reverse_one",
       "trust": "kernel"
@@ -5117,13 +5117,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A word repeated twice is not primitive.",
       "file": "formal/Problems/Collatz/Cycles.lean",
       "kind": "theorem",
       "ledger": [
         "C-cycles"
       ],
-      "line": 14,
+      "line": 15,
       "module": "Problems.Collatz.Cycles",
       "name": "replicate_two_not_primitive",
       "trust": "kernel"
@@ -5135,7 +5135,7 @@
       "ledger": [
         "C-cycles"
       ],
-      "line": 23,
+      "line": 24,
       "module": "Problems.Collatz.Cycles",
       "name": "dvd_of_periodic_fixed_point",
       "trust": "kernel"
@@ -5147,7 +5147,7 @@
       "ledger": [
         "C-cycles"
       ],
-      "line": 31,
+      "line": 32,
       "module": "Problems.Collatz.Cycles",
       "name": "candidate_mul_identity",
       "trust": "kernel"
@@ -5159,7 +5159,7 @@
       "ledger": [
         "C-cycles"
       ],
-      "line": 37,
+      "line": 38,
       "module": "Problems.Collatz.Cycles",
       "name": "expanding_excludes_positive_candidate",
       "trust": "kernel"
@@ -5171,7 +5171,7 @@
       "ledger": [
         "C-cycles"
       ],
-      "line": 51,
+      "line": 52,
       "module": "Problems.Collatz.Cycles",
       "name": "rotated_candidate",
       "trust": "kernel"
@@ -5183,7 +5183,7 @@
       "ledger": [
         "C-cycles"
       ],
-      "line": 68,
+      "line": 69,
       "module": "Problems.Collatz.Cycles",
       "name": "odd_sub_even",
       "trust": "kernel"
@@ -5195,7 +5195,7 @@
       "ledger": [
         "C-cycles"
       ],
-      "line": 73,
+      "line": 74,
       "module": "Problems.Collatz.Cycles",
       "name": "cycle_closure_of_affine_steps",
       "trust": "kernel"
@@ -5573,73 +5573,73 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Lift digits are nonnegative.",
       "file": "formal/Problems/Collatz/Lift.lean",
       "kind": "theorem",
       "ledger": [
         "C-lift-zero"
       ],
-      "line": 18,
+      "line": 19,
       "module": "Problems.Collatz.Lift",
       "name": "lift_nonnegative",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The realizer `R` is monotone.",
       "file": "formal/Problems/Collatz/Lift.lean",
       "kind": "theorem",
       "ledger": [
         "C-lift-zero"
       ],
-      "line": 21,
+      "line": 23,
       "module": "Problems.Collatz.Lift",
       "name": "realizer_monotone",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`R` holds still across step `m` exactly when the lift digit at `m` is zero.",
       "file": "formal/Problems/Collatz/Lift.lean",
       "kind": "theorem",
       "ledger": [
         "C-lift-zero"
       ],
-      "line": 27,
+      "line": 30,
       "module": "Problems.Collatz.Lift",
       "name": "step_eq_iff_liftDigit_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`R` is eventually constant exactly when the lift digits are eventually zero.",
       "file": "formal/Problems/Collatz/Lift.lean",
       "kind": "theorem",
       "ledger": [
         "C-lift-zero"
       ],
-      "line": 37,
+      "line": 41,
       "module": "Problems.Collatz.Lift",
       "name": "eventuallyConstant_iff_eventuallyZero",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Collatz/Lift.lean",
-      "kind": "theorem",
-      "ledger": [
-        "C-lift-zero"
-      ],
-      "line": 59,
-      "module": "Problems.Collatz.Lift",
-      "name": "bounded_iff_eventuallyZero",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "`R` is bounded exactly when the lift digits are eventually zero.",
       "file": "formal/Problems/Collatz/Lift.lean",
       "kind": "theorem",
       "ledger": [
         "C-lift-zero"
       ],
       "line": 64,
+      "module": "Problems.Collatz.Lift",
+      "name": "bounded_iff_eventuallyZero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Mixed-radix reconstruction: from `R 0 = 1`, `R m = 1 + sum_{j < m} liftDigit j * 2^(K j + 1)`.",
+      "file": "formal/Problems/Collatz/Lift.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-lift-zero"
+      ],
+      "line": 71,
       "module": "Problems.Collatz.Lift",
       "name": "mixedRadix_reconstruction",
       "trust": "kernel"
@@ -48587,46 +48587,33 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Pointwise form of the twisted Leibniz rule: the section derivative of a product, evaluated at `x`, in terms of the two factors' section derivatives and their least significant digits at `a`.",
       "file": "formal/BTCalculus/Composition.lean",
       "kind": "theorem",
       "ledger": [
         "BTJ-product",
         "BTJ-comp"
       ],
-      "line": 8,
+      "line": 11,
       "module": "BTCalculus.Composition",
       "name": "section_product_eval",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Pointwise form of the section chain rule: evaluating `sectionDeriv a (f.comp g)` at `x` feeds `eval x (sectionDeriv a g)` into `sectionDeriv (lsd (eval a g)) f`.",
       "file": "formal/BTCalculus/Composition.lean",
       "kind": "theorem",
       "ledger": [
         "BTJ-product",
         "BTJ-comp"
       ],
-      "line": 36,
+      "line": 41,
       "module": "BTCalculus.Composition",
       "name": "section_comp_eval",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/BTCalculus/Composition.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTJ-product",
-        "BTJ-comp"
-      ],
-      "line": 81,
-      "module": "BTCalculus.Composition",
-      "name": "section_product",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "Twisted Leibniz for the section derivative: `sectionDeriv a (f * g)` is the usual two-term rule with each factor twisted by the other's least significant digit at `a`, plus a `3`-scaled cross term.",
       "file": "formal/BTCalculus/Composition.lean",
       "kind": "theorem",
       "ledger": [
@@ -48635,18 +48622,31 @@
       ],
       "line": 89,
       "module": "BTCalculus.Composition",
-      "name": "section_comp",
+      "name": "section_product",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Section chain rule: `sectionDeriv a (f.comp g) = (sectionDeriv (lsd (eval a g)) f) .comp (sectionDeriv a g)` -- the outer factor is taken at the inner map's least significant digit, not at `a`.",
       "file": "formal/BTCalculus/Composition.lean",
       "kind": "theorem",
       "ledger": [
         "BTJ-product",
         "BTJ-comp"
       ],
-      "line": 95,
+      "line": 100,
+      "module": "BTCalculus.Composition",
+      "name": "section_comp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The least significant digit of a composite is the outer map's least significant digit taken at the inner one: `lsd (eval a (f.comp g)) = lsd (eval (lsd (eval a g)) f)`.",
+      "file": "formal/BTCalculus/Composition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTJ-product",
+        "BTJ-comp"
+      ],
+      "line": 108,
       "module": "BTCalculus.Composition",
       "name": "rho_comp",
       "trust": "kernel"

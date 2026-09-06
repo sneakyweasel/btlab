@@ -5,6 +5,9 @@ namespace BTCalculus
 
 open Polynomial
 
+/-- Pointwise form of the twisted Leibniz rule: the section derivative of a product,
+evaluated at `x`, in terms of the two factors' section derivatives and their
+least significant digits at `a`. -/
 theorem section_product_eval (f g : ℤ[X]) (a x : ℤ) :
     eval x (sectionDeriv a (f * g)) =
       lsdZ (eval a f) * eval x (sectionDeriv a g) +
@@ -33,6 +36,8 @@ theorem section_product_eval (f g : ℤ[X]) (a x : ℤ) :
     linarith
   exact mul_left_cancel₀ h3 this
 
+/-- Pointwise form of the section chain rule: evaluating `sectionDeriv a (f.comp g)`
+at `x` feeds `eval x (sectionDeriv a g)` into `sectionDeriv (lsd (eval a g)) f`. -/
 theorem section_comp_eval (f g : ℤ[X]) (a x : ℤ) :
     eval x (sectionDeriv a (f.comp g)) =
       eval (eval x (sectionDeriv a g))
@@ -78,6 +83,9 @@ theorem section_comp_eval (f g : ℤ[X]) (a x : ℤ) :
     linarith
   exact mul_left_cancel₀ h3 this
 
+/-- Twisted Leibniz for the section derivative: `sectionDeriv a (f * g)` is the usual
+two-term rule with each factor twisted by the other's least significant digit at
+`a`, plus a `3`-scaled cross term. -/
 theorem section_product (f g : ℤ[X]) (a : ℤ) :
     sectionDeriv a (f * g) =
       C (lsdZ (eval a f)) * sectionDeriv a g +
@@ -86,12 +94,17 @@ theorem section_product (f g : ℤ[X]) (a : ℤ) :
   refine Polynomial.funext (fun x => ?_)
   simpa [eval_add, eval_mul, eval_C] using section_product_eval f g a x
 
+/-- Section chain rule: `sectionDeriv a (f.comp g) = (sectionDeriv (lsd (eval a g)) f)
+.comp (sectionDeriv a g)` -- the outer factor is taken at the inner map's least
+significant digit, not at `a`. -/
 theorem section_comp (f g : ℤ[X]) (a : ℤ) :
     sectionDeriv a (f.comp g) =
       (sectionDeriv (lsdZ (eval a g)) f).comp (sectionDeriv a g) := by
   refine Polynomial.funext (fun x => ?_)
   simpa [eval_comp] using section_comp_eval f g a x
 
+/-- The least significant digit of a composite is the outer map's least significant
+digit taken at the inner one: `lsd (eval a (f.comp g)) = lsd (eval (lsd (eval a g)) f)`. -/
 theorem rho_comp (f g : ℤ[X]) (a : ℤ) :
     lsdZ (eval a (f.comp g)) = lsdZ (eval (lsdZ (eval a g)) f) := by
   have hg0 := section_reconstruction_eval g a 0

@@ -8,8 +8,10 @@ open Representation.Words
 def evalPoly (coeffs : List Trit) (x : ℤ) : ℤ :=
   coeffs.foldr (fun d acc => d.toInt + x * acc) 0
 
+/-- The empty word evaluates to `0`. -/
 theorem evalPoly_nil (x : ℤ) : evalPoly [] x = 0 := rfl
 
+/-- Horner step: `evalPoly (d :: rest) x = d + x * evalPoly rest x`. -/
 theorem evalPoly_cons (d : Trit) (rest : List Trit) (x : ℤ) :
     evalPoly (d :: rest) x = d.toInt + x * evalPoly rest x := rfl
 
@@ -17,6 +19,8 @@ theorem evalPoly_cons (d : Trit) (rest : List Trit) (x : ℤ) :
 def evalAt (w : List Trit) (x : ℤ) : ℤ :=
   w.foldl (fun acc d => x * acc + d.toInt) 0
 
+/-- Evaluating a word at `3` returns its most-significant-digit value:
+`evalAt w 3 = evalMSD w`. -/
 theorem evalAt_three (w : List Trit) : evalAt w 3 = evalMSD w := rfl
 
 private theorem foldl_horner_from (x : ℤ) :
@@ -42,6 +46,7 @@ private theorem foldl_sum_from :
   | d :: rest, init => by
       simp [List.foldl_cons, foldl_sum_from rest, add_assoc]
 
+/-- Evaluating the reversed word at `1` returns the digit sum. -/
 theorem evalPoly_reverse_one (w : List Trit) :
     evalPoly w.reverse 1 = digitSum w := by
   unfold evalPoly digitSum

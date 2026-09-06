@@ -380,6 +380,8 @@
   "statement": "twisted Leibniz for sectionDeriv of a product",
   "source": "docs/theory/polynomial_jet_calculus.md",
   "lean": "BTCalculus/Composition.lean",
+  "decl": "section_product",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_section.py"
   ],
@@ -391,6 +393,8 @@
   "statement": "sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g",
   "source": "docs/theory/polynomial_jet_calculus.md",
   "lean": "BTCalculus/Composition.lean",
+  "decl": "section_comp",
+  "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_section.py"
   ],
@@ -6265,6 +6269,8 @@
   "statement": "AboveAnchor walk nonnegativity and hug domination: the Section 5 discrete walk layer ported from cycles to open trajectories. If AboveAnchor(n,w) with n >= 2, then every prefix length k <= |w| satisfies 2^k <= 3^{oddCount(w.take k)} (aboveAnchor_prefix_pow_le, AboveAnchorWalk.lean): a never-descending orbit segment keeps the exponent walk u_k >= 0, exactly the CycleMin hypothesis of cycleMin_prefix_pow_le with no cycle, by composing the defect-free upper envelope power_bound_contracts with the anchor hypothesis. Composed with hug minimality (hugOdds_least), every above-anchor prefix dominates the exact hug itinerary in odd count: hugOdds k <= oddCount(w.take k) (aboveAnchor_prefix_odds_ge_hug; full-word form aboveAnchor_odds_ge_hug). Hence a hypothetical descent-free flight carries odd density at least log 2 / log 3 in every prefix, and the hug adversary prices open descent-free flight, not only hypothetical cycles. This constrains hypothetical non-terminating orbit segments only: not a halt theorem, not a descent-certificate existence claim, and not a cycle obstruction.",
   "source": "docs/problems/juggler_above_anchor_walk.md",
   "lean": "Problems/Juggler/AboveAnchorWalk.lean",
+  "decl": "aboveAnchor_prefix_odds_ge_hug",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_above_anchor_walk.py"
   ],
@@ -6438,6 +6444,8 @@
   "statement": "Gap transfer (Paper A Theorem 4.10). On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, n · log n · min(o log 3 − L log 2, 1) ≤ 2 L (cycleMin_gap_transfer). Proof: Theorem 4.4 reads P(A − B) ≤ L A with A = 3^o, B = 2^L, P = n log n; if A ≤ B the left side is nonpositive, if A ≥ 2B then P ≤ 2L, and if B < A < 2B then Λ = log(A/B) ≤ (A − B)/B and P(A − B)/B ≤ LA/B ≤ 2L. Abstract form cycleMin_length_of_gap: any ε ≤ min(Λ, 1) gives n log n · ε ≤ 2L. Floor-free; the classical transcendence input is a hypothesis, not a Lean theorem. Not a halt theorem and not a period bound at any floor.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
   "lean": "Problems/Juggler/GapTransfer.lean",
+  "decl": "cycleMin_gap_transfer",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
   ],

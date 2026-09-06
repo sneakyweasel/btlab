@@ -32,19 +32,19 @@
       "candidates": [
         {
           "decl": "evalPoly_nil",
-          "line": 11,
+          "line": 12,
           "score": 0.0,
           "trust": "kernel"
         },
         {
           "decl": "evalPoly_cons",
-          "line": 13,
+          "line": 15,
           "score": 0.0,
           "trust": "kernel"
         },
         {
           "decl": "evalAt_three",
-          "line": 20,
+          "line": 24,
           "score": 0.0,
           "trust": "kernel"
         }
@@ -65,25 +65,25 @@
     {
       "candidates": [
         {
-          "decl": "step_eq_iff_liftDigit_zero",
-          "line": 27,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
           "decl": "eventuallyConstant_iff_eventuallyZero",
-          "line": 37,
-          "score": 0.222,
+          "line": 41,
+          "score": 0.25,
           "trust": "kernel"
         },
         {
           "decl": "bounded_iff_eventuallyZero",
-          "line": 59,
-          "score": 0.222,
+          "line": 64,
+          "score": 0.25,
+          "trust": "kernel"
+        },
+        {
+          "decl": "step_eq_iff_liftDigit_zero",
+          "line": 30,
+          "score": 0.214,
           "trust": "kernel"
         }
       ],
-      "confidence": "review",
+      "confidence": "low",
       "id": "C-lift-zero",
       "in_file": 6,
       "lean": "Problems/Collatz/Lift.lean",
@@ -147,19 +147,19 @@
       "candidates": [
         {
           "decl": "odd_sub_even",
-          "line": 68,
+          "line": 69,
           "score": 0.2,
           "trust": "kernel"
         },
         {
           "decl": "expanding_excludes_positive_candidate",
-          "line": 37,
+          "line": 38,
           "score": 0.143,
           "trust": "kernel"
         },
         {
           "decl": "replicate_two_not_primitive",
-          "line": 14,
+          "line": 15,
           "score": 0.0,
           "trust": "kernel"
         }
@@ -520,60 +520,6 @@
       "in_file": 30,
       "lean": "BTCalculus/Polynomial.lean",
       "statement": "f(a+3x)=rho_a(f)+3 sectionDeriv_a f(x)"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "section_product",
-          "line": 81,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "section_product_eval",
-          "line": 8,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "section_comp_eval",
-          "line": 36,
-          "score": 0.0,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "low",
-      "id": "BTJ-product",
-      "in_file": 5,
-      "lean": "BTCalculus/Composition.lean",
-      "statement": "twisted Leibniz for sectionDeriv of a product"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "rho_comp",
-          "line": 95,
-          "score": 0.5,
-          "trust": "kernel"
-        },
-        {
-          "decl": "section_comp",
-          "line": 89,
-          "score": 0.25,
-          "trust": "kernel"
-        },
-        {
-          "decl": "section_comp_eval",
-          "line": 36,
-          "score": 0.2,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "BTJ-comp",
-      "in_file": 5,
-      "lean": "BTCalculus/Composition.lean",
-      "statement": "sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g"
     },
     {
       "candidates": [
@@ -4663,27 +4609,6 @@
     {
       "candidates": [
         {
-          "decl": "aboveAnchor_prefix_odds_ge_hug",
-          "line": 38,
-          "score": 0.377,
-          "trust": "kernel"
-        },
-        {
-          "decl": "aboveAnchor_odds_ge_hug",
-          "line": 45,
-          "score": 0.134,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "J-above-anchor-hug-domination",
-      "in_file": 2,
-      "lean": "Problems/Juggler/AboveAnchorWalk.lean",
-      "statement": "AboveAnchor walk nonnegativity and hug domination: the Section 5 discrete walk layer ported from cycles to open trajectories. If AboveAnchor(n,w) with n >= 2, then every prefix length k <= |w| satisfies 2^k <= 3^{oddCount(w.take k)} (aboveAnchor_prefix_pow_le, AboveAnchorWalk.lean): a never-descending orbit segment keeps the exponent walk u_k >= 0, exactly the CycleMin hypothesis of cycleMin_prefi"
-    },
-    {
-      "candidates": [
-        {
           "decl": "follows_log_le_walkWeight",
           "line": 287,
           "score": 0.186,
@@ -4734,27 +4659,6 @@
       "in_file": 22,
       "lean": "Problems/Juggler/WalkTransport.lean",
       "statement": "Walk-height law (divergence rate) on descent-free prefixes: if AboveAnchor(n,w) with n >= 400 and the exponent walk is at height >= B doublings at step k (2^(k+B) <= 3^{a_k} with a_k the odd count of the k-prefix), then 2^B (log n \u2212 D) <= log x_k with the transport deficit D = 1.05 e/n + 0.7 o/(n\u221an); exponentiating, x_k >= (n e^{\u2212D})^{2^B} \u2014 heights along a descent-free prefix are doubly exponenti"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "cycleMin_length_of_gap",
-          "line": 91,
-          "score": 0.314,
-          "trust": "kernel"
-        },
-        {
-          "decl": "cycleMin_gap_transfer",
-          "line": 33,
-          "score": 0.185,
-          "trust": "kernel"
-        }
-      ],
-      "confidence": "review",
-      "id": "J-cyclemin-gap-transfer",
-      "in_file": 2,
-      "lean": "Problems/Juggler/GapTransfer.lean",
-      "statement": "Gap transfer (Paper A Theorem 4.10). On a Juggler CycleMin start n \u2265 2 with word w of length L and oddCount o, n \u00b7 log n \u00b7 min(o log 3 \u2212 L log 2, 1) \u2264 2 L (cycleMin_gap_transfer). Proof: Theorem 4.4 reads P(A \u2212 B) \u2264 L A with A = 3^o, B = 2^L, P = n log n; if A \u2264 B the left side is nonpositive, if A \u2265 2B then P \u2264 2L, and if B < A < 2B then \u039b = log(A/B) \u2264 (A \u2212 B)/B and P(A \u2212 B)/B \u2264 LA/B \u2264 2L. Abstra"
     },
     {
       "candidates": [
@@ -5000,6 +4904,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 187,
-  "worth_reviewing": 58
+  "unresolved": 183,
+  "worth_reviewing": 54
 }

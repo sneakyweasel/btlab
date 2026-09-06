@@ -15,15 +15,18 @@ structure LiftSystem where
     ∀ m, R (m + 1) = R m + liftDigit m * 2 ^ (K m + 1)
   lift_bound : ∀ m, liftDigit m < 2 ^ valuation m
 
+/-- Lift digits are nonnegative. -/
 theorem lift_nonnegative (S : LiftSystem) (m : ℕ) :
     0 ≤ S.liftDigit m := Nat.zero_le _
 
+/-- The realizer `R` is monotone. -/
 theorem realizer_monotone (S : LiftSystem) : Monotone S.R := by
   apply monotone_nat_of_le_succ
   intro m
   rw [S.lift_step m]
   exact Nat.le_add_right _ _
 
+/-- `R` holds still across step `m` exactly when the lift digit at `m` is zero. -/
 theorem step_eq_iff_liftDigit_zero (S : LiftSystem) (m : ℕ) :
     S.R (m + 1) = S.R m ↔ S.liftDigit m = 0 := by
   rw [S.lift_step m]
@@ -34,6 +37,7 @@ theorem step_eq_iff_liftDigit_zero (S : LiftSystem) (m : ℕ) :
   · intro h
     simp [h]
 
+/-- `R` is eventually constant exactly when the lift digits are eventually zero. -/
 theorem eventuallyConstant_iff_eventuallyZero (S : LiftSystem) :
     EventuallyConstant S.R ↔ EventuallyZero S.liftDigit := by
   constructor
@@ -56,11 +60,14 @@ theorem eventuallyConstant_iff_eventuallyZero (S : LiftSystem) :
               (ht (N + d) (Nat.le_add_right N d))
           _ = S.R N := ih (Nat.le_add_right N d)
 
+/-- `R` is bounded exactly when the lift digits are eventually zero. -/
 theorem bounded_iff_eventuallyZero (S : LiftSystem) :
     Bounded S.R ↔ EventuallyZero S.liftDigit := by
   rw [monotone_bounded_iff_eventuallyConstant S.R (realizer_monotone S)]
   exact eventuallyConstant_iff_eventuallyZero S
 
+/-- Mixed-radix reconstruction: from `R 0 = 1`,
+`R m = 1 + sum_{j < m} liftDigit j * 2^(K j + 1)`. -/
 theorem mixedRadix_reconstruction
     (S : LiftSystem) (hR0 : S.R 0 = 1) (m : ℕ) :
     S.R m =
