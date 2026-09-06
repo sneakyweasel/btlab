@@ -33407,3 +33407,85 @@ Best next question
   sharp. Is 6 P^(1/4) itself sharp, or does the 2|j'| term have a mean
   that beats the worst case |j'| = 3?
 ```
+
+## The cap that carries two appendices is never within two of being reached
+
+The concurrent session entered `st6D1-modeindex` this pass, wrote two
+appendices around it, and closed its journal with the right question:
+is `6 P^(1/4)` sharp, or does the `2|j'|` term have something better
+than the worst case `|j'| = 3`? It does, and the answer is not
+statistical.
+
+`j` is the Lemma 5.1(iii) offset `beta_{d1+d2} - beta_{d1} -
+beta_{d2}`. Since `beta_d = m(n+d) - m(n)`, the `m(n)` cancel and `j`
+is exactly the double difference of `floor(X)` with `X = n^(3/2)`.
+Write `floor(X) = X - {X}`: four fractional parts give a double
+difference in `(-2, 2)`, and `X` is convex with `Delta^2 X = (3/4) d1
+d2 n^(-1/2) <= 3 P^(-7/16) < 1` on the admissible box. `j` is an
+integer in `(-2, 3)`, so `-1 <= j <= 2` --- two lines, not symmetric,
+and one below the printed cap. A 240-sample census from `1e4` to
+`2e14` sees `{-1, 0, 1}` only, `57.5%` at zero, and `Delta^2 X` at
+most `0.0300`.
+
+At `|j'| <= 2` the coefficient is `4.001` from the same `2.95e11`, the
+row is `4.31e9`, and it leaves the leading group: A.5's floor returns
+to the `q''` row's `2.98e11` and the `c_7` lever is worth `120` again.
+The five-site left endpoint falls to `0.29443`, below A.6's recorded
+four-site minimax `0.29919`, so the fifth site stops making that
+optimum infeasible. `a = 1/4` still fails at every `P`.
+
+The arithmetic correction that got me there: "the floor would drop
+back to the `q''` row's `2.98e11`" is not what `6.001` does. That row
+is `2.83e12` with three `c_7` rows above it --- rank four, as the same
+sentence says --- so it is still the largest `c_7`-free row and still
+the floor, and the lever is `12.70`. `12.71` is a ceiling, not a way
+station: reaching `q''` needs a coefficient below `5.214` and the
+first summand alone is `6`. The conclusion was right, by a route that
+changes the other summand.
+
+```text
+Phase-end report
+Question
+- is the widened coefficient 7 of Lemma 5.2(iii) sharp, and what does
+  the mode-index row's 8% margin under P_0 actually rest on
+Instruments
+- mode_index_row_sharpness: the row at c = 7, at 6.001, at the exact
+  6 + 20P^(-3/8), and the c_7 lever each gives; the exponent pin, the
+  least sixteenth, the five-site minimax
+- branch_offset_range: 240 samples of j over six ranges, with Delta^2 X
+  measured alongside; the provable window and what it costs the row
+Ledger tags
+- EXACT: j = Delta^2 floor(X); -1 <= j <= 2 from convexity and
+  |Delta^2 X| < 1; 6 is a floor on the coefficient, so the c_7 lever is
+  capped at 12.71 at |j'| <= 3
+- COMPUTATIONALLY VERIFIED: j in {-1,0,1} on 240 samples; max Delta^2 X
+  = 0.0300; the sharpened row is rank four with three c_7 rows above it;
+  the pin 0.3123478 and the minimax 0.321848
+- OBSERVATION: 32 rows hold by 2.8e10, not 33 -- the text rounds its own
+  maximum down
+- HUMAN PROOF: whether -1 <= j <= 2 survives the widening to (D1'),
+  where j' is the offset of the *widened* decoration and not the plain
+  level-1 one
+Strongest theorem
+- the printed cap |j'| <= 3 exceeds a two-line bound by one, and that
+  one is the difference between a row that pins P_0 to within 8% and a
+  row that is not in the leading group
+Strongest refutation
+- "the floor would drop back to the q'' row's 2.98e11" at c = 6.001:
+  the floor is 2.83e12 and the lever 12.70, with a ceiling of 12.71
+Reusable machinery
+- mode_index_row_sharpness, branch_offset_range; six tests; both wired
+  into summary()
+Branch status
+- PARK
+Why
+  The sharpening is a change to Lemma 5.1(iii)'s printed cap, which is
+  the manuscript's to make; the concurrent session owns that file and
+  has just finished writing two appendices around the old cap.
+Best next question
+- j' is the offset of the widened decoration (D1'), and the census
+  measures the plain level-1 j. Does the widening change the object, or
+  only the parameters it is quantified over? If only the parameters,
+  -1 <= j' <= 2 is immediate and A.5, A.6 and A.2's kappa table all
+  move together.
+```

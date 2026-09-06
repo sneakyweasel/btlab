@@ -1202,3 +1202,78 @@ def test_proposition_7_4_holds_and_its_constant_is_pairwise_sharp() -> None:
     # a short search finds two to three times what the fixed families do, and still falls with L
     assert r["search_beats_the_fixed_families"] and r["searched_ratio_falls_with_L"]
     assert 0.15 < r["best_searched_ratio"] < 0.5
+
+
+# --- the row that is near P_0 because of a rounding ---
+
+
+def test_the_mode_index_rows_margin_is_made_of_one_rounded_constant() -> None:
+    """7 P^(1/4) is 6 + 20P^(-3/8); the row is 8% under P_0 printed and 12.7x under it honest."""
+    r = A.mode_index_row_sharpness()
+    assert r["honest_constant_at_P0"] < 6.001 < r["printed_constant"]
+    assert r["sharp_constant_holds_from"] < 3e11        # 6.001 is valid two orders below P_0
+    assert r["printed_row_is_near_P0"] and not r["honest_row_is_near_P0"]
+    assert 1.07 < r["printed_factor_under_P0"] < 1.09
+    assert r["honest_factor_under_P0"] > 12
+    assert 11 < r["rounding_costs_a_factor"] < 12
+    assert r["modeindex_is_the_largest_c7_free_row"]
+
+
+def test_five_sixteenths_is_the_least_sixteenth_and_not_the_least_value() -> None:
+    """The pin is 0.3123478 and the minimax is 0.3218; 5/16 is neither, and is right anyway."""
+    r = A.mode_index_row_sharpness()
+    assert not r["five_sixteenths_is_the_least_admissible"]
+    assert 0 < r["exponent_slack_over_the_pin"] < 2e-4
+    assert r["least_sixteenth_above_the_pin"] == r["five_sixteenths"]
+    assert r["least_exponent_honest_constant"] < r["least_exponent_printed_constant"]
+    # the truncation the certificate would prefer is not the one the exponent identity fixes
+    assert not r["five_sixteenths_is_the_minimax"] and r["minimax_exponent"] > r["five_sixteenths"]
+    assert r["floor_is_below_the_printed_row"]
+    assert r["floor_if_the_middle_band_improved"] < r["printed_row_P"] / 50
+
+
+def test_the_thirty_three_below_2_8e10_are_thirty_two() -> None:
+    """The text's round of its own maximum, 2.827e10, goes the unsafe way by 1%."""
+    r = A.mode_index_row_sharpness()
+    assert not r["the_thirty_three_all_hold_by_2_8e10"]
+    assert r["rows_at_or_below_2_8e10"] == 32 and r["rows_above_2_8e10"] == 6
+    assert 2.8e10 < r["largest_row_the_text_calls_2_8e10"] < 2.83e10
+
+
+def test_sharpening_the_constant_restores_a_lever_of_thirteen_not_of_120() -> None:
+    """The sharpened row is rank four with three c_7 rows above it, so it is still A.5's floor."""
+    r = A.mode_index_row_sharpness()
+    assert r["sharpened_row_rank"] == 4
+    assert r["everything_above_the_sharpened_row_mentions_c7"]
+    assert r["sharpened_row_still_leads_the_c7_free_rows"]
+    assert not r["sharpening_restores_the_lever_of_120"]
+    assert 12 < r["c7_lever_if_the_constant_is_sharpened"] < 13
+    assert r["c7_lever_without_the_row"] > 120
+    # and no sharpening reaches the q'' row: 6 is a floor on the coefficient, 5.21 is what it needs
+    assert not r["qpp_row_can_lead"] and r["constant_at_which_the_qpp_row_would_lead"] < 6
+    assert r["c7_lever_ceiling"] < 12.75
+    assert abs(r["constant_at_which_the_row_would_set_P0"] - 7.0333) < 1e-3
+
+
+def test_the_branch_offset_never_approaches_its_printed_cap() -> None:
+    """|j'| <= 3 is printed; -1 <= j <= 2 is provable and {-1,0,1} is what a census sees."""
+    r = A.branch_offset_range(samples_per_range=12)
+    assert r["printed_cap"] == 3 and not r["cap_attained"]
+    assert r["observed_max_abs_j"] <= 1 and r["share_at_the_cap"] == 0.0
+    assert r["observed_range_inside_the_provable_one"]
+    assert r["second_difference_below_one"] and r["second_difference_positive_everywhere"]
+    assert r["max_second_difference_of_X"] < 0.05
+    assert set(r["histogram"]) <= {-1, 0, 1}
+    assert len(r["rows"]) == 6
+
+
+def test_the_provable_cap_takes_the_row_off_the_table() -> None:
+    """At |j'| <= 2 the row is 4.3e9: below the leading group, and the c_7 lever is 120 again."""
+    r = A.branch_offset_range(samples_per_range=8)
+    assert r["provable_j_lower"] == -1 and r["provable_j_upper"] == 2
+    assert 4.2e9 < r["row_at_the_provable_cap"] < 4.4e9
+    assert r["provable_cap_leaves_the_leading_group"]
+    assert r["c7_lever_at_the_provable_cap"] > 120
+    # and A.6's own four-site optimum stops being excluded by the fifth site
+    assert r["left_endpoint_at_the_provable_cap"] < r["a6_four_site_minimax"]
+    assert r["a6_minimax_feasible_at_the_provable_cap"]

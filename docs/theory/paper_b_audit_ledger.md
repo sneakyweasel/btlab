@@ -2927,3 +2927,91 @@ never going to bind. The reason still has to be a reason.
 Recorded in the manuscript as a blockquote at the site, phrased without
 the marker the referee named -- the guard the concurrent session's audit
 raised on the first wording is clear.
+
+## The mode-index row rests on `|j'| <= 3`, and `|j'| <= 3` is one more than the argument gives
+
+The section above enters the row at `7`, prices the sharpening to
+`6.001` at a factor `12`, and declines it for a stated reason. Two
+things about that paragraph, one arithmetic and one structural.
+
+**"The floor would drop back to the `q''` row's `2.98e11`" --- not at
+`6.001`, it would not.** The sharpened row is `2.83e12` (`2.824e12`
+with the exact `6 + 20P^(-3/8)`). The rows above it are `5b-W<=c7S` at
+`3.59e13`, `5a-W<=c7S` at `2.91e13` and `5b-E<=c7S` at `4.10e12` ---
+three rows, every one of them a `c_7` row, which is what "rank four"
+in the same sentence already says. The sharpened row is still the
+largest `c_7`-free row and still A.5's floor:
+
+```text
+                          floor        P_0/floor
+  without the row        2.98e11         120.3
+  printed, c = 7         3.32e13           1.079
+  sharpened, c = 6.001   2.83e12          12.70
+  hard floor, c = 6      2.82e12          12.71
+```
+
+`12.7` is not a stop on the way to `120`: it is a ceiling. For the
+`q''` row to lead, the widened coefficient would have to fall below
+`(2.98e11)^(1/16) = 5.214`, and it cannot, because the first summand
+is `6 P^(1/4)/h'` with `h' >= 1`. Sharpening the *second* summand caps
+the `c_7` lever at `P_0/6^16 = 12.71`, by Lemma 5.2(iii) alone.
+
+**Which makes the question the right one to have asked: is `6` sharp?
+It is `2|j'|` at `|j'| = 3`, and `3` is not what the object does.**
+`j` is the Lemma 5.1(iii) offset
+`beta_{d1+d2} - beta_{d1} - beta_{d2}`, and since `beta_d = m(n+d) -
+m(n)` the `m(n)` cancel and `j` is exactly the double difference of
+`floor(X)`, `X = n^(3/2)`. Write `floor(X) = X - {X}`. The four
+fractional parts give a double difference in `(-2, 2)`; `X` is convex
+with `Delta^2 X = (3/4) d1 d2 n^(-1/2) + ... <= 3 P^(-7/16) < 1` on the
+admissible box. So `j` is an integer in `(-2, 3)`:
+
+```text
+  provable      -1 <= j <= 2          two lines, and not symmetric
+  printed       |j'| <= 3
+  observed       j in {-1, 0, 1}      240 samples, 1e4 to 2e14
+                                      57.5% at zero, none at 2 or 3
+```
+
+`Delta^2 X` was measured alongside: `0.0300` at worst over the same
+census, positive at every sample, three orders under the `1` the
+argument needs.
+
+**At `|j'| <= 2` the row leaves the table.** The coefficient is
+`4 + 20P^(-3/8) <= 4.001` from the same `2.95e11`, the row is
+`4.001^16 = 4.31e9` --- under `s3s1-Bsmall`'s `2.83e10`, rank fifteen
+or so, out of the leading group entirely. A.5's floor returns to the
+`q''` row's `2.98e11` and the `c_7` lever is worth `120.3` again. The
+conclusion of the paragraph above is right; the route printed for it
+is not, and the route that works is a change to the *first* summand,
+not the second.
+
+The exponent question reopens with it. The five-site left endpoint
+falls from `0.31235` to `0.29443`, which is **below** A.6's recorded
+four-site minimax `a* = 0.29919`. The fifth site stops making that
+optimum infeasible, and stops forcing `5/16` from below. What still
+holds at `|j'| <= 2`: `a = 1/4` reads `4 P^(1/4) <= P^(1/4)`, false at
+every `P`, so the superseded truncation still stops Lemma 5.2(iii)
+closing.
+
+**Not a defect in the theorem.** `|j'| <= 3` is a valid bound and
+every use of `7` downstream is a valid bound; the paper proves what it
+says. What the census shows is that a cap nobody had reason to sharpen
+is carrying two appendices, and that the two lines above are the whole
+cost of sharpening it.
+
+**One rounding in Section 7 goes the unsafe way.** "Of the
+thirty-eight displayed inequalities, thirty-three hold from `2.8e10`
+or below." Thirty-two do. The thirty-third is `s3s1-Bsmall` at
+`2.8275e10`, above it: the sentence rounds its own maximum down.
+`2.9e10` is the honest round and nothing else in the paragraph moves.
+
+Confirmed at the same numbers while passing through: `7^16 = 3.3233e13`
+at `92.68%` of `P_0`; the largest `c_7`-free row of the thirty-eight;
+the pin `1/4 + log 7/log P_0 = 0.3123478` with `5/16` clearing it by
+`1.522e-4` and being the least sixteenth above it; the five-site
+minimax `0.321848` at `5.785e11`, a factor `57` under `5/16`;
+`P_0^(1/16) = 7.03333`.
+
+Probes: `mode_index_row_sharpness`, `branch_offset_range`. Six tests.
+`P_0` unmoved at `3.5858e13`; no certificate row is edited.

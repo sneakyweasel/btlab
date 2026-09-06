@@ -123,6 +123,13 @@
         "P_min": 82944.00000000007
       },
       {
+        "tag": "st6D1-modeindex",
+        "site": "Thm 5.3 St.6(D1)",
+        "claim": "widened |B_0| <= R_0: 7 P^(1/4) <= P^(5/16)",
+        "log10_P_min": 13.521568640228109,
+        "P_min": 33232930569600.977
+      },
+      {
         "tag": "5b-j0-window",
         "site": "Thm 5.3 St.5b (j=0)",
         "claim": "P^(1/2) >= 8(1+6) = 56",
@@ -139,44 +146,44 @@
       {
         "tag": "5b-lam0-range",
         "site": "Lemma 5.2b",
-        "claim": "[0.38,2.44] with its corrections inside [0.35,2.6]",
-        "log10_P_min": 4.808729300224486,
-        "P_min": 64376.78739505019
+        "claim": "[0.62,3.90] with its corrections inside [0.56,4.20]",
+        "log10_P_min": 4.544397954174302,
+        "P_min": 35026.59769162784
       },
       {
         "tag": "39-c2",
         "site": "Thm 5.3 St.5b",
-        "claim": "|c''/2|/S <= rho_0: (0.053/0.35) P^(-1/4)",
-        "log10_P_min": 9.795143188533427,
-        "P_min": 6239405171.221336
+        "claim": "|c''/2|/S <= rho_0: (0.053/0.56) P^(-1/4)",
+        "log10_P_min": 8.978663257909728,
+        "P_min": 952057673.8313825
       },
       {
         "tag": "39-c3",
         "site": "Thm 5.3 St.5b",
-        "claim": "P|c'''/2|/S <= rho_0: (0.047/0.35) P^(-1/4)",
-        "log10_P_min": 9.586431141873142,
-        "P_min": 3858612277.9220448
+        "claim": "P|c'''/2|/S <= rho_0: (0.047/0.56) P^(-1/4)",
+        "log10_P_min": 8.769951211249442,
+        "P_min": 588777508.2278498
       },
       {
         "tag": "39-c4",
         "site": "Thm 5.3 St.5b",
-        "claim": "P^2|c''''/2|/S <= rho_0: (0.044/0.35) P^(-1/4)",
-        "log10_P_min": 9.471850416075021,
-        "P_min": 2963810389.3329287
+        "claim": "P^2|c''''/2|/S <= rho_0: (0.044/0.56) P^(-1/4)",
+        "log10_P_min": 8.655370485451321,
+        "P_min": 452241575.5207706
       },
       {
         "tag": "39-beta",
         "site": "Thm 5.3 St.5b",
         "claim": "beta-substitution error 2.31 P^(-1/2) <= rho_0",
-        "log10_P_min": 7.262939118386791,
-        "P_min": 18320575.77203173
+        "log10_P_min": 7.26220264666485,
+        "P_min": 18289534.272027902
       },
       {
         "tag": "39-wave",
         "site": "Thm 5.3 St.5b",
-        "claim": "wave remainder 200 P^(-35/24) vs S: 571 P^(-5/6) <= rho_0",
-        "log10_P_min": 7.230647907835858,
-        "P_min": 17007790.899959646
+        "claim": "wave remainder 300 P^(-35/24) vs S: 536 P^(-5/6) <= rho_0",
+        "log10_P_min": 7.197013439515566,
+        "P_min": 15740315.731083922
       },
       {
         "tag": "5a-competitors",
@@ -189,22 +196,22 @@
         "tag": "5a-W<=c7S",
         "site": "Thm 5.3 St.5a",
         "claim": "W = V + E <= c_7 S/2 at S >= 0.60 P^(-5/8)",
-        "log10_P_min": 13.206335101938837,
-        "P_min": 16081816485386.668
+        "log10_P_min": 13.464145915145876,
+        "P_min": 29116952310460.227
       },
       {
         "tag": "5b-W<=c7S",
         "site": "Thm 5.3 St.5b",
-        "claim": "W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8)",
-        "log10_P_min": 13.951617687946936,
-        "P_min": 89457691736825.03
+        "claim": "W = V + E <= c_7 S/2 at S >= 0.56 P^(-5/8)",
+        "log10_P_min": 13.554580687676504,
+        "P_min": 35857556192838.55
       },
       {
         "tag": "5b-E<=c7S",
         "site": "Thm 5.3 St.5b",
         "claim": "E alone <= c_7 S/2 (the floor as kappa -> 0)",
-        "log10_P_min": 12.755978781519186,
-        "P_min": 5701364162414.874
+        "log10_P_min": 12.612802726024272,
+        "P_min": 4100178141405.2305
       },
       {
         "tag": "claimD-shift",
@@ -264,73 +271,73 @@
       }
     ],
     "all_solved": true,
-    "n_thresholds": 37,
-    "P0": 89457691736825.03,
-    "log10_P0": 13.951617687946936,
+    "n_thresholds": 38,
+    "P0": 35857556192838.55,
+    "log10_P0": 13.554580687676504,
     "binding": {
       "tag": "5b-W<=c7S",
       "site": "Thm 5.3 St.5b",
-      "claim": "W = V + E <= c_7 S/2 at S >= 0.35 P^(-5/8)",
-      "log10_P_min": 13.951617687946936,
-      "P_min": 89457691736825.03
+      "claim": "W = V + E <= c_7 S/2 at S >= 0.56 P^(-5/8)",
+      "log10_P_min": 13.554580687676504,
+      "P_min": 35857556192838.55
     },
-    "P0_excluding_lemma_3_9_balance": 298166397427.1972,
+    "P0_excluding_lemma_3_9_balance": 33232930569600.977,
     "binding_excluding_balance": {
-      "tag": "st5b-qpp",
-      "site": "Thm 5.3 St.5b(a)",
-      "claim": "|q''| curvature ratio 48.9 P^(-3/16) <= 1/4",
-      "log10_P_min": 11.474458698022962,
-      "P_min": 298166397427.1972
+      "tag": "st6D1-modeindex",
+      "site": "Thm 5.3 St.6(D1)",
+      "claim": "widened |B_0| <= R_0: 7 P^(1/4) <= P^(5/16)",
+      "log10_P_min": 13.521568640228109,
+      "P_min": 33232930569600.977
     },
-    "P0_at_superseded_kappa": 5.819938645207617e+16,
+    "P0_at_superseded_kappa": 1.2241758948436184e+16,
     "kappa_tradeoff": [
       {
         "kappa": 0.3333333333333333,
-        "log10_P_min": 16.764918406267032,
-        "P_min": 5.819938645207617e+16,
-        "log10_P1": 21.154735446520743,
-        "P1": 1.4280238029578193e+21,
-        "coeff_boundaries": 7.881550464378565
+        "log10_P_min": 16.08784382358706,
+        "P_min": 1.2241758948436184e+16,
+        "log10_P1": 20.449172630982545,
+        "P1": 2.8130187762008123e+20,
+        "coeff_boundaries": 7.007799454993556
       },
       {
         "kappa": 0.125,
-        "log10_P_min": 14.5445561445724,
-        "P_min": 350393583434638.8,
-        "log10_P1": 19.818918430892833,
-        "P1": 6.5905010095429345e+19,
-        "coeff_boundaries": 12.870518013148859
+        "log10_P_min": 14.045778222205177,
+        "P_min": 111116415279442.53,
+        "log10_P1": 19.110935459789292,
+        "P1": 1.291027400643587e+19,
+        "coeff_boundaries": 11.44368858965884
       },
       {
         "kappa": 0.1,
-        "log10_P_min": 14.192926326513081,
-        "P_min": 155928796360146.47,
-        "log10_P1": 19.71828288069908,
-        "P1": 5.227365661928042e+19,
-        "coeff_boundaries": 14.389676591518189
+        "log10_P_min": 13.751670162729523,
+        "P_min": 56450808028135.37,
+        "log10_P1": 19.0099476070306,
+        "P1": 1.0231695504069632e+19,
+        "coeff_boundaries": 12.794432799907932
       },
       {
         "kappa": 0.08333333333333333,
-        "log10_P_min": 13.951617687946936,
-        "P_min": 89457691736825.03,
-        "log10_P1": 19.701723358391067,
-        "P1": 5.031799856375874e+19,
-        "coeff_boundaries": 15.76310092875713
+        "log10_P_min": 13.554580687676504,
+        "P_min": 35857556192838.55,
+        "log10_P1": 18.99295708477458,
+        "P1": 9.839138745648036e+18,
+        "coeff_boundaries": 14.015598909987112
       },
       {
         "kappa": 0.0625,
-        "log10_P_min": 13.646129866510512,
-        "P_min": 44272073877403.8,
-        "log10_P1": 19.798055675597293,
-        "P1": 6.28138879674611e+19,
-        "coeff_boundaries": 18.20166112896234
+        "log10_P_min": 13.309761037929308,
+        "P_min": 20406148271908.395,
+        "log10_P1": 19.088255690816624,
+        "P1": 1.2253374041681273e+19,
+        "coeff_boundaries": 16.18381960706977
       },
       {
         "kappa": 0.05,
-        "log10_P_min": 13.462817701959473,
-        "P_min": 29028039271537.48,
-        "log10_P1": 19.973917728447347,
-        "P1": 9.41711184446678e+19,
-        "coeff_boundaries": 20.350075793887676
+        "log10_P_min": 13.164856652011414,
+        "P_min": 14616946319009.363,
+        "log10_P1": 19.263123719056676,
+        "P1": 1.8328364748349258e+19,
+        "coeff_boundaries": 18.094060388500967
       }
     ],
     "log_absorption_not_required": [
@@ -356,8 +363,8 @@
         "P_min": null
       }
     ],
-    "log10_P1_nontrivial": 19.701723358391067,
-    "P1_nontrivial": 5.031799856375874e+19,
+    "log10_P1_nontrivial": 18.99295708477458,
+    "P1_nontrivial": 9.839138745648036e+18,
     "c7_lever": {
       "triple_scan": {
         "n_triples": 165,
@@ -392,8 +399,8 @@
           0.004310344827586207,
           0.004310344827586207
         ],
-        "P0": 89457691736825.03,
-        "P1": 5.031799856375874e+19
+        "P0": 35857556192838.55,
+        "P1": 9.839138745648036e+18
       },
       "c2_raised": {
         "kappa": 0.08333333333333333,
@@ -402,8 +409,8 @@
           0.0005341880341880342,
           0.0005341880341880342
         ],
-        "P0": 26429370931451.99,
-        "P1": 5.306055972098726e+23
+        "P0": 33232930569600.977,
+        "P1": 1.015798566727497e+23
       }
     },
     "R0_exponent": 0.3125,
@@ -414,7 +421,9 @@
         "qpp": 29672730633.01152,
         "window": 2.5474354269100655e+19,
         "flat": 1.8054435655866415e+24,
-        "worst": 1.8054435655866415e+24
+        "worst": 1.8054435655866415e+24,
+        "modeindex": null,
+        "worst_all": Infinity
       },
       {
         "a": 0.28125,
@@ -422,7 +431,9 @@
         "qpp": 66439817161.64233,
         "window": 1394008931748.266,
         "flat": 73992850275952.14,
-        "worst": 73992850275952.14
+        "worst": 73992850275952.14,
+        "modeindex": 1.1044276742439192e+27,
+        "worst_all": 1.1044276742439192e+27
       },
       {
         "a": 0.3125,
@@ -430,7 +441,9 @@
         "qpp": 298166397427.1972,
         "window": 744857758.4086101,
         "flat": 5505905905.109001,
-        "worst": 298166397427.1972
+        "worst": 298166397427.1972,
+        "modeindex": 33232930569600.977,
+        "worst_all": 33232930569600.977
       },
       {
         "a": 0.3333333333333333,
@@ -438,7 +451,9 @@
         "qpp": 1580640553933.7385,
         "window": 34914123.92307292,
         "flat": 141561334.55895782,
-        "worst": 1580640553933.7385
+        "worst": 1580640553933.7385,
+        "modeindex": 13841287201.000092,
+        "worst_all": 1580640553933.7385
       },
       {
         "a": 0.375,
@@ -446,7 +461,9 @@
         "qpp": 1074129748307333.4,
         "window": 688222.5326710425,
         "flat": 1523647.098803368,
-        "worst": 7.976644307686548e+22
+        "worst": 7.976644307686548e+22,
+        "modeindex": 5764800.999999998,
+        "worst_all": 7.976644307686548e+22
       }
     ],
     "r0_superseded": {
@@ -455,11 +472,13 @@
       "qpp": 29672730633.01152,
       "window": 2.5474354269100655e+19,
       "flat": 1.8054435655866415e+24,
-      "worst": 1.8054435655866415e+24
+      "worst": 1.8054435655866415e+24,
+      "modeindex": null,
+      "worst_all": Infinity
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "e493a6032352c6183f907cfd521aa662b6c082ea",
+  "git_commit": "f0767c689206b9ebdc3405d8f1c677a20de4848b",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -495,8 +514,394 @@
     "trials": 4000,
     "printed_violations": [],
     "printed_violation_count": 0,
-    "worst_ratio_to_printed_bound_i": 0.9997317869111302
+    "worst_ratio_to_printed_bound_i": 0.9997317869111302,
+    "worst_ratio_to_corrected_bound_ii": 0.6641472008371515,
+    "max_theta2_seen": 0.9997361744502797,
+    "max_theta_z_seen": 0.9990817974815612,
+    "ratio_ceiling_at_midpoint": 0.999997812733848,
+    "worst_ratio_below_ceiling": true,
+    "one_minus_worst_times_trials": 1.0728523554792702
   },
+  "lemma_6_2_margin_certificate": [
+    {
+      "n": 5,
+      "terms": {
+        "A_theta2": 0.30516801055786585,
+        "B_thetaz": 0.034020690871988585,
+        "C_lagrange": 0.009230825617418925,
+        "E2": 0.0010825496154012928,
+        "Ez": 3.965083369014381e-05,
+        "Dii_thetaw": 0.16770509831248423
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5650313948871561,
+        "B_thetaz": -1.6993655727390162,
+        "C_lagrange": -1.346766636588303,
+        "E2": -2.84003863194493,
+        "Ez": -5.101092762771914,
+        "Dii_thetaw": -0.6031089730075192
+      },
+      "orders_tested": false,
+      "printed_orders_hold": {
+        "A_theta2": false,
+        "B_thetaz": false,
+        "C_lagrange": false,
+        "E2": false,
+        "Ez": false,
+        "Dii_thetaw": false
+      },
+      "worst_order_deviation": 0.0406089730075192,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 8.225647766308102,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.976727408945632,
+      "ceiling_deficit_times_n^(3/4)": 0.07781659819644789,
+      "ok": true
+    },
+    {
+      "n": 11,
+      "terms": {
+        "A_theta2": 0.19563557250916092,
+        "B_thetaz": 0.008874209781198229,
+        "C_lagrange": 0.003095751652027253,
+        "E2": 0.00011387363955408698,
+        "Ez": 6.991885595515709e-07,
+        "Dii_thetaw": 0.10132567732772556
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5645979681013029,
+        "B_thetaz": -1.6937869192207973,
+        "C_lagrange": -1.3226963157782587,
+        "E2": -2.825485563181635,
+        "Ez": -5.081565113593246,
+        "Dii_thetaw": -0.5787527872217183
+      },
+      "orders_tested": false,
+      "printed_orders_hold": {
+        "A_theta2": false,
+        "B_thetaz": false,
+        "C_lagrange": false,
+        "E2": false,
+        "Ez": false,
+        "Dii_thetaw": false
+      },
+      "worst_order_deviation": 0.019065113593246252,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 27.019946203621203,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.985640176505406,
+      "ceiling_deficit_times_n^(3/4)": 0.0867348467799069,
+      "ok": true
+    },
+    {
+      "n": 101,
+      "terms": {
+        "A_theta2": 0.05592892830161072,
+        "B_thetaz": 0.00020735059322492445,
+        "C_lagrange": 0.0001647158149115185,
+        "E2": 2.1620425424370804e-07,
+        "Ez": 8.914889380705946e-12,
+        "Dii_thetaw": 0.028042751961858695
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5625010177384971,
+        "B_thetaz": -1.687512587954834,
+        "C_lagrange": -1.3128625851960116,
+        "E2": -2.8125217754431837,
+        "Ez": -5.06253787580236,
+        "Dii_thetaw": -0.5636241805434969
+      },
+      "orders_tested": false,
+      "printed_orders_hold": {
+        "A_theta2": true,
+        "B_thetaz": true,
+        "C_lagrange": false,
+        "E2": true,
+        "Ez": true,
+        "Dii_thetaw": false
+      },
+      "worst_order_deviation": 0.0011241805434969443,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 761.8213801312384,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.9970782114491858,
+      "ceiling_deficit_times_n^(3/4)": 0.09308716700466252,
+      "ok": true
+    },
+    {
+      "n": 10001,
+      "terms": {
+        "A_theta2": 0.004217322725643291,
+        "B_thetaz": 8.889896868949927e-08,
+        "C_lagrange": 3.9534470039193956e-07,
+        "E2": 5.270467513983094e-13,
+        "Ez": 7.025709172933071e-22,
+        "Dii_thetaw": 0.002108694700955967
+      },
+      "measured_exponents": {
+        "A_theta2": -0.562499998018971,
+        "B_thetaz": -1.6874999941986701,
+        "C_lagrange": -1.3125003679343545,
+        "E2": -2.8124999906345463,
+        "Ez": -5.062499982596031,
+        "Dii_thetaw": -0.5625063492993151
+      },
+      "orders_tested": true,
+      "printed_orders_hold": {
+        "A_theta2": true,
+        "B_thetaz": true,
+        "C_lagrange": true,
+        "E2": true,
+        "Ez": true,
+        "Dii_thetaw": true
+      },
+      "worst_order_deviation": 6.3492993150893184e-06,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 750113.1518523577,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.9999062678362899,
+      "ceiling_deficit_times_n^(3/4)": 0.09373919353450788,
+      "ok": true
+    },
+    {
+      "n": 1000001,
+      "terms": {
+        "A_theta2": 0.00031627219966840777,
+        "B_thetaz": 3.749464719440046e-11,
+        "C_lagrange": 9.376310271693487e-10,
+        "E2": 1.2501728265397835e-18,
+        "Ez": 5.271179607463293e-32,
+        "Dii_thetaw": 0.0001581361138946995
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5624999999986214,
+        "B_thetaz": -1.6874999999958729,
+        "C_lagrange": -1.3125000003679903,
+        "E2": -2.812499999993124,
+        "Ez": -5.062499999987619,
+        "Dii_thetaw": -0.562500035717728
+      },
+      "orders_tested": true,
+      "printed_orders_hold": {
+        "A_theta2": true,
+        "B_thetaz": true,
+        "C_lagrange": true,
+        "E2": true,
+        "Ez": true,
+        "Dii_thetaw": true
+      },
+      "worst_order_deviation": 3.571772799748629e-08,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 750001125.6559427,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.9999970353760589,
+      "ceiling_deficit_times_n^(3/4)": 0.09374971090932388,
+      "ok": true
+    },
+    {
+      "n": 2000001,
+      "terms": {
+        "A_theta2": 0.00021415675060483584,
+        "B_thetaz": 1.1640764954514458e-11,
+        "C_lagrange": 3.7751167357620445e-10,
+        "E2": 1.7796057605759044e-19,
+        "Ez": 1.5774098945776206e-33,
+        "Dii_thetaw": 0.00010707837966770523
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5625000000034002,
+        "B_thetaz": -1.6875000000102027,
+        "C_lagrange": -1.3125000001301044,
+        "E2": -2.8125000000170046,
+        "Ez": -5.0625000000306075,
+        "Dii_thetaw": -0.5625000163806908
+      },
+      "orders_tested": true,
+      "printed_orders_hold": {
+        "A_theta2": true,
+        "B_thetaz": true,
+        "C_lagrange": true,
+        "E2": true,
+        "Ez": true,
+        "Dii_thetaw": true
+      },
+      "worst_order_deviation": 1.638069080378557e-08,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 2121321935.112377,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.9999982372211647,
+      "ceiling_deficit_times_n^(3/4)": 0.09374982962756985,
+      "ok": true
+    },
+    {
+      "n": 100000001,
+      "terms": {
+        "A_theta2": 2.3717082317854258e-05,
+        "B_thetaz": 1.5811388034024723e-14,
+        "C_lagrange": 2.223476450624709e-12,
+        "E2": 2.9646352230274894e-24,
+        "Ez": 3.9528468750975976e-42,
+        "Dii_thetaw": 1.1858541164856398e-05
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5624999999999969,
+        "B_thetaz": -1.6874999999999907,
+        "C_lagrange": -1.312500000000368,
+        "E2": -2.8124999999999845,
+        "Ez": -5.062499999999972,
+        "Dii_thetaw": -0.5625000002008603
+      },
+      "orders_tested": true,
+      "printed_orders_hold": {
+        "A_theta2": true,
+        "B_thetaz": true,
+        "C_lagrange": true,
+        "E2": true,
+        "Ez": true,
+        "Dii_thetaw": true
+      },
+      "worst_order_deviation": 2.0086032836985623e-10,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 750000011250.6562,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.9999999062500096,
+      "ceiling_deficit_times_n^(3/4)": 0.09374999114839543,
+      "ok": true
+    },
+    {
+      "n": 1000000000001,
+      "terms": {
+        "A_theta2": 1.3337095575284419e-07,
+        "B_thetaz": 2.8117066259470008e-21,
+        "C_lagrange": 1.2503527101819766e-17,
+        "E2": 1.6671369469068014e-35,
+        "Ez": 2.2228492625374003e-62,
+        "Dii_thetaw": 6.668547787642315e-08
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5625,
+        "B_thetaz": -1.6875,
+        "C_lagrange": -1.3125,
+        "E2": -2.8125,
+        "Ez": -5.0625,
+        "Dii_thetaw": -0.5625000000000063
+      },
+      "orders_tested": true,
+      "printed_orders_hold": {
+        "A_theta2": true,
+        "B_thetaz": true,
+        "C_lagrange": true,
+        "E2": true,
+        "Ez": true,
+        "Dii_thetaw": true
+      },
+      "worst_order_deviation": 6.328271240363392e-15,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 7.50000000001125e+17,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.99999999990625,
+      "ceiling_deficit_times_n^(3/4)": 0.09374999999120896,
+      "ok": true
+    },
+    {
+      "n": 10000000000000001,
+      "terms": {
+        "A_theta2": 7.5e-10,
+        "B_thetaz": 4.999999999999999e-28,
+        "C_lagrange": 7.03125e-23,
+        "E2": 9.374999999999996e-47,
+        "Ez": 1.2499999999999994e-82,
+        "Dii_thetaw": 3.75e-10
+      },
+      "measured_exponents": {
+        "A_theta2": -0.5625,
+        "B_thetaz": -1.6875,
+        "C_lagrange": -1.3125,
+        "E2": -2.8125,
+        "Ez": -5.0625,
+        "Dii_thetaw": -0.5625
+      },
+      "orders_tested": true,
+      "printed_orders_hold": {
+        "A_theta2": true,
+        "B_thetaz": true,
+        "C_lagrange": true,
+        "E2": true,
+        "Ez": true,
+        "Dii_thetaw": true
+      },
+      "worst_order_deviation": 0.0,
+      "i_lagrange_covers_omitted": true,
+      "i_dominance_ratio": 7.500000000000001e+23,
+      "ii_A_covers_lagrange": true,
+      "ii_thetaw_covers_E2": true,
+      "ratio_ceiling_i": 0.9999999999999063,
+      "ceiling_deficit_times_n^(3/4)": 0.09374999999999122,
+      "ok": true
+    }
+  ],
+  "lemma_6_2_margin_certificate_all_ok": true,
+  "lemma_6_2_directed_search": [
+    {
+      "k": 20,
+      "n_digits": 21,
+      "printed_ratio_deficit_times_n^(3/4)": 0.304687500901735,
+      "ceiling_deficit_times_n^(3/4)": 0.09374999999999999,
+      "one_minus_theta2_times_n^(3/4)": 0.2109375,
+      "attained_fraction_of_ceiling": 0.3076923067816798,
+      "below_ceiling": true,
+      "ok": true
+    },
+    {
+      "k": 24,
+      "n_digits": 25,
+      "printed_ratio_deficit_times_n^(3/4)": 0.30468750066666667,
+      "ceiling_deficit_times_n^(3/4)": 0.09375,
+      "one_minus_theta2_times_n^(3/4)": 0.2109375,
+      "attained_fraction_of_ceiling": 0.3076923070190664,
+      "below_ceiling": true,
+      "ok": true
+    },
+    {
+      "k": 28,
+      "n_digits": 29,
+      "printed_ratio_deficit_times_n^(3/4)": 0.30468750000789996,
+      "ceiling_deficit_times_n^(3/4)": 0.09375,
+      "one_minus_theta2_times_n^(3/4)": 0.2109375,
+      "attained_fraction_of_ceiling": 0.3076923076843298,
+      "below_ceiling": true,
+      "ok": true
+    },
+    {
+      "k": 32,
+      "n_digits": 33,
+      "printed_ratio_deficit_times_n^(3/4)": 0.3046875000006667,
+      "ceiling_deficit_times_n^(3/4)": 0.09375,
+      "one_minus_theta2_times_n^(3/4)": 0.2109375,
+      "attained_fraction_of_ceiling": 0.30769230769163447,
+      "below_ceiling": true,
+      "ok": true
+    },
+    {
+      "k": 36,
+      "n_digits": 37,
+      "printed_ratio_deficit_times_n^(3/4)": 0.3046875000000065,
+      "ceiling_deficit_times_n^(3/4)": 0.09375,
+      "one_minus_theta2_times_n^(3/4)": 0.2109375,
+      "attained_fraction_of_ceiling": 0.30769230769230116,
+      "below_ceiling": true,
+      "ok": true
+    }
+  ],
+  "lemma_6_2_directed_search_all_ok": true,
   "standing_estimates": [
     {
       "P": 1000000,
@@ -1163,11 +1568,31 @@
       "ok": true
     },
     {
-      "check": "5b global monomial: 135/1024 * 9 = 1215/1024",
+      "check": "5b anchor 2c'G' + c G'' = -972/1024 + 756/1024 = -216/1024 = -27/128",
       "ok": true
     },
     {
-      "check": "5b interpolant b: b * 11/8 * 3/8 = -1215/1024 gives b = -405/176",
+      "check": "5b anchor is (cG)'' less c'' G, i.e. 8/5 of the printed constant",
+      "ok": true
+    },
+    {
+      "check": "5b global monomial: 27/128 * 9 = 243/128 (printed 135/1024 * 9 = 1215/1024)",
+      "ok": true
+    },
+    {
+      "check": "5b interpolant b: b * 11/8 * 3/8 = -243/128 gives b = -81/22",
+      "ok": true
+    },
+    {
+      "check": "6.1 Step E zero-offset: -675/2048 + 432/2048 = 243/2048, times 9 = 2187/2048 = 3^7/2^11",
+      "ok": true
+    },
+    {
+      "check": "6.1 Step E interpolant b' = -(2187/2048)(64/33) = -729/352 = 9/16 of b",
+      "ok": true
+    },
+    {
+      "check": "6.1 moving-gap foil (81/16)(11/8)(3/8) = 2673/1024, not the printed 243/128",
       "ok": true
     },
     {
@@ -1511,11 +1936,11 @@
       "ok": true
     },
     {
-      "check": "Step 5b: a = -(27/32)(16/5) = -27/10 and b = -(1215/1024)(64/33) = -405/176 match the printed Phi coefficients",
+      "check": "Step 5b: a = -(27/32)(16/5) = -27/10 and b = -(243/128)(64/33) = -81/22 match the printed Phi coefficients",
       "ok": true
     },
     {
-      "check": "Step 5b: lambda_0 = (135/1024)k b1b2 nu^{-13/8} in [0.385, 2.438] k h1h2 P^{-5/8}, inside printed [0.35, 2.6]",
+      "check": "Step 5b: lambda_0 = (27/128)k b1b2 nu^{-13/8} in [0.615, 3.900] k h1h2 P^{-5/8}, inside printed [0.56, 4.2]",
       "ok": true
     },
     {
@@ -1909,12 +2334,184 @@
     {
       "check": "6.3: -17/8 inside (D3) P^{-13/8} by P^{-1/2}",
       "ok": true
+    },
+    {
+      "check": "7.2: z ~ n^{27/8} so the weight rho = (3/4)k z^{1/2} ~ n^{27/16}",
+      "ok": true
+    },
+    {
+      "check": "7.2: rho' ~ n^{11/16}: 27/16 - 1 = 11/16",
+      "ok": true
+    },
+    {
+      "check": "7.3: level-3 smooth model n^{27/8} has G''' ~ P^{3/8} and G'''' ~ P^{-5/8}",
+      "ok": true
+    },
+    {
+      "check": "7.3: level-2 model n^{9/4} has Y'' ~ P^{1/4} and Y''' ~ P^{-3/4}, whence two differencings against three",
+      "ok": true
+    },
+    {
+      "check": "7.3: v ~ n^{9/4} jumps by n^{5/4} per step",
+      "ok": true
+    },
+    {
+      "check": "7.3: the inner linearization trades theta_3 for a family at rho * m^{3/4} = 27/16 + 9/8 = 45/16",
+      "ok": true
+    },
+    {
+      "check": "7.3: 45/16 > 9/4, the threshold where the paper's methods stop",
+      "ok": true
+    },
+    {
+      "check": "7.4 model dichotomy: A ~ n^c gives A' ~ n^{c-1}, so A' >> 1 iff c > 1; the instance c = 27/16",
+      "ok": true
+    },
+    {
+      "check": "7.4 the table sorts by the same test: 3/16 and 9/16 windowed, 33/32 and 45/32 not",
+      "ok": true
+    },
+    {
+      "check": "7.3 density of the two length-five contractors plus OOOO*: 1/32+1/32+1/16 = 1/8",
+      "ok": true
+    },
+    {
+      "check": "caps: k, h_2, |l| at P^{1/24} admit a second value only from 2^24 = 16777216",
+      "ok": true
+    },
+    {
+      "check": "caps: h_1 at P^{1/48} needs 2^48, which is above P_0 = 3.6e13 while 2^24 is below it",
+      "ok": true
+    },
+    {
+      "check": "caps: h with h^{1/2} <= P^{1/24}, i.e. h <= P^{1/12}, needs only 2^12 = 4096",
+      "ok": true
+    },
+    {
+      "check": "caps: j <= 2P^{1/24} is never pinned, (2/2)^{24} = 1",
+      "ok": true
+    },
+    {
+      "check": "5.1(iii) first bracket: (3/2) m^{1/2} j with m ~ n^{3/2} gives (3/2) j n^{3/4}",
+      "ok": true
+    },
+    {
+      "check": "5.1(iii) second bracket: (3/4) m^{-1/2} b1 b2 with b_i ~ 3 h_i n^{1/2} gives (27/4) h1 h2 n^{1/4}",
+      "ok": true
+    },
+    {
+      "check": "5.1(iii) over a dyadic block the true bands are [3/2, (3/2)2^{3/4}] and [27/4, (27/4)2^{1/4}]",
+      "ok": true
+    },
+    {
+      "check": "6.1 Step B: 1/96 - 1/8 = -11/96, so (3pi k/4)P^{-1/8} <= (3pi/2) P^{-11/96}",
+      "ok": true
+    },
+    {
+      "check": "6.1 Step B: the printed 4.8 is above the exact 3pi/2 = 4.7124, so 7.6e5 is that constant's threshold, not 4.8's",
+      "ok": true
+    },
+    {
+      "check": "5b pairing: E_first/S carries (h1+h2)/(h1 h2) = 1/h1 + 1/h2 <= 2, independent of k",
+      "ok": true
+    },
+    {
+      "check": "5b pairing: -25/24 + 5/8 = -5/12 charged where -9/8 + 5/8 = -1/2 is available, a gap of 1/12",
+      "ok": true
+    },
+    {
+      "check": "5b pairing: k h1 h2 = 1 over the integers forces k = h1 = h2 = 1, hence k(h1+h2) = 2",
+      "ok": true
+    },
+    {
+      "check": "st5b-qpp: h cancels in 1.85 k h P^{1/8}/(u h), leaving 1.85 k P^{1/8}/u with 1/24+1/8 = 1/6",
+      "ok": true
+    },
+    {
+      "check": "st5b-qpp: the charged 7/24 exceeds that 1/6 by exactly 1/8",
+      "ok": true
+    },
+    {
+      "check": "39-c rows pair correctly: |c''/2| ~ k P^{-7/8} over S ~ k h1 h2 P^{-5/8} cancels k, leaving -1/4",
+      "ok": true
+    },
+    {
+      "check": "A.5: V ~ P^{-37/48} from S ~ P^{-5/8}, so the boundary term is P^{13/24+37/96} = P^{89/96}",
+      "ok": true
+    },
+    {
+      "check": "A.5: the r=3 term at 41/48 = 82/96 sits below the two that share 89/96",
+      "ok": true
+    },
+    {
+      "check": "A.5: P_1 solves C P^{89/96} = P, so P_1 = C^{96/7} and a constant is amplified by 96/7",
+      "ok": true
+    },
+    {
+      "check": "A.5: the piece count is 3 + 2P^{-13/24} + 22P^{-11/48} + 5P^{-5/24}, leading 3 from 1/24+1/2",
+      "ok": true
+    },
+    {
+      "check": "3.9 proof: 4V >= (c_7 S/(4P^2))(y-x)^2/4 gives (y-x)^2 <= 64 V P^2/(c_7 S), i.e. 8P",
+      "ok": true
+    },
+    {
+      "check": "3.9 proof: the r=3 length 4PV/(c_7 S) and the r=4 length 8P(V/(c_7 S))^{1/2} differ in shape, so one C(E) scales them differently",
+      "ok": true
+    },
+    {
+      "check": "4.9: 1/2 + 1/4 + 1/16 = 13/16, the certified-descent density through depth four",
+      "ok": true
+    },
+    {
+      "check": "4.9 with 6.3's two contractors: 13/16 + 1/32 + 1/32 = 7/8",
+      "ok": true
+    },
+    {
+      "check": "4.6: m^{3/4} = n^{9/8} - (3/4) theta n^{-3/8} + ..., from 9/8 - 3/2 = -3/8",
+      "ok": true
+    },
+    {
+      "check": "4.6: the theta_2 term sits at -9/8 and the residual at -15/8 = -3/8 - 3/2",
+      "ok": true
+    },
+    {
+      "check": "4.6: so D/lower = theta + O(n^{-3/4}), the two ends differing by -9/8 + 3/8 = -3/4",
+      "ok": true
+    },
+    {
+      "check": "4.13(a): n^{9/16} - v^{1/4} = (3/8) theta n^{-15/16} + (1/4) theta_2 n^{-27/16}, from 9/16 - 3/2 = -15/16",
+      "ok": true
+    },
+    {
+      "check": "4.13(a): the second term sits at -27/16 = -15/16 - 3/4, so the ratio is (3/8) theta + O(n^{-3/4})",
+      "ok": true
+    },
+    {
+      "check": "4.13: the printed error m'^{-4/27} reaches 10% only at m' = 10^{27/4}",
+      "ok": true
+    },
+    {
+      "check": "4.10: TV <= 2h|I| sup|g''| <= 0.26 P^{1/24+1/12+1-23/16} = 0.26 P^{-5/16}",
+      "ok": true
+    },
+    {
+      "check": "3.3 A-process: (1/2) from the classical inequality times (1/4) from the simplification is 1/8",
+      "ok": true
+    },
+    {
+      "check": "5.1(iii): the slip costs 2^{3/4} on the first bracket and 2^{1/4} on the second, the band's own exponents",
+      "ok": true
+    },
+    {
+      "check": "5.1(iv): M_1's exponent is negative, so P = n is the smallest right-hand side and already strict",
+      "ok": true
     }
   ],
   "exponent_checks_all_ok": true,
   "appendix_a6_checks": [
     {
-      "check": "A.6 c_7 lever buys 8.9e13 -> 2.98e11, printed as a factor 300",
+      "check": "A.6 c_7 lever buys 3.6e13 -> 2.98e11, printed as a factor 120",
       "ok": true
     },
     {
@@ -1930,19 +2527,19 @@
       "ok": true
     },
     {
-      "check": "(i) 52.8795 <= 52.9 and the doubled bound 105.8 is printed 106",
+      "check": "(i) 85.2820 <= 85.3 and the doubled bound 170.6 is printed 171",
       "ok": true
     },
     {
-      "check": "the third displayed term 0.567 is printed 0.57, and 0.6 would pass 52.9",
+      "check": "the third displayed term 0.9070 is printed 0.91, and 0.95 would pass 85.3",
       "ok": true
     },
     {
-      "check": "the earlier draft's 8 is fourteen times the true 0.567",
+      "check": "the earlier draft's 8 is nine times the true 0.9070",
       "ok": true
     },
     {
-      "check": "earlier draft: 202.5 + 16 = 218.5, printed 219 by the same round-up as 105.8 -> 106",
+      "check": "earlier draft: 202.5 + 16 = 218.5, printed 219 by the same round-up as 170.6 -> 171",
       "ok": true
     }
   ],
@@ -1956,7 +2553,11 @@
       "abs_K_over_sqrtN": 0.7339458485813624,
       "abs_wave_q1": 24.29118322400185,
       "abs_wave_over_P^(23/24)": 0.00356545809458634,
-      "abs_wave_over_sqrtN": 0.34352920761473216
+      "abs_wave_over_sqrtN": 0.34352920761473216,
+      "abs_K_over_trivial": 0.010379561731111927,
+      "abs_wave_over_trivial": 0.0048582366448003695,
+      "kernel_benchmark_informative": false,
+      "wave_benchmark_informative": false
     },
     {
       "P": 30000,
@@ -1966,7 +2567,11 @@
       "abs_K_over_sqrtN": 1.1846765420007221,
       "abs_wave_q1": 90.30237374667708,
       "abs_wave_over_P^(23/24)": 0.0046251373135848,
-      "abs_wave_over_sqrtN": 0.7373157941381948
+      "abs_wave_over_sqrtN": 0.7373157941381948,
+      "abs_K_over_trivial": 0.009672843460488714,
+      "abs_wave_over_trivial": 0.006020158249778472,
+      "kernel_benchmark_informative": false,
+      "wave_benchmark_informative": false
     },
     {
       "P": 100000,
@@ -1976,7 +2581,11 @@
       "abs_K_over_sqrtN": 0.5564984694579581,
       "abs_wave_q1": 191.7494069945803,
       "abs_wave_over_P^(23/24)": 0.0030978997731741726,
-      "abs_wave_over_sqrtN": 0.8575294173703104
+      "abs_wave_over_sqrtN": 0.8575294173703104,
+      "abs_K_over_trivial": 0.00248873681416517,
+      "abs_wave_over_trivial": 0.0038349881398916062,
+      "kernel_benchmark_informative": false,
+      "wave_benchmark_informative": false
     },
     {
       "P": 300000,
@@ -1986,9 +2595,2062 @@
       "abs_K_over_sqrtN": 0.3997193233841117,
       "abs_wave_q1": 192.26335497159994,
       "abs_wave_over_P^(23/24)": 0.0010838985799884653,
-      "abs_wave_over_sqrtN": 0.49642184792731436
+      "abs_wave_over_sqrtN": 0.49642184792731436,
+      "abs_K_over_trivial": 0.001032070855082641,
+      "abs_wave_over_trivial": 0.0012817556998106663,
+      "kernel_benchmark_informative": false,
+      "wave_benchmark_informative": false
     }
   ],
+  "kernel_observation_reach": {
+    "points": [
+      {
+        "P": 10000,
+        "trivial_bound": 5000.0,
+        "kernel_benchmark": 9085.175756516872,
+        "wave_benchmark": 6812.920690579615,
+        "trivial_over_kernel_benchmark": 0.5503470856261046,
+        "trivial_over_wave_benchmark": 0.7338996338110345,
+        "kernel_benchmark_informative": false,
+        "wave_benchmark_informative": false
+      },
+      {
+        "P": 30000,
+        "trivial_bound": 15000.0,
+        "kernel_benchmark": 26945.396275708474,
+        "wave_benchmark": 19524.257902883,
+        "trivial_over_kernel_benchmark": 0.556681365770918,
+        "trivial_over_wave_benchmark": 0.7682750389086523,
+        "kernel_benchmark_informative": false,
+        "wave_benchmark_informative": false
+      },
+      {
+        "P": 100000,
+        "trivial_bound": 50000.0,
+        "kernel_benchmark": 88698.5799018192,
+        "wave_benchmark": 61896.581889126086,
+        "trivial_over_kernel_benchmark": 0.5637068829663924,
+        "trivial_over_wave_benchmark": 0.8077990492199366,
+        "kernel_benchmark_informative": false,
+        "wave_benchmark_informative": false
+      },
+      {
+        "P": 300000,
+        "trivial_bound": 150000.0,
+        "kernel_benchmark": 263067.93050566246,
+        "wave_benchmark": 177381.31456325552,
+        "trivial_over_kernel_benchmark": 0.5701949291640142,
+        "trivial_over_wave_benchmark": 0.845635857245318,
+        "kernel_benchmark_informative": false,
+        "wave_benchmark_informative": false
+      }
+    ],
+    "kernel_crossover": 7.922816251426434e+28,
+    "kernel_crossover_factor_two": 6.277101735386681e+57,
+    "wave_crossover": 16777216.0,
+    "wave_crossover_factor_two": 281474976710656.0,
+    "any_benchmark_informative": false,
+    "largest_point": 300000
+  },
+  "kernel_block_scaling": {
+    "P": 100000,
+    "k": 1,
+    "terms": 50000,
+    "blocks": [
+      {
+        "blocks": 256,
+        "block_length": 195.3125,
+        "rms_K": 14.162297177360145,
+        "rms_K_over_sqrtL": 1.0133714945961818,
+        "rms_wave": 12.901169422708628,
+        "rms_wave_over_sqrtL": 0.9231325381893828
+      },
+      {
+        "blocks": 128,
+        "block_length": 390.625,
+        "rms_K": 18.810276827300235,
+        "rms_K_over_sqrtL": 0.9517330910808715,
+        "rms_wave": 17.792119115988253,
+        "rms_wave_over_sqrtL": 0.9002179329207107
+      },
+      {
+        "blocks": 64,
+        "block_length": 781.25,
+        "rms_K": 27.367073756654886,
+        "rms_K_over_sqrtL": 0.9791141962420938,
+        "rms_wave": 24.725323526949136,
+        "rms_wave_over_sqrtL": 0.88460006675093
+      },
+      {
+        "blocks": 32,
+        "block_length": 1562.5,
+        "rms_K": 41.35898352591678,
+        "rms_K_over_sqrtL": 1.0463087172102292,
+        "rms_wave": 30.19563524167498,
+        "rms_wave_over_sqrtL": 0.7638958620747345
+      },
+      {
+        "blocks": 16,
+        "block_length": 3125.0,
+        "rms_K": 64.59957840774888,
+        "rms_K_over_sqrtL": 1.155592389100433,
+        "rms_wave": 40.91531376724294,
+        "rms_wave_over_sqrtL": 0.7319153832343058
+      },
+      {
+        "blocks": 4,
+        "block_length": 12500.0,
+        "rms_K": 132.6292686558545,
+        "rms_K_over_sqrtL": 1.1862722420822913,
+        "rms_wave": 78.36222657908577,
+        "rms_wave_over_sqrtL": 0.7008930619963063
+      },
+      {
+        "blocks": 1,
+        "block_length": 50000.0,
+        "rms_K": 124.43684070825849,
+        "rms_K_over_sqrtL": 0.5564984694579581,
+        "rms_wave": 191.7494069945803,
+        "rms_wave_over_sqrtL": 0.8575294173703104
+      }
+    ],
+    "kernel_exponent": 0.5515618557614201,
+    "wave_exponent": 0.4093379814818313,
+    "square_root_exponent": 0.5,
+    "no_cancellation_exponent": 1.0
+  },
+  "level3_kernel_block_scaling": {
+    "P": 10000,
+    "k": 1,
+    "terms": 5000,
+    "blocks": [
+      {
+        "blocks": 256,
+        "block_length": 19.53125,
+        "rms_K3_floor": 4.478760666493104,
+        "rms_K3_floor_over_sqrtL": 1.0134278523484335,
+        "rms_K3_smooth": 4.269826056795052,
+        "rms_K3_smooth_over_sqrtL": 0.9661513469589753
+      },
+      {
+        "blocks": 128,
+        "block_length": 39.0625,
+        "rms_K3_floor": 6.28201927146455,
+        "rms_K3_floor_over_sqrtL": 1.005123083434328,
+        "rms_K3_smooth": 6.289242583571557,
+        "rms_K3_smooth_over_sqrtL": 1.006278813371449
+      },
+      {
+        "blocks": 64,
+        "block_length": 78.125,
+        "rms_K3_floor": 8.582886171868708,
+        "rms_K3_floor_over_sqrtL": 0.9710427222848977,
+        "rms_K3_smooth": 8.729785703194828,
+        "rms_K3_smooth_over_sqrtL": 0.9876625070455097
+      },
+      {
+        "blocks": 32,
+        "block_length": 156.25,
+        "rms_K3_floor": 10.257926499564066,
+        "rms_K3_floor_over_sqrtL": 0.8206341199651253,
+        "rms_K3_smooth": 11.478974195750588,
+        "rms_K3_smooth_over_sqrtL": 0.918317935660047
+      },
+      {
+        "blocks": 16,
+        "block_length": 312.5,
+        "rms_K3_floor": 15.872219352921954,
+        "rms_K3_floor_over_sqrtL": 0.8978683149545175,
+        "rms_K3_smooth": 17.971636555126135,
+        "rms_K3_smooth_over_sqrtL": 1.0166292861719788
+      },
+      {
+        "blocks": 4,
+        "block_length": 1250.0,
+        "rms_K3_floor": 30.777005277140592,
+        "rms_K3_floor_over_sqrtL": 0.8705051654432108,
+        "rms_K3_smooth": 32.09088134683958,
+        "rms_K3_smooth_over_sqrtL": 0.9076671925841262
+      },
+      {
+        "blocks": 1,
+        "block_length": 5000.0,
+        "rms_K3_floor": 43.10159901421086,
+        "rms_K3_floor_over_sqrtL": 0.6095486588586382,
+        "rms_K3_smooth": 59.71342169967999,
+        "rms_K3_smooth_over_sqrtL": 0.8444753082339131
+      }
+    ],
+    "abs_K3_floor": 43.10159901421086,
+    "abs_K3_smooth": 59.71342169967999,
+    "abs_K3_floor_over_sqrtN": 0.6095486588586382,
+    "abs_K3_smooth_over_sqrtN": 0.8444753082339131,
+    "abs_K3_floor_over_trivial": 0.008620319802842173,
+    "K3_floor_exponent": 0.43581036442886634,
+    "K3_smooth_exponent": 0.5014980709519344,
+    "square_root_exponent": 0.5,
+    "no_cancellation_exponent": 1.0
+  },
+  "parameter_cap_reach": [
+    {
+      "parameter": "k, (C3), Theorem 5.3 uniformity",
+      "cap_constant": "1",
+      "cap_exponent": "1/24",
+      "least_P_admitting_two_values": 16777216.0,
+      "pinned_at_P0": false,
+      "pinned_at_ladder_top": true,
+      "values_at_P0": 3
+    },
+    {
+      "parameter": "h_1, (C4), outer differencing shift",
+      "cap_constant": "1",
+      "cap_exponent": "1/48",
+      "least_P_admitting_two_values": 281474976710656.0,
+      "pinned_at_P0": true,
+      "pinned_at_ladder_top": true,
+      "values_at_P0": 1
+    },
+    {
+      "parameter": "h_2, (C4), inner differencing shift",
+      "cap_constant": "1",
+      "cap_exponent": "1/24",
+      "least_P_admitting_two_values": 16777216.0,
+      "pinned_at_P0": false,
+      "pinned_at_ladder_top": true,
+      "values_at_P0": 3
+    },
+    {
+      "parameter": "|l|, Step 5a monomial class",
+      "cap_constant": "1",
+      "cap_exponent": "1/24",
+      "least_P_admitting_two_values": 16777216.0,
+      "pinned_at_P0": false,
+      "pinned_at_ladder_top": true,
+      "values_at_P0": 3
+    },
+    {
+      "parameter": "h, Step 3 window (h^{1/2} <= P^{1/24})",
+      "cap_constant": "1",
+      "cap_exponent": "1/12",
+      "least_P_admitting_two_values": 4096.0,
+      "pinned_at_P0": false,
+      "pinned_at_ladder_top": false,
+      "values_at_P0": 13
+    },
+    {
+      "parameter": "j, Step 5b run index (j <= 2P^{1/24})",
+      "cap_constant": "2",
+      "cap_exponent": "1/24",
+      "least_P_admitting_two_values": 1.0,
+      "pinned_at_P0": false,
+      "pinned_at_ladder_top": false,
+      "values_at_P0": 7
+    }
+  ],
+  "census_constant_power": {
+    "samples": 160,
+    "samples_per_range": 20,
+    "constants": [
+      {
+        "constant": "L4.3(i) fine, 3/8 (X-1)^{-1/2}",
+        "ratio_key": "E_ratio_fine",
+        "side": "upper",
+        "extreme_ratio": 0.9991843762139685,
+        "undetected_move_factor": 0.9991843762139685,
+        "orders_of_freedom": 0.00035436544367784526
+      },
+      {
+        "constant": "L4.3(i) coarse, (1/2) n^{-3/4}",
+        "ratio_key": "E_ratio_coarse",
+        "side": "upper",
+        "extreme_ratio": 0.7493882821604764,
+        "undetected_move_factor": 0.7493882821604764,
+        "orders_of_freedom": 0.1252931020519778
+      },
+      {
+        "constant": "L5.1(i), (3/16) v^{-1/2}",
+        "ratio_key": "R_ratio",
+        "side": "upper",
+        "extreme_ratio": 0.9932624022764844,
+        "undetected_move_factor": 0.9932624022764844,
+        "orders_of_freedom": 0.002936003462015391
+      },
+      {
+        "constant": "L5.1(iii) first bracket, 2.6 |j| P^{3/4}",
+        "ratio_key": "first_ratio_upper",
+        "side": "upper",
+        "extreme_ratio": 0.9705472063648862,
+        "undetected_move_factor": 0.9705472063648862,
+        "orders_of_freedom": 0.012983336148685638
+      },
+      {
+        "constant": "L5.1(iii) first bracket, (3/2) |j| P^{3/4}",
+        "ratio_key": "first_ratio_lower",
+        "side": "lower",
+        "extreme_ratio": 1.0000000000000002,
+        "undetected_move_factor": 1.0000000000000002,
+        "orders_of_freedom": 9.64327466553287e-17
+      },
+      {
+        "constant": "L5.1(iii) second bracket, 15 h1 h2 P^{1/4}",
+        "ratio_key": "second_ratio_upper",
+        "side": "upper",
+        "extreme_ratio": 0.5369081404639623,
+        "undetected_move_factor": 0.5369081404639623,
+        "orders_of_freedom": 0.2701000113249393
+      },
+      {
+        "constant": "L5.1(iii) second bracket, 1.4 h1 h2 P^{1/4}",
+        "ratio_key": "second_ratio_lower",
+        "side": "lower",
+        "extreme_ratio": 4.803259403079292,
+        "undetected_move_factor": 4.803259403079292,
+        "orders_of_freedom": 0.6815360416220572
+      },
+      {
+        "constant": "L5.1(iv) M1, 0.43 k h1 h2 P^{-7/8}",
+        "ratio_key": "M1_ratio",
+        "side": "upper",
+        "extreme_ratio": 0.9777060583956044,
+        "undetected_move_factor": 0.9777060583956044,
+        "orders_of_freedom": 0.009791693683324469
+      },
+      {
+        "constant": "L5.1(iv) brackets <= 2",
+        "ratio_key": "brackets_ratio",
+        "side": "upper",
+        "extreme_ratio": 0.8610038337353357,
+        "undetected_move_factor": 0.8610038337353357,
+        "orders_of_freedom": 0.06499491478746645
+      },
+      {
+        "constant": "L6.2(i) corrected bound",
+        "ratio_key": "i_slack_ratio",
+        "side": "upper",
+        "extreme_ratio": 0.996562978926346,
+        "undetected_move_factor": 0.996562978926346,
+        "orders_of_freedom": 0.0014952503644783256
+      },
+      {
+        "constant": "L6.2(ii) corrected bound",
+        "ratio_key": "ii_slack_ratio",
+        "side": "upper",
+        "extreme_ratio": 0.6428734052717615,
+        "undetected_move_factor": 0.6428734052717615,
+        "orders_of_freedom": 0.19187453999153503
+      }
+    ],
+    "loosest": "L5.1(iii) second bracket, 1.4 h1 h2 P^{1/4}",
+    "tightest": "L5.1(iii) first bracket, (3/2) |j| P^{3/4}"
+  },
+  "appendix_a_gaps": {
+    "rows": [
+      {
+        "tag": "L5.1(iii)-Gprime",
+        "site": "Lemma 5.1(iii)",
+        "claim": "|G'| <= 2|j| P^{-1/4} + 20 h1 h2 P^{-3/4} < 1",
+        "least_P": 2032.1997563475022,
+        "in_certificate": false
+      },
+      {
+        "tag": "L5.2(b)-drift",
+        "site": "Lemma 5.2(b)",
+        "claim": "13 h P^{-1/4} + 50 h h1 h2 P^{-3/4} < 1",
+        "least_P": 4959397.071189369,
+        "in_certificate": false
+      }
+    ],
+    "scanned_candidates": 12,
+    "not_thresholds": 8,
+    "in_certificate": 2,
+    "missing": 2,
+    "step_B_row_present": true,
+    "step_B_certificate_P_min": 750859.9980939378,
+    "exact_step_B_constant": 4.71238898038469,
+    "printed_step_B_constant": 4.8,
+    "printed_threshold_matches_exact_constant": true,
+    "printed_threshold_too_small_for_printed_constant": true,
+    "P0": 35857556192838.55,
+    "all_gaps_below_P0": true,
+    "largest_gap_orders_below_P0": 6.85915180646285,
+    "P0_binding_tag": "5b-W<=c7S",
+    "bracket_band_reaches_P0": false
+  },
+  "p0_pairing_check": {
+    "interpolant_first_coefficient": 170.6,
+    "interpolant_second_coefficient": 0.10999999999999983,
+    "rows": [
+      {
+        "tag": "5b-W<=c7S",
+        "certified_least_P": 35857556192838.695,
+        "same_cell_least_P": 4889385953644.929,
+        "factor": 7.333754490399287
+      },
+      {
+        "tag": "5a-W<=c7S",
+        "certified_least_P": 29116952310460.344,
+        "same_cell_least_P": 3842262132114.287,
+        "factor": 7.5780754433946225
+      },
+      {
+        "tag": "5b-E<=c7S",
+        "certified_least_P": 4100178141405.2476,
+        "same_cell_least_P": 77239732735.40242,
+        "factor": 53.08379503915545
+      }
+    ],
+    "largest_untouched_row_P": 33232930569600.977,
+    "certified_P0": 35857556192838.55,
+    "P0_with_the_pairing_fixed": 33232930569600.977,
+    "P0_over_estimate_factor": 1.0789766529238436,
+    "ratio_exponent_gap": "1/12",
+    "direction_is_safe": true
+  },
+  "p0_pairing_sweep": {
+    "verdicts": [
+      {
+        "tag": "5b-W<=c7S",
+        "parameter": "k(h1+h2) against k h1 h2",
+        "paired": false,
+        "over_charge": "P^{1/12}",
+        "certified_least_P": 35857556192838.55
+      },
+      {
+        "tag": "5a-W<=c7S",
+        "parameter": "k(h1+h2) against k h1 h2",
+        "paired": false,
+        "over_charge": "P^{1/12}",
+        "certified_least_P": 29116952310460.227
+      },
+      {
+        "tag": "5b-E<=c7S",
+        "parameter": "k(h1+h2) against k h1 h2",
+        "paired": false,
+        "over_charge": "P^{1/12}",
+        "certified_least_P": 4100178141405.2305
+      },
+      {
+        "tag": "st5b-qpp",
+        "parameter": "k h against u h",
+        "paired": false,
+        "over_charge": "P^{1/8}",
+        "certified_least_P": 298166397427.1911,
+        "fixed_least_P": 8712655756.535175,
+        "factor": 34.22221716995337
+      },
+      {
+        "tag": "39-c2",
+        "parameter": "k against k h1 h2",
+        "paired": true,
+        "over_charge": null,
+        "certified_least_P": 952057673.8313825
+      },
+      {
+        "tag": "39-c3",
+        "parameter": "k against k h1 h2",
+        "paired": true,
+        "over_charge": null,
+        "certified_least_P": 588777508.2278498
+      },
+      {
+        "tag": "39-c4",
+        "parameter": "k against k h1 h2",
+        "paired": true,
+        "over_charge": null,
+        "certified_least_P": 452241575.5207706
+      }
+    ],
+    "mispaired": [
+      "5b-W<=c7S",
+      "5a-W<=c7S",
+      "5b-E<=c7S",
+      "st5b-qpp"
+    ],
+    "correctly_paired": [
+      "39-c2",
+      "39-c3",
+      "39-c4"
+    ],
+    "st5b_qpp_certified": 298166397427.1911,
+    "st5b_qpp_fixed": 8712655756.535175,
+    "st5b_qpp_factor": 34.22221716995337,
+    "certified_P0": 35857556192838.55,
+    "P0_with_every_pairing_fixed": 33232930569600.977,
+    "largest_untouched_row_P": 33232930569600.977
+  },
+  "step5b_budget_split": {
+    "as_printed": {
+      "P": 35857556192838.695,
+      "V_share": 0.5451713660548367,
+      "E_share": 0.454828633945162,
+      "E_first_share_of_E": 0.6993896951464809,
+      "E_second_share_of_E": 0.3006103048535192,
+      "W_over_budget": 0.9999999999999986
+    },
+    "after_the_pairing_repair": {
+      "P": 4889385953644.929,
+      "V_share": 0.7289982166871838,
+      "E_share": 0.2710017833128157,
+      "E_first_share_of_E": 0.23589007657981048,
+      "E_second_share_of_E": 0.7641099234201895,
+      "W_over_budget": 0.9999999999999994
+    },
+    "prose_says_V_share": 0.55,
+    "prose_says_E_first_share": 0.7,
+    "prose_is_current": true,
+    "repair_inverts_the_E_split": true,
+    "repair_makes_the_row_V_dominated": true
+  },
+  "kappa_optimum_check": {
+    "operating_kappa_denominator": 12.0,
+    "optimum_printed": {
+      "P1": 9.807572368580184e+18,
+      "kappa_denominator": 11.5
+    },
+    "optimum_repaired": {
+      "P1": 9.252985058473382e+18,
+      "kappa_denominator": 11.5
+    },
+    "optimum_moves": false,
+    "P1_gain_factor": 1.0599360429744713,
+    "P0_gain_factor": 7.333754490399287,
+    "error_share_at_P0": 0.4548286339451627,
+    "error_share_at_P1": 0.11843183810169981,
+    "P1_over_P0": 273514.80161771056
+  },
+  "p1_cost_split": {
+    "points": [
+      {
+        "log10_P": 13.0,
+        "r3": 27534329522889.33,
+        "r4": 8296735732034.816,
+        "boundaries": 15801379148911.986,
+        "boundary_share": 0.3060358526767327,
+        "binding": "r3",
+        "piece_count": 3.0328679646519525,
+        "printed_piece_constant": 3.5,
+        "piece_slack": 0.15402320206236042
+      },
+      {
+        "log10_P": 16.0,
+        "r3": 6251837434401116.0,
+        "r4": 3953428080287131.5,
+        "boundaries": 9548716380471612.0,
+        "boundary_share": 0.4833818533979343,
+        "binding": "boundaries",
+        "piece_count": 3.0070605550437457,
+        "printed_piece_constant": 3.5,
+        "piece_slack": 0.16392734231089778
+      },
+      {
+        "log10_P": 19.0,
+        "r3": 1.9865096835992648e+18,
+        "r4": 2.2285139014594819e+18,
+        "boundaries": 5.770254840126722e+18,
+        "boundary_share": 0.5778762087968062,
+        "binding": "boundaries",
+        "piece_count": 3.001523668009652,
+        "printed_piece_constant": 3.5,
+        "piece_slack": 0.16607442989809695
+      },
+      {
+        "log10_P": 22.0,
+        "r3": 6.891510590266743e+20,
+        "r4": 1.312584339220412e+21,
+        "boundaries": 3.4869441706426913e+21,
+        "boundary_share": 0.6352974566791868,
+        "binding": "boundaries",
+        "piece_count": 3.0003303817298503,
+        "printed_piece_constant": 3.5,
+        "piece_slack": 0.1665381990306225
+      }
+    ],
+    "binds_at_P1": "boundaries",
+    "amplification_exponent": "96/7",
+    "P1_printed": 9.839138745648036e+18,
+    "P1_with_the_sharp_piece_constant": 3.90773048487125e+18,
+    "P1_gain": 2.5178652375695276,
+    "interpolant_repair_gain_on_P1": 1.06
+  },
+  "p1_constant_provenance": {
+    "readings": [
+      {
+        "source": "Appendix A.5, as printed",
+        "r3": 4.0,
+        "r4": 1.0,
+        "P1": 9.839138745648036e+18
+      },
+      {
+        "source": "Appendix A.6, as printed",
+        "r3": 2.0,
+        "r4": 1.0,
+        "P1": 2.8329794276022794e+18
+      },
+      {
+        "source": "Lemma 3.9 proof, one r=4 interval",
+        "r3": 4.0,
+        "r4": 8.0,
+        "P1": 1.416345726206018e+24
+      },
+      {
+        "source": "Lemma 3.9 proof, two r=4 intervals",
+        "r3": 4.0,
+        "r4": 16.0,
+        "P1": 1.9877211102612202e+27
+      }
+    ],
+    "C_of_E_implied_by_the_r3_term": 928.0,
+    "C_of_E_implied_by_the_r4_term": 15.231546211727817,
+    "one_C_of_E_fits_both": false,
+    "printed_P1": 9.839138745648036e+18,
+    "P1_at_the_proof_constants": 1.416345726206018e+24,
+    "orders_between_them": 5.158212191641876,
+    "direction_is_against_the_paper": true
+  },
+  "reach_ladder": {
+    "rungs": [
+      {
+        "name": "P_0, the printed inequalities hold",
+        "log10_P": 13.554580687676504,
+        "internal": true
+      },
+      {
+        "name": "P_1 as A.5 prints it, middle band beats counting",
+        "log10_P": 18.99295708477458,
+        "internal": true
+      },
+      {
+        "name": "P_1 at Lemma 3.9's own proof constants",
+        "log10_P": 24.151169276416457,
+        "internal": true
+      },
+      {
+        "name": "P_1 at those constants with two r=4 intervals, the worst reading",
+        "log10_P": 27.29835545009591,
+        "internal": true
+      },
+      {
+        "name": "2^96, bare P^(1-1/96) beats the trivial P/2",
+        "log10_P": 28.898879583742193,
+        "internal": false
+      },
+      {
+        "name": "sharp form P^(1-1/96) log^(3/4) P beats P/2",
+        "log10_P": 224.22809050577004,
+        "internal": false
+      },
+      {
+        "name": "Step 5b's own log absorption, C log P <= P^(1/96)",
+        "log10_P": 267.850360733194,
+        "internal": false
+      },
+      {
+        "name": "Theorem 6.3's log^(15/4) P <= P^(1/96)",
+        "log10_P": 1244.6095778902836,
+        "internal": false
+      }
+    ],
+    "largest_internal_threshold_log10": 27.29835545009591,
+    "bare_exponent_crossover_log10": 28.898879583742193,
+    "every_internal_threshold_below_the_bare_crossover": true,
+    "orders_of_headroom": 1.6005241336462817,
+    "sharp_form_crossover_log10": 224.22809050577004,
+    "epsilon_form_has_no_finite_crossover": true
+  },
+  "certified_descent_density": {
+    "N": 100000,
+    "classes": [
+      {
+        "prefix": "E",
+        "count": 50000,
+        "density": 0.5,
+        "target": 0.5,
+        "deviation": 0.0,
+        "error_exponent": null,
+        "inside_the_printed_error": true
+      },
+      {
+        "prefix": "OE",
+        "count": 25015,
+        "density": 0.25015,
+        "target": 0.25,
+        "deviation": 15.0,
+        "error_exponent": 0.8333333333333334,
+        "inside_the_printed_error": true
+      },
+      {
+        "prefix": "OOEE",
+        "count": 6176,
+        "density": 0.06176,
+        "target": 0.0625,
+        "deviation": -74.0,
+        "error_exponent": 0.9583333333333334,
+        "inside_the_printed_error": true
+      },
+      {
+        "prefix": "OOOEE",
+        "count": 3181,
+        "density": 0.03181,
+        "target": 0.03125,
+        "deviation": 56.0,
+        "error_exponent": 0.9583333333333334,
+        "inside_the_printed_error": true
+      },
+      {
+        "prefix": "OOEOE",
+        "count": 3153,
+        "density": 0.03153,
+        "target": 0.03125,
+        "deviation": 28.0,
+        "error_exponent": 0.9583333333333334,
+        "inside_the_printed_error": true
+      }
+    ],
+    "E_count_is_exactly_floor_half": true,
+    "depth4_density": 0.81191,
+    "depth4_target": 0.8125,
+    "depth5_density": 0.87525,
+    "depth5_target": 0.875,
+    "depth4_error": -0.0005899999999999794,
+    "depth5_error": 0.00024999999999997247,
+    "all_inside_the_printed_errors": true,
+    "thirteen_sixteenths_plus_two_thirtyseconds_is_seven_eighths": true
+  },
+  "audit_coverage": {
+    "coverage": {
+      "Theorem 4.1": "threshold",
+      "Corollary 4.2": "probe",
+      "Lemma 4.3": "probe",
+      "Theorem 4.4": "probe",
+      "Proposition 4.5": "threshold",
+      "Lemma 4.6": "probe",
+      "Theorem 4.7": "probe",
+      "Theorem 4.8": "probe",
+      "Corollary 4.9": "probe",
+      "Lemma 4.10": "probe",
+      "Theorem 4.11": "none",
+      "Theorem 4.12": "none",
+      "Corollary 4.13": "probe",
+      "Lemma 5.1": "probe",
+      "Lemma 5.2": "probe",
+      "Lemma 5.2b": "probe",
+      "Theorem 5.3": "probe",
+      "Theorem 6.1": "probe",
+      "Lemma 6.2": "probe",
+      "Theorem 6.3": "probe",
+      "Corollary 6.4": "probe"
+    },
+    "counts": {
+      "threshold": 2,
+      "probe": 17,
+      "none": 2
+    },
+    "uncovered": [
+      "Theorem 4.11",
+      "Theorem 4.12"
+    ],
+    "threshold_only": [
+      "Proposition 4.5",
+      "Theorem 4.1"
+    ],
+    "probed": 17,
+    "total": 21
+  },
+  "lemma_4_6_census": {
+    "ranges": [
+      {
+        "lo": 10000,
+        "max_ratio_to_lower": 0.9939810355196664,
+        "max_theta": 0.9945197944558858,
+        "max_ratio_minus_theta": 0.0009240212109822288,
+        "max_residual_scaled": 0.0928953993424782
+      },
+      {
+        "lo": 1000000,
+        "max_ratio_to_lower": 0.9541486162396913,
+        "max_theta": 0.954164330068132,
+        "max_ratio_minus_theta": 2.1438084169322913e-05,
+        "max_residual_scaled": 0.0853617917092694
+      },
+      {
+        "lo": 100000000,
+        "max_ratio_to_lower": 0.9096457005496051,
+        "max_theta": 0.9096461899079109,
+        "max_ratio_minus_theta": 7.511829505091328e-07,
+        "max_residual_scaled": 0.07757421331595914
+      },
+      {
+        "lo": 1000000000000,
+        "max_ratio_to_lower": 0.9125427235193332,
+        "max_theta": 0.9125427245190209,
+        "max_ratio_minus_theta": 9.996876659812415e-10,
+        "max_residual_scaled": 0.07806883351082335
+      },
+      {
+        "lo": 10000000000000000,
+        "max_ratio_to_lower": 0.935392758365433,
+        "max_theta": 0.9353927583658872,
+        "max_ratio_minus_theta": 6.868949853355844e-13,
+        "max_residual_scaled": 0.08202746366306335
+      }
+    ],
+    "samples": 100,
+    "sign_failures": 0,
+    "lower_bound_failures": 0,
+    "both_ends_hold": true,
+    "census_power_over_the_lower_constant": 0.006018964480333566,
+    "power_is_of_order_one_over_samples": true,
+    "residual_constant": 0.0928953993424782,
+    "residual_constant_is_three_thirtyseconds": true
+  },
+  "corollary_4_13_check": {
+    "m_prime": 60,
+    "block": [
+      2100465,
+      2227611
+    ],
+    "odd_starts": 63573,
+    "class_size": 3903,
+    "density": 0.06139398801377943,
+    "target_density": 0.0625,
+    "density_error": -0.0011060119862205675,
+    "structural_failures": 0,
+    "structural_claim_holds": true,
+    "nesting_failures": 0,
+    "nesting_worst_ratio_to_printed": 0.3748120226120808,
+    "nesting_sharp_constant": 0.375,
+    "nesting_printed_is_loose_by": 2.6666666666666665,
+    "printed_error_term_as_a_fraction": 0.5452179997404335,
+    "printed_error_is_vacuous_here": true,
+    "m_prime_for_a_ten_percent_error": 5623413.251903491
+  },
+  "lemma_4_10_sharpness": {
+    "adversarial": [
+      {
+        "T": 0.5,
+        "L": 10,
+        "ratio": 0.9961547508610622
+      },
+      {
+        "T": 0.5,
+        "L": 100,
+        "ratio": 0.9999681730414243
+      },
+      {
+        "T": 0.5,
+        "L": 1000,
+        "ratio": 0.9999996874352749
+      },
+      {
+        "T": 0.5,
+        "L": 10000,
+        "ratio": 0.9999999968799722
+      },
+      {
+        "T": 2.0,
+        "L": 10,
+        "ratio": 0.926568890949577
+      },
+      {
+        "T": 2.0,
+        "L": 100,
+        "ratio": 0.9993782771679207
+      },
+      {
+        "T": 2.0,
+        "L": 1000,
+        "ratio": 0.999993893071466
+      },
+      {
+        "T": 2.0,
+        "L": 10000,
+        "ratio": 0.9999999390404837
+      }
+    ],
+    "best_adversarial_ratio": 0.9999999968799722,
+    "worst_random_ratio": 0.9240240152014544,
+    "constant_is_sharp": true,
+    "random_search_would_miss_it": true,
+    "TV_bound_at_P0": 1.5106605328013277e-05,
+    "factor_at_P0": 1.0000949176006384,
+    "the_twist_is_free_in_application": true,
+    "TV_exponent": "-5/16"
+  },
+  "classical_inputs_check": {
+    "a_process": [
+      {
+        "family": "constant",
+        "lhs_over_printed": 0.12748597654258031,
+        "lhs_over_classical": 0.4872619968776251,
+        "printed_over_classical": 3.8220831035080916,
+        "display_holds": true,
+        "display_dominates_classical": true
+      },
+      {
+        "family": "random",
+        "lhs_over_printed": 0.0004319296447613664,
+        "lhs_over_classical": 0.0017576471384040775,
+        "printed_over_classical": 4.069290357171818,
+        "display_holds": true,
+        "display_dominates_classical": true
+      },
+      {
+        "family": "linear",
+        "lhs_over_printed": 2.2803666362938187e-06,
+        "lhs_over_classical": 8.715750790382186e-06,
+        "printed_over_classical": 3.822083103508092,
+        "display_holds": true,
+        "display_dominates_classical": true
+      },
+      {
+        "family": "quadratic",
+        "lhs_over_printed": 0.0026781326203376725,
+        "lhs_over_classical": 0.009255278909022386,
+        "printed_over_classical": 3.4558702727183963,
+        "display_holds": true,
+        "display_dominates_classical": true
+      }
+    ],
+    "a_process_holds_everywhere": true,
+    "a_process_dominates_the_classical_form": true,
+    "extremal_lhs_over_printed": 0.12748597654258031,
+    "extremal_lhs_over_classical": 0.4872619968776251,
+    "extremal_printed_over_classical": 3.8220831035080916,
+    "looseness_factorises_as_two_times_four": true,
+    "erdos_turan": [
+      {
+        "points": "random",
+        "R": 60,
+        "H": 8,
+        "implied_constant": 0.38318273002872144
+      },
+      {
+        "points": "kronecker",
+        "R": 120,
+        "H": 16,
+        "implied_constant": 0.2689865725822957
+      },
+      {
+        "points": "clustered",
+        "R": 120,
+        "H": 16,
+        "implied_constant": 0.29039780143847554
+      },
+      {
+        "points": "arithmetic",
+        "R": 200,
+        "H": 30,
+        "implied_constant": 0.15000000000000457
+      }
+    ],
+    "erdos_turan_worst_implied_constant": 0.38318273002872144,
+    "erdos_turan_constant_below_one": true
+  },
+  "perturbation_sensitivity": {
+    "cut": 0.01,
+    "exact_identities": "total power: any perturbation is caught",
+    "exponent_layer": "exact rationals: a wrong exponent is caught, a 1% change is not expressible",
+    "policed_constants": [
+      {
+        "constant": "L4.3(i) fine, 3/8 (X-1)^{-1/2}",
+        "side": "upper",
+        "extreme_ratio": 0.9995460805146568,
+        "extreme_at_an_eighth_of_the_samples": 0.9841197593955999,
+        "moved_with_sampling": true,
+        "regime": "saturating",
+        "smallest_detectable_cut": 0.0004539194853432349,
+        "detects_a_one_percent_cut": true
+      },
+      {
+        "constant": "L4.3(i) coarse, (1/2) n^{-3/4}",
+        "side": "upper",
+        "extreme_ratio": 0.7496595603859926,
+        "extreme_at_an_eighth_of_the_samples": 0.7380898195466999,
+        "moved_with_sampling": true,
+        "regime": "creeping",
+        "smallest_detectable_cut": 0.2503404396140074,
+        "detects_a_one_percent_cut": false
+      },
+      {
+        "constant": "L5.1(i), (3/16) v^{-1/2}",
+        "side": "upper",
+        "extreme_ratio": 0.9932624022764844,
+        "extreme_at_an_eighth_of_the_samples": 0.9671350707326508,
+        "moved_with_sampling": true,
+        "regime": "saturating",
+        "smallest_detectable_cut": 0.006737597723515565,
+        "detects_a_one_percent_cut": true
+      },
+      {
+        "constant": "L5.1(iii) first bracket, 2.6 |j| P^{3/4}",
+        "side": "upper",
+        "extreme_ratio": 0.9705472063648862,
+        "extreme_at_an_eighth_of_the_samples": 0.9705472063648862,
+        "moved_with_sampling": false,
+        "regime": "structurally sharp",
+        "smallest_detectable_cut": 0.029452793635113772,
+        "detects_a_one_percent_cut": false
+      },
+      {
+        "constant": "L5.1(iii) first bracket, (3/2) |j| P^{3/4}",
+        "side": "lower",
+        "extreme_ratio": 1.0000000000000002,
+        "extreme_at_an_eighth_of_the_samples": 1.0000000000000002,
+        "moved_with_sampling": false,
+        "regime": "lower-side",
+        "smallest_detectable_cut": null,
+        "detects_a_one_percent_cut": true
+      },
+      {
+        "constant": "L5.1(iii) second bracket, 15 h1 h2 P^{1/4}",
+        "side": "upper",
+        "extreme_ratio": 0.5378242582832972,
+        "extreme_at_an_eighth_of_the_samples": 0.5369081404639623,
+        "moved_with_sampling": false,
+        "regime": "structurally loose",
+        "smallest_detectable_cut": 0.46217574171670284,
+        "detects_a_one_percent_cut": false
+      },
+      {
+        "constant": "L5.1(iii) second bracket, 1.4 h1 h2 P^{1/4}",
+        "side": "lower",
+        "extreme_ratio": 4.79906782865369,
+        "extreme_at_an_eighth_of_the_samples": 4.803627530509484,
+        "moved_with_sampling": true,
+        "regime": "lower-side",
+        "smallest_detectable_cut": null,
+        "detects_a_one_percent_cut": false
+      },
+      {
+        "constant": "L5.1(iv) M1, 0.43 k h1 h2 P^{-7/8}",
+        "side": "upper",
+        "extreme_ratio": 0.9777060583956044,
+        "extreme_at_an_eighth_of_the_samples": 0.9648479992582247,
+        "moved_with_sampling": true,
+        "regime": "creeping",
+        "smallest_detectable_cut": 0.022293941604395573,
+        "detects_a_one_percent_cut": false
+      },
+      {
+        "constant": "L5.1(iv) brackets <= 2",
+        "side": "upper",
+        "extreme_ratio": 0.8557925609349222,
+        "extreme_at_an_eighth_of_the_samples": 0.7478468104332965,
+        "moved_with_sampling": true,
+        "regime": "creeping",
+        "smallest_detectable_cut": 0.14420743906507782,
+        "detects_a_one_percent_cut": false
+      },
+      {
+        "constant": "L6.2(i) corrected bound",
+        "side": "upper",
+        "extreme_ratio": 0.996562978926346,
+        "extreme_at_an_eighth_of_the_samples": 0.9834302540953805,
+        "moved_with_sampling": true,
+        "regime": "saturating",
+        "smallest_detectable_cut": 0.0034370210736539564,
+        "detects_a_one_percent_cut": true
+      },
+      {
+        "constant": "L6.2(ii) corrected bound",
+        "side": "upper",
+        "extreme_ratio": 0.6625544660725367,
+        "extreme_at_an_eighth_of_the_samples": 0.6432404061445516,
+        "moved_with_sampling": true,
+        "regime": "creeping",
+        "smallest_detectable_cut": 0.33744553392746335,
+        "detects_a_one_percent_cut": false
+      }
+    ],
+    "policed_total": 11,
+    "saturating": [
+      "L4.3(i) fine, 3/8 (X-1)^{-1/2}",
+      "L5.1(i), (3/16) v^{-1/2}",
+      "L6.2(i) corrected bound"
+    ],
+    "structurally_loose": [
+      "L5.1(iii) second bracket, 15 h1 h2 P^{1/4}"
+    ],
+    "structurally_sharp": [
+      "L5.1(iii) first bracket, 2.6 |j| P^{3/4}"
+    ],
+    "policed_detecting": 4,
+    "detection_needs_extreme_ratio_above": 0.9900990099009901,
+    "P0_moves": {
+      "c_7 cut by one percent": 0.04272556436734676,
+      "interpolant error raised one percent": 0.01901574559041852,
+      "kappa raised one percent": 0.022926854075037584
+    },
+    "P0_two_figure_resolution_at_a_boundary": 0.013944062370314567,
+    "P0_two_figure_resolution_guaranteed": 0.027888124740629135,
+    "every_P0_constant_moves_it_past_the_boundary": true,
+    "some_P0_constant_moves_it_less_than_guaranteed": true
+  },
+  "lemma_3_9_admissible_search": {
+    "P": 1000000,
+    "trials": 400,
+    "admissible": 383,
+    "nonempty_sublevel": 383,
+    "instances_with_an_r4_only_point": 7,
+    "r4_branch_fires": true,
+    "worst_measure_over_A5_bound": 0.3697674605806474,
+    "A5_bound_holds_on_every_admissible_instance": true,
+    "worst_over_the_local_r3_form": 0.6395377427921478,
+    "worst_over_A6_r3_constant": 1.001,
+    "worst_over_the_proof_r3_constant": 0.5005,
+    "A6_r3_constant_is_exceeded": true,
+    "proof_r3_constant_holds": true,
+    "room_left": 2.70440237880774
+  },
+  "pointwise_bound_inventory": {
+    "bounds": [
+      {
+        "bound": "L5.1(iii) first bracket, lower",
+        "exponent": "3/4",
+        "side": "lower",
+        "strict_transcription": "P = n",
+        "extreme_ratio": 1.000000000000018,
+        "respects_its_side": true
+      },
+      {
+        "bound": "L5.1(iii) first bracket, upper",
+        "exponent": "3/4",
+        "side": "upper",
+        "strict_transcription": "P = n/2",
+        "extreme_ratio": 0.9705437319927858,
+        "respects_its_side": true
+      },
+      {
+        "bound": "L5.1(iii) second bracket, lower",
+        "exponent": "1/4",
+        "side": "lower",
+        "strict_transcription": "P = n",
+        "extreme_ratio": 4.797448319290472,
+        "respects_its_side": true
+      },
+      {
+        "bound": "L5.1(iii) second bracket, upper",
+        "exponent": "1/4",
+        "side": "upper",
+        "strict_transcription": "P = n/2",
+        "extreme_ratio": 0.5378657255924665,
+        "respects_its_side": true
+      },
+      {
+        "bound": "L5.1(iv) M_1",
+        "exponent": "-7/8",
+        "side": "upper",
+        "strict_transcription": "P = n (negative exponent: already strict)",
+        "extreme_ratio": 0.9613259878074085,
+        "respects_its_side": true
+      }
+    ],
+    "count": 5,
+    "all_respect_their_side": true,
+    "source_surface": [
+      "P14",
+      "P14_lo",
+      "P34",
+      "P34_lo",
+      "mp.power(P,"
+    ],
+    "expected_surface": [
+      "P14",
+      "P14_lo",
+      "P34",
+      "P34_lo",
+      "mp.power(P,"
+    ],
+    "surface_unchanged": true,
+    "no_other_pointwise_bound_is_stated_in_P": true,
+    "samples_inspected": 322,
+    "did_not_go_blind": true
+  },
+  "draft_history_markers": {
+    "occurrences": [
+      {
+        "line": 2005,
+        "section": "4. The level-2 wave and the kernel theorem",
+        "in_appendix": false,
+        "mathematical": false,
+        "needs_a_look": true,
+        "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
+      },
+      {
+        "line": 3947,
+        "section": "Architecture of the proof of Theorem 5.3",
+        "in_appendix": false,
+        "mathematical": false,
+        "needs_a_look": true,
+        "text": "no longer conflict --- both the threshold and the non-vacuity point"
+      },
+      {
+        "line": 4879,
+        "section": "7. The Terras-style reduction and the frontier",
+        "in_appendix": false,
+        "mathematical": true,
+        "needs_a_look": false,
+        "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
+      },
+      {
+        "line": 5384,
+        "section": "7. The Terras-style reduction and the frontier",
+        "in_appendix": false,
+        "mathematical": true,
+        "needs_a_look": false,
+        "text": "and this term is no longer drift-blocked."
+      },
+      {
+        "line": 6195,
+        "section": "Appendix A. The threshold \\(P_0\\)",
+        "in_appendix": true,
+        "mathematical": false,
+        "needs_a_look": false,
+        "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
+      },
+      {
+        "line": 6484,
+        "section": "A.5 The two constants that carry the threshold",
+        "in_appendix": true,
+        "mathematical": false,
+        "needs_a_look": false,
+        "text": "*The floor that used to be printed here was \\(2.98\\cdot10^{11}\\), a"
+      },
+      {
+        "line": 6567,
+        "section": "A.5 The two constants that carry the threshold",
+        "in_appendix": true,
+        "mathematical": false,
+        "needs_a_look": false,
+        "text": "Among those two the loss is steeply asymmetric, and that used to be"
+      },
+      {
+        "line": 6601,
+        "section": "A.5 The two constants that carry the threshold",
+        "in_appendix": true,
+        "mathematical": false,
+        "needs_a_look": false,
+        "text": "is the comparison beside it: the former"
+      },
+      {
+        "line": 6680,
+        "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
+        "in_appendix": true,
+        "mathematical": false,
+        "needs_a_look": false,
+        "text": "worst site is \\(7.4\\cdot10^{13}\\), which no longer sneaks under the"
+      }
+    ],
+    "total": 9,
+    "in_appendix": 5,
+    "in_body": 4,
+    "body_mathematical": 2,
+    "body_needing_a_look": [
+      2005,
+      3947
+    ],
+    "the_referees_phrase_is_gone": true
+  },
+  "trust_boundary_rows": {
+    "rows": [
+      {
+        "statement": "Prop. 3.1 power envelope",
+        "human": "companion [22]",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "\u2014",
+        "human_proof_alone": false,
+        "quoted_elsewhere": true,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 3.3 second-derivative test",
+        "human": "quoted",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "van der Corput [11]",
+        "human_proof_alone": false,
+        "quoted_elsewhere": true,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 3.4 discrepancy",
+        "human": "quoted",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Erd\u0151s\u2013Tur\u00e1n [8]",
+        "human_proof_alone": false,
+        "quoted_elsewhere": true,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 3.5 sawtooth expansion",
+        "human": "quoted",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Vaaler [10]",
+        "human_proof_alone": false,
+        "quoted_elsewhere": true,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 3.7 shifted window",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Lem. 3.5",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 3.8 two-term test",
+        "human": "this paper",
+        "lean_names": [
+          "c6_eleven_eighths_five_fourths",
+          "_attained"
+        ],
+        "lean_count": 2,
+        "classical": "Lem. 3.3",
+        "human_proof_alone": false,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 3.9 three-term sublevel",
+        "human": "this paper",
+        "lean_names": [
+          "step5b_curvature_inverse",
+          "step5b_curvature_norm",
+          "step5b_vector_transfer",
+          "step5b_c7_printed"
+        ],
+        "lean_count": 4,
+        "classical": "Lem. 3.3, 3.8",
+        "human_proof_alone": false,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 4.3 exact linearization",
+        "human": "this paper",
+        "lean_names": [
+          "lemma43_closed_form",
+          "lemma43_nonneg",
+          "lemma43_upper",
+          "lemma43_remainder_of_sqrt",
+          "carry_identity",
+          "carry_mem_zero_one"
+        ],
+        "lean_count": 6,
+        "classical": "Taylor",
+        "human_proof_alone": false,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Thm. 4.4 nested discrepancy",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Lem. 3.3\u20133.5, 4.3",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Thm. 4.7, 4.8 depth three",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Thm. 4.4",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Thm. 4.11\u20134.13 localization",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Thm. 4.4, 4.7",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 5.1 master identity",
+        "human": "this paper",
+        "lean_names": [
+          "lemma51_i_identity",
+          "lemma51_i_closed_form",
+          "lemma51_i_nonneg",
+          "lemma51_i_upper",
+          "lemma51_double_gap",
+          "lemma51_brackets_le_two",
+          "lemma51_master",
+          "carry_as_sawtooth",
+          "double_difference_product",
+          "fract_diff_level2",
+          "mvt_cube_explicit",
+          "mvt_sqrt_diff_explicit",
+          "second_difference_exists_xi",
+          "second_difference_two_sided"
+        ],
+        "lean_count": 14,
+        "classical": "mean value theorem",
+        "human_proof_alone": false,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Lem. 5.2(i), (ii), (iii)",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Lem. 3.3, 3.5, 3.7, 3.8",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": true
+      },
+      {
+        "statement": "Lem. 5.2b interpolant",
+        "human": "this paper",
+        "lean_names": [
+          "interpolant_assembly",
+          "interpolant_step_i",
+          "interpolant_step_ii_constant",
+          "gap_error_le_one",
+          "gap_error_one_attained",
+          "gap_error_not_halved_by_recentring"
+        ],
+        "lean_count": 6,
+        "classical": "\u2014",
+        "human_proof_alone": false,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Thm. 5.3 kernel cancellation",
+        "human": "this paper",
+        "lean_names": [
+          "step5b_curvature_norm",
+          "sublevel_raised_threshold"
+        ],
+        "lean_count": 2,
+        "classical": "Lem. 5.1, 5.2, 5.2b, 3.9",
+        "human_proof_alone": false,
+        "quoted_elsewhere": false,
+        "flagged": true
+      },
+      {
+        "statement": "Thm. 6.1 depth four",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Thm. 5.3",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Thm. 6.3, Cor. 6.4 depth five",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Thm. 5.3",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Threshold \\(P_0\\) (App. A)",
+        "human": "computation, not a proof step",
+        "lean_names": [
+          "row_5b_binding",
+          "step5b_c2_ceiling",
+          "step5b_c2_optimum_feasible",
+          "step5b_uniform_saturates"
+        ],
+        "lean_count": 4,
+        "classical": "rational arithmetic",
+        "human_proof_alone": false,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Prop. 7.1 reduction",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "Hoeffding",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      },
+      {
+        "statement": "Prop. 7.4 shift average",
+        "human": "this paper",
+        "lean_names": [],
+        "lean_count": 0,
+        "classical": "\u2014",
+        "human_proof_alone": true,
+        "quoted_elsewhere": false,
+        "flagged": false
+      }
+    ],
+    "row_count": 20,
+    "rows_with_lean": 7,
+    "rows_on_the_human_proof_alone": [
+      "Lem. 3.7 shifted window",
+      "Thm. 4.4 nested discrepancy",
+      "Thm. 4.7, 4.8 depth three",
+      "Thm. 4.11\u20134.13 localization",
+      "Lem. 5.2(i), (ii), (iii)",
+      "Thm. 6.1 depth four",
+      "Thm. 6.3, Cor. 6.4 depth five",
+      "Prop. 7.1 reduction",
+      "Prop. 7.4 shift average"
+    ],
+    "rows_quoted_from_elsewhere": [
+      "Prop. 3.1 power envelope",
+      "Lem. 3.3 second-derivative test",
+      "Lem. 3.4 discrepancy",
+      "Lem. 3.5 sawtooth expansion"
+    ],
+    "flagged_rows": [
+      "Lem. 5.2(i), (ii), (iii)",
+      "Thm. 5.3 kernel cancellation"
+    ],
+    "section4_identifiers": [
+      "fract_diff_level2",
+      "lemma51_double_gap",
+      "double_difference_product",
+      "lemma51_master",
+      "lemma51_brackets_le_two"
+    ],
+    "section4_all_in_the_table": true,
+    "section4_all_declared": true,
+    "table_has_no_sampled_column": true,
+    "largest_lean_row": "Lem. 5.1 master identity",
+    "largest_lean_count": 14
+  },
+  "proposition_7_1_word_count": {
+    "rows": [
+      {
+        "d": 1,
+        "N_d": 1,
+        "printed_bound": 1.9325917540700828,
+        "ratio": 0.5174398565522061,
+        "share_of_all_words": 0.5,
+        "holds": true
+      },
+      {
+        "d": 2,
+        "N_d": 1,
+        "printed_bound": 3.734910887899679,
+        "ratio": 0.26774400514876767,
+        "share_of_all_words": 0.25,
+        "holds": true
+      },
+      {
+        "d": 3,
+        "N_d": 2,
+        "printed_bound": 7.21805798414149,
+        "ratio": 0.27708283923378296,
+        "share_of_all_words": 0.25,
+        "holds": true
+      },
+      {
+        "d": 4,
+        "N_d": 3,
+        "printed_bound": 13.949559340551568,
+        "ratio": 0.21506055687930994,
+        "share_of_all_words": 0.1875,
+        "holds": true
+      },
+      {
+        "d": 5,
+        "N_d": 4,
+        "printed_bound": 26.95880335446126,
+        "ratio": 0.14837453826889027,
+        "share_of_all_words": 0.125,
+        "holds": true
+      },
+      {
+        "d": 6,
+        "N_d": 8,
+        "printed_bound": 52.10036106242872,
+        "ratio": 0.1535497995957088,
+        "share_of_all_words": 0.125,
+        "holds": true
+      },
+      {
+        "d": 7,
+        "N_d": 13,
+        "printed_bound": 100.68872817332375,
+        "ratio": 0.1291107776991883,
+        "share_of_all_words": 0.1015625,
+        "holds": true
+      },
+      {
+        "d": 8,
+        "N_d": 19,
+        "printed_bound": 194.5902057955695,
+        "ratio": 0.09764109104217104,
+        "share_of_all_words": 0.07421875,
+        "holds": true
+      },
+      {
+        "d": 9,
+        "N_d": 38,
+        "printed_bound": 376.063427143318,
+        "ratio": 0.10104678428492377,
+        "share_of_all_words": 0.07421875,
+        "holds": true
+      },
+      {
+        "d": 10,
+        "N_d": 64,
+        "printed_bound": 726.7770783045117,
+        "ratio": 0.08806001442602554,
+        "share_of_all_words": 0.0625,
+        "holds": true
+      },
+      {
+        "d": 11,
+        "N_d": 128,
+        "printed_bound": 1404.5633885784462,
+        "ratio": 0.09113152246517572,
+        "share_of_all_words": 0.0625,
+        "holds": true
+      },
+      {
+        "d": 12,
+        "N_d": 226,
+        "printed_bound": 2714.4476228354383,
+        "ratio": 0.0832581915004595,
+        "share_of_all_words": 0.05517578125,
+        "holds": true
+      },
+      {
+        "d": 13,
+        "N_d": 367,
+        "printed_bound": 5245.919092746905,
+        "ratio": 0.06995914224209449,
+        "share_of_all_words": 0.0447998046875,
+        "holds": true
+      }
+    ],
+    "c": 0.03428520074056513,
+    "c_exceeds_the_printed_floor": true,
+    "bound_holds_everywhere": true,
+    "ratio_at_the_top": 0.06995914224209449,
+    "ratio_is_falling": true,
+    "observed_rate": 0.2388885768634399,
+    "observed_over_printed": 6.9676878566674025,
+    "proposition_needs_only_positivity": true
+  },
+  "proposition_7_4_check": {
+    "rows": [
+      {
+        "L": 4,
+        "A_min": 1.0,
+        "family": "integer spacing",
+        "integral": 4.0,
+        "bound": 12.153297383825503,
+        "ratio": 0.0,
+        "holds": true
+      },
+      {
+        "L": 4,
+        "A_min": 1.0,
+        "family": "jittered spacing",
+        "integral": 3.898826457092417,
+        "bound": 12.153297383825503,
+        "ratio": 0.008324781309328629,
+        "holds": true
+      },
+      {
+        "L": 4,
+        "A_min": 2.0,
+        "family": "integer spacing",
+        "integral": 4.0,
+        "bound": 6.076648691912752,
+        "ratio": 0.0,
+        "holds": true
+      },
+      {
+        "L": 4,
+        "A_min": 2.0,
+        "family": "jittered spacing",
+        "integral": 3.9179187761734675,
+        "bound": 6.076648691912752,
+        "ratio": 0.013507646728989317,
+        "holds": true
+      },
+      {
+        "L": 8,
+        "A_min": 1.0,
+        "family": "integer spacing",
+        "integral": 8.0,
+        "bound": 31.366933972535854,
+        "ratio": 0.0,
+        "holds": true
+      },
+      {
+        "L": 8,
+        "A_min": 1.0,
+        "family": "jittered spacing",
+        "integral": 11.133131288989496,
+        "bound": 31.366933972535854,
+        "ratio": 0.09988643747370374,
+        "holds": true
+      },
+      {
+        "L": 8,
+        "A_min": 2.0,
+        "family": "integer spacing",
+        "integral": 8.0,
+        "bound": 15.683466986267927,
+        "ratio": 0.0,
+        "holds": true
+      },
+      {
+        "L": 8,
+        "A_min": 2.0,
+        "family": "jittered spacing",
+        "integral": 8.838809512025072,
+        "bound": 15.683466986267927,
+        "ratio": 0.05348367888041045,
+        "holds": true
+      },
+      {
+        "L": 16,
+        "A_min": 1.0,
+        "family": "integer spacing",
+        "integral": 16.000000000000007,
+        "bound": 76.85454635484142,
+        "ratio": 9.24529217151953e-17,
+        "holds": true
+      },
+      {
+        "L": 16,
+        "A_min": 1.0,
+        "family": "jittered spacing",
+        "integral": 16.533521767407983,
+        "bound": 76.85454635484142,
+        "ratio": 0.006941967557061429,
+        "holds": true
+      },
+      {
+        "L": 16,
+        "A_min": 2.0,
+        "family": "integer spacing",
+        "integral": 15.999999999999996,
+        "bound": 38.42727317742071,
+        "ratio": 9.24529217151953e-17,
+        "holds": true
+      },
+      {
+        "L": 16,
+        "A_min": 2.0,
+        "family": "jittered spacing",
+        "integral": 14.889983226425702,
+        "bound": 38.42727317742071,
+        "ratio": 0.028886170726954603,
+        "holds": true
+      },
+      {
+        "L": 32,
+        "A_min": 1.0,
+        "family": "integer spacing",
+        "integral": 31.99999999999999,
+        "bound": 181.95044952922225,
+        "ratio": 5.857716243064157e-17,
+        "holds": true
+      },
+      {
+        "L": 32,
+        "A_min": 1.0,
+        "family": "jittered spacing",
+        "integral": 29.786978935679507,
+        "bound": 181.95044952922225,
+        "ratio": 0.012162767775767818,
+        "holds": true
+      },
+      {
+        "L": 32,
+        "A_min": 2.0,
+        "family": "integer spacing",
+        "integral": 32.000000000000014,
+        "bound": 90.97522476461113,
+        "ratio": 1.5620576648171086e-16,
+        "holds": true
+      },
+      {
+        "L": 32,
+        "A_min": 2.0,
+        "family": "jittered spacing",
+        "integral": 33.17125636520718,
+        "bound": 90.97522476461113,
+        "ratio": 0.012874454207040226,
+        "holds": true
+      }
+    ],
+    "bound_holds_everywhere": true,
+    "worst_ratio": 0.09988643747370374,
+    "searched": [
+      {
+        "L": 3,
+        "best_ratio_found": 0.29589891376532873
+      },
+      {
+        "L": 4,
+        "best_ratio_found": 0.2390105378442175
+      },
+      {
+        "L": 6,
+        "best_ratio_found": 0.12654549437827797
+      }
+    ],
+    "best_searched_ratio": 0.29589891376532873,
+    "search_beats_the_fixed_families": true,
+    "searched_ratio_falls_with_L": true,
+    "pairwise_best": 1.237460675255992,
+    "pairwise_ceiling": 1.2732395447351628,
+    "pairwise_share_of_its_ceiling": 0.9718993416226223,
+    "pairwise_step_is_sharp": true,
+    "assembled_bound_is_attained": false,
+    "constant_is_two_pieces_times_two_orderings_over_pi": true
+  },
+  "mode_index_row_sharpness": {
+    "printed_constant": 7.0,
+    "honest_constant_at_P0": 6.000165219088582,
+    "sharp_constant_holds_from": 294722519891.23047,
+    "printed_row_P": 33232930569600.977,
+    "honest_row_P": 2824335115808.879,
+    "rounding_costs_a_factor": 11.766638591710882,
+    "printed_factor_under_P0": 1.0789900073633663,
+    "honest_factor_under_P0": 12.696085460712194,
+    "printed_row_is_near_P0": true,
+    "honest_row_is_near_P0": false,
+    "least_exponent_printed_constant": 0.31234775714238516,
+    "least_exponent_honest_constant": 0.307409588575059,
+    "five_sixteenths": 0.3125,
+    "five_sixteenths_is_the_least_admissible": false,
+    "exponent_slack_over_the_pin": 0.00015224285761483713,
+    "least_sixteenth_above_the_pin": 0.3125,
+    "minimax_exponent": 0.32184809120250163,
+    "minimax_worst": 578481371881.6445,
+    "five_sixteenths_is_the_minimax": false,
+    "floor_if_the_middle_band_improved": 578481371881.6445,
+    "floor_is_below_the_printed_row": true,
+    "largest_c7_free_row": "st6D1-modeindex",
+    "largest_c7_free_row_P": 33232930569600.977,
+    "modeindex_is_the_largest_c7_free_row": true,
+    "sharpened_row_rank": 4,
+    "rows_above_the_sharpened_row": [
+      "5a-W<=c7S",
+      "5b-E<=c7S",
+      "5b-W<=c7S"
+    ],
+    "everything_above_the_sharpened_row_mentions_c7": true,
+    "sharpened_row_still_leads_the_c7_free_rows": true,
+    "qpp_row_P": 298166397427.1972,
+    "constant_at_which_the_qpp_row_would_lead": 5.213791607122522,
+    "qpp_row_can_lead": false,
+    "hard_floor_at_c_equals_six": 2821109907456.0,
+    "c7_lever_without_the_row": 120.26170725276107,
+    "c7_lever_with_the_printed_row": 1.0789900073633663,
+    "c7_lever_if_the_constant_is_sharpened": 12.696085460712194,
+    "c7_lever_ceiling": 12.710600145435583,
+    "sharpening_restores_the_lever_of_120": false,
+    "constant_at_which_the_row_would_set_P0": 7.033340270436155,
+    "rows_at_or_below_2_8e10": 32,
+    "rows_above_2_8e10": 6,
+    "largest_row_the_text_calls_2_8e10": 28274844190.244324,
+    "the_thirty_three_all_hold_by_2_8e10": false
+  },
+  "branch_offset_range": {
+    "rows": [
+      {
+        "P": 10000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "samples": 24,
+        "max_abs_j": 1,
+        "histogram": {
+          "-1": 5,
+          "0": 11,
+          "1": 8
+        }
+      },
+      {
+        "P": 1000000,
+        "H1": 1,
+        "H2": 1,
+        "K": 1,
+        "samples": 24,
+        "max_abs_j": 1,
+        "histogram": {
+          "-1": 8,
+          "0": 11,
+          "1": 5
+        }
+      },
+      {
+        "P": 100000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "samples": 24,
+        "max_abs_j": 1,
+        "histogram": {
+          "-1": 6,
+          "0": 15,
+          "1": 3
+        }
+      },
+      {
+        "P": 10000000000,
+        "H1": 1,
+        "H2": 2,
+        "K": 2,
+        "samples": 24,
+        "max_abs_j": 1,
+        "histogram": {
+          "-1": 4,
+          "0": 16,
+          "1": 4
+        }
+      },
+      {
+        "P": 1000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "samples": 24,
+        "max_abs_j": 1,
+        "histogram": {
+          "-1": 5,
+          "0": 8,
+          "1": 11
+        }
+      },
+      {
+        "P": 100000000000000,
+        "H1": 1,
+        "H2": 3,
+        "K": 3,
+        "samples": 24,
+        "max_abs_j": 1,
+        "histogram": {
+          "-1": 4,
+          "0": 18,
+          "1": 2
+        }
+      }
+    ],
+    "histogram": {
+      "-1": 32,
+      "0": 79,
+      "1": 33
+    },
+    "samples": 144,
+    "printed_cap": 3,
+    "observed_max_abs_j": 1,
+    "cap_attained": false,
+    "share_at_the_cap": 0.0,
+    "share_at_zero": 0.5486111111111112,
+    "constant_at_the_observed_max": 2.0,
+    "row_at_the_observed_max": 65536.0,
+    "row_at_the_printed_cap": 2821109907456.0,
+    "observed_max_would_leave_the_leading_group": true,
+    "the_ceiling_rests_on_an_unobserved_corner": true,
+    "max_second_difference_of_X": 0.02998650918050252,
+    "second_difference_below_one": true,
+    "second_difference_positive_everywhere": true,
+    "provable_j_lower": -1,
+    "provable_j_upper": 2,
+    "observed_range_inside_the_provable_one": true,
+    "printed_cap_exceeds_the_provable_one": true,
+    "constant_at_the_provable_cap": 4.001,
+    "row_at_the_provable_cap": 4312179415.050242,
+    "provable_cap_leaves_the_leading_group": true,
+    "floor_at_the_provable_cap": 298000000000.0,
+    "c7_lever_at_the_provable_cap": 120.32885906040268,
+    "left_endpoint_at_the_provable_cap": 0.2944254474895318,
+    "a6_four_site_minimax": 0.29919,
+    "a6_minimax_feasible_at_the_provable_cap": true
+  },
+  "kernel_k_uniformity": {
+    "P": 10000,
+    "ks": [
+      1,
+      2,
+      8,
+      64
+    ],
+    "cap_at_this_P": 1.4677992676220695,
+    "ks_inside_the_cap": [
+      1
+    ],
+    "level2": [
+      {
+        "k": 1,
+        "exponent": 0.44882418200047225,
+        "abs_over_sqrtN": 0.7339458485813624
+      },
+      {
+        "k": 2,
+        "exponent": 0.5021480775356626,
+        "abs_over_sqrtN": 0.7325900879246217
+      },
+      {
+        "k": 8,
+        "exponent": 0.48819719697212816,
+        "abs_over_sqrtN": 1.2206990550230679
+      },
+      {
+        "k": 64,
+        "exponent": 0.4716211035724384,
+        "abs_over_sqrtN": 0.3413725521882339
+      }
+    ],
+    "level3": [
+      {
+        "k": 1,
+        "exponent": 0.43581036442886634,
+        "abs_over_sqrtN": 0.6095486588586382
+      },
+      {
+        "k": 2,
+        "exponent": 0.566180721039455,
+        "abs_over_sqrtN": 1.0932268399498764
+      },
+      {
+        "k": 8,
+        "exponent": 0.48982984657700807,
+        "abs_over_sqrtN": 0.7678211804120549
+      },
+      {
+        "k": 64,
+        "exponent": 0.4861033106528353,
+        "abs_over_sqrtN": 0.6328356917653609
+      }
+    ],
+    "level2_exponent_range": [
+      0.44882418200047225,
+      0.5021480775356626
+    ],
+    "level3_exponent_range": [
+      0.43581036442886634,
+      0.566180721039455
+    ],
+    "no_k_loses_cancellation": true
+  },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 33.86411738395691
+  "elapsed_seconds": 75.96245217323303
 }

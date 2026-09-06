@@ -3421,6 +3421,204 @@ def proposition_7_4_check(seed: int = 704, grid: int = 40000) -> dict[str, Any]:
         "constant_is_two_pieces_times_two_orderings_over_pi": abs(pair_ceiling - 2 * 2 / math.pi) < 1e-12,
     }
 
+def mode_index_row_sharpness(P0: float = 3.5858e13) -> dict[str, Any]:
+    """The mode-index row sits 8% under P_0.  How much of that margin is arithmetic.
+
+    Lemma 5.2(iii) bounds the widened decoration's theta-coefficient by
+    |q'|(2|j'| P^{-1/4} + 20 h h' P^{-3/4}) <= 6 P^{1/4}/h' + 20 h P^{-1/4}, and prints the result
+    as 7 P^{1/4}.  The first summand is 6 P^{1/4} at h' = 1; the second is at most 20 P^{-1/8} by
+    h <= P^{1/8}, so relative to P^{1/4} it is 20 P^{-3/8} and the true constant is 6 + 20P^{-3/8}
+    -- below 6.001 from 2.95e11 on, which is two orders under P_0.  Rounding it to 7 is free
+    everywhere the constant is *used*: it feeds a boundary charge (13.5 (uh)^{-1/2} P^{5/8}), a
+    tail factor (7/0.6 <= 12) and a window hypothesis (P^{1/4} >= 56.14, i.e. P >= 9.9e6), and all
+    three improve when it shrinks.  It is not free where the constant is *certified*, which is a
+    place the proof does not print: the row 7P^{1/4} <= P^{5/16}
+    first holds at 7^16 = 3.32e13, and with the honest constant at 2.82e12.  The row's proximity
+    to P_0 is therefore an artifact of one rounding, not a structural fact about the proof --
+    which matters, because the manuscript now builds a paragraph on that proximity.
+
+    Two exponent claims attach to the same row.  "5/16 is the smallest value at which all five
+    hold below P_0" is false as an exponent statement: the least a with 7P^{1/4} <= P^a by P_0 is
+    1/4 + log 7/log P_0 = 0.3123478, and 5/16 = 0.3125 is the smallest *sixteenth* above it.  And
+    the minimax over all five sites is not 5/16 either -- it is near 0.3218, where the worst of
+    them falls to 5.8e11.  That does not make 5/16 wrong: the truncation is pinned a second time
+    by the exponent identity R_0 = 2(1/24 + 1/8 - 1/96), which ties it to the headline saving, so
+    a is not free to move even though the certificate would prefer it to.  The finding is about
+    the constant, which is free, and not the exponent, which is not.
+
+    The one place the arithmetic has to be corrected: sharpening the constant does *not* hand the
+    floor back to the Step 5b(a) q'' ratio at 2.98e11.  The sharpened row is 2.82e12, and the only
+    rows above it are the three Lemma 3.9 balance comparisons, all of which mention c_7 -- so it
+    is still the largest c_7-free row, still A.5's floor, and the c_7 lever it restores is 12.7 and
+    not 120.  Nor can any sharpening reach the q'' row: that needs a coefficient below
+    (2.98e11)^{1/16} = 5.21, and 6 is a floor on the coefficient because 6 P^{1/4}/h' at h' = 1 is
+    the whole of the first summand.  The lever is capped at P_0/6^16 = 12.71 by Lemma 5.2(iii)
+    alone, given the printed |j'| <= 3 and |q'| h' <= P^{1/2}.
+    """
+
+    a = 5 / 16
+    least = p0_certificate.least_P
+
+    def row_P(const: float) -> float:
+        lg = least(lambda P: const * P ** 0.25 <= P ** a)
+        return float("inf") if lg is None else 10.0 ** lg
+
+    honest_lg = least(lambda P: (6.0 + 20.0 * P ** -0.375) * P ** 0.25 <= P ** a)
+    honest_P = float("inf") if honest_lg is None else 10.0 ** honest_lg
+    printed_P = row_P(7.0)
+    pin_printed = 0.25 + math.log(7.0) / math.log(P0)
+    pin_honest = 0.25 + math.log(6.0 + 20.0 * P0 ** -0.375) / math.log(P0)
+    minimax = p0_certificate.r0_minimax()
+    rows = p0_certificate.thresholds()
+    free = [r for r in rows if "c_7" not in r["claim"] and "S" not in r["claim"]]
+    largest_free = max(free, key=lambda r: r["P_min"])
+    # Everything the R_0 exponent does not touch: what a middle-band improvement would meet if the
+    # truncation were re-optimised as well.  st5b-qpp and the four A.6 sites all move with a, so
+    # the residue is small; the floor is the minimax worst.
+    qpp = next(r["P_min"] for r in rows if r["tag"] == "st5b-qpp")
+    a_independent = max(r["P_min"] for r in rows
+                        if r["tag"] not in ("st6D1-modeindex", "st5b-qpp", "t63-flat")
+                        and "c7S" not in r["tag"])
+    return {
+        "printed_constant": 7.0,
+        "honest_constant_at_P0": 6.0 + 20.0 * P0 ** -0.375,
+        "sharp_constant_holds_from": p0_certificate.widened_b_constant_threshold(0.001),
+        "printed_row_P": printed_P,
+        "honest_row_P": honest_P,
+        "rounding_costs_a_factor": printed_P / honest_P,
+        "printed_factor_under_P0": P0 / printed_P,
+        "honest_factor_under_P0": P0 / honest_P,
+        "printed_row_is_near_P0": P0 / printed_P < 2,
+        "honest_row_is_near_P0": P0 / honest_P < 2,
+        "least_exponent_printed_constant": pin_printed,
+        "least_exponent_honest_constant": pin_honest,
+        "five_sixteenths": a,
+        "five_sixteenths_is_the_least_admissible": abs(a - pin_printed) < 1e-9,
+        "exponent_slack_over_the_pin": a - pin_printed,
+        "least_sixteenth_above_the_pin": math.ceil(pin_printed * 16) / 16,
+        "minimax_exponent": minimax["a"],
+        "minimax_worst": minimax["worst"],
+        "five_sixteenths_is_the_minimax": abs(minimax["a"] - a) < 1e-6,
+        "floor_if_the_middle_band_improved": max(minimax["worst"], a_independent),
+        "floor_is_below_the_printed_row": max(minimax["worst"], a_independent) < printed_P,
+        "largest_c7_free_row": largest_free["tag"],
+        "largest_c7_free_row_P": largest_free["P_min"],
+        "modeindex_is_the_largest_c7_free_row": largest_free["tag"] == "st6D1-modeindex",
+        "sharpened_row_rank": 1 + sum(1 for r in rows
+                                      if r["tag"] != "st6D1-modeindex" and r["P_min"] > honest_P),
+        "rows_above_the_sharpened_row": sorted(r["tag"] for r in rows
+                                               if r["tag"] != "st6D1-modeindex" and r["P_min"] > honest_P),
+        "everything_above_the_sharpened_row_mentions_c7": all(
+            "c7S" in r["tag"] for r in rows
+            if r["tag"] != "st6D1-modeindex" and r["P_min"] > honest_P),
+        "sharpened_row_still_leads_the_c7_free_rows": all(
+            r["P_min"] < honest_P for r in rows
+            if r["tag"] != "st6D1-modeindex" and "c7S" not in r["tag"]),
+        "qpp_row_P": qpp,
+        "constant_at_which_the_qpp_row_would_lead": qpp ** (1 / 16),
+        "qpp_row_can_lead": qpp ** (1 / 16) > 6.0,
+        "hard_floor_at_c_equals_six": 6.0 ** 16,
+        "c7_lever_without_the_row": P0 / qpp,
+        "c7_lever_with_the_printed_row": P0 / printed_P,
+        "c7_lever_if_the_constant_is_sharpened": P0 / honest_P,
+        "c7_lever_ceiling": P0 / 6.0 ** 16,
+        "sharpening_restores_the_lever_of_120": P0 / honest_P > 60,
+        "constant_at_which_the_row_would_set_P0": P0 ** (1 / 16),
+        "rows_at_or_below_2_8e10": sum(1 for r in rows if r["P_min"] <= 2.8e10),
+        "rows_above_2_8e10": sum(1 for r in rows if r["P_min"] > 2.8e10),
+        "largest_row_the_text_calls_2_8e10": max(r["P_min"] for r in rows if r["P_min"] <= 2.9e10),
+        "the_thirty_three_all_hold_by_2_8e10": sum(1 for r in rows if r["P_min"] <= 2.8e10) == 33,
+    }
+
+
+def branch_offset_range(seed: int = 5213, samples_per_range: int = 40) -> dict[str, Any]:
+    """Does |j'| reach 3?  The constant 6 of Lemma 5.2(iii) is 2 |j'| at its cap, and nothing else.
+
+    The widened theta-coefficient is |q'|(2|j'| P^{-1/4} + 20 h h' P^{-3/4}); the leading 6 is
+    2 |j'| at |j'| = 3, so the whole mode-index row is 6^16-ish and the c_7 lever's ceiling of
+    12.71 rests on |j'| = 3 being attained.  It is a worst case, so a census cannot make the row
+    smaller -- only a proof of a better bound could.  But it can say whether the cap is a real
+    configuration or a slack corner: at |j'| <= 2 the row is 4^16 = 4.3e9, below the whole leading
+    group, and at |j'| <= 1 it is 65536 and leaves the table.  Either way the Step 5b(a) q'' ratio
+    at 2.98e11 becomes A.5's floor and the c_7 lever is worth 120 again.
+
+    j is the Lemma 5.1(iii) offset beta_{d1+d2} - beta_{d1} - beta_{d2}, the object the identity
+    census already gates at 3.  This reports its distribution instead of only its cap.
+    """
+
+    rng = random.Random(seed)
+    ranges = [(10**4, 2 * 10**4), (10**6, 2 * 10**6), (10**8, 2 * 10**8), (10**10, 2 * 10**10),
+              (10**12, 2 * 10**12), (10**14, 2 * 10**14)]
+    hist: dict[int, int] = {}
+    rows = []
+    worst_d2X = 0.0
+    convex: list[int] = []
+    for lo, hi in ranges:
+        P = lo
+        mp.mp.dps = working_dps_for(hi)
+        H1 = max(1, int(P ** (1 / 48)))
+        H2 = max(1, int(P ** (1 / 24)))
+        K = max(1, int(P ** (1 / 24)))
+        local: dict[int, int] = {}
+        for _ in range(samples_per_range):
+            n = rng.randrange(lo + 1, hi) | 1
+            h1, h2, k = rng.randint(1, H1), rng.randint(1, H2), rng.randint(1, K)
+            j = check_lemma_5_1_ii_iv(n, h1, h2, k)["j"]
+            d1, d2 = 2 * h1, 2 * h2
+            d2X = X_of(n + d1 + d2) - X_of(n + d1) - X_of(n + d2) + X_of(n)
+            worst_d2X = max(worst_d2X, float(abs(d2X)))
+            if d2X <= 0:
+                convex.append(n)
+            hist[j] = hist.get(j, 0) + 1
+            local[j] = local.get(j, 0) + 1
+        rows.append({"P": P, "H1": H1, "H2": H2, "K": K, "samples": samples_per_range,
+                     "max_abs_j": max(abs(j) for j in local), "histogram": dict(sorted(local.items()))})
+    mp.mp.dps = 30
+    observed = max(abs(j) for j in hist)
+    total = sum(hist.values())
+    return {
+        "rows": rows,
+        "histogram": dict(sorted(hist.items())),
+        "samples": total,
+        "printed_cap": 3,
+        "observed_max_abs_j": observed,
+        "cap_attained": observed == 3,
+        "share_at_the_cap": sum(c for j, c in hist.items() if abs(j) == 3) / total,
+        "share_at_zero": hist.get(0, 0) / total,
+        "constant_at_the_observed_max": 2.0 * observed,
+        "row_at_the_observed_max": (2.0 * observed) ** 16,
+        "row_at_the_printed_cap": 6.0 ** 16,
+        "observed_max_would_leave_the_leading_group": (2.0 * observed) ** 16 < 2.98e11,
+        "the_ceiling_rests_on_an_unobserved_corner": observed < 3,
+        # j = beta_{d1+d2} - beta_{d1} - beta_{d2} is exactly the double difference of floor(X),
+        # X = n^{3/2}: the m(n) terms cancel.  Write floor(X) = X - {X}; the four fractional parts
+        # give a double difference in (-2, 2), and X is convex with Delta^2 X = (3/4) d1 d2 n^{-1/2}
+        # + O(...) <= 3 P^{-7/16} < 1 on the admissible box.  So j is an integer in (-2, 2 + 1),
+        # i.e. -1 <= j <= 2 -- the printed cap of 3 is one more than a two-line argument gives, and
+        # the bound is not even symmetric.  At |j'| <= 2 the widened coefficient is 4 + 20P^{-3/8},
+        # the mode-index row is 4^16 = 4.3e9, and it leaves the leading group altogether.
+        "max_second_difference_of_X": worst_d2X,
+        "second_difference_below_one": worst_d2X < 1.0,
+        "second_difference_positive_everywhere": not convex,
+        "provable_j_lower": -1,
+        "provable_j_upper": 2,
+        "observed_range_inside_the_provable_one": min(hist) >= -1 and max(hist) <= 2,
+        "printed_cap_exceeds_the_provable_one": True,
+        "constant_at_the_provable_cap": 4.001,
+        "row_at_the_provable_cap": 4.001 ** 16,
+        "provable_cap_leaves_the_leading_group": 4.001 ** 16 < 2.98e11,
+        "floor_at_the_provable_cap": 2.98e11,
+        "c7_lever_at_the_provable_cap": 3.5858e13 / 2.98e11,
+        # and the exponent question reopens with it: at 4.001 the five-site left endpoint falls
+        # from 0.31235 to 0.2944, which is below A.6's recorded four-site minimax 0.29919 -- so
+        # that optimum stops being infeasible and 5/16 stops being forced from below.
+        "left_endpoint_at_the_provable_cap": 0.25 + math.log(4.001) / math.log(3.5858e13),
+        "a6_four_site_minimax": 0.29919,
+        "a6_minimax_feasible_at_the_provable_cap":
+            0.25 + math.log(4.001) / math.log(3.5858e13) < 0.29919,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -3480,6 +3678,8 @@ def summary() -> dict[str, Any]:
     warrants = trust_boundary_rows()
     words = proposition_7_1_word_count(max_d=13)
     shift_average = proposition_7_4_check(grid=20000)
+    mode_index = mode_index_row_sharpness()
+    offsets = branch_offset_range(samples_per_range=24)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -3527,6 +3727,8 @@ def summary() -> dict[str, Any]:
         "trust_boundary_rows": warrants,
         "proposition_7_1_word_count": words,
         "proposition_7_4_check": shift_average,
+        "mode_index_row_sharpness": mode_index,
+        "branch_offset_range": offsets,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
