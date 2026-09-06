@@ -1006,7 +1006,7 @@ def frozen_total_phase_samples(P: int = 10**6, seed: int = 7, trials: int = 8) -
 
 
 def exponent_checks() -> list[dict[str, Any]]:
-    """Every displayed P-power comparison of Section 5, as exact rational statements."""
+    """Every displayed P-power comparison of Sections 5-7, as exact rational statements."""
 
     F = Fr
     checks: list[tuple[str, bool]] = [
@@ -1284,6 +1284,17 @@ def exponent_checks() -> list[dict[str, Any]]:
         ("6.3: (i/2)X passenger at |i| <= 2P^{5/16}: 5/16 + 1/16 - 5/2 = -17/8",
          F(5, 16) + F(1, 16) - F(5, 2) == F(-17, 8)),
         ("6.3: -17/8 inside (D3) P^{-13/8} by P^{-1/2}", F(-17, 8) + F(13, 8) == F(-1, 2)),
+        # Section 7, the frontier: no layer of the audit had reached these
+        ("7.2: z ~ n^{27/8} so the weight rho = (3/4)k z^{1/2} ~ n^{27/16}", F(27, 8) * F(1, 2) == F(27, 16)),
+        ("7.2: rho' ~ n^{11/16}: 27/16 - 1 = 11/16", F(27, 16) - 1 == F(11, 16)),
+        ("7.3: level-3 smooth model n^{27/8} has G''' ~ P^{3/8} and G'''' ~ P^{-5/8}", F(27, 8) - 3 == F(3, 8) and F(27, 8) - 4 == -F(5, 8)),
+        ("7.3: level-2 model n^{9/4} has Y'' ~ P^{1/4} and Y''' ~ P^{-3/4}, whence two differencings against three", F(9, 4) - 2 == F(1, 4) and F(9, 4) - 3 == -F(3, 4)),
+        ("7.3: v ~ n^{9/4} jumps by n^{5/4} per step", F(9, 4) - 1 == F(5, 4)),
+        ("7.3: the inner linearization trades theta_3 for a family at rho * m^{3/4} = 27/16 + 9/8 = 45/16", F(27, 16) + F(3, 2) * F(3, 4) == F(45, 16)),
+        ("7.3: 45/16 > 9/4, the threshold where the paper's methods stop", F(45, 16) > F(9, 4)),
+        ("7.4 model dichotomy: A ~ n^c gives A' ~ n^{c-1}, so A' >> 1 iff c > 1; the instance c = 27/16", F(27, 16) - 1 > 0),
+        ("7.4 the table sorts by the same test: 3/16 and 9/16 windowed, 33/32 and 45/32 not", F(3, 16) < 1 and F(9, 16) < 1 and F(33, 32) > 1 and F(45, 32) > 1),
+        ("7.3 density of the two length-five contractors plus OOOO*: 1/32+1/32+1/16 = 1/8", F(1, 32) + F(1, 32) + F(1, 16) == F(1, 8)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -1396,29 +1407,91 @@ def kernel_block_scaling(P: int = 10**5, k: int = 1, bins: int = 256) -> dict[st
             binK[b] += mp.expjpi(2 * frac(c * th2))
             binY[b] += mp.expjpi(2 * frac(Y))
 
-    counts = [c for c in (bins, bins // 4, bins // 16, bins // 64, 1) if c >= 1]
-    rows = []
-    for count in counts:
-        step = bins // count
-        rK = math.sqrt(sum(float(abs(sum(binK[i * step:(i + 1) * step], mp.mpc(0)))) ** 2 for i in range(count)) / count)
-        rY = math.sqrt(sum(float(abs(sum(binY[i * step:(i + 1) * step], mp.mpc(0)))) ** 2 for i in range(count)) / count)
-        L = N / count
-        rows.append({"blocks": count, "block_length": L, "rms_K": rK, "rms_wave": rY,
-                     "rms_K_over_sqrtL": rK / math.sqrt(L), "rms_wave_over_sqrtL": rY / math.sqrt(L)})
-
-    def _slope(key: str) -> float:
-        xs = [math.log(r["block_length"]) for r in rows]
-        ys = [math.log(r[key]) for r in rows]
-        mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
-        return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)
+    rows, exponents = _block_scaling_rows({"K": binK, "wave": binY}, N, bins)
 
     return {
         "P": P,
         "k": k,
         "terms": N,
         "blocks": rows,
-        "kernel_exponent": _slope("rms_K"),
-        "wave_exponent": _slope("rms_wave"),
+        "kernel_exponent": exponents["K"],
+        "wave_exponent": exponents["wave"],
+        "square_root_exponent": 0.5,
+        "no_cancellation_exponent": 1.0,
+    }
+
+def _block_scaling_rows(series: dict[str, list[mp.mpc]], N: int, bins: int) -> tuple[list[dict[str, Any]], dict[str, float]]:
+    """Aggregate per-bin partial sums into 256, 64, 16, 4 and 1 blocks; fit log rms against log L."""
+
+    counts = [c for c in (bins, bins // 4, bins // 16, bins // 64, 1) if c >= 1]
+    rows: list[dict[str, Any]] = []
+    for count in counts:
+        step = bins // count
+        L = N / count
+        row: dict[str, Any] = {"blocks": count, "block_length": L}
+        for name, vals in series.items():
+            r = math.sqrt(sum(float(abs(sum(vals[i * step:(i + 1) * step], mp.mpc(0)))) ** 2 for i in range(count)) / count)
+            row["rms_" + name] = r
+            row["rms_%s_over_sqrtL" % name] = r / math.sqrt(L)
+        rows.append(row)
+
+    xs = [math.log(r["block_length"]) for r in rows]
+    mx = sum(xs) / len(xs)
+    denom = sum((x - mx) ** 2 for x in xs)
+    exponents = {}
+    for name in series:
+        ys = [math.log(r["rms_" + name]) for r in rows]
+        my = sum(ys) / len(ys)
+        exponents[name] = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / denom
+    return rows, exponents
+
+
+def level3_kernel_block_scaling(P: int = 10**4, k: int = 1, bins: int = 256) -> dict[str, Any]:
+    """The cancellation exponent of Conjecture 7.3's own sum, measured.
+
+    Conjecture 7.3 asserts K_3(P) << P^(1-delta) for some delta > 0, where
+    K_3 = sum_{n ~ P odd} e(rho(n) theta_3) with theta_3 = {v^(3/2)} and, by Lemma 7.2, the true
+    weight rho = (3k/4) z^(1/2) ~ k n^(27/16).  Nothing in the paper bounds this sum -- for
+    A' >> 1 it says no nontrivial deterministic bound is known by any method -- and Proposition 7.4
+    speaks about a shift average, not about the deterministic shift the map hands us.
+
+    The sum itself is computable.  Both the floor-shaped weight of Lemma 7.2 and the smooth
+    n^(27/16) of the conjecture's own family are summed, and the block instrument gives an exponent
+    rather than one number.  OBSERVATION: cancellation at 10^4 is not a theorem at any P, and the
+    conjecture's quantifier ("some delta > 0") is asymptotic, so no computation can confirm or
+    refute it.  What a measurement can do is say whether the sum looks like a random walk or like
+    no cancellation at all, and that is the only empirical question here that has an answer.
+    """
+
+    ns = range(P + 1, 2 * P + 1, 2)
+    N = len(ns)
+    floor_bins = [mp.mpc(0)] * bins
+    smooth_bins = [mp.mpc(0)] * bins
+    with mp.workdps(60):                       # theta_3 is a fractional part of v^(3/2) ~ n^(27/8),
+        for i, n in enumerate(ns):             # and the weight multiplies its error by n^(27/16)
+            m = math.isqrt(n * n * n)
+            v = math.isqrt(m * m * m)
+            z = math.isqrt(v * v * v)
+            th3 = mp.power(mp.mpf(v), mp.mpf(3) / 2) - z
+            b = i * bins // N
+            floor_bins[b] += mp.expjpi(2 * frac(mp.mpf(3 * k) / 4 * mp.sqrt(mp.mpf(z)) * th3))
+            smooth_bins[b] += mp.expjpi(2 * frac(mp.mpf(3 * k) / 4 * mp.power(mp.mpf(n), mp.mpf(27) / 16) * th3))
+
+    rows, exponents = _block_scaling_rows({"K3_floor": floor_bins, "K3_smooth": smooth_bins}, N, bins)
+    total_floor = float(abs(sum(floor_bins, mp.mpc(0))))
+    total_smooth = float(abs(sum(smooth_bins, mp.mpc(0))))
+    return {
+        "P": P,
+        "k": k,
+        "terms": N,
+        "blocks": rows,
+        "abs_K3_floor": total_floor,
+        "abs_K3_smooth": total_smooth,
+        "abs_K3_floor_over_sqrtN": total_floor / math.sqrt(N),
+        "abs_K3_smooth_over_sqrtN": total_smooth / math.sqrt(N),
+        "abs_K3_floor_over_trivial": total_floor / N,
+        "K3_floor_exponent": exponents["K3_floor"],
+        "K3_smooth_exponent": exponents["K3_smooth"],
         "square_root_exponent": 0.5,
         "no_cancellation_exponent": 1.0,
     }
@@ -1510,6 +1583,9 @@ def summary() -> dict[str, Any]:
     # the record is how far the printed benchmarks are from saying anything at all.
     reach = kernel_observation_reach([r["P"] for r in kernel])
     block_scaling = kernel_block_scaling()
+    # The frontier sum itself, at the cheapest point of the ladder: Conjecture 7.3 is the one open
+    # claim in the paper with a computable object attached, and nothing had ever evaluated it.
+    level3 = level3_kernel_block_scaling()
     cert = p0_certificate.certificate()
     return {
         "p0_certificate": cert,
@@ -1532,6 +1608,7 @@ def summary() -> dict[str, Any]:
         "kernel_observation": kernel,
         "kernel_observation_reach": reach,
         "kernel_block_scaling": block_scaling,
+        "level3_kernel_block_scaling": level3,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
             if ident["all_identities_hold"] and all(c["ok"] for c in margins) and all(c["ok"] for c in directed) and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and cell_scaling["ok"] and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]

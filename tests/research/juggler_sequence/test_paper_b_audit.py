@@ -592,3 +592,27 @@ def test_the_block_variance_measures_an_exponent_where_one_number_cannot() -> No
     assert 0.15 < r["wave_exponent"] < 0.75
     for b in r["blocks"]:
         assert 0.2 < b["rms_K_over_sqrtL"] < 3 and 0.2 < b["rms_wave_over_sqrtL"] < 3
+
+
+# --- Conjecture 7.3's own sum, which nothing had ever evaluated ---
+
+
+def test_the_level_three_kernel_shows_square_root_scale_cancellation() -> None:
+    """Both weights of Lemma 7.2: the floor-shaped (3k/4) z^(1/2) and the smooth n^(27/16)."""
+    r = A.level3_kernel_block_scaling(P=10**4)
+    assert r["terms"] == 5000
+    assert r["abs_K3_floor_over_trivial"] < 0.05 and r["abs_K3_floor_over_sqrtN"] < 8
+    assert r["abs_K3_smooth_over_sqrtN"] < 8
+    for key in ("K3_floor_exponent", "K3_smooth_exponent"):
+        assert 0.1 < r[key] < 0.8, (key, r[key])          # 0.5 is square root, 1.0 is none
+    for b in r["blocks"]:
+        assert 0.2 < b["rms_K3_floor_over_sqrtL"] < 3
+        assert 0.2 < b["rms_K3_smooth_over_sqrtL"] < 3
+
+
+def test_the_frontier_exponent_bookkeeping_is_exact() -> None:
+    """Section 7's displayed exponents, which no layer of the audit had reached."""
+    checks = A.exponent_checks()
+    section7 = [c for c in checks if c["check"].startswith(("7.2", "7.3", "7.4"))]
+    assert len(section7) == 10 and all(c["ok"] for c in section7)
+    assert all(c["ok"] for c in checks)

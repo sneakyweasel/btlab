@@ -30091,3 +30091,81 @@ Best next question
 - none in this direction. Section 7's frontier is described, priced,
   retrodicted and now quantified at its one positive result.
 ```
+
+## The one open claim with a computable object, evaluated
+
+Following the last entry's question. Every open claim in the paper is
+asymptotic, so none can be settled by computation -- but Conjecture 7.3
+names a sum, and the sum costs one pass.
+
+**What it names.** By Lemma 7.2 the level-3 kernel is
+`K_3(P) = sum_{n ~ P odd} e(rho(n) theta_3)` with `theta_3 = {v^(3/2)}`
+and the true weight `rho = (3k/4) z^(1/2) ~ k n^(27/16)`; the conjecture
+asks for `K_3 << P^(1-delta)` for some `delta > 0`. Nothing in the paper
+bounds it: for `A' >> 1` the model section says no nontrivial
+deterministic bound is known by any method, and Proposition 7.4 speaks
+about a shift average rather than the deterministic shift the map hands
+us.
+
+**Measured, both weights, four scales.**
+
+| P | 1e4 | 3e4 | 1e5 | 3e5 |
+|---|---|---|---|---|
+| `\|K_3\|/sqrt(N)` floor weight | 0.61 | 0.18 | 1.33 | 1.26 |
+| `\|K_3\|/sqrt(N)` smooth weight | 0.84 | 0.76 | 0.12 | 1.16 |
+| block exponent, floor | 0.42 | 0.24 | 0.54 | 0.56 |
+| block exponent, smooth | 0.47 | 0.43 | 0.18 | 0.52 |
+
+against `1/2` for square-root cancellation and `1` for none, with
+`|K_3|/N` between `1.5e-3` and `8.6e-3`. Square-root scale at every
+point, on both weights.
+
+**What that does and does not say.** It cannot confirm an asymptotic
+quantifier, the exponents scatter by `±0.15` between adjacent P, and
+the longest of the five block lengths is one sample. What it does say is
+where the deficit is not: a bound with `delta = 1/2` is informative from
+`P > 4`, while Theorem 5.3's `delta = 1/96` is informative only past
+`2^96`. The sum behaves, at every reachable scale, like the strongest
+end of what the conjecture asks. Missing at level three is a method, not
+the phenomenon -- the same reading the concurrent Proposition 7.4 entry
+reached from the other side.
+
+**And Section 7 had no exponent bookkeeping at all.** Ten displayed
+exponents are now transcribed as exact rationals: `z^(1/2) ~ n^(27/16)`,
+`rho'` at `11/16`, `G''' ~ P^(3/8)` against `G'''' ~ P^(-5/8)`, the
+level-2 `Y'' ~ P^(1/4)` and `Y''' ~ P^(-3/4)` behind "three differencings
+against two", `v` jumping by `n^(5/4)`, the traded family at
+`rho m^(3/4) = n^(45/16)` with `45/16 > 9/4`, the dichotomy
+`A' >> 1 iff c > 1` with `3/16, 9/16` against `33/32, 45/32`, and
+`1/32+1/32+1/16 = 1/8`. All exact.
+
+```text
+What was learned
+- the paper's central open problem has a computable object attached,
+  and four scales of it look like a random walk
+- the gap at level three is between method and phenomenon, not inside
+  the phenomenon
+- the floor-shaped weight of Lemma 7.2 and the smooth family of the
+  conjecture behave alike, which is what the "z^{1/2}-shaped family"
+  phrasing assumes
+- Section 7 was the only section with no exponent layer; its ten
+  displayed exponents are exact
+Strongest theorem
+- none new; the ten Section 7 identities are transcription, not proof
+Strongest refutation
+- none; K_3 does not misbehave anywhere reachable
+Reusable machinery
+- level3_kernel_block_scaling and the shared _block_scaling_rows; two
+  tests; the exponent layer now stands at 232 checks
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  A conjecture that names a sum can be looked at. Looking does not
+  prove anything and the entry says so four times, but "nobody has
+  evaluated the central open object" was a worse position than
+  "evaluated, square-root scale, still no method".
+Best next question
+- the measurement fixed k = 1, while Conjecture 7.3 claims uniformity
+  over k <= P^eps. Does the cancellation survive k growing with P, and
+  at what k does the block exponent start to move?
+```

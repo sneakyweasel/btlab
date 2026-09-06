@@ -1123,3 +1123,50 @@ the exponent it would need to test lives past \(2^{96}\).
 Also fixed: `kernel_sum` set `mp.mp.dps` to 40 and then to 60 rather
 than restoring it, so it silently lowered any caller working at higher
 precision. It now uses `mp.workdps`.
+
+## Conjecture 7.3 has a computable object, and nothing had evaluated it
+
+Every open claim in the paper is asymptotic, so none can be settled by
+computation --- but one of them names a sum. By Lemma 7.2 the level-3
+kernel is
+\(K_3(P)=\sum_{n\sim P\ \mathrm{odd}}e(\varrho(n)\theta_3)\) with
+\(\theta_3=\{v^{3/2}\}\) and the true weight
+\(\varrho=\tfrac{3k}4z^{1/2}\asymp kn^{27/16}\), and Conjecture 7.3
+asserts \(K_3\ll P^{1-\delta}\) for some \(\delta>0\). The sum costs one
+pass. `level3_kernel_block_scaling` evaluates it for both the
+floor-shaped weight of Lemma 7.2 and the smooth \(n^{27/16}\) of the
+conjecture's own family, and reads the exponent off 256 block samples
+rather than one number.
+
+| \(P\) | \(10^4\) | \(3\cdot10^4\) | \(10^5\) | \(3\cdot10^5\) |
+|---|---|---|---|---|
+| \(\lvert K_3\rvert/\sqrt N\), floor weight | 0.61 | 0.18 | 1.33 | 1.26 |
+| \(\lvert K_3\rvert/\sqrt N\), smooth weight | 0.84 | 0.76 | 0.12 | 1.16 |
+| block exponent, floor | 0.42 | 0.24 | 0.54 | 0.56 |
+| block exponent, smooth | 0.47 | 0.43 | 0.18 | 0.52 |
+
+Against \(\tfrac12\) for square-root cancellation and \(1\) for none.
+Every point is at square-root scale, on both weights;
+\(\lvert K_3\rvert/N\) runs \(1.5\cdot10^{-3}\) to \(8.6\cdot10^{-3}\).
+OBSERVATION, and it cannot be otherwise: the conjecture's quantifier is
+asymptotic, the exponents scatter by \(\pm0.15\) between adjacent \(P\),
+and the longest of the five block lengths is a single sample.
+
+What the measurement does say is where the frontier's deficit is not.
+A bound with \(\delta=\tfrac12\) is informative from \(P>4\); Theorem
+5.3's \(\delta=\tfrac1{96}\) is informative only past \(2^{96}\). The
+sum behaves, at every scale reachable, like the strongest end of what
+the conjecture asks --- so what is missing at level three is a method,
+not the phenomenon. That agrees with the reading of Proposition 7.4
+recorded above: the deficit is the quantifier, not the strength.
+
+Also: Section 7's displayed exponents had never been transcribed. Ten
+are now in `exponent_checks` --- \(z^{1/2}\asymp n^{27/16}\) from
+\(z\asymp n^{27/8}\); \(\varrho'\) at \(11/16\); the level-3 model's
+\(G'''\asymp P^{3/8}\) against \(G^{(4)}\asymp P^{-5/8}\) and the
+level-2 \(Y''\asymp P^{1/4}\), \(Y'''\asymp P^{-3/4}\) behind "three
+differencings against two"; \(v\) jumping by \(n^{5/4}\); the traded
+family at \(\varrho m^{3/4}=n^{45/16}\) and \(45/16>9/4\); the model
+dichotomy \(\mathcal A'\gg1\iff c>1\) and the table's \(3/16\), \(9/16\)
+against \(33/32\), \(45/32\); and \(\tfrac1{32}+\tfrac1{32}+\tfrac1{16}
+=\tfrac18\). All exact; the layer now stands at 232 checks. EXACT.
