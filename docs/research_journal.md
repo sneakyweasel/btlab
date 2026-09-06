@@ -32323,3 +32323,84 @@ Best next question
   and an appendix's differ: A.6's r=3 length of 2 P V/(c_3 S) against
   the proof's 4. Does the measured transition set separate those two?
 ```
+
+ ### The window would eat everything, and the carry never needed one
+
+The question: does an exponent pair at the window length, summed over
+that many windows, still clear `1/48`?
+
+**No, and by the widest possible margin.** Windows of length
+`P^{1/2}/(J h) = P^{61/264}` and count `J h P^{1/2} = P^{203/264}`
+multiply to `P`. Across one, the derivative of `e(j n^{3/2})` moves by
+`W f'' <= P^{-1/24}`, so `f'` is frozen there, no exponent pair beats
+the trivial `W`, and reassembling returns `P` exactly. Saving zero.
+
+**But the carry never needed a window.** Since
+`{X(n+h)} = {{X(n)} + {Delta_h X}}`,
+
+```text
+   kappa = floor({X(n)} + {Delta_h X})
+         = {X(n)} + {Delta_h X} - {X(n+h)}
+         = 1/2 + psi(X(n)) + psi(Delta_h X) - psi(X(n+h)).
+```
+
+Two lines of algebra. And it is Lemma 5.1(iii)'s own gap identity
+`G_i = floor(delta_{h_i}) + kappa_i`, written in sawtooths. Verified in
+exact integer arithmetic — `floor(x^{3/2})` is `isqrt(x^3)`, and the
+gap's floor is pinned by squaring, so no floating point enters — over
+ten thousand `(n, h)` pairs, `kappa = 1` in 50.3% of them, and agreeing
+with the 50-digit fractional-part reading on every sample tested.
+
+Every argument there is smooth over the *whole* range: `n^{3/2}`,
+`(n+h)^{3/2}`, and their difference. So each sawtooth Vaaler-expands
+into pure monomial waves with absolute coefficients and no endpoint
+moves. The two large families are the ones the budget already priced;
+the third, `e(j Delta_h X)`, has `F/P <= P^{-61/264}`, so `c(n+h)`
+dominates its derivatives and the pair applies at `k P^{1/32}`,
+returning `k^{1/2} P^{33/64}` — no constraint at all.
+
+So the previous entry's budget stands unqualified: `J = P^{5/22}`,
+saving `5/22`.
+
+**Where it now stops.** Every phase in the decomposition is
+`e(j n^{3/2} +/- (27k/32)(n+h)^{33/32} + ...)`, and this paper proves no
+two-monomial estimate uniform in `j`, `k` and `h`. That, and not the
+assembly, is the remaining step.
+
+```text
+What was learned
+- the window question was worth asking and the answer was that windows
+  are ruinous: length times count is exactly P, so a trivial assembly
+  saves nothing whatever
+- which made it worth looking for a form that avoids them, and the
+  form was two lines of algebra sitting inside a lemma the paper
+  already has
+- an indicator with a moving endpoint and a difference of sawtooths of
+  smooth functions are the same object; only the second expands
+- exact integer arithmetic was available the whole time: isqrt(x^3) is
+  floor(x^{3/2}), and the gap's floor squares out
+Strongest theorem
+- kappa = 1/2 + psi(X(n)) + psi(Delta_h X) - psi(X(n+h)), the level-1
+  gap identity in sawtooths, with all three arguments smooth over the
+  whole range -- so the Vaaler expansion of the carry needs no window
+  and the J = P^{5/22} budget stands unqualified
+Strongest refutation
+- the per-window assembly: f' is frozen across a window (drift
+  P^{-1/24}), so no pair beats trivial and the count returns P
+Reusable machinery
+- carry_exact, carry_sawtooth_identity, window_assembly_is_trivial;
+  five tests
+Branch status
+- PARK
+Why
+  Every step of the route is now priced and unqualified, and the one
+  remaining step is a theorem the paper does not contain: a two-monomial
+  van der Corput estimate uniform in j, k, h. That is exactly what
+  docs/theory/exponent_pair_two_monomial.md is about, and it is a
+  different branch.
+Best next question
+- the leftover note on two-monomial exponent pairs. Does it cover
+  e(j n^{3/2} - (27k/32)(n+h)^{33/32}) at |j| <= P^{5/22},
+  k <= P^{1/24}, h <= P^{1/48} -- and if not, what is the gap between
+  what it proves and what this needs?
+```

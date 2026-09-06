@@ -5331,9 +5331,41 @@ interval. Applied after differencing to \(\beta\), whose exponent is
 \(-\tfrac12\) and far below it, it has one with a quarter of an order
 to spare.
 
-What this does not do is price the wave sums at the window length
-rather than at \(P\). That is the step the accounting stops at, and it
-is where a proof would start.
+*And it is not needed.* A window would have to be paid for. Across one
+of length \(P^{1/2}/(Jh)\) the derivative of \(e(jn^{3/2})\) moves by
+\(\le P^{-1/24}\), so \(f'\) is frozen there, no pair beats the trivial
+\(W\), and \(JhP^{1/2}\) windows of length \(P^{1/2}/(Jh)\) reassemble
+to \(P\): a per-window assembly returns nothing at all. The way past
+that is not a better assembly but the observation that the carry never
+needed an indicator. Since
+\(\{X(n{+}h)\}=\bigl\{\{X(n)\}+\{\Delta_hX\}\bigr\}\),
+\[
+\kappa
+=\bigl\lfloor\{X(n)\}+\{\Delta_hX\}\bigr\rfloor
+=\{X(n)\}+\{\Delta_hX\}-\{X(n{+}h)\}
+=\tfrac12+\psi(X(n))+\psi(\Delta_hX)-\psi(X(n{+}h)),
+\]
+two lines of algebra, and Lemma 5.1(iii)'s gap identity
+\(G_i=\lfloor\delta_{h_i}\rfloor+\kappa_i\) written in sawtooths.
+Verified in exact integer arithmetic --- \(\lfloor x^{3/2}\rfloor\) is
+\(\mathrm{isqrt}(x^3)\) and the gap's floor is pinned by squaring --- over
+ten thousand pairs \((n,h)\), with \(\kappa=1\) in \(50.3\%\) of them.
+
+Every argument there is a *smooth* function of \(n\) over the whole
+range: \(n^{3/2}\), \((n{+}h)^{3/2}\), and their difference. So each
+sawtooth Vaaler-expands into pure monomial waves with absolute
+coefficients, and no endpoint moves. The two large families are
+\(e(jn^{3/2})\) and \(e(j(n{+}h)^{3/2})\), which are what the budget
+above prices; the third, \(e(j\Delta_hX)\), has
+\(F/P\asymp jhP^{-1/2}\le P^{-61/264}\), so there \(c(n{+}h)\)
+dominates the derivatives and the pair applies at \(kP^{1/32}\),
+returning \(k^{1/2}P^{33/64}\) --- no constraint at all.
+
+What is still not done is the two-monomial estimate itself, uniformly
+in \(j\), \(k\) and \(h\): every phase above is
+\(e(jn^{3/2}\pm\tfrac{27k}{32}(n{+}h)^{33/32}+\cdots)\), and this paper
+proves no such bound. That, and not the assembly, is where a proof
+would start.
 
 *The three thresholds are independent, and they re-sort depth seven.*
 Applying all of them to the three targets at once:
