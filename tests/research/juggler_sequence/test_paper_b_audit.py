@@ -1475,3 +1475,31 @@ def test_every_c1_site_is_charged_at_a_corner_the_load_cannot_reach() -> None:
     assert r["regime_boundary_line"] == 2938 and r["regime_b_at_the_load"] == "68.6 P^(19/96)"
     assert abs(r["regime_b_narrower_by"] - r["over_charge_at_P0"]) < 1e-12
     assert r["sharpening_would_weaken_one_site"] and r["danger_sizing_line"] == 2532
+
+
+# --- (C2), and the sentence that says it does nothing ---
+
+
+def test_c2_is_invoked_twice_and_both_times_above_its_own_statement() -> None:
+    """The lemma hypothesis and the |DDX| < 1 step are both (C2), both printed before it."""
+    r = A.c2_occurrence_audit()
+    assert r["statement_line"] is not None
+    assert r["count"] >= 4 and r["above_the_statement"] >= 2
+    assert r["but_both_invocations_are_above_it"]
+    assert r["it_is_the_hypothesis_of_the_offset_bound"]
+    forms = {x["form"] for x in r["occurrences"]}
+    assert forms == {"h_1h_2 <= P^{1/2}/3", "3 h_1h_2 P^{-1/2}"}
+    assert sum(1 for x in r["occurrences"] if x["is_the_statement"]) == 1
+
+
+def test_the_one_occurrence_below_needs_more_than_c2_can_give() -> None:
+    """The (D3) content ratio wants h1h2 <= P^(1/4)/3, so "nowhere below" is literally right."""
+    r = A.c2_occurrence_audit()
+    assert r["below_the_statement"] == 1 and len(r["below_lines"]) == 1
+    assert r["below_needs_a_stronger_bound_than_C2"]
+    assert r["below_bound_exponent"] == "1/4" and r["c2_exponent"] == "1/2"
+    assert r["invoked_nowhere_below_is_literally_true"]
+    assert r["least_P_for_the_D3_ratio"] == 729.0
+    # and the hypothesis is nowhere near tight where it is used
+    assert r["epsilon_under_theorem_5_3_caps"] < r["epsilon_under_C3_C4"] < 1e-5
+    assert 13.9 < r["least_P_for_C2_from_the_caps"] < 14.0

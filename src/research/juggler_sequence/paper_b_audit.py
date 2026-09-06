@@ -4369,6 +4369,79 @@ def c1_invocation_inventory(P0: float = 3.5858e13) -> dict[str, Any]:
     }
 
 
+def c2_occurrence_audit() -> dict[str, Any]:
+    """(C2) is "invoked nowhere below". True -- because both invocations are above it.
+
+    The standing constraints record ``(C2) h_1h_2 <= P^{1/2}/3`` and add that it "is in fact
+    invoked nowhere below; it is recorded because the differencing steps are easier to read
+    against a named bound on the shift product".  The literal claim survives inspection.  The
+    reason does not.
+
+    The same inequality appears twice before that sentence, in two forms:
+
+      - as the hypothesis of Lemma 5.1(iii)'s offset bound: "satisfies -1 <= j <= 2 ... for
+        h_1h_2 <= P^{1/2}/3, both ends occurring" -- textually (C2);
+      - as |Delta Delta X| <= 4 h_1h_2 sup|X''| = 3 h_1h_2 P^{-1/2} < 1, which is (C2) rearranged,
+        and is the step the offset window is read off.
+
+    Below the sentence the expression 3 h_1h_2 P^{-1/2} occurs once more, in the (D3) content
+    ratio, but bounded by P^{-1/4}: that needs h_1h_2 <= P^{1/4}/3, which (C2) cannot deliver --
+    it comes from (C3) and (C4), which give h_1h_2 <= P^{1/12} and hence the ratio from P >= 729.
+    So it is not a (C2) invocation, and "nowhere below" is correct.
+
+    What the sentence gets wrong is the standing.  (C2) is not a reading convenience: it is the
+    hypothesis of the offset bound, and everything the offset carries -- the widened constant of
+    Lemma 5.2(iii), the run-length constant, the mode-index certificate row -- rests on it.  The
+    paper's most load-bearing shift-product hypothesis has a name it is never cited by, and the
+    only sentence about that name says it does nothing.
+
+    How much room the hypothesis has where it is used: eps = 3 h_1h_2 P^{-1/2} is at most
+    3 P^{-5/12} = 6.8e-6 under (C3) and (C4), and 3 P^{-7/16} = 3.5e-6 under Theorem 5.3's own
+    caps -- which is why j = 2, needing {n^{3/2}} < eps, is invisible inside the box.
+    """
+
+    text = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(encoding="utf-8")
+    lines = text.splitlines()
+    statement = None
+    for i, line in enumerate(lines, 1):
+        if "(C2)}" in line and "P^{1/2}/3" in line:
+            statement = i
+            break
+    hits = []
+    for i, line in enumerate(lines, 1):
+        flat = line.replace(" ", "")
+        if r"h_1h_2\le P^{1/2}/3".replace(" ", "") in flat:
+            hits.append({"line": i, "form": "h_1h_2 <= P^{1/2}/3"})
+        elif "3h_1h_2P^{-1/2}" in flat:
+            hits.append({"line": i, "form": "3 h_1h_2 P^{-1/2}"})
+    for h in hits:
+        h["above_the_statement"] = statement is not None and h["line"] < statement
+        h["is_the_statement"] = h["line"] == statement
+    below = [h for h in hits if statement is not None and h["line"] > statement]
+    P0 = 3.5858e13
+    return {
+        "statement_line": statement,
+        "occurrences": hits,
+        "count": len(hits),
+        "above_the_statement": sum(1 for h in hits if h["above_the_statement"]),
+        "below_the_statement": len(below),
+        "below_lines": [h["line"] for h in below],
+        # the one below is the (D3) content ratio, which needs h_1h_2 <= P^{1/4}/3
+        "below_needs_a_stronger_bound_than_C2": True,
+        "below_bound_exponent": "1/4",
+        "c2_exponent": "1/2",
+        "invoked_nowhere_below_is_literally_true": True,
+        "but_both_invocations_are_above_it": sum(1 for h in hits if h["above_the_statement"]) >= 2,
+        "the_reason_printed_is_a_reading_convenience": True,
+        "it_is_the_hypothesis_of_the_offset_bound": True,
+        # the room where it is used
+        "epsilon_under_C3_C4": 3 * P0 ** (1 / 12 - 0.5),
+        "epsilon_under_theorem_5_3_caps": 3 * P0 ** (1 / 16 - 0.5),
+        "least_P_for_C2_from_the_caps": 3.0 ** (12 / 5),
+        "least_P_for_the_D3_ratio": 3.0 ** 6,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4439,6 +4512,7 @@ def summary() -> dict[str, Any]:
     collected = collected_constant_inventory()
     locality = beta_locality(span=12000, samples_per_range=12)
     c1sites = c1_invocation_inventory()
+    c2sites = c2_occurrence_audit()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4497,6 +4571,7 @@ def summary() -> dict[str, Any]:
         "collected_constant_inventory": collected,
         "beta_locality": locality,
         "c1_invocation_inventory": c1sites,
+        "c2_occurrence_audit": c2sites,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

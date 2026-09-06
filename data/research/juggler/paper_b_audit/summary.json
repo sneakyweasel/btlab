@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "b0ded376cbb74843cf63d471eea532960926183c",
+  "git_commit": "448b415a1465af02972d38961ae8c44b4381c73e",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3769,7 +3769,7 @@
   "draft_history_markers": {
     "occurrences": [
       {
-        "line": 2092,
+        "line": 2110,
         "section": "4. The level-2 wave and the kernel theorem",
         "in_appendix": false,
         "mathematical": false,
@@ -3777,7 +3777,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 4058,
+        "line": 4076,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3785,7 +3785,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 4990,
+        "line": 5008,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3793,7 +3793,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5495,
+        "line": 5513,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3801,7 +3801,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6306,
+        "line": 6324,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3809,7 +3809,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6676,
+        "line": 6694,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3817,7 +3817,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6706,
+        "line": 6724,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3825,7 +3825,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6785,
+        "line": 6803,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3838,8 +3838,8 @@
     "in_body": 4,
     "body_mathematical": 2,
     "body_needing_a_look": [
-      2092,
-      4058
+      2110,
+      4076
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -5162,7 +5162,7 @@
       }
     ],
     "sites": 9,
-    "lines_still_matching": 8,
+    "lines_still_matching": 7,
     "line_numbers_have_drifted": true,
     "by_kind": {
       "danger sizing": 1,
@@ -5190,6 +5190,52 @@
     "sharpening_would_weaken_one_site": true,
     "danger_sizing_line": 2532,
     "no_certificate_row_moves_P0": true
+  },
+  "c2_occurrence_audit": {
+    "statement_line": 2137,
+    "occurrences": [
+      {
+        "line": 1853,
+        "form": "h_1h_2 <= P^{1/2}/3",
+        "above_the_statement": true,
+        "is_the_statement": false
+      },
+      {
+        "line": 1970,
+        "form": "3 h_1h_2 P^{-1/2}",
+        "above_the_statement": true,
+        "is_the_statement": false
+      },
+      {
+        "line": 2137,
+        "form": "h_1h_2 <= P^{1/2}/3",
+        "above_the_statement": false,
+        "is_the_statement": true
+      },
+      {
+        "line": 3904,
+        "form": "3 h_1h_2 P^{-1/2}",
+        "above_the_statement": false,
+        "is_the_statement": false
+      }
+    ],
+    "count": 4,
+    "above_the_statement": 2,
+    "below_the_statement": 1,
+    "below_lines": [
+      3904
+    ],
+    "below_needs_a_stronger_bound_than_C2": true,
+    "below_bound_exponent": "1/4",
+    "c2_exponent": "1/2",
+    "invoked_nowhere_below_is_literally_true": true,
+    "but_both_invocations_are_above_it": true,
+    "the_reason_printed_is_a_reading_convenience": true,
+    "it_is_the_hypothesis_of_the_offset_bound": true,
+    "epsilon_under_C3_C4": 6.751139187005956e-06,
+    "epsilon_under_theorem_5_3_caps": 3.523626375863283e-06,
+    "least_P_for_C2_from_the_caps": 13.966610165238235,
+    "least_P_for_the_D3_ratio": 729.0
   },
   "kernel_k_uniformity": {
     "P": 10000,
@@ -5258,5 +5304,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 80.84876465797424
+  "elapsed_seconds": 82.60113573074341
 }

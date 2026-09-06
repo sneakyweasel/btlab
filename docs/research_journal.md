@@ -34226,3 +34226,67 @@ Best next question
   have. Is "the manuscript does not state this" a third classification the
   table should have, separate from "there is nothing to compare against"?
 ```
+
+## The name arrives after the work is done
+
+`(C2)` is `h_1h_2 <= P^(1/2)/3`, and the standing constraints say it "is
+in fact invoked nowhere below". That is true. Both invocations are
+above it: Lemma 5.1(iii)'s hypothesis at line 1853, printed as
+`h_1h_2 <= P^(1/2)/3` verbatim, and the same inequality rearranged at
+line 1970 as `|Delta Delta X| <= 4 h_1h_2 sup|X''| = 3 h_1h_2 P^(-1/2)
+< 1`. The one occurrence below the statement, the `(D3)` content ratio
+at 3904, wants `h_1h_2 <= P^(1/4)/3` and so is not a `(C2)` invocation
+at all --- it comes from `(C3)` and `(C4)`, from `P >= 729`.
+
+So the literal claim holds and the reason printed beside it does not.
+`(C2)` is not recorded "because the differencing steps are easier to
+read against a named bound on the shift product": it is the hypothesis
+of the offset bound, and the offset carries the widened constant of
+Lemma 5.2(iii), the run-length constant and the `st6D1-modeindex` row.
+Three of this ledger's findings rest on the inequality whose only
+description says it does nothing.
+
+Room where it is used: `eps = 3 h_1h_2 P^(-1/2)` is at most `6.8e-6`
+under `(C3)`+`(C4)` and `3.5e-6` under Theorem 5.3's caps. That is why
+`j = 2` is invisible in the box while the window `-1 <= j <= 2` is
+sharp at both ends outside it.
+
+```text
+Phase-end report
+Question
+- is Lemma 5.1(iii)'s hypothesis (C2) under another name, or a second
+  occurrence of the same inequality
+Instruments
+- c2_occurrence_audit: a pattern scan of the manuscript for both forms
+  of the inequality, positioned against the (C2) statement, with the
+  room computed under each set of caps
+Ledger tags
+- EXACT: four occurrences, two above the statement and one below; the
+  one below needs h_1h_2 <= P^(1/4)/3, which (C2) cannot give, so
+  "nowhere below" holds; (C2) is the lemma's hypothesis verbatim
+- COMPUTATIONALLY VERIFIED: the scan locates all four by pattern, so it
+  survives the concurrent edits; eps <= 6.751e-6 and 3.524e-6; (C2)
+  from the caps at P >= 13.97; the (D3) ratio from P >= 729
+- OBSERVATION: the only sentence about (C2) says it does nothing, and
+  it is the hypothesis three recorded findings depend on
+Strongest theorem
+- the paper's most load-bearing shift-product hypothesis is stated
+  twice before it is named, and the naming says it is unused
+Strongest refutation
+- my own framing of the question: it is not "(C2) under another name"
+  but the same inequality printed earlier, and the claim about it is
+  literally true while its stated reason is wrong
+Reusable machinery
+- c2_occurrence_audit, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  The fix is one sentence in the standing constraints and it belongs to
+  the manuscript's owner.
+Best next question
+- (C3) is 1 <= k <= P^(1/24) and Theorem 6.1 enters with k <= 2P^(1/96),
+  a quarter of the exponent. The k-uniformity clause of Theorem 5.3 is
+  what makes the gap safe. Is that clause exercised anywhere in the
+  audit above k = 2, or is every kernel evaluation still on the
+  degenerate branch?
+```

@@ -3912,3 +3912,65 @@ and their numerals are classified structural by a per-theorem wildcard rather th
 integer. That is weaker: a new empirical constant inside one of those statements would be
 absorbed. It is recorded as a wildcard *per theorem*, so a new theorem is unclassified until
 someone decides which list it belongs on, and the nineteen are named.
+
+## (C2) is invoked nowhere below because both invocations are above
+
+The standing constraints record `(C2) h_1h_2 <= P^(1/2)/3` and add that
+it "is in fact invoked nowhere below; it is recorded because the
+differencing steps are easier to read against a named bound on the
+shift product". The literal claim survives inspection. The reason does
+not.
+
+**Four occurrences, and the two that matter precede the statement.**
+
+```text
+  line   form                     where
+  1853   h_1h_2 <= P^(1/2)/3      Lemma 5.1(iii)'s hypothesis: "-1 <= j <= 2 ...
+                                  for h_1h_2 <= P^(1/2)/3, both ends occurring"
+  1970   3 h_1h_2 P^(-1/2)        |Delta Delta X| <= 4 h_1h_2 sup|X''| < 1
+  2137   h_1h_2 <= P^(1/2)/3      the statement of (C2)
+  3904   3 h_1h_2 P^(-1/2)        the (D3) content ratio, <= P^(-1/4)
+```
+
+The first two are the same inequality as `(C2)`, one of them
+rearranged, and both are the step the offset window is read off. The
+fourth is below the statement but is not a `(C2)` invocation: it wants
+`3 h_1h_2 P^(-1/2) <= P^(-1/4)`, i.e. `h_1h_2 <= P^(1/4)/3`, which
+`(C2)` cannot deliver. It follows from `(C3)` and `(C4)`, which give
+`h_1h_2 <= P^(1/12)` and hence the ratio from `P >= 729`. So "nowhere
+below" is correct as printed.
+
+**What the sentence gets wrong is the standing.** `(C2)` is not a
+reading convenience. It is the hypothesis of Lemma 5.1(iii)'s offset
+bound, and the offset carries the widened constant of Lemma 5.2(iii),
+the run-length constant, and the `st6D1-modeindex` certificate row.
+Everything this ledger has recorded about those three rests on the
+inequality that the only sentence about `(C2)` says is never used.
+
+The mismatch is one of naming, not of mathematics: the paper's most
+load-bearing shift-product hypothesis is stated twice before it is
+given a name, and the name is then introduced with a note that it does
+nothing.
+
+**How much room the hypothesis has where it is used.**
+`eps = 3 h_1h_2 P^(-1/2)` is at most `3 P^(-5/12) = 6.8e-6` under
+`(C3)` and `(C4)`, and `3 P^(-7/16) = 3.5e-6` under Theorem 5.3's own
+caps `H_1 = P^(1/48)`, `H_2 = P^(1/24)`. `(C2)` itself follows from the
+caps once `P >= 3^(12/5) = 14`. That room is why `j = 2`, which needs
+`{n^(3/2)} < eps`, is invisible inside the box even though the window
+`-1 <= j <= 2` is sharp at both ends outside it.
+
+Tags. EXACT: the four occurrences and their positions relative to the
+statement; the occurrence below needs `h_1h_2 <= P^(1/4)/3`, which
+`(C2)` cannot give, so the literal claim holds; `(C2)` is Lemma
+5.1(iii)'s hypothesis verbatim. COMPUTATIONALLY VERIFIED: the scan
+locates all four by pattern rather than line, so it survives the
+concurrent edits; `eps <= 6.751e-6` under `(C3)`+`(C4)` and
+`3.524e-6` under the Theorem 5.3 caps; `(C2)` from the caps at
+`P >= 13.97`; the `(D3)` ratio from `P >= 729`. OBSERVATION: the only
+sentence in the paper about `(C2)` says it does nothing, and it is the
+hypothesis three of this ledger's findings depend on.
+
+Probe: `c2_occurrence_audit`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.
