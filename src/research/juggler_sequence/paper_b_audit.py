@@ -209,8 +209,8 @@ def check_lemma_5_1_ii_iv(n: int, h1: int, h2: int, k: int) -> dict[str, Any]:
     }
 
 
-def check_lemma_6_2(n: int) -> dict[str, Any]:
-    """Lemma 6.2 (i), (ii): fifth-letter identities; strict printed bounds and the corrected bounds."""
+def _check_lemma_6_2_fixed_precision(n: int) -> dict[str, Any]:
+    """Lemma 6.2 (i), (ii) at whatever precision is current; see check_lemma_6_2 for the wrapper."""
 
     X = X_of(n)
     m = m_of(n)
@@ -247,6 +247,24 @@ def check_lemma_6_2(n: int) -> dict[str, Any]:
         "theta2": float(th2),
     }
 
+
+def working_dps_for(n: int) -> int:
+    """Digits enough for the Lemma 6.2 quantities at n: the same 60 + 4 log10 rule identity_census uses.
+
+    D_5 is a difference of two terms of size n^(27/16) and is itself of size n^(-9/16), so it needs
+    9/4 log10(n) digits before the first one is right; theta_z, a fractional part of v^(3/2), needs
+    27/8.  At the module's 60 digits both run out near n = 10^27, and the checker then reports a
+    *false* failure: at n = 10^28 it returns theta_2 = 5.0 and a slack ratio of 106.
+    """
+
+    return max(mp.mp.dps, 60 + int(4 * math.log10(n)))
+
+
+def check_lemma_6_2(n: int) -> dict[str, Any]:
+    """Lemma 6.2 (i), (ii): fifth-letter identities; strict printed bounds and the corrected bounds."""
+
+    with mp.workdps(working_dps_for(n)):
+        return _check_lemma_6_2_fixed_precision(n)
 
 def _lemma_3_9_inverse() -> list[list[Fr]]:
     """Exact inverse of the Vandermonde-type matrix (rows 1, x, x(x-1)) at x = alpha-2 for the
@@ -371,30 +389,217 @@ def identity_census(seed: int = 20260903, samples_per_range: int = 60) -> dict[s
 
 
 def lemma_6_2_edge_search(seed: int = 7, trials: int = 4000, lo: int = 10**6, hi: int = 2 * 10**6) -> dict[str, Any]:
-    """Search for odd n on which the *printed* Lemma 6.2 bounds fail (theta_2 or theta close to 1)."""
+    """Search for odd n on which the *printed* Lemma 6.2 bounds fail (theta_2 or theta close to 1).
+
+    The search cannot succeed, here or at any other range: lemma_6_2_margin_certificate shows the
+    printed bounds hold for every odd n >= 5, with |D_5|/b_print capped below 1 by (3/32) n^(-3/4).
+    What the worst ratio reports is therefore how close the sample got to theta_2 = 1, which is a
+    property of ``trials`` (1 - worst is of order 1/trials) and not of the lemma.  The maxima of
+    theta_2 and theta_z are returned beside it so the number cannot be read as evidence.
+    """
 
     rng = random.Random(seed)
     worst_i, worst_ii, viol = 0.0, 0.0, []
-    for _ in range(trials):
-        n = rng.randrange(lo + 1, hi) | 1
-        r = check_lemma_6_2(n)
-        X = X_of(n)
-        m = m_of(n)
-        th = X - m
-        Y = Y_of(n)
-        v = v_of(n)
-        th2 = Y - v
-        v3half = mp.power(mp.mpf(v), mp.mpf(3) / 2)
-        z = math.isqrt(v * v * v)
-        thz = v3half - z
-        n27 = mp.power(mp.mpf(n), mp.mpf(27) / 16)
-        n3 = mp.power(mp.mpf(n), mp.mpf(3) / 16)
-        D5 = mp.sqrt(z) - (n27 - mp.mpf(9) / 8 * n3 * th)
-        b_print = mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8) + mp.mpf(1) / 2 * mp.power(mp.mpf(v), -mp.mpf(3) / 4) + mp.mpf(9) / 128 * mp.power(X - 1, -mp.mpf(7) / 8)
-        worst_i = max(worst_i, float(abs(D5) / b_print))
-        if not r["i_printed"] or not r["ii_printed"]:
-            viol.append({"n": n, "theta": float(th), "theta2": float(th2), "theta_z": float(thz)})
-    return {"trials": trials, "printed_violations": viol[:10], "printed_violation_count": len(viol), "worst_ratio_to_printed_bound_i": worst_i}
+    max_th2 = max_thz = 0.0
+    with mp.workdps(working_dps_for(hi)):
+        for _ in range(trials):
+            n = rng.randrange(lo + 1, hi) | 1
+            r = check_lemma_6_2(n)
+            X = X_of(n)
+            m = m_of(n)
+            th = X - m
+            Y = Y_of(n)
+            v = v_of(n)
+            th2 = Y - v
+            v3half = mp.power(mp.mpf(v), mp.mpf(3) / 2)
+            z = math.isqrt(v * v * v)
+            thz = v3half - z
+            n27 = mp.power(mp.mpf(n), mp.mpf(27) / 16)
+            n3 = mp.power(mp.mpf(n), mp.mpf(3) / 16)
+            D5 = mp.sqrt(z) - (n27 - mp.mpf(9) / 8 * n3 * th)
+            b_print = mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8) + mp.mpf(1) / 2 * mp.power(mp.mpf(v), -mp.mpf(3) / 4) + mp.mpf(9) / 128 * mp.power(X - 1, -mp.mpf(7) / 8)
+            worst_i = max(worst_i, float(abs(D5) / b_print))
+            worst_ii = max(worst_ii, r["ii_slack_ratio"])
+            max_th2, max_thz = max(max_th2, float(th2)), max(max_thz, float(thz))
+            if not r["i_printed"] or not r["ii_printed"]:
+                viol.append({"n": n, "theta": float(th), "theta2": float(th2), "theta_z": float(thz)})
+    ceiling = lemma_6_2_ratio_ceiling((lo + hi) // 2 | 1)
+    return {
+        "trials": trials,
+        "printed_violations": viol[:10],
+        "printed_violation_count": len(viol),
+        "worst_ratio_to_printed_bound_i": worst_i,
+        "worst_ratio_to_corrected_bound_ii": worst_ii,
+        "max_theta2_seen": max_th2,
+        "max_theta_z_seen": max_thz,
+        "ratio_ceiling_at_midpoint": ceiling,
+        "worst_ratio_below_ceiling": worst_i <= ceiling,
+        "one_minus_worst_times_trials": (1.0 - worst_i) * trials,
+    }
+
+
+LEMMA_6_2_PRINTED_ORDERS = {
+    "A_theta2": Fr(-9, 16),
+    "B_thetaz": Fr(-27, 16),
+    "C_lagrange": Fr(-21, 16),
+    "E2": Fr(-45, 16),
+    "Ez": Fr(-81, 16),
+    "Dii_thetaw": Fr(-9, 16),
+}
+
+
+def _lemma_6_2_bound_terms(n: int) -> dict[str, mp.mpf]:
+    """The six coefficients of the Lemma 6.2 remainder bounds, as functions of n alone.
+
+    No fractional part is taken here, so these are accurate at the working precision for any n --
+    unlike theta_2 and theta_z, which lose every digit once v^(3/2) passes mp.dps.
+    """
+
+    X = X_of(n)
+    m = m_of(n)
+    Y = Y_of(n)
+    v = v_of(n)
+    v32 = mp.power(mp.mpf(v), mp.mpf(3) / 2)
+    U = mp.sqrt(mp.mpf(v))
+    return {
+        "A_theta2": mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8),
+        "B_thetaz": mp.mpf(1) / 2 * mp.power(mp.mpf(v), -mp.mpf(3) / 4),
+        "C_lagrange": mp.mpf(9) / 128 * mp.power(X - 1, -mp.mpf(7) / 8),
+        "E2": mp.mpf(3) / 32 * mp.power(Y - 1, -mp.mpf(5) / 4),
+        "Ez": mp.mpf(1) / 8 * mp.power(v32 - 1, -mp.mpf(3) / 2),
+        "Dii_thetaw": mp.mpf(3) / 8 * mp.power(U - 1, -mp.mpf(1) / 2),
+    }
+
+
+def lemma_6_2_ratio_ceiling(n: int) -> float:
+    """The largest value |D_5|/b_print can take at n, over free theta, theta_2, theta_z in [0,1].
+
+    b_print carries the Lagrange term C = (9/128)(X-1)^(-7/8), which only the *positive* side of
+    D_5 needs; the negative side is at most A + B + E_2 + E_z.  So the ceiling is
+    (A+B+E_2+E_z)/(A+B+C) = 1 - (C - E_2 - E_z)/b_print, and it is below 1 exactly when C covers
+    the two Lagrange remainders.  Past n ~ 10^21 the deficit falls under the double epsilon and
+    this returns exactly 1.0; lemma_6_2_margin_certificate keeps the deficit itself, formed in mpf.
+    """
+
+    t = _lemma_6_2_bound_terms(n)
+    b_print = t["A_theta2"] + t["B_thetaz"] + t["C_lagrange"]
+    return float((t["A_theta2"] + t["B_thetaz"] + t["E2"] + t["Ez"]) / b_print)
+
+
+# The deficit of the printed ratio along the directed family, and its two summands: the ceiling's
+# own 3/32 = 12/128 and the family's (1 - theta_2) = 27/128 n^(-3/4) charged through A/b_print.
+DIRECTED_DEFICIT = Fr(39, 128)
+DIRECTED_ONE_MINUS_THETA2 = Fr(27, 128)
+
+
+def lemma_6_2_directed_search(exponents: list[int] | None = None, tol: float = 1e-6) -> list[dict[str, Any]]:
+    """A deterministic family that drives |D_5|/b_print to a fixed fraction of its ceiling.
+
+    Random n cannot reach the interesting configuration: theta_2 within 1/trials of 1 is all a
+    sample buys, so lemma_6_2_edge_search reports its own trial count.  n = 10^k + 1 with k
+    divisible by 4 instead pins 1 - theta_2 = (27/128) n^(-3/4) exactly, which is the same order as
+    the ceiling deficit (3/32) n^(-3/4).  The printed ratio then sits at
+    1 - (39/128) n^(-3/4) = 1 - (12/128 + 27/128) n^(-3/4), i.e. at 4/13 of the ceiling, at every
+    member of the family and independently of theta_z, which is O(n^(-27/16)) here and irrelevant.
+
+    That makes this a regression detector where the random hunt was not: the three constants
+    39/128, 27/128 and 4/13 are fixed, so a change to the bound moves them.
+    """
+
+    ks = list(exponents) if exponents is not None else [20, 24, 28, 32, 36]
+    out: list[dict[str, Any]] = []
+    for k in ks:
+        n = 10**k + 1
+        with mp.workdps(working_dps_for(n) + 40):
+            X = X_of(n)
+            m = m_of(n)
+            v = v_of(n)
+            th = X - m
+            th2 = Y_of(n) - v
+            z = math.isqrt(v * v * v)
+            D5 = mp.sqrt(mp.mpf(z)) - (mp.power(mp.mpf(n), mp.mpf(27) / 16) - mp.mpf(9) / 8 * mp.power(mp.mpf(n), mp.mpf(3) / 16) * th)
+            t = _lemma_6_2_bound_terms(n)
+            b_print = t["A_theta2"] + t["B_thetaz"] + t["C_lagrange"]
+            deficit = 1 - abs(D5) / b_print
+            ceiling_deficit = (t["C_lagrange"] - t["E2"] - t["Ez"]) / b_print
+            scale = mp.power(mp.mpf(n), mp.mpf(3) / 4)
+            row = {
+                "k": k,
+                "n_digits": k + 1,
+                "printed_ratio_deficit_times_n^(3/4)": float(deficit * scale),
+                "ceiling_deficit_times_n^(3/4)": float(ceiling_deficit * scale),
+                "one_minus_theta2_times_n^(3/4)": float((1 - th2) * scale),
+                "attained_fraction_of_ceiling": float(ceiling_deficit / deficit),
+                "below_ceiling": bool(deficit > ceiling_deficit),
+            }
+        row["ok"] = bool(
+            row["below_ceiling"]
+            and abs(row["printed_ratio_deficit_times_n^(3/4)"] - float(DIRECTED_DEFICIT)) < tol
+            and abs(row["one_minus_theta2_times_n^(3/4)"] - float(DIRECTED_ONE_MINUS_THETA2)) < tol
+            and abs(row["attained_fraction_of_ceiling"] - 4 / 13) < tol
+        )
+        out.append(row)
+    return out
+
+def lemma_6_2_margin_certificate(points: list[int] | None = None, tol: float = 1e-4) -> list[dict[str, Any]]:
+    """Why lemma_6_2_edge_search finds nothing, and whether the five printed orders are the real ones.
+
+    The pre-correction form of Lemma 6.2(i) -- the one that absorbed E_2 and E_z into the
+    coefficients 3/4 and 1/2, which have no slack when theta_2 or theta_z is near 1 -- is
+    nevertheless a *true* inequality, by an argument the paper does not give: the Lagrange term
+    C = (9/128)(X-1)^(-7/8) sits in the bound for the sake of the positive side of D_5 and is pure
+    surplus on the negative side, where it covers E_2 + E_z with room to spare.  C/(E_2+E_z) tends
+    to (3/4) n^(3/2) and is already 8.2 at the smallest admissible n = 5.  The correction repaired
+    the derivation, not the statement, so no search at any range can produce a printed violation:
+    |D_5|/b_print has the hard ceiling 1 - (3/32) n^(-3/4) + O(n^(-9/8)).  Part (ii) is safe the
+    same way, twice over: A covers C, and the theta_w coefficient covers E_2.
+
+    The load-bearing content for Theorem 6.3 is the *order* of each remainder, not its constant, so
+    the six coefficients are also differentiated against their printed exponents.
+    """
+
+    pts = list(points) if points is not None else [5, 11, 101, 10**4 + 1, 10**6 + 1, 2 * 10**6 + 1, 10**8 + 1, 10**12 + 1, 10**16 + 1]
+    out: list[dict[str, Any]] = []
+    for n in pts:
+        t = _lemma_6_2_bound_terms(n)
+        companion = 10 * n + 1
+        t2 = _lemma_6_2_bound_terms(companion)
+        span = mp.log(mp.mpf(companion) / mp.mpf(n))
+        slopes = {k: float(mp.log(t2[k] / t[k]) / span) for k in t}
+        # The printed orders are asymptotic, and the -1 shifts and the two floors are still worth
+        # 1e-3 of slope at n = 101; below 10^4 the margin tests carry the row on their own, which is
+        # the right division -- the margins are exact at every n, the orders are limits.
+        orders_tested = n >= 10**4
+        orders_ok = {k: abs(slopes[k] - float(LEMMA_6_2_PRINTED_ORDERS[k])) < tol for k in t}
+        omitted = t["E2"] + t["Ez"]
+        b_print = t["A_theta2"] + t["B_thetaz"] + t["C_lagrange"]
+        deficit = (t["C_lagrange"] - omitted) / b_print          # 1 - ceiling, formed before the float
+        ceiling = float(1 - deficit)
+        row = {
+            "n": n,
+            "terms": {k: float(v) for k, v in t.items()},
+            "measured_exponents": slopes,
+            "orders_tested": orders_tested,
+            "printed_orders_hold": orders_ok,
+            "worst_order_deviation": max(abs(slopes[k] - float(LEMMA_6_2_PRINTED_ORDERS[k])) for k in t),
+            "i_lagrange_covers_omitted": bool(t["C_lagrange"] > omitted),
+            "i_dominance_ratio": float(t["C_lagrange"] / omitted),
+            "ii_A_covers_lagrange": bool(t["A_theta2"] > t["C_lagrange"]),
+            "ii_thetaw_covers_E2": bool(t["Dii_thetaw"] > t["E2"]),
+            "ratio_ceiling_i": ceiling,
+            "ceiling_deficit_times_n^(3/4)": float(deficit * mp.power(mp.mpf(n), mp.mpf(3) / 4)),
+        }
+        # ratio_ceiling_i < 1 is exactly i_lagrange_covers_omitted, and is not tested again in
+        # float: past n = 10^19 the deficit falls under the double epsilon and the float ceiling
+        # rounds to 1 while the mpf margin is still positive.
+        row["ok"] = bool(
+            (all(orders_ok.values()) or not orders_tested)
+            and row["i_lagrange_covers_omitted"]
+            and row["ii_A_covers_lagrange"]
+            and row["ii_thetaw_covers_E2"]
+        )
+        out.append(row)
+    return out
 
 
 # ----------------------------------------------------------------------------------------------
@@ -1162,7 +1367,12 @@ def kernel_sum(P: int, k: int = 1) -> dict[str, Any]:
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
+    # The edge search is a null instrument by construction (see lemma_6_2_margin_certificate): the
+    # printed bounds hold at every odd n >= 5, so it reports zero violations at any range and its
+    # worst ratio measures the sample size.  The certificate carries the content it was meant to.
     edge = lemma_6_2_edge_search()
+    margins = lemma_6_2_margin_certificate()
+    directed = lemma_6_2_directed_search()
     # P_0 = 8.9e13 is the effective threshold of Appendix A, so the first three points all sit
     # below the regime the standing estimates are claimed in; 1e14 and 1e16 straddle it.  The
     # low points remain because the ratios are furthest from their limits there, which makes
@@ -1187,6 +1397,10 @@ def summary() -> dict[str, Any]:
         "git_commit": git_commit(),
         "identities": ident,
         "lemma_6_2_edge_search": edge,
+        "lemma_6_2_margin_certificate": margins,
+        "lemma_6_2_margin_certificate_all_ok": all(c["ok"] for c in margins),
+        "lemma_6_2_directed_search": directed,
+        "lemma_6_2_directed_search_all_ok": all(c["ok"] for c in directed),
         "standing_estimates": standing,
         "cell_inventory": cells,
         "cell_scaling_check": cell_scaling,
@@ -1198,7 +1412,7 @@ def summary() -> dict[str, Any]:
         "kernel_observation": kernel,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
-            if ident["all_identities_hold"] and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and cell_scaling["ok"] and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]
+            if ident["all_identities_hold"] and all(c["ok"] for c in margins) and all(c["ok"] for c in directed) and all(s["all_ok"] for s in standing) and all(c["ok"] for c in cells) and cell_scaling["ok"] and all(r["ok"] for r in runs) and all(c["ok"] for c in expo) and all(c["ok"] for c in a6) and cert["all_solved"]
             else "PAPER_B_AUDIT_FINDINGS"
         ),
         "elapsed_seconds": time.time() - t0,

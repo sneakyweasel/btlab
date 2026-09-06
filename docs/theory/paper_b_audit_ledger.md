@@ -61,7 +61,7 @@ the exponent \(1-1/96\) and the statements of Theorem 6.1 are unchanged.
 | Lemma 3.9, the constant \(c_7(E)\) | **hand, exact inverses**; Lean `step5b_curvature_inverse`, `step5b_curvature_norm`, `step5b_c7_printed` | **extended**: \(\lVert M^{-1}\rVert_\infty\) computed for all ten triples of \(E\); the Step-5b triple \((\tfrac54,\tfrac{11}8,\tfrac32)\) is the **extremal** one at \(232\), so \(c_7(E)=\tfrac1{232}\) serves uniformly and \(\rho_0\le\tfrac1{1856}\). The \(\ell^\infty\)/\(\ell^1\) step where the earlier error arose is now machine-checked |
 | Step 6 assembly | hand; script | consistent |
 | Theorem 6.1 Step E: frozen-shape total phase \(\Delta\Delta(\tfrac k2 m^{9/4})-\Delta\Delta(c\theta_2)\); offset leftover \(\tfrac{81}{512}\), window-centre \(\tfrac{81}{128}\), composite \(\tfrac{243}{512}\); \(B=\tfrac{27}{32}kj\nu^{3/8}\); zero-offset \(\lambda_0'=\tfrac{1095}{1024}kh_1h_2\nu^{-5/8}\); interpolant \(b'=-\tfrac{365}{176}\) | hand; script (offset tot/81 and \(B/(kj\nu^{3/8})\) near \(1\) and \(27/32\); zero-offset tot against \(16929/2048\) near \(2190/16929\)) | **corrected architecture**: the previous composites \(405/512\) and \(8.27\) differentiated the moving total phase \(\tfrac k2\nu^{27/8}\); the \(1-1/96\) exponent is unchanged |
-| Lemma 6.2, remainder bounds | hand | **corrected**: the two Lagrange remainders (orders \(n^{-45/16}\), \(n^{-81/16}\)) are now displayed instead of being absorbed into coefficients that have no slack when \(\theta_2\) or \(\theta_z\) is close to \(1\); Theorem 6.3 uses only the order of magnitude |
+| Lemma 6.2, remainder bounds | hand; script `lemma_6_2_margin_certificate` | **corrected**: the two Lagrange remainders (orders \(n^{-45/16}\), \(n^{-81/16}\)) are now displayed instead of being absorbed into coefficients that have no slack when \(\theta_2\) or \(\theta_z\) is close to \(1\); Theorem 6.3 uses only the order of magnitude. **Extended**: the pre-correction form was true anyway -- the Lagrange term in the bound covers both omitted remainders from n = 5 up -- so the edge search cannot fail at any range; the six printed orders are confirmed |
 | Kernel sum \(K_c(P)\), \(k=1\), \(P\le3\cdot10^5\), and the wave \(\sum e(Y(n))\) | script, OBSERVATION | \(\lvert K_c\rvert\) between \(0.4\) and \(1.2\) times \(\sqrt{P/2}\): square-root scale, far below \(P^{1-1/96}\); the wave likewise; neither is evidence for the theorem's exponent, only consistent with it |
 
 *Second reading, 4 September 2026.* The \((ii)\Rightarrow(i)\)
@@ -985,3 +985,86 @@ is overstated. And the quantity is [24]'s, not this paper's: what
 weight a localized cylinder contributes is fixed there.
 
 Recorded so that a reader who recomputes hits the same wall knowingly.
+
+## The Lemma 6.2 edge search hunts for something that cannot exist
+
+`lemma_6_2_edge_search` draws random odd \(n\) on \((10^6,2\cdot10^6)\)
+and looks for a failure of the *printed* bound of Lemma 6.2(i). It has
+never found one, and it never will --- at that range or any other.
+
+Write \(A=\tfrac34m^{-3/8}\), \(B=\tfrac12v^{-3/4}\),
+\(C=\tfrac9{128}(X-1)^{-7/8}\), so that \(b_{\mathrm{print}}=A+B+C\).
+The identity is
+\(D_5=\tfrac9{128}\theta^2(X-\xi)^{-7/8}-A\theta_2-E_2-B\theta_z-E_z\).
+The term \(C\) is in the bound for the sake of the *positive* side of
+\(D_5\) and is pure surplus on the negative side, where the true
+supremum is \(A+B+E_2+E_z\). Hence the printed bound holds exactly when
+\(C\ge E_2+E_z\), i.e. \(n^{-21/16}\) against \(n^{-45/16}\): a ratio
+tending to \(\tfrac34n^{3/2}\), and already \(8.23\) at the smallest
+admissible \(n=5\). Part (ii) is safe twice over --- \(A\) covers \(C\)
+and the \(\theta_w\) coefficient \(\tfrac38(U-1)^{-1/2}\) covers
+\(E_2\), both by \(n^{3/4}\) or better.
+
+So \(\lvert D_5\rvert/b_{\mathrm{print}}\) carries the hard ceiling
+\(1-\tfrac3{32}n^{-3/4}\bigl(1+o(1)\bigr)<1\), which is
+\(1-2.2\cdot10^{-6}\) in the middle of the search's own range. What the
+search reports instead is its worst sampled ratio, \(0.99973\) at
+\(4000\) trials --- and \((1-\text{worst})\cdot\text{trials}\) stays near
+\(1\) across \(400\), \(4000\), \(8000\), \(32000\) trials, because the
+ratio is a monotone reading of \(\max\theta_2\) over the sample. The
+headline number measured the sample size. The search also sat outside
+the classification gate, so its verdict never mattered either way.
+
+**What the correction did.** The absorption step it removed was
+genuinely invalid: \(E_2\) cannot be folded into \(\tfrac34\) when
+\(\theta_2\) is near \(1\). But the inequality that step was used to
+reach was true regardless, by the surplus above. The correction repaired
+the derivation, not the statement --- and the displayed form is still
+the right call, since its constants are the sharp ones:
+\(\sup\lvert D_5\rvert/b_{\mathrm{corr}}\to1\).
+
+**What is load-bearing.** Theorem 6.3 uses only the order of each
+remainder. All six coefficients were differentiated against their
+printed exponents and match \(-\tfrac9{16}\), \(-\tfrac{27}{16}\),
+\(-\tfrac{21}{16}\), \(-\tfrac{45}{16}\), \(-\tfrac{81}{16}\) --- and
+\(-\tfrac9{16}\) for the \(\theta_w\) coefficient of (ii) --- to under
+\(10^{-6}\) at \(n=10^8\). Below \(10^4\) the two floors and the \(-1\)
+shifts are still worth \(10^{-3}\) of slope, so the order test is gated
+there and the margin tests carry the small \(n\) alone; they are exact
+at every \(n\).
+
+`lemma_6_2_margin_certificate` records all of this and *is* in the
+classification gate; `lemma_6_2_ratio_ceiling` gives the ceiling at a
+single \(n\), and the edge search now returns it beside its own worst
+ratio so the number cannot be read as evidence again. COMPUTATIONALLY
+VERIFIED at nine points from \(n=5\) to \(10^{16}\); the all-\(n\)
+statement is routine rather than machine-checked, the three exponents
+being separated by \(\tfrac{24}{16}\) while the floors perturb each term
+by a relative \(O(n^{-3/2})\).
+
+**A directed family, where the random hunt was blind.** Random \(n\) buy
+nothing better than \(\theta_2\) within \(1/\text{trials}\) of \(1\).
+The family \(n=10^k+1\) with \(4\mid k\) instead pins
+\(1-\theta_2=\tfrac{27}{128}n^{-3/4}\) *exactly* --- the same order as
+the ceiling deficit \(\tfrac3{32}=\tfrac{12}{128}\) --- so the printed
+ratio sits at \(1-\tfrac{39}{128}n^{-3/4}\), that is at \(\tfrac4{13}\)
+of the ceiling, at every member and to twelve digits, independently of
+\(\theta_z\) (which is \(O(n^{-27/16})\) here and contributes nothing).
+The deficit splits exactly: \(\tfrac{12}{128}\) from the ceiling,
+\(\tfrac{27}{128}\) from \(1-\theta_2\) charged through \(A/b\). Three
+fixed constants, so `lemma_6_2_directed_search` detects a change in the
+bound where the random hunt could not; it is in the gate.
+
+**A precision hazard, closed.** The bound terms need only relative
+precision, but \(D_5\) is a difference of two terms of size
+\(n^{27/16}\) and is itself of size \(n^{-9/16}\), so it needs
+\(\tfrac94\log_{10}n\) digits before its first one is right, and
+\(\theta_z\) needs \(\tfrac{27}8\). At the module's 60 digits both run
+out near \(n=10^{27}\), and the failure is not silent but *false*: at
+\(n=10^{28}+1\) the checker returned \(\theta_2=5.0\) --- a fractional
+part of five --- and declared the corrected bound violated, slack ratio
+\(106\). `identity_census` had always scaled precision with its range,
+which is why no census ever hit this; `check_lemma_6_2` and
+`lemma_6_2_edge_search` now scale by the same
+\(60+4\log_{10}\) rule, so the protection no longer depends on the
+caller knowing about it. Results at every existing range are unchanged.

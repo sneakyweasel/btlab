@@ -478,3 +478,72 @@ def test_the_discrepancy_is_recorded_and_runs_conservative() -> None:
     assert "conservative direction" in led
     text = _paper()
     assert "recorded in the audit ledger rather than" in text
+
+
+# --- the Lemma 6.2 edge search hunts for something that does not exist ---
+
+
+def test_the_printed_lemma_6_2_bound_holds_at_every_admissible_n() -> None:
+    """The Lagrange term in b_print covers the two omitted remainders, from n = 5 upward."""
+    rows = A.lemma_6_2_margin_certificate()
+    assert all(r["ok"] for r in rows), [r["n"] for r in rows if not r["ok"]]
+    assert rows[0]["n"] == 5 and rows[0]["i_dominance_ratio"] > 8
+    big = rows[-1]
+    assert abs(big["i_dominance_ratio"] / (0.75 * big["n"] ** 1.5) - 1) < 1e-3
+    for r in rows:
+        assert r["i_lagrange_covers_omitted"] and r["ii_A_covers_lagrange"] and r["ii_thetaw_covers_E2"]
+        if r["n"] >= 10**4:
+            assert abs(r["ceiling_deficit_times_n^(3/4)"] - 3 / 32) < 1e-3, r["n"]
+
+
+def test_the_edge_search_worst_ratio_is_a_property_of_the_sample_size() -> None:
+    small = A.lemma_6_2_edge_search(seed=7, trials=400)
+    large = A.lemma_6_2_edge_search(seed=7, trials=4000)
+    for r in (small, large):
+        assert r["printed_violation_count"] == 0
+        assert r["worst_ratio_below_ceiling"]
+    assert large["worst_ratio_to_printed_bound_i"] >= small["worst_ratio_to_printed_bound_i"]
+    # 1 - worst is of order 1/trials, and the ceiling it would have to cross is orders further out
+    assert 0.05 < large["one_minus_worst_times_trials"] < 50
+    deficit = 1 - large["worst_ratio_to_printed_bound_i"]
+    assert deficit > 10 * (1 - large["ratio_ceiling_at_midpoint"])
+    assert large["max_theta2_seen"] < 1 and large["max_theta_z_seen"] < 1
+
+
+def test_the_five_printed_remainder_orders_are_the_measured_ones() -> None:
+    row = A.lemma_6_2_margin_certificate([10**8 + 1])[0]
+    assert row["orders_tested"] and row["worst_order_deviation"] < 1e-6
+    for key, order in A.LEMMA_6_2_PRINTED_ORDERS.items():
+        assert abs(row["measured_exponents"][key] - float(order)) < 1e-6, key
+    text = _paper()
+    for order in ("-9/16", "-27/16", "-21/16", "-45/16", "-81/16"):
+        assert "n^{%s}" % order in text, order
+
+
+def test_the_directed_family_reaches_a_fixed_fraction_of_the_unreachable_ceiling() -> None:
+    """n = 10^k + 1, k divisible by 4: 1 - theta_2 is (27/128) n^(-3/4), the ceiling's own order."""
+    rows = A.lemma_6_2_directed_search()
+    assert all(r["ok"] for r in rows), [r["k"] for r in rows if not r["ok"]]
+    for r in rows:
+        assert r["below_ceiling"]
+        assert abs(r["attained_fraction_of_ceiling"] - 4 / 13) < 1e-6
+        assert abs(r["ceiling_deficit_times_n^(3/4)"] - 3 / 32) < 1e-9
+    assert A.DIRECTED_DEFICIT == Fr(12, 128) + A.DIRECTED_ONE_MINUS_THETA2
+    # and it beats the random hunt by orders of magnitude at a thousandth of the cost
+    random_deficit = 1 - A.lemma_6_2_edge_search(seed=7, trials=400)["worst_ratio_to_printed_bound_i"]
+    assert rows[0]["printed_ratio_deficit_times_n^(3/4)"] < random_deficit * 10**15
+
+
+def test_the_lemma_6_2_checker_scales_its_own_precision() -> None:
+    """At the module's 60 digits the checker reports a false failure at n = 10^28."""
+    import mpmath as mp
+
+    n = 10**28 + 1
+    assert A.working_dps_for(n) >= 60 + 4 * 28
+    with mp.workdps(60):
+        bad = A._check_lemma_6_2_fixed_precision(n)
+    assert not bad["i_corrected"] and bad["theta2"] > 1     # a fractional part of 5.0
+    before = mp.mp.dps                                      # other tests move the module setting
+    good = A.check_lemma_6_2(n)
+    assert good["i_corrected"] and good["ii_corrected"] and 0 <= good["theta2"] <= 1
+    assert mp.mp.dps == before                              # and the wrapper restores it
