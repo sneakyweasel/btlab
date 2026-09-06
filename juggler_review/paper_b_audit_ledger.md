@@ -4845,3 +4845,119 @@ looseness this ledger has been distinguishing.
 Probe: `bound_ratio_instruments`. Two tests. Audit
 `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
 or certificate edit.
+
+## At most one, not none; and nothing printed depends on the size
+
+The last entry asked whether `2c' ~ 3.4` at `P_0` is enough for the Kuzmin-Landau step that
+uses it, and whether any printed constant depends on how much bigger than `1` it is. The
+question is wrong twice over, and the second error is the interesting one.
+
+**It is not a Kuzmin-Landau step.** Kusmin-Landau appears at Theorem 4.x and in Lemma 5.2's
+Stage 3, where the relevant condition is that `||f'||` stays *away* from an integer. The
+`c' >> 1` of Section 5 is the opposite situation -- the coefficient sweeping *through* periods
+-- and feeds the drift threshold, not a Kusmin-Landau bound. Conflating them was mine.
+
+**And `2c'` at `P_0` is `4.615`, not `3.4`.** I interpolated between `2.77` at `3e6` and `9.79`
+at `1e24` as though the growth were faster than `n^(1/32)`. The exponent is small enough that
+eyeballing it is not safe.
+
+**The answer to the question as asked is no, and it is worth printing.** The condition enters
+as the binary `2c' > 1`, which is window length against lattice spacing; no constant in
+Sections 4-7 carries `c'` beyond that. What grows with `c'` is the occupancy `1/(2c')`, which
+describes the situation rather than bounding anything. Worth saying because the margin is thin
+and slow: `2c' = (891k/512) n^(1/32)` is `2.32` at `10^4`, `4.62` at `P_0`, and reaches `10`
+only near `2e24`. A reader who assumed the drift condition was comfortable at `P_0` because the
+exponent exceeds `1` would be assuming the wrong thing; it exceeds it by a factor under five,
+and the argument is built so that this does not matter.
+
+**Finding, in passing: "contains no integer at all" is too strong.** The manuscript read the
+drift-1 window as "shorter than the spacing of the summation variable, so it contains no
+integer at all". Shorter than the spacing gives *at most one*, not none. Over odd `n` the
+spacing is `2`, so a window of length `1/c' < 2` holds one odd integer with density
+`(1/c')/2 = 1/(2c')`:
+
+```text
+  P        1/c'      density   counted
+  10^4    0.8618      0.4309    0.4309
+  10^6    0.7463      0.3732    0.3732
+  10^8    0.6463      0.3231    0.3231
+  P_0     0.4334      0.2167       --
+```
+
+Tiling the block and counting reproduces `1/(2c')` to four figures
+(`decoration_budget.level1_drift_window_occupancy`). The density falls only like `n^(-1/32)`,
+so it is never zero: at `P_0` more than a fifth of drift-1 windows contain a summand.
+
+The conclusion is untouched, and the correction sharpens why. What Lemma 3.7 expands is a sum
+over a window; at most one summand per window is already fatal, and that is exactly what
+"finer than the lattice" says. "No integer at all" would have been a stronger claim doing no
+extra work, and it is false.
+
+## `6.2(ii)`'s remainder is linear in one fractional part and quadratic in another, and they meet at the same order
+
+`6.2(i)`'s ratio is uniform and `4.8`'s is a square. `6.2(ii)`'s is the
+difference of the two, and writing it out identifies the remainder's
+leading term.
+
+**Split `D_5'` at the two nestings it crosses.** At the `v`-to-`w` step,
+`w^(3/2) - (v^(3/4) - (3/2) v^(1/4) theta_w)` is Theorem 4.8's `E` with
+base `v`, so it is `(3/8) theta_w^2 v^(-1/4)`. At the `m`-to-`v` step,
+`v = Y - theta_2` with `Y = m^(3/2)`, so
+`v^(3/4) = Y^(3/4) - (3/4) Y^(-1/4) theta_2 + ...`, and
+`Y^(3/4) = m^(9/8) = n^(27/16) - (9/8) n^(3/16) theta + ...`. Both
+corrections carry the same power, since `v^(-1/4)` and `Y^(-1/4)` are
+each `m^(-3/8)`:
+
+```text
+  D_5'  =  m^(-3/8) [ (3/8) theta_w^2  -  (3/4) theta_2 ]  +  lower order
+```
+
+So the leading term is `-(3/4) theta_2 m^(-3/8)`, **linear** in
+`theta_2 = {m^(3/2)}`, with a **quadratic** correction
+`(3/8) theta_w^2 m^(-3/8)` of the same order, `theta_w = {v^(1/2)}`.
+The reduced ratio is `|theta_w^2/2 - theta_2|`, with mean
+
+```text
+  int_0^1 int_0^1 |t^2/2 - u| du dt  =  23/60  =  0.383333
+```
+
+and supremum `1`, at `theta_2 -> 1` with `theta_w -> 0`.
+
+**Measured.** The model matches the ratio sample by sample to
+`9.3e-5` on `[10000, 12000)` and `4.1e-5` on `[30000, 32000)`, the
+deviation being a genuine lower-order term --- worst at `n = 13`, where
+it is `1.1e-2`. Over `[3, 6000)` the model's mean is `0.376359` against
+the ratio's `0.376277`, a gap of `8.2e-5`. The remaining distance to
+`23/60` is the finite range, not the model; a Monte Carlo of the model
+with independent uniforms gives `0.383065`.
+
+**Three things already recorded fall out of it.**
+
+```text
+  the reduced bound is asymptotically exact   because sup |thw^2/2 - th2| = 1
+  the printed bound caps at 2/3               because |D_5'| <= (3/4) m^(-3/8)
+                                              against a denominator (9/8) m^(-3/8)
+  the mean is 0.3784, not 1/3 or 1/2          because the ratio is neither a
+                                              square nor a uniform
+```
+
+And the structural reading: the two fractional parts come from
+*different nestings* --- `theta_2` from `m -> v` and `theta_w` from
+`v -> w` --- and they arrive at the same power of `m`. That is why the
+term inventory found a same-order pair in the bound: the bound is
+carrying one term for each nesting, and the remainder is their
+difference.
+
+Tags. EXACT: `D_5' = m^(-3/8)[(3/8) theta_w^2 - (3/4) theta_2] + lower
+order` from the two-step split; the reduced ratio is
+`|theta_w^2/2 - theta_2|` with closed-form mean `23/60` and supremum
+`1`. COMPUTATIONALLY VERIFIED: the model matches sample by sample to
+`9.3e-5` at `1e4` and `4.1e-5` at `3e4`, with the deviation falling as a
+lower-order term; means `0.376277` measured against `0.376359` modelled,
+gap `8.2e-5`; Monte Carlo of the model `0.383065` against `23/60`.
+OBSERVATION: the two fractional parts enter from different nestings at
+the same order, which is where the bound's same-order pair comes from.
+
+Probe: `lemma_6_2_part_ii_leading_term`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

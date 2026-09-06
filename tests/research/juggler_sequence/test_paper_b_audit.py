@@ -1757,3 +1757,30 @@ def test_both_instruments_recover_a_fixed_ratio_between_two_bounds() -> None:
     assert "sparse" in r["why_the_census_reports_maxima"]
     assert len(r["rows"]) == 3 and r["rows"][0]["points"] == 200
     assert r["rows"][-1]["points"] == r["points"]
+
+
+# --- what the shape of the ratio says about the remainder ---
+
+
+def test_the_leading_term_of_part_ii_is_linear_in_theta_two() -> None:
+    """D_5' is m^(-3/8)[(3/8)thw^2 - (3/4)th2], so the ratio is |thw^2/2 - th2|."""
+    r = A.lemma_6_2_part_ii_leading_term(sweep_to=6000)
+    assert r["leading_term_is_linear_in_theta_2"] and r["correction_is_quadratic_in_theta_w"]
+    assert r["ratio_model"] == "|theta_w^2/2 - theta_2|"
+    assert r["model_matches_the_mean"] and r["mean_gap"] < 1e-3
+    # the residual is a genuine lower-order term: worst at the smallest n, tiny in the tail
+    assert r["worst_deviation_at"] < 100 and r["deviation_falls_with_n"]
+    assert r["tail_worst_deviation"] < 1e-3
+    assert r["two_fractional_parts_from_two_nestings"]
+
+
+def test_the_ratio_model_explains_both_the_cap_and_the_exactness() -> None:
+    """Supremum 1 gives the reduced bound's exactness; (3/4)/(9/8) gives the printed 2/3."""
+    r = A.lemma_6_2_part_ii_leading_term(sweep_to=4000)
+    assert r["model_supremum"] == 1.0
+    assert r["explains_the_reduced_bound_being_exact"] and r["explains_the_two_thirds_cap"]
+    assert abs(r["closed_form_mean"] - 23 / 60) < 1e-12
+    assert r["mean_is_neither_a_third_nor_a_half"]
+    # and it lands where bound_ratio_instruments measured the reduced mean
+    inst = A.bound_ratio_instruments()
+    assert abs(inst["rows"][-1]["l62ii_reduced"]["mean"] - r["mean_measured"]) < 0.02

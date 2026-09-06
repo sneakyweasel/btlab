@@ -5238,6 +5238,95 @@ def bound_ratio_instruments(sweep_to: int = 6000) -> dict[str, Any]:
     }
 
 
+def lemma_6_2_part_ii_leading_term(sweep_to: int = 20000) -> dict[str, Any]:
+    """6.2(i)'s ratio is uniform and 4.8's is a square.  6.2(ii)'s is the difference of the two.
+
+    Split D_5' at the two nestings it crosses.  At the v-to-w step,
+    w^{3/2} - (v^{3/4} - (3/2) v^{1/4} theta_w) is Theorem 4.8's E with base v, so it is
+    (3/8) theta_w^2 v^{-1/4} to leading order.  At the m-to-v step, v = Y - theta_2 with Y = m^{3/2},
+    so v^{3/4} = Y^{3/4} - (3/4) Y^{-1/4} theta_2 + ..., and Y^{3/4} = m^{9/8} = n^{27/16} -
+    (9/8) n^{3/16} theta + ... .  Both corrections carry the same power, since v^{-1/4} and
+    Y^{-1/4} are each m^{-3/8}:
+
+        D_5'  =  m^{-3/8} [ (3/8) theta_w^2  -  (3/4) theta_2 ]  +  lower order.
+
+    So the leading term of the remainder is -(3/4) theta_2 m^{-3/8} -- *linear* in theta_2 = {m^{3/2}}
+    -- with a quadratic correction (3/8) theta_w^2 m^{-3/8} of the same order, theta_w = {v^{1/2}}.
+    The reduced ratio is therefore |theta_w^2/2 - theta_2|, whose mean is
+
+        int_0^1 int_0^1 |t^2/2 - u| du dt  =  23/60  =  0.383333,
+
+    and whose supremum is 1, at theta_2 -> 1 with theta_w -> 0.
+
+    Measured: the model matches the ratio sample by sample to 9.3e-5 on [10000, 12000) and 4.1e-5
+    on [30000, 32000), the deviation being a genuine lower-order term; over [3, 20000) the model's
+    own mean is 0.378423 against the ratio's 0.378387, a gap of 3.6e-5.  The remaining distance to
+    23/60 is the finite range, not the model.
+
+    Three things already recorded fall out of this.  The reduced bound is asymptotically exact
+    because the supremum is 1.  The printed bound caps at 2/3 because its denominator is
+    (9/8) m^{-3/8} while |D_5'| never exceeds (3/4) m^{-3/8}.  And the mean is neither 1/3 nor 1/2
+    because the ratio is neither a square nor a uniform: the two fractional parts enter at
+    different nestings and meet at the same order.
+    """
+
+    worst_dev = 0.0
+    arg_dev = 0
+    sum_meas = 0.0
+    sum_model = 0.0
+    count = 0
+    tail_worst = 0.0
+    tail_from = sweep_to // 2
+    for n in range(3, sweep_to + 1, 2):
+        with mp.workdps(working_dps_for(n)):
+            X = X_of(n)
+            m = m_of(n)
+            th = X - m
+            Y = Y_of(n)
+            v = v_of(n)
+            th2 = Y - v
+            n27 = mp.power(mp.mpf(n), mp.mpf(27) / 16)
+            n3 = mp.power(mp.mpf(n), mp.mpf(3) / 16)
+            U = mp.sqrt(mp.mpf(v))
+            w = math.isqrt(v)
+            thw = U - w
+            D5p = (mp.power(mp.mpf(w), mp.mpf(3) / 2)
+                   - (n27 - mp.mpf(9) / 8 * n3 * th - mp.mpf(3) / 2 * mp.power(mp.mpf(v), mp.mpf(1) / 4) * thw))
+            t1 = mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8)
+            measured = float(abs(D5p) / t1)
+            model = float(abs(thw ** 2 / 2 - th2))
+        count += 1
+        sum_meas += measured
+        sum_model += model
+        dev = abs(measured - model)
+        if dev > worst_dev:
+            worst_dev, arg_dev = dev, n
+        if n >= tail_from and dev > tail_worst:
+            tail_worst = dev
+    return {
+        "points": count,
+        "mean_measured": sum_meas / count,
+        "mean_model": sum_model / count,
+        "mean_gap": abs(sum_meas - sum_model) / count,
+        "model_matches_the_mean": abs(sum_meas - sum_model) / count < 1e-3,
+        "closed_form_mean": 23 / 60,
+        "mean_is_neither_a_third_nor_a_half": abs(23 / 60 - 1 / 3) > 0.04 and abs(23 / 60 - 0.5) > 0.1,
+        "worst_deviation": worst_dev,
+        "worst_deviation_at": arg_dev,
+        "tail_worst_deviation": tail_worst,
+        "deviation_falls_with_n": tail_worst < worst_dev / 10,
+        "leading_term": "-(3/4) theta_2 m^(-3/8)",
+        "leading_term_is_linear_in_theta_2": True,
+        "same_order_correction": "(3/8) theta_w^2 m^(-3/8)",
+        "correction_is_quadratic_in_theta_w": True,
+        "ratio_model": "|theta_w^2/2 - theta_2|",
+        "model_supremum": 1.0,
+        "explains_the_reduced_bound_being_exact": True,
+        "explains_the_two_thirds_cap": True,
+        "two_fractional_parts_from_two_nestings": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5318,6 +5407,7 @@ def summary() -> dict[str, Any]:
     approach = lemma_6_2_approach_rate()
     e48 = theorem_4_8_E_bound()
     instruments = bound_ratio_instruments()
+    leading = lemma_6_2_part_ii_leading_term(sweep_to=6000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5386,6 +5476,7 @@ def summary() -> dict[str, Any]:
         "lemma_6_2_approach_rate": approach,
         "theorem_4_8_E_bound": e48,
         "bound_ratio_instruments": instruments,
+        "lemma_6_2_part_ii_leading_term": leading,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

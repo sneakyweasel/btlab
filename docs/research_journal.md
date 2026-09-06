@@ -35313,3 +35313,143 @@ Best next question
   Which is 6.2(ii)'s, and does that say what the leading term of its
   remainder actually is?
 ```
+
+### At most one, not none; and nothing printed depends on the size
+
+The recorded question asked whether `2c' ≈ 3.4` at `P_0` is enough for the
+Kuzmin–Landau step that uses it, and whether any printed constant depends on
+how much bigger than `1` it is. The question is wrong twice over, both mine.
+
+**It is not a Kuzmin–Landau step.** Kusmin–Landau appears at Theorem 4.x and in
+Lemma 5.2's Stage 3, where the condition is that `‖f'‖` stays *away* from an
+integer. The `c' ≫ 1` of Section 5 is the opposite situation — the coefficient
+sweeping *through* periods — and feeds the drift threshold instead.
+
+**And `2c'` at `P_0` is `4.615`, not `3.4`.** I interpolated between `2.77` at
+`3e6` and `9.79` at `1e24` as though the growth were faster than `n^(1/32)`.
+
+**The answer as asked is no.** The condition enters as the binary `2c' > 1` —
+window length against lattice spacing — and no constant in Sections 4–7 carries
+`c'` beyond that. What grows with `c'` is the occupancy `1/(2c')`, which
+describes rather than bounds. Worth printing because the margin is thin and
+slow: `2.32` at `10^4`, `4.62` at `P_0`, reaching `10` only near `2e24`.
+
+**Finding in passing: "contains no integer at all" is too strong.** Shorter than
+the spacing gives *at most one*, not none. Over odd `n` the spacing is `2`, so a
+window of length `1/c' < 2` holds one odd integer with density `1/(2c')`:
+
+```text
+  P        1/c'      density   counted
+  10^4    0.8618      0.4309    0.4309
+  10^6    0.7463      0.3732    0.3732
+  10^8    0.6463      0.3231    0.3231
+  P_0     0.4334      0.2167       --
+```
+
+Tiling and counting reproduces `1/(2c')` to four figures. The density falls only
+like `n^(-1/32)`, so at `P_0` more than a fifth of drift-1 windows still contain
+a summand. The conclusion is untouched and the correction sharpens why: what
+Lemma 3.7 expands is a sum over a window, and at most one summand per window is
+already fatal — which is what "finer than the lattice" says.
+
+```text
+What was learned
+- my own question named the wrong lemma and the wrong number; Kusmin-Landau is
+  a different step, and 2c' at P_0 is 4.615, not the 3.4 I interpolated
+- the honest answer is a negative worth printing: the drift condition is used
+  binary, and no printed constant carries c' beyond 2c' > 1
+- "no integer at all" was a stronger claim doing no extra work, and false; the
+  density of occupied windows is 1/(2c') and never zero
+- an exponent of 1/32 is small enough that eyeballing a growth curve is unsafe,
+  which is the second time this tick's arithmetic has caught me
+Strongest theorem
+- a drift-1 window has length 1/c' < 2 and holds at most one odd integer, with
+  density exactly 1/(2c'), reproduced by direct count to four figures at three P
+Strongest refutation
+- "so it contains no integer at all", and my own 3.4
+Reusable machinery
+- decoration_budget.level1_drift_window_occupancy; a citation row; three new
+  tests
+Branch status
+- PARK
+Why
+  The question is answered in the negative with the reason printed, the
+  overstatement it turned up is corrected at its site, and the density is
+  measured rather than asserted. Nothing here moves P_0.
+Best next question
+- the erratum says at most one summand per window is fatal to Lemma 3.7. That
+  is stated, not proved: the lemma's hypothesis is about a window on which the
+  coefficient moves by less than one, and what it delivers is an expansion with
+  a flat cost and a mode sum. With one term per window the flat cost alone is
+  the trivial bound. Is there a sharper statement -- that the expansion is not
+  merely useless but strictly worse than not expanding -- and does the paper
+  need it anywhere, or is "no better than trivial" enough?
+```
+
+## One from each nesting, meeting at the same power
+
+`6.2(ii)`'s ratio is neither uniform nor a square: it is the difference.
+Splitting `D_5'` at the two nestings it crosses, the `v`-to-`w` step
+contributes Theorem 4.8's `E` with base `v`, `(3/8) theta_w^2 v^(-1/4)`,
+and the `m`-to-`v` step contributes `-(3/4) Y^(-1/4) theta_2`. Both
+`v^(-1/4)` and `Y^(-1/4)` are `m^(-3/8)`, so
+
+```text
+  D_5' = m^(-3/8) [ (3/8) theta_w^2 - (3/4) theta_2 ] + lower order
+```
+
+and the reduced ratio is `|theta_w^2/2 - theta_2|`, mean `23/60`,
+supremum `1`. The model matches the ratio sample by sample to `9.3e-5`
+at `1e4` and `4.1e-5` at `3e4`, and its mean to `8.2e-5`.
+
+That explains the three things already recorded. The reduced bound is
+asymptotically exact because the supremum is `1`; the printed bound caps
+at `2/3` because `|D_5'|` never exceeds `(3/4) m^(-3/8)` against a
+denominator `(9/8) m^(-3/8)`; and the mean is `0.378`, neither `1/3` nor
+`1/2`, because the ratio is neither shape.
+
+The structural reading is the useful part: the two fractional parts come
+from *different nestings*, `theta_2` from `m -> v` and `theta_w` from
+`v -> w`, and they arrive at the same power of `m`. The bound carries
+one term per nesting, and the remainder is their difference -- which is
+exactly why the term inventory found a same-order pair, and why deleting
+one of them still bounds the difference.
+
+```text
+Phase-end report
+Question
+- is 6.2(ii)'s ratio linear or quadratic in a fractional part, and what
+  does that say about the leading term of its remainder
+Instruments
+- lemma_6_2_part_ii_leading_term: the two-step split against the
+  measured ratio, sample by sample and in the mean, with the closed-form
+  mean and a Monte Carlo of the model
+Ledger tags
+- EXACT: D_5' = m^(-3/8)[(3/8) theta_w^2 - (3/4) theta_2] + lower order;
+  the reduced ratio is |theta_w^2/2 - theta_2| with mean 23/60 and
+  supremum 1
+- COMPUTATIONALLY VERIFIED: model matches to 9.3e-5 at 1e4 and 4.1e-5 at
+  3e4, deviation falling as a lower-order term; means 0.376277 against
+  0.376359; Monte Carlo 0.383065 against 23/60
+- OBSERVATION: the two fractional parts enter from different nestings at
+  the same order
+Strongest theorem
+- the leading term of 6.2(ii)'s remainder is -(3/4) theta_2 m^(-3/8),
+  linear in the m -> v fractional part, with a same-order quadratic
+  correction from the v -> w one
+Strongest refutation
+- the dichotomy in my own question: the ratio is neither linear nor
+  quadratic but a difference of the two
+Reusable machinery
+- lemma_6_2_part_ii_leading_term, two tests, wired into summary()
+Branch status
+- PARK
+Why
+  Lemma 6.2 is now understood term by term and the only edit it wants is
+  the deletion recorded three passes ago.
+Best next question
+- the same two-nesting split should apply to 6.2(i), whose ratio is
+  uniform with mean 1/2. If its remainder is linear in a single
+  fractional part, which one -- and does the fifth-letter identity carry
+  only one nesting where (ii) carries two?
+```
