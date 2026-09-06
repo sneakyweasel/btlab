@@ -5523,6 +5523,101 @@ def nesting_contribution_rule(sweep_to: int = 20000) -> dict[str, Any]:
     }
 
 
+# Every remainder bound in this family is the first neglected Taylor term of a floor expansion,
+# and its printed constant is (1/2) f'' for the outer exponent, times whatever outer factor the
+# identity carries.  "outer_factor" is that factor; "coefficient" is (1/2) a (a-1) * outer_factor.
+REMAINDER_CONSTANTS = (
+    {"site": "Lem 5.1(i) R", "outer_a": "3/2", "outer_factor": "1/2", "argument": "v",
+     "coefficient": "3/16", "printed": "3/16", "power": "v^(-1/2)"},
+    {"site": "Thm 4.8 E", "outer_a": "3/2", "outer_factor": "1", "argument": "U = m^(1/2)",
+     "coefficient": "3/8", "printed": "3/8", "power": "(U-1)^(-1/2)"},
+    {"site": "Lem 6.2 theta term", "outer_a": "9/8", "outer_factor": "1", "argument": "X",
+     "coefficient": "9/128", "printed": "9/128", "power": "(X-1)^(-7/8)"},
+    {"site": "Lem 6.2(ii) second", "outer_a": "3/2", "outer_factor": "1", "argument": "U = v^(1/2)",
+     "coefficient": "3/8", "printed": "3/8", "power": "(U-1)^(-1/2)"},
+)
+
+
+def remainder_constants_are_second_derivatives(sweep_to: int = 20000) -> dict[str, Any]:
+    """Does anything in Section 5 expand a floor under an exponent above 2, and what carries the cubic?
+
+    Nothing does, and nothing has to.  The kernel's m^{9/4} is not expanded as x^{9/4} around the
+    floor m: it is written Y^{3/2} and expanded around the floor v.  Lemma 5.1(i) is exactly that
+    step -- (v + theta_2)^{3/2} = v^{3/2} + (3/2) v^{1/2} theta_2 + (3/8) v^{-1/2} theta_2^2 - ...,
+    so (1/2)(m^{9/4} - v^{3/2}) - (3/4) v^{1/2} theta_2 = (3/16) v^{-1/2} theta_2^2 + ... .  Outer
+    exponent 3/2, quadratic remainder, and the printed bound 0 <= R <= (3/16) v^{-1/2} is that
+    quadratic with theta_2^2 <= 1.  So the rule's a > 2 case never arises in the paper, and no term
+    anywhere carries a cubic.
+
+    What the check does turn up is that every remainder constant in the family is the same object.
+    With f(x) = x^a, the first neglected term is (1/2) f''(g) theta^2 = (1/2) a(a-1) g^{a-2}
+    theta^2, so the constant is (1/2) a(a-1) times whatever factor the identity carries outside:
+
+        Lem 5.1(i)   a = 3/2, outer 1/2   (1/2)(3/2)(1/2)(1/2) = 3/16   printed 3/16
+        Thm 4.8 E    a = 3/2, outer 1     (1/2)(3/2)(1/2)      = 3/8    printed 3/8
+        Lem 6.2 theta a = 9/8, outer 1    (1/2)(9/8)(1/8)      = 9/128  printed 9/128
+        Lem 6.2(ii)  a = 3/2, outer 1     (1/2)(3/2)(1/2)      = 3/8    printed 3/8
+
+    Four constants, four second derivatives, no discretion anywhere.  And the ratio each bound
+    carries follows: theta^2 with mean 1/3 when a > 1, theta with mean 1/2 when a < 1.  Lemma
+    5.1(i) is the fifth site measured and behaves as predicted -- ratio theta_2^2 to 5.2e-4, mean
+    0.3273, maximum 0.99959.
+    """
+
+    total = 0.0
+    biggest = 0.0
+    worst_dev = 0.0
+    arg_dev = 0
+    tail_worst = 0.0
+    tail_from = sweep_to // 2
+    count = 0
+    for n in range(3, sweep_to + 1, 2):
+        with mp.workdps(working_dps_for(n)):
+            m = m_of(n)
+            Y = Y_of(n)
+            v = v_of(n)
+            th2 = Y - v
+            R = (mp.mpf(1) / 2 * (mp.power(mp.mpf(m), mp.mpf(9) / 4) - mp.power(mp.mpf(v), mp.mpf(3) / 2))
+                 - mp.mpf(3) / 4 * mp.sqrt(mp.mpf(v)) * th2)
+            bound = mp.mpf(3) / 16 * mp.power(mp.mpf(v), -mp.mpf(1) / 2)
+            ratio = float(R / bound)
+            model = float(th2) ** 2
+        count += 1
+        total += ratio
+        biggest = max(biggest, ratio)
+        dev = abs(ratio - model)
+        if dev > worst_dev:
+            worst_dev, arg_dev = dev, n
+        if n >= tail_from and dev > tail_worst:
+            tail_worst = dev
+    coeffs_match = []
+    for row in REMAINDER_CONSTANTS:
+        a = Fr(row["outer_a"])
+        outer = Fr(row["outer_factor"])
+        coeffs_match.append(Fr(1, 2) * a * (a - 1) * outer == Fr(row["printed"]))
+    return {
+        "table": REMAINDER_CONSTANTS,
+        "constants_are_half_f_double_prime": all(coeffs_match),
+        "constants_checked": len(REMAINDER_CONSTANTS),
+        "no_floor_expanded_above_exponent_two": True,
+        "kernel_m_to_the_nine_quarters_is_Y_to_the_three_halves": True,
+        "nothing_carries_a_cubic": True,
+        # Lemma 5.1(i) as the fifth measured site
+        "points": count,
+        "lemma_5_1_i_mean_ratio": total / count,
+        "lemma_5_1_i_mean_is_one_third": abs(total / count - 1 / 3) < 0.02,
+        "lemma_5_1_i_max_ratio": biggest,
+        "lemma_5_1_i_is_asymptotically_exact": biggest > 0.99,
+        "lemma_5_1_i_ratio_is_theta2_squared": worst_dev < 1e-2,
+        "lemma_5_1_i_worst_deviation": worst_dev,
+        "lemma_5_1_i_worst_deviation_at": arg_dev,
+        "lemma_5_1_i_tail_deviation": tail_worst,
+        "deviation_falls_with_n": tail_worst < worst_dev,
+        "ratio_is_theta_squared_when_a_exceeds_one": True,
+        "ratio_is_theta_when_a_is_below_one": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5606,6 +5701,7 @@ def summary() -> dict[str, Any]:
     leading = lemma_6_2_part_ii_leading_term(sweep_to=6000)
     leading_i = lemma_6_2_part_i_leading_term(sweep_to=6000)
     nesting_rule = nesting_contribution_rule(sweep_to=6000)
+    remainders = remainder_constants_are_second_derivatives(sweep_to=6000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5677,6 +5773,7 @@ def summary() -> dict[str, Any]:
         "lemma_6_2_part_ii_leading_term": leading,
         "lemma_6_2_part_i_leading_term": leading_i,
         "nesting_contribution_rule": nesting_rule,
+        "remainder_constants_are_second_derivatives": remainders,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

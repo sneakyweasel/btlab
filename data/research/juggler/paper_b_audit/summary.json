@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "69ae087f4f70e0d1eb57e808bfcbd8d32ef64619",
+  "git_commit": "25f1b96e97332f4f8055907694c53ae33c57fbec",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3883,7 +3883,7 @@
   "draft_history_markers": {
     "occurrences": [
       {
-        "line": 2129,
+        "line": 2168,
         "section": "4. The level-2 wave and the kernel theorem",
         "in_appendix": false,
         "mathematical": false,
@@ -3891,7 +3891,7 @@
         "text": "(`lemma51_brackets_le_two`). These were previously supported only by the"
       },
       {
-        "line": 4095,
+        "line": 4134,
         "section": "Architecture of the proof of Theorem 5.3",
         "in_appendix": false,
         "mathematical": false,
@@ -3899,7 +3899,7 @@
         "text": "no longer conflict --- both the threshold and the non-vacuity point"
       },
       {
-        "line": 5027,
+        "line": 5066,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3907,7 +3907,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5675,
+        "line": 5714,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3915,7 +3915,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6486,
+        "line": 6525,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6856,
+        "line": 6895,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6886,
+        "line": 6925,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6965,
+        "line": 7004,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3952,8 +3952,8 @@
     "in_body": 4,
     "body_mathematical": 2,
     "body_needing_a_look": [
-      2129,
-      4095
+      2168,
+      4134
     ],
     "the_referees_phrase_is_gone": true
   },
@@ -5276,7 +5276,7 @@
       }
     ],
     "sites": 9,
-    "lines_still_matching": 2,
+    "lines_still_matching": 4,
     "line_numbers_have_drifted": true,
     "by_kind": {
       "danger sizing": 1,
@@ -5306,28 +5306,28 @@
     "no_certificate_row_moves_P0": true
   },
   "c2_occurrence_audit": {
-    "statement_line": 2156,
+    "statement_line": 2195,
     "occurrences": [
       {
-        "line": 1860,
+        "line": 1899,
         "form": "h_1h_2 <= P^{1/2}/3",
         "above_the_statement": true,
         "is_the_statement": false
       },
       {
-        "line": 1979,
+        "line": 2018,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": true,
         "is_the_statement": false
       },
       {
-        "line": 2156,
+        "line": 2195,
         "form": "h_1h_2 <= P^{1/2}/3",
         "above_the_statement": false,
         "is_the_statement": true
       },
       {
-        "line": 3923,
+        "line": 3962,
         "form": "3 h_1h_2 P^{-1/2}",
         "above_the_statement": false,
         "is_the_statement": false
@@ -5337,7 +5337,7 @@
     "above_the_statement": 2,
     "below_the_statement": 1,
     "below_lines": [
-      3923
+      3962
     ],
     "below_needs_a_stronger_bound_than_C2": true,
     "below_bound_exponent": "1/4",
@@ -6226,6 +6226,63 @@
     "rule_is_the_outer_exponent": true,
     "last_pass_read_the_inner_exponent": true
   },
+  "remainder_constants_are_second_derivatives": {
+    "table": [
+      {
+        "site": "Lem 5.1(i) R",
+        "outer_a": "3/2",
+        "outer_factor": "1/2",
+        "argument": "v",
+        "coefficient": "3/16",
+        "printed": "3/16",
+        "power": "v^(-1/2)"
+      },
+      {
+        "site": "Thm 4.8 E",
+        "outer_a": "3/2",
+        "outer_factor": "1",
+        "argument": "U = m^(1/2)",
+        "coefficient": "3/8",
+        "printed": "3/8",
+        "power": "(U-1)^(-1/2)"
+      },
+      {
+        "site": "Lem 6.2 theta term",
+        "outer_a": "9/8",
+        "outer_factor": "1",
+        "argument": "X",
+        "coefficient": "9/128",
+        "printed": "9/128",
+        "power": "(X-1)^(-7/8)"
+      },
+      {
+        "site": "Lem 6.2(ii) second",
+        "outer_a": "3/2",
+        "outer_factor": "1",
+        "argument": "U = v^(1/2)",
+        "coefficient": "3/8",
+        "printed": "3/8",
+        "power": "(U-1)^(-1/2)"
+      }
+    ],
+    "constants_are_half_f_double_prime": true,
+    "constants_checked": 4,
+    "no_floor_expanded_above_exponent_two": true,
+    "kernel_m_to_the_nine_quarters_is_Y_to_the_three_halves": true,
+    "nothing_carries_a_cubic": true,
+    "points": 2999,
+    "lemma_5_1_i_mean_ratio": 0.3295610740564748,
+    "lemma_5_1_i_mean_is_one_third": true,
+    "lemma_5_1_i_max_ratio": 0.9995936804688943,
+    "lemma_5_1_i_is_asymptotically_exact": true,
+    "lemma_5_1_i_ratio_is_theta2_squared": true,
+    "lemma_5_1_i_worst_deviation": 0.0005186433566851112,
+    "lemma_5_1_i_worst_deviation_at": 5,
+    "lemma_5_1_i_tail_deviation": 2.310833080443331e-09,
+    "deviation_falls_with_n": true,
+    "ratio_is_theta_squared_when_a_exceeds_one": true,
+    "ratio_is_theta_when_a_is_below_one": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6293,5 +6350,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 90.44456005096436
+  "elapsed_seconds": 88.70806956291199
 }

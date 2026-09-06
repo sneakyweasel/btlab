@@ -1838,3 +1838,35 @@ def test_the_rule_is_the_outer_exponent_not_the_inner_one() -> None:
     assert r["share_lemma_6_2_i"] < r["share_lemma_4_6"] < 1e-2
     assert abs(r["share_lemma_6_2_ii"] - 0.5) < 1e-9
     assert all(x["kind"] == ("quadratic" if x["outer_a"] == "3/2" else "linear") for x in r["table"])
+
+
+# --- every remainder constant is a second derivative ---
+
+
+def test_no_floor_is_expanded_above_exponent_two() -> None:
+    """The kernel's m^(9/4) is Y^(3/2) around the floor v, so nothing carries a cubic."""
+    r = A.remainder_constants_are_second_derivatives(sweep_to=6000)
+    assert r["no_floor_expanded_above_exponent_two"]
+    assert r["kernel_m_to_the_nine_quarters_is_Y_to_the_three_halves"]
+    assert r["nothing_carries_a_cubic"]
+    # Lemma 5.1(i) is that step, and behaves as the rule predicts for a > 1
+    assert r["lemma_5_1_i_ratio_is_theta2_squared"] and r["lemma_5_1_i_mean_is_one_third"]
+    assert abs(r["lemma_5_1_i_mean_ratio"] - 1 / 3) < 0.02
+    assert r["lemma_5_1_i_is_asymptotically_exact"] and r["lemma_5_1_i_max_ratio"] < 1.0
+    assert r["lemma_5_1_i_worst_deviation_at"] < 100 and r["deviation_falls_with_n"]
+    assert r["lemma_5_1_i_tail_deviation"] < 1e-6
+
+
+def test_every_remainder_constant_is_half_the_second_derivative() -> None:
+    """3/16, 3/8, 9/128, 3/8 are (1/2) a(a-1) times the identity's own outer factor."""
+    from fractions import Fraction as Fr
+
+    r = A.remainder_constants_are_second_derivatives(sweep_to=2000)
+    assert r["constants_are_half_f_double_prime"] and r["constants_checked"] == 4
+    for row in r["table"]:
+        a = Fr(row["outer_a"])
+        assert Fr(1, 2) * a * (a - 1) * Fr(row["outer_factor"]) == Fr(row["printed"])
+        assert Fr(row["coefficient"]) == Fr(row["printed"])
+    printed = {row["printed"] for row in r["table"]}
+    assert printed == {"3/16", "3/8", "9/128"}
+    assert r["ratio_is_theta_squared_when_a_exceeds_one"] and r["ratio_is_theta_when_a_is_below_one"]

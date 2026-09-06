@@ -5207,3 +5207,73 @@ is the one they would land on.
 The count in the question was wrong -- four against ten -- and that is the second time in three
 entries that my own estimate of how many sites something touches has been low. Grepping the
 lemma's name takes a second and the estimate takes none, which is the wrong trade.
+
+## Nothing is expanded above exponent two, and every remainder constant is a second derivative
+
+The rule predicted that a floor expanded under an outer exponent above
+`2` would put its quadratic *above* the lead and need a cubic. Nothing
+in the paper does that, and the reason is a choice of variable.
+
+**The kernel's `m^(9/4)` is never expanded as `x^(9/4)` around `m`.** It
+is written `Y^(3/2)` and expanded around the floor `v`, which is exactly
+what Lemma 5.1(i) is:
+
+```text
+  (v + theta_2)^(3/2) = v^(3/2) + (3/2) v^(1/2) theta_2
+                                + (3/8) v^(-1/2) theta_2^2 - ...
+```
+
+so `(1/2)(m^(9/4) - v^(3/2)) - (3/4) v^(1/2) theta_2 = (3/16) v^(-1/2)
+theta_2^2 + ...`, and the printed `0 <= R <= (3/16) v^(-1/2)` is that
+quadratic with `theta_2^2 <= 1`. Outer exponent `3/2`, not `9/4`. The
+`a > 2` case never arises, and no term anywhere carries a cubic.
+
+**What the check turns up instead.** Every remainder constant in the
+family is the same object. With `f(x) = x^a` the first neglected term is
+`(1/2) f''(g) theta^2 = (1/2) a(a-1) g^(a-2) theta^2`, so the constant is
+`(1/2) a(a-1)` times whatever factor the identity carries outside it:
+
+```text
+  site                 outer a   outer factor   (1/2)a(a-1)*factor   printed
+  Lem 5.1(i) R           3/2        1/2               3/16            3/16
+  Thm 4.8 E              3/2        1                 3/8             3/8
+  Lem 6.2 theta term     9/8        1                 9/128           9/128
+  Lem 6.2(ii) second     3/2        1                 3/8             3/8
+```
+
+Four constants, four second derivatives, no discretion anywhere. And
+the ratio each bound carries follows from the same exponent: `theta^2`
+with mean `1/3` when `a > 1`, `theta` with mean `1/2` when `a < 1`.
+
+**Lemma 5.1(i) as the fifth measured site.** Its ratio is `theta_2^2` to
+`5.19e-4` at worst (at `n = 5`) and `2.31e-9` in the tail; mean
+`0.3296` against `1/3`; maximum `0.99959`. Asymptotically exact, like
+every other bound in the family.
+
+```text
+  the five sites, complete
+  Lem 4.6 D        a = 1/2   linear      ratio theta         mean 1/2
+  Lem 6.2(i) D_5   a = 1/2   linear      ratio theta         mean 1/2
+  Thm 4.8 E        a = 3/2   quadratic   ratio theta_w^2     mean 1/3
+  Lem 5.1(i) R     a = 3/2   quadratic   ratio theta_2^2     mean 1/3
+  Lem 6.2(ii) D_5' a = 3/2   quadratic   two nestings        mean 23/60
+```
+
+Every one is asymptotically exact and every constant is forced. The
+single exception in the family remains `6.2(ii)`, and it is not a loose
+constant but a second term of the same order, which is the deletion
+recorded five passes ago.
+
+Tags. EXACT: `(v + theta_2)^(3/2)` expands to give
+`R = (3/16) v^(-1/2) theta_2^2 + ...`, so Lemma 5.1(i) is an outer
+exponent `3/2` and not `9/4`; each printed constant equals
+`(1/2) a(a-1)` times the identity's outer factor, checked as exact
+rationals for all four. COMPUTATIONALLY VERIFIED: Lemma 5.1(i)'s ratio
+is `theta_2^2` to `5.19e-4` at worst and `2.31e-9` in the tail, mean
+`0.3296`, maximum `0.99959`. OBSERVATION: all five remainder sites in
+the family are asymptotically exact, with ratio `theta` or `theta^2`
+according to whether the outer exponent is below or above one.
+
+Probes: `remainder_constants_are_second_derivatives`,
+`REMAINDER_CONSTANTS`. Two tests. Audit `PAPER_B_AUDIT_CONSISTENT`;
+`P_0` unmoved at `3.5858e13`. No manuscript or certificate edit.

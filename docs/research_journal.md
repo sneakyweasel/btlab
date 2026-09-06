@@ -35733,3 +35733,74 @@ Best next question
   match the number of Lemma 3.7 and Lemma 3.5 applications the depth-five
   argument makes?
 ```
+
+## Four constants, four second derivatives
+
+The `a > 2` case the rule predicted never arises. The kernel's `m^(9/4)`
+is not expanded around the floor `m`: it is written `Y^(3/2)` and
+expanded around the floor `v`, which is exactly Lemma 5.1(i). Outer
+exponent `3/2`, quadratic remainder, and the printed `0 <= R <= (3/16)
+v^(-1/2)` is that quadratic with `theta_2^2 <= 1`. Nothing carries a
+cubic because nothing is expanded steeply enough to need one.
+
+What came out instead is that every remainder constant in the family is
+the same object. With `f(x) = x^a` the first neglected term is
+`(1/2) a(a-1) g^(a-2) theta^2`, so the constant is `(1/2) a(a-1)` times
+the identity's own outer factor:
+
+```text
+  Lem 5.1(i) R          a = 3/2, outer 1/2   ->  3/16    printed 3/16
+  Thm 4.8 E             a = 3/2, outer 1     ->  3/8     printed 3/8
+  Lem 6.2 theta term    a = 9/8, outer 1     ->  9/128   printed 9/128
+  Lem 6.2(ii) second    a = 3/2, outer 1     ->  3/8     printed 3/8
+```
+
+Checked as exact rationals. No discretion anywhere, which is why the
+sharpness sweeps kept finding these bounds attained.
+
+Lemma 5.1(i) measured as the fifth site: ratio `theta_2^2` to `5.19e-4`
+at worst and `2.31e-9` in the tail, mean `0.3296` against `1/3`, maximum
+`0.99959`. That completes the family -- five sites, all asymptotically
+exact, ratio `theta` or `theta^2` by whether the outer exponent is below
+or above one, and the one exception is `6.2(ii)`'s second term, which is
+not a loose constant but a same-order duplicate.
+
+```text
+Phase-end report
+Question
+- does any bound in Section 5 expand a floor under an exponent above 2,
+  and what carries the cubic
+Instruments
+- remainder_constants_are_second_derivatives: the four printed constants
+  against (1/2) a(a-1) times each identity's outer factor, as exact
+  rationals, with Lemma 5.1(i) measured as the fifth site
+Ledger tags
+- EXACT: Lemma 5.1(i) is an outer exponent 3/2 on the floor v, not 9/4
+  on m, so R = (3/16) v^(-1/2) theta_2^2 + ...; all four printed
+  constants equal (1/2) a(a-1) times the outer factor
+- COMPUTATIONALLY VERIFIED: Lemma 5.1(i)'s ratio is theta_2^2 to 5.19e-4
+  at worst and 2.31e-9 in the tail, mean 0.3296, maximum 0.99959
+- OBSERVATION: all five remainder sites are asymptotically exact, with
+  ratio theta or theta^2 by the outer exponent
+Strongest theorem
+- every remainder constant in the family is (1/2) f'' for its outer
+  exponent, so none of them was ever a choice
+Strongest refutation
+- the premise of the question: nothing is expanded above exponent two,
+  because the kernel's steepest power is reached through a different
+  variable
+Reusable machinery
+- remainder_constants_are_second_derivatives, REMAINDER_CONSTANTS, two
+  tests, wired into summary()
+Branch status
+- PARK
+Why
+  The family is complete and every constant in it is forced; the single
+  outstanding edit is still the deletion recorded five passes ago.
+Best next question
+- the sharp constants are all second derivatives of x^a at a floor. The
+  loose ones in Lemma 5.1(iii) -- 2, 20, 22, 25 -- are none of them.
+  Is that the tell? Would sorting every printed constant by whether it
+  is a derivative coefficient separate the sharp from the loose without
+  measuring anything?
+```
