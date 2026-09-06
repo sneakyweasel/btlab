@@ -532,6 +532,8 @@ def particularSum : List ℤ → State
   | w :: rest =>
       subState (particularSum rest) (smulState w (iterateA rest.length e3))
 
+/-- From the origin, an MSD word unfolds by variation of constants:
+`foldSteps ws origin = particularSum ws`. -/
 theorem origin_particular (ws : List ℤ) :
     foldSteps ws origin = particularSum ws := by
   induction ws with

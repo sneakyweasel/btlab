@@ -44326,7 +44326,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 52,
+      "line": 54,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "sublevel_raised_threshold",
       "trust": "kernel"
@@ -44336,7 +44336,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 75,
+      "line": 77,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "raised_threshold_admissible",
       "trust": "kernel"
@@ -44346,7 +44346,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 94,
+      "line": 96,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s1_window",
       "trust": "kernel"
@@ -44356,7 +44356,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 98,
+      "line": 100,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s1_Bsmall",
       "trust": "kernel"
@@ -44366,7 +44366,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 103,
+      "line": 105,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_window",
       "trust": "kernel"
@@ -44376,7 +44376,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 108,
+      "line": 110,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_flat",
       "trust": "kernel"
@@ -44386,7 +44386,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 113,
+      "line": 115,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_wincount",
       "trust": "kernel"
@@ -44396,7 +44396,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 117,
+      "line": 119,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "sqrt_0_35_lower",
       "trust": "kernel"
@@ -44406,7 +44406,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 121,
+      "line": 123,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "sqrt_0_56_lower",
       "trust": "kernel"
@@ -44416,7 +44416,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 127,
+      "line": 129,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_bdry_a",
       "trust": "kernel"
@@ -44426,7 +44426,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 141,
+      "line": 143,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_s3s2_bdry_b",
       "trust": "kernel"
@@ -44436,7 +44436,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 152,
+      "line": 154,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_stage2_modecurv",
       "trust": "kernel"
@@ -44446,7 +44446,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 156,
+      "line": 158,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_stage5_band",
       "trust": "kernel"
@@ -44456,7 +44456,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 162,
+      "line": 164,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimC_1",
       "trust": "kernel"
@@ -44466,7 +44466,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 169,
+      "line": 171,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimC_2",
       "trust": "kernel"
@@ -44476,7 +44476,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 180,
+      "line": 182,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimG_pref",
       "trust": "kernel"
@@ -44486,7 +44486,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 187,
+      "line": 189,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_claimG_P36",
       "trust": "kernel"
@@ -44496,7 +44496,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 189,
+      "line": 191,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "claimG_P36_exponent",
       "trust": "kernel"
@@ -44506,7 +44506,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 196,
+      "line": 198,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st3a_window",
       "trust": "kernel"
@@ -44516,7 +44516,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 206,
+      "line": 208,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st3b_window",
       "trust": "kernel"
@@ -44526,7 +44526,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 217,
+      "line": 219,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st3a_flat",
       "trust": "kernel"
@@ -44536,7 +44536,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 224,
+      "line": 226,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st6D1_window",
       "trust": "kernel"
@@ -44546,9 +44546,19 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 229,
+      "line": 231,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_st6D1_good",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Row `st6D1-modeindex`. Lemma 5.2(iii) closes its mode accounting with `|w| \u2264 |B\u2080| + R\u2080 \u2264 2R\u2080`, which needs the widened `\u03b8`-coefficient under Stage 2's truncation: `7P^(1/4) \u2264 R\u2080 = P^(5/16)`. With `P = t^16` that is `7t\u2074 \u2264 t\u2075`, i.e. `t \u2265 7`, so `P \u2265 7^16 = 3.32\u00b710^13`. Alone among the rows this one is *exact* rather than conservative: `t\u2080 = 7` is the crossing. It is also the largest `c\u2087`-free row, and Appendix A.6 does not tabulate it.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 240,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "row_st6D1_modeindex",
       "trust": "kernel"
     },
     {
@@ -44556,7 +44566,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 234,
+      "line": 246,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_j0_window",
       "trust": "kernel"
@@ -44566,7 +44576,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 242,
+      "line": 254,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_Npieces",
       "trust": "kernel"
@@ -44576,7 +44586,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 270,
+      "line": 282,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_lam0_upper",
       "trust": "kernel"
@@ -44586,7 +44596,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 292,
+      "line": 304,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_lam0_lower",
       "trust": "kernel"
@@ -44596,7 +44606,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 313,
+      "line": 325,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c2",
       "trust": "kernel"
@@ -44606,7 +44616,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 317,
+      "line": 329,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c3",
       "trust": "kernel"
@@ -44616,7 +44626,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 321,
+      "line": 333,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_c4",
       "trust": "kernel"
@@ -44626,7 +44636,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 326,
+      "line": 338,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_beta",
       "trust": "kernel"
@@ -44636,7 +44646,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 332,
+      "line": 344,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_39_wave",
       "trust": "kernel"
@@ -44646,7 +44656,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 345,
+      "line": 357,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5a_competitors",
       "trust": "kernel"
@@ -44656,7 +44666,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 365,
+      "line": 377,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_E_only",
       "trust": "kernel"
@@ -44666,7 +44676,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 387,
+      "line": 399,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5a_binding",
       "trust": "kernel"
@@ -44676,7 +44686,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 424,
+      "line": 436,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_5b_binding",
       "trust": "kernel"
@@ -44686,7 +44696,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 455,
+      "line": 467,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "row_thm63_rem",
       "trust": "kernel"
@@ -44696,7 +44706,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 465,
+      "line": 477,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_le_one",
       "trust": "kernel"
@@ -44706,7 +44716,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 474,
+      "line": 486,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_one_attained",
       "trust": "kernel"
@@ -44716,7 +44726,7 @@
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 480,
+      "line": 492,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_not_halved_by_recentring",
       "trust": "kernel"
@@ -46898,7 +46908,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "From the origin, an MSD word unfolds by variation of constants: `foldSteps ws origin = particularSum ws`.",
       "file": "formal/Problems/Ostrowski/NP/Energy.lean",
       "kind": "theorem",
       "ledger": [
@@ -46918,7 +46928,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 535,
+      "line": 537,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "origin_particular",
       "trust": "kernel"
@@ -46944,7 +46954,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 546,
+      "line": 548,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "energy_origin",
       "trust": "kernel"
@@ -46970,7 +46980,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 549,
+      "line": 551,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "energy_zero_state",
       "trust": "kernel"
@@ -46996,7 +47006,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 554,
+      "line": 556,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "particular_s3",
       "trust": "kernel"
@@ -47022,7 +47032,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 563,
+      "line": 565,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "fold_s3",
       "trust": "kernel"
@@ -47048,7 +47058,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 573,
+      "line": 575,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "fold_on_F_iff",
       "trust": "kernel"
@@ -47074,7 +47084,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 588,
+      "line": 590,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "same_energy_same_OnF",
       "trust": "kernel"
@@ -47100,7 +47110,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 593,
+      "line": 595,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "foldSteps_append",
       "trust": "kernel"
@@ -47126,7 +47136,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 598,
+      "line": 600,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "particular_concat",
       "trust": "kernel"
@@ -47152,7 +47162,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 607,
+      "line": 609,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_prefix",
       "trust": "kernel"
@@ -47178,7 +47188,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 611,
+      "line": 613,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "energy_add",
       "trust": "kernel"
@@ -47204,7 +47214,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 618,
+      "line": 620,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "iterateA_eq_fold_zero",
       "trust": "kernel"
@@ -47230,7 +47240,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 627,
+      "line": 629,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "energy_iterateA",
       "trust": "kernel"
@@ -47256,7 +47266,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 633,
+      "line": 635,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "consumedSum_append",
       "trust": "kernel"
@@ -47282,7 +47292,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 664,
+      "line": 666,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "val_concat_energy",
       "trust": "kernel"
@@ -47308,7 +47318,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 683,
+      "line": 685,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "val_concat_zero_iff",
       "trust": "kernel"
@@ -47334,7 +47344,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 689,
+      "line": 691,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "val_zero_on_F",
       "trust": "kernel"
@@ -47360,7 +47370,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 693,
+      "line": 695,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_val_zero",
       "trust": "kernel"
@@ -47386,7 +47396,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 700,
+      "line": 702,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "hub_nonreset",
       "trust": "kernel"
@@ -47412,7 +47422,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 710,
+      "line": 712,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "recurrence_word_reset",
       "trust": "kernel"
@@ -47438,7 +47448,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 715,
+      "line": 717,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_pow_origin",
       "trust": "kernel"
@@ -47464,7 +47474,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 725,
+      "line": 727,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "reset_pow_then_hub",
       "trust": "kernel"
@@ -47490,7 +47500,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 732,
+      "line": 734,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "complete_zero_not_monoid",
       "trust": "kernel"
@@ -47516,7 +47526,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 743,
+      "line": 745,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "impulsePlace",
       "trust": "kernel"
@@ -47542,7 +47552,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 746,
+      "line": 748,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "qShift_succ_one",
       "trust": "kernel"
@@ -47568,7 +47578,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 750,
+      "line": 752,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "qShift_succ_two",
       "trust": "kernel"
@@ -47594,7 +47604,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 758,
+      "line": 760,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "q_succ_impulse",
       "trust": "kernel"
@@ -47620,7 +47630,7 @@
         "OST-np-reset-prefix",
         "OST-np-same-energy-same-OnF"
       ],
-      "line": 774,
+      "line": 776,
       "module": "Problems.Ostrowski.NP.Energy",
       "name": "iterateA_e3",
       "trust": "kernel"
@@ -64116,7 +64126,7 @@
       ]
     },
     "Problems.Juggler.ThresholdCertificate": {
-      "declarations": 40,
+      "declarations": 41,
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "imports": [],
       "ledger": []
@@ -64429,13 +64439,13 @@
     }
   },
   "totals": {
-    "declarations": 4571,
+    "declarations": 4572,
     "declarations_with_a_ledger_row": 3101,
     "ledger_rows_naming_a_file": 321,
     "modules": 189,
     "trust": {
       "compiler": 55,
-      "kernel": 4516
+      "kernel": 4517
     }
   }
 }

@@ -48,6 +48,9 @@ DECL = re.compile(
     re.MULTILINE,
 )
 IMPORT = re.compile(r"^import\s+([A-Za-z_][A-Za-z0-9_.']*)", re.MULTILINE)
+IDENT = re.compile(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+")
+"""A bare Lean identifier in prose.  Ledger rows name their theorems this way -- not in
+backticks, which is why an early search for backticked names found none at all."""
 
 LIBRARIES = ("Core", "Representation", "Operators", "Problems", "BTCalculus")
 """The lean_lib roots from formal/lakefile.toml; an import outside them is Mathlib or std."""
@@ -376,11 +379,15 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
         scores = [round(similarity(sw, d), 3) for d in ranked]
         top = scores[0] if scores else 0.0
         second = scores[1] if len(scores) > 1 else 0.0
+        named = [t for t in dict.fromkeys(IDENT.findall(row["statement"]))
+                 if any(d["name"] == t for d in cands)]
         out.append({
             "id": row["id"],
             "lean": ref,
             "statement": row["statement"][:400],
             "in_file": len(cands),
+            "names_own": named,
+            "composite": len(named) >= 2,
             "confidence": "review" if (top >= 0.10 and top >= 1.5 * max(second, 1e-9)) else "low",
             "candidates": [{"decl": d["name"], "score": s, "trust": d["trust"], "line": d["line"]}
                            for d, s in zip(ranked, scores)],
@@ -390,6 +397,7 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
                 "known answer. Nothing here has been written into the ledger.",
         "unresolved": len(out),
         "worth_reviewing": sum(1 for o in out if o["confidence"] == "review"),
+        "composite": sum(1 for o in out if o.get("composite")),
         "rows": out,
     }
 
@@ -455,7 +463,8 @@ def main(argv: list[str] | None = None) -> int:
         out = propose(index, ledger)
         PROPOSALS.parent.mkdir(parents=True, exist_ok=True)
         PROPOSALS.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        print(f"{out['unresolved']} unresolved rows; {out['worth_reviewing']} worth reviewing")
+        print(f"{out['unresolved']} unresolved rows; {out['worth_reviewing']} worth reviewing; "
+              f"{out['composite']} name two or more of their own declarations")
         return 0
 
     if args.cmd == "dag":

@@ -2041,6 +2041,8 @@
   "statement": "for Γ_NP, the unread-tail energy E_i(s) = s1 q_{i-2} + s2 q_{i-1} + s3 q_i (with q_j = 0 for j < 0) satisfies E_{i-1}(T_w s) = E_i(s) - w q_{i-1} for i ≥ 1, equivalently the adjoint covariance u_{i-1} A = u_i",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "energy_step",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_energy_geometry.py"
   ],
@@ -2052,6 +2054,8 @@
   "statement": "for Γ_NP, after an MSD word w of length k from remaining n+k, the unread-tail energy satisfies E_n(T_w s) = E_{n+k}(s) - sum_j w_j q_{n+k-1-j}; this is the cumulative form of energy_step, not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "energy_telescope",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_energy_trajectory.py"
   ],
@@ -2096,6 +2100,8 @@
   "statement": "for Γ_NP, from the origin an MSD word ws unfolds by variation of constants: foldSteps ws origin equals the particular sum −∑ A^{k-1-j} e3 w_j; this is not a bound on L_0",
   "source": "docs/problems/ostrowski_order_m_adder.md",
   "lean": "Problems/Ostrowski/NP/Energy.lean",
+  "decl": "origin_particular",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/ostrowski/test_spectral_control.py"
   ],
@@ -5490,6 +5496,8 @@
   "statement": "Every positive integer strictly below 53 reaches 1 under the Juggler map (reachesOne_of_lt_fifty_three). Evens below 144 already reduce to the residual class {1,…,11}; the odd seeds 13,15,…,51 are finite orbit certificates. This is a finite certificate, not a halt theorem. Combined with cycleMin_finance it excludes cycle length 11.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/Termination.lean",
+  "decl": "reachesOne_of_lt_fifty_three",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5628,6 +5636,8 @@
   "statement": "Every positive integer strictly below 257 reaches 1 under the Juggler map (reachesOne_of_lt_two_hundred_fifty_seven). Evens below 2809 already reduce to the residual class {1,…,52}; the odd seeds 53,55,…,255 are finite orbit certificates. This is a finite certificate, not a halt theorem. Combined with cycleMin_finance and log 257 > 61/11 it excludes cycle lengths 19 and 38. The Lean constant 1 only needs n ln n > 1411.63 to kill length 19, so the smallest such n is 255; the Python 6/5 table has n_max(19) = 297.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/TerminationFloor257.lean",
+  "decl": "reachesOne_of_lt_two_hundred_fifty_seven",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5676,6 +5686,8 @@
   "statement": "log 257 > 61/11, via e < 2.7182818286 and e^61 < 257^11 (log_two_hundred_fifty_seven_gt). Combined with the residual floor 257 this gives n log n > 15677/11 on a CycleMin, which excludes cycle length 38. The weaker half-integer bound 11/2 was enough for length 19 but not for 38. This is a numeric certificate, not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "log_two_hundred_fifty_seven_gt",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
@@ -5700,6 +5712,8 @@
   "statement": "Every positive integer strictly below 261 reaches 1 under the Juggler map (reachesOne_of_lt_two_hundred_sixty_one). The floor-257 class plus the two odd seeds 257 and 259 (five steps each) raise the floor. Exact log 257 cannot kill length 57 (257 ln 257 ≈ 1426 < 1430.8). Combined with cycleMin_finance and 261 log 257 > 15921/11 this excludes the cheap leftovers 57 and 76, so the named leftover is the record near-convergent 84. This is a finite certificate, not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
   "lean": "Problems/Juggler/TerminationFloor257.lean",
+  "decl": "reachesOne_of_lt_two_hundred_sixty_one",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
