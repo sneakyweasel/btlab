@@ -5150,6 +5150,45 @@ sharper reason than being a level below Theorem 5.3: it is the only
 target where the two counts coincide, so one chain serves both purposes
 at once. That is exactly what the identity below exhibits.
 
+*The grading has a domain, and the domain is the branch-run condition.*
+A cost of \(2^{-d}\) is only payable if the chain can be organised into
+runs at the level it passes through, which is \(e<2\). So \(e<2\) is
+not a fourth axis beside the grading; it is the grading's precondition,
+and it makes the primary split: Theorem 5.3 and \(OOOEOEE\) have runs,
+\(OOEOOEE\) and Conjecture 7.3 do not. Inside the second pair the
+grading is blind --- both cost \(2^{-3}\) --- and it is species and the
+composite factor that separate them, both isolating \(OOEOOEE\), while
+the \(9/4\) stop isolates Conjecture 7.3 the other way.
+
+| axis | partition of the four |
+|---|---|
+| differencing cost \(d\) | \(1\): \(OOOEOEE\); \(2\): Thm 5.3; \(3\): the other two |
+| branch runs \(e<2\) | Thm 5.3, \(OOOEOEE\) \(\mid\) \(OOEOOEE\), Conj 7.3 |
+| above \(9/4\) | Conj 7.3 \(\mid\) the other three |
+| species | \(OOEOOEE\) \(\mid\) the other three |
+| worst \(\kappa\) | \(OOEOOEE\) \(\mid\) the other three |
+
+*And level three is run-less everywhere, not just at \(OOOO*\).* The
+statement above is made for that split, but it is forced. A contractor
+must satisfy \(3^{o_2}\ge4\) at \(t=2\), and \(3^1=3<4\), so
+\(o_2=2\): **every contractor begins \(OO\)**, and therefore every
+level-3 defect on the frontier branches on \(e_2=\tfrac94\). Over the
+\(26\,663\) blocked sites of depth at most thirteen, all \(3910\) at
+level three lack runs, without exception. Conjecture 7.3's complaint is
+not a fact about \(OOOO*\); it is a theorem about level three.
+
+Levels beyond it are not uniformly barred, which the \(9/4\) reading
+does not suggest. The base at level \(s\) is \(e_{s-1}\), and survival
+pins it only from below, so a prefix carrying an even letter early
+brings it back under \(2\): at level four the base is \(\tfrac98\) for
+\(OOE*\) and \(\tfrac{27}8\) for \(OOO*\), and \(746\) of the \(3167\)
+level-four sites have runs. Level five recovers \(1156\) of \(2546\),
+and runs reappear at levels seven, eight and ten. They vanish again at
+six, nine and eleven. Overall \(51\%\) of blocked sites have runs and
+the pattern in the level is not monotone --- which is worth recording
+only because the reading that "level three and above has no runs"
+would predict none of it.
+
 At \(\ell=1\) the base is \(n\) itself, \(e=1\), and
 \(\Delta_1n=d_1\) is constant outright: the runs fill the block and the
 branch set is a single point. So the carry bookkeeping does have a

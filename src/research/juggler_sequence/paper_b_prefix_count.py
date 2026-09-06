@@ -993,6 +993,56 @@ def drift_grading(dmax: int = 13) -> dict[str, Any]:
     }
 
 
+
+def every_contractor_begins_oo(dmax: int = 13) -> bool:
+    """Survival at ``t = 2`` forces it: ``3^{o_2} >= 4`` and ``3^1 = 3 < 4``, so ``o_2 = 2``."""
+    return all(w.startswith("OO") for d in range(2, dmax + 1)
+               for w in surviving_words(d) if len(w) == d)
+
+
+def branch_runs_by_level(dmax: int = 13) -> dict[str, Any]:
+    """Which levels admit branch runs, over every blocked site of depth ``<= dmax``.
+
+    The base of a level-``s`` defect is ``e_{s-1}``, and runs exist iff it is below 2.  Level
+    three has none anywhere: every contractor begins ``OO``, so ``e_2 = 9/4`` for all of them,
+    and Conjecture 7.3's complaint is a theorem about the level rather than a fact about
+    ``OOOO*``.
+
+    Levels past it are not uniformly barred, which the ``9/4`` reading does not suggest.  A
+    prefix carrying an even letter early brings the base back under 2 -- at level four it is
+    ``9/8`` for ``OOE*`` against ``27/8`` for ``OOO*`` -- so runs reappear at four, five, seven,
+    eight and ten, and vanish at six, nine and eleven.
+    """
+
+    by: dict[int, dict[str, Any]] = {}
+    for d in range(4, dmax + 1):
+        for w in surviving_words(d):
+            if len(w) != d:
+                continue
+            e_all = iterate_exponents(w)
+            for t in range(2, d + 1):
+                for s, _g, _sp in blocked_profile(w, t):
+                    e = e_all[s - 2] if s >= 2 else Fraction(1)
+                    row = by.setdefault(s, {"runs": 0, "no_runs": 0, "bases": set()})
+                    row["runs" if e < 2 else "no_runs"] += 1
+                    row["bases"].add(e)
+    out = {s: {"runs": r["runs"], "no_runs": r["no_runs"],
+               "bases": sorted(r["bases"]), "any_runs": r["runs"] > 0}
+           for s, r in sorted(by.items())}
+    total = sum(r["runs"] + r["no_runs"] for r in out.values())
+    with_runs = sum(r["runs"] for r in out.values())
+    return {
+        "levels": out,
+        "sites": total,
+        "sites_with_runs": with_runs,
+        "fraction_with_runs": with_runs / total,
+        "level_three_is_runless": out[3]["runs"] == 0 and out[3]["bases"] == [Fraction(9, 4)],
+        "levels_with_runs": [s for s, r in out.items() if r["any_runs"]],
+        "levels_without": [s for s, r in out.items() if not r["any_runs"]],
+        "every_contractor_begins_oo": every_contractor_begins_oo(dmax),
+    }
+
+
 def main() -> None:
     rho = chernoff_rate()
     print("exact count of length-d words with no contracting prefix")

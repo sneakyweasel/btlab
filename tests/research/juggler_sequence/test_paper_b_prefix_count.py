@@ -1830,3 +1830,69 @@ def test_paper_records_the_grading() -> None:
     assert bs + "lceil" + bs + "alpha" + bs + "rceil-1" in text
     assert "read off the grading" in text
     assert "target where the two counts coincide" in text
+
+
+# --- the grading's domain: branch runs, and what level three forces ---
+
+
+def test_every_contractor_begins_OO() -> None:
+    """Survival at t = 2 needs 3^{o_2} >= 4, and 3 < 4, so o_2 = 2."""
+    assert B.every_contractor_begins_oo(11)
+    assert 3 ** 1 < 2 ** 2                       # o_2 = 1 does not survive
+    assert 3 ** 2 >= 2 ** 2
+    for d in (2, 5, 9):
+        for w in B.surviving_words(d):
+            if len(w) == d:
+                assert w.startswith("OO"), w
+                assert B.iterate_exponents(w)[1] == Fraction(9, 4)
+
+
+def test_level_three_has_no_runs_anywhere() -> None:
+    """Not a fact about OOOO*: a theorem about the level, forced by the OO prefix."""
+    r = B.branch_runs_by_level(13)
+    assert r["level_three_is_runless"]
+    assert r["levels"][3]["runs"] == 0
+    assert r["levels"][3]["no_runs"] == 3910
+    assert r["levels"][3]["bases"] == [Fraction(9, 4)]
+    assert not B.has_branch_runs(Fraction(9, 4))
+
+
+def test_runs_reappear_above_level_three() -> None:
+    """The 9/4 reading would predict none; an early even letter brings the base back under 2."""
+    r = B.branch_runs_by_level(13)
+    assert r["levels_with_runs"] == [1, 2, 4, 5, 7, 8, 10]
+    assert r["levels_without"] == [3, 6, 9, 11]
+    # level four: 9/8 for OOE*, 27/8 for OOO*
+    assert r["levels"][4]["bases"] == [Fraction(9, 8), Fraction(27, 8)]
+    assert B.has_branch_runs(Fraction(9, 8)) and not B.has_branch_runs(Fraction(27, 8))
+    assert r["levels"][4]["runs"] == 746
+    assert r["sites"] == 26663
+    assert abs(r["fraction_with_runs"] - 0.512) < 0.002
+
+
+def test_the_domain_makes_the_primary_split() -> None:
+    """Branch runs separate the two tractable targets from the two hard ones."""
+    have = {"Theorem 5.3": ("OOOE", 4), "OOOEOEE": ("OOOEOEE", 6)}
+    lack = {"OOEOOEE": ("OOEOOEE", 6), "Conjecture 7.3": ("OOOOE", 5)}
+    for nm, (w, t) in have.items():
+        assert B.has_branch_runs(B.branch_base(w, t)), nm
+    for nm, (w, t) in lack.items():
+        assert not B.has_branch_runs(B.branch_base(w, t)), nm
+    # and inside the second pair the grading is blind: both cost 2^-3
+    for w, t in lack.values():
+        s, _c, alpha, _sp = B.deepest_blocked(w, t)
+        assert B.differencing_cost(s, alpha) == 3
+    # what separates them is species and the composite factor, both isolating OOEOOEE
+    assert B.deepest_blocked("OOEOOEE", 6)[3] == "sqrt"
+    assert B.deepest_blocked("OOOOE", 5)[3] == "3/2"
+    assert B.cancellation_factor("E", Fraction(45, 32)) > 100
+    assert B.cancellation_factor("E", Fraction(27, 16)) < 5
+
+
+def test_paper_records_the_domain_and_the_level_three_theorem() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "The grading has a domain" in text
+    assert "it is the grading's precondition" in text
+    assert "every contractor begins" in text
+    assert "a theorem about level three" in text
+    assert "Levels beyond it are not uniformly barred" in text
