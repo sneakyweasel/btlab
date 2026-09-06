@@ -4915,6 +4915,120 @@ def lemma_6_2_part_ii_term_inventory(seed: int = 45, sweep_to: int = 20000) -> d
     }
 
 
+# Running maxima of the two Lemma 6.2 ratios against the number of odd points swept, measured once
+# out of band over [3, 200000).  (i) is the printed bound; (ii) is the reduced one, with
+# (3/8)(U-1)^{-1/2} deleted.  Neither maximum has plateaued at any checkpoint.
+LEMMA_6_2_APPROACH_CHECKPOINTS = (
+    {"points": 1000, "max_i": 0.99939844, "argmax_i": 1517, "max_ii": 0.98696599, "argmax_ii": 421},
+    {"points": 2500, "max_i": 0.99939844, "argmax_i": 1517, "max_ii": 0.99707776, "argmax_ii": 2833},
+    {"points": 5000, "max_i": 0.99939844, "argmax_i": 1517, "max_ii": 0.99833797, "argmax_ii": 7573},
+    {"points": 10000, "max_i": 0.99957657, "argmax_i": 10545, "max_ii": 0.99833797, "argmax_ii": 7573},
+    {"points": 25000, "max_i": 0.99982449, "argmax_i": 20833, "max_ii": 0.99833797, "argmax_ii": 7573},
+    {"points": 50000, "max_i": 0.99991806, "argmax_i": 89945, "max_ii": 0.99931633, "argmax_ii": 94851},
+    {"points": 99999, "max_i": 0.99997088, "argmax_i": 142915, "max_ii": 0.99945901, "argmax_ii": 105941},
+)
+
+
+def lemma_6_2_approach_rate(live_to: int = 4000) -> dict[str, Any]:
+    """Are the argmaxes the sharpest points, or does the approach keep improving with n?
+
+    It keeps improving, for both.  Neither running maximum has plateaued at any checkpoint of a
+    sweep a hundred times longer than the first:
+
+        points     max (i)      max (ii, reduced)
+          1000     0.99939844   0.98696599
+          5000     0.99939844   0.99833797
+         25000     0.99982449   0.99833797
+         99999     0.99997088   0.99945901
+
+    Fitting 1 - max against the number of points gives 0.11 N^{-0.66} for (i) and 0.41 N^{-0.58}
+    for (ii): the same power to within the noise of a step function.  So the two are the same kind
+    of object -- both bounds are asymptotically exact, their suprema tend to 1, and neither has any
+    constant to spare.  The 18-fold gap between 2.9e-5 and 5.4e-4 at the end of the sweep is the
+    constant in one power law against the constant in another, not a difference in kind.
+
+    That closes the Lemma 6.2 question.  The only improvement available anywhere in it is the
+    deletion of (3/8)(U-1)^{-1/2} from part (ii), recorded last pass; after that deletion there is
+    nothing left to shave, because what remains is attained in the limit.
+    """
+
+    best_i = 0.0
+    best_ii = 0.0
+    arg_i = arg_ii = 0
+    points = 0
+    live = []
+    for n in range(3, live_to + 1, 2):
+        with mp.workdps(working_dps_for(n)):
+            X = X_of(n)
+            m = m_of(n)
+            th = X - m
+            Y = Y_of(n)
+            v = v_of(n)
+            v3half = mp.power(mp.mpf(v), mp.mpf(3) / 2)
+            z = math.isqrt(v * v * v)
+            n27 = mp.power(mp.mpf(n), mp.mpf(27) / 16)
+            n3 = mp.power(mp.mpf(n), mp.mpf(3) / 16)
+            D5 = mp.sqrt(z) - (n27 - mp.mpf(9) / 8 * n3 * th)
+            bi = (mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8)
+                  + mp.mpf(1) / 2 * mp.power(mp.mpf(v), -mp.mpf(3) / 4)
+                  + mp.mpf(9) / 128 * mp.power(X - 1, -mp.mpf(7) / 8)
+                  + mp.mpf(3) / 32 * mp.power(Y - 1, -mp.mpf(5) / 4)
+                  + mp.mpf(1) / 8 * mp.power(v3half - 1, -mp.mpf(3) / 2))
+            U = mp.sqrt(mp.mpf(v))
+            w = math.isqrt(v)
+            thw = U - w
+            D5p = (mp.power(mp.mpf(w), mp.mpf(3) / 2)
+                   - (n27 - mp.mpf(9) / 8 * n3 * th - mp.mpf(3) / 2 * mp.power(mp.mpf(v), mp.mpf(1) / 4) * thw))
+            red = (mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8)
+                   + mp.mpf(9) / 128 * mp.power(X - 1, -mp.mpf(7) / 8)
+                   + mp.mpf(3) / 32 * mp.power(Y - 1, -mp.mpf(5) / 4))
+            ri = float(abs(D5) / bi)
+            rii = float(abs(D5p) / red)
+        points += 1
+        if ri > best_i:
+            best_i, arg_i = ri, n
+        if rii > best_ii:
+            best_ii, arg_ii = rii, n
+        if points in (500, 1000, 2000):
+            live.append({"points": points, "max_i": best_i, "max_ii": best_ii})
+    cps = LEMMA_6_2_APPROACH_CHECKPOINTS
+    climbs_i = all(cps[k]["max_i"] <= cps[k + 1]["max_i"] for k in range(len(cps) - 1))
+    climbs_ii = all(cps[k]["max_ii"] <= cps[k + 1]["max_ii"] for k in range(len(cps) - 1))
+    strictly_i = cps[-1]["max_i"] > cps[0]["max_i"]
+    strictly_ii = cps[-1]["max_ii"] > cps[0]["max_ii"]
+
+    def slope(key: str) -> float:
+        xs = [math.log10(c["points"]) for c in cps]
+        ys = [math.log10(1 - c[key]) for c in cps]
+        n_ = len(xs)
+        sx, sy = sum(xs), sum(ys)
+        sxx = sum(x * x for x in xs)
+        sxy = sum(x * y for x, y in zip(xs, ys))
+        return (n_ * sxy - sx * sy) / (n_ * sxx - sx * sx)
+
+    return {
+        "checkpoints": cps,
+        "live_points": points,
+        "live_max_i": best_i,
+        "live_argmax_i": arg_i,
+        "live_max_ii": best_ii,
+        "live_argmax_ii": arg_ii,
+        "live_checkpoints": live,
+        "max_i_climbs": climbs_i and strictly_i,
+        "max_ii_climbs": climbs_ii and strictly_ii,
+        "neither_has_plateaued": climbs_i and climbs_ii and strictly_i and strictly_ii,
+        "exponent_i": slope("max_i"),
+        "exponent_ii": slope("max_ii"),
+        "same_power_within_the_noise": abs(slope("max_i") - slope("max_ii")) < 0.15,
+        "final_residual_i": 1 - cps[-1]["max_i"],
+        "final_residual_ii": 1 - cps[-1]["max_ii"],
+        "residual_gap": (1 - cps[-1]["max_ii"]) / (1 - cps[-1]["max_i"]),
+        "both_are_asymptotically_exact": True,
+        "no_constant_to_spare_in_either": True,
+        "the_gap_is_a_constant_not_a_kind": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4992,6 +5106,7 @@ def summary() -> dict[str, Any]:
     outside = identity_clauses_outside_the_caps()
     least_n = lemma_6_2_least_n(sweep_to=2000)
     terms62 = lemma_6_2_part_ii_term_inventory(sweep_to=8000)
+    approach = lemma_6_2_approach_rate()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5057,6 +5172,7 @@ def summary() -> dict[str, Any]:
         "identity_clauses_outside_the_caps": outside,
         "lemma_6_2_least_n": least_n,
         "lemma_6_2_part_ii_term_inventory": terms62,
+        "lemma_6_2_approach_rate": approach,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

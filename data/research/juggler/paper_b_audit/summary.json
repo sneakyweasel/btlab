@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "a4cd22231b51468d9875a7f525094d4597bd6670",
+  "git_commit": "a9d89510d92b423fbffd8d23abbc28487a7e1fd3",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -3907,7 +3907,7 @@
         "text": "linearizing the wave in an earlier defect \\(\\theta_s\\) gives"
       },
       {
-        "line": 5546,
+        "line": 5584,
         "section": "7. The Terras-style reduction and the frontier",
         "in_appendix": false,
         "mathematical": true,
@@ -3915,7 +3915,7 @@
         "text": "and this term is no longer drift-blocked."
       },
       {
-        "line": 6357,
+        "line": 6395,
         "section": "Appendix A. The threshold \\(P_0\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -3923,7 +3923,7 @@
         "text": "only inexact step in an otherwise exact chain. It is no longer a link in"
       },
       {
-        "line": 6727,
+        "line": 6765,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3931,7 +3931,7 @@
         "text": "Among those two the loss is steeply asymmetric, and that used to be"
       },
       {
-        "line": 6757,
+        "line": 6795,
         "section": "A.5 The two constants that carry the threshold",
         "in_appendix": true,
         "mathematical": false,
@@ -3939,7 +3939,7 @@
         "text": "is the comparison beside it: the former"
       },
       {
-        "line": 6836,
+        "line": 6874,
         "section": "A.6 Why Stage 2 is truncated at \\(P^{5/16}\\)",
         "in_appendix": true,
         "mathematical": false,
@@ -5894,6 +5894,88 @@
     "reduced_holds_on_the_wide_sweep": true,
     "reduced_wide_margin": 0.0005409899999999634
   },
+  "lemma_6_2_approach_rate": {
+    "checkpoints": [
+      {
+        "points": 1000,
+        "max_i": 0.99939844,
+        "argmax_i": 1517,
+        "max_ii": 0.98696599,
+        "argmax_ii": 421
+      },
+      {
+        "points": 2500,
+        "max_i": 0.99939844,
+        "argmax_i": 1517,
+        "max_ii": 0.99707776,
+        "argmax_ii": 2833
+      },
+      {
+        "points": 5000,
+        "max_i": 0.99939844,
+        "argmax_i": 1517,
+        "max_ii": 0.99833797,
+        "argmax_ii": 7573
+      },
+      {
+        "points": 10000,
+        "max_i": 0.99957657,
+        "argmax_i": 10545,
+        "max_ii": 0.99833797,
+        "argmax_ii": 7573
+      },
+      {
+        "points": 25000,
+        "max_i": 0.99982449,
+        "argmax_i": 20833,
+        "max_ii": 0.99833797,
+        "argmax_ii": 7573
+      },
+      {
+        "points": 50000,
+        "max_i": 0.99991806,
+        "argmax_i": 89945,
+        "max_ii": 0.99931633,
+        "argmax_ii": 94851
+      },
+      {
+        "points": 99999,
+        "max_i": 0.99997088,
+        "argmax_i": 142915,
+        "max_ii": 0.99945901,
+        "argmax_ii": 105941
+      }
+    ],
+    "live_points": 1999,
+    "live_max_i": 0.9993984423871386,
+    "live_argmax_i": 1517,
+    "live_max_ii": 0.997077763792584,
+    "live_argmax_ii": 2833,
+    "live_checkpoints": [
+      {
+        "points": 500,
+        "max_i": 0.9962439566732383,
+        "max_ii": 0.9869659901703912
+      },
+      {
+        "points": 1000,
+        "max_i": 0.9993984423871386,
+        "max_ii": 0.9869659901703912
+      }
+    ],
+    "max_i_climbs": true,
+    "max_ii_climbs": true,
+    "neither_has_plateaued": true,
+    "exponent_i": -0.6636349732899839,
+    "exponent_ii": -0.5837416356981027,
+    "same_power_within_the_noise": true,
+    "final_residual_i": 2.9119999999993595e-05,
+    "final_residual_ii": 0.0005409899999999634,
+    "residual_gap": 18.577953296706127,
+    "both_are_asymptotically_exact": true,
+    "no_constant_to_spare_in_either": true,
+    "the_gap_is_a_constant_not_a_kind": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -5961,5 +6043,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 83.41813063621521
+  "elapsed_seconds": 88.12741494178772
 }

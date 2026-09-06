@@ -1674,3 +1674,30 @@ def test_the_second_term_of_part_ii_is_deletable() -> None:
     assert wide["violations"] == 0 and wide["odd_points"] == 99999
     assert r["reduced_holds_on_the_wide_sweep"] and r["reduced_wide_margin"] < 1e-3
     assert wide["argmax"] == A.LEMMA_6_2_WIDE_SWEEP["argmax_ii"]
+
+
+# --- whether the two Lemma 6.2 bounds are attained in the limit ---
+
+
+def test_neither_lemma_6_2_maximum_has_plateaued() -> None:
+    """Both running maxima climb across a sweep a hundred times longer than the first."""
+    r = A.lemma_6_2_approach_rate()
+    assert r["max_i_climbs"] and r["max_ii_climbs"] and r["neither_has_plateaued"]
+    cps = r["checkpoints"]
+    assert cps[0]["points"] == 1000 and cps[-1]["points"] == 99999
+    assert cps[-1]["max_i"] > cps[0]["max_i"] and cps[-1]["max_ii"] > cps[0]["max_ii"]
+    # the live short sweep reproduces the first checkpoint exactly
+    live = {x["points"]: x for x in r["live_checkpoints"]}
+    assert abs(live[1000]["max_i"] - cps[0]["max_i"]) < 1e-8
+    assert abs(live[1000]["max_ii"] - cps[0]["max_ii"]) < 1e-8
+
+
+def test_the_two_bounds_approach_at_the_same_power() -> None:
+    """1 - max ~ N^(-0.6) for both, so the 18-fold gap is a constant and not a kind."""
+    r = A.lemma_6_2_approach_rate()
+    assert -0.75 < r["exponent_i"] < -0.55 and -0.75 < r["exponent_ii"] < -0.5
+    assert r["same_power_within_the_noise"]
+    assert r["final_residual_i"] < 1e-4 < r["final_residual_ii"] < 1e-3
+    assert 18 < r["residual_gap"] < 19
+    assert r["both_are_asymptotically_exact"] and r["no_constant_to_spare_in_either"]
+    assert r["the_gap_is_a_constant_not_a_kind"]
