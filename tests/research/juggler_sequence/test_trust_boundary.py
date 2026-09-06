@@ -91,16 +91,16 @@ def test_theorem_5_3_cites_only_step_5b_constants() -> None:
 def test_module_list_matches_what_the_citations_resolve_to() -> None:
     """The table names the modules a reader would have to build; it must be the real set."""
     mods = sorted({r["module"] for r in TB.audit() if r["declared"]})
-    assert mods == ["MasterIdentity", "MeanValues", "MonomialSplitting",
+    assert mods == ["BranchFreeze", "MasterIdentity", "MeanValues", "MonomialSplitting",
                     "PaperBAssembly", "ThresholdCertificate"], mods
     t = table()
     for m in mods:
         assert "`%s`" % m in t, m
-    assert "five modules" in t
+    assert "six modules" in t
 
 
 def test_paper_b_root_imports_exactly_its_own_modules() -> None:
-    """The barrel must import the five modules the citations resolve to, and nothing else.
+    """The barrel must import the six modules the citations resolve to, and nothing else.
 
     An extra import would make the barrel claim more than the paper cites; a missing one would
     make the table's build instruction wrong.

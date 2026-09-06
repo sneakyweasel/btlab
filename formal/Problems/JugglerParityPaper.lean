@@ -39,7 +39,11 @@ must be read together.
 * `PaperBAssembly` — Lemma 4.3's exact linearization (`lemma43_closed_form`, `lemma43_nonneg`,
   `lemma43_upper`, `lemma43_remainder_of_sqrt`) with its carries (`carry_identity`,
   `carry_mem_zero_one`), and Lemma 5.2b's interpolant (`interpolant_assembly`,
-  `interpolant_step_i`, `interpolant_step_ii_constant`).
+  `interpolant_step_i`, `interpolant_step_ii_constant`) on the **corrected**
+  anchor `27/128`, with the superseded chain retained beside it
+  (`interpolant_step_i_precorrection`, `interpolant_step_ii_precorrection`,
+  `interpolant_assembly_precorrection`) because the erratum at Lemma 5.2b lists
+  both ends of `186 → 300`, `0.567 → 0.907` and `106 → 171`.
 * `ThresholdCertificate` — Appendix A: the binding row of the `P₀` certificate
   (`row_5b_binding`), the raised sublevel threshold (`sublevel_raised_threshold`), and the gap
   error (`gap_error_le_one`, `gap_error_one_attained`,

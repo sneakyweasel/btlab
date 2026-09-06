@@ -1376,3 +1376,71 @@ def test_paper_records_both_errata_at_their_sites() -> None:
     # and the downstream constants moved together
     for figure in (r"\frac{11.5}{uhh'}", r"uhh'\ge46", r"8.5\,(uh)^{-1/2}", r"\le48P^{3/4}"):
         assert figure in text, figure
+
+
+# --- the same scan, on the rest of Lemma 5.1(iii), and on what Lean was checking ---
+
+
+def test_the_beta_product_does_not_over_quantify() -> None:
+    """Both factors are extremal at the same n = 2P, so 4.25^2 loses only rounding."""
+    r = D.beta_inventory_attained(10**6)["product"]
+    assert abs(r["attained"] / 18.0 - 1) < 1e-3
+    assert abs(r["closed_form"] - 18.0) < 1e-12          # (3 sqrt 2)^2
+    assert r["lean_hypothesis"] == 4.25**2
+    assert 1.0 < r["printed"] / r["attained"] < 1.06     # under 6%, all of it rounding
+
+
+def test_the_three_bounds_built_on_it_do() -> None:
+    """Each pairs the product with a power of nu taken at the other end of the block."""
+    r = D.beta_inventory_attained(10**6)
+    lo, hi = r["second_difference_term"]["attained"]
+    assert abs(lo - 27 / 4) < 1e-3 and abs(hi - (27 / 4) * 2**0.25) < 3e-3
+    assert r["second_difference_term"]["printed"] == [1.4, 15.0]
+    assert (15.0 - 1.4) / (hi - lo) > 10                 # printed interval ten times as wide
+    assert abs(r["Gprime_beta"]["attained"] - 81 / 16) < 1e-3
+    assert abs(r["Gsecond_beta"]["attained"] - 567 / 64) < 1e-3
+    assert 3.9 < 20.0 / r["Gprime_beta"]["attained"] < 4.0
+    assert 2.8 < 25.0 / r["Gsecond_beta"]["attained"] < 2.9
+
+
+def test_none_of_the_three_propagates_anywhere_that_binds() -> None:
+    """Which is why they are measured and left alone."""
+    P0 = C.certificate()["P0"]
+    # the 25 enters only through 25/0.35 <= 71.5, i.e. the st6D1-good row
+    for c, want in ((25.0, 8.2e4), (567 / 64, 1.0e4)):
+        row = (4 * c / 0.35) ** 2
+        assert abs(row / want - 1) < 0.05, (c, row)
+        assert row < P0 / 1e8
+    # the 20 enters only through the lower-order 20 h P^(-1/4) of the widened coefficient
+    for c, want in ((20.0, 2.95e11), (81 / 16, 7.59e9)):
+        assert abs(C.widened_b_constant_threshold(0.001 * 20.0 / c) * 0 + (c / 0.001) ** (8 / 3)
+                   / want - 1) < 0.05, c
+    assert (81 / 16 / 0.001) ** (8 / 3) < P0            # and both are far below P_0
+
+
+def test_the_lean_interpolant_chain_is_on_the_corrected_anchor() -> None:
+    """It proved 186 / 0.57 / 106 while the manuscript displayed 300 / 0.91 / 170.6."""
+    root = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Juggler"
+    src = io.open(root / "PaperBAssembly.lean", encoding="utf-8").read()
+    for frag in ("300 * k * h\u2082 * p18", "84.38 * (k * (h\u2081 + h\u2082)) * p98",
+                 "(27 / 128 : \u211d) * 4.3 \u2264 0.91", "W\u2081 + W\u2082 \u2264 170.6 * p2524"):
+        assert frag in src, frag
+    for frag in ("interpolant_step_i_precorrection", "interpolant_step_ii_precorrection",
+                 "interpolant_assembly_precorrection"):
+        assert frag in src, frag
+    # the corrected chain closes: (9/32)*300 + (27/128)*4.3, doubled
+    assert abs(((9 / 32) * 300 + (27 / 128) * 4.3) * 2 - 170.564) < 1e-3
+    assert (84.38 + 0.91) * 2 <= 170.6
+    # and it is the constant the certificate is solved against
+    assert abs(C.interpolant_error(1e13) / (170.6 * 1e13 ** (-25 / 24) + 0.11 * 1e13 ** (-5 / 6))
+               - 1) < 1e-12
+    assert C.ANCHOR_CONSTANTS[2] == 170.6 and C.ANCHOR_CONSTANTS_PRECORRECTION[2] == 105.8
+
+
+def test_paper_says_what_the_machine_check_now_covers() -> None:
+    text = io.open(PAPER, encoding="utf-8").read()
+    assert "what the machine check was checking" in text
+    assert "corrected figures above and not the ones the erratum replaced" in text
+    assert "How much of the" in text and "inventory above is attained" in text
+    assert r"\tfrac{81}{16}=5.0625" in text and r"\tfrac{567}{64}=8.8594" in text
+    assert "neither propagates anywhere that binds" in text

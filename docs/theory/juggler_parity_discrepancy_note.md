@@ -1856,6 +1856,53 @@ Consequently, with \(G:=F_{\boldsymbol\kappa}\circ X\),
 \]
 so \(\lfloor G(n)\rfloor\) is constant on runs of length
 \(\ge\tfrac1{22}\min\bigl(P^{1/4}/(|j|{+}1),\,P^{3/4}/(h_1h_2)\bigr)\).
+
+> *How much of the \(\beta\)-inventory above is attained.* The offset
+> erratum came from bounding two quantities separately that one
+> variable determines; the rest of this lemma's inventory was scanned
+> for the same thing. The \(\beta\)-product is clean:
+> \(\beta_1\beta_2/(h_1h_2P)\) attains \(18=(3\sqrt2)^2\) exactly, and
+> the Lean hypothesis pair \(\beta_i\le4.25h_iP^{1/2}+1\) loses only
+> the rounding \(4.25^2=18.0625\), because both factors are extremal at
+> the *same* \(n=2P\). Quantifying them separately costs nothing there.
+>
+> The three bounds built on that product are another matter, because
+> each pairs the product with a power of \(\nu\) taken at the opposite
+> end of the block. Measured exactly over
+> \(1\le h_1,h_2\le7\) (`decoration_budget.beta_inventory_attained`,
+> integer arithmetic throughout):
+>
+> \[
+> \begin{array}{lcc}
+> \text{quantity} & \text{printed} & \text{attained}\\[2pt]
+> \tfrac34\beta_1\beta_2(m{+}\xi_2)^{-1/2}/(h_1h_2P^{1/4})
+>   & [1.4,\,15] & [\tfrac{27}4,\,\tfrac{27}42^{1/4}]=[6.750,\,8.027]\\
+> \beta\text{-part of }|G'|/(h_1h_2P^{-3/4})
+>   & 20 & \tfrac{81}{16}=5.0625\\
+> \beta\text{-part of }|G''|/(h_1h_2P^{-7/4})
+>   & 25 & \tfrac{567}{64}=8.8594
+> \end{array}
+> \]
+>
+> So the printed interval in the first row is \(13.6\) wide where the
+> attained one is \(1.28\), and the two derivative constants are
+> \(3.95\) and \(2.82\) times what they bound. All three are the same
+> arithmetic: \(\beta_1\beta_2\sim9h_1h_2n\) and the accompanying power
+> of \(n\) move together, and the printed forms take one at each end.
+>
+> We do not sharpen them, and the reason is the same one that declined
+> the widened constant in A.6: neither propagates anywhere that binds.
+> The \(20\) enters the widened \(\theta\)-coefficient only through the
+> lower-order \(20hP^{-1/4}\), so at \(5.07\) the collected constant
+> \(4+\delta\) becomes valid from \(7.6\cdot10^{9}\) rather than
+> \(2.95\cdot10^{11}\) --- both far below \(P_0\) --- and the collected
+> constant itself is unchanged. The \(25\) enters only through
+> \(25/0.35\le71.5\), whose certificate row moves from
+> \(8.2\cdot10^{4}\) to \(1.0\cdot10^{4}\). And a rigorous sharpening
+> would have to carry the \(O(1)\) corrections in
+> \(\beta_i=\lfloor\Delta_iX+\theta\rfloor\) that the printed constants
+> currently absorb. The measurement is recorded so that a later reader
+> who needs one of these three knows what is there to be had.
 The branch indicator is a finite union of arcs in the single
 variable \(\theta\) with slowly moving endpoints (drifts
 \(\le1.5hP^{-1/2}\) per step): exactly the moving-endpoint pattern of
@@ -3376,7 +3423,27 @@ Steps (i)--(iii) and the assembly are machine-checked in
 `formal/Problems/Juggler/PaperBAssembly.lean` (`interpolant_step_i`,
 `interpolant_step_ii_constant`, `interpolant_assembly`), with the power
 identities \(P^{1/8}P^{-5/4}=P^{-9/8}\) and
-\(P^{1/12}P^{-9/8}=P^{-25/24}\) as hypotheses.
+\(P^{1/12}P^{-9/8}=P^{-25/24}\) as hypotheses --- at the cap \(300\), the
+constants \(84.38\) and \(0.91\), and the conclusion \(170.6\), which are the
+corrected figures above and not the ones the erratum replaced.
+
+> *Erratum (what the machine check was checking).* Until this revision those
+> three theorems carried the pre-correction chain --- cap \(186\), constants
+> \(52.32\) and \(0.57\), conclusion \(106\) --- while the display above them
+> carried the corrected one. The sentence claiming them was therefore true of
+> a statement the erratum at this lemma had already replaced, which is the one
+> thing the trust table of Section 1.1 exists to prevent. Regenerated; the
+> superseded chain is retained under `interpolant_step_i_precorrection`,
+> `interpolant_step_ii_precorrection` and
+> `interpolant_assembly_precorrection`, as `step5b_c7_printed` retains the
+> weaker \(c_7=1/288\), so that a reader checking the erratum's list
+> \(186\to300\), \(0.567\to0.907\), \(106\to171\) finds both ends of it in
+> Lean. `interpolant_gain` now records \(219/170.6=1.2837\), the factor
+> Appendix A.5 claims, beside the \(219/106>2\) of the superseded chain.
+>
+> Nothing else moves: the threshold certificate was already solved against
+> \(170.6\) (`p0_certificate.interpolant_error`), so \(P_0\) and \(P_1\) are
+> unchanged. What was wrong was the corroboration, not the arithmetic.
 
 These are all the differences between \(f''\) and \(\Lambda\).
 In particular \(\Lambda\) is not \((cF_{\mathrm{sm}})''\) for

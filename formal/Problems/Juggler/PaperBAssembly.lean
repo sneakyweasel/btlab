@@ -138,17 +138,42 @@ end Carry
 section Interpolant
 
 /-- **Step (i) of Lemma 5.2b.**  The wave replacement, under the middle-band cap
-`u ≤ 186 k h₂ P^(1/8)` — which *is* the band condition `μ ≤ 60 λ₀`, since
-`60·2.6/0.84 = 185.7`.  Powers enter only through `p18 = P^(1/8)`,
+`u ≤ 300 k h₂ P^(1/8)` — which *is* the band condition `μ ≤ 60 λ₀`, since
+`60·4.2/0.84 = 300`.  Powers enter only through `p18 = P^(1/8)`,
 `p54 = P^(-5/4)`, `p98 = P^(-9/8)` and the relation `p18 · p54 = p98`.
 
 The conclusion carries the shape `k(h₁+h₂)`, which is what lets it combine with
 step (ii) *before* conversion — the step the earlier draft skipped, bounding and
 converting the two terms separately and printing `202.5 + 16 = 219`.
 
-The constant is `(9/32)·186 = 52.3125`, so it must be printed as `52.32`, not
-`52.3`. -/
+The constant is `(9/32)·300 = 84.375`, printed as `84.38`.  The cap is `300`
+and not `186` because of the erratum at Lemma 5.2b: the anchor curvature is
+`27/128`, not `135/1024`, and `λ₀`'s ceiling `2.6` opens to `4.2`.  The
+superseded chain is kept below under `_precorrection`, as `step5b_c7_printed`
+keeps the manuscript's weaker `1/288`. -/
 theorem interpolant_step_i
+    (u u' k h₁ h₂ p18 p54 p98 : ℝ)
+    (hk : 0 ≤ k) (hh₁ : 0 ≤ h₁) (hh₂ : 0 ≤ h₂)
+    (hp54 : 0 ≤ p54) (hrel : p18 * p54 = p98)
+    (hp98 : 0 ≤ p98)
+    (hu : u ≤ 300 * k * h₂ * p18) (hu' : u' ≤ 300 * k * h₁ * p18) :
+    (9 / 32) * (u + u') * p54 ≤ 84.38 * (k * (h₁ + h₂)) * p98 := by
+  have hsum : u + u' ≤ 300 * (k * (h₁ + h₂)) * p18 := by nlinarith
+  have hstep : (9 / 32) * (u + u') * p54
+      ≤ (9 / 32) * (300 * (k * (h₁ + h₂)) * p18) * p54 := by nlinarith
+  have hcollapse : (9 / 32) * (300 * (k * (h₁ + h₂)) * p18) * p54
+      = 84.375 * (k * (h₁ + h₂)) * p98 := by
+    rw [← hrel]; ring
+  have hkh : 0 ≤ k * (h₁ + h₂) := by positivity
+  have hfinal : 84.375 * (k * (h₁ + h₂)) * p98 ≤ 84.38 * (k * (h₁ + h₂)) * p98 := by
+    nlinarith [mul_nonneg hkh hp98]
+  linarith [hstep, hcollapse.le, hfinal]
+
+/-- The same step under the pre-correction anchor `135/1024`, where the cap was
+`186 = 60·2.6/0.84` and the constant `(9/32)·186 = 52.3125`.  Retained because
+the manuscript's erratum lists `186 → 300` and `52.9 → 85.3` explicitly, and a
+reader checking that list should find both ends of it here. -/
+theorem interpolant_step_i_precorrection
     (u u' k h₁ h₂ p18 p54 p98 : ℝ)
     (hk : 0 ≤ k) (hh₁ : 0 ≤ h₁) (hh₂ : 0 ≤ h₂)
     (hp54 : 0 ≤ p54) (hrel : p18 * p54 = p98)
@@ -167,18 +192,49 @@ theorem interpolant_step_i
   linarith [hstep, hcollapse.le, hfinal]
 
 /-- **Step (ii) of Lemma 5.2b.**  The `β`-product replacement contributes
-`(135/1024)·4.3 = 0.567`, printed as `0.57`.  An earlier draft carried `8` here
-— fourteen times the true value — and that `8` is the source of the `16` in the
-old `219 = 202.5 + 16`. -/
+`(27/128)·4.3 = 0.9070`, printed as `0.91`.  The manuscript notes that `0.95`
+would not do, because it pushes the sum in (i) past `85.3`; both halves of that
+are recorded here. -/
 theorem interpolant_step_ii_constant :
-    (135 / 1024 : ℝ) * 4.3 ≤ 0.57 ∧ (8 : ℝ) / ((135 / 1024) * 4.3) > 14 := by
-  constructor <;> norm_num
+    (27 / 128 : ℝ) * 4.3 ≤ 0.91
+      ∧ (85.3 : ℝ) < 84.375 + 0.95
+      ∧ (84.375 : ℝ) + 0.91 ≤ 85.3 := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
+/-- The same constant under the pre-correction anchor, `(135/1024)·4.3 = 0.567`,
+printed as `0.57`; the erratum's factor is exactly `8/5`.  An earlier draft
+carried `8` here — fourteen times the pre-correction value — and that `8` is the
+source of the `16` in the old `219 = 202.5 + 16`. -/
+theorem interpolant_step_ii_precorrection :
+    (135 / 1024 : ℝ) * 4.3 ≤ 0.57
+      ∧ (8 : ℝ) / ((135 / 1024) * 4.3) > 14
+      ∧ (27 / 128 : ℝ) / (135 / 1024) = 8 / 5 := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
 
 /-- **The assembly.**  Steps (i) and (ii) share the shape `k(h₁+h₂)P^(-9/8)`, so
-they add before conversion: `52.32 + 0.57 = 52.89`.  Then `k(h₁+h₂) ≤ 2 P^(1/12)`
-by (C3),(C4) gives `105.78 ≤ 106`, with `p112 = P^(1/12)`, `p2524 = P^(-25/24)`
-and `p112 · p98 = p2524`. -/
+they add before conversion: `84.38 + 0.91 = 85.29`.  Then `k(h₁+h₂) ≤ 2 P^(1/12)`
+by (C3),(C4) gives `170.58 ≤ 170.6`, with `p112 = P^(1/12)`, `p2524 = P^(-25/24)`
+and `p112 · p98 = p2524`.  The manuscript prints the rounder `171`; `170.6` is
+what `p0_certificate.interpolant_error` uses and is what the nine anchor rows of
+the threshold certificate are solved against. -/
 theorem interpolant_assembly
+    (W₁ W₂ khsum p98 p112 p2524 : ℝ)
+    (hp98 : 0 ≤ p98) (hrel : p112 * p98 = p2524)
+    (hkh : khsum ≤ 2 * p112) (hkh0 : 0 ≤ khsum)
+    (h₁ : W₁ ≤ 84.38 * khsum * p98) (h₂ : W₂ ≤ 0.91 * khsum * p98) :
+    W₁ + W₂ ≤ 170.6 * p2524 := by
+  have hstep : W₁ + W₂ ≤ 85.29 * khsum * p98 := by linarith
+  have hup : 85.29 * khsum * p98 ≤ 85.29 * (2 * p112) * p98 := by nlinarith
+  have hcollapse : 85.29 * (2 * p112) * p98 = 170.58 * p2524 := by
+    rw [← hrel]; ring
+  have hp2524 : 0 ≤ p2524 := by
+    rw [← hrel]
+    nlinarith [hkh, hkh0, hp98]
+  linarith [hstep, hup, hcollapse.le, hp2524]
+
+/-- The same assembly under the pre-correction anchor: `52.32 + 0.57 = 52.89`
+and `105.78 ≤ 106`. -/
+theorem interpolant_assembly_precorrection
     (W₁ W₂ khsum p98 p112 p2524 : ℝ)
     (hp98 : 0 ≤ p98) (hrel : p112 * p98 = p2524)
     (hkh : khsum ≤ 2 * p112) (hkh0 : 0 ≤ khsum)
@@ -193,10 +249,16 @@ theorem interpolant_assembly
     nlinarith [hkh, hkh0, hp98]
   linarith [hstep, hup, hcollapse.le, hp2524]
 
-/-- The gain over the earlier `219`, on the `P^(-25/24)` coefficient.  The second
-term `0.11 P^(-5/6)` of the interpolant error is untouched and is co-dominant at
-`P₀`, so the *total* error gains about `1.6` there, not `2.07`. -/
-theorem interpolant_gain : (2 : ℝ) < 219 / 106 := by norm_num
+/-- The gain over the earlier `219`, on the `P^(-25/24)` coefficient: `1.28`,
+which is what Appendix A.5 claims.  The pre-correction chain gave `106` and so
+a factor above `2`; the erratum at Lemma 5.2b spends most of that back, and
+`1.28` is what is left.  The second term `0.11 P^(-5/6)` of the interpolant
+error is untouched and is co-dominant at `P₀`, so the *total* error gains less
+than either figure there. -/
+theorem interpolant_gain :
+    (1.28 : ℝ) * 170.6 < 219 ∧ (219 : ℝ) < 1.284 * 170.6
+      ∧ (2 : ℝ) * 106 < 219 := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
 
 end Interpolant
 

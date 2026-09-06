@@ -3775,3 +3775,23 @@ and the collected constant itself is unchanged. The `25` reaches only
 are eight orders under `P_0`. A rigorous sharpening would also have to carry
 the `O(1)` corrections in `beta_i = floor(Delta_i X + theta)` that the printed
 constants currently absorb.
+
+### A commit that was not the tree it was tested on
+
+`520ab77b` shipped `JugglerParityPaper.lean` importing `BranchFreeze` --- which
+makes the trust audit resolve six cited modules --- alongside
+`test_trust_boundary.py` still asserting exactly five. Its tree therefore fails
+`test_module_list_matches_what_the_citations_resolve_to` and
+`test_paper_b_root_imports_exactly_its_own_modules` on a clean checkout, and
+the commit message says the full suite is green on pytest's own exit code.
+
+The suite *was* green, in the working tree. The tree that was committed was a
+different one, because the file was edited and then left out of an explicit
+`git add` list. The list is explicit on purpose here --- a second session is
+committing into the same working tree, and blanket `git add -A` would sweep up
+its files --- so the failure mode is structural rather than careless: every
+file touched has to be enumerated, and one was not.
+
+Fixed by including it in the next commit. Recorded because "the suite is green"
+means nothing about a commit unless the two are the same tree, and nothing in
+this workflow checks that they are.

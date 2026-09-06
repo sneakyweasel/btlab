@@ -695,6 +695,54 @@ def widened_theta_constant(j_max: int = 2) -> dict[str, Any]:
             "mode_index_row": (lead + 1) ** 16}   # (lead+1) P^(1/4) <= P^(5/16)
 
 
+
+def beta_inventory_attained(p: int, hmax: int = 7, stride: int | None = None) -> dict[str, Any]:
+    """What Lemma 5.1(iii)'s ``beta``-inventory actually attains, against what it prints.
+
+    The offset erratum came from bounding two quantities separately that one variable
+    determines.  This is the same scan over the rest of the lemma.  The ``beta``-product is
+    clean -- both factors are extremal at the same ``n = 2P``, so ``beta1 beta2/(h1 h2 P)``
+    attains ``18 = (3 sqrt 2)^2`` and the Lean pair ``beta_i <= 4.25 h_i P^(1/2) + 1`` loses
+    only the rounding.  The three bounds built on it are not, because each pairs the product
+    with a power of ``nu`` taken at the other end of the block:
+
+    ```text
+      (3/4) b1 b2 (m+xi2)^(-1/2) / (h1 h2 P^(1/4))   printed [1.4, 15]  attained [27/4, (27/4)2^(1/4)]
+      beta-part of |G'|  / (h1 h2 P^(-3/4))          printed 20         attained 81/16
+      beta-part of |G''| / (h1 h2 P^(-7/4))          printed 25         attained 567/64
+    ```
+
+    Nothing here is sharpened: see the note at the lemma for why none of the three propagates
+    anywhere that binds.
+    """
+    step = stride or max(1, p // 300) | 1
+    prod = 0.0
+    term_lo, term_hi = float("inf"), 0.0
+    gp = gs = 0.0
+    for n in range(p + 1, 2 * p + 1, step):
+        m = m_floor(n)
+        for h1 in range(1, hmax + 1):
+            for h2 in range(1, hmax + 1):
+                b = (m_floor(n + 2 * h1) - m) * (m_floor(n + 2 * h2) - m)
+                hh = h1 * h2
+                prod = max(prod, b / (hh * p))
+                v = 0.75 * b / m**0.5 / (hh * p**0.25)
+                term_lo = min(term_lo, v)
+                term_hi = max(term_hi, v)
+                gp = max(gp, (9 / 16) * b * n**-1.75 / (hh * p**-0.75))
+                gs = max(gs, (63 / 64) * b * n**-2.75 / (hh * p**-1.75))
+    return {
+        "P": p, "h_max": hmax,
+        "product": {"attained": prod, "closed_form": 18.0, "lean_hypothesis": 4.25**2,
+                    "printed": 19.0},
+        "second_difference_term": {"attained": [term_lo, term_hi],
+                                   "closed_form": [27 / 4, (27 / 4) * 2**0.25],
+                                   "printed": [1.4, 15.0]},
+        "Gprime_beta": {"attained": gp, "closed_form": 81 / 16, "printed": 20.0},
+        "Gsecond_beta": {"attained": gs, "closed_form": 567 / 64, "printed": 25.0},
+    }
+
+
 def main() -> None:
     payload = run_census(
         orbit_window=100_000,
