@@ -34096,3 +34096,64 @@ Best next question
   t_0. Is there a second such table to be written, for the numerals that are
   not certificate rows?
 ```
+
+## Nine sites, one corner, and one place where slack is load-bearing
+
+`(C1)` is invoked at nine displayed sites, so it is not there for the
+`j = 0` anchor. Every one of the nine is applied at the corner
+`k h_1h_2 = P^(1/8)`, and the corner is unreachable: Theorem 6.1 enters
+with `k <= 2 P^(1/96)` and Theorem 5.3 takes `H_1 = P^(1/48)`,
+`H_2 = P^(1/24)`, so the load is `2 P^(7/96)`. The manuscript records
+that slack once, in its closing table, and does not carry it to any of
+the nine; each is over-charged by `2 P^(-5/96)`, `1/2.54` at `P_0`.
+
+Three of the nine are dominated anyway. Two are certificate rows and
+neither is within twelve orders of `P_0`. One is a regime boundary:
+Regime B, the hard case, is declared as `uh < 34.3 P^(1/4)` and is
+really `68.6 P^(19/96)` --- `2.54` times narrower at `P_0`, a
+strengthening at no cost.
+
+And one is a site where sharpening would make the paper worse. At line
+2532 `(C1)` bounds how large an undifferenced `phi''` could be, to
+justify why the carried budget must be the differenced one. A smaller
+bound there is a smaller danger and a weaker motivation. That is the
+first row in the inventory where the slack is load-bearing, and it is a
+useful correction to the habit of the last several passes.
+
+```text
+Phase-end report
+Question
+- is (C1) at the j = 0 band for that bound alone, and how much of it
+  does each site actually use
+Instruments
+- c1_invocation_inventory: the nine sites with the exponent each
+  carries, its value at the operating load, and what it is doing there;
+  a tolerant line-drift report against the working copy
+Ledger tags
+- EXACT: nine sites; load 2 P^(7/96) against cap P^(12/96), so room
+  P^(5/96)/2 at every one; Regime B is 68.6 P^(19/96) at the load
+- COMPUTATIONALLY VERIFIED: over-charge 2.5406 at P_0, identical at all
+  nine; st3a-flat holds at every P; 5b-j0-window 3136 -> 798; no
+  certificate row moves P_0
+- OBSERVATION: eight of nine recorded line numbers still match
+Strongest theorem
+- the hard regime of Theorem 5.3's Step 5b is 2.54 times narrower at
+  P_0 than the paper declares it
+Strongest refutation
+- the assumption behind four passes of this work, that slack is always
+  worth removing: at line 2532 it is what makes the motivation work
+Reusable machinery
+- c1_invocation_inventory, C1_INVOCATIONS, two tests, wired into
+  summary()
+Branch status
+- PARK
+Why
+  Every finding is a manuscript edit and the manuscript is the other
+  session's; the one with content, Regime B's extent, is a sentence in
+  Step 5b.
+Best next question
+- (C2), h_1h_2 <= P^(1/2)/3, is recorded as "invoked nowhere below".
+  Lemma 5.1(iii)'s hypothesis is h_1h_2 <= P^(1/2)/3, which is (C2)
+  exactly. Is the lemma's hypothesis (C2) under another name, or a
+  genuine second occurrence of the same inequality?
+```

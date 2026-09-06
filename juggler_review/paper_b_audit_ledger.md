@@ -3795,3 +3795,72 @@ file touched has to be enumerated, and one was not.
 Fixed by including it in the next commit. Recorded because "the suite is green"
 means nothing about a commit unless the two are the same tree, and nothing in
 this workflow checks that they are.
+
+## (C1) carries nine bounds, all of them at a corner the argument never reaches
+
+The question was whether `(C1)`, `k h_1h_2 <= P^(1/8)`, is at the
+`j = 0` band for that one bound. It is not: it is invoked at nine
+displayed sites. What they share is more interesting than the count.
+
+**Every one is applied at `(C1)`'s own corner, and the corner is
+unreachable.** Theorem 6.1 enters with `k <= 2 P^(1/96)` and Theorem
+5.3 takes `H_1 = P^(1/48)`, `H_2 = P^(1/24)`, so the load is
+`2 P^(7/96)` against a cap of `P^(12/96)`. The manuscript records that
+once, in the closing slack table --- "`7/96` of `12/96`" --- and does
+not propagate it. Each of the nine constants is therefore over-charged
+by `2 P^(-5/96)`, which is `1/2.54` at `P_0`.
+
+```text
+  line   printed form                 exponent   at the load   kind
+  2532   8.6 k h1h2 P^(1/8)/(uh)       1/4        19/96        danger sizing
+  2920   18 k h1h2 P^(-7/8)/u         -3/4       -77/96        dominated
+  2938   34.3 k h1h2 P^(1/8)           1/4        19/96        regime boundary
+  3663   2.7 k h1h2 P^(1/8)            1/4        19/96        error term
+  3684   30 k h1h2 P^(5/8)             3/4        67/96        threshold row
+  3715   1.85 k h1h2 P^(1/8)           1/4        19/96        mode cap
+  3958   5.3 k h1h2 P^(-1/8)           0          -5/96        threshold row
+  4018   600 k h1h2 P^(-5/8)          -1/2       -53/96        dominated
+  4469   80 k h1h2 P^(-1/2)           -3/8       -41/96        dominated
+```
+
+(Line numbers as of this pass; eight of the nine still match, the
+manuscript being edited alongside. The probe reports the drift instead
+of failing on it.)
+
+**What the slack is worth is not uniform.** Three sites are dominated
+with room to spare and nothing changes. Two are certificate rows:
+`st3a-flat`, which already holds at every `P`, and `5b-j0-window`,
+which moves from `3136` to `798`. Neither is within twelve orders of
+`P_0`, so nothing moves the threshold.
+
+**One site has structural content.** Regime B --- the hard case, where
+neither the second- nor the third-derivative test is available and
+Lemmas 3.8--3.9 do not apply --- is declared as
+`uh < 34.3 k h_1h_2 P^(1/8) <= 34.3 P^(1/4)`. At the load it is
+`68.6 P^(19/96)`. The hard regime is `2.54` times narrower at `P_0`
+than the paper states it to be, which is a strengthening at no cost.
+
+**And one site would be *weakened* by sharpening.** At line 2532 `(C1)`
+is used to bound how large an undifferenced `phi''` could be ---
+`8.6 k h_1h_2 P^(1/8)/(uh)` reaching `8.6 P^(1/4)` at `uh = 1` --- in
+order to justify why the budget carried must be the differenced one. A
+smaller bound there is a smaller danger and a weaker motivation, not a
+stronger theorem. Slack is not uniformly worth removing, and this is
+the first site in the inventory where removing it would cost
+something.
+
+So the answer is no twice: `(C1)` is not there for one bound, and its
+slack is not one quantity with one value.
+
+Tags. EXACT: nine invocation sites; the load `2 P^(7/96)` against the
+cap `P^(12/96)`, so the room is `P^(5/96)/2` at every one of them;
+Regime B's boundary is `68.6 P^(19/96)` at the load against the printed
+`34.3 P^(1/4)`. COMPUTATIONALLY VERIFIED: the over-charge is `2.5406`
+at `P_0`, identical at all nine sites since all nine carry the same
+product; `st3a-flat` holds at every `P` and `5b-j0-window` moves
+`3136 -> 798`; no certificate row moves `P_0`. OBSERVATION: eight of
+the nine recorded line numbers still match the working copy.
+
+Probe: `c1_invocation_inventory`, `C1_INVOCATIONS`. Two tests. Audit
+`PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No manuscript
+or certificate edit.

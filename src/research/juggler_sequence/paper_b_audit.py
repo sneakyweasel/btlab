@@ -4276,6 +4276,99 @@ def beta_locality(seed: int = 37, samples_per_range: int = 30, span: int = 40000
     }
 
 
+# The (C1) invocations of Sections 4-6, by line of the manuscript, with the exponent each one
+# carries and what it is doing there.  "kind" is what the site would lose if (C1) were sharper.
+C1_INVOCATIONS = (
+    {"line": 2532, "form": "8.6 k h1h2 P^(1/8)/(uh)", "exponent": Fr(1, 8), "kind": "danger sizing"},
+    {"line": 2920, "form": "18 k h1h2 P^(-7/8)/u", "exponent": Fr(-7, 8), "kind": "dominated"},
+    {"line": 2938, "form": "34.3 k h1h2 P^(1/8)", "exponent": Fr(1, 8), "kind": "regime boundary"},
+    {"line": 3663, "form": "2.7 k h1h2 P^(1/8)", "exponent": Fr(1, 8), "kind": "error term"},
+    {"line": 3684, "form": "30 k h1h2 P^(5/8)", "exponent": Fr(5, 8), "kind": "threshold row"},
+    {"line": 3715, "form": "1.85 k h1h2 P^(1/8)", "exponent": Fr(1, 8), "kind": "mode cap"},
+    {"line": 3958, "form": "5.3 k h1h2 P^(-1/8)", "exponent": Fr(-1, 8), "kind": "threshold row"},
+    {"line": 4018, "form": "600 k h1h2 P^(-5/8)", "exponent": Fr(-5, 8), "kind": "dominated"},
+    {"line": 4469, "form": "80 k h1h2 P^(-1/2)", "exponent": Fr(-1, 2), "kind": "dominated"},
+)
+
+
+def c1_invocation_inventory(P0: float = 3.5858e13) -> dict[str, Any]:
+    """Is (C1) there for the j = 0 anchor alone, and how much of it does each site use?
+
+    No: k h_1h_2 <= P^{1/8} is invoked at nine displayed sites.  What every one of them has in
+    common is that it is applied at (C1)'s own corner, k h_1h_2 = P^{1/8}, and that corner is not
+    reachable at the invocation.  Theorem 6.1 enters with k <= 2 P^{1/96} and Theorem 5.3 takes
+    H_1 = P^{1/48}, H_2 = P^{1/24}, so the load is 2 P^{7/96} against a cap of P^{12/96}.  The
+    manuscript records that slack once, in the closing table ("7/96 of 12/96"), and then does not
+    propagate it: each of the nine constants is over-charged by 2 P^{-5/96}, which is 0.394 at P_0.
+
+    What that is worth, site by site, is not uniform:
+
+      - three sites are dominated with room to spare, so nothing changes;
+      - two are certificate rows -- st3a-flat, which holds at every P, and 5b-j0-window, which
+        moves from 3136 to 798.  Neither is within twelve orders of P_0;
+      - one is a *regime boundary*: Regime B, the hard case where neither the second- nor the
+        third-derivative test is available, is declared as uh < 34.3 k h_1h_2 P^{1/8} <= 34.3
+        P^{1/4}.  At the load it is 68.6 P^{19/96}, so the hard regime is 2.54 times narrower at
+        P_0 than the paper states.  That is the one site with structural content;
+      - and one is a site where sharpening would *weaken* the paper.  At line 2532 (C1) bounds how
+        large an undifferenced phi'' could be -- 8.6 k h_1h_2 P^{1/8}/(uh) reaching 8.6 P^{1/4} --
+        to justify why the budget carried must be the differenced one.  A smaller bound there is a
+        smaller danger and a weaker motivation, not a stronger theorem.
+
+    So the answer to the question is no twice over: (C1) is not there for one bound, and its slack
+    is not uniformly worth removing.
+    """
+
+    cap = Fr(1, 8)
+    load = Fr(7, 96)
+    ratio = 2 * P0 ** float(load - cap)
+    # The line numbers are as of this pass and the manuscript is edited concurrently, so drift is
+    # reported rather than asserted: a site counts as found if h_1h_2 appears within three lines.
+    lines = (REPO_ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md").read_text(
+        encoding="utf-8").splitlines()
+    found = 0
+    for site in C1_INVOCATIONS:
+        lo = max(0, site["line"] - 4)
+        window = "".join(lines[lo:site["line"] + 3])
+        if "h_1h_2" in window or "h_1h_2" in window.replace(" ", ""):
+            found += 1
+    rows = []
+    for site in C1_INVOCATIONS:
+        printed = site["exponent"] + cap
+        at_load = site["exponent"] + load
+        rows.append({
+            "line": site["line"], "form": site["form"], "kind": site["kind"],
+            "printed_exponent": str(printed), "exponent_at_the_load": str(at_load),
+            "exponent_gain": str(printed - at_load),
+        })
+    by_kind: dict[str, int] = {}
+    for r in rows:
+        by_kind[r["kind"]] = by_kind.get(r["kind"], 0) + 1
+    return {
+        "rows": rows,
+        "sites": len(rows),
+        "lines_still_matching": found,
+        "line_numbers_have_drifted": found < len(C1_INVOCATIONS),
+        "by_kind": by_kind,
+        "invoked_for_more_than_one_bound": len(rows) > 1,
+        "c1_exponent": str(cap),
+        "operating_load_exponent": str(load),
+        "operating_load_constant": 2.0,
+        "room_exponent": str(cap - load),
+        "over_charge_at_P0": 1 / ratio,
+        "every_site_shares_the_same_over_charge": True,
+        # the two that touch the certificate, and the one with structural content
+        "threshold_rows": [r["line"] for r in rows if r["kind"] == "threshold row"],
+        "regime_boundary_line": next(r["line"] for r in rows if r["kind"] == "regime boundary"),
+        "regime_b_printed": "34.3 P^(1/4)",
+        "regime_b_at_the_load": "68.6 P^(19/96)",
+        "regime_b_narrower_by": 1 / ratio,
+        "sharpening_would_weaken_one_site": any(r["kind"] == "danger sizing" for r in rows),
+        "danger_sizing_line": next(r["line"] for r in rows if r["kind"] == "danger sizing"),
+        "no_certificate_row_moves_P0": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -4345,6 +4438,7 @@ def summary() -> dict[str, Any]:
     d2consts = second_derivative_constants(samples_per_range=16)
     collected = collected_constant_inventory()
     locality = beta_locality(span=12000, samples_per_range=12)
+    c1sites = c1_invocation_inventory()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -4402,6 +4496,7 @@ def summary() -> dict[str, Any]:
         "second_derivative_constants": d2consts,
         "collected_constant_inventory": collected,
         "beta_locality": locality,
+        "c1_invocation_inventory": c1sites,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

@@ -1447,3 +1447,31 @@ def test_the_j0_anchor_coefficient_is_the_same_loss_a_third_time() -> None:
     inv = A.collected_constant_inventory()
     assert inv["count"] == 8
     assert inv["by_loss"]["block ends apart"] == 3
+
+
+# --- what (C1) is doing, and at how many places ---
+
+
+def test_c1_is_invoked_at_nine_sites_not_one() -> None:
+    """k h1h2 <= P^(1/8) carries nine displayed bounds, of three different kinds."""
+    r = A.c1_invocation_inventory()
+    assert r["sites"] == 9 and r["invoked_for_more_than_one_bound"]
+    assert sum(r["by_kind"].values()) == 9
+    assert r["by_kind"]["dominated"] == 3 and r["by_kind"]["threshold row"] == 2
+    assert set(r["threshold_rows"]) == {3684, 3958}
+    # the line numbers drift under the concurrent edits; the probe reports that, it does not fail
+    assert 0 <= r["lines_still_matching"] <= 9
+
+
+def test_every_c1_site_is_charged_at_a_corner_the_load_cannot_reach() -> None:
+    """The load is 2 P^(7/96) against a cap of P^(12/96): every site over-charges by 2.54 at P_0."""
+    r = A.c1_invocation_inventory()
+    assert r["c1_exponent"] == "1/8" and r["operating_load_exponent"] == "7/96"
+    assert r["room_exponent"] == "5/96" and r["operating_load_constant"] == 2.0
+    assert 2.5 < r["over_charge_at_P0"] < 2.6
+    assert r["every_site_shares_the_same_over_charge"]
+    assert r["no_certificate_row_moves_P0"]
+    # one site has structural content and one would be weakened by sharpening
+    assert r["regime_boundary_line"] == 2938 and r["regime_b_at_the_load"] == "68.6 P^(19/96)"
+    assert abs(r["regime_b_narrower_by"] - r["over_charge_at_P0"]) < 1e-12
+    assert r["sharpening_would_weaken_one_site"] and r["danger_sizing_line"] == 2532
