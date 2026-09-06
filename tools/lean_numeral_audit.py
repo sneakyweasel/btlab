@@ -1,7 +1,7 @@
 """Every numeral in a Paper B Lean *statement*, paired with the quantity it implements.
 
-`p0_certificate.LEAN_ROWS` already pairs the thirty-eight threshold rows with their theorems
-and their rational witnesses.  Nothing paired the rest.  That gap is how
+`manuscript_self_audit.lean_row_audit` pairs the thirty-three threshold-row theorems with the
+crossings they certify and their rational witnesses.  Nothing paired the rest.  That gap is how
 `PaperBAssembly.interpolant_step_i` came to prove the cap `186` for as long as it did, while
 the display three lines above it in the manuscript carried the corrected `300`: the theorem was
 green, the manuscript was right, and no check compared the two.  A "does this numeral appear
@@ -43,7 +43,10 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 from research.juggler_sequence import p0_certificate as C  # noqa: E402
 
 # The three modules whose constants no table covered.  ThresholdCertificate's rows are paired
-# by p0_certificate.LEAN_ROWS, which carries the substitution and the rational witness too.
+# by manuscript_self_audit.lean_row_audit, which carries the substitution and the rational
+# witness too.  Until that existed this comment named p0_certificate.LEAN_ROWS, which never did:
+# the thirty-three row theorems were excluded here on the strength of a structure that was not
+# there, so their numerals -- 1.92, 1.46, 0.06237, 0.65076 -- were audited by nothing.
 UNPAIRED_MODULES = ("BranchFreeze", "MonomialSplitting", "PaperBAssembly")
 CERTIFICATE_MODULE = "ThresholdCertificate"
 ALGEBRA_MODULES = ("MasterIdentity", "MeanValues")

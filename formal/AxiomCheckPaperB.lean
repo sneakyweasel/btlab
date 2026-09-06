@@ -48,6 +48,7 @@ open Problems.Juggler
 #print axioms offset_abs_le_three
 #print axioms offset_abs_le_two
 #print axioms row_5b_binding
+#print axioms row_5b_lam0_upper
 #print axioms row_s3s2_bdry_a
 #print axioms second_difference_exists_xi
 #print axioms second_difference_two_sided

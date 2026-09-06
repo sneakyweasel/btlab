@@ -6561,11 +6561,22 @@ that chain. Every exponent in the paper lies in
 \(\tfrac1{96}\mathbb Z\), so the substitution \(P=t^n\) turns each
 row into a *polynomial* inequality in \(t\), with no real powers at
 all, and **all thirty-eight rows are proved that way** in
-`formal/Problems/Juggler/ThresholdCertificate.lean` (33 theorems: the
-window-boundary and \(\lambda_0\)-range rows each split in two). Each
-carries its substitution and a rational threshold \(t_0\) at or just
-above the true crossing, so the certified thresholds are slightly
-conservative. The largest is the binding row --- `row_5b_binding`, at
+`formal/Problems/Juggler/ThresholdCertificate.lean` (33 theorems, which
+is \(38-7+2\): seven rows have no Lean theorem at all, and the
+window-boundary and \(\lambda_0\)-range rows each split in two). The
+seven are Claim D's shift range, the collision band, the Step 3(a) flat
+cost, the Step 5b(a) \(q''\) ratio, Theorem 6.1's Step B discard, and
+the two depth-five sites of Theorem 6.3. None of them binds --- their
+crossings run from \(6.5\cdot10^{5}\) to \(3.0\cdot10^{11}\), all below
+\(P_0\) --- but the Lean file certifies thirty-one of the thirty-eight
+rows and not the table. Each theorem it does carry states its
+substitution \(P=t^{k}\) and a rational \(t_0\) above the true
+crossing, so the certified thresholds are conservative: by under
+\(10\%\) in nineteen of the thirty that carry a loss figure (three hold
+from \(P\ge1\)), and by \(2.39\) in the
+loosest, `row_5b_lam0_upper`, which certifies from \(17^4=83521\)
+against a crossing of \(35027\). The largest is the binding row ---
+`row_5b_binding`, at
 \(t=1.92\), i.e. \(P\ge1.92^{48}=4.0\cdot10^{13}\) against the
 bisected \(3.6\cdot10^{13}\), a loss of under \(11\%\). Two
 irrational constants are replaced by rational bounds, both recorded:

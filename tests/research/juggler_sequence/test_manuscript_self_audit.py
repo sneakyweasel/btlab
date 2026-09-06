@@ -242,7 +242,7 @@ def test_failures_now_covers_relations() -> None:
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
                       "a1_thresholds", "claim_vs_predicate",
                       "p0_reproducible", "kappa_table", "a6_table",
-                      "prop71", "runlength", "axioms"}
+                      "prop71", "runlength", "axioms", "lean_rows"}
     assert all(v == [] for v in f.values())
 
 
@@ -695,7 +695,7 @@ def test_the_paper_records_the_recomputation() -> None:
 def test_every_cited_declaration_rests_on_mathlibs_three_axioms() -> None:
     assert M.axiom_failures() == []
     results = M.axiom_check_results()
-    assert len(results) == 46
+    assert len(results) == 47
     assert set(results.values()) == {"[propext, Classical.choice, Quot.sound]"}
 
 
@@ -708,7 +708,7 @@ def test_the_artifact_asks_about_exactly_the_cited_names() -> None:
     spec.loader.exec_module(tb)
     cited = sorted({r["name"] for r in tb.audit() if r["declared"]})
     assert M.axiom_check_names() == cited
-    assert len(cited) == 46
+    assert len(cited) == 47
 
 
 def test_no_sorry_in_the_paper_b_modules() -> None:
@@ -741,3 +741,72 @@ def test_the_paper_states_the_third_convention() -> None:
     assert "Declared and reachable is still not proved" in text
     assert "[propext, Classical.choice, Quot.sound]" in text
     assert "AxiomCheckPaperB.lean" in text
+
+
+# --- the certificate's Lean rows ------------------------------------------------------------------
+
+
+def test_the_pairing_the_numeral_audit_assumed_now_exists() -> None:
+    a = M.lean_row_audit()
+    assert M.lean_row_failures() == []
+    assert len(a["rows"]) == 33
+    assert a["distinct_tags"] == 31
+
+
+def test_seven_certificate_rows_have_no_lean_theorem() -> None:
+    assert M.lean_row_audit()["uncovered"] == [
+        "claimD-shift", "st2-collision", "st3a-flatcost", "st5b-qpp",
+        "t61-stepB-discard", "t63-flat", "t63-window"]
+
+
+def test_the_count_is_thirty_eight_minus_seven_plus_two() -> None:
+    """The paper said 33 was 38 with two rows split in two, which would be forty."""
+    a = M.lean_row_audit()
+    assert 38 - len(a["uncovered"]) + 2 == len(a["rows"]) == 33
+    text = M.paper_text()
+    assert "38-7+2" in text
+    assert "seven rows have no Lean theorem at all" in text
+
+
+def test_every_witness_certifies_at_or_above_its_crossing() -> None:
+    """A witness below its crossing would be a false Lean theorem; this measures conservatism."""
+    losses = [r["loss"] for r in M.lean_row_audit()["rows"] if r["loss"] is not None]
+    assert len(losses) == 30                      # three rows hold from P >= 1
+    assert min(losses) >= 1.0 - 1e-9
+    assert sum(1 for x in losses if x < 1.10) == 19
+
+
+def test_the_lean_certified_threshold_is_the_binding_rows_witness() -> None:
+    a = M.lean_row_audit()
+    row = next(r for r in a["rows"] if r["theorem"] == "row_5b_binding")
+    assert row["witness"] == 1.92 and row["k"] == [48]
+    assert abs(a["certified_P0"] - 1.92 ** 48) / 1.92 ** 48 < 1e-9
+    assert abs(a["certified_P0"] - 3.96697e13) / 3.96697e13 < 1e-4
+    assert a["certified_P0"] > 3.58576e13          # what Python bisects, and Lean does not reach
+
+
+def test_the_loosest_witness_is_the_lambda_range_row() -> None:
+    rows = {r["theorem"]: r for r in M.lean_row_audit()["rows"]}
+    worst = max((r for r in rows.values() if r["loss"]), key=lambda r: r["loss"])
+    assert worst["theorem"].startswith("row_5b_lam0")
+    assert abs(worst["loss"] - 2.3845) < 1e-3
+    assert worst["witness"] == 17.0 and worst["k"] == [4]
+    assert 17 ** 4 == 83521
+
+
+def test_the_numeral_audit_no_longer_names_a_structure_that_never_existed() -> None:
+    src = (ROOT / "tools" / "lean_numeral_audit.py").read_text(encoding="utf-8")
+    cert = (ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py").read_text(
+        encoding="utf-8")
+    assert "LEAN_ROWS" not in cert                  # it never did exist
+    assert "p0_certificate.LEAN_ROWS, which never did" in src
+    assert "manuscript_self_audit.lean_row_audit" in src
+
+
+def test_the_paper_names_the_seven_uncovered_rows() -> None:
+    text = M.paper_text()
+    for phrase in ("Claim D's shift range", "the collision band", "the Step 3(a) flat",
+                   "Step 5b(a) " + chr(92) + "(q''" + chr(92) + ") ratio",
+                   "Theorem 6.1's Step B discard", "two depth-five sites"):
+        assert phrase in text, phrase
+    assert "certifies thirty-one of the thirty-eight" in text

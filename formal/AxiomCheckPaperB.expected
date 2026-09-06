@@ -31,6 +31,7 @@
 'Problems.Juggler.offset_abs_le_three' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.offset_abs_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.row_5b_binding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.row_5b_lam0_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.row_s3s2_bdry_a' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.second_difference_exists_xi' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.second_difference_two_sided' depends on axioms: [propext, Classical.choice, Quot.sound]

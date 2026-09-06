@@ -1039,6 +1039,96 @@ def axiom_failures() -> list[dict[str, Any]]:
     return bad
 
 
+
+# --- the certificate's Lean rows, paired with the crossings they certify -------------------------
+#
+# `lean_numeral_audit` excludes ThresholdCertificate from its numeral audit, on the stated ground
+# that "ThresholdCertificate's rows are paired by p0_certificate.LEAN_ROWS, which carries the
+# substitution and the rational witness too".  There is no LEAN_ROWS in p0_certificate and never
+# was, so those thirty-three theorems -- and the rational witnesses 1.92, 1.46, 0.06237, 0.65076
+# on which the certified thresholds rest -- were audited by nothing.  This is the missing pairing.
+#
+# It also settles the count.  The manuscript said "33 theorems: the window-boundary and
+# lambda_0-range rows each split in two", which would make forty, not thirty-three.  The truth is
+# 38 - 7 + 2: seven rows have no Lean theorem at all.
+
+THRESHOLD_LEAN = REPO_ROOT / "formal" / "Problems" / "Juggler" / "ThresholdCertificate.lean"
+_LEAN_ROW = re.compile(r"^theorem (row_\w+)\s*\(t : " + chr(8477) + r"\)\s*\(ht : ([0-9.]+) " +
+                       chr(8804) + r" t\)", re.M)
+# the two rows each split into two theorems, and the three whose names do not transliterate
+# the substitution exponents this paper uses; P = t^k with k a denominator of its exponent
+# lattice, which is (1/96)Z.  Fitting over all of 1..96 admits neighbours of the true k.
+LEAN_ROW_EXPONENTS = (1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 36, 48, 72, 96)
+LEAN_ROW_TAGS = {"row_5a_binding": "5a-W<=c7S", "row_5b_binding": "5b-W<=c7S",
+                 "row_5b_E_only": "5b-E<=c7S", "row_s3s2_bdry_a": "s3s2-bdry",
+                 "row_s3s2_bdry_b": "s3s2-bdry", "row_5b_lam0_upper": "5b-lam0-range",
+                 "row_5b_lam0_lower": "5b-lam0-range"}
+
+
+def _tag_of(theorem: str) -> str:
+    return LEAN_ROW_TAGS.get(theorem, theorem[4:].replace("_", "-"))
+
+
+def lean_rows() -> list[dict[str, Any]]:
+    """Each `row_*` theorem with its rational witness t_0."""
+    src = THRESHOLD_LEAN.read_text(encoding="utf-8")
+    return [{"theorem": m.group(1), "tag": _tag_of(m.group(1)), "witness": float(m.group(2))}
+            for m in _LEAN_ROW.finditer(src)]
+
+
+def lean_row_audit() -> dict[str, Any]:
+    """Every Lean row against the crossing its Python predicate bisects.
+
+    The substitution exponent k is fitted rather than read: several claim strings quote an
+    exponent the predicate does not use, so k is taken as those values in 1..96 putting
+    t_0^k at or just above the crossing, and the fit is reported as a set.  A row whose
+    witness certifies *below* the crossing would be a false Lean theorem, so what this
+    really measures is how conservative each witness is.
+    """
+    import importlib.util
+    import math
+    spec = importlib.util.spec_from_file_location(
+        "p0_certificate", REPO_ROOT / "src" / "research" / "juggler_sequence" / "p0_certificate.py")
+    cert_mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(cert_mod)                                # type: ignore[union-attr]
+    cert = {r["tag"]: r for r in cert_mod.thresholds()}
+
+    rows, covered = [], set()
+    for r in lean_rows():
+        row = dict(r)
+        c = cert.get(r["tag"])
+        row["in_certificate"] = c is not None
+        covered.add(r["tag"])
+        pmin = c["P_min"] if c else None
+        if pmin is None or pmin <= 1.0 or r["witness"] <= 1.0:
+            row["k"], row["certified"], row["loss"] = [], None, None
+        else:
+            lw, lp = math.log(r["witness"]), math.log(pmin)
+            ks = [k for k in LEAN_ROW_EXPONENTS if -1e-9 <= k * lw - lp <= math.log(4.0)]
+            row["k"] = ks
+            row["certified"] = math.exp(min(ks) * lw) if ks else None
+            row["loss"] = (row["certified"] / pmin) if ks else None
+        row["crossing"] = pmin
+        rows.append(row)
+    return {"rows": rows,
+            "uncovered": sorted(set(cert) - covered),
+            "distinct_tags": len(covered),
+            "certified_P0": max((r["certified"] for r in rows if r["certified"]), default=None)}
+
+
+def lean_row_failures() -> list[dict[str, Any]]:
+    a = lean_row_audit()
+    bad = []
+    for r in a["rows"]:
+        if not r["in_certificate"]:
+            bad.append({"theorem": r["theorem"], "why": "names no certificate row"})
+        elif r["crossing"] and r["crossing"] > 1.0 and not r["k"]:
+            bad.append({"theorem": r["theorem"], "why": "no substitution puts its witness "
+                        "at or just above the crossing", "witness": r["witness"],
+                        "crossing": r["crossing"]})
+    return bad
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
@@ -1052,7 +1142,8 @@ def failures() -> dict[str, list[Any]]:
             "a6_table": a6_failures(),
             "prop71": prop71_failures(),
             "runlength": runlength_failures(),
-            "axioms": axiom_failures()}
+            "axioms": axiom_failures(),
+            "lean_rows": lean_row_failures()}
 
 
 def main() -> None:
