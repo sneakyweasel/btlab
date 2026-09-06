@@ -691,9 +691,11 @@ def test_the_two_bracket_constants_are_three_halves_and_twentyseven_quarters() -
     with mp.workdps(120):
         for n in (10**12 + 1, 10**14 + 1):
             r = A.check_lemma_5_1_ii_iv(n, 1, 2, 1)
-            assert abs(r["second_ratio_upper"] * 15 - 27 / 4) < 1e-4, n
+            # the ratios are now against the strict (n/2) denominators, so the constants in n are
+            # recovered by multiplying by 15 * 2^(-1/4) and 2.6 * 2^(-3/4)
+            assert abs(r["second_ratio_upper"] * 15 * 2 ** -0.25 - 27 / 4) < 1e-4, n
             if r["first_ratio_upper"] is not None:
-                assert abs(r["first_ratio_upper"] * 2.6 - 3 / 2) < 1e-4, n
+                assert abs(r["first_ratio_upper"] * 2.6 * 2 ** -0.75 - 3 / 2) < 1e-4, n
 
 
 # --- Appendix A says it enumerates every printed threshold; two are missing ---
@@ -1082,9 +1084,14 @@ def test_the_audit_knows_what_a_one_percent_cut_would_set_off() -> None:
     brackets = [x for x in r["policed_constants"]
                 if x["constant"].startswith("L5.1(iii)") and x["side"] == "upper"]
     assert len(brackets) == 2
+    # neither moves with sampling, but they are not both loose: under the strict pointwise
+    # transcription the first is sharp to 3% and only the second is far from its true value
     for x in brackets:
         assert not x["moved_with_sampling"], x["constant"]
-        assert x["smallest_detectable_cut"] > 0.3, x["constant"]
+    first = next(x for x in brackets if x["constant"].startswith("L5.1(iii) first"))
+    second = next(x for x in brackets if x["constant"].startswith("L5.1(iii) second"))
+    assert first["smallest_detectable_cut"] < 0.05 and first["regime"] == "structurally sharp"
+    assert second["smallest_detectable_cut"] > 0.3 and second["regime"] == "structurally loose"
     # P_0 is a solved threshold, so every constant moves it past the two-figure boundary
     assert r["every_P0_constant_moves_it_past_the_boundary"]
     assert r["P0_two_figure_resolution_at_a_boundary"] < 0.02

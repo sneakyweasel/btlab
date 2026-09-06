@@ -183,11 +183,20 @@ def check_lemma_5_1_ii_iv(n: int, h1: int, h2: int, k: int) -> dict[str, Any]:
         + mp.power(mp.mpf(m), mp.mpf(3) / 2)
     )
     split_exact = abs(first + second - F) < mp.mpf(10) ** (-30)
-    P = mp.mpf(n)  # the block scale is the start itself for these pointwise checks (P < n <= 2P)
-    P34 = mp.power(P, mp.mpf(3) / 4)
-    P14 = mp.power(P, mp.mpf(1) / 4)
-    first_ok = (j == 0 and abs(first) < mp.mpf(10) ** (-30)) or (j != 0 and mp.mpf(3) / 2 * abs(j) * P34 / mp.mpf(2) ** (3 / 4) <= abs(first) <= 2.6 * abs(j) * P34)
-    second_ok = 1.4 * h1 * h2 * P14 / mp.mpf(2) ** (1 / 4) <= second <= 15 * h1 * h2 * P14
+    # The printed band is in the block start P, and a single n only pins P to [n/2, n).  A check
+    # that cannot miss a violation must therefore take the *largest* admissible P for a lower bound
+    # and the *smallest* for an upper one: P = n below, P = n/2 above.  Using P = n on both sides,
+    # as this did until the entry "a third P-versus-n slip, and it was the audit's", is loose by
+    # 2^{3/4} in each direction and hid how tight the printed 2.6 is.
+    # For a bound in a *negative* power of P, P = n is already the strict choice: n^{-7/8} is the
+    # smallest admissible right-hand side, so M1_bound below needs no dyadic correction.
+    P = mp.mpf(n)
+    P34 = mp.power(mp.mpf(n), mp.mpf(3) / 4)
+    P14 = mp.power(mp.mpf(n), mp.mpf(1) / 4)
+    P34_lo = P34 / mp.mpf(2) ** (mp.mpf(3) / 4)          # (n/2)^{3/4}, the smallest admissible P
+    P14_lo = P14 / mp.mpf(2) ** (mp.mpf(1) / 4)
+    first_ok = (j == 0 and abs(first) < mp.mpf(10) ** (-30)) or (j != 0 and mp.mpf(3) / 2 * abs(j) * P34 <= abs(first) <= mp.mpf("2.6") * abs(j) * P34_lo)
+    second_ok = mp.mpf("1.4") * h1 * h2 * P14 <= second <= 15 * h1 * h2 * P14_lo
     # (iv) master identity
     c0, c1, c2, c11 = c_of(n, k), c_of(n + d1, k), c_of(n + d2, k), c_of(n + d1 + d2, k)
     th2_1, th2_12 = Y1 - v1, Y12 - v12
@@ -213,10 +222,10 @@ def check_lemma_5_1_ii_iv(n: int, h1: int, h2: int, k: int) -> dict[str, Any]:
         "master_identity": master,
         "brackets_le_2": brackets_le_2,
         "M1_bound": abs(DDc * br1) <= 0.43 * k * h1 * h2 * mp.power(P, -mp.mpf(7) / 8) + mp.mpf(10) ** (-40),
-        "first_ratio_upper": float(abs(first) / (mp.mpf("2.6") * abs(j) * P34)) if j else None,
-        "first_ratio_lower": float(abs(first) / (mp.mpf(3) / 2 * abs(j) * P34 / mp.mpf(2) ** (3 / 4))) if j else None,
-        "second_ratio_upper": float(second / (15 * h1 * h2 * P14)),
-        "second_ratio_lower": float(second / (mp.mpf("1.4") * h1 * h2 * P14 / mp.mpf(2) ** (1 / 4))),
+        "first_ratio_upper": float(abs(first) / (mp.mpf("2.6") * abs(j) * P34_lo)) if j else None,
+        "first_ratio_lower": float(abs(first) / (mp.mpf(3) / 2 * abs(j) * P34)) if j else None,
+        "second_ratio_upper": float(second / (15 * h1 * h2 * P14_lo)),
+        "second_ratio_lower": float(second / (mp.mpf("1.4") * h1 * h2 * P14)),
         "M1_ratio": float(abs(DDc * br1) / (mp.mpf("0.43") * k * h1 * h2 * mp.power(P, -mp.mpf(7) / 8))),
         "brackets_ratio": float(max(abs(br1), abs(br2), abs(br3), abs(br4)) / 2),
     }
@@ -410,9 +419,9 @@ CENSUS_POLICED_CONSTANTS = [
     ("L4.3(i) coarse, (1/2) n^{-3/4}", "E_ratio_coarse", "upper"),
     ("L5.1(i), (3/16) v^{-1/2}", "R_ratio", "upper"),
     ("L5.1(iii) first bracket, 2.6 |j| P^{3/4}", "first_ratio_upper", "upper"),
-    ("L5.1(iii) first bracket, (3/2) 2^{-3/4} |j| P^{3/4}", "first_ratio_lower", "lower"),
+    ("L5.1(iii) first bracket, (3/2) |j| P^{3/4}", "first_ratio_lower", "lower"),
     ("L5.1(iii) second bracket, 15 h1 h2 P^{1/4}", "second_ratio_upper", "upper"),
-    ("L5.1(iii) second bracket, 1.4 * 2^{-1/4} h1 h2 P^{1/4}", "second_ratio_lower", "lower"),
+    ("L5.1(iii) second bracket, 1.4 h1 h2 P^{1/4}", "second_ratio_lower", "lower"),
     ("L5.1(iv) M1, 0.43 k h1 h2 P^{-7/8}", "M1_ratio", "upper"),
     ("L5.1(iv) brackets <= 2", "brackets_ratio", "upper"),
     ("L6.2(i) corrected bound", "i_slack_ratio", "upper"),
@@ -2953,9 +2962,13 @@ def perturbation_sensitivity(cut: float = 0.01, samples_per_range: int = 12) -> 
             "constant": name, "side": row["side"], "extreme_ratio": extreme,
             "extreme_at_an_eighth_of_the_samples": small[name]["extreme_ratio"],
             "moved_with_sampling": abs(moved) > 0.002,
+            # a constant whose extreme does not move with sampling is set by the deterministic gap
+            # to the true value, not by the sample: that gap can be small (structurally sharp, as
+            # the first bracket's 2.6 against (3/2)2^{3/4}) or large (structurally loose).
             "regime": ("saturating" if row["side"] == "upper" and extreme > 0.98
                        else "lower-side" if row["side"] == "lower"
-                       else "creeping" if abs(moved) > 0.002 else "structurally loose"),
+                       else "creeping" if abs(moved) > 0.002
+                       else "structurally sharp" if extreme > 0.95 else "structurally loose"),
             "smallest_detectable_cut": (1 - extreme) if row["side"] == "upper" else None,
             "detects_a_one_percent_cut": bool(detects),
         })
@@ -2991,6 +3004,7 @@ def perturbation_sensitivity(cut: float = 0.01, samples_per_range: int = 12) -> 
         "policed_total": len(policed),
         "saturating": [r["constant"] for r in policed if r["regime"] == "saturating"],
         "structurally_loose": [r["constant"] for r in policed if r["regime"] == "structurally loose"],
+        "structurally_sharp": [r["constant"] for r in policed if r["regime"] == "structurally sharp"],
         "policed_detecting": sum(r["detects_a_one_percent_cut"] for r in policed),
         "detection_needs_extreme_ratio_above": threshold,
         "P0_moves": moves,

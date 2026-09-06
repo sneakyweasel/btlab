@@ -2476,3 +2476,45 @@ turned out sharper than its own proof --- the pair reads: the appendix
 that computes is right twice, and the two passages that describe it are
 off by a dyadic factor in one direction and a worst-case derivation in
 the other.
+
+## A third \(P\)-versus-\(n\) slip, and this one was the audit's
+
+The last two entries found the dyadic factor in A.6 and in Lemma 3.9's
+proof. The third place it appears is here.
+
+**The slip.** The printed band is in the block start \(P\), and a single
+\(n\) pins \(P\) only to \([n/2,n)\). A check that cannot miss a
+violation must therefore take the *largest* admissible \(P\) for a lower
+bound and the *smallest* for an upper one --- \(P=n\) below, \(P=n/2\)
+above. `check_lemma_5_1_ii_iv` used \(P=n\) on both sides, with a
+comment saying so, which is loose by \(2^{3/4}\) in each direction.
+(For a bound in a *negative* power, \(P=n\) is already strict, so the
+\(M_1\) bound beside it needed no correction.)
+
+**What it hid.** Under the strict transcription the census still holds
+at every sample, and the four bracket ratios move:
+
+| | as checked | strict | meaning |
+|---|---|---|---|
+| first bracket, upper \(2.6\) | 0.5771 | **0.9705** | the printed \(2.6\) has \(3.0\%\) of room, not \(42\%\) |
+| first bracket, lower \(\tfrac32\) | 1.6818 | **1.0000** | exactly attained: the constant cannot be raised at all |
+| second bracket, upper \(15\) | 0.4515 | 0.5378 | \(46\%\) |
+| second bracket, lower \(1.4\) | 5.7125 | 4.7991 | could be \(4.8\times\) larger |
+
+Both figures now agree with the manuscript-side reading recorded three
+entries ago --- true band \([\tfrac32,\tfrac322^{3/4}]=[1.50,2.52]\)
+against a printed \([\tfrac32,2.6]\) --- which the audit's own
+transcription had been contradicting without either of us noticing.
+
+**And it corrects the sensitivity table.** The entry "What a 1% cut would
+set off" reported the first bracket as structurally loose with a
+smallest detectable cut of \(42.3\%\). The true figure is \(2.9\%\), and
+four constants rather than three detect a \(1\%\) cut. The regime is
+still "does not move with sampling" --- but that regime splits: a
+constant fixed by the deterministic gap to its true value can be
+structurally *sharp*, as this one is, or structurally loose, as the
+second bracket is at \(46\%\). The probe now says which.
+
+EXACT for the transcription rule; COMPUTATIONALLY VERIFIED for the
+ratios. Three slips of the same kind, two in the paper's prose and one
+in the checker written to police it.
