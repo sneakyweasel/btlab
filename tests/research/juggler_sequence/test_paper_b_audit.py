@@ -377,3 +377,52 @@ def test_paper_says_the_four_is_a_rounding() -> None:
     assert "a rounding\nrather than a derived value" in text or "a rounding" in text
     assert "a factor of at least eight" in text
     assert "would move no exponent anywhere" in text
+
+
+# --- Section 8's payoff numbers ---
+
+
+def _contagion_root(with_ooeee: bool):
+    from mpmath import mp, mpf, findroot, power
+    mp.dps = 30
+
+    def f(L):
+        v = 2 ** (-L) + mpf(1) / 9 * power(mpf(3) / 8, L) + mpf(2) / 9 * power(mpf(3) / 4, L) - 1
+        if with_ooeee:
+            v += mpf(1) / 9 * power(mpf(9) / 32, L)
+        return v
+
+    return findroot(f, mpf("0.54") if with_ooeee else mpf("0.45"))
+
+
+def test_the_two_contagion_exponents_are_roots_of_one_recursion() -> None:
+    """lambda** = 0.4480 and lambda*** = 0.5392, differing by the OOEEE summand."""
+    from mpmath import mpf
+    assert abs(_contagion_root(False) - mpf("0.4480")) < 5e-5
+    assert abs(_contagion_root(True) - mpf("0.5392")) < 5e-5
+    assert _contagion_root(True) > _contagion_root(False)
+
+
+def test_the_OOEEE_dividend_is_a_single_summand() -> None:
+    """Adding (1/9)(9/32)^lambda is the whole difference between the two."""
+    gain = _contagion_root(True) - _contagion_root(False)
+    assert 0.09 < float(gain) < 0.10
+
+
+def test_the_chain_gives_c_equals_two() -> None:
+    """1/24 -> 1/96 over one depth is a factor 4 = 2^2."""
+    assert Fr(1, 24) / Fr(1, 96) == 4
+    assert 4 == 2 ** 2
+
+
+def test_the_frontier_gap_is_a_factor_of_thirty_eight() -> None:
+    """c < 1/19 needed against c = 2 delivered."""
+    assert Fr(1, 19) < Fr(2)
+    assert Fr(2) / Fr(1, 19) == 38
+
+
+def test_paper_names_the_gap_and_the_summand() -> None:
+    text = _paper()
+    assert r"\(38\)" in text and "a factor of" in text
+    assert "differ by exactly one term" in text
+    assert "attributable to a single summand" in text

@@ -29516,3 +29516,59 @@ Branch status
 Best next question
 - frozen_run_inventory is also at 1e5 only, with the bound 22(|j|+1)P^{3/4};
   does its normalised ratio hold up the same way?
+
+ ### Section 8's payoff numbers all check, and one of them is 38
+
+New direction: the section that says what the paper buys. Never
+audited, and it is the one a referee reads to decide whether the work
+matters.
+
+Every headline number verifies.
+
+```text
+   lambda**  = 0.448017   printed 0.4480
+   lambda*** = 0.539180   printed 0.5392
+   c from the chain 1/24 -> 1/96 over one depth = 2   printed c = 2
+```
+
+And two things worth adding, both implied but unstated.
+
+**The two contagion exponents are roots of the same recursion,
+differing by exactly one summand.** `lambda**` solves
+`2^{-L} + (1/9)(3/8)^L + (2/9)(3/4)^L = 1`; `lambda***` solves it with
+`(1/9)(9/32)^L` added. That term *is* the `OOEEE` production, so the
+whole dividend of the depth-≤3 localization — `0.4480 -> 0.5392` — is
+attributable to a single summand. Nice for anyone asking what a
+further production would be worth: add its term and re-solve.
+
+**And the frontier gap is a factor of 38.** The paper gives `c = 2`
+delivered and `c < 1/19` needed, and leaves the reader to divide. The
+ratio is worth printing, because `38` settles the question that
+"cannot be iterated to the frontier" only gestures at: this is not a
+margin that sharper constants close.
+
+```text
+What was learned
+- the payoff section had never been checked, and it is clean; that is
+  worth knowing precisely because it is the part most likely to be
+  taken on trust
+- two derived quantities were sitting one arithmetic step away from
+  being stated -- the single-summand attribution and the factor 38
+Strongest theorem
+- lambda** and lambda*** are the same root with and without
+  (1/9)(9/32)^L, and the frontier gap in the loss rate is exactly 38
+Strongest refutation
+- none; every number in Section 8 verified
+Reusable machinery
+- five tests, including the contagion root solver
+Branch status
+- PROMOTE
+Why
+  Section 8 is where the paper claims its dividends and its limits,
+  and both were unverified. Both hold. The two additions turn implied
+  arithmetic into stated arithmetic, which is what that section is
+  for.
+Best next question
+- the localized kernel would give 0.5561. Which productions does that
+  add, and does the same single-summand attribution work there?
+```

@@ -5487,11 +5487,23 @@ per-cylinder route, an analytic method whose saving exponent loses a
 factor \(2^{c}\) per depth reaches the required depth only if
 \(cC<1\), i.e. \(c<1/19\), whereas Weyl differencing loses \(c\ge1\)
 (this paper's chain \(\tfrac1{24}\to\tfrac1{96}\) from depth three to
-four is \(c=2\)). The differencing machinery of Sections 3–6 cannot
-therefore be iterated to the termination frontier, however far the
-kernel program is pushed; what would be needed is a saving uniform in
-the depth up to a factor \(2^{d/19}\), or a direct treatment of the
-exponential moment, neither of which this paper offers.
+four is \(c=2\)). The gap is worth naming as one number: the frontier
+needs \(c<\tfrac1{19}\) and differencing delivers \(c=2\), a factor of
+\(38\) in the rate at which the saving is lost per depth. That is not
+a margin to be closed by sharpening constants. The differencing
+machinery of Sections 3–6 cannot therefore be iterated to the
+termination frontier, however far the kernel program is pushed; what
+would be needed is a saving uniform in the depth up to a factor
+\(2^{d/19}\), or a direct treatment of the exponential moment, neither
+of which this paper offers.
+
+(The two contagion exponents above are roots of the same recursion and
+differ by exactly one term. \(\lambda^{**}=0.4480\) solves
+\(2^{-\lambda}+\tfrac19(\tfrac38)^{\lambda}
++\tfrac29(\tfrac34)^{\lambda}=1\), and \(\lambda^{***}=0.5392\) solves
+it with \(\tfrac19(\tfrac9{32})^{\lambda}\) added --- that term *is*
+the \(OOEEE\) production, so the dividend of the depth-\(\le3\)
+localization is attributable to a single summand.)
 
 The honest summary is the one the abstract gives: this paper solves
 the first genuinely nested layers of the parity process of nested
