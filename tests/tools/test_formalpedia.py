@@ -296,3 +296,20 @@ def test_the_digest_computes_its_precision_rather_than_asserting_one() -> None:
     text = fp.review_digest(index, ledger)
     assert f"all {cal['resolved']} resolved rows" in text
     assert "96%" not in text
+
+
+def test_digest_flags_a_top_candidate_that_extends_a_runner_up() -> None:
+    """Helper and special-case lemmas are named by extending their main theorem, so a longer
+    top candidate beside a shorter runner-up is the shape that cost two wrong answers:
+    q_eq_iff_of_same_bal over q_eq_iff, and predecessor_on_F over unique_predecessor."""
+    index = fp.build()
+    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    text = fp.review_digest(index, ledger)
+    flagged = 0
+    for row in fp.propose(index, ledger)["rows"]:
+        if row["confidence"] != "review" or len(row["candidates"]) < 2:
+            continue
+        top = row["candidates"][0]["decl"]
+        if any(top != c["decl"] and top.startswith(c["decl"]) for c in row["candidates"][1:]):
+            flagged += 1
+    assert text.count("Careful:") == flagged

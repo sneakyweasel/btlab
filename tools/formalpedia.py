@@ -543,6 +543,14 @@ def review_digest(index: dict[str, Any], ledger: list[dict[str, Any]]) -> str:
         if others:
             out.append(f"*Runners-up: {others}*")
             out.append("")
+        extended = [c["decl"] for c in row["candidates"][1:]
+                    if top["decl"] != c["decl"] and top["decl"].startswith(c["decl"])]
+        if extended:
+            out.append(f"*Careful: `{top['decl']}` extends `{extended[0]}`, and in this corpus a "
+                       "longer name is usually a special case of the shorter one. Twice the "
+                       "shorter name was the answer and the scorer ranked it second, because "
+                       "the specialisation happened to be the documented one.*")
+            out.append("")
         if row.get("definitions"):
             defs = ", ".join(f"`{d['decl']}`" for d in row["definitions"])
             out.append(f"*If this row describes a definition rather than a theorem: {defs}*")

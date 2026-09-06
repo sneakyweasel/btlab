@@ -77,6 +77,8 @@ theorem sameDepth_n2_injective {k m : ℕ} {p q : ℤ}
 
 *Runners-up: `sameDepth_n2` (0.5), `sameDepth_n2_of_le` (0.5)*
 
+*Careful: `sameDepth_n2_injective` extends `sameDepth_n2`, and in this corpus a longer name is usually a special case of the shorter one. Twice the shorter name was the answer and the scorer ranked it second, because the specialisation happened to be the documented one.*
+
 *If this row describes a definition rather than a theorem: `balWidth`, `n2Resid`*
 
 ## 4. `BTA-x3-sign`
