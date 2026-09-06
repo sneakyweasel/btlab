@@ -29382,3 +29382,43 @@ Best next question
 - none pressing. The three lemmas Sections 3 to 6 lean on hardest are
   now each audited, tested and annotated.
 ```
+
+## No overclaim in Paper B's densities, and a trap for the guards
+
+Checked the three withdrawn harvest densities against Paper B's text.
+Status marking is correct throughout: \(7/8\) is printed as certified
+via Corollary 6.4, which is what the phase record says; \(57/64\)
+appears twice and both are strictly conditional — "available only if a
+square-root kernel is found", and "would carry the certified density to
+\(57/64\) with Conjecture 7.3 still open"; and the \(29/32\) *density*
+does not appear at all, which is correct, because it was withdrawn.
+
+The eight occurrences of `29/32` in Paper B are all the exponent
+\(P^{29/32}\) in the Stage-2 family bounds — a different object that
+happens to share the numeral.
+
+That is the third time in this work that one numeral has carried two
+unrelated roles. \(0.595\) is both the Tao rate threshold and the
+\(L\)-exponent \(\log L/\log n_{\max}\) of the finance survivors, and I
+nearly "corrected" the wrong one. \(C(0.55)\) is \(44\) under
+\(\lambda^{**}\) and \(39\) under \(\lambda^{***}\), and I read the
+paper's \(39\) as drift before checking the regime. Now \(29/32\) is a
+withdrawn density and a live exponent.
+
+Three instances make it a rule rather than bad luck: **numerals in this
+repository are overloaded across roles, and a guard keyed on a bare
+value will false-positive forever.** The guards written this week all
+happen to avoid it — the constant guard pairs a value with a citation
+marker, the regime test names its regime, the tactic guard pairs a
+tactic with an identifier and resolves through imports — but that was
+not a stated design principle and should be. A future guard that greps
+for a number alone will be wrong about this repository.
+
+```text
+What was learned
+- Paper B's density claims are correctly marked; no overclaim found
+- 29/32 is an exponent there, not the withdrawn density
+- three numerals now carry two roles each; pair every guarded value with
+  its role, never match a bare number
+Branch status
+- Paper B audit pass: one gap closed (A.6), one clean negative
