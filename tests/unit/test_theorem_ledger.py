@@ -150,3 +150,46 @@ def test_decl_agrees_with_the_theorem_the_statement_names():
         names = named.findall(row["statement"])
         if names:
             assert decl in names, f"{row['id']}: decl={decl} but prose names {names}"
+
+
+def test_no_two_rows_claim_the_same_declaration():
+    """A theorem backs one claim. Two rows on one declaration means at least one is wrong,
+    or the two rows are really one -- either way it wants a person's eye, not silence."""
+    import collections
+
+    claims = collections.Counter(
+        (row["lean"], row["decl"]) for row in _entries() if row.get("decl")
+    )
+    shared = {k: v for k, v in claims.items() if v > 1}
+    assert shared == {}, shared
+
+
+def test_a_row_does_not_name_a_declaration_other_than_its_own():
+    """If a statement names exactly one declaration from its file and `decl` is a different
+    one, the join is probably wrong.
+
+    ``OST-np-energy-telescope`` is the standing exception and is listed by name: it *is*
+    ``energy_telescope`` and cites ``energy_step`` as the step form it accumulates. An
+    exception list is the point -- a new one should have to be looked at.
+    """
+    import re
+
+    ident = re.compile(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+")
+    decl_re = re.compile(
+        r"^\s*(?:theorem|lemma|def|abbrev|instance|structure)\s+([A-Za-z_][A-Za-z0-9_'!?.]*)",
+        re.MULTILINE,
+    )
+    allowed = {"OST-np-energy-telescope"}
+    flagged = []
+    for row in _entries():
+        decl = row.get("decl")
+        if not decl or row["id"] in allowed:
+            continue
+        path = ROOT / "formal" / str(row["lean"])
+        if not path.is_file():
+            continue
+        present = set(decl_re.findall(path.read_text(encoding="utf-8")))
+        named = [t for t in dict.fromkeys(ident.findall(row["statement"])) if t in present]
+        if named and decl not in named:
+            flagged.append(f"{row['id']}: decl={decl} but statement names {named}")
+    assert flagged == [], flagged
