@@ -30811,3 +30811,78 @@ Best next question
   of the paper need a threshold that Appendix A solves at a different
   parameter setting than the step uses?
 ```
+
+## P_0's binding row is charged at a cell that does not exist
+
+Following the last entry's question -- does any step need a threshold
+Appendix A solves at a different parameter setting than the step uses?
+One does, and it is the row that sets `P_0`.
+
+**The mismatch.** Step 5b compares `W = V + E` against `c_7 S / 2`. The
+scale is `S = max(|u h1 + u' h2| P^(-3/4), k h1 h2 P^(-5/8),
+|w| P^(-1/2))`, so `S >= 0.56 k h1 h2 P^(-5/8)`, and the interpolant
+error is `85.3 k(h1+h2) P^(-9/8) + 0.11 P^(-5/6)`. The manuscript
+converts the error first, by `k(h1+h2) <= 2 P^(1/12)`, and then compares
+it against `S` at *its* own minimum, `k h1 h2 = 1`.
+
+Over the integers `k h1 h2 = 1` forces `k = h1 = h2 = 1`, and then
+`k(h1+h2) = 2`. The two bounds are attained at different cells and the
+row charges both at once.
+
+**Kept symbolic** the ratio is
+`E_first/S <= (85.3/0.56)(1/h1 + 1/h2) P^(-1/2) <= 304.6 P^(-1/2)`,
+maximised at `h1 = h2 = 1` and independent of `k`, against the certified
+`304.6 P^(-5/12)`. The gap is exactly `P^(1/12)`:
+`-25/24 + 5/8 = -5/12` versus `-9/8 + 5/8 = -1/2`. No constants enter --
+`1/h1 + 1/h2 <= 2` is the whole argument.
+
+**What it costs.** The three rows carrying the interpolant error, solved
+both ways with the coefficients recovered from `interpolant_error`
+rather than copied:
+
+| row | as certified | at one cell | factor |
+|---|---|---|---|
+| `5b-W<=c7S` (binding) | `3.59e13` | `4.89e12` | `7.33` |
+| `5a-W<=c7S` | `2.91e13` | `3.84e12` | `7.58` |
+| `5b-E<=c7S` | `4.10e12` | `7.72e10` | `53.1` |
+
+The largest row without the error is `st5b-qpp` at `2.98e11`, so the
+maximum stays with `5b-W<=c7S` and `P_0` falls from `3.59e13` to
+`4.89e12`, a factor of `7.33`.
+
+**Direction.** Safe: the pairing charges more than any cell can present,
+so every displayed margin holds at least as far down as claimed. Only
+sharpness is lost -- but `P_0` is the number the paper leads with, and
+the constants are in revision right now anyway, which is the moment when
+a factor of seven is cheapest to take.
+
+```text
+What was learned
+- the certificate's rows are each faithful and the pair of them is not:
+  a numerator at its maximum over one parameter and a denominator at
+  its minimum over another
+- k h1 h2 = 1 is an integer statement and it pins k(h1+h2) = 2, which
+  is what makes the mismatch exact rather than heuristic
+- the ratio is independent of k, so the whole of (C3)'s range is
+  irrelevant to this row
+Strongest theorem
+- E_first/S <= 152.3 (1/h1 + 1/h2) P^(-1/2) <= 304.6 P^(-1/2), against
+  a charged 304.6 P^(-5/12): a gap of exactly P^(1/12)
+Strongest refutation
+- none; the paper is safe, it is only 7.33 times more cautious than it
+  needs to be at the threshold it leads with
+Reusable machinery
+- p0_pairing_check, which recovers the interpolant coefficients from
+  the certificate rather than copying them; two tests, three exact
+  checks (244 in the layer)
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Every previous pass found a check that could not fail. This one found
+  a check that fails too early -- the same blindness with the sign
+  reversed, and worth more, since it moves the paper's headline number.
+Best next question
+- if one row pairs a maximum with a minimum, do others? Sweep the
+  certificate for rows whose numerator and denominator are bounded at
+  different settings of the same parameter.
+```

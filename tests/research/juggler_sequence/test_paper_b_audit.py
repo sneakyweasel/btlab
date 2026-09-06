@@ -735,3 +735,31 @@ def test_the_bracket_band_does_not_reach_P0() -> None:
 
     claims = " ".join(r["claim"] for r in p0_certificate.certificate()["thresholds"])
     assert "h_1h_2P^{1/4}" not in claims and "bracket" not in claims.lower()
+
+
+# --- P_0's binding row pairs two bounds at settings no cell realizes together ---
+
+
+def test_the_binding_row_charges_the_interpolant_at_an_unreachable_setting() -> None:
+    """k h1 h2 = 1 forces k = h1 = h2 = 1, and then k(h1+h2) = 2, not 2 P^(1/12)."""
+    r = A.p0_pairing_check()
+    tags = {x["tag"]: x for x in r["rows"]}
+    assert set(tags) == {"5b-W<=c7S", "5a-W<=c7S", "5b-E<=c7S"}
+    for x in r["rows"]:
+        assert x["certified_least_P"] > x["same_cell_least_P"]      # the pairing only over-charges
+        assert x["factor"] > 2
+    assert r["direction_is_safe"]                                   # the printed P_0 is the safe side
+    assert r["P0_over_estimate_factor"] > 2
+    assert r["P0_with_the_pairing_fixed"] > r["largest_untouched_row_P"]
+
+
+def test_the_pairing_coefficients_are_read_from_the_certificate_not_copied() -> None:
+    """They are under revision; the P^(1/12) is not."""
+    from research.juggler_sequence import p0_certificate
+
+    r = A.p0_pairing_check()
+    a, b = r["interpolant_first_coefficient"], r["interpolant_second_coefficient"]
+    for P in (1e7, 1e11):
+        rebuilt = a * P ** (-25 / 24) + b * P ** (-5 / 6)
+        assert abs(rebuilt / p0_certificate.interpolant_error(P) - 1) < 1e-9, P
+    assert r["ratio_exponent_gap"] == Fr(1, 12)

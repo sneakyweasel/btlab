@@ -1635,3 +1635,56 @@ So the displayed line, read with its own constant, is false on
 threshold beside it did not. The appendix is right; the display is
 inconsistent with itself. EXACT, and harmless --- \(P_0\) is eight
 orders away.
+
+## The binding row charges the interpolant at a setting no cell reaches
+
+Step 5b compares \(W=V+E\) against \(c_7S/2\). The scale is
+\[
+S=\max\bigl(\lvert uh_1{+}u'h_2\rvert P^{-3/4},\;
+kh_1h_2P^{-5/8},\;\lvert w\rvert P^{-1/2}\bigr),
+\]
+whose second entry gives \(S\ge0.56\,kh_1h_2P^{-5/8}\), and the
+interpolant error is
+\(85.3\,k(h_1{+}h_2)P^{-9/8}+0.11P^{-5/6}\). The manuscript converts the
+error first --- \(k(h_1{+}h_2)\le2P^{1/12}\) by (C3), (C4), giving
+\(171P^{-25/24}\) --- and then compares it against \(S\) taken at *its*
+minimum, \(kh_1h_2=1\).
+
+**No cell does both.** Over the integers \(kh_1h_2=1\) forces
+\(k=h_1=h_2=1\), and then \(k(h_1{+}h_2)=2\), not \(2P^{1/12}\). Kept
+symbolic, the ratio that decides the row is
+\[
+\frac{E_{\text{first}}}{S}
+\le\frac{85.3}{0.56}\,\frac{h_1{+}h_2}{h_1h_2}\,P^{-1/2}
+=152.3\Bigl(\frac1{h_1}+\frac1{h_2}\Bigr)P^{-1/2}
+\le304.6\,P^{-1/2},
+\]
+maximised at \(h_1=h_2=1\) and *independent of \(k\)*, where the
+certified pairing charges \(304.6\,P^{-5/12}\). The gap is exactly
+\(P^{1/12}\): \(-\tfrac{25}{24}+\tfrac58=-\tfrac5{12}\) against
+\(-\tfrac98+\tfrac58=-\tfrac12\). EXACT --- the identity
+\(1/h_1+1/h_2\le2\) needs no constants.
+
+**What it costs.** Solving the three rows that carry the interpolant
+error both ways, with the coefficients read out of `p0_certificate`
+rather than copied:
+
+| row | as certified | at one cell | factor |
+|---|---|---|---|
+| `5b-W<=c7S` (binding) | \(3.59\cdot10^{13}\) | \(4.89\cdot10^{12}\) | \(7.33\) |
+| `5a-W<=c7S` | \(2.91\cdot10^{13}\) | \(3.84\cdot10^{12}\) | \(7.58\) |
+| `5b-E<=c7S` | \(4.10\cdot10^{12}\) | \(7.72\cdot10^{10}\) | \(53.1\) |
+
+The largest row not carrying the error is `st5b-qpp` at
+\(2.98\cdot10^{11}\), so the maximum still comes from `5b-W<=c7S` and
+\(P_0\) would fall from \(3.59\cdot10^{13}\) to
+\(4.89\cdot10^{12}\) --- **a factor of \(7.33\)**. COMPUTATIONALLY
+VERIFIED at the constants now in the working tree; those are under
+revision in a concurrent pass, which is why the probe recovers them from
+`interpolant_error` instead of copying them. The \(P^{1/12}\) does not
+move with them.
+
+**The direction is safe.** The printed \(P_0\) is an over-estimate: the
+pairing charges more than any cell can present, so every displayed
+margin holds at least as far down as claimed. What is lost is only
+sharpness --- and \(P_0\) is the number the paper leads with.

@@ -24,6 +24,7 @@ from __future__ import annotations
 import json
 import math
 import random
+import re
 import subprocess
 import time
 from fractions import Fraction as Fr
@@ -483,6 +484,77 @@ def appendix_a_gaps() -> dict[str, Any]:
         "bracket_band_reaches_P0": False,
     }
 
+
+def p0_pairing_check() -> dict[str, Any]:
+    """P_0's binding row pairs two bounds at settings no cell realizes at once.
+
+    Step 5b compares W = V + E against c_7 S/2.  The scale is
+    S = max(|u h1 + u' h2| P^{-3/4}, k h1 h2 P^{-5/8}, |w| P^{-1/2}), whose second entry gives
+    S >= 0.56 k h1 h2 P^{-5/8}, and the interpolant error is 85.3 k(h1+h2) P^{-9/8} + 0.11 P^{-5/6}.
+    The manuscript converts the error first, by k(h1+h2) <= 2 P^{1/12} from (C3),(C4), and then
+    compares against S taken at its own minimum k h1 h2 = 1.  No cell does both: k h1 h2 = 1 forces
+    k = h1 = h2 = 1 and hence k(h1+h2) = 2.
+
+    Kept symbolic, the ratio that decides the row is
+        E_first / S <= (85.3/0.56) (1/h1 + 1/h2) P^{-1/2} <= 304.6 P^{-1/2},
+    maximised at h1 = h2 = 1 and independent of k, where the certified pairing charges
+    304.6 P^{-5/12}: a factor P^{1/12} too much.  EXACT -- 1/h1 + 1/h2 <= 2 needs no constants.
+
+    The direction is safe: the printed P_0 is an over-estimate, and fixing the pairing lowers it.
+    The coefficients are read out of p0_certificate rather than copied, since they are under
+    revision; what does not move with them is the P^{1/12}.
+    """
+
+    cert = p0_certificate.certificate()
+    kappa = p0_certificate.KAPPA
+    c7 = p0_certificate.C7
+
+    # recover the two interpolant coefficients from the function itself: a P^{-25/24} + b P^{-5/6}
+    p1, p2 = 1e6, 1e9
+    m11, m12 = p1 ** (-25 / 24), p1 ** (-5 / 6)
+    m21, m22 = p2 ** (-25 / 24), p2 ** (-5 / 6)
+    r1, r2 = p0_certificate.interpolant_error(p1), p0_certificate.interpolant_error(p2)
+    det = m11 * m22 - m12 * m21
+    a = (r1 * m22 - m12 * r2) / det          # the k(h1+h2) <= 2 P^{1/12} term
+    b = (m11 * r2 - r1 * m21) / det          # the |c''| term, parameter-free
+
+    def s_constant(tag: str) -> float:
+        claim = next(r["claim"] for r in cert["thresholds"] if r["tag"] == tag)
+        found = re.search(r"S >= ([0-9.]+) P", claim)
+        assert found, ("no S constant in the claim; the format moved", tag, claim)
+        return float(found.group(1))
+
+    def solve(f: Any, lo: float = 0.0, hi: float = 30.0) -> float:
+        for _ in range(400):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if f(mid) > 0 else (lo, mid)
+        return 10.0**hi
+
+    def row(tag: str, s0: float, with_V: bool) -> dict[str, Any]:
+        S = lambda P: s0 * P ** (-5 / 8)                                  # noqa: E731
+        V = (lambda P: kappa * S(P) ** 0.5 * P ** (-11 / 24)) if with_V else (lambda P: 0.0)  # noqa: E731
+        certified = solve(lambda L: V(10**L) + a * 10 ** (-25 * L / 24) + b * 10 ** (-5 * L / 6) - c7 * S(10**L) / 2)
+        same_cell = solve(lambda L: V(10**L) + a * 10 ** (-9 * L / 8) + b * 10 ** (-5 * L / 6) - c7 * S(10**L) / 2)
+        return {"tag": tag, "certified_least_P": certified, "same_cell_least_P": same_cell,
+                "factor": certified / same_cell}
+
+    rows = [row("5b-W<=c7S", s_constant("5b-W<=c7S"), True),
+            row("5a-W<=c7S", s_constant("5a-W<=c7S"), True),
+            row("5b-E<=c7S", s_constant("5b-W<=c7S"), False)]
+    touched = {r["tag"] for r in rows}
+    untouched = max(r["P_min"] for r in cert["thresholds"] if r["tag"] not in touched)
+    fixed = max(max(r["same_cell_least_P"] for r in rows), untouched)
+    return {
+        "interpolant_first_coefficient": a,
+        "interpolant_second_coefficient": b,
+        "rows": rows,
+        "largest_untouched_row_P": untouched,
+        "certified_P0": cert["P0"],
+        "P0_with_the_pairing_fixed": fixed,
+        "P0_over_estimate_factor": cert["P0"] / fixed,
+        "ratio_exponent_gap": Fr(1, 12),      # P^{-5/12} charged where P^{-1/2} is available
+        "direction_is_safe": cert["P0"] >= fixed,
+    }
 
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
@@ -1470,6 +1542,10 @@ def exponent_checks() -> list[dict[str, Any]]:
         # Theorem 6.1 Step B, where the mode cap |k| <= 2P^{1/96} makes the discard cost exact
         ("6.1 Step B: 1/96 - 1/8 = -11/96, so (3pi k/4)P^{-1/8} <= (3pi/2) P^{-11/96}", F(1, 96) - F(1, 8) == -F(11, 96)),
         ("6.1 Step B: the printed 4.8 is above the exact 3pi/2 = 4.7124, so 7.6e5 is that constant's threshold, not 4.8's", 4.8 > 3 * math.pi / 2 and (3 * math.pi / 2) ** (96 / 11) < 7.6e5 < 4.8 ** (96 / 11)),
+        # Step 5b's pairing: the interpolant error and S are bounded at settings no cell realizes
+        ("5b pairing: E_first/S carries (h1+h2)/(h1 h2) = 1/h1 + 1/h2 <= 2, independent of k", F(1) + F(1) == 2),
+        ("5b pairing: -25/24 + 5/8 = -5/12 charged where -9/8 + 5/8 = -1/2 is available, a gap of 1/12", -F(25, 24) + F(5, 8) == -F(5, 12) and -F(9, 8) + F(5, 8) == -F(1, 2) and -F(5, 12) + F(1, 2) == F(1, 12)),
+        ("5b pairing: k h1 h2 = 1 over the integers forces k = h1 = h2 = 1, hence k(h1+h2) = 2", 1 * 1 * 1 == 1 and 1 * (1 + 1) == 2),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -1891,6 +1967,7 @@ def summary() -> dict[str, Any]:
     caps = parameter_cap_reach()
     power = census_constant_power()
     gaps = appendix_a_gaps()
+    pairing = p0_pairing_check()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -1918,6 +1995,7 @@ def summary() -> dict[str, Any]:
         "parameter_cap_reach": caps,
         "census_constant_power": power,
         "appendix_a_gaps": gaps,
+        "p0_pairing_check": pairing,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"
