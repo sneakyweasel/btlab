@@ -364,6 +364,14 @@ def propose(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, An
         if d["kind"] in ("theorem", "lemma"):
             by_file[d["file"]].append(d)
 
+    # ``composite`` counts only rows that *name* two or more of their own declarations, so it
+    # is a lower bound and not the count.  Rows composite by content name nothing: "cmp3
+    # translation, negation, and antisymmetry" is three theorems and no identifiers.  Two
+    # heuristics over the statement text were calibrated against eleven rows classified by
+    # reading -- equation conjunctions, then prose lists as well -- and caught 0 and 3 of the
+    # eleven.  The eleven are composite for unrelated reasons (a noun list, two equations, an
+    # inventory of Lean names, a claim beside its instance) and share no surface form, so the
+    # true count is not obtainable without reading. Do not infer one from this field.
     out: list[dict[str, Any]] = []
     for row in ledger:
         if row["tag"] != "EXACT — LEAN VERIFIED" or row.get("decl"):
