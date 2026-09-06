@@ -1810,3 +1810,31 @@ def test_the_last_step_exponent_decides_how_many_nestings_survive() -> None:
     ii = A.lemma_6_2_part_ii_leading_term(sweep_to=2000)
     assert ii["two_fractional_parts_from_two_nestings"]
     assert ii["ratio_model"] == "|theta_w^2/2 - theta_2|"
+
+
+# --- which nesting reaches the leading order, and by which exponent ---
+
+
+def test_theorem_4_7_does_not_charge_one_order_twice() -> None:
+    """Lemma 4.6's last nesting is n^(-3/4) below its lead; its ratio is theta, uniform."""
+    r = A.nesting_contribution_rule(sweep_to=6000)
+    assert r["lemma_4_6_last_nesting_vanishes"] and r["share_lemma_4_6"] < 1e-2
+    assert r["theorem_4_7_does_not_charge_one_order_twice"]
+    assert r["lemma_4_6_ratio_is_theta"] and r["lemma_4_6_is_uniform_like_6_2_i"]
+    assert r["lemma_4_6_max_ratio"] > 0.99          # asymptotically exact, like the others
+    assert r["lemma_4_6_worst_deviation_at"] < 100
+    assert r["sites_with_a_second_nesting_at_the_lead"] == ["Lem 6.2(ii)"]
+
+
+def test_the_rule_is_the_outer_exponent_not_the_inner_one() -> None:
+    """a > 1 leaves the quadratic at the lead; a < 1 leaves the linear far below it."""
+    r = A.nesting_contribution_rule(sweep_to=2000)
+    assert r["rule_is_the_outer_exponent"] and r["last_pass_read_the_inner_exponent"]
+    by_site = {x["site"]: x for x in r["table"]}
+    assert by_site["Lem 6.2(ii)"]["outer_a"] == "3/2" and by_site["Lem 6.2(ii)"]["at_the_lead"]
+    assert by_site["Lem 6.2(i)"]["outer_a"] == "1/2" and not by_site["Lem 6.2(i)"]["at_the_lead"]
+    assert by_site["Lem 4.6 D"]["outer_a"] == "1/2" and not by_site["Lem 4.6 D"]["at_the_lead"]
+    # the two 1/2 sites vanish, the 3/2 site sits at exactly half the lead
+    assert r["share_lemma_6_2_i"] < r["share_lemma_4_6"] < 1e-2
+    assert abs(r["share_lemma_6_2_ii"] - 0.5) < 1e-9
+    assert all(x["kind"] == ("quadratic" if x["outer_a"] == "3/2" else "linear") for x in r["table"])

@@ -35595,3 +35595,72 @@ Best next question
   times something that grows, given that U is P^(1/2) at some sites and R_0 at
   others?
 ```
+
+## The right exponent is the outer one
+
+Theorem 4.7's `OOEE` class goes through Lemma 4.6, which ends on a
+square root -- but the square root is the outer function, not the one
+making the floor. `D = -(3/4) theta n^(-3/8) - (1/2) theta_2 Y^(-1/2) +
+...` with `Y^(-1/2) ~ n^(-9/8)`, so the last nesting arrives a factor
+`n^(-3/4)` below the lead: share `6.666e-4` at `n = 1e4`. Its bound is a
+lead plus a genuine lower-order correction, and its ratio is `theta`,
+uniform, mean `0.4534`, maximum `0.9974`. It does not charge one order
+twice.
+
+Which means the rule I wrote last pass names the wrong exponent.
+Expanding `f(floor(g)) = f(g) - f'(g) theta + (1/2) f''(g) theta^2 -
+...` with `f(x) = x^a`, `g ~ n^b`: if `a < 1` the linear term
+`n^(b(a-1))` is the contribution, and if `a > 1` the identity carries
+the linear term explicitly and the quadratic `n^(b(a-2))` is what
+remains. The outer exponent decides. I had read it off the floor --
+`v^(1/2)` in (ii) against `v^(3/2)` in (i) -- and those two happen to be
+swapped relative to the outer exponents `3/2` and `1/2`, which is
+exactly why the wrong reading fitted the only two cases I had.
+
+Adding Lemma 4.6 as a third case breaks the wrong rule and confirms the
+right one, and Theorem 4.8 as a fourth: outer `3/2` on `m^(1/2)`,
+quadratic at `n^(-3/8)`, which is its whole bound.
+
+Only `6.2(ii)` has a second nesting at the leading order. The deletion
+recorded four passes ago is still the only thing to remove in the
+family, but now there is a reason rather than a census that found
+nothing else.
+
+```text
+Phase-end report
+Question
+- does Theorem 4.7's square-root class carry the same two-term structure
+  and charge one order twice
+Instruments
+- nesting_contribution_rule: the four sites with their outer exponents,
+  contribution orders and shares of the lead, against Lemma 4.6's
+  measured ratio
+Ledger tags
+- EXACT: f(floor(g)) contributes n^(b(a-1)) when a < 1 and n^(b(a-2))
+  when a > 1, so the outer exponent decides; Lemma 4.6's last nesting is
+  n^(-9/8) against a lead n^(-3/8)
+- COMPUTATIONALLY VERIFIED: shares 6.666e-4, 2.108e-5, 0.5000000001 at
+  n = 1e4; Lemma 4.6's ratio is theta to 8.67e-2 at worst, mean 0.4534,
+  maximum 0.9974
+- OBSERVATION: 6.2(ii) is the only site in the family with a second
+  nesting at the lead
+Strongest theorem
+- the outer exponent decides which nestings reach the leading order, and
+  a > 1 is what puts a quadratic there
+Strongest refutation
+- my own rule from last pass, which named the inner exponent and fitted
+  only because the two cases I had were swapped
+Reusable machinery
+- nesting_contribution_rule, NESTING_CONTRIBUTIONS, two tests, wired
+  into summary()
+Branch status
+- PARK
+Why
+  Nothing here is a manuscript change; the one edit the family wants is
+  still the deletion recorded four passes ago.
+Best next question
+- the rule predicts a nesting with outer exponent 9/4 -- the kernel's
+  own m^(9/4) -- would put its quadratic two orders *above* a lead of
+  that shape. Does any bound in Section 5 expand a floor under an
+  exponent bigger than 2, and if so what carries the cubic?
+```

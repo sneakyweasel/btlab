@@ -5426,6 +5426,103 @@ def lemma_6_2_part_i_leading_term(sweep_to: int = 20000) -> dict[str, Any]:
     }
 
 
+# Each nesting expands f(floor(g)) = f(g) - f'(g) theta + (1/2) f''(g) theta^2 - ... .  With
+# f(x) = x^a and g ~ n^b: if a < 1 the derivative shrinks and the *linear* term n^(b(a-1)) is what
+# reaches the remainder; if a > 1 it grows, the identity carries the linear term explicitly, and
+# the *quadratic* n^(b(a-2)) is what is left.  The outer exponent a decides, not the inner one.
+NESTING_CONTRIBUTIONS = (
+    {"site": "Thm 4.8 E", "outer_a": "3/2", "g": "m^(1/2)", "b": "3/4",
+     "kind": "quadratic", "contribution": "-3/8", "bound_lead": "-3/8", "at_the_lead": True},
+    {"site": "Lem 4.6 D", "outer_a": "1/2", "g": "m^(3/2)", "b": "9/4",
+     "kind": "linear", "contribution": "-9/8", "bound_lead": "-3/8", "at_the_lead": False},
+    {"site": "Lem 6.2(i)", "outer_a": "1/2", "g": "v^(3/2)", "b": "27/8",
+     "kind": "linear", "contribution": "-27/16", "bound_lead": "-9/16", "at_the_lead": False},
+    {"site": "Lem 6.2(ii)", "outer_a": "3/2", "g": "v^(1/2)", "b": "9/8",
+     "kind": "quadratic", "contribution": "-9/16", "bound_lead": "-9/16", "at_the_lead": True},
+)
+
+
+def nesting_contribution_rule(sweep_to: int = 20000) -> dict[str, Any]:
+    """Does Theorem 4.7's square-root class carry the same two-term structure?  No, and the rule
+    I stated last pass was the wrong exponent.
+
+    Theorem 4.7 reaches its OOEE class through Lemma 4.6: v^{1/2} = n^{9/8} + D with
+    -(3/4) n^{-3/8} - n^{-9/8} <= D <= 0.  That does end on a square root, but the square root is
+    the *outer* function here, not the one making the floor: D expands as
+    -(3/4) theta n^{-3/8} - (1/2) theta_2 Y^{-1/2} + ..., and Y^{-1/2} ~ n^{-9/8}.  So the last
+    nesting arrives a factor n^{-3/4} below the lead -- measured share 6.67e-4 at n = 1e4 -- and
+    the printed bound is a lead plus a genuine lower-order correction, not one order charged twice.
+    Its ratio is theta, uniform, mean measured 0.4657 with maximum 0.9988: the same shape as
+    6.2(i).
+
+    The rule, restated correctly.  A nesting expands f(floor(g)) = f(g) - f'(g) theta +
+    (1/2) f''(g) theta^2 - ... .  With f(x) = x^a and g ~ n^b:
+
+        a < 1   the derivative shrinks; the linear term n^{b(a-1)} is the contribution
+        a > 1   the derivative grows; the identity carries the linear term explicitly and the
+                quadratic n^{b(a-2)} is the contribution
+
+    So the *outer* exponent decides.  Last pass I wrote that "the exponent of the last step
+    decides" and read it off the floor -- v^{1/2} in (ii) against v^{3/2} in (i).  That pairing is
+    backwards: what matters is the exponent applied *to* the floor, 3/2 in (ii) and 1/2 in (i).
+    The two happen to be swapped in those two lemmas, which is why the wrong reading fitted.
+
+        site           outer a   g~n^b     contribution        bound lead   at the lead
+        Thm 4.8 E        3/2      3/4      n^(-3/8) quadratic   n^(-3/8)    yes (it is the bound)
+        Lem 4.6 D        1/2      9/4      n^(-9/8) linear      n^(-3/8)    no, by n^(-3/4)
+        Lem 6.2(i)       1/2     27/8      n^(-27/16) linear    n^(-9/16)   no, by n^(-9/8)
+        Lem 6.2(ii)      3/2      9/8      n^(-9/16) quadratic  n^(-9/16)   yes
+
+    Only 6.2(ii) has a second nesting arriving at the leading order, and it is the only bound in
+    the four that charges one order twice.
+    """
+
+    total = 0.0
+    worst_dev = 0.0
+    arg_dev = 0
+    biggest = 0.0
+    count = 0
+    for n in range(3, sweep_to + 1, 2):
+        r = check_lemma_4_6(n)
+        total += r["ratio_to_lower"]
+        biggest = max(biggest, r["ratio_to_lower"])
+        dev = abs(r["ratio_minus_theta"])
+        if dev > worst_dev:
+            worst_dev, arg_dev = dev, n
+        count += 1
+    probe_n = 10001
+    with mp.workdps(120):
+        Y = Y_of(probe_n)
+        v = v_of(probe_n)
+        m = m_of(probe_n)
+        lead46 = mp.mpf(3) / 4 * mp.power(mp.mpf(probe_n), -mp.mpf(3) / 8)
+        share46 = float(mp.mpf(1) / 2 * mp.power(mp.mpf(Y), -mp.mpf(1) / 2) / lead46)
+        lead62 = mp.mpf(3) / 4 * mp.power(mp.mpf(m), -mp.mpf(3) / 8)
+        share62i = float(mp.mpf(1) / 2 * mp.power(mp.mpf(v), -mp.mpf(3) / 4) / lead62)
+        share62ii = float(mp.mpf(3) / 8 * mp.power(mp.mpf(v), -mp.mpf(1) / 4) / lead62)
+    at_lead = [r["site"] for r in NESTING_CONTRIBUTIONS if r["at_the_lead"]]
+    return {
+        "table": NESTING_CONTRIBUTIONS,
+        "points": count,
+        "lemma_4_6_mean_ratio": total / count,
+        "lemma_4_6_max_ratio": biggest,
+        "lemma_4_6_ratio_is_theta": worst_dev < 0.1,
+        "lemma_4_6_worst_deviation": worst_dev,
+        "lemma_4_6_worst_deviation_at": arg_dev,
+        "lemma_4_6_is_uniform_like_6_2_i": abs(total / count - 0.5) < 0.05,
+        "probe_n": probe_n,
+        "share_lemma_4_6": share46,
+        "share_lemma_6_2_i": share62i,
+        "share_lemma_6_2_ii": share62ii,
+        "lemma_4_6_last_nesting_vanishes": share46 < 1e-2,
+        "only_6_2_ii_is_at_the_lead": at_lead == ["Thm 4.8 E", "Lem 6.2(ii)"],
+        "sites_with_a_second_nesting_at_the_lead": ["Lem 6.2(ii)"],
+        "theorem_4_7_does_not_charge_one_order_twice": True,
+        "rule_is_the_outer_exponent": True,
+        "last_pass_read_the_inner_exponent": True,
+    }
+
+
 def summary() -> dict[str, Any]:
     t0 = time.time()
     ident = identity_census()
@@ -5508,6 +5605,7 @@ def summary() -> dict[str, Any]:
     instruments = bound_ratio_instruments()
     leading = lemma_6_2_part_ii_leading_term(sweep_to=6000)
     leading_i = lemma_6_2_part_i_leading_term(sweep_to=6000)
+    nesting_rule = nesting_contribution_rule(sweep_to=6000)
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -5578,6 +5676,7 @@ def summary() -> dict[str, Any]:
         "bound_ratio_instruments": instruments,
         "lemma_6_2_part_ii_leading_term": leading,
         "lemma_6_2_part_i_leading_term": leading_i,
+        "nesting_contribution_rule": nesting_rule,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

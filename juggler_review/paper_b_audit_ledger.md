@@ -5091,3 +5091,75 @@ application anyway, since the lemma's `B` *is* this section's `c`. Third time th
 notation scanner has caught a symbol imported from another section's statement; it is a good
 guard and the failure mode is always the same, quoting a lemma in a section that has spent its
 alphabet.
+
+## Theorem 4.7 does not charge one order twice, and the rule I stated last pass was the wrong exponent
+
+Theorem 4.7 reaches its `OOEE` class through Lemma 4.6:
+`v^(1/2) = n^(9/8) + D` with
+`-(3/4) n^(-3/8) - n^(-9/8) <= D <= 0`. That does end on a square root
+--- but the square root is the *outer* function, not the one making the
+floor. `D` expands as `-(3/4) theta n^(-3/8) - (1/2) theta_2 Y^(-1/2) +
+...` with `Y^(-1/2) ~ n^(-9/8)`, so the last nesting arrives a factor
+`n^(-3/4)` below the lead: measured share `6.666e-4` at `n = 1e4`. Its
+printed bound is a lead plus a genuine lower-order correction, not one
+order charged twice, and its ratio is `theta` --- uniform, mean `0.4534`
+over `[3, 6000)`, maximum `0.9974`, the same shape as `6.2(i)`.
+
+**And the rule needs restating.** A nesting expands
+
+```text
+  f(floor(g)) = f(g) - f'(g) theta + (1/2) f''(g) theta^2 - ...
+```
+
+With `f(x) = x^a` and `g ~ n^b`:
+
+```text
+  a < 1   the derivative shrinks; the linear term n^(b(a-1)) is the contribution
+  a > 1   the derivative grows; the identity carries the linear term explicitly
+          and the quadratic n^(b(a-2)) is what is left
+```
+
+So the **outer** exponent decides. Last pass I wrote that "the exponent
+of the last step decides" and read it off the floor --- `v^(1/2)` in
+(ii) against `v^(3/2)` in (i). That pairing is backwards: what matters
+is the exponent applied *to* the floor, `3/2` in (ii) and `1/2` in (i).
+The two are swapped between those lemmas, which is exactly why the wrong
+reading fitted the two cases I had.
+
+```text
+  site           outer a   g~n^b     contribution        bound lead   at the lead
+  Thm 4.8 E        3/2      3/4      n^(-3/8) quadratic   n^(-3/8)    yes (it is the bound)
+  Lem 4.6 D        1/2      9/4      n^(-9/8) linear      n^(-3/8)    no, by n^(-3/4)
+  Lem 6.2(i)       1/2     27/8      n^(-27/16) linear    n^(-9/16)   no, by n^(-9/8)
+  Lem 6.2(ii)      3/2      9/8      n^(-9/16) quadratic  n^(-9/16)   yes
+```
+
+Measured shares at `n = 1e4`: `6.666e-4`, `2.108e-5`, `0.5000000001`.
+
+Only `6.2(ii)` has a *second* nesting arriving at the leading order, and
+it is the only one of the four whose bound charges one order twice.
+Theorem 4.8's quadratic is at its bound's order because it *is* the
+bound --- one nesting, one term.
+
+So the deletion recorded four passes ago remains the only place in this
+family with anything to remove, and now there is a reason it is the only
+one rather than a census that found nothing else.
+
+Tags. EXACT: `f(floor(g))` contributes `n^(b(a-1))` when `a < 1` and
+`n^(b(a-2))` when `a > 1`, so the outer exponent decides; Lemma 4.6's
+last nesting is at `n^(-9/8)` against a lead `n^(-3/8)`; the four-site
+table above. COMPUTATIONALLY VERIFIED: shares `6.666e-4`, `2.108e-5`,
+`0.5000000001` at `n = 1e4`; Lemma 4.6's ratio is `theta` to `8.67e-2`
+at worst (at `n = 11`), mean `0.4534`, maximum `0.9974`. OBSERVATION:
+`6.2(ii)` is the only site in the family with a second nesting at the
+lead.
+
+*Correction.* The formulation in the previous section --- "the exponent
+of the last step decides" --- names the wrong exponent. The conclusions
+drawn there are unaffected: the shares `2.108e-5` and `0.5` are
+measured, and the table above gives them from the outer exponent
+instead.
+
+Probe: `nesting_contribution_rule`, `NESTING_CONTRIBUTIONS`. Two tests.
+Audit `PAPER_B_AUDIT_CONSISTENT`; `P_0` unmoved at `3.5858e13`. No
+manuscript or certificate edit.

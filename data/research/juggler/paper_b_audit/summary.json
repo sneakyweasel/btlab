@@ -478,7 +478,7 @@
     }
   },
   "p0_certificate_ok": true,
-  "git_commit": "f217ce9426523672b0b93159fcee2e9f33bc2898",
+  "git_commit": "69ae087f4f70e0d1eb57e808bfcbd8d32ef64619",
   "identities": {
     "samples": 480,
     "failures": {},
@@ -6163,6 +6163,69 @@
     "one_nesting_in_i_two_in_ii": true,
     "the_exponent_of_the_last_step_decides": true
   },
+  "nesting_contribution_rule": {
+    "table": [
+      {
+        "site": "Thm 4.8 E",
+        "outer_a": "3/2",
+        "g": "m^(1/2)",
+        "b": "3/4",
+        "kind": "quadratic",
+        "contribution": "-3/8",
+        "bound_lead": "-3/8",
+        "at_the_lead": true
+      },
+      {
+        "site": "Lem 4.6 D",
+        "outer_a": "1/2",
+        "g": "m^(3/2)",
+        "b": "9/4",
+        "kind": "linear",
+        "contribution": "-9/8",
+        "bound_lead": "-3/8",
+        "at_the_lead": false
+      },
+      {
+        "site": "Lem 6.2(i)",
+        "outer_a": "1/2",
+        "g": "v^(3/2)",
+        "b": "27/8",
+        "kind": "linear",
+        "contribution": "-27/16",
+        "bound_lead": "-9/16",
+        "at_the_lead": false
+      },
+      {
+        "site": "Lem 6.2(ii)",
+        "outer_a": "3/2",
+        "g": "v^(1/2)",
+        "b": "9/8",
+        "kind": "quadratic",
+        "contribution": "-9/16",
+        "bound_lead": "-9/16",
+        "at_the_lead": true
+      }
+    ],
+    "points": 2999,
+    "lemma_4_6_mean_ratio": 0.45339089441405533,
+    "lemma_4_6_max_ratio": 0.9973627542637619,
+    "lemma_4_6_ratio_is_theta": true,
+    "lemma_4_6_worst_deviation": 0.08665944109735646,
+    "lemma_4_6_worst_deviation_at": 11,
+    "lemma_4_6_is_uniform_like_6_2_i": true,
+    "probe_n": 10001,
+    "share_lemma_4_6": 0.0006666166729158127,
+    "share_lemma_6_2_i": 2.1079479677699795e-05,
+    "share_lemma_6_2_ii": 0.5000000000546488,
+    "lemma_4_6_last_nesting_vanishes": true,
+    "only_6_2_ii_is_at_the_lead": true,
+    "sites_with_a_second_nesting_at_the_lead": [
+      "Lem 6.2(ii)"
+    ],
+    "theorem_4_7_does_not_charge_one_order_twice": true,
+    "rule_is_the_outer_exponent": true,
+    "last_pass_read_the_inner_exponent": true
+  },
   "kernel_k_uniformity": {
     "P": 10000,
     "ks": [
@@ -6230,5 +6293,5 @@
     "no_k_loses_cancellation": true
   },
   "classification": "PAPER_B_AUDIT_CONSISTENT",
-  "elapsed_seconds": 90.02695727348328
+  "elapsed_seconds": 90.44456005096436
 }
