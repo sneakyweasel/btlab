@@ -31533,3 +31533,64 @@ Best next question
   non-degenerate; what is missing is a way to assemble the Fourier modes
   when the shifted window holds no integer.
 ```
+
+## Fourteen of twenty-one, and the headline density was in the other seven
+
+Following the last entry's question. Mapping the probes onto the
+numbered results of Sections 4-6: fourteen probed, two carrying only a
+`P_0` row, and six with nothing at all -- every one of the six in
+Section 4, where coverage stopped after Theorem 4.8.
+
+**One of them was a headline number.** Corollary 4.9 is the
+certified-descent density `13/16`, and with Theorem 6.3's two
+length-five contractors it is the `7/8` the frontier figure quotes.
+Neither had ever been counted; counting words to depth five is one pass.
+
+| prefix | count at `N=1e5` | density | target | deviation | printed error |
+|---|---|---|---|---|---|
+| `E` | `50000` | `0.500000` | `1/2` | `0` exactly | `0` |
+| `OE` | `25015` | `0.250150` | `1/4` | `+15` | `<< N^(5/6)` |
+| `OOEE` | `6176` | `0.061760` | `1/16` | `-74` | `<< N^(23/24+eps)` |
+| `OOOEE` | `3181` | `0.031810` | `1/32` | `+56` | `<< N^(23/24+eps)` |
+| `OOEOE` | `3153` | `0.031530` | `1/32` | `+28` | `<< N^(23/24+eps)` |
+
+Totals `0.811910` against `13/16 = 0.8125`, and `0.875250` against
+`7/8`; at `1e6` they sharpen to `0.812486` and `0.874925`. Every
+deviation sits far inside its printed error term and the `E` count is
+`floor(N/2)` exactly, as the corollary says.
+
+**What is left.** Lemma 4.6 is a pointwise two-sided identity and is the
+obvious next probe; Lemma 4.10 is an abstract summation-by-parts
+inequality, checkable on synthetic data; Corollary 4.13 is structural
+and checkable by iterating `J`. Theorems 4.11 and 4.12 are asymptotic
+epsilon-statements of the same class as Theorem 5.3 and admit no finite
+check at all -- which is the honest shape of the remaining gap: three
+cheap, two impossible.
+
+```text
+What was learned
+- the audit reaches everything in Sections 5 and 6 and had six holes in
+  Section 4, one of them the paper's own headline density
+- 13/16 and 7/8 both count out at 1e5 and sharpen at 1e6, with the E
+  class exact as printed
+- of the five remaining gaps, three are elementary and two are
+  asymptotic and unreachable in principle
+Strongest theorem
+- none new; 1/2+1/4+1/16 = 13/16 and +2/32 = 7/8 are transcription
+Strongest refutation
+- none; every density lands where the paper puts it
+Reusable machinery
+- certified_descent_density and audit_coverage, plus _juggler_word;
+  two tests, two exact checks
+Branch status
+- PAPER_B_AUDIT_CONSISTENT
+Why
+  Fifteen probes accumulated by following questions, and following
+  questions is not the same as covering a paper. The map took one pass
+  and found that the most quoted number in the paper had never been
+  counted.
+Best next question
+- Lemma 4.6's D(n) is bounded above by 0 and below by
+  -(3/4)n^(-3/8) - n^(-9/8). Both ends are attainable claims: does the
+  census-power reading apply, and is either end ever approached?
+```

@@ -903,6 +903,90 @@ def reach_ladder() -> dict[str, Any]:
         "epsilon_form_has_no_finite_crossover": True,
     }
 
+# The results of Sections 4-6, and what the audit had on each before this entry.  "probe" means a
+# function here evaluates its content; "exponents" means only its displayed powers are transcribed;
+# "threshold" means only a P_0 row; "none" means nothing at all.
+SECTION_4_TO_6_COVERAGE = {
+    "Theorem 4.1": "threshold", "Corollary 4.2": "probe", "Lemma 4.3": "probe",
+    "Theorem 4.4": "probe", "Proposition 4.5": "threshold", "Lemma 4.6": "none",
+    "Theorem 4.7": "probe", "Theorem 4.8": "probe", "Corollary 4.9": "probe",
+    "Lemma 4.10": "none", "Theorem 4.11": "none", "Theorem 4.12": "none",
+    "Corollary 4.13": "none", "Lemma 5.1": "probe", "Lemma 5.2": "probe",
+    "Lemma 5.2b": "probe", "Theorem 5.3": "probe", "Theorem 6.1": "probe",
+    "Lemma 6.2": "probe", "Theorem 6.3": "probe", "Corollary 6.4": "probe",
+}
+
+
+def _juggler_word(n: int, length: int) -> str:
+    """The first `length` letters of the itinerary of n under J."""
+
+    out = []
+    for _ in range(length):
+        out.append("E" if n % 2 == 0 else "O")
+        n = math.isqrt(n) if n % 2 == 0 else math.isqrt(n * n * n)
+    return "".join(out)
+
+
+def certified_descent_density(N: int = 10**5) -> dict[str, Any]:
+    """Corollary 4.9's 13/16, and Theorem 6.3's 7/8, counted directly.
+
+    Both are headline densities of the paper and neither had a probe: the audit's Section 4 coverage
+    stopped after Theorem 4.8.  The three certificate classes E, OE, OOEE are disjoint by their
+    first letters, and the corollary prints |#E - N/2| = 0 exactly, |#OE - N/4| << N^{5/6} and
+    |#OOEE - N/16| << N^{23/24+eps}; adding Theorem 6.3's two length-five contractors OOOEE and
+    OOEOE at N/32 each carries 13/16 to 7/8.  Counting words to depth five is one pass.
+    """
+
+    prefixes = ("E", "OE", "OOEE", "OOOEE", "OOEOE")
+    counts = dict.fromkeys(prefixes, 0)
+    for n in range(1, N + 1):
+        word = _juggler_word(n, 5)
+        for pre in prefixes:
+            if word.startswith(pre):
+                counts[pre] += 1
+                break                      # the five prefixes are mutually exclusive by construction
+    rows = []
+    for pre, target, exponent in (("E", Fr(1, 2), None), ("OE", Fr(1, 4), Fr(5, 6)),
+                                  ("OOEE", Fr(1, 16), Fr(23, 24)), ("OOOEE", Fr(1, 32), Fr(23, 24)),
+                                  ("OOEOE", Fr(1, 32), Fr(23, 24))):
+        deviation = counts[pre] - float(target) * N
+        rows.append({"prefix": pre, "count": counts[pre], "density": counts[pre] / N,
+                     "target": float(target), "deviation": deviation,
+                     "error_exponent": None if exponent is None else float(exponent),
+                     "inside_the_printed_error": (abs(deviation) <= 0.5 if exponent is None
+                                                  else abs(deviation) <= N ** float(exponent))})
+    d4 = sum(counts[p] for p in ("E", "OE", "OOEE"))
+    d5 = d4 + counts["OOOEE"] + counts["OOEOE"]
+    return {
+        "N": N,
+        "classes": rows,
+        "E_count_is_exactly_floor_half": counts["E"] == N // 2,
+        "depth4_density": d4 / N,
+        "depth4_target": float(Fr(13, 16)),
+        "depth5_density": d5 / N,
+        "depth5_target": float(Fr(7, 8)),
+        "depth4_error": d4 / N - float(Fr(13, 16)),
+        "depth5_error": d5 / N - float(Fr(7, 8)),
+        "all_inside_the_printed_errors": all(r["inside_the_printed_error"] for r in rows),
+        "thirteen_sixteenths_plus_two_thirtyseconds_is_seven_eighths": Fr(13, 16) + 2 * Fr(1, 32) == Fr(7, 8),
+    }
+
+
+def audit_coverage() -> dict[str, Any]:
+    """Which results of Sections 4-6 the audit reaches, and how."""
+
+    tally: dict[str, list[str]] = {}
+    for name, level in SECTION_4_TO_6_COVERAGE.items():
+        tally.setdefault(level, []).append(name)
+    return {
+        "coverage": SECTION_4_TO_6_COVERAGE,
+        "counts": {k: len(v) for k, v in tally.items()},
+        "uncovered": sorted(tally.get("none", [])),
+        "threshold_only": sorted(tally.get("threshold", [])),
+        "probed": len(tally.get("probe", [])),
+        "total": len(SECTION_4_TO_6_COVERAGE),
+    }
+
 def census_constant_power(seed: int = 20260903, samples_per_range: int = 20) -> dict[str, Any]:
     """How far each printed constant could move before the census would notice.
 
@@ -1934,6 +2018,9 @@ def exponent_checks() -> list[dict[str, Any]]:
         # Lemma 3.9's proof of the r=4 length, whose constant A.5 does not carry
         ("3.9 proof: 4V >= (c_7 S/(4P^2))(y-x)^2/4 gives (y-x)^2 <= 64 V P^2/(c_7 S), i.e. 8P", 64 ** 0.5 == 8.0),
         ("3.9 proof: the r=3 length 4PV/(c_7 S) and the r=4 length 8P(V/(c_7 S))^{1/2} differ in shape, so one C(E) scales them differently", F(1) != F(1, 2)),
+        # Corollary 4.9's density and its depth-five extension, which nothing had checked
+        ("4.9: 1/2 + 1/4 + 1/16 = 13/16, the certified-descent density through depth four", F(1, 2) + F(1, 4) + F(1, 16) == F(13, 16)),
+        ("4.9 with 6.3's two contractors: 13/16 + 1/32 + 1/32 = 7/8", F(13, 16) + F(1, 32) + F(1, 32) == F(7, 8)),
     ]
     return [{"check": name, "ok": ok} for name, ok in checks]
 
@@ -2054,6 +2141,62 @@ def kernel_block_scaling(P: int = 10**5, k: int = 1, bins: int = 256) -> dict[st
         "terms": N,
         "blocks": rows,
         "kernel_exponent": exponents["K"],
+        "wave_exponent": exponents["wave"],
+        "square_root_exponent": 0.5,
+        "no_cancellation_exponent": 1.0,
+    }
+
+
+def level1_kernel_block_scaling(P: int = 10**5, k: int = 1, bins: int = 256) -> dict[str, Any]:
+    """The level-1 kernel of `OOOEOEE`, measured -- the object depth seven is waiting on.
+
+    Section 7 prices this kernel, screens the frontier for it and orders the attack around it, but
+    never evaluates it.  It is
+
+        K_1(P) = sum_{n ~ P odd} e( (27k/32) n^{33/32} {n^{3/2}} ),
+
+    one level below Theorem 5.3's `K_c`: the defect is the fractional part of a *monomial*, not of
+    a floor of one.  Section 7's reading is that this is below the barrier the paper locates at
+    level two, and that what is missing is a way to assemble the Fourier modes when the shifted
+    window holds no integer -- a statement about method.  Whether the sum itself cancels is a
+    separate question, and this answers it.
+
+    Same instrument as `kernel_block_scaling`: one pass, 256 bins, aggregated to seven block
+    lengths, exponent fitted over the counts with at least `BLOCK_FIT_MIN_SAMPLES` samples.
+    Square-root cancellation puts the exponent at 1/2, none at 1; the instrument reads
+    0.4965 +- 0.047 on data that is exactly 1/2 (`block_exponent_calibration`).
+
+    `wave` is the bare level-1 defect `e({n^{3/2}})` on the same pass, as a control: it is the
+    thing the kernel weights, and its exponent is what the kernel's must be compared against.
+
+    OBSERVATION.  No bound on this sum is claimed anywhere in the paper, so nothing here can
+    contradict it; what a positive reading would say is that the deficit at depth seven is the
+    method and not the phenomenon.
+    """
+
+    ns = range(P + 1, 2 * P + 1, 2)
+    N = len(ns)
+    binK = [mp.mpc(0)] * bins
+    binW = [mp.mpc(0)] * bins
+    with mp.workdps(40):
+        for i, n in enumerate(ns):
+            X = mp.power(mp.mpf(n), mp.mpf(3) / 2)
+            th1 = X - mp.floor(X)
+            c = mp.mpf(27 * k) / 32 * mp.power(mp.mpf(n), mp.mpf(33) / 32)
+            b = i * bins // N
+            binK[b] += mp.expjpi(2 * frac(c * th1))
+            binW[b] += mp.expjpi(2 * th1)
+
+    rows, exponents = _block_scaling_rows({"K1": binK, "wave": binW}, N, bins)
+
+    return {
+        "P": P,
+        "k": k,
+        "terms": N,
+        "weight": "(27k/32) n^{33/32}",
+        "defect": "{n^{3/2}}",
+        "blocks": rows,
+        "level1_exponent": exponents["K1"],
         "wave_exponent": exponents["wave"],
         "square_root_exponent": 0.5,
         "no_cancellation_exponent": 1.0,
@@ -2362,6 +2505,8 @@ def summary() -> dict[str, Any]:
     p1_split = p1_cost_split()
     p1_provenance = p1_constant_provenance()
     ladder = reach_ladder()
+    density = certified_descent_density()
+    coverage = audit_coverage()
     k_uniformity = kernel_k_uniformity(P=10**4, ks=(1, 2, 8, 64))
     cert = p0_certificate.certificate()
     return {
@@ -2396,6 +2541,8 @@ def summary() -> dict[str, Any]:
         "p1_cost_split": p1_split,
         "p1_constant_provenance": p1_provenance,
         "reach_ladder": ladder,
+        "certified_descent_density": density,
+        "audit_coverage": coverage,
         "kernel_k_uniformity": k_uniformity,
         "classification": (
             "PAPER_B_AUDIT_CONSISTENT"

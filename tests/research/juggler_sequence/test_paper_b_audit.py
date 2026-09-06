@@ -842,3 +842,23 @@ def test_no_internal_threshold_reaches_the_conclusions_own_crossover() -> None:
     assert r["sharp_form_crossover_log10"] > 200          # the log form is 200 orders further out
     internal = [x for x in r["rungs"] if x["internal"]]
     assert len(internal) == 4 and max(x["log10_P"] for x in internal) < 28
+
+
+# --- the coverage gap in Section 4, and the density that had no probe ---
+
+
+def test_the_certified_descent_densities_check_by_direct_count() -> None:
+    """Corollary 4.9's 13/16 and Theorem 6.3's 7/8, counted rather than transcribed."""
+    r = A.certified_descent_density(N=3 * 10**4)
+    assert r["E_count_is_exactly_floor_half"]
+    assert r["all_inside_the_printed_errors"]
+    assert abs(r["depth4_error"]) < 3e-3 and abs(r["depth5_error"]) < 3e-3
+    assert r["thirteen_sixteenths_plus_two_thirtyseconds_is_seven_eighths"]
+
+
+def test_section_four_still_has_five_results_with_no_probe() -> None:
+    c = A.audit_coverage()
+    assert c["total"] == 21 and c["probed"] == 14
+    assert set(c["uncovered"]) == {"Lemma 4.6", "Lemma 4.10", "Theorem 4.11",
+                                   "Theorem 4.12", "Corollary 4.13"}
+    assert set(c["threshold_only"]) == {"Theorem 4.1", "Proposition 4.5"}

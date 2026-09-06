@@ -2120,3 +2120,43 @@ move" --- now records that it did.
 Every surface the two errata touch is consistent: manuscript, both
 mirrors, the certificate module, the audit module, the Lean certificate
 and five test files. COMPLETE.
+
+## The coverage map, and the headline density that had no probe
+
+Mapping the audit's fifteen probes onto the twenty-one numbered results
+of Sections 4--6: fourteen are probed, two carry only a \(P_0\) row
+(Theorem 4.1, Proposition 4.5), and six had nothing at all --- all six
+in Section 4, where the coverage stopped after Theorem 4.8.
+
+**One of the six was a headline number.** Corollary 4.9 is the
+certified-descent density \(13/16\), and with Theorem 6.3's two
+length-five contractors it is the \(7/8\) the frontier figure quotes.
+Neither had ever been counted. Counting words to depth five is one pass:
+
+| prefix | count at \(N=10^5\) | density | printed target | deviation | printed error |
+|---|---|---|---|---|---|
+| \(E\) | \(50000\) | \(0.500000\) | \(\tfrac12\) | \(0\) exactly | \(0\) |
+| \(OE\) | \(25015\) | \(0.250150\) | \(\tfrac14\) | \(+15\) | \(\ll N^{5/6}\) |
+| \(OOEE\) | \(6176\) | \(0.061760\) | \(\tfrac1{16}\) | \(-74\) | \(\ll N^{23/24+\varepsilon}\) |
+| \(OOOEE\) | \(3181\) | \(0.031810\) | \(\tfrac1{32}\) | \(+56\) | \(\ll N^{23/24+\varepsilon}\) |
+| \(OOEOE\) | \(3153\) | \(0.031530\) | \(\tfrac1{32}\) | \(+28\) | \(\ll N^{23/24+\varepsilon}\) |
+
+Totals \(0.811910\) against \(13/16=0.8125\), and \(0.875250\) against
+\(7/8\). At \(N=10^6\) they sharpen to \(0.812486\) and \(0.874925\).
+Every deviation is far inside its printed error term, and the \(E\)
+count is \(\lfloor N/2\rfloor\) exactly, as the corollary says.
+COMPUTATIONALLY VERIFIED; \(\tfrac12+\tfrac14+\tfrac1{16}=\tfrac{13}{16}\)
+and \(\tfrac{13}{16}+\tfrac1{32}+\tfrac1{32}=\tfrac78\) are EXACT.
+
+**What is still uncovered**, and why each is or is not reachable:
+
+| result | why it has no probe |
+|---|---|
+| Lemma 4.6 | a pointwise two-sided identity, \(v^{1/2}=n^{9/8}+D\) with \(-\tfrac34n^{-3/8}-n^{-9/8}\le D\le0\) --- **checkable, and the obvious next one** |
+| Lemma 4.10 | an abstract summation-by-parts inequality; checkable on synthetic \(a_n\) and \(\gamma\) |
+| Corollary 4.13 | structural, \(J^4(n)\in[m'^2,(m'{+}1)^2)\) even on the \(OOEEE\) class --- checkable by iteration |
+| Theorem 4.11, 4.12 | asymptotic \(\varepsilon\)-statements, the same class as Theorem 5.3: no finite check |
+
+So three of the five remaining gaps are cheap and one pair is not
+checkable in principle. The audit reaches everything in Sections 5 and 6
+and has one Section 4 result left that is both uncovered and elementary.
