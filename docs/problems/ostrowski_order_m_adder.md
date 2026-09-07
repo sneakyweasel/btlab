@@ -463,7 +463,7 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
 ## Formalization
 
 The Γ_NP origin obstruction is Lean-verified in
-`formal/Problems/Ostrowski/NP/` (mathlib v4.33.0, Lean 4.33.0), namespace
+`formal/Problems/Ostrowski/NP/` (mathlib v4.33.1, Lean 4.33.1), namespace
 `Ostrowski.NP`, theorem `kernel_unreachable_of_not_exceptional`. Zero
 `sorry`. `OriginReachable` is unrestricted integer reachability from
 `(0,0,0)`, not the live set `L_0`.

@@ -1,14 +1,32 @@
-"""Canonical Lean paths for the Juggler layered formalization."""
+"""Canonical Lean and repository paths for the Juggler formalization."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JUGGLER_DIR = REPO_ROOT / "formal" / "Problems" / "Juggler"
-JUGGLER_BARREL = REPO_ROOT / "formal" / "Problems" / "Juggler.lean"
-JUGGLER_PAPER_BARREL = REPO_ROOT / "formal" / "Problems" / "JugglerPaper.lean"
-ENGINE_DIR = REPO_ROOT / "formal" / "Problems" / "Engine"
+
+def repo_root() -> Path:
+    """Walk from this file to the directory that contains ``pyproject.toml``."""
+    for path in Path(__file__).resolve().parents:
+        if (path / "pyproject.toml").is_file():
+            return path
+    raise RuntimeError("pyproject.toml not found above lean_paths.py")
+
+
+REPO_ROOT = repo_root()
+CAPSULE_ROOT = REPO_ROOT / "attacks" / "juggler"
+INDEX_PATH = CAPSULE_ROOT / "index.json"
+FORMAL_DIR = REPO_ROOT / "formal"
+DATA_ROOT = REPO_ROOT / "data" / "research" / "juggler"
+DOCS_ROOT = REPO_ROOT / "docs"
+DOCS_RESEARCH = DOCS_ROOT / "research"
+DOCS_THEORY = DOCS_ROOT / "theory"
+BRANCHES_ROOT = DOCS_ROOT / "problems"
+CONJECTURES_ROOT = REPO_ROOT / "conjectures"
+JUGGLER_DIR = FORMAL_DIR / "Problems" / "Juggler"
+JUGGLER_BARREL = FORMAL_DIR / "Problems" / "Juggler.lean"
+JUGGLER_PAPER_BARREL = FORMAL_DIR / "Problems" / "JugglerPaper.lean"
+ENGINE_DIR = FORMAL_DIR / "Problems" / "Engine"
 
 PAPER_MODULES: tuple[str, ...] = (
     "Dynamics",

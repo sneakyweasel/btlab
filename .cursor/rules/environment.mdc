@@ -33,6 +33,8 @@ alwaysApply: true
   `docs/negative_knowledge.md`.
 - Compile a single Lean file with `lake env lean <file>` (≈ 40 s)
   before `lake build Problems.Juggler`.
+- Juggler reading path and registration: `attacks/juggler/AGENT.md`.
+  Branch index: `attacks/juggler/index.json` (rebuild after a new probe).
 
 # Numerics
 

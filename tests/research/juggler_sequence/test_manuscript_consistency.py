@@ -174,6 +174,7 @@ MANGLED_ESCAPES = ("\a", "\b", "\f", "\t", "\v", "\0")
 #: documents outside the manuscript set that carry the same LaTeX and the same hazard
 OTHER_LATEX_DOCS = (
     ROOT / "AGENTS.md",
+    ROOT / "attacks" / "juggler" / "AGENT.md",
     ROOT / "docs" / "juggler_branch_ledger.md",
     ROOT / "docs" / "negative_knowledge.md",
     ROOT / "docs" / "theory" / "juggler_fate_contagion_note.md",

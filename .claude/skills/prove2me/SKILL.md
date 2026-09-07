@@ -36,17 +36,20 @@ The API key (prefix `p2m_`, valid 30 days) is read from the user environment var
   file carries a key-shaped string (`p2m_` followed by a JWT).
 - A new shell is needed after `setx` before the variable is visible.
 
-## Environments: the laboratory does not match the platform
+## Environments: the laboratory matches the platform default
 
 | | Lean | Mathlib |
 |---|---|---|
 | platform default | v4.33.1 | `0df444a360eaa60ab8c11dca51a86af692955474` |
-| laboratory `formal/` | v4.33.0 | `db584cd6d46c92f209a44c0f1c829460d327499d` |
+| laboratory `formal/` | v4.33.1 | `0df444a360eaa60ab8c11dca51a86af692955474` |
 
-Run `envs` for the authoritative list (v4.30.0 and v4.29.0-rc3 are also offered). A proof can
-only import results from its own environment; a laboratory file does not compile on the
-platform unchanged, and a platform theorem does not compile in `formal/` unchanged. Treat a
-Formalpedia hit as a statement to re-prove or port, not as a module to import.
+Aligned on 7 September 2026. Run `envs` for the authoritative list (v4.30.0 and v4.29.0-rc3
+are also offered) and check the pin still matches before trusting this table. Because the
+Mathlib revision is the same, proof *text* carries either way unchanged apart from its
+imports, so a solution that compiles in `formal/` will compile on the server. The import
+mechanism is still fenced: a submitted solution may import only `Theorems.Thm_*` and
+`Definitions.Def_*`, never a laboratory module, so a Formalpedia hit is still a statement to
+port rather than a module to import.
 
 ## Searching before proving
 

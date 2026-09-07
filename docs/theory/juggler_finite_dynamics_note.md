@@ -548,8 +548,8 @@ whole is formally verified.
 ```text
 Repository:  https://github.com/sneakyweasel/balanced_ternary
 Commit:      7802f78bec58c68cec92a2efb3db4a502f916277
-Lean:        leanprover/lean4:v4.33.0
-Mathlib:     v4.33.0 (lake-manifest rev db584cd6d46c92f209a44c0f1c829460d327499d)
+Lean:        leanprover/lean4:v4.33.1
+Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
 Computation: python -m research.juggler_sequence.cycle_finance
              (parity table); run-type table in budget_opt.json

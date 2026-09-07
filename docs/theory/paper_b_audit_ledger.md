@@ -73,7 +73,7 @@ and corrected (row above). The constants of Lemmas 3.8 and 3.9 were
 computed in closed form over the exponent set actually used and moved
 into the manuscript, with the two finite computations they rest on
 formalised in `formal/Problems/Juggler/MonomialSplitting.lean`
-(builds against Mathlib `v4.33.0`).
+(builds against Mathlib `v4.33.1`).
 
 The *six-stage proof of Lemma 5.2(i)* has now also been read
 (rows above): every displayed constant was recomputed from its stated

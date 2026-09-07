@@ -10,9 +10,12 @@ LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
 
 def _targets() -> list[Path]:
-    files = [ROOT / "README.md", ROOT / "docs" / "README.md"]
+    files = [ROOT / "README.md", ROOT / "docs" / "README.md", ROOT / "AGENTS.md"]
     files.extend(sorted((ROOT / "docs").rglob("*.md")))
     files.append(ROOT / "formal" / "README.md")
+    capsule = ROOT / "attacks" / "juggler"
+    if capsule.is_dir():
+        files.extend(sorted(capsule.rglob("*.md")))
     return files
 
 

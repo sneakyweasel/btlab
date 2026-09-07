@@ -1,0 +1,5090 @@
+{
+  "branches": [
+    {
+      "id": "above_anchor_first_fail",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/above_anchor_first_fail.py",
+      "test": "tests/research/juggler_sequence/test_above_anchor_first_fail.py",
+      "dossier": "docs/problems/juggler_above_anchor_first_fail.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "above_anchor_walk",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/above_anchor_walk.py",
+      "test": "tests/research/juggler_sequence/test_above_anchor_walk.py",
+      "dossier": "docs/problems/juggler_above_anchor_walk.md",
+      "data_dir": "data/research/juggler/above_anchor_walk",
+      "lean": [
+        "formal/Problems/Juggler/AboveAnchorWalk.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-above-anchor-hug-domination"
+      ]
+    },
+    {
+      "id": "accelerated",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/accelerated.py",
+      "test": "tests/research/juggler_sequence/test_accelerated.py",
+      "dossier": "docs/problems/juggler_accelerated.md",
+      "data_dir": "data/research/juggler/accelerated",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "adversarial_paths",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/adversarial_paths.py",
+      "test": "tests/research/juggler_sequence/test_adversarial_paths.py",
+      "dossier": "docs/problems/juggler_adversarial_paths.md",
+      "data_dir": "data/research/juggler/adversarial_paths",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "amplify_surplus",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/amplify_surplus.py",
+      "test": "tests/research/juggler_sequence/test_amplify_surplus.py",
+      "dossier": "docs/problems/juggler_amplify_surplus.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "anchor_cylinders",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/anchor_cylinders.py",
+      "test": "tests/research/juggler_sequence/test_anchor_cylinders.py",
+      "dossier": "docs/problems/juggler_anchor_cylinders.md",
+      "data_dir": "data/research/juggler/anchor_cylinders",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "backward_geometry",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/backward_geometry.py",
+      "test": "tests/research/juggler_sequence/test_backward_geometry.py",
+      "dossier": "docs/problems/juggler_backward_geometry.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/Preimages.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "block_map_q",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/block_map_q.py",
+      "test": "tests/research/juggler_sequence/test_block_map_q.py",
+      "dossier": "docs/problems/juggler_block_map_q.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-block-map-q-trajectories",
+        "J-block-map-q-state"
+      ]
+    },
+    {
+      "id": "bracket_nil_lift",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/bracket_nil_lift.py",
+      "test": "tests/research/juggler_sequence/test_bracket_nil_lift.py",
+      "dossier": "docs/problems/juggler_bracket_nil_lift.md",
+      "data_dir": "data/research/juggler/bracket_nil_lift",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-tower-heisenberg-coordinate"
+      ]
+    },
+    {
+      "id": "bunched_last_cluster",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/bunched_last_cluster.py",
+      "test": "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+      "dossier": "docs/problems/juggler_bunched_last_cluster.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-three-even-eee",
+        "J-three-even-eoee",
+        "J-three-even-eooee",
+        "J-three-even-eoooee",
+        "J-three-even-eeoe",
+        "J-three-even-eoeoe",
+        "J-three-even-eooeoe"
+      ]
+    },
+    {
+      "id": "bunched_short",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/bunched_short.py",
+      "test": "tests/research/juggler_sequence/test_bunched_short.py",
+      "dossier": "docs/problems/juggler_bunched_short.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-bunched-short-path"
+      ]
+    },
+    {
+      "id": "bunched_short_defect",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/bunched_short_defect.py",
+      "test": "tests/research/juggler_sequence/test_bunched_short_defect.py",
+      "dossier": "docs/problems/juggler_bunched_short_defect.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-short-ee-compose",
+        "J-cyclemin-short-defect-obstruction"
+      ]
+    },
+    {
+      "id": "bunched_short_front",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/bunched_short_front.py",
+      "test": "tests/research/juggler_sequence/test_bunched_short_front.py",
+      "dossier": "docs/problems/juggler_bunched_short_front.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-short-reroot",
+        "J-cyclemin-short-31-exponent",
+        "J-cyclemin-short-front-census"
+      ]
+    },
+    {
+      "id": "bunched_short_return",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/bunched_short_return.py",
+      "test": "tests/research/juggler_sequence/test_bunched_short_return.py",
+      "dossier": "docs/problems/juggler_bunched_short_return.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-short-even-not-square",
+        "J-cyclemin-short-odd-square-preimage",
+        "J-cyclemin-short-return-census"
+      ]
+    },
+    {
+      "id": "capture_certificates",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/capture_certificates.py",
+      "test": "tests/research/juggler_sequence/test_capture_certificates.py",
+      "dossier": "docs/problems/juggler_capture_certificates.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cell_hut",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cell_hut.py",
+      "test": "tests/research/juggler_sequence/test_cell_hut.py",
+      "dossier": "docs/problems/juggler_cell_hut.md",
+      "data_dir": "data/research/juggler/cell_hut",
+      "lean": [
+        "formal/Problems/Juggler/Preimages.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "certificate_harvest",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/certificate_harvest.py",
+      "test": "tests/research/juggler_sequence/test_certificate_harvest.py",
+      "dossier": "docs/problems/juggler_certificate_harvest.md",
+      "data_dir": "data/research/juggler/certificate_harvest",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "certificate_transitions",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/certificate_transitions.py",
+      "test": "tests/research/juggler_sequence/test_certificate_transitions.py",
+      "dossier": "docs/problems/juggler_certificate_transitions.md",
+      "data_dir": "data/research/juggler/certificate_transitions",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "collapse_normalization",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/collapse_normalization.py",
+      "test": "tests/research/juggler_sequence/test_collapse_normalization.py",
+      "dossier": "docs/problems/juggler_collapse_normalization.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "compensated_contraction",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/compensated_contraction.py",
+      "test": "tests/research/juggler_sequence/test_compensated_contraction.py",
+      "dossier": "docs/problems/juggler_compensated_contraction.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "corridor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/corridor.py",
+      "test": "tests/research/juggler_sequence/test_corridor.py",
+      "dossier": "docs/problems/juggler_corridor.md",
+      "data_dir": "data/research/juggler/corridor",
+      "lean": [
+        "formal/Problems/Juggler/Corridor.lean"
+      ],
+      "conjecture": [
+        "juggler_cycle_entry_corridor"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cube_crossing",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cube_crossing.py",
+      "test": "tests/research/juggler_sequence/test_cube_crossing.py",
+      "dossier": "docs/problems/juggler_cube_crossing.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cube_not_square",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cube_not_square.py",
+      "test": "tests/research/juggler_sequence/test_cube_not_square.py",
+      "dossier": "docs/problems/juggler_cube_not_square.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cube-not-square-split",
+        "J-cube-even-is-progress"
+      ]
+    },
+    {
+      "id": "cube_odd_return",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cube_odd_return.py",
+      "test": "tests/research/juggler_sequence/test_cube_odd_return.py",
+      "dossier": "docs/problems/juggler_cube_odd_return.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cube-odd-even-reset",
+        "J-cube-odd-even-below-square"
+      ]
+    },
+    {
+      "id": "cumulative_floor_loss",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cumulative_floor_loss.py",
+      "test": "tests/research/juggler_sequence/test_cumulative_floor_loss.py",
+      "dossier": "docs/problems/juggler_cumulative_floor_loss.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_affine_n_gap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_affine_n_gap.py",
+      "test": "tests/research/juggler_sequence/test_cycle_affine_n_gap.py",
+      "dossier": "docs/problems/juggler_cycle_affine_n_gap.md",
+      "data_dir": "data/research/juggler/cycle_affine_n_gap",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-affine-n-gap-escapes-dominance"
+      ]
+    },
+    {
+      "id": "cycle_almost_search",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_almost_search.py",
+      "test": "tests/research/juggler_sequence/test_cycle_almost_search.py",
+      "dossier": "docs/problems/juggler_cycle_almost_search.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_almost_search"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_arith",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_arith.py",
+      "test": "tests/research/juggler_sequence/test_cycle_arith.py",
+      "dossier": "docs/problems/juggler_cycle_arith.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_block_potential",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_block_potential.py",
+      "test": "tests/research/juggler_sequence/test_cycle_block_potential.py",
+      "dossier": "docs/problems/juggler_cycle_block_potential.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_block_potential"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_block_transfer",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_block_transfer.py",
+      "test": "tests/research/juggler_sequence/test_cycle_block_transfer.py",
+      "dossier": "docs/problems/juggler_cycle_block_transfer.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_block_transfer"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_budget_opt",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_budget_opt.py",
+      "test": "tests/research/juggler_sequence/test_cycle_budget_opt.py",
+      "dossier": "docs/problems/juggler_cycle_budget_opt.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-budget-opt-finance",
+        "J-cycle-budget-opt-instance"
+      ]
+    },
+    {
+      "id": "cycle_ceiling_finance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_ceiling_finance.py",
+      "test": "tests/research/juggler_sequence/test_cycle_ceiling_finance.py",
+      "dossier": "docs/problems/juggler_cycle_ceiling_finance.md",
+      "data_dir": "data/research/juggler/cycle_ceiling_finance",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-ceiling-landing",
+        "J-ceiling-finance-leftover-killer"
+      ]
+    },
+    {
+      "id": "cycle_christoffel",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_christoffel.py",
+      "test": "tests/research/juggler_sequence/test_cycle_christoffel.py",
+      "dossier": "docs/problems/juggler_cycle_christoffel.md",
+      "data_dir": "data/research/juggler/cycle_christoffel",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-christoffel-one-parameter"
+      ]
+    },
+    {
+      "id": "cycle_closure",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_closure.py",
+      "test": "tests/research/juggler_sequence/test_cycle_closure.py",
+      "dossier": "docs/problems/juggler_cycle_closure.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_cluster_amplify",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_cluster_amplify.py",
+      "test": "tests/research/juggler_sequence/test_cycle_cluster_amplify.py",
+      "dossier": "docs/problems/juggler_cycle_cluster_amplify.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_cluster_amplify"
+      ],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_conditioned_closure",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_conditioned_closure.py",
+      "test": "tests/research/juggler_sequence/test_cycle_conditioned_closure.py",
+      "dossier": "docs/problems/juggler_cycle_conditioned_closure.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_cyclic_seam",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_cyclic_seam.py",
+      "test": "tests/research/juggler_sequence/test_cycle_cyclic_seam.py",
+      "dossier": "docs/problems/juggler_cycle_cyclic_seam.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_cyclic_seam"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_cyclic_valley",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_cyclic_valley.py",
+      "test": "tests/research/juggler_sequence/test_cycle_cyclic_valley.py",
+      "dossier": "docs/problems/juggler_cycle_cyclic_valley.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_cyclic_valley"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_defect_anticluster",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_defect_anticluster.py",
+      "test": "tests/research/juggler_sequence/test_cycle_defect_anticluster.py",
+      "dossier": "docs/problems/juggler_cycle_defect_anticluster.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_defect_anticluster"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_defect_congruence",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_defect_congruence.py",
+      "test": "tests/research/juggler_sequence/test_cycle_defect_congruence.py",
+      "dossier": "docs/problems/juggler_cycle_defect_congruence.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_defect_congruence"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_defect_correlation",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_defect_correlation.py",
+      "test": "tests/research/juggler_sequence/test_cycle_defect_correlation.py",
+      "dossier": "docs/problems/juggler_cycle_defect_correlation.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_descent_next_run",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_descent_next_run.py",
+      "test": "tests/research/juggler_sequence/test_cycle_descent_next_run.py",
+      "dossier": "docs/problems/juggler_cycle_descent_next_run.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_descent_next_run"
+      ],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_diophantine",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_diophantine.py",
+      "test": "tests/research/juggler_sequence/test_cycle_diophantine.py",
+      "dossier": "docs/problems/juggler_cycle_diophantine.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/CycleDiophantine.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_e_block",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_e_block.py",
+      "test": "tests/research/juggler_sequence/test_cycle_e_block.py",
+      "dossier": "docs/problems/juggler_cycle_e_block.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_e_block"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_e_term",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_e_term.py",
+      "test": "tests/research/juggler_sequence/test_cycle_e_term.py",
+      "dossier": "docs/problems/juggler_cycle_e_term.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_e_threshold",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_e_threshold.py",
+      "test": "tests/research/juggler_sequence/test_cycle_e_threshold.py",
+      "dossier": "docs/problems/juggler_cycle_e_threshold.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_entry_corridor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_entry_corridor.py",
+      "test": "tests/research/juggler_sequence/test_cycle_entry_corridor.py",
+      "dossier": "docs/problems/juggler_cycle_entry_corridor.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_entry_corridor"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cyclemin-last-odd-run"
+      ]
+    },
+    {
+      "id": "cycle_entry_excursion",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_entry_excursion.py",
+      "test": "tests/research/juggler_sequence/test_cycle_entry_excursion.py",
+      "dossier": "docs/problems/juggler_cycle_entry_excursion.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_entry_excursion"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_equal_valleys",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_equal_valleys.py",
+      "test": "tests/research/juggler_sequence/test_cycle_equal_valleys.py",
+      "dossier": "docs/problems/juggler_cycle_equal_valleys.md",
+      "data_dir": "data/research/juggler/cycle_equal_valleys",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-unique-minimum-visit",
+        "J-equal-valleys-leftover-killer"
+      ]
+    },
+    {
+      "id": "cycle_error_transport",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_error_transport.py",
+      "test": "tests/research/juggler_sequence/test_cycle_error_transport.py",
+      "dossier": "docs/problems/juggler_cycle_error_transport.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_error_transport"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_exponent_budget",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_exponent_budget.py",
+      "test": "tests/research/juggler_sequence/test_cycle_exponent_budget.py",
+      "dossier": "docs/problems/juggler_cycle_exponent_budget.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_exponent_budget"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_extrema",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_extrema.py",
+      "test": "tests/research/juggler_sequence/test_cycle_extrema.py",
+      "dossier": "docs/problems/juggler_cycle_extrema.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/CycleExtrema.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-finite-structure",
+        "J-cyclemax-succ-sq"
+      ]
+    },
+    {
+      "id": "cycle_extremal_composition",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_extremal_composition.py",
+      "test": "tests/research/juggler_sequence/test_cycle_extremal_composition.py",
+      "dossier": "docs/problems/juggler_cycle_extremal_composition.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_extremizer_discrepancy",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_extremizer_discrepancy.py",
+      "test": "tests/research/juggler_sequence/test_cycle_extremizer_discrepancy.py",
+      "dossier": "docs/problems/juggler_cycle_extremizer_discrepancy.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_extremizer_discrepancy"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_fan_multipoint",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_fan_multipoint.py",
+      "test": "tests/research/juggler_sequence/test_cycle_fan_multipoint.py",
+      "dossier": "docs/problems/juggler_cycle_fan_multipoint.md",
+      "data_dir": "data/research/juggler/cycle_fan_multipoint",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_finance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_finance.py",
+      "test": "tests/research/juggler_sequence/test_cycle_finance.py",
+      "dossier": "docs/problems/juggler_cycle_finance.md",
+      "data_dir": "data/research/juggler/cycle_finance",
+      "lean": [
+        "formal/Problems/Juggler/CycleFinance.lean",
+        "formal/Problems/Juggler/CycleHeightFinance.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-finance-inequality",
+        "J-small-cycle-census-ten",
+        "J-cycle-itinerary-length-eleven-or-ge-fourteen",
+        "J-residual-floor-fifty-three",
+        "J-small-cycle-census-eleven",
+        "J-cycle-itinerary-length-ge-fourteen",
+        "J-small-cycle-census-eighteen",
+        "J-cycle-itinerary-length-nineteen-or-ge-thirty",
+        "J-cycle-itinerary-eliahou-leftover",
+        "J-cycle-itinerary-eliahou-leftover-instance",
+        "J-cycle-parity-finance",
+        "J-cycle-parity-finance-instance",
+        "J-residual-floor-two-million",
+        "J-residual-floor-two-hundred-fifty-seven",
+        "J-small-cycle-census-nineteen",
+        "J-cycle-itinerary-length-ge-thirty",
+        "J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine",
+        "J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths",
+        "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
+        "J-residual-floor-two-hundred-sixty-one",
+        "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five",
+        "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five"
+      ]
+    },
+    {
+      "id": "cycle_finance_cell_bridge",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_finance_cell_bridge.py",
+      "test": "tests/research/juggler_sequence/test_cycle_finance_cell_bridge.py",
+      "dossier": "docs/problems/juggler_cycle_finance_cell_bridge.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_finance_cell_bridge"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_first_collision",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_first_collision.py",
+      "test": "tests/research/juggler_sequence/test_cycle_first_collision.py",
+      "dossier": "docs/problems/juggler_cycle_first_collision.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_first_collision"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_fourier",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_fourier.py",
+      "test": "tests/research/juggler_sequence/test_cycle_fourier.py",
+      "dossier": "docs/problems/juggler_cycle_fourier.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_gap_baker",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_gap_baker.py",
+      "test": "tests/research/juggler_sequence/test_cycle_gap_baker.py",
+      "dossier": "docs/problems/juggler_cycle_gap_baker.md",
+      "data_dir": "data/research/juggler/cycle_gap_baker",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_inhomogeneous_log",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_inhomogeneous_log.py",
+      "test": "tests/research/juggler_sequence/test_cycle_inhomogeneous_log.py",
+      "dossier": "docs/problems/juggler_cycle_inhomogeneous_log.md",
+      "data_dir": "data/research/juggler/cycle_inhomogeneous_log",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cyclemin-inhomogeneous-log"
+      ]
+    },
+    {
+      "id": "cycle_internal_e",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_internal_e.py",
+      "test": "tests/research/juggler_sequence/test_cycle_internal_e.py",
+      "dossier": "docs/problems/juggler_cycle_internal_e.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_inverse_width",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_inverse_width.py",
+      "test": "tests/research/juggler_sequence/test_cycle_inverse_width.py",
+      "dossier": "docs/problems/juggler_cycle_inverse_width.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_inverse_width"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_itinerary",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_itinerary.py",
+      "test": "tests/research/juggler_sequence/test_cycle_itinerary.py",
+      "dossier": "docs/problems/juggler_cycle_word.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_itinerary_functional",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_itinerary_functional.py",
+      "test": "tests/research/juggler_sequence/test_cycle_itinerary_functional.py",
+      "dossier": "docs/problems/juggler_cycle_word_functional.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_itinerary_order",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_itinerary_order.py",
+      "test": "tests/research/juggler_sequence/test_cycle_itinerary_order.py",
+      "dossier": "docs/problems/juggler_cycle_word_order.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_word_order"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_l84_residual_floor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_l84_residual_floor.py",
+      "test": "tests/research/juggler_sequence/test_cycle_l84_residual_floor.py",
+      "dossier": "docs/problems/juggler_cycle_l84_residual_floor.md",
+      "data_dir": "data/research/juggler/cycle_l84_residual_floor",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_length_eight",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_length_eight.py",
+      "test": "tests/research/juggler_sequence/test_cycle_length_eight.py",
+      "dossier": "docs/problems/juggler_length_eight_cycles.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-small-cycle-census-eight"
+      ]
+    },
+    {
+      "id": "cycle_length_nine",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_length_nine.py",
+      "test": "tests/research/juggler_sequence/test_cycle_length_nine.py",
+      "dossier": "docs/problems/juggler_length_nine_three_even.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-trailing-evens",
+        "J-leftover-ooooooeee"
+      ]
+    },
+    {
+      "id": "cycle_length_seven",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_length_seven.py",
+      "test": "tests/research/juggler_sequence/test_cycle_length_seven.py",
+      "dossier": "docs/problems/juggler_length_seven_cycles.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-leftover-length-seven-orientations",
+        "J-small-cycle-census-seven"
+      ]
+    },
+    {
+      "id": "cycle_lift_ancestry",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_lift_ancestry.py",
+      "test": "tests/research/juggler_sequence/test_cycle_lift_ancestry.py",
+      "dossier": "docs/problems/juggler_cycle_lift_ancestry.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_lift_ancestry"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_loss_persistence",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_loss_persistence.py",
+      "test": "tests/research/juggler_sequence/test_cycle_loss_persistence.py",
+      "dossier": "docs/problems/juggler_cycle_loss_persistence.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_m_finance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_m_finance.py",
+      "test": "tests/research/juggler_sequence/test_cycle_m_finance.py",
+      "dossier": "docs/problems/juggler_cycle_m_finance.md",
+      "data_dir": "data/research/juggler/cycle_m_finance",
+      "lean": [
+        "formal/Problems/Juggler/CycleFinance.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_mechanical_lift",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_mechanical_lift.py",
+      "test": "tests/research/juggler_sequence/test_cycle_mechanical_lift.py",
+      "dossier": "docs/problems/juggler_cycle_mechanical_lift.md",
+      "data_dir": "data/research/juggler/cycle_mechanical_lift",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_mechanical_window",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_mechanical_window.py",
+      "test": "tests/research/juggler_sequence/test_cycle_mechanical_window.py",
+      "dossier": "docs/problems/juggler_cycle_mechanical_window.md",
+      "data_dir": "data/research/juggler/cycle_mechanical_window",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cyclemin-gap-transfer",
+        "J-cyclemin-short-cycle-rhin",
+        "J-cyclemin-mechanical-window-coin"
+      ]
+    },
+    {
+      "id": "cycle_mod_closure",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_mod_closure.py",
+      "test": "tests/research/juggler_sequence/test_cycle_mod_closure.py",
+      "dossier": "docs/problems/juggler_cycle_mod_closure.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_near_tight",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_near_tight.py",
+      "test": "tests/research/juggler_sequence/test_cycle_near_tight.py",
+      "dossier": "docs/problems/juggler_cycle_near_tight.md",
+      "data_dir": "data/research/juggler/cycle_near_tight",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-near-tight-monochrome"
+      ]
+    },
+    {
+      "id": "cycle_ooo_scale",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_ooo_scale.py",
+      "test": "tests/research/juggler_sequence/test_cycle_ooo_scale.py",
+      "dossier": "docs/problems/juggler_cycle_ooo_scale.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-finite-structure"
+      ]
+    },
+    {
+      "id": "cycle_ordered_excursion",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_ordered_excursion.py",
+      "test": "tests/research/juggler_sequence/test_cycle_ordered_excursion.py",
+      "dossier": "docs/problems/juggler_cycle_ordered_excursion.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_padic_coupling",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_padic_coupling.py",
+      "test": "tests/research/juggler_sequence/test_cycle_padic_coupling.py",
+      "dossier": "docs/problems/juggler_cycle_padic_coupling.md",
+      "data_dir": "data/research/juggler/cycle_padic_coupling",
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_padic_coupling"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_peak_count",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_peak_count.py",
+      "test": "tests/research/juggler_sequence/test_cycle_peak_count.py",
+      "dossier": "docs/problems/juggler_cycle_peak_count.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_peak_count"
+      ],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_peak_descent",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_peak_descent.py",
+      "test": "tests/research/juggler_sequence/test_cycle_peak_descent.py",
+      "dossier": "docs/problems/juggler_cycle_peak_descent.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_peak_valley_composition",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_peak_valley_composition.py",
+      "test": "tests/research/juggler_sequence/test_cycle_peak_valley_composition.py",
+      "dossier": "docs/problems/juggler_cycle_peak_valley_composition.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_peak_valley_composition"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_position_finance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_position_finance.py",
+      "test": "tests/research/juggler_sequence/test_cycle_position_finance.py",
+      "dossier": "docs/problems/juggler_cycle_position_finance.md",
+      "data_dir": "data/research/juggler/cycle_position_finance",
+      "lean": [
+        "formal/Problems/Juggler/CycleFinance.lean",
+        "formal/Problems/Juggler/TerminationFloor257.lean",
+        "formal/Problems/Juggler/CycleHeightFinance.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five",
+        "J-cycle-m-finance-no-length-thirty-eight",
+        "J-cycle-position-finance"
+      ]
+    },
+    {
+      "id": "cycle_prefix_feasibility",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_prefix_feasibility.py",
+      "test": "tests/research/juggler_sequence/test_cycle_prefix_feasibility.py",
+      "dossier": "docs/problems/juggler_cycle_prefix_feasibility.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_realizable_finance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_realizable_finance.py",
+      "test": "tests/research/juggler_sequence/test_cycle_realizable_finance.py",
+      "dossier": "docs/problems/juggler_cycle_realizable_finance.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_realizable_finance"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_remainder_finance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_remainder_finance.py",
+      "test": "tests/research/juggler_sequence/test_cycle_remainder_finance.py",
+      "dossier": "docs/problems/juggler_cycle_remainder_finance.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_rounding",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_rounding.py",
+      "test": "tests/research/juggler_sequence/test_cycle_rounding.py",
+      "dossier": "docs/problems/juggler_cycle_rounding.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_seam_ancestry",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_seam_ancestry.py",
+      "test": "tests/research/juggler_sequence/test_cycle_seam_ancestry.py",
+      "dossier": "docs/problems/juggler_cycle_seam_ancestry.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_seam_ancestry"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_seam_propagate",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_seam_propagate.py",
+      "test": "tests/research/juggler_sequence/test_cycle_seam_propagate.py",
+      "dossier": "docs/problems/juggler_cycle_seam_propagate.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_seam_propagate"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_seam_sliding",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_seam_sliding.py",
+      "test": "tests/research/juggler_sequence/test_cycle_seam_sliding.py",
+      "dossier": "docs/problems/juggler_cycle_seam_sliding.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_seam_sliding"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_second_valley",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_second_valley.py",
+      "test": "tests/research/juggler_sequence/test_cycle_second_valley.py",
+      "dossier": "docs/problems/juggler_cycle_second_valley.md",
+      "data_dir": "data/research/juggler/cycle_second_valley",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-second-valley-landing",
+        "J-second-valley-leftover-killer"
+      ]
+    },
+    {
+      "id": "cycle_top_excursion",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_top_excursion.py",
+      "test": "tests/research/juggler_sequence/test_cycle_top_excursion.py",
+      "dossier": "docs/problems/juggler_cycle_top_excursion.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_top_pred",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_top_pred.py",
+      "test": "tests/research/juggler_sequence/test_cycle_top_pred.py",
+      "dossier": "docs/problems/juggler_cycle_top_pred.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_trajectory_budget",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_trajectory_budget.py",
+      "test": "tests/research/juggler_sequence/test_cycle_trajectory_budget.py",
+      "dossier": "docs/problems/juggler_cycle_trajectory_budget.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_trajectory_budget"
+      ],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_valley_coupling",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_valley_coupling.py",
+      "test": "tests/research/juggler_sequence/test_cycle_valley_coupling.py",
+      "dossier": "docs/problems/juggler_cycle_valley_coupling.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_walk_arch",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_arch.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_arch.py",
+      "dossier": "docs/problems/juggler_cycle_walk_arch.md",
+      "data_dir": "data/research/juggler/cycle_walk_arch",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cyclemin-walk-arch-kills-blocker"
+      ]
+    },
+    {
+      "id": "cycle_walk_charge",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_charge.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_charge.py",
+      "dossier": "docs/problems/juggler_cycle_walk_charge.md",
+      "data_dir": "data/research/juggler/cycle_walk_charge",
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_walk_charge"
+      ],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-transport",
+        "J-cyclemin-walk-charge-instance",
+        "J-cycle-period-four-hundred-seventy-eight-thousand",
+        "J-cycle-period-seven-hundred-eighty-thousand",
+        "J-cyclemin-walk-transport-envelope",
+        "J-cyclemin-hug-charge-max",
+        "J-cyclemin-defect-finance-kill",
+        "J-cyclemin-rotation-average"
+      ]
+    },
+    {
+      "id": "cycle_walk_competition",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_competition.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_competition.py",
+      "dossier": "docs/problems/juggler_cycle_walk_competition.md",
+      "data_dir": "data/research/juggler/cycle_walk_competition",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-competition-law"
+      ]
+    },
+    {
+      "id": "cycle_walk_envelope",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_envelope.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_envelope.py",
+      "dossier": "docs/problems/juggler_cycle_walk_envelope.md",
+      "data_dir": "data/research/juggler/cycle_walk_envelope",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-hitting-one",
+        "J-cyclemin-walk-crude-envelope"
+      ]
+    },
+    {
+      "id": "cycle_walk_exchange",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_exchange.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_exchange.py",
+      "dossier": "docs/problems/juggler_cycle_walk_exchange.md",
+      "data_dir": "data/research/juggler/cycle_walk_exchange",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-hug-exchange",
+        "J-cyclemin-walk-cstar"
+      ]
+    },
+    {
+      "id": "cycle_walk_excursion",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_excursion.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_excursion.py",
+      "dossier": "docs/problems/juggler_cycle_walk_excursion.md",
+      "data_dir": "data/research/juggler/cycle_walk_excursion",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_walk_fan_growth",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_fan_growth.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_fan_growth.py",
+      "dossier": "docs/problems/juggler_cycle_walk_fan_growth.md",
+      "data_dir": "data/research/juggler/cycle_walk_fan_growth",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-fan-growth"
+      ]
+    },
+    {
+      "id": "cycle_walk_fan_minimum",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_fan_minimum.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_fan_minimum.py",
+      "dossier": "docs/problems/juggler_cycle_walk_fan_minimum.md",
+      "data_dir": "data/research/juggler/cycle_walk_fan_minimum",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-fan-minimum"
+      ]
+    },
+    {
+      "id": "cycle_walk_fan_successor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_fan_successor.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_fan_successor.py",
+      "dossier": "docs/problems/juggler_cycle_walk_fan_successor.md",
+      "data_dir": "data/research/juggler/cycle_walk_fan_successor",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_walk_greedy",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_greedy.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_greedy.py",
+      "dossier": "docs/problems/juggler_cycle_walk_greedy.md",
+      "data_dir": "data/research/juggler/cycle_walk_greedy",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_walk_koksma",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_koksma.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_koksma.py",
+      "dossier": "docs/problems/juggler_cycle_walk_koksma.md",
+      "data_dir": "data/research/juggler/cycle_walk_koksma",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cyclemin-walk-koksma-one-over-L"
+      ]
+    },
+    {
+      "id": "cycle_walk_mechanical",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_mechanical.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_mechanical.py",
+      "dossier": "docs/problems/juggler_cycle_walk_mechanical.md",
+      "data_dir": "data/research/juggler/cycle_walk_mechanical",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_walk_ostrowski",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_ostrowski.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_ostrowski.py",
+      "dossier": "docs/problems/juggler_cycle_walk_ostrowski.md",
+      "data_dir": "data/research/juggler/cycle_walk_ostrowski",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-dk-envelope",
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ]
+    },
+    {
+      "id": "cycle_walk_sharpness",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_sharpness.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_sharpness.py",
+      "dossier": "docs/problems/juggler_cycle_walk_sharpness.md",
+      "data_dir": "data/research/juggler/cycle_walk_sharpness",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-walk-excess-sharpness"
+      ]
+    },
+    {
+      "id": "cycle_walk_window",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_walk_window.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_window.py",
+      "dossier": "docs/problems/juggler_cycle_walk_window.md",
+      "data_dir": "data/research/juggler/cycle_walk_window",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-walk-window-envelope",
+        "J-cyclemin-walk-word-identity",
+        "J-cyclemin-hug-prefix-bound",
+        "J-cyclemin-walk-ostrowski-numeration"
+      ]
+    },
+    {
+      "id": "cyclemin_fudge",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cyclemin_fudge.py",
+      "test": "tests/research/juggler_sequence/test_cyclemin_fudge.py",
+      "dossier": "docs/problems/juggler_cyclemin_fudge.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-fudge"
+      ]
+    },
+    {
+      "id": "cyclemin_necklace",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cyclemin_necklace.py",
+      "test": "tests/research/juggler_sequence/test_cyclemin_necklace.py",
+      "dossier": "docs/problems/juggler_cyclemin_necklace.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cyclemin-necklace"
+      ]
+    },
+    {
+      "id": "cyclemin_obstruction",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cyclemin_obstruction.py",
+      "test": "tests/research/juggler_sequence/test_cyclemin_obstruction.py",
+      "dossier": "docs/problems/juggler_cyclemin_obstruction.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/CycleMinObstruction.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-ooo-residual-cube",
+        "J-cyclemin-transport-oo",
+        "J-cyclemin-last-cluster"
+      ]
+    },
+    {
+      "id": "cyclemin_tails",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cyclemin_tails.py",
+      "test": "tests/research/juggler_sequence/test_cyclemin_tails.py",
+      "dossier": "docs/problems/juggler_cyclemin_tails.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-tails",
+        "J-cyclemin-slack"
+      ]
+    },
+    {
+      "id": "cyclic_feasibility",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cyclic_feasibility.py",
+      "test": "tests/research/juggler_sequence/test_cyclic_feasibility.py",
+      "dossier": "docs/problems/juggler_cyclic_feasibility.md",
+      "data_dir": "data/research/juggler/cyclic_feasibility",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "decoration_budget",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/decoration_budget.py",
+      "test": "tests/research/juggler_sequence/test_decoration_budget.py",
+      "dossier": "docs/problems/juggler_decoration_budget.md",
+      "data_dir": "data/research/juggler/decoration_budget",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "defect_lower_bound",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/defect_lower_bound.py",
+      "test": "tests/research/juggler_sequence/test_defect_lower_bound.py",
+      "dossier": "docs/problems/juggler_defect_lower_bound.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/DefectLowerBound.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-first-defect-amplification"
+      ]
+    },
+    {
+      "id": "defect_sharpness",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/defect_sharpness.py",
+      "test": "tests/research/juggler_sequence/test_defect_sharpness.py",
+      "dossier": "docs/problems/juggler_defect_sharpness.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "depth_one_main_term",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/depth_one_main_term.py",
+      "test": "tests/research/juggler_sequence/test_depth_one_main_term.py",
+      "dossier": "docs/problems/juggler_depth_one_main_term.md",
+      "data_dir": "data/research/juggler/depth_one_main_term",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-depth-one-main-term"
+      ]
+    },
+    {
+      "id": "drift_crossing",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/drift_crossing.py",
+      "test": "tests/research/juggler_sequence/test_drift_crossing.py",
+      "dossier": "docs/problems/juggler_drift_crossing.md",
+      "data_dir": "data/research/juggler/drift_crossing",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "drift_first_passage",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/drift_first_passage.py",
+      "test": "tests/research/juggler_sequence/test_drift_first_passage.py",
+      "dossier": "docs/problems/juggler_drift_first_passage.md",
+      "data_dir": "data/research/juggler/drift_first_passage",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "e4_tight_pullback",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/e4_tight_pullback.py",
+      "test": "tests/research/juggler_sequence/test_e4_tight_pullback.py",
+      "dossier": "docs/problems/juggler_e4_tight_pullback.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "effective_tower_height",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/effective_tower_height.py",
+      "test": "tests/research/juggler_sequence/test_effective_tower_height.py",
+      "dossier": "docs/problems/juggler_effective_tower_height.md",
+      "data_dir": "data/research/juggler/effective_tower_height",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-tower-absorption",
+        "J-effective-tower-height-reset-tolerance"
+      ]
+    },
+    {
+      "id": "empty_odd_preimage",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/empty_odd_preimage.py",
+      "test": "tests/research/juggler_sequence/test_empty_odd_preimage.py",
+      "dossier": "docs/problems/juggler_empty_odd_preimage.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/Preimages.lean"
+      ],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-odd-pred-empty-cube",
+        "J-empty-odd-pe-landings",
+        "J-empty-odd-pe-forward"
+      ]
+    },
+    {
+      "id": "envelope_defect",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/envelope_defect.py",
+      "test": "tests/research/juggler_sequence/test_envelope_defect.py",
+      "dossier": "docs/problems/juggler_envelope_defect.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "eoo_cell_mechanism",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/eoo_cell_mechanism.py",
+      "test": "tests/research/juggler_sequence/test_eoo_cell_mechanism.py",
+      "dossier": "docs/problems/juggler_eoo_cell_mechanism.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "equality_language",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/equality_language.py",
+      "test": "tests/research/juggler_sequence/test_equality_language.py",
+      "dossier": "docs/problems/juggler_equality_language.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "equality_rigidity",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/equality_rigidity.py",
+      "test": "tests/research/juggler_sequence/test_equality_rigidity.py",
+      "dossier": "docs/problems/juggler_equality_rigidity.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "escape_episode",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/escape_episode.py",
+      "test": "tests/research/juggler_sequence/test_escape_episode.py",
+      "dossier": "docs/problems/juggler_escape_episode.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-escape-episode-shape",
+        "J-escape-episode-dichotomy"
+      ]
+    },
+    {
+      "id": "escape_state",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/escape_state.py",
+      "test": "tests/research/juggler_sequence/test_escape_state.py",
+      "dossier": "docs/problems/juggler_escape_state.md",
+      "data_dir": "data/research/juggler/escape_state",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "escaped_even",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/escaped_even.py",
+      "test": "tests/research/juggler_sequence/test_escaped_even.py",
+      "dossier": "docs/problems/juggler_escaped_even.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-ce-escaped-even-oe-preimage",
+        "J-escaped-even-always-drops"
+      ]
+    },
+    {
+      "id": "even_count_three",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/even_count_three.py",
+      "test": "tests/research/juggler_sequence/test_even_count_three.py",
+      "dossier": "docs/problems/juggler_even_count_three.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/EvenCountThree.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-even-count-le-three",
+        "J-first-even-overshoots",
+        "J-cyclemax-succ-sq"
+      ]
+    },
+    {
+      "id": "even_scale_barrier",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/even_scale_barrier.py",
+      "test": "tests/research/juggler_sequence/test_even_scale_barrier.py",
+      "dossier": "docs/problems/juggler_even_scale_barrier.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "exact_floor_impact",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/exact_floor_impact.py",
+      "test": "tests/research/juggler_sequence/test_exact_floor_impact.py",
+      "dossier": "docs/problems/juggler_exact_floor_impact.md",
+      "data_dir": "data/research/juggler/exact_floor_impact",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "excursion_transfer",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/excursion_transfer.py",
+      "test": "tests/research/juggler_sequence/test_excursion_transfer.py",
+      "dossier": "docs/problems/juggler_excursion_transfer.md",
+      "data_dir": "data/research/juggler/excursion_transfer",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "excursions",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/excursions.py",
+      "test": "tests/research/juggler_sequence/test_excursions.py",
+      "dossier": "docs/problems/juggler_excursions.md",
+      "data_dir": "data/research/juggler/excursions",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "expanding_grammar",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/expanding_grammar.py",
+      "test": "tests/research/juggler_sequence/test_expanding_grammar.py",
+      "dossier": "docs/problems/juggler_expanding_grammar.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/ExpandingGrammar.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-expanding-block-even-bound",
+        "J-persistent-implies-expanding",
+        "J-expanding-grammar-obstruction"
+      ]
+    },
+    {
+      "id": "expanding_residual_concat",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/expanding_residual_concat.py",
+      "test": "tests/research/juggler_sequence/test_expanding_residual_concat.py",
+      "dossier": "docs/problems/juggler_expanding_residual_concat.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-exponent-expanding-append",
+        "J-minimal-prefix-noncontracting",
+        "J-expanding-concat-is-ce"
+      ]
+    },
+    {
+      "id": "expansion_density",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/expansion_density.py",
+      "test": "tests/research/juggler_sequence/test_expansion_density.py",
+      "dossier": "docs/problems/juggler_expansion_density.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-expansion-block-grammar"
+      ]
+    },
+    {
+      "id": "expansion_slack",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/expansion_slack.py",
+      "test": "tests/research/juggler_sequence/test_expansion_slack.py",
+      "dossier": "docs/problems/juggler_expansion_slack.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/ExpansionSlack.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-weighted-slack-cocycle",
+        "J-four-block-persistent-expanding",
+        "J-expansion-slack-uniform-tax"
+      ]
+    },
+    {
+      "id": "extremal_control",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/extremal_control.py",
+      "test": "tests/research/juggler_sequence/test_extremal_control.py",
+      "dossier": "docs/problems/juggler_extremal_control.md",
+      "data_dir": "data/research/juggler/extremal_control",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "failure_margin",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/failure_margin.py",
+      "test": "tests/research/juggler_sequence/test_failure_margin.py",
+      "dossier": "docs/problems/juggler_failure_margin.md",
+      "data_dir": "data/research/juggler/failure_margin",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-failure-margin",
+        "J-tilted-share-telescoping",
+        "J-live-count-weight",
+        "J-mean-share-form"
+      ]
+    },
+    {
+      "id": "fate_contagion",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/fate_contagion.py",
+      "test": "tests/research/juggler_sequence/test_fate_contagion.py",
+      "dossier": "docs/problems/juggler_fate_contagion.md",
+      "data_dir": "data/research/juggler/fate_contagion",
+      "lean": [
+        "formal/Problems/Juggler/FateContagion.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-classes-backward-closed",
+        "J-fate-oe-fiber-cell",
+        "J-fate-fiber-sweep",
+        "J-fate-block-average",
+        "J-fate-log-density",
+        "J-fate-contagion-equivalence",
+        "J-fate-closure-census",
+        "J-fate-odd-generation",
+        "J-fate-ooeee-production",
+        "J-parity-triple-discrepancy-localized",
+        "J-tao-free-term-is-live-mass"
+      ]
+    },
+    {
+      "id": "first_collision",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_collision.py",
+      "test": "tests/research/juggler_sequence/test_first_collision.py",
+      "dossier": "docs/problems/juggler_first_collision.md",
+      "data_dir": "data/research/juggler/first_collision",
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_first_collision",
+        "juggler_first_collision"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "first_e_e4",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_e_e4.py",
+      "test": "tests/research/juggler_sequence/test_first_e_e4.py",
+      "dossier": "docs/problems/juggler_first_e_e4.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "first_e_transport",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_e_transport.py",
+      "test": "tests/research/juggler_sequence/test_first_e_transport.py",
+      "dossier": "docs/problems/juggler_first_e_transport.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-first-e-transport-ee",
+        "J-first-e-transport-eoe"
+      ]
+    },
+    {
+      "id": "first_even_thresholds",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_even_thresholds.py",
+      "test": "tests/research/juggler_sequence/test_first_even_thresholds.py",
+      "dossier": "docs/problems/juggler_first_even_thresholds.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "first_internal_oo",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_internal_oo.py",
+      "test": "tests/research/juggler_sequence/test_first_internal_oo.py",
+      "dossier": "docs/problems/juggler_first_internal_oo.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-first-oo-r-bound",
+        "J-cyclemin-first-oo-surplus"
+      ]
+    },
+    {
+      "id": "first_lift_eighth",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_lift_eighth.py",
+      "test": "tests/research/juggler_sequence/test_first_lift_eighth.py",
+      "dossier": "docs/problems/juggler_first_lift_eighth.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-leftover-first-eighth"
+      ]
+    },
+    {
+      "id": "first_ooo_escape",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_ooo_escape.py",
+      "test": "tests/research/juggler_sequence/test_first_ooo_escape.py",
+      "dossier": "docs/problems/juggler_first_ooo_escape.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-ooo-second-step-square",
+        "J-cyclemin-ooo-inevitable"
+      ]
+    },
+    {
+      "id": "first_return_excursions",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/first_return_excursions.py",
+      "test": "tests/research/juggler_sequence/test_first_return_excursions.py",
+      "dossier": "docs/problems/juggler_first_return_excursions.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "flight_anchor_period",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_anchor_period.py",
+      "test": "tests/research/juggler_sequence/test_flight_anchor_period.py",
+      "dossier": "docs/problems/juggler_flight_anchor_period.md",
+      "data_dir": "data/research/juggler/flight_anchor_period",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-flight-anchor-period"
+      ]
+    },
+    {
+      "id": "flight_divergent_structure",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_divergent_structure.py",
+      "test": "tests/research/juggler_sequence/test_flight_divergent_structure.py",
+      "dossier": "docs/problems/juggler_flight_divergent_structure.md",
+      "data_dir": "data/research/juggler/flight_divergent_structure",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-flight-divergent-structure"
+      ]
+    },
+    {
+      "id": "flight_envelope",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_envelope.py",
+      "test": "tests/research/juggler_sequence/test_flight_envelope.py",
+      "dossier": "docs/problems/juggler_flight_envelope.md",
+      "data_dir": "data/research/juggler/flight_envelope",
+      "lean": [
+        "formal/Problems/Juggler/WalkTransport.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-flight-envelope-transport"
+      ]
+    },
+    {
+      "id": "flight_fan_concat",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_fan_concat.py",
+      "test": "tests/research/juggler_sequence/test_flight_fan_concat.py",
+      "dossier": "docs/problems/juggler_flight_fan_concat.md",
+      "data_dir": "data/research/juggler/flight_fan_concat",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "flight_fan_landing",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_fan_landing.py",
+      "test": "tests/research/juggler_sequence/test_flight_fan_landing.py",
+      "dossier": "docs/problems/juggler_flight_fan_landing.md",
+      "data_dir": "data/research/juggler/flight_fan_landing",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "flight_post19_tail",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_post19_tail.py",
+      "test": "tests/research/juggler_sequence/test_flight_post19_tail.py",
+      "dossier": "docs/problems/juggler_flight_post19_tail.md",
+      "data_dir": "data/research/juggler/flight_post19_tail",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "flight_return_quantization",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_return_quantization.py",
+      "test": "tests/research/juggler_sequence/test_flight_return_quantization.py",
+      "dossier": "docs/problems/juggler_flight_return_quantization.md",
+      "data_dir": "data/research/juggler/flight_return_quantization",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-flight-return-quantization",
+        "J-flight-record-composition"
+      ]
+    },
+    {
+      "id": "flight_walk_divergence",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/flight_walk_divergence.py",
+      "test": "tests/research/juggler_sequence/test_flight_walk_divergence.py",
+      "dossier": "docs/problems/juggler_flight_walk_divergence.md",
+      "data_dir": "data/research/juggler/flight_walk_divergence",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-flight-walk-divergence",
+        "J-flight-height-law"
+      ]
+    },
+    {
+      "id": "floor_boundary",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/floor_boundary.py",
+      "test": "tests/research/juggler_sequence/test_floor_boundary.py",
+      "dossier": "docs/problems/juggler_floor_boundary.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "formal_realized_gap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/formal_realized_gap.py",
+      "test": "tests/research/juggler_sequence/test_formal_realized_gap.py",
+      "dossier": "docs/problems/juggler_formal_realized_gap.md",
+      "data_dir": "data/research/juggler/formal_realized_gap",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "four_even_short_gap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/four_even_short_gap.py",
+      "test": "tests/research/juggler_sequence/test_four_even_short_gap.py",
+      "dossier": "docs/problems/juggler_four_even_short_gap.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "front_overshoot",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/front_overshoot.py",
+      "test": "tests/research/juggler_sequence/test_front_overshoot.py",
+      "dossier": "docs/problems/juggler_front_overshoot.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-front-oo-raise",
+        "J-cyclemin-front-oo-scan"
+      ]
+    },
+    {
+      "id": "future_quotient",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/future_quotient.py",
+      "test": "tests/research/juggler_sequence/test_future_quotient.py",
+      "dossier": "docs/problems/juggler_future_quotient.md",
+      "data_dir": "data/research/juggler/future_quotient",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "gapped_cycle_itinerary",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/gapped_cycle_itinerary.py",
+      "test": "tests/research/juggler_sequence/test_gapped_cycle_itinerary.py",
+      "dossier": "docs/problems/juggler_gapped_cycle_word.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-gapped-cycle-itinerary-ee",
+        "J-gapped-cycle-itinerary-eoe"
+      ]
+    },
+    {
+      "id": "global_defect",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/global_defect.py",
+      "test": "tests/research/juggler_sequence/test_global_defect.py",
+      "dossier": "docs/problems/juggler_global_defect.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/GlobalDefect.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-global-defect-identity"
+      ]
+    },
+    {
+      "id": "growth_balance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/growth_balance.py",
+      "test": "tests/research/juggler_sequence/test_growth_balance.py",
+      "dossier": "docs/problems/juggler_growth_balance.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-prefix-retention-budget"
+      ]
+    },
+    {
+      "id": "heisenberg_cut",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/heisenberg_cut.py",
+      "test": "tests/research/juggler_sequence/test_heisenberg_cut.py",
+      "dossier": "docs/problems/juggler_heisenberg_cut.md",
+      "data_dir": "data/research/juggler/heisenberg_cut",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-heisenberg-vertical-riemann"
+      ]
+    },
+    {
+      "id": "horizontal_weyl",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/horizontal_weyl.py",
+      "test": "tests/research/juggler_sequence/test_horizontal_weyl.py",
+      "dossier": "docs/problems/juggler_horizontal_weyl.md",
+      "data_dir": "data/research/juggler/horizontal_weyl",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-horizontal-leftover-exponents",
+        "J-horizontal-axis-species",
+        "J-horizontal-theorem-r-shortcut"
+      ]
+    },
+    {
+      "id": "hug_cylinder_construction",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/hug_cylinder_construction.py",
+      "test": "tests/research/juggler_sequence/test_hug_cylinder_construction.py",
+      "dossier": "docs/problems/juggler_hug_cylinder_construction.md",
+      "data_dir": "data/research/juggler/hug_cylinder_construction",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-hug-flow-window-depth-one"
+      ]
+    },
+    {
+      "id": "hug_flow_depth_two",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/hug_flow_depth_two.py",
+      "test": "tests/research/juggler_sequence/test_hug_flow_depth_two.py",
+      "dossier": "docs/problems/juggler_hug_flow_depth_two.md",
+      "data_dir": "data/research/juggler/hug_flow_depth_two",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-hug-flow-image-gap"
+      ]
+    },
+    {
+      "id": "hug_prefix_realization",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/hug_prefix_realization.py",
+      "test": "tests/research/juggler_sequence/test_hug_prefix_realization.py",
+      "dossier": "docs/problems/juggler_hug_prefix_realization.md",
+      "data_dir": "data/research/juggler/hug_prefix_realization",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "information_complexity",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/information_complexity.py",
+      "test": "tests/research/juggler_sequence/test_information_complexity.py",
+      "dossier": "docs/problems/juggler_information_complexity.md",
+      "data_dir": "data/research/juggler/information_complexity",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "internal_collapse",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/internal_collapse.py",
+      "test": "tests/research/juggler_sequence/test_internal_collapse.py",
+      "dossier": "docs/problems/juggler_internal_collapse.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "isolated_odd_fibre",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/isolated_odd_fibre.py",
+      "test": "tests/research/juggler_sequence/test_isolated_odd_fibre.py",
+      "dossier": "docs/problems/juggler_isolated_odd_fibre.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-iso-odd-fibre"
+      ]
+    },
+    {
+      "id": "isolated_odd_return",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/isolated_odd_return.py",
+      "test": "tests/research/juggler_sequence/test_isolated_odd_return.py",
+      "dossier": "docs/problems/juggler_isolated_odd_return.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-iso-odd-return"
+      ]
+    },
+    {
+      "id": "itinerary_language",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/itinerary_language.py",
+      "test": "tests/research/juggler_sequence/test_itinerary_language.py",
+      "dossier": "docs/problems/juggler_word_language.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/ItineraryLanguage.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "k3_rate_free",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/k3_rate_free.py",
+      "test": "tests/research/juggler_sequence/test_k3_rate_free.py",
+      "dossier": "docs/problems/juggler_k3_rate_free.md",
+      "data_dir": "data/research/juggler/k3_rate_free",
+      "lean": [
+        "formal/Problems/Juggler/RateFreeDensity.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-rate-free-density-one",
+        "J-rate-free-prop-j-finite",
+        "J-rate-free-floor-certificates"
+      ]
+    },
+    {
+      "id": "k5_post_l_ooe",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/k5_post_l_ooe.py",
+      "test": "tests/research/juggler_sequence/test_k5_post_l_ooe.py",
+      "dossier": "docs/problems/juggler_k5_post_l_ooe.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-k5-post-l-cube",
+        "J-cyclemin-k5-post-l-hierarchy"
+      ]
+    },
+    {
+      "id": "kernel_localize",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/kernel_localize.py",
+      "test": "tests/research/juggler_sequence/test_kernel_localize.py",
+      "dossier": "docs/problems/juggler_kernel_localize.md",
+      "data_dir": "data/research/juggler/kernel_localize",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-kernel-localize"
+      ]
+    },
+    {
+      "id": "kernel_p0_hypotheses",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/kernel_p0_hypotheses.py",
+      "test": "tests/research/juggler_sequence/test_kernel_p0_hypotheses.py",
+      "dossier": "docs/problems/juggler_kernel_p0_hypotheses.md",
+      "data_dir": "data/research/juggler/kernel_p0_hypotheses",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "l_odd_run_cap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/l_odd_run_cap.py",
+      "test": "tests/research/juggler_sequence/test_l_odd_run_cap.py",
+      "dossier": "docs/problems/juggler_l_odd_run_cap.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-l-odd-run-envelope",
+        "J-cyclemin-l-odd-run-envelope-caps"
+      ]
+    },
+    {
+      "id": "lachesis_loglog_clock",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/lachesis_loglog_clock.py",
+      "test": "tests/research/juggler_sequence/test_lachesis_loglog_clock.py",
+      "dossier": "docs/problems/juggler_lachesis_loglog_clock.md",
+      "data_dir": "data/research/juggler/lachesis_loglog_clock",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-lachesis-walk-rotation",
+        "J-lachesis-loglog-clock",
+        "J-lachesis-etree-density",
+        "J-lachesis-basin-every-block",
+        "J-lachesis-census-dominated",
+        "J-lachesis-oe-detour-cost",
+        "J-lachesis-upper-bound-free-term",
+        "J-lachesis-basin-inverse-sum",
+        "J-clotho-basin-every-block-criterion",
+        "J-clotho-slow-escape-not-forced",
+        "J-loglog-clock-walk-rotation-lean",
+        "J-loglog-clock-even-chain-burst-lean",
+        "J-clotho-hug-excess-rate",
+        "J-loglog-clock-hug-band-lean",
+        "J-loglog-clock-band-word-forced-lean",
+        "J-hug-band-residence-is-prefix-realization",
+        "J-floor-stratifies-even-cylinders-lean",
+        "J-fate-visibility-one-law",
+        "J-clotho-record-gap-reduction",
+        "J-flight-record-structure",
+        "J-clotho-threads-per-thread-contagion",
+        "J-free-term-is-fate-blind"
+      ]
+    },
+    {
+      "id": "lambda0_nil_transfer",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/lambda0_nil_transfer.py",
+      "test": "tests/research/juggler_sequence/test_lambda0_nil_transfer.py",
+      "dossier": "docs/problems/juggler_lambda0_nil_transfer.md",
+      "data_dir": "data/research/juggler/lambda0_nil_transfer",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-nil-lift-does-not-derandomize"
+      ]
+    },
+    {
+      "id": "landing_image",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/landing_image.py",
+      "test": "tests/research/juggler_sequence/test_landing_image.py",
+      "dossier": "docs/problems/juggler_landing_image.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "landing_parity",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/landing_parity.py",
+      "test": "tests/research/juggler_sequence/test_landing_parity.py",
+      "dossier": "docs/problems/juggler_landing_parity.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/LandingParity.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-landing-preimage-iff",
+        "J-landing-theta-state"
+      ]
+    },
+    {
+      "id": "landing_valuation",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/landing_valuation.py",
+      "test": "tests/research/juggler_sequence/test_landing_valuation.py",
+      "dossier": "docs/problems/juggler_landing_valuation.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/LandingValuation.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-odd-odd-remainder-mod-eight",
+        "J-pe-history-valuation"
+      ]
+    },
+    {
+      "id": "leftover_cell_lag",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/leftover_cell_lag.py",
+      "test": "tests/research/juggler_sequence/test_leftover_cell_lag.py",
+      "dossier": "docs/problems/juggler_leftover_cell_lag.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "length11_nonpullback",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/length11_nonpullback.py",
+      "test": "tests/research/juggler_sequence/test_length11_nonpullback.py",
+      "dossier": "docs/problems/juggler_length11_nonpullback.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "length8_bootstrap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/length8_bootstrap.py",
+      "test": "tests/research/juggler_sequence/test_length8_bootstrap.py",
+      "dossier": "docs/problems/juggler_length8_bootstrap.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "macro_event",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/macro_event.py",
+      "test": "tests/research/juggler_sequence/test_macro_event.py",
+      "dossier": "docs/problems/juggler_macro_event.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "minimal_anchor_closure",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/minimal_anchor_closure.py",
+      "test": "tests/research/juggler_sequence/test_minimal_anchor_closure.py",
+      "dossier": "docs/problems/juggler_minimal_anchor_closure.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/MinimalClosure.lean"
+      ],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-minimal-anchor-leftover-spine",
+        "J-minimal-anchor-closure"
+      ]
+    },
+    {
+      "id": "minimal_counterexample",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/minimal_counterexample.py",
+      "test": "tests/research/juggler_sequence/test_minimal_counterexample.py",
+      "dossier": "docs/problems/juggler_minimal_counterexample.md",
+      "data_dir": "data/research/juggler/minimal_counterexample",
+      "lean": [
+        "formal/Problems/Juggler/Minimal.lean",
+        "formal/Problems/Juggler/MinimalClosure.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "minimal_ooe_corridor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/minimal_ooe_corridor.py",
+      "test": "tests/research/juggler_sequence/test_minimal_ooe_corridor.py",
+      "dossier": "docs/problems/juggler_minimal_ooe_corridor.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-ooeooe-square-preimage",
+        "J-cyclemin-ooeooe-finite-progress"
+      ]
+    },
+    {
+      "id": "minimal_survival",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/minimal_survival.py",
+      "test": "tests/research/juggler_sequence/test_minimal_survival.py",
+      "dossier": "docs/problems/juggler_minimal_survival.md",
+      "data_dir": "data/research/juggler/minimal_survival",
+      "lean": [
+        "formal/Problems/Juggler/Minimal.lean",
+        "formal/Problems/Juggler/Progress.lean",
+        "formal/Problems/Juggler/MinimalClosure.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "minimum_relative",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/minimum_relative.py",
+      "test": "tests/research/juggler_sequence/test_minimum_relative.py",
+      "dossier": "docs/problems/juggler_minimum_relative.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/MinimumRelative.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-above-anchor",
+        "J-no-cycle-no-bounded-nonterm",
+        "J-envelope-lt-pow"
+      ]
+    },
+    {
+      "id": "mixed_oe_cell",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/mixed_oe_cell.py",
+      "test": "tests/research/juggler_sequence/test_mixed_oe_cell.py",
+      "dossier": "docs/problems/juggler_mixed_oe_cell.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-mixed-oe-eighth",
+        "J-mixed-oe-defect-gap"
+      ]
+    },
+    {
+      "id": "nc_boundary",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/nc_boundary.py",
+      "test": "tests/research/juggler_sequence/test_nc_boundary.py",
+      "dossier": "docs/problems/juggler_nc_boundary.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "near_extremal_prefixes",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/near_extremal_prefixes.py",
+      "test": "tests/research/juggler_sequence/test_near_extremal_prefixes.py",
+      "dossier": "docs/problems/juggler_near_extremal_prefixes.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "near_tight_scale",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/near_tight_scale.py",
+      "test": "tests/research/juggler_sequence/test_near_tight_scale.py",
+      "dossier": "docs/problems/juggler_near_tight_scale.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/NearTightScale.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-near-tight-scale-bounds",
+        "J-ooe-scale-decay",
+        "J-approx-equality-rigidity"
+      ]
+    },
+    {
+      "id": "nil_horizontal_weyl",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/nil_horizontal_weyl.py",
+      "test": "tests/research/juggler_sequence/test_nil_horizontal_weyl.py",
+      "dossier": "docs/problems/juggler_nil_horizontal_weyl.md",
+      "data_dir": "data/research/juggler/nil_horizontal_weyl",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "nil_pet_reentry",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/nil_pet_reentry.py",
+      "test": "tests/research/juggler_sequence/test_nil_pet_reentry.py",
+      "dossier": "docs/problems/juggler_nil_pet_reentry.md",
+      "data_dir": "data/research/juggler/nil_pet_reentry",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-nil-pet-reentry"
+      ]
+    },
+    {
+      "id": "no_progress_paths",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/no_progress_paths.py",
+      "test": "tests/research/juggler_sequence/test_no_progress_paths.py",
+      "dossier": "docs/problems/juggler_no_progress_paths.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "non_escape",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/non_escape.py",
+      "test": "tests/research/juggler_sequence/test_non_escape.py",
+      "dossier": "docs/problems/juggler_non_escape.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-trajectory-cycle-or-escape",
+        "J-minimal-ooeooe-escape-trap"
+      ]
+    },
+    {
+      "id": "normalized_defect",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/normalized_defect.py",
+      "test": "tests/research/juggler_sequence/test_normalized_defect.py",
+      "dossier": "docs/problems/juggler_normalized_defect.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/NormalizedDefect.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-normalized-relative-slack"
+      ]
+    },
+    {
+      "id": "o6eeeoe_gap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/o6eeeoe_gap.py",
+      "test": "tests/research/juggler_sequence/test_o6eeeoe_gap.py",
+      "dossier": "docs/problems/juggler_o6eeeoe_gap.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-o6eeeoe-gap"
+      ]
+    },
+    {
+      "id": "o7eeee_gap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/o7eeee_gap.py",
+      "test": "tests/research/juggler_sequence/test_o7eeee_gap.py",
+      "dossier": "docs/problems/juggler_o7eeee_gap.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-o7eeee-gap"
+      ]
+    },
+    {
+      "id": "o7eeee_window",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/o7eeee_window.py",
+      "test": "tests/research/juggler_sequence/test_o7eeee_window.py",
+      "dossier": "docs/problems/juggler_o7eeee_window.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-o7eeee-window"
+      ]
+    },
+    {
+      "id": "odd_chain_minimality",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_chain_minimality.py",
+      "test": "tests/research/juggler_sequence/test_odd_chain_minimality.py",
+      "dossier": "docs/problems/juggler_odd_chain_minimality.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_escape_corridor",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_escape_corridor.py",
+      "test": "tests/research/juggler_sequence/test_odd_escape_corridor.py",
+      "dossier": "docs/problems/juggler_odd_escape_corridor.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_even_reset",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_even_reset.py",
+      "test": "tests/research/juggler_sequence/test_odd_even_reset.py",
+      "dossier": "docs/problems/juggler_odd_even_reset.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_image_discrepancy",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_image_discrepancy.py",
+      "test": "tests/research/juggler_sequence/test_odd_image_discrepancy.py",
+      "dossier": "docs/problems/juggler_odd_image_discrepancy.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-ambient-odd-discrepancy",
+        "J-automatic-descent-density"
+      ]
+    },
+    {
+      "id": "odd_inverse_parity",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_inverse_parity.py",
+      "test": "tests/research/juggler_sequence/test_odd_inverse_parity.py",
+      "dossier": "docs/problems/juggler_odd_inverse_parity.md",
+      "data_dir": "data/research/juggler/odd_inverse_parity",
+      "lean": [
+        "formal/Problems/Juggler/Preimages.lean"
+      ],
+      "conjecture": [
+        "juggler_odd_inverse_parity"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_inverse_width",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_inverse_width.py",
+      "test": "tests/research/juggler_sequence/test_odd_inverse_width.py",
+      "dossier": "docs/problems/juggler_odd_inverse_width.md",
+      "data_dir": "data/research/juggler/odd_inverse_width",
+      "lean": [
+        "formal/Problems/Juggler/Preimages.lean"
+      ],
+      "conjecture": [
+        "juggler_odd_inverse_width"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_k5_leak",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_k5_leak.py",
+      "test": "tests/research/juggler_sequence/test_odd_k5_leak.py",
+      "dossier": "docs/problems/juggler_odd_k5_leak.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-odd-k5-y-fourth",
+        "J-cyclemin-odd-k5-generic"
+      ]
+    },
+    {
+      "id": "odd_landing_sets",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_landing_sets.py",
+      "test": "tests/research/juggler_sequence/test_odd_landing_sets.py",
+      "dossier": "docs/problems/juggler_odd_landing_sets.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/OddLandingSets.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-odd-run-recursive",
+        "J-odd-landing-set-structure"
+      ]
+    },
+    {
+      "id": "odd_odd_frontier",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_odd_frontier.py",
+      "test": "tests/research/juggler_sequence/test_odd_odd_frontier.py",
+      "dossier": "docs/problems/juggler_odd_odd_frontier.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_odd_residuals",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_odd_residuals.py",
+      "test": "tests/research/juggler_sequence/test_odd_odd_residuals.py",
+      "dossier": "docs/problems/juggler_odd_odd_residual.md",
+      "data_dir": "data/research/juggler/odd_odd_residuals",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_ooe_landing",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_ooe_landing.py",
+      "test": "tests/research/juggler_sequence/test_odd_ooe_landing.py",
+      "dossier": "docs/problems/juggler_odd_ooe_landing.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-ooeooe-next-o",
+        "J-cyclemin-ooeooe-next-o-always-drop"
+      ]
+    },
+    {
+      "id": "odd_oooe_next",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_oooe_next.py",
+      "test": "tests/research/juggler_sequence/test_odd_oooe_next.py",
+      "dossier": "docs/problems/juggler_odd_oooe_next.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-odd-oooe-next-o",
+        "J-cyclemin-odd-oooe-even-q-drops"
+      ]
+    },
+    {
+      "id": "odd_run_financing",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_run_financing.py",
+      "test": "tests/research/juggler_sequence/test_odd_run_financing.py",
+      "dossier": "docs/problems/juggler_odd_run_financing.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_run_itinerary",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_run_itinerary.py",
+      "test": "tests/research/juggler_sequence/test_odd_run_itinerary.py",
+      "dossier": "docs/problems/juggler_odd_run_itinerary.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-odd-run-itinerary-shape",
+        "J-odd-run-itinerary-grammar"
+      ]
+    },
+    {
+      "id": "odd_sharp_suffix",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_sharp_suffix.py",
+      "test": "tests/research/juggler_sequence/test_odd_sharp_suffix.py",
+      "dossier": "docs/problems/juggler_odd_sharp_suffix.md",
+      "data_dir": "data/research/juggler/odd_sharp_suffix",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_source_return",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_source_return.py",
+      "test": "tests/research/juggler_sequence/test_odd_source_return.py",
+      "dossier": "docs/problems/juggler_odd_source_return.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-two-episode-source-descent"
+      ]
+    },
+    {
+      "id": "odd_u_next_o",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/odd_u_next_o.py",
+      "test": "tests/research/juggler_sequence/test_odd_u_next_o.py",
+      "dossier": "docs/problems/juggler_odd_u_next_o.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-odd-u-v-eleventh",
+        "J-cyclemin-odd-u-generic"
+      ]
+    },
+    {
+      "id": "oe_fiber_constant",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oe_fiber_constant.py",
+      "test": "tests/research/juggler_sequence/test_oe_fiber_constant.py",
+      "dossier": "docs/problems/juggler_oe_fiber_constant.md",
+      "data_dir": "data/research/juggler/oe_fiber_constant",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-fiber-sweep"
+      ]
+    },
+    {
+      "id": "oe_next_oo",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oe_next_oo.py",
+      "test": "tests/research/juggler_sequence/test_oe_next_oo.py",
+      "dossier": "docs/problems/juggler_oe_next_oo.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-ce-oe-next-oo",
+        "J-oe-next-escaped-even"
+      ]
+    },
+    {
+      "id": "oe_rest_average",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oe_rest_average.py",
+      "test": "tests/research/juggler_sequence/test_oe_rest_average.py",
+      "dossier": "docs/problems/juggler_oe_rest_average.md",
+      "data_dir": "data/research/juggler/oe_rest_average",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "oeoee_audit",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oeoee_audit.py",
+      "test": "tests/research/juggler_sequence/test_oeoee_audit.py",
+      "dossier": "docs/problems/juggler_oeoee_production.md",
+      "data_dir": "data/research/juggler/oeoee_audit",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-log-density",
+        "J-fate-oeoee-production"
+      ]
+    },
+    {
+      "id": "one_three_eee_gap",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/one_three_eee_gap.py",
+      "test": "tests/research/juggler_sequence/test_one_three_eee_gap.py",
+      "dossier": "docs/problems/juggler_one_three_eee_gap.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-one-three-eee-gap"
+      ]
+    },
+    {
+      "id": "oneshot_recovery",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oneshot_recovery.py",
+      "test": "tests/research/juggler_sequence/test_oneshot_recovery.py",
+      "dossier": "docs/problems/juggler_oneshot_recovery.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-oneshot-oe-drop",
+        "J-cyclemin-oneshot-reenters"
+      ]
+    },
+    {
+      "id": "oo_descent_density",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/oo_descent_density.py",
+      "test": "tests/research/juggler_sequence/test_oo_descent_density.py",
+      "dossier": "docs/problems/juggler_oo_descent_density.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "ooeooeoo_eighth",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/ooeooeoo_eighth.py",
+      "test": "tests/research/juggler_sequence/test_ooeooeoo_eighth.py",
+      "dossier": "docs/problems/juggler_ooeooeoo_eighth.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-ooeooeoo-eighth-scan"
+      ]
+    },
+    {
+      "id": "overshoot_return",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/overshoot_return.py",
+      "test": "tests/research/juggler_sequence/test_overshoot_return.py",
+      "dossier": "docs/problems/juggler_overshoot_return.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "parity_balance",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/parity_balance.py",
+      "test": "tests/research/juggler_sequence/test_parity_balance.py",
+      "dossier": "docs/problems/juggler_parity_balance.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-shared-parity-balance-gap"
+      ]
+    },
+    {
+      "id": "parity_discrepancy",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/parity_discrepancy.py",
+      "test": "tests/research/juggler_sequence/test_parity_discrepancy.py",
+      "dossier": "docs/problems/juggler_parity_discrepancy.md",
+      "data_dir": "data/research/juggler/parity_discrepancy",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "parity_discrepancy_transfer",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/parity_discrepancy_transfer.py",
+      "test": "tests/research/juggler_sequence/test_parity_discrepancy_transfer.py",
+      "dossier": "docs/problems/juggler_parity_discrepancy_transfer.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "parity_persist",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/parity_persist.py",
+      "test": "tests/research/juggler_sequence/test_parity_persist.py",
+      "dossier": "docs/problems/juggler_parity_persist.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-cyclemin-l-image-odd-run-five",
+        "J-cyclemin-parity-persist-budget"
+      ]
+    },
+    {
+      "id": "pe_preimage_intersection",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/pe_preimage_intersection.py",
+      "test": "tests/research/juggler_sequence/test_pe_preimage_intersection.py",
+      "dossier": "docs/problems/juggler_pe_preimage_intersection.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-pe-preimage-intersection-shape",
+        "J-pe-preimage-intersection"
+      ]
+    },
+    {
+      "id": "pe_walk",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/pe_walk.py",
+      "test": "tests/research/juggler_sequence/test_pe_walk.py",
+      "dossier": "docs/problems/juggler_pe_walk.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-pe-walk-shape",
+        "J-pe-walk-predictors"
+      ]
+    },
+    {
+      "id": "post_l_ooe",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/post_l_ooe.py",
+      "test": "tests/research/juggler_sequence/test_post_l_ooe.py",
+      "dossier": "docs/problems/juggler_post_l_ooe.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-post-l-ooe-me-drop",
+        "J-cyclemin-post-l-ooe-reenters-l"
+      ]
+    },
+    {
+      "id": "post_ooo_crossing",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/post_ooo_crossing.py",
+      "test": "tests/research/juggler_sequence/test_post_ooo_crossing.py",
+      "dossier": "docs/problems/juggler_post_ooo_crossing.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-post-ooo-oooe",
+        "J-cyclemin-post-ooo-always-drop"
+      ]
+    },
+    {
+      "id": "post_overshoot",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/post_overshoot.py",
+      "test": "tests/research/juggler_sequence/test_post_overshoot.py",
+      "dossier": "docs/problems/juggler_post_overshoot.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "power_algebra",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/power_algebra.py",
+      "test": "tests/research/juggler_sequence/test_power_algebra.py",
+      "dossier": "docs/problems/juggler_power_algebra.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "power_composition",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/power_composition.py",
+      "test": "tests/research/juggler_sequence/test_power_composition.py",
+      "dossier": "docs/problems/juggler_power_composition.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-power-envelope-contraction"
+      ]
+    },
+    {
+      "id": "prefix_bunched",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/prefix_bunched.py",
+      "test": "tests/research/juggler_sequence/test_prefix_bunched.py",
+      "dossier": "docs/problems/juggler_prefix_bunched.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/PrefixBunched.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-prefix-bunched-eee",
+        "J-cyclemin-prefix-bunched-eoee",
+        "J-cyclemin-prefix-bunched-eooee",
+        "J-cyclemin-prefix-bunched-eoooee",
+        "J-cyclemin-prefix-bunched-eeoe",
+        "J-cyclemin-prefix-bunched-eoeoe",
+        "J-cyclemin-prefix-bunched-eooeoe"
+      ]
+    },
+    {
+      "id": "prefix_nc_admissibility",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/prefix_nc_admissibility.py",
+      "test": "tests/research/juggler_sequence/test_prefix_nc_admissibility.py",
+      "dossier": "docs/problems/juggler_prefix_nc_admissibility.md",
+      "data_dir": "data/research/juggler/prefix_nc_admissibility",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "prefix_two_even",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/prefix_two_even.py",
+      "test": "tests/research/juggler_sequence/test_prefix_two_even.py",
+      "dossier": "docs/problems/juggler_prefix_two_even.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/PrefixTwoEven.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-prefix-two-even-ee",
+        "J-cyclemin-prefix-two-even-eoe"
+      ]
+    },
+    {
+      "id": "preimage_cylinders",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/preimage_cylinders.py",
+      "test": "tests/research/juggler_sequence/test_preimage_cylinders.py",
+      "dossier": "docs/problems/juggler_preimage_cylinders.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/PreimageCylinders.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-itinerary-cylinder-exact",
+        "J-pe-cylinder-next-landing"
+      ]
+    },
+    {
+      "id": "pressure_direct",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/pressure_direct.py",
+      "test": "tests/research/juggler_sequence/test_pressure_direct.py",
+      "dossier": "docs/problems/juggler_pressure_direct.md",
+      "data_dir": "data/research/juggler/pressure_direct",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-pressure-direct-routes"
+      ]
+    },
+    {
+      "id": "probabilistic",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/probabilistic.py",
+      "test": "tests/research/juggler_sequence/test_probabilistic.py",
+      "dossier": "docs/problems/juggler_probabilistic.md",
+      "data_dir": "data/research/juggler/probabilistic",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "probabilistic_ld",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/probabilistic_ld.py",
+      "test": "tests/research/juggler_sequence/test_probabilistic_ld.py",
+      "dossier": "docs/problems/juggler_probabilistic_ld.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "progress_coverage",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/progress_coverage.py",
+      "test": "tests/research/juggler_sequence/test_progress_coverage.py",
+      "dossier": "docs/problems/juggler_progress_coverage.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-automatic-descent-density",
+        "J-finite-progress-boundary"
+      ]
+    },
+    {
+      "id": "ps_inversion_barrier",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/ps_inversion_barrier.py",
+      "test": "tests/research/juggler_sequence/test_ps_inversion_barrier.py",
+      "dossier": "docs/problems/juggler_ps_inversion_barrier.md",
+      "data_dir": "data/research/juggler/ps_inversion_barrier",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "q_return_section",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/q_return_section.py",
+      "test": "tests/research/juggler_sequence/test_q_return_section.py",
+      "dossier": "docs/problems/juggler_q_return_section.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [
+        "J-q-return-section-descent"
+      ]
+    },
+    {
+      "id": "realization_geometry",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/realization_geometry.py",
+      "test": "tests/research/juggler_sequence/test_realization_geometry.py",
+      "dossier": "docs/problems/juggler_realization_geometry.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "repeated_block",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/repeated_block.py",
+      "test": "tests/research/juggler_sequence/test_repeated_block.py",
+      "dossier": "docs/problems/juggler_repeated_block.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "repeated_oe",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/repeated_oe.py",
+      "test": "tests/research/juggler_sequence/test_repeated_oe.py",
+      "dossier": "docs/problems/juggler_repeated_oe.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "residual_chain",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/residual_chain.py",
+      "test": "tests/research/juggler_sequence/test_residual_chain.py",
+      "dossier": "docs/problems/juggler_residual_chain.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "residual_minimize",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/residual_minimize.py",
+      "test": "tests/research/juggler_sequence/test_residual_minimize.py",
+      "dossier": "docs/problems/juggler_residual_minimize.md",
+      "data_dir": "data/research/juggler/residual_minimize",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "residual_path",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/residual_path.py",
+      "test": "tests/research/juggler_sequence/test_residual_path.py",
+      "dossier": "docs/problems/juggler_residual_path.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "residual_progress",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/residual_progress.py",
+      "test": "tests/research/juggler_sequence/test_residual_progress.py",
+      "dossier": "docs/problems/juggler_residual_progress.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "residual_state",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/residual_state.py",
+      "test": "tests/research/juggler_sequence/test_residual_state.py",
+      "dossier": "docs/problems/juggler_residual_state.md",
+      "data_dir": "data/research/juggler/residual_state",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "saturation_budget",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/saturation_budget.py",
+      "test": "tests/research/juggler_sequence/test_saturation_budget.py",
+      "dossier": "docs/problems/juggler_saturation_budget.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "scale_loop_hidden",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/scale_loop_hidden.py",
+      "test": "tests/research/juggler_sequence/test_scale_loop_hidden.py",
+      "dossier": "docs/problems/juggler_scale_loop_hidden.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-scale-loop-oneshot",
+        "J-cyclemin-scale-loop-signature-repeats"
+      ]
+    },
+    {
+      "id": "second_o_lost_sq",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/second_o_lost_sq.py",
+      "test": "tests/research/juggler_sequence/test_second_o_lost_sq.py",
+      "dossier": "docs/problems/juggler_second_o_lost_sq.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-ce-second-o-cube",
+        "J-second-o-below-square"
+      ]
+    },
+    {
+      "id": "second_oo_cube",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/second_oo_cube.py",
+      "test": "tests/research/juggler_sequence/test_second_oo_cube.py",
+      "dossier": "docs/problems/juggler_second_oo_cube.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-second-oo-envelope",
+        "J-cyclemin-second-oo-scale-acyclic"
+      ]
+    },
+    {
+      "id": "second_post_l_ooe",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/second_post_l_ooe.py",
+      "test": "tests/research/juggler_sequence/test_second_post_l_ooe.py",
+      "dossier": "docs/problems/juggler_second_post_l_ooe.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-second-post-l-ooe-square",
+        "J-cyclemin-second-post-l-ooe-oe-drops"
+      ]
+    },
+    {
+      "id": "sequential_mordell",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/sequential_mordell.py",
+      "test": "tests/research/juggler_sequence/test_sequential_mordell.py",
+      "dossier": "docs/problems/juggler_sequential_mordell.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/SequentialMordell.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-odd-remainder-even",
+        "J-sequential-defect-oo",
+        "J-peak-transports-to-oo"
+      ]
+    },
+    {
+      "id": "source_relative_odd",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/source_relative_odd.py",
+      "test": "tests/research/juggler_sequence/test_source_relative_odd.py",
+      "dossier": "docs/problems/juggler_source_relative_odd.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-source-relative-odd-reset",
+        "J-episode-source-descent"
+      ]
+    },
+    {
+      "id": "square_seam",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/square_seam.py",
+      "test": "tests/research/juggler_sequence/test_square_seam.py",
+      "dossier": "docs/problems/juggler_square_seam.md",
+      "data_dir": "data/research/juggler/square_seam",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "step5b_p0",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/step5b_p0.py",
+      "test": "tests/research/juggler_sequence/test_step5b_p0.py",
+      "dossier": "docs/problems/juggler_step5b_p0.md",
+      "data_dir": "data/research/juggler/step5b_p0",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "step5b_sublevel",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/step5b_sublevel.py",
+      "test": "tests/research/juggler_sequence/test_step5b_sublevel.py",
+      "dossier": "docs/problems/juggler_step5b_sublevel.md",
+      "data_dir": "data/research/juggler/step5b_sublevel",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "stopping_prefix",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/stopping_prefix.py",
+      "test": "tests/research/juggler_sequence/test_stopping_prefix.py",
+      "dossier": "docs/problems/juggler_stopping_prefix.md",
+      "data_dir": "data/research/juggler/stopping_prefix",
+      "lean": [
+        "formal/Problems/Juggler/MinimalClosure.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "sum_rho",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/sum_rho.py",
+      "test": "tests/research/juggler_sequence/test_sum_rho.py",
+      "dossier": "docs/problems/juggler_sum_rho.md",
+      "data_dir": "data/research/juggler/sum_rho",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "superquadratic_suffixes",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/superquadratic_suffixes.py",
+      "test": "tests/research/juggler_sequence/test_superquadratic_suffixes.py",
+      "dossier": "docs/problems/juggler_superquadratic_suffixes.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "survival_set",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/survival_set.py",
+      "test": "tests/research/juggler_sequence/test_survival_set.py",
+      "dossier": "docs/problems/juggler_survival_set.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "survivor_phase",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/survivor_phase.py",
+      "test": "tests/research/juggler_sequence/test_survivor_phase.py",
+      "dossier": "docs/problems/juggler_survivor_phase.md",
+      "data_dir": "data/research/juggler/survivor_phase",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "tao_reduction",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/tao_reduction.py",
+      "test": "tests/research/juggler_sequence/test_tao_reduction.py",
+      "dossier": "docs/problems/juggler_tao_almost_bounded.md",
+      "data_dir": "data/research/juggler/tao_reduction",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-envelope-floor",
+        "J-tao-rate-implies-conjecture",
+        "J-tao-loglog-depth-bound",
+        "J-tao-biased-split-bound",
+        "J-tao-pressure-form",
+        "J-tao-cylinder-forms-reparameterization",
+        "J-tao-free-term-is-live-mass"
+      ]
+    },
+    {
+      "id": "third_residual",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/third_residual.py",
+      "test": "tests/research/juggler_sequence/test_third_residual.py",
+      "dossier": "docs/problems/juggler_third_residual.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-ce-third-residual-preimages",
+        "J-third-residual-drop-or-pe"
+      ]
+    },
+    {
+      "id": "twin_flight",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/twin_flight.py",
+      "test": "tests/research/juggler_sequence/test_twin_flight.py",
+      "dossier": "docs/problems/juggler_twin_flight.md",
+      "data_dir": "data/research/juggler/twin_flight",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "two_adic_bridge",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/two_adic_bridge.py",
+      "test": "tests/research/juggler_sequence/test_two_adic_bridge.py",
+      "dossier": "docs/problems/juggler_2adic_integer_bridge.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "two_block_residual",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/two_block_residual.py",
+      "test": "tests/research/juggler_sequence/test_two_block_residual.py",
+      "dossier": "docs/problems/juggler_two_block_residual.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-two-block-persistent-expanding"
+      ]
+    },
+    {
+      "id": "two_step_parity",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/two_step_parity.py",
+      "test": "tests/research/juggler_sequence/test_two_step_parity.py",
+      "dossier": "docs/problems/juggler_two_step_parity.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/GapCells.lean"
+      ],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-nested-parity-linearization",
+        "J-nested-parity-discrepancy",
+        "J-fourth-letter-linearization",
+        "J-triple-parity-discrepancy",
+        "J-four-step-descent-density",
+        "J-second-order-linearization",
+        "J-equidistribution-implies-density-one",
+        "J-even-branch-third-letter",
+        "J-tier2-gap-and-shifted-forms",
+        "J-depth4-slow-branch",
+        "J-kernel-cancellation",
+        "J-depth4-complete",
+        "J-depth5-contracting",
+        "J-five-step-descent-density",
+        "J-level3-inner-linearization",
+        "J-scale-invariant-R-extension",
+        "J-w-family-thirty-three-thirty-seconds",
+        "J-w-family-below-nine-eighths",
+        "J-length7-remainder-engine",
+        "J-length7-passenger-theorem-t",
+        "J-length7-vdc3-chirps",
+        "J-length7-x3-qr3-carry",
+        "J-length7-integer-w-block",
+        "J-harvest-counting-terminal",
+        "J-depth7-engine-contracting",
+        "J-seven-step-descent-density",
+        "J-increment-linearization",
+        "J-increment-first-K3",
+        "J-x1-landing-criterion",
+        "J-x1-absorption-K3",
+        "J-nested-floor-without-W-family",
+        "J-k3-toolkit-obstruction",
+        "J-dispersion-count-route",
+        "J-block-carry-models",
+        "J-level3-block-phase-model",
+        "J-intra-block-harmonic-obstruction",
+        "J-pure-model-amplitude-product",
+        "J-shift-average-square-root",
+        "J-derandomization-obstruction",
+        "J-length8-remainder-discard",
+        "J-depth8-engine-quartet",
+        "J-eight-step-descent-density"
+      ]
+    },
+    {
+      "id": "uniform_two_even",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/uniform_two_even.py",
+      "test": "tests/research/juggler_sequence/test_uniform_two_even.py",
+      "dossier": "docs/problems/juggler_uniform_two_even.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-two-even-leftover-ee",
+        "J-two-even-leftover-eoe"
+      ]
+    },
+    {
+      "id": "v3_audit",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/v3_audit.py",
+      "test": "tests/research/juggler_sequence/test_v3_audit.py",
+      "dossier": "docs/problems/juggler_v3_production.md",
+      "data_dir": "data/research/juggler/v3_audit",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-log-density",
+        "J-fate-v3-production"
+      ]
+    },
+    {
+      "id": "v4_audit",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/v4_audit.py",
+      "test": "tests/research/juggler_sequence/test_v4_audit.py",
+      "dossier": "docs/problems/juggler_v4_production.md",
+      "data_dir": "data/research/juggler/v4_audit",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-log-density",
+        "J-fate-v4-production"
+      ]
+    },
+    {
+      "id": "v5_audit",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/v5_audit.py",
+      "test": "tests/research/juggler_sequence/test_v5_audit.py",
+      "dossier": "docs/problems/juggler_v5_production.md",
+      "data_dir": "data/research/juggler/v5_audit",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-log-density",
+        "J-fate-v5-production"
+      ]
+    },
+    {
+      "id": "v6_audit",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/v6_audit.py",
+      "test": "tests/research/juggler_sequence/test_v6_audit.py",
+      "dossier": "docs/problems/juggler_v6_production.md",
+      "data_dir": "data/research/juggler/v6_audit",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-fate-log-density",
+        "J-fate-v6-production"
+      ]
+    },
+    {
+      "id": "v94_hardy_lift",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/v94_hardy_lift.py",
+      "test": "tests/research/juggler_sequence/test_v94_hardy_lift.py",
+      "dossier": "docs/problems/juggler_v94_hardy_lift.md",
+      "data_dir": "data/research/juggler/v94_hardy_lift",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "w5_second_oo",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/w5_second_oo.py",
+      "test": "tests/research/juggler_sequence/test_w5_second_oo.py",
+      "dossier": "docs/problems/juggler_w5_second_oo.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-cyclemin-w5-second-oo-z-fifth",
+        "J-cyclemin-w5-second-oo-u-fifth"
+      ]
+    },
+    {
+      "id": "walk_coboundary",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/walk_coboundary.py",
+      "test": "tests/research/juggler_sequence/test_walk_coboundary.py",
+      "dossier": "docs/problems/juggler_walk_coboundary.md",
+      "data_dir": "data/research/juggler/walk_coboundary",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "bi_resonance_limit",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_bi_resonance_limit.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_arrival_collision",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_arrival_collision.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_diophantine_survivors",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_diophantine_survivors.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_intersection_taxonomy",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_intersection_taxonomy.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [
+        "juggler_cycle_intersection_taxonomy"
+      ],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_l84_m3",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_l84_m3.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-l84-m-ge-three-floor-261"
+      ]
+    },
+    {
+      "id": "cycle_lean_consolidate",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_cycle_lean_consolidate.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "descent_floor",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_descent_floor.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-residual-floor-twenty-six-million",
+        "J-cycle-period-fifty-thousand",
+        "J-residual-floor-one-hundred-sixty-two-million",
+        "J-residual-floor-three-hundred-fifty-million"
+      ]
+    },
+    {
+      "id": "engine_harvest",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_engine_harvest.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "finite_dynamics_paper",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_finite_dynamics_paper.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "flight_dk_pricing",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_flight_dk_pricing.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "flight_record_composition",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_flight_record_composition.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-flight-record-composition"
+      ]
+    },
+    {
+      "id": "flight_valley_composition",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_flight_valley_composition.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "floor_cells",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_floor_cells.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "functional_graph_seam",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_functional_graph_seam.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "harvest_counting",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_harvest_counting.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "layer_architecture",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_layer_architecture.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "lean_architecture",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_lean_architecture.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "leftover_cycles",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_leftover_cycles.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "length7_integer_w",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_length7_integer_w.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "length7_passenger",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_length7_passenger.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "length7_remainder",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_length7_remainder.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "length7_vdc3",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_length7_vdc3.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "length7_x3_carry",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_length7_x3_carry.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "length8_remainder",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_length8_remainder.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "odd_tower_fragment",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_odd_tower_fragment.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "power_words",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_power_words.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "pressure_external_average",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_pressure_external_average.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-pressure-external-average"
+      ]
+    },
+    {
+      "id": "rate_free_floor_hardy",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_rate_free_floor_hardy.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "sequence",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_sequence.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "three_halves_mod_one",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_three_halves_mod_one.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "uniform_thresholds",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_uniform_thresholds.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "v94_rate_free",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_v94_rate_free.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": []
+    },
+    {
+      "id": "w_family_33_32",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_w_family_33_32.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": []
+    },
+    {
+      "id": "word_atlas",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_word_atlas.md",
+      "data_dir": "data/research/juggler/word_atlas",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": []
+    },
+    {
+      "id": "__init__",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/__init__.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "adapter",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/adapter.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "branch_index",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/branch_index.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "discovery",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/discovery.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "lean_export",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/lean_export.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "lean_paths",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/lean_paths.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/Dynamics.lean",
+        "formal/Problems/Juggler/Iteration.lean",
+        "formal/Problems/Juggler/Termination.lean",
+        "formal/Problems/Juggler/TerminationFloor257.lean",
+        "formal/Problems/Juggler/Itinerary.lean",
+        "formal/Problems/Juggler/ItineraryStats.lean",
+        "formal/Problems/Juggler/Envelope.lean",
+        "formal/Problems/Juggler/Corridor.lean",
+        "formal/Problems/Juggler/CubeCorridor.lean",
+        "formal/Problems/Juggler/Equality.lean",
+        "formal/Problems/Juggler/Defect.lean",
+        "formal/Problems/Juggler/GlobalDefect.lean",
+        "formal/Problems/Juggler/DefectLowerBound.lean",
+        "formal/Problems/Juggler/Preimages.lean",
+        "formal/Problems/Juggler/Collapse.lean",
+        "formal/Problems/Juggler/Drift.lean",
+        "formal/Problems/Juggler/FirstPassage.lean",
+        "formal/Problems/Juggler/Certificates.lean",
+        "formal/Problems/Juggler/Progress.lean",
+        "formal/Problems/Juggler/RateFreeDensity.lean",
+        "formal/Problems/Juggler/FirstInternalOO.lean",
+        "formal/Problems/Juggler/MinimumRelative.lean",
+        "formal/Problems/Juggler/Minimal.lean",
+        "formal/Problems/Juggler/MinimalClosure.lean",
+        "formal/Problems/Juggler/Scale.lean",
+        "formal/Problems/Juggler/Residuals.lean",
+        "formal/Problems/Juggler/NormalizedDefect.lean",
+        "formal/Problems/Juggler/ExpansionBlocks.lean",
+        "formal/Problems/Juggler/ExpansionSlack.lean",
+        "formal/Problems/Juggler/NearTightScale.lean",
+        "formal/Problems/Juggler/ExpandingGrammar.lean",
+        "formal/Problems/Juggler/LandingParity.lean",
+        "formal/Problems/Juggler/CycleCore.lean",
+        "formal/Problems/Juggler/CycleObstructions.lean",
+        "formal/Problems/Juggler/CycleExtrema.lean",
+        "formal/Problems/Juggler/Cycles.lean",
+        "formal/Problems/Juggler/LeftoverEval.lean",
+        "formal/Problems/Juggler/LeftoverPreimage.lean",
+        "formal/Problems/Juggler/LeftoverShort.lean",
+        "formal/Problems/Juggler/FirstETransportEval.lean",
+        "formal/Problems/Juggler/BunchedTight.lean",
+        "formal/Problems/Juggler/LeftoverFamilies.lean",
+        "formal/Problems/Juggler/PrefixTwoEvenEval.lean",
+        "formal/Problems/Juggler/PrefixTwoEven.lean",
+        "formal/Problems/Juggler/PrefixBunchedEval.lean",
+        "formal/Problems/Juggler/PrefixBunched.lean",
+        "formal/Problems/Juggler/SmallCycleCensus.lean",
+        "formal/Problems/Juggler/LengthEightCensus.lean",
+        "formal/Problems/Juggler/CycleDiophantine.lean",
+        "formal/Problems/Juggler/EvenCountThree.lean",
+        "formal/Problems/Juggler/CycleMinObstruction.lean",
+        "formal/Problems/Juggler/O7EEEEGap.lean",
+        "formal/Problems/Juggler/CycleMinFudge.lean",
+        "formal/Problems/Juggler/SequentialMordell.lean",
+        "formal/Problems/Juggler/LandingValuation.lean",
+        "formal/Problems/Juggler/PreimageCylinders.lean",
+        "formal/Problems/Juggler/OddLandingSets.lean",
+        "formal/Problems/Juggler/ItineraryLanguage.lean",
+        "formal/Problems/Juggler/GapCells.lean",
+        "formal/Problems/Juggler/Escape.lean",
+        "formal/Problems/Juggler/CycleFinance.lean",
+        "formal/Problems/Juggler/CycleFinanceLeftovers.lean",
+        "formal/Problems/Juggler/RunSurvivorLattice.lean",
+        "formal/Problems/Juggler/CycleHeightFinance.lean",
+        "formal/Problems/Juggler/WalkChargeItineraries.lean",
+        "formal/Problems/Juggler/OstrowskiSandwich.lean",
+        "formal/Problems/Juggler/OstrowskiNumeration.lean",
+        "formal/Problems/Juggler/RotationAverage.lean",
+        "formal/Problems/Juggler/FanLaw.lean",
+        "formal/Problems/Juggler/WalkTransport.lean",
+        "formal/Problems/Juggler/WalkChargeMax.lean",
+        "formal/Problems/Juggler/DefectFinance.lean",
+        "formal/Problems/Juggler/AboveAnchorWalk.lean",
+        "formal/Problems/Juggler/GapTransfer.lean",
+        "formal/Problems/Juggler/FunctionalGraph.lean",
+        "formal/Problems/Juggler/FateContagion.lean",
+        "formal/Problems/Juggler/LogLogClock.lean",
+        "formal/Problems/Juggler/TowerAbsorption.lean",
+        "formal/Problems/Juggler/TiltedShare.lean",
+        "formal/Problems/Juggler/LiveCountWeight.lean"
+      ],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "notation_audit",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/notation_audit.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "p0_certificate",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/p0_certificate.py",
+      "test": "tests/research/juggler_sequence/test_p0_certificate.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/MonomialSplitting.lean"
+      ],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "paper_a_audit",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/paper_a_audit.py",
+      "test": "tests/research/juggler_sequence/test_paper_a_audit.py",
+      "dossier": null,
+      "data_dir": "data/research/juggler/paper_a_audit",
+      "lean": [
+        "formal/Problems/Juggler/OstrowskiSandwich.lean"
+      ],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "paper_b_audit",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/paper_b_audit.py",
+      "test": "tests/research/juggler_sequence/test_paper_b_audit.py",
+      "dossier": null,
+      "data_dir": "data/research/juggler/paper_b_audit",
+      "lean": [
+        "formal/Problems/Juggler/MasterIdentity.lean"
+      ],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-kernel-cancellation",
+        "J-depth4-complete",
+        "J-depth5-contracting",
+        "J-parity-triple-discrepancy-localized",
+        "J-parity-paper-b-audit"
+      ]
+    },
+    {
+      "id": "paper_b_constants_sweep",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/paper_b_constants_sweep.py",
+      "test": "tests/research/juggler_sequence/test_paper_b_constants_sweep.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "paper_b_prefix_count",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/paper_b_prefix_count.py",
+      "test": "tests/research/juggler_sequence/test_paper_b_prefix_count.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-equidistribution-implies-density-one",
+        "J-rate-free-density-one"
+      ]
+    },
+    {
+      "id": "paper_c_audit",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/paper_c_audit.py",
+      "test": "tests/research/juggler_sequence/test_paper_c_audit.py",
+      "dossier": null,
+      "data_dir": "data/research/juggler/paper_c_audit",
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-paper-c-audit"
+      ]
+    },
+    {
+      "id": "planner",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/planner.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "power_itineraries",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/power_itineraries.py",
+      "test": "tests/research/juggler_sequence/test_power_itineraries.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "problem",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/problem.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "runner",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/runner.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "scout",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/scout.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "spec",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/spec.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_floor_hard_seeds",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/cycle_floor_hard_seeds.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_floor_sensitivity",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/cycle_floor_sensitivity.py",
+      "test": "tests/research/juggler_sequence/test_cycle_floor_sensitivity.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-residual-floor-twenty-six-million",
+        "J-cycle-period-fifty-thousand",
+        "J-residual-floor-one-hundred-sixty-two-million",
+        "J-residual-floor-three-hundred-fifty-million"
+      ]
+    },
+    {
+      "id": "cycle_run_extremum",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/cycle_run_extremum.py",
+      "test": "tests/research/juggler_sequence/test_cycle_run_extremum.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "cycle_walk_charge_gpu",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/cycle_walk_charge_gpu.py",
+      "test": "tests/research/juggler_sequence/test_cycle_walk_charge_gpu.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "even_count_five",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/even_count_five.py",
+      "test": "tests/research/juggler_sequence/test_even_count_five.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "floor_preimages",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/floor_preimages.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "hug_realizability",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/hug_realizability.py",
+      "test": "tests/research/juggler_sequence/test_hug_realizability.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "run_suffix_law",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/run_suffix_law.py",
+      "test": "tests/research/juggler_sequence/test_run_suffix_law.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/O7EEEEGap.lean"
+      ],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "s2_window_costing",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/s2_window_costing.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "stage2_mode_accounting",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/stage2_mode_accounting.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "uniform_superquadratic",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/uniform_superquadratic.py",
+      "test": "tests/research/juggler_sequence/test_uniform_superquadratic.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "walk_kbest",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/walk_kbest.py",
+      "test": "tests/research/juggler_sequence/test_walk_kbest.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "walk_kbest_gpu",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/walk_kbest_gpu.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "walk_realizability",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/walk_realizability.py",
+      "test": "tests/research/juggler_sequence/test_walk_realizability.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    },
+    {
+      "id": "walk_runs",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/walk_runs.py",
+      "test": "tests/research/juggler_sequence/test_walk_runs.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+---
+description: Juggler attack — reading path, registration, honest paths
+globs: src/research/juggler_sequence/**/*.py,tests/research/juggler_sequence/**/*.py,formal/Problems/Juggler/**/*.lean,formal/Problems/Juggler.lean,formal/Problems/JugglerPaper.lean,formal/Problems/JugglerParityPaper.lean,docs/problems/juggler_*.md,docs/theory/juggler_*.md,docs/juggler_branch_ledger.md,attacks/juggler/**,data/research/juggler/**
+alwaysApply: false
+---
+
+# Juggler
+
+Read [attacks/juggler/AGENT.md](attacks/juggler/AGENT.md) before
+substantial work. Look up the branch in
+[attacks/juggler/index.json](attacks/juggler/index.json). Do not
+restate the state of the problem here.
+
+- Imports are `research.juggler_sequence` and `Problems.Juggler`.
+  File path equals import path. Paths come from
+  `research.juggler_sequence.lean_paths` (`REPO_ROOT`, `DATA_ROOT`,
+  `DOCS_RESEARCH`, `BRANCHES_ROOT`, `FORMAL_DIR`).
+- New Lean module → barrel, `LAYERS` (and `PAPER_MODULES` if Paper A),
+  no `sorry` / `admit` / `axiom` even in comments, `lake env lean` first.
+- New probe → `foo.py`, `test_foo.py`, `docs/problems/juggler_foo.md`
+  with `PROMOTE | PARK | CLOSE`, ledger if named, rebuild the index,
+  CLOSE/REFUTED into `docs/negative_knowledge.md`.
+- Search [docs/negative_knowledge.md](docs/negative_knowledge.md)
+  before reopening. Do not raise \(N_0\). Do not wrap a nested-floor
+  bound as a Juggler construction. Finite checks are not a halt theorem.
