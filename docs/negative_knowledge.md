@@ -593,6 +593,18 @@ on the completed sum, a Tauberian upgrade of the Cesàro moment, or a
 third formulation. Dossier:
 [juggler_pressure_external_average](problems/juggler_pressure_external_average.md)
 (`J-pressure-external-average`).
+Mass, max-atom, collision energy and ancestry multiplicity of the
+tilted pushforward \(W_t\) do not force the five-word four-step cut:
+they saturate on the injective \(\mathtt{OOOO}\) cell (profile
+relabelled, mass \(\times e^{4\theta}\)) or need a location bound on
+the support, and landing multiplicity through an \(\mathtt{OE}\)
+collision is unbounded. Controlling where the atoms sit is the
+good-base / \(\mathrm H_q\) split or the pair-correlation form already
+named above. Do not reopen as a concentration statistic, a bounded
+ancestral capacity, a location/gap/even-fiber framework, or another
+pressure census. Dossier:
+[juggler_transfer_weight_invariant](problems/juggler_transfer_weight_invariant.md)
+(`J-transfer-weight-invariant`).
 
 **Kernel localization to \(OOOEE\) / \(OOEOE\) even-block fibers.**
 Killed claim: Paper B Theorem 5.3 localizes to those fibers (fate
@@ -852,6 +864,7 @@ CLOSE) are included so the completeness gate cannot hide them.
 [juggler_sequential_mordell](problems/juggler_sequential_mordell.md),
 [juggler_source_relative_odd](problems/juggler_source_relative_odd.md),
 [juggler_stopping_prefix](problems/juggler_stopping_prefix.md),
+[juggler_transfer_weight_invariant](problems/juggler_transfer_weight_invariant.md),
 [juggler_twin_flight](problems/juggler_twin_flight.md),
 [juggler_two_step_parity](problems/juggler_two_step_parity.md),
 [research_engine_v24](problems/research_engine_v24.md).

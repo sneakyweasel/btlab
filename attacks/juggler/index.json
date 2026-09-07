@@ -3944,6 +3944,20 @@
       ]
     },
     {
+      "id": "transfer_weight_invariant",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/transfer_weight_invariant.py",
+      "test": "tests/research/juggler_sequence/test_transfer_weight_invariant.py",
+      "dossier": "docs/problems/juggler_transfer_weight_invariant.md",
+      "data_dir": "data/research/juggler/transfer_weight_invariant",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-transfer-weight-invariant"
+      ]
+    },
+    {
       "id": "twin_flight",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/twin_flight.py",

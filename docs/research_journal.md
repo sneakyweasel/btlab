@@ -38693,3 +38693,55 @@ review mirror, the Paper B audit ledger line, the Ostrowski dossier's
 Formalization section, the AGENTS.md prove2.me section and environment
 notes, and the skill's environment table. Journal entries naming
 v4.33.0 are historical and stay as written.
+
+## Transfer-weight invariants (Phase 0)
+
+- **Date:** 2026-09-07
+- **Objective:** Does the tilted live pushforward \(W_t\) carry a
+  map-specific invariant (mass, max-atom, collision energy, ancestry)
+  that forces the five-word mass of
+  \(\mathtt{EOOO},\mathtt{OEOO},\mathtt{OOEO},\mathtt{OOOE},\mathtt{OOOO}\)
+  below the exact four-step contraction threshold?
+- **Hypotheses:** even fibres are intervals, odd fibres are unique, and
+  atoms record ancestry, so a capacity or collision invariant might
+  survive maximal spatial variation.
+- **Major results:** The one-sided cut at \(\theta_{19}\) is
+  \(1.117\,\mu_4+0.449\,\mu_3<0.0749\) and is stricter than fair-coin.
+  Location-free bounds are \(1\) and miss the cut. On \(\mathtt{OOOO}\)
+  four odd steps relabel the profile and grow mass by
+  \(e^{4\theta}\approx 2.04\,a_\theta^4\). The \(\mathtt{OE}\) preimage
+  span is unbounded (\(3,6,14,29,62\) at
+  \(M=10,10^2,10^3,10^4,10^5\)); favorable-target ancestor counts
+  \(3,9,21\) at \(2001,20001,200001\). A 1000-start pushforward at
+  \(N_0=260\) has \(\mathrm{ratio}_4\le 0.904\) (OBSERVATION).
+- **Refuted ideas:** concentration statistics as a one-sided
+  five-word bound; bounded landing multiplicity / ancestral capacity.
+- **Decision:** CLOSE. Location leftover is the good-base /
+  \(\mathrm H_q\) split or pair-correlation, both already named.
+- **Next question:** none on this line.
+
+```text
+Phase-end report
+What was learned
+- one-sided five-word cut is stricter than fair-coin
+- OOOO injectivity relabels every concentration statistic
+- OE landing multiplicity is unbounded; relative mass of one target
+  is small
+- location control is the already-closed good-base / L^2 objects
+- small pushforward ratio4 < 1 is an observation, not an invariant
+Strongest theorem
+- none new; odd_preimage_unique and even_preimage_iff already cover
+  the geometry
+Strongest refutation
+- concentration / ancestry-count / bounded multiplicity as I(W_t)
+Reusable machinery
+- transfer_weight_invariant: tilt cut, OOOO relabel, OE span;
+  7 tests
+Branch status
+- CLOSE
+Why
+  Every listed candidate saturates, is support-local, or is a named
+  reparameterization.
+Best next question
+- none on this line
+```
