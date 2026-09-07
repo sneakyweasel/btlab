@@ -1215,7 +1215,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The expanding map `T n = 3 * n - lsdZ n`. This is not laboratory `DZ`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "def",
       "ledger": [
@@ -1231,37 +1231,15 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 15,
+      "line": 16,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The gain-`lambda` family `T_lambda n = 3 * n - lambda * lsdZ n`; gain `1` is `expandingD`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "def",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 18,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "expandingDGain",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
       "ledger": [
         "BTN-expanding-lsd",
         "BTN-expanding-right-inverse",
@@ -1277,11 +1255,11 @@
       ],
       "line": 21,
       "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "expandingD_eq_IZ_shape",
+      "name": "expandingDGain",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The expanding map in section shape: `T n = -lsdZ n + 3 * n`, i.e. the section `I_a` taken at the varying digit `a = -lsdZ n` rather than at a constant one.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1299,55 +1277,33 @@
       ],
       "line": 26,
       "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "expandingD_eq_IZ_shape",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`T n` is congruent to `-lsdZ n` mod `3`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 32,
+      "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_mod",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 30,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "neg_lsdZ_is_trit",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 34,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "lsdZ_expandingD",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "The negated least significant digit is again a trit.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1365,11 +1321,11 @@
       ],
       "line": 37,
       "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "expandingD_decomp",
+      "name": "neg_lsdZ_is_trit",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "One step flips the least significant digit: `lsdZ (T n) = -lsdZ n`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1385,57 +1341,57 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 43,
+      "line": 42,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "lsdZ_expandingD",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`T n` in terms of the carry and digit of `n`: `T n = 9 * DZ n + 2 * lsdZ n`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 46,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "expandingD_decomp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Laboratory `DZ` is a left inverse of `T`: `DZ (T n) = n`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 53,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "DZ_expandingD",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 49,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "expandingD_IZ",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 56,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "lsdZ_expandingD_IZ",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "`T` on a section: `T (IZ a x) = 9 * x + 2 * a.toInt`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1453,11 +1409,11 @@
       ],
       "line": 60,
       "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "lsdZ_iterate_expandingD",
+      "name": "expandingD_IZ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The digit emitted after a section step is `-a`, independent of the higher-digit residual `x`: `lsdZ (T (IZ a x)) = -a.toInt`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1473,13 +1429,57 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 68,
+      "line": 69,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "lsdZ_expandingD_IZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The digit alternates along the whole orbit: `lsdZ (T^[k] n) = (-1)^k * lsdZ n`. Every future least-significant-digit observation is a function of `lsdZ n` alone.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 75,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "lsdZ_iterate_expandingD",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`T` moves a positive integer strictly up.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 84,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_gt_of_pos",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`T` moves a negative integer strictly down.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1495,13 +1495,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 73,
+      "line": 90,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_lt_of_neg",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`T` strictly increases absolute value away from `0`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1517,13 +1517,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 78,
+      "line": 96,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_abs_lt",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `natAbs` form of the expansion: `|n| < |T n|` for `n != 0`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1539,13 +1539,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 91,
+      "line": 110,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_expands",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`T 1 = 2`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1561,13 +1561,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 98,
+      "line": 118,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_one",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "`T` is not a contraction in magnitude: `|T n| <= |n|` fails, witnessed at `n = 1` where `T 1 = 2`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1583,13 +1583,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 100,
+      "line": 122,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "magnitude_contraction_false",
       "trust": "compiler"
     },
     {
-      "doc": "",
+      "doc": "Gain `1` recovers `expandingD`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1605,13 +1605,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 107,
+      "line": 130,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingDGain_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`T_2 n` is congruent to `lsdZ n` mod `3`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1627,123 +1627,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 111,
+      "line": 135,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingDGain_two_mod",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 116,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "lsdZ_expandingDGain_two",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 120,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "expandingDGain_three_eq",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 125,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "lsdZ_expandingDGain_three",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 131,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "expandingD_three_signatures",
-      "trust": "compiler"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 138,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "lsdZ_of_isTrit",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "Gain `2` fixes the digit rather than flipping it: `lsdZ (T_2 n) = lsdZ n`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1761,11 +1651,11 @@
       ],
       "line": 141,
       "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "neg_isTrit",
+      "name": "lsdZ_expandingDGain_two",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Gain `3` is nine times the carry: `T_3 n = 9 * DZ n`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1781,13 +1671,123 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 144,
+      "line": 146,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "expandingDGain_three_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Gain `3` annihilates the digit: `lsdZ (T_3 n) = 0`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 152,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "lsdZ_expandingDGain_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The three digit signatures of one `T` step: `lsdZ (T 0) = 0`, `lsdZ (T 1) = -1`, `lsdZ (T (-1)) = 1`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 160,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "expandingD_three_signatures",
+      "trust": "compiler"
+    },
+    {
+      "doc": "A trit is its own least significant digit.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 168,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "lsdZ_of_isTrit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Trits are closed under negation.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 172,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "neg_isTrit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The one-digit observable is closed under `T` on trits: `lsdZ (T r)` is a trit whenever `r` is.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 177,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_residue_T",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every `Trit` value is a trit as an integer.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1803,13 +1803,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 149,
+      "line": 183,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_residue_I",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Both halves of trit closure together: `T` keeps the digit observable inside the trits, and section labels are trits.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1825,13 +1825,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 153,
+      "line": 189,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "expandingD_residue_closure",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Length-2 integer jet, LSD-first: `(lsdZ n, lsdZ (DZ n))`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "def",
       "ledger": [
@@ -1847,13 +1847,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 158,
+      "line": 195,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The order-2 jet of one step: `jet2 (T n) = (-lsdZ n, lsdZ n)` -- it depends on the first input digit only.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -1869,145 +1869,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 161,
+      "line": 200,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet2_expandingD",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 166,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "jet2_IZ",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 171,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "jet2_of_window",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 182,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "jet2_residue_closure",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 190,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "lsdZ_mul3",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 193,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "DZ_expandingDGain_two",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-expanding-lsd",
-        "BTN-expanding-right-inverse",
-        "BTN-expanding-section",
-        "BTN-expanding-magnitude",
-        "BTN-expanding-lambda",
-        "BTN-expanding-j2",
-        "BTN-expanding-j2-third",
-        "BTN-expanding-j2-lambda",
-        "BTN-expanding-j3",
-        "BTN-expanding-j3-j1",
-        "BTN-expanding-j3-lambda"
-      ],
-      "line": 201,
-      "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "jet2_expandingDGain_two",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "The order-2 jet of a section: `jet2 (IZ a x) = (a.toInt, lsdZ x)`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2025,11 +1893,11 @@
       ],
       "line": 206,
       "module": "Problems.BalancedTernary.ExpandingD",
-      "name": "DZ_expandingDGain_three",
+      "name": "jet2_IZ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The jet reads back a trit window: `jet2 (a + 3 * b) = (a, b)` for trits `a`, `b`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2045,7 +1913,139 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 215,
+      "line": 212,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "jet2_of_window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every trit window `(a, b)` is sent to `(-a, a)`: `jet2 (T (a + 3 * b)) = (-a, a)`, so the second input digit is discarded.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 225,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "jet2_residue_closure",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A multiple of `3` has least significant digit `0`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 234,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "lsdZ_mul3",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The carry after a gain-`2` step: `DZ (T_2 n) = 3 * DZ n`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 238,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "DZ_expandingDGain_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The order-2 jet at gain `2`: `jet2 (T_2 n) = (lsdZ n, 0)`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 247,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "jet2_expandingDGain_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The carry after a gain-`3` step: `DZ (T_3 n) = 3 * DZ n`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 253,
+      "module": "Problems.BalancedTernary.ExpandingD",
+      "name": "DZ_expandingDGain_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The order-2 jet at gain `3` is constant: `jet2 (T_3 n) = (0, 0)`.",
+      "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-expanding-lsd",
+        "BTN-expanding-right-inverse",
+        "BTN-expanding-section",
+        "BTN-expanding-magnitude",
+        "BTN-expanding-lambda",
+        "BTN-expanding-j2",
+        "BTN-expanding-j2-third",
+        "BTN-expanding-j2-lambda",
+        "BTN-expanding-j3",
+        "BTN-expanding-j3-j1",
+        "BTN-expanding-j3-lambda"
+      ],
+      "line": 263,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet2_expandingDGain_three",
       "trust": "kernel"
@@ -2067,13 +2067,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 221,
+      "line": 269,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`jet2` is the length-2 prefix of `jet3`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2089,13 +2089,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 224,
+      "line": 273,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet2_eq_prefix_jet3",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The order-3 jet of one step: `jet3 (T n) = (-lsdZ n, lsdZ n, lsdZ (DZ n))`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2111,13 +2111,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 228,
+      "line": 278,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_expandingD",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The order-3 jet of a step factors through the order-2 jet of the input: `jet3 (T n) = (-(jet2 n).1, (jet2 n).1, (jet2 n).2)`. The third input digit is discarded.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2133,13 +2133,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 233,
+      "line": 286,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_factors_through_jet2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Truncating the order-3 jet of a step gives its order-2 jet.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2155,13 +2155,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 238,
+      "line": 292,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_expandingD_commutes_with_jet2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The order-3 jet of a section: `jet3 (IZ a x) = (a.toInt, lsdZ x, lsdZ (DZ x))`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2177,13 +2177,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 242,
+      "line": 297,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_IZ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The jet reads back a three-trit window: `jet3 (a + 3 * b + 9 * c) = (a, b, c)`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2199,13 +2199,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 247,
+      "line": 303,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_of_window",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A three-trit window `(a, b, c)` is sent to `(-a, a, b)`, so `c` is discarded.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2221,13 +2221,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 261,
+      "line": 318,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_residue_closure",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The carry of `3 * m` is `m`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2243,13 +2243,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 271,
+      "line": 329,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "DZ_mul3",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The order-3 jet at gain `2`: `jet3 (T_2 n) = (lsdZ n, 0, lsdZ (DZ n))`.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2265,13 +2265,13 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 276,
+      "line": 335,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_expandingDGain_two",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The order-3 jet at gain `3`: `jet3 (T_3 n) = (0, 0, lsdZ (DZ n))`. Gain `3` collapses the first two coordinates but not the third -- the second input digit survives.",
       "file": "formal/Problems/BalancedTernary/ExpandingD.lean",
       "kind": "theorem",
       "ledger": [
@@ -2287,7 +2287,7 @@
         "BTN-expanding-j3-j1",
         "BTN-expanding-j3-lambda"
       ],
-      "line": 281,
+      "line": 342,
       "module": "Problems.BalancedTernary.ExpandingD",
       "name": "jet3_expandingDGain_three",
       "trust": "kernel"
@@ -33382,6 +33382,126 @@
       "trust": "kernel"
     },
     {
+      "doc": "`n` and its first `t` iterates all exceed `N0`.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 24,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveTo",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "instance",
+      "ledger": [],
+      "line": 27,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveTo.decidable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 31,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveTo_of_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Starts in `{1, \u2026, N}` with itinerary `w` that stay above `N0` for `|w|` steps.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 39,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 47,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveWeight_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The live class of a one-letter extension sits inside the live class of the word.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 53,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveClass_extend_subset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The two one-letter extensions have disjoint live classes.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 68,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveClass_extend_disjoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The live count is a `WeightSplit` weight: the two children carry at most the parent's count.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveWeight_weightSplit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 101,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveCount_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Starts live for `d` steps with at least `k` odd letters, counted by their word.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 108,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveCount_sum_oddCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 131,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "liveWeight_weightGen_zero_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The Tao-type count on Juggler orbits from no momentum.** If the live count of starts in `{1, \u2026, N}` above the floor `N0` has no momentum at tilt `x` against `q` to depth `d` (`NoMomentum`), then the number of starts that stay above `N0` for `d` steps with at least `k` odd letters is at most `N \u00b7 a_q^d \u00b7 exp(c_q \u03b4 d) / x^k`.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 146,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "juggler_count_le_of_noMomentum",
+      "trust": "kernel"
+    },
+    {
       "doc": "For every real `x` and integers `o`, `t`: `o * x - t \u2261 o * (x - 1)` mod `1`.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
@@ -63496,6 +63616,7 @@
         "Problems.Juggler.LeftoverPreimage",
         "Problems.Juggler.LeftoverShort",
         "Problems.Juggler.LengthEightCensus",
+        "Problems.Juggler.LiveCountWeight",
         "Problems.Juggler.LogLogClock",
         "Problems.Juggler.MasterIdentity",
         "Problems.Juggler.MeanValues",
@@ -64453,6 +64574,14 @@
         }
       ]
     },
+    "Problems.Juggler.LiveCountWeight": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "imports": [
+        "Problems.Juggler.TiltedShare"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.LogLogClock": {
       "declarations": 22,
       "file": "formal/Problems/Juggler/LogLogClock.lean",
@@ -65324,13 +65453,13 @@
     }
   },
   "totals": {
-    "declarations": 4634,
+    "declarations": 4646,
     "declarations_with_a_ledger_row": 3172,
-    "ledger_rows_naming_a_file": 326,
-    "modules": 192,
+    "ledger_rows_naming_a_file": 327,
+    "modules": 193,
     "trust": {
       "compiler": 55,
-      "kernel": 4579
+      "kernel": 4591
     }
   }
 }

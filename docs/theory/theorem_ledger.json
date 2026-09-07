@@ -2461,7 +2461,9 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_d.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "lsdZ_iterate_expandingD",
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-expanding-right-inverse",
@@ -2494,7 +2496,9 @@
   "tests": [
    "tests/research/balanced_ternary/test_expanding_d.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "magnitude_contraction_false",
+  "lean_trust": "compiler"
  },
  {
   "id": "BTN-expanding-lambda",
