@@ -7,12 +7,22 @@ rebuilt from the parity comparison as the paper states it.
 
 from __future__ import annotations
 
+import hashlib
+import json
 import math
 
 import pytest
 
 from research.juggler_sequence import paper_a_audit as A
-from research.juggler_sequence.lean_paths import DOCS_THEORY
+from research.juggler_sequence import run_suffix_law as R
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_THEORY
+
+APPENDIX_B_CHUNK = (
+    DATA_ROOT / "cycle_finance" / "floor_verify" / "N26254995" / "chunks" / "3_250002.json"
+)
+APPENDIX_B_CHUNK_SHA256 = (
+    "6303b62c9b1819deaf9715338f84899c1d75eb50dcab850a7b8fb28874ec19bc"
+)
 
 
 # --- the criterion itself ---
@@ -302,3 +312,62 @@ def test_paper_c_does_not_print_the_stratification_scales():
     )
     for mantissa in (r"2.5\cdot10^{11}", r"6.5\cdot10^{12}", r"1.2\cdot10^{17}"):
         assert mantissa not in text, f"Paper C now prints {mantissa}"
+
+
+# --- Section 3.9 printed numbers and Appendix B's 10^6 certificate ---
+
+
+def test_corollary_3_27_ten_suffixes_match_the_law() -> None:
+    """Eleven statements, ten suffixes: least-a and n_u are run_suffix_law evaluations."""
+    paper = (DOCS_THEORY / "juggler_finite_dynamics_note.md").read_text(encoding="utf-8")
+    assert "eleven statements, ten suffixes" in paper
+    least_a = [R.least_run(suffix) for suffix, _printed, _src in R.RECOVERIES]
+    n_u = [R.threshold_exact(a, suffix) for (suffix, _p, _s), a in zip(R.RECOVERIES, least_a)]
+    assert least_a == [2, 4, 3, 6, 5, 4, 3, 5, 4, 3]
+    assert n_u == [1032, 205, 109, 73, 60, 45, 30, 60, 45, 30]
+    assert "1032,205,109,73,60,45,30,60,45,30" in paper.replace(" ", "")
+
+
+def test_corollary_3_30_sharp_thresholds_match_the_law() -> None:
+    paper = (DOCS_THEORY / "juggler_finite_dynamics_note.md").read_text(encoding="utf-8")
+    sharp = [
+        R.threshold_sharp(R.least_run(suffix), suffix) for suffix, _p, _s in R.RECOVERIES
+    ]
+    assert sharp == [7, 6, 6, 5, 5, 5, 5, 5, 5, 5]
+    assert r"7,\;6,\;6,\;5,\;5,\;5,\;5,\;5,\;5,\;5" in paper
+
+
+def test_remark_3_32_census_counts_match_the_law() -> None:
+    paper = (DOCS_THEORY / "juggler_finite_dynamics_note.md").read_text(encoding="utf-8")
+    for e, words, closed_at in ((3, 16, 16), (4, 186, 16), (5, 2037, 16), (6, 25353, 16)):
+        rec = R.closure(e)
+        assert rec["words"] == words
+        assert rec["closed_at"] == closed_at
+        assert rec["still_open"] == []
+    assert "325452" in paper.replace(",", "")
+    assert r"7\cdot10^{-5}" in paper
+
+
+def test_appendix_b_million_certificate_is_the_opening_chunk() -> None:
+    """Prop 1.3's 253 steps at 78901 live in the N26254995 opening chunk, not floor.json."""
+    raw = APPENDIX_B_CHUNK.read_bytes()
+    digest = hashlib.sha256(raw).hexdigest()
+    assert digest == APPENDIX_B_CHUNK_SHA256
+    payload = json.loads(raw)
+    assert payload["max_steps"] == 253
+    assert payload["hardest_seed"] == 78901
+    paper = (DOCS_THEORY / "juggler_finite_dynamics_note.md").read_text(encoding="utf-8")
+    appendix_b = paper[paper.index("## Appendix B"):]
+    assert APPENDIX_B_CHUNK_SHA256 in appendix_b
+    assert "253" in appendix_b and "78901" in appendix_b
+    assert "3_250002.json" in appendix_b
+    assert "n_{\\mathrm{top}}=2\\cdot10^6" in appendix_b
+
+
+def test_appendix_b_n_max_one_is_the_conservative_table() -> None:
+    """Exact 6/5 crossing at L=1 is 2; the printed table keeps 3, same species as 50508."""
+    assert A.n_max(1) == 2
+    paper = (DOCS_THEORY / "juggler_finite_dynamics_note.md").read_text(encoding="utf-8")
+    appendix_b = paper[paper.index("## Appendix B"):]
+    assert r"| \(1\) | \(1\) | \(3\) |" in appendix_b
+    assert r"exact \(6/5\) crossing is \(2\)" in appendix_b

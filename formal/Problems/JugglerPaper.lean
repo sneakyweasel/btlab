@@ -15,6 +15,7 @@ import Problems.Juggler.LeftoverEval
 import Problems.Juggler.LeftoverPreimage
 import Problems.Juggler.LeftoverShort
 import Problems.Juggler.LeftoverFamilies
+import Problems.Juggler.O7EEEEGap
 import Problems.Juggler.EvenCountThree
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.NormalizedDefect
@@ -102,6 +103,8 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 3.21a classification case split of Theorem 3.22
 * 3.22 `no_cycle_itinerary_even_count_le_three`
 * 3.23 `cycle_itinerary_length_ge_eleven`
+* 3.28 `absorb_odd_step`, `cross_mul_pow`, `odd_run_ge`,
+      `o7_image_ge_succ_pow16` (`O7EEEEGap.lean`)
 * 4.1 `log_le_two_log_add`
 * 4.2 `log_step_even`, `log_step_odd`
 * 4.3 `cycleMin_log_envelope`

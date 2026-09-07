@@ -1,7 +1,7 @@
 ---
 title: "Cycle Financing and Near-Convergent Diophantine Obstructions in the Juggler Map"
 author: Philippe Cochin
-date: 3 September 2026
+date: 7 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -60,8 +60,12 @@ period at least \(478245\). The main numerical result evaluates it once more at
 the third certified floor \(N_0=350000000\): any nontrivial
 Juggler cycle has period at least \(780239\). We
 also prove that every nontrivial cycle contains at least four
-even steps, and hence has period at least eleven; that bound
-uses no descent floor. A floor-free gap transfer,
+even steps, and hence has period at least eleven (Theorem 3.22);
+that Lean statement uses no descent floor and holds for every
+\(n\ge 2\). A computational strengthening (Theorem 3.31) raises
+the even count to eight and the period to twenty-two once the
+cycle minimum is at least \(300\) --- every \(n\le 299\) reaches
+\(1\). That enumeration is not Lean. A floor-free gap transfer,
 \(n\log n\cdot\min(o\log 3-L\log 2,\,1)\le 2L\), combined with
 Rhin's effective measure, excludes every cycle with
 \(L^{14.3}\le n\log n/915\) and reduces the no-cycle problem to
@@ -253,7 +257,9 @@ amplifies that floor to the period bound.
 Roadmap. Section 2 records the power envelope and the exact
 defect identity that explains it. Section 3 classifies
 minimum-based cycle itineraries and proves that every nontrivial
-cycle has at least four even letters. Section 4 records the
+cycle has at least four even letters (Theorem 3.22); Theorem 3.31
+raises that to eight even letters, and period at least twenty-two,
+once the cycle minimum is at least \(300\). Section 4 records the
 excursion necklace of a minimum-based itinerary, unrolls the one-step-preimage
 logarithm around that minimum, obtains the finance inequality,
 and applies it at the known floor \(10^6\). The necklace is
@@ -297,9 +303,14 @@ cycle minimum.
 **Contribution 2 — structural itinerary obstruction.**
 Every nontrivial cycle itinerary has at least four even letters, and
 hence period at least eleven (Theorem 3.22 and Corollary 3.23).
-The argument classifies the minimum-based itinerary geometry; it is
-not a raw census of itineraries of length at most ten. This bound does
-not use the verified descent floor.
+That is the Lean statement, for every \(n\ge 2\), and it uses no
+descent floor. The argument classifies the minimum-based itinerary
+geometry; it is not a raw census of itineraries of length at most ten.
+Theorem 3.31 is a computational strengthening of the same two
+envelopes: once the cycle minimum is at least \(300\) (every
+\(n\le 299\) reaches \(1\)), no cycle itinerary has fewer than eight
+even letters, so a nontrivial cycle has period at least twenty-two.
+That enumeration is not Lean.
 
 **Contribution 3 — explicit conditional consequence for
 hypothetical cycles.**
@@ -456,8 +467,10 @@ extremal rotation itinerary by Denjoy--Koksma over certified
 Ostrowski blocks raises that period bound to \(176251\) at the
 laboratory floor, census-free on an explicit window of lengths,
 and — by certified evaluation of the same kill criterion on the
-survivors beyond that window — to \(478245\) at the second
-certified floor and \(780239\) at the third.
+surviving lengths, all of which lie inside that window, the
+comparison against \(\theta(L)\) remaining per-length — to
+\(478245\) at the second certified floor and \(780239\) at the
+third.
 
 ### 1.2 Verification
 
@@ -1228,7 +1241,7 @@ flat factor \(4\) per step by a loss of relative size \(1/(x\log x)\) at
 a state \(x\), which is how the bound \(n\log n\,\theta\le L\) of
 Theorem 4.4 gains the factor \(n\log n\) that Theorem 3.26 does not have.
 
-**Corollary 3.27 (the eleven exclusions are one table).**
+**Corollary 3.27 (eleven statements, ten suffixes).**
 Each row below is Theorem 3.26 for one suffix. The column *least
 \(a\)* is the least odd-run length with \((3/2)^a>T(u)\); the
 column \(n_u\) is the least cycle minimum at which the law fires,
@@ -3117,7 +3130,9 @@ blocks the starts that enter \(C\) have natural density
 \(\gg(\log y)^{-0.508}\).
 The two constraints do not meet. This paper bounds the *states* of
 \(C\) — minimum above \(3.5\cdot10^8\), period at least \(780239\),
-at least four even steps — and thereby the seed of the basin. In fact
+at least four even steps in Lean (Theorem 3.22) and eight even
+steps once the minimum is at least \(300\) (Theorem 3.31) — and
+thereby the seed of the basin. In fact
 it pins that seed from both sides: Corollary 4.4c is the lower bound
 and \(x_i\ge n\) the upper one,
 \[
@@ -3249,7 +3264,7 @@ Theorem 4.8.
 | Lemma 3.24 | closed form of Lemma 3.10; no separate Lean name |
 | Lemma 3.25 | generalizes `cycle_trailing_evens_lt` past pure even runs |
 | Theorem 3.26 | Corollary 3.27's ten rows are Theorems 3.12--3.21 above |
-| Lemma 3.28 | `absorb_odd_step`, `cross_mul_pow`, `odd_run_ge` (`O7EEEEGap.lean`); \(X_7,Y_7\) are that module's 6177 and 3990 |
+| Lemma 3.28 | `absorb_odd_step`, `cross_mul_pow`, `odd_run_ge` (`O7EEEEGap.lean`, now imported by `Problems.JugglerPaper`); \(X_7,Y_7\) are that module's 6177 and 3990 |
 | Theorem 3.29 | `no_cycle_itinerary_oooooooeeee` is the row \(u=EEEE\), \(a=7\) |
 | Theorem 3.31 | enumeration in `run_suffix_law.closure`; not yet Lean |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
@@ -3320,13 +3335,20 @@ with no spaces, is
 `dd71aa1527656ba51cb031bafa5497f7bfdbbc43151ffba2c595793326bf7944`.
 The SHA-256 of the whole file `exceptions_parity.json` is
 `6b4eec79295b70cdeb9f7db677b7fd57bcb9bd1b51177e1e74aad7bd6e2262ff`.
-The SHA-256 of the first-passage file `floor.json` in the same
-directory is
-`5b1ce1eec61301cf5b4f969cd5b58954255194e5c7b21c08a518d71679af87fc`.
-The parity table is written by
+The \(10^6\) longest first-passage figures of Proposition 1.3
+(\(253\) steps at seed \(78901\)) are the opening chunk of the
+laboratory-floor certificate,
+`data/research/juggler/cycle_finance/floor_verify/N26254995/chunks/3_250002.json`
+(\(3\le n\le 250002\); SHA-256
+`6303b62c9b1819deaf9715338f84899c1d75eb50dcab850a7b8fb28874ec19bc`).
+The file `floor.json` in the same directory as
+`exceptions_parity.json` is a later \(n_{\mathrm{top}}=2\cdot10^6\)
+companion and is not the \(10^6\) certificate. The parity table is
+written by
 `research.juggler_sequence.cycle_finance.write_parity_artifacts`.
-The first-passage file is regenerated by
-`python -m research.juggler_sequence.cycle_finance`.
+The row \(L=1\) of the table above prints \(n_{\max}=3\), the
+conservative generator; the exact \(6/5\) crossing is \(2\), the
+same guard species as the \(50508\) row documented at Theorem 5.2.
 
 The run-type table of Theorem 4.8 is
 `data/research/juggler/cycle_finance/budget_opt.json`. The

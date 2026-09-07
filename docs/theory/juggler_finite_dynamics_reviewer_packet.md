@@ -29,10 +29,14 @@ The former single note has been split into two manuscripts:
   gives \(L\ge 478245\); the main numerical result is
   \(L\ge 780239\) at the third certified floor \(350000000\)
   (Corollary 5.11) — certified evaluations of the same kill
-  criterion on the survivors, including lengths beyond the
-  census-free window; they are not extensions of Theorem 5.8.
-  Theorem 3.22 (\(e\ge 4\)) is the Section 3 structural
-  headline. Theorem 4.7 is the supporting run-packing
+  criterion on the survivors; those lengths sit inside
+  \([50508,16785921)\), and the comparison against \(\theta(L)\)
+  stays per-length; they are not extensions of Theorem 5.8.
+  Theorem 3.22 (\(e\ge 4\), period \(\ge 11\)) is the Section 3
+  structural headline, Lean-verified for every \(n\ge 2\).
+  Theorem 3.31 is the computational strengthening: \(e\ge 8\)
+  and period \(\ge 22\) once the cycle minimum is at least
+  \(300\). Theorem 4.7 is the supporting run-packing
   refinement. Section 4 opens with the excursion necklace of a
   minimum-based itinerary: organizing prose, not a new theorem.
   Finance-survivor arithmetic is secondary. Lemma 4.4b is the
@@ -116,7 +120,10 @@ Appendix C; Theorem 4.4 uses only the envelope's nonnegativity.
 One-step-preimage geometry classifies minimum-based itineraries with at
 most three evens; the small-cycle censuses and the family
 calculations (both Appendix D) assemble
-to \(e\ge 4\), hence period at least eleven (Theorem 3.22). The
+to \(e\ge 4\), hence period at least eleven (Theorem 3.22). Once
+the cycle minimum is at least \(300\) (every \(n\le 299\) reaches
+\(1\)), the same geometry gives \(e\ge 8\) and period at least
+twenty-two (Theorem 3.31, computationally verified; not Lean). The
 financing inequality at a cycle minimum (Theorem 4.4,
 constant \(1\)), with the convenient statewise bound of
 Corollary 4.5 and the certified descent floor of
@@ -127,11 +134,12 @@ Section 5 couples the states through one closed exponent walk:
 transport to a reduced base, the hug adversary, the itinerary
 identity, and Denjoy--Koksma over certified Ostrowski blocks
 give a census-free envelope on \([50508,16785921)\), covering the
-whole semiconvergent fan; the kill
+whole semiconvergent fan and bounding the charge; the kill
+comparison against \(\theta(L)\) stays per-length. The kill
 table yields \(L\ge 176251\) at the laboratory floor, and a
 certified evaluation of the same criterion at the second floor
-\(162849448\) — beyond the window, not through it — yields
-\(L\ge 478245\), and a third certified floor \(350000000\)
+\(162849448\) — the surviving lengths sit inside that window —
+yields \(L\ge 478245\), and a third certified floor \(350000000\)
 yields the main bound \(L\ge 780239\).
 Finance-survivor lengths through \(10^5\) and their lattice
 are supporting material. Short certificates are a remark in
@@ -172,6 +180,7 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\), \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) (Theorems 3.14--3.20) | **EXACT — LEAN VERIFIED** | seven families only; not a length-8 or length-9 census |
 | Gapped leftovers as cycle itineraries (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
 | Canonical run form (Lemma 3.21b); classification (Lemma 3.21a); even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | minimum-based itineraries are \(O^aEO^bEO^cE\); no cycle itinerary with fewer than four evens; expansion corollary, not a length-9 or length-10 itinerary census |
+| Lemmas 3.24--3.25; Theorems 3.26, 3.29; even-count \(e\ge 8\), period \(\ge 22\) at minima \(\ge 300\) (Theorem 3.31) | **COMPUTATIONALLY VERIFIED** | cycle minima \(\ge 300\) (every \(n\le 299\) reaches \(1\)); enumeration in `run_suffix_law.closure`; not Lean; Theorem 3.22 remains the floor-free Lean bound |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7, Appendix C); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists; recorded for future work |
 | Excursion necklace (Section 4 opening) | organizing; no new tag | names the circular itinerary of Theorem 3.2, Lemma 3.4, Lemma 3.21b, and the last-even one-step preimage; first peak overshoots, last peak lands in the entry one-step preimage; not a contradiction and not a halt theorem |
 | Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); conceptual sharp form; not a halt theorem |
@@ -190,8 +199,8 @@ Proposition 7.4 says nothing about the deterministic shift).
 | Denjoy--Koksma block envelope (Theorem 5.7) | **EXACT — HUMAN PROOF** | DK classical, stated in §5.5 with the \(\alpha\to\theta\) coordinate change; per-block hypotheses Lean (`theta_convergent_quality`, `theta_block_permutations`) |
 | Census-free window envelope on \([50508,16785921)\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | digit caps Lean and structural (\(s(L)\le47\) below \(q_{13}\), \(s(L)\le b+47\) above); the scan sharpens a constant on the old sub-window. Bounds the **charge** only — the kill comparison against \(\theta(L)\) remains per-length |
 | Kill table, period \(\ge 176251\) (Theorem 5.9) | **COMPUTATIONALLY VERIFIED** | kill template Lean (`cycleMin_hug_kill_criterion`); per-length evaluation certified computation |
-| Second floor \(162849448\), period \(\ge 478245\) (Corollary 5.10) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion beyond the window; **not** an extension of Theorem 5.8 |
-| Third floor \(350000000\), period \(\ge 780239\) (Corollary 5.11) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion beyond the window; **not** an extension of Theorem 5.8 |
+| Second floor \(162849448\), period \(\ge 478245\) (Corollary 5.10) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion on a length inside the window; the window bounds the charge, the kill stays per-length; **not** an extension of Theorem 5.8 |
+| Third floor \(350000000\), period \(\ge 780239\) (Corollary 5.11) | **COMPUTATIONALLY VERIFIED** | certified evaluation of the same criterion on a length inside the window; the window bounds the charge, the kill stays per-length; **not** an extension of Theorem 5.8 |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 6) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of the short-certificate remark |
@@ -247,7 +256,7 @@ Paper B's type, imported as the explicit standalone Hypothesis L.
 | Sweep lemma \(\ge H/7\); monotone pairing \(\ge H/3-2\); thin bad fibers (Lemmas 4.1, 4.1', 4.2–4.3) | **EXACT — HUMAN PROOF** | elementary; pairing written in full; \(m\ge 10^6\) |
 | Block average \(|U(m')|\ge\tfrac14|I(m')_{\rm odd}|-250\,m'^{11/9}\log(m'+1)\) (Proposition 4.4) | **EXACT — HUMAN PROOF** | Vaaler + second-derivative test + Kusmin–Landau; \(C_0=250\) explicit; not sharp |
 | Recursion lemma (Lemma 5.1) | **EXACT — HUMAN PROOF** | abstract: functional inequality with vanishing errors gives \(g\gg t^{\lambda}\) |
-| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<0.4480\) (Theorem 5.3; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; pairing recursion; excludes no fate |
+| Log-density of a backward-closed set \(\gg(\log x)^{\lambda}\), \(\lambda<\lambda^{**}=0.4926\) (Theorem 5.3; Theorem 1) | **EXACT — HUMAN PROOF** | the main theorem; pairing recursion; excludes no fate |
 | Fate contagion, natural density infinitely often (Corollaries 5.4, 5.5) | **EXACT — HUMAN PROOF** | \((\log y)^{\lambda-1}\) on infinitely many dyadic blocks, not all |
 | Odd generation; \(F\) is the \(E\)-forest over odd preimages of \(F\cap S\) (Theorem 6.1; Theorem 2) | **EXACT — LEAN VERIFIED** | `odd_mem_iff`, `nonempty_iff_odd_image_mem` |
 | Exact first-letter decomposition (6.1); free term \(\psi_F\); \(\psi_F\equiv0\iff F=\emptyset\) (Proposition 6.3) | **EXACT — HUMAN PROOF** | \(S\)-fairness defined (Def. 6.2); the walk argument is Remark 6.4, labelled heuristic, not a theorem |

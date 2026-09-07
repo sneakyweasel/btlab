@@ -3725,9 +3725,20 @@
   "related_conjectures": []
  },
  {
+  "id": "J-even-count-le-eight",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "No cycle itinerary with cycle minimum at least 300 has fewer than eight even letters, so a nontrivial cycle has period at least twenty-two (Paper A Theorem 3.31). Every n ≤ 299 reaches 1. The e ≤ 7 census enumerates 16 + 186 + 2037 + 25353 + 325452 canonical forms and closes them by the sharp run-suffix law of Theorem 3.29; the last family closes at n ≥ 64. Theorem 3.22 remains the floor-free Lean bound (e ≥ 4, period ≥ 11 for every n ≥ 2). Enumeration in run_suffix_law.closure; not Lean and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_run_suffix_law.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-o7eeee-gap",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If n ≥ 2 follows the Juggler word O^7, then T^7(n) ≥ (n+1)^16. In particular the EEEE inverse cell [n^16, (n+1)^16) is empty of seven-odd images, so O^7 EEEE is not a cycle itinerary. Lean theorems o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee in O7EEEEGap.lean. Proof: no_follows_seven_odds_of_lt256 excludes n < 256; on an O^7 run the exact cells x_k^3 < (x_{k+1}+1)^2 and x_k ≥ n compose to n^{6177} < (n+1)^{3990} (T^7(n)+1)^{128}; for n ≥ 256 one has n^{6177} > (n+1)^{6038} because 257^{256} < 3·256^{256} and 256^{139} > 2^{40} > 3^{24} > (257/256)^{6038}. This replaces the leftover 4-fudge (first fire at 828484409) by the exact successor cell. Not a length-11 census and not a halt theorem. Not imported by JugglerPaper.",
+  "statement": "If n ≥ 2 follows the Juggler word O^7, then T^7(n) ≥ (n+1)^16. In particular the EEEE inverse cell [n^16, (n+1)^16) is empty of seven-odd images, so O^7 EEEE is not a cycle itinerary. Lean theorems o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee in O7EEEEGap.lean. Proof: no_follows_seven_odds_of_lt256 excludes n < 256; on an O^7 run the exact cells x_k^3 < (x_{k+1}+1)^2 and x_k ≥ n compose to n^{6177} < (n+1)^{3990} (T^7(n)+1)^{128}; for n ≥ 256 one has n^{6177} > (n+1)^{6038} because 257^{256} < 3·256^{256} and 256^{139} > 2^{40} > 3^{24} > (257/256)^{6038}. This replaces the leftover 4-fudge (first fire at 828484409) by the exact successor cell. Not a length-11 census and not a halt theorem. Imported by JugglerPaper (Paper A Lemma 3.28).",
   "source": "docs/problems/juggler_o7eeee_gap.md",
   "lean": "Problems/Juggler/O7EEEEGap.lean",
   "tests": [

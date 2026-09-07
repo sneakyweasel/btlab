@@ -5,13 +5,11 @@ namespace Problems.Juggler
 /-!
 # O^7 image above the EEEE cell
 
-Laboratory satellite. If `n ≥ 2` follows seven odds, then
-`T^7(n) ≥ (n+1)^16`. The leftover `4`-fudge is not used; the exact
+Paper A Lemma 3.28 / Theorem 3.29 row. If `n ≥ 2` follows seven odds,
+then `T^7(n) ≥ (n+1)^16`. The leftover `4`-fudge is not used; the exact
 cell `(T+1)^2 > x^3` plus `x_k ≥ n` fires at the existing seven-odd
-cutoff `256`.
-
-Not imported by `Problems.JugglerPaper`. Not a length-11 census and
-not a halt theorem.
+cutoff `256`. Imported by `Problems.JugglerPaper`. Not a length-11
+census and not a halt theorem.
 -/
 
 set_option maxHeartbeats 4000000

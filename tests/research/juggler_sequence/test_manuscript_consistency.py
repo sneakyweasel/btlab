@@ -630,3 +630,63 @@ def test_the_offset_is_paper_b_only() -> None:
         ahead, aligned = _offset_counts(read(path))
         assert ahead == 0, f"Paper {name} gained an offset: {ahead} items"
         assert aligned >= 25, f"Paper {name}: only {aligned} aligned items"
+
+
+# --- Paper A verification surfaces: 3.31, barrel, companion tags ---
+
+
+LEDGER_TAGS = {
+    "EXACT — HUMAN PROOF",
+    "EXACT — LEAN VERIFIED",
+    "COMPUTATIONALLY VERIFIED",
+    "CONJECTURE",
+    "OBSERVATION",
+    "REFUTED",
+    "REPARAMETERIZATION",
+}
+
+JUGGLER_PAPER = ROOT / "formal" / "Problems" / "JugglerPaper.lean"
+
+
+def test_packet_and_readme_name_theorem_3_31_and_lambda_star_star() -> None:
+    for doc in (PACKET, README):
+        text = read(doc)
+        assert "3.31" in text, doc.name
+        assert "0.4926" in text, doc.name
+
+
+def test_readme_does_not_quote_pairing_as_the_live_paper_c_exponent() -> None:
+    text = read(README)
+    assert "0.4926" in text
+    assert "0.5074" in text
+    assert "0.4480" not in text
+    assert re.search(r"\(log x\)\^\{0\.448\}", text) is None
+
+
+def test_manuscript_does_not_put_survivors_beyond_the_window() -> None:
+    """478245 and 780239 sit inside [50508, 16785921); the kill stays per-length."""
+    assert "survivors beyond that window" not in read(PAPER)
+    assert "survivors beyond that window" not in read(MIRROR)
+
+
+def test_o7eeeegap_is_imported_by_the_paper_barrel() -> None:
+    text = read(JUGGLER_PAPER)
+    assert "import Problems.Juggler.O7EEEEGap" in text
+    leftover = text.index("import Problems.Juggler.LeftoverFamilies")
+    gap = text.index("import Problems.Juggler.O7EEEEGap")
+    even = text.index("import Problems.Juggler.EvenCountThree")
+    assert leftover < gap < even
+
+
+def test_companion_claim_tags_are_ledger_tags() -> None:
+    tags = re.findall(r'tag:\s*"([^"]+)"', read(APP_CLAIMS))
+    assert tags
+    unknown = sorted(set(tags) - LEDGER_TAGS)
+    assert unknown == [], unknown
+
+
+def test_companion_prints_corollary_5_11() -> None:
+    text = read(APP_CLAIMS)
+    assert "Corollary 5.11" in text
+    assert "350,000,000" in text
+    assert "780,239" in text

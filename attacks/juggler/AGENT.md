@@ -34,6 +34,9 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   `J-cycle-period-seven-hundred-eighty-thousand`). Previous floor
   \(N_0=162849448\) gives period \(\ge 478245\). Paper A prints the
   \(26254995\) floor (period \(\ge 176251\)), then Corollaries 5.10–5.11.
+  The floor-free Lean bound is still \(e\ge 4\), \(L\ge 11\)
+  (Theorem 3.22); the printed computational strengthening is
+  Theorem 3.31 (\(e\ge 8\), \(L\ge 22\) at minima \(\ge 300\)).
   Walk program is terminal (`juggler_walk_fan_minimum_law`, CONJECTURE).
   Laboratory-kill of remaining near-convergents is **CLOSE**
   (`juggler_cycle_diophantine_survivors`). Baker/SdW **REFUTED**

@@ -37,9 +37,9 @@ export const CLAIM_ROWS = [
   },
   {
     plain:
-      "Using the cycle minimum at every step of an odd run, not only at its start, removes the constant entirely. That lifts the floor-free bound to eight even letters and period 22.",
+      "Using the cycle minimum at every step of an odd run, not only at its start, removes the constant entirely. That lifts the floor-free bound to eight even letters and period 22 once the cycle minimum is at least 300.",
     theorem: "Lemma 3.28 / Theorem 3.31",
-    tag: "EXACT — ENUMERATION VERIFIED",
+    tag: "COMPUTATIONALLY VERIFIED",
   },
   {
     plain: "At a cycle minimum, n log n times the surplus cannot exceed L · 3^o.",
@@ -67,6 +67,11 @@ export const CLAIM_ROWS = [
     tag: "COMPUTATIONALLY VERIFIED",
   },
   {
+    plain: "At the third certified floor 350,000,000, period ≥ 780,239.",
+    theorem: "Corollary 5.11",
+    tag: "COMPUTATIONALLY VERIFIED",
+  },
+  {
     plain:
       "The surviving lengths are one arithmetic progression of 56 terms, 176251 + 301994k, ending on the next convergent.",
     theorem: "Proposition 5.12 fan law",
@@ -88,13 +93,13 @@ export const CLAIM_ROWS = [
     plain:
       "The walk charge is worth about 0.44 ln n′ over the parity charge, so doubling its efficiency means squaring the descent floor.",
     theorem: "Remark 5.8a margin scaling",
-    tag: "EMPIRICAL SCALING LAW",
+    tag: "OBSERVATION",
   },
   {
     plain:
       "If every n ≤ 554,000,000 reaches 1, then the period is at least 1,082,233. The kill table is done; the floor is not.",
     theorem: "Corollary 5.14",
-    tag: "CONDITIONAL — KILL TABLE VERIFIED",
+    tag: "COMPUTATIONALLY VERIFIED",
   },
 ] as const;
 
@@ -118,7 +123,7 @@ export const DEFINITIONS = [
   {
     term: "CycleMin",
     meaning:
-      "The rotation of a cycle itinerary that starts at the smallest value. That spelling starts OO, ends E, and needs four evens.",
+      "The rotation of a cycle itinerary that starts at the smallest value. That spelling starts OO, ends E, and needs four evens in Lean (Theorem 3.22); eight evens once the minimum is at least 300 (Theorem 3.31).",
   },
   {
     term: "String",
@@ -150,7 +155,7 @@ export const NOT_CLAIMED = [
   "The census-free window of Theorem 5.8 bounds the charge, not the kill. The comparison against θ(L) is still per-length, so the kill tables are not census-free.",
   "Proposition 5.8b/5.8c bound the relaxation at the lengths where it can be measured. They do not prove the extremal walk is realizable at every length.",
   "Corollary 5.14 is conditional on a descent floor nobody has certified. It is a priced next step, not a theorem about periods.",
-  "Theorem 3.31 needs a cycle minimum above 64 and an enumeration of 353044 canonical forms. Theorem 3.22 remains the statement proved in Lean for every n at least 2, and the interactive checker implements that one.",
+  "Theorem 3.31 needs a cycle minimum at least 300 and an enumeration of 325452 seven-even forms. Theorem 3.22 remains the statement proved in Lean for every n at least 2, and the interactive checker implements that one.",
   "No independence-from-Peano-arithmetic claim is made. Goodstein is a different theorem.",
   "Paper B (parity discrepancy and descent densities) is a different manuscript.",
 ] as const;

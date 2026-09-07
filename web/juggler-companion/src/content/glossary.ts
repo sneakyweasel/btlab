@@ -35,11 +35,11 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     number: 2,
     term: "At the Cycle’s Abyss",
     blurb:
-      "The black ring marks CycleMin, the smallest value. That bead is odd and the next one is too; an even returns, and four evens are forced.",
+      "The black ring marks CycleMin, the smallest value. That bead is odd and the next one is too; an even returns, and four evens are forced in Lean (Theorem 3.22); eight once the minimum is at least 300 (Theorem 3.31).",
     body:
       "A cycle itinerary is a nonempty word that sends n back to n. CycleMin is the rotation at the smallest value: it starts OO and ends E. The stem is the walk before the first visit — not a cycle itinerary. The unique known loop is 1.",
     paper:
-      "§1 and Theorem 3.2: CycleMin. Theorem 3.22: #E ≥ 4. IdealCycleMin.lean.",
+      "§1 and Theorem 3.2: CycleMin. Theorem 3.22: #E ≥ 4 in Lean. Theorem 3.31: #E ≥ 8 once the minimum is at least 300. IdealCycleMin.lean.",
   },
   {
     slug: "cycle-survivors",
@@ -58,7 +58,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "Expanding versus contracting",
     blurb: "Count the O letters. Compare 3^o with 2 to the length. A real loop must expand.",
     body:
-      "Ignoring floors, o odd letters and length L would multiply n by 3^o / 2^L. If that ratio is less than 1 the itinerary is contracting; if it is greater, expanding. A contracting itinerary cannot close a nontrivial cycle. That is why every real loop must have enough O letters to beat the even shrinks — and, later, at least four E letters.",
+      "Ignoring floors, o odd letters and length L would multiply n by 3^o / 2^L. If that ratio is less than 1 the itinerary is contracting; if it is greater, expanding. A contracting itinerary cannot close a nontrivial cycle. That is why every real loop must have enough O letters to beat the even shrinks — and, later, at least four E letters in Lean, eight once the minimum is at least 300.",
     paper: "Theorem 3.2: a nontrivial cycle itinerary is formally expanding.",
   },
   {

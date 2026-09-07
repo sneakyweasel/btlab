@@ -3,9 +3,10 @@
 This page is the Lean companion to the two manuscripts: **Paper A**,
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)
 (cycle-length lower bounds; core lemmas Lean-backed, while the
-descent floors, Theorems 4.6, 4.8, 5.2, 5.9, and Corollaries 5.10--5.11
-are independently certified computations, and Denjoy--Koksma and
-the ergodic identification of \(C_*\) are classical prose), and **Paper B**,
+descent floors, Theorems 4.6, 4.8, 5.2, 5.9, Corollaries 5.10--5.11,
+and Theorem 3.31 are independently certified computations, and
+Denjoy--Koksma and the ergodic identification of \(C_*\) are
+classical prose), and **Paper B**,
 [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
 (parity discrepancy; human proofs over Lean-verified floor
 identities). Both are written to be readable without this page.
@@ -16,11 +17,12 @@ or `admit`. The review object for **Paper A** is the paper barrel
 That file imports only the modules named by Paper A (Appendix A of
 the note), including `CycleFinance.lean` for Theorem 4.4 (the
 census and length-exclusion companions live in
-`CycleFinanceLeftovers.lean`) and
+`CycleFinanceLeftovers.lean`), `O7EEEEGap.lean` for Lemma 3.28, and
 `RunSurvivorLattice.lean` for Proposition 4.9. It does
 not import `GapCells.lean` or `CycleHeightFinance.lean`. Laboratory
 satellites remain in `formal/Problems/Juggler.lean` and are not the
-review object.
+review object. Theorem 3.31 is an enumeration in
+`run_suffix_law.closure` and is not Lean.
 
 The package formalizes finite trajectories and conditional cycle structure.
 It does not prove that every positive integer reaches \(1\), that every trajectory
@@ -474,7 +476,10 @@ Theorem 3.13 is a minimum-based exclusion. It is not a `CycleItinerary`
 theorem at a non-minimum start. Theorem 3.21 upgrades those same
 words to `CycleItinerary`s by rotation. Theorem 3.22 assembles
 Theorems 3.12--3.21 as an even-count exclusion. It is not a
-length-9 or length-10 itinerary census.
+length-9 or length-10 itinerary census. `O7EEEEGap.lean` is a
+paper-barrel module (Lemma 3.28 / `o7_image_ge_succ_pow16`).
+Theorem 3.31 — \(e\ge 8\) and period \(\ge 22\) at cycle minima
+\(\ge 300\) — is computationally verified and is not Lean.
 
 The cycle-surplus identity of the note's Corollary 2.7 and the
 per-step scale bound are:

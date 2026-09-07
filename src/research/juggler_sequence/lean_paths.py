@@ -46,6 +46,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "LeftoverPreimage",
     "LeftoverShort",
     "LeftoverFamilies",
+    "O7EEEEGap",
     "EvenCountThree",
     "SmallCycleCensus",
     "NormalizedDefect",

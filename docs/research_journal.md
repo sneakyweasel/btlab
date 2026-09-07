@@ -38887,3 +38887,28 @@ reported as resting on the compiler. It strips docstrings now. The
 direction that bit me was harmless; the opposite direction — a real
 `native_decide` reported as kernel — is not, and that field is the one
 that must not lie.
+
+## Paper A verification pass: Theorem 3.31 in the front
+
+7 September 2026. A verification pass of Paper A found no false period
+bound. The only Paper A-ready result missing from the printed front was
+Theorem 3.31. It is now in the abstract, Contribution 2, Section 6.1,
+the reviewer packet, and the companion, tagged COMPUTATIONALLY VERIFIED
+and scoped to cycle minima at least 300. `O7EEEEGap.lean` is in the
+paper barrel for Lemma 3.28. Appendix B no longer hashes the later
+\(n_{\mathrm{top}}=2\cdot10^6\) `floor.json`; the \(10^6\)
+longest-passage claim points at the laboratory-floor opening chunk
+(253 steps at seed 78901). Companion tags that were outside the ledger
+vocabulary are gone. No \(N_0\) raise. No new Lean proof of 3.31.
+
+```text
+What was learned
+- a theorem already in the body can still be missing from every
+  reviewer-facing surface
+- hashing the current floor.json is not the same as hashing the
+  certificate the prose cites
+Branch status
+- PROMOTE (front-matter absorption of Theorem 3.31)
+Best next question
+- none; stop
+```
