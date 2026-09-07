@@ -2333,7 +2333,7 @@ uniform Birkhoff convergence for *continuous* observables — is not
 invoked directly. But the observable is monotone with a single jump,
 hence of bounded variation, and for such an observable §5.5's
 Denjoy--Koksma bound `denjoy_koksma_blocks` already gives
-\(|C_L-C_*|\le s(L)V/L\) at every \(L\). Unique ergodicity is not needed;
+\(|C_L-C_*|\le s(L)\,\mathrm{Var}(F)/L\) at every \(L\). Unique ergodicity is not needed;
 that Mathlib has no `UniquelyErgodic` costs this paper nothing.
 
 This is the infinite-itinerary average, not a finite-\(L\)
@@ -2479,12 +2479,13 @@ is `denjoy_koksma_blocks`: an induction over a list of certified pairs
 \((p_j,q_j)\), repeating a pair for each of the \(b_j\) copies, giving
 
 \[
-\Bigl|\sum_{k<L}f(x+k\theta)-L\int_0^1f\Bigr|\ \le\ s(L)\,V,
+\Bigl|\sum_{k<L}f(x+k\theta)-L\int_0^1f\Bigr|\ \le\ s(L)\,\mathrm{Var}(f),
 \qquad s(L)=\sum_jb_j,
 \]
 
-for any \(V\) bounding the variation over every window of length one. The
-displayed bound of Theorem 5.7 is this at \(V=2\), divided by \(L\).
+where \(\mathrm{Var}(f)\) bounds the variation over every window of length
+one. The displayed bound of Theorem 5.7 is this with
+\(\mathrm{Var}(F)<2\), divided by \(L\).
 
 **And the observable's own variation.** That
 \(F(u)=n'^{\,1-2^u}/2^u\) has \(\mathrm{Var}(F)<2\) including the wrap jump
@@ -2515,7 +2516,8 @@ given \(L\) into the block list.
 This also settles what Proposition 5.5 called classical. The ergodic
 *identification* of \(C_*\) is not an independent input: the observable is
 monotone with one jump, hence of bounded variation, and the display above
-forces \(|C_L-C_*|\le s(L)V/L\). Unique ergodicity is not needed for a
+forces \(|C_L-C_*|\le s(L)\,\mathrm{Var}(F)/L\). Unique ergodicity is not
+needed for a
 bounded-variation observable once Denjoy--Koksma is available --- which is
 why Mathlib's not having `UniquelyErgodic` costs this paper nothing.
 
