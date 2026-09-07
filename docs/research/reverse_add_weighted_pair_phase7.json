@@ -309,10 +309,10 @@
     "stored_statistics": [
       "sign_h2",
       "h2",
-      "h",
-      "m_plus",
       "m_minus",
-      "sign_h"
+      "h",
+      "sign_h",
+      "m_plus"
     ],
     "forbidden_keys": [
       "full_sum",

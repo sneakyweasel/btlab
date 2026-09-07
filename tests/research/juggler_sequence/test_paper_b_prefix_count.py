@@ -1143,8 +1143,8 @@ def test_depth_five_grades_three_ways(word: str, letters: list) -> None:
 
 
 def test_the_unblocked_depth_five_pair_has_the_better_exponent() -> None:
-    """43/48 beats 1 - 1/96, which is what a kernel-free argument should give."""
-    assert Fraction(43, 48) < 1 - Fraction(1, 96)
+    """47/48 beats 1 - 1/96, which is what a kernel-free argument should give."""
+    assert Fraction(47, 48) < 1 - Fraction(1, 96)
     for w in ("OOEOE", "OOEOO"):
         assert all(B.deepest_blocked(w, t) is None for t in range(3, 6)), w
 

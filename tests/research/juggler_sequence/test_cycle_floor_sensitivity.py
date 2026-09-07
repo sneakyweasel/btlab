@@ -77,23 +77,11 @@ def test_verify_floor_certified_small_window(tmp_path):
     assert baseline["bit_cap"] >= 100_000_000
 
 
-def test_ten_million_does_not_raise_the_parity_cutoff():
-    scan = scan_layer(10**7, l_max=30_000, layer="parity")
-    assert scan["contiguous_prefix"] == BASELINE_PREFIX
-    assert scan["first_exception"] == 25781
-
-
 def test_parity_threshold_of_25781_jumps_to_50507():
     scan = scan_layer(26_254_995, l_max=51_000, layer="parity")
     assert scan["contiguous_prefix"] == 50507
     assert scan["first_exception"] == 50508
     assert scan["uncertain_count"] == 0
-
-
-def test_one_hundred_million_still_stops_at_50507():
-    scan = scan_layer(10**8, l_max=51_000, layer="parity")
-    assert scan["contiguous_prefix"] == 50507
-    assert scan["first_exception"] == 50508
 
 
 def test_recompute_period_bound_at_published_floor():

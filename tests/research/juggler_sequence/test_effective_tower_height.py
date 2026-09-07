@@ -1,4 +1,8 @@
-"""Effective tower height: the fair-coin DP, its cross-check, and the tower tolerance."""
+"""Effective tower height: reset-rule order and the tower tolerance.
+
+The height-only identity against μ_4 needs `depth_cap=None`, which
+allocates a 10⁶-bin axis (~10 GB) and is not a fast-suite test.
+"""
 
 from __future__ import annotations
 
@@ -7,7 +11,6 @@ import math
 from research.juggler_sequence import effective_tower_height as E
 from research.juggler_sequence.tao_reduction import (
     N0_CERTIFIED,
-    fair_tilted_live_suffix_odd_mass,
     p_of_C,
     scale_L,
     theta_of_C,
@@ -15,15 +18,6 @@ from research.juggler_sequence.tao_reduction import (
 
 L12 = scale_L(12 * math.log(10.0), N0_CERTIFIED)
 L50 = scale_L(50 * math.log(10.0), N0_CERTIFIED)
-
-
-def test_reset_at_every_even_step_with_height_only_is_the_laboratory_mu_4() -> None:
-    """With no depth cap and a reset at every E, the height-≥4 share is pressure_direct's μ_4."""
-    for L, C in ((L12, 20), (L50, 20), (L50, 43)):
-        d, theta = math.ceil(C * L), theta_of_C(C)
-        mine = E.tilted_live_profile(L, d, theta, math.inf, depth_cap=None)["profile"]
-        lab = [fair_tilted_live_suffix_odd_mass(L, t, theta, 4) for t in range(1, d + 1)]
-        assert max(abs(a - b) for a, b in zip(mine, lab)) < 1e-12
 
 
 def test_the_live_band_at_1e12_forbids_every_good_base() -> None:
