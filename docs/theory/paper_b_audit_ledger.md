@@ -8055,3 +8055,17 @@ Manuscript: §5.5 carries an erratum stating the failure, its mechanism,
 its extent and the witness; the second citation site now says *residue*
 permutation. No theorem statement of Paper A changes — Theorem 5.7 was
 already KNOWN and stays KNOWN.
+
+*Addendum to the Ostrowski entry: the kernel cannot take the reduced scan either.*
+With reconstruction lifted out structurally, `window_digit_scan` is
+`251486` evaluations of `greedyDigitSum L ≤ 37` and nothing else. A
+`decide +kernel` attempt on that halved goal was given fifty minutes and
+stopped at thirty-seven, not because it had stalled — it was consuming
+CPU throughout — but because its working set had reached `31` GB on a
+`64` GB machine shared with another session. The earlier pass recorded
+"(kernel) deterministic timeout" on the unhalved goal; the sharper
+statement is that the obstruction is *memory*, the kernel building the
+reduction term for a quarter of a million iterations, and halving the
+work per iteration does not bring it into range. `window_digit_scan`
+stays `native_decide`, and getting `37` without evaluation remains a
+combinatorial question about attainable digit vectors on the window.
