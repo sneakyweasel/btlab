@@ -34681,7 +34681,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An `AboveAnchor` witness realizes its word.",
       "file": "formal/Problems/Juggler/MinimumRelative.lean",
       "kind": "theorem",
       "ledger": [
@@ -34690,13 +34690,13 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 29,
+      "line": 30,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_follows",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Every state of an anchor prefix, up to `|w|`, is at least the anchor `n`.",
       "file": "formal/Problems/Juggler/MinimumRelative.lean",
       "kind": "theorem",
       "ledger": [
@@ -34705,13 +34705,13 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 33,
+      "line": 35,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_iterate_ge",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The image of an anchor prefix is at least the anchor.",
       "file": "formal/Problems/Juggler/MinimumRelative.lean",
       "kind": "theorem",
       "ledger": [
@@ -34720,7 +34720,7 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 37,
+      "line": 40,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_image_ge",
       "trust": "kernel"
@@ -34735,7 +34735,7 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 42,
+      "line": 45,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_not_lt",
       "trust": "kernel"
@@ -34750,7 +34750,7 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 47,
+      "line": 50,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_not_envelope_drop",
       "trust": "kernel"
@@ -34765,13 +34765,13 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 56,
+      "line": 59,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_not_continuation_drop",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "`AboveAnchor` is inherited by a prefix of the word.",
       "file": "formal/Problems/Juggler/MinimumRelative.lean",
       "kind": "theorem",
       "ledger": [
@@ -34780,7 +34780,7 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 62,
+      "line": 66,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_of_prefix",
       "trust": "kernel"
@@ -34795,7 +34795,7 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 71,
+      "line": 75,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "even_ge_sq_of_aboveAnchor",
       "trust": "kernel"
@@ -34810,7 +34810,7 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 81,
+      "line": 85,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_even_run_ge_pow",
       "trust": "kernel"
@@ -34825,28 +34825,13 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 103,
+      "line": 107,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_not_odd_even",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/MinimumRelative.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-above-anchor",
-        "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
-      ],
-      "line": 114,
-      "module": "Problems.Juggler.MinimumRelative",
-      "name": "aboveAnchor_isolatedOddSurvival",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "An anchor prefix of the isolated shape `O^a E^r` survives only where the isolated-`OE` gap allows it.",
       "file": "formal/Problems/Juggler/MinimumRelative.lean",
       "kind": "theorem",
       "ledger": [
@@ -34857,11 +34842,11 @@
       ],
       "line": 119,
       "module": "Problems.Juggler.MinimumRelative",
-      "name": "forbidden_isolated_under_anchor",
+      "name": "aboveAnchor_isolatedOddSurvival",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Where the isolated-`OE` survival test fails, the isolated prefix cannot be `AboveAnchor`.",
       "file": "formal/Problems/Juggler/MinimumRelative.lean",
       "kind": "theorem",
       "ledger": [
@@ -34870,7 +34855,22 @@
         "J-cube-odd-even-reset",
         "J-mixed-oe-eighth"
       ],
-      "line": 124,
+      "line": 125,
+      "module": "Problems.Juggler.MinimumRelative",
+      "name": "forbidden_isolated_under_anchor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `a = 2` instance of the isolated-prefix anchor bound.",
+      "file": "formal/Problems/Juggler/MinimumRelative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-above-anchor",
+        "J-cube-not-square-split",
+        "J-cube-odd-even-reset",
+        "J-mixed-oe-eighth"
+      ],
+      "line": 131,
       "module": "Problems.Juggler.MinimumRelative",
       "name": "aboveAnchor_isolated_two",
       "trust": "kernel"

@@ -3607,21 +3607,21 @@
     {
       "candidates": [
         {
+          "decl": "aboveAnchor_image_ge",
+          "line": 40,
+          "score": 0.192,
+          "trust": "kernel"
+        },
+        {
           "decl": "aboveAnchor_not_lt",
-          "line": 42,
+          "line": 45,
           "score": 0.172,
           "trust": "kernel"
         },
         {
           "decl": "aboveAnchor_even_run_ge_pow",
-          "line": 81,
+          "line": 85,
           "score": 0.152,
-          "trust": "kernel"
-        },
-        {
-          "decl": "even_ge_sq_of_aboveAnchor",
-          "line": 71,
-          "score": 0.129,
           "trust": "kernel"
         }
       ],
@@ -3644,20 +3644,20 @@
       "candidates": [
         {
           "decl": "even_ge_sq_of_aboveAnchor",
-          "line": 71,
+          "line": 75,
           "score": 0.069,
           "trust": "kernel"
         },
         {
           "decl": "aboveAnchor_not_odd_even",
-          "line": 103,
+          "line": 107,
           "score": 0.067,
           "trust": "kernel"
         },
         {
           "decl": "aboveAnchor_image_ge",
-          "line": 37,
-          "score": 0.042,
+          "line": 40,
+          "score": 0.038,
           "trust": "kernel"
         }
       ],
@@ -3680,20 +3680,20 @@
       "candidates": [
         {
           "decl": "aboveAnchor_not_odd_even",
-          "line": 103,
+          "line": 107,
           "score": 0.138,
           "trust": "kernel"
         },
         {
-          "decl": "aboveAnchor_isolatedOddSurvival",
-          "line": 114,
-          "score": 0.037,
+          "decl": "even_ge_sq_of_aboveAnchor",
+          "line": 75,
+          "score": 0.032,
           "trust": "kernel"
         },
         {
-          "decl": "even_ge_sq_of_aboveAnchor",
-          "line": 71,
-          "score": 0.032,
+          "decl": "aboveAnchor_isolatedOddSurvival",
+          "line": 119,
+          "score": 0.03,
           "trust": "kernel"
         }
       ],
@@ -3716,19 +3716,19 @@
       "candidates": [
         {
           "decl": "aboveAnchor_not_odd_even",
-          "line": 103,
+          "line": 107,
           "score": 0.086,
           "trust": "kernel"
         },
         {
-          "decl": "aboveAnchor_isolatedOddSurvival",
-          "line": 114,
-          "score": 0.031,
+          "decl": "aboveAnchor_isolated_two",
+          "line": 131,
+          "score": 0.03,
           "trust": "kernel"
         },
         {
           "decl": "even_ge_sq_of_aboveAnchor",
-          "line": 71,
+          "line": 75,
           "score": 0.028,
           "trust": "kernel"
         }

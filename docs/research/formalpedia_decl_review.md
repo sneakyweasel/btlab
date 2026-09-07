@@ -312,7 +312,7 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
-**Candidate.** `aboveAnchor_not_odd_even` &mdash; kernel-checked, `Problems/Juggler/MinimumRelative.lean:103`
+**Candidate.** `aboveAnchor_not_odd_even` &mdash; kernel-checked, `Problems/Juggler/MinimumRelative.lean:107`
 
 > An `OE` start cannot stay at or above the anchor: the first even residual is below `n^2`.
 
@@ -321,7 +321,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
     (hn : 2 ≤ n) (h : AboveAnchor n (.odd :: .even :: v)) : False
 ```
 
-*Runners-up: `aboveAnchor_isolatedOddSurvival` (0.037), `even_ge_sq_of_aboveAnchor` (0.032)*
+*Runners-up: `even_ge_sq_of_aboveAnchor` (0.032), `aboveAnchor_isolatedOddSurvival` (0.03)*
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 

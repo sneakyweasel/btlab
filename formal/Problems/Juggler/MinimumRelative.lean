@@ -26,14 +26,17 @@ least the anchor `n`. -/
 def AboveAnchor (n : ℕ) (w : List Branch) : Prop :=
   follows n w ∧ ∀ i, i ≤ w.length → n ≤ floorPower^[i] n
 
+/-- An `AboveAnchor` witness realizes its word. -/
 theorem aboveAnchor_follows {n : ℕ} {w : List Branch}
     (h : AboveAnchor n w) : follows n w :=
   h.1
 
+/-- Every state of an anchor prefix, up to `|w|`, is at least the anchor `n`. -/
 theorem aboveAnchor_iterate_ge {n : ℕ} {w : List Branch} {i : ℕ}
     (h : AboveAnchor n w) (hi : i ≤ w.length) : n ≤ floorPower^[i] n :=
   h.2 i hi
 
+/-- The image of an anchor prefix is at least the anchor. -/
 theorem aboveAnchor_image_ge {n : ℕ} {w : List Branch}
     (h : AboveAnchor n w) : n ≤ image n w := by
   simpa [image_eq_iterate] using h.2 w.length le_rfl
@@ -59,6 +62,7 @@ theorem aboveAnchor_not_continuation_drop {n : ℕ} {u v : List Branch}
   have : image n (u ++ v) = image (image n u) v := image_append n u v
   exact aboveAnchor_not_lt h (this ▸ hlt)
 
+/-- `AboveAnchor` is inherited by a prefix of the word. -/
 theorem aboveAnchor_of_prefix {n : ℕ} {u v : List Branch}
     (h : AboveAnchor n (u ++ v)) : AboveAnchor n u :=
   ⟨follows_of_append_left h.1, fun i hi =>
@@ -111,16 +115,19 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
   rw [this] at hsq
   exact (not_le_of_gt hlt) hsq
 
+/-- An anchor prefix of the isolated shape `O^a E^r` survives only where the isolated-`OE` gap allows it. -/
 theorem aboveAnchor_isolatedOddSurvival {n a r : ℕ}
     (hn : 2 ≤ n) (h : AboveAnchor n (isolatedPrefix a r)) :
     isolatedOESurvives a r :=
   isolatedOddSurvival_bound hn h.1 (aboveAnchor_image_ge h)
 
+/-- Where the isolated-`OE` survival test fails, the isolated prefix cannot be `AboveAnchor`. -/
 theorem forbidden_isolated_under_anchor {n a r : ℕ}
     (hn : 2 ≤ n) (hgap : ¬isolatedOESurvives a r)
     (h : AboveAnchor n (isolatedPrefix a r)) : False :=
   hgap (aboveAnchor_isolatedOddSurvival hn h)
 
+/-- The `a = 2` instance of the isolated-prefix anchor bound. -/
 theorem aboveAnchor_isolated_two {n r : ℕ} (hn : 2 ≤ n)
     (h : AboveAnchor n (isolatedPrefix 2 r)) : r = 0 :=
   isolatedOESurvives_two (aboveAnchor_isolatedOddSurvival hn h)
