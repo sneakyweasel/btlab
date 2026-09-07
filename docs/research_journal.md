@@ -38444,3 +38444,65 @@ X^(1/2+eps) is what the harmonic sum of remainders proves. Recorded in
 the depth-one dossier and its ledger row (now EXACT -- HUMAN PROOF);
 probe and tests extended. A remark for Paper B's Theorem 4.1, nothing
 at unbounded depth.
+
+## The failure margin: what momentum the conjecture's failure would force
+
+A calibration branch
+([juggler_failure_margin](problems/juggler_failure_margin.md)).
+Theorem 9.2 and Proposition 9.3 of Paper C are unconditional, and
+J-tao-rate-implies-conjecture says a live count <= y (log y)^(-e) for
+all large y with e > e* = 1 - lambda** = 0.5074 gives the conjecture.
+Their contrapositive combination: if the conjecture is false, then for
+every C and q, infinitely often in y,
+
+    (1/d) sum_{t<d} (s_theta(t) - q)^+  >=  m(C, q) - o(1),
+    m(C, q) = [D(p_C || q) - e* ln2 / C] / c_theta,
+
+using theta p_C - ln a_{theta,q} = D(p_C || q) at the re-centring tilt.
+
+```text
+  q      C=20    C=30    C=50    C=100   C=230   C->inf
+  0.50   0.58%   2.87%   4.49%   5.59%   6.18%   6.62%
+  0.55   0       0       0.91%   2.62%   3.48%   4.11%
+  0.60   0       0       0       0       0.12%   1.56%
+```
+
+The margin is exactly 0 below the laboratory's least C and positive
+from it (least_C_pressure: 19, 41, 214 at q = 0.5, 0.55, 0.6): below
+those depths failure requires no momentum at all. It grows with C and
+saturates at 6.6% for q = 1/2: the conjecture's failure forces the
+tilted odd share to exceed 1/2 by 6.6% per step on average at every
+sufficiently large C, infinitely often.
+
+The pressure census runs to depth 40, which is C = 76 at 1e12 (margin
+5.25%) but C = 15.6 at 1e50 and 11.3 at 1e100 -- below the least C = 19, so
+at the two larger scales the observation 0.50 +/- 0.06 sits where the
+margin is zero and cannot bear on M_(theta,q) in principle; at 1e12 the
++/- 0.06 resolution is comparable to the 5% margin. Seeing the required
+momentum would need depth >= 50L and a resolution below 4%, and would
+only ever observe the contrapositive. No census was run; a floor raise
+dominates.
+
+```text
+Phase-end report
+What was learned
+- failure of the conjecture forces an explicit average tilted excess
+  m(C,q) = [D(p_C||q) - e* ln2/C]/c_theta per step
+- m is 0 below the least C (19, 41, 214) and positive from it; 0.58% at
+  C = 20, 6.6% as C -> inf (q = 1/2)
+- the census depth 40 is below the least C at 1e50 and 1e100, so the
+  no-momentum observation there is structurally uninformative
+Strongest theorem
+- the proposition above (elementary, unconditional ingredients)
+Strongest refutation
+- none; a calibration
+Reusable machinery
+- failure_margin: theta_of, c_theta, failure_margin, asymptotic_margin,
+  census_depth_as_C; 4 tests
+Branch status
+- CLOSE
+Why
+  A closed form; nothing to estimate.
+Best next question
+- none on this line
+```
