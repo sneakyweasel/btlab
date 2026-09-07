@@ -39186,3 +39186,41 @@ Second time this week. Theorem 5.4's uniqueness turned out to need only
 an envelope that had the strict inequality all along. A theorem ledger
 records what each row cites, not what each row needs, and the gap
 between those two is where the cheap closures are.
+
+Theorem 5.7 had one human step left, and it was a sentence: the observable
+decreases on the circle from 1 to n'^-2/3, so its variation including the
+wrap jump is under 2. Six words a human proof passes over and a
+formalization cannot.
+
+What it cost was not the observable. That was two rpow monotonicities:
+2^u increases, so 1-2^u decreases, so n'^(1-2^u) decreases for n' > 1, and
+1/2^u decreases too. The cost was three general facts about eVariationOn
+that Mathlib does not have. Variation ignores a sign, which turns the
+monotone computation into an antitone one. Variation is subadditive in the
+function, where Mathlib has it only in the set. And the shape itself: a
+function antitone below b, bounded below by L, with f b dominating, has
+variation at most (f a - L) + (f b - L) on [a,b].
+
+The last is worth recording as a technique. The direct proof bounds every
+finite sample sum, which means locating the least index where the sample
+reaches b and splitting the telescoping there, with an off-by-one at each
+end. The decomposition avoids all of it. Let g be f below b and L at b,
+which is antitone, and h = f - g, which is 0 below b and f b - L at it,
+hence monotone. Both variations are Mathlib's. Defining h by subtraction
+rather than by a second case split is what makes f = g + h hold at every
+real number, so no set-congruence lemma for eVariationOn is needed.
+
+From there periodic_window_variation_le gives the bound on every window
+[y, y+1]: split at floor(y)+1, jump lemma on the left, plain antitone fall
+on the right, and periodicity makes the leftovers cancel to exactly
+2(M-m). That uniformity in the phase is what denjoy_koksma_blocks wants,
+and block_envelope and theta_block_envelope are then the display of
+Theorem 5.7. Specializing to the paper's theta needed nothing new:
+thetaConvergents already has the shape the hypothesis asks for, and the
+coprimality and quality certificates are the hypothesis.
+
+The ratio has held all week. Laboratory-specific arithmetic is cheap --
+Theorem 3.31's cap table was two integer comparisons, Theorem 4.7's core
+was three omegas and a logarithm. What is missing is general mathematics:
+Denjoy-Koksma, unique ergodicity, the variation of a sawtooth. None of it
+is about the Juggler map.

@@ -27490,6 +27490,276 @@
       "trust": "kernel"
     },
     {
+      "doc": "Variation ignores a sign.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 38,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "eVariationOn_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The antitone counterpart of `MonotoneOn.eVariationOn_eq`.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "antitoneOn_eVariationOn_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Variation is subadditive in the function.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 57,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "eVariationOn_add_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Variation across an upward jump at the right endpoint.** The fall, plus the jump.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "eVariationOn_le_of_jump",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The variation of a one-periodic sawtooth on any window of length one.** If `P` has period `1`, is antitone across `[0,1)` with `P 0 = M` its maximum and `m` a lower bound, then every window `[y, y+1]` carries variation at most `2(M \u2212 m)` \u2014 the fall, plus the jump, and that is all, whatever the phase `y`. This is the uniform bound `denjoy_koksma_blocks` asks for.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 136,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodic_window_variation_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 227,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "log_two_ne_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 229,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "two_rpow_circlePeriod",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 236,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "circlePeriod_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`F` falls: for `n' > 1` it is antitone on the whole line.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 243,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "blockObservable_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 256,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "blockObservable_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 261,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "blockObservable_period",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 271,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_periodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 275,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 278,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_antitoneOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 287,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.7's variation bound.** Every window of length one carries variation at most `2(1 \u2212 n'^{-2}/3)`: the fall from `1` to `n'^{-2}/3`, plus the wrap jump back.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 298,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "observable_window_variation_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And so it is under `2`, which is the constant Theorem 5.7 quotes.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 306,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "observable_window_variation_lt_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 319,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "observable_boundedVariationOn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 323,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "blockObservable_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 327,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 330,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 339,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "blockObservable_continuous",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 347,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_measurable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 351,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "periodicObservable_intervalIntegrable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.7's block envelope.** For Paper A's observable and any decomposition of `L` into convergent denominators, the ergodic sum is within `2\u00b7s(L)` of `L\u00b7C_*` \u2014 which, divided by `L`, is the display `|C_L \u2212 C_*| \u2264 2 s(L)/L`.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 363,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "block_envelope",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The certified convergents of `\u03b8` satisfy the block hypothesis verbatim.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 375,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "thetaConvergents_block_hypothesis",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 5.7 for `\u03b8` itself.** Any list of certified convergents \u2014 a pair repeated once per Ostrowski digit \u2014 bounds the ergodic sum of Paper A's observable along the rescaled rotation. `(blocks.map Prod.snd).sum` is `L` and `blocks.length` is `s(L)`, so dividing by `L` gives the display `|C_L \u2212 C_*| \u2264 2 s(L)/L`.",
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 386,
+      "module": "Problems.Juggler.JumpVariation",
+      "name": "theta_block_envelope",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/LandingParity.lean",
       "kind": "def",
@@ -65362,6 +65632,15 @@
         }
       ]
     },
+    "Problems.Juggler.JumpVariation": {
+      "declarations": 27,
+      "file": "formal/Problems/Juggler/JumpVariation.lean",
+      "imports": [
+        "Problems.Juggler.DenjoyKoksmaOrbit",
+        "Problems.Juggler.OstrowskiSandwich"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.LandingParity": {
       "declarations": 14,
       "file": "formal/Problems/Juggler/LandingParity.lean",
@@ -66210,6 +66489,7 @@
         "Problems.Juggler.Iteration",
         "Problems.Juggler.Itinerary",
         "Problems.Juggler.ItineraryStats",
+        "Problems.Juggler.JumpVariation",
         "Problems.Juggler.LeftoverEval",
         "Problems.Juggler.LeftoverFamilies",
         "Problems.Juggler.LeftoverPreimage",
@@ -66438,13 +66718,13 @@
     }
   },
   "totals": {
-    "declarations": 4734,
+    "declarations": 4761,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 330,
-    "modules": 200,
+    "modules": 201,
     "trust": {
       "compiler": 54,
-      "kernel": 4680
+      "kernel": 4707
     }
   }
 }

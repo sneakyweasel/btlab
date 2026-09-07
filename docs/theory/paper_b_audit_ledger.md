@@ -8472,3 +8472,77 @@ inequality all along, and now Proposition 5.5's identification by an
 inequality three subsections down. A theorem ledger records what each
 row *cites*, not what each row *needs*, and the difference is where the
 cheap closures live.
+
+## The observable's variation, and Theorem 5.7's display
+
+*Mathematical target.* After the previous two entries, Theorem 5.7's row
+named exactly one human step: the variation of Paper A's own observable,
+that \(F(u)=n'^{\,1-2^u}/2^u\) has \(\mathrm{Var}(F)<2\) including the
+wrap jump, plus its rescaling to \(\mathbb R/\mathbb Z\). One sentence of
+prose; three things Mathlib does not have.
+
+**What Mathlib has and does not.** `MonotoneOn.eVariationOn_eq` computes
+the variation of a monotone function on an interval. Nothing computes it
+for a function that falls and then jumps back, which is every observable
+on a circle. Three general facts close the gap:
+
+- `eVariationOn_neg` --- variation ignores a sign. One `iSup_congr` and
+  the antitone counterpart of `MonotoneOn.eVariationOn_eq` follows
+  (`antitoneOn_eVariationOn_eq`).
+- `eVariationOn_add_le` --- variation is subadditive in the *function*.
+  Mathlib has subadditivity in the *set* (`eVariationOn.add_le_union`)
+  and not this. It is the triangle inequality under the supremum, and
+  `le_iSup` twice at the same sample point.
+- `eVariationOn_le_of_jump` --- the shape. If `f` is antitone below `b`,
+  bounded below there by `L`, and `f b` dominates everything below, the
+  variation on `Icc a b` is at most `(f a - L) + (f b - L)`.
+
+**The proof is a decomposition, not a supremum.** The direct route bounds
+every finite sample sum, which means locating the least index at which
+the sample reaches `b` and splitting the telescoping there --- an
+argument with an off-by-one at each end. Instead take `g` to be `f` below
+`b` and `L` at `b`, which is antitone on `Icc a b`, and `h = f - g`,
+which is `0` below `b` and `f b - L` at it, hence monotone. Both
+variations are then Mathlib's computation. Defining `h` by *subtraction*
+rather than by a second case split is what makes `f = g + h` hold at
+every real number and not merely on the interval, so no congruence lemma
+for `eVariationOn` on a set is needed.
+
+**Then the window, and the observable.**
+
+- `periodic_window_variation_le` --- for a one-periodic sawtooth, *every*
+  window `[y, y+1]` carries variation at most `2(M - m)`, whatever the
+  phase. Split at `⌊y⌋+1`: the left piece is the jump lemma, the right
+  piece is a plain antitone fall, and periodicity makes the two leftovers
+  cancel, \((P y-m)+(M-m)+(M-P y)=2(M-m)\). Uniformity in the phase is
+  exactly what `denjoy_koksma_blocks` asks for.
+- `blockObservable`, `periodicObservable` --- `F`, and `F` of the
+  fractional part times the period. The rescaling the paper mentions is
+  not a step here: the observable is *defined* on
+  \(\mathbb R/\mathbb Z\), and the rotation number
+  \(\alpha/(1+\alpha)\) is `walkTheta`. The period is
+  \(1+\log_2(3/2)=\log_2 3\), so the file needs `Real.log` only.
+- `observable_window_variation_lt_two` --- the paper's \(<2\), from
+  \(F(0)=1\), \(F(1+\alpha)=n'^{-2}/3\) and antitonicity, which is two
+  `rpow` monotonicities.
+- `block_envelope`, `theta_block_envelope` --- the display. For any list
+  of certified convergents, a pair repeated once per Ostrowski digit,
+  \(\bigl|\sum_{k<L}F(x+k\theta)-L\,C_*\bigr|\le 2\,s(L)\). The
+  specialization to \(\theta\) needed nothing new: `thetaConvergents`
+  already has the shape the hypothesis wants, and
+  `theta_convergents_coprime` and `theta_convergent_quality` are the
+  hypothesis.
+
+Human, and named in the row: the reading of \(C_L\) as that ergodic sum
+--- Lemma 5.6's rotation identification --- and the mechanical assembly
+of a given \(L\)'s Ostrowski digits into the block list.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper` clean
+at 3449 jobs; every new declaration within
+`[propext, Classical.choice, Quot.sound]`. OBSERVATION: "its variation
+including the wrap jump is \(<2\)" is the kind of step a human proof
+passes over in six words and a formalization cannot. What it cost was not
+the observable --- that was two `rpow` inequalities --- but three missing
+general lemmas about `eVariationOn`, none of them about this paper. That
+ratio has held all week: the laboratory-specific arithmetic is cheap, and
+the general mathematics underneath it is what Mathlib is missing.

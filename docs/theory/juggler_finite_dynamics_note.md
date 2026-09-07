@@ -2486,10 +2486,31 @@ is `denjoy_koksma_blocks`: an induction over a list of certified pairs
 for any \(V\) bounding the variation over every window of length one. The
 displayed bound of Theorem 5.7 is this at \(V=2\), divided by \(L\).
 
-What Theorem 5.7 still takes from its human proof is the variation of its
-own observable --- that \(F(u)=n'^{\,1-2^u}/2^u\) has \(\mathrm{Var}(F)<2\)
-including the wrap jump --- and the rescaling of \(F\) to the unit circle.
-Everything the variation is fed to is Lean.
+**And the observable's own variation.** That
+\(F(u)=n'^{\,1-2^u}/2^u\) has \(\mathrm{Var}(F)<2\) including the wrap jump
+is `observable_window_variation_lt_two` (`JumpVariation.lean`). The
+rescaling is not a separate step there: `periodicObservable` is defined as
+\(F\) of the fractional part times the period \(1+\alpha=\log_2 3\), so it
+lives on \(\mathbb R/\mathbb Z\) from the start, and the rotation number
+\(\alpha/(1+\alpha)\) is `walkTheta`. The variation itself needed three
+general facts Mathlib lacks --- that variation ignores a sign
+(`eVariationOn_neg`, giving the antitone counterpart of
+`MonotoneOn.eVariationOn_eq`), that it is subadditive in the *function*
+and not only in the set (`eVariationOn_add_le`), and the shape itself
+(`eVariationOn_le_of_jump`): a fall, plus a jump, and the proof is a
+decomposition \(f=g+h\) into an antitone part and a monotone step rather
+than a computation of the supremum.
+
+`periodic_window_variation_le` then reads that off for *every* window
+\([y,y+1]\), which is what the uniformity in \(x\) requires, and
+`block_envelope` and `theta_block_envelope` are the display: for any list
+of certified convergents --- a pair repeated once per Ostrowski digit ---
+the ergodic sum is within \(2\,s(L)\) of \(L\,C_*\).
+
+What Theorem 5.7 still takes from its human proof is the reading of
+\(C_L\) as that ergodic sum, which is Lemma 5.6's rotation
+identification, and the mechanical assembly of the Ostrowski digits of a
+given \(L\) into the block list.
 
 This also settles what Proposition 5.5 called classical. The ergodic
 *identification* of \(C_*\) is not an independent input: the observable is
@@ -3380,7 +3401,7 @@ Theorem 4.8.
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile |
 | Proposition 5.5 | ergodic identification no longer classical: for a bounded-variation observable it follows from `denjoy_koksma_blocks` (`DenjoyKoksmaOrbit.lean`), not from unique ergodicity. Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
-| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`; block composition `denjoy_koksma_blocks`, the induction over \(L=\sum_jb_jq_j\) that the uniformity in \(x\) licenses. Human: the variation of the observable \(F\) and its rescaling to the circle. Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
+| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`; block composition `denjoy_koksma_blocks`, the induction over \(L=\sum_jb_jq_j\) that the uniformity in \(x\) licenses; the observable and its variation (`JumpVariation.lean`) `eVariationOn_neg`, `eVariationOn_add_le`, `eVariationOn_le_of_jump`, `periodic_window_variation_le`, `observable_window_variation_lt_two`; the display `block_envelope`, `theta_block_envelope`. Human: the reading of \(C_L\) as the ergodic sum (Lemma 5.6's rotation identification) and the assembly of Ostrowski digits into the block list. Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`. On the extended window \([50508,q_{14})\) the cap is *structural* --- \(s(L)\le47\) below \(q_{13}\) and \(s(L)\le b+47\) on \(L=bq_{13}+r\) --- so the scan `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpens the constant on the old sub-window rather than establishing the theorem. Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |
