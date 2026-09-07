@@ -6620,7 +6620,7 @@ that the termination question is.
 ![The theorem flow of the paper. The exact finite-itinerary calculus of the companion manuscript feeds the contraction certificates; the discrepancy calculus with the kernel theorem counts every O-rooted itinerary class through depth four and the two length-five contractors (certified-descent density 7/8), leaving the level-3 kernel — and with it almost-all descent — open.](figures/juggler_frontier.png){width=100%}
 
 A repository accompanies the paper
-([https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/)).
+([https://github.com/sneakyweasel/btlab/](https://github.com/sneakyweasel/btlab/)).
 It is not required to read or check any proof. Lean certificates cover
 the exact floor identities; the module
 `research.juggler_sequence.paper_b_audit` and the companion
@@ -7455,4 +7455,4 @@ take full responsibility for the contents.
 24. P. Cochin, “Fate Contagion in the Juggler Map and the Almost-All
     Reduction of Termination,” companion manuscript (Paper C), 2026;
     `docs/theory/juggler_fate_almost_all_note.md` in the repository
-    https://github.com/sneakyweasel/balanced_ternary/.
+    https://github.com/sneakyweasel/btlab/.

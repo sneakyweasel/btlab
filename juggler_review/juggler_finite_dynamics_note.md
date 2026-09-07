@@ -546,7 +546,7 @@ float comparisons). This is not a claim that the paper as a
 whole is formally verified.
 
 ```text
-Repository:  https://github.com/sneakyweasel/balanced_ternary
+Repository:  https://github.com/sneakyweasel/btlab
 Commit:      7802f78bec58c68cec92a2efb3db4a502f916277
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)

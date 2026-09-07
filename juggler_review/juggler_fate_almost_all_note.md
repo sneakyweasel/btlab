@@ -2072,7 +2072,7 @@ pressure (biased Chernoff) at the same \(q\): \(19,41,214,1496\) /
 \(N_0=3.5\cdot 10^8\): \(25\) at \(10^{20}\), \(72\) at \(10^{100}\),
 \(138\) at \(10^{1000}\), \(204\) at \(10^{10000}\).
 
-*Artifacts* (repository `sneakyweasel/balanced_ternary`; SHA-256):
+*Artifacts* (repository `sneakyweasel/btlab`; SHA-256):
 
 | file | hash |
 |---|---|
@@ -2339,7 +2339,7 @@ the ideas that failed.
 11. P. Cochin, "Cycle financing and near-convergent Diophantine
     obstructions in the Juggler map" (Paper A), manuscript, 2026;
     `docs/theory/juggler_finite_dynamics_note.md` in the repository
-    https://github.com/sneakyweasel/balanced_ternary/.
+    https://github.com/sneakyweasel/btlab/.
 12. P. Cochin, "Parity equidistribution of nested floor powers, with
     descent applications to the Juggler map" (Paper B), working draft,
     2026; `docs/theory/juggler_parity_discrepancy_note.md`, same

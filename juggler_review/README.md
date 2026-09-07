@@ -19,7 +19,7 @@ and
 there, then rebuild this bundle. Do not hand-edit both copies.
 
 Interactive glossary and playground (Paper A vocabulary only):
-https://sneakyweasel.github.io/balanced_ternary/
+https://sneakyweasel.github.io/btlab/
 
 ## Read this first
 
@@ -132,7 +132,7 @@ lake build Problems.JugglerPaper
 Paper A Zenodo deposit kit (one PDF, paste-ready fields):
 [zenodo_paper_a/](zenodo_paper_a/).
 
-Repository: https://github.com/sneakyweasel/balanced_ternary/
+Repository: https://github.com/sneakyweasel/btlab/
 
 The core mathematical lemmas of Paper A are mechanized in Lean 4;
 selected finite classifications and the descent floor are

@@ -380,7 +380,7 @@ Reject or revise if:
 
 ## Verification
 
-Repository: [https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
+Repository: [https://github.com/sneakyweasel/btlab/](https://github.com/sneakyweasel/btlab/).
 
 ```text
 pip install -e ".[dev]"

@@ -22,7 +22,7 @@ Copy from `ZENODO_FIELDS.txt`. Short version:
 | Access | Open |
 | Language | English |
 | Publication date | 2026-09-03 |
-| Related | GitHub `https://github.com/sneakyweasel/balanced_ternary` as *isSupplementTo* (optional) |
+| Related | GitHub `https://github.com/sneakyweasel/btlab` as *isSupplementTo* (optional) |
 
 Do not list `quant-ph` or arXiv:2203.13300 as a version of this note.
 That paper is a different subject.

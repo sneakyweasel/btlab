@@ -27,7 +27,7 @@ PUBLICATION DATE
 2026-09-03
 
 RELATED IDENTIFIER (optional)
-Identifier: https://github.com/sneakyweasel/balanced_ternary
+Identifier: https://github.com/sneakyweasel/btlab
 Relation: Is supplement to
 Resource type: Software
 Scheme: URL
