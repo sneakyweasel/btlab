@@ -1129,6 +1129,59 @@ def lean_row_failures() -> list[dict[str, Any]]:
     return bad
 
 
+
+# --- Theorem 6.3's second exponent, across every place that prints it ----------------------------
+#
+# The OOEO* half of Theorem 6.3 was printed at N^(43/48) on a proof that dropped the jY/2 mode of
+# the four-wave product and centered a Fourier frequency dynamically.  With both repaired the
+# surviving balance is a = 1/48, so the exponent is 47/48.  That number appears in the manuscript,
+# the theorem ledger, the Lean exponent checks and the Python audit, and nothing compared them --
+# which is how 43/48 came to stand in six documents at once.
+#
+# 47/48 = 94/96 is still under 1 - 1/96 = 95/96, so Corollary 6.4 keeps its form with one
+# ninety-sixth of room where the superseded value had nine.
+
+DEPTH5_EXPONENT = Fraction(47, 48)
+DEPTH5_SUPERSEDED = Fraction(43, 48)
+DEPTH5_SOURCES = {
+    "manuscript": ("docs/theory/juggler_parity_discrepancy_note.md",
+                   r"=" + re.escape(BS) + r"tfrac N\{32\}\+O" + re.escape(BS) + r"bigl\(N\^\{(\d+)/(\d+)\+"),
+    "ledger_json": ("docs/theory/theorem_ledger.json", r"OOEOO\(N\) = N/32 \+ O\(N\^\{(\d+)/(\d+)\+eps\}\)"),
+    "lean": ("formal/Problems/Juggler/DepthFourFive.lean",
+             r"theorem cor64_error_exponent : \((\d+)/(\d+) : " + chr(8474) + r"\)"),
+    "audit": ("src/research/juggler_sequence/paper_b_audit.py",
+              r"6\.4: error is the worse exponent, (\d+)/(\d+) <= 1 - 1/96"),
+}
+
+
+def depth5_exponents() -> dict[str, Any]:
+    """The OOEO* error exponent as each file prints it."""
+    out: dict[str, Any] = {}
+    for name, (path, pattern) in DEPTH5_SOURCES.items():
+        text = (REPO_ROOT / path).read_text(encoding="utf-8")
+        hits = {Fraction(int(a), int(b)) for a, b in re.findall(pattern, text)}
+        out[name] = sorted(hits)
+    return out
+
+
+def depth5_failures() -> list[dict[str, Any]]:
+    bad = []
+    for name, found in depth5_exponents().items():
+        if found != [DEPTH5_EXPONENT]:
+            bad.append({"source": name, "found": [str(f) for f in found],
+                        "want": str(DEPTH5_EXPONENT)})
+    # the arithmetic the exponent rests on, and the room it leaves Corollary 6.4
+    if -Fraction(1, 32) + Fraction(1, 48) / 2 != -Fraction(1, 48):
+        bad.append({"source": "balance", "why": "truncation and mixed term do not meet at 1/48"})
+    if 1 - Fraction(1, 48) != DEPTH5_EXPONENT:
+        bad.append({"source": "saving", "why": "1 - 1/48 is not the exponent"})
+    room = 1 - Fraction(1, 96) - DEPTH5_EXPONENT
+    if room != Fraction(1, 96) or room <= 0:
+        bad.append({"source": "corollary 6.4", "why": "the combined error no longer absorbs it",
+                    "room": str(room)})
+    return bad
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
@@ -1143,7 +1196,8 @@ def failures() -> dict[str, list[Any]]:
             "prop71": prop71_failures(),
             "runlength": runlength_failures(),
             "axioms": axiom_failures(),
-            "lean_rows": lean_row_failures()}
+            "lean_rows": lean_row_failures(),
+            "depth5_exponent": depth5_failures()}
 
 
 def main() -> None:

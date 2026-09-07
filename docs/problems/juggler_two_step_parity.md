@@ -411,7 +411,7 @@ certified-descent density. Neither meets a new kernel.
 - **Theorem T** (`J-depth5-contracting`) — **EXACT — HUMAN
   PROOF**: OOOEE/OOOEO at \(N/32+O(N^{1-1/72+\varepsilon})\)
   (tame passenger on Theorem S); OOEOE/OOEOO at
-  \(N/32+O(N^{43/48+\varepsilon})\) (Theorem-Q argument).
+  \(N/32+O(N^{47/48+\varepsilon})\) (Theorem-Q argument).
 - **Corollary U** (`J-five-step-descent-density`) — **EXACT —
   HUMAN PROOF**: certified \(\le5\)-step class (evens, OE, OOEE,
   OOOEE, OOEOE) has density \(7/8\).
@@ -482,7 +482,7 @@ contract at length 7 without \(K_3\).
 - **Lemma X3**: \(\lfloor\Delta v^{1/2}\rfloor\) freezes on
   runs of length \(\asymp P^{7/8}\) on the OOEO cylinder.
 - **Theorem X** (`J-depth7-engine-contracting`): all eight
-  OOEOO\*\* and OOOEO\*\* words at \(N/128+O(N^{43/48+\varepsilon})\).
+  OOEOO\*\* and OOOEO\*\* words at \(N/128+O(N^{47/48+\varepsilon})\).
 - **Corollary Y** (`J-seven-step-descent-density`): certified
   \(\le7\)-step class has density \(57/64\).
 - OOOOEEE not claimed (needs \(K_3\)).
@@ -756,7 +756,7 @@ smooths the OOOE\* fifth letter to a slow sawtooth of coefficient
 \(n^{3/16}<n\), a tame passenger on Theorem S; Lemma T2 is
 Lemma A′ at \(w=\lfloor v^{1/2}\rfloor\), coefficient
 \(n^{9/16}<n\), and a Theorem-Q argument closes OOEO\* at
-\(N^{43/48+\varepsilon}\). Theorem T counts all four words;
+\(N^{47/48+\varepsilon}\). Theorem T counts all four words;
 Corollary U lifts the certified \(\le5\)-step descent class to
 density \(7/8\). Two ledger rows added;
 `depth5_contracting_proved` flipped. OOOO\* (coefficient
@@ -1007,7 +1007,7 @@ gates m1/m2 (`kernel_margin_scan`), and preliminaries 3.7–3.10
 (third-derivative test, shifted-window expansion, two- and
 three-term monomial tests for curvature collisions). Downstream
 exponents synced: Theorems 6.1–6.4 now \(N^{1-1/96+\varepsilon}\)
-where the kernel budget binds (the engine's own \(43/48\) is
+where the kernel budget binds (the engine's own \(47/48\) is
 unaffected); **no density changes** — \(13/16\), \(7/8\),
 \(57/64\), \(29/32\) all stand. Ledger rows
 `J-kernel-cancellation`, `J-depth4-complete`,

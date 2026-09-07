@@ -198,10 +198,19 @@ theorem oeoe_composite_nonzero :
     (-297/1024 : ℚ) + 216/1024 = -81/1024 ∧ (-81/1024 : ℚ) ≠ 0 := by
   refine ⟨by norm_num, by norm_num⟩
 
-/-- The balance `J^(1/2) P^(27/32) = P/J` is struck at `J = P^(5/48)` and gives
-`P^(43/48)`. -/
-theorem oeoe_balance :
+/-- The superseded balance.  `J^(1/2) P^(27/32) = P/J` is struck at `J = P^(5/48)`
+and gives `P^(43/48)`.  It belongs to the proof that dropped the `jY/2` mode of the
+four-wave product and centered a Fourier frequency dynamically; kept because the
+manuscript's erratum at Theorem 6.3 quotes both ends of the correction. -/
+theorem oeoe_balance_superseded :
     (1/2 : ℚ) * (5/48) + 27/32 = 43/48 ∧ (1 : ℚ) - 5/48 = 43/48 := by
+  refine ⟨by norm_num, by norm_num⟩
+
+/-- The surviving balance.  Against the `1/|k|` Vaaler weights, truncation at `P^a`
+costs `P^(-a)` while the mixed term costs `P^(-1/32 + a/2)`; the two meet at
+`a = 1/48`, so the saving is `P^(-1/48)` and the exponent `47/48`. -/
+theorem oeoe_balance :
+    (-1/32 : ℚ) + (1/48)/2 = -1/48 ∧ (1 : ℚ) - 1/48 = 47/48 := by
   refine ⟨by norm_num, by norm_num⟩
 
 /-- Corollary 6.4: the five disjoint certificate classes `E`, `OE`, `OOEE`,
@@ -209,8 +218,12 @@ theorem oeoe_balance :
 theorem cor64_density : (1/2 : ℚ) + 1/4 + 1/16 + 1/32 + 1/32 = 7/8 := by norm_num
 
 /-- The error is the worse of the two fifth-letter exponents, and `1 - 1/96` is
-the worse of them. -/
-theorem cor64_error_exponent : (43/48 : ℚ) ≤ 1 - 1/96 := by norm_num
+the worse of them.  After the Theorem 6.3 erratum the margin is one ninety-sixth:
+`47/48 = 94/96` against `95/96`, where the superseded `43/48 = 86/96` had nine. -/
+theorem cor64_error_exponent : (47/48 : ℚ) ≤ 1 - 1/96 := by norm_num
+
+/-- And the margin itself, which the manuscript now quotes. -/
+theorem cor64_error_margin : (1 : ℚ) - 1/96 - 47/48 = 1/96 := by norm_num
 
 /-! ### 4. Stage 2's truncation and the thresholds it decides -/
 

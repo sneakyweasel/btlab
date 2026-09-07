@@ -2255,11 +2255,18 @@ def exponent_checks() -> list[dict[str, Any]]:
          F(-297, 1024) + F(216, 1024) == F(-81, 1024) != 0),
         ("6.3 OOEO*: L_B lambda^{1/2} = P^{7/16-5/32} = P^{9/32}", F(7, 16) - F(5, 32) == F(9, 32)),
         ("6.3 OOEO*: k P^{9/16} intervals give P^{9/16+9/32} = P^{27/32}", F(9, 16) + F(9, 32) == F(27, 32)),
-        ("6.3 OOEO*: balance J^{1/2} P^{27/32} = P/J at J = P^{5/48} gives P^{43/48}",
+        # superseded with the Theorem 6.3 erratum: that balance belongs to the proof that
+        # dropped the jY/2 mode of the four-wave product
+        ("6.3 OOEO*: superseded balance at J = P^{5/48} gave P^{43/48}",
          F(1, 2) * F(5, 48) + F(27, 32) == F(43, 48) and 1 - F(5, 48) == F(43, 48)),
+        ("6.3 OOEO*: surviving balance, truncation P^{-a} against mixed P^{-1/32+a/2}"
+         " meets at a = 1/48, giving P^{47/48}",
+         -F(1, 32) + F(1, 48) / 2 == -F(1, 48) and 1 - F(1, 48) == F(47, 48)),
         ("6.4: densities 1/2+1/4+1/16+1/32+1/32 = 7/8",
          F(1, 2) + F(1, 4) + F(1, 16) + F(1, 32) + F(1, 32) == F(7, 8)),
-        ("6.4: error is the worse exponent, 43/48 <= 1 - 1/96", F(43, 48) <= 1 - F(1, 96)),
+        ("6.4: error is the worse exponent, 47/48 <= 1 - 1/96", F(47, 48) <= 1 - F(1, 96)),
+        ("6.4: the margin is one ninety-sixth, where 43/48 had nine",
+         1 - F(1, 96) - F(47, 48) == F(1, 96) and 1 - F(1, 96) - F(43, 48) == F(9, 96)),
         # --- Stage 2's truncation R_0 = P^(5/16): the four sites it decides ---
         ("R_0: Stage 2 majorant 4P/R_0 = 4P^{11/16}", 1 - F(5, 16) == F(11, 16)),
         ("R_0: collision band R_0^{1/2}P^{3/4} = P^{29/32}", F(5, 32) + F(3, 4) == F(29, 32)),

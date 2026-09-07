@@ -17049,11 +17049,21 @@
       "trust": "kernel"
     },
     {
-      "doc": "The balance `J^(1/2) P^(27/32) = P/J` is struck at `J = P^(5/48)` and gives `P^(43/48)`.",
+      "doc": "The superseded balance. `J^(1/2) P^(27/32) = P/J` is struck at `J = P^(5/48)` and gives `P^(43/48)`. It belongs to the proof that dropped the `jY/2` mode of the four-wave product and centered a Fourier frequency dynamically; kept because the manuscript's erratum at Theorem 6.3 quotes both ends of the correction.",
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 203,
+      "line": 205,
+      "module": "Problems.Juggler.DepthFourFive",
+      "name": "oeoe_balance_superseded",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The surviving balance. Against the `1/|k|` Vaaler weights, truncation at `P^a` costs `P^(-a)` while the mixed term costs `P^(-1/32 + a/2)`; the two meet at `a = 1/48`, so the saving is `P^(-1/48)` and the exponent `47/48`.",
+      "file": "formal/Problems/Juggler/DepthFourFive.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 212,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "oeoe_balance",
       "trust": "kernel"
@@ -17063,19 +17073,29 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 209,
+      "line": 218,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "cor64_density",
       "trust": "kernel"
     },
     {
-      "doc": "The error is the worse of the two fifth-letter exponents, and `1 - 1/96` is the worse of them.",
+      "doc": "The error is the worse of the two fifth-letter exponents, and `1 - 1/96` is the worse of them. After the Theorem 6.3 erratum the margin is one ninety-sixth: `47/48 = 94/96` against `95/96`, where the superseded `43/48 = 86/96` had nine.",
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 213,
+      "line": 223,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "cor64_error_exponent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And the margin itself, which the manuscript now quotes.",
+      "file": "formal/Problems/Juggler/DepthFourFive.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 226,
+      "module": "Problems.Juggler.DepthFourFive",
+      "name": "cor64_error_margin",
       "trust": "kernel"
     },
     {
@@ -17083,7 +17103,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 224,
+      "line": 237,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "stepB_discard",
       "trust": "kernel"
@@ -17093,7 +17113,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 242,
+      "line": 255,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "row_st2_collision",
       "trust": "kernel"
@@ -17103,7 +17123,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 253,
+      "line": 266,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "row_st5b_qpp",
       "trust": "kernel"
@@ -17113,7 +17133,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 273,
+      "line": 286,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "row_t63_window",
       "trust": "kernel"
@@ -17123,7 +17143,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 294,
+      "line": 307,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "row_t63_flat",
       "trust": "kernel"
@@ -17133,7 +17153,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 315,
+      "line": 328,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "row_t63_window_fails_at_quarter",
       "trust": "kernel"
@@ -17143,7 +17163,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 343,
+      "line": 356,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "claimD_shift_range",
       "trust": "kernel"
@@ -17153,7 +17173,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 355,
+      "line": 368,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "claimD_loose_bound_fails_at_P0",
       "trust": "kernel"
@@ -17163,7 +17183,7 @@
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 368,
+      "line": 381,
       "module": "Problems.Juggler.DepthFourFive",
       "name": "st3a_flat_cost",
       "trust": "kernel"
@@ -33502,6 +33522,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The Tao-type count on Juggler orbits from the mean share.** If the tilted odd share of the live count averages at most `q` over the depths below `d` (`MeanShare`), the number of starts in `{1, \u2026, N}` that stay above `N0` for `d` steps with at least `k` odd letters is at most `N \u00b7 a_q^d / x^k`.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 180,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "juggler_count_le_of_meanShare",
+      "trust": "kernel"
+    },
+    {
       "doc": "For every real `x` and integers `o`, `t`: `o * x - t \u2261 o * (x - 1)` mod `1`.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
@@ -45494,7 +45524,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 36,
+      "line": 37,
       "module": "Problems.Juggler.TiltedShare",
       "name": "weightGen_nonneg",
       "trust": "kernel"
@@ -45506,7 +45536,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 40,
+      "line": 41,
       "module": "Problems.Juggler.TiltedShare",
       "name": "oddMass_nonneg",
       "trust": "kernel"
@@ -45518,7 +45548,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 45,
+      "line": 46,
       "module": "Problems.Juggler.TiltedShare",
       "name": "oddMass_le_weightGen",
       "trust": "kernel"
@@ -45530,7 +45560,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 56,
+      "line": 57,
       "module": "Problems.Juggler.TiltedShare",
       "name": "weightGen_succ_le",
       "trust": "kernel"
@@ -45542,7 +45572,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 79,
+      "line": 80,
       "module": "Problems.Juggler.TiltedShare",
       "name": "weightGen_succ_le_share",
       "trust": "kernel"
@@ -45554,7 +45584,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 99,
+      "line": 100,
       "module": "Problems.Juggler.TiltedShare",
       "name": "one_add_le_exp_excess",
       "trust": "kernel"
@@ -45566,7 +45596,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 124,
+      "line": 125,
       "module": "Problems.Juggler.TiltedShare",
       "name": "weightGen_le_pressure",
       "trust": "kernel"
@@ -45578,7 +45608,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 161,
+      "line": 162,
       "module": "Problems.Juggler.TiltedShare",
       "name": "count_le_pressure",
       "trust": "kernel"
@@ -45590,7 +45620,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 174,
+      "line": 175,
       "module": "Problems.Juggler.TiltedShare",
       "name": "NoMomentum",
       "trust": "kernel"
@@ -45602,7 +45632,7 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 180,
+      "line": 181,
       "module": "Problems.Juggler.TiltedShare",
       "name": "count_le_of_noMomentum",
       "trust": "kernel"
@@ -45614,9 +45644,81 @@
       "ledger": [
         "J-tilted-share-telescoping"
       ],
-      "line": 208,
+      "line": 209,
       "module": "Problems.Juggler.TiltedShare",
       "name": "tilt_exponent_eq_kl",
+      "trust": "kernel"
+    },
+    {
+      "doc": "AM\u2013GM in the form used below: a product of `d` positive reals is at most the `d`-th power of their mean (Jensen for `Real.log`).",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 234,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "prod_le_mean_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The product form of the telescoping: `Z_d \u2264 Z_0 \u220f_{t<d} (1 + (x-1) s_t)`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 263,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "weightGen_le_prod",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The mean-share hypothesis: the tilted odd share averages at most `q` over the depths below `d`. No positive part: depths with share below `q` compensate depths with share above it.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "def",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 285,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "MeanShare",
+      "trust": "kernel"
+    },
+    {
+      "doc": "No momentum against `q` with slack `\u03b4` gives mean share at most `q + \u03b4`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 289,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "meanShare_of_noMomentum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Under the mean-share hypothesis the depth-`d` tilted mass is at most `Z_0 a_q^d`, with no exponential slack: AM\u2013GM on the product form.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 303,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "weightGen_le_of_meanShare",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Tao-type count under the mean-share hypothesis: `#{o_d \u2265 k} \u2264 Z_0 a_q^d / x^k`, with no exponential slack.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 339,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "count_le_of_meanShare",
       "trust": "kernel"
     },
     {
@@ -63993,7 +64095,7 @@
       ]
     },
     "Problems.Juggler.DepthFourFive": {
-      "declarations": 35,
+      "declarations": 37,
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
       "imports": [],
       "ledger": []
@@ -64575,7 +64677,7 @@
       ]
     },
     "Problems.Juggler.LiveCountWeight": {
-      "declarations": 12,
+      "declarations": 13,
       "file": "formal/Problems/Juggler/LiveCountWeight.lean",
       "imports": [
         "Problems.Juggler.TiltedShare"
@@ -65117,7 +65219,7 @@
       "ledger": []
     },
     "Problems.Juggler.TiltedShare": {
-      "declarations": 11,
+      "declarations": 17,
       "file": "formal/Problems/Juggler/TiltedShare.lean",
       "imports": [
         "Problems.Juggler.RateFreeDensity"
@@ -65453,13 +65555,13 @@
     }
   },
   "totals": {
-    "declarations": 4646,
-    "declarations_with_a_ledger_row": 3172,
-    "ledger_rows_naming_a_file": 327,
+    "declarations": 4655,
+    "declarations_with_a_ledger_row": 3178,
+    "ledger_rows_naming_a_file": 328,
     "modules": 193,
     "trust": {
       "compiler": 55,
-      "kernel": 4591
+      "kernel": 4600
     }
   }
 }

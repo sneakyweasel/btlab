@@ -162,7 +162,7 @@ gravity.
   `J-depth5-contracting`).**
   \(\#\mathrm{OOOEE},\#\mathrm{OOOEO}=N/32+O(N^{1-1/96+\varepsilon})\)
   and
-  \(\#\mathrm{OOEOE},\#\mathrm{OOEOO}=N/32+O(N^{43/48+\varepsilon})\).
+  \(\#\mathrm{OOEOE},\#\mathrm{OOEOO}=N/32+O(N^{47/48+\varepsilon})\).
   Proof: lemma Part XII.
 - **Corollary U (repaired, EXACT — HUMAN PROOF,
   `J-five-step-descent-density`).**

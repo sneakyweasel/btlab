@@ -1750,7 +1750,7 @@ steps. \(\square\) Validated (`ooeoe_smoothing_scan`) through
 =\tfrac N{32}+O\bigl(N^{1-1/72+\varepsilon}\bigr),
 \qquad
 \#\mathrm{OOEOE}(N),\;\#\mathrm{OOEOO}(N)
-=\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
+=\tfrac N{32}+O\bigl(N^{47/48+\varepsilon}\bigr).
 \]
 
 *Proof.*
@@ -1808,10 +1808,14 @@ single-signed: the two leading coefficients are
 are \(O(P^{-5/8})\) and \(O(P^{-3/8})\). Van der Corput II on
 each \(I\): \(L_B\lambda_2^{1/2}+\lambda_2^{-1/2}
 \ll k^{-1/2}P^{21/32}\). Times \(k P^{3/16}\) intervals:
-\(S_k\ll k^{1/2}P^{27/32+\varepsilon}\). Balance
-\(J_5^{1/2}P^{27/32}=P/J_5\) at \(J_5=P^{5/48}\) gives
-\(P^{43/48}\). Dyadic blocks sum to
-\(N^{43/48+\varepsilon}\). \(\square\)
+\(S_k\ll k^{1/2}P^{27/32+\varepsilon}\). The old balance
+\(J_5^{1/2}P^{27/32}=P/J_5\) at \(J_5=P^{5/48}\) is superseded:
+the printed proof dropped the \(jY/2\) mode of the four-wave
+product and centered a Fourier frequency dynamically. With both
+repaired (see the erratum at Theorem 6.3 of the parity note) the
+surviving balance is \(a=\tfrac1{48}\), giving
+\(O_\varepsilon(YP^{-1/48+\varepsilon})\) and dyadic blocks summing to
+\(N^{47/48+\varepsilon}\). \(\square\)
 
 Float sanity: `oooee_mode_probe` / `ooeoe_mode_probe` at
 \(P=10^4\) give \(|S|=16.3\) on \(636\) OOOE terms and
@@ -1824,7 +1828,7 @@ size. Depth-5 census at \(N=10^5\): the four classes lie in
 The class of starts carrying a uniform power-envelope descent
 certificate of length at most five — evens, OE, OOEE, OOOEE,
 OOEOE — has natural density \(7/8\). Each of OOOEE and OOEOE
-has cardinality \(N/32+O(N^{43/48+\varepsilon})\), and
+has cardinality \(N/32+O(N^{47/48+\varepsilon})\), and
 \(3^3<2^5\) forces \(J^5(n)<n\) on both words for \(n\ge2\).
 
 *Proof.* Densities \(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}
@@ -2196,7 +2200,7 @@ single run covers a window of \(400\) OOEO terms at
 \[
 \#\mathrm{OOEOOEE}(N),\;\#\mathrm{OOEOOEO}(N),\;
 \#\mathrm{OOEOOOE}(N),\;\#\mathrm{OOEOOOO}(N)
-=\tfrac N{128}+O\bigl(N^{43/48+\varepsilon}\bigr),
+=\tfrac N{128}+O\bigl(N^{47/48+\varepsilon}\bigr),
 \]
 and the same bound for the four OOOEO\*\* words.
 
@@ -2231,7 +2235,7 @@ Lemma A/M:
 The seventh letter is the even-branch square root of
 \(q=\lfloor p^{3/2}\rfloor\): decaying amplitudes (Lemma D
 one level up). Theorem T therefore applies as a passenger
-theorem and gives \(N/128+O(N^{43/48+\varepsilon})\).
+theorem and gives \(N/128+O(N^{47/48+\varepsilon})\).
 
 **OOOEO\*\*.** Lemma X2 plus the \(z^{3/4}\to n^{81/32}\)
 chain of Lemma T1 (raised to the \(3/2\)): the same four
@@ -2252,7 +2256,7 @@ The class of starts carrying a uniform power-envelope descent
 certificate of length at most seven — the Corollary-U class
 together with OOEOOEE and OOOEOEE — has natural density
 \(57/64\). Both new words have cardinality
-\(N/128+O(N^{43/48+\varepsilon})\), and \(3^4<2^7\) forces
+\(N/128+O(N^{47/48+\varepsilon})\), and \(3^4<2^7\) forces
 \(J^7(n)<n\) for \(n\ge2\).
 
 *Proof.* Densities \(\tfrac78+\tfrac1{128}+\tfrac1{128}
@@ -3495,7 +3499,7 @@ The rest of the Phase-10 OOEO\* argument is unchanged: it never
 used Lemma 5.2 decorations. Hence
 \[
 \#\mathrm{OOEOE}(N),\;\#\mathrm{OOEOO}(N)
-=\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
+=\tfrac N{32}+O\bigl(N^{47/48+\varepsilon}\bigr).
 \]
 
 ### Theorem T (repaired) — EXACT — HUMAN PROOF

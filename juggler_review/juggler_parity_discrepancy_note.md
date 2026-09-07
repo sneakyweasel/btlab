@@ -4840,7 +4840,7 @@ YP^{-1/24}
 +\lvert k\rvert^{-1}P^{19/48}\Bigr).
 \]
 Against the \(1/\lvert k\rvert\) Vaaler weights, truncation at
-\(\lvert k\rvert\le P^{a}\) costs \(YP^{-a}\) while the second term
+\(J_*=P^{a}\) costs \(YP^{-a}\) while the second term
 costs \(YP^{-1/32+a/2}\); the two balance at \(a=\tfrac1{48}\), which
 is the fifth-letter truncation used above. Hence
 \(O_\varepsilon(YP^{-1/48+\varepsilon})\), and dyadic blocks sum to
@@ -4879,8 +4879,8 @@ window majorants cost \(YP^{-1/8}+P^{5/16}\) and
 > \(D_\kappa(n)=(X+G+\kappa)^{3/4}-X^{3/4}\) and \(X=n^{3/2}\). Then
 > \(\Delta(m^{3/4})=D_\kappa(n)+O(hP^{-11/8})\),
 > \(D_\kappa''\ll hP^{-15/8}\) and
-> \((RD_\kappa)''\ll\lvert k\rvert hP^{-21/16}\), which at
-> \(\lvert k\rvert\le P^{1/48}\) sits below the retained
+> \((RD_\kappa)''\ll\lvert k\rvert hP^{-21/16}\), which at the
+> fifth-letter truncation \(J_*=P^{1/48}\) sits below the retained
 > \(\lvert j\rvert hP^{-3/4}\) curvature by \(P^{-13/24}\). Splitting
 > the carry that is already there introduces no new nesting.
 >
@@ -5290,8 +5290,7 @@ The unblocked pair still carries the better error exponent, \(47/48\)
 against \(1-\tfrac1{96}\) --- that is \(94/96\) against
 \(95/96\), a margin of one ninety-sixth, where the superseded
 \(43/48\) claimed nine. The direction is what an argument that never
-needs a kernel should give; the size of it is no longer evidence of
-anything. Two depths, sixteen words, three outcomes, no
+needs a kernel should give; the size of it is not evidence of anything. Two depths, sixteen words, three outcomes, no
 exceptions: that is the ground for reading the table above at depths
 where nothing is proved.
 
