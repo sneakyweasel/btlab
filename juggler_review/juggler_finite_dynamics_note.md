@@ -545,10 +545,11 @@ certified identity is Lean (`cycleMin_defect_finance`,
 computation. Theorem 4.7
 is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. In
-Section 5, Theorem 5.7 is a human proof (Denjoy--Koksma is used
-as a known tool; its per-block hypotheses — convergent quality
-\(|\theta-p/q|<1/q^2\) and the *residue* permutation — are Lean,
-`theta_convergent_quality`, `theta_block_permutations`) and so
+Section 5, Theorem 5.7 keeps a human step --- the variation of its
+own observable --- but Denjoy--Koksma itself is no longer a known
+tool: `denjoy_koksma_rotation` is Lean, from the convergent quality
+\(|\theta-p/q|<1/q^2\) and the *residue* permutation
+(`theta_convergent_quality`, `theta_block_permutations`), and so
 is the rotation identification in
 Lemma 5.6, whose itinerary identity itself is Lean
 (`budgetedWord_eq_hugWord`); the Laplace bound of
@@ -2434,16 +2435,43 @@ and the sample sum is within the total variation of the integral.
 `denjoy_koksma_unit` is that on \([0,1]\) with \(q\) uniform cells, the shape
 applied per block below.
 
-What is still classical here is the *geometric* step: that the orbit
-\(x, x+\theta, \ldots, x+(q-1)\theta\) visits each cell \([i/q,(i+1)/q)\)
-exactly once, which is where \(|\theta-p/q|<1/q^2\) is used. Its
-arithmetic skeleton is certified (`theta_block_permutations`, that
-\(i\mapsto pi\) permutes \(\mathbb Z/q\mathbb Z\)), and so is the quality bound;
-the transfer between them is not. Until it is, Theorem 5.7 remains KNOWN,
-and the module is deliberately outside this paper's barrel. Mathlib has
-neither Denjoy--Koksma nor unique ergodicity of the irrational rotation ---
-there is no `UniquelyErgodic` in Mathlib at all --- so the classical route
-cited above has no Lean path other than this one.
+The *geometric* step --- that the orbit
+\(x, x+\theta, \ldots, x+(q-1)\theta\) visits each cell exactly once, which
+is where \(|\theta-p/q|\le 1/q^2\) is used --- is now Lean as well
+(`Problems/Juggler/DenjoyKoksmaOrbit.lean`), and with it the whole
+inequality. `denjoy_koksma_rotation` and its mean form
+`denjoy_koksma_rotation_mean` are the display above, for a one-periodic
+\(f\) of bounded variation, uniformly in the starting phase \(x\). Both
+modules are in this paper's barrel. Mathlib has neither Denjoy--Koksma nor
+unique ergodicity of the irrational rotation --- there is no
+`UniquelyErgodic` in Mathlib at all --- so this is the only Lean path to
+the display.
+
+**The repair is the anchoring.** The bridge retracted in the erratum above
+fixed the cells at \([i/q,(i+1)/q)\) and asked the blocks to permute them.
+That is false, and the counterexample is small: \(q=2\), \(\theta=0.7\),
+\(p=1\), \(x=0.49\) puts both orbit points in \([0,\tfrac12)\). Two changes
+make it true. The cells must be anchored at the starting phase \(x\), and
+which way they are half-open must follow the sign of \(\delta=\theta-p/q\).
+Writing \(k\theta=\lfloor kp/q\rfloor+(kp\bmod q)/q+k\delta\), point \(k\)
+sits at the left endpoint of cell \(kp\bmod q\) displaced by \(k\delta\), and
+\(|k\delta|\le (q-1)/q^{2}<1/q\) is under one cell width --- so it stays in
+that cell when \(\delta\ge0\) and falls into the previous one when
+\(\delta\le0\). `orbitCell` is that assignment; `orbitCell_inj` is its
+injectivity, which needs only \(\gcd(p,q)=1\) --- the residue permutation
+this paper already certified as `theta_block_permutations`; and
+`orbit_mem_cell` is the displacement bound. `denjoy_koksma_cellmap` then
+takes the assignment in the direction the orbit supplies it, point
+\(\mapsto\) cell, so no permutation has to be inverted.
+
+So the erratum's reading was too pessimistic in one respect: a cell
+argument does prove Denjoy--Koksma, and does not need the discrepancy
+route. What it does need is the anchor, which is exactly what the
+retracted claim omitted.
+
+What Theorem 5.7 still takes from its human proof is the variation of its
+own observable --- that \(F(u)=n'^{\,1-2^u}/2^u\) has \(\mathrm{Var}(F)<2\)
+including the wrap jump. The inequality that variation is fed to is Lean.
 
 **Theorem 5.7 (block envelope).**
 For the exact rotation prefix of length \(L\) at reduced base
@@ -3327,7 +3355,7 @@ Theorem 4.8.
 | Theorem 5.4 | combinatorial core `hugOdds_le_of_admissible`; cycle-itinerary domination `cycleMin_prefix_odds_ge_hug`, `cycleMin_odds_ge_hug`; charge maximisation `stateCharge_antitone`, `hug_charge_maximal` (`WalkChargeMax.lean`); strict uniqueness `stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique` — an admissible profile attaining the hug charge *is* the hug profile |
 | Proposition 5.5 | ergodic identification human; Laplace bound Lean: `inv_sq_le_quad`, `rotation_average_le`, `rotation_average_lt`, `rotationAverage_le`, `rotationAverage_lt`, `rotationAverage_gap` (`RotationAverage.lean`) |
 | Lemma 5.6 | `budgetedWord_eq_hugWord`, `hugOdds_pow_ge`, `hugOdds_pow_lt`, `hugOdds_pow_gt`, `hugOdds_least` |
-| Theorem 5.7 | Denjoy--Koksma's variation inequality (known), not Lean; quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
+| Theorem 5.7 | Denjoy--Koksma Lean end to end (`DenjoyKoksma.lean`, `DenjoyKoksmaOrbit.lean`): analytic half `value_sub_mean_le_variation`, `sum_eVariationOn_Icc`, `denjoy_koksma_abstract`; orbit half `orbitCell_inj`, `orbit_mem_cell`, `denjoy_koksma_cellmap`; the inequality itself `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`. Human: the variation of the observable \(F\). Quotient arithmetic `theta_sandwich_upper`, `theta_sandwich_lower`, `lower_lt_walkTheta`, `walkTheta_lt_upper`, `cf_lower_prefix`, `cf_upper_prefix`, `theta_convergent_denominators`; DK hypotheses `theta_convergent_numerators`, `theta_convergents_unimodular`, `theta_convergents_coprime`, `theta_convergent_quality` (\(|\theta-p/q|<1/q^2\)), `theta_block_permutations` |
 | Theorem 5.8 | digit cap Lean: general numeration `ostroDigit_le`, `ostro_sum_eq`, `ostro_digitSum_le`, instance `theta_digitSum_le`, `greedyDigitSum_le`. On the extended window \([50508,q_{14})\) the cap is *structural* --- \(s(L)\le47\) below \(q_{13}\) and \(s(L)\le b+47\) on \(L=bq_{13}+r\) --- so the scan `window_digit_scan`, `window_digit_cap`, `window_digit_max` sharpens the constant on the old sub-window rather than establishing the theorem. Denjoy--Koksma comparison human |
 | Theorem 5.9 | kill template `cycleMin_hug_kill_criterion` (`DefectFinance.lean`); the per-length kill table is verified computation |
 | Proposition 5.12 | `fanLength`, `fanOdd`, `fanLambda`, affine step `fanLambda_affine`, negativity `fan_step_pow`, `fanLambda_step_neg`, monotonicity `fanLambda_strictAnti`, endpoints `fanLambda_55_pos`, `fanLambda_56_neg` (these *are* `theta_sandwich_lower` and `theta_sandwich_upper`), length `fan_positive_iff`, and `fan_frontiers`, `fan_endpoint`, `fan_past_endpoint` (`FanLaw.lean`) |

@@ -39109,3 +39109,46 @@ What is left in Appendix A with no Lean is ten rows: four that point at
 other rows which are Lean, and six certified computations. Twice now
 the logarithm in a Paper A proof has been the cheap half and the
 combinatorics the expensive one.
+
+Denjoy-Koksma is Lean, and the interesting part is that an erratum of
+this paper had already declared the route closed. Paper A once claimed
+the length-q orbit permutes the grid cells [i/q,(i+1)/q); that is false,
+it was withdrawn, and the withdrawal added that the standard proof runs
+through Koksma's inequality and the discrepancy bound, "not through a
+permutation of grid cells". The first half of that is right. The second
+half is not.
+
+The smallest counterexample to the withdrawn claim needs neither the
+paper's theta nor a long block: q=2, theta=0.7, p=1, x=0.49. The quality
+bound holds, |0.7-0.5| = 0.2 <= 1/4, and both orbit points, 0.49 and
+1.19 = 0.19, land in [0,1/2). But move the cells to [x+i/q, x+(i+1)/q]
+and they separate: 0.49 in the first, 1.19 in the second. That is the
+whole repair. Anchor the cells at the starting phase, and let which way
+they are half-open follow the sign of delta = theta - p/q. Writing
+k*theta = floor(kp/q) + (kp mod q)/q + k*delta, point k sits at the left
+endpoint of cell kp mod q displaced by k*delta, and |k*delta| <=
+(q-1)/q^2 < 1/q is under one cell width, so it stays in that cell when
+delta >= 0 and falls into the previous one when delta <= 0.
+
+The injectivity of the assignment needs only gcd(p,q)=1 -- the residue
+permutation the paper had certified all along. What was missing was
+never that fact but the transfer from it, and the transfer is four
+cases of an inequality.
+
+One implementation note worth keeping. The classical statement reads
+cell -> point; an orbit supplies point -> cell. Inverting the
+permutation in Lean costs an Equiv and a choice principle.
+denjoy_koksma_cellmap takes the map in the direction it arrives and
+reindexes the two sums it needs through card_image_of_injOn and
+sum_image, which turn injectivity into image tau (range n) = range n.
+No inverse is ever built.
+
+denjoy_koksma_rotation and denjoy_koksma_rotation_mean are now the
+display Paper A quoted as known, uniformly in the starting phase. Both
+modules moved into the paper's barrel; axioms propext, Classical.choice,
+Quot.sound only; 3447 jobs. What Theorem 5.7 still takes from its human
+proof is the variation of its own observable.
+
+An erratum can be right about a claim and wrong about the method. The
+counterexample was found before anyone looked for the fix, and that is
+why the retraction reads as a dead end rather than a repair.

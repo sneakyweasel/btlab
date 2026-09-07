@@ -16823,7 +16823,7 @@
       "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 53,
+      "line": 55,
       "module": "Problems.Juggler.DenjoyKoksma",
       "name": "value_sub_mean_le_variation",
       "trust": "kernel"
@@ -16833,7 +16833,7 @@
       "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 81,
+      "line": 83,
       "module": "Problems.Juggler.DenjoyKoksma",
       "name": "sum_eVariationOn_Icc",
       "trust": "kernel"
@@ -16843,7 +16843,7 @@
       "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 98,
+      "line": 100,
       "module": "Problems.Juggler.DenjoyKoksma",
       "name": "denjoy_koksma_abstract",
       "trust": "kernel"
@@ -16853,9 +16853,79 @@
       "file": "formal/Problems/Juggler/DenjoyKoksma.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 123,
+      "line": 125,
       "module": "Problems.Juggler.DenjoyKoksma",
       "name": "denjoy_koksma_unit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The cell the `k`-th orbit point lands in: `k\u00b7p mod q`, shifted back one when `\u03b4 = \u03b8 \u2212 p/q` is negative.",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 27,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "orbitCell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 30,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "orbitCell_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The cell map is injective on `range q`, because `p` is invertible mod `q`.",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 36,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "orbitCell_inj",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The orbit visits each cell once.** With cells anchored at `x`, the `k`-th orbit point lies in cell `orbitCell p q neg k`, once shifted by an integer.",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 52,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "orbit_mem_cell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Denjoy\u2013Koksma with the cells reached through a map.** The `n` sample points are indexed by `k`, and `\u03c4 k` names the cell point `k` lands in; injectivity of `\u03c4` on `range n` is what replaces \"one point per cell\". This is the form a rotation supplies, and taking it avoids having to invert the permutation.",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 127,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "denjoy_koksma_cellmap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Denjoy\u2013Koksma for the rotation.** This is the inequality Paper A's Section 5.5 states and marks KNOWN: for a one-periodic `f` of bounded variation and a rational `p/q` within `1/q\u00b2` of `\u03b8`, the ergodic sum of length `q` differs from `q` times the mean by at most the total variation, uniformly in the starting phase `x`.",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 178,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "denjoy_koksma_rotation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The mean over the window is the mean over `[0,1]`**, so this is Theorem 5.7's `C_*`: the ergodic sum of length `q` differs from `q\u00b7C_*` by at most the variation.",
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 267,
+      "module": "Problems.Juggler.DenjoyKoksmaOrbit",
+      "name": "denjoy_koksma_rotation_mean",
       "trust": "kernel"
     },
     {
@@ -64849,6 +64919,14 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.DenjoyKoksmaOrbit": {
+      "declarations": 7,
+      "file": "formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "imports": [
+        "Problems.Juggler.DenjoyKoksma"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.DepthFourFive": {
       "declarations": 37,
       "file": "formal/Problems/Juggler/DepthFourFive.lean",
@@ -66108,6 +66186,8 @@
         "Problems.Juggler.Cycles",
         "Problems.Juggler.Defect",
         "Problems.Juggler.DefectFinance",
+        "Problems.Juggler.DenjoyKoksma",
+        "Problems.Juggler.DenjoyKoksmaOrbit",
         "Problems.Juggler.Dynamics",
         "Problems.Juggler.Envelope",
         "Problems.Juggler.Equality",
@@ -66348,13 +66428,13 @@
     }
   },
   "totals": {
-    "declarations": 4726,
+    "declarations": 4733,
     "declarations_with_a_ledger_row": 3195,
     "ledger_rows_naming_a_file": 330,
-    "modules": 199,
+    "modules": 200,
     "trust": {
       "compiler": 54,
-      "kernel": 4672
+      "kernel": 4679
     }
   }
 }

@@ -31,14 +31,16 @@ chain of cut points rather than over a rotation:
 * `denjoy_koksma_unit` — the same on `[0,1]` with the `q` uniform cells `[i/q, (i+1)/q]`,
   which is the shape Theorem 5.7 applies per block.
 
-## What is still missing
+## What was missing, and where it now lives
 
 Denjoy–Koksma proper needs the *geometric* fact that the orbit `x, x+θ, …, x+(q−1)θ` visits
-each cell `[i/q, (i+1)/q)` exactly once, which is where `|θ − p/q| < 1/q²` is used.  Paper A
-certifies the *arithmetic* skeleton of that — `theta_block_permutations`, that `i ↦ p·i` is a
-bijection of `ZMod q` — and the quality bound `theta_convergent_quality`, but not the transfer
-between them.  Supply that and `denjoy_koksma_unit` gives the paper's statement; until then
-this file is the analytic half, and Paper A's Theorem 5.7 is still KNOWN.
+each cell once, which is where `|θ − p/q| ≤ 1/q²` is used.  That is
+`Problems.Juggler.DenjoyKoksmaOrbit`, which supplies it and assembles the two halves into
+`denjoy_koksma_rotation` — the inequality Paper A's Section 5.5 states and marks KNOWN.  This
+file is the analytic half of that; on its own it says nothing about rotations.
+
+The module header there records the trap: the naive form of the geometric fact, with cells
+anchored at `0`, is false.
 -/
 
 import Mathlib.Topology.EMetricSpace.BoundedVariation

@@ -8337,3 +8337,87 @@ OBSERVATION: the same shape as Theorem 4.7 a commit earlier --- the part
 of the proof that looked analytic was two integer comparisons, and the
 part that looked combinatorial was the expensive one. Twice now the
 logarithm has been the cheap half.
+
+## Denjoy--Koksma is Lean, and the retracted bridge was repairable
+
+*Mathematical target.* Paper A's Appendix A row for Theorem 5.7 opened
+"Denjoy--Koksma's variation inequality (known), not Lean". Mathlib has
+neither that inequality nor unique ergodicity of the irrational
+rotation --- there is no `UniquelyErgodic` in Mathlib at all --- so the
+route the paper cites has no Lean path. `DenjoyKoksma.lean` had the
+analytic half and named the obstruction in its own docstring: the
+*geometric* fact that the orbit visits each cell once. That fact is now
+proved, and with it the inequality.
+
+**The obstruction was real, and the earlier retraction was right about
+the claim it retracted.** Paper A once asserted that the length-\(q\)
+orbit permutes the grid cells \([i/q,(i+1)/q)\); an erratum in §5.5
+withdrew it, because it is false for 7 of 13 blocks at
+\(\theta=\log(3/2)/\log 3\). The smallest counterexample needs neither
+that \(\theta\) nor a long block: \(q=2\), \(\theta=0.7\), \(p=1\),
+\(x=0.49\). The quality bound holds --- \(|0.7-0.5|=0.2\le 1/4\) --- and
+both orbit points, \(0.49\) and \(1.19\equiv0.19\), land in
+\([0,\tfrac12)\).
+
+**But the cell route survives, and the fix is one word: anchor.** Take
+the cells at \([x+i/q,\ x+(i+1)/q]\) instead, and let which way they are
+half-open follow the sign of \(\delta=\theta-p/q\). Then
+\(k\theta=\lfloor kp/q\rfloor+(kp\bmod q)/q+k\delta\) puts point \(k\) at
+the *left endpoint* of cell \(kp\bmod q\), displaced by \(k\delta\), and
+
+\[
+|k\delta|\ \le\ (q-1)\cdot\frac1{q^{2}}\ <\ \frac1q
+\]
+
+is under one cell width. So the point stays in that cell when
+\(\delta\ge0\) and falls into the previous one when \(\delta\le0\). On
+the same counterexample the anchored cells are \([0.49,0.99)\) and
+\([0.99,1.49)\), and the two points separate. Lean:
+
+- `orbitCell` --- the assignment, `k·p mod q` shifted back one in the
+  negative case.
+- `orbitCell_inj` --- injective on `range q`, and this needs only
+  \(\gcd(p,q)=1\). It is the residue permutation the paper already
+  certified as `theta_block_permutations`; what was missing was never
+  that, but the transfer.
+- `orbit_mem_cell` --- the displacement bound, in four cases: sign of
+  \(\delta\), and whether the residue wraps.
+
+**Taking the map in the direction the orbit gives it.** The classical
+statement is "one sample point per cell", which reads cell \(\mapsto\)
+point; the orbit supplies point \(\mapsto\) cell. Inverting a
+permutation in Lean costs an `Equiv` and a choice principle.
+`denjoy_koksma_cellmap` avoids both by taking `τ : ℕ → ℕ` with `τ`
+injective on `range n` and reindexing the two sums it needs ---
+integrals and variations --- through
+`Finset.card_image_of_injOn` and `Finset.sum_image`, which turn
+injectivity into `image τ (range n) = range n` and let each sum be read
+either way. No inverse is ever constructed.
+
+- `denjoy_koksma_rotation` --- the display Paper A states: for
+  one-periodic `f` of bounded variation and \(|\theta-p/q|\le 1/q^2\),
+  \(\bigl|\sum_{k<q}f(x+k\theta)-q\int f\bigr|\le\mathrm{Var}(f)\),
+  uniformly in \(x\).
+- `denjoy_koksma_rotation_mean` --- the same with the mean over
+  \([0,1]\), which is the paper's \(C_*\), by
+  `Function.Periodic.intervalIntegral_add_eq`.
+
+Both `DenjoyKoksma` and `DenjoyKoksmaOrbit` are now inside Paper A's
+barrel; the first was deliberately outside it while incomplete.
+
+Human, and named as such in the row: the variation of the paper's own
+observable, that \(F(u)=n'^{\,1-2^u}/2^u\) has \(\mathrm{Var}(F)<2\)
+including the wrap jump. The inequality it is fed to is no longer
+"known".
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper` clean
+at 3447 jobs; every new declaration within
+`[propext, Classical.choice, Quot.sound]`. OBSERVATION: an erratum can
+be right about a claim and wrong about the method. The withdrawn bridge
+said cells permute; the erratum concluded the standard proof "runs
+through Koksma's inequality with the discrepancy bound, not through a
+permutation of grid cells". A cell argument does prove it. What it needs
+is the anchor at \(x\), which is exactly what the retracted claim
+omitted --- and the reason the retraction reads as a dead end rather
+than a repair is that the counterexample was found before the fix was
+looked for.
