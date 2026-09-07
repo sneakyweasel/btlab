@@ -2763,7 +2763,9 @@
   "tests": [
    "tests/research/signed_digit_residual/test_signed_digit_residual.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": "signedIterate_unbounded_of_ge_three",
+  "lean_trust": "kernel"
  },
  {
   "id": "BTN-sdr-lambda2-radius",

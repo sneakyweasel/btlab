@@ -2955,7 +2955,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "One residual step of `F_{gain,U}`: from residual `s` and raw letter `u`, the next residual is `gain * DZ (s + u)`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "def",
       "ledger": [
@@ -2967,33 +2967,15 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 15,
+      "line": 17,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedNext",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The digit emitted by a residual step: the least significant trit of `s + u`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "def",
-      "ledger": [
-        "BTN-sdr-lambda1-radius",
-        "BTN-sdr-finite-condition",
-        "BTN-sdr-scalar-lambda3",
-        "BTN-sdr-multi-trit",
-        "BTN-sdr-escape-general",
-        "BTN-sdr-lambda2-radius",
-        "BTN-sdr-geometry-phase"
-      ],
-      "line": 18,
-      "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "signedOut",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
-      "kind": "theorem",
       "ledger": [
         "BTN-sdr-lambda1-radius",
         "BTN-sdr-finite-condition",
@@ -3005,11 +2987,11 @@
       ],
       "line": 21,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "isTrit_of_natAbs_le_one",
+      "name": "signedOut",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "An integer of absolute value at most `1` is a trit.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3021,7 +3003,25 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 24,
+      "line": 25,
+      "module": "Problems.BalancedTernary.SignedDigitResidual",
+      "name": "isTrit_of_natAbs_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A trit carries nothing: `DZ u = 0` whenever `u` is a trit.",
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-sdr-lambda1-radius",
+        "BTN-sdr-finite-condition",
+        "BTN-sdr-scalar-lambda3",
+        "BTN-sdr-multi-trit",
+        "BTN-sdr-escape-general",
+        "BTN-sdr-lambda2-radius",
+        "BTN-sdr-geometry-phase"
+      ],
+      "line": 29,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "DZ_of_trit",
       "trust": "kernel"
@@ -3039,13 +3039,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 28,
+      "line": 33,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "origin_trit_forcing",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `gain = 3` case of trit forcing: from residual `0`, any `|u| <= 1` stays at `0`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3057,7 +3057,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 33,
+      "line": 39,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "gain3_m1_origin",
       "trust": "kernel"
@@ -3075,13 +3075,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 39,
+      "line": 45,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lambda1_radius_div",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The sharp `lambda = 1` box is invariant: if `|s| <= m / 2` and `|u| <= m`, then `|DZ (s + u)| <= m / 2`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3093,13 +3093,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 43,
+      "line": 51,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lambda1_reachable_box",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `m = 2` instance of the `lambda = 1` box: `|s| <= 1` and `|u| <= 2` give `|DZ (s + u)| <= 1`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3111,7 +3111,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 52,
+      "line": 62,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lambda1_u2_residual_closure",
       "trust": "kernel"
@@ -3129,7 +3129,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 58,
+      "line": 68,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lambda1_lyapunov",
       "trust": "kernel"
@@ -3147,7 +3147,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 69,
+      "line": 79,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lambda2_box_invariant",
       "trust": "kernel"
@@ -3165,13 +3165,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 81,
+      "line": 91,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lambda2_sharp_box",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Constant control `u = 2` at `gain = 3` advances the residual by exactly one multiple of `3`: `signedNext 3 (3 * n) 2 = 3 * (n + 1)`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3183,13 +3183,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 98,
+      "line": 110,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedNext_gain3_control2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The `gain = 3`, `u = 2` orbit from `0` in closed form: its `n`-th term is `3 * n`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3201,13 +3201,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 102,
+      "line": 115,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "gain3_control2_eq",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "That orbit leaves every bound: for each `B` some iterate exceeds `B` in absolute value.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3219,7 +3219,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 105,
+      "line": 119,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "gain3_control2_unbounded",
       "trust": "kernel"
@@ -3237,13 +3237,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 111,
+      "line": 125,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "finite_residual_condition",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The least significant trit is at most `1`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3255,13 +3255,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 134,
+      "line": 149,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lsdZ_le_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The least significant trit is at least `-1`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3273,67 +3273,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 137,
+      "line": 153,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "lsdZ_ge_neg_one",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-sdr-lambda1-radius",
-        "BTN-sdr-finite-condition",
-        "BTN-sdr-scalar-lambda3",
-        "BTN-sdr-multi-trit",
-        "BTN-sdr-escape-general",
-        "BTN-sdr-lambda2-radius",
-        "BTN-sdr-geometry-phase"
-      ],
-      "line": 140,
-      "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "signedNext_gain3",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-sdr-lambda1-radius",
-        "BTN-sdr-finite-condition",
-        "BTN-sdr-scalar-lambda3",
-        "BTN-sdr-multi-trit",
-        "BTN-sdr-escape-general",
-        "BTN-sdr-lambda2-radius",
-        "BTN-sdr-geometry-phase"
-      ],
-      "line": 146,
-      "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "signedNext_gain3_ge",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-sdr-lambda1-radius",
-        "BTN-sdr-finite-condition",
-        "BTN-sdr-scalar-lambda3",
-        "BTN-sdr-multi-trit",
-        "BTN-sdr-escape-general",
-        "BTN-sdr-lambda2-radius",
-        "BTN-sdr-geometry-phase"
-      ],
-      "line": 152,
-      "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "signedNext_gain3_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "At `gain = 3` the residual step is a pure trit subtraction: `signedNext 3 s u = s + u - lsdZ (s + u)`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3347,11 +3293,11 @@
       ],
       "line": 158,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "DZ_ge_one_of_ge_two",
+      "name": "signedNext_gain3",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At `gain = 3` a control `u >= 2` moves the residual up by at least `1`, since the subtracted trit is at most `1`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3363,13 +3309,67 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 165,
+      "line": 166,
+      "module": "Problems.BalancedTernary.SignedDigitResidual",
+      "name": "signedNext_gain3_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At `gain = 3` a control `u <= -2` moves the residual down by at least `1`, since the subtracted trit is at least `-1`.",
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-sdr-lambda1-radius",
+        "BTN-sdr-finite-condition",
+        "BTN-sdr-scalar-lambda3",
+        "BTN-sdr-multi-trit",
+        "BTN-sdr-escape-general",
+        "BTN-sdr-lambda2-radius",
+        "BTN-sdr-geometry-phase"
+      ],
+      "line": 174,
+      "module": "Problems.BalancedTernary.SignedDigitResidual",
+      "name": "signedNext_gain3_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The carry of an integer at least `2` is at least `1`.",
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-sdr-lambda1-radius",
+        "BTN-sdr-finite-condition",
+        "BTN-sdr-scalar-lambda3",
+        "BTN-sdr-multi-trit",
+        "BTN-sdr-escape-general",
+        "BTN-sdr-lambda2-radius",
+        "BTN-sdr-geometry-phase"
+      ],
+      "line": 181,
+      "module": "Problems.BalancedTernary.SignedDigitResidual",
+      "name": "DZ_ge_one_of_ge_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The carry of an integer at most `-2` is at most `-1`.",
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-sdr-lambda1-radius",
+        "BTN-sdr-finite-condition",
+        "BTN-sdr-scalar-lambda3",
+        "BTN-sdr-multi-trit",
+        "BTN-sdr-escape-general",
+        "BTN-sdr-lambda2-radius",
+        "BTN-sdr-geometry-phase"
+      ],
+      "line": 189,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "DZ_le_neg_one_of_le_neg_two",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At `gain >= 4` the step is strictly expanding on the nonnegative ray: from `s >= 0` with control `u >= 2`, the next residual is strictly larger than `s`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3381,49 +3381,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 172,
+      "line": 198,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedNext_gain_ge_four_expands",
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
-      "kind": "theorem",
-      "ledger": [
-        "BTN-sdr-lambda1-radius",
-        "BTN-sdr-finite-condition",
-        "BTN-sdr-scalar-lambda3",
-        "BTN-sdr-multi-trit",
-        "BTN-sdr-escape-general",
-        "BTN-sdr-lambda2-radius",
-        "BTN-sdr-geometry-phase"
-      ],
-      "line": 197,
-      "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "signedNext_gain_ge_four_contracts_neg",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
-      "kind": "def",
-      "ledger": [
-        "BTN-sdr-lambda1-radius",
-        "BTN-sdr-finite-condition",
-        "BTN-sdr-scalar-lambda3",
-        "BTN-sdr-multi-trit",
-        "BTN-sdr-escape-general",
-        "BTN-sdr-lambda2-radius",
-        "BTN-sdr-geometry-phase"
-      ],
-      "line": 221,
-      "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "signedIterate",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
+      "doc": "The mirror statement at `gain >= 4`: from `s <= 0` with control `u <= -2`, the next residual is strictly smaller than `s`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3437,11 +3401,29 @@
       ],
       "line": 225,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
-      "name": "signedIterate_zero",
+      "name": "signedNext_gain_ge_four_contracts_neg",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The constant-control orbit of `F_{gain,U}` started at residual `0`: iterate `signedNext gain . u` from `0`.",
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "kind": "def",
+      "ledger": [
+        "BTN-sdr-lambda1-radius",
+        "BTN-sdr-finite-condition",
+        "BTN-sdr-scalar-lambda3",
+        "BTN-sdr-multi-trit",
+        "BTN-sdr-escape-general",
+        "BTN-sdr-lambda2-radius",
+        "BTN-sdr-geometry-phase"
+      ],
+      "line": 251,
+      "module": "Problems.BalancedTernary.SignedDigitResidual",
+      "name": "signedIterate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The orbit starts at `0`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3453,13 +3435,31 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 228,
+      "line": 256,
+      "module": "Problems.BalancedTernary.SignedDigitResidual",
+      "name": "signedIterate_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The orbit's recurrence: each term is one `signedNext` step from the previous one.",
+      "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTN-sdr-lambda1-radius",
+        "BTN-sdr-finite-condition",
+        "BTN-sdr-scalar-lambda3",
+        "BTN-sdr-multi-trit",
+        "BTN-sdr-escape-general",
+        "BTN-sdr-lambda2-radius",
+        "BTN-sdr-geometry-phase"
+      ],
+      "line": 260,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedIterate_succ",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At `gain = 3` with control `u >= 2`, the `n`-th iterate is at least `n`: each step gains at least `1`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3471,13 +3471,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 232,
+      "line": 266,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedIterate_gain3_ge",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At `gain = 3` with control `u <= -2`, the `n`-th iterate is at most `-n`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3489,13 +3489,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 243,
+      "line": 278,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedIterate_gain3_le",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At `gain >= 4` with control `u >= 2`, the `n`-th iterate is at least `n`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3507,13 +3507,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 254,
+      "line": 290,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedIterate_gain_ge_four_ge",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At `gain >= 4` with control `u <= -2`, the `n`-th iterate is at most `-n`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3525,13 +3525,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 269,
+      "line": 306,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedIterate_gain_ge_four_le",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Transfer of a lower bound on a nonnegative integer to its `natAbs`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3543,13 +3543,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 284,
+      "line": 322,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedIterate_natAbs_ge_of_nonneg",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Escape at every gain `>= 3`: if `|u| >= 2`, the constant-control orbit from `0` is unbounded -- for each bound `B` some iterate exceeds it. This is the witness matching `finite_residual_condition`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3561,7 +3561,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 289,
+      "line": 330,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "signedIterate_unbounded_of_ge_three",
       "trust": "kernel"
@@ -3579,13 +3579,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 326,
+      "line": 367,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "same_raw_same_residual",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The finite/infinite phase law as an equivalence: a finite invariant box containing `0` exists exactly when `gain <= 2` or `m <= 1`. Forward is `finite_residual_condition`; the converse runs `signedIterate_unbounded_of_ge_three` out of any candidate box.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3597,13 +3597,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 331,
+      "line": 375,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "origin_residual_box_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "A list of trits sums to absolute value at most its length.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3615,7 +3615,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 356,
+      "line": 401,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "sum_trits_bound",
       "trust": "kernel"
@@ -3633,13 +3633,13 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 373,
+      "line": 418,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "multi_trit_carry_bound",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The residual state count `2 * (r / 2) + 1` at `r = 1, 2, 3, 4` is `1, 3, 3, 5`.",
       "file": "formal/Problems/BalancedTernary/SignedDigitResidual.lean",
       "kind": "theorem",
       "ledger": [
@@ -3651,7 +3651,7 @@
         "BTN-sdr-lambda2-radius",
         "BTN-sdr-geometry-phase"
       ],
-      "line": 380,
+      "line": 426,
       "module": "Problems.BalancedTernary.SignedDigitResidual",
       "name": "multi_trit_carry_minimal",
       "trust": "compiler"
@@ -45464,6 +45464,42 @@
       "trust": "kernel"
     },
     {
+      "doc": "The no-momentum hypothesis at one scale and depth: the tilted odd share exceeds `q` by at most `\u03b4 d` in total over the depths below `d`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "def",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 174,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "NoMomentum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Under no momentum the mass of words with at least `k` odd letters is at most `Z_0 \u00b7 a_q^d \u00b7 exp(c_q \u03b4 d) / x^k`: the Tao-type count with its Chernoff-form exponent, kernel-checked.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 180,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "count_le_of_noMomentum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the re-centring tilt `x = p(1-q)/(q(1-p))` the per-step exponent is the relative entropy: `p log x - log(1 + (x-1) q) = D(p \u2016 q)`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 208,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "tilt_exponent_eq_kl",
+      "trust": "kernel"
+    },
+    {
       "doc": "`j` iterated integer square roots of `x` equal `s` exactly when `s^(2^j) \u2264 x < (s+1)^(2^j)`: the intermediate floors are transparent.",
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
       "kind": "theorem",
@@ -64952,7 +64988,7 @@
       "ledger": []
     },
     "Problems.Juggler.TiltedShare": {
-      "declarations": 8,
+      "declarations": 11,
       "file": "formal/Problems/Juggler/TiltedShare.lean",
       "imports": [
         "Problems.Juggler.RateFreeDensity"
@@ -64960,7 +64996,7 @@
       "ledger": [
         {
           "id": "J-tilted-share-telescoping",
-          "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (weightGen_succ_le_share); for 0 <= q, 1 + (x-1)s <= a_q exp(c_q max(s-q,0)) with a_q = 1 + (x-1)q, c_q = (x-1)/a_q (one_add_le_exp_excess); hence Z_d <= Z_0 a_q^d exp(c_q sum_{t<d} max(s_t - q, 0)) (weightGen_le_pressure), and with weight_markov the mass of words with at least k odd letters is at most that over x^k (count_le_pressure). This is the reduction M_{theta,q} => P_theta => Tao-type count, kernel-checked; axioms propext, Classical.choice, Quot.sound only.",
+          "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (weightGen_succ_le_share); for 0 <= q, 1 + (x-1)s <= a_q exp(c_q max(s-q,0)) with a_q = 1 + (x-1)q, c_q = (x-1)/a_q (one_add_le_exp_excess); hence Z_d <= Z_0 a_q^d exp(c_q sum_{t<d} max(s_t - q, 0)) (weightGen_le_pressure), and with weight_markov the mass of words with at least k odd letters is at most that over x^k (count_le_pressure). This is the reduction M_{theta,q} => P_theta => Tao-type count, kernel-checked; axioms propext, Classical.choice, Quot.sound only. Also: NoMomentum mu x q delta d := sum_{t<d} max(s_t - q, 0) <= delta d is the hypothesis as a Lean proposition, and count_le_of_noMomentum gives the Tao-type count <= Z_0 a_q^d exp(c_q delta d) / x^k under it; tilt_exponent_eq_kl shows that at the re-centring tilt x = p(1-q)/(q(1-p)) the per-step exponent p log x - log(1 + (x-1)q) equals the relative entropy p log(p/q) + (1-p) log((1-p)/(1-q)), so the exponent of the count is d D(p||q) minus the excess term. Axioms propext, Classical.choice, Quot.sound only.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -65288,13 +65324,13 @@
     }
   },
   "totals": {
-    "declarations": 4631,
-    "declarations_with_a_ledger_row": 3169,
+    "declarations": 4634,
+    "declarations_with_a_ledger_row": 3172,
     "ledger_rows_naming_a_file": 326,
     "modules": 192,
     "trust": {
       "compiler": 55,
-      "kernel": 4576
+      "kernel": 4579
     }
   }
 }
