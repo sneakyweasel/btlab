@@ -38603,3 +38603,55 @@ forms differ only in depth-to-depth variation, and the wall (the tilted
 odd share of tall towers over sparse bases) is the same. Recorded as
 J-mean-share-form; export note and failure-margin dossier carry the
 mean form as the statement to prove.
+
+## Propagating a weakening
+
+2026-09-08, later. The previous entry closed the omitted mixed mode of
+Theorem 6.3 and stopped there, deliberately: it records the proof chain
+and says the manuscript, the ledger row and the downstream quotations
+still print 43/48. This tick is the integration.
+
+First I re-derived the repair's arithmetic rather than trusting it. The
+piece-sum comes out exactly as recorded --- four terms, Y P^(-1/24),
+|k|^(1/2) Y P^(-1/32), |k|^(-1/2) P^(13/32), |k|^(-1) P^(19/48) --- and
+the balance between truncation cost P^(-a) and mixed term
+P^(-1/32+a/2) is at a = 1/48. So the saving is P^(-1/48) and the
+exponent 47/48, not 43/48.
+
+The thing to check before touching anything is whether the weakening
+breaks Corollary 6.4, which combines the two halves at
+O(N^(1-1/96+eps)). That absorbs the OOEO* half only if it sits below
+95/96. It is 94/96. One ninety-sixth of room, where 43/48 = 86/96 had
+nine. So the correction propagates, and it propagates with almost
+nothing to spare.
+
+Then the mechanical part, which was larger than I expected: six
+documents and a Lean file. The manuscript alone has the statement, the
+proof's balance paragraph, Corollary 6.4, two tables and a sentence
+comparing the two halves' exponents. Three further figures move with
+the truncation, since it drops from P^(5/48) to P^(1/48): a remainder
+from P^(13/24) to P^(11/24), and a lambda_2 error from P^(-1/12) to
+P^(-1/6). The satellites carry fourteen more occurrences, including a
+parallel copy of the whole proof in the two-step-parity lemma document,
+whose balance line I had to mark superseded rather than merely
+renumber --- replacing the exponent while leaving the derivation would
+have produced a paragraph that contradicted itself.
+
+Two guards caught me mid-edit, both of them the other session's. The
+audit's one_symbol_two_bounds reported that k now carries two printed
+bounds, because I had written the truncation as |k| <= P^(1/48) where
+the paper already bounds a different k at P^(1/24). The paper's own
+idiom names that truncation J_*, and writing it that way restored k to
+one bound. Then draft_history_markers reported a fifth body marker,
+from a "no longer" I had put in the margin sentence. Both were right,
+and in both cases the fix was to write it the way the paper already
+writes it rather than to loosen the guard. That is the second time this
+week a guard has been more careful than I was.
+
+What I keep coming back to is that this correction makes the paper
+weaker and the paper is better for it. The old 43/48 rested on a proof
+that dropped a term Theorem 4.4 spends a Weyl process on, and centered
+a Fourier frequency dynamically. Neither defect showed up in any
+check, because every check compared numbers and the defect was in the
+argument. The new number is worse and it is the one the argument
+supports.

@@ -242,7 +242,7 @@ def test_failures_now_covers_relations() -> None:
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
                       "a1_thresholds", "claim_vs_predicate",
                       "p0_reproducible", "kappa_table", "a6_table",
-                      "prop71", "runlength", "axioms", "lean_rows"}
+                      "prop71", "runlength", "axioms", "lean_rows", "depth5_exponent"}
     assert all(v == [] for v in f.values())
 
 
@@ -810,3 +810,57 @@ def test_the_paper_names_the_seven_uncovered_rows() -> None:
                    "Theorem 6.1's Step B discard", "two depth-five sites"):
         assert phrase in text, phrase
     assert "certifies thirty-one of the thirty-eight" in text
+
+
+# --- Theorem 6.3's second exponent ----------------------------------------------------------------
+
+
+def test_the_depth_five_exponent_agrees_everywhere() -> None:
+    assert M.depth5_failures() == []
+    assert M.depth5_exponents() == {k: [M.DEPTH5_EXPONENT] for k in M.DEPTH5_SOURCES}
+
+
+def test_the_surviving_balance_is_a_forty_eighth() -> None:
+    """Truncation costs P^(-a), the mixed term P^(-1/32+a/2); they meet at a = 1/48."""
+    from fractions import Fraction
+    a = Fraction(1, 48)
+    assert -a == -Fraction(1, 32) + a / 2
+    assert 1 - a == Fraction(47, 48) == M.DEPTH5_EXPONENT
+    # the superseded balance, kept in the erratum and in Lean beside the surviving one
+    old = Fraction(5, 48)
+    assert Fraction(1, 2) * old + Fraction(27, 32) == Fraction(43, 48) == M.DEPTH5_SUPERSEDED
+    assert 1 - old == M.DEPTH5_SUPERSEDED
+
+
+def test_corollary_6_4_still_absorbs_it_but_only_just() -> None:
+    from fractions import Fraction
+    combined = 1 - Fraction(1, 96)
+    assert M.DEPTH5_EXPONENT < combined
+    assert combined - M.DEPTH5_EXPONENT == Fraction(1, 96)
+    assert combined - M.DEPTH5_SUPERSEDED == Fraction(9, 96)      # what it used to have
+    assert M.DEPTH5_EXPONENT == Fraction(94, 96) and combined == Fraction(95, 96)
+
+
+def test_the_superseded_exponent_survives_only_where_it_is_corrected() -> None:
+    text = M.paper_text()
+    assert text.count("43/48") == 2            # the erratum, and the margin sentence beside it
+    assert "Erratum (the omitted mixed mode, and the exponent it costs)" in text
+    assert "the size of it is not evidence of anything" in text
+
+
+def test_the_erratum_names_both_defects_and_both_repairs() -> None:
+    text = M.paper_text()
+    for phrase in ("dropped", chr(92) + "tfrac j2Y",
+                   "centered Fourier frequency was written dynamically as",
+                   "frozen before differentiation", "removable",
+                   "does not follow from this architecture"):
+        assert phrase in text, phrase
+
+
+def test_lean_carries_both_balances() -> None:
+    src = (ROOT / "formal" / "Problems" / "Juggler" / "DepthFourFive.lean").read_text(
+        encoding="utf-8")
+    assert "theorem oeoe_balance_superseded" in src
+    assert "theorem oeoe_balance" in src and "= -1/48" in src
+    assert "theorem cor64_error_margin" in src
+    assert "43/48" in src and "47/48" in src

@@ -7603,3 +7603,90 @@ production.  This entry records the proof chain, not its integration:
 Theorem 6.3, its theorem-ledger row, and downstream quotations still
 print \(43/48\) and require a coordinated correction before the repair
 is promoted as an official theorem.  No termination claim is made.
+
+## Integrating the mixed-mode repair: `43/48` becomes `47/48` in six documents and one Lean file
+
+*Mathematical target.* The preceding entry records the proof chain for
+the omitted mixed mode and says explicitly that it is not integrated:
+"Theorem 6.3, its theorem-ledger row, and downstream quotations still
+print `43/48`". Propagate the correction and check every dependent
+claim.
+
+*Novelty hypothesis.* Some claim downstream needs better than `47/48`,
+in which case the repair cannot be promoted as written.
+
+*Falsifier.* Every dependent claim survives at `47/48`.
+
+*Existing machinery.* `paper_b_audit`'s exponent checks, the
+`formalpedia` impact query, the manuscript audits.
+
+*Prior art.* The preceding entry is the proof; this is its integration.
+Nothing in `docs/negative_knowledge.md`.
+
+**The arithmetic re-derived, not taken on trust.** The repair's
+piece-sum was recomputed here before anything was edited. With
+`Z ≍ P^(7/16)/|k|` and `1 + |k| Y P^(-7/16)` pieces against
+`P^ε (Z P^(-1/24) + Z^(1/2) P^(3/16))`, the four terms come out
+exactly as recorded: `Y P^(-1/24)`, `|k|^(1/2) Y P^(-1/32)`,
+`|k|^(-1/2) P^(13/32)` and `|k|^(-1) P^(19/48)`. Against the `1/|k|`
+weights the truncation costs `Y P^(-a)` and the mixed term
+`Y P^(-1/32+a/2)`, meeting at `a = 1/48`. So the saving is
+`P^(-1/48+ε)` and the exponent `47/48`.
+
+**The falsifier does not fire, by one ninety-sixth.** Corollary 6.4
+combines the two halves of Theorem 6.3 at `O(N^(1-1/96+ε))`, which
+absorbs the OOEO* half only if that half is below `95/96`.
+`47/48 = 94/96`. It holds, with `1/96` of room where `43/48 = 86/96`
+had `9/96`. The manuscript's claim that the unblocked pair "carries
+the better error exponent" also survives, in direction; its size no
+longer means anything and the text now says so.
+
+**Three figures moved with the truncation.** The fifth-letter
+truncation drops from `P^(5/48)` to `P^(1/48)`, so the remainder it
+controls falls from `P^(5/48+7/16) = P^(13/24)` to
+`P^(1/48+7/16) = P^(11/24)`, and the `J_*`-error in the `lambda_2`
+display from `O(P^(5/48-3/16)) = O(P^(-1/12))` to
+`O(P^(1/48-3/16)) = O(P^(-1/6))`. Both are still smaller than the
+leading coefficient, the second by more than before.
+
+**Where it was printed.** Six documents and one Lean file: the
+manuscript (statement, proof balance, Corollary 6.4, two tables, the
+margin sentence), the theorem ledger in both formats, the reviewer
+packet, the engine-harvest and two-step-parity problem notes, the
+two-step-parity lemma document (which carries a parallel copy of the
+proof, its balance now labelled superseded), and
+`DepthFourFive.lean`. Fourteen occurrences in the satellites alone.
+
+**Lean.** `oeoe_balance` now proves the surviving balance
+(`-1/32 + (1/48)/2 = -1/48` and `1 - 1/48 = 47/48`); the old identity
+is kept as `oeoe_balance_superseded`, as `interpolant_assembly` keeps
+its precorrection. `cor64_error_exponent` becomes `47/48 <= 1 - 1/96`
+and a new `cor64_error_margin` proves the room is exactly `1/96`.
+`formalpedia impact` first: `DepthFourFive` is imported only by the
+umbrella and does not reach the Paper B root, so the blast radius is
+one module. `lake build` clean; the index rebuilt (4655 declarations).
+
+**Two guards fired on the edit.** The audit's
+`one_symbol_two_bounds` reported `k` carrying two printed bounds: my
+first draft wrote the truncation as `|k| <= P^(1/48)`, where the paper
+already bounds a different `k` at `P^(1/24)`. The paper's own idiom is
+to name the truncation `J_*`, which restores `k` to one bound --- the
+guard was right and the fix was to write it the way the paper does.
+The `draft_history_markers` guard then reported a fifth body marker,
+from a "no longer" in my margin sentence; reworded.
+
+Tags. EXACT: the four-term piece sum; `-1/32 + 1/96 = -1/48`;
+`1 - 1/48 = 47/48`; `95/96 - 94/96 = 1/96`; `1/48 + 7/16 = 11/24`;
+`1/48 - 3/16 = -1/6`. COMPUTATIONALLY VERIFIED: all four sources ---
+manuscript, theorem ledger, Lean, Python audit --- now read `47/48`;
+`lake build Problems.Juggler.DepthFourFive` clean; the other session's
+`paper_b_audit` suite green after the two guard repairs. OBSERVATION:
+the repair is a *weakening*, and the only thing standing between it
+and Corollary 6.4 is one ninety-sixth.
+
+Probe: `manuscript_self_audit.depth5_exponents`, `depth5_failures`;
+`failures()` gains a `depth5_exponent` key, fourteen checks. Six new
+tests, eighty-six in the file. Manuscript: the exponent corrected at
+every site, an erratum naming both defects and both repairs, and the
+balance paragraph replaced by the surviving argument. No change to
+`P_0`, `P_1`, or any density.
