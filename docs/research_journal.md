@@ -38546,3 +38546,16 @@ dossier. It ends with what would count: a one-sided averaging theorem
 for the tilted odd share at depth ~ log log y, and the wall it must
 pass -- the height->=4 tower over a sparse base, in either coordinate.
 No new claim; a consolidation after six passes of the loop.
+
+## The hypothesis is a Lean proposition
+
+`TiltedShare.lean` now also carries `NoMomentum mu x q delta d`
+(sum_{t<d} max(s_t - q, 0) <= delta d), `count_le_of_noMomentum` (the
+Tao-type count <= Z_0 a_q^d exp(c_q delta d) / x^k under it) and
+`tilt_exponent_eq_kl` (at the re-centring tilt x = p(1-q)/(q(1-p)),
+p log x - log(1 + (x-1)q) = p log(p/q) + (1-p) log((1-p)/(1-q))), all
+kernel-checked with axioms propext, Classical.choice, Quot.sound only.
+So the exported statement is a named Lean proposition whose sufficiency
+for the Tao-type count, with the Chernoff exponent d D(p||q), is
+machine-checked; what stays prose is the contagion rate theorem. Ledger
+row, export note and failure-margin dossier updated.

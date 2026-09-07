@@ -169,4 +169,63 @@ theorem count_le_pressure (μ : List Branch → ℝ) (x q : ℝ)
       ≤ weightGen μ x d / x ^ k := weight_markov μ x d k hx hμ
     _ ≤ _ := div_le_div_of_nonneg_right (weightGen_le_pressure μ x q hμ hsplit hx hq d) hxk
 
+/-- The no-momentum hypothesis at one scale and depth: the tilted odd
+share exceeds `q` by at most `δ d` in total over the depths below `d`. -/
+def NoMomentum (μ : List Branch → ℝ) (x q δ : ℝ) (d : ℕ) : Prop :=
+  (∑ t ∈ Finset.range d, max (tiltedShare μ x t - q) 0) ≤ δ * d
+
+/-- Under no momentum the mass of words with at least `k` odd letters
+is at most `Z_0 · a_q^d · exp(c_q δ d) / x^k`: the Tao-type count with
+its Chernoff-form exponent, kernel-checked. -/
+theorem count_le_of_noMomentum (μ : List Branch → ℝ) (x q δ : ℝ)
+    (hμ : ∀ w, 0 ≤ μ w) (hsplit : WeightSplit μ) (hx : 1 ≤ x) (hq : 0 ≤ q)
+    (d k : ℕ) (hM : NoMomentum μ x q δ d) :
+    (∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), μ w) ≤
+      weightGen μ x 0 * (1 + (x - 1) * q) ^ d *
+        Real.exp ((x - 1) / (1 + (x - 1) * q) * (δ * d)) / x ^ k := by
+  have ha0 : 0 < 1 + (x - 1) * q := by nlinarith
+  have hc : 0 ≤ (x - 1) / (1 + (x - 1) * q) := div_nonneg (by linarith) ha0.le
+  have hZ0 : 0 ≤ weightGen μ x 0 := weightGen_nonneg μ x hμ (by linarith) 0
+  have hpow : 0 ≤ (1 + (x - 1) * q) ^ d := pow_nonneg ha0.le d
+  have hxk : 0 ≤ x ^ k := pow_nonneg (by linarith) k
+  have hexp : Real.exp ((x - 1) / (1 + (x - 1) * q) *
+        ∑ t ∈ Finset.range d, max (tiltedShare μ x t - q) 0)
+      ≤ Real.exp ((x - 1) / (1 + (x - 1) * q) * (δ * d)) := by
+    apply Real.exp_le_exp.mpr
+    exact mul_le_mul_of_nonneg_left hM hc
+  calc (∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), μ w)
+      ≤ weightGen μ x 0 * (1 + (x - 1) * q) ^ d *
+          Real.exp ((x - 1) / (1 + (x - 1) * q) *
+            ∑ t ∈ Finset.range d, max (tiltedShare μ x t - q) 0) / x ^ k :=
+        count_le_pressure μ x q hμ hsplit hx hq d k
+    _ ≤ weightGen μ x 0 * (1 + (x - 1) * q) ^ d *
+          Real.exp ((x - 1) / (1 + (x - 1) * q) * (δ * d)) / x ^ k := by
+        apply div_le_div_of_nonneg_right _ hxk
+        exact mul_le_mul_of_nonneg_left hexp (mul_nonneg hZ0 hpow)
+
+/-- At the re-centring tilt `x = p(1-q)/(q(1-p))` the per-step exponent is
+the relative entropy: `p log x - log(1 + (x-1) q) = D(p ‖ q)`. -/
+theorem tilt_exponent_eq_kl (p q : ℝ) (hq0 : 0 < q) (hqp : q < p) (hp1 : p < 1) :
+    p * Real.log (p * (1 - q) / (q * (1 - p))) -
+        Real.log (1 + (p * (1 - q) / (q * (1 - p)) - 1) * q) =
+      p * Real.log (p / q) + (1 - p) * Real.log ((1 - p) / (1 - q)) := by
+  have hp0 : 0 < p := lt_trans hq0 hqp
+  have h1p : 0 < 1 - p := by linarith
+  have h1q : 0 < 1 - q := by linarith
+  have hden : q * (1 - p) ≠ 0 := by positivity
+  have ha : 1 + (p * (1 - q) / (q * (1 - p)) - 1) * q = (1 - q) / (1 - p) := by
+    field_simp
+    ring
+  have h1 : Real.log (p * (1 - q) / (q * (1 - p)))
+      = Real.log p + Real.log (1 - q) - (Real.log q + Real.log (1 - p)) := by
+    rw [Real.log_div (by positivity) hden, Real.log_mul hp0.ne' h1q.ne',
+      Real.log_mul hq0.ne' h1p.ne']
+  have h2 : Real.log ((1 - q) / (1 - p)) = Real.log (1 - q) - Real.log (1 - p) :=
+    Real.log_div h1q.ne' h1p.ne'
+  have h3 : Real.log (p / q) = Real.log p - Real.log q := Real.log_div hp0.ne' hq0.ne'
+  have h4 : Real.log ((1 - p) / (1 - q)) = Real.log (1 - p) - Real.log (1 - q) :=
+    Real.log_div h1p.ne' h1q.ne'
+  rw [ha, h1, h2, h3, h4]
+  ring
+
 end Problems.Juggler

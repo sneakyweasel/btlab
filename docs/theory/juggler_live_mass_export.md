@@ -59,7 +59,12 @@ nonnegative word weight whose two children never exceed their parent
 \exp\Bigl(c_q\sum_{t<d}(s_\theta(t)-q)^+\Bigr)
 \qquad(\texttt{count\_le\_pressure}).
 \]
-At \(k=p_Cd\) the exponent is \(-d\,D(p_C\|q)\) plus the excess term, so
+The hypothesis itself is the Lean proposition `NoMomentum μ x q δ d`
+(\(\sum_{t<d}(s_t-q)^+\le\delta d\)), and `count_le_of_noMomentum`
+gives the count \(\le Z_0a_q^d e^{c_q\delta d}/x^k\) under it;
+`tilt_exponent_eq_kl` identifies the per-step exponent at the
+re-centring tilt with \(D(p_C\|q)\). At \(k=p_Cd\) the exponent is
+\(-d\,D(p_C\|q)\) plus the excess term, so
 \(\mathrm M_{\theta,q}(C)\) gives \(\Lambda\le(\log y)^{-CD(p_C\|q)/\ln2+o(1)}\),
 which exceeds \(e_*\) exactly from the least \(C\):
 \(C\ge19,\,41,\,214,\,1496\) at \(q=0.5,\,0.55,\,0.6,\,0.62\)
@@ -156,6 +161,7 @@ coordinate (the bracket in \(n\), the sub-density in the top variable).
 `FateContagion.lean` (the exact layer of contagion),
 `RateFreeDensity.lean` (Proposition J, the biased-split domination,
 `weight_markov`), `TowerAbsorption.lean` (absorption),
-`TiltedShare.lean` (Proposition 9.3 and the Markov join). Prose:
-the contagion rate theorem, Paper B's estimates, and the identity
-\(\theta p-\ln a_{\theta,q}=D(p\|q)\).
+`TiltedShare.lean` (Proposition 9.3, the Markov join, the hypothesis
+`NoMomentum` with its count, and the identity
+\(\theta p-\ln a_{\theta,q}=D(p\|q)\)). Prose: the contagion rate
+theorem and Paper B's estimates.
