@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Metric } from "./Metric";
-import { ProseInline } from "./Prose";
 import { Tex } from "./Tex";
 import { usePlayState } from "../context/PlayState";
 import { formatGrouped } from "../juggler/format";
@@ -169,7 +168,13 @@ export function GapTransferExplorer({ compact = false }: GapTransferExplorerProp
           />
         </div>
         <p className="text-sm text-muted">
-          <ProseInline text="The only new input is $\\log\\frac{1}{1-\\theta}\\le\\frac{\\theta}{1-\\theta}$. Lean name `cycleMin_gap_transfer`. A contracting pair is not a cycle; the inequality is then free." />
+          The only new input is{" "}
+          <span className="whitespace-nowrap">
+            <Tex>{String.raw`\log\frac{1}{1-\theta}\le\frac{\theta}{1-\theta}`}</Tex>
+          </span>
+          . Lean name{" "}
+          <code className="font-mono text-[0.92em] text-deep">cycleMin_gap_transfer</code>.
+          A contracting pair is not a cycle; the inequality is then free.
         </p>
       </Movement>
 

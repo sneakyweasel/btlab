@@ -28,6 +28,7 @@ import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { GapTransferExplorer } from "./GapTransferExplorer";
 import { RunSuffixExplorer } from "./RunSuffixExplorer";
+import { WalkChargeExplorer } from "./WalkChargeExplorer";
 import { EnvelopePanel, EnvelopeSlack } from "../visuals/EnvelopeSlack";
 import { RegimeDoors } from "../visuals/RegimeDoors";
 import { FinanceBalance, FinanceHierarchy } from "../visuals/FinanceBalance";
@@ -39,7 +40,6 @@ import { IdealExponent } from "../visuals/IdealExponent";
 import { ItineraryBeads } from "../visuals/ItineraryBeads";
 import { LinkedWalk } from "../visuals/LinkedWalk";
 import { MapDoors } from "../visuals/MapDoors";
-import { WalkChargePipeline } from "../visuals/WalkChargePipeline";
 import { MediaControls, MediaPlayer, MediaScrubber } from "./MediaControls";
 import { Tex } from "./Tex";
 
@@ -832,13 +832,5 @@ export function GapTransferWidget() {
 }
 
 export function WalkChargeWidget() {
-  return (
-    <div className="space-y-3">
-      <WalkChargePipeline />
-      <p className="text-sm text-muted">
-        A picture of §5, not a calculator. The site does not recompute hug
-        charge, Ostrowski digits, or Denjoy–Koksma blocks.
-      </p>
-    </div>
-  );
+  return <WalkChargeExplorer compact />;
 }

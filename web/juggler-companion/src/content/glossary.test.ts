@@ -27,5 +27,7 @@ describe("tour glossary markup", () => {
     expect(TOUR_CHAPTERS.map((chapter) => chapter.slug)).toContain("gap-transfer");
     expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "finance")?.body).toContain("**The necklace.**");
     expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "gap-transfer")?.body).toContain("`cycleMin_gap_transfer`");
+    expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "walk-charge")?.body).toContain("**Transport.**");
+    expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "walk-charge")?.body).toContain("`cycleMin_transport`");
   });
 });

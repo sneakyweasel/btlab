@@ -1,11 +1,14 @@
 import type { ReactNode } from "react";
 import { Tex } from "./Tex";
 
-const TOKEN =
-  /(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$|`[^`]+`|\*\*[^*]+?\*\*)/g;
+function tokenize(text: string): string[] {
+  return text
+    .split(/(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$|`[^`]+`|\*\*[^*]+?\*\*)/)
+    .filter((part) => part !== "");
+}
 
 function RichText({ text }: { text: string }) {
-  const parts = text.split(TOKEN).filter((part) => part !== "");
+  const parts = tokenize(text);
   return (
     <>
       {parts.map((part, index) => {

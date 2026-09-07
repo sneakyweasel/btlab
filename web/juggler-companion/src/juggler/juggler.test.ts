@@ -22,6 +22,8 @@ import {
   NOTE_PEAK_37,
   MAIN_FLOOR,
   MAIN_PERIOD,
+  WALK_WINDOW_HI,
+  WALK_WINDOW_LO,
   PAPER_EXCEPTION_COUNT,
   PAPER_FLOOR,
   PAPER_L_CAP,
@@ -102,6 +104,14 @@ import {
   rhinMinLength,
   shortExcluded,
 } from "./gapTransfer";
+import {
+  SHIPPED_HUG_WORDS,
+  deficitD,
+  hugHeights,
+  reducedBase,
+  shippedHugWord,
+  walkChargeView,
+} from "./walkCharge";
 import { EMBER, FLARE, PLUNGE, SEA, mixHex, stepPathColor } from "./palette";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
@@ -925,5 +935,49 @@ describe("gap transfer / Rhin", () => {
       expect(shortExcluded(MAIN_FLOOR, row.L)).toBe(false);
       expect(row.L ** RHIN_POWER).toBeGreaterThan((MAIN_FLOOR * Math.log(MAIN_FLOOR)) / RHIN_COEFF);
     }
+  });
+});
+
+describe("walk-charge transport", () => {
+  it("matches 1.05 e / n + 0.7 o / n^{3/2}", () => {
+    const n = 400;
+    const length = 19;
+    const odds = 12;
+    expect(deficitD(n, length, odds)).toBe(
+      1.05 * (length - odds) / n + 0.7 * odds / n ** 1.5,
+    );
+  });
+
+  it("keeps D ≤ 4.6e-3 at the laboratory floor and a window length", () => {
+    const view = walkChargeView(26_254_995, 176_251, null);
+    expect(view.o).toBeGreaterThan(0);
+    expect(view.D).toBeLessThanOrEqual(4.6e-3);
+  });
+
+  it("reduces the base as n e^{-D}", () => {
+    const n = 400;
+    const D = deficitD(n, 19, 12);
+    expect(reducedBase(n, D)).toBe(n * Math.exp(-D));
+  });
+
+  it("ships only the two hug words, with letters O/E", () => {
+    expect(SHIPPED_HUG_WORDS.map((row) => [row.L, row.o])).toEqual([
+      [11, 7],
+      [19, 12],
+    ]);
+    for (const row of SHIPPED_HUG_WORDS) {
+      expect(row.word.length).toBe(row.L);
+      expect([...row.word].filter((letter) => letter === "O").length).toBe(row.o);
+      expect(/^[OE]+$/.test(row.word)).toBe(true);
+      expect(shippedHugWord(row.L, row.o)?.word).toBe(row.word);
+      expect(hugHeights(row.word)[0]).toBe(0);
+      expect(hugHeights(row.word)).toHaveLength(row.L + 1);
+    }
+    expect(shippedHugWord(176_251, 111_202)).toBeNull();
+  });
+
+  it("keeps the census-free window ends", () => {
+    expect(WALK_WINDOW_LO).toBe(50_508);
+    expect(WALK_WINDOW_HI).toBe(16_785_921);
   });
 });

@@ -17,7 +17,7 @@ export const Tex = memo(function Tex({ children, display = false }: TexProps) {
   );
   return (
     <span
-      className={display ? "my-3 block overflow-x-auto" : ""}
+      className={display ? "my-3 block overflow-x-auto" : "whitespace-nowrap"}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

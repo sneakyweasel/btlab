@@ -27,6 +27,12 @@ type PlayState = {
   setGapL: (value: number) => void;
   gapO: number | null;
   setGapO: (value: number | null) => void;
+  walkN: number;
+  setWalkN: (value: number) => void;
+  walkL: number;
+  setWalkL: (value: number) => void;
+  walkO: number | null;
+  setWalkO: (value: number | null) => void;
 };
 
 type NecklaceState = {
@@ -52,6 +58,9 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
   const [gapN, setGapN] = useState(MAIN_FLOOR);
   const [gapL, setGapL] = useState(PAPER_PERIOD);
   const [gapO, setGapO] = useState<number | null>(null);
+  const [walkN, setWalkN] = useState(400);
+  const [walkL, setWalkL] = useState(19);
+  const [walkO, setWalkO] = useState<number | null>(null);
   const [necklaceNText, setNecklaceNText] = useState(NECKLACE_PRESETS[0].n.toString());
   const [necklaceWord, setNecklaceWord] = useState<string>(NECKLACE_PRESETS[0].word);
   const value = useMemo(
@@ -80,6 +89,12 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
       setGapL,
       gapO,
       setGapO,
+      walkN,
+      setWalkN,
+      walkL,
+      setWalkL,
+      walkO,
+      setWalkO,
     }),
     [
       nText,
@@ -94,6 +109,9 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
       gapN,
       gapL,
       gapO,
+      walkN,
+      walkL,
+      walkO,
     ],
   );
   const necklace = useMemo(

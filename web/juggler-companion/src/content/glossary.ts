@@ -142,8 +142,9 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:
-      "Finance treats each step’s budget separately. Walk charge couples them: transport the losses to a reduced base, take the hug (rotation) itinerary as the adversary, identify that itinerary, and bound the average with Denjoy–Koksma over certified Ostrowski blocks. On the window $[50508,\\,16785921)$ — the whole semiconvergent fan — the charge bound is census-free. The kill itself is not: the comparison against $\\theta(L)$ is a per-length Diophantine quantity the envelope does not control, and that is what blocks the surviving fan members. This chapter is a picture only; the site does not recompute hug charge.",
-    paper: "§5: transport, hug, itinerary identity, Denjoy–Koksma, window, Corollaries 5.10–5.11.",
+      "**Transport.** How do the crumbs become one number? Theorem 5.3 packages the floor losses as $D=1.05 e/n+0.7 o/n^{3/2}$ and a reduced base $n'=ne^{-D}$. Finance then runs at $n'$. Lean name `cycleMin_transport`; the hypothesis is $n\\ge 400$. At the laboratory floor a window length has $D\\le 4.6\\cdot 10^{-3}$.\n\n**The adversary.** Which word is worst? The hug rule takes $E$ where $u\\ge 1$, else $O$, with $u=(1+\\mu)a-k$ and $\\mu=\\log_2(3/2)$. Only two words are shipped: $L=11$, $o=7$ and $L=19$, $o=12$. A picture of Theorem 5.4, Lean `hug_charge_maximal` / `budgetedWord_eq_hugWord`, not a calculator.\n\n**Charge versus kill.** Why is the window census-free if the bound is not? On $[50508,\\,16785921)$ the charge envelope is uniform; the comparison against $\\theta(L)$ is still per-length. That is Theorem 5.8: it bounds the charge, not the kill. Corollaries 5.10--5.11 print $L\\ge 478245$ and $L\\ge 780239$. Exhausting the fan is a $10^{12}$-scale floor, not a halt theorem.",
+    paper:
+      "Theorem 5.3 (`cycleMin_transport`, `WalkTransport.lean`). Theorem 5.4 (`hug_charge_maximal`, `budgetedWord_eq_hugWord`). Theorem 5.8 (human proof: charge, not kill). Corollaries 5.10--5.11.",
   },
 ];
 

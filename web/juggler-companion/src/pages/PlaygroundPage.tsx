@@ -31,7 +31,7 @@ export function PlaygroundPage() {
           rotate a cycle word, inspect a CycleMin survivor, cross a run-suffix
           pair, grow the two Paper C productions, look up a certified floor,
           look up a length in the shipped Theorem 4.6 table, read the
-          gap-transfer / Rhin plane, or read the walk-charge pipeline. Caps:
+          gap-transfer / Rhin plane, or read the walk-charge explorer. Caps:
           80 steps, 256 bits live, itineraries of length at most 8 (cycles 16,
           tour words 24), production seeds at most 100,000. Shipped monsters
           are pictures, not a live walk. Hitting 1 is not a theorem.
