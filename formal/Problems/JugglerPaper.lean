@@ -29,6 +29,7 @@ import Problems.Juggler.WalkChargeItineraries
 import Problems.Juggler.OstrowskiSandwich
 import Problems.Juggler.OddCountMonotone
 import Problems.Juggler.RunTypePacking
+import Problems.Juggler.EvenCountEight
 import Problems.Juggler.OstrowskiNumeration
 import Problems.Juggler.RotationAverage
 import Problems.Juggler.FanLaw

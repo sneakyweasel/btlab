@@ -20364,6 +20364,156 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 47,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "log_three_halves_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "log_three_halves_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`5/3 < runCapConst`, which is `3^5 < 2^8` \u2014 that is, `243 < 256`.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCapConst_gt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`runCapConst < 12/7`, which is `2^19 < 3^12` \u2014 that is, `524288 < 531441`. This is the inequality that pins the `e = 7` cap at 11: `7 \u00b7 runCapConst < 12`.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 64,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCapConst_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Paper A's table of run bounds: the cap on a run whose suffix carries `k` even letters.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 73,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The table is the floor.** For every suffix length the paper uses, `runCap k = \u230ak \u00b7 log 2/log(3/2)\u230b`.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 85,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap_eq_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The caps fall as the suffix shortens, so the proof may apply them run by run.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 94,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 99,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap_tuple_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 101,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap_tuple_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap_tuple_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 106,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap_tuple_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 110,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "runCap_tuple_seven",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Formal expansion first holds at length 22.** `2^22 < 3^14`.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "expansion_holds_at_22",
+      "trust": "kernel"
+    },
+    {
+      "doc": "And at no shorter length: `2^L < 3^(L\u22128)` fails for every `L < 22`.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 118,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "expansion_fails_below_22",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Theorem 3.31's second half.** A cycle with at least eight even letters and formal expansion `2^L < 3^o` has period at least twenty-two.",
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 123,
+      "module": "Problems.Juggler.EvenCountEight",
+      "name": "period_ge_22_of_even_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/EvenCountThree.lean",
       "kind": "def",
       "ledger": [
@@ -33812,6 +33962,16 @@
       "trust": "kernel"
     },
     {
+      "doc": "**The Tao-type count on Juggler orbits with exceptional depths.** The mean-share hypothesis need only hold away from a set `E` of depths; each excluded depth costs one factor of `x` and nothing more. With `E` an initial segment this says every fixed-depth split is free.",
+      "file": "formal/Problems/Juggler/LiveCountWeight.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 207,
+      "module": "Problems.Juggler.LiveCountWeight",
+      "name": "juggler_count_le_of_meanShareOff",
+      "trust": "kernel"
+    },
+    {
       "doc": "For every real `x` and integers `o`, `t`: `o * x - t \u2261 o * (x - 1)` mod `1`.",
       "file": "formal/Problems/Juggler/LogLogClock.lean",
       "kind": "theorem",
@@ -46159,6 +46319,114 @@
       "line": 339,
       "module": "Problems.Juggler.TiltedShare",
       "name": "count_le_of_meanShare",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The tilted odd share is a share: it never exceeds `1`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 361,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "tiltedShare_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "AM\u2013GM over an arbitrary finite index set.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 371,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "prod_le_mean_pow_finset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The mean-share hypothesis away from an exceptional set of depths `E`. Nothing at all is assumed on `E`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "def",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 399,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "MeanShareOff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "With no exceptional depths this is `MeanShare`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 403,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "meanShareOff_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Exceptional depths cost a factor `x` each, and nothing more.** Under `MeanShareOff` the depth-`d` tilted mass is at most `Z_0 \u00b7 x^{|E \u2229 [0,d)|} \u00b7 a_q^{|[0,d) \\ E|}`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 410,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "weightGen_le_of_meanShareOff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The Tao-type count with an exceptional set of depths.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 477,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "count_le_of_meanShareOff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Every bounded prefix of depths is free.** Taking the exceptional set to be the first `k` depths, no assumption whatever on those depths costs more than the constant factor `x^k`. This is Paper C section 9.3(a): the depth-five split, and every split to any fixed depth, cannot bear on the reduction.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 494,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "initial_depths_are_free",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A tower biased below `a_q/x` has geometrically decaying relative weight.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 517,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "tower_ratio_lt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At `q = 1/2` the tower tolerance is `(1+x)/(2x)`.",
+      "file": "formal/Problems/Juggler/TiltedShare.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-tilted-share-telescoping"
+      ],
+      "line": 525,
+      "module": "Problems.Juggler.TiltedShare",
+      "name": "tower_tolerance_half",
       "trust": "kernel"
     },
     {
@@ -64691,6 +64959,14 @@
         }
       ]
     },
+    "Problems.Juggler.EvenCountEight": {
+      "declarations": 15,
+      "file": "formal/Problems/Juggler/EvenCountEight.lean",
+      "imports": [
+        "Problems.Juggler.RunTypePacking"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.EvenCountThree": {
       "declarations": 51,
       "file": "formal/Problems/Juggler/EvenCountThree.lean",
@@ -65176,7 +65452,7 @@
       ]
     },
     "Problems.Juggler.LiveCountWeight": {
-      "declarations": 13,
+      "declarations": 14,
       "file": "formal/Problems/Juggler/LiveCountWeight.lean",
       "imports": [
         "Problems.Juggler.TiltedShare"
@@ -65732,7 +66008,7 @@
       "ledger": []
     },
     "Problems.Juggler.TiltedShare": {
-      "declarations": 17,
+      "declarations": 26,
       "file": "formal/Problems/Juggler/TiltedShare.lean",
       "imports": [
         "Problems.Juggler.RateFreeDensity"
@@ -65835,6 +66111,7 @@
         "Problems.Juggler.Dynamics",
         "Problems.Juggler.Envelope",
         "Problems.Juggler.Equality",
+        "Problems.Juggler.EvenCountEight",
         "Problems.Juggler.EvenCountThree",
         "Problems.Juggler.ExpansionSlack",
         "Problems.Juggler.FanLaw",
@@ -66071,13 +66348,13 @@
     }
   },
   "totals": {
-    "declarations": 4701,
-    "declarations_with_a_ledger_row": 3186,
-    "ledger_rows_naming_a_file": 329,
-    "modules": 198,
+    "declarations": 4726,
+    "declarations_with_a_ledger_row": 3195,
+    "ledger_rows_naming_a_file": 330,
+    "modules": 199,
     "trust": {
       "compiler": 54,
-      "kernel": 4647
+      "kernel": 4672
     }
   }
 }

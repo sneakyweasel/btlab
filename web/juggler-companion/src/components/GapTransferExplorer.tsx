@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Metric } from "./Metric";
+import { ProseInline } from "./Prose";
 import { Tex } from "./Tex";
 import { usePlayState } from "../context/PlayState";
 import { formatGrouped } from "../juggler/format";
@@ -168,9 +169,7 @@ export function GapTransferExplorer({ compact = false }: GapTransferExplorerProp
           />
         </div>
         <p className="text-sm text-muted">
-          The only new input is log 1/(1−θ) ≤ θ/(1−θ). Lean name
-          cycleMin_gap_transfer. A contracting pair is not a cycle; the
-          inequality is then free.
+          <ProseInline text="The only new input is $\\log\\frac{1}{1-\\theta}\\le\\frac{\\theta}{1-\\theta}$. Lean name `cycleMin_gap_transfer`. A contracting pair is not a cycle; the inequality is then free." />
         </p>
       </Movement>
 

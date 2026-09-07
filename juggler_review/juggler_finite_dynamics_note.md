@@ -3306,7 +3306,7 @@ Theorem 4.8.
 | Theorem 3.26 | Corollary 3.27's ten rows are Theorems 3.12--3.21 above |
 | Lemma 3.28 | `absorb_odd_step`, `cross_mul_pow`, `odd_run_ge` (`O7EEEEGap.lean`, now imported by `Problems.JugglerPaper`); \(X_7,Y_7\) are that module's 6177 and 3990 |
 | Theorem 3.29 | `no_cycle_itinerary_oooooooeeee` is the row \(u=EEEE\), \(a=7\) |
-| Theorem 3.31 | enumeration in `run_suffix_law.closure`; not yet Lean |
+| Theorem 3.31 | arithmetic core Lean (`EvenCountEight.lean`): per-run cap `runCapConst_gt`, `runCapConst_lt`; the table is the floor, `runCap_eq_floor`, `runCap_antitone`, tuples `runCap_tuple_three`--`runCap_tuple_seven`; period floor `period_ge_22_of_even_count`, sharp by `expansion_holds_at_22` and `expansion_fails_below_22`. The enumeration of 353044 canonical forms (`run_suffix_law.closure`, Python) is verified computation, not Lean |
 | Lemma 3.21b | canonical run form; Theorem 3.2 |
 | Lemma 3.21a | the case split of Theorem 3.22 |
 | Lemma 4.1 | `log_le_two_log_add` |

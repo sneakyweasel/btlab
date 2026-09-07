@@ -15,6 +15,7 @@ import {
   RunSuffixWidget,
   WalkChargeWidget,
 } from "../components/TourWidgets";
+import { Prose, ProseInline } from "../components/Prose";
 import {
   TOUR_CHAPTERS,
   chapterBySlug,
@@ -147,19 +148,17 @@ export function TourPage() {
             Chapter {chapter.number} of {TOUR_CHAPTERS.length}
           </p>
           <h1 className="mt-1 text-4xl">{chapter.term}</h1>
-          <p className="prose-measure mt-3 text-lg text-muted">{chapter.blurb}</p>
+          <p className="prose-measure mt-3 text-lg text-muted">
+            <ProseInline text={chapter.blurb} />
+          </p>
         </header>
         <div className="min-w-0 overflow-hidden rounded-2xl border border-line bg-card p-4 sm:p-6">
           <Widget />
         </div>
-        {chapter.body.split("\n\n").map((paragraph) => (
-          <p key={paragraph.slice(0, 32)} className="prose-measure">
-            {paragraph}
-          </p>
-        ))}
-        <p className="text-sm text-muted">
+        <Prose text={chapter.body} />
+        <p className="prose-measure text-sm text-muted">
           <span className="font-medium text-ink">In the paper. </span>
-          {chapter.paper}
+          <ProseInline text={chapter.paper} />
         </p>
         <div className="flex flex-wrap justify-between gap-3 border-t border-line pt-4">
           {prev ? (
