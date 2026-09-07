@@ -2288,7 +2288,8 @@
         "J-failure-margin",
         "J-tilted-share-telescoping",
         "J-live-count-weight",
-        "J-mean-share-form"
+        "J-mean-share-form",
+        "J-mean-share-exceptional-depths"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -5412,6 +5413,9 @@
         "formal/Problems/Juggler/CycleHeightFinance.lean",
         "formal/Problems/Juggler/WalkChargeItineraries.lean",
         "formal/Problems/Juggler/OstrowskiSandwich.lean",
+        "formal/Problems/Juggler/OddCountMonotone.lean",
+        "formal/Problems/Juggler/RunTypePacking.lean",
+        "formal/Problems/Juggler/EvenCountEight.lean",
         "formal/Problems/Juggler/OstrowskiNumeration.lean",
         "formal/Problems/Juggler/RotationAverage.lean",
         "formal/Problems/Juggler/FanLaw.lean",

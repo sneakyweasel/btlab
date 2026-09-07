@@ -200,4 +200,37 @@ theorem juggler_count_le_of_meanShare (N0 N : ℕ) (x q : ℝ) (hx : 1 ≤ x)
         apply div_le_div_of_nonneg_right _ hxk
         exact mul_le_mul_of_nonneg_right hZ hpow
 
+/-- **The Tao-type count on Juggler orbits with exceptional depths.**  The
+mean-share hypothesis need only hold away from a set `E` of depths; each
+excluded depth costs one factor of `x` and nothing more.  With `E` an initial
+segment this says every fixed-depth split is free. -/
+theorem juggler_count_le_of_meanShareOff (N0 N : ℕ) (x q : ℝ) (hx : 1 ≤ x)
+    (hq : 0 ≤ q) (d k : ℕ) (E : Finset ℕ)
+    (hM : MeanShareOff (liveWeight N0 N) x q d E) :
+    (((Icc 1 N).filter
+        (fun n => liveTo N0 n d ∧ k ≤ oddCount (itinerary n d))).card : ℝ) ≤
+      N * (x ^ (Finset.range d ∩ E).card *
+        (1 + (x - 1) * q) ^ (Finset.range d \ E).card) / x ^ k := by
+  have hsum : (((Icc 1 N).filter
+        (fun n => liveTo N0 n d ∧ k ≤ oddCount (itinerary n d))).card : ℝ) =
+      ∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), liveWeight N0 N w := by
+    rw [liveCount_sum_oddCount, Nat.cast_sum]
+    rfl
+  rw [hsum]
+  have hZ := liveWeight_weightGen_zero_le N0 N x
+  have ha0 : 0 < 1 + (x - 1) * q := by nlinarith
+  have hfac : 0 ≤ x ^ (Finset.range d ∩ E).card *
+      (1 + (x - 1) * q) ^ (Finset.range d \ E).card :=
+    mul_nonneg (pow_nonneg (by linarith) _) (pow_nonneg ha0.le _)
+  have hxk : 0 ≤ x ^ k := pow_nonneg (by linarith) k
+  calc (∑ w ∈ (allWords d).filter (fun w => k ≤ oddCount w), liveWeight N0 N w)
+      ≤ weightGen (liveWeight N0 N) x 0 * (x ^ (Finset.range d ∩ E).card *
+          (1 + (x - 1) * q) ^ (Finset.range d \ E).card) / x ^ k :=
+        count_le_of_meanShareOff _ x q (liveWeight_nonneg N0 N)
+          (liveWeight_weightSplit N0 N) hx hq d k E hM
+    _ ≤ N * (x ^ (Finset.range d ∩ E).card *
+          (1 + (x - 1) * q) ^ (Finset.range d \ E).card) / x ^ k := by
+        apply div_le_div_of_nonneg_right _ hxk
+        exact mul_le_mul_of_nonneg_right hZ hfac
+
 end Problems.Juggler

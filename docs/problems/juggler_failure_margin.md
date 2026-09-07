@@ -116,6 +116,15 @@ positive part), weaker than `NoMomentum` and still sufficient
 (`weightGen_le_of_meanShare`, AM–GM on the product form). The
 contagion rate theorem stays prose.
 
+`MeanShareOff` weakens the hypothesis again: it need hold only away
+from an exceptional set of depths, and each excluded depth costs one
+factor of \(x\) and nothing more. Two consequences of Paper C
+section 9.3 are theorems rather than prose as a result:
+`initial_depths_are_free` (every fixed-depth split, the depth-five one
+included, is irrelevant to the reduction) and `tower_ratio_lt_one`
+with `tower_tolerance_half` (a tower biased below \((1+x)/(2x)\) is
+free). Row `J-mean-share-exceptional-depths`.
+
 ## Results
 
 Classification **FAILURE_MARGIN_IS_SUB_PERCENT_AT_C20_AND_BELOW_CENSUS_RESOLUTION**.

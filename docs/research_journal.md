@@ -39043,3 +39043,37 @@ The lesson is not subtle and I keep relearning it. I wrote a paragraph
 describing how to complete a proof step without checking that the step
 was true. Checking took one script. It should have come before the
 paragraph, not after the instruction to implement it.
+
+## Asking the kernel what the hypothesis is actually for
+
+Formalizing the chain turned the hypothesis into a contract, and a contract
+can be interrogated: state a weaker candidate, try to derive the count, let
+the kernel answer. Two answers came back.
+
+The positive part came off last week by AM-GM. This week the requirement
+that the bound hold at every depth came off too. MeanShareOff mu x q d E
+asks for the mean-share bound only away from an exceptional set E, with
+nothing whatever assumed on E, and the price is exactly x^|E|: one factor of
+x per excluded depth, because a letter multiplies the tilted moment by at
+most x and the share never exceeds 1 (tiltedShare_le_one). So the true
+target is weaker again than what Paper C assumes, and weaker than
+MeanShare: an averaging theorem may fail on any o(d) set of depths.
+
+Two of Paper C's section 9.3 remarks stop being remarks.
+initial_depths_are_free: taking E to be the first k depths, no assumption at
+all on them costs more than x^k, so every fixed-depth split, the depth-five
+one included, cannot bear on the reduction. That was a warning in the
+prose and a repeated temptation in the branch record; it is now a theorem.
+tower_ratio_lt_one with tower_tolerance_half: an all-odd tower splitting
+with odd share beta carries relative tilted weight (beta x / a_q)^t, free
+exactly when beta < a_q/x, which at q = 1/2 is (1+x)/(2x) and reproduces the
+0.836 the note quotes at theta_19.
+
+juggler_count_le_of_meanShareOff carries all of it to the live count of
+Juggler starts. Axioms propext, Classical.choice, Quot.sound only.
+
+The point is not the individual weakenings. It is that the interface
+between the open hypothesis and its consequence is now something you can
+run experiments against, and each experiment either narrows the target or
+converts a prose closure into a theorem that cannot be forgotten. Row
+J-mean-share-exceptional-depths.
