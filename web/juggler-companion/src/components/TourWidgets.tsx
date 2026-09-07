@@ -28,6 +28,7 @@ import { SweepLane } from "../visuals/SweepLane";
 import { CycleTourWidget, LeftoverWidget } from "./CycleTourWidget";
 import { GapTransferExplorer } from "./GapTransferExplorer";
 import { RunSuffixExplorer } from "./RunSuffixExplorer";
+import { FanExplorer } from "./FanExplorer";
 import { WalkChargeExplorer } from "./WalkChargeExplorer";
 import { EnvelopePanel, EnvelopeSlack } from "../visuals/EnvelopeSlack";
 import { RegimeDoors } from "../visuals/RegimeDoors";
@@ -833,4 +834,8 @@ export function GapTransferWidget() {
 
 export function WalkChargeWidget() {
   return <WalkChargeExplorer compact />;
+}
+
+export function FanWidget() {
+  return <FanExplorer compact />;
 }

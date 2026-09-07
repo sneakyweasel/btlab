@@ -33,6 +33,8 @@ type PlayState = {
   setWalkL: (value: number) => void;
   walkO: number | null;
   setWalkO: (value: number | null) => void;
+  fanK: number;
+  setFanK: (value: number) => void;
 };
 
 type NecklaceState = {
@@ -61,6 +63,7 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
   const [walkN, setWalkN] = useState(400);
   const [walkL, setWalkL] = useState(19);
   const [walkO, setWalkO] = useState<number | null>(null);
+  const [fanK, setFanK] = useState(2);
   const [necklaceNText, setNecklaceNText] = useState(NECKLACE_PRESETS[0].n.toString());
   const [necklaceWord, setNecklaceWord] = useState<string>(NECKLACE_PRESETS[0].word);
   const value = useMemo(
@@ -95,6 +98,8 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
       setWalkL,
       walkO,
       setWalkO,
+      fanK,
+      setFanK,
     }),
     [
       nText,
@@ -112,6 +117,7 @@ export function PlayStateProvider({ children }: { children: ReactNode }) {
       walkN,
       walkL,
       walkO,
+      fanK,
     ],
   );
   const necklace = useMemo(

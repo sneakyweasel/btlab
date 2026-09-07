@@ -144,7 +144,8 @@ export function HomePage() {
           trajectory of 173, a cycle word, a CycleMin survivor, a run-suffix
           crossing, a short O/E itinerary, a one-step preimage, a necklace
           rotation, a finance length from the shipped table, the
-          gap-transfer / Rhin plane, or the walk-charge transport.
+          gap-transfer / Rhin plane, the walk-charge transport, or the
+          semiconvergent fan.
         </p>
         <p>This site is a glossary, not the laboratory Streamlit app.</p>
       </section>

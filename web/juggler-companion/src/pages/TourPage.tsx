@@ -14,6 +14,7 @@ import {
   MapWidget,
   RunSuffixWidget,
   WalkChargeWidget,
+  FanWidget,
 } from "../components/TourWidgets";
 import { Prose, ProseInline } from "../components/Prose";
 import {
@@ -36,6 +37,7 @@ const SHORT_TERM: Record<TourSlug, string> = {
   finance: "Finance",
   "gap-transfer": "Gap",
   "walk-charge": "Walk",
+  fan: "Fan",
 };
 
 const WIDGETS: Record<TourSlug, () => JSX.Element> = {
@@ -51,6 +53,7 @@ const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   finance: FinanceWidget,
   "gap-transfer": GapTransferWidget,
   "walk-charge": WalkChargeWidget,
+  fan: FanWidget,
 };
 
 export function TourIndexPage() {
@@ -173,7 +176,7 @@ export function TourPage() {
               {next.term} →
             </Link>
           ) : (
-            <Link to="/play/trajectory" className="text-sm">
+            <Link to="/play/fan" className="text-sm">
               Open the playground →
             </Link>
           )}

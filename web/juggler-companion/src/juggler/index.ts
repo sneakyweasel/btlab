@@ -13,3 +13,4 @@ export * from "./necklace";
 export * from "./runSuffix";
 export * from "./gapTransfer";
 export * from "./walkCharge";
+export * from "./fan";

@@ -10,7 +10,8 @@ export type TourSlug =
   | "descent-floor"
   | "finance"
   | "gap-transfer"
-  | "walk-charge";
+  | "walk-charge"
+  | "fan";
 
 export type TourChapter = {
   slug: TourSlug;
@@ -145,6 +146,17 @@ export const TOUR_CHAPTERS: TourChapter[] = [
       "**Transport.** How do the crumbs become one number? Theorem 5.3 packages the floor losses as $D=1.05 e/n+0.7 o/n^{3/2}$ and a reduced base $n'=ne^{-D}$. Finance then runs at $n'$. Lean name `cycleMin_transport`; the hypothesis is $n\\ge 400$. At the laboratory floor a window length has $D\\le 4.6\\cdot 10^{-3}$.\n\n**The adversary.** Which word is worst? The hug rule takes $E$ where $u\\ge 1$, else $O$, with $u=(1+\\mu)a-k$ and $\\mu=\\log_2(3/2)$. Only two words are shipped: $L=11$, $o=7$ and $L=19$, $o=12$. A picture of Theorem 5.4, Lean `hug_charge_maximal` / `budgetedWord_eq_hugWord`, not a calculator.\n\n**Charge versus kill.** Why is the window census-free if the bound is not? On $[50508,\\,16785921)$ the charge envelope is uniform; the comparison against $\\theta(L)$ is still per-length. That is Theorem 5.8: it bounds the charge, not the kill. Corollaries 5.10--5.11 print $L\\ge 478245$ and $L\\ge 780239$. Exhausting the fan is a $10^{12}$-scale floor, not a halt theorem.",
     paper:
       "Theorem 5.3 (`cycleMin_transport`, `WalkTransport.lean`). Theorem 5.4 (`hug_charge_maximal`, `budgetedWord_eq_hugWord`). Theorem 5.8 (human proof: charge, not kill). Corollaries 5.10--5.11.",
+  },
+  {
+    slug: "fan",
+    number: 13,
+    term: "The fan",
+    blurb:
+      "The leftover after Corollary 5.11 is one arithmetic progression of 56 terms. Each step is priced. That is not a halt theorem.",
+    body:
+      "**The progression.** Why is the leftover one arithmetic progression? Proposition 5.12 says $L_k=176251+301994k$ and $o_k=111202+190537k$ for $0\\le k\\le 55$. The linear form $\\Lambda_k$ is affine in $k$, and $k=55$ is the last positive index because $\\Lambda_0/\\lvert\\Lambda'\\rvert=55.81$. The last member is $L_{55}=16785921=q_{14}$. Lean names `fanLambda_55_pos` / `fanLambda_56_neg`, `FanLaw.lean`.\n\n**The price.** What does the next step cost? Height is the shipped finance $n_{\\max}(L_k)$, the floor at which finance alone would pass that member. The printed walk-charge bound is a different comparison: $k=0$ at Theorem 5.9, $k=1$ at Corollary 5.10, $k=2$ at Corollary 5.11. At the present frontier the walk charge is worth about a factor $8$ in descent floor.\n\n**What it does not buy.** Why can this never become a halt theorem? Exhausting the fan needs a floor of $2.2\\cdot 10^{12}$; passing $q_{14}$ needs $4.9\\cdot 10^{12}$. The fans recur at every convergent. Corollary 5.14 is conditional on a floor nobody has certified. Not a halt theorem.",
+    paper:
+      "Proposition 5.12 (`fanLength`, `fanLambda_55_pos`, `fanLambda_56_neg`, `FanLaw.lean`). Corollaries 5.10--5.11. Corollary 5.14 is conditional.",
   },
 ];
 

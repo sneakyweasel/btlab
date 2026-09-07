@@ -20,8 +20,10 @@ import {
   NECKLACE_PRESETS,
   NOTE_TRAJECTORY_3,
   NOTE_PEAK_37,
+  LAB_FLOOR,
   MAIN_FLOOR,
   MAIN_PERIOD,
+  PRINTED_FLOOR,
   WALK_WINDOW_HI,
   WALK_WINDOW_LO,
   PAPER_EXCEPTION_COUNT,
@@ -112,6 +114,14 @@ import {
   shippedHugWord,
   walkChargeView,
 } from "./walkCharge";
+import {
+  FAN_K_MAX,
+  FAN_MEMBER_COUNT,
+  FAN_ROWS,
+  fanLength,
+  fanOdd,
+  printedWalkK,
+} from "./fan";
 import { EMBER, FLARE, PLUNGE, SEA, mixHex, stepPathColor } from "./palette";
 import { monsterTrajectory, resolveTrajectory } from "./monsters";
 import { walkTrajectory } from "./trajectory";
@@ -979,5 +989,29 @@ describe("walk-charge transport", () => {
   it("keeps the census-free window ends", () => {
     expect(WALK_WINDOW_LO).toBe(50_508);
     expect(WALK_WINDOW_HI).toBe(16_785_921);
+  });
+});
+
+describe("fan law", () => {
+  it("matches L_k and o_k on every shipped row", () => {
+    expect(FAN_ROWS).toHaveLength(FAN_MEMBER_COUNT);
+    expect(FAN_MEMBER_COUNT).toBe(56);
+    for (const row of FAN_ROWS) {
+      expect(fanLength(row.k)).toBe(row.L);
+      expect(fanOdd(row.k)).toBe(row.o);
+    }
+    expect(fanLength(FAN_K_MAX)).toBe(16_785_921);
+    expect(fanLength(2)).toBe(MAIN_PERIOD);
+  });
+
+  it("keeps Λ_55 positive on the shipped row", () => {
+    const last = FAN_ROWS[FAN_K_MAX];
+    expect(last.lam).toBeGreaterThan(0);
+  });
+
+  it("maps certified floors to the printed walk frontier", () => {
+    expect(printedWalkK(MAIN_FLOOR)).toBe(2);
+    expect(printedWalkK(PRINTED_FLOOR)).toBe(1);
+    expect(printedWalkK(LAB_FLOOR)).toBe(0);
   });
 });

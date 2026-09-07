@@ -23,11 +23,13 @@ describe("tour glossary markup", () => {
     }
   });
 
-  it("keeps twelve chapters and the finance voice leads", () => {
-    expect(TOUR_CHAPTERS.map((chapter) => chapter.slug)).toContain("gap-transfer");
+  it("keeps thirteen chapters and the finance voice leads", () => {
+    expect(TOUR_CHAPTERS).toHaveLength(13);
+    expect(TOUR_CHAPTERS.map((chapter) => chapter.slug)).toContain("fan");
     expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "finance")?.body).toContain("**The necklace.**");
     expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "gap-transfer")?.body).toContain("`cycleMin_gap_transfer`");
-    expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "walk-charge")?.body).toContain("**Transport.**");
     expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "walk-charge")?.body).toContain("`cycleMin_transport`");
+    expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "fan")?.body).toContain("**The progression.**");
+    expect(TOUR_CHAPTERS.find((chapter) => chapter.slug === "fan")?.body).toContain("fanLambda_55_pos");
   });
 });

@@ -52,6 +52,7 @@ the package-local `vercel.json` does the same rewrite.
 - `src/research/juggler_sequence/run_suffix_law.py`
 - `src/research/juggler_sequence/paper_a_audit.py` (gap-transfer / Rhin fork)
 - `src/research/juggler_sequence/cycle_walk_charge.py` (walk-charge transport fork)
+- `src/data/fan.json` via the companion export (Proposition 5.12 fan law)
 
 The preimage playground shows Paper C’s two productions — the even block
 and the OE fiber with its parity sweep — not a halt-theorem demo.
