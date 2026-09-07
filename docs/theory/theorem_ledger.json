@@ -889,6 +889,8 @@
   "statement": "deepest fibres iff p^2≡q^2 (mod 3^{k-1}) and N0 agrees",
   "source": "docs/theory/cubic_deepest_layer.md",
   "lean": "BTCalculus/CubicDeepestLayer.lean",
+  "decl": "deepest_equiv_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_deepest.py"
   ],

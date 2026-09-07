@@ -1128,21 +1128,21 @@
     {
       "candidates": [
         {
+          "decl": "deepest_n1_zero",
+          "line": 280,
+          "score": 0.5,
+          "trust": "kernel"
+        },
+        {
+          "decl": "n1Resid_deepest_diff",
+          "line": 24,
+          "score": 0.4,
+          "trust": "kernel"
+        },
+        {
           "decl": "deepest_n1_iff",
-          "line": 34,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deepest_n1_mod",
-          "line": 62,
-          "score": 0.333,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deepest_n2_zero",
-          "line": 78,
-          "score": 0.333,
+          "line": 36,
+          "score": 0.4,
           "trust": "kernel"
         }
       ],
@@ -1161,7 +1161,7 @@
         }
       ],
       "id": "BTA-x3-deep-N",
-      "in_file": 26,
+      "in_file": 25,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest layer: N3=N2=0, N1\u22613p^2 (k\u22652)"
@@ -1169,62 +1169,21 @@
     {
       "candidates": [
         {
-          "decl": "deepest_n1_iff",
-          "line": 34,
-          "score": 0.4,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deepest_n1_mod",
-          "line": 62,
-          "score": 0.4,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deepest_equiv_iff",
-          "line": 349,
-          "score": 0.333,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "deepestN1",
-          "line": 17,
-          "score": 0.2
-        },
-        {
-          "decl": "zeroExp",
-          "line": 20,
-          "score": 0.0
-        }
-      ],
-      "id": "BTA-x3-deep-crit",
-      "in_file": 26,
-      "lean": "BTCalculus/CubicDeepestLayer.lean",
-      "names_own": [],
-      "statement": "deepest fibres iff p^2\u2261q^2 (mod 3^{k-1}) and N0 agrees"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "deepest_n1_iff",
-          "line": 34,
+          "decl": "zero_fibre_of",
+          "line": 287,
           "score": 0.25,
           "trust": "kernel"
         },
         {
-          "decl": "deepest_n1_mod",
-          "line": 62,
-          "score": 0.25,
+          "decl": "zero_fibre_imp",
+          "line": 335,
+          "score": 0.222,
           "trust": "kernel"
         },
         {
-          "decl": "deepest_n2_zero",
-          "line": 78,
-          "score": 0.25,
+          "decl": "deepest_n1_zero",
+          "line": 280,
+          "score": 0.167,
           "trust": "kernel"
         }
       ],
@@ -1243,7 +1202,7 @@
         }
       ],
       "id": "BTA-x3-deep-zero",
-      "in_file": 26,
+      "in_file": 25,
       "lean": "BTCalculus/CubicDeepestLayer.lean",
       "names_own": [],
       "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p"
@@ -4554,6 +4513,6 @@
       "statement": "Even steps never deepen the Juggler floor tower. For every j, Nat.sqrt^[j] x = s iff s^(2^j) <= x < (s+1)^(2^j) (sqrt_iter_eq_iff); on an even run floorPower is iterated Nat.sqrt (floorPower_iter_of_even); an odd step followed by j even steps equals Nat.sqrt^[j+1] (n^3), i.e. floor(n^(3/2^(j+1))) with one floor and no nesting (floorPower_odd_even_run, floorPower_odd_even_run_eq_iff); the OE fiber "
     }
   ],
-  "unresolved": 115,
+  "unresolved": 114,
   "worth_reviewing": 19
 }

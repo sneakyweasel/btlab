@@ -20,6 +20,7 @@ def deepestN1 (p : ℤ) : ℤ :=
 def zeroExp (k : ℕ) : ℕ :=
   (2 * k + 1) / 3
 
+/-- `N1` difference at the deepest layer: `3(p^2 - q^2) + 3^k (p - q)`. -/
 theorem n1Resid_deepest_diff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
     n1Resid (k - 1) p - n1Resid (k - 1) q =
       3 * (p ^ 2 - q ^ 2) + (3 : ℤ) ^ k * (p - q) := by
@@ -31,6 +32,7 @@ theorem n1Resid_deepest_diff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
     ring
   rw [this, hpow]
 
+/-- At the deepest layer, `N1` agreement modulo `3^k` is `3^(k-1) | p^2 - q^2`. -/
 theorem deepest_n1_iff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
     (3 : ℤ) ^ k ∣ n1Resid (k - 1) p - n1Resid (k - 1) q ↔
       (3 : ℤ) ^ (k - 1) ∣ p ^ 2 - q ^ 2 := by
@@ -59,6 +61,7 @@ theorem deepest_n1_iff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
     have := h1.add h2
     simpa [hdiff] using this
 
+/-- At the deepest layer `N1` is congruent to `deepestN1 p` modulo `3^k`, for `k >= 2`. -/
 theorem deepest_n1_mod {k : ℕ} (hk : 2 ≤ k) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n1Resid (k - 1) p - deepestN1 p := by
   unfold n1Resid deepestN1
@@ -75,6 +78,7 @@ theorem deepest_n1_mod {k : ℕ} (hk : 2 ≤ k) (p : ℤ) :
     ring
   simpa [heq] using this
 
+/-- `N2` vanishes modulo `3^k` at the deepest layer. -/
 theorem deepest_n2_zero {k : ℕ} (hk : 1 ≤ k) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid (k - 1) p := by
   unfold n2Resid
@@ -83,6 +87,7 @@ theorem deepest_n2_zero {k : ℕ} (hk : 1 ≤ k) (p : ℤ) :
   simpa [mul_assoc, mul_comm, mul_left_comm] using
     (dvd_mul_right ((3 : ℤ) ^ k) (2 * (p + (3 : ℤ) ^ (k - 1))))
 
+/-- `N3` vanishes modulo `3^k` at the deepest layer. -/
 theorem deepest_n3_zero {k : ℕ} (hk : 1 ≤ k) :
     (3 : ℤ) ^ k ∣ n3Resid (k - 1) := by
   unfold n3Resid
@@ -92,6 +97,7 @@ theorem deepest_n3_zero {k : ℕ} (hk : 1 ≤ k) :
   have := hpow.mul_left (2 : ℤ)
   simpa [mul_comm, mul_left_comm, mul_assoc] using this
 
+/-- `p^2 - q^2 = (p - q)(p + q)`. -/
 theorem sq_factor (p q : ℤ) :
     p ^ 2 - q ^ 2 = (p - q) * (p + q) := by
   ring
@@ -105,6 +111,7 @@ theorem deepest_sq_of_n1 {k : ℕ} (hk : 1 ≤ k) {p q : ℤ}
   have := (deepest_n1_iff hk p q).1 h
   simpa [sq_factor] using this
 
+/-- Two points of balanced width `m` whose difference is divisible by `3^m` are equal. -/
 theorem balWidth_dvd_sub {m : ℕ} {p q : ℤ}
     (hp : balWidth m p) (hq : balWidth m q)
     (h : (3 : ℤ) ^ m ∣ p - q) : p = q := by
@@ -114,6 +121,7 @@ theorem balWidth_dvd_sub {m : ℕ} {p q : ℤ}
     linarith
   exact sub_eq_zero.mp (dvd_abs_lt_pow h hbound)
 
+/-- Two points of balanced width `m` whose sum is divisible by `3^m` are negatives. -/
 theorem balWidth_dvd_add {m : ℕ} {p q : ℤ}
     (hp : balWidth m p) (hq : balWidth m q)
     (h : (3 : ℤ) ^ m ∣ p + q) : p = -q := by
@@ -122,11 +130,13 @@ theorem balWidth_dvd_add {m : ℕ} {p q : ℤ}
   have : (3 : ℤ) ^ m ∣ p - (-q) := by simpa [sub_neg_eq_add] using h
   exact balWidth_dvd_sub hp hq' this
 
+/-- A packed jet has balanced width `m`. -/
 lemma packWord_integerJet_balWidth (m : ℕ) (n : ℤ) :
     balWidth m (packWord (integerJet m n)) := by
   have := two_mul_packWord_le (isTritList_integerJet m n)
   simpa [balWidth, integerJet_length] using this
 
+/-- When `3^m` divides `n`, the jet packs to zero and `n = 3^m * D^m n`. -/
 lemma iterDZ_of_dvd {m : ℕ} {n : ℤ} (h : (3 : ℤ) ^ m ∣ n) :
     packWord (integerJet m n) = 0 ∧
       n = (3 : ℤ) ^ m * iterDZ m n := by
@@ -146,6 +156,7 @@ lemma iterDZ_of_dvd {m : ℕ} {n : ℤ} (h : (3 : ℤ) ^ m ∣ n) :
   refine ⟨hz, ?_⟩
   simpa [hz] using hde
 
+/-- When `3^m` divides `p^3`, `N0` is the exact quotient `p^3 / 3^m`. -/
 theorem n0Resid_of_dvd {m : ℕ} {p : ℤ}
     (h : (3 : ℤ) ^ m ∣ p ^ 3) :
     n0Resid m p = p ^ 3 / (3 : ℤ) ^ m := by
@@ -154,6 +165,7 @@ theorem n0Resid_of_dvd {m : ℕ} {p : ℤ}
   have hpos : (3 : ℤ) ^ m ≠ 0 := pow_ne_zero _ (by decide)
   exact (Int.eq_ediv_of_mul_eq_right hpos hde.symm)
 
+/-- Decomposition of an `N0` difference into cube and jet parts. -/
 theorem n0_congr_decomp (m : ℕ) (p q : ℤ) :
     n0Resid m p - n0Resid m q =
       (p ^ 3 - q ^ 3
@@ -166,12 +178,15 @@ theorem n0_congr_decomp (m : ℕ) (p q : ℤ) :
   apply Int.eq_ediv_of_mul_eq_right hpos
   linarith
 
+/-- `3` is prime in the integers. -/
 lemma three_prime : Prime (3 : ℤ) :=
   Int.prime_iff_natAbs_prime.mpr (by decide)
 
+/-- `3 | p^2` implies `3 | p`. -/
 lemma three_dvd_of_dvd_sq {p : ℤ} (h : (3 : ℤ) ∣ p ^ 2) : (3 : ℤ) ∣ p :=
   three_prime.dvd_of_dvd_pow h
 
+/-- `3^n | p^2` implies `3^((n+1)/2) | p`. -/
 lemma three_pow_dvd_sq : ∀ (n : ℕ) (p : ℤ),
     (3 : ℤ) ^ n ∣ p ^ 2 → (3 : ℤ) ^ ((n + 1) / 2) ∣ p
   | 0, p, _ => by simp
@@ -200,6 +215,7 @@ lemma three_pow_dvd_sq : ∀ (n : ℕ) (p : ℤ),
       exact mul_dvd_mul_left _ ih
     simpa [hq, show (n + 2 + 1) / 2 = (n + 3) / 2 from rfl] using this
 
+/-- `3^n | p^3` implies `3^((n+2)/3) | p`. -/
 lemma three_pow_dvd_cube : ∀ (n : ℕ) (p : ℤ),
     (3 : ℤ) ^ n ∣ p ^ 3 → (3 : ℤ) ^ ((n + 2) / 3) ∣ p
   | 0, p, _ => by simp
@@ -232,21 +248,25 @@ lemma three_pow_dvd_cube : ∀ (n : ℕ) (p : ℤ),
       exact mul_dvd_mul_left _ ih
     simpa [hq, show (n + 3 + 2) / 3 = (n + 5) / 3 from rfl] using this
 
+/-- The zero exponent satisfies `k - 1 <= 2 * zeroExp k`, the square half of its definition. -/
 theorem zeroExp_sq {k : ℕ} (hk : 1 ≤ k) :
     k - 1 ≤ 2 * zeroExp k := by
   unfold zeroExp
   omega
 
+/-- The zero exponent satisfies `2k - 1 <= 3 * zeroExp k`, the cube half. -/
 theorem zeroExp_cu {k : ℕ} :
     2 * k - 1 ≤ 3 * zeroExp k := by
   unfold zeroExp
   omega
 
+/-- `N1` at zero is `3^(2m)`. -/
 theorem n1Resid_zero (m : ℕ) :
     n1Resid m 0 = (3 : ℤ) ^ (2 * m) := by
   unfold n1Resid
   simp
 
+/-- `N0` at zero is `0`. -/
 theorem n0Resid_zero (m : ℕ) : n0Resid m 0 = 0 := by
   unfold n0Resid
   induction m with
@@ -256,12 +276,14 @@ theorem n0Resid_zero (m : ℕ) : n0Resid m 0 = 0 := by
     have hdz : DZ 0 = 0 := by simp [DZ, hlsd]
     simpa [iterDZ, hdz] using ih
 
+/-- At the deepest layer `3^k` divides `N1(0)`, for `k >= 2`. -/
 theorem deepest_n1_zero {k : ℕ} (hk : 2 ≤ k) :
     (3 : ℤ) ^ k ∣ n1Resid (k - 1) 0 := by
   rw [n1Resid_zero]
   have hle : k ≤ 2 * (k - 1) := by omega
   exact pow_dvd_pow _ hle
 
+/-- Divisibility by `3^(zeroExp k)` puts a point in the deepest zero fibre. -/
 theorem zero_fibre_of {k : ℕ} {p : ℤ} (hk : 2 ≤ k)
     (hp : (3 : ℤ) ^ zeroExp k ∣ p) :
     (3 : ℤ) ^ k ∣ n1Resid (k - 1) p ∧
@@ -309,6 +331,7 @@ theorem zero_fibre_of {k : ℕ} {p : ℤ} (hk : 2 ≤ k)
     exact dvd_mul_right _ _
   exact ⟨h1, hN0⟩
 
+/-- Conversely, membership of the deepest zero fibre forces `3^(zeroExp k) | p`. -/
 theorem zero_fibre_imp {k : ℕ} {p : ℤ} (hk : 2 ≤ k)
     (hN1 : (3 : ℤ) ^ k ∣ n1Resid (k - 1) p)
     (hN0 : (3 : ℤ) ^ k ∣ n0Resid (k - 1) p) :
@@ -346,6 +369,7 @@ theorem zero_fibre_imp {k : ℕ} {p : ℤ} (hk : 2 ≤ k)
     omega
   simpa [this] using hcu
 
+/-- The deepest fibre criterion: `N1` and `N0` agreement modulo `3^k` together hold exactly when `p^2 = q^2` modulo `3^(k-1)` and the `N0` parts agree. -/
 theorem deepest_equiv_iff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
     ((3 : ℤ) ^ k ∣ n1Resid (k - 1) p - n1Resid (k - 1) q) ∧
         ((3 : ℤ) ^ k ∣ n0Resid (k - 1) p - n0Resid (k - 1) q) ↔
@@ -357,6 +381,7 @@ theorem deepest_equiv_iff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
   · intro ⟨h1, h0⟩
     exact ⟨(deepest_n1_iff hk p q).2 h1, h0⟩
 
+/-- The deepest-layer sign condition for `p` against `-p`, in `N1` and `N0` together. -/
 theorem sign_deepest {k : ℕ} (hk : 1 ≤ k) (p : ℤ) :
     ((3 : ℤ) ^ k ∣ n1Resid (k - 1) p - n1Resid (k - 1) (-p)) ∧
         ((3 : ℤ) ^ k ∣ n0Resid (k - 1) p - n0Resid (k - 1) (-p)) ↔
