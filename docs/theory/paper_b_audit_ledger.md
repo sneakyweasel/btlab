@@ -7690,3 +7690,95 @@ tests, eighty-six in the file. Manuscript: the exponent corrected at
 every site, an erratum naming both defects and both repairs, and the
 balance paragraph replaced by the surviving argument. No change to
 `P_0`, `P_1`, or any density.
+
+## Scavenged from prove2.me: `1/0 = 0` makes Lemma 3.7's printed display false at two of its own modes
+
+*Mathematical target.* Formalpedia's `CircleMethod.aux_sum_min_le`
+states Vaughan's Lemma 2.2 with the hypothesis `2‖kα‖ * g k ≤ 1` and
+not `g k ≤ 1/(2‖kα‖)`, and says why: in Lean `1/0 = 0`, so the divided
+form is silently *weaker* exactly at the singular mode. Paper B is full
+of divided bounds with removable singularities. Ask what that
+convention does to them.
+
+*Novelty hypothesis.* At least one printed bound in Paper B is false,
+or silently weakened, when read with Lean's division convention.
+
+*Falsifier.* Every divided bound here is either guarded or in a
+position where the convention does not bite.
+
+*Existing machinery.* `trust_boundary`, the audit tool; `formalpedia`
+searched first for prior work (none: no `one_div`, no `divided`, no
+`fract_bound`).
+
+*Prior art.* Nothing in this ledger or in
+`docs/negative_knowledge.md` on division conventions. The idea is
+imported, not local.
+
+**The falsifier does not fire, and the hypothesis lands on the
+manuscript rather than on the Lean.** Lemma 3.7 prints
+
+    |b_u| <= min(2, 1/(pi|u+B|)) + min(2, 1/(pi|u|)).
+
+Both minima divide by something that vanishes in range. The second does
+so at `u = 0`, which is *always* summed over; the first at `u = -B`
+whenever that is an integer. Under the mathematical convention
+`1/0 = +infinity` the `min` selects the constant branch `2` and the
+bound is the intended one. Under Lean's `1/0 = 0` the `min` selects
+`0`, and the display becomes the assertion that the coefficient
+vanishes at the one mode where it is largest --- not weaker, false.
+
+The direction of the damage depends on position, which is worth
+recording because the two are opposite. In a *hypothesis* the divided
+form is silently weaker: it excludes the singular case, and the theorem
+still compiles. In a *conclusion*, which is where Lemma 3.7's display
+sits, it is false there and would not compile.
+
+**Five theorems, in `ThresholdCertificate`.** `le_one_div_zero_iff`
+records the convention (`x <= 1/0` is `x <= 0`);
+`mul_le_one_iff_le_one_div` is the equivalence away from the
+singularity; `window_divided_form_fails_at_singular_mode` exhibits a
+coefficient of modulus `1` meeting both branches of the intended bound
+and violating the printed one; `window_forms_agree` shows the
+multiplicative pair *is* the printed `min` at every other mode, so
+nothing is lost by stating it the safe way; and
+`weight_form_of_min_bound` carries the second half of Vaughan's idea
+--- the abstraction over a weight rather than a `min`, which is what
+survives Weyl differencing when the inner sums have shift-dependent
+lengths. Paper B differences twice, at `H_1 = P^(1/48)` and
+`H_2 = P^(1/24)`, so it wants exactly that.
+
+**The Lean was already clean, and now stays clean.** All twenty
+divided-form hypotheses in Paper B's seven modules divide by a nonzero
+literal (eighteen) or are positivity-guarded (two:
+`run_length_conclusion` by `0 < M`, and the new
+`weight_form_of_min_bound` by `0 < w`). Nothing enforced that.
+`divided_denominator_status` now does, and it is tested on synthetic
+signatures rather than only on the corpus: it separates `0 < w` from
+`0 <= w`, which is the distinction that matters, since the second still
+admits the collapsing case.
+
+**Two stale things fell out.** The Paper B barrel's module summary
+still read `106 -> 171` for the Lemma 5.2b erratum, which this
+morning's correction had already moved to `106 -> 170.6`; and it did
+not mention the new section. Both fixed.
+
+Tags. EXACT: `min(2, 1/0) = 0` under Lean's convention, with the
+witness `|b| = 1`; the equivalence `w * g <= 1 <-> g <= 1/w` for
+`0 < w`. COMPUTATIONALLY VERIFIED: `lake build
+Problems.Juggler.ThresholdCertificate` clean at first attempt; all
+fifty-two cited declarations axiom-clean after regenerating the
+artifact; twenty divided hypotheses, zero unguarded; the classifier
+correct on seven synthetic cases. OBSERVATION: the search that produced
+this returned nothing on Vaaler, Kusmin-Landau, van der Corput or
+lattice paths --- the platform has none of Paper B's machinery. What it
+had was a *convention*, which travelled further than a theorem would
+have.
+
+Probe: `manuscript_self_audit.divided_denominator_status`,
+`divided_hypotheses`, `divided_hypothesis_failures`; `failures()` gains
+a `divided_hypotheses` key, fifteen checks. Seven new tests,
+ninety-three in the file. Lean: five theorems in `ThresholdCertificate`,
+the barrel updated, the index rebuilt (4660 declarations), the axiom
+artifact regenerated at fifty-two. Manuscript: a note after Lemma 3.7
+stating the convention it is read with and citing the five witnesses.
+No constant, threshold or exponent moved.

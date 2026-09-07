@@ -242,7 +242,8 @@ def test_failures_now_covers_relations() -> None:
     assert set(f) == {"constants", "shared", "relations", "rounded_into_a_bound",
                       "a1_thresholds", "claim_vs_predicate",
                       "p0_reproducible", "kappa_table", "a6_table",
-                      "prop71", "runlength", "axioms", "lean_rows", "depth5_exponent"}
+                      "prop71", "runlength", "axioms", "lean_rows", "depth5_exponent",
+                      "divided_hypotheses"}
     assert all(v == [] for v in f.values())
 
 
@@ -695,7 +696,7 @@ def test_the_paper_records_the_recomputation() -> None:
 def test_every_cited_declaration_rests_on_mathlibs_three_axioms() -> None:
     assert M.axiom_failures() == []
     results = M.axiom_check_results()
-    assert len(results) == 47
+    assert len(results) == 52
     assert set(results.values()) == {"[propext, Classical.choice, Quot.sound]"}
 
 
@@ -708,7 +709,7 @@ def test_the_artifact_asks_about_exactly_the_cited_names() -> None:
     spec.loader.exec_module(tb)
     cited = sorted({r["name"] for r in tb.audit() if r["declared"]})
     assert M.axiom_check_names() == cited
-    assert len(cited) == 47
+    assert len(cited) == 52
 
 
 def test_no_sorry_in_the_paper_b_modules() -> None:

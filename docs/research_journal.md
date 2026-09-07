@@ -38745,3 +38745,53 @@ Why
 Best next question
 - none on this line
 ```
+
+## A convention travels further than a theorem
+
+2026-09-08. I went looking through Formalpedia for something to take.
+The obvious hope was a lemma — van der Corput, Vaaler, Kusmin-Landau,
+something from the exponential-sum layer this paper leans on. There is
+none. Twelve searches and the platform has no Vaaler, no derivative
+tests, no Beatty, no lattice paths. Paper B's machinery is not
+formalized anywhere I could see.
+
+What it did have was a formalization note, three lines under Vaughan's
+Lemma 2.2, explaining why the hypothesis is written `2‖kα‖ g k ≤ 1` and
+not `g k ≤ 1/(2‖kα‖)`: in Lean `1/0 = 0`, so the divided form is
+silently weaker exactly at the mode that matters. That is not a
+theorem. It is a habit. And it turned out to be worth more here than a
+theorem would have been.
+
+Because Lemma 3.7 prints
+
+    |b_u| ≤ min(2, 1/(π|u+B|)) + min(2, 1/(π|u|))
+
+and the second minimum divides by something that vanishes at u = 0,
+which is always in the sum. Under the convention every analyst reads it
+with — 1/0 = +∞ — the min picks the constant branch 2 and the bound is
+what it should be. Under Lean's convention the min picks 0, and the
+display says the coefficient vanishes at the mode where it is biggest.
+Not weaker. False.
+
+I had written, this morning, in the erratum to Theorem 6.3, that "the
+apparent singularity at u+β=0 is removable". It is — in the
+mathematics. What I had not noticed is that removability is a statement
+about the limit, and a formal statement spelled with a division does
+not take limits. The paper now says which convention its display is
+read with, which it should have said all along and which I would not
+have thought to check.
+
+The Lean was already clean: all twenty divided-form hypotheses divide
+by a nonzero literal or carry a positivity guard. That is luck rather
+than discipline, since nothing enforced it, so the discipline is now a
+check. I made a point of testing it on synthetic signatures instead of
+only on the corpus, because a guard that only ever sees passing input
+proves nothing about what it would reject — it distinguishes 0 < w from
+0 ≤ w, which is the whole distinction.
+
+The thing I want to remember is the shape of the find. I searched for
+results and came back with a convention. The results on that platform
+are in fields we do not touch; the convention applies to any
+formalization of any analytic bound with a removable singularity, which
+is most of the ones in this paper. Scavenging is not only about
+theorems.
