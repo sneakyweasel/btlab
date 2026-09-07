@@ -38111,6 +38111,47 @@ Best next question
   route to beta > beta* that does not pass through that composition
 ```
 
+## Tame process floors: BA does not block p/2+q < 2/3
+
+- **Date:** 2026-09-07
+- **Objective:** Compute the \(A\)/\(B\circ A\)/\(C\)/\(D\) floors of the tame functional \(\psi=p/2+q\), and test whether any named pair is close enough to \((0,1/2)\) for \(B\circ A\) to cross \(2/3\). External mathematics; not a Juggler wrap. The decaying-axis identification is already `J-horizontal-axis-species` and was not reopened.
+- **Hypotheses:** the tame functional has the same process-blocked shape as \(\tfrac54 p+q\); Bourgain-near pairs processed by \(B\circ A\) stay above \(2/3\).
+- **Major results:**
+  - Theorem 11: \(\psi(A)\ge 3/4\), equality on the whole line \(q=1/2\) (attained at actual pairs).
+  - Theorem 12: \(\psi(BA)\ge 5/8<2/3\), equality only at the conjecture point. Crossing criterion \(4p+3q<2\), which forces \(p<1/8\).
+  - Theorem 13: \(\psi(C)\ge 15/16\), equality at \((1/2,1/2)\).
+  - Theorem 14: \(\psi(D)\ge 87/112\), equality only at \((0,1/2)\).
+  - Corollary 15: a tame-line solution is \(A\)/\(C\)/\(D\)-primitive, but may be a \(BA\)-image. No seed and no 2023–2025 pair has \(4p+3q<2\) (minimum \(31/12\), shared by Bourgain and TY23-b). Hull minimum remains \(275/388\).
+- **Refuted ideas:** that the tame line is process-blocked in the same way as the boxed line; that a 2023–2025 pair with \(p<1/8\) is automatically a \(BA\)-crossing (those pairs have large \(q\)).
+- **Literature:** none new.
+- **Open:** the boxed pair, and rate-free equidistribution of \(\{f(\lfloor h(n)\rfloor)\}\) for \(\beta>1\). Unchanged.
+- **Decision:** CLOSE as a classification. The export stays external. No new dossier, no new ledger row, no Paper edit.
+
+```text
+What was learned
+- A/C/D floors for p/2+q are 3/4, 15/16, 87/112, all above 2/3
+- BA floors at 5/8 < 2/3: the tame line is not process-blocked
+- crossing needs 4p+3q<2, hence p<1/8; no named pair qualifies
+- decaying {v^{3/4}} is already J-horizontal-axis-species
+Strongest theorem
+- psi(BA) >= 5/8, equality only at (0,1/2); named pairs have
+  4p+3q >= 31/12
+Strongest refutation
+- "the tame line has the same process barrier as the boxed line":
+  false
+Reusable machinery
+- tame A/BA/C/D identities in test_exponent_pair_hull.py
+Branch status
+- CLOSE
+Why
+- the structural difference is recorded; no pair crosses; the
+  remaining object is still a primitive pair or a specialized bound
+Best next question
+- unchanged and external: a primitive pair with 5/4 p + q < 2/3, or
+  rate-free equidistribution of f(floor(h(n))) for beta > 1, or a
+  route to beta > beta* that does not pass through that composition
+```
+
 ## V_5 production audit and rate drop (not a numbered milestone)
 
 - **Date:** 2026-09-07
@@ -38147,4 +38188,166 @@ Why
   object (contagion plus the pressure/Tao reduction), not a new object.
 Best next question
 - the V_6 truncation constants, later, not this branch
+```
+
+## ANTEDB vertices and Cushing 2025 do not move 95/112
+
+- **Date:** 2026-09-07
+- **Objective:** Check the three remaining external leftovers. For a primitive pair: evaluate the August 2026 ANTEDB hull vertices that were not in the 2017 / TTY25 seed list (Cushing 2025, the third 2023 pair, \(A(D(\mathrm{Bourgain}))\), the Heath–Brown 2017 sequence, and \(B\)-images). For rate-free \(\{f(\lfloor h(n)\rfloor)\}\) and a route to \(\beta>\beta_*\): ask whether any 2025–2026 theorem identifies a Hardy monomial of a floor. External; not a Juggler wrap.
+- **Hypotheses:** a post-TTY25 vertex, or a 2026 Hardy-field paper, answers one of the three leftovers.
+- **Major results:**
+  - Cushing 2025 (ANTEDB Theorem 5.23): \((311/4822,3799/4822)\) and \((80219/1298878,515638/649439)\) have \(\phi=16751/19288\) and \(238221/273448\), both above \(95/112\). Neither meets \(4p+3q<2\).
+  - The third 2023 pair \((2779/38033,58699/76066)\), \(A(D(\mathrm{Bourgain}))=(9/217,1461/1736)\), Heath–Brown 2017 for \(3\le m\le 15\), and the \(B\)-images of the named pairs all sit above both hull minima.
+  - 2026 Hardy-field papers still place the floor in the time slot of a nilrotation (joint ergodicity; sparse averages along primes). They do not identify \(f(\lfloor h(n)\rfloor)\) for nonlinear Hardy \(f,h\). The \(\beta>\beta_*\) fallback remains a finite Weyl family of the same composition.
+- **Refuted ideas:** that the living ANTEDB hull, or a 2026 Hardy-floor paper, supplies a laboratory slice of any of the three leftovers.
+- **Literature:** `cushing-2025-exponent-pairs` (ANTEDB blueprint Theorem 5.23).
+- **Open:** the three leftovers, unchanged and external.
+- **Decision:** CLOSE as a check. No new dossier, no new ledger row, no Paper edit. Further hull-table or literature-name scans on this line stop.
+
+```text
+What was learned
+- Cushing 2025 and the remaining ANTEDB vertices miss both lines
+- Heath-Brown 2017 and B-images miss both lines
+- 2026 Hardy-field papers still use floor-as-time, not Hardy-of-floor
+- the three leftovers have no remaining laboratory slice
+Strongest theorem
+- every August 2026 ANTEDB vertex has phi > 95/112 and
+  4p+3q >= 31/12
+Strongest refutation
+- "a post-TTY25 pair or a 2026 Hardy paper answers the box": false
+Reusable machinery
+- Cushing / TY23-c / AD(Bourgain) / Heath-Brown checks in
+  test_exponent_pair_hull.py
+Branch status
+- CLOSE
+Why
+- leftover (1) is still a primitive pair or a specialized bound;
+  leftovers (2) and (3) are the same unbuilt composition already
+  exported; nearby scans stop
+Best next question
+- none on this line; the three leftovers stay exported
+```
+
+## V_6 production audit and rate drop (not a numbered milestone)
+
+- **Date:** 2026-09-07
+- **Objective:** Audit the Section 15 constants of the \(V_6=OEOEOEOEOEOEE\) production and, if they recompute, retarget official unconditional \(\lambda^{**}\) from the \(V_5\) root \(0.4924\) to \(0.4926\)
+- **Hypotheses:** the \(w_5\)-fiber equals the \(OEOEE\) \(w\)-fiber so Half A transfers; the \(w_1\)-interval equals the \(V_5\) \(n\)-interval so \(V_5\) Cases 1–4 transfer; the new top case is Half B at \(w_1\) (\(P^{-1/8}\)); binding is the Section 11 law at \(k=6\) (\(P^{-81/2048}\)); \(+1/2187\) at scale \(729/8192\) is a theorem
+- **Major results:** classification `V6_AUDIT_CONSISTENT`, 24 checks, 0 failures. Binding saving \(P^{-81/2048}=m'^{-4/9}\) stands. Official \(\lambda^{**}=0.4926\), Tao rate \(e>0.5074\), least Chernoff \(C=19\) unchanged. Azuma \(C(0.55)\) stays \(41\). \(V_5\) \(0.4924/0.5076/C=19\) stays a named intermediate. \(\lambda^{***}=0.5392\) unchanged
+- **Refuted ideas:** none that kill \(V_6\). T4's abstract short-step form was already recorded on \(OEOEE\); at \(m'=16\) the implied T4 constant is \(5.33>5\), so assembly starts at \(m'=22\)
+- **Literature:** Paper B Lemma 3.5 cited, not re-derived. Rest-average stays PARK. Kernel \(OOOEE/OOEOE\) stays CLOSE. \(V_7\) not opened
+- **Open:** none opened
+- **Decision:** PROMOTE. Stop. Do not write \(V_7\) constants in this branch
+
+```text
+What was learned
+- V_6 is elementary: exact fiber; w5 = OEOEE w-interval; w1 = V5 n-interval
+- Section 15 recomputes from T1-T5; Case 1 saves P^{-1/8}; Case 2 saves P^{-3/32}; Case 3 saves P^{-9/128}; Case 4/5 save P^{-27/512}; Case 7 binds at P^{-81/2048}
+- Envelope 8000 has room (measured ratio 0.94 at m'=2)
+- Official lambda** moves 0.4924 -> 0.4926; required Tao rate 0.5076 -> 0.5074; least C stays 19
+- Azuma C(0.55) stays 41; C(0.62) moves 1587 -> 1586
+- Pairing remains the inequality (5.2)/(4.2)
+- The remaining depth-two gap 0.4926 -> 0.4927 is later V_k truncations, not rest-average
+- log log y depth is not removed
+Strongest theorem
+- every nonempty backward-closed set has log-count >> (log x)^lambda for lambda < 0.4926
+  (Paper C Theorem 1 / fate-contagion Theorem 4.2, J-fate-log-density, J-fate-v6-production)
+Strongest refutation
+- none that kill V_6; T4 as an abstract short-step form already recorded on OEOEE
+Reusable machinery
+- v6_audit.py, v6_audit_ledger.md, RECURSIONS[block_third_plus_oeoee_v6]
+Branch status
+- PROMOTE
+Why
+  The constants recompute and still save a positive power of P, so the printed
+  unconditional exponent is the eight-term root. This is a rate drop of the same
+  object (contagion plus the pressure/Tao reduction), not a new object.
+Best next question
+- the V_7 truncation constants, later, not this branch
+```
+
+## The good-base reset is priced: its tolerance is the critical share
+
+A new branch on the live-mass frontier
+([juggler_effective_tower_height](problems/juggler_effective_tower_height.md)).
+The floor identity floor(sqrt(floor(x))) = floor(sqrt(x)) means an even
+step never deepens the nested floor tower: an orbit value is a tower of
+height equal to the number of odd letters, with exponents 3/2^(j+1) set
+by the even runs. An even step taken at walk height u re-creates a base
+that is every integer of a range with multiplicity #(cylinder ∩ I_m),
+I_m an interval of starts of length y^(1 - 2^(u-1)): dense iff u < 1,
+long enough for Paper B's localized theorems iff u ≤ 0. From such a good
+base the depth-≤4 word classes split fairly by Paper B alone, so the
+right reset of s_theta is "the last even step taken at u ≤ 0", and the
+next letter is uncontrolled iff the effective height is ≥ 4 or the
+effective depth ≥ 5.
+
+Priced on the tilted walk-live measure by a DP that reproduces the
+laboratory's mu_4 to 6e-17 when the reset is put at every E:
+
+```text
+  scale    L      C    budget   u<=0    u<1    any E
+  1e12    0.526   20   0.199    1.000   0.798  0.188
+  1e50    2.558   20   0.199    0.854   0.738  0.139
+  1e100   3.553   20   0.199    0.795   0.694  0.137
+  L=40     -      20   0.199    0.216   0.207  0.130
+  L=80     -      20   0.199    0.147   0.146  0.130
+```
+
+At 1e12 the live band forbids every good base (an E at u ≤ 0 lands
+below -L = -0.526), so the tilt's whole population sits where E-images
+are sparse; the honest share crosses the budget only near L ≈ 45, i.e.
+y ≈ 10^(10^14), and only at C = 20.
+
+But that fair-coin room is an accounting inconsistency, and so is the
+laboratory's mu_4. Charging the tower bias beta to the measure as well
+as to the bound, the tolerance of every rule with a Paper-B-controllable
+complement is beta* = p_C + O(1/d) — 0.6016 / 0.6162 against
+p_C = 0.5994 / 0.6163 at 1e50, and the same at L = 80 — because a pool
+of letters splitting above 0.533 has tilted odd probability above
+log2/log3, climbs, never takes an even step at u ≤ 0, and its tilted
+mass outgrows the fair population's once beta > 1/2, so mu_t → 1 and the
+bound tends to beta. The one rule with room, reset at any E
+(beta* ≈ 0.78, independent of L), is the one whose complement the
+laboratory already showed is not Paper B. Room or control, not both:
+the reset split reduces M_(theta,q) exactly to H_q on the uncontrolled
+towers at q = p_C. CLOSE.
+
+Literature check (web, 7 Sep 2026): nothing new on Hardy-of-floor
+equidistribution or on the Juggler map.
+
+```text
+Phase-end report
+What was learned
+- an even step never deepens the floor tower (absorption identity); the
+  tower height is the odd count since the last dense base
+- a dense base with Paper-B-length fibres needs an even step at u ≤ 0;
+  the live band u > -L makes that impossible at 1e12 and rare below
+  L ≈ 45
+- the fair-coin uncontrolled share of the honest reset is 0.80-1.00 at
+  accessible scales and crosses the budget only for y ≈ 10^(10^14)
+- charging the same beta to measure and bound, every controllable reset
+  rule has tolerance p_C + O(1/d): the split is H_q on the towers
+- the any-E rule's tolerance 0.78 is real but its complement is not
+  Paper B; the mu_4 room of pressure_direct is the beta=1/2-vs-beta=1
+  inconsistency
+Strongest theorem
+- for a pool splitting at odd share beta, the tilted odd probability
+  e^theta beta/(e^theta beta + 1 - beta) exceeds log2/log3 iff
+  beta > 0.533 at theta_20; above 1/2 its tilted mass outgrows the fair
+  population's; hence beta* = p_C + O(1/d) for every rule that resets
+  only at u ≤ 0
+Strongest refutation
+- the "numerical room" reading of the reset split, at any scale
+Reusable machinery
+- effective_tower_height.tilted_live_profile (tilted live DP over odd
+  count, effective height, effective depth, with a beta-pool) and
+  tower_tolerance; 8 tests
+Branch status
+- CLOSE
+Why
+  Every controllable reset has tolerance p_C, so the split buys nothing
+  beyond H_(p_C) on the towers, at every scale.
+Best next question
+- none on this line; the frontier stays M_(theta,q) as exported
 ```
