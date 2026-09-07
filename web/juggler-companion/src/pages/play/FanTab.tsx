@@ -1,5 +1,6 @@
 import fanData from "../../data/fan.json";
 import { Metric } from "../../components/Metric";
+import { MAIN_FLOOR, MAIN_PERIOD, WALK_WINDOW_HI } from "../../juggler/constants";
 import { formatGrouped } from "../../juggler/format";
 import { FanLambda, FanStaircase, reachedAt } from "../../visuals/FanStaircase";
 
@@ -17,7 +18,7 @@ function sci(x: number) {
  * costs. Everything here is the same object the kill tables run on.
  */
 export function FanTab() {
-  const reached = reachedAt(350_000_000);
+  const reached = reachedAt(MAIN_FLOOR);
   const rows = FAN.filter((r) => [0, 1, 2, 3, 6, 31, 52, 54, 55].includes(r.k));
 
   return (
@@ -31,8 +32,8 @@ export function FanTab() {
 
       <section className="grid gap-3 sm:grid-cols-3">
         <Metric label="fan members" value="56" hint="k = 0 … 55" />
-        <Metric label="bound today" value={formatGrouped(780239)} hint="L₂, at floor 3.5·10⁸" />
-        <Metric label="ends at" value={formatGrouped(16785921)} hint="L₅₅ = q₁₄, the next convergent" />
+        <Metric label="bound today" value={formatGrouped(MAIN_PERIOD)} hint="L₂, at floor 3.5·10⁸" />
+        <Metric label="ends at" value={formatGrouped(WALK_WINDOW_HI)} hint="L₅₅ = q₁₄, the next convergent" />
       </section>
 
       <section className="space-y-4 rounded-2xl border border-line bg-card p-4 sm:p-5">

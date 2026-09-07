@@ -4,6 +4,8 @@ import {
   LAB_WALK_PERIOD,
   PAPER_FLOOR,
   PAPER_PERIOD,
+  MAIN_FLOOR,
+  MAIN_PERIOD,
   PRINTED_FLOOR,
   PRINTED_PERIOD,
 } from "../juggler/constants";
@@ -52,9 +54,21 @@ export const CLAIM_ROWS = [
     tag: "COMPUTATIONALLY VERIFIED",
   },
   {
+    plain:
+      "Without a descent floor, the surplus is a linear form in (L, o). Rhin’s measure then excludes only short cycles; the open problem is the long regime.",
+    theorem: "Theorem 4.10 / Corollary 4.11 gap transfer",
+    tag: "EXACT — HUMAN PROOF",
+  },
+  {
     plain: `At the laboratory floor ${LAB_FLOOR.toLocaleString("en-US")} the same table gives period ≥ ${LAB_PARITY_PERIOD.toLocaleString("en-US")}.`,
     theorem: "Theorem 5.2",
     tag: "COMPUTATIONALLY VERIFIED",
+  },
+  {
+    plain:
+      "On the window [50,508, 16,785,921) the walk-charge envelope is census-free. That bounds the charge, not the kill.",
+    theorem: "Theorem 5.8 census-free window",
+    tag: "EXACT — HUMAN PROOF",
   },
   {
     plain: `Walk charge at that floor kills the parity leftovers below ${LAB_WALK_PERIOD.toLocaleString("en-US")}.`,
@@ -67,7 +81,7 @@ export const CLAIM_ROWS = [
     tag: "COMPUTATIONALLY VERIFIED",
   },
   {
-    plain: "At the third certified floor 350,000,000, period ≥ 780,239.",
+    plain: `At the third certified floor ${MAIN_FLOOR.toLocaleString("en-US")}, period ≥ ${MAIN_PERIOD.toLocaleString("en-US")}.`,
     theorem: "Corollary 5.11",
     tag: "COMPUTATIONALLY VERIFIED",
   },
@@ -154,6 +168,7 @@ export const NOT_CLAIMED = [
   "A finance-survivor length is a length the inequality did not kill. It is not a candidate cycle.",
   "The census-free window of Theorem 5.8 bounds the charge, not the kill. The comparison against θ(L) is still per-length, so the kill tables are not census-free.",
   "Proposition 5.8b/5.8c bound the relaxation at the lengths where it can be measured. They do not prove the extremal walk is realizable at every length.",
+  "Corollary 4.11 is a floor-free reduction. It is weaker than the finance table at every certified floor and does not kill the long survivors.",
   "Corollary 5.14 is conditional on a descent floor nobody has certified. It is a priced next step, not a theorem about periods.",
   "Theorem 3.31 needs a cycle minimum at least 300 and an enumeration of 325452 seven-even forms. Theorem 3.22 remains the statement proved in Lean for every n at least 2, and the interactive checker implements that one.",
   "No independence-from-Peano-arithmetic claim is made. Goodstein is a different theorem.",

@@ -98,8 +98,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     term: "Verified descent floor N₀",
     blurb: "Every start from 2 through N₀ has already been checked to reach 1. A floor is an input.",
     body:
-      "N₀ is not the theorem. It is a certified computation you feed the inequality. Paper A uses three floors: the known 10⁶, the laboratory floor 26,254,995, and the printed floor 162,849,448. Combined with finance, those floors become period lower bounds. Raising N₀ is more computation, not a new idea, and it is not a halt theorem.",
-    paper: "§1 and Proposition 1.3 / 5.1, Corollary 5.10: floors are computational inputs.",
+      "N₀ is not the theorem. It is a certified computation you feed the inequality. Paper A uses four floors: the known 10⁶, the laboratory floor 26,254,995, the second floor 162,849,448, and the main printed floor 350,000,000. Combined with finance and walk charge, those floors become period lower bounds. Raising N₀ is more computation, not a new idea, and it is not a halt theorem.",
+    paper: "§1 and Proposition 1.3 / 5.1, Corollaries 5.10–5.11: floors are computational inputs.",
   },
   {
     slug: "finance",
@@ -119,7 +119,7 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:
       "Finance treats each step’s budget separately. Walk charge couples them: transport the losses to a reduced base, take the hug (rotation) itinerary as the adversary, identify that itinerary, and bound the average with Denjoy–Koksma over certified Ostrowski blocks. On the window [50508, 16785921) — the whole semiconvergent fan — the charge bound is census-free. The kill itself is not: the comparison against θ(L) is a per-length Diophantine quantity the envelope does not control, and that is what blocks the surviving fan members. This chapter is a picture only; the site does not recompute hug charge.",
-    paper: "§5: transport, hug, itinerary identity, Denjoy–Koksma, window, Corollary 5.10.",
+    paper: "§5: transport, hug, itinerary identity, Denjoy–Koksma, window, Corollaries 5.10–5.11.",
   },
 ];
 

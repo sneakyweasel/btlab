@@ -2,6 +2,8 @@ import { FloorWidget } from "../../components/TourWidgets";
 import {
   LAB_FLOOR,
   LAB_WALK_PERIOD,
+  MAIN_FLOOR,
+  MAIN_PERIOD,
   PAPER_FLOOR,
   PAPER_PERIOD,
   PRINTED_FLOOR,
@@ -11,7 +13,8 @@ import {
 const FLOORS = [
   { title: "Theorem 4.6", bound: PAPER_PERIOD, floor: PAPER_FLOOR, name: "known floor" },
   { title: "Theorem 5.9", bound: LAB_WALK_PERIOD, floor: LAB_FLOOR, name: "laboratory floor" },
-  { title: "Corollary 5.10", bound: PRINTED_PERIOD, floor: PRINTED_FLOOR, name: "printed floor" },
+  { title: "Corollary 5.10", bound: PRINTED_PERIOD, floor: PRINTED_FLOOR, name: "second floor" },
+  { title: "Corollary 5.11", bound: MAIN_PERIOD, floor: MAIN_FLOOR, name: "main printed bound" },
 ] as const;
 
 export function FloorTab() {
@@ -23,7 +26,7 @@ export function FloorTab() {
         does not search for a new floor and is not a halt theorem.
       </p>
       <FloorWidget />
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {FLOORS.map((row) => (
           <div key={row.title} className="rounded-xl border border-line bg-card p-4">
             <div className="text-xs uppercase tracking-wide text-muted">{row.name}</div>

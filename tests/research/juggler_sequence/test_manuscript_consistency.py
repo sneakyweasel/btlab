@@ -353,6 +353,7 @@ def test_window_covers_the_whole_fan() -> None:
     ("LAB_FLOOR", 26_254_995), ("LAB_PARITY_PERIOD", 50_508),
     ("LAB_WALK_PERIOD", 176_251),
     ("PRINTED_FLOOR", 162_849_448), ("PRINTED_PERIOD", 478_245),
+    ("MAIN_FLOOR", 350_000_000), ("MAIN_PERIOD", 780_239),
 ])
 def test_app_constants_match_the_certificate(name: str, value: int) -> None:
     src = read(APP_CONSTANTS)
@@ -685,8 +686,14 @@ def test_companion_claim_tags_are_ledger_tags() -> None:
     assert unknown == [], unknown
 
 
-def test_companion_prints_corollary_5_11() -> None:
+def test_companion_prints_the_current_paper_a_front() -> None:
     text = read(APP_CLAIMS)
     assert "Corollary 5.11" in text
-    assert "350,000,000" in text
-    assert "780,239" in text
+    assert "MAIN_FLOOR" in text
+    assert "MAIN_PERIOD" in text
+    assert "Theorem 4.10 / Corollary 4.11" in text
+    assert "Theorem 5.8 census-free window" in text
+    home = read(ROOT / "web" / "juggler-companion" / "src" / "pages" / "HomePage.tsx")
+    assert "Corollary 5.11" in home
+    floor = read(ROOT / "web" / "juggler-companion" / "src" / "pages" / "play" / "FloorTab.tsx")
+    assert "Corollary 5.11" in floor

@@ -644,6 +644,11 @@ describe("finance lookup", () => {
     expect(view.oMin).toBe(16266);
     expect(view.nMax).toBe(26_254_995);
     expect(financeSnapshot.exceptionCount).toBe(PAPER_EXCEPTION_COUNT);
+    expect(financeSnapshot.instances.at(-1)).toMatchObject({
+      theorem: "Corollary 5.11",
+      floor: 350_000_000,
+      period: 780_239,
+    });
   });
 
   it("ships the 141 survivors above the floor with their n_max", () => {

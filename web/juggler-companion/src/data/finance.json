@@ -266,6 +266,12 @@
    "floor": 162849448,
    "period": 478245,
    "mechanism": "same kill criterion at the second floor"
+  },
+  {
+   "theorem": "Corollary 5.11",
+   "floor": 350000000,
+   "period": 780239,
+   "mechanism": "same kill criterion at the third floor"
   }
  ],
  "survivors": [

@@ -1,13 +1,14 @@
 const RUNGS = [
   { floor: "1,000,000", period: "25,781", name: "known floor" },
   { floor: "26,254,995", period: "176,251", name: "laboratory floor" },
-  { floor: "162,849,448", period: "478,245", name: "printed floor" },
+  { floor: "162,849,448", period: "478,245", name: "second floor" },
+  { floor: "350,000,000", period: "780,239", name: "main printed bound" },
 ];
 
 export function FloorLadder() {
   return (
-    <svg viewBox="0 0 640 220" role="img" className="h-auto w-full">
-      <title>Three verified descent floors and the period bounds they buy</title>
+    <svg viewBox="0 0 640 300" role="img" className="h-auto w-full">
+      <title>Four verified descent floors and the period bounds they buy</title>
       {RUNGS.map((rung, index) => {
         const y = 36 + index * 64;
         return (

@@ -22,6 +22,9 @@ export const LAB_PARITY_PERIOD = 50_508;
 export const LAB_WALK_PERIOD = 176_251;
 export const PRINTED_FLOOR = 162_849_448;
 export const PRINTED_PERIOD = 478_245;
+/** Corollary 5.11: the main printed period bound. */
+export const MAIN_FLOOR = 350_000_000;
+export const MAIN_PERIOD = 780_239;
 export const WALK_WINDOW_LO = 50_508;
 export const WALK_WINDOW_HI = 16_785_921;
 

@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { Tex } from "../components/Tex";
 import {
   LAB_WALK_PERIOD,
+  MAIN_FLOOR,
+  MAIN_PERIOD,
   PAPER_PERIOD,
+  PRINTED_FLOOR,
   PRINTED_PERIOD,
 } from "../juggler/constants";
 import { resolveTrajectory } from "../juggler/monsters";
@@ -121,10 +124,19 @@ export function HomePage() {
           />
         </div>
       </section>
-      <section className="grid gap-3 sm:grid-cols-3">
+      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <BoundCard title="Theorem 4.6" bound={PAPER_PERIOD} floor="1,000,000" />
         <BoundCard title="Theorem 5.9" bound={LAB_WALK_PERIOD} floor="26,254,995" />
-        <BoundCard title="Corollary 5.10" bound={PRINTED_PERIOD} floor="162,849,448" />
+        <BoundCard
+          title="Corollary 5.10"
+          bound={PRINTED_PERIOD}
+          floor={PRINTED_FLOOR.toLocaleString("en-US")}
+        />
+        <BoundCard
+          title="Corollary 5.11"
+          bound={MAIN_PERIOD}
+          floor={MAIN_FLOOR.toLocaleString("en-US")}
+        />
       </section>
       <section className="prose-measure space-y-3 text-muted">
         <p>

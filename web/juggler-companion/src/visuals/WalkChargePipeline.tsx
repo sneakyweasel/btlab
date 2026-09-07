@@ -1,4 +1,4 @@
-import { PRINTED_PERIOD } from "../juggler/constants";
+import { MAIN_PERIOD } from "../juggler/constants";
 
 const STAGES = [
   "Transport",
@@ -6,13 +6,13 @@ const STAGES = [
   "Itinerary identity",
   "Denjoy–Koksma",
   "Window",
-  `L ≥ ${PRINTED_PERIOD}`,
+  `L ≥ ${MAIN_PERIOD}`,
 ];
 
 export function WalkChargePipeline() {
   return (
     <svg viewBox="0 0 720 160" role="img" className="h-auto w-full">
-      <title>Walk-charge pipeline from transport to the printed period bound</title>
+      <title>Walk-charge pipeline from transport to the main printed period bound</title>
       {STAGES.map((label, index) => {
         const x = 12 + index * 118;
         return (

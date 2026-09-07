@@ -729,7 +729,7 @@ export function FloorWidget() {
     <div className="space-y-3">
       <FloorLadder />
       <p className="text-sm text-muted">
-        These three numbers are certified computations already finished. This
+        These four numbers are certified computations already finished. This
         page does not search for new floors.
       </p>
     </div>
