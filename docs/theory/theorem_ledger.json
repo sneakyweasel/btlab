@@ -7443,5 +7443,27 @@
   "tests": [
    "tests/research/juggler_sequence/test_cycle_run_alphabet.py"
   ]
+ },
+ {
+  "id": "J-parity-factor-exhaustion",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The depth-one parity sequence a(k) = floor((2k+1)^(3/2)) mod 2, the letter after the odd step from 2k+1 (oddCubeParity_eq_floorPower: it is floorPower (2k+1) % 2), contains every binary word of length at most six, and the words of length 3, 4, 5, 6 are exhausted at exactly 18, 48, 169, 574 terms: factorCount (parityPrefix 574) 6 = 64 and factorCount (parityPrefix 573) 6 = 63 (factorCount_six_saturates, factorCount_six_not_before, kernel decide; standard foundations only). The finite part of the complexity profile; it says nothing by itself about growth.",
+  "lean": "formal/Problems/Juggler/ParityComplexity.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_parity_complexity.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_parity_complexity.py"
+  ]
+ },
+ {
+  "id": "J-parity-sequence-complexity",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The depth-one frontier parity over odd starts, a(k) = floor((2k+1)^(3/2)) mod 2, is not an automatic sequence in any numeration system. Its factor complexity satisfies p(L) >= R(L) >= sum over odd r with 2r+2 <= L of (2r+1) = L^2/8 - O(L), where R(L) counts the interior equal-interval rotation words j -> [{y + j beta} >= 1/2]. Proof: on a window of length L, f(k+j) = f(k) + j f'(k) + rho_j with 0 <= rho_j <= 1.5 L^2/sqrt(2k+1) (f'' = 3(2k+1)^(-1/2) positive decreasing), so once (f(k), f'(k)) mod 2 lies in a cell shrunk by epsilon > 1.5 L^2/sqrt(2k+1) the window is the rotation word of that cell; (f/2, f'/2)(k) mod 1 is jointly uniformly distributed by Weyl's criterion and Boshernitzan 1994 (a f + b f' is a Hardy function of polynomial growth, at distance >> x^(1/2) from every rational polynomial; KNOWN, boshernitzan-1994-hardy-fields), so every interior rotation word occurs with positive lower density; and the 2r+1 shifts of (0^r 1^(r+1)) for odd r are interior rotation words, pairwise distinct and distinct across r through the length of a complete run. Consequences (KNOWN inputs, allouche-shallit-2003-automatic-sequences Ch. 10): q-automatic sequences have p(L) = O(L) (Cobham), Sturmian words p(L) = L+1, codings of one rotation by two intervals linear complexity; none applies, so Walnut-style or Ostrowski-automatic decision procedures cannot settle frontier-parity questions for the Juggler map, at depth one already. COMPUTATIONALLY VERIFIED (N = 3,000,000, L <= 22): p(L) = 2^L for L <= 6, then 126, 229, 390, 618, 932, 1354, 1885, 2586, 3469, 4551, 5885, 7525, 9450, 11719, 14367, 17453; R(L) = 28, 48, 72, 108, 152, 208, 272, 356, ..., 2168 and the periodic family are contained in the factor set at every L <= 22; the control floor(k sqrt 2) mod 2 has p(L) = 2L exactly. OBSERVATION: log p/L falls 0.693 -> 0.444 and log p/log L = 3.16 at L = 22 with local slope 4.2 on [11,22] (rotation words alone 2.99); the factor set is dominated by early, high-curvature positions (p(12) = 1354 from the start, 544 from position 10^5, against R(12) = 356). The reduction is depth one only: the letter after OO is a nested floor and not a Hardy function. Negative knowledge; CLOSE.",
+  "lean": "formal/Problems/Juggler/ParityComplexity.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_parity_complexity.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_parity_complexity.py"
+  ]
  }
 ]

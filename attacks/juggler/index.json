@@ -1423,7 +1423,7 @@
         "J-cycle-band-discrepancy"
       ],
       "aliases": [],
-      "nk_cluster": null
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_seam_ancestry",
@@ -3836,6 +3836,25 @@
       "nk_cluster": null
     },
     {
+      "id": "parity_complexity",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/parity_complexity.py",
+      "test": "tests/research/juggler_sequence/test_parity_complexity.py",
+      "dossier": "docs/problems/juggler_parity_complexity.md",
+      "data_dir": "data/research/juggler/parity_complexity",
+      "lean": [
+        "formal/Problems/Juggler/ParityComplexity.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-parity-factor-exhaustion",
+        "J-parity-sequence-complexity"
+      ],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
+    },
+    {
       "id": "parity_discrepancy",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/parity_discrepancy.py",
@@ -5453,7 +5472,8 @@
         "formal/Problems/Juggler/TiltedShare.lean",
         "formal/Problems/Juggler/LiveCountWeight.lean",
         "formal/Problems/Juggler/DepthOneMainTerm.lean",
-        "formal/Problems/Juggler/CycleRunAlphabet.lean"
+        "formal/Problems/Juggler/CycleRunAlphabet.lean",
+        "formal/Problems/Juggler/ParityComplexity.lean"
       ],
       "conjecture": [],
       "decision": null,

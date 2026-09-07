@@ -15399,6 +15399,86 @@
       "trust": "kernel"
     },
     {
+      "doc": "The band's falling block.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 187,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "oeBlock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The band's climbing block.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 190,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "ooeBlock",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`k` climbing blocks in a row.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 193,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`OOE^k ++ OE` is an exponent gap exactly while `k \u2264 2`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 210,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun_append_oe_exponentGap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**A band cycle minimum opens with at least three climbing blocks.** If the itinerary of a prefix-noncontracting word begins with `k` copies of `OOE` and then an `OE`, then `k \u2265 3`. Since a cycle minimum is prefix-noncontracting, its itinerary opens `OOEOOEOOE`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 224,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "band_min_needs_three_climbs",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The opening itself: three climbing blocks are nine letters, `OOEOOEOOE`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 243,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "After three climbing blocks and one fall, a second fall is an exponent gap: `OOE^3 ++ OE ++ OE` has `o = 8`, `t = 13`, and `3^8 = 6561 < 8192 = 2^13`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 250,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun_three_two_falls_exponentGap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The fall cannot repeat.** A prefix-noncontracting word cannot open with three climbing blocks and then two falls. In the band, where the only blocks are `OE` and `OOE`, the block after the first fall must therefore be another `OOE`, so a cycle minimum's word opens `OOE OOE OOE OE OOE`: fourteen letters, all forced.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 259,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "band_min_no_second_fall",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
@@ -38185,6 +38265,116 @@
       "line": 485,
       "module": "Problems.Juggler.PaperBAssembly",
       "name": "sublevel_second_term_dominates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Parity of `\u230a(2k+1)^{3/2}\u230b`: the letter following the odd step from `2k+1`.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 19,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "oddCubeParity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parity sequence is the odd-branch image parity of the laboratory map.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 22,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "oddCubeParity_eq_floorPower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first `n` letters.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 29,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "parityPrefix",
+      "trust": "kernel"
+    },
+    {
+      "doc": "All windows of length `L` of a finite word, in order of position.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 32,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "windows",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Number of distinct windows of length `L`.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 36,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "factorCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 38,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "parityPrefix_eight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every word of length three occurs within the first 18 letters.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 42,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "factorCount_three_saturates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every word of length four occurs within the first 48 letters.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "factorCount_four_saturates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every word of length five occurs within the first 169 letters.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "factorCount_five_saturates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every word of length six occurs within the first 574 letters ...",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "factorCount_six_saturates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "... and one of them is still missing after 573: the exhaustion index is exactly 574.",
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 58,
+      "module": "Problems.Juggler.ParityComplexity",
+      "name": "factorCount_six_not_before",
       "trust": "kernel"
     },
     {
@@ -64932,6 +65122,7 @@
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.PaperBAssembly",
+        "Problems.Juggler.ParityComplexity",
         "Problems.Juggler.PrefixBunched",
         "Problems.Juggler.PrefixBunchedEval",
         "Problems.Juggler.PrefixTwoEven",
@@ -65243,7 +65434,7 @@
       "ledger": []
     },
     "Problems.Juggler.CycleRunAlphabet": {
-      "declarations": 10,
+      "declarations": 18,
       "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "imports": [
         "Problems.Juggler.ItineraryStats",
@@ -66177,6 +66368,14 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.ParityComplexity": {
+      "declarations": 11,
+      "file": "formal/Problems/Juggler/ParityComplexity.lean",
+      "imports": [
+        "Problems.Juggler.Dynamics"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.PrefixBunched": {
       "declarations": 40,
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
@@ -66828,13 +67027,13 @@
     }
   },
   "totals": {
-    "declarations": 4771,
+    "declarations": 4790,
     "declarations_with_a_ledger_row": 3195,
-    "ledger_rows_naming_a_file": 332,
-    "modules": 202,
+    "ledger_rows_naming_a_file": 334,
+    "modules": 203,
     "trust": {
       "compiler": 54,
-      "kernel": 4717
+      "kernel": 4736
     }
   }
 }

@@ -39472,3 +39472,42 @@ The general shape: an exact accounting of floor loss can never beat the
 surplus except by proving contraction, because Delta is defined as
 n^(3^o) - T_w(n)^(2^L). Any escape has to be a lower bound on Delta that
 does not mention T_w(n). Two exist and they reach a fifth of the gap.
+
+## The depth-one parity word is not automatic
+
+A lateral question with a clean answer. The letter after an odd step
+from 2k+1 is the parity of floor((2k+1)^(3/2)). If that sequence were
+automatic, finite-state in some numeration, then the laboratory's
+Walnut and Ostrowski-automatic tooling could in principle decide
+frontier-parity questions for the Juggler map. It cannot.
+
+Measured first: the factor complexity p(L) is 2^L exactly through
+L = 6 and then falls away, 126, 229, 390, ..., 17453 at L = 22, far
+below 2^22 but far above linear. The Lean layer pins the finite part
+by kernel computation: the words of length 3, 4, 5, 6 are exhausted at
+exactly 18, 48, 169, 574 terms.
+
+Then the mechanism, which is the useful part. On a window of length L
+the phase (2k+2j+1)^(3/2) is linear in j up to a curvature term of at
+most 1.5 L^2/sqrt(2k+1), so for large k every window is the coding of
+a rotation with slope 3 sqrt(2k+1) mod 2 by two equal intervals. The
+pair (f, f')(k) mod 2 is jointly equidistributed by Weyl and
+Boshernitzan, no nested floor being involved at depth one, so every
+rotation word of every length occurs with positive density. The
+periodic words (0^r 1^(r+1)) for odd r give L^2/8 - O(L) of them, and
+quadratic growth already rules out automatic (Cobham: O(L)), Sturmian
+(L+1), and single-rotation codings. Every rotation word of length up
+to 22 is indeed present in the first three million terms, and they are
+a vanishing share of the factor set: 356 of 1354 at L = 12. The rest
+are curvature words, mostly from early positions.
+
+Two honest limits. The growth order is not settled: log p/log L is
+3.16 at L = 22 with local slope 4.2, and only the lower bound is
+proved. And the reduction stops at depth one; the letter after OO is a
+nested floor, not a Hardy function, which is exactly where the
+rate-free Hardy dossiers stopped too.
+
+Two ledger rows, J-parity-factor-exhaustion (Lean) and
+J-parity-sequence-complexity (human proof with known inputs). Branch
+CLOSE as negative knowledge: do not attempt automatic-sequence
+methods on Juggler parity.

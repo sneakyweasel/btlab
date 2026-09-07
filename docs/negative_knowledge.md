@@ -215,6 +215,7 @@ Members: [juggler_residual_state](problems/juggler_residual_state.md),
 [juggler_future_quotient](problems/juggler_future_quotient.md),
 [juggler_sum_rho](problems/juggler_sum_rho.md),
 [juggler_information_complexity](problems/juggler_information_complexity.md),
+[juggler_parity_complexity](problems/juggler_parity_complexity.md),
 [juggler_realization_geometry](problems/juggler_realization_geometry.md),
 [juggler_word_language](problems/juggler_word_language.md),
 [juggler_certificate_transitions](problems/juggler_certificate_transitions.md),
@@ -239,6 +240,18 @@ contraction after one block — a success that is a refutation),
 `J-peak-transports-to-oo`, `J-pe-history-valuation`,
 `J-pe-cylinder-next-landing`, `J-odd-landing-set-structure`,
 `juggler_mixed_word_strictness`.
+
+**Frontier parity is not automatic (CLOSE).** The letter after an odd
+step, \(\lfloor (2k+1)^{3/2}\rfloor \bmod 2\), has factor complexity
+\(p(L)\ge L^2/8-O(L)\): every equal-interval rotation word occurs, by
+Taylor expansion and joint equidistribution of \((f,f')\bmod 2\)
+(Boshernitzan, no nested floor at depth one), while automatic sequences
+have \(p(L)=O(L)\) (Cobham). Do not attempt Walnut, Ostrowski-automatic,
+or any finite-state decision procedure on Juggler frontier parity, at
+any depth: depth one already fails, and deeper letters are nested floors
+outside the Hardy reduction
+([juggler_parity_complexity](problems/juggler_parity_complexity.md),
+`J-parity-sequence-complexity`).
 
 ---
 
@@ -485,6 +498,19 @@ and the recorded long-cycle leftover of Paper A §6. Paper D
 working draft (family leftover, not a review object):
 [juggler_near_convergent_diophantine_note.md](theory/juggler_near_convergent_diophantine_note.md).
 Do not reopen as a kill campaign.
+
+**Cycle run alphabet is a shape constraint, not a kill (CLOSE).** The
+height ratio \(R=\log M/\log m\) of a cycle bounds its runs,
+\((3/2)^r\le R\) and \(2^g\le R\); closure forces \(o/e=1.7095>1\), which
+no-adjacent-odd forbids, so \(M\ge m^{9/4}\); below \(R<27/8\) the word is
+cyclic over \(\{OE,OOE\}\), height is discrepancy (\(\log R=\log 3\,\Delta\)),
+and a band minimum opens \(OOE\,OOE\,OOE\,OE\,OOE\). Every integer above
+the floor must still descend for a no-cycle theorem, which is the
+statement itself; the uncertified cylinder has density \(1/8\) and a
+minimum landing in it is no contradiction. Do not reopen as a cycle
+kill, a certificate-density argument, or a longer necklace census
+([juggler_cycle_run_alphabet](problems/juggler_cycle_run_alphabet.md),
+`J-cycle-run-alphabet`, `J-cycle-band-discrepancy`).
 
 Dossiers: [juggler_cycle_gap_baker](problems/juggler_cycle_gap_baker.md),
 [juggler_cycle_affine_n_gap](problems/juggler_cycle_affine_n_gap.md),

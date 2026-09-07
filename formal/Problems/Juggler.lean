@@ -96,6 +96,7 @@ import Problems.Juggler.TiltedShare
 import Problems.Juggler.LiveCountWeight
 import Problems.Juggler.DepthOneMainTerm
 import Problems.Juggler.CycleRunAlphabet
+import Problems.Juggler.ParityComplexity
 
 /-!
 # Juggler laboratory barrel
