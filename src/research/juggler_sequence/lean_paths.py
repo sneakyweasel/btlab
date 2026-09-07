@@ -147,6 +147,7 @@ LAYERS: dict[str, Path] = {
     "TowerAbsorption": JUGGLER_DIR / "TowerAbsorption.lean",
     "TiltedShare": JUGGLER_DIR / "TiltedShare.lean",
     "LiveCountWeight": JUGGLER_DIR / "LiveCountWeight.lean",
+    "DepthOneMainTerm": JUGGLER_DIR / "DepthOneMainTerm.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

@@ -14,6 +14,29 @@ def test_the_complete_cubic_sums_mod_27_are_nine_for_both_dual_coefficients() ->
         assert abs(s.real - 9.0) < 1e-9 and abs(s.imag) < 1e-9
 
 
+def test_the_constant_is_exactly_root_six_over_nine() -> None:
+    """The closed form proved in DepthOneMainTerm.lean as depthOneConstant_eq_sqrt_six_div_nine.
+
+    (4 sqrt8 / 27)(3/4)^{3/2} = (4*2 sqrt2/27)(3 sqrt3/8) = 3 sqrt6 / 27 = sqrt6 / 9.
+    """
+    assert abs(D.predicted_constant() - math.sqrt(6) / 9) < 1e-12
+    assert abs((4 * math.sqrt(8) / 27) * (3 / 4) ** 1.5 - math.sqrt(6) / 9) < 1e-15
+
+
+def test_the_lean_layer_carries_the_named_arithmetic_theorems() -> None:
+    """The ledger row J-depth-one-arithmetic-layer names these; keep the file honest."""
+    from research.juggler_sequence.lean_paths import LAYERS
+
+    src = LAYERS["DepthOneMainTerm"].read_text(encoding="utf-8")
+    for name in ("stationary_point", "dual_phase", "dual_phase_half",
+                 "completeCubicSum_eq_nine", "zeta27_nine_sum",
+                 "depthOneConstant_eq_sqrt_six_div_nine", "sum_affine_reindex",
+                 "two_isUnit"):
+        assert f"theorem {name}" in src, name
+    for banned in ("sorry", "admit"):
+        assert banned not in src
+
+
 def test_the_stationary_phase_constant_is_four_root_eight_over_27_times_three_quarters_cubed_half() -> None:
     """(4√8/27)(3/4)^{3/2} = 0.27217, and the measured sum matches it to 1% at X = 1e5."""
     pred = D.predicted_constant()

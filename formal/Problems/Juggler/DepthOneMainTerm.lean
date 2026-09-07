@@ -1,5 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Complex.Log
 import Mathlib.Analysis.Real.Sqrt
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Data.ZMod.Basic
 
 namespace Problems.Juggler
@@ -92,6 +93,24 @@ theorem dual_phase {α ν s : ℝ} (hα : α ≠ 0) (hs : s = 2 * ν / (3 * α))
   field_simp
   ring
 
+/-- `(s²)^{3/2} = s³` for `s ≥ 0`: the half-power bookkeeping that lets
+`dual_phase` be stated in the original variable `M = s²`. -/
+theorem rpow_three_halves_of_sq {s : ℝ} (hs : 0 ≤ s) :
+    (s ^ 2) ^ ((3 : ℝ) / 2) = s ^ 3 := by
+  have h : ((2 : ℕ) : ℝ) * ((3 : ℝ) / 2) = ((3 : ℕ) : ℝ) := by norm_num
+  rw [← Real.rpow_natCast s 2, ← Real.rpow_mul hs, h, Real.rpow_natCast]
+
+/-- **The dual phase in the original variable.**  For `α > 0`, `ν ≥ 0` and
+`M_ν = (2ν/(3α))²`, the phase `α M^{3/2} - νM` takes the value
+`-4ν³/(27α²)` at `M_ν`.  This is `dual_phase` with the half-power written
+as a half-power. -/
+theorem dual_phase_rpow {α ν : ℝ} (hα : 0 < α) (hν : 0 ≤ ν) :
+    α * ((2 * ν / (3 * α)) ^ 2) ^ ((3 : ℝ) / 2) - ν * (2 * ν / (3 * α)) ^ 2
+      = -4 * ν ^ 3 / (27 * α ^ 2) := by
+  have hs : (0 : ℝ) ≤ 2 * ν / (3 * α) := by positivity
+  rw [rpow_three_halves_of_sq hs]
+  exact dual_phase hα.ne' rfl
+
 /-- At `α = 1/2` the dual phase is `-16ν³/27`: modulus `27`. -/
 theorem dual_phase_half (ν : ℝ) :
     -4 * ν ^ 3 / (27 * ((1 : ℝ) / 2) ^ 2) = -16 * ν ^ 3 / 27 := by
@@ -129,10 +148,10 @@ theorem zeta27_nine_sum : 1 + zeta27 ^ 9 + zeta27 ^ 18 = 0 := by
       push_cast at hn ⊢
       linear_combination hn
     have hthird : (1 : ℂ) / 3 = (n : ℂ) := mul_left_cancel₀ h2pi hcancel
-    have hthirdR : (1 : ℝ) / 3 = (n : ℝ) := by exact_mod_cast hthird
-    have h3n : (3 : ℤ) * n = 1 := by
-      have : (3 : ℝ) * (n : ℝ) = 1 := by linarith
-      exact_mod_cast this
+    have hc : ((3 * n : ℤ) : ℂ) = ((1 : ℤ) : ℂ) := by
+      push_cast
+      linear_combination (-3 : ℂ) * hthird
+    have h3n : (3 : ℤ) * n = 1 := by exact_mod_cast hc
     omega
   have hfac : (zeta27 ^ 9 - 1) * (1 + zeta27 ^ 9 + zeta27 ^ 18) = 0 := by
     have hsq : zeta27 ^ 18 = (zeta27 ^ 9) ^ 2 := by rw [← pow_mul]
@@ -172,6 +191,19 @@ half-power expanded. -/
 noncomputable def depthOneConstant : ℝ :=
   4 * Real.sqrt 8 / 27 * (3 / 4 * Real.sqrt (3 / 4))
 
+/-- `x^{3/2} = x√x` for `x ≥ 0`. -/
+theorem rpow_three_halves {x : ℝ} (hx : 0 ≤ x) :
+    x ^ ((3 : ℝ) / 2) = x * Real.sqrt x := by
+  rcases eq_or_lt_of_le hx with h | h
+  · rw [← h, Real.zero_rpow (by norm_num), Real.sqrt_zero, mul_zero]
+  · rw [Real.sqrt_eq_rpow, show ((3 : ℝ) / 2) = 1 + 1 / 2 by norm_num,
+      Real.rpow_add h, Real.rpow_one]
+
+/-- `depthOneConstant` is the constant the note prints, half-power and all. -/
+theorem depthOneConstant_eq_printed :
+    depthOneConstant = 4 * Real.sqrt 8 / 27 * ((3 : ℝ) / 4) ^ ((3 : ℝ) / 2) := by
+  rw [depthOneConstant, rpow_three_halves (by norm_num : (0:ℝ) ≤ 3 / 4)]
+
 /-- **The constant is exactly `√6/9`.**  Numerically `0.2721655…`, matching
 the four digits the note measures. -/
 theorem depthOneConstant_eq_sqrt_six_div_nine :
@@ -206,7 +238,7 @@ theorem sum_affine_reindex {n : ℕ} [NeZero n] (u : (ZMod n)ˣ) (c : ZMod n)
 twisted dual sum is odd, so the half-integer shift is a permutation. -/
 theorem two_isUnit {k : ℕ} (hk : Odd k) : IsUnit (2 : ZMod (27 * k ^ 2)) := by
   have hk0 : k ≠ 0 := by rintro rfl; simp at hk
-  haveI : NeZero (27 * k ^ 2) := ⟨by positivity⟩
+  have : NeZero (27 * k ^ 2) := ⟨by positivity⟩
   have hodd : Odd (27 * k ^ 2) := (by decide : Odd 27).mul hk.pow
   have hmod : (27 * k ^ 2) % 2 = 1 := Nat.odd_iff.mp hodd
   have hnd : ¬ (2 ∣ 27 * k ^ 2) := by omega

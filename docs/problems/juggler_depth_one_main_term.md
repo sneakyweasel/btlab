@@ -141,8 +141,33 @@ None.
 
 ## Formalization
 
-None. The complete cubic sums are finite and could be `decide`d; the
-B-process is analysis. Not opened.
+`formal/Problems/Juggler/DepthOneMainTerm.lean`, kernel-checked, axioms
+`propext`, `Classical.choice`, `Quot.sound` only (row
+`J-depth-one-arithmetic-layer`). It carries the arithmetic tier:
+`stationary_point` and `dual_phase` (the B-process dual of
+\(\alpha M^{3/2}\) is the cubic \(-4\nu^3/(27\alpha^2)\)),
+`dual_phase_half` (modulus 27 at \(\alpha=1/2\)),
+`completeCubicSum_eq_nine`, `depthOneConstant_eq_sqrt_six_div_nine`, and
+`sum_affine_reindex` with `two_isUnit` for the odd-start cancellation.
+The half-powers are stated as half-powers rather than paraphrased:
+`dual_phase_rpow` gives \(\alpha M^{3/2}-\nu M\) at
+\(M=(2\nu/3\alpha)^2\), and `depthOneConstant_eq_printed` ties the
+definition to \((4\sqrt8/27)(3/4)^{3/2}\) as printed.
+
+The complete sum is not evaluated numerically. Every term is
+\(\zeta^{11r^3\bmod 27}\) for \(\zeta=e(1/27)\); nine residues cube to
+zero, and the eighteen others form two triples in arithmetic progression
+of common difference 9, each killed by \(1+\zeta^9+\zeta^{18}=0\).
+That identity, not a computation, is why the sum is 9.
+
+Two things came out of writing it. The constant has the exact closed
+form \(\sqrt6/9\), which the note had only to four digits. And the
+character convention `e θ = exp(2πiθ)` was matched to `CircleMethod.e`
+on prove2.me, so these statements port to that platform unchanged.
+
+The analytic tier is not formalized and is not close to it: the
+B-process remainders and the Erdős–Turán step are analysis, and nothing
+in Formalpedia covers them.
 
 ## Results
 

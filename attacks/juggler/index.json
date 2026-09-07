@@ -1915,11 +1915,14 @@
       "test": "tests/research/juggler_sequence/test_depth_one_main_term.py",
       "dossier": "docs/problems/juggler_depth_one_main_term.md",
       "data_dir": "data/research/juggler/depth_one_main_term",
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/DepthOneMainTerm.lean"
+      ],
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-depth-one-main-term"
+        "J-depth-one-main-term",
+        "J-depth-one-arithmetic-layer"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -5422,7 +5425,8 @@
         "formal/Problems/Juggler/LogLogClock.lean",
         "formal/Problems/Juggler/TowerAbsorption.lean",
         "formal/Problems/Juggler/TiltedShare.lean",
-        "formal/Problems/Juggler/LiveCountWeight.lean"
+        "formal/Problems/Juggler/LiveCountWeight.lean",
+        "formal/Problems/Juggler/DepthOneMainTerm.lean"
       ],
       "conjecture": [],
       "decision": null,
