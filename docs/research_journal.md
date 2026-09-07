@@ -38405,3 +38405,19 @@ Why
 Best next question
 - none on this line
 ```
+
+## Tower absorption is now Lean
+
+`formal/Problems/Juggler/TowerAbsorption.lean`, kernel-checked with
+axioms `propext`, `Classical.choice`, `Quot.sound` only:
+`sqrt_iter_eq_iff` (`j` iterated `Nat.sqrt` of `x` is `s` iff
+`s^(2^j) <= x < (s+1)^(2^j)`), `floorPower_iter_of_even`,
+`floorPower_odd_even_run` and `floorPower_odd_even_run_eq_iff` (an odd
+step then `j` even steps is `Nat.sqrt^[j+1] (n^3)`, the single floor
+`floor(n^(3/2^(j+1)))`), and `floorPower_oe_eq_iff` recovering the `OE`
+fiber of `FateContagion` as `j = 1`. This is the `EXACT` clause of the
+effective-tower-height branch — the tower height is the odd count, not
+the depth — registered in the barrel and in `LAYERS`; the layer test
+and `lake build Problems.Juggler` pass. Ledger rows
+`J-tower-absorption`, `J-effective-tower-height-reset-tolerance`,
+`J-depth-one-main-term` added and re-rendered.

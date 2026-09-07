@@ -144,9 +144,17 @@ counterexample to \(\mathrm M_{\theta,q}\).
 
 ## Formalization
 
-None. The absorption identity is a one-line lemma
-(`Nat.sqrt` of a floor); the DP is bookkeeping. Lean-ifying either
-ahead of an estimate would be machinery gravity.
+`formal/Problems/Juggler/TowerAbsorption.lean` (kernel-checked; axioms
+`propext`, `Classical.choice`, `Quot.sound` only):
+`sqrt_iter_eq_iff` — `j` iterated `Nat.sqrt` of `x` equals `s` iff
+`s^(2^j) ≤ x < (s+1)^(2^j)`; `floorPower_iter_of_even` — on an even run
+the Juggler map is iterated `Nat.sqrt`; `floorPower_odd_even_run` and
+`floorPower_odd_even_run_eq_iff` — an odd step followed by `j` even
+steps is `Nat.sqrt^[j+1] (n^3)`, the cell `s^(2^(j+1)) ≤ n^3 <
+(s+1)^(2^(j+1))`, i.e. the value `⌊n^{3/2^(j+1)}⌋` with one floor and
+no nesting; `floorPower_oe_eq_iff` recovers the `OE` fiber of
+`FateContagion` as `j = 1`. This is the absorption clause; the DP is
+bookkeeping and is not formalized.
 
 ## Results
 
