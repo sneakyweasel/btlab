@@ -57,6 +57,75 @@
   "floor_defect_relative": 7.046581321075518e-09,
   "oo_chain_holds_on_witnesses": true,
   "oo_witnesses_checked": 94,
+  "certificates": {
+    "classes": [
+      "E",
+      "OE",
+      "OOEE",
+      "OOOEE",
+      "OOEOE"
+    ],
+    "band_profile": [
+      {
+        "a": 3,
+        "b": 7,
+        "L": 27,
+        "prefixes_seen": [
+          "EOEOE",
+          "EOEOO",
+          "EOOEO",
+          "OEOEO",
+          "OEOOE",
+          "OOEOE",
+          "OOEOO"
+        ],
+        "uncertified_prefixes": [
+          "OOEOO"
+        ],
+        "classes_available": [
+          "E",
+          "OE",
+          "OOEOE"
+        ],
+        "min_uncertified_fraction": 0.14814814814814814,
+        "max_uncertified_fraction": 0.2222222222222222,
+        "count_formula_is_b_minus_runs": true
+      },
+      {
+        "a": 5,
+        "b": 12,
+        "L": 46,
+        "prefixes_seen": [
+          "EOEOE",
+          "EOEOO",
+          "EOOEO",
+          "OEOEO",
+          "OEOOE",
+          "OOEOE",
+          "OOEOO"
+        ],
+        "uncertified_prefixes": [
+          "OOEOO"
+        ],
+        "classes_available": [
+          "E",
+          "OE",
+          "OOEOE"
+        ],
+        "min_uncertified_fraction": 0.15217391304347827,
+        "max_uncertified_fraction": 0.2391304347826087,
+        "count_formula_is_b_minus_runs": true
+      }
+    ],
+    "window": {
+      "ooe_block_start_fraction": 0.26185950714291484,
+      "uncertified_low": 0.15464876785728715,
+      "uncertified_high": 0.19639463035718616,
+      "fair_share": 0.125,
+      "ratio_low": 1.2371901428582972,
+      "ratio_high": 1.5711570428574892
+    }
+  },
   "discrepancy": {
     "balanced_cap": 1.0,
     "band_cap": 1.1072107392856276,

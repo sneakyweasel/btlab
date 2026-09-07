@@ -140,10 +140,32 @@ or an accumulated drift that puts an \(OOE\) start more than \(1-2(1-s)=0.262\) 
 the boundary minimum. So a cycle in the band is one of two things, mechanical or a
 one-violation two-block word, and nothing else.
 
-Two of the cheaper neighbours are recorded as they stand. Climbing against certified: the
-descent-certificate classes are exactly the falling blocks, and in the band \(26.2\%\) of
-cycle elements begin an \(OOE\) against a fair share of \(12.5\%\), a mismatch of
-\(2.1\). Block-level defect count: tower absorption makes \(OE\) one floor and \(OOE\)
+**Climbing against certified, corrected.** An earlier version of this dossier reported the
+mismatch as the fraction of cycle elements beginning an \(OOE\), \(26.2\%\) against a
+fair \(12.5\%\), a ratio of \(2.1\). That number is arithmetically right but measures the
+wrong thing: beginning an \(OOE\) is not the same as being uncertified, and most \(OOE\)
+starts in the band *are* certified, through \(OOEOE\).
+
+The correct statement is sharper in one direction and much weaker in the other. A band word
+has even runs of length one and odd runs of at most two, so \(OOEE\) and \(OOOEE\) can
+never occur: **a band cycle can use only three of the five descent certificates**, namely
+\(E\), \(OE\) and \(OOEOE\). Reading every depth-5 cyclic prefix that occurs, exactly one
+is uncertified, \(OOEOO\), the start of an \(OOE\) immediately followed by another
+\(OOE\). So the uncertified count is exactly \(b-R\) with \(R\) the number of
+\(OOE\)-runs, verified against every necklace at \((3,7)\) and \((5,12)\).
+
+Since \(OE\)-runs have length at most two, \(R\ge a/2\), and \(OOE\)-runs at most four
+gives \(R\ge b/4\). At the forced mix the uncertified fraction therefore lies in
+\([0.155,0.196]\), a ratio to the fair \(1/8\) of only \([1.24,1.57]\). The crowding is
+mild, not the factor of several the earlier framing suggested.
+
+What does survive is qualitative and was not stated before: at the position where the walk
+attains its cyclic minimum no certificate can hold, since a certificate forces a strict drop
+within five steps and there is nothing below the minimum to drop to. So **every cycle has at
+least one uncertified position**, and in a band cycle it carries the prefix \(OOEOO\).
+Checked on every necklace at \((3,7)\) and \((5,12)\) with no exception.
+
+Block-level defect count: tower absorption makes \(OE\) one floor and \(OOE\)
 two, so a band cycle has \(a+2b\) effective floors against \(2a+3b\) letters, about
 \(1.6\) times fewer, which is marginal since the per-step finance is already exact at
 leading order.

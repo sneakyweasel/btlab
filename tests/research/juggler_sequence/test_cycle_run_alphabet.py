@@ -168,6 +168,54 @@ def test_exactly_one_balanced_necklace_per_pair_and_a_thin_sliver() -> None:
                 assert ooe <= 4 and oe <= 2, (cls, key)
 
 
+def test_a_band_cycle_can_use_only_three_of_the_five_certificates() -> None:
+    """Even runs are length one and odd runs at most two, so OOEE and OOOEE cannot occur."""
+    prof = A.band_certificate_profile(3, 7)
+    assert prof["classes_available"] == ["E", "OE", "OOEOE"]
+    assert prof["uncertified_prefixes"] == ["OOEOO"]
+    assert set(prof["prefixes_seen"]) == {
+        "EOEOE", "EOEOO", "EOOEO", "OEOEO", "OEOOE", "OOEOE", "OOEOO"}
+
+
+def test_the_uncertified_count_is_ooe_blocks_minus_their_runs() -> None:
+    """Exactly the OOE blocks followed by another OOE, verified on every necklace."""
+    for a, b in ((3, 7), (5, 12)):
+        prof = A.band_certificate_profile(a, b)
+        assert prof["count_formula_is_b_minus_runs"] is True
+
+
+def test_the_crowding_into_the_uncertified_cylinder_is_mild() -> None:
+    """The corrected figure: ratio 1.24-1.57 to the fair 1/8, not the 2.1 first recorded.
+
+    2.1 was the fraction of elements *beginning* an OOE, which is not the same as being
+    uncertified: most OOE starts are certified through OOEOE.
+    """
+    w = A.band_uncertified_window()
+    assert abs(w["ooe_block_start_fraction"] - 0.261860) < 1e-5
+    assert 0.154 < w["uncertified_low"] < 0.156
+    assert 0.196 < w["uncertified_high"] < 0.197
+    assert 1.23 < w["ratio_low"] < 1.25
+    assert 1.56 < w["ratio_high"] < 1.58
+    # the mislabelled comparison, kept so the correction cannot silently regress
+    assert abs(w["ooe_block_start_fraction"] / w["fair_share"] - 2.095) < 1e-3
+
+
+def test_the_walk_minimum_position_is_never_certified() -> None:
+    """A certificate forces a strict drop within five steps; below the cyclic minimum
+    there is nothing to drop to, so every cycle has an uncertified position."""
+    alpha, beta = log(1.5), log(2.0)
+    for a, b in ((3, 7), (5, 12)):
+        for nk in A.necklaces(a, b):
+            w = A.block_letters(nk)
+            u = best = 0.0
+            arg = 0
+            for i, c in enumerate(w):
+                u += alpha if c == "O" else -beta
+                if u < best:
+                    best, arg = u, (i + 1) % len(w)
+            assert not A.certified_at(w, arg), (nk, arg)
+
+
 def test_a_double_even_step_needs_the_fourth_power() -> None:
     """EE from w lands at floor(w^(1/4)); inside [m, M] that is m^4 <= M."""
     from math import isqrt

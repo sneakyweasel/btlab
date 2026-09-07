@@ -39360,3 +39360,40 @@ are exactly the falling blocks. The block-level defect count is about
 Still CLOSE. The sliver is characterized, not excluded; excluding it is
 the OOO-inevitability question from the other side, and that is refuted.
 Row J-cycle-band-discrepancy.
+
+## Correction: the crowding into the uncertified cylinder is mild
+
+The previous entry recorded, under "climbing against certified", that
+26.2 percent of band-cycle elements begin an OOE against a fair 12.5
+percent, a mismatch of 2.1. The arithmetic is right and the label is
+wrong. Beginning an OOE is not the same as being uncertified, and in
+the band most OOE starts are certified, through OOEOE. An even earlier
+draft of the same remark quoted 5.7, which came from comparing a
+per-block fraction against a per-position probability; that number was
+wrong outright.
+
+Measured properly. A band word has even runs of length one and odd runs
+of at most two, so OOEE and OOOEE cannot occur: a band cycle can use
+only three of the five descent certificates, E, OE and OOEOE. Of the
+seven depth-5 prefixes that actually occur in band words, exactly one
+is uncertified, OOEOO, the start of an OOE immediately followed by
+another OOE. So the uncertified count is exactly b - R with R the
+number of OOE-runs, and that formula matched every necklace at (3,7)
+and (5,12).
+
+With OE-runs capped at two and OOE-runs at four, R lies between a/2 and
+a, so at the forced mix the uncertified fraction sits in [0.155, 0.196]
+and the ratio to the fair 1/8 is [1.24, 1.57]. Mild. The earlier
+framing overstated it by about a factor of four.
+
+One thing does survive, and it is qualitative rather than statistical.
+At the position where the walk attains its cyclic minimum no
+certificate can hold, because a certificate forces a strict drop within
+five steps and there is nothing below the minimum to drop to. So every
+cycle has at least one uncertified position, and in a band cycle that
+position carries the prefix OOEOO. Zero exceptions across every
+necklace at (3,7) and (5,12).
+
+Lesson worth keeping: a density comparison needs both sides measured in
+the same unit. Twice in one branch I compared a per-block quantity
+against a per-letter baseline.

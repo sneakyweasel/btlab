@@ -243,6 +243,82 @@ def necklace_census(a: int, b: int) -> dict[str, Any]:
     }
 
 
+CERTIFICATE_CLASSES = ("E", "OE", "OOEE", "OOOEE", "OOEOE")
+"""Paper B Corollary 6.4: the depth-<=5 descent certificates, natural density 7/8."""
+
+
+def certified_at(word: str, i: int) -> bool:
+    """Does the depth-5 cyclic prefix at position ``i`` match a certificate?"""
+    L = len(word)
+    pre = "".join(word[(i + k) % L] for k in range(5))
+    return any(pre.startswith(c) for c in CERTIFICATE_CLASSES)
+
+
+def ooe_run_count(blocks: str) -> int:
+    """Number of maximal cyclic runs of ``OOE`` blocks."""
+    n = len(blocks)
+    return sum(1 for i in range(n) if blocks[i] == "2" and blocks[(i - 1) % n] == "1")
+
+
+def band_certificate_profile(a: int, b: int) -> dict[str, Any]:
+    """Which certificates a band word can use, and how much of it stays uncertified.
+
+    A band word has even runs of length one and odd runs of at most two, so ``OOEE`` and
+    ``OOOEE`` can never occur: only three of the five classes are available.  The single
+    uncertified depth-5 prefix is ``OOEOO``, the start of an ``OOE`` followed by another
+    ``OOE``, so the uncertified count is exactly ``b - R`` for ``R`` the number of
+    ``OOE``-runs.
+    """
+    L = 2 * a + 3 * b
+    prefixes: dict[str, bool] = {}
+    lo = hi = None
+    formula_ok = True
+    for nk in necklaces(a, b):
+        w = block_letters(nk)
+        unc = 0
+        for i in range(L):
+            pre = "".join(w[(i + k) % L] for k in range(5))
+            ok = certified_at(w, i)
+            prefixes.setdefault(pre, ok)
+            unc += not ok
+        if unc != b - ooe_run_count(nk):
+            formula_ok = False
+        f = Fraction(unc, L)
+        lo = f if lo is None else min(lo, f)
+        hi = f if hi is None else max(hi, f)
+    return {
+        "a": a, "b": b, "L": L,
+        "prefixes_seen": sorted(prefixes),
+        "uncertified_prefixes": sorted(k for k, v in prefixes.items() if not v),
+        "classes_available": [c for c in CERTIFICATE_CLASSES
+                              if any(pre.startswith(c) for pre in prefixes)],
+        "min_uncertified_fraction": float(lo) if lo is not None else None,
+        "max_uncertified_fraction": float(hi) if hi is not None else None,
+        "count_formula_is_b_minus_runs": formula_ok,
+    }
+
+
+def band_uncertified_window() -> dict[str, float]:
+    """Asymptotic uncertified fraction at the forced mix.
+
+    ``R`` is the number of ``OOE``-runs.  In the band ``OE``-runs have length at most two,
+    so ``R >= a/2``; ``OOE``-runs have length at most four, so ``R >= b/4``.  With
+    ``a/b = 0.4094`` and ``L/b = 3.8188`` that windows the uncertified fraction.
+    """
+    r = log(9 / 8) / log(4 / 3)
+    L_over_b = 2 * r + 3
+    lo = (1 - r) / L_over_b
+    hi = (1 - max(r / 2, 0.25)) / L_over_b
+    return {
+        "ooe_block_start_fraction": 1 / L_over_b,
+        "uncertified_low": lo,
+        "uncertified_high": hi,
+        "fair_share": 0.125,
+        "ratio_low": lo / 0.125,
+        "ratio_high": hi / 0.125,
+    }
+
+
 # --------------------------------------------------------------------------- summary
 
 
@@ -279,6 +355,11 @@ def summary() -> dict[str, Any]:
         "floor_defect_relative": floor_defect_bound(780_239, N0_CERTIFIED),
         "oo_chain_holds_on_witnesses": all(w["x9"] < w["two_z1_4"] for w in witnesses),
         "oo_witnesses_checked": len(witnesses),
+        "certificates": {
+            "classes": list(CERTIFICATE_CLASSES),
+            "band_profile": [band_certificate_profile(a, b) for a, b in ((3, 7), (5, 12))],
+            "window": band_uncertified_window(),
+        },
         "discrepancy": {
             "balanced_cap": BALANCED_CAP,
             "band_cap": BAND_CAP,
@@ -315,6 +396,12 @@ def main() -> None:
         print(f"  ({c['a']},{c['b']}) L={c['L']}: {c['necklaces']} necklaces, "
               f"{c['balanced']} balanced, {c['sliver']} sliver, {c['above']} above; "
               f"min non-balanced Delta {c['min_nonbalanced_delta']}")
+    c = s["certificates"]["window"]
+    print(f"  uncertified band fraction {c['uncertified_low']:.4f}-{c['uncertified_high']:.4f} "
+          f"vs fair {c['fair_share']}: ratio {c['ratio_low']:.2f}-{c['ratio_high']:.2f}")
+    prof = s["certificates"]["band_profile"][0]
+    print(f"  band uses only {prof['classes_available']}; uncertified prefix "
+          f"{prof['uncertified_prefixes']}")
     print(f"wrote {ARTIFACT}")
 
 
