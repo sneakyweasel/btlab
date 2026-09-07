@@ -127,9 +127,10 @@ Chernoff \(C=19\) unchanged. Azuma \(C(0.55)\) moves \(42\to 41\).
 
 ## Open questions
 
-Later truncations of \(V_k\) (\(V_6\) and after) are not
-opened here. Rest-average stays PARK. This branch does not remove
-\(\log\log y\) depth.
+The \(V_6=OEOEOEOEOEOEE\) truncation is now done
+([juggler_v6_production.md](juggler_v6_production.md)). Later
+truncations (\(V_7\) and after) are not opened here. Rest-average
+stays PARK. This branch does not remove \(\log\log y\) depth.
 
 ## Decision
 

@@ -24,8 +24,9 @@ bt.*                        problem-independent BT mathematics
 pair \(0.4480\) / \(0.552\), then the \(OEOEE\) pair
 \(0.4801\) / \(0.5199\), then the \(V_3\) pair
 \(0.4891\) / \(0.5109\), then the \(V_4\) pair
-\(0.4916\) / \(0.5084\), and is now
-\(\lambda^{**}=0.4924\), \(e>0.5076\) — guarded by
+\(0.4916\) / \(0.5084\), then the \(V_5\) pair
+\(0.4924\) / \(0.5076\), and is now
+\(\lambda^{**}=0.4926\), \(e>0.5074\) — guarded by
 `test_contagion_exponent_quoted_by_paper_a_is_the_current_one`; §6.1
 now states Corollary 4.4c as the floor beside the trivial cap, so
 Theorem 4.4 is visibly their composite and the basin seed sum is pinned
@@ -36,8 +37,8 @@ also the constant in the basin's per-block density. Paper D draft (not a fourth 
 4. [docs/juggler_branch_ledger.md](docs/juggler_branch_ledger.md) — every branch, decision, and strongest evidence
 5. [docs/negative_knowledge.md](docs/negative_knowledge.md) — every recorded failure (`REFUTED` / CLOSE / method wall); search before reopening
 6. [docs/theory/juggler_cycle_finance_note.md](docs/theory/juggler_cycle_finance_note.md) and [docs/theory/juggler_run_survivor_lattice_note.md](docs/theory/juggler_run_survivor_lattice_note.md) — the cycle frontier
-7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion (the three Moirai: Atropos = reach 1, Lachesis = nontrivial cycle, Clotho = escape): every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4924\) by elementary means (pairing plus the audited \(OEOEE\), \(V_3\), \(V_4\) and \(V_5\) productions) and for \(\lambda<\lambda^{***}=0.5392\) with the localized Paper B estimate (§7); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
-8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.5076\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 19\) elementary (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`, \(C\ge 19\) elementary / \(C\ge 18\) with \(\lambda^{***}\)), because Juggler descent is by powers. Weakest form (§10, `J-tao-pressure-form`): the live pressure \(\mathrm P_\theta(C)\) — one exponential moment of the odd count on starts still above \(N_0\) — or its no-momentum form (tilted odd share of live starts \(\le q+o(1)\) on average over depths); it needs no fixed-depth control (\(K_3\) is irrelevant to the reduction) and no fixed-depth control can reach it. Conditional; the wall is the bulk of the parity word at depth \(\asymp\log\log y\). Do not read it as evidence for termination.
+7. [docs/theory/juggler_fate_contagion_note.md](docs/theory/juggler_fate_contagion_note.md) — fate contagion (the three Moirai: Atropos = reach 1, Lachesis = nontrivial cycle, Clotho = escape): every nonempty backward-closed set (every realized fate class) has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4926\) by elementary means (pairing plus the audited \(OEOEE\), \(V_3\), \(V_4\), \(V_5\) and \(V_6\) productions) and for \(\lambda<\lambda^{***}=0.5392\) with the localized Paper B estimate (§7); the conjecture is equivalent to an almost-all statement with a logarithmic rate (`J-fate-log-density`, `J-fate-contagion-equivalence`; exact layer `FateContagion.lean`). Not a halt theorem; no fate excluded.
+8. [docs/theory/juggler_tao_reduction_note.md](docs/theory/juggler_tao_reduction_note.md) — the Tao-type reduction: a bounded-target almost-all theorem with rate \((\log y)^{-e}\), \(e>1-\lambda^{**}=0.5074\), implies the conjecture (`J-tao-rate-implies-conjecture`), and it follows from the log-log-depth cylinder bound \(\mathrm H(C,A)\), \(C\ge 19\) elementary (`J-tao-loglog-depth-bound`, conjecture `juggler_loglog_depth_cylinder_bound`, \(C\ge 19\) elementary / \(C\ge 18\) with \(\lambda^{***}\)), because Juggler descent is by powers. Weakest form (§10, `J-tao-pressure-form`): the live pressure \(\mathrm P_\theta(C)\) — one exponential moment of the odd count on starts still above \(N_0\) — or its no-momentum form (tilted odd share of live starts \(\le q+o(1)\) on average over depths); it needs no fixed-depth control (\(K_3\) is irrelevant to the reduction) and no fixed-depth control can reach it. Conditional; the wall is the bulk of the parity word at depth \(\asymp\log\log y\). Do not read it as evidence for termination.
 9. [docs/theory/juggler_fate_almost_all_note.md](docs/theory/juggler_fate_almost_all_note.md) — Paper C: *Fate Contagion in the Juggler Map and the Almost-All Reduction of Termination* — the paper distilled from items 7–8 (Theorem 1 contagion with \(\lambda^{**}\) unconditional, via the abstract recursion lemma 5.1; Theorem 2 odd generation; Theorem 3 the Tao-type equivalence; Theorem 4 the hierarchy of hypotheses down to the pressure form; Theorem 5 the exact decomposition with free term = live mass; \(S\)-fairness defined formally, the walk argument labelled a heuristic; Appendix C conditional on the standalone Hypothesis L, the only import from Paper B). Build: `pandoc -f markdown+tex_math_single_backslash --pdf-engine=xelatex -V geometry:margin=1in --resource-path=docs/theory` into `juggler_review/`; figures by `python docs/theory/figures/render_paper_c_figures.py` (written to `docs/theory/figures/`, mirrored to `juggler_review/figures/`). The notes 7–8 remain the source of the proofs and constants. Revised after a first external review (3 Sep 2026); pairing and consistency pass 4 Sep 2026 (Lemma 4.1′ written in full, \(C_0=250\), review PDF rebuilt).
 
 Claim labels: [docs/README.md](docs/README.md).
@@ -192,7 +193,11 @@ for external review.
   \(C\)/\(D\) processes; floors \(91/96\) and \(27/32\)). The
   floor-Hardy leftover is elementary iff the outer exponent is
   \(\beta<1\); the first superlinear axis still needs
-  \(p/2+q<2/3\) versus hull \(275/388\). Main-term saving \(N^{13/16}\) and the
+  \(p/2+q<2/3\) versus hull \(275/388\). The tame line is not
+  process-blocked (\(B\circ A\) floors at \(5/8<2/3\)) but no
+  named pair satisfies \(4p+3q<2\). The August 2026 ANTEDB
+  vertices, including Cushing 2025, do not move either minimum.
+  Main-term saving \(N^{13/16}\) and the
   bias-mass relaxation of Lemma B are recorded there. Do not
   re-run it. The Bombieri–Iwaniec follow-up is also closed
   (`juggler_bi_resonance_limit`): sub-density needs \(p<2/27\)
@@ -205,7 +210,7 @@ for external review.
 - **Fates (the Moirai):** every realized fate class — Atropos
  (reach 1), Lachesis (a nontrivial cycle's basin), Clotho (escape) —
  is backward-closed and has \(\sum_{n\le x}1/n\gg(\log x)^{\lambda}\)
- for every \(\lambda<\lambda^{**}=0.4924\) (`J-fate-log-density`,
+ for every \(\lambda<\lambda^{**}=0.4926\) (`J-fate-log-density`,
  mechanism: even blocks are intervals, OE fibers of
  \(\lfloor n^{3/4}\rfloor\) carry \(\ge 1/3-O(1/H)\) of each parity of
  \(\lfloor n^{3/2}\rfloor\) and average \(1/2\) over even blocks).
@@ -222,13 +227,13 @@ for external review.
  \(0.004\) of \(q^*\)), never realised; the hug band is the minimal
  invariant band and its word is forced; failures with \(k\) leading
  even steps are \(\ge 261^{2^k}\) (Lean) / \((N_0+1)^{2^k}\). The deep
- census is dominated by a floor raise; do not run it. The gap \(0.4924\to 0.4927\)
+ census is dominated by a floor raise; do not run it. The gap \(0.4926\to 0.4927\)
  is the later \(V_k\) truncations of the elementary family
  (`juggler_oeoee_production`); rest-average stays PARK and is not opened.
  Hence the conjecture \(\iff\) the failures have log-count
  \(o((\log x)^{\lambda})\) (`J-fate-contagion-equivalence`), and a
  bounded-target Tao-type bound \(\#\{n\text{ odd}\in(y,2y]:n\notin R\}
- \le y(\log y)^{-e}\) with \(e>0.5076\) implies the conjecture
+ \le y(\log y)^{-e}\) with \(e>0.5074\) implies the conjecture
  (`J-tao-rate-implies-conjecture`); that bound follows from the
  log-log-depth cylinder conjecture \(\mathrm H(C,A)\), \(C\ge 19\)
  (`J-tao-loglog-depth-bound`, `juggler_loglog_depth_cylinder_bound`),

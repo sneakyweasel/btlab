@@ -378,7 +378,7 @@ RECURSIONS = {
     # monotone pairing on good fibers: 1/7 -> 1/3, rest coeff 2/21 -> 2/9
     "block_average_plus_third": [(1.0, 0.5), (1.0 / 9.0, 3.0 / 8.0), (2.0 / 9.0, 0.75)],
     # + OEOEE (elementary, no Paper B): net +1/27 at scale 9/32.  This is
-    # OEOEE truncation; official lambda** is block_third_plus_oeoee_v5.
+    # OEOEE truncation; official lambda** is block_third_plus_oeoee_v6.
     "block_third_plus_oeoee": [
         (1.0, 0.5),
         (1.0 / 9.0, 3.0 / 8.0),
@@ -402,8 +402,7 @@ RECURSIONS = {
         (1.0 / 81.0, 27.0 / 128.0),
         (1.0 / 243.0, 81.0 / 512.0),
     ],
-    # + V_5 = OEOEOEOEOEE: net +1/729 at scale 243/2048.  This is the
-    # unconditional lambda** after the Section 14 audit.
+    # + V_5 = OEOEOEOEOEE: net +1/729 at scale 243/2048.
     "block_third_plus_oeoee_v5": [
         (1.0, 0.5),
         (1.0 / 9.0, 3.0 / 8.0),
@@ -412,6 +411,18 @@ RECURSIONS = {
         (1.0 / 81.0, 27.0 / 128.0),
         (1.0 / 243.0, 81.0 / 512.0),
         (1.0 / 729.0, 243.0 / 2048.0),
+    ],
+    # + V_6 = OEOEOEOEOEOEE: net +1/2187 at scale 729/8192.  This is the
+    # unconditional lambda** after the Section 15 audit.
+    "block_third_plus_oeoee_v6": [
+        (1.0, 0.5),
+        (1.0 / 9.0, 3.0 / 8.0),
+        (2.0 / 9.0, 0.75),
+        (1.0 / 27.0, 9.0 / 32.0),
+        (1.0 / 81.0, 27.0 / 128.0),
+        (1.0 / 243.0, 81.0 / 512.0),
+        (1.0 / 729.0, 243.0 / 2048.0),
+        (1.0 / 2187.0, 729.0 / 8192.0),
     ],
     "block_third_plus_ooeee": [
         (1.0, 0.5),

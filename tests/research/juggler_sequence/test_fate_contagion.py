@@ -66,7 +66,8 @@ def test_recursion_roots() -> None:
     assert abs(roots["block_third_plus_oeoee_v3"] - 0.4891) < 1e-3
     assert abs(roots["block_third_plus_oeoee_v4"] - 0.4916) < 1e-3
     assert abs(roots["block_third_plus_oeoee_v5"] - 0.4924) < 1e-3
-    assert roots["block_average_plus_third"] < roots["block_third_plus_oeoee"] < roots["block_third_plus_oeoee_v3"] < roots["block_third_plus_oeoee_v4"] < roots["block_third_plus_oeoee_v5"] < roots["depth_two_ideal"]
+    assert abs(roots["block_third_plus_oeoee_v6"] - 0.4926) < 1e-3
+    assert roots["block_average_plus_third"] < roots["block_third_plus_oeoee"] < roots["block_third_plus_oeoee_v3"] < roots["block_third_plus_oeoee_v4"] < roots["block_third_plus_oeoee_v5"] < roots["block_third_plus_oeoee_v6"] < roots["depth_two_ideal"]
     assert abs(roots["elementary_sweep_only"] - 0.1385) < 1e-3
     assert abs(roots["depth_two_ideal"] - 0.4927) < 1e-3
     assert abs(roots["block_sweep_plus_ooeee"] - 0.4923) < 1e-3

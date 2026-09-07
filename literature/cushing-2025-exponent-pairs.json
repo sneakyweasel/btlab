@@ -1,0 +1,18 @@
+{
+  "id": "cushing-2025-exponent-pairs",
+  "title": "Cushing (2025) exponent pairs, recorded as ANTEDB Theorem 5.23",
+  "authors": ["Cushing"],
+  "year": 2025,
+  "identifiers": {},
+  "url": {
+    "antedb": "https://teorth.github.io/expdb/blueprint/exponent-pairs-chapter.html"
+  },
+  "problem_area": "exponential-sums",
+  "relevant_concepts": [
+    "exponent pairs (311/4822, 3799/4822) and (80219/1298878, 515638/649439)",
+    "ANTEDB Lemma 4.6 van der Corput process for beta"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Recorded as Theorem 5.23 of the Analytic Number Theory Exponent Database blueprint (Tao–Trudgian–Yang, living document dated 11 August 2026). The two pairs are obtained by applying ANTEDB Lemma 4.6 to the known beta table and converting back. For the two-monomial functional phi = (5/4)p + q they give 16751/19288 and 238221/273448, both above Bourgain's 95/112; neither meets the tame crossing 4p+3q<2."
+}

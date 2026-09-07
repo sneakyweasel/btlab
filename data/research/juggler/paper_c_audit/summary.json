@@ -1,5 +1,5 @@
 {
-  "git_commit": "0021b976f74e0cff26ea0633273845379db55d00",
+  "git_commit": "21f1687da8cae4f176084b686f84fb66778d7e0b",
   "paper": "docs/theory/juggler_fate_almost_all_note.md",
   "N0": 350000000,
   "checks": {
@@ -40,10 +40,17 @@
         "ok": true
       },
       {
-        "name": "lambda** (block_third_plus_oeoee_v5)",
+        "name": "v5-only (block_third_plus_oeoee_v5)",
         "printed": 0.4924,
         "computed": 0.49235906048881073,
         "abs_error": 4.093951118927519e-05,
+        "ok": true
+      },
+      {
+        "name": "lambda** (block_third_plus_oeoee_v6)",
+        "printed": 0.4926,
+        "computed": 0.49257154472535614,
+        "abs_error": 2.8455274643846007e-05,
         "ok": true
       },
       {
@@ -168,10 +175,17 @@
         "ok": true
       },
       {
-        "name": "rate threshold 1 - lambda**",
+        "name": "rate threshold 1 - v5",
         "printed": 0.5076,
         "computed": 0.5076409395111893,
         "abs_error": 4.093951118921968e-05,
+        "ok": true
+      },
+      {
+        "name": "rate threshold 1 - lambda**",
+        "printed": 0.5074,
+        "computed": 0.5074284552746439,
+        "abs_error": 2.8455274643901518e-05,
         "ok": true
       },
       {
@@ -232,6 +246,13 @@
       },
       {
         "name": "least depth, v4 regime",
+        "printed": 19,
+        "computed": 19,
+        "abs_error": 0,
+        "ok": true
+      },
+      {
+        "name": "least depth, v5 regime",
         "printed": 19,
         "computed": 19,
         "abs_error": 0,
@@ -410,7 +431,7 @@
     ]
   },
   "classification": {
-    "total_checks": 57,
+    "total_checks": 60,
     "failures": 0,
     "failing_names": [],
     "all_printed_constants_reproduce": true

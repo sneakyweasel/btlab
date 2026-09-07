@@ -1,0 +1,234 @@
+{
+  "git_commit": "21f1687da8cae4f176084b686f84fb66778d7e0b",
+  "note": "docs/theory/juggler_oeoee_production.md",
+  "checks": [
+    {
+      "name": "15.2 Y lower bound 4096/729 m'^{7463/729}-1",
+      "printed": 5.618655692729766,
+      "computed": 5.618655692729766,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "script",
+      "note": "odd count of [m'^{8192/729}, (m'+1)^{8192/729}) against the MVT lower bound"
+    },
+    {
+      "name": "15.2 L1 envelope 2048/243 m'^{1805/243}",
+      "printed": 8.427983539094651,
+      "computed": 8.427983539094651,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "MVT on [m'^{2048/243}, (m'+1)^{2048/243}); this is V_5's n-interval"
+    },
+    {
+      "name": "15.2 L2 envelope 512/81 m'^{431/81} (V_5 L1)",
+      "printed": 6.320987654320987,
+      "computed": 6.320987654320987,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "w2-fiber of V_6 is the w1-fiber of V_5"
+    },
+    {
+      "name": "15.2 L3 envelope 128/27 m'^{101/27} (V_4 L1)",
+      "printed": 4.7407407407407405,
+      "computed": 4.7407407407407405,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "w3-fiber of V_6 is the w1-fiber of V_4"
+    },
+    {
+      "name": "15.2 L4 envelope 32/9 m'^{23/9} (V_3 L1)",
+      "printed": 3.5555555555555554,
+      "computed": 3.5555555555555554,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "w4-fiber of V_6 is the w1-fiber of V_3"
+    },
+    {
+      "name": "15.2 L5 envelope 8/3 m'^{5/3} (same as V_2 L)",
+      "printed": 2.6666666666666665,
+      "computed": 2.6666666666666665,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "w5-fiber of V_6 is the w-fiber of V_2"
+    },
+    {
+      "name": "T4 Case 1 step ratio at m'=22",
+      "printed": 4.0,
+      "computed": 4.908931709925155,
+      "abs_error": 0.908931709925155,
+      "ok": true,
+      "kind": "hand",
+      "note": "step ratio 1.45447; abstract T4 needs steps ~ d, pad 120 vs 89.90 covers 4->5"
+    },
+    {
+      "name": "T4 Case 1 step ratio at m'=60",
+      "printed": 4.0,
+      "computed": 4.298957743702594,
+      "abs_error": 0.2989577437025943,
+      "ok": true,
+      "kind": "hand",
+      "note": "step ratio 1.14948; abstract T4 needs steps ~ d, pad 120 vs 89.90 covers 4->5"
+    },
+    {
+      "name": "Case 1 leading 16384/729",
+      "printed": 22.474622770919066,
+      "computed": 22.474622770919066,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "4 V_q omega_smooth, V_q <= (2048q/243)(m'+1)^{3367/729}, omega ~ (2/3) m'^{2048/729}"
+    },
+    {
+      "name": "Case 1 log coefficient 21.47",
+      "printed": 21.47,
+      "computed": 21.461683848704634,
+      "abs_error": 0.008316151295364449,
+      "ok": true,
+      "kind": "hand",
+      "note": "8/(pi d_q) * V_q = (8/pi) m'^{2048/729}/q * (2048q/243) m'^{3367/729}"
+    },
+    {
+      "name": "Case 1 Vaaler R coefficient 120",
+      "printed": 120.0,
+      "computed": 89.89849108367626,
+      "abs_error": 30.101508916323738,
+      "ok": true,
+      "kind": "hand",
+      "note": "sum_{0<|q|<=R} (2/|q|)*(16384/729)|q| = (65536/729) R = 89.90 R; pad 120"
+    },
+    {
+      "name": "Case 1 R = 0.216 m'^{1024/729}",
+      "printed": 0.216,
+      "computed": 0.2163842202489545,
+      "abs_error": 0.00038422024895451434,
+      "ok": true,
+      "kind": "hand",
+      "note": "sqrt((4096/729)/120) = 0.21638..."
+    },
+    {
+      "name": "Case 1 assembled 52.0 m'^{6439/729}",
+      "printed": 52.0,
+      "computed": 51.932212859749086,
+      "abs_error": 0.06778714025091404,
+      "ok": true,
+      "kind": "hand",
+      "note": "120 R + (4096/729)/R at the printed R"
+    },
+    {
+      "name": "Case 1 over Y is 9.3",
+      "printed": 9.3,
+      "computed": 9.242818157899679,
+      "abs_error": 0.057181842100321845,
+      "ok": true,
+      "kind": "hand",
+      "note": "51.93 / (4096/729) = 9.24; saves m'^{-1024/729} = P^{-1/8}"
+    },
+    {
+      "name": "Case 2 over Y is 9.2 (V_5 Case 1 transferred)",
+      "printed": 9.2,
+      "computed": 9.159960937500001,
+      "abs_error": 0.040039062499998224,
+      "ok": true,
+      "kind": "hand",
+      "note": "w2-interval is V_5's w1-interval; weight (4/3) m'^{2048/729}; saves P^{-3/32}"
+    },
+    {
+      "name": "Case 3 over Y is 9.0 (V_5 Case 2 transferred)",
+      "printed": 9.0,
+      "computed": 9.0,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "same weight; saves m'^{-64/81} = P^{-9/128}"
+    },
+    {
+      "name": "Case 4 over Y is 9.1 (V_5 Case 3 transferred)",
+      "printed": 9.1,
+      "computed": 9.1,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "same weight; saves m'^{-16/27} = P^{-27/512}"
+    },
+    {
+      "name": "Case 5 over Y is 6.3 (V_5 Case 4 transferred)",
+      "printed": 6.3,
+      "computed": 6.3,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "same weight; saves m'^{-16/27} = P^{-27/512}"
+    },
+    {
+      "name": "Case 7 over Y is 6.3 (Half A transferred four times)",
+      "printed": 6.3,
+      "computed": 6.3,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "w5-fiber is V_2's w-fiber; four OE weights; binding P^{-81/2048} = m'^{-4/9}"
+    },
+    {
+      "name": "binding saving P^{-81/2048} = m'^{-4/9}",
+      "printed": 0.03955078125,
+      "computed": 0.03955078125,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "Section 11 law for k=6; a positive power"
+    },
+    {
+      "name": "Prop 16 net gain 1/2187",
+      "printed": 0.0004572473708276177,
+      "computed": 0.0004572473708276177,
+      "abs_error": 0.0,
+      "ok": true,
+      "kind": "hand",
+      "note": "(1/3 - 2/9) c_5 with c_5 = 1/243, at scale rho_6 = 729/8192"
+    },
+    {
+      "name": "15.8 assembly 8000 for m' >= 22",
+      "printed": 8000.0,
+      "computed": 6029.9414099504,
+      "abs_error": 1970.0585900495998,
+      "ok": true,
+      "kind": "hand",
+      "note": "at m'>=22 with extra powers 6029.9 <= 8000"
+    },
+    {
+      "name": "seven-plus-V6 root 0.4926",
+      "printed": 0.4926,
+      "computed": 0.49257154472535614,
+      "abs_error": 2.8455274643846007e-05,
+      "ok": true,
+      "kind": "script",
+      "note": "pairing + OEOEE + V_3 + V_4 + V_5 + V_6; 1-lambda = 0.5074, least C still 19"
+    },
+    {
+      "name": "envelope m'=2",
+      "printed": 8000.0,
+      "computed": 0.9422491871026071,
+      "abs_error": 7999.057750812897,
+      "ok": true,
+      "kind": "script",
+      "note": "Y=113749 4096|O|-Y=78763 ratio=0.9422"
+    }
+  ],
+  "classification": {
+    "name": "V6_AUDIT_CONSISTENT",
+    "total_checks": 24,
+    "failures": 0,
+    "failing_names": [],
+    "all_printed_constants_recompute": true,
+    "power_saving": "P^{-81/2048}",
+    "net_gain": "1/2187",
+    "lambda_root_if_promoted": 0.4926,
+    "required_rate_if_promoted": 0.5074,
+    "least_C_if_promoted": 19
+  }
+}

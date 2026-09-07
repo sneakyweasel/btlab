@@ -16,7 +16,7 @@ from research.juggler_sequence.tao_reduction import (
 
 
 def test_required_rate_is_complement_of_contagion_exponent() -> None:
-    assert abs(REQUIRED_RATE - (1 - 0.49236)) < 1e-4
+    assert abs(REQUIRED_RATE - (1 - 0.49257)) < 1e-4
     assert REQUIRED_RATE < 0.6  # the user's rate (log x)^{-0.6} suffices
 
 

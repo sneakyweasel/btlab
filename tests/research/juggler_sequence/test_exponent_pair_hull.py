@@ -50,6 +50,10 @@ NEW_PAIRS: dict[str, tuple[F, F]] = {
     "tao_trudgian_yang_2025_c": (F(10769, 351096), F(609317, 702192)),
     "tao_trudgian_yang_2025_d": (F(89, 3478), F(15327, 17390)),
     "sargos_d_bourgain": (F(18, 199), F(593, 796)),
+    "trudgian_yang_2023_c": (F(2779, 38033), F(58699, 76066)),
+    "sargos_ad_bourgain": (F(9, 217), F(1461, 1736)),
+    "cushing_2025_a": (F(311, 4822), F(3799, 4822)),
+    "cushing_2025_b": (F(80219, 1298878), F(515638, 649439)),
 }
 
 # The published pairs.  (0, 1) is the trivial seed; the other four are the
@@ -180,6 +184,7 @@ def test_d_image_identity_and_floor():
 
 def test_sargos_d_of_bourgain_matches_the_named_image():
     assert transform_d(*SEEDS["bourgain_2017"]) == NEW_PAIRS["sargos_d_bourgain"]
+    assert transform_a(*NEW_PAIRS["sargos_d_bourgain"]) == NEW_PAIRS["sargos_ad_bourgain"]
 
 
 # --------------------------------------------------------------------------
@@ -331,6 +336,8 @@ def test_export_note_records_the_barrier():
     assert "91/96" in text
     assert "27/32" in text
     assert "tao-trudgian-yang-2025-exponent-pairs" in text
+    assert "cushing-2025-exponent-pairs" in text
+    assert "311/4822" in text
 
 
 def test_2023_2025_pairs_do_not_beat_bourgain():
@@ -342,6 +349,11 @@ def test_2023_2025_pairs_do_not_beat_bourgain():
     assert phi(*NEW_PAIRS["trudgian_yang_2023_b"]) == F(130903, 153852)
     assert phi(*NEW_PAIRS["tao_trudgian_yang_2025_a"]) == F(4433, 5128)
     assert min(phi(*pair) for pair in NEW_PAIRS.values()) == F(130903, 153852)
+    assert phi(*NEW_PAIRS["cushing_2025_a"]) == F(16751, 19288)
+    assert phi(*NEW_PAIRS["cushing_2025_b"]) == F(238221, 273448)
+    assert phi(*NEW_PAIRS["trudgian_yang_2023_c"]) == F(131293, 152132)
+    for pair in NEW_PAIRS.values():
+        assert phi(*transform_b(*pair)) > HULL_MIN
 
 
 # --------------------------------------------------------------------------
@@ -351,6 +363,11 @@ def test_2023_2025_pairs_do_not_beat_bourgain():
 TAME_HULL_MIN = F(275, 388)  # (1/2)p + q at B(A(Bourgain))
 TAME_BOURGAIN = F(41, 56)  # the same functional at the Bourgain seed
 TAME_GAP = F(49, 1164)  # TAME_HULL_MIN - 2/3
+TAME_A_FLOOR = F(3, 4)
+TAME_BA_FLOOR = F(5, 8)
+TAME_C_FLOOR = F(15, 16)
+TAME_D_FLOOR = F(87, 112)
+TAME_BA_CRIT = F(31, 12)  # min of 4p+3q on named pairs
 
 
 def phi_tame(p: F, q: F) -> F:
@@ -365,6 +382,22 @@ def leftover_exponent(alpha: F, beta: F) -> F:
 
 def ba_bourgain() -> tuple[F, F]:
     return transform_b(*transform_a(*SEEDS["bourgain_2017"]))
+
+
+def heath_brown_2017(m: int) -> tuple[F, F]:
+    """ANTEDB Theorem 5.17: (p_m, q_m) for integer m >= 3."""
+    p = F(2, (m - 1) ** 2 * (m + 2))
+    q = 1 - F(3 * m - 2, m * (m - 1) * (m + 2))
+    return p, q
+
+
+def test_heath_brown_2017_sequence_misses_both_lines():
+    assert heath_brown_2017(3) == (F(1, 10), F(23, 30))
+    for m in range(3, 16):
+        pair = heath_brown_2017(m)
+        assert phi(*pair) > HULL_MIN
+        assert phi_tame(*pair) > TAME_HULL_MIN
+        assert 4 * pair[0] + 3 * pair[1] > TAME_BA_CRIT
 
 
 def test_leftover_threshold_is_outer_exponent_one():
@@ -441,9 +474,51 @@ def test_tame_functional_hull_minimum_is_275_over_388():
         assert phi_tame(*pair) > TAME_HULL_MIN
 
 
+def test_tame_process_identities_and_floors():
+    assert TAME_BA_FLOOR < DENSITY < TAME_A_FLOOR < TAME_D_FLOOR < TAME_C_FLOOR
+    for p, q in normalised_pairs():
+        ap, aq = transform_a(p, q)
+        assert phi_tame(ap, aq) == (3 * p + 2 * q + 2) / (4 * p + 4)
+        assert phi_tame(ap, aq) >= TAME_A_FLOOR
+        bap, baq = transform_b(ap, aq)
+        assert (bap, baq) == (q / (2 * p + 2), (2 * p + 1) / (2 * p + 2))
+        assert phi_tame(bap, baq) == (4 * p + q + 2) / (4 * p + 4)
+        assert phi_tame(bap, baq) >= TAME_BA_FLOOR
+        cp, cq = transform_c(p, q)
+        assert phi_tame(cp, cq) == (89 * p + 2 * q + 22) / (24 * (1 + 4 * p))
+        assert phi_tame(cp, cq) >= TAME_C_FLOOR
+        dp, dq = transform_d(p, q)
+        assert phi_tame(dp, dq) == (63 * p + 43 * q + 22) / (16 * (5 * p + 3 * q + 2))
+        assert phi_tame(dp, dq) >= TAME_D_FLOOR
+    assert phi_tame(*transform_a(HALF, HALF)) == TAME_A_FLOOR
+    assert phi_tame(*transform_b(*transform_a(*CONJECTURE_POINT))) == TAME_BA_FLOOR
+    assert phi_tame(*transform_c(HALF, HALF)) == TAME_C_FLOOR
+    assert phi_tame(*transform_d(*CONJECTURE_POINT)) == TAME_D_FLOOR
+    for i in range(1, 25):
+        p = F(i, 48)
+        assert phi_tame(*transform_b(*transform_a(p, HALF))) > TAME_BA_FLOOR
+        assert phi_tame(*transform_d(p, HALF)) > TAME_D_FLOOR
+
+
+def test_no_named_pair_crosses_the_tame_ba_line():
+    def crit(p: F, q: F) -> F:
+        return 4 * p + 3 * q
+
+    assert crit(*SEEDS["bourgain_2017"]) == TAME_BA_CRIT
+    assert crit(*NEW_PAIRS["trudgian_yang_2023_b"]) == TAME_BA_CRIT
+    for name, pair in {**SEEDS, **NEW_PAIRS}.items():
+        assert crit(*pair) >= TAME_BA_CRIT, name
+        assert crit(*pair) > 2, name
+        assert phi_tame(*transform_b(*transform_a(*pair))) >= TAME_HULL_MIN, name
+
+
 def test_export_note_records_the_leftover_threshold():
     text = EXPORT_NOTE.read_text(encoding="utf-8")
     assert "leftover threshold" in text
     assert "275/388" in text
     assert "49/1164" in text
     assert "41/56" in text
+    assert "5/8" in text
+    assert "87/112" in text
+    assert "15/16" in text
+    assert "4p+3q" in text

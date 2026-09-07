@@ -11,7 +11,7 @@ Fate contagion ([juggler_fate_contagion_note.md](juggler_fate_contagion_note.md)
 Corollary 4.5) turned the Juggler conjecture into an almost-all
 statement: every start reaches \(1\) **iff** the starts whose orbit
 never enters a certified interval \([1,N_0]\) have logarithmic count
-\(o((\log x)^{\lambda})\) for some \(\lambda<\lambda^{**}=0.4924\ldots\).
+\(o((\log x)^{\lambda})\) for some \(\lambda<\lambda^{**}=0.4926\ldots\).
 The question left open was whether a Tao-type theorem — "almost all
 orbits attain almost bounded values" — with the *bounded* target
 \([1,N_0]\) and the rate \((\log x)^{-0.6}\) is available for the
@@ -192,7 +192,7 @@ using \(2^{d-1}\le 2^{CL}\). The second term is
 ## 5. Contagion closes the loop
 
 **Theorem A (Tao-type bound with rate implies the conjecture).**
-Suppose that for some \(e>1-\lambda^{**}=0.5076\ldots\) and all
+Suppose that for some \(e>1-\lambda^{**}=0.5074\ldots\) and all
 sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}\ \le\ \frac{y}{(\log y)^{e}} .
@@ -231,7 +231,7 @@ unnecessary — or in logarithmic form
 every positive integer reaches \(1\).
 
 *Proof.* Theorem B gives Theorem A's hypothesis with
-\(e=e(C)\ge e(19)=0.527>0.5076\). The pairing-only intermediate still
+\(e=e(C)\ge e(19)=0.527>0.5074\). The pairing-only intermediate still
 needed \(C\ge 20\) (\(e(20)=0.574>0.5520\)). \(\square\)
 
 The rate requirement is exactly the complement of the contagion
@@ -392,7 +392,7 @@ The least \(C\) with \(e_q(C)>1-\lambda^{**}\) (`least_C_biased`):
 | \(0.50\) | \(0.2075\) | \(19\) | \(0.524\) |
 | \(0.55\) | \(0.1283\) | \(41\) | \(0.508\) |
 | \(0.60\) | \(0.0490\) | \(223\) | \(0.508\) |
-| \(0.62\) | \(0.0173\) | \(1587\) | \(0.508\) |
+| \(0.62\) | \(0.0173\) | \(1586\) | \(0.508\) |
 
 So: **if no cylinder of depth below \(41\log_2(\log 2y/\log N_0)\)
 sends more than \(55\%\) of its members to an odd next state, every
@@ -542,7 +542,7 @@ with \(q<p_C\) gives
 \(\#\{\tau>d\}\le N\exp(-d\,D(p_C\|q)(1-o(1)))\), i.e. the exponent
 \(e_q^{\rm Ch}(C)=C\,D(p_C\|q)/\ln 2\), which is at least the Azuma
 exponent of Theorem B′ (least \(C\): \(19\) at \(q=\tfrac12\), \(41\)
-at \(0.55\), \(214\) at \(0.60\), \(1497\) at \(0.62\)).
+at \(0.55\), \(214\) at \(0.60\), \(1496\) at \(0.62\)).
 
 *Proof.* Dropping the condition \(\tau>t+1\) in favour of \(\tau>t\)
 only enlarges the sum, so

@@ -50,7 +50,7 @@ NOTE = "docs/theory/juggler_oeoee_production.md"
 
 RHO = F(9, 32)  # source scale of OEOEE
 NET_GAIN = F(1, 27)  # what the family adds to (4.2)
-LAMBDA_2 = 0.4480  # pairing-only intermediate; official lambda** is 0.4924 with V_5
+LAMBDA_2 = 0.4480  # pairing-only intermediate; official lambda** is 0.4926 with V_6
 LAMBDA_3 = 0.5392  # lambda***, Appendix C
 
 
@@ -300,7 +300,7 @@ def family(count: int):
 
 
 def test_family_coefficients():
-    for k in range(1, 6):
+    for k in range(1, 7):
         rho_k = F(3, 4) ** (k - 1) * F(3, 8)
         assert F(1, 2) ** (2 * k + 1) / rho_k == F(1, 3) ** k  # ideal c_k = 3^-k
         assert (F(1, 3) - F(2, 9)) * F(1, 3) ** k == F(1, 3) ** (k + 2)  # net gain
@@ -444,6 +444,7 @@ def test_saving_law():
     assert F(1, 6) * F(3, 4) ** 2 == F(3, 32)  # V_3
     assert F(1, 6) * F(3, 4) ** 3 == F(9, 128)  # V_4
     assert F(1, 6) * F(3, 4) ** 4 == F(27, 512)  # V_5
+    assert F(1, 6) * F(3, 4) ** 5 == F(81, 2048)  # V_6
     # strictly better than the earlier (1/9)(3/4)^{k-1}, by a factor 3/2
     for k in range(2, 8):
         assert F(1, 6) * F(3, 4) ** (k - 1) == F(3, 2) * F(1, 9) * F(3, 4) ** (k - 1)
@@ -628,12 +629,69 @@ def test_v5_gain_and_exponents():
     assert root(BASE + family(4) + [(F(1, 9), RHO)]) == pytest.approx(0.5767, abs=5e-4)
 
 
+def word13(n: int) -> str:
+    letters, x = [], n
+    for _ in range(13):
+        letters.append("O" if x % 2 else "E")
+        x = J(x)
+    return "".join(letters)
+
+
+def test_v6_scales():
+    rho, Y, lay = layers(6)
+    assert rho == F(729, 8192) and Y == F(7463, 8192)
+    assert [L for _, _, L in lay] == [
+        F(5415, 8192), F(3879, 8192), F(2727, 8192), F(1863, 8192), F(1215, 8192),
+    ]
+    assert [L / s for s, _, L in lay] == [
+        F(1805, 2048), F(431, 512), F(101, 128), F(23, 32), F(5, 8),
+    ]
+
+
+def test_v6_exact_chain_fiber_and_block_constancy():
+    # V_6 is lacunary on [10^6, 1.4·10^6) (zero hits); first clusters sit near 3.5·10^4.
+    tested = 0
+    seen: dict[int, tuple] = {}
+    for n in range(35_661 | 1, 35_661 + 400_001, 2):
+        w1 = f34(n)
+        w2 = f34(w1)
+        w3 = f34(w2)
+        w4 = f34(w3)
+        w5 = f34(w4)
+        key = (
+            w1 % 2, isqrt(w1**3) % 2, w2 % 2, isqrt(w2**3) % 2,
+            w3 % 2, isqrt(w3**3) % 2, w4 % 2, isqrt(w4**3) % 2,
+            w5 % 2, isqrt(w5**3) % 2, f34(w5) % 2,
+        )
+        if w1 in seen:
+            assert seen[w1] == key
+        seen[w1] = key
+        if word13(n) != "OEOEOEOEOEOEE":
+            continue
+        tested += 1
+        assert J(J(n)) == w1 and J(J(J(J(n)))) == w2
+        assert J(J(J(J(J(J(n)))))) == w3
+        assert J(J(J(J(J(J(J(J(n)))))))) == w4
+        assert J(J(J(J(J(J(J(J(J(J(n)))))))))) == w5
+        w6 = f34(w5)
+        m = isqrt(w6)
+        assert m**8 <= w5**3 < (m + 1) ** 8
+    assert tested > 5
+
+
+def test_v6_gain_and_exponents():
+    assert (F(1, 3) - F(2, 9)) * F(1, 3) ** 5 == F(1, 2187)
+    assert root(BASE + family(5)) == pytest.approx(0.4926, abs=5e-4)
+    assert root(BASE + family(5) + [(F(1, 9), RHO)]) == pytest.approx(0.5769, abs=5e-4)
+
+
 def test_family_ladder():
-    ladder = [root(BASE + family(K)) for K in (1, 2, 3, 4)]
+    ladder = [root(BASE + family(K)) for K in (1, 2, 3, 4, 5)]
     assert ladder[0] == pytest.approx(0.4801, abs=5e-4)
     assert ladder[1] == pytest.approx(0.4891, abs=5e-4)
     assert ladder[2] == pytest.approx(0.4916, abs=5e-4)
     assert ladder[3] == pytest.approx(0.4924, abs=5e-4)
+    assert ladder[4] == pytest.approx(0.4926, abs=5e-4)
     assert all(a < b for a, b in zip(ladder, ladder[1:]))  # monotone
     assert ladder[-1] < 0.4927
     # with Appendix C's OOEEE as well

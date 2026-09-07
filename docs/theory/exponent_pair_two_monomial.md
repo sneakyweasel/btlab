@@ -15,8 +15,13 @@ none of them moves \(95/112\), and neither extra process can reach
 the floor-Hardy composition is elementary if and only if the outer
 exponent is \(\beta<1\). The first superlinear axis still needs
 \(p/2+q<2/3\), whose hull minimum is \(275/388\) at
-\(B(A(\mathrm{Bourgain}))\) (Theorem 10). The question itself stays
-open and stays external.
+\(B(A(\mathrm{Bourgain}))\) (Theorem 10). Theorems 11–14 give the
+tame process floors: \(A\), \(C\), and \(D\) sit above \(2/3\), but
+\(B\circ A\) has floor \(5/8<2/3\) and does not block the line. No
+named pair satisfies the crossing criterion \(4p+3q<2\). The
+August 2026 ANTEDB vertices, including Cushing 2025, do not move
+\(95/112\) or \(275/388\). The question itself stays open and stays
+external.
 
 ## The question
 
@@ -60,6 +65,7 @@ ceilings (exact arithmetic):
 | Bourgain 2017 | \((13/84,55/84)\) | \(95/112\approx 0.848\) |
 | Trudgian–Yang 2023 | \((715/10238,7955/10238)\), \((4742/38463,35731/51284)\) | \(35395/40952\), \(130903/153852\) |
 | Tao–Trudgian–Yang 2025 | four new pairs (Theorem 20) | all \(\ge 4433/5128\approx 0.864\) |
+| Cushing 2025 (ANTEDB 5.23) | \((311/4822,3799/4822)\), \((80219/1298878,515638/649439)\) | \(16751/19288\), \(238221/273448\) |
 | Sargos \(D\) of Bourgain | \((18/199,593/796)\) | \(683/796\approx 0.858\) |
 | Bombieri–Iwaniec dream ceiling | \(p=3/20\) on \(q=p+\tfrac12\) | \(67/80=0.8375\) |
 | Needed for \(T_j=o(M^{2/3})\) | — | \(<2/3\) |
@@ -73,7 +79,8 @@ Literature: `bourgain-2017-exponent-pair`, `huxley-2005-zeta-v`,
 `huxley-1996-area-lattice-points`,
 `kuipers-niederreiter-1974-uniform-distribution`,
 `trudgian-yang-2023-exponent-pairs`,
-`tao-trudgian-yang-2025-exponent-pairs`.
+`tao-trudgian-yang-2025-exponent-pairs`,
+`cushing-2025-exponent-pairs`.
 
 ## What is already settled
 
@@ -274,6 +281,17 @@ and the listed \(A\)/\(C\)/\(D\) images of those seeds, all have
 in other ranges; they are not better for this linear functional. The
 verification is the same test file.
 
+**The August 2026 ANTEDB hull does not move it either (exact).**
+The living blueprint (Tao–Trudgian–Yang, 11 August 2026) lists as
+vertices the pairs above, the third 2023 pair
+\((2779/38033,58699/76066)\), Cushing's two 2025 pairs (Theorem 5.23),
+\(A(D(\mathrm{Bourgain}))=(9/217,1461/1736)\), the Heath–Brown 2017
+sequence, and the \(B\)-images of those vertices. Every one of them
+has \(\phi>95/112\) and \(\psi>275/388\), and none satisfies the tame
+crossing \(4p+3q<2\). Cushing's pairs are the first post-TTY25
+vertices; they improve other \(\beta(\alpha)\) ranges, not these two
+linear forms.
+
 **Modern derivative tests do not help (exact).** On this phase
 \(\lambda_k\asymp M^{9/4-k}\). The classical van der Corput \(k\)-th
 derivative test gives block exponent
@@ -382,6 +400,55 @@ sub-density still needs \(p/2+q<2/3\).
 all sit above \(275/388\). The first superlinear composition is the
 same door as the boxed axis, only closer: the gap is \(49/1164\)
 rather than \(61/336\).
+
+Write \(\psi(p,q)=p/2+q\). The process images are
+
+\[
+\begin{aligned}
+\psi\bigl(A(p,q)\bigr)&=\frac{3p+2q+2}{4p+4},&
+\psi\bigl(B(A(p,q))\bigr)&=\frac{4p+q+2}{4p+4},\\
+\psi\bigl(C(p,q)\bigr)&=\frac{89p+2q+22}{24(1+4p)},&
+\psi\bigl(D(p,q)\bigr)&=\frac{63p+43q+22}{16(5p+3q+2)}.
+\end{aligned}
+\]
+
+**Theorem 11 (the \(A\)-process cannot reach the tame line).**
+\(\psi(A(p,q))\ge 3/4\), with equality if and only if \(q=1/2\).
+*Proof.* \(\partial_q>0\); at \(q=1/2\) the value is identically
+\(3/4\). \(\square\)
+Unlike Theorem 1, equality is attained at actual pairs (every
+\(A\)-image of a pair on \(q=1/2\), including
+\(A(1/2,1/2)=(1/6,2/3)\)).
+
+**Theorem 12 (but \(B\circ A\) does not block it).**
+\(\psi(B(A(p,q)))\ge 5/8\), with equality only at
+\((p,q)=(0,1/2)\). *Proof.* \(\partial_q>0\); at \(q=1/2\) the
+value is \(1-3/(8p+8)\ge 5/8\). \(\square\)
+The floor \(5/8<2/3\) sits *below* the density line, so a pair
+sufficiently close to \((0,1/2)\) would give \(\psi(BA)<2/3\). The
+crossing criterion is \(4p+3q<2\), which forces \(p<1/8\).
+
+**Theorem 13 (the \(C\)-process sits higher).**
+\(\psi(C(p,q))\ge 15/16\), equality only at \((1/2,1/2)\). *Proof.*
+\(\partial_q>0\); at \(q=1/2\) the value \((89p+23)/(24+96p)\) is
+decreasing in \(p\) (cross-difference \(-72\)), hence minimal at
+\(p=1/2\). \(\square\)
+
+**Theorem 14 (nor the \(D\)-process).**
+\(\psi(D(p,q))\ge 87/112\), equality only at \((0,1/2)\). *Proof.*
+The \(q\)-derivative has numerator sign \(26p+20>0\), so the
+minimum is at \(q=1/2\). There the comparison against \(87/112\)
+rearranges to \(192p\ge 0\). \(\square\)
+
+**Corollary 15.** A pair with \(\psi<2/3\) is not an \(A\)-, \(C\)-,
+or \(D\)-image. It may be a \(B\circ A\)-image, but only of a pair
+satisfying \(4p+3q<2\). No seed of Theorem 4 and no 2023–2025 named
+pair meets that criterion (all have \(4p+3q\ge 31/12\)). The
+certified hull minimum remains \(275/388\).
+
+The decaying axis \(\{v^{3/4}\}\) is already a reduction lemma in
+`J-horizontal-axis-species` (classical van der Corput on
+\(e(kn^{9/8})\)); it is not reopened here.
 
 Do not reopen the closed floor-Hardy wraps. Theorem 9 classifies
 when the leftover argument works; it does not identify

@@ -8,7 +8,7 @@ termination proof would have to pass. This branch asks the
 quantitative question the trichotomy leaves open: how thin can a fate
 class be? Answer: not thin. Every fate that occurs at all occurs on a
 set whose logarithmic counting function is \(\gg(\log x)^{\lambda}\)
-for every \(\lambda<0.4924\). Note:
+for every \(\lambda<0.4926\). Note:
 [juggler_fate_contagion_note.md](../theory/juggler_fate_contagion_note.md).
 Not a halt theorem, not a cycle exclusion, not a divergence exclusion,
 not a Paper A or Paper B edit.
@@ -24,9 +24,9 @@ of divergent starts.
 ## Exact statement
 
 **Theorem 4.2 (EXACT — HUMAN PROOF, `J-fate-log-density`).** Let
-\(\lambda^{**}=0.4924\ldots\) be the root of
-\(2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda+\tfrac1{81}(\tfrac{27}{128})^\lambda+\tfrac1{243}(\tfrac{81}{512})^\lambda+\tfrac1{729}(\tfrac{243}{2048})^\lambda=1\)
-(\(V_4\) truncation \(0.4916\); \(V_3\) truncation \(0.4891\); \(OEOEE\) truncation \(0.4801\); pairing-only root \(0.4480\)).
+\(\lambda^{**}=0.4926\ldots\) be the root of
+\(2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda+\tfrac1{27}(\tfrac9{32})^\lambda+\tfrac1{81}(\tfrac{27}{128})^\lambda+\tfrac1{243}(\tfrac{81}{512})^\lambda+\tfrac1{729}(\tfrac{243}{2048})^\lambda+\tfrac1{2187}(\tfrac{729}{8192})^\lambda=1\)
+(\(V_5\) truncation \(0.4924\); \(V_4\) truncation \(0.4916\); \(V_3\) truncation \(0.4891\); \(OEOEE\) truncation \(0.4801\); pairing-only root \(0.4480\)).
 For every nonempty backward-closed \(A\subseteq\mathbb N\) and every
 \(\lambda<\lambda^{**}\) there are \(c,x_0>0\) with
 \(\sum_{n\in A,\,n\le x}1/n\ge c(\log x)^\lambda\) for \(x\ge x_0\).
@@ -196,7 +196,7 @@ Theorem 4.2) is not formalized.
   ([juggler_oe_fiber_constant.md](juggler_oe_fiber_constant.md)).
   The rest-average lift \(1/3\to 1/2\) is PARK
   ([juggler_oe_rest_average.md](juggler_oe_rest_average.md));
-  the remaining depth-two gap \(0.4924\to 0.4927\) is the later
+  the remaining depth-two gap \(0.4926\to 0.4927\) is the later
   \(V_k\) truncations of the elementary family
   ([juggler_oeoee_production.md](juggler_oeoee_production.md));
   rest-average stays PARK and is not opened.

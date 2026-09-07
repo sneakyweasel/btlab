@@ -400,7 +400,7 @@ two length-five contractors, giving the certified-descent densities
 contraction criterion of Theorem 2.2. Paper C [17] proves that every
 nonempty backward-closed set — in particular the basin of any
 nontrivial cycle, and the set of divergent starts — has logarithmic
-count \(\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4924\), and reduces the
+count \(\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4926\), and reduces the
 Juggler conjecture to a Tao-type almost-all statement whose bounded
 target is the certified floor of Section 5 and whose descent step is
 the power envelope of Theorem 2.2 (`power_bound_word`). Section 6.1
@@ -3090,7 +3090,7 @@ In [17] this is used in the other direction: if the exponent walk
 \(J^t(n)\le N_0\), so \(n\) reaches \(1\) by the certified floor. The
 floor of Section 5 is thereby the *target* of a Tao-type reduction: a
 bound \(\#\{n\ \text{odd}\in(y,2y]:\ J^t(n)>N_0\ \forall t\le C\log_2\log y\}\le y(\log y)^{-e}\)
-with \(e>1-\lambda^{**}=0.5076\) implies the whole conjecture, cycles included ([17],
+with \(e>1-\lambda^{**}=0.5074\) implies the whole conjecture, cycles included ([17],
 Theorems 3 and 4). A larger floor lowers \(L(y)\): the certified
 \(3.5\cdot10^8\) against the Lean-verified \(260\) is worth
 \(\log_2(19.67/5.56)=1.82\) units of the walk, which lowers the
@@ -3101,7 +3101,7 @@ asymptotics; it crosses no threshold.
 *Cycle basins are contagious.* If a nontrivial cycle \(C\) exists,
 its basin \(B(C)=\{n:\exists k,\ J^k(n)\in C\}\) is backward-closed,
 and [17, Theorem 1] gives \(\sum_{n\in B(C),\,n\le x}1/n\gg(\log x)^{\lambda}\)
-for every \(\lambda<\lambda^{**}=0.4924\): on infinitely many dyadic
+for every \(\lambda<\lambda^{**}=0.4926\): on infinitely many dyadic
 blocks the starts that enter \(C\) have natural density
 \(\gg(\log y)^{-0.508}\).
 The two constraints do not meet. This paper bounds the *states* of

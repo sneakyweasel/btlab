@@ -131,8 +131,9 @@ failures (`research.juggler_sequence.oeoee_audit`). Every displayed
 Section 11 constant recomputes from T1–T5, or is tightened and still
 saves a positive power of \(P\). Binding saving \(P^{-1/8}\) stands.
 The four-term root \(0.4801\) is a named intermediate. Official
-unconditional \(\lambda^{**}\) is now the \(V_5\) seven-term root
-\(0.4924\) (`J-fate-v5-production`). The \(V_4\) six-term root
+unconditional \(\lambda^{**}\) is now the \(V_6\) eight-term root
+\(0.4926\) (`J-fate-v6-production`). The \(V_5\) seven-term root
+\(0.4924\) (`J-fate-v5-production`), the \(V_4\) six-term root
 \(0.4916\) (`J-fate-v4-production`) and the \(V_3\) five-term root
 \(0.4891\) (`J-fate-v3-production`) are named intermediates. Pairing \(0.4480\) / \(0.5520\) /
 \(C=20\) remains a named intermediate. \(\lambda^{***}=0.5392\)
@@ -143,8 +144,9 @@ unchanged. Ledger: `J-fate-oeoee-production`.
 The \(V_3=OEOEOEE\) truncation is now done
 ([juggler_v3_production.md](juggler_v3_production.md)), and so is
 \(V_4\) ([juggler_v4_production.md](juggler_v4_production.md)), and so is
-\(V_5\) ([juggler_v5_production.md](juggler_v5_production.md)). Later
-truncations (\(V_6\) and after) are not opened here. Rest-average
+\(V_5\) ([juggler_v5_production.md](juggler_v5_production.md)), and so is
+\(V_6\) ([juggler_v6_production.md](juggler_v6_production.md)). Later
+truncations (\(V_7\) and after) are not opened here. Rest-average
 stays PARK. Kernel localization stays CLOSE. This branch does not
 remove \(\log\log y\) depth.
 
@@ -157,7 +159,8 @@ abstract short-step form is false, but Half B's steps are
 constant \(100\) still has room. Official \(\lambda^{**}\) moved to \(0.4801\) at the time of this
 decision. The later \(V_3\) branch then moved it to \(0.4891\),
 and the later \(V_4\) branch to \(0.4916\),
-and the later \(V_5\) branch to \(0.4924\).
+and the later \(V_5\) branch to \(0.4924\),
+and the later \(V_6\) branch to \(0.4926\).
 Best next question at the time: the \(V_3\) truncation constants.
 
 ## Publication assessment

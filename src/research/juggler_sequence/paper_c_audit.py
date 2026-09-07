@@ -7,7 +7,7 @@ none of which is a proof:
 1. **Contagion exponents.**  The three-state residual and the run-ladder transfer matrix of the
    exponent calculus, recomputed and compared with every exponent Paper C prints:
    ``lambda* = 0.3774``, pairing-only ``0.4480``, OEOEE ``0.4801``,
-   V_3 ``0.4891``, V_4 ``0.4916``, ``lambda** = 0.4924`` (plus V_5),
+   V_3 ``0.4891``, V_4 ``0.4916``, V_5 ``0.4924``, ``lambda** = 0.4926`` (plus V_6),
    ``lambda*** = 0.5392``, the depth-two ideal ceiling ``0.4927``, and the
    ``lambda(r)`` ladder of Section 5.7.
 2. **Tao thresholds and depths.**  ``e(20) = 0.574``, ``e(18) = 0.480``, the least depth in each
@@ -136,7 +136,8 @@ def contagion_checks() -> list[dict[str, Any]]:
         _check("oeoee-only (block_third_plus_oeoee)", 0.4801, lambda_root(RECURSIONS["block_third_plus_oeoee"]), EXP_TOL),
         _check("v3-only (block_third_plus_oeoee_v3)", 0.4891, lambda_root(RECURSIONS["block_third_plus_oeoee_v3"]), EXP_TOL),
         _check("v4-only (block_third_plus_oeoee_v4)", 0.4916, lambda_root(RECURSIONS["block_third_plus_oeoee_v4"]), EXP_TOL),
-        _check("lambda** (block_third_plus_oeoee_v5)", 0.4924, lambda_root(RECURSIONS["block_third_plus_oeoee_v5"]), EXP_TOL),
+        _check("v5-only (block_third_plus_oeoee_v5)", 0.4924, lambda_root(RECURSIONS["block_third_plus_oeoee_v5"]), EXP_TOL),
+        _check("lambda** (block_third_plus_oeoee_v6)", 0.4926, lambda_root(RECURSIONS["block_third_plus_oeoee_v6"]), EXP_TOL),
         _check("lambda*** (block_third_plus_ooeee)", 0.5392, lambda_root(RECURSIONS["block_third_plus_ooeee"]), EXP_TOL),
         _check("depth-two ideal ceiling", 0.4927, lambda_root(RECURSIONS["depth_two_ideal"]), EXP_TOL),
         # the same pairing/ideal constants through the residual, which is how Section 5.7 derives them
@@ -159,7 +160,8 @@ def tao_checks() -> list[dict[str, Any]]:
     oeoee = lambda_root(RECURSIONS["block_third_plus_oeoee"])
     v3 = lambda_root(RECURSIONS["block_third_plus_oeoee_v3"])
     v4 = lambda_root(RECURSIONS["block_third_plus_oeoee_v4"])
-    lam2 = lambda_root(RECURSIONS["block_third_plus_oeoee_v5"])
+    v5 = lambda_root(RECURSIONS["block_third_plus_oeoee_v5"])
+    lam2 = lambda_root(RECURSIONS["block_third_plus_oeoee_v6"])
     lam3 = lambda_root(RECURSIONS["block_third_plus_ooeee"])
     ideal = lambda_root(RECURSIONS["depth_two_ideal"])
     out = [
@@ -167,7 +169,8 @@ def tao_checks() -> list[dict[str, Any]]:
         _check("rate threshold 1 - oeoee", 0.5199, 1.0 - oeoee, 1e-3),
         _check("rate threshold 1 - v3", 0.5109, 1.0 - v3, 1e-3),
         _check("rate threshold 1 - v4", 0.5084, 1.0 - v4, 1e-3),
-        _check("rate threshold 1 - lambda**", 0.5076, 1.0 - lam2, 1e-3),
+        _check("rate threshold 1 - v5", 0.5076, 1.0 - v5, 1e-3),
+        _check("rate threshold 1 - lambda**", 0.5074, 1.0 - lam2, 1e-3),
         _check("rate threshold 1 - lambda***", 0.4608, 1.0 - lam3, 1e-3),
         _check("rate threshold 1 - lambda_ideal", 0.5073, 1.0 - ideal, 1e-3),
         _check("e(20)", 0.574, chernoff_exponent(20), 1e-3),
@@ -177,6 +180,7 @@ def tao_checks() -> list[dict[str, Any]]:
         _check("least depth, oeoee regime", 19, least_C(1.0 - oeoee), 0),
         _check("least depth, v3 regime", 19, least_C(1.0 - v3), 0),
         _check("least depth, v4 regime", 19, least_C(1.0 - v4), 0),
+        _check("least depth, v5 regime", 19, least_C(1.0 - v5), 0),
         _check("least depth, lambda** regime", 19, least_C(REQUIRED_RATE), 0),
         _check("least depth, lambda*** regime", 18, least_C(REQUIRED_RATE_STAR3), 0),
         _check("least depth, ideal regime", 19, least_C(1.0 - ideal), 0),
