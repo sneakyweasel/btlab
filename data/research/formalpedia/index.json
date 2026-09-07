@@ -15299,6 +15299,86 @@
       "trust": "kernel"
     },
     {
+      "doc": "One odd step, upper half: `y^2 \u2264 x^3`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 29,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "odd_step_sq_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One odd step, lower half: `x^3 \u2264 y^2 + 2y`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 35,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "odd_step_le_sq_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`(y+2)^3 \u2264 2 y^3` once `y \u2265 8`: the slack that turns the floor loss into a factor two.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 43,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "cube_shift_le_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Two odd steps climb by nine quarters.** In integers, `x^9 < 2 (z+1)^4`, so `z > x^(9/4) / 2^(1/4) - 1`. Applied to a cycle with an `OO`, whose bottom is at least the minimum and whose top is at most the maximum, this is `M \u2265 m^(9/4)` up to the factor.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 51,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "oo_step_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The odd-run bound.** After `r` odd steps from `v`, the top `y` satisfies `y^(2^r) \u2264 v^(3^r)`: the logarithm has been multiplied by at most `(3/2)^r`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 78,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "odd_run_upper",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The even-run bound.** After `g` even steps from `w`, the bottom `z` satisfies `z^(2^g) \u2264 w`: the logarithm has been divided by at least `2^g`.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 102,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "even_run_contracts",
+      "trust": "kernel"
+    },
+    {
+      "doc": "No two adjacent odd letters.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 110,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "NoAdjOdd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A word with no two adjacent odd letters is at most half odd. A cycle's letters satisfy `o log(3/2) = e log 2`, hence `o/e = log 2 / log(3/2) = 1.7095 > 1`, which this forbids: some odd run of a cycle has length at least two.",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 116,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "oddCount_le_of_noAdjOdd",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/Defect.lean",
       "kind": "def",
@@ -64775,6 +64855,7 @@
         "Problems.Juggler.CycleMinObstruction",
         "Problems.Juggler.CycleObstructions",
         "Problems.Juggler.CyclePosition",
+        "Problems.Juggler.CycleRunAlphabet",
         "Problems.Juggler.Cycles",
         "Problems.Juggler.Defect",
         "Problems.Juggler.DefectFinance",
@@ -65138,6 +65219,15 @@
       "imports": [
         "Problems.Juggler.CycleCore",
         "Problems.Juggler.InverseBranches"
+      ],
+      "ledger": []
+    },
+    "Problems.Juggler.CycleRunAlphabet": {
+      "declarations": 8,
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "imports": [
+        "Problems.Juggler.ItineraryStats",
+        "Problems.Juggler.TowerAbsorption"
       ],
       "ledger": []
     },
@@ -66718,13 +66808,13 @@
     }
   },
   "totals": {
-    "declarations": 4761,
+    "declarations": 4769,
     "declarations_with_a_ledger_row": 3195,
-    "ledger_rows_naming_a_file": 330,
-    "modules": 201,
+    "ledger_rows_naming_a_file": 331,
+    "modules": 202,
     "trust": {
       "compiler": 54,
-      "kernel": 4707
+      "kernel": 4715
     }
   }
 }

@@ -1407,6 +1407,24 @@
       "nk_cluster": null
     },
     {
+      "id": "cycle_run_alphabet",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/cycle_run_alphabet.py",
+      "test": "tests/research/juggler_sequence/test_cycle_run_alphabet.py",
+      "dossier": "docs/problems/juggler_cycle_run_alphabet.md",
+      "data_dir": "data/research/juggler/cycle_run_alphabet",
+      "lean": [
+        "formal/Problems/Juggler/CycleRunAlphabet.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-cycle-run-alphabet"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "cycle_seam_ancestry",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/cycle_seam_ancestry.py",
@@ -5433,7 +5451,8 @@
         "formal/Problems/Juggler/TowerAbsorption.lean",
         "formal/Problems/Juggler/TiltedShare.lean",
         "formal/Problems/Juggler/LiveCountWeight.lean",
-        "formal/Problems/Juggler/DepthOneMainTerm.lean"
+        "formal/Problems/Juggler/DepthOneMainTerm.lean",
+        "formal/Problems/Juggler/CycleRunAlphabet.lean"
       ],
       "conjecture": [],
       "decision": null,

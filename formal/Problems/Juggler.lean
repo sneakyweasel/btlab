@@ -95,6 +95,7 @@ import Problems.Juggler.TowerAbsorption
 import Problems.Juggler.TiltedShare
 import Problems.Juggler.LiveCountWeight
 import Problems.Juggler.DepthOneMainTerm
+import Problems.Juggler.CycleRunAlphabet
 
 /-!
 # Juggler laboratory barrel

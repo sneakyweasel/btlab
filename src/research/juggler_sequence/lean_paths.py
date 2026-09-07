@@ -160,6 +160,7 @@ LAYERS: dict[str, Path] = {
     "TiltedShare": JUGGLER_DIR / "TiltedShare.lean",
     "LiveCountWeight": JUGGLER_DIR / "LiveCountWeight.lean",
     "DepthOneMainTerm": JUGGLER_DIR / "DepthOneMainTerm.lean",
+    "CycleRunAlphabet": JUGGLER_DIR / "CycleRunAlphabet.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]

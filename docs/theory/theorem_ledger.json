@@ -7421,5 +7421,16 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-cycle-run-alphabet",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Cycle height bounds its runs, and a narrow band pins the alphabet. Let a nontrivial cycle have minimum m, maximum M, and height ratio R = log M / log m. (1) Run bounds: every odd run has length r with (3/2)^r <= R and every even run has length g with 2^g <= R, because an odd run multiplies the logarithm by (3/2)^r and an even run divides it by 2^g while every cycle value lies in [m, M]. Lean: odd_run_upper gives y^(2^r) <= v^(3^r) after r odd steps, even_run_contracts gives z^(2^g) <= w after g even steps. (2) Some odd run has length at least two, hence M >= m^(9/4). Closure gives o log(3/2) = e log 2, so o/e = log2/log(3/2) = 1.7095, while a cyclic word with no two adjacent odd letters has o <= e (oddCount_le_of_noAdjOdd, in the list form 2 oddCount w <= |w| + 1). The climb itself is the integer inequality oo_step_lower: x^9 < 2 (z+1)^4 for two odd steps with intermediate at least 8, via x^9 <= (y^2+2y)^3 = y^3 (y+2)^3 <= 2 y^6 < 2 (z+1)^4 (cube_shift_le_two). With the certified floor N0 = 3.5e8 this reads M > 1.6e19, improving cycleMin_to_max_superquadratic's exponent 2 to 9/4. (3) Band alphabet: if R < 27/8 then odd runs have length at most 2 and even runs exactly 1, so the itinerary is a cyclic word over {OE, OOE}; only OOE climbs, exponent 9/8 against OE's 3/4, and closure pins the OOE fraction of blocks at log(4/3)/(log(4/3)+log(9/8)) = 0.709511. At R < 2 the admissible block set is empty, which recovers the superquadratic result as a degenerate case. The closure equation is Paper A's financing, not formalized here, so (2) and (3) combine Lean inequalities with human proof; the floor defect in the closure is 7e-9 relative at period 780239. Not a halt theorem. CLOSE.",
+  "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_cycle_run_alphabet.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_run_alphabet.py"
+  ]
  }
 ]

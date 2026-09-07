@@ -39278,3 +39278,45 @@ Not done, and deliberately: the FanLaw and DepthFourFive namespaces are
 pinned rather than renamed. Both sit inside Paper A's review object and
 a rename touches cited names in the manuscript, which is the concurrent
 session's active area.
+
+## Cycle height forces a run alphabet
+
+Two pieces of bookkeeping, nothing analytic. An odd run of length r
+multiplies the logarithm by (3/2)^r and an even run of length g divides
+it by 2^g, and every cycle value sits between the minimum m and the
+maximum M. So with R = log M / log m, odd runs obey (3/2)^r <= R and
+even runs obey 2^g <= R.
+
+That alone gives a theorem once the letters are counted. Closure forces
+o log(3/2) = e log 2, so o/e = 1.7095. A cyclic word with no two
+adjacent odd letters has o <= e. Both cannot hold, so every nontrivial
+cycle contains an OO, and the two odd steps climb to the nine-quarters
+power: M >= m^(9/4), which at the certified floor is 1.6e19. The
+laboratory already had M > m^2; this moves the exponent to 9/4.
+
+The part with no prior analogue is the band. If R < 27/8 then odd runs
+have length at most two and even runs exactly one, so the itinerary is a
+cyclic word over {OE, OOE} and nothing else. Only OOE climbs, exponent
+9/8 against OE's 3/4, and closing the cycle pins the OOE fraction of
+blocks at 0.709511 exactly. Two checks fell out of that: the forced mix
+reproduces the letter ratio, and at R < 2 the admissible block set is
+empty, which recovers the existing superquadratic result as a
+degenerate case of the same computation.
+
+CycleRunAlphabet.lean carries the integer content: the two sides of one
+odd step, the run bounds by induction, the even-run bound read off the
+tower-absorption iff, and the climb as x^9 < 2 (z+1)^4 through
+x^9 <= (y^2+2y)^3 = y^3 (y+2)^3 <= 2 y^6 < 2 (z+1)^4. The combinatorial
+half is there too: a word with no two adjacent odd letters is at most
+half odd. Axioms propext, Classical.choice, Quot.sound only.
+
+What is not formalized, and the dossier says so rather than glossing it:
+the closure equation is Paper A's financing, so the headline combines
+Lean inequalities with human proof. The floor defect in that equation is
+7e-9 relative at period 780239, far too small to disturb the ratio.
+
+CLOSE. The natural continuation is to kill every cyclic word over
+{OE, OOE} with the forced mix, and that is exactly where
+J-cyclemin-ooo-inevitable was refuted: the laboratory tried to force a
+first OOO inside this alphabet and found a witness against it. Nothing
+here makes that easier, so the branch stops at the shape constraint.
