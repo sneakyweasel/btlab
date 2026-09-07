@@ -8148,9 +8148,11 @@ internal odd at `t`, the rest at `J(n+2)`, every even at `n²` — and
 needs Theorem 3.2 and the orbit. Arithmetic will not reach it.
 
 So this row moves from "no Lean" to "Lean with a stated gap", which is
-an honest description and not a closure. **Paper A's Appendix A now has
+an honest description and not a closure. ~~**Paper A's Appendix A now has
 no row with no Lean at all**: 52 fully Lean, 4 cross-references, 10 Lean
-with a stated gap, 6 verified computation.
+with a stated gap, 6 verified computation.~~ **This sentence is false; see
+the erratum at the end of this ledger.** Eleven rows name no Lean
+declaration.
 
 Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper` clean
 at 3438 jobs; the `L ≥ 28` threshold checked against the certified bound
@@ -8193,10 +8195,67 @@ list is now updated. That guard exists because the barrel *is* the
 review object, and its contents are a claim about what a reviewer is
 asked to build — the right thing to fail on an unannounced change.
 
-**Where Paper A now stands.** Appendix A: 52 fully Lean, 4
+**Where Paper A now stands.** ~~Appendix A: 52 fully Lean, 4
 cross-references, 10 Lean with a stated gap, 6 verified computation,
-**0 with no Lean**. Of the ten gaps, the ones this laboratory can still
+**0 with no Lean**.~~ **The "0 with no Lean" is false; see the erratum at
+the end of this ledger.** Of the ten gaps, the ones this laboratory can still
 close are Theorem 3.31's enumeration and the Section 5 analytic cluster
 (5.5 and 5.7, which are one project through Denjoy–Koksma); Corollary
 4.11's is Rhin's measure, which is literature, and the rest are
 computation.
+
+## Erratum: "0 rows with no Lean" was false, and the classifier is why
+
+*What was claimed.* Two entries above --- and the messages of commits
+`3e3a95ef` and `6d497eed` --- assert that Paper A's Appendix A has **no
+row with no Lean at all**, with the split `52 fully Lean, 4
+cross-references, 10 Lean with a stated gap, 6 verified computation`.
+That is wrong. **Eleven of the seventy-two rows name no Lean
+declaration.**
+
+*Why the count was wrong.* The classifier read each row's right-hand
+column, collected the backticked names, and treated a row with at least
+one backtick as having Lean. It never checked the names against the
+Lean index. So a row could name a *Python* function in backticks and be
+scored as formalized. Exactly one row does:
+
+| row | backticked name | what it actually is |
+|---|---|---|
+| Theorem 3.31 | `run_suffix_law.closure` | Python, `src/research/juggler_sequence/branch_index.py:388` |
+
+The recount joins every backtick in the appendix to
+`formalpedia.build()` and keeps only names the Lean corpus defines.
+
+*The corrected count.* Eleven rows name nothing the Lean index knows:
+
+- **four are cross-references** --- Lemma 3.24 ("closed form of Lemma
+  3.10; no separate Lean name"), Theorem 3.26 ("Corollary 3.27's ten
+  rows are Theorems 3.12--3.21 above"), Lemma 3.21a, Lemma 3.21b. These
+  point at other rows that *are* Lean, so they were counted correctly
+  before, just for the wrong reason: the classifier scored them on their
+  backticks rather than on the rows they defer to.
+- **six are verified computation** --- Theorem 4.8, Proposition 5.1,
+  Theorem 5.2, Corollary 5.10, Corollary 5.11, Lemma 5.13/Corollary
+  5.14. These were always known to be outside Lean and were counted as
+  such.
+- **one is Theorem 3.31**, which the earlier count placed among the ten
+  "Lean with a stated gap" because of the Python backtick. It belongs
+  with the rows that have no Lean.
+
+So the honest headline is not "0 with no Lean" but: **of the eleven rows
+with no Lean, six are certified computation, four defer to Lean rows,
+and one --- Theorem 3.31 --- is a genuine hole.** The claim the two
+commits made was true of every row *except* the single one the
+classifier misread, which is the worst possible failure mode for a
+coverage claim: it was wrong precisely where it was doing work.
+
+*What this does not change.* No mathematical statement in either
+manuscript depended on the count; it is a claim about the appendix, not
+about the Juggler map. The Lean added in those two commits ---
+`OddCountMonotone`, `RunTypePacking`, and Theorem 5.4's strict
+uniqueness --- is unaffected and still kernel-clean.
+
+Tags. OBSERVATION: a coverage metric that reads its own prose rather
+than the artifact it summarises will drift toward the answer the prose
+wants. The fix is not a better regexp; it is joining to the index, which
+is one line and was available the whole time.
