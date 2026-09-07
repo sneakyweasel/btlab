@@ -39433,3 +39433,42 @@ the obstruction machinery, which attacks cycle-minimum prefixes
 directly.
 
 Row J-cycle-band-discrepancy extended. Branch stays CLOSE.
+
+I said one gap was unpriced: a budget that accumulates the O(1) floor
+slack per nesting level, where counting floors rather than letters would
+buy a factor log2(3) = 1.5850. I went looking. The budget exists, the
+reindexing is already inside it, and its target is its own conclusion.
+
+The ordered floor-error transport weights each local remainder by
+3 ** odd_count(word[index+1:]) -- one factor of 3 per remaining odd
+letter, and even letters weight 1. At the L11 leftover OOEOOEOOEOE the
+weight vector is (729,243,243,81,27,27,9,3,3,1,1), flat across every
+even letter. That is tower absorption written into the weights, and it
+is exactly what the block decomposition would produce. Nothing left to
+reindex.
+
+The deeper problem is that the comparison is circular, and now by one
+line rather than by census. global_defect_identity says n^(3^o) =
+T_w(n)^(2^L) + Delta, which I checked on 1008 realized records. The
+formal surplus is G = n^(3^o) - n^(2^L). Subtract: Delta >= G iff
+T_w(n)^(2^L) <= n^(2^L) iff T_w(n) <= n. So "accumulated floor slack
+beats the formal surplus" is literally "the word contracts". Swept over
+720 realized start-O end-E records, zero violations.
+
+But I should correct my own dismissal of the factor. Over the 128
+expanding records with G > 0, the largest single transported error
+reaches 0.691 of the gap and the descent half reaches 0.706, both at
+n = 135 on OEOOOE. Multiply either by 1.5850 and you get 1.09 and 1.12
+-- over the line. So the factor was not too small to matter. It was
+already spent. That is a different objection, and I gave the wrong one
+first.
+
+The exact Delta reaches 0.985 at the L11 leftover at 429, but computing
+it means running the orbit, which is what the equivalence says. The
+budgets you can evaluate without already knowing the answer -- Amplify,
+first-defect -- top out at 0.18.
+
+The general shape: an exact accounting of floor loss can never beat the
+surplus except by proving contraction, because Delta is defined as
+n^(3^o) - T_w(n)^(2^L). Any escape has to be a lower bound on Delta that
+does not mention T_w(n). Two exist and they reach a fifth of the gap.

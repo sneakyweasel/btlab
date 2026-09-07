@@ -8548,3 +8548,86 @@ the observable --- that was two `rpow` inequalities --- but three missing
 general lemmas about `eVariationOn`, none of them about this paper. That
 ratio has held all week: the laboratory-specific arithmetic is cheap, and
 the general mathematics underneath it is what Mathlib is missing.
+
+## The per-floor budget was already reindexed, and its target is its own conclusion
+
+*Mathematical target.* I had claimed one gap was unpriced: a budget
+accumulating the \(O(1)\) floor slack per nesting level, where the
+block-level count \(a+2b=o\) against \(2a+3b=L\) would buy a factor
+\(\log_2 3=1.5850\). Two questions: does such a budget exist, and would
+the factor matter?
+
+*Prior art.* `docs/problems/juggler_cycle_error_transport.md`
+(ARCHIVED), `conjectures/refuted/juggler_cycle_error_transport.json`,
+`juggler_global_defect.md` and `juggler_defect_lower_bound.md` (both
+STRUCTURAL). Nothing in `docs/negative_knowledge.md` on a *relative*
+deficit recurrence.
+
+**It exists, and the reindexing is already in it.** The ordered
+floor-error transport weights each local remainder by
+
+```python
+def formal_weight(word: str, index: int) -> int:
+    """State-free suffix factor: 3 to the remaining-odd count."""
+    return 3 ** odd_count(word[index + 1 :])
+```
+
+One factor of 3 per remaining **odd** letter; even letters weight 1. At
+the L11 leftover `OOEOOEOOEOE` the vector is
+\((729,243,243,81,27,27,9,3,3,1,1)\) --- flat across every even letter.
+That is tower absorption written into the weights, and it is exactly
+what the block decomposition would produce. There is no factor left to
+claim.
+
+**And the target is the conclusion.** `global_defect_identity` says
+
+\[
+n^{3^{o}} \;=\; T_w(n)^{2^{L}} + \Delta ,
+\]
+
+verified here on 1008 realized records and Lean-verified in
+`Problems.Juggler.GlobalDefect`. The formal surplus is
+\(G=n^{3^{o}}-n^{2^{L}}\). Subtracting,
+
+\[
+\Delta \ge G
+\iff T_w(n)^{2^{L}} \le n^{2^{L}}
+\iff T_w(n)\le n .
+\]
+
+So "the accumulated floor slack beats the formal surplus" *is* "the word
+contracts", by one line from the identity. Swept over 720 realized
+start-`O` end-`E` records, \(n\) odd in \([13,420)\), \(L\le 8\):
+**zero** violations of \((\Delta\ge G)\iff\text{contracts}\). The
+refutation record already said "equivalent to \(T_w(n)<n\)"; what is new
+is that it is a rewrite of the identity rather than a census.
+
+**What the factor would have been worth, if it had been available.**
+Over the 128 expanding records with \(G>0\):
+
+| budget | \(\sup(\cdot)/G\) | at |
+|---|---|---|
+| exact \(\Delta\) | 0.8561 | \(n=135\), `OEOOOE` |
+| descent half \(E_E\) | 0.7057 | \(n=135\), `OEOOOE` |
+| largest single \(e_i\) | 0.6906 | \(n=135\), `OEOOOE` |
+| climb half \(E_O\) | 0.1790 | \(n=371\), `OOOOOOOE` |
+| first-defect Amplify | 0.1786 | \(n=371\), `OOOOOOOE` |
+
+This corrects my own earlier dismissal. \(1.5850\times0.6906=1.094\) and
+\(1.5850\times0.7057=1.118\): a factor of \(\log_2 3\) applied to the two
+best one-sided budgets would carry them *over* the gap at their sampled
+maxima. The reframing is not marginal in size. It is unavailable,
+which is a different objection and the correct one.
+
+The only budget that reaches \(0.985\) --- the L11 leftover at
+\(429\) --- is the exact \(\Delta\), and computing it requires running
+the orbit, which is what the equivalence above says. The budgets you can
+evaluate without the answer top out at \(0.71\).
+
+Tags. COMPUTATIONALLY VERIFIED: identity on 1008 records; equivalence on
+720; the five suprema on 128. OBSERVATION: an exact accounting of the
+floor loss can never beat the surplus except by proving contraction,
+because \(\Delta\) is *defined* as \(n^{3^o}-T_w(n)^{2^L}\). Any
+escape has to be a *lower bound* on \(\Delta\) that does not mention
+\(T_w(n)\) --- which is what Amplify and first-defect are, and they
+reach \(0.18\).
