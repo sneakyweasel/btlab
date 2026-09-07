@@ -18,7 +18,7 @@ const PAPERS = [
     letter: "A",
     href: `${import.meta.env.BASE_URL}papers/juggler_finite_dynamics_note.pdf`,
     title: "Cycles",
-    hint: "Finance, run-suffix law, walk charge. Period lower bounds, not a halt theorem.",
+    hint: "Finance, run-suffix law, gap transfer, walk charge. Period lower bounds, not a halt theorem.",
   },
   {
     letter: "B",
@@ -143,7 +143,8 @@ export function HomePage() {
           Use the tour if the itineraries are new. Use the playground to try the
           trajectory of 173, a cycle word, a CycleMin survivor, a run-suffix
           crossing, a short O/E itinerary, a one-step preimage, a necklace
-          rotation, or a finance length from the shipped table.
+          rotation, a finance length from the shipped table, or the
+          gap-transfer / Rhin plane.
         </p>
         <p>This site is a glossary, not the laboratory Streamlit app.</p>
       </section>

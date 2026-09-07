@@ -94,8 +94,11 @@ import {
   RHIN_COEFF,
   RHIN_SHIFT,
   SURVIVOR_EXPONENTS,
+  RHIN_POWER,
   gapHolds,
+  namedSurvivorPoints,
   rhinForcedLength,
+  rhinLambdaLower,
   rhinMinLength,
   shortExcluded,
 } from "./gapTransfer";
@@ -904,6 +907,23 @@ describe("gap transfer / Rhin", () => {
     for (const row of SURVIVOR_EXPONENTS) {
       const measured = Math.log(row.L) / Math.log(row.nMax);
       expect(Math.abs(measured - row.exponent)).toBeLessThan(1e-3);
+    }
+  });
+
+  it("packages Rhin's linear-form lower bound as printed", () => {
+    const height = 10;
+    const sdw = Math.exp(-RHIN_A * (RHIN_SHIFT + Math.log(height)));
+    const printed = Math.exp(-RHIN_C) * height ** -RHIN_A;
+    expect(rhinLambdaLower(height)).toBe(sdw);
+    expect(Math.abs(sdw / printed - 1)).toBeLessThan(5e-5);
+  });
+
+  it("plots the named survivors in the long regime", () => {
+    const lengths = namedSurvivorPoints().map((row) => row.L);
+    expect(lengths).toEqual([25781, 50508, 176251, 478245, 780239]);
+    for (const row of namedSurvivorPoints()) {
+      expect(shortExcluded(MAIN_FLOOR, row.L)).toBe(false);
+      expect(row.L ** RHIN_POWER).toBeGreaterThan((MAIN_FLOOR * Math.log(MAIN_FLOOR)) / RHIN_COEFF);
     }
   });
 });

@@ -9,6 +9,7 @@ export type TourSlug =
   | "oe-fiber"
   | "descent-floor"
   | "finance"
+  | "gap-transfer"
   | "walk-charge";
 
 export type TourChapter = {
@@ -125,8 +126,19 @@ export const TOUR_CHAPTERS: TourChapter[] = [
       "§4: the excursion necklace, Lemmas 4.1–4.3, Theorem 4.4 (finance, cycleMin_finance), Corollary 4.4c, Corollary 4.5, Theorem 4.6 (the 10⁶ table, 141 survivors), Theorems 4.7–4.8 (run packing), Proposition 4.9 (survivor lattice).",
   },
   {
-    slug: "walk-charge",
+    slug: "gap-transfer",
     number: 11,
+    term: "Gap transfer",
+    blurb:
+      "The surplus is a linear form; Rhin kills only the short ones. The floors already do more.",
+    body:
+      "The linear form. Rotate a hypothetical cycle to its minimum n. Finance bounds the surplus θ = 1 − 2^L/3^o by L/(n log n). The same surplus is the linear form Λ = o log 3 − L log 2 = −log(1−θ). The only new inequality is log 1/(1−θ) ≤ θ/(1−θ), and it turns the finance bound into n log n · min(Λ, 1) ≤ 2L. That is Theorem 4.10, Lean name cycleMin_gap_transfer. A contracting pair is not a cycle; the inequality is then free.\n\nThe plane. Rhin’s 1987 measure puts a classical lower bound under Λ. Fed through the transfer, every pair with L^{14.3} ≤ n log n / 915 is short — excluded for every n ≥ 2. The complementary long regime is the open problem. The named finance survivors and fan members sit at L ≈ n^{0.59}, far above the frontier. Clicking a survivor marks it in the long regime; Rhin does not kill it.\n\nThe comparison. At the printed floor N₀ = 3.5·10^8 the Rhin reduction forces only L ≥ 4; Corollary 5.11 already has L ≥ 780239. The same gap holds at every certified floor. Corollary 4.11 is a floor-free reduction, weaker than the table, and does not kill the long survivors. Baker/Rhin as a leftover killer stays closed. The CycleMin checker stays on Theorem 3.22.",
+    paper:
+      "Theorem 4.10 (cycleMin_gap_transfer, GapTransfer.lean). Corollary 4.11: Rhin 1987 as hypothesis. The no-cycle problem is the exclusion of the long regime.",
+  },
+  {
+    slug: "walk-charge",
+    number: 12,
     term: "Walk charge",
     blurb: "Section 5 carries the same floor crumbs to one common currency, then prices the worst itinerary.",
     body:

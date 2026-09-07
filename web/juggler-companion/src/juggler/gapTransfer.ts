@@ -4,6 +4,7 @@
  * in cycle_gap_baker.py (Paper A Theorem 4.10, Corollary 4.11).
  */
 
+import fanData from "../data/fan.json";
 import {
   LAB_FLOOR,
   LAB_PARITY_PERIOD,
@@ -18,6 +19,10 @@ import {
 import { resolveLedger, shippedNMax } from "./finance";
 import { oMinForLength } from "./itinerary";
 import { oMinExact } from "./necklace";
+
+type FanRow = { k: number; L: number; o: number; lam: number; nmax: number };
+
+const NAMED_PLANE_LENGTHS = [25781, 50508, 176251, 478245, 780239] as const;
 
 export const RHIN_A = 13.3;
 export const RHIN_SHIFT = 0.46057;
@@ -85,10 +90,10 @@ export function gapHolds(n: number, length: number, odds: number): boolean {
   return n * Math.log(n) * Math.min(lam, 1) <= 2 * length;
 }
 
-/** Λ > e^{-6.1256} L^{-13.3} (SdW Lemma 12, height L). */
+/** Λ > e^{-6.1256} L^{-13.3} = exp(−13.3 (0.46057 + log L)). */
 export function rhinLambdaLower(length: number): number {
-  if (length < 1) return Math.POSITIVE_INFINITY;
-  const exponent = -RHIN_C * (RHIN_SHIFT + Math.log(length));
+  if (length < 1) return Number.POSITIVE_INFINITY;
+  const exponent = -RHIN_A * (RHIN_SHIFT + Math.log(length));
   if (exponent < -700) return 0;
   return Math.exp(exponent);
 }
@@ -149,19 +154,22 @@ export type PlanePoint = {
   label: string;
 };
 
-export function namedSurvivorPoints(): PlanePoint[] {
-  return SURVIVOR_EXPONENTS.map((row) => ({
-    L: row.L,
-    nMax: row.nMax,
-    label: `L = ${row.L.toLocaleString("en-US")}`,
-  }));
-}
-
 export function nMaxForLength(length: number): number | null {
   const shipped = shippedNMax(length);
   if (shipped !== null) return shipped;
   const named = SURVIVOR_EXPONENTS.find((row) => row.L === length);
-  return named?.nMax ?? null;
+  if (named) return named.nMax;
+  const fan = (fanData as FanRow[]).find((row) => row.L === length);
+  return fan?.nmax ?? null;
+}
+
+export function namedSurvivorPoints(): PlanePoint[] {
+  return NAMED_PLANE_LENGTHS.flatMap((length) => {
+    const nMax = nMaxForLength(length);
+    return nMax === null
+      ? []
+      : [{ L: length, nMax, label: `L = ${length.toLocaleString("en-US")}` }];
+  });
 }
 
 export type GapTransferView = {

@@ -10,6 +10,7 @@ import {
   ExpandingWidget,
   FinanceWidget,
   FloorWidget,
+  GapTransferWidget,
   MapWidget,
   RunSuffixWidget,
   WalkChargeWidget,
@@ -32,6 +33,7 @@ const SHORT_TERM: Record<TourSlug, string> = {
   "oe-fiber": "OE fiber",
   "descent-floor": "Floor",
   finance: "Finance",
+  "gap-transfer": "Gap",
   "walk-charge": "Walk",
 };
 
@@ -46,6 +48,7 @@ const WIDGETS: Record<TourSlug, () => JSX.Element> = {
   "oe-fiber": OeFiberWidget,
   "descent-floor": FloorWidget,
   finance: FinanceWidget,
+  "gap-transfer": GapTransferWidget,
   "walk-charge": WalkChargeWidget,
 };
 
@@ -71,6 +74,9 @@ export function TourPage() {
   }
   if (slug === "suffix") {
     return <Navigate to="/tour/run-suffix" replace />;
+  }
+  if (slug === "rhin") {
+    return <Navigate to="/tour/gap-transfer" replace />;
   }
   const chapter = chapterBySlug(slug);
   if (!chapter) {

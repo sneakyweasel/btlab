@@ -162,9 +162,9 @@ export function GapTransferExplorer({ compact = false }: GapTransferExplorerProp
             hint="the factor Theorem 4.10 carries"
           />
           <Metric
-            label="gap transfer"
-            value={view.holds ? "holds" : "fails"}
-            hint="n log n · min(Λ, 1) ≤ 2L"
+            label="formally expanding"
+            value={view.expanding ? "yes" : "no"}
+            hint={view.holds ? "n log n · min(Λ, 1) ≤ 2L holds" : "the transfer fails — not a cycle minimum"}
           />
         </div>
         <p className="text-sm text-muted">
@@ -208,7 +208,14 @@ export function GapTransferExplorer({ compact = false }: GapTransferExplorerProp
             />
           </label>
         </div>
-        <GapPlane view={view} compact={compact} />
+        <GapPlane
+          view={view}
+          compact={compact}
+          onSelectPoint={(point) => {
+            setGapL(point.L);
+            setGapO(null);
+          }}
+        />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Metric
             label="Rhin lower bound on L"

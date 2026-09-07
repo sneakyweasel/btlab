@@ -2,6 +2,7 @@ import { MAIN_FLOOR } from "../juggler/constants";
 import { formatGrouped } from "../juggler/format";
 import {
   type GapTransferView,
+  type PlanePoint,
   namedSurvivorPoints,
   rhinMinLength,
 } from "../juggler/gapTransfer";
@@ -39,13 +40,14 @@ function finiteTicks(lo: number, hi: number, stride: number): number[] {
 type GapPlaneProps = {
   view: GapTransferView;
   compact?: boolean;
+  onSelectPoint?: (point: PlanePoint) => void;
 };
 
 /**
  * Corollary 4.11 as a plane. Below the Rhin frontier the pair is short
  * and excluded for every n ≥ 2. Finance survivors sit far above it.
  */
-export function GapPlane({ view, compact = false }: GapPlaneProps) {
+export function GapPlane({ view, compact = false, onSelectPoint }: GapPlaneProps) {
   const height = compact ? 250 : 310;
   const top = 28;
   const bottom = compact ? 196 : 246;
@@ -142,9 +144,21 @@ export function GapPlane({ view, compact = false }: GapPlaneProps) {
         {points.map((row) => {
           const cx = xOf(Math.log10(row.nMax));
           const cy = yOf(Math.log10(row.L));
+          const selected = row.L === view.L;
           return (
             <g key={row.L}>
-              <circle cx={cx} cy={cy} r="4.5" fill={ODD} stroke="#fffdf7" strokeWidth="1.4" />
+              <circle
+                cx={cx}
+                cy={cy}
+                r={selected ? 6 : 4.5}
+                fill={ODD}
+                stroke={selected ? INK : "#fffdf7"}
+                strokeWidth={selected ? 1.8 : 1.4}
+                style={{ cursor: onSelectPoint ? "pointer" : undefined }}
+                onClick={onSelectPoint ? () => onSelectPoint(row) : undefined}
+              >
+                <title>{`${row.label} at n_max — long regime`}</title>
+              </circle>
             </g>
           );
         })}
@@ -152,7 +166,7 @@ export function GapPlane({ view, compact = false }: GapPlaneProps) {
         <circle cx={xNow} cy={yNow} r="6" fill="#fffdf7" stroke={INK} strokeWidth="1.8" />
 
         <text x={LEFT + 8} y={top + 14} fill={EVEN} fontSize="11" fontFamily="Source Sans 3, sans-serif">
-          Rhin frontier L = (n log n / 915)^{1/14.3}
+          {"Rhin frontier L = (n log n / 915)^{1/14.3}"}
         </text>
         <text x={LEFT + 8} y={top + 28} fill={OK} fontSize="11" fontFamily="Source Sans 3, sans-serif">
           below: short, excluded for every n ≥ 2
