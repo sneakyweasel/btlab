@@ -10,7 +10,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "above_anchor_walk",
@@ -26,7 +28,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-above-anchor-hug-domination"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "accelerated",
@@ -38,7 +42,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "adversarial_paths",
@@ -50,7 +56,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "amplify_surplus",
@@ -62,7 +70,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "anchor_cylinders",
@@ -74,7 +84,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "backward_geometry",
@@ -88,7 +100,9 @@
       ],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "block_map_q",
@@ -103,7 +117,9 @@
       "ledger_ids": [
         "J-block-map-q-trajectories",
         "J-block-map-q-state"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "bracket_nil_lift",
@@ -117,7 +133,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-tower-heisenberg-coordinate"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "bunched_last_cluster",
@@ -137,7 +155,9 @@
         "J-three-even-eeoe",
         "J-three-even-eoeoe",
         "J-three-even-eooeoe"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "bunched_short",
@@ -151,7 +171,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-cyclemin-bunched-short-path"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "bunched_short_defect",
@@ -166,7 +188,9 @@
       "ledger_ids": [
         "J-cyclemin-short-ee-compose",
         "J-cyclemin-short-defect-obstruction"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "bunched_short_front",
@@ -182,7 +206,9 @@
         "J-cyclemin-short-reroot",
         "J-cyclemin-short-31-exponent",
         "J-cyclemin-short-front-census"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "bunched_short_return",
@@ -198,7 +224,9 @@
         "J-cyclemin-short-even-not-square",
         "J-cyclemin-short-odd-square-preimage",
         "J-cyclemin-short-return-census"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "capture_certificates",
@@ -210,7 +238,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cell_hut",
@@ -224,7 +254,9 @@
       ],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "certificate_harvest",
@@ -236,7 +268,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "certificate_transitions",
@@ -248,7 +282,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "collapse_normalization",
@@ -260,7 +296,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "compensated_contraction",
@@ -272,7 +310,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "corridor",
@@ -288,7 +328,9 @@
         "juggler_cycle_entry_corridor"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cube_crossing",
@@ -300,7 +342,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cube_not_square",
@@ -315,7 +359,9 @@
       "ledger_ids": [
         "J-cube-not-square-split",
         "J-cube-even-is-progress"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cube_odd_return",
@@ -330,7 +376,9 @@
       "ledger_ids": [
         "J-cube-odd-even-reset",
         "J-cube-odd-even-below-square"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cumulative_floor_loss",
@@ -342,7 +390,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_affine_n_gap",
@@ -356,7 +406,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-affine-n-gap-escapes-dominance"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_almost_search",
@@ -370,7 +422,9 @@
         "juggler_cycle_almost_search"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_arith",
@@ -382,7 +436,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_block_potential",
@@ -396,7 +452,9 @@
         "juggler_cycle_block_potential"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_block_transfer",
@@ -410,7 +468,9 @@
         "juggler_cycle_block_transfer"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_budget_opt",
@@ -425,7 +485,9 @@
       "ledger_ids": [
         "J-cycle-budget-opt-finance",
         "J-cycle-budget-opt-instance"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_ceiling_finance",
@@ -440,7 +502,9 @@
       "ledger_ids": [
         "J-cycle-ceiling-landing",
         "J-ceiling-finance-leftover-killer"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_christoffel",
@@ -454,7 +518,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-christoffel-one-parameter"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_closure",
@@ -466,7 +532,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_cluster_amplify",
@@ -480,7 +548,9 @@
         "juggler_cycle_cluster_amplify"
       ],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_conditioned_closure",
@@ -492,7 +562,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_cyclic_seam",
@@ -506,7 +578,9 @@
         "juggler_cycle_cyclic_seam"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_cyclic_valley",
@@ -520,7 +594,9 @@
         "juggler_cycle_cyclic_valley"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_defect_anticluster",
@@ -534,7 +610,9 @@
         "juggler_cycle_defect_anticluster"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_defect_congruence",
@@ -548,7 +626,9 @@
         "juggler_cycle_defect_congruence"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_defect_correlation",
@@ -560,7 +640,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_descent_next_run",
@@ -574,7 +656,9 @@
         "juggler_cycle_descent_next_run"
       ],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_diophantine",
@@ -588,7 +672,9 @@
       ],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_e_block",
@@ -602,7 +688,9 @@
         "juggler_cycle_e_block"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_e_term",
@@ -614,7 +702,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_e_threshold",
@@ -626,7 +716,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_entry_corridor",
@@ -642,7 +734,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cyclemin-last-odd-run"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_entry_excursion",
@@ -656,7 +750,9 @@
         "juggler_cycle_entry_excursion"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_equal_valleys",
@@ -671,7 +767,9 @@
       "ledger_ids": [
         "J-cycle-unique-minimum-visit",
         "J-equal-valleys-leftover-killer"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_error_transport",
@@ -685,7 +783,9 @@
         "juggler_cycle_error_transport"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_exponent_budget",
@@ -699,7 +799,9 @@
         "juggler_cycle_exponent_budget"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_extrema",
@@ -716,7 +818,9 @@
       "ledger_ids": [
         "J-cycle-finite-structure",
         "J-cyclemax-succ-sq"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_extremal_composition",
@@ -728,7 +832,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_extremizer_discrepancy",
@@ -742,7 +848,9 @@
         "juggler_cycle_extremizer_discrepancy"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_fan_multipoint",
@@ -754,7 +862,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_finance",
@@ -792,7 +902,9 @@
         "J-residual-floor-two-hundred-sixty-one",
         "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five",
         "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_finance_cell_bridge",
@@ -806,7 +918,9 @@
         "juggler_cycle_finance_cell_bridge"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_first_collision",
@@ -820,7 +934,9 @@
         "juggler_cycle_first_collision"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_fourier",
@@ -832,7 +948,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_gap_baker",
@@ -844,7 +962,15 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [
+        "baker",
+        "paper a x b merge",
+        "paper a×b merge",
+        "sdw",
+        "simons-de weger"
+      ],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_inhomogeneous_log",
@@ -858,7 +984,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cyclemin-inhomogeneous-log"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_internal_e",
@@ -870,7 +998,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_inverse_width",
@@ -884,7 +1014,9 @@
         "juggler_cycle_inverse_width"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_itinerary",
@@ -896,7 +1028,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_itinerary_functional",
@@ -908,7 +1042,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_itinerary_order",
@@ -922,7 +1058,9 @@
         "juggler_cycle_word_order"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_l84_residual_floor",
@@ -934,7 +1072,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Parked, not killed"
     },
     {
       "id": "cycle_length_eight",
@@ -948,7 +1088,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-small-cycle-census-eight"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_length_nine",
@@ -963,7 +1105,9 @@
       "ledger_ids": [
         "J-cycle-trailing-evens",
         "J-leftover-ooooooeee"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_length_seven",
@@ -978,7 +1122,9 @@
       "ledger_ids": [
         "J-leftover-length-seven-orientations",
         "J-small-cycle-census-seven"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_lift_ancestry",
@@ -992,7 +1138,9 @@
         "juggler_cycle_lift_ancestry"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_loss_persistence",
@@ -1004,7 +1152,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_m_finance",
@@ -1018,7 +1168,9 @@
       ],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_mechanical_lift",
@@ -1030,7 +1182,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_mechanical_window",
@@ -1046,7 +1200,9 @@
         "J-cyclemin-gap-transfer",
         "J-cyclemin-short-cycle-rhin",
         "J-cyclemin-mechanical-window-coin"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_mod_closure",
@@ -1058,7 +1214,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_near_tight",
@@ -1072,7 +1230,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cycle-near-tight-monochrome"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_ooo_scale",
@@ -1086,7 +1246,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cycle-finite-structure"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_ordered_excursion",
@@ -1098,7 +1260,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_padic_coupling",
@@ -1112,7 +1276,9 @@
         "juggler_cycle_padic_coupling"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_peak_count",
@@ -1126,7 +1292,9 @@
         "juggler_cycle_peak_count"
       ],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_peak_descent",
@@ -1138,7 +1306,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_peak_valley_composition",
@@ -1152,7 +1322,9 @@
         "juggler_cycle_peak_valley_composition"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_position_finance",
@@ -1172,7 +1344,9 @@
         "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five",
         "J-cycle-m-finance-no-length-thirty-eight",
         "J-cycle-position-finance"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_prefix_feasibility",
@@ -1184,7 +1358,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_realizable_finance",
@@ -1198,7 +1374,9 @@
         "juggler_cycle_realizable_finance"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_remainder_finance",
@@ -1210,7 +1388,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_rounding",
@@ -1222,7 +1402,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_seam_ancestry",
@@ -1236,7 +1418,9 @@
         "juggler_cycle_seam_ancestry"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_seam_propagate",
@@ -1250,7 +1434,9 @@
         "juggler_cycle_seam_propagate"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_seam_sliding",
@@ -1264,7 +1450,9 @@
         "juggler_cycle_seam_sliding"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_second_valley",
@@ -1279,7 +1467,9 @@
       "ledger_ids": [
         "J-second-valley-landing",
         "J-second-valley-leftover-killer"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_top_excursion",
@@ -1291,7 +1481,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_top_pred",
@@ -1303,7 +1495,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_trajectory_budget",
@@ -1317,7 +1511,9 @@
         "juggler_cycle_trajectory_budget"
       ],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_valley_coupling",
@@ -1329,7 +1525,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_walk_arch",
@@ -1343,7 +1541,12 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cyclemin-walk-arch-kills-blocker"
-      ]
+      ],
+      "aliases": [
+        "dk arch",
+        "dk-arch"
+      ],
+      "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
       "id": "cycle_walk_charge",
@@ -1366,7 +1569,9 @@
         "J-cyclemin-hug-charge-max",
         "J-cyclemin-defect-finance-kill",
         "J-cyclemin-rotation-average"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_competition",
@@ -1380,7 +1585,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-cyclemin-walk-competition-law"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_envelope",
@@ -1395,7 +1602,9 @@
       "ledger_ids": [
         "J-cyclemin-walk-hitting-one",
         "J-cyclemin-walk-crude-envelope"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
       "id": "cycle_walk_exchange",
@@ -1410,7 +1619,9 @@
       "ledger_ids": [
         "J-cyclemin-walk-hug-exchange",
         "J-cyclemin-walk-cstar"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
       "id": "cycle_walk_excursion",
@@ -1422,7 +1633,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_fan_growth",
@@ -1436,7 +1649,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-cyclemin-walk-fan-growth"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_fan_minimum",
@@ -1450,7 +1665,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-cyclemin-walk-fan-minimum"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_fan_successor",
@@ -1462,7 +1679,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_walk_greedy",
@@ -1474,7 +1693,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_koksma",
@@ -1488,7 +1709,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cyclemin-walk-koksma-one-over-L"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
       "id": "cycle_walk_mechanical",
@@ -1500,7 +1723,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
       "id": "cycle_walk_ostrowski",
@@ -1515,7 +1740,9 @@
       "ledger_ids": [
         "J-cyclemin-walk-dk-envelope",
         "J-cyclemin-walk-ostrowski-arithmetic"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_sharpness",
@@ -1529,7 +1756,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-cyclemin-walk-excess-sharpness"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_window",
@@ -1546,7 +1775,9 @@
         "J-cyclemin-walk-word-identity",
         "J-cyclemin-hug-prefix-bound",
         "J-cyclemin-walk-ostrowski-numeration"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cyclemin_fudge",
@@ -1560,7 +1791,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-cyclemin-fudge"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cyclemin_necklace",
@@ -1574,7 +1807,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cyclemin-necklace"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cyclemin_obstruction",
@@ -1592,7 +1827,9 @@
         "J-ooo-residual-cube",
         "J-cyclemin-transport-oo",
         "J-cyclemin-last-cluster"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cyclemin_tails",
@@ -1607,7 +1844,9 @@
       "ledger_ids": [
         "J-cyclemin-tails",
         "J-cyclemin-slack"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cyclic_feasibility",
@@ -1619,7 +1858,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "decoration_budget",
@@ -1631,7 +1872,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "defect_lower_bound",
@@ -1647,7 +1890,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-first-defect-amplification"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "defect_sharpness",
@@ -1659,7 +1904,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "depth_one_main_term",
@@ -1673,7 +1920,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-depth-one-main-term"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "drift_crossing",
@@ -1685,7 +1934,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "drift_first_passage",
@@ -1697,7 +1948,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "e4_tight_pullback",
@@ -1709,7 +1962,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "effective_tower_height",
@@ -1724,7 +1979,9 @@
       "ledger_ids": [
         "J-tower-absorption",
         "J-effective-tower-height-reset-tolerance"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "empty_odd_preimage",
@@ -1742,7 +1999,9 @@
         "J-odd-pred-empty-cube",
         "J-empty-odd-pe-landings",
         "J-empty-odd-pe-forward"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "envelope_defect",
@@ -1754,7 +2013,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "eoo_cell_mechanism",
@@ -1766,7 +2027,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "equality_language",
@@ -1778,7 +2041,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "equality_rigidity",
@@ -1790,7 +2055,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "escape_episode",
@@ -1805,7 +2072,9 @@
       "ledger_ids": [
         "J-escape-episode-shape",
         "J-escape-episode-dichotomy"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "escape_state",
@@ -1817,7 +2086,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "escaped_even",
@@ -1832,7 +2103,9 @@
       "ledger_ids": [
         "J-ce-escaped-even-oe-preimage",
         "J-escaped-even-always-drops"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "even_count_three",
@@ -1850,7 +2123,9 @@
         "J-even-count-le-three",
         "J-first-even-overshoots",
         "J-cyclemax-succ-sq"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "even_scale_barrier",
@@ -1862,7 +2137,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "exact_floor_impact",
@@ -1874,7 +2151,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "excursion_transfer",
@@ -1886,7 +2165,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "excursions",
@@ -1898,7 +2179,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "expanding_grammar",
@@ -1916,7 +2199,9 @@
         "J-expanding-block-even-bound",
         "J-persistent-implies-expanding",
         "J-expanding-grammar-obstruction"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "expanding_residual_concat",
@@ -1932,7 +2217,9 @@
         "J-exponent-expanding-append",
         "J-minimal-prefix-noncontracting",
         "J-expanding-concat-is-ce"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "expansion_density",
@@ -1946,7 +2233,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-expansion-block-grammar"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "expansion_slack",
@@ -1964,7 +2253,9 @@
         "J-weighted-slack-cocycle",
         "J-four-block-persistent-expanding",
         "J-expansion-slack-uniform-tax"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "extremal_control",
@@ -1976,7 +2267,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "failure_margin",
@@ -1993,7 +2286,9 @@
         "J-tilted-share-telescoping",
         "J-live-count-weight",
         "J-mean-share-form"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "fate_contagion",
@@ -2019,7 +2314,9 @@
         "J-fate-ooeee-production",
         "J-parity-triple-discrepancy-localized",
         "J-tao-free-term-is-live-mass"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "first_collision",
@@ -2034,7 +2331,11 @@
         "juggler_first_collision"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [
+        "collision factorization"
+      ],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "first_e_e4",
@@ -2046,7 +2347,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "first_e_transport",
@@ -2061,7 +2364,9 @@
       "ledger_ids": [
         "J-first-e-transport-ee",
         "J-first-e-transport-eoe"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "first_even_thresholds",
@@ -2073,7 +2378,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "first_internal_oo",
@@ -2088,7 +2395,9 @@
       "ledger_ids": [
         "J-cyclemin-first-oo-r-bound",
         "J-cyclemin-first-oo-surplus"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "first_lift_eighth",
@@ -2102,7 +2411,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-leftover-first-eighth"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "first_ooo_escape",
@@ -2117,7 +2428,9 @@
       "ledger_ids": [
         "J-cyclemin-ooo-second-step-square",
         "J-cyclemin-ooo-inevitable"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "first_return_excursions",
@@ -2129,7 +2442,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "flight_anchor_period",
@@ -2143,7 +2458,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-flight-anchor-period"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "flight_divergent_structure",
@@ -2157,7 +2474,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-flight-divergent-structure"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "flight_envelope",
@@ -2173,7 +2492,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-flight-envelope-transport"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "flight_fan_concat",
@@ -2185,7 +2506,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "flight_fan_landing",
@@ -2197,7 +2520,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Flights"
     },
     {
       "id": "flight_post19_tail",
@@ -2209,7 +2534,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "flight_return_quantization",
@@ -2224,7 +2551,9 @@
       "ledger_ids": [
         "J-flight-return-quantization",
         "J-flight-record-composition"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "flight_walk_divergence",
@@ -2239,7 +2568,9 @@
       "ledger_ids": [
         "J-flight-walk-divergence",
         "J-flight-height-law"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "floor_boundary",
@@ -2251,7 +2582,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "formal_realized_gap",
@@ -2263,7 +2596,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "four_even_short_gap",
@@ -2275,7 +2610,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "front_overshoot",
@@ -2290,7 +2627,9 @@
       "ledger_ids": [
         "J-cyclemin-front-oo-raise",
         "J-cyclemin-front-oo-scan"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "future_quotient",
@@ -2302,7 +2641,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "gapped_cycle_itinerary",
@@ -2317,7 +2658,9 @@
       "ledger_ids": [
         "J-gapped-cycle-itinerary-ee",
         "J-gapped-cycle-itinerary-eoe"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "global_defect",
@@ -2333,7 +2676,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-global-defect-identity"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "growth_balance",
@@ -2347,7 +2692,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-prefix-retention-budget"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "heisenberg_cut",
@@ -2361,7 +2708,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-heisenberg-vertical-riemann"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "horizontal_weyl",
@@ -2377,7 +2726,9 @@
         "J-horizontal-leftover-exponents",
         "J-horizontal-axis-species",
         "J-horizontal-theorem-r-shortcut"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "hug_cylinder_construction",
@@ -2391,7 +2742,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-hug-flow-window-depth-one"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Parked, not killed"
     },
     {
       "id": "hug_flow_depth_two",
@@ -2405,7 +2758,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-hug-flow-image-gap"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Flights"
     },
     {
       "id": "hug_prefix_realization",
@@ -2417,7 +2772,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Flights"
     },
     {
       "id": "information_complexity",
@@ -2429,7 +2786,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "internal_collapse",
@@ -2441,7 +2800,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "isolated_odd_fibre",
@@ -2455,7 +2816,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-cyclemin-iso-odd-fibre"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "isolated_odd_return",
@@ -2469,7 +2832,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-cyclemin-iso-odd-return"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "itinerary_language",
@@ -2483,7 +2848,9 @@
       ],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "k3_rate_free",
@@ -2501,7 +2868,11 @@
         "J-rate-free-density-one",
         "J-rate-free-prop-j-finite",
         "J-rate-free-floor-certificates"
-      ]
+      ],
+      "aliases": [
+        "k3"
+      ],
+      "nk_cluster": null
     },
     {
       "id": "k5_post_l_ooe",
@@ -2516,7 +2887,9 @@
       "ledger_ids": [
         "J-cyclemin-k5-post-l-cube",
         "J-cyclemin-k5-post-l-hierarchy"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "kernel_localize",
@@ -2530,7 +2903,11 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-kernel-localize"
-      ]
+      ],
+      "aliases": [
+        "kernel localize"
+      ],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "kernel_p0_hypotheses",
@@ -2542,7 +2919,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "l_odd_run_cap",
@@ -2557,7 +2936,9 @@
       "ledger_ids": [
         "J-cyclemin-l-odd-run-envelope",
         "J-cyclemin-l-odd-run-envelope-caps"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "lachesis_loglog_clock",
@@ -2592,7 +2973,9 @@
         "J-flight-record-structure",
         "J-clotho-threads-per-thread-contagion",
         "J-free-term-is-fate-blind"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Parked, not killed"
     },
     {
       "id": "lambda0_nil_transfer",
@@ -2606,7 +2989,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-nil-lift-does-not-derandomize"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "landing_image",
@@ -2618,7 +3003,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "landing_parity",
@@ -2635,7 +3022,9 @@
       "ledger_ids": [
         "J-landing-preimage-iff",
         "J-landing-theta-state"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "landing_valuation",
@@ -2652,7 +3041,9 @@
       "ledger_ids": [
         "J-odd-odd-remainder-mod-eight",
         "J-pe-history-valuation"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "leftover_cell_lag",
@@ -2664,7 +3055,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "length11_nonpullback",
@@ -2676,7 +3069,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "length8_bootstrap",
@@ -2688,7 +3083,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "macro_event",
@@ -2700,7 +3097,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "minimal_anchor_closure",
@@ -2717,7 +3116,9 @@
       "ledger_ids": [
         "J-minimal-anchor-leftover-spine",
         "J-minimal-anchor-closure"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "minimal_counterexample",
@@ -2732,7 +3133,9 @@
       ],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "minimal_ooe_corridor",
@@ -2747,7 +3150,9 @@
       "ledger_ids": [
         "J-cyclemin-ooeooe-square-preimage",
         "J-cyclemin-ooeooe-finite-progress"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "minimal_survival",
@@ -2763,7 +3168,9 @@
       ],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "minimum_relative",
@@ -2781,7 +3188,9 @@
         "J-above-anchor",
         "J-no-cycle-no-bounded-nonterm",
         "J-envelope-lt-pow"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "mixed_oe_cell",
@@ -2796,7 +3205,9 @@
       "ledger_ids": [
         "J-mixed-oe-eighth",
         "J-mixed-oe-defect-gap"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "nc_boundary",
@@ -2808,7 +3219,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "near_extremal_prefixes",
@@ -2820,7 +3233,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "near_tight_scale",
@@ -2838,7 +3253,9 @@
         "J-near-tight-scale-bounds",
         "J-ooe-scale-decay",
         "J-approx-equality-rigidity"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "nil_horizontal_weyl",
@@ -2850,7 +3267,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "nil_pet_reentry",
@@ -2864,7 +3283,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-nil-pet-reentry"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "no_progress_paths",
@@ -2876,7 +3297,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "non_escape",
@@ -2891,7 +3314,9 @@
       "ledger_ids": [
         "J-trajectory-cycle-or-escape",
         "J-minimal-ooeooe-escape-trap"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "normalized_defect",
@@ -2907,7 +3332,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-normalized-relative-slack"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "o6eeeoe_gap",
@@ -2921,7 +3348,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-o6eeeoe-gap"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "o7eeee_gap",
@@ -2935,7 +3364,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-o7eeee-gap"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "o7eeee_window",
@@ -2949,7 +3380,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-o7eeee-window"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_chain_minimality",
@@ -2961,7 +3394,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_escape_corridor",
@@ -2973,7 +3408,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_even_reset",
@@ -2985,7 +3422,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_image_discrepancy",
@@ -3000,7 +3439,9 @@
       "ledger_ids": [
         "J-ambient-odd-discrepancy",
         "J-automatic-descent-density"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_inverse_parity",
@@ -3016,7 +3457,9 @@
         "juggler_odd_inverse_parity"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "odd_inverse_width",
@@ -3032,7 +3475,9 @@
         "juggler_odd_inverse_width"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "odd_k5_leak",
@@ -3047,7 +3492,9 @@
       "ledger_ids": [
         "J-cyclemin-odd-k5-y-fourth",
         "J-cyclemin-odd-k5-generic"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_landing_sets",
@@ -3064,7 +3511,9 @@
       "ledger_ids": [
         "J-odd-run-recursive",
         "J-odd-landing-set-structure"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_odd_frontier",
@@ -3076,7 +3525,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_odd_residuals",
@@ -3088,7 +3539,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_ooe_landing",
@@ -3103,7 +3556,9 @@
       "ledger_ids": [
         "J-cyclemin-ooeooe-next-o",
         "J-cyclemin-ooeooe-next-o-always-drop"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_oooe_next",
@@ -3118,7 +3573,9 @@
       "ledger_ids": [
         "J-cyclemin-odd-oooe-next-o",
         "J-cyclemin-odd-oooe-even-q-drops"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_run_financing",
@@ -3130,7 +3587,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_run_itinerary",
@@ -3145,7 +3604,9 @@
       "ledger_ids": [
         "J-odd-run-itinerary-shape",
         "J-odd-run-itinerary-grammar"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_sharp_suffix",
@@ -3157,7 +3618,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_source_return",
@@ -3171,7 +3634,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-two-episode-source-descent"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_u_next_o",
@@ -3186,7 +3651,9 @@
       "ledger_ids": [
         "J-cyclemin-odd-u-v-eleventh",
         "J-cyclemin-odd-u-generic"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "oe_fiber_constant",
@@ -3200,7 +3667,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-fate-fiber-sweep"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "oe_next_oo",
@@ -3215,7 +3684,9 @@
       "ledger_ids": [
         "J-ce-oe-next-oo",
         "J-oe-next-escaped-even"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "oe_rest_average",
@@ -3227,7 +3698,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "oeoee_audit",
@@ -3242,7 +3715,9 @@
       "ledger_ids": [
         "J-fate-log-density",
         "J-fate-oeoee-production"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "one_three_eee_gap",
@@ -3256,7 +3731,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-one-three-eee-gap"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "oneshot_recovery",
@@ -3271,7 +3748,9 @@
       "ledger_ids": [
         "J-cyclemin-oneshot-oe-drop",
         "J-cyclemin-oneshot-reenters"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "oo_descent_density",
@@ -3283,7 +3762,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "ooeooeoo_eighth",
@@ -3297,7 +3778,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-ooeooeoo-eighth-scan"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "overshoot_return",
@@ -3309,7 +3792,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "parity_balance",
@@ -3323,7 +3808,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-shared-parity-balance-gap"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "parity_discrepancy",
@@ -3335,7 +3822,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "parity_discrepancy_transfer",
@@ -3347,7 +3836,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "parity_persist",
@@ -3362,7 +3853,9 @@
       "ledger_ids": [
         "J-cyclemin-l-image-odd-run-five",
         "J-cyclemin-parity-persist-budget"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "pe_preimage_intersection",
@@ -3377,7 +3870,9 @@
       "ledger_ids": [
         "J-pe-preimage-intersection-shape",
         "J-pe-preimage-intersection"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "pe_walk",
@@ -3392,7 +3887,9 @@
       "ledger_ids": [
         "J-pe-walk-shape",
         "J-pe-walk-predictors"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "post_l_ooe",
@@ -3407,7 +3904,9 @@
       "ledger_ids": [
         "J-cyclemin-post-l-ooe-me-drop",
         "J-cyclemin-post-l-ooe-reenters-l"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "post_ooo_crossing",
@@ -3422,7 +3921,9 @@
       "ledger_ids": [
         "J-cyclemin-post-ooo-oooe",
         "J-cyclemin-post-ooo-always-drop"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "post_overshoot",
@@ -3434,7 +3935,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "power_algebra",
@@ -3446,7 +3949,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "power_composition",
@@ -3460,7 +3965,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-power-envelope-contraction"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "prefix_bunched",
@@ -3482,7 +3989,9 @@
         "J-cyclemin-prefix-bunched-eeoe",
         "J-cyclemin-prefix-bunched-eoeoe",
         "J-cyclemin-prefix-bunched-eooeoe"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "prefix_nc_admissibility",
@@ -3494,7 +4003,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "prefix_two_even",
@@ -3511,7 +4022,9 @@
       "ledger_ids": [
         "J-cyclemin-prefix-two-even-ee",
         "J-cyclemin-prefix-two-even-eoe"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "preimage_cylinders",
@@ -3528,7 +4041,9 @@
       "ledger_ids": [
         "J-itinerary-cylinder-exact",
         "J-pe-cylinder-next-landing"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "pressure_direct",
@@ -3542,7 +4057,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-pressure-direct-routes"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "probabilistic",
@@ -3554,7 +4071,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "probabilistic_ld",
@@ -3566,7 +4085,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "progress_coverage",
@@ -3581,7 +4102,9 @@
       "ledger_ids": [
         "J-automatic-descent-density",
         "J-finite-progress-boundary"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "ps_inversion_barrier",
@@ -3593,7 +4116,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "q_return_section",
@@ -3607,7 +4132,9 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-q-return-section-descent"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "realization_geometry",
@@ -3619,7 +4146,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "repeated_block",
@@ -3631,7 +4160,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "repeated_oe",
@@ -3643,7 +4174,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "residual_chain",
@@ -3655,7 +4188,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "residual_minimize",
@@ -3667,7 +4202,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "residual_path",
@@ -3679,7 +4216,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "residual_progress",
@@ -3691,7 +4230,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "residual_state",
@@ -3703,7 +4244,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "saturation_budget",
@@ -3715,7 +4258,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "scale_loop_hidden",
@@ -3730,7 +4275,9 @@
       "ledger_ids": [
         "J-cyclemin-scale-loop-oneshot",
         "J-cyclemin-scale-loop-signature-repeats"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "second_o_lost_sq",
@@ -3745,7 +4292,9 @@
       "ledger_ids": [
         "J-ce-second-o-cube",
         "J-second-o-below-square"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "second_oo_cube",
@@ -3760,7 +4309,9 @@
       "ledger_ids": [
         "J-cyclemin-second-oo-envelope",
         "J-cyclemin-second-oo-scale-acyclic"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "second_post_l_ooe",
@@ -3775,7 +4326,9 @@
       "ledger_ids": [
         "J-cyclemin-second-post-l-ooe-square",
         "J-cyclemin-second-post-l-ooe-oe-drops"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "sequential_mordell",
@@ -3793,7 +4346,9 @@
         "J-odd-remainder-even",
         "J-sequential-defect-oo",
         "J-peak-transports-to-oo"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "source_relative_odd",
@@ -3808,7 +4363,9 @@
       "ledger_ids": [
         "J-source-relative-odd-reset",
         "J-episode-source-descent"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "square_seam",
@@ -3820,7 +4377,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "step5b_p0",
@@ -3832,7 +4391,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "step5b_sublevel",
@@ -3844,7 +4405,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "stopping_prefix",
@@ -3858,7 +4421,9 @@
       ],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "sum_rho",
@@ -3870,7 +4435,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "superquadratic_suffixes",
@@ -3882,7 +4449,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "survival_set",
@@ -3894,7 +4463,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "survivor_phase",
@@ -3906,7 +4477,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
       "id": "tao_reduction",
@@ -3926,7 +4499,9 @@
         "J-tao-pressure-form",
         "J-tao-cylinder-forms-reparameterization",
         "J-tao-free-term-is-live-mass"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "third_residual",
@@ -3941,7 +4516,9 @@
       "ledger_ids": [
         "J-ce-third-residual-preimages",
         "J-third-residual-drop-or-pe"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "transfer_weight_invariant",
@@ -3955,7 +4532,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-transfer-weight-invariant"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "twin_flight",
@@ -3967,7 +4546,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "two_adic_bridge",
@@ -3979,7 +4560,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "two_block_residual",
@@ -3993,7 +4576,9 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-two-block-persistent-expanding"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "two_step_parity",
@@ -4050,7 +4635,9 @@
         "J-length8-remainder-discard",
         "J-depth8-engine-quartet",
         "J-eight-step-descent-density"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "uniform_two_even",
@@ -4065,7 +4652,9 @@
       "ledger_ids": [
         "J-two-even-leftover-ee",
         "J-two-even-leftover-eoe"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "v3_audit",
@@ -4080,7 +4669,9 @@
       "ledger_ids": [
         "J-fate-log-density",
         "J-fate-v3-production"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "v4_audit",
@@ -4095,7 +4686,9 @@
       "ledger_ids": [
         "J-fate-log-density",
         "J-fate-v4-production"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "v5_audit",
@@ -4110,7 +4703,9 @@
       "ledger_ids": [
         "J-fate-log-density",
         "J-fate-v5-production"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "v6_audit",
@@ -4125,7 +4720,9 @@
       "ledger_ids": [
         "J-fate-log-density",
         "J-fate-v6-production"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "v94_hardy_lift",
@@ -4137,7 +4734,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "w5_second_oo",
@@ -4152,7 +4751,9 @@
       "ledger_ids": [
         "J-cyclemin-w5-second-oo-z-fifth",
         "J-cyclemin-w5-second-oo-u-fifth"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "walk_coboundary",
@@ -4164,7 +4765,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
       "id": "bi_resonance_limit",
@@ -4176,7 +4779,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "cycle_arrival_collision",
@@ -4188,7 +4793,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_diophantine_survivors",
@@ -4200,7 +4807,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Diophantine walls"
     },
     {
       "id": "cycle_intersection_taxonomy",
@@ -4214,7 +4823,9 @@
         "juggler_cycle_intersection_taxonomy"
       ],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "cycle_l84_m3",
@@ -4228,7 +4839,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-l84-m-ge-three-floor-261"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
       "id": "cycle_lean_consolidate",
@@ -4240,7 +4853,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "descent_floor",
@@ -4257,7 +4872,9 @@
         "J-cycle-period-fifty-thousand",
         "J-residual-floor-one-hundred-sixty-two-million",
         "J-residual-floor-three-hundred-fifty-million"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "engine_harvest",
@@ -4269,7 +4886,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "finite_dynamics_paper",
@@ -4281,7 +4900,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "flight_dk_pricing",
@@ -4293,7 +4914,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Flights"
     },
     {
       "id": "flight_record_composition",
@@ -4307,7 +4930,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-flight-record-composition"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Flights"
     },
     {
       "id": "flight_valley_composition",
@@ -4319,7 +4944,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Flights"
     },
     {
       "id": "floor_cells",
@@ -4331,7 +4958,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "functional_graph_seam",
@@ -4343,7 +4972,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Collision Factorization and local leftover-killers"
     },
     {
       "id": "harvest_counting",
@@ -4355,7 +4986,11 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [
+        "harvest counting"
+      ],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "layer_architecture",
@@ -4367,7 +5002,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "lean_architecture",
@@ -4379,7 +5016,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "leftover_cycles",
@@ -4391,7 +5030,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "length7_integer_w",
@@ -4403,7 +5044,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "length7_passenger",
@@ -4415,7 +5058,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "length7_remainder",
@@ -4427,7 +5072,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "length7_vdc3",
@@ -4439,7 +5086,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "length7_x3_carry",
@@ -4451,7 +5100,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "length8_remainder",
@@ -4463,7 +5114,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "odd_tower_fragment",
@@ -4475,7 +5128,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Flights"
     },
     {
       "id": "power_words",
@@ -4487,7 +5142,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "pressure_external_average",
@@ -4501,7 +5158,9 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-pressure-external-average"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "rate_free_floor_hardy",
@@ -4513,7 +5172,12 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [
+        "floor hardy",
+        "floor-hardy"
+      ],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "sequence",
@@ -4525,7 +5189,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "three_halves_mod_one",
@@ -4537,7 +5203,11 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [
+        "three-halves"
+      ],
+      "nk_cluster": "Geometric \\(\\{(3/2)^n\\}\\) equidistribution"
     },
     {
       "id": "uniform_thresholds",
@@ -4549,7 +5219,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "v94_rate_free",
@@ -4561,7 +5233,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "CLOSE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Paper B, \\(K_3\\), and harvest counting"
     },
     {
       "id": "w_family_33_32",
@@ -4573,7 +5247,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "word_atlas",
@@ -4585,7 +5261,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PARK",
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "__init__",
@@ -4597,7 +5275,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "adapter",
@@ -4609,7 +5289,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "branch_index",
@@ -4621,7 +5303,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "discovery",
@@ -4633,7 +5317,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "lean_export",
@@ -4645,7 +5331,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "lean_paths",
@@ -4738,7 +5426,9 @@
       ],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "notation_audit",
@@ -4750,7 +5440,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "p0_certificate",
@@ -4764,7 +5456,9 @@
       ],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "paper_a_audit",
@@ -4778,7 +5472,9 @@
       ],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "paper_b_audit",
@@ -4798,7 +5494,9 @@
         "J-depth5-contracting",
         "J-parity-triple-discrepancy-localized",
         "J-parity-paper-b-audit"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "paper_b_constants_sweep",
@@ -4810,7 +5508,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "paper_b_prefix_count",
@@ -4825,7 +5525,9 @@
       "ledger_ids": [
         "J-equidistribution-implies-density-one",
         "J-rate-free-density-one"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "paper_c_audit",
@@ -4839,7 +5541,9 @@
       "decision": null,
       "ledger_ids": [
         "J-paper-c-audit"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "planner",
@@ -4851,7 +5555,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "power_itineraries",
@@ -4863,7 +5569,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "problem",
@@ -4875,7 +5583,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "runner",
@@ -4887,7 +5597,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "scout",
@@ -4899,7 +5611,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "spec",
@@ -4911,7 +5625,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_floor_hard_seeds",
@@ -4923,7 +5639,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_floor_sensitivity",
@@ -4940,7 +5658,9 @@
         "J-cycle-period-fifty-thousand",
         "J-residual-floor-one-hundred-sixty-two-million",
         "J-residual-floor-three-hundred-fifty-million"
-      ]
+      ],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_run_extremum",
@@ -4952,7 +5672,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "cycle_walk_charge_gpu",
@@ -4964,7 +5686,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "even_count_five",
@@ -4976,7 +5700,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "floor_preimages",
@@ -4988,7 +5714,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "hug_realizability",
@@ -5000,7 +5728,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "run_suffix_law",
@@ -5014,7 +5744,9 @@
       ],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "s2_window_costing",
@@ -5026,7 +5758,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "stage2_mode_accounting",
@@ -5038,7 +5772,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "uniform_superquadratic",
@@ -5050,7 +5786,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "walk_kbest",
@@ -5062,7 +5800,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "walk_kbest_gpu",
@@ -5074,7 +5814,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "walk_realizability",
@@ -5086,7 +5828,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "walk_runs",
@@ -5098,7 +5842,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": []
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     }
   ]
 }

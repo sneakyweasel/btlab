@@ -601,6 +601,26 @@ and coefficients \((v_q)_{0<|q|\le J}\) with
 where \(\Delta_J\ge0\) is a trigonometric polynomial of degree \(J\)
 with constant term and coefficients at most \(1/(J+1)\).
 
+*A note on reading the coefficient bound.* Both minima are written with
+a division whose denominator vanishes somewhere in range: the second at
+\(u=0\), which is always summed over, and the first at the shifted mode
+\(u=-B\) when that is an integer. Here they are read with the
+convention \(1/0=+\infty\), so that \(\min\) selects the constant
+branch \(2\) and the bound is the intended one. A formalization cannot
+read them that way --- in Lean \(1/0=0\), which makes \(\min\) select
+\(0\) and turns the display into the false assertion that the
+coefficient vanishes at the one mode where it is largest. The safe
+statement is multiplicative: \(|b_u|\le2\) together with
+\(\pi|u+B|\,|b_u|\le1\), which is the same bound at every other mode
+and correct at these. Lean `window_divided_form_fails_at_singular_mode`
+exhibits the failure, `window_forms_agree` the equivalence off it, and
+`mul_le_one_iff_le_one_div` the underlying step; `le_one_div_zero_iff`
+records the convention itself. The same discipline is why
+`weight_form_of_min_bound` states the window-mass hypotheses over a
+weight rather than a minimum --- after the two Weyl differencings of
+Theorem 5.3 the inner sums have shift-dependent lengths, and a
+fixed-length \(\min\) cannot be applied to them.
+
 *Proof.* Write \(f(t)=e(-B\{t\})\) and
 \(\sigma(t)=\tfrac12-\{t\}\), the sawtooth with jump \(+1\) at the
 integers. The jump of \(f\) at the integers is \(1-e(-B)\), so

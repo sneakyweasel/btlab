@@ -10,15 +10,17 @@ Claim vocabulary lives in `docs/README.md`. Do not invent a parallel scheme.
 
 Two axes. Evidence strength is the ledger tag. Novelty — `KNOWN`, `REPARAMETERIZATION`, `PROJECT-SPECIFIC`, `OPEN` — is prose annotation and never a ledger tag.
 
-Live task: send the rewrite note. Last mathematical theory: cubic Newton
-stratum (not a new-math frontier; not Collatz-first).
+Live publication task is the Juggler programme (Paper A / Paper B).
+The rewrite note remains ready to send. Cubic Newton stratum stays
+STRUCTURAL / parked; not a new-math frontier.
 
-1. `docs/theory/rewrite_calculus_note.md`
-2. `docs/theory/rewrite_calculus_reviewer_packet.md`
-3. `docs/theory/balanced_ternary_calculus.md`
-4. `docs/theory/cubic_newton_stratum.md`
-5. `docs/theory/residual_vs_classical.md`
-6. `docs/theory/theorem_ledger.md`
+1. `docs/theory/juggler_finite_dynamics_note.md`
+2. `docs/theory/juggler_parity_discrepancy_note.md`
+3. `docs/juggler_branch_ledger.md`
+4. `docs/theory/rewrite_calculus_note.md` (ready to send)
+5. `docs/theory/balanced_ternary_calculus.md`
+6. `docs/theory/cubic_newton_stratum.md`
+7. `docs/theory/theorem_ledger.md`
 
 Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger tags; do not write `PROVED`. Do not write “we solved Collatz” or “we solved Juggler”: if a matching `EXACT` statement exists, state the theorem, not the slogan.
 
@@ -27,6 +29,11 @@ Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger 
 `docs/theory/theorem_ledger.md` is generated. Edit the JSON, then render.
 
 `docs/research_journal.md` records work; do not auto-open Milestone *N+1*.
+A journal CLOSE / REFUTED entry names the **index cluster** in one line.
+
+New `REFUTED` ledger rows and CLOSE dossiers must be cited in
+[docs/negative_knowledge.md](docs/negative_knowledge.md)
+(`tests/integration/test_negative_knowledge.py`).
 
 New problems copy `docs/problems/TEMPLATE.md`. Cite `literature/` ids.
 

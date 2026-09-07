@@ -157,6 +157,9 @@ pytest tests/research/juggler_sequence -q
 python -m research.juggler_sequence.<branch>
 python -m research.juggler_sequence.branch_index
 python -m research.juggler_sequence.branch_index --check
+python -m research.juggler_sequence.branch_index show <id>
+python -m research.juggler_sequence.branch_index search <query>
+python -m research.juggler_sequence.branch_index new <id>
 python tools/render_theorem_ledger.py --check
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake env lean Problems/Juggler/<Module>.lean

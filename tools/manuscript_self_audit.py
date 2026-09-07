@@ -1182,6 +1182,79 @@ def depth5_failures() -> list[dict[str, Any]]:
     return bad
 
 
+
+# --- divided bounds in Lean hypotheses -----------------------------------------------------------
+#
+# Scavenged from prove2.me's CircleMethod.aux_sum_min_le, whose formalization note explains why
+# Vaughan's Lemma 2.2 is stated with the hypothesis `2‖kα‖ * g k ≤ 1` and not `g k ≤ 1/(2‖kα‖)`:
+# in Lean `1/0 = 0`, so the divided form is silently *weaker* exactly at the singular mode, which
+# is the mode that matters.  Paper B is full of divided bounds with removable singularities --
+# Lemma 3.7's `min (2, 1/(π|u+B|))` among them -- so the same trap is available here.
+#
+# Every divided-form hypothesis in Paper B's Lean currently divides by a nonzero literal or is
+# guarded by a positivity hypothesis on the same signature.  Nothing enforced that, which is what
+# this does.  The denominator extraction is a heuristic on the source text, not a parse; it errs
+# toward reporting, so a false positive is a prompt to write the multiplicative form rather than a
+# bug in the guard.
+
+PAPER_B_LEAN_MODULES = ("BranchFreeze", "MasterIdentity", "MeanValues", "MonomialSplitting",
+                        "PaperBAssembly", "ThresholdCertificate", "DepthFourFive")
+_LEAN_DECL = re.compile(r"^(?:private )?(?:theorem|lemma) (\w+)(.*?):=", re.S | re.M)
+_LEAN_BINDER = re.compile(r"\((\w+)\s*:\s*([^()]*(?:\([^()]*\)[^()]*)*)\)")
+_DENOM = re.compile(r"/\s*(\([^()]*\)|[0-9]+(?:\.[0-9]+)?|\w+)")
+_LEAN_LITERAL = re.compile(r"^[0-9]+(?:\.[0-9]+)?$")
+
+
+def _denominator_symbols(denominator: str) -> set[str]:
+    return set(re.findall(r"(?<![A-Za-z0-9_])([A-Za-z]\w*)", denominator)) - {"Real", "sqrt"}
+
+
+def divided_denominator_status(denominator: str, guards: str) -> str:
+    """How a denominator is protected: by being a nonzero literal, by a positivity hypothesis,
+    or not at all.  Separated out so the guard's teeth can be exercised directly."""
+    if _LEAN_LITERAL.match(denominator):
+        return "literal" if float(denominator) != 0.0 else "UNGUARDED"
+    symbols = _denominator_symbols(denominator)
+    if not symbols:
+        return "UNGUARDED"
+    for symbol in symbols:
+        e = re.escape(symbol)
+        if (re.search(r"0\s*<\s*" + e + r"(?![A-Za-z0-9_])", guards)
+                or re.search(e + r"\s*(?:" + chr(8800) + r"|!=)\s*0", guards)
+                or re.search(r"0\s*<\s*[0-9]+\s*\*\s*" + e, guards)):
+            continue
+        return "UNGUARDED"
+    return "guarded"
+
+
+def divided_hypotheses() -> list[dict[str, Any]]:
+    """Every hypothesis binder in Paper B's Lean whose body divides, with how it is protected."""
+    out: list[dict[str, Any]] = []
+    for module in PAPER_B_LEAN_MODULES:
+        path = REPO_ROOT / "formal" / "Problems" / "Juggler" / (module + ".lean")
+        if not path.exists():
+            continue
+        src = path.read_text(encoding="utf-8")
+        for decl in _LEAN_DECL.finditer(src):
+            name, signature = decl.group(1), decl.group(2)
+            binders = list(_LEAN_BINDER.finditer(signature))
+            guards = " ".join(b.group(2) for b in binders)
+            for binder in binders:
+                body = " ".join(binder.group(2).split())
+                if "/" not in body:
+                    continue
+                for denominator in _DENOM.findall(body):
+                    d = denominator.strip("() ")
+                    status = divided_denominator_status(d, guards)
+                    out.append({"module": module, "theorem": name, "binder": binder.group(1),
+                                "denominator": d, "status": status, "body": body[:70]})
+    return out
+
+
+def divided_hypothesis_failures() -> list[dict[str, Any]]:
+    return [r for r in divided_hypotheses() if r["status"] == "UNGUARDED"]
+
+
 def failures() -> dict[str, list[Any]]:
     return {"constants": [r for r in constant_audit() if not r["ok"]],
             "shared": [r for r in shared_value_audit() if not r["listed"]],
@@ -1197,7 +1270,8 @@ def failures() -> dict[str, list[Any]]:
             "runlength": runlength_failures(),
             "axioms": axiom_failures(),
             "lean_rows": lean_row_failures(),
-            "depth5_exponent": depth5_failures()}
+            "depth5_exponent": depth5_failures(),
+            "divided_hypotheses": divided_hypothesis_failures()}
 
 
 def main() -> None:

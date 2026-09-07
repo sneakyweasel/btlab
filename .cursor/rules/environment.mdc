@@ -19,22 +19,39 @@ alwaysApply: true
 
 # Registration gates (each forgotten one costs a failing test)
 
-- New Lean module: barrel `formal/Problems/Juggler.lean`; `LAYERS` (and
-  `PAPER_MODULES` if it is a Paper A review object) in
-  `src/research/juggler_sequence/lean_paths.py`; the words `sorry`,
-  `admit`, `axiom` may not appear in a registered file, even in prose.
 - Ledger: edit `docs/theory/theorem_ledger.json` (`indent=1`, UTF-8,
   literal `—`), then `python tools/render_theorem_ledger.py` and
   `--check`. Every `source`/`tests`/`lean` path must exist.
-- Docs: `tests/integration/test_docs_links.py` reads every `](` as a
-  link; keep `[...](...)` math out of prose. Dossiers keep all TEMPLATE
-  headings and one of `PROMOTE | PARK | CLOSE` under `## Decision`.
-  CLOSE dossiers and REFUTED rows must be indexed in
-  `docs/negative_knowledge.md`.
-- Compile a single Lean file with `lake env lean <file>` (≈ 40 s)
-  before `lake build Problems.Juggler`.
+- Docs: `tests/integration/test_docs_links.py` reads every markdown
+  link as a filesystem path; keep bracket-then-paren math out of prose.
+  Dossiers keep all TEMPLATE headings and one of
+  `PROMOTE | PARK | CLOSE` under `## Decision`. CLOSE dossiers and
+  REFUTED rows must be indexed in `docs/negative_knowledge.md`.
 - Juggler reading path and registration: `attacks/juggler/AGENT.md`.
-  Branch index: `attacks/juggler/index.json` (rebuild after a new probe).
+  Branch index: `attacks/juggler/index.json`.
+
+# LaTeX and Python strings
+
+The papers hold thousands of macros that a *non-raw* Python string
+silently corrupts. Any macro starting with `a b f n r t v 0 x` is an
+escape: `"\theta"` is TAB + `heta`, `"\nu"` is NEWLINE + `u`. This is
+Python, not the shell.
+
+1. To change a file containing LaTeX, use the Edit/Write tools.
+2. If a script is needed, write it to a file, then run it. Not
+   `python <<'PY'`, not `python -c`.
+3. If a Python string must carry LaTeX, make it raw: `r"\theta"`.
+4. `test_manuscript_consistency.py::test_no_mangled_latex_escapes`
+   catches tabs. Prefer assertions whose target string fits on one line.
+
+# Lake
+
+`lake build` defaultTargets are `BTCalculus` and `Problems`. Paper
+barrels `Problems.JugglerPaper` / `Problems.JugglerParityPaper` are not
+imported by `Problems.lean`; build them by name after a toolchain
+change. Mathlib names used here: `Nat.eq_sqrt`, `Nat.le_sqrt`,
+`Nat.sqrt_lt`, `Nat.pow_le_pow_iff_left`, `Function.iterate_fixed`,
+`Function.iterate_mul`, `Function.iterate_add_apply`.
 
 # Numerics
 

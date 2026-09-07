@@ -864,3 +864,64 @@ def test_lean_carries_both_balances() -> None:
     assert "theorem oeoe_balance" in src and "= -1/48" in src
     assert "theorem cor64_error_margin" in src
     assert "43/48" in src and "47/48" in src
+
+
+# --- divided bounds, scavenged from prove2.me's Vaughan Lemma 2.2 --------------------------------
+
+
+def test_no_divided_hypothesis_is_unguarded() -> None:
+    rows = M.divided_hypotheses()
+    assert M.divided_hypothesis_failures() == []
+    assert len(rows) >= 20
+    kinds = {r["status"] for r in rows}
+    assert kinds <= {"literal", "guarded"}
+
+
+def test_the_two_symbolic_denominators_are_positivity_guarded() -> None:
+    symbolic = [r for r in M.divided_hypotheses() if r["status"] == "guarded"]
+    assert {r["theorem"] for r in symbolic} == {"run_length_conclusion", "weight_form_of_min_bound"}
+    assert {r["denominator"] for r in symbolic} == {"22 * M", "w"}
+
+
+def test_the_guard_tells_strict_positivity_from_nonnegativity() -> None:
+    """The distinction that matters: 0 <= w still admits w = 0, where 1/w collapses to 0."""
+    for denominator, guards, want in (("22 * M", "0 < M", "guarded"),
+                                      ("22 * M", "x <= y", "UNGUARDED"),
+                                      ("w", "0 < w", "guarded"),
+                                      ("w", "0 <= w", "UNGUARDED"),
+                                      ("w", "w " + chr(8800) + " 0", "guarded"),
+                                      ("2", "", "literal"),
+                                      ("0", "", "UNGUARDED")):
+        assert M.divided_denominator_status(denominator, guards) == want, (denominator, guards)
+
+
+def test_lemma_3_7_display_is_false_at_its_singular_mode() -> None:
+    """What the Lean witness says, restated in Python: 1/0 = 0 makes the min collapse."""
+    assert min(2.0, 0.0) == 0.0                      # what Lean's 1/0 = 0 gives
+    assert not (1.0 <= min(2.0, 0.0))                # the witness coefficient |b| = 1
+    assert 0.0 * 1.0 <= 1.0 and 1.0 <= 2.0           # both branches of the intended bound hold
+
+
+def test_lean_carries_the_divided_bound_discipline() -> None:
+    src = (ROOT / "formal" / "Problems" / "Juggler" / "ThresholdCertificate.lean").read_text(
+        encoding="utf-8")
+    for name in ("le_one_div_zero_iff", "mul_le_one_iff_le_one_div",
+                 "window_divided_form_fails_at_singular_mode", "window_forms_agree",
+                 "weight_form_of_min_bound"):
+        assert "theorem " + name in src, name
+    assert "aux_sum_min_le" in src                   # the source of the discipline, credited
+
+
+def test_the_paper_states_the_convention_and_cites_the_witnesses() -> None:
+    text = M.paper_text()
+    assert "A note on reading the coefficient bound" in text
+    assert "1/0=+" + chr(92) + "infty" in text
+    assert "window_divided_form_fails_at_singular_mode" in text
+    assert "shift-dependent lengths" in text
+
+
+def test_the_barrel_names_the_new_section_and_the_corrected_erratum() -> None:
+    barrel = (ROOT / "formal" / "Problems" / "JugglerParityPaper.lean").read_text(encoding="utf-8")
+    assert "divided-bound discipline of Lemma 3.7" in barrel
+    assert "106 " + chr(8594) + " 170.6" in barrel
+    assert "106 " + chr(8594) + " 171" not in barrel

@@ -13,6 +13,7 @@ Before substantial implementation on a new direction, emit a triage block:
 Mathematical target     one precise question
 Novelty hypothesis      what could possibly be new
 Falsifier               the observation that kills the idea
+Already killed by?      index cluster, or which of the three tests fails; "none" only with a reason
 Existing machinery      what the platform already provides
 Maximum Phase-0 scope   the smallest experiment that answers the target
 Promotion criterion     what would justify PROMOTE
@@ -31,10 +32,20 @@ A theorem does not imply another milestone. A refutation does not imply a rescue
 
 Machinery gravity — new structure, new CLI, new visualization, another edge case, no new mathematical consequence. Stop implementing, name the question, look for a unifying invariant or obstruction, then decide.
 
+A leftover-killer, corridor slogan, or nested-floor rewrite with no new identity is the same stop, not a new branch.
+
 Infrastructure (CLI, visualization, Lean packaging, benchmarks) comes after the theorem survives, not alongside an unvalidated idea. Tiny exploratory visualizations are the exception.
 
 ## Negative knowledge
 
-Search `conjectures/refuted/`, `REFUTED` ledger rows, journal **Refuted ideas**, and dossier **Counterexamples** before re-testing a hypothesis. Record counterexamples permanently; they are results, not failures.
+First home: [docs/negative_knowledge.md](docs/negative_knowledge.md). Then `conjectures/refuted/`, `REFUTED` ledger rows, journal **Refuted ideas**, and dossier **Counterexamples**. Record counterexamples permanently; they are results, not failures.
+
+Three tests:
+
+- Cycle: stronger lower bound on `|3^o-2^L|` than finance, or a constraint on `(L,o)` other than one global pair
+- Termination: a Juggler construction of `e(uw^{3/2})` not in the killed toolkit; nested-floor / two-monomial is exported
+- Local: more than parity + interval; otherwise Collision Factorization
+
+Leftover-killer slogans that do not produce a new identity are `REPARAMETERIZATION` (`CLOSE`).
 
 A branch whose statements are all `KNOWN` or `REPARAMETERIZATION` is a `CLOSE`, however much machinery it produced.

@@ -43,11 +43,16 @@ must be read together.
   anchor `27/128`, with the superseded chain retained beside it
   (`interpolant_step_i_precorrection`, `interpolant_step_ii_precorrection`,
   `interpolant_assembly_precorrection`) because the erratum at Lemma 5.2b lists
-  both ends of `186 → 300`, `0.567 → 0.907` and `106 → 171`.
+  both ends of `186 → 300`, `0.567 → 0.907` and `106 → 170.6`.
 * `ThresholdCertificate` — Appendix A: the binding row of the `P₀` certificate
   (`row_5b_binding`), the raised sublevel threshold (`sublevel_raised_threshold`), and the gap
   error (`gap_error_le_one`, `gap_error_one_attained`,
-  `gap_error_not_halved_by_recentring`).
+  `gap_error_not_halved_by_recentring`),
+  and the divided-bound discipline of Lemma 3.7 (`le_one_div_zero_iff`,
+  `mul_le_one_iff_le_one_div`, `window_divided_form_fails_at_singular_mode`,
+  `window_forms_agree`, `weight_form_of_min_bound`): `1/0 = 0` makes the printed
+  `min (2, 1/(π|u+B|))` false at the mode it is largest at, and the multiplicative
+  form is the same bound everywhere else.
 
 ## What is not here, and cannot be
 

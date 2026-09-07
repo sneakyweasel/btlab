@@ -24,6 +24,7 @@ Written before substantial implementation. See
 - **Target:** one precise question.
 - **Novelty hypothesis:** what could possibly be new.
 - **Falsifier:** the observation that kills the idea.
+- **Already killed by?:** index cluster, or which of the three tests fails; `none` only with a reason.
 - **Existing machinery:** what the platform already provides.
 - **Maximum Phase-0 scope:** the smallest experiment that answers the target.
 - **Promotion criterion:** what would justify PROMOTE.

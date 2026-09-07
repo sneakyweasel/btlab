@@ -52,6 +52,7 @@ Write this block before substantial implementation:
 Mathematical target     one precise question
 Novelty hypothesis      what could possibly be new
 Falsifier               the observation that kills the idea
+Already killed by?      index cluster, or which of the three tests fails; "none" only with a reason
 Existing machinery      what the platform already provides
 Maximum Phase-0 scope   the smallest experiment that answers the target
 Promotion criterion     what would justify PROMOTE
@@ -84,6 +85,9 @@ nontrivial new theorem appears, the natural invariant search is
 exhausted, the remaining work is brute-force taxonomy, or a precise
 obstruction shows the branch is not promising. A closed branch must be
 documented well enough that the project does not rediscover it.
+Leftover-killer slogans, corridor restatements, and nested-floor /
+two-monomial rewrites without a new identity are `REPARAMETERIZATION`
+and therefore `CLOSE`.
 
 Laboratory `CLOSE` does not imply that the mathematical question is
 settled. Engine campaigns additionally carry a **primary close tag**
@@ -118,6 +122,7 @@ branch, ask:
 3. Can the next step be validated or falsified inside a bounded phase?
 4. Does existing machinery materially help?
 5. Would failure produce useful negative knowledge?
+6. Does `Already killed by?` still read `none` after the last phase?
 
 If the answer is mostly no, `PARK` or `CLOSE`.
 
@@ -187,7 +192,7 @@ mathematics.
 
 Failures are kept, not discarded. The lookup is
 [negative_knowledge.md](negative_knowledge.md). Search that page
-before opening a branch. The underlying homes remain:
+first. The underlying homes remain:
 
 - `conjectures/refuted/*.json` — refuted registry entries;
 - `REFUTED` rows in [theory/theorem_ledger.md](theory/theorem_ledger.md);
@@ -197,8 +202,22 @@ before opening a branch. The underlying homes remain:
 - regression tests under `tests/regression/` and the named
   counterexample tests under `tests/unit/`.
 
-Search these before opening a branch. Do not re-test a discarded
-hypothesis unless new mathematics changes the situation.
+Three tests, same wording as `.cursor/rules/methodology.mdc`:
+
+- Cycle: stronger lower bound on \(\lvert 3^o-2^L\rvert\) than finance,
+  or a constraint on \((L,o)\) other than one global pair.
+- Termination: a Juggler construction of \(e(uw^{3/2})\) not in the
+  killed toolkit; nested-floor / two-monomial is exported.
+- Local: more than parity + interval; otherwise Collision Factorization.
+
+Two leftover species: word leftovers \(OOEOO \cup OOOEO \cup OOOO^*\)
+are real expanding prefixes; length leftovers \(25781\), \(176251\),
+\(478245\) are continued-fraction approximations to
+\(\log 2 / \log 3\). Do not treat one as the other.
+
+Leftover-killer slogans that do not produce a new identity are
+`REPARAMETERIZATION` (`CLOSE`). Do not re-test a discarded hypothesis
+unless new mathematics changes the situation.
 
 Standing examples: sample minimization is not exact Myhill–Nerode
 minimization; naive recursive reduction of \(x^3\) fails; \(Q\) admits

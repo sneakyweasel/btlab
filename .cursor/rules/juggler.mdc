@@ -18,8 +18,12 @@ restate the state of the problem here.
 - New Lean module → barrel, `LAYERS` (and `PAPER_MODULES` if Paper A),
   no `sorry` / `admit` / `axiom` even in comments, `lake env lean` first.
 - New probe → `foo.py`, `test_foo.py`, `docs/problems/juggler_foo.md`
-  with `PROMOTE | PARK | CLOSE`, ledger if named, rebuild the index,
+  with `PROMOTE | PARK | CLOSE`, ledger if named (via
+  `.cursor/skills/add-ledger-row/SKILL.md`), rebuild the index,
   CLOSE/REFUTED into `docs/negative_knowledge.md`.
+  Scaffold: `python -m research.juggler_sequence.branch_index new foo`.
+- Phase-0 requires `Already killed by?` (index cluster, or which of
+  the three tests fails; `none` only with a reason).
 - Search [docs/negative_knowledge.md](docs/negative_knowledge.md)
   before reopening. Do not raise \(N_0\). Do not wrap a nested-floor
   bound as a Juggler construction. Finite checks are not a halt theorem.

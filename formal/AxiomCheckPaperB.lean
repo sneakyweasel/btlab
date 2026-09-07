@@ -32,6 +32,7 @@ open Problems.Juggler
 #print axioms interpolant_step_i_precorrection
 #print axioms interpolant_step_ii_constant
 #print axioms interpolant_step_ii_precorrection
+#print axioms le_one_div_zero_iff
 #print axioms lemma43_closed_form
 #print axioms lemma43_nonneg
 #print axioms lemma43_remainder_of_sqrt
@@ -43,6 +44,7 @@ open Problems.Juggler
 #print axioms lemma51_i_nonneg
 #print axioms lemma51_i_upper
 #print axioms lemma51_master
+#print axioms mul_le_one_iff_le_one_div
 #print axioms mvt_cube_explicit
 #print axioms mvt_sqrt_diff_explicit
 #print axioms offset_abs_le_three
@@ -62,3 +64,6 @@ open Problems.Juggler
 #print axioms step5b_uniform_saturates
 #print axioms step5b_vector_transfer
 #print axioms sublevel_raised_threshold
+#print axioms weight_form_of_min_bound
+#print axioms window_divided_form_fails_at_singular_mode
+#print axioms window_forms_agree

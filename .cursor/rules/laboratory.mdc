@@ -35,7 +35,7 @@ phrases are overclaim. Weaker compiled lemmas do not unlock them.
 
 Those seven are the whole ledger vocabulary. Do not write `PROVED` or `VERIFIED COMPUTATIONALLY`. `KNOWN` / `PROJECT-SPECIFIC` / `OPEN` are novelty annotations for prose, not tags.
 
-Do not auto-open a numbered milestone. Journal entries may be consolidations. Every branch ends in `PROMOTE` | `PARK` | `CLOSE` — see `.cursor/rules/methodology.mdc` and `docs/methodology.md`.
+Do not auto-open a numbered milestone. Journal entries may be consolidations. Every branch ends in `PROMOTE` | `PARK` | `CLOSE` — see `.cursor/rules/methodology.mdc` and `docs/methodology.md`. When adding a `REFUTED` ledger row or CLOSE dossier, cite it in `docs/negative_knowledge.md`.
 
 ## Ledger and gates
 

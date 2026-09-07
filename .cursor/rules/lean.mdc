@@ -16,3 +16,4 @@ The project contains no `sorry` or `admit`. If a proof is not short, leave the l
 - Retag to Lean verified only when the Lean statement covers the English statement.
 - If that covering statement is a halt or no-nontrivial-cycle theorem, name it. Do not keep the anti-overclaim disclaimer on a matching theorem.
 - Build from `formal/` with `lake build` (add `$env:USERPROFILE\.elan\bin` on Windows if needed).
+- Before adding a declaration, read `.cursor/skills/add-lean-theorem/SKILL.md` and run `python tools/formalpedia.py search`.

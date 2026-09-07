@@ -45518,6 +45518,56 @@
       "trust": "kernel"
     },
     {
+      "doc": "The trap in one line: at the singular mode a divided bound does not bound `x`, it kills it.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 528,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "le_one_div_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Away from the singular mode the multiplicative and divided forms are the same bound.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 531,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "mul_le_one_iff_le_one_div",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Lemma 3.7's display is false at its own singular mode.** With `\u03c0|u+B| = 0` the printed `min` collapses to `0`, so read literally the display asserts that the coefficient vanishes at the one mode where it is largest. Witness: a coefficient of modulus `1` meets both branches of the intended bound and violates the printed one.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 538,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "window_divided_form_fails_at_singular_mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**And is the same bound everywhere else.** Off the singular mode the multiplicative pair is exactly the printed `min`, so nothing is lost by stating Lemma 3.7 the safe way.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 544,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "window_forms_agree",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Weight form.** `CircleMethod.aux_sum_min_le` abstracts Vaughan's Lemma 2.2 over an arbitrary weight rather than over the `min`, because after Weyl differencing the inner sums have shift-dependent lengths and a fixed-length statement cannot be applied to them. Paper B differences twice (`H\u2081 = P^(1/48)`, `H\u2082 = P^(1/24)`), so its window sums want the same abstraction: a `min`-bounded weight satisfies the three hypotheses that form takes, the third multiplicative for the reason above.",
+      "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 554,
+      "module": "Problems.Juggler.ThresholdCertificate",
+      "name": "weight_form_of_min_bound",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/TiltedShare.lean",
       "kind": "theorem",
@@ -65213,7 +65263,7 @@
       ]
     },
     "Problems.Juggler.ThresholdCertificate": {
-      "declarations": 41,
+      "declarations": 46,
       "file": "formal/Problems/Juggler/ThresholdCertificate.lean",
       "imports": [],
       "ledger": []
@@ -65555,13 +65605,13 @@
     }
   },
   "totals": {
-    "declarations": 4655,
+    "declarations": 4660,
     "declarations_with_a_ledger_row": 3178,
     "ledger_rows_naming_a_file": 328,
     "modules": 193,
     "trust": {
       "compiler": 55,
-      "kernel": 4600
+      "kernel": 4605
     }
   }
 }
