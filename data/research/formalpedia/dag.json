@@ -1769,6 +1769,18 @@
         "kernel": 108
       }
     },
+    "Problems.Juggler.TowerAbsorption": {
+      "declarations": 5,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/TowerAbsorption.lean",
+      "ledger": [
+        "J-tower-absorption"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 5
+      }
+    },
     "Problems.Juggler.WalkChargeItineraries": {
       "declarations": 31,
       "depends_on": [
@@ -1927,7 +1939,7 @@
   "totals": {
     "edges": 126,
     "edges_before_reduction": 979,
-    "ledger_rows_placed": 324,
-    "nodes": 117
+    "ledger_rows_placed": 325,
+    "nodes": 118
   }
 }

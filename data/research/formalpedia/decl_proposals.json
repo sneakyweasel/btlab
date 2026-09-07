@@ -1,5 +1,5 @@
 {
-  "composite": 26,
+  "composite": 27,
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
     {
@@ -1333,61 +1333,20 @@
     {
       "candidates": [
         {
-          "decl": "deficitTwo_n2_mod",
-          "line": 60,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deficitTwo_n1_mod",
-          "line": 74,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deficitTwo_n1_iff",
-          "line": 84,
-          "score": 0.2,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "deficitTwoN2",
-          "line": 18,
-          "score": 0.0
-        },
-        {
-          "decl": "deficitTwoN1",
-          "line": 21,
-          "score": 0.0
-        }
-      ],
-      "id": "BTA-x3-vis",
-      "in_file": 12,
-      "lean": "BTCalculus/CubicDeficitTwo.lean",
-      "names_own": [],
-      "statement": "at m=k-1-r, N2 equality iff p\u2261q (mod 3^r) whenever r+1\u2264k"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "depthDeficit_n2_visibility",
-          "line": 24,
-          "score": 0.0,
-          "trust": "kernel"
-        },
-        {
           "decl": "depthDeficit_zero_N2",
-          "line": 32,
+          "line": 34,
           "score": 0.0,
           "trust": "kernel"
         },
         {
           "decl": "depthDeficit_one_N2",
-          "line": 38,
+          "line": 41,
+          "score": 0.0,
+          "trust": "kernel"
+        },
+        {
+          "decl": "depthDeficit_two_N2_visibility",
+          "line": 49,
           "score": 0.0,
           "trust": "kernel"
         }
@@ -1407,51 +1366,10 @@
         }
       ],
       "id": "BTA-x3-def2-N",
-      "in_file": 12,
+      "in_file": 10,
       "lean": "BTCalculus/CubicDeficitTwo.lean",
       "names_own": [],
       "statement": "m=k-3: N3=0 (k\u22655), N2\u22612\u00b73^{k-2}p (k\u22655), N1\u22613p^2+3^{k-2}p (k\u22656)"
-    },
-    {
-      "candidates": [
-        {
-          "decl": "deficitTwo_n2_mod",
-          "line": 60,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deficitTwo_n1_mod",
-          "line": 74,
-          "score": 0.2,
-          "trust": "kernel"
-        },
-        {
-          "decl": "deficitTwo_n1_iff",
-          "line": 84,
-          "score": 0.2,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "deficitTwoN2",
-          "line": 18,
-          "score": 0.0
-        },
-        {
-          "decl": "deficitTwoN1",
-          "line": 21,
-          "score": 0.0
-        }
-      ],
-      "id": "BTA-x3-def2-crit",
-      "in_file": 12,
-      "lean": "BTCalculus/CubicDeficitTwo.lean",
-      "names_own": [],
-      "statement": "m=k-3 fibres iff p\u2261q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees"
     },
     {
       "candidates": [
@@ -4599,8 +4517,43 @@
         "even_chain_mem_burst"
       ],
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
+    },
+    {
+      "candidates": [
+        {
+          "decl": "floorPower_odd_even_run",
+          "line": 48,
+          "score": 0.208,
+          "trust": "kernel"
+        },
+        {
+          "decl": "floorPower_iter_of_even",
+          "line": 35,
+          "score": 0.191,
+          "trust": "kernel"
+        },
+        {
+          "decl": "floorPower_odd_even_run_eq_iff",
+          "line": 55,
+          "score": 0.17,
+          "trust": "kernel"
+        }
+      ],
+      "composite": true,
+      "confidence": "low",
+      "definitions": [],
+      "id": "J-tower-absorption",
+      "in_file": 5,
+      "lean": "Problems/Juggler/TowerAbsorption.lean",
+      "names_own": [
+        "sqrt_iter_eq_iff",
+        "floorPower_iter_of_even",
+        "floorPower_odd_even_run",
+        "floorPower_odd_even_run_eq_iff"
+      ],
+      "statement": "Even steps never deepen the Juggler floor tower. For every j, Nat.sqrt^[j] x = s iff s^(2^j) <= x < (s+1)^(2^j) (sqrt_iter_eq_iff); on an even run floorPower is iterated Nat.sqrt (floorPower_iter_of_even); an odd step followed by j even steps equals Nat.sqrt^[j+1] (n^3), i.e. floor(n^(3/2^(j+1))) with one floor and no nesting (floorPower_odd_even_run, floorPower_odd_even_run_eq_iff); the OE fiber "
     }
   ],
-  "unresolved": 116,
+  "unresolved": 115,
   "worth_reviewing": 19
 }

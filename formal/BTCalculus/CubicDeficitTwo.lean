@@ -21,6 +21,7 @@ def deficitTwoN2 (k : Nat) (p : Int) : Int :=
 def deficitTwoN1 (p : Int) (k : Nat) : Int :=
   3 * p ^ 2 + (3 : Int) ^ (k - 2) * p
 
+/-- At depth `k-1-r`, `N2` residuals agree modulo `3^k` exactly when `p = q` modulo `3^r`: the deficit `r` is what the layer can see. -/
 theorem depthDeficit_n2_visibility {k r : Nat} (hr : r + 1 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 1 - r) p - n2Resid (k - 1 - r) q ↔
       (3 : Int) ^ r ∣ p - q := by
@@ -29,12 +30,14 @@ theorem depthDeficit_n2_visibility {k r : Nat} (hr : r + 1 ≤ k) (p q : Int) :
   have hexp : k - ((k - 1 - r) + 1) = r := by omega
   simpa [hexp] using hsucc
 
+/-- At deficit zero the `N2` condition is automatic. -/
 theorem depthDeficit_zero_N2 {k : Nat} (hk : 1 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 1) p - n2Resid (k - 1) q := by
   have h := (depthDeficit_n2_visibility (k := k) (r := 0) (by omega) p q).2
   have : (3 : Int) ^ 0 ∣ p - q := by simp
   exact h this
 
+/-- At deficit one the `N2` condition reduces to `3 | p - q`. -/
 theorem depthDeficit_one_N2 {k : Nat} (hk : 2 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 2) p - n2Resid (k - 2) q ↔
       (3 : Int) ∣ p - q := by
@@ -42,12 +45,14 @@ theorem depthDeficit_one_N2 {k : Nat} (hk : 2 ≤ k) (p q : Int) :
   simpa [pow_one, hdepth] using
     depthDeficit_n2_visibility (k := k) (r := 1) (by omega) p q
 
+/-- At deficit two the `N2` condition reduces to `9 | p - q`. -/
 theorem depthDeficit_two_N2_visibility {k : Nat} (hk : 3 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 3) p - n2Resid (k - 3) q ↔
       (3 : Int) ^ 2 ∣ p - q := by
   have hdepth : k - 1 - 2 = k - 3 := by omega
   simpa [hdepth] using depthDeficit_n2_visibility (k := k) (r := 2) (by omega) p q
 
+/-- At deficit two, `N3` vanishes modulo `3^k` once `k >= 5`. -/
 theorem deficitTwo_n3_zero {k : Nat} (hk : 5 ≤ k) :
     (3 : Int) ^ k ∣ n3Resid (k - 3) := by
   unfold n3Resid
@@ -57,6 +62,7 @@ theorem deficitTwo_n3_zero {k : Nat} (hk : 5 ≤ k) :
   have := hpow.mul_left (2 : Int)
   simpa [mul_comm, mul_left_comm, mul_assoc] using this
 
+/-- At deficit two, `N2` is congruent to `2 * 3^(k-2) p` modulo `3^k`, for `k >= 5`. -/
 theorem deficitTwo_n2_mod {k : Nat} (hk : 5 ≤ k) (p : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 3) p - deficitTwoN2 k p := by
   unfold n2Resid deficitTwoN2
@@ -71,6 +77,7 @@ theorem deficitTwo_n2_mod {k : Nat} (hk : 5 ≤ k) (p : Int) :
   convert hA using 1
   ring
 
+/-- At deficit two, `N1` is congruent to `3p^2 + 3^(k-2) p` modulo `3^k`, for `k >= 6`. -/
 theorem deficitTwo_n1_mod {k : Nat} (hk : 6 ≤ k) (p : Int) :
     (3 : Int) ^ k ∣ n1Resid (k - 3) p - deficitTwoN1 p k := by
   unfold n1Resid deficitTwoN1
@@ -81,6 +88,7 @@ theorem deficitTwo_n1_mod {k : Nat} (hk : 6 ≤ k) (p : Int) :
   convert hA using 1
   ring
 
+/-- The deficit-two `N1` condition, reduced to a divisibility at order `k-1`. -/
 theorem deficitTwo_n1_iff {k : Nat} (hk : 1 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n1Resid (k - 3) p - n1Resid (k - 3) q ↔
       (3 : Int) ^ (k - 1) ∣ (p - q) * (p + q + (3 : Int) ^ (k - 3)) := by
@@ -100,6 +108,7 @@ theorem deficitTwo_n1_iff {k : Nat} (hk : 1 ≤ k) (p q : Int) :
       exact mul_dvd_mul_left _ h
     simpa [mul_assoc] using this
 
+/-- The deficit-two `N1` condition once `N2` has forced `9 | p - q`. -/
 theorem deficitTwo_n1_after_n2 {k : Nat} (hk : 3 ≤ k) {p q d : Int}
     (hd : p - q = 9 * d) :
     (3 : Int) ^ k ∣ n1Resid (k - 3) p - n1Resid (k - 3) q ↔
@@ -121,6 +130,7 @@ theorem deficitTwo_n1_after_n2 {k : Nat} (hk : 3 ≤ k) {p q d : Int}
     have := mul_dvd_mul_left (9 : Int) h
     simpa [mul_assoc] using this
 
+/-- The deficit-two fibre criterion: `N2` and `N1` agreement at depth `k-3` together, spelled out as the congruence modulo `9`, the order-`(k-1)` product condition, and `N0`. -/
 theorem deficitTwo_equiv_iff {k : Nat} (hk : 3 ≤ k) (p q : Int) :
     ((3 : Int) ^ k ∣ n2Resid (k - 3) p - n2Resid (k - 3) q) ∧
         ((3 : Int) ^ k ∣ n1Resid (k - 3) p - n1Resid (k - 3) q) ∧
@@ -136,6 +146,7 @@ theorem deficitTwo_equiv_iff {k : Nat} (hk : 3 ≤ k) (p q : Int) :
     exact ⟨(depthDeficit_two_N2_visibility hk p q).2 h2,
       (deficitTwo_n1_iff (by omega) p q).2 h1, h0⟩
 
+/-- At deficit two the `N2` sign condition holds exactly when `9` divides `p`. -/
 theorem deficitTwo_sign_n2_iff {k : Nat} (hk : 3 ≤ k) (p : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 3) p - n2Resid (k - 3) (-p) ↔
       (3 : Int) ^ 2 ∣ p := by
@@ -170,6 +181,7 @@ theorem deficitTwo_sign_n2_iff {k : Nat} (hk : 3 ≤ k) (p : Int) :
     have heq : (2 : Int) * p = p + p := by ring
     simpa [heq] using this
 
+/-- Deficit-two agreement at horizon `k` carries down to the finer horizon. -/
 theorem deficitTwo_horizon_refines {k : Nat} (_hk : 1 ≤ k) (p q : Int)
     (h2 : (3 : Int) ^ k ∣ n2Resid (k - 3) p - n2Resid (k - 3) q)
     (h1 : (3 : Int) ^ k ∣ n1Resid (k - 3) p - n1Resid (k - 3) q)

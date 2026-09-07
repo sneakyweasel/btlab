@@ -1001,6 +1001,8 @@
   "statement": "at m=k-1-r, N2 equality iff p≡q (mod 3^r) whenever r+1≤k",
   "source": "docs/theory/cubic_deficit_two.md",
   "lean": "BTCalculus/CubicDeficitTwo.lean",
+  "decl": "depthDeficit_n2_visibility",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_deficit_two.py"
   ],
@@ -1023,6 +1025,8 @@
   "statement": "m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees",
   "source": "docs/theory/cubic_deficit_two.md",
   "lean": "BTCalculus/CubicDeficitTwo.lean",
+  "decl": "deficitTwo_equiv_iff",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/residuals/test_cubic_deficit_two.py"
   ],

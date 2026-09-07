@@ -45371,7 +45371,9 @@
       "doc": "`j` iterated integer square roots of `x` equal `s` exactly when `s^(2^j) \u2264 x < (s+1)^(2^j)`: the intermediate floors are transparent.",
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tower-absorption"
+      ],
       "line": 20,
       "module": "Problems.Juggler.TowerAbsorption",
       "name": "sqrt_iter_eq_iff",
@@ -45381,7 +45383,9 @@
       "doc": "On an even run the Juggler map is iterated `Nat.sqrt`.",
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tower-absorption"
+      ],
       "line": 35,
       "module": "Problems.Juggler.TowerAbsorption",
       "name": "floorPower_iter_of_even",
@@ -45391,7 +45395,9 @@
       "doc": "An odd step followed by `j` even steps is the integer `2^(j+1)`-th root of `n^3`: the value `\u230an^{3/2^(j+1)}\u230b`, one floor, no nesting.",
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tower-absorption"
+      ],
       "line": 48,
       "module": "Problems.Juggler.TowerAbsorption",
       "name": "floorPower_odd_even_run",
@@ -45401,7 +45407,9 @@
       "doc": "The cell of the value after `O E^j`: `s^(2^(j+1)) \u2264 n^3 < (s+1)^(2^(j+1))`.",
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tower-absorption"
+      ],
       "line": 55,
       "module": "Problems.Juggler.TowerAbsorption",
       "name": "floorPower_odd_even_run_eq_iff",
@@ -45411,7 +45419,9 @@
       "doc": "The `OE` fiber of `FateContagion` is the case `j = 1`.",
       "file": "formal/Problems/Juggler/TowerAbsorption.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-tower-absorption"
+      ],
       "line": 62,
       "module": "Problems.Juggler.TowerAbsorption",
       "name": "floorPower_oe_eq_iff",
@@ -50260,7 +50270,7 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At depth `k-1-r`, `N2` residuals agree modulo `3^k` exactly when `p = q` modulo `3^r`: the deficit `r` is what the layer can see.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50268,13 +50278,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 24,
+      "line": 25,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "depthDeficit_n2_visibility",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At deficit zero the `N2` condition is automatic.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50282,13 +50292,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 32,
+      "line": 34,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "depthDeficit_zero_N2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At deficit one the `N2` condition reduces to `3 | p - q`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50296,13 +50306,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 38,
+      "line": 41,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "depthDeficit_one_N2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At deficit two the `N2` condition reduces to `9 | p - q`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50310,13 +50320,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 45,
+      "line": 49,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "depthDeficit_two_N2_visibility",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At deficit two, `N3` vanishes modulo `3^k` once `k >= 5`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50324,13 +50334,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 51,
+      "line": 56,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_n3_zero",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At deficit two, `N2` is congruent to `2 * 3^(k-2) p` modulo `3^k`, for `k >= 5`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50338,13 +50348,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 60,
+      "line": 66,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_n2_mod",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At deficit two, `N1` is congruent to `3p^2 + 3^(k-2) p` modulo `3^k`, for `k >= 6`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50352,13 +50362,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 74,
+      "line": 81,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_n1_mod",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The deficit-two `N1` condition, reduced to a divisibility at order `k-1`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50366,13 +50376,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 84,
+      "line": 92,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_n1_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The deficit-two `N1` condition once `N2` has forced `9 | p - q`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50380,13 +50390,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 103,
+      "line": 112,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_n1_after_n2",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "The deficit-two fibre criterion: `N2` and `N1` agreement at depth `k-3` together, spelled out as the congruence modulo `9`, the order-`(k-1)` product condition, and `N0`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50394,13 +50404,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 124,
+      "line": 134,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_equiv_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "At deficit two the `N2` sign condition holds exactly when `9` divides `p`.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50408,13 +50418,13 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 139,
+      "line": 150,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_sign_n2_iff",
       "trust": "kernel"
     },
     {
-      "doc": "",
+      "doc": "Deficit-two agreement at horizon `k` carries down to the finer horizon.",
       "file": "formal/BTCalculus/CubicDeficitTwo.lean",
       "kind": "theorem",
       "ledger": [
@@ -50422,7 +50432,7 @@
         "BTA-x3-def2-N",
         "BTA-x3-def2-crit"
       ],
-      "line": 173,
+      "line": 185,
       "module": "BTCalculus.CubicDeficitTwo",
       "name": "deficitTwo_horizon_refines",
       "trust": "kernel"
@@ -64850,7 +64860,13 @@
       "imports": [
         "Problems.Juggler.Dynamics"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-tower-absorption",
+          "statement": "Even steps never deepen the Juggler floor tower. For every j, Nat.sqrt^[j] x = s iff s^(2^j) <= x < (s+1)^(2^j) (sqrt_iter_eq_iff); on an even run floorPower is iterated Nat.sqrt (floorPower_iter_of_even); an odd step followed by j even steps equals Nat.sqrt^[j+1] (n^3), i.e. floor(n^(3/2^(j+1))) with one floor and no nesting (floorPower_odd_even_run, floorPower_odd_even_run_eq_iff); the OE fiber of FateContagion is the case j = 1. Hence the orbit value after a word is a nested tower with one level per odd letter and exponents 3/2^(j_r+1) fixed by the even runs: the tower height is the odd count, not the depth. Kernel-checked; axioms propext, Classical.choice, Quot.sound only.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.WalkChargeItineraries": {
       "declarations": 31,
@@ -65162,8 +65178,8 @@
   },
   "totals": {
     "declarations": 4623,
-    "declarations_with_a_ledger_row": 3156,
-    "ledger_rows_naming_a_file": 324,
+    "declarations_with_a_ledger_row": 3161,
+    "ledger_rows_naming_a_file": 325,
     "modules": 191,
     "trust": {
       "compiler": 55,
