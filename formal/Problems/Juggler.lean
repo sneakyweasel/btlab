@@ -12,6 +12,7 @@ import Problems.Juggler.DepthFourFive
 import Problems.Juggler.DividedBounds
 import Problems.Juggler.DenjoyKoksma
 import Problems.Juggler.OddCountMonotone
+import Problems.Juggler.RunTypePacking
 import Problems.Juggler.Defect
 import Problems.Juggler.GlobalDefect
 import Problems.Juggler.DefectLowerBound

@@ -8115,3 +8115,46 @@ same footing as the other fifty-one rows, not to a stronger one.
 Appendix A's row now names the six theorems. Paper A's count moves from
 fifty-one fully-Lean rows to fifty-two, and from two rows with no Lean
 to one: Theorem 4.7.
+
+## Paper A Theorem 4.7: the arithmetic core in Lean, and where the line falls
+
+*Mathematical target.* The last of Appendix A's two rows with no Lean.
+
+**The line here is not the usual one, and it is worth stating.** The
+theorem has an arithmetic half and a dynamical half, and only the first
+is formalizable without the orbit.
+
+Lean (`RunTypePacking.lean`):
+
+- `packing_counts` — the packing is consistent: `o − e` copies of `OOE`
+  with `2e − o` circuits of `OE` use exactly `o` odd and `e` even
+  letters. This is the counting behind "the largest number of `n`-scale
+  valleys compatible with the even cap".
+- `odd_excess_lt_even` — the theorem's `o − e < e` is exactly `3o < 2L`.
+- `three_mul_lt_two_mul_of_omin` — and that holds at the least
+  admissible odd count. Minimality gives `3^(o−1) ≤ 2^L`; the certified
+  sandwich bounds `log 2/log 3 < 10590737/16785921`, giving
+  `o ≤ 1 + L·(log 2/log 3)` and hence `3o < 2L` once `L ≥ 28`. The
+  threshold is what the certified bound yields, `L > 27.98`, not a
+  convenience.
+- `log_two_div_log_three_lt` — that bound, from `lower_lt_walkTheta` and
+  `walkTheta = 1 − log 2/log 3`. The sandwich was proved for the
+  Ostrowski work; this is the first use of it outside Section 5.
+
+Human, and not attempted: the displayed six-term bound on
+`Σ 1/(xᵢ log xᵢ)`. It locates an actual cycle's iterates — one cheap
+valley at `n`, the rest at `n+2`, the expensive ones at `v`, one
+internal odd at `t`, the rest at `J(n+2)`, every even at `n²` — and
+needs Theorem 3.2 and the orbit. Arithmetic will not reach it.
+
+So this row moves from "no Lean" to "Lean with a stated gap", which is
+an honest description and not a closure. **Paper A's Appendix A now has
+no row with no Lean at all**: 52 fully Lean, 4 cross-references, 10 Lean
+with a stated gap, 6 verified computation.
+
+Tags. COMPUTATIONALLY VERIFIED: `lake build Problems.JugglerPaper` clean
+at 3438 jobs; the `L ≥ 28` threshold checked against the certified bound
+(`3/(2 − 3b) = 27.98` at `b = 10590737/16785921`). OBSERVATION: the
+useful part of this row was never the packing inequality but the two
+arithmetic facts underneath it, and those were three `omega`s and one
+logarithm away.

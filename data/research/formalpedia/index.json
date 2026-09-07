@@ -42454,6 +42454,46 @@
       "trust": "kernel"
     },
     {
+      "doc": "`log 2 / log 3` is below the certified sandwich endpoint, since `walkTheta = log(3/2)/log 3 = 1 \u2212 log 2/log 3`.",
+      "file": "formal/Problems/Juggler/RunTypePacking.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 36,
+      "module": "Problems.Juggler.RunTypePacking",
+      "name": "log_two_div_log_three_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**The packing is consistent.** `o \u2212 e` copies of `OOE` and `2e \u2212 o` circuits of `OE` use exactly `o` odd letters and `e` even letters.",
+      "file": "formal/Problems/Juggler/RunTypePacking.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 49,
+      "module": "Problems.Juggler.RunTypePacking",
+      "name": "packing_counts",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**`o \u2212 e < e` is `3o < 2L`.**",
+      "file": "formal/Problems/Juggler/RunTypePacking.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.RunTypePacking",
+      "name": "odd_excess_lt_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**At the least admissible odd count, `3o < 2L`.** Minimality gives `3^(o\u22121) \u2264 2^L`, and the certified bound on `log 2/log 3` turns that into `o \u2264 1 + L\u00b7(log 2/log 3)`, whence `3o < 2L` as soon as `L \u2265 28`.",
+      "file": "formal/Problems/Juggler/RunTypePacking.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 61,
+      "module": "Problems.Juggler.RunTypePacking",
+      "name": "three_mul_lt_two_mul_of_omin",
+      "trust": "kernel"
+    },
+    {
       "doc": "One realized `OE` block: `T^2(x)^4 \u2264 x^3`.",
       "file": "formal/Problems/Juggler/Scale.lean",
       "kind": "theorem",
@@ -64148,6 +64188,7 @@
         "Problems.Juggler.Residuals",
         "Problems.Juggler.RotationAverage",
         "Problems.Juggler.RunSurvivorLattice",
+        "Problems.Juggler.RunTypePacking",
         "Problems.Juggler.Scale",
         "Problems.Juggler.Seam",
         "Problems.Juggler.SequentialMordell",
@@ -65542,6 +65583,14 @@
         }
       ]
     },
+    "Problems.Juggler.RunTypePacking": {
+      "declarations": 4,
+      "file": "formal/Problems/Juggler/RunTypePacking.lean",
+      "imports": [
+        "Problems.Juggler.OstrowskiSandwich"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.Scale": {
       "declarations": 26,
       "file": "formal/Problems/Juggler/Scale.lean",
@@ -65772,6 +65821,7 @@
         "Problems.Juggler.Progress",
         "Problems.Juggler.RotationAverage",
         "Problems.Juggler.RunSurvivorLattice",
+        "Problems.Juggler.RunTypePacking",
         "Problems.Juggler.SmallCycleCensus",
         "Problems.Juggler.Termination",
         "Problems.Juggler.WalkChargeItineraries",
@@ -65985,13 +66035,13 @@
     }
   },
   "totals": {
-    "declarations": 4694,
+    "declarations": 4698,
     "declarations_with_a_ledger_row": 3183,
     "ledger_rows_naming_a_file": 329,
-    "modules": 197,
+    "modules": 198,
     "trust": {
       "compiler": 54,
-      "kernel": 4640
+      "kernel": 4644
     }
   }
 }

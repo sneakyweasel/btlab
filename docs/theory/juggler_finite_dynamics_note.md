@@ -3316,7 +3316,7 @@ Theorem 4.8.
 | Corollary 4.4c | `cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum` |
 | Lemma 4.4b | `packingR_step` (the step in \(o\) is the constant \(2\alpha-1-1/2n\)), `alpha_lt_half` (\(\alpha<1/2\) once \(t\ge2n\)), `two_n_add_one_lt_rpow_three_halves` (which \(t=\lfloor n^{3/2}\rfloor\) gives for \(n\ge12\)), `packingR_step_neg`, `theta_strictMono`, and `comparison_fails_upward` for an arbitrary positive coefficient — \(6/5\) here and \(1\) in Theorem 4.4 (`OddCountMonotone.lean`) |
 | Theorem 4.6 | certified identity `cycleMin_defect_finance`, per-step losses `log_floorPower_even_ge_sub`, `log_floorPower_odd_ge_sub`, invariants `cycleMin_log_le_weight`, `cycleMin_charge_prefix` (`DefectFinance.lean`); the numeric table is verified computation |
-| Theorem 4.7 | run-type packing; human proof, not Lean |
+| Theorem 4.7 | arithmetic core Lean (`RunTypePacking.lean`): the packing is consistent — \(o-e\) copies of OOE with \(2e-o\) circuits of OE use exactly \(o\) odd and \(e\) even letters (`packing_counts`); \(o-e<e\) is \(3o<2L\) (`odd_excess_lt_even`), which holds at the least admissible odd count for \(L\ge28\) (`three_mul_lt_two_mul_of_omin`, via `log_two_div_log_three_lt` from the certified sandwich). The displayed six-term valley bound is human: it locates an actual cycle's iterates and needs Theorem 3.2, not arithmetic |
 | Theorem 4.8 | run-type table; verified computation, not Lean |
 | Proposition 4.9 | `run_survivor_unimodular`, `run_survivor_seed_F2`, `run_survivor_seed_F3`, `three_pow_step_gt_two_pow_step`, `runSurvivors_length` |
 | Theorem 4.10 | `cycleMin_gap_transfer`; abstract length bound `cycleMin_length_of_gap` (`GapTransfer.lean`) |
