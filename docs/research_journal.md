@@ -39511,3 +39511,32 @@ Two ledger rows, J-parity-factor-exhaustion (Lean) and
 J-parity-sequence-complexity (human proof with known inputs). Branch
 CLOSE as negative knowledge: do not attempt automatic-sequence
 methods on Juggler parity.
+
+The congruence version of the floor-defect attack does not fail. It
+never starts. Delta = n^(3^o) - T_w(n)^(2^L) is global_defect_identity;
+G = n^(3^o) - n^(2^L) is the definition of the formal surplus; subtract
+and Delta - G = n^(2^L) - T_w(n)^(2^L). Checked on 1358 realized
+records. Nothing on the right is a remainder, a transport weight, a
+seam split or an ordering. The whole apparatus cancels in the one
+comparison it was built to make.
+
+So there is no congruence attack to try, and no fractional-part attack,
+and no reweighting: every comparison of Delta with G, by any means, is
+the same statement about T_w(n) against n. I had thought the ordered
+vector under the 3^(o-suffix) weights was an untried aggregation. The
+aggregation was never the variable.
+
+The residues are free from below as well as above. Fixing a word class
+and sweeping realized odd starts, T_w(n) - n attains every class mod 3,
+5, 7, 8, 9 and 16 within at most 66 starts, for each of OOE, OOEOOE and
+OEOOOE. The archived refutation had this from above at n >= 10^6+1 by
+the window bound 2Y+1 > m -- a remainder ranging wider than the modulus
+meets every class. The sweep gives it at the smallest realized starts
+too, where that argument does not yet apply.
+
+The negative-knowledge cluster for this family was a list of thirty-odd
+killed refinements: transport, congruence, correlation, anticluster,
+exponent budget, block potential. It now has a reason instead of a
+list. A reader with a new variant does not have to find it on the list;
+they have to check whether their quantity survives the subtraction, and
+nothing built from the local remainders does.

@@ -8631,3 +8631,73 @@ because \(\Delta\) is *defined* as \(n^{3^o}-T_w(n)^{2^L}\). Any
 escape has to be a *lower bound* on \(\Delta\) that does not mention
 \(T_w(n)\) --- which is what Amplify and first-defect are, and they
 reach \(0.18\).
+
+## The remainders cancel: why every floor-defect attack is one statement
+
+*Mathematical target.* The question I left open last entry: can a
+per-odd-letter *congruence* obstruction on the ordered floor-error
+vector, under the transport weights \(3^{o'}\), push the computable
+budgets past their \(0.179\) ceiling? The archived congruence branch
+tested the *total* defect; the ordered vector under these weights was
+untried.
+
+*Novelty hypothesis.* A residue class forbidden to
+\(\sum_i W_i e_i\) but permitted to \(G\) would exclude a cycle without
+any size estimate.
+
+*Falsifier.* Either the weighted sum attains every residue, or the
+comparison turns out not to see the remainders at all.
+
+*Prior art.* `conjectures/refuted/juggler_cycle_defect_congruence.json`
+(REFUTED; "at \(n\ge 10^{6}+1\) every listed modulus has \(2Y+1>m\), so
+defects are free residues"), `juggler_cycle_mod_closure`,
+`docs/negative_knowledge.md` cluster "Finance leftover-killers are
+identities, not movers".
+
+**The falsifier fired on the second branch, and it is the stronger
+one.** The comparison does not see the remainders. By
+`global_defect_identity` \(\Delta=n^{3^{o}}-T_w(n)^{2^{L}}\), and by
+definition \(G=n^{3^{o}}-n^{2^{L}}\), so
+
+\[
+\Delta-G \;=\; n^{2^{L}}-T_w(n)^{2^{L}} .
+\]
+
+Verified on \(1358\) realized records, \(n\) odd in \([13,400)\),
+\(L\le 7\). The right-hand side carries no local remainder, no transport
+weight, no seam split and no ordering. So the entire apparatus ---
+the ordered vector, the \(3^{o'}\) weights, the climb/descent halves ---
+cancels identically in the one comparison it was built to make. This is
+not "the congruence attack fails"; it is that *every* comparison of
+\(\Delta\) with \(G\), by size or sign or modulus or fractional part, is
+the same statement about \(T_w(n)\) against \(n\).
+
+**And the residues are free from below too.** Fixing a word class and
+sweeping realized odd starts to \(2\cdot10^{5}\), the residues of
+\(T_w(n)-n\) attain **every** class mod \(3,5,7,8,9,16\), inside at most
+\(66\) realized starts:
+
+| word | \(m=3\) | \(5\) | \(7\) | \(8\) | \(9\) | \(16\) |
+|---|---|---|---|---|---|---|
+| `OOE` | 3/3 | 5/5 | 7/7 | 8/8 | 9/9 | 16/16 |
+| `OEOOOE` | 3/3 | 5/5 | 7/7 | 8/8 | 9/9 | 16/16 |
+| `OOEOOE` | 3/3 | 5/5 | 7/7 | 8/8 | 9/9 | 16/16 |
+
+The archived refutation established this from above, at
+\(n\ge 10^{6}+1\), by the window bound \(2Y+1>m\): a remainder ranging
+over a window wider than the modulus meets every class. The sweep gives
+it from below as well, at the smallest realized starts, where the width
+argument does not yet apply.
+
+**What this replaces.** The cluster in `docs/negative_knowledge.md` had
+a *list* of thirty-odd killed refinements. It now has a reason: one
+subtraction. A future reader does not have to check whether their
+variant is on the list; they have to check whether their quantity
+survives \(\Delta-G\), and nothing built from the local remainders does.
+
+Tags. COMPUTATIONALLY VERIFIED: the identity on 1358 records, the
+residue coverage on three word classes and six moduli. OBSERVATION: the
+laboratory refuted this family one member at a time --- transport,
+congruence, correlation, anticluster, exponent budget, block potential
+--- because each was proposed as a new aggregation of the same
+remainders. The aggregation was never the variable.

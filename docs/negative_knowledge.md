@@ -370,6 +370,28 @@ does not move leftovers. Residual-floor raise to \(1981\)/\(4756\) is
 Kind: `REFUTED` / `REPARAMETERIZATION`.
 Do not reopen: leftover-killer packaging of cells or finance.
 
+**The one-line reason (added after the ordered-vector retry).** Every
+member of this family compares the accumulated floor defect \(\Delta\)
+against the formal surplus \(G=n^{3^{o}}-n^{2^{L}}\). By
+`global_defect_identity`, \(\Delta=n^{3^{o}}-T_w(n)^{2^{L}}\), so
+subtraction gives
+
+\[
+\Delta-G \;=\; n^{2^{L}}-T_w(n)^{2^{L}} .
+\]
+
+No local remainder, no transport weight, no seam split and no ordering
+survives on the right. So *any* comparison of \(\Delta\) with \(G\) ---
+size, sign, congruence, fractional part --- is a restatement of
+\(T_w(n)\) against \(n\), and no reweighting or reordering can change
+that, because none of it appears. Verified on \(1358\) realized records.
+The residues of \(T_w(n)-n\) attain every class mod \(3,5,7,8,9,16\)
+inside each of `OOE`, `OOEOOE`, `OEOOOE` within at most \(66\) realized
+starts, which is `cycle_mod_closure` from below; the window bound
+\(2Y+1>m\) gives it from above at \(n\ge 10^{6}+1\).
+Do not reopen: reweighting, reordering, or reducing the floor-defect
+comparison mod anything.
+
 Members: `juggler_cycle_closure_leftover_killer`,
 `juggler_cycle_conditioned_closure_leftover_killer`,
 `juggler_cycle_mod_closure_leftover_killer`,
