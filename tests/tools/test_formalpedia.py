@@ -21,10 +21,14 @@ if str(TOOLS) not in sys.path:
 import formalpedia as fp
 
 JUGGLER_COMPILER_TRUST = {
-    "greedy_eq_ostro_below_window",
     "window_digit_scan",
 }
-"""The two Ostrowski scans Paper A names as the only proofs off the kernel in its layer."""
+"""The one Ostrowski scan Paper A names as the only proof off the kernel in its layer.
+
+It was two.  `greedy_eq_ostro_below_window` scanned all 301994 lengths to identify the
+fold-form digits with the function-form ones; they are the same algorithm written twice,
+so `greedy_eq_ostro` proves it structurally for every `L` and the scan is a corollary.
+What remains genuinely scanned is the sharp constant 37, the structural cap being 47."""
 
 
 def test_the_index_covers_the_libraries_and_not_the_build_output() -> None:
@@ -148,12 +152,12 @@ def test_every_proposed_candidate_lives_in_the_row_s_own_file() -> None:
             assert c["decl"] in names, f"{r['id']}: {c['decl']} not in {lean}"
 
 
-PAPER_A_OFF_KERNEL = ["greedy_eq_ostro_below_window", "window_digit_scan"]
+PAPER_A_OFF_KERNEL = ["window_digit_scan"]
 """Paper A's Section 1.2 states the trust boundary positively: kernel-checked throughout the
-layer except the two Ostrowski scans.  This is that sentence, as an assertion."""
+layer except the one Ostrowski scan.  This is that sentence, as an assertion."""
 
 
-def test_paper_a_keeps_exactly_the_two_ostrowski_scans_off_the_kernel() -> None:
+def test_paper_a_keeps_exactly_the_one_ostrowski_scan_off_the_kernel() -> None:
     surface = fp.paper_surface(fp.build())["Paper A"]
     assert surface["present"], "Problems.JugglerPaper is missing from the index"
     assert surface["compiler_trusted"] == PAPER_A_OFF_KERNEL, surface["compiler_trusted"]

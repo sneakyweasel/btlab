@@ -91,7 +91,18 @@ def _docstring(text: str, start: int) -> str:
     return " ".join(body.split())
 
 
+_DOCSTRING = re.compile(r"/--.*?-/", re.S)
+
+
 def _trust(body: str) -> str:
+    """Trust from the proof, not from the prose around it.
+
+    Docstrings are stripped first.  A body runs to the next declaration, so a docstring
+    that *mentions* the compiled-runtime tactic -- one recording that a scan was replaced
+    by a structural proof, say -- used to mark the declaration above it compiler-trusted.
+    That mislabels in both directions, and this field must not do that.
+    """
+    body = _DOCSTRING.sub(" ", body)
     if re.search(r"\bsorry\b", body):
         return "open"
     if "native_decide" in body:

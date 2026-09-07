@@ -469,11 +469,22 @@ names. The finite tables used by Lemmas 3.5, 3.7, 3.11 and
 Theorems 3.12--3.20 are `decide +kernel` evaluations in the modules
 named there: the reduction is performed by the Lean kernel, so these
 tables add no trust assumption beyond it. That holds throughout the
-Juggler layer with two exceptions, both scans of a quarter of a million
-window lengths in Section 5's Ostrowski certification
-(`window_digit_scan`, `greedy_eq_ostro_below_window`), which use
-`native_decide` and so also trust the Lean compiler and runtime;
-`#print axioms` on any theorem displays which of the two it depends on.
+Juggler layer with one exception, `window_digit_scan`: a scan of a quarter
+of a million window lengths in Section 5's Ostrowski certification, which
+uses `native_decide` and so also trusts the Lean compiler and runtime.
+`#print axioms` on any theorem displays whether it depends on it.
+
+It was two. The second, `greedy_eq_ostro_below_window`, scanned all
+\(301994\) lengths to identify the fold-form greedy digits with the
+function-form ones. They are the same algorithm written twice --- the fold
+peels \(L/q\) and keeps \(L\bmod q\) over the descending denominator list,
+the recursion does the same indexed by \(12-i\), and those two lists agree
+entry for entry --- so `greedy_eq_ostro` proves the identity for *every*
+\(L\), structurally, and the bounded scan is now a corollary of it. The
+reconstruction half of `window_digit_scan` went the same way:
+`greedy_reconstruct_all` is the division algorithm thirteen times and holds
+for every \(L\). What still needs the scan is only the sharp constant
+\(37\), the structural cap being \(47\).
 
 Every number printed in Sections 4 and 5 is additionally recomputed
 from the *printed* criterion, independently of the probes that

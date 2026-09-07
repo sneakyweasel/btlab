@@ -186,23 +186,38 @@ theorem theta_sum_eq (L : ℕ) :
       thetaDenomFn (12 - i) :=
   ostro_sum_eq thetaDenomFn (by decide) L 12
 
-/-- The function-form digits agree with the fold-form
-`greedyDigitSum` of `OstrowskiSandwich.lean` everywhere below the
-window endpoint, so the scan cap `37` and the structural cap `47`
-speak about the same object. -/
+/-- **The two digit implementations are the same algorithm.**  `greedyDigits` folds
+`(r, ds) ↦ (r % q, ds ++ [r / q])` over the descending list `thetaDenomsDesc`, while
+`ostroDigit thetaDenomFn L 12 i` is `ostroRem … i / thetaDenomFn (12 - i)` with
+`ostroRem … (i+1) = ostroRem … i % thetaDenomFn (12 - i)`; and `thetaDenomFn (12 - i)`
+for `i = 0 … 12` *is* `thetaDenomsDesc`, entry for entry.  So the fold's step and the
+recursion's step coincide, and unfolding thirteen levels of each leaves the same thirteen
+atoms in a different association.
+
+This replaces a compiled-runtime scan of all `301994` window lengths, and is stronger than
+it: the scan bounded `L`, and there was never any reason to. -/
+theorem greedy_eq_ostro (L : ℕ) :
+    greedyDigitSum L = ∑ i ∈ Finset.range 13, ostroDigit thetaDenomFn L 12 i := by
+  simp [greedyDigitSum, greedyDigits, thetaDenomsDesc, Finset.sum_range_succ,
+        ostroDigit, ostroRem, thetaDenomFn]
+  ring
+
+/-- The function-form digits agree with the fold-form `greedyDigitSum` of
+`OstrowskiSandwich.lean` everywhere below the window endpoint, so the scan cap `37` and the
+structural cap `47` speak about the same object.  Retained in its original bounded shape --
+the theorem ledger and Paper A §1.2 name it -- but now a corollary of `greedy_eq_ostro`
+rather than a scan, so it carries no compiler-trust assumption. -/
 theorem greedy_eq_ostro_below_window :
     ((List.range 301994).all fun L =>
       decide (greedyDigitSum L =
-        ∑ i ∈ Finset.range 13, ostroDigit thetaDenomFn L 12 i)) = true := by
-  native_decide
+        ∑ i ∈ Finset.range 13, ostroDigit thetaDenomFn L 12 i)) = true :=
+  List.all_eq_true.mpr fun L _ => decide_eq_true (greedy_eq_ostro L)
 
 /-- Fold-form corollary: every `L < 301994` has
 `greedyDigitSum L ≤ 47`, structurally. -/
 theorem greedyDigitSum_le {L : ℕ} (hL : L < 301994) :
     greedyDigitSum L ≤ 47 := by
-  have hall := List.all_eq_true.mp greedy_eq_ostro_below_window L
-    (List.mem_range.mpr hL)
-  have heq := of_decide_eq_true hall
+  have heq := greedy_eq_ostro L
   have := theta_digitSum_le hL
   omega
 

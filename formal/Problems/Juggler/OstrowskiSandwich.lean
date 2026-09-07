@@ -183,12 +183,22 @@ def greedyDigitSum (L : ℕ) : ℕ := (greedyDigits L).sum
 def greedyReconstruct (L : ℕ) : ℕ :=
   (((greedyDigits L).zip thetaDenomsDesc).map fun p => p.1 * p.2).sum
 
-/-- **Window digit scan**: for every `L` in the window
-`[50508, 301994)`, the greedy digits reconstruct `L` and their sum
-is at most `37`. -/
+/-- **Reconstruction is structural, and universal.**  The fold peels `L / q` and keeps
+`L % q` at each of the thirteen levels, so `Σ bⱼ qⱼ` telescopes back to `L` by the division
+algorithm — for every `L`, with no window hypothesis.  This half of the old scan never
+needed one. -/
+theorem greedy_reconstruct_all (L : ℕ) : greedyReconstruct L = L := by
+  simp [greedyReconstruct, greedyDigits, thetaDenomsDesc]
+  omega
+
+/-- **Window digit scan**: for every `L` in the window `[50508, 301994)`, the greedy digit
+sum is at most `37`.  This is the one thing here that is genuinely a scan: the structural
+cap of `OstrowskiNumeration` gives `47`, and `37` is the sharper constant measured on the
+window.  Reconstruction, which the scan used to re-certify alongside it, is
+`greedy_reconstruct_all` and holds everywhere. -/
 theorem window_digit_scan :
     ((List.range' 50508 251486).all fun L =>
-      decide (greedyReconstruct L = L ∧ greedyDigitSum L ≤ 37)) = true := by
+      decide (greedyDigitSum L ≤ 37)) = true := by
   native_decide
 
 /-- The cap `37` is attained, at `L = 275632`. -/
@@ -198,6 +208,7 @@ theorem window_digit_max : greedyDigitSum 275632 = 37 := by decide +kernel
 greedily into certified blocks with digit sum at most `37`. -/
 theorem window_digit_cap {L : ℕ} (h1 : 50508 ≤ L) (h2 : L < 301994) :
     greedyReconstruct L = L ∧ greedyDigitSum L ≤ 37 := by
+  refine ⟨greedy_reconstruct_all L, ?_⟩
   have hall := List.all_eq_true.mp window_digit_scan L
     (List.mem_range'_1.mpr ⟨h1, by omega⟩)
   exact of_decide_eq_true hall

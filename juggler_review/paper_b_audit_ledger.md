@@ -7830,3 +7830,100 @@ unguarded, with `DividedBounds` held to the discipline it states.
 OBSERVATION: the guard that would have caught this does not exist — no
 check reads the barrel's or the paper's claim about *what kind* of
 declaration the Lean column contains, only that the names resolve.
+
+## Ostrowski: one of the layer's two compiler-trusted proofs was an algorithm compared with itself
+
+*Mathematical target.* Paper A §1.2 names two `native_decide` scans as
+the only proofs off the kernel in the whole Juggler layer, both in
+Section 5's Ostrowski certification. Remove what can be removed.
+
+*Novelty hypothesis.* At least one of the two is not really a
+computation — it scans to establish something that holds structurally.
+
+*Falsifier.* Both genuinely need the enumeration.
+
+*Existing machinery.* `ostroRem`, `ostroDigit`, `greedyDigits`,
+`thetaDenomFn`, `thetaDenomsDesc`; `formalpedia impact` first, as the
+protocol asks.
+
+*Prior art.* A pass on 5 Sep 2026 already tried `decide +kernel` on
+both and recorded "(kernel) deterministic timeout" for each. That
+settles brute evaluation and says nothing about the structural route,
+which nobody had tried.
+
+**`greedy_eq_ostro_below_window` was an algorithm compared with
+itself.** It scanned all `301994` lengths to check that the fold-form
+digit sum equals the function-form one. But `greedyDigits` folds
+`(r, ds) -> (r % q, ds ++ [r / q])` over `thetaDenomsDesc`, while
+`ostroRem ... (i+1) = ostroRem ... i % thetaDenomFn (12 - i)` with
+`ostroDigit = ostroRem ... i / thetaDenomFn (12 - i)`; and
+`thetaDenomFn (12 - i)` for `i = 0..12` reproduces `thetaDenomsDesc`
+entry for entry. The fold's step *is* the recursion's step. Unfolding
+thirteen levels of each leaves the same thirteen atoms in a different
+association, so
+
+    simp [greedyDigitSum, greedyDigits, thetaDenomsDesc, Finset.sum_range_succ,
+          ostroDigit, ostroRem, thetaDenomFn]
+    ring
+
+proves it for **every** `L`. The scan bounded `L` and there was never
+any reason to; `greedy_eq_ostro` is stronger than what it replaces and
+kernel-checked. `greedy_eq_ostro_below_window` is retained in its
+bounded shape, because the ledger and Paper A name it, but is now a
+corollary and carries no compiler-trust assumption: `#print axioms`
+gives `[propext, Classical.choice, Quot.sound]` where it used to give
+`[propext, greedy_eq_ostro_below_window._native.native_decide.ax_1_1]`.
+
+**Half of the other one went too.** `window_digit_scan` certified two
+things at once: that the greedy digits reconstruct `L`, and that their
+sum is at most `37`. Reconstruction is the division algorithm thirteen
+times and holds for every `L` — `greedy_reconstruct_all`, by `simp` and
+`omega`. The scan now certifies only the sharp constant `37`, which is
+what Paper A always said it was for: the structural cap is `47`, and
+`37` is the measurement.
+
+**What did not go, and what is still open.** The remaining scan is
+`251486` lengths of genuine arithmetic. A kernel attempt on the halved
+goal is running as this is written; the earlier pass recorded a kernel
+timeout on the *unhalved* one, so the question is whether removing the
+reconstruction work brings it inside the budget. Getting `37`
+structurally, rather than by evaluation, is a combinatorial argument
+about which digit vectors are attainable on the window --- not a rewrite,
+and not attempted here.
+
+*A note on how nearly I mis-stated that.* The first attempt was run as
+`timeout 560 lake env lean ... | head; echo $?`, which reports `head`'s
+exit code and not Lean's. It printed `exit: 0` after being killed at nine
+minutes, and Lean prints nothing on success, so a silent kill and a
+silent success look identical. This is the third time in this session
+that a pipe has swallowed an exit code.
+
+**A trap this exposed, in the trust classifier itself.**
+`formalpedia._trust` was a substring test over a declaration body, and
+a body runs to the next declaration — so the docstring I wrote for
+`greedy_eq_ostro`, which *mentioned* the tactic it replaced, marked the
+theorem above it compiler-trusted. `theta_sum_eq`, a `decide` proof,
+was reported as resting on the compiler. It now strips docstrings
+before classifying. The direction that bit here was harmless; the
+opposite direction is not, and this field is the one that must not
+mislabel.
+
+Tags. EXACT: `thetaDenomFn (12 - i) = thetaDenomsDesc[i]` for
+`i = 0..12`, checked entry for entry; `greedy_eq_ostro` for all `L`;
+`greedy_reconstruct_all` for all `L`. COMPUTATIONALLY VERIFIED:
+`lake build Problems.JugglerPaper` clean (3435 jobs); `#print axioms`
+on `greedy_eq_ostro`, `greedy_eq_ostro_below_window` and
+`greedyDigitSum_le` all `[propext, Classical.choice, Quot.sound]`;
+`window_digit_scan` still carries its named compiler axiom; the Juggler
+layer's compiler-trusted set is now exactly `{window_digit_scan}`.
+OBSERVATION: the earlier pass concluded the scans must stay native
+because the kernel timed out. That was true of the *evaluation* and
+false of one of the theorems, which needed no evaluation at all.
+
+Probe: none — this is Lean. `formalpedia` index rebuilt (4608 kernel,
+54 compiler). Paper A §1.2 rewritten from two exceptions to one, with
+the reason; the theorem-ledger row restated;
+`tests/tools/test_formalpedia.py`'s `PAPER_A_OFF_KERNEL` and
+`JUGGLER_COMPILER_TRUST` reduced to one name and the test renamed.
+`tools/formalpedia.py` hardened. No statement weakened; two were
+strengthened.

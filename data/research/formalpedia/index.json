@@ -36546,16 +36546,28 @@
       "trust": "kernel"
     },
     {
-      "doc": "The function-form digits agree with the fold-form `greedyDigitSum` of `OstrowskiSandwich.lean` everywhere below the window endpoint, so the scan cap `37` and the structural cap `47` speak about the same object.",
+      "doc": "**The two digit implementations are the same algorithm.** `greedyDigits` folds `(r, ds) \u21a6 (r % q, ds ++ [r / q])` over the descending list `thetaDenomsDesc`, while `ostroDigit thetaDenomFn L 12 i` is `ostroRem \u2026 i / thetaDenomFn (12 - i)` with `ostroRem \u2026 (i+1) = ostroRem \u2026 i % thetaDenomFn (12 - i)`; and `thetaDenomFn (12 - i)` for `i = 0 \u2026 12` *is* `thetaDenomsDesc`, entry for entry. So the fold's step and the recursion's step coincide, and unfolding thirteen levels of each leaves the same thirteen atoms in a different association. This replaces a compiled-runtime scan of all `301994` window lengths, and is stronger than it: the scan bounded `L`, and there was never any reason to.",
       "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-walk-ostrowski-numeration"
       ],
-      "line": 193,
+      "line": 199,
+      "module": "Problems.Juggler.OstrowskiNumeration",
+      "name": "greedy_eq_ostro",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The function-form digits agree with the fold-form `greedyDigitSum` of `OstrowskiSandwich.lean` everywhere below the window endpoint, so the scan cap `37` and the structural cap `47` speak about the same object. Retained in its original bounded shape -- the theorem ledger and Paper A \u00a71.2 name it -- but now a corollary of `greedy_eq_ostro` rather than a scan, so it carries no compiler-trust assumption.",
+      "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-numeration"
+      ],
+      "line": 210,
       "module": "Problems.Juggler.OstrowskiNumeration",
       "name": "greedy_eq_ostro_below_window",
-      "trust": "compiler"
+      "trust": "kernel"
     },
     {
       "doc": "Fold-form corollary: every `L < 301994` has `greedyDigitSum L \u2264 47`, structurally.",
@@ -36564,7 +36576,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-numeration"
       ],
-      "line": 201,
+      "line": 218,
       "module": "Problems.Juggler.OstrowskiNumeration",
       "name": "greedyDigitSum_le",
       "trust": "kernel"
@@ -36774,13 +36786,25 @@
       "trust": "kernel"
     },
     {
-      "doc": "**Window digit scan**: for every `L` in the window `[50508, 301994)`, the greedy digits reconstruct `L` and their sum is at most `37`.",
+      "doc": "**Reconstruction is structural, and universal.** The fold peels `L / q` and keeps `L % q` at each of the thirteen levels, so `\u03a3 b\u2c7c q\u2c7c` telescopes back to `L` by the division algorithm \u2014 for every `L`, with no window hypothesis. This half of the old scan never needed one.",
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "kind": "theorem",
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 189,
+      "line": 190,
+      "module": "Problems.Juggler.OstrowskiSandwich",
+      "name": "greedy_reconstruct_all",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Window digit scan**: for every `L` in the window `[50508, 301994)`, the greedy digit sum is at most `37`. This is the one thing here that is genuinely a scan: the structural cap of `OstrowskiNumeration` gives `47`, and `37` is the sharper constant measured on the window. Reconstruction, which the scan used to re-certify alongside it, is `greedy_reconstruct_all` and holds everywhere.",
+      "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-ostrowski-arithmetic"
+      ],
+      "line": 199,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "window_digit_scan",
       "trust": "compiler"
@@ -36792,7 +36816,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 195,
+      "line": 205,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "window_digit_max",
       "trust": "kernel"
@@ -36804,7 +36828,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 199,
+      "line": 209,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "window_digit_cap",
       "trust": "kernel"
@@ -36816,7 +36840,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 219,
+      "line": 230,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "convergentNums",
       "trust": "kernel"
@@ -36828,7 +36852,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 228,
+      "line": 239,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergent_numerators",
       "trust": "kernel"
@@ -36840,7 +36864,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 234,
+      "line": 245,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "thetaConvergents",
       "trust": "kernel"
@@ -36852,7 +36876,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 241,
+      "line": 252,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "thetaConvergents_eq_zip",
       "trust": "kernel"
@@ -36864,7 +36888,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 249,
+      "line": 260,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergents_unimodular",
       "trust": "kernel"
@@ -36876,7 +36900,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 257,
+      "line": 268,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergents_coprime",
       "trust": "kernel"
@@ -36888,7 +36912,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 264,
+      "line": 275,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_convergent_quality",
       "trust": "kernel"
@@ -36900,7 +36924,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 279,
+      "line": 290,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "residue_mul_bijective",
       "trust": "kernel"
@@ -36912,7 +36936,7 @@
       "ledger": [
         "J-cyclemin-walk-ostrowski-arithmetic"
       ],
-      "line": 284,
+      "line": 295,
       "module": "Problems.Juggler.OstrowskiSandwich",
       "name": "theta_block_permutations",
       "trust": "kernel"
@@ -64945,7 +64969,7 @@
       ]
     },
     "Problems.Juggler.OstrowskiNumeration": {
-      "declarations": 15,
+      "declarations": 16,
       "file": "formal/Problems/Juggler/OstrowskiNumeration.lean",
       "imports": [
         "Problems.Juggler.OstrowskiSandwich"
@@ -64959,7 +64983,7 @@
       ]
     },
     "Problems.Juggler.OstrowskiSandwich": {
-      "declarations": 29,
+      "declarations": 30,
       "file": "formal/Problems/Juggler/OstrowskiSandwich.lean",
       "imports": [],
       "ledger": [
@@ -65612,13 +65636,13 @@
     }
   },
   "totals": {
-    "declarations": 4660,
-    "declarations_with_a_ledger_row": 3178,
+    "declarations": 4662,
+    "declarations_with_a_ledger_row": 3180,
     "ledger_rows_naming_a_file": 328,
     "modules": 194,
     "trust": {
-      "compiler": 55,
-      "kernel": 4605
+      "compiler": 54,
+      "kernel": 4608
     }
   }
 }

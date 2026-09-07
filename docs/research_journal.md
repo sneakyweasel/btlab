@@ -38834,3 +38834,56 @@ scavenged idea produces something, the question is not only whether it
 is true but where it belongs, and a corpus whose value is that it is
 small and specific is one you can damage by adding correct things to
 it.
+
+## The scan that was an algorithm compared with itself
+
+2026-09-08. Paper A names two `native_decide` scans as the only proofs
+off the kernel in the whole Juggler layer, both in Section 5's
+Ostrowski certification. A pass in early September had already tried
+`decide +kernel` on both and recorded a kernel timeout for each, and
+concluded they had to stay native. That conclusion was about the
+evaluation, and it was right about the evaluation. It was wrong about
+one of the theorems, which needed no evaluation at all.
+
+`greedy_eq_ostro_below_window` scanned 301994 lengths to check that the
+fold-form digit sum equals the function-form one. But `greedyDigits`
+folds `(r, ds) ↦ (r % q, ds ++ [r / q])` over a descending list of
+thirteen denominators, and `ostroRem` does the same recursion indexed
+by `12 - i` over an ascending function — and those two lists are the
+same thirteen numbers in the same order. I checked entry for entry
+before writing a line of Lean. The fold's step *is* the recursion's
+step.
+
+So unfolding thirteen levels of each leaves the same thirteen atoms in
+a different association, and `simp` + `ring` closes it for every `L`.
+It worked on the second attempt: the first left the goal with both
+sides reduced to identical atoms, right-nested against left-nested,
+which is what `ring` is for.
+
+The scan bounded `L` and there was never a reason to. The new theorem
+is stronger than the one it replaces and kernel-checked, and the
+bounded form survives as a corollary because Paper A and the ledger
+name it.
+
+Half of the second scan went the same way. `window_digit_scan`
+certified two things at once — that the digits reconstruct `L`, and
+that their sum is at most 37 — and reconstruction is just the division
+algorithm thirteen times, true for every `L`. What is left genuinely
+needs the enumeration: the structural cap is 47 and 37 is a
+measurement.
+
+Two things I want to keep from this.
+
+The first is that the earlier pass's conclusion was correctly reasoned
+and still misleading. "The kernel times out, so it stays native" is
+true of a computation and says nothing about whether the statement
+needs computing. Nobody had asked the second question.
+
+The second is a trap I walked into and then found. Writing a docstring
+that *mentioned* the tactic I had removed marked the theorem above it
+compiler-trusted, because `formalpedia._trust` was a substring test
+over a body that runs to the next declaration. A `decide` proof was
+reported as resting on the compiler. It strips docstrings now. The
+direction that bit me was harmless; the opposite direction — a real
+`native_decide` reported as kernel — is not, and that field is the one
+that must not lie.
