@@ -10,6 +10,10 @@ productions actually use, and against Lemma 3.9's printed trivial bound.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from fractions import Fraction
 from pathlib import Path
@@ -17,7 +21,7 @@ from typing import Any
 
 from research.juggler_sequence.cycle_finance import git_commit
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "kernel_localize"
+DATA_DIR = DATA_ROOT / "kernel_localize"
 
 # J^5 along OOOEE / OOEOE is n^{27/32}. The even-block fiber
 # I(m') = [m'^{32/27}, (m'+1)^{32/27}) at P = m'^{32/27} has length

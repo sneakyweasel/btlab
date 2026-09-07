@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     EVEN_COUNT_THREE,
     JUGGLER_PAPER_BARREL,
     LEFTOVER_FAMILIES,
@@ -32,9 +33,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_even_count_three.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_even_count_three.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_even_count_three.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_even_count_three.md"
 
 CLASS_GREEN = "EVEN_COUNT_THREE_GREEN"
 CLASS_REMAINS = "EVEN_COUNT_THREE_REMAINS"

@@ -14,19 +14,19 @@ from typing import Any
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import coverage_bucket, is_odd_odd
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
     PROGRESS,
     RESIDUALS,
     SCALE,
-    juggler_text,
     engine_floor_text,
     has_named,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_frontier.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_frontier.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_odd_frontier.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_odd_frontier.md"
 LEAN_PATH = RESIDUALS
 PROGRESS_PATH = PROGRESS
 FLOOR_PATH = ENVELOPE

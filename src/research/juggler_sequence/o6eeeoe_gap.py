@@ -19,6 +19,7 @@ from typing import Any
 
 from research.juggler_sequence.four_even_short_gap import n0_by_doubling
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -28,9 +29,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.o7eeee_window import odd_run_image
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_o6eeeoe_gap.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_o6eeeoe_gap.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_o6eeeoe_gap.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_o6eeeoe_gap.md"
 
 CLASS_PROVED = "O6EEEOE_GAP_PROVED"
 CLASS_REFUTED = "O6EEEOE_GAP_REFUTED"

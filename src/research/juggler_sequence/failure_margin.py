@@ -34,6 +34,10 @@ of the conjecture being false.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -41,8 +45,7 @@ from typing import Any
 
 from .tao_reduction import N0_CERTIFIED, REQUIRED_RATE, kl_bernoulli, least_C_pressure, p_of_C, scale_L
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-ARTIFACT = REPO_ROOT / "data" / "research" / "juggler" / "failure_margin" / "summary.json"
+ARTIFACT = DATA_ROOT / "failure_margin" / "summary.json"
 LOG2_3_INV = math.log(2.0) / math.log(3.0)          # the critical odd share 0.6309
 CENSUS_DEPTH = 40                                     # tao_census / pressure_census d_max
 

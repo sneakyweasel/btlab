@@ -21,6 +21,7 @@ from research.juggler_sequence.k5_post_l_ooe import WORD_W5, row_501
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
@@ -31,9 +32,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.oneshot_recovery import WORD, post_kind
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_persist.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_persist.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_parity_persist.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_parity_persist.md"
 
 CLASS_GREEN = "PARITY_PERSIST_GREEN"
 CLASS_PARK = "PARITY_PERSIST_PARK"

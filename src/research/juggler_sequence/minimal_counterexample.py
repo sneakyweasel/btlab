@@ -22,14 +22,20 @@ from typing import Any
 
 from bt.calculus.derivative import D, lsd
 from bt.representation import encode
-from research.juggler_sequence.lean_paths import MINIMAL, MINIMAL_CLOSURE, has_named
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    MINIMAL,
+    MINIMAL_CLOSURE,
+    has_named,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_counterexample.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_counterexample.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_minimal_counterexample.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "minimal_counterexample"
+JSON_PATH = DOCS_RESEARCH / "juggler_minimal_counterexample.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_minimal_counterexample.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_minimal_counterexample.md"
+DATA_DIR = DATA_ROOT / "minimal_counterexample"
 
 N_PHASE0 = 4000
 DEPTH_PHASE0 = 12

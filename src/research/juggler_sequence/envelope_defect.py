@@ -24,11 +24,13 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 from research.juggler_sequence.saturation_budget import saturation_prefix
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_envelope_defect.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_envelope_defect.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_envelope_defect.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_envelope_defect.md"
 
 CLASS_QUANT = "DEFECT_QUANTITATIVE_GREEN"
 CLASS_PROP = "DEFECT_PROPAGATION_GREEN"

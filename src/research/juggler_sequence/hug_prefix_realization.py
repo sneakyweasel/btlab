@@ -24,6 +24,10 @@ exact integer arithmetic throughout.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -39,8 +43,7 @@ if HAVE_GMPY2:
     from gmpy2 import isqrt as _gmp_isqrt
     from gmpy2 import mpz as _mpz
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "hug_prefix_realization"
+DATA_DIR = DATA_ROOT / "hug_prefix_realization"
 JSON_PATH = DATA_DIR / "summary.json"
 
 SCIENCE_N_MAX = 200_000_000

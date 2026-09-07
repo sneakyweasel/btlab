@@ -11,6 +11,10 @@ Dossier: docs/problems/juggler_cycle_walk_arch.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from pathlib import Path
 from typing import Any
@@ -23,10 +27,7 @@ from research.juggler_sequence.cycle_walk_competition import (
 )
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_walk_arch"
 )
 COMPETITION = DATA_DIR.parent / "cycle_walk_competition" / "summary.json"

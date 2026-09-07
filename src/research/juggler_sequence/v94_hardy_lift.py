@@ -22,6 +22,10 @@ occupancy of ({n^{15/8}}, {n^{3/2}}).
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -37,8 +41,7 @@ from research.juggler_sequence.horizontal_weyl import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "v94_hardy_lift"
+DATA_DIR = DATA_ROOT / "v94_hardy_lift"
 JSON_PATH = DATA_DIR / "summary.json"
 
 THETA_MIN = 1e-8

@@ -23,18 +23,20 @@ from typing import Any
 
 from research.juggler_sequence.atlas.schema import CLAIM_NOT_OBSERVED
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_survivor_phase.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_survivor_phase.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "survivor_phase"
+JSON_PATH = DOCS_RESEARCH / "juggler_survivor_phase.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_survivor_phase.md"
+DATA_DIR = DATA_ROOT / "survivor_phase"
 
 CLASS_CLOSED = "SURVIVOR_PHASE_CLOSED"
 CLASS_PARK = "SURVIVOR_PHASE_PARK"

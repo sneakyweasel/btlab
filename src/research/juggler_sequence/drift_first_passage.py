@@ -30,22 +30,24 @@ from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_po
 from research.juggler_sequence.prefix_nc_admissibility import Ival, pullback_word
 from research.juggler_sequence.lean_paths import (
     CYCLE_DIOPHANTINE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
+    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_drift_first_passage.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_drift_first_passage.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_drift_first_passage.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_drift_first_passage.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "DriftFirstPassage.lean"
 FLOOR_PATH = ENVELOPE
 RESIDUAL_PATH = RESIDUALS
 MIN_PATH = MINIMAL
 CYCLE_PATH = CYCLE_DIOPHANTINE
 PREFIX_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "PrefixNc.lean"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "drift_first_passage"
+DATA_DIR = DATA_ROOT / "drift_first_passage"
 
 CLASS_PRUNING = "DRIFT_TREE_PRUNING_GREEN"
 CLASS_UNBOUNDED = "DRIFT_FIRST_PASSAGE_UNBOUNDED"

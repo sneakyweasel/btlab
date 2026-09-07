@@ -7375,5 +7375,18 @@
   "tests": [
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ]
+ },
+ {
+  "id": "J-transfer-weight-invariant",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Phase-0 classification of transfer-weight invariants for the four-step tilted moment of the live pushforward W_t (not the BT tail-reverse operator). The exact four-step number is the word expansion of W_t, equal to the TiltedShare product, and contracts when Z_{t+4}/Z_t <= a_θ^4. A one-sided bound on the W_t-mass of EOOO, OEOO, OOEO, OOOE, OOOO forces that inequality only if the rest is worst-case two-odd; at θ_19 that cut is 1.117 μ_OOOO + 0.449 μ_3-odd < 0.0749, which is stricter than the fair-coin five-word share. Mass, max-atom, collision energy and ancestry multiplicity supply only location-free bounds μ(S) <= 1, μ(S) <= n_S max-atom and μ(S) <= sqrt(n_S E); without a bound on n_S = number of atoms in S none of them meets the cut. On the OOOO cell four odd steps are injective (odd_preimage_unique): the normalized atom profile, energy and ancestry are relabelled while tilted mass grows by e^{4θ} ≈ 2.04 a_θ^4, so every concentration statistic saturates. Through an OE collision, even_preimage_iff puts unboundedly many odd-dyadic starts onto arbitrarily large favorable targets (preimage span 3, 6, 14, 29, 62 at M = 10, 10^2, 10^3, 10^4, 10^5; ancestor counts 3, 9, 21 at the favorable targets 2001, 20001, 200001). Relative mass of one target is small, but every bounded-multiplicity or support-local capacity dies. Controlling where the atoms sit is the good-base / sparse high-walk image already classified as H_q at unbounded depth (J-pressure-direct-routes, J-tower-absorption) or the L^2 / pair-correlation form (J-tao-cylinder-forms-reparameterization). A 1000-start pushforward at N0 = 260 has ratio_4 <= 0.904; that is an observation, not an invariant. No new sufficient inequality. CLOSE. Not a halt theorem.",
+  "source": "docs/problems/juggler_transfer_weight_invariant.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_transfer_weight_invariant.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
  }
 ]

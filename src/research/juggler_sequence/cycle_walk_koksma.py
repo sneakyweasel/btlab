@@ -11,6 +11,10 @@ Dossier: docs/problems/juggler_cycle_walk_koksma.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -30,10 +34,7 @@ from research.juggler_sequence.cycle_walk_exchange import (
 from research.juggler_sequence.cycle_walk_mechanical import SURVEY_PATH
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_walk_koksma"
 )
 

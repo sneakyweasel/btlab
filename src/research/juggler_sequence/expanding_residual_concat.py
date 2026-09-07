@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ESCAPE,
     JUGGLER_PAPER_BARREL,
     WORD_STATS,
@@ -25,9 +26,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.residual_chain import residual_chain
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_expanding_residual_concat.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_expanding_residual_concat.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_expanding_residual_concat.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_expanding_residual_concat.md"
 
 CLASS_CLOSE = "EXPANDING_CONCAT_CE_CLOSE"
 CLASS_GREEN = "EXPANDING_CONCAT_GREEN"

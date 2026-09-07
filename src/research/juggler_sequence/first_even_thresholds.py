@@ -13,11 +13,13 @@ from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_even_thresholds.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_even_thresholds.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_first_even_thresholds.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_first_even_thresholds.md"
 
 CLASS_THRESHOLD = "FIRST_E_THRESHOLD_GREEN"
 CLASS_FINITE = "FIRST_E_FINITE_GREEN"

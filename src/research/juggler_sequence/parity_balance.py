@@ -18,6 +18,7 @@ from typing import Any
 from research.juggler_sequence.first_internal_oo import isolated_oe_exponent_ok
 from research.juggler_sequence.growth_balance import CONTROLS, prefix_table
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -26,9 +27,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_balance.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_balance.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_parity_balance.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_parity_balance.md"
 
 CLASS_CLOSED = "PARITY_BALANCE_CLOSED"
 CLASS_GREEN = "PARITY_BALANCE_GREEN"

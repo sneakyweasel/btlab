@@ -28,6 +28,12 @@ nothing here is a halt statement.  Run ``python -m research.juggler_sequence.pap
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_THEORY,
+    REPO_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -49,9 +55,8 @@ from research.juggler_sequence.tao_reduction import (
     scale_L,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "paper_c_audit"
-PAPER = REPO_ROOT / "docs" / "theory" / "juggler_fate_almost_all_note.md"
+DATA_DIR = DATA_ROOT / "paper_c_audit"
+PAPER = DOCS_THEORY / "juggler_fate_almost_all_note.md"
 
 #: absolute tolerance for a printed four-decimal exponent
 EXP_TOL = 5e-5

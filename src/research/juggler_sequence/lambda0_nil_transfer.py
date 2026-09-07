@@ -59,6 +59,10 @@ Probe contents (exact scaled-integer; cheap typicality only):
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from fractions import Fraction
 from math import floor, isqrt
@@ -69,8 +73,7 @@ from research.juggler_sequence.bracket_nil_lift import scaled_root4, tower_data
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.two_step_parity import shift_average_probe
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "lambda0_nil_transfer"
+DATA_DIR = DATA_ROOT / "lambda0_nil_transfer"
 JSON_PATH = DATA_DIR / "summary.json"
 
 DIGITS = 22

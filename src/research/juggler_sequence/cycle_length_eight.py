@@ -15,6 +15,7 @@ from research.juggler_sequence.length8_bootstrap import (
     named_length8_filter,
 )
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     LENGTH_EIGHT_CENSUS,
     SMALL_CYCLE_CENSUS,
     has_named,
@@ -22,9 +23,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_length_eight.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_length_eight.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_length_eight.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_length_eight.md"
 
 CLASS_GREEN = "LENGTH_EIGHT_CENSUS_GREEN"
 CLASS_INCOMPLETE = "LENGTH_EIGHT_CENSUS_INCOMPLETE"

@@ -29,6 +29,7 @@ from research.juggler_sequence.cycle_length_seven import (
 from research.juggler_sequence.cycle_length_nine import odd_log2_C
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    DOCS_RESEARCH,
     LEFTOVER_CYCLES,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
@@ -38,9 +39,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_uniform_two_even.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_uniform_two_even.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_uniform_two_even.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_uniform_two_even.md"
 
 CLASS_GREEN = "TWO_EVEN_UNIFORM_TAIL_GREEN"
 CLASS_REMAINS = "TWO_EVEN_UNIFORM_TAIL_REMAINS"

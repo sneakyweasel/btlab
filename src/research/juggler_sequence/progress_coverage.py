@@ -15,16 +15,16 @@ from typing import Any
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ENVELOPE,
     PROGRESS,
-    juggler_text,
     engine_floor_text,
     has_named,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_progress_coverage.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_progress_coverage.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_progress_coverage.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_progress_coverage.md"
 LEAN_PATH = PROGRESS
 FLOOR_PATH = ENVELOPE
 

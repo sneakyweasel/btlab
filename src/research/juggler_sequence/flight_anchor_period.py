@@ -36,6 +36,10 @@ float comparisons.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -57,8 +61,7 @@ from research.juggler_sequence.cycle_walk_competition import (
 )
 from research.juggler_sequence.cycle_walk_ostrowski import greedy_digits
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "flight_anchor_period"
+DATA_DIR = DATA_ROOT / "flight_anchor_period"
 JSON_PATH = DATA_DIR / "summary.json"
 
 LOG2_3 = math.log2(3.0)

@@ -50,16 +50,18 @@ from typing import Any
 from research.juggler_sequence.lean_paths import (
     CYCLE_FINANCE,
     CYCLE_HEIGHT_FINANCE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     has_named,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_finance.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_finance.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_finance"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_finance.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_finance.md"
+DATA_DIR = DATA_ROOT / "cycle_finance"
 
 CLASS_GREEN = "CYCLE_FINANCE_GREEN"
 CLASS_PARK = "CYCLE_FINANCE_PARK"

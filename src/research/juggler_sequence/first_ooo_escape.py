@@ -20,6 +20,7 @@ from typing import Any
 
 from research.juggler_sequence.lean_paths import (
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     FIRST_INTERNAL_OO,
     JUGGLER_PAPER_BARREL,
@@ -32,9 +33,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.minimal_ooe_corridor import square_cell_gap
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_ooo_escape.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_ooo_escape.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_first_ooo_escape.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_first_ooo_escape.md"
 
 CLASS_GREEN = "FIRST_OOO_GREEN"
 CLASS_PARK = "FIRST_OOO_PARK"

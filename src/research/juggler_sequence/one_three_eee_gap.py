@@ -21,6 +21,7 @@ from typing import Any
 from research.juggler_sequence.first_e_e4 import word_e4
 from research.juggler_sequence.four_even_short_gap import tail_holds_log
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -29,9 +30,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_one_three_eee_gap.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_one_three_eee_gap.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_one_three_eee_gap.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_one_three_eee_gap.md"
 
 CLASS_PROVED = "ONE_THREE_EEE_GAP_PROVED"
 CLASS_REFUTED = "ONE_THREE_EEE_GAP_REFUTED"

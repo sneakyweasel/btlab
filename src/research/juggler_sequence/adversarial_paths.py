@@ -26,14 +26,19 @@ from research.juggler_sequence.first_return_excursions import (
     run_signature,
     slack_profile,
 )
-from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, juggler_text
+from research.juggler_sequence.lean_paths import (
+    CELLS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    juggler_text,
+)
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, word_of
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_adversarial_paths.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_adversarial_paths.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "adversarial_paths"
+JSON_PATH = DOCS_RESEARCH / "juggler_adversarial_paths.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_adversarial_paths.md"
+DATA_DIR = DATA_ROOT / "adversarial_paths"
 
 N_MIN = 2
 N_MAX = 4000

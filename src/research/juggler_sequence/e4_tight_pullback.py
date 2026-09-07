@@ -27,6 +27,7 @@ from research.juggler_sequence.four_even_short_gap import (
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
     CYCLES,
+    DOCS_RESEARCH,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -36,9 +37,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_e4_tight_pullback.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_e4_tight_pullback.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_e4_tight_pullback.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_e4_tight_pullback.md"
 
 CLASS_REFUTED = "E4_TIGHT_PULLBACK_REFUTED"
 CLASS_REMAINS = "E4_TIGHT_PULLBACK_REMAINS"

@@ -25,6 +25,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     FIRST_INTERNAL_OO,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -38,9 +39,8 @@ from research.juggler_sequence.odd_run_itinerary import prefix_lambda
 from research.juggler_sequence.parity_persist import odd_run_len
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_block_map_q.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_block_map_q.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_block_map_q.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_block_map_q.md"
 
 CLASS_PARK = "BLOCK_MAP_Q_PARK"
 CLASS_CYCLE = "BLOCK_MAP_Q_CYCLE"

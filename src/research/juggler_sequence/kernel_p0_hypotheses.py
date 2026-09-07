@@ -11,13 +11,16 @@ The T = P^{1/2} >= 8(1+2.25 P^{1/4}) line is Lemma 5.2 Stage 3
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from math import ceil, floor, isqrt
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "kernel_p0_hypotheses"
+DATA_DIR = DATA_ROOT / "kernel_p0_hypotheses"
 JSON_PATH = DATA_DIR / "summary.json"
 
 # (E4) box for B = Delta_2 c(n+d1), c = (3k/4) n^{9/8}.

@@ -10,6 +10,10 @@ bounded-depth statement (Tao note §10.4(e)).
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -29,7 +33,7 @@ from research.juggler_sequence.tao_reduction import (
     theta_of_C,
 )
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "pressure_direct"
+DATA_DIR = DATA_ROOT / "pressure_direct"
 
 Q_CRIT = 1.0 / LOG2_3  # log 2 / log 3
 THETA_19 = theta_of_C(19)

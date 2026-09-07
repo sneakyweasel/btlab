@@ -19,6 +19,7 @@ from typing import Any
 from research.juggler_sequence.bunched_last_cluster import FAMILIES, family_word
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     LEFTOVER_FAMILIES,
     PREFIX_BUNCHED,
@@ -31,9 +32,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_bunched.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_bunched.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_prefix_bunched.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_prefix_bunched.md"
 
 CLASS_GREEN = "PREFIX_BUNCHED_GREEN"
 CLASS_REMAINS = "PREFIX_BUNCHED_REMAINS"

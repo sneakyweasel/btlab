@@ -23,6 +23,7 @@ from research.juggler_sequence.lean_paths import (
     CYCLE_CORE,
     DEFECT,
     DEFECT_LOWER_BOUND,
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     SEQUENTIAL_MORDELL,
     SMALL_CYCLE_CENSUS,
@@ -32,9 +33,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short_defect.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short_defect.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_bunched_short_defect.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_bunched_short_defect.md"
 
 CLASS_GREEN = "SHORT_DEFECT_GREEN"
 CLASS_PARK = "SHORT_DEFECT_PARK"

@@ -25,16 +25,17 @@ from research.juggler_sequence.residual_chain import (
     residual_excursion,
 )
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     RESIDUALS,
-    juggler_text,
     engine_floor_text,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_state.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_state.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "residual_state"
+JSON_PATH = DOCS_RESEARCH / "juggler_residual_state.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_residual_state.md"
+DATA_DIR = DATA_ROOT / "residual_state"
 LEAN_PATH = RESIDUALS
 LEAN_NEW = JUGGLER_DIR / "ResidualState.lean"
 

@@ -18,6 +18,7 @@ from typing import Any
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
@@ -29,9 +30,8 @@ from research.juggler_sequence.oneshot_recovery import L_DEN, L_NUM, WORD
 from research.juggler_sequence.parity_persist import LONG_RUN, l_row
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_l_odd_run_cap.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_l_odd_run_cap.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_l_odd_run_cap.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_l_odd_run_cap.md"
 
 CLASS_GREEN = "L_ODD_RUN_CAP_GREEN"
 CLASS_PARK = "L_ODD_RUN_CAP_PARK"

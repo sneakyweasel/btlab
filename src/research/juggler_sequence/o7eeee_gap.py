@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     LEFTOVER_CELL,
     LEFTOVER_FAMILIES,
@@ -33,9 +34,8 @@ from research.juggler_sequence.o7eeee_window import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_o7eeee_gap.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_o7eeee_gap.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_o7eeee_gap.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_o7eeee_gap.md"
 
 CLASS_PROVED = "O7EEEE_GAP_PROVED"
 CLASS_REFUTED = "O7EEEE_GAP_REFUTED"

@@ -49,6 +49,10 @@ recorded exponent/drift arithmetic.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from fractions import Fraction
 from math import isqrt
@@ -62,8 +66,7 @@ from research.juggler_sequence.bracket_nil_lift import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.two_step_parity import second_order_scan
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "nil_horizontal_weyl"
+DATA_DIR = DATA_ROOT / "nil_horizontal_weyl"
 JSON_PATH = DATA_DIR / "summary.json"
 
 DIGITS = 40

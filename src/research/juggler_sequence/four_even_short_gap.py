@@ -35,6 +35,7 @@ from research.juggler_sequence.cycle_length_nine import odd_log2_C
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
     CYCLES,
+    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
@@ -45,9 +46,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_four_even_short_gap.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_four_even_short_gap.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_four_even_short_gap.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_four_even_short_gap.md"
 
 CLASS_PARK = "FOUR_EVEN_SHORT_GAP_PARK"
 CLASS_REMAINS = "FOUR_EVEN_SHORT_GAP_REMAINS"

@@ -12,6 +12,10 @@ Dossier: docs/problems/juggler_cycle_walk_mechanical.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -37,17 +41,11 @@ from research.juggler_sequence.cycle_walk_charge import (
 from research.juggler_sequence.cycle_walk_excursion import replay_charge
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_walk_mechanical"
 )
 SURVEY_PATH = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_walk_charge"
     / "survey.json"
 )

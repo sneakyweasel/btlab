@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     LEFTOVER_CELL,
     SMALL_CYCLE_CENSUS,
@@ -27,9 +28,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.leftover_cell_lag import n0_by_doubling, tail_holds_log
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_o7eeee_window.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_o7eeee_window.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_o7eeee_window.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_o7eeee_window.md"
 
 CLASS_EMPTY = "O7EEEE_WINDOW_EMPTY"
 CLASS_HIT = "O7EEEE_CYCLE_HIT"

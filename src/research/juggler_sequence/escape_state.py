@@ -26,18 +26,20 @@ from research.juggler_sequence.near_extremal_prefixes import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, itinerary, odd_count, word_of
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     ENVELOPE,
+    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_escape_state.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_escape_state.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_escape_state.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_escape_state.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "EscapeState.lean"
 FLOOR_PATH = ENVELOPE
 RESIDUAL_PATH = RESIDUALS
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "escape_state"
+DATA_DIR = DATA_ROOT / "escape_state"
 
 CLASS_INVARIANT = "ESCAPE_STATE_INVARIANT_GREEN"
 CLASS_MARGIN = "ESCAPE_MARGIN_GREEN"

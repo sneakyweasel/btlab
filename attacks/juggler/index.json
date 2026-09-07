@@ -4601,7 +4601,7 @@
       "id": "branch_index",
       "kind": "infrastructure",
       "probe": "src/research/juggler_sequence/branch_index.py",
-      "test": null,
+      "test": "tests/research/juggler_sequence/test_branch_index.py",
       "dossier": null,
       "data_dir": null,
       "lean": [],

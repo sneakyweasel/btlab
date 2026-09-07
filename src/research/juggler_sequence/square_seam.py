@@ -26,15 +26,21 @@ from typing import Any
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.floor_preimages import even_preimage, even_preimage_width, odd_preimage_integers
 from research.juggler_sequence.global_defect import local_defect
-from research.juggler_sequence.lean_paths import JUGGLER_DIR, has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    JUGGLER_DIR,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.power_algebra import is_square, local_tight
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "square_seam"
+DATA_DIR = DATA_ROOT / "square_seam"
 JSON_PATH = DATA_DIR / "summary.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_square_seam.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_square_seam.md"
+DOC_PATH = DOCS_RESEARCH / "juggler_square_seam.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_square_seam.md"
 
 CLASS_REPARAM = "SQUARE_SEAM_REPARAMETERIZATION"
 CLASS_NEW = "SQUARE_SEAM_NEW_CONSTRAINT"

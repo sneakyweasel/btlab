@@ -29,6 +29,7 @@ from research.juggler_sequence.cycle_length_nine import z_upper
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
     CYCLES,
+    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     GAPPED_CYCLE_WORD,
     MINIMAL,
@@ -39,9 +40,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_e_e4.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_e_e4.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_first_e_e4.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_first_e_e4.md"
 
 CLASS_REPARAM = "FIRST_E_E4_REPARAMETERIZATION"
 CLASS_REMAINS = "FIRST_E_E4_REMAINS"

@@ -14,7 +14,10 @@ from typing import Any
 
 from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.envelope_defect import tiny_deficit
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -23,9 +26,8 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_no_progress_paths.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_no_progress_paths.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_no_progress_paths.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_no_progress_paths.md"
 
 CLASS_GREEN = "NO_PROGRESS_STRUCTURE_GREEN"
 CLASS_COLLAPSE = "COLLAPSE_WITHOUT_CAPTURE_COUNTEREXAMPLE"

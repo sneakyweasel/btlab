@@ -22,6 +22,10 @@ Dossier: docs/problems/juggler_descent_floor.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+)
+
 import hashlib
 import json
 import math
@@ -814,7 +818,7 @@ def write_artifacts(payload: dict[str, Any] | None = None) -> dict[str, Any]:
     )
     md = render_markdown(data)
     (SENS_DIR / "summary.md").write_text(md, encoding="utf-8")
-    doc = Path(__file__).resolve().parents[3] / "docs" / "research" / "juggler_descent_floor.md"
+    doc = DOCS_RESEARCH / "juggler_descent_floor.md"
     js = doc.with_suffix(".json")
     doc.write_text(md, encoding="utf-8")
     js.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")

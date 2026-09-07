@@ -68,6 +68,10 @@ square-root scale):
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from math import isqrt
 from pathlib import Path
@@ -77,8 +81,7 @@ from research.juggler_sequence.bracket_nil_lift import scaled_root4, scaled_sqrt
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.two_step_parity import second_order_scan
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "horizontal_weyl"
+DATA_DIR = DATA_ROOT / "horizontal_weyl"
 JSON_PATH = DATA_DIR / "summary.json"
 
 DIGITS = 40

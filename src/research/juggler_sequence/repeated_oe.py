@@ -15,6 +15,7 @@ from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
     SCALE,
@@ -22,9 +23,8 @@ from research.juggler_sequence.lean_paths import (
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_repeated_oe.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_repeated_oe.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_repeated_oe.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_repeated_oe.md"
 LEAN_PATH = SCALE
 MIN_PATH = MINIMAL
 FLOOR_PATH = ENVELOPE

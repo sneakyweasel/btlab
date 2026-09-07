@@ -20,6 +20,7 @@ from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_a
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
@@ -33,9 +34,8 @@ from research.juggler_sequence.post_l_ooe import WORD_M
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.second_post_l_ooe import m_ooe_k_square
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_k5_post_l_ooe.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_k5_post_l_ooe.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_k5_post_l_ooe.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_k5_post_l_ooe.md"
 
 CLASS_GREEN = "K5_POST_L_OOE_GREEN"
 CLASS_PARK = "K5_POST_L_OOE_PARK"

@@ -34,18 +34,20 @@ from research.juggler_sequence.near_extremal_prefixes import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, odd_count, word_of
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     ENVELOPE,
+    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_nc_admissibility.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_nc_admissibility.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_prefix_nc_admissibility.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_prefix_nc_admissibility.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "PrefixNCAdmissibility.lean"
 FLOOR_PATH = ENVELOPE
 RESIDUAL_PATH = RESIDUALS
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "prefix_nc_admissibility"
+DATA_DIR = DATA_ROOT / "prefix_nc_admissibility"
 
 CLASS_GREEN = "PREFIX_NC_ADMISSIBILITY_GREEN"
 CLASS_SHRINKS = "PREFIX_NC_ESCAPE_SET_SHRINKS"

@@ -17,13 +17,17 @@ from research.juggler_sequence.atlas.packed import pack_word, split_word_id, unp
 from research.juggler_sequence.atlas.storage import DEFAULT_DATA_DIR, connect, sqlite_path
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
-from research.juggler_sequence.lean_paths import CELLS, COLLAPSE
+from research.juggler_sequence.lean_paths import (
+    CELLS,
+    COLLAPSE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_realization_geometry.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_realization_geometry.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "realization_geometry"
+JSON_PATH = DOCS_RESEARCH / "juggler_realization_geometry.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_realization_geometry.md"
+DATA_DIR = DATA_ROOT / "realization_geometry"
 
 DIAG_N = 4000
 DIAG_K = 12

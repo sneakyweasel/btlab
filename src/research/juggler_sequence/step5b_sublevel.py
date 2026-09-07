@@ -9,13 +9,16 @@ not an exponential sum.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from math import floor, sqrt
 from pathlib import Path
 from typing import Any, Callable
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "step5b_sublevel"
+DATA_DIR = DATA_ROOT / "step5b_sublevel"
 JSON_PATH = DATA_DIR / "summary.json"
 
 # Printed zero-offset triple of Theorem 5.3 Step 5b.

@@ -18,6 +18,7 @@ from typing import Any
 from research.juggler_sequence.backward_geometry import pred_odd
 from research.juggler_sequence.cube_crossing import generic_odd_odd_delta_mod8
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -27,9 +28,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.minimal_anchor_closure import WORD_L, trajectory_until_drop
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_chain_minimality.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_chain_minimality.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_chain_minimality.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_chain_minimality.md"
 
 CLASS_CLOSED = "ODD_CHAIN_MINIMALITY_CLOSED"
 CLASS_PARK = "ODD_CHAIN_MINIMALITY_PARK"

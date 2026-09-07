@@ -27,6 +27,7 @@ from research.juggler_sequence.k5_post_l_ooe import (
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
@@ -43,9 +44,8 @@ from research.juggler_sequence.w5_second_oo import (
     first_integer_cell,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_u_next_o.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_u_next_o.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_u_next_o.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_u_next_o.md"
 
 CLASS_GREEN = "ODD_U_NEXT_O_GREEN"
 CLASS_PARK = "ODD_U_NEXT_O_PARK"

@@ -20,16 +20,17 @@ from research.juggler_sequence.global_defect import (
 )
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     engine_floor_text,
     juggler_text,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_chain import HARD_PROBES
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_sum_rho.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_sum_rho.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "sum_rho"
+JSON_PATH = DOCS_RESEARCH / "juggler_sum_rho.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_sum_rho.md"
+DATA_DIR = DATA_ROOT / "sum_rho"
 LEAN_PATH = CYCLES
 
 CLASS_TELESCOPE = "RHO_TELESCOPE_GREEN"

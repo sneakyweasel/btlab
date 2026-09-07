@@ -17,13 +17,19 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
-from research.juggler_sequence.lean_paths import CELLS, DYNAMICS, juggler_text
+from research.juggler_sequence.lean_paths import (
+    CELLS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    DYNAMICS,
+    REPO_ROOT,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_backward_geometry.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_backward_geometry.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "backward"
+JSON_PATH = DOCS_RESEARCH / "juggler_backward_geometry.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_backward_geometry.md"
+DATA_DIR = DATA_ROOT / "backward"
 
 CENSUS_MAX = 4000
 DEPTH_MAX = 12

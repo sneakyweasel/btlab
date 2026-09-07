@@ -14,6 +14,10 @@ Dossier: docs/problems/juggler_cycle_fan_multipoint.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from collections import Counter
@@ -25,10 +29,7 @@ from research.juggler_sequence.cycle_walk_charge import MU, U_TOL
 from research.juggler_sequence.cycle_walk_competition import o_min_exact
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_fan_multipoint"
 )
 COMPETITION_SUMMARY = (

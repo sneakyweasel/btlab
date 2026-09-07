@@ -29,6 +29,10 @@ letter after an odd start, with a constant checked to four digits.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import cmath
 import json
 import math
@@ -37,8 +41,7 @@ from typing import Any
 
 import numpy as np
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-ARTIFACT = REPO_ROOT / "data" / "research" / "juggler" / "depth_one_main_term" / "summary.json"
+ARTIFACT = DATA_ROOT / "depth_one_main_term" / "summary.json"
 
 
 def predicted_constant(alpha: float = 0.5, modulus: int = 27, coeff: int = -16) -> float:

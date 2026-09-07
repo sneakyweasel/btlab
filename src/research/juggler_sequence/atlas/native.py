@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    REPO_ROOT,
+)
+
 import os
 import shutil
 import subprocess
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[4]
 BIN_NAMES = ("juggler-atlas-census.exe", "juggler-atlas-census")
 
 

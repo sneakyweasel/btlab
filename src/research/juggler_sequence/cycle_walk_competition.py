@@ -23,6 +23,10 @@ Dossier: docs/problems/juggler_cycle_walk_competition.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from fractions import Fraction
@@ -49,10 +53,7 @@ from research.juggler_sequence.cycle_walk_ostrowski import (
 )
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_walk_competition"
 )
 OSTROWSKI_SUMMARY = (

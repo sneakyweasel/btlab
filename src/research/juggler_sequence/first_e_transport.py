@@ -21,6 +21,7 @@ from typing import Any
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     FIRST_E_TRANSPORT_EVAL,
     LEFTOVER_TWO_EVEN,
@@ -38,9 +39,8 @@ from research.juggler_sequence.uniform_two_even import (
     word_eoe as two_even_eoe,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_e_transport.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_e_transport.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_first_e_transport.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_first_e_transport.md"
 
 CLASS_GREEN = "FIRST_E_TRANSPORT_GREEN"
 CLASS_REMAINS = "FIRST_E_TRANSPORT_REMAINS"

@@ -51,15 +51,18 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.flight_walk_divergence import hug_odds
-from research.juggler_sequence.lean_paths import LAYERS, has_named
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    LAYERS,
+    has_named,
+)
 
 try:
     from gmpy2 import isqrt as _isqrt  # type: ignore
 except ImportError:  # pragma: no cover
     from math import isqrt as _isqrt
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "flight_divergent_structure"
+DATA_DIR = DATA_ROOT / "flight_divergent_structure"
 JSON_PATH = DATA_DIR / "summary.json"
 
 LOG2_3 = math.log2(3.0)

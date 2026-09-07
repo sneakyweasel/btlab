@@ -26,8 +26,10 @@ from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.information_complexity import DOCUMENTED_MOD16_PAIR
 from research.juggler_sequence.landing_valuation import landing_row, v2
 from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
     CELLS,
     COLLAPSE,
+    DOCS_RESEARCH,
     ITINERARY,
     LANDING_VALUATION,
     has_named,
@@ -36,10 +38,9 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 from research.juggler_sequence.realization_geometry import even_tower
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_2adic_integer_bridge.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_2adic_integer_bridge.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_2adic_integer_bridge.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_2adic_integer_bridge.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_2adic_integer_bridge.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_2adic_integer_bridge.md"
 
 K_MAX = 12
 P_MAX = 16

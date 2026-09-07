@@ -11,6 +11,10 @@ Dossier: docs/problems/juggler_cycle_walk_fan_successor.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -20,10 +24,7 @@ from research.juggler_sequence.cycle_finance import EPS_CONST, git_commit
 from research.juggler_sequence.cycle_walk_competition import o_min_exact
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_walk_fan_successor"
 )
 FLIGHT_SUMMARY = DATA_DIR.parent / "flight_anchor_period" / "summary.json"

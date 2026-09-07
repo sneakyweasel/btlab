@@ -12,6 +12,10 @@ Dossier: docs/problems/juggler_cycle_mechanical_lift.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from collections import Counter
@@ -30,10 +34,7 @@ from research.juggler_sequence.floor_preimages import odd_preimage_integers
 from research.juggler_sequence.power_itineraries import floor_power
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_mechanical_lift"
 )
 

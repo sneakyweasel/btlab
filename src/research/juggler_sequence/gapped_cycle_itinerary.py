@@ -25,6 +25,7 @@ from research.juggler_sequence.first_e_transport import (
 )
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     GAPPED_CYCLE_WORD,
     MINIMAL,
@@ -35,9 +36,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_gapped_cycle_itinerary.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_gapped_cycle_word.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_gapped_cycle_itinerary.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_gapped_cycle_word.md"
 
 CLASS_GREEN = "GAPPED_CYCLE_WORD_GREEN"
 CLASS_REMAINS = "GAPPED_CYCLE_WORD_REMAINS"

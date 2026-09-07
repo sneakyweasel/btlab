@@ -17,6 +17,10 @@ Dossier: ``docs/problems/juggler_cycle_mechanical_window.md``.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from collections import Counter
@@ -28,10 +32,7 @@ from research.juggler_sequence.cycle_finance import git_commit, o_min_and_theta
 from research.juggler_sequence.cycle_walk_greedy import hug_word
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_mechanical_window"
 )
 

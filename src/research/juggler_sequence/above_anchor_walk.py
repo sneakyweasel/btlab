@@ -33,6 +33,7 @@ from typing import Any
 from research.juggler_sequence.lean_paths import (
     ABOVE_ANCHOR_WALK,
     CYCLE_CORE,
+    DATA_ROOT,
     MINIMUM_RELATIVE,
     WALK_CHARGE_WORDS,
     has_named,
@@ -47,8 +48,7 @@ try:  # exact big-int acceleration for the high-flyer retry pass only
 except ImportError:  # pragma: no cover - gmpy2 is present in the lab env
     HAVE_GMPY2 = False
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "above_anchor_walk"
+DATA_DIR = DATA_ROOT / "above_anchor_walk"
 JSON_PATH = DATA_DIR / "summary.json"
 
 LOG2_3 = math.log2(3.0)

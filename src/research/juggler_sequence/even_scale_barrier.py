@@ -17,15 +17,15 @@ from research.juggler_sequence.compensated_contraction import follows_itinerary,
 from research.juggler_sequence.no_progress_paths import even_collapses, realized_prefix
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
     has_named,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_even_scale_barrier.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_even_scale_barrier.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_even_scale_barrier.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_even_scale_barrier.md"
 LEAN_PATH = MINIMAL
 FLOOR_PATH = ENVELOPE
 

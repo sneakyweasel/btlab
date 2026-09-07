@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -28,9 +29,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_growth_balance.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_growth_balance.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_growth_balance.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_growth_balance.md"
 
 CLASS_CLOSED = "GROWTH_BALANCE_CLOSED"
 CLASS_GREEN = "GROWTH_BALANCE_GREEN"

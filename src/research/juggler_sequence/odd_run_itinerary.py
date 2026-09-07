@@ -19,6 +19,7 @@ from typing import Any
 
 from research.juggler_sequence.first_internal_oo import isolated_oe_exponent_ok
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     FIRST_INTERNAL_OO,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
@@ -30,9 +31,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_run_itinerary.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_run_itinerary.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_run_itinerary.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_run_itinerary.md"
 
 CLASS_PARK = "ODD_RUN_ITINERARY_PARK"
 CLASS_INCOMPLETE = "ODD_RUN_ITINERARY_INCOMPLETE"

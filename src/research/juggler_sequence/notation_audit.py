@@ -20,18 +20,21 @@ leaves the ranking to a reader.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DOCS_THEORY,
+)
+
 import io
 import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
-ROOT = Path(__file__).resolve().parents[3]
 
 PAPERS = {
-    "A": ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md",
-    "B": ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md",
-    "C": ROOT / "docs" / "theory" / "juggler_fate_almost_all_note.md",
+    "A": DOCS_THEORY / "juggler_finite_dynamics_note.md",
+    "B": DOCS_THEORY / "juggler_parity_discrepancy_note.md",
+    "C": DOCS_THEORY / "juggler_fate_almost_all_note.md",
 }
 
 # A symbol: one latin or greek letter, optionally primed, optionally subscripted.

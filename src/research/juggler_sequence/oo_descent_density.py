@@ -11,13 +11,19 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import ENVELOPE, PROGRESS, has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    PROGRESS,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_oo_descent_density.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_oo_descent_density.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_oo_descent_density.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_oo_descent_density.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_oo_descent_density.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_oo_descent_density.md"
 
 WORD_OOOEE = "OOOEE"
 WORD_OOEOE = "OOEOE"

@@ -18,6 +18,7 @@ from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     MINIMUM_RELATIVE,
@@ -32,9 +33,8 @@ from research.juggler_sequence.minimal_anchor_closure import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_pe_walk.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_pe_walk.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_pe_walk.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_pe_walk.md"
 
 CLASS_PARK = "PE_WALK_PARK"
 CLASS_INCOMPLETE = "PE_WALK_INCOMPLETE"

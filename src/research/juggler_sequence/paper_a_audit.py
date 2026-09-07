@@ -32,8 +32,9 @@ from __future__ import annotations
 
 import math
 import re
-from pathlib import Path
 from typing import Any, Callable
+
+from research.juggler_sequence.lean_paths import DOCS_THEORY
 
 from mpmath import exp, log, mp, mpf
 
@@ -42,8 +43,7 @@ mp.dps = 40
 LN2 = log(mpf(2))
 LN3 = log(mpf(3))
 
-ROOT = Path(__file__).resolve().parents[3]
-PAPER = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
+PAPER = DOCS_THEORY / "juggler_finite_dynamics_note.md"
 
 STRATIFICATION = re.compile(
     r"N_0\^\{?(?P<exp>[0-9/]+)\}?\s*=\s*(?P<mant>[0-9.]+)\\cdot10\^\{(?P<pow>\d+)\}"

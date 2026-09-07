@@ -42,6 +42,10 @@ the good-base reset.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -51,8 +55,7 @@ import numpy as np
 
 from .tao_reduction import LOG2_3, N0_CERTIFIED, p_of_C, scale_L, theta_of_C
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-ARTIFACT = REPO_ROOT / "data" / "research" / "juggler" / "effective_tower_height" / "summary.json"
+ARTIFACT = DATA_ROOT / "effective_tower_height" / "summary.json"
 
 HEIGHT_CAP = 4                 # effective height ≥ 4: the next letter is a height-≥4 tower phase
 DEPTH_CAP = 5                  # effective depth ≥ 5: beyond the depth-5 word classes of Paper B

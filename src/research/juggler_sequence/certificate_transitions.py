@@ -22,8 +22,11 @@ from research.juggler_sequence.atlas.schema import CLAIM_NOT_OBSERVED, LANGUAGE_
 from research.juggler_sequence.block_map_q import q_blocks
 from research.juggler_sequence.certificate_harvest import first_certificate
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
@@ -34,10 +37,9 @@ from research.juggler_sequence.minimal_anchor_closure import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_certificate_transitions.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_certificate_transitions.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "certificate_transitions"
+JSON_PATH = DOCS_RESEARCH / "juggler_certificate_transitions.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_certificate_transitions.md"
+DATA_DIR = DATA_ROOT / "certificate_transitions"
 
 CLASS_PARK = "CERTIFICATE_TRANSITIONS_PARK"
 CLASS_GREEN = "CERTIFICATE_TRANSITIONS_GREEN"

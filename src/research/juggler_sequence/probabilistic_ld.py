@@ -27,7 +27,13 @@ from research.juggler_sequence.excursions import (
     STATUS_HORIZON,
     STATUS_RETURNED,
 )
-from research.juggler_sequence.lean_paths import ENVELOPE, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.probabilistic import (
     LOG_1_2,
@@ -36,12 +42,11 @@ from research.juggler_sequence.probabilistic import (
     wilson_interval,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-MODEL_DOC = REPO_ROOT / "docs" / "research" / "juggler_probabilistic_model.md"
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_probabilistic_vs_exact.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_probabilistic_vs_exact.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_probabilistic_ld.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "probabilistic"
+MODEL_DOC = DOCS_RESEARCH / "juggler_probabilistic_model.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_probabilistic_vs_exact.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_probabilistic_vs_exact.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_probabilistic_ld.md"
+DATA_DIR = DATA_ROOT / "probabilistic"
 
 N_VALIDATE = 4000
 N_SCALE = 100_000

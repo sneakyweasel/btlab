@@ -26,8 +26,11 @@ from research.juggler_sequence.excursions import first_return_below
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.lean_paths import (
     CYCLE_DIOPHANTINE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
+    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )
@@ -39,15 +42,14 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_corridor.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_corridor.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_corridor.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_corridor.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "Corridor.lean"
 FLOOR_PATH = ENVELOPE
 RESIDUAL_PATH = RESIDUALS
 MIN_PATH = MINIMAL
 CYCLE_PATH = CYCLE_DIOPHANTINE
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "corridor"
+DATA_DIR = DATA_ROOT / "corridor"
 
 CLASS_PACK = "CORRIDOR_REPACKAGING"
 CLASS_RIGID = "CORRIDOR_RIGIDITY_GREEN"

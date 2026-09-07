@@ -38,6 +38,7 @@ from typing import Any
 
 from research.juggler_sequence.lean_paths import (
     ABOVE_ANCHOR_WALK,
+    DATA_ROOT,
     LAYERS,
     has_named,
 )
@@ -51,8 +52,7 @@ try:
 except ImportError:  # pragma: no cover - gmpy2 is present in the lab env
     HAVE_GMPY2 = False
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "flight_envelope"
+DATA_DIR = DATA_ROOT / "flight_envelope"
 JSON_PATH = DATA_DIR / "summary.json"
 
 LOG2_3 = math.log2(3.0)

@@ -16,6 +16,7 @@ from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ESCAPE,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -25,9 +26,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.oe_next_oo import oe_next_row
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_second_o_lost_sq.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_second_o_lost_sq.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_second_o_lost_sq.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_second_o_lost_sq.md"
 
 CLASS_GREEN = "SECOND_O_LOST_SQ_GREEN"
 CLASS_REMAINS = "SECOND_O_LOST_SQ_REMAINS"

@@ -20,11 +20,13 @@ from research.juggler_sequence.compensated_contraction import (
 )
 from research.juggler_sequence.envelope_defect import tiny_deficit
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_eoo_cell_mechanism.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_eoo_cell_mechanism.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_eoo_cell_mechanism.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_eoo_cell_mechanism.md"
 
 CLASS_GREEN = "EOO_CELL_MECHANISM_GREEN"
 CLASS_COUNTER = "EOO_CELL_COUNTEREXAMPLE"

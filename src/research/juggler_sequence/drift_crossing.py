@@ -33,22 +33,24 @@ from research.juggler_sequence.power_itineraries import (
 from research.juggler_sequence.saturation_budget import square_depth
 from research.juggler_sequence.lean_paths import (
     CYCLE_DIOPHANTINE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
+    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_drift_crossing.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_drift_crossing.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_drift_crossing.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_drift_crossing.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "DriftCrossing.lean"
 FLOOR_PATH = ENVELOPE
 RESIDUAL_PATH = RESIDUALS
 MIN_PATH = MINIMAL
 CYCLE_PATH = CYCLE_DIOPHANTINE
 PREFIX_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "PrefixNc.lean"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "drift_crossing"
+DATA_DIR = DATA_ROOT / "drift_crossing"
 
 CLASS_ENDPOINT = "DRIFT_ENDPOINT_GREEN"
 CLASS_CROSSING = "DRIFT_FIRST_CROSSING_GREEN"

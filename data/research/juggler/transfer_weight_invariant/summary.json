@@ -1,0 +1,272 @@
+{
+  "git_commit": "417c641d00c033fb6b1017ff1f4428f2473afa6b",
+  "N0": 260,
+  "tilt": {
+    "theta": 0.3959862156169129,
+    "x": 1.485848835900663,
+    "a": 1.2429244179503316,
+    "a4": 2.3865958452886398,
+    "r4": 2.042300450580955,
+    "r3": 1.3745008248722645,
+    "r2": 0.9250610100179513,
+    "r1": 0.6225808357262774,
+    "r0": 0.4190068469171654,
+    "coef_mu4": 1.117239440563004,
+    "coef_mu3": 0.4494398148543133,
+    "rhs": 0.07493898998204873
+  },
+  "onesided": {
+    "fair_mu4": 0.0625,
+    "fair_mu3": 0.25,
+    "fair_excess": 0.10724842876671734,
+    "fair_meets_cut": false,
+    "all_oooo_meets_cut": false,
+    "location_free_unit_meets_cut": false
+  },
+  "oooo_relabel": {
+    "starts": [
+      265,
+      271,
+      289,
+      293,
+      309
+    ],
+    "images": [
+      1850882562751,
+      2074113244632,
+      2872716435977,
+      3079022305557,
+      4029198450246
+    ],
+    "words": [
+      "OOOO",
+      "OOOO",
+      "OOOO",
+      "OOOO",
+      "OOOO"
+    ],
+    "injective": true,
+    "all_oooo": true,
+    "mass_ratio": 4.874145770187624,
+    "x4": 4.874145770187624,
+    "x4_over_a4": 2.042300450580955,
+    "energy_before": 0.2,
+    "energy_after": 0.19999999999999998,
+    "max_atom_before": 0.2,
+    "max_atom_after": 0.2,
+    "ancestry_before": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "ancestry_after": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "positive_share": 1.0,
+    "onesided_cut": false,
+    "location_free_meets_cut": false
+  },
+  "oe_multiplicity": {
+    "rows": [
+      {
+        "m": 2001,
+        "word": "OOOO",
+        "live": true,
+        "favorable": true,
+        "oe_ancestors": 3
+      },
+      {
+        "m": 20001,
+        "word": "OOOE",
+        "live": true,
+        "favorable": true,
+        "oe_ancestors": 9
+      },
+      {
+        "m": 200001,
+        "word": "OOEO",
+        "live": true,
+        "favorable": true,
+        "oe_ancestors": 21
+      }
+    ],
+    "counts": [
+      3,
+      9,
+      21
+    ],
+    "spans": [
+      3,
+      6,
+      14,
+      29,
+      62
+    ],
+    "span_strictly_increasing": true,
+    "last_count_exceeds_first": true,
+    "all_favorable": true
+  },
+  "pushforward": {
+    "starts": 1000,
+    "lo": 2001,
+    "hi": 3999,
+    "dmax": 8,
+    "rows": [
+      {
+        "depth": 0,
+        "support": 1000,
+        "ratio4": 0.7826679557655708,
+        "positive_share": 0.498,
+        "positive_excess": 0.2846679557655636,
+        "death4": 0.502,
+        "max_atom": 0.001,
+        "energy": 0.001,
+        "max_ancestry": 1,
+        "mu4": 0.147,
+        "mu3": 0.351,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 1,
+        "support": 1000,
+        "ratio4": 0.651889456781347,
+        "positive_share": 0.3139999999999995,
+        "positive_excess": 0.16767823093804268,
+        "death4": 0.5020000000000013,
+        "max_atom": 0.001,
+        "energy": 0.001,
+        "max_ancestry": 1,
+        "mu4": 0.07500000000000008,
+        "mu3": 0.2389999999999994,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 2,
+        "support": 689,
+        "ratio4": 0.5803652580896966,
+        "positive_share": 0.27837308808697814,
+        "positive_excess": 0.1485175499531334,
+        "death4": 0.555719346479467,
+        "max_atom": 0.004016490704157532,
+        "energy": 0.0016949805539981963,
+        "max_ancestry": 5,
+        "mu4": 0.06628724715942066,
+        "mu3": 0.21208584092755745,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 3,
+        "support": 594,
+        "ratio4": 0.6132669192923709,
+        "positive_share": 0.29885575952455423,
+        "positive_excess": 0.15910910616549787,
+        "death4": 0.533261201496965,
+        "max_atom": 0.005764692184975514,
+        "energy": 0.002027928020747249,
+        "max_ancestry": 5,
+        "mu4": 0.07066098255992355,
+        "mu3": 0.2281947769646307,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 4,
+        "support": 422,
+        "ratio4": 0.7858086211306463,
+        "positive_share": 0.33252980222206036,
+        "positive_excess": 0.17425932653491324,
+        "death4": 0.34110358488958004,
+        "max_atom": 0.008780868149429976,
+        "energy": 0.002805150206983487,
+        "max_ancestry": 5,
+        "mu4": 0.07446341596159069,
+        "mu3": 0.2580663862604697,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 5,
+        "support": 413,
+        "ratio4": 0.7394981997118123,
+        "positive_share": 0.29550825998481023,
+        "positive_excess": 0.1815584364434591,
+        "death4": 0.404410218280392,
+        "max_atom": 0.008433950330528472,
+        "energy": 0.0029465003283907685,
+        "max_ancestry": 5,
+        "mu4": 0.10615511987948337,
+        "mu3": 0.18935314010532686,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 6,
+        "support": 342,
+        "ratio4": 0.8226256613801795,
+        "positive_share": 0.33936371021154693,
+        "positive_excess": 0.19240789757645546,
+        "death4": 0.3121773999888557,
+        "max_atom": 0.008480398156693984,
+        "energy": 0.0035298760335840717,
+        "max_ancestry": 4,
+        "mu4": 0.09780764417351023,
+        "mu3": 0.2415560660380367,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 7,
+        "support": 271,
+        "ratio4": 0.9036782379501187,
+        "positive_share": 0.3645618928991049,
+        "positive_excess": 0.17769965980648564,
+        "death4": 0.20399399610078564,
+        "max_atom": 0.011518540860238263,
+        "energy": 0.0045104192842880635,
+        "max_ancestry": 4,
+        "mu4": 0.061651622154002585,
+        "mu3": 0.3029102707451023,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      },
+      {
+        "depth": 8,
+        "support": 268,
+        "ratio4": 0.8385502373755153,
+        "positive_share": 0.35442464235274596,
+        "positive_excess": 0.175005014003189,
+        "death4": 0.2868510879317333,
+        "max_atom": 0.013692777474701165,
+        "energy": 0.004857495208309344,
+        "max_ancestry": 4,
+        "mu4": 0.06330146268376105,
+        "mu3": 0.29112317966898493,
+        "onesided_cut": false,
+        "location_free_meets_cut": false
+      }
+    ],
+    "max_ratio4": 0.9036782379501187,
+    "any_onesided_cut": false,
+    "any_location_free_cut": false
+  },
+  "classification": {
+    "oooo_profile_is_relabel": true,
+    "concentration_saturates": true,
+    "oe_span_unbounded": true,
+    "oe_count_grows_on_separated_sample": true,
+    "support_local_capacity_dies": true,
+    "location_free_bounds_miss_cut": true,
+    "fair_coin_misses_onesided_cut": true,
+    "location_is_good_base_or_L2": true,
+    "decision": "CLOSE"
+  }
+}

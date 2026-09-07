@@ -30,6 +30,7 @@ from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_a
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLES,
+    DOCS_RESEARCH,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -38,9 +39,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_length8_bootstrap.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_length8_bootstrap.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_length8_bootstrap.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_length8_bootstrap.md"
 
 CLASS_REPARAM = "LENGTH8_BOOTSTRAP_REPARAMETERIZATION"
 CLASS_REMAINS = "LENGTH8_BOOTSTRAP_REMAINS"

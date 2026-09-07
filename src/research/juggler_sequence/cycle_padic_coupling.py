@@ -30,6 +30,7 @@ from research.juggler_sequence.global_defect import (
     odd_count,
 )
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     has_named,
@@ -37,8 +38,7 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_padic_coupling"
+DATA_DIR = DATA_ROOT / "cycle_padic_coupling"
 
 CLASS_CLOSED = "PADIC_COUPLING_CLOSED"
 CLASS_GREEN = "PADIC_COUPLING_GREEN"

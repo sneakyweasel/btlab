@@ -28,6 +28,10 @@ that the human proof quotes.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -36,7 +40,7 @@ from typing import Any
 from research.juggler_sequence.cycle_finance import git_commit
 from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "tao_reduction"
+DATA_DIR = DATA_ROOT / "tao_reduction"
 
 LOG2_3 = math.log2(3.0)
 LAMBDA_STARSTAR = lambda_root(RECURSIONS["block_third_plus_oeoee_v6"])

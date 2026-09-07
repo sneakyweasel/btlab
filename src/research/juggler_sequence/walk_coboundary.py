@@ -21,6 +21,10 @@ Dossier: docs/problems/juggler_walk_coboundary.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -29,8 +33,7 @@ from typing import Any, Callable, Iterable
 from research.juggler_sequence.flight_divergent_structure import HIGH_FLYERS
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "walk_coboundary"
+DATA_DIR = DATA_ROOT / "walk_coboundary"
 JSON_PATH = DATA_DIR / "summary.json"
 
 LOG2_3_2 = math.log2(1.5)

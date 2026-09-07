@@ -16,6 +16,7 @@ from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ESCAPE,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -25,9 +26,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.third_residual import third_residual_row
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_escaped_even.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_escaped_even.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_escaped_even.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_escaped_even.md"
 
 CLASS_GREEN = "ESCAPED_EVEN_GREEN"
 CLASS_REMAINS = "ESCAPED_EVEN_REMAINS"

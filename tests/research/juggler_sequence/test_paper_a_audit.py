@@ -12,6 +12,7 @@ import math
 import pytest
 
 from research.juggler_sequence import paper_a_audit as A
+from research.juggler_sequence.lean_paths import DOCS_THEORY
 
 
 # --- the criterion itself ---
@@ -296,7 +297,7 @@ def test_stratification_scales_are_read_from_the_paper_and_reproduce():
 
 def test_paper_c_does_not_print_the_stratification_scales():
     """Guard the reason the checks moved: if Paper C ever prints them, revisit the split."""
-    text = (A.ROOT / "docs" / "theory" / "juggler_fate_almost_all_note.md").read_text(
+    text = (DOCS_THEORY / "juggler_fate_almost_all_note.md").read_text(
         encoding="utf-8"
     )
     for mantissa in (r"2.5\cdot10^{11}", r"6.5\cdot10^{12}", r"1.2\cdot10^{17}"):

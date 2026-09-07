@@ -17,14 +17,20 @@ from typing import Any
 from research.juggler_sequence.compensated_contraction import image_after
 from research.juggler_sequence.envelope_defect import first_nonexact_index, local_defect
 from research.juggler_sequence.floor_preimages import even_preimage
-from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, ITINERARY, juggler_text
+from research.juggler_sequence.lean_paths import (
+    CELLS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    ITINERARY,
+    juggler_text,
+)
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_nc_boundary.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_nc_boundary.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "nc_boundary"
+JSON_PATH = DOCS_RESEARCH / "juggler_nc_boundary.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_nc_boundary.md"
+DATA_DIR = DATA_ROOT / "nc_boundary"
 
 DIAG_N = 4000
 DIAG_K = 20

@@ -2,6 +2,11 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    REPO_ROOT,
+)
+
 import hashlib
 import json
 import sqlite3
@@ -33,7 +38,7 @@ from research.juggler_sequence.atlas.schema import (
 )
 
 DEFAULT_DATA_DIR = (
-    Path(__file__).resolve().parents[4] / "data" / "research" / "juggler" / "word_atlas"
+    DATA_ROOT / "word_atlas"
 )
 
 
@@ -58,7 +63,7 @@ def sha256_file(path: Path) -> str:
 
 
 def git_commit(repo: Path | None = None) -> str:
-    root = repo or Path(__file__).resolve().parents[4]
+    root = repo or REPO_ROOT
     try:
         out = subprocess.check_output(
             ["git", "rev-parse", "HEAD"],

@@ -14,13 +14,17 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import CELLS, DYNAMICS, ITINERARY
+from research.juggler_sequence.lean_paths import (
+    CELLS,
+    DOCS_RESEARCH,
+    DYNAMICS,
+    ITINERARY,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.realization_geometry import collect_realizing
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_landing_image.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_landing_image.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_landing_image.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_landing_image.md"
 
 DIAG_N = 4000
 DIAG_K = 12

@@ -28,14 +28,19 @@ from research.juggler_sequence.excursions import (
     STATUS_RETURNED,
     _walk_returns,
 )
-from research.juggler_sequence.lean_paths import ENVELOPE, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_probabilistic.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_probabilistic.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_probabilistic.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "probabilistic"
+JSON_PATH = DOCS_RESEARCH / "juggler_probabilistic.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_probabilistic.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_probabilistic.md"
+DATA_DIR = DATA_ROOT / "probabilistic"
 
 N_VALIDATE = 4000
 N_SCALE = 100_000

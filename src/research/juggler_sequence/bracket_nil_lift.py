@@ -53,6 +53,10 @@ that precision is conservative by seven orders of magnitude.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from math import isqrt
@@ -63,8 +67,7 @@ import numpy as np
 
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "bracket_nil_lift"
+DATA_DIR = DATA_ROOT / "bracket_nil_lift"
 JSON_PATH = DATA_DIR / "summary.json"
 
 WINDOW = 2_000_000

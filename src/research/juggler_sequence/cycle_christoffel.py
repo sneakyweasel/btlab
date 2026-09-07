@@ -38,17 +38,19 @@ from research.juggler_sequence.first_e_e4 import (
 )
 from research.juggler_sequence.lean_paths import (
     CYCLE_FINANCE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     has_named,
     juggler_text,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_christoffel.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_christoffel.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_christoffel"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_christoffel.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_christoffel.md"
+DATA_DIR = DATA_ROOT / "cycle_christoffel"
 
 CLASS_CLOSED = "CYCLE_CHRISTOFFEL_CLOSED"
 CLASS_GREEN = "CYCLE_CHRISTOFFEL_GREEN"

@@ -16,17 +16,17 @@ from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_superquadratic import lower_denom
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    DOCS_RESEARCH,
     ENVELOPE,
     PROGRESS,
     RESIDUALS,
-    juggler_text,
     engine_floor_text,
     has_named,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_itinerary.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_word.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_itinerary.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_word.md"
 LEAN_PATH = CYCLES
 PATH_PATH = RESIDUALS
 FLOOR_PATH = ENVELOPE

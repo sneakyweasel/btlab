@@ -18,6 +18,10 @@ Phase-0 checks that split on the existing fan-concat witnesses
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from typing import Any
 
@@ -43,8 +47,7 @@ from research.juggler_sequence.flight_return_quantization import (
     theta_p,
 )
 
-REPO_ROOT = __import__("pathlib").Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "flight_post19_tail"
+DATA_DIR = DATA_ROOT / "flight_post19_tail"
 JSON_PATH = DATA_DIR / "summary.json"
 
 FLOAT_TOL = 1e-12

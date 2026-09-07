@@ -17,6 +17,7 @@ from typing import Any, Iterator
 from research.juggler_sequence.bunched_short_return import SHORT_PAIRS, short_tail
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     SCALE,
     SMALL_CYCLE_CENSUS,
@@ -26,9 +27,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_isolated_odd_return.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_isolated_odd_return.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_isolated_odd_return.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_isolated_odd_return.md"
 
 CLASS_GREEN = "ISO_ODD_RETURN_GREEN"
 CLASS_PARK = "ISO_ODD_RETURN_PARK"

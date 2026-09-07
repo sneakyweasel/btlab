@@ -27,6 +27,7 @@ from research.juggler_sequence.k5_post_l_ooe import (
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
@@ -38,9 +39,8 @@ from research.juggler_sequence.odd_k5_leak import WORD_W5O, Y_DEN, Y_NUM
 from research.juggler_sequence.oneshot_recovery import WORD
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_w5_second_oo.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_w5_second_oo.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_w5_second_oo.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_w5_second_oo.md"
 
 CLASS_GREEN = "W5_SECOND_OO_GREEN"
 CLASS_PARK = "W5_SECOND_OO_PARK"

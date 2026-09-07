@@ -24,21 +24,23 @@ from research.juggler_sequence.residual_chain import residual_chain, residual_ex
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     CYCLE_DIOPHANTINE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     ENVELOPE,
+    REPO_ROOT,
     RESIDUALS,
-    juggler_text,
     engine_floor_text,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_residual.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_residual.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_odd_residual.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_odd_residual.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "OddOddResidual.lean"
 RESIDUAL_PATH = RESIDUALS
 CYCLE_PATH = CYCLES
 DIOPH_PATH = CYCLE_DIOPHANTINE
 FLOOR_PATH = ENVELOPE
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_odd_residuals"
+DATA_DIR = DATA_ROOT / "odd_odd_residuals"
 
 CLASS_ADMISSIBILITY = "ODD_ODD_ADMISSIBILITY_GREEN"
 CLASS_BOUNDED = "ODD_ODD_BOUNDED_GREEN"

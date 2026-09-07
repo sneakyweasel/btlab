@@ -14,6 +14,12 @@ census as a new fitting exercise.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+)
+
 import csv
 import json
 import math
@@ -28,11 +34,10 @@ from research.juggler_sequence.excursions import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_extremal_control.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_extremal_control.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_extremal_control.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "extremal_control"
+JSON_PATH = DOCS_RESEARCH / "juggler_extremal_control.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_extremal_control.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_extremal_control.md"
+DATA_DIR = DATA_ROOT / "extremal_control"
 
 K_IDEAL_MAX = 50
 K_COMPARE_MAX = 20

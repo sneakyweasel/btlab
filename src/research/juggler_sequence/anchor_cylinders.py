@@ -21,8 +21,11 @@ from research.juggler_sequence.atlas.schema import CLAIM_NOT_OBSERVED
 from research.juggler_sequence.formal_realized_gap import walk_aa
 from research.juggler_sequence.landing_image import components
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
@@ -31,10 +34,9 @@ from research.juggler_sequence.minimum_relative import above_anchor
 from research.juggler_sequence.near_extremal_prefixes import prefix_noncontracting
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_anchor_cylinders.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_anchor_cylinders.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "anchor_cylinders"
+JSON_PATH = DOCS_RESEARCH / "juggler_anchor_cylinders.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_anchor_cylinders.md"
+DATA_DIR = DATA_ROOT / "anchor_cylinders"
 
 CLASS_CLOSED = "ANCHOR_CYLINDER_CLOSED"
 CLASS_PARK = "ANCHOR_CYLINDER_PARK"

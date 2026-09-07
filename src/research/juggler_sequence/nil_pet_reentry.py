@@ -46,6 +46,10 @@ witnesses of the species, not a Weyl census):
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from fractions import Fraction
 from math import floor
@@ -56,8 +60,7 @@ from research.juggler_sequence.bracket_nil_lift import scaled_root4, tower_data
 from research.juggler_sequence.horizontal_weyl import scaled_eighth
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "nil_pet_reentry"
+DATA_DIR = DATA_ROOT / "nil_pet_reentry"
 JSON_PATH = DATA_DIR / "summary.json"
 
 DIGITS = 22

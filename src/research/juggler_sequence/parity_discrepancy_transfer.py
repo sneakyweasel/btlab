@@ -19,7 +19,13 @@ from math import isqrt
 from pathlib import Path
 from typing import Any, Iterable
 
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.odd_image_discrepancy import (
     analytic_majorant,
     odd_image,
@@ -28,11 +34,10 @@ from research.juggler_sequence.odd_image_discrepancy import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_discrepancy_transfer.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_discrepancy_transfer.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_parity_discrepancy_transfer.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "parity_transfer"
+JSON_PATH = DOCS_RESEARCH / "juggler_parity_discrepancy_transfer.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_parity_discrepancy_transfer.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_parity_discrepancy_transfer.md"
+DATA_DIR = DATA_ROOT / "parity_transfer"
 
 N_MAX = 1_000_000
 LENGTH_GRID = (10, 20, 50, 100, 200, 500, 1_000, 2_000, 5_000, 10_000, 20_000, 50_000, 100_000)

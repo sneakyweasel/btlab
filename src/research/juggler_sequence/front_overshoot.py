@@ -29,6 +29,7 @@ from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_a
 from research.juggler_sequence.cyclemin_obstruction import FAMILY_A_MIN
 from research.juggler_sequence.lean_paths import (
     CYCLEMIN_OBSTRUCTION,
+    DOCS_RESEARCH,
     EVEN_COUNT_THREE,
     JUGGLER_PAPER_BARREL,
     PREFIX_BUNCHED,
@@ -39,9 +40,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_front_overshoot.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_front_overshoot.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_front_overshoot.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_front_overshoot.md"
 
 CLASS_GREEN = "FRONT_OVERSHOOT_GREEN"
 CLASS_PARK = "FRONT_OVERSHOOT_PARK"

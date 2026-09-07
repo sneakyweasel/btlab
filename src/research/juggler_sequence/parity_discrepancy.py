@@ -17,14 +17,19 @@ from math import isqrt, log
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_discrepancy.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_discrepancy.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_parity_discrepancy.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "parity_discrepancy"
+JSON_PATH = DOCS_RESEARCH / "juggler_parity_discrepancy.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_parity_discrepancy.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_parity_discrepancy.md"
+DATA_DIR = DATA_ROOT / "parity_discrepancy"
 
 N_MAX = 1_000_000
 N_SPOT = 10_000_000

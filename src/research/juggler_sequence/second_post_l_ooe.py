@@ -20,6 +20,7 @@ from research.juggler_sequence.first_ooo_escape import walk_language
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
@@ -33,9 +34,8 @@ from research.juggler_sequence.post_l_ooe import WORD, WORD_M
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.second_oo_cube import second_oo
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_second_post_l_ooe.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_second_post_l_ooe.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_second_post_l_ooe.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_second_post_l_ooe.md"
 
 CLASS_GREEN = "SECOND_POST_L_OOE_GREEN"
 CLASS_PARK = "SECOND_POST_L_OOE_PARK"

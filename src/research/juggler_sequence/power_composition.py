@@ -10,7 +10,10 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -23,10 +26,9 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_composition.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_composition.md"
-PRIOR_JSON = REPO_ROOT / "docs" / "research" / "juggler_power_itineraries.json"
+JSON_PATH = DOCS_RESEARCH / "juggler_power_composition.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_power_composition.md"
+PRIOR_JSON = DOCS_RESEARCH / "juggler_power_itineraries.json"
 
 LEAN_EMPTY = "power_bound_empty"
 LEAN_EVEN = "power_bound_append_even"

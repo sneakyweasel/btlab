@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     LEFTOVER_CELL,
     SMALL_CYCLE_CENSUS,
@@ -30,9 +31,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_leftover_cell_lag.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_leftover_cell_lag.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_leftover_cell_lag.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_leftover_cell_lag.md"
 
 CLASS_STAYS = "LEFTOVER_CELL_LAG_STAYS_ONE"
 CLASS_GROWS = "LEFTOVER_CELL_LAG_GROWS"

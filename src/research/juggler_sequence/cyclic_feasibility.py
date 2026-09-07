@@ -25,18 +25,20 @@ from typing import Any
 
 from research.juggler_sequence.atlas.schema import CLAIM_NOT_OBSERVED, LANGUAGE_IDS
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclic_feasibility.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclic_feasibility.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cyclic_feasibility"
+JSON_PATH = DOCS_RESEARCH / "juggler_cyclic_feasibility.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cyclic_feasibility.md"
+DATA_DIR = DATA_ROOT / "cyclic_feasibility"
 
 CLASS_UNIVERSAL = "CYCLIC_FEASIBILITY_UNIVERSAL"
 CLASS_FAMILY = "CYCLIC_FEASIBILITY_FAMILY"

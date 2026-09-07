@@ -14,6 +14,10 @@ Dossier: docs/problems/juggler_cycle_peak_count.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+)
+
 import json
 import math
 from pathlib import Path
@@ -34,9 +38,8 @@ from research.juggler_sequence.cycle_position_finance import (
 )
 from research.juggler_sequence.cycle_run_extremum import survivor_lengths
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_peak_count.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_peak_count.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_peak_count.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_peak_count.md"
 PEAK_DIR = DATA_DIR / "peak_count"
 
 CLASS_CLOSED = "PEAK_COUNT_CLOSED"

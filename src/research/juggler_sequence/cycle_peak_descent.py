@@ -22,15 +22,15 @@ from research.juggler_sequence.cycle_top_pred import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    DOCS_RESEARCH,
     ENVELOPE,
     PROGRESS,
-    juggler_text,
     engine_floor_text,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_peak_descent.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_peak_descent.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_peak_descent.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_peak_descent.md"
 LEAN_PATH = CYCLES
 FLOOR_PATH = ENVELOPE
 PROGRESS_PATH = PROGRESS

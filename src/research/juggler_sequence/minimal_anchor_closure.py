@@ -19,6 +19,7 @@ from typing import Any
 from research.juggler_sequence.backward_geometry import pred_odd
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     MINIMUM_RELATIVE,
@@ -29,9 +30,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.minimum_relative import above_anchor
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_anchor_closure.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_anchor_closure.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_minimal_anchor_closure.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_minimal_anchor_closure.md"
 MINIMAL_CLOSURE = JUGGLER_DIR / "MinimalClosure.lean"
 
 CLASS_PARK = "MINIMAL_ANCHOR_PARK"

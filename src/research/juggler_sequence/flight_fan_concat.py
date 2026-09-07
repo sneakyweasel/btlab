@@ -16,6 +16,10 @@ seven canonical high-flyer ascent prefixes. No new n-window.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from typing import Any
@@ -35,8 +39,7 @@ from research.juggler_sequence.flight_return_quantization import (
     theta_p,
 )
 
-REPO_ROOT = __import__("pathlib").Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "flight_fan_concat"
+DATA_DIR = DATA_ROOT / "flight_fan_concat"
 JSON_PATH = DATA_DIR / "summary.json"
 
 LN2 = math.log(2.0)

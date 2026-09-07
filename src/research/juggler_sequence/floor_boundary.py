@@ -22,15 +22,23 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.global_defect import local_defect
-from research.juggler_sequence.lean_paths import CELLS, COLLAPSE, DEFECT, has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    CELLS,
+    COLLAPSE,
+    DATA_ROOT,
+    DEFECT,
+    DOCS_RESEARCH,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 from research.juggler_sequence.realization_geometry import even_tower
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_floor_boundary.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_floor_boundary.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_floor_boundary.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "floor_boundaries"
+JSON_PATH = DOCS_RESEARCH / "juggler_floor_boundary.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_floor_boundary.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_floor_boundary.md"
+DATA_DIR = DATA_ROOT / "floor_boundaries"
 
 N_MAX = 4000
 ODD_DELTA_N_MAX = 100_000

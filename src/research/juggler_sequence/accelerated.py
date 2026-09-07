@@ -24,10 +24,14 @@ from research.juggler_sequence.global_defect import (
     local_defect,
 )
 from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
     CELLS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     ENVELOPE,
     GLOBAL_DEFECT,
     ITINERARY,
+    REPO_ROOT,
     RESIDUALS,
     has_named,
     juggler_text,
@@ -35,11 +39,10 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 from research.juggler_sequence.residual_chain import residual_excursion
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_accelerated.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_accelerated.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_accelerated.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "accelerated"
+JSON_PATH = DOCS_RESEARCH / "juggler_accelerated.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_accelerated.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_accelerated.md"
+DATA_DIR = DATA_ROOT / "accelerated"
 
 N_MAX = 4000
 BIT_CAP = 4096

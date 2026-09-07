@@ -55,10 +55,13 @@ from research.juggler_sequence.flight_divergent_structure import (
     _log2_big,
     trajectory,
 )
-from research.juggler_sequence.lean_paths import LAYERS, has_named
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    LAYERS,
+    has_named,
+)
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "flight_return_quantization"
+DATA_DIR = DATA_ROOT / "flight_return_quantization"
 JSON_PATH = DATA_DIR / "summary.json"
 
 LOG2_3 = math.log2(3.0)

@@ -8,6 +8,10 @@ printed budgets. Orbit geometry is sampled, not exhaustive at 10^10.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from fractions import Fraction
 import math
@@ -15,8 +19,7 @@ from math import ceil, isqrt
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "decoration_budget"
+DATA_DIR = DATA_ROOT / "decoration_budget"
 JSON_PATH = DATA_DIR / "summary.json"
 
 P_LIST = (10**6, 10**8, 10**10)

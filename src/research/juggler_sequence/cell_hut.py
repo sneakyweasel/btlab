@@ -35,15 +35,22 @@ from research.juggler_sequence.backward_geometry import (
 )
 from research.juggler_sequence.excursions import HARD_STARTS
 from research.juggler_sequence.landing_valuation import v2
-from research.juggler_sequence.lean_paths import CELLS, DYNAMICS, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    CELLS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    DYNAMICS,
+    REPO_ROOT,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.realization_geometry import FIRST_HOLES
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cell_hut.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cell_hut.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_cell_hut.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cell_hut"
+JSON_PATH = DOCS_RESEARCH / "juggler_cell_hut.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cell_hut.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_cell_hut.md"
+DATA_DIR = DATA_ROOT / "cell_hut"
 FIGURE_DIR = DATA_DIR / "figures"
 
 CENSUS_MAX = 4000

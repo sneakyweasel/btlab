@@ -13,17 +13,22 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import MINIMAL_CLOSURE, has_named
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    MINIMAL_CLOSURE,
+    has_named,
+)
 from research.juggler_sequence.minimal_counterexample import stopping_times
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_stopping_prefix.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_stopping_prefix.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_stopping_prefix.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "stopping_prefix"
+JSON_PATH = DOCS_RESEARCH / "juggler_stopping_prefix.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_stopping_prefix.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_stopping_prefix.md"
+DATA_DIR = DATA_ROOT / "stopping_prefix"
 WINDOWED_CSV = (
-    REPO_ROOT / "data" / "research" / "juggler" / "minimal_counterexample" / "good_closure.csv"
+    DATA_ROOT / "minimal_counterexample" / "good_closure.csv"
 )
 
 N_PHASE0 = 4000

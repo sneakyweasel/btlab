@@ -18,7 +18,9 @@ from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ESCAPE,
+    JUGGLER_BARREL,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
     has_named,
@@ -29,9 +31,8 @@ from research.juggler_sequence.odd_ooe_landing import first_event
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_non_escape.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_non_escape.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_non_escape.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_non_escape.md"
 
 CLASS_GREEN = "NON_ESCAPE_SPINE_GREEN"
 CLASS_REMAINS = "NON_ESCAPE_REMAINS"
@@ -232,7 +233,7 @@ def lean_api_present() -> dict[str, bool]:
         **named,
         **{f"has_{name}": present for name, present in forbidden.items()},
         "in_laboratory_barrel": "Problems.Juggler.Escape" in (
-            REPO_ROOT / "formal" / "Problems" / "Juggler.lean"
+            JUGGLER_BARREL
         ).read_text(encoding="utf-8"),
         "not_in_paper_barrel": "Escape" not in paper
         or "Problems.Juggler.Escape" not in paper,

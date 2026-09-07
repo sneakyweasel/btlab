@@ -19,6 +19,7 @@ from typing import Any
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_e_transport import transport_contradiction
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     LEFTOVER_FAMILIES,
     PREFIX_TWO_EVEN,
@@ -36,9 +37,8 @@ from research.juggler_sequence.uniform_two_even import (
     word_eoe,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_two_even.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_two_even.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_prefix_two_even.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_prefix_two_even.md"
 
 CLASS_GREEN = "PREFIX_TWO_EVEN_GREEN"
 CLASS_REMAINS = "PREFIX_TWO_EVEN_REMAINS"

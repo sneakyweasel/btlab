@@ -16,14 +16,19 @@ from typing import Any
 
 from research.juggler_sequence.envelope_defect import first_nonexact_index, local_defect
 from research.juggler_sequence.excursions import STATUS_RETURNED, _walk_returns, peak_index
-from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, juggler_text
+from research.juggler_sequence.lean_paths import (
+    CELLS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    juggler_text,
+)
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_return_excursions.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_return_excursions.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "first_return_excursions"
+JSON_PATH = DOCS_RESEARCH / "juggler_first_return_excursions.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_first_return_excursions.md"
+DATA_DIR = DATA_ROOT / "first_return_excursions"
 
 N_MIN = 2
 N_MAX = 4000

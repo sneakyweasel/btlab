@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     EVEN_COUNT_THREE,
     JUGGLER_PAPER_BARREL,
     PROGRESS,
@@ -35,9 +36,8 @@ from research.juggler_sequence.post_overshoot import excursion
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, itinerary, word_of
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_overshoot_return.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_overshoot_return.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_overshoot_return.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_overshoot_return.md"
 
 CLASS_GREEN = "EVEN_Y_LATER_CONTRACTOR_GREEN"
 CLASS_SCATTER = "EVEN_Y_RETURN_SUFFIX_SCATTER"

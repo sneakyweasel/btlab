@@ -12,7 +12,10 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, itinerary
 from research.juggler_sequence.saturation_budget import (
     has_pow_two_depth,
@@ -24,9 +27,8 @@ from research.juggler_sequence.saturation_budget import (
     tower_family,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_equality_language.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_equality_language.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_equality_language.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_equality_language.md"
 
 CLASS_MIXED = "MIXED_EQUALITY_WORD_FOUND"
 CLASS_MONO = "MONOCHROMATIC_EQUALITY_GREEN"

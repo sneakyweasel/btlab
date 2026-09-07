@@ -37,16 +37,18 @@ from research.juggler_sequence.lean_paths import (
     CYCLE_EXTREMA,
     CYCLE_FINANCE,
     CYCLE_FINANCE_LEFTOVERS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     has_named,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_m_finance.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_m_finance.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_m_finance"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_m_finance.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_m_finance.md"
+DATA_DIR = DATA_ROOT / "cycle_m_finance"
 
 CLASS_GREEN = "M_CYCLE_FINANCE_GREEN"
 CLASS_PARK = "M_CYCLE_FINANCE_PARK"

@@ -21,19 +21,22 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_twin_flight.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_twin_flight.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_twin_flight.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "twin_flight"
+JSON_PATH = DOCS_RESEARCH / "juggler_twin_flight.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_twin_flight.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_twin_flight.md"
+DATA_DIR = DATA_ROOT / "twin_flight"
 
 CLASS_CLOSED = "TWIN_FLIGHT_CLOSED"
 CLASS_GREEN = "TWIN_FLIGHT_GREEN"

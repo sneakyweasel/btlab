@@ -12,12 +12,16 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import CERTIFICATES, has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    CERTIFICATES,
+    DOCS_RESEARCH,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_capture_certificates.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_capture_certificates.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_capture_certificates.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_capture_certificates.md"
 
 CLASS_NORM = "CAPTURE_NORMALIZATION_GREEN"
 CLASS_ONE = "CAPTURE_BASIN_ONE_GREEN"

@@ -40,17 +40,19 @@ from research.juggler_sequence.cycle_position_finance import (
 from research.juggler_sequence.lean_paths import (
     CYCLE_CORE,
     CYCLE_FINANCE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     has_named,
     juggler_text,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_equal_valleys.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_equal_valleys.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_equal_valleys"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_equal_valleys.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_equal_valleys.md"
+DATA_DIR = DATA_ROOT / "cycle_equal_valleys"
 
 CLASS_CLOSED = "EQUAL_VALLEYS_CLOSED"
 CLASS_GREEN = "EQUAL_VALLEYS_GREEN"

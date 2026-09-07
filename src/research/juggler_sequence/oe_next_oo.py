@@ -17,6 +17,7 @@ from typing import Any
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.escaped_even import escaped_even_row
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ESCAPE,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -25,9 +26,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_oe_next_oo.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_oe_next_oo.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_oe_next_oo.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_oe_next_oo.md"
 
 CLASS_GREEN = "OE_NEXT_OO_GREEN"
 CLASS_REMAINS = "OE_NEXT_OO_REMAINS"

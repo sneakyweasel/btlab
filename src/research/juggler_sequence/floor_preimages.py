@@ -16,11 +16,13 @@ from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_floor_cells.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_floor_cells.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_floor_cells.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_floor_cells.md"
 
 CLASS_FREEZE = "FIRST_E_FREEZE_GREEN"
 CLASS_CALC = "CELL_CALCULUS_GREEN"

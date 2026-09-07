@@ -14,13 +14,14 @@ from typing import Any
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
     PROGRESS,
     RESIDUALS,
-    juggler_text,
     engine_floor_text,
     has_named,
+    juggler_text,
 )
 from research.juggler_sequence.residual_chain import (
     residual_chain,
@@ -28,9 +29,8 @@ from research.juggler_sequence.residual_chain import (
     residual_excursion,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_path.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_path.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_residual_path.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_residual_path.md"
 LEAN_PATH = RESIDUALS
 CHAIN_PATH = RESIDUALS
 PROGRESS_PATH = PROGRESS

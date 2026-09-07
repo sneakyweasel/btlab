@@ -23,6 +23,7 @@ from research.juggler_sequence.global_defect import (
     local_defect,
 )
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
@@ -39,9 +40,8 @@ from research.juggler_sequence.minimal_anchor_closure import WORD_L
 from research.juggler_sequence.odd_chain_minimality import L_LAB, LONG_ODD_STARTS
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cumulative_floor_loss.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cumulative_floor_loss.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cumulative_floor_loss.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cumulative_floor_loss.md"
 
 CLASS_CLOSED = "CUMULATIVE_FLOOR_LOSS_CLOSED"
 CLASS_PARK = "CUMULATIVE_FLOOR_LOSS_PARK"

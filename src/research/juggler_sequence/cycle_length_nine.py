@@ -43,6 +43,7 @@ from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_a
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLES,
+    DOCS_RESEARCH,
     LEFTOVER_CYCLES,
     MINIMAL,
     PROGRESS,
@@ -53,9 +54,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_length_nine.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_length_nine.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_length_nine.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_length_nine.md"
 
 CLASS_GREEN = "THREE_EVEN_PREFIX_CELL_GREEN"
 CLASS_REMAINS = "THREE_EVEN_LEFTOVER_REMAINS"

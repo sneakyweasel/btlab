@@ -27,16 +27,18 @@ from typing import Any
 from research.juggler_sequence.cycle_finance import EPS_CONST, n_max_from_bound
 from research.juggler_sequence.lean_paths import (
     CYCLE_FINANCE,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     has_named,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_gap_baker.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_gap_baker.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_gap_baker"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_gap_baker.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_gap_baker.md"
+DATA_DIR = DATA_ROOT / "cycle_gap_baker"
 
 CLASS_CLOSED = "CYCLE_GAP_BAKER_CLOSED"
 CLASS_GREEN = "CYCLE_GAP_BAKER_GREEN"

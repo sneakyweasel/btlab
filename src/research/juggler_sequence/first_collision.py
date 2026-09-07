@@ -11,6 +11,11 @@ Dossier: docs/problems/juggler_first_collision.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+)
+
 import json
 from pathlib import Path
 from typing import Any
@@ -20,9 +25,8 @@ from research.juggler_sequence.compensated_contraction import follows_itinerary,
 from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
 from research.juggler_sequence.power_itineraries import floor_power, itinerary, word_of
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_first_collision.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "first_collision"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_first_collision.md"
+DATA_DIR = DATA_ROOT / "first_collision"
 
 CLASS_CLOSED = "FIRST_COLLISION_CLOSED"
 CLASS_GREEN = "FIRST_COLLISION_GREEN"

@@ -16,13 +16,13 @@ from math import gcd, isqrt
 from pathlib import Path
 from typing import Any, Iterable
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ENVELOPE,
     juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_itineraries.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_itineraries.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_power_itineraries.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_power_itineraries.md"
 LEAN_PATH = ENVELOPE
 
 K_MAX = 8

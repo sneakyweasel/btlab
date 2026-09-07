@@ -31,8 +31,11 @@ from research.juggler_sequence.atlas.schema import (
 )
 from research.juggler_sequence.atlas.storage import DEFAULT_DATA_DIR, sqlite_path
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     engine_floor_text,
     has_named,
     juggler_text,
@@ -45,10 +48,9 @@ from research.juggler_sequence.near_extremal_prefixes import (
 from research.juggler_sequence.parity_balance import prefix_survives
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_formal_realized_gap.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_formal_realized_gap.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "formal_realized_gap"
+JSON_PATH = DOCS_RESEARCH / "juggler_formal_realized_gap.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_formal_realized_gap.md"
+DATA_DIR = DATA_ROOT / "formal_realized_gap"
 
 CLASS_CLOSED = "FORMAL_REALIZED_GAP_CLOSED"
 CLASS_PARK = "FORMAL_REALIZED_GAP_PARK"

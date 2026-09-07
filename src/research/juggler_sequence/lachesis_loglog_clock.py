@@ -30,6 +30,10 @@ Nothing here excludes a fate.  The census this suggests is priced and refuted in
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 import random
@@ -41,7 +45,7 @@ import mpmath as mp
 from research.juggler_sequence.cycle_finance import git_commit
 from research.juggler_sequence.tao_reduction import LOG2_3, N0_CERTIFIED, scale_L
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "lachesis_loglog_clock"
+DATA_DIR = DATA_ROOT / "lachesis_loglog_clock"
 
 #: rotation of the clock circle induced by one odd step
 ALPHA = LOG2_3 - 1.0

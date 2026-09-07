@@ -20,6 +20,7 @@ from research.juggler_sequence.block_map_q import q_blocks
 from research.juggler_sequence.cube_odd_return import cube_odd_landing
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     engine_floor_text,
     has_named,
@@ -27,9 +28,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_source_return.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_source_return.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_source_return.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_source_return.md"
 
 CLASS_CLOSED = "ODD_SOURCE_RETURN_CLOSED"
 CLASS_INCOMPLETE = "ODD_SOURCE_RETURN_INCOMPLETE"

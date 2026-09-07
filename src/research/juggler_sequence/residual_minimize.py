@@ -14,6 +14,8 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     RESIDUALS,
     engine_floor_text,
@@ -32,10 +34,9 @@ from research.juggler_sequence.residual_state import (
     vector_key,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_minimize.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_minimize.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "residual_minimize"
+JSON_PATH = DOCS_RESEARCH / "juggler_residual_minimize.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_residual_minimize.md"
+DATA_DIR = DATA_ROOT / "residual_minimize"
 LEAN_PATH = RESIDUALS
 LEAN_NEW = JUGGLER_DIR / "ResidualState.lean"
 

@@ -29,6 +29,7 @@ from research.juggler_sequence.first_e_e4 import (
 )
 from research.juggler_sequence.four_even_short_gap import first_n0
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -37,9 +38,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_tails.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_tails.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cyclemin_tails.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cyclemin_tails.md"
 
 CLASS_PROVED = "CYCLEMIN_TAILS_PROVED"
 CLASS_ATE = "CYCLEMIN_TAILS_SLACK_ATE"

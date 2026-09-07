@@ -18,17 +18,21 @@ from typing import Any
 
 from research.juggler_sequence.empty_odd_preimage import criterion_scan, odd_preimage_kind
 from research.juggler_sequence.floor_preimages import odd_preimage_integers
-from research.juggler_sequence.lean_paths import JUGGLER_DIR, has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    JUGGLER_DIR,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_inverse_width"
+DATA_DIR = DATA_ROOT / "odd_inverse_width"
 JSON_PATH = DATA_DIR / "summary.json"
 HUG_FLOW_PATH = (
-    REPO_ROOT / "data" / "research" / "juggler" / "hug_cylinder_construction" / "summary.json"
+    DATA_ROOT / "hug_cylinder_construction" / "summary.json"
 )
 FAN_CONCAT_PATH = (
-    REPO_ROOT / "data" / "research" / "juggler" / "flight_fan_concat" / "summary.json"
+    DATA_ROOT / "flight_fan_concat" / "summary.json"
 )
 CELLS = JUGGLER_DIR / "Preimages.lean"
 

@@ -12,6 +12,10 @@ Dossier: docs/problems/juggler_oe_rest_average.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -30,7 +34,7 @@ from research.juggler_sequence.fate_contagion import (
     lambda_root,
 )
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "oe_rest_average"
+DATA_DIR = DATA_ROOT / "oe_rest_average"
 
 CLASS_SHARP = "OE_REST_AVERAGE_SHARP"  # 2/9 is forced
 CLASS_DROWNED = "OE_REST_AVERAGE_DROWNED"  # worst seeds still mix

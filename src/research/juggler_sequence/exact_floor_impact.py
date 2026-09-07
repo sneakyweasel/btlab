@@ -20,7 +20,14 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.global_defect import local_defect
-from research.juggler_sequence.lean_paths import JUGGLER_DIR, has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    JUGGLER_DIR,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.power_algebra import is_square, local_tight
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_chain import residual_excursion
@@ -28,11 +35,10 @@ from research.juggler_sequence.saturation_budget import saturation_prefix
 from research.juggler_sequence.two_block_residual import classify_step, odd_odd_starts
 from research.juggler_sequence.walk_coboundary import leading_drift
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "exact_floor_impact"
+DATA_DIR = DATA_ROOT / "exact_floor_impact"
 JSON_PATH = DATA_DIR / "summary.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_exact_floor_impact.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_exact_floor_impact.md"
+DOC_PATH = DOCS_RESEARCH / "juggler_exact_floor_impact.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_exact_floor_impact.md"
 
 CLASS_KNOWN = "EXACT_FLOOR_IMPACT_KNOWN"
 CLASS_BIAS = "EXACT_FLOOR_IMPACT_BIASED"

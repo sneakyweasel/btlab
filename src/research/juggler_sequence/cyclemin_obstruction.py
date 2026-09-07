@@ -21,8 +21,9 @@ from typing import Any, Iterator
 from research.juggler_sequence.bunched_last_cluster import FAMILIES
 from research.juggler_sequence.lean_paths import (
     CELLS,
-    CYCLE_CORE,
     CYCLEMIN_FUDGE,
+    CYCLE_CORE,
+    DOCS_RESEARCH,
     EVEN_COUNT_THREE,
     JUGGLER_PAPER_BARREL,
     LEFTOVER_FAMILIES,
@@ -33,9 +34,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_obstruction.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_obstruction.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cyclemin_obstruction.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cyclemin_obstruction.md"
 
 CLASS_GREEN = "CYCLEMIN_OBSTRUCTION_GREEN"
 CLASS_REMAINS = "CYCLEMIN_OBSTRUCTION_REMAINS"

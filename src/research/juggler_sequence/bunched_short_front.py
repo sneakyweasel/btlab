@@ -32,6 +32,7 @@ from research.juggler_sequence.cyclemin_obstruction import (
 )
 from research.juggler_sequence.lean_paths import (
     CYCLEMIN_OBSTRUCTION,
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     PREFIX_BUNCHED,
     PREFIX_TWO_EVEN,
@@ -42,9 +43,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short_front.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_short_front.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_bunched_short_front.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_bunched_short_front.md"
 
 CLASS_GREEN = "BUNCHED_SHORT_FRONT_GREEN"
 CLASS_PARK = "BUNCHED_SHORT_FRONT_PARK"

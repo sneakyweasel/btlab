@@ -15,17 +15,17 @@ from typing import Any
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
     PROGRESS,
-    juggler_text,
     engine_floor_text,
     has_named,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_ooo_scale.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_ooo_scale.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_ooo_scale.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_ooo_scale.md"
 LEAN_PATH = CYCLES
 FLOOR_PATH = ENVELOPE
 PROGRESS_PATH = PROGRESS

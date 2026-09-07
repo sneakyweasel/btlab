@@ -15,6 +15,10 @@ Y^{1/3} = X^{1/2}.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 import statistics
@@ -28,8 +32,7 @@ try:
 except ImportError:  # pragma: no cover
     HAVE_GMPY2 = False
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "hug_flow_depth_two"
+DATA_DIR = DATA_ROOT / "hug_flow_depth_two"
 JSON_PATH = DATA_DIR / "summary.json"
 
 SCALES = tuple(2**j for j in (12, 16, 20, 24, 28))

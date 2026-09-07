@@ -28,15 +28,15 @@ from research.juggler_sequence.first_e_e4 import (
 from research.juggler_sequence.global_defect import follows_itinerary
 from research.juggler_sequence.lean_paths import (
     DEFECT_LOWER_BOUND,
+    DOCS_RESEARCH,
     SMALL_CYCLE_CENSUS,
     has_named,
     pre_finance_text,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_amplify_surplus.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_amplify_surplus.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_amplify_surplus.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_amplify_surplus.md"
 
 CLASS_REFUTED = "AMPLIFY_SURPLUS_REFUTED"
 CLASS_REMAINS = "AMPLIFY_SURPLUS_REMAINS"

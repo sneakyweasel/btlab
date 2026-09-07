@@ -14,6 +14,12 @@ Not a halt theorem.  Run ``python -m research.juggler_sequence.oeoee_audit``.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_THEORY,
+    REPO_ROOT,
+)
+
 import json
 import math
 from fractions import Fraction as Fr
@@ -23,9 +29,8 @@ from typing import Any
 
 from research.juggler_sequence.cycle_finance import git_commit
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "oeoee_audit"
-NOTE = REPO_ROOT / "docs" / "theory" / "juggler_oeoee_production.md"
+DATA_DIR = DATA_ROOT / "oeoee_audit"
+NOTE = DOCS_THEORY / "juggler_oeoee_production.md"
 
 CLASS_CONSISTENT = "OEOEE_AUDIT_CONSISTENT"
 CLASS_FALSIFIED = "OEOEE_AUDIT_FALSIFIED"

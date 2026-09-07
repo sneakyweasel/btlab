@@ -20,19 +20,19 @@ from research.juggler_sequence.odd_odd_frontier import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
     PROGRESS,
     RESIDUALS,
     SCALE,
-    juggler_text,
     engine_floor_text,
     has_named,
+    juggler_text,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_post_overshoot.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_post_overshoot.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_post_overshoot.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_post_overshoot.md"
 LEAN_PATH = RESIDUALS
 PROGRESS_PATH = PROGRESS
 FLOOR_PATH = ENVELOPE

@@ -20,6 +20,7 @@ from research.juggler_sequence.first_ooo_escape import cube_isqrt_ge_fourth
 from research.juggler_sequence.lean_paths import (
     CELLS,
     CYCLE_CORE,
+    DOCS_RESEARCH,
     ENVELOPE,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
@@ -31,9 +32,8 @@ from research.juggler_sequence.minimal_ooe_corridor import square_cell_gap
 from research.juggler_sequence.post_ooo_crossing import post_ooo_event
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_oooe_next.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_oooe_next.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_oooe_next.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_oooe_next.md"
 
 CLASS_GREEN = "ODD_OOOE_GREEN"
 CLASS_PARK = "ODD_OOOE_PARK"

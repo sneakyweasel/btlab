@@ -11,6 +11,10 @@ Dossier: docs/problems/juggler_oe_fiber_constant.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 import random
@@ -28,7 +32,7 @@ from research.juggler_sequence.fate_contagion import (
     lambda_root,
 )
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "research" / "juggler" / "oe_fiber_constant"
+DATA_DIR = DATA_ROOT / "oe_fiber_constant"
 
 CLASS_CONSISTENT = "OE_FIBER_PAIRING_CONSISTENT"
 CLASS_FALSIFIED = "OE_FIBER_PAIRING_FALSIFIED"

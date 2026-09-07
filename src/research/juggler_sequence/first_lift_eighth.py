@@ -23,6 +23,8 @@ from research.juggler_sequence.cube_odd_return import (
     first_odd_cube_on_anchor,
 )
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    JUGGLER_BARREL,
     JUGGLER_PAPER_BARREL,
     MINIMAL,
     MINIMUM_RELATIVE,
@@ -33,9 +35,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.mixed_oe_cell import mixed_return
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_lift_eighth.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_first_lift_eighth.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_first_lift_eighth.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_first_lift_eighth.md"
 
 CLASS_REFUTED = "FIRST_LIFT_EIGHTH_REFUTED"
 CLASS_INCOMPLETE = "FIRST_LIFT_EIGHTH_INCOMPLETE"
@@ -252,7 +253,7 @@ def lean_api_present() -> dict[str, bool]:
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     forbidden = {name: has_named(combined, name) for name in FORBIDDEN_THEOREMS}
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
-    barrel = (REPO_ROOT / "formal" / "Problems" / "Juggler.lean").read_text(
+    barrel = (JUGGLER_BARREL).read_text(
         encoding="utf-8"
     )
     return {

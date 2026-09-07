@@ -30,6 +30,7 @@ from research.juggler_sequence.cyclemin_obstruction import FAMILY_A_MIN, word_fr
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
     CYCLEMIN_OBSTRUCTION,
+    DOCS_RESEARCH,
     EVEN_COUNT_THREE,
     JUGGLER_PAPER_BARREL,
     SCALE,
@@ -40,9 +41,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_isolated_odd_fibre.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_isolated_odd_fibre.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_isolated_odd_fibre.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_isolated_odd_fibre.md"
 
 CLASS_GREEN = "ISO_FIBRE_GREEN"
 CLASS_PARK = "ISO_FIBRE_PARK"

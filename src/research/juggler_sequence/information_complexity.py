@@ -21,14 +21,19 @@ from typing import Any, Callable
 
 from bt.representation import encode
 from research.juggler_sequence.landing_valuation import v2
-from research.juggler_sequence.lean_paths import CELLS, ENVELOPE, juggler_text
+from research.juggler_sequence.lean_paths import (
+    CELLS,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 from research.juggler_sequence.residual_state import collect_landings
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_information_complexity.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_information_complexity.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "information_complexity"
+JSON_PATH = DOCS_RESEARCH / "juggler_information_complexity.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_information_complexity.md"
+DATA_DIR = DATA_ROOT / "information_complexity"
 
 H_MAX = 6
 K_MAX_2 = 256

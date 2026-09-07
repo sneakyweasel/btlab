@@ -18,7 +18,10 @@ from research.juggler_sequence.no_progress_paths import (
     even_collapses,
     realized_prefix,
 )
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -27,9 +30,8 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_progress.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_progress.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_residual_progress.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_residual_progress.md"
 
 CLASS_GREEN = "RESIDUAL_PROGRESS_GREEN"
 CLASS_ESCAPE = "RESIDUAL_ESCAPE_FOUND"

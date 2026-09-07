@@ -2,10 +2,33 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from research.juggler_sequence.branch_index import check_index
-from research.juggler_sequence.lean_paths import CAPSULE_ROOT, INDEX_PATH, REPO_ROOT
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    CAPSULE_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    DOCS_THEORY,
+    FORMAL_DIR,
+    INDEX_PATH,
+    JUGGLER_DIR,
+    REPO_ROOT,
+    repo_root,
+)
+
+
+def test_repo_root_walker_finds_pyproject():
+    assert repo_root() == REPO_ROOT
+    assert (REPO_ROOT / "pyproject.toml").is_file()
+
+
+def test_path_constants_point_at_the_live_trees():
+    assert DATA_ROOT.is_dir()
+    assert DOCS_RESEARCH.is_dir()
+    assert DOCS_THEORY.is_dir()
+    assert BRANCHES_ROOT.is_dir()
+    assert FORMAL_DIR.is_dir()
+    assert JUGGLER_DIR.is_dir()
 
 
 def test_agent_guide_exists():

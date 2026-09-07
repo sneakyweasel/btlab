@@ -16,6 +16,9 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
     MINIMAL,
     MINIMAL_CLOSURE,
     PROGRESS,
@@ -24,11 +27,10 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.minimal_counterexample import barrier_walk, two_step
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_survival.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_minimal_survival.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_minimal_survival.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "minimal_survival"
+JSON_PATH = DOCS_RESEARCH / "juggler_minimal_survival.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_minimal_survival.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_minimal_survival.md"
+DATA_DIR = DATA_ROOT / "minimal_survival"
 
 N_PHASE0 = 4000
 LEFTOVER_SAMPLE = 12

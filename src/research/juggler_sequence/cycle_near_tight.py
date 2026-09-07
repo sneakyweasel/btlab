@@ -33,8 +33,11 @@ from research.juggler_sequence.cycle_gap_baker import exact_gap, o_min
 from research.juggler_sequence.expansion_slack import NEAR_TIGHT
 from research.juggler_sequence.global_defect import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
     has_named,
     juggler_text,
 )
@@ -49,10 +52,9 @@ from research.juggler_sequence.normalized_defect import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.progress_coverage import is_odd_odd
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_near_tight.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_near_tight.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_near_tight"
+JSON_PATH = DOCS_RESEARCH / "juggler_cycle_near_tight.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cycle_near_tight.md"
+DATA_DIR = DATA_ROOT / "cycle_near_tight"
 
 CLASS_CLOSED = "CYCLE_NEAR_TIGHT_CLOSED"
 CLASS_GREEN = "CYCLE_NEAR_TIGHT_GREEN"

@@ -22,15 +22,20 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.floor_preimages import odd_preimage_integers
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_paths import (
+    BRANCHES_ROOT,
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    has_named,
+    juggler_text,
+)
 from research.juggler_sequence.parity_discrepancy import odd_start_count
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_image_discrepancy.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_image_discrepancy.md"
-DOSSIER_PATH = REPO_ROOT / "docs" / "problems" / "juggler_odd_image_discrepancy.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "parity_discrepancy_next"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_image_discrepancy.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_image_discrepancy.md"
+DOSSIER_PATH = BRANCHES_ROOT / "juggler_odd_image_discrepancy.md"
+DATA_DIR = DATA_ROOT / "parity_discrepancy_next"
 
 N_MAX = 1_000_000
 N_SPOT = 10_000_000

@@ -146,8 +146,8 @@ big the numbers are.
 6. Journal entry and a [branch-ledger](../../docs/juggler_branch_ledger.md) row
 7. Rebuild `attacks/juggler/index.json`
 8. CLOSE / REFUTED → [negative_knowledge.md](../../docs/negative_knowledge.md)
-9. `tests/integration/test_docs_links.py` treats every `](` as a link;
-   do not write `[a − b](1 − c)`-style math
+9. `tests/integration/test_docs_links.py` treats every markdown link as
+   a filesystem path; keep bracket-then-paren math out of prose
 
 ## Commands
 

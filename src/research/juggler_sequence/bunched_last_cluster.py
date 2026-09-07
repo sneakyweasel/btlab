@@ -41,6 +41,7 @@ from research.juggler_sequence.lean_paths import (
     BUNCHED_EOOOEE,
     BUNCHED_TIGHT,
     CYCLES,
+    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
     MINIMAL,
@@ -52,9 +53,8 @@ from research.juggler_sequence.lean_paths import (
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import denom_bits
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_last_cluster.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_bunched_last_cluster.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_bunched_last_cluster.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_bunched_last_cluster.md"
 
 CLASS_GREEN = "BUNCHED_LAST_CLUSTER_GREEN"
 CLASS_REMAINS = "BUNCHED_LAST_CLUSTER_REMAINS"

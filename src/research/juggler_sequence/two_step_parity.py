@@ -20,14 +20,17 @@ hosts the exact validators used by both review passes.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+)
+
 import json
 from math import floor, isqrt, log, sqrt
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_two_step_parity.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_two_step_parity.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_two_step_parity.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_two_step_parity.md"
 
 N_MAX = 10_000_000
 DEPTH = 4

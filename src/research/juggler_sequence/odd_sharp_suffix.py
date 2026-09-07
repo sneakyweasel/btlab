@@ -20,13 +20,16 @@ from research.juggler_sequence.power_itineraries import (
     floor_power,
 )
 from research.juggler_sequence.saturation_budget import has_pow_two_depth, square_depth
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    juggler_text,
+)
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_sharp_suffix.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_sharp_suffix.md"
-HITS_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_sharp_suffix" / "hits"
-ANALYSIS_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_sharp_suffix" / "analysis"
+JSON_PATH = DOCS_RESEARCH / "juggler_odd_sharp_suffix.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_odd_sharp_suffix.md"
+HITS_DIR = DATA_ROOT / "odd_sharp_suffix" / "hits"
+ANALYSIS_DIR = DATA_ROOT / "odd_sharp_suffix" / "analysis"
 
 CLASS_UNBOUNDED = "ODD_SHARP_SUFFIX_UNBOUNDED"
 CLASS_FINITE = "ODD_SHARP_SUFFIX_FINITE"

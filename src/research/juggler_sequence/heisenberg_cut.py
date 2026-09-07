@@ -34,6 +34,10 @@ Probe, dyadic window, exact scaled roots from bracket_nil_lift:
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 import math
 from pathlib import Path
@@ -44,8 +48,7 @@ import numpy as np
 from research.juggler_sequence.bracket_nil_lift import WINDOW, _collect
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "heisenberg_cut"
+DATA_DIR = DATA_ROOT / "heisenberg_cut"
 JSON_PATH = DATA_DIR / "summary.json"
 
 TEST_WINDOW = 40_000

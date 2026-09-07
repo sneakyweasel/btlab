@@ -11,6 +11,10 @@ Dossier: docs/problems/juggler_cycle_affine_n_gap.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from pathlib import Path
 from typing import Any
@@ -20,10 +24,7 @@ from research.juggler_sequence.cycle_gap_baker import n_max_from_theta
 from research.juggler_sequence.cycle_inhomogeneous_log import lambda_from_theta
 
 DATA_DIR = (
-    Path(__file__).resolve().parents[3]
-    / "data"
-    / "research"
-    / "juggler"
+    DATA_ROOT
     / "cycle_affine_n_gap"
 )
 COMPETITION_SUMMARY = (

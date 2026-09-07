@@ -16,6 +16,8 @@ from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    JUGGLER_BARREL,
     JUGGLER_PAPER_BARREL,
     MINIMAL,
     MINIMUM_RELATIVE,
@@ -25,9 +27,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cube_not_square.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cube_not_square.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cube_not_square.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cube_not_square.md"
 
 CLASS_GREEN = "CUBE_NOT_SQUARE_GREEN"
 CLASS_INCOMPLETE = "CUBE_NOT_SQUARE_INCOMPLETE"
@@ -155,7 +156,7 @@ def lean_api_present() -> dict[str, bool]:
         **named,
         **{f"has_{name}": present for name, present in forbidden.items()},
         "in_laboratory_barrel": "Problems.Juggler.MinimumRelative" in (
-            REPO_ROOT / "formal" / "Problems" / "Juggler.lean"
+            JUGGLER_BARREL
         ).read_text(encoding="utf-8"),
         "not_in_paper_barrel": "cube_not_square" not in paper
         and "even_below_cube_preimage" not in paper,

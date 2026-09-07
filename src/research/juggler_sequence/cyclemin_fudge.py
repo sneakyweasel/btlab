@@ -24,6 +24,7 @@ from research.juggler_sequence.first_e_e4 import (
 )
 from research.juggler_sequence.four_even_short_gap import tail_holds_log
 from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
     JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -32,9 +33,8 @@ from research.juggler_sequence.lean_paths import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_fudge.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cyclemin_fudge.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_cyclemin_fudge.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_cyclemin_fudge.md"
 
 CLASS_PROVED = "CYCLEMIN_FUDGE_LAYER_PROVED"
 CLASS_TIGHTEN = "CYCLEMIN_FUDGE_NEEDS_LEADING_A0"

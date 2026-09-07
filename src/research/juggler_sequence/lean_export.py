@@ -1,5 +1,10 @@
 """Lean export names. Finite identities; not a halt theorem."""
 
+from research.juggler_sequence.lean_paths import (
+    JUGGLER_DIR,
+    REPO_ROOT,
+)
+
 LEAN_MODULE = "Problems.Juggler"
 
 THEOREMS = (
@@ -8,4 +13,4 @@ THEOREMS = (
     "floorPower_thirteen_reaches_one",
 )
 
-LEAN_PATH = "formal/Problems/Juggler/"
+LEAN_PATH = JUGGLER_DIR.relative_to(REPO_ROOT).as_posix() + "/"

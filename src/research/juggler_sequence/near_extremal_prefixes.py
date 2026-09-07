@@ -19,7 +19,11 @@ from research.juggler_sequence.envelope_defect import (
     tiny_deficit,
 )
 from research.juggler_sequence.equality_language import is_monochrome
-from research.juggler_sequence.lean_paths import SCALE, juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    SCALE,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -28,9 +32,8 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_near_extremal_prefixes.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_near_extremal_prefixes.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_near_extremal_prefixes.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_near_extremal_prefixes.md"
 
 CLASS_STRUCTURE = "NEAR_EXTREMAL_STRUCTURE_GREEN"
 CLASS_DEFECT = "DEFECT_DRIVEN_CONTRACTION_GREEN"

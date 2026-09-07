@@ -8,14 +8,17 @@ retag, not a K3 attack.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+)
+
 import json
 from pathlib import Path
 from typing import Any, Callable
 
 from research.juggler_sequence.step5b_sublevel import C7
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "step5b_p0"
+DATA_DIR = DATA_ROOT / "step5b_p0"
 JSON_PATH = DATA_DIR / "summary.json"
 
 # Displayed interpolant-error pieces (Paper B Step 5b).

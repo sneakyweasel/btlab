@@ -32,7 +32,14 @@ from research.juggler_sequence.envelope_defect import (
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_algebra import local_tight
-from research.juggler_sequence.lean_paths import ENVELOPE, RESIDUALS, juggler_text
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    ENVELOPE,
+    REPO_ROOT,
+    RESIDUALS,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     EXACT_POW_BITS,
@@ -42,13 +49,12 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_excursions.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_excursions.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_excursions.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_excursions.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "Excursions.lean"
 FLOOR_PATH = ENVELOPE
 RESIDUAL_PATH = RESIDUALS
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "excursions"
+DATA_DIR = DATA_ROOT / "excursions"
 
 CLASS_ENVELOPE = "EXCURSION_ENVELOPE_GREEN"
 CLASS_DEFECT = "FIRST_RETURN_DEFECT_GREEN"

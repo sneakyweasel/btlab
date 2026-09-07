@@ -11,6 +11,11 @@ Dossier: docs/problems/juggler_cycle_l84_residual_floor.md.
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    REPO_ROOT,
+)
+
 import json
 import math
 import subprocess
@@ -31,9 +36,8 @@ from research.juggler_sequence.cycle_position_finance import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_position_finance"
-HARVEST_DIR = REPO_ROOT / "data" / "research" / "juggler" / "cycle_l84_residual_floor"
+DATA_DIR = DATA_ROOT / "cycle_position_finance"
+HARVEST_DIR = DATA_ROOT / "cycle_l84_residual_floor"
 N162_CERT = (
     REPO_ROOT
     / "data"

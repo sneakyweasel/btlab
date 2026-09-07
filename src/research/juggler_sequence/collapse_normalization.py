@@ -15,11 +15,13 @@ from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, LEAN_PATH, floor_power
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_collapse_normalization.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_collapse_normalization.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_collapse_normalization.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_collapse_normalization.md"
 
 CLASS_NORM = "COLLAPSE_NORMALIZATION_GREEN"
 CLASS_DEPTH = "COLLAPSE_DEPTH_SUFFICIENT"

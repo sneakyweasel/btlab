@@ -17,6 +17,8 @@ from typing import Any, Callable
 
 from research.juggler_sequence.landing_valuation import v2
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
     JUGGLER_DIR,
     RESIDUALS,
     engine_floor_text,
@@ -28,10 +30,9 @@ from research.juggler_sequence.residual_chain import residual_class, residual_ex
 from research.juggler_sequence.residual_state import collect_landings, intrinsic_V, vector_key
 from research.juggler_sequence.two_block_residual import classify_step
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_future_quotient.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_future_quotient.md"
-DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "future_quotient"
+JSON_PATH = DOCS_RESEARCH / "juggler_future_quotient.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_future_quotient.md"
+DATA_DIR = DATA_ROOT / "future_quotient"
 LEAN_PATH = RESIDUALS
 LEAN_NEW = JUGGLER_DIR / "ResidualState.lean"
 

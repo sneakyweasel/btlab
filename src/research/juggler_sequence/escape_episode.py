@@ -19,6 +19,7 @@ from typing import Any
 
 from research.juggler_sequence.lean_paths import (
     COLLAPSE,
+    DOCS_RESEARCH,
     DRIFT,
     FIRST_PASSAGE,
     JUGGLER_DIR,
@@ -36,9 +37,8 @@ from research.juggler_sequence.minimal_anchor_closure import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_escape_episode.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_escape_episode.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_escape_episode.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_escape_episode.md"
 
 CLASS_PARK = "ESCAPE_EPISODE_PARK"
 CLASS_INCOMPLETE = "ESCAPE_EPISODE_INCOMPLETE"

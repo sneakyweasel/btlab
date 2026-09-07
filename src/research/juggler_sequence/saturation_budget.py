@@ -14,7 +14,10 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.equality_rigidity import powers_equal
 from research.juggler_sequence.power_algebra import is_square, local_tight
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_paths import (
+    DOCS_RESEARCH,
+    juggler_text,
+)
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -24,9 +27,8 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_saturation_budget.json"
-DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_saturation_budget.md"
+JSON_PATH = DOCS_RESEARCH / "juggler_saturation_budget.json"
+DOC_PATH = DOCS_RESEARCH / "juggler_saturation_budget.md"
 
 CLASS_GREEN = "SATURATION_BUDGET_GREEN"
 CLASS_DEPTH_GREEN = "POWER_TWO_DEPTH_GREEN"
