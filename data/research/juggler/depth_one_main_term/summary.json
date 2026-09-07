@@ -1,0 +1,62 @@
+{
+ "predicted_constant": 0.2721655269757647,
+ "complete_cubic_sum_mod_27": {
+  "coeff_-16": 8.99999999999524,
+  "coeff_-2": 8.99999999999855
+ },
+ "sums": {
+  "1e5": {
+   "X": 100000,
+   "abs_S_all_over_X34": 0.2700972621361642,
+   "abs_S_odd": 22.60238737820115,
+   "abs_S_odd_over_sqrtX": 0.07147502467255724,
+   "abs_S_odd_over_X34": 0.004019336009237874,
+   "imbalance_all": 2422,
+   "imbalance_even_M": 2392,
+   "imbalance_odd_M": 30,
+   "even_M_imbalance_over_X34": 0.4253644348813103
+  },
+  "1e6": {
+   "X": 1000000,
+   "abs_S_all_over_X34": 0.27073024158002545,
+   "abs_S_odd": 51.38371432681636,
+   "abs_S_odd_over_sqrtX": 0.05138371432681636,
+   "abs_S_odd_over_X34": 0.0016248957191216527,
+   "imbalance_all": 13590,
+   "imbalance_even_M": 13444,
+   "imbalance_odd_M": 146,
+   "even_M_imbalance_over_X34": 0.4251366086330369
+  }
+ },
+ "prediction_matches_at_1e6": true,
+ "odd_sum_is_below_root_X": true,
+ "even_M_carries_the_bias": true,
+ "tower_levels_at_1e6": {
+  "level_1": {
+   "cylinder": 500000,
+   "imbalance": 146,
+   "over_sqrt": 0.20647518010647187,
+   "over_34": 0.007764712009539684
+  },
+  "level_2": {
+   "cylinder": 249927,
+   "imbalance": -19,
+   "over_sqrt": -0.03800554921530773,
+   "over_34": -0.0016997839291692045
+  },
+  "level_3": {
+   "cylinder": 124973,
+   "imbalance": -1,
+   "over_sqrt": -0.002828732644370733,
+   "over_34": -0.00015044849703809687
+  },
+  "level_4": {
+   "cylinder": 62487,
+   "imbalance": -135,
+   "over_sqrt": -0.5400561687624789,
+   "over_34": -0.03415792750506585
+  }
+ },
+ "tower_levels_are_root_order": true,
+ "classification": "DEPTH_ONE_MAIN_TERM_CANCELS_ON_ODD_STARTS"
+}

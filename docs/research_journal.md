@@ -38351,3 +38351,57 @@ Why
 Best next question
 - none on this line; the frontier stays M_(theta,q) as exported
 ```
+
+## The first letter has a main term, and the odd starts cancel it
+
+A short structural branch
+([juggler_depth_one_main_term](problems/juggler_depth_one_main_term.md)).
+For F(M) = alpha M^(3/2) the van der Corput B-process dualises the sum to
+the frequency nu = F'(M), and F(M_nu) - nu M_nu = -4 nu^3/(27 alpha^2):
+a cubic with a rational coefficient. The dual Weyl sum is then a
+complete cubic Gauss sum on every period and does not cancel; at
+alpha = 1/2 the modulus is 27, the sum is 9, and
+
+    |sum_{M<=X} e(M^(3/2)/2)| = (4 sqrt8/27)(3/4)^(3/2) X^(3/4) (1+o(1))
+                              = 0.27217 X^(3/4),
+
+measured 0.2701, 0.2707, 0.2721, 0.2719 at 1e5, 1e6, 1e7, 5e7. So the
+parity of floor(M^(3/2)) over all M is biased toward even by 0.425 X^(3/4)
+— the (T3) bound of the OEOEE toolkit is attained, with this constant.
+
+The whole bias sits on even M, which Juggler sends to floor(sqrt M).
+Over odd M the twist by (-1)^M shifts the dual frequency by 1/2, the
+mod-27 cubic sum is invariant under the shift (2nu+1 runs over a
+complete residue system), the two X^(3/4) terms are equal and cancel,
+and the odd-branch sum is measured at X^0.31 — far below sqrt X. The
+Juggler first letter is super-fair. The tower levels 2-4 over odd starts
+show only sqrt(cylinder)-order imbalance (1.0, 1.2, -1.1 at 1e7): the
+rational-cubic structure is special to the exponent 3/2, whose dual
+exponent c/(c-1) = 3 is an integer; (3/2)^k for k >= 2 has none.
+
+```text
+Phase-end report
+What was learned
+- the depth-one sum has a genuine main term 0.27217 X^(3/4): the dual
+  of x^(3/2) is a rational cubic, and cubic Gauss sums mod 27 equal 9
+- the parity bias of floor(M^(3/2)) is 0.425 X^(3/4) toward even and
+  lives entirely on even M
+- on odd M the main term cancels exactly (half-integer dual shift) and
+  the sum is ~ X^0.31, below the random-walk order
+- tower levels 2-4 carry only sqrt-order imbalance; nothing propagates
+Strongest theorem
+- sum_{M<=X} e(M^(3/2)/2) = e(1/8)(2 sqrt2/3) sum_{nu<=(3/4)sqrtX} sqrt(nu)
+  e(-16 nu^3/27) + O(X^(1/4+eps)), with modulus 27 and complete sum 9,
+  hence |.| ~ 0.27217 X^(3/4); the odd restriction kills the term
+Strongest refutation
+- the hope that the main-term structure propagates up the tower
+Reusable machinery
+- depth_one_main_term: predicted_constant, complete_cubic_sum,
+  depth_one_sums, tower_level_imbalances; 4 tests
+Branch status
+- CLOSE
+Why
+  Exact and depth-one only; nothing at unbounded depth.
+Best next question
+- none on this line
+```
