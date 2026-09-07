@@ -46,10 +46,13 @@ Python, not the shell.
 
 # Lake
 
-`lake build` defaultTargets are `BTCalculus` and `Problems`. Paper
-barrels `Problems.JugglerPaper` / `Problems.JugglerParityPaper` are not
-imported by `Problems.lean`; build them by name after a toolchain
-change. Mathlib names used here: `Nat.eq_sqrt`, `Nat.le_sqrt`,
+`lake build` defaultTargets are `BTCalculus`, `Problems`, and both paper
+barrels `Problems.JugglerPaper` / `Problems.JugglerParityPaper`. The
+barrels are still not imported by `Problems.lean`, so they are named as
+targets rather than reached through it; before that they fell outside
+the default build and a toolchain change left them stale, which
+surfaced as a manuscript-audit failure rather than a build error.
+Mathlib names used here: `Nat.eq_sqrt`, `Nat.le_sqrt`,
 `Nat.sqrt_lt`, `Nat.pow_le_pow_iff_left`, `Function.iterate_fixed`,
 `Function.iterate_mul`, `Function.iterate_add_apply`.
 

@@ -39224,3 +39224,57 @@ Theorem 3.31's cap table was two integer comparisons, Theorem 4.7's core
 was three omegas and a logarithm. What is missing is general mathematics:
 Denjoy-Koksma, unique ergodicity, the variation of a sawtooth. None of it
 is about the Juggler map.
+
+## Paper A had no trust boundary, so nothing checked its citations
+
+Paper B has had two guards since the referee asked: a trust-boundary
+table built from evidence, with a test that every backticked identifier
+is declared and reachable from Paper B's own barrel, and an axiom-check
+file whose recorded output a test regenerates and diffs. Paper A had
+neither. Its audit probe checks convergents, the fan law, Rhin bounds
+and window margins, all numerical, and never asks whether a cited Lean
+name exists.
+
+The gap was not theoretical. A commit added DenjoyKoksma.lean and the
+paragraph in Paper A citing four of its theorems, and registered the
+module nowhere: not the layer table, not the paper module list, not the
+barrel, no ledger row. A reader following the paper's own build
+instruction compiled none of the four. The concurrent session fixed the
+registration while this audit was running, which is the right outcome
+and also the point: nothing failed, so nothing announced it.
+
+Three things now exist.
+
+trust_boundary.py takes a paper. audit(PAPER_A, PAPER_A_ROOT) gives
+Paper A's rows, the default is unchanged so Paper B's suite is
+untouched, and the CLI has --paper a|b. Paper A cites 212 backticked
+lowercase identifiers; 201 are declared and all 201 are reachable from
+its barrel. The 11 that are not declarations are five artifact
+checksums, two Python probe modules, two JSON field names, and the two
+tactic names the prose discusses.
+
+AxiomCheckPaperA.lean asks about all 201 and records the output.
+Names are fully qualified, because two modules of the layer, FanLaw and
+DepthFourFive, declare into Juggler.* rather than Problems.Juggler.*,
+and a single open would have missed 21 cited names without saying so.
+Of the 201: 184 kernel-only, 15 axiom-free, and exactly 2 carrying the
+native_decide axiom, window_digit_scan which uses it and
+window_digit_cap which consumes it. Section 1.2 claims exactly that,
+and says consumers inherit it, so the paper's trust sentence is
+accurate.
+
+Two gates that applied only to registered modules now apply to every
+file: the sorry/admit/axiom scan over all of formal/Problems/Juggler
+rather than the layer table's 87 of 100, and the namespace convention,
+which pins the two deviations so a third cannot appear quietly.
+
+Separately the paper barrels are in defaultTargets now. They were
+outside the default build, which is how the v4.33.1 upgrade left their
+oleans stale and produced an incompatible-header failure that read as a
+manuscript defect. Deleting both oleans and running a plain lake build
+now rebuilds them.
+
+Not done, and deliberately: the FanLaw and DepthFourFive namespaces are
+pinned rather than renamed. Both sit inside Paper A's review object and
+a rename touches cited names in the manuscript, which is the concurrent
+session's active area.

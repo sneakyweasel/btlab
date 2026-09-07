@@ -21,6 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note.md"
+PAPER_A = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
 LEAN = ROOT / "formal" / "Problems" / "Juggler"
 UMBRELLA = ROOT / "formal" / "Problems" / "Juggler.lean"
 PAPER_A_ROOT = ROOT / "formal" / "Problems" / "JugglerPaper.lean"
@@ -80,11 +81,18 @@ def reachable_modules(root) -> set[str]:
     return seen
 
 
-def audit() -> list[dict[str, object]]:
-    text = io.open(PAPER, encoding="utf-8").read()
+def audit(paper: Path = PAPER, root: Path | None = None) -> list[dict[str, object]]:
+    """Rows for one paper.  Defaults to Paper B, so existing callers are unchanged.
+
+    Pass ``paper=PAPER_A, root=PAPER_A_ROOT`` for Paper A.  ``reachable`` is measured
+    against ``root``; ``in_paper_a_root`` is always measured against Paper A's barrel.
+    """
+    if root is None:
+        root = PAPER_B_ROOT
+    text = io.open(paper, encoding="utf-8").read()
     heads = sections(text)
     decl = declared()
-    reach = reachable_modules(PAPER_B_ROOT)
+    reach = reachable_modules(root)
     reach_a = reachable_modules(PAPER_A_ROOT)
     rows: dict[str, dict[str, object]] = {}
     for m in IDENT.finditer(text):
@@ -103,13 +111,22 @@ def audit() -> list[dict[str, object]]:
 
 
 def main() -> None:
-    rows = audit()
+    import argparse
+    ap = argparse.ArgumentParser(description="Trust boundary for Paper A or Paper B.")
+    ap.add_argument("--paper", choices=["a", "b"], default="b")
+    args = ap.parse_args()
+    if args.paper == "a":
+        rows = audit(PAPER_A, PAPER_A_ROOT)
+        label, rootname = "Paper A", "Problems/JugglerPaper.lean"
+    else:
+        rows = audit()
+        label, rootname = "Paper B", "Problems/JugglerParityPaper.lean"
     missing = [r for r in rows if not r["declared"]]
     unreachable = [r for r in rows if r["declared"] and not r["reachable"]]
-    print("identifiers cited in Paper B's prose: %d" % len(rows))
+    print("identifiers cited in %s's prose: %d" % (label, len(rows)))
     print("   declared in formal/Problems/ : %d" % (len(rows) - len(missing)))
-    print("   of those, reachable from Problems/JugglerParityPaper.lean: %d"
-          % (len(rows) - len(missing) - len(unreachable)))
+    print("   of those, reachable from %s: %d"
+          % (rootname, len(rows) - len(missing) - len(unreachable)))
     print()
     if missing:
         print("CITED BUT NOT DECLARED (%d):" % len(missing))
