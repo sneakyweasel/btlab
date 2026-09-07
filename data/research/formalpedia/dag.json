@@ -922,6 +922,22 @@
         "kernel": 2
       }
     },
+    "Problems.Juggler.CubeCorridor": {
+      "declarations": 15,
+      "depends_on": [
+        "Problems.Juggler.Envelope"
+      ],
+      "file": "formal/Problems/Juggler/CubeCorridor.lean",
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
+      "papers": [
+        "Paper A"
+      ],
+      "trust": {
+        "kernel": 15
+      }
+    },
     "Problems.Juggler.CycleCore": {
       "declarations": 71,
       "depends_on": [
@@ -1440,8 +1456,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "papers": [
         "Paper A"
@@ -1614,6 +1629,7 @@
     "Problems.Juggler.Progress": {
       "declarations": 20,
       "depends_on": [
+        "Problems.Juggler.CubeCorridor",
         "Problems.Juggler.Preimages"
       ],
       "file": "formal/Problems/Juggler/Progress.lean",
@@ -1909,9 +1925,9 @@
     }
   },
   "totals": {
-    "edges": 124,
-    "edges_before_reduction": 936,
+    "edges": 126,
+    "edges_before_reduction": 979,
     "ledger_rows_placed": 324,
-    "nodes": 116
+    "nodes": 117
   }
 }

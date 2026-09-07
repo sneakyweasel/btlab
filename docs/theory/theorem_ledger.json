@@ -5519,7 +5519,9 @@
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "If x is odd and T(x) is even, then T^2(x) < n^2 if and only if x^3 < n^8. This is the mixed odd-cube / even-square cell. It is strictly sharper than composing a cube-band bound x < n^3 into T^2(x)^4 < n^9. An eighth-cell even lift that returns even is FiniteProgress; on MinimalNonTerm that return is odd. This is not a claim that every leftover landing stays below n^8, not a defect restriction, and not a halt theorem.",
   "source": "docs/problems/juggler_mixed_oe_cell.md",
-  "lean": "Problems/Juggler/MinimumRelative.lean",
+  "lean": "Problems/Juggler/CubeCorridor.lean",
+  "decl": "odd_even_eighth_lt_sq",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_mixed_oe_cell.py"
   ],

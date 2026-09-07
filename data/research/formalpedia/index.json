@@ -8652,7 +8652,9 @@
       "doc": "Even cube-not-square landing resets into the square cell.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 17,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "even_cube_not_square",
@@ -8662,7 +8664,9 @@
       "doc": "Odd cube-not-square landing lifts to at least `n^3`. Companion of `odd_ge_succ_sq_floorPower_ge_cube`, with floor `n^2`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 29,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "odd_ge_sq_floor_ge_cube",
@@ -8672,7 +8676,9 @@
       "doc": "Odd cube-band state: the leftover of `even_cube_not_square`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 39,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "CubeOddLanding",
@@ -8682,7 +8688,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 42,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "CubeOddLanding.corridor",
@@ -8692,7 +8700,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 46,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_odd_landing_two_le",
@@ -8702,7 +8712,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 52,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_odd_landing_three_le",
@@ -8712,7 +8724,9 @@
       "doc": "Generic odd-lift envelope from the cube cell: `T(x)^2 < n^9`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 59,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "odd_lt_cube_floor_sq_lt_nine",
@@ -8722,7 +8736,9 @@
       "doc": "Weak integer form of `T(x) < n^{9/2}`: `T(x) < n^5`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 70,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "odd_lt_cube_floor_lt_five",
@@ -8732,7 +8748,9 @@
       "doc": "Odd cube landing lifts into `[n^3, n^5)`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 80,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_odd_lift",
@@ -8742,7 +8760,9 @@
       "doc": "Even return after an odd cube lift is strictly below the source. This is `floorPower_odd_even_two_step_lt` on the cube-band state, plus the square-trap converse `T^2(x) \u2265 n`. Not a claim that `T^2(x) < n^2`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 87,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_lift_even_reset",
@@ -8752,7 +8772,9 @@
       "doc": "Even reset after an odd cube lift re-enters the cube-or-below corridor.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 105,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_lift_even_reset_lt_cube",
@@ -8762,7 +8784,9 @@
       "doc": "Scale form of the even return: `T^2(x)^4 < n^9`, i.e. below `n^{9/4}`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 111,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_lift_even_reset_fourth",
@@ -8772,7 +8796,9 @@
       "doc": "Mixed OE cell: an odd cube step followed by an even square step is the eighth-power comparison. This is strictly sharper than composing `x < n^3` into `T^2(x) < n^{9/4}`. Not a one-step envelope and not a defect restriction.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 131,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "odd_even_eighth_lt_sq",
@@ -8782,7 +8808,9 @@
       "doc": "Odd continuation after an odd cube lift rises above the source.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 157,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_lift_odd_continues",
@@ -8792,7 +8820,9 @@
       "doc": "Odd continuation from a cube-band lift is at least `n^4`.",
       "file": "formal/Problems/Juggler/CubeCorridor.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-mixed-oe-eighth"
+      ],
       "line": 166,
       "module": "Problems.Juggler.CubeCorridor",
       "name": "cube_lift_odd_ge_fourth",
@@ -34672,8 +34702,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 26,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34687,8 +34716,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 30,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34702,8 +34730,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 35,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34717,8 +34744,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 40,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34732,8 +34758,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 45,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34747,8 +34772,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 50,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34762,8 +34786,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 59,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34777,8 +34800,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 66,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34792,8 +34814,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 75,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34807,8 +34828,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 85,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34822,8 +34842,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 107,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34837,8 +34856,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 119,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34852,8 +34870,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 125,
       "module": "Problems.Juggler.MinimumRelative",
@@ -34867,8 +34884,7 @@
       "ledger": [
         "J-above-anchor",
         "J-cube-not-square-split",
-        "J-cube-odd-even-reset",
-        "J-mixed-oe-eighth"
+        "J-cube-odd-even-reset"
       ],
       "line": 131,
       "module": "Problems.Juggler.MinimumRelative",
@@ -45349,6 +45365,56 @@
       "line": 498,
       "module": "Problems.Juggler.ThresholdCertificate",
       "name": "gap_error_not_halved_by_recentring",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`j` iterated integer square roots of `x` equal `s` exactly when `s^(2^j) \u2264 x < (s+1)^(2^j)`: the intermediate floors are transparent.",
+      "file": "formal/Problems/Juggler/TowerAbsorption.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 20,
+      "module": "Problems.Juggler.TowerAbsorption",
+      "name": "sqrt_iter_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On an even run the Juggler map is iterated `Nat.sqrt`.",
+      "file": "formal/Problems/Juggler/TowerAbsorption.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 35,
+      "module": "Problems.Juggler.TowerAbsorption",
+      "name": "floorPower_iter_of_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An odd step followed by `j` even steps is the integer `2^(j+1)`-th root of `n^3`: the value `\u230an^{3/2^(j+1)}\u230b`, one floor, no nesting.",
+      "file": "formal/Problems/Juggler/TowerAbsorption.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 48,
+      "module": "Problems.Juggler.TowerAbsorption",
+      "name": "floorPower_odd_even_run",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The cell of the value after `O E^j`: `s^(2^(j+1)) \u2264 n^3 < (s+1)^(2^(j+1))`.",
+      "file": "formal/Problems/Juggler/TowerAbsorption.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 55,
+      "module": "Problems.Juggler.TowerAbsorption",
+      "name": "floorPower_odd_even_run_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `OE` fiber of `FateContagion` is the case `j = 1`.",
+      "file": "formal/Problems/Juggler/TowerAbsorption.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 62,
+      "module": "Problems.Juggler.TowerAbsorption",
+      "name": "floorPower_oe_eq_iff",
       "trust": "kernel"
     },
     {
@@ -63320,6 +63386,7 @@
         "Problems.Juggler.Termination",
         "Problems.Juggler.TerminationFloor257",
         "Problems.Juggler.ThresholdCertificate",
+        "Problems.Juggler.TowerAbsorption",
         "Problems.Juggler.WalkChargeItineraries",
         "Problems.Juggler.WalkChargeMax",
         "Problems.Juggler.WalkTransport"
@@ -63394,7 +63461,13 @@
       "imports": [
         "Problems.Juggler.Corridor"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-mixed-oe-eighth",
+          "statement": "If x is odd and T(x) is even, then T^2(x) < n^2 if and only if x^3 < n^8. This is the mixed odd-cube / even-square cell. It is strictly sharper than composing a cube-band bound x < n^3 into T^2(x)^4 < n^9. An eighth-cell even lift that returns even is FiniteProgress; on MinimalNonTerm that return is odd. This is not a claim that every leftover landing stays below n^8, not a defect restriction, and not a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.CycleCore": {
       "declarations": 71,
@@ -64360,11 +64433,6 @@
           "id": "J-cube-odd-even-reset",
           "statement": "If n \u2265 2 and n^2 \u2264 x < n^3 with x odd, then n^3 \u2264 T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n \u2264 T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 \u2264 T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is not a claim that every even reset lands below n^2, not a new integer-power census, and not a halt theorem.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
-        },
-        {
-          "id": "J-mixed-oe-eighth",
-          "statement": "If x is odd and T(x) is even, then T^2(x) < n^2 if and only if x^3 < n^8. This is the mixed odd-cube / even-square cell. It is strictly sharper than composing a cube-band bound x < n^3 into T^2(x)^4 < n^9. An eighth-cell even lift that returns even is FiniteProgress; on MinimalNonTerm that return is odd. This is not a claim that every leftover landing stays below n^8, not a defect restriction, and not a halt theorem.",
-          "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
     },
@@ -64776,6 +64844,14 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.TowerAbsorption": {
+      "declarations": 5,
+      "file": "formal/Problems/Juggler/TowerAbsorption.lean",
+      "imports": [
+        "Problems.Juggler.Dynamics"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.WalkChargeItineraries": {
       "declarations": 31,
       "file": "formal/Problems/Juggler/WalkChargeItineraries.lean",
@@ -65085,13 +65161,13 @@
     }
   },
   "totals": {
-    "declarations": 4618,
-    "declarations_with_a_ledger_row": 3141,
+    "declarations": 4623,
+    "declarations_with_a_ledger_row": 3156,
     "ledger_rows_naming_a_file": 324,
-    "modules": 190,
+    "modules": 191,
     "trust": {
       "compiler": 55,
-      "kernel": 4563
+      "kernel": 4568
     }
   }
 }

@@ -3715,42 +3715,6 @@
     {
       "candidates": [
         {
-          "decl": "aboveAnchor_not_odd_even",
-          "line": 107,
-          "score": 0.086,
-          "trust": "kernel"
-        },
-        {
-          "decl": "aboveAnchor_isolated_two",
-          "line": 131,
-          "score": 0.03,
-          "trust": "kernel"
-        },
-        {
-          "decl": "even_ge_sq_of_aboveAnchor",
-          "line": 75,
-          "score": 0.028,
-          "trust": "kernel"
-        }
-      ],
-      "composite": false,
-      "confidence": "low",
-      "definitions": [
-        {
-          "decl": "AboveAnchor",
-          "line": 26,
-          "score": 0.0
-        }
-      ],
-      "id": "J-mixed-oe-eighth",
-      "in_file": 13,
-      "lean": "Problems/Juggler/MinimumRelative.lean",
-      "names_own": [],
-      "statement": "If x is odd and T(x) is even, then T^2(x) < n^2 if and only if x^3 < n^8. This is the mixed odd-cube / even-square cell. It is strictly sharper than composing a cube-band bound x < n^3 into T^2(x)^4 < n^9. An eighth-cell even lift that returns even is FiniteProgress; on MinimalNonTerm that return is odd. This is not a claim that every leftover landing stays below n^8, not a defect restriction, and"
-    },
-    {
-      "candidates": [
-        {
           "decl": "no_cycle_itinerary_length_le_ten",
           "line": 224,
           "score": 0.321,
@@ -4637,6 +4601,6 @@
       "statement": "not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_pos), and the even chain multiplies exponents (even_chain_mem_"
     }
   ],
-  "unresolved": 117,
+  "unresolved": 116,
   "worth_reviewing": 19
 }
